@@ -4,27 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AB636CCD1BF
-	for <intel-xe@archiver.kernel.org>; Tue, 28 Oct 2025 09:12:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A9797CCF9E0
+	for <intel-xe@archiver.kernel.org>; Tue, 28 Oct 2025 09:17:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 710D110E5C1;
-	Tue, 28 Oct 2025 09:12:13 +0000 (UTC)
-Received: from 97596180aaec (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4E9E110E5C1;
- Tue, 28 Oct 2025 09:12:12 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6587693899328005291=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 64BD710E09B;
+	Tue, 28 Oct 2025 09:17:19 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OPlVN0HT";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 99D1B10E09B;
+ Tue, 28 Oct 2025 09:17:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1761643038; x=1793179038;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=f1Gx1nkIdPWF2+nnP86In0UJ+h/hmz68PmTuk3f8Z4E=;
+ b=OPlVN0HT57TnFrCzUjFvhzPWJ51faH3PlToGxTN/JoF5nnT2/FWLsuXg
+ +ksVrHjpyZJ5Z4oJ3a6hcHBK8ZACy6odQROc4tx4OLJsG/77z+cOu9knu
+ rC3nphSdh/KRz0Zhx6gnvGGdgyxcLvPkHviMSLlcUVwRpifCkcQcrVKvc
+ W+c6o9Kh5Gw0yykhxcUN8f2WQ/x+o/TpgXz0KlA3xdOFP65hEQgDGZ//N
+ 6tLQ8rOylgLS6JuMswHRSYEfvyeGKLa4MS92KUejlnlZe6w/hKZHDkfIP
+ cVCtRjQxJ1XhRg16knFuvv7HjYHUoifuFJdWOmJ+FCXcmDakfkhXf2+rP g==;
+X-CSE-ConnectionGUID: NCP1p5ofQvGbraGEpmABfw==
+X-CSE-MsgGUID: WjqTu/fTSCWoBLFmz4Nb7w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="63774819"
+X-IronPort-AV: E=Sophos;i="6.19,261,1754982000"; d="scan'208";a="63774819"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Oct 2025 02:17:17 -0700
+X-CSE-ConnectionGUID: iixckcl/RPSKg61lFVcYOQ==
+X-CSE-MsgGUID: pS3GTjyKTm2gELzLZsyNTQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,261,1754982000"; d="scan'208";a="189350272"
+Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.90])
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Oct 2025 02:17:14 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Suraj Kandpal <suraj.kandpal@intel.com>, intel-xe@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org
+Cc: ankit.k.nautiyal@intel.com, arun.r.murthy@intel.com,
+ uma.shankar@intel.com, gustavo.sousa@intel.com, lucas.demarchi@intel.com,
+ Suraj Kandpal <suraj.kandpal@intel.com>
+Subject: Re: [PATCH v2 07/26] drm/i915/ltphy: Read PHY_VDR_0_CONFIG register
+In-Reply-To: <20251024100712.3776261-8-suraj.kandpal@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20251024100712.3776261-1-suraj.kandpal@intel.com>
+ <20251024100712.3776261-8-suraj.kandpal@intel.com>
+Date: Tue, 28 Oct 2025 11:17:12 +0200
+Message-ID: <8a040b8c9aa93820b71d054eafe827f1f1738cec@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Fix_uninitialized?=
- =?utf-8?q?_return_value_from_xe=5Fvalidation=5Fguard=28=29_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 28 Oct 2025 09:12:12 -0000
-Message-ID: <176164273231.62065.14863011329399701232@97596180aaec>
-X-Patchwork-Hint: ignore
-References: <20251027131228.12098-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20251027131228.12098-1-thomas.hellstrom@linux.intel.com>
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,110 +68,268 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============6587693899328005291==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Fri, 24 Oct 2025, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
+> Read PHY_VDR_0_CONFIG to check if there is any change in the register and
+> decide based on that if P2P sequence to change the data rate of LT PHY
+> are required or not. This scenario only happens if the requested mode
+> uses 1.62Gbps with DP mode since LT PHY defaults to this mode if
+> any other mode is requested we need to follow the whole sequence.
+>
+> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+> Reviewed-by: Arun R Murthy <arun.r.murthy@intel.com>
+> ---
+> V1 -> V2: Update the commit message (Arun)
+> ---
+>  drivers/gpu/drm/i915/display/intel_cx0_phy.c |   4 +-
+>  drivers/gpu/drm/i915/display/intel_cx0_phy.h |   2 +
+>  drivers/gpu/drm/i915/display/intel_lt_phy.c  | 146 ++++++++++++++++---
+>  3 files changed, 127 insertions(+), 25 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+> index 3d79f3be1ccd..c8848e8bfe8c 100644
+> --- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+> +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+> @@ -271,8 +271,8 @@ static u8 __intel_cx0_read(struct intel_encoder *encoder,
+>  	return 0;
+>  }
+>  
+> -static u8 intel_cx0_read(struct intel_encoder *encoder,
+> -			 u8 lane_mask, u16 addr)
+> +u8 intel_cx0_read(struct intel_encoder *encoder,
+> +		  u8 lane_mask, u16 addr)
 
-== Series Details ==
+Pretty sure these will fit on one line.
 
-Series: drm/xe: Fix uninitialized return value from xe_validation_guard() (rev2)
-URL   : https://patchwork.freedesktop.org/series/156581/
-State : success
+>  {
+>  	int lane = lane_mask_to_lane(lane_mask);
+>  
+> diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.h b/drivers/gpu/drm/i915/display/intel_cx0_phy.h
+> index 8c9b97f0922d..b448ce936c37 100644
+> --- a/drivers/gpu/drm/i915/display/intel_cx0_phy.h
+> +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.h
+> @@ -46,6 +46,8 @@ void intel_cx0_powerdown_change_sequence(struct intel_encoder *encoder,
+>  int intel_cx0_phy_check_hdmi_link_rate(struct intel_hdmi *hdmi, int clock);
+>  void intel_cx0_setup_powerdown(struct intel_encoder *encoder);
+>  bool intel_cx0_is_hdmi_frl(u32 clock);
+> +u8 intel_cx0_read(struct intel_encoder *encoder,
+> +		  u8 lane_mask, u16 addr);
 
-== Summary ==
+Ditto.
 
-CI Bug Log - changes from xe-3994-de43fe70c436c359e7478a5532d873f87357cb4e_BAT -> xe-pw-156581v2_BAT
-====================================================
+>  int intel_mtl_tbt_calc_port_clock(struct intel_encoder *encoder);
+>  void intel_cx0_pll_power_save_wa(struct intel_display *display);
+>  void intel_lnl_mac_transmit_lfps(struct intel_encoder *encoder,
+> diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.c b/drivers/gpu/drm/i915/display/intel_lt_phy.c
+> index 239f7cdd373b..0fdc1ddbc5b1 100644
+> --- a/drivers/gpu/drm/i915/display/intel_lt_phy.c
+> +++ b/drivers/gpu/drm/i915/display/intel_lt_phy.c
+> @@ -6,6 +6,7 @@
+>  #include <drm/drm_print.h>
+>  
+>  #include "i915_reg.h"
+> +#include "i915_utils.h"
+>  #include "intel_cx0_phy.h"
+>  #include "intel_cx0_phy_regs.h"
+>  #include "intel_de.h"
+> @@ -14,12 +15,14 @@
+>  #include "intel_hdmi.h"
+>  #include "intel_lt_phy.h"
+>  #include "intel_lt_phy_regs.h"
+> +#include "intel_psr.h"
+>  #include "intel_tc.h"
+>  
+>  #define INTEL_LT_PHY_LANE0		BIT(0)
+>  #define INTEL_LT_PHY_LANE1		BIT(1)
+>  #define INTEL_LT_PHY_BOTH_LANES		(INTEL_LT_PHY_LANE1 |\
+>  					 INTEL_LT_PHY_LANE0)
+> +#define MODE_DP				3
+>  
+>  static u8 intel_lt_phy_get_owned_lane_mask(struct intel_encoder *encoder)
+>  {
+> @@ -32,6 +35,12 @@ static u8 intel_lt_phy_get_owned_lane_mask(struct intel_encoder *encoder)
+>  		? INTEL_LT_PHY_BOTH_LANES : INTEL_LT_PHY_LANE0;
+>  }
+>  
+> +static u8 intel_lt_phy_read(struct intel_encoder *encoder,
+> +			    u8 lane_mask, u16 addr)
 
-Summary
--------
+Ditto.
 
-  **SUCCESS**
+> +{
+> +	return intel_cx0_read(encoder, lane_mask, addr);
+> +}
+> +
+>  static void
+>  intel_lt_phy_setup_powerdown(struct intel_encoder *encoder, u8 lane_count)
+>  {
+> @@ -149,12 +158,96 @@ intel_lt_phy_program_port_clock_ctl(struct intel_encoder *encoder,
+>  		     XELPDP_SSC_ENABLE_PLLB, val);
+>  }
+>  
+> +static u32
+> +intel_lt_phy_get_dp_clock(u8 rate)
 
-  No regressions found.
+Ditto.
 
-  
+> +{
+> +	switch (rate) {
+> +	case 0:
+> +		return 162000;
+> +	case 1:
+> +		return 270000;
+> +	case 2:
+> +		return 540000;
+> +	case 3:
+> +		return 810000;
+> +	case 4:
+> +		return 216000;
+> +	case 5:
+> +		return 243000;
+> +	case 6:
+> +		return 324000;
+> +	case 7:
+> +		return 432000;
+> +	case 8:
+> +		return 1000000;
+> +	case 9:
+> +		return 1350000;
+> +	case 10:
+> +		return 2000000;
+> +	case 11:
+> +		return 675000;
+> +	default:
+> +		MISSING_CASE(rate);
+> +		return 0;
+> +	}
+> +}
+> +
+> +static bool
+> +intel_lt_phy_config_changed(struct intel_encoder *encoder,
+> +			    const struct intel_crtc_state *crtc_state)
+> +{
+> +	u8 val, rate;
+> +	u32 clock;
+> +
+> +	val = intel_lt_phy_read(encoder, INTEL_LT_PHY_LANE0,
+> +				LT_PHY_VDR_0_CONFIG);
+> +	rate = REG_FIELD_GET8(LT_PHY_VDR_RATE_ENCODING_MASK, val);
+> +
+> +	/*
+> +	 * The only time we do not reconfigure the PLL is when we are
+> +	 * using 1.62 Gbps clock since PHY PLL defaults to that
+> +	 * otherwise we always need to reconfigure it.
+> +	 */
+> +	if (intel_crtc_has_dp_encoder(crtc_state)) {
+> +		clock = intel_lt_phy_get_dp_clock(rate);
+> +		if (crtc_state->port_clock == 1620000 && crtc_state->port_clock == clock)
+> +			return false;
+> +	}
+> +
+> +	return true;
+> +}
+> +
+> +static intel_wakeref_t intel_lt_phy_transaction_begin(struct intel_encoder *encoder)
+> +{
+> +	struct intel_display *display = to_intel_display(encoder);
+> +	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
+> +	intel_wakeref_t wakeref;
+> +
+> +	intel_psr_pause(intel_dp);
+> +	wakeref = intel_display_power_get(display, POWER_DOMAIN_DC_OFF);
+> +
+> +	return wakeref;
+> +}
+> +
+> +static void intel_lt_phy_transaction_end(struct intel_encoder *encoder, intel_wakeref_t wakeref)
+> +{
+> +	struct intel_display *display = to_intel_display(encoder);
+> +	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
+> +
+> +	intel_psr_resume(intel_dp);
+> +	intel_display_power_put(display, POWER_DOMAIN_DC_OFF, wakeref);
+> +}
+> +
+>  void intel_lt_phy_pll_enable(struct intel_encoder *encoder,
+>  			     const struct intel_crtc_state *crtc_state)
+>  {
+> +	struct intel_display *display = to_intel_display(encoder);
+>  	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
+>  	bool lane_reversal = dig_port->lane_reversal;
+>  	u8 owned_lane_mask = intel_lt_phy_get_owned_lane_mask(encoder);
+> +	intel_wakeref_t wakeref = 0;
+> +
+> +	wakeref = intel_lt_phy_transaction_begin(encoder);
+>  
+>  	/* 1. Enable MacCLK at default 162 MHz frequency. */
+>  	intel_lt_phy_lane_reset(encoder, crtc_state->lane_count);
+> @@ -170,29 +263,34 @@ void intel_lt_phy_pll_enable(struct intel_encoder *encoder,
+>  	 * 4. Read the PHY message bus VDR register PHY_VDR_0_Config check enabled PLL type,
+>  	 * encoded rate and encoded mode.
+>  	 */
+> -	/*
+> -	 * 5. Program the PHY internal PLL registers over PHY message bus for the desired
+> -	 * frequency and protocol type
+> -	 */
+> -	/* 6. Use the P2P transaction flow */
+> -	/*
+> -	 * 6.1. Set the PHY VDR register 0xCC4[Rate Control VDR Update] = 1 over PHY message
+> -	 * bus for Owned PHY Lanes.
+> -	 */
+> -	/*
+> -	 * 6.2. Poll for P2P Transaction Ready = "1" and read the MAC message bus VDR register
+> -	 * at offset 0xC00 for Owned PHY Lanes.
+> -	 */
+> -	/* 6.3. Clear P2P transaction Ready bit. */
+> -	/* 7. Program PORT_CLOCK_CTL[PCLK PLL Request LN0] = 0. */
+> -	/* 8. Poll for PORT_CLOCK_CTL[PCLK PLL Ack LN0]= 0. */
+> -	/*
+> -	 * 9. Follow the Display Voltage Frequency Switching - Sequence Before Frequency Change.
+> -	 * We handle this step in bxt_set_cdclk()
+> -	 */
+> -	/* 10. Program DDI_CLK_VALFREQ to match intended DDI clock frequency. */
+> -	/* 11. Program PORT_CLOCK_CTL[PCLK PLL Request LN0] = 1. */
+> -	/* 12. Poll for PORT_CLOCK_CTL[PCLK PLL Ack LN0]= 1. */
+> +	if (intel_lt_phy_config_changed(encoder, crtc_state)) {
+> +		/*
+> +		 * 5. Program the PHY internal PLL registers over PHY message bus for the desired
+> +		 * frequency and protocol type
+> +		 */
+> +		/* 6. Use the P2P transaction flow */
+> +		/*
+> +		 * 6.1. Set the PHY VDR register 0xCC4[Rate Control VDR Update] = 1 over PHY message
+> +		 * bus for Owned PHY Lanes.
+> +		 */
+> +		/*
+> +		 * 6.2. Poll for P2P Transaction Ready = "1" and read the MAC message bus VDR
+> +		 * register at offset 0xC00 for Owned PHY Lanes*.
+> +		 */
+> +		/* 6.3. Clear P2P transaction Ready bit. */
+> +		/* 7. Program PORT_CLOCK_CTL[PCLK PLL Request LN0] = 0. */
+> +		/* 8. Poll for PORT_CLOCK_CTL[PCLK PLL Ack LN0]= 0. */
+> +		/*
+> +		 * 9. Follow the Display Voltage Frequency Switching - Sequence Before Frequency
+> +		 * Change. We handle this step in bxt_set_cdclk().
+> +		 */
+> +		/* 10. Program DDI_CLK_VALFREQ to match intended DDI clock frequency. */
+> +		/* 11. Program PORT_CLOCK_CTL[PCLK PLL Request LN0] = 1. */
+> +		/* 12. Poll for PORT_CLOCK_CTL[PCLK PLL Ack LN0]= 1. */
+> +	} else {
+> +		intel_de_write(display, DDI_CLK_VALFREQ(encoder->port), crtc_state->port_clock);
+> +	}
+> +
+>  	/* 13. Ungate the forward clock by setting PORT_CLOCK_CTL[Forward Clock Ungate] = 1. */
+>  	/* 14. SW clears PORT_BUF_CTL2 [PHY Pulse Status]. */
+>  	/*
+> @@ -206,4 +304,6 @@ void intel_lt_phy_pll_enable(struct intel_encoder *encoder,
+>  	 * We handle this step in bxt_set_cdclk()
+>  	 */
+>  	/* 19. Move the PHY powerdown state to Active and program to enable/disable transmitters */
+> +
+> +	intel_lt_phy_transaction_end(encoder, wakeref);
+>  }
 
-Participating hosts (13 -> 13)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * IGT: IGT_8597 -> IGT_8598
-  * Linux: xe-3994-de43fe70c436c359e7478a5532d873f87357cb4e -> xe-pw-156581v2
-
-  IGT_8597: 8597
-  IGT_8598: 8598
-  xe-3994-de43fe70c436c359e7478a5532d873f87357cb4e: de43fe70c436c359e7478a5532d873f87357cb4e
-  xe-pw-156581v2: 156581v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156581v2/index.html
-
---===============6587693899328005291==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Fix uninitialized return value from xe_validation_guard() (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/156581/">https://patchwork.freedesktop.org/series/156581/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156581v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156581v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3994-de43fe70c436c359e7478a5532d873f87357cb4e_BAT -&gt; xe-pw-156581v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8597 -&gt; IGT_8598</li>
-<li>Linux: xe-3994-de43fe70c436c359e7478a5532d873f87357cb4e -&gt; xe-pw-156581v2</li>
-</ul>
-<p>IGT_8597: 8597<br />
-  IGT_8598: 8598<br />
-  xe-3994-de43fe70c436c359e7478a5532d873f87357cb4e: de43fe70c436c359e7478a5532d873f87357cb4e<br />
-  xe-pw-156581v2: 156581v2</p>
-
-</body>
-</html>
-
---===============6587693899328005291==--
+-- 
+Jani Nikula, Intel
