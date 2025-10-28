@@ -4,56 +4,183 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 27637CCD1BF
-	for <intel-xe@archiver.kernel.org>; Tue, 28 Oct 2025 05:12:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 49DFDCCF9E0
+	for <intel-xe@archiver.kernel.org>; Tue, 28 Oct 2025 05:14:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C26A110E301;
-	Tue, 28 Oct 2025 05:12:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0651310E301;
+	Tue, 28 Oct 2025 05:14:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VtQC+TKK";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ePlB0ys3";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B784A10E301
- for <intel-xe@lists.freedesktop.org>; Tue, 28 Oct 2025 05:12:13 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 755E910E301;
+ Tue, 28 Oct 2025 05:14:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761628333; x=1793164333;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=wGbFbwz71jVZNXWiaPqn7nwnwX44E43r3rPaXnPLhWY=;
- b=VtQC+TKKH1ccOxEG78Y8Yx/rTCI4w+GhJO5OQVI8r0bBGCDDw8dELJI5
- jdpOZLmmAnlqjXXHT2eeUEOKiEpAXOII0RToXrt6TsRRUyW7LkHCs4VF+
- hgbWDtjXV1O0eRBH03xFzjYcscqb9t0Ok7K7nUujPP8Zpyrpx+kGdqkM2
- lizVeR+zsMOsGS4NFBk8B3WoWm1oSs60THuvk/0+nQtolXTtYwz2kaxy6
- WurOyMYZbW+xgmoiu0UBry4tHoWyat3NL4674w7gtQpFTr01MIf7zZTPP
- wESUBnWZ4MfCRKiWs6QqZnWe3fa15SIfM4Fs9URVktwzi/7Xl7IERrk8F A==;
-X-CSE-ConnectionGUID: Qp7StsiGQCaG3ey+jjhq4g==
-X-CSE-MsgGUID: rWal6Dh4QCilmg/4NxH2Mw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="74838922"
-X-IronPort-AV: E=Sophos;i="6.19,260,1754982000"; d="scan'208";a="74838922"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Oct 2025 22:12:13 -0700
-X-CSE-ConnectionGUID: nxi0fIL1RN6OVzbmyW870g==
-X-CSE-MsgGUID: d4Ljz9a+RGuQvwiYCTjaww==
+ t=1761628455; x=1793164455;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=qvYMw3vitE3Yt2Rw99datmPhnz54KWYla0X+2kYjhAY=;
+ b=ePlB0ys3KxPXQbGF90AFy5u/dpIhGWEeQMXHSwk03mLJL1EPaQeX4InC
+ rxlIVnOxm04XpXtDnmfJPmwnSxoVzcdSjIbcVuQIPAIHP7aEEqLYpt8uN
+ 9huAUcAhJ7CnzgHwArrbjm1YG5hpbJ9Rj9fImjuvhcAeHJ94P3H6vrQWS
+ xo9ee1313hDRUGpYzBdzC/zpNIrJxOH7aWx0vVrXbTP3IAWewvlWIwFac
+ FtbeqKhSpPawG8AoWYDnDSdj2lVx2NujeZN2pbf2UGHZQc59qSCFCM+au
+ 9bcqXHLXRvOq8r3/a2l4JLbJxQHX6h0XuKR+KmcdsZLSbSd3ZPwImCr7v Q==;
+X-CSE-ConnectionGUID: Zbb0BnfMRBiC57rdw4jvdQ==
+X-CSE-MsgGUID: lx2TYOnmR5e2+25r31WZEQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="62750461"
+X-IronPort-AV: E=Sophos;i="6.19,260,1754982000"; d="scan'208";a="62750461"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Oct 2025 22:14:08 -0700
+X-CSE-ConnectionGUID: taqFy6feR32NGBA019WPCg==
+X-CSE-MsgGUID: jKfENlYSTyCoCSRNhGTeGQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,260,1754982000"; d="scan'208";a="184422697"
-Received: from black.igk.intel.com ([10.91.253.5])
- by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Oct 2025 22:12:12 -0700
-Date: Tue, 28 Oct 2025 06:12:09 +0100
-From: Raag Jadav <raag.jadav@intel.com>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: lucas.demarchi@intel.com, intel-xe@lists.freedesktop.org,
- riana.tauro@intel.com, badal.nilawar@intel.com
-Subject: Re: [PATCH v1] drm/xe/pm: Enable WAKE# support
-Message-ID: <aQBQqZvgBhHpViGR@black.igk.intel.com>
-References: <20251024102148.3641819-1-raag.jadav@intel.com>
- <aP_c6nylO9L-swL7@intel.com>
+X-IronPort-AV: E=Sophos;i="6.19,260,1754982000"; d="scan'208";a="190444006"
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+ by fmviesa004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Oct 2025 22:14:05 -0700
+Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.27; Mon, 27 Oct 2025 22:13:56 -0700
+Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.27 via Frontend Transport; Mon, 27 Oct 2025 22:13:56 -0700
+Received: from PH0PR06CU001.outbound.protection.outlook.com (40.107.208.23) by
+ edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.27; Mon, 27 Oct 2025 22:13:56 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=tkKGBLD8oWKVUQpTdoD6LWCUcet3LRlqVH1IKtz5LkwdsH1ULUoNcJ5BlUi/xGtj4huY4aLPOW3KJXz/UqnrD6ACriVka/LKpSR3JnYiQQPJ0/k8Qo+6+ukXUJrUKZnRDQeQphy/SzR5F9o2+r68xe/GKThpvJJkQFMfvgGPl7x7JdXPYFwexMS8vEMeZyEJatnd13VRdxNbsgZ9EWIx/jbG3A5fjZJiIt0EIzXq54p7J/gQRItb/AyfuEQqd+WDQ9yIksovnds5wePgPWgJNrh0PxLa/SO+NAuxtb5qitAI/c4dmFmEagOzW2YzAQ0JV+4QFd4clyonLjSG3eJPpw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=P674ZFyr3lyNmm+azc6SFsmjpEU4D3MMSKabhqS1li0=;
+ b=fYBxGCzfjcW28/xzB4budKtwyscv5RWKAGsJONPpzMz7k0nPT8w5gNKRZCd+ff8IlMLS1IaP3TAqHrH4PzWu8/A/rUCSxFGns6MBFgkKfh6KTXGqefRddPdHCfrRPu3TV1VtbCx4RT0r3+ZHE3L/nT8wbvOVeD8LcUmR+m3KCzfdIUgW68a4etIMhlYN3CJBAtYoop5SAArcsqdJyw0KzJ/Hx1fOhiYg/N1JVBf0LfN/4mMk7oL9FwfmMTOt5WAyKUsUNLekPiRvwo0nBnTSnZBgTYsI2N/sg0puRFyBzVZUjcbCXoHjKYIPUMRscGV9+MS7UReTqSqfpKdcm1rDzw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from DM3PPF208195D8D.namprd11.prod.outlook.com
+ (2603:10b6:f:fc00::f13) by SJ0PR11MB5166.namprd11.prod.outlook.com
+ (2603:10b6:a03:2d8::5) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9253.19; Tue, 28 Oct
+ 2025 05:13:54 +0000
+Received: from DM3PPF208195D8D.namprd11.prod.outlook.com
+ ([fe80::95c9:5973:5297:d3cc]) by DM3PPF208195D8D.namprd11.prod.outlook.com
+ ([fe80::95c9:5973:5297:d3cc%4]) with mapi id 15.20.9253.017; Tue, 28 Oct 2025
+ 05:13:54 +0000
+From: "Kandpal, Suraj" <suraj.kandpal@intel.com>
+To: "Shankar, Uma" <uma.shankar@intel.com>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>, "intel-xe@lists.freedesktop.org"
+ <intel-xe@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org"
+ <dri-devel@lists.freedesktop.org>
+CC: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>,
+ "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>,
+ "pekka.paalanen@collabora.com" <pekka.paalanen@collabora.com>,
+ "contact@emersion.fr" <contact@emersion.fr>, "harry.wentland@amd.com"
+ <harry.wentland@amd.com>, "mwen@igalia.com" <mwen@igalia.com>,
+ "jadahl@redhat.com" <jadahl@redhat.com>, "sebastian.wick@redhat.com"
+ <sebastian.wick@redhat.com>, "shashank.sharma@amd.com"
+ <shashank.sharma@amd.com>, "Sharma, Swati2" <swati2.sharma@intel.com>,
+ "alex.hung@amd.com" <alex.hung@amd.com>, "Shankar, Uma"
+ <uma.shankar@intel.com>
+Subject: RE: [v5 11/24] drm/i915/color: Add and attach COLORPIPELINE plane
+ property
+Thread-Topic: [v5 11/24] drm/i915/color: Add and attach COLORPIPELINE plane
+ property
+Thread-Index: AQHb6zDziftNpqPVL0ejmaToJdsRLbTXu28w
+Date: Tue, 28 Oct 2025 05:13:54 +0000
+Message-ID: <DM3PPF208195D8DB02B13BC6F33E064A0E4E3FDA@DM3PPF208195D8D.namprd11.prod.outlook.com>
+References: <20250702091936.3004854-1-uma.shankar@intel.com>
+ <20250702091936.3004854-12-uma.shankar@intel.com>
+In-Reply-To: <20250702091936.3004854-12-uma.shankar@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DM3PPF208195D8D:EE_|SJ0PR11MB5166:EE_
+x-ms-office365-filtering-correlation-id: 983784d7-14a5-4bc6-72c3-08de15e0ca20
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|7416014|376014|1800799024|366016|38070700021; 
+x-microsoft-antispam-message-info: =?us-ascii?Q?TWBTCvAnMbfP01Ti2jILUfO9lhhDdOp5Eoo/6bA3uF9SPq65OcBTLbxLy6+m?=
+ =?us-ascii?Q?nif82Hy3DmbPTiuz5+PMElLBwHjjn6HmYBGyJm0vq6K6M3HWjBSzy0sMc7q3?=
+ =?us-ascii?Q?IPcOFpkjW8oZk7hqhsxGAFjqfiFoXVdRp0hCtelCeqd/xYgOMLJQAo5sXI4E?=
+ =?us-ascii?Q?Q8u5V+n9wC5IAyJvZK56vGcyy3SMCZwwJYQ0j28Tkekkhh3dCPiwe/mwHJU5?=
+ =?us-ascii?Q?V5Deh9LWcGzM2Z1HRwocgcYYJEngiMLq7Y9vp/+A2+Kkt0mTjNBSK99oF8Yu?=
+ =?us-ascii?Q?KFzwuV1uspe+E0bU7nvWxzNHbc7ExM3jv5H92mF5cuK1gtmyvqD1e2oIUSyq?=
+ =?us-ascii?Q?DQG/O4rwtRXzvciql5MEVGzNLP1Hi+PQniyJuEeMJ62dkDSE2vcHVFRMwnYo?=
+ =?us-ascii?Q?nT/LdTA+4zFzxvwi8Asg/e9md1+Goh83KZIzPS6Jgig6k4OE4FQSqL1VlY8c?=
+ =?us-ascii?Q?VQcXskqhpbA7yklSPKm27tZrIORyVgSCrGLWWdvb2BDTFsg4sXTzLn6PBFEw?=
+ =?us-ascii?Q?8oaH8olo59WFc6BV7vi3C/OcH6q/PYAgtTJ5t6FvoBfJO0D3Wsyuiy/7I0z1?=
+ =?us-ascii?Q?jamoOec/7Qfspdf18O7nTy8YSOFXVz5vATJUUhniid7JvRZmkwWYQEVt/ccK?=
+ =?us-ascii?Q?nEorHBg5Api5/B+FPd/S7+UM0QNQLj0Nd/W/fH3svNX9BykVRLIRUWxVH2UD?=
+ =?us-ascii?Q?XGJrm/CHkaXmtxDrpgxrt1XeXU3nhjgr7KC5UEm0rsy0Yh6rXIpVX/9Acut4?=
+ =?us-ascii?Q?AeUyfHs0bmJaxsWKpW2R+XNIaZ/o52MlgTd0yJhbXxgNlUk9o/FllIhjljcn?=
+ =?us-ascii?Q?aEj+a31XnvMYaphg3VNLKoxRgpDd1rJ9jPH5r+4Vj09NZdFe3Rb/61T3Aq5E?=
+ =?us-ascii?Q?2S2V2uqCu0A5VZzbNlyaVjlZrTwc7vAYejmgSGTntmIo2QGvGJHF7+M2yFt3?=
+ =?us-ascii?Q?snPM9pUD8XOCjIJ2slFL/b05P6FBSC5ef8X8EcSm7+y+c15g6D28xknTnJoZ?=
+ =?us-ascii?Q?81gT2ZlRNI1EjEgZ5EJspii1tti2zme5L7D3zf4XJ07YIOQz+8xj2d/TMpSS?=
+ =?us-ascii?Q?UFTD3Wtev/xT9fzO/YR/i6gQcF3yVCZDV6DVWyoMTqO8D2r68qJAKkxqihBE?=
+ =?us-ascii?Q?azIueiok87SoN4ey0EUp1NbxTPd7eu/ksAezcw4rN+fG0j6TW2KLR0TbZKR1?=
+ =?us-ascii?Q?TddOoegDKGBRaBojG5O9YmeI3wLuyuDHJq0YRp/mNhBkZzb7T+0VBWYwJzAj?=
+ =?us-ascii?Q?KZRJTEVp9ZqjTZAwVZ3I9WGJQH+qmDVnIU9UpFuu7qnl1ZITkjtfZb5XzI5S?=
+ =?us-ascii?Q?6E1vkFSXoCqO4OB2CmFmZ6Wqfa09P6fLDpCwI+Yccrh7u+ud8CnjUbuiGmRF?=
+ =?us-ascii?Q?PryfprgXEm+pE2+LJIaidUMJ1QGixM503G7DmzpkDX6olANo0T2kvXehBSj3?=
+ =?us-ascii?Q?hU6bVr+0gwYgnvBGNd0GOZNrtqegAFcej6sPgOACRp1n/WROLe0VWxEJSw3S?=
+ =?us-ascii?Q?CexV23xEziMvVppVVa/xjxW4eka1S2sQ7ZMz?=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM3PPF208195D8D.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(7416014)(376014)(1800799024)(366016)(38070700021); DIR:OUT;
+ SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?GMXbLT/b+/2w9mXFZuVoCFRwG8J8Z1464LKybjt/AjPguZTevYP2K8xJwjA3?=
+ =?us-ascii?Q?ZkywPTfEOYo/eEB69ukUeEnGD/0GlLa1t969QJuZj4vK4u7nurMWq5XnyUtY?=
+ =?us-ascii?Q?+Syisjo0pYWZX3hlZl1Bo854XNBUWqrsnh9RdaLpzrp8mCGLQW5m3DA+k+65?=
+ =?us-ascii?Q?AU5gY0D1FwAGafDyoplLDAm1i8sVLPIfFdvzPHxlf/EKLIFVQrdyJmF6/Y56?=
+ =?us-ascii?Q?yyjvpFsxN0pHvA0tBJY2lzU20LMW6K4ArAf3s9I9VlOn1OKSxL8Uhoi12T0A?=
+ =?us-ascii?Q?ot+42oS3gE5O1w1p0L57rgGkjCcIVQyY6K6iwsQjafThkhrvtSpd5G+xAGb8?=
+ =?us-ascii?Q?OTDbcNTEW28NxIBKTzanNUV52sxF1yQsD5+BhXlEFAMb8OiP/yIap2Q4QXVw?=
+ =?us-ascii?Q?/uWWOKvbQzAe+AgVB7Wa5REj5tWE87ULZMuUNetiCRLnyFXzl59sgoWMh9vD?=
+ =?us-ascii?Q?5WmIiwjX5nN5JrmZNzOI6ePPzNpeILIEcxe2hpbAfUi3wr5+/3FmPKLAykqz?=
+ =?us-ascii?Q?ejoAYbZtIRxzBx+DFRDf9IkuHDaKWJeJ7bd1EHu9la96ed7PUWU71f/H/YdY?=
+ =?us-ascii?Q?WdrX8wcDcwJWjeZ3Ksk6hsvMfHEEYzPs5HAQPgPKckyBqWPndl5emlJk+24Q?=
+ =?us-ascii?Q?rAxSBC8DktdhcENSZ1rxYt20JJDDO/cEnmL4p+WSj6Q7DzPfgNUIqbxXPzt1?=
+ =?us-ascii?Q?FqNauWAxGfmVn/ouUdP97OYbQImTsMpkxCa68VPr3iv6dqdfm8PMTYhLVBrY?=
+ =?us-ascii?Q?+5y7N96anZVGa9/n9HdekC9gSO6v5LegSOngB5JVHrLNOt2kiYcr/bhDs6Hw?=
+ =?us-ascii?Q?rr/N2R7FWJtnpHC6W72x2KPnemUTAHhdsN/fr3Jn+R6ctkawYczoPIA9Sh4v?=
+ =?us-ascii?Q?CKx8Qh3AN4xIxh08STsMZqeJuMULT6aK+Ys0+e57Nt6wqsfR42m/4ZMDALar?=
+ =?us-ascii?Q?I16x74I61wGxI1ifJHyHOTnlbwLfgcliFaWyDs1JsNvSEEE6cFgpOIDLWnpA?=
+ =?us-ascii?Q?AiVJMw2pId/w1sCnw7T8PTQwiUaEIyHUjtPFOJtdF7h+IzgFNXt47Nc28RBk?=
+ =?us-ascii?Q?+tFboOpCj5W+7vQGugsoeWns+LdkwYLURrfG4+h2IfuxqHnbn0jplXOMARpz?=
+ =?us-ascii?Q?5npQJ3i5drBOe0TBdfnREmbbDqG42BVxd8oFAhL93pSERLtWaPpYVXMKxD5Z?=
+ =?us-ascii?Q?oFnKpAdcu2TWIYLVXHNlakG+69hBt+90QodxK3/EDCkD+vb9JjJrmxhWZ0nE?=
+ =?us-ascii?Q?5ZTb/OkvGqVRS1Sarpa4DQZK3VctJMLfEZQxtLJE4UKIPHpQplYBmTc3tvEp?=
+ =?us-ascii?Q?m1ZjaGu7TYbdwfflTKoDodyFTkbj/ldRO7DeNsXu0mqV03gxMspHoH7OPB8+?=
+ =?us-ascii?Q?0yHSDrAi2BzYp4QuUyh2ngOp86A6H/FFb1HwzG7NkqcI0I4L8f2+6LqDYqe/?=
+ =?us-ascii?Q?LYcxrR00HMqR5VFrO7UBfnpm0mwlMB2piFUuCof+Mzingu73ILJQAUa6edfq?=
+ =?us-ascii?Q?mb77USAjYM8syWM4td017BvbtGKSs8/GituF1cm08i6/bxNZ8/TWIX9a6B09?=
+ =?us-ascii?Q?SmoRF5X00F23rjW7VsvLHpKBc9ezraYTdbJCc21s?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aP_c6nylO9L-swL7@intel.com>
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM3PPF208195D8D.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 983784d7-14a5-4bc6-72c3-08de15e0ca20
+X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Oct 2025 05:13:54.1086 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: jkdvRXxlbbnZG+9EyyYUGk9U6JU8e9n1nY+xEAiqmmvJNfYRSbmIKWG5B8MpKNXPAZ7q2yPoPhycyf805gk4XQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB5166
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,218 +195,111 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Oct 27, 2025 at 04:58:18PM -0400, Rodrigo Vivi wrote:
-> On Fri, Oct 24, 2025 at 03:51:48PM +0530, Raag Jadav wrote:
-> > CRI supports signalling the host through WAKE# pin on smbus alerts while
-> > in D3cold. Enable/disable this feature based on device/host configuration.
-> > 
-> > Signed-off-by: Raag Jadav <raag.jadav@intel.com>
-> > ---
-> >  drivers/gpu/drm/xe/xe_device_types.h |  4 ++
-> >  drivers/gpu/drm/xe/xe_pci.c          |  4 ++
-> >  drivers/gpu/drm/xe/xe_pcode_api.h    |  5 ++
-> >  drivers/gpu/drm/xe/xe_pm.c           | 72 ++++++++++++++++++++++++++++
-> >  drivers/gpu/drm/xe/xe_pm.h           |  1 +
-> >  5 files changed, 86 insertions(+)
-> > 
-> > diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-> > index 8f62ee7a73ac..dae2bd06bcea 100644
-> > --- a/drivers/gpu/drm/xe/xe_device_types.h
-> > +++ b/drivers/gpu/drm/xe/xe_device_types.h
-> > @@ -517,6 +517,10 @@ struct xe_device {
-> >  		 * Default threshold value is 300mb.
-> >  		 */
-> >  		u32 vram_threshold;
-> > +
-> > +		/** @d3cold.wake: Indicates WAKE# capability of device */
-> > +		u32 wake;
-> > +
-> >  		/** @d3cold.lock: protect vram_threshold */
-> >  		struct mutex lock;
-> >  	} d3cold;
-> > diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-> > index 6e59642e7820..edf63f55f345 100644
-> > --- a/drivers/gpu/drm/xe/xe_pci.c
-> > +++ b/drivers/gpu/drm/xe/xe_pci.c
-> > @@ -1105,6 +1105,8 @@ static int xe_pci_suspend(struct device *dev)
-> >  	if (err)
-> >  		return err;
-> >  
-> > +	xe_pm_set_wake(xe, true);
-> 
-> why does it need to be here and not something static inside xe_pm itself?
+> Subject: [v5 11/24] drm/i915/color: Add and attach COLORPIPELINE plane
+> property
+>=20
+> From: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+>=20
+> Add supported color pipelines and attach it to plane.
+>=20
+> Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+> Signed-off-by: Uma Shankar <uma.shankar@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_color.c | 42 ++++++++++++++++++++++
+> drivers/gpu/drm/i915/display/intel_color.h |  3 ++
+>  2 files changed, 45 insertions(+)
+>=20
+> diff --git a/drivers/gpu/drm/i915/display/intel_color.c
+> b/drivers/gpu/drm/i915/display/intel_color.c
+> index 90ac6530d1a5..363c9590c5c1 100644
+> --- a/drivers/gpu/drm/i915/display/intel_color.c
+> +++ b/drivers/gpu/drm/i915/display/intel_color.c
+> @@ -4050,6 +4050,48 @@ int intel_plane_tf_pipeline_init(struct drm_plane
+> *plane, struct drm_prop_enum_l
+>  	return 0;
+>  }
+>=20
+> +int intel_plane_color_init(struct drm_plane *plane) {
 
-The expectation is this should be done only if xe_pm_suspend() is
-successful or you can guarantee it.
+Again need to rethink the name here
 
-> > +
-> >  	/*
-> >  	 * Enabling D3Cold is needed for S2Idle/S0ix.
-> >  	 * It is save to allow here since xe_pm_suspend has evicted
-> > @@ -1156,6 +1158,8 @@ static int xe_pci_runtime_suspend(struct device *dev)
-> >  	if (err)
-> >  		return err;
-> >  
-> > +	xe_pm_set_wake(xe, xe->d3cold.allowed);
-> > +
-> >  	pci_save_state(pdev);
-> >  
-> >  	if (xe->d3cold.allowed) {
-> > diff --git a/drivers/gpu/drm/xe/xe_pcode_api.h b/drivers/gpu/drm/xe/xe_pcode_api.h
-> > index 92bfcba51e19..3f8d43c1b4fe 100644
-> > --- a/drivers/gpu/drm/xe/xe_pcode_api.h
-> > +++ b/drivers/gpu/drm/xe/xe_pcode_api.h
-> > @@ -50,6 +50,11 @@
-> >  #define	READ_PL_FROM_FW				0x1
-> >  #define	READ_PL_FROM_PCODE			0x0
-> >  
-> > +#define   PCODE_D3COLD_WAKE			0x5A
-> > +#define     READ_MODE				0x0
-> > +#define     WRITE_MODE				0x1
-> > +#define       I2C_WAKE_ENABLE			REG_BIT(1)
-> 
-> please share the spec with me
-> 
-> > +
-> >  #define   PCODE_LATE_BINDING			0x5C
-> >  #define     GET_CAPABILITY_STATUS		0x0
-> >  #define       V1_FAN_SUPPORTED			REG_BIT(0)
-> > diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
-> > index 53507e09f7bc..30e4a787b9cb 100644
-> > --- a/drivers/gpu/drm/xe/xe_pm.c
-> > +++ b/drivers/gpu/drm/xe/xe_pm.c
-> > @@ -7,6 +7,8 @@
-> >  
-> >  #include <linux/fault-inject.h>
-> >  #include <linux/pm_runtime.h>
-> > +#include <linux/pm_wakeup.h>
-> > +#include <linux/string_choices.h>
-> >  #include <linux/suspend.h>
-> >  
-> >  #include <drm/drm_managed.h>
-> > @@ -22,6 +24,7 @@
-> >  #include "xe_i2c.h"
-> >  #include "xe_irq.h"
-> >  #include "xe_late_bind_fw.h"
-> > +#include "xe_pcode_api.h"
-> >  #include "xe_pcode.h"
-> >  #include "xe_pxp.h"
-> >  #include "xe_sriov_vf_ccs.h"
-> > @@ -422,6 +425,74 @@ static int xe_pm_notifier_callback(struct notifier_block *nb,
-> >  	return NOTIFY_DONE;
-> >  }
-> >  
-> > +void xe_pm_set_wake(struct xe_device *xe, bool d3cold)
-> > +{
-> > +	struct xe_tile *root_tile = xe_device_get_root_tile(xe);
-> > +	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
-> > +	struct pci_dev *root_pdev;
-> > +	bool wakeup;
-> > +	u32 val = 0;
-> > +	int ret;
-> > +
-> > +	/* WAKE# is not needed, let PME do the job. */
-> > +	if (!d3cold)
-> > +		return;
-> 
-> Please NO! check this outside and only call the function if needed instead
-> of passing the need as argument.
+> +	struct drm_device *dev =3D plane->dev;
+> +	struct intel_display *display =3D to_intel_display(dev);
+> +	struct drm_property *prop;
+> +	struct drm_prop_enum_list pipelines[MAX_COLOR_PIPELINES];
+> +	int len =3D 0;
+> +	int ret;
+> +
+> +	/* Currently expose pipeline only for HDR planes*/
 
-Sure.
+Missed a blank space at the end
 
-> > +
-> > +	/* Currently WAKE# is supported for I2C only */
-> > +	if (!REG_FIELD_GET(I2C_WAKE_ENABLE, xe->d3cold.wake))
-> > +		return;
-> 
-> let's perhaps make it a
-> 
-> static void i2c_set_wake(struct xe_device *xe)
-> {
-> ...
-> }
+> +	if (!icl_is_hdr_plane(display, to_intel_plane(plane)->id))
+> +		return 0;
+> +
+> +	/* Add "Bypass" (i.e. NULL) pipeline */
+> +	pipelines[len].type =3D 0;
+> +	pipelines[len].name =3D "Bypass";
+> +	len++;
+> +
+> +	/* Add pipeline consisting of transfer functions */
+> +	ret =3D intel_plane_tf_pipeline_init(plane, &pipelines[len]);
+> +	if (ret)
+> +		return ret;
+> +	len++;
+> +
+> +	/* Create COLOR_PIPELINE property and attach */
+> +	prop =3D drm_property_create_enum(dev, DRM_MODE_PROP_ATOMIC,
+> +					"COLOR_PIPELINE",
+> +					pipelines, len);
+> +	if (!prop)
+> +		return -ENOMEM;
+> +
+> +	plane->color_pipeline_property =3D prop;
+> +
+> +	drm_object_attach_property(&plane->base, prop, 0);
+> +
+> +	/* TODO check if needed */
+> +	if (plane->state)
+> +		plane->state->color_pipeline =3D NULL;
+> +
+> +	return 0;
+> +}
+> +
+>  void intel_color_crtc_init(struct intel_crtc *crtc)  {
+>  	struct intel_display *display =3D to_intel_display(crtc); diff --git
+> a/drivers/gpu/drm/i915/display/intel_color.h
+> b/drivers/gpu/drm/i915/display/intel_color.h
+> index ce9db761c6e2..c2561b86bb26 100644
+> --- a/drivers/gpu/drm/i915/display/intel_color.h
+> +++ b/drivers/gpu/drm/i915/display/intel_color.h
+> @@ -18,6 +18,8 @@ struct drm_plane;
+>  struct drm_prop_enum_list;
+>  enum intel_color_block;
+>=20
+> +#define MAX_COLOR_PIPELINES 5
 
-No, there are other usecases supported that we're not adding here (yet)
-and we don't want to come back revamping/duplicating code when we need them.
-Simply add a new bit and call it a day.
+Here I see you will be initializing a max of 3 pipelines if I am not wrong =
+the number should reflect that so maybe
+3
 
-Raag
+Regards,
+Suraj Kandpal
 
-> > +
-> > +	ret = xe_pcode_read(root_tile, PCODE_MBOX(PCODE_D3COLD_WAKE, READ_MODE, 0), &val, NULL);
-> > +	if (ret)
-> > +		return;
-> > +
-> > +	root_pdev = pcie_find_root_port(pdev);
-> > +	wakeup = root_pdev && device_may_wakeup(&root_pdev->dev);
-> > +
-> > +	if (wakeup)
-> > +		val |= I2C_WAKE_ENABLE;
-> > +	else
-> > +		val &= ~I2C_WAKE_ENABLE;
-> > +
-> > +	ret = xe_pcode_write(root_tile, PCODE_MBOX(PCODE_D3COLD_WAKE, WRITE_MODE, 0), val);
-> > +	if (ret)
-> > +		return;
-> > +
-> > +	drm_dbg(&xe->drm, "WAKE# %s\n", str_enabled_disabled(wakeup));
-> > +}
-> > +
-> > +static void xe_pm_wake_init(struct xe_device *xe)
-> > +{
-> > +	struct xe_tile *root_tile = xe_device_get_root_tile(xe);
-> > +	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
-> > +	struct pci_dev *root_pdev;
-> > +	int err;
-> > +
-> > +	if (xe->info.platform != XE_CRESCENTISLAND)
-> > +		return;
-> > +
-> > +	err = xe_pcode_read(root_tile, PCODE_MBOX(PCODE_D3COLD_WAKE, READ_MODE, 0),
-> > +			    &xe->d3cold.wake, NULL);
-> > +	if (err || !xe->d3cold.wake) {
-> > +		drm_dbg(&xe->drm, "WAKE# not supported by device\n");
-> > +		return;
-> > +	}
-> > +
-> > +	root_pdev = pcie_find_root_port(pdev);
-> > +	if (!root_pdev || !device_can_wakeup(&root_pdev->dev)) {
-> > +		drm_dbg(&xe->drm, "WAKE# not supported by host\n");
-> > +		xe->d3cold.wake = 0;
-> > +		goto out;
-> > +	}
-> > +
-> > +	if (!xe_i2c_present(xe))
-> > +		xe->d3cold.wake &= ~I2C_WAKE_ENABLE;
-> > +
-> > +	drm_dbg(&xe->drm, "WAKE# configuration 0x%08x\n", xe->d3cold.wake);
-> > +out:
-> > +	xe_pcode_write(root_tile, PCODE_MBOX(PCODE_D3COLD_WAKE, WRITE_MODE, 0), xe->d3cold.wake);
-> > +}
-> > +
-> >  /**
-> >   * xe_pm_init - Initialize Xe Power Management
-> >   * @xe: xe device instance
-> > @@ -459,6 +530,7 @@ int xe_pm_init(struct xe_device *xe)
-> >  			goto err_unregister;
-> >  	}
-> >  
-> > +	xe_pm_wake_init(xe);
-> >  	xe_pm_runtime_init(xe);
-> >  	return 0;
-> >  
-> > diff --git a/drivers/gpu/drm/xe/xe_pm.h b/drivers/gpu/drm/xe/xe_pm.h
-> > index f7f89a18b6fc..9cedba8a7f80 100644
-> > --- a/drivers/gpu/drm/xe/xe_pm.h
-> > +++ b/drivers/gpu/drm/xe/xe_pm.h
-> > @@ -30,6 +30,7 @@ void xe_pm_runtime_get_noresume(struct xe_device *xe);
-> >  bool xe_pm_runtime_resume_and_get(struct xe_device *xe);
-> >  void xe_pm_assert_unbounded_bridge(struct xe_device *xe);
-> >  int xe_pm_set_vram_threshold(struct xe_device *xe, u32 threshold);
-> > +void xe_pm_set_wake(struct xe_device *xe, bool d3cold);
-> >  void xe_pm_d3cold_allowed_toggle(struct xe_device *xe);
-> >  bool xe_rpm_reclaim_safe(const struct xe_device *xe);
-> >  struct task_struct *xe_pm_read_callback_task(struct xe_device *xe);
-> > -- 
-> > 2.34.1
-> > 
+> +
+>  void intel_color_init_hooks(struct intel_display *display);  int
+> intel_color_init(struct intel_display *display);  void intel_color_crtc_i=
+nit(struct
+> intel_crtc *crtc); @@ -46,5 +48,6 @@ void intel_color_assert_luts(const s=
+truct
+> intel_crtc_state *crtc_state);  struct intel_plane_colorop
+> *intel_colorop_alloc(void);  struct intel_plane_colorop
+> *intel_plane_colorop_create(enum intel_color_block id);  int
+> intel_plane_tf_pipeline_init(struct drm_plane *plane, struct
+> drm_prop_enum_list *list);
+> +int intel_plane_color_init(struct drm_plane *plane);
+>=20
+>  #endif /* __INTEL_COLOR_H__ */
+> --
+> 2.42.0
+
