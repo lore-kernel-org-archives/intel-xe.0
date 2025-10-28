@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1E8CFCCD1BF
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 64391CCF9E0
 	for <intel-xe@archiver.kernel.org>; Tue, 28 Oct 2025 12:25:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DB38110E5CB;
-	Tue, 28 Oct 2025 12:25:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 27FA910E5CD;
+	Tue, 28 Oct 2025 12:25:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="j/eZI5mv";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="leI0UBrC";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1FBD410E5CD
- for <intel-xe@lists.freedesktop.org>; Tue, 28 Oct 2025 12:25:13 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6A10010E5D4
+ for <intel-xe@lists.freedesktop.org>; Tue, 28 Oct 2025 12:25:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761654313; x=1793190313;
+ t=1761654315; x=1793190315;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Zl8pUlsxR4LKfo2jCitWyUfZNc2LeEtA2QRLhZEjC8o=;
- b=j/eZI5mvFLrFJSdh9MsWpQnJqp9a8C++bO4qBbqyq7HFp2HD4CObBOzb
- npnZguEvW9mD7hrtKyjnKav3OF/m4LHZ2UHqSNHp7xKSsKoUobqyAHXBc
- ze9GOssyPNWcvWvPyFGPWsaEqjWpsUKJyVbXTcyreWHTxDIsf59EFZr3A
- GKPBow9nqLG4O/5/U4xsDmN0WkJ1EwkjtAH5WHJOvxGO/SBviVHEijOKG
- eF6VEnXAR3xBMxqMpEzcqSNTy5jx+Fasn8+4r5WQrjqf3T+Oe4Xd8qJyC
- 6KQHjbiA6qiJoUUDBi+uJ1oXxruzLBRm7vLL1ATP+pMkiTaZYKinsxefT Q==;
-X-CSE-ConnectionGUID: 7RMmdjXySU+Z4tq1Z1kRnw==
-X-CSE-MsgGUID: dF8Eug2BTPOVoF6rIMXmAQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="62956642"
-X-IronPort-AV: E=Sophos;i="6.19,261,1754982000"; d="scan'208";a="62956642"
+ bh=rQU7Fr6kuU1VtLRh/Vl5nIc9cJcKVfv5Oc+xMjwYHDg=;
+ b=leI0UBrCvT/KAeSZ+5ZGlAJ0dJ3jRrpFX0jSozx0KqMq3n4C+LTov88h
+ QiOSFbwFSlGjoELiGqwl3I00xZnKA0eePguaO5ULP9pPImPbWdzKanHAI
+ NkLQCgspfp5bm54VGfvoMcsP7M08AMFZFpixjMaaQpC/i2rNfS/Tgkdxa
+ t0BhrfdUlhzcuX6RDKG5mDycOvr05NykEL+CO9xo1MNhb89XLEw603A7u
+ b31W6ccWulMh3jOOICnb4VdadMBlz5JK4lp0GygsPWVbZaR83N8rQrKqQ
+ 1t/ZbPCfrp7Ons+Nes5eS6jgFIProhzjhxwaN9+kWWlEHVN1m61xXyTgy A==;
+X-CSE-ConnectionGUID: u/IWs0GWTgiXkNulfTzoyg==
+X-CSE-MsgGUID: JVxxuWTKSVGl1M9R1iJ+8w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="62956646"
+X-IronPort-AV: E=Sophos;i="6.19,261,1754982000"; d="scan'208";a="62956646"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2025 05:25:13 -0700
-X-CSE-ConnectionGUID: l8c7EBZsR2Wb3Haoz0vxVg==
-X-CSE-MsgGUID: l4JsU4oSSaeehZogb8AlsQ==
+ 28 Oct 2025 05:25:14 -0700
+X-CSE-ConnectionGUID: QZqP5GbzR8eZEC/W9LTIlA==
+X-CSE-MsgGUID: FhJDCELXSWekBVhbgifMyQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,261,1754982000"; d="scan'208";a="190524461"
+X-IronPort-AV: E=Sophos;i="6.19,261,1754982000"; d="scan'208";a="190524466"
 Received: from varungup-desk.iind.intel.com ([10.190.238.71])
  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2025 05:25:11 -0700
+ 28 Oct 2025 05:25:13 -0700
 From: Arvind Yadav <arvind.yadav@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.brost@intel.com, himal.prasad.ghimiray@intel.com,
  thomas.hellstrom@linux.intel.com
-Subject: [RFC PATCH 6/9] drm/xe/bo: Prevent mmap of purged buffer objects
-Date: Tue, 28 Oct 2025 17:54:12 +0530
-Message-ID: <20251028122415.1136721-7-arvind.yadav@intel.com>
+Subject: [RFC PATCH 7/9] drm/xe/vm: Prevent binding of purged buffer objects
+Date: Tue, 28 Oct 2025 17:54:13 +0530
+Message-ID: <20251028122415.1136721-8-arvind.yadav@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20251028122415.1136721-1-arvind.yadav@intel.com>
 References: <20251028122415.1136721-1-arvind.yadav@intel.com>
@@ -68,55 +68,55 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add validation in `xe_gem_mmap_offset_ioctl()` to prevent userspace
-from obtaining an mmap offset for a buffer object (BO) that has been
-purged.
+Add validation in the VM bind ioctl path to prevent a purged buffer
+object (BO) from being bound to a virtual address space.
 
-When a BO is in the `XE_MADV_PURGEABLE_PURGED` state, its backing memory
-has been reclaimed by the kernel. Allowing an application to get an mmap
-offset for such a BO is invalid, as any subsequent attempt to access the
-mapped memory would result in a `SIGBUS` signal.
+When a BO is in the `XE_MADV_PURGEABLE_PURGED` state, its memory has
+been reclaimed by the kernel, and its contents are invalid. Attempting
+to bind such a BO is an error, as it would lead to the GPU operating
+on undefined memory.
 
-This patch checks the BO's madvise state before returning the offset. If
-the state is `XE_MADV_PURGEABLE_PURGED`, the ioctl now fails with `-EINVAL`.
-This provides clear and immediate feedback to the application that the
-operation is not permitted.
+This patch checks the BO's madvise state inside
+`xe_vm_bind_ioctl_validate_bo()`. If the state is
+`XE_MADV_PURGEABLE_PURGED`, the function now returns `-EFAULT`,
+signaling an invalid memory access to the application.
+
+Userspace must first re-validate the buffer by calling `madvise(WILLNEED)`
+before it can be successfully bound again. This change ensures a clear
+error path and prevents silent data corruption.
 
 Cc: Matthew Brost <matthew.brost@intel.com>
 Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 Signed-off-by: Arvind Yadav <arvind.yadav@intel.com>
 ---
- drivers/gpu/drm/xe/xe_bo.c | 9 +++++++++
- 1 file changed, 9 insertions(+)
+ drivers/gpu/drm/xe/xe_vm.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index 4b2ecf4152b0..206ccccd07cd 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -3346,6 +3346,8 @@ int xe_gem_mmap_offset_ioctl(struct drm_device *dev, void *data,
- 	struct xe_device *xe = to_xe_device(dev);
- 	struct drm_xe_gem_mmap_offset *args = data;
- 	struct drm_gem_object *gem_obj;
-+	struct xe_bo *bo;
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 10d77666a425..b8d60550c191 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -3466,6 +3466,7 @@ static int xe_vm_bind_ioctl_validate_bo(struct xe_device *xe, struct xe_bo *bo,
+ 					u16 pat_index, u32 op, u32 bind_flags)
+ {
+ 	u16 coh_mode;
 +	int state;
  
- 	if (XE_IOCTL_DBG(xe, args->extensions) ||
- 	    XE_IOCTL_DBG(xe, args->reserved[0] || args->reserved[1]))
-@@ -3375,6 +3377,13 @@ int xe_gem_mmap_offset_ioctl(struct drm_device *dev, void *data,
- 	if (XE_IOCTL_DBG(xe, !gem_obj))
- 		return -ENOENT;
+ 	if (XE_IOCTL_DBG(xe, range > xe_bo_size(bo)) ||
+ 	    XE_IOCTL_DBG(xe, obj_offset >
+@@ -3473,6 +3474,11 @@ static int xe_vm_bind_ioctl_validate_bo(struct xe_device *xe, struct xe_bo *bo,
+ 		return -EINVAL;
+ 	}
  
-+	bo = gem_to_xe_bo(gem_obj);
 +	state = atomic_read(&bo->madv_purgeable);
-+	if (state == XE_MADV_PURGEABLE_PURGED) {
-+		xe_bo_put(bo);
-+		return -EINVAL;
-+	}
++	/* Cannot bind a purged BO: must madvise WILLNEED first (revalidation path) */
++	if (state == XE_MADV_PURGEABLE_PURGED)
++		return -EFAULT;
 +
- 	/* The mmap offset was set up at BO allocation time. */
- 	args->offset = drm_vma_node_offset_addr(&gem_obj->vma_node);
- 
+ 	/*
+ 	 * Some platforms require 64k VM_BIND alignment,
+ 	 * specifically those with XE_VRAM_FLAGS_NEED64K.
 -- 
 2.43.0
 
