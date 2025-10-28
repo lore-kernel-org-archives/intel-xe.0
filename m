@@ -4,52 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 11FA5CCD1BF
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 43EFDCCF9EB
 	for <intel-xe@archiver.kernel.org>; Tue, 28 Oct 2025 17:59:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C969310E641;
-	Tue, 28 Oct 2025 17:59:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 016CA10E643;
+	Tue, 28 Oct 2025 17:59:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FJK8qheL";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PnG3K0H5";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A2C0310E643
- for <intel-xe@lists.freedesktop.org>; Tue, 28 Oct 2025 17:59:14 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0408610E642
+ for <intel-xe@lists.freedesktop.org>; Tue, 28 Oct 2025 17:59:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761674355; x=1793210355;
+ t=1761674352; x=1793210352;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=et6hYVN340eTqOPSkSbYivbtX6mixPovmz7VBjy1sY0=;
- b=FJK8qheLHKKBh24TQHkoiKiSrf1XxsR1fFeFHTsZA1H5wTvl5teGq55E
- 6ZDST7dWIUZj2Fq7lE1qIcaMSMxKH94N21J2bCShz9PEHI0ueIl3n4w+P
- VgGc5epneCo5RqVoYAq6qS49BePJUO05uRnYg6AeBp/ha5pbAybuk6sZM
- gd9+RqWtTresl9gDaZx+jiUvw25a0wpEqXLRGuBxEW2BIzESMn5Oa3EWi
- WOg7zxM7M5nihEcw0DVS3TkI0IedK9YOvr43DlM23C5scFXnAoy2Fysqw
- NVvwBuDFNBfcV5YVkYoy/jtIFcCRqXgtxrvn8Iv0QkA0fkf7rcK2qvJF7 Q==;
-X-CSE-ConnectionGUID: 2W6WbYCKRziEi2h5E4YwCw==
-X-CSE-MsgGUID: dOwnizvMRLKP6PmzUbI0Bw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="63687868"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="63687868"
+ bh=0svlS0OyNi+GkV4IkiUQkQGCCBKc3m0lExhfbCUaXkU=;
+ b=PnG3K0H58MTtHUxuyY2ka2z10H3MU0t7NED2P7wrvW+8CLXFfhbMlPkS
+ wDMWByzHbyFeQ1L5y19KaQzObphO2iexKQWY0ylyBTLf4zHpKa5MGf2kL
+ dWch96qRUCtFndaWbGOaHODDO7z63gq3hwu/r036ponAPgTEEDYGkPA/7
+ FBZ9QDsKgP/inoLvFwMZxZG46fR+NqfxeXT9RdVaMLKfbEGROYb8AIbCa
+ GdRa6fPILK/jJxQut0JRF9EJJWrInprbRUTKYrYCnwQD7aHWTIXOLb8V0
+ W51sv0zq19NoYypRFzUt0ybamq1DqM/wl8/xYjhQoc1gNC9RTgd664M48 g==;
+X-CSE-ConnectionGUID: mOPa3clmSt6MmMCfOjSaTg==
+X-CSE-MsgGUID: DZfFl0zYQyyXQOs6GNNtUA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="63687862"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="63687862"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2025 10:59:15 -0700
-X-CSE-ConnectionGUID: pgwQlSnCTD62Xim2wbaSjQ==
-X-CSE-MsgGUID: VmwwfxKTQpOyD68CaFXT4w==
+ 28 Oct 2025 10:59:11 -0700
+X-CSE-ConnectionGUID: uV8aBqkoRYi2AGhTUPDqWg==
+X-CSE-MsgGUID: KXKbXNT2R823lRwOHNtWnA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,261,1754982000"; d="scan'208";a="189469471"
+X-IronPort-AV: E=Sophos;i="6.19,261,1754982000"; d="scan'208";a="189469455"
 Received: from ngusev-mobl1.ger.corp.intel.com (HELO
  mwajdecz-hp.clients.intel.com) ([10.245.98.92])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2025 10:59:12 -0700
+ 28 Oct 2025 10:59:09 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [PATCH v2 16/17] drm/xe/pf: Allow to stop and reset VF using sysfs
-Date: Tue, 28 Oct 2025 18:58:30 +0100
-Message-ID: <20251028175832.184534-17-michal.wajdeczko@intel.com>
+ =?UTF-8?q?Piotr=20Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>
+Subject: [PATCH v2 14/17] drm/xe/pf: Promote xe_pci_sriov_get_vf_pdev
+Date: Tue, 28 Oct 2025 18:58:28 +0100
+Message-ID: <20251028175832.184534-15-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20251028175832.184534-1-michal.wajdeczko@intel.com>
 References: <20251028175832.184534-1-michal.wajdeczko@intel.com>
@@ -70,110 +69,88 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-It is expected that VFs activity will be monitored and in some
-cases admin might want to silence specific VF without killing
-the VM where it was attached.
-
-Add write-only attribute to stop GuC scheduling at VFs level.
-
-  /sys/bus/pci/drivers/xe/BDF/
-  ├── sriov_admin/
-      ├── vf1/
-      │   └── stop		[WO] bool
-      ├── vf2/
-      │   └── stop		[WO] bool
-
-Writing "1" or "y" (or whatever is recognized by the strtobool()
-function) to this file will trigger the change of the VF state
-to STOP (GuC will stop servicing the VF). To go back to a READY
-state (to allow GuC to service this VF again) the VF FLR must be
-triggered (which can be done by writing 1 to device/reset file).
+In the upcoming patch we would like to use this private helper
+during preparation of the sysfs links. Promote it.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Reviewed-by: Piotr Piórkowski <piotr.piorkowski@intel.com>
 ---
-v2: drop reset file (Rodrigo, Lucas)
+v2: drop redundant comment (Piotr)
 ---
- drivers/gpu/drm/xe/xe_sriov_pf_sysfs.c | 49 ++++++++++++++++++++++++++
- 1 file changed, 49 insertions(+)
+ drivers/gpu/drm/xe/xe_pci_sriov.c | 36 ++++++++++++++++++++-----------
+ drivers/gpu/drm/xe/xe_pci_sriov.h |  1 +
+ 2 files changed, 24 insertions(+), 13 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_sriov_pf_sysfs.c b/drivers/gpu/drm/xe/xe_sriov_pf_sysfs.c
-index 360b0ffd9cb4..3a8c488d183c 100644
---- a/drivers/gpu/drm/xe/xe_sriov_pf_sysfs.c
-+++ b/drivers/gpu/drm/xe/xe_sriov_pf_sysfs.c
-@@ -13,6 +13,7 @@
- #include "xe_pm.h"
- #include "xe_sriov.h"
- #include "xe_sriov_pf.h"
-+#include "xe_sriov_pf_control.h"
- #include "xe_sriov_pf_helpers.h"
- #include "xe_sriov_pf_provision.h"
- #include "xe_sriov_pf_sysfs.h"
-@@ -52,6 +53,7 @@ static int emit_choice(char *buf, int choice, const char * const *array, size_t
-  *     ├── vf1/
-  *     │   ├── ...
-  *     │   ├── device -> ../../../BDF.1
-+ *     │   ├── stop
-  *     │   └── profile
-  *     │       ├── exec_quantum_ms
-  *     │       ├── preempt_timeout_us
-@@ -291,8 +293,55 @@ static const struct attribute_group profile_vf_attr_group = {
- 	.is_visible = profile_vf_attr_is_visible,
- };
+diff --git a/drivers/gpu/drm/xe/xe_pci_sriov.c b/drivers/gpu/drm/xe/xe_pci_sriov.c
+index 735f51effc7a..4d5da6686e92 100644
+--- a/drivers/gpu/drm/xe/xe_pci_sriov.c
++++ b/drivers/gpu/drm/xe/xe_pci_sriov.c
+@@ -30,18 +30,6 @@ static void pf_reset_vfs(struct xe_device *xe, unsigned int num_vfs)
+ 		xe_sriov_pf_control_reset_vf(xe, n);
+ }
  
-+#define DEFINE_SIMPLE_CONTROL_SRIOV_VF_ATTR(NAME)					\
-+											\
-+static ssize_t xe_sriov_vf_attr_##NAME##_store(struct xe_device *xe, unsigned int vfid,	\
-+					       const char *buf, size_t count)		\
-+{											\
-+	bool yes;									\
-+	int err;									\
-+											\
-+	if (!vfid)									\
-+		return -EPERM;								\
-+											\
-+	err = kstrtobool(buf, &yes);							\
-+	if (err)									\
-+		return err;								\
-+	if (!yes)									\
-+		return count;								\
-+											\
-+	err = xe_sriov_pf_control_##NAME##_vf(xe, vfid);				\
-+	return err ?: count;								\
-+}											\
-+											\
-+static XE_SRIOV_VF_ATTR_WO(NAME)
+-static struct pci_dev *xe_pci_pf_get_vf_dev(struct xe_device *xe, unsigned int vf_id)
+-{
+-	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
+-
+-	xe_assert(xe, IS_SRIOV_PF(xe));
+-
+-	/* caller must use pci_dev_put() */
+-	return pci_get_domain_bus_and_slot(pci_domain_nr(pdev->bus),
+-			pdev->bus->number,
+-			pci_iov_virtfn_devfn(pdev, vf_id));
+-}
+-
+ static void pf_link_vfs(struct xe_device *xe, int num_vfs)
+ {
+ 	struct pci_dev *pdev_pf = to_pci_dev(xe->drm.dev);
+@@ -60,7 +48,7 @@ static void pf_link_vfs(struct xe_device *xe, int num_vfs)
+ 	 * enforce correct resume order.
+ 	 */
+ 	for (n = 1; n <= num_vfs; n++) {
+-		pdev_vf = xe_pci_pf_get_vf_dev(xe, n - 1);
++		pdev_vf = xe_pci_sriov_get_vf_pdev(pdev_pf, n);
+ 
+ 		/* unlikely, something weird is happening, abort */
+ 		if (!pdev_vf) {
+@@ -228,3 +216,25 @@ int xe_pci_sriov_configure(struct pci_dev *pdev, int num_vfs)
+ 
+ 	return ret;
+ }
 +
-+DEFINE_SIMPLE_CONTROL_SRIOV_VF_ATTR(stop);
-+
-+static struct attribute *control_vf_attrs[] = {
-+	&xe_sriov_vf_attr_stop.attr,
-+	NULL
-+};
-+
-+static umode_t control_vf_attr_is_visible(struct kobject *kobj,
-+					  struct attribute *attr, int index)
++/**
++ * xe_pci_sriov_get_vf_pdev() - Lookup the VF's PCI device using the VF identifier.
++ * @pdev: the PF's &pci_dev
++ * @vfid: VF identifier (1-based)
++ *
++ * The caller must decrement the reference count by calling pci_dev_put().
++ *
++ * Return: the VF's &pci_dev or NULL if the VF device was not found.
++ */
++struct pci_dev *xe_pci_sriov_get_vf_pdev(struct pci_dev *pdev, unsigned int vfid)
 +{
-+	struct xe_sriov_kobj *vkobj = to_xe_sriov_kobj(kobj);
++	struct xe_device *xe = pdev_to_xe_device(pdev);
 +
-+	if (vkobj->vfid == PFID)
-+		return 0;
++	xe_assert(xe, dev_is_pf(&pdev->dev));
++	xe_assert(xe, vfid);
++	xe_assert(xe, vfid <= pci_sriov_get_totalvfs(pdev));
 +
-+	return attr->mode;
++	return pci_get_domain_bus_and_slot(pci_domain_nr(pdev->bus),
++					   pdev->bus->number,
++					   pci_iov_virtfn_devfn(pdev, vfid - 1));
 +}
-+
-+static const struct attribute_group control_vf_attr_group = {
-+	.attrs = control_vf_attrs,
-+	.is_visible = control_vf_attr_is_visible,
-+};
-+
- static const struct attribute_group *xe_sriov_vf_attr_groups[] = {
- 	&profile_vf_attr_group,
-+	&control_vf_attr_group,
- 	NULL
- };
+diff --git a/drivers/gpu/drm/xe/xe_pci_sriov.h b/drivers/gpu/drm/xe/xe_pci_sriov.h
+index c76dd0d90495..b9105d71dbb1 100644
+--- a/drivers/gpu/drm/xe/xe_pci_sriov.h
++++ b/drivers/gpu/drm/xe/xe_pci_sriov.h
+@@ -10,6 +10,7 @@ struct pci_dev;
  
+ #ifdef CONFIG_PCI_IOV
+ int xe_pci_sriov_configure(struct pci_dev *pdev, int num_vfs);
++struct pci_dev *xe_pci_sriov_get_vf_pdev(struct pci_dev *pdev, unsigned int vfid);
+ #else
+ static inline int xe_pci_sriov_configure(struct pci_dev *pdev, int num_vfs)
+ {
 -- 
 2.47.1
 
