@@ -4,58 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 05C66CCD1BF
-	for <intel-xe@archiver.kernel.org>; Tue, 28 Oct 2025 19:07:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1ACF2CCF9E0
+	for <intel-xe@archiver.kernel.org>; Tue, 28 Oct 2025 19:09:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BFF6210E10C;
-	Tue, 28 Oct 2025 19:07:57 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="A+bQWUDU";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6592A10E035;
- Tue, 28 Oct 2025 19:07:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761678475; x=1793214475;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=EcaSJ4vn5PYEh4vyHZVCiyVNX/+UDjaQezq/UoFzp/o=;
- b=A+bQWUDUPSISm0IfSZyFYtAcvDd/FoQ+D9j+HWohGDW/yXGFch9V+hUa
- IMU4qby9MOgxs+4oVwqtnpebXdSz8EARLoScxZ9xCGyCwyPx5XCBcOS4t
- Uvd8w1B1sjIY7X6pxbOxhryt9elq0vy9JMJp1VVcDF2ntWQREjw6Or/Lh
- g2RqNj0kN91QgPjaBt0FjH7228MZ2yIJckTRBFV4c7tYMHIAQ7GtOu86i
- SC8EL8DD526BySo7wBKQJkIOAnpgjMcX85mT6snCGhwowicoIDgKulVhN
- k7PsT1PMIFVOwhBBsgsq4urbXysvQasWZjTaNtVzXJTVylNfiNjVeDmzg g==;
-X-CSE-ConnectionGUID: Ur+6w/frRQ2EzYhXaocEaw==
-X-CSE-MsgGUID: S3tY/7V6Qp+NbL25HXUlRw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="75134204"
-X-IronPort-AV: E=Sophos;i="6.19,261,1754982000"; d="scan'208";a="75134204"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2025 12:07:55 -0700
-X-CSE-ConnectionGUID: xH5XBjjYRNWYxntxfBUJYg==
-X-CSE-MsgGUID: jDQcB1fnShGCZLKomyoP2Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,261,1754982000"; d="scan'208";a="222657813"
-Received: from kialmah1-desk5.jf.intel.com ([10.23.33.174])
- by orviesa001.jf.intel.com with ESMTP; 28 Oct 2025 12:07:56 -0700
-From: Khaled Almahallawy <khaled.almahallawy@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: Khaled Almahallawy <khaled.almahallawy@intel.com>,
- =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
- Imre Deak <imre.deak@intel.com>, Jani Nikula <jani.nikula@intel.com>
-Subject: [PATCH v6] drm/i915/display: Extend i915_display_info with Type-C
- port details
-Date: Tue, 28 Oct 2025 12:07:53 -0700
-Message-ID: <20251028190753.3089937-1-khaled.almahallawy@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20251027205628.3067346-1-khaled.almahallawy@intel.com>
-References: <20251027205628.3067346-1-khaled.almahallawy@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id D3D0A10E12A;
+	Tue, 28 Oct 2025 19:09:51 +0000 (UTC)
+Received: from 97596180aaec (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9E8BB10E12A;
+ Tue, 28 Oct 2025 19:09:50 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3965001225177217358=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_series_starting_with_=5B1/2?=
+ =?utf-8?q?=5D_drm/i915/dsi=3A_log_send_packet_sequence_errors?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 28 Oct 2025 19:09:50 -0000
+Message-ID: <176167859064.64512.7944650260942727924@97596180aaec>
+X-Patchwork-Hint: ignore
+References: <20251028155712.1824565-1-jani.nikula@intel.com>
+In-Reply-To: <20251028155712.1824565-1-jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,128 +36,125 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Expose key Type-C port data in i915_display_info to make it easier to
-understand the port configuration and active mode, especially whether
-the link is in DP-Alt or TBT-Alt, without having to scan kernel logs.
+--===============3965001225177217358==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Tested in DP-Alt, TBT-Alt, SST, and MST.
+== Series Details ==
 
-Expected output:
+Series: series starting with [1/2] drm/i915/dsi: log send packet sequence errors
+URL   : https://patchwork.freedesktop.org/series/156669/
+State : success
 
-[CONNECTOR:290:DP-2]: status: connected
-	TC Port: E/TC#2 mode: tbt-alt pin assignment: - max lanes: 4
-	physical dimensions: 600x340mm
-...
-[CONNECTOR:263:DP-5]: status: connected
-	TC Port: G/TC#4 mode: dp-alt pin assignment: C max lanes: 4
-	physical dimensions: 610x350mm
+== Summary ==
 
-v2: Use drm_printer (Ville)
-    Lock/Unlock around the printf (Imre)
-v3: Forward Declaration drm_printer struct (Jani)
-v4: Handle MST connector with no active encoder (Imre)
-    Add a delimiter between fields and ":" after the port name (Imre)
-v5: Init dig_port and use it in intel_encorder_is_tc and tc_info (Imre)
-    Move tc->port_name to a newline (Imre)
-v6: Use intel_tc_port_lock/Unlock (Imre)
+CI Bug Log - changes from xe-3996-5742fc7aea99a1326637a7106eeaeac383a1c76d_BAT -> xe-pw-156669v1_BAT
+====================================================
 
-Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Cc: Imre Deak <imre.deak@intel.com>
-Cc: Jani Nikula <jani.nikula@intel.com>
-Signed-off-by: Khaled Almahallawy <khaled.almahallawy@intel.com>
----
- .../gpu/drm/i915/display/intel_display_debugfs.c    |  8 ++++++++
- drivers/gpu/drm/i915/display/intel_tc.c             | 13 +++++++++++++
- drivers/gpu/drm/i915/display/intel_tc.h             |  3 +++
- 3 files changed, 24 insertions(+)
+Summary
+-------
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-index 10dddec3796f..7014331108aa 100644
---- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-@@ -47,6 +47,7 @@
- #include "intel_psr_regs.h"
- #include "intel_vdsc.h"
- #include "intel_wm.h"
-+#include "intel_tc.h"
- 
- static struct intel_display *node_to_intel_display(struct drm_info_node *node)
- {
-@@ -246,6 +247,8 @@ static void intel_connector_info(struct seq_file *m,
- {
- 	struct intel_connector *intel_connector = to_intel_connector(connector);
- 	const struct drm_display_mode *mode;
-+	struct drm_printer p = drm_seq_file_printer(m);
-+	struct intel_digital_port *dig_port = NULL;
- 
- 	seq_printf(m, "[CONNECTOR:%d:%s]: status: %s\n",
- 		   connector->base.id, connector->name,
-@@ -268,14 +271,19 @@ static void intel_connector_info(struct seq_file *m,
- 			intel_dp_mst_info(m, intel_connector);
- 		else
- 			intel_dp_info(m, intel_connector);
-+		dig_port = dp_to_dig_port(intel_attached_dp(intel_connector));
- 		break;
- 	case DRM_MODE_CONNECTOR_HDMIA:
- 		intel_hdmi_info(m, intel_connector);
-+		dig_port = hdmi_to_dig_port(intel_attached_hdmi(intel_connector));
- 		break;
- 	default:
- 		break;
- 	}
- 
-+	if (dig_port != NULL && intel_encoder_is_tc(&dig_port->base))
-+		intel_tc_info(&p, dig_port);
-+
- 	intel_hdcp_info(m, intel_connector);
- 
- 	seq_printf(m, "\tmax bpc: %u\n", connector->display_info.bpc);
-diff --git a/drivers/gpu/drm/i915/display/intel_tc.c b/drivers/gpu/drm/i915/display/intel_tc.c
-index c4a5601c5107..08e94004d3a7 100644
---- a/drivers/gpu/drm/i915/display/intel_tc.c
-+++ b/drivers/gpu/drm/i915/display/intel_tc.c
-@@ -1703,6 +1703,19 @@ void intel_tc_port_sanitize_mode(struct intel_digital_port *dig_port,
- 	mutex_unlock(&tc->lock);
- }
- 
-+void intel_tc_info(struct drm_printer *p,  struct intel_digital_port *dig_port)
-+{
-+	struct intel_tc_port *tc = to_tc_port(dig_port);
-+
-+	intel_tc_port_lock(dig_port);
-+	drm_printf(p, "\tTC Port %s: mode: %s, pin assignment: %c, max lanes: %d\n",
-+		   tc->port_name,
-+		   tc_port_mode_name(tc->mode),
-+		   pin_assignment_name(tc->pin_assignment),
-+		   tc->max_lane_count);
-+	intel_tc_port_unlock(dig_port);
-+}
-+
- /*
-  * The type-C ports are different because even when they are connected, they may
-  * not be available/usable by the graphics driver: see the comment on
-diff --git a/drivers/gpu/drm/i915/display/intel_tc.h b/drivers/gpu/drm/i915/display/intel_tc.h
-index fff8b96e4972..6719aea5bd58 100644
---- a/drivers/gpu/drm/i915/display/intel_tc.h
-+++ b/drivers/gpu/drm/i915/display/intel_tc.h
-@@ -8,6 +8,7 @@
- 
- #include <linux/types.h>
- 
-+struct drm_printer;
- struct intel_crtc_state;
- struct intel_digital_port;
- struct intel_encoder;
-@@ -113,4 +114,6 @@ void intel_tc_port_cleanup(struct intel_digital_port *dig_port);
- 
- bool intel_tc_cold_requires_aux_pw(struct intel_digital_port *dig_port);
- 
-+void intel_tc_info(struct drm_printer *p,  struct intel_digital_port *dig_port);
-+
- #endif /* __INTEL_TC_H__ */
--- 
-2.43.0
+  **SUCCESS**
 
+  No regressions found.
+
+  
+
+Participating hosts (13 -> 13)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-156669v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@kms_flip@basic-plain-flip@a-edp1:
+    - bat-adlp-7:         [DMESG-WARN][1] ([Intel XE#4543]) -> [PASS][2] +1 other test pass
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3996-5742fc7aea99a1326637a7106eeaeac383a1c76d/bat-adlp-7/igt@kms_flip@basic-plain-flip@a-edp1.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156669v1/bat-adlp-7/igt@kms_flip@basic-plain-flip@a-edp1.html
+
+  
+  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
+
+
+Build changes
+-------------
+
+  * Linux: xe-3996-5742fc7aea99a1326637a7106eeaeac383a1c76d -> xe-pw-156669v1
+
+  IGT_8599: b22b9ca357de868f3848269e5eb7c4cc53b3f2d1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-3996-5742fc7aea99a1326637a7106eeaeac383a1c76d: 5742fc7aea99a1326637a7106eeaeac383a1c76d
+  xe-pw-156669v1: 156669v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156669v1/index.html
+
+--===============3965001225177217358==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [1/2] drm/i915/dsi: log send packet sequence errors</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/156669/">https://patchwork.freedesktop.org/series/156669/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156669v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156669v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3996-5742fc7aea99a1326637a7106eeaeac383a1c76d_BAT -&gt; xe-pw-156669v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-156669v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@kms_flip@basic-plain-flip@a-edp1:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3996-5742fc7aea99a1326637a7106eeaeac383a1c76d/bat-adlp-7/igt@kms_flip@basic-plain-flip@a-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156669v1/bat-adlp-7/igt@kms_flip@basic-plain-flip@a-edp1.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3996-5742fc7aea99a1326637a7106eeaeac383a1c76d -&gt; xe-pw-156669v1</li>
+</ul>
+<p>IGT_8599: b22b9ca357de868f3848269e5eb7c4cc53b3f2d1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-3996-5742fc7aea99a1326637a7106eeaeac383a1c76d: 5742fc7aea99a1326637a7106eeaeac383a1c76d<br />
+  xe-pw-156669v1: 156669v1</p>
+
+</body>
+</html>
+
+--===============3965001225177217358==--
