@@ -4,165 +4,183 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 53779CCD1BF
-	for <intel-xe@archiver.kernel.org>; Tue, 28 Oct 2025 16:05:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 22A70CCD1BF
+	for <intel-xe@archiver.kernel.org>; Tue, 28 Oct 2025 16:19:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 123EE10E5FE;
-	Tue, 28 Oct 2025 16:05:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C6B0010E601;
+	Tue, 28 Oct 2025 16:19:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CgmEPnPG";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="b9oDSKZ5";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1AAC210E5FE
- for <intel-xe@lists.freedesktop.org>; Tue, 28 Oct 2025 16:05:03 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BEE0610E601
+ for <intel-xe@lists.freedesktop.org>; Tue, 28 Oct 2025 16:19:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761667503; x=1793203503;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=pFRnS4BUX5XqmFJjENmztf/Im0M1mf6zWM60lMCiGHk=;
- b=CgmEPnPGW5e5hhcmZ+kSavEzqeA8ucW/kF7IidetOmWGUonSNRX2TXHf
- CbWwRq4CId1X3cM934OxsHEZr5CbP2yNGhSHNa8g2Pq5Ibv9ONkYw/r3b
- eUdqTaPESiNgrte5JOyoNbpGP9hltIbrQbk22xmyVZgxC0Q+lflc7HACH
- zLJy9IzdFQvI5KOxvClq73VQbA3+3WmrSi/VZ2UGQMNQ673bFh4L5OpPC
- fHdMRW2+E0SOamSVE8OZGjJhCXb7U8Gp5k6KiT4/ae35oTyW1BMD0oPJC
- KGiHD+KinxMlNO8Br6lv8IZghqi4fsIiUmHMn8P2LG3zo3YpvUxXHAAvO Q==;
-X-CSE-ConnectionGUID: azMUE06xTZm9WZ4qvnVA6A==
-X-CSE-MsgGUID: 0WjhQaqDQziaPiLAWaDXQA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="62801566"
-X-IronPort-AV: E=Sophos;i="6.19,261,1754982000"; d="scan'208";a="62801566"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2025 09:05:03 -0700
-X-CSE-ConnectionGUID: 3mj6Em30R/yKXKL1YZor8A==
-X-CSE-MsgGUID: PPFvy4xkR1GGRWZc6DRcww==
+ t=1761668354; x=1793204354;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=yXizV8lDdXNciupoaSHnQ/bo3Lkb9RFFTgDWNPoJego=;
+ b=b9oDSKZ5safaER7OtIM6iLFNZrvvzYFX6UOBzEtRL8kDCWeNOCOGvwfT
+ rjbQYdrm/fogympiXY+WiosfS1+VKFpvdJHtpfmhgm2FJ1MmmxONJ+MGl
+ H9JNvW+u0gFgjuGSLmfjTb2u6JM4FJRvnjSTatZ8mniUC0tCYHcJrf0m1
+ dEikw4GxiJwVjLJ9K6Y9s6QkHSDU0ws9sFDjHCRWCtFXlLbzN/HB+QiOH
+ HqEfV2IMDP9qjPIUk967THri4IeJnQJuPNgpnmFjMHlWQA4SznP+9saXB
+ KY1PbKvv5dL+nMbccQSjIH42wWRQaqA4DoxrOJhrAPpqOhPddw1aeuf5w w==;
+X-CSE-ConnectionGUID: AiNJ6VeJRIODVwaCIwYuLQ==
+X-CSE-MsgGUID: H72Wkh1wSrKayo7eCtSE+A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="63923758"
+X-IronPort-AV: E=Sophos;i="6.19,261,1754982000"; d="scan'208";a="63923758"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Oct 2025 09:19:13 -0700
+X-CSE-ConnectionGUID: 9Ff9FRS2RyGAv4TkVgLQYQ==
+X-CSE-MsgGUID: 4EwgusduROezqJF0H6cGiQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,261,1754982000"; d="scan'208";a="222607798"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by orviesa001.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2025 09:05:03 -0700
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.19,261,1754982000"; d="scan'208";a="185089425"
+Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
+ by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Oct 2025 09:19:13 -0700
+Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Tue, 28 Oct 2025 09:05:02 -0700
-Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ 15.2.2562.27; Tue, 28 Oct 2025 09:19:12 -0700
+Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
+ FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27 via Frontend Transport; Tue, 28 Oct 2025 09:05:02 -0700
-Received: from CY7PR03CU001.outbound.protection.outlook.com (40.93.198.37) by
- edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
+ 15.2.2562.27 via Frontend Transport; Tue, 28 Oct 2025 09:19:12 -0700
+Received: from PH0PR06CU001.outbound.protection.outlook.com (40.107.208.63) by
+ edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Tue, 28 Oct 2025 09:05:02 -0700
+ 15.2.2562.27; Tue, 28 Oct 2025 09:19:12 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=KI6fvTbivejXSWmND3avKti3uUwSXKrN2EGwJRfu437sfXvpDBSBzi19ebfWpuLhradcgzY1p3rZm9HhtQDThPwSRyhLA6/Inr8L8MXjXcZqLcFdoQBOY9ybSmXxhtImrxzuGRmIFaicvB7H87vVILzSTSfuUb+9Fcaxed6wo6DTeFRhJUlafdOJcS2Kb6Dgis9XQWs1Yo6gS8aEn8FE5fclaQRmZXR9HkHSfVJzw4WDOjznynr9LkTXqM0QycyMLbvSgjStsKFdgF7x9R5nWQNCby2JgvIZ3crtw7Dh1c7KWlwKXO4mku5oqDIzY+9a1UXv6bOMQ6CEX2ev4LdkEQ==
+ b=LNmd/BIWgJpRYNUuwkzDO296bMOJudSYoisMNDnRvEmB4Q4qZQW7fc0CxzPExua1r3P2mvfmAiQaD10TgsUBse0ux696+tGX9YJVcZ1tjRN00Io8hlAbSPEZ+bCDwh8wecQlV9K0j69o7lqcDocy4+YivjQoRaBrjTQUH+Bynlflma6FWIzDOwuhehjTGGWGyQyhiWzxHzfYGHBS96PyOpx9oiJj1xoNjN6CvudjZJ6EXTtSxdugKUgiYhVclbOrsuH83bOrDb7XGuWuTcmP7zkTtKmeCQl5gys5Xg+rxuCpN99mQxT6dedYcFvLNUIi473aPclX9CxnlWSng71ALg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=nWRJrOqSkBu7m+4DAA5q4PhfGjsULNvgM7FJvMVUTA8=;
- b=JcYkMWMUs5I0xRF0iC/x/e3p3aaELHskqjHsBcetlcqIK8L4bVOE+oQ7eLvQY3rstDQm44JKG0BZCFkQswC+nNgZ5xOyG2mEOKWMV407YE60HRSl04U2Q4WbYsRvOXH3QpQBk9XIwUgXwaBp15gYNB+9XLXi5EUWMVdxDkE97UpRu2SWleoASOg2qhFdoKbNaFeFliChXQzpPmHQWaLBRRF5Jpj/glibC65hrxPks5AsboIghepkKeK6j8heA5OMgUnES3VNP2EDkTjh9S+oPd9QFLccFOMyC3kI83g1sSamEn+1QVE9BeBZLy3aNP5Xin+qBfNcsz3vA5Ui79QWaw==
+ bh=y/eid6hR3Pcm63/ZyldPN5FLkeUmiTDUtGXR+OpP2vM=;
+ b=s5+7P0RGC5yMTmDjVQkHZXveCYMnMtXnj/Q+spiFH64FZO7SQQ/6Z7H91bwOuO1psotaRZbg7RVhvY3HgQBhibe1WjWiMikII2gxoUKZsOLg4fmzcdObS8Py/ouXSJAiNGqchmdwHas221s7jbUynCagZnmxdam7OYmXFw2Zatp5LELSZC7m15CXOf9OKQhzbxZ+sfqrjxIfyJOxw7HJ6B1wjrpIaYmmH8uFYVdHgrSY23dmsy9ne+Yqr+aPo7KaNau4JMLsMDpIAASFsGuh/uXfd4yLLh3w9vRRxz0xL2HKvqRPntU/I6CrNis02BoupNyT5AWw6d90mq9bLRI0zw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
- by DS0PR11MB6373.namprd11.prod.outlook.com (2603:10b6:8:cb::20) with
+Received: from MN0PR11MB6011.namprd11.prod.outlook.com (2603:10b6:208:372::6)
+ by DM4PR11MB6120.namprd11.prod.outlook.com (2603:10b6:8:af::11) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9253.19; Tue, 28 Oct
- 2025 16:04:59 +0000
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::7141:316f:77a0:9c44]) by CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::7141:316f:77a0:9c44%6]) with mapi id 15.20.9275.011; Tue, 28 Oct 2025
- 16:04:59 +0000
-Date: Tue, 28 Oct 2025 11:04:56 -0500
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, Raag Jadav <raag.jadav@intel.com>
-Subject: Re: [PATCH v2 8/8] drm/xe/gt_throttle: Avoid TOCTOU when monitoring
- reasons
-Message-ID: <q23qstnnvuocvqru7xmev4s7ke23qflgdekfkb2jx6kltuu2l7@b6xg7yt7cx3a>
-References: <20251026-gt-throttle-cri-v2-0-41f8288a71a7@intel.com>
- <20251026-gt-throttle-cri-v2-8-41f8288a71a7@intel.com>
- <aQDNBR28h6o1hM4O@intel.com>
-Content-Type: text/plain; charset="us-ascii"; format=flowed
-Content-Disposition: inline
-In-Reply-To: <aQDNBR28h6o1hM4O@intel.com>
-X-ClientProxiedBy: BY3PR10CA0004.namprd10.prod.outlook.com
- (2603:10b6:a03:255::9) To CY5PR11MB6139.namprd11.prod.outlook.com
- (2603:10b6:930:29::17)
+ 2025 16:19:09 +0000
+Received: from MN0PR11MB6011.namprd11.prod.outlook.com
+ ([fe80::bbbc:5368:4433:4267]) by MN0PR11MB6011.namprd11.prod.outlook.com
+ ([fe80::bbbc:5368:4433:4267%6]) with mapi id 15.20.9253.017; Tue, 28 Oct 2025
+ 16:19:09 +0000
+Message-ID: <3f7be158-48e7-4b02-9094-24cf69563276@intel.com>
+Date: Tue, 28 Oct 2025 17:19:03 +0100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] drm/xe/xe_guc: Dynamically decide g2g buffer owner
+To: Jonathan Cavitt <jonathan.cavitt@intel.com>,
+ <intel-xe@lists.freedesktop.org>
+CC: <saurabhg.gupta@intel.com>, <alex.zuo@intel.com>,
+ <matthew.d.roper@intel.com>, <daniele.ceraolospurio@intel.com>
+References: <20251028160028.69264-2-jonathan.cavitt@intel.com>
+Content-Language: en-US
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+In-Reply-To: <20251028160028.69264-2-jonathan.cavitt@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: VI1PR08CA0257.eurprd08.prod.outlook.com
+ (2603:10a6:803:dc::30) To MN0PR11MB6011.namprd11.prod.outlook.com
+ (2603:10b6:208:372::6)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|DS0PR11MB6373:EE_
-X-MS-Office365-Filtering-Correlation-Id: 9f3a37f2-49a9-4d48-eb26-08de163bbe99
+X-MS-TrafficTypeDiagnostic: MN0PR11MB6011:EE_|DM4PR11MB6120:EE_
+X-MS-Office365-Filtering-Correlation-Id: 88b13c0a-27ab-4962-d13b-08de163db954
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?9PxNJfIO6E77pLMWxPsEEDopeQ3LVodi/sMNcTaPAxLW+MgbwA8BOMIMZlJz?=
- =?us-ascii?Q?VgCdza3fQn3hJRpi2EBjRCwASFgLn3NvNSdKVzYFOGW6jJX69V0u4/d4jue+?=
- =?us-ascii?Q?gcuWCHR1eePivuZ8IiHkp06vpyTCJAbZelXDvfmISbH2Wq++zP+sSlgr1ZyZ?=
- =?us-ascii?Q?W8YRU8JydCYXY9gDlYrKL6zkR2yHK4O0Hg89gTgWRcdB8UtDvQHc4I/IJ3gA?=
- =?us-ascii?Q?WzKt5cjS1kFcr59JlvU1SRgxlTZ6XceGWFlJG2s0vBWNgXdzmSJE8HYp3xxv?=
- =?us-ascii?Q?bpTJ5p+NU7RHJGDCvEShHGVqD1TRwN7Em8wuEtXjoj10gZBoxvjSv4sw3yec?=
- =?us-ascii?Q?IVmTSwvg0aCnAN6rP8rgSLyWwcBAhm7xTg6zRtlLZgVisFpDVTxiz+I4mv9W?=
- =?us-ascii?Q?z4u7t5IdVmcRvtbjY4r+q1IvyyoPfG92iTtDEoWYi5LzX/yMQ8alEzixhbQG?=
- =?us-ascii?Q?8XUstyiQajMbnJX8oJubip9ZkMindp8c6lr0UDKh1F8wVsvpsFfmwwSwh55C?=
- =?us-ascii?Q?0T2xo/tdHyEsFXkO/NqiCJWhvJkxxrYlcNPznRuT81fx07yc65flANOapawj?=
- =?us-ascii?Q?D/p/EW2pRsytk9pY6GJUxG7n27wNZ+OgjDRt30IOMIBSBnOdQ/P0XifKSjBC?=
- =?us-ascii?Q?qJsLU+zu3ROjW2MOYZwP5N9ieujuucM1ShkwIjf0RwFhe6ENSz87FgZjkDJM?=
- =?us-ascii?Q?9RdoQfHmZoRa61PWPayfXlPUlX+O2XTFBHjYg/ffamidyx2PrfAYUNjBFR+1?=
- =?us-ascii?Q?fyUcfR75EHvonxShVUdF5I8+HDIwnX5nWUPkrYNWqI25wdx2PzA1u8zuFB5x?=
- =?us-ascii?Q?SskGCzO5PstF5vthA0H2PcEai4uWak+V/edcvQqV+6NCkvkwntNb3XLJ0KV1?=
- =?us-ascii?Q?h80dNpl+4ShxOBlKRzozahdN96Q4uNXofFNuZNQqAQEihaVWLs8VBiYPA87I?=
- =?us-ascii?Q?zWKWg6CnDePTVqrGrlJhW92p8H1nbEG6XNp6TBNd1tt8txbjAKc6ePJVFF0V?=
- =?us-ascii?Q?nDZ9Ph78KfGE1ZCvDgtfqUufQUjp8tpoV0i+0CVGeF4Gx808gb9vyD/wkyoz?=
- =?us-ascii?Q?jnyw/evqeXsiaQeJqmP9woYmosN5WITKb+jFmfAoWKBfhGVfXNTPaem/WOLc?=
- =?us-ascii?Q?X399eOIpnGT/rjsi3y8K6CIW0xEjbijQlXXsNWUZaZazSdN96uOfbt21XtGB?=
- =?us-ascii?Q?NuF0k6b/YeNfGc3gCKzBMh+BODwhrqegIzkIsDtQD+1WqUIVoSpzwdkoHnui?=
- =?us-ascii?Q?otL+aMZS/pm156b6q4etRy7IN+v7UTJqzL3rTTZx0XCrIc4r6misqK7AF04t?=
- =?us-ascii?Q?FHklTth+XDaFCMB12otG+xS01TXcrMDni/TR45/p2HZamOpK9nisdp2XHaAI?=
- =?us-ascii?Q?MdB3xcADJXojl0T+Yp7UrQ0VXQfqH1M02AWD5ixJERUzoSUJEMqIre4oz1f2?=
- =?us-ascii?Q?2LmeKbbuU5diodwXVcbg0X/ycb73qeQsNIFKOnNq8u5Y1u3x4zoaGA=3D=3D?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?WjVRZzcvcXZleEliemZQMDZ3Z2tOYTg1VUVsUWFsYlNvbW1zS1h2OHpjQyt1?=
+ =?utf-8?B?YzQ5Y2cvUVAzY29ucElZQW8vY3ZsNlp1dHBjVk9DeHhUSUJ5eHIvbkNoNTI0?=
+ =?utf-8?B?cWk5YU9aZTFqcC9iQkhaQ05GZ2Z4dHlWZnM5ek5yWVp5ek41cDE3aFg5NnRT?=
+ =?utf-8?B?Qm1kREtnVGM0cGtjdDk5eWR2VzY4VlY3RjhjVlpFd0pBUWhLVmlhYjNRd2hJ?=
+ =?utf-8?B?ZzJqS1F5U3FDY3d6MUZBZTQxeTl6VFdtQndxbXlRWjhKZ2oyK3E3NWtGUWEx?=
+ =?utf-8?B?VWVFc1JQQXovbEhCbitOb3Q0Ty80RGd5aWlTbzJiOXMzVTM5bHJaQ1NteEc0?=
+ =?utf-8?B?NVBPNDJaVHZKTWJMWVg2SWc2cEw2RDF5YU15b0xTUFlkYmdZVVFQT3NzY2ti?=
+ =?utf-8?B?bWdjUHkzWnlOWmFpWXpzT3A2R0Nhb3dQTUxDa1plQkVET2NaVDJCZnZpMnlq?=
+ =?utf-8?B?eUNNOGtRb3VKQmVQU2E3UTdiYjhIOWpXVWxnTlB4YjdjVVIzRTJVZTVtZHds?=
+ =?utf-8?B?Nlk3Y1NOTmRub01SbEs5WERIS1Z5M2JsV0R6dW04RFd2aEdyR0JaWEZHNXh6?=
+ =?utf-8?B?emYvZGRrdTVhSHloY1Z0RXYrbjdldklRbng3djJOVmZhbTl3cXlsOEl3V2lK?=
+ =?utf-8?B?alNFSjlQQVhnV0w1OFVjMkRGa1Vlb2lKdVhuWHQ3eUgwNUF5NUlVYTEzSEk4?=
+ =?utf-8?B?ZzRlTytta0xRUHJnWmwwbUpqcVJXbytmV2ZzdEFQWDRwbzZzbmhGdG94cWxJ?=
+ =?utf-8?B?NEpzUlJXRUtIdnVBWEVYbWFBN3dSUTdRTnVJTnBQNmdldytydmVBR0VwT2JJ?=
+ =?utf-8?B?TkE2NDBZQTI4RkliWnNhdEhaQUNqQnV2V2VLdS9neUlkZGhFMGNCemlMR0VH?=
+ =?utf-8?B?b2NMVHc2eXZCNUdRQzVnbWRWRWVNcnBHR2FCL0pXNG1CejArTU1JaU96RENG?=
+ =?utf-8?B?eUYzTmRvTGpNZjdvWEFqYS9uSU40TlREV0MvVEJHblQ3aE0xMTVaSTJHYm5M?=
+ =?utf-8?B?L3JkMkM5SEdpejVtUlRzaVVvdy9RdlpDZVBBZXNoZ0p6Y3BMLzdOa2JZZEFV?=
+ =?utf-8?B?OWRFNmRZZzZ3YkRVeGtabktyNTVYVWVCS2FQZ2VXUXZsRVZXdHlFRFNLblRT?=
+ =?utf-8?B?TVRZaWNyME53eUxLN0pmUlVUQlpLYTk4QzNnaFhZV1gxRmorUTNRNkcvSlo1?=
+ =?utf-8?B?bzNOZkhaY213Si9BaXZyazhyTlBuVVRYS3QzNlArU3lMVFdLcW9FZ243d0xo?=
+ =?utf-8?B?aE1QdEg3eTkvemxXcVc3NzNVTVBZcUxmcGZBUG04TmNiN3dVczZkVDhRMlo2?=
+ =?utf-8?B?Qm1NdVVuNHhJUUJQUDZXTUh1UXFYdzNEYm5vWVdweEhDNlJPaEVhUk5Ycys0?=
+ =?utf-8?B?Z1dRbFhNUGhJZ0FObnljcjhwdkVjSTllbHN2NkMzZFRNVDFyZHhNSGJtdlA0?=
+ =?utf-8?B?ZlFtcDdOU1p5YUxKMDdxTHFmaXJieWRTUVJSdVJLRzd5NjVYZitPcEtuVUlz?=
+ =?utf-8?B?UndHWXVaNU9Ydy8xTFF5TjhnNDR4SUpqRm9UcmdwSmpsNC9yS0lrU0VnTkFY?=
+ =?utf-8?B?akcxTlBmb2Fsd0xJaVdNN2dySWIrOXhvRk10VGJ6SzNBRnN0c2loWnIrVExx?=
+ =?utf-8?B?RlMrSjlxd205c0JMb0o0RjZSdUNQT0FSNk9NV1ZsemJmanBwbjU2UUs4OVYv?=
+ =?utf-8?B?S0R0eE42NnFIRkVMNkN0TWlqeG13ckVvelJuajduYjZPTVV6d3V2T1RRY2tN?=
+ =?utf-8?B?TjhtLzlKaFMrNGNuK2pxZlNkRjZTV0FMNGpjajI5NHJabTkwUERkYXpXK0lU?=
+ =?utf-8?B?eGVVVVRtY29idFpPR1dGVzhLM1d1OTV1eHM2L1dWa0pwbUh0eVRlVUpWUkMy?=
+ =?utf-8?B?OEFFSWIyUElJSmN2ZUNQVkYwZDZLNWJqLzB0dklVOE8xdXBDU1luNWtqQW9v?=
+ =?utf-8?Q?e+r4kHYHw4F44fOvcWIJ00RtYXlW+Sxk?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:MN0PR11MB6011.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(366016)(1800799024); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?ARiRN9g2erNWgWBeNu+T+5QIrK3b6z8MdebmSiZtwwL9cjQ/PjDv2HIsqL0D?=
- =?us-ascii?Q?5B3ocoshpfJ7skFTYK13zyQWEnfYVTeftypOrsH18d9NPbxotqRi/t4ntAI4?=
- =?us-ascii?Q?VngMADS+hgzDf01kmYfCtLkFjHLXmCmsvZNkfTxOWNNA6dk1DkWZEbe8f/E3?=
- =?us-ascii?Q?Fok5cBrbdcrZFWzGRx35r95lgyZCxlmXP0BULqW7cEi1yLFco9EXEyZxIKWg?=
- =?us-ascii?Q?V73cFwrTolG21YjgDhycy5qgOIu0sBL0Tq8GS11L6ZCYyBqIvpHaKwJfg8iY?=
- =?us-ascii?Q?DUx+lIar3Ow6at8xp+7VOqrrGc39VlvyJNXGi8B9gejcRIpLjjASicJkZsNR?=
- =?us-ascii?Q?i3AdyJejqiDSW3pfI1G6u2q+UxS/6hOlcfLNoUZjFBdH+5iH1HPuWsbwYjNK?=
- =?us-ascii?Q?C5uwRrEP07GGGzNfBa/yUMuM4GraZLo40Qc/YfIS3IqYOxQzKR+hvg0dgT8K?=
- =?us-ascii?Q?OZH6hO5p4cWvooGa/0+957q1l+jGGJglsS95X/r+MnnutCi2fNm5ZiEwN4q4?=
- =?us-ascii?Q?+IN4RkssRP5rdeHgINMcdpbpAUW040Ywes6AUbk5opI1G979qPBdi0Hn0Eci?=
- =?us-ascii?Q?iQOYEiQYtcEszrmvg9W3W75nYyxqGySbUsa/5ADx3GMYObAtkGFdVScrn1bb?=
- =?us-ascii?Q?xFtNXWFdVP+mGq6ZPrn/wB+kO+SZKKvZpDVauMiXxw+Zt9VAZMTOPVuk3BVb?=
- =?us-ascii?Q?lLqeyPH4y07AGKe1UTdA99aEgc2AXSDwl03eFt505rve8iHbcwnTFy+kt5K4?=
- =?us-ascii?Q?idzQ00D9ThqQ9Mx9gJAY4F1sZI7SWyBApwVv0o5Clb3rjPH5pSh4cdsl90mw?=
- =?us-ascii?Q?wWEFhvnEeSXBLcq2ke54cluHJF8z13HvWpkdW1PIq9ntRf1pwwTO+1blJV9x?=
- =?us-ascii?Q?6bZHRNTUpv4LBpIdFpykPEDgEnQw3wwlCCSpI6QH2CzirG2G6qBlCi0CT4+X?=
- =?us-ascii?Q?QNCTKr4ZzlNfgzxzD6Dm9rThicnirJKwLal11MPAvNm9SQxR3dMXksFHFogn?=
- =?us-ascii?Q?04SQ0xU/R+toxyTyI9D0UvgvTytZXOlV+hfvo7M8sOdcg+OKGa88oK09wsM9?=
- =?us-ascii?Q?bI8dOICt6ueqd2i9KsoWjUU3ot4NaRZuKt8g4NY9PvA509n3DOv3toTYJ3P9?=
- =?us-ascii?Q?AXh0D0aQ/wr4Q3tmN3aB7nCvgRwYu3nECvYhMmELKrcNEdhqd227I9KK7gC4?=
- =?us-ascii?Q?Y/kEEIkrtS4CyhEQEB61DvLSiOx0d9BPThDHRUNZZ3fmzfgm6P2wB5SiFygw?=
- =?us-ascii?Q?SFyOw1/VhpoCUsnXHoi38zqqCoF7XE9UsJr/hOp6hNMEAu7B5bYgXkMlurxO?=
- =?us-ascii?Q?lgwUZqNxs0jxuKov0vxJhfGhMnqApOnmrTKJohHWtPyyolRSQr3ak8fHFkJS?=
- =?us-ascii?Q?uxZbbQFN8UeyUhm0R2UlDae18Unuyg1lNDbY/VkbLqJMvIueQ76eJB0jxXY7?=
- =?us-ascii?Q?DUDFzPq4nMkwNkhIvtlDdsScfJfpphtNNpATQU0p6MBaT4dln/C3fCdf7Vqj?=
- =?us-ascii?Q?T+ArpXLeQT4CVm5vjDYM53sVvrora2jbA1ouo4kQbeCHLc2kf4+d6ydRaI3X?=
- =?us-ascii?Q?H7k27FkZWKanlb2bBFghU8Y/RzFqrkdb8og4AuXEtZTg901ymERxrAhH0Df+?=
- =?us-ascii?Q?0A=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9f3a37f2-49a9-4d48-eb26-08de163bbe99
-X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?OU1NYk0yTG5yVWpJa3V0aFg4cE9JWmRlUWl3aXgveFBXUTFsVTNWdXp5Y1Qw?=
+ =?utf-8?B?ZVJrOS92WXlrQ3NDUkoyVjFIaHJNTWxvV1d4eGh1VDZ4NU5PelVpUGtTamdB?=
+ =?utf-8?B?azN2ZVIvNEh3emZvckVHbWhHakIrd1B6bTZTNmVaa0xxQ2hBV0ErUUhPMlJU?=
+ =?utf-8?B?c3RJN3FCNGtxQk5rT1JKMmtwM01IZExzRUxDSnNXR3pYQVVObHc0NnptT0NE?=
+ =?utf-8?B?Z2I4VTMrNm1FYkRTS0lWeldwaktTWmljN0NXNlFQeUZ2dmpINUlCbFBqczhS?=
+ =?utf-8?B?MGZveE9vNitrSnIyVzJldm9QbG1LaUs5bERxKzgydVJqZ3JKZzE3dHI5YnhE?=
+ =?utf-8?B?MUxHY29sR0d5OE1RUG1wOW9XSVVNRTI3OUtjY1d3MXY0NG9CTW5BaEltT1ZO?=
+ =?utf-8?B?T09QamduTjQyVFM5NHFBOEpIUm41SlQwQmxjcWo1Ujd3bnNtcG5oZWhRQ0hj?=
+ =?utf-8?B?Wmtuazc1VG8rZHpiSWdoSzNRdFVZcWJMbFk1NENzWldJUENnMXpnWjFJVS95?=
+ =?utf-8?B?UmY5VGc1MDFlWk9ycXBTZkpXVUY3UGw4SWFkTzYvYTFPSm1PSEFYenpOVWp4?=
+ =?utf-8?B?RTUzWjlycDVLM09BSFgzNlZNdkpnbENaM3piWWpTRlBYWUZBRk1NTUhwc216?=
+ =?utf-8?B?TWFJSTZnZzRDQW9KWW16b1ZyM0lEVW13WVlnbDBYenJKbDludllsSEZ4aVpT?=
+ =?utf-8?B?eHlENDZTZnJPV2xuNmtKd05ZelNiSUNmRkZSUkJyRitnU3RIU0c2cjkvem9s?=
+ =?utf-8?B?WFZqSkViejZvWWx6UHhweGZtMTExWDIvZWZ2c1c2akFtbVNPZXJDUHNPbE9C?=
+ =?utf-8?B?RWk0RG5nZnFTZmFxV2FGY1BkME1SNXNFN2VmSzg3VUlyRWFEdHZxT1VkK3lL?=
+ =?utf-8?B?T2YrOXJVMjV3aGVTU0dDQlFoeTBVb3BRMkdLTllEQTNZd1RCTStZNEJNKzIv?=
+ =?utf-8?B?L3VydGkyYkw0Tm82Mll0WEVwUTV0UXZyUGFHaWxZaVVMNis0VHdpcFVQQVB0?=
+ =?utf-8?B?VkptUUFuTjRNenFkZGVWeGpLUW4yS1hVdW81SzRSd1RSb2t2TFNBQzIrS3Rz?=
+ =?utf-8?B?SFpXVkJDQ0NEUnN0OG04b1NlSnBjeGNLVGhTNi9Hd01rMTh0cUJYZW1VWS9C?=
+ =?utf-8?B?YXp4bmQ2eUFRWjdRcnNtNmUwSkJ3U01Sb09wbk8rOXgwY0xwZXlPWm9jV0Y2?=
+ =?utf-8?B?YnlTaStxUmYzaG4vWHJtOThaRU9nSGowYW9DQzVzejJjMExsRXNGTldzSGhB?=
+ =?utf-8?B?MnVLZDdsS21XN3lZNFpsR0FHeUV4eGNzN0lIZHJ6dHdEQjYvWGtzSEluQUJP?=
+ =?utf-8?B?d0diQ0liK1hVTXdKbk1WQml3ZGlreGlIcGg0WjRvMVVnZlJkbUQ5Qk5veGo4?=
+ =?utf-8?B?V01PU0VOOEd0c3F1SW44MlJ6UXNjS3VUeSt5K3M2dkplNE9UQTcvZHMrSjgr?=
+ =?utf-8?B?MG9QR3pkR0w1NzVVa1hHNzV4VmxWQ1JtRFgwMVFPck9qZUN4S3JLZnpSSE9w?=
+ =?utf-8?B?YU5uNXpodm5qQlV4cTJnU1hrcU5ORUhKUlc0d2dsSno1RnV5Nzh1Y0NPZldH?=
+ =?utf-8?B?dlJYa0lZQkNFYjlGOEF4aXhPZmd1N0xrV1pOQno5ckMvZ2RVcG1MS1JNdXlR?=
+ =?utf-8?B?RERtQXVMUTlhbERXT1lOS2VFajIzaUVkVTF6OEJIUm9peEFBRTJPUWhlMHlT?=
+ =?utf-8?B?ZTllNWlSeDZWSnFPTjdvdFBaTDRYNXNGVnBUVWtJTW9YZ2FvTW1wRlBpbkNG?=
+ =?utf-8?B?ajMrTWhSeU4xNEdDMmhpMmtUNGJsdEh2WGQ2UEplb3k1MWFLS1RUb1NESWRz?=
+ =?utf-8?B?VEVoVldFczdnbTBFMkJ3MEYzTjRFTm1DekFVbUFidXJLbzhGZlJnYUVpYm5J?=
+ =?utf-8?B?bmdxTDZabjludGNBRlFGLy8xcW15Q2JHVFBWT2hVWVVmT1dxSkovdFZxR0hD?=
+ =?utf-8?B?R1JGS1pZMkViSnhTdFY1NnMyYUMvOWJHTmlTTlRFczd0MGZrSDVLVTk5NzBm?=
+ =?utf-8?B?clBEK2xKOEFTUSt3aWxJMHBxRDNpb1ljaXQ3RWJ1dzliL0tqK29SYzdEaHdw?=
+ =?utf-8?B?aVlHYzFEa0VyZXhXcVhrS1BUYjEvU0VCYTFKczgvaGR6UFdBVll0UVg4eWp6?=
+ =?utf-8?B?Z2xzU3hkb2FmaU9nZDA1bVo1Vmc5T0VnTDVCMUt1Q1l2Q2lHcWRzU2JuQnFF?=
+ =?utf-8?B?OUE9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 88b13c0a-27ab-4962-d13b-08de163db954
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6011.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Oct 2025 16:04:59.2396 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Oct 2025 16:19:09.5755 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: kJWdybGZG8oTMzT4frEZgTAkO/m4Ad8VO/YmKUt3VI8Ih2Belz07XIth4kHCJG0/1Z8/HVHFgeccs0ViMiJhL1R2LtJ9b+xe11WpNxVTTuo=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB6373
+X-MS-Exchange-CrossTenant-UserPrincipalName: Woh2NuBZXnV1XYy1EKdTKXxzl961ZmLxW0Y9eqRyoty5qv5brd+dBIIZ3eBnlAhT37EuvwxRJUgPWgEVpaCYpeiBDnJFDSb8C9b62LPSHLc=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB6120
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -178,156 +196,134 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Oct 28, 2025 at 10:02:45AM -0400, Rodrigo Vivi wrote:
->On Sun, Oct 26, 2025 at 10:57:20PM -0700, Lucas De Marchi wrote:
->> It's currently not possible to safely monitor if there's throttling
->> happening and what are the reasons. The approach of reading the status
->> and then reading the reasons is not reliable as by the time sysadmin
->> reads the reason, the throttling could not be happening anymore.
->>
->> Previous tentative to fix that[1] was breaking the ABI and potentially
->> sysadmin's scripts. This takes a different approach of adding and
->> documenting the additional attribute. It's still valuable, though
->> redundant, to provide the simpler 0/1 interface.
->>
->> In order to avoid userspace knowledge on the bitmask meaning and to be
->> able to maintain the kernel side in sync with possible changes in
->> future, just walk the attribute group and check what are the masks that
->> match the value read.
->>
->> [1] https://lore.kernel.org/intel-xe/20241025092238.167042-1-raag.jadav@intel.com/
->>
->> Cc: Raag Jadav <raag.jadav@intel.com>
->> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
->> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
->> ---
->>  drivers/gpu/drm/xe/xe_gt_throttle.c | 46 +++++++++++++++++++++++++++++++++++--
->>  1 file changed, 44 insertions(+), 2 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/xe/xe_gt_throttle.c b/drivers/gpu/drm/xe/xe_gt_throttle.c
->> index fa7068aac3344..fd2988dacbbb6 100644
->> --- a/drivers/gpu/drm/xe/xe_gt_throttle.c
->> +++ b/drivers/gpu/drm/xe/xe_gt_throttle.c
->> @@ -22,9 +22,15 @@
->>   * Their availability depend on the platform and some may not be visible if that
->>   * reason is not available.
->>   *
->> + * The ``status_reasons`` attribute can be used by sysadmin monitoring all
->> + * possible reasons for throttling and reporting them. It's preferred over
->> + * monitoring ``status`` and then reading the reason both for simplicity and to
->> + * avoid TOCTOU.
->
->Perhaps add something like: TOCTOU (time-of-check to time-of-use).
->
 
-ok... just to be clear, this is not about any security issue that
-sometimes the TOCTOU abbreviation is associated with, it's just a
-"normal bug/race" in the interface.
 
->> + *
->>   * The following attributes are available on Crescent Island platform:
->>   *
->> - * - ``status``: Overall throttle status
->> + * - ``status``: Overall throttle status (0: no throttling, 1: throttling)
->> + * - ``status_reasons``: All reasons causing throttling separated by newline.
->>   * - ``reason_pl1``: package PL1
->>   * - ``reason_pl2``: package PL2
->>   * - ``reason_pl4``: package PL4
->> @@ -43,7 +49,8 @@
->>   *
->>   * Other platforms support the following reasons:
->>   *
->> - * - ``status``: Overall status
->> + * - ``status``: Overall throttle status (0: no throttling, 1: throttling)
->> + * - ``status_reasons``: All reasons causing throttling separated by newline.
->>   * - ``reason_pl1``: package PL1
->>   * - ``reason_pl2``: package PL2
->>   * - ``reason_pl4``: package PL4, Iccmax etc.
->> @@ -111,12 +118,45 @@ static ssize_t reason_show(struct kobject *kobj,
->>  	return sysfs_emit(buff, "%u\n", is_throttled_by(gt, ta->mask));
->>  }
->>
->> +static const struct attribute_group *get_platform_throttle_group(struct xe_device *xe);
->> +
->> +static ssize_t status_reasons_show(struct kobject *kobj,
->> +				   struct kobj_attribute *attr, char *buff)
->> +{
->> +	struct xe_gt *gt = throttle_to_gt(kobj);
->> +	struct xe_device *xe = gt_to_xe(gt);
->> +	const struct attribute_group *group;
->> +	struct attribute **pother;
->> +	ssize_t ret = 0;
->> +	u32 reasons;
->> +
->> +	reasons = xe_gt_throttle_get_limit_reasons(gt);
->> +	group = get_platform_throttle_group(xe);
->> +
->> +	for (pother = group->attrs; *pother; pother++) {
->> +		struct kobj_attribute *kattr = container_of(*pother, struct kobj_attribute, attr);
->> +		struct throttle_attribute *other_ta = kobj_attribute_to_throttle(kattr);
->> +
->> +		if (other_ta->mask != U32_MAX && reasons & other_ta->mask)
->> +			ret += sysfs_emit_at(buff, ret, "%s\n", (*pother)->name);
->
->perhaps a space instead of the \n to keep only a single line?
+On 10/28/2025 5:00 PM, Jonathan Cavitt wrote:
+> On today's driver, xe_device_get_gt(xe, 0); can never return NULL.
+> Hardware-wise there's always at least one tile, and every tilie has a
+> primary GT.  If something went wrong during init of tile or GT and we
+> couldn't create/initialize the structures, then we already aborted the
+> device probe immediately and we'll never get further on to places in the
+> code that would be chasing a NULL pointer.
+> 
+> However, there's currently ongoing work to allow the primary GT to be
+> disabled via configfs for debugging purposes.  Once that lands, it will
+> be possible for this query to return a NULL pointer.  This can cause
+> problems in guc_g2g_alloc, as this process currently relies on the
+> primary GT always being present.
 
-I'm lazy and I don't like the additional space that the lazy approach
-would cause in the last entry :-/. For printing arrays to sysfs
-doesn't seem there's a uniform approach. Some use \n and some use
-space.
+in such case, maybe we should just skip the G2G tests instead of trying
+to fix something that probably will not work anyway, nor is a goal of
+this test suite
 
-do we care about the extra space? if not, then it would be:
+below diff should be sufficient to survive broken (for other debug) xe:
 
-	ret += sysfs_emit_at(buff, ret, "%s ", (*pother)->name);
+@@ -683,6 +683,9 @@ static void g2g_check_skip(struct kunit *test)
+        if (xe->info.gt_count <= 1)
+                kunit_skip(test, "not enough GTs");
 
-if we do, then:
++       if (!xe_device_get_gt(xe, 0))
++               kunit_skip(test, "no GT0");
++
+        for_each_gt(gt, xe, i) {
+                struct xe_guc *guc = &gt->uc.guc;
 
-	ret += sysfs_emit_at(buff, ret, "%s%s", ret ? " " : "", (*pother)->name);
-or
-	ret += sysfs_emit_at(buff, ret, "%.*s%s", !!ret, " ", (*pother)->name);
 
-thanks
-Lucas De Marchi
 
->
->> +	}
->> +
->> +	return ret;
->> +}
->> +
->>  #define THROTTLE_ATTR_RO(name, _mask)				\
->>  	struct throttle_attribute attr_##name =	{		\
->>  		.attr = __ATTR(name, 0444, reason_show, NULL),	\
->>  		.mask = _mask,					\
->>  	}
->>
->> +#define THROTTLE_ATTR_RO_FUNC(name, _mask, _show)		\
->> +	struct throttle_attribute attr_##name =	{		\
->> +		.attr = __ATTR(name, 0444, _show, NULL),	\
->> +		.mask = _mask,					\
->> +	}
->> +
->> +static THROTTLE_ATTR_RO_FUNC(status_reasons, 0, status_reasons_show);
->>  static THROTTLE_ATTR_RO(status, U32_MAX);
->>  static THROTTLE_ATTR_RO(reason_pl1, POWER_LIMIT_1_MASK);
->>  static THROTTLE_ATTR_RO(reason_pl2, POWER_LIMIT_2_MASK);
->> @@ -128,6 +168,7 @@ static THROTTLE_ATTR_RO(reason_vr_thermalert, VR_THERMALERT_MASK);
->>  static THROTTLE_ATTR_RO(reason_vr_tdc, VR_TDC_MASK);
->>
->>  static struct attribute *throttle_attrs[] = {
->> +	&attr_status_reasons.attr.attr,
->>  	&attr_status.attr.attr,
->>  	&attr_reason_pl1.attr.attr,
->>  	&attr_reason_pl2.attr.attr,
->> @@ -153,6 +194,7 @@ static THROTTLE_ATTR_RO(reason_psys_crit, PSYS_CRIT_MASK);
->>
->>  static struct attribute *cri_throttle_attrs[] = {
->>  	/* Common */
->> +	&attr_status_reasons.attr.attr,
->>  	&attr_status.attr.attr,
->>  	&attr_reason_pl1.attr.attr,
->>  	&attr_reason_pl2.attr.attr,
->>
->> --
->> 2.51.0
->>
+> 
+> Instead of making the primary GT the g2g buffer owner, make the first
+> GuC passed to guc_g2g_alloc the g2g buffer owner.  This requires keeping
+> track of the g2g buffer owner in the xe device so each GuC can know if
+> it's the owner or not during initialization.
+> 
+> v2:
+> - Update the kunit tests to clear and reset the g2g_owner variable as
+>   needed (Daniele)
+> 
+> Suggested-by: Matt Roper <matthew.d.roper@intel.com>
+> Suggested-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+> Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+> ---
+>  drivers/gpu/drm/xe/tests/xe_guc_g2g_test.c | 2 ++
+>  drivers/gpu/drm/xe/xe_device_types.h       | 4 ++++
+>  drivers/gpu/drm/xe/xe_guc.c                | 9 ++++++---
+>  3 files changed, 12 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/tests/xe_guc_g2g_test.c b/drivers/gpu/drm/xe/tests/xe_guc_g2g_test.c
+> index 3b213fcae916..6446232422e2 100644
+> --- a/drivers/gpu/drm/xe/tests/xe_guc_g2g_test.c
+> +++ b/drivers/gpu/drm/xe/tests/xe_guc_g2g_test.c
+> @@ -358,6 +358,7 @@ static void g2g_distribute(struct kunit *test, struct xe_device *xe, struct xe_b
+>  	root_gt = xe_device_get_gt(xe, 0);
+>  	root_gt->uc.guc.g2g.bo = bo;
+>  	root_gt->uc.guc.g2g.owned = true;
+> +	xe->g2g_owner = &root_gt->uc.guc;
+>  	kunit_info(test, "[%d.%d] Assigned 0x%p\n", gt_to_tile(root_gt)->id, root_gt->info.id, bo);
+>  
+>  	for_each_gt(gt, xe, i) {
+> @@ -447,6 +448,7 @@ static void g2g_free(struct kunit *test, struct xe_device *xe)
+>  
+>  		gt->uc.guc.g2g.bo = NULL;
+>  	}
+> +	xe->g2g_owner = NULL;
+>  }
+>  
+>  static void g2g_stop(struct kunit *test, struct xe_device *xe)
+> diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+> index af0ce275b032..91ec9a295226 100644
+> --- a/drivers/gpu/drm/xe/xe_device_types.h
+> +++ b/drivers/gpu/drm/xe/xe_device_types.h
+> @@ -38,6 +38,7 @@ struct dram_info;
+>  struct intel_display;
+>  struct intel_dg_nvm_dev;
+>  struct xe_ggtt;
+> +struct xe_guc;
+>  struct xe_i2c;
+>  struct xe_pat_ops;
+>  struct xe_pxp;
+> @@ -628,6 +629,9 @@ struct xe_device {
+>  	atomic_t g2g_test_count;
+>  #endif
+>  
+> +	/** @g2g_owner: Pointer to the GuC that is the owner of the g2g buffer */
+> +	struct xe_guc *g2g_owner;
+> +
+>  	/* private: */
+>  
+>  #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
+> diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+> index ecc3e091b89e..a3a0961456d0 100644
+> --- a/drivers/gpu/drm/xe/xe_guc.c
+> +++ b/drivers/gpu/drm/xe/xe_guc.c
+> @@ -468,9 +468,8 @@ static int guc_g2g_alloc(struct xe_guc *guc)
+>  	if (guc->g2g.bo)
+>  		return 0;
+>  
+> -	if (gt->info.id != 0) {
+> -		struct xe_gt *root_gt = xe_device_get_gt(xe, 0);
+> -		struct xe_guc *root_guc = &root_gt->uc.guc;
+> +	if (xe->g2g_owner) {
+> +		struct xe_guc *root_guc = xe->g2g_owner;
+>  		struct xe_bo *bo;
+>  
+>  		bo = xe_bo_get(root_guc->g2g.bo);
+> @@ -495,6 +494,7 @@ static int guc_g2g_alloc(struct xe_guc *guc)
+>  	xe_map_memset(xe, &bo->vmap, 0, 0, g2g_size);
+>  	guc->g2g.bo = bo;
+>  	guc->g2g.owned = true;
+> +	xe->g2g_owner = guc;
+>  
+>  	return 0;
+>  }
+> @@ -507,6 +507,9 @@ static void guc_g2g_fini(struct xe_guc *guc)
+>  	/* Unpinning the owned object is handled by generic shutdown */
+>  	if (!guc->g2g.owned)
+>  		xe_bo_put(guc->g2g.bo);
+> +	/* g2g owner is no longer valid.  Mark as NULL in xe device */
+> +	else
+> +		guc_to_xe(guc)->g2g_owner = NULL;
+>  
+>  	guc->g2g.bo = NULL;
+>  }
+
