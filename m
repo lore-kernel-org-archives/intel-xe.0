@@ -4,58 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1F89DCCD1BF
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F1E80CCF9F2
 	for <intel-xe@archiver.kernel.org>; Tue, 28 Oct 2025 17:59:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D5C1A10E646;
-	Tue, 28 Oct 2025 17:59:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A24FE10E64A;
+	Tue, 28 Oct 2025 17:59:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Bekz4jw5";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GHZYqRSb";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 94B7A10E641
- for <intel-xe@lists.freedesktop.org>; Tue, 28 Oct 2025 17:59:07 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8358610E643
+ for <intel-xe@lists.freedesktop.org>; Tue, 28 Oct 2025 17:59:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761674348; x=1793210348;
+ t=1761674343; x=1793210343;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=FJLaXYZ7B+P/3MBu0cPH/25KJMHM9LOdVfSQVfTNinA=;
- b=Bekz4jw590th8BHCunjMprQfNuLahhH20Wu2x52ejb3mpoi6D57thASC
- kP/a0SOpP+iChg/EMtvx0ey5CE63QkE+LNtylChLNnRiUUaUSfdasW/Wq
- Wj1kiEgx53CAUEjW5UdShqhNCYzLmVbxx++mTaVQh585kb+GW03Npd3WI
- Kq9qnqgmPrqBIMh5MaUZRctBXW+SPpsaf6/hWFQFsbQVqyNh4cV7OBBRV
- UNnrYS0ngubEZJLWI03Mq/KeyZKW9jQ79UsycZJgJzb15HDjFfkgo574t
- psQW+ue+juqN/0hyCmCpol7lTtiKdCS6Js2RrDWs3hoGo2L+WKqwSN9jl A==;
-X-CSE-ConnectionGUID: +ORtrNVITYSrbUVLLDDDAg==
-X-CSE-MsgGUID: bx+3P/R8SPiF0zTUZrklIg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="63687850"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="63687850"
+ bh=86Q0o4bgkHAQijISYz29aXicqKVPTSWo9Jh1OiKRzp0=;
+ b=GHZYqRSbwpE7iWSpc+SJM3O53/boihYocqJrMAAkY5tvtMMsLAbz4Z+C
+ bz9tmtz5buAXjueh+d6iZ6yFS13bg1e+mfWqDWpwYW62nZR+SEImU386y
+ Ge90jLBID59YZotgzMp+AX1ITTLaF3KRGD5wnz+cDHPoHw+J6jKFgX3jX
+ SD13VwaOeI7hHzTj+/E/dpJB+Sy9LQCeAJhlRVh81I904Yc3FTGQe4FzN
+ BAXhKmgkSPtnPcwRRE9zcr/KdHrWGiK0OCBKVUTjeoObcJ5cjtZTnm4XH
+ LwsDB/1iQ/EoCXycG+9JgwFFoikOfFZqWtSV7N+rXXpSul6P8IptKvlzg A==;
+X-CSE-ConnectionGUID: JVfKtwwjTA+nP0e48XQLXg==
+X-CSE-MsgGUID: na6anrCCTfW9b5/2Oqq9Rg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="63687843"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="63687843"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2025 10:59:08 -0700
-X-CSE-ConnectionGUID: +vP/KvioSKCwkDK+JqDnYw==
-X-CSE-MsgGUID: Jodar9+gTKeEo6NohYL5rg==
+ 28 Oct 2025 10:59:03 -0700
+X-CSE-ConnectionGUID: LRtuAWPmT3mC467cC4N/1A==
+X-CSE-MsgGUID: Y4nihRg6TR6fXgQCUDyuHQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,261,1754982000"; d="scan'208";a="189469421"
+X-IronPort-AV: E=Sophos;i="6.19,261,1754982000"; d="scan'208";a="189469395"
 Received: from ngusev-mobl1.ger.corp.intel.com (HELO
  mwajdecz-hp.clients.intel.com) ([10.245.98.92])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2025 10:59:05 -0700
+ 28 Oct 2025 10:59:00 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [PATCH v2 12/17] drm/xe/pf: Allow bulk change all VFs priority using
- sysfs
-Date: Tue, 28 Oct 2025 18:58:26 +0100
-Message-ID: <20251028175832.184534-13-michal.wajdeczko@intel.com>
+ Lucas De Marchi <lucas.demarchi@intel.com>
+Subject: [PATCH v2 09/17] drm/xe/pf: Add functions to bulk provision EQ/PT
+Date: Tue, 28 Oct 2025 18:58:23 +0100
+Message-ID: <20251028175832.184534-10-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20251028175832.184534-1-michal.wajdeczko@intel.com>
 References: <20251028175832.184534-1-michal.wajdeczko@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -71,95 +68,108 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-It is expected to be a common practice to configure the same level
-of scheduling priority across all VFs and PF (at least as starting
-point). Due to current GuC FW limitations it is also the only way
-to change VFs priority.
-
-Add write-only sysfs attribute that will apply required priority
-level to all VFs and PF at once.
-
-  /sys/bus/pci/drivers/xe/BDF/
-  ├── sriov_admin/
-      ├── .bulk_profile
-      │   └── sched_priority		[WO] low, normal
-
-Writing "low" to this write-only attribute will change PF and
-VFs scheduling priority on all tiles/GTs to LOW (function will
-be scheduled only if it has work submitted). Similarly, writing
-"normal" will change functions priority to NORMAL (functions will
-be scheduled irrespective of whether there is a work or not).
+We already have functions to configure EQ/PT for single VF across
+all tiles/GTs. Now add helper functions that will do that for all
+VFs (and the PF) at once.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com> #v1
 ---
- drivers/gpu/drm/xe/xe_sriov_pf_sysfs.c | 42 +++++++++++++++++++++++++-
- 1 file changed, 41 insertions(+), 1 deletion(-)
+v2: use single lock to avoid races (Lucas)
+---
+ drivers/gpu/drm/xe/xe_sriov_pf_provision.c | 56 ++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_sriov_pf_provision.h |  2 +
+ 2 files changed, 58 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_sriov_pf_sysfs.c b/drivers/gpu/drm/xe/xe_sriov_pf_sysfs.c
-index 0430ffaa746a..19724a28fb33 100644
---- a/drivers/gpu/drm/xe/xe_sriov_pf_sysfs.c
-+++ b/drivers/gpu/drm/xe/xe_sriov_pf_sysfs.c
-@@ -24,7 +24,8 @@
-  *     ├── ...
-  *     ├── .bulk_profile
-  *     │   ├── exec_quantum_ms
-- *     │   └── preempt_timeout_us
-+ *     │   ├── preempt_timeout_us
-+ *     │   └── sched_priority
-  *     ├── pf/
-  *     │   ├── ...
-  *     │   └── profile
-@@ -108,9 +109,48 @@ static XE_SRIOV_DEV_ATTR_WO(NAME)
- DEFINE_SIMPLE_BULK_PROVISIONING_SRIOV_DEV_ATTR_WO(exec_quantum_ms, eq, u32);
- DEFINE_SIMPLE_BULK_PROVISIONING_SRIOV_DEV_ATTR_WO(preempt_timeout_us, pt, u32);
+diff --git a/drivers/gpu/drm/xe/xe_sriov_pf_provision.c b/drivers/gpu/drm/xe/xe_sriov_pf_provision.c
+index c5b3a6aa67f4..6a4cb3d5494a 100644
+--- a/drivers/gpu/drm/xe/xe_sriov_pf_provision.c
++++ b/drivers/gpu/drm/xe/xe_sriov_pf_provision.c
+@@ -153,6 +153,34 @@ int xe_sriov_pf_provision_set_mode(struct xe_device *xe, enum xe_sriov_provision
+ 	return 0;
+ }
  
-+static const char * const sched_priority_names[] = {
-+	[GUC_SCHED_PRIORITY_LOW] = "low",
-+	[GUC_SCHED_PRIORITY_NORMAL] = "normal",
-+	[GUC_SCHED_PRIORITY_HIGH] = "high",
-+};
-+
-+static bool sched_priority_high_allowed(unsigned int vfid)
++/**
++ * xe_sriov_pf_provision_bulk_apply_eq() - Change execution quantum for all VFs and PF.
++ * @xe: the PF &xe_device
++ * @eq: execution quantum in [ms] to set
++ *
++ * Change execution quantum (EQ) provisioning on all tiles/GTs.
++ *
++ * This function can only be called on PF.
++ *
++ * Return: 0 on success or a negative error code on failure.
++ */
++int xe_sriov_pf_provision_bulk_apply_eq(struct xe_device *xe, u32 eq)
 +{
-+	/* As of today GuC FW allows to select 'high' priority only for the PF. */
-+	return vfid == PFID;
-+}
-+
-+static bool sched_priority_bulk_high_allowed(struct xe_device *xe)
-+{
-+	/* all VFs are equal - it's sufficient to check VF1 only */
-+	return sched_priority_high_allowed(VFID(1));
-+}
-+
-+static ssize_t xe_sriov_dev_attr_sched_priority_store(struct xe_device *xe,
-+						      const char *buf, size_t count)
-+{
-+	size_t num_priorities = ARRAY_SIZE(sched_priority_names);
-+	int match;
++	struct xe_gt *gt;
++	unsigned int id;
++	int result = 0;
 +	int err;
 +
-+	if (!sched_priority_bulk_high_allowed(xe))
-+		num_priorities--;
++	guard(mutex)(xe_sriov_pf_master_mutex(xe));
 +
-+	match = __sysfs_match_string(sched_priority_names, num_priorities, buf);
-+	if (match < 0)
-+		return -EINVAL;
++	for_each_gt(gt, xe, id) {
++		err = xe_gt_sriov_pf_config_bulk_set_exec_quantum_locked(gt, eq);
++		result = result ?: err;
++	}
 +
-+	err = xe_sriov_pf_provision_bulk_apply_priority(xe, match);
-+	return err ?: count;
++	return result;
 +}
 +
-+static XE_SRIOV_DEV_ATTR_WO(sched_priority);
+ /**
+  * xe_sriov_pf_provision_apply_vf_eq() - Change VF's execution quantum.
+  * @xe: the PF &xe_device
+@@ -215,6 +243,34 @@ int xe_sriov_pf_provision_query_vf_eq(struct xe_device *xe, unsigned int vfid, u
+ 	return !count ? -ENODATA : 0;
+ }
+ 
++/**
++ * xe_sriov_pf_provision_bulk_apply_pt() - Change preemption timeout for all VFs and PF.
++ * @xe: the PF &xe_device
++ * @pt: preemption timeout in [us] to set
++ *
++ * Change preemption timeout (PT) provisioning on all tiles/GTs.
++ *
++ * This function can only be called on PF.
++ *
++ * Return: 0 on success or a negative error code on failure.
++ */
++int xe_sriov_pf_provision_bulk_apply_pt(struct xe_device *xe, u32 pt)
++{
++	struct xe_gt *gt;
++	unsigned int id;
++	int result = 0;
++	int err;
 +
- static struct attribute *bulk_profile_dev_attrs[] = {
- 	&xe_sriov_dev_attr_exec_quantum_ms.attr,
- 	&xe_sriov_dev_attr_preempt_timeout_us.attr,
-+	&xe_sriov_dev_attr_sched_priority.attr,
- 	NULL
- };
++	guard(mutex)(xe_sriov_pf_master_mutex(xe));
++
++	for_each_gt(gt, xe, id) {
++		err = xe_gt_sriov_pf_config_bulk_set_preempt_timeout_locked(gt, pt);
++		result = result ?: err;
++	}
++
++	return result;
++}
++
+ /**
+  * xe_sriov_pf_provision_apply_vf_pt() - Change VF's preemption timeout.
+  * @xe: the PF &xe_device
+diff --git a/drivers/gpu/drm/xe/xe_sriov_pf_provision.h b/drivers/gpu/drm/xe/xe_sriov_pf_provision.h
+index cb81b5880930..aa8a95b1c0be 100644
+--- a/drivers/gpu/drm/xe/xe_sriov_pf_provision.h
++++ b/drivers/gpu/drm/xe/xe_sriov_pf_provision.h
+@@ -12,9 +12,11 @@
+ 
+ struct xe_device;
+ 
++int xe_sriov_pf_provision_bulk_apply_eq(struct xe_device *xe, u32 eq);
+ int xe_sriov_pf_provision_apply_vf_eq(struct xe_device *xe, unsigned int vfid, u32 eq);
+ int xe_sriov_pf_provision_query_vf_eq(struct xe_device *xe, unsigned int vfid, u32 *eq);
+ 
++int xe_sriov_pf_provision_bulk_apply_pt(struct xe_device *xe, u32 pt);
+ int xe_sriov_pf_provision_apply_vf_pt(struct xe_device *xe, unsigned int vfid, u32 pt);
+ int xe_sriov_pf_provision_query_vf_pt(struct xe_device *xe, unsigned int vfid, u32 *pt);
  
 -- 
 2.47.1
