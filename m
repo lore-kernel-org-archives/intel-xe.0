@@ -4,54 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4D839CCF9F5
-	for <intel-xe@archiver.kernel.org>; Wed, 29 Oct 2025 08:46:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8AFEBCCF9EE
+	for <intel-xe@archiver.kernel.org>; Wed, 29 Oct 2025 08:46:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0AEEA10E745;
-	Wed, 29 Oct 2025 08:46:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4DD9410E742;
+	Wed, 29 Oct 2025 08:46:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BTER6bnb";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZeMOL54a";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ED06F10E742;
- Wed, 29 Oct 2025 08:46:14 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 922C110E742;
+ Wed, 29 Oct 2025 08:46:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761727576; x=1793263576;
+ t=1761727612; x=1793263612;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=siOyM31RXVvtECOgc/oHpT4AvY7tftdN4D25GhrtVn0=;
- b=BTER6bnbOimRnxAG2EZ4bKKCjgCLaNVGV2w7E03dozGwA9jKF1KrDlpk
- 6bq+L2eD0S4vFmllF1++F3oDa7p5uho4fhZwk/hJRawstV0mY2R3Cf1pm
- FljbRrRHhx53y542DyKDRI8QVOOo41C/g/Q9BviFeg5cnJ7470+vQTWh8
- EWGyyt7SdfBFCc3TQsrqzHHwXV4P4RWdfIlHgo6299LJm185J+cjg7x+r
- iLDoSaJt2c4h4/wMb90fEsDiHPzHcLOX9z8jtfGZ8DqKOopOTLXq0S8Pv
- 9rq8PT3a6xnOX5+HgSsM7DcLvbAXXYn1jIWWF5vFrgx2qSXWsBfcigAZB g==;
-X-CSE-ConnectionGUID: tOkqy+P7S26UH8L68SrUcA==
-X-CSE-MsgGUID: RAQCcfa/S7GV4fLvGogDsA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="63543612"
-X-IronPort-AV: E=Sophos;i="6.19,263,1754982000"; d="scan'208";a="63543612"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Oct 2025 01:46:10 -0700
-X-CSE-ConnectionGUID: 3HtEK2kdR8q85Nv5ThEjkA==
-X-CSE-MsgGUID: 5dhxQq2fTge+11n/54W/1A==
+ bh=D6Fe/RwVkdUZ0QkkkOvKLvbowEFty/2gcPrg0NrzRiQ=;
+ b=ZeMOL54aMaC7V54hMiWTAeFXqEVFMK4zGFstFm8ss0nb82oyOEj/V8ap
+ /DLd7pv2hdVLmT6TS22yGuj8b7n68i8B7mWr9piB2p8K0+2XHqd4MYMk7
+ t1YggHUExFf/O149Tq09E1cJ7JakARlJfTM2/h93+qh0CKM1BpYkQxbzC
+ 25ff/A1Wb+QHWd/Inere8Wpubn+4GAWt2vLCzcEuUyT9WpTiL4FmHfyul
+ J83ujnlCTYCBsHO/aOQdpW9bYEGQDPwjG+ch3B0+rpEPEWRt8Uh2KMCFQ
+ P+y4HBRUrcpQmt6LNxY4V63qXfUpmCkUBB/HElDOIhT+OBmrPm9SYvkE9 A==;
+X-CSE-ConnectionGUID: m56NHvvLR56dph1z0f0rBA==
+X-CSE-MsgGUID: pESKv8n2TiSmRbLTHR69yg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="74132133"
+X-IronPort-AV: E=Sophos;i="6.19,263,1754982000"; d="scan'208";a="74132133"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Oct 2025 01:46:51 -0700
+X-CSE-ConnectionGUID: WE6Ud+ulQZaXgFm9kvWTlA==
+X-CSE-MsgGUID: rxNiD3VETU6hhpE3dmFF0Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,263,1754982000"; d="scan'208";a="185230246"
-Received: from ettammin-desk.ger.corp.intel.com (HELO localhost)
- ([10.245.246.160])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Oct 2025 01:46:07 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com,
-	ville.syrjala@linux.intel.com
-Subject: [PATCH v2 1/2] drm/i915/dsi: log send packet sequence errors
-Date: Wed, 29 Oct 2025 10:46:02 +0200
-Message-ID: <20251029084603.2254982-1-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.47.3
+X-IronPort-AV: E=Sophos;i="6.19,263,1754982000"; d="scan'208";a="222811500"
+Received: from egrumbac-mobl6.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.242])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Oct 2025 01:46:50 -0700
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
+Subject: [PATCH v2 0/9] drm/i915: Fix CDCLK and scaler prefill calculations
+Date: Wed, 29 Oct 2025 10:46:38 +0200
+Message-ID: <20251029084647.4165-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.49.1
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -68,77 +67,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We might be getting send packet sequence errors and never know. Log them
-as errors. Also upgrade the not supported read commands to errors.
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-v2: Also error log -EOPNOTSUPP (Ville)
+Reorder stuff enough to allow the prefill vs. vblank checks
+to use the real per-crtc min CDCLK and the real scale factors.
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dsi_vbt.c | 22 ++++++++++++--------
- 1 file changed, 13 insertions(+), 9 deletions(-)
+v2: Add an early crtc_state->min_cdclk vs. max_cdcdlk_freq check
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c b/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
-index 23402408e172..63837406d99b 100644
---- a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
-+++ b/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
-@@ -106,6 +106,7 @@ static const u8 *mipi_exec_send_packet(struct intel_dsi *intel_dsi,
- 	u8 type, flags, seq_port;
- 	u16 len;
- 	enum port port;
-+	ssize_t ret;
- 
- 	drm_dbg_kms(display->drm, "\n");
- 
-@@ -138,36 +139,39 @@ static const u8 *mipi_exec_send_packet(struct intel_dsi *intel_dsi,
- 
- 	switch (type) {
- 	case MIPI_DSI_GENERIC_SHORT_WRITE_0_PARAM:
--		mipi_dsi_generic_write(dsi_device, NULL, 0);
-+		ret = mipi_dsi_generic_write(dsi_device, NULL, 0);
- 		break;
- 	case MIPI_DSI_GENERIC_SHORT_WRITE_1_PARAM:
--		mipi_dsi_generic_write(dsi_device, data, 1);
-+		ret = mipi_dsi_generic_write(dsi_device, data, 1);
- 		break;
- 	case MIPI_DSI_GENERIC_SHORT_WRITE_2_PARAM:
--		mipi_dsi_generic_write(dsi_device, data, 2);
-+		ret = mipi_dsi_generic_write(dsi_device, data, 2);
- 		break;
- 	case MIPI_DSI_GENERIC_READ_REQUEST_0_PARAM:
- 	case MIPI_DSI_GENERIC_READ_REQUEST_1_PARAM:
- 	case MIPI_DSI_GENERIC_READ_REQUEST_2_PARAM:
--		drm_dbg_kms(display->drm, "Generic Read not yet implemented or used\n");
-+		ret = -EOPNOTSUPP;
- 		break;
- 	case MIPI_DSI_GENERIC_LONG_WRITE:
--		mipi_dsi_generic_write(dsi_device, data, len);
-+		ret = mipi_dsi_generic_write(dsi_device, data, len);
- 		break;
- 	case MIPI_DSI_DCS_SHORT_WRITE:
--		mipi_dsi_dcs_write_buffer(dsi_device, data, 1);
-+		ret = mipi_dsi_dcs_write_buffer(dsi_device, data, 1);
- 		break;
- 	case MIPI_DSI_DCS_SHORT_WRITE_PARAM:
--		mipi_dsi_dcs_write_buffer(dsi_device, data, 2);
-+		ret = mipi_dsi_dcs_write_buffer(dsi_device, data, 2);
- 		break;
- 	case MIPI_DSI_DCS_READ:
--		drm_dbg_kms(display->drm, "DCS Read not yet implemented or used\n");
-+		ret = -EOPNOTSUPP;
- 		break;
- 	case MIPI_DSI_DCS_LONG_WRITE:
--		mipi_dsi_dcs_write_buffer(dsi_device, data, len);
-+		ret = mipi_dsi_dcs_write_buffer(dsi_device, data, len);
- 		break;
- 	}
- 
-+	if (ret < 0)
-+		drm_err(display->drm, "DSI send packet failed with %pe\n", ERR_PTR(ret));
-+
- 	if (DISPLAY_VER(display) < 11)
- 		vlv_dsi_wait_for_fifo_empty(intel_dsi, port);
- 
+Ville Syrjälä (9):
+  drm/i915/scaler: Don't clobber plane scaler scale factors with pfit
+    scale factors
+  drm/i915/scaler: Adjust pipe scaler scale factors for 4:2:0 ouput
+  drm/i915:
+    s/intel_atomic_check_crtcs()/intel_atomic_check_crtcs_late()/
+  drm/i915: Introduce a new intel_atomic_check_crtcs()
+  drm/i915/scaler: Call skl_update_scaler_crtc() earlier
+  drm/i915/scaler: Assign scalers earlier
+  drm/i915/wm: Do skl_wm_check_vblank() after DDB stuff
+  drm/i915/cdclk: Use a more optimal min_cdclk for vblank length check
+  drm/i915/scaler: Use the actual scale factors for vblank length check
+
+ drivers/gpu/drm/i915/display/intel_cdclk.c   | 17 +++-
+ drivers/gpu/drm/i915/display/intel_display.c | 61 +++++++++-----
+ drivers/gpu/drm/i915/display/skl_scaler.c    | 88 +++++++++++++++++---
+ drivers/gpu/drm/i915/display/skl_watermark.c |  6 +-
+ 4 files changed, 139 insertions(+), 33 deletions(-)
+
 -- 
-2.47.3
+2.49.1
 
