@@ -4,33 +4,33 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 067D2CCF9E9
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 27891CCF9EE
 	for <intel-xe@archiver.kernel.org>; Wed, 29 Oct 2025 09:59:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B4B2510E775;
+	by gabe.freedesktop.org (Postfix) with ESMTP id CE8AE10E777;
 	Wed, 29 Oct 2025 09:59:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="S4NSk1QG";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="nrZrWklc";
 	dkim-atps=neutral
 Received: from lankhorst.se (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 20DF610E76D
- for <intel-xe@lists.freedesktop.org>; Wed, 29 Oct 2025 09:59:37 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3513110E76D
+ for <intel-xe@lists.freedesktop.org>; Wed, 29 Oct 2025 09:59:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1761731975;
- bh=rsGwI3BB/nL+3KqHd3fyVaCclCm+/GTa7AGAdLwN4y0=;
+ s=default; t=1761731977;
+ bh=jEIbzfxN7oqlqU5lGLNLuh8Ta/vNcdE97G0LDBiY+Ng=;
  h=From:To:Subject:Date:In-Reply-To:References:From;
- b=S4NSk1QGMy3bzIXqTOLJ3AXixFJeG/0ueXVGlR4oMcGceo4qC18FsllhTu0iLD8U6
- BquLePRwu4jai3WXNJ9fBb91ysn66brPsyP9+ASM5ieT4D3jxQ/RpwSo46mN2T8E4j
- 277IlijnaGEK9hmuHtLXxvBk+uVvyujh9+cJpWUtPR+cFtF3YZHJhxMGZqg9Cug1Gn
- lCxPEVK8qyAdeCVV2rv9gUGivUzTSfY/1npeqzZJoFpXMUjJ4Bqdy0T9MLuJbIv3U+
- IDI8FLJjCoAW6yhgMH7eqXcDHNgomni5epUsdIid0Gxsz/ONJBl7U9nrOYiUhu1LcE
- x0rJ5AZLjDo+g==
+ b=nrZrWklcjv/OsmWAKKtbIfvK3MSIvO1D8EY48ryVhCVhWpKmcaemr7V/IOgpuS0tb
+ UVlQtaUEWXSurCm+BEcX5Hy/VxQRdNKtsyd8YPwz/2wVktBFdaM+9Tr9tdQK1YgTFp
+ l/DrrtKagaXlsSgpGj4JAMVwc35Go8Ll4lTSvWv9BoFhgwsTpKG+68vc4XHaQrin10
+ peFlWFisGGJIZfgJP1mKI9kvaEpE0polgyt3CntsKKn6GtbviQ9VdUA8DXCBS2o38c
+ /JkAWPEhmM0LXujPhYc4tEZQsag3SKTU/TekrDSdKyKTaKSv2po+Um5XZmgB4q1CPu
+ 87MiF4OwqWYag==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-xe@lists.freedesktop.org
-Subject: [FOR CI 1/5] drm/i915/display: Make get_vblank_counter use
- intel_de_read_fw()
-Date: Wed, 29 Oct 2025 10:59:29 +0100
-Message-ID: <20251029095934.16813-2-dev@lankhorst.se>
+Subject: [FOR CI 3/5] drm/i915: Don't disable interrupts on PREEMPT_RT during
+ atomic updates
+Date: Wed, 29 Oct 2025 10:59:31 +0100
+Message-ID: <20251029095934.16813-4-dev@lankhorst.se>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20251029095934.16813-1-dev@lankhorst.se>
 References: <20251029095934.16813-1-dev@lankhorst.se>
@@ -50,44 +50,128 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Fixes the following lockdep splat on PREEMPT_RT:
-<3> BUG: sleeping function called from invalid context at kernel/locking/spinlock_rt.c:48
-<3> in_atomic(): 1, irqs_disabled(): 0, non_block: 0, pid: 1373, name: xe_module_load
-<3> preempt_count: 1, expected: 0
-<3> RCU nest depth: 0, expected: 0
-<4> 11 locks held by xe_module_load/1373:
-<4>  #0: ffff888107b691a0 (&dev->mutex){....}-{3:3}, at: __driver_attach+0x104/0x220
-<4>  #1: ffff88813cd30280 (&dev->clientlist_mutex){+.+.}-{3:3}, at: drm_client_register+0x32/0xe0
-<4>  #2: ffffffff837f88f8 (registration_lock){+.+.}-{3:3}, at: register_framebuffer+0x1b/0x50
-<4>  #3: ffffffff835985e0 (console_lock){+.+.}-{0:0}, at: fbcon_fb_registered+0x6f/0x90
-<4>  #4: ffff88812589e6a0 (&helper->lock){+.+.}-{3:3}, at: __drm_fb_helper_restore_fbdev_mode_unlocked+0x7b/0x110
-<4>  #5: ffff88813cd30158 (&dev->master_mutex){+.+.}-{3:3}, at: drm_master_internal_acquire+0x20/0x50
-<4>  #6: ffff88812589e488 (&client->modeset_mutex){+.+.}-{3:3}, at: drm_client_modeset_commit_locked+0x2a/0x1b0
-<4>  #7: ffffc9000031eef0 (crtc_ww_class_acquire){+.+.}-{0:0}, at: drm_client_modeset_commit_atomic+0x4c/0x2b0
-<4>  #8: ffffc9000031ef18 (crtc_ww_class_mutex){+.+.}-{3:3}, at: drm_client_modeset_commit_atomic+0x4c/0x2b0
-<4>  #9: ffff888114f7b8b8 (&intel_dp->psr.lock){+.+.}-{3:3}, at: intel_psr_lock+0xc5/0xf0 [xe]
-<4>  #10: ffff88812a0cbbc0 (&wl->lock){+.+.}-{2:2}, at: intel_dmc_wl_get+0x3c/0x140 [xe]
+From: Mike Galbraith <umgwanakikbuti@gmail.com>
 
-This splat will happen otherwise on all tracepoints too, for similar reasons.
+Commit
+   8d7849db3eab7 ("drm/i915: Make sprite updates atomic")
 
+started disabling interrupts across atomic updates. This breaks on PREEMPT_RT
+because within this section the code attempt to acquire spinlock_t locks which
+are sleeping locks on PREEMPT_RT.
+
+According to the comment the interrupts are disabled to avoid random delays and
+not required for protection or synchronisation.
+If this needs to happen with disabled interrupts on PREEMPT_RT, and the
+whole section is restricted to register access then all sleeping locks
+need to be acquired before interrupts are disabled and some function
+maybe moved after enabling interrupts again.
+This includes:
+- prepare_to_wait() + finish_wait() due its wake queue.
+- drm_crtc_vblank_put() -> vblank_disable_fn() drm_device::vbl_lock.
+- skl_pfit_enable(), intel_update_plane(), vlv_atomic_update_fifo() and
+  maybe others due to intel_uncore::lock
+- drm_crtc_arm_vblank_event() due to drm_device::event_lock and
+  drm_device::vblank_time_lock.
+
+Don't disable interrupts on PREEMPT_RT during atomic updates.
+
+[bigeasy: drop local locks, commit message]
+
+Signed-off-by: Mike Galbraith <umgwanakikbuti@gmail.com>
+Signed-off-by: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/i915/display/intel_vblank.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_crtc.c   | 9 ++++++---
+ drivers/gpu/drm/i915/display/intel_cursor.c | 9 ++++++---
+ drivers/gpu/drm/i915/display/intel_vblank.c | 6 ++++--
+ 3 files changed, 16 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_vblank.c b/drivers/gpu/drm/i915/display/intel_vblank.c
-index 2fc0c1c0bb876..44a7242658da4 100644
---- a/drivers/gpu/drm/i915/display/intel_vblank.c
-+++ b/drivers/gpu/drm/i915/display/intel_vblank.c
-@@ -131,7 +131,7 @@ u32 g4x_get_vblank_counter(struct drm_crtc *crtc)
- 	if (!vblank->max_vblank_count)
- 		return 0;
+diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
+index d300ba1dcd2c4..f34745b5ea497 100644
+--- a/drivers/gpu/drm/i915/display/intel_crtc.c
++++ b/drivers/gpu/drm/i915/display/intel_crtc.c
+@@ -567,7 +567,8 @@ void intel_pipe_update_start(struct intel_atomic_state *state,
+ 	 */
+ 	intel_psr_wait_for_idle_locked(new_crtc_state);
  
--	return intel_de_read(display, PIPE_FRMCOUNT_G4X(display, pipe));
-+	return intel_de_read_fw(display, PIPE_FRMCOUNT_G4X(display, pipe));
+-	local_irq_disable();
++	if (!IS_ENABLED(CONFIG_PREEMPT_RT))
++		local_irq_disable();
+ 
+ 	crtc->debug.min_vbl = evade.min;
+ 	crtc->debug.max_vbl = evade.max;
+@@ -585,7 +586,8 @@ void intel_pipe_update_start(struct intel_atomic_state *state,
+ 	return;
+ 
+ irq_disable:
+-	local_irq_disable();
++	if (!IS_ENABLED(CONFIG_PREEMPT_RT))
++		local_irq_disable();
  }
  
- static u32 intel_crtc_scanlines_since_frame_timestamp(struct intel_crtc *crtc)
+ #if IS_ENABLED(CONFIG_DRM_I915_DEBUG_VBLANK_EVADE)
+@@ -731,7 +733,8 @@ void intel_pipe_update_end(struct intel_atomic_state *state,
+ 	if (!state->base.legacy_cursor_update)
+ 		intel_vrr_send_push(NULL, new_crtc_state);
+ 
+-	local_irq_enable();
++	if (!IS_ENABLED(CONFIG_PREEMPT_RT))
++		local_irq_enable();
+ 
+ 	if (intel_vgpu_active(dev_priv))
+ 		goto out;
+diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
+index c47c849358714..780fcae77a984 100644
+--- a/drivers/gpu/drm/i915/display/intel_cursor.c
++++ b/drivers/gpu/drm/i915/display/intel_cursor.c
+@@ -919,13 +919,15 @@ intel_legacy_cursor_update(struct drm_plane *_plane,
+ 		 */
+ 		intel_psr_wait_for_idle_locked(crtc_state);
+ 
+-		local_irq_disable();
++		if (!IS_ENABLED(CONFIG_PREEMPT_RT))
++			local_irq_disable();
+ 
+ 		intel_vblank_evade(&evade);
+ 
+ 		drm_crtc_vblank_put(&crtc->base);
+ 	} else {
+-		local_irq_disable();
++		if (!IS_ENABLED(CONFIG_PREEMPT_RT))
++			local_irq_disable();
+ 	}
+ 
+ 	if (new_plane_state->uapi.visible) {
+@@ -935,7 +937,8 @@ intel_legacy_cursor_update(struct drm_plane *_plane,
+ 		intel_plane_disable_arm(NULL, plane, crtc_state);
+ 	}
+ 
+-	local_irq_enable();
++	if (!IS_ENABLED(CONFIG_PREEMPT_RT))
++		local_irq_enable();
+ 
+ 	intel_psr_unlock(crtc_state);
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_vblank.c b/drivers/gpu/drm/i915/display/intel_vblank.c
+index cd7f2c1ef21af..cb060b5c04659 100644
+--- a/drivers/gpu/drm/i915/display/intel_vblank.c
++++ b/drivers/gpu/drm/i915/display/intel_vblank.c
+@@ -761,11 +761,13 @@ int intel_vblank_evade(struct intel_vblank_evade_ctx *evade)
+ 			break;
+ 		}
+ 
+-		local_irq_enable();
++		if (!IS_ENABLED(CONFIG_PREEMPT_RT))
++			local_irq_enable();
+ 
+ 		timeout = schedule_timeout(timeout);
+ 
+-		local_irq_disable();
++		if (!IS_ENABLED(CONFIG_PREEMPT_RT))
++			local_irq_disable();
+ 	}
+ 
+ 	finish_wait(wq, &wait);
 -- 
 2.51.0
 
