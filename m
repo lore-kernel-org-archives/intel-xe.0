@@ -4,58 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4D0D3CCF9F7
-	for <intel-xe@archiver.kernel.org>; Wed, 29 Oct 2025 23:36:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4DE46CCF9EB
+	for <intel-xe@archiver.kernel.org>; Wed, 29 Oct 2025 23:40:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E471310E86D;
-	Wed, 29 Oct 2025 23:36:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0D94110E870;
+	Wed, 29 Oct 2025 23:40:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="WFoqw0hb";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="b4a9mf+l";
 	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B127D10E86B;
- Wed, 29 Oct 2025 23:36:46 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id C7B0060399;
- Wed, 29 Oct 2025 23:36:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5698DC4CEF7;
- Wed, 29 Oct 2025 23:36:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1761781005;
- bh=fck7k1hPIVSb2U+bkvJUWFyiCUlbqbEKQyXu7S1GQKs=;
- h=Date:From:To:Cc:Subject:In-Reply-To:From;
- b=WFoqw0hbFjfO+zHfIvL1ke04rVtmZjvjhEv5NObP4J9cUv46oC12R9ZEMyr7v01XD
- EzBI5499NdCXyBgJp7jTZH/S+xMa8o456/DTfP6wQCNwj3rJWkXbPqm26xYzatA69F
- P7RsllrwYUV0Xc/k34LaS0VjxcdFULf1yXaquJEzjNyoK5Rlrb0PKMXjcMpP/mXtTz
- 1vYj0kXvlv9csZ7saZZ4ldfrFjnIDCBOkXl4Y/xF8B2B9sO5HKEyfDJ9gUUSqhkTgx
- ebBKBstVgcXNPReUsDeA+LNssBzMZuInZvsHcBQmJ+OsxRfhA8kgYn0721O4YAZpVD
- p8rN6TYYmEqNg==
-Date: Wed, 29 Oct 2025 18:36:44 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>
-Cc: Alex =?utf-8?Q?Benn=C3=A9e?= <alex.bennee@linaro.org>,
- Simon Richter <Simon.Richter@hogyros.de>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- amd-gfx@lists.freedesktop.org, Bjorn Helgaas <bhelgaas@google.com>,
- David Airlie <airlied@gmail.com>, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- linux-pci@vger.kernel.org, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Simona Vetter <simona@ffwll.ch>, Tvrtko Ursulin <tursulin@ursulin.net>,
- Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
- Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- =?utf-8?Q?Micha=C5=82?= Winiarski <michal.winiarski@intel.com>,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/9] PCI: Prevent resource tree corruption when BAR
- resize fails
-Message-ID: <20251029233644.GA1604285@bhelgaas>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7EBE910E870
+ for <intel-xe@lists.freedesktop.org>; Wed, 29 Oct 2025 23:40:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1761781206; x=1793317206;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=mbvZKmEDDvet2BVkm/oStAhL9jREvaEqLT5AQJKQoZY=;
+ b=b4a9mf+lA7REaQNI3fUIY8LMAELgsuQ2khHE7TSX+WEuJcM85qM4GGeN
+ 7/tjU6+wGXER7PoF7rJODMG0PUnq4pxyRaYjw7EHpEfHYVy/zRvptUgm7
+ 1apdnHJneQaPvg99qD5jYxgZ7Dp22kllldEKG7cx+ail/GSyhrByTh32O
+ 9DI7LJ3vawhmZcD3gSvdiSnPwtUshunQLAJSj86ota68heLfjzrVaCocF
+ nZj75yTvYucAjdmJ1vQnBzJW2TAeEFsIveDVwMtQiJuXQmlwfA/elaPBQ
+ 0HkwsTHVdxlk++mq7ID36tHMoTBKEwrgzbPmfmGjI/pzku1SRy+MIJph/ A==;
+X-CSE-ConnectionGUID: F3fCnjoXQdSXdk4mkW7RQg==
+X-CSE-MsgGUID: tgVjA/gESDWUnEU821yKpg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="63819073"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="63819073"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Oct 2025 16:40:06 -0700
+X-CSE-ConnectionGUID: 5R3oyZQdQUO6Zr3+B/0gOw==
+X-CSE-MsgGUID: zeMDsbe7QqyJwbYVYzrb2A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,265,1754982000"; d="scan'208";a="186145279"
+Received: from dut6304bmgfrd.fm.intel.com ([10.36.21.69])
+ by fmviesa008.fm.intel.com with ESMTP; 29 Oct 2025 16:40:04 -0700
+From: Xin Wang <x.wang@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: matthew.d.roper@intel.com, shuicheng.lin@intel.com,
+ Xin Wang <x.wang@intel.com>
+Subject: [PATCH v2] drm/xe: highlight reserved PAT entries in dump output
+Date: Wed, 29 Oct 2025 23:39:59 +0000
+Message-ID: <20251029233959.778689-1-x.wang@intel.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20251022215504.5559-1-x.wang@intel.com>
+References: <20251022215504.5559-1-x.wang@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20251028173551.22578-2-ilpo.jarvinen@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,23 +66,70 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Oct 28, 2025 at 07:35:43PM +0200, Ilpo Järvinen wrote:
-> pbus_reassign_bridge_resources() saves bridge windows into the saved
-> list before attempting to adjust resource assignments to perform a BAR
-> resize operation. If resource adjustments cannot be completed fully,
-> rollback is attempted by restoring the resource from the saved list.
+Enhance the PAT table dump by marking reserved entries with an
+asterisk (*) for improved readability and debugging.
 
-> Fixes: 8bb705e3e79d ("PCI: Add pci_resize_resource() for resizing BARs")
-> Reported-by: Simon Richter <Simon.Richter@hogyros.de>
-> Reported-by: Alex Bennée <alex.bennee@linaro.org>
+V2:
+  Added a note in the "PAT table" header explaining the meaning of
+the asterisk(*) to improve clarity for readers. (Matt Roper)
 
-If these reports were public, can we include lore URLs for them?
+Signed-off-by: Xin Wang <x.wang@intel.com>
+---
+ drivers/gpu/drm/xe/xe_pat.c | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
 
-Same question for [PATCH 5/9] PCI: Fix restoring BARs on BAR resize
-rollback path.
+diff --git a/drivers/gpu/drm/xe/xe_pat.c b/drivers/gpu/drm/xe/xe_pat.c
+index 7649b554942a..d9f9d5bb8e5d 100644
+--- a/drivers/gpu/drm/xe/xe_pat.c
++++ b/drivers/gpu/drm/xe/xe_pat.c
+@@ -368,7 +368,7 @@ static int xe2_dump(struct xe_gt *gt, struct drm_printer *p)
+ 	if (!fw_ref)
+ 		return -ETIMEDOUT;
+ 
+-	drm_printf(p, "PAT table:\n");
++	drm_printf(p, "PAT table: (* = reserved entry)\n");
+ 
+ 	for (i = 0; i < xe->pat.n_entries; i++) {
+ 		if (xe_gt_is_media_type(gt))
+@@ -376,14 +376,14 @@ static int xe2_dump(struct xe_gt *gt, struct drm_printer *p)
+ 		else
+ 			pat = xe_gt_mcr_unicast_read_any(gt, XE_REG_MCR(_PAT_INDEX(i)));
+ 
+-		drm_printf(p, "PAT[%2d] = [ %u, %u, %u, %u, %u, %u ]  (%#8x)\n", i,
++		drm_printf(p, "PAT[%2d] = [ %u, %u, %u, %u, %u, %u ]  (%#8x)%s\n", i,
+ 			   !!(pat & XE2_NO_PROMOTE),
+ 			   !!(pat & XE2_COMP_EN),
+ 			   REG_FIELD_GET(XE2_L3_CLOS, pat),
+ 			   REG_FIELD_GET(XE2_L3_POLICY, pat),
+ 			   REG_FIELD_GET(XE2_L4_POLICY, pat),
+ 			   REG_FIELD_GET(XE2_COH_MODE, pat),
+-			   pat);
++			   pat, xe->pat.table[i].coh_mode ? "" : " *");
+ 	}
+ 
+ 	/*
+@@ -426,18 +426,18 @@ static int xe3p_xpc_dump(struct xe_gt *gt, struct drm_printer *p)
+ 	if (!fw_ref)
+ 		return -ETIMEDOUT;
+ 
+-	drm_printf(p, "PAT table:\n");
++	drm_printf(p, "PAT table: (* = reserved entry)\n");
+ 
+ 	for (i = 0; i < xe->pat.n_entries; i++) {
+ 		pat = xe_gt_mcr_unicast_read_any(gt, XE_REG_MCR(_PAT_INDEX(i)));
+ 
+-		drm_printf(p, "PAT[%2d] = [ %u, %u, %u, %u, %u ]  (%#8x)\n", i,
++		drm_printf(p, "PAT[%2d] = [ %u, %u, %u, %u, %u ]  (%#8x)%s\n", i,
+ 			   !!(pat & XE2_NO_PROMOTE),
+ 			   REG_FIELD_GET(XE2_L3_CLOS, pat),
+ 			   REG_FIELD_GET(XE2_L3_POLICY, pat),
+ 			   REG_FIELD_GET(XE2_L4_POLICY, pat),
+ 			   REG_FIELD_GET(XE2_COH_MODE, pat),
+-			   pat);
++			   pat, xe->pat.table[i].coh_mode ? "" : " *");
+ 	}
+ 
+ 	/*
+-- 
+2.43.0
 
-I put these all on pci/resource for build testing.  I assume we'll
-tweak these based on testing reports and sorting out the pci/rebar
-conflicts.
-
-Bjorn
