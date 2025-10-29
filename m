@@ -4,190 +4,195 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8376CCCF9EB
-	for <intel-xe@archiver.kernel.org>; Wed, 29 Oct 2025 20:37:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C9792CCF9EB
+	for <intel-xe@archiver.kernel.org>; Wed, 29 Oct 2025 20:46:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 26D5710E839;
-	Wed, 29 Oct 2025 20:37:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 91D2610E842;
+	Wed, 29 Oct 2025 20:46:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="B8rZoBN3";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ci5EGB41";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 91B1910E839
- for <intel-xe@lists.freedesktop.org>; Wed, 29 Oct 2025 20:37:27 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 985DB10E842;
+ Wed, 29 Oct 2025 20:46:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761770247; x=1793306247;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=jVpUKy6sqxBDBcTKWqhQVu9CJqyL1S9IArGYn0MGgyY=;
- b=B8rZoBN3tFsSyL2jMy8+uFT/MpTMZPeN/hlW0bD1Bhivf7Oswk86++q2
- vmdZcZ5FeBiYKcWI2K3bwDiCoPc/KiXvc/3WL0A9sGESm3gpinAUaOiHD
- Xj1gqHFmlCze9BGCf7Fj2cMGEGwIaTG6Y9ImgqY7YlmnHaGFQu2/qOgeX
- 6lCZKluhvrvizuq+8oEBI4sNdvAP8flWUJXaIEq5sOoIPz0ru0hlJR8tW
- xtyimbmOFkhemXTOIA00vHAgbwbsaMYG0hWP/XPrmQ7/K9MAj4YlF5NJH
- YfmVHS9tvWjyOCV59uSLmKQ+u5591KWX3QYh0ybJ46TPjqtHK1AMN3dNu Q==;
-X-CSE-ConnectionGUID: QRGmnd3gTSi2haefLq3WZg==
-X-CSE-MsgGUID: hodj13lbQdONzGmhLPg93Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11597"; a="75249017"
-X-IronPort-AV: E=Sophos;i="6.19,264,1754982000"; d="scan'208";a="75249017"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Oct 2025 13:37:21 -0700
-X-CSE-ConnectionGUID: Bf9vSLfpRv+UaaJltbtBxw==
-X-CSE-MsgGUID: xUHIAwvESlCCPXuSRGmiNg==
+ t=1761770776; x=1793306776;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=zXxjcWnXnFJoBvBsf/KFoHIukVA6nUgKgrRJ2Z68OCQ=;
+ b=Ci5EGB41gKgpWiY6ZLlc7g3uxrWY0zNQyuQs/ILcwNf4v75xp3NeU8fG
+ dNG/hFso1Mdo4ae8V0aX4CVAqL7prSgnUjCVSYLohdUtb5/uTvNjlzJfL
+ uDpAICobqXi4XMN9M6+cif1rtKdfIifibvNUW+3+30GSRyAktpQEQgV6H
+ PY+lutlVoJyZQ1jjN4mD08f1u6DIgSD2HFNeA0XctXyOaH8fE6pYAwoDj
+ kBBXEmmtjvUxJG/xqu6/a8Ix7nB45DtRq9tLU2mBD1tKRfEMbXxmIKrpY
+ 8/50J5MdUS5zQCw0JjiMesY0dGgY6MKxnR07QQ0ZshBT4kksf7oyOtY1V A==;
+X-CSE-ConnectionGUID: /+2pSzYdQgCSTmKoRhtjOg==
+X-CSE-MsgGUID: IUG45aSVQy2Fyb04PbAciA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11597"; a="74504136"
+X-IronPort-AV: E=Sophos;i="6.19,264,1754982000"; d="scan'208";a="74504136"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Oct 2025 13:46:16 -0700
+X-CSE-ConnectionGUID: EJzkuq2TSNyqKP21NdrLVA==
+X-CSE-MsgGUID: ls44Dv0jRry8A78+LFtKZw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,264,1754982000"; d="scan'208";a="185849321"
-Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
- by orviesa008.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Oct 2025 13:37:20 -0700
-Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
- fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.19,264,1754982000"; d="scan'208";a="186511554"
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by fmviesa010.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Oct 2025 13:46:16 -0700
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Wed, 29 Oct 2025 13:37:19 -0700
-Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
- FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ 15.2.2562.27; Wed, 29 Oct 2025 13:46:15 -0700
+Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27 via Frontend Transport; Wed, 29 Oct 2025 13:37:19 -0700
-Received: from PH0PR06CU001.outbound.protection.outlook.com (40.107.208.12) by
- edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
+ 15.2.2562.27 via Frontend Transport; Wed, 29 Oct 2025 13:46:14 -0700
+Received: from BN1PR04CU002.outbound.protection.outlook.com (52.101.56.26) by
+ edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Wed, 29 Oct 2025 13:37:19 -0700
+ 15.2.2562.27; Wed, 29 Oct 2025 13:46:14 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=nBT/yj9z6ZjP/l43nziN42QMK+c+ofPLMZ205dntjE8eqKn18RSDdwvSbW+jIvvXFvqwIMH3/rahAtQNh3YhXjxKbLzQq4/mW3gNkSB51L+mxAGMX4ZAB+0U1w4bVfLtgVFVF1Zo4v5yhMqF6u7+8lOHcMBDwjRzWkTEBC1NFADfLWGzrDEUpOH5/V2Kx8kjqCXTD9aIx22WRHeIxgLOjl7j749t0SA0CJKMYwH0LqduVJDZa4fWJCR+zSTALb1D/N5Vl7TGLIIJuTA6BN8LMal33vqg3PYeChi9Dd6knQLdn56lCaUyJtB4jR8yEymxmCxj+c6m1uipJnjxceMuWw==
+ b=CTOMIGfOhMt9IS6zH/2OeiMfG0Oeja/AyDncUZ4aJ2+c0U9DlFGAGBLCSSNJEgG9DTe985pFQwfXEbjNOiWqJECV0yePWJDJ8YRn+T7LYn2KO6vJxwhh5bWs7g2gUTlMmcF+lth08k5IzlUXz6FIRhvkGSVXHhMZcAz+3Y1sCjM8NTYf6jOExA8qOJ1JFgzMQgLUlzD+Jwcepa2dQXUD/oCNpmu1CPETVO+XzN3ZdM1mJf/uEdO/3cOg2JIXbD3W2DtG8NJq0y8ACFxtU9NO8n5DR6DzxZwGQPtveMk/mQ9D5YJ/Ll23XhFwu7tNF2judl7XeOth2XWeRExwFcjmgQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=mEhrI+M6VVSprX0fBs0g1C20lCv1/uYRRKBs2ncoc/U=;
- b=Stc7piA+UwiyAwy5JbWMWoqcMA6lfYdAb3EfN6pdkJqI2CvNAs5W4DHjt2fSTOIPIjfJa427f97f1SaEdGuNVUIlo9WtRSGtVXqWlLUvKPpqdqABlMsa2q8oGtCzeOhd3OFIjkmaHsIPz++h4+4U0YS+WW2iaaRwaOoEsPwF/kYoLHWbiBIWlBvhaSLDLlO/sRmZZ9JcAbCAsIUyIVZD5s1F5fWwX7uYo348aBjV9mkeGBWHSmryZiF7YBJZGH98V2j4EDpi/H0pBkj9zsxI1z/l7k9dP6j4sgpDT8EABUflyotBrj6YcyoFPwmC9thdQA5fW3BRhj3SgZEMVhAQAQ==
+ bh=ZxvCv1PHseZRqjz9YgLbQCLwCns4hkWyPcs+RH3TDN8=;
+ b=Z04rKOq/GBbVjXGKh3ipshiqVNwIRQ8yed5t6QI5KYi13R9j7QIZ741I7evELsTfECWuF7EIF1XVLgSZVjS0TGIFtFDRmBZfrRenTQu0oEgkN9Ul2lFqg/TgUf+DNZpG/SEnPWys2sH33SV33CAGhbXpVPrmqpsPXLZKieKoOoUJFf6p7vSXnSHeO166/ljT+G5wqrDzA8OoA4ZxaD2gPiSwdUjzTOrLSJVnFFyj/PCqJO8bAksRD1DiJJBJbRPaKcVwmjq6XfGF12SnCl1bTwXjSFd+Eg0UI4lCZs/7ioppVqppj9e6As3qni1NuEhyNgUGsbgBjzFcuQXrwWbAjA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DM4PR11MB7757.namprd11.prod.outlook.com (2603:10b6:8:103::22)
- by CY8PR11MB7084.namprd11.prod.outlook.com (2603:10b6:930:50::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9253.18; Wed, 29 Oct
- 2025 20:37:17 +0000
-Received: from DM4PR11MB7757.namprd11.prod.outlook.com
- ([fe80::60c9:10e5:60f0:13a1]) by DM4PR11MB7757.namprd11.prod.outlook.com
- ([fe80::60c9:10e5:60f0:13a1%2]) with mapi id 15.20.9275.011; Wed, 29 Oct 2025
- 20:37:15 +0000
-Message-ID: <696c7127-84e0-420f-8ee1-72b7a64492e7@intel.com>
-Date: Wed, 29 Oct 2025 13:37:12 -0700
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 1/2] drm/xe/guc: Eliminate RPe caching for SLPC
- parameter handling
-To: "Vivi, Rodrigo" <rodrigo.vivi@intel.com>, "Anirban, Sk"
- <sk.anirban@intel.com>
-CC: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, "Jadav, 
- Raag" <raag.jadav@intel.com>, "Koujalagi, Mallesh"
- <mallesh.koujalagi@intel.com>, "Purkait, Soham" <soham.purkait@intel.com>,
- "Tauro, Riana" <riana.tauro@intel.com>, "Nilawar, Badal"
- <badal.nilawar@intel.com>, "Poosa, Karthik" <karthik.poosa@intel.com>,
- "Gupta, Anshuman" <anshuman.gupta@intel.com>
-References: <20251029112014.3747915-4-sk.anirban@intel.com>
- <20251029112014.3747915-5-sk.anirban@intel.com> <aQJXIw7zBBy38Dhi@intel.com>
- <ba940a51-9d20-47d4-8b33-6f8241f8edd7@intel.com>
- <984175e33b6669dd3db02cc306465c51f196f314.camel@intel.com>
-Content-Language: en-US
-From: "Belgaumkar, Vinay" <vinay.belgaumkar@intel.com>
-In-Reply-To: <984175e33b6669dd3db02cc306465c51f196f314.camel@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Received: from DM4PR11MB5373.namprd11.prod.outlook.com (2603:10b6:5:394::7) by
+ SA3PR11MB7979.namprd11.prod.outlook.com (2603:10b6:806:2f9::7) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9253.19; Wed, 29 Oct 2025 20:46:12 +0000
+Received: from DM4PR11MB5373.namprd11.prod.outlook.com
+ ([fe80::927a:9c08:26f7:5b39]) by DM4PR11MB5373.namprd11.prod.outlook.com
+ ([fe80::927a:9c08:26f7:5b39%5]) with mapi id 15.20.9275.011; Wed, 29 Oct 2025
+ 20:46:11 +0000
+Date: Wed, 29 Oct 2025 21:46:08 +0100
+From: "Winiarski, Michal" <michal.winiarski@intel.com>
+To: "Tian, Kevin" <kevin.tian@intel.com>
+CC: Alex Williamson <alex.williamson@redhat.com>, "De Marchi, Lucas"
+ <lucas.demarchi@intel.com>, Thomas =?utf-8?Q?Hellstr=C3=B6m?=
+ <thomas.hellstrom@linux.intel.com>, "Vivi, Rodrigo" <rodrigo.vivi@intel.com>, 
+ Jason Gunthorpe <jgg@ziepe.ca>, Yishai Hadas <yishaih@nvidia.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "kvm@vger.kernel.org" <kvm@vger.kernel.org>, "Brost, Matthew"
+ <matthew.brost@intel.com>, "Wajdeczko, Michal" <Michal.Wajdeczko@intel.com>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "Jani
+ Nikula" <jani.nikula@linux.intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, "Laguna,
+ Lukasz" <lukasz.laguna@intel.com>
+Subject: Re: [PATCH v2 26/26] vfio/xe: Add vendor-specific vfio_pci driver
+ for Intel graphics
+Message-ID: <5fnnkyi7uhxmtvake3hobz6uzq2g5cx37hfuzrb7e6pes32pxp@3bhfcecpahnc>
+References: <20251021224133.577765-1-michal.winiarski@intel.com>
+ <20251021224133.577765-27-michal.winiarski@intel.com>
+ <BN9PR11MB527666A6CA6D9DD2F948961C8CFCA@BN9PR11MB5276.namprd11.prod.outlook.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: SJ0PR05CA0087.namprd05.prod.outlook.com
- (2603:10b6:a03:332::32) To DM4PR11MB7757.namprd11.prod.outlook.com
- (2603:10b6:8:103::22)
+In-Reply-To: <BN9PR11MB527666A6CA6D9DD2F948961C8CFCA@BN9PR11MB5276.namprd11.prod.outlook.com>
+X-ClientProxiedBy: BE1P281CA0446.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:b10:81::22) To DM4PR11MB5373.namprd11.prod.outlook.com
+ (2603:10b6:5:394::7)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR11MB7757:EE_|CY8PR11MB7084:EE_
-X-MS-Office365-Filtering-Correlation-Id: 42a07eba-785a-45c7-b3b3-08de172af208
+X-MS-TrafficTypeDiagnostic: DM4PR11MB5373:EE_|SA3PR11MB7979:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4c59de54-96c1-4cfd-5799-08de172c31e0
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?bnpCNFhvblZ2TnFZcmh6SG1QWXgxczRWcnF5eTNLSzV2eDViRzEzckxnbHkr?=
- =?utf-8?B?ZDRrUmIwN3JicWZ6ckF0WmZDQ2RYbmFvYzNUbEhXRlpLaFcvc0Z3RXo2QzFH?=
- =?utf-8?B?cGFTZlN5REZRWVI0RXRjL2JoRUZtRFZudVh4TUsxSE81WU9xcnhjWjNyc25n?=
- =?utf-8?B?MWkraGpNVW80YWVCOGVUbSs5VkVVcXN1ZVNTeWJoam9zblZjQ1piSSt0dWJz?=
- =?utf-8?B?WW1ZL2xQSVBWYkpSdDl3RkRkRVUzTm1mL0ppdk0ydmRWcUV0N0dIeXRiM3FP?=
- =?utf-8?B?a1VWVE03R2lUSWZGRVBkcDdmRS80SG1HQVo0ZEdmQUxmMjBrbDZWL2s3TmFk?=
- =?utf-8?B?aVFlanpFYzdyRFBOc2hQa3BiZ2VNSWVnWUN3NENYend2UmNIbVZxbytLV1lD?=
- =?utf-8?B?bU5hRVJWTE1ETVNOWWNEdHJKUG9pVVlmNkZRSGRVU0JXQzdoZ0xIRzhOL3Rp?=
- =?utf-8?B?TnNTampWOGF2cmM1VFV2WGxiRG93R0tGbXArcGpYRkNwVEF5UlhEMU94NmJC?=
- =?utf-8?B?bVBYUGxhZ1NtQytGcUJCVkNIRzBma2dMaGsvVDloamp6TnFQWVBMbHFBVVFS?=
- =?utf-8?B?K1ljL2NmYU5CYXM3UTl3cGp1cXdKWm10eDhrS1lUZ280Q3NLWGhOSjgvSEc1?=
- =?utf-8?B?MWlVV3RoSGYrWjlXSGlBWlJUT1ExcU5Sd1RnSS9HbzlmRlc3a2RWaUs1eEJO?=
- =?utf-8?B?MUxiUGpPNzRGRVgvQklCN0VpclBNU3ZkbVY5Qy81Wk9IUWlZNjlZYzR3VTFH?=
- =?utf-8?B?K01YdERLRDRoeVRKSFVGRDMveFpOV3pMRU9OaE9DUk9zVTZOWW5pWThHRm1P?=
- =?utf-8?B?d3BJNHV5VTRaZVdhd0JVN0xVMjN0QUp6OXdlekFEKzhzMjkwY3ErbG9Odlh0?=
- =?utf-8?B?TXVqNEU4NHZ2bXVpRHpGekZRV2lRL2xZTjcvckNGaEdYemxUdFBIa1pHSTZ5?=
- =?utf-8?B?R0h2VWlKUythUmV0VXBIYXpET0FZZkRTZDh3Sm9aM1ZieGZpUG1nZW4ySzR0?=
- =?utf-8?B?M1BNL1FQTG5SMjBIMCtjVHV0Sk9JaTduVlNOeDRkMHp5OFB0NkRkeVBYaGhB?=
- =?utf-8?B?ZHVweGwrdWhMK2tWYWl2VXVkbTZYSGh6Qk1uaVdTaXQ2N0x4eEFBN3hZRnFR?=
- =?utf-8?B?LzBSRjRqaXh4cGd1L1kyZHhqTXZWYmFFbFBmRURvV2ZjMkpsL1F0OWQvakJW?=
- =?utf-8?B?emVGc3orMVBYZWcyUUxDRmZzdlpsRzAzb1U4STZ4NFNwN0VzZzJDT05SeXlL?=
- =?utf-8?B?SkRqYlBtOElRbzNvR0hNWXZ5SUtnUmxaclVuQU16bW5wVmRBVGR5bHBlbXlQ?=
- =?utf-8?B?V0Z2K1ZHWFV0cUQxRm9NT3VLSmI3RnZiY3hwYVFHNFVObEE2T3JlNDZUTEMz?=
- =?utf-8?B?US9FdSs1a3ZEOGYwTlhaYmdaaEhIRGdaS0t3OXFsZ1VqaUllWUk3b0FzazEw?=
- =?utf-8?B?V08yT1Q5aXo4YkdKRDZIcXN3TTRVMjJCNzE2MTVsbHdLazlueFo5b1N6ZjB4?=
- =?utf-8?B?d0Y3RmJxeUtLZHFBRmZwb3lWSC8zTnNoVVdscG1ZM1VCdDk5azhnY0hhUFV0?=
- =?utf-8?B?bTdYWXNVUG1pTjlteE04ajBvKzBTek1vNTZkSW1sc05VRlVOUFRKZFo2RUIy?=
- =?utf-8?B?VktNaUZ1a3I0dU95YXB6RUJFanJoNmpETU5IbTJjOVpvU0Y1NG5sdjBkNlNj?=
- =?utf-8?B?R3lmNjVia1VrYnM3UTlha0ZxWTkzbEpMOUpjZEZRRGNFWmllZHlVSk92Nkgx?=
- =?utf-8?B?a3dZdHV5aWh6T2lxUXVzeFhHZGRIaVBrcmZkQ3FhdlFyQTZYN1k3RWJiTG8v?=
- =?utf-8?B?dXNhUGtJWWcrNzhKL3pNRFNNVVZ4cHlsWWIwRlJFNkxVcnZON3pQdi9Lb0lT?=
- =?utf-8?B?VzEvYWlRdDNhMTVLRldnbVRwNlYrUnNHdENaY29TM2w0Umc9PQ==?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|7416014|366016|1800799024;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?d0IyMnZRK2NRZzVrb3NMUHU0S2k3bWRaanZkSDBOT2x1dlgya2gxYXJHWmdG?=
+ =?utf-8?B?M29iTGw5dE9RcnRXOEFrbk85NjlaVHpIcUVMakpZT1E0YndnbzdzWnlkOTdO?=
+ =?utf-8?B?Y0ZBZlJLY1ZDbEFvV05WYW5zbTdaSHJYUzhvK1kvbEl4VTYyYXRmYmR0dXhh?=
+ =?utf-8?B?MGRRdUx6YlN6UmM1anNIaFhUTStydmxCVnV2R2h6S0lpakNiZ3NTRG8vNHdu?=
+ =?utf-8?B?TFpYYUxOdlI3WEtKZlJVL1FURlhTNnRVcW9GSERVZDJBTm1kMVE5NlFFejl3?=
+ =?utf-8?B?VlFndmZUY1RjMkF3YmZrWHByS0UrWnVSWFRMNnl0S3M1T0N0aURaTC9CNTIw?=
+ =?utf-8?B?d3l5ZCtVTzY1UXFLRHFuRzgvREp2aWtkOExwUlhEbEpoQXNWZ2xTV1JvU1RE?=
+ =?utf-8?B?NGFNT2c3ak0wVEcyNElKbXU3SkExWjgzSmlXNFpUTlF1QjlJaDBPckpLSy9M?=
+ =?utf-8?B?cmNmYzlFcWtidCtUQUJrWnd1V3NXVFpOOXB3M1ZGMXBlK2tRSXE4aEhKZFpL?=
+ =?utf-8?B?QUY2ZHNDdWhsa1B2M1RNTEZjV2hvWXRVNmFheGcyejd4MnluUEJEa1EveFFm?=
+ =?utf-8?B?RSs5cmVPRElZWEpjQmNUS1pQM3U5RGxGbUlhSUp5WmxhVUcvemFiczR5MzZk?=
+ =?utf-8?B?Z3pOTUt5R2FmdkIxUkczb20wWnZITkRIWkV4dTVmaGtpdWVidTFjelV3Zmlz?=
+ =?utf-8?B?SEtMOWIxS3lTRW55MXg2aGlUay9ieHhsbVpEbFpKZUVUZkk5bXFVdjgydHk5?=
+ =?utf-8?B?TnFIc0V2b1NSZk94ZFZrdi9ienV1c2JBejlMR0VGZndHUEQ0SmZpblgvUkNO?=
+ =?utf-8?B?dEdtTzZoYUtZL1M3M1EycVg2M2dFL2svc1J3K3d3Wkd0MzhmQjNLWnlxVmZ6?=
+ =?utf-8?B?R1k5Uyt3Q2hyR2dFNDVnOFYzY1lhWnB0R2ZtenA0U2pJS3VLVnNHbVlQYTlz?=
+ =?utf-8?B?ZGhua21RYW4xcFJkQ2xpL3ZuVUJjVUE1STJ1UmdUUXVybE8wNktPclljc2ha?=
+ =?utf-8?B?OEFjR08wZE5wRUpPNzloNVhsdXNRckVVTm1sSzVBVCtScnlFa0ZSU0F3dXJK?=
+ =?utf-8?B?akI3MmEyTm5UWmRRS056dG5WNnhwMDlrWmRCdDhYRmpST2lUNGMwYyttUXgy?=
+ =?utf-8?B?WGJXOURRaUxWY0h1bFRaeHdRYXRieDFRWGgzZE9aUnBic1BPTC9SS25JelI5?=
+ =?utf-8?B?Vm1teElRaElVQVVKRVZFYWRncWNKK284TGQ5MXNmTWsxbS9yNGIvNnFmWkdP?=
+ =?utf-8?B?N3JoSURwd1JPZFFLSk52bXV5YlZ5SHBtVk5lOHhXZFd1NjRSdmp6ejRjZWt6?=
+ =?utf-8?B?azg4R0JPM3JsQnFFVjZjMHVnWEhaM2ZzdEJaNGZXdW9DaU5xSnZRUDdYbS93?=
+ =?utf-8?B?U1JBakFwZG10OG1EUzZ0dzhOT1o3Qnd6bGljaVE5UXByTDdPVjZucjJyWHF1?=
+ =?utf-8?B?VlRFSjFxc2E2OWoreVN2cmtWYlg0TkNwUTF0SnFnYXhrcWRVTEI1OXdYUmsy?=
+ =?utf-8?B?OWRTRVBsaU9LaTVObndsNFh1Y1ZPaWhDeTh1YllLNmUzdlk2eHZpYncybjJR?=
+ =?utf-8?B?Vm9ZVnh0Mi93djJjKzBYNTY2S1c1MTBHU1ZESGdTQW1DZ0tXOWs2YWNGeW4x?=
+ =?utf-8?B?Q2o5aEdqcUpySzVDVEFNRDdhK0dXQW1DcU1sQ0daUUMvQjB0VFV3Nkh0bHUr?=
+ =?utf-8?B?K2l5bXhpNHFnSVgvWDZFbWxMVXJBWkt6aWtRdEtBWlRLbmsrYlAxaE5jNExk?=
+ =?utf-8?B?OFVqSXd3SW1OcXNwV2l1Q0U0RWNpeGkvOXJBK0k4V2p3V3pNTDVLQTJNOVo1?=
+ =?utf-8?B?V3lFak9OQkNoZEhTRS9WTUJLQThyL0ovUS9aU0g3QnorZkpkQmtVaVZhUk9E?=
+ =?utf-8?B?M1pyS1g1aEY0bW5SY2JvYjRWQ1k3WnFyNXVtOUx3R0kzYW4xZTlUa0s3d1Jt?=
+ =?utf-8?Q?KfI8lh9zTUtSjLuZKsc1WwmBk440OfN5?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB7757.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB5373.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(7416014)(366016)(1800799024); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?emdnRlAzUGphTThHMUFTa2NsdlJSdkprSFZpKzk4anRIS1owb0pqZFNhSTZR?=
- =?utf-8?B?TUliNTlqNm5LVVAyT2ZiT1BIdEJzMjJRbGVzVVgrSmZDVE5mZ3BvQlpYWU5J?=
- =?utf-8?B?MTJ0eU4vRVBiOS8xT3UvQXR1TlA4N2lqNEdoV0JpM1RMWVp3NlFwMnBSdmlP?=
- =?utf-8?B?dk5NVnRoRkU4STFsc29qc1Z4OW12RUFEOUtMRjdyQ3JBSHlTdHd3ZUpaTFhW?=
- =?utf-8?B?U2dhK2RLQWZDWEVVOUFtOFhkdFNhU3NwK29QNnNVZHlIamdaaEhhUDF4R1Fw?=
- =?utf-8?B?Y3pNai9PU1AxdUxiWUM1UUdGUCt0MTBQT21OdnJBb0txaFlzZlMxNDVYNXFU?=
- =?utf-8?B?UTE1TmtTMlFpakhySnViRHYwaWZEckJJSjgrOHhURFp5c3dObVJwVEZmUm0z?=
- =?utf-8?B?Sm13THNDNXpacGlhdnEzMGNKbTcrMk1vUDhnT0xTMU9aclg1VzdKcVNFQkRX?=
- =?utf-8?B?WWtoRG5xRFVvQ1BjT1RiNWV3R3N4eVVSU0EyZE5sOTBkS29mVGd0OEh3NUg0?=
- =?utf-8?B?ZEZKVDBhbjhDT21NMElYMGZaL2R6SUNMZEJVMU90NWJRVm5PbmxTb1VnMFpP?=
- =?utf-8?B?cjAyVmpZai9BRGpYbkZjdmozbW9vSmtib3hWVWlXLzRackJ0c090dkNHbjk1?=
- =?utf-8?B?ckFNazJtTU5jOWRLbCtDdXdSSXg0M2NmeWx3ZFlUQTJHejNRZWRMeE5oVGUw?=
- =?utf-8?B?ekNaVlpPM0JsRWNWeUEyNENYWFh5RmpHeElKaDRsQk45cXdZbTZjUjFXTm42?=
- =?utf-8?B?UzU4QWxMRnc1LzZJT3VBVE5yUm1hYkNOUlpMcEhLa1FxQTQ2ZEJFTVZvTEpz?=
- =?utf-8?B?cUhMdVROTFNxVCt2NG1FVlUycDRoQVFHUFYxVVpBTXNwQ2VKeVl6QXA0dG0r?=
- =?utf-8?B?Q3RsdzN6aytUM2RVSW9GTlAvZ25JQU5FUmFYdkhmcVVhT29ka2E1L2krL0RF?=
- =?utf-8?B?NU1VbmdpcjVFUGlmelFyQXV5aTFuRmJVYnhZMUJybGg4Qkx5MlZsUnNqWnVS?=
- =?utf-8?B?VlE0OWRCOUZIenMveWFpbzhUaVdJczlyUWRYa2l2MUZpaWJlL2hDckdrZm14?=
- =?utf-8?B?MjYrL0hCaURLQXdLeEgvNlZUNXU4UzVKVU0xZ0x4WXBpV1JWNUZWcmtEU3d1?=
- =?utf-8?B?TGJ4VC9pS3E1WFhuR2k2Y25ycSt5enlZNmxWekowUDdnSy9UbWhnVVZNSjBP?=
- =?utf-8?B?RU9KWEJhM1pldkxiT0o4dzRXdlQ1Z1Nxc1JnWWZPUnZ0WWhhLzEwRGpGVk8z?=
- =?utf-8?B?aFptUndpeTBDalR4TWwwL0FWODZJZmtSekhHV2FGUzdJYjhDU1VhRmtXbCtJ?=
- =?utf-8?B?YmZSVCtGaHNBZDUrMS9iNXBrTWlKd3Y4WXJENTFCSGdiMk9maXlKTExrRit1?=
- =?utf-8?B?VUpUNFk1SUxicWZXajkrMVdVcFc1TUlOYm9TaG5uY1BEYUdvV2xvSzRCaDl3?=
- =?utf-8?B?OUFha3J0azU0Q054RERHMGhFNFN0enlIaHJsK1ZSTWJ4NXp2aDZzNkVZWlpH?=
- =?utf-8?B?Q2x6aHR2YnlzZ25SWThTSVlVS0htOEwzM3N1ZDkvbW40cTBETFJORkh3WU9t?=
- =?utf-8?B?WnhwRFZrWmh6b2pFTzZ2QUNCUkJua0htdGpkRFQwSzdKVmZpdGpCUWk3b1BS?=
- =?utf-8?B?eHg4ZG9wVG9tK0JTL21UMnZNd2hrRGNQbWlXT2dRVWZlU0t4U3BHVlNTdkhi?=
- =?utf-8?B?UVA1alN4RndBZ2hES0FRVHZsQlRRRi9kUHc2LzZOa01PMjJPdEhJUWxUWHh2?=
- =?utf-8?B?TGFzOFZ3cU9ud3lzTVhCTkhOa3NQMC92L2dxY2hoR1R4ZW5MV05tMEJPNURa?=
- =?utf-8?B?L3A2YUtVY2ZQUzJrTFllMHdmR3p3S0swZXF1Y2pvWHhxU0VUenNHS2hUdWM1?=
- =?utf-8?B?STN5OEN6dzlkanZSQWR5KzdwRjdHUkhLaDY2cC9BNFM3SzBmOFZvcUNOdklK?=
- =?utf-8?B?U3MvditWZUlseE1wNnlXUkhrMU1VQzk2bTE1NWs3eXVNZHZIb3lVQ015c2Vi?=
- =?utf-8?B?Z1k5eVVlY1ZTN0JvVXg2ckdScmNtWkg3anBRVWh6clV2bkhJdkd0cUFKejJl?=
- =?utf-8?B?d2dpWCtXL2dsd1BoQnRDQ01VeGJ0ZVVyTW9QKzZLL01xM2FxaE1HOHd2YmIx?=
- =?utf-8?B?eEpMaitBdldrL0VlRmt0NEpMY2xGb0pDbkJVdjEzNUZiOTVYWlJDMVNuOHVq?=
- =?utf-8?B?eEE9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 42a07eba-785a-45c7-b3b3-08de172af208
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB7757.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NWNpaWJSemlnbWZwUjBYT0IzN3U2YnY1WHlUM3A0SGlZWmpGOWdieUpFNU1L?=
+ =?utf-8?B?Q1M0SzlDOE5vRG1wdUtSODhxcDZwdHVxQVhCZytMYmpDc1pxeDNiQmt6NUpW?=
+ =?utf-8?B?VXJUZzZ2UFRjN29FejA5ZHR5UlhPTVdUblBHcDhJMWVxcjNsSXVRVzcvRkZQ?=
+ =?utf-8?B?THlWTmNNcEQ0NWFmU0VuZW1sTnVneFQ0MmxEOU9rcGtqdW9qMmFNV2Q4ckt5?=
+ =?utf-8?B?NGc3VVk5elZaSUFKckVKMHlsZE9IMjlCV3k3NDRVOFVoOS9hdnk4RU03WERl?=
+ =?utf-8?B?SkMwWkViMWxxWmQ4VmRjMGJHbC9XdS9PZnAvcE44cnN3NTFLc3JoSEkxM3du?=
+ =?utf-8?B?bDh1NGJRV3pmS1czZzBXYXN4Mnh2am90eTNzMlNmSm5lTFJvSkNJUFVlKzdP?=
+ =?utf-8?B?ZUMzK0VwejJzekFaamJua2dISUJBQURVMzd5U3dnanlxM3o2SDF5Kys1U09u?=
+ =?utf-8?B?SUxhWUpGOHN0NDg0OTl1dUdsT09aTlNtL0dUTFRlUXpZTVQ5cU93czBTL3pq?=
+ =?utf-8?B?NGM1RnlwQVUvb3V1TFVzUDZGbklzTDFDWHlhWWNNOVVNQUJBSnUzaUJ3L3gv?=
+ =?utf-8?B?UGRTbVJaS1BMdUl3NWFpWTNTSnhOTzBXQVVxMkkvMmFJWEVBUU9Qb0c5MW1l?=
+ =?utf-8?B?bXJ5NjRYR29HSmxDUkZxSElZY3k0UGhyOG5Xdms3ZGZwR2VsYVplT0pSOGxY?=
+ =?utf-8?B?eDlaZjRZSm95elNMWm9vN050TUE2R09jY0FWUGVSNGt1NjcyU0Fpb3dYbzFa?=
+ =?utf-8?B?UjJZYU91Z25ySzY5dTBZclZjVlNrbmVNZEZ5TkcwUEVvSGJDRlYwR3lkQzhL?=
+ =?utf-8?B?ZnE2bEx6QTFHYzZ1c2ZmN25IOTJqSlRHNDNYYWpjMmhrVFFyS0I1Nk9yNXhy?=
+ =?utf-8?B?aHZGbW9nL3FHRlQ2L1gvNmorODV4QTdwWE1DL1pyRjJaQkx2MnUvWUdNOTNY?=
+ =?utf-8?B?SVBqWnozU21SaVM1dFl3VG5Fc2txK09ZbkwyNGFnOUVlMVpldjVqanhsSWpj?=
+ =?utf-8?B?NmJiUkJJL0hXenFDYmlBaVNKT0Jzb2hESFdiekFqQU1QN0lhRDhENzhvaS9v?=
+ =?utf-8?B?K25GRDhlK2lYR2NlYWZSRXc5bmErUkt2TnZtK24xMUNOek9lM01kK05jbDgx?=
+ =?utf-8?B?OFcrR1lpdnZmUm1iL3J1M3hHYTZRbGZmbXdzYWx1SGNldzVqcUVJcjlkUGpF?=
+ =?utf-8?B?WHIvU1NOcVlJTEFuQmFrbGVGbkc2cC83dlQxR2I3NnY3U2VOb21mSGZyUzNa?=
+ =?utf-8?B?QnAxejdkS2FmREpVRDZhY2FnWktYbnNyZlJiTVlsTVVkcXRleVdEMnZhNHAz?=
+ =?utf-8?B?a3MwQW5pb3krb3R0UHNxTTlaUS9JUkczNGtXZkd0Z0tDUWRYRGR2YlN1cXVs?=
+ =?utf-8?B?ajhOVDFuOG1sdXloQkIvckJDaDRzWXdPLzZKNG91YlVvdk1RK2puNUNtbElx?=
+ =?utf-8?B?YS8rSlpsN0xxRTZ3NDVhbVRsM3NheVY5Z2Nody9kM0VSV1ZPSUNwdUJFMkkv?=
+ =?utf-8?B?Ky9vVnVmNXRrRS96MUJ5L3h0WFNlMTFpS2FybVBzLzlIZGpWQjRuUzN0ekFw?=
+ =?utf-8?B?L3NCcVVmLytyUy9YUzNzdEJTMHZaanF4VkU0aDBBWjRhR05UT2RSWU1BaDAy?=
+ =?utf-8?B?STliQ204NW5tK2I0Q3ZuZVZ4c0J2YTR5bU13SjFGcnk1MzlpbWJMcnhyNk45?=
+ =?utf-8?B?RmdiTzN0UkNzNG1MZWp1ajVndkFraUZQU1RwVkJobkNYYUU3M1pTMElHNE0y?=
+ =?utf-8?B?L0FXeklDeUZiVFpWUFhaSHZyTHl5ZUExMTRLZlcwcjBRUDgyV3krQmtaYVQx?=
+ =?utf-8?B?NkwrWXRIMTVjMlc4QWNoTzgrc2VTNnNLUzJaVHNzbmN3YXJPSTY1cjh0VUIz?=
+ =?utf-8?B?TEVTY3RaV1BtckgxVDFvRnZ1WldXODdjUHdTN2tPYWRPcU1FaFVqelZpdEwv?=
+ =?utf-8?B?MDVzTENWMDRTT3R6MU9OMzJXdE9FT01zTjdnaDloZFFNYjZDMitQcFoyTzdO?=
+ =?utf-8?B?emVBTis0emtzaUtoNzEwYXF1ZVJIc1FTS0FjTXkzLzRzM0VEbjl6eVJUVjNj?=
+ =?utf-8?B?b2hMYy8wRnNjd09iQlRwWG1SR3RkMTZ3RjZLSWxSZi82bll0M1Z6di9qQXBl?=
+ =?utf-8?B?aUltaVE0NlJSNGlCUlpTZEloekpEcHJyVkRDUFlHUGhpb2ZZQm5oN3M0QTlN?=
+ =?utf-8?B?K0E9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4c59de54-96c1-4cfd-5799-08de172c31e0
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5373.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Oct 2025 20:37:15.2630 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Oct 2025 20:46:11.8846 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: UOTebsp6xU+A40rpvJxbT/CKUJ262JTAaecTKG41f2FwRC0l7dYYdxyJTeJHwUpmtLkhCR+ftyikZxFb3h6VE6mvNcG1Tn2zsJ4/WkLtdlQ=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB7084
+X-MS-Exchange-CrossTenant-UserPrincipalName: 4ay2HenoUx4CTDpARD5kpD+ynGAyFC6ElQfdu8TVPWSoWqpED8/InOgEJatIWKP78CFizgCAmj9QvGzXDnHZKt4X77Q53pes4ETgcbPcq5Y=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR11MB7979
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -203,273 +208,322 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On Mon, Oct 27, 2025 at 08:24:37AM +0100, Tian, Kevin wrote:
+> > From: Winiarski, Michal <michal.winiarski@intel.com>
+> > Sent: Wednesday, October 22, 2025 6:42 AM
+> > +
+> > +/**
+> > + * struct xe_vfio_pci_migration_file - file used for reading / writing migration
+> > data
+> > + */
+> 
+> let's use the comment style in vfio, i.e. "/*" instead of "/**"
 
-On 10/29/2025 12:58 PM, Vivi, Rodrigo wrote:
-> On Thu, 2025-10-30 at 00:05 +0530, Anirban, Sk wrote:
->> Hi,
->>
->> On 29-10-2025 23:34, Rodrigo Vivi wrote:
->>> On Wed, Oct 29, 2025 at 04:50:16PM +0530, Sk Anirban wrote:
->>>> RPe is runtime-determined by PCODE and caching it caused stale
->>>> values,
->>>> leading to incorrect GuC SLPC parameter settings.
->>>> Drop the cached rpe_freq field and query fresh values from
->>>> hardware
->>>> on each use to ensure GuC SLPC parameters reflect current RPe.
->>>>
->>>> v2: Remove cached RPe frequency field (Rodrigo)
->>>> v3: Remove extra variable (Vinay)
->>>>       Modify function name (Vinay)
->>>> v4: Maintain a separate function for PVC (Rodrigo)
->>>> v5: Update RPn while fetching RPe frequency
->>>>
->>>> Closes:
->>>> https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/5166
->>>> Signed-off-by: Sk Anirban <sk.anirban@intel.com>
->>>> ---
->>>>    drivers/gpu/drm/xe/xe_guc_pc.c       | 75 ++++++++++++++++-----
->>>> -------
->>>>    drivers/gpu/drm/xe/xe_guc_pc_types.h |  2 -
->>>>    2 files changed, 42 insertions(+), 35 deletions(-)
->>>>
->>>> diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c
->>>> b/drivers/gpu/drm/xe/xe_guc_pc.c
->>>> index 3c0feb50a1e2..08deaa64aa85 100644
->>>> --- a/drivers/gpu/drm/xe/xe_guc_pc.c
->>>> +++ b/drivers/gpu/drm/xe/xe_guc_pc.c
->>>> @@ -330,7 +330,7 @@ static int pc_set_min_freq(struct xe_guc_pc
->>>> *pc, u32 freq)
->>>>    	 * Our goal is to have the admin choices respected.
->>>>    	 */
->>>>    	pc_action_set_param(pc,
->>>> SLPC_PARAM_IGNORE_EFFICIENT_FREQUENCY,
->>>> -			    freq < pc->rpe_freq);
->>>> +			    freq < xe_guc_pc_get_rpe_freq(pc));
->>>>    
->>>>    	return pc_action_set_param(pc,
->>>>    				
->>>> SLPC_PARAM_GLOBAL_MIN_GT_UNSLICE_FREQ_MHZ,
->>>> @@ -375,7 +375,7 @@ static void mtl_update_rpa_value(struct
->>>> xe_guc_pc *pc)
->>>>    	pc->rpa_freq = decode_freq(REG_FIELD_GET(MTL_RPA_MASK,
->>>> reg));
->>>>    }
->>>>    
->>>> -static void mtl_update_rpe_value(struct xe_guc_pc *pc)
->>>> +static u32 mtl_get_rpe_freq(struct xe_guc_pc *pc)
->>>>    {
->>>>    	struct xe_gt *gt = pc_to_gt(pc);
->>>>    	u32 reg;
->>>> @@ -385,7 +385,7 @@ static void mtl_update_rpe_value(struct
->>>> xe_guc_pc *pc)
->>>>    	else
->>>>    		reg = xe_mmio_read32(&gt->mmio,
->>>> MTL_GT_RPE_FREQUENCY);
->>>>    
->>>> -	pc->rpe_freq = decode_freq(REG_FIELD_GET(MTL_RPE_MASK,
->>>> reg));
->>>> +	return decode_freq(REG_FIELD_GET(MTL_RPE_MASK, reg));
->>>>    }
->>>>    
->>>>    static void tgl_update_rpa_value(struct xe_guc_pc *pc)
->>>> @@ -408,24 +408,22 @@ static void tgl_update_rpa_value(struct
->>>> xe_guc_pc *pc)
->>>>    	}
->>>>    }
->>>>    
->>>> -static void tgl_update_rpe_value(struct xe_guc_pc *pc)
->>>> +static u32 pvc_get_rpe_freq(struct xe_guc_pc *pc)
->>>>    {
->>>>    	struct xe_gt *gt = pc_to_gt(pc);
->>>> -	struct xe_device *xe = gt_to_xe(gt);
->>>>    	u32 reg;
->>>>    
->>>> -	/*
->>>> -	 * For PVC we still need to use fused RP1 as the
->>>> approximation for RPe
->>>> -	 * For other platforms than PVC we get the resolved RPe
->>>> directly from
->>>> -	 * PCODE at a different register
->>>> -	 */
->>>> -	if (xe->info.platform == XE_PVC) {
->>>> -		reg = xe_mmio_read32(&gt->mmio,
->>>> PVC_RP_STATE_CAP);
->>>> -		pc->rpe_freq = REG_FIELD_GET(RP1_MASK, reg) *
->>>> GT_FREQUENCY_MULTIPLIER;
->>>> -	} else {
->>>> -		reg = xe_mmio_read32(&gt->mmio, FREQ_INFO_REC);
->>>> -		pc->rpe_freq = REG_FIELD_GET(RPE_MASK, reg) *
->>>> GT_FREQUENCY_MULTIPLIER;
->>>> -	}
->>>> +	reg = xe_mmio_read32(&gt->mmio, PVC_RP_STATE_CAP);
->>>> +	return REG_FIELD_GET(RP1_MASK, reg) *
->>>> GT_FREQUENCY_MULTIPLIER;
->>>> +}
->>>> +
->>>> +static u32 tgl_get_rpe_freq(struct xe_guc_pc *pc)
->>>> +{
->>>> +	struct xe_gt *gt = pc_to_gt(pc);
->>>> +	u32 reg;
->>>> +
->>>> +	reg = xe_mmio_read32(&gt->mmio, FREQ_INFO_REC);
->>>> +	return REG_FIELD_GET(RPE_MASK, reg) *
->>>> GT_FREQUENCY_MULTIPLIER;
->>>>    }
->>>>    
->>>>    static void pc_update_rp_values(struct xe_guc_pc *pc)
->>>> @@ -433,20 +431,10 @@ static void pc_update_rp_values(struct
->>>> xe_guc_pc *pc)
->>>>    	struct xe_gt *gt = pc_to_gt(pc);
->>>>    	struct xe_device *xe = gt_to_xe(gt);
->>>>    
->>>> -	if (GRAPHICS_VERx100(xe) >= 1270) {
->>>> +	if (GRAPHICS_VERx100(xe) >= 1270)
->>>>    		mtl_update_rpa_value(pc);
->>>> -		mtl_update_rpe_value(pc);
->>>> -	} else {
->>>> +	else
->>>>    		tgl_update_rpa_value(pc);
->>>> -		tgl_update_rpe_value(pc);
->>>> -	}
->>>> -
->>>> -	/*
->>>> -	 * RPe is decided at runtime by PCODE. In the rare case
->>>> where that's
->>>> -	 * smaller than the fused min, we will trust the PCODE
->>>> and use that
->>>> -	 * as our minimum one.
->>>> -	 */
->>>> -	pc->rpn_freq = min(pc->rpn_freq, pc->rpe_freq);
->>>>    }
->>>>    
->>>>    /**
->>>> @@ -560,9 +548,30 @@ u32 xe_guc_pc_get_rpa_freq(struct xe_guc_pc
->>>> *pc)
->>>>     */
->>>>    u32 xe_guc_pc_get_rpe_freq(struct xe_guc_pc *pc)
->>>>    {
->>>> -	pc_update_rp_values(pc);
->>>> +	struct xe_gt *gt = pc_to_gt(pc);
->>>> +	struct xe_device *xe = gt_to_xe(gt);
->>>> +	u32 freq;
->>>>    
->>>> -	return pc->rpe_freq;
->>>> +	/*
->>>> +	 * For PVC we still need to use fused RP1 as the
->>>> approximation for RPe
->>>> +	 * For other platforms than PVC we get the resolved RPe
->>>> directly from
->>>> +	 * PCODE at a different register
->>>> +	 */
->>>> +	if (xe->info.platform == XE_PVC)
->>> I believe it would be better to convert this to the graphics
->>> version here
->>> instead of the platform name. But no block since it was already a
->>> platform check
->>> above.
->> sure, I will look into this.
->>>> +		freq = pvc_get_rpe_freq(pc);
->>>> +	else if (GRAPHICS_VERx100(xe) >= 1270)
->>>> +		freq = mtl_get_rpe_freq(pc);
->>>> +	else
->>>> +		freq = tgl_get_rpe_freq(pc);
->>>> +
->>>> +	/*
->>>> +	 * RPe is decided at runtime by PCODE. In the rare case
->>>> where that's
->>>> +	 * smaller than the fused min, we will trust the PCODE
->>>> and use that
->>>> +	 * as our minimum one.
->>>> +	 */
->>>> +	pc->rpn_freq = min(pc->rpn_freq, freq);
->>> setting rpn_freq inside this get_rpe function makes no sense.
->>>
->>> I'm sorry I forgot about this when I told you to kill the other
->>> function.
->>> It should stay there, but be called update_rpn instead...
->> Since RPn updates depend on RPe, my intention was to update RPn
->> whenever
->> RPe is fetched.
->> Alternatively, I can maintain a separate update_rpn() function, but
->> in
->> either case, it will be invoked during initialization and while
->> retrieving RPe frequencies.
->> Another option could be to simply rename the function to
->> xe_guc_pc_get_rpe_rpn_freq() to reflect its dual purpose.
->> What are your thoughts on this approach?
-> I think you need to get to the drawing board and think on another
-> proposal. This is becoming to get really messier.
->
-> update_rp simply update them all before the actual get.
->
-> you don't update another thing inside a get of a specific thing
-> of interest.
->
-> think of what are the cases where the rpn update is really needed.
-> think if we should have a constant workqueue refreshing it if not
-> idle/suspended. Think about all the consequences of the updates
-> and removal that you are proposing. And always making sure that
-> that that igt freq test is reliably passing.
->
-> But something is strange in the current proposal.
+It's a kernel-doc format (it's also used in vfio in some places).
+I'll drop it though - because of the comments below.
 
-Agreed. The issue was we needed to get updated RPe. Why do we need to 
-update RPn? That is a fused value and never changes. SLPC min freq 
-changes with RPe. So we need to ensure we read SLPC min every time (if 
-we are not doing that already).
+> 
+> > +struct xe_vfio_pci_migration_file {
+> > +	/** @filp: pointer to underlying &struct file */
+> > +	struct file *filp;
+> > +	/** @lock: serializes accesses to migration data */
+> > +	struct mutex lock;
+> > +	/** @xe_vdev: backpointer to &struct xe_vfio_pci_core_device */
+> > +	struct xe_vfio_pci_core_device *xe_vdev;
+> 
+> above comments are obvious...
+
+Ok - will keep it simple and drop the obvious ones.
+
+> 
+> > +struct xe_vfio_pci_core_device {
+> > +	/** @core_device: vendor-agnostic VFIO device */
+> > +	struct vfio_pci_core_device core_device;
+> > +
+> > +	/** @mig_state: current device migration state */
+> > +	enum vfio_device_mig_state mig_state;
+> > +
+> > +	/** @vfid: VF number used by PF, xe uses 1-based indexing for vfid
+> > */
+> > +	unsigned int vfid;
+> 
+> is 1-based indexing a sw or hw requirement?
+
+HW/FW components are using 1-based indexing.
+I'll update the comment to state that.
+
+> 
+> > +
+> > +	/** @pf: pointer to driver_private of physical function */
+> > +	struct pci_dev *pf;
+> > +
+> > +	/** @fd: &struct xe_vfio_pci_migration_file for userspace to
+> > read/write migration data */
+> > +	struct xe_vfio_pci_migration_file *fd;
+> 
+> s/fd/migf/, as 'fd' is integer in all other places
+
+Ok.
+
+> 
+> btw it's risky w/o a lock protecting the state transition. See the usage of
+> state_mutex in other migration drivers.
+
+It's a gap - I'll introduce a state_mutex.
+
+> 
+> > +static void xe_vfio_pci_reset_done(struct pci_dev *pdev)
+> > +{
+> > +	struct xe_vfio_pci_core_device *xe_vdev = pci_get_drvdata(pdev);
+> > +	int ret;
+> > +
+> > +	ret = xe_sriov_vfio_wait_flr_done(xe_vdev->pf, xe_vdev->vfid);
+> > +	if (ret)
+> > +		dev_err(&pdev->dev, "Failed to wait for FLR: %d\n", ret);
+> 
+> why is there a device specific wait for flr done? suppose it's already
+> covered by pci core...
+
+No, unfortunately some of the state is cleared by PF driver, after
+PCI-level VF FLR is already done.
+More info on that is available in patch 23:
+"VF FLR requires additional processing done by PF driver.
+The processing is done after FLR is already finished from PCIe
+perspective.
+In order to avoid a scenario where migration state transitions while
+PF processing is still in progress, additional synchronization
+point is needed.
+Add a helper that will be used as part of VF driver struct
+pci_error_handlers .reset_done() callback."
+
+I'll add a comment, so that it's available here as well.
+
+> 
+> > +
+> > +	xe_vfio_pci_reset(xe_vdev);
+> > +}
+> > +
+> > +static const struct pci_error_handlers xe_vfio_pci_err_handlers = {
+> > +	.reset_done = xe_vfio_pci_reset_done,
+> > +};
+> 
+> missing ".error_detected "
+
+Ok. I'll use the generic one - vfio_pci_core_aer_err_detected().
+
+> 
+> > +static struct xe_vfio_pci_migration_file *
+> > +xe_vfio_pci_alloc_file(struct xe_vfio_pci_core_device *xe_vdev,
+> > +		       enum xe_vfio_pci_file_type type)
+> > +{
+> > +	struct xe_vfio_pci_migration_file *migf;
+> > +	const struct file_operations *fops;
+> > +	int flags;
+> > +
+> > +	migf = kzalloc(sizeof(*migf), GFP_KERNEL);
+> > +	if (!migf)
+> > +		return ERR_PTR(-ENOMEM);
+> > +
+> > +	fops = type == XE_VFIO_FILE_SAVE ? &xe_vfio_pci_save_fops :
+> > &xe_vfio_pci_resume_fops;
+> > +	flags = type == XE_VFIO_FILE_SAVE ? O_RDONLY : O_WRONLY;
+> > +	migf->filp = anon_inode_getfile("xe_vfio_mig", fops, migf, flags);
+> > +	if (IS_ERR(migf->filp)) {
+> > +		kfree(migf);
+> > +		return ERR_CAST(migf->filp);
+> > +	}
+> > +
+> > +	mutex_init(&migf->lock);
+> > +	migf->xe_vdev = xe_vdev;
+> > +	xe_vdev->fd = migf;
+> > +
+> > +	stream_open(migf->filp->f_inode, migf->filp);
+> > +
+> > +	return migf;
+> 
+> miss a get_file(). vfio core will do another fput() upon error.
+> 
+> see vfio_ioct_mig_return_fd()
+
+Ok. I'll take a ref on both STOP_COPY and RESUMING transition.
+
+> 
+> > +}
+> > +
+> > +static struct file *
+> > +xe_vfio_set_state(struct xe_vfio_pci_core_device *xe_vdev, u32 new)
+> > +{
+> > +	u32 cur = xe_vdev->mig_state;
+> > +	int ret;
+> > +
+> > +	dev_dbg(xe_vdev_to_dev(xe_vdev),
+> > +		"state: %s->%s\n", vfio_dev_state_str(cur),
+> > vfio_dev_state_str(new));
+> > +
+> > +	/*
+> > +	 * "STOP" handling is reused for "RUNNING_P2P", as the device
+> > doesn't have the capability to
+> > +	 * selectively block p2p DMA transfers.
+> > +	 * The device is not processing new workload requests when the VF is
+> > stopped, and both
+> > +	 * memory and MMIO communication channels are transferred to
+> > destination (where processing
+> > +	 * will be resumed).
+> > +	 */
+> > +	if ((cur == VFIO_DEVICE_STATE_RUNNING && new ==
+> > VFIO_DEVICE_STATE_STOP) ||
+> 
+> this is not required when P2P is supported. vfio_mig_get_next_state() will
+> find the right arc from RUNNING to RUNNING_P2P to STOP.
+
+I'll remove both states (RUNNING -> STOP, STOP -> RUNNING).
+
+> 
+> > +	    (cur == VFIO_DEVICE_STATE_RUNNING && new ==
+> > VFIO_DEVICE_STATE_RUNNING_P2P)) {
+> > +		ret = xe_sriov_vfio_stop(xe_vdev->pf, xe_vdev->vfid);
+> > +		if (ret)
+> > +			goto err;
+> > +
+> > +		return NULL;
+> > +	}
+> 
+> better to align with other drivers, s/stop/suspend/ and s/run/resume/
+
+This will collide with resume_enter / resume_exit for actual migration
+data loading.
+I'll use suspend_device / resume_device, and resume_data_enter /
+resume_data_exit.
+
+> 
+> > +
+> > +	if ((cur == VFIO_DEVICE_STATE_RUNNING_P2P && new ==
+> > VFIO_DEVICE_STATE_STOP) ||
+> > +	    (cur == VFIO_DEVICE_STATE_STOP && new ==
+> > VFIO_DEVICE_STATE_RUNNING_P2P))
+> > +		return NULL;
+> > +
+> > +	if ((cur == VFIO_DEVICE_STATE_STOP && new ==
+> > VFIO_DEVICE_STATE_RUNNING) ||
+> > +	    (cur == VFIO_DEVICE_STATE_RUNNING_P2P && new ==
+> > VFIO_DEVICE_STATE_RUNNING)) {
+> > +		ret = xe_sriov_vfio_run(xe_vdev->pf, xe_vdev->vfid);
+> > +		if (ret)
+> > +			goto err;
+> > +
+> > +		return NULL;
+> > +	}
+> > +
+> > +	if (cur == VFIO_DEVICE_STATE_STOP && new ==
+> > VFIO_DEVICE_STATE_STOP_COPY) {
+> > +		struct xe_vfio_pci_migration_file *migf;
+> > +
+> > +		migf = xe_vfio_pci_alloc_file(xe_vdev, XE_VFIO_FILE_SAVE);
+> > +		if (IS_ERR(migf)) {
+> > +			ret = PTR_ERR(migf);
+> > +			goto err;
+> > +		}
+> > +
+> > +		ret = xe_sriov_vfio_stop_copy_enter(xe_vdev->pf, xe_vdev-
+> > >vfid);
+> > +		if (ret) {
+> > +			fput(migf->filp);
+> > +			goto err;
+> > +		}
+> > +
+> > +		return migf->filp;
+> > +	}
+> > +
+> > +	if ((cur == VFIO_DEVICE_STATE_STOP_COPY && new ==
+> > VFIO_DEVICE_STATE_STOP)) {
+> > +		if (xe_vdev->fd)
+> > +			xe_vfio_pci_disable_file(xe_vdev->fd);
+> > +
+> > +		xe_sriov_vfio_stop_copy_exit(xe_vdev->pf, xe_vdev->vfid);
+> > +
+> > +		return NULL;
+> > +	}
+> > +
+> > +	if (cur == VFIO_DEVICE_STATE_STOP && new ==
+> > VFIO_DEVICE_STATE_RESUMING) {
+> > +		struct xe_vfio_pci_migration_file *migf;
+> > +
+> > +		migf = xe_vfio_pci_alloc_file(xe_vdev,
+> > XE_VFIO_FILE_RESUME);
+> > +		if (IS_ERR(migf)) {
+> > +			ret = PTR_ERR(migf);
+> > +			goto err;
+> > +		}
+> > +
+> > +		ret = xe_sriov_vfio_resume_enter(xe_vdev->pf, xe_vdev-
+> > >vfid);
+> > +		if (ret) {
+> > +			fput(migf->filp);
+> > +			goto err;
+> > +		}
+> > +
+> > +		return migf->filp;
+> > +	}
+> > +
+> > +	if (cur == VFIO_DEVICE_STATE_RESUMING && new ==
+> > VFIO_DEVICE_STATE_STOP) {
+> > +		if (xe_vdev->fd)
+> > +			xe_vfio_pci_disable_file(xe_vdev->fd);
+> > +
+> > +		xe_sriov_vfio_resume_exit(xe_vdev->pf, xe_vdev->vfid);
+> > +
+> > +		return NULL;
+> > +	}
+> > +
+> > +	if (new == VFIO_DEVICE_STATE_ERROR)
+> > +		xe_sriov_vfio_error(xe_vdev->pf, xe_vdev->vfid);
+> 
+> the ERROR state is not passed to the variant driver. You'll get -EINVAL 
+> from vfio_mig_get_next_state(). so this is dead code.
+> 
+> If the pf driver needs to be notified, you could check the ret value instead.
+
+Ok. I'll do that instead.
+
+> 
+> > +static void xe_vfio_pci_migration_init(struct vfio_device *core_vdev)
+> > +{
+> > +	struct xe_vfio_pci_core_device *xe_vdev =
+> > +		container_of(core_vdev, struct xe_vfio_pci_core_device,
+> > core_device.vdev);
+> > +	struct pci_dev *pdev = to_pci_dev(core_vdev->dev);
+> > +
+> > +	if (!xe_sriov_vfio_migration_supported(pdev->physfn))
+> > +		return;
+> > +
+> > +	/* vfid starts from 1 for xe */
+> > +	xe_vdev->vfid = pci_iov_vf_id(pdev) + 1;
+> 
+> pci_iov_vf_id() returns error if it's not vf. should be checked.
+
+Ok.
+
+> 
+> > +static int xe_vfio_pci_init_dev(struct vfio_device *core_vdev)
+> > +{
+> > +	struct pci_dev *pdev = to_pci_dev(core_vdev->dev);
+> > +
+> > +	if (pdev->is_virtfn && strcmp(pdev->physfn->dev.driver->name, "xe")
+> > == 0)
+> > +		xe_vfio_pci_migration_init(core_vdev);
+> 
+> I didn't see the point of checking the driver name.
+
+It will go away after transitioning to xe_pci_get_pf_xe_device().
+
+> 
+> > +
+> > +MODULE_LICENSE("GPL");
+> > +MODULE_AUTHOR("Intel Corporation");
+> 
+> please use the author name, as other drivers do
+
+Ok.
 
 Thanks,
-
-Vinay.
-
->
->> Thanks,
->> Anirban
->>>> +
->>>> +	return freq;
->>>>    }
->>>>    
->>>>    /**
->>>> @@ -1021,7 +1030,7 @@ static int pc_set_mert_freq_cap(struct
->>>> xe_guc_pc *pc)
->>>>    	/*
->>>>    	 * Ensure min and max are bound by MERT_FREQ_CAP until
->>>> driver loads.
->>>>    	 */
->>>> -	ret = pc_set_min_freq(pc, min(pc->rpe_freq,
->>>> pc_max_freq_cap(pc)));
->>>> +	ret = pc_set_min_freq(pc,
->>>> min(xe_guc_pc_get_rpe_freq(pc), pc_max_freq_cap(pc)));
->>>>    	if (!ret)
->>>>    		ret = pc_set_max_freq(pc, min(pc->rp0_freq,
->>>> pc_max_freq_cap(pc)));
->>>>    
->>>> @@ -1339,7 +1348,7 @@ static void xe_guc_pc_fini_hw(void *arg)
->>>>    	XE_WARN_ON(xe_guc_pc_stop(pc));
->>>>    
->>>>    	/* Bind requested freq to mert_freq_cap before unload */
->>>> -	pc_set_cur_freq(pc, min(pc_max_freq_cap(pc), pc-
->>>>> rpe_freq));
->>>> +	pc_set_cur_freq(pc, min(pc_max_freq_cap(pc),
->>>> xe_guc_pc_get_rpe_freq(pc)));
->>>>    
->>>>    	xe_force_wake_put(gt_to_fw(pc_to_gt(pc)), fw_ref);
->>>>    }
->>>> diff --git a/drivers/gpu/drm/xe/xe_guc_pc_types.h
->>>> b/drivers/gpu/drm/xe/xe_guc_pc_types.h
->>>> index 5e4ea53fbee6..f27c05d81706 100644
->>>> --- a/drivers/gpu/drm/xe/xe_guc_pc_types.h
->>>> +++ b/drivers/gpu/drm/xe/xe_guc_pc_types.h
->>>> @@ -21,8 +21,6 @@ struct xe_guc_pc {
->>>>    	u32 rp0_freq;
->>>>    	/** @rpa_freq: HW RPa frequency - The Achievable one */
->>>>    	u32 rpa_freq;
->>>> -	/** @rpe_freq: HW RPe frequency - The Efficient one */
->>>> -	u32 rpe_freq;
->>>>    	/** @rpn_freq: HW RPN frequency - The Minimum one */
->>>>    	u32 rpn_freq;
->>>>    	/** @user_requested_min: Stash the minimum requested
->>>> freq by user */
->>>> -- 
->>>> 2.43.0
->>>>
+-Michał
