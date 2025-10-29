@@ -4,32 +4,33 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F1AA1CCF9EB
-	for <intel-xe@archiver.kernel.org>; Wed, 29 Oct 2025 09:59:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 067D2CCF9E9
+	for <intel-xe@archiver.kernel.org>; Wed, 29 Oct 2025 09:59:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A8A2310E76D;
-	Wed, 29 Oct 2025 09:59:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B4B2510E775;
+	Wed, 29 Oct 2025 09:59:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="aEJQmukA";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="S4NSk1QG";
 	dkim-atps=neutral
 Received: from lankhorst.se (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9279410E76D
- for <intel-xe@lists.freedesktop.org>; Wed, 29 Oct 2025 09:59:39 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 20DF610E76D
+ for <intel-xe@lists.freedesktop.org>; Wed, 29 Oct 2025 09:59:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1761731978;
- bh=VBco7zVB9VTaGgt3tIx7GWoTZdb6hMaqwzco395EbzY=;
+ s=default; t=1761731975;
+ bh=rsGwI3BB/nL+3KqHd3fyVaCclCm+/GTa7AGAdLwN4y0=;
  h=From:To:Subject:Date:In-Reply-To:References:From;
- b=aEJQmukAXhKQVtrHkmxzyUnpOgZxZCsUig0Ik1MOKO4GRtb5LqZn0FXq647phQMjH
- Q7ImfV9paho0DH/23eOg7FWVjzt5teye26EFj2D2GmyikSXdJuqy7IsR5Kiq0U9QqT
- ectwc34kbVgyZzOWQU3dRPYrUwMTtlCsrJqt/1WA2EQ+z7CvwxhORzZbz+rqklmgbO
- +ezD3gFKCF11UcMgfzjDLnKkBh9bGFG43CEmDbDWCtnBkirWs/swXk5sXGelwamC6s
- MlaIrazvk1eGOoVAYvGkoRJxwbqej5uUR7jF+S9+pIQZyJovxbMXHHXgmsDHVyDR7g
- K+c3GKjfk+xVA==
+ b=S4NSk1QGMy3bzIXqTOLJ3AXixFJeG/0ueXVGlR4oMcGceo4qC18FsllhTu0iLD8U6
+ BquLePRwu4jai3WXNJ9fBb91ysn66brPsyP9+ASM5ieT4D3jxQ/RpwSo46mN2T8E4j
+ 277IlijnaGEK9hmuHtLXxvBk+uVvyujh9+cJpWUtPR+cFtF3YZHJhxMGZqg9Cug1Gn
+ lCxPEVK8qyAdeCVV2rv9gUGivUzTSfY/1npeqzZJoFpXMUjJ4Bqdy0T9MLuJbIv3U+
+ IDI8FLJjCoAW6yhgMH7eqXcDHNgomni5epUsdIid0Gxsz/ONJBl7U9nrOYiUhu1LcE
+ x0rJ5AZLjDo+g==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-xe@lists.freedesktop.org
-Subject: [FOR CI 5/5] PREEMPT_RT injection
-Date: Wed, 29 Oct 2025 10:59:33 +0100
-Message-ID: <20251029095934.16813-6-dev@lankhorst.se>
+Subject: [FOR CI 1/5] drm/i915/display: Make get_vblank_counter use
+ intel_de_read_fw()
+Date: Wed, 29 Oct 2025 10:59:29 +0100
+Message-ID: <20251029095934.16813-2-dev@lankhorst.se>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20251029095934.16813-1-dev@lankhorst.se>
 References: <20251029095934.16813-1-dev@lankhorst.se>
@@ -49,71 +50,44 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Fixes the following lockdep splat on PREEMPT_RT:
+<3> BUG: sleeping function called from invalid context at kernel/locking/spinlock_rt.c:48
+<3> in_atomic(): 1, irqs_disabled(): 0, non_block: 0, pid: 1373, name: xe_module_load
+<3> preempt_count: 1, expected: 0
+<3> RCU nest depth: 0, expected: 0
+<4> 11 locks held by xe_module_load/1373:
+<4>  #0: ffff888107b691a0 (&dev->mutex){....}-{3:3}, at: __driver_attach+0x104/0x220
+<4>  #1: ffff88813cd30280 (&dev->clientlist_mutex){+.+.}-{3:3}, at: drm_client_register+0x32/0xe0
+<4>  #2: ffffffff837f88f8 (registration_lock){+.+.}-{3:3}, at: register_framebuffer+0x1b/0x50
+<4>  #3: ffffffff835985e0 (console_lock){+.+.}-{0:0}, at: fbcon_fb_registered+0x6f/0x90
+<4>  #4: ffff88812589e6a0 (&helper->lock){+.+.}-{3:3}, at: __drm_fb_helper_restore_fbdev_mode_unlocked+0x7b/0x110
+<4>  #5: ffff88813cd30158 (&dev->master_mutex){+.+.}-{3:3}, at: drm_master_internal_acquire+0x20/0x50
+<4>  #6: ffff88812589e488 (&client->modeset_mutex){+.+.}-{3:3}, at: drm_client_modeset_commit_locked+0x2a/0x1b0
+<4>  #7: ffffc9000031eef0 (crtc_ww_class_acquire){+.+.}-{0:0}, at: drm_client_modeset_commit_atomic+0x4c/0x2b0
+<4>  #8: ffffc9000031ef18 (crtc_ww_class_mutex){+.+.}-{3:3}, at: drm_client_modeset_commit_atomic+0x4c/0x2b0
+<4>  #9: ffff888114f7b8b8 (&intel_dp->psr.lock){+.+.}-{3:3}, at: intel_psr_lock+0xc5/0xf0 [xe]
+<4>  #10: ffff88812a0cbbc0 (&wl->lock){+.+.}-{2:2}, at: intel_dmc_wl_get+0x3c/0x140 [xe]
+
+This splat will happen otherwise on all tracepoints too, for similar reasons.
+
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/i915/Kconfig.debug | 15 ---------------
- drivers/gpu/drm/xe/Kconfig.debug   |  5 +++++
- kernel/Kconfig.preempt             |  4 ++--
- 3 files changed, 7 insertions(+), 17 deletions(-)
+ drivers/gpu/drm/i915/display/intel_vblank.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/Kconfig.debug b/drivers/gpu/drm/i915/Kconfig.debug
-index 3562a02ef7adc..0ab10ff41e38d 100644
---- a/drivers/gpu/drm/i915/Kconfig.debug
-+++ b/drivers/gpu/drm/i915/Kconfig.debug
-@@ -233,21 +233,6 @@ config DRM_I915_LOW_LEVEL_TRACEPOINTS
+diff --git a/drivers/gpu/drm/i915/display/intel_vblank.c b/drivers/gpu/drm/i915/display/intel_vblank.c
+index 2fc0c1c0bb876..44a7242658da4 100644
+--- a/drivers/gpu/drm/i915/display/intel_vblank.c
++++ b/drivers/gpu/drm/i915/display/intel_vblank.c
+@@ -131,7 +131,7 @@ u32 g4x_get_vblank_counter(struct drm_crtc *crtc)
+ 	if (!vblank->max_vblank_count)
+ 		return 0;
  
- 	  If in doubt, say "N".
+-	return intel_de_read(display, PIPE_FRMCOUNT_G4X(display, pipe));
++	return intel_de_read_fw(display, PIPE_FRMCOUNT_G4X(display, pipe));
+ }
  
--config DRM_I915_DEBUG_VBLANK_EVADE
--	bool "Enable extra debug warnings for vblank evasion"
--	depends on DRM_I915
--	default n
--	help
--	  Choose this option to turn on extra debug warnings for the
--	  vblank evade mechanism. This gives a warning every time the
--	  the deadline allotted for the vblank evade critical section
--	  is exceeded, even if there isn't an actual risk of missing
--	  the vblank.
--
--	  Recommended for driver developers only.
--
--	  If in doubt, say "N".
--
- config DRM_I915_DEBUG_RUNTIME_PM
- 	bool "Enable extra state checking for runtime PM"
- 	depends on DRM_I915
-diff --git a/drivers/gpu/drm/xe/Kconfig.debug b/drivers/gpu/drm/xe/Kconfig.debug
-index 01227c77f6d70..1d5f11c6e88f3 100644
---- a/drivers/gpu/drm/xe/Kconfig.debug
-+++ b/drivers/gpu/drm/xe/Kconfig.debug
-@@ -30,6 +30,11 @@ config DRM_XE_DEBUG
- 
- 	  If in doubt, say "N".
- 
-+config DRM_I915_DEBUG_VBLANK_EVADE
-+        def_bool y
-+        depends on DRM_XE
-+
-+
- config DRM_XE_DEBUG_VM
- 	bool "Enable extra VM debugging info"
- 	default n
-diff --git a/kernel/Kconfig.preempt b/kernel/Kconfig.preempt
-index da326800c1c9b..68a6d42c55abe 100644
---- a/kernel/Kconfig.preempt
-+++ b/kernel/Kconfig.preempt
-@@ -87,9 +87,9 @@ config PREEMPT_LAZY
- endchoice
- 
- config PREEMPT_RT
--	bool "Fully Preemptible Kernel (Real-Time)"
--	depends on EXPERT && ARCH_SUPPORTS_RT && !COMPILE_TEST
-+	def_bool y
- 	select PREEMPTION
-+	depends on ARCH_SUPPORTS_RT
- 	help
- 	  This option turns the kernel into a real-time kernel by replacing
- 	  various locking primitives (spinlocks, rwlocks, etc.) with
+ static u32 intel_crtc_scanlines_since_frame_timestamp(struct intel_crtc *crtc)
 -- 
 2.51.0
 
