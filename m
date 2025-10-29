@@ -4,57 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E0F7FCCF9EE
-	for <intel-xe@archiver.kernel.org>; Wed, 29 Oct 2025 08:51:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2D0D5CCF9E9
+	for <intel-xe@archiver.kernel.org>; Wed, 29 Oct 2025 08:51:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A26DC10E76C;
-	Wed, 29 Oct 2025 08:51:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D994310E1A8;
+	Wed, 29 Oct 2025 08:51:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KofkH09s";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OgnNYy+E";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8AB5F10E765
- for <intel-xe@lists.freedesktop.org>; Wed, 29 Oct 2025 08:51:08 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9289C10E768;
+ Wed, 29 Oct 2025 08:51:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761727869; x=1793263869;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=diCCMFQm759Z8gTg6sZdC3kj36ch3aIUH0bynIJyPEE=;
- b=KofkH09s8c9q0Sa0ljej4PrelFcmvNd4apLD2bR2+JO/3vEBdRx8DYEf
- zS1WJ1d4mVZprCKRJEWqaPfivnCAJLbsAXdCvF7JdTMUCvn9sF2HYwCG+
- ttxN6XQg8KyOWN67tCTmHcMhrRNMN92lt4eJV8vxUmcxvLUtjGU1vwiY9
- f4hePfmvnnzd7m2k3BCeD+bUS1rGSXyRH+btQfcLS/lsioJQ9juLfLmDu
- 6YOem6fOJjg14EZac1faFCcBmIrGL15/YYE1SDUp31m+RH3VDqlYEgj6V
- zoyhBmXh51NXjtC+4wx6sPeR7zXDnYmBAFSfzOKUwISAV3QDvW7RYBAKN g==;
-X-CSE-ConnectionGUID: cQUPOT4/ScuGV7X9A1KDMw==
-X-CSE-MsgGUID: mtbjoXoxQSCuIDAV/Nbg+g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="75290381"
-X-IronPort-AV: E=Sophos;i="6.19,263,1754982000"; d="scan'208";a="75290381"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Oct 2025 01:51:08 -0700
-X-CSE-ConnectionGUID: YfpuGTaqS7C7xKrClDQKSg==
-X-CSE-MsgGUID: H6DPxKKcSaCcdlJ1VvW1CQ==
+ t=1761727914; x=1793263914;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=hbjuSb9OtemJ0UhMBirAuChtFuq27pZLUHZS2Tbm19Q=;
+ b=OgnNYy+E8uYaCcAvazI7+vvBCqUGz7CIR8MZvBLxuzZOqqFy3NsMvtqy
+ VESG5GJY7AcYfqTdh8IPKlPYweqc32iGMfdimOPI1BsXCE7wB6dF34mHQ
+ 96tVkHoOV1CyaoK88UlIwKwnDKMo1KxFULf/VfVbJUH7tOjMkrwb+U4Lu
+ F41rhu8FF/lLght+XKnOXl73tsDZdy7BYKaSC6ASG1C7yM9+AmjQMd951
+ kajIObfc312wnJvXlBYW+CKLathrN7K1EGLogZOx/rjhK3DZRktOF1IWy
+ ZBEPtq6/BU53oFeJwiDUDPuPk0YqJ98mjtjS6ziItsF2XewmGgXXVVlZk g==;
+X-CSE-ConnectionGUID: oyoJoX4mRXSdc2Rvr573CQ==
+X-CSE-MsgGUID: nn6odVH2QFqP8lEUiG4ZYw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="67679415"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="67679415"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Oct 2025 01:51:53 -0700
+X-CSE-ConnectionGUID: +OXUpLA8TSeGre3Mx5Ctng==
+X-CSE-MsgGUID: JYvO87/pT2CtGP1u+wlJDQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,263,1754982000"; d="scan'208";a="185294653"
-Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO tpalli-mobl3.intel.com)
- ([10.245.244.230])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Oct 2025 01:51:06 -0700
-From: =?UTF-8?q?Tapani=20P=C3=A4lli?= <tapani.palli@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: matthew.d.roper@intel.com, tilak.tirumalesh.tangudu@intel.com,
- =?UTF-8?q?Tapani=20P=C3=A4lli?= <tapani.palli@intel.com>
-Subject: [PATCH v3] drm/xe/xe3: Apply wa_14024997852
-Date: Wed, 29 Oct 2025 10:50:57 +0200
-Message-ID: <20251029085057.54210-1-tapani.palli@intel.com>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20251028205958.GE5409@mdroper-desk1.amr.corp.intel.com>
-References: <20251028205958.GE5409@mdroper-desk1.amr.corp.intel.com>
+X-IronPort-AV: E=Sophos;i="6.19,263,1754982000"; d="scan'208";a="184838367"
+Received: from egrumbac-mobl6.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.242])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Oct 2025 01:51:52 -0700
+Date: Wed, 29 Oct 2025 10:51:49 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH v2 1/2] drm/i915/dsi: log send packet sequence errors
+Message-ID: <aQHVpSHJjRW0PYjw@intel.com>
+References: <20251029084603.2254982-1-jani.nikula@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20251029084603.2254982-1-jani.nikula@intel.com>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,34 +70,84 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Whitelist registers needed for userspace to control autostrip on xe3.
+On Wed, Oct 29, 2025 at 10:46:02AM +0200, Jani Nikula wrote:
+> We might be getting send packet sequence errors and never know. Log them
+> as errors. Also upgrade the not supported read commands to errors.
+> 
+> v2: Also error log -EOPNOTSUPP (Ville)
+> 
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
-v2: fix GRAPHICS_VERSION to match xe3 (Matt)
-v3: use GRAPHICS_VERSION_RANGE to match all xe3 (Matt)
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Signed-off-by: Tapani PÃ¤lli <tapani.palli@intel.com>
----
- drivers/gpu/drm/xe/xe_reg_whitelist.c | 7 +++++++
- 1 file changed, 7 insertions(+)
+> ---
+>  drivers/gpu/drm/i915/display/intel_dsi_vbt.c | 22 ++++++++++++--------
+>  1 file changed, 13 insertions(+), 9 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c b/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
+> index 23402408e172..63837406d99b 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
+> @@ -106,6 +106,7 @@ static const u8 *mipi_exec_send_packet(struct intel_dsi *intel_dsi,
+>  	u8 type, flags, seq_port;
+>  	u16 len;
+>  	enum port port;
+> +	ssize_t ret;
+>  
+>  	drm_dbg_kms(display->drm, "\n");
+>  
+> @@ -138,36 +139,39 @@ static const u8 *mipi_exec_send_packet(struct intel_dsi *intel_dsi,
+>  
+>  	switch (type) {
+>  	case MIPI_DSI_GENERIC_SHORT_WRITE_0_PARAM:
+> -		mipi_dsi_generic_write(dsi_device, NULL, 0);
+> +		ret = mipi_dsi_generic_write(dsi_device, NULL, 0);
+>  		break;
+>  	case MIPI_DSI_GENERIC_SHORT_WRITE_1_PARAM:
+> -		mipi_dsi_generic_write(dsi_device, data, 1);
+> +		ret = mipi_dsi_generic_write(dsi_device, data, 1);
+>  		break;
+>  	case MIPI_DSI_GENERIC_SHORT_WRITE_2_PARAM:
+> -		mipi_dsi_generic_write(dsi_device, data, 2);
+> +		ret = mipi_dsi_generic_write(dsi_device, data, 2);
+>  		break;
+>  	case MIPI_DSI_GENERIC_READ_REQUEST_0_PARAM:
+>  	case MIPI_DSI_GENERIC_READ_REQUEST_1_PARAM:
+>  	case MIPI_DSI_GENERIC_READ_REQUEST_2_PARAM:
+> -		drm_dbg_kms(display->drm, "Generic Read not yet implemented or used\n");
+> +		ret = -EOPNOTSUPP;
+>  		break;
+>  	case MIPI_DSI_GENERIC_LONG_WRITE:
+> -		mipi_dsi_generic_write(dsi_device, data, len);
+> +		ret = mipi_dsi_generic_write(dsi_device, data, len);
+>  		break;
+>  	case MIPI_DSI_DCS_SHORT_WRITE:
+> -		mipi_dsi_dcs_write_buffer(dsi_device, data, 1);
+> +		ret = mipi_dsi_dcs_write_buffer(dsi_device, data, 1);
+>  		break;
+>  	case MIPI_DSI_DCS_SHORT_WRITE_PARAM:
+> -		mipi_dsi_dcs_write_buffer(dsi_device, data, 2);
+> +		ret = mipi_dsi_dcs_write_buffer(dsi_device, data, 2);
+>  		break;
+>  	case MIPI_DSI_DCS_READ:
+> -		drm_dbg_kms(display->drm, "DCS Read not yet implemented or used\n");
+> +		ret = -EOPNOTSUPP;
+>  		break;
+>  	case MIPI_DSI_DCS_LONG_WRITE:
+> -		mipi_dsi_dcs_write_buffer(dsi_device, data, len);
+> +		ret = mipi_dsi_dcs_write_buffer(dsi_device, data, len);
+>  		break;
+>  	}
+>  
+> +	if (ret < 0)
+> +		drm_err(display->drm, "DSI send packet failed with %pe\n", ERR_PTR(ret));
+> +
+>  	if (DISPLAY_VER(display) < 11)
+>  		vlv_dsi_wait_for_fifo_empty(intel_dsi, port);
+>  
+> -- 
+> 2.47.3
 
-diff --git a/drivers/gpu/drm/xe/xe_reg_whitelist.c b/drivers/gpu/drm/xe/xe_reg_whitelist.c
-index 690bc327a363..7ca360b2c20d 100644
---- a/drivers/gpu/drm/xe/xe_reg_whitelist.c
-+++ b/drivers/gpu/drm/xe/xe_reg_whitelist.c
-@@ -89,6 +89,13 @@ static const struct xe_rtp_entry_sr register_whitelist[] = {
- 				   RING_FORCE_TO_NONPRIV_ACCESS_RD |
- 				   RING_FORCE_TO_NONPRIV_RANGE_4))
- 	},
-+	{ XE_RTP_NAME("14024997852"),
-+	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(3000, 3005), ENGINE_CLASS(RENDER)),
-+	  XE_RTP_ACTIONS(WHITELIST(FF_MODE,
-+				   RING_FORCE_TO_NONPRIV_ACCESS_RW),
-+			 WHITELIST(VFLSKPD,
-+				   RING_FORCE_TO_NONPRIV_ACCESS_RW))
-+	},
- };
- 
- static void whitelist_apply_to_hwe(struct xe_hw_engine *hwe)
 -- 
-2.51.0
-
+Ville Syrjälä
+Intel
