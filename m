@@ -4,59 +4,131 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 343AACCF9E9
-	for <intel-xe@archiver.kernel.org>; Wed, 29 Oct 2025 08:55:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 836FDCCF9EE
+	for <intel-xe@archiver.kernel.org>; Wed, 29 Oct 2025 08:57:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F003F10E776;
-	Wed, 29 Oct 2025 08:55:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 455E310E74E;
+	Wed, 29 Oct 2025 08:57:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BZKXin7E";
+	dkim=pass (2048-bit key; unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.b="F+BRj58l";
+	dkim=pass (2048-bit key; unprotected) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="GOt394sH";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AC6AA10E774
- for <intel-xe@lists.freedesktop.org>; Wed, 29 Oct 2025 08:55:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761728116; x=1793264116;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=kReVe3f+pjF6giPK1uya86ttuY008498m/3VKHWTQe8=;
- b=BZKXin7EkgRzeyKTEIJ/Tcik3pzRsrP2epRntsNko1J8BOlsD6xHxirR
- 6LPIcB7OdIKsWuiXaHAC3BPi2qelMsEO/ndUmuzhaOVEsqMvQzKqerGAw
- J9aADfcfd5JbwqoFD0RS70LRsqvuU4fIF6xob0w260G3wZII4fXVLaN+U
- G+Ah4Uq/f65MgQVDWeJwCnQ9IUrH9LWmmVL32wZKwZ9XpKxZx3X6u9NOL
- 2YtDLi7torH2CevNviWVN188/KjaG/+bk+CZW2i1XbYzVWWpxS0obwxdu
- XpBCt2tz+Np3wPo5A57RCML0inU1Nfrf2aFXlrtTd46GJNFh52O0kJrVY A==;
-X-CSE-ConnectionGUID: jx+wgWukT8WGXXbBhls/MA==
-X-CSE-MsgGUID: /WNqlFfsStK/D0L95u30Ow==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="89312252"
-X-IronPort-AV: E=Sophos;i="6.19,263,1754982000"; d="scan'208";a="89312252"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Oct 2025 01:55:16 -0700
-X-CSE-ConnectionGUID: kKkVEjkoRzejC6Q52Ejixg==
-X-CSE-MsgGUID: QtXfePMIQ0C9Gb0fCxf1Yw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,263,1754982000"; d="scan'208";a="185678892"
-Received: from egrumbac-mobl6.ger.corp.intel.com (HELO [10.245.245.28])
- ([10.245.245.28])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Oct 2025 01:55:15 -0700
-Message-ID: <f976fdad404f4e8704ad2974dfed06f80ba31e6e.camel@linux.intel.com>
-Subject: Re: [RFC PATCH 3/9] drm/xe/madvise: Implement purgeable buffer
- object support
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Arvind Yadav <arvind.yadav@intel.com>, intel-xe@lists.freedesktop.org
-Cc: matthew.brost@intel.com, himal.prasad.ghimiray@intel.com
-Date: Wed, 29 Oct 2025 09:55:12 +0100
-In-Reply-To: <20251028122415.1136721-4-arvind.yadav@intel.com>
-References: <20251028122415.1136721-1-arvind.yadav@intel.com>
- <20251028122415.1136721-4-arvind.yadav@intel.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.3 (3.54.3-2.fc41) 
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com
+ [205.220.180.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 02E0A10E0F8
+ for <intel-xe@lists.freedesktop.org>; Wed, 29 Oct 2025 08:57:33 +0000 (UTC)
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+ by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id
+ 59T4vLgc3764983
+ for <intel-xe@lists.freedesktop.org>; Wed, 29 Oct 2025 08:57:33 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+ cc:content-type:date:from:in-reply-to:message-id:mime-version
+ :references:subject:to; s=qcppdkim1; bh=7a63mCSv+A9JvgWMq7Ieh7NT
+ 4tLcXzk9s+x47dKyuJQ=; b=F+BRj58lP+5eA/marruZFwnwCtmJMHkHj9YBDlBt
+ qD9/cqIHj3w0TOZC3VGj94+on44sKfGeB1ku3OsYgjmuMLrniZYwqZPakT77gk1S
+ WJMDmgrMtLFGrJEYoH4LCDorZG7yPw1ytbv6PC5nSAKio3Zhag1CHBJv0M4WQ5h6
+ rR5Tm8cu01/aVD0/i6QaG7Bczau0v/jh+8MBkCXc6uf3UwB/gLwiCeRJP1I/J/ip
+ pQwkLf9+NvB2m7Z5qall3khhRJCgtXJxYYZ1gkYc9OED1v5EyWeBLGjqh6KoL5OY
+ O+6DaLmmJPzOI/NiK+/ABnInhgv6PpIn63B7kHSpETm+8w==
+Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com
+ [209.85.222.197])
+ by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a34a11vq5-1
+ (version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+ for <intel-xe@lists.freedesktop.org>; Wed, 29 Oct 2025 08:57:32 +0000 (GMT)
+Received: by mail-qk1-f197.google.com with SMTP id
+ af79cd13be357-88fec61f826so1880270385a.1
+ for <intel-xe@lists.freedesktop.org>; Wed, 29 Oct 2025 01:57:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=oss.qualcomm.com; s=google; t=1761728251; x=1762333051;
+ darn=lists.freedesktop.org; 
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=7a63mCSv+A9JvgWMq7Ieh7NT4tLcXzk9s+x47dKyuJQ=;
+ b=GOt394sHIQEwCCGvvTG460a12ibF+SLIrdI4zxXWvzfvxXs9gNJ3SCvw2CO0uzdV0H
+ i4PKBbKtPst+u2SERCZ6OzBUC4+rb2twQMinrX6Ut82ZgUawirXekxz06LN6f6jllTEm
+ 3qFL7RKDnlkdV5VQc3lfJcYETqbt7nxz4oURbQsx22cT0oXaVFO+QuLgpKGXpBHxaBMx
+ p8VduYGsV8R6oDebH2E14ywsutAUAx4NssZ0nR08NBtB8xzvwOT+6YlHbWne5nT9jcqf
+ 2DKYJJ0HJirV67KQUxwOKDpufSgZMsPMB/QQlZJDL9U8k/CIvIKuphjGDV3XCLwbN40H
+ Kjqg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1761728251; x=1762333051;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=7a63mCSv+A9JvgWMq7Ieh7NT4tLcXzk9s+x47dKyuJQ=;
+ b=AB99ee2yKv8b4sEBG5WkfitXVXZsPaTFskKBERrj1tssp9zULdAB2SNMBW9tivmcBY
+ LiE1gqUkyzjNwC8wdtv67y04kIhhEoS+C+lyxTMv1QZKIVc7J0d5ov23xf77WKQC3XR0
+ JEAmhpRXx9oI4WfEFD622dWU2NxnNGvHfAfu8epVQyohHtuFE9I4EXLLpTrji5gKODkE
+ m5IZkRI95aEQsEXrDtBriOUbbEy8XDevAKH+Z1lTMslDEeaEP+hV7yQTiJkZsuP7MrlU
+ Vnv6nnywxJgVSCLMfKQs9c8ARhH7TwTy7nZgZMT3cgVdDTfoATmOO8uPHj2hAsQ6DkS9
+ 0gug==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUh3B5EUrDsjixKlFhvKIMHTryOW+yfgCmkGdD+gu8FjhI21blJvCyNNrt6aF0yzWzCGPgbp1Pwjw==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yw6tpCg3AWWEcxwSYgCJ9rZRAVkyygncYCWjtU24qSSh+9/RmhN
+ X2MQFcCkRX+s9Kgeev8cKon13oAqUmHzkSz3V4A5DACYwpEEH37S3+mpLCNKElkiytWII4s+vJj
+ ee9MPNZ2DkF2s2/htLZMk8qt8ZaZw3yGJQrnQ1EzcCwmRaOwhSNDsq6Yx/pLTsGc1N/nkDr9bdB
+ Hadg==
+X-Gm-Gg: ASbGnctdlUXy/bzwJnN23E7xdcwUc52Oi8r96/zSBat5cfLHXjku9hOPK2sAjNN3zDl
+ w9Y2/8Rr3HH7YZHSW8vybIaI1lm+Cn/8MQanfMlMrIyyzURUG2i5Ed4OW9FizPJloxVBbi1D7PF
+ RMlVofN3euEr9i/tHFoI6p0fWNVsKthbuynWQZUZUDTmuym6/vAaI8WxAUTCT5g7Lw4y0ZJKF5X
+ uFleBI/ELQ3xwazXegIPQjAmBJUEGugpaiFI/MqcA00XO8psfpkCKbQp3j/ffkWaa4zjQfLaUPm
+ OKYfY1F1/ej2IG5z6+l7fEQWqrFwRd4M3mseafYZN1ULs4JlsDHli8EGWRLfP7qDrWc/00tRFoq
+ KyKVDNaLu+bhWXZKzHLIwCGqolxO0hjU4sl3vMd2eRCTHfc+/PSO/2LPRGm7vKob1U9PEfX3Da0
+ NkM21UTULpeA7o
+X-Received: by 2002:a05:622a:1b87:b0:4b2:9cdc:6d52 with SMTP id
+ d75a77b69052e-4ed15c9afcamr25245951cf.71.1761728251392; 
+ Wed, 29 Oct 2025 01:57:31 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHHMxS9dJDlfut9jklaN1u7WjxrtXy+M4HfVu5cw7ucNDEH9oxaqvAGSpJbi0LaKmBBPdMe+A==
+X-Received: by 2002:a05:622a:1b87:b0:4b2:9cdc:6d52 with SMTP id
+ d75a77b69052e-4ed15c9afcamr25245721cf.71.1761728250874; 
+ Wed, 29 Oct 2025 01:57:30 -0700 (PDT)
+Received: from umbar.lan
+ (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi.
+ [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+ by smtp.gmail.com with ESMTPSA id
+ 38308e7fff4ca-378ee0bbfeasm32127811fa.25.2025.10.29.01.57.29
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 29 Oct 2025 01:57:29 -0700 (PDT)
+Date: Wed, 29 Oct 2025 10:57:28 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Khaled Almahallawy <khaled.almahallawy@intel.com>
+Cc: dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ Jani Nikula <jani.nikula@intel.com>,
+ Rob Clark <robin.clark@oss.qualcomm.com>,
+ Dmitry Baryshkov <lumag@kernel.org>,
+ Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>
+Subject: Re: [PATCH] drm/display/dp: Rename bit 4 of DPCD TEST_REQUEST to
+ match DP2.1 spec
+Message-ID: <jn7piiqfyeiiinpxu5ht7qza2la3cigdqlhtlvuvkbzqeyhcad@v5aypgcrcdok>
+References: <20251028222817.3290035-1-khaled.almahallawy@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251028222817.3290035-1-khaled.almahallawy@intel.com>
+X-Proofpoint-GUID: zPvtyqlQoTzOZuSL9se1JJhjoTpslbC9
+X-Proofpoint-ORIG-GUID: zPvtyqlQoTzOZuSL9se1JJhjoTpslbC9
+X-Authority-Analysis: v=2.4 cv=A5dh/qWG c=1 sm=1 tr=0 ts=6901d6fc cx=c_pps
+ a=50t2pK5VMbmlHzFWWp8p/g==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=x6icFKpwvdMA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=QyXUC8HyAAAA:8 a=EUspDBNiAAAA:8 a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8
+ a=rHtxkZaJ8jImS8H9yjEA:9 a=CjuIK1q_8ugA:10 a=IoWCM6iH3mJn3m4BftBB:22
+ a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDI5MDA2NiBTYWx0ZWRfX/ePl5rF8WAu3
+ amXUob5Hd098peWFAgu2jiiLRNg2q8GvhF+jlM4RuaB9JtIMYpm+KszeL59HIdNfG875CyjNfyY
+ eEFC+2KEcOoXH24s8152NiVYHgvZ2norEkgDV4PcRtZwcHJ+TuhXJJCt8i10+Mv28xtsOHngR8I
+ dBnVKF+6a06QyZEWg4a/1dUWDAjqkhjrEP0SuMQbABU1zY+i6UaoyYavijmpNUjhAr9G9USQGlu
+ cBQsVnf028m1gLbpbJYX36seU3qNVmyi2u3oiEslmXAFGjfHMwxmopAAHHTQyFFdQFcWCJ3ZaRr
+ VmGv47MQH8jYZteqB1nSlZM34lBj1PbwJr6ihobBQWngEKcxPu7lKt6D90vo6vtfnXTJmErc2Am
+ B6DsjkS78wSP46RE27xTmNwFyUDI1g==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-10-29_04,2025-10-22_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 priorityscore=1501 spamscore=0 bulkscore=0 impostorscore=0
+ clxscore=1015 malwarescore=0 adultscore=0 lowpriorityscore=0 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2510290066
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,291 +143,27 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 2025-10-28 at 17:54 +0530, Arvind Yadav wrote:
-> This allows userspace applications to provide memory usage hints to
-> the kernel for better memory management under pressure:
->=20
-> - WILLNEED: BO will be needed again, re-validate if purged
-> - DONTNEED: BO not currently needed, may be purged if needed
->=20
-> When userspace marks BO as DONTNEED, the kernel can reclaim
-> their memory during memory pressure. BO transition to PURGED
-> state when reclaimed, and attempting to access purged buffers
-> triggers appropriate fault handling.
->=20
-> Cc: Matthew Brost <matthew.brost@intel.com>
-> Cc: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
-> Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-> Signed-off-by: Arvind Yadav <arvind.yadav@intel.com>
+On Tue, Oct 28, 2025 at 03:28:17PM -0700, Khaled Almahallawy wrote:
+> The DP_TEST_LINK_FAUX_PATTERN field was deprecated in the DP 1.3 spec.
+> Update its name to align with the DP 2.1 definition and reflect its
+> actual use in the code. No functional changes.
+> 
+> Cc: Jani Nikula <jani.nikula@intel.com>
+> Cc: Rob Clark <robin.clark@oss.qualcomm.com>
+> Cc: Dmitry Baryshkov <lumag@kernel.org>
+> Cc: Abhinav Kumar <quic_abhinavk@quicinc.com>
+> Cc: Sean Paul <sean@poorly.run>
+> Signed-off-by: Khaled Almahallawy <khaled.almahallawy@intel.com>
 > ---
-> =C2=A0drivers/gpu/drm/xe/xe_bo.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 | 75 +++++++++++++++++++++++++---
-> --
-> =C2=A0drivers/gpu/drm/xe/xe_vm_madvise.c | 67 ++++++++++++++++++++++++++
-> =C2=A02 files changed, 130 insertions(+), 12 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-> index cbc3ee157218..3b3eb83658cc 100644
-> --- a/drivers/gpu/drm/xe/xe_bo.c
-> +++ b/drivers/gpu/drm/xe/xe_bo.c
-> @@ -836,6 +836,60 @@ static int xe_bo_move_notify(struct xe_bo *bo,
-> =C2=A0	return 0;
-> =C2=A0}
-> =C2=A0
-> +static int xe_bo_invalidate_tlb_before_purge(struct xe_bo *bo)
+>  drivers/gpu/drm/msm/dp/dp_link.c | 2 +-
+>  include/drm/display/drm_dp.h     | 2 +-
+>  2 files changed, 2 insertions(+), 2 deletions(-)
+> 
 
-In the future someone might want to reuse this function for
-invalidating somewhere else. Could we perhaps rename to
-xe_bo_invalidate_vmas() or something like that?
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 
+Would you prefer to merge this through drm-misc-next or through msm-next?
 
-> +{
-> +	struct drm_gpuvm_bo *vm_bo;
-> +	struct drm_gpuva *gpuva;
-> +	struct drm_gem_object *obj =3D &bo->ttm.base;
-> +	int ret;
-> +
-> +	/* BO must be locked before invalidating */
-> +	dma_resv_assert_held(bo->ttm.base.resv);
-> +
-> +	drm_gem_for_each_gpuvm_bo(vm_bo, obj) {
-> +		drm_gpuvm_bo_for_each_va(gpuva, vm_bo) {
-> +			struct xe_vma *vma =3D gpuva_to_vma(gpuva);
-> +
-> +			ret =3D xe_vm_invalidate_vma(vma);
-> +			if (ret)
-> +				return ret;
-> +		}
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static void xe_bo_set_purged(struct xe_bo *bo)
-> +{
-> +	/* BO must be locked before modifying madv state */
-> +	dma_resv_assert_held(bo->ttm.base.resv);
-> +
-> +	atomic_set(&bo->madv_purgeable, XE_MADV_PURGEABLE_PURGED);
-> +}
-> +
-> +static void xe_ttm_bo_purge(struct ttm_buffer_object *ttm_bo, struct
-> ttm_operation_ctx *ctx)
-> +{
-> +	struct xe_device *xe =3D ttm_to_xe_device(ttm_bo->bdev);
-> +	struct xe_bo *bo =3D ttm_to_xe_bo(ttm_bo);
-> +
-> +	if (ttm_bo->ttm) {
-> +		struct ttm_placement place =3D {};
-> +		int ret =3D ttm_bo_validate(ttm_bo, &place, ctx);
-> +		int ret_inval;
-
-Christian from AMD once mentioned that instead of implicitly calling
-ttm_bo_validate() with an empty placement, we could send the null
-placement through the evict_flags callback. Would that work?
-
-
-
-
-> +
-> +		drm_WARN_ON(&xe->drm, ret);
-> +		if (!ret && bo) {
-> +			if (atomic_read(&bo->madv_purgeable) =3D=3D
-> XE_MADV_PURGEABLE_DONTNEED) {
-> +				/* Invalidate TLB before marking BO
-> as purged */
-> +				ret_inval =3D
-> xe_bo_invalidate_tlb_before_purge(bo);
-
-Since the page-table update and page-freeing is really intended to be
-an asynchronous operation, and the GPU bindings are intended to be
-invalidated in move_notify() / trigger_rebind() where we properly take
-care of special cases like faulting VMs etc, can we move the
-invalidation logic there?
-
-Perhaps it is even possible to skip the synchronous page-table zeroing
-here in favour of a NULL rebind (when rebinding a purged BO we set up
-all zero mappings, or whatever mappings are required given scratch page
-mode etc.) Then the page-table clearing will be properly inserted in
-the asynchronous execution.
-
-
-> +				if (!ret_inval)
-> +					xe_bo_set_purged(bo);
-> +
-> +			}
-> +		}
-
-
-
-> +	}
-> +}
-> +
-> =C2=A0static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
-> =C2=A0		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct ttm_operation_ctx *ctx,
-> =C2=A0		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct ttm_resource *new_mem,
-> @@ -853,8 +907,14 @@ static int xe_bo_move(struct ttm_buffer_object
-> *ttm_bo, bool evict,
-> =C2=A0	bool needs_clear;
-> =C2=A0	bool handle_system_ccs =3D (!IS_DGFX(xe) &&
-> xe_bo_needs_ccs_pages(bo) &&
-> =C2=A0				=C2=A0 ttm && ttm_tt_is_populated(ttm)) ?
-> true : false;
-> +	int state =3D atomic_read(&bo->madv_purgeable);
-> =C2=A0	int ret =3D 0;
-> =C2=A0
-> +	if (evict && state =3D=3D XE_MADV_PURGEABLE_DONTNEED) {
-> +		xe_ttm_bo_purge(ttm_bo, ctx);
-> +			return 0;
-> +	}
-> +
-> =C2=A0	/* Bo creation path, moving to system or TT. */
-> =C2=A0	if ((!old_mem && ttm) && !handle_system_ccs) {
-> =C2=A0		if (new_mem->mem_type =3D=3D XE_PL_TT)
-> @@ -1606,18 +1666,6 @@ static void xe_ttm_bo_delete_mem_notify(struct
-> ttm_buffer_object *ttm_bo)
-> =C2=A0	}
-> =C2=A0}
-> =C2=A0
-> -static void xe_ttm_bo_purge(struct ttm_buffer_object *ttm_bo, struct
-> ttm_operation_ctx *ctx)
-> -{
-> -	struct xe_device *xe =3D ttm_to_xe_device(ttm_bo->bdev);
-> -
-> -	if (ttm_bo->ttm) {
-> -		struct ttm_placement place =3D {};
-> -		int ret =3D ttm_bo_validate(ttm_bo, &place, ctx);
-> -
-> -		drm_WARN_ON(&xe->drm, ret);
-> -	}
-> -}
-> -
-> =C2=A0static void xe_ttm_bo_swap_notify(struct ttm_buffer_object *ttm_bo)
-> =C2=A0{
-> =C2=A0	struct ttm_operation_ctx ctx =3D {
-> @@ -2472,6 +2520,9 @@ struct xe_bo *xe_bo_create_user(struct
-> xe_device *xe,
-> =C2=A0				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ttm_bo_type_device, flags,=
- 0,
-> true);
-> =C2=A0	}
-> =C2=A0
-> +	/* Initialize purge advisory state */
-> +	atomic_set(&bo->madv_purgeable, XE_MADV_PURGEABLE_WILLNEED);
-> +
-> =C2=A0	return bo;
-> =C2=A0}
-> =C2=A0
-> diff --git a/drivers/gpu/drm/xe/xe_vm_madvise.c
-> b/drivers/gpu/drm/xe/xe_vm_madvise.c
-> index cad3cf627c3f..1f0356ea4403 100644
-> --- a/drivers/gpu/drm/xe/xe_vm_madvise.c
-> +++ b/drivers/gpu/drm/xe/xe_vm_madvise.c
-> @@ -158,6 +158,54 @@ static void madvise_pat_index(struct xe_device
-> *xe, struct xe_vm *vm,
-> =C2=A0	}
-> =C2=A0}
-> =C2=A0
-> +/*
-> + * Handle purgeable buffer object advice for
-> DONTNEED/WILLNEED/PURGED.
-> + * Returns 0 on success, negative errno on error.
-> + */
-> +static void xe_vm_madvise_purgeable_bo(struct xe_device *xe, struct
-> xe_vm *vm,
-> +				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct xe_vma **vmas, int
-> num_vmas,
-> +				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct drm_xe_madvise *op,
-> struct drm_exec *exec)
-> +{
-> +
-> +	xe_assert(vm->xe, op->type =3D=3D
-> DRM_XE_VMA_ATTR_PURGEABLE_STATE);
-> +
-> +	for (int i =3D 0; i < num_vmas; i++) {
-> +		struct xe_bo *bo =3D xe_vma_bo(vmas[i]);
-> +		int state;
-> +		int ret;
-> +
-> +		if (!bo)
-> +			continue;
-> +
-> +		/* BO must be locked before modifying madv state */
-> +		dma_resv_assert_held(bo->ttm.base.resv);
-> +
-> +		switch (op->purge_state_val.val) {
-> +		case DRM_XE_VMA_PURGEABLE_STATE_WILLNEED:
-> +			state =3D atomic_read(&bo->madv_purgeable);
-> +			if (state =3D=3D XE_MADV_PURGEABLE_PURGED) {
-> +				ret =3D xe_bo_validate(bo, NULL, true,
-> exec);
-> +				if (ret) {
-> +					drm_err(&vm->xe->drm,
-> +						"Failed to validate
-> purged BO: %d\n", ret);
-> +					return;
-> +				}
-> +			}
-> +			atomic_set(&bo->madv_purgeable,
-> XE_MADV_PURGEABLE_WILLNEED);
-> +			break;
-> +		case DRM_XE_VMA_PURGEABLE_STATE_DONTNEED:
-> +			state =3D atomic_read(&bo->madv_purgeable);
-> +			if (state !=3D XE_MADV_PURGEABLE_PURGED)
-> +				atomic_set(&bo->madv_purgeable,
-> XE_MADV_PURGEABLE_DONTNEED);
-> +			break;
-> +		default:
-> +			drm_warn(&vm->xe->drm, "Invalid madvice
-> value =3D %d\n",
-> +				 op->purge_state_val.val);
-> +			return;
-> +		}
-> +	}
-> +}
-> +
-> =C2=A0typedef void (*madvise_func)(struct xe_device *xe, struct xe_vm *vm=
-,
-> =C2=A0			=C2=A0=C2=A0=C2=A0=C2=A0 struct xe_vma **vmas, int num_vmas,
-> =C2=A0			=C2=A0=C2=A0=C2=A0=C2=A0 struct drm_xe_madvise *op);
-> @@ -283,6 +331,19 @@ static bool madvise_args_are_sane(struct
-> xe_device *xe, const struct drm_xe_madv
-> =C2=A0			return false;
-> =C2=A0		break;
-> =C2=A0	}
-> +	case DRM_XE_VMA_ATTR_PURGEABLE_STATE:
-> +	{
-> +		u32 val =3D args->purge_state_val.val;
-> +
-> +		if (XE_IOCTL_DBG(xe, !((val =3D=3D
-> DRM_XE_VMA_PURGEABLE_STATE_WILLNEED) ||
-> +				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 (val =3D=3D
-> DRM_XE_VMA_PURGEABLE_STATE_DONTNEED))))
-> +			return false;
-> +
-> +		if (XE_IOCTL_DBG(xe, args-
-> >purge_state_val.reserved))
-> +			return false;
-> +
-> +		break;
-> +	}
-> =C2=A0	default:
-> =C2=A0		if (XE_IOCTL_DBG(xe, 1))
-> =C2=A0			return false;
-> @@ -402,6 +463,12 @@ int xe_vm_madvise_ioctl(struct drm_device *dev,
-> void *data, struct drm_file *fil
-> =C2=A0					goto err_fini;
-> =C2=A0			}
-> =C2=A0		}
-> +		if (args->type =3D=3D DRM_XE_VMA_ATTR_PURGEABLE_STATE) {
-> +			xe_vm_madvise_purgeable_bo(xe, vm,
-> madvise_range.vmas,
-> +						=C2=A0=C2=A0
-> madvise_range.num_vmas, args, &exec);
-> +			goto err_fini;
-> +
-> +		}
-> =C2=A0	}
-> =C2=A0
-> =C2=A0	if (madvise_range.has_svm_userptr_vmas) {
-
+-- 
+With best wishes
+Dmitry
