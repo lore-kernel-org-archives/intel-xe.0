@@ -4,131 +4,185 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 836FDCCF9EE
-	for <intel-xe@archiver.kernel.org>; Wed, 29 Oct 2025 08:57:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C1936CCF9E9
+	for <intel-xe@archiver.kernel.org>; Wed, 29 Oct 2025 09:00:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 455E310E74E;
-	Wed, 29 Oct 2025 08:57:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8294910E750;
+	Wed, 29 Oct 2025 09:00:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.b="F+BRj58l";
-	dkim=pass (2048-bit key; unprotected) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="GOt394sH";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bKTTOTzx";
 	dkim-atps=neutral
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com
- [205.220.180.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 02E0A10E0F8
- for <intel-xe@lists.freedesktop.org>; Wed, 29 Oct 2025 08:57:33 +0000 (UTC)
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
- by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id
- 59T4vLgc3764983
- for <intel-xe@lists.freedesktop.org>; Wed, 29 Oct 2025 08:57:33 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
- cc:content-type:date:from:in-reply-to:message-id:mime-version
- :references:subject:to; s=qcppdkim1; bh=7a63mCSv+A9JvgWMq7Ieh7NT
- 4tLcXzk9s+x47dKyuJQ=; b=F+BRj58lP+5eA/marruZFwnwCtmJMHkHj9YBDlBt
- qD9/cqIHj3w0TOZC3VGj94+on44sKfGeB1ku3OsYgjmuMLrniZYwqZPakT77gk1S
- WJMDmgrMtLFGrJEYoH4LCDorZG7yPw1ytbv6PC5nSAKio3Zhag1CHBJv0M4WQ5h6
- rR5Tm8cu01/aVD0/i6QaG7Bczau0v/jh+8MBkCXc6uf3UwB/gLwiCeRJP1I/J/ip
- pQwkLf9+NvB2m7Z5qall3khhRJCgtXJxYYZ1gkYc9OED1v5EyWeBLGjqh6KoL5OY
- O+6DaLmmJPzOI/NiK+/ABnInhgv6PpIn63B7kHSpETm+8w==
-Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com
- [209.85.222.197])
- by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a34a11vq5-1
- (version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
- for <intel-xe@lists.freedesktop.org>; Wed, 29 Oct 2025 08:57:32 +0000 (GMT)
-Received: by mail-qk1-f197.google.com with SMTP id
- af79cd13be357-88fec61f826so1880270385a.1
- for <intel-xe@lists.freedesktop.org>; Wed, 29 Oct 2025 01:57:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=oss.qualcomm.com; s=google; t=1761728251; x=1762333051;
- darn=lists.freedesktop.org; 
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=7a63mCSv+A9JvgWMq7Ieh7NT4tLcXzk9s+x47dKyuJQ=;
- b=GOt394sHIQEwCCGvvTG460a12ibF+SLIrdI4zxXWvzfvxXs9gNJ3SCvw2CO0uzdV0H
- i4PKBbKtPst+u2SERCZ6OzBUC4+rb2twQMinrX6Ut82ZgUawirXekxz06LN6f6jllTEm
- 3qFL7RKDnlkdV5VQc3lfJcYETqbt7nxz4oURbQsx22cT0oXaVFO+QuLgpKGXpBHxaBMx
- p8VduYGsV8R6oDebH2E14ywsutAUAx4NssZ0nR08NBtB8xzvwOT+6YlHbWne5nT9jcqf
- 2DKYJJ0HJirV67KQUxwOKDpufSgZMsPMB/QQlZJDL9U8k/CIvIKuphjGDV3XCLwbN40H
- Kjqg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1761728251; x=1762333051;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=7a63mCSv+A9JvgWMq7Ieh7NT4tLcXzk9s+x47dKyuJQ=;
- b=AB99ee2yKv8b4sEBG5WkfitXVXZsPaTFskKBERrj1tssp9zULdAB2SNMBW9tivmcBY
- LiE1gqUkyzjNwC8wdtv67y04kIhhEoS+C+lyxTMv1QZKIVc7J0d5ov23xf77WKQC3XR0
- JEAmhpRXx9oI4WfEFD622dWU2NxnNGvHfAfu8epVQyohHtuFE9I4EXLLpTrji5gKODkE
- m5IZkRI95aEQsEXrDtBriOUbbEy8XDevAKH+Z1lTMslDEeaEP+hV7yQTiJkZsuP7MrlU
- Vnv6nnywxJgVSCLMfKQs9c8ARhH7TwTy7nZgZMT3cgVdDTfoATmOO8uPHj2hAsQ6DkS9
- 0gug==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUh3B5EUrDsjixKlFhvKIMHTryOW+yfgCmkGdD+gu8FjhI21blJvCyNNrt6aF0yzWzCGPgbp1Pwjw==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yw6tpCg3AWWEcxwSYgCJ9rZRAVkyygncYCWjtU24qSSh+9/RmhN
- X2MQFcCkRX+s9Kgeev8cKon13oAqUmHzkSz3V4A5DACYwpEEH37S3+mpLCNKElkiytWII4s+vJj
- ee9MPNZ2DkF2s2/htLZMk8qt8ZaZw3yGJQrnQ1EzcCwmRaOwhSNDsq6Yx/pLTsGc1N/nkDr9bdB
- Hadg==
-X-Gm-Gg: ASbGnctdlUXy/bzwJnN23E7xdcwUc52Oi8r96/zSBat5cfLHXjku9hOPK2sAjNN3zDl
- w9Y2/8Rr3HH7YZHSW8vybIaI1lm+Cn/8MQanfMlMrIyyzURUG2i5Ed4OW9FizPJloxVBbi1D7PF
- RMlVofN3euEr9i/tHFoI6p0fWNVsKthbuynWQZUZUDTmuym6/vAaI8WxAUTCT5g7Lw4y0ZJKF5X
- uFleBI/ELQ3xwazXegIPQjAmBJUEGugpaiFI/MqcA00XO8psfpkCKbQp3j/ffkWaa4zjQfLaUPm
- OKYfY1F1/ej2IG5z6+l7fEQWqrFwRd4M3mseafYZN1ULs4JlsDHli8EGWRLfP7qDrWc/00tRFoq
- KyKVDNaLu+bhWXZKzHLIwCGqolxO0hjU4sl3vMd2eRCTHfc+/PSO/2LPRGm7vKob1U9PEfX3Da0
- NkM21UTULpeA7o
-X-Received: by 2002:a05:622a:1b87:b0:4b2:9cdc:6d52 with SMTP id
- d75a77b69052e-4ed15c9afcamr25245951cf.71.1761728251392; 
- Wed, 29 Oct 2025 01:57:31 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHHMxS9dJDlfut9jklaN1u7WjxrtXy+M4HfVu5cw7ucNDEH9oxaqvAGSpJbi0LaKmBBPdMe+A==
-X-Received: by 2002:a05:622a:1b87:b0:4b2:9cdc:6d52 with SMTP id
- d75a77b69052e-4ed15c9afcamr25245721cf.71.1761728250874; 
- Wed, 29 Oct 2025 01:57:30 -0700 (PDT)
-Received: from umbar.lan
- (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi.
- [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
- by smtp.gmail.com with ESMTPSA id
- 38308e7fff4ca-378ee0bbfeasm32127811fa.25.2025.10.29.01.57.29
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 29 Oct 2025 01:57:29 -0700 (PDT)
-Date: Wed, 29 Oct 2025 10:57:28 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Khaled Almahallawy <khaled.almahallawy@intel.com>
-Cc: dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Jani Nikula <jani.nikula@intel.com>,
- Rob Clark <robin.clark@oss.qualcomm.com>,
- Dmitry Baryshkov <lumag@kernel.org>,
- Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>
-Subject: Re: [PATCH] drm/display/dp: Rename bit 4 of DPCD TEST_REQUEST to
- match DP2.1 spec
-Message-ID: <jn7piiqfyeiiinpxu5ht7qza2la3cigdqlhtlvuvkbzqeyhcad@v5aypgcrcdok>
-References: <20251028222817.3290035-1-khaled.almahallawy@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 25CFD10E77A
+ for <intel-xe@lists.freedesktop.org>; Wed, 29 Oct 2025 09:00:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1761728417; x=1793264417;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=SquFOY7EgOfkCZahgPMVm3uXXH0o/7wdK7u9DdPMV/8=;
+ b=bKTTOTzxWGv4eoe4UGcU/YDJWTUG3Nueqj6fDEIq16U05EsxaOFpKTAh
+ xz6mMVC802yJ+dhceixng8vcvdOcSw4doAaCZc+tj/n2pQcUPdEW34Qxk
+ Ph8ndGeq5Q0494Wx3Ikt3sHeRA1RMlSImVNt5e2zblRkUPtx/N/xVee9K
+ HM3z5Tz0+BcZ/2PCz8imuIyg2Hl7YcfEHwFWr3pxE8shZiicNmkqKlWqM
+ wvH/+BgBw/0ODF6zlbrJ/gLgbvezMTtughgi8+xCwHOe9S3Uvhw+Odgcc
+ snu4X0/bKGj6l3Im7k9iFLiarJSQy2/utRZNDWSND/gcBTZ/V0PUSq2L7 g==;
+X-CSE-ConnectionGUID: IrdwuXRNSt+Qxdzxb3ezjA==
+X-CSE-MsgGUID: g/H1BHtORUqPmu2NItLwsg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="63938726"
+X-IronPort-AV: E=Sophos;i="6.19,263,1754982000"; d="scan'208";a="63938726"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Oct 2025 02:00:17 -0700
+X-CSE-ConnectionGUID: +Ne1sqx3TU2zgonCI/Kxnw==
+X-CSE-MsgGUID: pGTWjAmVQxSKCzYBDyf6Rg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,263,1754982000"; d="scan'208";a="185517880"
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+ by orviesa007.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Oct 2025 02:00:17 -0700
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.27; Wed, 29 Oct 2025 02:00:16 -0700
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.27 via Frontend Transport; Wed, 29 Oct 2025 02:00:16 -0700
+Received: from SN4PR2101CU001.outbound.protection.outlook.com (40.93.195.33)
+ by edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.27; Wed, 29 Oct 2025 02:00:16 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=tEUtjAdTLKynUe9OPT/sfH58u9lyJ3EJJIFMp6PBsEoRTllN5QaZVzHJSe8DwgGg+XADvNhbJYbagr9ClAvwIo/LiBjZV4m/v0J4l1Yo2pB9B/GPy5CBm56Sd5nWuOgzfPIKUPRJf76f9GpP689KGDK19yrpJ6L+3BhpWoHvorjsRkze0yBg0Gsmn1cfXIVsHB2AG92BJPwVU7fF8CjpV7MDTdi/4y3u9hmbOBa9n/VBnGnbem3z62YDNXaNtYrhm134kU9gosY85RVE3r9Scm1PyrEyOdcviuLzEdqLFygKXpVrBm9ONWCagOuJ7iYpfdZ+Adn8u0U7Dn1MXD7lyA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Dyjqnk5ep9DvOCflWLOJP8AuZjeanOVHivDXJdScma0=;
+ b=l4F704vQT5lJx7mahCho1uC9Wm98lM2jnDOWwu5u90+3YahpdoVPPhE7qGgZvdualfQsaGy1RsMu4aTYy4NoBPRFNddqwxt1LSePKCBsg4/vLYfC3AF6/nPrhjeFyVJmaJSxk9nchMy/DQ4CzI2PiMOi/Dh4OL0P/nUtim3j8PMK+Vp46ff8TLwDIYIf1UULKC/sUKTTqkFyD160/tM4kRFmewXqZceeWiTUGeE8rONDfc86I/gVDd16ug19IjmoQYpLh4f5y9y6enkxVFHzfrUDhap75WYQYw5Z7mWlHbIFH+FSwZkgyfWIYJnggzSR+BQQpRzaMRgMHlY8Cjb1sg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from MN0PR11MB6135.namprd11.prod.outlook.com (2603:10b6:208:3c9::9)
+ by CY8PR11MB7268.namprd11.prod.outlook.com (2603:10b6:930:9b::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9275.13; Wed, 29 Oct
+ 2025 09:00:13 +0000
+Received: from MN0PR11MB6135.namprd11.prod.outlook.com
+ ([fe80::3225:d4ad:74a:6d7a]) by MN0PR11MB6135.namprd11.prod.outlook.com
+ ([fe80::3225:d4ad:74a:6d7a%4]) with mapi id 15.20.9275.013; Wed, 29 Oct 2025
+ 09:00:13 +0000
+Date: Wed, 29 Oct 2025 10:00:11 +0100
+From: Piotr =?utf-8?Q?Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>
+To: Michal Wajdeczko <michal.wajdeczko@intel.com>
+CC: <intel-xe@lists.freedesktop.org>, Lucas De Marchi
+ <lucas.demarchi@intel.com>
+Subject: Re: [PATCH v2 03/17] drm/xe/pf: Add _locked variants of the VF EQ
+ config functions
+Message-ID: <20251029090011.uu3xvfjhjvsrtqmq@intel.com>
+References: <20251028175832.184534-1-michal.wajdeczko@intel.com>
+ <20251028175832.184534-4-michal.wajdeczko@intel.com>
+ <20251029084707.htvoaxto2ul7axjk@intel.com>
+Content-Type: text/plain; charset="utf-8"
 Content-Disposition: inline
-In-Reply-To: <20251028222817.3290035-1-khaled.almahallawy@intel.com>
-X-Proofpoint-GUID: zPvtyqlQoTzOZuSL9se1JJhjoTpslbC9
-X-Proofpoint-ORIG-GUID: zPvtyqlQoTzOZuSL9se1JJhjoTpslbC9
-X-Authority-Analysis: v=2.4 cv=A5dh/qWG c=1 sm=1 tr=0 ts=6901d6fc cx=c_pps
- a=50t2pK5VMbmlHzFWWp8p/g==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=x6icFKpwvdMA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=QyXUC8HyAAAA:8 a=EUspDBNiAAAA:8 a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8
- a=rHtxkZaJ8jImS8H9yjEA:9 a=CjuIK1q_8ugA:10 a=IoWCM6iH3mJn3m4BftBB:22
- a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDI5MDA2NiBTYWx0ZWRfX/ePl5rF8WAu3
- amXUob5Hd098peWFAgu2jiiLRNg2q8GvhF+jlM4RuaB9JtIMYpm+KszeL59HIdNfG875CyjNfyY
- eEFC+2KEcOoXH24s8152NiVYHgvZ2norEkgDV4PcRtZwcHJ+TuhXJJCt8i10+Mv28xtsOHngR8I
- dBnVKF+6a06QyZEWg4a/1dUWDAjqkhjrEP0SuMQbABU1zY+i6UaoyYavijmpNUjhAr9G9USQGlu
- cBQsVnf028m1gLbpbJYX36seU3qNVmyi2u3oiEslmXAFGjfHMwxmopAAHHTQyFFdQFcWCJ3ZaRr
- VmGv47MQH8jYZteqB1nSlZM34lBj1PbwJr6ihobBQWngEKcxPu7lKt6D90vo6vtfnXTJmErc2Am
- B6DsjkS78wSP46RE27xTmNwFyUDI1g==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-10-29_04,2025-10-22_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 priorityscore=1501 spamscore=0 bulkscore=0 impostorscore=0
- clxscore=1015 malwarescore=0 adultscore=0 lowpriorityscore=0 suspectscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2510290066
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20251029084707.htvoaxto2ul7axjk@intel.com>
+X-ClientProxiedBy: DU2PR04CA0279.eurprd04.prod.outlook.com
+ (2603:10a6:10:28c::14) To MN0PR11MB6135.namprd11.prod.outlook.com
+ (2603:10b6:208:3c9::9)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MN0PR11MB6135:EE_|CY8PR11MB7268:EE_
+X-MS-Office365-Filtering-Correlation-Id: 026c8301-4f0f-4693-190d-08de16c9929b
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?VWNRdWFlUEVyNWxrWHZzdHo2MGQ2RnlYaU1qWndycXZYUVpoR2liTUtsYzFE?=
+ =?utf-8?B?UjdFb2dzWVVRT05wNWhNVlZGYWt3SnZFMTIvei9QdktVTmxiQWFTYUZjWisz?=
+ =?utf-8?B?dWxkbHFPWndySWE2TmtQQk0vZTE4QU1DUHFBRTd4SzNIa3RVUTFuakdKakpH?=
+ =?utf-8?B?d1dlVm1vdFR2bjJjVzcyOXNOSHV2T2FjOGRjOFBFL3UrelowWlFwci9hZTlR?=
+ =?utf-8?B?ZE1kRGdwSmpaWk5lRG5lbG1KVngxQk1DN1BBZDJUSEVGVUVsWlMyZ000L2ZO?=
+ =?utf-8?B?M216aEhFYzFZbUQwYmhVaE9yMjg3V2EzSGZsRSt4WUFESU1mNHBGYjdaZDFy?=
+ =?utf-8?B?bUtydU5kaHFES3ZDMS9QZ2l0US9PdlROSzdvV2J6Y2pXQ3l0K3hkZkduU21M?=
+ =?utf-8?B?Q2d2YXdUY0JVd1FjemxXUFNGVE52akgyVFFHek1NMXRIMlg4MDNkZlVGaUVl?=
+ =?utf-8?B?c3gwVExUR0FFWTBlQ0tISWZoNXJZYjRMU2lWVGNNTUdZT1laUVlUcjJIWmVU?=
+ =?utf-8?B?Vy8wWER3dTMzT3A5djNaYm00aGNIaWVYN3lkdXlabm1oTEh4cWozTzVPdDlG?=
+ =?utf-8?B?VGZtc0MvUkpoSjFDSXkzYmJyRjU0UjJyTHJKTmNHdDJ0bk5NMGU0RjhOdWht?=
+ =?utf-8?B?KzB1NGpTT0V5SmRuWEpzS3d6ZXgyZ1lCN0JMbTNHVnYzN0l4WjRZL3M3b095?=
+ =?utf-8?B?SGRmVDZrQk5SaWJVRTZYUlpGSkpSSTlOVXNpdExmNXlpTFlSZm5GYThhZ3Uv?=
+ =?utf-8?B?dWZYam43ZWxwei9wYm1PNmJlMy9TOENmYVNyOFAyWXMxMlg3Mk44ZmZOWjB0?=
+ =?utf-8?B?MWFEQmhQdDJKK0kvRVJUOTA2dUczdHQ4WCsrSjRVTzUxbWNKMld1NDJ6blpq?=
+ =?utf-8?B?K08wRGx0ZXBmS3E5RVJPZzZGcDZ1cVdydEt3a1lYSlZ0MGdnNHVZMjlIWHFV?=
+ =?utf-8?B?b2FKYXVtWG16bVNWMjVJQmY1ZWRsTzNMNld6d2xTbEJmcWVRK0lqd240d1VV?=
+ =?utf-8?B?NjhCaTNLcnh2ZE1OY1VBSWlZV3F4azVocGlScys1NWVUc2ppRm9GeXlra2ZP?=
+ =?utf-8?B?QlZZZ2I4TXBoMDc5bEFhYyt5N2ZRVUdiR3pTZ2ozOTNmTE83ZEVnWS9CNVgw?=
+ =?utf-8?B?WHhwd211Mmcwc0JjdlZhM1FXcGc0WnUzemJJVzBEQUMxMjhpZ0o1YWFlZisy?=
+ =?utf-8?B?OGFPZDZPWXBWRENBUWVTQUFoMTVtUm9kenhnRVArenRGT3h0b0xMd1BuUkZw?=
+ =?utf-8?B?YUlxd0YvV2VQbnAvVmMzVlZhZ21xTzJOTWRHWVRnVHViSEVrVXRTSjR5UFl4?=
+ =?utf-8?B?SERZZGJ5TnQxekJQeXlZTUs0YUtESEE3VEdGbUJuTFdHZ2YvYktTY1RST2t4?=
+ =?utf-8?B?YmJqNFN5NVN3c0pjQ2w3cjNKcWQxZlB4ekNOazAwQm5UeTMyMytRSzZjMDBK?=
+ =?utf-8?B?NGd1N1VvQzFldDk2cnpLUnVpRWpab213LzRkVDdvUGhIMHNVaTB1bjl4NFZN?=
+ =?utf-8?B?cG9ObW1BdUxNc2lCQ3R1YUg2RXdTc3lva2p3YmdCa24xK1ZhN1hkUGNvckp3?=
+ =?utf-8?B?RjNvTXVmOEVUVDRMV1ovSWVIMGN1QzFVVXF6LytIYVg1eTdEYlZoYUZURWY4?=
+ =?utf-8?B?amU4WnVnK055dzRzcHd5WFJzd3FBazVCRXc3Y09MRWVNK2c0SnZ0aHRBOHF0?=
+ =?utf-8?B?ckUzMnluQTYxT0tBUG1td05lQkZZaG1HLzRQczJEbWtER3lITXR6cjF5ampD?=
+ =?utf-8?B?dTNtM0p5VENTcGI2V0ZZcUxXRzBkNnRNK1ZNcFhhaG53UEdtWEQ1SWZqRFJn?=
+ =?utf-8?B?ZkI3amV4T1dUWnhOL0Y3azhTWEZFcGIyaDZ1R2ZjRFlDWDlXNHJTeGkxNDVF?=
+ =?utf-8?B?YW1xVWtRc0lFTDFRVEJRRHliamdlUVZFQjJkZlRqckQxVmpNUURQWnc2ZkVa?=
+ =?utf-8?Q?3dohXE3LV7fpMAk7vSi71FWsdenm1B4d?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MN0PR11MB6135.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UFk5Z3kvVkN1TGd5a202cGdGOWR3TTBGTlBPNmNiRVhjdGxGdmRIRS9KeFJS?=
+ =?utf-8?B?Y1ZyWGE4ZENQTS8yZysrcjJVdkU1dTYvK1JaNnRycHh4SmZOSXV5N01wT0J4?=
+ =?utf-8?B?NUZUeWlIa2JHMkhyRTlkZzIvaGVKb0xWK1d0SVdIMnk3R0xMd01nL2JPV0VW?=
+ =?utf-8?B?MWlsSnU2UVJNMXFNaHJtc1dFU0s1S0dwdDRDTzhwV0EybXRLUVF6aGY5aStm?=
+ =?utf-8?B?U2U4elZnVXNNTC9jT2czeVpYdTBzY21qaUpobmJ0Zlo1UjJsb2o5Z3FBdHkw?=
+ =?utf-8?B?K1BhUTBOM2VnTjNnR2wzTWg4MW5MbVBHU3AvYUx4VElxQWllMjYzS0tlTWpS?=
+ =?utf-8?B?aGNab3dqSWVFeGE3bm5FS3ZmaERFbytybFhqUDFXbkVreW1YVVN4Q0taa1k3?=
+ =?utf-8?B?MkFyb3pRcXV5SHJlUEcrYkpmMVAyaFo2UEhJQnptTDFFczBqZkN5NkkzYVlo?=
+ =?utf-8?B?K3RLYXZ4MUI5eFQvbk05WEpqWGdQNnduVkNTVHhWeExDdUpKdDJ0RHpiSVB2?=
+ =?utf-8?B?THFOTmJmZG5TWnF0bmllbHNqbytDTU1qYkpYNXpudnVwMVVxaHdJK01wRjZ0?=
+ =?utf-8?B?MlNHTGhPSVpxVHFzbTZWQjVZL0JtNXpyY1NjVkdLL0Zvd09URnh1TGFSQlVn?=
+ =?utf-8?B?RlBUd1lyS2RadkJGQ2UyeU1WMjlOVjdmaHkxdVN6Nmw0TGROQmpJMjgzeWxY?=
+ =?utf-8?B?dHNGSDlmbVdlcjJOeUZDdFFMWHkzd0s3bkNlNTRNZWJ0c2EwMjVERjFIMDYz?=
+ =?utf-8?B?Rk53Y2pBNWMyVHRXcEVXY1pkc1VzSFR4RDYwT3B1aXVBalpoZEd1YVZEaTlD?=
+ =?utf-8?B?SEhDZE50b1lhdE9SbmdFREtXUXU2bU9WQ0VZUHZpNmhkT2FQamU0WVpmbEpQ?=
+ =?utf-8?B?Y1RFeXo0QUNsQ0tueDZ6ei9mL0NOcCsxa2dILzNQWkVoQmdINTgzL2NJTStm?=
+ =?utf-8?B?RGVRUWZKVTlsUzBHeXRWVjBXQWpvK3R5OUxDQzBzejcxSXVxUktCZTFTaGNX?=
+ =?utf-8?B?aWs5V3pmejB0dU13UGhuY3Yvc2F6TXoveTVOUldJb1AyUTAxZFBwVzFJWGFk?=
+ =?utf-8?B?YWd0SkRrellyZlpQZ3lIV01SMW8rVTl1ZWdtRzhUU2JMcG9jb016SnRkZm1v?=
+ =?utf-8?B?OVJPajErNnl4dDRmQUFZeFF1djJmTGFQcXVLRXFWS1JnYVBUQ2N1Njlqc3hW?=
+ =?utf-8?B?VitUMk5sRUFHK2U3bWMvVjRoTEprTDM4WHcxSEYxUDVPUU9YckVNajlpZWNt?=
+ =?utf-8?B?WFVrZ1pxTnBPQkhJOEVhN2pZUnlkYkhUaUZMV0pzTlYzcHNlTlZKNWU4dDZ1?=
+ =?utf-8?B?dlI1c3gxVEJMRHhtM3kvNFc5TmJHU0xOc2NLL0M1U21IaXZLYzJPMVhCSERD?=
+ =?utf-8?B?b0FxUkhDVGhNTDJ5RU5SR0ZMMFdWM2ExbTdlQkVVenVTL0hWbHAvaGdJeWw0?=
+ =?utf-8?B?aW1EWjlRNzVXblBrS0E1dUM4MExIaWhyZ1FTVHlONmhZQStacitPNkNNM2RU?=
+ =?utf-8?B?cnRVb0tDZVE4VWtRbXNIZW1jTjhIbGZMWkxVRzhzYVV2emJ3NjNKWWp3all1?=
+ =?utf-8?B?dW5NR2hUQ0JXRmhINnNRUHY1blJZcjFWTERRdUxIT2FXMzhtSnk1KzIySnl1?=
+ =?utf-8?B?azBHbW1VMks1cDBibkoxK3FsSFBiQWhjOVIxc1FsQWtZdUhBRGkzaEMyMnhj?=
+ =?utf-8?B?ZGd4NEM4NnoyQmpMZmRCRDErTTdRWHU1VHE4dmV6TmlQWkJTNUxqY0xhT0hs?=
+ =?utf-8?B?N1NhMEdBbVZ2b01pV2xTcTRra0oxN2ZpZ2V2MURyNDFRcjlpdjJhTGZzQ2Fr?=
+ =?utf-8?B?UEdMNG85VE1laXRyVmppeWJGU1FsUy9OeDljY0R6dm04cVFvbStHdklLU1Ni?=
+ =?utf-8?B?WnRzNVBReFg5bXp4czErQ1lqcklaK0Z6Lzk0bjh1SU5pbFo4eWtqSzBENjE4?=
+ =?utf-8?B?UmU3a08reVFkMnBUVU9SQ21hRUltZXFHQW9YdDB3WDJzK2ViQ2xjWkxiVkxO?=
+ =?utf-8?B?c0ZWb2R5Mm50VXREbU1NV1dIcGNMOWg4L0dFSFFKUzVqVHBpRm82TnpQSFVi?=
+ =?utf-8?B?VnR2QWpkYmhpb1AzaTFmMUZnczQvQ3lBV2lGUXVVNnJHNkZIWHFWOUdEOFQ0?=
+ =?utf-8?B?M01rR01HTmdmcXZhRlF1dGdaOXB4QWozSzVITitGMStBbzI4U25BdHpRMFRl?=
+ =?utf-8?B?elE9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 026c8301-4f0f-4693-190d-08de16c9929b
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6135.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Oct 2025 09:00:13.8106 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: r0fITWkRHi1rYwjrUcLG8mVJTc1UmCFLEK8Br4lct2maiHxfIFjAGsQNjSPdRXlHqp+G7xFfjpcRvgIvb2XekSyMOaV8HfWzImxBqjb5VVE=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB7268
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -143,27 +197,155 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Oct 28, 2025 at 03:28:17PM -0700, Khaled Almahallawy wrote:
-> The DP_TEST_LINK_FAUX_PATTERN field was deprecated in the DP 1.3 spec.
-> Update its name to align with the DP 2.1 definition and reflect its
-> actual use in the code. No functional changes.
+Piotr Piórkowski <piotr.piorkowski@intel.com> wrote on śro [2025-paź-29 09:47:07 +0100]:
+> Michal Wajdeczko <michal.wajdeczko@intel.com> wrote on wto [2025-paź-28 18:58:17 +0100]:
+> > In upcoming patches we will want to configure VF's execution
+> > quantum (EQ) on all GTs under single lock to avoid potential
+> > races in parallel GT configuration attempts.
+> > 
+> > Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+> > Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+> > ---
+> >  drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c | 58 +++++++++++++++++-----
+> >  drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h |  4 ++
+> >  2 files changed, 49 insertions(+), 13 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
+> > index c0c0215c0703..717f81e76b8c 100644
+> > --- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
+> > +++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
+> > @@ -1732,29 +1732,65 @@ static int pf_get_exec_quantum(struct xe_gt *gt, unsigned int vfid)
+> >  }
+> >  
+> >  /**
+> > - * xe_gt_sriov_pf_config_set_exec_quantum - Configure execution quantum for the VF.
+> > + * xe_gt_sriov_pf_config_set_exec_quantum_locked() - Configure execution quantum of the VF.
+> >   * @gt: the &xe_gt
+> >   * @vfid: the VF identifier
+> >   * @exec_quantum: requested execution quantum in milliseconds (0 is infinity)
+> >   *
+> > - * This function can only be called on PF.
+> > + * This function can only be called on PF with the master mutex hold.
+> > + * It will log the provisioned value or an error in case of the failure.
+> >   *
+> >   * Return: 0 on success or a negative error code on failure.
+> >   */
+> > -int xe_gt_sriov_pf_config_set_exec_quantum(struct xe_gt *gt, unsigned int vfid,
+> > -					   u32 exec_quantum)
+> > +int xe_gt_sriov_pf_config_set_exec_quantum_locked(struct xe_gt *gt, unsigned int vfid,
+> > +						  u32 exec_quantum)
+> >  {
+> >  	int err;
+> >  
+> > -	mutex_lock(xe_gt_sriov_pf_master_mutex(gt));
+> > +	lockdep_assert_held(xe_gt_sriov_pf_master_mutex(gt));
+> > +
+> >  	err = pf_provision_exec_quantum(gt, vfid, exec_quantum);
+> > -	mutex_unlock(xe_gt_sriov_pf_master_mutex(gt));
+> >  
+> >  	return pf_config_set_u32_done(gt, vfid, exec_quantum,
+> > -				      xe_gt_sriov_pf_config_get_exec_quantum(gt, vfid),
+> > +				      pf_get_exec_quantum(gt, vfid),
+> >  				      "execution quantum", exec_quantum_unit, err);
+> >  }
+> >  
+> > +/**
+> > + * xe_gt_sriov_pf_config_set_exec_quantum - Configure execution quantum for the VF.
+> > + * @gt: the &xe_gt
+> > + * @vfid: the VF identifier
+> > + * @exec_quantum: requested execution quantum in milliseconds (0 is infinity)
+> > + *
+> > + * This function can only be called on PF.
+> > + * It will log the provisioned value or na error in case of the failure.
 > 
-> Cc: Jani Nikula <jani.nikula@intel.com>
-> Cc: Rob Clark <robin.clark@oss.qualcomm.com>
-> Cc: Dmitry Baryshkov <lumag@kernel.org>
-> Cc: Abhinav Kumar <quic_abhinavk@quicinc.com>
-> Cc: Sean Paul <sean@poorly.run>
-> Signed-off-by: Khaled Almahallawy <khaled.almahallawy@intel.com>
-> ---
->  drivers/gpu/drm/msm/dp/dp_link.c | 2 +-
->  include/drm/display/drm_dp.h     | 2 +-
->  2 files changed, 2 insertions(+), 2 deletions(-)
+> typo: na -> an
+> > + *
+> > + * Return: 0 on success or a negative error code on failure.
+> > + */
+> > +int xe_gt_sriov_pf_config_set_exec_quantum(struct xe_gt *gt, unsigned int vfid,
+> > +					   u32 exec_quantum)
+> > +{
+> > +	guard(mutex)(xe_gt_sriov_pf_master_mutex(gt));
+> > +
+> > +	return xe_gt_sriov_pf_config_set_exec_quantum_locked(gt, vfid, exec_quantum);
+> > +}
+> > +
+> > +/**
+> > + * xe_gt_sriov_pf_config_get_exec_quantum_locked() - Get VF's execution quantum.
+> > + * @gt: the &xe_gt
+> > + * @vfid: the VF identifier
+> > + *
+> > + * This function can only be called on PF with the master mutex hold.
+> > + *
+> > + * Return: VF's (or PF's) execution quantum in milliseconds.
+> > + */
+> > +u32 xe_gt_sriov_pf_config_get_exec_quantum_locked(struct xe_gt *gt, unsigned int vfid)
+> > +{
+> > +	lockdep_assert_held(xe_gt_sriov_pf_master_mutex(gt));
+> > +
+> > +	return pf_get_exec_quantum(gt, vfid);
 > 
+> NIT: Perhaps it would have been better to be consistent and call it the locked version here.
+> 
+> > +}
+> > +
+> >  /**
+> >   * xe_gt_sriov_pf_config_get_exec_quantum - Get VF's execution quantum.
+> >   * @gt: the &xe_gt
+> > @@ -1766,13 +1802,9 @@ int xe_gt_sriov_pf_config_set_exec_quantum(struct xe_gt *gt, unsigned int vfid,
+> >   */
+> >  u32 xe_gt_sriov_pf_config_get_exec_quantum(struct xe_gt *gt, unsigned int vfid)
+> >  {
+> > -	u32 exec_quantum;
+> > +	guard(mutex)(xe_gt_sriov_pf_master_mutex(gt));
+> >  
+> > -	mutex_lock(xe_gt_sriov_pf_master_mutex(gt));
+> > -	exec_quantum = pf_get_exec_quantum(gt, vfid);
+> > -	mutex_unlock(xe_gt_sriov_pf_master_mutex(gt));
+> > -
+> > -	return exec_quantum;
+> > +	return pf_get_exec_quantum(gt, vfid);
+> >  }
+> >  
+> >  static const char *preempt_timeout_unit(u32 preempt_timeout)
+> > diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h
+> > index 513e6512a575..b4beb5a97031 100644
+> > --- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h
+> > +++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h
+> > @@ -40,6 +40,10 @@ int xe_gt_sriov_pf_config_bulk_set_lmem(struct xe_gt *gt, unsigned int vfid, uns
+> >  u32 xe_gt_sriov_pf_config_get_exec_quantum(struct xe_gt *gt, unsigned int vfid);
+> >  int xe_gt_sriov_pf_config_set_exec_quantum(struct xe_gt *gt, unsigned int vfid, u32 exec_quantum);
+> >  
+> > +u32 xe_gt_sriov_pf_config_get_exec_quantum_locked(struct xe_gt *gt, unsigned int vfid);
+> > +int xe_gt_sriov_pf_config_set_exec_quantum_locked(struct xe_gt *gt, unsigned int vfid,
+> > +						  u32 exec_quantum);
+> > +
+> >  u32 xe_gt_sriov_pf_config_get_preempt_timeout(struct xe_gt *gt, unsigned int vfid);
+> >  int xe_gt_sriov_pf_config_set_preempt_timeout(struct xe_gt *gt, unsigned int vfid,
+> >  					      u32 preempt_timeout);
+> 
+> but anyway it looks good:
+> Reviewed-by: Piotr Piórkowski <piotr.piorkowski@intel.com>
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+one more comment about kernel-doc:
+You are inconsistent when writing function names in kernel-doc. Sometimes you use
+parentheses and sometimes you don't:
 
-Would you prefer to merge this through drm-misc-next or through msm-next?
++ * xe_gt_sriov_pf_config_set_exec_quantum - Configure execution quantum for the VF.
+vs
++ * xe_gt_sriov_pf_config_get_exec_quantum_locked() - Get VF's execution quantum.
+
+Based on https://docs.kernel.org/doc-guide/kernel-doc.html#function-documentation
+I assume that the version with parentheses is correct.
+
+Thanks,
+Piotr
+
+> 
+> > -- 
+> > 2.47.1
+> > 
+> 
+> -- 
 
 -- 
-With best wishes
-Dmitry
