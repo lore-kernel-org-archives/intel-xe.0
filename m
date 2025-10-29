@@ -4,26 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C598CCCF9EB
-	for <intel-xe@archiver.kernel.org>; Wed, 29 Oct 2025 14:25:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0FC80CCF9F0
+	for <intel-xe@archiver.kernel.org>; Wed, 29 Oct 2025 14:32:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5C3FE10E151;
-	Wed, 29 Oct 2025 14:25:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C7F0210E151;
+	Wed, 29 Oct 2025 14:32:11 +0000 (UTC)
 Received: from 97596180aaec (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 26BAF10E209;
- Wed, 29 Oct 2025 14:25:39 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8200404741908287981=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5C96010E151;
+ Wed, 29 Oct 2025 14:32:10 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Kconfig_updates_for_MEI?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm=3A_replace_drm=5Fprin?=
+ =?utf-8?q?t=2Eh_includes_from_headers_with_a_forward_declaration_=28rev3=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Simon Richter" <simon.richter@hogyros.de>
+To: "Jani Nikula" <jani.nikula@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 29 Oct 2025 14:25:39 -0000
-Message-ID: <176174793915.68366.8661571801701416161@97596180aaec>
+Date: Wed, 29 Oct 2025 14:32:10 -0000
+Message-ID: <176174833035.68558.11375926924799660570@97596180aaec>
 X-Patchwork-Hint: ignore
-References: <20251029102153.419347-1-Simon.Richter@hogyros.de>
-In-Reply-To: <20251029102153.419347-1-Simon.Richter@hogyros.de>
+References: <cover.1761734313.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1761734313.git.jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,102 +40,53 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8200404741908287981==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: Kconfig updates for MEI
-URL   : https://patchwork.freedesktop.org/series/156731/
-State : success
+Series: drm: replace drm_print.h includes from headers with a forward declaration (rev3)
+URL   : https://patchwork.freedesktop.org/series/156268/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-4002-1a9600afa443248d01701fd489012edcfdc3e128_BAT -> xe-pw-156731v1_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+f867e605613af1770f90c4b0afd4a8f06424d1f0
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 8ed7b8b50a41090a067434da4187346ee1dab217
+Author: Jani Nikula <jani.nikula@intel.com>
+Date:   Wed Oct 29 12:39:48 2025 +0200
 
-Summary
--------
+    drm/ttm: replace drm_print.h include with a forward declaration
+    
+    The ttm/ttm_resource.h header does not really need anything from
+    drm_print.h. A simple forward declaration for struct drm_printer is
+    sufficient.
+    
+    An explicit drm_print.h include has previously been added to all the
+    files that indirectly depended on this include.
+    
+    v3: Only remove the include here (Thomas)
+    
+    Cc: Thomas Zimmermann <tzimmermann@suse.de>
+    Signed-off-by: Jani Nikula <jani.nikula@intel.com>
++ /mt/dim checkpatch c96b6fcb185b5fd5ebc9ea5d788a94a0f477d4ae drm-intel
+bb9599d1d497 drm: include drm_print.h where needed
+-:1927: WARNING:SPDX_LICENSE_TAG: Misplaced SPDX-License-Identifier tag - use line 1 instead
+#1927: FILE: drivers/gpu/drm/i915/i915_getparam.c:2:
+  * SPDX-License-Identifier: MIT
 
-  **SUCCESS**
+-:3819: WARNING:OBSOLETE: drivers/gpu/drm/tiny/cirrus-qemu.c is marked as 'obsolete' in the MAINTAINERS hierarchy.  No unnecessary modifications please.
 
-  No regressions found.
+-:3822: WARNING:OBSOLETE: drivers/gpu/drm/tiny/cirrus-qemu.c is marked as 'obsolete' in the MAINTAINERS hierarchy.  No unnecessary modifications please.
 
-  
-
-Participating hosts (13 -> 13)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-4002-1a9600afa443248d01701fd489012edcfdc3e128 -> xe-pw-156731v1
-
-  IGT_8600: 8600
-  xe-4002-1a9600afa443248d01701fd489012edcfdc3e128: 1a9600afa443248d01701fd489012edcfdc3e128
-  xe-pw-156731v1: 156731v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156731v1/index.html
-
---===============8200404741908287981==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+total: 0 errors, 3 warnings, 0 checks, 2732 lines checked
+29cf0db1a9e5 drm/buddy: replace drm_print.h include with a forward declaration
+c4ad3b6becf6 drm/mm: replace drm_print.h include with a forward declaration
+8ed7b8b50a41 drm/ttm: replace drm_print.h include with a forward declaration
 
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Kconfig updates for MEI</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/156731/">https://patchwork.freedesktop.org/series/156731/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156731v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156731v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4002-1a9600afa443248d01701fd489012edcfdc3e128_BAT -&gt; xe-pw-156731v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4002-1a9600afa443248d01701fd489012edcfdc3e128 -&gt; xe-pw-156731v1</li>
-</ul>
-<p>IGT_8600: 8600<br />
-  xe-4002-1a9600afa443248d01701fd489012edcfdc3e128: 1a9600afa443248d01701fd489012edcfdc3e128<br />
-  xe-pw-156731v1: 156731v1</p>
-
-</body>
-</html>
-
---===============8200404741908287981==--
