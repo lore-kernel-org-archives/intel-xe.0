@@ -4,52 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7980ACCF9F0
-	for <intel-xe@archiver.kernel.org>; Wed, 29 Oct 2025 14:45:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 66FCFCCF9EB
+	for <intel-xe@archiver.kernel.org>; Wed, 29 Oct 2025 14:49:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3DA0E10E7D8;
-	Wed, 29 Oct 2025 14:45:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1554610E1F7;
+	Wed, 29 Oct 2025 14:49:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="U85Uuf0y";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="moayzCG/";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ABB4510E7D8
- for <intel-xe@lists.freedesktop.org>; Wed, 29 Oct 2025 14:45:13 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DFEF610E1F7;
+ Wed, 29 Oct 2025 14:49:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761749114; x=1793285114;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=DKwc9AGp69Eh27W82dIdWBNr2ZWL8ar5vZs6FZ/4ppI=;
- b=U85Uuf0yoMHxeeD/7x6KvOIj+YX8tqKzqLuczjZDqNM0orPBxGxRM+U5
- f18KbScYm0AcQqpztKLqgP3C/2DP67RBuNK0W+fLFjcfZctTYooW8h6rO
- 12WjoTKtIoceIFA82arjF51yYrbCq8hkHzyUFkuTAODYC/6nK3qZO3Lqe
- EaFba/DPfQZcBnPaxfbI/I2rGk2YqKgqeg+NtukWG/9He5P2/WYzbaJGM
- WcIbAE56qbV7/8QpiNRfWc6WnuCiDcBl23S34P4cGGOePl9slGt+thzji
- 4CZihEbUkrFNx3gi8I5S1/NeVIUSeSt2mHSseHFYeTmiNClN2KD7wu/60 g==;
-X-CSE-ConnectionGUID: pY8HdkBESlOZC38qWngJyg==
-X-CSE-MsgGUID: hLUmKqcYRbKAIRXP/ztxYQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="67709087"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="67709087"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Oct 2025 07:45:13 -0700
-X-CSE-ConnectionGUID: V/+XhfHtTfS947rr4GiMVQ==
-X-CSE-MsgGUID: BPb1lOjfRzSabriIz8M6lg==
+ t=1761749393; x=1793285393;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=oLKa+BkC9q63ry23Dxr1e52bDl08K1Hhied9l9q94Ak=;
+ b=moayzCG/96ptHQfNfPHxAD8x5SKcpdMbm1oazG+34GI1/uwZksDJlMwN
+ 6p1TNMH2cNkSr0Q23gXSbWpN/A4VxeuNRiQXuN/xlEZpxpkef5COCZkOh
+ rW2cRuOHy8vGVMGTxOncbJIsuTjjGCZ+V4G5yaer5SxDafBfc2KZGbA/A
+ 1vha3p9x4ywDghxMT1QdFIEKnER4o7IV/Ta89uQoPCceOF6DjT311g5Wh
+ P2AYfBYUHXFyBaDX8NZwb6guRm4H23+9BUsQrmT25/64MMHKabi4rd67e
+ 5y/SdA2QedoovDKOOJ9wyfxs2qqnOo55c80+aWgnN4nX425WlwXt4sfbW A==;
+X-CSE-ConnectionGUID: vEE1fK2ER0CTpRhYe8fRaQ==
+X-CSE-MsgGUID: bagqI6WPShmZtVFJpfZ/Lg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11597"; a="74162304"
+X-IronPort-AV: E=Sophos;i="6.19,264,1754982000"; d="scan'208";a="74162304"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Oct 2025 07:49:53 -0700
+X-CSE-ConnectionGUID: AhZikK9OT1ahWrMzFGXvwA==
+X-CSE-MsgGUID: PbEhXrLJQBaoS6cv5lso/A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,264,1754982000"; d="scan'208";a="186033964"
-Received: from vpanait-mobl.ger.corp.intel.com (HELO mwauld-desk.intel.com)
- ([10.245.245.48])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Oct 2025 07:45:12 -0700
-From: Matthew Auld <matthew.auld@intel.com>
-To: intel-xe@lists.freedesktop.org
-Subject: [CI v5] verbose p2p
-Date: Wed, 29 Oct 2025 14:45:05 +0000
-Message-ID: <20251029144504.199716-2-matthew.auld@intel.com>
-X-Mailer: git-send-email 2.51.0
+X-IronPort-AV: E=Sophos;i="6.19,264,1754982000"; d="scan'208";a="189750973"
+Received: from egrumbac-mobl6.ger.corp.intel.com (HELO [10.245.245.28])
+ ([10.245.245.28])
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Oct 2025 07:49:50 -0700
+Message-ID: <4e6b06069f77aee5cf7153e0ac0cf1a30c1327a0.camel@linux.intel.com>
+Subject: Re: [PATCH 03/15] drm/pagemap, drm/xe: Manage drm_pagemap provider
+ lifetimes
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Matthew Brost <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+ himal.prasad.ghimiray@intel.com, apopple@nvidia.com, airlied@gmail.com,
+ Simona Vetter <simona.vetter@ffwll.ch>, felix.kuehling@amd.com, Christian
+ =?ISO-8859-1?Q?K=F6nig?=	 <christian.koenig@amd.com>, dakr@kernel.org,
+ "Mrozek, Michal"	 <michal.mrozek@intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>
+Date: Wed, 29 Oct 2025 15:49:47 +0100
+In-Reply-To: <aQFjzTpZwYaytZqB@lstrano-desk.jf.intel.com>
+References: <20251025120412.12262-1-thomas.hellstrom@linux.intel.com>
+ <20251025120412.12262-4-thomas.hellstrom@linux.intel.com>
+ <aQFjzTpZwYaytZqB@lstrano-desk.jf.intel.com>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.54.3 (3.54.3-2.fc41) 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,73 +77,346 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Do not review.
+On Tue, 2025-10-28 at 17:46 -0700, Matthew Brost wrote:
+> On Sat, Oct 25, 2025 at 02:04:00PM +0200, Thomas Hellstr=C3=B6m wrote:
+> > Even if the drm_pagemap provider has released its reference on
+> > the drm_pagemap, references may be held by still active pages.
+> > Ensure that we hold a reference on the provider drm device and
+> > modules for as long as we might need to use the drm_pagemap ops.
+> >=20
+>=20
+> Just to make sure I=E2=80=99m understanding this correctly =E2=80=94 this=
+ is intended
+> to
+> guard against the devm action [1] running while a device is still
+> holding references to another device=E2=80=99s pages, right?
+>=20
+> [1]
+> https://elixir.bootlin.com/linux/v6.17.5/source/kernel/resource.c#L1993
 
-Signed-off-by: Matthew Auld <matthew.auld@intel.com>
----
- drivers/gpu/drm/xe/xe_dma_buf.c | 2 +-
- drivers/iommu/intel/iommu.c     | 4 ++--
- drivers/pci/p2pdma.c            | 4 ++++
- 3 files changed, 7 insertions(+), 3 deletions(-)
+Actually removing the dev_pagemap and its region is allowed while
+another device holds a reference on the *drm_pagemap*. For example if
+you have two devices. Device 0 executes from the memory of device 1.
+Suddenly you feel like offlining / unbinding device 1. When you execute
+unbind, the driver evicts all SVM bos and thereby frees all device-
+private pages. But device 0 still has a reference to the drm_pagemap,
+even if it's unusable: Any VRAM migration trying to use the drm_pagemap
+will error with -ENODEV, so depending on how the driver handles that,
+it will continue executing out of another memory region. At this point
+it would've been possible without this code to rmmod the drm_pagemap
+provider device module, and its drm device would've been freed without
+this code, and when drm_pagemap_put() eventually is called, things go
+boom. So the commit message is a bit misleading.
 
-diff --git a/drivers/gpu/drm/xe/xe_dma_buf.c b/drivers/gpu/drm/xe/xe_dma_buf.c
-index 54e42960daad..b047251674ea 100644
---- a/drivers/gpu/drm/xe/xe_dma_buf.c
-+++ b/drivers/gpu/drm/xe/xe_dma_buf.c
-@@ -28,7 +28,7 @@ static int xe_dma_buf_attach(struct dma_buf *dmabuf,
- 	struct drm_gem_object *obj = attach->dmabuf->priv;
- 
- 	if (attach->peer2peer &&
--	    pci_p2pdma_distance(to_pci_dev(obj->dev->dev), attach->dev, false) < 0)
-+	    pci_p2pdma_distance(to_pci_dev(obj->dev->dev), attach->dev, true) < 0)
- 		attach->peer2peer = false;
- 
- 	if (!attach->peer2peer && !xe_bo_can_migrate(gem_to_xe_bo(obj), XE_PL_TT))
-diff --git a/drivers/iommu/intel/iommu.c b/drivers/iommu/intel/iommu.c
-index e236c7ec221f..af07c4355b64 100644
---- a/drivers/iommu/intel/iommu.c
-+++ b/drivers/iommu/intel/iommu.c
-@@ -65,7 +65,7 @@ static int rwbf_quirk;
-  */
- static int force_on = 0;
- static int intel_iommu_tboot_noforce;
--static int no_platform_optin;
-+static int no_platform_optin = 1;
- 
- #define ROOT_ENTRY_NR (VTD_PAGE_SIZE/sizeof(struct root_entry))
- 
-@@ -203,7 +203,7 @@ static LIST_HEAD(dmar_satc_units);
- 
- static void intel_iommu_domain_free(struct iommu_domain *domain);
- 
--int dmar_disabled = !IS_ENABLED(CONFIG_INTEL_IOMMU_DEFAULT_ON);
-+int dmar_disabled = 1;
- int intel_iommu_sm = IS_ENABLED(CONFIG_INTEL_IOMMU_SCALABLE_MODE_DEFAULT_ON);
- 
- int intel_iommu_enabled = 0;
-diff --git a/drivers/pci/p2pdma.c b/drivers/pci/p2pdma.c
-index 78e108e47254..630374711dee 100644
---- a/drivers/pci/p2pdma.c
-+++ b/drivers/pci/p2pdma.c
-@@ -451,6 +451,7 @@ static const struct pci_p2pdma_whitelist_entry {
- 	{PCI_VENDOR_ID_INTEL,	0x2033, 0},
- 	{PCI_VENDOR_ID_INTEL,	0x2020, 0},
- 	{PCI_VENDOR_ID_INTEL,	0x09a2, 0},
-+	{PCI_VENDOR_ID_INTEL,	0x4648, 0},
- 	{}
- };
- 
-@@ -503,7 +504,10 @@ static bool __host_bridge_whitelist(struct pci_host_bridge *host,
- 	vendor = root->vendor;
- 	device = root->device;
- 
-+	pr_info("root v:%x d:%x\n", vendor, device);
-+
- 	for (entry = pci_p2pdma_whitelist; entry->vendor; entry++) {
-+		pr_info("entry v:%x d:%x\n", entry->vendor, entry->device);
- 		if (vendor != entry->vendor || device != entry->device)
- 			continue;
- 		if (entry->flags & REQ_SAME_HOST_BRIDGE && !same_host_bridge)
--- 
-2.51.0
+In the case where we only have pages left, the last page should be
+freed from the device remove callback where bos are evicted. At that
+point, the provider drm device is still alive as the devm callbacks
+haven't executed yet. Also a rmmod wold typically cause the devm
+callbacks to execute so that should also be safe without this patch. At
+least if the page freeing doesn't trigger any async callbacks that
+aren't waited on before removal.
+
+So yeah, I need to update the commit message a bit. We should also
+craft an IGT that unbinds device 1 while device 0 is executing out of
+its memory and verify that execution completes with correct results
+anyway.
+
+/Thomas
+
+
+>=20
+> > Note that in theory, the drm_gpusvm_helper module may be unloaded
+> > as soon as the final module_put() of the provider driver module is
+> > executed, so we need to add a module_exit() function that waits
+> > for the work item executing the module_put() has completed.
+> >=20
+> > Signed-off-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+> > ---
+> > =C2=A0drivers/gpu/drm/drm_pagemap.c | 101
+> > ++++++++++++++++++++++++++++++++--
+> > =C2=A0drivers/gpu/drm/xe/xe_svm.c=C2=A0=C2=A0 |=C2=A0 15 ++++-
+> > =C2=A0include/drm/drm_pagemap.h=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 10 +++-
+> > =C2=A03 files changed, 117 insertions(+), 9 deletions(-)
+> >=20
+> > diff --git a/drivers/gpu/drm/drm_pagemap.c
+> > b/drivers/gpu/drm/drm_pagemap.c
+> > index 173b3ecb07d5..fb18a80d6a1c 100644
+> > --- a/drivers/gpu/drm/drm_pagemap.c
+> > +++ b/drivers/gpu/drm/drm_pagemap.c
+> > @@ -8,6 +8,7 @@
+> > =C2=A0#include <linux/pagemap.h>
+> > =C2=A0#include <drm/drm_drv.h>
+> > =C2=A0#include <drm/drm_pagemap.h>
+> > +#include <drm/drm_print.h>
+> > =C2=A0
+> > =C2=A0/**
+> > =C2=A0 * DOC: Overview
+> > @@ -544,16 +545,92 @@ static int
+> > drm_pagemap_migrate_populate_ram_pfn(struct vm_area_struct *vas,
+> > =C2=A0	return -ENOMEM;
+> > =C2=A0}
+> > =C2=A0
+> > +static void drm_pagemap_dev_unhold_work(struct work_struct *work);
+> > +static LLIST_HEAD(drm_pagemap_unhold_list);
+> > +static DECLARE_WORK(drm_pagemap_work,
+> > drm_pagemap_dev_unhold_work);
+> > +
+> > +/**
+> > + * struct drm_pagemap_dev_hold - Struct to aid in drm_device
+> > release.
+> > + * @link: Link into drm_pagemap_unhold_list for deferred reference
+> > releases.
+> > + * @drm: drm device to put.
+> > + *
+> > + * When a struct drm_pagemap is released, we also need to release
+> > the
+> > + * reference it holds on the drm device. However, typically that
+> > needs
+> > + * to be done separately from a system-wide workqueue.
+> > + * Each time a struct drm_pagemap is initialized
+> > + * (or re-initialized if cached) therefore allocate a separate
+> > + * drm_pagemap_dev_hold item, from which we put the drm device and
+> > + * associated module.
+> > + */
+> > +struct drm_pagemap_dev_hold {
+> > +	struct llist_node link;
+> > +	struct drm_device *drm;
+> > +};
+> > +
+> > =C2=A0static void drm_pagemap_release(struct kref *ref)
+> > =C2=A0{
+> > =C2=A0	struct drm_pagemap *dpagemap =3D container_of(ref,
+> > typeof(*dpagemap), ref);
+> > -
+> > +	struct drm_pagemap_dev_hold *dev_hold =3D dpagemap-
+> > >dev_hold;
+> > +
+> > +	/*
+> > +	 * We know the pagemap provider is alive at this point,
+> > since
+> > +	 * the struct drm_pagemap_dev_hold holds a reference to
+> > the
+> > +	 * pagemap provider drm_device and its module.
+> > +	 */
+> > +	dpagemap->dev_hold =3D NULL;
+> > =C2=A0	kfree(dpagemap);
+> > +	llist_add(&dev_hold->link, &drm_pagemap_unhold_list);
+> > +	schedule_work(&drm_pagemap_work);
+> > +	/*
+> > +	 * Here, either the provider device is still alive, since
+> > if called from
+> > +	 * page_free(), the caller is holding a reference on the
+> > dev_pagemap,
+> > +	 * or if called from drm_pagemap_put(), the direct caller
+> > is still alive.
+> > +	 * This ensures we can't race with THIS module unload.
+> > +	 */
+> > +}
+> > +
+> > +static void drm_pagemap_dev_unhold_work(struct work_struct *work)
+> > +{
+> > +	struct llist_node *node =3D
+> > llist_del_all(&drm_pagemap_unhold_list);
+> > +	struct drm_pagemap_dev_hold *dev_hold, *next;
+> > +
+> > +	/*
+> > +	 * Deferred release of drm_pagemap provider device and
+> > module.
+> > +	 * THIS module is kept alive during the release by the
+> > +	 * flush_work() in the drm_pagemap_exit() function.
+> > +	 */
+> > +	llist_for_each_entry_safe(dev_hold, next, node, link) {
+> > +		struct drm_device *drm =3D dev_hold->drm;
+> > +		struct module *module =3D drm->driver->fops->owner;
+> > +
+> > +		drm_dbg(drm, "Releasing reference on provider
+> > device and module.\n");
+> > +		drm_dev_put(drm);
+> > +		module_put(module);
+> > +		kfree(dev_hold);
+> > +	}
+> > +}
+> > +
+> > +static struct drm_pagemap_dev_hold *
+> > +drm_pagemap_dev_hold(struct drm_pagemap *dpagemap)
+> > +{
+> > +	struct drm_pagemap_dev_hold *dev_hold;
+> > +	struct drm_device *drm =3D dpagemap->drm;
+> > +
+> > +	dev_hold =3D kzalloc(sizeof(*dev_hold), GFP_KERNEL);
+> > +	if (!dev_hold)
+> > +		return ERR_PTR(-ENOMEM);
+> > +
+> > +	init_llist_node(&dev_hold->link);
+> > +	dev_hold->drm =3D drm;
+> > +	(void)try_module_get(drm->driver->fops->owner);
+> > +	drm_dev_get(drm);
+> > +
+> > +	return dev_hold;
+> > =C2=A0}
+> > =C2=A0
+> > =C2=A0/**
+> > =C2=A0 * drm_pagemap_create() - Create a struct drm_pagemap.
+> > - * @dev: Pointer to a struct device providing the device-private
+> > memory.
+> > + * @drm: Pointer to a struct drm_device providing the device-
+> > private memory.
+> > =C2=A0 * @pagemap: Pointer to a pre-setup struct dev_pagemap providing
+> > the struct pages.
+> > =C2=A0 * @ops: Pointer to the struct drm_pagemap_ops.
+> > =C2=A0 *
+> > @@ -563,20 +640,28 @@ static void drm_pagemap_release(struct kref
+> > *ref)
+> > =C2=A0 * Error pointer on error.
+> > =C2=A0 */
+> > =C2=A0struct drm_pagemap *
+> > -drm_pagemap_create(struct device *dev,
+> > +drm_pagemap_create(struct drm_device *drm,
+> > =C2=A0		=C2=A0=C2=A0 struct dev_pagemap *pagemap,
+> > =C2=A0		=C2=A0=C2=A0 const struct drm_pagemap_ops *ops)
+> > =C2=A0{
+> > =C2=A0	struct drm_pagemap *dpagemap =3D kzalloc(sizeof(*dpagemap),
+> > GFP_KERNEL);
+> > +	struct drm_pagemap_dev_hold *dev_hold;
+> > =C2=A0
+> > =C2=A0	if (!dpagemap)
+> > =C2=A0		return ERR_PTR(-ENOMEM);
+> > =C2=A0
+> > =C2=A0	kref_init(&dpagemap->ref);
+> > -	dpagemap->dev =3D dev;
+> > +	dpagemap->drm =3D drm;
+> > =C2=A0	dpagemap->ops =3D ops;
+> > =C2=A0	dpagemap->pagemap =3D pagemap;
+> > =C2=A0
+> > +	dev_hold =3D drm_pagemap_dev_hold(dpagemap);
+> > +	if (IS_ERR(dev_hold)) {
+> > +		kfree(dpagemap);
+> > +		return ERR_CAST(dev_hold);
+> > +	}
+> > +	dpagemap->dev_hold =3D dev_hold;
+> > +
+> > =C2=A0	return dpagemap;
+> > =C2=A0}
+> > =C2=A0EXPORT_SYMBOL(drm_pagemap_create);
+> > @@ -937,3 +1022,11 @@ int drm_pagemap_populate_mm(struct
+> > drm_pagemap *dpagemap,
+> > =C2=A0	return err;
+> > =C2=A0}
+> > =C2=A0EXPORT_SYMBOL(drm_pagemap_populate_mm);
+> > +
+> > +static void drm_pagemap_exit(void)
+> > +{
+> > +	flush_work(&drm_pagemap_work);
+> > +	if (WARN_ON(!llist_empty(&drm_pagemap_unhold_list)))
+> > +		disable_work_sync(&drm_pagemap_work);
+> > +}
+> > +module_exit(drm_pagemap_exit);
+> > diff --git a/drivers/gpu/drm/xe/xe_svm.c
+> > b/drivers/gpu/drm/xe/xe_svm.c
+> > index 6d2c6c144315..f6ee22da2e95 100644
+> > --- a/drivers/gpu/drm/xe/xe_svm.c
+> > +++ b/drivers/gpu/drm/xe/xe_svm.c
+> > @@ -1437,7 +1437,7 @@ xe_drm_pagemap_device_map(struct drm_pagemap
+> > *dpagemap,
+> > =C2=A0			=C2=A0 unsigned int order,
+> > =C2=A0			=C2=A0 enum dma_data_direction dir)
+> > =C2=A0{
+> > -	struct device *pgmap_dev =3D dpagemap->dev;
+> > +	struct device *pgmap_dev =3D dpagemap->drm->dev;
+> > =C2=A0	enum drm_interconnect_protocol prot;
+> > =C2=A0	dma_addr_t addr;
+> > =C2=A0
+> > @@ -1457,6 +1457,14 @@ static const struct drm_pagemap_ops
+> > xe_drm_pagemap_ops =3D {
+> > =C2=A0	.populate_mm =3D xe_drm_pagemap_populate_mm,
+> > =C2=A0};
+> > =C2=A0
+> > +static void xe_devm_release(void *data)
+> > +{
+> > +	struct xe_vram_region *vr =3D data;
+> > +
+> > +	drm_pagemap_put(vr->dpagemap);
+> > +	vr->dpagemap =3D NULL;
+> > +}
+> > +
+> > =C2=A0/**
+> > =C2=A0 * xe_devm_add: Remap and provide memmap backing for device memor=
+y
+> > =C2=A0 * @tile: tile that the memory region belongs to
+> > @@ -1482,7 +1490,7 @@ int xe_devm_add(struct xe_tile *tile, struct
+> > xe_vram_region *vr)
+> > =C2=A0		return ret;
+> > =C2=A0	}
+> > =C2=A0
+> > -	vr->dpagemap =3D drm_pagemap_create(dev, &vr->pagemap,
+> > +	vr->dpagemap =3D drm_pagemap_create(&xe->drm, &vr->pagemap,
+> > =C2=A0					=C2=A0 &xe_drm_pagemap_ops);
+> > =C2=A0	if (IS_ERR(vr->dpagemap)) {
+> > =C2=A0		drm_err(&xe->drm, "Failed to create drm_pagemap
+> > tile %d memory: %pe\n",
+> > @@ -1490,6 +1498,9 @@ int xe_devm_add(struct xe_tile *tile, struct
+> > xe_vram_region *vr)
+> > =C2=A0		ret =3D PTR_ERR(vr->dpagemap);
+> > =C2=A0		goto out_no_dpagemap;
+> > =C2=A0	}
+> > +	ret =3D devm_add_action_or_reset(dev, xe_devm_release, vr);
+> > +	if (ret)
+> > +		goto out_no_dpagemap;
+>=20
+> I mentioned this in first patch that this was missing, maybe move
+> this
+> part to the first patch even though this will get removed a bit
+> later.
+>=20
+> Matt
+>=20
+> > =C2=A0
+> > =C2=A0	vr->pagemap.type =3D MEMORY_DEVICE_PRIVATE;
+> > =C2=A0	vr->pagemap.range.start =3D res->start;
+> > diff --git a/include/drm/drm_pagemap.h b/include/drm/drm_pagemap.h
+> > index 2c7de928865b..5cfe54331ba7 100644
+> > --- a/include/drm/drm_pagemap.h
+> > +++ b/include/drm/drm_pagemap.h
+> > @@ -9,6 +9,7 @@
+> > =C2=A0#define NR_PAGES(order) (1U << (order))
+> > =C2=A0
+> > =C2=A0struct drm_pagemap;
+> > +struct drm_pagemap_dev_hold;
+> > =C2=A0struct drm_pagemap_zdd;
+> > =C2=A0struct device;
+> > =C2=A0
+> > @@ -130,14 +131,17 @@ struct drm_pagemap_ops {
+> > =C2=A0 * used for device p2p handshaking.
+> > =C2=A0 * @ops: The struct drm_pagemap_ops.
+> > =C2=A0 * @ref: Reference count.
+> > - * @dev: The struct drevice owning the device-private memory.
+> > + * @drm: The struct drm device owning the device-private memory.
+> > =C2=A0 * @pagemap: Pointer to the underlying dev_pagemap.
+> > + * @dev_hold: Pointer to a struct drm_pagemap_dev_hold for
+> > + * device referencing.
+> > =C2=A0 */
+> > =C2=A0struct drm_pagemap {
+> > =C2=A0	const struct drm_pagemap_ops *ops;
+> > =C2=A0	struct kref ref;
+> > -	struct device *dev;
+> > +	struct drm_device *drm;
+> > =C2=A0	struct dev_pagemap *pagemap;
+> > +	struct drm_pagemap_dev_hold *dev_hold;
+> > =C2=A0};
+> > =C2=A0
+> > =C2=A0struct drm_pagemap_devmem;
+> > @@ -206,7 +210,7 @@ struct drm_pagemap_devmem_ops {
+> > =C2=A0			=C2=A0=C2=A0 unsigned long npages);
+> > =C2=A0};
+> > =C2=A0
+> > -struct drm_pagemap *drm_pagemap_create(struct device *dev,
+> > +struct drm_pagemap *drm_pagemap_create(struct drm_device *drm,
+> > =C2=A0				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct dev_pagemap
+> > *pagemap,
+> > =C2=A0				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 const struct
+> > drm_pagemap_ops *ops);
+> > =C2=A0
+> > --=20
+> > 2.51.0
+> >=20
 
