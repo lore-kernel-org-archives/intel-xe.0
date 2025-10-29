@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 00623CCF9EB
-	for <intel-xe@archiver.kernel.org>; Wed, 29 Oct 2025 11:34:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 79937CCF9EB
+	for <intel-xe@archiver.kernel.org>; Wed, 29 Oct 2025 11:41:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AC00110E7A9;
-	Wed, 29 Oct 2025 11:34:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3890D10E7A5;
+	Wed, 29 Oct 2025 11:41:34 +0000 (UTC)
 Received: from 97596180aaec (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C01EF10E7A6;
- Wed, 29 Oct 2025 11:34:00 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0614483896213127029=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9E74110E7A4;
+ Wed, 29 Oct 2025 11:41:33 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/xe3=3A_Apply_wa=5F14?=
- =?utf-8?q?024997852_=28rev3=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Testing_PREEMPT=5FRT_with?=
+ =?utf-8?q?_disabling_preemption_in_the_most_critical_section=2E?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Tapani_P=C3=A4lli?= <tapani.palli@intel.com>
+To: "Maarten Lankhorst" <dev@lankhorst.se>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 29 Oct 2025 11:34:00 -0000
-Message-ID: <176173764076.67532.29153451364540203@97596180aaec>
+Date: Wed, 29 Oct 2025 11:41:33 -0000
+Message-ID: <176173809364.68102.5701310905114695118@97596180aaec>
 X-Patchwork-Hint: ignore
-References: <20251023044041.13731-1-tapani.palli@intel.com>
-In-Reply-To: <20251023044041.13731-1-tapani.palli@intel.com>
+References: <20251029095934.16813-1-dev@lankhorst.se>
+In-Reply-To: <20251029095934.16813-1-dev@lankhorst.se>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,125 +40,63 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0614483896213127029==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe/xe3: Apply wa_14024997852 (rev3)
-URL   : https://patchwork.freedesktop.org/series/156392/
-State : success
+Series: Testing PREEMPT_RT with disabling preemption in the most critical section.
+URL   : https://patchwork.freedesktop.org/series/156729/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-4000-62fe6039c8508b5dba1f64e3bc8dfe555f95afc2_BAT -> xe-pw-156392v3_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+f867e605613af1770f90c4b0afd4a8f06424d1f0
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 350989dadaba453293230c964f4e8d37f7867a34
+Author: Maarten Lankhorst <dev@lankhorst.se>
+Date:   Wed Oct 29 10:59:33 2025 +0100
 
-Summary
--------
+    PREEMPT_RT injection
+    
+    Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
++ /mt/dim checkpatch 1a9600afa443248d01701fd489012edcfdc3e128 drm-intel
+cf1bfd900533 drm/i915/display: Make get_vblank_counter use intel_de_read_fw()
+-:8: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#8: 
+<3> BUG: sleeping function called from invalid context at kernel/locking/spinlock_rt.c:48
 
-  **SUCCESS**
+total: 0 errors, 1 warnings, 0 checks, 8 lines checked
+0eb7b51b89ee drm/i915: Use preempt_disable/enable_rt() where recommended
+-:7: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#7: 
+  ad3543ede630f ("drm/intel: Push get_scanout_position() timestamping into kms driver.")
 
-  No regressions found.
+-:45: WARNING:LINE_SPACING: Missing a blank line after declarations
+#45: FILE: drivers/gpu/drm/i915/display/intel_vblank.c:323:
++	struct drm_i915_private *i915 = to_i915(display->drm);
++	spin_lock_irqsave(&i915->uncore.lock, *flags);
 
-  
+-:52: WARNING:LINE_SPACING: Missing a blank line after declarations
+#52: FILE: drivers/gpu/drm/i915/display/intel_vblank.c:330:
++	struct drm_i915_private *i915 = to_i915(display->drm);
++	spin_unlock_irqrestore(&i915->uncore.lock, flags);
 
-Participating hosts (13 -> 13)
-------------------------------
+total: 0 errors, 3 warnings, 0 checks, 78 lines checked
+1e34b22030c7 drm/i915: Don't disable interrupts on PREEMPT_RT during atomic updates
+-:10: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#10: 
+started disabling interrupts across atomic updates. This breaks on PREEMPT_RT
 
-  No changes in participating hosts
+total: 0 errors, 1 warnings, 0 checks, 68 lines checked
+274805cf15d5 drm/xe/display: Disable preemption in the most critical section
+350989dadaba PREEMPT_RT injection
+-:7: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
 
-Known issues
-------------
-
-  Here are the changes found in xe-pw-156392v3_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@kms_flip@basic-plain-flip@b-edp1:
-    - bat-adlp-7:         [DMESG-WARN][1] ([Intel XE#4543]) -> [PASS][2] +1 other test pass
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4000-62fe6039c8508b5dba1f64e3bc8dfe555f95afc2/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156392v3/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html
-
-  
-  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
-
-
-Build changes
--------------
-
-  * IGT: IGT_8599 -> IGT_8600
-  * Linux: xe-4000-62fe6039c8508b5dba1f64e3bc8dfe555f95afc2 -> xe-pw-156392v3
-
-  IGT_8599: b22b9ca357de868f3848269e5eb7c4cc53b3f2d1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_8600: 8600
-  xe-4000-62fe6039c8508b5dba1f64e3bc8dfe555f95afc2: 62fe6039c8508b5dba1f64e3bc8dfe555f95afc2
-  xe-pw-156392v3: 156392v3
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156392v3/index.html
-
---===============0614483896213127029==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+total: 0 errors, 1 warnings, 0 checks, 43 lines checked
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/xe3: Apply wa_14024997852 (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/156392/">https://patchwork.freedesktop.org/series/156392/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156392v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156392v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4000-62fe6039c8508b5dba1f64e3bc8dfe555f95afc2_BAT -&gt; xe-pw-156392v3_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-156392v3_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_flip@basic-plain-flip@b-edp1:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4000-62fe6039c8508b5dba1f64e3bc8dfe555f95afc2/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156392v3/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8599 -&gt; IGT_8600</li>
-<li>Linux: xe-4000-62fe6039c8508b5dba1f64e3bc8dfe555f95afc2 -&gt; xe-pw-156392v3</li>
-</ul>
-<p>IGT_8599: b22b9ca357de868f3848269e5eb7c4cc53b3f2d1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_8600: 8600<br />
-  xe-4000-62fe6039c8508b5dba1f64e3bc8dfe555f95afc2: 62fe6039c8508b5dba1f64e3bc8dfe555f95afc2<br />
-  xe-pw-156392v3: 156392v3</p>
-
-</body>
-</html>
-
---===============0614483896213127029==--
