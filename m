@@ -4,195 +4,192 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C9792CCF9EB
-	for <intel-xe@archiver.kernel.org>; Wed, 29 Oct 2025 20:46:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3D9B0CCF9EB
+	for <intel-xe@archiver.kernel.org>; Wed, 29 Oct 2025 20:50:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 91D2610E842;
-	Wed, 29 Oct 2025 20:46:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CE9EA10E84C;
+	Wed, 29 Oct 2025 20:50:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ci5EGB41";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LTMQPtps";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 985DB10E842;
- Wed, 29 Oct 2025 20:46:16 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9A76810E844;
+ Wed, 29 Oct 2025 20:50:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761770776; x=1793306776;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=zXxjcWnXnFJoBvBsf/KFoHIukVA6nUgKgrRJ2Z68OCQ=;
- b=Ci5EGB41gKgpWiY6ZLlc7g3uxrWY0zNQyuQs/ILcwNf4v75xp3NeU8fG
- dNG/hFso1Mdo4ae8V0aX4CVAqL7prSgnUjCVSYLohdUtb5/uTvNjlzJfL
- uDpAICobqXi4XMN9M6+cif1rtKdfIifibvNUW+3+30GSRyAktpQEQgV6H
- PY+lutlVoJyZQ1jjN4mD08f1u6DIgSD2HFNeA0XctXyOaH8fE6pYAwoDj
- kBBXEmmtjvUxJG/xqu6/a8Ix7nB45DtRq9tLU2mBD1tKRfEMbXxmIKrpY
- 8/50J5MdUS5zQCw0JjiMesY0dGgY6MKxnR07QQ0ZshBT4kksf7oyOtY1V A==;
-X-CSE-ConnectionGUID: /+2pSzYdQgCSTmKoRhtjOg==
-X-CSE-MsgGUID: IUG45aSVQy2Fyb04PbAciA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11597"; a="74504136"
-X-IronPort-AV: E=Sophos;i="6.19,264,1754982000"; d="scan'208";a="74504136"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Oct 2025 13:46:16 -0700
-X-CSE-ConnectionGUID: EJzkuq2TSNyqKP21NdrLVA==
-X-CSE-MsgGUID: ls44Dv0jRry8A78+LFtKZw==
+ t=1761771011; x=1793307011;
+ h=content-transfer-encoding:in-reply-to:references:subject:
+ from:cc:to:date:message-id:mime-version;
+ bh=DJRHfvAJsTsGGfdVS2fQBjitBF2Lc5ZepeCjbyR23RQ=;
+ b=LTMQPtpsyt5n6m8jDuXWswx4CZS95zWUvXCl6Ukrfy1iqIfyLzbVcGQK
+ 5PyLRMzzldyVLoVBtpR0R/qNavZ3CR20byZiXM35RJoXxyV/E9mKAf/lF
+ 8KpPIIQmKnw8lqDv2SLkTti2vY7z3jiKNiUr8giYSN4++6otBk+ELOgyN
+ 9IAuE3AtE0PL4LmgiodxVTR6z0EyVWyBC3nkr2qX3jbXkb2xtcKzjRHJ3
+ 1sS+GJPLs33pBn5NN7lXYlZKAStFmi4ps3APA7Qi3dObjOsBwM8jDtcQF
+ bHBEEQC8p1p4QZTOb4Osao74G9SKH/R4S1LHHD3tq3fSRG9zgC50aq/bY w==;
+X-CSE-ConnectionGUID: QOu1mxRcQHmq79bjF0FUzw==
+X-CSE-MsgGUID: VzINsMoYQF2cVts1wN4qow==
+X-IronPort-AV: E=McAfee;i="6800,10657,11597"; a="63110843"
+X-IronPort-AV: E=Sophos;i="6.19,264,1754982000"; d="scan'208";a="63110843"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Oct 2025 13:50:10 -0700
+X-CSE-ConnectionGUID: J+JdnDekSMqGahoCwbg48w==
+X-CSE-MsgGUID: oBUdvD1vQGGRud1qTjpTUQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,264,1754982000"; d="scan'208";a="186511554"
+X-IronPort-AV: E=Sophos;i="6.19,264,1754982000"; d="scan'208";a="190127499"
 Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by fmviesa010.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Oct 2025 13:46:16 -0700
+ by fmviesa005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Oct 2025 13:50:10 -0700
 Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
  ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Wed, 29 Oct 2025 13:46:15 -0700
-Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
+ 15.2.2562.27; Wed, 29 Oct 2025 13:50:09 -0700
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
  ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27 via Frontend Transport; Wed, 29 Oct 2025 13:46:14 -0700
-Received: from BN1PR04CU002.outbound.protection.outlook.com (52.101.56.26) by
- edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
+ 15.2.2562.27 via Frontend Transport; Wed, 29 Oct 2025 13:50:09 -0700
+Received: from SN4PR2101CU001.outbound.protection.outlook.com (40.93.195.11)
+ by edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Wed, 29 Oct 2025 13:46:14 -0700
+ 15.2.2562.27; Wed, 29 Oct 2025 13:50:09 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=CTOMIGfOhMt9IS6zH/2OeiMfG0Oeja/AyDncUZ4aJ2+c0U9DlFGAGBLCSSNJEgG9DTe985pFQwfXEbjNOiWqJECV0yePWJDJ8YRn+T7LYn2KO6vJxwhh5bWs7g2gUTlMmcF+lth08k5IzlUXz6FIRhvkGSVXHhMZcAz+3Y1sCjM8NTYf6jOExA8qOJ1JFgzMQgLUlzD+Jwcepa2dQXUD/oCNpmu1CPETVO+XzN3ZdM1mJf/uEdO/3cOg2JIXbD3W2DtG8NJq0y8ACFxtU9NO8n5DR6DzxZwGQPtveMk/mQ9D5YJ/Ll23XhFwu7tNF2judl7XeOth2XWeRExwFcjmgQ==
+ b=qbFNoEfYrirTbkBZo8F3M+wpyEhl60F2BmOKepK4p4VY1dclhriAmswpxTzS4yiG9oNVtBgKHwZOmdl35ri7cU1xWOBtNo/sFWk2dvhfcvqKy0RhCZrO6Vx/SVDN1i+iUf9uiaBKTiaHGvDtKuCmRimdePdWdPT6B2/vNtSojHAKC6fFXY8VsTMqqLUPUTaQzNCv1R17cOAjCTFno5de7RA1o0hgFAiRzG9bQVesuQoO/uS3/y6xbeuRAW9h4G9ycndv2LvgjBrTUtw1DDzYDiGdz/s+lkFF5Xn7p90yV8eHT7vcEKbECVYUOjI0QbVIugDN1TCntHIsoiWI28XH7A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ZxvCv1PHseZRqjz9YgLbQCLwCns4hkWyPcs+RH3TDN8=;
- b=Z04rKOq/GBbVjXGKh3ipshiqVNwIRQ8yed5t6QI5KYi13R9j7QIZ741I7evELsTfECWuF7EIF1XVLgSZVjS0TGIFtFDRmBZfrRenTQu0oEgkN9Ul2lFqg/TgUf+DNZpG/SEnPWys2sH33SV33CAGhbXpVPrmqpsPXLZKieKoOoUJFf6p7vSXnSHeO166/ljT+G5wqrDzA8OoA4ZxaD2gPiSwdUjzTOrLSJVnFFyj/PCqJO8bAksRD1DiJJBJbRPaKcVwmjq6XfGF12SnCl1bTwXjSFd+Eg0UI4lCZs/7ioppVqppj9e6As3qni1NuEhyNgUGsbgBjzFcuQXrwWbAjA==
+ bh=HXLUwQtB6EsnBV+f2Hx5BfbObOWCSbxchJtVZF3rywo=;
+ b=dYAwYKGUymN1gKczQJUq+ZhDRLQk09lO8ydVjD8htc3/Nj1u3RW3t/kL1aD5Z//hTPYIiA6Ws8S9cTFjGIrcQ7OtSiP+YvQ//07tuOMGxGEs9Ivjwacm/YD+uXkXx3eFQnbvzAIbSC1rRHtssCCdfa53CnkGY/etK5rh/6ppOzOICxzOEdZb62PQNl9vZc6wbO2Uf9S/coe7v/dMtbH6pYiCutVXmL+9W0PP3T4/GGWUcG8zYJ9OXlG/HZsrkCJCLp7WRDnjq13aCm+3hqvOrJ2BAYkBKMnsKYJe6wWm/+YhQAQcyqmiQpLWy3+rTg3hJPBszUFoDprMllUpnzOlpA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DM4PR11MB5373.namprd11.prod.outlook.com (2603:10b6:5:394::7) by
- SA3PR11MB7979.namprd11.prod.outlook.com (2603:10b6:806:2f9::7) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9253.19; Wed, 29 Oct 2025 20:46:12 +0000
-Received: from DM4PR11MB5373.namprd11.prod.outlook.com
- ([fe80::927a:9c08:26f7:5b39]) by DM4PR11MB5373.namprd11.prod.outlook.com
- ([fe80::927a:9c08:26f7:5b39%5]) with mapi id 15.20.9275.011; Wed, 29 Oct 2025
- 20:46:11 +0000
-Date: Wed, 29 Oct 2025 21:46:08 +0100
-From: "Winiarski, Michal" <michal.winiarski@intel.com>
-To: "Tian, Kevin" <kevin.tian@intel.com>
-CC: Alex Williamson <alex.williamson@redhat.com>, "De Marchi, Lucas"
- <lucas.demarchi@intel.com>, Thomas =?utf-8?Q?Hellstr=C3=B6m?=
- <thomas.hellstrom@linux.intel.com>, "Vivi, Rodrigo" <rodrigo.vivi@intel.com>, 
- Jason Gunthorpe <jgg@ziepe.ca>, Yishai Hadas <yishaih@nvidia.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "kvm@vger.kernel.org" <kvm@vger.kernel.org>, "Brost, Matthew"
- <matthew.brost@intel.com>, "Wajdeczko, Michal" <Michal.Wajdeczko@intel.com>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "Jani
- Nikula" <jani.nikula@linux.intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, "Laguna,
- Lukasz" <lukasz.laguna@intel.com>
-Subject: Re: [PATCH v2 26/26] vfio/xe: Add vendor-specific vfio_pci driver
- for Intel graphics
-Message-ID: <5fnnkyi7uhxmtvake3hobz6uzq2g5cx37hfuzrb7e6pes32pxp@3bhfcecpahnc>
-References: <20251021224133.577765-1-michal.winiarski@intel.com>
- <20251021224133.577765-27-michal.winiarski@intel.com>
- <BN9PR11MB527666A6CA6D9DD2F948961C8CFCA@BN9PR11MB5276.namprd11.prod.outlook.com>
+Received: from PH8PR11MB8287.namprd11.prod.outlook.com (2603:10b6:510:1c7::14)
+ by SJ0PR11MB5040.namprd11.prod.outlook.com (2603:10b6:a03:2d6::21)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9275.13; Wed, 29 Oct
+ 2025 20:50:07 +0000
+Received: from PH8PR11MB8287.namprd11.prod.outlook.com
+ ([fe80::7e8b:2e5:8ce4:2350]) by PH8PR11MB8287.namprd11.prod.outlook.com
+ ([fe80::7e8b:2e5:8ce4:2350%7]) with mapi id 15.20.9275.013; Wed, 29 Oct 2025
+ 20:50:07 +0000
 Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <BN9PR11MB527666A6CA6D9DD2F948961C8CFCA@BN9PR11MB5276.namprd11.prod.outlook.com>
-X-ClientProxiedBy: BE1P281CA0446.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:b10:81::22) To DM4PR11MB5373.namprd11.prod.outlook.com
- (2603:10b6:5:394::7)
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20251029200628.GA2806654@mdroper-desk1.amr.corp.intel.com>
+References: <20251021-xe3p_lpd-basic-enabling-v2-0-10eae6d655b8@intel.com>
+ <20251021-xe3p_lpd-basic-enabling-v2-10-10eae6d655b8@intel.com>
+ <20251029200628.GA2806654@mdroper-desk1.amr.corp.intel.com>
+Subject: Re: [PATCH v2 10/32] drm/i915/xe3p_lpd: Wait for AUX channel power
+ status
+From: Gustavo Sousa <gustavo.sousa@intel.com>
+CC: <intel-xe@lists.freedesktop.org>, <intel-gfx@lists.freedesktop.org>,
+ "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>, Dnyaneshwar Bhadane
+ <dnyaneshwar.bhadane@intel.com>, Jouni =?utf-8?q?H=C3=B6gander?=
+ <jouni.hogander@intel.com>, Juha-pekka Heikkila
+ <juha-pekka.heikkila@intel.com>, Luca Coelho <luciano.coelho@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>, Matt Atwood
+ <matthew.s.atwood@intel.com>, Ravi Kumar Vodapalli
+ <ravi.kumar.vodapalli@intel.com>, Shekhar Chauhan
+ <shekhar.chauhan@intel.com>, Vinod Govindapillai
+ <vinod.govindapillai@intel.com>
+To: Matt Roper <matthew.d.roper@intel.com>
+Date: Wed, 29 Oct 2025 17:50:02 -0300
+Message-ID: <176177100216.3303.3999917406685130963@intel.com>
+User-Agent: alot/0.12.dev22+g972188619
+X-ClientProxiedBy: SJ0P220CA0014.NAMP220.PROD.OUTLOOK.COM
+ (2603:10b6:a03:41b::22) To PH8PR11MB8287.namprd11.prod.outlook.com
+ (2603:10b6:510:1c7::14)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR11MB5373:EE_|SA3PR11MB7979:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4c59de54-96c1-4cfd-5799-08de172c31e0
+X-MS-TrafficTypeDiagnostic: PH8PR11MB8287:EE_|SJ0PR11MB5040:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6e34f0bf-29c9-4050-c846-08de172cbe48
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|7416014|366016|1800799024;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?d0IyMnZRK2NRZzVrb3NMUHU0S2k3bWRaanZkSDBOT2x1dlgya2gxYXJHWmdG?=
- =?utf-8?B?M29iTGw5dE9RcnRXOEFrbk85NjlaVHpIcUVMakpZT1E0YndnbzdzWnlkOTdO?=
- =?utf-8?B?Y0ZBZlJLY1ZDbEFvV05WYW5zbTdaSHJYUzhvK1kvbEl4VTYyYXRmYmR0dXhh?=
- =?utf-8?B?MGRRdUx6YlN6UmM1anNIaFhUTStydmxCVnV2R2h6S0lpakNiZ3NTRG8vNHdu?=
- =?utf-8?B?TFpYYUxOdlI3WEtKZlJVL1FURlhTNnRVcW9GSERVZDJBTm1kMVE5NlFFejl3?=
- =?utf-8?B?VlFndmZUY1RjMkF3YmZrWHByS0UrWnVSWFRMNnl0S3M1T0N0aURaTC9CNTIw?=
- =?utf-8?B?d3l5ZCtVTzY1UXFLRHFuRzgvREp2aWtkOExwUlhEbEpoQXNWZ2xTV1JvU1RE?=
- =?utf-8?B?NGFNT2c3ak0wVEcyNElKbXU3SkExWjgzSmlXNFpUTlF1QjlJaDBPckpLSy9M?=
- =?utf-8?B?cmNmYzlFcWtidCtUQUJrWnd1V3NXVFpOOXB3M1ZGMXBlK2tRSXE4aEhKZFpL?=
- =?utf-8?B?QUY2ZHNDdWhsa1B2M1RNTEZjV2hvWXRVNmFheGcyejd4MnluUEJEa1EveFFm?=
- =?utf-8?B?RSs5cmVPRElZWEpjQmNUS1pQM3U5RGxGbUlhSUp5WmxhVUcvemFiczR5MzZk?=
- =?utf-8?B?Z3pOTUt5R2FmdkIxUkczb20wWnZITkRIWkV4dTVmaGtpdWVidTFjelV3Zmlz?=
- =?utf-8?B?SEtMOWIxS3lTRW55MXg2aGlUay9ieHhsbVpEbFpKZUVUZkk5bXFVdjgydHk5?=
- =?utf-8?B?TnFIc0V2b1NSZk94ZFZrdi9ienV1c2JBejlMR0VGZndHUEQ0SmZpblgvUkNO?=
- =?utf-8?B?dEdtTzZoYUtZL1M3M1EycVg2M2dFL2svc1J3K3d3Wkd0MzhmQjNLWnlxVmZ6?=
- =?utf-8?B?R1k5Uyt3Q2hyR2dFNDVnOFYzY1lhWnB0R2ZtenA0U2pJS3VLVnNHbVlQYTlz?=
- =?utf-8?B?ZGhua21RYW4xcFJkQ2xpL3ZuVUJjVUE1STJ1UmdUUXVybE8wNktPclljc2ha?=
- =?utf-8?B?OEFjR08wZE5wRUpPNzloNVhsdXNRckVVTm1sSzVBVCtScnlFa0ZSU0F3dXJK?=
- =?utf-8?B?akI3MmEyTm5UWmRRS056dG5WNnhwMDlrWmRCdDhYRmpST2lUNGMwYyttUXgy?=
- =?utf-8?B?WGJXOURRaUxWY0h1bFRaeHdRYXRieDFRWGgzZE9aUnBic1BPTC9SS25JelI5?=
- =?utf-8?B?Vm1teElRaElVQVVKRVZFYWRncWNKK284TGQ5MXNmTWsxbS9yNGIvNnFmWkdP?=
- =?utf-8?B?N3JoSURwd1JPZFFLSk52bXV5YlZ5SHBtVk5lOHhXZFd1NjRSdmp6ejRjZWt6?=
- =?utf-8?B?azg4R0JPM3JsQnFFVjZjMHVnWEhaM2ZzdEJaNGZXdW9DaU5xSnZRUDdYbS93?=
- =?utf-8?B?U1JBakFwZG10OG1EUzZ0dzhOT1o3Qnd6bGljaVE5UXByTDdPVjZucjJyWHF1?=
- =?utf-8?B?VlRFSjFxc2E2OWoreVN2cmtWYlg0TkNwUTF0SnFnYXhrcWRVTEI1OXdYUmsy?=
- =?utf-8?B?OWRTRVBsaU9LaTVObndsNFh1Y1ZPaWhDeTh1YllLNmUzdlk2eHZpYncybjJR?=
- =?utf-8?B?Vm9ZVnh0Mi93djJjKzBYNTY2S1c1MTBHU1ZESGdTQW1DZ0tXOWs2YWNGeW4x?=
- =?utf-8?B?Q2o5aEdqcUpySzVDVEFNRDdhK0dXQW1DcU1sQ0daUUMvQjB0VFV3Nkh0bHUr?=
- =?utf-8?B?K2l5bXhpNHFnSVgvWDZFbWxMVXJBWkt6aWtRdEtBWlRLbmsrYlAxaE5jNExk?=
- =?utf-8?B?OFVqSXd3SW1OcXNwV2l1Q0U0RWNpeGkvOXJBK0k4V2p3V3pNTDVLQTJNOVo1?=
- =?utf-8?B?V3lFak9OQkNoZEhTRS9WTUJLQThyL0ovUS9aU0g3QnorZkpkQmtVaVZhUk9E?=
- =?utf-8?B?M1pyS1g1aEY0bW5SY2JvYjRWQ1k3WnFyNXVtOUx3R0kzYW4xZTlUa0s3d1Jt?=
- =?utf-8?Q?KfI8lh9zTUtSjLuZKsc1WwmBk440OfN5?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?WXRna3puRTREV2lEenR2NDg0VitvYnpjcm5EczQwbHdNU1ZHZ0JleEgwc0Fz?=
+ =?utf-8?B?RmJlcHJjVVRxeFFqeU5NS1kxaS84NjNmUURyZE5lWHk3cjUzSkFiMlU3djFh?=
+ =?utf-8?B?K0xmelRGT0V1N0J3ZEk2MWszMFFQLy9QNXZVUG9mSDFwMWR3Z0FzelpnSThT?=
+ =?utf-8?B?cG5DNlYvS1N1SW9mQWVBaGFBOVV2N0xMNmdYYThSY0E1Rk8ybzIzckFaeEQ3?=
+ =?utf-8?B?N3JHLzJtQy9RR3BWc3VuN3RQZEpRNmVYQUQyQkJYN2NXV1Naa1FXTVRmTWhw?=
+ =?utf-8?B?NzFpTDcwbkhIcVdmSmdkSEFlV044S2RmWWNpcVJqM1VUKytOZ1JYeS93aVRJ?=
+ =?utf-8?B?cVdWczN0bVE1ZkNHdkp1U3RCK0ZoMmR4bW1iWnd1ZXdQcnY3QTArbkdaM3kz?=
+ =?utf-8?B?RzlTOTFFOHFoTDZHVUxESW1HaVl3T1pDODVuamZTL280M0Q4RUpJOFBnaTEy?=
+ =?utf-8?B?bFlldFd1NG5rQmVZV25hUGUwQnF1dXNsekJESDA3dHYxWmJuNEo3KzVtZklP?=
+ =?utf-8?B?MkFhY0Rxek1LeFlYUVlJaHBSdWU1MVBHc0ZYL1Bub0ZHSXI2cHIyMkVDU1Ny?=
+ =?utf-8?B?dWZDaTJIMG41Zy9rYS9tMmpXVVNkOGpKeTZmVUJpcm9jZDJ1MVVjcnprQ2l6?=
+ =?utf-8?B?QzJoUmJMSENqOUhISVBRZFZ5dWRmbWJGKzFabk8yMSsxYXlTWFdQVXRYajVT?=
+ =?utf-8?B?YzgweVh5RHI1NUJkRlc2MTBqaGRUM0NxbUlTbzRWdDE5eGhDekIxNUlEbzdq?=
+ =?utf-8?B?UVk5QWpGckNlcTVzYWNkMitSOUJETW9VTUI3citMd1pWRWpPSFNuRFQwaVMx?=
+ =?utf-8?B?T2xVMFR6ZVIrdEdzN0Y3R2lQaGxoZnpOYzU2MDhqQkROajkvZ20rRGFnbjdO?=
+ =?utf-8?B?ckkrditRS1d6QnJnYlVlRmRMYmhCMURGbWhvUXAyVG5PUkV3SnkzSlQ3ZDY0?=
+ =?utf-8?B?ZVo3anlLQmxQeFN2aWFFV1prajBheDlhNHBrTXp4QjNKSHE5bC9jWGkveEp0?=
+ =?utf-8?B?UjUyTEZBTWNtQXZlaWovQVZsY29GdURaN2tHOVYvK0dFUUZMRm1IWVlkaWZl?=
+ =?utf-8?B?cTRGemZLSTVRN1FRcTVCSkZMSFZlTkxWUXdEN0liUUNnUFJOR2VsU0F3czc5?=
+ =?utf-8?B?Q1VyUHVLQjY1QWJGcGRsclMwcjVKRGFRSm9pK2Foc09qcVllMTkwRStldmcr?=
+ =?utf-8?B?VEYrY011QnFOa21UQmJwYjhsMlZsL0xKNFd0TWo3elp4ZEE2VnZlbnVDWUNH?=
+ =?utf-8?B?dTN2aEMxSHpscXB4NE5oQ3dXS2pXSTViU2ppajE5RWVraVJnVjZ3SVNiZVB3?=
+ =?utf-8?B?Zm5LWjk0NkhXWGc1NEIrRThDYU9HT3FkTGc1YTF4Z0xVckJlSjRiK2lrMmtN?=
+ =?utf-8?B?NWRJeHdYQXpaTDlHL1VsakJTbkxKNmlCYzgrZGl3Q1Yyd0toT1JoOHBVVGFH?=
+ =?utf-8?B?UnhMNWtzQXh5UTVLSVhIZUhTUmt0anpkZUV5YnJEM0t6WWtaVldQQUk3TU8v?=
+ =?utf-8?B?clBCRTAwbFFERWlPdkRURDRMNStzSUd4bjAwSU84akJtZWZVZ1dhZ0pNeVgr?=
+ =?utf-8?B?SzZ4dXpyY0VCRXpiUmlUOHZPbTRUSHVKM0E5ZERxaklTU1R2eU5FZDRJd09C?=
+ =?utf-8?B?bHBWNG9NMzlOUTdsbStqU3NxQmx0RzVvVUpVdWFQb2l4QVFqWjVmT3lwdHRp?=
+ =?utf-8?B?eitmUzdqc1hKWEZtWVRYekxHbVIvS0NSeTN0SWp2OXRpMVRMSGN4UUFqVThY?=
+ =?utf-8?B?WVZkYUozdnNsQXF4MGZ0MnZ2dEJtZE9SK25KcUFsK0VBVG04MFVhMkZ2M0lE?=
+ =?utf-8?B?cFJNalh3Q3lnS0orVTdkS2NHQlpzd2gyb1RiOWxuR3UzV2IvcHU1bXJUL3ZO?=
+ =?utf-8?B?YVhvVlhKeFdqYnpCUUQrVFExQ1g3QTBSbjdTNHY4bGRUZzdnaUtDYU1NMFBu?=
+ =?utf-8?Q?EK4WL15Eeep5BsYDQGilxe14vlM7TcZ+?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB5373.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(7416014)(366016)(1800799024); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:PH8PR11MB8287.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NWNpaWJSemlnbWZwUjBYT0IzN3U2YnY1WHlUM3A0SGlZWmpGOWdieUpFNU1L?=
- =?utf-8?B?Q1M0SzlDOE5vRG1wdUtSODhxcDZwdHVxQVhCZytMYmpDc1pxeDNiQmt6NUpW?=
- =?utf-8?B?VXJUZzZ2UFRjN29FejA5ZHR5UlhPTVdUblBHcDhJMWVxcjNsSXVRVzcvRkZQ?=
- =?utf-8?B?THlWTmNNcEQ0NWFmU0VuZW1sTnVneFQ0MmxEOU9rcGtqdW9qMmFNV2Q4ckt5?=
- =?utf-8?B?NGc3VVk5elZaSUFKckVKMHlsZE9IMjlCV3k3NDRVOFVoOS9hdnk4RU03WERl?=
- =?utf-8?B?SkMwWkViMWxxWmQ4VmRjMGJHbC9XdS9PZnAvcE44cnN3NTFLc3JoSEkxM3du?=
- =?utf-8?B?bDh1NGJRV3pmS1czZzBXYXN4Mnh2am90eTNzMlNmSm5lTFJvSkNJUFVlKzdP?=
- =?utf-8?B?ZUMzK0VwejJzekFaamJua2dISUJBQURVMzd5U3dnanlxM3o2SDF5Kys1U09u?=
- =?utf-8?B?SUxhWUpGOHN0NDg0OTl1dUdsT09aTlNtL0dUTFRlUXpZTVQ5cU93czBTL3pq?=
- =?utf-8?B?NGM1RnlwQVUvb3V1TFVzUDZGbklzTDFDWHlhWWNNOVVNQUJBSnUzaUJ3L3gv?=
- =?utf-8?B?UGRTbVJaS1BMdUl3NWFpWTNTSnhOTzBXQVVxMkkvMmFJWEVBUU9Qb0c5MW1l?=
- =?utf-8?B?bXJ5NjRYR29HSmxDUkZxSElZY3k0UGhyOG5Xdms3ZGZwR2VsYVplT0pSOGxY?=
- =?utf-8?B?eDlaZjRZSm95elNMWm9vN050TUE2R09jY0FWUGVSNGt1NjcyU0Fpb3dYbzFa?=
- =?utf-8?B?UjJZYU91Z25ySzY5dTBZclZjVlNrbmVNZEZ5TkcwUEVvSGJDRlYwR3lkQzhL?=
- =?utf-8?B?ZnE2bEx6QTFHYzZ1c2ZmN25IOTJqSlRHNDNYYWpjMmhrVFFyS0I1Nk9yNXhy?=
- =?utf-8?B?aHZGbW9nL3FHRlQ2L1gvNmorODV4QTdwWE1DL1pyRjJaQkx2MnUvWUdNOTNY?=
- =?utf-8?B?SVBqWnozU21SaVM1dFl3VG5Fc2txK09ZbkwyNGFnOUVlMVpldjVqanhsSWpj?=
- =?utf-8?B?NmJiUkJJL0hXenFDYmlBaVNKT0Jzb2hESFdiekFqQU1QN0lhRDhENzhvaS9v?=
- =?utf-8?B?K25GRDhlK2lYR2NlYWZSRXc5bmErUkt2TnZtK24xMUNOek9lM01kK05jbDgx?=
- =?utf-8?B?OFcrR1lpdnZmUm1iL3J1M3hHYTZRbGZmbXdzYWx1SGNldzVqcUVJcjlkUGpF?=
- =?utf-8?B?WHIvU1NOcVlJTEFuQmFrbGVGbkc2cC83dlQxR2I3NnY3U2VOb21mSGZyUzNa?=
- =?utf-8?B?QnAxejdkS2FmREpVRDZhY2FnWktYbnNyZlJiTVlsTVVkcXRleVdEMnZhNHAz?=
- =?utf-8?B?a3MwQW5pb3krb3R0UHNxTTlaUS9JUkczNGtXZkd0Z0tDUWRYRGR2YlN1cXVs?=
- =?utf-8?B?ajhOVDFuOG1sdXloQkIvckJDaDRzWXdPLzZKNG91YlVvdk1RK2puNUNtbElx?=
- =?utf-8?B?YS8rSlpsN0xxRTZ3NDVhbVRsM3NheVY5Z2Nody9kM0VSV1ZPSUNwdUJFMkkv?=
- =?utf-8?B?Ky9vVnVmNXRrRS96MUJ5L3h0WFNlMTFpS2FybVBzLzlIZGpWQjRuUzN0ekFw?=
- =?utf-8?B?L3NCcVVmLytyUy9YUzNzdEJTMHZaanF4VkU0aDBBWjRhR05UT2RSWU1BaDAy?=
- =?utf-8?B?STliQ204NW5tK2I0Q3ZuZVZ4c0J2YTR5bU13SjFGcnk1MzlpbWJMcnhyNk45?=
- =?utf-8?B?RmdiTzN0UkNzNG1MZWp1ajVndkFraUZQU1RwVkJobkNYYUU3M1pTMElHNE0y?=
- =?utf-8?B?L0FXeklDeUZiVFpWUFhaSHZyTHl5ZUExMTRLZlcwcjBRUDgyV3krQmtaYVQx?=
- =?utf-8?B?NkwrWXRIMTVjMlc4QWNoTzgrc2VTNnNLUzJaVHNzbmN3YXJPSTY1cjh0VUIz?=
- =?utf-8?B?TEVTY3RaV1BtckgxVDFvRnZ1WldXODdjUHdTN2tPYWRPcU1FaFVqelZpdEwv?=
- =?utf-8?B?MDVzTENWMDRTT3R6MU9OMzJXdE9FT01zTjdnaDloZFFNYjZDMitQcFoyTzdO?=
- =?utf-8?B?emVBTis0emtzaUtoNzEwYXF1ZVJIc1FTS0FjTXkzLzRzM0VEbjl6eVJUVjNj?=
- =?utf-8?B?b2hMYy8wRnNjd09iQlRwWG1SR3RkMTZ3RjZLSWxSZi82bll0M1Z6di9qQXBl?=
- =?utf-8?B?aUltaVE0NlJSNGlCUlpTZEloekpEcHJyVkRDUFlHUGhpb2ZZQm5oN3M0QTlN?=
- =?utf-8?B?K0E9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4c59de54-96c1-4cfd-5799-08de172c31e0
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5373.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?OTl4cElidHhXbU50Z3B4YVRrdFJEN1dXTmk2VTBrSVdBNGxxb1pIbWN3dlRN?=
+ =?utf-8?B?WENRemd0c1BLYmpYb0xYYWUzZXA3RFBvVDBxbGFzclk4N0tVSEVmZFVESXc3?=
+ =?utf-8?B?VWsrTGRUUFY3Q0VpZURQVWNiS0s4YUwxaUZ2M3NWbVpOTjJ3NC8rb1ZWaE1X?=
+ =?utf-8?B?bWEwWjFsZjlsSnJuQVl1Z0hsT2dsZTBOaThzWnZNZm9iWEF0YVd4VVRLYWpU?=
+ =?utf-8?B?ZGlMK01JdmI0SEpJa09kamp5ZTdhS2FueHIzU0R0eFQyS2Y5ajVYVzNkTXg5?=
+ =?utf-8?B?RjEvWVU0Sjh6M2k0RkJvdDRQNUo5d3Q1OGpacHBLc0Nra0dvcWNBT1h0VHlZ?=
+ =?utf-8?B?NW8ySUlrOWdyY1Vxd0Jmazk2dEhQekh6SGxJdVcxRTdrRXdwREgwZHBHbDV0?=
+ =?utf-8?B?YkhwMGcrSUJoRjhPOWFBZTB4NDVaaVVuTzRXbzdzcWM5em9HSHFKVE1UUnpv?=
+ =?utf-8?B?bmRRT1VkWkRWYUhZM0tNWHAwd2thb20rR3ZYNE1QMS9KRUMxZ09UME9RcEpI?=
+ =?utf-8?B?WG40cDNnZ2RLekNGWTlKOUNSc09uVnlQWWtnc05rUmJUK2tIbVJnb3hBNWR3?=
+ =?utf-8?B?Ni80WEVRcTdtaCt2ZG9tMFlhUStlTGY2YnpydThRWG9JUHI3MzJCWk9vcFhj?=
+ =?utf-8?B?V1hBVHk3R3AwS2VMZENndUxuVklDZmU0TU5qK0luSENSSDRNb29oUjVIMkVX?=
+ =?utf-8?B?RjF5K1Z1RWdqemVLS1FETk9yUTVreEIvS1BGTlAvK2FicEZSSjdWeVVmWjdL?=
+ =?utf-8?B?Mnl0UjVpNW9NRzl1RFNmTTRtUFJXc01IVXF3MW1zQ0pBNldUZGh2U2NiSzRE?=
+ =?utf-8?B?WFRhbGtiL084Z0l6YTJhVi8yUnpScVl3dEd2QW1ieFlwSmdBdUM5ZzBNQWdK?=
+ =?utf-8?B?eERGZEVSUWdOeHJwZFhhaEk2dm95ZTBPNmJOSmRvaU1jRVpHNmRWVDJPWmFE?=
+ =?utf-8?B?cWJvNzB4OVQ4TWpTMlZBc0ZsZjAvMDhXNGw2Y1hPRy9CZ0pxbGYwWDMwcTFG?=
+ =?utf-8?B?TWZwYkN1S2gwbHNZdmRGTk9Ja0ltODI0dWVPUW5LTFg4NGVYWUVCNkMvbmRu?=
+ =?utf-8?B?TE13MFdFOFBPQklvZHhKSGZtRE5qOG1iYzFqY3NYcWY1dXZ2VXQvT3B4cmM0?=
+ =?utf-8?B?MzZpWnRXa2RTWEFLWTk0TWVibEVqdnRXOGwwMkxOWGVpcTl4S01KdWM5L2dz?=
+ =?utf-8?B?ekNVVWQ0elFpRjZ5b3h6Z2oxUnc2KzFaRWFKRGp6a21hVDFsS1BNdUhBYURv?=
+ =?utf-8?B?dkFwZXVoeHMrYzZPOHFTZERHVWpLMk5wTzhaeXlqVldxak00bDVHZTlma1FL?=
+ =?utf-8?B?a2txMXdQdnBLSW4vZXoxSmRYbGRnTUcrenJmUnpjTnBuRWxTOXp0L2tnYUoz?=
+ =?utf-8?B?VDhKZlViUUhhcHJUT0V1THEzVU1wemo1U0tWamJCd2gxZWU2dnNrNkFFSlQw?=
+ =?utf-8?B?cVhWb05weS85dXpoempDQkx5RnVEUy81blVOM0wzV0JTN1pkNnh2blp5eWtK?=
+ =?utf-8?B?bWprV2NaaElrRVJXdXpFa250djhqSUJWZ0VGSkR5R2IyYktiMmR0dzRiQkpZ?=
+ =?utf-8?B?N1o4L2lzZkdvbzhOT0ZwTCsyR0hVdEREN2NkcGhWZkh5MEliazlxd3pKQlAw?=
+ =?utf-8?B?cExDOEJJTlE3S1gxYW1LdGhWRE1OQjUvNDhpb0Fra05vYW50TWFvVEtaOW45?=
+ =?utf-8?B?T2dmN2pSaFd2a3dUby9tSXlRdDNHTktUSlZsN3p6TEc3V21KSXhRc2hvSDZn?=
+ =?utf-8?B?b0pQLzNHMklVR3JIdFdkcHNqcDhobytWWExvRmQzeHpVZzZYRktpNExwNEVw?=
+ =?utf-8?B?UHdWTG5RQTArekYzazZTK1FZQVpwSGdXUk1HSzllZlRyaElPUmRoUjZNb1lt?=
+ =?utf-8?B?TkV3c1JlOEFnM215Zi8yNXMydjNUQ2djejZqTWsvb3pBNEd0K3pHeWFEY0dw?=
+ =?utf-8?B?ZW5jVS9YNDMyM3lxQUZhdk82NTlYYkZnZFkzTHhQSlZMQmdZNzFUZFAraWRL?=
+ =?utf-8?B?YytrNWR4ZkpWdUEyMkNxbWdKTHc0MjVERFo1WXBhazNoWlJ2UTg5OThkcTc5?=
+ =?utf-8?B?eGJqb0NwempITmZ1L2NvaXdWNS9RL2RwNVpsdGJhYlZyODdnRlJIN0FlMFRy?=
+ =?utf-8?B?bU40OTZ4Rm00SFBBcDhtU3JxQWh2VStSNi9XNUNqRzNFQ2VmRXNMUGxOR3Zo?=
+ =?utf-8?B?Y1E9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6e34f0bf-29c9-4050-c846-08de172cbe48
+X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB8287.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Oct 2025 20:46:11.8846 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Oct 2025 20:50:07.3427 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 4ay2HenoUx4CTDpARD5kpD+ynGAyFC6ElQfdu8TVPWSoWqpED8/InOgEJatIWKP78CFizgCAmj9QvGzXDnHZKt4X77Q53pes4ETgcbPcq5Y=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR11MB7979
+X-MS-Exchange-CrossTenant-UserPrincipalName: fhG4Q+boZ5LDvTdXCIZQJXW6CUVjz0dvG0nJ9Ea+VWAzhyf41itcaQFFLTnNosCRW5yfzcIyawaz0t2TPRgWqw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB5040
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -208,322 +205,122 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Oct 27, 2025 at 08:24:37AM +0100, Tian, Kevin wrote:
-> > From: Winiarski, Michal <michal.winiarski@intel.com>
-> > Sent: Wednesday, October 22, 2025 6:42 AM
-> > +
-> > +/**
-> > + * struct xe_vfio_pci_migration_file - file used for reading / writing migration
-> > data
-> > + */
-> 
-> let's use the comment style in vfio, i.e. "/*" instead of "/**"
+Quoting Matt Roper (2025-10-29 17:06:28-03:00)
+>On Tue, Oct 21, 2025 at 09:28:35PM -0300, Gustavo Sousa wrote:
+>> The LT PHY in Xe3p_LPD allows polling for the AUX channel power status
+>> to verify completion of power up and down. As such, let's use that field
+>> to have a more precise waiting time instead of a fixed one.
+>>=20
+>> Bspec: 68967
+>> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
+>> ---
+>>  .../drm/i915/display/intel_display_power_well.c    | 32 +++++++++++++++=
+++-----
+>>  1 file changed, 25 insertions(+), 7 deletions(-)
+>>=20
+>> diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/d=
+rivers/gpu/drm/i915/display/intel_display_power_well.c
+>> index 5e88b930f5aa..ba2552adb58b 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+>> @@ -1858,23 +1858,41 @@ static void xelpdp_aux_power_well_enable(struct =
+intel_display *display,
+>>                       XELPDP_DP_AUX_CH_CTL_POWER_REQUEST,
+>>                       XELPDP_DP_AUX_CH_CTL_POWER_REQUEST);
+>> =20
+>> -        /*
+>> -         * The power status flag cannot be used to determine whether au=
+x
+>> -         * power wells have finished powering up.  Instead we're
+>> -         * expected to just wait a fixed 600us after raising the reques=
+t
+>> -         * bit.
+>> -         */
+>> -        usleep_range(600, 1200);
+>> +        if (DISPLAY_VER(display) >=3D 35) {
+>
+>Since the bspec specifically calls this out as a flow for LT PHY, it
+>seems like it would make more sense to make the condition here a feature
+>flag check for LT PHY.  As I understand it, the selection of one type of
+>PHY over another is more of a business / per-platform decision than an
+>IP progression thing, so it's quite possible that some future platforms
+>past Xe3p may not have LT PHYs.
 
-It's a kernel-doc format (it's also used in vfio in some places).
-I'll drop it though - because of the comments below.
+Yeah, makes sense.
 
-> 
-> > +struct xe_vfio_pci_migration_file {
-> > +	/** @filp: pointer to underlying &struct file */
-> > +	struct file *filp;
-> > +	/** @lock: serializes accesses to migration data */
-> > +	struct mutex lock;
-> > +	/** @xe_vdev: backpointer to &struct xe_vfio_pci_core_device */
-> > +	struct xe_vfio_pci_core_device *xe_vdev;
-> 
-> above comments are obvious...
+I know that the LT PHY series[1] does include a HAS_LT_PHY() macro, but
+it does the same IP version check.  Perhaps we should define that macro
+using a platform check.
 
-Ok - will keep it simple and drop the obvious ones.
+For this series, I think I'll add a patch to include the HAS_LT_PHY()
+macro with platform check and use it here.
 
-> 
-> > +struct xe_vfio_pci_core_device {
-> > +	/** @core_device: vendor-agnostic VFIO device */
-> > +	struct vfio_pci_core_device core_device;
-> > +
-> > +	/** @mig_state: current device migration state */
-> > +	enum vfio_device_mig_state mig_state;
-> > +
-> > +	/** @vfid: VF number used by PF, xe uses 1-based indexing for vfid
-> > */
-> > +	unsigned int vfid;
-> 
-> is 1-based indexing a sw or hw requirement?
+In the long term, I was thinking we could have an enum intel_phy_type
+and have a function that returns the correct value based on the port.
 
-HW/FW components are using 1-based indexing.
-I'll update the comment to state that.
+--
+Gustavo Sousa
 
-> 
-> > +
-> > +	/** @pf: pointer to driver_private of physical function */
-> > +	struct pci_dev *pf;
-> > +
-> > +	/** @fd: &struct xe_vfio_pci_migration_file for userspace to
-> > read/write migration data */
-> > +	struct xe_vfio_pci_migration_file *fd;
-> 
-> s/fd/migf/, as 'fd' is integer in all other places
-
-Ok.
-
-> 
-> btw it's risky w/o a lock protecting the state transition. See the usage of
-> state_mutex in other migration drivers.
-
-It's a gap - I'll introduce a state_mutex.
-
-> 
-> > +static void xe_vfio_pci_reset_done(struct pci_dev *pdev)
-> > +{
-> > +	struct xe_vfio_pci_core_device *xe_vdev = pci_get_drvdata(pdev);
-> > +	int ret;
-> > +
-> > +	ret = xe_sriov_vfio_wait_flr_done(xe_vdev->pf, xe_vdev->vfid);
-> > +	if (ret)
-> > +		dev_err(&pdev->dev, "Failed to wait for FLR: %d\n", ret);
-> 
-> why is there a device specific wait for flr done? suppose it's already
-> covered by pci core...
-
-No, unfortunately some of the state is cleared by PF driver, after
-PCI-level VF FLR is already done.
-More info on that is available in patch 23:
-"VF FLR requires additional processing done by PF driver.
-The processing is done after FLR is already finished from PCIe
-perspective.
-In order to avoid a scenario where migration state transitions while
-PF processing is still in progress, additional synchronization
-point is needed.
-Add a helper that will be used as part of VF driver struct
-pci_error_handlers .reset_done() callback."
-
-I'll add a comment, so that it's available here as well.
-
-> 
-> > +
-> > +	xe_vfio_pci_reset(xe_vdev);
-> > +}
-> > +
-> > +static const struct pci_error_handlers xe_vfio_pci_err_handlers = {
-> > +	.reset_done = xe_vfio_pci_reset_done,
-> > +};
-> 
-> missing ".error_detected "
-
-Ok. I'll use the generic one - vfio_pci_core_aer_err_detected().
-
-> 
-> > +static struct xe_vfio_pci_migration_file *
-> > +xe_vfio_pci_alloc_file(struct xe_vfio_pci_core_device *xe_vdev,
-> > +		       enum xe_vfio_pci_file_type type)
-> > +{
-> > +	struct xe_vfio_pci_migration_file *migf;
-> > +	const struct file_operations *fops;
-> > +	int flags;
-> > +
-> > +	migf = kzalloc(sizeof(*migf), GFP_KERNEL);
-> > +	if (!migf)
-> > +		return ERR_PTR(-ENOMEM);
-> > +
-> > +	fops = type == XE_VFIO_FILE_SAVE ? &xe_vfio_pci_save_fops :
-> > &xe_vfio_pci_resume_fops;
-> > +	flags = type == XE_VFIO_FILE_SAVE ? O_RDONLY : O_WRONLY;
-> > +	migf->filp = anon_inode_getfile("xe_vfio_mig", fops, migf, flags);
-> > +	if (IS_ERR(migf->filp)) {
-> > +		kfree(migf);
-> > +		return ERR_CAST(migf->filp);
-> > +	}
-> > +
-> > +	mutex_init(&migf->lock);
-> > +	migf->xe_vdev = xe_vdev;
-> > +	xe_vdev->fd = migf;
-> > +
-> > +	stream_open(migf->filp->f_inode, migf->filp);
-> > +
-> > +	return migf;
-> 
-> miss a get_file(). vfio core will do another fput() upon error.
-> 
-> see vfio_ioct_mig_return_fd()
-
-Ok. I'll take a ref on both STOP_COPY and RESUMING transition.
-
-> 
-> > +}
-> > +
-> > +static struct file *
-> > +xe_vfio_set_state(struct xe_vfio_pci_core_device *xe_vdev, u32 new)
-> > +{
-> > +	u32 cur = xe_vdev->mig_state;
-> > +	int ret;
-> > +
-> > +	dev_dbg(xe_vdev_to_dev(xe_vdev),
-> > +		"state: %s->%s\n", vfio_dev_state_str(cur),
-> > vfio_dev_state_str(new));
-> > +
-> > +	/*
-> > +	 * "STOP" handling is reused for "RUNNING_P2P", as the device
-> > doesn't have the capability to
-> > +	 * selectively block p2p DMA transfers.
-> > +	 * The device is not processing new workload requests when the VF is
-> > stopped, and both
-> > +	 * memory and MMIO communication channels are transferred to
-> > destination (where processing
-> > +	 * will be resumed).
-> > +	 */
-> > +	if ((cur == VFIO_DEVICE_STATE_RUNNING && new ==
-> > VFIO_DEVICE_STATE_STOP) ||
-> 
-> this is not required when P2P is supported. vfio_mig_get_next_state() will
-> find the right arc from RUNNING to RUNNING_P2P to STOP.
-
-I'll remove both states (RUNNING -> STOP, STOP -> RUNNING).
-
-> 
-> > +	    (cur == VFIO_DEVICE_STATE_RUNNING && new ==
-> > VFIO_DEVICE_STATE_RUNNING_P2P)) {
-> > +		ret = xe_sriov_vfio_stop(xe_vdev->pf, xe_vdev->vfid);
-> > +		if (ret)
-> > +			goto err;
-> > +
-> > +		return NULL;
-> > +	}
-> 
-> better to align with other drivers, s/stop/suspend/ and s/run/resume/
-
-This will collide with resume_enter / resume_exit for actual migration
-data loading.
-I'll use suspend_device / resume_device, and resume_data_enter /
-resume_data_exit.
-
-> 
-> > +
-> > +	if ((cur == VFIO_DEVICE_STATE_RUNNING_P2P && new ==
-> > VFIO_DEVICE_STATE_STOP) ||
-> > +	    (cur == VFIO_DEVICE_STATE_STOP && new ==
-> > VFIO_DEVICE_STATE_RUNNING_P2P))
-> > +		return NULL;
-> > +
-> > +	if ((cur == VFIO_DEVICE_STATE_STOP && new ==
-> > VFIO_DEVICE_STATE_RUNNING) ||
-> > +	    (cur == VFIO_DEVICE_STATE_RUNNING_P2P && new ==
-> > VFIO_DEVICE_STATE_RUNNING)) {
-> > +		ret = xe_sriov_vfio_run(xe_vdev->pf, xe_vdev->vfid);
-> > +		if (ret)
-> > +			goto err;
-> > +
-> > +		return NULL;
-> > +	}
-> > +
-> > +	if (cur == VFIO_DEVICE_STATE_STOP && new ==
-> > VFIO_DEVICE_STATE_STOP_COPY) {
-> > +		struct xe_vfio_pci_migration_file *migf;
-> > +
-> > +		migf = xe_vfio_pci_alloc_file(xe_vdev, XE_VFIO_FILE_SAVE);
-> > +		if (IS_ERR(migf)) {
-> > +			ret = PTR_ERR(migf);
-> > +			goto err;
-> > +		}
-> > +
-> > +		ret = xe_sriov_vfio_stop_copy_enter(xe_vdev->pf, xe_vdev-
-> > >vfid);
-> > +		if (ret) {
-> > +			fput(migf->filp);
-> > +			goto err;
-> > +		}
-> > +
-> > +		return migf->filp;
-> > +	}
-> > +
-> > +	if ((cur == VFIO_DEVICE_STATE_STOP_COPY && new ==
-> > VFIO_DEVICE_STATE_STOP)) {
-> > +		if (xe_vdev->fd)
-> > +			xe_vfio_pci_disable_file(xe_vdev->fd);
-> > +
-> > +		xe_sriov_vfio_stop_copy_exit(xe_vdev->pf, xe_vdev->vfid);
-> > +
-> > +		return NULL;
-> > +	}
-> > +
-> > +	if (cur == VFIO_DEVICE_STATE_STOP && new ==
-> > VFIO_DEVICE_STATE_RESUMING) {
-> > +		struct xe_vfio_pci_migration_file *migf;
-> > +
-> > +		migf = xe_vfio_pci_alloc_file(xe_vdev,
-> > XE_VFIO_FILE_RESUME);
-> > +		if (IS_ERR(migf)) {
-> > +			ret = PTR_ERR(migf);
-> > +			goto err;
-> > +		}
-> > +
-> > +		ret = xe_sriov_vfio_resume_enter(xe_vdev->pf, xe_vdev-
-> > >vfid);
-> > +		if (ret) {
-> > +			fput(migf->filp);
-> > +			goto err;
-> > +		}
-> > +
-> > +		return migf->filp;
-> > +	}
-> > +
-> > +	if (cur == VFIO_DEVICE_STATE_RESUMING && new ==
-> > VFIO_DEVICE_STATE_STOP) {
-> > +		if (xe_vdev->fd)
-> > +			xe_vfio_pci_disable_file(xe_vdev->fd);
-> > +
-> > +		xe_sriov_vfio_resume_exit(xe_vdev->pf, xe_vdev->vfid);
-> > +
-> > +		return NULL;
-> > +	}
-> > +
-> > +	if (new == VFIO_DEVICE_STATE_ERROR)
-> > +		xe_sriov_vfio_error(xe_vdev->pf, xe_vdev->vfid);
-> 
-> the ERROR state is not passed to the variant driver. You'll get -EINVAL 
-> from vfio_mig_get_next_state(). so this is dead code.
-> 
-> If the pf driver needs to be notified, you could check the ret value instead.
-
-Ok. I'll do that instead.
-
-> 
-> > +static void xe_vfio_pci_migration_init(struct vfio_device *core_vdev)
-> > +{
-> > +	struct xe_vfio_pci_core_device *xe_vdev =
-> > +		container_of(core_vdev, struct xe_vfio_pci_core_device,
-> > core_device.vdev);
-> > +	struct pci_dev *pdev = to_pci_dev(core_vdev->dev);
-> > +
-> > +	if (!xe_sriov_vfio_migration_supported(pdev->physfn))
-> > +		return;
-> > +
-> > +	/* vfid starts from 1 for xe */
-> > +	xe_vdev->vfid = pci_iov_vf_id(pdev) + 1;
-> 
-> pci_iov_vf_id() returns error if it's not vf. should be checked.
-
-Ok.
-
-> 
-> > +static int xe_vfio_pci_init_dev(struct vfio_device *core_vdev)
-> > +{
-> > +	struct pci_dev *pdev = to_pci_dev(core_vdev->dev);
-> > +
-> > +	if (pdev->is_virtfn && strcmp(pdev->physfn->dev.driver->name, "xe")
-> > == 0)
-> > +		xe_vfio_pci_migration_init(core_vdev);
-> 
-> I didn't see the point of checking the driver name.
-
-It will go away after transitioning to xe_pci_get_pf_xe_device().
-
-> 
-> > +
-> > +MODULE_LICENSE("GPL");
-> > +MODULE_AUTHOR("Intel Corporation");
-> 
-> please use the author name, as other drivers do
-
-Ok.
-
-Thanks,
--Michał
+>
+>
+>Matt
+>
+>> +                if (intel_de_wait_for_set(display, XELPDP_DP_AUX_CH_CTL=
+(display, aux_ch),
+>> +                                          XELPDP_DP_AUX_CH_CTL_POWER_ST=
+ATUS, 1))
+>> +                        drm_warn(display->drm,
+>> +                                 "Timeout waiting for PHY %c AUX channe=
+l power to be up\n",
+>> +                                 phy_name(phy));
+>> +        } else {
+>> +                /*
+>> +                 * The power status flag cannot be used to determine wh=
+ether aux
+>> +                 * power wells have finished powering up.  Instead we'r=
+e
+>> +                 * expected to just wait a fixed 600us after raising th=
+e request
+>> +                 * bit.
+>> +                 */
+>> +                usleep_range(600, 1200);
+>> +        }
+>>  }
+>> =20
+>>  static void xelpdp_aux_power_well_disable(struct intel_display *display=
+,
+>>                                            struct i915_power_well *power=
+_well)
+>>  {
+>>          enum aux_ch aux_ch =3D i915_power_well_instance(power_well)->xe=
+lpdp.aux_ch;
+>> +        enum phy phy =3D icl_aux_pw_to_phy(display, power_well);
+>> =20
+>>          intel_de_rmw(display, XELPDP_DP_AUX_CH_CTL(display, aux_ch),
+>>                       XELPDP_DP_AUX_CH_CTL_POWER_REQUEST,
+>>                       0);
+>> +
+>> +        if (DISPLAY_VER(display) >=3D 35) {
+>> +                if (intel_de_wait_for_clear(display, XELPDP_DP_AUX_CH_C=
+TL(display, aux_ch),
+>> +                                            XELPDP_DP_AUX_CH_CTL_POWER_=
+STATUS, 1))
+>> +                        drm_warn(display->drm,
+>> +                                 "Timeout waiting for PHY %c AUX channe=
+l power to be down\n",
+>> +                                 phy_name(phy));
+>> +        }
+>> +
+>>          usleep_range(10, 30);
+>>  }
+>> =20
+>>=20
+>> --=20
+>> 2.51.0
+>>=20
+>
+>--=20
+>Matt Roper
+>Graphics Software Engineer
+>Linux GPU Platform Enablement
+>Intel Corporation
