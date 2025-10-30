@@ -4,49 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2620CCCF9E3
-	for <intel-xe@archiver.kernel.org>; Thu, 30 Oct 2025 15:05:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 06F4DCCF9F0
+	for <intel-xe@archiver.kernel.org>; Thu, 30 Oct 2025 15:11:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DDFE110E9D4;
-	Thu, 30 Oct 2025 15:05:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BB58D10E9D5;
+	Thu, 30 Oct 2025 15:11:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="STuft6d5";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cssF1v0A";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 44C9810E9D4
- for <intel-xe@lists.freedesktop.org>; Thu, 30 Oct 2025 15:05:28 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 74DB010E9D5
+ for <intel-xe@lists.freedesktop.org>; Thu, 30 Oct 2025 15:11:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761836728; x=1793372728;
+ t=1761837068; x=1793373068;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=XiRIoCZKFPnJdM8LGTkX68amvjTgCZM33fc8o79KCMw=;
- b=STuft6d5orh5t7Xu90cqVVCtnVDGYBBQsTuq4sM27mgPb8MTUIZu6S7L
- +6ig9Vp6vGgyeiZgGjfi0/WxS20/zqf1xZGr5x/3WFzDRjmM3ew2XAGYA
- QuTDcWSjuecpUIv7ujfgZeFjIucGahlqkDBh6GPKGrgLe/JXDTBSBiKmZ
- KJMKPJHbeLAommlyyMdZWUjrR9gBA07b7csZLluAnFUY85T1Fezr6HX2R
- jKyVKGuqU5q66aSzUn3T3QShfMmae2QfnwsEOsOwJVecXKkaOuztZRcl4
- kAaPTRIZQ3f0okfHBO588UG3bpjhssd8U3TLYLfH1oyuUPPdOtGhhOY1f w==;
-X-CSE-ConnectionGUID: RJQpRdamRtqlGxHsltKy5Q==
-X-CSE-MsgGUID: xObUgZsUQgyRblw1BquApg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11598"; a="64013170"
-X-IronPort-AV: E=Sophos;i="6.19,267,1754982000"; d="scan'208";a="64013170"
+ bh=jE+mtXYh80UGWPNtcS4VHKUXhj5asoU2eMsOWsab89Y=;
+ b=cssF1v0AAZqMUYkoDbnUOhGtBh6lErSajspLrQg342nQ2BxrytxnsVpH
+ 2lgw63rahHqtnA0oMZhha4BNmfzAUH0y5JiJY0s1PtA/y+unwYX/41zmg
+ 9uKIxyc6i66QpCXTGuZxA7HJBYuyt2wnhPHF0nLfAAo8yOsjBBVLLC6YC
+ uwQM3FigJvWOl42j5xk3RH2ea5HA3enmcz/ANrkvTYjdT8DxFzebRdZ7L
+ EctUiTSxeZVH6BRhsGJCPaKoSTw2v0UafXtNzbFkhKjElXAK6vkeP8Q4g
+ AlhQg1PkuQAEpKo+CDB388+tpOJGUPdON5CvaCpNXZMkODh5k3GKKephv w==;
+X-CSE-ConnectionGUID: wQqUM05ESLiaR+jrLkfIKQ==
+X-CSE-MsgGUID: CyIWYNoOTdiBRCGpyE9Ekg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11598"; a="89448427"
+X-IronPort-AV: E=Sophos;i="6.19,267,1754982000"; d="scan'208";a="89448427"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Oct 2025 08:05:09 -0700
-X-CSE-ConnectionGUID: y2UPakniQnuPKe4HgVUBMQ==
-X-CSE-MsgGUID: DoDCT78hTd2Y/8kQQj5itw==
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Oct 2025 08:11:08 -0700
+X-CSE-ConnectionGUID: 4os79ftVQbOgUnL/1v1jhg==
+X-CSE-MsgGUID: E7+aqHniQWqZz70AWMUHdQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,267,1754982000"; d="scan'208";a="185636707"
-Received: from vnayana.iind.intel.com ([10.190.239.33])
- by orviesa009.jf.intel.com with ESMTP; 30 Oct 2025 08:05:09 -0700
-From: Venkata Ramana Nayana <venkata.ramana.nayana@intel.com>
+X-IronPort-AV: E=Sophos;i="6.19,267,1754982000"; d="scan'208";a="185638985"
+Received: from bvivekan-desk.iind.intel.com ([10.190.238.63])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Oct 2025 08:11:07 -0700
+From: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: balasubramani.vivekanandan@intel.com
-Subject: [PATCH] drm/xe/irq: Handle msix vector0 interrupt
-Date: Thu, 30 Oct 2025 20:40:20 +0530
-Message-Id: <20251030151020.2042207-1-venkata.ramana.nayana@intel.com>
-X-Mailer: git-send-email 2.34.1
+Cc: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
+Subject: [PATCH v2 0/2] Fix user-after-free during driver unbind
+Date: Thu, 30 Oct 2025 20:41:23 +0530
+Message-ID: <20251030151122.3021436-4-balasubramani.vivekanandan@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -63,55 +64,19 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Current gu2host handler registered as MSI-X vector 0 and as per bspec for
-an msix vector 0 interrupt, the driver must check the legacy registers
-190008(TILE_INT_REG), 190060h (GT INTR Identity Reg 0) and other registers
-mentioned in "Interrupt Service Routine Pseudocode" otherwise it's block
-the next interrupts. To overcome this issue replacing guc2host handler
-with legacy xe_irq_handler.
+There are a couple of worker threads in the driver which could be                                                                                                                                                                                 
+running while unbinding the driver. Ensure those threads are stopped                                                                                                                                                                              
+before unbinding the driver to avoid any user-after-free from those                                                                                                                                                                               
+workers.
 
-Bspec: 62357
-Signed-off-by: Venkata Ramana Nayana <venkata.ramana.nayana@intel.com>
----
- drivers/gpu/drm/xe/xe_irq.c | 18 +-----------------
- 1 file changed, 1 insertion(+), 17 deletions(-)
+Balasubramani Vivekanandan (2):
+  drm/xe/gt: Synchronize GT reset with device unbind
+  drm/xe/guc: Synchronize Dead CT worker with unbind
 
-diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
-index e5ed0242f7b1..024e13e606ec 100644
---- a/drivers/gpu/drm/xe/xe_irq.c
-+++ b/drivers/gpu/drm/xe/xe_irq.c
-@@ -897,22 +897,6 @@ static int xe_irq_msix_init(struct xe_device *xe)
- 	return 0;
- }
- 
--static irqreturn_t guc2host_irq_handler(int irq, void *arg)
--{
--	struct xe_device *xe = arg;
--	struct xe_tile *tile;
--	u8 id;
--
--	if (!atomic_read(&xe->irq.enabled))
--		return IRQ_NONE;
--
--	for_each_tile(tile, xe, id)
--		xe_guc_irq_handler(&tile->primary_gt->uc.guc,
--				   GUC_INTR_GUC2HOST);
--
--	return IRQ_HANDLED;
--}
--
- static irqreturn_t xe_irq_msix_default_hwe_handler(int irq, void *arg)
- {
- 	unsigned int tile_id, gt_id;
-@@ -1029,7 +1013,7 @@ int xe_irq_msix_request_irqs(struct xe_device *xe)
- 	u16 msix;
- 
- 	msix = GUC2HOST_MSIX;
--	err = xe_irq_msix_request_irq(xe, guc2host_irq_handler, xe,
-+	err = xe_irq_msix_request_irq(xe, xe_irq_handler(xe), xe,
- 				      DRIVER_NAME "-guc2host", false, &msix);
- 	if (err)
- 		return err;
+ drivers/gpu/drm/xe/xe_gt.c     | 2 ++
+ drivers/gpu/drm/xe/xe_guc_ct.c | 3 +++
+ 2 files changed, 5 insertions(+)
+
 -- 
-2.34.1
+2.43.0
 
