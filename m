@@ -4,56 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A8ED9CCF9F0
-	for <intel-xe@archiver.kernel.org>; Thu, 30 Oct 2025 09:53:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A4D53CCF9F0
+	for <intel-xe@archiver.kernel.org>; Thu, 30 Oct 2025 10:35:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 50DA110E8FA;
-	Thu, 30 Oct 2025 09:53:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4EF7810E8C9;
+	Thu, 30 Oct 2025 10:35:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GHUHcKc3";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="B13yXtMl";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1556410E8FA
- for <intel-xe@lists.freedesktop.org>; Thu, 30 Oct 2025 09:53:40 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4B72710E25A;
+ Thu, 30 Oct 2025 10:35:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761818020; x=1793354020;
+ t=1761820505; x=1793356505;
  h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=5SgYrXoJ80aUfbl5wXQz6vVG/wf+RxJJI1C8xEB/00s=;
- b=GHUHcKc3f6RS63a+389B22vF0MFW7/5IniPg6NMnyqilmKN8jXfujM6T
- vAOxJOVt1wn7vJhtD80hjA4xCt8fmKIA9lV6/sXObZ4YbJx9mUVq1xsIa
- tgkuGRGkpPlFjWl+S0jTiOBeU/bJMsvrDrJh2tDgtdDIdkuZeh1tqZupm
- p92w3NjI+BM33EazwAiyPsZw7Egffr70wCEpXv8zWDrg75Bvx25eHQKVe
- iRwKS+KgofJm3xcrylqJcT3YZ0xdgS299eo499rolbyXYD+RkVNTt6+NZ
- jVxZqm6IdTfhtreQQA1Sl+nCZmgZ01sj9r39rbxF+osYFzC2VSNPPLEdf g==;
-X-CSE-ConnectionGUID: MjBwkq2vSiu7qGZPO0uaIQ==
-X-CSE-MsgGUID: /uVipNDpTTCNE6G0VJMkCA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11597"; a="81373245"
-X-IronPort-AV: E=Sophos;i="6.19,266,1754982000"; d="scan'208";a="81373245"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Oct 2025 02:53:40 -0700
-X-CSE-ConnectionGUID: 5S4NFyLEQJSULL7VzTJHtw==
-X-CSE-MsgGUID: evRjfE8dR4KRDyGdA0to4Q==
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=bL0hrB/Reksb+EZeXvtNDrfhKsy3f1QNGu1J0kTrH+I=;
+ b=B13yXtMlnoC95/JMFiTZseKWZPVPQocCMniyt4GhvYh/qLDPUDsShlNm
+ fOVxM9n3R79CxCXSJeq9UFmzKRLYtU3bX9tQ85TETbwWCMRsht9vJuoo5
+ SqkqLgW0fqiv8lJEs9CDnQMWuzxcllHe5W5/FtCB1T/BSTRU5Oy2pjqaP
+ 4DVn4Zb7G1brRbs6njITvWGoQDDbHn7mwN+EdqvD3p6edazlYn+CQhNuI
+ MJvMaBkcHv5rqS2vCG3n3ZbfPrMXVGrGiRSp2QBE0TOMrTLe92kPA7KnT
+ iHr9/PCcSymHSfTXJvm31P7xf39Wzgw80/tdHxUlWsmIo44NA9mbsNH8s A==;
+X-CSE-ConnectionGUID: pf6hnFK5TKKu2PSYxImWBQ==
+X-CSE-MsgGUID: L7lVrs9KSDWEtxguMG58Bg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11597"; a="66573491"
+X-IronPort-AV: E=Sophos;i="6.19,266,1754982000"; d="scan'208";a="66573491"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Oct 2025 03:35:05 -0700
+X-CSE-ConnectionGUID: pnw3iRzXRwaoEdY5bV2fEA==
+X-CSE-MsgGUID: vHx0c7FcTpa3Kp0lQghriw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,266,1754982000"; d="scan'208";a="223132764"
-Received: from black.igk.intel.com ([10.91.253.5])
- by orviesa001.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Oct 2025 02:53:39 -0700
-Date: Thu, 30 Oct 2025 10:53:36 +0100
-From: Raag Jadav <raag.jadav@intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: intel-xe@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: Re: [PATCH v3 8/8] drm/xe/gt_throttle: Avoid TOCTOU when monitoring
- reasons
-Message-ID: <aQM1oKHBh0GvQQK5@black.igk.intel.com>
-References: <20251029-gt-throttle-cri-v3-0-d1f5abbb8114@intel.com>
- <20251029-gt-throttle-cri-v3-8-d1f5abbb8114@intel.com>
+X-IronPort-AV: E=Sophos;i="6.19,266,1754982000"; d="scan'208";a="185802756"
+Received: from klitkey1-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.136])
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Oct 2025 03:35:03 -0700
+Date: Thu, 30 Oct 2025 12:35:00 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ jouni.hogander@intel.com
+Subject: Re: [PATCH 5/5] drm/i915/alpm: Allow LOBF only if window1 > alpm
+ check_entry lines
+Message-ID: <aQM_VK0wTlEiub9O@intel.com>
+References: <20251030051755.3071648-1-ankit.k.nautiyal@intel.com>
+ <20251030051755.3071648-6-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20251029-gt-throttle-cri-v3-8-d1f5abbb8114@intel.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20251030051755.3071648-6-ankit.k.nautiyal@intel.com>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,62 +73,74 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Oct 29, 2025 at 04:45:10PM -0700, Lucas De Marchi wrote:
-> It's currently not possible to safely monitor if there's throttling
-> happening and what are the reasons. The approach of reading the status
-> and then reading the reasons is not reliable as by the time sysadmin
-> reads the reason, the throttling could not be happening anymore.
+On Thu, Oct 30, 2025 at 10:47:55AM +0530, Ankit Nautiyal wrote:
+> LOBF must be disabled if the number of lines within Window 1 is not greater
+> than ALPM_CTL[ALPM Entry Check]
 > 
-> Previous tentative to fix that[1] was breaking the ABI and potentially
-> sysadmin's scripts. This takes a different approach of adding and
-> documenting the additional attribute. It's still valuable, though
-> redundant, to provide the simpler 0/1 interface.
+> Bspec:71041
+> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_alpm.c | 13 +++++++++++++
+>  1 file changed, 13 insertions(+)
 > 
-> In order to avoid userspace knowledge on the bitmask meaning and to be
-> able to maintain the kernel side in sync with possible changes in
-> future, just walk the attribute group and check what are the masks that
-> match the value read.
-> 
-> [1] https://lore.kernel.org/intel-xe/20241025092238.167042-1-raag.jadav@intel.com/
+> diff --git a/drivers/gpu/drm/i915/display/intel_alpm.c b/drivers/gpu/drm/i915/display/intel_alpm.c
+> index 1c240dd8d668..58cd0d2a4395 100644
+> --- a/drivers/gpu/drm/i915/display/intel_alpm.c
+> +++ b/drivers/gpu/drm/i915/display/intel_alpm.c
+> @@ -255,6 +255,7 @@ void intel_alpm_lobf_compute_config_late(struct intel_dp *intel_dp,
+>  	struct intel_display *display = to_intel_display(intel_dp);
+>  	struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
+>  	int waketime_in_lines, first_sdp_position;
+> +	int window1;
+>  
+>  	if (intel_dp->alpm.lobf_disable_debug) {
+>  		drm_dbg_kms(display->drm, "LOBF is disabled by debug flag\n");
+> @@ -287,6 +288,18 @@ void intel_alpm_lobf_compute_config_late(struct intel_dp *intel_dp,
+>  	if (!intel_alpm_compute_params(intel_dp, crtc_state))
+>  		return;
+>  
+> +	/*
+> +	 * LOBF must be disabled if the number of lines within Window 1 is not
+> +	 * greater than ALPM_CTL[ALPM Entry Check]
+> +	 */
+> +	window1 = adjusted_mode->crtc_vtotal -
+> +		  (adjusted_mode->crtc_vdisplay +
+> +		   crtc_state->vrr.guardband +
+> +		   crtc_state->set_context_latency);
 
-...
+vdisplay+guardband+scl isn't a value that means anything.
+So the extra parentheses make this rather confusing.
 
-> +static const struct attribute_group *get_platform_throttle_group(struct xe_device *xe);
+This also doesn't account for the case where SCL would start already
+in vertical active on PTL+. I know we don't do that currently, but we
+should probably write this in a way that accounts for that so that we
+don't have to rewrite this yet again.
+
+Apparently this lobf stuff depends on actually having a window1,
+which means it can only be used if we're using the VRR timing generator
+with an optimized guardband. That means it never did anything (or it
+did things wrong) until you enabled the optimized guardband.
+
+It sort of looks like intel_alpm_{pre,post}_plane_update() might
+allow us to enable this even for the 'vrr.enable==true &&
+always_use_vrr_tg()==false' case. Either that or we should just
+enable it for the always_use_vrr_tg()==true case. Whatever the
+case, we definitely seem to be missing some kind of a VRR check
+here.
+
+I'm also 90% sure that alpm pre/post plane stuff isn't handling
+DRRS/LRR/etc correctly...
+
 > +
-> +static ssize_t status_reasons_show(struct kobject *kobj,
-> +				   struct kobj_attribute *attr, char *buff)
-> +{
-> +	struct xe_gt *gt = throttle_to_gt(kobj);
-> +	struct xe_device *xe = gt_to_xe(gt);
-> +	const struct attribute_group *group;
-> +	struct attribute **pother;
-> +	ssize_t ret = 0;
-> +	u32 reasons;
+> +	if (window1 <= crtc_state->alpm_state.check_entry_lines)
+> +		return;
 > +
-> +	reasons = xe_gt_throttle_get_limit_reasons(gt);
-> +	group = get_platform_throttle_group(xe);
-> +
-> +	for (pother = group->attrs; *pother; pother++) {
-> +		struct kobj_attribute *kattr = container_of(*pother, struct kobj_attribute, attr);
-> +		struct throttle_attribute *other_ta = kobj_attribute_to_throttle(kattr);
-> +
-> +		if (other_ta->mask != U32_MAX && reasons & other_ta->mask)
-> +			ret += sysfs_emit_at(buff, ret, "%s ", (*pother)->name);
+>  	/*
+>  	 * LOBF can only be enabled if the time from the start of the SCL+Guardband
+>  	 * window to the position of the first SDP is greater than the time it takes
+> -- 
+> 2.45.2
 
-Much better.
-
-> +	}
-> +
-> +	/* Drop extra space from last iteration above */
-> +	if (ret)
-> +		ret--;
-> +
-> +	ret += sysfs_emit_at(buff, ret, "\n");
-
-I went through the documentation again and I couldn't find any rules
-related to empty files or whether it is allowed (just thinking out
-loud about no throttling cases).
-
-Thoughts?
-
-Raag
+-- 
+Ville Syrjälä
+Intel
