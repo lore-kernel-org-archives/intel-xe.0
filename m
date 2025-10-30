@@ -4,34 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 33811CCF9E3
-	for <intel-xe@archiver.kernel.org>; Thu, 30 Oct 2025 12:17:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6BD4FCCF9F0
+	for <intel-xe@archiver.kernel.org>; Thu, 30 Oct 2025 12:24:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E5CEE10E967;
-	Thu, 30 Oct 2025 12:17:56 +0000 (UTC)
-Received: from coelho.fi (coelho.fi [88.99.146.29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AF78F10E94E;
- Thu, 30 Oct 2025 12:17:55 +0000 (UTC)
-Received: from 85-76-145-237-nat.elisa-mobile.fi ([85.76.145.237]
- helo=[10.198.114.10])
- by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.98.2) (envelope-from <luca@coelho.fi>)
- id 1vERbB-00000001w3f-1UOZ; Thu, 30 Oct 2025 14:17:53 +0200
-Message-ID: <8b9fabf6fd0cca02f4bd86d806bb639356aa98a8.camel@coelho.fi>
-From: Luca Coelho <luca@coelho.fi>
-To: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org
-Date: Thu, 30 Oct 2025 14:16:18 +0200
-In-Reply-To: <a453394c50138e2c5a06c924af006d36bab83239@intel.com>
-References: <cover.1761146196.git.jani.nikula@intel.com>
- <e022166af7c67f43904e2d0fc87bc5c13e0f1204.1761146196.git.jani.nikula@intel.com>
- <ae26093b5ee79d456afaaae0d4040e91d45eb2c2.camel@coelho.fi>
- <a453394c50138e2c5a06c924af006d36bab83239@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2-5 
+	by gabe.freedesktop.org (Postfix) with ESMTP id 12E9110E036;
+	Thu, 30 Oct 2025 12:24:31 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cWFviK37";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A4ED310E036
+ for <intel-xe@lists.freedesktop.org>; Thu, 30 Oct 2025 12:24:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1761827069; x=1793363069;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=iCOjxDsdEI0lZj6KT09p+yjcFM+yAQdTu6Nvx/r0v7s=;
+ b=cWFviK37DsrZA2yzp+lwQuRB0WLEWRxoKkIIRiiunRlYsmKnvZeR47C3
+ eFMU0bMVcAsm0M+4uvmaxBo2tv8V8NgwyTprsSHo4GJWHRqcf7PcNYpIi
+ 7UsopW0hkfnN7IFfk05HrHtW89swKe8lq514ZC1P8+GfV2SU/jRFK+rYI
+ zlN0Gt0bHl65cvoR8iUahfnPZIhO0AW4kl8c3hP78AtQY+aKQyv3gIPCN
+ ZWyZm4aIHvrXOOQhaA0RCOoK9OAe86FS5xKSbpNCFvOgar79DS6cN5q42
+ 50+oufzHO1/P/1wCFNHKAywW5puCDNGQSYDW21qz0CyTlFazPjrbXk3H+ Q==;
+X-CSE-ConnectionGUID: ednI6cP9Tlu+oUj4pVfOOA==
+X-CSE-MsgGUID: nIWhPDMYSaWIY7su+XJbDQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11597"; a="64062627"
+X-IronPort-AV: E=Sophos;i="6.19,266,1754982000"; d="scan'208";a="64062627"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Oct 2025 05:24:29 -0700
+X-CSE-ConnectionGUID: qSxo6fC9Ty2bTz+P+XYLrg==
+X-CSE-MsgGUID: fXb56dCMQZy0naWBJiHo+Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,266,1754982000"; d="scan'208";a="191103669"
+Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
+ by fmviesa004.fm.intel.com with ESMTP; 30 Oct 2025 05:24:27 -0700
+From: Raag Jadav <raag.jadav@intel.com>
+To: lucas.demarchi@intel.com,
+	rodrigo.vivi@intel.com
+Cc: intel-xe@lists.freedesktop.org, riana.tauro@intel.com,
+ daniele.ceraolospurio@intel.com, matthew.brost@intel.com,
+ michal.wajdeczko@intel.com, badal.nilawar@intel.com,
+ Raag Jadav <raag.jadav@intel.com>
+Subject: [PATCH v8 0/4] Introduce GT runtime suspend/resume
+Date: Thu, 30 Oct 2025 17:53:53 +0530
+Message-Id: <20251030122357.128825-1-raag.jadav@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Subject: Re: [PATCH 4/6] drm/i915/display: add intel_display_vtd_active()
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,53 +67,49 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 2025-10-30 at 10:50 +0200, Jani Nikula wrote:
-> On Thu, 30 Oct 2025, Luca Coelho <luca@coelho.fi> wrote:
-> > On Wed, 2025-10-22 at 18:17 +0300, Jani Nikula wrote:
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_display_utils.c b/dri=
-vers/gpu/drm/i915/display/intel_display_utils.c
-> > > index 13d3999dd580..04d010f7c23e 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_display_utils.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_display_utils.c
-> > > @@ -1,10 +1,15 @@
-> > >  // SPDX-License-Identifier: MIT
-> > >  /* Copyright =C2=A9 2025 Intel Corporation */
-> > > =20
-> > > +#include <linux/device.h>
-> > > +
-> > > +#include <drm/drm_device.h>
-> > > +
-> > >  #ifdef CONFIG_X86
-> > >  #include <asm/hypervisor.h>
-> > >  #endif
-> > > =20
-> > > +#include "intel_display_core.h"
-> > >  #include "intel_display_utils.h"
-> > > =20
-> > >  bool intel_display_run_as_guest(struct intel_display *display)
-> > > @@ -16,3 +21,12 @@ bool intel_display_run_as_guest(struct intel_displ=
-ay *display)
-> > >  	return false;
-> > >  #endif
-> > >  }
-> > > +
-> > > +bool intel_display_vtd_active(struct intel_display *display)
-> > > +{
-> > > +	if (device_iommu_mapped(display->drm->dev))
-> > > +		return true;
-> > > +
-> > > +	/* Running as a guest, we assume the host is enforcing VT'd */
-> > > +	return intel_display_run_as_guest(display);
-> > > +}
-> >=20
-> > This also looks quite much like an "inlineable" function, no?
->=20
-> Same reason as before, and that display->drm->dev dereference would
-> require pulling in both intel_display_core.h and drm/drm_device.h in the
-> header.
+v2: Drop redundant xe_gt_sanitize() and xe_guc_ct_stop() (Daniele)
+    Use runtime naming for guc helpers (Daniele)
+    Split xe_guc_ct_enable() helper (Daniele)
 
-Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
+v3: Drop redundant logging, add kernel doc (Michal)
+    Use runtime naming for ct helpers (Michal)
 
---
-Cheers,
-Luca.
+v4: Split xe_guc_ct_enable() patch (Rodrigo)
+    Fix tags (Rodrigo)
+
+v5: Include host_l2_vram workaround (Daniele)
+    Reuse xe_guc_submit_enable/disable() helpers (Daniele)
+
+v6: Split sumbit_pause/unpause() helpers for VF and PF (Matthew Brost)
+    Assert on runtime suspend if VFs are enabled (Daniele)
+
+v7: Add IS_SRIOV_VF() assert in VF helpers (Matthew Brost)
+    Use "vf" suffix for VF helpers (Michal)
+    Reword commit message (Matthew Brost)
+
+v8: Add !IS_SRIOV_VF() assert in runtime suspend path (Matthew Brost)
+
+Raag Jadav (4):
+  drm/xe/vf: Update pause/unpause() helpers with VF naming
+  drm/xe/guc_submit: Introduce pause/unpause() helpers for PF
+  drm/xe/pm: Assert on runtime suspend if VFs are enabled
+  drm/xe/gt: Introduce runtime suspend/resume
+
+ drivers/gpu/drm/xe/xe_gt.c          | 60 +++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_gt.h          |  2 +
+ drivers/gpu/drm/xe/xe_gt_sriov_vf.c |  6 +--
+ drivers/gpu/drm/xe/xe_guc.c         | 34 ++++++++++++++++
+ drivers/gpu/drm/xe/xe_guc.h         |  2 +
+ drivers/gpu/drm/xe/xe_guc_ct.c      | 27 +++++++++++++
+ drivers/gpu/drm/xe/xe_guc_ct.h      |  2 +
+ drivers/gpu/drm/xe/xe_guc_submit.c  | 38 +++++++++++++++++-
+ drivers/gpu/drm/xe/xe_guc_submit.h  |  6 ++-
+ drivers/gpu/drm/xe/xe_pci.c         |  9 +++++
+ drivers/gpu/drm/xe/xe_pm.c          | 10 ++---
+ drivers/gpu/drm/xe/xe_uc.c          | 28 ++++++++++++++
+ drivers/gpu/drm/xe/xe_uc.h          |  2 +
+ 13 files changed, 214 insertions(+), 12 deletions(-)
+
+-- 
+2.34.1
+
