@@ -4,61 +4,138 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A4D53CCF9F0
-	for <intel-xe@archiver.kernel.org>; Thu, 30 Oct 2025 10:35:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 15530CCF9F1
+	for <intel-xe@archiver.kernel.org>; Thu, 30 Oct 2025 11:17:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4EF7810E8C9;
-	Thu, 30 Oct 2025 10:35:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C684810E8E7;
+	Thu, 30 Oct 2025 11:17:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="B13yXtMl";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="CkzMs23u";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="Evz0+Qsd";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="CkzMs23u";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="Evz0+Qsd";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4B72710E25A;
- Thu, 30 Oct 2025 10:35:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761820505; x=1793356505;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=bL0hrB/Reksb+EZeXvtNDrfhKsy3f1QNGu1J0kTrH+I=;
- b=B13yXtMlnoC95/JMFiTZseKWZPVPQocCMniyt4GhvYh/qLDPUDsShlNm
- fOVxM9n3R79CxCXSJeq9UFmzKRLYtU3bX9tQ85TETbwWCMRsht9vJuoo5
- SqkqLgW0fqiv8lJEs9CDnQMWuzxcllHe5W5/FtCB1T/BSTRU5Oy2pjqaP
- 4DVn4Zb7G1brRbs6njITvWGoQDDbHn7mwN+EdqvD3p6edazlYn+CQhNuI
- MJvMaBkcHv5rqS2vCG3n3ZbfPrMXVGrGiRSp2QBE0TOMrTLe92kPA7KnT
- iHr9/PCcSymHSfTXJvm31P7xf39Wzgw80/tdHxUlWsmIo44NA9mbsNH8s A==;
-X-CSE-ConnectionGUID: pf6hnFK5TKKu2PSYxImWBQ==
-X-CSE-MsgGUID: L7lVrs9KSDWEtxguMG58Bg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11597"; a="66573491"
-X-IronPort-AV: E=Sophos;i="6.19,266,1754982000"; d="scan'208";a="66573491"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Oct 2025 03:35:05 -0700
-X-CSE-ConnectionGUID: pnw3iRzXRwaoEdY5bV2fEA==
-X-CSE-MsgGUID: vHx0c7FcTpa3Kp0lQghriw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,266,1754982000"; d="scan'208";a="185802756"
-Received: from klitkey1-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.245.136])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Oct 2025 03:35:03 -0700
-Date: Thu, 30 Oct 2025 12:35:00 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- jouni.hogander@intel.com
-Subject: Re: [PATCH 5/5] drm/i915/alpm: Allow LOBF only if window1 > alpm
- check_entry lines
-Message-ID: <aQM_VK0wTlEiub9O@intel.com>
-References: <20251030051755.3071648-1-ankit.k.nautiyal@intel.com>
- <20251030051755.3071648-6-ankit.k.nautiyal@intel.com>
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 00ECB10E900
+ for <intel-xe@lists.freedesktop.org>; Thu, 30 Oct 2025 11:17:30 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
+ [IPv6:2a07:de40:b281:104:10:150:64:97])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id BC1701F6E6;
+ Thu, 30 Oct 2025 11:17:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1761823049; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=GIeVYpy3Zped/GGBjv38GPNtjRY0ZrSfDqW9N5fkXCw=;
+ b=CkzMs23uAOrLFlfS58wanNTOqAQdYh6Zf09hSuk/O9V2tUNP6pWr3MeMetTrmBT3d8v3zq
+ 0D3G08l0VMhZKXwfMC2iC5Dlh3r5bSZdUI8ajQpQU7JSv4a4cHhBb3DixI6c6k3lu22mYC
+ fbUC+ABP9T5nHnDS75K/TeJ4qIGOKzM=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1761823049;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=GIeVYpy3Zped/GGBjv38GPNtjRY0ZrSfDqW9N5fkXCw=;
+ b=Evz0+QsdwszB1EAiCUvMxp0iyHkt+Z8yJNisJMV3fRjZ8RAF1sjoKG3nY/e6Yj0bAiPhaZ
+ 7auWQkV/cHI+vYCw==
+Authentication-Results: smtp-out2.suse.de;
+ dkim=pass header.d=suse.de header.s=susede2_rsa header.b=CkzMs23u;
+ dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=Evz0+Qsd
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1761823049; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=GIeVYpy3Zped/GGBjv38GPNtjRY0ZrSfDqW9N5fkXCw=;
+ b=CkzMs23uAOrLFlfS58wanNTOqAQdYh6Zf09hSuk/O9V2tUNP6pWr3MeMetTrmBT3d8v3zq
+ 0D3G08l0VMhZKXwfMC2iC5Dlh3r5bSZdUI8ajQpQU7JSv4a4cHhBb3DixI6c6k3lu22mYC
+ fbUC+ABP9T5nHnDS75K/TeJ4qIGOKzM=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1761823049;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=GIeVYpy3Zped/GGBjv38GPNtjRY0ZrSfDqW9N5fkXCw=;
+ b=Evz0+QsdwszB1EAiCUvMxp0iyHkt+Z8yJNisJMV3fRjZ8RAF1sjoKG3nY/e6Yj0bAiPhaZ
+ 7auWQkV/cHI+vYCw==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 8DA9013393;
+ Thu, 30 Oct 2025 11:17:29 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap1.dmz-prg2.suse.org with ESMTPSA id AiwEIklJA2mwXwAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Thu, 30 Oct 2025 11:17:29 +0000
+Message-ID: <c4e3b172-3df8-4d1b-a1b0-51cacae56f0c@suse.de>
+Date: Thu, 30 Oct 2025 12:17:25 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20251030051755.3071648-6-ankit.k.nautiyal@intel.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 0/4] drm: replace drm_print.h includes from headers
+ with a forward declaration
+To: Jani Nikula <jani.nikula@intel.com>, dri-devel@lists.freedesktop.org,
+ maarten.lankhorst@linux.intel.com, Maxime Ripard <mripard@kernel.org>,
+ David Airlie <airlied@redhat.com>, simona.vetter@ffwll.ch
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+References: <cover.1761734313.git.jani.nikula@intel.com>
+ <41bb4163-8f5b-47c5-8121-7010147bc5e6@suse.de>
+ <b8cc203c44518822197023c2dbf4a21aad681a4c@intel.com>
+Content-Language: en-US
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Autocrypt: addr=tzimmermann@suse.de; keydata=
+ xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
+ XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
+ BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
+ hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
+ 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
+ AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
+ AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
+ AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
+ lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
+ U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
+ vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
+ 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
+ j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
+ T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
+ 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
+ GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
+ hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
+ EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
+ C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
+ yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
+ SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
+ Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
+ 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
+In-Reply-To: <b8cc203c44518822197023c2dbf4a21aad681a4c@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Rspamd-Queue-Id: BC1701F6E6
+X-Rspamd-Server: rspamd2.dmz-prg2.suse.org
+X-Spamd-Result: default: False [-4.51 / 50.00]; BAYES_HAM(-3.00)[100.00%];
+ NEURAL_HAM_LONG(-1.00)[-1.000];
+ R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
+ MX_GOOD(-0.01)[];
+ RBL_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:104:10:150:64:97:from]; 
+ RCVD_VIA_SMTP_AUTH(0.00)[]; RCVD_TLS_ALL(0.00)[];
+ ARC_NA(0.00)[]; MIME_TRACE(0.00)[0:+];
+ FUZZY_RATELIMITED(0.00)[rspamd.com]; TO_DN_SOME(0.00)[];
+ RECEIVED_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:106:10:150:64:167:received];
+ MID_RHS_MATCH_FROM(0.00)[];
+ SPAMHAUS_XBL(0.00)[2a07:de40:b281:104:10:150:64:97:from];
+ FROM_EQ_ENVFROM(0.00)[]; FROM_HAS_DN(0.00)[];
+ RCPT_COUNT_SEVEN(0.00)[8]; RCVD_COUNT_TWO(0.00)[2];
+ TO_MATCH_ENVRCPT_ALL(0.00)[];
+ DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:email,suse.de:mid,suse.de:dkim];
+ DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ DKIM_TRACE(0.00)[suse.de:+]
+X-Rspamd-Action: no action
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,74 +150,51 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Oct 30, 2025 at 10:47:55AM +0530, Ankit Nautiyal wrote:
-> LOBF must be disabled if the number of lines within Window 1 is not greater
-> than ALPM_CTL[ALPM Entry Check]
-> 
-> Bspec:71041
-> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_alpm.c | 13 +++++++++++++
->  1 file changed, 13 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_alpm.c b/drivers/gpu/drm/i915/display/intel_alpm.c
-> index 1c240dd8d668..58cd0d2a4395 100644
-> --- a/drivers/gpu/drm/i915/display/intel_alpm.c
-> +++ b/drivers/gpu/drm/i915/display/intel_alpm.c
-> @@ -255,6 +255,7 @@ void intel_alpm_lobf_compute_config_late(struct intel_dp *intel_dp,
->  	struct intel_display *display = to_intel_display(intel_dp);
->  	struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
->  	int waketime_in_lines, first_sdp_position;
-> +	int window1;
->  
->  	if (intel_dp->alpm.lobf_disable_debug) {
->  		drm_dbg_kms(display->drm, "LOBF is disabled by debug flag\n");
-> @@ -287,6 +288,18 @@ void intel_alpm_lobf_compute_config_late(struct intel_dp *intel_dp,
->  	if (!intel_alpm_compute_params(intel_dp, crtc_state))
->  		return;
->  
-> +	/*
-> +	 * LOBF must be disabled if the number of lines within Window 1 is not
-> +	 * greater than ALPM_CTL[ALPM Entry Check]
-> +	 */
-> +	window1 = adjusted_mode->crtc_vtotal -
-> +		  (adjusted_mode->crtc_vdisplay +
-> +		   crtc_state->vrr.guardband +
-> +		   crtc_state->set_context_latency);
+Hi
 
-vdisplay+guardband+scl isn't a value that means anything.
-So the extra parentheses make this rather confusing.
+Am 30.10.25 um 10:31 schrieb Jani Nikula:
+> On Wed, 29 Oct 2025, Thomas Zimmermann <tzimmermann@suse.de> wrote:
+>> Am 29.10.25 um 11:39 schrieb Jani Nikula:
+>>> v3 of [1] with the series restructured to be able to trivially revert
+>>> the header changes without touching drivers again.
+>>>
+>>>
+>>> [1] https://lore.kernel.org/r/cover.1761126446.git.jani.nikula@intel.com
+>>>
+>>> Jani Nikula (4):
+>>>     drm: include drm_print.h where needed
+>>>     drm/buddy: replace drm_print.h include with a forward declaration
+>>>     drm/mm: replace drm_print.h include with a forward declaration
+>>>     drm/ttm: replace drm_print.h include with a forward declaration
+>> For the series:
+>>
+>> Reviewed-by: Thomas Zimmermann <tzimmermann@suse.de>
+>>
+>> Thanks for tidying this up.
+> Thank you for the review!
+>
+> Considering that this touches a lot of drivers, albeit just the include
+> lists and thus highly unlikely to cause functional changes or hard
+> conflicts, can I go ahead and merge this to drm-misc-next?
 
-This also doesn't account for the case where SCL would start already
-in vertical active on PTL+. I know we don't do that currently, but we
-should probably write this in a way that accounts for that so that we
-don't have to rewrite this yet again.
+Of course, go ahead.
 
-Apparently this lobf stuff depends on actually having a window1,
-which means it can only be used if we're using the VRR timing generator
-with an optimized guardband. That means it never did anything (or it
-did things wrong) until you enabled the optimized guardband.
+Best regards
+Thomas
 
-It sort of looks like intel_alpm_{pre,post}_plane_update() might
-allow us to enable this even for the 'vrr.enable==true &&
-always_use_vrr_tg()==false' case. Either that or we should just
-enable it for the always_use_vrr_tg()==true case. Whatever the
-case, we definitely seem to be missing some kind of a VRR check
-here.
-
-I'm also 90% sure that alpm pre/post plane stuff isn't handling
-DRRS/LRR/etc correctly...
-
-> +
-> +	if (window1 <= crtc_state->alpm_state.check_entry_lines)
-> +		return;
-> +
->  	/*
->  	 * LOBF can only be enabled if the time from the start of the SCL+Guardband
->  	 * window to the position of the first SDP is greater than the time it takes
-> -- 
-> 2.45.2
+>
+> BR,
+> Jani.
+>
+>
 
 -- 
-Ville Syrjälä
-Intel
+--
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Frankenstrasse 146, 90461 Nuernberg, Germany
+GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
+HRB 36809 (AG Nuernberg)
+
+
