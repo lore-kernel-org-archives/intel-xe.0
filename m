@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4CC88CCF9F0
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 97874CCF9FE
 	for <intel-xe@archiver.kernel.org>; Thu, 30 Oct 2025 14:24:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0B85B10E9B7;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5CE6810E9BD;
 	Thu, 30 Oct 2025 14:24:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cj+gVASV";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Nat9Z3Hc";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 020D910E9BD
- for <intel-xe@lists.freedesktop.org>; Thu, 30 Oct 2025 14:24:15 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E09AE10E9B7
+ for <intel-xe@lists.freedesktop.org>; Thu, 30 Oct 2025 14:24:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761834256; x=1793370256;
+ t=1761834258; x=1793370258;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=noXJ3xZfTNa7kYEsDVidoHb99vtN24SwnWsrwwlxJos=;
- b=cj+gVASV7Jbl13NCRvPzMkQ7MTVNV5AbEKRk9ENg+EZW63y3MgMvA4Xq
- AWM77Z+YluESEPHAHMuyFFwBMDq+g2ZFQGW0SsG7DqzVMFNLX4Kh+gAOk
- YHx042Mka/QKC+Oi83xBl4MJ70JY5MPSTfietwraFglRCOJs73ruW8M+B
- Pwskx9GOLJOWKbnG43wfqFqDlp/wpIPWSq5H8+M/k13H5cU+TmwXwz223
- F6exKRQwC0P4VUIynyxKIu041WF2veUCkAf35xJXOa6loe8WU2Guetw/i
- KmjX5BvOobZ7lwFrtMjmwqfGCbwALtY+rG417u1xT4sPvwCYDT0xDC8sG w==;
-X-CSE-ConnectionGUID: gn86KgKjT26/vgSCLicJlQ==
-X-CSE-MsgGUID: 7Eu65QknRWmNd0KKMGLiNw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11598"; a="63181329"
-X-IronPort-AV: E=Sophos;i="6.19,266,1754982000"; d="scan'208";a="63181329"
+ bh=+iGmvDG2dGgeCc/t6e6KlRETqffv3amZ7gsuWT4X3Mg=;
+ b=Nat9Z3HcJTTbWInXRjdTkY+qbJGBGdAypmoNjOXO3lv2U5F5sqRw66b5
+ iV3/SkZXhvBL7DmvH+453LzUei7lgXDoEKmM2LAL/mmL882pC5XXvXPP9
+ uKPeBKLsLFJDG2/FZ5H40YBUVIt/+lCBSZNg9XEo3PV7vHl3MaYBkMTCC
+ S4sH5V+TUEGdPAPQ95nhe6OqDYPb1ZNH1BijVTmQZZFR+Q6nX4e/Farko
+ Wq+9MWPFcT1ng1WgBzd7shOHHy/u9c2Udgyl3tI5YaF08+MyWAoq7uRra
+ BaIamnycjBKkX1zyh60d4S6T58jxD3R5V5FWAxGEPDW/2qKIyCRDnJOdK w==;
+X-CSE-ConnectionGUID: Oj+qC1r0S3uACXqrJO0ecg==
+X-CSE-MsgGUID: 1so6qYbfSF+KW5h9CVcFUw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11598"; a="63181341"
+X-IronPort-AV: E=Sophos;i="6.19,266,1754982000"; d="scan'208";a="63181341"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Oct 2025 07:24:16 -0700
-X-CSE-ConnectionGUID: ceTrUywvRjSPK1isSDQlFw==
-X-CSE-MsgGUID: DKW5/+c7QtmGQY+9XNeclQ==
+ 30 Oct 2025 07:24:18 -0700
+X-CSE-ConnectionGUID: Kg3Rk+IZSZy6wwpIvXVNXw==
+X-CSE-MsgGUID: anfZbhECS92vgmW2ZZlgyQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,266,1754982000"; d="scan'208";a="216625313"
+X-IronPort-AV: E=Sophos;i="6.19,266,1754982000"; d="scan'208";a="216625317"
 Received: from himal-super-server.iind.intel.com (HELO
  hghimira.iind.intel.com) ([10.190.239.34])
- by orviesa002.jf.intel.com with ESMTP; 30 Oct 2025 07:24:15 -0700
+ by orviesa002.jf.intel.com with ESMTP; 30 Oct 2025 07:24:16 -0700
 From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
  Matthew Brost <matthew.brost@intel.com>,
  =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Subject: [PATCH v3 1/5] drm/xe: Add helper to extend CPU-mirrored VMA range
- for merge
-Date: Thu, 30 Oct 2025 20:22:49 +0530
-Message-Id: <20251030145253.867189-2-himal.prasad.ghimiray@intel.com>
+Subject: [PATCH v3 2/5] drm/xe: Merge adjacent default-attribute VMAs during
+ garbage collection
+Date: Thu, 30 Oct 2025 20:22:50 +0530
+Message-Id: <20251030145253.867189-3-himal.prasad.ghimiray@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251030145253.867189-1-himal.prasad.ghimiray@intel.com>
 References: <20251030145253.867189-1-himal.prasad.ghimiray@intel.com>
@@ -70,89 +70,108 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Introduce xe_vm_find_cpu_addr_mirror_vma_range(), which computes an
-extended range around a given range by including adjacent VMAs that are
-CPU-address-mirrored and have default memory attributes. This helper is
-useful for determining mergeable range without performing the actual merge.
+While restoring default memory attributes for VMAs during garbage
+collection, extend the target range by checking neighboring VMAs. If
+adjacent VMAs are CPU-address-mirrored and have default attributes,
+include them in the mergeable range to reduce fragmentation and improve
+VMA reuse.
 
 v2
-- Add assert
-- Move unmap check to this patch
+-Rebase
 
 Cc: Matthew Brost <matthew.brost@intel.com>
 Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 ---
- drivers/gpu/drm/xe/xe_vm.c | 41 ++++++++++++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_vm.h |  3 +++
- 2 files changed, 44 insertions(+)
+ drivers/gpu/drm/xe/xe_svm.c | 62 +++++++++++++++++++++----------------
+ 1 file changed, 36 insertions(+), 26 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 00f3520dec38..5037fd246547 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -4363,6 +4363,47 @@ int xe_vm_alloc_madvise_vma(struct xe_vm *vm, uint64_t start, uint64_t range)
- 	return xe_vm_alloc_vma(vm, &map_req, true);
+diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
+index 13af589715a7..585e3eccc876 100644
+--- a/drivers/gpu/drm/xe/xe_svm.c
++++ b/drivers/gpu/drm/xe/xe_svm.c
+@@ -286,19 +286,21 @@ static int __xe_svm_garbage_collector(struct xe_vm *vm,
+ 	return 0;
  }
  
-+static bool is_cpu_addr_vma_with_default_attr(struct xe_vma *vma)
+-static int xe_svm_range_set_default_attr(struct xe_vm *vm, u64 range_start, u64 range_end)
++static void xe_vma_set_default_attributes(struct xe_vma *vma)
 +{
-+	return vma && xe_vma_is_cpu_addr_mirror(vma) &&
-+	       !xe_svm_has_mapping(xe_vma_vm(vma), xe_vma_start(vma), xe_vma_end(vma)) &&
-+	       xe_vma_has_default_mem_attrs(vma);
++	vma->attr.preferred_loc.devmem_fd = DRM_XE_PREFERRED_LOC_DEFAULT_DEVICE;
++	vma->attr.preferred_loc.migration_policy = DRM_XE_MIGRATE_ALL_PAGES;
++	vma->attr.pat_index = vma->attr.default_pat_index;
++	vma->attr.atomic_access = DRM_XE_ATOMIC_UNDEFINED;
 +}
 +
-+/**
-+ * xe_vm_find_cpu_addr_mirror_vma_range - Extend a VMA range to include adjacent CPU-mirrored VMAs
-+ * @vm: VM to search within
-+ * @start: Input/output pointer to the starting address of the range
-+ * @end: Input/output pointer to the end address of the range
-+ *
-+ * Given a range defined by @start and @range, this function checks the VMAs
-+ * immediately before and after the range. If those neighboring VMAs are
-+ * CPU-address-mirrored and have default memory attributes, the function
-+ * updates @start and @range to include them. This extended range can then
-+ * be used for merging or other operations that require a unified VMA.
-+ *
-+ * The function does not perform the merge itself; it only computes the
-+ * mergeable boundaries.
-+ */
-+void xe_vm_find_cpu_addr_mirror_vma_range(struct xe_vm *vm, u64 *start, u64 *end)
-+{
-+	struct xe_vma *prev, *next;
++static int xe_svm_range_set_default_attr(struct xe_vm *vm, u64 start, u64 end)
+ {
+ 	struct xe_vma *vma;
+-	struct xe_vma_mem_attr default_attr = {
+-		.preferred_loc = {
+-			.devmem_fd = DRM_XE_PREFERRED_LOC_DEFAULT_DEVICE,
+-			.migration_policy = DRM_XE_MIGRATE_ALL_PAGES,
+-		},
+-		.atomic_access = DRM_XE_ATOMIC_UNDEFINED,
+-	};
+-	int err = 0;
++	bool has_default_attr;
++	int err;
+ 
+-	vma = xe_vm_find_vma_by_addr(vm, range_start);
++	vma = xe_vm_find_vma_by_addr(vm, start);
+ 	if (!vma)
+ 		return -EINVAL;
+ 
+@@ -307,25 +309,33 @@ static int xe_svm_range_set_default_attr(struct xe_vm *vm, u64 range_start, u64
+ 		return 0;
+ 	}
+ 
+-	if (xe_vma_has_default_mem_attrs(vma))
+-		return 0;
+-
+ 	vm_dbg(&vm->xe->drm, "Existing VMA start=0x%016llx, vma_end=0x%016llx",
+ 	       xe_vma_start(vma), xe_vma_end(vma));
+ 
+-	if (xe_vma_start(vma) == range_start && xe_vma_end(vma) == range_end) {
+-		default_attr.pat_index = vma->attr.default_pat_index;
+-		default_attr.default_pat_index  = vma->attr.default_pat_index;
+-		vma->attr = default_attr;
+-	} else {
+-		vm_dbg(&vm->xe->drm, "Split VMA start=0x%016llx, vma_end=0x%016llx",
+-		       range_start, range_end);
+-		err = xe_vm_alloc_cpu_addr_mirror_vma(vm, range_start, range_end - range_start);
+-		if (err) {
+-			drm_warn(&vm->xe->drm, "VMA SPLIT failed: %pe\n", ERR_PTR(err));
+-			xe_vm_kill(vm, true);
+-			return err;
+-		}
++	has_default_attr = xe_vma_has_default_mem_attrs(vma);
 +
-+	lockdep_assert_held(&vm->lock);
++	if (has_default_attr) {
++		if (xe_svm_has_mapping(vm, xe_vma_start(vma), xe_vma_end(vma)))
++			return 0;
 +
-+	if (*start > 0) {
-+		prev = xe_vm_find_vma_by_addr(vm, *start - 1);
-+		if (is_cpu_addr_vma_with_default_attr(prev))
-+			*start = xe_vma_start(prev);
++		start = xe_vma_start(vma);
++		end = xe_vma_end(vma);
++	} else if (xe_vma_start(vma) == start && xe_vma_end(vma) == end) {
++		xe_vma_set_default_attributes(vma);
 +	}
 +
-+	if (*end < vm->size) {
-+		next = xe_vm_find_vma_by_addr(vm, *end + 1);
-+		if (is_cpu_addr_vma_with_default_attr(next))
-+			*end = xe_vma_end(next);
-+	}
-+}
++	xe_vm_find_cpu_addr_mirror_vma_range(vm, &start, &end);
 +
- /**
-  * xe_vm_alloc_cpu_addr_mirror_vma - Allocate CPU addr mirror vma
-  * @vm: Pointer to the xe_vm structure
-diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
-index ef8a5019574e..361f10b3c453 100644
---- a/drivers/gpu/drm/xe/xe_vm.h
-+++ b/drivers/gpu/drm/xe/xe_vm.h
-@@ -68,6 +68,9 @@ xe_vm_find_overlapping_vma(struct xe_vm *vm, u64 start, u64 range);
++	if (xe_vma_start(vma) == start && xe_vma_end(vma) == end && has_default_attr)
++		return 0;
++
++	vm_dbg(&vm->xe->drm, "New VMA start=0x%016llx, vma_end=0x%016llx",  start, end);
++
++	err = xe_vm_alloc_cpu_addr_mirror_vma(vm, start, end - start);
++	if (err) {
++		drm_warn(&vm->xe->drm, "New VMA MAP failed: %pe\n", ERR_PTR(err));
++		xe_vm_kill(vm, true);
++		return err;
+ 	}
  
- bool xe_vma_has_default_mem_attrs(struct xe_vma *vma);
- 
-+void xe_vm_find_cpu_addr_mirror_vma_range(struct xe_vm *vm,
-+					  u64 *start,
-+					  u64 *end);
- /**
-  * xe_vm_has_scratch() - Whether the vm is configured for scratch PTEs
-  * @vm: The vm
+ 	/*
 -- 
 2.34.1
 
