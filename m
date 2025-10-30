@@ -4,77 +4,77 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2EE40CCF9EE
-	for <intel-xe@archiver.kernel.org>; Thu, 30 Oct 2025 00:44:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A7D0FCCF9EB
+	for <intel-xe@archiver.kernel.org>; Thu, 30 Oct 2025 02:46:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8F9CF10E873;
-	Thu, 30 Oct 2025 00:44:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B4E2210E882;
+	Thu, 30 Oct 2025 02:46:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="S9Qm4mGs";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Qf0lI7J8";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9DB3B10E871;
- Thu, 30 Oct 2025 00:44:04 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 78F6B10E881;
+ Thu, 30 Oct 2025 02:46:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761785045; x=1793321045;
+ t=1761792411; x=1793328411;
  h=date:from:to:cc:subject:message-id:references:
  content-transfer-encoding:in-reply-to:mime-version;
- bh=DAzy5qBbN5LFPlBclGLmM4V8qqzoXf/63IIKpo2Fs8U=;
- b=S9Qm4mGsz7g2Kro5IA6T3NQzzOT9fHkp55ANv8onAwCRS6voKWaPLP7c
- b/abLNVVhq1NRC7rW61GMRQt+e8UW9JODe/xmZevQEDRFRQdKvgE+wTNy
- uxUYqxqWmuUAU5M6DgDkPE69q2vV4tIYJ7ZI0yNxtVAGrFGLn/ew6WwSC
- MrFoK+XouqnWtFdDRUgbEjMszlM/+9XXoxsKQe6riJWI9989TzGC0pomM
- g1p53R+CW+Q32/p5vR8VzbYYdDqTAD8bPY2po+/VkIrsoXJYG70fEexfA
- 3oVmGRYorFSFOSHl0JDSc1N0ZY1drqQNFtZipxbnz4lG7YybEKIbJnCn5 Q==;
-X-CSE-ConnectionGUID: k8MrAslpSPeLILvzGLsBeA==
-X-CSE-MsgGUID: 1Brw2/9mSUeirYru3EIx9A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11597"; a="86546728"
-X-IronPort-AV: E=Sophos;i="6.19,265,1754982000"; d="scan'208";a="86546728"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Oct 2025 17:44:04 -0700
-X-CSE-ConnectionGUID: Sx6X89bRQPaE6H/tHxygJA==
-X-CSE-MsgGUID: S43kY2uJQVGKe5eUacwTQw==
+ bh=IJMqkaAz7SdL2O00/U0N+zQdE5OQVIJhWZs0tSjYtrE=;
+ b=Qf0lI7J8g034Nmjyvi9H+Xom5je2gqzQ0A/scWfdXQKgOZmLCsv8Y2FE
+ 3EO5ARPQCir7jJHC4IrS7ZYdIOtSeDgA1Abrv7/II7bsLw6I19JlxCJbE
+ /ceoYZ5WqyMJGnb1ykj8WG2wNHaQmwfFuuyhlazOoRJmolFrRk/XMJ/+D
+ iRwPocHNCGVz9n4YnGd7NQu36DoxGmE2FvN1rI1wSxETT0qg4f363Yqlv
+ EZtxp052Ar6qoO08UBnNW4Ni+LBJEeamdbP9Rzp7RIDrjf/F/bQ6Lx61O
+ 0Od6csjNx86ARmqFTago++KjeqxvA0Gs5dRiTOWC5ZK6JG12ujIC3gqPj A==;
+X-CSE-ConnectionGUID: TKlv5GCWReqOZbeGEby/Kw==
+X-CSE-MsgGUID: Q+Hr+D90QPmzx+rAx31SOg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11597"; a="63836266"
+X-IronPort-AV: E=Sophos;i="6.19,265,1754982000"; d="scan'208";a="63836266"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Oct 2025 19:46:49 -0700
+X-CSE-ConnectionGUID: uV3WiQVHTB2wwg689vhWOg==
+X-CSE-MsgGUID: uCa22gNdQlmMHaT/y/DUlw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,265,1754982000"; d="scan'208";a="185746168"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by orviesa007.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Oct 2025 17:44:04 -0700
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Wed, 29 Oct 2025 17:44:03 -0700
-Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+X-IronPort-AV: E=Sophos;i="6.19,265,1754982000"; d="scan'208";a="185712492"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by fmviesa006.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Oct 2025 19:46:49 -0700
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
  ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27 via Frontend Transport; Wed, 29 Oct 2025 17:44:03 -0700
-Received: from BL2PR02CU003.outbound.protection.outlook.com (52.101.52.49) by
- edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
+ 15.2.2562.27; Wed, 29 Oct 2025 19:46:48 -0700
+Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Wed, 29 Oct 2025 17:44:03 -0700
+ 15.2.2562.27 via Frontend Transport; Wed, 29 Oct 2025 19:46:48 -0700
+Received: from SJ2PR03CU001.outbound.protection.outlook.com (52.101.43.54) by
+ edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.27; Wed, 29 Oct 2025 19:46:48 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=RJiv25VXMY8Gn2FRr2mrd+fPU8JT8+8mcnaWQuFN4/acVTRYA9Xr2WOcxh5/S8GgJkKRrsxDcMFv3FdNXxPStPIeBdwXwaDw9wQ4a/rZDVllId83iQVcKjidcKDKzFVmldqpOw3huDnXqDpmIxpgCt8ERjFvm0ct25JxzEUn6O9IqIJZ3r/dD70qpeXPhKLBXKb+ytCTofQNfkfNq8eFV74YAuKzofZCxgL0FoUGtKVBp9Usw0I71qvBLGxWquBcQ2FZKAZry08CpkYongoqGx93Hwp8rSeafi+hoZlXvCdmfXco/Q3yMw/jkimJSfkBxvOh0moVE1tXQTYD1i+P9g==
+ b=HRX9M0h22VyTiNurNU7lHK1i13AKgN8v3jL+HpLXBFfqWfDMLUoq55pFw7PRrzcYkZq1OT0wJBI90j5sfNLQ5mjr+RQjI/DfC6t8VtdlBbbogwveJoSbDT5G6Gil+GQRXuUVFmDJd+5Kfu7wpnhyQJ72keuR/DFHVLrZ13aGqorAdGMIe8KlLeQo0gH8hX7UVrMZC1bdskyJWhlQQHlfb2v+kDYQQbfaYLtST7sSzb5eRoOT2VEqNH69r2lhOVtMHCOaJTVbA+pQ1APzyBVw1TO/wJZIA6ykcI7F4tQaFky3zio3yytxMZTtScrptuEJ86ToooLfjtBM8giYCMPqPg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=2fBN5CH1q1A9LkaibykID1p6+PB9cV8WHoLTK8aEduM=;
- b=olyHZXsfrdRDh/5NE5J52DZkiT5TBz9xDqGUpAZUVoLkuPq7dL54hUjUDq1H97IGTQjAAgCHBfSe3SHSi3zhTIOxke40YQ6T7x5GoM7BcLd9ddpWy1uc0atE/1CFxBGdcugdjaoKAh+1x9ijEO1DjcQV3cipbiDS+GXMJhu688JL4v9X6MzQ0bg9luWdELvwYsT+YP0oiyvpQcFjufS8KYWxtkRrZ91E5pzq47+MYGVXmjFJu+JU8Ok1yW2z3DHan9sz3jw4soGkKSK+ClQP+LA4/colZWWUK0sx1x0X5wKtCivutec+TlnzWQvjndWjeQDTxUNp18X2BFdmhjCYXg==
+ bh=P17e/tQkqSKkklkYRbIl7/UtRklHFvSvs/eqIrrZKBg=;
+ b=EDDw2/8v1wHtLkfOx6v+Pc50+gLvcWL3g2zhy5XlCmnwWNgiVQR4449mrlTjKNtQqW6EcA9GZ3NCM5UiNkh36KqTmQgK8P2RJI8XzrIR3QhJglovmBBzHCGxNQb9PDnzocqjGaFSztGHGzMk35U/8cJkfFiMD1zhJpAYziNnbpG95CWx6n/VV1X98PHzg9BvtNGf6QK/x1GmNMfVZsF8xvMoe6XVOGy9NLpX+OfOOrcmcpSTUA30lLN5kFEJ6yKgVEVeEEIbikV4LYrxtiZ2IppvbA1CCzwi3KIlPF5MhXnixxYPbPGqe/VgWRGJ+GXP3CoHP+Fca94YEzWMH1aKMg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by PH3PPF8C0509479.namprd11.prod.outlook.com (2603:10b6:518:1::d37)
+ by MN0PR11MB6205.namprd11.prod.outlook.com (2603:10b6:208:3c7::19)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9275.13; Thu, 30 Oct
- 2025 00:44:00 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9253.19; Thu, 30 Oct
+ 2025 02:46:46 +0000
 Received: from PH7PR11MB6522.namprd11.prod.outlook.com
  ([fe80::9e94:e21f:e11a:332]) by PH7PR11MB6522.namprd11.prod.outlook.com
  ([fe80::9e94:e21f:e11a:332%3]) with mapi id 15.20.9253.017; Thu, 30 Oct 2025
- 00:43:59 +0000
-Date: Wed, 29 Oct 2025 17:43:57 -0700
+ 02:46:40 +0000
+Date: Wed, 29 Oct 2025 19:46:37 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
 CC: <intel-xe@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
@@ -83,109 +83,109 @@ CC: <intel-xe@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
  =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, <dakr@kernel.org>,
  "Mrozek, Michal" <michal.mrozek@intel.com>, Joonas Lahtinen
  <joonas.lahtinen@linux.intel.com>
-Subject: Re: [PATCH 05/15] drm/xe: Use the drm_pagemap cache and shrinker
-Message-ID: <aQK0zQCAwgd5tHXe@lstrano-desk.jf.intel.com>
+Subject: Re: [PATCH 03/15] drm/pagemap, drm/xe: Manage drm_pagemap provider
+ lifetimes
+Message-ID: <aQLRjf89j5uuw2JS@lstrano-desk.jf.intel.com>
 References: <20251025120412.12262-1-thomas.hellstrom@linux.intel.com>
- <20251025120412.12262-6-thomas.hellstrom@linux.intel.com>
+ <20251025120412.12262-4-thomas.hellstrom@linux.intel.com>
+ <aQFjzTpZwYaytZqB@lstrano-desk.jf.intel.com>
+ <4e6b06069f77aee5cf7153e0ac0cf1a30c1327a0.camel@linux.intel.com>
 Content-Type: text/plain; charset="utf-8"
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20251025120412.12262-6-thomas.hellstrom@linux.intel.com>
-X-ClientProxiedBy: BYAPR07CA0044.namprd07.prod.outlook.com
- (2603:10b6:a03:60::21) To PH7PR11MB6522.namprd11.prod.outlook.com
+In-Reply-To: <4e6b06069f77aee5cf7153e0ac0cf1a30c1327a0.camel@linux.intel.com>
+X-ClientProxiedBy: MW3PR05CA0009.namprd05.prod.outlook.com
+ (2603:10b6:303:2b::14) To PH7PR11MB6522.namprd11.prod.outlook.com
  (2603:10b6:510:212::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|PH3PPF8C0509479:EE_
-X-MS-Office365-Filtering-Correlation-Id: 460c9422-f0e1-48d3-a961-08de174d6a4f
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|MN0PR11MB6205:EE_
+X-MS-Office365-Filtering-Correlation-Id: b5cd1b8f-51d5-4650-85a6-08de175e8dd2
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|7416014|376014|366016|7053199007; 
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?OHVJaDhvRjQvS3dHbHhmSjFBTWFNbmtNbjYzREQ4VmE1N29RSDdlNEVVdkE5?=
- =?utf-8?B?dXJ1ai9BbFJVM2JERUlUQzh1UGsvZk9NdTIwdnJ4OGVNald3WGFpZG40UzVz?=
- =?utf-8?B?ZVRaMi8wRkxTTHhsVWtUS3Z5ZWxPanFncjR0TTJGdjZnOWhzL1lHOTBWc3lX?=
- =?utf-8?B?TldLV3Vnd3lkaHlEdVZ3c2w0bHA0WC9yWmFKbWU5cHl1d3pubWdDalF4cWRm?=
- =?utf-8?B?MWg3bUdOdkkvZU9CcVUvdmcrdU8wdVZWOGt2b2dmUkVNM0VEYnlTUWIyd3VF?=
- =?utf-8?B?MWxyOFNBNGNrOHorUlIyZi9KR3h5SWhQSHdLeDNtY2l5NmwyeWo3UHdZeHdn?=
- =?utf-8?B?dUpyQUtwNldLS01talFPK2hvR2x1TDRnK21LazhJUVBoc1NCTzRCKy9uYVE3?=
- =?utf-8?B?UUJzbUk1VkJiOEJ5STFkK2ZDRzQ5NVdFODQ0emZXVmZCOXlzbkNTa1VPalNo?=
- =?utf-8?B?N0V3cmZtS1lVNEw1OWJVSTlNQnpWNCtJZEFWUUswSWp0SG5yU3ZtNWcxdDR3?=
- =?utf-8?B?UXF1ajZIaVM1SzZ3a0c1R0hDbFhMVkNCUWQzTW51c0hwTGxrd3kzQzRnNDFv?=
- =?utf-8?B?SW53QW9WaVE5dmNzbVlLWHM3UGUyeGticXF3ajBNZTJJcHVoelY4NWIxQW5F?=
- =?utf-8?B?SEViYk1DMUdXTWVrTU1IRUdUVndLc2FSRStLWk42ekR6SW5NYkdtQTE3Y2t0?=
- =?utf-8?B?VlFMN3lWSnNIYll0T2JLd2Jxam1UZGdmckJsblh6TkNMZGF2ZHRaSXFNZlNm?=
- =?utf-8?B?SVpaWnRpSkhobnRWU0F2VEpWa1pPY1NjVjcxVGw4NHVQQXNZazRBNmlERHd1?=
- =?utf-8?B?NlVSOEtTZ1hiMVcxMUpMRU1MWUpTSkdWYUxGcWdVekdlY1lwZUNZeW0rd0Jk?=
- =?utf-8?B?c3EwSldaSHhUUmZaU0VSYzRaWFBFM3dCVThhNFl4YjBGeE1ray9YbGpVZUdn?=
- =?utf-8?B?ZU9JbXc3SDNHaFFLMTZQdXJGclZrMEtuM3FJK2V6eDdYQldXcVJjYTJSb1Jx?=
- =?utf-8?B?aEN0L1h4aXh4UDB4ZkpBWmpOV3NzK2wwaWM3dXFtL2hmOEpWMGZTTTZSQUlJ?=
- =?utf-8?B?eVFuLzZQTVpETUMrc3NSNUwzVVZvc2FhTzJRSUZ1NURaeThhUytaUHo5TlBG?=
- =?utf-8?B?aEpra2RXaXpqUTFxTDdRNFpjNWx0WVBNWjBkMU0zclRDOVFZQ3Eya2MwYWkx?=
- =?utf-8?B?M3pYcVB1NENERkxuUTgxamdidWVYT0Nuc3F2U0Rkd2N2aS9vYm9HeDJsSm5X?=
- =?utf-8?B?dHU3SXFkbWUvaWowbStkaklWS3N2ZVJ1TyszOUpnRzhNaDUyMUkvdm1KUTJ0?=
- =?utf-8?B?ZXdxTWlodmpBaFNoRFNTNW04Nm50bGYxL09lK3NHSmVDaE4yM3BDaGRqMkFP?=
- =?utf-8?B?Z1Yxamc1Y1ZLNFZFejdMUXBkazNpK0tTTzFZcXhwVGkwQWw3cEhEbnRVdjFY?=
- =?utf-8?B?aUpqam9qT01PVXJqSjBNMVVLbnFKaklqL2krWXB1djk2NFd0K05lWkF2c25Y?=
- =?utf-8?B?Y3ZNK0puT3J2TEdXSklmamtnNjhqZkcrY3N1TW80dC9iMENXeldkUGdQdm9P?=
- =?utf-8?B?aitUM0lwNTRxVnArMERDbTMrdzR0QThJOGVDNVhSSWhQQytXdGFiM0xieG5q?=
- =?utf-8?B?VFd2cVdlWjBNTUJibWNXMFc5cmRQUHMzbHRjM2hycTVHMW9IM3RaOUF6Q2lx?=
- =?utf-8?B?d2w2NTJ6dWNCdm5iaEN4VW9TellSTUlTUXNRT0ZGQkZUTzFBb3RlWkllT1Fq?=
- =?utf-8?B?dm1rbFFDZzZjclZxRG9GNlRQUGNYZ3Y3cWJHMVN0ZEFXK1Fyd2tzQlRTODBF?=
- =?utf-8?B?NzljRmFxajRDTUVVZzVDYSttamtyakI0V1VzYnBlWWZCbUczSDdzN0oxVmg0?=
- =?utf-8?B?WndHaUh0Q1JiNVRsZXBTOWVIWC93N2J3VGE4MjlCYnVEVXhEZXR0L2g0d2FZ?=
- =?utf-8?Q?vkSyq7l1rxFd3MRa2cKyeQbX36M6//JW?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014|7416014;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?RTdVVTN3MWlycEw1QkZ6a2MxT3piSWhoeUJJNUVpc3NtOFZOektHblIzb3pU?=
+ =?utf-8?B?d1F5T2RpOW5vMmE0RERnQ0t4QTNOZUEvd3JwbkJEcnl3M3NnamxxRWx5V3N6?=
+ =?utf-8?B?ZGtjOFc1K2hBL1F4OHpxeEpEMzJzcmhBb1JuYUhCd0MreEdlTko0YU40MzVK?=
+ =?utf-8?B?YVczVzdpdzc0UVFkNnRSdkxtT040RUVZQitSM0pRa2JvK0JxZm1Obk15TEd5?=
+ =?utf-8?B?RnFTNGhBZlVRekx1N3JybEVuZnBNbkhORnlHdmZYazVTeG5LV0tZVzBldHZH?=
+ =?utf-8?B?WW5TeGlWSGd2K0ordHJ0RlFLSGlBc3FCSDJvaWtRdEd2dWFHZG53VDJqZk1C?=
+ =?utf-8?B?bkxLbEF2RlFIM3JyYWZOd1A0UGtrT0pseUFwL29RR00zNlFIdGkzY2xBQ1Fk?=
+ =?utf-8?B?UkJ1UXJWU203WW9yU1NRRHpXNFlpTjczNDM5eEozanJoSDdha2hqUXBRMzlH?=
+ =?utf-8?B?WjB3VnliNDBBZ204R2RoUy84eGV3em03bjVkWnRMQUc2UEVPWCtaSVlWSWJQ?=
+ =?utf-8?B?Ykl5b296MlI0ZkhDYnJhUEdvQndwVitwRFNDZ0hHOWJibytyR3RwQ3hLNlc3?=
+ =?utf-8?B?SEROQ1YyVlFzVW9WbUp0dEFOZjVpaWovdGRxRGNVWVlhL3BwMk1CY0dhYUox?=
+ =?utf-8?B?blQwaVc4UnBkS3VmMVJEdE5kbnhYaHlhYnArQVhhN2dBWGtRYnA2TDExQ09j?=
+ =?utf-8?B?WXh4bjFjSVdNNXdpUVBKNE1CVmFHNjN5TGpDaDhab28vWlBFL0ZNSEk3eVYz?=
+ =?utf-8?B?N3ZJZFRhbEpzeW1MeExPMWxMZFF0aEQrS1Fqb1J1YVB4WFBCbEx2dHhpT2FD?=
+ =?utf-8?B?NGwyQ0xBa0tQbkIzcHFCV0hIVTNXdmZoUUZmQ3hqbDV1aHZNL0VLUURLNnU3?=
+ =?utf-8?B?UDZTbGNCem5iblpmQ08zVE5zMUNWZHZ6dDF1QzQxUkxQcTMzZUxOWjY0NURJ?=
+ =?utf-8?B?U0krd3hmZHkwa0cvVitldERnZUd1ZkxLWWZSSnlrSEtYNEErYUZnSlpybUl0?=
+ =?utf-8?B?L2VCdTNXRi9QczNKaG9WVUU0MTZmYlZ4SGxrYkNNT2d4TFA1Mk1rTW9mS1pU?=
+ =?utf-8?B?OFVyUk9ONUxkL3ordk85MVNPTWVZdE5JN3d4WlR0Wkp3KzdiZ2I0bGN5aTFs?=
+ =?utf-8?B?RHlKY2NXVzJyRlBKQmJZVFRkeFBHalJMTkR0K2tsZjkyRHRqSkVJRHpKZVBs?=
+ =?utf-8?B?bjFmOWNpSGJ2bGFydlBNUTdzZTRsU2lZdXljeGFURVVlTkFRR3l1S3hsQnhv?=
+ =?utf-8?B?R0VFTVdKM21XSC9kQTRSQzY4VzB3R1M3MkVFb0xrcW90OWg1VlkxZzJabzFy?=
+ =?utf-8?B?dVBVdEoyUE00TGhDVWdsTXJ0QVNQRmpQWWxwNFNUUlN5YnU3M05Xem9Celox?=
+ =?utf-8?B?Yi9pU2hqREx5OGtySnFRSG5PS2ZIamQ3enBjVFNwQUVMM3ZGN1JUOEk4Y0lr?=
+ =?utf-8?B?ZW9kQlUyTTZlZzRMSmhZYzFGbHVkdVRsQlBZS2l6dERJbFNqNHgvZFpWeUhT?=
+ =?utf-8?B?ZDk5NHNGcDJoNWFJbm5ybDJPZmY5VFRsdkxQVHdCZmEzTjc4Z0xPc0xGT2p2?=
+ =?utf-8?B?cktjUk9ELzJCMjV1V1BWQ2VaK0ZWK2MwdklFZVplM1FSUEZaRS9JUGhEUER2?=
+ =?utf-8?B?L2VlOWxDVzdjZXdVcUJVUWhLMFNHU253NkJyWFdnS2hNbHMwTnNKNzh5R1BY?=
+ =?utf-8?B?eWFDQW1EaEdIZ00wSWRXbklNaHV3YUthdWw0S1VodUZZZjhna2hWSFV4cUx5?=
+ =?utf-8?B?OE9zMnQ4blhGRDUzdXNuT216VXVyVE1RcVhHajhKSkdPbVNGMGNsL1ZSeUdL?=
+ =?utf-8?B?L25RbjlTT0dITU1YRHdQR2JpcFI3NEhSdUhicUJnaDgzdzVHSnB6MWREZExu?=
+ =?utf-8?B?d1VrTklaTnIxRThkcVhUaVJDZ2pnYzlvMWF6S1lLdkJqVWc9PQ==?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(7416014)(376014)(366016)(7053199007); DIR:OUT;
- SFP:1101; 
+ SFS:(13230040)(366016)(1800799024)(376014)(7416014); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZHVjMUdpZTdybndscXorUjVqTlVYbVpPVk9RM1ZMTnViVng1eXkyWmR5RkNo?=
- =?utf-8?B?L1hJbGZVeDZMMzA0V0pHdmlPRHdhNjUwSGhZbXlZbG0wclpWSlJFaGplNG0v?=
- =?utf-8?B?MzFqRUp6eURDN2xpbGtZVEx6QnFJaCtMbTFSSUhXKzB1SStsbTROb2Z1SWky?=
- =?utf-8?B?U1V2aWZsMHkrOFBlS0ZBUlFFNWNNWjI0bm5HbGxXQ2xRWEJRYmhNa094RWMv?=
- =?utf-8?B?Uld4YjJIQm9PSUV3amVLdzZ2Nlc2b21UaisxK3o4ZFA0REJEWUlCM1hGcDZY?=
- =?utf-8?B?RUVmRzlHaFVWaXMvY3krdlhjdlhhN2NkRXI2NVZVenB4WU05d0tjK1lORTdB?=
- =?utf-8?B?c2xaK2ZsU2puMHNsbjFCMzBVei80UWdnR3AvcGcrbFBXM2c3NDN4dUhaVFRs?=
- =?utf-8?B?eER0cUpXanlxT2RqWFpzZWJvNmhtTGRkWi9obldCTHRhWnBuR1FVTWNHVFln?=
- =?utf-8?B?UGYwYlArU1VyV1BOSFovWFlKcWxYV2xkYjE0NDM3end1dHY3M0pNNlBkcWhy?=
- =?utf-8?B?Z2FLQVNEcTBwclA2cTcrSEpqWWRFTUpFZFRmWXorY1UzR0F1VjVSVUZKNFd1?=
- =?utf-8?B?RDFpeHorUGVueExFNEEyUFdkdjFsa0o2TS9JVmJJZzJHZjc3K2VVRmg2VTU5?=
- =?utf-8?B?dHVtbkdQcC95SjBoSmNZaWRQNWlscmx1Zi9EOStQMzU0VlJoWjg5ZnBYUzhm?=
- =?utf-8?B?cXhaNTM3NWNPdUc3cTdkWlIwUkRpb3F5SGZmcFVVelJ2ZzAxZS9IeDZ2elhx?=
- =?utf-8?B?TzdtUkxxQnJmSkNhU3h6YzJPU2cxdkpmZlZjQXp1aE1ySnVvZ3dqTGNTZFVC?=
- =?utf-8?B?eWIxQzRFQmFYeDNlekZHVWRzeXBPbDlDcjU2N05RZk1ub1lLN2RsajNtZGVM?=
- =?utf-8?B?Vm9lcEdCd0JZUUNnWGw1QXNVTk1QVEdpUzNmYjZHR1NEc3Zja0srcnQxNUJC?=
- =?utf-8?B?NkhMa1ZhSEtIQmVPcG4zeUxhYzBZdVp5M0xQVG5JLzM3d3lpTVR3aUY3RTAr?=
- =?utf-8?B?N2E3RGRJUUhDV3FhenF1N3dCVmlhQ0VhOHRvM2hNK3VNTnVOYkoxUXE0cEls?=
- =?utf-8?B?VGs5SzJEejdtNmIwTUVkMzJCbjVXbW5iQ2ZjV2plNmpBTjFMcGFFYWd0R0NV?=
- =?utf-8?B?b0E0NDBjS1ZHSk1LdTNwMDViR29mdXdwbzZNNGNxeWpMVkUxVG9iSkhwQlBG?=
- =?utf-8?B?dTZEcXdudGxDUTFURlBpcDByNjZhZHlHakdmYTNFM2VKRU9NWnBlRStaNWNF?=
- =?utf-8?B?Ujkzc2V4UytBOVhjODF6UmhqMjJWaDgvcWJCS093SCsxeTRndldHY0FrV2Qv?=
- =?utf-8?B?ZHpkSU5iU0R2RC93cDVyYXNUMFZOSFNhSU51VDNxclA0QzRjdU9HcytZS09k?=
- =?utf-8?B?cnEwaTFxbVk5ZEt6UjQ3anBCcXJVQm51RnZyZ3RzZmtQaWYwSEdZTUc5V0Z6?=
- =?utf-8?B?dHM5ZEtleXE1VElObExEMS9rSVVjUHBZc3UyU05xNldLQ2R1d2ZmY0pLN1Bk?=
- =?utf-8?B?SUxLRm8zeENGNjlkdUJGeXNZRkMwdllhZTBiTEN4blN4R0pMYjhHVEVZRUZh?=
- =?utf-8?B?Z1FHYzFIZzBSQmVEa2dyUnNKckFxbTNrbk5FcDhJSmduNzZGOUFOVDNJY2dh?=
- =?utf-8?B?SWFjRlpJL0U5QkphbWVPNDRvOG9RallNM0tEQ0tnb1ZzbUl5eEE4K0JNR2JR?=
- =?utf-8?B?Tm5uT2t0R0t2US9BR2lEWVg2SjRLUXZIUHgzUnMrZ0FPRDdDQTNaZW9QZS96?=
- =?utf-8?B?VjJRWFlTaXhZTFBLY09tQjdjajN0UzV1SXo3N1R5dTh1eldjbHRhZEo5Z21k?=
- =?utf-8?B?YWJoUDYxNU9UVDN1b3ErVGRDNElVcm8xQlhmN2tKZUZHNUtPRldSdVVPRTZN?=
- =?utf-8?B?VEZNUVJaZ0FTVnBTM2ZxbmtXWHEwUUdtV29hMUo2TzZoT1lVaU1oakR0azhH?=
- =?utf-8?B?RmZCcGh1QjRRTDNHM0lVWnRQSW9DZ3JpTlhXeEVqOFA5SStVOGYyV1lCWjJi?=
- =?utf-8?B?V0pFTlowa1MzV0pQTDJVSlhURWx2SmNMamFFNS9iZ3d2RkgwS0JvOWFLeXNa?=
- =?utf-8?B?WldLY3plbkFxeGE2YTZuTEhleFJaTzA2M1lrRDVHT0hNWTdGdWdWZVUvUDFY?=
- =?utf-8?B?YWZzdTRjampPNVVFSDg1a2lxaEh0UlhMSjlrSmNVOHkwR3NOM1FRMG9FZDBm?=
- =?utf-8?B?YUE9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 460c9422-f0e1-48d3-a961-08de174d6a4f
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RXhoUk1SUjJYa2o1SnVreGlkRFlHc3VxNHJ5NW5CT0lsODc2bUp4ZW0ySmdR?=
+ =?utf-8?B?Z09Mb0tuU2N3bDNNZ3U3M2xSUlR6N1NPTzVuTWM1MU5HMlVUYW4xRVZtY0VI?=
+ =?utf-8?B?RW0zTFd6dStiTS8wTVdWdkVGa29IUFJsUVlrb0NXK1pVbU5XMytDeUlqSHJy?=
+ =?utf-8?B?Tm9pZUk4VUxUMklTL25NVVErN2U5UVpoTXlsbzlZTE9yelZMZkZyY05sVzBL?=
+ =?utf-8?B?cFNEcjA2d0g2aG5HeFhYMXRiR2trTHc1WDArU1Q4RC9Id0tlbU5OUFRWbmhi?=
+ =?utf-8?B?bVZ4UGRlelVZaGJlOEhFTzdDZGRQSDFmNHpFVysyLzBLT2hMdUM0NWMyL2pp?=
+ =?utf-8?B?cUhQU2ZibFRrMGtTU0RGbllCcUMrdkxHekh4a3I3M0FBN1Z1L0czajE3Vmth?=
+ =?utf-8?B?a3pydjFsbmlhRWlWOUpzTE5xbFF2UmVNL01NOFlneVpTWDV4U2hHWjVFUWt5?=
+ =?utf-8?B?cDlYS3Ura0lRTE1iak9RZEtCaFZnNWdRYURMdVJiUkdKenBQTTN1SU9GOFNj?=
+ =?utf-8?B?UWp6a3duc29iM1pQVVhqcFB3L2tUVFNRVW9CK0czTmlnVUl5aHk0RGZ5N0FJ?=
+ =?utf-8?B?U1IrVkZuR2Z6eFpSTXFZWi9pU0NDeFVRMkFGMm53Mm96c3QyRzBVMDlyWmVw?=
+ =?utf-8?B?TEVTRGcvdHNjVTh0MDhUZGRoekxqajBwMW43a0lEVHh5MEhwMEMyMFVXZGZv?=
+ =?utf-8?B?MWR4N3h4UGpONmd5YXVkelhHK2hkTmNyNWQ5ejBDWTAzWUpTSXVmakdJb0RR?=
+ =?utf-8?B?RmpLSTA2TXZhbldxWmFqZCtwdW5ZaDdJTEJhRUlCaTB1WW5ZZE4vOWlIUlhs?=
+ =?utf-8?B?STJaNUcyc3pTbTlpMTBXdmEyTkdHb3pZdEViOUhvOTlGUjJvSGUzekFycEVG?=
+ =?utf-8?B?RW5MaWhvcjlxSThBM0VYKzlOUVRMc091b054Q1dkSFg5SkVidHpyVEtTckds?=
+ =?utf-8?B?SlFldFl4VmpMR2QzbzlScWpKaVZFLytzTHQwRUs5aU9XRzNUQ3hFbGpTQVBk?=
+ =?utf-8?B?bXVNNmNrb3FtZnJ6a0dzYUt0dk9MWXVrbUtVQmFUQ21QeVQ4UDNhT1JJWkVQ?=
+ =?utf-8?B?T1JFWW9DQXAxc3o2TkdHaFl4a2V3Yi9VazVEZHNpVk5iTlJyaU1NLzVkNHRC?=
+ =?utf-8?B?VWkva2p1OTVFUzExVjhVWXpIWlprdzhJbTc0TVphRFJ6MFQ0NTRqQWZNOWpT?=
+ =?utf-8?B?V1BYRElTbWdGbGg1WWJZNm5DaXViMDFIRjRuamUrdDRpSWltMjFNSUxRTlBy?=
+ =?utf-8?B?eHRTRXhXVFU3VTNneEMvYzV1dnBEY1dYVG1MWm83bHJhMXdxbENGcXBPUHM2?=
+ =?utf-8?B?bDF2L0tweE9CcTVpOFJMcjRINUlMK3M5MGVUZTlMM2taQlNoeDAzNk5EOEsr?=
+ =?utf-8?B?QUs0ZjRTZzdKeklMWVFybkwwQmlCYWZuZ3RINmVrdktTTHh3cXVTRDlmdmtH?=
+ =?utf-8?B?dlVWRG9mZkMxSlZHMDJGNWtaVUc4QmgwL2lZVE9WdHk0MFJFRENnNk5QWGVU?=
+ =?utf-8?B?Q29OSEFFRTJPbnprTFNwOFY3WnI3cDhibjB1cUVYcytnWFdvTm9FSTdQbVBw?=
+ =?utf-8?B?SUZrWXBnWGUvanhvZGF4RTA2RmlPM1paeG12ZGVoTFk5aGxCWHBWWXRMeWk0?=
+ =?utf-8?B?K3NNdWY1ZGdQUmM5Qi9aOEhzNW1xRzBiL2ZPUGdJTitidUYzcm00eUtVQm5H?=
+ =?utf-8?B?aW5ZQ3lwWVdwbVJrRUFPL3gyRVRpZ0hFMktnNkJTRUFhdEQ5MGt5eThGQmxk?=
+ =?utf-8?B?NVl5ZjY2bU50OEFpMjZIeXpNTEpSKzBuRHZ4VU5CVTVRRjBESWJmOElIZXFu?=
+ =?utf-8?B?MDU0czZuZHJFMVlNaGYza1lDRFYxNzRnTDQrVVFObDBKNkJsam96c1AyNDNn?=
+ =?utf-8?B?ZjlMRmlVQTgxcDhCMUpqRE10V0FBNXRDMk5NQzQ1YzN4dXo4NDZDQjFncXkz?=
+ =?utf-8?B?KzQ1MlRLdW1pNERweG1za3A2dEYzdlh1ODkyRDd0QjJyenhVMVk3Y1F6VzZt?=
+ =?utf-8?B?SWthVGFiOFJvV0xqU2tDMS9MUVhKbWRFWWlmUmlrNDlFVktjU0ZvcUF2blR1?=
+ =?utf-8?B?ekFnU0ptZldjaThJYXhKYWk4d2Z5dEV5T05BN2FkTjVqYjRJRUJvcHhOQ2Yx?=
+ =?utf-8?B?NENsTXJ1WVZJWWtEMmM1VXdCWXk5ZHQrL21yMDVXOWh6cG1tY0J0WENUSWVK?=
+ =?utf-8?B?YXc9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: b5cd1b8f-51d5-4650-85a6-08de175e8dd2
 X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Oct 2025 00:43:59.8688 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Oct 2025 02:46:40.8520 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: aQeYGGUkdJTaVN7eXgj2e2l8SKyLScs3B2V7QU73JN765U55xBPtSYftQiaMeRHJgdjK0LQlL/aeMGkxDymOEg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH3PPF8C0509479
+X-MS-Exchange-CrossTenant-UserPrincipalName: ztkUSCguBA1RWj6yefZXQZ8EYhBgcVMrPgkfj4hjhlSbt1SqYcg3boDpwn2WkHuDjJsN5dBOq42jmiWTOEZ3ig==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR11MB6205
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -201,850 +201,353 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Sat, Oct 25, 2025 at 02:04:02PM +0200, Thomas Hellström wrote:
-> Define a struct xe_pagemap that embeds all pagemap-related
-> data used by xekmd, and use the drm_pagemap cache- and
-> shrinker to manage lifetime.
+On Wed, Oct 29, 2025 at 03:49:47PM +0100, Thomas Hellström wrote:
+> On Tue, 2025-10-28 at 17:46 -0700, Matthew Brost wrote:
+> > On Sat, Oct 25, 2025 at 02:04:00PM +0200, Thomas Hellström wrote:
+> > > Even if the drm_pagemap provider has released its reference on
+> > > the drm_pagemap, references may be held by still active pages.
+> > > Ensure that we hold a reference on the provider drm device and
+> > > modules for as long as we might need to use the drm_pagemap ops.
+> > > 
+> > 
+> > Just to make sure I’m understanding this correctly — this is intended
+> > to
+> > guard against the devm action [1] running while a device is still
+> > holding references to another device’s pages, right?
+> > 
+> > [1]
+> > https://elixir.bootlin.com/linux/v6.17.5/source/kernel/resource.c#L1993
 > 
-> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_device.c       |   6 +
->  drivers/gpu/drm/xe/xe_device_types.h |   5 +
->  drivers/gpu/drm/xe/xe_svm.c          | 354 +++++++++++++++++++++------
->  drivers/gpu/drm/xe/xe_svm.h          |  38 ++-
->  drivers/gpu/drm/xe/xe_tile.c         |  34 ++-
->  drivers/gpu/drm/xe/xe_tile.h         |  21 ++
->  drivers/gpu/drm/xe/xe_vm_types.h     |   1 +
->  drivers/gpu/drm/xe/xe_vram_types.h   |  15 +-
->  8 files changed, 379 insertions(+), 95 deletions(-)
+> Actually removing the dev_pagemap and its region is allowed while
+> another device holds a reference on the *drm_pagemap*. For example if
+> you have two devices. Device 0 executes from the memory of device 1.
+> Suddenly you feel like offlining / unbinding device 1. When you execute
+> unbind, the driver evicts all SVM bos and thereby frees all device-
+> private pages. But device 0 still has a reference to the drm_pagemap,
+> even if it's unusable: Any VRAM migration trying to use the drm_pagemap
+> will error with -ENODEV, so depending on how the driver handles that,
+> it will continue executing out of another memory region. At this point
+> it would've been possible without this code to rmmod the drm_pagemap
+> provider device module, and its drm device would've been freed without
+> this code, and when drm_pagemap_put() eventually is called, things go
+> boom. So the commit message is a bit misleading.
 > 
-> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-> index 5f6a412b571c..ad004aab67ce 100644
-> --- a/drivers/gpu/drm/xe/xe_device.c
-> +++ b/drivers/gpu/drm/xe/xe_device.c
-> @@ -16,6 +16,7 @@
->  #include <drm/drm_gem_ttm_helper.h>
->  #include <drm/drm_ioctl.h>
->  #include <drm/drm_managed.h>
-> +#include <drm/drm_pagemap_util.h>
->  #include <drm/drm_print.h>
->  #include <uapi/drm/xe_drm.h>
->  
-> @@ -62,6 +63,7 @@
->  #include "xe_shrinker.h"
->  #include "xe_survivability_mode.h"
->  #include "xe_sriov.h"
-> +#include "xe_svm.h"
->  #include "xe_tile.h"
->  #include "xe_ttm_stolen_mgr.h"
->  #include "xe_ttm_sys_mgr.h"
-> @@ -465,6 +467,10 @@ struct xe_device *xe_device_create(struct pci_dev *pdev,
->  
->  	init_rwsem(&xe->usm.lock);
->  
-> +	err = xe_pagemap_shrinker_create(xe);
-> +	if (err)
-> +		goto err;
-> +
->  	xa_init_flags(&xe->usm.asid_to_vm, XA_FLAGS_ALLOC);
->  
->  	if (IS_ENABLED(CONFIG_DRM_XE_DEBUG)) {
-> diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-> index 6a62b520f5b5..dbcfe54b36d8 100644
-> --- a/drivers/gpu/drm/xe/xe_device_types.h
-> +++ b/drivers/gpu/drm/xe/xe_device_types.h
-> @@ -35,6 +35,7 @@
->  #endif
->  
->  struct dram_info;
-> +struct drm_pagemap_shrinker;
->  struct intel_display;
->  struct intel_dg_nvm_dev;
->  struct xe_ggtt;
-> @@ -418,6 +419,10 @@ struct xe_device {
->  		u32 next_asid;
->  		/** @usm.lock: protects UM state */
->  		struct rw_semaphore lock;
-> +#if IS_ENABLED(CONFIG_DRM_XE_PAGEMAP)
-> +		/** @usm.pagemap_shrinker: Shrinker for unused pagemaps */
-> +		struct drm_pagemap_shrinker *dpagemap_shrinker;
-> +#endif
->  	} usm;
->  
->  	/** @pinned: pinned BO state */
-> diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
-> index f6ee22da2e95..8aced064c83f 100644
-> --- a/drivers/gpu/drm/xe/xe_svm.c
-> +++ b/drivers/gpu/drm/xe/xe_svm.c
-> @@ -4,6 +4,9 @@
->   */
->  
->  #include <drm/drm_drv.h>
-> +#include <drm/drm_managed.h>
-> +#include <drm/drm_pagemap.h>
-> +#include <drm/drm_pagemap_util.h>
->  
->  #include "xe_bo.h"
->  #include "xe_exec_queue_types.h"
-> @@ -19,6 +22,8 @@
->  #include "xe_vm_types.h"
->  #include "xe_vram_types.h"
->  
-> +static int xe_svm_get_pagemaps(struct xe_vm *vm);
-> +
->  static bool xe_svm_range_in_vram(struct xe_svm_range *range)
->  {
->  	/*
-> @@ -395,22 +400,34 @@ static void xe_svm_garbage_collector_work_func(struct work_struct *w)
->  
->  #if IS_ENABLED(CONFIG_DRM_XE_PAGEMAP)
->  
-> -static struct xe_vram_region *page_to_vr(struct page *page)
-> +static struct xe_vram_region *xe_pagemap_to_vr(struct xe_pagemap *xpagemap)
->  {
-> -	return container_of(page_pgmap(page), struct xe_vram_region, pagemap);
-> +	return xpagemap->vr;
->  }
->  
-> -static u64 xe_vram_region_page_to_dpa(struct xe_vram_region *vr,
-> -				      struct page *page)
-> +static struct xe_pagemap *xe_page_to_pagemap(struct page *page)
->  {
-> -	u64 dpa;
-> +	return container_of(page_pgmap(page), struct xe_pagemap, pagemap);
-> +}
-> +
-> +static struct xe_vram_region *xe_page_to_vr(struct page *page)
-> +{
-> +	return xe_pagemap_to_vr(xe_page_to_pagemap(page));
-> +}
-> +
-> +static u64 xe_page_to_dpa(struct page *page)
-> +{
-> +	struct xe_pagemap *xpagemap = xe_page_to_pagemap(page);
-> +	struct xe_vram_region *vr = xe_pagemap_to_vr(xpagemap);
-> +	u64 hpa_base = xpagemap->hpa_base;
->  	u64 pfn = page_to_pfn(page);
->  	u64 offset;
-> +	u64 dpa;
->  
->  	xe_assert(vr->xe, is_device_private_page(page));
-> -	xe_assert(vr->xe, (pfn << PAGE_SHIFT) >= vr->hpa_base);
-> +	xe_assert(vr->xe, (pfn << PAGE_SHIFT) >= hpa_base);
->  
-> -	offset = (pfn << PAGE_SHIFT) - vr->hpa_base;
-> +	offset = (pfn << PAGE_SHIFT) - hpa_base;
->  	dpa = vr->dpa_base + offset;
->  
->  	return dpa;
-> @@ -514,11 +531,11 @@ static int xe_svm_copy(struct page **pages,
->  			continue;
->  
->  		if (!vr && spage) {
-> -			vr = page_to_vr(spage);
-> +			vr = xe_page_to_vr(spage);
->  			gt = xe_migrate_exec_queue(vr->migrate)->gt;
->  			xe = vr->xe;
->  		}
-> -		XE_WARN_ON(spage && page_to_vr(spage) != vr);
-> +		XE_WARN_ON(spage && xe_page_to_vr(spage) != vr);
->  
->  		/*
->  		 * CPU page and device page valid, capture physical address on
-> @@ -526,7 +543,7 @@ static int xe_svm_copy(struct page **pages,
->  		 * device pages.
->  		 */
->  		if (pagemap_addr[i].addr && spage) {
-> -			__vram_addr = xe_vram_region_page_to_dpa(vr, spage);
-> +			__vram_addr = xe_page_to_dpa(spage);
->  			if (vram_addr == XE_VRAM_ADDR_INVALID) {
->  				vram_addr = __vram_addr;
->  				pos = i;
-> @@ -672,9 +689,11 @@ static void xe_svm_devmem_release(struct drm_pagemap_devmem *devmem_allocation)
->  	xe_pm_runtime_put(xe);
->  }
->  
-> -static u64 block_offset_to_pfn(struct xe_vram_region *vr, u64 offset)
-> +static u64 block_offset_to_pfn(struct drm_pagemap *dpagemap, u64 offset)
->  {
-> -	return PHYS_PFN(offset + vr->hpa_base);
-> +	struct xe_pagemap *xpagemap = container_of(dpagemap, typeof(*xpagemap), dpagemap);
-> +
-> +	return PHYS_PFN(offset + xpagemap->hpa_base);
->  }
->  
->  static struct drm_buddy *vram_to_buddy(struct xe_vram_region *vram)
-> @@ -694,7 +713,8 @@ static int xe_svm_populate_devmem_pfn(struct drm_pagemap_devmem *devmem_allocati
->  	list_for_each_entry(block, blocks, link) {
->  		struct xe_vram_region *vr = block->private;
->  		struct drm_buddy *buddy = vram_to_buddy(vr);
-> -		u64 block_pfn = block_offset_to_pfn(vr, drm_buddy_block_offset(block));
-> +		u64 block_pfn = block_offset_to_pfn(devmem_allocation->dpagemap,
-> +						    drm_buddy_block_offset(block));
->  		int i;
->  
->  		for (i = 0; i < drm_buddy_block_size(buddy, block) >> PAGE_SHIFT; ++i)
-> @@ -711,6 +731,11 @@ static const struct drm_pagemap_devmem_ops dpagemap_devmem_ops = {
->  	.copy_to_ram = xe_svm_copy_to_ram,
->  };
->  
-> +#else
-> +static int xe_svm_get_pagemaps(struct xe_vm *vm)
-> +{
-> +	return 0;
-> +}
->  #endif
->  
->  static const struct drm_gpusvm_ops gpusvm_ops = {
-> @@ -725,6 +750,26 @@ static const unsigned long fault_chunk_sizes[] = {
->  	SZ_4K,
->  };
->  
-> +static void xe_pagemap_put(struct xe_pagemap *xpagemap)
-> +{
-> +	drm_pagemap_put(&xpagemap->dpagemap);
-> +}
-> +
-> +static void xe_svm_put_pagemaps(struct xe_vm *vm)
-> +{
-> +	struct xe_device *xe = vm->xe;
-> +	struct xe_tile *tile;
-> +	int id;
-> +
-> +	for_each_tile(tile, xe, id) {
-> +		struct xe_pagemap *xpagemap = vm->svm.pagemaps[id];
-> +
-> +		if (xpagemap)
-> +			xe_pagemap_put(xpagemap);
-> +		vm->svm.pagemaps[id] = NULL;
-> +	}
-> +}
-> +
->  /**
->   * xe_svm_init() - SVM initialize
->   * @vm: The VM.
-> @@ -743,12 +788,21 @@ int xe_svm_init(struct xe_vm *vm)
->  		INIT_WORK(&vm->svm.garbage_collector.work,
->  			  xe_svm_garbage_collector_work_func);
->  
-> +		err = xe_svm_get_pagemaps(vm);
-> +		if (err)
-> +			return err;
-> +
->  		err = drm_gpusvm_init(&vm->svm.gpusvm, "Xe SVM", &vm->xe->drm,
->  				      current->mm, 0, vm->size,
->  				      xe_modparam.svm_notifier_size * SZ_1M,
->  				      &gpusvm_ops, fault_chunk_sizes,
->  				      ARRAY_SIZE(fault_chunk_sizes));
->  		drm_gpusvm_driver_set_lock(&vm->svm.gpusvm, &vm->lock);
-> +
-> +		if (err) {
-> +			xe_svm_put_pagemaps(vm);
-> +			return err;
-> +		}
->  	} else {
->  		err = drm_gpusvm_init(&vm->svm.gpusvm, "Xe SVM (simple)",
->  				      &vm->xe->drm, NULL, 0, 0, 0, NULL,
-> @@ -768,6 +822,7 @@ void xe_svm_close(struct xe_vm *vm)
->  {
->  	xe_assert(vm->xe, xe_vm_is_closed(vm));
->  	flush_work(&vm->svm.garbage_collector.work);
-> +	xe_svm_put_pagemaps(vm);
->  }
->  
->  /**
-> @@ -861,7 +916,8 @@ static int xe_drm_pagemap_populate_mm(struct drm_pagemap *dpagemap,
->  				      struct mm_struct *mm,
->  				      unsigned long timeslice_ms)
->  {
-> -	struct xe_vram_region *vr = container_of(dpagemap->pagemap, typeof(*vr), pagemap);
-> +	struct xe_pagemap *xpagemap = container_of(dpagemap, typeof(*xpagemap), dpagemap);
-> +	struct xe_vram_region *vr = xe_pagemap_to_vr(xpagemap);
->  	struct xe_device *xe = vr->xe;
->  	struct device *dev = xe->drm.dev;
->  	struct drm_buddy_block *block;
-> @@ -1370,11 +1426,6 @@ u8 xe_svm_ranges_zap_ptes_in_range(struct xe_vm *vm, u64 start, u64 end)
->  
->  #if IS_ENABLED(CONFIG_DRM_XE_PAGEMAP)
->  
-> -static struct drm_pagemap *tile_local_pagemap(struct xe_tile *tile)
-> -{
-> -	return tile->mem.vram->dpagemap;
-> -}
-> -
->  /**
->   * xe_vma_resolve_pagemap - Resolve the appropriate DRM pagemap for a VMA
->   * @vma: Pointer to the xe_vma structure containing memory attributes
-> @@ -1400,7 +1451,7 @@ struct drm_pagemap *xe_vma_resolve_pagemap(struct xe_vma *vma, struct xe_tile *t
->  		return NULL;
->  
->  	if (fd == DRM_XE_PREFERRED_LOC_DEFAULT_DEVICE)
-> -		return IS_DGFX(tile_to_xe(tile)) ? tile_local_pagemap(tile) : NULL;
-> +		return IS_DGFX(tile_to_xe(tile)) ? xe_tile_local_pagemap(tile) : NULL;
->  
->  	/* TODO: Support multi-device with drm_pagemap_from_fd(fd) */
->  	return NULL;
-> @@ -1423,7 +1474,7 @@ int xe_svm_alloc_vram(struct xe_tile *tile, struct xe_svm_range *range,
->  	xe_assert(tile_to_xe(tile), range->base.pages.flags.migrate_devmem);
->  	range_debug(range, "ALLOCATE VRAM");
->  
-> -	dpagemap = tile_local_pagemap(tile);
-> +	dpagemap = xe_tile_local_pagemap(tile);
->  	return drm_pagemap_populate_mm(dpagemap, xe_svm_range_start(range),
->  				       xe_svm_range_end(range),
->  				       range->base.gpusvm->mm,
-> @@ -1442,7 +1493,7 @@ xe_drm_pagemap_device_map(struct drm_pagemap *dpagemap,
->  	dma_addr_t addr;
->  
->  	if (pgmap_dev == dev) {
-> -		addr = xe_vram_region_page_to_dpa(page_to_vr(page), page);
-> +		addr = xe_page_to_dpa(page);
->  		prot = XE_INTERCONNECT_VRAM;
->  	} else {
->  		addr = DMA_MAPPING_ERROR;
-> @@ -1452,94 +1503,243 @@ xe_drm_pagemap_device_map(struct drm_pagemap *dpagemap,
->  	return drm_pagemap_addr_encode(addr, prot, order, dir);
->  }
->  
-> -static const struct drm_pagemap_ops xe_drm_pagemap_ops = {
-> -	.device_map = xe_drm_pagemap_device_map,
-> -	.populate_mm = xe_drm_pagemap_populate_mm,
-> -};
-> +static void xe_pagemap_destroy_work(struct work_struct *work)
-> +{
-> +	struct xe_pagemap *xpagemap = container_of(work, typeof(*xpagemap), destroy_work);
-> +	struct dev_pagemap *pagemap = &xpagemap->pagemap;
-> +	struct drm_device *drm = xpagemap->dpagemap.drm;
-> +	int idx;
->  
-> -static void xe_devm_release(void *data)
-> +	/*
-> +	 * Only unmap / release if devm_ release hasn't run yet.
-> +	 * Otherwise the devm_ callbacks have already released, or
-> +	 * will do shortly.
-> +	 */
-> +	if (drm_dev_enter(drm, &idx)) {
-> +		devm_memunmap_pages(drm->dev, pagemap);
-> +		devm_release_mem_region(drm->dev, pagemap->range.start,
-> +					pagemap->range.end - pagemap->range.start + 1);
-> +		drm_dev_exit(idx);
-> +	}
-> +	kfree(xpagemap);
-> +}
-> +
-> +static void xe_pagemap_destroy(struct drm_pagemap *dpagemap, bool from_atomic_or_reclaim)
->  {
-> -	struct xe_vram_region *vr = data;
-> +	struct xe_pagemap *xpagemap = container_of(dpagemap, typeof(*xpagemap), dpagemap);
-> +	struct xe_device *xe = to_xe_device(dpagemap->drm);
->  
-> -	drm_pagemap_put(vr->dpagemap);
-> -	vr->dpagemap = NULL;
-> +	if (from_atomic_or_reclaim)
-> +		queue_work(xe->destroy_wq, &xpagemap->destroy_work);
-> +	else
-> +		xe_pagemap_destroy_work(&xpagemap->destroy_work);
->  }
->  
-> +static const struct drm_pagemap_ops xe_drm_pagemap_ops = {
-> +	.device_map = xe_drm_pagemap_device_map,
-> +	.populate_mm = xe_drm_pagemap_populate_mm,
-> +	.destroy = xe_pagemap_destroy,
-> +};
-> +
->  /**
-> - * xe_devm_add: Remap and provide memmap backing for device memory
-> - * @tile: tile that the memory region belongs to
-> - * @vr: vram memory region to remap
-> + * xe_pagemap_create() - Create a struct xe_pagemap object
-> + * @xe: The xe device.
-> + * @vr: Back-pointer to the struct xe_vram_region.
->   *
-> - * This remap device memory to host physical address space and create
-> - * struct page to back device memory
-> + * Allocate and initialize a struct xe_pagemap. On successful
-> + * return, drm_pagemap_put() on the embedded struct drm_pagemap
-> + * should be used to unreference.
->   *
-> - * Return: 0 on success standard error code otherwise
-> + * Return: Pointer to a struct xe_pagemap if successful. Error pointer
-> + * on failure.
->   */
-> -int xe_devm_add(struct xe_tile *tile, struct xe_vram_region *vr)
-> +static struct xe_pagemap *xe_pagemap_create(struct xe_device *xe, struct xe_vram_region *vr)
->  {
-> -	struct xe_device *xe = tile_to_xe(tile);
-> -	struct device *dev = &to_pci_dev(xe->drm.dev)->dev;
-> +	struct device *dev = xe->drm.dev;
-> +	struct xe_pagemap *xpagemap;
-> +	struct dev_pagemap *pagemap;
-> +	struct drm_pagemap *dpagemap;
->  	struct resource *res;
->  	void *addr;
-> -	int ret;
-> +	int err;
-> +
-> +	xpagemap = kzalloc(sizeof(*xpagemap), GFP_KERNEL);
-> +	if (!xpagemap)
-> +		return ERR_PTR(-ENOMEM);
-> +
-> +	pagemap = &xpagemap->pagemap;
-> +	dpagemap = &xpagemap->dpagemap;
-> +	INIT_WORK(&xpagemap->destroy_work, xe_pagemap_destroy_work);
-> +	xpagemap->vr = vr;
-> +
-> +	err = drm_pagemap_init(dpagemap, pagemap, &xe->drm, &xe_drm_pagemap_ops);
-> +	if (err)
-> +		goto out_no_dpagemap;
->  
->  	res = devm_request_free_mem_region(dev, &iomem_resource,
->  					   vr->usable_size);
->  	if (IS_ERR(res)) {
-> -		ret = PTR_ERR(res);
-> -		return ret;
-> +		err = PTR_ERR(res);
-> +		goto out_err;
->  	}
->  
-> -	vr->dpagemap = drm_pagemap_create(&xe->drm, &vr->pagemap,
-> -					  &xe_drm_pagemap_ops);
-> -	if (IS_ERR(vr->dpagemap)) {
-> -		drm_err(&xe->drm, "Failed to create drm_pagemap tile %d memory: %pe\n",
-> -			tile->id, vr->dpagemap);
-> -		ret = PTR_ERR(vr->dpagemap);
-> -		goto out_no_dpagemap;
-> +	pagemap->type = MEMORY_DEVICE_PRIVATE;
-> +	pagemap->range.start = res->start;
-> +	pagemap->range.end = res->end;
-> +	pagemap->nr_range = 1;
-> +	pagemap->owner = xe_svm_devm_owner(xe);
-> +	pagemap->ops = drm_pagemap_pagemap_ops_get();
-> +	addr = devm_memremap_pages(dev, pagemap);
-> +	if (IS_ERR(addr)) {
-> +		err = PTR_ERR(addr);
-> +		devm_release_mem_region(dev, res->start, res->end - res->start + 1);
-> +		goto out_err;
->  	}
-> -	ret = devm_add_action_or_reset(dev, xe_devm_release, vr);
-> -	if (ret)
-> -		goto out_no_dpagemap;
-> +	xpagemap->hpa_base = res->start;
-> +	return xpagemap;
->  
-> -	vr->pagemap.type = MEMORY_DEVICE_PRIVATE;
-> -	vr->pagemap.range.start = res->start;
-> -	vr->pagemap.range.end = res->end;
-> -	vr->pagemap.nr_range = 1;
-> -	vr->pagemap.ops = drm_pagemap_pagemap_ops_get();
-> -	vr->pagemap.owner = xe_svm_devm_owner(xe);
-> -	addr = devm_memremap_pages(dev, &vr->pagemap);
-> -	if (IS_ERR(addr)) {
-> -		ret = PTR_ERR(addr);
-> -		drm_err(&xe->drm, "Failed to remap tile %d memory, errno %pe\n",
-> -			tile->id, ERR_PTR(ret));
-> -		goto out_failed_memremap;
-> +out_err:
-> +	drm_pagemap_put(dpagemap);
-> +	return ERR_PTR(err);
-> +
-> +out_no_dpagemap:
-> +	kfree(xpagemap);
-> +	return ERR_PTR(err);
-> +}
-> +
-> +/**
-> + * xe_pagemap_find_or_create() - Find or create a struct xe_pagemap
-> + * @xe: The xe device.
-> + * @cache: The struct xe_pagemap_cache.
-> + * @vr: The VRAM region.
-> + *
-> + * Check if there is an already used xe_pagemap for this tile, and in that case,
-> + * return it.
-> + * If not, check if there is a cached xe_pagemap for this tile, and in that case,
-> + * cancel its destruction, re-initialize it and return it.
-> + * Finally if there is no cached or already used pagemap, create one and
-> + * register it in the tile's pagemap cache.
-> + *
-> + * Note that this function is typically called from within an IOCTL, and waits are
-> + * therefore carried out interruptible if possible.
-> + *
-> + * Return: A pointer to a struct xe_pagemap if successful, Error pointer on failure.
-> + */
+> In the case where we only have pages left, the last page should be
+> freed from the device remove callback where bos are evicted. At that
+> point, the provider drm device is still alive as the devm callbacks
+> haven't executed yet. Also a rmmod wold typically cause the devm
+> callbacks to execute so that should also be safe without this patch. At
+> least if the page freeing doesn't trigger any async callbacks that
+> aren't waited on before removal.
+> 
 
-I'd mention that not only is a xe_pagemap returned, but also a reference
-that must eventually be dropped.
+I believe I get it...
 
-> +static struct xe_pagemap *
-> +xe_pagemap_find_or_create(struct xe_device *xe, struct drm_pagemap_cache *cache,
-> +			  struct xe_vram_region *vr)
-> +{
-> +	struct drm_pagemap *dpagemap;
-> +	struct xe_pagemap *xpagemap;
-> +	int err;
-> +
-> +	err = drm_pagemap_cache_lock_lookup(cache);
-> +	if (err)
-> +		return ERR_PTR(err);
-> +
-> +	dpagemap = drm_pagemap_get_from_cache(cache);
-> +	if (IS_ERR(dpagemap)) {
-> +		xpagemap = ERR_CAST(dpagemap);
-> +	} else if (!dpagemap) {
-> +		xpagemap = xe_pagemap_create(xe, vr);
-> +		if (IS_ERR(xpagemap))
-> +			goto out_unlock;
-> +		drm_pagemap_cache_set_pagemap(cache, &xpagemap->dpagemap);
-> +	} else {
-> +		xpagemap = container_of(dpagemap, typeof(*xpagemap), dpagemap);
-> +	}
-> +
-> +out_unlock:
-> +	drm_pagemap_cache_unlock_lookup(cache);
-> +	return xpagemap;
-> +}
-> +
-> +static int xe_svm_get_pagemaps(struct xe_vm *vm)
-> +{
-> +	struct xe_device *xe = vm->xe;
-> +	struct xe_pagemap *xpagemap;
-> +	struct xe_tile *tile;
-> +	int id;
-> +
-> +	for_each_tile(tile, xe, id) {
-> +		struct xe_vram_region *vr;
-> +
-> +		if (!((BIT(id) << 1) & xe->info.mem_region_mask))
-> +			continue;
-> +
-> +		vr = xe_tile_to_vr(tile);
-> +		xpagemap = xe_pagemap_find_or_create(xe, vr->dpagemap_cache, vr);
-> +		if (IS_ERR(xpagemap))
-> +			break;
-> +		vm->svm.pagemaps[id] = xpagemap;
-> +	}
-> +
-> +	if (IS_ERR(xpagemap)) {
-> +		xe_svm_put_pagemaps(vm);
-> +		return PTR_ERR(xpagemap);
->  	}
-> -	vr->hpa_base = res->start;
->  
-> -	drm_dbg(&xe->drm, "Added tile %d memory [%llx-%llx] to devm, remapped to %pr\n",
-> -		tile->id, vr->io_start, vr->io_start + vr->usable_size, res);
->  	return 0;
-> +}
->  
-> -out_failed_memremap:
-> -	drm_pagemap_put(vr->dpagemap);
-> -out_no_dpagemap:
-> -	devm_release_mem_region(dev, res->start, resource_size(res));
-> -	return ret;
-> +/**
-> + * xe_pagemap_shrinker_create() - Create a drm_pagemap shrinker
-> + * @xe: The xe device
-> + *
-> + * Create a drm_pagemap shrinker and register with the xe device.
-> + *
-> + * Return: %0 on success, negative error code on failure.
-> + */
-> +int xe_pagemap_shrinker_create(struct xe_device *xe)
-> +{
-> +	xe->usm.dpagemap_shrinker = drm_pagemap_shrinker_create_devm(&xe->drm);
-> +	return PTR_ERR_OR_ZERO(xe->usm.dpagemap_shrinker);
->  }
-> +
-> +/**
-> + * xe_pagemap_cache_create() - Create a drm_pagemap cache
-> + * @tile: The tile to register the cache with
-> + *
-> + * Create a drm_pagemap cache and register with the tile.
-> + *
-> + * Return: %0 on success, negative error code on failure.
-> + */
-> +int xe_pagemap_cache_create(struct xe_tile *tile)
-> +{
-> +	struct xe_device *xe = tile_to_xe(tile);
-> +
-> +	if (IS_DGFX(xe)) {
+> So yeah, I need to update the commit message a bit. We should also
+> craft an IGT that unbinds device 1 while device 0 is executing out of
+> its memory and verify that execution completes with correct results
+> anyway.
+> 
 
-I think we need to skip this step if vram->dpagemap_cache is already
-set. IIRC, some patches were merged allowing tile->vram to be the same
-object across multiple tiles. No current platforms use this mode, but
-it’s forward-looking for potential upcoming platforms.
-
-> +		struct drm_pagemap_cache *cache =
-> +			drm_pagemap_cache_create_devm(xe->usm.dpagemap_shrinker);
-> +
-> +		if (IS_ERR(cache))
-> +			return PTR_ERR(cache);
-> +
-> +		tile->mem.vram->dpagemap_cache = cache;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
->  #else
-> -int xe_svm_alloc_vram(struct xe_tile *tile,
-> -		      struct xe_svm_range *range,
-> -		      const struct drm_gpusvm_ctx *ctx)
-> +
-> +int xe_pagemap_shrinker_create(struct xe_device *xe)
->  {
-> -	return -EOPNOTSUPP;
-> +	return 0;
->  }
->  
-> -int xe_devm_add(struct xe_tile *tile, struct xe_vram_region *vr)
-> +int xe_pagemap_cache_create(struct xe_tile *tile)
->  {
->  	return 0;
->  }
->  
-> +int xe_svm_alloc_vram(struct xe_tile *tile,
-> +		      struct xe_svm_range *range,
-> +		      const struct drm_gpusvm_ctx *ctx)
-> +{
-> +	return -EOPNOTSUPP;
-> +}
-> +
->  struct drm_pagemap *xe_vma_resolve_pagemap(struct xe_vma *vma, struct xe_tile *tile)
->  {
->  	return NULL;
-> diff --git a/drivers/gpu/drm/xe/xe_svm.h b/drivers/gpu/drm/xe/xe_svm.h
-> index fa757dd07954..8a49ff17ef0c 100644
-> --- a/drivers/gpu/drm/xe/xe_svm.h
-> +++ b/drivers/gpu/drm/xe/xe_svm.h
-> @@ -27,8 +27,13 @@ static inline void *xe_svm_devm_owner(struct xe_device *xe)
->  
->  #define XE_INTERCONNECT_VRAM DRM_INTERCONNECT_DRIVER
->  
-> +struct drm_device;
-> +struct drm_file;
-> +
->  struct xe_bo;
->  struct xe_gt;
-> +struct xe_device;
-
-Alphabetical order.
-
-> +struct xe_vram_region;
->  struct xe_tile;
->  struct xe_vm;
->  struct xe_vma;
-> @@ -55,6 +60,22 @@ struct xe_svm_range {
->  	u8 tile_invalidated;
->  };
->  
-> +/**
-> + * struct xe_pagemap - Manages xe device_private memory for SVM.
-> + * @pagemap: The struct dev_pagemap providing the struct pages.
-> + * @dpagemap: The drm_pagemap managing allocation and migration.
-> + * @destroy_work: Handles asnynchronous destruction and caching.
-> + * @hpa_base: The host physical address base for the managemd memory.
-> + * @vr: Backpointer to the xe_vram region.
-> + */
-> +struct xe_pagemap {
-> +	struct dev_pagemap pagemap;
-> +	struct drm_pagemap dpagemap;
-> +	struct work_struct destroy_work;
-> +	resource_size_t hpa_base;
-> +	struct xe_vram_region *vr;
-> +};
-> +
->  /**
->   * xe_svm_range_pages_valid() - SVM range pages valid
->   * @range: SVM range
-> @@ -171,6 +192,10 @@ static inline unsigned long xe_svm_range_size(struct xe_svm_range *range)
->  
->  void xe_svm_flush(struct xe_vm *vm);
->  
-> +int xe_pagemap_shrinker_create(struct xe_device *xe);
-> +
-> +int xe_pagemap_cache_create(struct xe_tile *tile);
-> +
->  #else
->  #include <linux/interval_tree.h>
->  #include "xe_vm.h"
-> @@ -179,7 +204,7 @@ struct drm_pagemap_addr;
->  struct drm_gpusvm_ctx;
->  struct drm_gpusvm_range;
->  struct xe_bo;
-> -struct xe_gt;
-> +struct xe_device;
->  struct xe_vm;
->  struct xe_vma;
->  struct xe_tile;
-> @@ -346,6 +371,17 @@ struct drm_pagemap *xe_vma_resolve_pagemap(struct xe_vma *vma, struct xe_tile *t
->  static inline void xe_svm_flush(struct xe_vm *vm)
->  {
->  }
-> +
-> +static inline int xe_pagemap_shrinker_create(struct xe_device *xe)
-> +{
-> +	return 0;
-> +}
-> +
-> +static inline int xe_pagemap_cache_create(struct xe_tile *tile)
-> +{
-> +	return 0;
-> +}
-> +
->  #define xe_svm_range_has_dma_mapping(...) false
->  #endif /* CONFIG_DRM_XE_GPUSVM */
->  
-> diff --git a/drivers/gpu/drm/xe/xe_tile.c b/drivers/gpu/drm/xe/xe_tile.c
-> index 4f4f9a5c43af..051b191377df 100644
-> --- a/drivers/gpu/drm/xe/xe_tile.c
-> +++ b/drivers/gpu/drm/xe/xe_tile.c
-> @@ -6,6 +6,7 @@
->  #include <linux/fault-inject.h>
->  
->  #include <drm/drm_managed.h>
-> +#include <drm/drm_pagemap_util.h>
->  
->  #include "xe_bo.h"
->  #include "xe_device.h"
-> @@ -180,17 +181,19 @@ ALLOW_ERROR_INJECTION(xe_tile_init_early, ERRNO); /* See xe_pci_probe() */
->  int xe_tile_init_noalloc(struct xe_tile *tile)
->  {
->  	struct xe_device *xe = tile_to_xe(tile);
-> +	int err;
->  
->  	xe_wa_apply_tile_workarounds(tile);
->  
-> -	if (xe->info.has_usm && IS_DGFX(xe))
-> -		xe_devm_add(tile, tile->mem.vram);
-> +	err = xe_pagemap_cache_create(tile);
-> +	if (err)
-> +		return err;
->  
->  	if (IS_DGFX(xe) && !ttm_resource_manager_used(&tile->mem.vram->ttm.manager)) {
-
-I think you potentially move xe_pagemap_cache_create under this logic
-too to avoid double init when tiles point to the vram object.
-
-
-> -		int err = xe_ttm_vram_mgr_init(xe, tile->mem.vram);
-> -
-> +		err = xe_ttm_vram_mgr_init(xe, tile->mem.vram);
->  		if (err)
->  			return err;
-> +
->  		xe->info.mem_region_mask |= BIT(tile->mem.vram->id) << 1;
->  	}
->  
-> @@ -215,3 +218,26 @@ void xe_tile_migrate_wait(struct xe_tile *tile)
->  {
->  	xe_migrate_wait(tile->migrate);
->  }
-> +
-> +#if IS_ENABLED(CONFIG_DRM_XE_PAGEMAP)
-> +/**
-> + * xe_tile_local_pagemap() - Return a pointer to the tile's local drm_pagemap if any
-> + * @tile: The tile.
-> + *
-> + * Return: A pointer to the tile's local drm_pagemap, or NULL if local pagemap
-> + * support has been compiled out.
-> + */
-
-Mention no reference is taken?
-
-> +struct drm_pagemap *xe_tile_local_pagemap(struct xe_tile *tile)
-> +{
-> +	struct drm_pagemap *dpagemap =
-> +		drm_pagemap_get_from_cache_if_active(xe_tile_to_vr(tile)->dpagemap_cache);
-> +
-> +	if (dpagemap) {
-> +		xe_assert(tile_to_xe(tile), kref_read(&dpagemap->ref) >= 2);
-> +		drm_pagemap_put(dpagemap);
-> +	}
-> +
-> +	return dpagemap;
-> +}
-> +#endif
-> +
-> diff --git a/drivers/gpu/drm/xe/xe_tile.h b/drivers/gpu/drm/xe/xe_tile.h
-> index dceb6297aa01..734132eddda5 100644
-> --- a/drivers/gpu/drm/xe/xe_tile.h
-> +++ b/drivers/gpu/drm/xe/xe_tile.h
-> @@ -8,6 +8,7 @@
->  
->  #include "xe_device_types.h"
->  
-> +struct xe_pagemap;
->  struct xe_tile;
->  
->  int xe_tile_init_early(struct xe_tile *tile, struct xe_device *xe, u8 id);
-> @@ -23,4 +24,24 @@ static inline bool xe_tile_is_root(struct xe_tile *tile)
->  	return tile->id == 0;
->  }
->  
-> +/**
-> + * xe_tile_to_vr() - Return the struct xe_vram_region pointer from a
-> + * struct xe_tile pointer
-> + * @tile: Pointer to the struct xe_tile.
-> + *
-> + * Return: Pointer to the struct xe_vram_region embedded in *@tile.
-> + */
-> +static inline struct xe_vram_region *xe_tile_to_vr(struct xe_tile *tile)
-> +{
-> +	return tile->mem.vram;
-> +}
-> +
-> +#if IS_ENABLED(CONFIG_DRM_XE_PAGEMAP)
-> +struct drm_pagemap *xe_tile_local_pagemap(struct xe_tile *tile);
-> +#else
-> +static inline struct drm_pagemap *xe_tile_local_pagemap(struct xe_tile *tile)
-> +{
-> +	return NULL;
-> +}
-> +#endif
->  #endif
-> diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
-> index d6e2a0fdd4b3..9f0d8bf1af4f 100644
-> --- a/drivers/gpu/drm/xe/xe_vm_types.h
-> +++ b/drivers/gpu/drm/xe/xe_vm_types.h
-> @@ -191,6 +191,7 @@ struct xe_vm {
->  			 */
->  			struct work_struct work;
->  		} garbage_collector;
-> +		struct xe_pagemap *pagemaps[XE_MAX_TILES_PER_DEVICE];
-
-I know this file isn't great at kernel doc, but let's not make it worse
-but omitting it.
+Yes, this is weird corner we certainly should test out.
 
 Matt
 
->  	} svm;
->  
->  	struct xe_device *xe;
-> diff --git a/drivers/gpu/drm/xe/xe_vram_types.h b/drivers/gpu/drm/xe/xe_vram_types.h
-> index c0d2c5ee8c10..646e3c12ae9f 100644
-> --- a/drivers/gpu/drm/xe/xe_vram_types.h
-> +++ b/drivers/gpu/drm/xe/xe_vram_types.h
-> @@ -66,19 +66,8 @@ struct xe_vram_region {
->  #if IS_ENABLED(CONFIG_DRM_XE_PAGEMAP)
->  	/** @migrate: Back pointer to migrate */
->  	struct xe_migrate *migrate;
-> -	/** @pagemap: Used to remap device memory as ZONE_DEVICE */
-> -	struct dev_pagemap pagemap;
-> -	/**
-> -	 * @dpagemap: The struct drm_pagemap of the ZONE_DEVICE memory
-> -	 * pages of this tile.
-> -	 */
-> -	struct drm_pagemap *dpagemap;
-> -	/**
-> -	 * @hpa_base: base host physical address
-> -	 *
-> -	 * This is generated when remap device memory as ZONE_DEVICE
-> -	 */
-> -	resource_size_t hpa_base;
-> +	/** @dpagemap_cache: drm_pagemap cache. */
-> +	struct drm_pagemap_cache *dpagemap_cache;
->  #endif
->  };
->  
-> -- 
-> 2.51.0
+> /Thomas
+> 
+> 
+> > 
+> > > Note that in theory, the drm_gpusvm_helper module may be unloaded
+> > > as soon as the final module_put() of the provider driver module is
+> > > executed, so we need to add a module_exit() function that waits
+> > > for the work item executing the module_put() has completed.
+> > > 
+> > > Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> > > ---
+> > >  drivers/gpu/drm/drm_pagemap.c | 101
+> > > ++++++++++++++++++++++++++++++++--
+> > >  drivers/gpu/drm/xe/xe_svm.c   |  15 ++++-
+> > >  include/drm/drm_pagemap.h     |  10 +++-
+> > >  3 files changed, 117 insertions(+), 9 deletions(-)
+> > > 
+> > > diff --git a/drivers/gpu/drm/drm_pagemap.c
+> > > b/drivers/gpu/drm/drm_pagemap.c
+> > > index 173b3ecb07d5..fb18a80d6a1c 100644
+> > > --- a/drivers/gpu/drm/drm_pagemap.c
+> > > +++ b/drivers/gpu/drm/drm_pagemap.c
+> > > @@ -8,6 +8,7 @@
+> > >  #include <linux/pagemap.h>
+> > >  #include <drm/drm_drv.h>
+> > >  #include <drm/drm_pagemap.h>
+> > > +#include <drm/drm_print.h>
+> > >  
+> > >  /**
+> > >   * DOC: Overview
+> > > @@ -544,16 +545,92 @@ static int
+> > > drm_pagemap_migrate_populate_ram_pfn(struct vm_area_struct *vas,
+> > >  	return -ENOMEM;
+> > >  }
+> > >  
+> > > +static void drm_pagemap_dev_unhold_work(struct work_struct *work);
+> > > +static LLIST_HEAD(drm_pagemap_unhold_list);
+> > > +static DECLARE_WORK(drm_pagemap_work,
+> > > drm_pagemap_dev_unhold_work);
+> > > +
+> > > +/**
+> > > + * struct drm_pagemap_dev_hold - Struct to aid in drm_device
+> > > release.
+> > > + * @link: Link into drm_pagemap_unhold_list for deferred reference
+> > > releases.
+> > > + * @drm: drm device to put.
+> > > + *
+> > > + * When a struct drm_pagemap is released, we also need to release
+> > > the
+> > > + * reference it holds on the drm device. However, typically that
+> > > needs
+> > > + * to be done separately from a system-wide workqueue.
+> > > + * Each time a struct drm_pagemap is initialized
+> > > + * (or re-initialized if cached) therefore allocate a separate
+> > > + * drm_pagemap_dev_hold item, from which we put the drm device and
+> > > + * associated module.
+> > > + */
+> > > +struct drm_pagemap_dev_hold {
+> > > +	struct llist_node link;
+> > > +	struct drm_device *drm;
+> > > +};
+> > > +
+> > >  static void drm_pagemap_release(struct kref *ref)
+> > >  {
+> > >  	struct drm_pagemap *dpagemap = container_of(ref,
+> > > typeof(*dpagemap), ref);
+> > > -
+> > > +	struct drm_pagemap_dev_hold *dev_hold = dpagemap-
+> > > >dev_hold;
+> > > +
+> > > +	/*
+> > > +	 * We know the pagemap provider is alive at this point,
+> > > since
+> > > +	 * the struct drm_pagemap_dev_hold holds a reference to
+> > > the
+> > > +	 * pagemap provider drm_device and its module.
+> > > +	 */
+> > > +	dpagemap->dev_hold = NULL;
+> > >  	kfree(dpagemap);
+> > > +	llist_add(&dev_hold->link, &drm_pagemap_unhold_list);
+> > > +	schedule_work(&drm_pagemap_work);
+> > > +	/*
+> > > +	 * Here, either the provider device is still alive, since
+> > > if called from
+> > > +	 * page_free(), the caller is holding a reference on the
+> > > dev_pagemap,
+> > > +	 * or if called from drm_pagemap_put(), the direct caller
+> > > is still alive.
+> > > +	 * This ensures we can't race with THIS module unload.
+> > > +	 */
+> > > +}
+> > > +
+> > > +static void drm_pagemap_dev_unhold_work(struct work_struct *work)
+> > > +{
+> > > +	struct llist_node *node =
+> > > llist_del_all(&drm_pagemap_unhold_list);
+> > > +	struct drm_pagemap_dev_hold *dev_hold, *next;
+> > > +
+> > > +	/*
+> > > +	 * Deferred release of drm_pagemap provider device and
+> > > module.
+> > > +	 * THIS module is kept alive during the release by the
+> > > +	 * flush_work() in the drm_pagemap_exit() function.
+> > > +	 */
+> > > +	llist_for_each_entry_safe(dev_hold, next, node, link) {
+> > > +		struct drm_device *drm = dev_hold->drm;
+> > > +		struct module *module = drm->driver->fops->owner;
+> > > +
+> > > +		drm_dbg(drm, "Releasing reference on provider
+> > > device and module.\n");
+> > > +		drm_dev_put(drm);
+> > > +		module_put(module);
+> > > +		kfree(dev_hold);
+> > > +	}
+> > > +}
+> > > +
+> > > +static struct drm_pagemap_dev_hold *
+> > > +drm_pagemap_dev_hold(struct drm_pagemap *dpagemap)
+> > > +{
+> > > +	struct drm_pagemap_dev_hold *dev_hold;
+> > > +	struct drm_device *drm = dpagemap->drm;
+> > > +
+> > > +	dev_hold = kzalloc(sizeof(*dev_hold), GFP_KERNEL);
+> > > +	if (!dev_hold)
+> > > +		return ERR_PTR(-ENOMEM);
+> > > +
+> > > +	init_llist_node(&dev_hold->link);
+> > > +	dev_hold->drm = drm;
+> > > +	(void)try_module_get(drm->driver->fops->owner);
+> > > +	drm_dev_get(drm);
+> > > +
+> > > +	return dev_hold;
+> > >  }
+> > >  
+> > >  /**
+> > >   * drm_pagemap_create() - Create a struct drm_pagemap.
+> > > - * @dev: Pointer to a struct device providing the device-private
+> > > memory.
+> > > + * @drm: Pointer to a struct drm_device providing the device-
+> > > private memory.
+> > >   * @pagemap: Pointer to a pre-setup struct dev_pagemap providing
+> > > the struct pages.
+> > >   * @ops: Pointer to the struct drm_pagemap_ops.
+> > >   *
+> > > @@ -563,20 +640,28 @@ static void drm_pagemap_release(struct kref
+> > > *ref)
+> > >   * Error pointer on error.
+> > >   */
+> > >  struct drm_pagemap *
+> > > -drm_pagemap_create(struct device *dev,
+> > > +drm_pagemap_create(struct drm_device *drm,
+> > >  		   struct dev_pagemap *pagemap,
+> > >  		   const struct drm_pagemap_ops *ops)
+> > >  {
+> > >  	struct drm_pagemap *dpagemap = kzalloc(sizeof(*dpagemap),
+> > > GFP_KERNEL);
+> > > +	struct drm_pagemap_dev_hold *dev_hold;
+> > >  
+> > >  	if (!dpagemap)
+> > >  		return ERR_PTR(-ENOMEM);
+> > >  
+> > >  	kref_init(&dpagemap->ref);
+> > > -	dpagemap->dev = dev;
+> > > +	dpagemap->drm = drm;
+> > >  	dpagemap->ops = ops;
+> > >  	dpagemap->pagemap = pagemap;
+> > >  
+> > > +	dev_hold = drm_pagemap_dev_hold(dpagemap);
+> > > +	if (IS_ERR(dev_hold)) {
+> > > +		kfree(dpagemap);
+> > > +		return ERR_CAST(dev_hold);
+> > > +	}
+> > > +	dpagemap->dev_hold = dev_hold;
+> > > +
+> > >  	return dpagemap;
+> > >  }
+> > >  EXPORT_SYMBOL(drm_pagemap_create);
+> > > @@ -937,3 +1022,11 @@ int drm_pagemap_populate_mm(struct
+> > > drm_pagemap *dpagemap,
+> > >  	return err;
+> > >  }
+> > >  EXPORT_SYMBOL(drm_pagemap_populate_mm);
+> > > +
+> > > +static void drm_pagemap_exit(void)
+> > > +{
+> > > +	flush_work(&drm_pagemap_work);
+> > > +	if (WARN_ON(!llist_empty(&drm_pagemap_unhold_list)))
+> > > +		disable_work_sync(&drm_pagemap_work);
+> > > +}
+> > > +module_exit(drm_pagemap_exit);
+> > > diff --git a/drivers/gpu/drm/xe/xe_svm.c
+> > > b/drivers/gpu/drm/xe/xe_svm.c
+> > > index 6d2c6c144315..f6ee22da2e95 100644
+> > > --- a/drivers/gpu/drm/xe/xe_svm.c
+> > > +++ b/drivers/gpu/drm/xe/xe_svm.c
+> > > @@ -1437,7 +1437,7 @@ xe_drm_pagemap_device_map(struct drm_pagemap
+> > > *dpagemap,
+> > >  			  unsigned int order,
+> > >  			  enum dma_data_direction dir)
+> > >  {
+> > > -	struct device *pgmap_dev = dpagemap->dev;
+> > > +	struct device *pgmap_dev = dpagemap->drm->dev;
+> > >  	enum drm_interconnect_protocol prot;
+> > >  	dma_addr_t addr;
+> > >  
+> > > @@ -1457,6 +1457,14 @@ static const struct drm_pagemap_ops
+> > > xe_drm_pagemap_ops = {
+> > >  	.populate_mm = xe_drm_pagemap_populate_mm,
+> > >  };
+> > >  
+> > > +static void xe_devm_release(void *data)
+> > > +{
+> > > +	struct xe_vram_region *vr = data;
+> > > +
+> > > +	drm_pagemap_put(vr->dpagemap);
+> > > +	vr->dpagemap = NULL;
+> > > +}
+> > > +
+> > >  /**
+> > >   * xe_devm_add: Remap and provide memmap backing for device memory
+> > >   * @tile: tile that the memory region belongs to
+> > > @@ -1482,7 +1490,7 @@ int xe_devm_add(struct xe_tile *tile, struct
+> > > xe_vram_region *vr)
+> > >  		return ret;
+> > >  	}
+> > >  
+> > > -	vr->dpagemap = drm_pagemap_create(dev, &vr->pagemap,
+> > > +	vr->dpagemap = drm_pagemap_create(&xe->drm, &vr->pagemap,
+> > >  					  &xe_drm_pagemap_ops);
+> > >  	if (IS_ERR(vr->dpagemap)) {
+> > >  		drm_err(&xe->drm, "Failed to create drm_pagemap
+> > > tile %d memory: %pe\n",
+> > > @@ -1490,6 +1498,9 @@ int xe_devm_add(struct xe_tile *tile, struct
+> > > xe_vram_region *vr)
+> > >  		ret = PTR_ERR(vr->dpagemap);
+> > >  		goto out_no_dpagemap;
+> > >  	}
+> > > +	ret = devm_add_action_or_reset(dev, xe_devm_release, vr);
+> > > +	if (ret)
+> > > +		goto out_no_dpagemap;
+> > 
+> > I mentioned this in first patch that this was missing, maybe move
+> > this
+> > part to the first patch even though this will get removed a bit
+> > later.
+> > 
+> > Matt
+> > 
+> > >  
+> > >  	vr->pagemap.type = MEMORY_DEVICE_PRIVATE;
+> > >  	vr->pagemap.range.start = res->start;
+> > > diff --git a/include/drm/drm_pagemap.h b/include/drm/drm_pagemap.h
+> > > index 2c7de928865b..5cfe54331ba7 100644
+> > > --- a/include/drm/drm_pagemap.h
+> > > +++ b/include/drm/drm_pagemap.h
+> > > @@ -9,6 +9,7 @@
+> > >  #define NR_PAGES(order) (1U << (order))
+> > >  
+> > >  struct drm_pagemap;
+> > > +struct drm_pagemap_dev_hold;
+> > >  struct drm_pagemap_zdd;
+> > >  struct device;
+> > >  
+> > > @@ -130,14 +131,17 @@ struct drm_pagemap_ops {
+> > >   * used for device p2p handshaking.
+> > >   * @ops: The struct drm_pagemap_ops.
+> > >   * @ref: Reference count.
+> > > - * @dev: The struct drevice owning the device-private memory.
+> > > + * @drm: The struct drm device owning the device-private memory.
+> > >   * @pagemap: Pointer to the underlying dev_pagemap.
+> > > + * @dev_hold: Pointer to a struct drm_pagemap_dev_hold for
+> > > + * device referencing.
+> > >   */
+> > >  struct drm_pagemap {
+> > >  	const struct drm_pagemap_ops *ops;
+> > >  	struct kref ref;
+> > > -	struct device *dev;
+> > > +	struct drm_device *drm;
+> > >  	struct dev_pagemap *pagemap;
+> > > +	struct drm_pagemap_dev_hold *dev_hold;
+> > >  };
+> > >  
+> > >  struct drm_pagemap_devmem;
+> > > @@ -206,7 +210,7 @@ struct drm_pagemap_devmem_ops {
+> > >  			   unsigned long npages);
+> > >  };
+> > >  
+> > > -struct drm_pagemap *drm_pagemap_create(struct device *dev,
+> > > +struct drm_pagemap *drm_pagemap_create(struct drm_device *drm,
+> > >  				       struct dev_pagemap
+> > > *pagemap,
+> > >  				       const struct
+> > > drm_pagemap_ops *ops);
+> > >  
+> > > -- 
+> > > 2.51.0
+> > > 
 > 
