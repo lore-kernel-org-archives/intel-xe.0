@@ -4,49 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 16879CCF9FE
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 09A54CCFA02
 	for <intel-xe@archiver.kernel.org>; Thu, 30 Oct 2025 07:35:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8CC4010E8E2;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 807E310E8D8;
 	Thu, 30 Oct 2025 07:35:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EBZOoYab";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FDJUITy6";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 471B010E8D6;
- Thu, 30 Oct 2025 07:35:01 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6690910E8C8;
+ Thu, 30 Oct 2025 07:34:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761809702; x=1793345702;
+ t=1761809699; x=1793345699;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=nMThjY7sgMMI5QURybPoqUIzQj6QsMvwe+IHqBeg0uI=;
- b=EBZOoYabzx91wKuYnwSK/UIRtitsM6hVcQTcLL6WHrlsMXij9fZIK/7M
- 4XedzzUtTnDhc68yfHpP4NbN2jN0u990jCByB3yNaP7alKAOWnK25HwTT
- 1B79+mgcy34aHTuFQ9GLHgDLyYbRz9+sryO6Y3m4AOMb192xwEVhhVHsR
- SYyKK73upQ3kSOMmeFFuii5MvZcfOjp0GhrkOsM5f2n+wUNeMjWYATFES
- pA4LDBfFGEPORf8eJqdNHiF0sz7I3emhPvgUA1MbC40JFokzuRqYZAdi7
- TQZ243hZsLWZEC+MUtv5GMDCQbxP0PIVlrdTkOr+f+ocUUECLGMV9SCnP g==;
-X-CSE-ConnectionGUID: DBCa3/hXQsOPj9l9QL8M3Q==
-X-CSE-MsgGUID: IvOE2BI7TmGmqxKAt7XsVg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11597"; a="75063385"
-X-IronPort-AV: E=Sophos;i="6.19,266,1754982000"; d="scan'208";a="75063385"
+ bh=cyxZhZcvWW0tx2UT0vgV/rBnGt3yGDx1l2nqc+4Qmzw=;
+ b=FDJUITy6waaxqLF+2d9U99m9FAw892w862qjEq8vIqL6DK0Lk6YbJYNP
+ JuM5FhBCJckj9k/OevwC/U6xwKMf+dJrcQMdlxqQuRde6WepovH5RcChV
+ M4cyW20PZgaI+CM9XZeoUfYREB2A2CmGCUU+6TuGWY4DQQBerlBWu/Zp5
+ V1wSePHnLtyQd9ASGC1nt/l2VmKo10kNOq6rrdYKoZPfm9jGgHmu0Hx+y
+ f95rsLO6q8pU0QPOBl3oIIZT0qoqsoOWCWPLSCZVlf7lA+JuysURzaUrf
+ zdRDUpnkQX1JlfDxifyXE6hfWVD8io6IIOgCbyxLBZpjGwZ8lm7o2cvMN Q==;
+X-CSE-ConnectionGUID: 0N+bN+heSRKtYF2T2y3FsA==
+X-CSE-MsgGUID: vj1MgdrxRbWH87q4eQmEfQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11597"; a="75063382"
+X-IronPort-AV: E=Sophos;i="6.19,266,1754982000"; d="scan'208";a="75063382"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Oct 2025 00:35:02 -0700
-X-CSE-ConnectionGUID: H8HINJlaR62BFgCNHiMsaw==
-X-CSE-MsgGUID: A7sOUHxtQNKBZsJCNpDdGQ==
+ 30 Oct 2025 00:34:59 -0700
+X-CSE-ConnectionGUID: 3ZUa6I94T46ZNl3r4wc2Xw==
+X-CSE-MsgGUID: r0bpPdZTQ7Gss4Yl3/KKcA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,266,1754982000"; d="scan'208";a="185075392"
+X-IronPort-AV: E=Sophos;i="6.19,266,1754982000"; d="scan'208";a="185075377"
 Received: from display-adls.igk.intel.com ([10.211.131.198])
- by orviesa006.jf.intel.com with ESMTP; 30 Oct 2025 00:35:00 -0700
+ by orviesa006.jf.intel.com with ESMTP; 30 Oct 2025 00:34:57 -0700
 From: Mika Kahola <mika.kahola@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Cc: Mika Kahola <mika.kahola@intel.com>
-Subject: [PATCH 16/32] drm/i915/display: PLL information for MTL+
-Date: Thu, 30 Oct 2025 09:22:33 +0200
-Message-Id: <20251030072249.155095-17-mika.kahola@intel.com>
+Cc: Imre Deak <imre.deak@intel.com>,
+	Mika Kahola <mika.kahola@intel.com>
+Subject: [PATCH 14/32] drm/i915/display: Print additional Cx0 PLL HW state
+Date: Thu, 30 Oct 2025 09:22:31 +0200
+Message-Id: <20251030072249.155095-15-mika.kahola@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251030072249.155095-1-mika.kahola@intel.com>
 References: <20251030072249.155095-1-mika.kahola@intel.com>
@@ -66,44 +67,65 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-To add MTL+ platforms as part of PLL framework, let's
-start by adding PLL information and functions.
+From: Imre Deak <imre.deak@intel.com>
 
+Print all the Cx0 PLL state in the PLL state dumper.
+
+Signed-off-by: Imre Deak <imre.deak@intel.com>
 Signed-off-by: Mika Kahola <mika.kahola@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 19 +++++++++++++++++++
- 1 file changed, 19 insertions(+)
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c | 18 +++++++++++++++---
+ 1 file changed, 15 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-index 303f03b420ae..a9d9b7113f12 100644
---- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-+++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-@@ -4306,6 +4306,25 @@ static const struct intel_dpll_mgr adlp_pll_mgr = {
- 	.compare_hw_state = icl_compare_hw_state,
- };
+diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+index 3418fc560faf..1e68a73c2ca8 100644
+--- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
++++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+@@ -2311,8 +2311,8 @@ static void intel_c10pll_dump_hw_state(struct intel_display *display,
+ 	unsigned int multiplier, tx_clk_div;
  
-+static const struct intel_dpll_funcs mtl_pll_funcs = {
-+};
+ 	fracen = hw_state->pll[0] & C10_PLL0_FRACEN;
+-	drm_dbg_kms(display->drm, "c10pll_hw_state: fracen: %s, ",
+-		    str_yes_no(fracen));
++	drm_dbg_kms(display->drm, "c10pll_hw_state: clock: %d, fracen: %s, ",
++		    hw_state->clock, str_yes_no(fracen));
+ 
+ 	if (fracen) {
+ 		frac_quot = hw_state->pll[12] << 8 | hw_state->pll[11];
+@@ -2835,7 +2835,7 @@ static void intel_c20pll_dump_hw_state(struct intel_display *display,
+ {
+ 	int i;
+ 
+-	drm_dbg_kms(display->drm, "c20pll_hw_state:\n");
++	drm_dbg_kms(display->drm, "c20pll_hw_state clock: %d:\n", hw_state->clock);
+ 	drm_dbg_kms(display->drm,
+ 		    "tx[0] = 0x%.4x, tx[1] = 0x%.4x, tx[2] = 0x%.4x\n",
+ 		    hw_state->tx[0], hw_state->tx[1], hw_state->tx[2]);
+@@ -2851,12 +2851,24 @@ static void intel_c20pll_dump_hw_state(struct intel_display *display,
+ 		for (i = 0; i < ARRAY_SIZE(hw_state->mplla); i++)
+ 			drm_dbg_kms(display->drm, "mplla[%d] = 0x%.4x\n", i,
+ 				    hw_state->mplla[i]);
 +
-+static const struct dpll_info mtl_plls[] = {
-+	{ .name = "DPLL 0", .funcs = &mtl_pll_funcs, .id = DPLL_ID_ICL_DPLL0, },
-+	{ .name = "DPLL 1", .funcs = &mtl_pll_funcs, .id = DPLL_ID_ICL_DPLL1, },
-+	/* TODO: Add TBT PLL */
-+	{ .name = "TC PLL 1", .funcs = &mtl_pll_funcs, .id = DPLL_ID_ICL_MGPLL1, },
-+	{ .name = "TC PLL 2", .funcs = &mtl_pll_funcs, .id = DPLL_ID_ICL_MGPLL2, },
-+	{ .name = "TC PLL 3", .funcs = &mtl_pll_funcs, .id = DPLL_ID_ICL_MGPLL3, },
-+	{ .name = "TC PLL 4", .funcs = &mtl_pll_funcs, .id = DPLL_ID_ICL_MGPLL4, },
-+	{}
-+};
++		/* For full coverage, also print the additional PLL B entry. */
++		WARN_ON(i + 1 != ARRAY_SIZE(hw_state->mpllb));
++		drm_dbg_kms(display->drm, "mpllb[%d] = 0x%.4x\n", i, hw_state->mpllb[i]);
+ 	}
 +
-+__maybe_unused
-+static const struct intel_dpll_mgr mtl_pll_mgr = {
-+	.dpll_info = mtl_plls,
-+};
++	drm_dbg_kms(display->drm, "vdr: custom width: 0x%02x, serdes rate: 0x%02x, hdmi rate: 0x%02x\n",
++		    hw_state->vdr.custom_width, hw_state->vdr.serdes_rate, hw_state->vdr.hdmi_rate);
+ }
+ 
+ void intel_cx0pll_dump_hw_state(struct intel_display *display,
+ 				const struct intel_cx0pll_state *hw_state)
+ {
++	drm_dbg_kms(display->drm,
++		    "cx0pll_hw_state: lane_count: %d, ssc_enabled: %s, use_c10: %s, tbt_mode: %s\n",
++		    hw_state->lane_count, str_yes_no(hw_state->ssc_enabled),
++		    str_yes_no(hw_state->use_c10), str_yes_no(hw_state->tbt_mode));
 +
- /**
-  * intel_dpll_init - Initialize DPLLs
-  * @display: intel_display device
+ 	if (hw_state->use_c10)
+ 		intel_c10pll_dump_hw_state(display, &hw_state->c10);
+ 	else
 -- 
 2.34.1
 
