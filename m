@@ -4,51 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 37CE7CCF9F5
-	for <intel-xe@archiver.kernel.org>; Thu, 30 Oct 2025 09:41:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3CCB3CCF9FF
+	for <intel-xe@archiver.kernel.org>; Thu, 30 Oct 2025 09:42:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E56D510E94B;
-	Thu, 30 Oct 2025 09:41:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E096010E95B;
+	Thu, 30 Oct 2025 09:41:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jh2FKkvk";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="evCNPEWL";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E99BE10E88B;
- Thu, 30 Oct 2025 09:41:56 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EDC4110E952;
+ Thu, 30 Oct 2025 09:41:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761817317; x=1793353317;
+ t=1761817315; x=1793353315;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=LrsOtv2pBaiu0uWE8ubiKKdKitvy9eWaAhrhNWfHpys=;
- b=jh2FKkvksRNWoAqZaddRrXNB8/PB5KbPISpoR78nVMIEgd17C4+f3fZQ
- MFxH/168fGyiAZ0qAOmoCrWNfouX7mUtbWjfXgRjXWZiHrsMn4OZePORa
- D0t1FW3G+3ZEY4crkaNlnBvrod8xJCWrI/k0Gbm+nU6/8699ENjAgc2c3
- 1iWjWzSeptFtvjyW8MoSC67e9g+u/3lQJAacjAIFGq7r5ekHyO1Wkn7pB
- FUNd228O7vvCjcQesP/w906kV72q9adetwLY8kAy/qzQVXq8kD/XboPhM
- jUVeErD5SqTURJLXnSnKSeLAhfTU51icQZf0HL3QAldYzM2cheSCcfOwI Q==;
-X-CSE-ConnectionGUID: FRI2pS1PRzmXUWEGd/JsuQ==
-X-CSE-MsgGUID: qOaR05wyTGOCHLlLEsxkMQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11597"; a="63651901"
-X-IronPort-AV: E=Sophos;i="6.19,266,1754982000"; d="scan'208";a="63651901"
+ bh=Z5oZuGwfmvp6gMHnjkfkQD9CR5A+1TTYm9u2UBJXkV0=;
+ b=evCNPEWLXlrnuAO3S+bf9eDdbXdb+TSFcUQuAn25c0+aw5mfkHBQCpTr
+ ZhtvmYZoOxKNXlViMOqV8B8KNAeS2P5GUbKCQNTnraKXXeDup184B9g2w
+ FX3EELTvFcVtXRu6QZZ/z3/D1VUx9c87mc8Cv/Givzh2fPEMyFOgr5vgR
+ 3luMtd/1t37DveYfmksjNdqD6pYvVG2Fo9i428LHXQMGXDvQ6DUF3dlXh
+ L6SUZSbPAwVgS4XOstATrMnDK2BsLgMIHQvl4TX0Ms86ge40xPox1HVZm
+ FFQbutOqoP4Y2nlREIjSxD5JFhZhblWXrYeYROY7FyRP+c8gClBrNB3U1 w==;
+X-CSE-ConnectionGUID: mrfl5Fz5Soq7UXRRal1lgw==
+X-CSE-MsgGUID: ++9kSH54TtqGFdAM2ZcP9Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11597"; a="63651900"
+X-IronPort-AV: E=Sophos;i="6.19,266,1754982000"; d="scan'208";a="63651900"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Oct 2025 02:41:57 -0700
-X-CSE-ConnectionGUID: ixQuNFc1S/StFPZz1gtPqg==
-X-CSE-MsgGUID: EzcC3EZzSAi+o0yZqtx2sA==
+ 30 Oct 2025 02:41:55 -0700
+X-CSE-ConnectionGUID: KX/TxpuYQsWukm8FkQ6D/g==
+X-CSE-MsgGUID: f6vthAzPSkeo+XHDrhmccQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,266,1754982000"; d="scan'208";a="189983047"
+X-IronPort-AV: E=Sophos;i="6.19,266,1754982000"; d="scan'208";a="189983041"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Oct 2025 02:41:55 -0700
+ 30 Oct 2025 02:41:53 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jouni.hogander@intel.com, ville.syrjala@linux.intel.com,
- Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH 2/6] drm/i915/vrr: Avoid vrr for PCON with HDMI2.1 sink
-Date: Thu, 30 Oct 2025 14:58:53 +0530
-Message-ID: <20251030092857.3090072-3-ankit.k.nautiyal@intel.com>
+ Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
+ Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+Subject: [PATCH 1/6] drm/i915/dp: Fix readback for target_rr in Adaptive Sync
+ SDP
+Date: Thu, 30 Oct 2025 14:58:52 +0530
+Message-ID: <20251030092857.3090072-2-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20251030092857.3090072-1-ankit.k.nautiyal@intel.com>
 References: <20251030092857.3090072-1-ankit.k.nautiyal@intel.com>
@@ -68,33 +70,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Currently we do not support VRR with HDMI so skip vrr compute
-config step for DP PCON with HDMI sink.
+Correct the bit-shift logic to properly readback the 10 bit target_rr from
+DB3 and DB4.
 
+v2: Align the style with readback for vtotal. (Ville)
+
+Fixes: 12ea89291603 ("drm/i915/dp: Add Read/Write support for Adaptive Sync SDP")
+Cc: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_vrr.c | 7 +++++++
- 1 file changed, 7 insertions(+)
+ drivers/gpu/drm/i915/display/intel_dp.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-index 00cbc126fb36..7a58e1f8acea 100644
---- a/drivers/gpu/drm/i915/display/intel_vrr.c
-+++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-@@ -42,7 +42,14 @@ bool intel_vrr_is_capable(struct intel_connector *connector)
- 	case DRM_MODE_CONNECTOR_DisplayPort:
- 		if (connector->mst.dp)
- 			return false;
-+
- 		intel_dp = intel_attached_dp(connector);
-+		/*
-+		 * VRR via PCON is currently unsupported.
-+		 * TODO: Add support for VRR for DP HDMI2.1 PCON.
-+		 */
-+		if (intel_dp_has_hdmi_sink(intel_dp))
-+			return false;
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 475518b4048b..81d694122e7a 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -4996,7 +4996,7 @@ int intel_dp_as_sdp_unpack(struct drm_dp_as_sdp *as_sdp,
+ 	as_sdp->length = sdp->sdp_header.HB3 & DP_ADAPTIVE_SYNC_SDP_LENGTH;
+ 	as_sdp->mode = sdp->db[0] & DP_ADAPTIVE_SYNC_SDP_OPERATION_MODE;
+ 	as_sdp->vtotal = (sdp->db[2] << 8) | sdp->db[1];
+-	as_sdp->target_rr = (u64)sdp->db[3] | ((u64)sdp->db[4] & 0x3);
++	as_sdp->target_rr = ((sdp->db[4] & 0x3) << 8) | sdp->db[3];
+ 	as_sdp->target_rr_divider = sdp->db[4] & 0x20 ? true : false;
  
- 		if (!drm_dp_sink_can_do_video_without_timing_msa(intel_dp->dpcd))
- 			return false;
+ 	return 0;
 -- 
 2.45.2
 
