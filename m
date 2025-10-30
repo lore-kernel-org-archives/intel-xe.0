@@ -4,50 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BA2A3CCF9FA
-	for <intel-xe@archiver.kernel.org>; Thu, 30 Oct 2025 07:34:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1B85ECCF9FF
+	for <intel-xe@archiver.kernel.org>; Thu, 30 Oct 2025 07:34:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 654A010E8B1;
+	by gabe.freedesktop.org (Postfix) with ESMTP id CE6C610E8B2;
 	Thu, 30 Oct 2025 07:34:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YPo+8M2+";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IqhoOAm6";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7B38310E042;
- Thu, 30 Oct 2025 07:34:39 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8A2EC10E8B0;
+ Thu, 30 Oct 2025 07:34:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761809680; x=1793345680;
+ t=1761809683; x=1793345683;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=4FoewnlYGerOajMZnAx/NTgrmzCHISXHMT56xUXexDE=;
- b=YPo+8M2+6kBTdjvKmRTbpYeb9tmD9BlqdIAT/enZ7en7q++QpqmJTpTi
- PxvA86EHKhf0QZGwmCLmo5FI9mMdTfeI5tMpZwTWzR/JdLYFMonloC1av
- dNGHLQJHZPCGNW9c98VQjgG9Fobf+Tp0wsGskEITf7Yqy1Gkm2lXlgslK
- UuWg521qljFT8JTNEzkI4MGcaztqoZAoxBuXDxJruHpMBoAW7NBZ772Sg
- bRBIy4bNhPsOkD9oJ8oi72AyBHr+tGUG0z59vE56SHNpm4/9RSoAoGCRm
- 4LmVZAacEqcfOctCsSVJ7q2uB/xfN5Pa8zmpAf1csHVpV5DMPWoSrY5cJ w==;
-X-CSE-ConnectionGUID: 0KTOP0FJQ+iNJ9xngRvZzw==
-X-CSE-MsgGUID: oT26ftvnTleNE/v26XSaQg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11597"; a="75063354"
-X-IronPort-AV: E=Sophos;i="6.19,266,1754982000"; d="scan'208";a="75063354"
+ bh=Kid1sgbyJRJAYxTiXIulOkHX81wABeH0G1YvafMtgLg=;
+ b=IqhoOAm6mvZTzUEi0eK8vKi/8qbOYEWpx+y8gIqEuLc70kuUWYP+kb8r
+ dnyKKmr5u3gnR/ETvAQM4Mn2jH1+hS1quLoloKZ+qKPAYS3ET8gZ2ix7p
+ vtHebB9qid6f+AYyESzg1QFV11yzLoYDho1UhCxDIdfoaDFcGRBlYaXiX
+ 0M0T57ObeYjpFyCoAgLF2gUc58SZZvAhALEAvOcoYnIF+SR7Ds4OJ6sNW
+ Ap+QEJRx2FeULCKY9+zs4Ly22Hg4x0yl2y+UCmjvitlklAJZsCopi2S5A
+ j2/qaUH8FqF5telAbZJtS8RW45HUUbptTUHwtdwvN+cn8sf0onMqE7lq9 g==;
+X-CSE-ConnectionGUID: YXw0FuSEQBK0BUPw5UMWCA==
+X-CSE-MsgGUID: SLCc+EyIQ1W5gbkSwTIdIQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11597"; a="75063360"
+X-IronPort-AV: E=Sophos;i="6.19,266,1754982000"; d="scan'208";a="75063360"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Oct 2025 00:34:40 -0700
-X-CSE-ConnectionGUID: NXIdFACPTdyO97rC67qAcw==
-X-CSE-MsgGUID: c891wYGGRZWQWNprhOz/fg==
+ 30 Oct 2025 00:34:43 -0700
+X-CSE-ConnectionGUID: 7LwWJWoeQo2CJCLMzAPROg==
+X-CSE-MsgGUID: hv7n7XvNRBOkB7+1xRX65g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,266,1754982000"; d="scan'208";a="185075279"
+X-IronPort-AV: E=Sophos;i="6.19,266,1754982000"; d="scan'208";a="185075291"
 Received: from display-adls.igk.intel.com ([10.211.131.198])
- by orviesa006.jf.intel.com with ESMTP; 30 Oct 2025 00:34:38 -0700
+ by orviesa006.jf.intel.com with ESMTP; 30 Oct 2025 00:34:41 -0700
 From: Mika Kahola <mika.kahola@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Cc: Mika Kahola <mika.kahola@intel.com>
-Subject: [PATCH 01/32] drm/i915/display: Rename TBT functions to be ICL
- specific
-Date: Thu, 30 Oct 2025 09:22:18 +0200
-Message-Id: <20251030072249.155095-2-mika.kahola@intel.com>
+Cc: Imre Deak <imre.deak@intel.com>,
+	Mika Kahola <mika.kahola@intel.com>
+Subject: [PATCH 03/32] drm/i915/display: Sanitize setting the Cx0 PLL use_c10
+ flag
+Date: Thu, 30 Oct 2025 09:22:20 +0200
+Message-Id: <20251030072249.155095-4-mika.kahola@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251030072249.155095-1-mika.kahola@intel.com>
 References: <20251030072249.155095-1-mika.kahola@intel.com>
@@ -67,97 +68,95 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Rename pll functions to include ICL platform as these are
-used from ICL onwards.
+From: Imre Deak <imre.deak@intel.com>
 
+Sanitize setting the Cx0 PLL use_c10 flag during state computation and
+HW readout, making sure they happen the same way in the
+intel_c{10,20}pll_calc_state() and intel_c{10,20}pll_readout_hw_state()
+functions.
+
+Follow-up changes will add more state computation/HW readout, this
+change prepares for those as well.
+
+Signed-off-by: Imre Deak <imre.deak@intel.com>
 Signed-off-by: Mika Kahola <mika.kahola@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 30 +++++++++----------
- 1 file changed, 15 insertions(+), 15 deletions(-)
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c | 23 ++++++++++++--------
+ 1 file changed, 14 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-index 8ea96cc524a1..303f03b420ae 100644
---- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-+++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-@@ -3754,9 +3754,9 @@ static bool combo_pll_get_hw_state(struct intel_display *display,
- 	return icl_pll_get_hw_state(display, pll, dpll_hw_state, enable_reg);
- }
+diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+index 94ba7db2115a..dd4cf335f3ae 100644
+--- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
++++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+@@ -2130,12 +2130,15 @@ static int intel_c10pll_calc_port_clock(struct intel_encoder *encoder,
+ 					const struct intel_c10pll_state *pll_state);
  
--static bool tbt_pll_get_hw_state(struct intel_display *display,
--				 struct intel_dpll *pll,
--				 struct intel_dpll_hw_state *dpll_hw_state)
-+static bool icl_tbt_pll_get_hw_state(struct intel_display *display,
-+				     struct intel_dpll *pll,
-+				     struct intel_dpll_hw_state *dpll_hw_state)
+ static void intel_c10pll_readout_hw_state(struct intel_encoder *encoder,
+-					  struct intel_c10pll_state *pll_state)
++					  struct intel_cx0pll_state *cx0pll_state)
  {
- 	return icl_pll_get_hw_state(display, pll, dpll_hw_state, TBT_PLL_ENABLE);
- }
-@@ -3985,9 +3985,9 @@ static void combo_pll_enable(struct intel_display *display,
- 	/* DVFS post sequence would be here. See the comment above. */
++	struct intel_c10pll_state *pll_state = &cx0pll_state->c10;
+ 	u8 lane = INTEL_CX0_LANE0;
+ 	intel_wakeref_t wakeref;
+ 	int i;
+ 
++	cx0pll_state->use_c10 = true;
++
+ 	wakeref = intel_cx0_phy_transaction_begin(encoder);
+ 
+ 	/*
+@@ -2361,6 +2364,8 @@ static int intel_c20pll_calc_state(struct intel_crtc_state *crtc_state,
+ 	const struct intel_c20pll_state * const *tables;
+ 	int i;
+ 
++	crtc_state->dpll_hw_state.cx0pll.use_c10 = false;
++
+ 	/* try computed C20 HDMI tables before using consolidated tables */
+ 	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI)) {
+ 		if (intel_c20_compute_hdmi_tmds_pll(crtc_state) == 0)
+@@ -2377,7 +2382,6 @@ static int intel_c20pll_calc_state(struct intel_crtc_state *crtc_state,
+ 			intel_cx0pll_update_ssc(encoder,
+ 						&crtc_state->dpll_hw_state.cx0pll,
+ 						intel_crtc_has_dp_encoder(crtc_state));
+-			crtc_state->dpll_hw_state.cx0pll.use_c10 = false;
+ 			return 0;
+ 		}
+ 	}
+@@ -2444,13 +2448,16 @@ static int intel_c20pll_calc_port_clock(struct intel_encoder *encoder,
  }
  
--static void tbt_pll_enable(struct intel_display *display,
--			   struct intel_dpll *pll,
--			   const struct intel_dpll_hw_state *dpll_hw_state)
-+static void icl_tbt_pll_enable(struct intel_display *display,
-+			       struct intel_dpll *pll,
-+			       const struct intel_dpll_hw_state *dpll_hw_state)
+ static void intel_c20pll_readout_hw_state(struct intel_encoder *encoder,
+-					  struct intel_c20pll_state *pll_state)
++					  struct intel_cx0pll_state *cx0pll_state)
  {
- 	const struct icl_dpll_hw_state *hw_state = &dpll_hw_state->icl;
++	struct intel_c20pll_state *pll_state = &cx0pll_state->c20;
+ 	struct intel_display *display = to_intel_display(encoder);
+ 	bool cntx;
+ 	intel_wakeref_t wakeref;
+ 	int i;
  
-@@ -4070,8 +4070,8 @@ static void combo_pll_disable(struct intel_display *display,
- 	icl_pll_disable(display, pll, enable_reg);
++	cx0pll_state->use_c10 = false;
++
+ 	wakeref = intel_cx0_phy_transaction_begin(encoder);
+ 
+ 	/* 1. Read current context selection */
+@@ -3470,12 +3477,10 @@ void intel_cx0pll_readout_hw_state(struct intel_encoder *encoder,
+ 	if (pll_state->tbt_mode)
+ 		return;
+ 
+-	if (intel_encoder_is_c10phy(encoder)) {
+-		intel_c10pll_readout_hw_state(encoder, &pll_state->c10);
+-		pll_state->use_c10 = true;
+-	} else {
+-		intel_c20pll_readout_hw_state(encoder, &pll_state->c20);
+-	}
++	if (intel_encoder_is_c10phy(encoder))
++		intel_c10pll_readout_hw_state(encoder, pll_state);
++	else
++		intel_c20pll_readout_hw_state(encoder, pll_state);
  }
  
--static void tbt_pll_disable(struct intel_display *display,
--			    struct intel_dpll *pll)
-+static void icl_tbt_pll_disable(struct intel_display *display,
-+				struct intel_dpll *pll)
- {
- 	icl_pll_disable(display, pll, TBT_PLL_ENABLE);
- }
-@@ -4143,10 +4143,10 @@ static const struct intel_dpll_funcs combo_pll_funcs = {
- 	.get_freq = icl_ddi_combo_pll_get_freq,
- };
- 
--static const struct intel_dpll_funcs tbt_pll_funcs = {
--	.enable = tbt_pll_enable,
--	.disable = tbt_pll_disable,
--	.get_hw_state = tbt_pll_get_hw_state,
-+static const struct intel_dpll_funcs icl_tbt_pll_funcs = {
-+	.enable = icl_tbt_pll_enable,
-+	.disable = icl_tbt_pll_disable,
-+	.get_hw_state = icl_tbt_pll_get_hw_state,
- 	.get_freq = icl_ddi_tbt_pll_get_freq,
- };
- 
-@@ -4160,7 +4160,7 @@ static const struct intel_dpll_funcs mg_pll_funcs = {
- static const struct dpll_info icl_plls[] = {
- 	{ .name = "DPLL 0", .funcs = &combo_pll_funcs, .id = DPLL_ID_ICL_DPLL0, },
- 	{ .name = "DPLL 1", .funcs = &combo_pll_funcs, .id = DPLL_ID_ICL_DPLL1, },
--	{ .name = "TBT PLL", .funcs = &tbt_pll_funcs, .id = DPLL_ID_ICL_TBTPLL,
-+	{ .name = "TBT PLL", .funcs = &icl_tbt_pll_funcs, .id = DPLL_ID_ICL_TBTPLL,
- 	  .is_alt_port_dpll = true, },
- 	{ .name = "MG PLL 1", .funcs = &mg_pll_funcs, .id = DPLL_ID_ICL_MGPLL1, },
- 	{ .name = "MG PLL 2", .funcs = &mg_pll_funcs, .id = DPLL_ID_ICL_MGPLL2, },
-@@ -4208,7 +4208,7 @@ static const struct intel_dpll_funcs dkl_pll_funcs = {
- static const struct dpll_info tgl_plls[] = {
- 	{ .name = "DPLL 0", .funcs = &combo_pll_funcs, .id = DPLL_ID_ICL_DPLL0, },
- 	{ .name = "DPLL 1", .funcs = &combo_pll_funcs, .id = DPLL_ID_ICL_DPLL1, },
--	{ .name = "TBT PLL", .funcs = &tbt_pll_funcs, .id = DPLL_ID_ICL_TBTPLL,
-+	{ .name = "TBT PLL", .funcs = &icl_tbt_pll_funcs, .id = DPLL_ID_ICL_TBTPLL,
- 	  .is_alt_port_dpll = true, },
- 	{ .name = "TC PLL 1", .funcs = &dkl_pll_funcs, .id = DPLL_ID_ICL_MGPLL1, },
- 	{ .name = "TC PLL 2", .funcs = &dkl_pll_funcs, .id = DPLL_ID_ICL_MGPLL2, },
-@@ -4286,7 +4286,7 @@ static const struct intel_dpll_mgr adls_pll_mgr = {
- static const struct dpll_info adlp_plls[] = {
- 	{ .name = "DPLL 0", .funcs = &combo_pll_funcs, .id = DPLL_ID_ICL_DPLL0, },
- 	{ .name = "DPLL 1", .funcs = &combo_pll_funcs, .id = DPLL_ID_ICL_DPLL1, },
--	{ .name = "TBT PLL", .funcs = &tbt_pll_funcs, .id = DPLL_ID_ICL_TBTPLL,
-+	{ .name = "TBT PLL", .funcs = &icl_tbt_pll_funcs, .id = DPLL_ID_ICL_TBTPLL,
- 	  .is_alt_port_dpll = true, },
- 	{ .name = "TC PLL 1", .funcs = &dkl_pll_funcs, .id = DPLL_ID_ICL_MGPLL1, },
- 	{ .name = "TC PLL 2", .funcs = &dkl_pll_funcs, .id = DPLL_ID_ICL_MGPLL2, },
+ static bool mtl_compare_hw_state_c10(const struct intel_c10pll_state *a,
 -- 
 2.34.1
 
