@@ -4,135 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DDD70CCF9FC
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F210FCCF9FF
 	for <intel-xe@archiver.kernel.org>; Thu, 30 Oct 2025 13:04:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9AAAE10E26C;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9BF4810E26D;
 	Thu, 30 Oct 2025 13:04:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="Q73AY/iJ";
+	dkim=pass (2048-bit key; unprotected) header.d=mac.com header.i=@mac.com header.b="bZcTJyVj";
 	dkim-atps=neutral
-Received: from CY7PR03CU001.outbound.protection.outlook.com
- (mail-westcentralusazon11010050.outbound.protection.outlook.com
- [40.93.198.50])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1BFCB10E18B;
- Wed, 29 Oct 2025 09:27:00 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ugsA56NmRYydxF5IJZxdxeAHzw4s8yCqWNC2khSFVXr4FBR9APVlgu6vOQFCG1YxkZ2yy3VAF8sWClD6mEj6y223MEkUobwrzh4mQtGft/efPdplMLd8mxlaXG59cK+OxWSwOI/9sJJgSQsx6d8wBCwV6ZS+qvcKS/k4WHLIW5RLbVZYFXf6jfLWALqKM0LNZpUk6Xb91r4hJkKunAP0d/q3i8K98zorD/TnnIF8cbWvZyBTlRIXbtieoOjeqyatsflHg/csdmI2CR3zx7ynl4cWKSnHrmzZzKzvEMDOfzahRLhZ9r/4063bGanMpssfTXRVOpQ0p7Z7awZI1m4Jiw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Xz6a3ozz4aSvRNROJz/OvlvZWPYRHeII2UMRvcKmH2Q=;
- b=Up7SvPMpIGtANrUHuIbLTnmU2aGm2g4HAsgZ2q9U5pqo9jittAq2Ba5hDENz2aLbbdXO7zOvBFGG0lGhpDMpfl0ftMTbnDr/lR6kngNwt4hGgqBzUiQwK6/9WxzbdbATkdGR9XyT4ln7dGGJGtCRGRdkvTuf1LYU8puBeAKdT6SnmBBUNLHIr2DCirXh0tdMYov05SS0moywrFwTb5Zi+9ShsG2mk/c80DpHHWS/9RphMBlZHoCHJY85NSum38o/6MtqVcGfPGsGj53dpbrrlgiAjLid83wnEWobbf7gcGRrBOUSLLrMrxZrTuIsvrH+bx2x/NPXaCdQaUnSMyY8fg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.117.160) smtp.rcpttodomain=intel.com smtp.mailfrom=nvidia.com;
- dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Xz6a3ozz4aSvRNROJz/OvlvZWPYRHeII2UMRvcKmH2Q=;
- b=Q73AY/iJTJLdPZ1VvrZzeeFLpZVmI8PXrocF/LqbeV4Rfa8mBTCX4jiiiCZZkj9Zr4o7ttQhZXZTsZYuRRMNOi6X6kmRZwS1O0/LwFqDwKdLLe9Ee/dtMdVtoC6y+pNvKZ6eb+9QTLuxyZuzorILF2j++htRlk6FR+B2Ph340LCIrTex97mgC39cDWy5Gi67AdXwr6m1+qIhKqhQFUxHo6CEdMcHjJzcwOjRAuIENLYpDbQxvnTvYvAvRCCT6W6p/+qVEACEFki3h7s1aF4v4mt7q2V8v4LTBnuDroU/Oan/brneWAkl6Z4OT7MGb7Jq07DR9VmOe5vz8mP0kUas2Q==
-Received: from BL1PR13CA0017.namprd13.prod.outlook.com (2603:10b6:208:256::22)
- by IA1PR12MB6530.namprd12.prod.outlook.com (2603:10b6:208:3a5::20)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9275.13; Wed, 29 Oct
- 2025 09:26:54 +0000
-Received: from BL6PEPF00022574.namprd02.prod.outlook.com
- (2603:10b6:208:256:cafe::6e) by BL1PR13CA0017.outlook.office365.com
- (2603:10b6:208:256::22) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9275.13 via Frontend Transport; Wed,
- 29 Oct 2025 09:26:54 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.160)
- smtp.mailfrom=nvidia.com;
- dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.117.160 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.117.160; helo=mail.nvidia.com; pr=C
-Received: from mail.nvidia.com (216.228.117.160) by
- BL6PEPF00022574.mail.protection.outlook.com (10.167.249.42) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9275.10 via Frontend Transport; Wed, 29 Oct 2025 09:26:54 +0000
-Received: from rnnvmail201.nvidia.com (10.129.68.8) by mail.nvidia.com
- (10.129.200.66) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.34; Wed, 29 Oct
- 2025 02:26:41 -0700
-Received: from localhost (10.126.231.35) by rnnvmail201.nvidia.com
- (10.129.68.8) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 29 Oct
- 2025 02:26:40 -0700
-Date: Wed, 29 Oct 2025 11:25:34 +0200
-From: Leon Romanovsky <leonro@nvidia.com>
-To: Jason Gunthorpe <jgg@nvidia.com>
-CC: Vivek Kasireddy <vivek.kasireddy@intel.com>,
- <dri-devel@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
- <linux-media@vger.kernel.org>, <linaro-mm-sig@lists.linaro.org>, "Christian
- Koenig" <christian.koenig@amd.com>, Sumit Semwal <sumit.semwal@linaro.org>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Simona Vetter <simona.vetter@ffwll.ch>, Matthew Brost
- <matthew.brost@intel.com>, Dongwon Kim <dongwon.kim@intel.com>
-Subject: Re: [RFC v2 0/8] dma-buf: Add support for mapping dmabufs via
- interconnects
-Message-ID: <20251029092534.GA11622@unreal>
-References: <20251027044712.1676175-1-vivek.kasireddy@intel.com>
- <20251029002726.GA1092494@nvidia.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20251029002726.GA1092494@nvidia.com>
-X-Originating-IP: [10.126.231.35]
-X-ClientProxiedBy: rnnvmail202.nvidia.com (10.129.68.7) To
- rnnvmail201.nvidia.com (10.129.68.8)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL6PEPF00022574:EE_|IA1PR12MB6530:EE_
-X-MS-Office365-Filtering-Correlation-Id: d3a6868b-c28c-4f75-6bd9-08de16cd4cf2
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|82310400026|376014|7416014|36860700013|1800799024|13003099007; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?NVngunuNT47NQo84KAxs+T4FBFstm9ZqvyHhe6Y7o1ytajs0tghCGyc7lkp5?=
- =?us-ascii?Q?eft2oivsF9N4t0Jr0GTCwBYCltU2H3osfOOEttSVNQPDcXvv6Z06bIxD60dl?=
- =?us-ascii?Q?rS8tUNdNlqg4GaLFPoi/EvR+cGXAYV9HaPCEph88viM5IvrRfHi3tfcGMIlC?=
- =?us-ascii?Q?vkFXuxdvjCw0tL5Bb4uBwnfLUQcERgCQkwQjiJKPlDxMYmurRlqPOqxBpf1M?=
- =?us-ascii?Q?t/eRezZxLIKMLc4yDyxUQ5k2O4jzDjjXNuFhR/RW03uZtX3Ezha8od/STgNt?=
- =?us-ascii?Q?0Fp2YCZcBSpMqTOsvXL+Zj6ZOrYsTP9acG3TJVs/gCSU9G2TrYKEDNs88s3q?=
- =?us-ascii?Q?hfOojya9f/MhpJ8cf01NYjaeXMA7LB+stNzkbKYFZfby3Fts7hw4oKQFOmMu?=
- =?us-ascii?Q?Gsq/ERoHZ08vEAoYdH3ahN4YV3mBPxZm99yKGQCOizHrNxuuVXqdchbb2B0/?=
- =?us-ascii?Q?qCY9KFSqTu3nDXorLjBVFg7ShHrqqFWGi2g6OW3nD3cn2f1ImCt+ICfRQAV0?=
- =?us-ascii?Q?EGIlOrN4HFYymHmdkB0wdDBfnJeM7tPcleIgRzkSn3Ivok9EFBgy3kqQ+2xD?=
- =?us-ascii?Q?tumZrTNMGHaqwbCLDyBoOs6p3jOOoR4IWUJnAbRdPXuE/PpaO5nEICVy/1sp?=
- =?us-ascii?Q?qQk92PX5vs/ljT3K4u/PqbNfPX3Lsb0OZuii9f1qi7gqwhfk8pBDykz4H6y7?=
- =?us-ascii?Q?hQRay8LU2dnspn9ylmANZA5QPUrbR6YSGTaw+SV2O6gOPJGO1LmEMDO4NbWv?=
- =?us-ascii?Q?nXNUG8k2QKU1Bf/K/6kXw9dCjCB8+VmOiPGkcPORCR7rmrIGC7KO4pPSGSBl?=
- =?us-ascii?Q?L7jdm/8K2UoxXCQH94uboE86UWpraK+bJQ3bHNOe2hunSjzjE6ItiTGJ+gwW?=
- =?us-ascii?Q?1IC5jco/4YX1fVMZhECgPat8N8lcilzMa0yuDAa18X5i6QJiPI8wgMSPe42m?=
- =?us-ascii?Q?iq50OBnQZBcqbXSVc6MyWSjFGq9bxS+hXX+w5TGM2XFfAiXWcouFrZqWyfUL?=
- =?us-ascii?Q?i+rVOt5YLJeM7tnKS/NiLdvV4T6GTYNytBvcdloyX0VQKx0c9FPztgaZORHp?=
- =?us-ascii?Q?KF/WIRpmQDdYwb3HwSBpbqcAqnxfnqTXYvMDBSGJXA4VWutp9ohELv7t/+wy?=
- =?us-ascii?Q?MyPPEfqXhaiYYQylMfw52M/wA2S+KeitsfAawwzxKAxI0AUdWuPclZTocxv1?=
- =?us-ascii?Q?1NByaTK8zUPF47GZGltD1LRBEIKShWaxAHjAaR9anSfx/51jIRe0O9mxe8KM?=
- =?us-ascii?Q?EixkW8hTk0eHDqVtdwl64PJrfR6t/DJhr6jpNyu5xQct5NqEB4kEsaf0wryO?=
- =?us-ascii?Q?5QpANNRuC4N3RLALs8v0G9jdlKtg2kFiDV64G6jsiyYoJ9gDG7Z7LBDh6V6b?=
- =?us-ascii?Q?vMSm0qvgYPJXAi2ArbPYqP/MhfyYtqQuZbMrXtBMKV+rPqD1+Cy7LUAQVGBz?=
- =?us-ascii?Q?+pVlvyWbRlvEzSlpL3AN2ZfHyeo+ONuRD/axGIPXq+lNq+HDqEa7+hbtC9HJ?=
- =?us-ascii?Q?chj9LrUH4kpF2JHeaGxg02rQTZ0odC/Kjl3la6XHfhStxWb4uKWQpbD89KiS?=
- =?us-ascii?Q?JS++JcUjML30ZVvUSjctSz0NOneKI03kr2PACE/7?=
-X-Forefront-Antispam-Report: CIP:216.228.117.160; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:mail.nvidia.com; PTR:dc6edge1.nvidia.com; CAT:NONE;
- SFS:(13230040)(82310400026)(376014)(7416014)(36860700013)(1800799024)(13003099007);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Oct 2025 09:26:54.6379 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: d3a6868b-c28c-4f75-6bd9-08de16cd4cf2
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a; Ip=[216.228.117.160];
- Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: BL6PEPF00022574.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB6530
+X-Greylist: delayed 974 seconds by postgrey-1.36 at gabe;
+ Thu, 30 Oct 2025 02:06:52 UTC
+Received: from outbound.ci.icloud.com
+ (p-east1-cluster5-host7-snip4-3.eps.apple.com [57.103.89.194])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 952EB10E87B
+ for <intel-xe@lists.freedesktop.org>; Thu, 30 Oct 2025 02:06:52 +0000 (UTC)
+Received: from outbound.ci.icloud.com (unknown [127.0.0.2])
+ by p00-icloudmta-asmtp-us-central-1k-20-percent-2 (Postfix) with ESMTPS id
+ 862A9180018B; Thu, 30 Oct 2025 01:50:36 +0000 (UTC)
+Dkim-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mac.com; s=1a1hai;
+ bh=I7tCoYxb41/Drq2+GPL1Ci37qVTZZ5eqKPzaURsjoFE=;
+ h=From:Message-Id:Content-Type:Mime-Version:Subject:Date:To:x-icloud-hme;
+ b=bZcTJyVjYYpYV/dus6KsFPOOrOnVxl1odqgeTbp6Tox5LyPmvPnmLFwJjrt6yUQPa37PWxk/TQlqhRXzjX/GuLZj2U2QigNCwg3eAGC7+xe6mH6lQ5HzexMNvSdTv6F32nB0EL3gM/858KGtNoVDosmKjP8WmiDS6uBgODXl65+rvAeu9aniABBp68sTa30trvgJD/tqe5yduAg9WvlxFdDiJXOh2OTaCoySiYACFg/egrZnpZYSaAx0ss9LNQ+j1CBjOf5e3mTl+IyhJjJzO4D9/rPTa29GLRMKva3vTWaQrvBwpbq4xWKj77IJq6KjxGK8ijL8I7pcuwIynHM7Gw==
+Received: from smtpclient.apple (unknown [17.57.156.36])
+ by p00-icloudmta-asmtp-us-central-1k-20-percent-2 (Postfix) with ESMTPSA id
+ F341A1800180; Thu, 30 Oct 2025 01:50:35 +0000 (UTC)
+From: Jeff Geerling <geerlingguy@mac.com>
+Message-Id: <3F61A177-482E-496D-9041-ADED72586968@mac.com>
+Content-Type: multipart/alternative;
+ boundary="Apple-Mail=_358AD353-3A03-4A64-9985-3310BC9941E7"
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3864.100.1.1.5\))
+Subject: Re: [PATCH v1] Support Intel Xe GPU dirver Porting on RISC-V
+ Architecture
+Date: Wed, 29 Oct 2025 20:50:25 -0500
+In-Reply-To: <20250715061837.2144388-1-zhangzhijie@bosc.ac.cn>
+Cc: wangran@bosc.ac.cn, zhangjian@bosc.ac.cn, daniel@ffwll.ch,
+ jani.nikula@linux.intel.com, rodrigo.vivi@intel.com,
+ joonas.lahtinen@linux.intel.com, tursulin@ursulin.net, airlied@gmail.com,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+To: zhangzhijie <zhangzhijie@bosc.ac.cn>
+References: <20250715061837.2144388-1-zhangzhijie@bosc.ac.cn>
+X-Mailer: Apple Mail (2.3864.100.1.1.5)
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDMwMDAxMyBTYWx0ZWRfX7Nzw5hUHsoAH
+ NL9o2f48K8K3lsRxEEVqMA+oUqeQU+GgbtbEoe+kNCsz+40ojW8iLRih0sAG5qDKGlZGMewFdUl
+ oteaC5aFVRGQMVhWsqVb6rEnQiEvkl2TMj/rOlJrNsBIVKpz2UTIlolnmbjEhlr61uKUjqQFPOB
+ +EgK0y0oJXu8QTAbSz7pgIHQBByzYIxzGiCHDgfJTFjNPVVBrCteEa7R2x6b6hH7stnPXOE/LnX
+ fLlb+87czKiZvgtcVSaDFyEesdgDBdCLySNGJZi5Ihm5sHqgGlj+sGO1i2BVNgsX3tQRcb8n4=
+X-Proofpoint-GUID: p8K_fckhTduZncMkQ8j9IcaRiP8DrrpB
+X-Proofpoint-ORIG-GUID: p8K_fckhTduZncMkQ8j9IcaRiP8DrrpB
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-10-30_01,2025-10-29_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 adultscore=0
+ phishscore=0 spamscore=0 suspectscore=0 mlxscore=0 bulkscore=0
+ mlxlogscore=999 clxscore=1011 malwarescore=0 classifier=spam adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2506270000 definitions=main-2510300013
+X-JNJ: AAAAAAABWvmhw+ZCaNVFkXiaHhpniypsJ2U6R41zMFCdksvLmUJZqPS+4eKFEtshjOCm+dmmaiV6Jec3YF+cdX4Bh9tC2MmHp5JrrvdBmNPl0cgZAIeEggGIYosWEg20maNVulSvYsMc9QTxYjNOujLI7skMLzyswb8iV5vff+HlQ4yRHjQI4tkIFQDdYMdV1p7QAjAsT5atZFBPMCgQpHFrRlhG9/mWux+XJuFMVRYdrkPIZi3jb3LnysNtPBmHglrnzCaXmKXoEdJlKNRpjt+hfe7gQFbVY6ALqkKsCS2BxTI4kZoHJHnaTg2jBcxUgbzedCV+Gr9MPBFwK0UWVwtoznOolMBPGW3GZiP64OwgpBKIq/qzC+trLOzZpn9z6O5TeRUDkMNV64QI+loyTsaTsgbAQdkZ821xQfBC7AZmu+Aolx5DE+PbN9QmjPrwkRzjIZMagbUHiyplIPefeXny6u6wz2rhCXoTlpWIK8hPSGwIi6nFDkCVzFI9yXQnld/TkI81HA5ATLFuh/gAQ4BrpaxPBJmGuuIOkgCGEXhKNgcecer0WBwGT0KF6s2lTT1Ddja9uGwwVq7iUUMsEaPdgJ/QSgztr+MCSBaBAyi+9vG4L+ubmu3QIpsQLgYNUY+/Q2+H18xcN+DCnIf4rQdvUqgqSp9kkbKh9JnSBJ7Y/nWtD7Nne82X8IXvjiZ6hJI8TvjNj33NdQjlk2GZZnH6+htE0l4WKYPnptFASE0hMnDfvWPxwMj9LTPUZRY9krEJTxJPbiWTNzsZe+hZ5HZs2U49Ns6Ms2/X9H2nFp8kIOax7P39RsfxMKAp61d1u7hy9obP24piL7PDRQer
 X-Mailman-Approved-At: Thu, 30 Oct 2025 13:04:45 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -148,42 +75,167 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Oct 28, 2025 at 09:27:26PM -0300, Jason Gunthorpe wrote:
-> On Sun, Oct 26, 2025 at 09:44:12PM -0700, Vivek Kasireddy wrote:
-> > In a typical dma-buf use case, a dmabuf exporter makes its buffer
-> > buffer available to an importer by mapping it using DMA APIs
-> > such as dma_map_sgtable() or dma_map_resource(). However, this
-> > is not desirable in some cases where the exporter and importer
-> > are directly connected via a physical or virtual link (or
-> > interconnect) and the importer can access the buffer without
-> > having it DMA mapped.
-> 
-> I think my explanation was not so clear, I spent a few hours and typed
-> in what I was thinking about here:
-> 
-> https://github.com/jgunthorpe/linux/commits/dmabuf_map_type
-> 
-> I didn't type in the last patch for iommufd side, hopefully it is
-> clear enough. Adding iov should follow the pattern of the "physical
-> address list" patch.
-> 
-> I think the use of EXPORT_SYMBOL_FOR_MODULES() to lock down the
-> physical addres list mapping type to iommufd is clever and I'm hoping
-> addresses Chrsitian's concerns about abuse.
-> 
-> Single GPU drivers can easilly declare their own mapping type for
-> their own private interconnect without needing to change the core
-> code.
-> 
-> This seems to be fairly straightforward and reasonably type safe..
 
-It makes me wonder what am I supposed to do with my series now [1]?
-How do you see submission plan now?
+--Apple-Mail=_358AD353-3A03-4A64-9985-3310BC9941E7
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=utf-8
 
-[1] https://lore.kernel.org/all/cover.1760368250.git.leon@kernel.org/
++1 for this patch, as it would enable Xe on any non-x86 system.
+
+I've successfully tested this change on Ampere and Broadcom (Raspberry =
+Pi) systems.
+
+We've been using the flag `CONFIG_VGA_CONSOLE` instead of `CONFIG_X86` =
+but either should achieve the same goal. See: =
+https://github.com/6by9/linux/commit/6bd4cfe79b5111986dd11a5c6e48d4a963fd7=
+740
+
+With some OSes a later Mesa version needs to be compiled to support =
+newer Xe/Xe2 cards, however I've successfully tested a number of Intel =
+dGPUs at this point. Sometimes setting force probe to '*' (or the =
+particular GPU ID) is required, but otherwise stability is good.
+
+For example, the A750: =
+https://github.com/geerlingguy/raspberry-pi-pcie-devices/issues/510#issuec=
+omment-3383284831
+
+> On Jul 15, 2025, at 1:18=E2=80=AFAM, zhangzhijie =
+<zhangzhijie@bosc.ac.cn> wrote:
+>=20
+>    inb/outb speccial wire not support on other ARCH.
+> Should detect whether arch platform support or not.
+>=20
+> Signed-off-by: zhangzhijie <zhangzhijie@bosc.ac.cn>
+> ---
+> drivers/gpu/drm/i915/display/intel_vga.c | 4 ++++
+> 1 file changed, 4 insertions(+)
+>=20
+> diff --git a/drivers/gpu/drm/i915/display/intel_vga.c =
+b/drivers/gpu/drm/i915/display/intel_vga.c
+> index 4b98833bfa8c..5e48e3282670 100644
+> --- a/drivers/gpu/drm/i915/display/intel_vga.c
+> +++ b/drivers/gpu/drm/i915/display/intel_vga.c
+> @@ -33,6 +33,7 @@ void intel_vga_disable(struct drm_i915_private =
+*dev_priv)
+> 	if (intel_de_read(dev_priv, vga_reg) & VGA_DISP_DISABLE)
+> 		return;
+>=20
+> +#if defined(CONFIG_X86) || defined(CONFIG_X86_64)
+> 	/* WaEnableVGAAccessThroughIOPort:ctg,elk,ilk,snb,ivb,vlv,hsw */
+> 	vga_get_uninterruptible(pdev, VGA_RSRC_LEGACY_IO);
+> 	outb(0x01, VGA_SEQ_I);
+> @@ -40,6 +41,7 @@ void intel_vga_disable(struct drm_i915_private =
+*dev_priv)
+> 	outb(sr1 | VGA_SR01_SCREEN_OFF, VGA_SEQ_D);
+> 	vga_put(pdev, VGA_RSRC_LEGACY_IO);
+> 	udelay(300);
+> +#endif
+>=20
+> 	intel_de_write(dev_priv, vga_reg, VGA_DISP_DISABLE);
+> 	intel_de_posting_read(dev_priv, vga_reg);
+> @@ -80,6 +82,7 @@ void intel_vga_redisable(struct drm_i915_private =
+*i915)
+>=20
+> void intel_vga_reset_io_mem(struct drm_i915_private *i915)
+> {
+> +#if defined(CONFIG_X86) || defined(CONFIG_X86_64)
+> 	struct pci_dev *pdev =3D to_pci_dev(i915->drm.dev);
+>=20
+> 	/*
+> @@ -95,6 +98,7 @@ void intel_vga_reset_io_mem(struct drm_i915_private =
+*i915)
+> 	vga_get_uninterruptible(pdev, VGA_RSRC_LEGACY_IO);
+> 	outb(inb(VGA_MIS_R), VGA_MIS_W);
+> 	vga_put(pdev, VGA_RSRC_LEGACY_IO);
+> +#endif
+> }
+>=20
+> int intel_vga_register(struct drm_i915_private *i915)
+> --=20
+> 2.34.1
+>=20
+>=20
 
 
-> 
-> What do you think?
-> 
-> Jason
+--Apple-Mail=_358AD353-3A03-4A64-9985-3310BC9941E7
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=utf-8
+
+<html aria-label=3D"message body"><head><meta http-equiv=3D"content-type" =
+content=3D"text/html; charset=3Dutf-8"></head><body =
+style=3D"overflow-wrap: break-word; -webkit-nbsp-mode: space; =
+line-break: after-white-space;"><div><span style=3D"caret-color: rgb(0, =
+0, 0); color: rgb(0, 0, 0);">+1 for this patch, as it would enable Xe on =
+any non-x86 system.</span></div><div><br></div>I've successfully tested =
+this change on Ampere and Broadcom (Raspberry Pi) =
+systems.<div><br></div><div>We've been using the flag =
+`CONFIG_VGA_CONSOLE` instead of `CONFIG_X86` but either should achieve =
+the same goal. See:&nbsp;<a =
+href=3D"https://github.com/6by9/linux/commit/6bd4cfe79b5111986dd11a5c6e48d=
+4a963fd7740">https://github.com/6by9/linux/commit/6bd4cfe79b5111986dd11a5c=
+6e48d4a963fd7740</a></div><div><br></div><div>With some OSes a later =
+Mesa version needs to be compiled to support newer Xe/Xe2 cards, however =
+I've successfully tested a number of Intel dGPUs at this point. =
+Sometimes setting force probe to '*' (or the particular GPU ID) is =
+required, but otherwise stability is good.<br><div><br></div><div>For =
+example, the A750:&nbsp;<a =
+href=3D"https://github.com/geerlingguy/raspberry-pi-pcie-devices/issues/51=
+0#issuecomment-3383284831">https://github.com/geerlingguy/raspberry-pi-pci=
+e-devices/issues/510#issuecomment-3383284831</a></div><div><div><br><block=
+quote type=3D"cite"><div>On Jul 15, 2025, at 1:18=E2=80=AFAM, =
+zhangzhijie &lt;zhangzhijie@bosc.ac.cn&gt; wrote:</div><br =
+class=3D"Apple-interchange-newline"><div><div> =
+&nbsp;&nbsp;&nbsp;inb/outb speccial wire not support on other =
+ARCH.<br>Should detect whether arch platform support or =
+not.<br><br>Signed-off-by: zhangzhijie =
+&lt;zhangzhijie@bosc.ac.cn&gt;<br>---<br> =
+drivers/gpu/drm/i915/display/intel_vga.c | 4 ++++<br> 1 file changed, 4 =
+insertions(+)<br><br>diff --git =
+a/drivers/gpu/drm/i915/display/intel_vga.c =
+b/drivers/gpu/drm/i915/display/intel_vga.c<br>index =
+4b98833bfa8c..5e48e3282670 100644<br>--- =
+a/drivers/gpu/drm/i915/display/intel_vga.c<br>+++ =
+b/drivers/gpu/drm/i915/display/intel_vga.c<br>@@ -33,6 +33,7 @@ void =
+intel_vga_disable(struct drm_i915_private *dev_priv)<br> <span =
+class=3D"Apple-tab-span" style=3D"white-space:pre">	</span>if =
+(intel_de_read(dev_priv, vga_reg) &amp; VGA_DISP_DISABLE)<br> <span =
+class=3D"Apple-tab-span" style=3D"white-space:pre">	</span><span =
+class=3D"Apple-tab-span" style=3D"white-space:pre">	=
+</span>return;<br><br>+#if defined(CONFIG_X86) || =
+defined(CONFIG_X86_64)<br> <span class=3D"Apple-tab-span" =
+style=3D"white-space:pre">	</span>/* =
+WaEnableVGAAccessThroughIOPort:ctg,elk,ilk,snb,ivb,vlv,hsw */<br> <span =
+class=3D"Apple-tab-span" style=3D"white-space:pre">	=
+</span>vga_get_uninterruptible(pdev, VGA_RSRC_LEGACY_IO);<br> <span =
+class=3D"Apple-tab-span" style=3D"white-space:pre">	=
+</span>outb(0x01, VGA_SEQ_I);<br>@@ -40,6 +41,7 @@ void =
+intel_vga_disable(struct drm_i915_private *dev_priv)<br> <span =
+class=3D"Apple-tab-span" style=3D"white-space:pre">	</span>outb(sr1 =
+| VGA_SR01_SCREEN_OFF, VGA_SEQ_D);<br> <span class=3D"Apple-tab-span" =
+style=3D"white-space:pre">	</span>vga_put(pdev, =
+VGA_RSRC_LEGACY_IO);<br> <span class=3D"Apple-tab-span" =
+style=3D"white-space:pre">	</span>udelay(300);<br>+#endif<br><br> =
+<span class=3D"Apple-tab-span" style=3D"white-space:pre">	=
+</span>intel_de_write(dev_priv, vga_reg, VGA_DISP_DISABLE);<br> <span =
+class=3D"Apple-tab-span" style=3D"white-space:pre">	=
+</span>intel_de_posting_read(dev_priv, vga_reg);<br>@@ -80,6 +82,7 @@ =
+void intel_vga_redisable(struct drm_i915_private *i915)<br><br> void =
+intel_vga_reset_io_mem(struct drm_i915_private *i915)<br> {<br>+#if =
+defined(CONFIG_X86) || defined(CONFIG_X86_64)<br> <span =
+class=3D"Apple-tab-span" style=3D"white-space:pre">	</span>struct =
+pci_dev *pdev =3D to_pci_dev(i915-&gt;drm.dev);<br><br> <span =
+class=3D"Apple-tab-span" style=3D"white-space:pre">	</span>/*<br>@@ =
+-95,6 +98,7 @@ void intel_vga_reset_io_mem(struct drm_i915_private =
+*i915)<br> <span class=3D"Apple-tab-span" style=3D"white-space:pre">	=
+</span>vga_get_uninterruptible(pdev, VGA_RSRC_LEGACY_IO);<br> <span =
+class=3D"Apple-tab-span" style=3D"white-space:pre">	=
+</span>outb(inb(VGA_MIS_R), VGA_MIS_W);<br> <span class=3D"Apple-tab-span"=
+ style=3D"white-space:pre">	</span>vga_put(pdev, =
+VGA_RSRC_LEGACY_IO);<br>+#endif<br> }<br><br> int =
+intel_vga_register(struct drm_i915_private *i915)<br>-- =
+<br>2.34.1<br><br><br></div></div></blockquote></div><br></div></div></bod=
+y></html>=
+
+--Apple-Mail=_358AD353-3A03-4A64-9985-3310BC9941E7--
