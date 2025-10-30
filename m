@@ -4,32 +4,33 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 13064CCF9F0
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B87E7CCFA00
 	for <intel-xe@archiver.kernel.org>; Thu, 30 Oct 2025 18:47:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 84B6B10EA0F;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8361110EA0E;
 	Thu, 30 Oct 2025 18:47:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="IH5jOGf9";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="F9R9OnFU";
 	dkim-atps=neutral
 Received: from lankhorst.se (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AA1B810EA0A
- for <intel-xe@lists.freedesktop.org>; Thu, 30 Oct 2025 18:47:13 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3F60F10EA0B
+ for <intel-xe@lists.freedesktop.org>; Thu, 30 Oct 2025 18:47:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1761850032;
- bh=uKXYGXytB8wBqD1TSXnXEGB0cQ5JwivKpYOSgvWJ7M8=;
+ s=default; t=1761850033;
+ bh=rsGwI3BB/nL+3KqHd3fyVaCclCm+/GTa7AGAdLwN4y0=;
  h=From:To:Subject:Date:In-Reply-To:References:From;
- b=IH5jOGf9FLey4flBP/TnFChcyNZpBw7R+j96LNBUWbnschE1kcHL70wUBwmGKvtzB
- G8XETvCqpRHg66Ly3TFyjp4o0uYnJy3hlZIUP6+Y3XIHwyzKfT4roQ6m9UZ+7e2LiI
- YEZhkcTCatZ4EYBZ5XtNhoDwIRL6treEvT3lK1zgnsiiTn6ECy0NL5HABmO+vvs3eM
- O6kqlE5JZnrgK8RWqaftCJQc7/SOgG7D3oomHzAGTTIbSMmOOZlhUtFa57fTHj/wYT
- grbQNBj+tkM3/mAQXHhXcSRfuqloG63Triq5oK2z74DRSGAIzOQlogcAWu64cu2/EK
- yU/8taBFaMEdA==
+ b=F9R9OnFUj/75aiLM1rsx4XHUUbAcG7EHWOfSX6GqpCFsq0Pauy5nxA/QAow/nUToL
+ knv7/rGnQQfl1awBtwqOwThKynzYc2zV8ucW7umHdtv5dT5GY1jqm51ov1JThrxmGh
+ EiJiaug8cIS2awWO3MaiQLFkCA0eS8MLvb57ZqWc96cuKK5OKYI+M5HLgfCVjnwz4O
+ n6sbKXgi3Ir34Mlk2jm1Wp1UQWoQimfTfdG4M0iRtMLuPZ1OkD9wwFcQjzmss8ue7A
+ lhk9yJIsx4vLBYmelXj7n8SNkHrUcZmt8ZQnchdJFGsjludjP0AaYaX/1HY6o0bgR0
+ HaHR5+g/PCl3A==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-xe@lists.freedesktop.org
-Subject: [FOR CI 1/8] drm/xe: Bump xe_device_l2_flush even higher
-Date: Thu, 30 Oct 2025 19:47:03 +0100
-Message-ID: <20251030184710.359870-2-dev@lankhorst.se>
+Subject: [FOR CI 2/8] drm/i915/display: Make get_vblank_counter use
+ intel_de_read_fw()
+Date: Thu, 30 Oct 2025 19:47:04 +0100
+Message-ID: <20251030184710.359870-3-dev@lankhorst.se>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20251030184710.359870-1-dev@lankhorst.se>
 References: <20251030184710.359870-1-dev@lankhorst.se>
@@ -49,36 +50,44 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-It turns out for some applications 1 ms is not enough, and 2 ms is
-needed.
+Fixes the following lockdep splat on PREEMPT_RT:
+<3> BUG: sleeping function called from invalid context at kernel/locking/spinlock_rt.c:48
+<3> in_atomic(): 1, irqs_disabled(): 0, non_block: 0, pid: 1373, name: xe_module_load
+<3> preempt_count: 1, expected: 0
+<3> RCU nest depth: 0, expected: 0
+<4> 11 locks held by xe_module_load/1373:
+<4>  #0: ffff888107b691a0 (&dev->mutex){....}-{3:3}, at: __driver_attach+0x104/0x220
+<4>  #1: ffff88813cd30280 (&dev->clientlist_mutex){+.+.}-{3:3}, at: drm_client_register+0x32/0xe0
+<4>  #2: ffffffff837f88f8 (registration_lock){+.+.}-{3:3}, at: register_framebuffer+0x1b/0x50
+<4>  #3: ffffffff835985e0 (console_lock){+.+.}-{0:0}, at: fbcon_fb_registered+0x6f/0x90
+<4>  #4: ffff88812589e6a0 (&helper->lock){+.+.}-{3:3}, at: __drm_fb_helper_restore_fbdev_mode_unlocked+0x7b/0x110
+<4>  #5: ffff88813cd30158 (&dev->master_mutex){+.+.}-{3:3}, at: drm_master_internal_acquire+0x20/0x50
+<4>  #6: ffff88812589e488 (&client->modeset_mutex){+.+.}-{3:3}, at: drm_client_modeset_commit_locked+0x2a/0x1b0
+<4>  #7: ffffc9000031eef0 (crtc_ww_class_acquire){+.+.}-{0:0}, at: drm_client_modeset_commit_atomic+0x4c/0x2b0
+<4>  #8: ffffc9000031ef18 (crtc_ww_class_mutex){+.+.}-{3:3}, at: drm_client_modeset_commit_atomic+0x4c/0x2b0
+<4>  #9: ffff888114f7b8b8 (&intel_dp->psr.lock){+.+.}-{3:3}, at: intel_psr_lock+0xc5/0xf0 [xe]
+<4>  #10: ffff88812a0cbbc0 (&wl->lock){+.+.}-{2:2}, at: intel_dmc_wl_get+0x3c/0x140 [xe]
 
-Failing to flush causes a catastrophic display update failure,
-so we should prevent it if possible.
+This splat will happen otherwise on all tracepoints too, for similar reasons.
 
-Add an even bigger margin of 5 ms, and complain loudly if we ever exceed
-it.
-
-Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/6097
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/xe/xe_device.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_vblank.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 47f5391ad8e90..8474632531727 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -1077,8 +1077,8 @@ void xe_device_l2_flush(struct xe_device *xe)
- 	spin_lock(&gt->global_invl_lock);
+diff --git a/drivers/gpu/drm/i915/display/intel_vblank.c b/drivers/gpu/drm/i915/display/intel_vblank.c
+index 2fc0c1c0bb876..44a7242658da4 100644
+--- a/drivers/gpu/drm/i915/display/intel_vblank.c
++++ b/drivers/gpu/drm/i915/display/intel_vblank.c
+@@ -131,7 +131,7 @@ u32 g4x_get_vblank_counter(struct drm_crtc *crtc)
+ 	if (!vblank->max_vblank_count)
+ 		return 0;
  
- 	xe_mmio_write32(&gt->mmio, XE2_GLOBAL_INVAL, 0x1);
--	if (xe_mmio_wait32(&gt->mmio, XE2_GLOBAL_INVAL, 0x1, 0x0, 1000, NULL, true))
--		xe_gt_err_once(gt, "Global invalidation timeout\n");
-+	if (xe_mmio_wait32(&gt->mmio, XE2_GLOBAL_INVAL, 0x1, 0x0, 5000, NULL, true))
-+		xe_gt_err(gt, "Global invalidation timeout\n");
+-	return intel_de_read(display, PIPE_FRMCOUNT_G4X(display, pipe));
++	return intel_de_read_fw(display, PIPE_FRMCOUNT_G4X(display, pipe));
+ }
  
- 	spin_unlock(&gt->global_invl_lock);
- 
+ static u32 intel_crtc_scanlines_since_frame_timestamp(struct intel_crtc *crtc)
 -- 
 2.51.0
 
