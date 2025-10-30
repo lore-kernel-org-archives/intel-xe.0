@@ -4,57 +4,134 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 35F52CCF9EB
-	for <intel-xe@archiver.kernel.org>; Wed, 29 Oct 2025 23:46:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F0024CCF9EB
+	for <intel-xe@archiver.kernel.org>; Thu, 30 Oct 2025 00:12:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E94A610E874;
-	Wed, 29 Oct 2025 23:46:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 94DB910E05F;
+	Thu, 30 Oct 2025 00:12:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MbRebk0t";
+	dkim=pass (2048-bit key; unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.b="Jy3Ktocq";
+	dkim=pass (2048-bit key; unprotected) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="HxXvMy7m";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3483D10E05F
- for <intel-xe@lists.freedesktop.org>; Wed, 29 Oct 2025 23:45:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761781545; x=1793317545;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=VKXzeoR8zpEYzA+sUzE3I4AkMV7M2XwGlLocw/m7CLw=;
- b=MbRebk0tRXFgEplg4iZaQqDMrnaSgtR//+Lmtkrp6kHOZB6B5iiQB53i
- SgYguyg5g/VacGLW2f4KZFWR4N2JahmrSzOK1lW79oBAzhJ5uTUoJeu4r
- TnvTkEtUtdak4LqeXHIbkqc7I7roim1OpFwApuZt+INHKlflVIOyUnfls
- eeq63TRDGzJrPIGUHKxg7H1qduPB5e1B4P4fdaN0PAIN8/iT9InByFVP/
- l9UD7rojSroZcISsWqrF0hf5XYVAoLNrb7+HLiRycHjvMEgFlWLzGsER0
- 0Ouz8oyiTF20YZEFQoIcolKO9NIopXxjo7DHoZl1QMucfsCe3rxUFG3O7 A==;
-X-CSE-ConnectionGUID: Vq1EXW3OQXmXnMtCocSn8w==
-X-CSE-MsgGUID: cnYy96UGQtSnJtFXiytL5Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11597"; a="75363580"
-X-IronPort-AV: E=Sophos;i="6.19,265,1754982000"; d="scan'208";a="75363580"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Oct 2025 16:45:44 -0700
-X-CSE-ConnectionGUID: gQUPU/vIRiaI9pozK+wWIw==
-X-CSE-MsgGUID: 4u3usG7MT165otEp48P81g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,265,1754982000"; d="scan'208";a="185456066"
-Received: from lucas-s2600cw.jf.intel.com ([10.54.55.69])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Oct 2025 16:45:45 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
- Raag Jadav <raag.jadav@intel.com>
-Subject: [PATCH v3 4/8] drm/xe/gt_throttle: Add throttle_to_gt()
-Date: Wed, 29 Oct 2025 16:45:06 -0700
-Message-ID: <20251029-gt-throttle-cri-v3-4-d1f5abbb8114@intel.com>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20251029-gt-throttle-cri-v3-0-d1f5abbb8114@intel.com>
-References: <20251029-gt-throttle-cri-v3-0-d1f5abbb8114@intel.com>
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com
+ [205.220.168.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6FDAE10E05F
+ for <intel-xe@lists.freedesktop.org>; Thu, 30 Oct 2025 00:12:26 +0000 (UTC)
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+ by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id
+ 59TLLi0t1697828
+ for <intel-xe@lists.freedesktop.org>; Thu, 30 Oct 2025 00:12:26 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+ cc:content-transfer-encoding:content-type:date:from:in-reply-to
+ :message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+ RlOA3yo8oapL6z88NAIu8PVoZTfephjCzUiz6uOkvUM=; b=Jy3KtocqdD5BKvb/
+ uSvsMseZSvEDh6Mk3hdbKAkARftkNcBLbPtjXIxJGTPJ4ScOS0SgMWZGvLSKJkqZ
+ VYbIOslbYkCSiL+gyHRiDhs1H4sCIHL0XlWKVvVEYSDaQYksJcKubOxHPCBp0ppS
+ ELciUmERhtM7AdvvRUhph6GJopohAPQwSpBRlFAPB8pahUiNOtGbnoorLCCPBmR1
+ 3fik4T98EukcUS6RSomBkUTYrjZC2/G4pcwZy8yCVPmNkssSW5HtaBxfhXGNrSIh
+ dxIU5CuMKqhYo/MIH8Z+iVbgUeDrC6IVnlnFM2poLoMGbcR8pm1D1l2lkNGED7dj
+ 2IpqJA==
+Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com
+ [209.85.160.197])
+ by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a3trv0e67-1
+ (version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+ for <intel-xe@lists.freedesktop.org>; Thu, 30 Oct 2025 00:12:25 +0000 (GMT)
+Received: by mail-qt1-f197.google.com with SMTP id
+ d75a77b69052e-4ed240c3d93so1723531cf.2
+ for <intel-xe@lists.freedesktop.org>; Wed, 29 Oct 2025 17:12:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=oss.qualcomm.com; s=google; t=1761783145; x=1762387945;
+ darn=lists.freedesktop.org; 
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:references:message-id:subject:cc:to:from:date:from:to
+ :cc:subject:date:message-id:reply-to;
+ bh=RlOA3yo8oapL6z88NAIu8PVoZTfephjCzUiz6uOkvUM=;
+ b=HxXvMy7mFJrYxxB9MtUs87OysStcvk8pIll0SeMLf/4Q33LWTeOmCJih/U9La/a6uC
+ Mf70we9/7ckJ61xsnU8xYmbrb4QjLUJLjcEZmSX8u40yZnwXZHv2iZH9ivE6WmMZ/Lm4
+ 820Cdd4lhEoO4TO0svatnGgiXhsWwPimbm4igNTayUI0DL29pC8PuZY0pjc7zcsCxeiT
+ UEE8bsPOJUghRCIM579eFThmMDlPBbmmkSmmwzixDWk0Yt4eKCm7ZjD/V7YOoNUTRVDw
+ VI1E6e1zrSQI3ot0NXr4Qr+O8S/aHVxJGNC7bwZS7ECjGJzkh6tbDSer4CNG3NJrt0OJ
+ uhug==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1761783145; x=1762387945;
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:references:message-id:subject:cc:to:from:date
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=RlOA3yo8oapL6z88NAIu8PVoZTfephjCzUiz6uOkvUM=;
+ b=it8G4UCeBAjZJhW5kA3u4ElrNWhx8MZfxJkDpxZb4At15hSzQzwEFmYfJc4j8a9Sav
+ emhW6IR+WKwnfJB2hN3BIlyEPEszhQU5+pn8kp8VqvTDZ229e9WjNr1go12F5Mg3n2No
+ i3/m44sYlK8vjhAqPb4fJ4ztH6JwmekTDrNGTNEFILZ3LAjZHaGsBiT/ulKNoEzDOhaU
+ DnjLEeQUOof+M2IPl+I0z9FGNARbmZSy+8ZJMVplCqN4Y0yH1LDWgOmQZS766WC0cIkJ
+ Ld09vqklfJ9X2C5gMpfZ9wBcXSw7bbMLFMxoG3JD51uCabrzsUxt6JmaiN2mGvBNKfXg
+ ROVQ==
+X-Gm-Message-State: AOJu0YwrtjEKTX/xtpUv2uVWa3Librz9H7K5v6DHVCuT4t6MZMyjWTYI
+ rd2oWMVg8aTQ2qxPf7+Ql1Fg2wno0SOoaqwUSSatM4D1PRA5azPeE1o25dUE4KRX/R3z+B3O1G3
+ OKvz9jpak+3NI3o5ZbQMnp/kXZ9NovARBfsMxmagivi5h1Uo+ILZm0Oi0xwhBwdFqEW9C+g==
+X-Gm-Gg: ASbGncswPSP3TO85/csQ1k28lxzgUJmvuB0ut8nnyUFHy7spHBNQ2okRxMF913gNofs
+ LgKsexrj838Y1Kn1AAs34CQdOBv7s8q55ieJAW3PLYrd4tyteCevYRwIgWXAcVSZz+u2qCWdQZv
+ QlkFqHGGMg+BP0E181Se6kGhkHAvWBcnAeSL9W61aBVhR4BX6LlpxhW/2U+DKDPRQL5JUSteC5U
+ 5Pk9MsiHMtWQoYklY3Ucq9gpw5Fhy/6PotZ9P4e8RwauVWoHe0J9TRdnBfS18MQz9+Mc6+KiyLz
+ SEzkfTdCRGXAWC86tNrA4xSSDvbWbH6Q+Yvdq59lJucynCT9l6ncpYh4SxlL1doZHH4Agr20mPR
+ 0OkV/vRsFEnGdOycCkn5vLRZQEhqcMLaInmhPXxjn5kRf9K8Gca/RxPfdb0pGvk0aZh+ScEC+HY
+ l6hkBm5PR5XSr4
+X-Received: by 2002:a05:622a:355:b0:4e5:6c5e:430a with SMTP id
+ d75a77b69052e-4ed22b201demr15246381cf.64.1761783144886; 
+ Wed, 29 Oct 2025 17:12:24 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHTTPJzQ4pPAdhaocWtdADne4C/nq9/kxzm5f9yI/Y1cbenNeHY/sD8/KOO3LAKlfuZ51CL3w==
+X-Received: by 2002:a05:622a:355:b0:4e5:6c5e:430a with SMTP id
+ d75a77b69052e-4ed22b201demr15246121cf.64.1761783144399; 
+ Wed, 29 Oct 2025 17:12:24 -0700 (PDT)
+Received: from umbar.lan
+ (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi.
+ [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+ by smtp.gmail.com with ESMTPSA id
+ 2adb3069b0e04-59301f8471csm4163592e87.106.2025.10.29.17.12.23
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 29 Oct 2025 17:12:23 -0700 (PDT)
+Date: Thu, 30 Oct 2025 02:12:21 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: "Almahallawy, Khaled" <khaled.almahallawy@intel.com>
+Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "Nikula, Jani" <jani.nikula@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
+ "lumag@kernel.org" <lumag@kernel.org>, "sean@poorly.run" <sean@poorly.run>,
+ "robin.clark@oss.qualcomm.com" <robin.clark@oss.qualcomm.com>
+Subject: Re: [PATCH] drm/display/dp: Rename bit 4 of DPCD TEST_REQUEST to
+ match DP2.1 spec
+Message-ID: <75lb7tqpoxvvf72iv3ag23yw32xce6ifxaxq4sghb2jhwxbr5c@wbjnp44tgkm3>
+References: <20251028222817.3290035-1-khaled.almahallawy@intel.com>
+ <jn7piiqfyeiiinpxu5ht7qza2la3cigdqlhtlvuvkbzqeyhcad@v5aypgcrcdok>
+ <d768e2abf7e27edac66f1d0068540e2b0617561e.camel@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-X-Mailer: b4 0.15-dev-50d74
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <d768e2abf7e27edac66f1d0068540e2b0617561e.camel@intel.com>
+X-Proofpoint-GUID: snDslGORswof_U5kHHDrNPDAmmez5SQb
+X-Authority-Analysis: v=2.4 cv=D+ZK6/Rj c=1 sm=1 tr=0 ts=6902ad69 cx=c_pps
+ a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=xqWC_Br6kY4A:10 a=8nJEP1OIZ-IA:10
+ a=x6icFKpwvdMA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=QyXUC8HyAAAA:8 a=EUspDBNiAAAA:8 a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8
+ a=IdroE-pjToVxfVGS2yYA:9 a=3ZKOabzyN94A:10 a=wPNLvfGTeEIA:10
+ a=a_PwQJl-kcHnX1M80qC6:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-ORIG-GUID: snDslGORswof_U5kHHDrNPDAmmez5SQb
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDMwMDAwMCBTYWx0ZWRfX6wEbrILvFg6M
+ xsr4W5gsOiCg7ILP03WN8V5+uylNGnPXj4f5Vo5MQabqhB7e7KWBP3KysRiaCuAdZOpBHgllY3G
+ bSXRhJWX54021oYL/UFnL8qqQ8u6mZyeLgW//Vr+6yg//nJACf2Y2x4RoXQqn53sPcEX6tqTwMC
+ JsOtUM/HqccbtKTbtvaapu6+7xnIlyWAj9vXBAjyLiss6jnH9UsiYLM24jp2l7Ux9VXAsGCEy7U
+ 091f9N+Ccw3f58yI8r4lymaRxzPzyODl5Tptq7cDVU/N+4ucDtjfKZpzNRg23MEz02bX8FOV5H0
+ 7tevDXFcivAuCIeXEhjN0ohtMIL1Lgub3nCDrMlcOM7Cgg6Mnea7OgG5znfKFgYXY9W4skkaDi8
+ drGP2vZvtsMSZWlYxHE5mva504ki7g==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-10-29_08,2025-10-29_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ bulkscore=0 suspectscore=0 malwarescore=0 phishscore=0 lowpriorityscore=0
+ priorityscore=1501 adultscore=0 clxscore=1015 impostorscore=0 spamscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2510300000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,230 +146,37 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Reduce boilerplate code by adding a helper to go directly from the
-throttle kobject to the gt. Note that there's already a kobj_to_gt(),
-but that actually converts our kobj_gt object to gt.
+On Wed, Oct 29, 2025 at 09:43:45PM +0000, Almahallawy, Khaled wrote:
+> On Wed, 2025-10-29 at 10:57 +0200, Dmitry Baryshkov wrote:
+> > On Tue, Oct 28, 2025 at 03:28:17PM -0700, Khaled Almahallawy wrote:
+> > > The DP_TEST_LINK_FAUX_PATTERN field was deprecated in the DP 1.3
+> > > spec.
+> > > Update its name to align with the DP 2.1 definition and reflect its
+> > > actual use in the code. No functional changes.
+> > > 
+> > > Cc: Jani Nikula <jani.nikula@intel.com>
+> > > Cc: Rob Clark <robin.clark@oss.qualcomm.com>
+> > > Cc: Dmitry Baryshkov <lumag@kernel.org>
+> > > Cc: Abhinav Kumar <quic_abhinavk@quicinc.com>
+> > > Cc: Sean Paul <sean@poorly.run>
+> > > Signed-off-by: Khaled Almahallawy <khaled.almahallawy@intel.com>
+> > > ---
+> > >  drivers/gpu/drm/msm/dp/dp_link.c | 2 +-
+> > >  include/drm/display/drm_dp.h     | 2 +-
+> > >  2 files changed, 2 insertions(+), 2 deletions(-)
+> > > 
+> > 
+> > Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+> > 
+> > Would you prefer to merge this through drm-misc-next or through msm-
+> > next?
+> 
+> Thank you for your review. 
+> it would be great if you can merge to drm-misc-next after I address
+> Konrad input.
 
-Reviewed-by: Raag Jadav <raag.jadav@intel.com>
-Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
----
- drivers/gpu/drm/xe/xe_gt_throttle.c | 65 ++++++++++++++-----------------------
- 1 file changed, 25 insertions(+), 40 deletions(-)
-
-diff --git a/drivers/gpu/drm/xe/xe_gt_throttle.c b/drivers/gpu/drm/xe/xe_gt_throttle.c
-index f743444f641a8..e08023c5e77b6 100644
---- a/drivers/gpu/drm/xe/xe_gt_throttle.c
-+++ b/drivers/gpu/drm/xe/xe_gt_throttle.c
-@@ -48,12 +48,16 @@
-  * device/gt#/freq0/throttle/reason_psys_crit - Frequency throttle due to PSYS critical
-  */
- 
--static struct xe_gt *
--dev_to_gt(struct device *dev)
-+static struct xe_gt *dev_to_gt(struct device *dev)
- {
- 	return kobj_to_gt(dev->kobj.parent);
- }
- 
-+static struct xe_gt *throttle_to_gt(struct kobject *kobj)
-+{
-+	return dev_to_gt(kobj_to_dev(kobj));
-+}
-+
- u32 xe_gt_throttle_get_limit_reasons(struct xe_gt *gt)
- {
- 	struct xe_device *xe = gt_to_xe(gt);
-@@ -85,8 +89,7 @@ static bool is_throttled_by(struct xe_gt *gt, u32 mask)
- static ssize_t status_show(struct kobject *kobj,
- 			   struct kobj_attribute *attr, char *buff)
- {
--	struct device *dev = kobj_to_dev(kobj);
--	struct xe_gt *gt = dev_to_gt(dev);
-+	struct xe_gt *gt = throttle_to_gt(kobj);
- 
- 	return sysfs_emit(buff, "%u\n", is_throttled_by(gt, U32_MAX));
- }
-@@ -95,8 +98,7 @@ static struct kobj_attribute attr_status = __ATTR_RO(status);
- static ssize_t reason_pl1_show(struct kobject *kobj,
- 			       struct kobj_attribute *attr, char *buff)
- {
--	struct device *dev = kobj_to_dev(kobj);
--	struct xe_gt *gt = dev_to_gt(dev);
-+	struct xe_gt *gt = throttle_to_gt(kobj);
- 
- 	return sysfs_emit(buff, "%u\n", is_throttled_by(gt, POWER_LIMIT_1_MASK));
- }
-@@ -105,8 +107,7 @@ static struct kobj_attribute attr_reason_pl1 = __ATTR_RO(reason_pl1);
- static ssize_t reason_pl2_show(struct kobject *kobj,
- 			       struct kobj_attribute *attr, char *buff)
- {
--	struct device *dev = kobj_to_dev(kobj);
--	struct xe_gt *gt = dev_to_gt(dev);
-+	struct xe_gt *gt = throttle_to_gt(kobj);
- 
- 	return sysfs_emit(buff, "%u\n", is_throttled_by(gt, POWER_LIMIT_2_MASK));
- }
-@@ -115,8 +116,7 @@ static struct kobj_attribute attr_reason_pl2 = __ATTR_RO(reason_pl2);
- static ssize_t reason_pl4_show(struct kobject *kobj,
- 			       struct kobj_attribute *attr, char *buff)
- {
--	struct device *dev = kobj_to_dev(kobj);
--	struct xe_gt *gt = dev_to_gt(dev);
-+	struct xe_gt *gt = throttle_to_gt(kobj);
- 
- 	return sysfs_emit(buff, "%u\n", is_throttled_by(gt, POWER_LIMIT_4_MASK));
- }
-@@ -125,8 +125,7 @@ static struct kobj_attribute attr_reason_pl4 = __ATTR_RO(reason_pl4);
- static ssize_t reason_thermal_show(struct kobject *kobj,
- 				   struct kobj_attribute *attr, char *buff)
- {
--	struct device *dev = kobj_to_dev(kobj);
--	struct xe_gt *gt = dev_to_gt(dev);
-+	struct xe_gt *gt = throttle_to_gt(kobj);
- 
- 	return sysfs_emit(buff, "%u\n", is_throttled_by(gt, THERMAL_LIMIT_MASK));
- }
-@@ -135,8 +134,7 @@ static struct kobj_attribute attr_reason_thermal = __ATTR_RO(reason_thermal);
- static ssize_t reason_soc_thermal_show(struct kobject *kobj,
- 				       struct kobj_attribute *attr, char *buff)
- {
--	struct device *dev = kobj_to_dev(kobj);
--	struct xe_gt *gt = dev_to_gt(dev);
-+	struct xe_gt *gt = throttle_to_gt(kobj);
- 
- 	return sysfs_emit(buff, "%u\n", is_throttled_by(gt, SOC_THERMAL_LIMIT_MASK));
- }
-@@ -145,8 +143,7 @@ static struct kobj_attribute attr_reason_soc_thermal = __ATTR_RO(reason_soc_ther
- static ssize_t reason_prochot_show(struct kobject *kobj,
- 				   struct kobj_attribute *attr, char *buff)
- {
--	struct device *dev = kobj_to_dev(kobj);
--	struct xe_gt *gt = dev_to_gt(dev);
-+	struct xe_gt *gt = throttle_to_gt(kobj);
- 
- 	return sysfs_emit(buff, "%u\n", is_throttled_by(gt, PROCHOT_MASK));
- }
-@@ -155,8 +152,7 @@ static struct kobj_attribute attr_reason_prochot = __ATTR_RO(reason_prochot);
- static ssize_t reason_ratl_show(struct kobject *kobj,
- 				struct kobj_attribute *attr, char *buff)
- {
--	struct device *dev = kobj_to_dev(kobj);
--	struct xe_gt *gt = dev_to_gt(dev);
-+	struct xe_gt *gt = throttle_to_gt(kobj);
- 
- 	return sysfs_emit(buff, "%u\n", is_throttled_by(gt, RATL_MASK));
- }
-@@ -165,8 +161,7 @@ static struct kobj_attribute attr_reason_ratl = __ATTR_RO(reason_ratl);
- static ssize_t reason_vr_thermalert_show(struct kobject *kobj,
- 					 struct kobj_attribute *attr, char *buff)
- {
--	struct device *dev = kobj_to_dev(kobj);
--	struct xe_gt *gt = dev_to_gt(dev);
-+	struct xe_gt *gt = throttle_to_gt(kobj);
- 
- 	return sysfs_emit(buff, "%u\n", is_throttled_by(gt, VR_THERMALERT_MASK));
- }
-@@ -175,8 +170,7 @@ static struct kobj_attribute attr_reason_vr_thermalert = __ATTR_RO(reason_vr_the
- static ssize_t reason_soc_avg_thermal_show(struct kobject *kobj,
- 					   struct kobj_attribute *attr, char *buff)
- {
--	struct device *dev = kobj_to_dev(kobj);
--	struct xe_gt *gt = dev_to_gt(dev);
-+	struct xe_gt *gt = throttle_to_gt(kobj);
- 
- 	return sysfs_emit(buff, "%u\n", is_throttled_by(gt, SOC_AVG_THERMAL_MASK));
- }
-@@ -185,8 +179,7 @@ static struct kobj_attribute attr_reason_soc_avg_thermal = __ATTR_RO(reason_soc_
- static ssize_t reason_vr_tdc_show(struct kobject *kobj,
- 				  struct kobj_attribute *attr, char *buff)
- {
--	struct device *dev = kobj_to_dev(kobj);
--	struct xe_gt *gt = dev_to_gt(dev);
-+	struct xe_gt *gt = throttle_to_gt(kobj);
- 
- 	return sysfs_emit(buff, "%u\n", is_throttled_by(gt, VR_TDC_MASK));
- }
-@@ -195,8 +188,7 @@ static struct kobj_attribute attr_reason_vr_tdc = __ATTR_RO(reason_vr_tdc);
- static ssize_t reason_fastvmode_show(struct kobject *kobj,
- 				     struct kobj_attribute *attr, char *buff)
- {
--	struct device *dev = kobj_to_dev(kobj);
--	struct xe_gt *gt = dev_to_gt(dev);
-+	struct xe_gt *gt = throttle_to_gt(kobj);
- 
- 	return sysfs_emit(buff, "%u\n", is_throttled_by(gt, FASTVMODE_MASK));
- }
-@@ -205,8 +197,7 @@ static struct kobj_attribute attr_reason_fastvmode = __ATTR_RO(reason_fastvmode)
- static ssize_t reason_mem_thermal_show(struct kobject *kobj,
- 				       struct kobj_attribute *attr, char *buff)
- {
--	struct device *dev = kobj_to_dev(kobj);
--	struct xe_gt *gt = dev_to_gt(dev);
-+	struct xe_gt *gt = throttle_to_gt(kobj);
- 
- 	return sysfs_emit(buff, "%u\n", is_throttled_by(gt, MEM_THERMAL_MASK));
- }
-@@ -215,8 +206,7 @@ static struct kobj_attribute attr_reason_mem_thermal = __ATTR_RO(reason_mem_ther
- static ssize_t reason_vr_thermal_show(struct kobject *kobj,
- 				      struct kobj_attribute *attr, char *buff)
- {
--	struct device *dev = kobj_to_dev(kobj);
--	struct xe_gt *gt = dev_to_gt(dev);
-+	struct xe_gt *gt = throttle_to_gt(kobj);
- 
- 	return sysfs_emit(buff, "%u\n", is_throttled_by(gt, VR_THERMAL_MASK));
- }
-@@ -225,8 +215,7 @@ static struct kobj_attribute attr_reason_vr_thermal = __ATTR_RO(reason_vr_therma
- static ssize_t reason_iccmax_show(struct kobject *kobj,
- 				  struct kobj_attribute *attr, char *buff)
- {
--	struct device *dev = kobj_to_dev(kobj);
--	struct xe_gt *gt = dev_to_gt(dev);
-+	struct xe_gt *gt = throttle_to_gt(kobj);
- 
- 	return sysfs_emit(buff, "%u\n", is_throttled_by(gt, ICCMAX_MASK));
- }
-@@ -235,8 +224,7 @@ static struct kobj_attribute attr_reason_iccmax = __ATTR_RO(reason_iccmax);
- static ssize_t reason_psys_pl1_show(struct kobject *kobj,
- 				    struct kobj_attribute *attr, char *buff)
- {
--	struct device *dev = kobj_to_dev(kobj);
--	struct xe_gt *gt = dev_to_gt(dev);
-+	struct xe_gt *gt = throttle_to_gt(kobj);
- 
- 	return sysfs_emit(buff, "%u\n", is_throttled_by(gt, PSYS_PL1_MASK));
- }
-@@ -245,8 +233,7 @@ static struct kobj_attribute attr_reason_psys_pl1 = __ATTR_RO(reason_psys_pl1);
- static ssize_t reason_psys_pl2_show(struct kobject *kobj,
- 				    struct kobj_attribute *attr, char *buff)
- {
--	struct device *dev = kobj_to_dev(kobj);
--	struct xe_gt *gt = dev_to_gt(dev);
-+	struct xe_gt *gt = throttle_to_gt(kobj);
- 
- 	return sysfs_emit(buff, "%u\n", is_throttled_by(gt, PSYS_PL2_MASK));
- }
-@@ -255,8 +242,7 @@ static struct kobj_attribute attr_reason_psys_pl2 = __ATTR_RO(reason_psys_pl2);
- static ssize_t reason_p0_freq_show(struct kobject *kobj,
- 				   struct kobj_attribute *attr, char *buff)
- {
--	struct device *dev = kobj_to_dev(kobj);
--	struct xe_gt *gt = dev_to_gt(dev);
-+	struct xe_gt *gt = throttle_to_gt(kobj);
- 
- 	return sysfs_emit(buff, "%u\n", is_throttled_by(gt, P0_FREQ_MASK));
- }
-@@ -265,8 +251,7 @@ static struct kobj_attribute attr_reason_p0_freq = __ATTR_RO(reason_p0_freq);
- static ssize_t reason_psys_crit_show(struct kobject *kobj,
- 				     struct kobj_attribute *attr, char *buff)
- {
--	struct device *dev = kobj_to_dev(kobj);
--	struct xe_gt *gt = dev_to_gt(dev);
-+	struct xe_gt *gt = throttle_to_gt(kobj);
- 
- 	return sysfs_emit(buff, "%u\n", is_throttled_by(gt, PSYS_CRIT_MASK));
- }
+Yes, please send v2 once it's ready.
 
 -- 
-2.51.0
-
+With best wishes
+Dmitry
