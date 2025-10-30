@@ -4,50 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B722DCCF9F8
-	for <intel-xe@archiver.kernel.org>; Thu, 30 Oct 2025 07:35:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 03CD7CCF9FA
+	for <intel-xe@archiver.kernel.org>; Thu, 30 Oct 2025 07:35:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 74DC810E8EA;
+	by gabe.freedesktop.org (Postfix) with ESMTP id B1C6A10E8F1;
 	Thu, 30 Oct 2025 07:35:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iCsD0+qI";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FqOpCXr/";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F303810E8DB;
- Thu, 30 Oct 2025 07:35:03 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 35BDD10E8C8;
+ Thu, 30 Oct 2025 07:34:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761809705; x=1793345705;
+ t=1761809697; x=1793345697;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Nd6KtQoK/JyICXg5UZTtZ6MJlxu5Ia9OxVkh1sIJocM=;
- b=iCsD0+qI7p7APksg6yJBldvcFPhVZsLV3Z03MDGIQfxxxa31/V5trV96
- 6WPFoGr+jq6J+np0+MmVhgqyI2wt86tL19GowQYmFryHhM7l3YnBaCSK4
- TcSKFdTfh3YyWHzBQZMVwrm1Q37aCxmRKJewRubM95wghTLH6k0Eu4PPD
- op2wH5eVV9jRzV/KPOXQiy8YUKhmf1LQtVer6QHmGK/1fbBGmFEDcG0zz
- i4Rg0s/v+yZHpVBf0gL1Hqq7roUS4L/17eyPYX7jBRgXKzn4khVb/mIBR
- TH8/Eun+wz+vXOdiG2WPQFiYHimzMauPGs9ax2GQNU4bPqIbYxtEhvn8M w==;
-X-CSE-ConnectionGUID: N/MTldqaQWCoelDu26WlbQ==
-X-CSE-MsgGUID: xiQ/yjKtQDa4yvMwqrDRNA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11597"; a="75063391"
-X-IronPort-AV: E=Sophos;i="6.19,266,1754982000"; d="scan'208";a="75063391"
+ bh=7C2fTEuH8DjZpIr8g6gIzAuQPXRnTfL0wYOfyYJ3wyQ=;
+ b=FqOpCXr/m+Cjk7IpU4XE5FOth5oq2UgDQbTuZQlc4e7lQYc9vvw8S6Aj
+ NWMll12nDbyyS+PDhNL4FsQjGOMcHDDYS8O23bQ1aoC4Z+lBbs518cy8q
+ /q3wE3VhVsWlcWE0J91st9ofhD5VZ3lwMIqtq8VkAdUTJXLdkAP8wdfEu
+ O+CKXs60qfzaK+7JfWUc01Mt41sSkAQFP/cLytKbUVECldXirix5V6Eeh
+ 7Yky++ACcUaAXi/Ugl/I1gUS7GsBlvCgll33SWW5QpVIcUxkEq31x6OQz
+ e2xDFudCOiPsMfULFCvY14pVhp9zKQ2ojZ0/VdFEpzYd1SDbO4JddlE72 w==;
+X-CSE-ConnectionGUID: Hq5pCgxeTfK7eJ5b43ROag==
+X-CSE-MsgGUID: pV1Z1VBXQ/2fL3L3iKpyug==
+X-IronPort-AV: E=McAfee;i="6800,10657,11597"; a="75063379"
+X-IronPort-AV: E=Sophos;i="6.19,266,1754982000"; d="scan'208";a="75063379"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Oct 2025 00:35:04 -0700
-X-CSE-ConnectionGUID: V0Eq1H++RhWukfAtFt5Cxw==
-X-CSE-MsgGUID: HEjQ+oe4Qwe4mPICpVYtiA==
+ 30 Oct 2025 00:34:56 -0700
+X-CSE-ConnectionGUID: PUXzzUOwQj2BlHZMveDIXw==
+X-CSE-MsgGUID: 8Pp05qIfT1eBZEZbae84lw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,266,1754982000"; d="scan'208";a="185075415"
+X-IronPort-AV: E=Sophos;i="6.19,266,1754982000"; d="scan'208";a="185075362"
 Received: from display-adls.igk.intel.com ([10.211.131.198])
- by orviesa006.jf.intel.com with ESMTP; 30 Oct 2025 00:35:03 -0700
+ by orviesa006.jf.intel.com with ESMTP; 30 Oct 2025 00:34:55 -0700
 From: Mika Kahola <mika.kahola@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Cc: Mika Kahola <mika.kahola@intel.com>,
-	Imre Deak <imre.deak@intel.com>
-Subject: [PATCH 18/32] drm/i915/display: Compute plls for MTL+ platform
-Date: Thu, 30 Oct 2025 09:22:35 +0200
-Message-Id: <20251030072249.155095-19-mika.kahola@intel.com>
+Cc: Imre Deak <imre.deak@intel.com>,
+	Mika Kahola <mika.kahola@intel.com>
+Subject: [PATCH 12/32] drm/i915/display: Determine Cx0 PLL port clock from PLL
+ state
+Date: Thu, 30 Oct 2025 09:22:29 +0200
+Message-Id: <20251030072249.155095-13-mika.kahola@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251030072249.155095-1-mika.kahola@intel.com>
 References: <20251030072249.155095-1-mika.kahola@intel.com>
@@ -67,107 +68,68 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-To bring MTL+ platform aligned with dpll framework we
-need to call and calculate pll state from dpll
-framework.
+From: Imre Deak <imre.deak@intel.com>
 
-v2: Rename mtl_compute_c10phy_dpll() to mtl_compute_non_tc_phy_dpll().
-    The state is computed either for a C10 or on the PTL port B eDP on
-    TypeC PHY case for a C20 PHY PLL. Hence refer to this case as
-    "non_tc_phy" instead of "c10phy".
-
-    Rename mtl_compute_c20phy_dplls() to mtl_compute_tc_phy_dplls() for
-    symmetry with mtl_compute_non_tc_phy_dpll().
+The port clock is tracked in the PLL state, so there is no need to pass
+it separately to __intel_cx0pll_enable(). Drop the port clock function
+param accordingly.
 
 Signed-off-by: Imre Deak <imre.deak@intel.com>
 Signed-off-by: Mika Kahola <mika.kahola@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 69 +++++++++++++++++++
- 1 file changed, 69 insertions(+)
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c | 17 +++++------------
+ 1 file changed, 5 insertions(+), 12 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-index a9d9b7113f12..b6a5a519e936 100644
---- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-+++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-@@ -4320,9 +4320,78 @@ static const struct dpll_info mtl_plls[] = {
- 	{}
- };
+diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+index f1216beb5581..29bcfe8fb6f5 100644
+--- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
++++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+@@ -3206,10 +3206,10 @@ static u32 intel_cx0_get_pclk_pll_ack(u8 lane_mask)
+ 	return val;
+ }
  
-+/*
-+ * Compute the state for either a C10 PHY PLL, or in the case of the PTL port B,
-+ * eDP on TypeC PHY case for a C20 PHY PLL.
-+ */
-+static int mtl_compute_non_tc_phy_dpll(struct intel_atomic_state *state,
-+				       struct intel_crtc *crtc,
-+				       struct intel_encoder *encoder)
-+{
-+	struct intel_crtc_state *crtc_state =
-+		intel_atomic_get_new_crtc_state(state, crtc);
-+	struct icl_port_dpll *port_dpll =
-+		&crtc_state->icl_port_dplls[ICL_PORT_DPLL_DEFAULT];
-+	int ret;
-+
-+	ret = intel_cx0pll_calc_state(crtc_state, encoder, &port_dpll->hw_state);
-+	if (ret)
-+		return ret;
-+
-+	/* this is mainly for the fastset check */
-+	icl_set_active_port_dpll(crtc_state, ICL_PORT_DPLL_DEFAULT);
-+
-+	crtc_state->port_clock = intel_cx0pll_calc_port_clock(encoder,
-+							      &port_dpll->hw_state.cx0pll);
-+
-+	return 0;
-+}
-+
-+static int mtl_compute_tc_phy_dplls(struct intel_atomic_state *state,
-+				    struct intel_crtc *crtc,
-+				    struct intel_encoder *encoder)
-+{
-+	struct intel_crtc_state *crtc_state =
-+		intel_atomic_get_new_crtc_state(state, crtc);
-+	const struct intel_crtc_state *old_crtc_state =
-+		intel_atomic_get_old_crtc_state(state, crtc);
-+	struct icl_port_dpll *port_dpll;
-+	int ret;
-+
-+	/* TODO: Add state calculation for TBT PLL */
-+
-+	port_dpll = &crtc_state->icl_port_dplls[ICL_PORT_DPLL_MG_PHY];
-+	ret = intel_cx0pll_calc_state(crtc_state, encoder, &port_dpll->hw_state);
-+	if (ret)
-+		return ret;
-+
-+	/* this is mainly for the fastset check */
-+	if (old_crtc_state->intel_dpll &&
-+	    old_crtc_state->intel_dpll->info->id == DPLL_ID_ICL_TBTPLL)
-+		icl_set_active_port_dpll(crtc_state, ICL_PORT_DPLL_DEFAULT);
-+	else
-+		icl_set_active_port_dpll(crtc_state, ICL_PORT_DPLL_MG_PHY);
-+
-+	crtc_state->port_clock = intel_cx0pll_calc_port_clock(encoder,
-+							      &port_dpll->hw_state.cx0pll);
-+
-+	return 0;
-+}
-+
-+static int mtl_compute_dplls(struct intel_atomic_state *state,
-+			     struct intel_crtc *crtc,
-+			     struct intel_encoder *encoder)
-+{
-+	if (intel_encoder_is_tc(encoder))
-+		return mtl_compute_tc_phy_dplls(state, crtc, encoder);
-+	else
-+		return mtl_compute_non_tc_phy_dpll(state, crtc, encoder);
-+}
-+
- __maybe_unused
- static const struct intel_dpll_mgr mtl_pll_mgr = {
- 	.dpll_info = mtl_plls,
-+	.compute_dplls = mtl_compute_dplls,
- };
+-static void __intel_cx0pll_enable(struct intel_encoder *encoder,
+-				  const struct intel_cx0pll_state *pll_state,
+-				  int port_clock)
++static void intel_cx0pll_enable(struct intel_encoder *encoder,
++				const struct intel_cx0pll_state *pll_state)
+ {
++	int port_clock = pll_state->use_c10 ? pll_state->c10.clock : pll_state->c20.clock;
+ 	struct intel_display *display = to_intel_display(encoder);
+ 	enum phy phy = intel_encoder_to_phy(encoder);
+ 	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
+@@ -3288,13 +3288,6 @@ static void __intel_cx0pll_enable(struct intel_encoder *encoder,
+ 	intel_cx0_phy_transaction_end(encoder, wakeref);
+ }
  
- /**
+-static void intel_cx0pll_enable(struct intel_encoder *encoder,
+-				const struct intel_crtc_state *crtc_state)
+-{
+-	__intel_cx0pll_enable(encoder, &crtc_state->dpll_hw_state.cx0pll,
+-			      crtc_state->port_clock);
+-}
+-
+ int intel_mtl_tbt_calc_port_clock(struct intel_encoder *encoder)
+ {
+ 	struct intel_display *display = to_intel_display(encoder);
+@@ -3424,7 +3417,7 @@ void intel_mtl_pll_enable(struct intel_encoder *encoder,
+ 	if (intel_tc_port_in_tbt_alt_mode(dig_port))
+ 		intel_mtl_tbt_pll_enable(encoder, crtc_state);
+ 	else
+-		intel_cx0pll_enable(encoder, crtc_state);
++		intel_cx0pll_enable(encoder, &crtc_state->dpll_hw_state.cx0pll);
+ }
+ 
+ /*
+@@ -3847,7 +3840,7 @@ void intel_cx0_pll_power_save_wa(struct intel_display *display)
+ 			    "[ENCODER:%d:%s] Applying power saving workaround on disabled PLL\n",
+ 			    encoder->base.base.id, encoder->base.name);
+ 
+-		__intel_cx0pll_enable(encoder, &pll_state, port_clock);
++		intel_cx0pll_enable(encoder, &pll_state);
+ 		intel_cx0pll_disable(encoder);
+ 	}
+ }
 -- 
 2.34.1
 
