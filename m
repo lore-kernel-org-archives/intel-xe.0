@@ -4,54 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0D639CCF9F5
-	for <intel-xe@archiver.kernel.org>; Thu, 30 Oct 2025 09:41:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 37CE7CCF9F5
+	for <intel-xe@archiver.kernel.org>; Thu, 30 Oct 2025 09:41:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D4D7910E951;
-	Thu, 30 Oct 2025 09:41:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E56D510E94B;
+	Thu, 30 Oct 2025 09:41:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="C5hcBXQR";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jh2FKkvk";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E3FBF10E94A;
- Thu, 30 Oct 2025 09:41:52 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E99BE10E88B;
+ Thu, 30 Oct 2025 09:41:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761817313; x=1793353313;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=6dYH/LemY7sUKalLuAc9GIBCXURAJN90W9TJisAa+Fc=;
- b=C5hcBXQRZ+SQCVLbpOBg6Q3u5MpreDqpA9mYl3T1WTeocML7rw8j2kaq
- ccbcRinub0uBPmwZ5UFM6vkkc9Hz3FieMn+d58xsEhvQP/7zKKedp8VOD
- 671DSNLi0pZywKE1g6GtF7mjszqqoaLHRPwZaaVYB9ScNBj87sZ653J/Y
- znzDCZ9/S3feVcWtfANCy7eg/O0K8vZP4YqHeOOovqEdwXdGSsYA7TEUP
- oYJb2qhgIHBsRyD5jbgJ8Uhp8HpL6ddz6MSjnYW2qFZIVFKqjWw9eQCf3
- NcImGQGJ60B9EBxmh4jVUvl1kWmIol3AA2gkKtgUu27tH2kKwm7C4qUcP Q==;
-X-CSE-ConnectionGUID: ofzajfaZTaKY8RW0IRYVBg==
-X-CSE-MsgGUID: XBR9M2CXTy25e+19RBSY/A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11597"; a="63651894"
-X-IronPort-AV: E=Sophos;i="6.19,266,1754982000"; d="scan'208";a="63651894"
+ t=1761817317; x=1793353317;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=LrsOtv2pBaiu0uWE8ubiKKdKitvy9eWaAhrhNWfHpys=;
+ b=jh2FKkvksRNWoAqZaddRrXNB8/PB5KbPISpoR78nVMIEgd17C4+f3fZQ
+ MFxH/168fGyiAZ0qAOmoCrWNfouX7mUtbWjfXgRjXWZiHrsMn4OZePORa
+ D0t1FW3G+3ZEY4crkaNlnBvrod8xJCWrI/k0Gbm+nU6/8699ENjAgc2c3
+ 1iWjWzSeptFtvjyW8MoSC67e9g+u/3lQJAacjAIFGq7r5ekHyO1Wkn7pB
+ FUNd228O7vvCjcQesP/w906kV72q9adetwLY8kAy/qzQVXq8kD/XboPhM
+ jUVeErD5SqTURJLXnSnKSeLAhfTU51icQZf0HL3QAldYzM2cheSCcfOwI Q==;
+X-CSE-ConnectionGUID: FRI2pS1PRzmXUWEGd/JsuQ==
+X-CSE-MsgGUID: qOaR05wyTGOCHLlLEsxkMQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11597"; a="63651901"
+X-IronPort-AV: E=Sophos;i="6.19,266,1754982000"; d="scan'208";a="63651901"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Oct 2025 02:41:53 -0700
-X-CSE-ConnectionGUID: YsfVEOK5Sl60QGuXRYIGtw==
-X-CSE-MsgGUID: ywjG2tbJSe6dwvmq/C9v5w==
+ 30 Oct 2025 02:41:57 -0700
+X-CSE-ConnectionGUID: ixQuNFc1S/StFPZz1gtPqg==
+X-CSE-MsgGUID: EzcC3EZzSAi+o0yZqtx2sA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,266,1754982000"; d="scan'208";a="189983022"
+X-IronPort-AV: E=Sophos;i="6.19,266,1754982000"; d="scan'208";a="189983047"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Oct 2025 02:41:51 -0700
+ 30 Oct 2025 02:41:55 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jouni.hogander@intel.com, ville.syrjala@linux.intel.com,
  Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH 0/6] Fix Adaptive Sync SDP for Panel Replay
-Date: Thu, 30 Oct 2025 14:58:51 +0530
-Message-ID: <20251030092857.3090072-1-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 2/6] drm/i915/vrr: Avoid vrr for PCON with HDMI2.1 sink
+Date: Thu, 30 Oct 2025 14:58:53 +0530
+Message-ID: <20251030092857.3090072-3-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20251030092857.3090072-1-ankit.k.nautiyal@intel.com>
+References: <20251030092857.3090072-1-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -67,39 +68,33 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Enable Adaptive Sync SDP always when Panel replay + auxless ALPM is
-supported. Ensure AS SDP is sent on line which is within the SCL +
-guardband region.
+Currently we do not support VRR with HDMI so skip vrr compute
+config step for DP PCON with HDMI sink.
 
-This series is in continuation from discussions in [1] [2].
+Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_vrr.c | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-[1] https://lore.kernel.org/all/1b8c6c6de1e5fe0db83e6ae942dfee7e6f950767.camel@intel.com/
-[2] https://lore.kernel.org/all/aPtqdAxDwiuQZbrn@intel.com/
-
-Rev2:
-Add few fixes in AS_SDP and Lobf.
-
-Rev3:
-Add patch to avoid VRR with PCON.
-
-Ankit Nautiyal (5):
-  drm/i915/dp: Fix readback for target_rr in Adaptive Sync SDP
-  drm/i915/vrr: Avoid vrr for PCON with HDMI2.1 sink
-  drm/i915/dp: Allow AS_SDP only if panel replay + auxless alpm is
-    supported
-  drm/i915/alpm: Compute LOBF late after guardband is already determined
-  drm/i915/alpm: Allow LOBF only if window1 > alpm check_entry lines
-
-Jouni Högander (1):
-  drm/i915/display: Take into account AS SDP in
-    intel_dp_sdp_min_guardband
-
- drivers/gpu/drm/i915/display/intel_alpm.c | 41 ++++++++++++++++++-----
- drivers/gpu/drm/i915/display/intel_alpm.h |  6 ++--
- drivers/gpu/drm/i915/display/intel_dp.c   | 35 ++++++++++++++-----
- drivers/gpu/drm/i915/display/intel_vrr.c  |  7 ++++
- 4 files changed, 69 insertions(+), 20 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
+index 00cbc126fb36..7a58e1f8acea 100644
+--- a/drivers/gpu/drm/i915/display/intel_vrr.c
++++ b/drivers/gpu/drm/i915/display/intel_vrr.c
+@@ -42,7 +42,14 @@ bool intel_vrr_is_capable(struct intel_connector *connector)
+ 	case DRM_MODE_CONNECTOR_DisplayPort:
+ 		if (connector->mst.dp)
+ 			return false;
++
+ 		intel_dp = intel_attached_dp(connector);
++		/*
++		 * VRR via PCON is currently unsupported.
++		 * TODO: Add support for VRR for DP HDMI2.1 PCON.
++		 */
++		if (intel_dp_has_hdmi_sink(intel_dp))
++			return false;
+ 
+ 		if (!drm_dp_sink_can_do_video_without_timing_msa(intel_dp->dpcd))
+ 			return false;
 -- 
 2.45.2
 
