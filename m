@@ -4,54 +4,32 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F2BA9CCF9FA
-	for <intel-xe@archiver.kernel.org>; Thu, 30 Oct 2025 07:35:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0A953CCF9FA
+	for <intel-xe@archiver.kernel.org>; Thu, 30 Oct 2025 07:51:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B606210E91E;
-	Thu, 30 Oct 2025 07:35:34 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IAl+wYsT";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A2AAC10E8E9;
- Thu, 30 Oct 2025 07:35:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761809711; x=1793345711;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=HKdwg0+PYycKP2eyEMPyeIh1lWNJrOR4A9gNjNdqew4=;
- b=IAl+wYsThXIUvgg/xhengBtV2WlhIG+51GF5YH6Uzj2bEy5G4opMMSGB
- 7acd4ocqK/F9HHjrQZwUUxLVgDc+BgFm1ywQ6Iv9ag7XyePuED1XUB1gc
- m3fGtaso8x8f61L8hTEuJ2ci0Twwaf+Tx7G/twiNTrqv7kSoU0PF9ThvX
- SSXFK6qn17ozT1jnQgDLLRlpRjncY1dmNTfe610TeB65lhxobJ/IMcVvn
- DOzhKBQo8n8M2yBewmkn4Z1YaO4k8OyvAz7RSbyJ+tCRNDBOVAIPEKiPt
- Wd9ifHeJ00OYNb3FKic7ncQ02AsTxODIXn7HO9nc+0cwwCBGPpnNa2/Ku w==;
-X-CSE-ConnectionGUID: iROkKJfNQwK3WlJo3Hfr/A==
-X-CSE-MsgGUID: rUnwOCLIRrCkxYTGItdieQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11597"; a="75063398"
-X-IronPort-AV: E=Sophos;i="6.19,266,1754982000"; d="scan'208";a="75063398"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Oct 2025 00:35:10 -0700
-X-CSE-ConnectionGUID: /cgRk8YhSf6f1D3kSOuStg==
-X-CSE-MsgGUID: iAuzuQpORAGsbcE/Hq5JEg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,266,1754982000"; d="scan'208";a="185075469"
-Received: from display-adls.igk.intel.com ([10.211.131.198])
- by orviesa006.jf.intel.com with ESMTP; 30 Oct 2025 00:35:08 -0700
-From: Mika Kahola <mika.kahola@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: Mika Kahola <mika.kahola@intel.com>
-Subject: [PATCH 22/32] drm/i915/display: Add .update_dpll_ref_clks
-Date: Thu, 30 Oct 2025 09:22:39 +0200
-Message-Id: <20251030072249.155095-23-mika.kahola@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20251030072249.155095-1-mika.kahola@intel.com>
-References: <20251030072249.155095-1-mika.kahola@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id C017F10E934;
+	Thu, 30 Oct 2025 07:51:18 +0000 (UTC)
+Received: from coelho.fi (coelho.fi [88.99.146.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0BC5A10E934;
+ Thu, 30 Oct 2025 07:51:17 +0000 (UTC)
+Received: from mobile-access-b04845-99.dhcp.inet.fi ([176.72.69.99]
+ helo=[192.168.8.139])
+ by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.98.2) (envelope-from <luca@coelho.fi>)
+ id 1vENRA-00000001vn3-3S8b; Thu, 30 Oct 2025 09:51:15 +0200
+Message-ID: <4945d033eb404b2591efd1c3f72357fa5946d66d.camel@coelho.fi>
+From: Luca Coelho <luca@coelho.fi>
+To: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org
+Date: Thu, 30 Oct 2025 09:51:11 +0200
+In-Reply-To: <dbdd1915466850293b9737b751170dd225197873.1761146196.git.jani.nikula@intel.com>
+References: <cover.1761146196.git.jani.nikula@intel.com>
+ <dbdd1915466850293b9737b751170dd225197873.1761146196.git.jani.nikula@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2-5 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH 2/6] drm/i915/display: create intel_display_utils.h
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,27 +44,128 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add .update_dpll_ref_clks function pointer to MTL+
-platforms to support dpll framework. Reusing ICL
-function pointer.
+On Wed, 2025-10-22 at 18:17 +0300, Jani Nikula wrote:
+> Start a file for display specific generic utilities.
+>=20
+> Move KHz() and MHz() helpers there first.
+>=20
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> ---
 
-Signed-off-by: Mika Kahola <mika.kahola@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 1 +
- 1 file changed, 1 insertion(+)
+Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-index 3b62943e2748..01e649d66f08 100644
---- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-+++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-@@ -4450,6 +4450,7 @@ static const struct intel_dpll_mgr mtl_pll_mgr = {
- 	.get_dplls = mtl_get_dplls,
- 	.put_dplls = icl_put_dplls,
- 	.update_active_dpll = icl_update_active_dpll,
-+	.update_ref_clks = icl_update_dpll_ref_clks,
- };
- 
- /**
--- 
-2.34.1
+--
+Cheers,
+Luca.
 
+
+>  drivers/gpu/drm/i915/display/intel_backlight.c     |  2 +-
+>  drivers/gpu/drm/i915/display/intel_ddi.c           |  1 +
+>  drivers/gpu/drm/i915/display/intel_display_utils.h | 10 ++++++++++
+>  drivers/gpu/drm/i915/display/intel_dp_mst.c        |  2 +-
+>  drivers/gpu/drm/i915/display/intel_dpll_mgr.c      |  1 +
+>  drivers/gpu/drm/i915/i915_utils.h                  |  3 ---
+>  6 files changed, 14 insertions(+), 5 deletions(-)
+>  create mode 100644 drivers/gpu/drm/i915/display/intel_display_utils.h
+>=20
+> diff --git a/drivers/gpu/drm/i915/display/intel_backlight.c b/drivers/gpu=
+/drm/i915/display/intel_backlight.c
+> index 3b14f929825a..a68fdbd2acb9 100644
+> --- a/drivers/gpu/drm/i915/display/intel_backlight.c
+> +++ b/drivers/gpu/drm/i915/display/intel_backlight.c
+> @@ -13,7 +13,6 @@
+>  #include <drm/drm_print.h>
+> =20
+>  #include "i915_reg.h"
+> -#include "i915_utils.h"
+>  #include "intel_backlight.h"
+>  #include "intel_backlight_regs.h"
+>  #include "intel_connector.h"
+> @@ -21,6 +20,7 @@
+>  #include "intel_display_regs.h"
+>  #include "intel_display_rpm.h"
+>  #include "intel_display_types.h"
+> +#include "intel_display_utils.h"
+>  #include "intel_dp_aux_backlight.h"
+>  #include "intel_dsi_dcs_backlight.h"
+>  #include "intel_panel.h"
+> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i=
+915/display/intel_ddi.c
+> index 870140340342..cd9fc3d1f36a 100644
+> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> @@ -53,6 +53,7 @@
+>  #include "intel_display_power.h"
+>  #include "intel_display_regs.h"
+>  #include "intel_display_types.h"
+> +#include "intel_display_utils.h"
+>  #include "intel_dkl_phy.h"
+>  #include "intel_dkl_phy_regs.h"
+>  #include "intel_dp.h"
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_utils.h b/drivers=
+/gpu/drm/i915/display/intel_display_utils.h
+> new file mode 100644
+> index 000000000000..0a2b603ea856
+> --- /dev/null
+> +++ b/drivers/gpu/drm/i915/display/intel_display_utils.h
+> @@ -0,0 +1,10 @@
+> +/* SPDX-License-Identifier: MIT */
+> +/* Copyright =C2=A9 2025 Intel Corporation */
+> +
+> +#ifndef __INTEL_DISPLAY_UTILS__
+> +#define __INTEL_DISPLAY_UTILS__
+> +
+> +#define KHz(x) (1000 * (x))
+> +#define MHz(x) KHz(1000 * (x))
+> +
+> +#endif /* __INTEL_DISPLAY_UTILS__ */
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/dr=
+m/i915/display/intel_dp_mst.c
+> index a845b2612a3f..8d11a989cf79 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> @@ -33,7 +33,6 @@
+>  #include <drm/drm_print.h>
+>  #include <drm/drm_probe_helper.h>
+> =20
+> -#include "i915_utils.h"
+>  #include "intel_atomic.h"
+>  #include "intel_audio.h"
+>  #include "intel_connector.h"
+> @@ -43,6 +42,7 @@
+>  #include "intel_display_driver.h"
+>  #include "intel_display_regs.h"
+>  #include "intel_display_types.h"
+> +#include "intel_display_utils.h"
+>  #include "intel_dp.h"
+>  #include "intel_dp_hdcp.h"
+>  #include "intel_dp_link_training.h"
+> diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/=
+drm/i915/display/intel_dpll_mgr.c
+> index 8ea96cc524a1..900a945ff8ab 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+> @@ -32,6 +32,7 @@
+>  #include "intel_de.h"
+>  #include "intel_display_regs.h"
+>  #include "intel_display_types.h"
+> +#include "intel_display_utils.h"
+>  #include "intel_dkl_phy.h"
+>  #include "intel_dkl_phy_regs.h"
+>  #include "intel_dpio_phy.h"
+> diff --git a/drivers/gpu/drm/i915/i915_utils.h b/drivers/gpu/drm/i915/i91=
+5_utils.h
+> index 44de4a4aa84a..c1f978a7c141 100644
+> --- a/drivers/gpu/drm/i915/i915_utils.h
+> +++ b/drivers/gpu/drm/i915/i915_utils.h
+> @@ -100,9 +100,6 @@ static inline bool is_power_of_2_u64(u64 n)
+>  	return (n !=3D 0 && ((n & (n - 1)) =3D=3D 0));
+>  }
+> =20
+> -#define KHz(x) (1000 * (x))
+> -#define MHz(x) KHz(1000 * (x))
+> -
+>  void add_taint_for_CI(struct drm_i915_private *i915, unsigned int taint)=
+;
+>  static inline void __add_taint_for_CI(unsigned int taint)
+>  {
