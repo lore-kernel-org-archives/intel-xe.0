@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2F6B5CCF9E3
-	for <intel-xe@archiver.kernel.org>; Thu, 30 Oct 2025 21:38:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1A27FCCF9F0
+	for <intel-xe@archiver.kernel.org>; Thu, 30 Oct 2025 21:43:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E97EA10EA3F;
-	Thu, 30 Oct 2025 21:38:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CB0BE10EA42;
+	Thu, 30 Oct 2025 21:43:25 +0000 (UTC)
 Received: from 10055242dc62 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5335410EA3F;
- Thu, 30 Oct 2025 21:38:17 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6665002961547221249=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1F9D810EA42;
+ Thu, 30 Oct 2025 21:43:25 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_drm/xe=3A_Inline_gt=5Freset?=
- =?utf-8?q?_in_the_worker?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Use_display_parent_interf?=
+ =?utf-8?q?ace_for_runtime_pm_=28rev3=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lucas De Marchi" <lucas.demarchi@intel.com>
+To: =?utf-8?q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 30 Oct 2025 21:38:17 -0000
-Message-ID: <176186029733.2567.15924452850761137891@10055242dc62>
+Date: Thu, 30 Oct 2025 21:43:25 -0000
+Message-ID: <176186060512.2568.38401475419926249@10055242dc62>
 X-Patchwork-Hint: ignore
-References: <20251030200503.3667381-2-lucas.demarchi@intel.com>
-In-Reply-To: <20251030200503.3667381-2-lucas.demarchi@intel.com>
+References: <20251030202836.1815680-1-jouni.hogander@intel.com>
+In-Reply-To: <20251030202836.1815680-1-jouni.hogander@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,196 +40,59 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============6665002961547221249==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe: Inline gt_reset in the worker
-URL   : https://patchwork.freedesktop.org/series/156785/
-State : failure
+Series: Use display parent interface for runtime pm (rev3)
+URL   : https://patchwork.freedesktop.org/series/156308/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-4014-c228329c56db24dda529f2499987b3a179d1f032_BAT -> xe-pw-156785v1_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+f867e605613af1770f90c4b0afd4a8f06424d1f0
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit c553ba7b69fb17ba36976d630fced590d4d457f7
+Author: Jouni Högander <jouni.hogander@intel.com>
+Date:   Thu Oct 30 22:28:36 2025 +0200
 
-Summary
--------
+    drm/xe/display: Use display parent interface for xe runtime pm
+    
+    Start using display parent interface for xe runtime pm.
+    
+    v2: keep xe_display_rpm.c
+    
+    Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+    Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
++ /mt/dim checkpatch b50629a75c6ecb269adbba8de7b8ab4c9a650641 drm-intel
+eccc4d668638 drm/{i915, xe}/display: pass parent interface to display probe
+-:72: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#72: FILE: drivers/gpu/drm/i915/display/intel_display_device.c:1651:
++						 const struct intel_display_parent_interface *parent)
 
-  **FAILURE**
+-:103: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
+#103: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:318:
++						 const struct intel_display_parent_interface *parent);
 
-  Serious unknown changes coming with xe-pw-156785v1_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-156785v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+-:217: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#217: 
+new file mode 100644
 
-  
+total: 0 errors, 3 warnings, 0 checks, 158 lines checked
+a6dd8c40affd drm/{i915, xe}/display: Add display runtime pm parent interface
+de5f53150dd8 drm/i915/display: Runtime pm wrappers for display parent interface
+7f05cbc87474 drm/xe/display: Runtime pm wrappers for display parent interface
+-:125: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#125: 
+new file mode 100644
 
-Participating hosts (12 -> 11)
-------------------------------
-
-  Missing    (1): bat-atsm-2 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-156785v1_BAT:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@kms_pipe_crc_basic@hang-read-crc:
-    - bat-bmg-1:          [PASS][1] -> [ABORT][2] +1 other test abort
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4014-c228329c56db24dda529f2499987b3a179d1f032/bat-bmg-1/igt@kms_pipe_crc_basic@hang-read-crc.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156785v1/bat-bmg-1/igt@kms_pipe_crc_basic@hang-read-crc.html
-    - bat-dg2-oem2:       [PASS][3] -> [ABORT][4] +1 other test abort
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4014-c228329c56db24dda529f2499987b3a179d1f032/bat-dg2-oem2/igt@kms_pipe_crc_basic@hang-read-crc.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156785v1/bat-dg2-oem2/igt@kms_pipe_crc_basic@hang-read-crc.html
-
-  * igt@kms_pipe_crc_basic@hang-read-crc@pipe-a-edp-1:
-    - bat-adlp-7:         [PASS][5] -> [ABORT][6] +1 other test abort
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4014-c228329c56db24dda529f2499987b3a179d1f032/bat-adlp-7/igt@kms_pipe_crc_basic@hang-read-crc@pipe-a-edp-1.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156785v1/bat-adlp-7/igt@kms_pipe_crc_basic@hang-read-crc@pipe-a-edp-1.html
-    - bat-ptl-2:          [PASS][7] -> [ABORT][8] +1 other test abort
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4014-c228329c56db24dda529f2499987b3a179d1f032/bat-ptl-2/igt@kms_pipe_crc_basic@hang-read-crc@pipe-a-edp-1.html
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156785v1/bat-ptl-2/igt@kms_pipe_crc_basic@hang-read-crc@pipe-a-edp-1.html
-    - bat-lnl-1:          [PASS][9] -> [ABORT][10] +1 other test abort
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4014-c228329c56db24dda529f2499987b3a179d1f032/bat-lnl-1/igt@kms_pipe_crc_basic@hang-read-crc@pipe-a-edp-1.html
-   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156785v1/bat-lnl-1/igt@kms_pipe_crc_basic@hang-read-crc@pipe-a-edp-1.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in xe-pw-156785v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit:
-    - bat-bmg-2:          [PASS][11] -> [ABORT][12] ([Intel XE#3970]) +1 other test abort
-   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4014-c228329c56db24dda529f2499987b3a179d1f032/bat-bmg-2/igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit.html
-   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156785v1/bat-bmg-2/igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_flip@basic-plain-flip@d-edp1:
-    - bat-adlp-7:         [DMESG-WARN][13] ([Intel XE#4543]) -> [PASS][14] +1 other test pass
-   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4014-c228329c56db24dda529f2499987b3a179d1f032/bat-adlp-7/igt@kms_flip@basic-plain-flip@d-edp1.html
-   [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156785v1/bat-adlp-7/igt@kms_flip@basic-plain-flip@d-edp1.html
-
-  
-  [Intel XE#3970]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970
-  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
+total: 0 errors, 1 warnings, 0 checks, 100 lines checked
+27a12310aed9 drm/i915/display: Use display parent interface for i915 runtime pm
+c553ba7b69fb drm/xe/display: Use display parent interface for xe runtime pm
 
 
-Build changes
--------------
-
-  * Linux: xe-4014-c228329c56db24dda529f2499987b3a179d1f032 -> xe-pw-156785v1
-
-  IGT_8603: e6eb3c0fe0f28f3d6e530ae202fbb9f29bde9147 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-4014-c228329c56db24dda529f2499987b3a179d1f032: c228329c56db24dda529f2499987b3a179d1f032
-  xe-pw-156785v1: 156785v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156785v1/index.html
-
---===============6665002961547221249==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Inline gt_reset in the worker</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/156785/">https://patchwork.freedesktop.org/series/156785/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156785v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156785v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4014-c228329c56db24dda529f2499987b3a179d1f032_BAT -&gt; xe-pw-156785v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-156785v1_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-156785v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (12 -&gt; 11)</h2>
-<p>Missing    (1): bat-atsm-2 </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-156785v1_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>
-<p>igt@kms_pipe_crc_basic@hang-read-crc:</p>
-<ul>
-<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4014-c228329c56db24dda529f2499987b3a179d1f032/bat-bmg-1/igt@kms_pipe_crc_basic@hang-read-crc.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156785v1/bat-bmg-1/igt@kms_pipe_crc_basic@hang-read-crc.html">ABORT</a> +1 other test abort</li>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4014-c228329c56db24dda529f2499987b3a179d1f032/bat-dg2-oem2/igt@kms_pipe_crc_basic@hang-read-crc.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156785v1/bat-dg2-oem2/igt@kms_pipe_crc_basic@hang-read-crc.html">ABORT</a> +1 other test abort</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@hang-read-crc@pipe-a-edp-1:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4014-c228329c56db24dda529f2499987b3a179d1f032/bat-adlp-7/igt@kms_pipe_crc_basic@hang-read-crc@pipe-a-edp-1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156785v1/bat-adlp-7/igt@kms_pipe_crc_basic@hang-read-crc@pipe-a-edp-1.html">ABORT</a> +1 other test abort</li>
-<li>bat-ptl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4014-c228329c56db24dda529f2499987b3a179d1f032/bat-ptl-2/igt@kms_pipe_crc_basic@hang-read-crc@pipe-a-edp-1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156785v1/bat-ptl-2/igt@kms_pipe_crc_basic@hang-read-crc@pipe-a-edp-1.html">ABORT</a> +1 other test abort</li>
-<li>bat-lnl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4014-c228329c56db24dda529f2499987b3a179d1f032/bat-lnl-1/igt@kms_pipe_crc_basic@hang-read-crc@pipe-a-edp-1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156785v1/bat-lnl-1/igt@kms_pipe_crc_basic@hang-read-crc@pipe-a-edp-1.html">ABORT</a> +1 other test abort</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-156785v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit:<ul>
-<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4014-c228329c56db24dda529f2499987b3a179d1f032/bat-bmg-2/igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156785v1/bat-bmg-2/igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970">Intel XE#3970</a>) +1 other test abort</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_flip@basic-plain-flip@d-edp1:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4014-c228329c56db24dda529f2499987b3a179d1f032/bat-adlp-7/igt@kms_flip@basic-plain-flip@d-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156785v1/bat-adlp-7/igt@kms_flip@basic-plain-flip@d-edp1.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4014-c228329c56db24dda529f2499987b3a179d1f032 -&gt; xe-pw-156785v1</li>
-</ul>
-<p>IGT_8603: e6eb3c0fe0f28f3d6e530ae202fbb9f29bde9147 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-4014-c228329c56db24dda529f2499987b3a179d1f032: c228329c56db24dda529f2499987b3a179d1f032<br />
-  xe-pw-156785v1: 156785v1</p>
-
-</body>
-</html>
-
---===============6665002961547221249==--
