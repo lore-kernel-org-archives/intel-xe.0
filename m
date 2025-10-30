@@ -4,58 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 95EAACCF9F0
-	for <intel-xe@archiver.kernel.org>; Thu, 30 Oct 2025 14:24:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A37EECCF9E3
+	for <intel-xe@archiver.kernel.org>; Thu, 30 Oct 2025 14:30:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 46DCE10E9C3;
-	Thu, 30 Oct 2025 14:24:27 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IQ9aO51/";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2668A10E9BE
- for <intel-xe@lists.freedesktop.org>; Thu, 30 Oct 2025 14:24:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761834263; x=1793370263;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=GrNdYyFb2P6Q5hvdEe9Kiapu0l3cJdqYPxjZucpjyZk=;
- b=IQ9aO51/EdPgBPpsHHd6g7ZBJ6eASBmeMhOuOTLyfAxU2So6n6DoYQzV
- /+tnGQ8FkNnR4dokkNv1tmf3ZhKa4ClNGonxURTJGTZcRbeo8NW6ygnOJ
- CGc8s4OElpGwcBsWq2S4bLuX3kRk7il9TFKpUjqvcBwHJSV8/mZnUnTKC
- R2KGnpkSTD7z2Q2b3jJzGWj2mH/DVEPHDDDX9DGqTdIPRObn4Fz4pSguF
- DQT2I6gmWMf4Ruf9QfGqsMV56MyjUWL1/+4KZ/UscsREMTNA/5z9n/Oij
- MRKYJ+QUZjIKAz42RN97GHBZODp8xAwaIoxLc5Wr62zwT5SaY1Xx53SVd A==;
-X-CSE-ConnectionGUID: 5RCRoxfgRvK0ohtxot808w==
-X-CSE-MsgGUID: Mply88HKSQWZvGSyPyZj+w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11598"; a="63181360"
-X-IronPort-AV: E=Sophos;i="6.19,266,1754982000"; d="scan'208";a="63181360"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Oct 2025 07:24:23 -0700
-X-CSE-ConnectionGUID: 3GiRxwU/ToKqDjKf5+Nlmw==
-X-CSE-MsgGUID: J50znSpoQxKerOdLOFsldw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,266,1754982000"; d="scan'208";a="216625338"
-Received: from himal-super-server.iind.intel.com (HELO
- hghimira.iind.intel.com) ([10.190.239.34])
- by orviesa002.jf.intel.com with ESMTP; 30 Oct 2025 07:24:22 -0700
-From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Subject: [PATCH v3 5/5] drm/xe/vm: Skip ufence association for CPU address
- mirror VMA during MAP
-Date: Thu, 30 Oct 2025 20:22:53 +0530
-Message-Id: <20251030145253.867189-6-himal.prasad.ghimiray@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20251030145253.867189-1-himal.prasad.ghimiray@intel.com>
-References: <20251030145253.867189-1-himal.prasad.ghimiray@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 69D4C10E99C;
+	Thu, 30 Oct 2025 14:30:46 +0000 (UTC)
+Received: from 10055242dc62 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4F31110E99C;
+ Thu, 30 Oct 2025 14:30:45 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4328145142796939916=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?b?4pyXIFhlLkNJLkJBVDogZmFpbHVyZSBmb3IgdmVyYm9zZSBwMnAgKHJldjUp?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Auld" <matthew.auld@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 30 Oct 2025 14:30:45 -0000
+Message-ID: <176183464531.190.15552649116217495243@10055242dc62>
+X-Patchwork-Hint: ignore
+References: <20251029144504.199716-2-matthew.auld@intel.com>
+In-Reply-To: <20251029144504.199716-2-matthew.auld@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,37 +35,184 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The MAP operation for a CPU address mirror VMA does not require ufence
-association because such mappings are not GPU-synchronized and do not
-participate in GPU job completion signaling.
+--===============4328145142796939916==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Remove the unnecessary ufence addition for this case to avoid -EBUSY
-failure in check_ufence of unbind ops.
+== Series Details ==
 
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
----
- drivers/gpu/drm/xe/xe_vm.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+Series: verbose p2p (rev5)
+URL   : https://patchwork.freedesktop.org/series/156480/
+State : failure
 
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 882968ea9efb..236fcaf5389b 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -3202,7 +3202,8 @@ static void op_add_ufence(struct xe_vm *vm, struct xe_vma_op *op,
- {
- 	switch (op->base.op) {
- 	case DRM_GPUVA_OP_MAP:
--		vma_add_ufence(op->map.vma, ufence);
-+		if (!xe_vma_is_cpu_addr_mirror(op->map.vma))
-+			vma_add_ufence(op->map.vma, ufence);
- 		break;
- 	case DRM_GPUVA_OP_REMAP:
- 		if (op->remap.prev)
--- 
-2.34.1
+== Summary ==
 
+CI Bug Log - changes from xe-4010-4620927448abb5be2d197b0254b042728205c258_BAT -> xe-pw-156480v5_BAT
+====================================================
+
+Summary
+-------
+
+  **WARNING**
+
+  Minor unknown changes coming with xe-pw-156480v5_BAT need to be verified
+  manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-156480v5_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  
+
+Participating hosts (13 -> 11)
+------------------------------
+
+  Missing    (2): bat-adlp-vm bat-ptl-vm 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in xe-pw-156480v5_BAT:
+
+### IGT changes ###
+
+#### Warnings ####
+
+  * igt@xe_peer2peer@read:
+    - bat-bmg-3:          [FAIL][1] ([Intel XE#6433]) -> [FAIL][2] +1 other test fail
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4010-4620927448abb5be2d197b0254b042728205c258/bat-bmg-3/igt@xe_peer2peer@read.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156480v5/bat-bmg-3/igt@xe_peer2peer@read.html
+
+  
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * {igt@xe_peer2peer@read@read-gpua-vram01-gpub-vram01-p2p}:
+    - bat-bmg-3:          [FAIL][3] ([Intel XE#6433]) -> [FAIL][4]
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4010-4620927448abb5be2d197b0254b042728205c258/bat-bmg-3/igt@xe_peer2peer@read@read-gpua-vram01-gpub-vram01-p2p.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156480v5/bat-bmg-3/igt@xe_peer2peer@read@read-gpua-vram01-gpub-vram01-p2p.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in xe-pw-156480v5_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@xe_peer2peer@write:
+    - bat-bmg-3:          [FAIL][5] ([Intel XE#6433]) -> [PASS][6] +2 other tests pass
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4010-4620927448abb5be2d197b0254b042728205c258/bat-bmg-3/igt@xe_peer2peer@write.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156480v5/bat-bmg-3/igt@xe_peer2peer@write.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [Intel XE#6433]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6433
+
+
+Build changes
+-------------
+
+  * Linux: xe-4010-4620927448abb5be2d197b0254b042728205c258 -> xe-pw-156480v5
+
+  IGT_8601: cd39f1cab2d1e96a73fb742253f692e796f8feda @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-4010-4620927448abb5be2d197b0254b042728205c258: 4620927448abb5be2d197b0254b042728205c258
+  xe-pw-156480v5: 156480v5
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156480v5/index.html
+
+--===============4328145142796939916==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>verbose p2p (rev5)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/156480/">https://patchwork.freedesktop.org/series/156480/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156480v5/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156480v5/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4010-4620927448abb5be2d197b0254b042728205c258_BAT -&gt; xe-pw-156480v5_BAT</h1>
+<h2>Summary</h2>
+<p><strong>WARNING</strong></p>
+<p>Minor unknown changes coming with xe-pw-156480v5_BAT need to be verified<br />
+  manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-156480v5_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (13 -&gt; 11)</h2>
+<p>Missing    (2): bat-adlp-vm bat-ptl-vm </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-156480v5_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Warnings</h4>
+<ul>
+<li>igt@xe_peer2peer@read:<ul>
+<li>bat-bmg-3:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4010-4620927448abb5be2d197b0254b042728205c258/bat-bmg-3/igt@xe_peer2peer@read.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6433">Intel XE#6433</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156480v5/bat-bmg-3/igt@xe_peer2peer@read.html">FAIL</a> +1 other test fail</li>
+</ul>
+</li>
+</ul>
+<h4>Suppressed</h4>
+<p>The following results come from untrusted machines, tests, or statuses.<br />
+  They do not affect the overall result.</p>
+<ul>
+<li>{igt@xe_peer2peer@read@read-gpua-vram01-gpub-vram01-p2p}:<ul>
+<li>bat-bmg-3:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4010-4620927448abb5be2d197b0254b042728205c258/bat-bmg-3/igt@xe_peer2peer@read@read-gpua-vram01-gpub-vram01-p2p.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6433">Intel XE#6433</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156480v5/bat-bmg-3/igt@xe_peer2peer@read@read-gpua-vram01-gpub-vram01-p2p.html">FAIL</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-156480v5_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_peer2peer@write:<ul>
+<li>bat-bmg-3:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4010-4620927448abb5be2d197b0254b042728205c258/bat-bmg-3/igt@xe_peer2peer@write.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6433">Intel XE#6433</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156480v5/bat-bmg-3/igt@xe_peer2peer@write.html">PASS</a> +2 other tests pass</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4010-4620927448abb5be2d197b0254b042728205c258 -&gt; xe-pw-156480v5</li>
+</ul>
+<p>IGT_8601: cd39f1cab2d1e96a73fb742253f692e796f8feda @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-4010-4620927448abb5be2d197b0254b042728205c258: 4620927448abb5be2d197b0254b042728205c258<br />
+  xe-pw-156480v5: 156480v5</p>
+
+</body>
+</html>
+
+--===============4328145142796939916==--
