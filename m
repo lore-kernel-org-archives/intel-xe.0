@@ -4,32 +4,32 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C2B87CCF9F8
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DADE7CCFA00
 	for <intel-xe@archiver.kernel.org>; Thu, 30 Oct 2025 18:47:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7C61110EA0B;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7C6D610EA0C;
 	Thu, 30 Oct 2025 18:47:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="GmdyLlSJ";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="jRCjY8xu";
 	dkim-atps=neutral
 Received: from lankhorst.se (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1FC7310EA08
- for <intel-xe@lists.freedesktop.org>; Thu, 30 Oct 2025 18:47:17 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7FA9D10EA08
+ for <intel-xe@lists.freedesktop.org>; Thu, 30 Oct 2025 18:47:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1761850036;
- bh=DgANSdDnMbMhz9tuJFLHa5LdxPfk20wgYJCHehuWRTo=;
+ s=default; t=1761850035;
+ bh=VBco7zVB9VTaGgt3tIx7GWoTZdb6hMaqwzco395EbzY=;
  h=From:To:Subject:Date:In-Reply-To:References:From;
- b=GmdyLlSJiNTyJVqC7HkUu9Ddk9Y8gANbudaCqjyVG/OuQUE9h7YC+hBoCAvu61SLH
- OPOYe8rQjM7kFhaUNy6xkoKhp8YJXGLpq6/xBBvd4T8jpO9XZb0MmUUnJlTomShmzV
- aM+ykNbiljyHdbOfbRxAAFva/JMPj+mHATHG4sCehRcLFAec0phVHiO4CQ53uN+AUY
- UQAIIycvTo6sYErGJpJtHGG3FFroNU2hRP1z1qnDVFqiqaE4Trago+FnRnnzjuMPaE
- eKyzDTnNYjZr/jSoQ7gc7Qvm9hzeWP8lWhzCx1AgEreJin5AG5CbqRFPhtemXzBXMX
- mzKWZta6SWRoA==
+ b=jRCjY8xun5KjYubA84Agv5Vkxx9dZ+JQX/v8nOPRdHb4PToXU6/P/C5sasmh/a25j
+ WLaX2rMyaI8VbqE6lF1EQClqmT6rDMESvEcOd6hq7ovJoFqV3xkWyue+HBt82c+lla
+ TOdCB9vO6xlAJxivAqQEHN+790ZQRwMk5bSDnr3RcwIPpPDNoyFVTo8Q9iLlWT+7V1
+ s/y9oEtpvQl1hfbj3xxKom/AHyLOjPkOlf9n8CRT7eoO82GY6jcijr2XRsaY6k4mgO
+ Mgp1ZvT7PNCXRgnXqY1ZWo9JzdgMd0Fh/we/tbgUoixthsQI7KFpD+KTWRtM5Gzoc9
+ /M9yYM6KHdMOQ==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-xe@lists.freedesktop.org
-Subject: [FOR CI 7/8] With disabled irqs instead
-Date: Thu, 30 Oct 2025 19:47:09 +0100
-Message-ID: <20251030184710.359870-8-dev@lankhorst.se>
+Subject: [FOR CI 6/8] PREEMPT_RT injection
+Date: Thu, 30 Oct 2025 19:47:08 +0100
+Message-ID: <20251030184710.359870-7-dev@lankhorst.se>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20251030184710.359870-1-dev@lankhorst.se>
 References: <20251030184710.359870-1-dev@lankhorst.se>
@@ -51,127 +51,69 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/i915/display/intel_crtc.c   | 14 +++++---------
- drivers/gpu/drm/i915/display/intel_cursor.c | 18 ++++++------------
- drivers/gpu/drm/i915/display/intel_vblank.c |  8 ++++++--
- 3 files changed, 17 insertions(+), 23 deletions(-)
+ drivers/gpu/drm/i915/Kconfig.debug | 15 ---------------
+ drivers/gpu/drm/xe/Kconfig.debug   |  5 +++++
+ kernel/Kconfig.preempt             |  4 ++--
+ 3 files changed, 7 insertions(+), 17 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
-index 678264c9b82f2..832287b2f95a7 100644
---- a/drivers/gpu/drm/i915/display/intel_crtc.c
-+++ b/drivers/gpu/drm/i915/display/intel_crtc.c
-@@ -570,12 +570,10 @@ void intel_pipe_update_start(struct intel_atomic_state *state,
- 	 */
- 	intel_psr_wait_for_idle_locked(new_crtc_state);
+diff --git a/drivers/gpu/drm/i915/Kconfig.debug b/drivers/gpu/drm/i915/Kconfig.debug
+index 3562a02ef7adc..0ab10ff41e38d 100644
+--- a/drivers/gpu/drm/i915/Kconfig.debug
++++ b/drivers/gpu/drm/i915/Kconfig.debug
+@@ -233,21 +233,6 @@ config DRM_I915_LOW_LEVEL_TRACEPOINTS
  
-+#ifdef I915
- 	if (!IS_ENABLED(CONFIG_PREEMPT_RT))
--		local_irq_disable();
--#ifndef I915
--	else
--		preempt_disable();
- #endif
-+		local_irq_disable();
+ 	  If in doubt, say "N".
  
- 	crtc->debug.min_vbl = evade.min;
- 	crtc->debug.max_vbl = evade.max;
-@@ -593,12 +591,10 @@ void intel_pipe_update_start(struct intel_atomic_state *state,
- 	return;
+-config DRM_I915_DEBUG_VBLANK_EVADE
+-	bool "Enable extra debug warnings for vblank evasion"
+-	depends on DRM_I915
+-	default n
+-	help
+-	  Choose this option to turn on extra debug warnings for the
+-	  vblank evade mechanism. This gives a warning every time the
+-	  the deadline allotted for the vblank evade critical section
+-	  is exceeded, even if there isn't an actual risk of missing
+-	  the vblank.
+-
+-	  Recommended for driver developers only.
+-
+-	  If in doubt, say "N".
+-
+ config DRM_I915_DEBUG_RUNTIME_PM
+ 	bool "Enable extra state checking for runtime PM"
+ 	depends on DRM_I915
+diff --git a/drivers/gpu/drm/xe/Kconfig.debug b/drivers/gpu/drm/xe/Kconfig.debug
+index 01227c77f6d70..1d5f11c6e88f3 100644
+--- a/drivers/gpu/drm/xe/Kconfig.debug
++++ b/drivers/gpu/drm/xe/Kconfig.debug
+@@ -30,6 +30,11 @@ config DRM_XE_DEBUG
  
- irq_disable:
-+#ifdef I915
- 	if (!IS_ENABLED(CONFIG_PREEMPT_RT))
--		local_irq_disable();
--#ifndef I915
--	else
--		preempt_disable();
- #endif
-+		local_irq_disable();
+ 	  If in doubt, say "N".
  
- }
++config DRM_I915_DEBUG_VBLANK_EVADE
++        def_bool y
++        depends on DRM_XE
++
++
+ config DRM_XE_DEBUG_VM
+ 	bool "Enable extra VM debugging info"
+ 	default n
+diff --git a/kernel/Kconfig.preempt b/kernel/Kconfig.preempt
+index da326800c1c9b..68a6d42c55abe 100644
+--- a/kernel/Kconfig.preempt
++++ b/kernel/Kconfig.preempt
+@@ -87,9 +87,9 @@ config PREEMPT_LAZY
+ endchoice
  
-@@ -699,7 +695,7 @@ void intel_pipe_update_end(struct intel_atomic_state *state,
- 		icl_dsi_frame_update(new_crtc_state);
- 
- #if !defined(I915) && IS_ENABLED(CONFIG_PREEMPT_RT)
--	preempt_enable();
-+	local_irq_enable();
- #endif
- 
- 	/* We're still in the vblank-evade critical section, this can't race.
-diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
-index 50ca39eb09145..6dbaeeb6084b2 100644
---- a/drivers/gpu/drm/i915/display/intel_cursor.c
-+++ b/drivers/gpu/drm/i915/display/intel_cursor.c
-@@ -920,23 +920,19 @@ intel_legacy_cursor_update(struct drm_plane *_plane,
- 		 */
- 		intel_psr_wait_for_idle_locked(crtc_state);
- 
-+#ifdef I915
- 		if (!IS_ENABLED(CONFIG_PREEMPT_RT))
--			local_irq_disable();
--#ifndef I915
--		else
--			preempt_disable();
- #endif
-+			local_irq_disable();
- 
- 		intel_vblank_evade(&evade);
- 
- 		vblanked = true;
- 	} else {
-+#ifdef I915
- 		if (!IS_ENABLED(CONFIG_PREEMPT_RT))
--			local_irq_disable();
--#ifndef I915
--		else
--			preempt_disable();
- #endif
-+			local_irq_disable();
- 	}
- 
- 	if (new_plane_state->uapi.visible) {
-@@ -946,12 +942,10 @@ intel_legacy_cursor_update(struct drm_plane *_plane,
- 		intel_plane_disable_arm(NULL, plane, crtc_state);
- 	}
- 
-+#ifdef I915
- 	if (!IS_ENABLED(CONFIG_PREEMPT_RT))
--		local_irq_enable();
--#ifndef I915
--	else
--		preempt_enable();
- #endif
-+		local_irq_enable();
- 
- 	intel_psr_unlock(crtc_state);
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_vblank.c b/drivers/gpu/drm/i915/display/intel_vblank.c
-index 5fcf5c08187f7..e7450d4d99d25 100644
---- a/drivers/gpu/drm/i915/display/intel_vblank.c
-+++ b/drivers/gpu/drm/i915/display/intel_vblank.c
-@@ -386,7 +386,9 @@ static bool i915_get_crtc_scanoutpos(struct drm_crtc *_crtc,
- 	 */
- 	intel_vblank_section_enter_irqf(display, &irqflags);
- 
--	if (IS_ENABLED(CONFIG_PREEMPT_RT))
-+#ifdef I915
-+	if (!IS_ENABLED(CONFIG_PREEMPT_RT))
-+#endif
- 		preempt_disable();
- 
- 	/* Get optional system timestamp before query. */
-@@ -451,7 +453,9 @@ static bool i915_get_crtc_scanoutpos(struct drm_crtc *_crtc,
- 	if (etime)
- 		*etime = ktime_get();
- 
--	if (IS_ENABLED(CONFIG_PREEMPT_RT))
-+#ifdef I915
-+	if (!IS_ENABLED(CONFIG_PREEMPT_RT))
-+#endif
- 		preempt_enable();
- 
- 	intel_vblank_section_exit_irqf(display, irqflags);
+ config PREEMPT_RT
+-	bool "Fully Preemptible Kernel (Real-Time)"
+-	depends on EXPERT && ARCH_SUPPORTS_RT && !COMPILE_TEST
++	def_bool y
+ 	select PREEMPTION
++	depends on ARCH_SUPPORTS_RT
+ 	help
+ 	  This option turns the kernel into a real-time kernel by replacing
+ 	  various locking primitives (spinlocks, rwlocks, etc.) with
 -- 
 2.51.0
 
