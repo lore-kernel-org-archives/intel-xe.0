@@ -4,182 +4,168 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 97EC8CCF9FC
-	for <intel-xe@archiver.kernel.org>; Thu, 30 Oct 2025 12:44:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F19C9CCF9F0
+	for <intel-xe@archiver.kernel.org>; Thu, 30 Oct 2025 12:54:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4907510E26B;
-	Thu, 30 Oct 2025 12:44:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9B8EB10E261;
+	Thu, 30 Oct 2025 12:54:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="M2LtT24T";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OGtZl8Br";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1477E10E26C
- for <intel-xe@lists.freedesktop.org>; Thu, 30 Oct 2025 12:44:02 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BF7E910E261
+ for <intel-xe@lists.freedesktop.org>; Thu, 30 Oct 2025 12:54:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761828242; x=1793364242;
+ t=1761828848; x=1793364848;
  h=date:from:to:cc:subject:message-id:references:
  content-transfer-encoding:in-reply-to:mime-version;
- bh=Vv6a7K6ArZi47PXmGd5uiUp1Qz2ji5NrBbkpvopmN/0=;
- b=M2LtT24ToQGz33Knj1e2TCFbEpcJ5HffZlZQVYdbvf6QXSupRdxkavWn
- HQWif2ASeSlCMnvVTvohFupsDdyzUOQanEtNyV/94sAnEQASo6LOkjiCD
- xiboft9Kr99DAA/NEUh3UNIKb+0pYNhC51OL2MUdzNHGr5NH+sApVvwkX
- fkYNF0ZZ6chPFNy+QRJnUWw5VQ+v0ulcHIMfrt87YP8LGBkg2evv80SaS
- iW+3Dv4ElXWSUAqYmjlvgknZERXgJEWlihnzC7MBgjAvq51PM34Go9025
- q6hg1VoLPj+KGKD5JjVsWFlyETrubH8BIlkxXWZ67MN5r/q44/UzxSxFE A==;
-X-CSE-ConnectionGUID: JXSFiI4ERTiqSSa4yVCmxw==
-X-CSE-MsgGUID: 59xSCwuwTYmL66iiMQlkww==
-X-IronPort-AV: E=McAfee;i="6800,10657,11597"; a="74259055"
-X-IronPort-AV: E=Sophos;i="6.19,266,1754982000"; d="scan'208";a="74259055"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Oct 2025 05:44:02 -0700
-X-CSE-ConnectionGUID: EhmeAwmISnKc0WRzK77mjg==
-X-CSE-MsgGUID: rcAxN79dRbi7srggHgireg==
+ bh=+LprB97dSeqNGLKcYd7lEZKGdNZ5vFrcQX3ezJi8rf8=;
+ b=OGtZl8Bru9tYZx+f+VIRnSBRShUmXAvzluHfd0p/hANoCla9o5HXzoXX
+ 0MOijBfpXC0eqR6yFWTe8oW5JEdERejlhIoOy18cgqFKm0O+f8+3W3HgJ
+ h6neYPYurqBnScQx7NTLOxU0gC+ykdpeoxbxtmWVctxe88lwxHp6TWHzw
+ vnD6a4hOfZAoROydm3C4X6vKMv2DiUlWjQfEcWf3pfE2w/MZCJ3yAcqpP
+ +Ng5qluuwqsUEJ5KPUAbouO6MeRsu7W9jRHXeDVlXDXIMjaniPL1QQ6QD
+ alnUPZnPJMjg+9HjrcKCSuZgXBC6jRuj3DUzrIJGABVJtSHbzGKGKmtKy Q==;
+X-CSE-ConnectionGUID: t9D9hMmuT26sZCCL4RN3FA==
+X-CSE-MsgGUID: 2NM3EGS1S9mS2eszEhYR+w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11597"; a="75316281"
+X-IronPort-AV: E=Sophos;i="6.19,266,1754982000"; d="scan'208";a="75316281"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Oct 2025 05:54:07 -0700
+X-CSE-ConnectionGUID: D2wuCiXRRyWCZgGfSOMP0Q==
+X-CSE-MsgGUID: PGwU3ESFQd+GOJgbiZ927A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,266,1754982000"; d="scan'208";a="186686685"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by fmviesa010.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Oct 2025 05:44:01 -0700
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Thu, 30 Oct 2025 05:44:01 -0700
-Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
+X-IronPort-AV: E=Sophos;i="6.19,266,1754982000"; d="scan'208";a="209526287"
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Oct 2025 05:54:07 -0700
+Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
  ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27 via Frontend Transport; Thu, 30 Oct 2025 05:44:01 -0700
-Received: from MW6PR02CU001.outbound.protection.outlook.com (52.101.48.25) by
+ 15.2.2562.27; Thu, 30 Oct 2025 05:54:07 -0700
+Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.27 via Frontend Transport; Thu, 30 Oct 2025 05:54:07 -0700
+Received: from DM1PR04CU001.outbound.protection.outlook.com (52.101.61.62) by
  edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Thu, 30 Oct 2025 05:44:00 -0700
+ 15.2.2562.27; Thu, 30 Oct 2025 05:54:06 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=pdpEvKLUBFvPUmJWWJVXG+ILollIoSkpROJ0zEhgGoMszcS1jf/fhJItKg8s0abUXztXlU9xVTxpBD7K/n/YrCS9oLM8Si8pPhMgr7U1pL8wIMVRSW85VGiyvjIR83dVL/eHDsSsLsSaGMHxrbJJdPLgazNE/1wE4O1Bf+Akn42CHfy/9XNIZIpj5ODWefHbT0CnUcGRF5fwPYtKGy2QAsWrhN6ix2J7EZ460PLfqjoS2m2neduEiUpY15HLntTXyXYnhgkTTPG5neGTUCDIUTl0zExluaxLZrEyx/ieV1X9isvLurhNN0m2v4eyaQLDwODLCQD/5sWpzXnkXkoCOQ==
+ b=CSSSySbC1AL9prVqvuRNhMaRHx3p8lNqCzDa1XFpo6fa6wgQtGq4BqSzHb54iES9IoWsgi0yKM/rWOlZLrw+fa+fd8/xEonpmdiy5MKAojVu7Y71ClJ5v+6UFMeAP2+vk1tqVpJQRGzwAHWQ6w3SpBxGYDgn/Q8MnuNeJCIcp6GyOeEmcP4tpmMI00qyzUCnJWKSeI0peKhOIDLD8rnHMB5mPzDeq5h2+yRfqOosgQOM0PvKiCDM8zwcalZ7lp2J13Jzw9ULcnSXEoyrHtr1b70WnR/PQczen44Mh1B16jVBa767sXKpPAkmyOC8gRtoPxkhxf0i4GgLj/QOTEuodQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=StUUd5K9Bz3kzklYrJd0KOs4BzNOAX1w1Ce/bFDopME=;
- b=rG8wEv0QmQ67P8/b98ULqUB/cu+ThmkpSQtEzN7WsFPx4v45n8lfqLfI1rkscjBZfZWPJGgH7vdeAAByrIqZ8sVSqYjcTnlnmv0YFegt+rTxqtvCR5Vly4zBy+21suMCSAV1MeTxUABqAzn+iwtdI/KJs/G2bhKQXkwlU4o7fm3uu07itIPw8tcLxnR7vw1UX+MoTFo46+3vDMJeRJzHot6BgF+C8+2OOpHvlbbQkE+g4kxTCDjhuC5LBD23dlaaDHseFl6g6vcZG0qTQUDXHLLXSo+coT6nYl2QE8sefdhzKgG9cGRK9WLY8uGtMjO4cb4lYl8UAxL2aW3s+c9IgA==
+ bh=TE/EDqxjBTB553H5/6jFQgCfokxbx23hmXZsyRRn6Qw=;
+ b=izeKH5Y99ThkBIjjtg3YJcENFzG4dTFJly8j636LM0bfe1cffTFbBB0PCoe9z8gkx1aI+KKM5Bs9InAtuTTBrXnOltIPiPQxgjoq2GNm+Ren+iHu3jcvD+VlQvsrvm5525hE8FuCvt8es7AUGIr2E6NcUdLKA8Ye27J3Gsv/YNAG/m5OFWuGzsLixEsQOAPPT6RS+zD+ld9nbpHoJ/fEq/imivA1UmgbBq2PF21QhieNGO2oIE8PvT2l0E5uCkst2S/YbCtPzRzOWpQPcGF0FaoQYEcTcoGmdQUH0BTjb4hBHsxv0aQCCWl1Db2bfkXktpod1hm3IL6iaQoUbTy9bA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
- by SJ0PR11MB7156.namprd11.prod.outlook.com (2603:10b6:a03:48d::7)
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
+ by SN7PR11MB6827.namprd11.prod.outlook.com (2603:10b6:806:2a2::20)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9275.13; Thu, 30 Oct
- 2025 12:43:59 +0000
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::7141:316f:77a0:9c44]) by CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::7141:316f:77a0:9c44%6]) with mapi id 15.20.9275.011; Thu, 30 Oct 2025
- 12:43:59 +0000
-Date: Thu, 30 Oct 2025 07:43:55 -0500
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Michal Wajdeczko <michal.wajdeczko@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: Re: [PATCH v2 12/17] drm/xe/pf: Allow bulk change all VFs priority
- using sysfs
-Message-ID: <vydnwitzonbyxgxdydh7cscvrz2eoep2m6tp6q4adr27xdqzsc@fv6uyjga2tzi>
-References: <20251028175832.184534-1-michal.wajdeczko@intel.com>
- <20251028175832.184534-13-michal.wajdeczko@intel.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9275.12; Thu, 30 Oct
+ 2025 12:54:04 +0000
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::9e94:e21f:e11a:332]) by PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::9e94:e21f:e11a:332%3]) with mapi id 15.20.9253.017; Thu, 30 Oct 2025
+ 12:54:04 +0000
+Date: Thu, 30 Oct 2025 05:54:02 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+CC: <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH v5 1/6] drm/xe: Enforce correct user fence signaling
+ order using drm_syncobjs
+Message-ID: <aQNf6qkmh8WSkFbo@lstrano-desk.jf.intel.com>
+References: <20251029205719.2746501-1-matthew.brost@intel.com>
+ <20251029205719.2746501-2-matthew.brost@intel.com>
+ <f647296ae0d8150745852b439da169529aa47e4d.camel@linux.intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20251028175832.184534-13-michal.wajdeczko@intel.com>
-X-ClientProxiedBy: SJ0PR05CA0080.namprd05.prod.outlook.com
- (2603:10b6:a03:332::25) To CY5PR11MB6139.namprd11.prod.outlook.com
- (2603:10b6:930:29::17)
+In-Reply-To: <f647296ae0d8150745852b439da169529aa47e4d.camel@linux.intel.com>
+X-ClientProxiedBy: MW4P223CA0003.NAMP223.PROD.OUTLOOK.COM
+ (2603:10b6:303:80::8) To PH7PR11MB6522.namprd11.prod.outlook.com
+ (2603:10b6:510:212::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|SJ0PR11MB7156:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8c932230-8c2e-4a45-73ef-08de17b1ff10
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|SN7PR11MB6827:EE_
+X-MS-Office365-Filtering-Correlation-Id: 203b3fac-77af-4b90-db25-08de17b36800
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?RVVxMUsyczlXKzVxNUlDMml4L01Ec1FKaFFaZ1ZnVTlaUUtNQ25ucVhUbUhJ?=
- =?utf-8?B?QmN3bTJiaFBHZ1hwL20xdW9jQ1BHYUR5STE2S1lRYnRDZ0pDdHpIeWhtc0U4?=
- =?utf-8?B?azZyZ1pHT0RoR051TkdQR1VWbUgxL3lGYUwzVGkvR1FVd1lOZXdFc1RLMTNX?=
- =?utf-8?B?T2ZKbzlUS01ZdmU0UjZ4ZDRFdmpiNVpRa0tMZXV0NU9GbE8zNDFITmwyMnd4?=
- =?utf-8?B?OUw2N1ZZaUsrOVJBeE8zWkIyNlN2emxzWFBCYWt3bTU0MHFSUitNUityRWNl?=
- =?utf-8?B?dXp1YkpxOXdJaURpdk01UGU0ZnJ6a3RoRkg2SXI4alAwRW90SWlIbitZcnJS?=
- =?utf-8?B?MVQvdmdsWkc5WXp4Ym11MzBRLzI5bTJ6aUNia0lPVGNXVnBqbDhrdUJkU1Mv?=
- =?utf-8?B?MjNSWko0VDNBN3k3b3V1ZXFNL3M4bDNpdTUwdG1Idko1aEhtbXhsRDFDODFj?=
- =?utf-8?B?VUJkVktGdlNubWlIdXhwNGM4Zk1iVWxKeXZiOVh0aFdON0s1SDMzUXpLamlO?=
- =?utf-8?B?NkJsZjJFRVNGMFh6U1pZUko3ckorZ01la2xsSFhHcWJBd2lYcWQzZUo1aUtp?=
- =?utf-8?B?SHgzS0MzM3d6bGo0ZzRoQjhlUzFCejFrbVVqaWlPM0ZCdzQ4MSsvRytmbVpS?=
- =?utf-8?B?bjRacDlJbC9XRjR2Ti9iRExLcys2TlBBWTJwYnVvSXBSdnNYQkZGNFhnSTR1?=
- =?utf-8?B?L1RSdFU5dEtKay80NGZmYUFpU2tlb1U4TFRNZ0x1YmpHSStQb2tFUzNBM3hT?=
- =?utf-8?B?c2REcWk5a0FHdWwrUlNIRVhvelNrYmg2TE1hL3ZPVXBtYmwzemVXdklvOHpW?=
- =?utf-8?B?SStIbmV4L1JIVFc1ZTUzUldSbk1GeUFsUmxzVHFFSDJJZ2xucFNkUjNIWnJh?=
- =?utf-8?B?YlBNQ0hWbzFxcUhFYnRZM1o1eklLd0c5NHFERXhLNmhlOGYwaHhsZjlXalhD?=
- =?utf-8?B?cnRJUVdWY09XeU9jdHZhemFPejllOXBEWnIrRDk2NTlDU0JTYnY4cSswQ244?=
- =?utf-8?B?RVRHMHpFM0lpUk1mSW9XRXNSdlJLTUs4RldtZisyaG04VG1GM0REMU1DeVBV?=
- =?utf-8?B?REU3aVJ0dE8zTTYrZnc5UkowTVYyK0I3QjY5K2NsanNQOFNWSDN6ZGZVSzUy?=
- =?utf-8?B?ZGlrK21hVkZTd3ZyalJtTkw5TDJhbnhmS2xGRXRQa1BuTlVXWGVZbGNoS3FX?=
- =?utf-8?B?Mmh4bi9YckFIOGhVY0dsT0lxOU5iYS8xbENmMC9CK0RMVjNwb2ZldlkwbkJz?=
- =?utf-8?B?OGh5ZFc2MW1Pd3E3YVVZNTFyNkphazZxaVU1ZGNzZ3VaU1RLZjRZOEp0RGdD?=
- =?utf-8?B?NjliUlBkWUR1SUdaVlJmdzZRcVBGS0dkT2JERmNBTmVBWTlxQXBHWURMNUd4?=
- =?utf-8?B?ZFZ0RGQ1TWpFRnh0M3RFUUY4aFBZZU1INlNqOFZ5NWROeTNQUG9iUWF2N1pG?=
- =?utf-8?B?VFlIRVJNNDBZa25TWE1kb2Z0ZlBjUGttNzgxK25mcmUwWHRNR2lHT25nNVZr?=
- =?utf-8?B?bDQwczhQZlMrNTg1Qk9zbUV3VFRHSzJkb1cyYTk1Wm5uQWVWY1hwSThueEhx?=
- =?utf-8?B?TlJTcGxDbWJGek1TTzFReTFrMGE5SGF5RmlES2JwclMvaXFDTGg0WTdaQXAv?=
- =?utf-8?B?TU9UQ2NRTmE3dG1rdVJ5SjhhUy95eUR3VXlpWHdBRlpWL3p3aGJGS2t2WWVl?=
- =?utf-8?B?NGtJZ0Y5aGl2R1U0cnFhbmQ3Z2hxcVFybHB6NElHN1ZtYjZOVGhNWE9rVVN5?=
- =?utf-8?B?SitFSDZGbHltNnhPZHlzQnN1WitGTEdxYmdTSHEyeXEvYWhGY0ZzdFB5cFlx?=
- =?utf-8?B?TThBQ0ZrcE9JbVZhL0t0RGRIVTVGZ1d2a1pTNlNObHE3OVg4WHdVVFVYb3lK?=
- =?utf-8?B?QWlMdEV6OUcrZjlyb3NRT1BTVFFkZStnMlFOTktOZHN4T0hZbXhzRnpNWnBP?=
- =?utf-8?Q?1MWc6u6Dmxf+/b7HB4IAYYiK5O8uNjrB?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016|7053199007;
+X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?UfMdxirD+pFTIu4EoeAZbxn9hJ717qXEQfBb7ink0uRQqkH5bDHT8p3W3C?=
+ =?iso-8859-1?Q?YItj9hLJ1o9uytyFurlvtZV7THeymJz+35x/MSTpddXgcuxp2Boa4tQ+34?=
+ =?iso-8859-1?Q?A6TSqx3OK6wdJCVriYkKp/+iImEIOF9YasdO0256iEVCwy1gnroPBsP04A?=
+ =?iso-8859-1?Q?t5B712PJmQPI/jN75c1pzWzzsdYzkv5OFmi6nEPJCWkNf3p5xUm3xfhS/b?=
+ =?iso-8859-1?Q?/YL3YeAd+kV8UpYxyxsUdv9bUxbPlC56HX4TISy5mznfUGtzmTuautEsGH?=
+ =?iso-8859-1?Q?kSQJRfThuwhorz4sLJFpx8zGeMLTv2lkSTbyWvWhjCEP82Q22YD9tNI/JM?=
+ =?iso-8859-1?Q?fEE0dTpbpA840oItz4ce6GyikVE5DLzsMsxp+sIFaig8LDnpOU9jzhehSY?=
+ =?iso-8859-1?Q?7YFJLZJpp2QoJYyJWqCI1Fjv0MOhwBjbzMS/4AUyF4I6G/gN1sULK8U07k?=
+ =?iso-8859-1?Q?P/CL9szTfyXaN9ATZfVEwh2RvYT4a8/6SncTCjSy1UVd2VIy5FKTP6gygn?=
+ =?iso-8859-1?Q?+fmE2SLvgW55BQ0UBajs3mzMgb6HSUF8xBtm2gWpxyO8NjCPgil0GKvc3r?=
+ =?iso-8859-1?Q?sDtp0+M2As7O/E2/8nttAfwWV0sdzyjistV045wqEixtuOMNaHDGsfOmFw?=
+ =?iso-8859-1?Q?S/fzfHXOjsRaj9YS0sbda6C64Lanc3U4gZwSS3fRdkj14iOKSdkKjEIWhv?=
+ =?iso-8859-1?Q?vyqjfbrqcLbRFdl1kyfJoU8MHUVtA9z2vxxDCT3UDFkJ027sf6KNZ1DSnC?=
+ =?iso-8859-1?Q?gqZd1hfoF8eogGzHJ9UYTNRTAKvi7CKLVPdZr3tFYprL3gmBgYuvn0B/2L?=
+ =?iso-8859-1?Q?X7H8WugWU5tOkGXhqwybXEZ2P8PwNFuxQ2hy3Ud6bFi8YbDXS2hhl5iN8k?=
+ =?iso-8859-1?Q?l1FH5bPv4F9t+6q51xtdAE7biEMdG/kNP8X5kK93LRYcsFtqyLCfLySWP2?=
+ =?iso-8859-1?Q?yQm4Ofa/UId/+zYqtEeedAKxoEP2gzbQ2gC3SYoz/3fv/ig80LjM5wd/Od?=
+ =?iso-8859-1?Q?yoLmDvDvSP2wQK+IjY+2591iw+c3gXQuZlPlNo4x6YDOSruRM5zAiXCyGL?=
+ =?iso-8859-1?Q?/IzvUmz2Zfp7RCeH3s2nwfet09siRzwqhfBmzold1sEPK7G36sQvepiQsm?=
+ =?iso-8859-1?Q?8/194LwxNHfKLtcDmJ86Ghr61jh4tqj3dRJlpGMifgpXGZgN6XZcoQBV7j?=
+ =?iso-8859-1?Q?aSZJtiwNJkyv7Ss/sFV4NoDjJ8dkgR7AWRZLBuP9euZ/TCKG5l0JanO/oh?=
+ =?iso-8859-1?Q?faFQiVUFBh4e7z2q5qqCWXBX+brnUqYvGbkw88XxfPX4maG37QgRJl31Mz?=
+ =?iso-8859-1?Q?MjCMl8zFXjbRe5dkiaYoRvOKDeRvlVwJ2FXLPYZ1hm5PITAmMIQdzvto7Z?=
+ =?iso-8859-1?Q?MC2g6tPugqei3biZd2WPrTLde8gMmtHqP8MtkOi9t2oyz644V+oajin2lC?=
+ =?iso-8859-1?Q?isqg3tlzSgD7b9baDRG0jRjJmxe3GSRK91aE6rihpD/BZUcKB94BZEG4Tr?=
+ =?iso-8859-1?Q?/NWqTLOHHqHJcAHZgAy1ph?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016)(7053199007); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?V3F5KzR0S0pQZ2NTMzNtSFc0S0xIQkRrMnF4WG90NzhOd2NSY2JDN1M5K1Zo?=
- =?utf-8?B?dXdHYit5eU9CTldqRTFSQXdSampvNzdsTjY0Z1FHajErYUlZRmt2MEhIaExh?=
- =?utf-8?B?dVlKZmt5dmpMK1NockdhMmxJNmJqWFlIQ2kvMHpyMWRJWDgraXpvZVVPQkZa?=
- =?utf-8?B?WDk4bEFVN2dzY2lnNEoyRktYa0kxdDF1Y3JhWnEveXBQK1FEQ2ppVTY3QWNh?=
- =?utf-8?B?NTM5cUk4citqNlpNVVdLZnBSay9nQ0ZDYWY0ZTBoWDBQTVM4SEx5Q3JPNncx?=
- =?utf-8?B?MEZ3QUlocnc1RkVENzBvWmx4Q3pGMXpTR2Z2U1Z6U3Jmb25tNi9qYzM2Tnpt?=
- =?utf-8?B?blB3TWtOYm1zMlQxSWxvdDBMS0RpNkJhLzcremdsRTl6N0lGL2JlT0pZVjky?=
- =?utf-8?B?b3V6R3dtVjhVdEpvMEdaSjh5Y3N2TEV2aTdiTnVuZlhDZi95RFJtV1VmdzNt?=
- =?utf-8?B?Q0xJY2xhSFpNSDhneFFoZkdhdjZFUVF1TytDbC94WGl3L3UyeWZmd1hRV3FY?=
- =?utf-8?B?eVZtNXRabDZZelUrR2NCYzhmTjN4clhSdVZianM4S1FSTnFkcTNWWklOYzZu?=
- =?utf-8?B?VXYzcXFFVkRaalJMc2lsSmlFdmNGNmxWQkZjVFVEemhXVGZhWXYzUTQyeGhq?=
- =?utf-8?B?QzlrMUF1MWtJczRvTjJXZFJyck1tYkZGbG9JTEZ6NE5hYm9XUTYycWpGSThD?=
- =?utf-8?B?MjRaQ0pidmplV3RFK1FJcGhRWGk0SGVRYXlZUSs1WktHbWN4bUpaZE5Nbjcx?=
- =?utf-8?B?WmFIQzdYaEIwcEsweHkxMGhYZXU1ZHZvNGZZUmc1U0Z0S0FieHpnUkVaa21E?=
- =?utf-8?B?RkxLNzZCdWgyczdiendmY3BLUGlza3h4L1lwck95Tzc4YUFhSU1DNnNBNXND?=
- =?utf-8?B?S0RqcWhpc0s2Rmwvc3pnVGQ5UnJiRWRNWDhhck5YT2IyY3VLeFdjNk5mT1Ba?=
- =?utf-8?B?SHliYUZOYnphK1JJWERJMGZrWjY3eDFQS1BwcmljM2hydllGN3NUZHZ4eExO?=
- =?utf-8?B?Q0ZSY1hJQ0xSeXRjY0tmQUJUdHZQRHBkejJRdmFQWTAveFVzN0tlOE1OTjhV?=
- =?utf-8?B?MW5EeUpDRk9hc1UvV1Z1OVE5QjNIQ0Z0b0MxM0NmVGdITi9tRkNKUml5cklx?=
- =?utf-8?B?NlY3U2hrWHowUnh2V0c0VVFJNG1RT2RnMTFZd3hNYzNYQjZTczg0VmJ2emFT?=
- =?utf-8?B?R2FTd25YMmhyUXZOVFV0ZmdEQkVpdFgzQUNlWkZCMVMrdzEycVdFMFlCaDdN?=
- =?utf-8?B?TWp3OUJUM1hocWxuNVlCdVlQeGFoeTQyMVZvYUNmREliK1dwUDRiMFFZRDlY?=
- =?utf-8?B?MGQ2L05WelF1UzBZT3VHY2dIaHRzRzJxWVRaK3dLclBqaEYrZXMvbmNNZkJq?=
- =?utf-8?B?YTI1Zjh4UWtpS0hPVVJZaGF5ZU9nYlRIUUIrM3hNOXhKTVlBV0hZL3hLa1h1?=
- =?utf-8?B?ZE5tY1JDV2crSzRmOEdQMk0xc0NoUmE3UXlQK0RQT1dkd2pMZW54RzRMZDdK?=
- =?utf-8?B?Ni9YVkw3R2RheGlRT3JZMWtXeUF1b3AzZ0FCeGExaFZLYnVyREdqRlpnYlB2?=
- =?utf-8?B?a0RjWUxqeWxCYStUYVM3a2grWXdRYU80K2hlY3dBTERZejBodmNlRVU0QXFZ?=
- =?utf-8?B?WTdwNFNEeCt1NUYrVy9tMjhqandLK1RJd0cya0lWUGthUWxJclV5TDZZSzlG?=
- =?utf-8?B?YkhWWmV5bmEydnFvdHlBblY3RG9MWmE0QkJVWC94bE5Nd1UzMjhtZzZuNVhx?=
- =?utf-8?B?YnU0RWh6SnZXMDRPUDB0T3J5Q3pmWisrUUhJOUE1T3A1bFlCeHNaQ2tJQWs3?=
- =?utf-8?B?am1TRmRSOGxEd0QxODY5VTI0SUQ0ZTJFUnNYV2xQa0ZpQWhZU0NuTVVkRVR1?=
- =?utf-8?B?cTRoQ2VWZ1A2a0szL0VuNmZtWnR5Z2oxZWR4SE9KYXFMbXNBN2NwQVhVQkk5?=
- =?utf-8?B?dER5T3BmdUx1WUtrcXg5eWt6QlVrcmM2U0RTYlRxRzc3cmtUa3dkdlM2N1dG?=
- =?utf-8?B?c3FTdk1WSk0wdC9QZEJIT21EVmtrbUJKV0dqVzFLZ2hIQmcvMWUvUGpzT0Zx?=
- =?utf-8?B?a3V6Sjc3MlNWbWpiUnhmbTVjbFhoUisvU25OaWw3SFA1YlVpcEEyMzFIQlMr?=
- =?utf-8?B?WllTUldqNFZvK0NBV1NHNXJKSWlKWlZ0Mjh6TFdmYVZHNG1BWDczdXd4VVBZ?=
- =?utf-8?B?cXc9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8c932230-8c2e-4a45-73ef-08de17b1ff10
-X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?l7DJnoCSKKyhhLV1Uz0vLCLz6eGED8Np/ItMr8yo3KytpVZyIbUmXNh2w/?=
+ =?iso-8859-1?Q?yLXn0PNpRRD7kuQzbUhiFC7igqesXmnL5OAFWdYNrG51bdm/G73B+vEWYX?=
+ =?iso-8859-1?Q?0CcDyj+C0XtvCCmjFo410eTaMvFgCWnswQWSHte665X7JF9hwELqFaOrR1?=
+ =?iso-8859-1?Q?0BUc7Tz8I7o8SeHrJAOlCEYV8D5SgJDMVahyQ0yn59NYA7r4yaDoo72o8h?=
+ =?iso-8859-1?Q?V/dwR/SWFVNU00JjdghU+t03GSi6t0gPVcwVeSdET/n+fNx+Kip4xJzPM6?=
+ =?iso-8859-1?Q?/gcKTNGoQKpZak4l0L2L4RSqD4BgwoTkB1AR8bbZEY3dmvXhUpsRlWCATz?=
+ =?iso-8859-1?Q?K2KaM0shy2tD/U8rq/w52f9Z3FHHz7lUB6Mb2fYvRjNWfazvn/PQklv8ov?=
+ =?iso-8859-1?Q?m3S1Xt2DIG8lq17VoYddGTOw/wxoYT7Ybri56nH9Exub8KJbe8CGA7A7Lr?=
+ =?iso-8859-1?Q?przYDeTYqIkqyrp+w2GkYMQSNVocJxVYlOCks3/1OiAV3irD50JlYkHn7D?=
+ =?iso-8859-1?Q?sb52QofqDsC0FSA1gRd0dO2lhe9LITCLThzouNSpfADoPvBbVmIO57CzQv?=
+ =?iso-8859-1?Q?1+klG+wgjz73M9n7aFqq7rHH85zRHINn0AIBBVftcFw5QMdw/nl9+xmHNo?=
+ =?iso-8859-1?Q?gI1gCL+A5FfFp4vKTDrgi1oGB8ZALzfnpZcb9elExTUFceEBnhruOBXuQk?=
+ =?iso-8859-1?Q?glU7dRAYSL6U5BDoQ58TqEE2xef9fgxbAmLx9P+ke64NcpVejyI8s7uNWJ?=
+ =?iso-8859-1?Q?L/QKhIv6VDxFEVEWuX4uSN41i3cjlehbsIx++ers7+0Jvllm99xtHsMvNx?=
+ =?iso-8859-1?Q?j86NlyxJ22tcKKItoMwMgfPvGyftPtosqkJtrhKQfoMPAf/xOPETTOTFM9?=
+ =?iso-8859-1?Q?dIC8qgN0c0S+rqSgo+TXvx5jT/8cuqOSFvh2Tm1+X9ENQ5jV3d+NahQD8Q?=
+ =?iso-8859-1?Q?N+jx41CXnEhW9jqFrsNcUbvEQOPGfXkovNlT9diZDkrRtVhP8FEyidgxCz?=
+ =?iso-8859-1?Q?XJIXg+ZZuPB2PuJJrBUTqYJl2dbpxNTwf7hKtfaSkyU/v3UcjBrEg7ljuY?=
+ =?iso-8859-1?Q?tYH9Y080EbHAWKEUJ1q1POTCMwuMkcxuD9+E73NfWyb5BgiJuZG2YN1YSc?=
+ =?iso-8859-1?Q?0Pvh5NlFN+CGRHB0OaSv+laE/K5Rnzf5FDOm+xp2dd5rkgaIUa1bt0dPPb?=
+ =?iso-8859-1?Q?k3VsLjD2qFvlnnSJDoCQ409m/WhyYITpxLtI2TXIKX/y96A/sxC90O4UqB?=
+ =?iso-8859-1?Q?9Omv+gmCcjZRMHTE8RUkhb1uwqn3GFrn2IXkGBuKk5CmiidEofQ9K0s5rH?=
+ =?iso-8859-1?Q?voBccEEZmJ/M1LI0DZGE1jkRaYwTz18eIs3JBRSRDb8r8sRutuAnJJudcq?=
+ =?iso-8859-1?Q?CtLua3q2ESzeuMjYeR69jCmtPmSA3PcZtJans12vLt/8UZCMHzCpEh9ZiM?=
+ =?iso-8859-1?Q?rFv8Rn+YCigH9KuZ8ZyEtF+zcJIsW8+0tg1BAQrVP4x7prV4EPGrsNeqY5?=
+ =?iso-8859-1?Q?m3goxeNqm/WjCMvGnaGchKqKTaW6/5XPSnGN/dCedEJqUJmG/smI+31ORL?=
+ =?iso-8859-1?Q?HblYqfFxBJ4AexeNHWbNuC26Vi5OAYUxhFWQu38t09pCtMowKKD6Q3EJyj?=
+ =?iso-8859-1?Q?ILKRGJdH7oHMD+Hsc2ALO2jrxXo527QJxwVHIul7qWyapSTDdvW9t+6w?=
+ =?iso-8859-1?Q?=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 203b3fac-77af-4b90-db25-08de17b36800
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Oct 2025 12:43:59.1833 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Oct 2025 12:54:04.6547 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: uyaAmm5zeC7lOo5OPscZlmXxf3yTcE8AyG392q/dv84ePgGwLF+2UCcyRjlMmVHWJJ2xG4O9rX7n767FW0uMVteNvKHtFK8MC4a50GZotYM=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB7156
+X-MS-Exchange-CrossTenant-UserPrincipalName: eWrpl029w8hehdiVbcquejK3O2TSy2AoBEQRod98NhO587r9aIDdIyJTcAUfUQvj+g1wlbJfUM7I16y/L3KUqA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB6827
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -195,107 +181,436 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Oct 28, 2025 at 06:58:26PM +0100, Michal Wajdeczko wrote:
->It is expected to be a common practice to configure the same level
->of scheduling priority across all VFs and PF (at least as starting
->point). Due to current GuC FW limitations it is also the only way
->to change VFs priority.
->
->Add write-only sysfs attribute that will apply required priority
->level to all VFs and PF at once.
->
->  /sys/bus/pci/drivers/xe/BDF/
->  â”œâ”€â”€ sriov_admin/
->      â”œâ”€â”€ .bulk_profile
->      â”‚Â Â  â””â”€â”€ sched_priority		[WO] low, normal
->
->Writing "low" to this write-only attribute will change PF and
->VFs scheduling priority on all tiles/GTs to LOW (function will
->be scheduled only if it has work submitted). Similarly, writing
->"normal" will change functions priority to NORMAL (functions will
->be scheduled irrespective of whether there is a work or not).
+On Thu, Oct 30, 2025 at 08:58:53AM +0100, Thomas Hellström wrote:
+> On Wed, 2025-10-29 at 13:57 -0700, Matthew Brost wrote:
+> > Prevent application hangs caused by out-of-order fence signaling when
+> > user fences are attached. Use drm_syncobj (via dma-fence-chain) to
+> > guarantee that each user fence signals in order, regardless of the
+> > signaling order of the attached fences. Ensure user fence writebacks
+> > to
+> > user space occur in the correct sequence.
+> 
+> Perhaps describe exactly what the signalling order is supposed to be?
+> Like calling order per exec_queue etc. (strictly I guess it's the
+> grabbing order of a certain lock, like the vm resv?)
+> 
+> Do we need a Fixes: for this?
 
-the only place documenting what low and normal mean seems to be this
-commit message. We need it documented somewhere that is user visible.
+Yes, we probably should add a fixes tag. It seems possible to hit, but
+by chance, timing we haven't hit this yet. Will add ahead of merge.
 
->
->Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
->Cc: Lucas De Marchi <lucas.demarchi@intel.com>
->Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
->Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
->---
-> drivers/gpu/drm/xe/xe_sriov_pf_sysfs.c | 42 +++++++++++++++++++++++++-
-> 1 file changed, 41 insertions(+), 1 deletion(-)
->
->diff --git a/drivers/gpu/drm/xe/xe_sriov_pf_sysfs.c b/drivers/gpu/drm/xe/xe_sriov_pf_sysfs.c
->index 0430ffaa746a..19724a28fb33 100644
->--- a/drivers/gpu/drm/xe/xe_sriov_pf_sysfs.c
->+++ b/drivers/gpu/drm/xe/xe_sriov_pf_sysfs.c
->@@ -24,7 +24,8 @@
->  *     â”œâ”€â”€ ...
->  *     â”œâ”€â”€ .bulk_profile
->  *     â”‚   â”œâ”€â”€ exec_quantum_ms
->- *     â”‚   â””â”€â”€ preempt_timeout_us
->+ *     â”‚   â”œâ”€â”€ preempt_timeout_us
->+ *     â”‚   â””â”€â”€ sched_priority
+Matt
 
-below this dir list I think it would be a good place to document them
-and then make this show up in the rendered documentation.
-
-Lucas De Marchi
-
->  *     â”œâ”€â”€ pf/
->  *     â”‚   â”œâ”€â”€ ...
->  *     â”‚   â””â”€â”€ profile
->@@ -108,9 +109,48 @@ static XE_SRIOV_DEV_ATTR_WO(NAME)
-> DEFINE_SIMPLE_BULK_PROVISIONING_SRIOV_DEV_ATTR_WO(exec_quantum_ms, eq, u32);
-> DEFINE_SIMPLE_BULK_PROVISIONING_SRIOV_DEV_ATTR_WO(preempt_timeout_us, pt, u32);
->
->+static const char * const sched_priority_names[] = {
->+	[GUC_SCHED_PRIORITY_LOW] = "low",
->+	[GUC_SCHED_PRIORITY_NORMAL] = "normal",
->+	[GUC_SCHED_PRIORITY_HIGH] = "high",
->+};
->+
->+static bool sched_priority_high_allowed(unsigned int vfid)
->+{
->+	/* As of today GuC FW allows to select 'high' priority only for the PF. */
->+	return vfid == PFID;
->+}
->+
->+static bool sched_priority_bulk_high_allowed(struct xe_device *xe)
->+{
->+	/* all VFs are equal - it's sufficient to check VF1 only */
->+	return sched_priority_high_allowed(VFID(1));
->+}
->+
->+static ssize_t xe_sriov_dev_attr_sched_priority_store(struct xe_device *xe,
->+						      const char *buf, size_t count)
->+{
->+	size_t num_priorities = ARRAY_SIZE(sched_priority_names);
->+	int match;
->+	int err;
->+
->+	if (!sched_priority_bulk_high_allowed(xe))
->+		num_priorities--;
->+
->+	match = __sysfs_match_string(sched_priority_names, num_priorities, buf);
->+	if (match < 0)
->+		return -EINVAL;
->+
->+	err = xe_sriov_pf_provision_bulk_apply_priority(xe, match);
->+	return err ?: count;
->+}
->+
->+static XE_SRIOV_DEV_ATTR_WO(sched_priority);
->+
-> static struct attribute *bulk_profile_dev_attrs[] = {
-> 	&xe_sriov_dev_attr_exec_quantum_ms.attr,
-> 	&xe_sriov_dev_attr_preempt_timeout_us.attr,
->+	&xe_sriov_dev_attr_sched_priority.attr,
-> 	NULL
-> };
->
->-- 
->2.47.1
->
+> Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> 
+> > 
+> > Signed-of-by: Matthew Brost <matthew.brost@intel.com>
+> > ---
+> >  drivers/gpu/drm/xe/xe_exec.c             |  3 +-
+> >  drivers/gpu/drm/xe/xe_exec_queue.c       | 13 +++++++
+> >  drivers/gpu/drm/xe/xe_exec_queue_types.h |  7 ++++
+> >  drivers/gpu/drm/xe/xe_oa.c               | 45 ++++++++++++++++------
+> > --
+> >  drivers/gpu/drm/xe/xe_oa_types.h         |  8 +++++
+> >  drivers/gpu/drm/xe/xe_sync.c             | 17 +++++++--
+> >  drivers/gpu/drm/xe/xe_sync.h             |  3 ++
+> >  drivers/gpu/drm/xe/xe_sync_types.h       |  3 ++
+> >  drivers/gpu/drm/xe/xe_vm.c               |  4 +++
+> >  9 files changed, 85 insertions(+), 18 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/xe/xe_exec.c
+> > b/drivers/gpu/drm/xe/xe_exec.c
+> > index 0dc27476832b..f7b9d8715053 100644
+> > --- a/drivers/gpu/drm/xe/xe_exec.c
+> > +++ b/drivers/gpu/drm/xe/xe_exec.c
+> > @@ -166,7 +166,8 @@ int xe_exec_ioctl(struct drm_device *dev, void
+> > *data, struct drm_file *file)
+> >  
+> >  	for (num_syncs = 0; num_syncs < args->num_syncs;
+> > num_syncs++) {
+> >  		err = xe_sync_entry_parse(xe, xef,
+> > &syncs[num_syncs],
+> > -					  &syncs_user[num_syncs],
+> > SYNC_PARSE_FLAG_EXEC |
+> > +					  &syncs_user[num_syncs],
+> > NULL, 0,
+> > +					  SYNC_PARSE_FLAG_EXEC |
+> >  					  (xe_vm_in_lr_mode(vm) ?
+> >  					   SYNC_PARSE_FLAG_LR_MODE :
+> > 0));
+> >  		if (err)
+> > diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c
+> > b/drivers/gpu/drm/xe/xe_exec_queue.c
+> > index 90cbc95f8e2e..6e168efbac65 100644
+> > --- a/drivers/gpu/drm/xe/xe_exec_queue.c
+> > +++ b/drivers/gpu/drm/xe/xe_exec_queue.c
+> > @@ -10,6 +10,7 @@
+> >  #include <drm/drm_device.h>
+> >  #include <drm/drm_drv.h>
+> >  #include <drm/drm_file.h>
+> > +#include <drm/drm_syncobj.h>
+> >  #include <uapi/drm/xe_drm.h>
+> >  
+> >  #include "xe_dep_scheduler.h"
+> > @@ -345,6 +346,7 @@ struct xe_exec_queue
+> > *xe_exec_queue_create_bind(struct xe_device *xe,
+> >  	struct xe_gt *gt = tile->primary_gt;
+> >  	struct xe_exec_queue *q;
+> >  	struct xe_vm *migrate_vm;
+> > +	int err;
+> >  
+> >  	migrate_vm = xe_migrate_get_vm(tile->migrate);
+> >  	if (xe->info.has_usm) {
+> > @@ -368,6 +370,14 @@ struct xe_exec_queue
+> > *xe_exec_queue_create_bind(struct xe_device *xe,
+> >  	}
+> >  	xe_vm_put(migrate_vm);
+> >  
+> > +	err = drm_syncobj_create(&q->ufence_syncobj,
+> > +				 DRM_SYNCOBJ_CREATE_SIGNALED,
+> > +				 NULL);
+> > +	if (err) {
+> > +		xe_exec_queue_put(q);
+> > +		return ERR_PTR(err);
+> > +	}
+> > +
+> >  	return q;
+> >  }
+> >  ALLOW_ERROR_INJECTION(xe_exec_queue_create_bind, ERRNO);
+> > @@ -377,6 +387,9 @@ void xe_exec_queue_destroy(struct kref *ref)
+> >  	struct xe_exec_queue *q = container_of(ref, struct
+> > xe_exec_queue, refcount);
+> >  	struct xe_exec_queue *eq, *next;
+> >  
+> > +	if (q->ufence_syncobj)
+> > +		drm_syncobj_put(q->ufence_syncobj);
+> > +
+> >  	if (xe_exec_queue_uses_pxp(q))
+> >  		xe_pxp_exec_queue_remove(gt_to_xe(q->gt)->pxp, q);
+> >  
+> > diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h
+> > b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+> > index 282505fa1377..838266c3914b 100644
+> > --- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
+> > +++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+> > @@ -15,6 +15,7 @@
+> >  #include "xe_hw_fence_types.h"
+> >  #include "xe_lrc_types.h"
+> >  
+> > +struct drm_syncobj;
+> >  struct xe_execlist_exec_queue;
+> >  struct xe_gt;
+> >  struct xe_guc_exec_queue;
+> > @@ -155,6 +156,12 @@ struct xe_exec_queue {
+> >  		struct list_head link;
+> >  	} pxp;
+> >  
+> > +	/** @ufence_syncobj: User fence syncobj */
+> > +	struct drm_syncobj *ufence_syncobj;
+> > +
+> > +	/** @ufence_timeline_value: User fence timeline value */
+> > +	u64 ufence_timeline_value;
+> > +
+> >  	/** @ops: submission backend exec queue operations */
+> >  	const struct xe_exec_queue_ops *ops;
+> >  
+> > diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
+> > index f901ba52b403..7a13a7bd99a6 100644
+> > --- a/drivers/gpu/drm/xe/xe_oa.c
+> > +++ b/drivers/gpu/drm/xe/xe_oa.c
+> > @@ -10,6 +10,7 @@
+> >  
+> >  #include <drm/drm_drv.h>
+> >  #include <drm/drm_managed.h>
+> > +#include <drm/drm_syncobj.h>
+> >  #include <uapi/drm/xe_drm.h>
+> >  
+> >  #include <generated/xe_wa_oob.h>
+> > @@ -1390,7 +1391,9 @@ static int xe_oa_user_extensions(struct xe_oa
+> > *oa, enum xe_oa_user_extn_from fro
+> >  	return 0;
+> >  }
+> >  
+> > -static int xe_oa_parse_syncs(struct xe_oa *oa, struct
+> > xe_oa_open_param *param)
+> > +static int xe_oa_parse_syncs(struct xe_oa *oa,
+> > +			     struct xe_oa_stream *stream,
+> > +			     struct xe_oa_open_param *param)
+> >  {
+> >  	int ret, num_syncs, num_ufence = 0;
+> >  
+> > @@ -1410,7 +1413,9 @@ static int xe_oa_parse_syncs(struct xe_oa *oa,
+> > struct xe_oa_open_param *param)
+> >  
+> >  	for (num_syncs = 0; num_syncs < param->num_syncs;
+> > num_syncs++) {
+> >  		ret = xe_sync_entry_parse(oa->xe, param->xef,
+> > &param->syncs[num_syncs],
+> > -					  &param-
+> > >syncs_user[num_syncs], 0);
+> > +					  &param-
+> > >syncs_user[num_syncs],
+> > +					  stream->ufence_syncobj,
+> > +					  ++stream-
+> > >ufence_timeline_value, 0);
+> >  		if (ret)
+> >  			goto err_syncs;
+> >  
+> > @@ -1540,7 +1545,7 @@ static long xe_oa_config_locked(struct
+> > xe_oa_stream *stream, u64 arg)
+> >  		return -ENODEV;
+> >  
+> >  	param.xef = stream->xef;
+> > -	err = xe_oa_parse_syncs(stream->oa, &param);
+> > +	err = xe_oa_parse_syncs(stream->oa, stream, &param);
+> >  	if (err)
+> >  		goto err_config_put;
+> >  
+> > @@ -1636,6 +1641,7 @@ static void xe_oa_destroy_locked(struct
+> > xe_oa_stream *stream)
+> >  	if (stream->exec_q)
+> >  		xe_exec_queue_put(stream->exec_q);
+> >  
+> > +	drm_syncobj_put(stream->ufence_syncobj);
+> >  	kfree(stream);
+> >  }
+> >  
+> > @@ -1827,6 +1833,7 @@ static int
+> > xe_oa_stream_open_ioctl_locked(struct xe_oa *oa,
+> >  					  struct xe_oa_open_param
+> > *param)
+> >  {
+> >  	struct xe_oa_stream *stream;
+> > +	struct drm_syncobj *ufence_syncobj;
+> >  	int stream_fd;
+> >  	int ret;
+> >  
+> > @@ -1837,17 +1844,31 @@ static int
+> > xe_oa_stream_open_ioctl_locked(struct xe_oa *oa,
+> >  		goto exit;
+> >  	}
+> >  
+> > +	ret = drm_syncobj_create(&ufence_syncobj,
+> > DRM_SYNCOBJ_CREATE_SIGNALED,
+> > +				 NULL);
+> > +	if (ret)
+> > +		goto exit;
+> > +
+> >  	stream = kzalloc(sizeof(*stream), GFP_KERNEL);
+> >  	if (!stream) {
+> >  		ret = -ENOMEM;
+> > -		goto exit;
+> > +		goto err_syncobj;
+> >  	}
+> > -
+> > +	stream->ufence_syncobj = ufence_syncobj;
+> >  	stream->oa = oa;
+> > -	ret = xe_oa_stream_init(stream, param);
+> > +
+> > +	ret = xe_oa_parse_syncs(oa, stream, param);
+> >  	if (ret)
+> >  		goto err_free;
+> >  
+> > +	ret = xe_oa_stream_init(stream, param);
+> > +	if (ret) {
+> > +		while (param->num_syncs--)
+> > +			xe_sync_entry_cleanup(&param->syncs[param-
+> > >num_syncs]);
+> > +		kfree(param->syncs);
+> > +		goto err_free;
+> > +	}
+> > +
+> >  	if (!param->disabled) {
+> >  		ret = xe_oa_enable_locked(stream);
+> >  		if (ret)
+> > @@ -1871,6 +1892,8 @@ static int
+> > xe_oa_stream_open_ioctl_locked(struct xe_oa *oa,
+> >  	xe_oa_stream_destroy(stream);
+> >  err_free:
+> >  	kfree(stream);
+> > +err_syncobj:
+> > +	drm_syncobj_put(ufence_syncobj);
+> >  exit:
+> >  	return ret;
+> >  }
+> > @@ -2084,22 +2107,14 @@ int xe_oa_stream_open_ioctl(struct drm_device
+> > *dev, u64 data, struct drm_file *f
+> >  		goto err_exec_q;
+> >  	}
+> >  
+> > -	ret = xe_oa_parse_syncs(oa, &param);
+> > -	if (ret)
+> > -		goto err_exec_q;
+> > -
+> >  	mutex_lock(&param.hwe->gt->oa.gt_lock);
+> >  	ret = xe_oa_stream_open_ioctl_locked(oa, &param);
+> >  	mutex_unlock(&param.hwe->gt->oa.gt_lock);
+> >  	if (ret < 0)
+> > -		goto err_sync_cleanup;
+> > +		goto err_exec_q;
+> >  
+> >  	return ret;
+> >  
+> > -err_sync_cleanup:
+> > -	while (param.num_syncs--)
+> > -
+> > 		xe_sync_entry_cleanup(&param.syncs[param.num_syncs]);
+> > -	kfree(param.syncs);
+> >  err_exec_q:
+> >  	if (param.exec_q)
+> >  		xe_exec_queue_put(param.exec_q);
+> > diff --git a/drivers/gpu/drm/xe/xe_oa_types.h
+> > b/drivers/gpu/drm/xe/xe_oa_types.h
+> > index 2628f78c4e8d..daf701b5d48b 100644
+> > --- a/drivers/gpu/drm/xe/xe_oa_types.h
+> > +++ b/drivers/gpu/drm/xe/xe_oa_types.h
+> > @@ -15,6 +15,8 @@
+> >  #include "regs/xe_reg_defs.h"
+> >  #include "xe_hw_engine_types.h"
+> >  
+> > +struct drm_syncobj;
+> > +
+> >  #define DEFAULT_XE_OA_BUFFER_SIZE SZ_16M
+> >  
+> >  enum xe_oa_report_header {
+> > @@ -248,6 +250,12 @@ struct xe_oa_stream {
+> >  	/** @xef: xe_file with which the stream was opened */
+> >  	struct xe_file *xef;
+> >  
+> > +	/** @ufence_syncobj: User fence syncobj */
+> > +	struct drm_syncobj *ufence_syncobj;
+> > +
+> > +	/** @ufence_timeline_value: User fence timeline value */
+> > +	u64 ufence_timeline_value;
+> > +
+> >  	/** @last_fence: fence to use in stream destroy when needed
+> > */
+> >  	struct dma_fence *last_fence;
+> >  
+> > diff --git a/drivers/gpu/drm/xe/xe_sync.c
+> > b/drivers/gpu/drm/xe/xe_sync.c
+> > index 82872a51f098..d48ab7b32ca5 100644
+> > --- a/drivers/gpu/drm/xe/xe_sync.c
+> > +++ b/drivers/gpu/drm/xe/xe_sync.c
+> > @@ -113,6 +113,8 @@ static void user_fence_cb(struct dma_fence
+> > *fence, struct dma_fence_cb *cb)
+> >  int xe_sync_entry_parse(struct xe_device *xe, struct xe_file *xef,
+> >  			struct xe_sync_entry *sync,
+> >  			struct drm_xe_sync __user *sync_user,
+> > +			struct drm_syncobj *ufence_syncobj,
+> > +			u64 ufence_timeline_value,
+> >  			unsigned int flags)
+> >  {
+> >  	struct drm_xe_sync sync_in;
+> > @@ -192,10 +194,15 @@ int xe_sync_entry_parse(struct xe_device *xe,
+> > struct xe_file *xef,
+> >  		if (exec) {
+> >  			sync->addr = sync_in.addr;
+> >  		} else {
+> > +			sync->ufence_timeline_value =
+> > ufence_timeline_value;
+> >  			sync->ufence = user_fence_create(xe,
+> > sync_in.addr,
+> >  							
+> > sync_in.timeline_value);
+> >  			if (XE_IOCTL_DBG(xe, IS_ERR(sync->ufence)))
+> >  				return PTR_ERR(sync->ufence);
+> > +			sync->ufence_chain_fence =
+> > dma_fence_chain_alloc();
+> > +			if (!sync->ufence_chain_fence)
+> > +				return -ENOMEM;
+> > +			sync->ufence_syncobj = ufence_syncobj;
+> >  		}
+> >  
+> >  		break;
+> > @@ -239,7 +246,12 @@ void xe_sync_entry_signal(struct xe_sync_entry
+> > *sync, struct dma_fence *fence)
+> >  	} else if (sync->ufence) {
+> >  		int err;
+> >  
+> > -		dma_fence_get(fence);
+> > +		drm_syncobj_add_point(sync->ufence_syncobj,
+> > +				      sync->ufence_chain_fence,
+> > +				      fence, sync-
+> > >ufence_timeline_value);
+> > +		sync->ufence_chain_fence = NULL;
+> > +
+> > +		fence = drm_syncobj_fence_get(sync->ufence_syncobj);
+> >  		user_fence_get(sync->ufence);
+> >  		err = dma_fence_add_callback(fence, &sync->ufence-
+> > >cb,
+> >  					     user_fence_cb);
+> > @@ -259,7 +271,8 @@ void xe_sync_entry_cleanup(struct xe_sync_entry
+> > *sync)
+> >  		drm_syncobj_put(sync->syncobj);
+> >  	dma_fence_put(sync->fence);
+> >  	dma_fence_chain_free(sync->chain_fence);
+> > -	if (sync->ufence)
+> > +	dma_fence_chain_free(sync->ufence_chain_fence);
+> > +	if (!IS_ERR_OR_NULL(sync->ufence))
+> >  		user_fence_put(sync->ufence);
+> >  }
+> >  
+> > diff --git a/drivers/gpu/drm/xe/xe_sync.h
+> > b/drivers/gpu/drm/xe/xe_sync.h
+> > index 256ffc1e54dc..51f2d803e977 100644
+> > --- a/drivers/gpu/drm/xe/xe_sync.h
+> > +++ b/drivers/gpu/drm/xe/xe_sync.h
+> > @@ -8,6 +8,7 @@
+> >  
+> >  #include "xe_sync_types.h"
+> >  
+> > +struct drm_syncobj;
+> >  struct xe_device;
+> >  struct xe_exec_queue;
+> >  struct xe_file;
+> > @@ -21,6 +22,8 @@ struct xe_vm;
+> >  int xe_sync_entry_parse(struct xe_device *xe, struct xe_file *xef,
+> >  			struct xe_sync_entry *sync,
+> >  			struct drm_xe_sync __user *sync_user,
+> > +			struct drm_syncobj *ufence_syncobj,
+> > +			u64 ufence_timeline_value,
+> >  			unsigned int flags);
+> >  int xe_sync_entry_add_deps(struct xe_sync_entry *sync,
+> >  			   struct xe_sched_job *job);
+> > diff --git a/drivers/gpu/drm/xe/xe_sync_types.h
+> > b/drivers/gpu/drm/xe/xe_sync_types.h
+> > index 30ac3f51993b..b88f1833e28c 100644
+> > --- a/drivers/gpu/drm/xe/xe_sync_types.h
+> > +++ b/drivers/gpu/drm/xe/xe_sync_types.h
+> > @@ -18,9 +18,12 @@ struct xe_sync_entry {
+> >  	struct drm_syncobj *syncobj;
+> >  	struct dma_fence *fence;
+> >  	struct dma_fence_chain *chain_fence;
+> > +	struct dma_fence_chain *ufence_chain_fence;
+> > +	struct drm_syncobj *ufence_syncobj;
+> >  	struct xe_user_fence *ufence;
+> >  	u64 addr;
+> >  	u64 timeline_value;
+> > +	u64 ufence_timeline_value;
+> >  	u32 type;
+> >  	u32 flags;
+> >  };
+> > diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+> > index 10d77666a425..4058c476aa2d 100644
+> > --- a/drivers/gpu/drm/xe/xe_vm.c
+> > +++ b/drivers/gpu/drm/xe/xe_vm.c
+> > @@ -3633,8 +3633,12 @@ int xe_vm_bind_ioctl(struct drm_device *dev,
+> > void *data, struct drm_file *file)
+> >  
+> >  	syncs_user = u64_to_user_ptr(args->syncs);
+> >  	for (num_syncs = 0; num_syncs < args->num_syncs;
+> > num_syncs++) {
+> > +		struct xe_exec_queue *__q = q ?: vm->q[0];
+> > +
+> >  		err = xe_sync_entry_parse(xe, xef,
+> > &syncs[num_syncs],
+> >  					  &syncs_user[num_syncs],
+> > +					  __q->ufence_syncobj,
+> > +					  ++__q-
+> > >ufence_timeline_value,
+> >  					  (xe_vm_in_lr_mode(vm) ?
+> >  					   SYNC_PARSE_FLAG_LR_MODE :
+> > 0) |
+> >  					  (!args->num_binds ?
+> 
