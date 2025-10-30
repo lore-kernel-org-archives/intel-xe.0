@@ -4,53 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6F2CACCFA00
-	for <intel-xe@archiver.kernel.org>; Thu, 30 Oct 2025 22:24:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3CC13CCFA03
+	for <intel-xe@archiver.kernel.org>; Thu, 30 Oct 2025 22:24:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3022310EA74;
-	Thu, 30 Oct 2025 22:24:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 039AD10EA77;
+	Thu, 30 Oct 2025 22:24:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WRPeflh6";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fy1JvqmB";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CE7CB10EA70
- for <intel-xe@lists.freedesktop.org>; Thu, 30 Oct 2025 22:24:28 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D679610EA48
+ for <intel-xe@lists.freedesktop.org>; Thu, 30 Oct 2025 22:24:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761863069; x=1793399069;
+ t=1761863072; x=1793399072;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=HokoXqJ+V30YXKQoegtRDl+o+0qJUdPLJgGXY5GkcSg=;
- b=WRPeflh6RqaEWB5ASl/tXt3AJ4d7Pw9SvOzMj4OZ2jV66OSZlnVmnQn3
- p9z6qDBeaXYFX2dcLgsGCDmMUTuRo+rk0yeCUQksCTeWUEjMDlnpDy36C
- UM6F0NyPIFLz8KgeA+SqUKU4x1Ogfoy30lJebpco1tlV/Dod1UdyNMVZR
- wTRAXyAH3UafCPhtFFSqwVib2aMWC+uHWOy3j+B7C+34Vt0Y4C+ZnA3uN
- vVFRGrV+R7NhgbjI8gNuzVO6DVDnaAES4456dtJYQZ/azK7OJgRjQ+pxF
- 65GGFtWmUhZzzqvG3glWSUYN4AogKsCUWPPdIz40my1RvNMBLX3R7Vlfq Q==;
-X-CSE-ConnectionGUID: QdFScAeWSZ6wMBq4FdpGJw==
-X-CSE-MsgGUID: QRXvJsPCRkW3iy/2QfX7fQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11598"; a="64059962"
-X-IronPort-AV: E=Sophos;i="6.19,267,1754982000"; d="scan'208";a="64059962"
+ bh=325swLZFRavJtzXq0rHMqP2QSMyr/ugNNihsSv82g5s=;
+ b=fy1JvqmBm5LL0wc1AidwIrXkVfCoJxwERLmWFjZZMwsJoyslHYedHndH
+ ocHepht8M75AQjtBe+yT90y3Sj1BN1yIwo0RsyEIBmoJh57xsyUM5Aal0
+ n21mzK10y1Mb9xUgeuH1+0wC4kAYWICW664flpLUMdnaDQosAQituA2zv
+ F7/5ymPOxOX02BgCgn8IHvtYHRuhem5FEpkgpDbPgkm4t4pRmgVsVnPm6
+ By/tSzjKzvbdoOXslc8P8+kpkvxn31XEsj3JDsuXUFxEulmizmIPB67Pj
+ DGEhhSUQ+dmRsvvVdVWx1kv9WIz268vbTNaSiGegUHIlTQy7Rpl9msB9S g==;
+X-CSE-ConnectionGUID: t/6fVq7WSo6bWScArcvKLw==
+X-CSE-MsgGUID: VhLDAPmpRTSlsw8u1+AazA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11598"; a="64059965"
+X-IronPort-AV: E=Sophos;i="6.19,267,1754982000"; d="scan'208";a="64059965"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Oct 2025 15:24:29 -0700
-X-CSE-ConnectionGUID: umeQnbCcTqG1nixRhQHXWA==
-X-CSE-MsgGUID: ftUkxJqNT1a+CDznIlR6hQ==
+ 30 Oct 2025 15:24:32 -0700
+X-CSE-ConnectionGUID: H+tRKPtMRBahnY7qLgF4tQ==
+X-CSE-MsgGUID: Y0g/ZiXBQL+woZ+vc7LtmA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,267,1754982000"; d="scan'208";a="185346524"
+X-IronPort-AV: E=Sophos;i="6.19,267,1754982000"; d="scan'208";a="185346536"
 Received: from ngusev-mobl1.ger.corp.intel.com (HELO
  mwajdecz-hp.clients.intel.com) ([10.245.98.92])
  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Oct 2025 15:24:27 -0700
+ 30 Oct 2025 15:24:30 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
  Lucas De Marchi <lucas.demarchi@intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [PATCH v3 13/17] drm/xe/pf: Allow change PF scheduling priority using
- sysfs
-Date: Thu, 30 Oct 2025 23:23:44 +0100
-Message-ID: <20251030222348.186658-14-michal.wajdeczko@intel.com>
+Subject: [PATCH v3 15/17] drm/xe/pf: Add sysfs device symlinks to enabled VFs
+Date: Thu, 30 Oct 2025 23:23:46 +0100
+Message-ID: <20251030222348.186658-16-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20251030222348.186658-1-michal.wajdeczko@intel.com>
 References: <20251030222348.186658-1-michal.wajdeczko@intel.com>
@@ -71,37 +70,19 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We have just added bulk change of the scheduling priority for all
-VFs and PF, but that only allow to select LOW and NORMAL priority.
+For convenience, for every enabled VF add 'device' symlink from
+our SR-IOV admin VF folder to enabled sysfs PCI VF device entry.
+Remove all those links when disabling PCI VFs.
 
-Add read-write attribute under PF to allow changing its priority
-without impacting other VFs priority settings.
+For completeness, add static 'device' symlink for the PF itself.
 
-For completeness also add read-only attributes under VFs, to show
-currently selected priority levels used by the VFs.
-
-  /sys/bus/pci/drivers/xe/BDF/
-  ├── sriov_admin/
-      ├── pf/
-      │   └── profile
-      │       └── sched_priority	[RW] low, normal, high
-      ├── vf1/
-      │   └── profile
-      │       └── sched_priority	[RO] low, normal
-
-Writing "high" to the PF read-write attribute will change PF
-priority on all tiles/GTs to HIGH (schedule function in the next
-time-slice after current one completes and it has work). Writing
-"low" or "normal" to change priority to LOW/NORMAL is supported.
-
-When read, those files will display the current and available
-scheduling priorities. The currently active priority level will
-be enclosed in square brackets, default output will be like:
-
- $ grep . -h sriov_admin/{pf,vf1,vf2}/profile/sched_priority
- [low] normal high
- [low] normal
- [low] normal
+  /sys/bus/pci/drivers/xe/BDF/sriov_admin/
+  ├── pf
+  │   └── device -> ../../../BDF	# PF BDF
+  ├── vf1
+  │   └── device -> ../../../BDF'	# VF1 BDF
+  ├── vf2
+  │   └── device -> ../../../BDF"	# VF2 BDF
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 Cc: Lucas De Marchi <lucas.demarchi@intel.com>
@@ -109,140 +90,190 @@ Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
-v2: small nit in emit_choice (Lucas)
----
- drivers/gpu/drm/xe/xe_sriov_pf_sysfs.c | 84 +++++++++++++++++++++++++-
- 1 file changed, 82 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_pci_sriov.c      |  5 ++
+ drivers/gpu/drm/xe/xe_sriov_pf_sysfs.c | 93 ++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_sriov_pf_sysfs.h |  3 +
+ 3 files changed, 101 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_sriov_pf_sysfs.c b/drivers/gpu/drm/xe/xe_sriov_pf_sysfs.c
-index 19724a28fb33..0b1b4606ac76 100644
---- a/drivers/gpu/drm/xe/xe_sriov_pf_sysfs.c
-+++ b/drivers/gpu/drm/xe/xe_sriov_pf_sysfs.c
-@@ -17,6 +17,23 @@
- #include "xe_sriov_pf_sysfs.h"
+diff --git a/drivers/gpu/drm/xe/xe_pci_sriov.c b/drivers/gpu/drm/xe/xe_pci_sriov.c
+index 4d5da6686e92..d0fcde66a774 100644
+--- a/drivers/gpu/drm/xe/xe_pci_sriov.c
++++ b/drivers/gpu/drm/xe/xe_pci_sriov.c
+@@ -20,6 +20,7 @@
+ #include "xe_sriov_pf_control.h"
+ #include "xe_sriov_pf_helpers.h"
+ #include "xe_sriov_pf_provision.h"
++#include "xe_sriov_pf_sysfs.h"
  #include "xe_sriov_printk.h"
  
-+static int emit_choice(char *buf, int choice, const char * const *array, size_t size)
-+{
-+	int pos = 0;
-+	int n;
+ static void pf_reset_vfs(struct xe_device *xe, unsigned int num_vfs)
+@@ -138,6 +139,8 @@ static int pf_enable_vfs(struct xe_device *xe, int num_vfs)
+ 	xe_sriov_info(xe, "Enabled %u of %u VF%s\n",
+ 		      num_vfs, total_vfs, str_plural(total_vfs));
+ 
++	xe_sriov_pf_sysfs_link_vfs(xe, num_vfs);
 +
-+	for (n = 0; n < size; n++) {
-+		pos += sysfs_emit_at(buf, pos, "%s%s%s%s",
-+				    n ? " " : "",
-+				    n == choice ? "[" : "",
-+				    array[n],
-+				    n == choice ? "]" : "");
-+	}
-+	pos += sysfs_emit_at(buf, pos, "\n");
+ 	pf_engine_activity_stats(xe, num_vfs, true);
+ 
+ 	return num_vfs;
+@@ -165,6 +168,8 @@ static int pf_disable_vfs(struct xe_device *xe)
+ 
+ 	pf_engine_activity_stats(xe, num_vfs, false);
+ 
++	xe_sriov_pf_sysfs_unlink_vfs(xe, num_vfs);
 +
-+	return pos;
-+}
-+
- /*
-  * /sys/bus/pci/drivers/xe/BDF/
-  * :
-@@ -30,12 +47,14 @@
+ 	pci_disable_sriov(pdev);
+ 
+ 	pf_reset_vfs(xe, num_vfs);
+diff --git a/drivers/gpu/drm/xe/xe_sriov_pf_sysfs.c b/drivers/gpu/drm/xe/xe_sriov_pf_sysfs.c
+index 0b1b4606ac76..a3205bd1c21f 100644
+--- a/drivers/gpu/drm/xe/xe_sriov_pf_sysfs.c
++++ b/drivers/gpu/drm/xe/xe_sriov_pf_sysfs.c
+@@ -9,6 +9,7 @@
+ #include <drm/drm_managed.h>
+ 
+ #include "xe_assert.h"
++#include "xe_pci_sriov.h"
+ #include "xe_pm.h"
+ #include "xe_sriov.h"
+ #include "xe_sriov_pf.h"
+@@ -45,12 +46,14 @@ static int emit_choice(char *buf, int choice, const char * const *array, size_t
+  *     │   └── sched_priority
+  *     ├── pf/
   *     │   ├── ...
++ *     │   ├── device -> ../../../BDF
   *     │   └── profile
   *     │       ├── exec_quantum_ms
-- *     │       └── preempt_timeout_us
-+ *     │       ├── preempt_timeout_us
-+ *     │       └── sched_priority
+  *     │       ├── preempt_timeout_us
+  *     │       └── sched_priority
   *     ├── vf1/
   *     │   ├── ...
++ *     │   ├── device -> ../../../BDF.1
   *     │   └── profile
   *     │       ├── exec_quantum_ms
-- *     │       └── preempt_timeout_us
-+ *     │       ├── preempt_timeout_us
-+ *     │       └── sched_priority
-  *     ├── vf2/
-  *     :
-  *     └── vfN/
-@@ -115,6 +134,12 @@ static const char * const sched_priority_names[] = {
- 	[GUC_SCHED_PRIORITY_HIGH] = "high",
- };
+  *     │       ├── preempt_timeout_us
+@@ -414,6 +417,11 @@ static int pf_sysfs_error(struct xe_device *xe, int err, const char *what)
+ 	return err;
+ }
  
-+static bool sched_priority_change_allowed(unsigned int vfid)
++static void pf_sysfs_note(struct xe_device *xe, int err, const char *what)
 +{
-+	/* As of today GuC FW allows to selectively change only the PF priority. */
-+	return vfid == PFID;
++	xe_sriov_dbg(xe, "Failed to setup sysfs %s (%pe)\n", what, ERR_PTR(err));
 +}
 +
- static bool sched_priority_high_allowed(unsigned int vfid)
+ static void action_put_kobject(void *arg)
  {
- 	/* As of today GuC FW allows to select 'high' priority only for the PF. */
-@@ -199,15 +224,70 @@ static XE_SRIOV_VF_ATTR(NAME)
- DEFINE_SIMPLE_PROVISIONING_SRIOV_VF_ATTR(exec_quantum_ms, eq, u32, "%u\n");
- DEFINE_SIMPLE_PROVISIONING_SRIOV_VF_ATTR(preempt_timeout_us, pt, u32, "%u\n");
+ 	struct kobject *kobj = arg;
+@@ -480,6 +488,29 @@ static int pf_setup_tree(struct xe_device *xe)
+ 	return 0;
+ }
  
-+static ssize_t xe_sriov_vf_attr_sched_priority_show(struct xe_device *xe, unsigned int vfid,
-+						    char *buf)
++static void action_rm_device_link(void *arg)
 +{
-+	size_t num_priorities = ARRAY_SIZE(sched_priority_names);
-+	u32 priority;
++	struct kobject *kobj = arg;
++
++	sysfs_remove_link(kobj, "device");
++}
++
++static int pf_link_pf_device(struct xe_device *xe)
++{
++	struct kobject *kobj = xe->sriov.pf.vfs[PFID].kobj;
 +	int err;
 +
-+	err = xe_sriov_pf_provision_query_vf_priority(xe, vfid, &priority);
++	err = sysfs_create_link(kobj, &xe->drm.dev->kobj, "device");
++	if (err)
++		return pf_sysfs_error(xe, err, "PF device link");
++
++	err = devm_add_action_or_reset(xe->drm.dev, action_rm_device_link, kobj);
++	if (err)
++		return pf_sysfs_error(xe, err, "PF unlink action");
++
++	return 0;
++}
++
+ /**
+  * xe_sriov_pf_sysfs_init() - Setup PF's SR-IOV sysfs tree.
+  * @xe: the PF &xe_device to setup sysfs
+@@ -501,5 +532,67 @@ int xe_sriov_pf_sysfs_init(struct xe_device *xe)
+ 	if (err)
+ 		return err;
+ 
++	err = pf_link_pf_device(xe);
 +	if (err)
 +		return err;
 +
-+	if (!sched_priority_high_allowed(vfid))
-+		num_priorities--;
+ 	return 0;
+ }
 +
-+	xe_assert(xe, priority < num_priorities);
-+	return emit_choice(buf, priority, sched_priority_names, num_priorities);
-+}
-+
-+static ssize_t xe_sriov_vf_attr_sched_priority_store(struct xe_device *xe, unsigned int vfid,
-+						     const char *buf, size_t count)
++/**
++ * xe_sriov_pf_sysfs_link_vfs() - Add VF's links in SR-IOV sysfs tree.
++ * @xe: the &xe_device where to update sysfs
++ * @num_vfs: number of enabled VFs to link
++ *
++ * This function is specific for the PF driver.
++ *
++ * This function will add symbolic links between VFs represented in the SR-IOV
++ * sysfs tree maintained by the PF and enabled VF PCI devices.
++ *
++ * The @xe_sriov_pf_sysfs_unlink_vfs() shall be used to remove those links.
++ */
++void xe_sriov_pf_sysfs_link_vfs(struct xe_device *xe, unsigned int num_vfs)
 +{
-+	size_t num_priorities = ARRAY_SIZE(sched_priority_names);
-+	int match;
++	unsigned int totalvfs = xe_sriov_pf_get_totalvfs(xe);
++	struct pci_dev *pf_pdev = to_pci_dev(xe->drm.dev);
++	struct pci_dev *vf_pdev = NULL;
++	unsigned int n;
 +	int err;
 +
-+	if (!sched_priority_change_allowed(vfid))
-+		return -EOPNOTSUPP;
++	xe_assert(xe, IS_SRIOV_PF(xe));
++	xe_assert(xe, num_vfs <= totalvfs);
 +
-+	if (!sched_priority_high_allowed(vfid))
-+		num_priorities--;
++	for (n = 1; n <= num_vfs; n++) {
++		vf_pdev = xe_pci_sriov_get_vf_pdev(pf_pdev, VFID(n));
++		if (!vf_pdev)
++			return pf_sysfs_note(xe, -ENOENT, "VF link");
 +
-+	match = __sysfs_match_string(sched_priority_names, num_priorities, buf);
-+	if (match < 0)
-+		return -EINVAL;
++		err = sysfs_create_link(xe->sriov.pf.vfs[VFID(n)].kobj,
++					&vf_pdev->dev.kobj, "device");
 +
-+	err = xe_sriov_pf_provision_apply_vf_priority(xe, vfid, match);
-+	return err ?: count;
++		/* must balance xe_pci_sriov_get_vf_pdev() */
++		pci_dev_put(vf_pdev);
++
++		if (err)
++			return pf_sysfs_note(xe, err, "VF link");
++	}
 +}
 +
-+static XE_SRIOV_VF_ATTR(sched_priority);
-+
- static struct attribute *profile_vf_attrs[] = {
- 	&xe_sriov_vf_attr_exec_quantum_ms.attr,
- 	&xe_sriov_vf_attr_preempt_timeout_us.attr,
-+	&xe_sriov_vf_attr_sched_priority.attr,
- 	NULL
- };
- 
-+static umode_t profile_vf_attr_is_visible(struct kobject *kobj,
-+					  struct attribute *attr, int index)
++/**
++ * xe_sriov_pf_sysfs_unlink_vfs() - Remove VF's links from SR-IOV sysfs tree.
++ * @xe: the &xe_device where to update sysfs
++ * @num_vfs: number of VFs to unlink
++ *
++ * This function shall be called only on the PF.
++ * This function will remove "device" links added by @xe_sriov_sysfs_link_vfs().
++ */
++void xe_sriov_pf_sysfs_unlink_vfs(struct xe_device *xe, unsigned int num_vfs)
 +{
-+	struct xe_sriov_kobj *vkobj = to_xe_sriov_kobj(kobj);
++	unsigned int n;
 +
-+	if (attr == &xe_sriov_vf_attr_sched_priority.attr &&
-+	    !sched_priority_change_allowed(vkobj->vfid))
-+		return attr->mode & 0444;
++	xe_assert(xe, IS_SRIOV_PF(xe));
++	xe_assert(xe, num_vfs <= xe_sriov_pf_get_totalvfs(xe));
 +
-+	return attr->mode;
++	for (n = 1; n <= num_vfs; n++)
++		sysfs_remove_link(xe->sriov.pf.vfs[VFID(n)].kobj, "device");
 +}
-+
- static const struct attribute_group profile_vf_attr_group = {
- 	.name = "profile",
- 	.attrs = profile_vf_attrs,
-+	.is_visible = profile_vf_attr_is_visible,
- };
+diff --git a/drivers/gpu/drm/xe/xe_sriov_pf_sysfs.h b/drivers/gpu/drm/xe/xe_sriov_pf_sysfs.h
+index 1e6698cc29d3..ae92ed1766e7 100644
+--- a/drivers/gpu/drm/xe/xe_sriov_pf_sysfs.h
++++ b/drivers/gpu/drm/xe/xe_sriov_pf_sysfs.h
+@@ -10,4 +10,7 @@ struct xe_device;
  
- static const struct attribute_group *xe_sriov_vf_attr_groups[] = {
+ int xe_sriov_pf_sysfs_init(struct xe_device *xe);
+ 
++void xe_sriov_pf_sysfs_link_vfs(struct xe_device *xe, unsigned int num_vfs);
++void xe_sriov_pf_sysfs_unlink_vfs(struct xe_device *xe, unsigned int num_vfs);
++
+ #endif
 -- 
 2.47.1
 
