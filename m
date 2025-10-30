@@ -4,51 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4CDC0CCFA03
-	for <intel-xe@archiver.kernel.org>; Thu, 30 Oct 2025 07:35:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B722DCCF9F8
+	for <intel-xe@archiver.kernel.org>; Thu, 30 Oct 2025 07:35:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D485410E8DA;
-	Thu, 30 Oct 2025 07:35:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 74DC810E8EA;
+	Thu, 30 Oct 2025 07:35:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Xe3Ka20w";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iCsD0+qI";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0537B10E8D1;
- Thu, 30 Oct 2025 07:34:56 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F303810E8DB;
+ Thu, 30 Oct 2025 07:35:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761809698; x=1793345698;
+ t=1761809705; x=1793345705;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=sOZVSG3oUD5Z47U1EJHIVzMwk21dEGjI2X6jUQbBKQE=;
- b=Xe3Ka20w2mB196zjtorohOImRS1Or2KOVrT/REHAUliEfkAR/ixaZass
- 56nl3Ap5faaEeAm2KfAKsrnMnRImTYMQ9ITVof9JyqXLLyiJrqSBkvKgk
- gDGK1YYI2yNKir0qO7hXHjZofZx3RTqoBNOMrPx6KLbXEEoIw+63ozaOs
- yE+RQNWzYxug1m+Gjwv5WyTbzxlX25DoiPAA9Mc7H5M7T1iz4r5nRK7G1
- hnNyC+P5H2Vl/nZhlym5qKqJusy1r37gtjOU5q4WuBWrDWS0meRoUJzWs
- KkET6FX6kvdZFc5NUFhmeGGQMBa3AxOethyYKEF/y6E+CWuMBNqxmLU0K A==;
-X-CSE-ConnectionGUID: uTeVr+aUQZSLI7DC1cquRA==
-X-CSE-MsgGUID: 70YTMer+QuWSbIy9+B1Xug==
-X-IronPort-AV: E=McAfee;i="6800,10657,11597"; a="75063380"
-X-IronPort-AV: E=Sophos;i="6.19,266,1754982000"; d="scan'208";a="75063380"
+ bh=Nd6KtQoK/JyICXg5UZTtZ6MJlxu5Ia9OxVkh1sIJocM=;
+ b=iCsD0+qI7p7APksg6yJBldvcFPhVZsLV3Z03MDGIQfxxxa31/V5trV96
+ 6WPFoGr+jq6J+np0+MmVhgqyI2wt86tL19GowQYmFryHhM7l3YnBaCSK4
+ TcSKFdTfh3YyWHzBQZMVwrm1Q37aCxmRKJewRubM95wghTLH6k0Eu4PPD
+ op2wH5eVV9jRzV/KPOXQiy8YUKhmf1LQtVer6QHmGK/1fbBGmFEDcG0zz
+ i4Rg0s/v+yZHpVBf0gL1Hqq7roUS4L/17eyPYX7jBRgXKzn4khVb/mIBR
+ TH8/Eun+wz+vXOdiG2WPQFiYHimzMauPGs9ax2GQNU4bPqIbYxtEhvn8M w==;
+X-CSE-ConnectionGUID: N/MTldqaQWCoelDu26WlbQ==
+X-CSE-MsgGUID: xiQ/yjKtQDa4yvMwqrDRNA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11597"; a="75063391"
+X-IronPort-AV: E=Sophos;i="6.19,266,1754982000"; d="scan'208";a="75063391"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Oct 2025 00:34:57 -0700
-X-CSE-ConnectionGUID: veOGsFRtT0ypEmox9IkQzg==
-X-CSE-MsgGUID: 0sjDc8EaThqiit4kg3oZSw==
+ 30 Oct 2025 00:35:04 -0700
+X-CSE-ConnectionGUID: V0Eq1H++RhWukfAtFt5Cxw==
+X-CSE-MsgGUID: HEjQ+oe4Qwe4mPICpVYtiA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,266,1754982000"; d="scan'208";a="185075371"
+X-IronPort-AV: E=Sophos;i="6.19,266,1754982000"; d="scan'208";a="185075415"
 Received: from display-adls.igk.intel.com ([10.211.131.198])
- by orviesa006.jf.intel.com with ESMTP; 30 Oct 2025 00:34:56 -0700
+ by orviesa006.jf.intel.com with ESMTP; 30 Oct 2025 00:35:03 -0700
 From: Mika Kahola <mika.kahola@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Cc: Imre Deak <imre.deak@intel.com>,
-	Mika Kahola <mika.kahola@intel.com>
-Subject: [PATCH 13/32] drm/i915/display: Zero Cx0 PLL state before compute and
- HW readout
-Date: Thu, 30 Oct 2025 09:22:30 +0200
-Message-Id: <20251030072249.155095-14-mika.kahola@intel.com>
+Cc: Mika Kahola <mika.kahola@intel.com>,
+	Imre Deak <imre.deak@intel.com>
+Subject: [PATCH 18/32] drm/i915/display: Compute plls for MTL+ platform
+Date: Thu, 30 Oct 2025 09:22:35 +0200
+Message-Id: <20251030072249.155095-19-mika.kahola@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251030072249.155095-1-mika.kahola@intel.com>
 References: <20251030072249.155095-1-mika.kahola@intel.com>
@@ -68,40 +67,107 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Imre Deak <imre.deak@intel.com>
+To bring MTL+ platform aligned with dpll framework we
+need to call and calculate pll state from dpll
+framework.
 
-Ensure Cx0 pll state is initialized to zero before any computation or HW
-readouts, to prevent leaving some parameter in the state uninitialized
-in the actual compute/HW readout functions later.
+v2: Rename mtl_compute_c10phy_dpll() to mtl_compute_non_tc_phy_dpll().
+    The state is computed either for a C10 or on the PTL port B eDP on
+    TypeC PHY case for a C20 PHY PLL. Hence refer to this case as
+    "non_tc_phy" instead of "c10phy".
+
+    Rename mtl_compute_c20phy_dplls() to mtl_compute_tc_phy_dplls() for
+    symmetry with mtl_compute_non_tc_phy_dpll().
 
 Signed-off-by: Imre Deak <imre.deak@intel.com>
 Signed-off-by: Mika Kahola <mika.kahola@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cx0_phy.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 69 +++++++++++++++++++
+ 1 file changed, 69 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-index 29bcfe8fb6f5..3418fc560faf 100644
---- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-@@ -2698,6 +2698,8 @@ static int intel_c20pll_calc_state(struct intel_crtc_state *crtc_state,
- int intel_cx0pll_calc_state(struct intel_crtc_state *crtc_state,
- 			    struct intel_encoder *encoder)
- {
-+	memset(&crtc_state->dpll_hw_state, 0, sizeof(crtc_state->dpll_hw_state));
-+
- 	if (intel_encoder_is_c10phy(encoder))
- 		return intel_c10pll_calc_state(crtc_state, encoder);
- 	return intel_c20pll_calc_state(crtc_state, encoder);
-@@ -3635,7 +3637,7 @@ static void intel_c10pll_state_verify(const struct intel_crtc_state *state,
- void intel_cx0pll_readout_hw_state(struct intel_encoder *encoder,
- 				   struct intel_cx0pll_state *pll_state)
- {
--	pll_state->use_c10 = false;
-+	memset(pll_state, 0, sizeof(*pll_state));
+diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+index a9d9b7113f12..b6a5a519e936 100644
+--- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
++++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+@@ -4320,9 +4320,78 @@ static const struct dpll_info mtl_plls[] = {
+ 	{}
+ };
  
- 	pll_state->tbt_mode = intel_tc_port_in_tbt_alt_mode(enc_to_dig_port(encoder));
- 	if (pll_state->tbt_mode)
++/*
++ * Compute the state for either a C10 PHY PLL, or in the case of the PTL port B,
++ * eDP on TypeC PHY case for a C20 PHY PLL.
++ */
++static int mtl_compute_non_tc_phy_dpll(struct intel_atomic_state *state,
++				       struct intel_crtc *crtc,
++				       struct intel_encoder *encoder)
++{
++	struct intel_crtc_state *crtc_state =
++		intel_atomic_get_new_crtc_state(state, crtc);
++	struct icl_port_dpll *port_dpll =
++		&crtc_state->icl_port_dplls[ICL_PORT_DPLL_DEFAULT];
++	int ret;
++
++	ret = intel_cx0pll_calc_state(crtc_state, encoder, &port_dpll->hw_state);
++	if (ret)
++		return ret;
++
++	/* this is mainly for the fastset check */
++	icl_set_active_port_dpll(crtc_state, ICL_PORT_DPLL_DEFAULT);
++
++	crtc_state->port_clock = intel_cx0pll_calc_port_clock(encoder,
++							      &port_dpll->hw_state.cx0pll);
++
++	return 0;
++}
++
++static int mtl_compute_tc_phy_dplls(struct intel_atomic_state *state,
++				    struct intel_crtc *crtc,
++				    struct intel_encoder *encoder)
++{
++	struct intel_crtc_state *crtc_state =
++		intel_atomic_get_new_crtc_state(state, crtc);
++	const struct intel_crtc_state *old_crtc_state =
++		intel_atomic_get_old_crtc_state(state, crtc);
++	struct icl_port_dpll *port_dpll;
++	int ret;
++
++	/* TODO: Add state calculation for TBT PLL */
++
++	port_dpll = &crtc_state->icl_port_dplls[ICL_PORT_DPLL_MG_PHY];
++	ret = intel_cx0pll_calc_state(crtc_state, encoder, &port_dpll->hw_state);
++	if (ret)
++		return ret;
++
++	/* this is mainly for the fastset check */
++	if (old_crtc_state->intel_dpll &&
++	    old_crtc_state->intel_dpll->info->id == DPLL_ID_ICL_TBTPLL)
++		icl_set_active_port_dpll(crtc_state, ICL_PORT_DPLL_DEFAULT);
++	else
++		icl_set_active_port_dpll(crtc_state, ICL_PORT_DPLL_MG_PHY);
++
++	crtc_state->port_clock = intel_cx0pll_calc_port_clock(encoder,
++							      &port_dpll->hw_state.cx0pll);
++
++	return 0;
++}
++
++static int mtl_compute_dplls(struct intel_atomic_state *state,
++			     struct intel_crtc *crtc,
++			     struct intel_encoder *encoder)
++{
++	if (intel_encoder_is_tc(encoder))
++		return mtl_compute_tc_phy_dplls(state, crtc, encoder);
++	else
++		return mtl_compute_non_tc_phy_dpll(state, crtc, encoder);
++}
++
+ __maybe_unused
+ static const struct intel_dpll_mgr mtl_pll_mgr = {
+ 	.dpll_info = mtl_plls,
++	.compute_dplls = mtl_compute_dplls,
+ };
+ 
+ /**
 -- 
 2.34.1
 
