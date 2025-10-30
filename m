@@ -4,99 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D6CB4CCF9FE
-	for <intel-xe@archiver.kernel.org>; Thu, 30 Oct 2025 19:56:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B6881CCF9E3
+	for <intel-xe@archiver.kernel.org>; Thu, 30 Oct 2025 20:00:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2A3DF10EA13;
-	Thu, 30 Oct 2025 19:56:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6DAF610EA12;
+	Thu, 30 Oct 2025 20:00:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="NjcLN3aJ";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="nMElmBya";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="NjcLN3aJ";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="nMElmBya";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="LMugjHnC";
 	dkim-atps=neutral
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C34E410EA12
- for <intel-xe@lists.freedesktop.org>; Thu, 30 Oct 2025 19:56:51 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id 4BF6F1F7E9;
- Thu, 30 Oct 2025 19:56:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1761854210; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type;
- bh=+cOzXkrD9iHoTwsBb1OIiPMoa22kbXss62UFbuJX2Ac=;
- b=NjcLN3aJ5bssH1BTlzyH7xwTOjObX5RRqe0x4d1iTrqlrf3+aIARaDCgU1Vsh0A1heP4G7
- F6jPtdcwQVMovdmYJVGV6oTo5iaf8eg/WFlGgfZd54SRT/q2VgdrWECglfpbiyCbB/OsYE
- xaU6tgLAf9jaJMjtMVnuQPtkr9zLSwE=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1761854210;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type;
- bh=+cOzXkrD9iHoTwsBb1OIiPMoa22kbXss62UFbuJX2Ac=;
- b=nMElmByaa1mrPr+J4/nhWAeEKDdwAkVI+2Tpzyz8LN3ijrfpaf/ZQc+7xfuJngRqq+ifHP
- fHohSM73D5VID3CQ==
-Authentication-Results: smtp-out2.suse.de;
-	none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1761854210; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type;
- bh=+cOzXkrD9iHoTwsBb1OIiPMoa22kbXss62UFbuJX2Ac=;
- b=NjcLN3aJ5bssH1BTlzyH7xwTOjObX5RRqe0x4d1iTrqlrf3+aIARaDCgU1Vsh0A1heP4G7
- F6jPtdcwQVMovdmYJVGV6oTo5iaf8eg/WFlGgfZd54SRT/q2VgdrWECglfpbiyCbB/OsYE
- xaU6tgLAf9jaJMjtMVnuQPtkr9zLSwE=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1761854210;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type;
- bh=+cOzXkrD9iHoTwsBb1OIiPMoa22kbXss62UFbuJX2Ac=;
- b=nMElmByaa1mrPr+J4/nhWAeEKDdwAkVI+2Tpzyz8LN3ijrfpaf/ZQc+7xfuJngRqq+ifHP
- fHohSM73D5VID3CQ==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id B155D1396A;
- Thu, 30 Oct 2025 19:56:49 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id Q4FaKQHDA2nlYAAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Thu, 30 Oct 2025 19:56:49 +0000
-Date: Thu, 30 Oct 2025 20:56:44 +0100
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-misc-fixes
-Message-ID: <20251030195644.GA188441@localhost.localdomain>
+Received: from lankhorst.se (lankhorst.se [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 07EDB10EA12
+ for <intel-xe@lists.freedesktop.org>; Thu, 30 Oct 2025 20:00:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
+ s=default; t=1761854430;
+ bh=7edbos4kieWV8q9JijTMkgHCBUWIcn7V8RtXL9ouD2w=;
+ h=Date:Subject:To:References:From:In-Reply-To:From;
+ b=LMugjHnCevnnJ77b5Vi67Qj+9lhNRaXjXpDPQZPV1W+qzlZSe9uvZ8ZAefVuMovx6
+ zSLHWAo4R1tbQp2DsGa2vOD+GMyEOg/XjwNKTCr3FWde/Zh/oIbcdRlBDBBCWH3z0q
+ IVLBg0yIRY6QlMvtbOcrFYK3JLo5YGV2cKkze71X5Al4CKzFVMzSgvfkx6jEEJHrni
+ G+MA6ho6h8HfrdSLD/t75NmZP77QFRgB3LCb6yJfWgdC2i9Ys6AF2U+iQBK9i+Kiy6
+ rDNLTRPlgwKDCVKnCeMOt/h2fL7sfE9yJ7pnSLj71lzv9M+1G7fNNK69Sw08AUCWHQ
+ Ct3i/PUkHRCGw==
+Message-ID: <411769c1-d90c-418b-bd3d-30ed434d6285@lankhorst.se>
+Date: Thu, 30 Oct 2025 21:00:29 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-X-Spamd-Result: default: False [-4.30 / 50.00]; BAYES_HAM(-3.00)[100.00%];
- NEURAL_HAM_LONG(-1.00)[-1.000];
- NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
- MISSING_XM_UA(0.00)[]; RCVD_VIA_SMTP_AUTH(0.00)[];
- MIME_TRACE(0.00)[0:+]; RCPT_COUNT_TWELVE(0.00)[16];
- FUZZY_RATELIMITED(0.00)[rspamd.com]; ARC_NA(0.00)[];
- FREEMAIL_TO(0.00)[gmail.com,ffwll.ch];
- FREEMAIL_ENVRCPT(0.00)[gmail.com];
- DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- FROM_EQ_ENVFROM(0.00)[]; FROM_HAS_DN(0.00)[];
- TO_DN_SOME(0.00)[]; RCVD_TLS_ALL(0.00)[];
- TO_MATCH_ENVRCPT_ALL(0.00)[]; RCVD_COUNT_TWO(0.00)[2];
- DBL_BLOCKED_OPENRESOLVER(0.00)[gitlab.freedesktop.org:url,
- localhost.localdomain:mid]
+User-Agent: Mozilla Thunderbird
+Subject: Re: [FOR CI 8/8] drm/i915/display: Use intel_de_write_fw in
+ intel_pipe_fastset
+To: Gustavo Sousa <gustavo.sousa@intel.com>, intel-xe@lists.freedesktop.org
+References: <20251030184710.359870-1-dev@lankhorst.se>
+ <20251030184710.359870-9-dev@lankhorst.se>
+ <176185045446.3303.6205563147139756281@intel.com>
+Content-Language: en-US
+From: Maarten Lankhorst <dev@lankhorst.se>
+In-Reply-To: <176185045446.3303.6205563147139756281@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -111,125 +54,62 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Dave, Sima,
+Hey,
 
-here's the drm-misc-fixes PR for this week.
+Den 2025-10-30 kl. 19:54, skrev Gustavo Sousa:
+> Quoting Maarten Lankhorst (2025-10-30 15:47:10-03:00)
+>> intel_set_pipe_src_size(), hsw_set_linetime_wm(),
+>> intel_cpu_transcoder_set_m1_n1() and intel_set_transcoder_timings_lrr()
+>> are called from an atomic context on PREEMPT_RT, and should be using the
+>> _fw functions.
+>>
+>> Again noticed when trying to disable preemption in vblank evasion:
+>> <3> BUG: sleeping function called from invalid context at kernel/locking/spinlock_rt.c:48
+>> <3> in_atomic(): 1, irqs_disabled(): 0, non_block: 0, pid: 1505, name: kms_cursor_lega
+>> <3> preempt_count: 1, expected: 0
+>> <3> RCU nest depth: 0, expected: 0
+>> <4> 4 locks held by kms_cursor_lega/1505:
+>> <4>  #0: ffffc90003c6f988 (crtc_ww_class_acquire){+.+.}-{0:0}, at: drm_mode_atomic_ioctl+0x13b/0xe90
+>> <4>  #1: ffffc90003c6f9b0 (crtc_ww_class_mutex){+.+.}-{3:3}, at: drm_mode_atomic_ioctl+0x13b/0xe90
+>> <4>  #2: ffff888135b838b8 (&intel_dp->psr.lock){+.+.}-{3:3}, at: intel_psr_lock+0xc5/0xf0 [xe]
+>> <4>  #3: ffff88812607bbc0 (&wl->lock){+.+.}-{2:2}, at: intel_dmc_wl_get+0x3c/0x140 [xe]
+>> <4> CPU: 6 UID: 0 PID: 1505 Comm: kms_cursor_lega Tainted: G     U              6.18.0-rc3-lgci-xe-xe-pw-156729v1+ #1 PREEMPT_{RT,(lazy)}
+>> <4> Tainted: [U]=USER
+>> <4> Hardware name: Intel Corporation Panther Lake Client Platform/PTL-UH LP5 T3 RVP1, BIOS PTLPFWI1.R00.3383.D02.2509240621 09/24/2025
+>> <4> Call Trace:
+>> <4>  <TASK>
+>> <4>  dump_stack_lvl+0xc1/0xf0
+>> <4>  dump_stack+0x10/0x20
+>> <4>  __might_resched+0x174/0x260
+>> <4>  rt_spin_lock+0x63/0x200
+>> <4>  ? intel_dmc_wl_get+0x3c/0x140 [xe]
+>> <4>  intel_dmc_wl_get+0x3c/0x140 [xe]
+> 
+> Isn't the real problem reported here that we are using a regular
+> spinlock for DMC wakelock instead of a raw spinlock?
 
-Best regards
-Thomas
+Regardless whether it is, we should be using the _fw variant here.
+The idea of the pipe_start/end() sections are that all relevant locks are taken,
+and then complete as deterministically as possible. That's a lot easier when all
+locks are taken in advance. If the wakelock was needed, it needed to be taken
+before entering the critical section between pipe_start/pipe_end
 
-drm-misc-fixes-2025-10-30:
-Short summary of fixes pull:
+You're pointing out the related problem that the DMC wakelock implementation is
+incorrect right now.
 
-ast:
-- Preserve correct bits on register I/O
+I believe that too, but we should aim for a better solution. The DMC wakelock
+implementation should not hide the fact it exists, instead it should be
+acquired explicitly like the xe_force_wake_get/put() implementation.
 
-dma-fence:
-- Use correct timeline name
+This may be a bit of work, but it will be more deterministic than the implicit
+api used in i915.
 
-etnaviv:
-- Use correct GPU adress space for flush
+For correctness we could validate and print a debug error if the DMC wakelock
+was not taken.
 
-imx:
-- parallel-display: Fix bridge handling
+intel_de_read() can still optionally validate that the DMC wakelock was taken for
+ranges that need it if debuggig is enabled, but we should aim to remove the
+current spinlock/refcount implementation.
 
-nouveau:
-- Fix locking in scheduler
-
-panel:
-- kingdisplay-kd097d04: Disable EOT packet
-- sitronix-st7789v: Use correct SYNC flags
-
-sched:
-- Fix locking to avoid race condition
-- Fix SIGKILL handling
-
-sysfb:
-- Avoid NULL-pointer access
-The following changes since commit 23437509a69476d4f896891032d62ac868731668:
-
-  drm/panic: Fix 24bit pixel crossing page boundaries (2025-10-21 11:28:03 +0200)
-
-are available in the Git repository at:
-
-  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-fixes-2025-10-30
-
-for you to fetch changes up to a9fb41b5def8e1e0103d5fd1453787993587281e:
-
-  drm/ast: Clear preserved bits from register output value (2025-10-30 20:44:44 +0100)
-
-----------------------------------------------------------------
-Short summary of fixes pull:
-
-ast:
-- Preserve correct bits on register I/O
-
-dma-fence:
-- Use correct timeline name
-
-etnaviv:
-- Use correct GPU adress space for flush
-
-imx:
-- parallel-display: Fix bridge handling
-
-nouveau:
-- Fix locking in scheduler
-
-panel:
-- kingdisplay-kd097d04: Disable EOT packet
-- sitronix-st7789v: Use correct SYNC flags
-
-sched:
-- Fix locking to avoid race condition
-- Fix SIGKILL handling
-
-sysfb:
-- Avoid NULL-pointer access
-
-----------------------------------------------------------------
-Akash Goel (1):
-      dma-fence: Fix safe access wrapper to call timeline name method
-
-David Rosca (1):
-      drm/sched: avoid killing parent entity on child SIGKILL
-
-Luca Ceresoli (2):
-      drm/imx: parallel-display: convert to devm_drm_bridge_alloc() API
-      drm/imx: parallel-display: add the bridge before attaching it
-
-Philipp Stanner (2):
-      drm/sched: Fix race in drm_sched_entity_select_rq()
-      drm/nouveau: Fix race in nouveau_sched_fini()
-
-Sebastian Fleer (1):
-      drm/panel: kingdisplay-kd097d04: Disable EoTp
-
-Sebastian Reichel (1):
-      drm/panel: sitronix-st7789v: fix sync flags for t28cp45tn89
-
-Thomas Zimmermann (2):
-      drm/sysfb: Do not dereference NULL pointer in plane reset
-      drm/ast: Clear preserved bits from register output value
-
-Tomeu Vizoso (1):
-      drm/etnaviv: fix flush sequence logic
-
- drivers/dma-buf/dma-fence.c                        |  2 +-
- drivers/gpu/drm/ast/ast_drv.h                      |  8 ++++----
- drivers/gpu/drm/drm_gem_atomic_helper.c            |  8 ++++++--
- drivers/gpu/drm/etnaviv/etnaviv_buffer.c           |  2 +-
- drivers/gpu/drm/imx/ipuv3/parallel-display.c       | 18 +++++++++---------
- drivers/gpu/drm/nouveau/nouveau_sched.c            | 14 ++++++++++++--
- drivers/gpu/drm/panel/panel-kingdisplay-kd097d04.c |  2 +-
- drivers/gpu/drm/panel/panel-sitronix-st7789v.c     |  7 ++++++-
- drivers/gpu/drm/scheduler/sched_entity.c           |  6 ++++--
- 9 files changed, 44 insertions(+), 23 deletions(-)
-
--- 
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Frankenstrasse 146, 90461 Nuernberg, Germany
-GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
-HRB 36809 (AG Nuernberg)
+Kind regards,
+~Maarten Lankhorst
