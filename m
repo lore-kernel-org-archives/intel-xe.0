@@ -4,52 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DB427CCFA03
-	for <intel-xe@archiver.kernel.org>; Fri, 31 Oct 2025 18:30:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 16E0DCCFA05
+	for <intel-xe@archiver.kernel.org>; Fri, 31 Oct 2025 18:30:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9D90910E303;
+	by gabe.freedesktop.org (Postfix) with ESMTP id CA1BD10E305;
 	Fri, 31 Oct 2025 18:30:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FyTiARRJ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="av/bQp19";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6CA3310E2FF
- for <intel-xe@lists.freedesktop.org>; Fri, 31 Oct 2025 18:29:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A811C10E2FF
+ for <intel-xe@lists.freedesktop.org>; Fri, 31 Oct 2025 18:29:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761935384; x=1793471384;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=BLm1vCqUKtGl579lWCsV+h0qqeIZvhmKlCwmElMdlNQ=;
- b=FyTiARRJVete2Lxp9UDBR1Q5CbAAEYXIaYSopHFYcjNJR0wDndPaIprv
- TEhQCRgT9fmA5EI1WGZGlkBFlWPpkab0QunoDyfq4ctCUyMRnqfQaiHte
- NXXNR6z8TQOEt22hMMiG6/uWmbM8H5toJJTmrAbAhwfqhS9UBVVGkCiAY
- MjjtSpXz6q4w5wVvmGZ2tsxz6I5fDUwviJd+pr+JCIdGaXTU1DZTLI40e
- cDEI6zViXvZDl3LccD7CWmN3mu/u17cs3QX+7oFD+4ppUJ0Xu3w087Uq0
- Wi5JRvGPIkIQLpF0HnJeYFJMNlgFJqY2o+Dh467lnQ3p2jAuWgLv4MFqL w==;
-X-CSE-ConnectionGUID: mlNNiQjPQpemZOdPzSCagA==
-X-CSE-MsgGUID: VQDcZzBfSU2ukacXjrzqgA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11599"; a="63123856"
-X-IronPort-AV: E=Sophos;i="6.19,270,1754982000"; d="scan'208";a="63123856"
+ t=1761935383; x=1793471383;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=MkQlWt88hmMm28Vnt+2gtHviDDRzvKdbOOzdu9KFfc0=;
+ b=av/bQp19qu13QqgbTyF/YxiAha1eE4gDzXHyZLoGqWwYmiKI0wEbHXej
+ f0eZdCv9OGs5yZMp5xGGbptFKnD+XX/JK+csHOhbPOekIAukwLgu66Zlb
+ mndtHOTCA48qjPzJ5AJM/m4WwIyEmpgBNc87RS6MUtEsFtaP+QZrTn3Y0
+ O4lpTBrQM9VkBF7xgI9e7DKnnc7Q6p/gzzP6mmCLeecj+fenya6QLUJD7
+ QGSbXThkKIrXs8HaoQo8qwvhZMXA8eWcfSe7oUHe8kTKI5l8suxD4hWBT
+ zHtXE/H/I6gL1IP6+cvYtc6rACB8QGf2r0IKUxE+AicNoOy3GCP8/zWLm g==;
+X-CSE-ConnectionGUID: tkj537knQZCMRKDFH7PIfQ==
+X-CSE-MsgGUID: L3RjFkyFS+GwZPJsZjD3uA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11599"; a="63123849"
+X-IronPort-AV: E=Sophos;i="6.19,270,1754982000"; d="scan'208";a="63123849"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  31 Oct 2025 11:29:43 -0700
-X-CSE-ConnectionGUID: dj/hQig+QpWnCavpKIpXaA==
-X-CSE-MsgGUID: NE0jua9XSlm0qHhpzIqUfA==
+X-CSE-ConnectionGUID: vanAK0ZoR5a1oDf29DAL+Q==
+X-CSE-MsgGUID: qlatr8VlSJGM6Hr6GHmTeQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,270,1754982000"; d="scan'208";a="185987633"
+X-IronPort-AV: E=Sophos;i="6.19,270,1754982000"; d="scan'208";a="185987627"
 Received: from nvishwa1-desk.sc.intel.com ([172.25.29.131])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  31 Oct 2025 11:29:43 -0700
 From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH 06/16] drm/xe/multi_queue: Add exec_queue set_property ioctl
- support
-Date: Fri, 31 Oct 2025 11:29:26 -0700
-Message-ID: <20251031182936.1882062-7-niranjana.vishwanathapura@intel.com>
+Subject: [PATCH 00/16] drm/xe: Multi Queue feature support
+Date: Fri, 31 Oct 2025 11:29:20 -0700
+Message-ID: <20251031182936.1882062-1-niranjana.vishwanathapura@intel.com>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20251031182936.1882062-1-niranjana.vishwanathapura@intel.com>
-References: <20251031182936.1882062-1-niranjana.vishwanathapura@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -66,137 +63,58 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This patch adds support for exec_queue set_property ioctl.
-It is derived from the original work which is part of
-https://patchwork.freedesktop.org/series/112188/
+Multi Queue is a new mode of execution supported by the compute and
+blitter copy command streamers (CCS and BCS, respectively). It is an
+enhancement of the existing hardware architecture and leverages the
+same submission model. It enables support for efficient, parallel
+execution of multiple queues within a single context.
 
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Signed-off-by: Pallavi Mishra <pallavi.mishra@intel.com>
+Add support for multi-queue feature and enable it on xe3p_xpc.
+
 Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
----
- drivers/gpu/drm/xe/xe_device.c     |  2 ++
- drivers/gpu/drm/xe/xe_exec_queue.c | 31 ++++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_exec_queue.h |  2 ++
- include/uapi/drm/xe_drm.h          | 24 +++++++++++++++++++++++
- 4 files changed, 59 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 47f5391ad8e9..0b496676527a 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -208,6 +208,8 @@ static const struct drm_ioctl_desc xe_ioctls[] = {
- 	DRM_IOCTL_DEF_DRV(XE_MADVISE, xe_vm_madvise_ioctl, DRM_RENDER_ALLOW),
- 	DRM_IOCTL_DEF_DRV(XE_VM_QUERY_MEM_RANGE_ATTRS, xe_vm_query_vmas_attrs_ioctl,
- 			  DRM_RENDER_ALLOW),
-+	DRM_IOCTL_DEF_DRV(XE_EXEC_QUEUE_SET_PROPERTY, xe_exec_queue_set_property_ioctl,
-+			  DRM_RENDER_ALLOW),
- };
- 
- static long xe_drm_ioctl(struct file *file, unsigned int cmd, unsigned long arg)
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-index 78b3a0e2ddd3..0264cab00fd4 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue.c
-+++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-@@ -747,6 +747,37 @@ static const xe_exec_queue_set_property_fn exec_queue_set_property_funcs[] = {
- 							exec_queue_set_multi_queue_priority,
- };
- 
-+int xe_exec_queue_set_property_ioctl(struct drm_device *dev, void *data,
-+				     struct drm_file *file)
-+{
-+	struct xe_device *xe = to_xe_device(dev);
-+	struct xe_file *xef = to_xe_file(file);
-+	struct drm_xe_exec_queue_set_property *args = data;
-+	struct xe_exec_queue *q;
-+	int ret;
-+	u32 idx;
-+
-+	if (XE_IOCTL_DBG(xe, args->reserved[0] || args->reserved[1]))
-+		return -EINVAL;
-+
-+	q = xe_exec_queue_lookup(xef, args->exec_queue_id);
-+	if (XE_IOCTL_DBG(xe, !q))
-+		return -ENOENT;
-+
-+	idx = array_index_nospec(args->property,
-+				 ARRAY_SIZE(exec_queue_set_property_funcs));
-+	ret = exec_queue_set_property_funcs[idx](xe, q, args->value);
-+	if (XE_IOCTL_DBG(xe, ret))
-+		goto err_post_lookup;
-+
-+	xe_exec_queue_put(q);
-+	return 0;
-+
-+ err_post_lookup:
-+	xe_exec_queue_put(q);
-+	return ret;
-+}
-+
- static int exec_queue_user_ext_check(struct xe_exec_queue *q, u64 properties)
- {
- 	u64 secondary_queue_valid_props = BIT_ULL(DRM_XE_EXEC_QUEUE_SET_PROPERTY_MULTI_GROUP) |
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue.h b/drivers/gpu/drm/xe/xe_exec_queue.h
-index 8cd6487018fa..61478b2e883b 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue.h
-+++ b/drivers/gpu/drm/xe/xe_exec_queue.h
-@@ -121,6 +121,8 @@ int xe_exec_queue_destroy_ioctl(struct drm_device *dev, void *data,
- 				struct drm_file *file);
- int xe_exec_queue_get_property_ioctl(struct drm_device *dev, void *data,
- 				     struct drm_file *file);
-+int xe_exec_queue_set_property_ioctl(struct drm_device *dev, void *data,
-+				     struct drm_file *file);
- enum xe_exec_queue_priority xe_exec_queue_device_get_max_priority(struct xe_device *xe);
- 
- void xe_exec_queue_last_fence_put(struct xe_exec_queue *e, struct xe_vm *vm);
-diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index 8ab44413646a..d72151163e77 100644
---- a/include/uapi/drm/xe_drm.h
-+++ b/include/uapi/drm/xe_drm.h
-@@ -106,6 +106,7 @@ extern "C" {
- #define DRM_XE_OBSERVATION		0x0b
- #define DRM_XE_MADVISE			0x0c
- #define DRM_XE_VM_QUERY_MEM_RANGE_ATTRS	0x0d
-+#define DRM_XE_EXEC_QUEUE_SET_PROPERTY	0x0e
- 
- /* Must be kept compact -- no holes */
- 
-@@ -123,6 +124,7 @@ extern "C" {
- #define DRM_IOCTL_XE_OBSERVATION		DRM_IOW(DRM_COMMAND_BASE + DRM_XE_OBSERVATION, struct drm_xe_observation_param)
- #define DRM_IOCTL_XE_MADVISE			DRM_IOW(DRM_COMMAND_BASE + DRM_XE_MADVISE, struct drm_xe_madvise)
- #define DRM_IOCTL_XE_VM_QUERY_MEM_RANGE_ATTRS	DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_VM_QUERY_MEM_RANGE_ATTRS, struct drm_xe_vm_query_mem_range_attr)
-+#define DRM_IOCTL_XE_EXEC_QUEUE_SET_PROPERTY	DRM_IOW(DRM_COMMAND_BASE + DRM_XE_EXEC_QUEUE_SET_PROPERTY, struct drm_xe_exec_queue_set_property)
- 
- /**
-  * DOC: Xe IOCTL Extensions
-@@ -2284,6 +2286,28 @@ struct drm_xe_vm_query_mem_range_attr {
- 
- };
- 
-+/**
-+ * struct drm_xe_exec_queue_set_property - exec queue set property
-+ *
-+ * Sets execution queue properties dynamically.
-+ */
-+struct drm_xe_exec_queue_set_property {
-+	/** @extensions: Pointer to the first extension struct, if any */
-+	__u64 extensions;
-+
-+	/** @exec_queue_id: Exec queue ID */
-+	__u32 exec_queue_id;
-+
-+	/** @property: property to set */
-+	__u32 property;
-+
-+	/** @value: property value */
-+	__u64 value;
-+
-+	/** @reserved: Reserved */
-+	__u64 reserved[2];
-+};
-+
- #if defined(__cplusplus)
- }
- #endif
+Niranjana Vishwanathapura (16):
+  drm/xe/multi_queue: Add multi_queue_enable_mask to gt information
+  drm/xe/multi_queue: Add user interface for multi queue support
+  drm/xe/multi_queue: Add GuC interface for multi queue support
+  drm/xe/multi_queue: Add multi queue priority property
+  drm/xe/multi_queue: Handle invalid exec queue property setting
+  drm/xe/multi_queue: Add exec_queue set_property ioctl support
+  drm/xe/multi_queue: Add support for multi queue dynamic priority
+    change
+  drm/xe/multi_queue: Add multi queue information to guc_info dump
+  drm/xe/multi_queue: Handle tearing down of a multi queue
+  drm/xe/multi_queue: Set QUEUE_DRAIN_MODE for Multi Queue batches
+  drm/xe/multi_queue: Handle CGP context error
+  drm/xe/multi_queue: Tracepoint support
+  drm/xe/multi_queue: Support active group after primary is destroyed
+  drm/xe/doc: Add documentation for Multi Queue Group
+  drm/xe/doc: Add documentation for Multi Queue Group GuC interface
+  drm/xe/multi_queue: Enable multi_queue on xe3p_xpc
+
+ Documentation/gpu/xe/xe_exec_queue.rst        |  14 +
+ drivers/gpu/drm/xe/abi/guc_actions_abi.h      |   4 +
+ .../gpu/drm/xe/instructions/xe_gpu_commands.h |   1 +
+ drivers/gpu/drm/xe/xe_debugfs.c               |   2 +
+ drivers/gpu/drm/xe/xe_device.c                |   9 +-
+ drivers/gpu/drm/xe/xe_exec_queue.c            | 414 +++++++++++-
+ drivers/gpu/drm/xe/xe_exec_queue.h            |  51 ++
+ drivers/gpu/drm/xe/xe_exec_queue_types.h      |  51 ++
+ drivers/gpu/drm/xe/xe_gt_types.h              |   5 +
+ drivers/gpu/drm/xe/xe_guc_ct.c                |   8 +
+ drivers/gpu/drm/xe/xe_guc_fwif.h              |   3 +
+ drivers/gpu/drm/xe/xe_guc_submit.c            | 612 ++++++++++++++++--
+ drivers/gpu/drm/xe/xe_guc_submit.h            |   3 +
+ drivers/gpu/drm/xe/xe_guc_submit_types.h      |  13 +
+ drivers/gpu/drm/xe/xe_lrc.c                   |  32 +
+ drivers/gpu/drm/xe/xe_lrc.h                   |   5 +
+ drivers/gpu/drm/xe/xe_pci.c                   |   2 +
+ drivers/gpu/drm/xe/xe_pci_types.h             |   1 +
+ drivers/gpu/drm/xe/xe_ring_ops.c              |  68 +-
+ drivers/gpu/drm/xe/xe_trace.h                 |  46 ++
+ include/uapi/drm/xe_drm.h                     |  40 ++
+ 21 files changed, 1276 insertions(+), 108 deletions(-)
+
 -- 
 2.43.0
 
