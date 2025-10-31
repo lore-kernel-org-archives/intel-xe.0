@@ -4,55 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4143CCCF9F8
-	for <intel-xe@archiver.kernel.org>; Fri, 31 Oct 2025 10:38:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D1354CCF9FE
+	for <intel-xe@archiver.kernel.org>; Fri, 31 Oct 2025 10:47:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0477C10EB34;
-	Fri, 31 Oct 2025 10:38:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 524E810EB1D;
+	Fri, 31 Oct 2025 10:47:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Qf0BSTxa";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CMyO4vVP";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A7F6710EB35;
- Fri, 31 Oct 2025 10:37:56 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3F9D710EB0D;
+ Fri, 31 Oct 2025 10:47:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761907077; x=1793443077;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=j+ssrSWGUNB5bEu6OWRLsxJzOZF1tfhM8tftgVPO4NI=;
- b=Qf0BSTxaEb/qAunZriPB5gNQAw/zG7/+JrbJwgdQGqoG5qQeb7+4Qcx8
- Flmg1KcTHEnGKrREYJ3K66N9ZO+JNtmBesImkdSxZzvimLWEBppJFdPbY
- RiDjERnu2bjChu2uf4SB45YL+rUqv/aTlqLI0/wT5GwfTDGmXfuAt/O2v
- LasUoNDZN9RlvXG42TXbiSdAkUA+PVopFfgKNRilkrhJsxQBoAsrXj905
- t5NN15kuNlOGVvMc+7P9Dh3Ms2r6AzaBy0yIMkEX3XI3gIPtIM7Bh9uH0
- lgYHxVOZLLRBaBS6p9dnn2EabYzAPFT5UpGVmUMIGeixyUADPohHUOjmc w==;
-X-CSE-ConnectionGUID: 0lGOjbj2RrGX3luxJmqMEQ==
-X-CSE-MsgGUID: qsJaz7ajSx2BIpxX9Hmr2w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11598"; a="86690907"
-X-IronPort-AV: E=Sophos;i="6.19,269,1754982000"; d="scan'208";a="86690907"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Oct 2025 03:37:57 -0700
-X-CSE-ConnectionGUID: vnf79PyjRpGQVDkaDDdbfg==
-X-CSE-MsgGUID: jvs4NgVwSQag0TcoJEstYA==
+ t=1761907661; x=1793443661;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=cw5VT61ZG6SIh8Q+MJGVm9sXyqxLpw0u18nN/vbvAvo=;
+ b=CMyO4vVPfGdBeWV+e9pBoYgIl0ugRF8xKRBZSvTiIPOIuAlCVv7szCqk
+ iffmjiU7beVGSgNgTJ0PTX14GND0WwTqhhcYFsmv+YmnVTy586ZiKXxqV
+ +0F0gvFmFcIPayMCBWKLkxCeC/aadX8jtS+65o4S3U4ElCh3rInpD4o1r
+ dUBjk+KlDkl6/BDUXuaetxQRnfbXO4xmNdPTWN6KbbqEEZoKxdHK8vn7T
+ I+OYKhq/zoSTyIOSDvPD7E3iTTJiaN03wJDeh50pf5AJx+i2mt5vqjgOs
+ 3KjeLx2Bpi4az0LaV2WNfR6wqH3Qws07IFx/fYTNySy9gFA1fL3m2I5+B A==;
+X-CSE-ConnectionGUID: 0i9LM35GS6iPwlPapzkBRw==
+X-CSE-MsgGUID: owy5rckbT0Olzrs2DsznhA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11598"; a="64217539"
+X-IronPort-AV: E=Sophos;i="6.19,269,1754982000"; d="scan'208";a="64217539"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Oct 2025 03:47:41 -0700
+X-CSE-ConnectionGUID: Ht7xIPM9SOGmwM70rTYrug==
+X-CSE-MsgGUID: +HqcysWsQvCaatuvZ7vFTA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,269,1754982000"; d="scan'208";a="190554768"
-Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
- by fmviesa005.fm.intel.com with ESMTP; 31 Oct 2025 03:37:54 -0700
-From: Suraj Kandpal <suraj.kandpal@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Cc: ankit.k.nautiyal@intel.com, arun.r.murthy@intel.com, uma.shankar@intel.com,
- gustavo.sousa@intel.com, lucas.demarchi@intel.com,
- Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH v3 25/25] drm/i915/ltphy: Modify the step that need to be
- skipped
-Date: Fri, 31 Oct 2025 16:06:43 +0530
-Message-Id: <20251031103643.4147868-26-suraj.kandpal@intel.com>
+X-IronPort-AV: E=Sophos;i="6.19,269,1754982000"; d="scan'208";a="223441281"
+Received: from display-adls.igk.intel.com ([10.211.131.198])
+ by orviesa001.jf.intel.com with ESMTP; 31 Oct 2025 03:47:39 -0700
+From: Mika Kahola <mika.kahola@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: Mika Kahola <mika.kahola@intel.com>
+Subject: [CI 00/32] [PATCH 00/32] drm/i915/display: Add MTL+ platforms to
+ support dpll framework
+Date: Fri, 31 Oct 2025 12:35:17 +0200
+Message-Id: <20251031103549.173208-1-mika.kahola@intel.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20251031103643.4147868-1-suraj.kandpal@intel.com>
-References: <20251031103643.4147868-1-suraj.kandpal@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -69,93 +65,67 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Bspec has changed the non tbt pll enable sequence now we skip
-steps 5-17 if no config change has occurred.
+This is v2 of [1], with the following changes
 
-Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-Reviewed-by: Arun R Murthy <arun.r.murthy@intel.com>
----
- drivers/gpu/drm/i915/display/intel_lt_phy.c | 63 +++++++++++----------
- 1 file changed, 33 insertions(+), 30 deletions(-)
+- Add support for eDP on C20 phy pll on PantherLake.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.c b/drivers/gpu/drm/i915/display/intel_lt_phy.c
-index 2af573e6ea68..7dba37d83d3e 100644
---- a/drivers/gpu/drm/i915/display/intel_lt_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_lt_phy.c
-@@ -1674,40 +1674,43 @@ void intel_lt_phy_pll_enable(struct intel_encoder *encoder,
- 					 XE3PLPD_MACCLK_TURNON_LATENCY_US, 2, NULL))
- 			drm_warn(display->drm, "PHY %c PLL MacCLK Ack assertion Timeout after %dus.\n",
- 				 phy_name(phy), XE3PLPD_MACCLK_TURNON_LATENCY_US);
-+
-+		/*
-+		 * 13. Ungate the forward clock by setting
-+		 * PORT_CLOCK_CTL[Forward Clock Ungate] = 1.
-+		 */
-+		intel_de_rmw(display, XELPDP_PORT_CLOCK_CTL(display, port),
-+			     XELPDP_FORWARD_CLOCK_UNGATE,
-+			     XELPDP_FORWARD_CLOCK_UNGATE);
-+
-+		/* 14. SW clears PORT_BUF_CTL2 [PHY Pulse Status]. */
-+		intel_de_rmw(display, XELPDP_PORT_BUF_CTL2(display, port),
-+			     lane_phy_pulse_status,
-+			     lane_phy_pulse_status);
-+		/*
-+		 * 15. Clear the PHY VDR register 0xCC4[Rate Control VDR Update] over
-+		 * PHY message bus for Owned PHY Lanes.
-+		 */
-+		rate_update = intel_lt_phy_read(encoder, INTEL_LT_PHY_LANE0, LT_PHY_RATE_UPDATE);
-+		rate_update &= ~LT_PHY_RATE_CONTROL_VDR_UPDATE;
-+		intel_lt_phy_write(encoder, owned_lane_mask, LT_PHY_RATE_UPDATE,
-+				   rate_update, MB_WRITE_COMMITTED);
-+
-+		/* 16. Poll for PORT_BUF_CTL2 register PHY Pulse Status = 1 for Owned PHY Lanes. */
-+		if (intel_de_wait_custom(display, XELPDP_PORT_BUF_CTL2(display, port),
-+					 lane_phy_pulse_status, lane_phy_pulse_status,
-+					 XE3PLPD_RATE_CALIB_DONE_LATENCY_US, 2, NULL))
-+			drm_warn(display->drm, "PHY %c PLL rate not changed after %dus.\n",
-+				 phy_name(phy), XE3PLPD_RATE_CALIB_DONE_LATENCY_US);
-+
-+		/* 17. SW clears PORT_BUF_CTL2 [PHY Pulse Status]. */
-+		intel_de_rmw(display, XELPDP_PORT_BUF_CTL2(display, port),
-+			     lane_phy_pulse_status,
-+			     lane_phy_pulse_status);
- 	} else {
- 		intel_de_write(display, DDI_CLK_VALFREQ(encoder->port), crtc_state->port_clock);
- 	}
- 
--	/* 13. Ungate the forward clock by setting PORT_CLOCK_CTL[Forward Clock Ungate] = 1. */
--	intel_de_rmw(display, XELPDP_PORT_CLOCK_CTL(display, port),
--		     XELPDP_FORWARD_CLOCK_UNGATE,
--		     XELPDP_FORWARD_CLOCK_UNGATE);
--
--	/* 14. SW clears PORT_BUF_CTL2 [PHY Pulse Status]. */
--	intel_de_rmw(display, XELPDP_PORT_BUF_CTL2(display, port),
--		     lane_phy_pulse_status,
--		     lane_phy_pulse_status);
--	/*
--	 * 15. Clear the PHY VDR register 0xCC4[Rate Control VDR Update] over PHY message bus for
--	 * Owned PHY Lanes.
--	 */
--	rate_update = intel_lt_phy_read(encoder, INTEL_LT_PHY_LANE0, LT_PHY_RATE_UPDATE);
--	rate_update &= ~LT_PHY_RATE_CONTROL_VDR_UPDATE;
--	intel_lt_phy_write(encoder, owned_lane_mask, LT_PHY_RATE_UPDATE,
--			   rate_update, MB_WRITE_COMMITTED);
--
--	/* 16. Poll for PORT_BUF_CTL2 register PHY Pulse Status = 1 for Owned PHY Lanes. */
--	if (intel_de_wait_custom(display, XELPDP_PORT_BUF_CTL2(display, port),
--				 lane_phy_pulse_status, lane_phy_pulse_status,
--				 XE3PLPD_RATE_CALIB_DONE_LATENCY_US, 2, NULL))
--		drm_warn(display->drm, "PHY %c PLL rate not changed after %dus.\n",
--			 phy_name(phy), XE3PLPD_RATE_CALIB_DONE_LATENCY_US);
--
--	/* 17. SW clears PORT_BUF_CTL2 [PHY Pulse Status]. */
--	intel_de_rmw(display, XELPDP_PORT_BUF_CTL2(display, port),
--		     lane_phy_pulse_status,
--		     lane_phy_pulse_status);
--
- 	/*
- 	 * 18. Follow the Display Voltage Frequency Switching - Sequence After Frequency Change.
- 	 * We handle this step in bxt_set_cdclk()
+- As required by the above point use the non_tc_phy instead of c10phy term
+  for the PLL hooks computing the state for, getting/putting etc. the PLLs
+  of the non TypeC ports/outputs (on port A and B). Use the tc_phy instead
+  of the c20phy term for the PLLs of all the other TypeC ports/outputs
+  (port TC1-4).Support for eDP on C20 phy pll on PantherLake.
+
+[1] https://lore.kernel.org/intel-xe/20251001082839.2585559-1-mika.kahola@intel.com/
+
+Imre Deak (15):
+  drm/i915/display: Factor out C10 msgbus access start/end helpers
+  drm/i915/display: Sanitize setting the Cx0 PLL use_c10 flag
+  drm/i915/display: Sanitize calculating C20 PLL state from tables
+  drm/i915/display: Track the C20 PHY VDR state in the PLL state
+  drm/i915/display: Move definition of Cx0 PHY functions earlier
+  drm/i915/display: Add macro to get DDI port width from a register
+    value
+  drm/i915/display: Track the Cx0 PHY enabled lane count in the PLL
+    state
+  drm/i915/display: Sanitize C10 PHY PLL SSC register setup
+  drm/i915/display: Read out the Cx0 PHY SSC enabled state
+  drm/i915/display: Determine Cx0 PLL DP mode from PLL state
+  drm/i915/display: Determine Cx0 PLL port clock from PLL state
+  drm/i915/display: Zero Cx0 PLL state before compute and HW readout
+  drm/i915/display: Print additional Cx0 PLL HW state
+  drm/i915/display: PLL verify debug state print
+  drm/i915/display: Add Thunderbolt support
+
+Mika Kahola (17):
+  drm/i915/display: Rename TBT functions to be ICL specific
+  drm/i915/display: Remove state verification
+  drm/i915/display: PLL information for MTL+
+  drm/i915/display: Update C10/C20 state calculation
+  drm/i915/display: Compute plls for MTL+ platform
+  drm/i915/display: MTL+ .get_dplls
+  drm/i915/display: MTL+ .put_dplls
+  drm/i915/display: Add .update_active_dpll
+  drm/i915/display: Add .update_dpll_ref_clks
+  drm/i915/display: Add .dump_hw_state
+  drm/i915/display: Add .compare_hw_state
+  drm/i915/display: Add .get_hw_state to MTL+ platforms
+  drm/i915/display: Add .get_freq to MTL+ platforms
+  drm/i915/display: Add .crtc_get_dpll hook
+  drm/i915/display: Add .enable_clock on DDI for MTL+ platforms
+  drm/i915/display: Get configuration for C10 and C20
+  drm/i915/display: Enable dpll framework for MTL+
+
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c  | 896 ++++++++++--------
+ drivers/gpu/drm/i915/display/intel_cx0_phy.h  |  25 +-
+ drivers/gpu/drm/i915/display/intel_ddi.c      |  81 +-
+ drivers/gpu/drm/i915/display/intel_display.c  |  32 -
+ .../gpu/drm/i915/display/intel_display_regs.h |   7 +-
+ drivers/gpu/drm/i915/display/intel_dpll.c     |  24 +-
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 314 +++++-
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.h |   7 +
+ .../drm/i915/display/intel_modeset_verify.c   |   1 -
+ 9 files changed, 893 insertions(+), 494 deletions(-)
+
 -- 
 2.34.1
 
