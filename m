@@ -4,49 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B0E79CCF9F8
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E4BE9CCFA05
 	for <intel-xe@archiver.kernel.org>; Fri, 31 Oct 2025 18:30:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7410110EC13;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9070710EC15;
 	Fri, 31 Oct 2025 18:30:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BUGZH6O2";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="T3xft8To";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A8CC210E2FF
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DBAED10E2FF
  for <intel-xe@lists.freedesktop.org>; Fri, 31 Oct 2025 18:29:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761935384; x=1793471384;
+ t=1761935385; x=1793471385;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=qhVPNFa3ObYETwc/6BHVKyzcQ+QEC7kTRGJNzvAHrcI=;
- b=BUGZH6O2TnzYgMamfHAa8e09o9hm/tz6Q0uJ3Xx7LU1jKEkIkEz0OLit
- miN2qcduy1sKfayBU9dlY9dtAhJNaIfcYPqWdOykoRC3sCz27B74rrPFF
- j/t0aTc4ChVvG0fl6CyrG3HIn3Z8vTlvdtTCGkdTpOOUq7ZRHLjYllrP4
- 7/FnRlUjL2W7FdUd65pfz+XZwvM9Tbor87801/CyfklKHbTCaKG2+XFY8
- 1WALu4ax2s61Fkhu/VqCmhvFy4LGd0xtx1tQt9IPU9dBW4JrjmGXb58wq
- FqJyzm7w2Nn2bFg5YdnkBRg2XIus5/7sogEaqXYDTNBkqr2RaABWRbl8F Q==;
-X-CSE-ConnectionGUID: l1BM5TzWRf+2gyK+qDCxZQ==
-X-CSE-MsgGUID: fnLWL0lIQiCHBnDdYqfm5Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11599"; a="63123858"
-X-IronPort-AV: E=Sophos;i="6.19,270,1754982000"; d="scan'208";a="63123858"
+ bh=+A0bCrmDS/EhLrHnmSqRtxkDSchrARoO7XBgIkGMAfM=;
+ b=T3xft8ToPRewozJljqnhh4Rwf+IoaKq5h6rW+mZAdiKKzG9J5RfKBRnh
+ ifDxeF7GezpUW0AViNfDJl3agOvAaUmCRImPHrgzRoyu4HI46dnNc6rFB
+ nbjWN1kzsWKDaheYTF9GaSE+PExt+ZTORf27Tp2j0Dcyax88qz0IPXT2M
+ 0mvcuVXdZqU+UBEE0O2cRzAJ3pYecsOlQoyoqJpM5yGwC4LumUOO/+xaQ
+ 7uEkqm5N02WZ5D7nzABFCP6dbUlyFUvl08Ycc/tHUnIZWzJnybj1PALcq
+ fAVLneJyLUqDPtzwFiyP+CYNzjVTD+62g7MuiGUixIgoaUn2EB4zPVNol A==;
+X-CSE-ConnectionGUID: qBbOm74ZRqusHreeysPbVw==
+X-CSE-MsgGUID: yGJ+b0oSTvC9pKg7dwQFKQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11599"; a="63123862"
+X-IronPort-AV: E=Sophos;i="6.19,270,1754982000"; d="scan'208";a="63123862"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Oct 2025 11:29:43 -0700
-X-CSE-ConnectionGUID: ad1VMxF6SY2i+Bjob6dFGw==
-X-CSE-MsgGUID: ttJXZ0zYR121+3vOETFD5g==
+ 31 Oct 2025 11:29:44 -0700
+X-CSE-ConnectionGUID: SV5QzRZoSY+MdzJLC5pr2w==
+X-CSE-MsgGUID: Q1jgKY68QI649hrpFHDM2Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,270,1754982000"; d="scan'208";a="185987635"
+X-IronPort-AV: E=Sophos;i="6.19,270,1754982000"; d="scan'208";a="185987640"
 Received: from nvishwa1-desk.sc.intel.com ([172.25.29.131])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Oct 2025 11:29:43 -0700
+ 31 Oct 2025 11:29:44 -0700
 From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH 08/16] drm/xe/multi_queue: Add multi queue information to
- guc_info dump
-Date: Fri, 31 Oct 2025 11:29:28 -0700
-Message-ID: <20251031182936.1882062-9-niranjana.vishwanathapura@intel.com>
+Subject: [PATCH 12/16] drm/xe/multi_queue: Tracepoint support
+Date: Fri, 31 Oct 2025 11:29:32 -0700
+Message-ID: <20251031182936.1882062-13-niranjana.vishwanathapura@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20251031182936.1882062-1-niranjana.vishwanathapura@intel.com>
 References: <20251031182936.1882062-1-niranjana.vishwanathapura@intel.com>
@@ -66,67 +65,95 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Dump multi queue specific information in the guc exec queue
-dump.
+Add xe_exec_queue_create_multi_queue event with
+multi-queue information.
 
 Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc_submit.c       | 10 ++++++++++
- drivers/gpu/drm/xe/xe_guc_submit_types.h | 13 +++++++++++++
- 2 files changed, 23 insertions(+)
+ drivers/gpu/drm/xe/xe_guc_submit.c |  5 +++-
+ drivers/gpu/drm/xe/xe_trace.h      | 41 ++++++++++++++++++++++++++++++
+ 2 files changed, 45 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index 426b64ef8d99..b84a0be2eefe 100644
+index 605352145d76..bc7296edf1be 100644
 --- a/drivers/gpu/drm/xe/xe_guc_submit.c
 +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -3032,6 +3032,11 @@ xe_guc_exec_queue_snapshot_capture(struct xe_exec_queue *q)
- 	if (snapshot->parallel_execution)
- 		guc_exec_queue_wq_snapshot_capture(q, snapshot);
+@@ -2001,7 +2001,10 @@ static int guc_exec_queue_init(struct xe_exec_queue *q)
+ 		mutex_unlock(&group->list_lock);
+ 	}
  
-+	snapshot->is_multi_queue = xe_exec_queue_is_multi_queue(q);
-+	if (snapshot->is_multi_queue) {
-+		snapshot->multi_queue.primary = xe_exec_queue_multi_queue_primary(q)->guc->id;
-+		snapshot->multi_queue.pos = q->multi_queue.pos;
-+	}
- 	spin_lock(&sched->base.job_list_lock);
- 	snapshot->pending_list_size = list_count_nodes(&sched->base.pending_list);
- 	snapshot->pending_list = kmalloc_array(snapshot->pending_list_size,
-@@ -3114,6 +3119,11 @@ xe_guc_exec_queue_snapshot_print(struct xe_guc_submit_exec_queue_snapshot *snaps
- 	if (snapshot->parallel_execution)
- 		guc_exec_queue_wq_snapshot_print(snapshot, p);
+-	trace_xe_exec_queue_create(q);
++	if (xe_exec_queue_is_multi_queue(q))
++		trace_xe_exec_queue_create_multi_queue(q);
++	else
++		trace_xe_exec_queue_create(q);
  
-+	if (snapshot->is_multi_queue) {
-+		drm_printf(p, "\tMulti queue primary GuC ID: %d\n", snapshot->multi_queue.primary);
-+		drm_printf(p, "\tMulti queue position: %d\n", snapshot->multi_queue.pos);
-+	}
+ 	return 0;
+ 
+diff --git a/drivers/gpu/drm/xe/xe_trace.h b/drivers/gpu/drm/xe/xe_trace.h
+index c9d0748dae9d..6d12fcc13f43 100644
+--- a/drivers/gpu/drm/xe/xe_trace.h
++++ b/drivers/gpu/drm/xe/xe_trace.h
+@@ -13,6 +13,7 @@
+ #include <linux/types.h>
+ 
+ #include "xe_exec_queue_types.h"
++#include "xe_exec_queue.h"
+ #include "xe_gpu_scheduler_types.h"
+ #include "xe_gt_types.h"
+ #include "xe_guc_exec_queue_types.h"
+@@ -97,11 +98,51 @@ DECLARE_EVENT_CLASS(xe_exec_queue,
+ 			      __entry->guc_state, __entry->flags)
+ );
+ 
++DECLARE_EVENT_CLASS(xe_exec_queue_multi_queue,
++		    TP_PROTO(struct xe_exec_queue *q),
++		    TP_ARGS(q),
 +
- 	for (i = 0; snapshot->pending_list && i < snapshot->pending_list_size;
- 	     i++)
- 		drm_printf(p, "\tJob: seqno=%d, fence=%d, finished=%d\n",
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit_types.h b/drivers/gpu/drm/xe/xe_guc_submit_types.h
-index dc7456c34583..20dddf50d802 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit_types.h
-+++ b/drivers/gpu/drm/xe/xe_guc_submit_types.h
-@@ -135,6 +135,19 @@ struct xe_guc_submit_exec_queue_snapshot {
- 		u32 wq[WQ_SIZE / sizeof(u32)];
- 	} parallel;
- 
-+	/** @is_multi_queue: The exec queue is part of a multi queue group */
-+	bool is_multi_queue;
-+	/** @multi_queue: snapshot of the multi queue information */
-+	struct {
-+		/**
-+		 * @multi_queue.primary: GuC id of the primary exec queue
-+		 * of the multi queue group.
-+		 */
-+		u32 primary;
-+		/** @multi_queue.pos: Position of the exec queue within the multi queue group */
-+		u8 pos;
-+	} multi_queue;
++		    TP_STRUCT__entry(
++			     __string(dev, __dev_name_eq(q))
++			     __field(enum xe_engine_class, class)
++			     __field(u32, logical_mask)
++			     __field(u8, gt_id)
++			     __field(u16, width)
++			     __field(u32, guc_id)
++			     __field(u32, guc_state)
++			     __field(u32, flags)
++			     __field(u32, primary)
++			     ),
 +
- 	/** @pending_list_size: Size of the pending list snapshot array */
- 	int pending_list_size;
- 	/** @pending_list: snapshot of the pending list info */
++		    TP_fast_assign(
++			   __assign_str(dev);
++			   __entry->class = q->class;
++			   __entry->logical_mask = q->logical_mask;
++			   __entry->gt_id = q->gt->info.id;
++			   __entry->width = q->width;
++			   __entry->guc_id = q->guc->id;
++			   __entry->guc_state = atomic_read(&q->guc->state);
++			   __entry->flags = q->flags;
++			   __entry->primary = xe_exec_queue_multi_queue_primary(q)->guc->id;
++			   ),
++
++		    TP_printk("dev=%s, %d:0x%x, gt=%d, width=%d guc_id=%d, guc_state=0x%x, flags=0x%x, primary=%d",
++			      __get_str(dev), __entry->class, __entry->logical_mask,
++			      __entry->gt_id, __entry->width, __entry->guc_id,
++			      __entry->guc_state, __entry->flags,
++			      __entry->primary)
++);
++
+ DEFINE_EVENT(xe_exec_queue, xe_exec_queue_create,
+ 	     TP_PROTO(struct xe_exec_queue *q),
+ 	     TP_ARGS(q)
+ );
+ 
++DEFINE_EVENT(xe_exec_queue_multi_queue, xe_exec_queue_create_multi_queue,
++	     TP_PROTO(struct xe_exec_queue *q),
++	     TP_ARGS(q)
++);
++
+ DEFINE_EVENT(xe_exec_queue, xe_exec_queue_supress_resume,
+ 	     TP_PROTO(struct xe_exec_queue *q),
+ 	     TP_ARGS(q)
 -- 
 2.43.0
 
