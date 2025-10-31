@@ -4,185 +4,163 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2EB6ACCF9EB
-	for <intel-xe@archiver.kernel.org>; Fri, 31 Oct 2025 06:25:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4D476CCF9EE
+	for <intel-xe@archiver.kernel.org>; Fri, 31 Oct 2025 07:46:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3CF1110E13F;
-	Fri, 31 Oct 2025 06:25:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ED95910E2BA;
+	Fri, 31 Oct 2025 07:46:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="N5mWxxID";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="y20qwXm5";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5E52489B70;
- Fri, 31 Oct 2025 06:25:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761891915; x=1793427915;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=9gCLVud58HBkmBcqsHlWT3Ic+UU4MZ+ZQZwFss+kfk8=;
- b=N5mWxxIDIpOM6R/Yks8gY3uVvSzgK9kBsQVpeIGTKdkteVX2nKXdBJly
- P9OJYYiVKJ58D3/cJTfiZqo1Z2A8YcP9qgsQ7FG9TxxSEYraMe04xldG2
- rE2Tme7vzb8xuFl4TNZYpeWRB+D8+lxheLAi4rMohz9zGESXTHd090Lbw
- ArnkSnVcF3/vf+i4ZIhTMi8ZHh+RAWNhBEeiBW7c6Z0DkTuqfFF4sz31f
- VPlljje0ZzJyyWwa6/oOi61Rg5rscRkgTFzf3RHCuUfUIcuCFQPd99PVT
- CEQc/CtKLp2itiJ+qJqQGLi+Onhe7BuL8AUkxkIkX1IfHsrRMwZklj08Q Q==;
-X-CSE-ConnectionGUID: yF+aLfgkTDyZxc/QLpXjMg==
-X-CSE-MsgGUID: Jy4YBVbsQk2q91yHKAjenQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11598"; a="63742376"
-X-IronPort-AV: E=Sophos;i="6.19,268,1754982000"; d="scan'208";a="63742376"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Oct 2025 23:25:14 -0700
-X-CSE-ConnectionGUID: oHy5E37PRjytwZwYXLiJhQ==
-X-CSE-MsgGUID: zk64OrmzRn2JrbZYv+7eqw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,268,1754982000"; d="scan'208";a="186897225"
-Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
- by fmviesa010.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Oct 2025 23:25:13 -0700
-Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
- fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Thu, 30 Oct 2025 23:25:13 -0700
-Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
- FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27 via Frontend Transport; Thu, 30 Oct 2025 23:25:13 -0700
-Received: from PH7PR06CU001.outbound.protection.outlook.com (52.101.201.24) by
- edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Thu, 30 Oct 2025 23:25:13 -0700
+Received: from DM5PR21CU001.outbound.protection.outlook.com
+ (mail-centralusazon11011012.outbound.protection.outlook.com [52.101.62.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7F9B310E2BA;
+ Fri, 31 Oct 2025 07:46:41 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=P1iy5OKmo4uP7br1tKFQJBaUsCAw7hmUc4deI6NUUJ78B4XJOWGCmdHQGqUZH9yqwXTxu9UGMRyvLn2XHvSK75jvE66OLzAVy1K4rnpW+uSouYVlCoAByPYZ+l1XO3m6RBV/lW7T54WS1GureKIAl/cEFZTbBVZdU9LIImGParvXDoetglKf7po7dqqvoeRrwI/9EnSPtMSW3bCykdvTZ9xljwvarLgEEcNGPUAUNd7JkSeOOySIw2KABAq64KW1C0Sth3xsdu/osMyFH+a8iEgu46ELtVtl0tcZWp9Q1XQgIhPRKUAdSKke8wzKl4S1+5F+GvWgdj3FFRsFIbKaQw==
+ b=lKI28spnnbqY3sfL+cQ0idYcTMlRCRFtPwa9vkCuDPrkyx3y76NUxcOc3CVDfPsfbf/8tsY+/5Tr0odzSotfld3FlV5tF5W2kZ/ySw7JrsrkcCXP3zEGB/4MqNH5IwdOEL3omYabtmZhIdwMnXcWecItwdyeaMHGiFhMaaMy288ZmRajiJ4PAGOk0HOPt0eqnoewf84RDakauOtdCWRLL80LBGK9YLDsTqMxIO3dNWIZByhC+kD6HFgDCCapKLZ77OmZbyuBwiOVpXPLBiUzK+KNEa+r0cTU59PUouqT20KH7A72fw2UCuSUBUEJdt/em57vHR6d7hfbVnzhB32ncw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=p5bogrD5OKkL5fEnyzepgMXJ3vWfYQZePC9IIPGK5Ck=;
- b=NR/mjvJ5qEPq5Ix1khgpKCNOFqKr4vA89s4iPqy2tT/4DjyN7qGftEZ1eo2jtvJkdS/NRH5nYHyY8OBYdqjqkSz+40ZSDfBGNvPzWQxjvILt7rV9HzY1HvDMQevaeVpeoAB7IYvxsUiaasf40STor7rmSukw3uN/B9vbpgayHokMkN44Ia0GkTyQ9DvIenKAUidK9kZH9kYX8JkLnMVvDSL6qSOaJHkwRXCz0Bws13Hr3B/IKPBeuewXskPhOqTtVGoIwadaWPM3yfRM8H1fZJH9VEzPZ32hEdjImgav49qAlSRkZn3E1jLXAIc6Zq/8ux82I0OI3uojCv44fDHHoQ==
+ bh=XqCFTEl0a4p5uxwOX3cgbfTI/rz1vGLtBw3lGhai40Y=;
+ b=oJqZMaEhhv5accf94Aed2fafEh/DYJpgpT5frncg40lQxOh4mqoFimBs5VoofTastihHBbKdZjw7azg9xSN4I2vGu6KnE4TimhC1v2V86AVpqAHdzz1teQdSHrLSmOd3XwgMLSiTe8qSiNEqVuJre9syZExsXjE77ax21Xlsj8ih1ytrgrOjNn1wNkjoeWGCYi0CbGG/2bAOwjjezYcxnFnp+IUHv/u/eR/wkYFDmIoyiS4k1A4XHUD6/S/RtnlMViBiW66XU1AECgvzm9xSxdhqVCj3b/DFUqAhVIsOV0Z3xpeD3hznMKgfMDZO6icitrI13tg+4gMwEI4sdoW2fA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=XqCFTEl0a4p5uxwOX3cgbfTI/rz1vGLtBw3lGhai40Y=;
+ b=y20qwXm5oll1am/Q18hX4a3C2tDXPt1c2wxvR6yk4wRq3D75PgW5asNAlPDo7Ol/WXlbt/+lmS24qpxuthU1mRyG8+g8GeW4lhnEJOm/bPPO31pg15p1uRlqYmKaae8K+ExFyoyLbFx9Hz8UHUwlLaagguazUHKrcI0X7JzaBuc=
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DM4PR11MB5341.namprd11.prod.outlook.com (2603:10b6:5:390::22)
- by IA0PR11MB7814.namprd11.prod.outlook.com (2603:10b6:208:408::21) with
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
+ by DS0PR12MB8503.namprd12.prod.outlook.com (2603:10b6:8:15a::10) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9275.13; Fri, 31 Oct
- 2025 06:25:05 +0000
-Received: from DM4PR11MB5341.namprd11.prod.outlook.com
- ([fe80::397:7566:d626:e839]) by DM4PR11MB5341.namprd11.prod.outlook.com
- ([fe80::397:7566:d626:e839%7]) with mapi id 15.20.9253.013; Fri, 31 Oct 2025
- 06:25:05 +0000
-Message-ID: <43d19b0d-a14f-420a-a060-bec3c1ac4308@intel.com>
-Date: Fri, 31 Oct 2025 11:54:58 +0530
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9275.14; Fri, 31 Oct
+ 2025 07:46:39 +0000
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::46fb:96f2:7667:7ca5]) by PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::46fb:96f2:7667:7ca5%4]) with mapi id 15.20.9275.013; Fri, 31 Oct 2025
+ 07:46:39 +0000
+Message-ID: <146d57e6-29dd-4412-9786-a630574e4872@amd.com>
+Date: Fri, 31 Oct 2025 08:46:34 +0100
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 26/26] drm/i915/ltphy: Implement HDMI Algo for Pll state
-To: Suraj Kandpal <suraj.kandpal@intel.com>, <intel-xe@lists.freedesktop.org>, 
- <intel-gfx@lists.freedesktop.org>
-CC: <arun.r.murthy@intel.com>, <uma.shankar@intel.com>,
- <gustavo.sousa@intel.com>, <lucas.demarchi@intel.com>
-References: <20251024100712.3776261-1-suraj.kandpal@intel.com>
- <20251024100712.3776261-27-suraj.kandpal@intel.com>
+Subject: Re: [RFC v2 0/8] dma-buf: Add support for mapping dmabufs via
+ interconnects
+To: "Kasireddy, Vivek" <vivek.kasireddy@intel.com>,
+ Jason Gunthorpe <jgg@nvidia.com>
+Cc: Leon Romanovsky <leonro@nvidia.com>,
+ Sumit Semwal <sumit.semwal@linaro.org>,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Simona Vetter <simona.vetter@ffwll.ch>,
+ "Brost, Matthew" <matthew.brost@intel.com>,
+ "Kim, Dongwon" <dongwon.kim@intel.com>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+ "linaro-mm-sig@lists.linaro.org" <linaro-mm-sig@lists.linaro.org>
+References: <20251027044712.1676175-1-vivek.kasireddy@intel.com>
+ <20251029002726.GA1092494@nvidia.com>
+ <IA0PR11MB7185E85E1CFAA04485768E30F8FBA@IA0PR11MB7185.namprd11.prod.outlook.com>
+ <20251030134310.GR1018328@nvidia.com>
+ <CH3PR11MB71772DF7DC3776F838AA8CC8F8F8A@CH3PR11MB7177.namprd11.prod.outlook.com>
 Content-Language: en-US
-From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-In-Reply-To: <20251024100712.3776261-27-suraj.kandpal@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+In-Reply-To: <CH3PR11MB71772DF7DC3776F838AA8CC8F8F8A@CH3PR11MB7177.namprd11.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MA0PR01CA0104.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:af::10) To DM4PR11MB5341.namprd11.prod.outlook.com
- (2603:10b6:5:390::22)
+X-ClientProxiedBy: FR4P281CA0088.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:cd::19) To PH7PR12MB5685.namprd12.prod.outlook.com
+ (2603:10b6:510:13c::22)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|IA0PR11MB7814:EE_
-X-MS-Office365-Filtering-Correlation-Id: b7bcf188-1aef-4ae0-979b-08de18463b2c
+X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|DS0PR12MB8503:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3ed14975-397a-4fd4-a975-08de1851a014
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?bFk5aUJyNUZJQmlHOVVtSFZjVDhXMjhXWUxrMFFrUVMvQ002NmtiY3A1bDNX?=
- =?utf-8?B?OGM4RmZ1V0QrL0VSaXpsblpTeTVoeFNiNGYwTS85bzlQWG5GeENvcmprY211?=
- =?utf-8?B?a3RBYzJoaUsvcjRmZWRpekRJNUZmZmhZTmVwVS82T3pWalRDZ0JzYzJjRVFv?=
- =?utf-8?B?MHVteU9ZaXh1OVQwaS9TaysyeDVic0lBV1ZnSUtHRHhYNVljQ1RqVk1RV3Zo?=
- =?utf-8?B?V0VrQlFFUXU0VURRSW9lcGNIemdUU3U2bjZ4dDZGT2xJbmJteng4by9QcTF2?=
- =?utf-8?B?dlNHbTlnRE82d1IzMkFEWUVVRVpiOGlmOEgxY2x2cW13djVCaGp1UUJKY0Vj?=
- =?utf-8?B?R1F1dzV4cFpSTjcyWnNEVHBZUVArbWR5cnJERlJsT2hReFgzVFdZRDVrYWFN?=
- =?utf-8?B?aFpLUDFoYm9sUWVSdVpxZ2NpWit1MTZSZE9EUmNaTXd1OVpVVkdSdGJzR09D?=
- =?utf-8?B?NEpmalJRaGwwSEF6Qk52SFA3TGJjajdJc2RtNXFLblk4T0l6bUs0aVV6RXl5?=
- =?utf-8?B?cGZzZmdtYUNNczZ6TXVCWXNoY2lkUFZyMk1DUXg4MFFVOUlpT0orNHpXeVhQ?=
- =?utf-8?B?MTVxVS9lTUdrSzZtcXY1K213cXQ0TGoxdDVMc3E4SkZqK24yMzI2SjQ2dVFD?=
- =?utf-8?B?cFlPT2N2dGdLQnc0SHNhTWJaZFYvRWFIdmoyZVVhSm1qOXM2MFVrS25nTTUv?=
- =?utf-8?B?c0Q1Wk5tY203MWtXcTdPZmw5YUVkczlJWUx6ak5lYWlYR25ab2l1dFAwQUNm?=
- =?utf-8?B?K1BzT3BMcnhVbWl4WTdKajg1MStzYVRBb2FMMVlZZHFBbzA2YVZWcFJPVm9h?=
- =?utf-8?B?ZDVIOUM5UmFQT1l3UUFqYng5aVRlT0d1T2NnTDRNNFdQZmRnL0RuRW5TL3Ja?=
- =?utf-8?B?cUZrVE1RQ1pPaUs1L3QyclNNeDViSTMybHovQS9QakVkYW5WYkR4VVVDMmNV?=
- =?utf-8?B?enlCMkxsVGcvamNGa2ZJUXhZWEpRdFBDTGQ0ZzZuQUU1U2ViK1lETkh2OTAv?=
- =?utf-8?B?UDUwRVRjT2U2TndYcTZWS0VZbGhyWkExeHgvdFBKMmpEazVtYmdLdnRxTXJr?=
- =?utf-8?B?SHBJZ2FKTUUrWE0yVExYeEtlbnhIUE9GQ093WUtEQVNBNXhZcGZjRFBLVW9R?=
- =?utf-8?B?emJDeEpvYjdhY3NaR044YVphNDYxRDhtNDNKVUFtQmxXSW5lcUZRYVJTMFY2?=
- =?utf-8?B?NWx2cGtMRFoxL1I2dytsemdONUJjaWtPNWh2Q0VEWVhmbG1tOHZULytRQ2tn?=
- =?utf-8?B?RU9mMXNOTzJ4dFdrTENRaEN4UmtQZjI5dW1xaUkrb1BGZjlXZHdnOFZDa2tF?=
- =?utf-8?B?c0VUb1lDN2UwMFZjNWtFRjd4VWZOUjdZSXBhaFpXUXVlRFV4RzhOMGlxcGFv?=
- =?utf-8?B?YXYyQ2duWCtyd05nd0xmZHV6eU0reTJlaEF4RGlSaXA3TnZ0UkRUemNHdXcv?=
- =?utf-8?B?MzF4RC9tRzlrVGxTeVJ0bDRSd2ZhU3dPZ2h2cDJJYTVZTmtha1BRM20yejY5?=
- =?utf-8?B?VW9ZNjdJR281bnVFNzdMVUlicTU0U1dkNmk4QWc4VTFrUUhaRU9MQk55cnFy?=
- =?utf-8?B?bjVHVk5zUjBhQ2JnY3RvMS9ybFBGQWpSK0dJTXZSOFJzanNzYWVnY1J0RnNj?=
- =?utf-8?B?QjVNaWM2cmNqNkNCWTRiNlhyQ2ZlOEVaQW5lL2ZTRkdzc2VXdVB5OW56ZHJI?=
- =?utf-8?B?WHIwNmtjMU1YZVkwWStQY0E1d3R0bDNRZzEyT2RIQzNLS3pLM3BEd0lBSFJE?=
- =?utf-8?B?M2RCeXg1bnpoSWNqN2JuK2xPUHlyQVpobWo0em0xcFRvZEpUbCtWZ0tySzhz?=
- =?utf-8?B?ZytKcGFzVURJM1F5N25RYmgzSTNMRjVjZStrbDNOU01PZVpGK1ZSbHBsek5F?=
- =?utf-8?B?NitOQnZORlMvZ2dTdmlJUkd4QlZ0YlAvSzhLYTJ6c3ZnMW1GV3pkL0wzYW5n?=
- =?utf-8?Q?Yj5uLBr1ZUgZJFoYdLmOVUPVJIVYNnq5?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014|7416014;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?OWJKblkvaVdQaDg5TkV3TlVvaEJXbEFSTjFjRTNkVlVFeE5VcXNpaXg3YzBQ?=
+ =?utf-8?B?V2pPZDVzVnhVcG5kMytqait2bThsVm9rVldPSm9nbXZ1dzYya2tlM3gvUm56?=
+ =?utf-8?B?RmF0R2lUUlNBdmFTcEt0b0R5TjNBeWYrVFl2d2w4Zyt2TmdSbE84TE12aWdP?=
+ =?utf-8?B?RlJnRmcxVzBwQVVENTc2WnNrY1VRS1d6am8wVnVZTmhqL1dJOFJ5MGRNUlJ6?=
+ =?utf-8?B?TjNPd0hRY0xveTVPL29UOEZNSFhLcWgveGZBb3ByMnhoM2J4bEpsaTJZS3lm?=
+ =?utf-8?B?a2tYQlhRTndhVHYrc3hWdkpmSk8veHA2T2lDdytienk1RjdDQjhsT1k1OExB?=
+ =?utf-8?B?T2p6cFVMdktraUhndkFpYU82bnNQcTBZYmJCZHlTVysxNEhBKzhzYVlVTmh1?=
+ =?utf-8?B?bVNrVnZERTIvQm1QU3ViK1FvUWx1NldmMGUvRkF6OUxCeTZvTkJXdis2cDEw?=
+ =?utf-8?B?RGxld05oeU1JNWU4Z0w0MzlJMWJtSW5LTHVDb0dhK3VzdUwrWXFIdG1VbVIy?=
+ =?utf-8?B?eTJoYWxEeWc0ODdUY2g1U2VLZ3V5dEtxRVpsSk91NnF1N21NbWZneFhJOEJr?=
+ =?utf-8?B?QXgyTzlPNWRKWG9YWUJCeGg4RklSR0JTaWs5ay9IWHZkY0Rub1huNHJ6QVZV?=
+ =?utf-8?B?d1BsUFdmbUNhZEM5VGpDY3V1YStkNTJldW1LMkh5dmR1OEE4U2NvTW9WdjhG?=
+ =?utf-8?B?OHY4eFpId1RhUXRZdmF5ZFY3RmczMmYrT3VvUjlnTEcwRkd5NHRRYWdPWHZt?=
+ =?utf-8?B?WVc4R2ROZ1hKeDNYZVRnTW0zaUxnYzZLODNBN2EvdUxXa01RTkxPMWNmV1pi?=
+ =?utf-8?B?and0dHhHTklxdFRsR0sxZXdOWk40QmdmK0pmU0pIWUtqbTAyM2xUQTdLYXZt?=
+ =?utf-8?B?ajZkeWxZcFRaVy9aTlpDbnkvNTRpbWNyQzZBL2daK01PRGlYRzQraUVuVkpx?=
+ =?utf-8?B?VVhRMVlUMFVKOU5zZXJFVUlDUVprRFVjcG1US3NKWFRaOXZiWmFPNkNFejFo?=
+ =?utf-8?B?blFPL2o0WndUZVJHdXNFZ0lxRjBIcEQ3VHpWNjRlYVNldS9ySHBGeFpQdnNj?=
+ =?utf-8?B?OFltb1NETmFRM20wNHZhN3k3RUpmcFNBbGpSdW1kdStMVEVRMXgzNFgrbElm?=
+ =?utf-8?B?UmV6bm1BUXdCZ0RPRlFKSEZYejNmbXpUSTJhUCtqNXJiaGhEMEFJZnBSVXJx?=
+ =?utf-8?B?QVVGVXhTaHIvcUszMjFSUG1DOXpWcHIrZm10cmZ2ZkEyd3dENGlHdWUxeENR?=
+ =?utf-8?B?ZlVHV1ZXVXR0OElDbUhOQkxDMXBGdkhDV0c5SXRhQVV3eDRzRndvWGlVNFhF?=
+ =?utf-8?B?bjVOSXRvdVBnSzJpOTExb1ZUUDFRcWxuVStZOEFqL2Z6UUI1akRid0lqWmQw?=
+ =?utf-8?B?V05tNE9wcDFBQWpwVmpab0FmQURxZFVVa1lhQUprcWJSdjdFOHZaekJvc1da?=
+ =?utf-8?B?OVkvU0JBVWRvTlNkZElwVDNKRkp1bE52RWQ3b0d6ODJ4R2xqaStOMmlOdG9z?=
+ =?utf-8?B?VURoUis3S2V4c2h2dDFKTGhJd3lIVVJmV1FRdnZ5aUw0SFhST3M0bmlSNTVC?=
+ =?utf-8?B?QjNJYklnOW9JZ2xLbS91REQ1bDNRWk5kaWlDYzlxR1ZNbTBkQUNtcXE1clI1?=
+ =?utf-8?B?b0hyMVZ3cGs1bkg4NUtqK0FWNzBWKzljNVN5UHRhSDg0SWxKTmdYOXlMdGF3?=
+ =?utf-8?B?SExwbVkxdHQvOEk2U1JZdmw2N3poTzVZVFFDWHozOXlZWENsZ1Jzbi9zY3Bl?=
+ =?utf-8?B?UGtWc3IwbStBeDBoRUpLNVNtd3RlMUtlVUJXZ0FBVnRMdVNaYWxDZmFxVUZn?=
+ =?utf-8?B?djhkYUpxVUMvczc2UXlaZXN0UWRXMkFDTVFjQUpGV21XMmxldG16M2s5MlZh?=
+ =?utf-8?B?V1VONnJlaUR1WTFQbWhBWXFGZTU3SFdlNUZsMTNaRjkyc29sbVl2RTdmWGlY?=
+ =?utf-8?Q?RT458zSpqZoGYf1CO274rBpvQCfcHhAo?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB5341.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(376014)(7416014); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?alVQV1ZMelpEcHA3TjFRclQ5cEpMNFV5LytVajNwdGVMeUNyMHdPVWMyd0ly?=
- =?utf-8?B?WDJ3T3lhM2FleDRBTXhDR0VVVjJkckYxdTNSbWNMM3VibXpxOWY2ZFpETjRF?=
- =?utf-8?B?NWN3ZGk4UlJLWTZpSk93UmN2a3pwcjhJSEZBMDVZdXNlV05yWU5yQ1ZmREEw?=
- =?utf-8?B?OFhCSnNSOFhKcnpvTlV5b3ZBcWVEbC82NW5vR3pROThtQTlhSlBsL2ZFaWEx?=
- =?utf-8?B?YWxLSXlKamhHbGhJRC9wV2JLMDNtTmpjcU4rYmxLbGxvMGtFN2pNZUxRdE5M?=
- =?utf-8?B?WnR3a0RURnlpQlAya2Z0L2tWNzlpM2FaaWNpK0d5TVROOWk4cFhlaTB0cUNR?=
- =?utf-8?B?eDV2NnQwYjlNTkVMZmJqUkZJOHZXVTFQOGhZV3lWb2JmbEtqUUpuSFk2VFNa?=
- =?utf-8?B?UVdqOEEwaU9XY3NOd0xQVzJ3d1k3MCtXYjhtdldLMHc5Z1h0U0FOT1FZMWdj?=
- =?utf-8?B?NlZDcFFNcUlqaDRnTm0xTGs1YVlyQkd1MXh3K09GVGptMXltVzNyQ2pMY3Rw?=
- =?utf-8?B?ZjhZdDlPZVRCdTZMSUtaYWNGNTdsU0pXRGNMVEdLSjBHQVNWY29NODlyOCtV?=
- =?utf-8?B?TEllQUhNdEZuNXRrUDROYnFUczZHY2I4Z3VKUnZURUNaZjhoc29kTnhqanNt?=
- =?utf-8?B?eEhkTjVBL3piK1ptenJJTzFRdmY2a2g5ekVSNU9Da21ZRU5mU3VNSDdOS2hB?=
- =?utf-8?B?V2IxYkNBaHFmR2JmVlBUUEJCNzZnMEdxQW80eXY3RXNla3JaTmJmK05HdmRm?=
- =?utf-8?B?QXQxaWlkM00vZTJBNjVPNlN4UjI5YzNGTHBkT3I3TkRGOFlvTm56SktjSU5L?=
- =?utf-8?B?RlpGTU44S1Y4UzMrMU8rZm1nTXl3cmprdXozaWM2VW01bTQ4ZlFmOFQ2NWtH?=
- =?utf-8?B?K3ppWmwvSnNtVkxWL2RpMlVkNTNtNUxJNFlGbUJpNHBESW56dVRmbzEvTFBw?=
- =?utf-8?B?RU9hR3RYOXcvVTlpcHgrM2RGTU4wSEhaQkxBemhRRkZwdHpsbE9WOHgxamxr?=
- =?utf-8?B?V09OSldocHZobDF5VWpqTWhpVFlTcTE4MTY3bDlUcGdyRlZhVjhIOFFibGpT?=
- =?utf-8?B?ZGZzL2psQjZjdmkzaUZTODN5TTYxaEp3YWlaTHNiQmkyY3o4cCt2WUpvbjI4?=
- =?utf-8?B?aG5GbmFzRVErSXpOTDRKbEJ2Vk4xbi9UZ3lSZExVazVMMndGNURGbXhpOFNs?=
- =?utf-8?B?YVRPaGs1b3lmWFFUS3ZTRU96L3FCb3d3ZXdLZmpRZnZqUDFYS1RBVHVhRVlN?=
- =?utf-8?B?STNWVGYrOWRnNEVlWlBFL1JSY25lank0R1piSGdjTXNkOGRjWmt0N3BOcUcz?=
- =?utf-8?B?aDh5VDkrcFBOU2V4RnZtKzZrNXdWRWlkbVdFbGtFcDFuS2RFRTEyUGxvNkM4?=
- =?utf-8?B?bk1CNW40RkRWYUJGeTBEMm1mY3pza2VPY3lKTXBrbVVSa0FQWnI5d1gwbEpK?=
- =?utf-8?B?cDAwcjh4NElxRDAyc0hlVGlXNlR4WDJxSXNqZ1J4bFJkRlVQNFkwekVzMGVW?=
- =?utf-8?B?MTBVTjMrbWtrNTMxMEovV1hOOTIxaFY1TXVodDdxQnlpeFI2TWVVTU1Hb2d0?=
- =?utf-8?B?dFJFaGhSVEFRaEJ0SnNNN2NqdU9sZE9GbUNsTFhrSjloa1dlZUtFSjhwYmNM?=
- =?utf-8?B?Z1l6ODIyTm0vdko2WUxocitUdGluS0RodzY4T2VmdFFYd2VrVFVBR0hvbnow?=
- =?utf-8?B?ejdEQXp4a0cwcktJbkF1VytKSkd2Q2pFMjBra21Ca3lTVDdiNzhEL3pBY0hj?=
- =?utf-8?B?YUlLaTQ5aG5ET20vR1pjdXRsdTk0QXM1MWdybzdEUGlxRTNOWUVyamk0NjZ6?=
- =?utf-8?B?WWI0QzY0MTBJS0JwQUhPWW5IVFhYSTRCdE4vc1VqckNLbWx2RkEvMlc0YTho?=
- =?utf-8?B?TFBpN3BHS3pOQUFaRXVqZVlEckh2MndjNHNqZE9QWWNsRW9qMm4xMDdKeUla?=
- =?utf-8?B?MmsreDlkUmQzMmpYU2FTU2pUS1BtMXJTbm5ZY0E2NEUwb2hqL08rYXMwUEYw?=
- =?utf-8?B?RitBeCtsbDF3VTlGQitJNDFsUU9NZnNUTzVlbWxJM1VYM1luQURoNkdhSm1L?=
- =?utf-8?B?VUxwSGlFeCtFWGFaUThlczFJZnFrTVA3Q2JNa2owMmJrSk9JWEEvZmlpMGVq?=
- =?utf-8?B?eHVHdmJSM0JDaUsyemNMOHZLQmowM0svVXpWVGw2clBEYzF2VE9YQjViNlNv?=
- =?utf-8?B?bUE9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: b7bcf188-1aef-4ae0-979b-08de18463b2c
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5341.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Y2xrb0VVSjZVT1hqNjZqTnBDYXRYcjRsdU0wbWd6ZHNlN3AwZlZVejJnU0FM?=
+ =?utf-8?B?MjViSVJNTlJLRlBGS0JnTnpBeklnUUthSnZzaXpJT0Y0SjZMVWVQelVpUW1U?=
+ =?utf-8?B?YTAyUXNQZmdlS0cyM042Sk9idEVBb213NDFVU1ptMTVPUzdlT050dCtQcHlE?=
+ =?utf-8?B?ci8zOFVQK2wvbHNIVGtTOGdmTTJ5cTQ4dEJDc3BidHY0RnRLc2hWT3ZZc2Zt?=
+ =?utf-8?B?V25jbDVMTkc3OS9UMEw3L1pHQkVlaUl1ZVNoVXBlYW80MlFGSTdoNnUrN0JS?=
+ =?utf-8?B?UGIzd0tPOEphMFpJeE5HV29rM0pCN3ZGVmV0clNydldya1dFcmlMOUVmUitl?=
+ =?utf-8?B?b0dPM3VYTUZtRXMyQzVrdVN2MWZYaWNsWVhibGRBcElPb2JockNBNDJmakEz?=
+ =?utf-8?B?djU5R1Bra3dNdkpIUlRQTjFwU2MzaFlNaVV1LzRXdkVOWThPeXlZNjRVaGdz?=
+ =?utf-8?B?a3MwRmJFdHQvVlFXUy9KZGRKNUNWSmw3OVBTK1psd1VyUzFEUEw3UWtRNGJI?=
+ =?utf-8?B?REk2TU9XZlpQaTd2NzdHOGhBU1FkeGE5Z0YwVlpzbURKbUZSOC9idmJiL2tV?=
+ =?utf-8?B?SWdQZ1Z6Q0lCL05tem1ycXBuNGxyMzJpTTVEK1NUeVdyanE5eER6NjR1ZVJZ?=
+ =?utf-8?B?enFpaURBSTVtM2dkL1FrSFdHVjBGZHYvdzN0VWw0YzN3eFR6S1lBeWRjL3FS?=
+ =?utf-8?B?Y2NNa0VzYWlET1NQZUxHanI5WUFLeVFzTW9pSDNMR2NOWGwyYXFyYXlLYWli?=
+ =?utf-8?B?NlRVRUNyM1RQN2p2TVpLczFjNVNZVnd4Mk5TbmFzVnQ1S1NiOTV1YTV3akto?=
+ =?utf-8?B?Q2w1aDFoc3Exbnk3a2hGRU9hSDgrMnZGMjZVRStiQ3JxTWhMbWxhT2xrUTZh?=
+ =?utf-8?B?MkRBUkxubFdndXM0MEExRWdZMWM4TmM4QU9seXpQeHBSMm82WVBWSis5TXNN?=
+ =?utf-8?B?QTZ4aXdKV0pVYTBPdHpPV0xjV0xtdmR1WUUzRDR2NGw3MnVSRjZFZmZCdGR4?=
+ =?utf-8?B?b3ZLU1dPYjJ4dkFtYWF2VXhsRm9yRW1nYTFHc3RpcWVPZWEzcSthZTBLRnNV?=
+ =?utf-8?B?Wnp3WW1NZmdCUlBWV2RjSklnd0N1aGRScWs3OXRjRk1ZcjdRLzE2bytPUElH?=
+ =?utf-8?B?d2xWa0haUjIwcXVFTWJHYWd5U0hIbHFYZlBybTIycmhETnJITkcrdHRURjAw?=
+ =?utf-8?B?Vit5clljME9nVE1qTTR5cUY3aCtjTGpnMVhIb1o2MFQxT2ZCZm51YWQvVnFG?=
+ =?utf-8?B?NUtYc3haOUd2NlY1bEQzYS9ud2piQjVYWVRsdGhRQnA5RmRFWXQ0cmJyYmFP?=
+ =?utf-8?B?cDgzbGZ5bWgrQXdUSVM4OE5LL3ZtUUszMEpQMGtMRklpL1l2SzRjaXhCRE5t?=
+ =?utf-8?B?Und2WWxGUHg4NGMxRURJTys1R0RlNmI3WGFUNjYydC8yNXpWSEZKVUFwRXY3?=
+ =?utf-8?B?RWJ5aC9ZL0txbkt2SmEzZ1V0LytlUDVpbUh3azhRSkEwWGxLc1N5Mml2WXJN?=
+ =?utf-8?B?Q05FSUNQOWxpWkgvSDR4WUdaWEVpeWhoNW0zM3ZEOTNVeXRoUXBVbW5NdHJO?=
+ =?utf-8?B?blBRcmhpeEwwOStXck5LWjJmNS9zRTdHbTlWaUwycnp4UW5MS0lCWHVNbVJ0?=
+ =?utf-8?B?RGEyd1d3VlN1b0E2TFhMWm5mN3VCVzhsTDR2cGt0QzRZaklnRlh3N0VHcUlN?=
+ =?utf-8?B?amVFaGx4OG93OWZDSFJ6ZEFlaTlQRUhOUHRmc2ZsNlBBRWJxS2pJK3ZLQnFV?=
+ =?utf-8?B?YkxpVVdoNDNVRXBZQ3JvakFtTGV2TXduTWIwTnRxR3p1Vk0rTVV3T3B4eUdw?=
+ =?utf-8?B?R0F2eUcvWkU1N0VOb3VTREd1cGlRb2c3WUpMd2NyV2JyS29laEV0U0UwUTZR?=
+ =?utf-8?B?Q2FPOEJGUSs4RG8vVEhmdnRkQUVZcHNwcytpTHJLUnVUdjUycndLK2Z4TDFW?=
+ =?utf-8?B?WjZ2Rlh3RldnaUVvZWZwN2RpYzNTV01tU2IrNEFXYk9WNzE3U0V1bTBaTVRV?=
+ =?utf-8?B?NjhDSk5rS1d2eGlaVURXNlhqUjBCcXJFY0ZBN0ZLK1AyNU4zc0IwYXRvME5t?=
+ =?utf-8?B?alVEOUdpd2dnTXdRcFI4eXhqbjdrRGpZb29OVXExUFVHY2hXdTNRVk1yM09F?=
+ =?utf-8?Q?MqQe1q/pXQPA7AHeCCtM2eB+2?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3ed14975-397a-4fd4-a975-08de1851a014
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Oct 2025 06:25:05.6033 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Oct 2025 07:46:39.1451 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 1YcmWjzOCiEO/JSEPHHN58aonZyPLxZ8vrUM7zurwTQCEbHGfV+lHnOZJ0/3fBZ2M90sTK8OQIZXLihSH9PmdS+3gxoygR0VwVhtWMn717k=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR11MB7814
-X-OriginatorOrg: intel.com
+X-MS-Exchange-CrossTenant-UserPrincipalName: 9v3lA8I+UcCClXKAywOgJiADVBVOn+0xSvRq6lOVP0xqtOG2zK8Ck+ml785NGm49
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB8503
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -197,419 +175,134 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On 10/31/25 06:15, Kasireddy, Vivek wrote:
+> Hi Jason,
+> 
+>> Subject: Re: [RFC v2 0/8] dma-buf: Add support for mapping dmabufs via
+>> interconnects
+>>
+>> On Thu, Oct 30, 2025 at 06:17:11AM +0000, Kasireddy, Vivek wrote:
+>>> It mostly looks OK to me but there are a few things that I want to discuss,
+>>> after briefly looking at the patches in your branch:
+>>> - I am wondering what is the benefit of the SGT compatibility stuff especially
+>>> when Christian suggested that he'd like to see SGT usage gone from
+>>> dma-buf
+>>
+>> I think to get rid of SGT we do need to put it in a little well
+>> defined box and then create alternatives and remove things using
+>> SGT. This is a long journey, and I think this is the first step.
+>>
+>> If SGT is some special case it will be harder to excise.
+>>
+>> So the next steps would be to make all the exporters directly declare
+>> a SGT and then remove the SGT related ops from dma_ops itself and
+>> remove the compat sgt in the attach logic. This is not hard, it is all
+>> simple mechanical work.
+> IMO, this SGT compatibility stuff should ideally be a separate follow-on
+> effort (and patch series) that would also probably include updates to
+> various drivers to add the SGT mapping type.
 
-On 10/24/2025 3:37 PM, Suraj Kandpal wrote:
-> Implement the HDMI Algorithm to dynamically create LT PHY state
-> based on the port clock provided.
->
-> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-> ---
->   drivers/gpu/drm/i915/display/intel_lt_phy.c | 318 +++++++++++++++++++-
->   drivers/gpu/drm/i915/display/intel_lt_phy.h |   3 +
->   2 files changed, 320 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.c b/drivers/gpu/drm/i915/display/intel_lt_phy.c
-> index 11070aaf320d..163e7d5ef483 100644
-> --- a/drivers/gpu/drm/i915/display/intel_lt_phy.c
-> +++ b/drivers/gpu/drm/i915/display/intel_lt_phy.c
-> @@ -1357,6 +1357,318 @@ intel_lt_phy_pll_is_ssc_enabled(struct intel_crtc_state *crtc_state,
->   	return false;
->   }
->   
-> +void
-> +intel_lt_phy_calculate_hdmi_state(struct intel_lt_phy_pll_state *lt_state,
-> +				  u32 frequency_khz)
-> +{
-> +#define DATA_ASSIGN(i, val)	\
-> +	do {			\
-> +		lt_state->data[i][0] = (u8)(((val) & 0xFF000000) >> 24); \
-> +		lt_state->data[i][1] = (u8)(((val) & 0x00FF0000) >> 16); \
-> +		lt_state->data[i][2] = (u8)(((val) & 0x0000FF00) >> 8); \
-> +		lt_state->data[i][3] = (u8)(((val) & 0x000000FF));	\
-> +	} while (0)
-> +#define MULQ32_U32(x, y)	\
-> +	(((u64)((x) >> 32) * (y) << 32) + (u64)((x) & 0xFFFFFFFF) * (y))
-> +#define Q32_TO_INT(x)	((x) >> 32)
-> +#define Q32_TO_FRAC(x)	((x) & 0xFFFFFFFF)
-> +	bool found = false;
-> +	u32 ppm_value = 1;
-> +	u32 dco_min_freq = 11850;
-> +	u32 dco_max_freq = 16200;
-> +	u32 dco_min_freq_low = 10000;
-> +	u32 dco_max_freq_low = 12000;
-> +	u32 dcofmin = dco_min_freq;
-> +	u64 val = 0;
-> +	u64 refclk_khz = 38400;
-> +	u64 m2div = 0;
-> +	u64 val_with_frac = 0;
-> +	u64 ppm = 0;
-> +	u64 target_dco_mhz = 0;
-> +	u64 tdc_fine;
-> +	u64 iref_ndiv;
-> +	u64 tdc_targetcnt;
-> +	u64 feedfwdgain;
-> +	u64 feedfwd_cal_en;
-> +	u64 tdc_res = 30;
-> +	u32 prop_coeff;
-> +	u32 int_coeff;
-> +	u32 ndiv = 1;
-> +	u32 m1div = 1;
-> +	u32 m2div_int;
-> +	u32 m2div_frac;
-> +	u32 frac_en;
-> +	u32 settlingtime = 0;
-> +	u32 ana_cfg;
-> +	u32 loop_cnt = 0;
-> +	u32 dcofine0_tune_2_0 = 0;
-> +	u32 dcofine1_tune_2_0 = 0;
-> +	u32 dcofine2_tune_2_0 = 0;
-> +	u32 dcofine3_tune_2_0 = 0;
-> +	u32 dcodith0_tune_2_0 = 0;
-> +	u32 dcodith1_tune_2_0 = 0;
-> +	u32 gain_ctrl = 2;
-> +	u32 refclk_mhz_int = 38;
-> +	u32 pll_reg4 = (refclk_mhz_int << 17) +
-> +		(ndiv << 9) + (1 << 4);
-> +	u32 pll_bias2_addr = 0;
-> +	u32 pll_biastrim_addr = 0;
-> +	u32 pll_dco_med_addr = 0;
-> +	u32 pll_dcofine_addr = 0;
-> +	u32 pll_sscinj_addr = 0;
-> +	u32 pll_surv_bonus_addr = 0;
-> +	u32 pll_lf_addr = 0;
-> +	u32 pll_reg3_addr = 0;
-> +	u32 pll_reg4_addr = 0;
-> +	u32 pll_reg57_addr = 0;
-> +	u32 pll_reg5_addr = 0;
-> +	u32 pll_ssc_addr = 0;
-> +	u32 pll_tdc_addr = 0;
-> +	u32 pll_reg3 = 0;
-> +	u32 pll_reg5 = 0;
-> +	u32 postdiv = 0;
-> +	u32 d6_new = 0;
-> +	u32 pll_reg57 = 0;
-> +	u32 dco12g = 0;
-> +	u32 pll_type = 0;
-> +	u32 d1 = 2;
-> +	u32 d3 = 5;
-> +	u32 d5 = 0;
-> +	u32 d6 = 0;
-> +	u32 d7;
-> +	u32 d8 = 0;
-> +	u32 d4 = 0;
-> +	u32 lf = 0;
-> +	int ssc_stepsize = 0;
-> +	int ssc_steplen = 0;
-> +	int ssc_steplog = 0;
-> +	u32 ssc = 0;
-> +	u32 lockthr = 0;
-> +	u32 unlockthr = 0;
-> +	u32 earlylock = 1;
-> +	u32 truelock = 2;
-> +	u32 lockovr_en = 1;
-> +	u32 biasovr_en = 1;
-> +	u32 coldstart = 1;
-> +	u32 ssc_en_local = 0;
-> +	u64 dynctrl_ovrd_en = 0;
-> +	u32 bias2 = 0;
-> +	u32 tdc = 0;
-> +	u32 cselmedthr = 8;
-> +	u32 cselmedratio = 39;
-> +	u32 cselmed_dynadj = 0;
-> +	u32 cselmed_en = 0;
-> +	u32 dco_med = 0;
-> +	u32 bonus_7_0 = 0;
-> +	u32 surv_bonus = (bonus_7_0 << 16);
-> +	u32 csel2fo = 11;
-> +	u32 csel2fo_ovrd_en = 1;
-> +	u32 biastrim = (csel2fo_ovrd_en << 30) + (csel2fo << 24);
-> +	u32 dcofine = 0;
-> +	int ppm_cnt, dcocount, y;
-> +	u64 refclk_mhz = div64_u64(refclk_khz, 1000);
-> +	u64 frequency_mhz = div64_u64(frequency_khz, 1000);
+Nope, just the other way around. In other words the SGT compatibility is a pre-requisite.
 
-I think with refclk_mhz and frequency_mhz we are going to loose 
-precision. Perhaps we should use khz versions.
-
-
-> +	u64 temp0, temp1, temp2, temp3, scale;
-> +
-> +	settlingtime = 15;
-> +	for (ppm_cnt = 0; ppm_cnt < 5; ppm_cnt++) {
-> +		switch (ppm_cnt) {
-> +		case 0:
-> +			ppm_value = 1;
-> +			break;
-> +		case 1:
-> +			ppm_value = 1;
-> +			break;
-> +		case 2:
-> +			ppm_value = 2;
-> +			break;
-> +		default:
-> +			ppm_value = 1;
-> +			break;
-> +		}
-
-
-I think we can ditch the switch case and simply put:
-
-ppm_value = ppm_cnt == 2 ? 2 : 1
-
-> +
-> +		for (dcocount = 0; dcocount < 2; dcocount++) {
-> +			if (dcocount == 1) {
-> +				dco_min_freq = dco_min_freq_low;
-> +				dco_max_freq = dco_max_freq_low;
-
-
-dco_min_freq_lowcan be local, or perhaps directly use the values here.
-
-> +			}
-> +			for (y = 2; y <= 255; y += 2) {
-> +				val = ((u64)y * frequency_mhz * 5);
-
-> +				m2div = div64_u64(((val) << 32), 2 * refclk_mhz);
-> +				val_with_frac = MULQ32_U32(m2div, refclk_mhz * 2);
-> +				temp1 = Q32_TO_INT(val_with_frac);
-> +				temp0 = (temp1 > val) ? (temp1 - val) :
-> +					(val - temp1);
-> +				ppm = div64_u64(temp0, val);
-> +				if (temp1 >= dco_min_freq &&
-> +				    temp1 <= dco_max_freq &&
-> +				    ppm < ppm_value) {
-> +					/* Round to two places */
-> +					scale = (1ULL << 32) / 100;
-> +					temp0 = DIV_ROUND_CLOSEST_ULL(val_with_frac,
-> +								      scale);
-> +					target_dco_mhz = temp0 * scale;
-> +					loop_cnt = y;
-> +					found = true;
-> +					break;
-> +				}
-> +			}
-> +			if (found)
-> +				break;
-> +		}
-> +		if (found)
-> +			break;
-> +	}
-> +
-> +	if (!found)
-> +		return;
-
-We can have a separate function with above code that fills 
-target_dco_mhz and loop_cnt.
-
-
-> +
-> +	m2div = div64_u64(target_dco_mhz, (refclk_mhz * ndiv * m1div));
-> +	if (Q32_TO_INT(m2div) > 511)
-> +		return;
-> +
-> +	m2div_int = (u32)Q32_TO_INT(m2div);
-> +	m2div_frac = (u32)(Q32_TO_FRAC(m2div));
-> +	frac_en = (m2div_frac > 0) ? 1 : 0;
-> +
-> +	if (frac_en > 0)
-> +		tdc_res = 70;
-> +	else
-> +		tdc_res = 36;
-> +	tdc_fine = tdc_res > 50 ? 1 : 0;
-> +	iref_ndiv = (refclk_khz > 80000) ? 4 : (refclk_khz > 38000) ? 2 : 1;
-> +	temp0 = tdc_res * 40 * 11;
-> +	temp1 = div64_u64((40000000ULL + temp0),  2 * temp0 * refclk_mhz);
-> +	temp2 = temp0 * refclk_mhz;
-> +	temp3 = div64_u64((80000000ULL + temp2), temp2);
-> +	tdc_targetcnt = tdc_res < 50 ? (int)(temp1) : (int)(temp3);
-> +	tdc_targetcnt = (refclk_khz < 25000) ? (int)(tdc_targetcnt / 4) :
-> +			(refclk_khz < 50000) ? (int)(tdc_targetcnt / 2) :
-> +			tdc_targetcnt;
-> +	temp0 = MULQ32_U32(target_dco_mhz, tdc_res);
-> +	temp0 >>= 32;
-> +	feedfwdgain = (m2div_frac > 0) ? div64_u64(m1div * 10000000ULL, temp0) : 0;
-> +	feedfwd_cal_en = frac_en;
-> +	settlingtime = (u32)div64_u64(refclk_khz, iref_ndiv * 1000);
-> +
-> +	temp0 = (u32)Q32_TO_INT(target_dco_mhz);
-> +	prop_coeff = (temp0 >= dcofmin) ? 3 : 4;
-> +	int_coeff = (temp0 >= dcofmin) ? 7 : 8;
-> +	ana_cfg = (temp0 >= dcofmin) ? 8 : 6;
-> +	dco12g = (temp0 >= dcofmin) ? 0 : 1;
-> +
-> +	if (temp0 > 12960)
-> +		d7 = 10;
-> +	else
-> +		d7 = 8;
-> +
-> +	d8 = loop_cnt / 2;
-> +	d4 = d8 * 2;
-> +
-> +	/* Compute pll_reg3,5,57 & lf */
-> +	pll_reg3 = (u32)((d4 << 21) + (d3 << 18) + (d1 << 15) + (m2div_int << 5));
-> +	pll_reg5 = m2div_frac;
-> +	postdiv = (d5 == 0) ? 9 : d5;
-> +	d6_new = (d6 == 0) ? 40 : d6;
-> +	pll_reg57 = (d7 << 24) + (postdiv << 15) + (d8 << 7) + d6_new;
-> +	lf = (u32)((frac_en << 31) + (1 << 30) + (frac_en << 29) +
-> +		   (feedfwd_cal_en << 28) + (tdc_fine << 27) +
-> +		   (gain_ctrl << 24) + (feedfwdgain << 16) +
-> +		   (int_coeff << 12) + (prop_coeff << 8) + tdc_targetcnt);
-> +
-> +	/* Compute ssc / bias2 */
-> +	ssc = (1 << 31) + (ana_cfg << 24) + (ssc_steplog << 16) +
-> +		(ssc_stepsize << 8) + ssc_steplen;
-> +	bias2 = (u32)((dynctrl_ovrd_en << 31) + (ssc_en_local << 30) +
-> +		      (1 << 23) + (1 << 24) + (32 << 16) + (1 << 8));
-> +
-> +	lockthr = tdc_fine ? 3 : 5;
-> +	unlockthr = tdc_fine ? 5 : 11;
-> +	settlingtime = 15;
-
-This variable is set multiple times but is used only in below line. So 
-just initialize this with 15.
-
-
-> +
-> +	/* Compute tdc/dco_med */
-> +	tdc = (u32)((2 << 30) + (settlingtime << 16) + (biasovr_en << 15) +
-> +		    (lockovr_en << 14) + (coldstart << 12) + (truelock << 10) +
-> +		    (earlylock << 8) + (unlockthr << 4) + lockthr);
-> +
-> +	dco_med = (cselmed_en << 31) + (cselmed_dynadj << 30) +
-> +		(cselmedratio << 24) + (cselmedthr << 21);
-> +
-> +	/* Compute dcofine */
-> +	dcofine0_tune_2_0 = dco12g ? 4 : 3;
-> +	dcofine1_tune_2_0 = dco12g ? 2 : 2;
-> +	dcofine2_tune_2_0 = dco12g ? 2 : 1;
-> +	dcofine3_tune_2_0 = dco12g ? 5 : 5;
-> +	dcodith0_tune_2_0 = dco12g ? 4 : 3;
-> +	dcodith1_tune_2_0 = dco12g ? 2 : 2;
-> +
-> +	dcofine = (dcodith1_tune_2_0 << 19)
-> +		+ (dcodith0_tune_2_0 << 16)
-> +		+ (dcofine3_tune_2_0 << 11)
-> +		+ (dcofine2_tune_2_0 << 8)
-> +		+ (dcofine1_tune_2_0 << 3)
-> +		+ dcofine0_tune_2_0;
-
-I think this again can be a separate function to compute dcofine.
-
-
-> +
-> +	pll_type = ((frequency_khz == 10000) || (frequency_khz == 20000) ||
-> +		    (frequency_khz == 2500) || (dco12g == 1)) ? 0 : 1;
-> +
-> +	pll_reg4_addr = pll_type ? 34576 : 34064;
-> +	pll_reg3_addr = pll_type ? 34572 : 34060;
-> +	pll_reg5_addr = pll_type ? 34580 : 34068;
-> +	pll_reg57_addr = pll_type ? 34788 : 34276;
-> +	pll_lf_addr = pll_type ? 34828 : 34316;
-> +	pll_tdc_addr = pll_type ? 34832 : 34320;
-> +	pll_ssc_addr = pll_type ? 34836 : 34324;
-> +	pll_bias2_addr = pll_type ? 34840 : 34328;
-> +	pll_biastrim_addr = pll_type ? 34888 : 34376;
-> +	pll_dco_med_addr = pll_type ? 34880 : 34368;
-> +	pll_dcofine_addr = pll_type ? 34892 : 34380;
-> +	pll_sscinj_addr = pll_type ? 34852 : 34340;
-> +	pll_surv_bonus_addr = pll_type ? 34884 : 34372;
-
-
-I understand these addresses are given in decimal but these will make 
-more sense in hex.
-
-pll_reg4_addr = pll_type ? 0x8710 : 0x8510;
-pll_reg3_addr = pll_type ? 0x870C : 0x850C;
-
-I am wondering we should put them in lt_phy_regs.h and define macros 
-such that we can use:
-
-pll_reg4_addr = PLL_REG4_ADDR(pll_type);
-
-
-> +
-> +	lt_state->config[0] = 0x84;
-> +	lt_state->config[1] = 0x2d;
-> +	lt_state->addr_msb[0] = (pll_reg4_addr >> 8) & 0xFF;
-> +	lt_state->addr_lsb[0] = pll_reg4_addr & 0xFF;
-> +	lt_state->addr_msb[1] = (pll_reg3_addr >> 8) & 0xFF;
-> +	lt_state->addr_lsb[1] = pll_reg3_addr & 0xFF;
-> +	lt_state->addr_msb[2] = (pll_reg5_addr >> 8) & 0xFF;
-> +	lt_state->addr_lsb[2] = pll_reg5_addr & 0xFF;
-> +	lt_state->addr_msb[3] = (pll_reg57_addr >> 8) & 0xFF;
-> +	lt_state->addr_lsb[3] = pll_reg57_addr & 0xFF;
-> +	lt_state->addr_msb[4] = (pll_lf_addr >> 8) & 0xFF;
-> +	lt_state->addr_lsb[4] = pll_lf_addr & 0xFF;
-> +	lt_state->addr_msb[5] = (pll_tdc_addr >> 8) & 0xFF;
-> +	lt_state->addr_lsb[5] = pll_tdc_addr & 0xFF;
-> +	lt_state->addr_msb[6] = (pll_ssc_addr >> 8) & 0xFF;
-> +	lt_state->addr_lsb[6] = pll_ssc_addr & 0xFF;
-> +	lt_state->addr_msb[7] = (pll_bias2_addr >> 8) & 0xFF;
-> +	lt_state->addr_lsb[7] = pll_bias2_addr & 0xFF;
-> +	lt_state->addr_msb[8] = (pll_biastrim_addr >> 8) & 0xFF;
-> +	lt_state->addr_lsb[8] = pll_biastrim_addr & 0xFF;
-> +	lt_state->addr_msb[9] = (pll_dco_med_addr >> 8) & 0xFF;
-> +	lt_state->addr_lsb[9] = pll_dco_med_addr & 0xFF;
-> +	lt_state->addr_msb[10] = (pll_dcofine_addr >> 8) & 0xFF;
-> +	lt_state->addr_lsb[10] = pll_dcofine_addr & 0xFF;
-> +	lt_state->addr_msb[11] = (pll_sscinj_addr >> 8) & 0xFF;
-> +	lt_state->addr_lsb[11] = pll_sscinj_addr & 0xFF;
-> +	lt_state->addr_msb[12] = (pll_surv_bonus_addr >> 8) & 0xFF;
-> +	lt_state->addr_lsb[12] = pll_surv_bonus_addr & 0xFF;
-> +	DATA_ASSIGN(0, pll_reg4);
-> +	DATA_ASSIGN(1, pll_reg3);
-> +	DATA_ASSIGN(2, pll_reg5);
-> +	DATA_ASSIGN(3, pll_reg57);
-> +	DATA_ASSIGN(4, lf);
-> +	DATA_ASSIGN(5, tdc);
-> +	DATA_ASSIGN(6, ssc);
-> +	DATA_ASSIGN(7, bias2);
-> +	DATA_ASSIGN(8, biastrim);
-> +	DATA_ASSIGN(9, dco_med);
-> +	DATA_ASSIGN(10, dcofine);
-> +	DATA_ASSIGN(11, 0);
-> +	DATA_ASSIGN(12, surv_bonus);
-
-
-The change seems to be inline with the Bspec overall.
-
-I think you can change some of the variable names like dcofine, biastrim 
-to dco_fine, bias_trim etc. to be consistent with rest of the code.
+We should first demonstrate with existing drivers that the new interface works and does what it promised to do and then extend it with new functionality.
 
 Regards,
+Christian.
 
-Ankit
+> 
+>>
+>> This way the only compat requirement is to automatically give an
+>> import match list for a SGT only importer which is very little code in
+>> the core.
+>>
+>> The point is we make the SGT stuff nonspecial and fully aligned with
+>> the mapping type in small steps. This way neither importer nor
+>> exporter should have any special code to deal with interworking.
+>>
+>> To remove SGT we'd want to teach the core code how to create some kind
+>> of conversion mapping type, eg exporter uses SGT importer uses NEW so
+>> the magic conversion mapping type does the adapatation.
+>>
+>> In this way we can convert importers and exporters to use NEW in any
+>> order and they still interwork with each other.
+>>
+>>> eventually. Also, if matching fails, IMO, indicating that to the
+>>> importer (allow_ic) and having both exporter/importer fallback to
+>>> the current legacy mechanism would be simpler than the SGT
+>>> compatibility stuff.
+>>
+>> I don't want to have three paths in importers.
+>>
+>> If the importer supports SGT it should declare it in a match and the
+>> core code should always return a SGT match for the importer to use
+>>
+>> The importer should not have to code 'oh it is sgt but it somehow a
+>> little different' via an allow_ic type idea.
+>>
+>>> - Also, I thought PCIe P2P (along with SGT) use-cases are already well
+>> handled
+>>> by the existing map_dma_buf() and other interfaces. So, it might be
+>> confusing
+>>> if the newer interfaces also provide a mechanism to handle P2P although a
+>>> bit differently. I might be missing something here but shouldn't the existing
+>>> allow_peer2peer and other related stuff be left alone?
+>>
+>> P2P is part of SGT, it gets pulled into the SGT stuff as steps toward
+>> isolating SGT properly. Again as we move things to use native SGT
+>> exporters we would remove the exporter related allow_peer2peer items
+>> when they become unused.
+>>
+>>> - You are also adding custom attach/detach ops for each mapping_type. I
+>> think
+>>> it makes sense to reuse existing attach/detach ops if possible and initiate
+>> the
+>>> matching process from there, at-least initially.
+>>
+>> I started there, but as soon as I went to adding PAL I realized the
+>> attach/detach logic was completely different for each of the mapping
+>> types. So this is looking alot simpler.
+>>
+>> If the driver wants to share the same attach/detach ops for some of
+>> its mapping types then it can just set the same function pointer to
+>> all of them and pick up the mapping type from the attach->map_type.
+>>
+>>> - Looks like your design doesn't call for a dma_buf_map_interconnect() or
+>> other
+>>> similar helpers provided by dma-buf core that the importers can use. Is that
+>>> because the return type would not be known to the core?
+>>
+>> I don't want to have a single shared 'map' operation, that is the
+>> whole point of this design. Each mapping type has its own ops, own
+>> types, own function signatures that the client calls directly.
+>>
+>> No more type confusion or trying to abuse phys_addr_t, dma_addr_t, or
+>> scatterlist for in appropriate things. If your driver wants something
+>> special, like IOV, then give it proper clear types so it is
+>> understandable.
+>>
+>>> - And, just to confirm, with your design if I want to add a new interconnect/
+>>> mapping_type (not just IOV but in general), all that is needed is to provide
+>> custom
+>>> attach/detach, match ops and one or more ops to map/unmap the address
+>> list
+>>> right? Does this mean that the role of dma-buf core would be limited to just
+>>> match and the exporters are expected to do most of the heavy lifting and
+>>> checking for stuff like dynamic importers, resv lock held, etc?
+>>
+>> I expect the core code would continue to provide wrappers and helpers
+>> to call the ops that can do any required common stuff.
+>>
+>> However, keep in mind, when the importer moves to use mapping type it
+>> also must be upgraded to use the dynamic importer flow as this API
+>> doesn't support non-dynamic importers using mapping type.
+>>
+>> I will add some of these remarks to the commit messages..
+> Sounds good. I'll start testing/working on IOV interconnect patches based on
+> your design.
+> 
+> Thanks,
+> Vivek
+>>
+>> Thanks!
+>> Jason
 
-> +}
-> +
->   static int
->   intel_lt_phy_calc_hdmi_port_clock(const struct intel_lt_phy_pll_state *lt_state)
->   {
-> @@ -1455,7 +1767,11 @@ intel_lt_phy_pll_calc_state(struct intel_crtc_state *crtc_state,
->   		}
->   	}
->   
-> -	/* TODO: Add a function to compute the data for HDMI TMDS*/
-> +	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI)) {
-> +		intel_lt_phy_calculate_hdmi_state(&crtc_state->dpll_hw_state.ltpll,
-> +						  crtc_state->port_clock);
-> +		return 0;
-> +	}
->   
->   	return -EINVAL;
->   }
-> diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.h b/drivers/gpu/drm/i915/display/intel_lt_phy.h
-> index a538d4c69210..1693e9f2bc6c 100644
-> --- a/drivers/gpu/drm/i915/display/intel_lt_phy.h
-> +++ b/drivers/gpu/drm/i915/display/intel_lt_phy.h
-> @@ -35,6 +35,9 @@ void intel_lt_phy_pll_readout_hw_state(struct intel_encoder *encoder,
->   				       struct intel_lt_phy_pll_state *pll_state);
->   void intel_lt_phy_pll_state_verify(struct intel_atomic_state *state,
->   				   struct intel_crtc *crtc);
-> +void
-> +intel_lt_phy_calculate_hdmi_state(struct intel_lt_phy_pll_state *lt_state,
-> +				  u32 frequency_khz);
->   void intel_xe3plpd_pll_enable(struct intel_encoder *encoder,
->   			      const struct intel_crtc_state *crtc_state);
->   void intel_xe3plpd_pll_disable(struct intel_encoder *encoder);
