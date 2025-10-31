@@ -4,27 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 82B83CCF9FE
-	for <intel-xe@archiver.kernel.org>; Fri, 31 Oct 2025 09:51:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0003FCCF9FE
+	for <intel-xe@archiver.kernel.org>; Fri, 31 Oct 2025 10:01:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 26D4210EAE4;
-	Fri, 31 Oct 2025 09:51:06 +0000 (UTC)
-Received: from 10055242dc62 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9871D10E2BE;
- Fri, 31 Oct 2025 09:51:05 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id B676F10EAE8;
+	Fri, 31 Oct 2025 10:01:55 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Yd1Qf8Sz";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9645610EAE8;
+ Fri, 31 Oct 2025 10:01:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1761904914; x=1793440914;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=LW60E5Pl24aDuKn8yIHTta7QtiR8pK2/piftF/6u3fY=;
+ b=Yd1Qf8SztpkTOB2mVpEPsbJdlraoVJ7pOxPYheGMhDsCQAZaZpKYq1WE
+ +T5U9fL/CUrqP7hcTs0X+iRoftmF1VKWcmFoTqf/uX7iwOi00kcOn+Srw
+ KxW0BKZAH/cHUtPsHsHqEknvIKyLEPkYipOCIdHm8AUGjl0RrRGQTe4X6
+ EyLkOmR4jSwCFbGBeg2ELqYI/gZc81ddWgop1Wz1CMKK5XuekcjR3SRi7
+ 17Cs5WuinS3ZTNKQZhyO4gCDO0rexyX+3BdwlyxcFfeNkPDPl1AQ+m4B+
+ Xl8vcVhzVrei73WYe3DS/+dV3yHGSIy9pcpBKBdioTWPFghkxpPC93MHO A==;
+X-CSE-ConnectionGUID: CfgaZC0RSZqYkocKxs74uA==
+X-CSE-MsgGUID: UB0aIozmSQCfIoCWGSe5yQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11598"; a="51636339"
+X-IronPort-AV: E=Sophos;i="6.19,269,1754982000"; d="scan'208";a="51636339"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Oct 2025 03:01:54 -0700
+X-CSE-ConnectionGUID: +dRpyo4YRTORVvYZa76bVw==
+X-CSE-MsgGUID: XtJoJgrgR+eXjACmHAyxsA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,269,1754982000"; d="scan'208";a="186316185"
+Received: from carterle-desk.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.37])
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Oct 2025 03:01:50 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Thomas Zimmermann <tzimmermann@suse.de>,
+ dri-devel@lists.freedesktop.org, maarten.lankhorst@linux.intel.com, Maxime
+ Ripard <mripard@kernel.org>, David Airlie <airlied@redhat.com>,
+ simona.vetter@ffwll.ch
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH v3 0/4] drm: replace drm_print.h includes from headers
+ with a forward declaration
+In-Reply-To: <c4e3b172-3df8-4d1b-a1b0-51cacae56f0c@suse.de>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <cover.1761734313.git.jani.nikula@intel.com>
+ <41bb4163-8f5b-47c5-8121-7010147bc5e6@suse.de>
+ <b8cc203c44518822197023c2dbf4a21aad681a4c@intel.com>
+ <c4e3b172-3df8-4d1b-a1b0-51cacae56f0c@suse.de>
+Date: Fri, 31 Oct 2025 12:01:47 +0200
+Message-ID: <18ad4c11261b85614f7e3a2aabe611f2ecbf16a5@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_Testing_PREEMPT=5FRT_wit?=
- =?utf-8?q?h_disabling_irqs_in_the_most_critical_section=2E_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Maarten Lankhorst" <dev@lankhorst.se>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 31 Oct 2025 09:51:05 -0000
-Message-ID: <176190426561.4069.18018256681424507491@10055242dc62>
-X-Patchwork-Hint: ignore
-References: <20251030184710.359870-1-dev@lankhorst.se>
-In-Reply-To: <20251030184710.359870-1-dev@lankhorst.se>
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,44 +71,22 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Thu, 30 Oct 2025, Thomas Zimmermann <tzimmermann@suse.de> wrote:
+> Am 30.10.25 um 10:31 schrieb Jani Nikula:
+>> Considering that this touches a lot of drivers, albeit just the include
+>> lists and thus highly unlikely to cause functional changes or hard
+>> conflicts, can I go ahead and merge this to drm-misc-next?
+>
+> Of course, go ahead.
 
-Series: Testing PREEMPT_RT with disabling irqs in the most critical section. (rev2)
-URL   : https://patchwork.freedesktop.org/series/156777/
-State : warning
+Done, thanks again!
 
-== Summary ==
-
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast b77fdf10d8dee0b5e42da888b78e3841955ad8a0
-Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
-Fast mode used, each commit won't be checked separately.
--
-+drivers/gpu/drm/drm_drv.c:449:6: warning: context imbalance in 'drm_dev_enter' - different lock contexts for basic block
-+drivers/gpu/drm/drm_drv.c: note: in included file (through include/linux/notifier.h, arch/x86/include/asm/uprobes.h, include/linux/uprobes.h, include/linux/mm_types.h, include/linux/mmzone.h, include/linux/gfp.h, ...):
-+drivers/gpu/drm/drm_gem.c:446:9: warning: context imbalance in 'drm_gem_handle_create_tail' - unexpected unlock
-+drivers/gpu/drm/drm_plane.c:213:24: warning: Using plain integer as NULL pointer
-+drivers/gpu/drm/drm_syncobj.c:602:24: warning: context imbalance in 'drm_syncobj_get_handle' - unexpected unlock
-+drivers/gpu/drm/drm_syncobj.c:727:24: warning: context imbalance in 'drm_syncobj_fd_to_handle' - unexpected unlock
-+./include/linux/srcu.h:389:9: warning: context imbalance in 'drm_dev_exit' - unexpected unlock
-
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+BR,
+Jani.
 
 
+-- 
+Jani Nikula, Intel
