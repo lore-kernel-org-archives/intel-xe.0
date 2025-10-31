@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0BFCCCCFA06
-	for <intel-xe@archiver.kernel.org>; Fri, 31 Oct 2025 18:30:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DD16CCCFA03
+	for <intel-xe@archiver.kernel.org>; Fri, 31 Oct 2025 18:30:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A77C410EC18;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8B0CB10E333;
 	Fri, 31 Oct 2025 18:30:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jmxBWppU";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="B/rvjkHU";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8FF6510E2FE
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E7D4A10E304
  for <intel-xe@lists.freedesktop.org>; Fri, 31 Oct 2025 18:29:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761935384; x=1793471384;
+ t=1761935385; x=1793471385;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=4SsmM4KX2/Gr/0CKt9rU9Ir2fQQEUI+GcAkd5jDf5og=;
- b=jmxBWppUWwyarcNsWPjThhnqfwzXyILEcjqt6qjtI1WrbeqylmeBjPE0
- +AhKKJoH+gtDNEavcrUsSIDUY1BL7lmKyy2zLI8Q7lvJFNnS+5c0H3wFW
- cUvO6+525uSu/SQ5pllBj9fKyjhcQp2HAnw9dngn00T9ov9wn0U+ChxgF
- Q6UUv4+LYa4GVsTQK3+bidaOkKUk9pH6uu/7h1vIgxijxtmAnZpfnplaK
- ixA0LqHMv4aqx5xeXbY7rMPY567EqByLA7K1SeYpV8ZdmtLZq1sUhRpYk
- XWqNT4j/YzGa/DgvInakBWwCFo9YeQtoJG1WrNl7C1uTOwFcd9IML2WlY g==;
-X-CSE-ConnectionGUID: rL5Uyg+NQluMkDcEngaTgw==
-X-CSE-MsgGUID: 8cYguSYMR5S/zG5ydUNyfg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11599"; a="63123857"
-X-IronPort-AV: E=Sophos;i="6.19,270,1754982000"; d="scan'208";a="63123857"
+ bh=faP/INZTpN8BD7Oxd+5Pev8XFj/QRZ5h82ddi1XAh7o=;
+ b=B/rvjkHUfciLeA1NdRZ0AZfQNfndhZBYcCoW0uAKz2IcuRx+2TF7BxLL
+ VitAkidCv2vXEv/SUQalyK2QGCx/mvotncFUmeT1c3UdB8KgsjspgYqm9
+ aNbtHoJMUs9xsX8ZycaSXoIJbKLaM3In7eZitvhBBbupK4VdfaULrvHTI
+ ut7b6YBnU1IQTFEwoIPU/u8dRsAWQv38upST3LiyDGqGYRqDyBQhJLcIU
+ do6XOmuRewRBZs6Qp10TEF4XQ/ywX9gRELCe2LqHPLAUNXPfkflXfRRX1
+ XKDETPVOEyvYnFEOTtMv3zM3Ja2eHykd8EaXzZx9moyXM6QPqUmgTTNap w==;
+X-CSE-ConnectionGUID: d44WqLB5QSyxeEQGAeAJkA==
+X-CSE-MsgGUID: yQjf38quRl2KkaBr2gxZag==
+X-IronPort-AV: E=McAfee;i="6800,10657,11599"; a="63123863"
+X-IronPort-AV: E=Sophos;i="6.19,270,1754982000"; d="scan'208";a="63123863"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Oct 2025 11:29:43 -0700
-X-CSE-ConnectionGUID: 81rJpaZRQ5SggRjC8LXbow==
-X-CSE-MsgGUID: hFS8ZqPgTImH53R34p0+8w==
+ 31 Oct 2025 11:29:44 -0700
+X-CSE-ConnectionGUID: ojfbKffPThaImG0Fc8dN3w==
+X-CSE-MsgGUID: nLeQBw8pTPqs5mJ0chbZEw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,270,1754982000"; d="scan'208";a="185987634"
+X-IronPort-AV: E=Sophos;i="6.19,270,1754982000"; d="scan'208";a="185987642"
 Received: from nvishwa1-desk.sc.intel.com ([172.25.29.131])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Oct 2025 11:29:43 -0700
+ 31 Oct 2025 11:29:44 -0700
 From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH 07/16] drm/xe/multi_queue: Add support for multi queue dynamic
- priority change
-Date: Fri, 31 Oct 2025 11:29:27 -0700
-Message-ID: <20251031182936.1882062-8-niranjana.vishwanathapura@intel.com>
+Subject: [PATCH 13/16] drm/xe/multi_queue: Support active group after primary
+ is destroyed
+Date: Fri, 31 Oct 2025 11:29:33 -0700
+Message-ID: <20251031182936.1882062-14-niranjana.vishwanathapura@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20251031182936.1882062-1-niranjana.vishwanathapura@intel.com>
 References: <20251031182936.1882062-1-niranjana.vishwanathapura@intel.com>
@@ -66,151 +66,209 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Support dynamic priority change for multi queue group queues via
-exec queue set_property ioctl. Issue CGP_SYNC command to GuC through
-the drm scheduler message interface for priority to take effect.
+Add support to keep the group active after the primary queue is
+destroyed. Instead of killing the primary queue during exec_queue
+destroy ioctl, kill it when all the secondary queues of the group
+are killed.
 
-Signed-off-by: Pallavi Mishra <pallavi.mishra@intel.com>
 Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 ---
- drivers/gpu/drm/xe/xe_exec_queue.c       | 12 ++++-
- drivers/gpu/drm/xe/xe_exec_queue_types.h |  3 ++
- drivers/gpu/drm/xe/xe_guc_submit.c       | 56 ++++++++++++++++++++++--
- 3 files changed, 65 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/xe/xe_device.c           |  7 ++-
+ drivers/gpu/drm/xe/xe_exec_queue.c       | 55 +++++++++++++++++++++++-
+ drivers/gpu/drm/xe/xe_exec_queue.h       |  2 +
+ drivers/gpu/drm/xe/xe_exec_queue_types.h |  4 ++
+ include/uapi/drm/xe_drm.h                |  5 +++
+ 5 files changed, 70 insertions(+), 3 deletions(-)
 
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index 0b496676527a..708a17c357e6 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -176,7 +176,12 @@ static void xe_file_close(struct drm_device *dev, struct drm_file *file)
+ 	xa_for_each(&xef->exec_queue.xa, idx, q) {
+ 		if (q->vm && q->hwe->hw_engine_group)
+ 			xe_hw_engine_group_del_exec_queue(q->hwe->hw_engine_group, q);
+-		xe_exec_queue_kill(q);
++
++		if (xe_exec_queue_is_multi_queue_primary(q))
++			xe_exec_queue_group_kill_put(q->multi_queue.group);
++		else
++			xe_exec_queue_kill(q);
++
+ 		xe_exec_queue_put(q);
+ 	}
+ 	xa_for_each(&xef->vm.xa, idx, vm)
 diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-index 0264cab00fd4..98f8f1c7f13b 100644
+index 3c1bb4f10fd5..d7b0173691c1 100644
 --- a/drivers/gpu/drm/xe/xe_exec_queue.c
 +++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-@@ -729,9 +729,13 @@ static int exec_queue_set_multi_queue_priority(struct xe_device *xe, struct xe_e
- 	if (XE_IOCTL_DBG(xe, value > XE_MULTI_QUEUE_PRIORITY_HIGH))
- 		return -EINVAL;
- 
--	q->multi_queue.priority = value;
-+	/* For queue creation time (!q->xef) setting, just store the priority value */
-+	if (!q->xef) {
-+		q->multi_queue.priority = value;
-+		return 0;
-+	}
- 
--	return 0;
-+	return q->ops->set_multi_queue_priority(q, value);
+@@ -405,6 +405,26 @@ struct xe_exec_queue *xe_exec_queue_create_bind(struct xe_device *xe,
  }
+ ALLOW_ERROR_INJECTION(xe_exec_queue_create_bind, ERRNO);
  
- typedef int (*xe_exec_queue_set_property_fn)(struct xe_device *xe,
-@@ -760,6 +764,10 @@ int xe_exec_queue_set_property_ioctl(struct drm_device *dev, void *data,
- 	if (XE_IOCTL_DBG(xe, args->reserved[0] || args->reserved[1]))
- 		return -EINVAL;
- 
-+	if (XE_IOCTL_DBG(xe, args->property !=
-+			 DRM_XE_EXEC_QUEUE_SET_PROPERTY_MULTI_QUEUE_PRIORITY))
-+		return -EINVAL;
-+
- 	q = xe_exec_queue_lookup(xef, args->exec_queue_id);
- 	if (XE_IOCTL_DBG(xe, !q))
- 		return -ENOENT;
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-index 964a0e6654c7..dcb55b069ed8 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
-+++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-@@ -241,6 +241,9 @@ struct xe_exec_queue_ops {
- 	int (*set_timeslice)(struct xe_exec_queue *q, u32 timeslice_us);
- 	/** @set_preempt_timeout: Set preemption timeout for exec queue */
- 	int (*set_preempt_timeout)(struct xe_exec_queue *q, u32 preempt_timeout_us);
-+	/** @set_multi_queue_priority: Set multi queue priority */
-+	int (*set_multi_queue_priority)(struct xe_exec_queue *q,
-+					enum xe_multi_queue_priority priority);
- 	/**
- 	 * @suspend: Suspend exec queue from executing, allowed to be called
- 	 * multiple times in a row before resume with the caveat that
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index 5ec144c1c2dc..426b64ef8d99 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -1761,10 +1761,32 @@ static void __guc_exec_queue_process_msg_resume(struct xe_sched_msg *msg)
- 	}
- }
- 
--#define CLEANUP		1	/* Non-zero values to catch uninitialized msg */
--#define SET_SCHED_PROPS	2
--#define SUSPEND		3
--#define RESUME		4
-+static void __guc_exec_queue_process_msg_set_multi_queue_priority(struct xe_sched_msg *msg)
++static void xe_exec_queue_group_kill(struct kref *ref)
 +{
-+	struct xe_exec_queue *q = msg->private_data;
-+
-+	if (guc_exec_queue_allowed_to_change_state(q)) {
-+#define MAX_MULTI_QUEUE_REG_SIZE        (2)
-+		struct xe_guc *guc = exec_queue_to_guc(q);
-+		struct xe_exec_queue_group *group = q->multi_queue.group;
-+		u32 action[MAX_MULTI_QUEUE_REG_SIZE];
-+		int len = 0;
-+
-+		action[len++] = XE_GUC_ACTION_MULTI_QUEUE_CONTEXT_CGP_SYNC;
-+		action[len++] = group->primary->guc->id;
-+#undef MAX_MULTI_QUEUE_REG_SIZE
-+
-+		xe_guc_exec_queue_group_cgp_sync(guc, q, action, len);
-+	}
-+
-+	kfree(msg);
++	struct xe_exec_queue_group *group = container_of(ref, struct xe_exec_queue_group,
++							 kill_refcount);
++	xe_exec_queue_kill(group->primary);
 +}
 +
-+#define CLEANUP				1	/* Non-zero values to catch uninitialized msg */
-+#define SET_SCHED_PROPS			2
-+#define SUSPEND				3
-+#define RESUME				4
-+#define SET_MULTI_QUEUE_PRIORITY	5
- #define OPCODE_MASK	0xf
- #define MSG_LOCKED	BIT(8)
- #define MSG_HEAD	BIT(9)
-@@ -1788,6 +1810,9 @@ static void guc_exec_queue_process_msg(struct xe_sched_msg *msg)
- 	case RESUME:
- 		__guc_exec_queue_process_msg_resume(msg);
- 		break;
-+	case SET_MULTI_QUEUE_PRIORITY:
-+		__guc_exec_queue_process_msg_set_multi_queue_priority(msg);
-+		break;
- 	default:
- 		XE_WARN_ON("Unknown message type");
- 	}
-@@ -2004,6 +2029,28 @@ static int guc_exec_queue_set_preempt_timeout(struct xe_exec_queue *q,
++static inline void xe_exec_queue_group_kill_get(struct xe_exec_queue_group *group)
++{
++	kref_get(&group->kill_refcount);
++}
++
++void xe_exec_queue_group_kill_put(struct xe_exec_queue_group *group)
++{
++	if (!group)
++		return;
++
++	kref_put(&group->kill_refcount, xe_exec_queue_group_kill);
++}
++
+ void xe_exec_queue_destroy(struct kref *ref)
+ {
+ 	struct xe_exec_queue *q = container_of(ref, struct xe_exec_queue, refcount);
+@@ -607,6 +627,7 @@ static int xe_exec_queue_group_init(struct xe_device *xe, struct xe_exec_queue *
+ 	group->primary = q;
+ 	group->cgp_bo = bo;
+ 	INIT_LIST_HEAD(&group->list);
++	kref_init(&group->kill_refcount);
+ 	xa_init_flags(&group->xa, XA_FLAGS_ALLOC1);
+ 	mutex_init(&group->lock);
+ 	mutex_init(&group->list_lock);
+@@ -675,6 +696,11 @@ static int xe_exec_queue_group_add(struct xe_device *xe, struct xe_exec_queue *q
+ 	q->multi_queue.pos = pos;
+ 	mutex_unlock(&group->lock);
+ 
++	if (group->primary->multi_queue.keep_active) {
++		xe_exec_queue_group_kill_get(group);
++		q->multi_queue.keep_active = true;
++	}
++
  	return 0;
  }
  
-+static int guc_exec_queue_set_multi_queue_priority(struct xe_exec_queue *q,
-+						   enum xe_multi_queue_priority priority)
-+{
-+	struct xe_sched_msg *msg;
+@@ -691,6 +717,11 @@ static void xe_exec_queue_group_delete(struct xe_exec_queue *q)
+ 	if (lrc)
+ 		xe_lrc_put(lrc);
+ 	mutex_unlock(&group->lock);
 +
-+	if (!xe_exec_queue_is_multi_queue(q))
-+		return -EINVAL;
++	if (q->multi_queue.keep_active) {
++		xe_exec_queue_group_kill_put(group);
++		q->multi_queue.keep_active = false;
++	}
+ }
+ 
+ static int exec_queue_set_multi_group(struct xe_device *xe, struct xe_exec_queue *q,
+@@ -709,12 +740,24 @@ static int exec_queue_set_multi_group(struct xe_device *xe, struct xe_exec_queue
+ 		return -EINVAL;
+ 
+ 	if (value & DRM_XE_MULTI_GROUP_CREATE) {
+-		if (XE_IOCTL_DBG(xe, value & ~DRM_XE_MULTI_GROUP_CREATE))
++		if (XE_IOCTL_DBG(xe, value & ~(DRM_XE_MULTI_GROUP_CREATE |
++					       DRM_XE_MULTI_GROUP_KEEP_ACTIVE)))
++			return -EINVAL;
 +
-+	if (q->multi_queue.priority == priority ||
-+	    exec_queue_killed_or_banned_or_wedged(q))
-+		return 0;
++		/*
++		 * KEEP_ACTIVE is not supported in preempt fence mode as in that mode,
++		 * VM_DESTROY ioctl expects all exec queues of that VM are already killed.
++		 */
++		if (XE_IOCTL_DBG(xe, (value & DRM_XE_MULTI_GROUP_KEEP_ACTIVE) &&
++				 xe_vm_in_preempt_fence_mode(q->vm)))
+ 			return -EINVAL;
+ 
+ 		q->multi_queue.valid = true;
+ 		q->multi_queue.is_primary = true;
+ 		q->multi_queue.pos = 0;
++		if (value & DRM_XE_MULTI_GROUP_KEEP_ACTIVE)
++			q->multi_queue.keep_active = true;
 +
-+	msg = kmalloc(sizeof(*msg), GFP_KERNEL);
-+	if (!msg)
-+		return -ENOMEM;
+ 		return 0;
+ 	}
+ 
+@@ -1254,6 +1297,11 @@ void xe_exec_queue_kill(struct xe_exec_queue *q)
+ 
+ 	q->ops->kill(q);
+ 	xe_vm_remove_compute_exec_queue(q->vm, q);
 +
-+	q->multi_queue.priority = priority;
-+	guc_exec_queue_add_msg(q, msg, SET_MULTI_QUEUE_PRIORITY);
++	if (!xe_exec_queue_is_multi_queue_primary(q) && q->multi_queue.keep_active) {
++		xe_exec_queue_group_kill_put(q->multi_queue.group);
++		q->multi_queue.keep_active = false;
++	}
+ }
+ 
+ int xe_exec_queue_destroy_ioctl(struct drm_device *dev, void *data,
+@@ -1280,7 +1328,10 @@ int xe_exec_queue_destroy_ioctl(struct drm_device *dev, void *data,
+ 	if (q->vm && q->hwe->hw_engine_group)
+ 		xe_hw_engine_group_del_exec_queue(q->hwe->hw_engine_group, q);
+ 
+-	xe_exec_queue_kill(q);
++	if (xe_exec_queue_is_multi_queue_primary(q))
++		xe_exec_queue_group_kill_put(q->multi_queue.group);
++	else
++		xe_exec_queue_kill(q);
+ 
+ 	trace_xe_exec_queue_close(q);
+ 	xe_exec_queue_put(q);
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue.h b/drivers/gpu/drm/xe/xe_exec_queue.h
+index 61478b2e883b..b642341f1ede 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue.h
++++ b/drivers/gpu/drm/xe/xe_exec_queue.h
+@@ -109,6 +109,8 @@ static inline struct xe_exec_queue *xe_exec_queue_multi_queue_primary(struct xe_
+ 	return xe_exec_queue_is_multi_queue(q) ? q->multi_queue.group->primary : q;
+ }
+ 
++void xe_exec_queue_group_kill_put(struct xe_exec_queue_group *group);
 +
-+	return 0;
-+}
-+
- static int guc_exec_queue_suspend(struct xe_exec_queue *q)
- {
- 	struct xe_gpu_scheduler *sched = &q->guc->sched;
-@@ -2095,6 +2142,7 @@ static const struct xe_exec_queue_ops guc_exec_queue_ops = {
- 	.set_priority = guc_exec_queue_set_priority,
- 	.set_timeslice = guc_exec_queue_set_timeslice,
- 	.set_preempt_timeout = guc_exec_queue_set_preempt_timeout,
-+	.set_multi_queue_priority = guc_exec_queue_set_multi_queue_priority,
- 	.suspend = guc_exec_queue_suspend,
- 	.suspend_wait = guc_exec_queue_suspend_wait,
- 	.resume = guc_exec_queue_resume,
+ bool xe_exec_queue_is_lr(struct xe_exec_queue *q);
+ 
+ bool xe_exec_queue_is_idle(struct xe_exec_queue *q);
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+index e64b6588923e..cdca3afe838c 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
++++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+@@ -55,6 +55,8 @@ struct xe_exec_queue_group {
+ 	struct list_head list;
+ 	/** @list_lock: Secondary queue list lock */
+ 	struct mutex list_lock;
++	/** @kill_refcount: ref count to kill primary queue */
++	struct kref kill_refcount;
+ 	/** @sync_pending: CGP_SYNC_DONE g2h response pending */
+ 	bool sync_pending;
+ };
+@@ -152,6 +154,8 @@ struct xe_exec_queue {
+ 		u8 valid:1;
+ 		/** @multi_queue.is_primary: Is primary queue (Q0) of the group */
+ 		u8 is_primary:1;
++		/** @multi_queue.keep_active: Keep the group active after primary is destroyed */
++		u8 keep_active:1;
+ 	} multi_queue;
+ 
+ 	/** @sched_props: scheduling properties */
+diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+index d72151163e77..333fb38b3404 100644
+--- a/include/uapi/drm/xe_drm.h
++++ b/include/uapi/drm/xe_drm.h
+@@ -1260,6 +1260,10 @@ struct drm_xe_vm_bind {
+  *    then a new multi-queue group is created with this queue as the primary queue
+  *    (Q0). Otherwise, the queue gets added to the multi-queue group whose primary
+  *    queue id is specified in the 'value' field.
++ *    If the extension's 'value' field has %DRM_XE_MULTI_GROUP_KEEP_ACTIVE flag
++ *    set, then the multi-queue group is kept active after the primary queue is
++ *    destroyed.
++ *
+  *  - %DRM_XE_EXEC_QUEUE_SET_PROPERTY_MULTI_QUEUE_PRIORITY - Set the queue
+  *    priority within the multi-queue group.
+  *
+@@ -1304,6 +1308,7 @@ struct drm_xe_exec_queue_create {
+ #define   DRM_XE_EXEC_QUEUE_SET_PROPERTY_PXP_TYPE		2
+ #define   DRM_XE_EXEC_QUEUE_SET_PROPERTY_MULTI_GROUP		3
+ #define     DRM_XE_MULTI_GROUP_CREATE				(1ull << 63)
++#define     DRM_XE_MULTI_GROUP_KEEP_ACTIVE			(1ull << 62)
+ #define   DRM_XE_EXEC_QUEUE_SET_PROPERTY_MULTI_QUEUE_PRIORITY	4
+ 	/** @extensions: Pointer to the first extension struct, if any */
+ 	__u64 extensions;
 -- 
 2.43.0
 
