@@ -4,27 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 54768CCFA02
-	for <intel-xe@archiver.kernel.org>; Fri, 31 Oct 2025 19:53:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C2517CCF9F8
+	for <intel-xe@archiver.kernel.org>; Fri, 31 Oct 2025 19:53:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1246110E08B;
-	Fri, 31 Oct 2025 19:53:18 +0000 (UTC)
-Received: from 10055242dc62 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6360510E08B;
- Fri, 31 Oct 2025 19:53:17 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 67C4510E08B;
+	Fri, 31 Oct 2025 19:53:35 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CJsHcFNK";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 03D2B10E08B
+ for <intel-xe@lists.freedesktop.org>; Fri, 31 Oct 2025 19:53:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1761940413; x=1793476413;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=JV7/kHFhUK20OSMZCNRb/0IacjAah4ypnf8QC0mQPCg=;
+ b=CJsHcFNKXAa4dP8U0ZqEPzbUs/AJb2IdCYzNep5GDk4W8qCliNBpncQj
+ iaaSCosI+OO8oPAcRzmaX5HfcTL0yuLIkMI6Z/UPEytphAzrlmt8ej6yp
+ hUvIhtVbVzaOKvxJydqE9w2OTpXE5+3979/rq7PwxOugRYmmmzBNQjlpn
+ PNJRr6n0XFJ9Uo8+fWf0mf8v1ciByoFeKlAOVZ4r8TEfgdw806+kbnzQq
+ mVePCxpsuA3vmNB0411d8A8OGXid5BUAt4EiSAL/R5fs/VwL42SEoTDM5
+ AVPyi+ZyKFfKlAnCbDESF3li1+er05MKDu7xVkwAYY920aHPGk4x3zy/9 A==;
+X-CSE-ConnectionGUID: +seF/vFiTsy3KM7wRStI2w==
+X-CSE-MsgGUID: OBs2TcQ1SiCfsRVE9JIJUw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11599"; a="81738040"
+X-IronPort-AV: E=Sophos;i="6.19,270,1754982000"; d="scan'208";a="81738040"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Oct 2025 12:53:33 -0700
+X-CSE-ConnectionGUID: 8q+zWF/uTIaiWd5riCCG8w==
+X-CSE-MsgGUID: L3Ae67zzSeGID1LoIaG2sA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,270,1754982000"; d="scan'208";a="186651053"
+Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Oct 2025 12:53:32 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: michal.wajdeczko@intel.com,
+	tomasz.lis@intel.com
+Subject: [PATCH] drm/xe/vf: Skip signaled jobs during VF migration re-emission
+Date: Fri, 31 Oct 2025 12:53:27 -0700
+Message-Id: <20251031195327.2997606-1-matthew.brost@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Fix_serialization_on_burs?=
- =?utf-8?q?t_of_unbinds_-_v2?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Brost" <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 31 Oct 2025 19:53:17 -0000
-Message-ID: <176194039740.7307.11826735955858237750@10055242dc62>
-X-Patchwork-Hint: ignore
-References: <20251031180949.2968311-1-matthew.brost@intel.com>
-In-Reply-To: <20251031180949.2968311-1-matthew.brost@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,64 +62,44 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+The LRC software ring tail is reser to the first unsignaled pending
+job's head. Fix the re-emission logic to skip signaled jobs, as it
+currently scans all pending jobs, potentially causing imbalance.
 
-Series: Fix serialization on burst of unbinds - v2
-URL   : https://patchwork.freedesktop.org/series/156863/
-State : warning
+Fixes: c25c1010df88 ("drm/xe/vf: Replay GuC submission state on pause / unpause")
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+---
+ drivers/gpu/drm/xe/xe_guc_submit.c | 12 +++++++++---
+ 1 file changed, 9 insertions(+), 3 deletions(-)
 
-== Summary ==
-
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-f867e605613af1770f90c4b0afd4a8f06424d1f0
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit 31f131c02534f45eded5d9895c45639051d16641
-Author: Matthew Brost <matthew.brost@intel.com>
-Date:   Fri Oct 31 11:09:49 2025 -0700
-
-    drm/xe: Remove last fence dependency check from binds and execs
-    
-    Eliminate redundant last fence dependency checks in exec and bind jobs,
-    as they are now equivalent to xe_exec_queue_is_idle. Simplify the code
-    by removing this dead logic.
-    
-    Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-    Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-+ /mt/dim checkpatch 203c9c05c014fd3a624e9cb07d86820b3ad63bf9 drm-intel
-7ab25a608831 drm/xe: Enforce correct user fence signaling order using
--:16: WARNING:BAD_SIGN_OFF: Non-standard signature: 'Signed-of-by:' - perhaps 'Signed-off-by:'?
-#16: 
-Signed-of-by: Matthew Brost <matthew.brost@intel.com>
-
--:363: ERROR:MISSING_SIGN_OFF: Missing Signed-off-by: line(s)
-
-total: 1 errors, 1 warnings, 0 checks, 283 lines checked
-1599178e88da drm/xe: Attach last fence to TLB invalidation job queues
--:179: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__i' - possible side-effects?
-#179: FILE: drivers/gpu/drm/xe/xe_exec_queue.h:17:
-+#define for_each_tlb_inval(__i)	\
-+	for (__i = XE_EXEC_QUEUE_TLB_INVAL_PRIMARY_GT; \
-+	     __i <= XE_EXEC_QUEUE_TLB_INVAL_MEDIA_GT; ++__i)
-
-total: 0 errors, 0 warnings, 1 checks, 225 lines checked
-1c90bb244a47 drm/xe: Decouple bind queue last fence from TLB invalidations
--:23: ERROR:BAD_SIGN_OFF: Unrecognized email address: 'Thomas Hellström <thomas.hellstrom@linux.intel.com'
-#23: 
-Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com
-
-total: 1 errors, 0 warnings, 0 checks, 505 lines checked
-3b2dce5ff7ec drm/xe: Skip TLB invalidation waits in page fault binds
-6ddbaa1c98d7 drm/xe: Disallow input fences on zero batch execs and zero binds
-31f131c02534 drm/xe: Remove last fence dependency check from binds and execs
-
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index d4ffdb71ef3d..bee76d1b0836 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -2241,11 +2241,17 @@ static void guc_exec_queue_unpause_prepare(struct xe_guc *guc,
+ 					   struct xe_exec_queue *q)
+ {
+ 	struct xe_gpu_scheduler *sched = &q->guc->sched;
+-	struct drm_sched_job *s_job;
+ 	struct xe_sched_job *job = NULL;
+ 
+-	list_for_each_entry(s_job, &sched->base.pending_list, list) {
+-		job = to_xe_sched_job(s_job);
++	list_for_each_entry(job, &sched->base.pending_list, drm.list) {
++		struct drm_sched_fence *s_fence = job->drm.s_fence;
++		struct dma_fence *hw_fence = s_fence->parent;
++
++		/*
++		 * First pending job in guc_exec_queue_pause skips signaled jobs
++		 */
++		if (hw_fence && !dma_fence_is_signaled(hw_fence))
++			continue;
+ 
+ 		xe_gt_dbg(guc_to_gt(guc), "Replay JOB - guc_id=%d, seqno=%d",
+ 			  q->guc->id, xe_sched_job_seqno(job));
+-- 
+2.34.1
 
