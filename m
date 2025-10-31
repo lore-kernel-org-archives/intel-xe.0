@@ -4,48 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E4BE9CCFA05
-	for <intel-xe@archiver.kernel.org>; Fri, 31 Oct 2025 18:30:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0BFCCCCFA06
+	for <intel-xe@archiver.kernel.org>; Fri, 31 Oct 2025 18:30:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9070710EC15;
+	by gabe.freedesktop.org (Postfix) with ESMTP id A77C410EC18;
 	Fri, 31 Oct 2025 18:30:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="T3xft8To";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jmxBWppU";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DBAED10E2FF
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8FF6510E2FE
  for <intel-xe@lists.freedesktop.org>; Fri, 31 Oct 2025 18:29:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761935385; x=1793471385;
+ t=1761935384; x=1793471384;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=+A0bCrmDS/EhLrHnmSqRtxkDSchrARoO7XBgIkGMAfM=;
- b=T3xft8ToPRewozJljqnhh4Rwf+IoaKq5h6rW+mZAdiKKzG9J5RfKBRnh
- ifDxeF7GezpUW0AViNfDJl3agOvAaUmCRImPHrgzRoyu4HI46dnNc6rFB
- nbjWN1kzsWKDaheYTF9GaSE+PExt+ZTORf27Tp2j0Dcyax88qz0IPXT2M
- 0mvcuVXdZqU+UBEE0O2cRzAJ3pYecsOlQoyoqJpM5yGwC4LumUOO/+xaQ
- 7uEkqm5N02WZ5D7nzABFCP6dbUlyFUvl08Ycc/tHUnIZWzJnybj1PALcq
- fAVLneJyLUqDPtzwFiyP+CYNzjVTD+62g7MuiGUixIgoaUn2EB4zPVNol A==;
-X-CSE-ConnectionGUID: qBbOm74ZRqusHreeysPbVw==
-X-CSE-MsgGUID: yGJ+b0oSTvC9pKg7dwQFKQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11599"; a="63123862"
-X-IronPort-AV: E=Sophos;i="6.19,270,1754982000"; d="scan'208";a="63123862"
+ bh=4SsmM4KX2/Gr/0CKt9rU9Ir2fQQEUI+GcAkd5jDf5og=;
+ b=jmxBWppUWwyarcNsWPjThhnqfwzXyILEcjqt6qjtI1WrbeqylmeBjPE0
+ +AhKKJoH+gtDNEavcrUsSIDUY1BL7lmKyy2zLI8Q7lvJFNnS+5c0H3wFW
+ cUvO6+525uSu/SQ5pllBj9fKyjhcQp2HAnw9dngn00T9ov9wn0U+ChxgF
+ Q6UUv4+LYa4GVsTQK3+bidaOkKUk9pH6uu/7h1vIgxijxtmAnZpfnplaK
+ ixA0LqHMv4aqx5xeXbY7rMPY567EqByLA7K1SeYpV8ZdmtLZq1sUhRpYk
+ XWqNT4j/YzGa/DgvInakBWwCFo9YeQtoJG1WrNl7C1uTOwFcd9IML2WlY g==;
+X-CSE-ConnectionGUID: rL5Uyg+NQluMkDcEngaTgw==
+X-CSE-MsgGUID: 8cYguSYMR5S/zG5ydUNyfg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11599"; a="63123857"
+X-IronPort-AV: E=Sophos;i="6.19,270,1754982000"; d="scan'208";a="63123857"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Oct 2025 11:29:44 -0700
-X-CSE-ConnectionGUID: SV5QzRZoSY+MdzJLC5pr2w==
-X-CSE-MsgGUID: Q1jgKY68QI649hrpFHDM2Q==
+ 31 Oct 2025 11:29:43 -0700
+X-CSE-ConnectionGUID: 81rJpaZRQ5SggRjC8LXbow==
+X-CSE-MsgGUID: hFS8ZqPgTImH53R34p0+8w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,270,1754982000"; d="scan'208";a="185987640"
+X-IronPort-AV: E=Sophos;i="6.19,270,1754982000"; d="scan'208";a="185987634"
 Received: from nvishwa1-desk.sc.intel.com ([172.25.29.131])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Oct 2025 11:29:44 -0700
+ 31 Oct 2025 11:29:43 -0700
 From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH 12/16] drm/xe/multi_queue: Tracepoint support
-Date: Fri, 31 Oct 2025 11:29:32 -0700
-Message-ID: <20251031182936.1882062-13-niranjana.vishwanathapura@intel.com>
+Subject: [PATCH 07/16] drm/xe/multi_queue: Add support for multi queue dynamic
+ priority change
+Date: Fri, 31 Oct 2025 11:29:27 -0700
+Message-ID: <20251031182936.1882062-8-niranjana.vishwanathapura@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20251031182936.1882062-1-niranjana.vishwanathapura@intel.com>
 References: <20251031182936.1882062-1-niranjana.vishwanathapura@intel.com>
@@ -65,95 +66,151 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add xe_exec_queue_create_multi_queue event with
-multi-queue information.
+Support dynamic priority change for multi queue group queues via
+exec queue set_property ioctl. Issue CGP_SYNC command to GuC through
+the drm scheduler message interface for priority to take effect.
 
+Signed-off-by: Pallavi Mishra <pallavi.mishra@intel.com>
 Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc_submit.c |  5 +++-
- drivers/gpu/drm/xe/xe_trace.h      | 41 ++++++++++++++++++++++++++++++
- 2 files changed, 45 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_exec_queue.c       | 12 ++++-
+ drivers/gpu/drm/xe/xe_exec_queue_types.h |  3 ++
+ drivers/gpu/drm/xe/xe_guc_submit.c       | 56 ++++++++++++++++++++++--
+ 3 files changed, 65 insertions(+), 6 deletions(-)
 
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
+index 0264cab00fd4..98f8f1c7f13b 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue.c
++++ b/drivers/gpu/drm/xe/xe_exec_queue.c
+@@ -729,9 +729,13 @@ static int exec_queue_set_multi_queue_priority(struct xe_device *xe, struct xe_e
+ 	if (XE_IOCTL_DBG(xe, value > XE_MULTI_QUEUE_PRIORITY_HIGH))
+ 		return -EINVAL;
+ 
+-	q->multi_queue.priority = value;
++	/* For queue creation time (!q->xef) setting, just store the priority value */
++	if (!q->xef) {
++		q->multi_queue.priority = value;
++		return 0;
++	}
+ 
+-	return 0;
++	return q->ops->set_multi_queue_priority(q, value);
+ }
+ 
+ typedef int (*xe_exec_queue_set_property_fn)(struct xe_device *xe,
+@@ -760,6 +764,10 @@ int xe_exec_queue_set_property_ioctl(struct drm_device *dev, void *data,
+ 	if (XE_IOCTL_DBG(xe, args->reserved[0] || args->reserved[1]))
+ 		return -EINVAL;
+ 
++	if (XE_IOCTL_DBG(xe, args->property !=
++			 DRM_XE_EXEC_QUEUE_SET_PROPERTY_MULTI_QUEUE_PRIORITY))
++		return -EINVAL;
++
+ 	q = xe_exec_queue_lookup(xef, args->exec_queue_id);
+ 	if (XE_IOCTL_DBG(xe, !q))
+ 		return -ENOENT;
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+index 964a0e6654c7..dcb55b069ed8 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
++++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+@@ -241,6 +241,9 @@ struct xe_exec_queue_ops {
+ 	int (*set_timeslice)(struct xe_exec_queue *q, u32 timeslice_us);
+ 	/** @set_preempt_timeout: Set preemption timeout for exec queue */
+ 	int (*set_preempt_timeout)(struct xe_exec_queue *q, u32 preempt_timeout_us);
++	/** @set_multi_queue_priority: Set multi queue priority */
++	int (*set_multi_queue_priority)(struct xe_exec_queue *q,
++					enum xe_multi_queue_priority priority);
+ 	/**
+ 	 * @suspend: Suspend exec queue from executing, allowed to be called
+ 	 * multiple times in a row before resume with the caveat that
 diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index 605352145d76..bc7296edf1be 100644
+index 5ec144c1c2dc..426b64ef8d99 100644
 --- a/drivers/gpu/drm/xe/xe_guc_submit.c
 +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -2001,7 +2001,10 @@ static int guc_exec_queue_init(struct xe_exec_queue *q)
- 		mutex_unlock(&group->list_lock);
+@@ -1761,10 +1761,32 @@ static void __guc_exec_queue_process_msg_resume(struct xe_sched_msg *msg)
  	}
+ }
  
--	trace_xe_exec_queue_create(q);
-+	if (xe_exec_queue_is_multi_queue(q))
-+		trace_xe_exec_queue_create_multi_queue(q);
-+	else
-+		trace_xe_exec_queue_create(q);
- 
+-#define CLEANUP		1	/* Non-zero values to catch uninitialized msg */
+-#define SET_SCHED_PROPS	2
+-#define SUSPEND		3
+-#define RESUME		4
++static void __guc_exec_queue_process_msg_set_multi_queue_priority(struct xe_sched_msg *msg)
++{
++	struct xe_exec_queue *q = msg->private_data;
++
++	if (guc_exec_queue_allowed_to_change_state(q)) {
++#define MAX_MULTI_QUEUE_REG_SIZE        (2)
++		struct xe_guc *guc = exec_queue_to_guc(q);
++		struct xe_exec_queue_group *group = q->multi_queue.group;
++		u32 action[MAX_MULTI_QUEUE_REG_SIZE];
++		int len = 0;
++
++		action[len++] = XE_GUC_ACTION_MULTI_QUEUE_CONTEXT_CGP_SYNC;
++		action[len++] = group->primary->guc->id;
++#undef MAX_MULTI_QUEUE_REG_SIZE
++
++		xe_guc_exec_queue_group_cgp_sync(guc, q, action, len);
++	}
++
++	kfree(msg);
++}
++
++#define CLEANUP				1	/* Non-zero values to catch uninitialized msg */
++#define SET_SCHED_PROPS			2
++#define SUSPEND				3
++#define RESUME				4
++#define SET_MULTI_QUEUE_PRIORITY	5
+ #define OPCODE_MASK	0xf
+ #define MSG_LOCKED	BIT(8)
+ #define MSG_HEAD	BIT(9)
+@@ -1788,6 +1810,9 @@ static void guc_exec_queue_process_msg(struct xe_sched_msg *msg)
+ 	case RESUME:
+ 		__guc_exec_queue_process_msg_resume(msg);
+ 		break;
++	case SET_MULTI_QUEUE_PRIORITY:
++		__guc_exec_queue_process_msg_set_multi_queue_priority(msg);
++		break;
+ 	default:
+ 		XE_WARN_ON("Unknown message type");
+ 	}
+@@ -2004,6 +2029,28 @@ static int guc_exec_queue_set_preempt_timeout(struct xe_exec_queue *q,
  	return 0;
+ }
  
-diff --git a/drivers/gpu/drm/xe/xe_trace.h b/drivers/gpu/drm/xe/xe_trace.h
-index c9d0748dae9d..6d12fcc13f43 100644
---- a/drivers/gpu/drm/xe/xe_trace.h
-+++ b/drivers/gpu/drm/xe/xe_trace.h
-@@ -13,6 +13,7 @@
- #include <linux/types.h>
- 
- #include "xe_exec_queue_types.h"
-+#include "xe_exec_queue.h"
- #include "xe_gpu_scheduler_types.h"
- #include "xe_gt_types.h"
- #include "xe_guc_exec_queue_types.h"
-@@ -97,11 +98,51 @@ DECLARE_EVENT_CLASS(xe_exec_queue,
- 			      __entry->guc_state, __entry->flags)
- );
- 
-+DECLARE_EVENT_CLASS(xe_exec_queue_multi_queue,
-+		    TP_PROTO(struct xe_exec_queue *q),
-+		    TP_ARGS(q),
++static int guc_exec_queue_set_multi_queue_priority(struct xe_exec_queue *q,
++						   enum xe_multi_queue_priority priority)
++{
++	struct xe_sched_msg *msg;
 +
-+		    TP_STRUCT__entry(
-+			     __string(dev, __dev_name_eq(q))
-+			     __field(enum xe_engine_class, class)
-+			     __field(u32, logical_mask)
-+			     __field(u8, gt_id)
-+			     __field(u16, width)
-+			     __field(u32, guc_id)
-+			     __field(u32, guc_state)
-+			     __field(u32, flags)
-+			     __field(u32, primary)
-+			     ),
++	if (!xe_exec_queue_is_multi_queue(q))
++		return -EINVAL;
 +
-+		    TP_fast_assign(
-+			   __assign_str(dev);
-+			   __entry->class = q->class;
-+			   __entry->logical_mask = q->logical_mask;
-+			   __entry->gt_id = q->gt->info.id;
-+			   __entry->width = q->width;
-+			   __entry->guc_id = q->guc->id;
-+			   __entry->guc_state = atomic_read(&q->guc->state);
-+			   __entry->flags = q->flags;
-+			   __entry->primary = xe_exec_queue_multi_queue_primary(q)->guc->id;
-+			   ),
++	if (q->multi_queue.priority == priority ||
++	    exec_queue_killed_or_banned_or_wedged(q))
++		return 0;
 +
-+		    TP_printk("dev=%s, %d:0x%x, gt=%d, width=%d guc_id=%d, guc_state=0x%x, flags=0x%x, primary=%d",
-+			      __get_str(dev), __entry->class, __entry->logical_mask,
-+			      __entry->gt_id, __entry->width, __entry->guc_id,
-+			      __entry->guc_state, __entry->flags,
-+			      __entry->primary)
-+);
++	msg = kmalloc(sizeof(*msg), GFP_KERNEL);
++	if (!msg)
++		return -ENOMEM;
 +
- DEFINE_EVENT(xe_exec_queue, xe_exec_queue_create,
- 	     TP_PROTO(struct xe_exec_queue *q),
- 	     TP_ARGS(q)
- );
- 
-+DEFINE_EVENT(xe_exec_queue_multi_queue, xe_exec_queue_create_multi_queue,
-+	     TP_PROTO(struct xe_exec_queue *q),
-+	     TP_ARGS(q)
-+);
++	q->multi_queue.priority = priority;
++	guc_exec_queue_add_msg(q, msg, SET_MULTI_QUEUE_PRIORITY);
 +
- DEFINE_EVENT(xe_exec_queue, xe_exec_queue_supress_resume,
- 	     TP_PROTO(struct xe_exec_queue *q),
- 	     TP_ARGS(q)
++	return 0;
++}
++
+ static int guc_exec_queue_suspend(struct xe_exec_queue *q)
+ {
+ 	struct xe_gpu_scheduler *sched = &q->guc->sched;
+@@ -2095,6 +2142,7 @@ static const struct xe_exec_queue_ops guc_exec_queue_ops = {
+ 	.set_priority = guc_exec_queue_set_priority,
+ 	.set_timeslice = guc_exec_queue_set_timeslice,
+ 	.set_preempt_timeout = guc_exec_queue_set_preempt_timeout,
++	.set_multi_queue_priority = guc_exec_queue_set_multi_queue_priority,
+ 	.suspend = guc_exec_queue_suspend,
+ 	.suspend_wait = guc_exec_queue_suspend_wait,
+ 	.resume = guc_exec_queue_resume,
 -- 
 2.43.0
 
