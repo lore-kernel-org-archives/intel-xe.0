@@ -4,52 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4F3A0CCF9FE
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 66418CCF9FF
 	for <intel-xe@archiver.kernel.org>; Fri, 31 Oct 2025 10:38:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 081DB10EB37;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1F61A10EB38;
 	Fri, 31 Oct 2025 10:38:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SoxgwiVe";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XGxkH+pU";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6C92110EB25;
- Fri, 31 Oct 2025 10:37:35 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0061E10EB34;
+ Fri, 31 Oct 2025 10:37:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761907056; x=1793443056;
+ t=1761907075; x=1793443075;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=wB6VfE7wotGjt/j1DMKmeKgMsxAMdp0CgRH5Q5JXNGM=;
- b=SoxgwiVei0RokEn13/eCdhA30OWhU9FXkYXOXjYqvxFC9McqYioCt6E2
- oW4nev1QNUaeC5WL+jGgjIf5c5uztKsYwDBt3yJevPOkFAxUDawl5pAJK
- h5XByPj49ZF8begzkx2AQpio9NIcbgjhXkeH/EPIsLXF9NolmG2y0kOpE
- 85PxMPzXE+O1dv1YLbB6ltFoyJ5Lmv+oFLsUuMVyWy872PHT84MV/be5A
- oYQc4k5iwIhAvf3V67l/JoQfQOjP22MXmN5sdAvK7Ouf6vu3+uOQ7rC74
- aOntp6fcYyh3JDYt1dBchHphAKNj329lAsCwlJUq7oHV6fPNMmLZIgVmI A==;
-X-CSE-ConnectionGUID: IO1WACqCR3iwucwTafGwZw==
-X-CSE-MsgGUID: fYAydQ6MR/2jciWgUXLFfA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11598"; a="86690890"
-X-IronPort-AV: E=Sophos;i="6.19,269,1754982000"; d="scan'208";a="86690890"
+ bh=EfY0r6kzaWdztcKHGPY5haHhathDiTMf7RbNMF0/lnw=;
+ b=XGxkH+pUC4KuwUiyxy/GE4JJlxXQgI0KBiBcRV5F97gzgeWQIiT/PCAC
+ dD8aAozHPAmRniCXnOJH2Tg+P/KUbonFvRaWh3YBzOibSsu04Mg2MSh64
+ pRivsIkPvPxePP5qa3JTa2chM+5f0LFuN7YuODQw/wEaw/wGd8REvzQt9
+ auOzf3Kg2E0rNFn+KX9lJYFcrEKak2rOltnPEv8ZcdmHSDLJbHwP0Ua0j
+ uM722+BQMlsPxFQEhx8w1PmwysGgTJdPly8f1+HFkRb2SS+N+vR4HgaI7
+ F3UzuQ3kWxqQmIy3uG2sGUgtSItChRwA5t6KsUryj4BdoD7cFCk6LH4RQ Q==;
+X-CSE-ConnectionGUID: fyFlh7XlRQ+2Qr27kvgIlw==
+X-CSE-MsgGUID: XjwayDugQumPOlClJEvC0Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11598"; a="86690906"
+X-IronPort-AV: E=Sophos;i="6.19,269,1754982000"; d="scan'208,223";a="86690906"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Oct 2025 03:37:36 -0700
-X-CSE-ConnectionGUID: JNvoIKQtQAOUv7P8jRnwpw==
-X-CSE-MsgGUID: c+lzmmmjT4CVK3JztH0O+w==
+ 31 Oct 2025 03:37:54 -0700
+X-CSE-ConnectionGUID: mu30UjXKSBOiojxQtWRz8g==
+X-CSE-MsgGUID: aZPj9dFvT5iOtp6zTJUOwA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,269,1754982000"; d="scan'208";a="190554704"
+X-IronPort-AV: E=Sophos;i="6.19,269,1754982000"; 
+ d="scan'208,223";a="190554760"
 Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
- by fmviesa005.fm.intel.com with ESMTP; 31 Oct 2025 03:37:32 -0700
+ by fmviesa005.fm.intel.com with ESMTP; 31 Oct 2025 03:37:51 -0700
 From: Suraj Kandpal <suraj.kandpal@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
 Cc: ankit.k.nautiyal@intel.com, arun.r.murthy@intel.com, uma.shankar@intel.com,
  gustavo.sousa@intel.com, lucas.demarchi@intel.com,
  Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH v3 17/25] drm/i915/ltphy: Hook up LT Phy Enable & Disable
- sequences
-Date: Fri, 31 Oct 2025 16:06:35 +0530
-Message-Id: <20251031103643.4147868-18-suraj.kandpal@intel.com>
+Subject: [PATCH v3 24/25] drm/i915/display: Aux Enable and Display powerwell
+ timeouts
+Date: Fri, 31 Oct 2025 16:06:42 +0530
+Message-Id: <20251031103643.4147868-25-suraj.kandpal@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251031103643.4147868-1-suraj.kandpal@intel.com>
 References: <20251031103643.4147868-1-suraj.kandpal@intel.com>
@@ -69,133 +70,64 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hook up the LT Phy enable and disable sequences using encoder->
-enable/disable_clock and reusing the TBT enable disable sequence from
-cx0 PHY since it remains the same.
+From XE3P we can now poll if the AUX power is up or down define the
+timeouts for each respectively.
 
+Bspec: 68967
 Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 Reviewed-by: Arun R Murthy <arun.r.murthy@intel.com>
----
- drivers/gpu/drm/i915/display/intel_cx0_phy.c |  7 ++++---
- drivers/gpu/drm/i915/display/intel_cx0_phy.h |  3 +++
- drivers/gpu/drm/i915/display/intel_ddi.c     |  7 ++++++-
- drivers/gpu/drm/i915/display/intel_lt_phy.c  | 21 ++++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_lt_phy.h  |  3 +++
- 5 files changed, 37 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-index e2dcb5f96f47..82f9401c40b9 100644
---- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-@@ -18,6 +18,7 @@
- #include "intel_display_types.h"
- #include "intel_dp.h"
- #include "intel_hdmi.h"
-+#include "intel_lt_phy.h"
- #include "intel_panel.h"
- #include "intel_psr.h"
- #include "intel_snps_hdmi_pll.h"
-@@ -3150,8 +3151,8 @@ static int intel_mtl_tbt_clock_select(struct intel_display *display,
- 	}
+---
+
+V1 -> V2:
+-Remove the extra blank line added (Arun)
+
+ .../i915/display/intel_display_power_well.c   | 22 +++++++++++++++++--
+ 1 file changed, 20 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+index d1b70a117d73..eab7019f2252 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
++++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+@@ -1866,18 +1866,36 @@ static void xelpdp_aux_power_well_enable(struct intel_display *display,
+ 	 * expected to just wait a fixed 600us after raising the request
+ 	 * bit.
+ 	 */
+-	usleep_range(600, 1200);
++	if (DISPLAY_VER(display) >= 35) {
++		if (intel_de_wait_for_set(display, XELPDP_DP_AUX_CH_CTL(display, aux_ch),
++					  XELPDP_DP_AUX_CH_CTL_POWER_STATUS, 2))
++			drm_warn(display->drm,
++				 "Timeout waiting for PHY %c AUX channel power to be up\n",
++				 phy_name(phy));
++	} else {
++		usleep_range(600, 1200);
++	}
  }
  
--static void intel_mtl_tbt_pll_enable(struct intel_encoder *encoder,
--				     const struct intel_crtc_state *crtc_state)
-+void intel_mtl_tbt_pll_enable(struct intel_encoder *encoder,
-+			      const struct intel_crtc_state *crtc_state)
+ static void xelpdp_aux_power_well_disable(struct intel_display *display,
+ 					  struct i915_power_well *power_well)
  {
- 	struct intel_display *display = to_intel_display(encoder);
- 	enum phy phy = intel_encoder_to_phy(encoder);
-@@ -3335,7 +3336,7 @@ static bool intel_cx0_pll_is_enabled(struct intel_encoder *encoder)
- 			     intel_cx0_get_pclk_pll_request(lane);
+ 	enum aux_ch aux_ch = i915_power_well_instance(power_well)->xelpdp.aux_ch;
++	enum phy phy = icl_aux_pw_to_phy(display, power_well);
+ 
+ 	intel_de_rmw(display, XELPDP_DP_AUX_CH_CTL(display, aux_ch),
+ 		     XELPDP_DP_AUX_CH_CTL_POWER_REQUEST,
+ 		     0);
+-	usleep_range(10, 30);
++
++	if (DISPLAY_VER(display) >= 35) {
++		if (intel_de_wait_for_clear(display, XELPDP_DP_AUX_CH_CTL(display, aux_ch),
++					    XELPDP_DP_AUX_CH_CTL_POWER_STATUS, 1))
++			drm_warn(display->drm,
++				 "Timeout waiting for PHY %c AUX channel to powerdown\n",
++				 phy_name(phy));
++	} else {
++		usleep_range(10, 30);
++	}
  }
  
--static void intel_mtl_tbt_pll_disable(struct intel_encoder *encoder)
-+void intel_mtl_tbt_pll_disable(struct intel_encoder *encoder)
- {
- 	struct intel_display *display = to_intel_display(encoder);
- 	enum phy phy = intel_encoder_to_phy(encoder);
-diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.h b/drivers/gpu/drm/i915/display/intel_cx0_phy.h
-index c9fba91f6c6a..84d334b865f7 100644
---- a/drivers/gpu/drm/i915/display/intel_cx0_phy.h
-+++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.h
-@@ -63,5 +63,8 @@ int intel_mtl_tbt_calc_port_clock(struct intel_encoder *encoder);
- void intel_cx0_pll_power_save_wa(struct intel_display *display);
- void intel_lnl_mac_transmit_lfps(struct intel_encoder *encoder,
- 				 const struct intel_crtc_state *crtc_state);
-+void intel_mtl_tbt_pll_enable(struct intel_encoder *encoder,
-+			      const struct intel_crtc_state *crtc_state);
-+void intel_mtl_tbt_pll_disable(struct intel_encoder *encoder);
- 
- #endif /* __INTEL_CX0_PHY_H__ */
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index 870140340342..a4ea9f29fd85 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -72,6 +72,7 @@
- #include "intel_hotplug.h"
- #include "intel_hti.h"
- #include "intel_lspcon.h"
-+#include "intel_lt_phy.h"
- #include "intel_mg_phy_regs.h"
- #include "intel_modeset_lock.h"
- #include "intel_panel.h"
-@@ -5231,7 +5232,11 @@ void intel_ddi_init(struct intel_display *display,
- 	encoder->cloneable = 0;
- 	encoder->pipe_mask = ~0;
- 
--	if (DISPLAY_VER(display) >= 14) {
-+	if (HAS_LT_PHY(display)) {
-+		encoder->enable_clock = intel_xe3plpd_pll_enable;
-+		encoder->disable_clock = intel_xe3plpd_pll_disable;
-+		encoder->port_pll_type = intel_mtl_port_pll_type;
-+	} else if (DISPLAY_VER(display) >= 14) {
- 		encoder->enable_clock = intel_mtl_pll_enable;
- 		encoder->disable_clock = intel_mtl_pll_disable;
- 		encoder->port_pll_type = intel_mtl_port_pll_type;
-diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.c b/drivers/gpu/drm/i915/display/intel_lt_phy.c
-index 6d56e3c11bff..cc8cd7faf98f 100644
---- a/drivers/gpu/drm/i915/display/intel_lt_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_lt_phy.c
-@@ -1702,3 +1702,24 @@ void intel_lt_phy_pll_disable(struct intel_encoder *encoder)
- 
- 	intel_lt_phy_transaction_end(encoder, wakeref);
- }
-+
-+void intel_xe3plpd_pll_enable(struct intel_encoder *encoder,
-+			      const struct intel_crtc_state *crtc_state)
-+{
-+	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
-+
-+	if (intel_tc_port_in_tbt_alt_mode(dig_port))
-+		intel_mtl_tbt_pll_enable(encoder, crtc_state);
-+	else
-+		intel_lt_phy_pll_enable(encoder, crtc_state);
-+}
-+
-+void intel_xe3plpd_pll_disable(struct intel_encoder *encoder)
-+{
-+	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
-+
-+	if (intel_tc_port_in_tbt_alt_mode(dig_port))
-+		intel_mtl_tbt_pll_disable(encoder);
-+	else
-+		intel_lt_phy_pll_disable(encoder);
-+}
-diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.h b/drivers/gpu/drm/i915/display/intel_lt_phy.h
-index 499091e04e82..15d3d680871c 100644
---- a/drivers/gpu/drm/i915/display/intel_lt_phy.h
-+++ b/drivers/gpu/drm/i915/display/intel_lt_phy.h
-@@ -20,6 +20,9 @@ intel_lt_phy_pll_calc_state(struct intel_crtc_state *crtc_state,
- 			    struct intel_encoder *encoder);
- int intel_lt_phy_calc_port_clock(struct intel_encoder *encoder,
- 				 const struct intel_crtc_state *crtc_state);
-+void intel_xe3plpd_pll_enable(struct intel_encoder *encoder,
-+			      const struct intel_crtc_state *crtc_state);
-+void intel_xe3plpd_pll_disable(struct intel_encoder *encoder);
- 
- #define HAS_LT_PHY(display) (DISPLAY_VER(display) >= 35)
- 
+ static bool xelpdp_aux_power_well_enabled(struct intel_display *display,
 -- 
 2.34.1
 
