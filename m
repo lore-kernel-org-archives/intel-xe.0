@@ -4,56 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D486FCCFA08
-	for <intel-xe@archiver.kernel.org>; Fri, 31 Oct 2025 23:41:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C7D72CCF9FE
+	for <intel-xe@archiver.kernel.org>; Fri, 31 Oct 2025 23:43:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D94DD10E18F;
-	Fri, 31 Oct 2025 23:41:00 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="T8EsqrxK";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C089910E0F9
- for <intel-xe@lists.freedesktop.org>; Fri, 31 Oct 2025 23:40:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761954059; x=1793490059;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=KL9b6GjA/lotPgZcPOtqoP20kWgAn+lsTfCi7EiSgmY=;
- b=T8EsqrxK+Xg90XkxZIys7aT7x7qumtBXm+eFoQBQ9kU7bSWWgRO4fqSW
- 0/qrK3WfZn2dXTkQQ0h1vpI3Wjqvv/e412EV5fezZg1Ybleg0lr+VH5BX
- uKv/EHjdDMBA5qhefmScaTxrm/1jXELKc+RHLwTqpIOv+6WKXEBt7AryM
- 7OsPGX8ECQgqAYXqdKh69hM9yfS812whg7nxMu7/01Hc5/y24HYCT5FfO
- Zc0HsJ9N59qlTtnfLfNDlqfLTqRIpjDKe3WW/S2ev0FWxDoakTsKXsK5v
- +M6M68EiD0L7vEcpH0LhQsbNR/ewYH3QSwrH9r+BwC+LmQw/O27AXmwZu Q==;
-X-CSE-ConnectionGUID: Qrbz8Uu2Q4Gg++Ui9tTC1g==
-X-CSE-MsgGUID: SgwTi+/tRZ2xJFNIQlkQ/Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11599"; a="81749187"
-X-IronPort-AV: E=Sophos;i="6.19,270,1754982000"; d="scan'208";a="81749187"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Oct 2025 16:40:58 -0700
-X-CSE-ConnectionGUID: 7TriLEgjRAyyD6XQqt5G7w==
-X-CSE-MsgGUID: UPwQRRkFRVqv54YA8amZ2A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,270,1754982000"; d="scan'208";a="223595473"
-Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Oct 2025 16:40:57 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: thomas.hellstrom@linux.intel.com
-Subject: [PATCH v7 2/6] drm/xe: Attach last fence to TLB invalidation job
- queues
-Date: Fri, 31 Oct 2025 16:40:46 -0700
-Message-Id: <20251031234050.3043507-3-matthew.brost@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20251031234050.3043507-1-matthew.brost@intel.com>
-References: <20251031234050.3043507-1-matthew.brost@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 868D510E0F9;
+	Fri, 31 Oct 2025 23:43:13 +0000 (UTC)
+Received: from 10055242dc62 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1171010E0F9;
+ Fri, 31 Oct 2025 23:43:13 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1298794591632456415=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/vf=3A_Start_re-emiss?=
+ =?utf-8?q?ion_from_first_unsignaled_job_during_VF_migration?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Brost" <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 31 Oct 2025 23:43:13 -0000
+Message-ID: <176195419306.7757.12519819767543222790@10055242dc62>
+X-Patchwork-Hint: ignore
+References: <20251031201345.3015516-1-matthew.brost@intel.com>
+In-Reply-To: <20251031201345.3015516-1-matthew.brost@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,297 +36,110 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add support for attaching the last fence to TLB invalidation job queues
-to address serialization issues during bursts of unbind jobs. Ensure
-that user fence signaling for a bind job reflects both the bind job
-itself and the last fences of all related TLB invalidations. Maintain
-submission order based solely on the state of the bind and TLB
-invalidation queues.
+--===============1298794591632456415==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Introduce support functions for last fence attachment to TLB
-invalidation queues.
+== Series Details ==
 
-v3:
- - Fix assert in xe_exec_queue_tlb_inval_last_fence_set (CI)
- - Ensure migrate lock held for migrate queues (Testing)
-v5:
- - Style nits (Thomas)
- - Rewrite commit message (Thomas)
+Series: drm/xe/vf: Start re-emission from first unsignaled job during VF migration
+URL   : https://patchwork.freedesktop.org/series/156869/
+State : success
 
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
----
- drivers/gpu/drm/xe/xe_exec_queue.c       | 103 ++++++++++++++++++++++-
- drivers/gpu/drm/xe/xe_exec_queue.h       |  21 +++++
- drivers/gpu/drm/xe/xe_exec_queue_types.h |   5 ++
- drivers/gpu/drm/xe/xe_migrate.c          |  14 +++
- drivers/gpu/drm/xe/xe_migrate.h          |   8 ++
- drivers/gpu/drm/xe/xe_vm.c               |   7 +-
- 6 files changed, 156 insertions(+), 2 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-index e3414b337569..aada199faf71 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue.c
-+++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-@@ -387,6 +387,7 @@ void xe_exec_queue_destroy(struct kref *ref)
- {
- 	struct xe_exec_queue *q = container_of(ref, struct xe_exec_queue, refcount);
- 	struct xe_exec_queue *eq, *next;
-+	int i;
- 
- 	xe_assert(gt_to_xe(q->gt), atomic_read(&q->job_cnt) == 0);
- 
-@@ -397,6 +398,9 @@ void xe_exec_queue_destroy(struct kref *ref)
- 		xe_pxp_exec_queue_remove(gt_to_xe(q->gt)->pxp, q);
- 
- 	xe_exec_queue_last_fence_put_unlocked(q);
-+	for_each_tlb_inval(i)
-+		xe_exec_queue_tlb_inval_last_fence_put_unlocked(q, i);
-+
- 	if (!(q->flags & EXEC_QUEUE_FLAG_BIND_ENGINE_CHILD)) {
- 		list_for_each_entry_safe(eq, next, &q->multi_gt_list,
- 					 multi_gt_link)
-@@ -1014,7 +1018,9 @@ int xe_exec_queue_destroy_ioctl(struct drm_device *dev, void *data,
- static void xe_exec_queue_last_fence_lockdep_assert(struct xe_exec_queue *q,
- 						    struct xe_vm *vm)
- {
--	if (q->flags & EXEC_QUEUE_FLAG_VM) {
-+	if (q->flags & EXEC_QUEUE_FLAG_MIGRATE) {
-+		xe_migrate_job_lock_assert(q);
-+	} else if (q->flags & EXEC_QUEUE_FLAG_VM) {
- 		lockdep_assert_held(&vm->lock);
- 	} else {
- 		xe_vm_assert_held(vm);
-@@ -1113,6 +1119,7 @@ void xe_exec_queue_last_fence_set(struct xe_exec_queue *q, struct xe_vm *vm,
- 				  struct dma_fence *fence)
- {
- 	xe_exec_queue_last_fence_lockdep_assert(q, vm);
-+	xe_assert(vm->xe, !dma_fence_is_container(fence));
- 
- 	xe_exec_queue_last_fence_put(q, vm);
- 	q->last_fence = dma_fence_get(fence);
-@@ -1141,6 +1148,100 @@ int xe_exec_queue_last_fence_test_dep(struct xe_exec_queue *q, struct xe_vm *vm)
- 	return err;
- }
- 
-+/**
-+ * xe_exec_queue_tlb_inval_last_fence_put() - Drop ref to last TLB invalidation fence
-+ * @q: The exec queue
-+ * @vm: The VM the engine does a bind for
-+ * @type: Either primary or media GT
-+ */
-+void xe_exec_queue_tlb_inval_last_fence_put(struct xe_exec_queue *q,
-+					    struct xe_vm *vm,
-+					    unsigned int type)
-+{
-+	xe_exec_queue_last_fence_lockdep_assert(q, vm);
-+	xe_assert(vm->xe, type == XE_EXEC_QUEUE_TLB_INVAL_MEDIA_GT ||
-+		  type == XE_EXEC_QUEUE_TLB_INVAL_PRIMARY_GT);
-+
-+	xe_exec_queue_tlb_inval_last_fence_put_unlocked(q, type);
-+}
-+
-+/**
-+ * xe_exec_queue_tlb_inval_last_fence_put_unlocked() - Drop ref to last TLB
-+ * invalidation fence unlocked
-+ * @q: The exec queue
-+ * @type: Either primary or media GT
-+ *
-+ * Only safe to be called from xe_exec_queue_destroy().
-+ */
-+void xe_exec_queue_tlb_inval_last_fence_put_unlocked(struct xe_exec_queue *q,
-+						     unsigned int type)
-+{
-+	xe_assert(q->vm->xe, type == XE_EXEC_QUEUE_TLB_INVAL_MEDIA_GT ||
-+		  type == XE_EXEC_QUEUE_TLB_INVAL_PRIMARY_GT);
-+
-+	dma_fence_put(q->tlb_inval[type].last_fence);
-+	q->tlb_inval[type].last_fence = NULL;
-+}
-+
-+/**
-+ * xe_exec_queue_tlb_inval_last_fence_get() - Get last fence for TLB invalidation
-+ * @q: The exec queue
-+ * @vm: The VM the engine does a bind for
-+ * @type: Either primary or media GT
-+ *
-+ * Get last fence, takes a ref
-+ *
-+ * Returns: last fence if not signaled, dma fence stub if signaled
-+ */
-+struct dma_fence *xe_exec_queue_tlb_inval_last_fence_get(struct xe_exec_queue *q,
-+							 struct xe_vm *vm,
-+							 unsigned int type)
-+{
-+	struct dma_fence *fence;
-+
-+	xe_exec_queue_last_fence_lockdep_assert(q, vm);
-+	xe_assert(vm->xe, type == XE_EXEC_QUEUE_TLB_INVAL_MEDIA_GT ||
-+		  type == XE_EXEC_QUEUE_TLB_INVAL_PRIMARY_GT);
-+	xe_assert(vm->xe, q->flags & (EXEC_QUEUE_FLAG_VM |
-+				      EXEC_QUEUE_FLAG_MIGRATE));
-+
-+	if (q->tlb_inval[type].last_fence &&
-+	    test_bit(DMA_FENCE_FLAG_SIGNALED_BIT,
-+		     &q->tlb_inval[type].last_fence->flags))
-+		xe_exec_queue_tlb_inval_last_fence_put(q, vm, type);
-+
-+	fence = q->tlb_inval[type].last_fence ?: dma_fence_get_stub();
-+	dma_fence_get(fence);
-+	return fence;
-+}
-+
-+/**
-+ * xe_exec_queue_tlb_inval_last_fence_set() - Set last fence for TLB invalidation
-+ * @q: The exec queue
-+ * @vm: The VM the engine does a bind for
-+ * @fence: The fence
-+ * @type: Either primary or media GT
-+ *
-+ * Set the last fence for the tlb invalidation type on the queue. Increases
-+ * reference count for fence, when closing queue
-+ * xe_exec_queue_tlb_inval_last_fence_put should be called.
-+ */
-+void xe_exec_queue_tlb_inval_last_fence_set(struct xe_exec_queue *q,
-+					    struct xe_vm *vm,
-+					    struct dma_fence *fence,
-+					    unsigned int type)
-+{
-+	xe_exec_queue_last_fence_lockdep_assert(q, vm);
-+	xe_assert(vm->xe, type == XE_EXEC_QUEUE_TLB_INVAL_MEDIA_GT ||
-+		  type == XE_EXEC_QUEUE_TLB_INVAL_PRIMARY_GT);
-+	xe_assert(vm->xe, q->flags & (EXEC_QUEUE_FLAG_VM |
-+				      EXEC_QUEUE_FLAG_MIGRATE));
-+	xe_assert(vm->xe, !dma_fence_is_container(fence));
-+
-+	xe_exec_queue_tlb_inval_last_fence_put(q, vm, type);
-+	q->tlb_inval[type].last_fence = dma_fence_get(fence);
-+}
-+
- /**
-  * xe_exec_queue_contexts_hwsp_rebase - Re-compute GGTT references
-  * within all LRCs of a queue.
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue.h b/drivers/gpu/drm/xe/xe_exec_queue.h
-index a4dfbe858bda..1ba7354b33d1 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue.h
-+++ b/drivers/gpu/drm/xe/xe_exec_queue.h
-@@ -14,6 +14,10 @@ struct drm_file;
- struct xe_device;
- struct xe_file;
- 
-+#define for_each_tlb_inval(__i)	\
-+	for (__i = XE_EXEC_QUEUE_TLB_INVAL_PRIMARY_GT; \
-+	     __i <= XE_EXEC_QUEUE_TLB_INVAL_MEDIA_GT; ++__i)
-+
- struct xe_exec_queue *xe_exec_queue_create(struct xe_device *xe, struct xe_vm *vm,
- 					   u32 logical_mask, u16 width,
- 					   struct xe_hw_engine *hw_engine, u32 flags,
-@@ -86,6 +90,23 @@ void xe_exec_queue_last_fence_set(struct xe_exec_queue *e, struct xe_vm *vm,
- 				  struct dma_fence *fence);
- int xe_exec_queue_last_fence_test_dep(struct xe_exec_queue *q,
- 				      struct xe_vm *vm);
-+
-+void xe_exec_queue_tlb_inval_last_fence_put(struct xe_exec_queue *q,
-+					    struct xe_vm *vm,
-+					    unsigned int type);
-+
-+void xe_exec_queue_tlb_inval_last_fence_put_unlocked(struct xe_exec_queue *q,
-+						     unsigned int type);
-+
-+struct dma_fence *xe_exec_queue_tlb_inval_last_fence_get(struct xe_exec_queue *q,
-+							 struct xe_vm *vm,
-+							 unsigned int type);
-+
-+void xe_exec_queue_tlb_inval_last_fence_set(struct xe_exec_queue *q,
-+					    struct xe_vm *vm,
-+					    struct dma_fence *fence,
-+					    unsigned int type);
-+
- void xe_exec_queue_update_run_ticks(struct xe_exec_queue *q);
- 
- int xe_exec_queue_contexts_hwsp_rebase(struct xe_exec_queue *q, void *scratch);
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-index 9bda1148e17b..771ffe35cd0c 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
-+++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-@@ -146,6 +146,11 @@ struct xe_exec_queue {
- 		 * dependency scheduler
- 		 */
- 		struct xe_dep_scheduler *dep_scheduler;
-+		/**
-+		 * @last_fence: last fence for tlb invalidation, protected by
-+		 * vm->lock in write mode
-+		 */
-+		struct dma_fence *last_fence;
- 	} tlb_inval[XE_EXEC_QUEUE_TLB_INVAL_COUNT];
- 
- 	/** @pxp: PXP info tracking */
-diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-index 56a5804726e9..5003e3c4dd17 100644
---- a/drivers/gpu/drm/xe/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/xe_migrate.c
-@@ -2333,6 +2333,20 @@ void xe_migrate_job_unlock(struct xe_migrate *m, struct xe_exec_queue *q)
- 		xe_vm_assert_held(q->vm);	/* User queues VM's should be locked */
- }
- 
-+#if IS_ENABLED(CONFIG_PROVE_LOCKING)
-+/**
-+ * xe_migrate_job_lock_assert() - Assert migrate job lock held of queue
-+ * @q: Migrate queue
-+ */
-+void xe_migrate_job_lock_assert(struct xe_exec_queue *q)
-+{
-+	struct xe_migrate *m = gt_to_tile(q->gt)->migrate;
-+
-+	xe_gt_assert(q->gt, q == m->q);
-+	lockdep_assert_held(&m->job_mutex);
-+}
-+#endif
-+
- #if IS_ENABLED(CONFIG_DRM_XE_KUNIT_TEST)
- #include "tests/xe_migrate.c"
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_migrate.h b/drivers/gpu/drm/xe/xe_migrate.h
-index 4fad324b6253..9b5791617f5e 100644
---- a/drivers/gpu/drm/xe/xe_migrate.h
-+++ b/drivers/gpu/drm/xe/xe_migrate.h
-@@ -152,6 +152,14 @@ xe_migrate_update_pgtables(struct xe_migrate *m,
- 
- void xe_migrate_wait(struct xe_migrate *m);
- 
-+#if IS_ENABLED(CONFIG_PROVE_LOCKING)
-+void xe_migrate_job_lock_assert(struct xe_exec_queue *q);
-+#else
-+static inline void xe_migrate_job_lock_assert(struct xe_exec_queue *q)
-+{
-+}
-+#endif
-+
- void xe_migrate_job_lock(struct xe_migrate *m, struct xe_exec_queue *q);
- void xe_migrate_job_unlock(struct xe_migrate *m, struct xe_exec_queue *q);
- 
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 6c67ab88a7c0..7343f34757d2 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -1731,8 +1731,13 @@ void xe_vm_close_and_put(struct xe_vm *vm)
- 
- 	down_write(&vm->lock);
- 	for_each_tile(tile, xe, id) {
--		if (vm->q[id])
-+		if (vm->q[id]) {
-+			int i;
-+
- 			xe_exec_queue_last_fence_put(vm->q[id], vm);
-+			for_each_tlb_inval(i)
-+				xe_exec_queue_tlb_inval_last_fence_put(vm->q[id], vm, i);
-+		}
- 	}
- 	up_write(&vm->lock);
- 
--- 
-2.34.1
+CI Bug Log - changes from xe-4026-203c9c05c014fd3a624e9cb07d86820b3ad63bf9_BAT -> xe-pw-156869v1_BAT
+====================================================
 
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (12 -> 12)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8604 -> IGT_8605
+  * Linux: xe-4026-203c9c05c014fd3a624e9cb07d86820b3ad63bf9 -> xe-pw-156869v1
+
+  IGT_8604: 8604
+  IGT_8605: 8605
+  xe-4026-203c9c05c014fd3a624e9cb07d86820b3ad63bf9: 203c9c05c014fd3a624e9cb07d86820b3ad63bf9
+  xe-pw-156869v1: 156869v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156869v1/index.html
+
+--===============1298794591632456415==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/vf: Start re-emission from first unsignaled job during VF migration</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/156869/">https://patchwork.freedesktop.org/series/156869/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156869v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156869v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4026-203c9c05c014fd3a624e9cb07d86820b3ad63bf9_BAT -&gt; xe-pw-156869v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (12 -&gt; 12)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8604 -&gt; IGT_8605</li>
+<li>Linux: xe-4026-203c9c05c014fd3a624e9cb07d86820b3ad63bf9 -&gt; xe-pw-156869v1</li>
+</ul>
+<p>IGT_8604: 8604<br />
+  IGT_8605: 8605<br />
+  xe-4026-203c9c05c014fd3a624e9cb07d86820b3ad63bf9: 203c9c05c014fd3a624e9cb07d86820b3ad63bf9<br />
+  xe-pw-156869v1: 156869v1</p>
+
+</body>
+</html>
+
+--===============1298794591632456415==--
