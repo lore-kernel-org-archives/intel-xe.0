@@ -4,48 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9D8A0CCF9F8
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7FE12CCFA02
 	for <intel-xe@archiver.kernel.org>; Fri, 31 Oct 2025 18:30:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5EA5710E2FF;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3F3C510E2FC;
 	Fri, 31 Oct 2025 18:30:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gYrz2ks6";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Xt/4dCxs";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1B5E410E2FF
- for <intel-xe@lists.freedesktop.org>; Fri, 31 Oct 2025 18:29:45 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C1FF110E2FE
+ for <intel-xe@lists.freedesktop.org>; Fri, 31 Oct 2025 18:29:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1761935385; x=1793471385;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=TXwQV2K0wqY5iFPfkHYf4XEPn0BxHwF+i9hrwac4cdU=;
- b=gYrz2ks6rROybw7OzcM/sO1QgMVbQpqKF7iXg/UsGKfw/shWC0z9Vs8E
- U6sc/z7jELk3g9Ihhqf1IVOQOvrjTl4Re6Y4hrQIQjIoyatU9STlEIzsE
- 1CvHGg5B6wlhz8VUY5PLc0atRwaDDo6F9l3oIzKFAVjJXA/6YbTtTJlAS
- qPuyC6SKTrQiVk82HilzxFTqe1TLEZywgjqZ0K0NyXw6Z4I3Ua+6tzpQG
- c+/AFEUGbGvxxBBF1OUSdYMmi2MSiwrz6B2rKcEA6EThgs7W7jbUE03Ut
- qP+htgSHndTaPdNty6QGDOOBwxnuZbSBxweMczJ+hj7TAB16Dh67K/DAJ A==;
-X-CSE-ConnectionGUID: 5dzmIPkeT3CnmEg0Ar2+aw==
-X-CSE-MsgGUID: wHSc9n6KRx+zdCsChtB8og==
-X-IronPort-AV: E=McAfee;i="6800,10657,11599"; a="63123866"
-X-IronPort-AV: E=Sophos;i="6.19,270,1754982000"; d="scan'208";a="63123866"
+ bh=vP6rriaHcDO5qPrCbPVSbz01geARUYxz3C5R1mdXRmI=;
+ b=Xt/4dCxsiLmfSjUq2TG4rf7iHwb8pYSPXW7Jua7s0I3W07OKUpOLnGwa
+ CY+YpMQ8IOeE8ZTi6pkZSSr27or8flb9Lhk6zOduucHjRBXs0YkW2f0Lq
+ N/YVuyniyr7V+fxva71GYPI8F/fwXnMBuGD9c9aNbxP4wQ2H9FndpwSEK
+ FWkq2s4tRV20YyxBWIqfUQH0cLvtBu7U3G0oPpJTfGeHkkurT9Fu1fIxt
+ My7sdepZ7CrbMZxT7GsOw+hz0FIR2LWir5wOCvpeAFh+vsCDXnNaGeYIv
+ zNic8hWltrxn3kzmprJjeerXxzss9yY1nSxQOYy2Df9g/dB5g8VRWwJoF w==;
+X-CSE-ConnectionGUID: r3lEcKK6SZeTR3oMjl36bw==
+X-CSE-MsgGUID: XsweiwJUS96+SLwKJpAzCw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11599"; a="63123860"
+X-IronPort-AV: E=Sophos;i="6.19,270,1754982000"; d="scan'208";a="63123860"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  31 Oct 2025 11:29:44 -0700
-X-CSE-ConnectionGUID: FBdmjB6CRXGxo+yhFCK0Ww==
-X-CSE-MsgGUID: 8X7y14LERdi6mtIWINLC1g==
+X-CSE-ConnectionGUID: D5kfGd9oQgKQ/JLZqa9Ceg==
+X-CSE-MsgGUID: 8oY9h/eJSjOkr8WKbiHIUw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,270,1754982000"; d="scan'208";a="185987645"
+X-IronPort-AV: E=Sophos;i="6.19,270,1754982000"; d="scan'208";a="185987638"
 Received: from nvishwa1-desk.sc.intel.com ([172.25.29.131])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  31 Oct 2025 11:29:44 -0700
 From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH 16/16] drm/xe/multi_queue: Enable multi_queue on xe3p_xpc
-Date: Fri, 31 Oct 2025 11:29:36 -0700
-Message-ID: <20251031182936.1882062-17-niranjana.vishwanathapura@intel.com>
+Subject: [PATCH 10/16] drm/xe/multi_queue: Set QUEUE_DRAIN_MODE for Multi
+ Queue batches
+Date: Fri, 31 Oct 2025 11:29:30 -0700
+Message-ID: <20251031182936.1882062-11-niranjana.vishwanathapura@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20251031182936.1882062-1-niranjana.vishwanathapura@intel.com>
 References: <20251031182936.1882062-1-niranjana.vishwanathapura@intel.com>
@@ -65,25 +66,188 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-xe3p_xpc supports multi_queue, enable it.
+To properly support soft light restore between batches
+being arbitrated at the CFEG, PIPE_CONTROL instructions
+have a new bit in the first DW, QUEUE_DRAIN_MODE. When
+set, this indicates to the CFEG that it should only
+drain the current queue.
 
+Additionally we no longer want to set the CS_STALL bit
+for these multi queue queues as this causes the entire
+pipeline to stall waiting for completion of the prior
+batch, preventing this soft light restore from occurring
+between queues in a queue group.
+
+Signed-off-by: Stuart Summers <stuart.summers@intel.com>
 Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 ---
- drivers/gpu/drm/xe/xe_pci.c | 1 +
- 1 file changed, 1 insertion(+)
+ .../gpu/drm/xe/instructions/xe_gpu_commands.h |  1 +
+ drivers/gpu/drm/xe/xe_ring_ops.c              | 68 ++++++++++++-------
+ 2 files changed, 45 insertions(+), 24 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index b5eaf0fc105c..43f1cc47b9b3 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -111,6 +111,7 @@ static const struct xe_graphics_desc graphics_xe3p_xpc = {
- 	.hw_engine_mask =
- 		GENMASK(XE_HW_ENGINE_BCS8, XE_HW_ENGINE_BCS1) |
- 		GENMASK(XE_HW_ENGINE_CCS3, XE_HW_ENGINE_CCS0),
-+	.multi_queue_enable_mask = BIT(XE_ENGINE_CLASS_COPY) | BIT(XE_ENGINE_CLASS_COMPUTE),
- };
+diff --git a/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h b/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h
+index 5d41ca297447..885fcf211e6d 100644
+--- a/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h
++++ b/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h
+@@ -47,6 +47,7 @@
  
- static const struct xe_media_desc media_xem = {
+ #define GFX_OP_PIPE_CONTROL(len)	((0x3<<29)|(0x3<<27)|(0x2<<24)|((len)-2))
+ 
++#define   PIPE_CONTROL0_QUEUE_DRAIN_MODE		BIT(12)
+ #define	  PIPE_CONTROL0_L3_READ_ONLY_CACHE_INVALIDATE	BIT(10)	/* gen12 */
+ #define	  PIPE_CONTROL0_HDC_PIPELINE_FLUSH		BIT(9)	/* gen12 */
+ 
+diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
+index ac0c6dcffe15..71f0e19fe8ba 100644
+--- a/drivers/gpu/drm/xe/xe_ring_ops.c
++++ b/drivers/gpu/drm/xe/xe_ring_ops.c
+@@ -12,7 +12,7 @@
+ #include "regs/xe_engine_regs.h"
+ #include "regs/xe_gt_regs.h"
+ #include "regs/xe_lrc_layout.h"
+-#include "xe_exec_queue_types.h"
++#include "xe_exec_queue.h"
+ #include "xe_gt.h"
+ #include "xe_lrc.h"
+ #include "xe_macros.h"
+@@ -135,12 +135,11 @@ emit_pipe_control(u32 *dw, int i, u32 bit_group_0, u32 bit_group_1, u32 offset,
+ 	return i;
+ }
+ 
+-static int emit_pipe_invalidate(u32 mask_flags, bool invalidate_tlb, u32 *dw,
+-				int i)
++static int emit_pipe_invalidate(struct xe_exec_queue *q, u32 mask_flags,
++				bool invalidate_tlb, u32 *dw, int i)
+ {
+ 	u32 flags0 = 0;
+-	u32 flags1 = PIPE_CONTROL_CS_STALL |
+-		PIPE_CONTROL_COMMAND_CACHE_INVALIDATE |
++	u32 flags1 = PIPE_CONTROL_COMMAND_CACHE_INVALIDATE |
+ 		PIPE_CONTROL_INSTRUCTION_CACHE_INVALIDATE |
+ 		PIPE_CONTROL_TEXTURE_CACHE_INVALIDATE |
+ 		PIPE_CONTROL_VF_CACHE_INVALIDATE |
+@@ -152,6 +151,11 @@ static int emit_pipe_invalidate(u32 mask_flags, bool invalidate_tlb, u32 *dw,
+ 	if (invalidate_tlb)
+ 		flags1 |= PIPE_CONTROL_TLB_INVALIDATE;
+ 
++	if (xe_exec_queue_is_multi_queue(q))
++		flags0 |= PIPE_CONTROL0_QUEUE_DRAIN_MODE;
++	else
++		flags1 |= PIPE_CONTROL_CS_STALL;
++
+ 	flags1 &= ~mask_flags;
+ 
+ 	if (flags1 & PIPE_CONTROL_VF_CACHE_INVALIDATE)
+@@ -175,54 +179,70 @@ static int emit_store_imm_ppgtt_posted(u64 addr, u64 value,
+ 
+ static int emit_render_cache_flush(struct xe_sched_job *job, u32 *dw, int i)
+ {
+-	struct xe_gt *gt = job->q->gt;
++	struct xe_exec_queue *q = job->q;
++	struct xe_gt *gt = q->gt;
+ 	bool lacks_render = !(gt->info.engine_mask & XE_HW_ENGINE_RCS_MASK);
+-	u32 flags;
++	u32 flags0, flags1;
+ 
+ 	if (XE_GT_WA(gt, 14016712196))
+ 		i = emit_pipe_control(dw, i, 0, PIPE_CONTROL_DEPTH_CACHE_FLUSH,
+ 				      LRC_PPHWSP_FLUSH_INVAL_SCRATCH_ADDR, 0);
+ 
+-	flags = (PIPE_CONTROL_CS_STALL |
+-		 PIPE_CONTROL_TILE_CACHE_FLUSH |
++	flags0 = PIPE_CONTROL0_HDC_PIPELINE_FLUSH;
++	flags1 = (PIPE_CONTROL_TILE_CACHE_FLUSH |
+ 		 PIPE_CONTROL_RENDER_TARGET_CACHE_FLUSH |
+ 		 PIPE_CONTROL_DEPTH_CACHE_FLUSH |
+ 		 PIPE_CONTROL_DC_FLUSH_ENABLE |
+ 		 PIPE_CONTROL_FLUSH_ENABLE);
+ 
+ 	if (XE_GT_WA(gt, 1409600907))
+-		flags |= PIPE_CONTROL_DEPTH_STALL;
++		flags1 |= PIPE_CONTROL_DEPTH_STALL;
+ 
+ 	if (lacks_render)
+-		flags &= ~PIPE_CONTROL_3D_ARCH_FLAGS;
++		flags1 &= ~PIPE_CONTROL_3D_ARCH_FLAGS;
+ 	else if (job->q->class == XE_ENGINE_CLASS_COMPUTE)
+-		flags &= ~PIPE_CONTROL_3D_ENGINE_FLAGS;
++		flags1 &= ~PIPE_CONTROL_3D_ENGINE_FLAGS;
++
++	if (xe_exec_queue_is_multi_queue(q))
++		flags0 |= PIPE_CONTROL0_QUEUE_DRAIN_MODE;
++	else
++		flags1 |= PIPE_CONTROL_CS_STALL;
+ 
+-	return emit_pipe_control(dw, i, PIPE_CONTROL0_HDC_PIPELINE_FLUSH, flags, 0, 0);
++	return emit_pipe_control(dw, i, flags0, flags1, 0, 0);
+ }
+ 
+-static int emit_pipe_control_to_ring_end(struct xe_hw_engine *hwe, u32 *dw, int i)
++static int emit_pipe_control_to_ring_end(struct xe_exec_queue *q, u32 *dw, int i)
+ {
++	u32 flags0 = 0, flags1 = PIPE_CONTROL_LRI_POST_SYNC;
++	struct xe_hw_engine *hwe = q->hwe;
++
+ 	if (hwe->class != XE_ENGINE_CLASS_RENDER)
+ 		return i;
+ 
++	if (xe_exec_queue_is_multi_queue(q))
++		flags0 |= PIPE_CONTROL0_QUEUE_DRAIN_MODE;
++
+ 	if (XE_GT_WA(hwe->gt, 16020292621))
+-		i = emit_pipe_control(dw, i, 0, PIPE_CONTROL_LRI_POST_SYNC,
++		i = emit_pipe_control(dw, i, flags0, flags1,
+ 				      RING_NOPID(hwe->mmio_base).addr, 0);
+ 
+ 	return i;
+ }
+ 
+-static int emit_pipe_imm_ggtt(u32 addr, u32 value, bool stall_only, u32 *dw,
+-			      int i)
++static int emit_pipe_imm_ggtt(struct xe_exec_queue *q, u32 addr, u32 value,
++			      bool stall_only, u32 *dw, int i)
+ {
+-	u32 flags = PIPE_CONTROL_CS_STALL | PIPE_CONTROL_GLOBAL_GTT_IVB |
+-		    PIPE_CONTROL_QW_WRITE;
++	u32 flags0 = 0, flags1 = PIPE_CONTROL_GLOBAL_GTT_IVB | PIPE_CONTROL_QW_WRITE;
+ 
+ 	if (!stall_only)
+-		flags |= PIPE_CONTROL_FLUSH_ENABLE;
++		flags1 |= PIPE_CONTROL_FLUSH_ENABLE;
++
++	if (xe_exec_queue_is_multi_queue(q))
++		flags0 |= PIPE_CONTROL0_QUEUE_DRAIN_MODE;
++	else
++		flags1 |= PIPE_CONTROL_CS_STALL;
+ 
+-	return emit_pipe_control(dw, i, 0, flags, addr, value);
++	return emit_pipe_control(dw, i, flags0, flags1, addr, value);
+ }
+ 
+ static u32 get_ppgtt_flag(struct xe_sched_job *job)
+@@ -371,7 +391,7 @@ static void __emit_job_gen12_render_compute(struct xe_sched_job *job,
+ 		mask_flags = PIPE_CONTROL_3D_ENGINE_FLAGS;
+ 
+ 	/* See __xe_pt_bind_vma() for a discussion on TLB invalidations. */
+-	i = emit_pipe_invalidate(mask_flags, job->ring_ops_flush_tlb, dw, i);
++	i = emit_pipe_invalidate(job->q, mask_flags, job->ring_ops_flush_tlb, dw, i);
+ 
+ 	/* hsdes: 1809175790 */
+ 	if (has_aux_ccs(xe))
+@@ -391,11 +411,11 @@ static void __emit_job_gen12_render_compute(struct xe_sched_job *job,
+ 						job->user_fence.value,
+ 						dw, i);
+ 
+-	i = emit_pipe_imm_ggtt(xe_lrc_seqno_ggtt_addr(lrc), seqno, lacks_render, dw, i);
++	i = emit_pipe_imm_ggtt(job->q, xe_lrc_seqno_ggtt_addr(lrc), seqno, lacks_render, dw, i);
+ 
+ 	i = emit_user_interrupt(dw, i);
+ 
+-	i = emit_pipe_control_to_ring_end(job->q->hwe, dw, i);
++	i = emit_pipe_control_to_ring_end(job->q, dw, i);
+ 
+ 	xe_gt_assert(gt, i <= MAX_JOB_SIZE_DW);
+ 
 -- 
 2.43.0
 
