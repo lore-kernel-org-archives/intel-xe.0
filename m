@@ -4,182 +4,196 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CF006CCFA00
-	for <intel-xe@archiver.kernel.org>; Fri, 31 Oct 2025 16:41:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 890D6CCFA00
+	for <intel-xe@archiver.kernel.org>; Fri, 31 Oct 2025 16:42:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8FD9410EBF1;
-	Fri, 31 Oct 2025 16:41:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2C92510EBF1;
+	Fri, 31 Oct 2025 16:42:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FcVJc0um";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gWWk5YgM";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C9EE910EBF1
- for <intel-xe@lists.freedesktop.org>; Fri, 31 Oct 2025 16:41:12 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5513B10EBF1;
+ Fri, 31 Oct 2025 16:42:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761928873; x=1793464873;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=WOX9VJLFVFtXS471OX7QlTYfG/lf0ex1nNhUxQstWRA=;
- b=FcVJc0umV1hZ7fAEsed1jKdaRHr0rj71sL/TsOAVqF746cmJEcfhlKDu
- z0Tfpl5yxQO2I1YnJ9iONj1ItZPI3qQ0yBAep62R5stCPWdCoC2RPtK0s
- 7IdrhnWBiUZh71X1bQvIV4cLCA2Zb/Y/AZOOW18Zyp/KaHgZ+tlwjNJYE
- wStU3TBgaUuwBa9KTn/Hy8zK6ixQilf+dlD1JuxEQPRpZMvF/hR7lDdva
- QJmHdKczhA640EQsZsxldhOH2qXBCVJs11iy6KjZOf9kefLK++EVVuZpw
- 7A9Wjl7XwHlnmckGnzoze51ZL69slBMA1dO8LSH8zAZiw4BEos2Gmij33 Q==;
-X-CSE-ConnectionGUID: z4bZtWNXTsaeOLq+J8hb6w==
-X-CSE-MsgGUID: MrfDvW0BQ2ys/uzdd1RQng==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="67931888"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="67931888"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Oct 2025 09:41:13 -0700
-X-CSE-ConnectionGUID: lcwYtcBqSHy9CZ+zSWjGcA==
-X-CSE-MsgGUID: DRnf7Xz+QoaRZRWn0MijUw==
+ t=1761928928; x=1793464928;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=gSafGoFPEp7BpKihCdYky0NFDY3fNQZL5fMqD88H/Rw=;
+ b=gWWk5YgMwXZI5m6Ge3RLaAI2NFakKUz8+XP8MlKlxZfewDDaLt8BBZ0H
+ plBvoOc8cWDJjqOpa8lXsPkHGSErLfNSRqzRPwmq74v6KmyLt1/S6zwOd
+ 9RybMCduve/pwSP6TIU/rtsCUnlXaQ/H9kPXduLaF9OQJG9UsdIsk3SPk
+ b3LXtO9KwrM6DjxZo5T1fQCPzSmOfskMGFHW/K8aWxsm3ft3qnevbfWgc
+ 0ZC7LJg0yu6KeKYQCnz2WXNdljr8z3TRWyOOQ2/kF/363CeS+nnMBDmB2
+ Rhp25ml3yghDBgEiEL5b7LYbdopiUKJg3TlxF1YJp6SGlGYVH4pHYVHmz Q==;
+X-CSE-ConnectionGUID: b0Imc7ZJTyKUQFkzwPsJRQ==
+X-CSE-MsgGUID: 7Ws2mCm9TG+n6JVZXjLUuw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11599"; a="51665455"
+X-IronPort-AV: E=Sophos;i="6.19,269,1754982000"; d="scan'208";a="51665455"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Oct 2025 09:42:08 -0700
+X-CSE-ConnectionGUID: IVFqzwL2RraGEWiwR4IoFw==
+X-CSE-MsgGUID: MgcyzYmjQjqy8obwzwxrJg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,269,1754982000"; d="scan'208";a="185940490"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by orviesa009.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Oct 2025 09:41:12 -0700
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.19,269,1754982000"; d="scan'208";a="186214041"
+Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
+ by orviesa007.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Oct 2025 09:42:07 -0700
+Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Fri, 31 Oct 2025 09:41:11 -0700
-Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ 15.2.2562.27; Fri, 31 Oct 2025 09:42:07 -0700
+Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
+ FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27 via Frontend Transport; Fri, 31 Oct 2025 09:41:11 -0700
-Received: from CH1PR05CU001.outbound.protection.outlook.com (52.101.193.32) by
- edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
+ 15.2.2562.27 via Frontend Transport; Fri, 31 Oct 2025 09:42:07 -0700
+Received: from CY7PR03CU001.outbound.protection.outlook.com (40.93.198.45) by
+ edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Fri, 31 Oct 2025 09:41:11 -0700
+ 15.2.2562.27; Fri, 31 Oct 2025 09:42:06 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=IbWpCOXneFzAZAG6VHVKIW1ryPeem9y40T953m8oRSTdOnmK585EDqDGu5VH5v4xMIGLf54ixlPp3n0sk8dJaBRU0p78DDqFlbi/37a5Wh38Z07QZ0AuY8vg5neEo4sQJHbb0X/MXng7n9S9ggrS5pjhb1APkZOfKpTqbh29gqAr2Je3dUHW239hAh28uUalXL2SC3VRMs8oL87uErP4M19h2xW54JrqAjc3zXTuskOP6lL8O1Oa9xIRkdwdnSAaVV+bwKSkXZ6otuSBXDSDUauh4S6VGxxGxzKsUbkow8+sY6SygyfZfjh3Mk3VEJJq6Rob8b9lHMHQ9jDUy+BL4A==
+ b=kv+DcEiRotcrSqk8Lr3STYwzcABeRMMgXFg3cvxJ1nRl0OMlQv4ktWaVEXTXLXw7AYKYJyIhrMadrDy+he5AnnBcFVQ1qOdeWPgUvgYNcEZWQnMuY+SoY64g7zdzy7GAKe9NrhSHe37bCFSryewjha2IE3HZsXVzxZ13xh258oKpPiMPSdngFE2oQJnfVrK3dtt98gcaXmjXpj6kn05hQbxBOZ7uPyhqLQA0uV0IGVzqcTKL0FL8dJk/EholMmd8ROi06AYcD274y41oMLxjrS7SZKpGRM1nR8QwcF5x8hK0etwOogOh3zuOmtG57uET2B5f2uQQBCkgQMaLJ7uKkw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=wKZdfyCrGHlA93vwCR9rUeBxYenavU2bFQigifH1uHo=;
- b=begTXTZihbgYU6vXHRndAmMSU5LAjcFUd9hGhoyI9YokheveD1p4NiLkvci5ADlP5Jq4qheTf1nIVuncq1pyW3/1aD6M/XkWNtsd7JMQRnw0XYb4C2T4FP3+LyFqeq+zxU0EGv/WdutnbnVEC4tUhUowz6933lZLNODNv4oErVL8IaWKkXREaUuaRZtCh+Dx1tT8hlkVhr5R6LyOhBY4JBBRPesdFj5KD3arkXxOJib3QIlFqxntZfAq6tC1yXz7YHNvpuxzp3s5TGyyMIeytYpBPUT796TRMlpG8WVHS0v6Z/XwI3+8iJ9MeuoPh0D4i26THrcdCSKtKTWAE9L3bw==
+ bh=839dnX3WGJjujAdXvOPO/B9iKGp2/wejwoq5its3SJ0=;
+ b=t7duHB4bxTWX7WT++GOyjJSfY3RxEIs+tl4yG7C51b2Kh22BMOEjx6RWemZWHdukDMTx1dH7myt31YtWkEbbsN6CNtvaCgs7i+6Exfc9KcX31Kjrr7XVW+9dvnvKoMBJLTMA5nGKugNSeNbfqoEcpx6oGQMuFjQYDmaCjMmVoE7faF5PytzA2VQCeTYVT1pLr4mF+qlhHArsZRpwjCAcEyY5xRjoTx6w6Znxz4Ep6UQPn5hu0d7seLDvYWKEn6CrdL/S6MYUhsi+s9hgzuZ9MG0F8fIQjs1ztgNECeiMGy9s3dryVpNPTWD5izful4hxHe67kZEYHOVfnx8iyOYS5w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by SJ2PR11MB7501.namprd11.prod.outlook.com (2603:10b6:a03:4d2::8)
+Received: from MN0PR11MB6011.namprd11.prod.outlook.com (2603:10b6:208:372::6)
+ by BL4PR11MB8823.namprd11.prod.outlook.com (2603:10b6:208:5a6::9)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9275.15; Fri, 31 Oct
- 2025 16:41:09 +0000
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::9e94:e21f:e11a:332]) by PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::9e94:e21f:e11a:332%3]) with mapi id 15.20.9253.017; Fri, 31 Oct 2025
- 16:41:09 +0000
-Date: Fri, 31 Oct 2025 09:41:07 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: Francois Dugast <francois.dugast@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, <stuart.summers@intel.com>
-Subject: Re: [PATCH v3 1/7] drm/xe: Stub out new pagefault layer
-Message-ID: <aQTmo3yHnPEmfxHl@lstrano-desk.jf.intel.com>
-References: <20251028035843.2488613-1-matthew.brost@intel.com>
- <20251028035843.2488613-2-matthew.brost@intel.com>
- <aQS6hgtqWvaIglr_@fdugast-desk>
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
+ 2025 16:42:04 +0000
+Received: from MN0PR11MB6011.namprd11.prod.outlook.com
+ ([fe80::bbbc:5368:4433:4267]) by MN0PR11MB6011.namprd11.prod.outlook.com
+ ([fe80::bbbc:5368:4433:4267%6]) with mapi id 15.20.9275.013; Fri, 31 Oct 2025
+ 16:42:04 +0000
+Message-ID: <fda784ef-0817-43f3-a058-15517f5c38eb@intel.com>
+Date: Fri, 31 Oct 2025 17:41:57 +0100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 08/28] drm/xe/pf: Add minimalistic migration descriptor
+To: =?UTF-8?Q?Micha=C5=82_Winiarski?= <michal.winiarski@intel.com>, "Alex
+ Williamson" <alex@shazbot.org>, Lucas De Marchi <lucas.demarchi@intel.com>,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ "Rodrigo Vivi" <rodrigo.vivi@intel.com>, Jason Gunthorpe <jgg@ziepe.ca>,
+ Yishai Hadas <yishaih@nvidia.com>, Kevin Tian <kevin.tian@intel.com>, Shameer
+ Kolothum <skolothumtho@nvidia.com>, <intel-xe@lists.freedesktop.org>,
+ <linux-kernel@vger.kernel.org>, <kvm@vger.kernel.org>, Matthew Brost
+ <matthew.brost@intel.com>
+CC: <dri-devel@lists.freedesktop.org>, Jani Nikula
+ <jani.nikula@linux.intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, "Lukasz
+ Laguna" <lukasz.laguna@intel.com>, Christoph Hellwig <hch@infradead.org>
+References: <20251030203135.337696-1-michal.winiarski@intel.com>
+ <20251030203135.337696-9-michal.winiarski@intel.com>
+Content-Language: en-US
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+In-Reply-To: <20251030203135.337696-9-michal.winiarski@intel.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <aQS6hgtqWvaIglr_@fdugast-desk>
-X-ClientProxiedBy: BY5PR04CA0020.namprd04.prod.outlook.com
- (2603:10b6:a03:1d0::30) To PH7PR11MB6522.namprd11.prod.outlook.com
- (2603:10b6:510:212::12)
+X-ClientProxiedBy: WA2P291CA0034.POLP291.PROD.OUTLOOK.COM
+ (2603:10a6:1d0:1f::7) To MN0PR11MB6011.namprd11.prod.outlook.com
+ (2603:10b6:208:372::6)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|SJ2PR11MB7501:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7d7a9e06-4db5-4ae8-c375-08de189c4b96
+X-MS-TrafficTypeDiagnostic: MN0PR11MB6011:EE_|BL4PR11MB8823:EE_
+X-MS-Office365-Filtering-Correlation-Id: 10864c94-11e4-4d59-8e82-08de189c6ba0
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?SEdIWFdSSTZJRnRTT2I1U3FqUy9qYXlhekYyRStuL0tqWHNIQUJhbXQ0dDly?=
- =?utf-8?B?dzBXbldYNmE0WFFOUGJMUjNXT0VXNjdUSlpZZjkzckZ5MlJoeVdERURFbmlG?=
- =?utf-8?B?OS8wNHpTaUo0RVFyTkdQY0hBa0w3V1RGV284bGZvVlp6WEovL2NDMG5jYXQz?=
- =?utf-8?B?T0pZTFBvbE9qMjlQYUVlY2kxUS9XRmNObExtNHg2eXJhL0wrQWd0b3FBVzkr?=
- =?utf-8?B?bUg1eUFRNENIZERhVmlNUncyV0hubFQwZTlIenJ4bXFaV0xNNnFKVWtsa3E2?=
- =?utf-8?B?ek91L1dLMWY5c25EU3k2eC9MZjFHUWNhUU5Ua3FsalNmaVVvZFJuUUpNaGYr?=
- =?utf-8?B?amZGTDdVR3BXeGIzaHA5NDJOc25VakRjT0I1VkFRdnFWdHRxSTBFM3p0M3dJ?=
- =?utf-8?B?UklNcjU5RWVqQ1kxRCthY2ZBN01vdmlEbmgyaGtpZGoxOEZFM0F2ZC9keXpi?=
- =?utf-8?B?dkpXalZsL08wK1c3S1JZektrdVpaQml2K3ZPVVZjT0tYYStJNU5tcnJaZXdr?=
- =?utf-8?B?QjdYU0RoK2FPRC9WNlAyYVBLbGpvNktlQlY4L0pnN2pSc0s1aWdPNHNYRE9H?=
- =?utf-8?B?eWZZWVdlMzROS1hHVnlYUmVUTVNhWHg1YXhtMjlFcGJFdHZGeW5DSFZHOG1m?=
- =?utf-8?B?Ri9IZXRpeFdJT3d1VkZ6SFVEa21kRGFYZlBDOFdvUE0wRGFFUHR5WVlTcEN0?=
- =?utf-8?B?UnFmTlpPNkFIR0NmZkdJVmFFUHhrTUVKNENWYWRnVklpNi9lK0NYOFNyNm9z?=
- =?utf-8?B?Zklla2w3SUt0cDVKbDhodWpmVlRMUkRXSGRFUWU0UjVZdWMwcEFKdFdQdEZv?=
- =?utf-8?B?ZE0vdi9INDNRdEpJcjhtZFZYQ21DaThZY2NyNUhSS2JpdWt5akZ2K2IvTWZw?=
- =?utf-8?B?dW9wNGZSTkRjUDR1QVpvT0ZFR3NhbVRZU2xXMDg5SFNjQ1NCSEw0N2pjMjBG?=
- =?utf-8?B?YStVZHpDTm9wUVgrQldXNWdON1JCL1A4cnF4N0dXQkdHVjMxRkU2V1N0SzVz?=
- =?utf-8?B?Z2dLTWI1Rmp6ckpRQlg0YnE5NjlBdkxyd0FWcTU0eU5yM21LY1BpaUFjNHNz?=
- =?utf-8?B?cTA5Q0UwSFp3cERkR3lvWHdnRUNkQmJoaTZsc0pUcHZlb20rMHdyd3RScjhZ?=
- =?utf-8?B?T0dRQ2VvQ1RBYitOTkx2OXpmS1R4SWxldEtvc1o3K1BXQmVqL3BpTDJlN01h?=
- =?utf-8?B?aUsyMmpJL1E2NXVNV1hsQ0VjSG5IQ0dHcTBZejIvWktkelhPcC9sazFCanU1?=
- =?utf-8?B?UHorajVld0g1ckRRTkhiNXpyamxrb2Y4c1FNMy9GTDlrY0xEYTAvbUdmOHdD?=
- =?utf-8?B?V28zdHRtaklQWE05YytuRHlhWnBjaEUxQW9uOEc2Y1B2ZldwOThmL0lsUWNv?=
- =?utf-8?B?dDE4UlduSncrblNyUEVtbi9OcVFZZGt6NEhYL0l4L2FBaDFKbFN4R1k3UUVo?=
- =?utf-8?B?eEdreGRNUWU1bDJ4VWV0cy9VOE5Sem5NM3Q4RS8rbkUvRTJpbGh6clp1V0li?=
- =?utf-8?B?SFZaa3d1b1pjL053VUQvNHZ6L1VOOUVnWlRUNHNvWjNmaVlYR0JYWVVwT1g3?=
- =?utf-8?B?ZUxQSENoNEFteVdyQTNlMHE3L1JVT3lMOG1zODF2djA5MndENWVtVHlVamdi?=
- =?utf-8?B?bHQzWVMzTjJxaHlJZ0J6cWpsekZCWjAyVE5USmhlRTZxcVhHYktiVmdBdWlI?=
- =?utf-8?B?cm5zWmU3V2Z0aS9LQVlYUEdOakpMNVQ3NlBWZVBpblhFa05OL0svWFN5eEhu?=
- =?utf-8?B?RmJ3OXJQZ1Joa0dPaW9qVDRTWjVCVktMZm82Qklud2J5eWU2N3dFcEZDN3R5?=
- =?utf-8?B?ZXpaOUYzQVJEWDdCeVBGWUdEVDZtdFN3NWVLMXRGL0pidWkxWm1iQTJMUkFI?=
- =?utf-8?B?cWRzMzZDcjVyWE9xNjBtN28raHpNT210RkpHaGxXQXV1QitPd1pQdjZaTi9z?=
- =?utf-8?Q?03xTtyvZUGVGryYUx4ZSUqLOJe6UxeHi?=
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|7416014|376014|366016|1800799024|921020; 
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?L2pQT2N0Qlc0cWVsandQSWFYTnVCK25keDlLMG1SMy80dWltK21DeG01M0Vs?=
+ =?utf-8?B?UXhZN05aR3VaUUlVdVdSMDgrdWo3NXR0S1RwS1UyT3YrTTZyUWVzWTVFYnF0?=
+ =?utf-8?B?RVh5SWwzSWdSM2FXZTNjT2RaeXA5MW5PbHd4eitnV3JIN2JRUUVUSEs1TU96?=
+ =?utf-8?B?S0dURkVCcVNXRW1nQzhRNXAza01pdGJOUjQwUXVvV09TY3RjUnFhMzhRcnJR?=
+ =?utf-8?B?a2ptdnlwVkg3TUlpZmpVc0MwS3R5UHJCVnNpc3VGZEFhZGJhQ0RVMDRUM2Rw?=
+ =?utf-8?B?Y29EUWdvSVkyVTlqTHIrTExIN2tjTUEvblErZ05UaFJqaGRoZmt0OXNRbm9T?=
+ =?utf-8?B?MitKa2Nib2puRmJIcmg1b010bWhjVTVVdzA3d1l1R3A3NVFJbFBmRko2MnA0?=
+ =?utf-8?B?WVZLN3Z1dlVQd3djaTQyamZreDVMdTEveVZNVmQ4Y21JbDM2aHNUZ3E2SkQ4?=
+ =?utf-8?B?eGR1YzZESFR4Wk5GVWZCdGUreExNZzQzZmsxTW93WWwzY3lpZzkxWVBhOVNz?=
+ =?utf-8?B?WmM1bVFqMGhUSy9saVJGemxUMGFYR2pVRjE1bmM1c2hiaDErOEdlTytpREFS?=
+ =?utf-8?B?elVlbkJ2THdGMjRQMUI0eGQveFM2eTVNQWNEd1A1MXYwNFhmVmtST0ErTktJ?=
+ =?utf-8?B?NmZRY21OTnY0QzZ6a3BBc05oTGx2S1BWYlJzanRTc2FBWTRmUnUvUkdUb045?=
+ =?utf-8?B?V3d4TFJUaTQrWmdGYlRXREVMTWJOdFpwcEp6UXJUZmd6Y2R3UDZ5UnF3ZkRF?=
+ =?utf-8?B?WjhFZ1NLbDJlVXc4dDArVmI5N2pMaXJVZ2tweXNEc0toUkEzaHJ3Y25tUFdw?=
+ =?utf-8?B?YThtZFZSSUdsakFQK2lUQnVkRDhxYkd6Sk9GT0RqRWxlWmlvb1lOSlltdlhS?=
+ =?utf-8?B?dE5IWDdtN2lqcFlDQ1hmQlhBaWd2bnYxWVg0K1VZdFZMdHpXM1MxL2tOM3N2?=
+ =?utf-8?B?M0I3RU96cEJTejhPVEh4YXJBdnp6NnowUFc4RFMrdFlMTmhYLzErU3hWZDJy?=
+ =?utf-8?B?ZzREZm9HcC93bldlYkhEY3o1YXYzV1JORTd0QTVtUGVTVGdZcThnckFqMVht?=
+ =?utf-8?B?VHJMVEdMZzJvVTg1VTlpd0ZsZHNSSTRhWjQzWHJOK2hyYUVwK1FUanY3M083?=
+ =?utf-8?B?SkpkUEwrdzVvbTBPcUdETU14c2hIZVBFVTFvVmd4YUR0ZHZGODluSURJVDZR?=
+ =?utf-8?B?cHhKRXY4eno1UndFNkR6OElFUWROOEczQlYwbFJNUmE5cWhwMWJzN0xrbHlB?=
+ =?utf-8?B?aHhIZHZJYWo5N2dtUVU3ZWg3bGxDTGpGeHJ6b3dOSXV2dG5tMVZ0aWpNS2w2?=
+ =?utf-8?B?Q2d2ZkJnN3p0Q3RscUtTWDNWb3BvNFhLZXQxQ3JPRTVwR1ZrU2FIcUdHWEti?=
+ =?utf-8?B?NDhaWGVpaXFINlN1dDZtb014a1Q0NjZONTVWdkVjS1d2MFdQMzRJNGVLWVZX?=
+ =?utf-8?B?Nmo0TjRXaEhKVW90bklBS1Nra0dEd2lKUVdYYlQ2V21ZeHlBZEoyU3lXckFN?=
+ =?utf-8?B?OVZqYUZLVXpIK0pDTkNWMmtpMkluUlc3Y016MVBudU1PUTFOR0ZsMUJ1b0JU?=
+ =?utf-8?B?S2xKRSs5VE0raUdXcU8vOFdrUHpUNVdCYm5oK1U3U3FmNnhIVXh4SnAreG5Z?=
+ =?utf-8?B?K1I1azB2RmE4Mk40MmFSdThmVjgva3BBcWRhcjhTa0FDTGxRNXdIblM0VVg5?=
+ =?utf-8?B?SmR0b2oyS0pNZjFiT0JNTzRhYTJvV0tsSERkd3ZHQ1kwRTBBbWw4KzA5ZzYx?=
+ =?utf-8?B?RDZKRlFQcUxwMmN0QWd2Z3BtMUVyRXVjajZoMVlTNGNWMElXZWM2WEo3ZzFy?=
+ =?utf-8?B?Z0F2RkhDTU9nMTJ6Uk9Ic1Z6S05TVU5iRCswZGhIeU1mQ2FZZ0tETFRGK2kz?=
+ =?utf-8?B?R3lMK2hMbmM1Qm5Hb3E0WGw0NjNhVDMwcTFhZk1HclpWU3RJeVVHamQ3TnBj?=
+ =?utf-8?B?cW9HaW1ITnhRTkk2WG1sRTNKYWJtOThMVng5TTJ6YTBhYjNzOUR2REErYmNh?=
+ =?utf-8?B?LzhiWFYrbmwzVW5GUXU3eFRlMGp1bTBESkQxVE5PUWt6VEp2dGR3bGg1bHNj?=
+ =?utf-8?Q?Dzzx8t?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:MN0PR11MB6011.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(7416014)(376014)(366016)(1800799024)(921020); DIR:OUT; SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Z1duVEQyTU9RSzZFUkZZQWZ4cVh4bVl3aGNreTBQS0Jxa1R2SDdpMDJ3TG9N?=
- =?utf-8?B?clRpTHh1NHZ6OFRTNVBNK0YwRFo3VkVPNVlDeVMyd0tSSGxDOHBuZEs1U2lJ?=
- =?utf-8?B?VS9XRWhHd0pnRmptR0JPdHhLa2FSemdZSHF2T2xwbTdoaUZYaklWTGd3N0Nt?=
- =?utf-8?B?U2pudmRJK1NaYmRxSy8vYXNQekQ0emNwSnNKdW5Mc2FPOUo3c1hEdXhKaU82?=
- =?utf-8?B?MVAxdER5WS9tQ0xKejFvcXdZcVJsNVdOOCtKT3NLT3R1RFdrVjhFU2NiTXJC?=
- =?utf-8?B?K0FWZjQrVCtva3FwcllQd2tudXZjcnFSQWNXeXIxc1g4QWdHbzB2cHBjSWFx?=
- =?utf-8?B?VlgycXdQYnFNQisvbGMwekoxWnROR0NZVFpKdkxpTjdZZEdBaHl5UUh3bm9V?=
- =?utf-8?B?U2ZCMVZ0TUdqNmNhWmlLUStLcUp3cTNpMloxbWltd1NSVTJUbWVVVzhaRXcv?=
- =?utf-8?B?NTJQLzZERE9FRU05WWhDVE8vdFJEMVZjaENTOGRJa2NuVjl6NDJiTVZETGNM?=
- =?utf-8?B?UENSU0xvSENhNTBHK0Fid2JXeHhlaWhQSUdraFJjQU0wUkJMSkFVQVVLOEVu?=
- =?utf-8?B?cUQ1SzlqWnpScmxoSW45QlQrd1hQdnVZVkdPRUxRMlVZT2JHa2JkUThVWk5p?=
- =?utf-8?B?UWZ5TnpqYjNaQkhaNy80MlNNV3ByVTlTaVhmN080d0NBUTdjMDBJV3A2K2wx?=
- =?utf-8?B?N2w3NG1rT2ttcWU3Vm42d1FIbExZL3pma0h6ZEo5MEJlanhvcUpDa2JQczh1?=
- =?utf-8?B?SGdTSmdUYlpsNzVWMm5FMnduRmxSSS9GZXM4bDMwM0NKNEZTNk5RSVI0SWdU?=
- =?utf-8?B?VytVUDlSR1FlcjR3MFVQbVFqbm1ERk12YjlTVCthalRvM3gzN2M5OUcxVHdj?=
- =?utf-8?B?VFZTdnh4Q0o0T1cvRzhlYk9BV3NxK2p6V3FnczVyMnNPeWZFZkUwNS9qYmRJ?=
- =?utf-8?B?SExPd2ZjRHJBK3k3VWdrMTdXcXJLVjB1MmlNZGFSSlloZkpWWU1KYSs0MVdr?=
- =?utf-8?B?N1VZUGtXcHdMR2wvUks0cGExQ3pURHF3a2dBbUw0cW5EZXJRN1R1S3NiSnBq?=
- =?utf-8?B?eFdINklxQ3EvOFlKZ3FqZGZVKzJGRHdJcEtYY1czYjQ4RmIzU25weDFycmtL?=
- =?utf-8?B?ejZmbTE5ZEV0ZkZheVRSTW1oZHhYSkc3TllqQkR3VENnSzdoMC9wR2g2NDB2?=
- =?utf-8?B?ZnJ0MVlzcEorckVYQ2s5YXJ2VjdsS3Z6Y2R0QjZUc3N2eGVZY2hjT2tmQ1hM?=
- =?utf-8?B?aCtiOGpxQmtWSGhzK050NUhGdXhzNDFPRTRMejByaHFPcEhuMUFEYkdwdFRH?=
- =?utf-8?B?SXlGWHVCaGU2bFZIOVcrRmw3K0U2MmQ0WjYrbTBjd1lFNU1XREswaS9GUWpl?=
- =?utf-8?B?YTR3Z3RsVnM5UmM0dlNVdmp2akxYaVlwb0YwcEsvM0RGaG9OVFRvNHcrNHE3?=
- =?utf-8?B?dFRkaG5NaXFzQXpiMDdsQlB0R1ZHYXVMSDNZUDRiNzhmTUJvdC9VVS8ydjN1?=
- =?utf-8?B?ZmtNNFJiSUxtNVVmWVUvSDdKTHlaRUVQNnBLSjFLVDZGOVk0KzFIemhkTjlI?=
- =?utf-8?B?dERDL3pFUk1kaENjMlpJYjdmZVFUenR2bWJBVmRTSjZWN0F5cTVSdWxBbmti?=
- =?utf-8?B?RzBFZStQMUFQRzgzaUgyaFdNWE5FeUJyUzBwb1lMdVdmM0cwWjEwdER2N21h?=
- =?utf-8?B?RGRxeXBLSGttaVJTMzVnaTJENnQ4WTViYy9rL2FJNi9JcmJmd2J3aG93Umh6?=
- =?utf-8?B?NkZ4S3U4enhIUmgzekNTUW0zaU9OVW9iQmVNaHJmS1ZOK0dId05wYW53Qkw2?=
- =?utf-8?B?Q1VMSE9FY0pqM2NZTWxZd1dOaGxrUlNtRTJVQ3VBZ3p2VTg0QTJwQkVRS3Z4?=
- =?utf-8?B?dmdoMCtKbm5Rc2J1YURta0tzUGNTZWRmWGJIY0hKbGtXcFRvY3NQZ0Q3NG5h?=
- =?utf-8?B?R20wQ0ZibXo3QmZaNjFBVmJ3cWxTdExzZlRpQ3cxaTZWQVdMRmR0SWVKZ3lC?=
- =?utf-8?B?OGgxd284dWVRTUdTNDdpY25pbzNieVNlSllhMUFPVDdtTUptZ3pHYmdSV3M4?=
- =?utf-8?B?RHVYNnY4cm5XaDVMU0twaHV1UEZra2t2dTE2Z0lPZldFSExQQ01Vc00zdjEr?=
- =?utf-8?B?cHFTUWJtRUVvaENoaXFlSWxwTHVkMncxRVlLcUVERG9od3BjYmFLY1AyMXZj?=
- =?utf-8?B?b2c9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7d7a9e06-4db5-4ae8-c375-08de189c4b96
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MVh2bGZFbEtqR0Qvck9ZZkNzRVhGTERKMWd2bWMxM2F4SG01M0UwUm8xRi9k?=
+ =?utf-8?B?ZWx6ZVR4a0xTOUNPQ1d0a2NBMjJMUlVuRUtrcTVia3ZPdzdGSEoyVE1rQTI5?=
+ =?utf-8?B?OThjeVNTYVgrNDc0RWRoK3pzV3pIcHd3cHl6STdZeVhGakx5bGtkV0NybHNz?=
+ =?utf-8?B?L1c2eVdzQWhBRnQyVjlqbHBKTUhXWjJXOTJBWndhRVpLaGFhWVRLdGZQbVk1?=
+ =?utf-8?B?T2VHY0hrSHppVmhKVVNUS3lnakJkdU1nYk5IZENOUkpiaUJLbHozLzlWc3Ax?=
+ =?utf-8?B?N0xOUXVCTm1UUkI2RG52VERKSW1RcG04M09vdjZSZ1FrYmVnaHNTYzkxZFR1?=
+ =?utf-8?B?TjJ0dUZCQXVCYTh4cVB6Wis1NkxGSU9rTVM5eGc2bUM3c1ZmRllxc0JtWm1Q?=
+ =?utf-8?B?UG95MGhOay93QXgxeXJ6d0loVlJIRVlobDFlUWxKc2JLUnE1NWNYVjJCWGlN?=
+ =?utf-8?B?WUNic1VqOG9ZTlRaZ0JWZm9MMFRNSStOU3dUNFVDRkRDaDBZbUZQWFdCMGY4?=
+ =?utf-8?B?YVZWZlZCN3diSjN6TWRBd2dSRjl2ZnN6aDNsem5pc0lwQ3l4SlRPd1crMHkz?=
+ =?utf-8?B?ZGoxclJUbjI2VEpWZW1pZi84cmN1MWxOdG8wSnRyQXM4V1A3TmxlU2ZOakxR?=
+ =?utf-8?B?aTVmNUhVOVRaU2trbEFHeXZ4am9KRnM4UmJpQ21hZ0RRMmdOaWV5Y0Y0cGhh?=
+ =?utf-8?B?bVE5MG5hMWVpN2E1YkwyaFh2ZW1CMEhMYUxDWmIwdmRDdU1yb2J1Y1hZNnZn?=
+ =?utf-8?B?R0dwNzNsRWI5am1MdmVGQVJwL3E5Ukc0d2VFQTVNbVJiNEtxYUxoVjJuM3RX?=
+ =?utf-8?B?WWJveVYycmFLZEsrazAvcERtcW1ydlVGa3E1Zm5YMXljMzVnL1BlRURNYmZn?=
+ =?utf-8?B?d25hclVTeXJoZUlEK2hwY1FvNDJyTEQyQk1CR0U2TmdhVjhCS1d1c2RZQUg4?=
+ =?utf-8?B?L1RHOTF6cEx3c1NLNkRGZXFzcU1sbUYrc0lBdGk3Rm5pUlFxUUQ4R01EdVlo?=
+ =?utf-8?B?dy9KTjBldlc5REZFdjJ4dW9Kc2FyejdqS3hRNmFCTW1sMHMzbmRlNG5LNkgx?=
+ =?utf-8?B?amxHNEhsVEtVQ1RNWGhBbXBlQjhlekdkK2lnaVkzcGxJVGkwM3hWclo5RWg3?=
+ =?utf-8?B?cmplZm1CVDRtTUk4aDZCUHdzVlh5NzBtQlZwNXB4T2I3Sk5EU09WM1BWL2xa?=
+ =?utf-8?B?ODlua28rVDMzdUpKMnhUcFVWNFZRSEd3cHBBOFVvc1k4MFRkUlg5MXlrblFW?=
+ =?utf-8?B?MkdhRzk2WlVJYmJML0R4empHOVhBT3NBcVJ3STJ6UlBNRnVjVndQRXFBcDg2?=
+ =?utf-8?B?TWwzSG0ycVVWWDNheTdKYWFTdUVGcVdJQ3A5SFlZQ2RYMzFGcXlJREM2aWdp?=
+ =?utf-8?B?eG85M1dTclJBVHAydEhhSW5pelZLem5JTzlvTVB1OXVId1g2M0JzcFp0Y3lz?=
+ =?utf-8?B?Z2E1dVM0ZnFMMDkvNy9uNEpKTTlUWlJKYzZMWUxrSDFyOVYwWjNMbklXeGt3?=
+ =?utf-8?B?LzZqZUI4WW1OemdQeXVVV3pyUkFUNVRMUWN1Sy9MVTRzcjkvdVRyRzBHMkxO?=
+ =?utf-8?B?V08rVXc0Rm8wRzNSTi9vVXJqMTV5eG51SXNkbzkydGNsM29nNERyMHk3UU1r?=
+ =?utf-8?B?aTVaSjRBZ2YzdTQ4RkQvaVJPaFF6dVRLd2pYam9ZN215M2JsbisyYmlibXNw?=
+ =?utf-8?B?VHBSNlZLc0tlZGg2bEhnd3VVWGtRVWNKZTZvb0JMWkFjazNOSnJ5V3BtNDdi?=
+ =?utf-8?B?L3pYdFhvbG9FN1FSNXB1V0owOUMxYldLcHdjTG9wOWpyV2FZT3ZwL3VBY1E3?=
+ =?utf-8?B?WnpyRVc5R1RldjRoeUpNeDc1cVR3UE90WHpkcTFjaFlRbm5QUTU5bUtrNlNr?=
+ =?utf-8?B?TXRNTEd6OEJ5SVNTc2p2d094SHBxbEFtWnNTTE94UnlJazl3TEpPeXNIcmJM?=
+ =?utf-8?B?enR6amk2enhHdndleDFpZGs0aFZkTkZZcEZ5cVplakVoL2V2d2daUUJmVW5N?=
+ =?utf-8?B?emNtdmRkQzZHT2tqbTgzTUtqeEt4Mm5yZmdXUFhPclZVNkpyTWNCa0ZBcTBp?=
+ =?utf-8?B?OW5LZkhPazVualQxMHduLzdER1NMWjF0eExYc0V2UE1TSDZZRXJvajVSMkxV?=
+ =?utf-8?B?MGdJSGNBN24rZXljTzZJWk0wQTBFV2R6ajVLVzNXTDVhQytrZm4rVUlnVkY0?=
+ =?utf-8?B?NUE9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 10864c94-11e4-4d59-8e82-08de189c6ba0
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6011.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Oct 2025 16:41:09.7613 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Oct 2025 16:42:03.8891 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: z0ffO+iT0fQ+HRkVfOSn/7rv6Iy+H+OYCj/F7FK9l9K5tuDfnCIq4fwMmJGYnYXe3LS23Mn8rt0Xg6B3XDvIjg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR11MB7501
+X-MS-Exchange-CrossTenant-UserPrincipalName: MOey5PsVvy11UfjMIfVIT0ThEryKS36RLUKKEZ/suZeS8f18ZJImzeo9Kqk7N7sG4ikQ/5leIIwVImvW17S1h8wsTMGnRwBhbvakXY0yoQo=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL4PR11MB8823
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -195,287 +209,184 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Oct 31, 2025 at 02:33:02PM +0100, Francois Dugast wrote:
-> On Mon, Oct 27, 2025 at 08:58:37PM -0700, Matthew Brost wrote:
-> > Stub out the new page fault layer and add kernel documentation. This is
-> > intended as a replacement for the GT page fault layer, enabling multiple
-> > producers to hook into a shared page fault consumer interface.
+
+
+On 10/30/2025 9:31 PM, Michał Winiarski wrote:
+> The descriptor reuses the KLV format used by GuC and contains metadata
+> that can be used to quickly fail migration when source is incompatible
+> with destination.
 > 
-> Nit: this patch and others in the series have been modified since the
-> previous version, for future revisions please include a brief changelog
-> in the commit message to help review, thanks.
+> Signed-off-by: Michał Winiarski <michal.winiarski@intel.com>
+> ---
+>  drivers/gpu/drm/xe/xe_sriov_migration_data.c | 89 +++++++++++++++++++-
+>  drivers/gpu/drm/xe/xe_sriov_migration_data.h |  2 +
+>  drivers/gpu/drm/xe/xe_sriov_pf_migration.c   |  6 ++
+>  3 files changed, 96 insertions(+), 1 deletion(-)
 > 
+> diff --git a/drivers/gpu/drm/xe/xe_sriov_migration_data.c b/drivers/gpu/drm/xe/xe_sriov_migration_data.c
+> index a3f50836adc81..18e17706772fc 100644
+> --- a/drivers/gpu/drm/xe/xe_sriov_migration_data.c
+> +++ b/drivers/gpu/drm/xe/xe_sriov_migration_data.c
+> @@ -5,6 +5,7 @@
+>  
+>  #include "xe_bo.h"
+>  #include "xe_device.h"
+> +#include "xe_guc_klv_helpers.h"
+>  #include "xe_sriov_migration_data.h"
+>  #include "xe_sriov_pf_helpers.h"
+>  #include "xe_sriov_pf_migration.h"
+> @@ -383,11 +384,19 @@ ssize_t xe_sriov_migration_data_write(struct xe_device *xe, unsigned int vfid,
+>  	return produced;
+>  }
+>  
+> -#define MIGRATION_DESCRIPTOR_DWORDS 0
+> +#define MIGRATION_KLV_DEVICE_DEVID_KEY	0xf001u
+> +#define MIGRATION_KLV_DEVICE_DEVID_LEN	1u
+> +#define MIGRATION_KLV_DEVICE_REVID_KEY	0xf002u
+> +#define MIGRATION_KLV_DEVICE_REVID_LEN	1u
+> +
+> +#define MIGRATION_DESCRIPTOR_DWORDS	(GUC_KLV_LEN_MIN + MIGRATION_KLV_DEVICE_DEVID_LEN + \
+> +					 GUC_KLV_LEN_MIN + MIGRATION_KLV_DEVICE_REVID_LEN)
+>  static size_t pf_descriptor_init(struct xe_device *xe, unsigned int vfid)
+>  {
+>  	struct xe_sriov_migration_data **desc = pf_pick_descriptor(xe, vfid);
+>  	struct xe_sriov_migration_data *data;
+> +	unsigned int len = 0;
+> +	u32 *klvs;
+>  	int ret;
+>  
+>  	data = xe_sriov_migration_data_alloc(xe);
+> @@ -401,11 +410,89 @@ static size_t pf_descriptor_init(struct xe_device *xe, unsigned int vfid)
+>  		return ret;
+>  	}
+>  
+> +	klvs = data->vaddr;
+> +	klvs[len++] = PREP_GUC_KLV_CONST(MIGRATION_KLV_DEVICE_DEVID_KEY,
+> +					 MIGRATION_KLV_DEVICE_DEVID_LEN);
+> +	klvs[len++] = xe->info.devid;
+> +	klvs[len++] = PREP_GUC_KLV_CONST(MIGRATION_KLV_DEVICE_REVID_KEY,
+> +					 MIGRATION_KLV_DEVICE_REVID_LEN);
+> +	klvs[len++] = xe->info.revid;
+> +
+> +	xe_assert(xe, len == MIGRATION_DESCRIPTOR_DWORDS);
+> +
+>  	*desc = data;
+>  
+>  	return 0;
+>  }
+>  
+> +/**
+> + * xe_sriov_migration_data_process_descriptor() - Process migration data descriptor.
+> + * @xe: the &xe_device
+> + * @vfid: the VF identifier
+> + * @data: the &struct xe_sriov_pf_migration_data containing the descriptor
+> + *
+> + * The descriptor uses the same KLV format as GuC, and contains metadata used for
+> + * checking migration data compatibility.
+> + *
+> + * Return: 0 on success, -errno on failure.
+> + */
+> +int xe_sriov_migration_data_process_descriptor(struct xe_device *xe, unsigned int vfid,
+> +					       struct xe_sriov_migration_data *data)
+> +{
+> +	u32 num_dwords = data->size / sizeof(u32);
+> +	u32 *klvs = data->vaddr;
+> +
+> +	xe_assert(xe, data->type == XE_SRIOV_MIGRATION_DATA_TYPE_DESCRIPTOR);
+> +
+> +	if (data->size % sizeof(u32)) {
+> +		xe_sriov_warn(xe, "Aborting migration, descriptor not in KLV format (size=%llu)\n",
+> +			      data->size);
+> +		return -EINVAL;
+> +	}
+> +
+> +	while (num_dwords >= GUC_KLV_LEN_MIN) {
+> +		u32 key = FIELD_GET(GUC_KLV_0_KEY, klvs[0]);
+> +		u32 len = FIELD_GET(GUC_KLV_0_LEN, klvs[0]);
+> +
+> +		klvs += GUC_KLV_LEN_MIN;
+> +		num_dwords -= GUC_KLV_LEN_MIN;
+> +
+> +		if (len > num_dwords)
 
-Yea, I had change logs but somehow lost them...
+nit:
+			xe_sriov_warn(xe, "Aborting migration, truncated KLV %#x, len %u\n",
 
-Will try to bring them back in v4.
 
-Matt
+> +			return -EINVAL;
+> +
+> +		switch (key) {
+> +		case MIGRATION_KLV_DEVICE_DEVID_KEY:
+> +			if (*klvs != xe->info.devid) {
+> +				xe_sriov_warn(xe,
+> +					      "Aborting migration, devid mismatch %#06x!=%#06x\n",
+> +					      *klvs, xe->info.devid);
+> +				return -ENODEV;
+> +			}
+> +			break;
+> +		case MIGRATION_KLV_DEVICE_REVID_KEY:
+> +			if (*klvs != xe->info.revid) {
+> +				xe_sriov_warn(xe,
+> +					      "Aborting migration, revid mismatch %#06x!=%#06x\n",
+> +					      *klvs, xe->info.revid);
+> +				return -ENODEV;
+> +			}
+> +			break;
+> +		default:
+> +			xe_sriov_dbg(xe,
+> +				     "Skipping unknown migration descriptor key %#06x (len=%#06x)\n",
+> +				     key, len);
+> +			print_hex_dump_bytes("desc: ", DUMP_PREFIX_OFFSET, klvs,
+> +					     min(SZ_64, len * sizeof(u32)));
+> +			break;
+> +		}
+> +
+> +		klvs += len;
+> +		num_dwords -= len;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+>  static void pf_pending_init(struct xe_device *xe, unsigned int vfid)
+>  {
+>  	struct xe_sriov_migration_data **data = pf_pick_pending(xe, vfid);
+> diff --git a/drivers/gpu/drm/xe/xe_sriov_migration_data.h b/drivers/gpu/drm/xe/xe_sriov_migration_data.h
+> index 7ec489c3f28d2..bb4ea5850e5c0 100644
+> --- a/drivers/gpu/drm/xe/xe_sriov_migration_data.h
+> +++ b/drivers/gpu/drm/xe/xe_sriov_migration_data.h
+> @@ -30,6 +30,8 @@ ssize_t xe_sriov_migration_data_read(struct xe_device *xe, unsigned int vfid,
+>  				     char __user *buf, size_t len);
+>  ssize_t xe_sriov_migration_data_write(struct xe_device *xe, unsigned int vfid,
+>  				      const char __user *buf, size_t len);
+> +int xe_sriov_migration_data_process_descriptor(struct xe_device *xe, unsigned int vfid,
+> +					       struct xe_sriov_migration_data *data);
+>  int xe_sriov_migration_data_save_init(struct xe_device *xe, unsigned int vfid);
+>  
+>  #endif
+> diff --git a/drivers/gpu/drm/xe/xe_sriov_pf_migration.c b/drivers/gpu/drm/xe/xe_sriov_pf_migration.c
+> index 8ea531d36f53b..f0a0c2b027a20 100644
+> --- a/drivers/gpu/drm/xe/xe_sriov_pf_migration.c
+> +++ b/drivers/gpu/drm/xe/xe_sriov_pf_migration.c
+> @@ -175,9 +175,15 @@ xe_sriov_pf_migration_save_consume(struct xe_device *xe, unsigned int vfid)
+>  static int pf_handle_descriptor(struct xe_device *xe, unsigned int vfid,
+>  				struct xe_sriov_migration_data *data)
+>  {
+> +	int ret;
+> +
+>  	if (data->tile != 0 || data->gt != 0)
+>  		return -EINVAL;
+>  
+> +	ret = xe_sriov_migration_data_process_descriptor(xe, vfid, data);
+> +	if (ret)
+> +		return ret;
+> +
+>  	xe_sriov_migration_data_free(data);
+>  
+>  	return 0;
 
-> Francois
-> 
-> > 
-> > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> > ---
-> >  drivers/gpu/drm/xe/Makefile             |   1 +
-> >  drivers/gpu/drm/xe/xe_pagefault.c       |  65 +++++++++++
-> >  drivers/gpu/drm/xe/xe_pagefault.h       |  19 ++++
-> >  drivers/gpu/drm/xe/xe_pagefault_types.h | 136 ++++++++++++++++++++++++
-> >  4 files changed, 221 insertions(+)
-> >  create mode 100644 drivers/gpu/drm/xe/xe_pagefault.c
-> >  create mode 100644 drivers/gpu/drm/xe/xe_pagefault.h
-> >  create mode 100644 drivers/gpu/drm/xe/xe_pagefault_types.h
-> > 
-> > diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-> > index 82c6b3d29676..b35021e5b9eb 100644
-> > --- a/drivers/gpu/drm/xe/Makefile
-> > +++ b/drivers/gpu/drm/xe/Makefile
-> > @@ -94,6 +94,7 @@ xe-y += xe_bb.o \
-> >  	xe_nvm.o \
-> >  	xe_oa.o \
-> >  	xe_observation.o \
-> > +	xe_pagefault.o \
-> >  	xe_pat.o \
-> >  	xe_pci.o \
-> >  	xe_pcode.o \
-> > diff --git a/drivers/gpu/drm/xe/xe_pagefault.c b/drivers/gpu/drm/xe/xe_pagefault.c
-> > new file mode 100644
-> > index 000000000000..d509a80cb1f3
-> > --- /dev/null
-> > +++ b/drivers/gpu/drm/xe/xe_pagefault.c
-> > @@ -0,0 +1,65 @@
-> > +// SPDX-License-Identifier: MIT
-> > +/*
-> > + * Copyright © 2025 Intel Corporation
-> > + */
-> > +
-> > +#include "xe_pagefault.h"
-> > +#include "xe_pagefault_types.h"
-> > +
-> > +/**
-> > + * DOC: Xe page faults
-> > + *
-> > + * Xe page faults are handled in two layers. The producer layer interacts with
-> > + * hardware or firmware to receive and parse faults into struct xe_pagefault,
-> > + * then forwards them to the consumer. The consumer layer services the faults
-> > + * (e.g., memory migration, page table updates) and acknowledges the result back
-> > + * to the producer, which then forwards the results to the hardware or firmware.
-> > + * The consumer uses a page fault queue sized to absorb all potential faults and
-> > + * a multi-threaded worker to process them. Multiple producers are supported,
-> > + * with a single shared consumer.
-> > + *
-> > + * xe_pagefault.c implements the consumer layer.
-> > + */
-> > +
-> > +/**
-> > + * xe_pagefault_init() - Page fault init
-> > + * @xe: xe device instance
-> > + *
-> > + * Initialize Xe page fault state. Must be done after reading fuses.
-> > + *
-> > + * Return: 0 on Success, errno on failure
-> > + */
-> > +int xe_pagefault_init(struct xe_device *xe)
-> > +{
-> > +	/* TODO - implement */
-> > +	return 0;
-> > +}
-> > +
-> > +/**
-> > + * xe_pagefault_reset() - Page fault reset for a GT
-> > + * @xe: xe device instance
-> > + * @gt: GT being reset
-> > + *
-> > + * Reset the Xe page fault state for a GT; that is, squash any pending faults on
-> > + * the GT.
-> > + */
-> > +void xe_pagefault_reset(struct xe_device *xe, struct xe_gt *gt)
-> > +{
-> > +	/* TODO - implement */
-> > +}
-> > +
-> > +/**
-> > + * xe_pagefault_handler() - Page fault handler
-> > + * @xe: xe device instance
-> > + * @pf: Page fault
-> > + *
-> > + * Sink the page fault to a queue (i.e., a memory buffer) and queue a worker to
-> > + * service it. Safe to be called from IRQ or process context. Reclaim safe.
-> > + *
-> > + * Return: 0 on success, errno on failure
-> > + */
-> > +int xe_pagefault_handler(struct xe_device *xe, struct xe_pagefault *pf)
-> > +{
-> > +	/* TODO - implement */
-> > +	return 0;
-> > +}
-> > diff --git a/drivers/gpu/drm/xe/xe_pagefault.h b/drivers/gpu/drm/xe/xe_pagefault.h
-> > new file mode 100644
-> > index 000000000000..bd0cdf9ed37f
-> > --- /dev/null
-> > +++ b/drivers/gpu/drm/xe/xe_pagefault.h
-> > @@ -0,0 +1,19 @@
-> > +/* SPDX-License-Identifier: MIT */
-> > +/*
-> > + * Copyright © 2025 Intel Corporation
-> > + */
-> > +
-> > +#ifndef _XE_PAGEFAULT_H_
-> > +#define _XE_PAGEFAULT_H_
-> > +
-> > +struct xe_device;
-> > +struct xe_gt;
-> > +struct xe_pagefault;
-> > +
-> > +int xe_pagefault_init(struct xe_device *xe);
-> > +
-> > +void xe_pagefault_reset(struct xe_device *xe, struct xe_gt *gt);
-> > +
-> > +int xe_pagefault_handler(struct xe_device *xe, struct xe_pagefault *pf);
-> > +
-> > +#endif
-> > diff --git a/drivers/gpu/drm/xe/xe_pagefault_types.h b/drivers/gpu/drm/xe/xe_pagefault_types.h
-> > new file mode 100644
-> > index 000000000000..d3b516407d60
-> > --- /dev/null
-> > +++ b/drivers/gpu/drm/xe/xe_pagefault_types.h
-> > @@ -0,0 +1,136 @@
-> > +/* SPDX-License-Identifier: MIT */
-> > +/*
-> > + * Copyright © 2025 Intel Corporation
-> > + */
-> > +
-> > +#ifndef _XE_PAGEFAULT_TYPES_H_
-> > +#define _XE_PAGEFAULT_TYPES_H_
-> > +
-> > +#include <linux/workqueue.h>
-> > +
-> > +struct xe_gt;
-> > +struct xe_pagefault;
-> > +
-> > +/** enum xe_pagefault_access_type - Xe page fault access type */
-> > +enum xe_pagefault_access_type {
-> > +	/** @XE_PAGEFAULT_ACCESS_TYPE_READ: Read access type */
-> > +	XE_PAGEFAULT_ACCESS_TYPE_READ	= 0,
-> > +	/** @XE_PAGEFAULT_ACCESS_TYPE_WRITE: Write access type */
-> > +	XE_PAGEFAULT_ACCESS_TYPE_WRITE	= 1,
-> > +	/** @XE_PAGEFAULT_ACCESS_TYPE_ATOMIC: Atomic access type */
-> > +	XE_PAGEFAULT_ACCESS_TYPE_ATOMIC	= 2,
-> > +};
-> > +
-> > +/** enum xe_pagefault_type - Xe page fault type */
-> > +enum xe_pagefault_type {
-> > +	/** @XE_PAGEFAULT_TYPE_NOT_PRESENT: Not present */
-> > +	XE_PAGEFAULT_TYPE_NOT_PRESENT			= 0,
-> > +	/** @XE_PAGEFAULT_TYPE_WRITE_ACCESS_VIOLATION: Write access violation */
-> > +	XE_PAGEFAULT_TYPE_WRITE_ACCESS_VIOLATION	= 1,
-> > +	/** @XE_PAGEFAULT_TYPE_ATOMIC_ACCESS_VIOLATION: Atomic access violation */
-> > +	XE_PAGEFAULT_TYPE_ATOMIC_ACCESS_VIOLATION	= 2,
-> > +};
-> > +
-> > +/** struct xe_pagefault_ops - Xe pagefault ops (producer) */
-> > +struct xe_pagefault_ops {
-> > +	/**
-> > +	 * @ack_fault: Ack fault
-> > +	 * @pf: Page fault
-> > +	 * @err: Error state of fault
-> > +	 *
-> > +	 * Page fault producer receives acknowledgment from the consumer and
-> > +	 * sends the result to the HW/FW interface.
-> > +	 */
-> > +	void (*ack_fault)(struct xe_pagefault *pf, int err);
-> > +};
-> > +
-> > +/**
-> > + * struct xe_pagefault - Xe page fault
-> > + *
-> > + * Generic page fault structure for communication between producer and consumer.
-> > + * Carefully sized to be 64 bytes. Upon a device page fault, the producer
-> > + * populates this structure, and the consumer copies it into the page-fault
-> > + * queue for deferred handling.
-> > + */
-> > +struct xe_pagefault {
-> > +	/**
-> > +	 * @gt: GT of fault
-> > +	 */
-> > +	struct xe_gt *gt;
-> > +	/**
-> > +	 * @consumer: State for the software handling the fault. Populated by
-> > +	 * the producer and may be modified by the consumer to communicate
-> > +	 * information back to the producer upon fault acknowledgment.
-> > +	 */
-> > +	struct {
-> > +		/** @consumer.page_addr: address of page fault */
-> > +		u64 page_addr;
-> > +		/** @consumer.asid: address space ID */
-> > +		u32 asid;
-> > +		/**
-> > +		 * @consumer.access_type: access type, u8 rather than enum to
-> > +		 * keep size compact
-> > +		 */
-> > +		u8 access_type;
-> > +		/**
-> > +		 * @consumer.fault_type: fault type, u8 rather than enum to
-> > +		 * keep size compact
-> > +		 */
-> > +		u8 fault_type;
-> > +#define XE_PAGEFAULT_LEVEL_NACK		0xff	/* Producer indicates nack fault */
-> > +		/** @consumer.fault_level: fault level */
-> > +		u8 fault_level;
-> > +		/** @consumer.engine_class: engine class */
-> > +		u8 engine_class;
-> > +		/** @consumer.engine_instance: engine instance */
-> > +		u8 engine_instance;
-> > +		/** consumer.reserved: reserved bits for future expansion */
-> > +		u8 reserved[7];
-> > +	} consumer;
-> > +	/**
-> > +	 * @producer: State for the producer (i.e., HW/FW interface). Populated
-> > +	 * by the producer and should not be modified—or even inspected—by the
-> > +	 * consumer, except for calling operations.
-> > +	 */
-> > +	struct {
-> > +		/** @producer.private: private pointer */
-> > +		void *private;
-> > +		/** @producer.ops: operations */
-> > +		const struct xe_pagefault_ops *ops;
-> > +#define XE_PAGEFAULT_PRODUCER_MSG_LEN_DW	4
-> > +		/**
-> > +		 * @producer.msg: page fault message, used by producer in fault
-> > +		 * acknowledgment to formulate response to HW/FW interface.
-> > +		 * Included in the page-fault message because the producer
-> > +		 * typically receives the fault in a context where memory cannot
-> > +		 * be allocated (e.g., atomic context or the reclaim path).
-> > +		 */
-> > +		u32 msg[XE_PAGEFAULT_PRODUCER_MSG_LEN_DW];
-> > +	} producer;
-> > +};
-> > +
-> > +/**
-> > + * struct xe_pagefault_queue: Xe pagefault queue (consumer)
-> > + *
-> > + * Used to capture all device page faults for deferred processing. Size this
-> > + * queue to absorb the device’s worst-case number of outstanding faults.
-> > + */
-> > +struct xe_pagefault_queue {
-> > +	/**
-> > +	 * @data: Data in queue containing struct xe_pagefault, protected by
-> > +	 * @lock
-> > +	 */
-> > +	void *data;
-> > +	/** @size: Size of queue in bytes */
-> > +	u32 size;
-> > +	/** @head: Head pointer in bytes, moved by producer, protected by @lock */
-> > +	u32 head;
-> > +	/** @tail: Tail pointer in bytes, moved by consumer, protected by @lock */
-> > +	u32 tail;
-> > +	/** @lock: protects page fault queue */
-> > +	spinlock_t lock;
-> > +	/** @worker: to process page faults */
-> > +	struct work_struct worker;
-> > +};
-> > +
-> > +#endif
-> > -- 
-> > 2.34.1
-> > 
+just nit, so
+
+Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+
+
