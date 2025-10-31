@@ -4,53 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A5999CCF9F8
-	for <intel-xe@archiver.kernel.org>; Fri, 31 Oct 2025 10:37:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 17F7CCCF9FE
+	for <intel-xe@archiver.kernel.org>; Fri, 31 Oct 2025 10:37:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6CCD310EB19;
+	by gabe.freedesktop.org (Postfix) with ESMTP id B17D810EB20;
 	Fri, 31 Oct 2025 10:37:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GoiAsGQK";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hqgHdm2U";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E289D10EB05;
- Fri, 31 Oct 2025 10:37:21 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 79A1D10EB1A;
+ Fri, 31 Oct 2025 10:37:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761907043; x=1793443043;
+ t=1761907048; x=1793443048;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=9SRqN9zMDoeRJtozBnDgdPnU5jaYPUAYbErRt36VLpM=;
- b=GoiAsGQKJuofaEz+C39URtjGxQz7kiLkhttkK58mdL0OIFWds+di95uw
- 1bGLKU8JFywiOlHpbM/f/ep3I3CqCKkY+F9V4GYrIZYALuli1qXzA7fYX
- EGZtUsPU2mzxy9LZAljHIHR3Iuo/FhO5Dt+WfeV+UuyEfVQlHPYlEAIFt
- 4ddfIC+gSqplyH7i7i6sYhLDTkJXxA9SC2wQDrBirhjSrEUBK98NQSQbE
- yNLe9W1FdnULypV8I/HBej3igJloCpbXqHZzKocXt8bEYNdOZs+jezr7K
- Sqg6rALkUVoDWB4Isz4tdD8C3tT8XmpeoklRgGJvUd6k//SStYqaRFZ0L w==;
-X-CSE-ConnectionGUID: uaYtBkQWT+6gkofMg6qcfg==
-X-CSE-MsgGUID: ilJZFCW5Qsy20wv7UkdC1w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11598"; a="86690875"
-X-IronPort-AV: E=Sophos;i="6.19,269,1754982000"; d="scan'208";a="86690875"
+ bh=tAgjKiJdGdNdIp7h1QKbn59SMyqUzlH3vRjGwxZkuso=;
+ b=hqgHdm2UnEiUJE4Wq74/Hz8P8Io9IVqo0fbj1uVOgeKzpPhd2ULbSkl+
+ HgCdPF5We7WQDwxNlo/uvwKm0nmIi+APKZCqQ2FFbyi4cfKrNLtZynLLj
+ uIMrqTcBfm54QoLY0kQV8F84Bnbl+rNOy3Xh86h84GB5bAbkwceD8eTdB
+ X5bc/49gF8mFXREzYWJ9cz6aWQa8LZhXKaRALjcqWGFm0JDoTInAPJe1O
+ 8W7TjjybM025MR0ZNXX2PE1NiX/8WW8fPoRDvrnCIVI00FsQ/Ty0upDl2
+ 1Bz/wUcGTyDxhpjXkVfF4VwLAstKKbF2hbPQvvXQLOITWnmjkt9kaPNSO A==;
+X-CSE-ConnectionGUID: 3eoBfYkOQmmm+WzEsDYTqQ==
+X-CSE-MsgGUID: 4RcJ7vs1TES/hCidU5vv/A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11598"; a="86690881"
+X-IronPort-AV: E=Sophos;i="6.19,269,1754982000"; d="scan'208";a="86690881"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Oct 2025 03:37:22 -0700
-X-CSE-ConnectionGUID: KQ27PNdeTJmPl0Q6Vx8fpA==
-X-CSE-MsgGUID: 1HP4gxF4RS2DNcqp4ltISg==
+ 31 Oct 2025 03:37:28 -0700
+X-CSE-ConnectionGUID: RQx8wMfVRDKLzLmYhcqYCQ==
+X-CSE-MsgGUID: tnEd5A8oQ5iHNA5Qmjzksw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,269,1754982000"; d="scan'208";a="190554665"
+X-IronPort-AV: E=Sophos;i="6.19,269,1754982000"; d="scan'208";a="190554686"
 Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
- by fmviesa005.fm.intel.com with ESMTP; 31 Oct 2025 03:37:19 -0700
+ by fmviesa005.fm.intel.com with ESMTP; 31 Oct 2025 03:37:24 -0700
 From: Suraj Kandpal <suraj.kandpal@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
 Cc: ankit.k.nautiyal@intel.com, arun.r.murthy@intel.com, uma.shankar@intel.com,
  gustavo.sousa@intel.com, lucas.demarchi@intel.com,
- Suraj Kandpal <suraj.kandpal@intel.com>,
- Nemesa Garg <nemesa.garg@intel.com>
-Subject: [PATCH v3 12/25] drm/i915/ltphy: Add function to calculate LT PHY
- port clock
-Date: Fri, 31 Oct 2025 16:06:30 +0530
-Message-Id: <20251031103643.4147868-13-suraj.kandpal@intel.com>
+ Suraj Kandpal <suraj.kandpal@intel.com>
+Subject: [PATCH v3 14/25] drm/i915/ltphy: Program the rest of the
+ PORT_CLOCK_CTL steps
+Date: Fri, 31 Oct 2025 16:06:32 +0530
+Message-Id: <20251031103643.4147868-15-suraj.kandpal@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251031103643.4147868-1-suraj.kandpal@intel.com>
 References: <20251031103643.4147868-1-suraj.kandpal@intel.com>
@@ -70,160 +69,84 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Create a reverse algorithm which is used to find port clock
-from the LT PHY state is provided which is used for
-comparision & verification functions.
+Program the rest of the steps with regards to PORT_CLOCK_CTL in
+Non-TBT PLL enable sequence.
 
-Bspec: 74667
-Signed-off-by: Nemesa Garg <nemesa.garg@intel.com>
 Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+Reviewed-by: Arun R Murthy <arun.r.murthy@intel.com>
 ---
+ drivers/gpu/drm/i915/display/intel_lt_phy.c   | 25 +++++++++++++++++++
+ .../gpu/drm/i915/display/intel_lt_phy_regs.h  |  1 +
+ 2 files changed, 26 insertions(+)
 
-V1 -> V2:
--Correct comment grammar
-
-V2 -> V3:
--Update commit mesage (Ankit)
--Update & add a more refined comment (Ankit)
-
- drivers/gpu/drm/i915/display/intel_dpll.c   |  2 +
- drivers/gpu/drm/i915/display/intel_lt_phy.c | 89 +++++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_lt_phy.h |  3 +
- 3 files changed, 94 insertions(+)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_dpll.c b/drivers/gpu/drm/i915/display/intel_dpll.c
-index 8c3ef5867a12..2e1f67be8eda 100644
---- a/drivers/gpu/drm/i915/display/intel_dpll.c
-+++ b/drivers/gpu/drm/i915/display/intel_dpll.c
-@@ -1247,6 +1247,8 @@ static int xe3plpd_crtc_compute_clock(struct intel_atomic_state *state,
- 		return ret;
- 
- 	/* TODO: Do the readback via intel_compute_shared_dplls() */
-+	crtc_state->port_clock =
-+			intel_lt_phy_calc_port_clock(encoder, crtc_state);
- 
- 	crtc_state->hw.adjusted_mode.crtc_clock = intel_crtc_dotclock(crtc_state);
- 
 diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.c b/drivers/gpu/drm/i915/display/intel_lt_phy.c
-index 1b7d92fff834..22c0ee91d23f 100644
+index e8100cd661e0..b241a05af9f3 100644
 --- a/drivers/gpu/drm/i915/display/intel_lt_phy.c
 +++ b/drivers/gpu/drm/i915/display/intel_lt_phy.c
-@@ -1235,6 +1235,95 @@ intel_lt_phy_pll_is_ssc_enabled(struct intel_crtc_state *crtc_state,
- 	return false;
- }
+@@ -1503,6 +1503,8 @@ void intel_lt_phy_pll_enable(struct intel_encoder *encoder,
+ 	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
+ 	bool lane_reversal = dig_port->lane_reversal;
+ 	u8 owned_lane_mask = intel_lt_phy_get_owned_lane_mask(encoder);
++	enum phy phy = intel_encoder_to_phy(encoder);
++	enum port port = encoder->port;
+ 	intel_wakeref_t wakeref = 0;
  
-+static int
-+intel_lt_phy_calc_hdmi_port_clock(const struct intel_lt_phy_pll_state *lt_state)
-+{
-+#define REF_CLK_KHZ 38400
-+#define REGVAL(i) (				\
-+	(lt_state->data[i][3])		|	\
-+	(lt_state->data[i][2] << 8)	|	\
-+	(lt_state->data[i][1] << 16)	|	\
-+	(lt_state->data[i][0] << 24)		\
-+)
-+
-+	int clk = 0;
-+	u32 d8, pll_reg_5, pll_reg_3, pll_reg_57, m2div_frac, m2div_int;
-+	u64 temp0, temp1;
-+	/*
-+	 * The algorithm uses '+' to combine bitfields when
-+	 * constructing PLL_reg3 and PLL_reg57:
-+	 * PLL_reg57 = (D7 << 24) + (postdiv << 15) + (D8 << 7) + D6_new;
-+	 * PLL_reg3 = (D4 << 21) + (D3 << 18) + (D1 << 15) + (m2div_int << 5);
-+	 * However, this is likely intended to be a bitwise OR operation,
-+	 * as each field occupies distinct, non-overlapping bits in the register.
-+	 * PLL_reg57 is composed of following fields packed into a 32-bit value:
-+	 * - D7: max value 10 -> fits in 4 bits -> placed at bits 24-27
-+	 * - postdiv: max value 9 -> fits in 4 bits -> placed at bits 15-18
-+	 * - D8: derived from loop_cnt / 2, max 127 -> fits in 7 bits
-+	 *	(though 8 bits are given to it) -> placed at bits 7-14
-+	 * - D6_new: fits in lower 7 bits -> placed at bits 0-6
-+	 * PLL_reg57 = (D7 << 24) | (postdiv << 15) | (D8 << 7) | D6_new;
-+	 * Similarly, PLL_reg3 is packed as:
-+	 * - D4: max value 256 -> fits in 9 bits -> placed at bits 21-29
-+	 * - D3: max value 9 -> fits in 4 bits -> placed at bits 18-21
-+	 * - D1: max value 2 -> fits in 2 bits -> placed at bits 15-16
-+	 * - m2div_int: max value 511 -> fits in 9 bits (10 bits allocated)
-+	 *   -> placed at bits 5-14
-+	 * PLL_reg3 = (D4 << 21) | (D3 << 18) | (D1 << 15) | (m2div_int << 5);
-+	 */
-+	pll_reg_5 = REGVAL(2);
-+	pll_reg_3 = REGVAL(1);
-+	pll_reg_57 = REGVAL(3);
-+	m2div_frac = pll_reg_5;
-+
-+	/*
-+	 * From forward algorithm we know
-+	 * m2div = 2 * m2
-+	 * val = y * frequency * 5
-+	 * So now,
-+	 * frequency = (m2 * 2 * refclk_khz / (d8 * 10))
-+	 * frequency = (m2div * refclk_khz / (d8 * 10))
-+	 */
-+	d8 = (pll_reg_57 & REG_GENMASK(14, 7)) >> 7;
-+	m2div_int = (pll_reg_3  & REG_GENMASK(14, 5)) >> 5;
-+	temp0 = ((u64)m2div_frac * REF_CLK_KHZ) >> 32;
-+	temp1 = (u64)m2div_int * REF_CLK_KHZ;
-+	if (d8 == 0)
-+		return 0;
-+
-+	clk = div_u64((temp1 + temp0), d8 * 10);
-+
-+	return clk;
-+}
-+
-+int
-+intel_lt_phy_calc_port_clock(struct intel_encoder *encoder,
-+			     const struct intel_crtc_state *crtc_state)
-+{
-+	int clk;
-+	const struct intel_lt_phy_pll_state *lt_state =
-+		&crtc_state->dpll_hw_state.ltpll;
-+	u8 mode, rate;
-+
-+	mode = REG_FIELD_GET8(LT_PHY_VDR_MODE_ENCODING_MASK,
-+			      lt_state->config[0]);
-+	/*
-+	 * For edp/dp read the clock value from the tables
-+	 * and return the clock as the algorithm used for
-+	 * calculating the port clock does not exactly matches
-+	 * with edp/dp clock.
-+	 */
-+	if (mode == MODE_DP) {
-+		rate = REG_FIELD_GET8(LT_PHY_VDR_RATE_ENCODING_MASK,
-+				      lt_state->config[0]);
-+		clk = intel_lt_phy_get_dp_clock(rate);
-+	} else {
-+		clk = intel_lt_phy_calc_hdmi_port_clock(lt_state);
-+	}
-+
-+	return clk;
-+}
-+
- int
- intel_lt_phy_pll_calc_state(struct intel_crtc_state *crtc_state,
- 			    struct intel_encoder *encoder)
-diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.h b/drivers/gpu/drm/i915/display/intel_lt_phy.h
-index 3f255c9b0f96..5b4e0d9c940f 100644
---- a/drivers/gpu/drm/i915/display/intel_lt_phy.h
-+++ b/drivers/gpu/drm/i915/display/intel_lt_phy.h
-@@ -10,12 +10,15 @@
+ 	wakeref = intel_lt_phy_transaction_begin(encoder);
+@@ -1543,19 +1545,42 @@ void intel_lt_phy_pll_enable(struct intel_encoder *encoder,
+ 				       LT_PHY_PCLKIN_GATE);
  
- struct intel_encoder;
- struct intel_crtc_state;
-+struct intel_lt_phy_pll_state;
+ 		/* 7. Program PORT_CLOCK_CTL[PCLK PLL Request LN0] = 0. */
++		intel_de_rmw(display, XELPDP_PORT_CLOCK_CTL(display, port),
++			     XELPDP_LANE_PCLK_PLL_REQUEST(0), 0);
++
+ 		/* 8. Poll for PORT_CLOCK_CTL[PCLK PLL Ack LN0]= 0. */
++		if (intel_de_wait_custom(display, XELPDP_PORT_CLOCK_CTL(display, port),
++					 XELPDP_LANE_PCLK_PLL_ACK(0), 0,
++					 XE3PLPD_MACCLK_TURNOFF_LATENCY_US, 0, NULL))
++			drm_warn(display->drm, "PHY %c PLL MacCLK Ack deassertion Timeout after %dus.\n",
++				 phy_name(phy), XE3PLPD_MACCLK_TURNOFF_LATENCY_US);
++
+ 		/*
+ 		 * 9. Follow the Display Voltage Frequency Switching - Sequence Before Frequency
+ 		 * Change. We handle this step in bxt_set_cdclk().
+ 		 */
+ 		/* 10. Program DDI_CLK_VALFREQ to match intended DDI clock frequency. */
+ 		/* 11. Program PORT_CLOCK_CTL[PCLK PLL Request LN0] = 1. */
++		intel_de_rmw(display, XELPDP_PORT_CLOCK_CTL(display, port),
++			     XELPDP_LANE_PCLK_PLL_REQUEST(0),
++			     XELPDP_LANE_PCLK_PLL_REQUEST(0));
++
+ 		/* 12. Poll for PORT_CLOCK_CTL[PCLK PLL Ack LN0]= 1. */
++		if (intel_de_wait_custom(display, XELPDP_PORT_CLOCK_CTL(display, port),
++					 XELPDP_LANE_PCLK_PLL_ACK(0),
++					 XELPDP_LANE_PCLK_PLL_ACK(0),
++					 XE3PLPD_MACCLK_TURNON_LATENCY_US, 2, NULL))
++			drm_warn(display->drm, "PHY %c PLL MacCLK Ack assertion Timeout after %dus.\n",
++				 phy_name(phy), XE3PLPD_MACCLK_TURNON_LATENCY_US);
+ 	} else {
+ 		intel_de_write(display, DDI_CLK_VALFREQ(encoder->port), crtc_state->port_clock);
+ 	}
  
- void intel_lt_phy_pll_enable(struct intel_encoder *encoder,
- 			     const struct intel_crtc_state *crtc_state);
- int
- intel_lt_phy_pll_calc_state(struct intel_crtc_state *crtc_state,
- 			    struct intel_encoder *encoder);
-+int intel_lt_phy_calc_port_clock(struct intel_encoder *encoder,
-+				 const struct intel_crtc_state *crtc_state);
- 
- #define HAS_LT_PHY(display) (DISPLAY_VER(display) >= 35)
- 
+ 	/* 13. Ungate the forward clock by setting PORT_CLOCK_CTL[Forward Clock Ungate] = 1. */
++	intel_de_rmw(display, XELPDP_PORT_CLOCK_CTL(display, port),
++		     XELPDP_FORWARD_CLOCK_UNGATE,
++		     XELPDP_FORWARD_CLOCK_UNGATE);
++
+ 	/* 14. SW clears PORT_BUF_CTL2 [PHY Pulse Status]. */
+ 	/*
+ 	 * 15. Clear the PHY VDR register 0xCC4[Rate Control VDR Update] over PHY message bus for
+diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy_regs.h b/drivers/gpu/drm/i915/display/intel_lt_phy_regs.h
+index eb3a3dd53ab8..06829ab28b7c 100644
+--- a/drivers/gpu/drm/i915/display/intel_lt_phy_regs.h
++++ b/drivers/gpu/drm/i915/display/intel_lt_phy_regs.h
+@@ -9,6 +9,7 @@
+ #define XE3PLPD_MSGBUS_TIMEOUT_FAST_US	500
+ #define XE3PLPD_MACCLK_TURNON_LATENCY_MS	1
+ #define XE3PLPD_MACCLK_TURNON_LATENCY_US	21
++#define XE3PLPD_MACCLK_TURNOFF_LATENCY_US	1
+ #define XE3PLPD_RATE_CALIB_DONE_LATENCY_US	50
+ #define XE3PLPD_RESET_START_LATENCY_US	10
+ #define XE3PLPD_RESET_END_LATENCY_US		200
 -- 
 2.34.1
 
