@@ -4,56 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 107CCCCF9F8
-	for <intel-xe@archiver.kernel.org>; Fri, 31 Oct 2025 10:36:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 509EBCCF9FE
+	for <intel-xe@archiver.kernel.org>; Fri, 31 Oct 2025 10:37:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CAEFD10EB1A;
-	Fri, 31 Oct 2025 10:36:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1C65710EB06;
+	Fri, 31 Oct 2025 10:37:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="l5pI4z47";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VUF96E/4";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8B3FD10EB1A;
- Fri, 31 Oct 2025 10:36:57 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ACAD110EB23;
+ Fri, 31 Oct 2025 10:37:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761907018; x=1793443018;
+ t=1761907026; x=1793443026;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=ProV2i1YtwwOD/M/2snEcMKNMSSo64tuCT+NuAnDafI=;
- b=l5pI4z475GC5xGHEOR+YDLX6nIRAC/AXhgKtIh1174v9ni8YdmDikpUf
- fETBUdG/pJdYMvAIXUqdRQE+cpYTUgUFX7AkD54RvKSj+cUmfWWL2gkH1
- t7153zU1xNGXI6v6L0NLzxZaZsxIJPqscCGOid6poHVX8QobaiJDXlDsT
- bUcrB+s5p1SsSZjKCkbO4t6FS2kByV0KAYu+RdJBzdvcl75x6OGg9tmtl
- /cWBBUoFGE/SqFQtcRZiqnEDc82r92Nmy7kBYcMiU36IKUwQkQJVt5VnD
- F9rizAU+eJWvr9afdgi/avCnsWVjp3xAn3Wq3b079qgoMCbe/vSZLfs8V A==;
-X-CSE-ConnectionGUID: rwviEnocTtK2s9gXle5QpA==
-X-CSE-MsgGUID: A+j4NsVLRVCuS1B81LJaGg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11598"; a="86690851"
-X-IronPort-AV: E=Sophos;i="6.19,269,1754982000"; d="scan'208";a="86690851"
+ bh=khiwrfhmBXrZkquTGzXUdcUVJ5leAGrJeH6HfPO5uAI=;
+ b=VUF96E/4lSGNvOfHd90SG4TLq4J6A2jDJ+eET4wzQRc1xvw3SPkxSToy
+ ul1yFogIbAsoADtquQ+SVjeaeozPbh3CYkOnAjJZXKl+cZqiThmOQFCJS
+ +PqQbbUsglrt5oVkc44KcDMBXHrKW8Hthwh0qNmEDjPBmr4qdiW9yUc5c
+ tMBN0P4d0fjWrVsNBo0WAlvR3Ok+misLW9/UpGjCsBVdAPcbDcjk3RZAE
+ VcTQVsAoX4IIlr0XfM8lnOEQ6z9QDiHBKjD9J3hQulAa8gfuzrB5ztYsV
+ PpAgBmMm07+hqsm8NWudGsEW2xuzgH2W+tMn/7uELRoTYxV+I7lS54MPd Q==;
+X-CSE-ConnectionGUID: KM59Aiz3TOO3fYLG4Xlfqw==
+X-CSE-MsgGUID: F78yboiNSqy/C/+/NbBLCA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11598"; a="86690859"
+X-IronPort-AV: E=Sophos;i="6.19,269,1754982000"; d="scan'208";a="86690859"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Oct 2025 03:36:58 -0700
-X-CSE-ConnectionGUID: HKjHIZhLRE6Oyaf9/VOgFA==
-X-CSE-MsgGUID: ZJ0MMlMtTK66/Dq58mmS/Q==
+ 31 Oct 2025 03:37:06 -0700
+X-CSE-ConnectionGUID: 2lcQQk/sS2OgcH90tgAFqA==
+X-CSE-MsgGUID: ybujQ2SVSEuLaCCep7UYew==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,269,1754982000"; d="scan'208";a="190554560"
+X-IronPort-AV: E=Sophos;i="6.19,269,1754982000"; d="scan'208";a="190554586"
 Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
- by fmviesa005.fm.intel.com with ESMTP; 31 Oct 2025 03:36:54 -0700
+ by fmviesa005.fm.intel.com with ESMTP; 31 Oct 2025 03:37:03 -0700
 From: Suraj Kandpal <suraj.kandpal@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
 Cc: ankit.k.nautiyal@intel.com, arun.r.murthy@intel.com, uma.shankar@intel.com,
  gustavo.sousa@intel.com, lucas.demarchi@intel.com,
  Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH v3 03/25] drm/i915/ltphy: Phy lane reset for LT Phy
-Date: Fri, 31 Oct 2025 16:06:21 +0530
-Message-Id: <20251031103643.4147868-4-suraj.kandpal@intel.com>
+Subject: [PATCH v3 06/25] drm/i915/ltphy: Add a wrapper for LT Phy powerdown
+ change sequence
+Date: Fri, 31 Oct 2025 16:06:24 +0530
+Message-Id: <20251031103643.4147868-7-suraj.kandpal@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251031103643.4147868-1-suraj.kandpal@intel.com>
 References: <20251031103643.4147868-1-suraj.kandpal@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -69,331 +69,101 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Define function to bring phy lane out of reset for LT Phy and the
-corresponding pre-requisite steps before we follow the steps for
-Phy lane reset. Also create a skeleton of LT PHY PLL enable sequence
-function in which we can place this function
+Add a wrapper on cx0 powerdown change sequence for LT Phy usage,
+as the sequence remains unchanged when going from SNPS Phy to
+LT Phy.
 
-Bspec: 77449, 74749, 74499, 74495, 68960
+Bspec: 74495
 Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 Reviewed-by: Arun R Murthy <arun.r.murthy@intel.com>
 ---
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c |  6 +++---
+ drivers/gpu/drm/i915/display/intel_cx0_phy.h |  2 ++
+ drivers/gpu/drm/i915/display/intel_lt_phy.c  | 13 +++++++++++++
+ 3 files changed, 18 insertions(+), 3 deletions(-)
 
-V1 -> V2:
--Align the definitions (Arun)
-
- drivers/gpu/drm/i915/Makefile                 |   1 +
- drivers/gpu/drm/i915/display/intel_cx0_phy.c  |   2 +-
- drivers/gpu/drm/i915/display/intel_cx0_phy.h  |   2 +
- .../gpu/drm/i915/display/intel_cx0_phy_regs.h |   4 +
- drivers/gpu/drm/i915/display/intel_lt_phy.c   | 159 ++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_lt_phy.h   |  17 ++
- .../gpu/drm/i915/display/intel_lt_phy_regs.h  |  17 ++
- drivers/gpu/drm/xe/Makefile                   |   1 +
- 8 files changed, 202 insertions(+), 1 deletion(-)
- create mode 100644 drivers/gpu/drm/i915/display/intel_lt_phy.c
- create mode 100644 drivers/gpu/drm/i915/display/intel_lt_phy.h
-
-diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
-index be439fb45cca..df220f55cca8 100644
---- a/drivers/gpu/drm/i915/Makefile
-+++ b/drivers/gpu/drm/i915/Makefile
-@@ -356,6 +356,7 @@ i915-y += \
- 	display/intel_gmbus.o \
- 	display/intel_hdmi.o \
- 	display/intel_lspcon.o \
-+	display/intel_lt_phy.o \
- 	display/intel_lvds.o \
- 	display/intel_panel.o \
- 	display/intel_pfit.o \
 diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-index 0b02163b545a..c99e0885e737 100644
+index 6991707abdc7..3d79f3be1ccd 100644
 --- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
 +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-@@ -2854,7 +2854,7 @@ static void intel_cx0_powerdown_change_sequence(struct intel_encoder *encoder,
- 			 phy_name(phy), XELPDP_PORT_RESET_START_TIMEOUT_US);
+@@ -2802,8 +2802,8 @@ static u32 intel_cx0_get_powerdown_state(u8 lane_mask, u8 state)
+ 	return val;
  }
  
--static void intel_cx0_setup_powerdown(struct intel_encoder *encoder)
-+void intel_cx0_setup_powerdown(struct intel_encoder *encoder)
+-static void intel_cx0_powerdown_change_sequence(struct intel_encoder *encoder,
+-						u8 lane_mask, u8 state)
++void intel_cx0_powerdown_change_sequence(struct intel_encoder *encoder,
++					 u8 lane_mask, u8 state)
  {
  	struct intel_display *display = to_intel_display(encoder);
  	enum port port = encoder->port;
+@@ -2833,7 +2833,7 @@ static void intel_cx0_powerdown_change_sequence(struct intel_encoder *encoder,
+ 	/* Update Timeout Value */
+ 	if (intel_de_wait_custom(display, buf_ctl2_reg,
+ 				 intel_cx0_get_powerdown_update(lane_mask), 0,
+-				 XELPDP_PORT_POWERDOWN_UPDATE_TIMEOUT_US, 0, NULL))
++				 XELPDP_PORT_POWERDOWN_UPDATE_TIMEOUT_US, 2, NULL))
+ 		drm_warn(display->drm,
+ 			 "PHY %c failed to bring out of Lane reset after %dus.\n",
+ 			 phy_name(phy), XELPDP_PORT_RESET_START_TIMEOUT_US);
 diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.h b/drivers/gpu/drm/i915/display/intel_cx0_phy.h
-index c5a7b529955b..c92026fe7b8f 100644
+index b111a893b428..8c9b97f0922d 100644
 --- a/drivers/gpu/drm/i915/display/intel_cx0_phy.h
 +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.h
 @@ -41,6 +41,8 @@ bool intel_cx0pll_compare_hw_state(const struct intel_cx0pll_state *a,
  				   const struct intel_cx0pll_state *b);
  void intel_cx0_phy_set_signal_levels(struct intel_encoder *encoder,
  				     const struct intel_crtc_state *crtc_state);
-+int intel_cx0_phy_check_hdmi_link_rate(struct intel_hdmi *hdmi, int clock);
-+void intel_cx0_setup_powerdown(struct intel_encoder *encoder);
- int intel_mtl_tbt_calc_port_clock(struct intel_encoder *encoder);
- void intel_cx0_pll_power_save_wa(struct intel_display *display);
- void intel_lnl_mac_transmit_lfps(struct intel_encoder *encoder,
-diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h b/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
-index cd941f16529c..93bed6b0bda1 100644
---- a/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
-@@ -104,6 +104,8 @@
- #define   XELPDP_PORT_BUF_PORT_DATA_20BIT		REG_FIELD_PREP(XELPDP_PORT_BUF_PORT_DATA_WIDTH_MASK, 1)
- #define   XELPDP_PORT_BUF_PORT_DATA_40BIT		REG_FIELD_PREP(XELPDP_PORT_BUF_PORT_DATA_WIDTH_MASK, 2)
- #define   XELPDP_PORT_REVERSAL				REG_BIT(16)
-+#define   XE3PLPDP_PHY_MODE_MASK			REG_GENMASK(15, 12)
-+#define   XE3PLPDP_PHY_MODE_DP				REG_FIELD_PREP(XE3PLPDP_PHY_MODE_MASK, 0x3)
- #define   XELPDP_PORT_BUF_IO_SELECT_TBT			REG_BIT(11)
- #define   XELPDP_PORT_BUF_PHY_IDLE			REG_BIT(7)
- #define   XELPDP_TC_PHY_OWNERSHIP			REG_BIT(6)
-@@ -124,6 +126,7 @@
- 	 _XELPDP_PORT_BUF_CTL2(port))
- #define   XELPDP_LANE_PIPE_RESET(lane)			_PICK(lane, REG_BIT(31), REG_BIT(30))
- #define   XELPDP_LANE_PHY_CURRENT_STATUS(lane)		_PICK(lane, REG_BIT(29), REG_BIT(28))
-+#define   XE3PLPDP_LANE_PHY_PULSE_STATUS(lane)		_PICK(lane, REG_BIT(27), REG_BIT(26))
- #define   XELPDP_LANE_POWERDOWN_UPDATE(lane)		_PICK(lane, REG_BIT(25), REG_BIT(24))
- #define   _XELPDP_LANE0_POWERDOWN_NEW_STATE_MASK	REG_GENMASK(23, 20)
- #define   _XELPDP_LANE0_POWERDOWN_NEW_STATE(val)	REG_FIELD_PREP(_XELPDP_LANE0_POWERDOWN_NEW_STATE_MASK, val)
-@@ -151,6 +154,7 @@
- #define   XELPDP_POWER_STATE_ACTIVE(val)		REG_FIELD_PREP(XELPDP_POWER_STATE_ACTIVE_MASK, val)
- #define   XELPDP_P0_STATE_ACTIVE			0x0
- #define   XELPDP_P2_STATE_READY				0x2
-+#define   XE3PLPD_P4_STATE_DISABLE			0x4
- #define   XELPDP_P2PG_STATE_DISABLE			0x9
- #define   XELPDP_P4PG_STATE_DISABLE			0xC
- #define   XELPDP_P2_STATE_RESET				0x2
++void intel_cx0_powerdown_change_sequence(struct intel_encoder *encoder,
++					 u8 lane_mask, u8 state);
+ int intel_cx0_phy_check_hdmi_link_rate(struct intel_hdmi *hdmi, int clock);
+ void intel_cx0_setup_powerdown(struct intel_encoder *encoder);
+ bool intel_cx0_is_hdmi_frl(u32 clock);
 diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.c b/drivers/gpu/drm/i915/display/intel_lt_phy.c
-new file mode 100644
-index 000000000000..c65333cc9494
---- /dev/null
+index b6f71425cd19..239f7cdd373b 100644
+--- a/drivers/gpu/drm/i915/display/intel_lt_phy.c
 +++ b/drivers/gpu/drm/i915/display/intel_lt_phy.c
-@@ -0,0 +1,159 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright © 2025 Intel Corporation
-+ */
-+
-+#include <drm/drm_print.h>
-+
-+#include "i915_reg.h"
-+#include "intel_cx0_phy.h"
-+#include "intel_cx0_phy_regs.h"
-+#include "intel_de.h"
-+#include "intel_display.h"
-+#include "intel_display_types.h"
-+#include "intel_lt_phy.h"
-+#include "intel_lt_phy_regs.h"
-+#include "intel_tc.h"
-+
-+#define INTEL_LT_PHY_LANE0		BIT(0)
-+#define INTEL_LT_PHY_LANE1		BIT(1)
-+#define INTEL_LT_PHY_BOTH_LANES		(INTEL_LT_PHY_LANE1 |\
-+					 INTEL_LT_PHY_LANE0)
-+
-+static u8 intel_lt_phy_get_owned_lane_mask(struct intel_encoder *encoder)
+@@ -43,6 +43,13 @@ intel_lt_phy_setup_powerdown(struct intel_encoder *encoder, u8 lane_count)
+ 	intel_cx0_setup_powerdown(encoder);
+ }
+ 
++static void
++intel_lt_phy_powerdown_change_sequence(struct intel_encoder *encoder,
++				       u8 lane_mask, u8 state)
 +{
-+	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
-+
-+	if (!intel_tc_port_in_dp_alt_mode(dig_port))
-+		return INTEL_LT_PHY_BOTH_LANES;
-+
-+	return intel_tc_port_max_lane_count(dig_port) > 2
-+		? INTEL_LT_PHY_BOTH_LANES : INTEL_LT_PHY_LANE0;
++	intel_cx0_powerdown_change_sequence(encoder, lane_mask, state);
 +}
 +
-+static void
-+intel_lt_phy_setup_powerdown(struct intel_encoder *encoder, u8 lane_count)
-+{
-+	/*
-+	 * The new PORT_BUF_CTL6 stuff for dc5 entry and exit needs to be handled
-+	 * by dmc firmware not explicitly mentioned in Bspec. This leaves this
-+	 * function as a wrapper only but keeping it expecting future changes.
-+	 */
-+	intel_cx0_setup_powerdown(encoder);
-+}
-+
-+static void
-+intel_lt_phy_lane_reset(struct intel_encoder *encoder,
-+			u8 lane_count)
-+{
-+	struct intel_display *display = to_intel_display(encoder);
-+	enum port port = encoder->port;
-+	enum phy phy = intel_encoder_to_phy(encoder);
+ static void
+ intel_lt_phy_lane_reset(struct intel_encoder *encoder,
+ 			u8 lane_count)
+@@ -70,6 +77,8 @@ intel_lt_phy_lane_reset(struct intel_encoder *encoder,
+ 		     XE3PLPDP_PHY_MODE_MASK, XE3PLPDP_PHY_MODE_DP);
+ 
+ 	intel_lt_phy_setup_powerdown(encoder, lane_count);
++	intel_lt_phy_powerdown_change_sequence(encoder, owned_lane_mask,
++					       XELPDP_P2_STATE_RESET);
+ 
+ 	intel_de_rmw(display, XE3PLPD_PORT_BUF_CTL5(port),
+ 		     XE3PLPD_MACCLK_RESET_0, 0);
+@@ -145,6 +154,7 @@ void intel_lt_phy_pll_enable(struct intel_encoder *encoder,
+ {
+ 	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
+ 	bool lane_reversal = dig_port->lane_reversal;
 +	u8 owned_lane_mask = intel_lt_phy_get_owned_lane_mask(encoder);
-+	u32 lane_pipe_reset = owned_lane_mask == INTEL_LT_PHY_BOTH_LANES
-+				? XELPDP_LANE_PIPE_RESET(0) | XELPDP_LANE_PIPE_RESET(1)
-+				: XELPDP_LANE_PIPE_RESET(0);
-+	u32 lane_phy_current_status = owned_lane_mask == INTEL_LT_PHY_BOTH_LANES
-+					? (XELPDP_LANE_PHY_CURRENT_STATUS(0) |
-+					   XELPDP_LANE_PHY_CURRENT_STATUS(1))
-+					: XELPDP_LANE_PHY_CURRENT_STATUS(0);
-+	u32 lane_phy_pulse_status = owned_lane_mask == INTEL_LT_PHY_BOTH_LANES
-+					? (XE3PLPDP_LANE_PHY_PULSE_STATUS(0) |
-+					   XE3PLPDP_LANE_PHY_PULSE_STATUS(1))
-+					: XE3PLPDP_LANE_PHY_PULSE_STATUS(0);
-+
-+	intel_de_rmw(display, XE3PLPD_PORT_BUF_CTL5(port),
-+		     XE3PLPD_MACCLK_RATE_MASK, XE3PLPD_MACCLK_RATE_DEF);
-+
-+	intel_de_rmw(display, XELPDP_PORT_BUF_CTL1(display, port),
-+		     XE3PLPDP_PHY_MODE_MASK, XE3PLPDP_PHY_MODE_DP);
-+
-+	intel_lt_phy_setup_powerdown(encoder, lane_count);
-+
-+	intel_de_rmw(display, XE3PLPD_PORT_BUF_CTL5(port),
-+		     XE3PLPD_MACCLK_RESET_0, 0);
-+
-+	intel_de_rmw(display, XELPDP_PORT_CLOCK_CTL(display, port),
-+		     XELPDP_LANE_PCLK_PLL_REQUEST(0),
-+		     XELPDP_LANE_PCLK_PLL_REQUEST(0));
-+
-+	if (intel_de_wait_custom(display, XELPDP_PORT_CLOCK_CTL(display, port),
-+				 XELPDP_LANE_PCLK_PLL_ACK(0),
-+				 XELPDP_LANE_PCLK_PLL_ACK(0),
-+				 XE3PLPD_MACCLK_TURNON_LATENCY_US,
-+				 XE3PLPD_MACCLK_TURNON_LATENCY_MS, NULL))
-+		drm_warn(display->drm, "PHY %c PLL MacCLK assertion Ack not done after %dus.\n",
-+			 phy_name(phy), XE3PLPD_MACCLK_TURNON_LATENCY_MS * 1000);
-+
-+	intel_de_rmw(display, XELPDP_PORT_CLOCK_CTL(display, port),
-+		     XELPDP_FORWARD_CLOCK_UNGATE,
-+		     XELPDP_FORWARD_CLOCK_UNGATE);
-+
-+	intel_de_rmw(display, XELPDP_PORT_BUF_CTL2(display, port),
-+		     lane_pipe_reset | lane_phy_pulse_status, 0);
-+
-+	if (intel_de_wait_custom(display, XELPDP_PORT_BUF_CTL2(display, port),
-+				 lane_phy_current_status, 0,
-+				 XE3PLPD_RESET_END_LATENCY_US, 2, NULL))
-+		drm_warn(display->drm,
-+			 "PHY %c failed to bring out of Lane reset after %dus.\n",
-+			 phy_name(phy), XE3PLPD_RESET_END_LATENCY_US);
-+
-+	if (intel_de_wait_custom(display, XELPDP_PORT_BUF_CTL2(display, port),
-+				 lane_phy_pulse_status, lane_phy_pulse_status,
-+				 XE3PLPD_RATE_CALIB_DONE_LATENCY_US, 0, NULL))
-+		drm_warn(display->drm, "PHY %c PLL rate not changed after %dus.\n",
-+			 phy_name(phy), XE3PLPD_RATE_CALIB_DONE_LATENCY_US);
-+
-+	intel_de_rmw(display, XELPDP_PORT_BUF_CTL2(display, port), lane_phy_pulse_status, 0);
-+}
-+
-+void intel_lt_phy_pll_enable(struct intel_encoder *encoder,
-+			     const struct intel_crtc_state *crtc_state)
-+{
-+	/* 1. Enable MacCLK at default 162 MHz frequency. */
-+	intel_lt_phy_lane_reset(encoder, crtc_state->lane_count);
-+
-+	/* 2. Program PORT_CLOCK_CTL register to configure clock muxes, gating, and SSC. */
-+	/* 3. Change owned PHY lanes power to Ready state. */
-+	/*
-+	 * 4. Read the PHY message bus VDR register PHY_VDR_0_Config check enabled PLL type,
-+	 * encoded rate and encoded mode.
-+	 */
-+	/*
-+	 * 5. Program the PHY internal PLL registers over PHY message bus for the desired
-+	 * frequency and protocol type
-+	 */
-+	/* 6. Use the P2P transaction flow */
-+	/*
-+	 * 6.1. Set the PHY VDR register 0xCC4[Rate Control VDR Update] = 1 over PHY message
-+	 * bus for Owned PHY Lanes.
-+	 */
-+	/*
-+	 * 6.2. Poll for P2P Transaction Ready = "1" and read the MAC message bus VDR register
-+	 * at offset 0xC00 for Owned PHY Lanes.
-+	 */
-+	/* 6.3. Clear P2P transaction Ready bit. */
-+	/* 7. Program PORT_CLOCK_CTL[PCLK PLL Request LN0] = 0. */
-+	/* 8. Poll for PORT_CLOCK_CTL[PCLK PLL Ack LN0]= 0. */
-+	/*
-+	 * 9. Follow the Display Voltage Frequency Switching - Sequence Before Frequency Change.
-+	 * We handle this step in bxt_set_cdclk()
-+	 */
-+	/* 10. Program DDI_CLK_VALFREQ to match intended DDI clock frequency. */
-+	/* 11. Program PORT_CLOCK_CTL[PCLK PLL Request LN0] = 1. */
-+	/* 12. Poll for PORT_CLOCK_CTL[PCLK PLL Ack LN0]= 1. */
-+	/* 13. Ungate the forward clock by setting PORT_CLOCK_CTL[Forward Clock Ungate] = 1. */
-+	/* 14. SW clears PORT_BUF_CTL2 [PHY Pulse Status]. */
-+	/*
-+	 * 15. Clear the PHY VDR register 0xCC4[Rate Control VDR Update] over PHY message bus for
-+	 * Owned PHY Lanes.
-+	 */
-+	/* 16. Poll for PORT_BUF_CTL2 register PHY Pulse Status = 1 for Owned PHY Lanes. */
-+	/* 17. SW clears PORT_BUF_CTL2 [PHY Pulse Status]. */
-+	/*
-+	 * 18. Follow the Display Voltage Frequency Switching - Sequence After Frequency Change.
-+	 * We handle this step in bxt_set_cdclk()
-+	 */
-+	/* 19. Move the PHY powerdown state to Active and program to enable/disable transmitters */
-+}
-diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.h b/drivers/gpu/drm/i915/display/intel_lt_phy.h
-new file mode 100644
-index 000000000000..bd3ff3007e1d
---- /dev/null
-+++ b/drivers/gpu/drm/i915/display/intel_lt_phy.h
-@@ -0,0 +1,17 @@
-+/* SPDX-License-Identifier: MIT
-+ *
-+ * Copyright © 2025 Intel Corporation
-+ */
-+
-+#ifndef __INTEL_LT_PHY_H__
-+#define __INTEL_LT_PHY_H__
-+
-+#include <linux/types.h>
-+
-+struct intel_encoder;
-+struct intel_crtc_state;
-+
-+void intel_lt_phy_pll_enable(struct intel_encoder *encoder,
-+			     const struct intel_crtc_state *crtc_state);
-+
-+#endif /* __INTEL_LT_PHY_H__ */
-diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy_regs.h b/drivers/gpu/drm/i915/display/intel_lt_phy_regs.h
-index 6eaa038bf684..8bc25a564300 100644
---- a/drivers/gpu/drm/i915/display/intel_lt_phy_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_lt_phy_regs.h
-@@ -6,6 +6,12 @@
- #ifndef __INTEL_LT_PHY_REGS_H__
- #define __INTEL_LT_PHY_REGS_H__
  
-+#define XE3PLPD_MACCLK_TURNON_LATENCY_MS	1
-+#define XE3PLPD_MACCLK_TURNON_LATENCY_US	21
-+#define XE3PLPD_RATE_CALIB_DONE_LATENCY_US	50
-+#define XE3PLPD_RESET_START_LATENCY_US	10
-+#define XE3PLPD_RESET_END_LATENCY_US		200
-+
- /* LT Phy Vendor Register */
- #define LT_PHY_VDR_0_CONFIG	0xC02
- #define  LT_PHY_VDR_DP_PLL_ENABLE	REG_BIT(7)
-@@ -21,4 +27,15 @@
+ 	/* 1. Enable MacCLK at default 162 MHz frequency. */
+ 	intel_lt_phy_lane_reset(encoder, crtc_state->lane_count);
+@@ -153,6 +163,9 @@ void intel_lt_phy_pll_enable(struct intel_encoder *encoder,
+ 	intel_lt_phy_program_port_clock_ctl(encoder, crtc_state, lane_reversal);
  
- #define LT_PHY_RATE_UPDATE		0xCC4
- 
-+#define _XE3PLPD_PORT_BUF_CTL5(idx)	_MMIO(_PICK_EVEN_2RANGES(idx, PORT_TC1, \
-+								 _XELPDP_PORT_BUF_CTL1_LN0_A, \
-+								 _XELPDP_PORT_BUF_CTL1_LN0_B, \
-+								 _XELPDP_PORT_BUF_CTL1_LN0_USBC1, \
-+								 _XELPDP_PORT_BUF_CTL1_LN0_USBC2) \
-+								+ 0x34)
-+#define XE3PLPD_PORT_BUF_CTL5(port)	_XE3PLPD_PORT_BUF_CTL5(__xe2lpd_port_idx(port))
-+#define  XE3PLPD_MACCLK_RESET_0		REG_BIT(11)
-+#define  XE3PLPD_MACCLK_RATE_MASK	REG_GENMASK(4, 0)
-+#define  XE3PLPD_MACCLK_RATE_DEF	REG_FIELD_PREP(XE3PLPD_MACCLK_RATE_MASK, 0x1F)
+ 	/* 3. Change owned PHY lanes power to Ready state. */
++	intel_lt_phy_powerdown_change_sequence(encoder, owned_lane_mask,
++					       XELPDP_P2_STATE_READY);
 +
- #endif /* __INTEL_LT_PHY_REGS_H__ */
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index bfc72f3dd61b..7cbdf6eee2c6 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -294,6 +294,7 @@ xe-$(CONFIG_DRM_XE_DISPLAY) += \
- 	i915-display/intel_hti.o \
- 	i915-display/intel_link_bw.o \
- 	i915-display/intel_lspcon.o \
-+	i915-display/intel_lt_phy.o \
- 	i915-display/intel_modeset_lock.o \
- 	i915-display/intel_modeset_setup.o \
- 	i915-display/intel_modeset_verify.o \
+ 	/*
+ 	 * 4. Read the PHY message bus VDR register PHY_VDR_0_Config check enabled PLL type,
+ 	 * encoded rate and encoded mode.
 -- 
 2.34.1
 
