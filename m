@@ -4,53 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9B553CCF9EE
-	for <intel-xe@archiver.kernel.org>; Fri, 31 Oct 2025 08:06:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ECCAECCFA00
+	for <intel-xe@archiver.kernel.org>; Fri, 31 Oct 2025 08:12:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 59DC210EACC;
-	Fri, 31 Oct 2025 08:06:05 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kHz/yEQm";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CB67910EAC8
- for <intel-xe@lists.freedesktop.org>; Fri, 31 Oct 2025 08:06:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761897963; x=1793433963;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=Sxttd+QJoWvPp9k00WWBkqGofA8nAIMTVlc8Pw1k6Rg=;
- b=kHz/yEQmPaQOWSmiflNt3YqqjygqEv9jD29dWtIGoQIMfK7kLXUc6Gn0
- 6OR1IPM6UfANcHrlKfXD9fpfie+DiQOpkk6v0Z/RLbSyoWTVM/JKQa7CE
- uZRiNpf+WP0colJIDIz4VQdcpV2BI1ygS38N4Sdj54shjfLB8PyosoSQI
- 8MOSU89PSJseASQHh63C2QyDxujnzZPeCoe9J5RHXBajPNYnDpe7SyyPf
- ofbmBuGjBCz9f79OznzhUCswc9faSz7HkTdRf59piIYT+/jpP0zuKllVe
- 1W1h0jAsa8B1t3Wspf35wZ7VD2naph85p41XcfBPyAcSj2dkftXMl2JKq w==;
-X-CSE-ConnectionGUID: D1ZpfoO0S22zKUEDckH9+w==
-X-CSE-MsgGUID: tGToes7ZRCal7+GCWi0Uhg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11598"; a="74729832"
-X-IronPort-AV: E=Sophos;i="6.19,268,1754982000"; d="scan'208";a="74729832"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Oct 2025 01:05:41 -0700
-X-CSE-ConnectionGUID: 4tdWPjnrTci6d2feTHifqA==
-X-CSE-MsgGUID: tLoZ0amBSv+1v0UXPN/4JQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,268,1754982000"; d="scan'208";a="186506616"
-Received: from llaguna-dev.igk.intel.com (HELO localhost) ([10.91.214.40])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Oct 2025 01:05:40 -0700
-From: Lukasz Laguna <lukasz.laguna@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: michal.wajdeczko@intel.com, piotr.piorkowski@intel.com,
- lukasz.laguna@intel.com
-Subject: [PATCH v2 0/4] PF: Add support for MERT
-Date: Fri, 31 Oct 2025 09:04:57 +0100
-Message-Id: <20251031080501.844-1-lukasz.laguna@intel.com>
-X-Mailer: git-send-email 2.40.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id A5FE710EACE;
+	Fri, 31 Oct 2025 08:12:57 +0000 (UTC)
+Received: from 10055242dc62 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2BF2510EACE;
+ Fri, 31 Oct 2025 08:12:56 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_PF=3A_Add_support_for_MER?=
+ =?utf-8?q?T?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Lukasz Laguna" <lukasz.laguna@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 31 Oct 2025 08:12:56 -0000
+Message-ID: <176189837617.3446.3167335806006871158@10055242dc62>
+X-Patchwork-Hint: ignore
+References: <20251031080501.844-1-lukasz.laguna@intel.com>
+In-Reply-To: <20251031080501.844-1-lukasz.laguna@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,38 +36,52 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The MERT subsystem manages memory accesses between host and device. On
-the  Crescent Island platform, it requires direct management by the
-driver.
+== Series Details ==
 
-Signed-off-by: Lukasz Laguna <lukasz.laguna@intel.com>
+Series: PF: Add support for MERT
+URL   : https://patchwork.freedesktop.org/series/156807/
+State : warning
 
-Lukasz Laguna (4):
-  drm/xe: Add device flag to indicate standalone MERT
-  drm/xe/pf: Configure LMTT in MERT
-  drm/xe/pf: Add TLB invalidation support for MERT
-  drm/xe/pf: Handle MERT catastrophic errors
+== Summary ==
 
- drivers/gpu/drm/xe/Makefile            |  1 +
- drivers/gpu/drm/xe/regs/xe_irq_regs.h  |  1 +
- drivers/gpu/drm/xe/regs/xe_mert_regs.h | 21 +++++++
- drivers/gpu/drm/xe/xe_device.h         |  5 ++
- drivers/gpu/drm/xe/xe_device_types.h   |  6 ++
- drivers/gpu/drm/xe/xe_irq.c            |  2 +
- drivers/gpu/drm/xe/xe_lmtt.c           | 25 +++++++-
- drivers/gpu/drm/xe/xe_mert.c           | 82 ++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_mert.h           | 32 ++++++++++
- drivers/gpu/drm/xe/xe_pci.c            |  2 +
- drivers/gpu/drm/xe/xe_pci_types.h      |  1 +
- drivers/gpu/drm/xe/xe_sriov_pf.c       |  4 ++
- 12 files changed, 179 insertions(+), 3 deletions(-)
- create mode 100644 drivers/gpu/drm/xe/regs/xe_mert_regs.h
- create mode 100644 drivers/gpu/drm/xe/xe_mert.c
- create mode 100644 drivers/gpu/drm/xe/xe_mert.h
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+f867e605613af1770f90c4b0afd4a8f06424d1f0
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 2122e716bd4ce42cb14e8bb88b1abf4b1eda3018
+Author: Lukasz Laguna <lukasz.laguna@intel.com>
+Date:   Fri Oct 31 09:05:01 2025 +0100
 
--- 
-2.40.0
+    drm/xe/pf: Handle MERT catastrophic errors
+    
+    The MERT block triggers an interrupt when a catastrophic error occurs.
+    Update the interrupt handler to read the MERT catastrophic error type
+    and log appropriate debug message.
+    
+    Signed-off-by: Lukasz Laguna <lukasz.laguna@intel.com>
++ /mt/dim checkpatch fbd719e0eb058dd8b23a734e199f52e81cd9f267 drm-intel
+2e7691cf79a5 drm/xe: Add device flag to indicate standalone MERT
+d3cf577f9572 drm/xe/pf: Configure LMTT in MERT
+-:12: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#12: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 50 lines checked
+c2de6d95825b drm/xe/pf: Add TLB invalidation support for MERT
+-:139: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#139: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 208 lines checked
+2122e716bd4c drm/xe/pf: Handle MERT catastrophic errors
+
 
