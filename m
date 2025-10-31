@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4CC2FCCFA04
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6D5B5CCFA07
 	for <intel-xe@archiver.kernel.org>; Fri, 31 Oct 2025 10:37:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D0E2210EB1A;
-	Fri, 31 Oct 2025 10:37:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 10C0910EB23;
+	Fri, 31 Oct 2025 10:37:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mi0WKPh0";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="k/TMtbVY";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1358610EB13;
- Fri, 31 Oct 2025 10:37:14 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F017E10EB15;
+ Fri, 31 Oct 2025 10:37:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761907035; x=1793443035;
+ t=1761907040; x=1793443040;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=VOuHv/oZdLnOlVvhwv1ljAILmBO4sa9CUwf1qGL044c=;
- b=mi0WKPh0FcmV/hlHk0D+J7293pAjmHZMhuCWKcP77jH5VezqsaSSHE4a
- 9vhGkQeG3yUQcDt0+ftw0Vl59dk9CszZDyCT3TZNHFIKVS1aKRMTAjH6m
- 5LPXXK9R67qIm5PnSocw0ql8NtfEeoUo4eg2vlBVfeMz73uq8TfJCN7ie
- pswqrXc5TDc/rCx80jtfzUmHewNN080tSlueiVF/T/goO1tnuH1trgagZ
- nM1XJHWM2lkwSJ8QfPNasNGP9R6oqYNrAK6EAOmTZFEMrmGt+BNHWq5ie
- wsX1m7OzrSF6FFYJazejShoRgw6QWpBrrgIYD6EIQygzsvlJR+Y5eEldN A==;
-X-CSE-ConnectionGUID: SFP9R5uyS+KeTasuMCfCuA==
-X-CSE-MsgGUID: 9OUoVI78SJ+V7dds4rWgLA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11598"; a="86690870"
-X-IronPort-AV: E=Sophos;i="6.19,269,1754982000"; d="scan'208";a="86690870"
+ bh=TjtX08au4ctfsMsK+6GZmHiNBUx1rcDRpzO4r/ZPxso=;
+ b=k/TMtbVYy5Rzcuy7630ifDqjTcJG40LHVOEcOry0x3/gyCpj4hmgmEjA
+ qiO0PsFSUxn/Dk/0xYqpHCgCneYX7eEQKJ/c27YpemDMScGOicFw3nZBP
+ 6F1s8Wg7m+pqNswGxRPSRCWDlTp6Vokz5JdFkmnO2SgHgZOpFO9BQDW6E
+ Z87GK+wX7ACL4nXUzQctsNgnBjk4sFNmZTXWI8mP4LSlZvgJ+MGROtSmo
+ 7YKsn7R6YJtsFlA2scPhIrvdzp1ygXn/vrpkXjrS9fCr8qGKP1THfuAW0
+ N5xFXE22int0EEyfwLmlJdMWIf0gMrcIpwksZK7TiVG0YpKyhYM6fDLaK g==;
+X-CSE-ConnectionGUID: ggqN3mo5TS2zX8zsaXVmXg==
+X-CSE-MsgGUID: 2xQbQigORFKFkpBash23BQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11598"; a="86690873"
+X-IronPort-AV: E=Sophos;i="6.19,269,1754982000"; d="scan'208";a="86690873"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Oct 2025 03:37:14 -0700
-X-CSE-ConnectionGUID: 3P1fMIDISQqcWKVInQ8m5A==
-X-CSE-MsgGUID: qnCE6Od2SK60jFy4n5Im4g==
+ 31 Oct 2025 03:37:19 -0700
+X-CSE-ConnectionGUID: MO6quYmuQZ2vfR6bKJtt5g==
+X-CSE-MsgGUID: WolRju47TQS8/CSJLbgqHA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,269,1754982000"; d="scan'208";a="190554637"
+X-IronPort-AV: E=Sophos;i="6.19,269,1754982000"; d="scan'208";a="190554654"
 Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
- by fmviesa005.fm.intel.com with ESMTP; 31 Oct 2025 03:37:11 -0700
+ by fmviesa005.fm.intel.com with ESMTP; 31 Oct 2025 03:37:16 -0700
 From: Suraj Kandpal <suraj.kandpal@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
 Cc: ankit.k.nautiyal@intel.com, arun.r.murthy@intel.com, uma.shankar@intel.com,
  gustavo.sousa@intel.com, lucas.demarchi@intel.com,
  Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH v3 09/25] drm/i915/ltphy: Program the VDR PLL registers for LT
- PHY
-Date: Fri, 31 Oct 2025 16:06:27 +0530
-Message-Id: <20251031103643.4147868-10-suraj.kandpal@intel.com>
+Subject: [PATCH v3 11/25] drm/i915/ltphy: Enable SSC during port clock
+ programming
+Date: Fri, 31 Oct 2025 16:06:29 +0530
+Message-Id: <20251031103643.4147868-12-suraj.kandpal@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251031103643.4147868-1-suraj.kandpal@intel.com>
 References: <20251031103643.4147868-1-suraj.kandpal@intel.com>
@@ -69,134 +69,74 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Fetch the tables which need to be used and program it in
-the specified VDR register space. Everything is done over
-the respective lanes.
+We enable SSC when we program PORT_CLOCK_CTL register. We logically
+determine if ssc is enabled or not while we calculate our state.
 
-Bspec: 68862, 74500
+Bspec: 74492, 74667
 Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 Reviewed-by: Arun R Murthy <arun.r.murthy@intel.com>
 ---
+ drivers/gpu/drm/i915/display/intel_lt_phy.c | 26 +++++++++++++++++++++
+ 1 file changed, 26 insertions(+)
 
-V1 -> V2:
--Reframe commit message (Arun)
-
- drivers/gpu/drm/i915/display/intel_cx0_phy.c |  7 ++--
- drivers/gpu/drm/i915/display/intel_cx0_phy.h |  5 +++
- drivers/gpu/drm/i915/display/intel_lt_phy.c  | 38 ++++++++++++++++++++
- 3 files changed, 45 insertions(+), 5 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-index d87334137cd3..273cc43f66ed 100644
---- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-@@ -23,9 +23,6 @@
- #include "intel_snps_hdmi_pll.h"
- #include "intel_tc.h"
- 
--#define MB_WRITE_COMMITTED      true
--#define MB_WRITE_UNCOMMITTED    false
--
- #define for_each_cx0_lane_in_mask(__lane_mask, __lane) \
- 	for ((__lane) = 0; (__lane) < 2; (__lane)++) \
- 		for_each_if((__lane_mask) & BIT(__lane))
-@@ -358,8 +355,8 @@ static void __intel_cx0_write(struct intel_encoder *encoder,
- 		     "PHY %c Write %04x failed after %d retries.\n", phy_name(phy), addr, i);
- }
- 
--static void intel_cx0_write(struct intel_encoder *encoder,
--			    u8 lane_mask, u16 addr, u8 data, bool committed)
-+void intel_cx0_write(struct intel_encoder *encoder,
-+		     u8 lane_mask, u16 addr, u8 data, bool committed)
- {
- 	int lane;
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.h b/drivers/gpu/drm/i915/display/intel_cx0_phy.h
-index 948fd626846d..c1e61d16fb68 100644
---- a/drivers/gpu/drm/i915/display/intel_cx0_phy.h
-+++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.h
-@@ -8,6 +8,9 @@
- 
- #include <linux/types.h>
- 
-+#define MB_WRITE_COMMITTED      true
-+#define MB_WRITE_UNCOMMITTED    false
-+
- enum icl_port_dpll_id;
- struct intel_atomic_state;
- struct intel_c10pll_state;
-@@ -47,6 +50,8 @@ int intel_cx0_phy_check_hdmi_link_rate(struct intel_hdmi *hdmi, int clock);
- void intel_cx0_setup_powerdown(struct intel_encoder *encoder);
- bool intel_cx0_is_hdmi_frl(u32 clock);
- u8 intel_cx0_read(struct intel_encoder *encoder, u8 lane_mask, u16 addr);
-+void intel_cx0_write(struct intel_encoder *encoder,
-+		     u8 lane_mask, u16 addr, u8 data, bool committed);
- int intel_mtl_tbt_calc_port_clock(struct intel_encoder *encoder);
- void intel_cx0_pll_power_save_wa(struct intel_display *display);
- void intel_lnl_mac_transmit_lfps(struct intel_encoder *encoder,
 diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.c b/drivers/gpu/drm/i915/display/intel_lt_phy.c
-index 22686da809d0..ece81e8d558d 100644
+index 892dea3b975f..1b7d92fff834 100644
 --- a/drivers/gpu/drm/i915/display/intel_lt_phy.c
 +++ b/drivers/gpu/drm/i915/display/intel_lt_phy.c
-@@ -992,6 +992,12 @@ static u8 intel_lt_phy_read(struct intel_encoder *encoder, u8 lane_mask, u16 add
- 	return intel_cx0_read(encoder, lane_mask, addr);
+@@ -16,6 +16,7 @@
+ #include "intel_hdmi.h"
+ #include "intel_lt_phy.h"
+ #include "intel_lt_phy_regs.h"
++#include "intel_panel.h"
+ #include "intel_psr.h"
+ #include "intel_tc.h"
+ 
+@@ -1109,6 +1110,12 @@ intel_lt_phy_program_port_clock_ctl(struct intel_encoder *encoder,
+ 	else
+ 		val |= XELPDP_DDI_CLOCK_SELECT_PREP(display, XELPDP_DDI_CLOCK_SELECT_MAXPCLK);
+ 
++	 /* DP2.0 10G and 20G rates enable MPLLA*/
++	if (crtc_state->port_clock == 1000000 || crtc_state->port_clock == 2000000)
++		val |= XELPDP_SSC_ENABLE_PLLA;
++	else
++		val |= crtc_state->dpll_hw_state.ltpll.ssc_enabled ? XELPDP_SSC_ENABLE_PLLB : 0;
++
+ 	intel_de_rmw(display, XELPDP_PORT_CLOCK_CTL(display, encoder->port),
+ 		     XELPDP_LANE1_PHY_CLOCK_SELECT | XELPDP_FORWARD_CLOCK_UNGATE |
+ 		     XELPDP_DDI_CLOCK_SELECT_MASK(display) | XELPDP_SSC_ENABLE_PLLA |
+@@ -1211,6 +1218,23 @@ intel_lt_phy_pll_tables_get(struct intel_crtc_state *crtc_state,
+ 	return NULL;
  }
  
-+static void intel_lt_phy_write(struct intel_encoder *encoder,
-+			       u8 lane_mask, u16 addr, u8 data, bool committed)
++static bool
++intel_lt_phy_pll_is_ssc_enabled(struct intel_crtc_state *crtc_state,
++				struct intel_encoder *encoder)
 +{
-+	intel_cx0_write(encoder, lane_mask, addr, data, committed);
-+}
++	struct intel_display *display = to_intel_display(encoder);
 +
- static void
- intel_lt_phy_setup_powerdown(struct intel_encoder *encoder, u8 lane_count)
- {
-@@ -1228,6 +1234,36 @@ intel_lt_phy_pll_calc_state(struct intel_crtc_state *crtc_state,
- 	return -EINVAL;
- }
- 
-+static void
-+intel_lt_phy_program_pll(struct intel_encoder *encoder,
-+			 const struct intel_crtc_state *crtc_state)
-+{
-+	u8 owned_lane_mask = intel_lt_phy_get_owned_lane_mask(encoder);
-+	int i, j, k;
++	if (intel_crtc_has_dp_encoder(crtc_state)) {
++		if (intel_panel_use_ssc(display)) {
++			struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
 +
-+	intel_lt_phy_write(encoder, owned_lane_mask, LT_PHY_VDR_0_CONFIG,
-+			   crtc_state->dpll_hw_state.ltpll.config[0], MB_WRITE_COMMITTED);
-+	intel_lt_phy_write(encoder, INTEL_LT_PHY_LANE0, LT_PHY_VDR_1_CONFIG,
-+			   crtc_state->dpll_hw_state.ltpll.config[1], MB_WRITE_COMMITTED);
-+	intel_lt_phy_write(encoder, owned_lane_mask, LT_PHY_VDR_2_CONFIG,
-+			   crtc_state->dpll_hw_state.ltpll.config[2], MB_WRITE_COMMITTED);
-+
-+	for (i = 0; i <= 12; i++) {
-+		intel_lt_phy_write(encoder, INTEL_LT_PHY_LANE0, LT_PHY_VDR_X_ADDR_MSB(i),
-+				   crtc_state->dpll_hw_state.ltpll.addr_msb[i],
-+				   MB_WRITE_COMMITTED);
-+		intel_lt_phy_write(encoder, INTEL_LT_PHY_LANE0, LT_PHY_VDR_X_ADDR_LSB(i),
-+				   crtc_state->dpll_hw_state.ltpll.addr_lsb[i],
-+				   MB_WRITE_COMMITTED);
-+
-+		for (j = 3, k = 0; j >= 0; j--, k++)
-+			intel_lt_phy_write(encoder, INTEL_LT_PHY_LANE0,
-+					   LT_PHY_VDR_X_DATAY(i, j),
-+					   crtc_state->dpll_hw_state.ltpll.data[i][k],
-+					   MB_WRITE_COMMITTED);
++			return (intel_dp->dpcd[DP_MAX_DOWNSPREAD] & DP_MAX_DOWNSPREAD_0_5);
++		}
 +	}
++
++	return false;
 +}
 +
- void intel_lt_phy_pll_enable(struct intel_encoder *encoder,
- 			     const struct intel_crtc_state *crtc_state)
- {
-@@ -1258,6 +1294,8 @@ void intel_lt_phy_pll_enable(struct intel_encoder *encoder,
- 		 * 5. Program the PHY internal PLL registers over PHY message bus for the desired
- 		 * frequency and protocol type
- 		 */
-+		intel_lt_phy_program_pll(encoder, crtc_state);
-+
- 		/* 6. Use the P2P transaction flow */
- 		/*
- 		 * 6.1. Set the PHY VDR register 0xCC4[Rate Control VDR Update] = 1 over PHY message
+ int
+ intel_lt_phy_pll_calc_state(struct intel_crtc_state *crtc_state,
+ 			    struct intel_encoder *encoder)
+@@ -1229,6 +1253,8 @@ intel_lt_phy_pll_calc_state(struct intel_crtc_state *crtc_state,
+ 				if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP))
+ 					crtc_state->dpll_hw_state.ltpll.config[2] = 1;
+ 			}
++			crtc_state->dpll_hw_state.ltpll.ssc_enabled =
++				intel_lt_phy_pll_is_ssc_enabled(crtc_state, encoder);
+ 			return 0;
+ 		}
+ 	}
 -- 
 2.34.1
 
