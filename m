@@ -4,54 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AF765CCF9EB
-	for <intel-xe@archiver.kernel.org>; Fri, 31 Oct 2025 08:05:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 780D9CCF9EE
+	for <intel-xe@archiver.kernel.org>; Fri, 31 Oct 2025 08:05:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7076610EABC;
-	Fri, 31 Oct 2025 08:05:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3168910EABD;
+	Fri, 31 Oct 2025 08:05:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lLED0fop";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NvUBgG1+";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E5ADA10EABC
- for <intel-xe@lists.freedesktop.org>; Fri, 31 Oct 2025 08:05:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B3BEB10EABE
+ for <intel-xe@lists.freedesktop.org>; Fri, 31 Oct 2025 08:05:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761897945; x=1793433945;
+ t=1761897948; x=1793433948;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=XHPa/PVbMQEnuUlMM32PvhUJUogwiXlP89S+MDgkbqM=;
- b=lLED0foprcIAKcCsicqOnoY0Ojryy3g2BQwy97b4DZzfANkGOS9xMxty
- pL55Yrh6kffRTogIZ71q2tvJ5b5R84lq7dKL7G0FH4q8GIrBcvZhiCDlK
- 3PHrlCKrx9d88qapgp4BtT6PQgYKCP+628mBTTdJmW8TjUxpzmNIsm7KH
- 6UuRGB5Jbg8y0GG2oji83D/mPni32mbmygqN19vcAfNehB1q5Iv5bK+t2
- ZlVIXKdVAmaQdB8n/OuyTCKBgzv6Ul9ioaVXiG3VTH+g8/Mrtnmr2sps3
- HWV5PTBA71ky7Q/V1RhFPR3M4whisl7TqPfyPGhNDCaUZo3YbrZ3AXjBH w==;
-X-CSE-ConnectionGUID: OeS5gykCQfuMjxf1RgUnmw==
-X-CSE-MsgGUID: yIOtFiBBRLm/tLh/cYjfZg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11598"; a="75503184"
-X-IronPort-AV: E=Sophos;i="6.19,268,1754982000"; d="scan'208";a="75503184"
+ bh=Zto6c7Rh2iQbuwTFp8ITZXLqNZZM1hfRlyo6YzMAatg=;
+ b=NvUBgG1+hHJhI8n80J9TylEuqxImERssucl86xTiv5riX/o+OLBf497W
+ XTI54vL1vrtXxTZNHiaw3OyJn3VcJElMlKTbVtlCLZebsbFHXv1hFmH18
+ 48jDzLvgk9eQhg6CD2X6YV9vG9CQDqecsEGvBUc0opQiy4ESNydDGgCzs
+ RRu8FdPMqIYY1qswSiELnKAfMwEUK72KcHJpFA80wU4S7HA5QW0Xnt3WL
+ 0hAb5CrnZfy7bX+sWJUWCPSCg1HdrL7uu5hLk6zCcDRkra57xEBiMrXKh
+ Nbc3y2UfmYkV66T8W7LJqO1KNLjEaAoh+17AYCHVSoUqLVHPAMcFBwKZy g==;
+X-CSE-ConnectionGUID: TqSaAJbLSDexIC1/Mx/AaA==
+X-CSE-MsgGUID: FJ9eKtz0Sm+3JqfhA9VylQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11598"; a="75503188"
+X-IronPort-AV: E=Sophos;i="6.19,268,1754982000"; d="scan'208";a="75503188"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Oct 2025 01:05:45 -0700
-X-CSE-ConnectionGUID: PINGxkB2S2intZJ/owI4jQ==
-X-CSE-MsgGUID: +a8CpOKpQgq0Cr1d6UTswg==
+ 31 Oct 2025 01:05:48 -0700
+X-CSE-ConnectionGUID: /jX0e5V/SGK1Fyz9yn0Zag==
+X-CSE-MsgGUID: KOxJ/hW4QaGTPuV+Bn2Bvg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,268,1754982000"; d="scan'208";a="186631610"
+X-IronPort-AV: E=Sophos;i="6.19,268,1754982000"; d="scan'208";a="186631615"
 Received: from llaguna-dev.igk.intel.com (HELO localhost) ([10.91.214.40])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Oct 2025 01:05:43 -0700
+ 31 Oct 2025 01:05:46 -0700
 From: Lukasz Laguna <lukasz.laguna@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: michal.wajdeczko@intel.com, piotr.piorkowski@intel.com,
  lukasz.laguna@intel.com
-Subject: [PATCH v2 1/4] drm/xe: Add device flag to indicate standalone MERT
-Date: Fri, 31 Oct 2025 09:04:58 +0100
-Message-Id: <20251031080501.844-2-lukasz.laguna@intel.com>
+Subject: [PATCH v2 2/4] drm/xe/pf: Configure LMTT in MERT
+Date: Fri, 31 Oct 2025 09:04:59 +0100
+Message-Id: <20251031080501.844-3-lukasz.laguna@intel.com>
 X-Mailer: git-send-email 2.40.0
 In-Reply-To: <20251031080501.844-1-lukasz.laguna@intel.com>
 References: <20251031080501.844-1-lukasz.laguna@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=y
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -67,83 +68,79 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The MERT subsystem manages memory accesses between host and device. On
-the Crescent Island platform, it requires direct management by the
-driver.
-
-Introduce a device flag and corresponding helpers to identify platforms
-with standalone MERT, enabling proper initialization and handling.
+On platforms with standalone MERT, the PF driver needs to program LMTT
+in MERT's LMEM_CFG register.
 
 Signed-off-by: Lukasz Laguna <lukasz.laguna@intel.com>
-Reviewed-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device.h       | 5 +++++
- drivers/gpu/drm/xe/xe_device_types.h | 2 ++
- drivers/gpu/drm/xe/xe_pci.c          | 2 ++
- drivers/gpu/drm/xe/xe_pci_types.h    | 1 +
- 4 files changed, 10 insertions(+)
+ drivers/gpu/drm/xe/regs/xe_mert_regs.h | 13 +++++++++++++
+ drivers/gpu/drm/xe/xe_lmtt.c           | 10 +++++++++-
+ 2 files changed, 22 insertions(+), 1 deletion(-)
+ create mode 100644 drivers/gpu/drm/xe/regs/xe_mert_regs.h
 
-diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
-index 32cc6323b7f6..6604b89330d5 100644
---- a/drivers/gpu/drm/xe/xe_device.h
-+++ b/drivers/gpu/drm/xe/xe_device.h
-@@ -172,6 +172,11 @@ static inline bool xe_device_has_lmtt(struct xe_device *xe)
- 	return IS_DGFX(xe);
+diff --git a/drivers/gpu/drm/xe/regs/xe_mert_regs.h b/drivers/gpu/drm/xe/regs/xe_mert_regs.h
+new file mode 100644
+index 000000000000..5b7c15e08747
+--- /dev/null
++++ b/drivers/gpu/drm/xe/regs/xe_mert_regs.h
+@@ -0,0 +1,13 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2025 Intel Corporation
++ */
++
++#ifndef _XE_MERT_REGS_H_
++#define _XE_MERT_REGS_H_
++
++#include "regs/xe_reg_defs.h"
++
++#define MERT_LMEM_CFG				XE_REG(0x1448b0)
++
++#endif /* _XE_MERT_REGS_H_ */
+diff --git a/drivers/gpu/drm/xe/xe_lmtt.c b/drivers/gpu/drm/xe/xe_lmtt.c
+index 4dc1de482eee..f50c5a4b9edf 100644
+--- a/drivers/gpu/drm/xe/xe_lmtt.c
++++ b/drivers/gpu/drm/xe/xe_lmtt.c
+@@ -8,6 +8,7 @@
+ #include <drm/drm_managed.h>
+ 
+ #include "regs/xe_gt_regs.h"
++#include "regs/xe_mert_regs.h"
+ 
+ #include "xe_assert.h"
+ #include "xe_bo.h"
+@@ -17,6 +18,7 @@
+ #include "xe_mmio.h"
+ #include "xe_res_cursor.h"
+ #include "xe_sriov.h"
++#include "xe_tile.h"
+ #include "xe_tile_sriov_printk.h"
+ 
+ /**
+@@ -196,16 +198,22 @@ static void lmtt_setup_dir_ptr(struct xe_lmtt *lmtt)
+ 	struct xe_device *xe = tile_to_xe(tile);
+ 	dma_addr_t offset = xe_bo_main_addr(lmtt->pd->bo, XE_PAGE_SIZE);
+ 	struct xe_gt *gt;
++	u32 config;
+ 	u8 id;
+ 
+ 	lmtt_debug(lmtt, "DIR offset %pad\n", &offset);
+ 	lmtt_assert(lmtt, xe_bo_is_vram(lmtt->pd->bo));
+ 	lmtt_assert(lmtt, IS_ALIGNED(offset, SZ_64K));
+ 
++	config = LMEM_EN | REG_FIELD_PREP(LMTT_DIR_PTR, offset / SZ_64K);
++
+ 	for_each_gt_on_tile(gt, tile, id)
+ 		xe_mmio_write32(&gt->mmio,
+ 				GRAPHICS_VER(xe) >= 20 ? XE2_LMEM_CFG : LMEM_CFG,
+-				LMEM_EN | REG_FIELD_PREP(LMTT_DIR_PTR, offset / SZ_64K));
++				config);
++
++	if (xe_device_has_mert(xe) && xe_tile_is_root(tile))
++		xe_mmio_write32(&tile->mmio, MERT_LMEM_CFG, config);
  }
  
-+static inline bool xe_device_has_mert(struct xe_device *xe)
-+{
-+	return xe->info.has_mert;
-+}
-+
- u32 xe_device_ccs_bytes(struct xe_device *xe, u64 size);
- 
- void xe_device_snapshot_print(struct xe_device *xe, struct drm_printer *p);
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index af0ce275b032..0b95d6539bc0 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -307,6 +307,8 @@ struct xe_device {
- 		u8 has_mbx_power_limits:1;
- 		/** @info.has_mem_copy_instr: Device supports MEM_COPY instruction */
- 		u8 has_mem_copy_instr:1;
-+		/** @info.has_mert: Device has standalone MERT */
-+		u8 has_mert:1;
- 		/** @info.has_pxp: Device has PXP support */
- 		u8 has_pxp:1;
- 		/** @info.has_range_tlb_inval: Has range based TLB invalidations */
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index aeae675c912b..1b02d4fd2cab 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -407,6 +407,7 @@ static const struct xe_device_desc cri_desc = {
- 	.has_display = false,
- 	.has_flat_ccs = false,
- 	.has_mbx_power_limits = true,
-+	.has_mert = true,
- 	.has_sriov = true,
- 	.max_gt_per_tile = 2,
- 	.require_force_probe = true,
-@@ -673,6 +674,7 @@ static int xe_info_init_early(struct xe_device *xe,
- 	xe->info.has_heci_cscfi = desc->has_heci_cscfi;
- 	xe->info.has_late_bind = desc->has_late_bind;
- 	xe->info.has_llc = desc->has_llc;
-+	xe->info.has_mert = desc->has_mert;
- 	xe->info.has_pxp = desc->has_pxp;
- 	xe->info.has_sriov = xe_configfs_primary_gt_allowed(to_pci_dev(xe->drm.dev)) &&
- 		desc->has_sriov;
-diff --git a/drivers/gpu/drm/xe/xe_pci_types.h b/drivers/gpu/drm/xe/xe_pci_types.h
-index 9892c063a9c5..d89ee5d82439 100644
---- a/drivers/gpu/drm/xe/xe_pci_types.h
-+++ b/drivers/gpu/drm/xe/xe_pci_types.h
-@@ -47,6 +47,7 @@ struct xe_device_desc {
- 	u8 has_llc:1;
- 	u8 has_mbx_power_limits:1;
- 	u8 has_mem_copy_instr:1;
-+	u8 has_mert:1;
- 	u8 has_pxp:1;
- 	u8 has_sriov:1;
- 	u8 needs_scratch:1;
+ /**
 -- 
 2.40.0
 
