@@ -4,64 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 38DBDCCF9FE
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 76EDDCCF9F8
 	for <intel-xe@archiver.kernel.org>; Mon,  3 Nov 2025 12:45:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DC0D610E3C9;
+	by gabe.freedesktop.org (Postfix) with ESMTP id E210410E3CA;
 	Mon,  3 Nov 2025 12:45:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=suse.com header.i=@suse.com header.b="SORa6qx4";
+	dkim=pass (2048-bit key; unprotected) header.d=suse.com header.i=@suse.com header.b="O8hbPBhb";
 	dkim-atps=neutral
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com
- [209.85.221.50])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 883BC10EB35
- for <intel-xe@lists.freedesktop.org>; Fri, 31 Oct 2025 10:59:54 +0000 (UTC)
-Received: by mail-wr1-f50.google.com with SMTP id
- ffacd0b85a97d-429c48e05aeso154261f8f.1
- for <intel-xe@lists.freedesktop.org>; Fri, 31 Oct 2025 03:59:54 -0700 (PDT)
+Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com
+ [209.85.221.48])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6157710EB31
+ for <intel-xe@lists.freedesktop.org>; Fri, 31 Oct 2025 10:59:56 +0000 (UTC)
+Received: by mail-wr1-f48.google.com with SMTP id
+ ffacd0b85a97d-3ece1102998so1485419f8f.2
+ for <intel-xe@lists.freedesktop.org>; Fri, 31 Oct 2025 03:59:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=suse.com; s=google; t=1761908393; x=1762513193; darn=lists.freedesktop.org; 
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=b6vAaaeToiu5B9u+qUVaFIcSktlAlQtEv6NbG1yx7d0=;
- b=SORa6qx4McwZuNyw3g047Rf8BLmL+tVcWSJdgPqRKrm/pmVIoE4tngcef+9OSdUf+D
- 33O0sUmqilkoo2yU+ocTXMxH3Aqet8dJtO6xlSpzlK0XgjpKFOePYGmWmu5M0tnUA4ef
- GxRBODoQn+96jYoQstO2S0EEAhWQX2lH3MiB+A4dNqMCYBLohRZU4m24ZK/ic7o4QMYU
- gUfnmMOVdxySIGaGf5YEby6ZTaXhPEsWjYS5npTURVybNVY6K3vGjBs1wCr3x3YWHLkT
- iB9NBLb0GgLH6u4YGoPUAo12TMO+8lHwKWbrxKAeD5nUgPMIAanU6mr1FIN5dc3npAws
- hJKQ==
+ d=suse.com; s=google; t=1761908395; x=1762513195; darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=QtaLGTlpD3zXcAXtMJEoSUxTvoU8HRv8A7mRZZemTDs=;
+ b=O8hbPBhbU+9KBRxoFuGYT2RRgqsa3pK0I7WVToOWuJuAxeaU2SKJrBfHGMOl26B30+
+ IdduQrHBzHLGTSieYe/X5oZBOFkP632MGFP1W2CQ/Yd4jGjgsk20E/212xRt1zC0SQwi
+ L0g7DePukMkUlU+SF3FDLDrOc0JwQY/neVieq7J0l+SpfGfMkHzRR6g1tK0o8Xe8ceZ5
+ U4ZkGTX91+jQJJ3zVaL7y0vv8shQ5WDQVX5Ji54k8Y+Wc9bia7CLmuC3YdxUxREuZLJE
+ eiwJL8or62kWVFtxj0dgNDcD7hGUZOjBLXAiBfT4wlxepl8y8PB7GrvpRKH3n+zmIHEe
+ j5ZA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1761908393; x=1762513193;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=b6vAaaeToiu5B9u+qUVaFIcSktlAlQtEv6NbG1yx7d0=;
- b=DUdQX26HT+9j09IeoMV95Kfs2RfloqSO7m3s4zgwDKuO/bhbI8ybLjMaerszfJxyfj
- yEI00Tb3x8HVTrHpnHVigZ5EARjNloKA9nSpDPIxT8YfOGUrSIRMHf5gMKh6Zv/1J1VF
- hmPRC03HvUfotGLFKQsnxz5AsAeQtQoA8XElf41YWrvembfKDBEjFhSBKFXNshg/Fnvn
- b8I54WTnr6wXhS3JPLZH3u1T9zGf910CpXsv3x7r7Sa2pHt8DpUOa1aKf7qEkkbNAE+4
- NSOSk0dM20T9ATvlIPna90YQQmFokWt0NR/ur/ed2WgUnYmcvw+4Gb+ZXxhOCPbAEKlJ
- eC2Q==
+ d=1e100.net; s=20230601; t=1761908395; x=1762513195;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=QtaLGTlpD3zXcAXtMJEoSUxTvoU8HRv8A7mRZZemTDs=;
+ b=atWzlYWvrHiBgN5A7pwcANBlQ+lN5X79+vUMTUEaJMw4VCnLYTC0tidQu/mm6njppQ
+ XjVnB0zDxNOjCMeUT76Atw5Dc/wowNi9VpUAdj9fJmY6EDooNvOr+WTJfAqT69rzDdVp
+ 9Is2fx3yqLzzG6suWO4DCmHmDDeJ2v8WJsbG29yOTHw3/Bv8YOEtfAYIQ9+WbT1kU8q+
+ n2oQZ7kfEDr+b+uEIuHZULmhY+BlgzRYCNvaOot8frO5yaKBWUiEHnyYUzQzFpxc6Gp8
+ AQLEoy25Dk3rwa1JhRY4YHHVFQ96Xc2bHgsDMYGvf3qDNvnlVS64ZuTlZzLZ4M3jwacr
+ nwKg==
 X-Forwarded-Encrypted: i=1;
- AJvYcCVRSQHj2ORMsrULKbDOwfjxVnuM9MVthEubg0SebS3YmcFk4N9XL2ArdZSj8em4iJsbTaTreaELYA==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yz59aoXBcsBG92zGbRO4oVtV+CqiDNxteSi/LfEB58/AKptZLMn
- 11t9duyKhIvolja8Ov0WhXisOmqvzk8TzzYPCOtJpF2CCj1kL1Lk7o/T+Qcz02jQi9M=
-X-Gm-Gg: ASbGncsdRos4d6ykoN1ZAL4vWq7ck5fmspf5kOhtjVYw2vQvWTYok6x++CqlFuH919L
- LhVnESEUR/8MNbhfZvvKzXbXXPi0h1Je4KfvGBNpvXzPKgOfylstv6Msh43bm+DnDY8qh4cHE2u
- Fi3QXxL+WMvFmB5HY4nr3LDfqFa6tdImWoTq60k/B2nPEQ41WlIdrJUbc8eQ5vMvIcrKWjsBICu
- QEpjFijAJGjX1sXFDISewSk51oBmVOb3lvV17XAEr8GRAjy7Hb+RZvxTXAdgTZYZ38kdJNinRuX
- s/XS+NTKh0rwhikh9jTO3FcQi3Z+0LvcZWDFLp1ldDt8MjS2/MWcsXBMolRtCKvkrtVfybx39lp
- wmWHv2szILMBpkvvRMl7h6cL0imkTw7iEc27eJr/9pp23FsJcYWkHrX/pqQiGO6Wp910bkfHXtJ
- oGeHJgZZ9RDf9XKQQ44+RX6fzkD15hOF3r5b4=
-X-Google-Smtp-Source: AGHT+IGyVj6dXJdOX2Hhg+vEPmOzJtfUWoV+ITI3sQ78WwjXbOn3KG8ZVtyP7HvSgwbXFsTDPGRjmA==
-X-Received: by 2002:a05:6000:25c2:b0:429:b8c7:1848 with SMTP id
- ffacd0b85a97d-429bcd5c6ccmr2789802f8f.19.1761908393047; 
- Fri, 31 Oct 2025 03:59:53 -0700 (PDT)
+ AJvYcCUDBY3Lwv0mL1YHRyAx79RMDQpewIT/7o/FO9hfKoszDSe2f/0lXpvKrH9tK81Tr9hNrR0G6GZFMQ==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwLUA//zMcbG+728A5ZkfSpwccBepTeUKAeRRrr0wR63R4QzR3U
+ THo+NQOpDlEyNi1nt39NDTPZOtYA7SNGtP/CRz+Jdjr8hEZ1SM5vWPCtSbl/gHseWik=
+X-Gm-Gg: ASbGncvtUCvawjcGO41IedLmYR6YYxP9eaw7lRovNqYd9FaAHCJmMfzs+cILepZBihr
+ UPCSS+z7fxcQS/227tUJ6hZNDbgMWan1e1jh+QP3X9IOdsLPBg/1Okl7ANd2QAxuAUcebUjMj62
+ C1K61wIvDv6DztGWWQjH74MnzHWLT4uVV+F4BZAd+tTTMvZ5fHo3L7nxL/SS4j1Vm+QsnP3rU0t
+ gw2ODtBEacUyFshActle6yHwfeGzeHyf9puFRQE6L4Vr2fTJcYu5gDUiCZJ0/Z/gIn+de3h6/cs
+ hRxZx4xjosFpQzT6ZeXsD7lDYw1GkIrQFEVqi5RJD21MQFlWuuNrS0FUjC/u2n/DaLnoDvbg/3g
+ TpQ6Mau/OKhk/9E7piyASJM6SgXdjhIkm5Op2fe6jKHmvhugSRaCQcVqvt3x2cde/SKYZXRrYMV
+ SZy8EDdHdDSsAGtjvgD1qXym7Isj6HsjSyoVk=
+X-Google-Smtp-Source: AGHT+IEsdl8gncmk7O5sGQX6oiw6d1c49YNa/Zznn0PBesJNtmDV3CtY5LM2CvoEk/+qA0YvvOvK6Q==
+X-Received: by 2002:a05:6000:310f:b0:428:3fa7:77ff with SMTP id
+ ffacd0b85a97d-429bd67a046mr2960086f8f.14.1761908394888; 
+ Fri, 31 Oct 2025 03:59:54 -0700 (PDT)
 Received: from localhost.localdomain ([2a00:6d43:105:c401:e307:1a37:2e76:ce91])
  by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-429c110035esm2965528f8f.6.2025.10.31.03.59.52
+ ffacd0b85a97d-429c110035esm2965528f8f.6.2025.10.31.03.59.54
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 31 Oct 2025 03:59:52 -0700 (PDT)
+ Fri, 31 Oct 2025 03:59:54 -0700 (PDT)
 From: Marco Crivellari <marco.crivellari@suse.com>
 To: linux-kernel@vger.kernel.org, intel-xe@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org
@@ -73,11 +74,12 @@ Cc: Tejun Heo <tj@kernel.org>, Lai Jiangshan <jiangshanlai@gmail.com>,
  Thomas Hellstrom <thomas.hellstrom@linux.intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>,
  Simona Vetter <simona@ffwll.ch>
-Subject: [PATCH 0/2] replace system_unbound_wq,
- added WQ_PERCPU to alloc_workqueue
-Date: Fri, 31 Oct 2025 11:59:37 +0100
-Message-ID: <20251031105939.129200-1-marco.crivellari@suse.com>
+Subject: [PATCH 2/2] drm/xe: WQ_PERCPU added to alloc_workqueue users
+Date: Fri, 31 Oct 2025 11:59:39 +0100
+Message-ID: <20251031105939.129200-3-marco.crivellari@suse.com>
 X-Mailer: git-send-email 2.51.0
+In-Reply-To: <20251031105939.129200-1-marco.crivellari@suse.com>
+References: <20251031105939.129200-1-marco.crivellari@suse.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -96,78 +98,94 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi,
-
-=== Current situation: problems ===
-
-Let's consider a nohz_full system with isolated CPUs: wq_unbound_cpumask is
-set to the housekeeping CPUs, for !WQ_UNBOUND the local CPU is selected.
-
-This leads to different scenarios if a work item is scheduled on an
-isolated CPU where "delay" value is 0 or greater then 0:
-        schedule_delayed_work(, 0);
-
-This will be handled by __queue_work() that will queue the work item on the
-current local (isolated) CPU, while:
-
-        schedule_delayed_work(, 1);
-
-Will move the timer on an housekeeping CPU, and schedule the work there.
-
 Currently if a user enqueue a work item using schedule_delayed_work() the
 used wq is "system_wq" (per-cpu wq) while queue_delayed_work() use
 WORK_CPU_UNBOUND (used when a cpu is not specified). The same applies to
 schedule_work() that is using system_wq and queue_work(), that makes use
 again of WORK_CPU_UNBOUND.
+This lack of consistentcy cannot be addressed without refactoring the API.
 
-This lack of consistency cannot be addressed without refactoring the API.
+alloc_workqueue() treats all queues as per-CPU by default, while unbound
+workqueues must opt-in via WQ_UNBOUND.
 
-=== Recent changes to the WQ API ===
+This default is suboptimal: most workloads benefit from unbound queues,
+allowing the scheduler to place worker threads where they’re needed and
+reducing noise when CPUs are isolated.
 
-The following, address the recent changes in the Workqueue API:
+This change adds a new WQ_PERCPU flag to explicitly request
+alloc_workqueue() to be per-cpu when WQ_UNBOUND has not been specified.
 
-- commit 128ea9f6ccfb ("workqueue: Add system_percpu_wq and system_dfl_wq")
-- commit 930c2ea566af ("workqueue: Add new WQ_PERCPU flag")
+With the introduction of the WQ_PERCPU flag (equivalent to !WQ_UNBOUND),
+any alloc_workqueue() caller that doesn’t explicitly specify WQ_UNBOUND
+must now use WQ_PERCPU.
 
-The old workqueues will be removed in a future release cycle.
+Once migration is complete, WQ_UNBOUND can be removed and unbound will
+become the implicit default.
 
-=== Introduced Changes by this series ===
-
-1) [P 1]  Replace uses of system_unbound_wq
-
-    system_unbound_wq is to be used when locality is not required.
-
-    Because of that, system_unbound_wq has been replaced with
-	system_dfl_wq, to make sure this would be the default choice
-	when locality is not important.
-
-	system_dfl_wq behave like system_unbound_wq.
-
-2) [P 2] WQ_PERCPU added to alloc_workqueue()
-
-    This change adds a new WQ_PERCPU flag to explicitly request
-    alloc_workqueue() to be per-cpu when WQ_UNBOUND has not been specified.
-
-	The behavior is the same.
-
-Thanks!
-
-
-Marco Crivellari (2):
-  drm/xe: replace use of system_unbound_wq with system_dfl_wq
-  drm/xe: WQ_PERCPU added to alloc_workqueue users
-
- drivers/gpu/drm/xe/xe_devcoredump.c     | 2 +-
+Suggested-by: Tejun Heo <tj@kernel.org>
+Signed-off-by: Marco Crivellari <marco.crivellari@suse.com>
+---
  drivers/gpu/drm/xe/xe_device.c          | 4 ++--
- drivers/gpu/drm/xe/xe_execlist.c        | 2 +-
  drivers/gpu/drm/xe/xe_ggtt.c            | 2 +-
- drivers/gpu/drm/xe/xe_guc_ct.c          | 4 ++--
  drivers/gpu/drm/xe/xe_hw_engine_group.c | 3 ++-
- drivers/gpu/drm/xe/xe_oa.c              | 2 +-
  drivers/gpu/drm/xe/xe_sriov.c           | 2 +-
- drivers/gpu/drm/xe/xe_vm.c              | 4 ++--
- 9 files changed, 13 insertions(+), 12 deletions(-)
+ 4 files changed, 6 insertions(+), 5 deletions(-)
 
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index 2883b39c9b37..2ad633abf3b2 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -486,8 +486,8 @@ struct xe_device *xe_device_create(struct pci_dev *pdev,
+ 	xe->preempt_fence_wq = alloc_ordered_workqueue("xe-preempt-fence-wq",
+ 						       WQ_MEM_RECLAIM);
+ 	xe->ordered_wq = alloc_ordered_workqueue("xe-ordered-wq", 0);
+-	xe->unordered_wq = alloc_workqueue("xe-unordered-wq", 0, 0);
+-	xe->destroy_wq = alloc_workqueue("xe-destroy-wq", 0, 0);
++	xe->unordered_wq = alloc_workqueue("xe-unordered-wq", WQ_PERCPU, 0);
++	xe->destroy_wq = alloc_workqueue("xe-destroy-wq", WQ_PERCPU, 0);
+ 	if (!xe->ordered_wq || !xe->unordered_wq ||
+ 	    !xe->preempt_fence_wq || !xe->destroy_wq) {
+ 		/*
+diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
+index 7fdd0a97a628..84466be244ab 100644
+--- a/drivers/gpu/drm/xe/xe_ggtt.c
++++ b/drivers/gpu/drm/xe/xe_ggtt.c
+@@ -291,7 +291,7 @@ int xe_ggtt_init_early(struct xe_ggtt *ggtt)
+ 	else
+ 		ggtt->pt_ops = &xelp_pt_ops;
+ 
+-	ggtt->wq = alloc_workqueue("xe-ggtt-wq", 0, WQ_MEM_RECLAIM);
++	ggtt->wq = alloc_workqueue("xe-ggtt-wq", WQ_PERCPU, WQ_MEM_RECLAIM);
+ 	__xe_ggtt_init_early(ggtt, xe_wopcm_size(xe));
+ 
+ 	err = drmm_add_action_or_reset(&xe->drm, ggtt_fini_early, ggtt);
+diff --git a/drivers/gpu/drm/xe/xe_hw_engine_group.c b/drivers/gpu/drm/xe/xe_hw_engine_group.c
+index fa4db5f23342..8526addcdf42 100644
+--- a/drivers/gpu/drm/xe/xe_hw_engine_group.c
++++ b/drivers/gpu/drm/xe/xe_hw_engine_group.c
+@@ -48,7 +48,8 @@ hw_engine_group_alloc(struct xe_device *xe)
+ 	if (!group)
+ 		return ERR_PTR(-ENOMEM);
+ 
+-	group->resume_wq = alloc_workqueue("xe-resume-lr-jobs-wq", 0, 0);
++	group->resume_wq = alloc_workqueue("xe-resume-lr-jobs-wq", WQ_PERCPU,
++					   0);
+ 	if (!group->resume_wq)
+ 		return ERR_PTR(-ENOMEM);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_sriov.c b/drivers/gpu/drm/xe/xe_sriov.c
+index 7d2d6de2aabf..5c36da17f745 100644
+--- a/drivers/gpu/drm/xe/xe_sriov.c
++++ b/drivers/gpu/drm/xe/xe_sriov.c
+@@ -120,7 +120,7 @@ int xe_sriov_init(struct xe_device *xe)
+ 		xe_sriov_vf_init_early(xe);
+ 
+ 	xe_assert(xe, !xe->sriov.wq);
+-	xe->sriov.wq = alloc_workqueue("xe-sriov-wq", 0, 0);
++	xe->sriov.wq = alloc_workqueue("xe-sriov-wq", WQ_PERCPU, 0);
+ 	if (!xe->sriov.wq)
+ 		return -ENOMEM;
+ 
 -- 
 2.51.0
 
