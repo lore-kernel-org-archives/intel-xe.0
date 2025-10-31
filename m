@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D61D9CCF9FF
-	for <intel-xe@archiver.kernel.org>; Fri, 31 Oct 2025 10:48:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 27524CCF9F8
+	for <intel-xe@archiver.kernel.org>; Fri, 31 Oct 2025 10:48:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9402410EB5D;
-	Fri, 31 Oct 2025 10:48:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E0B4F10EB72;
+	Fri, 31 Oct 2025 10:48:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LWeOaQVN";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OFhW6HrP";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5F5BB10EB5C;
- Fri, 31 Oct 2025 10:48:00 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 688B010EB6B;
+ Fri, 31 Oct 2025 10:48:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761907680; x=1793443680;
+ t=1761907687; x=1793443687;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=cyxZhZcvWW0tx2UT0vgV/rBnGt3yGDx1l2nqc+4Qmzw=;
- b=LWeOaQVNLnKvGYgJLOWS0NnEdLIQNMGHmcdbBewfwe7+l0tr2xrGlJrI
- 6pvqz72mxz2mziXp+12iw224CWtYnh34ASrzskbJ3eBQaGhQw0krbfXVw
- QLjXUqvVR7+hUss8HaMi1ROFk4yy2/BLHzsIkyqqoD3l90kLTT6plGruC
- 4o8DLBak6P20Rn4BUANMrPLI/p+XFZcLPxOBeaIk6Qzz0C6lAy3RC55VS
- YpXS5N0+QLAaluips1mGtJZpOhtdh8S7D2NEjurNI9KihOT56hV+Kuy/5
- bCvvR3yCbKTPVIc/tBh3UANsxg72HutiU3FdhuT7cmFi/5+5FWGXKC+j2 g==;
-X-CSE-ConnectionGUID: yMiaZ4BdTmGSZAgdbCvMxw==
-X-CSE-MsgGUID: zjEBpga9R3+c9RFVGN2/vA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11598"; a="64217566"
-X-IronPort-AV: E=Sophos;i="6.19,269,1754982000"; d="scan'208";a="64217566"
+ bh=/xUstglumJdYZNfrMeD8J8kUcG3MY72EYsCeeqo+z4U=;
+ b=OFhW6HrPfx86TuvX9JLvkNswM3EsmYOJw77sEcGUsvNIKJcfBQVwoyGV
+ cKpAUerBZgfzQNU+0svjqOH0rewL56IOJ4n/9ZRrSMYXmwAjMYnm3yIwZ
+ MrgohVrlTXs3BRkHEpgEVkLBpppAMTt8HS3ckW43qbF0O37IFlKqdZGt9
+ WA6zNUmjsv5C63dTCVPKmkNLtJGuY4LgZP52iq/DBMxCtWn61zxVRmGwE
+ 8w5hvspY2XgZE8mA4Fdrn8u1sBq2JkYVDpBNpZS9658O3gSRWT8FBHYdY
+ Y2/X9cPTDgs6BlZxaHKqVJxxHkgLg2XVSCcS09B3ZHySBM76yP7pEtX0P Q==;
+X-CSE-ConnectionGUID: 99vkf5GCTW+w3uQrWwMwjw==
+X-CSE-MsgGUID: mSG+S60bR9OoZskUdQyfZw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11598"; a="64217576"
+X-IronPort-AV: E=Sophos;i="6.19,269,1754982000"; d="scan'208";a="64217576"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Oct 2025 03:48:00 -0700
-X-CSE-ConnectionGUID: 5turwzXpT+Gchqe2lswuwg==
-X-CSE-MsgGUID: Yo4m00qxSdSIV6EKOCj9Rg==
+ 31 Oct 2025 03:48:07 -0700
+X-CSE-ConnectionGUID: 9DUmfJFvTi6K9gXn3DghVg==
+X-CSE-MsgGUID: PQWnNJlARAKp5whyP0T5Fw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,269,1754982000"; d="scan'208";a="223441370"
+X-IronPort-AV: E=Sophos;i="6.19,269,1754982000"; d="scan'208";a="223441397"
 Received: from display-adls.igk.intel.com ([10.211.131.198])
- by orviesa001.jf.intel.com with ESMTP; 31 Oct 2025 03:47:59 -0700
+ by orviesa001.jf.intel.com with ESMTP; 31 Oct 2025 03:48:06 -0700
 From: Mika Kahola <mika.kahola@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Cc: Imre Deak <imre.deak@intel.com>,
-	Mika Kahola <mika.kahola@intel.com>
-Subject: [CI 14/32] drm/i915/display: Print additional Cx0 PLL HW state
-Date: Fri, 31 Oct 2025 12:35:31 +0200
-Message-Id: <20251031103549.173208-15-mika.kahola@intel.com>
+Cc: Mika Kahola <mika.kahola@intel.com>,
+	Imre Deak <imre.deak@intel.com>
+Subject: [CI 19/32] drm/i915/display: MTL+ .get_dplls
+Date: Fri, 31 Oct 2025 12:35:36 +0200
+Message-Id: <20251031103549.173208-20-mika.kahola@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251031103549.173208-1-mika.kahola@intel.com>
 References: <20251031103549.173208-1-mika.kahola@intel.com>
@@ -67,65 +67,118 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Imre Deak <imre.deak@intel.com>
+Add .get_dplls function pointer for MTL+ platforms
+to support dpll framework. Reusing the ICL function
+pointer.
 
-Print all the Cx0 PLL state in the PLL state dumper.
+v2: Getting configuration either for a C10 or on the PTL port B
+    eDP on TypeC PHY case for a C20 PHY PLL. Hence refer to this
+    case as "non_tc_phy" instead of "c10phy".
 
 Signed-off-by: Imre Deak <imre.deak@intel.com>
 Signed-off-by: Mika Kahola <mika.kahola@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cx0_phy.c | 18 +++++++++++++++---
- 1 file changed, 15 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 56 +++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.h |  1 +
+ 2 files changed, 57 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-index 3418fc560faf..1e68a73c2ca8 100644
---- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-@@ -2311,8 +2311,8 @@ static void intel_c10pll_dump_hw_state(struct intel_display *display,
- 	unsigned int multiplier, tx_clk_div;
- 
- 	fracen = hw_state->pll[0] & C10_PLL0_FRACEN;
--	drm_dbg_kms(display->drm, "c10pll_hw_state: fracen: %s, ",
--		    str_yes_no(fracen));
-+	drm_dbg_kms(display->drm, "c10pll_hw_state: clock: %d, fracen: %s, ",
-+		    hw_state->clock, str_yes_no(fracen));
- 
- 	if (fracen) {
- 		frac_quot = hw_state->pll[12] << 8 | hw_state->pll[11];
-@@ -2835,7 +2835,7 @@ static void intel_c20pll_dump_hw_state(struct intel_display *display,
- {
- 	int i;
- 
--	drm_dbg_kms(display->drm, "c20pll_hw_state:\n");
-+	drm_dbg_kms(display->drm, "c20pll_hw_state clock: %d:\n", hw_state->clock);
- 	drm_dbg_kms(display->drm,
- 		    "tx[0] = 0x%.4x, tx[1] = 0x%.4x, tx[2] = 0x%.4x\n",
- 		    hw_state->tx[0], hw_state->tx[1], hw_state->tx[2]);
-@@ -2851,12 +2851,24 @@ static void intel_c20pll_dump_hw_state(struct intel_display *display,
- 		for (i = 0; i < ARRAY_SIZE(hw_state->mplla); i++)
- 			drm_dbg_kms(display->drm, "mplla[%d] = 0x%.4x\n", i,
- 				    hw_state->mplla[i]);
-+
-+		/* For full coverage, also print the additional PLL B entry. */
-+		WARN_ON(i + 1 != ARRAY_SIZE(hw_state->mpllb));
-+		drm_dbg_kms(display->drm, "mpllb[%d] = 0x%.4x\n", i, hw_state->mpllb[i]);
- 	}
-+
-+	drm_dbg_kms(display->drm, "vdr: custom width: 0x%02x, serdes rate: 0x%02x, hdmi rate: 0x%02x\n",
-+		    hw_state->vdr.custom_width, hw_state->vdr.serdes_rate, hw_state->vdr.hdmi_rate);
+diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+index b6a5a519e936..c6af2816594d 100644
+--- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
++++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+@@ -203,6 +203,22 @@ enum intel_dpll_id icl_tc_port_to_pll_id(enum tc_port tc_port)
+ 	return tc_port - TC_PORT_1 + DPLL_ID_ICL_MGPLL1;
  }
  
- void intel_cx0pll_dump_hw_state(struct intel_display *display,
- 				const struct intel_cx0pll_state *hw_state)
- {
-+	drm_dbg_kms(display->drm,
-+		    "cx0pll_hw_state: lane_count: %d, ssc_enabled: %s, use_c10: %s, tbt_mode: %s\n",
-+		    hw_state->lane_count, str_yes_no(hw_state->ssc_enabled),
-+		    str_yes_no(hw_state->use_c10), str_yes_no(hw_state->tbt_mode));
++enum intel_dpll_id mtl_port_to_pll_id(struct intel_display *display, enum port port)
++{
++	if (port >= PORT_TC1)
++		return icl_tc_port_to_pll_id(intel_port_to_tc(display, port));
 +
- 	if (hw_state->use_c10)
- 		intel_c10pll_dump_hw_state(display, &hw_state->c10);
- 	else
++	switch (port) {
++	case PORT_A:
++		return DPLL_ID_ICL_DPLL0;
++	case PORT_B:
++		return DPLL_ID_ICL_DPLL1;
++	default:
++		MISSING_CASE(port);
++		return DPLL_ID_ICL_DPLL0;
++	}
++}
++
+ static i915_reg_t
+ intel_combo_pll_enable_reg(struct intel_display *display,
+ 			   struct intel_dpll *pll)
+@@ -3491,6 +3507,35 @@ static int icl_get_tc_phy_dplls(struct intel_atomic_state *state,
+ 	return ret;
+ }
+ 
++/*
++ * Get the PLL for either a port using a C10 PHY PLL, or in the
++ * PTL port B eDP on TypeC PHY case, the PLL for a port using
++ * a C20 PHY PLL.
++ */
++static int mtl_get_non_tc_phy_dpll(struct intel_atomic_state *state,
++				      struct intel_crtc *crtc,
++				      struct intel_encoder *encoder)
++{
++	struct intel_display *display = to_intel_display(crtc);
++	struct intel_crtc_state *crtc_state =
++		intel_atomic_get_new_crtc_state(state, crtc);
++	struct icl_port_dpll *port_dpll =
++		&crtc_state->icl_port_dplls[ICL_PORT_DPLL_DEFAULT];
++
++	port_dpll->pll = intel_find_dpll(state, crtc,
++					 &port_dpll->hw_state,
++					 BIT(mtl_port_to_pll_id(display, encoder->port)));
++	if (!port_dpll->pll)
++		return -EINVAL;
++
++	intel_reference_dpll(state, crtc,
++			     port_dpll->pll, &port_dpll->hw_state);
++
++	icl_update_active_dpll(state, crtc, encoder);
++
++	return 0;
++}
++
+ static int icl_compute_dplls(struct intel_atomic_state *state,
+ 			     struct intel_crtc *crtc,
+ 			     struct intel_encoder *encoder)
+@@ -4388,10 +4433,21 @@ static int mtl_compute_dplls(struct intel_atomic_state *state,
+ 		return mtl_compute_non_tc_phy_dpll(state, crtc, encoder);
+ }
+ 
++static int mtl_get_dplls(struct intel_atomic_state *state,
++			 struct intel_crtc *crtc,
++			 struct intel_encoder *encoder)
++{
++	if (intel_encoder_is_tc(encoder))
++		return icl_get_tc_phy_dplls(state, crtc, encoder);
++	else
++		return mtl_get_non_tc_phy_dpll(state, crtc, encoder);
++}
++
+ __maybe_unused
+ static const struct intel_dpll_mgr mtl_pll_mgr = {
+ 	.dpll_info = mtl_plls,
+ 	.compute_dplls = mtl_compute_dplls,
++	.get_dplls = mtl_get_dplls,
+ };
+ 
+ /**
+diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h b/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
+index 839b1a98534f..fbb6a45d565c 100644
+--- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
++++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
+@@ -439,6 +439,7 @@ bool intel_dpll_compare_hw_state(struct intel_display *display,
+ 				 const struct intel_dpll_hw_state *a,
+ 				 const struct intel_dpll_hw_state *b);
+ enum intel_dpll_id icl_tc_port_to_pll_id(enum tc_port tc_port);
++enum intel_dpll_id mtl_port_to_pll_id(struct intel_display *display, enum port port);
+ bool intel_dpll_is_combophy(enum intel_dpll_id id);
+ 
+ void intel_dpll_state_verify(struct intel_atomic_state *state,
 -- 
 2.34.1
 
