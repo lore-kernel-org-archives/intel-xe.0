@@ -4,60 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D29C5CCF9F8
-	for <intel-xe@archiver.kernel.org>; Fri, 31 Oct 2025 17:57:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 79E98CCF9F8
+	for <intel-xe@archiver.kernel.org>; Fri, 31 Oct 2025 18:00:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 91DBF10E06D;
-	Fri, 31 Oct 2025 17:57:41 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RrKLz5K6";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CC42E10E06D;
- Fri, 31 Oct 2025 17:57:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761933461; x=1793469461;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=U1SJEHv77UlVmQIwfYx3kPtQgJj8QTjOlyY+o3sqETU=;
- b=RrKLz5K6YyY2z2iQwDmq3c/38tijcrdJNPsqWdXgF6yESMXkoIs+kgTq
- TS6i7ljqLUNL86rdmJXQBNUg0bJk0JDLL584JvbEQox4pPgr5kIU4ulg/
- b8LceE9PDfVtNuFNWhCX+ZHZX0hhnzLcB5ccU6EJkK+J/mYKgJHe3BJLL
- L13EHcQkS2jrz7Obn4utAnaFGG+WjPKBTxW2Z4WvJxmX5+zzVu7SlEpqQ
- 6Bvvdikts4Qi2boXa5/9UUaessV0bE94qABh+IXm930c6dIzztMaBnabh
- Po9RcCJrc4Zt4ZotSF0U2w7C9jFwVPQPZ/pvLedVVvT0lltsmP6GNQvpG A==;
-X-CSE-ConnectionGUID: wgDrTKoPTPGzLGGczsOsHQ==
-X-CSE-MsgGUID: wBks1JGZROaQNuzU6tb0YQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11599"; a="64197819"
-X-IronPort-AV: E=Sophos;i="6.19,269,1754982000"; d="scan'208";a="64197819"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Oct 2025 10:57:41 -0700
-X-CSE-ConnectionGUID: gOmtIhR0Snmk1PIgUlTCxA==
-X-CSE-MsgGUID: OdM79Rh1TAqwOU7/K0rLzw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,269,1754982000"; d="scan'208";a="186171943"
-Received: from kialmah1-desk5.jf.intel.com ([10.23.33.174])
- by fmviesa006.fm.intel.com with ESMTP; 31 Oct 2025 10:57:40 -0700
-From: Khaled Almahallawy <khaled.almahallawy@intel.com>
-To: dri-devel@lists.freedesktop.org,
-	linux-arm-msm@vger.kernel.org
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Khaled Almahallawy <khaled.almahallawy@intel.com>,
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
- Jani Nikula <jani.nikula@intel.com>,
- Rob Clark <robin.clark@oss.qualcomm.com>,
- Dmitry Baryshkov <lumag@kernel.org>,
- Abhinav Kumar <abhinav.kumar@linux.dev>, Sean Paul <sean@poorly.run>,
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Subject: [PATCH v2] drm/display/dp: Rename bit 4 of DPCD TEST_REQUEST to match
- DP2.1 spec
-Date: Fri, 31 Oct 2025 10:57:38 -0700
-Message-ID: <20251031175738.3430347-1-khaled.almahallawy@intel.com>
-X-Mailer: git-send-email 2.43.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 24E9810E06D;
+	Fri, 31 Oct 2025 18:00:22 +0000 (UTC)
+Received: from 10055242dc62 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 270B010E06D;
+ Fri, 31 Oct 2025 18:00:21 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Pagefault_refactor_=28rev?=
+ =?utf-8?q?3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Brost" <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 31 Oct 2025 18:00:21 -0000
+Message-ID: <176193362115.5976.615637247582985366@10055242dc62>
+X-Patchwork-Hint: ignore
+References: <20251031165416.2871503-1-matthew.brost@intel.com>
+In-Reply-To: <20251031165416.2871503-1-matthew.brost@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,54 +36,60 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The DP_TEST_LINK_FAUX_PATTERN field was deprecated in the DP 1.3 spec.
-Update its name to align with the DP 2.1 definition and reflect its
-actual use in the code. No functional changes.
+== Series Details ==
 
-v2: Comment about spec version where the bit was introduced (Konrad)
+Series: Pagefault refactor (rev3)
+URL   : https://patchwork.freedesktop.org/series/156508/
+State : warning
 
-Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: Jani Nikula <jani.nikula@intel.com>
-Cc: Rob Clark <robin.clark@oss.qualcomm.com>
-Cc: Dmitry Baryshkov <lumag@kernel.org>
-Cc: Abhinav Kumar <abhinav.kumar@linux.dev>
-Cc: Sean Paul <sean@poorly.run>
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Signed-off-by: Khaled Almahallawy <khaled.almahallawy@intel.com>
----
- drivers/gpu/drm/msm/dp/dp_link.c | 2 +-
- include/drm/display/drm_dp.h     | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/msm/dp/dp_link.c b/drivers/gpu/drm/msm/dp/dp_link.c
-index 66e1bbd80db3..5d465cf4dbc2 100644
---- a/drivers/gpu/drm/msm/dp/dp_link.c
-+++ b/drivers/gpu/drm/msm/dp/dp_link.c
-@@ -665,7 +665,7 @@ static int msm_dp_link_parse_request(struct msm_dp_link_private *link)
- 		return rlen;
- 	}
- 
--	if (!data || (data == DP_TEST_LINK_FAUX_PATTERN)) {
-+	if (!data || (data == DP_TEST_PHY_TEST_CHANNEL_CODING_TYPE)) {
- 		drm_dbg_dp(link->drm_dev, "link 0x%x not supported\n", data);
- 		goto end;
- 	}
-diff --git a/include/drm/display/drm_dp.h b/include/drm/display/drm_dp.h
-index e4eebabab975..e299a66e698d 100644
---- a/include/drm/display/drm_dp.h
-+++ b/include/drm/display/drm_dp.h
-@@ -849,7 +849,7 @@
- # define DP_TEST_LINK_VIDEO_PATTERN	    (1 << 1)
- # define DP_TEST_LINK_EDID_READ		    (1 << 2)
- # define DP_TEST_LINK_PHY_TEST_PATTERN	    (1 << 3) /* DPCD >= 1.1 */
--# define DP_TEST_LINK_FAUX_PATTERN	    (1 << 4) /* DPCD >= 1.2 */
-+# define DP_TEST_PHY_TEST_CHANNEL_CODING_TYPE	    (1 << 4) /* DP 2.1 */
- # define DP_TEST_LINK_AUDIO_PATTERN         (1 << 5) /* DPCD >= 1.2 */
- # define DP_TEST_LINK_AUDIO_DISABLED_VIDEO  (1 << 6) /* DPCD >= 1.2 */
- 
--- 
-2.43.0
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+f867e605613af1770f90c4b0afd4a8f06424d1f0
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 2162de6216f26c7494498a52f61ed186dd306359
+Author: Matthew Brost <matthew.brost@intel.com>
+Date:   Fri Oct 31 09:54:16 2025 -0700
+
+    drm/xe: Remove unused GT page fault code
+    
+    With the Xe page fault layer and GuC page layer in place, this is now
+    dead code and can be removed. ACC code is also removed, but this was
+    dead code.
+    
+    Signed-off-by: Matthew Brost <matthew.brost@intel.com>
++ /mt/dim checkpatch ace589a8065460626a9c37fb770cd5a31e6643b9 drm-intel
+7a0cf7403398 drm/xe: Stub out new pagefault layer
+-:34: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#34: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 227 lines checked
+6420e7966fb8 drm/xe: Implement xe_pagefault_init
+d4cd7b8855af drm/xe: Implement xe_pagefault_reset
+c62debf9effe drm/xe: Implement xe_pagefault_handler
+09c0eba0d93b drm/xe: Implement xe_pagefault_queue_work
+e32f154b3063 drm/xe: Add xe_guc_pagefault layer
+-:98: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#98: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 187 lines checked
+2162de6216f2 drm/xe: Remove unused GT page fault code
+-:13: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#13: 
+deleted file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 71 lines checked
+
 
