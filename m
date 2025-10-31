@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0D087CCF9F8
-	for <intel-xe@archiver.kernel.org>; Fri, 31 Oct 2025 21:10:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4583FCCF9F8
+	for <intel-xe@archiver.kernel.org>; Fri, 31 Oct 2025 21:15:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C7F3B10E325;
-	Fri, 31 Oct 2025 21:10:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D9EF310E325;
+	Fri, 31 Oct 2025 21:15:36 +0000 (UTC)
 Received: from 10055242dc62 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EA88610E325;
- Fri, 31 Oct 2025 21:10:15 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5571170943554499236=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DECAB10E325;
+ Fri, 31 Oct 2025 21:15:35 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_Fix_serialization_on_burst_?=
- =?utf-8?q?of_unbinds_-_v2?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe=3A_Multi_Queue_fea?=
+ =?utf-8?q?ture_support?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Brost" <matthew.brost@intel.com>
+To: "Niranjana Vishwanathapura" <niranjana.vishwanathapura@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 31 Oct 2025 21:10:15 -0000
-Message-ID: <176194501595.7657.14984139566154868826@10055242dc62>
+Date: Fri, 31 Oct 2025 21:15:35 -0000
+Message-ID: <176194533590.7657.10406112056726750743@10055242dc62>
 X-Patchwork-Hint: ignore
-References: <20251031180949.2968311-1-matthew.brost@intel.com>
-In-Reply-To: <20251031180949.2968311-1-matthew.brost@intel.com>
+References: <20251031182936.1882062-1-niranjana.vishwanathapura@intel.com>
+In-Reply-To: <20251031182936.1882062-1-niranjana.vishwanathapura@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,169 +40,62 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5571170943554499236==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: Fix serialization on burst of unbinds - v2
-URL   : https://patchwork.freedesktop.org/series/156863/
-State : failure
+Series: drm/xe: Multi Queue feature support
+URL   : https://patchwork.freedesktop.org/series/156865/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-4024-287aaa69490a7901df27fdd9cb9219074cb81445_BAT -> xe-pw-156863v1_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+f867e605613af1770f90c4b0afd4a8f06424d1f0
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 7f2c4e4148978379ac7e7be3e30795e3b675272d
+Author: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+Date:   Fri Oct 31 11:29:36 2025 -0700
 
-Summary
--------
+    drm/xe/multi_queue: Enable multi_queue on xe3p_xpc
+    
+    xe3p_xpc supports multi_queue, enable it.
+    
+    Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
++ /mt/dim checkpatch d122adb64f56e02d1d9aa432f1a609864e3c33cb drm-intel
+b7db5f92a064 drm/xe/multi_queue: Add multi_queue_enable_mask to gt information
+380cdbcabd2c drm/xe/multi_queue: Add user interface for multi queue support
+54808a2f7616 drm/xe/multi_queue: Add GuC interface for multi queue support
+69a64d11a631 drm/xe/multi_queue: Add multi queue priority property
+ad9a31d47fb6 drm/xe/multi_queue: Handle invalid exec queue property setting
+90af65670a6e drm/xe/multi_queue: Add exec_queue set_property ioctl support
+-:98: WARNING:LONG_LINE: line length of 145 exceeds 100 columns
+#98: FILE: include/uapi/drm/xe_drm.h:127:
++#define DRM_IOCTL_XE_EXEC_QUEUE_SET_PROPERTY	DRM_IOW(DRM_COMMAND_BASE + DRM_XE_EXEC_QUEUE_SET_PROPERTY, struct drm_xe_exec_queue_set_property)
 
-  **FAILURE**
+total: 0 errors, 1 warnings, 0 checks, 95 lines checked
+c07ef2959dcc drm/xe/multi_queue: Add support for multi queue dynamic priority change
+0210f9e5e3e5 drm/xe/multi_queue: Add multi queue information to guc_info dump
+f72ebca322ec drm/xe/multi_queue: Handle tearing down of a multi queue
+752c4f175994 drm/xe/multi_queue: Set QUEUE_DRAIN_MODE for Multi Queue batches
+b1bf0dbb43e6 drm/xe/multi_queue: Handle CGP context error
+35c5f77f5a51 drm/xe/multi_queue: Tracepoint support
+-:47: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#47: FILE: drivers/gpu/drm/xe/xe_trace.h:105:
++		    TP_STRUCT__entry(
 
-  Serious unknown changes coming with xe-pw-156863v1_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-156863v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+-:59: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#59: FILE: drivers/gpu/drm/xe/xe_trace.h:117:
++		    TP_fast_assign(
 
-  
-
-Participating hosts (12 -> 12)
-------------------------------
-
-  No changes in participating hosts
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-156863v1_BAT:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@xe_exec_queue_property@invalid-property:
-    - bat-ptl-2:          [PASS][1] -> [ABORT][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4024-287aaa69490a7901df27fdd9cb9219074cb81445/bat-ptl-2/igt@xe_exec_queue_property@invalid-property.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156863v1/bat-ptl-2/igt@xe_exec_queue_property@invalid-property.html
-    - bat-dg2-oem2:       [PASS][3] -> [ABORT][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4024-287aaa69490a7901df27fdd9cb9219074cb81445/bat-dg2-oem2/igt@xe_exec_queue_property@invalid-property.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156863v1/bat-dg2-oem2/igt@xe_exec_queue_property@invalid-property.html
-    - bat-atsm-2:         [PASS][5] -> [ABORT][6]
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4024-287aaa69490a7901df27fdd9cb9219074cb81445/bat-atsm-2/igt@xe_exec_queue_property@invalid-property.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156863v1/bat-atsm-2/igt@xe_exec_queue_property@invalid-property.html
-    - bat-adlp-vm:        [PASS][7] -> [ABORT][8]
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4024-287aaa69490a7901df27fdd9cb9219074cb81445/bat-adlp-vm/igt@xe_exec_queue_property@invalid-property.html
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156863v1/bat-adlp-vm/igt@xe_exec_queue_property@invalid-property.html
-    - bat-ptl-1:          [PASS][9] -> [ABORT][10]
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4024-287aaa69490a7901df27fdd9cb9219074cb81445/bat-ptl-1/igt@xe_exec_queue_property@invalid-property.html
-   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156863v1/bat-ptl-1/igt@xe_exec_queue_property@invalid-property.html
-    - bat-lnl-1:          [PASS][11] -> [ABORT][12]
-   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4024-287aaa69490a7901df27fdd9cb9219074cb81445/bat-lnl-1/igt@xe_exec_queue_property@invalid-property.html
-   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156863v1/bat-lnl-1/igt@xe_exec_queue_property@invalid-property.html
-    - bat-ptl-vm:         [PASS][13] -> [ABORT][14]
-   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4024-287aaa69490a7901df27fdd9cb9219074cb81445/bat-ptl-vm/igt@xe_exec_queue_property@invalid-property.html
-   [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156863v1/bat-ptl-vm/igt@xe_exec_queue_property@invalid-property.html
-    - bat-bmg-2:          [PASS][15] -> [ABORT][16]
-   [15]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4024-287aaa69490a7901df27fdd9cb9219074cb81445/bat-bmg-2/igt@xe_exec_queue_property@invalid-property.html
-   [16]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156863v1/bat-bmg-2/igt@xe_exec_queue_property@invalid-property.html
-    - bat-adlp-7:         [PASS][17] -> [ABORT][18]
-   [17]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4024-287aaa69490a7901df27fdd9cb9219074cb81445/bat-adlp-7/igt@xe_exec_queue_property@invalid-property.html
-   [18]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156863v1/bat-adlp-7/igt@xe_exec_queue_property@invalid-property.html
-    - bat-bmg-1:          [PASS][19] -> [ABORT][20]
-   [19]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4024-287aaa69490a7901df27fdd9cb9219074cb81445/bat-bmg-1/igt@xe_exec_queue_property@invalid-property.html
-   [20]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156863v1/bat-bmg-1/igt@xe_exec_queue_property@invalid-property.html
-    - bat-lnl-2:          [PASS][21] -> [ABORT][22]
-   [21]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4024-287aaa69490a7901df27fdd9cb9219074cb81445/bat-lnl-2/igt@xe_exec_queue_property@invalid-property.html
-   [22]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156863v1/bat-lnl-2/igt@xe_exec_queue_property@invalid-property.html
-
-  
+total: 0 errors, 0 warnings, 2 checks, 69 lines checked
+569444bcfa7c drm/xe/multi_queue: Support active group after primary is destroyed
+a63f41633cd2 drm/xe/doc: Add documentation for Multi Queue Group
+aafec7acf6ba drm/xe/doc: Add documentation for Multi Queue Group GuC interface
+7f2c4e414897 drm/xe/multi_queue: Enable multi_queue on xe3p_xpc
 
 
-Build changes
--------------
-
-  * Linux: xe-4024-287aaa69490a7901df27fdd9cb9219074cb81445 -> xe-pw-156863v1
-
-  IGT_8604: 8604
-  xe-4024-287aaa69490a7901df27fdd9cb9219074cb81445: 287aaa69490a7901df27fdd9cb9219074cb81445
-  xe-pw-156863v1: 156863v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156863v1/index.html
-
---===============5571170943554499236==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Fix serialization on burst of unbinds - v2</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/156863/">https://patchwork.freedesktop.org/series/156863/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156863v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156863v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4024-287aaa69490a7901df27fdd9cb9219074cb81445_BAT -&gt; xe-pw-156863v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-156863v1_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-156863v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (12 -&gt; 12)</h2>
-<p>No changes in participating hosts</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-156863v1_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@xe_exec_queue_property@invalid-property:<ul>
-<li>bat-ptl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4024-287aaa69490a7901df27fdd9cb9219074cb81445/bat-ptl-2/igt@xe_exec_queue_property@invalid-property.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156863v1/bat-ptl-2/igt@xe_exec_queue_property@invalid-property.html">ABORT</a></li>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4024-287aaa69490a7901df27fdd9cb9219074cb81445/bat-dg2-oem2/igt@xe_exec_queue_property@invalid-property.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156863v1/bat-dg2-oem2/igt@xe_exec_queue_property@invalid-property.html">ABORT</a></li>
-<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4024-287aaa69490a7901df27fdd9cb9219074cb81445/bat-atsm-2/igt@xe_exec_queue_property@invalid-property.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156863v1/bat-atsm-2/igt@xe_exec_queue_property@invalid-property.html">ABORT</a></li>
-<li>bat-adlp-vm:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4024-287aaa69490a7901df27fdd9cb9219074cb81445/bat-adlp-vm/igt@xe_exec_queue_property@invalid-property.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156863v1/bat-adlp-vm/igt@xe_exec_queue_property@invalid-property.html">ABORT</a></li>
-<li>bat-ptl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4024-287aaa69490a7901df27fdd9cb9219074cb81445/bat-ptl-1/igt@xe_exec_queue_property@invalid-property.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156863v1/bat-ptl-1/igt@xe_exec_queue_property@invalid-property.html">ABORT</a></li>
-<li>bat-lnl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4024-287aaa69490a7901df27fdd9cb9219074cb81445/bat-lnl-1/igt@xe_exec_queue_property@invalid-property.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156863v1/bat-lnl-1/igt@xe_exec_queue_property@invalid-property.html">ABORT</a></li>
-<li>bat-ptl-vm:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4024-287aaa69490a7901df27fdd9cb9219074cb81445/bat-ptl-vm/igt@xe_exec_queue_property@invalid-property.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156863v1/bat-ptl-vm/igt@xe_exec_queue_property@invalid-property.html">ABORT</a></li>
-<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4024-287aaa69490a7901df27fdd9cb9219074cb81445/bat-bmg-2/igt@xe_exec_queue_property@invalid-property.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156863v1/bat-bmg-2/igt@xe_exec_queue_property@invalid-property.html">ABORT</a></li>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4024-287aaa69490a7901df27fdd9cb9219074cb81445/bat-adlp-7/igt@xe_exec_queue_property@invalid-property.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156863v1/bat-adlp-7/igt@xe_exec_queue_property@invalid-property.html">ABORT</a></li>
-<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4024-287aaa69490a7901df27fdd9cb9219074cb81445/bat-bmg-1/igt@xe_exec_queue_property@invalid-property.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156863v1/bat-bmg-1/igt@xe_exec_queue_property@invalid-property.html">ABORT</a></li>
-<li>bat-lnl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4024-287aaa69490a7901df27fdd9cb9219074cb81445/bat-lnl-2/igt@xe_exec_queue_property@invalid-property.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156863v1/bat-lnl-2/igt@xe_exec_queue_property@invalid-property.html">ABORT</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4024-287aaa69490a7901df27fdd9cb9219074cb81445 -&gt; xe-pw-156863v1</li>
-</ul>
-<p>IGT_8604: 8604<br />
-  xe-4024-287aaa69490a7901df27fdd9cb9219074cb81445: 287aaa69490a7901df27fdd9cb9219074cb81445<br />
-  xe-pw-156863v1: 156863v1</p>
-
-</body>
-</html>
-
---===============5571170943554499236==--
