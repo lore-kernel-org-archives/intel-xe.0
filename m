@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A381BCCFA05
-	for <intel-xe@archiver.kernel.org>; Fri, 31 Oct 2025 10:38:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4143CCCF9F8
+	for <intel-xe@archiver.kernel.org>; Fri, 31 Oct 2025 10:38:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6926510EB3B;
-	Fri, 31 Oct 2025 10:38:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0477C10EB34;
+	Fri, 31 Oct 2025 10:38:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZwjHdG1Y";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Qf0BSTxa";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2FEF010EB29;
- Fri, 31 Oct 2025 10:37:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A7F6710EB35;
+ Fri, 31 Oct 2025 10:37:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761907067; x=1793443067;
+ t=1761907077; x=1793443077;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=qSkpnVSinaVfGPMTlQFj7oh9L/cOh5f6b2MOPJwIqcE=;
- b=ZwjHdG1YfYU3E4af3ctTNBflF0rH6ppPkfRp/isbKCeS3pDCl7LonSMT
- zIMJw96xiLeYghxTqk1z9dZZsdoTEWHXSsat5/iMWERgZ/a1ljHTdd0Nj
- HpawpMNsqteMrmqUZ/JEEanlKf8zqPXiZzj8duRjzP3c+CMTeS4Zk9zyD
- lvai5zueQQT1zfADJvhPQiSxa9Enbh6bxw+p9hG6cvAdSCC1fef5WgD8D
- FC335NgiKCnnfxB793N4Ro9sRhXOwPzh7thiAdBsBJcBeJM0lRPehmvBC
- HUdU66ys5Kdel9Wy/H1EcnuiZpBsjVEIGg22HLibt4KC2yqYqmiQIREqy g==;
-X-CSE-ConnectionGUID: 1g/fVk8JQpSCanLtAMQ78A==
-X-CSE-MsgGUID: roaFLS3ySSml1gB7BIS9fw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11598"; a="86690899"
-X-IronPort-AV: E=Sophos;i="6.19,269,1754982000"; d="scan'208";a="86690899"
+ bh=j+ssrSWGUNB5bEu6OWRLsxJzOZF1tfhM8tftgVPO4NI=;
+ b=Qf0BSTxaEb/qAunZriPB5gNQAw/zG7/+JrbJwgdQGqoG5qQeb7+4Qcx8
+ Flmg1KcTHEnGKrREYJ3K66N9ZO+JNtmBesImkdSxZzvimLWEBppJFdPbY
+ RiDjERnu2bjChu2uf4SB45YL+rUqv/aTlqLI0/wT5GwfTDGmXfuAt/O2v
+ LasUoNDZN9RlvXG42TXbiSdAkUA+PVopFfgKNRilkrhJsxQBoAsrXj905
+ t5NN15kuNlOGVvMc+7P9Dh3Ms2r6AzaBy0yIMkEX3XI3gIPtIM7Bh9uH0
+ lgYHxVOZLLRBaBS6p9dnn2EabYzAPFT5UpGVmUMIGeixyUADPohHUOjmc w==;
+X-CSE-ConnectionGUID: 0lGOjbj2RrGX3luxJmqMEQ==
+X-CSE-MsgGUID: qsJaz7ajSx2BIpxX9Hmr2w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11598"; a="86690907"
+X-IronPort-AV: E=Sophos;i="6.19,269,1754982000"; d="scan'208";a="86690907"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Oct 2025 03:37:47 -0700
-X-CSE-ConnectionGUID: vpH4Z+rVQmC6fIfQAPXG5g==
-X-CSE-MsgGUID: dv2U6hIDTc26NWawY9Orbg==
+ 31 Oct 2025 03:37:57 -0700
+X-CSE-ConnectionGUID: vnf79PyjRpGQVDkaDDdbfg==
+X-CSE-MsgGUID: jvs4NgVwSQag0TcoJEstYA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,269,1754982000"; d="scan'208";a="190554737"
+X-IronPort-AV: E=Sophos;i="6.19,269,1754982000"; d="scan'208";a="190554768"
 Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
- by fmviesa005.fm.intel.com with ESMTP; 31 Oct 2025 03:37:43 -0700
+ by fmviesa005.fm.intel.com with ESMTP; 31 Oct 2025 03:37:54 -0700
 From: Suraj Kandpal <suraj.kandpal@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
 Cc: ankit.k.nautiyal@intel.com, arun.r.murthy@intel.com, uma.shankar@intel.com,
  gustavo.sousa@intel.com, lucas.demarchi@intel.com,
  Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH v3 21/25] drm/i915/ltphy: Define the LT Phy state compare
- function
-Date: Fri, 31 Oct 2025 16:06:39 +0530
-Message-Id: <20251031103643.4147868-22-suraj.kandpal@intel.com>
+Subject: [PATCH v3 25/25] drm/i915/ltphy: Modify the step that need to be
+ skipped
+Date: Fri, 31 Oct 2025 16:06:43 +0530
+Message-Id: <20251031103643.4147868-26-suraj.kandpal@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251031103643.4147868-1-suraj.kandpal@intel.com>
 References: <20251031103643.4147868-1-suraj.kandpal@intel.com>
@@ -69,147 +69,93 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Define function to compare the state and if mismatch is detected
-dump both the states.
+Bspec has changed the non tbt pll enable sequence now we skip
+steps 5-17 if no config change has occurred.
 
 Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 Reviewed-by: Arun R Murthy <arun.r.murthy@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 33 +++++++++++++++++++-
- drivers/gpu/drm/i915/display/intel_lt_phy.c  | 30 ++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_lt_phy.h  |  6 ++++
- 3 files changed, 68 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_lt_phy.c | 63 +++++++++++----------
+ 1 file changed, 33 insertions(+), 30 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 402064bbd6ec..6fa698c41179 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -101,6 +101,7 @@
- #include "intel_hdmi.h"
- #include "intel_hotplug.h"
- #include "intel_link_bw.h"
-+#include "intel_lt_phy.h"
- #include "intel_lvds.h"
- #include "intel_lvds_regs.h"
- #include "intel_modeset_setup.h"
-@@ -5002,6 +5003,24 @@ static bool allow_vblank_delay_fastset(const struct intel_crtc_state *old_crtc_s
- 	       !intel_crtc_has_type(old_crtc_state, INTEL_OUTPUT_DSI);
- }
- 
-+static void
-+pipe_config_lt_phy_pll_mismatch(struct drm_printer *p, bool fastset,
-+				const struct intel_crtc *crtc,
-+				const char *name,
-+				const struct intel_lt_phy_pll_state *a,
-+				const struct intel_lt_phy_pll_state *b)
-+{
-+	struct intel_display *display = to_intel_display(crtc);
-+	char *chipname = "LTPHY";
-+
-+	pipe_config_mismatch(p, fastset, crtc, name, chipname);
-+
-+	drm_printf(p, "expected:\n");
-+	intel_lt_phy_dump_hw_state(display, a);
-+	drm_printf(p, "found:\n");
-+	intel_lt_phy_dump_hw_state(display, b);
-+}
-+
- bool
- intel_pipe_config_compare(const struct intel_crtc_state *current_config,
- 			  const struct intel_crtc_state *pipe_config,
-@@ -5126,6 +5145,16 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
- 	} \
- } while (0)
- 
-+#define PIPE_CONF_CHECK_PLL_LT(name) do { \
-+	if (!intel_lt_phy_pll_compare_hw_state(&current_config->name, \
-+					       &pipe_config->name)) { \
-+		pipe_config_lt_phy_pll_mismatch(&p, fastset, crtc, __stringify(name), \
-+						&current_config->name, \
-+						&pipe_config->name); \
-+		ret = false; \
-+	} \
-+} while (0)
-+
- #define PIPE_CONF_CHECK_TIMINGS(name) do {     \
- 	PIPE_CONF_CHECK_I(name.crtc_hdisplay); \
- 	PIPE_CONF_CHECK_I(name.crtc_htotal); \
-@@ -5353,7 +5382,9 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
- 		PIPE_CONF_CHECK_PLL(dpll_hw_state);
- 
- 	/* FIXME convert MTL+ platforms over to dpll_mgr */
--	if (DISPLAY_VER(display) >= 14)
-+	if (HAS_LT_PHY(display))
-+		PIPE_CONF_CHECK_PLL_LT(dpll_hw_state.ltpll);
-+	else if (DISPLAY_VER(display) >= 14)
- 		PIPE_CONF_CHECK_PLL_CX0(dpll_hw_state.cx0pll);
- 
- 	PIPE_CONF_CHECK_X(dsi_pll.ctrl);
 diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.c b/drivers/gpu/drm/i915/display/intel_lt_phy.c
-index 8d0c99036c50..f8a32e289158 100644
+index 2af573e6ea68..7dba37d83d3e 100644
 --- a/drivers/gpu/drm/i915/display/intel_lt_phy.c
 +++ b/drivers/gpu/drm/i915/display/intel_lt_phy.c
-@@ -1853,6 +1853,36 @@ void intel_lt_phy_set_signal_levels(struct intel_encoder *encoder,
- 	intel_lt_phy_transaction_end(encoder, wakeref);
- }
+@@ -1674,40 +1674,43 @@ void intel_lt_phy_pll_enable(struct intel_encoder *encoder,
+ 					 XE3PLPD_MACCLK_TURNON_LATENCY_US, 2, NULL))
+ 			drm_warn(display->drm, "PHY %c PLL MacCLK Ack assertion Timeout after %dus.\n",
+ 				 phy_name(phy), XE3PLPD_MACCLK_TURNON_LATENCY_US);
++
++		/*
++		 * 13. Ungate the forward clock by setting
++		 * PORT_CLOCK_CTL[Forward Clock Ungate] = 1.
++		 */
++		intel_de_rmw(display, XELPDP_PORT_CLOCK_CTL(display, port),
++			     XELPDP_FORWARD_CLOCK_UNGATE,
++			     XELPDP_FORWARD_CLOCK_UNGATE);
++
++		/* 14. SW clears PORT_BUF_CTL2 [PHY Pulse Status]. */
++		intel_de_rmw(display, XELPDP_PORT_BUF_CTL2(display, port),
++			     lane_phy_pulse_status,
++			     lane_phy_pulse_status);
++		/*
++		 * 15. Clear the PHY VDR register 0xCC4[Rate Control VDR Update] over
++		 * PHY message bus for Owned PHY Lanes.
++		 */
++		rate_update = intel_lt_phy_read(encoder, INTEL_LT_PHY_LANE0, LT_PHY_RATE_UPDATE);
++		rate_update &= ~LT_PHY_RATE_CONTROL_VDR_UPDATE;
++		intel_lt_phy_write(encoder, owned_lane_mask, LT_PHY_RATE_UPDATE,
++				   rate_update, MB_WRITE_COMMITTED);
++
++		/* 16. Poll for PORT_BUF_CTL2 register PHY Pulse Status = 1 for Owned PHY Lanes. */
++		if (intel_de_wait_custom(display, XELPDP_PORT_BUF_CTL2(display, port),
++					 lane_phy_pulse_status, lane_phy_pulse_status,
++					 XE3PLPD_RATE_CALIB_DONE_LATENCY_US, 2, NULL))
++			drm_warn(display->drm, "PHY %c PLL rate not changed after %dus.\n",
++				 phy_name(phy), XE3PLPD_RATE_CALIB_DONE_LATENCY_US);
++
++		/* 17. SW clears PORT_BUF_CTL2 [PHY Pulse Status]. */
++		intel_de_rmw(display, XELPDP_PORT_BUF_CTL2(display, port),
++			     lane_phy_pulse_status,
++			     lane_phy_pulse_status);
+ 	} else {
+ 		intel_de_write(display, DDI_CLK_VALFREQ(encoder->port), crtc_state->port_clock);
+ 	}
  
-+void intel_lt_phy_dump_hw_state(struct intel_display *display,
-+				const struct intel_lt_phy_pll_state *hw_state)
-+{
-+	int i, j;
-+
-+	drm_dbg_kms(display->drm, "lt_phy_pll_hw_state:\n");
-+	for (i = 0; i < 3; i++) {
-+		drm_dbg_kms(display->drm, "config[%d] = 0x%.4x,\n",
-+			    i, hw_state->config[i]);
-+	}
-+
-+	for (i = 0; i <= 12; i++)
-+		for (j = 3; j >= 0; j--)
-+			drm_dbg_kms(display->drm, "vdr_data[%d][%d] = 0x%.4x,\n",
-+				    i, j, hw_state->data[i][j]);
-+}
-+
-+bool
-+intel_lt_phy_pll_compare_hw_state(const struct intel_lt_phy_pll_state *a,
-+				  const struct intel_lt_phy_pll_state *b)
-+{
-+	if (memcmp(&a->config, &b->config, sizeof(a->config)) != 0)
-+		return false;
-+
-+	if (memcmp(&a->data, &b->data, sizeof(a->data)) != 0)
-+		return false;
-+
-+	return true;
-+}
-+
- void intel_xe3plpd_pll_enable(struct intel_encoder *encoder,
- 			      const struct intel_crtc_state *crtc_state)
- {
-diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.h b/drivers/gpu/drm/i915/display/intel_lt_phy.h
-index 6e67ae78801c..e93e5becc316 100644
---- a/drivers/gpu/drm/i915/display/intel_lt_phy.h
-+++ b/drivers/gpu/drm/i915/display/intel_lt_phy.h
-@@ -8,6 +8,7 @@
- 
- #include <linux/types.h>
- 
-+struct intel_display;
- struct intel_encoder;
- struct intel_crtc_state;
- struct intel_lt_phy_pll_state;
-@@ -22,6 +23,11 @@ int intel_lt_phy_calc_port_clock(struct intel_encoder *encoder,
- 				 const struct intel_crtc_state *crtc_state);
- void intel_lt_phy_set_signal_levels(struct intel_encoder *encoder,
- 				    const struct intel_crtc_state *crtc_state);
-+void intel_lt_phy_dump_hw_state(struct intel_display *display,
-+				const struct intel_lt_phy_pll_state *hw_state);
-+bool
-+intel_lt_phy_pll_compare_hw_state(const struct intel_lt_phy_pll_state *a,
-+				  const struct intel_lt_phy_pll_state *b);
- void intel_xe3plpd_pll_enable(struct intel_encoder *encoder,
- 			      const struct intel_crtc_state *crtc_state);
- void intel_xe3plpd_pll_disable(struct intel_encoder *encoder);
+-	/* 13. Ungate the forward clock by setting PORT_CLOCK_CTL[Forward Clock Ungate] = 1. */
+-	intel_de_rmw(display, XELPDP_PORT_CLOCK_CTL(display, port),
+-		     XELPDP_FORWARD_CLOCK_UNGATE,
+-		     XELPDP_FORWARD_CLOCK_UNGATE);
+-
+-	/* 14. SW clears PORT_BUF_CTL2 [PHY Pulse Status]. */
+-	intel_de_rmw(display, XELPDP_PORT_BUF_CTL2(display, port),
+-		     lane_phy_pulse_status,
+-		     lane_phy_pulse_status);
+-	/*
+-	 * 15. Clear the PHY VDR register 0xCC4[Rate Control VDR Update] over PHY message bus for
+-	 * Owned PHY Lanes.
+-	 */
+-	rate_update = intel_lt_phy_read(encoder, INTEL_LT_PHY_LANE0, LT_PHY_RATE_UPDATE);
+-	rate_update &= ~LT_PHY_RATE_CONTROL_VDR_UPDATE;
+-	intel_lt_phy_write(encoder, owned_lane_mask, LT_PHY_RATE_UPDATE,
+-			   rate_update, MB_WRITE_COMMITTED);
+-
+-	/* 16. Poll for PORT_BUF_CTL2 register PHY Pulse Status = 1 for Owned PHY Lanes. */
+-	if (intel_de_wait_custom(display, XELPDP_PORT_BUF_CTL2(display, port),
+-				 lane_phy_pulse_status, lane_phy_pulse_status,
+-				 XE3PLPD_RATE_CALIB_DONE_LATENCY_US, 2, NULL))
+-		drm_warn(display->drm, "PHY %c PLL rate not changed after %dus.\n",
+-			 phy_name(phy), XE3PLPD_RATE_CALIB_DONE_LATENCY_US);
+-
+-	/* 17. SW clears PORT_BUF_CTL2 [PHY Pulse Status]. */
+-	intel_de_rmw(display, XELPDP_PORT_BUF_CTL2(display, port),
+-		     lane_phy_pulse_status,
+-		     lane_phy_pulse_status);
+-
+ 	/*
+ 	 * 18. Follow the Display Voltage Frequency Switching - Sequence After Frequency Change.
+ 	 * We handle this step in bxt_set_cdclk()
 -- 
 2.34.1
 
