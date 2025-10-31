@@ -4,74 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2A8E1CCFA06
-	for <intel-xe@archiver.kernel.org>; Mon,  3 Nov 2025 12:45:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CB539CCFA05
+	for <intel-xe@archiver.kernel.org>; Mon,  3 Nov 2025 12:45:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 349BB10E3CB;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 357FE10E3CC;
 	Mon,  3 Nov 2025 12:45:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=wbinvd.org header.i=@wbinvd.org header.b="GXa+vhZC";
+	dkim=pass (2048-bit key; unprotected) header.d=suse.com header.i=@suse.com header.b="KYdLJHoJ";
 	dkim-atps=neutral
-Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com
- [209.85.214.174])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3477D10EBD3
- for <intel-xe@lists.freedesktop.org>; Fri, 31 Oct 2025 14:49:07 +0000 (UTC)
-Received: by mail-pl1-f174.google.com with SMTP id
- d9443c01a7336-294fe7c2e69so18759725ad.0
- for <intel-xe@lists.freedesktop.org>; Fri, 31 Oct 2025 07:49:07 -0700 (PDT)
+Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com
+ [209.85.221.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8935C10EB31
+ for <intel-xe@lists.freedesktop.org>; Fri, 31 Oct 2025 10:59:55 +0000 (UTC)
+Received: by mail-wr1-f41.google.com with SMTP id
+ ffacd0b85a97d-429bccca1e8so653252f8f.0
+ for <intel-xe@lists.freedesktop.org>; Fri, 31 Oct 2025 03:59:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=wbinvd.org; s=wbinvd; t=1761922147; x=1762526947; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=x8KBeMeYUon6BQraYtudMUHNR0dTqRE5CF3A2DrTv9E=;
- b=GXa+vhZCd1em1IU73Ju9B1U21iX7L0DsUskGMEHjVe0NxrFY3PiaKojGg0EKDRd1Wc
- J5qdyZFDYnyexZCt97W0p5ilBPQBQphR+oQp6kU4gb+2nNmRI26tZ0g6loRBT+gqIaCY
- df751cmGZMYQ0pf4z1u4vi9T9NdnDT5Nd1ZshI5Ir7LWTuPKTH/DSuQ/C6vEFnK3cA0z
- nNGboAgfgGGOw3KqGCguxlUMXhips+2kXifto4HpOUjzyEWcqhnww8FB/jEXlOH+gudq
- KpnMIkfgr7/g1muzpUOgZyD0ekcxnvc9M7XIK+RHmeCuUnPxN3VUm0He/znVOrtLS/us
- fAOQ==
+ d=suse.com; s=google; t=1761908394; x=1762513194; darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=meReBaQ99dOF1c+7jSgsU4KTZxApPi6bDuZ+XPUjUx4=;
+ b=KYdLJHoJh3ktdgT9emDn5nWorwevNpOC4vOtduHizzb9D72/MlBw6PoJwFoIw4iSoG
+ 77/t7MxZJUml+I6GY7dyZc4ACS2wYhmkxOQVp3+N+9duLn6rOdbOx2UfzSUKMTOlrMUV
+ OJr2mC7KvAeeRM1GOTsrBFMzZXXl73FTTOxqzPENOIXsxpr5awDTD3v98YcUBMNTOd5H
+ bpSPfkXztZFazVnuH8WTQzZbeaPE+0x0isBhM9A3rnFe4JOwe9r4sK+yvBJvDrIP+t22
+ OmIWNew5BBZwC3lLdCDLx3m4fy+6yOApTEZWH14xPFJiD8ucNJveboSuI+jG2FXhMpkX
+ zw2Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1761922147; x=1762526947;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=x8KBeMeYUon6BQraYtudMUHNR0dTqRE5CF3A2DrTv9E=;
- b=iJFEEOn6wOPzdEzF3y8XTY0eOz3g5T9RrXhGYkFWE/s+pwpHDQuqH47HJtr9E2Lsh/
- /S7jZlyD2BCjOu5sY3IxVloVK3/FD5kVF8q1u6L2BIc9POH6px3WkUAg+9zUiW9CXj3k
- HWgyKF/Fe6ZKEvMCus5ahsuh/zqU6SoP6Gtl8U6e5/q+niCL3EynMhg4NbNX6gaoteyn
- iz4tctxNGmc2IsIs3h53exJ9BU7Qh1T2e+z3ITCxI6SnyQjzEvDGcvXV4QGV7WKWe327
- eqAgSodntRYYgz6r6pNNJjC8xla+ZYH5hibf2xTUfkFIMY8V3k1+Y50cPKd/rtcsWUId
- l0Sg==
+ d=1e100.net; s=20230601; t=1761908394; x=1762513194;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=meReBaQ99dOF1c+7jSgsU4KTZxApPi6bDuZ+XPUjUx4=;
+ b=g6Gj4/jgQN3vJnw2CiMovt4m8BguWJKOz8TTsrgwRe9n+yNRFdabhsZKT7oozI6BKu
+ rDP7uwuU49DEKIE4hqFbK0JAsjIPV2KR3KucSSAvVUg2x7xZK9COJcDeX+WBC1OVGmxg
+ wFIeXDnisSub9yAHSLMGFUJMqW2IvEzRYpMiB4keJApRal+J1pu6I3YNuflCrZRK1Bh2
+ Ib++8AlxESV1f6jMv7/ShuveuvrBjUP2xbITvgS+glDJoIbnfJIHNcBfKHl3wDC4372c
+ HzGj8FseHfi+qJwID/yUe5LVKg3vMDKbmnrapicfW0IqgQ9cMdL6SPwOOyx5z1tioLjy
+ 0rFw==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUxr607leuBmbeuhUQBDsrcUuuatp1Al7SVqSHwGKTAFgw1PjXBU9xoOk8t+aMR/avsh1+hZnqWDg==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwuIRa7nHF7aysSIRV00k8NRkikin+IMpIOnAx9X0NBsY0PhWLA
- TFjygixkMKEc2OwcXO7KFyTDOcphVV+LfZhtlCYl4StJRQrbsPGhWrlvriCnjJHjUsk=
-X-Gm-Gg: ASbGncs/UuO/DVtpO4+eeToyFBQKaodKUsDkjYAwz2THt7XtX+fSX+YsP+PodjPc9Lx
- NTdCNZHCj49WOvCL9JNs/b8qzE7Uo/l3gvwqaQHXXzSZHiVKUpn1mMdY6OGM7sMymQZxNg8Ras6
- yvuYU/nODoNoE3503oJ5jlUTjqpRiAP3EIeZTOx85TL7Tu/P69DB+WMPxhW/JhUdCuyvcbIR/oi
- 7LGIYdfsFRgOAe7fP5zap5DG/jANmtlpHsvPsTrIlA9D5RxobIVZBzq5lEWLua96A3x0c5jGDh7
- MKKdh1epdNHxUHqch51I7Hxz8aH0KmTDEbKX4xFXtLxDkgzQ0Nn4VCaIz2JMz42wvLYRnJQPmJv
- MK6wbyIaKnkoWzwQX0Q30ObEG8QOEfhC/mdSTLv1Dq+QNQ2vsRNvEvmowqljGxGLH3q7WPndUJE
- 8N4uv/C0coYCqt
-X-Google-Smtp-Source: AGHT+IHPF2x0DGEn26EwYhqgvCtNpun32sTU7vWqgQS1gMXJpOJKN9HNTpNSlv3IlQSbO5TEaferpw==
-X-Received: by 2002:a17:902:d487:b0:273:59ef:4c30 with SMTP id
- d9443c01a7336-2951a39e2eemr55702665ad.15.1761922146176; 
- Fri, 31 Oct 2025 07:49:06 -0700 (PDT)
-Received: from mozart.vkv.me ([192.184.167.117])
+ AJvYcCVtK7c1HaaCsg7uJdsiRsHEjwTLs4uKy8QwrwoHJJ4cTpBzxDKwCTAqUDjPUCf/JNYWbYjt9KHERA==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yx81cOpZ1IyvdKUeo9BGulMvZ2lcdfpt4U/4cLEB/HZnqWxXu/r
+ Z2TTN7vGzLNgXvtLzP+7JjZnfhbdbZS2a7BVi1friskQ0PjtXwkB4uLn2tsG7ryorxY=
+X-Gm-Gg: ASbGncu+JK3JZvhGRmNcutQSaBg+AlgoLaIp0IKx5zGgtNn9y7pI50Xpkt4RXdBfQvp
+ 4KXyRYupy16IwCCHve7lHDLzcZdTFXQrnU0tRty2DZvy7ZTtmkafZOsfZFZsRyYP2vwDdn0IA8w
+ 5VdIf1IfUZAK0MGLiZHyJg/m768Dp0jTgYsqQ/Hxxpmebp7LWNM4xojkBtq34ufI7RK+qBDG2bN
+ bJwxRdOfhXlSa+Jpb9clFdE1yrKYEEozH/J3K6DXRvOmZZVZR9z2IVi75dh4IElQfh19DC1gQ9j
+ E6SUNlsjQ+SqgkbkCNeC9tKsMGxCq8YSL3NWjQ3L7LWFP6qcpsaXY8Ep1n3kPNfQ43/VlVP+GWS
+ GvfO7h6gabYCMVhWpfABJJF0QpiK+j0ZeCSoTAILQqhKnvX/qx4QjrxTwhMK2bGBBZKj14/vAed
+ rn/qcd1GnJALzV1jIo4YFsxdbO
+X-Google-Smtp-Source: AGHT+IFdGTxG3bZ9hI1ZvBKqkA/ZCyuorhXgGNfQCxf182NXCKhTyNIAS3xqjvn2tp4aiso7n8hemw==
+X-Received: by 2002:a05:6000:40ca:b0:426:d820:a3f9 with SMTP id
+ ffacd0b85a97d-429bd5eea69mr2252061f8f.0.1761908393997; 
+ Fri, 31 Oct 2025 03:59:53 -0700 (PDT)
+Received: from localhost.localdomain ([2a00:6d43:105:c401:e307:1a37:2e76:ce91])
  by smtp.gmail.com with ESMTPSA id
- d9443c01a7336-295269bd2fesm26064835ad.105.2025.10.31.07.49.05
+ ffacd0b85a97d-429c110035esm2965528f8f.6.2025.10.31.03.59.53
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 31 Oct 2025 07:49:05 -0700 (PDT)
-From: Calvin Owens <calvin@wbinvd.org>
-To: linux-kernel@vger.kernel.org
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
- thomas.hellstrom@linux.intel.com, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Subject: [PATCH] drm/xe: Don't use absolute path in generated header comment
-Date: Fri, 31 Oct 2025 07:48:53 -0700
-Message-ID: <7fa5ef0acc89a9d94c328f6651c1d405bcd833a4.1761920974.git.calvin@wbinvd.org>
-X-Mailer: git-send-email 2.47.3
+ Fri, 31 Oct 2025 03:59:53 -0700 (PDT)
+From: Marco Crivellari <marco.crivellari@suse.com>
+To: linux-kernel@vger.kernel.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Cc: Tejun Heo <tj@kernel.org>, Lai Jiangshan <jiangshanlai@gmail.com>,
+ Frederic Weisbecker <frederic@kernel.org>,
+ Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
+ Marco Crivellari <marco.crivellari@suse.com>,
+ Michal Hocko <mhocko@suse.com>, Lucas De Marchi <lucas.demarchi@intel.com>,
+ Thomas Hellstrom <thomas.hellstrom@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>
+Subject: [PATCH 1/2] drm/xe: replace use of system_unbound_wq with
+ system_dfl_wq
+Date: Fri, 31 Oct 2025 11:59:38 +0100
+Message-ID: <20251031105939.129200-2-marco.crivellari@suse.com>
+X-Mailer: git-send-email 2.51.0
+In-Reply-To: <20251031105939.129200-1-marco.crivellari@suse.com>
+References: <20251031105939.129200-1-marco.crivellari@suse.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Mon, 03 Nov 2025 12:45:22 +0000
@@ -89,39 +98,114 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Building the XE driver through Yocto throws this QA warning:
+Currently if a user enqueue a work item using schedule_delayed_work() the
+used wq is "system_wq" (per-cpu wq) while queue_delayed_work() use
+WORK_CPU_UNBOUND (used when a cpu is not specified). The same applies to
+schedule_work() that is using system_wq and queue_work(), that makes use
+again of WORK_CPU_UNBOUND.
 
-    WARNING: mc:house:linux-stable-6.17-r0 do_package_qa: QA Issue: File /usr/src/debug/linux-stable/6.17/drivers/gpu/drm/xe/generated/xe_device_wa_oob.h in package linux-stable-src contains reference to TMPDIR [buildpaths]
-    WARNING: mc:house:linux-stable-6.17-r0 do_package_qa: QA Issue: File /usr/src/debug/linux-stable/6.17/drivers/gpu/drm/xe/generated/xe_wa_oob.h in package linux-stable-src contains reference to TMPDIR [buildpaths]
+This lack of consistency cannot be addressed without refactoring the API.
 
-...because the comment at the top of the generated header contains the
-absolute path to the rules file at build time:
+system_unbound_wq should be the default workqueue so as not to enforce
+locality constraints for random work whenever it's not required.
 
-    * This file was generated from rules: /home/calvinow/git/meta-house/build/tmp-house/work-shared/nuc14rvhu7/kernel-source/drivers/gpu/drm/xe/xe_device_wa_oob.rules
+Adding system_dfl_wq to encourage its use when unbound work should be used.
 
-Fix this minor annoyance by putting the basename of the rules file in
-the generated comment instead of the absolute path, so the generated
-header contents no longer depend on the location of the kernel source.
+The old system_unbound_wq will be kept for a few release cycles.
 
-Signed-off-by: Calvin Owens <calvin@wbinvd.org>
+Suggested-by: Tejun Heo <tj@kernel.org>
+Signed-off-by: Marco Crivellari <marco.crivellari@suse.com>
 ---
- drivers/gpu/drm/xe/xe_gen_wa_oob.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_devcoredump.c | 2 +-
+ drivers/gpu/drm/xe/xe_execlist.c    | 2 +-
+ drivers/gpu/drm/xe/xe_guc_ct.c      | 4 ++--
+ drivers/gpu/drm/xe/xe_oa.c          | 2 +-
+ drivers/gpu/drm/xe/xe_vm.c          | 4 ++--
+ 5 files changed, 7 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gen_wa_oob.c b/drivers/gpu/drm/xe/xe_gen_wa_oob.c
-index 247e41c1c48d..e7a50b1348b7 100644
---- a/drivers/gpu/drm/xe/xe_gen_wa_oob.c
-+++ b/drivers/gpu/drm/xe/xe_gen_wa_oob.c
-@@ -195,7 +195,8 @@ int main(int argc, const char *argv[])
- 		}
+diff --git a/drivers/gpu/drm/xe/xe_devcoredump.c b/drivers/gpu/drm/xe/xe_devcoredump.c
+index 203e3038cc81..806335487021 100644
+--- a/drivers/gpu/drm/xe/xe_devcoredump.c
++++ b/drivers/gpu/drm/xe/xe_devcoredump.c
+@@ -362,7 +362,7 @@ static void devcoredump_snapshot(struct xe_devcoredump *coredump,
+ 
+ 	xe_engine_snapshot_capture_for_queue(q);
+ 
+-	queue_work(system_unbound_wq, &ss->work);
++	queue_work(system_dfl_wq, &ss->work);
+ 
+ 	xe_force_wake_put(gt_to_fw(q->gt), fw_ref);
+ 	dma_fence_end_signalling(cookie);
+diff --git a/drivers/gpu/drm/xe/xe_execlist.c b/drivers/gpu/drm/xe/xe_execlist.c
+index f83d421ac9d3..99010709f0d2 100644
+--- a/drivers/gpu/drm/xe/xe_execlist.c
++++ b/drivers/gpu/drm/xe/xe_execlist.c
+@@ -422,7 +422,7 @@ static void execlist_exec_queue_kill(struct xe_exec_queue *q)
+ static void execlist_exec_queue_destroy(struct xe_exec_queue *q)
+ {
+ 	INIT_WORK(&q->execlist->destroy_async, execlist_exec_queue_destroy_async);
+-	queue_work(system_unbound_wq, &q->execlist->destroy_async);
++	queue_work(system_dfl_wq, &q->execlist->destroy_async);
+ }
+ 
+ static int execlist_exec_queue_set_priority(struct xe_exec_queue *q,
+diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
+index 18f6327bf552..bc2ec3603e7b 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ct.c
++++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+@@ -543,7 +543,7 @@ int xe_guc_ct_enable(struct xe_guc_ct *ct)
+ 	spin_lock_irq(&ct->dead.lock);
+ 	if (ct->dead.reason) {
+ 		ct->dead.reason |= (1 << CT_DEAD_STATE_REARM);
+-		queue_work(system_unbound_wq, &ct->dead.worker);
++		queue_work(system_dfl_wq, &ct->dead.worker);
  	}
+ 	spin_unlock_irq(&ct->dead.lock);
+ #endif
+@@ -2186,7 +2186,7 @@ static void ct_dead_capture(struct xe_guc_ct *ct, struct guc_ctb *ctb, u32 reaso
  
--	fprintf(args[ARGS_CHEADER].f, HEADER, args[ARGS_INPUT].fn, prefix, prefix);
-+	fprintf(args[ARGS_CHEADER].f, HEADER, xbasename(args[ARGS_INPUT].fn),
-+		prefix, prefix);
+ 	spin_unlock_irqrestore(&ct->dead.lock, flags);
  
- 	ret = parse(args[ARGS_INPUT].f, args[ARGS_CSOURCE].f,
- 		    args[ARGS_CHEADER].f, prefix);
+-	queue_work(system_unbound_wq, &(ct)->dead.worker);
++	queue_work(system_dfl_wq, &(ct)->dead.worker);
+ }
+ 
+ static void ct_dead_print(struct xe_dead_ct *dead)
+diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
+index a4894eb0d7f3..4e362cd43d51 100644
+--- a/drivers/gpu/drm/xe/xe_oa.c
++++ b/drivers/gpu/drm/xe/xe_oa.c
+@@ -967,7 +967,7 @@ static void xe_oa_config_cb(struct dma_fence *fence, struct dma_fence_cb *cb)
+ 	struct xe_oa_fence *ofence = container_of(cb, typeof(*ofence), cb);
+ 
+ 	INIT_DELAYED_WORK(&ofence->work, xe_oa_fence_work_fn);
+-	queue_delayed_work(system_unbound_wq, &ofence->work,
++	queue_delayed_work(system_dfl_wq, &ofence->work,
+ 			   usecs_to_jiffies(NOA_PROGRAM_ADDITIONAL_DELAY_US));
+ 	dma_fence_put(fence);
+ }
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 027e6ce648c5..94827ca4b7dc 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -1073,7 +1073,7 @@ static void vma_destroy_cb(struct dma_fence *fence,
+ 	struct xe_vma *vma = container_of(cb, struct xe_vma, destroy_cb);
+ 
+ 	INIT_WORK(&vma->destroy_work, vma_destroy_work_func);
+-	queue_work(system_unbound_wq, &vma->destroy_work);
++	queue_work(system_dfl_wq, &vma->destroy_work);
+ }
+ 
+ static void xe_vma_destroy(struct xe_vma *vma, struct dma_fence *fence)
+@@ -1832,7 +1832,7 @@ static void xe_vm_free(struct drm_gpuvm *gpuvm)
+ 	struct xe_vm *vm = container_of(gpuvm, struct xe_vm, gpuvm);
+ 
+ 	/* To destroy the VM we need to be able to sleep */
+-	queue_work(system_unbound_wq, &vm->destroy_work);
++	queue_work(system_dfl_wq, &vm->destroy_work);
+ }
+ 
+ struct xe_vm *xe_vm_lookup(struct xe_file *xef, u32 id)
 -- 
-2.47.3
+2.51.0
 
