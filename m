@@ -4,47 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 44596CCFA00
-	for <intel-xe@archiver.kernel.org>; Fri, 31 Oct 2025 16:46:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D008CCCF9F8
+	for <intel-xe@archiver.kernel.org>; Fri, 31 Oct 2025 16:47:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0413D10EBF5;
-	Fri, 31 Oct 2025 16:46:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9829610E274;
+	Fri, 31 Oct 2025 16:47:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="lWJW1vx1";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NXyD66Xh";
 	dkim-atps=neutral
-Received: from lankhorst.se (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 98D2310EBF5
- for <intel-xe@lists.freedesktop.org>; Fri, 31 Oct 2025 16:46:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1761929182;
- bh=TspC/sJW4yRXALi9mVy1BzXbON26xsilwevJzde5Bjs=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=lWJW1vx1gBoOD4JuXxB+MrGqTT8i/T42Bmy0dDSq9a4WjPstqMhnIS1GK2mTllMQO
- fEIs6lrD/d3pVeYyYlfi9scjt3YCRn7D4XxESQ6GD/Tb1P9zqu86FQTyqVfb7Z0RcX
- gDXuFbTWenh6vhtoo/cfhvPldUtkWJ5halFXq1goQDwypHiILxNkS9HqgyQCD5AzZM
- 5YiQmBiRHX4Z1pXWUyswytWbnuVm+5qEbKXfysHjHVYxVkgtLRg1xsDM+bXOOfxh6+
- FfawZZ5DjPlOt9SXrkRmwlcTF9QKXXV7JlsC19lPKdOzvIe9jPbRDm1AoToqbNsare
- 3C7gbnGmZNnsA==
-Message-ID: <c1a45495-b5d3-47ce-b412-d14d63a0e1d2@lankhorst.se>
-Date: Fri, 31 Oct 2025 17:46:21 +0100
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7BD3910E274
+ for <intel-xe@lists.freedesktop.org>; Fri, 31 Oct 2025 16:47:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1761929278; x=1793465278;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=R9HYwe3z8pkYix5GTME/u96wYZv0j49uCOOAO03iye4=;
+ b=NXyD66Xh3Q58XDX0CLudVJjyZ60GA2Lt96HYxDNINXg10YNHppkCSYDo
+ PQS7v01yv1lhDs/InS88MYNAfveCPUovfpLmjDGFlCxR8SPTe+AsWoLvJ
+ /YpZZ/hEOMbVKh0vB4Pxdk9RExSj5Ad0VVwNRh/QmaVukLmAsYZH5T4gU
+ TNsclT1lC/ezu0c2pOq1jWpEI2P6njUikq2XBrUIG7q7SY0u/9pC479mK
+ DC8gPYiQZJC9erHsuSLZkBjZC+0XyyF1s2P29dVTMklgeL597Ft93kaXc
+ zIR4HanqbEhENqUMxgru4lfYD9uiiuWYsgnNV8wVExUyQzlWAV2GJa6M/ A==;
+X-CSE-ConnectionGUID: OOqw7E2TSFuc6184rtqvWg==
+X-CSE-MsgGUID: 1LCxsy2cRKKdIJPoEpF+9w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11599"; a="63114322"
+X-IronPort-AV: E=Sophos;i="6.19,269,1754982000"; d="scan'208";a="63114322"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Oct 2025 09:47:58 -0700
+X-CSE-ConnectionGUID: Tx1Y5ivJTJeVi63xWLEz8Q==
+X-CSE-MsgGUID: DoBnCDq0Rp6zPysjm5tYuA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,269,1754982000"; d="scan'208";a="186397287"
+Received: from lucas-s2600cw.jf.intel.com ([10.54.55.69])
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Oct 2025 09:47:58 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
+ Raag Jadav <raag.jadav@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>
+Subject: [PATCH v4] drm/xe/gt_throttle: Avoid TOCTOU when monitoring
+ reasons
+Date: Fri, 31 Oct 2025 09:47:25 -0700
+Message-ID: <20251031-gt-throttle-cri-v4-1-b4691ee9ebf4@intel.com>
+X-Mailer: git-send-email 2.51.0
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [FOR CI 8/8] drm/i915/display: Use intel_de_write_fw in
- intel_pipe_fastset
-To: Jani Nikula <jani.nikula@intel.com>, Rodrigo Vivi
- <rodrigo.vivi@intel.com>, Gustavo Sousa <gustavo.sousa@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-References: <20251030184710.359870-1-dev@lankhorst.se>
- <20251030184710.359870-9-dev@lankhorst.se>
- <176185045446.3303.6205563147139756281@intel.com>
- <411769c1-d90c-418b-bd3d-30ed434d6285@lankhorst.se>
- <176185593644.3303.41997236546217622@intel.com> <aQSwSmSvXXqVle0v@intel.com>
- <158968ad7a9326ebe7a9ef400df557f557479f83@intel.com>
-Content-Language: en-US
-From: Maarten Lankhorst <dev@lankhorst.se>
-In-Reply-To: <158968ad7a9326ebe7a9ef400df557f557479f83@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+X-Change-ID: 20251023-gt-throttle-cri-06f3c9d33c44
+X-Mailer: b4 0.15-dev-50d74
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,105 +69,176 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hey,
-
-Den 2025-10-31 kl. 16:43, skrev Jani Nikula:
-> On Fri, 31 Oct 2025, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
->> On Thu, Oct 30, 2025 at 05:25:36PM -0300, Gustavo Sousa wrote:
->>> Quoting Maarten Lankhorst (2025-10-30 17:00:29-03:00)
->>>> Hey,
->>>>
->>>> Den 2025-10-30 kl. 19:54, skrev Gustavo Sousa:
->>>>> Quoting Maarten Lankhorst (2025-10-30 15:47:10-03:00)
->>>>>> intel_set_pipe_src_size(), hsw_set_linetime_wm(),
->>>>>> intel_cpu_transcoder_set_m1_n1() and intel_set_transcoder_timings_lrr()
->>>>>> are called from an atomic context on PREEMPT_RT, and should be using the
->>>>>> _fw functions.
->>>>>>
->>>>>> Again noticed when trying to disable preemption in vblank evasion:
->>>>>> <3> BUG: sleeping function called from invalid context at kernel/locking/spinlock_rt.c:48
->>>>>> <3> in_atomic(): 1, irqs_disabled(): 0, non_block: 0, pid: 1505, name: kms_cursor_lega
->>>>>> <3> preempt_count: 1, expected: 0
->>>>>> <3> RCU nest depth: 0, expected: 0
->>>>>> <4> 4 locks held by kms_cursor_lega/1505:
->>>>>> <4>  #0: ffffc90003c6f988 (crtc_ww_class_acquire){+.+.}-{0:0}, at: drm_mode_atomic_ioctl+0x13b/0xe90
->>>>>> <4>  #1: ffffc90003c6f9b0 (crtc_ww_class_mutex){+.+.}-{3:3}, at: drm_mode_atomic_ioctl+0x13b/0xe90
->>>>>> <4>  #2: ffff888135b838b8 (&intel_dp->psr.lock){+.+.}-{3:3}, at: intel_psr_lock+0xc5/0xf0 [xe]
->>>>>> <4>  #3: ffff88812607bbc0 (&wl->lock){+.+.}-{2:2}, at: intel_dmc_wl_get+0x3c/0x140 [xe]
->>>>>> <4> CPU: 6 UID: 0 PID: 1505 Comm: kms_cursor_lega Tainted: G     U              6.18.0-rc3-lgci-xe-xe-pw-156729v1+ #1 PREEMPT_{RT,(lazy)}
->>>>>> <4> Tainted: [U]=USER
->>>>>> <4> Hardware name: Intel Corporation Panther Lake Client Platform/PTL-UH LP5 T3 RVP1, BIOS PTLPFWI1.R00.3383.D02.2509240621 09/24/2025
->>>>>> <4> Call Trace:
->>>>>> <4>  <TASK>
->>>>>> <4>  dump_stack_lvl+0xc1/0xf0
->>>>>> <4>  dump_stack+0x10/0x20
->>>>>> <4>  __might_resched+0x174/0x260
->>>>>> <4>  rt_spin_lock+0x63/0x200
->>>>>> <4>  ? intel_dmc_wl_get+0x3c/0x140 [xe]
->>>>>> <4>  intel_dmc_wl_get+0x3c/0x140 [xe]
->>>>>
->>>>> Isn't the real problem reported here that we are using a regular
->>>>> spinlock for DMC wakelock instead of a raw spinlock?
->>>>
->>>> Regardless whether it is, we should be using the _fw variant here.
->>
->> Right. I do believe the _fw variant is the best choice here. We just need to
->> review the registers accessed to ensure that they are not in any range of the fw
->> for the none of the platforms, including the old ones.
->>
->> But I believe the patch deserves a different commit message.
->>
->>>> The idea of the pipe_start/end() sections are that all relevant locks are taken,
->>>> and then complete as deterministically as possible. That's a lot easier when all
->>>> locks are taken in advance. If the wakelock was needed, it needed to be taken
->>>> before entering the critical section between pipe_start/pipe_end
->>>>
->>>> You're pointing out the related problem that the DMC wakelock implementation is
->>>> incorrect right now.
->>>>
->>>> I believe that too, but we should aim for a better solution. The DMC wakelock
->>>> implementation should not hide the fact it exists, instead it should be
->>>> acquired explicitly like the xe_force_wake_get/put() implementation.
->>>>
->>>> This may be a bit of work, but it will be more deterministic than the implicit
->>>> api used in i915.
->>>>
->>>> For correctness we could validate and print a debug error if the DMC wakelock
->>>> was not taken.
->>>>
->>>> intel_de_read() can still optionally validate that the DMC wakelock was taken for
->>>> ranges that need it if debuggig is enabled, but we should aim to remove the
->>>> current spinlock/refcount implementation.
->>>
->>> That's an interesting view.
->>>
->>> Adding display maintainers to the discussion here. Jani, Rodrigo, how to
->>> you see DMC wakelock being changed in the way proposed by Maarten?
->>
->> My opinion might be a bit biased here because I prefer the explicit FW
->> as handled by the Xe rather than hidden in the mmio call like i915.
->>
->> So, perhaps the explicit WL is also a good path. But I haven't looked the
->> code deep enough to get to a final conclusion.
->>
->> But the quickest fix for the message in the commit message seems to be the
->> raw spinlock. Perhaps we do this and we run a calm analysis on the explicit
->> WL or not on a follow up?
-> 
-> The patch says "FOR CI". I'm reading that as "just sending for CI, not
-> for review", since there are no Reviewed-bys here. That's also what the
-> cover letter says.
-> 
-> So I've just mostly been ignoring the series.
-Yeah, originally I meant to send this out for CI, not review feedback, but ended up getting some anyway.
-
-Regardless of how to proceed, I think we should replace all the intel_de_read/writes with their _fw variant if it's taken in the critical section.
-
-This is because the ataomic updates has already taken all locks it should, it prevents the need to change the DMC lock to a raw spinlock, and keeps the atomic update entirely deterministic, with no locking in the most time sensitive part at all.
-
-This will hopefully make the -RT developers more satisfied about disabling pre-emption, when we can point to an absolute upper bound of 100 us in which irqs or preemption are disabled.
-
-Regardless, I'm an advocate of making the DMC wakelock explicit like in xe.
-
-Kind regards,
-~Maarten Lankhorst
+It's currently not possible to safely monitor if there's throttling=0D
+happening and what are the reasons. The approach of reading the status=0D
+and then reading the reasons is not reliable as by the time sysadmin=0D
+reads the reason, the throttling could not be happening anymore.=0D
+=0D
+Previous tentative to fix that[1] was breaking the ABI and potentially=0D
+sysadmin's scripts. This takes a different approach of adding and=0D
+documenting the additional attribute. It's still valuable, though=0D
+redundant, to provide the simpler 0/1 interface.=0D
+=0D
+In order to avoid userspace knowledge on the bitmask meaning and to be=0D
+able to maintain the kernel side in sync with possible changes in=0D
+future, just walk the attribute group and check what are the masks that=0D
+match the value read.=0D
+=0D
+[1] https://lore.kernel.org/intel-xe/20241025092238.167042-1-raag.jadav@int=
+el.com/=0D
+=0D
+Cc: Raag Jadav <raag.jadav@intel.com>=0D
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>=0D
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>=0D
+---=0D
+All refactors and CRI support merged - refer to the previous versions=0D
+for those. Here there's only the new `reasons` attribute.=0D
+=0D
+- v2: Use space as separator (Rodrigo)=0D
+- v3:=0D
+  - Improve doc (Rodrigo, Raag)=0D
+  - Emit "none" if there's no throttling (Rodrigo, Raag)=0D
+  - s/status_reasons/reasons/ (Raag)=0D
+=0D
+---=0D
+Overall series:=0D
+=0D
+Changes in v4:=0D
+- Drop all merged patches, keeping just the last one with new `reasons`=0D
+  attribute=0D
+- Link to v3: https://patch.msgid.link/20251029-gt-throttle-cri-v3-0-d1f5ab=
+bb8114@intel.com=0D
+=0D
+Changes in v3:=0D
+- Use space as separator for the reasons (Rodrigo)=0D
+- Link to v2: https://patch.msgid.link/20251026-gt-throttle-cri-v2-0-41f828=
+8a71a7@intel.com=0D
+=0D
+Changes in v2:=0D
+- Handle comments on v1, noted on individual patches=0D
+- Improve documentation, adding it to the html output=0D
+- Add patch to introduce status_reasons attribute to overcome the TOCTOU=0D
+  of the current API=0D
+- Link to v1: https://patch.msgid.link/20251023-gt-throttle-cri-v1-0-9f36f3=
+c8861c@intel.com=0D
+---=0D
+ drivers/gpu/drm/xe/xe_gt_throttle.c | 54 +++++++++++++++++++++++++++++++++=
+++--=0D
+ 1 file changed, 52 insertions(+), 2 deletions(-)=0D
+=0D
+diff --git a/drivers/gpu/drm/xe/xe_gt_throttle.c b/drivers/gpu/drm/xe/xe_gt=
+_throttle.c=0D
+index fa7068aac3344..5d95ddafc05ee 100644=0D
+--- a/drivers/gpu/drm/xe/xe_gt_throttle.c=0D
++++ b/drivers/gpu/drm/xe/xe_gt_throttle.c=0D
+@@ -22,9 +22,15 @@=0D
+  * Their availability depend on the platform and some may not be visible i=
+f that=0D
+  * reason is not available.=0D
+  *=0D
++ * The ``reasons`` attribute can be used by sysadmin to monitor all possib=
+le=0D
++ * reasons for throttling and report them. It's preferred over monitoring=
+=0D
++ * ``status`` and then reading the reason from individual attributes since=
+ that=0D
++ * is racy. If there's no throttling happening, "none" is returned.=0D
++ *=0D
+  * The following attributes are available on Crescent Island platform:=0D
+  *=0D
+- * - ``status``: Overall throttle status=0D
++ * - ``status``: Overall throttle status (0: no throttling, 1: throttling)=
+=0D
++ * - ``reasons``: Array of reasons causing throttling separated by space=0D
+  * - ``reason_pl1``: package PL1=0D
+  * - ``reason_pl2``: package PL2=0D
+  * - ``reason_pl4``: package PL4=0D
+@@ -43,7 +49,8 @@=0D
+  *=0D
+  * Other platforms support the following reasons:=0D
+  *=0D
+- * - ``status``: Overall status=0D
++ * - ``status``: Overall throttle status (0: no throttling, 1: throttling)=
+=0D
++ * - ``reasons``: Array of reasons causing throttling separated by space=0D
+  * - ``reason_pl1``: package PL1=0D
+  * - ``reason_pl2``: package PL2=0D
+  * - ``reason_pl4``: package PL4, Iccmax etc.=0D
+@@ -111,12 +118,53 @@ static ssize_t reason_show(struct kobject *kobj,=0D
+ 	return sysfs_emit(buff, "%u\n", is_throttled_by(gt, ta->mask));=0D
+ }=0D
+ =0D
++static const struct attribute_group *get_platform_throttle_group(struct xe=
+_device *xe);=0D
++=0D
++static ssize_t reasons_show(struct kobject *kobj,=0D
++			    struct kobj_attribute *attr, char *buff)=0D
++{=0D
++	struct xe_gt *gt =3D throttle_to_gt(kobj);=0D
++	struct xe_device *xe =3D gt_to_xe(gt);=0D
++	const struct attribute_group *group;=0D
++	struct attribute **pother;=0D
++	ssize_t ret =3D 0;=0D
++	u32 reasons;=0D
++=0D
++	reasons =3D xe_gt_throttle_get_limit_reasons(gt);=0D
++	group =3D get_platform_throttle_group(xe);=0D
++=0D
++	for (pother =3D group->attrs; *pother; pother++) {=0D
++		struct kobj_attribute *kattr =3D container_of(*pother, struct kobj_attri=
+bute, attr);=0D
++		struct throttle_attribute *other_ta =3D kobj_attribute_to_throttle(kattr=
+);=0D
++=0D
++		if (other_ta->mask !=3D U32_MAX && reasons & other_ta->mask)=0D
++			ret +=3D sysfs_emit_at(buff, ret, "%s ", (*pother)->name);=0D
++	}=0D
++=0D
++	if (ret)=0D
++		/* Drop extra space from last iteration above */=0D
++		ret--;=0D
++	else=0D
++		ret +=3D sysfs_emit_at(buff, ret, "none");=0D
++=0D
++	ret +=3D sysfs_emit_at(buff, ret, "\n");=0D
++=0D
++	return ret;=0D
++}=0D
++=0D
+ #define THROTTLE_ATTR_RO(name, _mask)				\=0D
+ 	struct throttle_attribute attr_##name =3D	{		\=0D
+ 		.attr =3D __ATTR(name, 0444, reason_show, NULL),	\=0D
+ 		.mask =3D _mask,					\=0D
+ 	}=0D
+ =0D
++#define THROTTLE_ATTR_RO_FUNC(name, _mask, _show)		\=0D
++	struct throttle_attribute attr_##name =3D	{		\=0D
++		.attr =3D __ATTR(name, 0444, _show, NULL),	\=0D
++		.mask =3D _mask,					\=0D
++	}=0D
++=0D
++static THROTTLE_ATTR_RO_FUNC(reasons, 0, reasons_show);=0D
+ static THROTTLE_ATTR_RO(status, U32_MAX);=0D
+ static THROTTLE_ATTR_RO(reason_pl1, POWER_LIMIT_1_MASK);=0D
+ static THROTTLE_ATTR_RO(reason_pl2, POWER_LIMIT_2_MASK);=0D
+@@ -128,6 +176,7 @@ static THROTTLE_ATTR_RO(reason_vr_thermalert, VR_THERMA=
+LERT_MASK);=0D
+ static THROTTLE_ATTR_RO(reason_vr_tdc, VR_TDC_MASK);=0D
+ =0D
+ static struct attribute *throttle_attrs[] =3D {=0D
++	&attr_reasons.attr.attr,=0D
+ 	&attr_status.attr.attr,=0D
+ 	&attr_reason_pl1.attr.attr,=0D
+ 	&attr_reason_pl2.attr.attr,=0D
+@@ -153,6 +202,7 @@ static THROTTLE_ATTR_RO(reason_psys_crit, PSYS_CRIT_MAS=
+K);=0D
+ =0D
+ static struct attribute *cri_throttle_attrs[] =3D {=0D
+ 	/* Common */=0D
++	&attr_reasons.attr.attr,=0D
+ 	&attr_status.attr.attr,=0D
+ 	&attr_reason_pl1.attr.attr,=0D
+ 	&attr_reason_pl2.attr.attr,=0D
+=0D
+=0D
+=0D
