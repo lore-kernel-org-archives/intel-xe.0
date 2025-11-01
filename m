@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AE02CCCFA0C
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A51CFCCFA08
 	for <intel-xe@archiver.kernel.org>; Sat,  1 Nov 2025 01:02:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CDF9A10E310;
+	by gabe.freedesktop.org (Postfix) with ESMTP id C51D610E30A;
 	Sat,  1 Nov 2025 01:02:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DmTXcGEG";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="favu5tqL";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D5F2D10E058
- for <intel-xe@lists.freedesktop.org>; Sat,  1 Nov 2025 01:02:32 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 912FF10E110
+ for <intel-xe@lists.freedesktop.org>; Sat,  1 Nov 2025 01:02:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761958953; x=1793494953;
+ t=1761958954; x=1793494954;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=A12Ylo6khqVK5cl1XCkZzIoq2NFELJY6EwlW5guLZEQ=;
- b=DmTXcGEG0crCTNuL7b40uI5mklO2bKf6rQqlHKfpMERK2M+Fdmkweb6b
- DeTjoOAMlK068V8qbWHecylvrM9gTkGNp4IIqTDSQAO8Vepwky/o/ilEe
- 5K8DJB76+tMTWA8ooNaTuRDssIUYguUao01XKxEFz+8HCtq7dyUPE/Nln
- qWIuJScEheIGEkMrwDp024JFbKgoYRng7vTCgkhpH/peCxUoR8BxjZT/i
- r/b/upSrLdbF1FlfVOATbrEtwQt62M8mp5XnlVOAH2gQ6Sq7Tt2j/vZQ6
- d1RoHte+ydnpj1z7PMIwW9I/jG2/+7g0y1rGCloPl6u40lq3JRvX9pAcu g==;
-X-CSE-ConnectionGUID: DZzktgVqR4ygmtOE1VPLlQ==
-X-CSE-MsgGUID: dOuhhi7gRAu7prmBIxYn6A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11599"; a="75575692"
-X-IronPort-AV: E=Sophos;i="6.19,270,1754982000"; d="scan'208";a="75575692"
+ bh=Be7wAjpMZ0ecdqw4B5w9Ma6L1ntmbjJla6i/GqV2GVE=;
+ b=favu5tqLcJ+RqG0s/brrEHDMjFsYf5s60KPRVtBuJnXIG4eknACV8JNf
+ ZCTpr5RemFhwwPw3hWiRDPnNXZajpz33xOWHUcpIhEP3iwXD5Idd182q2
+ QbHzE8u+CRwQqnM5P5Ha2fWadcdEAVq/bbXfB6r9HlaNNPpsUL4iVrQXy
+ 5Z6EX6fVENTmMr/cvBEOfzR/zoYyLVdgH/8u7pRKXW8OicHxE4hf9aqIA
+ zMivCmYJSVxvVmTUycYPrGVlum2kp+tXxfAzYe/ly3aC4yj0f1SMjNrWj
+ vlJiT+0byqZjOqzESNSBijl7vMzTly/yX1BA/BZQvnGZPrdWYfzGKhfmQ A==;
+X-CSE-ConnectionGUID: AaHf6ZDzS4etk6bedwhtjQ==
+X-CSE-MsgGUID: DTveVE0VTLGJHHeUuHkZ5w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11599"; a="75575700"
+X-IronPort-AV: E=Sophos;i="6.19,270,1754982000"; d="scan'208";a="75575700"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  31 Oct 2025 18:02:32 -0700
-X-CSE-ConnectionGUID: ovnk+xgkR66KVTTd/YGHlg==
-X-CSE-MsgGUID: Oa11x2g5TjCKr6w4VABzww==
+X-CSE-ConnectionGUID: n+0dcyF6S62EWp3tuiSr4w==
+X-CSE-MsgGUID: xczGGFpNSZq/GZYsi5xB/g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,270,1754982000"; d="scan'208";a="217020173"
+X-IronPort-AV: E=Sophos;i="6.19,270,1754982000"; d="scan'208";a="217020191"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  31 Oct 2025 18:02:31 -0700
@@ -45,10 +45,9 @@ From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: stuart.summers@intel.com, lucas.demarchi@intel.com,
  matthew.d.roper@intel.com
-Subject: [PATCH 05/12] drm/xe: Taint TLB invalidation seqno lock with
- GFP_KERNEL
-Date: Fri, 31 Oct 2025 18:02:18 -0700
-Message-Id: <20251101010225.3095457-6-matthew.brost@intel.com>
+Subject: [PATCH 09/12] drm/xe: Add xe_tlb_inval_idle helper
+Date: Fri, 31 Oct 2025 18:02:22 -0700
+Message-Id: <20251101010225.3095457-10-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251101010225.3095457-1-matthew.brost@intel.com>
 References: <20251101010225.3095457-1-matthew.brost@intel.com>
@@ -68,44 +67,69 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Taint TLB invalidation seqno lock with GFP_KERNEL as TLB invalidations
-can be in the path of reclaim (e.g., MMU notifiers).
+Introduce the xe_tlb_inval_idle helper to detect whether any TLB
+invalidations are currently in flight. This is used in context-based TLB
+invalidations to determine whether dummy TLB invalidations need to be
+sent to maintain proper TLB invalidation fence ordering..
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_tlb_inval.c | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+ drivers/gpu/drm/xe/xe_tlb_inval.c | 26 ++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_tlb_inval.h |  2 ++
+ 2 files changed, 28 insertions(+)
 
 diff --git a/drivers/gpu/drm/xe/xe_tlb_inval.c b/drivers/gpu/drm/xe/xe_tlb_inval.c
-index 918a59e686ea..7ee081b94f90 100644
+index 7ee081b94f90..32a0a882343b 100644
 --- a/drivers/gpu/drm/xe/xe_tlb_inval.c
 +++ b/drivers/gpu/drm/xe/xe_tlb_inval.c
-@@ -114,6 +114,16 @@ static void tlb_inval_fini(struct drm_device *drm, void *arg)
- 	xe_tlb_inval_reset(tlb_inval);
+@@ -141,6 +141,7 @@ int xe_gt_tlb_inval_init_early(struct xe_gt *gt)
+ 
+ 	tlb_inval->xe = xe;
+ 	tlb_inval->seqno = 1;
++	tlb_inval->seqno_recv = TLB_INVALIDATION_SEQNO_MAX - 1;
+ 	INIT_LIST_HEAD(&tlb_inval->pending_fences);
+ 	spin_lock_init(&tlb_inval->pending_lock);
+ 	spin_lock_init(&tlb_inval->lock);
+@@ -443,3 +444,28 @@ void xe_tlb_inval_fence_init(struct xe_tlb_inval *tlb_inval,
+ 		dma_fence_get(&fence->base);
+ 	fence->tlb_inval = tlb_inval;
  }
- 
-+static void primelockdep(struct xe_tlb_inval *tlb_inval)
++
++/**
++ * xe_tlb_inval_idle() - Initialize TLB invalidation is idle
++ * @tlb_inval: TLB invalidation client
++ *
++ * Check the TLB invalidation seqno to determine if it is idle (i.e., no TLB
++ * invalidations are in flight). Expected to be called in the backend after the
++ * seqno has been bumped, and takes this into account.
++ *
++ * Return: True if TLB invalidation client is idle, False otherwise
++ */
++bool xe_tlb_inval_idle(struct xe_tlb_inval *tlb_inval)
 +{
-+	if (!IS_ENABLED(CONFIG_LOCKDEP))
-+		return;
++	int next_recv;
 +
-+	fs_reclaim_acquire(GFP_KERNEL);
-+	might_lock(&tlb_inval->seqno_lock);
-+	fs_reclaim_release(GFP_KERNEL);
++	lockdep_assert_held(&tlb_inval->seqno_lock);
++
++	guard(spinlock_irq)(&tlb_inval->pending_lock);
++
++	next_recv = (tlb_inval->seqno_recv + 2) % TLB_INVALIDATION_SEQNO_MAX;
++	if (!next_recv)
++		next_recv = 1;
++
++	return next_recv == tlb_inval->seqno;
 +}
-+
- /**
-  * xe_gt_tlb_inval_init - Initialize TLB invalidation state
-  * @gt: GT structure
-@@ -140,6 +150,8 @@ int xe_gt_tlb_inval_init_early(struct xe_gt *gt)
- 	if (err)
- 		return err;
+diff --git a/drivers/gpu/drm/xe/xe_tlb_inval.h b/drivers/gpu/drm/xe/xe_tlb_inval.h
+index 05614915463a..44a6d9177489 100644
+--- a/drivers/gpu/drm/xe/xe_tlb_inval.h
++++ b/drivers/gpu/drm/xe/xe_tlb_inval.h
+@@ -43,4 +43,6 @@ xe_tlb_inval_fence_wait(struct xe_tlb_inval_fence *fence)
  
-+	primelockdep(tlb_inval);
+ void xe_tlb_inval_done_handler(struct xe_tlb_inval *tlb_inval, int seqno);
+ 
++bool xe_tlb_inval_idle(struct xe_tlb_inval *tlb_inval);
 +
- 	tlb_inval->job_wq = drmm_alloc_ordered_workqueue(&xe->drm,
- 							 "gt-tbl-inval-job-wq",
- 							 WQ_MEM_RECLAIM);
+ #endif	/* _XE_TLB_INVAL_ */
 -- 
 2.34.1
 
