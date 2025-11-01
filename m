@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CD9DFCCF9F8
-	for <intel-xe@archiver.kernel.org>; Sat,  1 Nov 2025 03:38:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3B0F1CCF9F8
+	for <intel-xe@archiver.kernel.org>; Sat,  1 Nov 2025 03:43:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9020410E0C4;
-	Sat,  1 Nov 2025 03:38:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CE6D210E339;
+	Sat,  1 Nov 2025 03:43:11 +0000 (UTC)
 Received: from 10055242dc62 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 061A110E03C;
- Sat,  1 Nov 2025 03:38:01 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8553920245277975771=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E4EC310E339;
+ Sat,  1 Nov 2025 03:43:09 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_Fix_serialization_on_burst_?=
- =?utf-8?q?of_unbinds_-_v2?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Context_based_TLB_invalid?=
+ =?utf-8?q?ations?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matthew Brost" <matthew.brost@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Sat, 01 Nov 2025 03:38:01 -0000
-Message-ID: <176196828101.8736.6651475582499170446@10055242dc62>
+Date: Sat, 01 Nov 2025 03:43:09 -0000
+Message-ID: <176196858991.8737.9904601059540281786@10055242dc62>
 X-Patchwork-Hint: ignore
-References: <20251031234050.3043507-1-matthew.brost@intel.com>
-In-Reply-To: <20251031234050.3043507-1-matthew.brost@intel.com>
+References: <20251101010225.3095457-1-matthew.brost@intel.com>
+In-Reply-To: <20251101010225.3095457-1-matthew.brost@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,155 +40,59 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8553920245277975771==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: Fix serialization on burst of unbinds - v2
-URL   : https://patchwork.freedesktop.org/series/156873/
-State : failure
+Series: Context based TLB invalidations
+URL   : https://patchwork.freedesktop.org/series/156874/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-4027-089e83683d58db86cc4c69d34fba3a96904e40e1_BAT -> xe-pw-156873v1_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+f867e605613af1770f90c4b0afd4a8f06424d1f0
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 32b8fe31dbd0fb412c3e2b71cb16dc4089623b82
+Author: Matthew Brost <matthew.brost@intel.com>
+Date:   Fri Oct 31 18:02:25 2025 -0700
 
-Summary
--------
+    drm/xe: Enable context TLB invalidations for CI
+    
+    Do not review, CI only.
+    
+    Signed-off-by: Matthew Brost <matthew.brost@intel.com>
++ /mt/dim checkpatch 089e83683d58db86cc4c69d34fba3a96904e40e1 drm-intel
+63fdaa83fd43 drm/xe: Add normalize_invalidation_range
+-:14: WARNING:BAD_SIGN_OFF: Non-standard signature: 'Sigend-off-by:' - perhaps 'Signed-off-by:'?
+#14: 
+Sigend-off-by: Nirmoy Das <nirmoy.das@intel.com>
 
-  **FAILURE**
+total: 0 errors, 1 warnings, 0 checks, 88 lines checked
+ad2b824c2f8f drm/xe: Make usm.asid_to_vm allocation use GFP_NOWAIT
+86f1aa804e5f drm/xe: Add xe_device_asid_to_vm helper
+acf19c56f324 drm/xe: Add vm to exec queues association
+1b4213d47ef9 drm/xe: Taint TLB invalidation seqno lock with GFP_KERNEL
+56457d21515a drm/xe: Do not forward invalid TLB invalidation seqnos to upper layers
+5080760fffb5 drm/xe: Rename send_tlb_inval_ppgtt to send_tlb_inval_asid_ppgtt
+9f87f012af5c drm/xe: Add send_tlb_inval_ppgtt helper
+d10f10ae2c31 drm/xe: Add xe_tlb_inval_idle helper
+93092f25f400 drm/xe: Add exec queue active vfunc
+8278f5ee18d5 drm/xe: Add context-based invalidation to GuC TLB invalidation backend
+-:67: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#67: FILE: drivers/gpu/drm/xe/xe_guc_tlb_inval.c:148:
++	xe_gt_assert(gt, (type == XE_GUC_TLB_INVAL_PAGE_SELECTIVE &&
++		     !xe->info.has_ctx_tlb_inval) ||
 
-  Serious unknown changes coming with xe-pw-156873v1_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-156873v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+-:99: WARNING:ONE_SEMICOLON: Statements terminations use 1 semicolon
+#99: FILE: drivers/gpu/drm/xe/xe_guc_tlb_inval.c:209:
++		return PTR_ERR(vm);;
 
-  
-
-Participating hosts (12 -> 12)
-------------------------------
-
-  No changes in participating hosts
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-156873v1_BAT:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@xe_waitfence@reltime:
-    - bat-dg2-oem2:       [PASS][1] -> [FAIL][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4027-089e83683d58db86cc4c69d34fba3a96904e40e1/bat-dg2-oem2/igt@xe_waitfence@reltime.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156873v1/bat-dg2-oem2/igt@xe_waitfence@reltime.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in xe-pw-156873v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@kms_flip@basic-plain-flip@d-edp1:
-    - bat-adlp-7:         [DMESG-WARN][3] ([Intel XE#4543]) -> [PASS][4] +1 other test pass
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4027-089e83683d58db86cc4c69d34fba3a96904e40e1/bat-adlp-7/igt@kms_flip@basic-plain-flip@d-edp1.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156873v1/bat-adlp-7/igt@kms_flip@basic-plain-flip@d-edp1.html
-
-  
-  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
+total: 0 errors, 1 warnings, 1 checks, 193 lines checked
+32b8fe31dbd0 drm/xe: Enable context TLB invalidations for CI
 
 
-Build changes
--------------
-
-  * Linux: xe-4027-089e83683d58db86cc4c69d34fba3a96904e40e1 -> xe-pw-156873v1
-
-  IGT_8605: 8605
-  xe-4027-089e83683d58db86cc4c69d34fba3a96904e40e1: 089e83683d58db86cc4c69d34fba3a96904e40e1
-  xe-pw-156873v1: 156873v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156873v1/index.html
-
---===============8553920245277975771==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Fix serialization on burst of unbinds - v2</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/156873/">https://patchwork.freedesktop.org/series/156873/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156873v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156873v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4027-089e83683d58db86cc4c69d34fba3a96904e40e1_BAT -&gt; xe-pw-156873v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-156873v1_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-156873v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (12 -&gt; 12)</h2>
-<p>No changes in participating hosts</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-156873v1_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@xe_waitfence@reltime:<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4027-089e83683d58db86cc4c69d34fba3a96904e40e1/bat-dg2-oem2/igt@xe_waitfence@reltime.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156873v1/bat-dg2-oem2/igt@xe_waitfence@reltime.html">FAIL</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-156873v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_flip@basic-plain-flip@d-edp1:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4027-089e83683d58db86cc4c69d34fba3a96904e40e1/bat-adlp-7/igt@kms_flip@basic-plain-flip@d-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156873v1/bat-adlp-7/igt@kms_flip@basic-plain-flip@d-edp1.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4027-089e83683d58db86cc4c69d34fba3a96904e40e1 -&gt; xe-pw-156873v1</li>
-</ul>
-<p>IGT_8605: 8605<br />
-  xe-4027-089e83683d58db86cc4c69d34fba3a96904e40e1: 089e83683d58db86cc4c69d34fba3a96904e40e1<br />
-  xe-pw-156873v1: 156873v1</p>
-
-</body>
-</html>
-
---===============8553920245277975771==--
