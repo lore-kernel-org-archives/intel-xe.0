@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4BC60CCFA02
-	for <intel-xe@archiver.kernel.org>; Sat,  1 Nov 2025 01:02:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 862D4CCFA09
+	for <intel-xe@archiver.kernel.org>; Sat,  1 Nov 2025 01:02:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0013910E110;
-	Sat,  1 Nov 2025 01:02:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9B88210E239;
+	Sat,  1 Nov 2025 01:02:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MLd/WOjr";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Z7+kDpAD";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B81AF10E110
- for <intel-xe@lists.freedesktop.org>; Sat,  1 Nov 2025 01:02:32 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 518B710E112
+ for <intel-xe@lists.freedesktop.org>; Sat,  1 Nov 2025 01:02:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761958953; x=1793494953;
+ t=1761958954; x=1793494954;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=VHCKS7frk7pGSmmvINReXozRtK5sD1CbefSZt2Zoqec=;
- b=MLd/WOjrwXVvAnKvsqZMvI7pp1RXeKPBPqHrKaM8XR8hS3eTsiNq5Ouu
- vkYZAvADePd/NM5kgK2oV8ujO+zI81dkr7S6gewkIQF2LvUtaOPXG19UO
- nsU0AIUxiF4C/giTiySsJ6078P/KWmSOxXUsy3U6foWwMtV37j35NJRT2
- /37F5a0Emwr625vt8Bsp5tSjrEZInefWDH2OlaY6jehu2cpGvWeNoeJBP
- M6L/ncfpKHEKhLwIoErMVrMR7ba9RS8GkP9vNs6fKV3YzmyUopi+8jT39
- mmOVYR16QriFamgygNym6RDoSwQz3VaBmZ9CEOtJwvZgFXfm0cyO+GIg7 w==;
-X-CSE-ConnectionGUID: nq2r0WmBTUa+JpflO1HmDw==
-X-CSE-MsgGUID: k+VkxhmXTIqYq0/Px9I/Pw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11599"; a="75575689"
-X-IronPort-AV: E=Sophos;i="6.19,270,1754982000"; d="scan'208";a="75575689"
+ bh=6w8SusIp0AqNTuI6kLYCYF77vh+bF79J0OT5SOBaZ6k=;
+ b=Z7+kDpADzlOI66A2MKagpiTEBkveyfp7ApqdeB0VWC4utk/x7dW4REtB
+ bRd5HjTmV47NUufXyjOvVfjBx1Ur6IxVq1HDtLeggQxICQ3BNAkvTaOuG
+ MFxDPHvm/HUOAuNpX4dh01/VoVizr0E/H69usXSs9icBH/fGYlBBJUQIf
+ x0OBNh6tzAmnklh4655+noR8jtJUwuxA+53M0xZ0g6Sd+slvkuiu1O8v4
+ IzhMb//NZCQZyCNClSYa0JQpjGU7mTp8Nbcl+ADbaX34kDXhlWkzkoVP+
+ tQYXcTp6be9OmUeD2qubeYMWk2aa5Mhf8Tht6CwDmRUyCoW8dr+2OTu9d A==;
+X-CSE-ConnectionGUID: 1fl3jIoQSi6TcuMOj/z1uQ==
+X-CSE-MsgGUID: PjwmH2piSZCoLaVOaIxcrw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11599"; a="75575697"
+X-IronPort-AV: E=Sophos;i="6.19,270,1754982000"; d="scan'208";a="75575697"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  31 Oct 2025 18:02:32 -0700
-X-CSE-ConnectionGUID: 7nUW1w9pQ8iASTKhMu5BzQ==
-X-CSE-MsgGUID: fLrNALmBTfe8dgtVtmXUXA==
+X-CSE-ConnectionGUID: mnV7NZBRSPCXyVX1Z153Dw==
+X-CSE-MsgGUID: B3HBu2rfTDmt3B4vCRuJPw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,270,1754982000"; d="scan'208";a="217020167"
+X-IronPort-AV: E=Sophos;i="6.19,270,1754982000"; d="scan'208";a="217020164"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  31 Oct 2025 18:02:31 -0700
@@ -45,9 +45,9 @@ From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: stuart.summers@intel.com, lucas.demarchi@intel.com,
  matthew.d.roper@intel.com
-Subject: [PATCH 03/12] drm/xe: Add xe_device_asid_to_vm helper
-Date: Fri, 31 Oct 2025 18:02:16 -0700
-Message-Id: <20251101010225.3095457-4-matthew.brost@intel.com>
+Subject: [PATCH 02/12] drm/xe: Make usm.asid_to_vm allocation use GFP_NOWAIT
+Date: Fri, 31 Oct 2025 18:02:15 -0700
+Message-Id: <20251101010225.3095457-3-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251101010225.3095457-1-matthew.brost@intel.com>
 References: <20251101010225.3095457-1-matthew.brost@intel.com>
@@ -67,70 +67,28 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Introduce the xe_device_asid_to_vm helper, which can be used throughout
-the driver to resolve the VM from a given ASID.
+Ensure the asid_to_vm lookup is reclaim-safe so it can be performed
+during TLB invalidations, which is necessary for context-based TLB
+invalidation support.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device.c | 25 +++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_device.h |  4 ++++
- 2 files changed, 29 insertions(+)
+ drivers/gpu/drm/xe/xe_vm.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 86d5960476af..57907904c49d 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -1290,3 +1290,28 @@ void xe_device_declare_wedged(struct xe_device *xe)
- 		drm_dev_wedged_event(&xe->drm, xe->wedged.method, NULL);
- 	}
- }
-+
-+/**
-+ * xe_device_asid_to_vm() - Find VM from ASID
-+ * @xe: the &xe_device
-+ * @asid: Address space ID
-+ *
-+ * Find a VM from ASID and take a reference to VM which caller must drop.
-+ * Reclaim safe.
-+ *
-+ * Return: VM on success, ERR_PTR on failure
-+ */
-+struct xe_vm *xe_device_asid_to_vm(struct xe_device *xe, u32 asid)
-+{
-+	struct xe_vm *vm;
-+
-+	down_read(&xe->usm.lock);
-+	vm = xa_load(&xe->usm.asid_to_vm, asid);
-+	if (vm)
-+		xe_vm_get(vm);
-+	else
-+		vm = ERR_PTR(-EINVAL);
-+	up_read(&xe->usm.lock);
-+
-+	return vm;
-+}
-diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
-index 32cc6323b7f6..538202eebc16 100644
---- a/drivers/gpu/drm/xe/xe_device.h
-+++ b/drivers/gpu/drm/xe/xe_device.h
-@@ -6,6 +6,8 @@
- #ifndef _XE_DEVICE_H_
- #define _XE_DEVICE_H_
- 
-+struct xe_vm;
-+
- #include <drm/drm_util.h>
- 
- #include "xe_device_types.h"
-@@ -195,6 +197,8 @@ void xe_file_put(struct xe_file *xef);
- 
- int xe_is_injection_active(void);
- 
-+struct xe_vm *xe_device_asid_to_vm(struct xe_device *xe, u32 asid);
-+
- /*
-  * Occasionally it is seen that the G2H worker starts running after a delay of more than
-  * a second even after being queued and activated by the Linux workqueue subsystem. This
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 00f3520dec38..84f4c8f1be33 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -1632,7 +1632,7 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags, struct xe_file *xef)
+ 		down_write(&xe->usm.lock);
+ 		err = xa_alloc_cyclic(&xe->usm.asid_to_vm, &asid, vm,
+ 				      XA_LIMIT(1, XE_MAX_ASID - 1),
+-				      &xe->usm.next_asid, GFP_KERNEL);
++				      &xe->usm.next_asid, GFP_NOWAIT);
+ 		up_write(&xe->usm.lock);
+ 		if (err < 0)
+ 			goto err_close;
 -- 
 2.34.1
 
