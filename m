@@ -4,163 +4,164 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 25AE3CCF9E3
-	for <intel-xe@archiver.kernel.org>; Sun,  2 Nov 2025 17:37:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E6B38CCF9E3
+	for <intel-xe@archiver.kernel.org>; Sun,  2 Nov 2025 18:02:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B964510E0D7;
-	Sun,  2 Nov 2025 17:37:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A33DE10E1D5;
+	Sun,  2 Nov 2025 18:02:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gMesCSde";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ceh6o2T0";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7EFCF10E0D7
- for <intel-xe@lists.freedesktop.org>; Sun,  2 Nov 2025 17:37:47 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 41E3910E076
+ for <intel-xe@lists.freedesktop.org>; Sun,  2 Nov 2025 18:02:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1762105067; x=1793641067;
+ t=1762106555; x=1793642555;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=nA1Ij1DUCW1yWwTYxsDLeHvtqxhwHrppUiE7ENfWxNg=;
- b=gMesCSdeF/McxSySKDMp1AXn/Wlrd7pIjImdIQQWqcwkE51PGZeYBMrC
- dQz/XB6eK0GTzNVnsrWcIoHp5LDZOrhaSuRY9Ixy4ZoEkuiV3gAOQNHY8
- q1WfJCJodcQHWNhzEysPOEIfjJLO6TjaCZ/jwuPJe2ZVq+dAysTymbo6/
- gWHHXcWPjpOHBzP/wzXPr3epdmJ/5LZFyKgJkl9dPXdO6w2uc2w+jDohw
- FhigZdN/Y062gKKZ/v6bbtQ1O6l7vHXZ0KIayaX7HtQ4Yj6YnQmkv9uEK
- J1sx+tYYDa4veG0VgEQUrFZTSxgmK2v0wuMybsdKYdit5b5JZfjDhqbuF w==;
-X-CSE-ConnectionGUID: Evbb/I4FQeKH2usxf1escQ==
-X-CSE-MsgGUID: jgqvAi0TSKSz/oI6vVySpg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11601"; a="64226142"
-X-IronPort-AV: E=Sophos;i="6.19,274,1754982000"; d="scan'208";a="64226142"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ bh=FweTKH8wdP1L/1sbN+urr86UbeODFn0VezCaF4bVB4A=;
+ b=ceh6o2T0AJaBoGEbQ/T+QXsm5P3k4PYXJZcdDMGQiTzcYdbByrx36Z9J
+ zmQz7H/oxWBsLwK2GldDOws+E+cpYOp4L+qekXr+GCwXyZWkHoo2XbXqe
+ wdHBcFm5qX3Cq2DKT8uzSZHx/6IdZfxC5U5XRSjMIMRqafwC3Nqude6xP
+ m8CZuOj6/6PGG5Kd+REAkcHAud1OIDisXcEndI+3Xv/N+A8HKUL3BaDcf
+ TZApRswV3sKoAJL8QCNfL7wxFMEix13eRIsuUSWZHBHfR47XRodiXkw7Y
+ tF/8NWd/fBiAcbevOnNWUMgN+wSub0/NuCI1n6RZzmoTMbsURr45VL4Ft g==;
+X-CSE-ConnectionGUID: hjvhLunXS/+2fprFjN/JJQ==
+X-CSE-MsgGUID: KS7dhSwURpS895oxHjYwWA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11601"; a="64226776"
+X-IronPort-AV: E=Sophos;i="6.19,274,1754982000"; d="scan'208";a="64226776"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Nov 2025 09:37:47 -0800
-X-CSE-ConnectionGUID: fPAXyzVrQEa2x2dMil2IiQ==
-X-CSE-MsgGUID: ILCAl5RoQnWkVlLh1+jQDw==
+ 02 Nov 2025 10:02:35 -0800
+X-CSE-ConnectionGUID: yvjLL/prQhaL6hbs5smuEQ==
+X-CSE-MsgGUID: wwWHS8GpSzCYc04ztRSRtQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,274,1754982000"; d="scan'208";a="191796895"
-Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
- by fmviesa004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Nov 2025 09:37:47 -0800
+X-IronPort-AV: E=Sophos;i="6.19,274,1754982000"; d="scan'208";a="191023573"
+Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
+ by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Nov 2025 10:02:35 -0800
 Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
- fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Sun, 2 Nov 2025 09:37:46 -0800
+ 15.2.2562.27; Sun, 2 Nov 2025 10:02:34 -0800
 Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
  FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27 via Frontend Transport; Sun, 2 Nov 2025 09:37:46 -0800
-Received: from SA9PR02CU001.outbound.protection.outlook.com (40.93.196.12) by
+ 15.2.2562.27 via Frontend Transport; Sun, 2 Nov 2025 10:02:34 -0800
+Received: from BYAPR05CU005.outbound.protection.outlook.com (52.101.85.70) by
  edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Sun, 2 Nov 2025 09:37:46 -0800
+ 15.2.2562.27; Sun, 2 Nov 2025 10:02:34 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=oXmDwS3kBDb9tq3aJ09rSdUJPfBKBii4JBktmRUqR15Z4ub6mMO5KNmzhYI0a4P1jy6L5L/wFHwbhVSfWHEYzUW6Gj60r9MYeDjllGTPXwqD6aXmBBBaQE6SxmxSE8bzk2VBHctyT+dKfzzfO7LRVu8fgEMEFwAC4Nmt8yBGuRq0IKuIszBHNNFBj1AySJN53QNPWkgaVOGRALjQXhAXxHzSAbQOOTAo/Gerop22B92i6GbJqeR+9P3u8tklBS8ht/o586J4jRU1U9ckunDNcmwKyN7PVUQ1yYeL0GDbfSBsGeF6h4kKzGDt6L20gLubmbVZCQilV/8kbQTPU3BlcQ==
+ b=vul0SmzCVKUcZDkmrKe25MI+ymW7sMn7/rt/EFnzlTMGAvG4BDIk+zPRPgDi9EkXFoq1a0D24tgzA1SGvoHuXbak+JkMtAwHkzR7CxjUG6uom9sWHg0oa2829O/Q91Qqr4IH0wpzH0/fBUmXP5Ozd0b1uqT7uV7/C5lcFULtNTq6HBum12XvGRZFOjTgKCFwrGXdiu176ICVBxNyiruTQhOBOlUas3EkTM4SnVEEVwzKPMUGBvtOO0LG4GXzkQ0Q8TfX1I+nm7aVulvjNJW4lPSXrHe8zdus0dcz7zVuurXRAjFo988MVpDST7GTYDtZI88TiHsBipG9dlx1Ykop3g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=VH1OBq0REdVLrSkGjRiU3QDyg6qtn+QlqHt+51BvVdI=;
- b=ZZtlKT/VhlBxg5FuJpQX3EFtF7KyL90p8ncVXKerXvI3vEkC1seisu3vE8ptrbJ6Jz2aTRJKXb2TJeJeWXuiMZ7w8VL7bgGYU2ekdvrtbW8XeVlzboJmI9RV7GsKNf2dqPE4wXxB4gaf6HwM/ly1Zfzz0jeZ9OPXs5SsYuvAm5LBoQoM+1lNNtKApYMSJJu1P7M/TriMCrsTACsjGb/AZ0UVvcchnPxHYe2lNByxTG0ViStkbTxCjQ8SmmFTKSGQkRst2XwzZ33G5103SCATBEFUSM5L7zKr8/HKdUP3VTbagz+7xEPgHJfi2V0PBLiwBo2jZ8k1HV0xQlDJgRjHAg==
+ bh=0A5KJEQI+U+SiLAJ3pHzs9E91mn5nfOK2VibEaOK+Hg=;
+ b=C//4tR5J6cih/NaeeoUPb2d8dYUFOXVd8w6L2epRyPYO8tU4XPlaLFCUFFMmXJnJpOb1UN+pF1+E/alXDlz/lihZINwhqpDUN/2G/UYHWTaeGcpLW1lRybYXV1O/H82/1jT4/psf6xRG1b9Y5aaEHKq2AdC94OPKwZx3HUNOXvq+/2cvwuuMutM8MrXUWlrBwL6BgKg1MoLNHYkTHDhZx1gxFnS+wZ808pB7cTKzYSVSd+UjF79Uw8TThw3RDDxKzuaXYEVD0Jq95Q7uSddWk1iATFO0Id1H3ZClwp6Sx+bt+z0w+SB4jd3LGTwcNtub8cwmmj/A/w0W1bCGLBgURQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by IA1PR11MB6345.namprd11.prod.outlook.com (2603:10b6:208:38b::14)
+Received: from BL3PR11MB6508.namprd11.prod.outlook.com (2603:10b6:208:38f::5)
+ by SA1PR11MB5921.namprd11.prod.outlook.com (2603:10b6:806:22a::15)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9275.15; Sun, 2 Nov
- 2025 17:37:43 +0000
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::9e94:e21f:e11a:332]) by PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::9e94:e21f:e11a:332%3]) with mapi id 15.20.9253.017; Sun, 2 Nov 2025
- 17:37:37 +0000
-Date: Sun, 2 Nov 2025 09:37:35 -0800
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9275.16; Sun, 2 Nov
+ 2025 18:02:32 +0000
+Received: from BL3PR11MB6508.namprd11.prod.outlook.com
+ ([fe80::53c9:f6c2:ffa5:3cb5]) by BL3PR11MB6508.namprd11.prod.outlook.com
+ ([fe80::53c9:f6c2:ffa5:3cb5%5]) with mapi id 15.20.9275.011; Sun, 2 Nov 2025
+ 18:02:32 +0000
+Date: Sun, 2 Nov 2025 10:02:28 -0800
 From: Matthew Brost <matthew.brost@intel.com>
 To: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 CC: <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH 02/16] drm/xe/multi_queue: Add user interface for multi
+Subject: Re: [PATCH 03/16] drm/xe/multi_queue: Add GuC interface for multi
  queue support
-Message-ID: <aQeW37i2h0UdLkBx@lstrano-desk.jf.intel.com>
+Message-ID: <aQectLNtpCW8VIgm@lstrano-desk.jf.intel.com>
 References: <20251031182936.1882062-1-niranjana.vishwanathapura@intel.com>
- <20251031182936.1882062-3-niranjana.vishwanathapura@intel.com>
+ <20251031182936.1882062-4-niranjana.vishwanathapura@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20251031182936.1882062-3-niranjana.vishwanathapura@intel.com>
-X-ClientProxiedBy: SJ2PR07CA0024.namprd07.prod.outlook.com
- (2603:10b6:a03:505::14) To PH7PR11MB6522.namprd11.prod.outlook.com
- (2603:10b6:510:212::12)
+In-Reply-To: <20251031182936.1882062-4-niranjana.vishwanathapura@intel.com>
+X-ClientProxiedBy: BYAPR01CA0065.prod.exchangelabs.com (2603:10b6:a03:94::42)
+ To BL3PR11MB6508.namprd11.prod.outlook.com
+ (2603:10b6:208:38f::5)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|IA1PR11MB6345:EE_
-X-MS-Office365-Filtering-Correlation-Id: a68ceadf-7765-4f03-5403-08de1a3683cd
+X-MS-TrafficTypeDiagnostic: BL3PR11MB6508:EE_|SA1PR11MB5921:EE_
+X-MS-Office365-Filtering-Correlation-Id: e4ab1aca-4700-4522-2283-08de1a39fe7e
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?jJx9OfXccYOIBodkGBebzZvTBMUyjZwJd+CDjidylivZszko1O+yhWGtpoQ1?=
- =?us-ascii?Q?efrsZUZhj01zL/WkwEzP0CZm1E4xWsiz/ORdICpxsM5cmn6TLY8XIc6VrGua?=
- =?us-ascii?Q?whWWFXIt4a++EY1OedScMiLNWC61jUvmDzxSgmiF+6eWL1kf51erpRETMYm/?=
- =?us-ascii?Q?NIqm7x411braGFUn/V+9txPoJsjnicVY+tD8ehB53f4QCFjyN7cawCovg9WV?=
- =?us-ascii?Q?3LIy6qPnJaat+97BUVLfDArumX7R62OYZ4WYbEBxV6QmRgcU2TbfD4js61O/?=
- =?us-ascii?Q?q8ncXLC/JkBsUDex1zNy2cw8rTG8fT1AMw0s6I5p6p+YCNFICW0tRNTTKCwc?=
- =?us-ascii?Q?4pHSfq/ddT9R9rO3y237ymK5sJKUqfuEGQ/8+1a0LoyNVhbWmD9VGZ2XfBmW?=
- =?us-ascii?Q?DmkU7equTiFBSYvkqokmyfRrqO5pk1Y0W0lEeVgAHnjTkrU4vp09HsxZrmF0?=
- =?us-ascii?Q?/tRj1n8o7hARKJvWpDkrHBEseW7DmdDXgFYRdAoqUVOVXKHtFT9SyQUkPaU2?=
- =?us-ascii?Q?sqPiQrfdNto7W08k1wo3LAZyywN9GL1pAcKMGO/6/4HdFaAG7eY49TjYHQa0?=
- =?us-ascii?Q?iYr2O8ySF+bbbR3ohfQcYsKndCt3DMX6AQZyIbC7MVNmTb9m8/AHPpTQoNyd?=
- =?us-ascii?Q?tmMrL0DisNiun7Z4ZAyxiza1sv0Mbk6YpF0F2uqIK79ZouisgWW43H12z3NT?=
- =?us-ascii?Q?kgU4bWa5fVpccFmhZTssBa4wQXRxFQ61O7c9SIFux0+v/ITqfyzBa7l9RDsp?=
- =?us-ascii?Q?uAvzvqyxE0wNidSEGdwdvX4WN+66TxuoFiEw3sxbPnFdsFa6wXUlXLXhCNNn?=
- =?us-ascii?Q?+eOLBahc8iMyi0UMZfA/1KOzP1PmC9ORWdh1hUgIpt+DbLiPrbiaGhwmPQEx?=
- =?us-ascii?Q?DM4uJGIQlugvFrjkTJk+yXHgOfmDeL8W/OjdK7yb8qWLg132bhxmu3kdQ5nr?=
- =?us-ascii?Q?+WPbriQvJusmGYYKZZCMf2Co5IRVQr5IKQbRBtXf0f+nzMr8nB7Jw0h+ash2?=
- =?us-ascii?Q?wJzW+h2JIX0MOuNfnFbL3WHKGvhC8aYuUWg4nFndWdiR6sSceEYwblVJCS9h?=
- =?us-ascii?Q?qnKAheWijyr90pIAJaszD+DexNM3ArP0Jrp+u2pjs7R+BWEQKVNv8xZSX1Ay?=
- =?us-ascii?Q?xADXvkMSpKnIWuK4r8OCSxTJMo2NBH24OhTiCUqI6FVz+hzNugO0MKdV7Unr?=
- =?us-ascii?Q?PfnJbNyUpE/7AeZnC8SrENxXMS4C0E3r6U5opVH/k0MKQyDc3tOZN7IlrL57?=
- =?us-ascii?Q?t/u9dfo0vFlEm643Zb9+B6Ij4IGYs/tW93xgesdlkhtVxCUWH5qfGvsCkREP?=
- =?us-ascii?Q?OJugzDujibb6gDX/VKJAcvEfm9BtCJLtAwnDDM19PAvlOzbq8ajZoQV5inXf?=
- =?us-ascii?Q?4Ol7wX3/GYL+GwITshFH7AEVbl+otGTlyYK2655EnainOwyb9Q=3D=3D?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?hvRqWT3MGWU9Fl2sNOpCkQ6zNMOvUp0c1qsJvbFxYLjr1zAYZmTUDqEhc3JK?=
+ =?us-ascii?Q?+OBMMTD9fj+cuc7+P9QRgnXU/LULuUxRy5ggRnQCGE6eY4Wkm17oHr0J3aS1?=
+ =?us-ascii?Q?1OYk8q5/MJo+AxVTyRxdU5nZ+KaPQH7JfN6ly1GYXvcbOFuaEXwV7ZV0fqRz?=
+ =?us-ascii?Q?vaBwtmVAkSuuxcBqGpwlH3aWbwJzqsyNWn21CKP2wb7+6hZntnsvgNct1kN7?=
+ =?us-ascii?Q?yMDkC9sr5RHaXVnMOm7lsLhy4e7aRw5p0hVR3/7+N0XUNHC1tMhDeuXTWsrc?=
+ =?us-ascii?Q?4qPPogwNFpxh8Rix44dB5PP55hik0JgBvnfgu/7cqxuemEd7k8luMv9qX93I?=
+ =?us-ascii?Q?/bG+MXrQPf3a4kB6UjD82/i1YcunsRFzbCOts33YbpiFniq1u/Q3fRcCzSkJ?=
+ =?us-ascii?Q?vWbLnAGe8cug0lILRYlK1C8eRaPsglA3ipaFupFxHIiMEf7qXw9ooEvEzar4?=
+ =?us-ascii?Q?/EBjk9gqyfoTpujVY5JzWkEquHogPc7XL5ENptdL6MzSXR+gVsHLWuZWs69m?=
+ =?us-ascii?Q?zGQVUuXT2/NgyGRZeMz4r4viotne91/oXJf3oq3kMxmzdxfASx+tz1Hw8jUd?=
+ =?us-ascii?Q?BvSYmb+tBRKoxPeUuaP0OXX4p55UHWKdoWmip5xoIaL8wWSF7SKrSCkRUFCG?=
+ =?us-ascii?Q?k6x5rN/E3TDwA2MiNv6VIc7fbLRIRyRvbe5jBANJ071rOCKfVtZPEqESkTUF?=
+ =?us-ascii?Q?ZgR46NHQSheAc46Fe3OGNTu/277DfLJsQ3ineNl+DG/FJHPmoHkuRylNacVZ?=
+ =?us-ascii?Q?W7qXo342jmV5/fxYoE0YZ6dk+ZorcBomvqEUMyX5FiPuNm1sko3FIR+FPRbg?=
+ =?us-ascii?Q?MAXaLjaJAkLiQlm0sUbIFRZ/hrQZ6rMqpQOhRVbU3Dnjjk85BkP8SJcH2VGl?=
+ =?us-ascii?Q?nTcOfv3T6Y1FGcscVd/PuSyFoe2r2AcbzD0hOYQc44If2oKn/+CEDUye8060?=
+ =?us-ascii?Q?VxAktyd282q01SOjEJyIasrEDgEzKMDdxlTCeKHqrwp7VdG46V1OLAAODyKT?=
+ =?us-ascii?Q?rvNej2AT1mRNlpx85PkvX81XuSLiHxV2A84PN8aP8567l4zR9wCREe0tOZ1A?=
+ =?us-ascii?Q?7/8uwntDy3k5QVngM1OWB0EPd2Xv7pqY2jRFE/bTwaw7ZRa0IlyvZhf1qQAs?=
+ =?us-ascii?Q?y+xNIertWgYYw1vrug2N1xU7QN4Sr26f64CTfUGBeJIJycJhUOOU4OhBANOQ?=
+ =?us-ascii?Q?S2G8uCNgAcxdrC1Rd+B6pR7ALGaFuq2+eKl+Aw5X/gky4jhhUrx8+Ic8hWtZ?=
+ =?us-ascii?Q?t/GAklx8gpnMAyEzCXACyyVnbRX0c25rOtAjB861ygmks0y1a4PyyjAx2fHO?=
+ =?us-ascii?Q?2gqm9nxEPbwkqCVXeyE5wqpzwgQTB+0YEMvVJxy18eqh1lEl6/hbUggUyNQT?=
+ =?us-ascii?Q?CaS6qsC5ZnAlfHrSx7dP8bsx0MOYL4cyC0+1g+JSwAj6ZkHHexCftBkBnocq?=
+ =?us-ascii?Q?ReJusfE+BEH1kGo7UIoUvwRRHIxDgJH1?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:BL3PR11MB6508.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(366016)(1800799024); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?hbGfH/+4IUucb6NmQ65hxrGAWLJicoGUL1+oU5GcRclwkyeEB2RvGGbgBaBZ?=
- =?us-ascii?Q?qCuxK4bCmgTUZgMk1+zmqNFt4d3xHyREJ1Bg85QElKoapQVUxCEfCDokpRab?=
- =?us-ascii?Q?+uvFVOF5biLCeFJyFW4xwA6s8h1M35IH7JpOh+Fuc2ILf43z/Lx6wIN3wSuW?=
- =?us-ascii?Q?CZ50bcFrKVHkIVyome5IeGYLcQW/P2vPRSacU5Z56BEPqOknHvgft4HYF+02?=
- =?us-ascii?Q?IhIs8y/TexPR6RK6tBt769rSIqS6gEHeOvVc0KqpLM6v7DZiHPN5qqdE7nRY?=
- =?us-ascii?Q?4zcUPaIEFHeDepdxw9g/yudQ1i921DrEPJr2D1oGtYNYUMmRe0iIgmb2zEli?=
- =?us-ascii?Q?r/3qQ2UwVdnIJ8QQcvB+4Z58PozgBSzLrotU5IRpOff6aL/+S8a3LzOAPYnv?=
- =?us-ascii?Q?r9qBb547Xibfzni0xa6qtpoFZX2ToEQi0EQ29YUpSMoIfVUtr47Jk5loR4L5?=
- =?us-ascii?Q?W2S6WtYIWljDUnfq9dkck6wYlTfCqgaWYQx+i0ruJVWjSjJntpU7ZH/388HC?=
- =?us-ascii?Q?P/kcXRoJMNy2ng8K70cQdsBLkFW76e+J0LWDdr6jOXv38ODTknYkfwOc2hHv?=
- =?us-ascii?Q?gIhBc5phJTSgFTBUHHWaT+/TXrMZaTShchxApcbWZ7RT6Pdal4iLiu8X0j/k?=
- =?us-ascii?Q?OMp1+7bjlz88mfxSx/SuuQB+aBb2tL6gvs7WRcx0SCoO6KijhBmHeGrSUTpG?=
- =?us-ascii?Q?1mFZXn8jx95n2USTsCZ2rUlrLg+ibyKWnyopGtS46OLVbXupx0aZHCmkSW+9?=
- =?us-ascii?Q?vmTF4tNPjgDuCXzIo2Rm/4acjUipgXwHxlNMEdzzFSCT+IavtgzFPHKJDbcy?=
- =?us-ascii?Q?rz49AmN3OorfNXFBPpfL0XGUoBDZQfZkaGvTKRrSTgCm3xuPK9rzBTEAHK8d?=
- =?us-ascii?Q?Fqeqt7YJ1WWq6zGbg49Wyf1BSW4D4JCv4itAnhxqOjQmEk1w0tVfuG9OdHVI?=
- =?us-ascii?Q?Jm7sRxCq4/z47q2RC81t8QTx13eItVebUMkCoX3Cc4dFWuCqEVLJLIEHODHn?=
- =?us-ascii?Q?LvPykmxhV4feQfRpSlkLVMaXa2iqogiy7o9csPcU9h6bbrVVDid2xC++fpGo?=
- =?us-ascii?Q?wC6HY39HD4Gz7l5TrtedfdmCBtBqGScKMCaUCFVzcXSzC4MKZZlxIXsBSXFr?=
- =?us-ascii?Q?D/M3yG9whekPWtu/PPtYjYMUHGtx0bZGd2oLTGh84fJUbSvdC6fa/vZc5oDD?=
- =?us-ascii?Q?6GpX/n3fC1UhmXXy/886IQ8RascODgQVi8o5381cgcL3Ij/Cl8/k5tYSMmXc?=
- =?us-ascii?Q?v4RAOwNKwP0YU8RHvjIW3wTX+g8x9bPhr3qubzd1gguu+RhRwXX8OQeUK6LC?=
- =?us-ascii?Q?7pjBYwOLLanFq2S+50hqjqQ+fXyLd2CwlbcYm9IX+OpRiTg3bPFO324gt/4v?=
- =?us-ascii?Q?wLDCSSrSomFAXqBMUvoGWOs4hFggAc4JhF+I6pvD/IhV+hKPA8f5K46HNqNJ?=
- =?us-ascii?Q?fi5ZBIKxdOVqtPias/emj67u4szCSczzYM3a9NT4DBLidw3r27aN15Gg+ThT?=
- =?us-ascii?Q?/Ctvlx05AEkbs1c1ncEfo4yIivoAI9Ax0bu+xwgWrFqWvJ1IdBBL+CMP2570?=
- =?us-ascii?Q?4oOTJ64Twcg/+LaE6zlCG0z0hyKMvUfJqrF0DS92xSvxT2/R8UddLlaeUbMP?=
- =?us-ascii?Q?sA=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: a68ceadf-7765-4f03-5403-08de1a3683cd
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?dE8YuE/Q2xz57N8rwSzjoQ7ZdBOUHsWCJ2av7/xIY8eXzTlmC2LvJta9SQGA?=
+ =?us-ascii?Q?PIRV0QN8l5wduSfIBjC9LwqqXgeKJ5AIJ3f+GznbehFoFjXzYOCT8hj4Za91?=
+ =?us-ascii?Q?1/NpsywYH6V1acMngu/ZgFsNtqxhCidzXdQjzKfh5YHJws1L5WBplgztZvx7?=
+ =?us-ascii?Q?5KHsio1n1+nezCtBMxmupQgjyG7MIq4btNAapQ7W8YOhSz+YK+c9ZbiEuhcy?=
+ =?us-ascii?Q?Ib+PnqWOMJOAyC+s8k/4IyYTEpdNgeKgUwJMLUdf8IiFwXBEu/6gi3aHJVIl?=
+ =?us-ascii?Q?6b2epoeR5aVEfIbpKiFNv5e3GFeVJXYGOPttJn8JxkYMn3h/U+LUXAvwDD9J?=
+ =?us-ascii?Q?aS7m3I68pMAxP03DFYLJCuEs6Nl/aw+gNh7GjQ1xjfNoZ9tK/072LmnebUyu?=
+ =?us-ascii?Q?jt8MayxBhVAjBBUqBwR6PAmTsjHmdAT+Hw6AonDgpE1+XpoEWB78fQtkz4Yh?=
+ =?us-ascii?Q?BwB+jufttjB01TgZ6BDFXgqAaaN05ymRimu6nCV0RL6C52Qekkw2nLLFxDwy?=
+ =?us-ascii?Q?SdBiaJ4jfo5BJoTkObSnYkOOKa6zhh+xLH3IkyRXTr5FbPusgaSGqWi7/yZ5?=
+ =?us-ascii?Q?nbAt4Zo6O+snW0NIqd6SG6W593LMD5qrKd0+XjrtDUxfjMR7xdne7mk+3y8O?=
+ =?us-ascii?Q?xtSDmgVTd99BmugZbqMrK70Oc+A5WyoIX1uTd+BOjo7aRv5o9iqFLWvsUpg8?=
+ =?us-ascii?Q?9UPOrFxVtk3cHtyOIqPaB8iu/U7qhrsxWm2/O7GDt07KIbPd0i2WfshCm4GS?=
+ =?us-ascii?Q?mzIten7Y9fq6c3/V51AsfMDvg1vlEbr962WDjOyW4HlBkq+9i6TINWj+Q5bV?=
+ =?us-ascii?Q?vZh0jbZmUYd0fiDjAH0SujIz0IIFFt4rqB2TaP6eY3mODiU3u53Vy+/WmKWh?=
+ =?us-ascii?Q?+m4c+oiYSMFxGPhoZzVXCL37YUTZf5Gv0iJ8D7ZO9d5T3gjXgN/WdXcKTDT8?=
+ =?us-ascii?Q?mrnrpSfg6tTt2G3awS2SFJ9XIepwYKWfvxd6KqU5gzt6QxS/jVD9gruuU3IH?=
+ =?us-ascii?Q?jESrLWAOtOJ+CctnpXBpmWO8xI5993bbRSGZzxk40c0hPZkWM8qx9Dvq14k/?=
+ =?us-ascii?Q?aan6tvxLRgnD2X+k7B6Gr+EeXRnM7gozD4PkbmSeCgHcq9WMwTUNlq8e/Ghk?=
+ =?us-ascii?Q?674u78SL5IhoMwoKI6UYP/Q38Xibfxj5YqeWBAu6D2gzKMhzUlpN+19jKKFZ?=
+ =?us-ascii?Q?V41HWFNcPYm+LgZ1SrUrXKZGOerFtmTPc+VVhzUL71HIvxVEoKQpJDO+VylC?=
+ =?us-ascii?Q?glXcEnhmEKMFHT2hLvOek2fBRgcHWaIggJN110Sv8wuugVBXpo29r7SvkpEf?=
+ =?us-ascii?Q?jR4KUbs5Ypb5Ho8Wl/26VgDJtfeu5wRhWXA9vj+n5ZFP+047j2ZMZulsPyNV?=
+ =?us-ascii?Q?FU9DwaUkgdbka2v1dwhe/qlqr0r1hIeWSmKI6p2GvCmEUk00ApSVQbd3B61Y?=
+ =?us-ascii?Q?sokroDZy/qh34PyWe4UFmNe8CwPQeA/Z/8xEuBsPOZpN7apmaLnxsyjtq47p?=
+ =?us-ascii?Q?ZigdwDVvGf9QxWVHHix8oPdc9VFty+qoARS+aYYRvnVOJTOck9XkqRY8/lSI?=
+ =?us-ascii?Q?SBkOkMAkvmwBbpbTNepZTgx8nfs6E0UPCymEEWWNElbX+antKERUqzGTgCRI?=
+ =?us-ascii?Q?hw=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: e4ab1aca-4700-4522-2283-08de1a39fe7e
+X-MS-Exchange-CrossTenant-AuthSource: BL3PR11MB6508.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Nov 2025 17:37:37.7783 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Nov 2025 18:02:32.0522 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 0WShSwXLvzmzCJZZcqSBr6zAUsqip+vUQiNvYY0sCd8nID6HOIjeOHQAP4aPDnDhbxOQKr8pCQ0Y51SdpsH5hg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB6345
+X-MS-Exchange-CrossTenant-UserPrincipalName: 7SG0HzCo3Y8fhoCyUxB96t2cf4qdqh1kFISJCvncNfVKRHjv9+w3zOjg3okS3uPNdQlVXPlGaC0IiO4XNy27wQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB5921
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -176,500 +177,595 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Oct 31, 2025 at 11:29:22AM -0700, Niranjana Vishwanathapura wrote:
-> Multi Queue is a new mode of execution supported by the compute and
-> blitter copy command streamers (CCS and BCS, respectively). It is an
-> enhancement of the existing hardware architecture and leverages the
-> same submission model. It enables support for efficient, parallel
-> execution of multiple queues within a single context. All the queues
-> of a group must use the same address space (VM).
+On Fri, Oct 31, 2025 at 11:29:23AM -0700, Niranjana Vishwanathapura wrote:
+> Implement GuC commands and response along with the Context
+> Group Page (CGP) interface for multi queue support.
 > 
-> The new DRM_XE_EXEC_QUEUE_SET_PROPERTY_MULTI_QUEUE execution queue
-> property supports creating a multi queue group and adding queues to
-> a queue group. All queues of a multi queue group share the same
-> context.
+> Ensure that only primary queue (q0) of a multi queue group
+> communicate with GuC. The secondary queues of the group only
+> need to maintain LRCA and interface with drm scheduler.
 > 
-> A exec queue create ioctl call with above property specified with value
-> DRM_XE_SUPER_GROUP_CREATE will create a new multi queue group with the
-> queue being created as the primary queue (aka q0) of the group. To add
-> secondary queues to the group, they need to be created with the above
-> property with id of the primary queue as the value. The properties of
-> the primary queue (like priority, timeslice) applies to the whole group.
-> So, these properties can't be set for secondary queues of a group.
-> 
-> Once destroyed, the secondary queues of a multi queue group can't be
-> replaced. However, they can be dynamically added to the group up to a
-> total of 64 queues per group. Once the primary queue is destroyed,
-> secondary queues can't be added to the queue group.
+> Use primary queue's submit_wq for all secondary queues of a multi
+> queue group. This serialization avoids any locking around CGP
+> synchronization with GuC.
 > 
 > Signed-off-by: Stuart Summers <stuart.summers@intel.com>
 > Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 > ---
->  drivers/gpu/drm/xe/xe_exec_queue.c       | 191 ++++++++++++++++++++++-
->  drivers/gpu/drm/xe/xe_exec_queue.h       |  47 ++++++
->  drivers/gpu/drm/xe/xe_exec_queue_types.h |  30 ++++
->  include/uapi/drm/xe_drm.h                |   8 +
->  4 files changed, 274 insertions(+), 2 deletions(-)
+>  drivers/gpu/drm/xe/abi/guc_actions_abi.h |   3 +
+>  drivers/gpu/drm/xe/xe_exec_queue_types.h |   2 +
+>  drivers/gpu/drm/xe/xe_guc_ct.c           |   4 +
+>  drivers/gpu/drm/xe/xe_guc_fwif.h         |   3 +
+>  drivers/gpu/drm/xe/xe_guc_submit.c       | 302 +++++++++++++++++++----
+>  drivers/gpu/drm/xe/xe_guc_submit.h       |   1 +
+>  6 files changed, 270 insertions(+), 45 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-> index 1b57d7c2cc94..86404a7c9fe4 100644
-> --- a/drivers/gpu/drm/xe/xe_exec_queue.c
-> +++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-> @@ -12,6 +12,7 @@
->  #include <drm/drm_file.h>
->  #include <uapi/drm/xe_drm.h>
->  
-> +#include "xe_bo.h"
->  #include "xe_dep_scheduler.h"
->  #include "xe_device.h"
->  #include "xe_gt.h"
-> @@ -62,6 +63,32 @@ enum xe_exec_queue_sched_prop {
->  static int exec_queue_user_extensions(struct xe_device *xe, struct xe_exec_queue *q,
->  				      u64 extensions, int ext_number);
->  
-> +static void xe_exec_queue_group_cleanup(struct xe_exec_queue *q)
-> +{
-
-A little incongruent with xe_exec_queue_group_add/delete as those
-functions are blindly called + check if needed in function, compared to
-this function checking at the caller if multi-queue. I don't have a huge
-preference but I'd at least make the call semantics consistent.
-
-> +	struct xe_exec_queue_group *group = q->multi_queue.group;
-> +	struct xe_lrc *lrc;
-> +	unsigned long idx;
-> +
-> +	if (xe_exec_queue_is_multi_queue_secondary(q)) {
-> +		xe_exec_queue_put(xe_exec_queue_multi_queue_primary(q));
-
-It took me a minute to figure out where the associated get on the
-primary came from - it is from xe_exec_queue_lookup in
-xe_exec_queue_group_validate. Can you comments along the lines:
-
-/* Put pairs with get from ... */
-
-/* Get pairs with put in ... */
-
-> +		return;
-> +	}
-> +
-> +	if (!group)
-> +		return;
-> +
-> +	/* Primary queue cleanup */
-> +	mutex_lock(&group->lock);
-
-As discussedi [1], group->lock not needed.
-
-[1] https://patchwork.freedesktop.org/patch/684847/?series=156865&rev=1#comment_1257408
-
-> +	xa_for_each(&group->xa, idx, lrc)
-> +		xe_lrc_put(lrc);
-> +	mutex_unlock(&group->lock);
-> +
-> +	xa_destroy(&group->xa);
-> +	mutex_destroy(&group->lock);
-> +	xe_bo_unpin_map_no_vm(group->cgp_bo);
-> +	kfree(group);
-> +}
-> +
->  static void __xe_exec_queue_free(struct xe_exec_queue *q)
->  {
->  	int i;
-> @@ -72,6 +99,10 @@ static void __xe_exec_queue_free(struct xe_exec_queue *q)
->  
->  	if (xe_exec_queue_uses_pxp(q))
->  		xe_pxp_exec_queue_remove(gt_to_xe(q->gt)->pxp, q);
-> +
-> +	if (xe_exec_queue_is_multi_queue(q))
-> +		xe_exec_queue_group_cleanup(q);
-> +
->  	if (q->vm)
->  		xe_vm_put(q->vm);
->  
-> @@ -549,6 +580,148 @@ exec_queue_set_pxp_type(struct xe_device *xe, struct xe_exec_queue *q, u64 value
->  	return xe_pxp_exec_queue_set_type(xe->pxp, q, DRM_XE_PXP_TYPE_HWDRM);
->  }
->  
-> +static int xe_exec_queue_group_init(struct xe_device *xe, struct xe_exec_queue *q)
-> +{
-> +	struct xe_tile *tile = gt_to_tile(q->gt);
-> +	struct xe_exec_queue_group *group;
-> +	struct xe_bo *bo;
-> +
-> +	group = kzalloc(sizeof(*group), GFP_KERNEL);
-> +	if (!group)
-> +		return -ENOMEM;
-> +
-> +	bo = xe_bo_create_pin_map_novm(xe, tile, SZ_4K, ttm_bo_type_kernel,
-> +				       XE_BO_FLAG_VRAM_IF_DGFX(tile) |
-> +				       XE_BO_FLAG_GGTT, false);
-
-XE_BO_FLAG_GGTT_INVALIDATE | XE_BO_FLAG_PINNED_LATE_RESTORE are needed.
-
-I believe XE_BO_FLAG_FORCE_USER_VRAM is needed too, that's new so not
-100% sure but I'd check the git blame on that to figure out if it is
-needed.
-
-> +	if (IS_ERR(bo)) {
-> +		drm_err(&xe->drm, "CGP bo allocation for queue group failed: %ld\n",
-> +			PTR_ERR(bo));
-> +		kfree(group);
-> +		return PTR_ERR(bo);
-> +	}
-> +
-> +	xe_map_memset(xe, &bo->vmap, 0, 0, SZ_4K);
-> +
-> +	group->primary = q;
-> +	group->cgp_bo = bo;
-> +	xa_init_flags(&group->xa, XA_FLAGS_ALLOC1);
-> +	mutex_init(&group->lock);
-> +	mutex_init(&group->list_lock);
-
-See my comments here [1] the list lock being initialized here, but
-used/destroyed in [1].
-
-[1] https://patchwork.freedesktop.org/patch/684850/?series=156865&rev=1#comment_1257596
-
-> +	q->multi_queue.group = group;
-> +
-> +	return 0;
-> +}
-> +
-> +static inline bool xe_exec_queue_supports_multi_queue(struct xe_exec_queue *q)
-> +{
-> +	return q->gt->info.multi_queue_enable_mask & BIT(q->class);
-> +}
-> +
-> +static int xe_exec_queue_group_validate(struct xe_device *xe, struct xe_exec_queue *q,
-> +					u32 primary_id)
-> +{
-> +	struct xe_exec_queue_group *group;
-> +	struct xe_exec_queue *primary;
-> +	int ret;
-> +
-> +	primary = xe_exec_queue_lookup(q->vm->xef, primary_id);
-> +	if (XE_IOCTL_DBG(xe, !primary))
-> +		return -ENOENT;
-> +
-> +	if (XE_IOCTL_DBG(xe, !xe_exec_queue_is_multi_queue_primary(primary)) ||
-> +	    XE_IOCTL_DBG(xe, q->vm != primary->vm) ||
-> +	    XE_IOCTL_DBG(xe, q->logical_mask != primary->logical_mask)) {
-> +		ret = -EINVAL;
-> +		goto put_primary;
-> +	}
-> +
-> +	group = primary->multi_queue.group;
-> +	q->multi_queue.valid = true;
-> +	q->multi_queue.group = group;
-> +
-> +	return 0;
-> +put_primary:
-> +	xe_exec_queue_put(primary);
-> +	return ret;
-> +}
-> +
-> +#define XE_MAX_GROUP_SIZE	64
-> +static int xe_exec_queue_group_add(struct xe_device *xe, struct xe_exec_queue *q)
-> +{
-> +	struct xe_exec_queue_group *group = q->multi_queue.group;
-> +	u32 pos;
-> +	int err;
-> +
-> +	if (!xe_exec_queue_is_multi_queue_secondary(q))
-> +		return 0;
-> +
-> +	mutex_lock(&group->lock);
-> +	err = xa_alloc(&group->xa, &pos, xe_lrc_get(q->lrc[0]),
-> +		       XA_LIMIT(1, XE_MAX_GROUP_SIZE - 1), GFP_KERNEL);
-
-To consolidate threads [2], add quick inline comments here around ref
-counting.
-
-[2] https://patchwork.freedesktop.org/patch/684847/?series=156865&rev=1#comment_1257594
-
-> +	if (XE_IOCTL_DBG(xe, err)) {
-> +		xe_lrc_put(q->lrc[0]);
-> +		mutex_unlock(&group->lock);
-> +
-> +		/* It is invalid if queue group limit is exceeded */
-> +		if (err == -EBUSY)
-> +			err = -EINVAL;
-> +
-> +		return err;
-> +	}
-> +
-> +	q->multi_queue.pos = pos;
-> +	mutex_unlock(&group->lock);
-> +
-> +	return 0;
-> +}
-> +
-> +static void xe_exec_queue_group_delete(struct xe_exec_queue *q)
-> +{
-> +	struct xe_exec_queue_group *group = q->multi_queue.group;
-> +	struct xe_lrc *lrc;
-> +
-> +	if (!xe_exec_queue_is_multi_queue_secondary(q))
-> +		return;
-> +
-> +	mutex_lock(&group->lock);
-> +	lrc = xa_erase(&group->xa, q->multi_queue.pos);
-> +	if (lrc)
->
-
-I think here it is an assert if lrc is NULL? I don't think it can be
-NULL unless there is bug somewhere, right? If so, let's do an assert to
-ensure software correctness.
-
- +		xe_lrc_put(lrc);
-> +	mutex_unlock(&group->lock);
-> +}
-> +
-> +static int exec_queue_set_multi_group(struct xe_device *xe, struct xe_exec_queue *q,
-> +				      u64 value)
-> +{
-> +	if (XE_IOCTL_DBG(xe, !xe_exec_queue_supports_multi_queue(q)))
-> +		return -ENODEV;
-> +
-> +	if (XE_IOCTL_DBG(xe, !xe_device_uc_enabled(xe)))
-> +		return -EOPNOTSUPP;
-> +
-> +	if (XE_IOCTL_DBG(xe, xe_exec_queue_is_parallel(q)))
-> +		return -EINVAL;
-> +
-> +	if (XE_IOCTL_DBG(xe, xe_exec_queue_is_multi_queue(q)))
-> +		return -EINVAL;
-> +
-> +	if (value & DRM_XE_MULTI_GROUP_CREATE) {
-> +		if (XE_IOCTL_DBG(xe, value & ~DRM_XE_MULTI_GROUP_CREATE))
-> +			return -EINVAL;
-> +
-> +		q->multi_queue.valid = true;
-> +		q->multi_queue.is_primary = true;
-> +		q->multi_queue.pos = 0;
-> +		return 0;
-> +	}
-> +
-> +	/* While adding secondary queues, the upper 32 bits must be 0 */
-
-State this in uAPI doc too.
-
-> +	if (XE_IOCTL_DBG(xe, value & (~0ull << 32)))
-> +		return -EINVAL;
-> +
-> +	return xe_exec_queue_group_validate(xe, q, value);
-> +}
-> +
->  typedef int (*xe_exec_queue_set_property_fn)(struct xe_device *xe,
->  					     struct xe_exec_queue *q,
->  					     u64 value);
-> @@ -557,6 +730,7 @@ static const xe_exec_queue_set_property_fn exec_queue_set_property_funcs[] = {
->  	[DRM_XE_EXEC_QUEUE_SET_PROPERTY_PRIORITY] = exec_queue_set_priority,
->  	[DRM_XE_EXEC_QUEUE_SET_PROPERTY_TIMESLICE] = exec_queue_set_timeslice,
->  	[DRM_XE_EXEC_QUEUE_SET_PROPERTY_PXP_TYPE] = exec_queue_set_pxp_type,
-> +	[DRM_XE_EXEC_QUEUE_SET_PROPERTY_MULTI_GROUP] = exec_queue_set_multi_group,
->  };
->  
->  static int exec_queue_user_ext_set_property(struct xe_device *xe,
-> @@ -577,7 +751,8 @@ static int exec_queue_user_ext_set_property(struct xe_device *xe,
->  	    XE_IOCTL_DBG(xe, ext.pad) ||
->  	    XE_IOCTL_DBG(xe, ext.property != DRM_XE_EXEC_QUEUE_SET_PROPERTY_PRIORITY &&
->  			 ext.property != DRM_XE_EXEC_QUEUE_SET_PROPERTY_TIMESLICE &&
-> -			 ext.property != DRM_XE_EXEC_QUEUE_SET_PROPERTY_PXP_TYPE))
-> +			 ext.property != DRM_XE_EXEC_QUEUE_SET_PROPERTY_PXP_TYPE &&
-> +			 ext.property != DRM_XE_EXEC_QUEUE_SET_PROPERTY_MULTI_GROUP))
->  		return -EINVAL;
->  
->  	idx = array_index_nospec(ext.property, ARRAY_SIZE(exec_queue_set_property_funcs));
-> @@ -626,6 +801,12 @@ static int exec_queue_user_extensions(struct xe_device *xe, struct xe_exec_queue
->  		return exec_queue_user_extensions(xe, q, ext.next_extension,
->  						  ++ext_number);
->  
-> +	if (xe_exec_queue_is_multi_queue_primary(q)) {
-> +		err = xe_exec_queue_group_init(xe, q);
-> +		if (XE_IOCTL_DBG(xe, err))
-> +			return err;
-> +	}
-
-Any particular reason this isn't in exec_queue_set_multi_group? Or
-perhaps in xe_exec_queue_create_ioctl? It is bit goofy to have in a very
-generic function here.
-
-> +
->  	return 0;
->  }
->  
-> @@ -780,12 +961,16 @@ int xe_exec_queue_create_ioctl(struct drm_device *dev, void *data,
->  		if (IS_ERR(q))
->  			return PTR_ERR(q);
->  
-> +		err = xe_exec_queue_group_add(xe, q);
-> +		if (XE_IOCTL_DBG(xe, err))
-> +			goto put_exec_queue;
-> +
->  		if (xe_vm_in_preempt_fence_mode(vm)) {
->  			q->lr.context = dma_fence_context_alloc(1);
->  
->  			err = xe_vm_add_compute_exec_queue(vm, q);
->  			if (XE_IOCTL_DBG(xe, err))
-> -				goto put_exec_queue;
-> +				goto delete_queue_group;
->  		}
->  
->  		if (q->vm && q->hwe->hw_engine_group) {
-> @@ -808,6 +993,8 @@ int xe_exec_queue_create_ioctl(struct drm_device *dev, void *data,
->  
->  kill_exec_queue:
->  	xe_exec_queue_kill(q);
-> +delete_queue_group:
-> +	xe_exec_queue_group_delete(q);
->  put_exec_queue:
->  	xe_exec_queue_put(q);
->  	return err;
-> diff --git a/drivers/gpu/drm/xe/xe_exec_queue.h b/drivers/gpu/drm/xe/xe_exec_queue.h
-> index a4dfbe858bda..8cd6487018fa 100644
-> --- a/drivers/gpu/drm/xe/xe_exec_queue.h
-> +++ b/drivers/gpu/drm/xe/xe_exec_queue.h
-> @@ -62,6 +62,53 @@ static inline bool xe_exec_queue_uses_pxp(struct xe_exec_queue *q)
->  	return q->pxp.type;
->  }
->  
-> +/**
-> + * xe_exec_queue_is_multi_queue() - Whether an exec_queue is part of a queue group.
-> + * @q: The exec_queue
-> + *
-> + * Return: True if the exec_queue is part of a queue group, false otherwise.
-> + */
-> +static inline bool xe_exec_queue_is_multi_queue(struct xe_exec_queue *q)
-> +{
-> +	return q->multi_queue.valid;
-> +}
-> +
-> +/**
-> + * xe_exec_queue_is_multi_queue_primary() - Whether an exec_queue is primary queue
-> + * of a multi queue group.
-> + * @q: The exec_queue
-> + *
-> + * Return: True if @q is primary queue of a queue group, false otherwise.
-> + */
-> +static inline bool xe_exec_queue_is_multi_queue_primary(struct xe_exec_queue *q)
-> +{
-> +	return q->multi_queue.is_primary;
-> +}
-> +
-> +/**
-> + * xe_exec_queue_is_multi_queue_secondary() - Whether an exec_queue is secondary queue
-> + * of a multi queue group.
-> + * @q: The exec_queue
-> + *
-> + * Return: True if @q is secondary queue of a queue group, false otherwise.
-> + */
-> +static inline bool xe_exec_queue_is_multi_queue_secondary(struct xe_exec_queue *q)
-> +{
-> +	return xe_exec_queue_is_multi_queue(q) && !q->multi_queue.is_primary;
-
-
-&& !xe_exec_queue_is_multi_queue_primary()
-
-> +}
-> +
-> +/**
-> + * xe_exec_queue_multi_queue_primary() - Get multi queue group's primary queue
-> + * @q: The exec_queue
-> + *
-> + * If @q belongs to a multi queue group, then the primary queue of the group will
-> + * be returned. Otherwise, @q will be returned.
-> + */
-> +static inline struct xe_exec_queue *xe_exec_queue_multi_queue_primary(struct xe_exec_queue *q)
-> +{
-> +	return xe_exec_queue_is_multi_queue(q) ? q->multi_queue.group->primary : q;
-> +}
-> +
->  bool xe_exec_queue_is_lr(struct xe_exec_queue *q);
->  
->  bool xe_exec_queue_is_idle(struct xe_exec_queue *q);
+> diff --git a/drivers/gpu/drm/xe/abi/guc_actions_abi.h b/drivers/gpu/drm/xe/abi/guc_actions_abi.h
+> index 47756e4674a1..3e9fbed9cda6 100644
+> --- a/drivers/gpu/drm/xe/abi/guc_actions_abi.h
+> +++ b/drivers/gpu/drm/xe/abi/guc_actions_abi.h
+> @@ -139,6 +139,9 @@ enum xe_guc_action {
+>  	XE_GUC_ACTION_DEREGISTER_G2G = 0x4508,
+>  	XE_GUC_ACTION_DEREGISTER_CONTEXT_DONE = 0x4600,
+>  	XE_GUC_ACTION_REGISTER_CONTEXT_MULTI_LRC = 0x4601,
+> +	XE_GUC_ACTION_REGISTER_CONTEXT_MULTI_QUEUE = 0x4602,
+> +	XE_GUC_ACTION_MULTI_QUEUE_CONTEXT_CGP_SYNC = 0x4603,
+> +	XE_GUC_ACTION_NOTIFY_MULTI_QUEUE_CONTEXT_CGP_SYNC_DONE = 0x4604,
+>  	XE_GUC_ACTION_CLIENT_SOFT_RESET = 0x5507,
+>  	XE_GUC_ACTION_SET_ENG_UTIL_BUFF = 0x550A,
+>  	XE_GUC_ACTION_SET_DEVICE_ENGINE_ACTIVITY_BUFFER = 0x550C,
 > diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-> index c8807268ec6c..3856776df5c4 100644
+> index 3856776df5c4..38e47b003259 100644
 > --- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
 > +++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-> @@ -31,6 +31,24 @@ enum xe_exec_queue_priority {
->  	XE_EXEC_QUEUE_PRIORITY_COUNT
+> @@ -47,6 +47,8 @@ struct xe_exec_queue_group {
+>  	struct xarray xa;
+>  	/** @list_lock: Secondary queue list lock */
+>  	struct mutex list_lock;
+> +	/** @sync_pending: CGP_SYNC_DONE g2h response pending */
+> +	bool sync_pending;
 >  };
 >  
-> +/**
-> + * struct xe_exec_queue_group - Execution multi queue group
-> + *
-> + * Contains multi queue group information.
-> + */
-> +struct xe_exec_queue_group {
-> +	/** @primary: Primary queue of this group */
-> +	struct xe_exec_queue *primary;
-> +	/** @lock: Queue group update lock */
-> +	struct mutex lock;
-> +	/** @cgp_bo: BO for the Context Group Page */
-> +	struct xe_bo *cgp_bo;
-> +	/** @xa: xarray to store LRCs */
-> +	struct xarray xa;
-> +	/** @list_lock: Secondary queue list lock */
-> +	struct mutex list_lock;
-> +};
-> +
 >  /**
->   * struct xe_exec_queue - Execution queue
->   *
-> @@ -110,6 +128,18 @@ struct xe_exec_queue {
->  		struct xe_guc_exec_queue *guc;
->  	};
+> diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
+> index e68953ef3a00..48b5006eb080 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_ct.c
+> +++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+> @@ -1304,6 +1304,7 @@ static int parse_g2h_event(struct xe_guc_ct *ct, u32 *msg, u32 len)
+>  	lockdep_assert_held(&ct->lock);
 >  
-> +	/** @multi_queue: Multi queue information */
-> +	struct {
-> +		/** @multi_queue.group: Queue group information */
-> +		struct xe_exec_queue_group *group;
-> +		/** @multi_queue.pos: Position of queue within the multi-queue group */
-> +		u8 pos;
-> +		/** @multi_queue.valid: Queue belongs to a multi queue group */
-> +		u8 valid:1;
-> +		/** @multi_queue.is_primary: Is primary queue (Q0) of the group */
-> +		u8 is_primary:1;
-> +	} multi_queue;
+>  	switch (action) {
+> +	case XE_GUC_ACTION_NOTIFY_MULTI_QUEUE_CONTEXT_CGP_SYNC_DONE:
+>  	case XE_GUC_ACTION_SCHED_CONTEXT_MODE_DONE:
+>  	case XE_GUC_ACTION_DEREGISTER_CONTEXT_DONE:
+>  	case XE_GUC_ACTION_SCHED_ENGINE_MODE_DONE:
+> @@ -1570,6 +1571,9 @@ static int process_g2h_msg(struct xe_guc_ct *ct, u32 *msg, u32 len)
+>  		ret = xe_guc_g2g_test_notification(guc, payload, adj_len);
+>  		break;
+>  #endif
+> +	case XE_GUC_ACTION_NOTIFY_MULTI_QUEUE_CONTEXT_CGP_SYNC_DONE:
+> +		ret = xe_guc_exec_queue_cgp_sync_done_handler(guc, payload, adj_len);
+> +		break;
+>  	default:
+>  		xe_gt_err(gt, "unexpected G2H action 0x%04x\n", action);
+>  	}
+> diff --git a/drivers/gpu/drm/xe/xe_guc_fwif.h b/drivers/gpu/drm/xe/xe_guc_fwif.h
+> index c90dd266e9cf..610dfb2f1cb5 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_fwif.h
+> +++ b/drivers/gpu/drm/xe/xe_guc_fwif.h
+> @@ -16,6 +16,7 @@
+>  #define G2H_LEN_DW_DEREGISTER_CONTEXT		3
+>  #define G2H_LEN_DW_TLB_INVALIDATE		3
+>  #define G2H_LEN_DW_G2G_NOTIFY_MIN		3
+> +#define G2H_LEN_DW_MULTI_QUEUE_CONTEXT		4
+>  
+>  #define GUC_ID_MAX			65535
+>  #define GUC_ID_UNKNOWN			0xffffffff
+> @@ -62,6 +63,8 @@ struct guc_ctxt_registration_info {
+
+Side note - this struct could probably move to private struct
+xe_guc_submit.c.
+
+>  	u32 wq_base_lo;
+>  	u32 wq_base_hi;
+>  	u32 wq_size;
+> +	u32 cgp_lo;
+> +	u32 cgp_hi;
+>  	u32 hwlrca_lo;
+>  	u32 hwlrca_hi;
+>  };
+> diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+> index d4ffdb71ef3d..d2aa9a2524e7 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_submit.c
+> +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+> @@ -46,6 +46,7 @@
+>  #include "xe_trace.h"
+>  #include "xe_uc_fw.h"
+>  #include "xe_vm.h"
+> +#include "xe_bo.h"
+
+Why do you need xe_bo.h? It is not obvious to me. If you need it,
+alphabetical order.
+
+>  
+>  static struct xe_guc *
+>  exec_queue_to_guc(struct xe_exec_queue *q)
+> @@ -541,7 +542,8 @@ static void init_policies(struct xe_guc *guc, struct xe_exec_queue *q)
+>  	u32 slpc_exec_queue_freq_req = 0;
+>  	u32 preempt_timeout_us = q->sched_props.preempt_timeout_us;
+>  
+> -	xe_gt_assert(guc_to_gt(guc), exec_queue_registered(q));
+> +	xe_gt_assert(guc_to_gt(guc), exec_queue_registered(q) &&
+> +		     !xe_exec_queue_is_multi_queue_secondary(q));
+>  
+>  	if (q->flags & EXEC_QUEUE_FLAG_LOW_LATENCY)
+>  		slpc_exec_queue_freq_req |= SLPC_CTX_FREQ_REQ_IS_COMPUTE;
+> @@ -561,6 +563,8 @@ static void set_min_preemption_timeout(struct xe_guc *guc, struct xe_exec_queue
+>  {
+>  	struct exec_queue_policy policy;
+>  
+> +	xe_assert(guc_to_xe(guc), !xe_exec_queue_is_multi_queue_secondary(q));
 > +
->  	/** @sched_props: scheduling properties */
->  	struct {
->  		/** @sched_props.timeslice_us: timeslice period in micro-seconds */
-> diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-> index 47853659a705..d903b3a55ec1 100644
-> --- a/include/uapi/drm/xe_drm.h
-> +++ b/include/uapi/drm/xe_drm.h
-> @@ -1252,6 +1252,12 @@ struct drm_xe_vm_bind {
->   *    Given that going into a power-saving state kills PXP HWDRM sessions,
->   *    runtime PM will be blocked while queues of this type are alive.
->   *    All PXP queues will be killed if a PXP invalidation event occurs.
-> + *  - %DRM_XE_EXEC_QUEUE_SET_PROPERTY_MULTI_GROUP - Create a multi-queue group
-> + *    or add secondary queues to a multi-queue group.
-> + *    If the extension's 'value' field has %DRM_XE_MULTI_GROUP_CREATE flag set,
-> + *    then a new multi-queue group is created with this queue as the primary queue
-> + *    (Q0). Otherwise, the queue gets added to the multi-queue group whose primary
-> + *    queue id is specified in the 'value' field.
+>  	__guc_exec_queue_policy_start_klv(&policy, q->guc->id);
+>  	__guc_exec_queue_policy_add_preemption_timeout(&policy, 1);
+>  
+> @@ -575,6 +579,130 @@ static void set_min_preemption_timeout(struct xe_guc *guc, struct xe_exec_queue
+>  	xe_map_wr_field(xe_, &map_, 0, struct guc_submit_parallel_scratch, \
+>  			field_, val_)
+>  
+> +#define CGP_VERSION_MAJOR_SHIFT	8
+> +
+> +static void xe_guc_exec_queue_group_cgp_update(struct xe_device *xe,
+> +					       struct xe_exec_queue *q)
+> +{
+> +	struct xe_exec_queue_group *group = q->multi_queue.group;
+> +	u32 guc_id = group->primary->guc->id;
+> +
+> +	/* Currently implementing CGP version 1.0 */
+> +	xe_map_wr(xe, &group->cgp_bo->vmap, 0, u32,
+> +		  1 << CGP_VERSION_MAJOR_SHIFT);
+> +
+> +	xe_map_wr(xe, &group->cgp_bo->vmap,
+> +		  (32 + q->multi_queue.pos * 2) * sizeof(u32),
+> +		  u32, lower_32_bits(xe_lrc_descriptor(q->lrc[0])));
+> +
+> +	xe_map_wr(xe, &group->cgp_bo->vmap,
+> +		  (33 + q->multi_queue.pos * 2) * sizeof(u32),
+> +		  u32, guc_id);
+> +
+> +	if (q->multi_queue.pos / 32) {
+> +		xe_map_wr(xe, &group->cgp_bo->vmap, 17 * sizeof(u32),
+> +			  u32, BIT(q->multi_queue.pos % 32));
+> +		xe_map_wr(xe, &group->cgp_bo->vmap, 16 * sizeof(u32), u32, 0);
+> +	} else {
+> +		xe_map_wr(xe, &group->cgp_bo->vmap, 16 * sizeof(u32),
+> +			  u32, BIT(q->multi_queue.pos));
+> +		xe_map_wr(xe, &group->cgp_bo->vmap, 17 * sizeof(u32), u32, 0);
 
-s/queue id/exec_queue_id
+Maybe some defines for all these numbers (16, 17, 32, 33) in this
+function? Or some comments? It is very hard to look at this code and
+know what it is doing.
 
-^^^ to match names in structure.
+> +	}
+> +}
+> +
+> +static void xe_guc_exec_queue_group_cgp_sync(struct xe_guc *guc,
+> +					     struct xe_exec_queue *q,
+> +					     const u32 *action, u32 len)
+> +{
+> +	struct xe_exec_queue_group *group = q->multi_queue.group;
+> +	struct xe_device *xe = guc_to_xe(guc);
+> +	long ret;
+> +
+> +	/*
+> +	 * As all queues of a multi queue group use single drm scheduler
+> +	 * submit workqueue, CGP synchronization with GuC are serialized.
+> +	 * Hence, no locking is required here.
+> +	 * Wait for any pending CGP_SYNC_DONE response before updating the
+> +	 * CGP page and sending CGP_SYNC message.
+> +	 */
+> +	ret = wait_event_timeout(guc->ct.wq,
+> +				 !READ_ONCE(group->sync_pending) ||
+> +				 xe_guc_read_stopped(guc), HZ);
+> +	if (!ret || xe_guc_read_stopped(guc)) {
+> +		drm_err(&xe->drm, "Wait for CGP_SYNC_DONE response failed!\n");
+> +		/* Something wrong with the CTB or GuC, no need to proceed */
+> +		return;
+> +	}
+> +
+> +	xe_guc_exec_queue_group_cgp_update(xe, q);
+> +
+> +	WRITE_ONCE(group->sync_pending, true);
+> +	xe_guc_ct_send(&guc->ct, action, len, G2H_LEN_DW_MULTI_QUEUE_CONTEXT, 1);
+> +}
+> +
+> +static void __register_exec_queue(struct xe_guc *guc,
+> +				  struct guc_ctxt_registration_info *info)
+> +{
+> +	u32 action[] = {
+> +		XE_GUC_ACTION_REGISTER_CONTEXT,
+> +		info->flags,
+> +		info->context_idx,
+> +		info->engine_class,
+> +		info->engine_submit_mask,
+> +		info->wq_desc_lo,
+> +		info->wq_desc_hi,
+> +		info->wq_base_lo,
+> +		info->wq_base_hi,
+> +		info->wq_size,
+> +		info->hwlrca_lo,
+> +		info->hwlrca_hi,
+> +	};
+> +
+> +	/* explicitly checks some fields that we might fixup later */
+> +	xe_gt_assert(guc_to_gt(guc), info->wq_desc_lo ==
+> +		     action[XE_GUC_REGISTER_CONTEXT_DATA_5_WQ_DESC_ADDR_LOWER]);
+> +	xe_gt_assert(guc_to_gt(guc), info->wq_base_lo ==
+> +		     action[XE_GUC_REGISTER_CONTEXT_DATA_7_WQ_BUF_BASE_LOWER]);
+> +	xe_gt_assert(guc_to_gt(guc), info->hwlrca_lo ==
+> +		     action[XE_GUC_REGISTER_CONTEXT_DATA_10_HW_LRC_ADDR]);
+> +
+> +	xe_guc_ct_send(&guc->ct, action, ARRAY_SIZE(action), 0, 0);
+> +}
+> +
+> +static void __register_exec_queue_group(struct xe_guc *guc,
+> +					struct xe_exec_queue *q,
+> +					struct guc_ctxt_registration_info *info)
+> +{
+> +#define MAX_MULTI_QUEUE_REG_SIZE	(8)
+> +	struct xe_device *xe = guc_to_xe(guc);
+> +	u32 action[MAX_MULTI_QUEUE_REG_SIZE];
+> +	int len = 0;
+> +
+> +	if (xe_exec_queue_is_multi_queue_primary(q)) {
+> +		action[len++] = XE_GUC_ACTION_REGISTER_CONTEXT_MULTI_QUEUE;
+> +		action[len++] = info->flags;
+> +		action[len++] = info->context_idx;
+> +		action[len++] = info->engine_class;
+> +		action[len++] = info->engine_submit_mask;
+> +		action[len++] = 0; /* Reserved */
+> +		action[len++] = info->cgp_lo;
+> +		action[len++] = info->cgp_hi;
+> +	} else {
+> +		/*
+> +		 * No need to wait before CGP sync since CT descriptors
+> +		 * should be ordered.
+> +		 */
+> +
+> +		action[len++] = XE_GUC_ACTION_MULTI_QUEUE_CONTEXT_CGP_SYNC;
+> +		action[len++] = q->multi_queue.group->primary->guc->id;
+> +	}
+> +
+> +	xe_assert(xe, len <= MAX_MULTI_QUEUE_REG_SIZE);
+> +#undef MAX_MULTI_QUEUE_REG_SIZE
+> +
+> +	xe_guc_exec_queue_group_cgp_sync(guc, q, action, len);
+> +}
+> +
+>  static void __register_mlrc_exec_queue(struct xe_guc *guc,
+>  				       struct xe_exec_queue *q,
+>  				       struct guc_ctxt_registration_info *info)
+> @@ -622,35 +750,6 @@ static void __register_mlrc_exec_queue(struct xe_guc *guc,
+>  	xe_guc_ct_send(&guc->ct, action, len, 0, 0);
+>  }
+>  
+> -static void __register_exec_queue(struct xe_guc *guc,
+> -				  struct guc_ctxt_registration_info *info)
+> -{
+> -	u32 action[] = {
+> -		XE_GUC_ACTION_REGISTER_CONTEXT,
+> -		info->flags,
+> -		info->context_idx,
+> -		info->engine_class,
+> -		info->engine_submit_mask,
+> -		info->wq_desc_lo,
+> -		info->wq_desc_hi,
+> -		info->wq_base_lo,
+> -		info->wq_base_hi,
+> -		info->wq_size,
+> -		info->hwlrca_lo,
+> -		info->hwlrca_hi,
+> -	};
+> -
+> -	/* explicitly checks some fields that we might fixup later */
+> -	xe_gt_assert(guc_to_gt(guc), info->wq_desc_lo ==
+> -		     action[XE_GUC_REGISTER_CONTEXT_DATA_5_WQ_DESC_ADDR_LOWER]);
+> -	xe_gt_assert(guc_to_gt(guc), info->wq_base_lo ==
+> -		     action[XE_GUC_REGISTER_CONTEXT_DATA_7_WQ_BUF_BASE_LOWER]);
+> -	xe_gt_assert(guc_to_gt(guc), info->hwlrca_lo ==
+> -		     action[XE_GUC_REGISTER_CONTEXT_DATA_10_HW_LRC_ADDR]);
+> -
+> -	xe_guc_ct_send(&guc->ct, action, ARRAY_SIZE(action), 0, 0);
+> -}
+> -
+>  static void register_exec_queue(struct xe_exec_queue *q, int ctx_type)
+>  {
+>  	struct xe_guc *guc = exec_queue_to_guc(q);
+> @@ -670,6 +769,13 @@ static void register_exec_queue(struct xe_exec_queue *q, int ctx_type)
+>  	info.flags = CONTEXT_REGISTRATION_FLAG_KMD |
+>  		FIELD_PREP(CONTEXT_REGISTRATION_FLAG_TYPE, ctx_type);
+>  
+> +	if (xe_exec_queue_is_multi_queue(q)) {
+> +		struct xe_exec_queue_group *group = q->multi_queue.group;
+> +
+> +		info.cgp_lo = xe_bo_ggtt_addr(group->cgp_bo);
+> +		info.cgp_hi = 0;
+> +	}
+> +
+>  	if (xe_exec_queue_is_parallel(q)) {
+>  		u64 ggtt_addr = xe_lrc_parallel_ggtt_addr(lrc);
+>  		struct iosys_map map = xe_lrc_parallel_map(lrc);
+> @@ -700,11 +806,15 @@ static void register_exec_queue(struct xe_exec_queue *q, int ctx_type)
+>  
+>  	set_exec_queue_registered(q);
+>  	trace_xe_exec_queue_register(q);
+> -	if (xe_exec_queue_is_parallel(q))
+> +	if (xe_exec_queue_is_multi_queue(q))
+> +		__register_exec_queue_group(guc, q, &info);
+> +	else if (xe_exec_queue_is_parallel(q))
+>  		__register_mlrc_exec_queue(guc, q, &info);
+>  	else
+>  		__register_exec_queue(guc, &info);
+> -	init_policies(guc, q);
+> +
+> +	if (!xe_exec_queue_is_multi_queue_secondary(q))
+> +		init_policies(guc, q);
+>  }
+>  
+>  static u32 wq_space_until_wrap(struct xe_exec_queue *q)
+> @@ -833,6 +943,12 @@ static void submit_exec_queue(struct xe_exec_queue *q, struct xe_sched_job *job)
+>  	if (exec_queue_suspended(q) && !xe_exec_queue_is_parallel(q))
+>  		return;
+>  
+> +	/*
+> +	 * All queues in a multi-queue group will use the primary queue
+> +	 * of the group to interface with GuC.
+> +	 */
+> +	q = xe_exec_queue_multi_queue_primary(q);
+> +
+
+I think we might need a bit more thought which bits each queue owns in
+q->guc->state. The state machine is pretty complicated and now pointing
+secondary -> primary in some cases makes this even worse. I guess I'd
+ask to figure out which bits a owned by primary, which ones by the
+secondary, and which owns are mirrored and write this down somewhere.
 
 Matt
 
->   *
->   * The example below shows how to use @drm_xe_exec_queue_create to create
->   * a simple exec_queue (no parallel submission) of class
-> @@ -1292,6 +1298,8 @@ struct drm_xe_exec_queue_create {
->  #define   DRM_XE_EXEC_QUEUE_SET_PROPERTY_PRIORITY		0
->  #define   DRM_XE_EXEC_QUEUE_SET_PROPERTY_TIMESLICE		1
->  #define   DRM_XE_EXEC_QUEUE_SET_PROPERTY_PXP_TYPE		2
-> +#define   DRM_XE_EXEC_QUEUE_SET_PROPERTY_MULTI_GROUP		3
-> +#define     DRM_XE_MULTI_GROUP_CREATE				(1ull << 63)
->  	/** @extensions: Pointer to the first extension struct, if any */
->  	__u64 extensions;
+>  	if (!exec_queue_enabled(q) && !exec_queue_suspended(q)) {
+>  		action[len++] = XE_GUC_ACTION_SCHED_CONTEXT_MODE_SET;
+>  		action[len++] = q->guc->id;
+> @@ -879,6 +995,18 @@ guc_exec_queue_run_job(struct drm_sched_job *drm_job)
+>  	trace_xe_sched_job_run(job);
 >  
+>  	if (!killed_or_banned_or_wedged && !xe_sched_job_is_error(job)) {
+> +		if (xe_exec_queue_is_multi_queue_secondary(q)) {
+> +			struct xe_exec_queue *primary = xe_exec_queue_multi_queue_primary(q);
+> +
+> +			if (exec_queue_killed_or_banned_or_wedged(primary)) {
+> +				killed_or_banned_or_wedged = true;
+> +				goto run_job_out;
+> +			}
+> +
+> +			if (!exec_queue_registered(primary))
+> +				register_exec_queue(primary, GUC_CONTEXT_NORMAL);
+> +		}
+> +
+>  		if (!exec_queue_registered(q))
+>  			register_exec_queue(q, GUC_CONTEXT_NORMAL);
+>  		if (!job->skip_emit)
+> @@ -887,6 +1015,7 @@ guc_exec_queue_run_job(struct drm_sched_job *drm_job)
+>  		job->skip_emit = false;
+>  	}
+>  
+> +run_job_out:
+>  	/*
+>  	 * We don't care about job-fence ordering in LR VMs because these fences
+>  	 * are never exported; they are used solely to keep jobs on the pending
+> @@ -912,6 +1041,11 @@ int xe_guc_read_stopped(struct xe_guc *guc)
+>  	return atomic_read(&guc->submission_state.stopped);
+>  }
+>  
+> +static void handle_multi_queue_secondary_sched_done(struct xe_guc *guc,
+> +						    struct xe_exec_queue *q,
+> +						    u32 runnable_state);
+> +static void handle_deregister_done(struct xe_guc *guc, struct xe_exec_queue *q);
+> +
+>  #define MAKE_SCHED_CONTEXT_ACTION(q, enable_disable)			\
+>  	u32 action[] = {						\
+>  		XE_GUC_ACTION_SCHED_CONTEXT_MODE_SET,			\
+> @@ -925,7 +1059,9 @@ static void disable_scheduling_deregister(struct xe_guc *guc,
+>  	MAKE_SCHED_CONTEXT_ACTION(q, DISABLE);
+>  	int ret;
+>  
+> -	set_min_preemption_timeout(guc, q);
+> +	if (!xe_exec_queue_is_multi_queue_secondary(q))
+> +		set_min_preemption_timeout(guc, q);
+> +
+>  	smp_rmb();
+>  	ret = wait_event_timeout(guc->ct.wq,
+>  				 (!exec_queue_pending_enable(q) &&
+> @@ -953,9 +1089,12 @@ static void disable_scheduling_deregister(struct xe_guc *guc,
+>  	 * Reserve space for both G2H here as the 2nd G2H is sent from a G2H
+>  	 * handler and we are not allowed to reserved G2H space in handlers.
+>  	 */
+> -	xe_guc_ct_send(&guc->ct, action, ARRAY_SIZE(action),
+> -		       G2H_LEN_DW_SCHED_CONTEXT_MODE_SET +
+> -		       G2H_LEN_DW_DEREGISTER_CONTEXT, 2);
+> +	if (xe_exec_queue_is_multi_queue_secondary(q))
+> +		handle_multi_queue_secondary_sched_done(guc, q, 0);
+> +	else
+> +		xe_guc_ct_send(&guc->ct, action, ARRAY_SIZE(action),
+> +			       G2H_LEN_DW_SCHED_CONTEXT_MODE_SET +
+> +			       G2H_LEN_DW_DEREGISTER_CONTEXT, 2);
+>  }
+>  
+>  static void xe_guc_exec_queue_trigger_cleanup(struct xe_exec_queue *q)
+> @@ -1161,8 +1300,11 @@ static void enable_scheduling(struct xe_exec_queue *q)
+>  	set_exec_queue_enabled(q);
+>  	trace_xe_exec_queue_scheduling_enable(q);
+>  
+> -	xe_guc_ct_send(&guc->ct, action, ARRAY_SIZE(action),
+> -		       G2H_LEN_DW_SCHED_CONTEXT_MODE_SET, 1);
+> +	if (xe_exec_queue_is_multi_queue_secondary(q))
+> +		handle_multi_queue_secondary_sched_done(guc, q, 1);
+> +	else
+> +		xe_guc_ct_send(&guc->ct, action, ARRAY_SIZE(action),
+> +			       G2H_LEN_DW_SCHED_CONTEXT_MODE_SET, 1);
+>  
+>  	ret = wait_event_timeout(guc->ct.wq,
+>  				 !exec_queue_pending_enable(q) ||
+> @@ -1186,14 +1328,17 @@ static void disable_scheduling(struct xe_exec_queue *q, bool immediate)
+>  	xe_gt_assert(guc_to_gt(guc), exec_queue_registered(q));
+>  	xe_gt_assert(guc_to_gt(guc), !exec_queue_pending_disable(q));
+>  
+> -	if (immediate)
+> +	if (immediate && !xe_exec_queue_is_multi_queue_secondary(q))
+>  		set_min_preemption_timeout(guc, q);
+>  	clear_exec_queue_enabled(q);
+>  	set_exec_queue_pending_disable(q);
+>  	trace_xe_exec_queue_scheduling_disable(q);
+>  
+> -	xe_guc_ct_send(&guc->ct, action, ARRAY_SIZE(action),
+> -		       G2H_LEN_DW_SCHED_CONTEXT_MODE_SET, 1);
+> +	if (xe_exec_queue_is_multi_queue_secondary(q))
+> +		handle_multi_queue_secondary_sched_done(guc, q, 0);
+> +	else
+> +		xe_guc_ct_send(&guc->ct, action, ARRAY_SIZE(action),
+> +			       G2H_LEN_DW_SCHED_CONTEXT_MODE_SET, 1);
+>  }
+>  
+>  static void __deregister_exec_queue(struct xe_guc *guc, struct xe_exec_queue *q)
+> @@ -1211,8 +1356,11 @@ static void __deregister_exec_queue(struct xe_guc *guc, struct xe_exec_queue *q)
+>  	set_exec_queue_destroyed(q);
+>  	trace_xe_exec_queue_deregister(q);
+>  
+> -	xe_guc_ct_send(&guc->ct, action, ARRAY_SIZE(action),
+> -		       G2H_LEN_DW_DEREGISTER_CONTEXT, 1);
+> +	if (xe_exec_queue_is_multi_queue_secondary(q))
+> +		handle_deregister_done(guc, q);
+> +	else
+> +		xe_guc_ct_send(&guc->ct, action, ARRAY_SIZE(action),
+> +			       G2H_LEN_DW_DEREGISTER_CONTEXT, 1);
+>  }
+>  
+>  static enum drm_gpu_sched_stat
+> @@ -1660,6 +1808,7 @@ static int guc_exec_queue_init(struct xe_exec_queue *q)
+>  {
+>  	struct xe_gpu_scheduler *sched;
+>  	struct xe_guc *guc = exec_queue_to_guc(q);
+> +	struct workqueue_struct *submit_wq = NULL;
+>  	struct xe_guc_exec_queue *ge;
+>  	long timeout;
+>  	int err, i;
+> @@ -1680,8 +1829,20 @@ static int guc_exec_queue_init(struct xe_exec_queue *q)
+>  
+>  	timeout = (q->vm && xe_vm_in_lr_mode(q->vm)) ? MAX_SCHEDULE_TIMEOUT :
+>  		  msecs_to_jiffies(q->sched_props.job_timeout_ms);
+> +
+> +	/*
+> +	 * Use primary queue's submit_wq for all secondary queues of a
+> +	 * multi queue group. This serialization avoids any locking around
+> +	 * CGP synchronization with GuC.
+> +	 */
+> +	if (xe_exec_queue_is_multi_queue_secondary(q)) {
+> +		struct xe_exec_queue *primary = xe_exec_queue_multi_queue_primary(q);
+> +
+> +		submit_wq = primary->guc->sched.base.submit_wq;
+> +	}
+> +
+>  	err = xe_sched_init(&ge->sched, &drm_sched_ops, &xe_sched_ops,
+> -			    NULL, xe_lrc_ring_size() / MAX_JOB_SIZE_BYTES, 64,
+> +			    submit_wq, xe_lrc_ring_size() / MAX_JOB_SIZE_BYTES, 64,
+>  			    timeout, guc_to_gt(guc)->ordered_wq, NULL,
+>  			    q->name, gt_to_xe(q->gt)->drm.dev);
+>  	if (err)
+> @@ -2418,7 +2579,11 @@ static void deregister_exec_queue(struct xe_guc *guc, struct xe_exec_queue *q)
+>  
+>  	trace_xe_exec_queue_deregister(q);
+>  
+> -	xe_guc_ct_send_g2h_handler(&guc->ct, action, ARRAY_SIZE(action));
+> +	if (xe_exec_queue_is_multi_queue_secondary(q))
+> +		handle_deregister_done(guc, q);
+> +	else
+> +		xe_guc_ct_send_g2h_handler(&guc->ct, action,
+> +					   ARRAY_SIZE(action));
+>  }
+>  
+>  static void handle_sched_done(struct xe_guc *guc, struct xe_exec_queue *q,
+> @@ -2468,6 +2633,15 @@ static void handle_sched_done(struct xe_guc *guc, struct xe_exec_queue *q,
+>  	}
+>  }
+>  
+> +static void handle_multi_queue_secondary_sched_done(struct xe_guc *guc,
+> +						    struct xe_exec_queue *q,
+> +						    u32 runnable_state)
+> +{
+> +	mutex_lock(&guc->ct.lock);
+> +	handle_sched_done(guc, q, runnable_state);
+> +	mutex_unlock(&guc->ct.lock);
+> +}
+> +
+>  int xe_guc_sched_done_handler(struct xe_guc *guc, u32 *msg, u32 len)
+>  {
+>  	struct xe_exec_queue *q;
+> @@ -2672,6 +2846,44 @@ int xe_guc_exec_queue_reset_failure_handler(struct xe_guc *guc, u32 *msg, u32 le
+>  	return 0;
+>  }
+>  
+> +/**
+> + * xe_guc_exec_queue_cgp_sync_done_handler - CGP synchronization done handler
+> + * @guc: guc
+> + * @msg: message indicating CGP sync done
+> + * @len: length of message
+> + *
+> + * Set multi queue group's sync_pending flag to false and wakeup anyone waiting
+> + * for CGP synchronization to complete.
+> + *
+> + * Return: 0 on success, -EPROTO for malformed messages.
+> + */
+> +int xe_guc_exec_queue_cgp_sync_done_handler(struct xe_guc *guc, u32 *msg, u32 len)
+> +{
+> +	struct xe_device *xe = guc_to_xe(guc);
+> +	struct xe_exec_queue *q;
+> +	u32 guc_id = msg[0];
+> +
+> +	if (unlikely(len < 1)) {
+> +		drm_err(&xe->drm, "Invalid CGP_SYNC_DONE length %u", len);
+> +		return -EPROTO;
+> +	}
+> +
+> +	q = g2h_exec_queue_lookup(guc, guc_id);
+> +	if (unlikely(!q))
+> +		return -EPROTO;
+> +
+> +	if (!xe_exec_queue_is_multi_queue_primary(q)) {
+> +		drm_err(&xe->drm, "Unexpected CGP_SYNC_DONE response");
+> +		return -EPROTO;
+> +	}
+> +
+> +	/* Wakeup the serialized cgp update wait */
+> +	WRITE_ONCE(q->multi_queue.group->sync_pending, false);
+> +	wake_up_all(&guc->ct.wq);
+> +
+> +	return 0;
+> +}
+> +
+>  static void
+>  guc_exec_queue_wq_snapshot_capture(struct xe_exec_queue *q,
+>  				   struct xe_guc_submit_exec_queue_snapshot *snapshot)
+> diff --git a/drivers/gpu/drm/xe/xe_guc_submit.h b/drivers/gpu/drm/xe/xe_guc_submit.h
+> index b49a2748ec46..abfa94bce391 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_submit.h
+> +++ b/drivers/gpu/drm/xe/xe_guc_submit.h
+> @@ -34,6 +34,7 @@ int xe_guc_exec_queue_memory_cat_error_handler(struct xe_guc *guc, u32 *msg,
+>  					       u32 len);
+>  int xe_guc_exec_queue_reset_failure_handler(struct xe_guc *guc, u32 *msg, u32 len);
+>  int xe_guc_error_capture_handler(struct xe_guc *guc, u32 *msg, u32 len);
+> +int xe_guc_exec_queue_cgp_sync_done_handler(struct xe_guc *guc, u32 *msg, u32 len);
+>  
+>  struct xe_guc_submit_exec_queue_snapshot *
+>  xe_guc_exec_queue_snapshot_capture(struct xe_exec_queue *q);
 > -- 
 > 2.43.0
 > 
