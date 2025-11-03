@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A1469CCFA04
-	for <intel-xe@archiver.kernel.org>; Mon,  3 Nov 2025 17:46:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 594ADCCFA0C
+	for <intel-xe@archiver.kernel.org>; Mon,  3 Nov 2025 17:46:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5515810E4BA;
-	Mon,  3 Nov 2025 17:46:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 122FB10E210;
+	Mon,  3 Nov 2025 17:46:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="bJsdg7nR";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="QWNx5S1R";
 	dkim-atps=neutral
 Received: from lankhorst.se (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CF98310E4B9
- for <intel-xe@lists.freedesktop.org>; Mon,  3 Nov 2025 17:46:52 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5899710E4BB
+ for <intel-xe@lists.freedesktop.org>; Mon,  3 Nov 2025 17:46:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1762192011;
- bh=9MHCFxIequ3JUqIgGQhz95QVQawJLEEKvKygoqucuyk=;
+ s=default; t=1762192014;
+ bh=J17qz3acoolp69Z44md1B5Q1vF/K6mIUidhmirN/VZs=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=bJsdg7nRvIgg8yaQ9kLCXepPctGQMPojieZIMlXliHMed8thUi9eGwlOnpVne/zDZ
- Q2aG4aXQVIGB3gtDKJk9AJQdPtT7l28u4WgYy4KU5Zwtc0dD9Bspf7Sk7n1hWpT87x
- /RNKQ+9QWcgf9JFOSew8bM2wuo57ZcozAyEDyp7SD3BRiYSUlkFsYX8H6V0HXt2IZb
- l5mn9ZNgxhu9CuvDQ8HRbchqD4oG90RdqqobFTsDBFIqyUmFWJnGF7eh2lPEN/BlKp
- 6RD5lRUkWR7epKsUtAyc3fCGd39OL+65ag6vA0r+ijJ33Em5fP0LwkPSs7CkPVVidd
- BUf0D/xw5dP0Q==
+ b=QWNx5S1RZjM+GIbVQpwHUiM4gZ0MQylTeX0x03l8KO42Lr5Cf9fzapYQ/OzQEFfjy
+ wXOPhZwDeK0tWv8T5mDDwX5BgZSIvim69+y/n3NwMdB8P58ZH0wtHX/LyYqgaXE15z
+ 22y4Gdz82dDoDuN0TGDP/9SSmiR6L6M5cEeQHMHXRAN4XQbIgIBBnR+v+S/yIRLyh2
+ kdOeBj/Qwazgw18qJ5FtvY+MjCSgexjgJr7a8ksLJCeo5mEf2Jd/UVwie0wbrcOcDN
+ 6Buw2sbSAUMolttnmUgiwJ9ZAGylMkR5vVNYhLxRtAD5wo+GgKkrVbuEQCXVDZwecK
+ VBx3t+SNld+0A==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-xe@lists.freedesktop.org
 Cc: Maarten Lankhorst <dev@lankhorst.se>,
@@ -32,10 +32,9 @@ Cc: Maarten Lankhorst <dev@lankhorst.se>,
  Mike Galbraith <umgwanakikbuti@gmail.com>,
  Thomas Gleixner <tglx@linutronix.de>,
  Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-Subject: [PATCH 1/7] drm/i915/display: Make get_vblank_counter use
- intel_de_read_fw()
-Date: Mon,  3 Nov 2025 18:47:04 +0100
-Message-ID: <20251103174718.139798-2-dev@lankhorst.se>
+Subject: [PATCH 5/7] drm/i915/display: Make icl_dsi_frame_update use _fw too
+Date: Mon,  3 Nov 2025 18:47:08 +0100
+Message-ID: <20251103174718.139798-6-dev@lankhorst.se>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20251103174718.139798-1-dev@lankhorst.se>
 References: <20251103174718.139798-1-dev@lankhorst.se>
@@ -55,44 +54,61 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Fixes the following lockdep splat on PREEMPT_RT:
-<3> BUG: sleeping function called from invalid context at kernel/locking/spinlock_rt.c:48
-<3> in_atomic(): 1, irqs_disabled(): 0, non_block: 0, pid: 1373, name: xe_module_load
-<3> preempt_count: 1, expected: 0
-<3> RCU nest depth: 0, expected: 0
-<4> 11 locks held by xe_module_load/1373:
-<4>  #0: ffff888107b691a0 (&dev->mutex){....}-{3:3}, at: __driver_attach+0x104/0x220
-<4>  #1: ffff88813cd30280 (&dev->clientlist_mutex){+.+.}-{3:3}, at: drm_client_register+0x32/0xe0
-<4>  #2: ffffffff837f88f8 (registration_lock){+.+.}-{3:3}, at: register_framebuffer+0x1b/0x50
-<4>  #3: ffffffff835985e0 (console_lock){+.+.}-{0:0}, at: fbcon_fb_registered+0x6f/0x90
-<4>  #4: ffff88812589e6a0 (&helper->lock){+.+.}-{3:3}, at: __drm_fb_helper_restore_fbdev_mode_unlocked+0x7b/0x110
-<4>  #5: ffff88813cd30158 (&dev->master_mutex){+.+.}-{3:3}, at: drm_master_internal_acquire+0x20/0x50
-<4>  #6: ffff88812589e488 (&client->modeset_mutex){+.+.}-{3:3}, at: drm_client_modeset_commit_locked+0x2a/0x1b0
-<4>  #7: ffffc9000031eef0 (crtc_ww_class_acquire){+.+.}-{0:0}, at: drm_client_modeset_commit_atomic+0x4c/0x2b0
-<4>  #8: ffffc9000031ef18 (crtc_ww_class_mutex){+.+.}-{3:3}, at: drm_client_modeset_commit_atomic+0x4c/0x2b0
-<4>  #9: ffff888114f7b8b8 (&intel_dp->psr.lock){+.+.}-{3:3}, at: intel_psr_lock+0xc5/0xf0 [xe]
-<4>  #10: ffff88812a0cbbc0 (&wl->lock){+.+.}-{2:2}, at: intel_dmc_wl_get+0x3c/0x140 [xe]
-
-This splat will happen otherwise on all tracepoints too, for similar reasons.
+Don't use the dmc lock inside the vblank critical section,
+not even as last call.
 
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/i915/display/intel_vblank.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/icl_dsi.c                | 4 ++--
+ drivers/gpu/drm/i915/display/intel_de.h               | 6 ++++++
+ drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h | 2 ++
+ 3 files changed, 10 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_vblank.c b/drivers/gpu/drm/i915/display/intel_vblank.c
-index 671f357c65638..2b106ffa3f5f5 100644
---- a/drivers/gpu/drm/i915/display/intel_vblank.c
-+++ b/drivers/gpu/drm/i915/display/intel_vblank.c
-@@ -133,7 +133,7 @@ u32 g4x_get_vblank_counter(struct drm_crtc *crtc)
- 	if (!vblank->max_vblank_count)
- 		return 0;
+diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
+index 70d4c1bc70fc3..e52b434ac8f11 100644
+--- a/drivers/gpu/drm/i915/display/icl_dsi.c
++++ b/drivers/gpu/drm/i915/display/icl_dsi.c
+@@ -243,8 +243,8 @@ void icl_dsi_frame_update(struct intel_crtc_state *crtc_state)
+ 	else
+ 		return;
  
--	return intel_de_read(display, PIPE_FRMCOUNT_G4X(display, pipe));
-+	return intel_de_read_fw(display, PIPE_FRMCOUNT_G4X(display, pipe));
+-	intel_de_rmw(display, DSI_CMD_FRMCTL(port), 0,
+-		     DSI_FRAME_UPDATE_REQUEST);
++	intel_de_rmw_fw(display, DSI_CMD_FRMCTL(port), 0,
++			DSI_FRAME_UPDATE_REQUEST);
  }
  
- static u32 intel_crtc_scanlines_since_frame_timestamp(struct intel_crtc *crtc)
+ static void dsi_program_swing_and_deemphasis(struct intel_encoder *encoder)
+diff --git a/drivers/gpu/drm/i915/display/intel_de.h b/drivers/gpu/drm/i915/display/intel_de.h
+index 9ecdcf6b73e4d..b7d1df02a9319 100644
+--- a/drivers/gpu/drm/i915/display/intel_de.h
++++ b/drivers/gpu/drm/i915/display/intel_de.h
+@@ -214,6 +214,12 @@ intel_de_write_fw(struct intel_display *display, i915_reg_t reg, u32 val)
+ 	intel_uncore_write_fw(__to_uncore(display), reg, val);
+ }
+ 
++static inline u32
++intel_de_rmw_fw(struct intel_display *display, i915_reg_t reg, u32 clear, u32 set)
++{
++	return intel_uncore_rmw_fw(__to_uncore(display), reg, clear, set);
++}
++
+ static inline u32
+ intel_de_read_notrace(struct intel_display *display, i915_reg_t reg)
+ {
+diff --git a/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h b/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h
+index d012f02bc84f7..57d5ffabf2d52 100644
+--- a/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h
++++ b/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h
+@@ -91,6 +91,8 @@ static inline u32 intel_uncore_rmw(struct intel_uncore *uncore,
+ 	return xe_mmio_rmw32(__compat_uncore_to_mmio(uncore), reg, clear, set);
+ }
+ 
++#define intel_uncore_rmw_fw intel_uncore_rmw
++
+ static inline int intel_wait_for_register(struct intel_uncore *uncore,
+ 					  i915_reg_t i915_reg, u32 mask,
+ 					  u32 value, unsigned int timeout)
 -- 
 2.51.0
 
