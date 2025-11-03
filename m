@@ -4,138 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B21C5CD13D2
-	for <intel-xe@archiver.kernel.org>; Mon, 10 Nov 2025 13:19:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E9AB2CCFA13
+	for <intel-xe@archiver.kernel.org>; Mon, 10 Nov 2025 13:40:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3984210E397;
-	Mon, 10 Nov 2025 13:18:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 40A7510E3C2;
+	Mon, 10 Nov 2025 13:40:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="Gjc3UfHy";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="ABNX7bmN";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="TEcL47Rh";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="/DdmTomV";
+	dkim=pass (1024-bit key; unprotected) header.d=tuxedocomputers.com header.i=@tuxedocomputers.com header.b="TmS6hVk7";
 	dkim-atps=neutral
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 660C410E391
- for <intel-xe@lists.freedesktop.org>; Mon, 10 Nov 2025 13:18:57 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
- [IPv6:2a07:de40:b281:104:10:150:64:97])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id A8AD4337B9;
- Mon, 10 Nov 2025 13:18:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1762780736; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
+X-Greylist: delayed 565 seconds by postgrey-1.36 at gabe;
+ Mon, 03 Nov 2025 18:51:11 UTC
+Received: from mail.tuxedocomputers.com (mail.tuxedocomputers.com
+ [157.90.84.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B42D810E1AB;
+ Mon,  3 Nov 2025 18:51:11 +0000 (UTC)
+Received: from [192.168.42.116] (p50878061.dip0.t-ipconnect.de [80.135.128.97])
+ (Authenticated sender: wse@tuxedocomputers.com)
+ by mail.tuxedocomputers.com (Postfix) with ESMTPSA id 9DEDD2FC0057;
+ Mon,  3 Nov 2025 19:41:43 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tuxedocomputers.com;
+ s=default; t=1762195304;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=ljfzBcqH5qpE4v1MruiYtYz4MaLfaGD2t+fulO6F7gw=;
- b=Gjc3UfHyzPz71blN2Ygx2nlvyFy1IMSHPK159oxpOZPNcArqK9j9VL5IKo9ooWm+SRX2Ao
- F/iQOoL/wzjk93KBnc3yczLiPcQzhzaU6l1DwND0bZfFTArGTNmDx41+ipjRRMmf3IDw+2
- aPXJX93VWUsJ25VPR84yP135Ey0AN3Q=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1762780736;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=ljfzBcqH5qpE4v1MruiYtYz4MaLfaGD2t+fulO6F7gw=;
- b=ABNX7bmNwgigbZGsweV0639FJWiESM1Bx5S+nU89ePPR0dyTMFTeHPXwk6TiZ19yqNT9gv
- 70jo25WvfLGf6+BQ==
-Authentication-Results: smtp-out1.suse.de;
- dkim=pass header.d=suse.de header.s=susede2_rsa header.b=TEcL47Rh;
- dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b="/DdmTomV"
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1762780733; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=ljfzBcqH5qpE4v1MruiYtYz4MaLfaGD2t+fulO6F7gw=;
- b=TEcL47RhrFDWH0+8KD20ItnaxnXIiV7ej1hpIcd+4sif+q3bEEBvhGN2X6Wb0/EeHqiMzg
- imOs76GEBd3dOg5xGmgbA0Grwfjbo2MQ5xG5OxGf8+/i5cUl3PsdjK0VIVHWZFNLQJ1b6X
- llbhHBjFDtHr2OzygQ4mZm4SkJvoH0g=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1762780733;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=ljfzBcqH5qpE4v1MruiYtYz4MaLfaGD2t+fulO6F7gw=;
- b=/DdmTomVs4KoIzEaLXbAgVmKpShM6TqCJK5UGRMS8HajIwPfh1P67eCXTTArW9F/m/21Pe
- K1MzgWes3mMeXvDQ==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 6B0CB143F1;
- Mon, 10 Nov 2025 13:18:53 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id gLO0GD3mEWnOSwAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Mon, 10 Nov 2025 13:18:53 +0000
-Message-ID: <b85b321f-9ce7-4c1e-910b-01a5265009ef@suse.de>
-Date: Mon, 10 Nov 2025 14:18:52 +0100
+ in-reply-to:in-reply-to:references:references;
+ bh=W1nZXv4C352QNPPF5OqiWmKBS0aRxksWGf6NnBSJkyA=;
+ b=TmS6hVk7vMYenlC5CwjqPjWnOEGmiu3IrkvH45EYos8H1V1W3h+qXyhtD1vBeE8dbNPAR7
+ 0BctDqIS2emFVjplKRs2Kiwsg0usPk1mgk3+66lPbGU512d4FutRcJOgShgMoW8X00SaGe
+ mcGdLaS/AIIufAcuQOolmC8r2WVgGvg=
+Authentication-Results: mail.tuxedocomputers.com;
+ auth=pass smtp.auth=wse@tuxedocomputers.com
+ smtp.mailfrom=wse@tuxedocomputers.com
+Message-ID: <bf134492-1977-4c46-a28a-2f82d04cdfcd@tuxedocomputers.com>
+Date: Mon, 3 Nov 2025 19:41:43 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/6] drm/atomic: use drm_crtc_vblank_waitqueue()
-To: Jani Nikula <jani.nikula@intel.com>, dri-devel@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- ville.syrjala@linux.intel.com
-References: <cover.1762513240.git.jani.nikula@intel.com>
- <1097348197acea9110da8baebbbc189890d01660.1762513240.git.jani.nikula@intel.com>
- <29b1cc39-7868-4b15-bac6-7dc97869dbdb@suse.de>
- <a605efb1745f0d2c96ff986fed7bdeeb6226b7ad@intel.com>
+Subject: Re: [PATCH 1/1] drm/i915/display: Add quirk to force backlight type
+ on some TUXEDO devices
+From: Werner Sembach <wse@tuxedocomputers.com>
+To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Cc: jani.nikula@linux.intel.com, rodrigo.vivi@intel.com,
+ joonas.lahtinen@linux.intel.com, tursulin@ursulin.net, airlied@gmail.com,
+ simona@ffwll.ch, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+References: <20250411171756.142777-1-wse@tuxedocomputers.com>
+ <20250411171756.142777-2-wse@tuxedocomputers.com>
+ <Z_llydAABYIueYA6@intel.com>
+ <6e4f4d23-3c5a-448f-bc0b-cf6a6e9f3d2e@tuxedocomputers.com>
+ <6126584e-587e-4758-9bfb-83e0231f98be@tuxedocomputers.com>
+ <37e439f4-232c-437f-a0ea-b25606f65921@tuxedocomputers.com>
 Content-Language: en-US
-From: Thomas Zimmermann <tzimmermann@suse.de>
-Autocrypt: addr=tzimmermann@suse.de; keydata=
- xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
- XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
- BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
- hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
- 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
- AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
- AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
- AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
- lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
- U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
- vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
- 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
- j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
- T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
- 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
- GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
- hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
- EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
- C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
- yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
- SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
- Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
- 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
-In-Reply-To: <a605efb1745f0d2c96ff986fed7bdeeb6226b7ad@intel.com>
+In-Reply-To: <37e439f4-232c-437f-a0ea-b25606f65921@tuxedocomputers.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: A8AD4337B9
-X-Rspamd-Action: no action
-X-Rspamd-Server: rspamd1.dmz-prg2.suse.org
-X-Spamd-Result: default: False [-4.51 / 50.00]; BAYES_HAM(-3.00)[100.00%];
- NEURAL_HAM_LONG(-1.00)[-1.000];
- R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- NEURAL_HAM_SHORT(-0.20)[-0.996]; MIME_GOOD(-0.10)[text/plain];
- MX_GOOD(-0.01)[]; RCVD_VIA_SMTP_AUTH(0.00)[];
- FUZZY_RATELIMITED(0.00)[rspamd.com]; ARC_NA(0.00)[];
- RCVD_TLS_ALL(0.00)[]; MIME_TRACE(0.00)[0:+];
- RBL_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:104:10:150:64:97:from]; 
- SPAMHAUS_XBL(0.00)[2a07:de40:b281:104:10:150:64:97:from];
- TO_DN_SOME(0.00)[];
- RECEIVED_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:106:10:150:64:167:received];
- MID_RHS_MATCH_FROM(0.00)[];
- DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- FROM_EQ_ENVFROM(0.00)[]; FROM_HAS_DN(0.00)[];
- RCPT_COUNT_FIVE(0.00)[5]; RCVD_COUNT_TWO(0.00)[2];
- TO_MATCH_ENVRCPT_ALL(0.00)[];
- DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:rdns,imap1.dmz-prg2.suse.org:helo,suse.de:dkim,suse.de:mid,suse.de:email,suse.com:url];
- URIBL_BLOCKED(0.00)[bootlin.com:url,imap1.dmz-prg2.suse.org:rdns,imap1.dmz-prg2.suse.org:helo,intel.com:email,suse.com:url,suse.de:dkim,suse.de:mid,suse.de:email];
- DKIM_TRACE(0.00)[suse.de:+]
+X-Mailman-Approved-At: Mon, 10 Nov 2025 13:40:14 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -150,93 +73,189 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi
+Hi,
 
-Am 10.11.25 um 13:51 schrieb Jani Nikula:
-> On Mon, 10 Nov 2025, Thomas Zimmermann <tzimmermann@suse.de> wrote:
->> Hi
+any news on this? Should i rebase it to the current linux version?
+
+Best regards,
+
+Werner
+
+Am 22.08.25 um 23:21 schrieb Werner Sembach:
+> Hi,
+>
+> Am 22.07.25 um 13:40 schrieb Werner Sembach:
+>> Hi,
 >>
->> Am 07.11.25 um 12:04 schrieb Jani Nikula:
->>> We have drm_crtc_vblank_waitqueue() to get the wait_queue_head_t pointer
->>> for a vblank. Use it instead of poking at dev->vblank[] directly.
+>> Am 15.04.25 um 17:48 schrieb Werner Sembach:
+>>> Hi,
 >>>
->>> Due to the macro maze of wait_event_timeout() that uses the address-of
->>> operator on the argument, we have to pass it in with the indirection
->>> operator.
+>>> Am 11.04.25 um 20:56 schrieb Ville Syrjälä:
+>>>> On Fri, Apr 11, 2025 at 05:55:08PM +0200, Werner Sembach wrote:
+>>>>> The display backlight on TUXEDO DX1708 and InsanityBook 15 v1 with panels
+>>>>> AUO 12701 and AUO 12701 must be forced to INTEL_DP_AUX_BACKLIGHT_ON to be
+>>>>> able to control the brightness.
+>>>>>
+>>>>> This could already be archived via a module parameter, but this patch adds
+>>>>> a quirk to apply this by default on the mentioned device + panel
+>>>>> combinations.
+>>>> Why aren't you fixing the VBT to be correct in the first place?
 >>>
->>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->> Reviewed-by Thomas Zimmermann <tzimmermann@suse.de>
+>>> I don't have access to the firmware source code and these are quite old 
+>>> devices so I also can't request a fix from the ODM. Besides: it can be quite 
+>>> hard to explain to the ODM what exactly the problem is if it doesn't also 
+>>> affect Windows.
 >>
->> But... drm_crtc_vblank_waitqueue() is a terrible interface IMHO, as it
->> exports internal details of the vblank implementation.
+>> TBH I don't know what VBT stands for, I just assumed it has to to with the 
+>> displays firmware?
 >>
->> I wonder if the existing users at [1] and [2] couldn't be replaced with
->> a common vblank helper.
+>> Unlike I wrote in the cover letter we actually still had an affected device 
+>> in our archives -> the issue persists and the quirk is still necessary.
+> Hope a gentle bump here is ok
 >>
->> And there's drm_wait_one_vblank() [3] and the waiting that's being fixed
->> here [4]. The latter looks like [3] but with multiple CRTC waiting for
->> their next vblank. I'd say this could be a single implementation within
->> the vblank code.
-> I don't disagree, but getting that done is a bit more involved than what
-> I have time for right now. Need to think.
->
-> In the mean time, pushed the drm_crtc_vblank_crtc() related patches in
-> the series, and left the drm_crtc_vblank_waitqueue() ones to simmer.
-
-Please also merge the rest of the series. These patches are an 
-improvement to open-coding the access to the fields.
-
-Best regards
-Thomas
-
->
-> Thanks for the reviews.
->
-> BR,
-> Jani.
->
->
->> [1]
->> https://elixir.bootlin.com/linux/v6.18-rc4/source/drivers/gpu/drm/i915/display/intel_display_rps.c#L73
->> [2]
->> https://elixir.bootlin.com/linux/v6.18-rc4/source/drivers/gpu/drm/i915/display/intel_vblank.c#L715
->> [3]
->> https://elixir.bootlin.com/linux/v6.18-rc4/source/drivers/gpu/drm/drm_vblank.c#L1304
->> [4]
->> https://elixir.bootlin.com/linux/v6.18-rc4/source/drivers/gpu/drm/drm_atomic_helper.c#L1837
+>> Best Regards,
 >>
->> Best regards
->> Thomas
+>> Werner
 >>
->>> ---
->>>    drivers/gpu/drm/drm_atomic_helper.c | 4 +++-
->>>    1 file changed, 3 insertions(+), 1 deletion(-)
 >>>
->>> diff --git a/drivers/gpu/drm/drm_atomic_helper.c b/drivers/gpu/drm/drm_atomic_helper.c
->>> index 5a473a274ff0..e641fcf8c568 100644
->>> --- a/drivers/gpu/drm/drm_atomic_helper.c
->>> +++ b/drivers/gpu/drm/drm_atomic_helper.c
->>> @@ -1831,10 +1831,12 @@ drm_atomic_helper_wait_for_vblanks(struct drm_device *dev,
->>>    	}
->>>    
->>>    	for_each_old_crtc_in_state(state, crtc, old_crtc_state, i) {
->>> +		wait_queue_head_t *queue = drm_crtc_vblank_waitqueue(crtc);
->>> +
->>>    		if (!(crtc_mask & drm_crtc_mask(crtc)))
->>>    			continue;
->>>    
->>> -		ret = wait_event_timeout(dev->vblank[i].queue,
->>> +		ret = wait_event_timeout(*queue,
->>>    					 state->crtcs[i].last_vblank_count !=
->>>    						drm_crtc_vblank_count(crtc),
->>>    					 msecs_to_jiffies(100));
-
--- 
---
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Frankenstr. 146, 90461 Nürnberg, Germany, www.suse.com
-GF: Jochen Jaser, Andrew McDonald, Werner Knoblich, (HRB 36809, AG Nürnberg)
-
-
+>>> Best regards,
+>>>
+>>> Werner Sembach
+>>>
+>>>>
+>>>>> Signed-off-by: Werner Sembach <wse@tuxedocomputers.com>
+>>>>> Cc: stable@vger.kernel.org
+>>>>> ---
+>>>>>   .../drm/i915/display/intel_dp_aux_backlight.c | 14 ++++++-
+>>>>>   drivers/gpu/drm/i915/display/intel_quirks.c   | 42 +++++++++++++++++++
+>>>>>   drivers/gpu/drm/i915/display/intel_quirks.h   |  1 +
+>>>>>   3 files changed, 56 insertions(+), 1 deletion(-)
+>>>>>
+>>>>> diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c 
+>>>>> b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+>>>>> index c846ef4acf5b2..0cac04c98a3e3 100644
+>>>>> --- a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+>>>>> +++ b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+>>>>> @@ -34,12 +34,14 @@
+>>>>>    * for some reason.
+>>>>>    */
+>>>>>   +#include <drm/drm_edid.h>
+>>>>>   #include "i915_utils.h"
+>>>>>   #include "intel_backlight.h"
+>>>>>   #include "intel_display_core.h"
+>>>>>   #include "intel_display_types.h"
+>>>>>   #include "intel_dp.h"
+>>>>>   #include "intel_dp_aux_backlight.h"
+>>>>> +#include "intel_quirks.h"
+>>>>>     /*
+>>>>>    * DP AUX registers for Intel's proprietary HDR backlight interface. We 
+>>>>> define
+>>>>> @@ -607,11 +609,21 @@ int intel_dp_aux_init_backlight_funcs(struct 
+>>>>> intel_connector *connector)
+>>>>>       struct drm_device *dev = connector->base.dev;
+>>>>>       struct intel_panel *panel = &connector->panel;
+>>>>>       bool try_intel_interface = false, try_vesa_interface = false;
+>>>>> +    int enable_dpcd_backlight;
+>>>>> +    u32 pnl_id;
+>>>>>         /* Check the VBT and user's module parameters to figure out which
+>>>>>        * interfaces to probe
+>>>>>        */
+>>>>> -    switch (display->params.enable_dpcd_backlight) {
+>>>>> +    enable_dpcd_backlight = display->params.enable_dpcd_backlight;
+>>>>> +    if (enable_dpcd_backlight == INTEL_DP_AUX_BACKLIGHT_AUTO &&
+>>>>> +        intel_has_quirk(display, 
+>>>>> QUIRK_AUO_12701_21229_ENABLE_DPCD_BACKLIGHT)) {
+>>>>> +        pnl_id = drm_edid_get_panel_id(panel->fixed_edid);
+>>>>> +        if (pnl_id == drm_edid_encode_panel_id('A', 'U', 'O', 0x319d) ||
+>>>>> +            pnl_id == drm_edid_encode_panel_id('A', 'U', 'O', 0x52ed))
+>>>>> +            enable_dpcd_backlight = INTEL_DP_AUX_BACKLIGHT_ON;
+>>>>> +    }
+>>>>> +    switch (enable_dpcd_backlight) {
+>>>>>       case INTEL_DP_AUX_BACKLIGHT_OFF:
+>>>>>           return -ENODEV;
+>>>>>       case INTEL_DP_AUX_BACKLIGHT_AUTO:
+>>>>> diff --git a/drivers/gpu/drm/i915/display/intel_quirks.c 
+>>>>> b/drivers/gpu/drm/i915/display/intel_quirks.c
+>>>>> index 8b30e9fd936e7..6f724e5712664 100644
+>>>>> --- a/drivers/gpu/drm/i915/display/intel_quirks.c
+>>>>> +++ b/drivers/gpu/drm/i915/display/intel_quirks.c
+>>>>> @@ -78,6 +78,12 @@ static void quirk_fw_sync_len(struct intel_dp *intel_dp)
+>>>>>       drm_info(display->drm, "Applying Fast Wake sync pulse count quirk\n");
+>>>>>   }
+>>>>>   +static void quirk_auo_12701_21229_enable_dpcd_backlight(struct 
+>>>>> intel_display *display)
+>>>>> +{
+>>>>> +    intel_set_quirk(display, QUIRK_AUO_12701_21229_ENABLE_DPCD_BACKLIGHT);
+>>>>> +    drm_info(display->drm, "Applying Display AUO Model 12701 and 21229 
+>>>>> Enable DPCD Backlight quirk\n");
+>>>>> +}
+>>>>> +
+>>>>>   struct intel_quirk {
+>>>>>       int device;
+>>>>>       int subsystem_vendor;
+>>>>> @@ -118,6 +124,12 @@ static int intel_dmi_no_pps_backlight(const struct 
+>>>>> dmi_system_id *id)
+>>>>>       return 1;
+>>>>>   }
+>>>>>   +static int intel_dmi_auo_12701_21229_enable_dpcd_backlight(const struct 
+>>>>> dmi_system_id *id)
+>>>>> +{
+>>>>> +    DRM_INFO("Display AUO model 12701 and 21229 DPCD backlight control on 
+>>>>> %s\n", id->ident);
+>>>>> +    return 1;
+>>>>> +}
+>>>>> +
+>>>>>   static const struct intel_dmi_quirk intel_dmi_quirks[] = {
+>>>>>       {
+>>>>>           .dmi_id_list = &(const struct dmi_system_id[]) {
+>>>>> @@ -164,6 +176,36 @@ static const struct intel_dmi_quirk 
+>>>>> intel_dmi_quirks[] = {
+>>>>>           },
+>>>>>           .hook = quirk_no_pps_backlight_power_hook,
+>>>>>       },
+>>>>> +    {
+>>>>> +        .dmi_id_list = &(const struct dmi_system_id[]) {
+>>>>> +            {
+>>>>> +                .callback = intel_dmi_auo_12701_21229_enable_dpcd_backlight,
+>>>>> +                .ident = "TUXEDO DX1708",
+>>>>> +                .matches = {DMI_MATCH(DMI_BOARD_NAME, "N8xEJEK"),
+>>>>> +                },
+>>>>> +            },
+>>>>> +            {
+>>>>> +                .callback = intel_dmi_auo_12701_21229_enable_dpcd_backlight,
+>>>>> +                .ident = "TUXEDO InsanityBook 15 v1",
+>>>>> +                .matches = {DMI_MATCH(DMI_BOARD_NAME, "P95_HP"),
+>>>>> +                },
+>>>>> +            },
+>>>>> +            {
+>>>>> +                .callback = intel_dmi_auo_12701_21229_enable_dpcd_backlight,
+>>>>> +                .ident = "TUXEDO InsanityBook 15 v1",
+>>>>> +                .matches = {DMI_MATCH(DMI_BOARD_NAME, "P95_HR"),
+>>>>> +                },
+>>>>> +            },
+>>>>> +            {
+>>>>> +                .callback = intel_dmi_auo_12701_21229_enable_dpcd_backlight,
+>>>>> +                .ident = "TUXEDO InsanityBook 15 v1",
+>>>>> +                .matches = {DMI_MATCH(DMI_BOARD_NAME, "P95_HP,HR,HQ"),
+>>>>> +                },
+>>>>> +            },
+>>>>> +            { }
+>>>>> +        },
+>>>>> +        .hook = quirk_auo_12701_21229_enable_dpcd_backlight,
+>>>>> +    },
+>>>>>   };
+>>>>>     static struct intel_quirk intel_quirks[] = {
+>>>>> diff --git a/drivers/gpu/drm/i915/display/intel_quirks.h 
+>>>>> b/drivers/gpu/drm/i915/display/intel_quirks.h
+>>>>> index cafdebda75354..38bdbd65d7efb 100644
+>>>>> --- a/drivers/gpu/drm/i915/display/intel_quirks.h
+>>>>> +++ b/drivers/gpu/drm/i915/display/intel_quirks.h
+>>>>> @@ -20,6 +20,7 @@ enum intel_quirk_id {
+>>>>>       QUIRK_LVDS_SSC_DISABLE,
+>>>>>       QUIRK_NO_PPS_BACKLIGHT_POWER_HOOK,
+>>>>>       QUIRK_FW_SYNC_LEN,
+>>>>> +    QUIRK_AUO_12701_21229_ENABLE_DPCD_BACKLIGHT,
+>>>>>   };
+>>>>>     void intel_init_quirks(struct intel_display *display);
+>>>>> -- 
+>>>>> 2.43.0
