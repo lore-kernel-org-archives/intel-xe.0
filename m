@@ -4,56 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 15B9FCCF9F8
-	for <intel-xe@archiver.kernel.org>; Mon,  3 Nov 2025 05:30:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7C313CCF9FE
+	for <intel-xe@archiver.kernel.org>; Mon,  3 Nov 2025 05:38:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CAC2D10E381;
-	Mon,  3 Nov 2025 05:30:50 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YmkJjns6";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2C86E10E37A;
- Mon,  3 Nov 2025 05:30:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1762147848; x=1793683848;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=FV8hS9xkBaBxLb/7hSsP6P+NCmmObgRtX/epjMon8Ic=;
- b=YmkJjns6Ut95vIM1kE7cE773C2qx94WaG1WCspq37/N4OMzAPFFzBEkY
- nbNcht0YqKFG+E/JN0pvHo6QfhWIN5T/gzVXs+ng4DMOjWKliYYE80UoU
- mx+g1jbsgFOQSvABvMcdLsmq8s1sNc/Vgf6fn2+G7evECg5B8g9HBOp5E
- eYHQURqc3BTjWmOBvgQ0Tw+MUsm8OJWxgr1mUzj3gVhAHVZtIe43gSLVG
- 66bHjG9v2nIbExGD1/1r11kQE4CetPeaLQbj7ppnmmp7KhQeuF68PneuV
- VPq8GxA47/hSogIu1TokvabCk1SYqHC3321UFx4+lIyaw6JYFSdbAdpqQ A==;
-X-CSE-ConnectionGUID: jWxi/VGETGSgCbRwsTUv6w==
-X-CSE-MsgGUID: sWdm4jP0RXqd2mjYY4QTZA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="64143881"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="64143881"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Nov 2025 21:30:48 -0800
-X-CSE-ConnectionGUID: Lz63ftJSQTGnidES+eLXwA==
-X-CSE-MsgGUID: hIBlGk7IT0GFjth3Lk0eUw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,275,1754982000"; d="scan'208";a="186925441"
-Received: from mgolanimitul-x299-ud4-pro.iind.intel.com ([10.190.239.114])
- by orviesa008.jf.intel.com with ESMTP; 02 Nov 2025 21:30:47 -0800
-From: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org, mitulkumar.ajitkumar.golani@intel.com,
- ankit.k.nautiyal@intel.com, uma.shankar@intel.com,
- ville.syrjala@linux.intel.com
-Subject: [RESEND,
- 22/22] drm/i915/vrr: Add function to check if DC Balance Possible
-Date: Mon,  3 Nov 2025 11:00:02 +0530
-Message-ID: <20251103053002.3002695-23-mitulkumar.ajitkumar.golani@intel.com>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20251103053002.3002695-1-mitulkumar.ajitkumar.golani@intel.com>
-References: <20251103053002.3002695-1-mitulkumar.ajitkumar.golani@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3869510E353;
+	Mon,  3 Nov 2025 05:38:20 +0000 (UTC)
+Received: from 10055242dc62 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 239DA10E104;
+ Mon,  3 Nov 2025 05:38:19 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Enable/Disable_DC_balance?=
+ =?utf-8?q?_along_with_VRR_DSB?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Mitul Golani" <mitulkumar.ajitkumar.golani@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 03 Nov 2025 05:38:19 -0000
+Message-ID: <176214829913.10382.7476087101824618742@10055242dc62>
+X-Patchwork-Hint: ignore
+References: <20251103053002.3002695-1-mitulkumar.ajitkumar.golani@intel.com>
+In-Reply-To: <20251103053002.3002695-1-mitulkumar.ajitkumar.golani@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,55 +36,66 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add function to check if DC Balance possibile on
-requested PIPE and also validate along with DISPLAY_VER
-check.
+== Series Details ==
 
-Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
-Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_vrr.c | 18 +++++++++++++++++-
- 1 file changed, 17 insertions(+), 1 deletion(-)
+Series: Enable/Disable DC balance along with VRR DSB
+URL   : https://patchwork.freedesktop.org/series/156900/
+State : warning
 
-diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-index d68306cdbf57..50bb3a1f6105 100644
---- a/drivers/gpu/drm/i915/display/intel_vrr.c
-+++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-@@ -236,6 +236,22 @@ void intel_vrr_compute_cmrr_timings(struct intel_crtc_state *crtc_state)
- 	crtc_state->mode_flags |= I915_MODE_FLAG_VRR;
- }
- 
-+static
-+int intel_vrr_dc_balance_possible(const struct intel_crtc_state *crtc_state)
-+{
-+	struct intel_display *display = to_intel_display(crtc_state);
-+	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-+	enum pipe pipe = crtc->pipe;
-+
-+	/*
-+	 * FIXME: Currently Firmware supports DC Balancing on PIPE A
-+	 * and PIPE B. Account those limitation while computing DC
-+	 * Balance parameters.
-+	 */
-+	return (HAS_VRR_DC_BALANCE(display) &&
-+		((pipe == PIPE_A) || (pipe == PIPE_B)));
-+}
-+
- static
- void intel_vrr_compute_vrr_timings(struct intel_crtc_state *crtc_state,
- 				   int vmin, int vmax)
-@@ -249,7 +265,7 @@ void intel_vrr_compute_vrr_timings(struct intel_crtc_state *crtc_state,
- 	crtc_state->vrr.enable = true;
- 	crtc_state->mode_flags |= I915_MODE_FLAG_VRR;
- 
--	if (HAS_VRR_DC_BALANCE(display))
-+	if (intel_vrr_dc_balance_possible(crtc_state))
- 		crtc_state->vrr.dc_balance.enable = true;
- }
- 
--- 
-2.48.1
+== Summary ==
+
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+f867e605613af1770f90c4b0afd4a8f06424d1f0
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 832c66709ffb9fa9039ce222d77e3cec8c27ee6c
+Author: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+Date:   Mon Nov 3 11:00:02 2025 +0530
+
+    drm/i915/vrr: Add function to check if DC Balance Possible
+    
+    Add function to check if DC Balance possibile on
+    requested PIPE and also validate along with DISPLAY_VER
+    check.
+    
+    Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+    Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
++ /mt/dim checkpatch b9356481c8ac3cba317f6c7af88db25452b0e515 drm-intel
+19f6bb51cdca drm/i915/display: Add source param for dc balance
+f9ee61d1bb6a drm/i915/dmc: Add pipe dmc registers and bits for DC Balance
+-:27: WARNING:BAD_SIGN_OFF: Non-standard signature: Co-authored-by:
+#27: 
+Co-authored-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+
+total: 0 errors, 1 warnings, 0 checks, 65 lines checked
+b09e282c1485 drm/i915/vrr: Add VRR DC balance registers
+2fd70f9f18a7 drm/i915/vrr: Add functions to read out vmin/vmax stuff
+1d19a937892a drm/i915/vrr: Add DC Balance params to crtc_state
+1dc667c575ea drm/i915/vrr: Add state dump for DC Balance params
+686d2ba125c0 drm/i915/vrr: Add compute config for DC Balance params
+5c5d1155451e drm/i915/display: Add DC Balance flip counter in crtc
+c91d39651fa7 drm/i915/vrr: Increment DC balance flip count on every flip
+9d09aa08afa9 drm/i915/vrr: Add function to reset DC Balance flip count
+f6846e48b7fa drm/i915/vrr: Add function reset DC balance accumulated params
+66df3d187732 drm/i915/vrr: Write DC balance params to hw registers
+032b8d82e68e drm/i915/vrr: Configure DC balance flipline adjustment
+4cf4cb13ffc0 drm/i915/vblank: Extract vrr_vblank_start()
+a6f61de563e3 drm/i915/vrr: Implement vblank evasion with DC balancing
+b562a263dfc0 drm/i915/display: Wait for VRR PUSH status update
+dcf16bf120d4 drm/i915/dsb: Add pipedmc dc balance enable/disable
+c9cb8a7101b4 drm/i915/vrr: Pause DC Balancing for DSB commits
+afea25da00e9 drm/i915/display: Add function to configure event for dc balance
+9c2d6d83216e drm/i915/vrr: Enable Adaptive sync counter bit
+bda864fff1ae drm/i915/vrr: Enable DC Balance
+832c66709ffb drm/i915/vrr: Add function to check if DC Balance Possible
+
 
