@@ -4,77 +4,166 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7BDAFCCF9F8
-	for <intel-xe@archiver.kernel.org>; Mon,  3 Nov 2025 17:52:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BB7BDCCF9F8
+	for <intel-xe@archiver.kernel.org>; Mon,  3 Nov 2025 18:07:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3D74910E4A3;
-	Mon,  3 Nov 2025 17:52:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4B7AC10E201;
+	Mon,  3 Nov 2025 18:07:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Ptj+UhfP";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IPAkcblH";
 	dkim-atps=neutral
-Received: from mail-pg1-f180.google.com (mail-pg1-f180.google.com
- [209.85.215.180])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A3FFB10E499
- for <intel-xe@lists.freedesktop.org>; Mon,  3 Nov 2025 17:52:24 +0000 (UTC)
-Received: by mail-pg1-f180.google.com with SMTP id
- 41be03b00d2f7-b5579235200so3372589a12.3
- for <intel-xe@lists.freedesktop.org>; Mon, 03 Nov 2025 09:52:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1762192344; x=1762797144; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=wJ77RMhhivFFjgL2P2/Fu8vkH2ct6wvbo6FBRbRXL9Q=;
- b=Ptj+UhfPvdJKvX5XhbPHuYvVCQMAKaIAoFMG8jN0ukjyYm1Z9nwiC3ANLoChywt+st
- h5hqT2Atr+gWs/+fqT+lDoXfFqY2LSg6RgC2tBqCe9W9PhfOLTT6UVOsADqUrXBE9aQO
- c3uFgMcHV9/D3Y3nKpkN1ZUPRQiBrvWalqNmhKyzTkpNwnLMmTTe4hQ5ne+zO7z0z61B
- Yg+DZ2PxYIKueo1oTrauhX1bNPLFYbpZ3F1qpVAzvWlZnB+ZkpwSzeLHqJksd21D3EJe
- BMoImk+wnjc33a7y+YEeqai4FSn1AHQNAWw/m0FexJjTC/xFV2vA3Rv3bRYFmT/yIq5o
- lkQg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1762192344; x=1762797144;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=wJ77RMhhivFFjgL2P2/Fu8vkH2ct6wvbo6FBRbRXL9Q=;
- b=AJgnaOBaL6/xYVWBRT1bdz4j0x54ecabIdPKah/VURVgy1LQE/3svWf3WkFS4fkQTy
- TaGFlXCBrOpQaHrm6WzFDuHmA51rHHqVG88gmGzEaFoTQqnEVq93cZWyTirKHXY3VEWv
- IWqF2sOfFwz0BJWibzxf4Luxj9BRTZFrZ8fT0QtRYpLTyiowtJ83Z+9U0Kjz13F2vRqc
- T4DQAX0maTMpQ3QhJ9qQ85tIEC97q088FDW8NH3L2uiQMPtqXjCO8cvZmlFMeVmyDUOb
- Y8pkTMFhNlUhkWm98QC5nkDAN2bSYFMJ97a06G5hEnJ++BlSqtcrMt0M2GiK5PE/Gzvc
- WrSw==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXBm13sUhdBIWqIFAIthl7Grwu9SLCM3VuCdz9rzMWqmtEs7jvJzXY7BGgqeoFPw4FC8IOjfgIAkw==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwpreJ+1ffkgKApkUWs+zqHU73yvSUhVDfJ10Kx4QJ8qA3PtOBi
- 1qqghOepOKKmDCSHI/9DPSNHvLn+uNET2nmF52cqSA35Quz+LtBx2s1L
-X-Gm-Gg: ASbGncvjpY7uPnZOcx3ZYgAltenwjHEGfBu1Zxt0BH4Bgx8v90EqVfxjJhWLsXdAZ35
- az+ZOUFVzyvOdVAVmoiMzhAxs6/9vAEY7keHwv6hvMrkdegsSXbXC2rU1d40YuSdYi5I1xe328J
- mRrYHjehqDc7PpsZX+4aYkWnIRGdGeWSBbktPhUQSwkb3o48cmrKXd6FQ7fy0FYdLvbbytS7KZJ
- 1UcYF0BPGbF/kgzGq0WydP3DbvV8Dv8/SxOObLHtZ2p8fdLzWSE43pdrfKYkl+zlrMv4XSKR4Wo
- Z5Cl/qcCzYq600c18djkbT23qoGhNmygUHhllq7d0M/XiZOYmKseKlSJh35hCum2k8T1rjyiI4o
- euip8pfwyIXk0mblNbWLefGqt1nZf2G4jrRRE5Owvs1nCD6sPHPV7QDSvPgPUHX7wKR+9dDT+If
- 050FQ218ROgkMMJb801A==
-X-Google-Smtp-Source: AGHT+IEKZKLSM/gbC9udEqxnnqJTTpW9kNrCt2fyBMDdijDN4ZY4JrMhD1mTu+Mdt2F/WmSSy4WCmg==
-X-Received: by 2002:a17:903:1206:b0:294:ee1c:78c7 with SMTP id
- d9443c01a7336-2951a527091mr184986225ad.54.1762192343995; 
- Mon, 03 Nov 2025 09:52:23 -0800 (PST)
-Received: from localhost ([134.134.139.73]) by smtp.gmail.com with ESMTPSA id
- d9443c01a7336-29526871023sm126166845ad.13.2025.11.03.09.52.22
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 03 Nov 2025 09:52:23 -0800 (PST)
-From: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>,
- Jani Nikula <jani.nikula@intel.com>
-Subject: [PATCH 1/1] drm/i915: switch to use kernel standard error injection
-Date: Mon,  3 Nov 2025 19:51:34 +0200
-Message-ID: <20251103175134.343703-2-juhapekka.heikkila@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20251103175134.343703-1-juhapekka.heikkila@gmail.com>
-References: <20251103175134.343703-1-juhapekka.heikkila@gmail.com>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0D4A610E201
+ for <intel-xe@lists.freedesktop.org>; Mon,  3 Nov 2025 18:07:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1762193223; x=1793729223;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=017HOhBm/R3FH/7t1t1D5xr30fsJCN2U/4GYm+re/Sg=;
+ b=IPAkcblHTpU+0/RPV9bpyKEyxiJidjRwx4Y8SQN+KLlJ5wOdzzuQX+uA
+ 0c10d8EC7VeA+IoBlFs/dKsYjl3lUVyzHQh1OWz+TT5tRFgjMUK9weGyO
+ jQsTqCtaJsHVjSZ6oZvEKnvH6E5EFOa5PUCiWvPMtOaM+VCLtvRBDYWiD
+ LNng+hBMxMuELlPqVuU1noPrbRaPo0O/ZT8csrcjd2C7ESVvpDDvfhBjI
+ lzw8Ew8gcaO2VvoVssxt/9rmrNPRSXkmA0BBqvS2W4fJbLqKU2apm61R0
+ lwt0E0+la7zm972qUd6omPuvKFGiVcHvAPgPME3Q+/Czo1AHjHJ8Xoqsc g==;
+X-CSE-ConnectionGUID: GsVXie9kQcW1oHG7OAoj/g==
+X-CSE-MsgGUID: +56z3pUgSGSzjjJzp99JVg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11602"; a="64195018"
+X-IronPort-AV: E=Sophos;i="6.19,276,1754982000"; d="scan'208";a="64195018"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Nov 2025 10:07:02 -0800
+X-CSE-ConnectionGUID: o0ZCV4kiQ6qelTkPnuWw9A==
+X-CSE-MsgGUID: ruA8GHhnTA+TVFSRDa4gfg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,276,1754982000"; d="scan'208";a="186620967"
+Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
+ by orviesa009.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Nov 2025 10:07:03 -0800
+Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.27; Mon, 3 Nov 2025 10:07:01 -0800
+Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
+ FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.27 via Frontend Transport; Mon, 3 Nov 2025 10:07:01 -0800
+Received: from PH8PR06CU001.outbound.protection.outlook.com (40.107.209.15) by
+ edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.27; Mon, 3 Nov 2025 10:07:01 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=V4T7oihEa2CD0c6cdfTcW6y5W1kv7tCMHfKfg5aa0dUSLaYdjeRTksBkOWjLUGiFHIxTJPU6PpRv96GS8R4MEGS+QwzZ3GgpqnYmveOwDkFYhJjKOhOl7qirDMI/J0qRpLApNTdTK8iclBqwjNjWGG/YmkHETTcOJOQjgjlYDd5MPUmHovnoOJUB2Ppfrx+4na/YqS0vhT/82odSjnxVDr7c3SuRxwATEYVSRU9S/G5yBIAdXvQsChuqwMxwb3O69MDmeFgb9NSIP4i0I8g6IMUXD37tB8DIDugl8Fx3e0Qqk4Ga7ONlPPesn+LCJEBz4Ff0Yt0GffI1i9dqaeSgdA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=OrAWw2pG3O21Jxk+7R/OgcE3hsoOkAPnSbqdvEJiBS0=;
+ b=gP/VQGhutjhfLhh6MycQrVruUJGVaYYTFAR1Sx0f+lfvfhDv2S9p4HWCRnmJSGLYmvdhh2fa10VbEi5Tmy6OuSUqf5ENHw7BhrN+E/rsyfvQPGPObIdTR5KBnDGDAM7xgk7vePwUbVCa3dfUdWMpsQxdu5pnAz+U7hHl2pUcdY5AfQvee0aAw3tjFZU5rwt/M8yGToNHuHP/T3vQb9I6PHsT/v3TJKb+2oKk+waAV8KsNlUGHGEaP4+gpjj825RRshlNoONFnMLhkO+VlQ5KVGZy8OyeepQ92bWYKMhmPtyH0XajoRk2VcSEUR2+JJHqnBBgCab1DdcpiElm5O2oKg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from BL3PR11MB6410.namprd11.prod.outlook.com (2603:10b6:208:3b9::15)
+ by DS4PPF7CCC4B437.namprd11.prod.outlook.com (2603:10b6:f:fc02::34)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9275.16; Mon, 3 Nov
+ 2025 18:06:59 +0000
+Received: from BL3PR11MB6410.namprd11.prod.outlook.com
+ ([fe80::b01a:aa33:165:efc]) by BL3PR11MB6410.namprd11.prod.outlook.com
+ ([fe80::b01a:aa33:165:efc%3]) with mapi id 15.20.9275.015; Mon, 3 Nov 2025
+ 18:06:59 +0000
+Date: Mon, 3 Nov 2025 10:06:55 -0800
+From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+To: Matthew Brost <matthew.brost@intel.com>
+CC: <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH 07/16] drm/xe/multi_queue: Add support for multi queue
+ dynamic priority change
+Message-ID: <aQjvP4ma43Y72JmU@nvishwa1-desk>
+References: <20251031182936.1882062-1-niranjana.vishwanathapura@intel.com>
+ <20251031182936.1882062-8-niranjana.vishwanathapura@intel.com>
+ <aQaWcP/ykkycsx51@lstrano-desk.jf.intel.com>
+Content-Type: text/plain; charset="us-ascii"; format=flowed
+Content-Disposition: inline
+In-Reply-To: <aQaWcP/ykkycsx51@lstrano-desk.jf.intel.com>
+X-ClientProxiedBy: BY5PR03CA0025.namprd03.prod.outlook.com
+ (2603:10b6:a03:1e0::35) To BL3PR11MB6410.namprd11.prod.outlook.com
+ (2603:10b6:208:3b9::15)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL3PR11MB6410:EE_|DS4PPF7CCC4B437:EE_
+X-MS-Office365-Filtering-Correlation-Id: 086e63e6-b496-4946-0977-08de1b03c812
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?UG4yuHii94shNQ7ynpVcoHEccHYJXfR3umb7FJsxvdazepzkahG+hl0vd3Ry?=
+ =?us-ascii?Q?OXcpCiNWRj3gh4wC35an41z3E/YB4pqSSc2Mft99M/JKKj71gTPK+cIN+/zU?=
+ =?us-ascii?Q?9g58AUW3ERKeO/lNFIPUNTA98r4UoQhLyrrhNBx/LDEaiepNI2RdQc39EfYD?=
+ =?us-ascii?Q?qsaB1EZBIs0WfRvVPuKr66sxmMbfN3O4G33Jgq5CLItM46eagshvRTBq1rN5?=
+ =?us-ascii?Q?gMnwyPGnZ6IttbJbWEQEJzUaNJCJ4X6A1IabGFV4SziOVqLgFL4wydJIJSBT?=
+ =?us-ascii?Q?Q0t/UDhNG2widzErv5lzHv6y783VHHxRikZm/dUoJ6MByyljbHlRSOZ/eW7C?=
+ =?us-ascii?Q?2rqqV0QQkl+yMwOHjfQIy0ItGj6d1ODJ8OzFMeNRykPZ7IFruzz/NjBjK8E8?=
+ =?us-ascii?Q?syUMkzPOH0jXxbyQ7o9aLixXAKnNUBfwNHPbVqe/lJtL36BpT5QLg4x6AcyO?=
+ =?us-ascii?Q?61/dCOP6+IoD1qD4t6p7UARCmNwIYxZU7w7cmKwIaFJ/2bsYUh8QyNLIuny6?=
+ =?us-ascii?Q?69eHDmdszNeX2pBZTTIDXFzgjcQKmiLWiE7ZK7D5o7MOWzEH/081C6UOJqj+?=
+ =?us-ascii?Q?pEkN65lFzTCO+0VWk3sUNTYl9vPEvlxRtiDeX6O62t3axlM4QIC1UmoTkVFA?=
+ =?us-ascii?Q?x39lJ9W+ouVFay4+D4V7WqqEgFdyIDE0FQt/h4HNV6QhOcWyCGbFlLAOAKTh?=
+ =?us-ascii?Q?yIQECeBT2YvSVH6Q6+64ntzq2mHACt5jp0O6FtLCHc1D5cUolQ+vdjkHfkqd?=
+ =?us-ascii?Q?FFiCv0zILZwfN1LFodXRl7jmv2yU6rRorhyAvuTQnZRVFNPQqLlvKZR43e+T?=
+ =?us-ascii?Q?YXcLi2MBP03Fg7kRzndYwePEZCwBDUkl8Za2GL4oVrwDOBLfC3i6JkqksK+t?=
+ =?us-ascii?Q?rv+qygm1LENEeZuSnFrLXgbAGGKYrHVivCJoO+gbMNRz7GLbtUR/3bY9EDp2?=
+ =?us-ascii?Q?Cfrq2fxlKNQoqruZW79X23KeZc+SiULiFiYrVWczQh/nazpgDhvzznI+xON1?=
+ =?us-ascii?Q?mcBe549S58RqPPra1U0IEgApm4IPxbInk0beed5GQjKKSltcVX1Ltls/1LXI?=
+ =?us-ascii?Q?0tPfuD1XfTTKFsHZI95z9hFkfswmBlFrtvF6vktrG0T85Xae3C5+YrQaeMMd?=
+ =?us-ascii?Q?BuJZBOII/e1JhaCwvDfvMdUzalBcqY/TlzQMIzUtSmPWk+hbny20T/B0AxDT?=
+ =?us-ascii?Q?kJlw5JM4rkt6s0tKxT3noaZq1kM5SqoB51zrFpGYsJoc7l4PPs7uSOSd1Sxu?=
+ =?us-ascii?Q?A3wAeqc+kVTWscqn4VU80SvBXtKgJof/bIXxX1z8KMmMImhG1nVuWUCP9ZlH?=
+ =?us-ascii?Q?4UTHjBfF2AQLefLGlT0FIwuDXdl25mNzrHgiBCioEsR7QuaHXnRDys+siEi6?=
+ =?us-ascii?Q?4C67jqbqtXxAr9IDukKikdrq06qd/dmpPeG6ui8lOsq32DgGSPQdnZ/Vp1LM?=
+ =?us-ascii?Q?F6zha/0cjkMgTluofA9x+Mp1T244t2u8?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BL3PR11MB6410.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?TIjCEpN3zWLaw8fHidXUaN6ToPzD0JfCMevaxxdu7iTVpXmlJ4gBW67OXl2U?=
+ =?us-ascii?Q?y1lUVW9kXgNzQl6HaMPjOgTTYjTVQVHUxPI5W3gJScPtVSlLsA09mZYfI0MQ?=
+ =?us-ascii?Q?srRez9aNnnrTgj8ooNpD4Nqh93Rbz1oMb5d+DTAzLO2oRlhDGEfZB7lOeGRg?=
+ =?us-ascii?Q?SBuLzpW3zt22/wh2bjo6+0xOGRJOQRNuhBKpgyeLsJSIDYFvR0L6E4BAKuDK?=
+ =?us-ascii?Q?w39oNSCYvhpV0Od92YeHWaqttxMmP0p7X0jyCQEPQSurQck8bMMqHiKStPlS?=
+ =?us-ascii?Q?daRX1CiX5j5TKReMgqp3WdZgA0IM5P/1Yo2xNEWvIt0I5swAWm+nzizF0olm?=
+ =?us-ascii?Q?1uVvtpBaORqXwEW9wtF7UmUmWyk/6WQSzvqbFdEtdPs384m1j5fqEHaO3etT?=
+ =?us-ascii?Q?QkzZXm8apFZDWuD1c3z1ZnYZrEmcz4NPk9Oja03KTECzXyrEwnFeariMCrSW?=
+ =?us-ascii?Q?O8MvUznsaij+Rt3/FMBMWp/rrsJrSCD2PyLYNJiX1yj5rCtK3sHirJJnaV5m?=
+ =?us-ascii?Q?4KFwy69TrEkO2gUEtAHtvF0oN/nWa3t9C9E9hNcIREF8u/j8PlDj9L11YfIq?=
+ =?us-ascii?Q?3eKEP08h1v2Y+44yWZ8VvjJTc1VXaHAtWFT1nGfMglFr5nbZfdiZJb5ZL1Bp?=
+ =?us-ascii?Q?FDrehanlgxQXCPXoIP8HMbWRAt9YMaRRMvu6loPlo5QKwU/nue7/itefCTUS?=
+ =?us-ascii?Q?U5to6N7FKqb5PmBn1GXNi8UgSIsOsF/fRNHY01spFNq0c894E7v4dkVYvV0U?=
+ =?us-ascii?Q?hdDnVMTSeO9KVDsyfn3I87itYGBNN9HBh8H1iyv+RAj0PbXEqIewASQA3J26?=
+ =?us-ascii?Q?GCFOHKICXzwja7e/oBQre+r499WGABEpNgr+HK3ChpVEEJ6xPNwnuOLAs2zf?=
+ =?us-ascii?Q?XZENDbXzbxVc1VpkcFocT35NL7hhIVaW8lTDyG52l4gEQP4vIpkhRKQg0ylk?=
+ =?us-ascii?Q?fV1J25zM5qpkV45Q0DgoSCUJq10CmrJLqdtGz137YpVH/j9MLglaRKnOq/Rv?=
+ =?us-ascii?Q?17V7xl7lWqNG8ml1ZTecPZJySL9Qij4pAZW+FPi3B6BEIHObc2E1mQU/v84u?=
+ =?us-ascii?Q?5xLSHLZVvo7DtQf9CogM/J/g6iE3cw7tCAmj6IJQxcNee9RDX2wNviS2Lc7h?=
+ =?us-ascii?Q?hWH/ZfD1oJwDgytiBTiqrW3VfdXye4xhSZ8gJtKTolJo1p8ZnPUlhD6e0UYY?=
+ =?us-ascii?Q?NLzzdtieDL5fEH4VPcaMpiMDGPBYPVsKyHXOaSENMcKissBI0j8cFt9RyviY?=
+ =?us-ascii?Q?NuCPDxoNe4G59DZ5pqSPOv+WMj1eSnvJ5JlmGuLQMxarO1QVQRkJhH4w8r68?=
+ =?us-ascii?Q?MxSz7Xk/iUbqW4Z84+F/H95Y0dmN+nU0GyKJfEhS1UuHxCUS2efhlAlFBCNG?=
+ =?us-ascii?Q?QGHWc2r0x22jUuLQPPfmLGa9/vEl0g9M/KSrP6YWSG/kNGoejt1wmaioSdCE?=
+ =?us-ascii?Q?4XloiuWlq+BnKDV6J8Zgv/NDlLUJad08v1SU3NnK8vwoNGkhlu0jvt0UYvcn?=
+ =?us-ascii?Q?2bFjsZR4KQJY7Yq2Sok09Q6KhktNiPphvkg/RuEQyBgO5U4NKRT1qirM7EHW?=
+ =?us-ascii?Q?30SyqAXE3yGkIdI3W5O2R42ayRUu9EzeugOiI1g60RkNawLUchotpXe2/sqD?=
+ =?us-ascii?Q?yMXVv3ZFIdxEhGCmzhvAhZE=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 086e63e6-b496-4946-0977-08de1b03c812
+X-MS-Exchange-CrossTenant-AuthSource: BL3PR11MB6410.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Nov 2025 18:06:59.1919 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: fs2Xpj1KhQmIuzECnXMvmwj7FA2I9++rxCz9uhtoJ1vxUYkd8bMzI+B2C5BNPqlm3bn41fQgIzJnJTpiPLv5oU5dI7yzjRE59O94vIYZB0uN6HVSE90Zk9JCEaCNO3NN
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS4PPF7CCC4B437
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -89,660 +178,183 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Switch error injection testing from i915_inject_probe_failure
-to ALLOW_ERROR_INJECTION. The driver no longer knows that
-a failure has been injected, and the failures are taken as real
-failures. This means the error messaging after injected failures
-is not toned town to debug level on driver side.
+On Sat, Nov 01, 2025 at 04:23:28PM -0700, Matthew Brost wrote:
+>On Fri, Oct 31, 2025 at 11:29:27AM -0700, Niranjana Vishwanathapura wrote:
+>> Support dynamic priority change for multi queue group queues via
+>> exec queue set_property ioctl. Issue CGP_SYNC command to GuC through
+>> the drm scheduler message interface for priority to take effect.
+>>
+>> Signed-off-by: Pallavi Mishra <pallavi.mishra@intel.com>
+>> Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+>> ---
+>>  drivers/gpu/drm/xe/xe_exec_queue.c       | 12 ++++-
+>>  drivers/gpu/drm/xe/xe_exec_queue_types.h |  3 ++
+>>  drivers/gpu/drm/xe/xe_guc_submit.c       | 56 ++++++++++++++++++++++--
+>>  3 files changed, 65 insertions(+), 6 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
+>> index 0264cab00fd4..98f8f1c7f13b 100644
+>> --- a/drivers/gpu/drm/xe/xe_exec_queue.c
+>> +++ b/drivers/gpu/drm/xe/xe_exec_queue.c
+>> @@ -729,9 +729,13 @@ static int exec_queue_set_multi_queue_priority(struct xe_device *xe, struct xe_e
+>>  	if (XE_IOCTL_DBG(xe, value > XE_MULTI_QUEUE_PRIORITY_HIGH))
+>>  		return -EINVAL;
+>>
+>> -	q->multi_queue.priority = value;
+>> +	/* For queue creation time (!q->xef) setting, just store the priority value */
+>> +	if (!q->xef) {
+>> +		q->multi_queue.priority = value;
+>> +		return 0;
+>> +	}
+>>
+>> -	return 0;
+>> +	return q->ops->set_multi_queue_priority(q, value);
+>>  }
+>>
+>>  typedef int (*xe_exec_queue_set_property_fn)(struct xe_device *xe,
+>> @@ -760,6 +764,10 @@ int xe_exec_queue_set_property_ioctl(struct drm_device *dev, void *data,
+>>  	if (XE_IOCTL_DBG(xe, args->reserved[0] || args->reserved[1]))
+>>  		return -EINVAL;
+>>
+>> +	if (XE_IOCTL_DBG(xe, args->property !=
+>> +			 DRM_XE_EXEC_QUEUE_SET_PROPERTY_MULTI_QUEUE_PRIORITY))
+>> +		return -EINVAL;
+>
+>This check looks to be in the wrong place. There are other valid
+>properties, e.g., DRM_XE_EXEC_QUEUE_SET_PROPERTY_TIMESLICE, etc...
+>
+>I think CI is complaining about this too.
+>
 
-There will be some gaps in the failure injection compared to what we
-had, especially under gt/.
+Yah, as you mentioned in other patch, currently only the property
+DRM_XE_EXEC_QUEUE_SET_PROPERTY_MULTI_QUEUE_PRIORITY can be dynamically changed.
 
-Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-Acked-by: Jani Nikula <jani.nikula@intel.com>
+>> +
+>>  	q = xe_exec_queue_lookup(xef, args->exec_queue_id);
+>>  	if (XE_IOCTL_DBG(xe, !q))
+>>  		return -ENOENT;
+>> diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+>> index 964a0e6654c7..dcb55b069ed8 100644
+>> --- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
+>> +++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+>> @@ -241,6 +241,9 @@ struct xe_exec_queue_ops {
+>>  	int (*set_timeslice)(struct xe_exec_queue *q, u32 timeslice_us);
+>>  	/** @set_preempt_timeout: Set preemption timeout for exec queue */
+>>  	int (*set_preempt_timeout)(struct xe_exec_queue *q, u32 preempt_timeout_us);
+>> +	/** @set_multi_queue_priority: Set multi queue priority */
+>> +	int (*set_multi_queue_priority)(struct xe_exec_queue *q,
+>> +					enum xe_multi_queue_priority priority);
+>>  	/**
+>>  	 * @suspend: Suspend exec queue from executing, allowed to be called
+>>  	 * multiple times in a row before resume with the caveat that
+>> diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+>> index 5ec144c1c2dc..426b64ef8d99 100644
+>> --- a/drivers/gpu/drm/xe/xe_guc_submit.c
+>> +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+>> @@ -1761,10 +1761,32 @@ static void __guc_exec_queue_process_msg_resume(struct xe_sched_msg *msg)
+>>  	}
+>>  }
+>>
+>> -#define CLEANUP		1	/* Non-zero values to catch uninitialized msg */
+>> -#define SET_SCHED_PROPS	2
+>> -#define SUSPEND		3
+>> -#define RESUME		4
+>> +static void __guc_exec_queue_process_msg_set_multi_queue_priority(struct xe_sched_msg *msg)
+>> +{
+>> +	struct xe_exec_queue *q = msg->private_data;
+>> +
+>> +	if (guc_exec_queue_allowed_to_change_state(q)) {
+>> +#define MAX_MULTI_QUEUE_REG_SIZE        (2)
+>> +		struct xe_guc *guc = exec_queue_to_guc(q);
+>> +		struct xe_exec_queue_group *group = q->multi_queue.group;
+>> +		u32 action[MAX_MULTI_QUEUE_REG_SIZE];
+>> +		int len = 0;
+>> +
+>> +		action[len++] = XE_GUC_ACTION_MULTI_QUEUE_CONTEXT_CGP_SYNC;
+>> +		action[len++] = group->primary->guc->id;
+>> +#undef MAX_MULTI_QUEUE_REG_SIZE
+>> +
+>> +		xe_guc_exec_queue_group_cgp_sync(guc, q, action, len);
+>
+>Just to confirm - even though multi-group priority isn't part of CGP
+>rathe the LRC, a CGP_SYNC is needed?
+>
 
----
- .../gpu/drm/i915/display/intel_connector.c    | 14 +----
- .../drm/i915/display/intel_display_driver.c   |  5 +-
- drivers/gpu/drm/i915/gt/intel_engine_cs.c     |  4 +-
- drivers/gpu/drm/i915/gt/intel_gt.c            |  9 +--
- drivers/gpu/drm/i915/gt/intel_gt_print.h      |  5 +-
- drivers/gpu/drm/i915/gt/intel_lrc.c           |  4 --
- drivers/gpu/drm/i915/gt/intel_wopcm.c         |  3 -
- drivers/gpu/drm/i915/gt/intel_wopcm.h         |  1 +
- drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c     |  8 +--
- drivers/gpu/drm/i915/gt/uc/intel_huc.c        |  4 --
- drivers/gpu/drm/i915/gt/uc/intel_uc.c         | 17 +-----
- drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c      | 60 +------------------
- drivers/gpu/drm/i915/i915_driver.c            | 12 +---
- drivers/gpu/drm/i915/i915_params.c            |  5 --
- drivers/gpu/drm/i915/i915_params.h            |  1 -
- drivers/gpu/drm/i915/i915_pci.c               |  6 +-
- drivers/gpu/drm/i915/i915_utils.c             | 30 +---------
- drivers/gpu/drm/i915/i915_utils.h             | 22 +------
- drivers/gpu/drm/i915/intel_gvt.c              |  3 -
- drivers/gpu/drm/i915/intel_uncore.c           |  4 +-
- 20 files changed, 18 insertions(+), 199 deletions(-)
+Yes, it is needed. I think guc will issue a lite-restore so that updated
+priorities take effect.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_connector.c b/drivers/gpu/drm/i915/display/intel_connector.c
-index 913d90a7a508..c128bc4215c4 100644
---- a/drivers/gpu/drm/i915/display/intel_connector.c
-+++ b/drivers/gpu/drm/i915/display/intel_connector.c
-@@ -156,27 +156,17 @@ void intel_connector_destroy(struct drm_connector *connector)
- int intel_connector_register(struct drm_connector *_connector)
- {
- 	struct intel_connector *connector = to_intel_connector(_connector);
--	struct drm_i915_private *i915 = to_i915(_connector->dev);
- 	int ret;
- 
- 	ret = intel_panel_register(connector);
- 	if (ret)
--		goto err;
--
--	if (i915_inject_probe_failure(i915)) {
--		ret = -EFAULT;
--		goto err_panel;
--	}
-+		return ret;
- 
- 	intel_connector_debugfs_add(connector);
- 
- 	return 0;
--
--err_panel:
--	intel_panel_unregister(connector);
--err:
--	return ret;
- }
-+ALLOW_ERROR_INJECTION(intel_connector_register, ERRNO);
- 
- void intel_connector_unregister(struct drm_connector *_connector)
- {
-diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
-index 63942ebf46fb..c35859655bfc 100644
---- a/drivers/gpu/drm/i915/display/intel_display_driver.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
-@@ -208,12 +208,8 @@ void intel_display_driver_early_probe(struct intel_display *display)
- /* part #1: call before irq install */
- int intel_display_driver_probe_noirq(struct intel_display *display)
- {
--	struct drm_i915_private *i915 = to_i915(display->drm);
- 	int ret;
- 
--	if (i915_inject_probe_failure(i915))
--		return -ENODEV;
--
- 	if (HAS_DISPLAY(display)) {
- 		ret = drm_vblank_init(display->drm,
- 				      INTEL_NUM_PIPES(display));
-@@ -326,6 +322,7 @@ int intel_display_driver_probe_noirq(struct intel_display *display)
- 
- 	return ret;
- }
-+ALLOW_ERROR_INJECTION(intel_display_driver_probe_noirq, ERRNO);
- 
- static void set_display_access(struct intel_display *display,
- 			       bool any_task_allowed,
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-index b721bbd23356..98a3a7a9de50 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-@@ -963,9 +963,6 @@ int intel_engines_init_mmio(struct intel_gt *gt)
- 	drm_WARN_ON(&i915->drm, engine_mask &
- 		    GENMASK(BITS_PER_TYPE(mask) - 1, I915_NUM_ENGINES));
- 
--	if (i915_inject_probe_failure(i915))
--		return -ENODEV;
--
- 	for (class = 0; class < MAX_ENGINE_CLASS + 1; ++class) {
- 		setup_logical_ids(gt, logical_ids, class);
- 
-@@ -1007,6 +1004,7 @@ int intel_engines_init_mmio(struct intel_gt *gt)
- 	intel_engines_free(gt);
- 	return err;
- }
-+ALLOW_ERROR_INJECTION(intel_engines_init_mmio, ERRNO);
- 
- void intel_engine_init_execlists(struct intel_engine_cs *engine)
- {
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
-index 3d3b1ba76e2b..ac527d878820 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt.c
-@@ -686,10 +686,6 @@ int intel_gt_init(struct intel_gt *gt)
- {
- 	int err;
- 
--	err = i915_inject_probe_error(gt->i915, -ENODEV);
--	if (err)
--		return err;
--
- 	intel_gt_init_workarounds(gt);
- 
- 	/*
-@@ -740,10 +736,6 @@ int intel_gt_init(struct intel_gt *gt)
- 	if (err)
- 		goto err_gt;
- 
--	err = i915_inject_probe_error(gt->i915, -EIO);
--	if (err)
--		goto err_gt;
--
- 	intel_uc_init_late(&gt->uc);
- 
- 	intel_migrate_init(&gt->migrate, gt);
-@@ -766,6 +758,7 @@ int intel_gt_init(struct intel_gt *gt)
- 	intel_uncore_forcewake_put(gt->uncore, FORCEWAKE_ALL);
- 	return err;
- }
-+ALLOW_ERROR_INJECTION(intel_gt_init, ERRNO);
- 
- void intel_gt_driver_remove(struct intel_gt *gt)
- {
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_print.h b/drivers/gpu/drm/i915/gt/intel_gt_print.h
-index 7fdc78c79273..48f0afd05fd8 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_print.h
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_print.h
-@@ -36,10 +36,7 @@
- 
- #define gt_probe_error(_gt, _fmt, ...) \
- 	do { \
--		if (i915_error_injected()) \
--			gt_dbg(_gt, _fmt, ##__VA_ARGS__); \
--		else \
--			gt_err(_gt, _fmt, ##__VA_ARGS__); \
-+		gt_err(_gt, _fmt, ##__VA_ARGS__); \
- 	} while (0)
- 
- #define gt_WARN(_gt, _condition, _fmt, ...) \
-diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-index e8927ad49142..d36e543e98df 100644
---- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-@@ -1911,10 +1911,6 @@ void lrc_init_wa_ctx(struct intel_engine_cs *engine)
- 	__i915_gem_object_flush_map(wa_ctx->vma->obj, 0, batch_ptr - batch);
- 	__i915_gem_object_release_map(wa_ctx->vma->obj);
- 
--	/* Verify that we can handle failure to setup the wa_ctx */
--	if (!err)
--		err = i915_inject_probe_error(engine->i915, -ENODEV);
--
- err_unpin:
- 	if (err)
- 		i915_vma_unpin(wa_ctx->vma);
-diff --git a/drivers/gpu/drm/i915/gt/intel_wopcm.c b/drivers/gpu/drm/i915/gt/intel_wopcm.c
-index 1b26ff6488b3..602e088fe045 100644
---- a/drivers/gpu/drm/i915/gt/intel_wopcm.c
-+++ b/drivers/gpu/drm/i915/gt/intel_wopcm.c
-@@ -253,9 +253,6 @@ void intel_wopcm_init(struct intel_wopcm *wopcm)
- 	GEM_BUG_ON(huc_fw_size >= wopcm_size);
- 	GEM_BUG_ON(ctx_rsvd + WOPCM_RESERVED_SIZE >= wopcm_size);
- 
--	if (i915_inject_probe_failure(i915))
--		return;
--
- 	if (__wopcm_regs_locked(gt->uncore, &guc_wopcm_base, &guc_wopcm_size)) {
- 		drm_dbg(&i915->drm, "GuC WOPCM is already locked [%uK, %uK)\n",
- 			guc_wopcm_base / SZ_1K, guc_wopcm_size / SZ_1K);
-diff --git a/drivers/gpu/drm/i915/gt/intel_wopcm.h b/drivers/gpu/drm/i915/gt/intel_wopcm.h
-index d2038b6de5e7..73dc6ff3a894 100644
---- a/drivers/gpu/drm/i915/gt/intel_wopcm.h
-+++ b/drivers/gpu/drm/i915/gt/intel_wopcm.h
-@@ -56,4 +56,5 @@ static inline u32 intel_wopcm_guc_size(struct intel_wopcm *wopcm)
- void intel_wopcm_init_early(struct intel_wopcm *wopcm);
- void intel_wopcm_init(struct intel_wopcm *wopcm);
- 
-+int intel_wopcm_init_inject_failure(void);
- #endif
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-index 2c651ec024ef..f1e53312ed90 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-@@ -266,10 +266,6 @@ int intel_guc_ct_init(struct intel_guc_ct *ct)
- 	u32 *cmds;
- 	int err;
- 
--	err = i915_inject_probe_error(guc_to_i915(guc), -ENXIO);
--	if (err)
--		return err;
--
- 	GEM_BUG_ON(ct->vma);
- 
- 	blob_size = 2 * CTB_DESC_SIZE + CTB_H2G_BUFFER_SIZE + CTB_G2H_BUFFER_SIZE;
-@@ -306,6 +302,7 @@ int intel_guc_ct_init(struct intel_guc_ct *ct)
- 
- 	return 0;
- }
-+ALLOW_ERROR_INJECTION(intel_guc_ct_init, ERRNO);
- 
- /**
-  * intel_guc_ct_fini - Fini buffer-based communication
-@@ -1394,9 +1391,6 @@ static void ct_dead_ct_worker_func(struct work_struct *w)
- 	if (ct->dead_ct_reported)
- 		return;
- 
--	if (i915_error_injected())
--		return;
--
- 	ct->dead_ct_reported = true;
- 
- 	guc_info(guc, "CTB is dead - reason=0x%X\n", ct->dead_ct_reason);
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_huc.c b/drivers/gpu/drm/i915/gt/uc/intel_huc.c
-index 456d3372eef8..f3249b98c992 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_huc.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_huc.c
-@@ -541,10 +541,6 @@ int intel_huc_auth(struct intel_huc *huc, enum intel_huc_authentication_type typ
- 	if (intel_huc_is_authenticated(huc, type))
- 		return -EEXIST;
- 
--	ret = i915_inject_probe_error(gt->i915, -ENXIO);
--	if (ret)
--		goto fail;
--
- 	switch (type) {
- 	case INTEL_HUC_AUTH_BY_GUC:
- 		ret = intel_guc_auth_huc(guc, intel_guc_ggtt_offset(guc, huc->fw.rsa_data));
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc.c b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-index 4a3493e8d433..bd07c72a66fc 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-@@ -60,10 +60,6 @@ static int __intel_uc_reset_hw(struct intel_uc *uc)
- 	int ret;
- 	u32 guc_status;
- 
--	ret = i915_inject_probe_error(gt->i915, -ENXIO);
--	if (ret)
--		return ret;
--
- 	ret = intel_reset_guc(gt);
- 	if (ret) {
- 		gt_err(gt, "Failed to reset GuC, ret = %d\n", ret);
-@@ -220,15 +216,10 @@ static void guc_handle_mmio_msg(struct intel_guc *guc)
- static int guc_enable_communication(struct intel_guc *guc)
- {
- 	struct intel_gt *gt = guc_to_gt(guc);
--	struct drm_i915_private *i915 = gt->i915;
- 	int ret;
- 
- 	GEM_BUG_ON(intel_guc_ct_enabled(&guc->ct));
- 
--	ret = i915_inject_probe_error(i915, -ENXIO);
--	if (ret)
--		return ret;
--
- 	ret = intel_guc_ct_enable(&guc->ct);
- 	if (ret)
- 		return ret;
-@@ -323,9 +314,6 @@ static int __uc_init(struct intel_uc *uc)
- 	if (!intel_uc_uses_guc(uc))
- 		return 0;
- 
--	if (i915_inject_probe_failure(uc_to_gt(uc)->i915))
--		return -ENOMEM;
--
- 	ret = intel_guc_init(guc);
- 	if (ret)
- 		return ret;
-@@ -338,6 +326,7 @@ static int __uc_init(struct intel_uc *uc)
- 
- 	return 0;
- }
-+ALLOW_ERROR_INJECTION(__uc_init, ERRNO);
- 
- static void __uc_fini(struct intel_uc *uc)
- {
-@@ -381,10 +370,6 @@ static int uc_init_wopcm(struct intel_uc *uc)
- 	GEM_BUG_ON(!(size & GUC_WOPCM_SIZE_MASK));
- 	GEM_BUG_ON(size & ~GUC_WOPCM_SIZE_MASK);
- 
--	err = i915_inject_probe_error(gt->i915, -ENXIO);
--	if (err)
--		return err;
--
- 	mask = GUC_WOPCM_SIZE_MASK | GUC_WOPCM_SIZE_LOCKED;
- 	err = intel_uncore_write_and_verify(uncore, GUC_WOPCM_SIZE, size, mask,
- 					    size | GUC_WOPCM_SIZE_LOCKED);
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
-index e848a04a80dc..fd04fe892c28 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
-@@ -542,43 +542,6 @@ void intel_uc_fw_init_early(struct intel_uc_fw *uc_fw,
- 				  INTEL_UC_FIRMWARE_NOT_SUPPORTED);
- }
- 
--static void __force_fw_fetch_failures(struct intel_uc_fw *uc_fw, int e)
--{
--	struct drm_i915_private *i915 = __uc_fw_to_gt(uc_fw)->i915;
--	bool user = e == -EINVAL;
--
--	if (i915_inject_probe_error(i915, e)) {
--		/* non-existing blob */
--		uc_fw->file_selected.path = "<invalid>";
--		uc_fw->user_overridden = user;
--	} else if (i915_inject_probe_error(i915, e)) {
--		/* require next major version */
--		uc_fw->file_wanted.ver.major += 1;
--		uc_fw->file_wanted.ver.minor = 0;
--		uc_fw->user_overridden = user;
--	} else if (i915_inject_probe_error(i915, e)) {
--		/* require next minor version */
--		uc_fw->file_wanted.ver.minor += 1;
--		uc_fw->user_overridden = user;
--	} else if (uc_fw->file_wanted.ver.major &&
--		   i915_inject_probe_error(i915, e)) {
--		/* require prev major version */
--		uc_fw->file_wanted.ver.major -= 1;
--		uc_fw->file_wanted.ver.minor = 0;
--		uc_fw->user_overridden = user;
--	} else if (uc_fw->file_wanted.ver.minor &&
--		   i915_inject_probe_error(i915, e)) {
--		/* require prev minor version - hey, this should work! */
--		uc_fw->file_wanted.ver.minor -= 1;
--		uc_fw->user_overridden = user;
--	} else if (user && i915_inject_probe_error(i915, e)) {
--		/* officially unsupported platform */
--		uc_fw->file_wanted.ver.major = 0;
--		uc_fw->file_wanted.ver.minor = 0;
--		uc_fw->user_overridden = true;
--	}
--}
--
- static void uc_unpack_css_version(struct intel_uc_fw_ver *ver, u32 css_value)
- {
- 	/* Get version numbers from the CSS header */
-@@ -766,7 +729,7 @@ static int guc_check_version_range(struct intel_uc_fw *uc_fw)
- 		return -EINVAL;
- 	}
- 
--	return i915_inject_probe_error(gt->i915, -EINVAL);
-+	return 0;
- }
- 
- static int check_fw_header(struct intel_gt *gt,
-@@ -905,13 +868,6 @@ int intel_uc_fw_fetch(struct intel_uc_fw *uc_fw)
- 	GEM_BUG_ON(!gt->wopcm.size);
- 	GEM_BUG_ON(!intel_uc_fw_is_enabled(uc_fw));
- 
--	err = i915_inject_probe_error(i915, -ENXIO);
--	if (err)
--		goto fail;
--
--	__force_fw_fetch_failures(uc_fw, -EINVAL);
--	__force_fw_fetch_failures(uc_fw, -ESTALE);
--
- 	err = try_firmware_load(uc_fw, &fw);
- 	memcpy(&file_ideal, &uc_fw->file_wanted, sizeof(file_ideal));
- 
-@@ -1088,10 +1044,6 @@ static int uc_fw_xfer(struct intel_uc_fw *uc_fw, u32 dst_offset, u32 dma_flags)
- 	u64 offset;
- 	int ret;
- 
--	ret = i915_inject_probe_error(gt->i915, -ETIMEDOUT);
--	if (ret)
--		return ret;
--
- 	intel_uncore_forcewake_get(uncore, FORCEWAKE_ALL);
- 
- 	/* Set the source address for the uCode */
-@@ -1155,16 +1107,11 @@ int intel_uc_fw_mark_load_failed(struct intel_uc_fw *uc_fw, int err)
-  */
- int intel_uc_fw_upload(struct intel_uc_fw *uc_fw, u32 dst_offset, u32 dma_flags)
- {
--	struct intel_gt *gt = __uc_fw_to_gt(uc_fw);
- 	int err;
- 
- 	/* make sure the status was cleared the last time we reset the uc */
- 	GEM_BUG_ON(intel_uc_fw_is_loaded(uc_fw));
- 
--	err = i915_inject_probe_error(gt->i915, -ENOEXEC);
--	if (err)
--		return err;
--
- 	if (!intel_uc_fw_is_loadable(uc_fw))
- 		return -ENOEXEC;
- 
-@@ -1198,10 +1145,6 @@ static int uc_fw_rsa_data_create(struct intel_uc_fw *uc_fw)
- 	void *vaddr;
- 	int err;
- 
--	err = i915_inject_probe_error(gt->i915, -ENXIO);
--	if (err)
--		return err;
--
- 	if (!uc_fw_need_rsa_in_memory(uc_fw))
- 		return 0;
- 
-@@ -1243,6 +1186,7 @@ static int uc_fw_rsa_data_create(struct intel_uc_fw *uc_fw)
- 	i915_vma_unpin_and_release(&vma, 0);
- 	return err;
- }
-+ALLOW_ERROR_INJECTION(uc_fw_rsa_data_create, ERRNO);
- 
- static void uc_fw_rsa_data_destroy(struct intel_uc_fw *uc_fw)
- {
-diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-index c97b76771917..73ae3cf7f373 100644
---- a/drivers/gpu/drm/i915/i915_driver.c
-+++ b/drivers/gpu/drm/i915/i915_driver.c
-@@ -224,9 +224,6 @@ static int i915_driver_early_probe(struct drm_i915_private *dev_priv)
- 	struct intel_display *display = dev_priv->display;
- 	int ret = 0;
- 
--	if (i915_inject_probe_failure(dev_priv))
--		return -ENODEV;
--
- 	intel_device_info_runtime_init_early(dev_priv);
- 
- 	intel_step_init(dev_priv);
-@@ -276,6 +273,7 @@ static int i915_driver_early_probe(struct drm_i915_private *dev_priv)
- 	i915_workqueues_cleanup(dev_priv);
- 	return ret;
- }
-+ALLOW_ERROR_INJECTION(i915_driver_early_probe, ERRNO);
- 
- /**
-  * i915_driver_late_release - cleanup the setup done in
-@@ -318,9 +316,6 @@ static int i915_driver_mmio_probe(struct drm_i915_private *dev_priv)
- 	struct intel_gt *gt;
- 	int ret, i;
- 
--	if (i915_inject_probe_failure(dev_priv))
--		return -ENODEV;
--
- 	ret = intel_gmch_bridge_setup(dev_priv);
- 	if (ret < 0)
- 		return ret;
-@@ -358,6 +353,7 @@ static int i915_driver_mmio_probe(struct drm_i915_private *dev_priv)
- 
- 	return ret;
- }
-+ALLOW_ERROR_INJECTION(i915_driver_mmio_probe, ERRNO);
- 
- /**
-  * i915_driver_mmio_release - cleanup the setup done in i915_driver_mmio_probe()
-@@ -465,9 +461,6 @@ static int i915_driver_hw_probe(struct drm_i915_private *dev_priv)
- 	struct pci_dev *pdev = to_pci_dev(dev_priv->drm.dev);
- 	int ret;
- 
--	if (i915_inject_probe_failure(dev_priv))
--		return -ENODEV;
--
- 	if (HAS_PPGTT(dev_priv)) {
- 		if (intel_vgpu_active(dev_priv) &&
- 		    !intel_vgpu_has_full_ppgtt(dev_priv)) {
-@@ -595,6 +588,7 @@ static int i915_driver_hw_probe(struct drm_i915_private *dev_priv)
- 	i915_perf_fini(dev_priv);
- 	return ret;
- }
-+ALLOW_ERROR_INJECTION(i915_driver_hw_probe, ERRNO);
- 
- /**
-  * i915_driver_hw_remove - cleanup the setup done in i915_driver_hw_probe()
-diff --git a/drivers/gpu/drm/i915/i915_params.c b/drivers/gpu/drm/i915/i915_params.c
-index 37746dd619fd..34ed82bb1b1a 100644
---- a/drivers/gpu/drm/i915/i915_params.c
-+++ b/drivers/gpu/drm/i915/i915_params.c
-@@ -110,11 +110,6 @@ i915_param_named_unsafe(huc_firmware_path, charp, 0400,
- i915_param_named_unsafe(gsc_firmware_path, charp, 0400,
- 	"GSC firmware path to use instead of the default one");
- 
--#if IS_ENABLED(CONFIG_DRM_I915_DEBUG)
--i915_param_named_unsafe(inject_probe_failure, uint, 0400,
--	"Force an error after a number of failure check points (0:disabled (default), N:force failure at the Nth failure check point)");
--#endif
--
- #if IS_ENABLED(CONFIG_DRM_I915_GVT)
- i915_param_named(enable_gvt, bool, 0400,
- 	"Enable support for Intel GVT-g graphics virtualization host support(default:false)");
-diff --git a/drivers/gpu/drm/i915/i915_params.h b/drivers/gpu/drm/i915/i915_params.h
-index 0fbcb5b6d7bf..4d9d4cd3220d 100644
---- a/drivers/gpu/drm/i915/i915_params.h
-+++ b/drivers/gpu/drm/i915/i915_params.h
-@@ -55,7 +55,6 @@ struct drm_printer;
- 	param(bool, memtest, false, 0400) \
- 	param(int, mmio_debug, -IS_ENABLED(CONFIG_DRM_I915_DEBUG_MMIO), 0600) \
- 	param(unsigned int, reset, 3, 0600) \
--	param(unsigned int, inject_probe_failure, 0, 0) \
- 	param(char *, force_probe, CONFIG_DRM_I915_FORCE_PROBE, 0400) \
- 	param(unsigned int, request_timeout_ms, CONFIG_DRM_I915_REQUEST_TIMEOUT, CONFIG_DRM_I915_REQUEST_TIMEOUT ? 0600 : 0) \
- 	param(unsigned int, lmem_size, 0, 0400) \
-diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
-index b2e311f4791a..d966a00520f1 100644
---- a/drivers/gpu/drm/i915/i915_pci.c
-+++ b/drivers/gpu/drm/i915/i915_pci.c
-@@ -999,11 +999,6 @@ static int i915_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
- 	if (err)
- 		return err;
- 
--	if (i915_inject_probe_failure(pdev_to_i915(pdev))) {
--		i915_pci_remove(pdev);
--		return -ENODEV;
--	}
--
- 	err = i915_live_selftests(pdev);
- 	if (err) {
- 		i915_pci_remove(pdev);
-@@ -1018,6 +1013,7 @@ static int i915_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
- 
- 	return 0;
- }
-+ALLOW_ERROR_INJECTION(i915_pci_probe, ERRNO);
- 
- static void i915_pci_shutdown(struct pci_dev *pdev)
- {
-diff --git a/drivers/gpu/drm/i915/i915_utils.c b/drivers/gpu/drm/i915/i915_utils.c
-index 89b920ccbccb..8c1aad312fd4 100644
---- a/drivers/gpu/drm/i915/i915_utils.c
-+++ b/drivers/gpu/drm/i915/i915_utils.c
-@@ -17,37 +17,9 @@ void add_taint_for_CI(struct drm_i915_private *i915, unsigned int taint)
- 	drm_notice(&i915->drm, "CI tainted: %#x by %pS\n",
- 		   taint, __builtin_return_address(0));
- 
--	/* Failures that occur during fault injection testing are expected */
--	if (!i915_error_injected())
--		__add_taint_for_CI(taint);
-+	__add_taint_for_CI(taint);
- }
- 
--#if IS_ENABLED(CONFIG_DRM_I915_DEBUG)
--static unsigned int i915_probe_fail_count;
--
--int __i915_inject_probe_error(struct drm_i915_private *i915, int err,
--			      const char *func, int line)
--{
--	if (i915_probe_fail_count >= i915_modparams.inject_probe_failure)
--		return 0;
--
--	if (++i915_probe_fail_count < i915_modparams.inject_probe_failure)
--		return 0;
--
--	drm_info(&i915->drm, "Injecting failure %d at checkpoint %u [%s:%d]\n",
--		 err, i915_modparams.inject_probe_failure, func, line);
--
--	i915_modparams.inject_probe_failure = 0;
--	return err;
--}
--
--bool i915_error_injected(void)
--{
--	return i915_probe_fail_count && !i915_modparams.inject_probe_failure;
--}
--
--#endif
--
- bool i915_vtd_active(struct drm_i915_private *i915)
- {
- 	if (device_iommu_mapped(i915->drm.dev))
-diff --git a/drivers/gpu/drm/i915/i915_utils.h b/drivers/gpu/drm/i915/i915_utils.h
-index 4f75115b87d6..9e5b7fcadbe2 100644
---- a/drivers/gpu/drm/i915/i915_utils.h
-+++ b/drivers/gpu/drm/i915/i915_utils.h
-@@ -43,28 +43,8 @@ struct drm_i915_private;
- 			     __stringify(x), (long)(x))
- #endif
- 
--#if IS_ENABLED(CONFIG_DRM_I915_DEBUG)
--
--int __i915_inject_probe_error(struct drm_i915_private *i915, int err,
--			      const char *func, int line);
--#define i915_inject_probe_error(_i915, _err) \
--	__i915_inject_probe_error((_i915), (_err), __func__, __LINE__)
--bool i915_error_injected(void);
--
--#else
--
--#define i915_inject_probe_error(i915, e) ({ BUILD_BUG_ON_INVALID(i915); 0; })
--#define i915_error_injected() false
--
--#endif
--
--#define i915_inject_probe_failure(i915) i915_inject_probe_error((i915), -ENODEV)
--
- #define i915_probe_error(i915, fmt, ...) ({ \
--	if (i915_error_injected()) \
--		drm_dbg(&(i915)->drm, fmt, ##__VA_ARGS__); \
--	else \
--		drm_err(&(i915)->drm, fmt, ##__VA_ARGS__); \
-+	drm_err(&(i915)->drm, fmt, ##__VA_ARGS__); \
- })
- 
- #ifndef fetch_and_zero
-diff --git a/drivers/gpu/drm/i915/intel_gvt.c b/drivers/gpu/drm/i915/intel_gvt.c
-index c3efc3454ec2..5f615ec0e580 100644
---- a/drivers/gpu/drm/i915/intel_gvt.c
-+++ b/drivers/gpu/drm/i915/intel_gvt.c
-@@ -238,9 +238,6 @@ EXPORT_SYMBOL_NS_GPL(intel_gvt_clear_ops, "I915_GVT");
-  */
- int intel_gvt_init(struct drm_i915_private *dev_priv)
- {
--	if (i915_inject_probe_failure(dev_priv))
--		return -ENODEV;
--
- 	mutex_lock(&intel_gvt_mutex);
- 	list_add_tail(&dev_priv->vgpu.entry, &intel_gvt_devices);
- 	if (intel_gvt_ops)
-diff --git a/drivers/gpu/drm/i915/intel_uncore.c b/drivers/gpu/drm/i915/intel_uncore.c
-index 4adeb271fcbf..fdd2a940f983 100644
---- a/drivers/gpu/drm/i915/intel_uncore.c
-+++ b/drivers/gpu/drm/i915/intel_uncore.c
-@@ -2072,9 +2072,6 @@ static int __fw_domain_init(struct intel_uncore *uncore,
- 	GEM_BUG_ON(domain_id >= FW_DOMAIN_ID_COUNT);
- 	GEM_BUG_ON(uncore->fw_domain[domain_id]);
- 
--	if (i915_inject_probe_failure(uncore->i915))
--		return -ENOMEM;
--
- 	d = kzalloc(sizeof(*d), GFP_KERNEL);
- 	if (!d)
- 		return -ENOMEM;
-@@ -2118,6 +2115,7 @@ static int __fw_domain_init(struct intel_uncore *uncore,
- 
- 	return 0;
- }
-+ALLOW_ERROR_INJECTION(__fw_domain_init, ERRNO);
- 
- static void fw_domain_fini(struct intel_uncore *uncore,
- 			   enum forcewake_domain_id domain_id)
--- 
-2.43.0
+>> +	}
+>> +
+>> +	kfree(msg);
+>> +}
+>> +
+>> +#define CLEANUP				1	/* Non-zero values to catch uninitialized msg */
+>> +#define SET_SCHED_PROPS			2
+>> +#define SUSPEND				3
+>> +#define RESUME				4
+>> +#define SET_MULTI_QUEUE_PRIORITY	5
+>>  #define OPCODE_MASK	0xf
+>>  #define MSG_LOCKED	BIT(8)
+>>  #define MSG_HEAD	BIT(9)
+>> @@ -1788,6 +1810,9 @@ static void guc_exec_queue_process_msg(struct xe_sched_msg *msg)
+>>  	case RESUME:
+>>  		__guc_exec_queue_process_msg_resume(msg);
+>>  		break;
+>> +	case SET_MULTI_QUEUE_PRIORITY:
+>> +		__guc_exec_queue_process_msg_set_multi_queue_priority(msg);
+>> +		break;
+>>  	default:
+>>  		XE_WARN_ON("Unknown message type");
+>>  	}
+>> @@ -2004,6 +2029,28 @@ static int guc_exec_queue_set_preempt_timeout(struct xe_exec_queue *q,
+>>  	return 0;
+>>  }
+>>
+>> +static int guc_exec_queue_set_multi_queue_priority(struct xe_exec_queue *q,
+>> +						   enum xe_multi_queue_priority priority)
+>> +{
+>> +	struct xe_sched_msg *msg;
+>> +
+>> +	if (!xe_exec_queue_is_multi_queue(q))
+>> +		return -EINVAL;
+>
+>Minor nit, I'd move this check to the caller as
+>xe_exec_queue_is_multi_queue is available there, then assert it is a
+>xe_exec_queue_is_multi_queue here.
+>
 
+Ok, will do.
+
+Niranjana
+
+>Matt
+>
+>> +
+>> +	if (q->multi_queue.priority == priority ||
+>> +	    exec_queue_killed_or_banned_or_wedged(q))
+>> +		return 0;
+>> +
+>> +	msg = kmalloc(sizeof(*msg), GFP_KERNEL);
+>> +	if (!msg)
+>> +		return -ENOMEM;
+>> +
+>> +	q->multi_queue.priority = priority;
+>> +	guc_exec_queue_add_msg(q, msg, SET_MULTI_QUEUE_PRIORITY);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>>  static int guc_exec_queue_suspend(struct xe_exec_queue *q)
+>>  {
+>>  	struct xe_gpu_scheduler *sched = &q->guc->sched;
+>> @@ -2095,6 +2142,7 @@ static const struct xe_exec_queue_ops guc_exec_queue_ops = {
+>>  	.set_priority = guc_exec_queue_set_priority,
+>>  	.set_timeslice = guc_exec_queue_set_timeslice,
+>>  	.set_preempt_timeout = guc_exec_queue_set_preempt_timeout,
+>> +	.set_multi_queue_priority = guc_exec_queue_set_multi_queue_priority,
+>>  	.suspend = guc_exec_queue_suspend,
+>>  	.suspend_wait = guc_exec_queue_suspend_wait,
+>>  	.resume = guc_exec_queue_resume,
+>> --
+>> 2.43.0
+>>
