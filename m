@@ -4,165 +4,165 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 17FCCCCF9F8
-	for <intel-xe@archiver.kernel.org>; Mon,  3 Nov 2025 17:31:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B7E7ECCFA03
+	for <intel-xe@archiver.kernel.org>; Mon,  3 Nov 2025 17:34:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C837610E200;
-	Mon,  3 Nov 2025 17:31:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 82EF710E488;
+	Mon,  3 Nov 2025 17:34:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lgfkBEKH";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WBzLdg5P";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2732110E200
- for <intel-xe@lists.freedesktop.org>; Mon,  3 Nov 2025 17:31:09 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BAA0E10E488
+ for <intel-xe@lists.freedesktop.org>; Mon,  3 Nov 2025 17:34:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1762191069; x=1793727069;
+ t=1762191279; x=1793727279;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=FGdQhc+pvrLKezWvkW/9C93KayH+PA4fp64xwxp1634=;
- b=lgfkBEKHlXeq/0PkozgLqX5/hARGk61PfakzRsWY/illLbOoPU5sSXK1
- RVm703DD2FaVPEPkim7/LUuo27HNPvH5YokzazmhiLIDcFcgItnaU0nPE
- Lazll8YESaaaqgokOK/C9Pet35Htpb8foRXdnUexq40iw9ZsAYLeU7vz+
- lynbv0wR3vsKXpaEnkicamcNAv61Kt6ukjXiG1ThOZaa2HFGPZZw40y8P
- yN2RO5K4iNjKPLU3QwXpfYovk8ESBrrrHtEnTmU7Yq/eSPOP3hotyuX7r
- KvXOsGAwEvitJVfwz7vYInA0M/r4vqhu6B++0Qjy5nPXlsLsF4nMg5Sce Q==;
-X-CSE-ConnectionGUID: CAzPLS/uQHeCSnS0MnhwIw==
-X-CSE-MsgGUID: SEaOEIsWQ0qQOVcXy28Jvw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11602"; a="75623541"
-X-IronPort-AV: E=Sophos;i="6.19,276,1754982000"; d="scan'208";a="75623541"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Nov 2025 09:31:07 -0800
-X-CSE-ConnectionGUID: kL6wI6A5QP2RBrrwN1RghQ==
-X-CSE-MsgGUID: 7FACrU/STqOEw/iKwzAmLQ==
+ bh=Uf3CT501QlN9YzZhcAZrm55S8LIcdpNHe+kmvwNXUSM=;
+ b=WBzLdg5PIhCX+pxCaIAGEwlnfUWwDYD5nP4iHylh7l0vvuaWNC09tpQn
+ nayzvo74+1mjdc1mE3WAUKaAuvbQ1EECRep56QYZCvcCVIV6r/spZmhXI
+ 38F5dTBQxjfy85YiZfkUc5XDxCuuYhHUN1BY0gOSYkhRRQAcHiUnRgxT7
+ W7Q5vao03igRi0Y8JLOqHMyIv56rS3ninlBgKaBZb29/nK59N2ei/K4gY
+ e/1lNH3QwqiSVDqOvMB2aiBfZognGXgicQPlICFAaPMubaYlcf9aPmnxo
+ YnEgbK9zRrdXqbop9OA3z5JumSVruUb08/v8gBq3jrenpTFso4XWv+ewH w==;
+X-CSE-ConnectionGUID: jknUQQFzSDq46EHaRPZKhQ==
+X-CSE-MsgGUID: REqEvwd6TBmMxxGuMbc+xw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11602"; a="63969662"
+X-IronPort-AV: E=Sophos;i="6.19,276,1754982000"; d="scan'208";a="63969662"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Nov 2025 09:34:38 -0800
+X-CSE-ConnectionGUID: g/6GK7UDSkeLEB3kUY+sKw==
+X-CSE-MsgGUID: GWcZ+YguQqyouZKuCo7g2w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,276,1754982000"; d="scan'208";a="217744917"
-Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
- by fmviesa001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Nov 2025 09:31:07 -0800
-Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
- fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.19,276,1754982000"; d="scan'208";a="186214150"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by orviesa010.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Nov 2025 09:34:38 -0800
+Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Mon, 3 Nov 2025 09:31:07 -0800
-Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
- FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ 15.2.2562.27; Mon, 3 Nov 2025 09:34:38 -0800
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27 via Frontend Transport; Mon, 3 Nov 2025 09:31:07 -0800
-Received: from CY7PR03CU001.outbound.protection.outlook.com (40.93.198.58) by
- edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
+ 15.2.2562.27 via Frontend Transport; Mon, 3 Nov 2025 09:34:38 -0800
+Received: from SA9PR02CU001.outbound.protection.outlook.com (40.93.196.3) by
+ edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Mon, 3 Nov 2025 09:31:06 -0800
+ 15.2.2562.27; Mon, 3 Nov 2025 09:34:38 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Z5oqhs7+79FuBJnUe/21OJscBu8L7bUdZH1L0kmAO2iWYKYypfTTbyydI9kVc3Pgf6EWP8lKMGTzx9h6kSo8ge5T2eAUm8AquvUMjSuUazOVwadt/z8xgdTZd8SxJdK7H/50NbOtMWgbI44CmjWubKlbHn79GgLulZwbxL2B1AFSdCvV0Q0tSbvjfp8+R4yvPgJZLy4C5ouKx2Cu2Z9GJaxvSTry1p6dkLBqW4YWXPILRct6htBgzAUIDY5WxYnod51OP8SB6xCA8y/c9CF/dXQO5trFByFCdjdblDTdiiXHZseIudqguTs4UN2bFg/t8qlzaEYr0dkg0axWhT9y2g==
+ b=Y9vsXpQcUt5XNkLlWSzHAJLxAJk//hW/5y0JuKTyFoYcoLy6kiyfpDdNxGGTu8EujORp2tR2WKx5MbHuBQyNm5ZMIl5qx7zGcPHH9IpYIpM0fW4umfJ4nhwA+rh70W68IvGxDMF4tOt3ADClpD2UIp2nj6qJecnbhqGyslT6/WqmIc5dHUf5bYpI1oBzwVRL+UBngzcxAOOlniWIixk2CXVyFOzrBzyHvodvtznUdwyoOR5Qe7x24GBSlofGtOmdULiElvA78t7wjCdVmH5hLTJRDMf2dLUBOaSLP3zEqHJ6zrCeRRUcJ+W2mA9d/RFKgYxnF4s3ab3ysBZLn7zuNg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=YlcIecfNLxoVGDAtro+NeoE+X6wBGvGA9SGttO38Sjs=;
- b=hmH0KxqRLdxHFu/kverBXXmJHOerFy9Fd8AqbIRdtWkbn0cDnPAB9XsMTjVoQFADWaZq4HYhGQdBf8+ENwjBEc/S13eKpet03GRNzDBR8/YUKO+gj6iqfkulXaILu3U6CgrphFBHNyfrLzjzIUaDCxe0e3M9Kclmh+SwF6kfvEfmUvJSik5+ovMcS9gRJ5r4PwIlfi3tuIF7w0XQ04AXX3QMy8QIzeewckCLwjE1RXwaMBUn4g3xOPPqo7YRdfgAoiXZyZwjZLdwLGmzB5WOY5aa3Z4G88kpmDeNvjOlKTHX4eBcsWkLhvDCQYAe5lwQ2ovZGpweHtPphMrRPwNttw==
+ bh=zDtfnzVRiI0ZecBxUdgQE1X7zPqDWKMXUzTDZ27kH5o=;
+ b=QzNXluEWWIIszNMz981sYWBtxoDbuiUQp50onU0o8mCLGRDJmHCSGHje0zlR+QVTGfNHxbqYICifdqH7YNos1frz6ZUqZ1zq72ej2grgEzPYNzvOf5AIKgeRzkVlGUoN5pAOBLNpv5RXORgf0P8m6bxIKrk9NG91eQJeCJvTFH6QOne9sn4MlH8sA3p74JqKryuxq4sWHI8fnXM1XAWAmxUJF1NNLk/AMXEcxh+8E0oREzr9Hfl7Ax4QSxLXOkieD9YcG0o22l6UPl9Ir+JumcbQDJWufikzyTLbbQIHry84M4SC1XHJ3nFgPPoIwIwWq77H37f9eXSoyl4hC7uNKQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by IA1PR11MB6419.namprd11.prod.outlook.com (2603:10b6:208:3a9::13)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9275.16; Mon, 3 Nov
- 2025 17:31:04 +0000
+ by CY8PR11MB6889.namprd11.prod.outlook.com (2603:10b6:930:5e::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9275.14; Mon, 3 Nov
+ 2025 17:34:35 +0000
 Received: from PH7PR11MB6522.namprd11.prod.outlook.com
  ([fe80::9e94:e21f:e11a:332]) by PH7PR11MB6522.namprd11.prod.outlook.com
  ([fe80::9e94:e21f:e11a:332%3]) with mapi id 15.20.9275.013; Mon, 3 Nov 2025
- 17:31:04 +0000
-Date: Mon, 3 Nov 2025 09:31:01 -0800
+ 17:34:35 +0000
+Date: Mon, 3 Nov 2025 09:34:32 -0800
 From: Matthew Brost <matthew.brost@intel.com>
 To: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
 CC: <intel-xe@lists.freedesktop.org>, Michal Wajdeczko
  <michal.wajdeczko@intel.com>, Matthew Auld <matthew.auld@intel.com>
-Subject: Re: [PATCH 1/2] drm/xs/sa: Shadow buffer support in the
- sub-allocator pool
-Message-ID: <aQjm1Zp+ZzVFJnpE@lstrano-desk.jf.intel.com>
+Subject: Re: [PATCH 2/2] drm/xe/vf: Shadow buffer management for CCS
+ read/write operations
+Message-ID: <aQjnqFFctfRw6yP7@lstrano-desk.jf.intel.com>
 References: <20251103152006.1954098-1-satyanarayana.k.v.p@intel.com>
- <20251103152006.1954098-2-satyanarayana.k.v.p@intel.com>
+ <20251103152006.1954098-3-satyanarayana.k.v.p@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20251103152006.1954098-2-satyanarayana.k.v.p@intel.com>
-X-ClientProxiedBy: BY3PR05CA0019.namprd05.prod.outlook.com
- (2603:10b6:a03:254::24) To PH7PR11MB6522.namprd11.prod.outlook.com
+In-Reply-To: <20251103152006.1954098-3-satyanarayana.k.v.p@intel.com>
+X-ClientProxiedBy: SJ0PR05CA0026.namprd05.prod.outlook.com
+ (2603:10b6:a03:33b::31) To PH7PR11MB6522.namprd11.prod.outlook.com
  (2603:10b6:510:212::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|IA1PR11MB6419:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1ad5e4af-9e51-4a5f-459a-08de1afec3c4
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|CY8PR11MB6889:EE_
+X-MS-Office365-Filtering-Correlation-Id: 530f050d-5355-4459-1b18-08de1aff4181
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?C7lsL/C9wkm0qPacK+NAr6jpZUpABueKn+/9R7HxnRaNu0npaMmeUxQlTMzP?=
- =?us-ascii?Q?nNWn3AMMqesX99A4oK6LGeYN4hcqspSTrLYwqQttbdp+0O9td2juARXJ4ALx?=
- =?us-ascii?Q?2LeS659XUWsLyx9ALvyCGToOE4V6jKt9Mvfwsp+BwfyTHj1Ee/egD+MqXYr0?=
- =?us-ascii?Q?9UXx/6DaddEbd5WTR8/tuMzx8qBQSEX9wICRE7k6+lHpv1xK9azLkP8YySvG?=
- =?us-ascii?Q?A8LlVf6YALOAtF8YT1dAm47f6Bh2XK4iOaGtzg9OuxsxH0k7DS5sjuUlCGuw?=
- =?us-ascii?Q?BAe4YQwsrscc5FtJNftK92b4io/f0/aFaoXMnUQFkbbAzV41S7hx9Oh11DUz?=
- =?us-ascii?Q?GKNHjz4CrYLCGWy7Bl56x/TI3M/0OHNr8Nys5jvpj5ydVgam1NtTtuQGdeCj?=
- =?us-ascii?Q?MILrs3oYgsvLZElX5NCMBffa5WNm2tNvUA9HunEHjHBZHQALjoOF9R2ROJIb?=
- =?us-ascii?Q?ERb1nLc5iRYwQeYkn+Fl1nC1YOUW6R+no3SvWFqB3+SsJT4hqzufpTdJ0Fu1?=
- =?us-ascii?Q?B+PE/rUIdg/EDSns1kCQjZGPyPGPKAVTZuAP0O4e3sj4aq9WEJp7Ez81QCNS?=
- =?us-ascii?Q?RXApDiY1YINw5gy3Y1oQkIhZ3FkxiL3j2mf9gCgLonQxhbbSjrbdviDOaWmU?=
- =?us-ascii?Q?/R+ewMSBYQUu5P6zx/UBaCWHMG5HbpHLpjQuTVbQL8k+uPsjALnqPZYbWIaS?=
- =?us-ascii?Q?9Y0iga1cx4Qz3a5eqP18jQVWSQjOlkq0X8WNQ5MJYwI2S2HkCwv6AmX+lonk?=
- =?us-ascii?Q?hJa6iWJiBFVmSlXFsrEmG8EtAw0xDPMkhK03zaIWL1q8GwZIExAOMmlk62FJ?=
- =?us-ascii?Q?1OuxNqHsx2Pi/Xrb9fU4kS/LHDjIRhADxJbR1J9PzT2ZPxs9CQqIFJt1Gi3h?=
- =?us-ascii?Q?ZM9p8AXt7YvxstfzrvRsb9HZXhz2dxjX5EEbrhvuFQrRL3SnGruPNdzWRbhn?=
- =?us-ascii?Q?qGCcZO23Z7KnbBQd2IkTeRniJIC/UCYkfLN27nahOayt89uRRO6m/gZrz0W9?=
- =?us-ascii?Q?TNJ0mz8kEoB4pZ/xwSKpZDh/Vdjj10RWH9p9TleM6b0zaS+CUG6UKNGK61h0?=
- =?us-ascii?Q?ATu2+X2GPQnNAHOQjoaY9GDAwNvZU454jgDK3KXGUWkeLl34ZNuRKYb5XkLP?=
- =?us-ascii?Q?lY/eOeiPQFror99ciP52SpZ/uoMMRMUGBK9eUeALhqk2Z3pveN93CDbeqjvJ?=
- =?us-ascii?Q?ZJWHEWrH0f6dix9dIaoyOv376OPbvOjUzkA8uhfU98gOmO64ASm0Abyi2WNH?=
- =?us-ascii?Q?2X8WJOz5ubYqnzEk85rSgcjbNb/srUOtBJLgOEZWqKplo0da2F257MUQOuTl?=
- =?us-ascii?Q?P6ze5g5kDJv5atl4vJPRZlGZ/WDmnne+e8P4TXqCadY4Ys7Wzj4cUEnk7dRf?=
- =?us-ascii?Q?Um9jq/T1peK5eU8R8EhWd34tEen4XnIZeWFRcanaNo/YCGUBYezdSzgKawzX?=
- =?us-ascii?Q?3hb1BjVw69iPX0eo8f28lXbM5eX1hqUv?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?L3F/mHUuFtC+4nif8qMz7Y7ncS7XEr51MGab5mW5yk9XANjVCp09NmuJz8Vg?=
+ =?us-ascii?Q?CRzHva6fzyIctSQj6rf638QwalUWONyp82ECDqDRiSpJ2zsw0QMDwIDEe9Uo?=
+ =?us-ascii?Q?/CKrwbi3WI4pq6E1SpEC9KWR0LQghCTR3Fh6ym9NUpP9ji6bB5DJj82jGNpZ?=
+ =?us-ascii?Q?yjOb6m8dDc+Ot0MLUCHzzl/XfSNEf6D3mDLQA3uA1klgcCbifygVZi6dzuRa?=
+ =?us-ascii?Q?f68D00PCihIGAReyFdXLVNLeVM+/lhVn5ct0SgX0G8cAYhItFhkFchPWyZe1?=
+ =?us-ascii?Q?gppJxgw5UlwywErT4vk0oWffZZjvl9e5UyXP8SsIqGX36BNw0I/O2YvoYTyt?=
+ =?us-ascii?Q?6lwviUlkl3iOzWE+IYBJb5VyLsNtfc3CqWoYh7isAv9TCoUoHpI5lwNWhi6n?=
+ =?us-ascii?Q?v8k5K1v4jzqDyNLDleyPz4mAsuBVQ9m7pfU0p1ep82+KsqLdwjyx7QgLM4Kb?=
+ =?us-ascii?Q?XUsV09w7SV53e5a0RdQkzALwZY2CEULaGIIljPbyWGCyh2Y+cgFGPf6TubLQ?=
+ =?us-ascii?Q?ef++YVX64HfS1bIog6qiICkkRZVi/KZY8QotbhCj1lRGc0UY1xOHHbBoM6oB?=
+ =?us-ascii?Q?ei/znwUawPIpeFzpOVefOPo43NbkZ+niv6p2nlzSKABZlL2Li7RI/1jkmspy?=
+ =?us-ascii?Q?wlKmZQ/39Cfpad5wGbY4f+7mk6uB/LknUK5yVEKsRxSD6WPn6v6NT81BcWQl?=
+ =?us-ascii?Q?xR86vR/M8wcSZNrNTfW6xyu9aR22YCeaoz3TucKU9iDLMZ6qNfBXZkUomzkm?=
+ =?us-ascii?Q?LQrEAZwj1ktDlRZbrFGHrQ/HBlSl0Spxc95/S6W9NaVwaoyQ71QLSLVxq6wG?=
+ =?us-ascii?Q?Djb6aHTToKTKVvCSixhkxzqVCkxijgj1H6G6f7dQRlZtv6Oqz9MFyYxOlzSU?=
+ =?us-ascii?Q?aBCX5UA6blAwxyXgK2HY4GVsyHPeH1ce4td4BhOdRK89msiIxCKD2YaPEzHS?=
+ =?us-ascii?Q?KKoRdU7Dnj1RHweTK6cPBvJM15YkIu9VkgKPsN9MNAB+PUEcjTkZtLqQ4EwY?=
+ =?us-ascii?Q?6hRvy7wZjqwKdodyh9aEuluZaiNhGN+RJvCEi2CpBHrueFgsHokQoZdxxKUH?=
+ =?us-ascii?Q?82IoR9qjzUwoN/iEqwwYIRBN4vomCvZKeEe9GkZiBfTWvSxOtdEtICytmMPN?=
+ =?us-ascii?Q?kvkca2hUxHD7HcClIcZchfxvUkrQCyqM/uCQcy0phq8Bo0b31k0EyA+ALeTE?=
+ =?us-ascii?Q?b/lfbnyqfyJsVJ+IzlkQMcCXKur8w1Al/KNrzvSiIF8nWBLCal1yBUKze6Xb?=
+ =?us-ascii?Q?EGHY5v/4+NiY9vBmsHGXfK6uIaD+16kPAdUuwTbESMXIz9fq3W/KMnLoM+qW?=
+ =?us-ascii?Q?AHOV3+mQnXFE8QYquvm7NFFYcnS4MGrX/VM//A5HXarjxrh6BTYQ2cTHhbhQ?=
+ =?us-ascii?Q?AgnF0cWGRDd/lbtHNJOyUeW1uxwFppOIH5NBkIKAWIap4nAz2e99ZnWoS77m?=
+ =?us-ascii?Q?QuCE7c5KARDI9FkRF35/+wXrdADh3Wyy?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
+ SFS:(13230040)(376014)(366016)(1800799024); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?nJ+rM3eOwSYQd4H7cLc0UxQZ2TNP62Ke4ykhq6nVaOGh178zFOMv6eCqwlws?=
- =?us-ascii?Q?tN2t3Tn9iJFOtxHuaSVo6WPXousyYFQoWDnt6XVUT+r39JfVxu2fUY9aZqO1?=
- =?us-ascii?Q?MZuNA37UmbNlNdkJEbT8UEBYfVm+TY7HORR9eDBFECstElSMLsx/pHj8rnES?=
- =?us-ascii?Q?VbO2DV2SxD+uDpjyz726OGzxopvaWRC6I42YjzMa3psTkYRVSy4F6GGLwvTH?=
- =?us-ascii?Q?tIEm7QaeXMIGbQ9yUJIAg3qUzFjBl1/dpbQVeJT4BzCT2GyGCRFAHjxe9jm+?=
- =?us-ascii?Q?X00bEjBfd6hDtT8xeBr8TZeTu0G4zI6uyQhpvb7R+en2oP/UxIaVslfPhEdt?=
- =?us-ascii?Q?rawMTlMmGcA9XQ90o4f5ZctiWRBTqg02WnK5jNjLpldCkAjJDQUd3ZYP6ZDR?=
- =?us-ascii?Q?hXZ6WSHPgxbTP+elms658zNRWC/Lh4wETbE5i5FO/JvsXoeuaxqQtHXZVW0G?=
- =?us-ascii?Q?jpRsqlPRi4USI9Yb48bsmTlwQ6RKCQ+DoUwW3Q6VfCsu42nxQ3p9dfL0AGx1?=
- =?us-ascii?Q?pE5yn1QTHry3FK3VN8kIvM5QGzUWW1ehUIuHvsK9HR3FekwCAsqCLkIJEDKT?=
- =?us-ascii?Q?zx7n+jVQfpDNi+n8gImbykjeehiqwbh8Jv/uoXQonJH8Jgi6pEiFDbALrZOj?=
- =?us-ascii?Q?zSZ7Vizn6w3XQ9YS5kYL9l0mrmldosTTfvhaVW/7T4nwD00Ww/4a40GoOyEP?=
- =?us-ascii?Q?vLQYckDZ+nod4qzQ/HvZdP3mo1pbpjwuYUS6O/4XgaAXkjb6C8Vgdy+ixG2l?=
- =?us-ascii?Q?d8V502RRuyGVib9SIN6g1Xa45OEunwPL9caFI+4k1fWHHh/QkAuOx/JUkuNU?=
- =?us-ascii?Q?xZGqmW54/f0j8ZKQeOe2E80pqBqMtrndBbFW3ootXq22DwoQ+68FXldJznV1?=
- =?us-ascii?Q?yIcPnowqhtKtLoWwGRaRTTilWcqrOxl/DYwDJSK0wwF4M+P9iBZd0gkDZODf?=
- =?us-ascii?Q?ESEo52DtIYvzL+4UGxcfrQohnOtquD+K0uRX8Xuy3KVwLdYImR78iOennpb6?=
- =?us-ascii?Q?lnUfzsiELrut2rS1GKgffR7joVW/Oyr5XYHYzNYfoS0Cl+PoTsXRXE3xkDVv?=
- =?us-ascii?Q?naBigZdpSXk4dHjZ9FZBNw7yTpdPxKgrAdcrocujFeRp3npiqzCYC5wNKvcS?=
- =?us-ascii?Q?OebqZ0qp6foRFlwLjDkMLAH7XJHBLwZpOl5kxVbuydrgiwuR5ghRUuwBnBGC?=
- =?us-ascii?Q?GIlLEbk+bdxj744Q1vhTKKBP1YnVwi6sihPByh+FtaOWnD4cmtydUQRkMBLi?=
- =?us-ascii?Q?Ag4z6paQdLUAxih7UmQjc3zjfrKrQZuUzPKraVU1UDcXKFEuHGcLf8UpanHC?=
- =?us-ascii?Q?OzdogbzTctzBUD9wl/LqspJaxVL6IR/dKoaBBkZWUgC0HYaXDzQLEh2JiP8s?=
- =?us-ascii?Q?fuWZIuogBLnfaNAujxKWsLMmTZas4mxZDZV5cT2iKbz89rcQ8JPohsev+yrb?=
- =?us-ascii?Q?QEadWP6ShRFUVT684cw4jZRBckempWKciyd80BDPdRSvKnJO/FsBPmcQZ0Uz?=
- =?us-ascii?Q?JXbofju5YjgI5XM3PXIHTX2wwcrwuPyv8aCXo882gPwT08XNAd4LF7hGd7u4?=
- =?us-ascii?Q?riq1Xvyf8fvOdkoYpY1tBWFhxt/lKTEITY2fhQyEsjdUVJ8ctLSjKez7/R97?=
- =?us-ascii?Q?oA=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1ad5e4af-9e51-4a5f-459a-08de1afec3c4
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?6aBWBu44nn9vYG/DI8/eZymjIv6+gE5MNd+noRDsVuSowmXl7NQ7FGiFvefT?=
+ =?us-ascii?Q?opz8R5YWfli0bVrSFzaIwSnOSMqdgrP1wPEISTGr1RyegQF43ZYU3SpEmAYl?=
+ =?us-ascii?Q?QwPMMuAlz0wgW52qidB0bh+4VFWV14hdTodwLaoCDIrl0naCa4g1jjATUKeF?=
+ =?us-ascii?Q?1Vn/mgbGXRUmhkDbUhhhplUIEnAonSgLyUof/BDp7EW3PVgPo6VOMIwb9Hoz?=
+ =?us-ascii?Q?A4uHZsfbfvPKaFrBIuPdUL0ZzqX3/H8yMJam/XkbzpKNsUDh4bolUhGoWuDa?=
+ =?us-ascii?Q?Fxwc4UmOwo9LsF3nTrexz/5jnJx5Ckc/64dgZ/PxfAlMzXwaqQwG5S9M9nSg?=
+ =?us-ascii?Q?CBAmlPSprjdSNFM7OgTHWZ9p0bfCq5XwsP/oDdHcgEWOSP9TokkWhhDcFiQj?=
+ =?us-ascii?Q?YwPG9lVPQkiNMS9ggwlw8b3Ezs62z+YSNFPvIjCl/H7yp0cstPDVYmuMDygY?=
+ =?us-ascii?Q?7VafjkcsaQnfmFbCt70S2wkcMQgwOdeZ0x/zd7X13Y/ptmb9QJlEJRIL8kZm?=
+ =?us-ascii?Q?5JJg/9MSYUi01mbewkz7ZN/UEoHnfsnYpgXKvOfwP7fqrWKjEHEcEYn0872h?=
+ =?us-ascii?Q?lc3xGHKXl9udCN8OhNBN/drrZjKVNl6P4PVQj2ZGTATkMK4DV68lcorkQ2W7?=
+ =?us-ascii?Q?HvHXjc85gjxF02BNhriXKoIRvnIhY5GeocY02+0jqXehaphTKs7/sESeZI7R?=
+ =?us-ascii?Q?LoZiYukH1NA2UsPbyJAZ+OcjllFsR1sFG6MMNmhzbCQoCFmbkjX2DpAxWFcC?=
+ =?us-ascii?Q?lXhWUVaau0l2a6Bp7R7oGZCMATfl/IzPOuuF+DWIkAoMpNdgs4b1taLyF4Sh?=
+ =?us-ascii?Q?pDmQhZJ7zQEO2D8uFHo+ETtoOxpySa/bBwDSr/28rLvPyB1CkAXvL6T8yRTG?=
+ =?us-ascii?Q?luuqXr/oKpzoNOoZ+SaAbX3Rjd+kUdAB23Xby+A21yCkgzqW7HSH++EOzyS3?=
+ =?us-ascii?Q?FsE8Vg5CQ9cd8dv2S4coRDDnu26Ic0Q0bOJ3HEnCBUxalABl6cU+kHefsf5M?=
+ =?us-ascii?Q?2lceMO2YG7BvnTjkPTpc+EndFlcRf+sK8fJSofnd/7BvFNoWqgRpTbXFiqey?=
+ =?us-ascii?Q?SqCgQ5IuHIHHtZxq8orgl/MPRTLVYBrZLPPF/u91YxVPFi41nSDpiYhIiIse?=
+ =?us-ascii?Q?n97XcFeXBCH7apynReFuuTT2Vof+yQpYFGFroppC7WrwxrQpSGT9Z7yP/Y26?=
+ =?us-ascii?Q?CEkCLpRyCfhDU7TyRsOSlB4Ng9XxJUXxkuovEV7s6z19LHyxyd7RcZ7av55b?=
+ =?us-ascii?Q?BVz52uHei6+/wD017yNU5H9+G7GOdryoJa+TFull5c3Q8JkSj9ubWWfHaPlw?=
+ =?us-ascii?Q?z2x0IHzDXxlPf2rFFvQ/7FhALc2ZXBAQiI7dG9YIqMeoEi4EoGqK3OjT1BbL?=
+ =?us-ascii?Q?e91JhMuJof5jO8qNn0R0pobvBJi0KFzyo/JKQq/ULQNM1BS6TjP2K3ElaL41?=
+ =?us-ascii?Q?F8L2pdEq73ZFwqJ/bCMws/CJ2xkaRxbsX6HjxG7HRWRD7tkYqwFtABf2mHcu?=
+ =?us-ascii?Q?UEzfm0w4e1cpAP66Vi9yuJKsDARrkMnCqGPXXr3LaB18A2RnYIfpIPhFKxp0?=
+ =?us-ascii?Q?3nLI8+wtBDTYFlxkZrnOl6Aev/vZPwcgA3LCjdhVnKNJN/NwIMIkA/MzRnDf?=
+ =?us-ascii?Q?Pw=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 530f050d-5355-4459-1b18-08de1aff4181
 X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Nov 2025 17:31:04.3189 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Nov 2025 17:34:35.3431 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: oLtMkkarM+78hIGF1eGfwqdJEPbmL+4TomnB/KHut3CY042xG5KG9pypoWPRpkgXR057sU3UkAtaIpsFoArqqQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB6419
+X-MS-Exchange-CrossTenant-UserPrincipalName: BGOqSnrwbU5U+45ixMt0gzK17pzssb5pll/FGIBo4hSYeXovWW/2d9tPCLms3qX4rUtZP+bCaQ96gliv5GxMIA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB6889
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -178,205 +178,205 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Nov 03, 2025 at 03:20:05PM +0000, Satyanarayana K V P wrote:
-> The existing sub-allocator is limited to managing a single buffer object.
-> This enhancement introduces shadow buffer functionality to support
-> scenarios requiring dual buffer management.
+On Mon, Nov 03, 2025 at 03:20:06PM +0000, Satyanarayana K V P wrote:
+> CCS copy command consist of 5-dword sequence. If vCPU halts during
+> save/restore operations while these sequences are being programmed,
+> incomplete writes can cause page faults during IGPU CCS metadata saving.
 > 
-> The changes include added shadow buffer object creation capability,
-> Management for both primary and shadow buffers, and appropriate locking
-> mechanisms for thread-safe operations.
-> 
-> This enables more flexible buffer allocation strategies in scenarios where
-> shadow buffering is required.
+> Use shadow buffer management to prevent partial write issues during CCS
+> operations.
 > 
 > Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
 > Suggested-by: Matthew Brost <matthew.brost@intel.com>
-
-CI looks like it had issues, but this patch looks correct:
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
-
 > Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
 > Cc: Matthew Auld <matthew.auld@intel.com>
 > ---
->  drivers/gpu/drm/xe/xe_guc_buf.c      |  2 +-
->  drivers/gpu/drm/xe/xe_sa.c           | 51 +++++++++++++++++++++++++++-
->  drivers/gpu/drm/xe/xe_sa.h           | 19 +++++++++--
->  drivers/gpu/drm/xe/xe_sa_types.h     |  3 ++
->  drivers/gpu/drm/xe/xe_sriov_vf_ccs.c |  3 ++
->  5 files changed, 74 insertions(+), 4 deletions(-)
+>  drivers/gpu/drm/xe/xe_migrate.c      | 59 ++++++++++++++++++++++++++++
+>  drivers/gpu/drm/xe/xe_migrate.h      |  3 ++
+>  drivers/gpu/drm/xe/xe_sriov_vf_ccs.c | 17 ++++++--
+>  drivers/gpu/drm/xe/xe_sriov_vf_ccs.h |  1 +
+>  4 files changed, 76 insertions(+), 4 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/xe/xe_guc_buf.c b/drivers/gpu/drm/xe/xe_guc_buf.c
-> index 3ce442500130..c36fc31e0438 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_buf.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_buf.c
-> @@ -30,7 +30,7 @@ static int guc_buf_cache_init(struct xe_guc_buf_cache *cache, u32 size)
->  	struct xe_gt *gt = cache_to_gt(cache);
->  	struct xe_sa_manager *sam;
+> diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+> index dbe9320863ab..4c4e4cc369d5 100644
+> --- a/drivers/gpu/drm/xe/xe_migrate.c
+> +++ b/drivers/gpu/drm/xe/xe_migrate.c
+> @@ -34,6 +34,7 @@
+>  #include "xe_res_cursor.h"
+>  #include "xe_sa.h"
+>  #include "xe_sched_job.h"
+> +#include "xe_sriov_vf_ccs.h"
+>  #include "xe_sync.h"
+>  #include "xe_trace_bo.h"
+>  #include "xe_validation.h"
+> @@ -1103,12 +1104,16 @@ int xe_migrate_ccs_rw_copy(struct xe_tile *tile, struct xe_exec_queue *q,
+>  	u32 batch_size, batch_size_allocated;
+>  	struct xe_device *xe = gt_to_xe(gt);
+>  	struct xe_res_cursor src_it, ccs_it;
+> +	struct xe_sriov_vf_ccs_ctx *ctx;
+> +	struct xe_sa_manager *bb_pool;
+>  	u64 size = xe_bo_size(src_bo);
+>  	struct xe_bb *bb = NULL;
+>  	u64 src_L0, src_L0_ofs;
+>  	u32 src_L0_pt;
+>  	int err;
 >  
-> -	sam = __xe_sa_bo_manager_init(gt_to_tile(gt), size, 0, sizeof(u32));
-> +	sam = __xe_sa_bo_manager_init(gt_to_tile(gt), size, 0, sizeof(u32), 0);
->  	if (IS_ERR(sam))
->  		return PTR_ERR(sam);
->  	cache->sam = sam;
-> diff --git a/drivers/gpu/drm/xe/xe_sa.c b/drivers/gpu/drm/xe/xe_sa.c
-> index 63a5263dcf1b..3551e726843e 100644
-> --- a/drivers/gpu/drm/xe/xe_sa.c
-> +++ b/drivers/gpu/drm/xe/xe_sa.c
-> @@ -29,6 +29,7 @@ static void xe_sa_bo_manager_fini(struct drm_device *drm, void *arg)
->  		kvfree(sa_manager->cpu_ptr);
+> +	ctx = &xe->sriov.vf.ccs.contexts[read_write];
+> +
+>  	xe_res_first_sg(xe_bo_sg(src_bo), 0, size, &src_it);
 >  
->  	sa_manager->bo = NULL;
-> +	sa_manager->shadow = NULL;
->  }
->  
->  /**
-> @@ -37,12 +38,14 @@ static void xe_sa_bo_manager_fini(struct drm_device *drm, void *arg)
->   * @size: number of bytes to allocate
->   * @guard: number of bytes to exclude from suballocations
->   * @align: alignment for each suballocated chunk
-> + * @flags: flags for suballocator
->   *
->   * Prepares the suballocation manager for suballocations.
->   *
->   * Return: a pointer to the &xe_sa_manager or an ERR_PTR on failure.
->   */
-> -struct xe_sa_manager *__xe_sa_bo_manager_init(struct xe_tile *tile, u32 size, u32 guard, u32 align)
-> +struct xe_sa_manager *__xe_sa_bo_manager_init(struct xe_tile *tile, u32 size,
-> +					      u32 guard, u32 align, u32 flags)
->  {
->  	struct xe_device *xe = tile_to_xe(tile);
->  	struct xe_sa_manager *sa_manager;
-> @@ -79,6 +82,26 @@ struct xe_sa_manager *__xe_sa_bo_manager_init(struct xe_tile *tile, u32 size, u3
->  		memset(sa_manager->cpu_ptr, 0, bo->ttm.base.size);
+>  	xe_res_first_sg(xe_bo_sg(src_bo), xe_bo_ccs_pages_start(src_bo),
+> @@ -1141,6 +1146,10 @@ int xe_migrate_ccs_rw_copy(struct xe_tile *tile, struct xe_exec_queue *q,
+>  		size -= src_L0;
 >  	}
 >  
-> +	if (flags & XE_SA_BO_MANAGER_FLAG_SHADOW) {
-> +		struct xe_bo *shadow;
+> +	bb_pool = ctx->mem.ccs_bb_pool;
+> +	xe_sa_bo_swap_guard_lock(bb_pool);
+> +	xe_sa_bo_swap_shadow(bb_pool);
 > +
-> +		ret = drmm_mutex_init(&xe->drm, &sa_manager->swap_guard);
-> +		if (ret)
-> +			return ERR_PTR(ret);
+>  	bb = xe_bb_ccs_new(gt, batch_size, read_write);
+>  	if (IS_ERR(bb)) {
+>  		drm_err(&xe->drm, "BB allocation failed.\n");
+> @@ -1194,12 +1203,62 @@ int xe_migrate_ccs_rw_copy(struct xe_tile *tile, struct xe_exec_queue *q,
+>  	xe_assert(xe, (batch_size_allocated == bb->len));
+>  	src_bo->bb_ccs[read_write] = bb;
+>  
+> +	xe_sriov_vf_ccs_rw_update_bb_addr(ctx);
+> +	xe_sa_bo_sync_shadow(bb->bo);
+> +	xe_sa_bo_swap_guard_unlock(bb_pool);
 > +
-> +		shadow = xe_managed_bo_create_pin_map(xe, tile, size,
-> +						      XE_BO_FLAG_VRAM_IF_DGFX(tile) |
-> +						      XE_BO_FLAG_GGTT |
-> +						      XE_BO_FLAG_GGTT_INVALIDATE |
-> +						      XE_BO_FLAG_PINNED_NORESTORE);
-> +		if (IS_ERR(shadow)) {
-> +			drm_err(&xe->drm, "Failed to prepare %uKiB BO for SA manager (%pe)\n",
-> +				size / SZ_1K, shadow);
-> +			return ERR_CAST(shadow);
-> +		}
-> +		sa_manager->shadow = shadow;
-> +	}
-> +
->  	drm_suballoc_manager_init(&sa_manager->base, managed_size, align);
->  	ret = drmm_add_action_or_reset(&xe->drm, xe_sa_bo_manager_fini,
->  				       sa_manager);
-> @@ -88,6 +111,32 @@ struct xe_sa_manager *__xe_sa_bo_manager_init(struct xe_tile *tile, u32 size, u3
->  	return sa_manager;
+>  	return 0;
+>  
+>  err_ret:
+> +	xe_sa_bo_swap_guard_unlock(bb_pool);
+>  	return err;
 >  }
 >  
-> +void xe_sa_bo_swap_shadow(struct xe_sa_manager *sa_manager)
+> +/**
+> + * xe_migrate_ccs_rw_copy_clear() - Clear the CCS read/write batch buffer
+> + * content.
+> + * @src_bo: The buffer object @src is currently bound to.
+> + * @read_write : Creates BB commands for CCS read/write.
+> + *
+> + * Directly clearing the BB lacks atomicity and can lead to undefined
+> + * behavior if the vCPU is halted mid-operation during the clearing
+> + * process. To avoid this issue, we use a shadow buffer object approach.
+> + *
+> + * First swap the SA BO address with the shadow BO, perform the clearing
+> + * operation on the BB, update the shadow BO in the ring buffer, then
+> + * sync the shadow and the actual buffer to maintain consistency.
+> + *
+> + * Returns: None.
+> + */
+> +void xe_migrate_ccs_rw_copy_clear(struct xe_bo *src_bo,
+> +				  enum xe_sriov_vf_ccs_rw_ctxs read_write)
 > +{
-> +	struct xe_device *xe = tile_to_xe(sa_manager->bo->tile);
+> +	struct xe_bb *bb = src_bo->bb_ccs[read_write];
+> +	struct xe_device *xe = xe_bo_device(src_bo);
+> +	struct xe_sriov_vf_ccs_ctx *ctx;
+> +	struct xe_sa_manager *bb_pool;
+> +	u32 *cs;
 > +
-> +	xe_assert(xe, sa_manager->shadow);
-> +	lockdep_assert_held(&sa_manager->swap_guard);
+> +	xe_assert(xe, IS_SRIOV_VF(xe));
 > +
-> +	swap(sa_manager->bo, sa_manager->shadow);
-> +	if (!sa_manager->bo->vmap.is_iomem)
-> +		sa_manager->cpu_ptr = sa_manager->bo->vmap.vaddr;
-> +}
+> +	ctx = &xe->sriov.vf.ccs.contexts[read_write];
+> +	bb_pool = ctx->mem.ccs_bb_pool;
 > +
-> +void xe_sa_bo_sync_shadow(struct drm_suballoc *sa_bo)
-> +{
-> +	struct xe_sa_manager *sa_manager = to_xe_sa_manager(sa_bo->manager);
-> +	struct xe_device *xe = tile_to_xe(sa_manager->bo->tile);
+> +	xe_sa_bo_swap_guard_lock(bb_pool);
+> +	xe_sa_bo_swap_shadow(bb_pool);
 > +
-> +	xe_assert(xe, sa_manager->shadow);
-> +	lockdep_assert_held(&sa_manager->swap_guard);
+> +	cs = xe_sa_bo_cpu_addr(bb->bo);
+> +	memset(cs, MI_NOOP, bb->len * sizeof(u32));
+> +	xe_device_wmb(xe);
+
+I think xe_device_wmb() should be built in xe_sriov_vf_ccs_rw_update_bb_addr.
+
+For safety, I'd include xe_device_wmb before / after xe_map_wr in that function.
+
+Otherwise LGTM.
+
+Matt
+
+> +	xe_sriov_vf_ccs_rw_update_bb_addr(ctx);
 > +
-> +	xe_map_memcpy_to(xe, &sa_manager->shadow->vmap,
-> +			 drm_suballoc_soffset(sa_bo),
-> +			 xe_sa_bo_cpu_addr(sa_bo),
-> +			 drm_suballoc_size(sa_bo));
+> +	xe_sa_bo_sync_shadow(bb->bo);
+> +	xe_sa_bo_swap_guard_unlock(bb_pool);
+> +
+> +	xe_bb_free(bb, NULL);
+> +	src_bo->bb_ccs[read_write] = NULL;
 > +}
 > +
 >  /**
->   * __xe_sa_bo_new() - Make a suballocation but use custom gfp flags.
->   * @sa_manager: the &xe_sa_manager
-> diff --git a/drivers/gpu/drm/xe/xe_sa.h b/drivers/gpu/drm/xe/xe_sa.h
-> index 1be744350836..8a674eccc0e2 100644
-> --- a/drivers/gpu/drm/xe/xe_sa.h
-> +++ b/drivers/gpu/drm/xe/xe_sa.h
-> @@ -14,12 +14,14 @@
->  struct dma_fence;
->  struct xe_tile;
+>   * xe_get_migrate_exec_queue() - Get the execution queue from migrate context.
+>   * @migrate: Migrate context.
+> diff --git a/drivers/gpu/drm/xe/xe_migrate.h b/drivers/gpu/drm/xe/xe_migrate.h
+> index d7bcc6ad8464..db66b2ea31a5 100644
+> --- a/drivers/gpu/drm/xe/xe_migrate.h
+> +++ b/drivers/gpu/drm/xe/xe_migrate.h
+> @@ -134,6 +134,9 @@ int xe_migrate_ccs_rw_copy(struct xe_tile *tile, struct xe_exec_queue *q,
+>  			   struct xe_bo *src_bo,
+>  			   enum xe_sriov_vf_ccs_rw_ctxs read_write);
 >  
-> -struct xe_sa_manager *__xe_sa_bo_manager_init(struct xe_tile *tile, u32 size, u32 guard, u32 align);
-> +#define XE_SA_BO_MANAGER_FLAG_SHADOW	BIT(0)
-> +struct xe_sa_manager *__xe_sa_bo_manager_init(struct xe_tile *tile, u32 size,
-> +					      u32 guard, u32 align, u32 flags);
->  struct drm_suballoc *__xe_sa_bo_new(struct xe_sa_manager *sa_manager, u32 size, gfp_t gfp);
->  
->  static inline struct xe_sa_manager *xe_sa_bo_manager_init(struct xe_tile *tile, u32 size, u32 align)
->  {
-> -	return __xe_sa_bo_manager_init(tile, size, SZ_4K, align);
-> +	return __xe_sa_bo_manager_init(tile, size, SZ_4K, align, 0);
->  }
->  
->  /**
-> @@ -69,4 +71,17 @@ static inline void *xe_sa_bo_cpu_addr(struct drm_suballoc *sa)
->  		drm_suballoc_soffset(sa);
->  }
->  
-> +void xe_sa_bo_swap_shadow(struct xe_sa_manager *sa_manager);
-> +void xe_sa_bo_sync_shadow(struct drm_suballoc *sa_bo);
+> +void xe_migrate_ccs_rw_copy_clear(struct xe_bo *src_bo,
+> +				  enum xe_sriov_vf_ccs_rw_ctxs read_write);
 > +
-> +static inline void xe_sa_bo_swap_guard_lock(struct xe_sa_manager *sa_manager)
-> +{
-> +	mutex_lock(&sa_manager->swap_guard);
-> +}
-> +
-> +static inline void xe_sa_bo_swap_guard_unlock(struct xe_sa_manager *sa_manager)
-> +{
-> +	mutex_unlock(&sa_manager->swap_guard);
-> +}
-> +
->  #endif
-> diff --git a/drivers/gpu/drm/xe/xe_sa_types.h b/drivers/gpu/drm/xe/xe_sa_types.h
-> index cb7238799dcb..1085c9c37d6b 100644
-> --- a/drivers/gpu/drm/xe/xe_sa_types.h
-> +++ b/drivers/gpu/drm/xe/xe_sa_types.h
-> @@ -12,6 +12,9 @@ struct xe_bo;
->  struct xe_sa_manager {
->  	struct drm_suballoc_manager base;
->  	struct xe_bo *bo;
-> +	struct xe_bo *shadow;
-> +	/** @swap_guard: Timeline guard updating @bo and @shadow */
-> +	struct mutex swap_guard;
->  	void *cpu_ptr;
->  	bool is_iomem;
->  };
+>  struct xe_lrc *xe_migrate_lrc(struct xe_migrate *migrate);
+>  struct xe_exec_queue *xe_migrate_exec_queue(struct xe_migrate *migrate);
+>  struct dma_fence *xe_migrate_vram_copy_chunk(struct xe_bo *vram_bo, u64 vram_offset,
 > diff --git a/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c b/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c
-> index 797a4b866226..9959d619addc 100644
+> index 9959d619addc..35769fb9225c 100644
 > --- a/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c
 > +++ b/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c
-> @@ -162,9 +162,12 @@ static int alloc_bb_pool(struct xe_tile *tile, struct xe_sriov_vf_ccs_ctx *ctx)
->  	offset = 0;
->  	xe_map_memset(xe, &sa_manager->bo->vmap, offset, MI_NOOP,
->  		      bb_pool_size);
-> +	xe_map_memset(xe, &sa_manager->shadow->vmap, offset, MI_NOOP,
-> +		      bb_pool_size);
+> @@ -150,7 +150,8 @@ static int alloc_bb_pool(struct xe_tile *tile, struct xe_sriov_vf_ccs_ctx *ctx)
+>  	xe_sriov_info(xe, "Allocating %s CCS BB pool size = %lldMB\n",
+>  		      ctx->ctx_id ? "Restore" : "Save", bb_pool_size / SZ_1M);
 >  
->  	offset = bb_pool_size - sizeof(u32);
->  	xe_map_wr(xe, &sa_manager->bo->vmap, offset, u32, MI_BATCH_BUFFER_END);
-> +	xe_map_wr(xe, &sa_manager->shadow->vmap, offset, u32, MI_BATCH_BUFFER_END);
+> -	sa_manager = xe_sa_bo_manager_init(tile, bb_pool_size, SZ_16);
+> +	sa_manager = __xe_sa_bo_manager_init(tile, bb_pool_size, SZ_4K, SZ_16,
+> +					     XE_SA_BO_MANAGER_FLAG_SHADOW);
 >  
->  	ctx->mem.ccs_bb_pool = sa_manager;
+>  	if (IS_ERR(sa_manager)) {
+>  		xe_sriov_err(xe, "Suballocator init failed with error: %pe\n",
+> @@ -384,6 +385,16 @@ int xe_sriov_vf_ccs_init(struct xe_device *xe)
+>  	return err;
+>  }
 >  
+> +#define XE_SRIOV_VF_CCS_RW_BB_ADDR_OFFSET	(2 * sizeof(u32))
+> +void xe_sriov_vf_ccs_rw_update_bb_addr(struct xe_sriov_vf_ccs_ctx *ctx)
+> +{
+> +	u64 addr = xe_sa_manager_gpu_addr(ctx->mem.ccs_bb_pool);
+> +	struct xe_lrc *lrc = xe_exec_queue_lrc(ctx->mig_q);
+> +	struct xe_device *xe = gt_to_xe(ctx->mig_q->gt);
+> +
+> +	xe_map_wr(xe, &lrc->bo->vmap, XE_SRIOV_VF_CCS_RW_BB_ADDR_OFFSET, u32, addr);
+> +}
+> +
+>  /**
+>   * xe_sriov_vf_ccs_attach_bo - Insert CCS read write commands in the BO.
+>   * @bo: the &buffer object to which batch buffer commands will be added.
+> @@ -444,9 +455,7 @@ int xe_sriov_vf_ccs_detach_bo(struct xe_bo *bo)
+>  		if (!bb)
+>  			continue;
+>  
+> -		memset(bb->cs, MI_NOOP, bb->len * sizeof(u32));
+> -		xe_bb_free(bb, NULL);
+> -		bo->bb_ccs[ctx_id] = NULL;
+> +		xe_migrate_ccs_rw_copy_clear(bo, ctx_id);
+>  	}
+>  	return 0;
+>  }
+> diff --git a/drivers/gpu/drm/xe/xe_sriov_vf_ccs.h b/drivers/gpu/drm/xe/xe_sriov_vf_ccs.h
+> index f8ca6efce9ee..00e58b36c510 100644
+> --- a/drivers/gpu/drm/xe/xe_sriov_vf_ccs.h
+> +++ b/drivers/gpu/drm/xe/xe_sriov_vf_ccs.h
+> @@ -20,6 +20,7 @@ int xe_sriov_vf_ccs_detach_bo(struct xe_bo *bo);
+>  int xe_sriov_vf_ccs_register_context(struct xe_device *xe);
+>  void xe_sriov_vf_ccs_rebase(struct xe_device *xe);
+>  void xe_sriov_vf_ccs_print(struct xe_device *xe, struct drm_printer *p);
+> +void xe_sriov_vf_ccs_rw_update_bb_addr(struct xe_sriov_vf_ccs_ctx *ctx);
+>  
+>  static inline bool xe_sriov_vf_ccs_ready(struct xe_device *xe)
+>  {
 > -- 
 > 2.43.0
 > 
