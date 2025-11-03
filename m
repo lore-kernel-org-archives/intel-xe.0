@@ -4,51 +4,179 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 104CBCCF9F8
-	for <intel-xe@archiver.kernel.org>; Mon,  3 Nov 2025 15:00:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D4F6CCCF9F8
+	for <intel-xe@archiver.kernel.org>; Mon,  3 Nov 2025 15:04:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AB64910E410;
-	Mon,  3 Nov 2025 15:00:17 +0000 (UTC)
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
- by gabe.freedesktop.org (Postfix) with ESMTP id 8469A10E410
- for <intel-xe@lists.freedesktop.org>; Mon,  3 Nov 2025 15:00:16 +0000 (UTC)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
- by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 6CF551D14
- for <intel-xe@lists.freedesktop.org>; Mon,  3 Nov 2025 07:00:08 -0800 (PST)
-Received: from e110455-lin.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com
- [10.121.207.14])
- by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id F3D073F66E
- for <intel-xe@lists.freedesktop.org>; Mon,  3 Nov 2025 07:00:15 -0800 (PST)
-Date: Mon, 3 Nov 2025 15:00:10 +0000
-From: Liviu Dudau <liviu.dudau@arm.com>
-To: Suraj Kandpal <suraj.kandpal@intel.com>
-Cc: linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, kernel-list@raspberrypi.com,
- amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-renesas-soc@vger.kernel.org,
- dmitry.baryshkov@oss.qualcomm.com, ankit.k.nautiyal@intel.com,
- arun.r.murthy@intel.com, uma.shankar@intel.com,
- jani.nikula@intel.com, harry.wentland@amd.com, siqueira@igalia.com,
- alexander.deucher@amd.com, christian.koenig@amd.com,
- airlied@gmail.com, simona@ffwll.ch,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org,
- robin.clark@oss.qualcomm.com, abhinav.kumar@linux.dev,
- tzimmermann@suse.de, jessica.zhang@oss.qualcomm.com,
- sean@poorly.run, marijn.suijten@somainline.org,
- laurent.pinchart+renesas@ideasonboard.com, mcanal@igalia.com,
- dave.stevenson@raspberrypi.com, tomi.valkeinen+renesas@ideasonboard.com,
- kieran.bingham+renesas@ideasonboard.com, louis.chauvet@bootlin.com
-Subject: Re: [PATCH v2 1/7] drm: writeback: Refactor drm_writeback_connector
- structure
-Message-ID: <aQjDejhzGRYJT614@e110455-lin.cambridge.arm.com>
-References: <20251007054528.2900905-1-suraj.kandpal@intel.com>
- <20251007054528.2900905-2-suraj.kandpal@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9557510E416;
+	Mon,  3 Nov 2025 15:04:46 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="D0p6odl2";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 815F810E416
+ for <intel-xe@lists.freedesktop.org>; Mon,  3 Nov 2025 15:04:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1762182285; x=1793718285;
+ h=date:from:to:subject:message-id:references:in-reply-to:
+ mime-version; bh=zTcFZRI2oZWDNUeAXR/9nVc0JQK1iHeZSXqNw6/geJc=;
+ b=D0p6odl2OerREfemm9KoScjnvKGgHySIp9EBw57M3ZK5L5z3wrNVCUuh
+ SD03FBRWnufuW65tAJ+BHN+Tbx4eutyNIg/7hoY8YNgh1ANLg9Tm0ozKk
+ qVfUi5c2QB9vvHJrf7S00FPF86+VNtQnFnGiZTlFeKlJ2OmmSKJmHrzuC
+ He8XgvW3FfkKzVRbR3n/rJxtFt/Jxaqja17jIL3xupo3rc6mMwZGQpjkz
+ TfCr3mBJNfOMFuZniCOlLKKDvItAjpUq1DXhrFhbgz7P8t1EIJZMqqbbQ
+ dwNUeV58ncKAih5s6849f2SKiYq8Aog+FWbXVZRoCscPDomZ1v3EPGpew g==;
+X-CSE-ConnectionGUID: xpKAhbpGRiem+D/He08rQQ==
+X-CSE-MsgGUID: XAapP0CaR0eXX/rCzuAWIg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11602"; a="75609211"
+X-IronPort-AV: E=Sophos;i="6.19,276,1754982000"; d="scan'208";a="75609211"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Nov 2025 07:04:44 -0800
+X-CSE-ConnectionGUID: 3zKSvUHgQICLQsMfKY12UA==
+X-CSE-MsgGUID: BJVd/OoNQxSIgs097d79sg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,276,1754982000"; d="scan'208";a="187611255"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by fmviesa010.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Nov 2025 07:04:44 -0800
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.27; Mon, 3 Nov 2025 07:04:43 -0800
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.27 via Frontend Transport; Mon, 3 Nov 2025 07:04:43 -0800
+Received: from DM5PR21CU001.outbound.protection.outlook.com (52.101.62.46) by
+ edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.27; Mon, 3 Nov 2025 07:04:43 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=E5DYqZj3C1IbmSuHHVrM52hsEVgi/qV/ZD8VBNpvRinb78I+nChfARxR/7kanq08ZkvUx4kaLYXri/8xFNLuF/aNMEQs3fPlIVto/Tl8il8oBjmy6NnGLKDromc0fBx1k8PwtLq2F0+0MJGAQL78mz5ojwn6wz9SECpx479lGQXvq4jPBS9wCwzdjtZs+1EwJyDww4E/HTO9zgvhBWxQxU+Vxs686rnckxrfu0YR1mpBVywOdwkrqtSxk8GvzXyUybHihyzNpnsVm2nrh8U7QJG2KtNws8+gYk0UGQiAwAtQNAIln2zmzdgG+gsOE9VWWo0KyEa8HkSs9miryju4SQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=xaMY0/Imebx8Zv9zt2YBkTdlHytBSmQlLWE+csyMxSA=;
+ b=HKmVImS0lHdjKRAgEQhcgnXYpJd7/iKcj2585PjD0qnEfXm5Ds0+xY1VMWIeXY24u9ZA8FFLA0UYweCqYcOI0EMvcvqA250HO62ovvU8tS37aTlr1VZoqaQ0q9tAO1gkJBqCbvx7YhQeExWSay1IgdK2Eck+p912wPcxV1VbQONh5yG6WD6vhe/2EQFku0FwTGRV3KKccOEqdDmGObrzV88CxwObjyuvr3+VlQGZcGa0bM4pS0E2lASxnI+C9qM/dE482uLrUOLN6XvDPeUQ3/rJG/3ooSzzaaMDFOUZitb4Uge0ovXxw/DuMelHZakO1BvzyRRIOz25YB1gx/EwzQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from PH8PR11MB6974.namprd11.prod.outlook.com (2603:10b6:510:225::16)
+ by DM4PR11MB6264.namprd11.prod.outlook.com (2603:10b6:8:a5::9) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9275.16; Mon, 3 Nov 2025 15:04:40 +0000
+Received: from PH8PR11MB6974.namprd11.prod.outlook.com
+ ([fe80::c0b4:f63a:9c33:ec4a]) by PH8PR11MB6974.namprd11.prod.outlook.com
+ ([fe80::c0b4:f63a:9c33:ec4a%7]) with mapi id 15.20.9275.015; Mon, 3 Nov 2025
+ 15:04:40 +0000
+Date: Mon, 3 Nov 2025 20:34:34 +0530
+From: "Vivekanandan, Balasubramani" <balasubramani.vivekanandan@intel.com>
+To: Venkata Ramana Nayana <venkata.ramana.nayana@intel.com>,
+ <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH] drm/xe/irq: Handle msix vector0 interrupt
+Message-ID: <aQjEgu0IhQzSOIOE@bvivekan-mobl1>
+References: <20251030151020.2042207-1-venkata.ramana.nayana@intel.com>
+Content-Type: text/plain; charset="utf-8"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20251007054528.2900905-2-suraj.kandpal@intel.com>
+In-Reply-To: <20251030151020.2042207-1-venkata.ramana.nayana@intel.com>
+X-ClientProxiedBy: MA1PR01CA0169.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:d::21) To PH8PR11MB6974.namprd11.prod.outlook.com
+ (2603:10b6:510:225::16)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH8PR11MB6974:EE_|DM4PR11MB6264:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1474e1bd-5d95-43b0-7d61-08de1aea501b
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?eENkQmlOVDVxZFBnWUVhZjdyWE5mNmpZWXpKQzVEeWFUaWQwOHdQMmZXTURD?=
+ =?utf-8?B?NWI0OUxJMVcvdW90NzJRU09JUEZTdU84UnhGbkpLZ3RWcko3a28zRVRnSU9s?=
+ =?utf-8?B?T0t3L0g4WU42d0JBakFESnhzN3lTM0VjbTVDZk9RZHI0OHVJRE1NK2c2TXJh?=
+ =?utf-8?B?STNteFNYN3lTU1R2YWVkcHc3NGFMWlk3YzVHY0QxWHNTVi9yeGtZMnUrY2ZH?=
+ =?utf-8?B?SURTWXhSb2kwUVdDNFZ1Nkh0VG5nQXVaTlgvQWg0UWV5dEk5UDVnYjNVdmxI?=
+ =?utf-8?B?SjU1WFF0UGpBMGQyczZPVE1SeHdWaUxpMzhGUzExQzdybTVocnA5SFBZRXAx?=
+ =?utf-8?B?T0crUzBqMFo1bmZBK1hqeEtSM0NDblBNT0krR1hRM3hGNjJpNW91NktaWHdD?=
+ =?utf-8?B?ckF6VmxmTHVuSnZQSk1SU3hZL0Q5blJnN2lNekpSYnFvTnB2dzRqemlVR1JJ?=
+ =?utf-8?B?T2Qrc2tVQmxjUTNFTWpxWHlmZFIvejM2MSt6TllTdmt6MUlXbjNVNW1QWFVO?=
+ =?utf-8?B?NzZPUWNMUSt1UVhnL3hJRkVWNElBWmtpMWh3R3lFQUxmSURYNGF1cGZ5ZTJW?=
+ =?utf-8?B?c2wwU2h4YktlL3ArN0RLRXJIZW9ENWZHYng1SWZyV3p2R0orM3RXV3lpNFJU?=
+ =?utf-8?B?MWdYSVhzRy84V3NxQkt6MytlbGp0d1AzZXBFb3V0dUlNVkZ6ODZSL2puaTFT?=
+ =?utf-8?B?M29lKzhubXBxcXNIMzhQazRvWVNWR0x2Z3lKYWpvZXpVeFdtMEtuT0g3ekZu?=
+ =?utf-8?B?Yk96ZnlXRllWOUZsSDM0OWJhdk5xRGp5b2hZVTFHaGpUbjhpMm1kVWFEc3Az?=
+ =?utf-8?B?SnIxWmJHbHZXZVZrQzFCbzlJa2h6SWQvelc2bFRCS0YyaFdoWW5na3RUeURX?=
+ =?utf-8?B?YmlSYklUYWxHZU8rSXZLUDJZRktCK0pYM1ZrKzNKdFAwS1BpQWVpa282UWc5?=
+ =?utf-8?B?ZTdMbXRGcVNsMDNyWkkzQy85a0x5SUNDNUt2enZ1NnlZRU1IdERqNzM1MnRX?=
+ =?utf-8?B?K1E5bXB6aEdHZVkwV3QwVVhBdDY0ZnFjOHU2NjhnZUJqWXlzOXg3cW5JWUp2?=
+ =?utf-8?B?UnYzT1F0NDZmS2h5L2F5bmVxb2VRRXZqM2tURno4aGtadGF3YWJpTEs4ZjQz?=
+ =?utf-8?B?VDUyYm9iSjBHR2tXazJBMFVJdmpzVU9YVkVBRGJENVdhd1o4R1ZkTFg4NWVR?=
+ =?utf-8?B?aVMwbFhTUzd0b3F1YlhENWlZVUcvVjJnNld1d3QrNzZSQWkyc0tqb3pDeXA4?=
+ =?utf-8?B?SjRiRzdiMzRldGxUTnFjZm42bWQzOXRPWVpBRk1zekJaKzRYaDlwSnhSN3F0?=
+ =?utf-8?B?Z2E0dDNGN1F6SmJJbk5YWWo4YkUrbG9TcUttSUhacjVicWdUNE5QQVQ5eWRC?=
+ =?utf-8?B?OWpJZjdsR0RSSVU1SVdPK1dvbUNTTjd6MUNrSnpHZzhuU0R0YTRvZWJQcU5Y?=
+ =?utf-8?B?SnNEd1lnN1M4dms5R0lRVDZ0eFBrSnFmamVSZWozNW1WMVd2WmNTZHVyTHNQ?=
+ =?utf-8?B?RWZ5WjNIbGg0a3hCME5OMEFVaHlibU5YUDVJb1BQdUxCd0xCYjN2RUY5bmcy?=
+ =?utf-8?B?WGFYbzRySzVEVW5RbVptYXFtaDRnblJFWVpMM1k3Q2xhOE5CbWhpR3g0Y3dh?=
+ =?utf-8?B?dXlJbUNuZGRhS1orWjRLcFI1VUtkZmpkMUJKYldRZmpwS0NBOGNVdVFvN1Zw?=
+ =?utf-8?B?NzMxKzludldhS0FTT3pOd3BNeUtIWFl4U1dzQkh5Z3pCRHFMRTVkUXh1TW9C?=
+ =?utf-8?B?d2J1Z1l4L0V5TlVWZ1UyZGdTREZqNURyMmg5UWhsV3VzanpvWFRJeDVnZXZv?=
+ =?utf-8?B?dGt5Y0NwNFZpbHZ1N0RtdDY3cXFwaXpqYVJuUFdmR2hDOGs0elJUNTczdnI2?=
+ =?utf-8?B?dndzQnVmWmxmTUdYdkErR0h3MGRkWW05N3BkeEVjbmxWNUt3Q1grTW13c2xk?=
+ =?utf-8?Q?f11mru1bDsFwHV2QqokuTl0f+u1luXyh?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH8PR11MB6974.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Y1pWaFkrVVRRcUZId1BHT0ZPQi9sRmxmaVozQ0F0SldJc0hmM0srY2VPR0tw?=
+ =?utf-8?B?VHRIMHQrTHhyb3FiOTNmQTlmcG5BY3laYnFZT3VvcEozOHNtdmJUd2gxVjNB?=
+ =?utf-8?B?d3QwOXIwVEZpcXhDRVVubzVMcmZpQUZUeXRuUEhKOW5GMjE3THZ3RUlJaHRl?=
+ =?utf-8?B?aUVCWXEycW16TEhqQnNBQTNNTFpKWUM5TVovemNNUytxQmtoc2FUdVN6cjlx?=
+ =?utf-8?B?REU5MnVTV2VhbnBLU3E3cFZvQ1gvYUtSSUZZMnBtLy93aFRIOUs2THFUQ0lm?=
+ =?utf-8?B?YWtzS1ZrbTZCTmU1NWZhR21lUjRnclA0eUR2M3JjOVkrQmd3dkViRWNoaEVQ?=
+ =?utf-8?B?STI0REVBTHpMNUN2b3hERGxxMmZSUDU4ZDZSZHdYWlhwZ1Z1d0o0aFI4ZGVD?=
+ =?utf-8?B?T0ZvMkdUK0wvb3g0QUp1TEptTk9nenhFczkvbkFrWUJLK0w0VGZWOExDdlFv?=
+ =?utf-8?B?R3JCU3daM0dkMDNublI4OWJlM20rM1J2QjkyTjZLSzNXdXhJWEc2ellWd0pV?=
+ =?utf-8?B?blZJYjBvV0hReEhoM2ptMUVCNzdMME40MkZ1c2tSaFc5Y2lXUFkvQUFQZ3pn?=
+ =?utf-8?B?SDZ6aG01V0t2Yy9RUE13VnIxYThDYU1LNTJPdG9kdDFzZEgzTW5lVXBzMnEv?=
+ =?utf-8?B?TG1WVUVhdXVURE13SVFWcGN1KzJNOVZkK3B4QkNUZ3NBaWd3bjJMbGRvNTl3?=
+ =?utf-8?B?SVJPcnBod25DanZnaVlTRXRlNlc2U1h6UXJXRnBVVmxpNzMyVzRwYnBiMXhu?=
+ =?utf-8?B?MGE4eDZCS1d5TjJrQkp1L29MbWdWdjdzVUl0SFo3RHFFOWxmeTJsRjVxMHVG?=
+ =?utf-8?B?SEN2Lzg1TDlmY0tCNFhWRzExSTB4bTgyWm16QXNxblhFUmhmc2dPamV1SzZa?=
+ =?utf-8?B?U205RC93Y2pFV1lQa0F6bGV0QmplcHJEU3BuMXJZR1JLZ1M2YklJNnc3STFa?=
+ =?utf-8?B?bWVmTkxPZkRsQUYxS3VzVjlFaEhTK24zaHJNaWhEM3ltQVM1SUYzOHhyZWRG?=
+ =?utf-8?B?K1cvaURjY0gyK0ZFNjg5aTdVeUZ0UkExQjFCWkNSTEo0SDhvR1pPNkNXbzFH?=
+ =?utf-8?B?S3RqYnlPK2EvWVc4UTFOcnFpcnhXUHArdlNuckU3Qko0eWdmYklLWVFTa2RX?=
+ =?utf-8?B?WjlCUDQ0MkN0WEhMeDV3QUo1eHc0Y1BRNXJmZnVuc0d3OXFPbm9oaFlnTlVr?=
+ =?utf-8?B?WlFhSUpjTTZBdHpWdmFkRVAwSlNmQ2xYRXhuZFc3ZkE2SDdRUzd1UEtMT1NP?=
+ =?utf-8?B?OXoydWZYTUZSb2NYK3dsTUI3U3g4SVVBcEhTaDBQcExSSlRReWExdlJCV0M4?=
+ =?utf-8?B?U2ZHdkpUMDRSV3VTKzIxbytNYTZrNEVnRjVYeWN5Y2cxSUwxVThHNllDMjdQ?=
+ =?utf-8?B?SUI1SktHUzhFSzBSNTc2MHgyY3Bsb1dkTURLQkpvdm9KbXZ4QlRza2xmQXlM?=
+ =?utf-8?B?L2lEbWVaMEJ0T2dYT2NRQ1MzN3AwcFZqaDJMNzVzRkpIUWZjV1ByM1R6RFZn?=
+ =?utf-8?B?aTlCeXFYbTltZ2JPcmI2TCs0aVVzK0ZUVHVFYTdIQWVIN1NleUUrMEwwSzZE?=
+ =?utf-8?B?R3RvOFN1R0RyV0xWbmRmZFgxL0lKRnAxSTg1UDBSbVRLU0s2bmZYWFJMYjNZ?=
+ =?utf-8?B?SlhXV3VZN1g4WGdTNU9BckdYL1pIRUZFRERHY2g3Q08yYTMvcnRuUmVpNWFp?=
+ =?utf-8?B?QkNjZWs0L3J4cnl6NGplMm5CUGtzTjRDeVI4UEQ1UHZYRHlEdVFoT293V1Fj?=
+ =?utf-8?B?TlorbkJXYkZjRlFuWkJkVkpNTzdxeTlLcXJwbjhPU2pQWUpQcysxdjFSSFFv?=
+ =?utf-8?B?OHBid01BbkxWNmVGbk5va251VUs5YjlvajJBVHkrQ3gwZGloUG5ORHlYS080?=
+ =?utf-8?B?SUdtQWx2SDV1RGRRcFhhNmw3cW1IeW41SFNpczFHQStUcUNzTHdtdm1JQ3hw?=
+ =?utf-8?B?cVZvZlNZeTJWOGpFaTdtMVg2VVdnRGlEZGY3bSs3cTZ6aFdka1doM2RPemVQ?=
+ =?utf-8?B?YWpUcDBYNndjUE5kck5haDJZVDMrSjlVTmlSTERydmEyY1VuWFRMVzhibUtG?=
+ =?utf-8?B?bWJWKzVwUjFJOWNHNnBydVNYMlQzK1lLMWJDWngyb3ByY0FMWjE3WWp4RHlp?=
+ =?utf-8?B?RXNhT0srOHdZY2lMK0pNeENrdFRNN2J3ZVNvZHZ2OHppYVRBOVNNcERweUJl?=
+ =?utf-8?Q?fJC8acC80zKuZ0HRSttm/8U=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1474e1bd-5d95-43b0-7d61-08de1aea501b
+X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB6974.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Nov 2025 15:04:40.5584 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: LR46rs0rRT6xSbW2EhuFuChuWo2dLcbyWSSYVAJ8k7SgxHjh8ZngC9X4DHIzHEoR1V8nX/vPISFTz2YLJmw2urIoxbY2IzSyddejT7n5l+KcLufniX63aJl+7wdmg/K8
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB6264
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,246 +191,73 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Oct 07, 2025 at 11:15:23AM +0530, Suraj Kandpal wrote:
-> Some drivers cannot work with the current design where the connector
-> is embedded within the drm_writeback_connector such as Intel and
-> some drivers that can get it working end up adding a lot of checks
-> all around the code to check if it's a writeback conenctor or not,
-> this is due to the limitation of inheritance in C.
-> To solve this move the drm_writeback_connector within the
-> drm_connector and remove the drm_connector base which was in
-> drm_writeback_connector. Make this drm_writeback_connector
-> a union with hdmi connector to save memory and since a connector can
-> never be both writeback and hdmi it should serve us well.
-> Do all other required modifications that come with these changes
-> along with addition of new function which returns the drm_connector
-> when drm_writeback_connector is present.
-> Modify drivers using the drm_writeback_connector to
-> allow them to use this connector without breaking them.
-> The drivers modified here are amd, komeda, mali, vc4, vkms,
-> rcar_du, msm
+On 30.10.2025 20:40, Venkata Ramana Nayana wrote:
+> Current gu2host handler registered as MSI-X vector 0 and as per bspec for
+> an msix vector 0 interrupt, the driver must check the legacy registers
+> 190008(TILE_INT_REG), 190060h (GT INTR Identity Reg 0) and other registers
+> mentioned in "Interrupt Service Routine Pseudocode" otherwise it's block
+> the next interrupts. To overcome this issue replacing guc2host handler
+> with legacy xe_irq_handler.
 > 
-> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+> Bspec: 62357
+> Signed-off-by: Venkata Ramana Nayana <venkata.ramana.nayana@intel.com>
+
+Please add the Fixes tag.
+
+Fixes: da889070be7b2 ("drm/xe/irq: Separate MSI and MSI-X flows")
+
+Few nitpicks
+
+s/an msix/a msix
+s/it's block/it will block
+
+Rest looks good.
+
+Reviewed-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
+
+Regards,
+Bala
+
 > ---
-> V1 -> V2: Use &connector->writeback, make commit message imperative (Dmitry)
-> ---
->  .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |  6 +-
->  .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h |  2 +-
->  .../drm/amd/display/amdgpu_dm/amdgpu_dm_wb.c  |  8 +--
->  .../gpu/drm/arm/display/komeda/komeda_crtc.c  |  6 +-
->  .../gpu/drm/arm/display/komeda/komeda_kms.h   |  6 +-
->  .../arm/display/komeda/komeda_wb_connector.c  |  8 +--
->  drivers/gpu/drm/arm/malidp_crtc.c             |  2 +-
->  drivers/gpu/drm/arm/malidp_drv.h              |  2 +-
->  drivers/gpu/drm/arm/malidp_hw.c               |  6 +-
->  drivers/gpu/drm/arm/malidp_mw.c               |  8 +--
->  drivers/gpu/drm/drm_atomic_uapi.c             |  2 +-
->  drivers/gpu/drm/drm_writeback.c               | 35 ++++++----
-
-For the komeda and malidp drivers, as well as for the drm_writeback.c changes:
-
-Reviewed-by: Liviu Dudau <liviu.dudau@arm.com>
-
-
-[snip]
-
-
-> diff --git a/include/drm/drm_connector.h b/include/drm/drm_connector.h
-> index 8f34f4b8183d..1b090e6bddc1 100644
-> --- a/include/drm/drm_connector.h
-> +++ b/include/drm/drm_connector.h
-> @@ -1882,6 +1882,61 @@ struct drm_connector_cec {
->  	void *data;
->  };
->  
-> +/**
-> + * struct drm_writeback_connector - DRM writeback connector
-> + */
-> +struct drm_writeback_connector {
-> +	/**
-> +	 * @pixel_formats_blob_ptr:
-> +	 *
-> +	 * DRM blob property data for the pixel formats list on writeback
-> +	 * connectors
-> +	 * See also drm_writeback_connector_init()
-> +	 */
-> +	struct drm_property_blob *pixel_formats_blob_ptr;
-> +
-> +	/** @job_lock: Protects job_queue */
-> +	spinlock_t job_lock;
-> +
-> +	/**
-> +	 * @job_queue:
-> +	 *
-> +	 * Holds a list of a connector's writeback jobs; the last item is the
-> +	 * most recent. The first item may be either waiting for the hardware
-> +	 * to begin writing, or currently being written.
-> +	 *
-> +	 * See also: drm_writeback_queue_job() and
-> +	 * drm_writeback_signal_completion()
-> +	 */
-> +	struct list_head job_queue;
-> +
-> +	/**
-> +	 * @fence_context:
-> +	 *
-> +	 * timeline context used for fence operations.
-> +	 */
-> +	unsigned int fence_context;
-> +	/**
-> +	 * @fence_lock:
-> +	 *
-> +	 * spinlock to protect the fences in the fence_context.
-> +	 */
-> +	spinlock_t fence_lock;
-> +	/**
-> +	 * @fence_seqno:
-> +	 *
-> +	 * Seqno variable used as monotonic counter for the fences
-> +	 * created on the connector's timeline.
-> +	 */
-> +	unsigned long fence_seqno;
-> +	/**
-> +	 * @timeline_name:
-> +	 *
-> +	 * The name of the connector's fence timeline.
-> +	 */
-> +	char timeline_name[32];
-> +};
-> +
->  /**
->   * struct drm_connector - central DRM connector control structure
->   *
-> @@ -2291,10 +2346,16 @@ struct drm_connector {
->  	 */
->  	struct llist_node free_node;
->  
-> -	/**
-> -	 * @hdmi: HDMI-related variable and properties.
-> -	 */
-> -	struct drm_connector_hdmi hdmi;
-> +	union {
-
-This is a surprising choice. Before this patch one had to have a separate
-writeback connector besides the HDMI connector. Going forward it looks
-like you still need two connectors, one that uses the writeback member
-and one that uses the hdmi one. Is that intended?
-
-I was expecting that you're going to declare the writeback member next
-to the hdmi, without overlap. If you do that, then you also don't need
-to move the struct drm_writeback declaration from the header file and
-it should be enough to include the drm_writeback.h file.
-
-Best regards,
-Liviu
-
-> +		/**
-> +		 * @hdmi: HDMI-related variable and properties.
-> +		 */
-> +		struct drm_connector_hdmi hdmi;
-> +		/**
-> +		 * @writeback: Writeback related valriables.
-> +		 */
-> +		struct drm_writeback_connector writeback;
-> +	};
->  
->  	/**
->  	 * @hdmi_audio: HDMI codec properties and non-DRM state.
-> diff --git a/include/drm/drm_writeback.h b/include/drm/drm_writeback.h
-> index 958466a05e60..702141099520 100644
-> --- a/include/drm/drm_writeback.h
-> +++ b/include/drm/drm_writeback.h
-> @@ -15,66 +15,6 @@
->  #include <drm/drm_encoder.h>
->  #include <linux/workqueue.h>
->  
-> -/**
-> - * struct drm_writeback_connector - DRM writeback connector
-> - */
-> -struct drm_writeback_connector {
-> -	/**
-> -	 * @base: base drm_connector object
-> -	 */
-> -	struct drm_connector base;
-> -
-> -	/**
-> -	 * @pixel_formats_blob_ptr:
-> -	 *
-> -	 * DRM blob property data for the pixel formats list on writeback
-> -	 * connectors
-> -	 * See also drm_writeback_connector_init()
-> -	 */
-> -	struct drm_property_blob *pixel_formats_blob_ptr;
-> -
-> -	/** @job_lock: Protects job_queue */
-> -	spinlock_t job_lock;
-> -
-> -	/**
-> -	 * @job_queue:
-> -	 *
-> -	 * Holds a list of a connector's writeback jobs; the last item is the
-> -	 * most recent. The first item may be either waiting for the hardware
-> -	 * to begin writing, or currently being written.
-> -	 *
-> -	 * See also: drm_writeback_queue_job() and
-> -	 * drm_writeback_signal_completion()
-> -	 */
-> -	struct list_head job_queue;
-> -
-> -	/**
-> -	 * @fence_context:
-> -	 *
-> -	 * timeline context used for fence operations.
-> -	 */
-> -	unsigned int fence_context;
-> -	/**
-> -	 * @fence_lock:
-> -	 *
-> -	 * spinlock to protect the fences in the fence_context.
-> -	 */
-> -	spinlock_t fence_lock;
-> -	/**
-> -	 * @fence_seqno:
-> -	 *
-> -	 * Seqno variable used as monotonic counter for the fences
-> -	 * created on the connector's timeline.
-> -	 */
-> -	unsigned long fence_seqno;
-> -	/**
-> -	 * @timeline_name:
-> -	 *
-> -	 * The name of the connector's fence timeline.
-> -	 */
-> -	char timeline_name[32];
-> -};
-> -
->  /**
->   * struct drm_writeback_job - DRM writeback job
->   */
-> @@ -131,10 +71,10 @@ struct drm_writeback_job {
->  	void *priv;
->  };
->  
-> -static inline struct drm_writeback_connector *
-> -drm_connector_to_writeback(struct drm_connector *connector)
-> +static inline struct drm_connector *
-> +drm_writeback_to_connector(struct drm_writeback_connector *wb_connector)
->  {
-> -	return container_of(connector, struct drm_writeback_connector, base);
-> +	return container_of(wb_connector, struct drm_connector, writeback);
+>  drivers/gpu/drm/xe/xe_irq.c | 18 +-----------------
+>  1 file changed, 1 insertion(+), 17 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
+> index e5ed0242f7b1..024e13e606ec 100644
+> --- a/drivers/gpu/drm/xe/xe_irq.c
+> +++ b/drivers/gpu/drm/xe/xe_irq.c
+> @@ -897,22 +897,6 @@ static int xe_irq_msix_init(struct xe_device *xe)
+>  	return 0;
 >  }
 >  
->  int drm_writeback_connector_init(struct drm_device *dev,
+> -static irqreturn_t guc2host_irq_handler(int irq, void *arg)
+> -{
+> -	struct xe_device *xe = arg;
+> -	struct xe_tile *tile;
+> -	u8 id;
+> -
+> -	if (!atomic_read(&xe->irq.enabled))
+> -		return IRQ_NONE;
+> -
+> -	for_each_tile(tile, xe, id)
+> -		xe_guc_irq_handler(&tile->primary_gt->uc.guc,
+> -				   GUC_INTR_GUC2HOST);
+> -
+> -	return IRQ_HANDLED;
+> -}
+> -
+>  static irqreturn_t xe_irq_msix_default_hwe_handler(int irq, void *arg)
+>  {
+>  	unsigned int tile_id, gt_id;
+> @@ -1029,7 +1013,7 @@ int xe_irq_msix_request_irqs(struct xe_device *xe)
+>  	u16 msix;
+>  
+>  	msix = GUC2HOST_MSIX;
+> -	err = xe_irq_msix_request_irq(xe, guc2host_irq_handler, xe,
+> +	err = xe_irq_msix_request_irq(xe, xe_irq_handler(xe), xe,
+>  				      DRIVER_NAME "-guc2host", false, &msix);
+>  	if (err)
+>  		return err;
 > -- 
 > 2.34.1
 > 
-
--- 
-====================
-| I would like to |
-| fix the world,  |
-| but they're not |
-| giving me the   |
- \ source code!  /
-  ---------------
-    ¯\_(ツ)_/¯
