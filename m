@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 57263CCFA07
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BCE30CCF9E3
 	for <intel-xe@archiver.kernel.org>; Tue,  4 Nov 2025 18:52:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0A3B610E666;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 74E6210E668;
 	Tue,  4 Nov 2025 18:52:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jsXAotaW";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TDMtxqEQ";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5698610E31C
- for <intel-xe@lists.freedesktop.org>; Tue,  4 Nov 2025 18:51:58 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EF84D10E2B0
+ for <intel-xe@lists.freedesktop.org>; Tue,  4 Nov 2025 18:51:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1762282318; x=1793818318;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=+KoY9tPAHydMk9AQVhusLyG1LDKG2q2fjwfBW6ijCjY=;
- b=jsXAotaW5dYruzs5EdM7Unb9frHqeiawmQUW9DHcd0kNIySbl9zfBWhm
- c7ZDZjGX/4ZYynyKRCA8YniLV3Wp8GZMtJkwUBWCbcL5I+b9CvLD1KceC
- kA7zUOchHau4+6N4YMj9lkzWb5xYVxwXR97ezNhQmbMCMfJzPz0uPlGli
- rRPMNMBdlC8PUI5XxP3QYrvVxLcULdqjXayhAkSPKfbGYKZSEXULJL3Bh
- vb9OyGEjwZVbnX31MvLFihEQtd3+DDup+oN31Sni/9aUkbsiTyTcu11A2
- EYMiRI7UleXGghqueOV+qZxXXbLuWjjqec+lTz++rhCU3JL0CG5OdsrpI w==;
-X-CSE-ConnectionGUID: ErKrpsgvSVaEGvf53aLhfA==
-X-CSE-MsgGUID: TFEjRUbMRymHy41HifZ4tg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11603"; a="68247761"
-X-IronPort-AV: E=Sophos;i="6.19,279,1754982000"; d="scan'208";a="68247761"
+ bh=qeRCrL0P0wfveR6o0o2kWvHkeDQoyxBHR/mp9a5Pv3w=;
+ b=TDMtxqEQZdCdtreVIvAB7p+okh8/MFYW59yca5mRXzgkg808ydUAWFEo
+ mPcAMmVUP+k+0DMg7IaqmEWofDeYL6U+dChI1ZKXIhfLUnQ/ir5zgpNGj
+ JXjxIfbYXJ3Z0GlRRzGGxHTKjM+002w9mcdM1I6B91lCT3zcXj2lCF8fH
+ vXdV4v45i3EDK5MYFU9TA/h5hx0FY2jvIf3SSYAtSQ8FeBztd48H6FKFX
+ XgOzaEiu1bjaYswq3B0EQeue3CqUTVDY4iTJ7PwTeSx001+LJZ67GjH/+
+ adrwqwED8/RpJRVFRq/ANOVyjUXpYZA5ZDh27q8XWiyxGtNQU52XwCiKF g==;
+X-CSE-ConnectionGUID: fxxFeeQKQGS/Bz3/uC7H6A==
+X-CSE-MsgGUID: 5E71vHzCSHmohmnh5OFw3g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11603"; a="68247753"
+X-IronPort-AV: E=Sophos;i="6.19,279,1754982000"; d="scan'208";a="68247753"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Nov 2025 10:51:58 -0800
-X-CSE-ConnectionGUID: 38eR22oiQgWnyg0v8EIW5Q==
-X-CSE-MsgGUID: R5NmeogIQripA7PoMA35Dw==
+ 04 Nov 2025 10:51:57 -0800
+X-CSE-ConnectionGUID: TlLljZY7SYCMFf6ilMJMVg==
+X-CSE-MsgGUID: uDMc8W96RdWgz5i6qEqODg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,279,1754982000"; d="scan'208";a="187183110"
+X-IronPort-AV: E=Sophos;i="6.19,279,1754982000"; d="scan'208";a="187183094"
 Received: from nvishwa1-desk.sc.intel.com ([172.25.29.131])
  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Nov 2025 10:51:58 -0800
+ 04 Nov 2025 10:51:57 -0800
 From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.brost@intel.com
-Subject: [PATCH v2 15/16] drm/xe/doc: Add documentation for Multi Queue Group
- GuC interface
-Date: Tue,  4 Nov 2025 10:51:49 -0800
-Message-ID: <20251104185150.246345-16-niranjana.vishwanathapura@intel.com>
+Subject: [PATCH v2 10/16] drm/xe/multi_queue: Set QUEUE_DRAIN_MODE for Multi
+ Queue batches
+Date: Tue,  4 Nov 2025 10:51:44 -0800
+Message-ID: <20251104185150.246345-11-niranjana.vishwanathapura@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20251104185150.246345-1-niranjana.vishwanathapura@intel.com>
 References: <20251104185150.246345-1-niranjana.vishwanathapura@intel.com>
@@ -67,116 +67,189 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add kernel documentation for Multi Queue group GuC interface.
+To properly support soft light restore between batches
+being arbitrated at the CFEG, PIPE_CONTROL instructions
+have a new bit in the first DW, QUEUE_DRAIN_MODE. When
+set, this indicates to the CFEG that it should only
+drain the current queue.
 
+Additionally we no longer want to set the CS_STALL bit
+for these multi queue queues as this causes the entire
+pipeline to stall waiting for completion of the prior
+batch, preventing this soft light restore from occurring
+between queues in a queue group.
+
+Bspec: 56551
+Signed-off-by: Stuart Summers <stuart.summers@intel.com>
 Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 ---
- Documentation/gpu/xe/xe_exec_queue.rst |  8 ++++
- drivers/gpu/drm/xe/xe_exec_queue.c     |  3 ++
- drivers/gpu/drm/xe/xe_guc_submit.c     | 57 ++++++++++++++++++++++++++
- 3 files changed, 68 insertions(+)
+ .../gpu/drm/xe/instructions/xe_gpu_commands.h |  1 +
+ drivers/gpu/drm/xe/xe_ring_ops.c              | 68 ++++++++++++-------
+ 2 files changed, 45 insertions(+), 24 deletions(-)
 
-diff --git a/Documentation/gpu/xe/xe_exec_queue.rst b/Documentation/gpu/xe/xe_exec_queue.rst
-index 732af4741df4..8707806211c9 100644
---- a/Documentation/gpu/xe/xe_exec_queue.rst
-+++ b/Documentation/gpu/xe/xe_exec_queue.rst
-@@ -13,6 +13,14 @@ Multi Queue Group
- .. kernel-doc:: drivers/gpu/drm/xe/xe_exec_queue.c
-    :doc: Multi Queue Group
+diff --git a/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h b/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h
+index 5d41ca297447..885fcf211e6d 100644
+--- a/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h
++++ b/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h
+@@ -47,6 +47,7 @@
  
-+.. _multi-queue-group-guc-interface:
+ #define GFX_OP_PIPE_CONTROL(len)	((0x3<<29)|(0x3<<27)|(0x2<<24)|((len)-2))
+ 
++#define   PIPE_CONTROL0_QUEUE_DRAIN_MODE		BIT(12)
+ #define	  PIPE_CONTROL0_L3_READ_ONLY_CACHE_INVALIDATE	BIT(10)	/* gen12 */
+ #define	  PIPE_CONTROL0_HDC_PIPELINE_FLUSH		BIT(9)	/* gen12 */
+ 
+diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
+index ac0c6dcffe15..71f0e19fe8ba 100644
+--- a/drivers/gpu/drm/xe/xe_ring_ops.c
++++ b/drivers/gpu/drm/xe/xe_ring_ops.c
+@@ -12,7 +12,7 @@
+ #include "regs/xe_engine_regs.h"
+ #include "regs/xe_gt_regs.h"
+ #include "regs/xe_lrc_layout.h"
+-#include "xe_exec_queue_types.h"
++#include "xe_exec_queue.h"
+ #include "xe_gt.h"
+ #include "xe_lrc.h"
+ #include "xe_macros.h"
+@@ -135,12 +135,11 @@ emit_pipe_control(u32 *dw, int i, u32 bit_group_0, u32 bit_group_1, u32 offset,
+ 	return i;
+ }
+ 
+-static int emit_pipe_invalidate(u32 mask_flags, bool invalidate_tlb, u32 *dw,
+-				int i)
++static int emit_pipe_invalidate(struct xe_exec_queue *q, u32 mask_flags,
++				bool invalidate_tlb, u32 *dw, int i)
+ {
+ 	u32 flags0 = 0;
+-	u32 flags1 = PIPE_CONTROL_CS_STALL |
+-		PIPE_CONTROL_COMMAND_CACHE_INVALIDATE |
++	u32 flags1 = PIPE_CONTROL_COMMAND_CACHE_INVALIDATE |
+ 		PIPE_CONTROL_INSTRUCTION_CACHE_INVALIDATE |
+ 		PIPE_CONTROL_TEXTURE_CACHE_INVALIDATE |
+ 		PIPE_CONTROL_VF_CACHE_INVALIDATE |
+@@ -152,6 +151,11 @@ static int emit_pipe_invalidate(u32 mask_flags, bool invalidate_tlb, u32 *dw,
+ 	if (invalidate_tlb)
+ 		flags1 |= PIPE_CONTROL_TLB_INVALIDATE;
+ 
++	if (xe_exec_queue_is_multi_queue(q))
++		flags0 |= PIPE_CONTROL0_QUEUE_DRAIN_MODE;
++	else
++		flags1 |= PIPE_CONTROL_CS_STALL;
 +
-+Multi Queue Group GuC interface
-+===============================
+ 	flags1 &= ~mask_flags;
+ 
+ 	if (flags1 & PIPE_CONTROL_VF_CACHE_INVALIDATE)
+@@ -175,54 +179,70 @@ static int emit_store_imm_ppgtt_posted(u64 addr, u64 value,
+ 
+ static int emit_render_cache_flush(struct xe_sched_job *job, u32 *dw, int i)
+ {
+-	struct xe_gt *gt = job->q->gt;
++	struct xe_exec_queue *q = job->q;
++	struct xe_gt *gt = q->gt;
+ 	bool lacks_render = !(gt->info.engine_mask & XE_HW_ENGINE_RCS_MASK);
+-	u32 flags;
++	u32 flags0, flags1;
+ 
+ 	if (XE_GT_WA(gt, 14016712196))
+ 		i = emit_pipe_control(dw, i, 0, PIPE_CONTROL_DEPTH_CACHE_FLUSH,
+ 				      LRC_PPHWSP_FLUSH_INVAL_SCRATCH_ADDR, 0);
+ 
+-	flags = (PIPE_CONTROL_CS_STALL |
+-		 PIPE_CONTROL_TILE_CACHE_FLUSH |
++	flags0 = PIPE_CONTROL0_HDC_PIPELINE_FLUSH;
++	flags1 = (PIPE_CONTROL_TILE_CACHE_FLUSH |
+ 		 PIPE_CONTROL_RENDER_TARGET_CACHE_FLUSH |
+ 		 PIPE_CONTROL_DEPTH_CACHE_FLUSH |
+ 		 PIPE_CONTROL_DC_FLUSH_ENABLE |
+ 		 PIPE_CONTROL_FLUSH_ENABLE);
+ 
+ 	if (XE_GT_WA(gt, 1409600907))
+-		flags |= PIPE_CONTROL_DEPTH_STALL;
++		flags1 |= PIPE_CONTROL_DEPTH_STALL;
+ 
+ 	if (lacks_render)
+-		flags &= ~PIPE_CONTROL_3D_ARCH_FLAGS;
++		flags1 &= ~PIPE_CONTROL_3D_ARCH_FLAGS;
+ 	else if (job->q->class == XE_ENGINE_CLASS_COMPUTE)
+-		flags &= ~PIPE_CONTROL_3D_ENGINE_FLAGS;
++		flags1 &= ~PIPE_CONTROL_3D_ENGINE_FLAGS;
 +
-+.. kernel-doc:: drivers/gpu/drm/xe/xe_guc_submit.c
-+   :doc: Multi Queue Group GuC interface
++	if (xe_exec_queue_is_multi_queue(q))
++		flags0 |= PIPE_CONTROL0_QUEUE_DRAIN_MODE;
++	else
++		flags1 |= PIPE_CONTROL_CS_STALL;
+ 
+-	return emit_pipe_control(dw, i, PIPE_CONTROL0_HDC_PIPELINE_FLUSH, flags, 0, 0);
++	return emit_pipe_control(dw, i, flags0, flags1, 0, 0);
+ }
+ 
+-static int emit_pipe_control_to_ring_end(struct xe_hw_engine *hwe, u32 *dw, int i)
++static int emit_pipe_control_to_ring_end(struct xe_exec_queue *q, u32 *dw, int i)
+ {
++	u32 flags0 = 0, flags1 = PIPE_CONTROL_LRI_POST_SYNC;
++	struct xe_hw_engine *hwe = q->hwe;
 +
- Internal API
- ============
+ 	if (hwe->class != XE_ENGINE_CLASS_RENDER)
+ 		return i;
  
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-index 525cb3821e6c..6d8c0b3006a2 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue.c
-+++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-@@ -97,6 +97,9 @@
-  * When GuC reports an error on any of the queues of a multi queue group,
-  * the queue cleanup mechanism is invoked for all the queues of the group
-  * as hardware cannot make progress on the multi queue context.
-+ *
-+ * Refer :ref:`multi-queue-group-guc-interface` for multi queue group GuC
-+ * interface.
-  */
- 
- enum xe_exec_queue_sched_prop {
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index d49775c1cf5e..50ec721f60be 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -581,6 +581,63 @@ static void set_min_preemption_timeout(struct xe_guc *guc, struct xe_exec_queue
- 	xe_map_wr_field(xe_, &map_, 0, struct guc_submit_parallel_scratch, \
- 			field_, val_)
- 
-+/**
-+ * DOC: Multi Queue Group GuC interface
-+ *
-+ * The multi queue group coordination between KMD and GuC is through a software
-+ * construct called Context Group Page (CGP). The CGP is a KMD managed 4KB page
-+ * allocated in the global GTT.
-+ *
-+ * CGP format:
-+ *
-+ * +-----------+---------------------------+---------------------------------------------+
-+ * | DWORD     | Name                      | Description                                 |
-+ * +-----------+---------------------------+---------------------------------------------+
-+ * | 0         | Version                   | Bits [15:8]=Major ver, [7:0]=Minor ver      |
-+ * +-----------+---------------------------+---------------------------------------------+
-+ * | 1..15     | RESERVED                  | MBZ                                         |
-+ * +-----------+---------------------------+---------------------------------------------+
-+ * | 16        | KMD_QUEUE_UPDATE_MASK_DW0 | KMD queue mask for queues 31..0             |
-+ * +-----------+---------------------------+---------------------------------------------+
-+ * | 17        | KMD_QUEUE_UPDATE_MASK_DW1 | KMD queue mask for queues 63..32            |
-+ * +-----------+---------------------------+---------------------------------------------+
-+ * | 18..31    | RESERVED                  | MBZ                                         |
-+ * +-----------+---------------------------+---------------------------------------------+
-+ * | 32        | Q0CD_DW0                  | Queue 0 context LRC descriptor lower DWORD  |
-+ * +-----------+---------------------------+---------------------------------------------+
-+ * | 33        | Q0ContextIndex            | Context ID for Queue 0                      |
-+ * +-----------+---------------------------+---------------------------------------------+
-+ * | 34        | Q1CD_DW0                  | Queue 1 context LRC descriptor lower DWORD  |
-+ * +-----------+---------------------------+---------------------------------------------+
-+ * | 35        | Q1ContextIndex            | Context ID for Queue 1                      |
-+ * +-----------+---------------------------+---------------------------------------------+
-+ * | ...       |...                        | ...                                         |
-+ * +-----------+---------------------------+---------------------------------------------+
-+ * | 158       | Q63CD_DW0                 | Queue 63 context LRC descriptor lower DWORD |
-+ * +-----------+---------------------------+---------------------------------------------+
-+ * | 159       | Q63ContextIndex           | Context ID for Queue 63                     |
-+ * +-----------+---------------------------+---------------------------------------------+
-+ * | 160..1024 | RESERVED                  | MBZ                                         |
-+ * +-----------+---------------------------+---------------------------------------------+
-+ *
-+ * While registering Q0 with GuC, CGP is updated with Q0 entry and GuC is notified
-+ * through XE_GUC_ACTION_REGISTER_CONTEXT_MULTI_QUEUE H2G message which specifies
-+ * the CGP address. When the secondary queues are added to the group, the CGP is
-+ * updated with entry for that queue and GuC is notified through the H2G interface
-+ * XE_GUC_ACTION_MULTI_QUEUE_CONTEXT_CGP_SYNC. GuC responds to these H2G messages
-+ * with a XE_GUC_ACTION_NOTIFY_MULTIQ_CONTEXT_CGP_SYNC_DONE G2H message. GuC also
-+ * sends a XE_GUC_ACTION_NOTIFY_MULTI_QUEUE_CGP_CONTEXT_ERROR notification for any
-+ * error in the CGP. Only one of these CGP update messages can be outstanding
-+ * (waiting for GuC response) at any time. The bits in KMD_QUEUE_UPDATE_MASK_DW*
-+ * fields indicate which queue entry is being updated in the CGP.
-+ *
-+ * The primary queue (Q0) represents the multi queue group context in GuC and
-+ * submission on any queue of the group must be through Q0 GuC interface only.
-+ *
-+ * As it is not required to register secondary queues with GuC, the secondary queue
-+ * context ids in the CGP are populated with Q0 context id.
-+ */
++	if (xe_exec_queue_is_multi_queue(q))
++		flags0 |= PIPE_CONTROL0_QUEUE_DRAIN_MODE;
 +
- #define CGP_VERSION_MAJOR_SHIFT	8
+ 	if (XE_GT_WA(hwe->gt, 16020292621))
+-		i = emit_pipe_control(dw, i, 0, PIPE_CONTROL_LRI_POST_SYNC,
++		i = emit_pipe_control(dw, i, flags0, flags1,
+ 				      RING_NOPID(hwe->mmio_base).addr, 0);
  
- static void xe_guc_exec_queue_group_cgp_update(struct xe_device *xe,
+ 	return i;
+ }
+ 
+-static int emit_pipe_imm_ggtt(u32 addr, u32 value, bool stall_only, u32 *dw,
+-			      int i)
++static int emit_pipe_imm_ggtt(struct xe_exec_queue *q, u32 addr, u32 value,
++			      bool stall_only, u32 *dw, int i)
+ {
+-	u32 flags = PIPE_CONTROL_CS_STALL | PIPE_CONTROL_GLOBAL_GTT_IVB |
+-		    PIPE_CONTROL_QW_WRITE;
++	u32 flags0 = 0, flags1 = PIPE_CONTROL_GLOBAL_GTT_IVB | PIPE_CONTROL_QW_WRITE;
+ 
+ 	if (!stall_only)
+-		flags |= PIPE_CONTROL_FLUSH_ENABLE;
++		flags1 |= PIPE_CONTROL_FLUSH_ENABLE;
++
++	if (xe_exec_queue_is_multi_queue(q))
++		flags0 |= PIPE_CONTROL0_QUEUE_DRAIN_MODE;
++	else
++		flags1 |= PIPE_CONTROL_CS_STALL;
+ 
+-	return emit_pipe_control(dw, i, 0, flags, addr, value);
++	return emit_pipe_control(dw, i, flags0, flags1, addr, value);
+ }
+ 
+ static u32 get_ppgtt_flag(struct xe_sched_job *job)
+@@ -371,7 +391,7 @@ static void __emit_job_gen12_render_compute(struct xe_sched_job *job,
+ 		mask_flags = PIPE_CONTROL_3D_ENGINE_FLAGS;
+ 
+ 	/* See __xe_pt_bind_vma() for a discussion on TLB invalidations. */
+-	i = emit_pipe_invalidate(mask_flags, job->ring_ops_flush_tlb, dw, i);
++	i = emit_pipe_invalidate(job->q, mask_flags, job->ring_ops_flush_tlb, dw, i);
+ 
+ 	/* hsdes: 1809175790 */
+ 	if (has_aux_ccs(xe))
+@@ -391,11 +411,11 @@ static void __emit_job_gen12_render_compute(struct xe_sched_job *job,
+ 						job->user_fence.value,
+ 						dw, i);
+ 
+-	i = emit_pipe_imm_ggtt(xe_lrc_seqno_ggtt_addr(lrc), seqno, lacks_render, dw, i);
++	i = emit_pipe_imm_ggtt(job->q, xe_lrc_seqno_ggtt_addr(lrc), seqno, lacks_render, dw, i);
+ 
+ 	i = emit_user_interrupt(dw, i);
+ 
+-	i = emit_pipe_control_to_ring_end(job->q->hwe, dw, i);
++	i = emit_pipe_control_to_ring_end(job->q, dw, i);
+ 
+ 	xe_gt_assert(gt, i <= MAX_JOB_SIZE_DW);
+ 
 -- 
 2.43.0
 
