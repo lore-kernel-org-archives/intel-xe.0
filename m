@@ -4,56 +4,118 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C0FE3CCF9E3
-	for <intel-xe@archiver.kernel.org>; Tue,  4 Nov 2025 10:23:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5919DCCFA00
+	for <intel-xe@archiver.kernel.org>; Tue,  4 Nov 2025 10:24:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7C4F510E5AB;
-	Tue,  4 Nov 2025 10:23:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0D07810E5AB;
+	Tue,  4 Nov 2025 10:24:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Dr01REiw";
+	dkim=pass (2048-bit key; unprotected) header.d=bootlin.com header.i=@bootlin.com header.b="uwu7EiHC";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 64BF810E5B2
- for <intel-xe@lists.freedesktop.org>; Tue,  4 Nov 2025 10:23:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1762251781; x=1793787781;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=DFm0K01e7odDeclM2z4iiivjZcD07DxWKy/+4F04qeA=;
- b=Dr01REiw5AmNGsktjnqTtj/pmQVnxtoQigw7ymhjzUIfE2tqGbxcixPY
- J/IgamlFjPDPWh3A/0oArYZwJ1usqMlSQQbcoPi2qiFumtxUCA8d13esK
- V5YaRfujI/pz5Zc/kfFGRmtVES269Vq6ElpKQu1FRUtmHbcNRQBrkOS93
- mtdP7CXxGSlA1rrB1vswG9SGvntePrR6hLCc5DO9tra5gXmPB+alRagEN
- cH09fRD+Mv0na9ggl/WGXIxFagZhSTtf0dubic16o4gA4ZLuU05KpjFE8
- TbrY+p4xw7eVviTsI5+9EDr1byeHBB8udUhV+KTC4TM7KYSKMhlwqUoSW A==;
-X-CSE-ConnectionGUID: NG/PdPHjTH6TQYtBL+kqkQ==
-X-CSE-MsgGUID: TkPOzpmhQAygiecT70uLrA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11602"; a="75693037"
-X-IronPort-AV: E=Sophos;i="6.19,278,1754982000"; d="scan'208";a="75693037"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Nov 2025 02:23:01 -0800
-X-CSE-ConnectionGUID: mkaochdQR2OspivvNgpEJQ==
-X-CSE-MsgGUID: w83ePMcwTUyGE3nTWVofZA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,278,1754982000"; d="scan'208";a="186810878"
-Received: from nitin-super-server.iind.intel.com ([10.190.238.72])
- by orviesa009.jf.intel.com with ESMTP; 04 Nov 2025 02:22:59 -0800
-From: Nitin Gote <nitin.r.gote@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	matthew.brost@intel.com
-Cc: matthew.auld@intel.com, michal.mrozek@intel.com,
- Nitin Gote <nitin.r.gote@intel.com>
-Subject: [PATCH v4 3/3] drm/xe: implement VM_BIND decompression in
- vm_bind_ioctl
-Date: Tue,  4 Nov 2025 16:23:05 +0530
-Message-Id: <20251104105305.2100460-4-nitin.r.gote@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20251104105305.2100460-1-nitin.r.gote@intel.com>
-References: <20251104105305.2100460-1-nitin.r.gote@intel.com>
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 98B9910E258;
+ Tue,  4 Nov 2025 10:24:27 +0000 (UTC)
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+ by smtpout-02.galae.net (Postfix) with ESMTPS id 6A9991A1871;
+ Tue,  4 Nov 2025 10:24:26 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+ by smtpout-01.galae.net (Postfix) with ESMTPS id 30128606EF;
+ Tue,  4 Nov 2025 10:24:26 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon)
+ with ESMTPSA id F3E03102F1CE8; Tue,  4 Nov 2025 11:24:17 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+ t=1762251864; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+ content-transfer-encoding:content-language:in-reply-to:references:autocrypt;
+ bh=Yh/SOsjRqtgPLuq8QRVnn/lrGryn5Z5zYSTW9+Wd1lE=;
+ b=uwu7EiHCDvkOi+ZlaNqDmWa7sDjt1+KNUXllXXwIo7BBazhl8rSoPx6BVnpH9z+jfnu3AN
+ M704y1JCBh8jUjN0L1cESmxgAsuL/HG1dpnA8pkxVWp+V+NUYpIsRVSEdL1KPdP6GhPMtM
+ NMZcL50+dzYfv1YP7uz27gLG9O83Kv4TwoM5Vz1q/0Sgwyl5sDhiNrZVhWiFwVL0miKigv
+ QCIJ805towdU/JbBzlnj80L6OK/kU++DuYG/iG4h/SXHDnQjUn8N2K6QbLxM9f6YFvJw65
+ 6/5Bic3PvCFetE3+rKQiGGPaLwxTnrpCFS0pnzFfB44qrYnmLbrU8KLeS4N4vg==
+Message-ID: <d6545844-f7f6-4714-927f-cf985dc50a54@bootlin.com>
+Date: Tue, 4 Nov 2025 11:24:17 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/7] drm: writeback: Refactor drm_writeback_connector
+ structure
+To: Suraj Kandpal <suraj.kandpal@intel.com>, linux-arm-msm@vger.kernel.org,
+ freedreno@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ kernel-list@raspberrypi.com, amd-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Cc: dmitry.baryshkov@oss.qualcomm.com, ankit.k.nautiyal@intel.com,
+ arun.r.murthy@intel.com, uma.shankar@intel.com, jani.nikula@intel.com,
+ harry.wentland@amd.com, siqueira@igalia.com, alexander.deucher@amd.com,
+ christian.koenig@amd.com, airlied@gmail.com, simona@ffwll.ch,
+ liviu.dudau@arm.com, maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+ robin.clark@oss.qualcomm.com, abhinav.kumar@linux.dev, tzimmermann@suse.de,
+ jessica.zhang@oss.qualcomm.com, sean@poorly.run,
+ marijn.suijten@somainline.org, laurent.pinchart+renesas@ideasonboard.com,
+ mcanal@igalia.com, dave.stevenson@raspberrypi.com,
+ tomi.valkeinen+renesas@ideasonboard.com,
+ kieran.bingham+renesas@ideasonboard.com
+References: <20251007054528.2900905-1-suraj.kandpal@intel.com>
+ <20251007054528.2900905-2-suraj.kandpal@intel.com>
+Content-Language: en-US, fr
+From: Louis Chauvet <louis.chauvet@bootlin.com>
+Autocrypt: addr=louis.chauvet@bootlin.com; keydata=
+ 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
+In-Reply-To: <20251007054528.2900905-2-suraj.kandpal@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,320 +130,47 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Implement handling of VM_BIND(..., DECOMPRESS) in xe_vm_bind_ioctl.
 
-Key changes:
-- Parse and record per-op intent (op->map.request_decompress) when the
-  DECOMPRESS flag is present.
-- Introduce xe_pat_index_get_comp_en() helper to check if a PAT index
-  has compression enabled via the XE2_COMP_EN bit.
-- Validate DECOMPRESS preconditions in the ioctl path:
-  - Only valid for MAP ops.
-  - The provided pat_index must select the device's "no-compression" PAT.
-  - Only meaningful on devices with flat CCS and the required XE2+
-    otherwise return -EOPNOTSUPP.
-  - Use XE_IOCTL_DBG for uAPI sanity checks.
-- Implement xe_bo_decompress():
-  For VRAM BOs run xe_bo_move_notify(), reserve one fence slot,
-  schedule xe_migrate_resolve(), and attach the returned fence
-  with DMA_RESV_USAGE_KERNEL. Non-VRAM cases are silent no-ops.
-- Wire scheduling into vma_lock_and_validate() so VM_BIND will schedule
-  decompression when request_decompress is set.
-- Handle fault-mode VMs by performing decompression synchronously during
-  the bind process, ensuring that the resolve is completed before the bind
-  finishes.
 
-This schedules an in-place GPU resolve (xe_migrate_resolve) for
-decompression.
+Le 07/10/2025 à 07:45, Suraj Kandpal a écrit :
+> Some drivers cannot work with the current design where the connector
+> is embedded within the drm_writeback_connector such as Intel and
+> some drivers that can get it working end up adding a lot of checks
+> all around the code to check if it's a writeback conenctor or not,
+> this is due to the limitation of inheritance in C.
+> To solve this move the drm_writeback_connector within the
+> drm_connector and remove the drm_connector base which was in
+> drm_writeback_connector. Make this drm_writeback_connector
+> a union with hdmi connector to save memory and since a connector can
+> never be both writeback and hdmi it should serve us well.
+> Do all other required modifications that come with these changes
+> along with addition of new function which returns the drm_connector
+> when drm_writeback_connector is present.
+> Modify drivers using the drm_writeback_connector to
+> allow them to use this connector without breaking them.
+> The drivers modified here are amd, komeda, mali, vc4, vkms,
+> rcar_du, msm
+> 
+> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+> ---
+> V1 -> V2: Use &connector->writeback, make commit message imperative (Dmitry)
+> ---
 
-v4: (Matt)
-   - Introduce xe_pat_index_get_comp_en(), which checks
-     XE2_COMP_EN for the pat_index
-   - .interruptible should be true, everything else false
+[...]
 
-v3: (Matt)
-   - s/xe_bo_schedule_decompress/xe_bo_decompress
-   - skip the decrompress step if the BO isn't in VRAM
-   - start/size not required in xe_bo_schedule_decompress
-   - Use xe_bo_move_notify instead of xe_vm_invalidate_vma
-     with respect to invalidation.
-   - Nits
+>   drivers/gpu/drm/vkms/vkms_composer.c          |  2 +-
+>   drivers/gpu/drm/vkms/vkms_drv.h               |  2 +-
+>   drivers/gpu/drm/vkms/vkms_writeback.c         | 13 ++--
 
-v2:
-   - Move decompression work out of vm_bind ioctl. (Matt)
-   - Put that work in a small helper at the BO/migrate layer invoke it
-     from vma_lock_and_validate which already runs under drm_exec.
-   - Move lightweight checks to vm_bind_ioctl_check_args (Matthew Auld)
+For the VKMS part:
 
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Matthew Auld <matthew.auld@intel.com>
-Signed-off-by: Nitin Gote <nitin.r.gote@intel.com>
----
- drivers/gpu/drm/xe/xe_bo.c       | 52 ++++++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_bo.h       |  2 ++
- drivers/gpu/drm/xe/xe_pat.c      |  6 ++++
- drivers/gpu/drm/xe/xe_pat.h      | 10 ++++++
- drivers/gpu/drm/xe/xe_vm.c       | 40 +++++++++++++++++-------
- drivers/gpu/drm/xe/xe_vm_types.h |  2 ++
- 6 files changed, 101 insertions(+), 11 deletions(-)
+Reviewed-by: Louis Chauvet <louis.chauvet@bootlin.com>
 
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index b0bd31d14bb9..95331285c418 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -3330,6 +3330,58 @@ int xe_gem_mmap_offset_ioctl(struct drm_device *dev, void *data,
- 	return 0;
- }
- 
-+/**
-+ * xe_bo_decompress - schedule in-place decompress and install fence
-+ * @bo:   buffer object (caller should hold drm_exec reservations for VM+BO)
-+ * @vm:   VM containing the VMA range
-+ *
-+ * Schedules an in-place resolve via the migrate layer and installs the
-+ * returned dma_fence into the BO kernel reservation slot (DMA_RESV_USAGE_KERNEL).
-+ * In preempt fence mode, this operation interrupts hardware execution
-+ * which is expensive. Page fault mode is recommended for better performance.
-+ *
-+ * Returns 0 on success, negative errno on error.
-+ */
-+int xe_bo_decompress(struct xe_bo *bo, struct xe_vm *vm)
-+{
-+	struct xe_tile *tile = xe_device_get_root_tile(vm->xe);
-+	struct dma_fence *decomp_fence = NULL;
-+	int err = 0;
-+	struct ttm_operation_ctx op_ctx = {
-+		.interruptible = true,
-+		.no_wait_gpu = false,
-+		.gfp_retry_mayfail = false,
-+	};
-+
-+	/* Silently skip decompression for non-VRAM buffers */
-+	if (!bo->ttm.resource || !mem_type_is_vram(bo->ttm.resource->mem_type))
-+		return 0;
-+
-+	/* Notify before scheduling resolve */
-+	err = xe_bo_move_notify(bo, &op_ctx);
-+	if (err)
-+		return err;
-+
-+	/* Reserve fence slot before scheduling */
-+	err = dma_resv_reserve_fences(bo->ttm.base.resv, 1);
-+	if (err)
-+		return err;
-+
-+	/* Schedule the in-place decompression */
-+	decomp_fence = xe_migrate_resolve(tile->migrate,
-+					  bo,
-+					  bo->ttm.resource);
-+
-+	if (IS_ERR(decomp_fence))
-+		return PTR_ERR(decomp_fence);
-+
-+	/* Install kernel-usage fence */
-+	dma_resv_add_fence(bo->ttm.base.resv, decomp_fence, DMA_RESV_USAGE_KERNEL);
-+	dma_fence_put(decomp_fence);
-+
-+	return 0;
-+}
-+
- /**
-  * xe_bo_lock() - Lock the buffer object's dma_resv object
-  * @bo: The struct xe_bo whose lock is to be taken
-diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
-index 911d5b90461a..346b50a1247c 100644
---- a/drivers/gpu/drm/xe/xe_bo.h
-+++ b/drivers/gpu/drm/xe/xe_bo.h
-@@ -309,6 +309,8 @@ int xe_bo_dumb_create(struct drm_file *file_priv,
- 
- bool xe_bo_needs_ccs_pages(struct xe_bo *bo);
- 
-+int xe_bo_decompress(struct xe_bo *bo, struct xe_vm *vm);
-+
- static inline size_t xe_bo_ccs_pages_start(struct xe_bo *bo)
- {
- 	return PAGE_ALIGN(xe_bo_size(bo));
-diff --git a/drivers/gpu/drm/xe/xe_pat.c b/drivers/gpu/drm/xe/xe_pat.c
-index 68171cceea18..1b4d5d3def0f 100644
---- a/drivers/gpu/drm/xe/xe_pat.c
-+++ b/drivers/gpu/drm/xe/xe_pat.c
-@@ -196,6 +196,12 @@ u16 xe_pat_index_get_coh_mode(struct xe_device *xe, u16 pat_index)
- 	return xe->pat.table[pat_index].coh_mode;
- }
- 
-+bool xe_pat_index_get_comp_en(struct xe_device *xe, u16 pat_index)
-+{
-+	WARN_ON(pat_index >= xe->pat.n_entries);
-+	return !!(xe->pat.table[pat_index].value & XE2_COMP_EN);
-+}
-+
- static void program_pat(struct xe_gt *gt, const struct xe_pat_table_entry table[],
- 			int n_entries)
- {
-diff --git a/drivers/gpu/drm/xe/xe_pat.h b/drivers/gpu/drm/xe/xe_pat.h
-index 05dae03a5f54..b8559120989e 100644
---- a/drivers/gpu/drm/xe/xe_pat.h
-+++ b/drivers/gpu/drm/xe/xe_pat.h
-@@ -58,4 +58,14 @@ int xe_pat_dump(struct xe_gt *gt, struct drm_printer *p);
-  */
- u16 xe_pat_index_get_coh_mode(struct xe_device *xe, u16 pat_index);
- 
-+/**
-+ * xe_pat_index_get_comp_en - Extract the compression enable flag for
-+ * the given pat_index.
-+ * @xe: xe device
-+ * @pat_index: The pat_index to query
-+ *
-+ * Return: true if compression is enabled for this pat_index, false otherwise.
-+ */
-+bool xe_pat_index_get_comp_en(struct xe_device *xe, u16 pat_index);
-+
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 00f3520dec38..36a922d0cc3d 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -2300,6 +2300,7 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_vma_ops *vops,
- 				op->map.vma_flags |= XE_VMA_DUMPABLE;
- 			if (flags & DRM_XE_VM_BIND_FLAG_MADVISE_AUTORESET)
- 				op->map.vma_flags |= XE_VMA_MADV_AUTORESET;
-+			op->map.request_decompress = flags & DRM_XE_VM_BIND_FLAG_DECOMPRESS;
- 			op->map.pat_index = pat_index;
- 			op->map.invalidate_on_bind =
- 				__xe_vm_needs_clear_scratch_pages(vm, flags);
-@@ -2836,7 +2837,7 @@ static void vm_bind_ioctl_ops_unwind(struct xe_vm *vm,
- }
- 
- static int vma_lock_and_validate(struct drm_exec *exec, struct xe_vma *vma,
--				 bool res_evict, bool validate)
-+				 bool res_evict, bool validate, bool request_decompress)
- {
- 	struct xe_bo *bo = xe_vma_bo(vma);
- 	struct xe_vm *vm = xe_vma_vm(vma);
-@@ -2849,6 +2850,12 @@ static int vma_lock_and_validate(struct drm_exec *exec, struct xe_vma *vma,
- 			err = xe_bo_validate(bo, vm,
- 					     !xe_vm_in_preempt_fence_mode(vm) &&
- 					     res_evict, exec);
-+
-+		if (err)
-+			return err;
-+
-+		if (request_decompress)
-+			err = xe_bo_decompress(bo, vm);
- 	}
- 
- 	return err;
-@@ -2936,7 +2943,8 @@ static int op_lock_and_prep(struct drm_exec *exec, struct xe_vm *vm,
- 			err = vma_lock_and_validate(exec, op->map.vma,
- 						    res_evict,
- 						    !xe_vm_in_fault_mode(vm) ||
--						    op->map.immediate);
-+						    op->map.immediate,
-+						    op->map.request_decompress);
- 		break;
- 	case DRM_GPUVA_OP_REMAP:
- 		err = check_ufence(gpuva_to_vma(op->base.remap.unmap->va));
-@@ -2945,13 +2953,13 @@ static int op_lock_and_prep(struct drm_exec *exec, struct xe_vm *vm,
- 
- 		err = vma_lock_and_validate(exec,
- 					    gpuva_to_vma(op->base.remap.unmap->va),
--					    res_evict, false);
-+					    res_evict, false, false);
- 		if (!err && op->remap.prev)
- 			err = vma_lock_and_validate(exec, op->remap.prev,
--						    res_evict, true);
-+						    res_evict, true, false);
- 		if (!err && op->remap.next)
- 			err = vma_lock_and_validate(exec, op->remap.next,
--						    res_evict, true);
-+						    res_evict, true, false);
- 		break;
- 	case DRM_GPUVA_OP_UNMAP:
- 		err = check_ufence(gpuva_to_vma(op->base.unmap.va));
-@@ -2960,7 +2968,7 @@ static int op_lock_and_prep(struct drm_exec *exec, struct xe_vm *vm,
- 
- 		err = vma_lock_and_validate(exec,
- 					    gpuva_to_vma(op->base.unmap.va),
--					    res_evict, false);
-+					    res_evict, false, false);
- 		break;
- 	case DRM_GPUVA_OP_PREFETCH:
- 	{
-@@ -2975,7 +2983,7 @@ static int op_lock_and_prep(struct drm_exec *exec, struct xe_vm *vm,
- 
- 		err = vma_lock_and_validate(exec,
- 					    gpuva_to_vma(op->base.prefetch.va),
--					    res_evict, false);
-+					    res_evict, false, false);
- 		if (!err && !xe_vma_has_no_bo(vma))
- 			err = xe_bo_migrate(xe_vma_bo(vma),
- 					    region_to_mem_type[region],
-@@ -3284,7 +3292,8 @@ ALLOW_ERROR_INJECTION(vm_bind_ioctl_ops_execute, ERRNO);
- 	 DRM_XE_VM_BIND_FLAG_DUMPABLE | \
- 	 DRM_XE_VM_BIND_FLAG_CHECK_PXP | \
- 	 DRM_XE_VM_BIND_FLAG_CPU_ADDR_MIRROR | \
--	 DRM_XE_VM_BIND_FLAG_MADVISE_AUTORESET)
-+	 DRM_XE_VM_BIND_FLAG_MADVISE_AUTORESET | \
-+	 DRM_XE_VM_BIND_FLAG_DECOMPRESS)
- 
- #ifdef TEST_VM_OPS_ERROR
- #define SUPPORTED_FLAGS	(SUPPORTED_FLAGS_STUB | FORCE_OP_ERROR)
-@@ -3342,6 +3351,7 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe, struct xe_vm *vm,
- 		bool is_null = flags & DRM_XE_VM_BIND_FLAG_NULL;
- 		bool is_cpu_addr_mirror = flags &
- 			DRM_XE_VM_BIND_FLAG_CPU_ADDR_MIRROR;
-+		bool is_decompress = flags & DRM_XE_VM_BIND_FLAG_DECOMPRESS;
- 		u16 pat_index = (*bind_ops)[i].pat_index;
- 		u16 coh_mode;
- 
-@@ -3376,7 +3386,9 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe, struct xe_vm *vm,
- 		    XE_IOCTL_DBG(xe, obj_offset && (is_null ||
- 						    is_cpu_addr_mirror)) ||
- 		    XE_IOCTL_DBG(xe, op != DRM_XE_VM_BIND_OP_MAP &&
--				 (is_null || is_cpu_addr_mirror)) ||
-+				 (is_decompress || is_null || is_cpu_addr_mirror)) ||
-+		    XE_IOCTL_DBG(xe, is_decompress &&
-+				 !xe_pat_index_get_comp_en(xe, pat_index)) ||
- 		    XE_IOCTL_DBG(xe, !obj &&
- 				 op == DRM_XE_VM_BIND_OP_MAP &&
- 				 !is_null && !is_cpu_addr_mirror) ||
-@@ -3396,8 +3408,8 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe, struct xe_vm *vm,
- 				 op == DRM_XE_VM_BIND_OP_PREFETCH) ||
- 		    XE_IOCTL_DBG(xe, prefetch_region &&
- 				 op != DRM_XE_VM_BIND_OP_PREFETCH) ||
--		    XE_IOCTL_DBG(xe,  (prefetch_region != DRM_XE_CONSULT_MEM_ADVISE_PREF_LOC &&
--				       !(BIT(prefetch_region) & xe->info.mem_region_mask))) ||
-+		    XE_IOCTL_DBG(xe, (prefetch_region != DRM_XE_CONSULT_MEM_ADVISE_PREF_LOC &&
-+				      !(BIT(prefetch_region) & xe->info.mem_region_mask))) ||
- 		    XE_IOCTL_DBG(xe, obj &&
- 				 op == DRM_XE_VM_BIND_OP_UNMAP) ||
- 		    XE_IOCTL_DBG(xe, (flags & DRM_XE_VM_BIND_FLAG_MADVISE_AUTORESET) &&
-@@ -3414,6 +3426,12 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe, struct xe_vm *vm,
- 			err = -EINVAL;
- 			goto free_bind_ops;
- 		}
-+
-+		if (is_decompress && (XE_IOCTL_DBG(xe, !xe_device_has_flat_ccs(xe)) ||
-+				      XE_IOCTL_DBG(xe, GRAPHICS_VER(xe) < 20))) {
-+			err = -EOPNOTSUPP;
-+			goto free_bind_ops;
-+		}
- 	}
- 
- 	return 0;
-diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
-index 830ed7b05c27..87f0c04468f5 100644
---- a/drivers/gpu/drm/xe/xe_vm_types.h
-+++ b/drivers/gpu/drm/xe/xe_vm_types.h
-@@ -351,6 +351,8 @@ struct xe_vma_op_map {
- 	bool immediate;
- 	/** @read_only: Read only */
- 	bool invalidate_on_bind;
-+	/** @request_decompress: schedule decompression for GPU map */
-+	bool request_decompress;
- 	/** @pat_index: The pat index to use for this operation. */
- 	u16 pat_index;
- };
--- 
-2.25.1
+Thanks,
+Louis Chauvet
+
+--
+Louis Chauvet, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
