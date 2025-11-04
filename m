@@ -4,181 +4,170 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6F5F4CCFA04
-	for <intel-xe@archiver.kernel.org>; Tue,  4 Nov 2025 11:33:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9DAB6CCF9E3
+	for <intel-xe@archiver.kernel.org>; Tue,  4 Nov 2025 11:35:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 31ED310E102;
-	Tue,  4 Nov 2025 11:33:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5EC9410E276;
+	Tue,  4 Nov 2025 11:35:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jNuF2pTa";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hpShFQQV";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 25B4610E102
- for <intel-xe@lists.freedesktop.org>; Tue,  4 Nov 2025 11:33:39 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E385210E276
+ for <intel-xe@lists.freedesktop.org>; Tue,  4 Nov 2025 11:35:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1762256019; x=1793792019;
- h=message-id:date:subject:to:cc:references:from:
+ t=1762256132; x=1793792132;
+ h=from:to:cc:subject:date:message-id:references:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=SYlHZxdXUN5x6vqWKDer3IU8brhOI8cUwBbBIV6CxsY=;
- b=jNuF2pTac390KF/1IuEod+OH83bI0E3Y8Rl8qeyUvrwe/n59P22Byyae
- tbkWeMSY9yGj7WRJdu/Y46zovi8QGI0ilKqX38W4doiLB9HQH4AjXA6s3
- PNeKPD+mjc8y/9hfmVz+E0njWF1pbjrChMFVjflszgFnN7kjCq55sfWLx
- UCKR+rsEPQ3ZlCIaPinPNj6Lgua1y4zc4lQyVdbAo2+4fvnzH1A2KjB9w
- Cmuil9NqiwFkYaY3Si4wFoScwd/53zYFjI83MQoan16FBWCj6X16SCe4D
- JEVVICMRlmJl6zXqIu9uLreaTXfNLotUIKldEYxJetwmH8Vcu3eQBRo6P A==;
-X-CSE-ConnectionGUID: o4Bs7LKUR5iKXZ4KJSvK2A==
-X-CSE-MsgGUID: iXOUd7GESw6DOM087a9U/w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11602"; a="63358963"
-X-IronPort-AV: E=Sophos;i="6.19,279,1754982000"; d="scan'208";a="63358963"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Nov 2025 03:33:39 -0800
-X-CSE-ConnectionGUID: CpGkpB/EQCeG6SUupneGrw==
-X-CSE-MsgGUID: hPcm+tbITCyHxTl6xfHxTA==
+ bh=80Vci9DJPkyEinIpl8TpHxXWysKsbEsdH/5FhrEvk4Y=;
+ b=hpShFQQVcUNwMKCfrANgo7ldLPeXl1Ru7fjpXeHGV7rEn4mG+eB5tSIF
+ C9bUbhA+vqljeRSnZJuDjuS0DXX+A6Em9nuG/OCAwbtxCAdCEOrA8a7bT
+ O/qzWM7wmaCfBbFKqiTTO/Db5ith+23RQ1/+ljR3Lo5kPq+FL3qk9QmUs
+ IqqqFz41vcz+QgqWhtyRPelXUjbljNuCcJVcrPJAbPbsmf9trH2kyNyZr
+ eIc/kChEzkavOMr2vhJ43njzfsUzCscoScm5hJADycVULiUtvvCM1soCc
+ ItB8OlMqQ76wycO/fEqI7cMBAMXKUXWGg6znjChhV24wkUb/NR4GbjwJs A==;
+X-CSE-ConnectionGUID: rhfPx1MGTiaLyVjXsy8seg==
+X-CSE-MsgGUID: A28P6TkpS8C4U0j6sJIPuw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11602"; a="68001212"
+X-IronPort-AV: E=Sophos;i="6.19,279,1754982000"; d="scan'208";a="68001212"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Nov 2025 03:35:32 -0800
+X-CSE-ConnectionGUID: zchdIqArRpifqUKxtKGFOQ==
+X-CSE-MsgGUID: 5aFb+QpFSC2BETNHvdgh/Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,279,1754982000"; d="scan'208";a="186811551"
-Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
- by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Nov 2025 03:33:39 -0800
-Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
- fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.19,279,1754982000"; d="scan'208";a="187085297"
+Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
+ by orviesa007.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Nov 2025 03:35:31 -0800
+Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Tue, 4 Nov 2025 03:33:38 -0800
-Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
- FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ 15.2.2562.27; Tue, 4 Nov 2025 03:35:31 -0800
+Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
+ FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27 via Frontend Transport; Tue, 4 Nov 2025 03:33:38 -0800
-Received: from CO1PR03CU002.outbound.protection.outlook.com (52.101.46.71) by
- edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
+ 15.2.2562.27 via Frontend Transport; Tue, 4 Nov 2025 03:35:31 -0800
+Received: from BN1PR04CU002.outbound.protection.outlook.com (52.101.56.19) by
+ edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Tue, 4 Nov 2025 03:33:38 -0800
+ 15.2.2562.27; Tue, 4 Nov 2025 03:35:30 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=oTkTYuzFhaCAftIkx7l/Uc5LX7ZHnOLGx1c5OwqmYamDCU/rojgdBn1OmXfQCB1dlWe2BhtuJTrWXNbAfe597EWwxqNOameWG6alPsgag1KsgaaGnEGtKIyJkr2kObXWXozlLpym92g+ZBbEftlLYkquvkLPIFZM15zi+Pfw3wVlRnKdFuI/VRnDzwoEqmKmrxYp13fSepRI+tt3e+aCwo2pN6IABn1qps8JTxO88o2/8Hz8Z8aAOiBWaQ70riEQG/VnjBWQupWX8K13qBUBjqJTWkAZTL8prYXOUJoXTvK6Tlz31UFJfZM4hmVclwOYh9e9Z/xIs7/Jjx8y2S+Z9w==
+ b=B3DzoCrtKcPYy0SYYJ+BI7Y410Q0TSFaT2jJfx05ppkrqx+B+RGEMwihRdP9j3isXNWZ3sBT4x6GZIz9EPxaxKvpnxojJzi1WkhVYfk0HvxIJv/2V9YTXQQkqXvUuhERtO8ZjmxviguQ+Q0LmSxknSpnSUy9MQLGfgTBl7AhwDSCP2VOc/JIbeZB7vx77GrM2zJjx+xFrJ+RKbXUK0RUJoJpk6NdQasjfNQXRAVDrRQT8ihETfnG7HkmPGzHKTjLBjNyYChptPFdxiCz04gBP/FdukrPrjyP5a+9BowaeTun9i9NkwUOroDx0MSivR8FYZqOfIJR5+9LJgnARSpGmQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=SLAjfPjXLk6TxhOy730c/FtdWiNjVJFjkomFkk2gbAM=;
- b=c1JXB2kit6CrOfU4IdkQZCi939U8/lkMOdA6PjLjpzSHvb8yV0oxttcqt68K7uq42acYs/bKCl1ksVuyuhfQ7ur7IgiLEuJRPnz156SLHH/oFRb7VjaFnB0J2rQa8UARvdt3aRZI60gkx7HS11X6AkNCP/phOK4rFNnTfivURY5e2s1zVHxnSi5ROMF3nPNXyW4z+CgUmdMEuGMDL6qtjFyGKPXTUDE7HKY9KF0ugPgvOhS2eQGnyyFEnKXhe0g1rHjfPuD0NI8Ru5eBC3RPAFmn7+h4vDlU3RpT5X1pMLj6QEZkOeebKRhPFtZCxhUnaZnYRBdeyA2ni4RGM7ZZ0A==
+ bh=EeSNv9yENHDCLqDjHnSkGgCRBKp1Yh731FD0yPXdtkk=;
+ b=Qx7wGKxoDRbgj6+HaJg/+O2Oe3gqOh8tI5dqc3bjUOu4lcOA/19YOlb79IRNb3+bIJyG/iGn2kuInzUNgfIRED9fM+gjFY3+h0XtekwQMP62LRQXfi47CFkrWv2ckXJxLQD/Xq5IWIDuQTD9I9KMPg1EqHZ59NkWjvP4GUMZD02ANJD5mh/yl1ree2GEPB8ip87CIHZxxkLUdrja+uCYIxENwDcjE18OL2hLDvpcdumiu/fkAdF0l0BETBio7Yk8ZZwW2uL6u04eLUpZ8vGIxul0j7XmUimDFMnN458D94Glcs1WcfITL5jIGAoveS8ktJuPCVKqwO3tQky4R9ek4A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MN0PR11MB6011.namprd11.prod.outlook.com (2603:10b6:208:372::6)
- by PH0PR11MB5029.namprd11.prod.outlook.com (2603:10b6:510:30::15)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9275.15; Tue, 4 Nov
- 2025 11:33:36 +0000
-Received: from MN0PR11MB6011.namprd11.prod.outlook.com
- ([fe80::bbbc:5368:4433:4267]) by MN0PR11MB6011.namprd11.prod.outlook.com
- ([fe80::bbbc:5368:4433:4267%6]) with mapi id 15.20.9275.015; Tue, 4 Nov 2025
- 11:33:35 +0000
-Message-ID: <9526076a-3369-44f4-ab01-c78a4b19d3db@intel.com>
-Date: Tue, 4 Nov 2025 12:33:31 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7] drm/xe/guc: Cleanup GuC log buffer macros and helpers
-To: Zhanjun Dong <zhanjun.dong@intel.com>, <intel-xe@lists.freedesktop.org>
-CC: <daniele.ceraolospurio@intel.com>
-References: <20251028145333.3132013-1-zhanjun.dong@intel.com>
+Received: from DS7PR11MB6271.namprd11.prod.outlook.com (2603:10b6:8:95::6) by
+ PH7PR11MB6698.namprd11.prod.outlook.com (2603:10b6:510:1ac::9) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9275.16; Tue, 4 Nov 2025 11:35:23 +0000
+Received: from DS7PR11MB6271.namprd11.prod.outlook.com
+ ([fe80::3ced:5f14:c459:aa17]) by DS7PR11MB6271.namprd11.prod.outlook.com
+ ([fe80::3ced:5f14:c459:aa17%6]) with mapi id 15.20.9275.015; Tue, 4 Nov 2025
+ 11:35:23 +0000
+From: "Mrozek, Michal" <michal.mrozek@intel.com>
+To: "Gote, Nitin R" <nitin.r.gote@intel.com>, "intel-xe@lists.freedesktop.org"
+ <intel-xe@lists.freedesktop.org>, "Brost,
+ Matthew" <matthew.brost@intel.com>
+CC: "Auld, Matthew" <matthew.auld@intel.com>
+Subject: RE: [PATCH v4 3/3] drm/xe: implement VM_BIND decompression in
+ vm_bind_ioctl
+Thread-Topic: [PATCH v4 3/3] drm/xe: implement VM_BIND decompression in
+ vm_bind_ioctl
+Thread-Index: AQHcTXUEQ0vfz4jM7EiNaIYoE7A7W7TiYxOw
+Date: Tue, 4 Nov 2025 11:35:22 +0000
+Message-ID: <DS7PR11MB6271E1089DF45A9C203E852CE7C4A@DS7PR11MB6271.namprd11.prod.outlook.com>
+References: <20251104105305.2100460-1-nitin.r.gote@intel.com>
+ <20251104105305.2100460-4-nitin.r.gote@intel.com>
+In-Reply-To: <20251104105305.2100460-4-nitin.r.gote@intel.com>
+Accept-Language: en-US
 Content-Language: en-US
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <20251028145333.3132013-1-zhanjun.dong@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: BE1P281CA0221.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:b10:88::14) To MN0PR11MB6011.namprd11.prod.outlook.com
- (2603:10b6:208:372::6)
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DS7PR11MB6271:EE_|PH7PR11MB6698:EE_
+x-ms-office365-filtering-correlation-id: 4ce570e1-c96a-4e79-01e5-08de1b963dd6
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0; ARA:13230040|366016|376014|1800799024|38070700021;
+x-microsoft-antispam-message-info: =?us-ascii?Q?vW8y++YHpW1pP2lQeJyTx3hsdmK/0V+hpXPTnjjar6KMHFsqfWnsyjPjPRa2?=
+ =?us-ascii?Q?Ylko88D4pqOn9BVpRfZjj+xrpbeZBY9mZ/mrAqm66RmaFgwLW6zOQgjTZ7P8?=
+ =?us-ascii?Q?hvSFeIqIJfSowgV7m4BuDpnI64y0BK7d+eU6OwzOJbmAXkOUupd3995ByBEQ?=
+ =?us-ascii?Q?DVaLPfK8SwehXN6ix/kz6IVpXW9PlLvGyep0V3E4jl92XPF2V9P4A91kHQ71?=
+ =?us-ascii?Q?CYaIdr7Li3EOxfkOWqx2T7WYaX3QhGwQ/FDvNUUt9y7ycaCeqm03RZIkNuRp?=
+ =?us-ascii?Q?1u/fl4wYjJmAgLw30JlVPZAgtK0/8onNXEmAow1BXJCFT4O2n2+JDDhZNxKA?=
+ =?us-ascii?Q?V2GL7IxNWmcgQm0uaasK3C85181Kgp2YyrRXBRByUsd6K1h57WcT3qX8MdrE?=
+ =?us-ascii?Q?EZKDqtp5df8ae5HdHakxNDyTcC0LQMvCl2/gHZVgFdoeJ4YWlqaCWplo4oxW?=
+ =?us-ascii?Q?6HtXNWO3zK53F6IMh0QGSy5gDWBelACgOG0dkszDTUDnK0CCzOuwgVhMo2eu?=
+ =?us-ascii?Q?vPYTlRXRruB5EJIGbjyu7rLMJ0Lz4pfm0U+rVJ9xG0PUinPdOtn+XjNeuQV4?=
+ =?us-ascii?Q?cfDEJNfN8yBJYp5tOWCs+TxONTNkOlMKZq1LSFKG/1f1FV/rnznvg7K3y9p4?=
+ =?us-ascii?Q?eNxkP8mUibPyYorwPdJSxXjkR21U/HGqarwsoio3fKjmWimuFxxpVk024rW+?=
+ =?us-ascii?Q?fnjOp8LQ8Akg5ofs2uBfJ+MNOzd0cQmlyQN3DN225Pt0N9H04/jBDy1ohoav?=
+ =?us-ascii?Q?BGhR9C7Nu58WMgEc7DOMmpxiGagQUiSG5yvDPOBruZDIgr7b8iwXLEcfNgtg?=
+ =?us-ascii?Q?UsrupxZWrRVItE8K6h72MIvg4EP7WMTO+kPtjCUAR9SA/7ECZRxtRAbCCa87?=
+ =?us-ascii?Q?vSPkOtOs+GUmMLXZcuc5D0B7QK6PUbq2Ehd87KnoxWdoHXpmBqiHMMQAJITi?=
+ =?us-ascii?Q?nf6/Odf/OVNs7BlW3X/0c23DBKixaLP2ACembWkGcrs38khjxdxzLRkDRYJF?=
+ =?us-ascii?Q?TXO03C7yknHsI+d9DFQ2FHHJ6Dsts43i1cSf/mw8AHY01q8ckabMYcLW6Of8?=
+ =?us-ascii?Q?2Y5ddpHILaidnuuGu+D6EGYR3+IAAJnQflhOJOFZnkyjPp2Z5gcODN7WaHAE?=
+ =?us-ascii?Q?JmmL5kXQBVpssnyt1YVV8onOJsylAq7vlQMaMGHlOZY+Bx5zy7fLhJfWpEMN?=
+ =?us-ascii?Q?+pH+woqJ3zI8oGyAg8M1Az7BMZjzcRkl2GQakrg+exN+cp9VzAVKM7Pr5IBM?=
+ =?us-ascii?Q?TutZCD3yb9UaqggicPArSkwnZrpKG82tKbV3CDDC9CwYhxW7oIguLR5Fx6it?=
+ =?us-ascii?Q?3w2RjDfqwYFS0ft8Afouf2KvrCYAY9+yJ9mJsrjJb1QheIGhm7q+LV0YULX+?=
+ =?us-ascii?Q?5S/NbpOEW1sSX08akQY5mCUASTZkf8KX9b+L7ZqBSqtY4LGwol6/oLZd3oDG?=
+ =?us-ascii?Q?Edmmkux2PPDIT39yf8GKF7VWHf+5Sc9pOhVkT+VVyg7vHBKWhYlfHc58wu4q?=
+ =?us-ascii?Q?OOTtVBb5qP67Imwf8+qyNjz82gFU9MlN5/9X?=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS7PR11MB6271.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(1800799024)(38070700021); DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?/pIEXtbl8DZqnAjdK+CxKO0duXiIakR2FXpSJLjjUmAU4VipK9gPgrXUaqOJ?=
+ =?us-ascii?Q?wLOgN5bW+21fPkCzK+erQ8VOYULISdCbAbZo/UQDd3360Nf7rx60I4zxrrFt?=
+ =?us-ascii?Q?jTj+uHAQcvUh0oZJQKbHPZXDjSqRApYh/CDAasHd/0KEpZfMM3QoeOwQjHz5?=
+ =?us-ascii?Q?d/FfkDXdL2JiF7K9bhCwqcw3Do8Nrjy9bSDp+MwHrNb0eiITC7/Rn/TszZcY?=
+ =?us-ascii?Q?ADcqGLJqAGtLTrJRJOmInyXFl+TkwGOrDO0Dv3T+olffGzx+7zV4ru5Bd13k?=
+ =?us-ascii?Q?sn2u5s1brr5hGksZLuftqKm2WMecUDCHCsvhw5JmHP0WqHarJ7GfBoegBxHC?=
+ =?us-ascii?Q?t9gHKcs0xan6cjYo3eT+dlInsn72PQ4xzRlk4qnK7bEmH2BK+i+9gJeXyYl6?=
+ =?us-ascii?Q?RBTePomU/yxMZPLZkDC0BEqedTHHNDxUadNpXoetEL7os5a1cFm56pEJPfy8?=
+ =?us-ascii?Q?2djgQC+NYNRgbbzODvkB7OcxGWCzhpcMq9TzrPZq+CpPmd1hvt8VckGrnOz3?=
+ =?us-ascii?Q?7ehOsIuoqTqqQFy417c/yt4R6hozCADpHNt3M7rM3MvlytZv3uQvf4+JZkxY?=
+ =?us-ascii?Q?cxhtGxH656BUjgi8E1WbcJxIE+b3wGMPRAJg38R1ojObU1VQQqWIcpLOyZ6r?=
+ =?us-ascii?Q?AjYvo03YmfVXLMY3wm9pXyP780nmyXhmajVBC49Iy9VOkRoONFVOXERsPD9j?=
+ =?us-ascii?Q?U9ZuD4dTUsKwxma1snApWCXDTqQhaXv9Mb5enmTz0/BOlVFqD1tSuTV9WhvU?=
+ =?us-ascii?Q?Fk6xZY5hZWCxb9K2kUUi16NAU4YKbHOO3bycDFBahIbqFfnkdJuN4SPanrlJ?=
+ =?us-ascii?Q?itxjrje3UrZHZGBpe/O+nkVKmZ0RA9KEAOpvh53ZZxmUVlb8HEyYItNms+IX?=
+ =?us-ascii?Q?gt2yXujp8AuEL2yliuQjV++e6wyUCDyyXyJmVXx0U3dmwz5zvHYTu6GDQNxQ?=
+ =?us-ascii?Q?7Oo33u2L42zpebfkHVt/wS71WZ1ZVt+bdbfdgqibGNf4esqkRnLjLOtD5j9R?=
+ =?us-ascii?Q?I5L6hmv8icHy2sjbqypVMiLmzTatMcaQIUrhzZBg6P85v8drsZSRmubguxgh?=
+ =?us-ascii?Q?AscISWnPK+2KcXnPPa1Tc2EbnIkfddFj+2WeqebpusgE2oSMowX2UrDD1gCD?=
+ =?us-ascii?Q?2P5AcIKoV7mPtJJ09CaaBZ3b2QjW4xtD5lJWtRpOJ0TZzABPacZarKlaJulw?=
+ =?us-ascii?Q?MKbUPvHkKR94yY7b4dnKaoqRyPLWrxawvvesS8jXD47uUutpJPOgWwYClPo0?=
+ =?us-ascii?Q?tlciOXvIDeWTm1X+aR+RmhwuYymDcj5jjIwnTrzMn9ngCsRVbiolU8FPrh3E?=
+ =?us-ascii?Q?QQbnOMWF64dRIfsyXbgZTIBIH9xDyxV2YAG3bTc0nKdgfHOsKnwHa1XgsU/a?=
+ =?us-ascii?Q?COLtnP+3YfvDZIEUX0n3dAuKo8huNPfiAqZ4iZDmplDZiBH2QBHZwm8sq6+6?=
+ =?us-ascii?Q?YM0C07LddABToBQjw0rycgh8eca/GCtZfdzM33DwvMt9Igq81Dao5fMZ3W0j?=
+ =?us-ascii?Q?T7sCGkDA+y0mV487yZmLwv2TIWBDFCTYxchcX9OXqQrD4d1XLJ0Q8/O18Gjn?=
+ =?us-ascii?Q?y7kV47MEDJ34JCALdQ7a5PiAJG8W8a68xNdW3A2V?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6011:EE_|PH0PR11MB5029:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3e2e6658-9bb0-46b9-afec-08de1b95fdd9
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?SEtNSmxCUFNhTkUyNTljc01wNkx5ek1LSmxRS3hDcTlleXJza05WZHlwUmFv?=
- =?utf-8?B?ZlR5VTRNazg3YmRzVGFpZ3RPYlhSb1IzamJOeVVvZFhsSFY2bjZJNTE2bHk3?=
- =?utf-8?B?SG8zTUZrYTMySnR2S0NlS3FoT2t1VVFPaXBteEtSUE9YZXZZZHRRWEVEOGI4?=
- =?utf-8?B?QUlsd3p6dmUrVHdEYXRVV0xRSnZCd0pBeVdyQkd3cEhrU1RRYVU4T3ROdG8r?=
- =?utf-8?B?eGpFV29ZZVd4TnVVWlRSQWtMeFlGVVlEWUN6ZmE2bGU4VURCNGJSVjh4M05G?=
- =?utf-8?B?aGIvMWVGSk50TStNMEU4eTNRQ0d0V2t3MXdQSUVNdHpIYTVtQmJhakRlTm50?=
- =?utf-8?B?QlIvclBQR2dvd2xhSi9DZ2FCa2FJTnlDaGxTb0k1TCtGWk00T2VtQXZqWVVK?=
- =?utf-8?B?Smo1SmNKL1J3OGI2a1ZtZXU1VE5XMjFrN3RqS21DOW81RTNhL2U4MTA2OHpx?=
- =?utf-8?B?TmdNWlI4VzZtVWxNSHdaMm42UFNDSmUyNTZzcDQrTDh0WFRRTW40Nk5vd3dC?=
- =?utf-8?B?SThibGoxdExEZ2d3OHZiUEZNWm5YK0VJQm5pZzVjN29zNVRVa01uR3d6YW9w?=
- =?utf-8?B?bFNLVFpOWFJtaVp3WElPSXdYSmJGRGVHdkRQVVQ3aTRHby9Mc3hQcTdUZFZQ?=
- =?utf-8?B?eUs1SE11Wk5XWDlTbjkyR21QdW8vSzIvdG1wTkg4Wlh6TDJWeGpnbFBGc05q?=
- =?utf-8?B?djhJbEU0NEpPMVZMS3pwc00yMWFwS0grVzJnR21SVmRKVjltREl3OTBCbnI2?=
- =?utf-8?B?bGtzYUhiVk9ELzVoZG5mZ3M5RVRJaWEwYUhsaXRjakdERUxodlR3clU3NTRH?=
- =?utf-8?B?N2lNY1hkWHRINXlGRFdFRHdrRm9PbnlNM1hNb2xKdTRIMkRtTUl1ekI4MHEz?=
- =?utf-8?B?YWIxZEk0dmpGckF4SkxwTjZQcWc5SkVObWQzd0JTdjNyZ3F6UGJuY3E1WE0x?=
- =?utf-8?B?WU1QYXkxZ3dqSDlCMjlGbjZyaTN0VUJzWjRQM0s1M0dYU2FiQmtTZ3VqTldL?=
- =?utf-8?B?VUp2d0pkMTAvTFZPVVR6ek1Nd1RnTzYrd3VQY0VnaDhtcjZQektubWx1cE1F?=
- =?utf-8?B?NlVhNjhtZUE5UjB1cmhjMk9Lbmk4WWRncG16bGdTakZMNmM2bmRSTG4zTUIy?=
- =?utf-8?B?VEdqdWVRdWNvWTdEVks0Z2NKNkFtV2FzQjhVR1E5ZnFWRk9Ybm1sc0V6OHcx?=
- =?utf-8?B?d1ArSWJmN0lrRXlDSGs3L29Fd20rRVVSMTloVGFYc2tSK3dYSlZkaVZvaWdU?=
- =?utf-8?B?elJRemFWWVJScTEzdTNpOFdKNVBxQ2E4czNiZ0ZuMFRpODdpZzFRWWpycGJo?=
- =?utf-8?B?VGhoRXpwK0JUbXRpVzlYNDhNMVEyVHpEUGFYZktZbG9TL3RBTlFrOXpIUVBC?=
- =?utf-8?B?QVV5SjBQUHBUTXBzWXdEcEtmZEoxb0hCdEVWelpwSCthMlBtVjlZdWpBc1F5?=
- =?utf-8?B?a2s2Y2YvV3hUVCtCK1Znc3hhZjRkYmx1cGQxZENNRzM2V1FkMnIzb3RmRno1?=
- =?utf-8?B?ZXZ2U0F3T0lqL2Y4eGpkYlVyYXNHYXoxMDBZcmJnUnNibWhCTG5BQzRsMElQ?=
- =?utf-8?B?b2ZSSHlHMFFBNG9vZWpDOWxhNmtYTDZDOTJ4UWNYaHZsUmd0UjI0RTY2ZjN0?=
- =?utf-8?B?NGdYUHhuZFUycy9MaW5aNGhMUDhTM3VtRnFFYTk5dFh0b0dwTVAvRmVOWlRu?=
- =?utf-8?B?QkROb0x4RXdiQmRUa1dZNW1sRWhTc1ZhUytQdGYvT3RKWktlSUFDQmM5UXdw?=
- =?utf-8?B?dDNobmRxb2phcUxudUU2VU8ySmxLVUJVYXBxbDROcmt5SCtEUE14WXRqdEtq?=
- =?utf-8?B?OHgrMmlrVDRoWHExekJJVDI0VnlielF1eEptRDRqdWlKQkhLZzFGVDRiNFFa?=
- =?utf-8?B?MCtVUWR0YXIyRHVjM1BqN3lqb1daMVYwcERpelFwRnBqNEUycmt0Mkx0bVFi?=
- =?utf-8?Q?7T2BlwpUXJ8sCJBLlfkpLEJBz/SqNWGl?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN0PR11MB6011.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?eUM0Q3JMUnplMEc2ZTRoTVk1REdLU0dGaks5bzdWakE5a0Q3MDRwOFdLNGtH?=
- =?utf-8?B?dDl3VjhGUXFEQXdGM0VoekZZdkIzVDFTeGhZa1lCVlVBUWV0N2svWW5na3pO?=
- =?utf-8?B?L041WDdWRnJTVStTTjBHQmxBYU5mY3h4QnBVcFdxcWZ6QkM1Mit5TUozWGt1?=
- =?utf-8?B?M2c2WThQVnI4M21FR3hEcG1IRCtoZTB4OXNsSjVHMkFOWStURmw2bW5CSXBt?=
- =?utf-8?B?Vnl4dkQ4VmZMbml6Ry9ETll2QTZpWFNZMlEzaVBMempEaWVyNVZ2UzVwelpv?=
- =?utf-8?B?L25Dd3VORkxkSjRYQkM2c1BKcFhDc3V5SFFXRnk3VXNuUDM2MUp6bWlxUGd1?=
- =?utf-8?B?ZDE4UTBwV016RkFkVzMzNHUzdU9rWk1qR1ZYQlpxM0ZOOHlBcFNYWStxT0xx?=
- =?utf-8?B?ZXdnbmtXQWhucE12V01OQ3NtMUtxOUlZcjhYZjFDbW1qazRaUFpYUkp6T0xJ?=
- =?utf-8?B?YkZ2cWlkK3NrajBFUmZPSzFSdmRPc0pJY3hYc2FIZlR5U0pTWEYzM3FSQTM0?=
- =?utf-8?B?VVBHRGx3Y2VBRzQ3Y3I1TTJOOFJIaE1oTjI1MkdNaTRMMEIwcnRVNkRXVlVH?=
- =?utf-8?B?WHJnZTUzelBHUTlnODk3RkUvUUF3UW9rcnZrQUhCUFFjQm52RkRtY0hGWHYv?=
- =?utf-8?B?R3hmc0htSFFEdjViTGJyb09EVS8wRHpSSWw3RlJOOS9HTEN5cmtNekVpL0VM?=
- =?utf-8?B?akJnazg3MXZ3NmtzM1V1TE9FZ2FKR2ZvWEZYR092TzBJdVc5Z0FmS3RnR1J2?=
- =?utf-8?B?aGFMZzZoQU9JbEhZazUzdXFaMkMxM20vNWVHS0x4OG9jejVGMnFkVUxJUjA5?=
- =?utf-8?B?OFRjYkpPckFXVWpOM2RYNy9vRDJFVEZwL0J3YW9IQXN5M2NHd2wyRVhhN3Fs?=
- =?utf-8?B?QTBBVmVZOENodElMNEJDQ0VMcEFncWNzc1NSUHR2Q3RpWEpRTkc2ZnhPRDls?=
- =?utf-8?B?ckFlUnkxcjExQ0lZY24yT0pnakVXVytoRjhYUWVrMzZlZUFDSnN3bFQ0Nmhm?=
- =?utf-8?B?alUzN3MvTnhxdldsVVBvRGhnN3YycmFSeit1MkE0S2ppNE1RRWVQd2RhUVRY?=
- =?utf-8?B?cGJjM3Z3MDl0b0VKMStOd253ZCtKVDVXZU9LNlVLRDZnUjQvYUYxdjJ3eVlj?=
- =?utf-8?B?b3VhZHpZWklyaG0xM2t6OHhmY3ZTcUVBVG1kWWpvWTZzaTJCL2p0TkM0ZHZT?=
- =?utf-8?B?MHBkWDZFdFlqNldGbmtTczkzREJDczM3dkpPMFZramRMbnZ1NmVBSGkrUkpy?=
- =?utf-8?B?UHV6YmtzS0hnUnVtemR1YzczRk4wT2dnNnQwYVRrWEJneEJKRzFwaFk5WkM3?=
- =?utf-8?B?MUdqbFhOSVF3MldoWjFxWUc4S3JsdmpnM0liZU1Pems4ckxoZE93T1NYcEpS?=
- =?utf-8?B?M0w0WVcvVHlGQ0h1MVgxcUlLbi85K0YxOWcvV0hHbmxDKzhGYjU3d1BmZ2dF?=
- =?utf-8?B?VjEwakQvOXlhVnhtcEx1WER6V0NlcCs2cjNQRFFDaE5iQlRkWGJNMEdYR3lG?=
- =?utf-8?B?MUd6cUVrUXY1a3hWWjgxWFpyV2V3SDFaald5Tkh0YmM5THZsaS9RSnM4ZnJB?=
- =?utf-8?B?am5HRG9sOTZ2K1F6NzkxdEZzOFphWlRNUm9qSVRLK2pES0hoQ2xUWVJ3Wm1H?=
- =?utf-8?B?aFp2T3Njb2xINHlKWkF6UVZSV3VNLzROMjJ3SVJUanU2UFVBTGs3ZjBjOWlx?=
- =?utf-8?B?VGhyR2JMOFlRalJLTWszTVVKYmR1WWpkaXcwcXlpTHhJQTlpK3krdHN1akwz?=
- =?utf-8?B?OEorSkY0VEpaNjFtaGxRZFN1c09VK1hOdVN6UFhqTzgzWlVSVzJuYWQzeDg2?=
- =?utf-8?B?UzlmRklWSmZTaXdkSDJVRFJoeFFvbGRBZEdTbkRPVXFPdXBoamxUeGE1RkNT?=
- =?utf-8?B?TDhDczJXWnFHVFZGMDIvWnpIZWhLOG1rajV6VjR1S2wwNnFHWDV6Ky8wcFpy?=
- =?utf-8?B?ZmxySWpzVkQrMUpxSU9XQk1mVFFSZFNSWFF0cnJ3R09qOUYrT3kxM0hmUmdO?=
- =?utf-8?B?WTB2MG1RUEhrQitZUHF0ZUpjVWZpU3lDUURZb2hvczdxUUVhS1FESWpvbUVE?=
- =?utf-8?B?bStpOGRtS3BrTStXNk4ycHlHQlN3eFMyV0tUMUgrOFAxbURTSkdKL2V2dmxI?=
- =?utf-8?B?NFJYTkFYSVJ2UnpBNE02dFFtajBtYjJrQnlMQzI3cTNhL3EwQmhTakZGT0p5?=
- =?utf-8?B?bVE9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3e2e6658-9bb0-46b9-afec-08de1b95fdd9
-X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6011.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Nov 2025 11:33:35.8427 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: t9iHhlQjFrg6KwqGFSYKeG/9I+UbRtP/BvBQGSwvT1qht881qOu4PVrgywVVpkQS45XDzHrOyLoLCx5nJNrW03sen+pmVEn23YuFc9+wCeM=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB5029
+X-MS-Exchange-CrossTenant-AuthSource: DS7PR11MB6271.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4ce570e1-c96a-4e79-01e5-08de1b963dd6
+X-MS-Exchange-CrossTenant-originalarrivaltime: 04 Nov 2025 11:35:22.9487 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: qzjsCywpPG3yiA+KqF0xpSxaYPAWI1nppbc8occ0qc6yBzS1BkZzc8y8FJrWIGAezKRLiA0sKKiLxFWGq1Qflg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB6698
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -194,458 +183,341 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-
-
-On 10/28/2025 3:53 PM, Zhanjun Dong wrote:
-> Cleanup GuC log buffer macros and helpers, add Xe style macro prefix.
-> Update buffer type values to align with the GuC specification
-> Update buffer offset calculation.
-> Remove helper functions, replaced with macros.
-> 
-> Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
+> Implement handling of VM_BIND(..., DECOMPRESS) in xe_vm_bind_ioctl.
+>=20
+> Key changes:
+> - Parse and record per-op intent (op->map.request_decompress) when the
+>   DECOMPRESS flag is present.
+> - Introduce xe_pat_index_get_comp_en() helper to check if a PAT index
+>   has compression enabled via the XE2_COMP_EN bit.
+> - Validate DECOMPRESS preconditions in the ioctl path:
+>   - Only valid for MAP ops.
+>   - The provided pat_index must select the device's "no-compression" PAT.
+>   - Only meaningful on devices with flat CCS and the required XE2+
+>     otherwise return -EOPNOTSUPP.
+>   - Use XE_IOCTL_DBG for uAPI sanity checks.
+> - Implement xe_bo_decompress():
+>   For VRAM BOs run xe_bo_move_notify(), reserve one fence slot,
+>   schedule xe_migrate_resolve(), and attach the returned fence
+>   with DMA_RESV_USAGE_KERNEL. Non-VRAM cases are silent no-ops.
+> - Wire scheduling into vma_lock_and_validate() so VM_BIND will schedule
+>   decompression when request_decompress is set.
+> - Handle fault-mode VMs by performing decompression synchronously during
+>   the bind process, ensuring that the resolve is completed before the bin=
+d
+>   finishes.
+>=20
+> This schedules an in-place GPU resolve (xe_migrate_resolve) for decompres=
+sion.
+>=20
+> v4: (Matt)
+>    - Introduce xe_pat_index_get_comp_en(), which checks
+>      XE2_COMP_EN for the pat_index
+>    - .interruptible should be true, everything else false
+>=20
+> v3: (Matt)
+>    - s/xe_bo_schedule_decompress/xe_bo_decompress
+>    - skip the decrompress step if the BO isn't in VRAM
+>    - start/size not required in xe_bo_schedule_decompress
+>    - Use xe_bo_move_notify instead of xe_vm_invalidate_vma
+>      with respect to invalidation.
+>    - Nits
+>=20
+> v2:
+>    - Move decompression work out of vm_bind ioctl. (Matt)
+>    - Put that work in a small helper at the BO/migrate layer invoke it
+>      from vma_lock_and_validate which already runs under drm_exec.
+>    - Move lightweight checks to vm_bind_ioctl_check_args (Matthew Auld)
+>=20
+> Cc: Matthew Brost <matthew.brost@intel.com>
+> Cc: Matthew Auld <matthew.auld@intel.com>
+> Signed-off-by: Nitin Gote <nitin.r.gote@intel.com>
 > ---
-> Cc: michal.wajdeczko@intel.com
-> ---
-> Change list:
-> v7: Remove _BUFFER from macro names
->     Move some macros/comments to other header files
->     Replaced get log offset function with macros
-> v6: Avoid change same line in series twice, squash into single patch
->     Correct PAGE_SIZE to 4K
->     Promote memory layout comment to kernel-doc
-> v5: Change patch order
->     Sync macro names across buffer type, size and GUC_CTL_LOG_PARAMS
->     Replace guc_log_size with macro
->     Update log buffer layout comments
-> v4: Replace helper functions with macros
->     Rename log type xxx_DEBUG to xxx_EVENT_LOG
-> v3: Update comments
-> v2: Use SZ_4K, instead of PAGE_SIZE
->     Expand for loop with switch and fallthrough
-> ---
->  drivers/gpu/drm/xe/abi/guc_log_abi.h |  43 ++++++++++--
->  drivers/gpu/drm/xe/xe_guc.c          |  23 +++---
->  drivers/gpu/drm/xe/xe_guc_capture.c  |  16 ++---
->  drivers/gpu/drm/xe/xe_guc_fwif.h     |   6 +-
->  drivers/gpu/drm/xe/xe_guc_log.c      | 100 ++-------------------------
->  drivers/gpu/drm/xe/xe_guc_log.h      |  29 +++++---
->  6 files changed, 86 insertions(+), 131 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/abi/guc_log_abi.h b/drivers/gpu/drm/xe/abi/guc_log_abi.h
-> index 554630b7ccd9..956de874194f 100644
-> --- a/drivers/gpu/drm/xe/abi/guc_log_abi.h
-> +++ b/drivers/gpu/drm/xe/abi/guc_log_abi.h
-> @@ -8,11 +8,46 @@
->  
->  #include <linux/types.h>
->  
+>  drivers/gpu/drm/xe/xe_bo.c       | 52 ++++++++++++++++++++++++++++++++
+>  drivers/gpu/drm/xe/xe_bo.h       |  2 ++
+>  drivers/gpu/drm/xe/xe_pat.c      |  6 ++++
+>  drivers/gpu/drm/xe/xe_pat.h      | 10 ++++++
+>  drivers/gpu/drm/xe/xe_vm.c       | 40 +++++++++++++++++-------
+>  drivers/gpu/drm/xe/xe_vm_types.h |  2 ++
+>  6 files changed, 101 insertions(+), 11 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c inde=
+x b0bd31d14bb9..95331285c418 100644
+> --- a/drivers/gpu/drm/xe/xe_bo.c
+> +++ b/drivers/gpu/drm/xe/xe_bo.c
+> @@ -3330,6 +3330,58 @@ int xe_gem_mmap_offset_ioctl(struct drm_device *de=
+v, void *data,
+>  	return 0;
+>  }
+> =20
 > +/**
-> + * DOC: GuC Log buffer Layout
-
-    * DOC: GuC Log Buffer Layout
-
-> + * ::
-
-this ::
-
+> + * xe_bo_decompress - schedule in-place decompress and install fence
+> + * @bo:   buffer object (caller should hold drm_exec reservations for VM=
++BO)
+> + * @vm:   VM containing the VMA range
 > + *
-> + * The in-memory log buffer layout is as follows:
-
-shall be here instead as
-
-    * The in-memory log buffer layout is as follows::
-
+> + * Schedules an in-place resolve via the migrate layer and installs the
+> + * returned dma_fence into the BO kernel reservation slot (DMA_RESV_USAG=
+E_KERNEL).
+> + * In preempt fence mode, this operation interrupts hardware execution
+> + * which is expensive. Page fault mode is recommended for better perform=
+ance.
 > + *
-> + *  +===============================+	      0000h
-> + *  |    Crash dump state header    |		^
-> + *  +-------------------------------+ 32B	|
-> + *  |      Debug state header       |		|
-> + *  +-------------------------------+ 64B	4KB
-> + *  |     Capture state header      |		|
-> + *  +-------------------------------+ 96B	|
-> + *  |                               |		v
-> + *  +===============================+ <--- EVENT_DATA offset
-
-as you don't use separate word "size" below then maybe
-
-    *  +===============================+ <--- EVENT_DATA_OFFSET
-
-
-> + *  |  Event logs(raw data)         |		^
-> + *  |                               |		|
-> + *  |                               | EVENT_DATA_BUFFER_SIZE
-> + *  |                               |		|
-> + *  |                               |		v
-> + *  +===============================+ <--- CRASH_DUMP offset
-> + *  | Crash Dump(raw data)          |		^
-> + *  |                               |		|
-> + *  |                               | CRASH_DUMP_BUFFER_SIZE
-> + *  |                               |		|
-> + *  |                               |		v
-> + *  +===============================+ <--- STATE_CAPTURE offset
-> + *  | Error state capture(raw data) |		^
-> + *  |                               |		|
-> + *  |                               | STATE_CAPTURE_BUFFER_SIZE
-> + *  |                               |		|
-> + *  |                               |		v
-> + *  +===============================+ Total: GUC_LOG_SIZE
+> + * Returns 0 on success, negative errno on error.
 > + */
+> +int xe_bo_decompress(struct xe_bo *bo, struct xe_vm *vm) {
+> +	struct xe_tile *tile =3D xe_device_get_root_tile(vm->xe);
+> +	struct dma_fence *decomp_fence =3D NULL;
+> +	int err =3D 0;
+> +	struct ttm_operation_ctx op_ctx =3D {
+> +		.interruptible =3D true,
+> +		.no_wait_gpu =3D false,
+> +		.gfp_retry_mayfail =3D false,
+> +	};
 > +
->  /* GuC logging buffer types */
-> -enum guc_log_buffer_type {
-> -	GUC_LOG_BUFFER_CRASH_DUMP,
-> -	GUC_LOG_BUFFER_DEBUG,
-> -	GUC_LOG_BUFFER_CAPTURE,
-> +enum guc_log_type {
-> +	GUC_LOG_TYPE_EVENT_DATA,
-> +	GUC_LOG_TYPE_CRASH_DUMP,
-> +	GUC_LOG_TYPE_STATE_CAPTURE,
->  };
->  
->  #define GUC_LOG_BUFFER_TYPE_MAX		3
-> diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
-> index ecc3e091b89e..5dab37644c28 100644
-> --- a/drivers/gpu/drm/xe/xe_guc.c
-> +++ b/drivers/gpu/drm/xe/xe_guc.c
-> @@ -102,7 +102,7 @@ static u32 guc_ctl_log_params_flags(struct xe_guc *guc)
-
-nit: maybe to keep all log related code together (can be as a follow up cleanup patch)
-we could move guc_ctl_log_params_flags() to xe_guc_log.c as:
-
-	u32 xe_guc_log_ctl_init_params(log);
-
-then we should be able also to hide some macros from xe_guc_log.h in .c
-
-similarly we can move guc_ctl_debug_flags() as:
-
-	u32 xe_guc_log_ctl_params(log);
-
-
->  	u32 offset = guc_bo_ggtt_addr(guc, guc->log.bo) >> PAGE_SHIFT;
->  	u32 flags;
->  
-> -	#if (((CRASH_BUFFER_SIZE) % SZ_1M) == 0)
-> +	#if (((XE_GUC_LOG_CRASH_DUMP_BUFFER_SIZE) % SZ_1M) == 0)
->  	#define LOG_UNIT SZ_1M
->  	#define LOG_FLAG GUC_LOG_LOG_ALLOC_UNITS
->  	#else
-> @@ -110,7 +110,7 @@ static u32 guc_ctl_log_params_flags(struct xe_guc *guc)
->  	#define LOG_FLAG 0
->  	#endif
->  
-> -	#if (((CAPTURE_BUFFER_SIZE) % SZ_1M) == 0)
-> +	#if (((XE_GUC_LOG_STATE_CAPTURE_BUFFER_SIZE) % SZ_1M) == 0)
->  	#define CAPTURE_UNIT SZ_1M
->  	#define CAPTURE_FLAG GUC_LOG_CAPTURE_ALLOC_UNITS
->  	#else
-> @@ -118,20 +118,21 @@ static u32 guc_ctl_log_params_flags(struct xe_guc *guc)
->  	#define CAPTURE_FLAG 0
->  	#endif
->  
-> -	BUILD_BUG_ON(!CRASH_BUFFER_SIZE);
-> -	BUILD_BUG_ON(!IS_ALIGNED(CRASH_BUFFER_SIZE, LOG_UNIT));
-> -	BUILD_BUG_ON(!DEBUG_BUFFER_SIZE);
-> -	BUILD_BUG_ON(!IS_ALIGNED(DEBUG_BUFFER_SIZE, LOG_UNIT));
-> -	BUILD_BUG_ON(!CAPTURE_BUFFER_SIZE);
-> -	BUILD_BUG_ON(!IS_ALIGNED(CAPTURE_BUFFER_SIZE, CAPTURE_UNIT));
-> +	BUILD_BUG_ON(!XE_GUC_LOG_CRASH_DUMP_BUFFER_SIZE);
-> +	BUILD_BUG_ON(!IS_ALIGNED(XE_GUC_LOG_CRASH_DUMP_BUFFER_SIZE, LOG_UNIT));
-> +	BUILD_BUG_ON(!XE_GUC_LOG_EVENT_DATA_BUFFER_SIZE);
-> +	BUILD_BUG_ON(!IS_ALIGNED(XE_GUC_LOG_EVENT_DATA_BUFFER_SIZE, LOG_UNIT));
-> +	BUILD_BUG_ON(!XE_GUC_LOG_STATE_CAPTURE_BUFFER_SIZE);
-> +	BUILD_BUG_ON(!IS_ALIGNED(XE_GUC_LOG_STATE_CAPTURE_BUFFER_SIZE, CAPTURE_UNIT));
->  
->  	flags = GUC_LOG_VALID |
->  		GUC_LOG_NOTIFY_ON_HALF_FULL |
->  		CAPTURE_FLAG |
->  		LOG_FLAG |
-> -		FIELD_PREP(GUC_LOG_CRASH, CRASH_BUFFER_SIZE / LOG_UNIT - 1) |
-> -		FIELD_PREP(GUC_LOG_DEBUG, DEBUG_BUFFER_SIZE / LOG_UNIT - 1) |
-> -		FIELD_PREP(GUC_LOG_CAPTURE, CAPTURE_BUFFER_SIZE / CAPTURE_UNIT - 1) |
-> +		FIELD_PREP(GUC_LOG_CRASH_DUMP, XE_GUC_LOG_CRASH_DUMP_BUFFER_SIZE / LOG_UNIT - 1) |
-> +		FIELD_PREP(GUC_LOG_EVENT_DATA, XE_GUC_LOG_EVENT_DATA_BUFFER_SIZE / LOG_UNIT - 1) |
-> +		FIELD_PREP(GUC_LOG_STATE_CAPTURE, XE_GUC_LOG_STATE_CAPTURE_BUFFER_SIZE /
-> +			   CAPTURE_UNIT - 1) |
->  		FIELD_PREP(GUC_LOG_BUF_ADDR, offset);
->  
->  	#undef LOG_UNIT
-> diff --git a/drivers/gpu/drm/xe/xe_guc_capture.c b/drivers/gpu/drm/xe/xe_guc_capture.c
-> index 0c1fbe97b8bf..2cda92f7b323 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_capture.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_capture.c
-> @@ -843,7 +843,7 @@ static void check_guc_capture_size(struct xe_guc *guc)
->  {
->  	int capture_size = guc_capture_output_size_est(guc);
->  	int spare_size = capture_size * GUC_CAPTURE_OVERBUFFER_MULTIPLIER;
-> -	u32 buffer_size = xe_guc_log_section_size_capture(&guc->log);
-> +	u32 buffer_size = XE_GUC_LOG_STATE_CAPTURE_BUFFER_SIZE;
->  
->  	/*
->  	 * NOTE: capture_size is much smaller than the capture region
-> @@ -949,7 +949,7 @@ guc_capture_init_node(struct xe_guc *guc, struct __guc_capture_parsed_output *no
->   *                  ADS module also calls separately for PF vs VF.
->   *
->   *     --> alloc B: GuC output capture buf (registered via guc_init_params(log_param))
-> - *                  Size = #define CAPTURE_BUFFER_SIZE (warns if on too-small)
-> + *                  Size = XE_GUC_LOG_STATE_CAPTURE_BUFFER_SIZE (warns if on too-small)
->   *                  Note2: 'x 3' to hold multiple capture groups
->   *
->   * GUC Runtime notify capture:
-> @@ -1367,7 +1367,7 @@ static int __guc_capture_flushlog_complete(struct xe_guc *guc)
->  {
->  	u32 action[] = {
->  		XE_GUC_ACTION_LOG_BUFFER_FILE_FLUSH_COMPLETE,
-> -		GUC_LOG_BUFFER_CAPTURE
-> +		GUC_LOG_TYPE_STATE_CAPTURE
->  	};
->  
->  	return xe_guc_ct_send_g2h_handler(&guc->ct, action, ARRAY_SIZE(action));
-> @@ -1384,8 +1384,8 @@ static void __guc_capture_process_output(struct xe_guc *guc)
->  	u32 log_buf_state_offset;
->  	u32 src_data_offset;
->  
-> -	log_buf_state_offset = sizeof(struct guc_log_buffer_state) * GUC_LOG_BUFFER_CAPTURE;
-> -	src_data_offset = xe_guc_get_log_buffer_offset(&guc->log, GUC_LOG_BUFFER_CAPTURE);
-> +	log_buf_state_offset = sizeof(struct guc_log_buffer_state) * GUC_LOG_TYPE_STATE_CAPTURE;
-> +	src_data_offset = XE_GUC_LOG_STATE_CAPTURE_OFFSET;
->  
->  	/*
->  	 * Make a copy of the state structure, inside GuC log buffer
-> @@ -1395,15 +1395,15 @@ static void __guc_capture_process_output(struct xe_guc *guc)
->  	xe_map_memcpy_from(guc_to_xe(guc), &log_buf_state_local, &guc->log.bo->vmap,
->  			   log_buf_state_offset, sizeof(struct guc_log_buffer_state));
->  
-> -	buffer_size = xe_guc_get_log_buffer_size(&guc->log, GUC_LOG_BUFFER_CAPTURE);
-> +	buffer_size = XE_GUC_LOG_STATE_CAPTURE_BUFFER_SIZE;
->  	read_offset = log_buf_state_local.read_ptr;
->  	write_offset = log_buf_state_local.sampled_write_ptr;
->  	full_count = FIELD_GET(GUC_LOG_BUFFER_STATE_BUFFER_FULL_CNT, log_buf_state_local.flags);
->  
->  	/* Bookkeeping stuff */
->  	tmp = FIELD_GET(GUC_LOG_BUFFER_STATE_FLUSH_TO_FILE, log_buf_state_local.flags);
-> -	guc->log.stats[GUC_LOG_BUFFER_CAPTURE].flush += tmp;
-> -	new_overflow = xe_guc_check_log_buf_overflow(&guc->log, GUC_LOG_BUFFER_CAPTURE,
-> +	guc->log.stats[GUC_LOG_TYPE_STATE_CAPTURE].flush += tmp;
-> +	new_overflow = xe_guc_check_log_buf_overflow(&guc->log, GUC_LOG_TYPE_STATE_CAPTURE,
->  						     full_count);
->  
->  	/* Now copy the actual logs. */
-> diff --git a/drivers/gpu/drm/xe/xe_guc_fwif.h b/drivers/gpu/drm/xe/xe_guc_fwif.h
-> index c90dd266e9cf..7d93c2749485 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_fwif.h
-> +++ b/drivers/gpu/drm/xe/xe_guc_fwif.h
-> @@ -91,9 +91,9 @@ struct guc_update_exec_queue_policy {
->  #define   GUC_LOG_NOTIFY_ON_HALF_FULL	BIT(1)
->  #define   GUC_LOG_CAPTURE_ALLOC_UNITS	BIT(2)
->  #define   GUC_LOG_LOG_ALLOC_UNITS	BIT(3)
-> -#define   GUC_LOG_CRASH			REG_GENMASK(5, 4)
-> -#define   GUC_LOG_DEBUG			REG_GENMASK(9, 6)
-> -#define   GUC_LOG_CAPTURE		REG_GENMASK(11, 10)
-> +#define   GUC_LOG_CRASH_DUMP		REG_GENMASK(5, 4)
-> +#define   GUC_LOG_EVENT_DATA		REG_GENMASK(9, 6)
-> +#define   GUC_LOG_STATE_CAPTURE		REG_GENMASK(11, 10)
->  #define   GUC_LOG_BUF_ADDR		REG_GENMASK(31, 12)
->  
->  #define GUC_CTL_WA			1
-> diff --git a/drivers/gpu/drm/xe/xe_guc_log.c b/drivers/gpu/drm/xe/xe_guc_log.c
-> index c01ccb35dc75..29ea350157cc 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_log.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_log.c
-> @@ -19,6 +19,8 @@
->  #include "xe_mmio.h"
->  #include "xe_module.h"
->  
-> +#define GUC_LOG_CHUNK_SIZE	SZ_2M
+> +	/* Silently skip decompression for non-VRAM buffers */
+> +	if (!bo->ttm.resource || !mem_type_is_vram(bo->ttm.resource->mem_type))
+> +		return 0;
 > +
->  static struct xe_guc *
->  log_to_guc(struct xe_guc_log *log)
->  {
-> @@ -37,33 +39,6 @@ log_to_xe(struct xe_guc_log *log)
->  	return gt_to_xe(log_to_gt(log));
->  }
->  
-> -static size_t guc_log_size(void)
-> -{
-> -	/*
-> -	 *  GuC Log buffer Layout
-> -	 *
-> -	 *  +===============================+ 00B
-> -	 *  |    Crash dump state header    |
-> -	 *  +-------------------------------+ 32B
-> -	 *  |      Debug state header       |
-> -	 *  +-------------------------------+ 64B
-> -	 *  |     Capture state header      |
-> -	 *  +-------------------------------+ 96B
-> -	 *  |                               |
-> -	 *  +===============================+ PAGE_SIZE (4KB)
-> -	 *  |        Crash Dump logs        |
-> -	 *  +===============================+ + CRASH_SIZE
-> -	 *  |          Debug logs           |
-> -	 *  +===============================+ + DEBUG_SIZE
-> -	 *  |         Capture logs          |
-> -	 *  +===============================+ + CAPTURE_SIZE
-> -	 */
-> -	return PAGE_SIZE + CRASH_BUFFER_SIZE + DEBUG_BUFFER_SIZE +
-> -		CAPTURE_BUFFER_SIZE;
-> -}
-> -
-> -#define GUC_LOG_CHUNK_SIZE	SZ_2M
-> -
->  static struct xe_guc_log_snapshot *xe_guc_log_snapshot_alloc(struct xe_guc_log *log, bool atomic)
->  {
->  	struct xe_guc_log_snapshot *snapshot;
-> @@ -257,7 +232,7 @@ int xe_guc_log_init(struct xe_guc_log *log)
->  	struct xe_tile *tile = gt_to_tile(log_to_gt(log));
->  	struct xe_bo *bo;
->  
-> -	bo = xe_managed_bo_create_pin_map(xe, tile, guc_log_size(),
-> +	bo = xe_managed_bo_create_pin_map(xe, tile, GUC_LOG_SIZE,
->  					  XE_BO_FLAG_SYSTEM |
->  					  XE_BO_FLAG_GGTT |
->  					  XE_BO_FLAG_GGTT_INVALIDATE |
-> @@ -265,7 +240,7 @@ int xe_guc_log_init(struct xe_guc_log *log)
->  	if (IS_ERR(bo))
->  		return PTR_ERR(bo);
->  
-> -	xe_map_memset(xe, &bo->vmap, 0, 0, guc_log_size());
-> +	xe_map_memset(xe, &bo->vmap, 0, 0, xe_bo_size(bo));
->  	log->bo = bo;
->  	log->level = xe_modparam.guc_log_level;
->  
-> @@ -274,71 +249,6 @@ int xe_guc_log_init(struct xe_guc_log *log)
->  
->  ALLOW_ERROR_INJECTION(xe_guc_log_init, ERRNO); /* See xe_pci_probe() */
->  
-> -static u32 xe_guc_log_section_size_crash(struct xe_guc_log *log)
-> -{
-> -	return CRASH_BUFFER_SIZE;
-> -}
-> -
-> -static u32 xe_guc_log_section_size_debug(struct xe_guc_log *log)
-> -{
-> -	return DEBUG_BUFFER_SIZE;
-> -}
-> -
-> -/**
-> - * xe_guc_log_section_size_capture - Get capture buffer size within log sections.
-> - * @log: The log object.
-> - *
-> - * This function will return the capture buffer size within log sections.
-> - *
-> - * Return: capture buffer size.
-> - */
-> -u32 xe_guc_log_section_size_capture(struct xe_guc_log *log)
-> -{
-> -	return CAPTURE_BUFFER_SIZE;
-> -}
-> -
-> -/**
-> - * xe_guc_get_log_buffer_size - Get log buffer size for a type.
-> - * @log: The log object.
-> - * @type: The log buffer type
-> - *
-> - * Return: buffer size.
-> - */
-> -u32 xe_guc_get_log_buffer_size(struct xe_guc_log *log, enum guc_log_buffer_type type)
-> -{
-> -	switch (type) {
-> -	case GUC_LOG_BUFFER_CRASH_DUMP:
-> -		return xe_guc_log_section_size_crash(log);
-> -	case GUC_LOG_BUFFER_DEBUG:
-> -		return xe_guc_log_section_size_debug(log);
-> -	case GUC_LOG_BUFFER_CAPTURE:
-> -		return xe_guc_log_section_size_capture(log);
-> -	}
-> -	return 0;
-> -}
-> -
-> -/**
-> - * xe_guc_get_log_buffer_offset - Get offset in log buffer for a type.
-> - * @log: The log object.
-> - * @type: The log buffer type
-> - *
-> - * This function will return the offset in the log buffer for a type.
-> - * Return: buffer offset.
-> - */
-> -u32 xe_guc_get_log_buffer_offset(struct xe_guc_log *log, enum guc_log_buffer_type type)
-> -{
-> -	enum guc_log_buffer_type i;
-> -	u32 offset = PAGE_SIZE;/* for the log_buffer_states */
-> -
-> -	for (i = GUC_LOG_BUFFER_CRASH_DUMP; i < GUC_LOG_BUFFER_TYPE_MAX; ++i) {
-> -		if (i == type)
-> -			break;
-> -		offset += xe_guc_get_log_buffer_size(log, i);
-> -	}
-> -
-> -	return offset;
-> -}
-> -
+> +	/* Notify before scheduling resolve */
+> +	err =3D xe_bo_move_notify(bo, &op_ctx);
+> +	if (err)
+> +		return err;
+> +
+> +	/* Reserve fence slot before scheduling */
+> +	err =3D dma_resv_reserve_fences(bo->ttm.base.resv, 1);
+> +	if (err)
+> +		return err;
+> +
+> +	/* Schedule the in-place decompression */
+> +	decomp_fence =3D xe_migrate_resolve(tile->migrate,
+> +					  bo,
+> +					  bo->ttm.resource);
+> +
+> +	if (IS_ERR(decomp_fence))
+> +		return PTR_ERR(decomp_fence);
+> +
+> +	/* Install kernel-usage fence */
+> +	dma_resv_add_fence(bo->ttm.base.resv, decomp_fence, DMA_RESV_USAGE_KERN=
+EL);
+> +	dma_fence_put(decomp_fence);
+> +
+> +	return 0;
+> +}
+> +
 >  /**
->   * xe_guc_check_log_buf_overflow - Check if log buffer overflowed
->   * @log: The log object.
-> @@ -352,7 +262,7 @@ u32 xe_guc_get_log_buffer_offset(struct xe_guc_log *log, enum guc_log_buffer_typ
->   *
->   * Return: True if overflowed.
->   */
-> -bool xe_guc_check_log_buf_overflow(struct xe_guc_log *log, enum guc_log_buffer_type type,
-> +bool xe_guc_check_log_buf_overflow(struct xe_guc_log *log, enum guc_log_type type,
->  				   unsigned int full_cnt)
->  {
->  	unsigned int prev_full_cnt = log->stats[type].sampled_overflow;
-> diff --git a/drivers/gpu/drm/xe/xe_guc_log.h b/drivers/gpu/drm/xe/xe_guc_log.h
-> index 98a47ac42b08..0bd5e89d75e0 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_log.h
-> +++ b/drivers/gpu/drm/xe/xe_guc_log.h
-> @@ -13,14 +13,26 @@ struct drm_printer;
->  struct xe_device;
->  
->  #if IS_ENABLED(CONFIG_DRM_XE_DEBUG_GUC)
-> -#define CRASH_BUFFER_SIZE       SZ_1M
-> -#define DEBUG_BUFFER_SIZE       SZ_8M
-> -#define CAPTURE_BUFFER_SIZE     SZ_2M
-> +#define XE_GUC_LOG_EVENT_DATA_BUFFER_SIZE	SZ_8M
-> +#define XE_GUC_LOG_CRASH_DUMP_BUFFER_SIZE	SZ_1M
-> +#define XE_GUC_LOG_STATE_CAPTURE_BUFFER_SIZE	SZ_2M
->  #else
-> -#define CRASH_BUFFER_SIZE	SZ_16K
-> -#define DEBUG_BUFFER_SIZE	SZ_64K
-> -#define CAPTURE_BUFFER_SIZE	SZ_1M
-> +#define XE_GUC_LOG_EVENT_DATA_BUFFER_SIZE	SZ_64K
-> +#define XE_GUC_LOG_CRASH_DUMP_BUFFER_SIZE	SZ_16K
-> +#define XE_GUC_LOG_STATE_CAPTURE_BUFFER_SIZE	SZ_1M
->  #endif
+>   * xe_bo_lock() - Lock the buffer object's dma_resv object
+>   * @bo: The struct xe_bo whose lock is to be taken diff --git a/drivers/=
+gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h index 911d5b90461a..346b50a=
+1247c 100644
+> --- a/drivers/gpu/drm/xe/xe_bo.h
+> +++ b/drivers/gpu/drm/xe/xe_bo.h
+> @@ -309,6 +309,8 @@ int xe_bo_dumb_create(struct drm_file *file_priv,
+> =20
+>  bool xe_bo_needs_ccs_pages(struct xe_bo *bo);
+> =20
+> +int xe_bo_decompress(struct xe_bo *bo, struct xe_vm *vm);
 > +
-> +#define GUC_LOG_SIZE (SZ_4K + \
-> +		      XE_GUC_LOG_EVENT_DATA_BUFFER_SIZE + \
-> +		      XE_GUC_LOG_CRASH_DUMP_BUFFER_SIZE + \
-> +		      XE_GUC_LOG_STATE_CAPTURE_BUFFER_SIZE)
-> +
-> +#define XE_GUC_LOG_EVENT_DATA_OFFSET	SZ_4K
-> +#define XE_GUC_LOG_CRASH_DUMP_OFFSET	(XE_GUC_LOG_EVENT_DATA_OFFSET + \
-> +					 XE_GUC_LOG_EVENT_DATA_BUFFER_SIZE)
-> +#define XE_GUC_LOG_STATE_CAPTURE_OFFSET	(XE_GUC_LOG_CRASH_DUMP_OFFSET + \
-> +					 XE_GUC_LOG_CRASH_DUMP_BUFFER_SIZE)
-> +
->  /*
->   * While we're using plain log level in i915, GuC controls are much more...
->   * "elaborate"? We have a couple of bits for verbosity, separate bit for actual
-> @@ -51,11 +63,8 @@ xe_guc_log_get_level(struct xe_guc_log *log)
->  	return log->level;
+>  static inline size_t xe_bo_ccs_pages_start(struct xe_bo *bo)  {
+>  	return PAGE_ALIGN(xe_bo_size(bo));
+> diff --git a/drivers/gpu/drm/xe/xe_pat.c b/drivers/gpu/drm/xe/xe_pat.c in=
+dex 68171cceea18..1b4d5d3def0f 100644
+> --- a/drivers/gpu/drm/xe/xe_pat.c
+> +++ b/drivers/gpu/drm/xe/xe_pat.c
+> @@ -196,6 +196,12 @@ u16 xe_pat_index_get_coh_mode(struct xe_device *xe, =
+u16 pat_index)
+>  	return xe->pat.table[pat_index].coh_mode;
 >  }
->  
-> -u32 xe_guc_log_section_size_capture(struct xe_guc_log *log);
-> -u32 xe_guc_get_log_buffer_size(struct xe_guc_log *log, enum guc_log_buffer_type type);
-> -u32 xe_guc_get_log_buffer_offset(struct xe_guc_log *log, enum guc_log_buffer_type type);
->  bool xe_guc_check_log_buf_overflow(struct xe_guc_log *log,
-> -				   enum guc_log_buffer_type type,
-> +				   enum guc_log_type type,
->  				   unsigned int full_cnt);
->  
+> =20
+> +bool xe_pat_index_get_comp_en(struct xe_device *xe, u16 pat_index) {
+> +	WARN_ON(pat_index >=3D xe->pat.n_entries);
+> +	return !!(xe->pat.table[pat_index].value & XE2_COMP_EN); }
+> +
+>  static void program_pat(struct xe_gt *gt, const struct xe_pat_table_entr=
+y table[],
+>  			int n_entries)
+>  {
+> diff --git a/drivers/gpu/drm/xe/xe_pat.h b/drivers/gpu/drm/xe/xe_pat.h in=
+dex 05dae03a5f54..b8559120989e 100644
+> --- a/drivers/gpu/drm/xe/xe_pat.h
+> +++ b/drivers/gpu/drm/xe/xe_pat.h
+> @@ -58,4 +58,14 @@ int xe_pat_dump(struct xe_gt *gt, struct drm_printer *=
+p);
+>   */
+>  u16 xe_pat_index_get_coh_mode(struct xe_device *xe, u16 pat_index);
+> =20
+> +/**
+> + * xe_pat_index_get_comp_en - Extract the compression enable flag for
+> + * the given pat_index.
+> + * @xe: xe device
+> + * @pat_index: The pat_index to query
+> + *
+> + * Return: true if compression is enabled for this pat_index, false othe=
+rwise.
+> + */
+> +bool xe_pat_index_get_comp_en(struct xe_device *xe, u16 pat_index);
+> +
 >  #endif
+> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c inde=
+x 00f3520dec38..36a922d0cc3d 100644
+> --- a/drivers/gpu/drm/xe/xe_vm.c
+> +++ b/drivers/gpu/drm/xe/xe_vm.c
+> @@ -2300,6 +2300,7 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct x=
+e_vma_ops *vops,
+>  				op->map.vma_flags |=3D XE_VMA_DUMPABLE;
+>  			if (flags & DRM_XE_VM_BIND_FLAG_MADVISE_AUTORESET)
+>  				op->map.vma_flags |=3D XE_VMA_MADV_AUTORESET;
+> +			op->map.request_decompress =3D flags & DRM_XE_VM_BIND_FLAG_DECOMPRESS=
+;
+>  			op->map.pat_index =3D pat_index;
+>  			op->map.invalidate_on_bind =3D
+>  				__xe_vm_needs_clear_scratch_pages(vm, flags); @@ -2836,7 +2837,7 @@ =
+static void vm_bind_ioctl_ops_unwind(struct xe_vm *vm,  }
+> =20
+>  static int vma_lock_and_validate(struct drm_exec *exec, struct xe_vma *v=
+ma,
+> -				 bool res_evict, bool validate)
+> +				 bool res_evict, bool validate, bool request_decompress)
+>  {
+>  	struct xe_bo *bo =3D xe_vma_bo(vma);
+>  	struct xe_vm *vm =3D xe_vma_vm(vma);
+> @@ -2849,6 +2850,12 @@ static int vma_lock_and_validate(struct drm_exec *=
+exec, struct xe_vma *vma,
+>  			err =3D xe_bo_validate(bo, vm,
+>  					     !xe_vm_in_preempt_fence_mode(vm) &&
+>  					     res_evict, exec);
+> +
+> +		if (err)
+> +			return err;
+> +
+> +		if (request_decompress)
+> +			err =3D xe_bo_decompress(bo, vm);
+>  	}
+> =20
+>  	return err;
+> @@ -2936,7 +2943,8 @@ static int op_lock_and_prep(struct drm_exec *exec, =
+struct xe_vm *vm,
+>  			err =3D vma_lock_and_validate(exec, op->map.vma,
+>  						    res_evict,
+>  						    !xe_vm_in_fault_mode(vm) ||
+> -						    op->map.immediate);
+> +						    op->map.immediate,
+> +						    op->map.request_decompress);
+>  		break;
+>  	case DRM_GPUVA_OP_REMAP:
+>  		err =3D check_ufence(gpuva_to_vma(op->base.remap.unmap->va));
+> @@ -2945,13 +2953,13 @@ static int op_lock_and_prep(struct drm_exec *exec=
+, struct xe_vm *vm,
+> =20
+>  		err =3D vma_lock_and_validate(exec,
+>  					    gpuva_to_vma(op->base.remap.unmap->va),
+> -					    res_evict, false);
+> +					    res_evict, false, false);
+>  		if (!err && op->remap.prev)
+>  			err =3D vma_lock_and_validate(exec, op->remap.prev,
+> -						    res_evict, true);
+> +						    res_evict, true, false);
+>  		if (!err && op->remap.next)
+>  			err =3D vma_lock_and_validate(exec, op->remap.next,
+> -						    res_evict, true);
+> +						    res_evict, true, false);
+>  		break;
+>  	case DRM_GPUVA_OP_UNMAP:
+>  		err =3D check_ufence(gpuva_to_vma(op->base.unmap.va));
+> @@ -2960,7 +2968,7 @@ static int op_lock_and_prep(struct drm_exec *exec, =
+struct xe_vm *vm,
+> =20
+>  		err =3D vma_lock_and_validate(exec,
+>  					    gpuva_to_vma(op->base.unmap.va),
+> -					    res_evict, false);
+> +					    res_evict, false, false);
+>  		break;
+>  	case DRM_GPUVA_OP_PREFETCH:
+>  	{
+> @@ -2975,7 +2983,7 @@ static int op_lock_and_prep(struct drm_exec *exec, =
+struct xe_vm *vm,
+> =20
+>  		err =3D vma_lock_and_validate(exec,
+>  					    gpuva_to_vma(op->base.prefetch.va),
+> -					    res_evict, false);
+> +					    res_evict, false, false);
+>  		if (!err && !xe_vma_has_no_bo(vma))
+>  			err =3D xe_bo_migrate(xe_vma_bo(vma),
+>  					    region_to_mem_type[region],
+> @@ -3284,7 +3292,8 @@ ALLOW_ERROR_INJECTION(vm_bind_ioctl_ops_execute, ER=
+RNO);
+>  	 DRM_XE_VM_BIND_FLAG_DUMPABLE | \
+>  	 DRM_XE_VM_BIND_FLAG_CHECK_PXP | \
+>  	 DRM_XE_VM_BIND_FLAG_CPU_ADDR_MIRROR | \
+> -	 DRM_XE_VM_BIND_FLAG_MADVISE_AUTORESET)
+> +	 DRM_XE_VM_BIND_FLAG_MADVISE_AUTORESET | \
+> +	 DRM_XE_VM_BIND_FLAG_DECOMPRESS)
+> =20
+>  #ifdef TEST_VM_OPS_ERROR
+>  #define SUPPORTED_FLAGS	(SUPPORTED_FLAGS_STUB | FORCE_OP_ERROR)
+> @@ -3342,6 +3351,7 @@ static int vm_bind_ioctl_check_args(struct xe_devic=
+e *xe, struct xe_vm *vm,
+>  		bool is_null =3D flags & DRM_XE_VM_BIND_FLAG_NULL;
+>  		bool is_cpu_addr_mirror =3D flags &
+>  			DRM_XE_VM_BIND_FLAG_CPU_ADDR_MIRROR;
+> +		bool is_decompress =3D flags & DRM_XE_VM_BIND_FLAG_DECOMPRESS;
+>  		u16 pat_index =3D (*bind_ops)[i].pat_index;
+>  		u16 coh_mode;
+> =20
+> @@ -3376,7 +3386,9 @@ static int vm_bind_ioctl_check_args(struct xe_devic=
+e *xe, struct xe_vm *vm,
+>  		    XE_IOCTL_DBG(xe, obj_offset && (is_null ||
+>  						    is_cpu_addr_mirror)) ||
+>  		    XE_IOCTL_DBG(xe, op !=3D DRM_XE_VM_BIND_OP_MAP &&
+> -				 (is_null || is_cpu_addr_mirror)) ||
+> +				 (is_decompress || is_null || is_cpu_addr_mirror)) ||
+> +		    XE_IOCTL_DBG(xe, is_decompress &&
+> +				 !xe_pat_index_get_comp_en(xe, pat_index)) ||
+>  		    XE_IOCTL_DBG(xe, !obj &&
+>  				 op =3D=3D DRM_XE_VM_BIND_OP_MAP &&
+>  				 !is_null && !is_cpu_addr_mirror) || @@ -3396,8 +3408,8 @@ static in=
+t vm_bind_ioctl_check_args(struct xe_device *xe, struct xe_vm *vm,
+>  				 op =3D=3D DRM_XE_VM_BIND_OP_PREFETCH) ||
+>  		    XE_IOCTL_DBG(xe, prefetch_region &&
+>  				 op !=3D DRM_XE_VM_BIND_OP_PREFETCH) ||
+> -		    XE_IOCTL_DBG(xe,  (prefetch_region !=3D DRM_XE_CONSULT_MEM_ADVISE_=
+PREF_LOC &&
+> -				       !(BIT(prefetch_region) & xe->info.mem_region_mask))) ||
+> +		    XE_IOCTL_DBG(xe, (prefetch_region !=3D DRM_XE_CONSULT_MEM_ADVISE_P=
+REF_LOC &&
+> +				      !(BIT(prefetch_region) & xe->info.mem_region_mask))) ||
+>  		    XE_IOCTL_DBG(xe, obj &&
+>  				 op =3D=3D DRM_XE_VM_BIND_OP_UNMAP) ||
+>  		    XE_IOCTL_DBG(xe, (flags & DRM_XE_VM_BIND_FLAG_MADVISE_AUTORESET) &=
+& @@ -3414,6 +3426,12 @@ static int vm_bind_ioctl_check_args(struct xe_devi=
+ce *xe, struct xe_vm *vm,
+>  			err =3D -EINVAL;
+>  			goto free_bind_ops;
+>  		}
+> +
+> +		if (is_decompress && (XE_IOCTL_DBG(xe, !xe_device_has_flat_ccs(xe)) ||
+> +				      XE_IOCTL_DBG(xe, GRAPHICS_VER(xe) < 20))) {
+> +			err =3D -EOPNOTSUPP;
+> +			goto free_bind_ops;
+> +		}
+>  	}
+> =20
+>  	return 0;
+> diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_=
+types.h
+> index 830ed7b05c27..87f0c04468f5 100644
+> --- a/drivers/gpu/drm/xe/xe_vm_types.h
+> +++ b/drivers/gpu/drm/xe/xe_vm_types.h
+> @@ -351,6 +351,8 @@ struct xe_vma_op_map {
+>  	bool immediate;
+>  	/** @read_only: Read only */
+>  	bool invalidate_on_bind;
+> +	/** @request_decompress: schedule decompression for GPU map */
+> +	bool request_decompress;
+>  	/** @pat_index: The pat index to use for this operation. */
+>  	u16 pat_index;
+>  };
+> --
+> 2.25.1
 
-
-otherwise LGTM, with kernel-doc fixed,
-
-	Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-
+Acked-by: Michal Mrozek <michal.mrozek@intel.com>
