@@ -4,184 +4,164 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B11DFCCFA04
-	for <intel-xe@archiver.kernel.org>; Tue,  4 Nov 2025 14:48:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 41826CCFA04
+	for <intel-xe@archiver.kernel.org>; Tue,  4 Nov 2025 15:01:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 724A610E620;
-	Tue,  4 Nov 2025 14:48:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0572F10E283;
+	Tue,  4 Nov 2025 15:01:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ecqKRRQl";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="V8ExPNQJ";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9429410E627
- for <intel-xe@lists.freedesktop.org>; Tue,  4 Nov 2025 14:48:06 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0743810E283
+ for <intel-xe@lists.freedesktop.org>; Tue,  4 Nov 2025 15:01:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1762267686; x=1793803686;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=Fl3FkvSWErsriwUydAfxuNEgPCOa1A2MjgYiElZ/d7g=;
- b=ecqKRRQlcVLnUxxkoynmC4OzKjOfsEvLGT45UWymfXEodL4pirmDNe28
- 00B3Lsir87lW+MN0SDLnosL3MrjCzcz/tAIMvuolrmSi5Ls6JcG9N2V/U
- tGwL0xB55RNty9gvLLxLFAfvPa2cIWrQtsxs/F9P6lYfVQ9tfVf5jm45E
- EQfTXdoDGWzBpunA34Oc0KSOBOlR6WjNmXHNtBK/IdMGAxNlN/O4b3uVR
- oE8Tx4xCNGuhgVtKO5bZ0c3OK1oEvvTuvJx6g5GyRajaNIcoOh2zX9dz/
- Ol97GLSs8Aok6rNnov7yMtH8JxtjpCn/iVwmv9Kvzwp7nZRSNN83gNaNb A==;
-X-CSE-ConnectionGUID: pjl49b4rSHaXQUsu8XJaYQ==
-X-CSE-MsgGUID: ASQdruAJSQONtKQysMstLQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11602"; a="81769468"
-X-IronPort-AV: E=Sophos;i="6.19,279,1754982000"; d="scan'208";a="81769468"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Nov 2025 06:48:06 -0800
-X-CSE-ConnectionGUID: 8X/BXNtKTnSPsEfaDJFkcg==
-X-CSE-MsgGUID: UMCMoQgwQxurvuJdMbf6Jg==
+ t=1762268510; x=1793804510;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=02HqZECGiX4EkXS4gvxzEsV0Kebbuen8f2nAIJNMBho=;
+ b=V8ExPNQJIJa8uaOunoHaNz9aWL+QDRFeIVOD+oayJ5oXh7oUriaKzBbS
+ EPK3nccbsyNGBK7k5G/VmzY5pczxPRt0XdMNZ3cKZUfMt6rbl5Mx5nbdf
+ f8wGLfmOvla+ILZr1Ip6xbdM9nlmPo9TDIU8xIPIHmfRI2CWFfG3sNXjM
+ /Luovuzt9eLoO5lcE6Sm7SdZSQaJfGniNj6KmHxG4m3BbjsWWjKXY2sC7
+ MIigUK8l3ASIZ4Dy1loG7IWeA1IiyvaU5oBBkF8o2ztFmop1N2O0IxNq8
+ krVB+npMwwTXVTlmQ7C9Od2iDwHBTey2/USFYbeN2GqWRy7OSQRZZVGJ8 w==;
+X-CSE-ConnectionGUID: 6tbWWG2+TrGd7OfEjkj3mQ==
+X-CSE-MsgGUID: 9zJXVgZ6TD+xBhQawo7p5w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11602"; a="64462386"
+X-IronPort-AV: E=Sophos;i="6.19,279,1754982000"; d="scan'208";a="64462386"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Nov 2025 07:01:50 -0800
+X-CSE-ConnectionGUID: KuzeheOnQDiDx5daefWxCw==
+X-CSE-MsgGUID: vYFp8xxDToO9xi590R9J/g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,279,1754982000"; d="scan'208";a="191481081"
-Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
- by fmviesa005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Nov 2025 06:48:05 -0800
+X-IronPort-AV: E=Sophos;i="6.19,279,1754982000"; d="scan'208";a="187032592"
+Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
+ by fmviesa006.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Nov 2025 07:01:49 -0800
 Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
- fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Tue, 4 Nov 2025 06:48:05 -0800
+ 15.2.2562.27; Tue, 4 Nov 2025 07:01:49 -0800
 Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
  FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27 via Frontend Transport; Tue, 4 Nov 2025 06:48:05 -0800
-Received: from CH4PR04CU002.outbound.protection.outlook.com (40.107.201.39) by
+ 15.2.2562.27 via Frontend Transport; Tue, 4 Nov 2025 07:01:49 -0800
+Received: from SA9PR02CU001.outbound.protection.outlook.com (40.93.196.33) by
  edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Tue, 4 Nov 2025 06:48:05 -0800
+ 15.2.2562.27; Tue, 4 Nov 2025 07:01:47 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=N5X84pyy9bM4k4oXbzrTdCd04/o935GbIF46AYt3SydC5hxvWg/sqpadrtAaeJbghHlk/Uf3pfYj/K4SioBlXDkle/9VjLnYMgbad2k11aUq33vyBDVi29I1v0GQhczoWueRECIHQSIwJCUPI8Ec5WA6BuUuuW1/0e/vrBwoI+vvRTtuMKVWjU39JCN6Oubktztp6dJTWqEgZh1ULRTx85L+UaAifjLtT8VC0sfQ7D5gB89WSKpF73i2SrU6aDTnsWtCOVSgyfAH0hKc2z+T6mqG0yWusW5OK8XT+MhGsRNEIQBB2lkKz//HBLYG+hO5VFN12TSadfdYKu/5fRORUA==
+ b=RC0zBe3uSV1xIsPyZFLOEdEylKAiIB3w2XpszIQ4gNda1mxP//IBUp/1c5AV+0O9pycxNYZnd70UIfKK/p3l16mwwhQ7rZC1TuZbRP+lrOkga3F1PYgOZzLXMuvQh6zyEo18eTIjix7C4Cjs2BHFJjwUsu6YrZxNXROM3g2YNo30RasqdF5D5qQIW3YAMboF12QqLvWrzYoXTDGnmJP9bG+EbgX+vvJQWsiwrfDZ+UY/SS5q4MpR9gZg736HYaKUrBTyF0Up4TdfDFWe10vucjLRUJCqGvrwzWaD2vJ1DgooI2YeYJpMg0Ce1JueJuSyLIr8fWv4nhfIux7/EBCGQw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=fHFdxGv42BAPucbiq9qSFgUkP5D6bi2t8vsckFzNA0E=;
- b=jWkBQOxTE5e1FGJJEdTcoqQOh5XUxyspubicJbiV8UURY1jheEv7o/xn5OTtpzhXxR8XU2ACTymHXLqJqPQHMin5oFHcna44loftG4LA52LoQrK+l6jQXGPF+QRmuFAghiMNIDrIOltwSt81uHWWv4/2kaNChMufmvwL1qzr4DdtOPfKmXHRIYqLpPAlPs+ezBlLy66nuAc3j1KaNN+5gay1Rvn7Apq79kqMML+vimoQY52g4g10Lg/ft5Ye0VOQJqz5dKKnyBL7rGWLGa18txBiviW1/UWi+QX1S3BcLyYuXe8LiHi8arkFiNIgA+VgnZgqS20rYFO5nmH0G9foGA==
+ bh=Fb4vEfThbhkF5pthnrQew4Bbs3vli3XsMTNBYXFUiJc=;
+ b=EXPRd0Ws4etf9tBLR3EHXiQaMXZbRBAdgxZs1spNzo0IXnabQvDHMaDPF9WXxYTEP0Jh4U0RDwZGxPsosJYuCbxHkPJA3blLWHRaACM04zxHigqu/VUkpgBdt9s3Xc2xSEy9/bsoXC0R5PlPEspvhfm6OlMtKL9RH/Zj0mhT9vDJ3WugAp4R9RB2NgMXLvil5fmw8g9zBwNytfLIx6fj0zqP7k0v2iRQFUKncIOl5XJa2ZpAqNa+8b/rO6DH/+m5uAwowS02gk5JLd+1Q4IhaSiDZn25jyM0V9fzu8aMcIbuq2His68g5lNs38dlZr8YHYShAUgr8h0UHM3B0IXxOw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from BN9PR11MB5530.namprd11.prod.outlook.com (2603:10b6:408:103::8)
- by DS0PR11MB7441.namprd11.prod.outlook.com (2603:10b6:8:141::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9275.16; Tue, 4 Nov
- 2025 14:47:58 +0000
-Received: from BN9PR11MB5530.namprd11.prod.outlook.com
- ([fe80::13bd:eb49:2046:32a9]) by BN9PR11MB5530.namprd11.prod.outlook.com
- ([fe80::13bd:eb49:2046:32a9%4]) with mapi id 15.20.9298.006; Tue, 4 Nov 2025
- 14:47:58 +0000
-Message-ID: <24d58635-9dbb-4d88-9c18-bea7ca5f133f@intel.com>
-Date: Tue, 4 Nov 2025 20:17:48 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 2/2] drm/xe/guc: Eliminate RPa frequency caching
-To: Sk Anirban <sk.anirban@intel.com>, <intel-xe@lists.freedesktop.org>
-CC: <anshuman.gupta@intel.com>, <riana.tauro@intel.com>,
- <karthik.poosa@intel.com>, <raag.jadav@intel.com>, <soham.purkait@intel.com>, 
- <mallesh.koujalagi@intel.com>, <vinay.belgaumkar@intel.com>,
- <rodrigo.vivi@intel.com>
-References: <20251104104207.696448-4-sk.anirban@intel.com>
- <20251104104207.696448-6-sk.anirban@intel.com>
-Content-Language: en-US
-From: "Nilawar, Badal" <badal.nilawar@intel.com>
-In-Reply-To: <20251104104207.696448-6-sk.anirban@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MA5P287CA0113.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:1b5::13) To BN9PR11MB5530.namprd11.prod.outlook.com
- (2603:10b6:408:103::8)
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
+ by MW4PR11MB6667.namprd11.prod.outlook.com (2603:10b6:303:1ea::22)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9298.7; Tue, 4 Nov
+ 2025 15:01:40 +0000
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::7141:316f:77a0:9c44]) by CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::7141:316f:77a0:9c44%6]) with mapi id 15.20.9275.013; Tue, 4 Nov 2025
+ 15:01:40 +0000
+Date: Tue, 4 Nov 2025 09:01:35 -0600
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Matthew Brost <matthew.brost@intel.com>
+CC: <intel-xe@lists.freedesktop.org>, <stuart.summers@intel.com>,
+ <francois.dugast@intel.com>
+Subject: Re: [PATCH v4 5/7] drm/xe: Implement xe_pagefault_queue_work
+Message-ID: <3tzdsapjzs7luwkv5pgmrdc6tuj2v2aphudijkib4jsf5uduz4@tbqopp765dft>
+References: <20251031165416.2871503-1-matthew.brost@intel.com>
+ <20251031165416.2871503-6-matthew.brost@intel.com>
+Content-Type: text/plain; charset="us-ascii"; format=flowed
+Content-Disposition: inline
+In-Reply-To: <20251031165416.2871503-6-matthew.brost@intel.com>
+X-ClientProxiedBy: SJ0PR13CA0035.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c2::10) To CY5PR11MB6139.namprd11.prod.outlook.com
+ (2603:10b6:930:29::17)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN9PR11MB5530:EE_|DS0PR11MB7441:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8ea35a17-04b3-42cc-d5e2-08de1bb124ba
+X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|MW4PR11MB6667:EE_
+X-MS-Office365-Filtering-Correlation-Id: 41fd5d5e-c017-437b-4f11-08de1bb30eda
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?MzQ2QmNSazJ0Wm0rb0V1RDFlQUNKbDZQTjk3bTAzV0FiMk5vSm9BM2pIK3dz?=
- =?utf-8?B?b1FhOWhzcTBXTURTYVJNcndnUGk4TzdpdHAwZk9LQ09VQ0JCcEovNFVpSENR?=
- =?utf-8?B?V2ZnWlBoUWVlUFJmcnBCb1g5YzBoOTR0VHBzS2ZpQnVxNWJDa3pzOVpJNi94?=
- =?utf-8?B?cUlFWWNlRFJVdkx3TitOalBNS1lmMVFHcmJXOWhPWGpoejVpQ01GS2JXT2Iv?=
- =?utf-8?B?MFErUzFhdXpCdjVRTHVxbkgyT1FhMmxLSXJONjVyUWtMeHJJOW40TytrSU4v?=
- =?utf-8?B?V0xmRjZaRElid3owVkU5WEI0RWVUaEthcE9aNlVMQzJzNW1KME05ZXJ4UzAz?=
- =?utf-8?B?TkZJVFBpSk1rL3dJNklHZndGcFV3eTNpb2U2VDVNWHZ4cncyNkVHbnU3Z2xI?=
- =?utf-8?B?UC85ZGlyY1Z2ekRYYU1UUHRGZ2NFcnBhYW5sMXg3Q0FkTmRIVVhNSzZTNzVk?=
- =?utf-8?B?U0FxNksrUFFjMU1vUUgwTUhMYUtId2NYYTRYN1RSZDdPMDNkWWo4bjM5NTlE?=
- =?utf-8?B?UVBHN0psSWZiVHFxc1ZMRFFxZ0VJYnYyVWVMSlpEbWIzZm5vUXVaeXRvZnhz?=
- =?utf-8?B?cjBuMFF2SFJmRGtsMUo5bUFxNXkxZWUzb3dieWEzeDNadkx6YjFod29PNUFj?=
- =?utf-8?B?T1dtRENGNlh0QnRnTVVmTDdjS0NYK1JFellRNzVjcEJ6b2ZJZHRVa1JvWmxp?=
- =?utf-8?B?ZDRNSDBxYnlsK3ZWOGJ1NFRQZTZsSGxtR05la2tnVHQrWUNTUksyc2Q0SXhV?=
- =?utf-8?B?OTVoanFCYmx6ZGhzYXlOeUkzdk1mRStjRnlEcjVLMlRtUzhJbDd1NmFrdDZO?=
- =?utf-8?B?UW1pU1krYUdCQXMrOWxqUlkvM0grSWEvKzVYU3BwT2U5UFZLUWdMNGprVVla?=
- =?utf-8?B?N2RWa3ovRm5DcFJtMFRJNjZQbXR4d2dWVmdTK0duTFl3a3JXQjEwN0FmM0lh?=
- =?utf-8?B?emNhZVFTQ3E3b0IvWk41OVR4MzZrbXdQWlVkSHdQSE9UQ2VSVGJ1VHRuTDlB?=
- =?utf-8?B?SzRDeXEwbUZDaXRWdzltak9pblcxNnRQUjY2QjFFNGR6b0hwSFdKaDRWOXNu?=
- =?utf-8?B?OFE3Y0U2enlHNDBvcXIvM1pOWEJudnVGZXY4MWFuQ3ZDODltQ0x3Rkd2TExO?=
- =?utf-8?B?MjVyQWpqdXNuS2NZMi9jbGVaOXdKdGV5aFRDdjFhWDJvTmU5NzB0ZFNaMk1W?=
- =?utf-8?B?RWN3RzFTSENDN20rMW43bnRnY2NZaUsxOEhVUmRtOU0wYndHcnhXT2xPdXhQ?=
- =?utf-8?B?dGVpQVF6eS9LVXUyQVhGRUVYeXVsL1JhQ1FRdTdqYTk3VU1ieTBBb1JqL3Jv?=
- =?utf-8?B?czlSMXpJSUpDQlBmUG1yc1hFWTUyRUtjb01ST3ozMG5CMzkycFdEb053blJt?=
- =?utf-8?B?MEwvSU5PZFk3ejBsVU9KaXJNc2dwMGVHaUp5TWg1RFJTV1VaVEJQaXdUNEFP?=
- =?utf-8?B?b2hBT2w2cW4xa3FKdTZvSTROZExKNGJIUmkvVUlYb3R0NG1rWnNIOE5UZkdq?=
- =?utf-8?B?ckxkZDhyblBMM0w0NDk0NStGb3NLaVkzUERmRmlBdVkrdG9JRUo4dVNmZER2?=
- =?utf-8?B?TGM4UFNocXlXMWFZbERCZVR2OHJZMlhDTXFmaUllMGdNMEJaRzJZWDJNSUZH?=
- =?utf-8?B?ZzJhSDNEVGZXeWRKTC82YnNINllkRXNWQnl2bTZhZTlINGdQNFdiN1U1MGh3?=
- =?utf-8?B?bjdCaDZoV3JYLzZMaXAwUkdRbkdHQUd1NDU5QlpqZEgraTAwalNxNGFwSy81?=
- =?utf-8?B?bGo5Yys1QjAxODdUN3ZlUDEvd1g0Y3BZS1RXN1NlWkNHZ2g1RkxjZEZqUmVB?=
- =?utf-8?B?dVZ3aGZUYkVCZHg5UjBKRzZyeWcyMEZZZXJGakp0S0lWcFM2ZGM0Y2ZqMEda?=
- =?utf-8?B?eGFqd2VWOG1TWGlESDArbnorcmtlY2ZOVmpnVHdDaldHVHEvS1Bvajc4cTJH?=
- =?utf-8?Q?5WZAuwan2di+uTXpsoPGbOHpnnibqlgt?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?cIsvXgzUly7/wnHt5cV6Yt3OnZtcvFPVyrAWf24aZDNLU1Hm1gG76QNAu0Sh?=
+ =?us-ascii?Q?7CxWNR5XblSCz7ixl9ynHUoVt0SWKjfjpY3IPTu4gzdthOMi9c0MVbnpcRRY?=
+ =?us-ascii?Q?ZfxPOr7Vk2lKP7udBhCXHitr4CUlbfzmqSdkMztNd/nRfA4aIzUQUP6kCRzV?=
+ =?us-ascii?Q?4joriszgv8SinlshTveIzcndFx4EvoSYh9jYKDytryaHHrCDSadb8qmWBzFr?=
+ =?us-ascii?Q?SCfbYhsdvnBTWP0CpEGSsbZsx4p3k/dqKnVqfCTagcAhzX4PL+mRoRpB3fSk?=
+ =?us-ascii?Q?8S4bhA97rISmiftgYyAil/a0GfEBSdOts9E0YA6RNreBYK0hUBitIQUkPdO0?=
+ =?us-ascii?Q?Hhs7vmgbMI4yKJDOUIMKY0orhZQtk1evs8SezuV0a2QamlmqvAAirEMDO2aZ?=
+ =?us-ascii?Q?70gwQI4ZiF/KzwVdFHB5R6/gNyC8scvkpjhKDUlT4+zskNz2tGpZFGjf1H+m?=
+ =?us-ascii?Q?JdrwW9oLuoewFlwJBsYlymldONlRa4Wb85aPMc1vyYx243Xd/xUd8mQAb3pM?=
+ =?us-ascii?Q?Sdmrc5lCw3Ota9aqiBUblOnoaklJgu/567xdEJK5SI2oSb6HE5APr4PdJO0M?=
+ =?us-ascii?Q?73wjjUtCx1xa4zUd42nQOsb6Pb3jlXRHCbjJpbC6a1JaB97xMGfYjp2+oCxX?=
+ =?us-ascii?Q?RGcYe1MeA9uUZxNAnjHUp0c/iBVV0AHKIl0KBAb9yU1Arkby2i8Ahy7uVDwm?=
+ =?us-ascii?Q?GrAdzhlX256Nn4ON8obKWs4YWPKwEEXmxm5B0dGilQ8gs8uBVUBtD9+JCTyZ?=
+ =?us-ascii?Q?J2S4ahwX4paZEa7VAT8jSCLRAyv6E17oCj977huH1D247rfFvSMmKADkLW4K?=
+ =?us-ascii?Q?Nv+trl+2BnnPDNJP0UP+9Dg/P7Km2dHRsb+FeEYk7JWDRFwxDTqry7HqeAb9?=
+ =?us-ascii?Q?Q55OyWu+d9rz5UKEyP+UPzWFYfPAfcQ+1LFAOoRfi9MpTEPHAANo1d8I1GWW?=
+ =?us-ascii?Q?Dys8ngWTIkTC32IQ9zuAImKSLnEw6/brg3wf39e82UfaeX5wa5tP/J/5dNhp?=
+ =?us-ascii?Q?V79gZm5ppavsRu+mgt3oOat4LymImTxb5YVc3S98KYZgQpLm59P0UNI0fLW1?=
+ =?us-ascii?Q?gQ4fFto/ZxKzl6SQKwBJ9FJnlgagswOy9yEfDgIJSMyDli0cjpGqAiaoLM8C?=
+ =?us-ascii?Q?XY6GHJT3x59w9m6MC6ELg82UbCflgEVTHtNHpzyNv5aNBNWEXVWZSWT6m5Q4?=
+ =?us-ascii?Q?rUhS3/S1YNGoRPgoigS9qVcqCS6bdJfsLcxWC2mNN/N6IZzrCFFaNRIsEiax?=
+ =?us-ascii?Q?8Bj6yxCF82QI6RDCW7Q+wqW5JZt98XeQ1srFEQKTvmGX33goIkk8b1V9iNnK?=
+ =?us-ascii?Q?CYyCfMo7NR+Fmbk4WQQOir80xjMJaTItr6hO7tDNzNFylVXHp5VXHICX1mbZ?=
+ =?us-ascii?Q?+eLnTS3DCpJtA4x2QhMnK98hAMK+DClNl6vULfrD7rUEeu8MoPqJnw3PzGKt?=
+ =?us-ascii?Q?S5nRh0HHWn4QZbdeXGmebdOxb5PvpR0U?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN9PR11MB5530.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?My9VSWs1WjlCYS9Uc1R4T05DcHcram9kcWNHRVBYWDQxNzNYWnN2cVBZSVhN?=
- =?utf-8?B?Qjd1T0J0YUVyU0pMSmp0ZWxoWFM1aTRBaHBTanY1VFhaZmhjNG5qWlF6Nlho?=
- =?utf-8?B?eGhTamJWUVBUOThwYml2QXJCMUpxbjJla1pmS2NSMG51Z3lJTWozcW5tRkpI?=
- =?utf-8?B?THFmREw5aHN5VzVOWGJXY2dmcklacjIyS0RsOE42MzVtUURKM0dobGFMaXJr?=
- =?utf-8?B?dWRaMTBUUW9FaEkrMmJmOVFHZGtMK3NIbEIxUzlUeTZJOW1kYjBxN3VMdlBN?=
- =?utf-8?B?SFE2cFZCY2FwK05RcnBBM2RMQUFvQUl6T0I1SDROcWhZUXNzcEJlajVIanlz?=
- =?utf-8?B?WTIrd2x6VnlRVlpIV1UybTJBTU0xVC9BN3dvZGQzbk13VGcwd2NmNEhhU2Na?=
- =?utf-8?B?andVanhYYi9JbmdwczVQT2pvUStCQUZWLzd4TDNWRkljWWtHbUV1ZytnK3Z4?=
- =?utf-8?B?UDdVSTJKTXhoM0J6SjJULzEzNFA4K2NXTHpodDVDYko0Y0lpSlFzVkc2RDRy?=
- =?utf-8?B?MkRNaFE1enBvVXpnZjRQbkFDcVZOeUFQR0UrMHdGb0xENC9nMnFoeWQ5bDcz?=
- =?utf-8?B?LzNkRSttQy8zMUhSakZzT1BOOEFWMWozMUtabVhielZrT2g5YkZMZVNWakVL?=
- =?utf-8?B?YVFabzNPeFJMSk9pZnFkWU1NSFAram1UbHUyWGpnVUZDcDRCZFpkV3RmeWg1?=
- =?utf-8?B?QXpxamZ4V29aMGVIQUJQMG1ESjFaMzIyb3dFWWFaTjRNVlNReEthc0xOSG5j?=
- =?utf-8?B?ekRTekxBd3Z4b005MmhyZy9DMHVjeG9OTnVzaE1haUk5QUorSUQ3WnFGWHh4?=
- =?utf-8?B?OTBvZk9hRTlwTHBhZDZZazBJcHNtWFNDQWZUMkhqYm9OaTVrV0JEbFZxR1M3?=
- =?utf-8?B?dm5yNndsSzdldDVRQVBlbGJNTUxrYWhGcTNqZDUrc3U2UWdOeHFCNTQxRDRR?=
- =?utf-8?B?T1dLT3FhQW1qV0hqNW1ySXZGMlZ1Njd0bnpKWkh4ZUpJTjhhditGYXkzWGRT?=
- =?utf-8?B?cHRTQW1veldLU05DV3J1cVBRRklzVmR4eUhUd0hFWlkzaFlNa3NqMmFpeDNj?=
- =?utf-8?B?N0ZKdXlVa2NEQU1odURmTTlwK0tRdGsreEhQNXhURTJRakpkNzg0WldHWmhj?=
- =?utf-8?B?dEV1NndlK21tZ0xQUHZCYmFyL3kxZzF1eFZPQThrZ0d1WlAvY0tMb21vRWRm?=
- =?utf-8?B?L0NLbW5Odk1aempIZGVKNS9TZnRXVWpUYmJ2KzJucmdyRjBOZVhGWU45NTdH?=
- =?utf-8?B?aTFabUJ3eitMU2JoZE5XaGJxK0UyZUpiS25uZXVjOENTM24wN1QwbDEyMURz?=
- =?utf-8?B?M3lyYzF6TGw4UVJSRkpZVlBZWmYwbktkSGpVQy85T3Fubk44TjdJMS8ySkNx?=
- =?utf-8?B?bUxKVTF0NXc3YVl0ZHMxcHN0L2tueEd5Ylo4ZXM4Q2RhbExFZEt4ZnlKT0tq?=
- =?utf-8?B?MkFHcmV1blA4b2ZSTjA3VW9BL3B3MzRvMEdzRU1ZT3B3ZlV5VTlUNTYyOWRo?=
- =?utf-8?B?NzV3QjA3eUt2Y3VtQ2t1Y0o3eWRUWnYxdEQ2eGtHLytDZ2hrTXFJYWxFSHVS?=
- =?utf-8?B?WHhUa1RFdGdrdHBrK1NnMy9jSWtMWm5IcldMOEN6N3prTW9iN0J4ZDJjYnhT?=
- =?utf-8?B?Nkp5YnRiT2dXNm9oVjVGQXh4eUU1RHQ2bmZLR3hWVnRBWDFsVFlETHBMQU8x?=
- =?utf-8?B?QnNBL2JwU2NPK0g0ZS81bjRFNVFwekdKVU9qUkQyQVNuOThvNXZjZmRvaUQ1?=
- =?utf-8?B?T2hlNUgyNExQTFRQSndjSnZ3dU5qbGh3eEFPSlQ2NHIwcG1GTHhzRUNSeUNu?=
- =?utf-8?B?TUFIcDVlQ3N1Vkw5Vm53MlV3NG4xanRHMVRGU0dLTU1SdWlFTUl1Q3dxdUZu?=
- =?utf-8?B?Y29jVTlNOWwxck9oQmFLeVQ3cFhEQzV4QzRjd1FyaXFsbXhXUDJSZVNWUTFn?=
- =?utf-8?B?bWdhOCtJZHlPcGxNZnRGb1haM2NrWjZHaWd6U1Rwd29SamdMTEFRVVk0Zlow?=
- =?utf-8?B?L21DRHJoQ0pjSm1TQWxuaUZLQjJvTHovaXM1Nms2UXpuZThGQ1pJR0ZZblBn?=
- =?utf-8?B?WURpZDVUeTRaZ2t6WUZnNHVlMlgwVFhnS2h4UEZuQTduQ2cwYU5kdHZ6ZkdG?=
- =?utf-8?Q?3buBjmFuFaT1P80YnXWPrcFSm?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8ea35a17-04b3-42cc-d5e2-08de1bb124ba
-X-MS-Exchange-CrossTenant-AuthSource: BN9PR11MB5530.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?FXDZZLw8qoDt+KtDyYUny2zjhSe9p12YPDyvc9+1KXj/Yio3XjcEHJVVURJq?=
+ =?us-ascii?Q?WYDUVsPRVUSCLOiEjGf6BoH5fg3c13FL2V+GcK6voYGJ9tBH125D1HalNs6x?=
+ =?us-ascii?Q?j32xeuoOSURqkk9dB19/BJbQ2qO+2QdSEzRXmYgv0Msymkj5Yv/XbpWm+wsM?=
+ =?us-ascii?Q?UTcFQq15OJhWD8OWUKP2tA07cYo4J15lUDb+HYy+IagoutuHNkO358BTidu2?=
+ =?us-ascii?Q?JItWPVO+UjR/EbKvrjmo1kxlFpw1kCQUL8ncTURmc6wlwFOFuYaHpFnGeKGm?=
+ =?us-ascii?Q?Ee+3uwuHbCIBmw0hr02B6pRjQ7uFXkKsjWoVnNkP/1QHu+/9tCnj9ldzR86I?=
+ =?us-ascii?Q?AYstw9Ix4P3t9fypdu3YNKCq0oFMbaiIvY2EZsHe7jI2lfTU+clCL7nuMsNt?=
+ =?us-ascii?Q?IcdP2Jhyxjs3SeXrkJF+JqH8WlKHAlL+EHagL7mMtz2wFxkD6/AdLo1HtPc0?=
+ =?us-ascii?Q?mZA27eqJ3FhGAYnTU2Rj4lfeTBKR0kbx2m0Uom8M+vN1/7W7aee2a3n6+T76?=
+ =?us-ascii?Q?nim9qeBvLfHJ55PNlaf5BcxHqucAMadFrPkEVXX39xEL/sGe0BCuop8/jesn?=
+ =?us-ascii?Q?wUxlSjKQ/Q79exrNQOjKUygY/fp4yHWBa6tT+XHtyuq1RjMK1sutDym/50DY?=
+ =?us-ascii?Q?vfYP19XnVAjuEgJcOaxicebzUMkwoEMGIOeNsXp7zaHMj/ZyxZbMjFMXOwN/?=
+ =?us-ascii?Q?U7QLR0u+sRn1uUsNh2xIjZ+A/pCDYYfjF9KeSKjfGIcGQWAzdz+j36dLQjgl?=
+ =?us-ascii?Q?WniUdemnG8Ny3o2bezNfBxUKNmQoCjzsTscDP+6pjsBrlRvcI/DlbGyRVg+x?=
+ =?us-ascii?Q?1NPr0QPlUGklYgy1hy/j//J9modPrRH++2RVJlewyLM7WPjHWz8movnIn5J7?=
+ =?us-ascii?Q?f1cQ2N6nze3QcJHfjzefCCORD7aR0E/VEmyPO2Cpjp4bSXmTfMwHpvmSR9ke?=
+ =?us-ascii?Q?7TVP21+W8J5oKDpDXhqKFhions03AW4rMKOxrk6TbR8hoW+jwVO6gOJxONe6?=
+ =?us-ascii?Q?rI8dWmeUC5c3iicvIm4zek6GRC8zJgqL/6ffWHQUVMIywrz4gg4eqmtGrPwT?=
+ =?us-ascii?Q?kgs5RxeadQqvKY7E2w1V9h5h8ZhPIELebOfnglYholVJ4ayT26UlGlbkWlXl?=
+ =?us-ascii?Q?5aKwiXtyLnFkhAXK3m8gyO+0wpg2IMEFW5B5grCHUlQrz+ZZEp9KfYK4y2vn?=
+ =?us-ascii?Q?ZsXzlp5PMQtpax8gF5IUXDYKwnO4DWS6OECp0+3qaZLnxH/iW7Z61qwWVpCj?=
+ =?us-ascii?Q?EabCEcKb2vcpRZ56++LQvFSwzvcquKKqvGOP6KJ1u1U55BwKOYiyaGP9HHDy?=
+ =?us-ascii?Q?eu9t2/vcEbVMn/PDCXT6k+e3Lpnviw41deWteotg2EHz9LeVmvXlRuvzr9fI?=
+ =?us-ascii?Q?aoLX0MUSHXjbVPdFlm+16czEpdqMDzXDSPDPiCxzymFJe31BeWV+OSpkbadj?=
+ =?us-ascii?Q?JevnprhBXwRyRklHmV0wmOTpsIusqiZ90M3CtL4J4Okx7bZHmlnIUjFRp2aI?=
+ =?us-ascii?Q?C+nUBpa8AcVdrOSdWqSIBk/AmBD8vlhYQpJhP09ye/m+7JxiEKV9KNkoMX5l?=
+ =?us-ascii?Q?fguC5PA4cPUJhDXtUkXCRrNjPBffLZnOfdo2Nbw/25vTg6y3BKOwIJ98lPqp?=
+ =?us-ascii?Q?Aw=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 41fd5d5e-c017-437b-4f11-08de1bb30eda
+X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Nov 2025 14:47:57.9116 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Nov 2025 15:01:39.9015 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: G/rneXwbIAOhM+sIfxde5PevEdOiTWwZxKTTrGvaJuhO6J6xr+rVdMVCo310uPdRkSzfS00DsU3BQK7ozOWAJA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB7441
+X-MS-Exchange-CrossTenant-UserPrincipalName: ZdRFKyha4OUlNyZJdU2CX+Rn+TEpF1/8eyDaglnseKSmdPQjVDCTvThlBEvP1/XuwKJnmtkSZb/9uYQbAwD3RynFbY+Cdq1AB8l+BiKH2Ic=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR11MB6667
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -197,149 +177,302 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-
-On 04-11-2025 16:12, Sk Anirban wrote:
-> Remove the cached pc->rpa_freq field and refactor RPA frequency handling
-> to fetch values directly from hardware registers on each request.
+On Fri, Oct 31, 2025 at 09:54:14AM -0700, Matthew Brost wrote:
+>Implement a worker that services page faults, using the same
+>implementation as in xe_gt_pagefault.c.
 >
-> v2: Check graphics version instead of platform (Rodrigo)
+>v2:
+> - Rebase on exhaustive eviction changes
+> - Include engine instance in debug prints (Stuart)
 >
-> Suggested-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Suggested-by: Badal Nilawar <badal.nilawar@intel.com>
-> Signed-off-by: Sk Anirban <sk.anirban@intel.com>
-> ---
->   drivers/gpu/drm/xe/xe_guc_pc.c       | 55 +++++++++++++---------------
->   drivers/gpu/drm/xe/xe_guc_pc_types.h |  2 -
->   2 files changed, 26 insertions(+), 31 deletions(-)
+>Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+>Reviewed-by: Stuart Summers <stuart.summers@intel.com>
+>---
+> drivers/gpu/drm/xe/xe_pagefault.c | 235 +++++++++++++++++++++++++++++-
+> 1 file changed, 234 insertions(+), 1 deletion(-)
 >
-> diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_pc.c
-> index a9c29f123b37..01fc8ecb373d 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_pc.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_pc.c
-> @@ -362,7 +362,7 @@ static int pc_set_max_freq(struct xe_guc_pc *pc, u32 freq)
->   				   freq);
->   }
->   
-> -static void mtl_update_rpa_value(struct xe_guc_pc *pc)
-> +static u32 mtl_get_rpa_freq(struct xe_guc_pc *pc)
->   {
->   	struct xe_gt *gt = pc_to_gt(pc);
->   	u32 reg;
-> @@ -372,7 +372,7 @@ static void mtl_update_rpa_value(struct xe_guc_pc *pc)
->   	else
->   		reg = xe_mmio_read32(&gt->mmio, MTL_GT_RPA_FREQUENCY);
->   
-> -	pc->rpa_freq = decode_freq(REG_FIELD_GET(MTL_RPA_MASK, reg));
-> +	return decode_freq(REG_FIELD_GET(MTL_RPA_MASK, reg));
->   }
->   
->   static u32 mtl_get_rpe_freq(struct xe_guc_pc *pc)
-> @@ -388,24 +388,28 @@ static u32 mtl_get_rpe_freq(struct xe_guc_pc *pc)
->   	return decode_freq(REG_FIELD_GET(MTL_RPE_MASK, reg));
->   }
->   
-> -static void tgl_update_rpa_value(struct xe_guc_pc *pc)
-> +static u32 pvc_get_rpa_freq(struct xe_guc_pc *pc)
->   {
-> -	struct xe_gt *gt = pc_to_gt(pc);
-> -	struct xe_device *xe = gt_to_xe(gt);
-> -	u32 reg;
-> -
->   	/*
->   	 * For PVC we still need to use fused RP0 as the approximation for RPa
->   	 * For other platforms than PVC we get the resolved RPa directly from
->   	 * PCODE at a different register
->   	 */
-> -	if (xe->info.platform == XE_PVC) {
-> -		reg = xe_mmio_read32(&gt->mmio, PVC_RP_STATE_CAP);
-> -		pc->rpa_freq = REG_FIELD_GET(RP0_MASK, reg) * GT_FREQUENCY_MULTIPLIER;
-> -	} else {
-> -		reg = xe_mmio_read32(&gt->mmio, FREQ_INFO_REC);
-> -		pc->rpa_freq = REG_FIELD_GET(RPA_MASK, reg) * GT_FREQUENCY_MULTIPLIER;
-> -	}
-> +
-> +	struct xe_gt *gt = pc_to_gt(pc);
-> +	u32 reg;
-> +
-> +	reg = xe_mmio_read32(&gt->mmio, PVC_RP_STATE_CAP);
-> +	return REG_FIELD_GET(RP0_MASK, reg) * GT_FREQUENCY_MULTIPLIER;
-> +}
-> +
-> +static u32 tgl_get_rpa_freq(struct xe_guc_pc *pc)
-> +{
-> +	struct xe_gt *gt = pc_to_gt(pc);
-> +	u32 reg;
-> +
-> +	reg = xe_mmio_read32(&gt->mmio, FREQ_INFO_REC);
-> +	return REG_FIELD_GET(RPA_MASK, reg) * GT_FREQUENCY_MULTIPLIER;
->   }
->   
->   static u32 pvc_get_rpe_freq(struct xe_guc_pc *pc)
-> @@ -426,17 +430,6 @@ static u32 tgl_get_rpe_freq(struct xe_guc_pc *pc)
->   	return REG_FIELD_GET(RPE_MASK, reg) * GT_FREQUENCY_MULTIPLIER;
->   }
->   
-> -static void pc_update_rp_values(struct xe_guc_pc *pc)
-> -{
-> -	struct xe_gt *gt = pc_to_gt(pc);
-> -	struct xe_device *xe = gt_to_xe(gt);
-> -
-> -	if (GRAPHICS_VERx100(xe) >= 1270)
-> -		mtl_update_rpa_value(pc);
-> -	else
-> -		tgl_update_rpa_value(pc);
-> -}
-> -
->   /**
->    * xe_guc_pc_get_act_freq - Get Actual running frequency
->    * @pc: The GuC PC
-> @@ -535,9 +528,15 @@ u32 xe_guc_pc_get_rp0_freq(struct xe_guc_pc *pc)
->    */
->   u32 xe_guc_pc_get_rpa_freq(struct xe_guc_pc *pc)
->   {
-> -	pc_update_rp_values(pc);
-> +	struct xe_gt *gt = pc_to_gt(pc);
-> +	struct xe_device *xe = gt_to_xe(gt);
->   
-> -	return pc->rpa_freq;
-> +	if (GRAPHICS_VERx100(xe) >= 1260)
-> +		return pvc_get_rpa_freq(pc);
-> +	else if (GRAPHICS_VERx100(xe) >= 1270)
-> +		return mtl_get_rpa_freq(pc);
+>diff --git a/drivers/gpu/drm/xe/xe_pagefault.c b/drivers/gpu/drm/xe/xe_pagefault.c
+>index 194e647a8af6..3ac042c54e8f 100644
+>--- a/drivers/gpu/drm/xe/xe_pagefault.c
+>+++ b/drivers/gpu/drm/xe/xe_pagefault.c
+>@@ -5,12 +5,20 @@
+>
+> #include <linux/circ_buf.h>
+>
+>+#include <drm/drm_exec.h>
+> #include <drm/drm_managed.h>
+>
+>+#include "xe_bo.h"
+> #include "xe_device.h"
+>+#include "xe_gt_printk.h"
+> #include "xe_gt_types.h"
+>+#include "xe_gt_stats.h"
+>+#include "xe_hw_engine.h"
+> #include "xe_pagefault.h"
+> #include "xe_pagefault_types.h"
+>+#include "xe_svm.h"
+>+#include "xe_trace_bo.h"
+>+#include "xe_vm.h"
+>
+> /**
+>  * DOC: Xe page faults
+>@@ -32,9 +40,234 @@ static int xe_pagefault_entry_size(void)
+> 	return roundup_pow_of_two(sizeof(struct xe_pagefault));
+> }
+>
+>+static int xe_pagefault_begin(struct drm_exec *exec, struct xe_vma *vma,
+>+			      struct xe_vram_region *vram, bool need_vram_move)
+>+{
+>+	struct xe_bo *bo = xe_vma_bo(vma);
+>+	struct xe_vm *vm = xe_vma_vm(vma);
+>+	int err;
+>+
+>+	err = xe_vm_lock_vma(exec, vma);
+>+	if (err)
+>+		return err;
+>+
+>+	if (!bo)
+>+		return 0;
+>+
+>+	return need_vram_move ? xe_bo_migrate(bo, vram->placement, NULL, exec) :
+>+		xe_bo_validate(bo, vm, true, exec);
+>+}
+>+
+>+static int xe_pagefault_handle_vma(struct xe_gt *gt, struct xe_vma *vma,
+>+				   bool atomic)
+>+{
+>+	struct xe_vm *vm = xe_vma_vm(vma);
+>+	struct xe_tile *tile = gt_to_tile(gt);
+>+	struct xe_validation_ctx ctx;
+>+	struct drm_exec exec;
+>+	struct dma_fence *fence;
+>+	int err, needs_vram;
+>+
+>+	lockdep_assert_held_write(&vm->lock);
+>+
+>+	needs_vram = xe_vma_need_vram_for_atomic(vm->xe, vma, atomic);
+>+	if (needs_vram < 0 || (needs_vram && xe_vma_is_userptr(vma)))
+>+		return needs_vram < 0 ? needs_vram : -EACCES;
+>+
+>+	xe_gt_stats_incr(gt, XE_GT_STATS_ID_VMA_PAGEFAULT_COUNT, 1);
+>+	xe_gt_stats_incr(gt, XE_GT_STATS_ID_VMA_PAGEFAULT_KB,
+>+			 xe_vma_size(vma) / SZ_1K);
+>+
+>+	trace_xe_vma_pagefault(vma);
+>+
+>+	/* Check if VMA is valid, opportunistic check only */
+>+	if (xe_vm_has_valid_gpu_mapping(tile, vma->tile_present,
+>+					vma->tile_invalidated) && !atomic)
+>+		return 0;
+>+
+>+retry_userptr:
 
-This code will never execute in its current position; it should be 
-checked first. The correct order is:
+I realize this is a copy-paste-diverge from xe_gt_pagefault
+but this goto backwards is ugly for no reason.
 
-if (GRAPHICS_VERx100(xe) >= 1270)
-	return mtl_get_rpa_freq(pc);
-else if (GRAPHICS_VERx100(xe) >= 1260)
-	return pvc_get_rpa_freq(pc);
-Regards, Badal
+it could be either
 
-> +	else
-> +		return tgl_get_rpa_freq(pc);
->   }
->   
->   /**
-> @@ -1134,8 +1133,6 @@ static int pc_init_freqs(struct xe_guc_pc *pc)
->   	if (ret)
->   		goto out;
->   
-> -	pc_update_rp_values(pc);
-> -
->   	pc_init_pcode_freq(pc);
->   
->   	/*
-> diff --git a/drivers/gpu/drm/xe/xe_guc_pc_types.h b/drivers/gpu/drm/xe/xe_guc_pc_types.h
-> index f27c05d81706..711bbcdcb0d3 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_pc_types.h
-> +++ b/drivers/gpu/drm/xe/xe_guc_pc_types.h
-> @@ -19,8 +19,6 @@ struct xe_guc_pc {
->   	atomic_t flush_freq_limit;
->   	/** @rp0_freq: HW RP0 frequency - The Maximum one */
->   	u32 rp0_freq;
-> -	/** @rpa_freq: HW RPa frequency - The Achievable one */
-> -	u32 rpa_freq;
->   	/** @rpn_freq: HW RPN frequency - The Minimum one */
->   	u32 rpn_freq;
->   	/** @user_requested_min: Stash the minimum requested freq by user */
+	do {
+		...
+	} while (err == -EAGAIN)
+
+or a separate function
+
+	while (err == -EAGAIN)
+		err = try_pagefault_handle_userptr(...)
+
+this can be done on top though.
+
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+
+Lucas De Marchi
+
+>+	if (xe_vma_is_userptr(vma) &&
+>+	    xe_vma_userptr_check_repin(to_userptr_vma(vma))) {
+>+		struct xe_userptr_vma *uvma = to_userptr_vma(vma);
+>+
+>+		err = xe_vma_userptr_pin_pages(uvma);
+>+		if (err)
+>+			return err;
+>+	}
+>+
+>+	/* Lock VM and BOs dma-resv */
+>+	xe_validation_ctx_init(&ctx, &vm->xe->val, &exec, (struct xe_val_flags) {});
+>+	drm_exec_init(&exec, 0, 0);
+>+	drm_exec_until_all_locked(&exec) {
+>+		err = xe_pagefault_begin(&exec, vma, tile->mem.vram,
+>+					 needs_vram == 1);
+>+		drm_exec_retry_on_contention(&exec);
+>+		xe_validation_retry_on_oom(&ctx, &err);
+>+		if (err)
+>+			goto unlock_dma_resv;
+>+
+>+		/* Bind VMA only to the GT that has faulted */
+>+		trace_xe_vma_pf_bind(vma);
+>+		xe_vm_set_validation_exec(vm, &exec);
+>+		fence = xe_vma_rebind(vm, vma, BIT(tile->id));
+>+		xe_vm_set_validation_exec(vm, NULL);
+>+		if (IS_ERR(fence)) {
+>+			err = PTR_ERR(fence);
+>+			xe_validation_retry_on_oom(&ctx, &err);
+>+			goto unlock_dma_resv;
+>+		}
+>+	}
+>+
+>+	dma_fence_wait(fence, false);
+>+	dma_fence_put(fence);
+>+
+>+unlock_dma_resv:
+>+	xe_validation_ctx_fini(&ctx);
+>+	if (err == -EAGAIN)
+>+		goto retry_userptr;
+>+
+>+	return err;
+>+}
+>+
+>+static bool
+>+xe_pagefault_access_is_atomic(enum xe_pagefault_access_type access_type)
+>+{
+>+	return access_type == XE_PAGEFAULT_ACCESS_TYPE_ATOMIC;
+>+}
+>+
+>+static struct xe_vm *xe_pagefault_asid_to_vm(struct xe_device *xe, u32 asid)
+>+{
+>+	struct xe_vm *vm;
+>+
+>+	down_read(&xe->usm.lock);
+>+	vm = xa_load(&xe->usm.asid_to_vm, asid);
+>+	if (vm && xe_vm_in_fault_mode(vm))
+>+		xe_vm_get(vm);
+>+	else
+>+		vm = ERR_PTR(-EINVAL);
+>+	up_read(&xe->usm.lock);
+>+
+>+	return vm;
+>+}
+>+
+>+static int xe_pagefault_service(struct xe_pagefault *pf)
+>+{
+>+	struct xe_gt *gt = pf->gt;
+>+	struct xe_device *xe = gt_to_xe(gt);
+>+	struct xe_vm *vm;
+>+	struct xe_vma *vma = NULL;
+>+	int err;
+>+	bool atomic;
+>+
+>+	/* Producer flagged this fault to be nacked */
+>+	if (pf->consumer.fault_level == XE_PAGEFAULT_LEVEL_NACK)
+>+		return -EFAULT;
+>+
+>+	vm = xe_pagefault_asid_to_vm(xe, pf->consumer.asid);
+>+	if (IS_ERR(vm))
+>+		return PTR_ERR(vm);
+>+
+>+	/*
+>+	 * TODO: Change to read lock? Using write lock for simplicity.
+>+	 */
+>+	down_write(&vm->lock);
+>+
+>+	if (xe_vm_is_closed(vm)) {
+>+		err = -ENOENT;
+>+		goto unlock_vm;
+>+	}
+>+
+>+	vma = xe_vm_find_vma_by_addr(vm, pf->consumer.page_addr);
+>+	if (!vma) {
+>+		err = -EINVAL;
+>+		goto unlock_vm;
+>+	}
+>+
+>+	atomic = xe_pagefault_access_is_atomic(pf->consumer.access_type);
+>+
+>+	if (xe_vma_is_cpu_addr_mirror(vma))
+>+		err = xe_svm_handle_pagefault(vm, vma, gt,
+>+					      pf->consumer.page_addr, atomic);
+>+	else
+>+		err = xe_pagefault_handle_vma(gt, vma, atomic);
+>+
+>+unlock_vm:
+>+	if (!err)
+>+		vm->usm.last_fault_vma = vma;
+>+	up_write(&vm->lock);
+>+	xe_vm_put(vm);
+>+
+>+	return err;
+>+}
+>+
+>+static bool xe_pagefault_queue_pop(struct xe_pagefault_queue *pf_queue,
+>+				   struct xe_pagefault *pf)
+>+{
+>+	bool found_fault = false;
+>+
+>+	spin_lock_irq(&pf_queue->lock);
+>+	if (pf_queue->tail != pf_queue->head) {
+>+		memcpy(pf, pf_queue->data + pf_queue->tail, sizeof(*pf));
+>+		pf_queue->tail = (pf_queue->tail + xe_pagefault_entry_size()) %
+>+			pf_queue->size;
+>+		found_fault = true;
+>+	}
+>+	spin_unlock_irq(&pf_queue->lock);
+>+
+>+	return found_fault;
+>+}
+>+
+>+static void xe_pagefault_print(struct xe_pagefault *pf)
+>+{
+>+	xe_gt_dbg(pf->gt, "\n\tASID: %d\n"
+>+		  "\tFaulted Address: 0x%08x%08x\n"
+>+		  "\tFaultType: %d\n"
+>+		  "\tAccessType: %d\n"
+>+		  "\tFaultLevel: %d\n"
+>+		  "\tEngineClass: %d %s\n"
+>+		  "\tEngineInstance: %d\n",
+>+		  pf->consumer.asid,
+>+		  upper_32_bits(pf->consumer.page_addr),
+>+		  lower_32_bits(pf->consumer.page_addr),
+>+		  pf->consumer.fault_type,
+>+		  pf->consumer.access_type,
+>+		  pf->consumer.fault_level,
+>+		  pf->consumer.engine_class,
+>+		  xe_hw_engine_class_to_str(pf->consumer.engine_class),
+>+		  pf->consumer.engine_instance);
+>+}
+>+
+> static void xe_pagefault_queue_work(struct work_struct *w)
+> {
+>-	/* TODO: Implement */
+>+	struct xe_pagefault_queue *pf_queue =
+>+		container_of(w, typeof(*pf_queue), worker);
+>+	struct xe_pagefault pf;
+>+	unsigned long threshold;
+>+
+>+#define USM_QUEUE_MAX_RUNTIME_MS      20
+>+	threshold = jiffies + msecs_to_jiffies(USM_QUEUE_MAX_RUNTIME_MS);
+>+
+>+	while (xe_pagefault_queue_pop(pf_queue, &pf)) {
+>+		int err;
+>+
+>+		if (!pf.gt)	/* Fault squashed during reset */
+>+			continue;
+>+
+>+		err = xe_pagefault_service(&pf);
+>+		if (err) {
+>+			xe_pagefault_print(&pf);
+>+			xe_gt_dbg(pf.gt, "Fault response: Unsuccessful %pe\n",
+>+				  ERR_PTR(err));
+>+		}
+>+
+>+		pf.producer.ops->ack_fault(&pf, err);
+>+
+>+		if (time_after(jiffies, threshold)) {
+>+			queue_work(gt_to_xe(pf.gt)->usm.pf_wq, w);
+>+			break;
+>+		}
+>+	}
+>+#undef USM_QUEUE_MAX_RUNTIME_MS
+> }
+>
+> static int xe_pagefault_queue_init(struct xe_device *xe,
+>-- 
+>2.34.1
+>
