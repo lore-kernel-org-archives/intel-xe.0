@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 000A0CCF9E3
-	for <intel-xe@archiver.kernel.org>; Tue,  4 Nov 2025 18:30:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6286FCCFA04
+	for <intel-xe@archiver.kernel.org>; Tue,  4 Nov 2025 18:51:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B682410E0ED;
-	Tue,  4 Nov 2025 18:30:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1DB6A10E2B9;
+	Tue,  4 Nov 2025 18:51:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bQk/dS71";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MdhJ3QqW";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DAAA310E0ED
- for <intel-xe@lists.freedesktop.org>; Tue,  4 Nov 2025 18:30:36 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AC99F10E31C
+ for <intel-xe@lists.freedesktop.org>; Tue,  4 Nov 2025 18:51:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1762281037; x=1793817037;
+ t=1762282317; x=1793818317;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=XhUf9TETO8VhAGRN3sk76cgJMkskQcMgWAoId71BXHs=;
- b=bQk/dS71wT5odoksgAw+aY2CWnwky90Jos30WINjMVVrhadVnJ5eeOin
- mfpvYvBa2d7dCuEiq4E8g+1l9JnxT/mXgzgl672znmKZtzJPSbAZLz/0+
- z1Fi+mM0AnlFRW6ZnDsju8ukKA9dpO5QtkFjbdy1GRzUzgaYxZg9Q4iys
- fRBOmuI7SHnmqM9xGy7MrppP6Nt6rxphj07Q9R/i5Wv93R0dEKUncTMOE
- IEaT73Vrni6OL0sIHK7Zi9zfjr6amqg+fPFlZ8f5OM+cgLd8KKn6mwbs9
- 4UKw/BTW9D+EcQBeQ01xRzRon8EI7DQ4eRttKG5CV2iTfMPhrGf80CCjI g==;
-X-CSE-ConnectionGUID: bgn0KuXIS92DvSZr+DPYzA==
-X-CSE-MsgGUID: Cf7KSr2nRqaAF4kDboIlXA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11603"; a="74678708"
-X-IronPort-AV: E=Sophos;i="6.19,279,1754982000"; d="scan'208";a="74678708"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Nov 2025 10:30:37 -0800
-X-CSE-ConnectionGUID: ZYVPxLALRoCHHbm3XyOquw==
-X-CSE-MsgGUID: kUeq2i3UQ++CsWeyAvp6VA==
+ bh=ygDy6fR/3a6hBHo3p5gMRLoVhTDIUKihL3ugwyOBGz4=;
+ b=MdhJ3QqWd3ojIl0YYtpZvZn9w77bN6h7G6IxuQbqgdJOTsiFUx9eqyYj
+ F5HYOFL1roO/BkX7OW+U987n/fhT44rXqSXCR1uPB5j4ZLtEQJmvwgr1H
+ UYDWnlCSkfa6J382XUIYikC7mWSthFnuhhMwCUamGLBDkv/pXV/qH+RSF
+ 1/E5hMlCIuk1hTDtGSeZ0CQN58idYIceEPQy6ZJdXm+d8454wtTqNQBy4
+ bMPE3GsrLfF+fWJbQ69ImMGfl1qYFOvKSbiWbciqK3ZeJsVVirJrcd43e
+ ljybHk1ITZSnZb/fnqljUXveCtqAzVVl6xug1ZCY+OGrk8kbfdT34Mwih Q==;
+X-CSE-ConnectionGUID: vtjxs7reTE2huBizqaYQ+w==
+X-CSE-MsgGUID: ZZ96d1M5TLevHEeJWXotqw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11603"; a="68247740"
+X-IronPort-AV: E=Sophos;i="6.19,279,1754982000"; d="scan'208";a="68247740"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Nov 2025 10:51:56 -0800
+X-CSE-ConnectionGUID: mZrTDoo0QZOo1EX0ZjsCWw==
+X-CSE-MsgGUID: IZz/PbdjTU6dY7cWNqqIrQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,279,1754982000"; d="scan'208";a="224480525"
-Received: from bfilipch-desk.jf.intel.com ([10.88.27.152])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Nov 2025 10:30:37 -0800
-From: Julia Filipchuk <julia.filipchuk@intel.com>
+X-IronPort-AV: E=Sophos;i="6.19,279,1754982000"; d="scan'208";a="187183061"
+Received: from nvishwa1-desk.sc.intel.com ([172.25.29.131])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Nov 2025 10:51:56 -0800
+From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Julia Filipchuk <julia.filipchuk@intel.com>
-Subject: [CI] drm/xe/guc: Test GuC v70.53.0 for BMG, LNL, PTL
-Date: Tue,  4 Nov 2025 10:29:30 -0800
-Message-ID: <20251104183029.1101572-1-julia.filipchuk@intel.com>
-X-Mailer: git-send-email 2.51.0
+Cc: matthew.brost@intel.com
+Subject: [PATCH v2 00/16] drm/xe: Multi Queue feature support
+Date: Tue,  4 Nov 2025 10:51:34 -0800
+Message-ID: <20251104185150.246345-1-niranjana.vishwanathapura@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -64,38 +64,66 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-UAPI compatibility version 1.26.0
+Multi Queue is a new mode of execution supported by the compute and
+blitter copy command streamers (CCS and BCS, respectively). It is an
+enhancement of the existing hardware architecture and leverages the
+same submission model. It enables support for efficient, parallel
+execution of multiple queues within a single context.
 
-This patch is for testing only. If testing is successful the binary
-blobs will replace the major versioned *_guc_70.bin files for given
-platforms.
+Add support for multi-queue feature and enable it on xe3p_xpc.
 
-Signed-off-by: Julia Filipchuk <julia.filipchuk@intel.com>
----
-Resubmit due to missing BAT results for series/156953.
+Changes in v2:
+- Rename multi_queue_enable_mask to multi_queue_engine_class_mask.
+- Remove group->lock, fix function semantics, add additional comments,
+  add asserts, update uapi kernel-doc, move group->list_lock to right
+  patch, add XE_BO_FLAG_GGTT_INVALIDATE for cgp bo.
+- Fix G2H_LEN_DW_MULTI_QUEUE_CONTEXT value.
+- Add fs_reclaim lock dependency, add bspec ref, other minor cleanups.
 
- drivers/gpu/drm/xe/xe_uc_fw.c | 10 +++++-----
- 1 file changed, 5 insertions(+), 5 deletions(-)
+Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 
-diff --git a/drivers/gpu/drm/xe/xe_uc_fw.c b/drivers/gpu/drm/xe/xe_uc_fw.c
-index b4cd6226ad31..a0deda4e8c84 100644
---- a/drivers/gpu/drm/xe/xe_uc_fw.c
-+++ b/drivers/gpu/drm/xe/xe_uc_fw.c
-@@ -115,11 +115,11 @@ struct fw_blobs_by_type {
- #define XE_GT_TYPE_ANY XE_GT_TYPE_UNINITIALIZED
- 
- #define XE_GUC_FIRMWARE_DEFS(fw_def, mmp_ver, major_ver)					\
- 	fw_def(CRESCENTISLAND,	GT_TYPE_ANY,	mmp_ver(xe,	guc,	cri,	70, 49, 4))	\
- 	fw_def(NOVALAKE_S,	GT_TYPE_ANY,	mmp_ver(xe,	guc,	nvl,	70, 49, 4))	\
--	fw_def(PANTHERLAKE,	GT_TYPE_ANY,	major_ver(xe,	guc,	ptl,	70, 49, 4))	\
--	fw_def(BATTLEMAGE,	GT_TYPE_ANY,	major_ver(xe,	guc,	bmg,	70, 49, 4))	\
--	fw_def(LUNARLAKE,	GT_TYPE_ANY,	major_ver(xe,	guc,	lnl,	70, 45, 2))	\
-+	fw_def(PANTHERLAKE,	GT_TYPE_ANY,	mmp_ver(xe,	guc,	ptl,	70, 53, 0))	\
-+	fw_def(BATTLEMAGE,	GT_TYPE_ANY,	mmp_ver(xe,	guc,	bmg,	70, 53, 0))	\
-+	fw_def(LUNARLAKE,	GT_TYPE_ANY,	mmp_ver(xe,	guc,	lnl,	70, 53, 0))	\
- 	fw_def(METEORLAKE,	GT_TYPE_ANY,	major_ver(i915,	guc,	mtl,	70, 44, 1))	\
- 	fw_def(PVC,		GT_TYPE_ANY,	mmp_ver(xe,	guc,	pvc,	70, 44, 1))	\
- 	fw_def(DG2,		GT_TYPE_ANY,	major_ver(i915,	guc,	dg2,	70, 45, 2))	\
+Niranjana Vishwanathapura (16):
+  drm/xe/multi_queue: Add multi_queue_enable_mask to gt information
+  drm/xe/multi_queue: Add user interface for multi queue support
+  drm/xe/multi_queue: Add GuC interface for multi queue support
+  drm/xe/multi_queue: Add multi queue priority property
+  drm/xe/multi_queue: Handle invalid exec queue property setting
+  drm/xe/multi_queue: Add exec_queue set_property ioctl support
+  drm/xe/multi_queue: Add support for multi queue dynamic priority
+    change
+  drm/xe/multi_queue: Add multi queue information to guc_info dump
+  drm/xe/multi_queue: Handle tearing down of a multi queue
+  drm/xe/multi_queue: Set QUEUE_DRAIN_MODE for Multi Queue batches
+  drm/xe/multi_queue: Handle CGP context error
+  drm/xe/multi_queue: Tracepoint support
+  drm/xe/multi_queue: Support active group after primary is destroyed
+  drm/xe/doc: Add documentation for Multi Queue Group
+  drm/xe/doc: Add documentation for Multi Queue Group GuC interface
+  drm/xe/multi_queue: Enable multi_queue on xe3p_xpc
+
+ Documentation/gpu/xe/xe_exec_queue.rst        |  14 +
+ drivers/gpu/drm/xe/abi/guc_actions_abi.h      |   4 +
+ .../gpu/drm/xe/instructions/xe_gpu_commands.h |   1 +
+ drivers/gpu/drm/xe/xe_debugfs.c               |   2 +
+ drivers/gpu/drm/xe/xe_device.c                |   9 +-
+ drivers/gpu/drm/xe/xe_exec_queue.c            | 425 +++++++++++-
+ drivers/gpu/drm/xe/xe_exec_queue.h            |  51 ++
+ drivers/gpu/drm/xe/xe_exec_queue_types.h      |  57 ++
+ drivers/gpu/drm/xe/xe_gt_types.h              |   5 +
+ drivers/gpu/drm/xe/xe_guc_ct.c                |   8 +
+ drivers/gpu/drm/xe/xe_guc_fwif.h              |   3 +
+ drivers/gpu/drm/xe/xe_guc_submit.c            | 614 ++++++++++++++++--
+ drivers/gpu/drm/xe/xe_guc_submit.h            |   3 +
+ drivers/gpu/drm/xe/xe_guc_submit_types.h      |  13 +
+ drivers/gpu/drm/xe/xe_lrc.c                   |  29 +
+ drivers/gpu/drm/xe/xe_lrc.h                   |   3 +
+ drivers/gpu/drm/xe/xe_pci.c                   |   3 +
+ drivers/gpu/drm/xe/xe_pci_types.h             |   1 +
+ drivers/gpu/drm/xe/xe_ring_ops.c              |  68 +-
+ drivers/gpu/drm/xe/xe_trace.h                 |  46 ++
+ include/uapi/drm/xe_drm.h                     |  43 ++
+ 21 files changed, 1294 insertions(+), 108 deletions(-)
+
 -- 
-2.51.0
+2.43.0
 
