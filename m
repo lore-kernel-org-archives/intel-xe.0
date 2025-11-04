@@ -4,165 +4,164 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 55B52CCF9F8
-	for <intel-xe@archiver.kernel.org>; Tue,  4 Nov 2025 03:36:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 57CD2CCFA00
+	for <intel-xe@archiver.kernel.org>; Tue,  4 Nov 2025 03:57:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EE44310E232;
-	Tue,  4 Nov 2025 03:36:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1EB9210E234;
+	Tue,  4 Nov 2025 03:57:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="flkjNYoe";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CcNGIflI";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1976710E232
- for <intel-xe@lists.freedesktop.org>; Tue,  4 Nov 2025 03:36:08 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 95C4A10E234
+ for <intel-xe@lists.freedesktop.org>; Tue,  4 Nov 2025 03:57:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1762227369; x=1793763369;
+ t=1762228664; x=1793764664;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=XLBhklINslw/uAimLcaPNhpTim6pZPAWUAD6k2+AZY8=;
- b=flkjNYoeXeK77VU/6SvrsNKvNFUnE+qd8JibGGbAe3JtV9JV4yJ17YvP
- k+kFgCPzAj7dCtTjLk6sgbI964q5CBFhIG10cyYdMjn7xgxBCmkXro+03
- BiQRY3hDrSkojpjlvcdv6vqVcaGNqzkapN6cvOCRt1VpD9BoZV0JA3lz7
- 5xtdUohFafbELQaLMQsl4hi30L+utkNCU9YWx/o/elqhWdpLm3wF3d5TX
- gumpn5A6v/sYKFHUisviFN8WcNloM2t2vgTwYvsIR+88qoqIys72njtaa
- OfWME4qJMTl0oClXaPt0M3X9bm33dJhsF7S9sqiyU9KUMkeVnKy4uxWvW w==;
-X-CSE-ConnectionGUID: 3RmELPXNShutFsrsbPh8JA==
-X-CSE-MsgGUID: yQlo7fZTQT+GK3hS35BDqw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11602"; a="86940127"
-X-IronPort-AV: E=Sophos;i="6.19,278,1754982000"; d="scan'208";a="86940127"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Nov 2025 19:36:08 -0800
-X-CSE-ConnectionGUID: XFDpG3RzT7yWA+fp6CQNsQ==
-X-CSE-MsgGUID: E80Mt0qWT9OtnlcT1rrGUA==
+ bh=k1MGUi+Rz8gldr8przGBPuSlAmD3n3lXi6gqgyw92/M=;
+ b=CcNGIflIxpTqglO4Z3z3jhG2aEvvkzmIArep7Rt1s9zhxmhm6bvDQn+C
+ Q1IOPjwaafUtFPraozFsM4AZd6IZb5L6iIMWgkzdMhrqHAoOpDeRKGB/R
+ 8zV1pk3rncJFq7G0t60gFcI1dUU3Ehd/FEl7P3htrDnFw50wlc2IH7jtu
+ TurDtm772RGXPPP+oH8KkZ8YWIPuPnDE/crFwEBgF3TPTTaJCIM3NmNWA
+ umJDwXDSv6c/dZCjuEqtPi4RSOmPBAwm0yOPp1a+LtU3dP0ypfbNdRNR0
+ i+HRitgRQrNPr1op29iC+v3NIpWHlQKGoBIQlXlHfeqXr4oxwN/3H8g1M Q==;
+X-CSE-ConnectionGUID: qrW0lCpNSgyOqZxDWiylfg==
+X-CSE-MsgGUID: TmdqQkLpTeeVS0tJ5kX9uw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11602"; a="89776811"
+X-IronPort-AV: E=Sophos;i="6.19,278,1754982000"; d="scan'208";a="89776811"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Nov 2025 19:57:44 -0800
+X-CSE-ConnectionGUID: 8Uo2i/k4QGmqMesRqF86nQ==
+X-CSE-MsgGUID: qkuIBsLpRQOHKmz89kq5uQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,278,1754982000"; d="scan'208";a="217851142"
-Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
- by fmviesa001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Nov 2025 19:36:07 -0800
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.19,278,1754982000"; d="scan'208";a="187199061"
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+ by orviesa008.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Nov 2025 19:57:44 -0800
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Mon, 3 Nov 2025 19:36:06 -0800
-Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ 15.2.2562.27; Mon, 3 Nov 2025 19:57:43 -0800
+Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27 via Frontend Transport; Mon, 3 Nov 2025 19:36:06 -0800
-Received: from DM1PR04CU001.outbound.protection.outlook.com (52.101.61.26) by
- edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
+ 15.2.2562.27 via Frontend Transport; Mon, 3 Nov 2025 19:57:43 -0800
+Received: from CO1PR03CU002.outbound.protection.outlook.com (52.101.46.32) by
+ edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Mon, 3 Nov 2025 19:36:06 -0800
+ 15.2.2562.27; Mon, 3 Nov 2025 19:57:43 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=KJV9CtmMUVx85hFCp6JlCAUrxWaOECrDuDnGazwMdTC/UX1fnglchqJuiXzbIQbKeP/ivg62QnudoEy/uDMU10V1TWp8eu+8SRzQPpBRHj4KhrttSC1dt129i19LQfSIQv3kn70zenW4L37pDicwJ2fbkGhzlmmKB2jBDyM6QM0cd29c61XYDovrVgqvDneUEHYwMYMqqlwPqxNoHN3tDjzqmzQW4uIB4q4mfTyijBAPRG0j4h7VxL5ofzJYrpMjkKCIRklUxKU0Fog2f6mRhi1ML6yuE8Fk/g4EFMk06bSYhjt2NUwrl7ky+TELJn0khga9xaKgCjY7MpzaljGX8w==
+ b=s8fLlTKkrubPZ6Pr+yQlVjt39DSvs2MYyyc97wv/BvNat4p8BQ16quTLyqpbri247a4rDc/ygA1I8/zclMi0+ugdtVMgGhcVqdnvMeHxuXf8jVg7FsJhoInFdUbeNPWm9Bnjb/7/BgphaA9YhSgZvvoTfb2iMjwL7L4rW0+BaGFfLwIYAVAtW/4eeDn7iq3agKgLT7lNCuhh2YSe8nQU/9IKaUuR7cWWD/xbPnlKL0Nlm/8t2kfi481W4ynp2poWwegbsNMMUUodUiPKgbYn/jnhtIK9kcwfn/yronqQ9fGK+A7tmU0RlVFlBc1b0aQSlObuJpeGtpzhkCwtv5R6yw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=dM0BMaewe8fkGJWLytUFx5u54UlL4gQYM5JUXLO6KPg=;
- b=aVqmm88qpp8OcjtaUaDYIvJHmvz+A6PG2pA5I5TAkQ2o7diwyDz0hhEsFaxv2F7OpqiqyikPmWvbgvv5xLaS7J6lyrgq0fTGUtN3+jz5LXXflhHBOAJATsn6M7XzWvnOhSyve/RV2bjttL/pRi3O5hQsU5YHwdblCyooqwepKBJ0lStp4RvQNKl3lN6oZp3wXneaZxHEJiunJg27hGuEgtAXDCrV/Xpo3o3RroxNee/CLfz8rA/lJ2I1c0/k2cFv16pBPhpZ0Z7AfncABhgzJm5aWMnRZo63G/e5GYO40nO61g72svHUggiB1D0yo9ZirYi//kt3a0rGxs192ABipA==
+ bh=k1MGUi+Rz8gldr8przGBPuSlAmD3n3lXi6gqgyw92/M=;
+ b=dA9QPP2HE3N0a+HsZFwThk+XL++h/eTUkswxGocpsAXzgj/HE8TqifXBIF8HcTbfLZ032USm+dZT3dL4r5yzL6Z1GxStMiU+zsA2p8MeePHLBsEyTehUFYpWk/X7Z4PksXMNpjR++d57wEBBnfhqqGZUpg+Jca8Wmx+WkN4mKKBktqkTTNgsd0GFEK7UhpqOPvI5ZTbDowac05vQznTBDiyzYacjIjQriEqDOo0FBFrOvAu9F3F8ZGLTql+UqFkh0km87DmQG99sVa0mtD3FGqZhgy7Wx5cF6KB6iNAEMVRv7vxNlRYifPTfKnyxO9zOJpsim6iTr7a0xX7QmDOPPA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from BL3PR11MB6410.namprd11.prod.outlook.com (2603:10b6:208:3b9::15)
- by DS0PR11MB7969.namprd11.prod.outlook.com (2603:10b6:8:120::12) with
- Microsoft SMTP Server (version=TLS1_2,
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
+ by CY5PR11MB6342.namprd11.prod.outlook.com (2603:10b6:930:3d::20)
+ with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9275.16; Tue, 4 Nov
- 2025 03:36:05 +0000
-Received: from BL3PR11MB6410.namprd11.prod.outlook.com
- ([fe80::b01a:aa33:165:efc]) by BL3PR11MB6410.namprd11.prod.outlook.com
- ([fe80::b01a:aa33:165:efc%3]) with mapi id 15.20.9275.015; Tue, 4 Nov 2025
- 03:35:59 +0000
-Date: Mon, 3 Nov 2025 19:35:55 -0800
-From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+ 2025 03:57:39 +0000
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::7141:316f:77a0:9c44]) by CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::7141:316f:77a0:9c44%6]) with mapi id 15.20.9275.013; Tue, 4 Nov 2025
+ 03:57:39 +0000
+Date: Mon, 3 Nov 2025 21:57:36 -0600
+From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: Matthew Brost <matthew.brost@intel.com>
-CC: <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH 09/16] drm/xe/multi_queue: Handle tearing down of a multi
- queue
-Message-ID: <aQl0m6oO_8OqMCkC@nvishwa1-desk>
-References: <20251031182936.1882062-1-niranjana.vishwanathapura@intel.com>
- <20251031182936.1882062-10-niranjana.vishwanathapura@intel.com>
- <aQaoLnIMeoKzYtNA@lstrano-desk.jf.intel.com>
+CC: <intel-xe@lists.freedesktop.org>, <stuart.summers@intel.com>,
+ <francois.dugast@intel.com>
+Subject: Re: [PATCH v4 1/7] drm/xe: Stub out new pagefault layer
+Message-ID: <4443jq4mufv22yb6td7fie763db7yma4htdxsz6qky4vgelmfj@n2o3obdfedry>
+References: <20251031165416.2871503-1-matthew.brost@intel.com>
+ <20251031165416.2871503-2-matthew.brost@intel.com>
 Content-Type: text/plain; charset="us-ascii"; format=flowed
 Content-Disposition: inline
-In-Reply-To: <aQaoLnIMeoKzYtNA@lstrano-desk.jf.intel.com>
-X-ClientProxiedBy: SJ0PR13CA0175.namprd13.prod.outlook.com
- (2603:10b6:a03:2c7::30) To BL3PR11MB6410.namprd11.prod.outlook.com
- (2603:10b6:208:3b9::15)
+In-Reply-To: <20251031165416.2871503-2-matthew.brost@intel.com>
+X-ClientProxiedBy: BY3PR05CA0018.namprd05.prod.outlook.com
+ (2603:10b6:a03:254::23) To CY5PR11MB6139.namprd11.prod.outlook.com
+ (2603:10b6:930:29::17)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL3PR11MB6410:EE_|DS0PR11MB7969:EE_
-X-MS-Office365-Filtering-Correlation-Id: d701bf27-e4d0-471f-0147-08de1b5344fc
+X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|CY5PR11MB6342:EE_
+X-MS-Office365-Filtering-Correlation-Id: 29cf38de-ad96-472d-eabd-08de1b564c1d
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?WLXeGFpYPVhUdJJGFlv7d5EHWr0w6DSHBRlHI67NWsWUrejYG+0vMkyWAUaD?=
- =?us-ascii?Q?/r3S4PLMq874lPkH/+YMgCvxHqPHRaU954rkY3qxcnSEr9VBkaj+TZhws7Mt?=
- =?us-ascii?Q?v1JEs9CZUgwbqIjOqP0UKKfWbg4FY0vF4CMUlQqG3z+LB1/Pf+7j/2hEa8+M?=
- =?us-ascii?Q?mRj2+Wy0xoUSaV1pOOGMyIjpv+8n1nAzukxQf0gUIP+p514AQiDU2ycoaqeG?=
- =?us-ascii?Q?j6tLGBzTJc9qUP2TAxL/UVnQCpfwXYZb4871r9khRy56XrRCdQ+v5VNdnVsi?=
- =?us-ascii?Q?5P+Kea3ewKKfhwkZiOYQgeHifu0+R8P1vZAJ7AoZjqTC3r8et7xjiNVq0zET?=
- =?us-ascii?Q?0PKywE/ozqjt9gkfNJ/L1CCgdQCcUBRijG1pw+GRGgcWjs9Fxfjwg/z3e4iP?=
- =?us-ascii?Q?62V3DxDmkctbLKiAjjVwTzFT60boi6ChhhvnKV1/S7+FvS+IO9TurhJgC4BD?=
- =?us-ascii?Q?yWm8/+f90OIT4qmuCGME5TCa+uw72Gb0sb3IhZ+0h+zCmu3obO1C58u5zClx?=
- =?us-ascii?Q?VFSgckKCjxkuCMv+9LUABHV6G25ROJBBoFYt9XbqoDW6Tk7ibywk5xHAtktw?=
- =?us-ascii?Q?TARgfJk1BMCQGeb08WTsLd4aRQ2YrXQz3PFVf1NaWEYPta3OI+q3I6FU5q0e?=
- =?us-ascii?Q?IOocZPIhOE8+iI/BFQwKs3HcXnzwyAIYu9ccwUxdfcCHgLeZSZ7KdHpz/bDv?=
- =?us-ascii?Q?zkHhM5vm0cpp89E9gcHr4HddCIaBdIrw+b0JOwV2yhk/VSD/3qJ4GDS+iSdj?=
- =?us-ascii?Q?cEA18GZwZ+4dsbWoSb44llDYG6JN6PeySs6ObZsiALE4KrkshDcZpalfnRSR?=
- =?us-ascii?Q?5XfgX5HZGfUbA8BZhJS5C/RZHmydqaN39ajEtKdDhwwFoPtMhq6OJn0B7DKK?=
- =?us-ascii?Q?+pZWYR3HBHSjAELKCbFWRWcbbm1B2B5pg3z1O019waZ5LKTDGr0wpIn91wXX?=
- =?us-ascii?Q?Ts+qf7KzN0RGjHB39MZl0uaLSCr6KgYoDypcs2bzI5Iv4NjnbegpRKLaKHVU?=
- =?us-ascii?Q?YMI5GA8K0iFM9ezUmAaMN0j8F6REeoJTc40dJ6+CKxCqHd9lnZ5a+jmQFzRl?=
- =?us-ascii?Q?pqIiUjXDlfLzwIPisIkqdrUkwOEv2vz86gtpIuQ3mm3pGq1m7xDbQm1Rjfme?=
- =?us-ascii?Q?/KDEWhFshow8CbEo+EjNtYIK6650zAukF0fq5iteZgVuH1f80HAyNsP54t+B?=
- =?us-ascii?Q?TDFdJ4rMwwaw1BzFuRJWKtWRorOQZdSI+qlDqFgY6sGVPiY5x91BihCM89jI?=
- =?us-ascii?Q?djvbePfljNRY4e306IB+fdjhzcl9wppOVvM6/PNMNsG1VQFpv32AqWDq/kp3?=
- =?us-ascii?Q?rE28Digqu7zAVle5rrux2z3BUAA7EphsKEOJ2yBLS+VOrSw1lBKUq+w5wMPq?=
- =?us-ascii?Q?lwsYjK9FPmjHSuKNgbQd9T8oOonHo2zPgGaH47gS47A+6B8iSuh18OeXlisl?=
- =?us-ascii?Q?z7vlHHZCVGsfIcedXhiYU+zgPDm96stI?=
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?LCiWzQUVWdQPyU9nxsGeytK34hwyrGqkw6+3LAaB65dDv7XyyOr/FF31ult7?=
+ =?us-ascii?Q?FvkSI0XD4lSSdf1hefoXjVDBmwJqpqvEIojA2GEQ09lgLF5ovfPIb/ERKaLm?=
+ =?us-ascii?Q?Fkc27bPx7iIJs7xtOOYeZaEbLu70eYGjrcaak85N1VgGK/21Ep89aKjSsrD4?=
+ =?us-ascii?Q?q6d7VGwttK3S1uwaMxEYI8BVUer07Ae9Klvu4sdGnI2GSrlxvSjB3GUDV5vK?=
+ =?us-ascii?Q?DXamFArq19ccRZB+m4B7DTpjnTDfecT5GduZHXKJHXgvpZYDKkvE1oPV4ygb?=
+ =?us-ascii?Q?yiuity9HiVA6t8KxFCqWOgDeJ/kePgH2u0VSt7G782/TF2lPvfBHyTakVKNR?=
+ =?us-ascii?Q?FOqgHe2qXQ2hektbS0wcJSmTlRM3Ix3tDikGHdZKszEw5neBHcFynUlYKJBm?=
+ =?us-ascii?Q?zo/dZ2JO/Sy58ar0Yr1yvQgKfPOAifVPFtDVCsAg52AIHzZp/thmTQIFDQXy?=
+ =?us-ascii?Q?TS0m+aJU015aqqYCxXjpbktjoKMlC98tMFq/HcGpm+qtULVhNtHGO6V3D9Y+?=
+ =?us-ascii?Q?9TU+GOw6bDnuQikOB4fCPDp52++HQETimUt4y9xZnT/btYomMbZs/Sr7pB1L?=
+ =?us-ascii?Q?zbt5Kv1hoHYrGEmU2WQqO7wLIvhP65gQlGShrT9/xXr+sdKV8R0yqsIFANyW?=
+ =?us-ascii?Q?91T1O5GWFEti35QA0PcPPUc/E7BXpm3qrvWKXWYr+S3m+r1dv3RYCK6FO7ly?=
+ =?us-ascii?Q?CKWReaOpjuGhwMgJxXtyOuFJdng+o3jDFsQtm/WxgT0SKEwoAdDwjqcNp8X0?=
+ =?us-ascii?Q?tOj66OZ0nx9O/PGGEVaK6ezdE+jZNVhuSfyWtO8RA6epqXvx7BoUqyuTijCW?=
+ =?us-ascii?Q?6Y+p4e5QcihCxwamj6GiMpNfK7jWkiQdybsNINT/Xg1b1F15iS536Ap1pGQj?=
+ =?us-ascii?Q?HcFUa6/wJAcv2bpF6ae1sp7EA00vDLL/UIvOmQt9/zGWoLxSgDZ0zT0VsDmm?=
+ =?us-ascii?Q?7aMM4P8TkAbzkPUICpVYh3+CxlGFmbH6MluamzW4kRSEYBnEOeF0x4uwGULw?=
+ =?us-ascii?Q?gAjRFe2qBBWm5+ZyETDJ8WczzgXj+haHjoyYCBDTgSUKQECTq1//bKpkOvKC?=
+ =?us-ascii?Q?YCBsmOxKHT3IWWOIOq4N9+aZigtq/pZ/lkcYbBazItuRwL8iYlskuzgOhQ7W?=
+ =?us-ascii?Q?Be9Cj3gpt6VbVCYhfTPDdaIZN1QffIhfFJOKn9O5VcRHCmbIU+6fuPlhSmrZ?=
+ =?us-ascii?Q?cmrcQyM/kcSzebGW72MSHiIXFAupzfPUekcyUidsjs+udYfa0JNZVwVXyUXR?=
+ =?us-ascii?Q?VVqtDTkwMgIXXHuujhwPyjdSCfur73+GUC5pKQsRUK6fD/IGg1yMgJWHfkE9?=
+ =?us-ascii?Q?w2IQX6Mq8btSfxBQgk2cS/QtM0NVClY4/M79Wt0zGAAk5lMDlcqueb/q4Lq1?=
+ =?us-ascii?Q?b406RpyKrGoFrISQQu8fi3/ZnBJHT7AMzmuG3OQb5yeZUp+JeLJLMhb4irA1?=
+ =?us-ascii?Q?DNTU4fbDShsav+GuACFQZLO1ieBs7Ycg?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BL3PR11MB6410.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?xF1teKnINanZUcUQpVyErONt9LDgv+b2zvIn0o2g25v9QjPzBohWin3qmiXH?=
- =?us-ascii?Q?uPlfj2A7yFW89Lqt1cFp9W0HTPNQy3AH56GWmB9prk5b6tmEaPptCKBfGscz?=
- =?us-ascii?Q?W6494db/7gi25CU2BUZuV9GwwGmSgHrOWrPOvKv5ZX6WzYJrrhvThxegEoQ7?=
- =?us-ascii?Q?7XP81kEZj+BVW4k6SUQDT0tcn0rgf8NIffza53JH4+zdC+9iYCteNB7q7tiU?=
- =?us-ascii?Q?g4+ibMAjlc7xnaQf7In0D0qSYj+0MwRm4MJeuBVwwsdaCshPYz3EKSarJoeo?=
- =?us-ascii?Q?LUvlbNy5XsH3ABmzZU41+A1LqRkvJDVKmmPwaxAQL6sfQ/8A1HPY76sCBq0i?=
- =?us-ascii?Q?5YEBqajjnxqWs7HaJRTm0H0QZEckfqpD4k/CkpaJmVuhdCCOsWs38mNmiHtJ?=
- =?us-ascii?Q?JMqKh56nSKUOBk/aOQWmAnDuN24eazQ47uFCsYZa4ay01JxBy+XRFKu/daiH?=
- =?us-ascii?Q?IUR8B2B4ul/iziKNycJhY/VkGPG6MxB3fY3sc4DzpshIismDvYNfzT4ZPZlN?=
- =?us-ascii?Q?xlQ4IkN3qGKnArbgoot1Y9HX4TTPUg4S4MAGV0BKWGZwDWVQhcUBtSP+hA9L?=
- =?us-ascii?Q?bWRgv3Imj+F0TEnGZpHXSyGGe7kg6l+fCP3V18/zMKRN1JxP6ZpG8U766nDx?=
- =?us-ascii?Q?RTiiLB5+15BWOatoD/fW366R+CPcG8xIwoe3y7hLIyONThMiLCBB1fs3PMyr?=
- =?us-ascii?Q?avjf6lBHe36X1acVB4iJFTlkS8qLSaeTCyDhNcH4Yg7068VpprYHDWZtIBq1?=
- =?us-ascii?Q?UTzY6bTaoKVx1+/GD3k8+U2ACHKN/l9j/RzaUGwGnw/tAf6aNo3Tlla+6m8a?=
- =?us-ascii?Q?r62ObntPxxM1Sf1Orh/zEyH22JpoP2+FbZSgIdfWzQPYE4FCRuxxtHTaXmyM?=
- =?us-ascii?Q?LTelF0iI3rlL1BiFC2n+4W7DWLYdkKnaAbrlD+x1kHiuqTCXGStG3/BJifuj?=
- =?us-ascii?Q?9hWNncFhX4PEMzoF+mvCFWOooZUwwJSjynZjrtE2wbAuF1hbX8dF5nC7p/Sh?=
- =?us-ascii?Q?OMI642hnQqEdJetodBuJHlQtfepI4AkN8c4HKR1TqQFkW5O9L3nu41qm0udr?=
- =?us-ascii?Q?uY4UhUHUEcspyHUdk8N+PFcsnzh4TJbHqZ/86SCNuAqFKUS+k2gFFxLtx1T1?=
- =?us-ascii?Q?2NR8rXY8aBth4nzJy0/zFZPpy0tNrxirHxHYV0USVyJB2dOkxaFjWSTy/zF5?=
- =?us-ascii?Q?4ZnthIDSSF9hGIKc+KEkpwmXd340IWuOiIlTiOPl4DdSbXBUExcrCf9+QN9F?=
- =?us-ascii?Q?6n8S9vHffQtGvOiTc7Mo5EAwWwVMI5jnV8vD74EslaYXpFnK54WR9mtr9PTC?=
- =?us-ascii?Q?isb+xvrC/5qWlNPc8HDcezKuezcX9VVNiFa4mkgTHS86zU7VOG1ag2VRXXCE?=
- =?us-ascii?Q?loYIl55rirtAroJvgaC7bQCUkRr68g+i65o2ff26ytsaTiOe6aP2hdEMRpdF?=
- =?us-ascii?Q?2MYQAexUN0QBfVVhRKP5weatzNQsJXynKH/bi8JbxZbvtC0tHJ2dzyqEobwJ?=
- =?us-ascii?Q?6EmBQzPZS6donABuVlm07vA9salC77yyjGeczYqirCDNxGuw3WEaur+wG+CL?=
- =?us-ascii?Q?RblddIPjzADOMhxzl9qoyHY76uKmofRB9giPTeP0Roq1SCVgTz5setro0Sbb?=
- =?us-ascii?Q?zIpkYCklpGP5Pw/EbafNckg=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: d701bf27-e4d0-471f-0147-08de1b5344fc
-X-MS-Exchange-CrossTenant-AuthSource: BL3PR11MB6410.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?rNLadgg0Xd36u8m41VIDwZ0oWQ82yDSgnVHN2TH6KTTqBug6gNTgT2/hksWA?=
+ =?us-ascii?Q?fOkRsXSQMl/mgI9OE5F53Zwvz3dDwPvHysHKhvK8niAZgTQ4OCJEGj0gpMu8?=
+ =?us-ascii?Q?UhUOLWJ2Lfw4exRnvKBikiHjmSl7fjQcUZY6OwshdZ03ZXFXzbjWKyUWUJsP?=
+ =?us-ascii?Q?F526TuOkV0QEa5lp7HRF+ZnYJEot73lByz2LecG5/+1dGlzeW/u5Bl9hWFkc?=
+ =?us-ascii?Q?BaGUNl1DOmfRyvW2vs+9nVAExtGtPtiGr8R1N3LP9xW3jxLclftH5oYyOZOL?=
+ =?us-ascii?Q?rFFiaUDjeuNkixqemgEiK0hsc72FnDtAWLEVwcWfd2h87ABWNR7caT/TgCEB?=
+ =?us-ascii?Q?8nCUetLoRoz/dTW/nuNKItnItBajfIFr0Y5kYFM5fVNe+IEZJXYdhV6EdITv?=
+ =?us-ascii?Q?aOhInz/tH+L7BDdi2SoJv76G++uoN05tgCbxJfq1TyR1dzYwd5KGz74/5hrD?=
+ =?us-ascii?Q?X/9zLkeA6kRQzE3ZpTpQlHF83T8VH6JOyvy95jvhz1G0IjtskLwmKtI+vNCl?=
+ =?us-ascii?Q?Jx1Ksiz24utM0iQ+KGWvVeTs8k48JJa7Ro2lCqwJRv2cGkW5H7s91M1Ufbt9?=
+ =?us-ascii?Q?89uezvtKd/xmqgoAEJNc8f+lrRdcA+HAFy0tJOag1/HqXVXXnuTqKlGyKnpH?=
+ =?us-ascii?Q?YUlENOVcnpff1RKVS67x1IdHPCcKfi40BD8vP/ffWCeSJtnqCYpMVZfV8F5I?=
+ =?us-ascii?Q?CQUMlaQrJLMPzkezM53TyswguAaLjn8NJeJ35jhGpyVmY4LSs8lqS+MjHruT?=
+ =?us-ascii?Q?qivHCzIx0xIWdPlfpVOETQHiFXXesDBLIeQh7vvVu4dshKENryijgt3KjbUh?=
+ =?us-ascii?Q?FvLNTHqlrqiio2xd6KDBCOiY7IDeI1UO8Z+CXLP4gKH2upKzfEPDfTZ3OYq+?=
+ =?us-ascii?Q?AeSTNEdUZrAfo2k4SOccF6yyR8MpipF7prVupR2tmsGWMplKSu2DrHuhgGBM?=
+ =?us-ascii?Q?eEX145bKqE/FKwEVl+hduzkX+Vj9f9abKYthEMrD6483abDENh4yN32xQmD1?=
+ =?us-ascii?Q?H9FwRuKLVgdt4fDSdxNu/BC7zDgf+hswZXpmNGY1A3rlI/CZTucL7raiKPE8?=
+ =?us-ascii?Q?OewD8SHDiW24PrGhgDu6x5Kg0MWOOJ1qShilrvvl+FF2RC3ZhJDJotVldU/j?=
+ =?us-ascii?Q?Da7eq3BgT+cCFvpTDc7eHLZreScwTW6k88d8cgheGkGOriPF4RkTIiIcoAW4?=
+ =?us-ascii?Q?c25TVhRoPV8BQfy/0KsCdxzK12ky8+eSCt0M3vgUwqRlL+dnae6y+qaJOw2p?=
+ =?us-ascii?Q?RrvQKJcKze2qD/kzHSsfTsE9N17pdQopkTvLXsm6OomtbjS3HUBfnqVvdVPb?=
+ =?us-ascii?Q?iGan2q+L+FrawDeGOKnh+wp55BOZqNml3dqONwlgSf7g1Xbohm816aj3+QiL?=
+ =?us-ascii?Q?vmta/Sw/RLwL3M9Dp7doyOxje2EiiTd6ADLdZLUU7ZucbEQvvwPlgfFZIBqC?=
+ =?us-ascii?Q?pKtWmrLBmpOhfxuaMNDWx34rRSbnRaIJgOZ/enciJPhELnkcebXF72pw6RwH?=
+ =?us-ascii?Q?1l7n6RN8lnQ9u5JyZzZ0Tt7rLwjLcQaK1BMkkfr3ZMaVIF2apEJXD7vpsk6T?=
+ =?us-ascii?Q?rqcl6mBO87tGLGt5h+FFWSFm8ELA0b611fYbsuPlgWKPXApEaraf9teUjFja?=
+ =?us-ascii?Q?Ew=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 29cf38de-ad96-472d-eabd-08de1b564c1d
+X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Nov 2025 03:35:58.9416 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Nov 2025 03:57:39.3598 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: pi9iSZ0vIMTIRk+DHrfVJxj5e256XsztuulyLH5HOnKXbXXHWVmo2XKwlGMff1e3gj0nzoRe9x1X16ejtWH4uDRSzf3xW5PB1omF4ibH587jdvLNABwTAwt+x8+ohdOV
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB7969
+X-MS-Exchange-CrossTenant-UserPrincipalName: nUl0xwefo/V/EC622AD4OraGEMzWzDEiNJ8D2hnzQGuA8NC2f80aHsxq3kntQoOABQALCHokLkYbVCWqQ1zQBJ8Lcf6rOb8dCa4W5zZDd5U=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR11MB6342
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -178,375 +177,23 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Sat, Nov 01, 2025 at 05:39:10PM -0700, Matthew Brost wrote:
->On Fri, Oct 31, 2025 at 11:29:29AM -0700, Niranjana Vishwanathapura wrote:
->> As all queues of a multi queue group use the primary queue of the group
->> to interface with GuC. Hence there is a dependency between the queues of
->> the group. So, when primary queue of a multi queue group is cleaned up,
->> also trigger a cleanup of the secondary queues. During cleanup, stop and
->> re-start submission for all queues of a multi queue group to avoid any
->> submission happening in parallel when a queue is being cleaned up.
->>
->> Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
->> ---
->>  drivers/gpu/drm/xe/xe_exec_queue.c       |   2 +
->>  drivers/gpu/drm/xe/xe_exec_queue_types.h |   4 +
->>  drivers/gpu/drm/xe/xe_guc_submit.c       | 150 +++++++++++++++++++----
->>  3 files changed, 134 insertions(+), 22 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
->> index 98f8f1c7f13b..3c1bb4f10fd5 100644
->> --- a/drivers/gpu/drm/xe/xe_exec_queue.c
->> +++ b/drivers/gpu/drm/xe/xe_exec_queue.c
->> @@ -85,6 +85,7 @@ static void xe_exec_queue_group_cleanup(struct xe_exec_queue *q)
->>
->>  	xa_destroy(&group->xa);
->>  	mutex_destroy(&group->lock);
->> +	mutex_destroy(&group->list_lock);
+On Fri, Oct 31, 2025 at 09:54:10AM -0700, Matthew Brost wrote:
+>Stub out the new page fault layer and add kernel documentation. This is
+>intended as a replacement for the GT page fault layer, enabling multiple
+>producers to hook into a shared page fault consumer interface.
 >
->You init this lock in eariler patch but destroy it in this. Can we get
->the init/destroy/instanaition in a single patch?
+>v2:
+> - Fix kernel doc typo (checkpatch)
+> - Remove comment around GT (Stuart)
+> - Add explaination around reclaim (Francois)
+> - Add comment around u8 vs enum (Francois)
+> - Include engine instance (Stuart)
+>v3:
+> - Fix XE_PAGEFAULT_TYPE_ATOMIC_ACCESS_VIOLATION kernel doc (Stuart)
 >
+>Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 
-Ok, will fix.
 
->>  	xe_bo_unpin_map_no_vm(group->cgp_bo);
->>  	kfree(group);
->>  }
->> @@ -605,6 +606,7 @@ static int xe_exec_queue_group_init(struct xe_device *xe, struct xe_exec_queue *
->>
->>  	group->primary = q;
->>  	group->cgp_bo = bo;
->> +	INIT_LIST_HEAD(&group->list);
->>  	xa_init_flags(&group->xa, XA_FLAGS_ALLOC1);
->>  	mutex_init(&group->lock);
->>  	mutex_init(&group->list_lock);
->
->group->list_lock is taken in the submission backend, which is entirely
->in the path reclain. Can we teach lockdep this lock is in the path of
->reclaim?
->
->e.g.,
->
->fs_reclaim_acquire(GFP_KERNEL);
->might_lock(&group->list_lock);
->fs_reclaim_release(GFP_KERNEL);
->
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 
-Ok, will add.
-
->> diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
->> index dcb55b069ed8..e64b6588923e 100644
->> --- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
->> +++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
->> @@ -51,6 +51,8 @@ struct xe_exec_queue_group {
->>  	struct xe_bo *cgp_bo;
->>  	/** @xa: xarray to store LRCs */
->>  	struct xarray xa;
->> +	/** @list: List of all secondary queues in the group */
->> +	struct list_head list;
->>  	/** @list_lock: Secondary queue list lock */
->>  	struct mutex list_lock;
->>  	/** @sync_pending: CGP_SYNC_DONE g2h response pending */
->> @@ -140,6 +142,8 @@ struct xe_exec_queue {
->>  	struct {
->>  		/** @multi_queue.group: Queue group information */
->>  		struct xe_exec_queue_group *group;
->> +		/** @multi_queue.link: Link into group's secondary queues list */
->> +		struct list_head link;
->>  		/** @multi_queue.priority: Queue priority within the multi-queue group */
->>  		enum xe_multi_queue_priority priority;
->>  		/** @multi_queue.pos: Position of queue within the multi-queue group */
->> diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
->> index b84a0be2eefe..87c13feb2cef 100644
->> --- a/drivers/gpu/drm/xe/xe_guc_submit.c
->> +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
->> @@ -920,6 +920,81 @@ static void wq_item_append(struct xe_exec_queue *q)
->>  	parallel_write(xe, map, wq_desc.tail, q->guc->wqi_tail);
->>  }
->>
->> +static void xe_guc_exec_queue_submission_start(struct xe_exec_queue *q)
->> +{
->> +	/*
->> +	 * If the exec queue is part of a multi queue group, then start submission
->> +	 * on all queues of the multi queue group.
->> +	 */
->> +	if (xe_exec_queue_is_multi_queue(q)) {
->> +		struct xe_exec_queue *primary = xe_exec_queue_multi_queue_primary(q);
->> +		struct xe_exec_queue_group *group = q->multi_queue.group;
->> +		struct xe_exec_queue *eq;
->> +
->> +		xe_sched_submission_start(&primary->guc->sched);
->> +
->> +		mutex_lock(&group->list_lock);
->> +		list_for_each_entry(eq, &group->list, multi_queue.link)
->> +			xe_sched_submission_start(&eq->guc->sched);
->> +		mutex_unlock(&group->list_lock);
->> +	} else {
->> +		xe_sched_submission_start(&q->guc->sched);
->> +	}
->> +}
->> +
->> +static void xe_guc_exec_queue_submission_stop(struct xe_exec_queue *q)
->> +{
->> +	/*
->> +	 * If the exec queue is part of a multi queue group, then stop submission
->> +	 * on all queues of the multi queue group.
->> +	 */
->> +	if (xe_exec_queue_is_multi_queue(q)) {
->> +		struct xe_exec_queue *primary = xe_exec_queue_multi_queue_primary(q);
->> +		struct xe_exec_queue_group *group = q->multi_queue.group;
->> +		struct xe_exec_queue *eq;
->> +
->> +		xe_sched_submission_stop(&primary->guc->sched);
->> +
->> +		mutex_lock(&group->list_lock);
->> +		list_for_each_entry(eq, &group->list, multi_queue.link)
->> +			xe_sched_submission_stop(&eq->guc->sched);
->> +		mutex_unlock(&group->list_lock);
->> +	} else {
->> +		xe_sched_submission_stop(&q->guc->sched);
->> +	}
->> +}
->> +
->> +static void xe_guc_exec_queue_trigger_cleanup(struct xe_exec_queue *q)
->> +{
->> +	struct xe_guc *guc = exec_queue_to_guc(q);
->> +	struct xe_device *xe = guc_to_xe(guc);
->> +
->> +	/** to wakeup xe_wait_user_fence ioctl if exec queue is reset */
->> +	wake_up_all(&xe->ufence_wq);
->> +
->> +	if (xe_exec_queue_is_lr(q))
->> +		queue_work(guc_to_gt(guc)->ordered_wq, &q->guc->lr_tdr);
->> +	else
->> +		xe_sched_tdr_queue_imm(&q->guc->sched);
->> +}
->> +
->> +static void xe_guc_exec_queue_trigger_secondary_cleanup(struct xe_exec_queue *q)
->> +{
->> +	struct xe_exec_queue *primary = xe_exec_queue_multi_queue_primary(q);
->> +	struct xe_exec_queue_group *group = q->multi_queue.group;
->> +	struct xe_exec_queue *eq;
->> +
->> +	mutex_lock(&group->list_lock);
->> +	list_for_each_entry(eq, &group->list, multi_queue.link) {
->> +		if (exec_queue_reset(primary))
->
->Do we need to propagate banned or killed?
->
-
-As the guc interface is only with the primary queue, I am only
-propagating the reset here which gets set in the g2h error handlers.
-The drm scheduler interface is on all queues. So, I am not propagating
-others.
-
->Also happens if secondary queue is reset or a job times out? Does that
->affect any of the other LRCs in the group?
->
-
-As the guc interface is only with primary, it can only reset the primary.
-Timeout on the secondaries should not affect the other queues.
-
->> +			set_exec_queue_reset(eq);
->> +
->> +		if (!exec_queue_banned(eq))
->> +			xe_guc_exec_queue_trigger_cleanup(eq);
->> +	}
->> +	mutex_unlock(&group->list_lock);
->> +}
->> +
->>  #define RESUME_PENDING	~0x0ull
->>  static void submit_exec_queue(struct xe_exec_queue *q, struct xe_sched_job *job)
->>  {
->> @@ -1098,20 +1173,6 @@ static void disable_scheduling_deregister(struct xe_guc *guc,
->>  			       G2H_LEN_DW_DEREGISTER_CONTEXT, 2);
->>  }
->>
->> -static void xe_guc_exec_queue_trigger_cleanup(struct xe_exec_queue *q)
->> -{
->> -	struct xe_guc *guc = exec_queue_to_guc(q);
->> -	struct xe_device *xe = guc_to_xe(guc);
->> -
->> -	/** to wakeup xe_wait_user_fence ioctl if exec queue is reset */
->> -	wake_up_all(&xe->ufence_wq);
->> -
->> -	if (xe_exec_queue_is_lr(q))
->> -		queue_work(guc_to_gt(guc)->ordered_wq, &q->guc->lr_tdr);
->> -	else
->> -		xe_sched_tdr_queue_imm(&q->guc->sched);
->> -}
->> -
->>  /**
->>   * xe_guc_submit_wedge() - Wedge GuC submission
->>   * @guc: the GuC object
->> @@ -1185,8 +1246,12 @@ static void xe_guc_exec_queue_lr_cleanup(struct work_struct *w)
->>  	if (!exec_queue_killed(q))
->>  		wedged = guc_submit_hint_wedged(exec_queue_to_guc(q));
->>
->> -	/* Kill the run_job / process_msg entry points */
->> -	xe_sched_submission_stop(sched);
->> +	/*
->> +	 * Kill the run_job / process_msg entry points.
->> +	 * As this function is serialized across exec queues, it is safe to
->> +	 * stop and restart submission on all queues of a multi queue group.
->> +	 */
->> +	xe_guc_exec_queue_submission_stop(q);
->>
->>  	/*
->>  	 * Engine state now mostly stable, disable scheduling / deregister if
->> @@ -1222,7 +1287,7 @@ static void xe_guc_exec_queue_lr_cleanup(struct work_struct *w)
->>  				   q->guc->id);
->>  			xe_devcoredump(q, NULL, "Schedule disable failed to respond, guc_id=%d\n",
->>  				       q->guc->id);
->> -			xe_sched_submission_start(sched);
->> +			xe_guc_exec_queue_submission_start(q);
->>  			xe_gt_reset_async(q->gt);
->>  			return;
->>  		}
->> @@ -1233,7 +1298,11 @@ static void xe_guc_exec_queue_lr_cleanup(struct work_struct *w)
->>
->>  	xe_hw_fence_irq_stop(q->fence_irq);
->>
->> -	xe_sched_submission_start(sched);
->> +	xe_guc_exec_queue_submission_start(q);
->> +
->> +	/* Trigger cleanup of secondary queues of multi queue group */
->> +	if (xe_exec_queue_is_multi_queue_primary(q))
->> +		xe_guc_exec_queue_trigger_secondary_cleanup(q);
->>
->>  	spin_lock(&sched->base.job_list_lock);
->>  	list_for_each_entry(job, &sched->base.pending_list, drm.list)
->> @@ -1392,8 +1461,12 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
->>  	    vf_recovery(guc))
->>  		return DRM_GPU_SCHED_STAT_NO_HANG;
->>
->> -	/* Kill the run_job entry point */
->> -	xe_sched_submission_stop(sched);
->> +	/*
->> +	 * Kill the run_job entry point.
->> +	 * As this function is serialized across exec queues, it is safe to
->> +	 * stop and restart submission on all queues of a multi queue group.
->> +	 */
->> +	xe_guc_exec_queue_submission_stop(q);
->>
->
->I'd know where to stick this comment, but disable_scheduling() looks
->like a pure software things for secondary queues. We currently need the
->LRC to not be running to accurately sample the timestamp - I think we
->could fix that part, Umesh would likely know for sure. But until then
->I'm pretty sure we'd need to disable scheduling on primary for an
->accurate sample of the secondaries queue's LRC timestamp.
->
-
-Hmm...not sure about LRC timestamping. Timestamping is done during TDR,
-right? Looks like it should be fine for all cases except secondary job
-timeouts. It is not trivial to disable scheduling of primary in the
-TDR handling of secondary. It would be good if we don't have to do it.
-Let me check with Umesh.
-
->>  	/* Must check all state after stopping scheduler */
->>  	skip_timeout_check = exec_queue_reset(q) ||
->> @@ -1552,7 +1625,7 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
->>  	 * fences that are complete
->>  	 */
->>  	xe_sched_add_pending_job(sched, job);
->> -	xe_sched_submission_start(sched);
->> +	xe_guc_exec_queue_submission_start(q);
->>
->>  	xe_guc_exec_queue_trigger_cleanup(q);
->>
->> @@ -1565,6 +1638,10 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
->>  	/* Start fence signaling */
->>  	xe_hw_fence_irq_start(q->fence_irq);
->>
->> +	/* Trigger cleanup of secondary queues of multi queue group */
->> +	if (xe_exec_queue_is_multi_queue_primary(q))
->> +		xe_guc_exec_queue_trigger_secondary_cleanup(q);
->> +
->
->I'd stick this part by xe_guc_exec_queue_trigger_cleanup above.
->
-
-I don't think that works. I had tried that before, but ran into issues.
-I don't quite remember the issue exactly, but it is some kind of race
-where secondary cleanup triggering before or during the primary is
-TDR being run. So, it seemed much safer and cleaner to trigger
-secondary cleanups after the primary cleanup is done.
-
->>  	return DRM_GPU_SCHED_STAT_RESET;
->>
->>  sched_enable:
->> @@ -1576,7 +1653,11 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
->>  	 * but there is not currently an easy way to do in DRM scheduler. With
->>  	 * some thought, do this in a follow up.
->>  	 */
->> -	xe_sched_submission_start(sched);
->> +	xe_guc_exec_queue_submission_start(q);
->> +
->> +	/* Trigger cleanup of secondary queues of multi queue group */
->> +	if (xe_exec_queue_is_multi_queue_primary(q))
->> +		xe_guc_exec_queue_trigger_secondary_cleanup(q);
->
->I don't think you need to trigger a cleanup here - this is no hang
->situation, rather a false timeout.
->
-
-Ok, will remove.
-
-Niranjana
-
->Matt
->
->>  handle_vf_resume:
->>  	return DRM_GPU_SCHED_STAT_NO_HANG;
->>  }
->> @@ -1607,6 +1688,14 @@ static void __guc_exec_queue_destroy_async(struct work_struct *w)
->>  	xe_pm_runtime_get(guc_to_xe(guc));
->>  	trace_xe_exec_queue_destroy(q);
->>
->> +	if (xe_exec_queue_is_multi_queue_secondary(q)) {
->> +		struct xe_exec_queue_group *group = q->multi_queue.group;
->> +
->> +		mutex_lock(&group->list_lock);
->> +		list_del(&q->multi_queue.link);
->> +		mutex_unlock(&group->list_lock);
->> +	}
->> +
->>  	if (xe_exec_queue_is_lr(q))
->>  		cancel_work_sync(&ge->lr_tdr);
->>  	/* Confirm no work left behind accessing device structures */
->> @@ -1897,6 +1986,19 @@ static int guc_exec_queue_init(struct xe_exec_queue *q)
->>
->>  	xe_exec_queue_assign_name(q, q->guc->id);
->>
->> +	/*
->> +	 * Maintain secondary queues of the multi queue group in a list
->> +	 * for handling dependencies across the queues in the group.
->> +	 */
->> +	if (xe_exec_queue_is_multi_queue_secondary(q)) {
->> +		struct xe_exec_queue_group *group = q->multi_queue.group;
->> +
->> +		INIT_LIST_HEAD(&q->multi_queue.link);
->> +		mutex_lock(&group->list_lock);
->> +		list_add_tail(&q->multi_queue.link, &group->list);
->> +		mutex_unlock(&group->list_lock);
->> +	}
->> +
->>  	trace_xe_exec_queue_create(q);
->>
->>  	return 0;
->> @@ -2125,6 +2227,10 @@ static void guc_exec_queue_resume(struct xe_exec_queue *q)
->>
->>  static bool guc_exec_queue_reset_status(struct xe_exec_queue *q)
->>  {
->> +	if (xe_exec_queue_is_multi_queue_secondary(q) &&
->> +	    guc_exec_queue_reset_status(xe_exec_queue_multi_queue_primary(q)))
->> +		return true;
->> +
->>  	return exec_queue_reset(q) || exec_queue_killed_or_banned_or_wedged(q);
->>  }
->>
->> --
->> 2.43.0
->>
+Lucas De Marchi
