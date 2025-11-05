@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E5C18CCFA1C
-	for <intel-xe@archiver.kernel.org>; Wed,  5 Nov 2025 14:08:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3B1DFCCFA1D
+	for <intel-xe@archiver.kernel.org>; Wed,  5 Nov 2025 14:08:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 68CAE10E76B;
+	by gabe.freedesktop.org (Postfix) with ESMTP id DD68010E76E;
 	Wed,  5 Nov 2025 14:08:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="THA9yqQ4";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="a6k24bm0";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B58E510E767;
- Wed,  5 Nov 2025 14:08:50 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9A9B510E764;
+ Wed,  5 Nov 2025 14:08:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1762351730; x=1793887730;
+ t=1762351729; x=1793887729;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=e1pL9Kbzc5PqTFgauTPyAtabQu1G8/e+oRiKyV6X0TE=;
- b=THA9yqQ42+m+ONCZe1Kfy+g1eJW9ELkiGgeK0+RqiD/aEwJ50FtyKilN
- nAoszt4zBvYdwBWE/Xh7VRtszjmNXHaUX2w+DaHmJuFIxzCISRMhlxPOA
- Lx7zFJYAJU5cdPnyiQ3dMGmGpsE0vk19oxAes4sPFmYriCFDo2urGTBtE
- dXI+DuZ1NfZ8xgpnTeO1I5sts8luTpQH+PV4FDa083JCjUSNW5YBIbZgN
- JMwPzW0Mbt6mF2J3ZCr+kIF2wzwTYCSCzmbxkMGVWQ803T90I/XoYFjwC
- gLuFAwFgLvJyTq9FYfF3V1WH/CdgYgax/5ChYIYtACp0HnPaNdzpDp9jH w==;
-X-CSE-ConnectionGUID: FO/fWvFQRwuE11QAEvuttA==
-X-CSE-MsgGUID: 5/3Z58BmS3+Dri0eIR2Qpg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11603"; a="64348428"
-X-IronPort-AV: E=Sophos;i="6.19,282,1754982000"; d="scan'208";a="64348428"
+ bh=Ay9a4Omhs1aEHMVqh3JLRxFoRk+IRnyVmJ51blEX+BM=;
+ b=a6k24bm0Bb7hEEWgYsP2v/HPltFEzqNEIsQWcW2OEUpQP9SHLwypNtha
+ MXK7uxVaRx/+CcL4cj6lxCUxUvq6dIRHi1UW4zdgMVqHIewpRGkY9sl57
+ avxM+XMRKSewj4bgcl0wcEzZ1jSLEqufDF6cnfb76SGgddWCSWcpHJow1
+ psahuZ+o8nLKm+kEwoKKsYinKUJgks1LiIrEQIWppiWqL9rQ7j6JhaeCt
+ goyNISrskZnQOM4PDxoTcVOnPJ0C0LeHaKdY0cv8edT6abDbQ9xQylnLU
+ KWT2TrU8K2jlfYXguzv0d8ASsuY4mNRJMseqWNA+ysMHRCc7kICCEErDf A==;
+X-CSE-ConnectionGUID: 9m+Lq1QqTTiCRGBlQz/8Cw==
+X-CSE-MsgGUID: YsaRo7RASZyVodqRmdNftA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11603"; a="64348417"
+X-IronPort-AV: E=Sophos;i="6.19,282,1754982000"; d="scan'208";a="64348417"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Nov 2025 06:08:31 -0800
-X-CSE-ConnectionGUID: C+f+GsdZRZ2F+hSnuGT5Cg==
-X-CSE-MsgGUID: C2Dyzz6ERqmeJJiaEH7/Kg==
+ 05 Nov 2025 06:08:26 -0800
+X-CSE-ConnectionGUID: +n4fbBvaTYW7Lg7t73UInQ==
+X-CSE-MsgGUID: JragKNsqQPmXUN3ZpCHnkA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,282,1754982000"; d="scan'208";a="191563006"
+X-IronPort-AV: E=Sophos;i="6.19,282,1754982000"; d="scan'208";a="191562990"
 Received: from rfrazer-mobl3.amr.corp.intel.com (HELO gjsousa-mobl2.intel.com)
  ([10.124.221.150])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Nov 2025 06:08:29 -0800
+ 05 Nov 2025 06:08:25 -0800
 From: Gustavo Sousa <gustavo.sousa@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
 Cc: gustavo.sousa@intel.com
-Subject: [CI 14/17] drm/i915/wm: don't use method1 in Xe3p_LPD onwards
-Date: Wed,  5 Nov 2025 11:07:03 -0300
-Message-ID: <20251105140651.71713-33-gustavo.sousa@intel.com>
+Subject: [CI 11/17] drm/i915/xe3p_lpd: Extend Wa_16025573575
+Date: Wed,  5 Nov 2025 11:07:00 -0300
+Message-ID: <20251105140651.71713-30-gustavo.sousa@intel.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20251105140651.71713-19-gustavo.sousa@intel.com>
 References: <20251105140651.71713-19-gustavo.sousa@intel.com>
@@ -68,33 +68,30 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Luca Coelho <luciano.coelho@intel.com>
+Wa_16025573575 also applies to Xe3p_LPD, so let's include it in the IP
+version checks.
 
-Starting from display version 35, we don't need to use method1 to
-calculate the watermark values anymore, so skip it.
-
-Bspec: 68985
-Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
 Reviewed-by: Shekhar Chauhan <shekhar.chauhan@intel.com>
-Link: https://patch.msgid.link/20251103-xe3p_lpd-basic-enabling-v3-14-00e87b510ae7@intel.com
+Link: https://patch.msgid.link/20251103-xe3p_lpd-basic-enabling-v3-11-00e87b510ae7@intel.com
 Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
 ---
- drivers/gpu/drm/i915/display/skl_watermark.c | 2 ++
- 1 file changed, 2 insertions(+)
+ drivers/gpu/drm/i915/display/intel_display_wa.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
-index 6d050408618c..c888b0896d89 100644
---- a/drivers/gpu/drm/i915/display/skl_watermark.c
-+++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-@@ -1812,6 +1812,8 @@ static void skl_compute_plane_wm(const struct intel_crtc_state *crtc_state,
+diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.c b/drivers/gpu/drm/i915/display/intel_display_wa.c
+index c528aaa679ca..e38e5e87877c 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_wa.c
++++ b/drivers/gpu/drm/i915/display/intel_display_wa.c
+@@ -49,7 +49,8 @@ void intel_display_wa_apply(struct intel_display *display)
+  */
+ static bool intel_display_needs_wa_16025573575(struct intel_display *display)
+ {
+-	return DISPLAY_VERx100(display) == 3000 || DISPLAY_VERx100(display) == 3002;
++	return DISPLAY_VERx100(display) == 3000 || DISPLAY_VERx100(display) == 3002 ||
++		DISPLAY_VERx100(display) == 3500;
+ }
  
- 	if (wp->y_tiled) {
- 		selected_result = max_fixed16(method2, wp->y_tile_minimum);
-+	} else if (DISPLAY_VER(display) >= 35) {
-+		selected_result = method2;
- 	} else {
- 		if ((wp->cpp * crtc_state->hw.pipe_mode.crtc_htotal /
- 		     wp->dbuf_block_size < 1) &&
+ /*
 -- 
 2.51.0
 
