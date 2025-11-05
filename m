@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6FFC4CCF9F8
-	for <intel-xe@archiver.kernel.org>; Wed,  5 Nov 2025 12:56:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 42B32CCFA0D
+	for <intel-xe@archiver.kernel.org>; Wed,  5 Nov 2025 13:01:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2A3F810E74C;
-	Wed,  5 Nov 2025 12:56:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0112B10E73D;
+	Wed,  5 Nov 2025 13:01:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cn5CO5RM";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KByZ6mHX";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 35EEB10E73D
- for <intel-xe@lists.freedesktop.org>; Wed,  5 Nov 2025 12:56:36 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D458510E738
+ for <intel-xe@lists.freedesktop.org>; Wed,  5 Nov 2025 13:01:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1762347396; x=1793883396;
+ t=1762347676; x=1793883676;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=oXtgix2v6ZzjfHHb1F0uF0INRYMImFqVMqMQWBsWuWQ=;
- b=cn5CO5RMtyIdTWfEJYg3Bv/SFw0iKw8Xoezkmst7CKRSKxGMMUt5PtmL
- swJkFUcFcE8wiaSRvRF8pyOc3jCMU8afJIIDbpst4M4LLmvkDjiCgmWVZ
- ErOaJx+x9/Vtp0ySkoaJNm/1/7z8XrhxkxBrpDGKgljhVuvQ0XDGL5nXA
- /uCkzAAX4mOlHa5POr3QRL2mQUUMQ2qESbrnlqvtom0j01CZUmeDE2VEx
- s9r6LEseLxtX1AxGhRVrCa0YDOcKTm9cc1RO4lTZHpRpPePmtrFyDZBeC
- c/KNsHGHvX6M3g7aozr1g05mkYLdsYTEkOEBc1zcrrRaxjsPCHbyI+8IL g==;
-X-CSE-ConnectionGUID: m96IF46oTQi3qZDy//Eb1A==
-X-CSE-MsgGUID: CUGcEclPRt2vxW5wfxacOQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11603"; a="82088088"
-X-IronPort-AV: E=Sophos;i="6.19,281,1754982000"; d="scan'208";a="82088088"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Nov 2025 04:56:36 -0800
-X-CSE-ConnectionGUID: W6qjOfJvQEq7CkdeSwfkBQ==
-X-CSE-MsgGUID: IvYYCM9IR6ydvnJhVaFGMw==
+ bh=nhYI46ooStO76hcHMl4AsJqHmY8aAH6CHu7gB/LAPIw=;
+ b=KByZ6mHX05pS1bvY4Gi0s6K+XHiHZBir5bPAtkkP8rqlJAty73BlzuvP
+ Nda1fXR81cWsIWNRkeoEUpM4cUVstoKFeUjXaVOc/jMgyxehAXkx/rnU4
+ oKg16Um5BShTW4zzlpHnV5MCzt1PZsa3jl0Wfkrq9N9tGOIMUJdIJ1DGs
+ EoXEgk3mUGtn1PwTq9rgue3JUpspBDbvcvy9+i3+/3g1ckjSSq7loulqR
+ 1h+ax4JPbQjLPWeOWXdOny/SOy1ReQ79geEMP41PfJ5Rzjb2Sjx34Fwcj
+ 4qTbX2bdXneIg+CchBlSSE/GQB0C33GXy+qnW6Xu92V2YsHoo0n0YI/eu g==;
+X-CSE-ConnectionGUID: tWR8eJLFT7apautwLkSryA==
+X-CSE-MsgGUID: CPF2/vWbRjKD9jWIzOMddA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11603"; a="64375992"
+X-IronPort-AV: E=Sophos;i="6.19,281,1754982000"; d="scan'208";a="64375992"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Nov 2025 05:01:15 -0800
+X-CSE-ConnectionGUID: cv9dzpXmQcC0s2lV9w51vQ==
+X-CSE-MsgGUID: iskQgFUoRjii3q6CgSwHag==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,281,1754982000"; d="scan'208";a="218092370"
+X-IronPort-AV: E=Sophos;i="6.19,281,1754982000"; d="scan'208";a="191739126"
 Received: from mtripa2-mobl.gar.corp.intel.com (HELO
  mwajdecz-hp.clients.intel.com) ([10.94.252.236])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Nov 2025 04:56:34 -0800
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Nov 2025 05:01:13 -0800
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
@@ -49,9 +49,9 @@ Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
  Christoph Manszewski <christoph.manszewski@intel.com>,
  Nareshkumar Gollakoti <naresh.kumar.g@intel.com>,
  Maciej Patelczyk <maciej.patelczyk@intel.com>
-Subject: [PATCH v3] drm/xe/pf: Allow to lockdown the PF using custom guard
-Date: Wed,  5 Nov 2025 13:56:21 +0100
-Message-ID: <20251105125622.562-1-michal.wajdeczko@intel.com>
+Subject: [PATCH v4] drm/xe/pf: Allow to lockdown the PF using custom guard
+Date: Wed,  5 Nov 2025 14:00:54 +0100
+Message-ID: <20251105130105.582-1-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
@@ -94,6 +94,7 @@ v2: https://patchwork.freedesktop.org/series/156795/#rev1
     use less confusing names (Matthew/Christoph)
     allow many components to lockdown the PF (Christoph)
 v3: no atomic_t, just use spinlock (Matthew)
+v4: add missing local change (Michal)
 ---
 Cc: Nareshkumar Gollakoti <naresh.kumar.g@intel.com>
 Cc: Maciej Patelczyk <maciej.patelczyk@intel.com>
@@ -234,7 +235,7 @@ index 000000000000..333f8e13b5a1
 +
 +#endif
 diff --git a/drivers/gpu/drm/xe/xe_pci_sriov.c b/drivers/gpu/drm/xe/xe_pci_sriov.c
-index d0fcde66a774..8d8b291bdfd9 100644
+index d0fcde66a774..9ff69c4843b0 100644
 --- a/drivers/gpu/drm/xe/xe_pci_sriov.c
 +++ b/drivers/gpu/drm/xe/xe_pci_sriov.c
 @@ -94,6 +94,20 @@ static int resize_vf_vram_bar(struct xe_device *xe, int num_vfs)
@@ -244,15 +245,15 @@ index d0fcde66a774..8d8b291bdfd9 100644
 +static int pf_prepare_vfs_enabling(struct xe_device *xe)
 +{
 +	xe_assert(xe, IS_SRIOV_PF(xe));
-+	/* make sure VFs enabling was not locked-down by other components */
-+	return xe_sriov_pf_arm_guard(xe, &xe->sriov.pf.guard_vfs_enabling, true, NULL);
++	/* make sure we are not locked-down by other components */
++	return xe_sriov_pf_arm_guard(xe, &xe->sriov.pf.guard_vfs_enabling, false, NULL);
 +}
 +
 +static void pf_finish_vfs_enabling(struct xe_device *xe)
 +{
 +	xe_assert(xe, IS_SRIOV_PF(xe));
 +	/* allow other components to lockdown VFs enabling */
-+	xe_sriov_pf_disarm_guard(xe, &xe->sriov.pf.guard_vfs_enabling, true, NULL);
++	xe_sriov_pf_disarm_guard(xe, &xe->sriov.pf.guard_vfs_enabling, false, NULL);
 +}
 +
  static int pf_enable_vfs(struct xe_device *xe, int num_vfs)
