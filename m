@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1B7D7CCFA0D
-	for <intel-xe@archiver.kernel.org>; Wed,  5 Nov 2025 14:08:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1B9EACCFA19
+	for <intel-xe@archiver.kernel.org>; Wed,  5 Nov 2025 14:08:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 892F510E76F;
-	Wed,  5 Nov 2025 14:08:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8C2B910E765;
+	Wed,  5 Nov 2025 14:08:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aoVT+gqC";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cKHovDkb";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5BB1E10E768;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 97FE410E766;
  Wed,  5 Nov 2025 14:08:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1762351730; x=1793887730;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=bjJWJUygiFz1F/sa1YUnvsE0AdlVhonZ23jG4RHWPjs=;
- b=aoVT+gqC5SuMdQ5s1OEvuh7OCUlK3XX2dkj+3UkaYuZywEY7lbYjYBM9
- 83tZQhIEAintLn1SjgXk8+nFsXSLL/lKTHVqbnHfc9+//sfjoUAMP408Z
- AtvJTnnTk/6SCK1+DP4gafJTgUs23FK8EEuMFr+6viuNJ4Ed3g0HoSiJr
- WS9eKQsS28/+1F3kh5hKLommHRVERuEk2JHqHv0T+YkcGqNE6s93lFWkv
- ZIjKpjKS8VD0IF2wemiBAFMSSbaxkiDBzhlsp3IEWNsDpSwD0Xo0PP50o
- e9CV+rctMZe1+/JAmYD8eYGozoecWLKCE/HmrDEEqZCy/0xbH4QFwTfuF Q==;
-X-CSE-ConnectionGUID: YBiX2ValRsGPxrBKTbeS3w==
-X-CSE-MsgGUID: 2liQEwHPQuCcoOyiVNzZ2Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11603"; a="64348424"
-X-IronPort-AV: E=Sophos;i="6.19,282,1754982000"; d="scan'208";a="64348424"
+ bh=Thd+ZHp/HXN+JoI0ZKv5+Oyq4gJAqzMQcyV9wJvcJMQ=;
+ b=cKHovDkbF1CD3zq9fnyAdIBzQguZmXIPiozBsnWMTZiC1hNfthIbpiPA
+ YNfsD8ciInXuZGXOy9Omgx+KgY8ovIduvytq0m+MtaZSZMJ1849xbiUJD
+ l7r3ONyjTKP56uAjGrytHddRZYMmu234INk5eRkYjIKsmLIJTbrTSmmy8
+ EY3GIjfAAoFomPjbRyyVgiQ4XbEZYlGaL7y/tSh/DjvERcm7CQR0AlOMC
+ QF6cIvXPSYpEUbRm995h8j9TEAwe8nj3z1kSZwpVegPxKuMpnp5Pj7b70
+ vZ2N9On8Bz9vOlBN4bMr4xFqoqIT9Xz5LBtXPm1F8nzGnEZi9gEgpNfti g==;
+X-CSE-ConnectionGUID: NNuyzRB3SKiMdsvWRcEFCQ==
+X-CSE-MsgGUID: 8JcJkbJMTv+vNr+ExnlViw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11603"; a="64348429"
+X-IronPort-AV: E=Sophos;i="6.19,282,1754982000"; d="scan'208";a="64348429"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Nov 2025 06:08:29 -0800
-X-CSE-ConnectionGUID: 1+Hy7ZiOSsKSWwNBLC8Slw==
-X-CSE-MsgGUID: qjKzCMdDS/yFrP+cLD2yLw==
+ 05 Nov 2025 06:08:32 -0800
+X-CSE-ConnectionGUID: VUEbNKK5RdGMcnIBUBQjGg==
+X-CSE-MsgGUID: ebLBIWzrQG6Fu9ie5/OlbQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,282,1754982000"; d="scan'208";a="191563000"
+X-IronPort-AV: E=Sophos;i="6.19,282,1754982000"; d="scan'208";a="191563017"
 Received: from rfrazer-mobl3.amr.corp.intel.com (HELO gjsousa-mobl2.intel.com)
  ([10.124.221.150])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Nov 2025 06:08:28 -0800
+ 05 Nov 2025 06:08:31 -0800
 From: Gustavo Sousa <gustavo.sousa@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
 Cc: gustavo.sousa@intel.com
-Subject: [CI 13/17] drm/i915/xe3p_lpd: Reload DMC MMIO for pipes C and D
-Date: Wed,  5 Nov 2025 11:07:02 -0300
-Message-ID: <20251105140651.71713-32-gustavo.sousa@intel.com>
+Subject: [CI 15/17] drm/i915/dram: Add field ecc_impacting_de_bw
+Date: Wed,  5 Nov 2025 11:07:04 -0300
+Message-ID: <20251105140651.71713-34-gustavo.sousa@intel.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20251105140651.71713-19-gustavo.sousa@intel.com>
 References: <20251105140651.71713-19-gustavo.sousa@intel.com>
@@ -68,37 +68,104 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Xe3p_LPD has the same behavior as for Xe3_LPD with respect to DMC
-context data for pipes C and D, which are lost when their power wells
-are disabled.  As such, let's extend the condition for Xe3_LPD in
-need_pipedmc_load_mmio() to also catch Xe3p_LPD.
+Starting with Xe3p_LPD, we now have a new field in MEM_SS_INFO_GLOBAL
+that indicates whether the memory has enabled ECC that limits display
+bandwidth.  Add the field ecc_impacting_de_bw to struct dram_info to
+contain that information and set it appropriately when probing for
+memory info.
 
-Bspec: 68851
-Reviewed-by: Matt Atwood <matthew.s.atwood@intel.com>
-Link: https://patch.msgid.link/20251103-xe3p_lpd-basic-enabling-v3-13-00e87b510ae7@intel.com
+Currently there are no instructions in Bspec on how to handle that case,
+so let's throw a warning if we ever find such a scenario.
+
+v2:
+  - s/ecc_impacting_de/ecc_impacting_de_bw/ to be more specific. (Matt
+    Atwood)
+  - Add warning if ecc_impacting_de_bw is true, since we currently do
+    not have instructions on how to handle it. (Matt Roper)
+v3:
+  - Check on ecc_impacting_de_bw for the warning only for Xe3p_LPD and
+    beyond.
+  - Change warning macro from drm_WARN_ON_ONCE() to drm_WARN_ON().
+
+Bspec: 69131
+Cc: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: Matt Atwood <matthew.s.atwood@intel.com>
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+Link: https://patch.msgid.link/20251103-xe3p_lpd-basic-enabling-v3-15-00e87b510ae7@intel.com
 Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dmc.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_bw.c | 9 +++++++++
+ drivers/gpu/drm/i915/i915_reg.h         | 1 +
+ drivers/gpu/drm/i915/soc/intel_dram.c   | 4 ++++
+ drivers/gpu/drm/i915/soc/intel_dram.h   | 1 +
+ 4 files changed, 15 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
-index 1b3a9b5608c0..ca70cc4932df 100644
---- a/drivers/gpu/drm/i915/display/intel_dmc.c
-+++ b/drivers/gpu/drm/i915/display/intel_dmc.c
-@@ -718,11 +718,11 @@ static bool need_pipedmc_load_program(struct intel_display *display)
- static bool need_pipedmc_load_mmio(struct intel_display *display, enum pipe pipe)
- {
- 	/*
--	 * PTL:
-+	 * Xe3_LPD/Xe3p_LPD:
- 	 * - pipe A/B DMC doesn't need save/restore
- 	 * - pipe C/D DMC is in PG0, needs manual save/restore
- 	 */
--	if (DISPLAY_VER(display) == 30)
-+	if (IS_DISPLAY_VER(display, 30, 35))
- 		return pipe >= PIPE_C;
+diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
+index 919b25a5fbac..1f6461be50ef 100644
+--- a/drivers/gpu/drm/i915/display/intel_bw.c
++++ b/drivers/gpu/drm/i915/display/intel_bw.c
+@@ -805,6 +805,15 @@ void intel_bw_init_hw(struct intel_display *display)
+ 	if (!HAS_DISPLAY(display))
+ 		return;
  
- 	/*
++	/*
++	 * Starting with Xe3p_LPD, the hardware tells us whether memory has ECC
++	 * enabled that would impact display bandwidth.  However, so far there
++	 * are no instructions in Bspec on how to handle that case.  Let's
++	 * complain if we ever find such a scenario.
++	 */
++	if (DISPLAY_VER(display) >= 35)
++		drm_WARN_ON(display->drm, dram_info->ecc_impacting_de_bw);
++
+ 	if (DISPLAY_VER(display) >= 30) {
+ 		if (DISPLAY_VERx100(display) == 3002)
+ 			tgl_get_bw_info(display, dram_info, &xe3lpd_3002_sa_info);
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index 354ef75ef6a5..5bf3b4ab2baa 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -1233,6 +1233,7 @@
+ #define   OROM_OFFSET_MASK			REG_GENMASK(20, 16)
+ 
+ #define MTL_MEM_SS_INFO_GLOBAL			_MMIO(0x45700)
++#define   XE3P_ECC_IMPACTING_DE			REG_BIT(12)
+ #define   MTL_N_OF_ENABLED_QGV_POINTS_MASK	REG_GENMASK(11, 8)
+ #define   MTL_N_OF_POPULATED_CH_MASK		REG_GENMASK(7, 4)
+ #define   MTL_DDR_TYPE_MASK			REG_GENMASK(3, 0)
+diff --git a/drivers/gpu/drm/i915/soc/intel_dram.c b/drivers/gpu/drm/i915/soc/intel_dram.c
+index 2e16346a6cc0..3e588762709a 100644
+--- a/drivers/gpu/drm/i915/soc/intel_dram.c
++++ b/drivers/gpu/drm/i915/soc/intel_dram.c
+@@ -686,6 +686,7 @@ static int gen12_get_dram_info(struct drm_i915_private *i915, struct dram_info *
+ 
+ static int xelpdp_get_dram_info(struct drm_i915_private *i915, struct dram_info *dram_info)
+ {
++	struct intel_display *display = i915->display;
+ 	u32 val = intel_uncore_read(&i915->uncore, MTL_MEM_SS_INFO_GLOBAL);
+ 
+ 	switch (REG_FIELD_GET(MTL_DDR_TYPE_MASK, val)) {
+@@ -724,6 +725,9 @@ static int xelpdp_get_dram_info(struct drm_i915_private *i915, struct dram_info
+ 	dram_info->num_qgv_points = REG_FIELD_GET(MTL_N_OF_ENABLED_QGV_POINTS_MASK, val);
+ 	/* PSF GV points not supported in D14+ */
+ 
++	if (DISPLAY_VER(display) >= 35)
++		dram_info->ecc_impacting_de_bw = REG_FIELD_GET(XE3P_ECC_IMPACTING_DE, val);
++
+ 	return 0;
+ }
+ 
+diff --git a/drivers/gpu/drm/i915/soc/intel_dram.h b/drivers/gpu/drm/i915/soc/intel_dram.h
+index 03a973f1c941..8475ee379daa 100644
+--- a/drivers/gpu/drm/i915/soc/intel_dram.h
++++ b/drivers/gpu/drm/i915/soc/intel_dram.h
+@@ -30,6 +30,7 @@ struct dram_info {
+ 	u8 num_channels;
+ 	u8 num_qgv_points;
+ 	u8 num_psf_gv_points;
++	bool ecc_impacting_de_bw; /* Only valid from Xe3p_LPD onward. */
+ 	bool symmetric_memory;
+ 	bool has_16gb_dimms;
+ };
 -- 
 2.51.0
 
