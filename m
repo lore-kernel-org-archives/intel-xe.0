@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 86B54CCFA0D
-	for <intel-xe@archiver.kernel.org>; Wed,  5 Nov 2025 13:38:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 87328CCF9F8
+	for <intel-xe@archiver.kernel.org>; Wed,  5 Nov 2025 13:43:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4B27C10E746;
-	Wed,  5 Nov 2025 13:38:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4B72A10E74F;
+	Wed,  5 Nov 2025 13:43:28 +0000 (UTC)
 Received: from 10055242dc62 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7755910E746;
- Wed,  5 Nov 2025 13:38:23 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============9188954246623982032=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AA75A10E74F;
+ Wed,  5 Nov 2025 13:43:27 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_Plane_Color_Pipeline_suppor?=
- =?utf-8?q?t_for_Intel_platforms_=28rev5=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/pf=3A_Allow_to_loc?=
+ =?utf-8?q?kdown_the_PF_using_custom_guard_=28rev4=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Uma Shankar" <uma.shankar@intel.com>
+To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 05 Nov 2025 13:38:23 -0000
-Message-ID: <176234990348.20785.3791953867852082713@10055242dc62>
+Date: Wed, 05 Nov 2025 13:43:27 -0000
+Message-ID: <176235020769.20673.7444286095195954712@10055242dc62>
 X-Patchwork-Hint: ignore
-References: <20251105123413.2671075-1-uma.shankar@intel.com>
-In-Reply-To: <20251105123413.2671075-1-uma.shankar@intel.com>
+References: <20251105130105.582-1-michal.wajdeczko@intel.com>
+In-Reply-To: <20251105130105.582-1-michal.wajdeczko@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,180 +40,53 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============9188954246623982032==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: Plane Color Pipeline support for Intel platforms (rev5)
-URL   : https://patchwork.freedesktop.org/series/141788/
-State : failure
+Series: drm/xe/pf: Allow to lockdown the PF using custom guard (rev4)
+URL   : https://patchwork.freedesktop.org/series/156795/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-4047-14d34ac35158252e94860f96b92b6778f95df1e0_BAT -> xe-pw-141788v5_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+f867e605613af1770f90c4b0afd4a8f06424d1f0
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit e25cb8a73111a5e7ccd2d1810c7f5f1edbac87f2
+Author: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Date:   Wed Nov 5 14:00:54 2025 +0100
 
-Summary
--------
+    drm/xe/pf: Allow to lockdown the PF using custom guard
+    
+    Some driver components, like eudebug or ccs-mode, can't be used
+    when VFs are enabled.  Add functions to allow those components
+    to block the PF from enabling VFs for the requested duration.
+    
+    Introduce trivial counter to allow lockdown or exclusive access
+    that can be used in the scenarios where we can't follow the strict
+    owner semantics as required by the rw_semaphore implementation.
+    
+    Before enabling VFs, the PF will try to arm the "vfs_enabling"
+    guard for the exclusive access.  This will fail if there are
+    some lockdown requests already initiated by the other components.
+    
+    For testing purposes, add debugfs file which will call these new
+    functions from the file's open/close hooks.
+    
+    Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+    Cc: Matthew Brost <matthew.brost@intel.com>
+    Cc: Christoph Manszewski <christoph.manszewski@intel.com>
++ /mt/dim checkpatch 8043455e28fb7b8089e55e4390547a4c3d7bd4dc drm-intel
+e25cb8a73111 drm/xe/pf: Allow to lockdown the PF using custom guard
+-:26: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#26: 
+new file mode 100644
 
-  **FAILURE**
-
-  Serious unknown changes coming with xe-pw-141788v5_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-141788v5_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-Participating hosts (12 -> 12)
-------------------------------
-
-  No changes in participating hosts
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-141788v5_BAT:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12:
-    - bat-ptl-2:          [PASS][1] -> [ABORT][2] +1 other test abort
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4047-14d34ac35158252e94860f96b92b6778f95df1e0/bat-ptl-2/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141788v5/bat-ptl-2/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12.html
-    - bat-dg2-oem2:       [PASS][3] -> [ABORT][4] +1 other test abort
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4047-14d34ac35158252e94860f96b92b6778f95df1e0/bat-dg2-oem2/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141788v5/bat-dg2-oem2/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12.html
-    - bat-lnl-1:          [PASS][5] -> [ABORT][6] +1 other test abort
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4047-14d34ac35158252e94860f96b92b6778f95df1e0/bat-lnl-1/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141788v5/bat-lnl-1/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12.html
-    - bat-adlp-7:         [PASS][7] -> [ABORT][8] +1 other test abort
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4047-14d34ac35158252e94860f96b92b6778f95df1e0/bat-adlp-7/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12.html
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141788v5/bat-adlp-7/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12.html
-
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-a-hdmi-a-3:
-    - bat-bmg-1:          [PASS][9] -> [ABORT][10] +1 other test abort
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4047-14d34ac35158252e94860f96b92b6778f95df1e0/bat-bmg-1/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-a-hdmi-a-3.html
-   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141788v5/bat-bmg-1/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-a-hdmi-a-3.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in xe-pw-141788v5_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@kms_flip@basic-plain-flip@c-edp1:
-    - bat-adlp-7:         [DMESG-WARN][11] ([Intel XE#4543]) -> [PASS][12] +1 other test pass
-   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4047-14d34ac35158252e94860f96b92b6778f95df1e0/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html
-   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141788v5/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html
-
-  
-  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
+total: 0 errors, 1 warnings, 0 checks, 354 lines checked
 
 
-Build changes
--------------
-
-  * Linux: xe-4047-14d34ac35158252e94860f96b92b6778f95df1e0 -> xe-pw-141788v5
-
-  IGT_8607: 8607
-  xe-4047-14d34ac35158252e94860f96b92b6778f95df1e0: 14d34ac35158252e94860f96b92b6778f95df1e0
-  xe-pw-141788v5: 141788v5
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141788v5/index.html
-
---===============9188954246623982032==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Plane Color Pipeline support for Intel platforms (rev5)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/141788/">https://patchwork.freedesktop.org/series/141788/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141788v5/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141788v5/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4047-14d34ac35158252e94860f96b92b6778f95df1e0_BAT -&gt; xe-pw-141788v5_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-141788v5_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-141788v5_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (12 -&gt; 12)</h2>
-<p>No changes in participating hosts</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-141788v5_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>
-<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12:</p>
-<ul>
-<li>bat-ptl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4047-14d34ac35158252e94860f96b92b6778f95df1e0/bat-ptl-2/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141788v5/bat-ptl-2/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12.html">ABORT</a> +1 other test abort</li>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4047-14d34ac35158252e94860f96b92b6778f95df1e0/bat-dg2-oem2/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141788v5/bat-dg2-oem2/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12.html">ABORT</a> +1 other test abort</li>
-<li>bat-lnl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4047-14d34ac35158252e94860f96b92b6778f95df1e0/bat-lnl-1/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141788v5/bat-lnl-1/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12.html">ABORT</a> +1 other test abort</li>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4047-14d34ac35158252e94860f96b92b6778f95df1e0/bat-adlp-7/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141788v5/bat-adlp-7/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12.html">ABORT</a> +1 other test abort</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-a-hdmi-a-3:</p>
-<ul>
-<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4047-14d34ac35158252e94860f96b92b6778f95df1e0/bat-bmg-1/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-a-hdmi-a-3.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141788v5/bat-bmg-1/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-a-hdmi-a-3.html">ABORT</a> +1 other test abort</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-141788v5_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_flip@basic-plain-flip@c-edp1:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4047-14d34ac35158252e94860f96b92b6778f95df1e0/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141788v5/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4047-14d34ac35158252e94860f96b92b6778f95df1e0 -&gt; xe-pw-141788v5</li>
-</ul>
-<p>IGT_8607: 8607<br />
-  xe-4047-14d34ac35158252e94860f96b92b6778f95df1e0: 14d34ac35158252e94860f96b92b6778f95df1e0<br />
-  xe-pw-141788v5: 141788v5</p>
-
-</body>
-</html>
-
---===============9188954246623982032==--
