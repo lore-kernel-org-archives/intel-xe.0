@@ -4,52 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1E04ECCF9F8
-	for <intel-xe@archiver.kernel.org>; Wed,  5 Nov 2025 14:08:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E5C18CCFA1C
+	for <intel-xe@archiver.kernel.org>; Wed,  5 Nov 2025 14:08:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C4D0C10E76A;
-	Wed,  5 Nov 2025 14:08:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 68CAE10E76B;
+	Wed,  5 Nov 2025 14:08:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YhrKlOBs";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="THA9yqQ4";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 044ED10E766;
- Wed,  5 Nov 2025 14:08:49 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B58E510E767;
+ Wed,  5 Nov 2025 14:08:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1762351730; x=1793887730;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=HpbABsIT+lSGaMaHw3kQTsRRM+ysYJiywA3XrJ3rC/U=;
- b=YhrKlOBs0dBvi8PNodGXFRznpR9RPADE9tw5Df3opKFfHDzjJYfDwGSQ
- eBF9A/ajqmdEh1iUJ+wGDXcoX6o9dFE43uxgJgv8kre/HPKoBcn9bUzYT
- 6OxSCKYA5mh1ylFDwDIDFr4HOamm6OfWb+JD47foszdqb1JMZ1xwMvyDS
- KrUiqH9aiR1FmJ/htm93lOBGpc8B57+VEdEFqhSdsiFcHOhfRo9XXTL6L
- P7qLBdkjifv6qXFQKyxmOV1Lc6UEVYFaa1y8JVWSqboW3x8VDY7QKH91v
- Tt+AejBOy1ENXlWWXeHpcRR2ll+52fEP4E5S4tK7A3HwUjb3Pfvf7ohNB g==;
-X-CSE-ConnectionGUID: ZHVGd9QSTXmPV3dNKku7VA==
-X-CSE-MsgGUID: P3cWx81uTG6UX2zo+jzZMQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11603"; a="64348421"
-X-IronPort-AV: E=Sophos;i="6.19,282,1754982000"; d="scan'208";a="64348421"
+ bh=e1pL9Kbzc5PqTFgauTPyAtabQu1G8/e+oRiKyV6X0TE=;
+ b=THA9yqQ42+m+ONCZe1Kfy+g1eJW9ELkiGgeK0+RqiD/aEwJ50FtyKilN
+ nAoszt4zBvYdwBWE/Xh7VRtszjmNXHaUX2w+DaHmJuFIxzCISRMhlxPOA
+ Lx7zFJYAJU5cdPnyiQ3dMGmGpsE0vk19oxAes4sPFmYriCFDo2urGTBtE
+ dXI+DuZ1NfZ8xgpnTeO1I5sts8luTpQH+PV4FDa083JCjUSNW5YBIbZgN
+ JMwPzW0Mbt6mF2J3ZCr+kIF2wzwTYCSCzmbxkMGVWQ803T90I/XoYFjwC
+ gLuFAwFgLvJyTq9FYfF3V1WH/CdgYgax/5ChYIYtACp0HnPaNdzpDp9jH w==;
+X-CSE-ConnectionGUID: FO/fWvFQRwuE11QAEvuttA==
+X-CSE-MsgGUID: 5/3Z58BmS3+Dri0eIR2Qpg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11603"; a="64348428"
+X-IronPort-AV: E=Sophos;i="6.19,282,1754982000"; d="scan'208";a="64348428"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Nov 2025 06:08:28 -0800
-X-CSE-ConnectionGUID: Y0gQraaXQxKET15Y+bK+dg==
-X-CSE-MsgGUID: L2Mw6UoGSVSo/r3bUC+oWg==
+ 05 Nov 2025 06:08:31 -0800
+X-CSE-ConnectionGUID: C+f+GsdZRZ2F+hSnuGT5Cg==
+X-CSE-MsgGUID: C2Dyzz6ERqmeJJiaEH7/Kg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,282,1754982000"; d="scan'208";a="191562993"
+X-IronPort-AV: E=Sophos;i="6.19,282,1754982000"; d="scan'208";a="191563006"
 Received: from rfrazer-mobl3.amr.corp.intel.com (HELO gjsousa-mobl2.intel.com)
  ([10.124.221.150])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Nov 2025 06:08:26 -0800
+ 05 Nov 2025 06:08:29 -0800
 From: Gustavo Sousa <gustavo.sousa@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
 Cc: gustavo.sousa@intel.com
-Subject: [CI 12/17] drm/i915/xe3p_lpd: Don't allow odd ypan or ysize with
- semiplanar format
-Date: Wed,  5 Nov 2025 11:07:01 -0300
-Message-ID: <20251105140651.71713-31-gustavo.sousa@intel.com>
+Subject: [CI 14/17] drm/i915/wm: don't use method1 in Xe3p_LPD onwards
+Date: Wed,  5 Nov 2025 11:07:03 -0300
+Message-ID: <20251105140651.71713-33-gustavo.sousa@intel.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20251105140651.71713-19-gustavo.sousa@intel.com>
 References: <20251105140651.71713-19-gustavo.sousa@intel.com>
@@ -69,34 +68,33 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Juha-pekka Heikkila <juha-pekka.heikkila@intel.com>
+From: Luca Coelho <luciano.coelho@intel.com>
 
-Disable support for odd panning and size in y direction when running on
-display version 35 and using semiplanar formats.
+Starting from display version 35, we don't need to use method1 to
+calculate the watermark values anymore, so skip it.
 
-Bspec: 68903
-Signed-off-by: Juha-pekka Heikkila <juha-pekka.heikkila@intel.com>
-Reviewed-by: Matt Atwood <matthew.s.atwood@intel.com>
-Link: https://patch.msgid.link/20251103-xe3p_lpd-basic-enabling-v3-12-00e87b510ae7@intel.com
+Bspec: 68985
+Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
+Reviewed-by: Shekhar Chauhan <shekhar.chauhan@intel.com>
+Link: https://patch.msgid.link/20251103-xe3p_lpd-basic-enabling-v3-14-00e87b510ae7@intel.com
 Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_plane.c | 3 +++
- 1 file changed, 3 insertions(+)
+ drivers/gpu/drm/i915/display/skl_watermark.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_plane.c b/drivers/gpu/drm/i915/display/intel_plane.c
-index 505c776c0585..5105e3278bc4 100644
---- a/drivers/gpu/drm/i915/display/intel_plane.c
-+++ b/drivers/gpu/drm/i915/display/intel_plane.c
-@@ -1051,6 +1051,9 @@ int intel_plane_check_src_coordinates(struct intel_plane_state *plane_state)
- 		     DISPLAY_VERx100(display) == 3002) &&
- 		     src_x % 2 != 0)
- 			hsub = 2;
-+
-+		if (DISPLAY_VER(display) == 35)
-+			vsub = 2;
+diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
+index 6d050408618c..c888b0896d89 100644
+--- a/drivers/gpu/drm/i915/display/skl_watermark.c
++++ b/drivers/gpu/drm/i915/display/skl_watermark.c
+@@ -1812,6 +1812,8 @@ static void skl_compute_plane_wm(const struct intel_crtc_state *crtc_state,
+ 
+ 	if (wp->y_tiled) {
+ 		selected_result = max_fixed16(method2, wp->y_tile_minimum);
++	} else if (DISPLAY_VER(display) >= 35) {
++		selected_result = method2;
  	} else {
- 		hsub = fb->format->hsub;
- 		vsub = fb->format->vsub;
+ 		if ((wp->cpp * crtc_state->hw.pipe_mode.crtc_htotal /
+ 		     wp->dbuf_block_size < 1) &&
 -- 
 2.51.0
 
