@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8D158CCF9E3
-	for <intel-xe@archiver.kernel.org>; Wed,  5 Nov 2025 00:14:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CC798CCFA04
+	for <intel-xe@archiver.kernel.org>; Wed,  5 Nov 2025 00:19:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3006E10E083;
-	Wed,  5 Nov 2025 00:14:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 50FB310E083;
+	Wed,  5 Nov 2025 00:19:36 +0000 (UTC)
 Received: from 10055242dc62 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AF9D410E083;
- Wed,  5 Nov 2025 00:14:19 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5976106917078406961=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A1ECB10E083;
+ Wed,  5 Nov 2025 00:19:35 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_drm/xe=3A_Multi_Queue_featu?=
- =?utf-8?q?re_support_=28rev2=29?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe=3A_Allow_compressi?=
+ =?utf-8?q?ble_surfaces_to_be_1-way_coherent?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Niranjana Vishwanathapura" <niranjana.vishwanathapura@intel.com>
+To: "Wang, X" <x.wang@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 05 Nov 2025 00:14:19 -0000
-Message-ID: <176230165967.17802.12741701673081443319@10055242dc62>
+Date: Wed, 05 Nov 2025 00:19:35 -0000
+Message-ID: <176230197565.17530.8240279201743736516@10055242dc62>
 X-Patchwork-Hint: ignore
-References: <20251104185150.246345-1-niranjana.vishwanathapura@intel.com>
-In-Reply-To: <20251104185150.246345-1-niranjana.vishwanathapura@intel.com>
+References: <20251104191705.1433993-1-x.wang@intel.com>
+In-Reply-To: <20251104191705.1433993-1-x.wang@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,206 +40,317 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5976106917078406961==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe: Multi Queue feature support (rev2)
-URL   : https://patchwork.freedesktop.org/series/156865/
-State : failure
+Series: drm/xe: Allow compressible surfaces to be 1-way coherent
+URL   : https://patchwork.freedesktop.org/series/157036/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-4043-5fc5af47c48c461ff910c39f88694b966fcebc5d_BAT -> xe-pw-156865v2_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+f867e605613af1770f90c4b0afd4a8f06424d1f0
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 18bb27341dad4ba6a865d76eb42f608269eb4b05
+Author: Xin Wang <x.wang@intel.com>
+Date:   Tue Nov 4 19:17:05 2025 +0000
 
-Summary
--------
+    drm/xe: Allow compressible surfaces to be 1-way coherent
+    
+    enable EN_CMP_1WCOH when initialising or restarting each GT.
+    
+    add PAT entry 16 describing the compressed+coherent mapping and
+    expose helpers to query compression support.
+    
+    remove the legacy mutual-exclusion assumption between compression
+    and ≥1-way coherency in the PAT macros.
+    
+    reject PAT indices that enable compression for userptr mappings
+    or imported dma-bufs to avoid stale CCS state.
+    
+    Bspec: 71582, 59361, 59399
+    
+    Signed-off-by: Xin Wang <x.wang@intel.com>
++ /mt/dim checkpatch 957ab9ac657700dee50f42438ed79652dad939a0 drm-intel
+18bb27341dad drm/xe: Allow compressible surfaces to be 1-way coherent
+-:139: ERROR:SPACING: space prohibited after that open square bracket '['
+#139: FILE: drivers/gpu/drm/xe/xe_pat.c:149:
++	[ 0] = XE2_PAT( 0, 0, 0, 0, 3, 0 ),
 
-  **FAILURE**
+-:139: ERROR:SPACING: space prohibited after that open parenthesis '('
+#139: FILE: drivers/gpu/drm/xe/xe_pat.c:149:
++	[ 0] = XE2_PAT( 0, 0, 0, 0, 3, 0 ),
 
-  Serious unknown changes coming with xe-pw-156865v2_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-156865v2_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+-:139: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#139: FILE: drivers/gpu/drm/xe/xe_pat.c:149:
++	[ 0] = XE2_PAT( 0, 0, 0, 0, 3, 0 ),
 
-  
+-:140: ERROR:SPACING: space prohibited after that open square bracket '['
+#140: FILE: drivers/gpu/drm/xe/xe_pat.c:150:
++	[ 1] = XE2_PAT( 0, 0, 0, 0, 3, 2 ),
 
-Participating hosts (11 -> 11)
-------------------------------
+-:140: ERROR:SPACING: space prohibited after that open parenthesis '('
+#140: FILE: drivers/gpu/drm/xe/xe_pat.c:150:
++	[ 1] = XE2_PAT( 0, 0, 0, 0, 3, 2 ),
 
-  No changes in participating hosts
+-:140: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#140: FILE: drivers/gpu/drm/xe/xe_pat.c:150:
++	[ 1] = XE2_PAT( 0, 0, 0, 0, 3, 2 ),
 
-Possible new issues
--------------------
+-:141: ERROR:SPACING: space prohibited after that open square bracket '['
+#141: FILE: drivers/gpu/drm/xe/xe_pat.c:151:
++	[ 2] = XE2_PAT( 0, 0, 0, 0, 3, 3 ),
 
-  Here are the unknown changes that may have been introduced in xe-pw-156865v2_BAT:
+-:141: ERROR:SPACING: space prohibited after that open parenthesis '('
+#141: FILE: drivers/gpu/drm/xe/xe_pat.c:151:
++	[ 2] = XE2_PAT( 0, 0, 0, 0, 3, 3 ),
 
-### IGT changes ###
+-:141: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#141: FILE: drivers/gpu/drm/xe/xe_pat.c:151:
++	[ 2] = XE2_PAT( 0, 0, 0, 0, 3, 3 ),
 
-#### Possible regressions ####
+-:142: ERROR:SPACING: space prohibited after that open square bracket '['
+#142: FILE: drivers/gpu/drm/xe/xe_pat.c:152:
++	[ 3] = XE2_PAT( 0, 0, 0, 3, 3, 0 ),
 
-  * igt@xe_exec_queue_property@invalid-property:
-    - bat-ptl-2:          [PASS][1] -> [FAIL][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4043-5fc5af47c48c461ff910c39f88694b966fcebc5d/bat-ptl-2/igt@xe_exec_queue_property@invalid-property.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156865v2/bat-ptl-2/igt@xe_exec_queue_property@invalid-property.html
-    - bat-dg2-oem2:       [PASS][3] -> [FAIL][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4043-5fc5af47c48c461ff910c39f88694b966fcebc5d/bat-dg2-oem2/igt@xe_exec_queue_property@invalid-property.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156865v2/bat-dg2-oem2/igt@xe_exec_queue_property@invalid-property.html
-    - bat-atsm-2:         [PASS][5] -> [FAIL][6]
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4043-5fc5af47c48c461ff910c39f88694b966fcebc5d/bat-atsm-2/igt@xe_exec_queue_property@invalid-property.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156865v2/bat-atsm-2/igt@xe_exec_queue_property@invalid-property.html
-    - bat-adlp-vm:        [PASS][7] -> [FAIL][8]
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4043-5fc5af47c48c461ff910c39f88694b966fcebc5d/bat-adlp-vm/igt@xe_exec_queue_property@invalid-property.html
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156865v2/bat-adlp-vm/igt@xe_exec_queue_property@invalid-property.html
-    - bat-ptl-1:          [PASS][9] -> [FAIL][10]
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4043-5fc5af47c48c461ff910c39f88694b966fcebc5d/bat-ptl-1/igt@xe_exec_queue_property@invalid-property.html
-   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156865v2/bat-ptl-1/igt@xe_exec_queue_property@invalid-property.html
-    - bat-lnl-1:          [PASS][11] -> [FAIL][12]
-   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4043-5fc5af47c48c461ff910c39f88694b966fcebc5d/bat-lnl-1/igt@xe_exec_queue_property@invalid-property.html
-   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156865v2/bat-lnl-1/igt@xe_exec_queue_property@invalid-property.html
-    - bat-bmg-2:          [PASS][13] -> [FAIL][14]
-   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4043-5fc5af47c48c461ff910c39f88694b966fcebc5d/bat-bmg-2/igt@xe_exec_queue_property@invalid-property.html
-   [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156865v2/bat-bmg-2/igt@xe_exec_queue_property@invalid-property.html
-    - bat-adlp-7:         [PASS][15] -> [FAIL][16]
-   [15]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4043-5fc5af47c48c461ff910c39f88694b966fcebc5d/bat-adlp-7/igt@xe_exec_queue_property@invalid-property.html
-   [16]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156865v2/bat-adlp-7/igt@xe_exec_queue_property@invalid-property.html
-    - bat-bmg-1:          [PASS][17] -> [FAIL][18]
-   [17]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4043-5fc5af47c48c461ff910c39f88694b966fcebc5d/bat-bmg-1/igt@xe_exec_queue_property@invalid-property.html
-   [18]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156865v2/bat-bmg-1/igt@xe_exec_queue_property@invalid-property.html
-    - bat-lnl-2:          [PASS][19] -> [FAIL][20]
-   [19]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4043-5fc5af47c48c461ff910c39f88694b966fcebc5d/bat-lnl-2/igt@xe_exec_queue_property@invalid-property.html
-   [20]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156865v2/bat-lnl-2/igt@xe_exec_queue_property@invalid-property.html
+-:142: ERROR:SPACING: space prohibited after that open parenthesis '('
+#142: FILE: drivers/gpu/drm/xe/xe_pat.c:152:
++	[ 3] = XE2_PAT( 0, 0, 0, 3, 3, 0 ),
 
-  
-Known issues
-------------
+-:142: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#142: FILE: drivers/gpu/drm/xe/xe_pat.c:152:
++	[ 3] = XE2_PAT( 0, 0, 0, 3, 3, 0 ),
 
-  Here are the changes found in xe-pw-156865v2_BAT that come from known issues:
+-:143: ERROR:SPACING: space prohibited after that open square bracket '['
+#143: FILE: drivers/gpu/drm/xe/xe_pat.c:153:
++	[ 4] = XE2_PAT( 0, 0, 0, 3, 0, 2 ),
 
-### IGT changes ###
+-:143: ERROR:SPACING: space prohibited after that open parenthesis '('
+#143: FILE: drivers/gpu/drm/xe/xe_pat.c:153:
++	[ 4] = XE2_PAT( 0, 0, 0, 3, 0, 2 ),
 
-#### Issues hit ####
+-:143: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#143: FILE: drivers/gpu/drm/xe/xe_pat.c:153:
++	[ 4] = XE2_PAT( 0, 0, 0, 3, 0, 2 ),
 
-  * igt@kms_flip@basic-flip-vs-modeset:
-    - bat-adlp-7:         [PASS][21] -> [DMESG-WARN][22] ([Intel XE#4543]) +1 other test dmesg-warn
-   [21]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4043-5fc5af47c48c461ff910c39f88694b966fcebc5d/bat-adlp-7/igt@kms_flip@basic-flip-vs-modeset.html
-   [22]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156865v2/bat-adlp-7/igt@kms_flip@basic-flip-vs-modeset.html
+-:144: ERROR:SPACING: space prohibited after that open square bracket '['
+#144: FILE: drivers/gpu/drm/xe/xe_pat.c:154:
++	[ 5] = XE2_PAT( 0, 0, 0, 3, 3, 2 ),
 
-  
-#### Possible fixes ####
+-:144: ERROR:SPACING: space prohibited after that open parenthesis '('
+#144: FILE: drivers/gpu/drm/xe/xe_pat.c:154:
++	[ 5] = XE2_PAT( 0, 0, 0, 3, 3, 2 ),
 
-  * igt@kms_flip@basic-plain-flip@a-edp1:
-    - bat-adlp-7:         [DMESG-WARN][23] ([Intel XE#4543]) -> [PASS][24] +1 other test pass
-   [23]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4043-5fc5af47c48c461ff910c39f88694b966fcebc5d/bat-adlp-7/igt@kms_flip@basic-plain-flip@a-edp1.html
-   [24]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156865v2/bat-adlp-7/igt@kms_flip@basic-plain-flip@a-edp1.html
+-:144: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#144: FILE: drivers/gpu/drm/xe/xe_pat.c:154:
++	[ 5] = XE2_PAT( 0, 0, 0, 3, 3, 2 ),
 
-  
-  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
+-:145: ERROR:SPACING: space prohibited after that open square bracket '['
+#145: FILE: drivers/gpu/drm/xe/xe_pat.c:155:
++	[ 6] = XE2_PAT( 1, 0, 0, 1, 3, 0 ),
+
+-:145: ERROR:SPACING: space prohibited after that open parenthesis '('
+#145: FILE: drivers/gpu/drm/xe/xe_pat.c:155:
++	[ 6] = XE2_PAT( 1, 0, 0, 1, 3, 0 ),
+
+-:145: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#145: FILE: drivers/gpu/drm/xe/xe_pat.c:155:
++	[ 6] = XE2_PAT( 1, 0, 0, 1, 3, 0 ),
+
+-:146: ERROR:SPACING: space prohibited after that open square bracket '['
+#146: FILE: drivers/gpu/drm/xe/xe_pat.c:156:
++	[ 7] = XE2_PAT( 0, 0, 0, 3, 0, 3 ),
+
+-:146: ERROR:SPACING: space prohibited after that open parenthesis '('
+#146: FILE: drivers/gpu/drm/xe/xe_pat.c:156:
++	[ 7] = XE2_PAT( 0, 0, 0, 3, 0, 3 ),
+
+-:146: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#146: FILE: drivers/gpu/drm/xe/xe_pat.c:156:
++	[ 7] = XE2_PAT( 0, 0, 0, 3, 0, 3 ),
+
+-:147: ERROR:SPACING: space prohibited after that open square bracket '['
+#147: FILE: drivers/gpu/drm/xe/xe_pat.c:157:
++	[ 8] = XE2_PAT( 0, 0, 0, 3, 0, 0 ),
+
+-:147: ERROR:SPACING: space prohibited after that open parenthesis '('
+#147: FILE: drivers/gpu/drm/xe/xe_pat.c:157:
++	[ 8] = XE2_PAT( 0, 0, 0, 3, 0, 0 ),
+
+-:147: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#147: FILE: drivers/gpu/drm/xe/xe_pat.c:157:
++	[ 8] = XE2_PAT( 0, 0, 0, 3, 0, 0 ),
+
+-:148: ERROR:SPACING: space prohibited after that open square bracket '['
+#148: FILE: drivers/gpu/drm/xe/xe_pat.c:158:
++	[ 9] = XE2_PAT( 0, 1, 0, 0, 3, 0 ),
+
+-:148: ERROR:SPACING: space prohibited after that open parenthesis '('
+#148: FILE: drivers/gpu/drm/xe/xe_pat.c:158:
++	[ 9] = XE2_PAT( 0, 1, 0, 0, 3, 0 ),
+
+-:148: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#148: FILE: drivers/gpu/drm/xe/xe_pat.c:158:
++	[ 9] = XE2_PAT( 0, 1, 0, 0, 3, 0 ),
+
+-:149: ERROR:SPACING: space prohibited after that open parenthesis '('
+#149: FILE: drivers/gpu/drm/xe/xe_pat.c:159:
++	[10] = XE2_PAT( 0, 1, 0, 3, 0, 0 ),
+
+-:149: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#149: FILE: drivers/gpu/drm/xe/xe_pat.c:159:
++	[10] = XE2_PAT( 0, 1, 0, 3, 0, 0 ),
+
+-:150: ERROR:SPACING: space prohibited after that open parenthesis '('
+#150: FILE: drivers/gpu/drm/xe/xe_pat.c:160:
++	[11] = XE2_PAT( 1, 1, 0, 1, 3, 0 ),
+
+-:150: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#150: FILE: drivers/gpu/drm/xe/xe_pat.c:160:
++	[11] = XE2_PAT( 1, 1, 0, 1, 3, 0 ),
+
+-:151: ERROR:SPACING: space prohibited after that open parenthesis '('
+#151: FILE: drivers/gpu/drm/xe/xe_pat.c:161:
++	[12] = XE2_PAT( 0, 1, 0, 3, 3, 0 ),
+
+-:151: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#151: FILE: drivers/gpu/drm/xe/xe_pat.c:161:
++	[12] = XE2_PAT( 0, 1, 0, 3, 3, 0 ),
+
+-:152: ERROR:SPACING: space prohibited after that open parenthesis '('
+#152: FILE: drivers/gpu/drm/xe/xe_pat.c:162:
++	[13] = XE2_PAT( 0, 0, 0, 0, 0, 0 ),
+
+-:152: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#152: FILE: drivers/gpu/drm/xe/xe_pat.c:162:
++	[13] = XE2_PAT( 0, 0, 0, 0, 0, 0 ),
+
+-:153: ERROR:SPACING: space prohibited after that open parenthesis '('
+#153: FILE: drivers/gpu/drm/xe/xe_pat.c:163:
++	[14] = XE2_PAT( 0, 1, 0, 0, 0, 0 ),
+
+-:153: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#153: FILE: drivers/gpu/drm/xe/xe_pat.c:163:
++	[14] = XE2_PAT( 0, 1, 0, 0, 0, 0 ),
+
+-:154: ERROR:SPACING: space prohibited after that open parenthesis '('
+#154: FILE: drivers/gpu/drm/xe/xe_pat.c:164:
++	[15] = XE2_PAT( 1, 1, 0, 1, 1, 0 ),
+
+-:154: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#154: FILE: drivers/gpu/drm/xe/xe_pat.c:164:
++	[15] = XE2_PAT( 1, 1, 0, 1, 1, 0 ),
+
+-:155: ERROR:SPACING: space prohibited after that open parenthesis '('
+#155: FILE: drivers/gpu/drm/xe/xe_pat.c:165:
++	[16] = XE2_PAT( 0, 1, 0, 0, 3, 2 ),
+
+-:155: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#155: FILE: drivers/gpu/drm/xe/xe_pat.c:165:
++	[16] = XE2_PAT( 0, 1, 0, 0, 3, 2 ),
+
+-:157: ERROR:SPACING: space prohibited after that open parenthesis '('
+#157: FILE: drivers/gpu/drm/xe/xe_pat.c:167:
++	[20] = XE2_PAT( 0, 0, 1, 0, 3, 0 ),
+
+-:157: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#157: FILE: drivers/gpu/drm/xe/xe_pat.c:167:
++	[20] = XE2_PAT( 0, 0, 1, 0, 3, 0 ),
+
+-:158: ERROR:SPACING: space prohibited after that open parenthesis '('
+#158: FILE: drivers/gpu/drm/xe/xe_pat.c:168:
++	[21] = XE2_PAT( 0, 1, 1, 0, 3, 0 ),
+
+-:158: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#158: FILE: drivers/gpu/drm/xe/xe_pat.c:168:
++	[21] = XE2_PAT( 0, 1, 1, 0, 3, 0 ),
+
+-:159: ERROR:SPACING: space prohibited after that open parenthesis '('
+#159: FILE: drivers/gpu/drm/xe/xe_pat.c:169:
++	[22] = XE2_PAT( 0, 0, 1, 0, 3, 2 ),
+
+-:159: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#159: FILE: drivers/gpu/drm/xe/xe_pat.c:169:
++	[22] = XE2_PAT( 0, 0, 1, 0, 3, 2 ),
+
+-:160: ERROR:SPACING: space prohibited after that open parenthesis '('
+#160: FILE: drivers/gpu/drm/xe/xe_pat.c:170:
++	[23] = XE2_PAT( 0, 0, 1, 0, 3, 3 ),
+
+-:160: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#160: FILE: drivers/gpu/drm/xe/xe_pat.c:170:
++	[23] = XE2_PAT( 0, 0, 1, 0, 3, 3 ),
+
+-:161: ERROR:SPACING: space prohibited after that open parenthesis '('
+#161: FILE: drivers/gpu/drm/xe/xe_pat.c:171:
++	[24] = XE2_PAT( 0, 0, 2, 0, 3, 0 ),
+
+-:161: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#161: FILE: drivers/gpu/drm/xe/xe_pat.c:171:
++	[24] = XE2_PAT( 0, 0, 2, 0, 3, 0 ),
+
+-:162: ERROR:SPACING: space prohibited after that open parenthesis '('
+#162: FILE: drivers/gpu/drm/xe/xe_pat.c:172:
++	[25] = XE2_PAT( 0, 1, 2, 0, 3, 0 ),
+
+-:162: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#162: FILE: drivers/gpu/drm/xe/xe_pat.c:172:
++	[25] = XE2_PAT( 0, 1, 2, 0, 3, 0 ),
+
+-:163: ERROR:SPACING: space prohibited after that open parenthesis '('
+#163: FILE: drivers/gpu/drm/xe/xe_pat.c:173:
++	[26] = XE2_PAT( 0, 0, 2, 0, 3, 2 ),
+
+-:163: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#163: FILE: drivers/gpu/drm/xe/xe_pat.c:173:
++	[26] = XE2_PAT( 0, 0, 2, 0, 3, 2 ),
+
+-:164: ERROR:SPACING: space prohibited after that open parenthesis '('
+#164: FILE: drivers/gpu/drm/xe/xe_pat.c:174:
++	[27] = XE2_PAT( 0, 0, 2, 0, 3, 3 ),
+
+-:164: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#164: FILE: drivers/gpu/drm/xe/xe_pat.c:174:
++	[27] = XE2_PAT( 0, 0, 2, 0, 3, 3 ),
+
+-:165: ERROR:SPACING: space prohibited after that open parenthesis '('
+#165: FILE: drivers/gpu/drm/xe/xe_pat.c:175:
++	[28] = XE2_PAT( 0, 0, 3, 0, 3, 0 ),
+
+-:165: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#165: FILE: drivers/gpu/drm/xe/xe_pat.c:175:
++	[28] = XE2_PAT( 0, 0, 3, 0, 3, 0 ),
+
+-:166: ERROR:SPACING: space prohibited after that open parenthesis '('
+#166: FILE: drivers/gpu/drm/xe/xe_pat.c:176:
++	[29] = XE2_PAT( 0, 1, 3, 0, 3, 0 ),
+
+-:166: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#166: FILE: drivers/gpu/drm/xe/xe_pat.c:176:
++	[29] = XE2_PAT( 0, 1, 3, 0, 3, 0 ),
+
+-:167: ERROR:SPACING: space prohibited after that open parenthesis '('
+#167: FILE: drivers/gpu/drm/xe/xe_pat.c:177:
++	[30] = XE2_PAT( 0, 0, 3, 0, 3, 2 ),
+
+-:167: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#167: FILE: drivers/gpu/drm/xe/xe_pat.c:177:
++	[30] = XE2_PAT( 0, 0, 3, 0, 3, 2 ),
+
+-:168: ERROR:SPACING: space prohibited after that open parenthesis '('
+#168: FILE: drivers/gpu/drm/xe/xe_pat.c:178:
++	[31] = XE2_PAT( 0, 0, 3, 0, 3, 3 ),
+
+-:168: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#168: FILE: drivers/gpu/drm/xe/xe_pat.c:178:
++	[31] = XE2_PAT( 0, 0, 3, 0, 3, 3 ),
+
+total: 68 errors, 0 warnings, 0 checks, 208 lines checked
 
 
-Build changes
--------------
-
-  * Linux: xe-4043-5fc5af47c48c461ff910c39f88694b966fcebc5d -> xe-pw-156865v2
-
-  IGT_8607: 8607
-  xe-4043-5fc5af47c48c461ff910c39f88694b966fcebc5d: 5fc5af47c48c461ff910c39f88694b966fcebc5d
-  xe-pw-156865v2: 156865v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156865v2/index.html
-
---===============5976106917078406961==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Multi Queue feature support (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/156865/">https://patchwork.freedesktop.org/series/156865/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156865v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156865v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4043-5fc5af47c48c461ff910c39f88694b966fcebc5d_BAT -&gt; xe-pw-156865v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-156865v2_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-156865v2_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (11 -&gt; 11)</h2>
-<p>No changes in participating hosts</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-156865v2_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@xe_exec_queue_property@invalid-property:<ul>
-<li>bat-ptl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4043-5fc5af47c48c461ff910c39f88694b966fcebc5d/bat-ptl-2/igt@xe_exec_queue_property@invalid-property.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156865v2/bat-ptl-2/igt@xe_exec_queue_property@invalid-property.html">FAIL</a></li>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4043-5fc5af47c48c461ff910c39f88694b966fcebc5d/bat-dg2-oem2/igt@xe_exec_queue_property@invalid-property.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156865v2/bat-dg2-oem2/igt@xe_exec_queue_property@invalid-property.html">FAIL</a></li>
-<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4043-5fc5af47c48c461ff910c39f88694b966fcebc5d/bat-atsm-2/igt@xe_exec_queue_property@invalid-property.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156865v2/bat-atsm-2/igt@xe_exec_queue_property@invalid-property.html">FAIL</a></li>
-<li>bat-adlp-vm:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4043-5fc5af47c48c461ff910c39f88694b966fcebc5d/bat-adlp-vm/igt@xe_exec_queue_property@invalid-property.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156865v2/bat-adlp-vm/igt@xe_exec_queue_property@invalid-property.html">FAIL</a></li>
-<li>bat-ptl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4043-5fc5af47c48c461ff910c39f88694b966fcebc5d/bat-ptl-1/igt@xe_exec_queue_property@invalid-property.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156865v2/bat-ptl-1/igt@xe_exec_queue_property@invalid-property.html">FAIL</a></li>
-<li>bat-lnl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4043-5fc5af47c48c461ff910c39f88694b966fcebc5d/bat-lnl-1/igt@xe_exec_queue_property@invalid-property.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156865v2/bat-lnl-1/igt@xe_exec_queue_property@invalid-property.html">FAIL</a></li>
-<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4043-5fc5af47c48c461ff910c39f88694b966fcebc5d/bat-bmg-2/igt@xe_exec_queue_property@invalid-property.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156865v2/bat-bmg-2/igt@xe_exec_queue_property@invalid-property.html">FAIL</a></li>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4043-5fc5af47c48c461ff910c39f88694b966fcebc5d/bat-adlp-7/igt@xe_exec_queue_property@invalid-property.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156865v2/bat-adlp-7/igt@xe_exec_queue_property@invalid-property.html">FAIL</a></li>
-<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4043-5fc5af47c48c461ff910c39f88694b966fcebc5d/bat-bmg-1/igt@xe_exec_queue_property@invalid-property.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156865v2/bat-bmg-1/igt@xe_exec_queue_property@invalid-property.html">FAIL</a></li>
-<li>bat-lnl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4043-5fc5af47c48c461ff910c39f88694b966fcebc5d/bat-lnl-2/igt@xe_exec_queue_property@invalid-property.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156865v2/bat-lnl-2/igt@xe_exec_queue_property@invalid-property.html">FAIL</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-156865v2_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@kms_flip@basic-flip-vs-modeset:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4043-5fc5af47c48c461ff910c39f88694b966fcebc5d/bat-adlp-7/igt@kms_flip@basic-flip-vs-modeset.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156865v2/bat-adlp-7/igt@kms_flip@basic-flip-vs-modeset.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) +1 other test dmesg-warn</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_flip@basic-plain-flip@a-edp1:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4043-5fc5af47c48c461ff910c39f88694b966fcebc5d/bat-adlp-7/igt@kms_flip@basic-plain-flip@a-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156865v2/bat-adlp-7/igt@kms_flip@basic-plain-flip@a-edp1.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4043-5fc5af47c48c461ff910c39f88694b966fcebc5d -&gt; xe-pw-156865v2</li>
-</ul>
-<p>IGT_8607: 8607<br />
-  xe-4043-5fc5af47c48c461ff910c39f88694b966fcebc5d: 5fc5af47c48c461ff910c39f88694b966fcebc5d<br />
-  xe-pw-156865v2: 156865v2</p>
-
-</body>
-</html>
-
---===============5976106917078406961==--
