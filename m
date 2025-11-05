@@ -4,49 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4AE5DCCFA0D
-	for <intel-xe@archiver.kernel.org>; Wed,  5 Nov 2025 19:04:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4DDE4CCFA0D
+	for <intel-xe@archiver.kernel.org>; Wed,  5 Nov 2025 19:05:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D01D210E79E;
-	Wed,  5 Nov 2025 19:04:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0BD0C10E2FA;
+	Wed,  5 Nov 2025 19:05:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OJzETZTO";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NTNEdx02";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CA96410E384;
- Wed,  5 Nov 2025 19:04:55 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C2A7210E300;
+ Wed,  5 Nov 2025 19:05:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1762369496; x=1793905496;
+ t=1762369504; x=1793905504;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=PyZhm89qPu07KRSDnqSeXYksZnnqFFAoADIxzDVTdsg=;
- b=OJzETZTO+b/iznrAalotLTGKjxFKFULjoslRtpxgOP1ncST871qqPG+t
- xDcP4VJxLud6re+9SPE8TnWG3BBheUWVLkYmMg4oRZZVbynwoH78F7cd4
- ddvY+7v0fv8PoqHIJymgdNxZq1uc9Bc0m0I8xNdW3PlUJE66Zhx9LsA5I
- 9rIC8Fha6iNYWxxNgVBmysPl3Vg0N0NEjMeKnU7fXgpk7G1R0CewUVF2f
- Zb8YkkUOCZfk+NxcnEjLKJWo8kj8+5cpTkYTR19U8ta+g126oiV3hI1zh
- lLyoHfZX21f9Q10MHm3OjTupAICwwAAfIKvvzZe7RRv34YmXjbAo0bFMi w==;
-X-CSE-ConnectionGUID: t+URM/HxRaOplnUlyzjcZQ==
-X-CSE-MsgGUID: XwGnN08wSlGEgkCf+RJrbQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11604"; a="75847960"
-X-IronPort-AV: E=Sophos;i="6.19,282,1754982000"; d="scan'208";a="75847960"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Nov 2025 11:04:56 -0800
-X-CSE-ConnectionGUID: 6m2VOvcgTp20uCQuREShvA==
-X-CSE-MsgGUID: hoeATvysRZCwPVKLsb3hZg==
+ bh=OGXQHHZKGpPLSmkUVIc2SQ6FIN8AyiwjMYIDH91fJQU=;
+ b=NTNEdx02N2Hx8rMcSu1iXfadw/qD3VpHryuQhMs3bMT2XVhLSvPeeTGR
+ NwIkJtXnMOdy49mgKFsFwcNVC6kFYKEG0tBidI8r+mukrl8Ohvv6eT3hi
+ Mg3x1u+YrMQ68xlmFR9FRmolce66OgKs+TsAB85VCqj6+RxtOQqQAolm2
+ 9DUQV3bYWSU+4AQOigsOgHCPe9ZhUENzQwsHgMnKSNUXG9rlhoxeGxpGY
+ 1NRM1beDrTxl2oGNZ0qQzwAJTtMPmOOVwnDy+x6FBJq/a0R35g5NM+mcE
+ jmkP6LrA/oenl1oM1DPn5LAYjPdVgL2GNje4eW9VqYgneAi9SLvuTwk8X Q==;
+X-CSE-ConnectionGUID: XHgpDedoTU2QR3fOaA6tlQ==
+X-CSE-MsgGUID: POlK/1EpR+e2OuzKuvgF5g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="68333848"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="68333848"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Nov 2025 11:05:04 -0800
+X-CSE-ConnectionGUID: 8gTHelgCTtymIibg8u3jag==
+X-CSE-MsgGUID: x8Qbo9xbT46mwq/kJWF3eQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,282,1754982000"; d="scan'208";a="218191034"
+X-IronPort-AV: E=Sophos;i="6.19,282,1754982000"; d="scan'208";a="191901237"
 Received: from rvuia-mobl.ger.corp.intel.com (HELO localhost) ([10.245.244.87])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Nov 2025 11:04:54 -0800
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Nov 2025 11:05:02 -0800
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 5/7] drm/i915/ltphy: Nuke bogus weird timeouts
-Date: Wed,  5 Nov 2025 21:04:31 +0200
-Message-ID: <20251105190433.16434-6-ville.syrjala@linux.intel.com>
+Subject: [PATCH 7/7] drm/i915/pmdemand: Use the default 2 usec fast polling
+ timeout
+Date: Wed,  5 Nov 2025 21:04:33 +0200
+Message-ID: <20251105190433.16434-8-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.49.1
 In-Reply-To: <20251105190433.16434-1-ville.syrjala@linux.intel.com>
 References: <20251105190433.16434-1-ville.syrjala@linux.intel.com>
@@ -70,76 +71,32 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-The LT PHY code is abusing intel_de_wait_custom() in all kinds of weird
-ways. Get rid of the weird slow timeouts. If these are actually needed
-then the fast timeouts should really be specified as the default 2
-microscond or something.
+For whatever unknown reason the pmdemand code is using a custom
+50 usec fast polling timeout instead of the normal 2 usec
+value. Switch to the standard value to get rid of the special
+case.
 
-This will let us eventually nuke intel_de_wait_custom() and convert
-over to poll_timeout_us().
+The eventual aim is to get rid of the fast vs. slow timeout
+entirely and switch over to poll_timeout_us().
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_lt_phy.c      | 11 +++++------
- drivers/gpu/drm/i915/display/intel_lt_phy_regs.h |  1 -
- 2 files changed, 5 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/i915/display/intel_pmdemand.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.c b/drivers/gpu/drm/i915/display/intel_lt_phy.c
-index 6fb68157b322..cc1d6b7a7de4 100644
---- a/drivers/gpu/drm/i915/display/intel_lt_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_lt_phy.c
-@@ -1178,10 +1178,9 @@ intel_lt_phy_lane_reset(struct intel_encoder *encoder,
- 	if (intel_de_wait_custom(display, XELPDP_PORT_CLOCK_CTL(display, port),
- 				 XELPDP_LANE_PCLK_PLL_ACK(0),
- 				 XELPDP_LANE_PCLK_PLL_ACK(0),
--				 XE3PLPD_MACCLK_TURNON_LATENCY_US,
--				 XE3PLPD_MACCLK_TURNON_LATENCY_MS, NULL))
-+				 XE3PLPD_MACCLK_TURNON_LATENCY_US, 0, NULL))
- 		drm_warn(display->drm, "PHY %c PLL MacCLK assertion Ack not done after %dus.\n",
--			 phy_name(phy), XE3PLPD_MACCLK_TURNON_LATENCY_MS * 1000);
-+			 phy_name(phy), XE3PLPD_MACCLK_TURNON_LATENCY_US);
+diff --git a/drivers/gpu/drm/i915/display/intel_pmdemand.c b/drivers/gpu/drm/i915/display/intel_pmdemand.c
+index f52abd4e2eb0..22d8f720ae7d 100644
+--- a/drivers/gpu/drm/i915/display/intel_pmdemand.c
++++ b/drivers/gpu/drm/i915/display/intel_pmdemand.c
+@@ -464,7 +464,7 @@ static void intel_pmdemand_poll(struct intel_display *display)
  
- 	intel_de_rmw(display, XELPDP_PORT_CLOCK_CTL(display, port),
- 		     XELPDP_FORWARD_CLOCK_UNGATE,
-@@ -1192,7 +1191,7 @@ intel_lt_phy_lane_reset(struct intel_encoder *encoder,
+ 	ret = intel_de_wait_custom(display, XELPDP_INITIATE_PMDEMAND_REQUEST(1),
+ 				   XELPDP_PMDEMAND_REQ_ENABLE, 0,
+-				   50, timeout_ms, &status);
++				   2, timeout_ms, &status);
  
- 	if (intel_de_wait_custom(display, XELPDP_PORT_BUF_CTL2(display, port),
- 				 lane_phy_current_status, 0,
--				 XE3PLPD_RESET_END_LATENCY_US, 2, NULL))
-+				 XE3PLPD_RESET_END_LATENCY_US, 0, NULL))
- 		drm_warn(display->drm,
- 			 "PHY %c failed to bring out of Lane reset after %dus.\n",
- 			 phy_name(phy), XE3PLPD_RESET_END_LATENCY_US);
-@@ -1674,7 +1673,7 @@ void intel_lt_phy_pll_enable(struct intel_encoder *encoder,
- 		if (intel_de_wait_custom(display, XELPDP_PORT_CLOCK_CTL(display, port),
- 					 XELPDP_LANE_PCLK_PLL_ACK(0),
- 					 XELPDP_LANE_PCLK_PLL_ACK(0),
--					 XE3PLPD_MACCLK_TURNON_LATENCY_US, 2, NULL))
-+					 XE3PLPD_MACCLK_TURNON_LATENCY_US, 0, NULL))
- 			drm_warn(display->drm, "PHY %c PLL MacCLK Ack assertion Timeout after %dus.\n",
- 				 phy_name(phy), XE3PLPD_MACCLK_TURNON_LATENCY_US);
- 
-@@ -1702,7 +1701,7 @@ void intel_lt_phy_pll_enable(struct intel_encoder *encoder,
- 		/* 16. Poll for PORT_BUF_CTL2 register PHY Pulse Status = 1 for Owned PHY Lanes. */
- 		if (intel_de_wait_custom(display, XELPDP_PORT_BUF_CTL2(display, port),
- 					 lane_phy_pulse_status, lane_phy_pulse_status,
--					 XE3PLPD_RATE_CALIB_DONE_LATENCY_US, 2, NULL))
-+					 XE3PLPD_RATE_CALIB_DONE_LATENCY_US, 0, NULL))
- 			drm_warn(display->drm, "PHY %c PLL rate not changed after %dus.\n",
- 				 phy_name(phy), XE3PLPD_RATE_CALIB_DONE_LATENCY_US);
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy_regs.h b/drivers/gpu/drm/i915/display/intel_lt_phy_regs.h
-index 9223487d764e..36abc2bdbd9b 100644
---- a/drivers/gpu/drm/i915/display/intel_lt_phy_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_lt_phy_regs.h
-@@ -7,7 +7,6 @@
- #define __INTEL_LT_PHY_REGS_H__
- 
- #define XE3PLPD_MSGBUS_TIMEOUT_FAST_US	500
--#define XE3PLPD_MACCLK_TURNON_LATENCY_MS	1
- #define XE3PLPD_MACCLK_TURNON_LATENCY_US	21
- #define XE3PLPD_MACCLK_TURNOFF_LATENCY_US	1
- #define XE3PLPD_RATE_CALIB_DONE_LATENCY_US	50
+ 	if (ret == -ETIMEDOUT)
+ 		drm_err(display->drm,
 -- 
 2.49.1
 
