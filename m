@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 66B54CCFA05
-	for <intel-xe@archiver.kernel.org>; Thu,  6 Nov 2025 13:30:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EF195CCFA05
+	for <intel-xe@archiver.kernel.org>; Thu,  6 Nov 2025 13:30:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2CFB210E8C5;
-	Thu,  6 Nov 2025 13:30:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 871C110E8C7;
+	Thu,  6 Nov 2025 13:30:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hThUstyS";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TeyRzznG";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5D1E510E8C2;
- Thu,  6 Nov 2025 13:30:13 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 87EBE10E8C2;
+ Thu,  6 Nov 2025 13:30:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1762435814; x=1793971814;
+ t=1762435823; x=1793971823;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version:content-transfer-encoding;
  bh=V/tj6NdVefak47P6FAZ9zb/EK2jKBe/0O10R7zTwP7E=;
- b=hThUstySvb2UkBCtXc4HQUQ0V3lB6AZFtuBd3D+/ZN61En7Lkl84e1d/
- +0NovQEmkrUq4HIYWBhXh6bgrMTrLb+MHvjAm1pzOfYy37to423ZHAN98
- V1GWqTJJO+x8MQ9yzVEQGLAeOHmFXhuQ7sqNiudrY4M2kZjvYSDIj221g
- 7KsPsv2URxtMbkoRuDJVgYP/YcqWqtNKKHK28V/aCfdUEXS5LRwdU4LIP
- ZEiS5Lk9XxHHcZSJlIUH5AZjbBgjNejLF8+ndECjfAK4sq5ZXR4g/rwnH
- rCdYKTtPuKCfWMqUivCF5pIZnzy8ZiVG2dJ88OpzH9bM5w9Pc/oLLCfM9 Q==;
-X-CSE-ConnectionGUID: Ocrt3JtgRUqxuvQhgMPuiw==
-X-CSE-MsgGUID: jD9ji7x+QSetkeZ+OnN1RA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11604"; a="64609291"
-X-IronPort-AV: E=Sophos;i="6.19,284,1754982000"; d="scan'208";a="64609291"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Nov 2025 05:30:13 -0800
-X-CSE-ConnectionGUID: YQ4pG1BqT0eXTTquTwDrug==
-X-CSE-MsgGUID: f2kponllQGeoAPoLzrAlvA==
+ b=TeyRzznGyUPCVz55IQL8oEqyVG9ufNnHsewqoCtUQEdiuXO/c56bP+OK
+ QAlaH7C1jSQ8y+ijhPG/joanRlydrSqyUbQGKsr1CPRakch2smppJcOGe
+ zLH9xRTqly6WHbBubn1qvRnjD0Fc4dv0dYNRTvb92HS9CwWFM8nml6bjP
+ NnzkZoNNNgj9tShtst8MH0eDpmrj4Qw46PD0hX19BKYIdv+Zef0fZLnQv
+ NtoTe5SukAnmJtUxiDshje05Nz1tTFff63woMrzJf+oIC101MghgLdGv0
+ aP+FmCj0R2muN+squwKky3VXJGFoA2wVeUkG2efGUNuMCcULqWhdPyuFh w==;
+X-CSE-ConnectionGUID: tTEJJA1pSMCIkaf568aR4A==
+X-CSE-MsgGUID: J/GIXD4DThu/JfSXNJ3aKw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11604"; a="63775526"
+X-IronPort-AV: E=Sophos;i="6.19,284,1754982000"; d="scan'208";a="63775526"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Nov 2025 05:30:22 -0800
+X-CSE-ConnectionGUID: NfHD0fKPQt+6ezj32XfFgw==
+X-CSE-MsgGUID: T9+5l8iISR+8aBLG1+8hmA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,284,1754982000"; d="scan'208";a="187420652"
+X-IronPort-AV: E=Sophos;i="6.19,284,1754982000"; d="scan'208";a="187603050"
 Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
  ([10.245.246.65])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Nov 2025 05:30:11 -0800
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Nov 2025 05:30:21 -0800
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>,
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
@@ -51,8 +51,8 @@ Subject: Re: [PATCH] drm/i915/fbdev: Hold runtime PM ref during fbdev BO
 In-Reply-To: <20251106120313.2670852-1-dibin.moolakadan.subrahmanian@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20251106120313.2670852-1-dibin.moolakadan.subrahmanian@intel.com>
-Date: Thu, 06 Nov 2025 15:30:09 +0200
-Message-ID: <b07289038964a4082bf588602f13abb643ae4672@intel.com>
+Date: Thu, 06 Nov 2025 15:30:18 +0200
+Message-ID: <c08839f894cefc8f5fa801d4254934b8c4dfbdcb@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
