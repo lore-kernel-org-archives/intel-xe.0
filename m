@@ -4,27 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 93F55CCF9F8
-	for <intel-xe@archiver.kernel.org>; Thu,  6 Nov 2025 15:34:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3CF82CCF9F8
+	for <intel-xe@archiver.kernel.org>; Thu,  6 Nov 2025 15:35:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 20AE710E935;
-	Thu,  6 Nov 2025 15:34:46 +0000 (UTC)
-Received: from 10055242dc62 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B5B6E10E935;
- Thu,  6 Nov 2025 15:34:44 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0837313686031036939=="
-MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/rps=3A_call_rps_fu?=
- =?utf-8?q?nctions_through_the_parent_interface?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id C6D6910E938;
+	Thu,  6 Nov 2025 15:35:01 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PJ3tXpqz";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4736510E938;
+ Thu,  6 Nov 2025 15:35:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1762443302; x=1793979302;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=vnvG+V0Ug0jBb69qfjn9Xo/WrCLK2sdrkAanQ4RIYHc=;
+ b=PJ3tXpqzPa6uEhlcGZmnnMRHU5PQuCu3mVQVuG17nSkhr1JWV0QFiQsc
+ uDEOsSCu9+IbuVEW1afmgyRMP4IJqpNfi4R/WsaocHWRV7OeN8hpbChi0
+ ov3B0fiunms+eCPqI0Tgj1AErGrTM8QdVha4RF7P/cnSdAGRlvRz820k1
+ y6Pdj9sV4O2Js2TWM6mcXTWWMPZ3nMiLs8X9zH6Us1pG4qBRkK3Echybc
+ qxrDvLWhK0ndIJ9qIdWihbLzjqYKPnf1X9I6sqx/uxxD8jo51Fcl0Ci3x
+ hjSCJ2Z2+XKEWXv1GorYqoLYhwpWmg2gvIBppEwtLE4NVPAM/fBCGV1F7 w==;
+X-CSE-ConnectionGUID: snEP43LGReePhh4uC0TNuA==
+X-CSE-MsgGUID: 4oyudXpPQU+cub3yAiZ2Iw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11604"; a="64281078"
+X-IronPort-AV: E=Sophos;i="6.19,284,1754982000"; d="scan'208";a="64281078"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Nov 2025 07:35:01 -0800
+X-CSE-ConnectionGUID: QNHJLOfcRESMBiJ+SK+Fmg==
+X-CSE-MsgGUID: Bo1r954oSdCTfrYCpYMl8g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,284,1754982000"; d="scan'208";a="225034090"
+Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.65])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Nov 2025 07:35:00 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 06 Nov 2025 15:34:44 -0000
-Message-ID: <176244328472.24070.515698216675100697@10055242dc62>
-X-Patchwork-Hint: ignore
-References: <cover.1762440096.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1762440096.git.jani.nikula@intel.com>
+Subject: Re: [PATCH v2 03/10] drm/i915/ltphy: Nuke extraneous timeout debugs
+In-Reply-To: <20251106152049.21115-4-ville.syrjala@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20251106152049.21115-1-ville.syrjala@linux.intel.com>
+ <20251106152049.21115-4-ville.syrjala@linux.intel.com>
+Date: Thu, 06 Nov 2025 17:34:56 +0200
+Message-ID: <23b582b1ce7c2f7b70701ed333335f554d031641@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,129 +67,131 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0837313686031036939==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Thu, 06 Nov 2025, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>
+> The actual timeout used isn't particularly interesting, so
+> don't print it. Makes the code simpler.
+>
+> The debugs are also using some random capitalizaton rule.
+> Clean that up a bit while at it.
+>
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
-== Series Details ==
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-Series: drm/i915/rps: call rps functions through the parent interface
-URL   : https://patchwork.freedesktop.org/series/157164/
-State : success
+> ---
+>  drivers/gpu/drm/i915/display/intel_lt_phy.c | 34 ++++++++++-----------
+>  1 file changed, 16 insertions(+), 18 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.c b/drivers/gpu/dr=
+m/i915/display/intel_lt_phy.c
+> index af48d6cde226..8ab632965033 100644
+> --- a/drivers/gpu/drm/i915/display/intel_lt_phy.c
+> +++ b/drivers/gpu/drm/i915/display/intel_lt_phy.c
+> @@ -1180,8 +1180,8 @@ intel_lt_phy_lane_reset(struct intel_encoder *encod=
+er,
+>  				 XELPDP_LANE_PCLK_PLL_ACK(0),
+>  				 XE3PLPD_MACCLK_TURNON_LATENCY_US,
+>  				 XE3PLPD_MACCLK_TURNON_LATENCY_MS, NULL))
+> -		drm_warn(display->drm, "PHY %c PLL MacCLK assertion Ack not done after=
+ %dus.\n",
+> -			 phy_name(phy), XE3PLPD_MACCLK_TURNON_LATENCY_MS * 1000);
+> +		drm_warn(display->drm, "PHY %c PLL MacCLK assertion ack not done\n",
+> +			 phy_name(phy));
+>=20=20
+>  	intel_de_rmw(display, XELPDP_PORT_CLOCK_CTL(display, port),
+>  		     XELPDP_FORWARD_CLOCK_UNGATE,
+> @@ -1193,15 +1193,14 @@ intel_lt_phy_lane_reset(struct intel_encoder *enc=
+oder,
+>  	if (intel_de_wait_custom(display, XELPDP_PORT_BUF_CTL2(display, port),
+>  				 lane_phy_current_status, 0,
+>  				 XE3PLPD_RESET_END_LATENCY_US, 2, NULL))
+> -		drm_warn(display->drm,
+> -			 "PHY %c failed to bring out of Lane reset after %dus.\n",
+> -			 phy_name(phy), XE3PLPD_RESET_END_LATENCY_US);
+> +		drm_warn(display->drm, "PHY %c failed to bring out of lane reset\n",
+> +			 phy_name(phy));
+>=20=20
+>  	if (intel_de_wait_custom(display, XELPDP_PORT_BUF_CTL2(display, port),
+>  				 lane_phy_pulse_status, lane_phy_pulse_status,
+>  				 XE3PLPD_RATE_CALIB_DONE_LATENCY_US, 0, NULL))
+> -		drm_warn(display->drm, "PHY %c PLL rate not changed after %dus.\n",
+> -			 phy_name(phy), XE3PLPD_RATE_CALIB_DONE_LATENCY_US);
+> +		drm_warn(display->drm, "PHY %c PLL rate not changed\n",
+> +			 phy_name(phy));
+>=20=20
+>  	intel_de_rmw(display, XELPDP_PORT_BUF_CTL2(display, port), lane_phy_pul=
+se_status, 0);
+>  }
+> @@ -1654,8 +1653,8 @@ void intel_lt_phy_pll_enable(struct intel_encoder *=
+encoder,
+>  		if (intel_de_wait_custom(display, XELPDP_PORT_CLOCK_CTL(display, port),
+>  					 XELPDP_LANE_PCLK_PLL_ACK(0), 0,
+>  					 XE3PLPD_MACCLK_TURNOFF_LATENCY_US, 0, NULL))
+> -			drm_warn(display->drm, "PHY %c PLL MacCLK Ack deassertion Timeout aft=
+er %dus.\n",
+> -				 phy_name(phy), XE3PLPD_MACCLK_TURNOFF_LATENCY_US);
+> +			drm_warn(display->drm, "PHY %c PLL MacCLK ack deassertion timeout\n",
+> +				 phy_name(phy));
+>=20=20
+>  		/*
+>  		 * 9. Follow the Display Voltage Frequency Switching - Sequence Before=
+ Frequency
+> @@ -1675,8 +1674,8 @@ void intel_lt_phy_pll_enable(struct intel_encoder *=
+encoder,
+>  					 XELPDP_LANE_PCLK_PLL_ACK(0),
+>  					 XELPDP_LANE_PCLK_PLL_ACK(0),
+>  					 XE3PLPD_MACCLK_TURNON_LATENCY_US, 2, NULL))
+> -			drm_warn(display->drm, "PHY %c PLL MacCLK Ack assertion Timeout after=
+ %dus.\n",
+> -				 phy_name(phy), XE3PLPD_MACCLK_TURNON_LATENCY_US);
+> +			drm_warn(display->drm, "PHY %c PLL MacCLK ack assertion timeout\n",
+> +				 phy_name(phy));
+>=20=20
+>  		/*
+>  		 * 13. Ungate the forward clock by setting
+> @@ -1703,8 +1702,8 @@ void intel_lt_phy_pll_enable(struct intel_encoder *=
+encoder,
+>  		if (intel_de_wait_custom(display, XELPDP_PORT_BUF_CTL2(display, port),
+>  					 lane_phy_pulse_status, lane_phy_pulse_status,
+>  					 XE3PLPD_RATE_CALIB_DONE_LATENCY_US, 2, NULL))
+> -			drm_warn(display->drm, "PHY %c PLL rate not changed after %dus.\n",
+> -				 phy_name(phy), XE3PLPD_RATE_CALIB_DONE_LATENCY_US);
+> +			drm_warn(display->drm, "PHY %c PLL rate not changed\n",
+> +				 phy_name(phy));
+>=20=20
+>  		/* 17. SW clears PORT_BUF_CTL2 [PHY Pulse Status]. */
+>  		intel_de_rmw(display, XELPDP_PORT_BUF_CTL2(display, port),
+> @@ -1762,9 +1761,8 @@ void intel_lt_phy_pll_disable(struct intel_encoder =
+*encoder)
+>  				 lane_phy_current_status,
+>  				 lane_phy_current_status,
+>  				 XE3PLPD_RESET_START_LATENCY_US, 0, NULL))
+> -		drm_warn(display->drm,
+> -			 "PHY %c failed to reset Lane after %dms.\n",
+> -			 phy_name(phy), XE3PLPD_RESET_START_LATENCY_US);
+> +		drm_warn(display->drm, "PHY %c failed to reset lane\n",
+> +			 phy_name(phy));
+>=20=20
+>  	/* 4. Clear for PHY pulse status on owned PHY lanes. */
+>  	intel_de_rmw(display, XELPDP_PORT_BUF_CTL2(display, port),
+> @@ -1786,8 +1784,8 @@ void intel_lt_phy_pll_disable(struct intel_encoder =
+*encoder)
+>  	if (intel_de_wait_custom(display, XELPDP_PORT_CLOCK_CTL(display, port),
+>  				 XELPDP_LANE_PCLK_PLL_ACK(0), 0,
+>  				 XE3PLPD_MACCLK_TURNOFF_LATENCY_US, 0, NULL))
+> -		drm_warn(display->drm, "PHY %c PLL MacCLK Ack deassertion Timeout afte=
+r %dus.\n",
+> -			 phy_name(phy), XE3PLPD_MACCLK_TURNOFF_LATENCY_US);
+> +		drm_warn(display->drm, "PHY %c PLL MacCLK ack deassertion timeout\n",
+> +			 phy_name(phy));
+>=20=20
+>  	/*
+>  	 *  9. Follow the Display Voltage Frequency Switching -
 
-== Summary ==
-
-CI Bug Log - changes from xe-4058-6aa8d62a50c33f091548cc961a713223d488d6ad_BAT -> xe-pw-157164v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (13 -> 13)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-157164v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_waitfence@abstime:
-    - bat-dg2-oem2:       [PASS][1] -> [TIMEOUT][2] ([Intel XE#6506])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4058-6aa8d62a50c33f091548cc961a713223d488d6ad/bat-dg2-oem2/igt@xe_waitfence@abstime.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157164v1/bat-dg2-oem2/igt@xe_waitfence@abstime.html
-
-  
-  [Intel XE#6506]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506
-
-
-Build changes
--------------
-
-  * IGT: IGT_8612 -> IGT_8613
-  * Linux: xe-4058-6aa8d62a50c33f091548cc961a713223d488d6ad -> xe-pw-157164v1
-
-  IGT_8612: 8612
-  IGT_8613: b542242f5b116e3b554b4068ef5dfa4451075b2b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-4058-6aa8d62a50c33f091548cc961a713223d488d6ad: 6aa8d62a50c33f091548cc961a713223d488d6ad
-  xe-pw-157164v1: 157164v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157164v1/index.html
-
---===============0837313686031036939==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/rps: call rps functions through the parent interface</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/157164/">https://patchwork.freedesktop.org/series/157164/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157164v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157164v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4058-6aa8d62a50c33f091548cc961a713223d488d6ad_BAT -&gt; xe-pw-157164v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-157164v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@xe_waitfence@abstime:<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4058-6aa8d62a50c33f091548cc961a713223d488d6ad/bat-dg2-oem2/igt@xe_waitfence@abstime.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157164v1/bat-dg2-oem2/igt@xe_waitfence@abstime.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506">Intel XE#6506</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8612 -&gt; IGT_8613</li>
-<li>Linux: xe-4058-6aa8d62a50c33f091548cc961a713223d488d6ad -&gt; xe-pw-157164v1</li>
-</ul>
-<p>IGT_8612: 8612<br />
-  IGT_8613: b542242f5b116e3b554b4068ef5dfa4451075b2b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-4058-6aa8d62a50c33f091548cc961a713223d488d6ad: 6aa8d62a50c33f091548cc961a713223d488d6ad<br />
-  xe-pw-157164v1: 157164v1</p>
-
-</body>
-</html>
-
---===============0837313686031036939==--
+--=20
+Jani Nikula, Intel
