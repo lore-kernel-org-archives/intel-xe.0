@@ -4,61 +4,183 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2A349CCFA05
-	for <intel-xe@archiver.kernel.org>; Thu,  6 Nov 2025 13:48:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F08B2CCFA03
+	for <intel-xe@archiver.kernel.org>; Thu,  6 Nov 2025 14:25:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B05A510E8E0;
-	Thu,  6 Nov 2025 13:48:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 754CA10E0D4;
+	Thu,  6 Nov 2025 14:25:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ioETNOl/";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ftv+4N/Q";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E92FA10E8DE;
- Thu,  6 Nov 2025 13:48:29 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B0D3610E0D4
+ for <intel-xe@lists.freedesktop.org>; Thu,  6 Nov 2025 14:25:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1762436910; x=1793972910;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=TArgaQJUQJjuRkyMa2YA7ERY4Ol4KgN1eBMuQcPSy+w=;
- b=ioETNOl/YTgxXfhWfhsMCWZVPgZlxoJDzjmHZE/m38FiOl/f41puM38m
- EeJj1GeIUqZfzhYsTY9TinmWM6qFn3iPUKXLS9lvrsty6DcPys07QkHMp
- idIafasEBf11vZ3Dm7KsnGux2D9XAzIxOzAFVArCoZi/6zpUo/b+HbJ1t
- Yne7+K7Qvifm6h33fGi2oKPsro4d2C/UprqXR84TE3QD6x4COcbJZQhKa
- YHGTz1O7JdiBCDvG8X9xz7OZVPKWruWChK2RLgCcUZCpBIguHb1f3q4ht
- LR+2TiKueLO4PpJ5pqHyTd57pvHVAoAmqCGcqnR/c9bJnJHPmnRx7kZHK w==;
-X-CSE-ConnectionGUID: TOQ3B+lkScibM/aJ6VhOKw==
-X-CSE-MsgGUID: m3/O7+ktRO6ihZVusB1Jjw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11604"; a="81975940"
-X-IronPort-AV: E=Sophos;i="6.19,284,1754982000"; d="scan'208";a="81975940"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Nov 2025 05:48:29 -0800
-X-CSE-ConnectionGUID: LZH9ilwQQrG4bWxqK0ZLeA==
-X-CSE-MsgGUID: 2DfbPwEuRFaQNtNw6vTvRg==
+ t=1762439103; x=1793975103;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=R4pY2UhSW7uXiwjHtzx+7u7obyIFLK5kH1AUCgWDhXQ=;
+ b=Ftv+4N/QwXU2bpKmMsq1pokuyE9ObYa+f4fz1CwAzDftguQwoj5p3r8X
+ hcPzNMlZnELpOouZqfPBURJiET5X+8SJ8C79LZiKumO2/BcQMUd7Jy78u
+ Dqk5cK+ZcCseFUoRHvDz2ek7RibF5H4sR9fUjBzrWtUn4wdThCXurD7rT
+ uD7P+KMOhXhOE5wyCRUxCwpAru4k9ZqLQUN8bfRYJmWf5iIlzQ6aO0fBL
+ 8TLfsZOZJuIa/n5j2eAg1G5XXv0sDHKVfu8sVGFXqWxpuwCpLakKSF/MU
+ kvacz2EaeLb4GNdD2krhLOMHXhyb5hg9PFQKOvi2xgKZ8kBLkSK5y0Ro9 g==;
+X-CSE-ConnectionGUID: rVxxEtzyS2a6xPqGQvSR9Q==
+X-CSE-MsgGUID: x6yHqvw8SqSzy2Gn8U8ZVA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11604"; a="64273110"
+X-IronPort-AV: E=Sophos;i="6.19,284,1754982000"; d="scan'208";a="64273110"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Nov 2025 06:25:03 -0800
+X-CSE-ConnectionGUID: c0oJut45RMGcRWMD8c/x7g==
+X-CSE-MsgGUID: ATTafhgHTNW63ezhPmi62Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,284,1754982000"; d="scan'208";a="188204215"
-Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
- ([10.245.246.65])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Nov 2025 05:48:27 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH v2 09/10] drm/i915/frontbuffer: Fix intel_frontbuffer
- lifetime handling
-In-Reply-To: <694686f8a4bf4af7a7cb1c21859349da9720a44f@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20251016185408.22735-1-ville.syrjala@linux.intel.com>
- <20251016185408.22735-10-ville.syrjala@linux.intel.com>
- <3ff7d1d35b1c71b4fdf55fc3b208c8f84bc0f18f@intel.com>
- <694686f8a4bf4af7a7cb1c21859349da9720a44f@intel.com>
-Date: Thu, 06 Nov 2025 15:48:25 +0200
-Message-ID: <a631d0f6db1903ae198752a38df47f34815f3c44@intel.com>
+X-IronPort-AV: E=Sophos;i="6.19,284,1754982000"; d="scan'208";a="218523159"
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+ by fmviesa001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Nov 2025 06:25:02 -0800
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.27; Thu, 6 Nov 2025 06:25:01 -0800
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.27 via Frontend Transport; Thu, 6 Nov 2025 06:25:01 -0800
+Received: from SA9PR02CU001.outbound.protection.outlook.com (40.93.196.67) by
+ edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.27; Thu, 6 Nov 2025 06:25:01 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=lbBcl/NRHZ3tloEopjFBBcYRJnmfbeLvatteRFgveKHjDNo7gi4UDiFO60Ab/0ZHJs6xEDW0zdiATUkyeUZ2yDkkdctoxAYgr1efbEO9tMfWiii1Y3znBI98Ifoe8rcYt3hBIdyE0l0DDTtvwWyU1/M8/zoEtJxwxo051+ZjIc7q50g/j8+iHdrwXOfcQZ+tMjZ6PAEdXnQ2FH3nBBsyOqe7lad48LSTM2AHG2n17XbHyQrEgJbfq7L9bqiRnHb9KlzapBrsJNA/lqenn2JySswuLTCtVAC4sl2HqQcdQ2uo173//Gp7Bm3YjXNcC3JUgJC4YFw5/YvUEXYndoa9+Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=b5gEcm3ZvwAZ3fj4OsUQp2iaG2Nb6+jEd8oQJl3Bak0=;
+ b=dMvSWJisnbPfNv4Jpdn3TN+jT8NWPaTKIYCeO/tCK/2Kc1h/GG57pA4C6Hr6hkEHo5VwJ1nGZHF0lz+7L3ehYVo6IWAaiEW4Ra478BWqF2kgl7v+//sTC2R32TB5NErqBLlmXQopoDYJqYngByrkiBAVW11r9CaxQ4eOnGfAIF0yxX1xTN/842uWXgiSJ6lYDQIjJTFukkzlurt6CFMEK97yPKnUQ7lKpKXeN7t8bmByGDk6XE+jwVvoaSKeNTDPcLn9yxUAW5ibe7MraeBtcF0T+mRxmzIAlpbWy7g3eWUYZJPX6z00FOO/pZUJOv82NKSqHCV0xr7t0P98IiMtVQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from MN0PR11MB6135.namprd11.prod.outlook.com (2603:10b6:208:3c9::9)
+ by SJ0PR11MB6574.namprd11.prod.outlook.com (2603:10b6:a03:44e::16)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9298.12; Thu, 6 Nov
+ 2025 14:24:58 +0000
+Received: from MN0PR11MB6135.namprd11.prod.outlook.com
+ ([fe80::3225:d4ad:74a:6d7a]) by MN0PR11MB6135.namprd11.prod.outlook.com
+ ([fe80::3225:d4ad:74a:6d7a%4]) with mapi id 15.20.9298.007; Thu, 6 Nov 2025
+ 14:24:58 +0000
+Date: Thu, 6 Nov 2025 15:24:55 +0100
+From: Piotr =?utf-8?Q?Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>
+To: Michal Wajdeczko <michal.wajdeczko@intel.com>
+CC: <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH 1/3] drm/xe/pf: Use migration-friendly context IDs
+ auto-provisioning
+Message-ID: <20251106142455.juyvarn3wqqa43ld@intel.com>
+References: <20251105183253.863-1-michal.wajdeczko@intel.com>
+ <20251105183253.863-2-michal.wajdeczko@intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20251105183253.863-2-michal.wajdeczko@intel.com>
+X-ClientProxiedBy: DU2PR04CA0222.eurprd04.prod.outlook.com
+ (2603:10a6:10:2b1::17) To MN0PR11MB6135.namprd11.prod.outlook.com
+ (2603:10b6:208:3c9::9)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MN0PR11MB6135:EE_|SJ0PR11MB6574:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3cb4dd01-62e6-43f7-39f5-08de1d4043b8
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?cy9WSy80NzZlRGdyNWxJRFpldUhuODlPUFlGck5uZCtXbGpBMXEyOGp2dXd5?=
+ =?utf-8?B?ZC9Zdm5ucDVrb1JIM0hlVUhPVko0TW5hVWR5ZWdYUm9EYzVsOVR4ZGwzS2xm?=
+ =?utf-8?B?Rm0xVmlPcVZOQTM1d0Y5MnVLRUdjem9zUXIzNmNSK3Z2a3JsYkh3MXlCTXJX?=
+ =?utf-8?B?NXVjLzZmWnh6RDRyekorMHlXcTVDWTV6b0lCNitObUFwUnBxSWtib0haOVFu?=
+ =?utf-8?B?QlVVSmllT1NMZEN1R1BZRGp0bEltS3FsKytmOW9BbnQ2RFhTWFZlZXRqc2tS?=
+ =?utf-8?B?WlBoOFVseXh3NmczR0pHdUMzMHh4TXBWK29FOTZRWklJUFpCdUptY0NNTTY5?=
+ =?utf-8?B?aCtEdzFrcmxZd0MxV2w1VkZqYWhRU0o0Y25DZGVXaFYvTzkvbXFlME9NRThX?=
+ =?utf-8?B?S24yY0M4TXdhdWJXNFh1RUd3RVZSbmlINWxzSTZmdGd3NnpET0lKRmhxeEhl?=
+ =?utf-8?B?Z0xGVjNXZEZGS1UyeXZROVFTajNQVU85V0hONFJxazlzMlJhWGtLSjNhcGdJ?=
+ =?utf-8?B?Q0xrdWZtcFF3TlM4MnhLNnNtRCtMR2lCNkRhYU5uME53c0N6MVp1R0p5L1R4?=
+ =?utf-8?B?YTJWRi9lTEs0SUUzcGc2NlBkeXhCR1dQUGJFUFNoUS9lUXRHS1QxM3JNdEZD?=
+ =?utf-8?B?RHA2VUhOK1hLa21QM0dQTmtHV1FXTGtnUUNmWWZsV3BBaGZkZURqMWRWUmRO?=
+ =?utf-8?B?YjJGSmEvVm9wMDhoUlMxdjlBRDA5bnZkTjJWTkMrWlVXZDRoS1V3T3lMOW9R?=
+ =?utf-8?B?aU1UYlhHaS9hb0xKTXFTaXRxbXJGUVRCaTZKWHNFcUFiZ1Q5NkNGQSs4Wjdr?=
+ =?utf-8?B?bVh1L1M0YkV6K0xJb1NjTUpBTU1jbE02bllJTDlna1I1Z29ZeFZ3dE5uRkVa?=
+ =?utf-8?B?cTB1OHZwcEZaZ3BiSW91R01UY29EUGM1MERhY1FuaUVVd2tqQmJYOTlFeUlN?=
+ =?utf-8?B?V0MwelZETTdsRHRFeU00RUJIS2tic2dOQlp3OWorRkFoeE1pZWRVUE1OZU1C?=
+ =?utf-8?B?Z3RZd3dNVWFLeTJrdUZvT1Q1UEZ3RHA2ci9xUXVtZjdKcnkwYWNRZlJFaTZI?=
+ =?utf-8?B?bmpTUEdiSE9zVEtSdUxjeUQ1UzIwc1RZVVpFaWEzNDRkMGRXUm9YR2crYkNV?=
+ =?utf-8?B?QUZxTDE2TjE3RVFHVktoOWNweDdxY1o3ZC9nQ0hiWGtZU3V2Q3VTQ0tWTVZp?=
+ =?utf-8?B?ejRJMFpkUVdNWnEyS2liN1I3ZmtFd1FEZTFFU1VqSEFGNHRIUEhWMGlxMmZh?=
+ =?utf-8?B?R3Yvb2Vta25ma3NCeWNBbVAzczcwc3c2aUZiRDJXMjhubzdnR0xzUXNsRzNJ?=
+ =?utf-8?B?M0JyNnl2cm44VWdqM3pSenFoYW13NEVQNldJRGpUSVd5T0tvTEtVRVNxTGQw?=
+ =?utf-8?B?UG5vajl1SE1sN2U0OUJpSWhFM0VCRENScFVDQUQrWTVRRkRYTjRTNjBrSGdJ?=
+ =?utf-8?B?bVEwY1RHck5veW5tVFVUcXFMdWp2bThyaG9rcWZaRC9Qd0FLMTMyRDJWenBG?=
+ =?utf-8?B?c1Q3b0FiYWRkU0gyVitUYzRSbU9SSVUwQmhsNFJCVzFrczdJcXFaMzBlR0Q3?=
+ =?utf-8?B?YWRTbU82Nzh3RCtWeUFFTnBrL0I5NmJiY1lBckZzelJZVHlZTHI4V2t0cXQ0?=
+ =?utf-8?B?ZzlHeXRZaEoxV3l2SEg4S2NWMFlSbWlXbk8xK1dZY2VLSjVFbERyN1NBdVVK?=
+ =?utf-8?B?Z0ZXYmo4VHJuT2VyNUZpWWJTSzkzTG5ia3FmRkpzcDN2SEFMNXF3V3pIanlZ?=
+ =?utf-8?B?VTFnb0M5NlBvWVg3VGQvSXdWNTVMY1l3bS92MlIxYmxWaUpOQ1J6MjZHVG9P?=
+ =?utf-8?B?bzA2VllmOGZBUm12RmdsSU5iSm92L1h4Y0ZKYWM3emt6UFluc0tYYkE4TUhQ?=
+ =?utf-8?B?N1RXVlVPSjkyWWpma09oNHhRbURzM0JnZVdldWgvLzRJZlRLYTNwTk9BRjFo?=
+ =?utf-8?Q?qhMlYQiVNc6d32EtUDAhoqHCnpIvXrpE?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MN0PR11MB6135.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?YlJDMEhLMnpXOTdHQm1sZG1zQ3pKcDNXS21VZVFZR3E3ZTlIOGVWd2RoaUJ2?=
+ =?utf-8?B?dnc4MWc2MjRSbkJmT2RlUkVCcW9sN1FIM0RiQTMyN2g1b2xxNWJxK1lueTBK?=
+ =?utf-8?B?ZzhWSDY1NW1VaDFRcHdIVk8rb0FrenRVZFFkS0R3alhXTC9LNGM1NTdpOUNS?=
+ =?utf-8?B?Tk9hdGgwSXMyV1BlZzRlbjgrZHlnc0JrWEZkUnhZLzFCTTM4b1QzMVdyamZu?=
+ =?utf-8?B?Q0k3dGtiRzNBUTcyMjNsSTJBdDN0QmQyRWhBRFRaMkZER3daK2lsWnJIRHdO?=
+ =?utf-8?B?Rk55djRwNWhlblBYdk9KQy80V2VjMyt2RVRGdWp1NjBPb09BZVpPbE5ka3Uw?=
+ =?utf-8?B?cGkvRGtZeDc5U3dsaFJJZk9IYVZmZVF5OU9KS1B2aHQ1Z1RVMFozbFBmRDJa?=
+ =?utf-8?B?ODNjQVByWDh0ZVJCdndmUk5JTmpISGlNMDRXT2hveXFuRW5mdDNmamFudFYx?=
+ =?utf-8?B?clRoZjVSNFVnTTQrai9vdTlWeFJIU21Gc1FXWUhkbU9HeXJJWUZsK3RhWG00?=
+ =?utf-8?B?UEFvdmkxMEZTMW5FYW5UdkxaQ3FJcUN6bElSang1OExRQWZFUkd6L01JTFV2?=
+ =?utf-8?B?MjMrZnV1aGxmTURBa1h4Zjh2NW9OTDRQNHdzcGVvS2dyWldjNmw0djdXV2Ns?=
+ =?utf-8?B?ODRNVmZZV3BrSllMeFFBOHN6cjhjYVVYQXlGZmxzYU5Na2R6OU9vMUVJOXBq?=
+ =?utf-8?B?MkdhR3JPRGsrWFNCREc3WGtFOEJVcjNTWTJJUUNXQVpFd2ZRaE10R2tNNUxF?=
+ =?utf-8?B?cW5Tc0xFejQ4ajlXay96RFVhRS9uWGRqU2Z2OXZGV0JvaS9kMnkrdUdGVzA1?=
+ =?utf-8?B?TUE0VVlBZUtSMFdaZTFxNzdVR0IySmlFVFVLQnRSWVZJa2tYQ0pjMzNuSjg0?=
+ =?utf-8?B?VGhZSnFjb1IwQjU4RnJpNmtUS2dEYnFjeDhKTDRnYzVibldocDFqMW5zYmV3?=
+ =?utf-8?B?Sk1pUFpGbWwwZ2tTME9URWc5TWxjMWpLM1RTZVNRakh2bG1rd2lxb3JrNWw2?=
+ =?utf-8?B?RWxqV2QxZWtVTDFqcTdNa3R2ODYvLy9lb3YweDM2Y3FYSmhXQ0YyaFlSYWFS?=
+ =?utf-8?B?OTVtaUJ3dFR6bXB5U1ZuZlU0cnBhbFM0K1BuZnYwREwvZUdmZ3pEVW1ObUtZ?=
+ =?utf-8?B?UFlqTVlmaE1wUXVPSThZQzFTVWJ6MjBIbUVJdjZaY0N3a3p6di9Lc1B0Qlkx?=
+ =?utf-8?B?b0pZcWJLaU1VUFg4ZUVhM0pqeWE2LzBaaXBVM1BYNUZPRE96Qy8zQlFkVURw?=
+ =?utf-8?B?OWNicHQrSWlvTkRrcVM0aVZrTCs4Q1JTMUtIK0wxQUZhVlNTUGp2QTl1blRq?=
+ =?utf-8?B?eWFmOS9rbGFSSGJXOFlZa3RLN1NCNVpSNEQwK3FUYnU5VERRdFBVT2VjUmgv?=
+ =?utf-8?B?RW80MUVUOCtSNEM5STc2RUpPdDZwK3JDbXRlTDYwWnJQTVZ4WmlNbGN0YXRO?=
+ =?utf-8?B?YThQY2Y3S2lUR0JCVGcycitnTGFnOEVTMDlKTU5qeC9TWlFKaUR2ajY0SWY1?=
+ =?utf-8?B?aE9iVnMzSGZudldiZDloWi96RVVUMklIK0phZWFXWXJvajFxUndVY3diSHBV?=
+ =?utf-8?B?RDFTaGorNXFXRFdIVThCMnhibjV6cHVLeG5sK29taXp6K3pVb3VNWVJNc0Nz?=
+ =?utf-8?B?SXdZZWphZ1JZOThrS3hldjRQV1FlR1dYcVczb29QeE15c0xCNjVEOUlBMDgw?=
+ =?utf-8?B?VDZ5TUUvZ0x3bGFLcW5Pczg5d0JMU1lKU1ZEa3RMRklVVGJIeCswdyttNDlh?=
+ =?utf-8?B?NFpXbmNyZGpxVnliYU1nZ0V0bndUd3F4MER4U1AwT1dLeHV5cHNxTXp0aUxZ?=
+ =?utf-8?B?b1VtZ2JqYTFXS3RFemxYWTFsUjBiWXRwNkNJNExTc2thQzJtUWp5Nkg5d0ZQ?=
+ =?utf-8?B?cFJXcERZdk5qT3BtMnpoMjMzelpVSm4vZWJ5a0dqM0g5Rm5iSXhjc1ZlMHRP?=
+ =?utf-8?B?L0JEL2VGY2xVcTNkNFhMd2tGVFNwVm12ZFQvSGNxcjZxb0lMQ1ZzUEtOQXVo?=
+ =?utf-8?B?NzM3YWlydDNJWmxxYVozVXVnVC91NStoNVNoRTNCNTRZSGFOQ0NVYkw2NHV3?=
+ =?utf-8?B?UUFJK3BqQnJFdEJaSlFZRDBzRjBqWG5DYnpCbUhDcWRTOE5sRVBLNGZId0FR?=
+ =?utf-8?B?eXBVVndHT1VuNHlDOVlFZDdVSVNkTVB4aXJvL2QvNnlVRU1DUDdyOVNhNlFo?=
+ =?utf-8?B?WkE9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3cb4dd01-62e6-43f7-39f5-08de1d4043b8
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6135.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Nov 2025 14:24:58.5607 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: brKRsKLIRyaw0aol2lA2isaEpx6WypKiQvqtnZgj/bUcdcWsnvXX7Ow/LiEZ6fQVFLcqcF3VLSXMEPaO+j28/C6j0plB83ihMD3UekHvQbs=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB6574
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,797 +195,102 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 29 Oct 2025, Jani Nikula <jani.nikula@intel.com> wrote:
-> On Wed, 29 Oct 2025, Jani Nikula <jani.nikula@intel.com> wrote:
->> On Thu, 16 Oct 2025, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
->>> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->>>
->>> The current attempted split between xe/i915 vs. display
->>> for intel_frontbuffer is a mess:
->>> - the i915 rcu leaks through the interface to the display side
->>> - the obj->frontbuffer write-side is now protected by a display
->>>   specific spinlock even though the actual obj->framebuffer
->>>   pointer lives in a i915 specific structure
->>> - the kref is getting poked directly from both sides
->>> - i915_active is still on the display side
->>>
->>> Clean up the mess by moving everything about the frontbuffer
->>> lifetime management to the i915/xe side:
->>> - the rcu usage is now completely contained in i915
->>> - frontbuffer_lock is moved into i915
->>> - kref is on the i915/xe side (xe needs the refcount as well
->>>   due to intel_frontbuffer_queue_flush()->intel_frontbuffer_ref())
->>> - the bo (and its refcounting) is no longer on the display side
->>> - i915_active is contained in i915
->>>
->>> I was pondering whether we could do this in some kind of smaller
->>> steps, and perhaps we could, but it would probably have to start
->>> with a bunch of reverts (which for sure won't go cleanly anymore).
->>> So not convinced it's worth the hassle.
->>
->> It's a PITA to review, that's for sure. :p
->>
->> I'm not particularly fond of embedding struct intel_frontbuffer inside
->> struct i915_frontbuffer and struct xe_frontbuffer, because it means i915
->> and xe will need to know the struct intel_frontbuffer definition. If we
->> can't live with the embedding long term, we'll probably need opaque
->> pointers back and forth.
->>
->> That said, I think the overall change here is net positive, and makes
->> life much easier. We don't have to fix everything at once, so let's go
->> with this.
->>
->> I didn't spot any obvious issues, but my confidence level with the
->> review is super low. :(
->>
->> I guess the alternatives are to just go with that, trusting CI, or give
->> me more time to review. I'm fine either way, as I can trust you to step
->> up if it goes crashing down. ;)
->
-> One approach is to send 1-8 first, get CI, get them merged, and then do
-> 9-10 separately, to get separate CI. Maybe? *shrug*
+Michal Wajdeczko <michal.wajdeczko@intel.com> wrote on śro [2025-lis-05 19:32:50 +0100]:
+> Instead of trying very hard to find the largest fair number of GuC
+> context IDs that could be allocated for VFs on the current GT, pick
+> some smaller rounded down to power-of-two value that is more likely
+> to be provisioned in the same manner by the other PF instance:
+> 
+>  num VFs | num contexts
+>  --------+-------------
+>   63..32 | 1024
+>   31..16 | 2048
+>   15..8  | 4096
+>    7..4  | 8192
+>    3..2  | 16384
+>       1  | 32768 (regular PF)
+>       1  | 64512 (admin only PF)
+> 
+> Add also helper function to determine if the PF is admin-only,
+> and for now use .probe_display flag for that.
+> 
+> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+> ---
+>  drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c | 16 ++++++++++++++++
+>  drivers/gpu/drm/xe/xe_sriov_pf_helpers.h   | 11 +++++++++++
+>  2 files changed, 27 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
+> index d90261a7ab7c..14feda215d5b 100644
+> --- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
+> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
+> @@ -985,6 +985,16 @@ int xe_gt_sriov_pf_config_bulk_set_ctxs(struct xe_gt *gt, unsigned int vfid,
+>  					   "GuC context IDs", no_unit, n, err);
+>  }
+>  
+> +static u32 pf_profile_fair_ctxs(struct xe_gt *gt, unsigned int num_vfs)
+> +{
+> +	bool admin_only_pf = xe_sriov_pf_admin_only(gt_to_xe(gt));
+> +
+> +	if (admin_only_pf && num_vfs == 1)
+> +		return ALIGN_DOWN(GUC_ID_MAX, SZ_1K);
+> +
+> +	return rounddown_pow_of_two(GUC_ID_MAX / num_vfs);
+> +}
+> +
+>  static u32 pf_estimate_fair_ctxs(struct xe_gt *gt, unsigned int num_vfs)
+>  {
+>  	struct xe_guc_id_mgr *idm = &gt->uc.guc.submission_state.idm;
+> @@ -1017,6 +1027,7 @@ static u32 pf_estimate_fair_ctxs(struct xe_gt *gt, unsigned int num_vfs)
+>  int xe_gt_sriov_pf_config_set_fair_ctxs(struct xe_gt *gt, unsigned int vfid,
+>  					unsigned int num_vfs)
+>  {
+> +	u32 profile = pf_profile_fair_ctxs(gt, num_vfs);
+>  	u32 fair;
+>  
+>  	xe_gt_assert(gt, vfid);
+> @@ -1029,6 +1040,11 @@ int xe_gt_sriov_pf_config_set_fair_ctxs(struct xe_gt *gt, unsigned int vfid,
+>  	if (!fair)
+>  		return -ENOSPC;
+>  
+> +	fair = min(fair, profile);
+> +	if (fair < profile)
+> +		xe_gt_sriov_info(gt, "Using non-profile provisioning (%s %u vs %u)\n",
+> +				 "GuC context IDs", fair, profile);
+> +
+>  	return xe_gt_sriov_pf_config_bulk_set_ctxs(gt, vfid, num_vfs, fair);
+>  }
+>  
+> diff --git a/drivers/gpu/drm/xe/xe_sriov_pf_helpers.h b/drivers/gpu/drm/xe/xe_sriov_pf_helpers.h
+> index 4a4340fb633a..3ddeba4451cd 100644
+> --- a/drivers/gpu/drm/xe/xe_sriov_pf_helpers.h
+> +++ b/drivers/gpu/drm/xe/xe_sriov_pf_helpers.h
+> @@ -48,6 +48,17 @@ static inline unsigned int xe_sriov_pf_num_vfs(const struct xe_device *xe)
+>  	return pci_num_vf(to_pci_dev(xe->drm.dev));
+>  }
+>  
+> +/**
+> + * xe_sriov_pf_admin_only() - Check if PF is mainly used for VFs administration.
+> + * @xe: the PF &xe_device
+> + *
+> + * Return: True if PF is mainly used for VFs administration.
+> + */
+> +static inline bool xe_sriov_pf_admin_only(const struct xe_device *xe)
+> +{
+> +	return !xe->info.probe_display;
+> +}
 
-Any conclusions on this? Just merge the whole thing as-is rather than
-let it go stale...?
+Honestly, I'm not entirely convinced by this condition for pf_admin_only.
+I wonder if we shouldn't set it up differently, e.g., through a dedicated
+parameter. But for now, I don't think it bothers us too much:
+Reviewed-by: Piotr Piórkowski <piotr.piorkowski@intel.com>
 
-BR,
-Jani.
+> +
+>  static inline struct mutex *xe_sriov_pf_master_mutex(struct xe_device *xe)
+>  {
+>  	xe_assert(xe, IS_SRIOV_PF(xe));
+> -- 
+> 2.47.1
+> 
 
-
->
->>
->> BR,
->> Jani.
->>
->> PS. I think patches 1-2 are fine with the acks alone.
->>
->>>
->>> Acked-by: Jani Nikula <jani.nikula@intel.com>
->>> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->>> ---
->>>  drivers/gpu/drm/i915/Makefile                 |   1 +
->>>  drivers/gpu/drm/i915/display/intel_bo.c       |  34 ++++--
->>>  drivers/gpu/drm/i915/display/intel_bo.h       |   6 +-
->>>  .../gpu/drm/i915/display/intel_display_core.h |   3 -
->>>  .../drm/i915/display/intel_display_driver.c   |   1 -
->>>  .../gpu/drm/i915/display/intel_frontbuffer.c  |  89 ++-------------
->>>  .../gpu/drm/i915/display/intel_frontbuffer.h  |  13 +--
->>>  drivers/gpu/drm/i915/gem/i915_gem_object.c    |  12 +-
->>>  .../i915/gem/i915_gem_object_frontbuffer.c    | 103 ++++++++++++++++++
->>>  .../i915/gem/i915_gem_object_frontbuffer.h    |  48 +++-----
->>>  .../gpu/drm/i915/gem/i915_gem_object_types.h  |   2 +-
->>>  drivers/gpu/drm/i915/i915_drv.h               |   2 +
->>>  drivers/gpu/drm/i915/i915_gem.c               |   2 +
->>>  drivers/gpu/drm/i915/i915_vma.c               |   6 +-
->>>  .../gpu/drm/xe/compat-i915-headers/i915_vma.h |   2 -
->>>  drivers/gpu/drm/xe/display/intel_bo.c         |  52 ++++++++-
->>>  16 files changed, 227 insertions(+), 149 deletions(-)
->>>  create mode 100644 drivers/gpu/drm/i915/gem/i915_gem_object_frontbuffe=
-r.c
->>>
->>> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makef=
-ile
->>> index aa2f0fd95117..717e57205c85 100644
->>> --- a/drivers/gpu/drm/i915/Makefile
->>> +++ b/drivers/gpu/drm/i915/Makefile
->>> @@ -155,6 +155,7 @@ gem-y +=3D \
->>>  	gem/i915_gem_lmem.o \
->>>  	gem/i915_gem_mman.o \
->>>  	gem/i915_gem_object.o \
->>> +	gem/i915_gem_object_frontbuffer.o \
->>>  	gem/i915_gem_pages.o \
->>>  	gem/i915_gem_phys.o \
->>>  	gem/i915_gem_pm.o \
->>> diff --git a/drivers/gpu/drm/i915/display/intel_bo.c b/drivers/gpu/drm/=
-i915/display/intel_bo.c
->>> index 2792aca7bc22..f3687eb63467 100644
->>> --- a/drivers/gpu/drm/i915/display/intel_bo.c
->>> +++ b/drivers/gpu/drm/i915/display/intel_bo.c
->>> @@ -39,20 +39,40 @@ int intel_bo_read_from_page(struct drm_gem_object *=
-obj, u64 offset, void *dst, i
->>>  	return i915_gem_object_read_from_page(to_intel_bo(obj), offset, dst, =
-size);
->>>  }
->>>=20=20
->>> -struct intel_frontbuffer *intel_bo_get_frontbuffer(struct drm_gem_obje=
-ct *obj)
->>> +struct intel_frontbuffer *intel_bo_frontbuffer_get(struct drm_gem_obje=
-ct *_obj)
->>>  {
->>> -	return i915_gem_object_get_frontbuffer(to_intel_bo(obj));
->>> +	struct drm_i915_gem_object *obj =3D to_intel_bo(_obj);
->>> +	struct i915_frontbuffer *front;
->>> +
->>> +	front =3D i915_gem_object_frontbuffer_get(obj);
->>> +	if (!front)
->>> +		return NULL;
->>> +
->>> +	return &front->base;
->>> +}
->>> +
->>> +void intel_bo_frontbuffer_ref(struct intel_frontbuffer *_front)
->>> +{
->>> +	struct i915_frontbuffer *front =3D
->>> +		container_of(_front, typeof(*front), base);
->>> +
->>> +	i915_gem_object_frontbuffer_ref(front);
->>>  }
->>>=20=20
->>> -struct intel_frontbuffer *intel_bo_set_frontbuffer(struct drm_gem_obje=
-ct *obj,
->>> -						   struct intel_frontbuffer *front)
->>> +void intel_bo_frontbuffer_put(struct intel_frontbuffer *_front)
->>>  {
->>> -	return i915_gem_object_set_frontbuffer(to_intel_bo(obj), front);
->>> +	struct i915_frontbuffer *front =3D
->>> +		container_of(_front, typeof(*front), base);
->>> +
->>> +	return i915_gem_object_frontbuffer_put(front);
->>>  }
->>>=20=20
->>> -void intel_bo_frontbuffer_flush_for_display(struct intel_frontbuffer *=
-front)
->>> +void intel_bo_frontbuffer_flush_for_display(struct intel_frontbuffer *=
-_front)
->>>  {
->>> -	i915_gem_object_flush_if_display(to_intel_bo(front->obj));
->>> +	struct i915_frontbuffer *front =3D
->>> +		container_of(_front, typeof(*front), base);
->>> +
->>> +	i915_gem_object_flush_if_display(front->obj);
->>>  }
->>>=20=20
->>>  void intel_bo_describe(struct seq_file *m, struct drm_gem_object *obj)
->>> diff --git a/drivers/gpu/drm/i915/display/intel_bo.h b/drivers/gpu/drm/=
-i915/display/intel_bo.h
->>> index 08247bf36d40..fc05f680dc76 100644
->>> --- a/drivers/gpu/drm/i915/display/intel_bo.h
->>> +++ b/drivers/gpu/drm/i915/display/intel_bo.h
->>> @@ -19,9 +19,9 @@ bool intel_bo_is_protected(struct drm_gem_object *obj=
-);
->>>  int intel_bo_fb_mmap(struct drm_gem_object *obj, struct vm_area_struct=
- *vma);
->>>  int intel_bo_read_from_page(struct drm_gem_object *obj, u64 offset, vo=
-id *dst, int size);
->>>=20=20
->>> -struct intel_frontbuffer *intel_bo_get_frontbuffer(struct drm_gem_obje=
-ct *obj);
->>> -struct intel_frontbuffer *intel_bo_set_frontbuffer(struct drm_gem_obje=
-ct *obj,
->>> -						   struct intel_frontbuffer *front);
->>> +struct intel_frontbuffer *intel_bo_frontbuffer_get(struct drm_gem_obje=
-ct *obj);
->>> +void intel_bo_frontbuffer_ref(struct intel_frontbuffer *front);
->>> +void intel_bo_frontbuffer_put(struct intel_frontbuffer *front);
->>>  void intel_bo_frontbuffer_flush_for_display(struct intel_frontbuffer *=
-front);
->>>=20=20
->>>  void intel_bo_describe(struct seq_file *m, struct drm_gem_object *obj);
->>> diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/driver=
-s/gpu/drm/i915/display/intel_display_core.h
->>> index 13576d07c999..34d578e2cc25 100644
->>> --- a/drivers/gpu/drm/i915/display/intel_display_core.h
->>> +++ b/drivers/gpu/drm/i915/display/intel_display_core.h
->>> @@ -141,9 +141,6 @@ struct intel_dpll_global {
->>>  };
->>>=20=20
->>>  struct intel_frontbuffer_tracking {
->>> -	/* protects obj->frontbuffer (write-side) */
->>> -	spinlock_t frontbuffer_lock;
->>> -
->>>  	/* protects busy_bits */
->>>  	spinlock_t lock;
->>>=20=20
->>> diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/driv=
-ers/gpu/drm/i915/display/intel_display_driver.c
->>> index ac684f8c5d40..f84a0b26b7a6 100644
->>> --- a/drivers/gpu/drm/i915/display/intel_display_driver.c
->>> +++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
->>> @@ -184,7 +184,6 @@ void intel_display_driver_early_probe(struct intel_=
-display *display)
->>>  	if (!HAS_DISPLAY(display))
->>>  		return;
->>>=20=20
->>> -	spin_lock_init(&display->fb_tracking.frontbuffer_lock);
->>>  	spin_lock_init(&display->fb_tracking.lock);
->>>  	mutex_init(&display->backlight.lock);
->>>  	mutex_init(&display->audio.mutex);
->>> diff --git a/drivers/gpu/drm/i915/display/intel_frontbuffer.c b/drivers=
-/gpu/drm/i915/display/intel_frontbuffer.c
->>> index 5d627eac07bd..4761e116e442 100644
->>> --- a/drivers/gpu/drm/i915/display/intel_frontbuffer.c
->>> +++ b/drivers/gpu/drm/i915/display/intel_frontbuffer.c
->>> @@ -57,8 +57,6 @@
->>>=20=20
->>>  #include <drm/drm_gem.h>
->>>=20=20
->>> -#include "i915_active.h"
->>> -#include "i915_vma.h"
->>>  #include "intel_bo.h"
->>>  #include "intel_display_trace.h"
->>>  #include "intel_display_types.h"
->>> @@ -167,7 +165,7 @@ void __intel_fb_flush(struct intel_frontbuffer *fro=
-nt,
->>>=20=20
->>>  static void intel_frontbuffer_ref(struct intel_frontbuffer *front)
->>>  {
->>> -	kref_get(&front->ref);
->>> +	intel_bo_frontbuffer_ref(front);
->>>  }
->>>=20=20
->>>  static void intel_frontbuffer_flush_work(struct work_struct *work)
->>> @@ -196,89 +194,26 @@ void intel_frontbuffer_queue_flush(struct intel_f=
-rontbuffer *front)
->>>  		intel_frontbuffer_put(front);
->>>  }
->>>=20=20
->>> -static int frontbuffer_active(struct i915_active *ref)
->>> +void intel_frontbuffer_init(struct intel_frontbuffer *front, struct dr=
-m_device *drm)
->>>  {
->>> -	struct intel_frontbuffer *front =3D
->>> -		container_of(ref, typeof(*front), write);
->>> -
->>> -	kref_get(&front->ref);
->>> -	return 0;
->>> -}
->>> -
->>> -static void frontbuffer_retire(struct i915_active *ref)
->>> -{
->>> -	struct intel_frontbuffer *front =3D
->>> -		container_of(ref, typeof(*front), write);
->>> -
->>> -	intel_frontbuffer_flush(front, ORIGIN_CS);
->>> -	intel_frontbuffer_put(front);
->>> -}
->>> -
->>> -static void frontbuffer_release(struct kref *ref)
->>> -	__releases(&front->display->fb_tracking.frontbuffer_lock)
->>> -{
->>> -	struct intel_frontbuffer *ret, *front =3D
->>> -		container_of(ref, typeof(*front), ref);
->>> -	struct intel_display *display =3D front->display;
->>> -	struct drm_gem_object *obj =3D front->obj;
->>> -
->>> -	drm_WARN_ON(display->drm, atomic_read(&front->bits));
->>> -
->>> -	i915_ggtt_clear_scanout(to_intel_bo(obj));
->>> -
->>> -	ret =3D intel_bo_set_frontbuffer(obj, NULL);
->>> -	drm_WARN_ON(display->drm, ret);
->>> -	spin_unlock(&display->fb_tracking.frontbuffer_lock);
->>> -
->>> -	i915_active_fini(&front->write);
->>> -
->>> -	drm_gem_object_put(obj);
->>> -	kfree_rcu(front, rcu);
->>> -}
->>> -
->>> -struct intel_frontbuffer *
->>> -intel_frontbuffer_get(struct drm_gem_object *obj)
->>> -{
->>> -	struct intel_display *display =3D to_intel_display(obj->dev);
->>> -	struct intel_frontbuffer *front, *cur;
->>> -
->>> -	front =3D intel_bo_get_frontbuffer(obj);
->>> -	if (front)
->>> -		return front;
->>> -
->>> -	front =3D kmalloc(sizeof(*front), GFP_KERNEL);
->>> -	if (!front)
->>> -		return NULL;
->>> -
->>> -	drm_gem_object_get(obj);
->>> -
->>> -	front->obj =3D obj;
->>> -	front->display =3D display;
->>> -	kref_init(&front->ref);
->>> +	front->display =3D to_intel_display(drm);
->>>  	atomic_set(&front->bits, 0);
->>> -	i915_active_init(&front->write,
->>> -			 frontbuffer_active,
->>> -			 frontbuffer_retire,
->>> -			 I915_ACTIVE_RETIRE_SLEEPS);
->>>  	INIT_WORK(&front->flush_work, intel_frontbuffer_flush_work);
->>> +}
->>>=20=20
->>> -	spin_lock(&display->fb_tracking.frontbuffer_lock);
->>> -	cur =3D intel_bo_set_frontbuffer(obj, front);
->>> -	spin_unlock(&display->fb_tracking.frontbuffer_lock);
->>> +void intel_frontbuffer_fini(struct intel_frontbuffer *front)
->>> +{
->>> +	drm_WARN_ON(front->display->drm, atomic_read(&front->bits));
->>> +}
->>>=20=20
->>> -	if (cur !=3D front) {
->>> -		drm_gem_object_put(obj);
->>> -		kfree(front);
->>> -	}
->>> -
->>> -	return cur;
->>> +struct intel_frontbuffer *intel_frontbuffer_get(struct drm_gem_object =
-*obj)
->>> +{
->>> +	return intel_bo_frontbuffer_get(obj);
->>>  }
->>>=20=20
->>>  void intel_frontbuffer_put(struct intel_frontbuffer *front)
->>>  {
->>> -	kref_put_lock(&front->ref,
->>> -		      frontbuffer_release,
->>> -		      &front->display->fb_tracking.frontbuffer_lock);
->>> +	intel_bo_frontbuffer_put(front);
->>>  }
->>>=20=20
->>>  /**
->>> diff --git a/drivers/gpu/drm/i915/display/intel_frontbuffer.h b/drivers=
-/gpu/drm/i915/display/intel_frontbuffer.h
->>> index ff2a6ac75a34..22677acb4c06 100644
->>> --- a/drivers/gpu/drm/i915/display/intel_frontbuffer.h
->>> +++ b/drivers/gpu/drm/i915/display/intel_frontbuffer.h
->>> @@ -26,10 +26,9 @@
->>>=20=20
->>>  #include <linux/atomic.h>
->>>  #include <linux/bits.h>
->>> -#include <linux/kref.h>
->>> -
->>> -#include "i915_active_types.h"
->>> +#include <linux/workqueue_types.h>
->>>=20=20
->>> +struct drm_device;
->>>  struct drm_gem_object;
->>>  struct intel_display;
->>>=20=20
->>> @@ -42,13 +41,8 @@ enum fb_op_origin {
->>>  };
->>>=20=20
->>>  struct intel_frontbuffer {
->>> -	struct kref ref;
->>>  	struct intel_display *display;
->>>  	atomic_t bits;
->>> -	struct i915_active write;
->>> -	struct drm_gem_object *obj;
->>> -	struct rcu_head rcu;
->>> -
->>>  	struct work_struct flush_work;
->>>  };
->>>=20=20
->>> @@ -141,4 +135,7 @@ void intel_frontbuffer_track(struct intel_frontbuff=
-er *old,
->>>  			     struct intel_frontbuffer *new,
->>>  			     unsigned int frontbuffer_bits);
->>>=20=20
->>> +void intel_frontbuffer_init(struct intel_frontbuffer *front, struct dr=
-m_device *drm);
->>> +void intel_frontbuffer_fini(struct intel_frontbuffer *front);
->>> +
->>>  #endif /* __INTEL_FRONTBUFFER_H__ */
->>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.c b/drivers/gpu/d=
-rm/i915/gem/i915_gem_object.c
->>> index 478011e5ecb3..36680eddf88e 100644
->>> --- a/drivers/gpu/drm/i915/gem/i915_gem_object.c
->>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object.c
->>> @@ -476,24 +476,24 @@ static void i915_gem_free_object(struct drm_gem_o=
-bject *gem_obj)
->>>  void __i915_gem_object_flush_frontbuffer(struct drm_i915_gem_object *o=
-bj,
->>>  					 enum fb_op_origin origin)
->>>  {
->>> -	struct intel_frontbuffer *front;
->>> +	struct i915_frontbuffer *front;
->>>=20=20
->>>  	front =3D i915_gem_object_get_frontbuffer(obj);
->>>  	if (front) {
->>> -		intel_frontbuffer_flush(front, origin);
->>> -		intel_frontbuffer_put(front);
->>> +		intel_frontbuffer_flush(&front->base, origin);
->>> +		i915_gem_object_frontbuffer_put(front);
->>>  	}
->>>  }
->>>=20=20
->>>  void __i915_gem_object_invalidate_frontbuffer(struct drm_i915_gem_obje=
-ct *obj,
->>>  					      enum fb_op_origin origin)
->>>  {
->>> -	struct intel_frontbuffer *front;
->>> +	struct i915_frontbuffer *front;
->>>=20=20
->>>  	front =3D i915_gem_object_get_frontbuffer(obj);
->>>  	if (front) {
->>> -		intel_frontbuffer_invalidate(front, origin);
->>> -		intel_frontbuffer_put(front);
->>> +		intel_frontbuffer_invalidate(&front->base, origin);
->>> +		i915_gem_object_frontbuffer_put(front);
->>>  	}
->>>  }
->>>=20=20
->>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object_frontbuffer.c b/d=
-rivers/gpu/drm/i915/gem/i915_gem_object_frontbuffer.c
->>> new file mode 100644
->>> index 000000000000..7ef89613c025
->>> --- /dev/null
->>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object_frontbuffer.c
->>> @@ -0,0 +1,103 @@
->>> +// SPDX-License-Identifier: MIT
->>> +/* Copyright =C2=A9 2025 Intel Corporation */
->>> +
->>> +#include "i915_drv.h"
->>> +#include "i915_gem_object_frontbuffer.h"
->>> +
->>> +static int frontbuffer_active(struct i915_active *ref)
->>> +{
->>> +	struct i915_frontbuffer *front =3D
->>> +		container_of(ref, typeof(*front), write);
->>> +
->>> +	kref_get(&front->ref);
->>> +	return 0;
->>> +}
->>> +
->>> +static void frontbuffer_retire(struct i915_active *ref)
->>> +{
->>> +	struct i915_frontbuffer *front =3D
->>> +		container_of(ref, typeof(*front), write);
->>> +
->>> +	intel_frontbuffer_flush(&front->base, ORIGIN_CS);
->>> +	i915_gem_object_frontbuffer_put(front);
->>> +}
->>> +
->>> +struct i915_frontbuffer *
->>> +i915_gem_object_frontbuffer_get(struct drm_i915_gem_object *obj)
->>> +{
->>> +	struct drm_i915_private *i915 =3D to_i915(obj->base.dev);
->>> +	struct i915_frontbuffer *front, *cur;
->>> +
->>> +	front =3D i915_gem_object_get_frontbuffer(obj);
->>> +	if (front)
->>> +		return front;
->>> +
->>> +	front =3D kmalloc(sizeof(*front), GFP_KERNEL);
->>> +	if (!front)
->>> +		return NULL;
->>> +
->>> +	intel_frontbuffer_init(&front->base, &i915->drm);
->>> +
->>> +	kref_init(&front->ref);
->>> +	i915_gem_object_get(obj);
->>> +	front->obj =3D obj;
->>> +
->>> +	i915_active_init(&front->write,
->>> +			 frontbuffer_active,
->>> +			 frontbuffer_retire,
->>> +			 I915_ACTIVE_RETIRE_SLEEPS);
->>> +
->>> +	spin_lock(&i915->frontbuffer_lock);
->>> +	if (rcu_access_pointer(obj->frontbuffer)) {
->>> +		cur =3D rcu_dereference_protected(obj->frontbuffer, true);
->>> +		kref_get(&cur->ref);
->>> +	} else {
->>> +		cur =3D front;
->>> +		rcu_assign_pointer(obj->frontbuffer, front);
->>> +	}
->>> +	spin_unlock(&i915->frontbuffer_lock);
->>> +
->>> +	if (cur !=3D front) {
->>> +		i915_gem_object_put(obj);
->>> +		intel_frontbuffer_fini(&front->base);
->>> +		kfree(front);
->>> +	}
->>> +
->>> +	return cur;
->>> +}
->>> +
->>> +void i915_gem_object_frontbuffer_ref(struct i915_frontbuffer *front)
->>> +{
->>> +	kref_get(&front->ref);
->>> +}
->>> +
->>> +static void frontbuffer_release(struct kref *ref)
->>> +	__releases(&i915->frontbuffer_lock)
->>> +{
->>> +	struct i915_frontbuffer *front =3D
->>> +		container_of(ref, typeof(*front), ref);
->>> +	struct drm_i915_gem_object *obj =3D front->obj;
->>> +	struct drm_i915_private *i915 =3D to_i915(obj->base.dev);
->>> +
->>> +	i915_ggtt_clear_scanout(obj);
->>> +
->>> +	RCU_INIT_POINTER(obj->frontbuffer, NULL);
->>> +
->>> +	spin_unlock(&i915->frontbuffer_lock);
->>> +
->>> +	i915_active_fini(&front->write);
->>> +
->>> +	i915_gem_object_put(obj);
->>> +
->>> +	intel_frontbuffer_fini(&front->base);
->>> +
->>> +	kfree_rcu(front, rcu);
->>> +}
->>> +
->>> +void i915_gem_object_frontbuffer_put(struct i915_frontbuffer *front)
->>> +{
->>> +	struct drm_i915_private *i915 =3D to_i915(front->obj->base.dev);
->>> +
->>> +	kref_put_lock(&front->ref, frontbuffer_release,
->>> +		      &i915->frontbuffer_lock);
->>> +}
->>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object_frontbuffer.h b/d=
-rivers/gpu/drm/i915/gem/i915_gem_object_frontbuffer.h
->>> index 1ec382c43aee..385f7e8049b8 100644
->>> --- a/drivers/gpu/drm/i915/gem/i915_gem_object_frontbuffer.h
->>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object_frontbuffer.h
->>> @@ -12,6 +12,14 @@
->>>  #include "display/intel_frontbuffer.h"
->>>  #include "i915_gem_object_types.h"
->>>=20=20
->>> +struct i915_frontbuffer {
->>> +	struct intel_frontbuffer base;
->>> +	struct drm_i915_gem_object *obj;
->>> +	struct i915_active write;
->>> +	struct rcu_head rcu;
->>> +	struct kref ref;
->>> +};
->>> +
->>>  void __i915_gem_object_flush_frontbuffer(struct drm_i915_gem_object *o=
-bj,
->>>  					 enum fb_op_origin origin);
->>>  void __i915_gem_object_invalidate_frontbuffer(struct drm_i915_gem_obje=
-ct *obj,
->>> @@ -33,6 +41,10 @@ i915_gem_object_invalidate_frontbuffer(struct drm_i9=
-15_gem_object *obj,
->>>  		__i915_gem_object_invalidate_frontbuffer(obj, origin);
->>>  }
->>>=20=20
->>> +struct i915_frontbuffer *i915_gem_object_frontbuffer_get(struct drm_i9=
-15_gem_object *obj);
->>> +void i915_gem_object_frontbuffer_ref(struct i915_frontbuffer *front);
->>> +void i915_gem_object_frontbuffer_put(struct i915_frontbuffer *front);
->>> +
->>>  /**
->>>   * i915_gem_object_get_frontbuffer - Get the object's frontbuffer
->>>   * @obj: The object whose frontbuffer to get.
->>> @@ -42,10 +54,10 @@ i915_gem_object_invalidate_frontbuffer(struct drm_i=
-915_gem_object *obj,
->>>   *
->>>   * Return: pointer to object's frontbuffer is such exists or NULL
->>>   */
->>> -static inline struct intel_frontbuffer *
->>> +static inline struct i915_frontbuffer *
->>>  i915_gem_object_get_frontbuffer(const struct drm_i915_gem_object *obj)
->>>  {
->>> -	struct intel_frontbuffer *front;
->>> +	struct i915_frontbuffer *front;
->>>=20=20
->>>  	if (likely(!rcu_access_pointer(obj->frontbuffer)))
->>>  		return NULL;
->>> @@ -62,41 +74,11 @@ i915_gem_object_get_frontbuffer(const struct drm_i9=
-15_gem_object *obj)
->>>  		if (likely(front =3D=3D rcu_access_pointer(obj->frontbuffer)))
->>>  			break;
->>>=20=20
->>> -		intel_frontbuffer_put(front);
->>> +		i915_gem_object_frontbuffer_put(front);
->>>  	} while (1);
->>>  	rcu_read_unlock();
->>>=20=20
->>>  	return front;
->>>  }
->>>=20=20
->>> -/**
->>> - * i915_gem_object_set_frontbuffer - Set the object's frontbuffer
->>> - * @obj: The object whose frontbuffer to set.
->>> - * @front: The frontbuffer to set
->>> - *
->>> - * Set object's frontbuffer pointer. If frontbuffer is already set for=
- the
->>> - * object keep it and return it's pointer to the caller. Please note t=
-hat RCU
->>> - * mechanism is used to handle e.g. ongoing removal of frontbuffer poi=
-nter. This
->>> - * function is protected by i915->display->fb_tracking.frontbuffer_lock
->>> - *
->>> - * Return: pointer to frontbuffer which was set.
->>> - */
->>> -static inline struct intel_frontbuffer *
->>> -i915_gem_object_set_frontbuffer(struct drm_i915_gem_object *obj,
->>> -				struct intel_frontbuffer *front)
->>> -{
->>> -	struct intel_frontbuffer *cur =3D front;
->>> -
->>> -	if (!front) {
->>> -		RCU_INIT_POINTER(obj->frontbuffer, NULL);
->>> -	} else if (rcu_access_pointer(obj->frontbuffer)) {
->>> -		cur =3D rcu_dereference_protected(obj->frontbuffer, true);
->>> -		kref_get(&cur->ref);
->>> -	} else {
->>> -		rcu_assign_pointer(obj->frontbuffer, front);
->>> -	}
->>> -
->>> -	return cur;
->>> -}
->>> -
->>>  #endif
->>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h b/drivers=
-/gpu/drm/i915/gem/i915_gem_object_types.h
->>> index 64600aa8227f..465ce94aee76 100644
->>> --- a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
->>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
->>> @@ -574,7 +574,7 @@ struct drm_i915_gem_object {
->>>  	 */
->>>  	u16 write_domain;
->>>=20=20
->>> -	struct intel_frontbuffer __rcu *frontbuffer;
->>> +	struct i915_frontbuffer __rcu *frontbuffer;
->>>=20=20
->>>  	/** Current tiling stride for the object, if it's tiled. */
->>>  	unsigned int tiling_and_stride;
->>> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i91=
-5_drv.h
->>> index 95f9ddf22ce4..5381a934a671 100644
->>> --- a/drivers/gpu/drm/i915/i915_drv.h
->>> +++ b/drivers/gpu/drm/i915/i915_drv.h
->>> @@ -311,6 +311,8 @@ struct drm_i915_private {
->>>  		struct file *mmap_singleton;
->>>  	} gem;
->>>=20=20
->>> +	spinlock_t frontbuffer_lock; /* protects obj->frontbuffer (write-side=
-) */
->>> +
->>>  	struct intel_pxp *pxp;
->>>=20=20
->>>  	struct i915_pmu pmu;
->>> diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i91=
-5_gem.c
->>> index e14a0c3db999..39b747c3e223 100644
->>> --- a/drivers/gpu/drm/i915/i915_gem.c
->>> +++ b/drivers/gpu/drm/i915/i915_gem.c
->>> @@ -1298,6 +1298,8 @@ void i915_gem_init_early(struct drm_i915_private =
-*dev_priv)
->>>  {
->>>  	i915_gem_init__mm(dev_priv);
->>>  	i915_gem_init__contexts(dev_priv);
->>> +
->>> +	spin_lock_init(&dev_priv->frontbuffer_lock);
->>>  }
->>>=20=20
->>>  void i915_gem_cleanup_early(struct drm_i915_private *dev_priv)
->>> diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i91=
-5_vma.c
->>> index 25e97031d76e..cb36daaa101d 100644
->>> --- a/drivers/gpu/drm/i915/i915_vma.c
->>> +++ b/drivers/gpu/drm/i915/i915_vma.c
->>> @@ -1990,13 +1990,13 @@ int _i915_vma_move_to_active(struct i915_vma *v=
-ma,
->>>  	}
->>>=20=20
->>>  	if (flags & EXEC_OBJECT_WRITE) {
->>> -		struct intel_frontbuffer *front;
->>> +		struct i915_frontbuffer *front;
->>>=20=20
->>>  		front =3D i915_gem_object_get_frontbuffer(obj);
->>>  		if (unlikely(front)) {
->>> -			if (intel_frontbuffer_invalidate(front, ORIGIN_CS))
->>> +			if (intel_frontbuffer_invalidate(&front->base, ORIGIN_CS))
->>>  				i915_active_add_request(&front->write, rq);
->>> -			intel_frontbuffer_put(front);
->>> +			i915_gem_object_frontbuffer_put(front);
->>>  		}
->>>  	}
->>>=20=20
->>> diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h b/driver=
-s/gpu/drm/xe/compat-i915-headers/i915_vma.h
->>> index 4465c40f8134..b17e3bab23d5 100644
->>> --- a/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h
->>> +++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h
->>> @@ -26,8 +26,6 @@ struct i915_vma {
->>>  	struct xe_ggtt_node *node;
->>>  };
->>>=20=20
->>> -#define i915_ggtt_clear_scanout(bo) do { } while (0)
->>> -
->>>  #define i915_vma_fence_id(vma) -1
->>>=20=20
->>>  static inline u32 i915_ggtt_offset(const struct i915_vma *vma)
->>> diff --git a/drivers/gpu/drm/xe/display/intel_bo.c b/drivers/gpu/drm/xe=
-/display/intel_bo.c
->>> index 2437c00a2d3e..bad2243b9114 100644
->>> --- a/drivers/gpu/drm/xe/display/intel_bo.c
->>> +++ b/drivers/gpu/drm/xe/display/intel_bo.c
->>> @@ -5,6 +5,7 @@
->>>=20=20
->>>  #include "xe_bo.h"
->>>  #include "intel_bo.h"
->>> +#include "intel_frontbuffer.h"
->>>=20=20
->>>  bool intel_bo_is_tiled(struct drm_gem_object *obj)
->>>  {
->>> @@ -40,15 +41,56 @@ int intel_bo_read_from_page(struct drm_gem_object *=
-obj, u64 offset, void *dst, i
->>>  	return xe_bo_read(bo, offset, dst, size);
->>>  }
->>>=20=20
->>> -struct intel_frontbuffer *intel_bo_get_frontbuffer(struct drm_gem_obje=
-ct *obj)
->>> +struct xe_frontbuffer {
->>> +	struct intel_frontbuffer base;
->>> +	struct drm_gem_object *obj;
->>> +	struct kref ref;
->>> +};
->>> +
->>> +struct intel_frontbuffer *intel_bo_frontbuffer_get(struct drm_gem_obje=
-ct *obj)
->>>  {
->>> -	return NULL;
->>> +	struct xe_frontbuffer *front;
->>> +
->>> +	front =3D kmalloc(sizeof(*front), GFP_KERNEL);
->>> +	if (!front)
->>> +		return NULL;
->>> +
->>> +	intel_frontbuffer_init(&front->base, obj->dev);
->>> +
->>> +	kref_init(&front->ref);
->>> +
->>> +	drm_gem_object_get(obj);
->>> +	front->obj =3D obj;
->>> +
->>> +	return &front->base;
->>>  }
->>>=20=20
->>> -struct intel_frontbuffer *intel_bo_set_frontbuffer(struct drm_gem_obje=
-ct *obj,
->>> -						   struct intel_frontbuffer *front)
->>> +void intel_bo_frontbuffer_ref(struct intel_frontbuffer *_front)
->>>  {
->>> -	return front;
->>> +	struct xe_frontbuffer *front =3D
->>> +		container_of(_front, typeof(*front), base);
->>> +
->>> +	kref_get(&front->ref);
->>> +}
->>> +
->>> +static void frontbuffer_release(struct kref *ref)
->>> +{
->>> +	struct xe_frontbuffer *front =3D
->>> +		container_of(ref, typeof(*front), ref);
->>> +
->>> +	intel_frontbuffer_fini(&front->base);
->>> +
->>> +	drm_gem_object_put(front->obj);
->>> +
->>> +	kfree(front);
->>> +}
->>> +
->>> +void intel_bo_frontbuffer_put(struct intel_frontbuffer *_front)
->>> +{
->>> +	struct xe_frontbuffer *front =3D
->>> +		container_of(_front, typeof(*front), base);
->>> +
->>> +	kref_put(&front->ref, frontbuffer_release);
->>>  }
->>>=20=20
->>>  void intel_bo_frontbuffer_flush_for_display(struct intel_frontbuffer *=
-front)
-
---=20
-Jani Nikula, Intel
+-- 
