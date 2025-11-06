@@ -4,183 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 97DD0CCFA03
-	for <intel-xe@archiver.kernel.org>; Thu,  6 Nov 2025 10:20:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AB977CCF9F8
+	for <intel-xe@archiver.kernel.org>; Thu,  6 Nov 2025 10:31:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5B17B10E87D;
-	Thu,  6 Nov 2025 10:20:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6479910E06B;
+	Thu,  6 Nov 2025 10:31:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OgoHO9t4";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gBA4Otoj";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D018810E87D;
- Thu,  6 Nov 2025 10:20:50 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D049E10E06B
+ for <intel-xe@lists.freedesktop.org>; Thu,  6 Nov 2025 10:30:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1762424451; x=1793960451;
- h=message-id:date:subject:to:references:from:in-reply-to:
- content-transfer-encoding:mime-version;
- bh=Yf/p8vpFUCY/YDs9gGOv9A+LiC+wxM5NfMW0QtRK3V8=;
- b=OgoHO9t4QGgoFlS0sLSGTn6bUBk33aGRby5a7/figkRZuIJPL95sbclA
- shKZKJ6pn9dWVOnfv6NGEB+vCmNB4iiJ2qjfDUoM61pabqLy7VHM60hIH
- Ha6anGEYQoMXgJTYyUqZVoRCq7HLTv5OMXPskOqGUDeSDtFlyl//VDlKf
- zJ8NvXLFEEna4zpFR/GCwMkvPv2JtRiELBPBfYYOEfzrYNEPAFkcy48nK
- EN/HhIsuSWQPS8Ul6s44EPZyqXEK4zZOWMm/lbJcIxtF0h07eGHiB3EAN
- 28Q/8lNX1er8p/cKTAjjY8QAwd2IHExm5qA/4+dTSV1etycf/cAuXeCPV A==;
-X-CSE-ConnectionGUID: lpdCNvvrQmCrUsZ86nDMiw==
-X-CSE-MsgGUID: Nqg2bPFJSO6TUN3xq8ewNw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11604"; a="75908341"
-X-IronPort-AV: E=Sophos;i="6.19,284,1754982000"; d="scan'208";a="75908341"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Nov 2025 02:20:50 -0800
-X-CSE-ConnectionGUID: dqm2zgHUS2it8ADCSizadw==
-X-CSE-MsgGUID: OF3hxFvlR26iLxT1Dm+DnQ==
+ t=1762425059; x=1793961059;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=W57jhZTxptrr4Vg+9H5zKKltnwpTwpiEKR3OMR7dHCk=;
+ b=gBA4Otoj3mx92TI+ss+++6qBFft2F/bDRcHFc+nAGApQZsPI4qZxJFn0
+ TljviG9sVvqt/n3mEdekRJGVG57EV9sOyXLu7ofi4T9BT2iD5MzQYk61V
+ TgWP8KnS9d0pR1Q0YkICnh5+IvUPvJo9fQc4buxYlCVpFmDm2Qq+MPzsK
+ ifDPNQTTe5O+Nx6Try3nA7r+33v+DHq4mvGiO313sZtpWOInazEpt+zJO
+ O+aMpxE0F/LKhlu22rzpr3CzN7witarzT5aqYjV9/81nYLiwT+8uAifAZ
+ k+0Yl3O2+pahvq0RwtzGJsnxIJiAF96K7950a2YUkuGM/maVVyL+Zv4RX A==;
+X-CSE-ConnectionGUID: PqEKLc6xQf+PbD8yMECSxQ==
+X-CSE-MsgGUID: lsMJtYcoRJ2TjGwaQ1hG3w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11604"; a="76007541"
+X-IronPort-AV: E=Sophos;i="6.19,284,1754982000"; d="scan'208";a="76007541"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Nov 2025 02:30:50 -0800
+X-CSE-ConnectionGUID: jOey5rNMQam1w0punJ7Emg==
+X-CSE-MsgGUID: BckHJGpnSH+nUyLvbPGh2w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,284,1754982000"; d="scan'208";a="187666090"
-Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
- by orviesa007.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Nov 2025 02:20:51 -0800
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Thu, 6 Nov 2025 02:20:49 -0800
-Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27 via Frontend Transport; Thu, 6 Nov 2025 02:20:49 -0800
-Received: from CO1PR03CU002.outbound.protection.outlook.com (52.101.46.53) by
- edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Thu, 6 Nov 2025 02:20:49 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=GbL9GGUyOSR5ah1CocsNrXqPsUZkjgXiJesT3OGQUM03hhJBPw2IC5k8Ec7UueAIrl0OcTRRE+21C1+HwotaVEYTzwOzeg5h9WtAogVhCdzkP33lj0kT7YAD+G5nTtq99RV8C2oVGOott0hM6gMYpY0uMYcB5YcqMblLKqzXHMAGsRrouj7qOXD0xlvUOPc0hg/JysIEaB7fm+CyN5XtqBgZVgY8uHbmS0qrWrA+oNa0OG8ucS1yxl1egvLzhEeWVaQeZtooOKQCwcZ446RQGIad+FRU/aJlWivZjIjidpH9r6VSNe/wo3OV5RfMv0s+yjl1AJcG+OvT0zbEUOYlsg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=1MB4UCwvJ8o8bmiQMWIY4EMLYXij9HX7KfwNnXaZL+4=;
- b=L7P6KygdYIwPCJEaKhck1yMppEh52JW9wxODBnqwQtCEoU4y12parsuaY/GFc7247aqp7i1x2K3ts5mcRTzkOC1Z448QeDnchmrOG2vbFjyp5jYv2hE/VdaANatkfCKwY3I+EYv7Z0aqN6CpVyess79liuNt6MlAE9StinSNbU3a2I1ZEHvkfBscl658vUkv9va5R+rdeKc6j1yS8VCa6ALMGJB0gJJVPAikGTdNGQPK01EUWsLhaAOTzNdsoU0sQEwKXLB2w4sYTy3P51/Z7plnOOKBvoUlcqcnPmEqh4qYarFeg5YyzEjapDZZzjXEd07hph+/9citRMs2bp4KTQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DM4PR11MB5341.namprd11.prod.outlook.com (2603:10b6:5:390::22)
- by DS0PR11MB6519.namprd11.prod.outlook.com (2603:10b6:8:d1::5) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9298.8; Thu, 6 Nov 2025 10:20:47 +0000
-Received: from DM4PR11MB5341.namprd11.prod.outlook.com
- ([fe80::397:7566:d626:e839]) by DM4PR11MB5341.namprd11.prod.outlook.com
- ([fe80::397:7566:d626:e839%7]) with mapi id 15.20.9253.013; Thu, 6 Nov 2025
- 10:20:47 +0000
-Message-ID: <3b9470b3-95df-4874-b6a9-a77df8f2a112@intel.com>
-Date: Thu, 6 Nov 2025 15:50:41 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] drm/i915/ltphy: Return lowest portclock for HDMI from
- reverse algorithm
-To: Suraj Kandpal <suraj.kandpal@intel.com>, <intel-xe@lists.freedesktop.org>, 
- <intel-gfx@lists.freedesktop.org>
-References: <20251104093425.154941-1-suraj.kandpal@intel.com>
- <20251104093425.154941-2-suraj.kandpal@intel.com>
-Content-Language: en-US
-From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-In-Reply-To: <20251104093425.154941-2-suraj.kandpal@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MA0PR01CA0086.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:ae::11) To DM4PR11MB5341.namprd11.prod.outlook.com
- (2603:10b6:5:390::22)
+X-IronPort-AV: E=Sophos;i="6.19,284,1754982000"; d="scan'208";a="218384899"
+Received: from cmanszew-mobl2.igk.intel.com (HELO [172.28.180.197])
+ ([172.28.180.197])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Nov 2025 02:30:49 -0800
+Message-ID: <2233ef9b-3979-4009-a45a-0af0de2b6812@intel.com>
+Date: Thu, 6 Nov 2025 11:30:45 +0100
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|DS0PR11MB6519:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2d96e768-8c17-4c5d-6041-08de1d1e26ec
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?WUVDMEd3QmFUSEVkMUMvUWJWem9NKzdMWGFXTk5XVHB1RHcvcjRiS0h6ckpi?=
- =?utf-8?B?blhVNVNjWVBwKytkc2hqL2RNQVVSMndnV0Uwb1M3R0FHdWNVMkpaWit0MVJs?=
- =?utf-8?B?LzFNQmZmTmM1QVFZR2lZZW43MVEvMmdtaTJnYlY2c0k5WjVKZS9pY0pNZnp0?=
- =?utf-8?B?Vk5ndW5wVkJNMkc0RWxNTUdNRHUzR3MrdjdhbGNQZ0EyS2lWZHQwMUxrN3BJ?=
- =?utf-8?B?SExiKzROVjN6RTVoYS9nY0srTmNUcDlrZHFSanhFcThWZ1RLa2NkRHhoYVcw?=
- =?utf-8?B?UWlLaUhMVW1TdThzbXlVZGhVOGt1QXR3OWpZcmROWG9PZ1NkL01pcjBXU2Yr?=
- =?utf-8?B?K3k1dll6T1M5b2pTQ0ZOakJFamVEK2dncEtvSU5VUjFrNkhEN0tRcE9xT1I2?=
- =?utf-8?B?Vlg0ZnREajcwYm9qcXJCWWpYd0crazBTUjRMZTRUSjNtZTFyQUE3UUVqOGt3?=
- =?utf-8?B?VCtMNmg1empRTXRJTUJUQlI0NW1UL3J6TFpQZ1NQUFNmd0w2VFAyODN3dk80?=
- =?utf-8?B?eWJDN0V6bnNrTVlzalZ6YjVTdUhEcjUydUZkS20yRFZvT1NYUHN3cVZ0bGFu?=
- =?utf-8?B?V282ZkNueW1rcFBKZTZvQ21pODkxMTQ3b1VpZ0xnNlhwT0VvRng0K0tBU2wz?=
- =?utf-8?B?dVFqNHVIUlN1dGhIMEZkcTRuZTJPLzFobFNTYnY1UkVBbmdhd2pCTk5uMTY4?=
- =?utf-8?B?YmgzZzdFZC9KNTlPTDMxZkFFVTg5TXNFYkcrRjI2KzJvSm9DQnlkSm5TL2pr?=
- =?utf-8?B?c0pkTEtVeGx1WGtPOW9YRlBURHBERE9Kbkd6c2U3cDdodVB3dmJmNFJBY2du?=
- =?utf-8?B?bmJiRVI1N0RSWmFDZGJXK3J2N2pjSVVNU2k0WXIvOUJWdHlUdkdPV2lhL2dX?=
- =?utf-8?B?ei96VDhsRFg1Vmt4TXN3Z2RsZFI2b2ttOFgwWFJLbGNmZXl6NHNQTDZOQ0V6?=
- =?utf-8?B?S0YvTXRncUNwRUMrRTU4dStJZDU4VnRxZU1EcXpFY2g5OXBqTjNOaUZvTk5X?=
- =?utf-8?B?ZnA2VTRhdDBreHdKMjJ6UGw3ajNVVkZ2Vk5LUTdxRmlQVkE1cndyM0xkUmVB?=
- =?utf-8?B?cXE0ZmtDWUNOUGRDMUQyTjErOHMycHZ6THNWdDg1ei80ak1IbHBSekpFT05O?=
- =?utf-8?B?dkFmR0tieUNjSmZOMER6Z2l4VjZQOEZaWnlzWENiUnVMbDlEWS9hMHEvUVNn?=
- =?utf-8?B?Y3FMeGlFZGx0a1BCR0Q5Y2xENHY2N2FVdlFDWTdSVVRNbktIenF1WVMzdlZD?=
- =?utf-8?B?TFZvRDd5bE9ISHpoYUYrQnFncjB3RXUwMkc2dFVLb0tmdnRFYmhFWElIMVdF?=
- =?utf-8?B?R0ppZ0NCNlNIcjhubTlaK2lBL2JNbGVza2xMZktabnlQZ2pBcUJ3K2FzNWVl?=
- =?utf-8?B?VFVDMGdyam51K2t5MVc4cmdxWXRXcis5R2JobGVNR3JIbGh0Y3VmOXNydzlh?=
- =?utf-8?B?eVBNR0ZtODV6M2hpTGU1ZzJnMUdCUmFVN3NDbVFVbEVGRi9pZkhDTlZ4R25Q?=
- =?utf-8?B?c0FaWlJaanRMVFk1T1VQZnE2L3lKWjhrTlFjL04xMDNTN3d2aFpwZHJlZzVV?=
- =?utf-8?B?MUFHVmZSZDBGaFJiYzZUY2tvcmxrMHB3WHZZSUs0eVFvQ1dQWGZQR296amdq?=
- =?utf-8?B?dTdrSTJHZFZpNmNxbk5RVGcrUnRMYlVzdnB3LzkwWFBjcTZ2dTQzb0JaZU80?=
- =?utf-8?B?ZnY4YTRKWjdTSTFEVHVSdU9oZ0NOeUVrN2Z1NVM4WVdqZXRDWmlwbWN5UUlI?=
- =?utf-8?B?Z0pzUXR0WUx0VFQyditmT1k0YnBWNGNnQ0htUlVJSVBlWkx6RC96amdRbW1h?=
- =?utf-8?B?TWU3RjMvaWtoYmRCN01DL0ozcFZGZUlINFVjaFdHSGFwTmpwNEVtUDMvcUVq?=
- =?utf-8?B?ZlNIaWJVeUp0bkpPNnJNWU1KbEFwbFNvRDBET1hkc2xtRUZjUnVLTWRidnIr?=
- =?utf-8?Q?kQKhuSHautn/24CDqerttN4RkdARS/qj?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB5341.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RTF1SUd6Y1BYWnFSSC9lTmpFblRPQ0lIdmFzc21VTkNTU2lxY21XSmJZRnVO?=
- =?utf-8?B?dVdMZXlZQ3Y1VStpOXl1UnB4VWpPaHdtUGlvL1dGdE0zUm5vYkw3Wkc3ZmFZ?=
- =?utf-8?B?c2d1cDBuVWRPWjFCdndDQk5KZnN2UTlxTmRoUGRxNldkUW41STEzUENXWDZp?=
- =?utf-8?B?and0c1BTOXJ2UFh4TERhZ25idzR6REptQUN3TnZSdm10cjllYVZLYzN3cmJS?=
- =?utf-8?B?SGJzek9xWndpTXQyK0g4YWhLUXBSUkpoSXdISTZNTzNRVmVwajd1d0JuZVJW?=
- =?utf-8?B?Z2N0ZE9SMzVpUWhvV1JzMGp1eExmTW9vc2piVVRoQk44NFVFd3A1N1JKTzR0?=
- =?utf-8?B?RDVhOURaSFJyWVppcGFEMzVyeXlkUVR1S1pHM09oZlN6OUdacGlERlRlTjJt?=
- =?utf-8?B?R1BDWUJ4TFU0L2hMMFAxMms0TzNBOFFKbVMwRkpreGI4ZUpyZ1VUNnltOEg4?=
- =?utf-8?B?VzlUVUJMZ1lOS3p2c3NIOHR1SmZjWWR6WGVqTEZ1OGRkTnptNmhRamtIanQ2?=
- =?utf-8?B?bmEvZVZTZjB1UDNyUEV5K3Judmg4M0VWd1dVM3ZBRHJ2Y09PUGJESGNWNlcy?=
- =?utf-8?B?N2FnZDZkb3ZYMjdBVXVVeEpUYXJkei9ybFRrbjFZdHRLQ1JQMi9XZzJMYmR1?=
- =?utf-8?B?SG5MSjBKQWwwNkx5TVVHRzBsT3QyQzhaWXV5RXhWSmpjUDZTcDZqMVEvOEE3?=
- =?utf-8?B?WFlIU0pYSk95bWJhNldrQXduUnc4L1dHSzU1M1g4dms0MVR5QkQ2UXkyWkdT?=
- =?utf-8?B?MGZSc1p4alBvcUJpSDVjay82TUV6d1hhNEVxeGFDVm5PTDFVdWphNXM0ZVI1?=
- =?utf-8?B?RWRrVDVBK1Q4OTlQZHE0NkV5UnVhMGVDdDNsRlJuWVBiMHlvbHlYWEZEWmlr?=
- =?utf-8?B?a085WnZkdEUxbWNkQWxQemRCa25Oemp0RHJqQVljekJKOUJzT3VkeHFJcGNE?=
- =?utf-8?B?THFqRUFzSG15Y3pvNjhraFdOWU1STEU4cURHRzlJVWtlRDZZUHZCM2JJbE5J?=
- =?utf-8?B?dXNqNnRNbXFubW9tTXZXcFdwOCsvS0JMTmlVZWtWR2oycWJ5NVgvUXN3ZnhI?=
- =?utf-8?B?eXlQcVdObms1VHV6OGlFNFV4eXFlZDhva1Zaa2lwVVlsVGF2M0cxd0ZqeitN?=
- =?utf-8?B?dlFwZFF5RFBkWk5RV3pEc0VjeUo5N0Vjb2p4T3dLOHJ5VUJQYVdQTlJ4RUxw?=
- =?utf-8?B?eTNaSHZKd2JubGxoeU9xQXlncHBXTFYzcFhhSmlROEp0K21nZkJkaHBnKzZE?=
- =?utf-8?B?djh2OHhKbU9LQXF5N2hpZjM5My9ZMUduZCtaN25tY3lwYU04WEt0NmFzUVRC?=
- =?utf-8?B?RFkxVlBSdmhrc09FTVF4dHBORkdsZmJld2QvYUZBY3BJVW9hdmg5MWs1NGoy?=
- =?utf-8?B?Yy9oZmJnVXFRTXl3RTlYNE5nVmhCeTIwZFM4SnZqa1JXaGRFYUNTclNKMVU4?=
- =?utf-8?B?QjM3WTlxRllpQnE1ODhpM3ZqK25xQ1phQzlxM3c2REYrS09HNTNHWjRLQk1u?=
- =?utf-8?B?OEV5L3FJTnFwYkppNkdxS0pBbGV2OG8xZjNEMFd6TEZPeUlFRndXMXFZejh6?=
- =?utf-8?B?UVpmT2JmNDZnRnpuRWpSOFJLV1d4bzV0MWRqd3hIeStOSEZxME1TRHdjaWd5?=
- =?utf-8?B?MlNhSDkzdkxkSlozQ01hVDI5Tms2YkZ5THBRUmhKKzhJMWdmZkprbmFDdFRa?=
- =?utf-8?B?aXJ5NTJWU1RLdkFWL1lBdytVdmordXkwZ1NHZHg2NDJSa2xKYUd3eVp5d2pC?=
- =?utf-8?B?NmJDWnRDakpnNytBNnFsR2lGai9vUmc3TkRSQnV4elJSQUxKZUdwb3hROURm?=
- =?utf-8?B?RExtbk9OcWJXRUlSTUUwbWpQV3VDbXM4b2czMXlSaGxIVXdvRkhtS1Y1d0Ey?=
- =?utf-8?B?bXZxaFlzU0xzeXIrdlNMWmV2czB2eWk1N1FVb2RiYzFvc1NMUit4WVcxY3gr?=
- =?utf-8?B?NXY1VVFiK0RGVGlUL3NiZzViOHJ5RkVGWStaTStIeEZOTDdaWitLNWsvVTBE?=
- =?utf-8?B?LzVsZ0xJd0hXWDNnMHlFbEFLakhzOHN2dEtLN2ZQOC9yWTluZ0E3dzFNc0Fy?=
- =?utf-8?B?Q0ZoM1JURnF1SUVRdjg3VlZPMGltN1FWSCtvN2FyNnBOOEg5RTFaRG9hZmVP?=
- =?utf-8?B?Z2VadzMySGYwL01jNTU3SnZLemdKVU9iQjlTbGx0MUM3ZzdLTjBQMlBHOUxB?=
- =?utf-8?B?RFE9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2d96e768-8c17-4c5d-6041-08de1d1e26ec
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5341.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Nov 2025 10:20:47.6119 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: htJMvzqeFDP5Dbe6Ad665HVSjaAaq07rZrh+q2oe90LkE6FX56l8HUGmRK65IubpQ08zMtBUiyaOhPkS95fCjV1FSLRtQct9HF/3rsE/+2Y=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB6519
-X-OriginatorOrg: intel.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4] drm/xe/pf: Allow to lockdown the PF using custom guard
+To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ intel-xe@lists.freedesktop.org
+Cc: Matthew Brost <matthew.brost@intel.com>,
+ Nareshkumar Gollakoti <naresh.kumar.g@intel.com>,
+ Maciej Patelczyk <maciej.patelczyk@intel.com>
+References: <20251105130105.582-1-michal.wajdeczko@intel.com>
+Content-Language: en-US
+From: "Manszewski, Christoph" <christoph.manszewski@intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
+ Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <20251105130105.582-1-michal.wajdeczko@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -195,74 +74,456 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Hi Michal,
 
-On 11/4/2025 3:04 PM, Suraj Kandpal wrote:
-> Return the lowest port clock for HDMI when the reverse algorithm
-> calculates it to be 0 to avoid errors later but throw a warn.
->
-> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+On 5.11.2025 14:00, Michal Wajdeczko wrote:
+> Some driver components, like eudebug or ccs-mode, can't be used
+> when VFs are enabled.  Add functions to allow those components
+> to block the PF from enabling VFs for the requested duration.
+> 
+> Introduce trivial counter to allow lockdown or exclusive access
+> that can be used in the scenarios where we can't follow the strict
+> owner semantics as required by the rw_semaphore implementation.
+> 
+> Before enabling VFs, the PF will try to arm the "vfs_enabling"
+> guard for the exclusive access.  This will fail if there are
+> some lockdown requests already initiated by the other components.
+> 
+> For testing purposes, add debugfs file which will call these new
+> functions from the file's open/close hooks.
+> 
+> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+> Cc: Matthew Brost <matthew.brost@intel.com>
+> Cc: Christoph Manszewski <christoph.manszewski@intel.com>
 > ---
->   drivers/gpu/drm/i915/display/intel_lt_phy.c | 14 ++++++++++----
->   1 file changed, 10 insertions(+), 4 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.c b/drivers/gpu/drm/i915/display/intel_lt_phy.c
-> index c1177b294013..e6b15bf6445b 100644
-> --- a/drivers/gpu/drm/i915/display/intel_lt_phy.c
-> +++ b/drivers/gpu/drm/i915/display/intel_lt_phy.c
-> @@ -1675,7 +1675,7 @@ intel_lt_phy_calculate_hdmi_state(struct intel_lt_phy_pll_state *lt_state,
->   }
->   
->   static int
-> -intel_lt_phy_calc_hdmi_port_clock(const struct intel_lt_phy_pll_state *lt_state)
-> +intel_lt_phy_calc_hdmi_port_clock(const struct intel_crtc_state *crtc_state)
->   {
->   #define REF_CLK_KHZ 38400
->   #define REGVAL(i) (				\
-> @@ -1685,6 +1685,9 @@ intel_lt_phy_calc_hdmi_port_clock(const struct intel_lt_phy_pll_state *lt_state)
->   	(lt_state->data[i][0] << 24)		\
->   )
->   
-> +	const struct intel_lt_phy_pll_state *lt_state =
-> +		&crtc_state->dpll_hw_state.ltpll;
-> +	struct intel_display *display = to_intel_display(crtc_state);
+> v1: https://patchwork.freedesktop.org/series/156687/#rev1
+> v2: https://patchwork.freedesktop.org/series/156795/#rev1
+>      use less confusing names (Matthew/Christoph)
+>      allow many components to lockdown the PF (Christoph)
+> v3: no atomic_t, just use spinlock (Matthew)
+> v4: add missing local change (Michal)
+> ---
+> Cc: Nareshkumar Gollakoti <naresh.kumar.g@intel.com>
+> Cc: Maciej Patelczyk <maciej.patelczyk@intel.com>
+> ---
+>   drivers/gpu/drm/xe/xe_guard.h            | 119 +++++++++++++++++++++++
+>   drivers/gpu/drm/xe/xe_pci_sriov.c        |  21 ++++
+>   drivers/gpu/drm/xe/xe_sriov_pf.c         |  98 +++++++++++++++++++
+>   drivers/gpu/drm/xe/xe_sriov_pf.h         |   4 +
+>   drivers/gpu/drm/xe/xe_sriov_pf_debugfs.c |  30 ++++++
+>   drivers/gpu/drm/xe/xe_sriov_pf_helpers.h |   5 +
+>   drivers/gpu/drm/xe/xe_sriov_pf_types.h   |   4 +
+>   7 files changed, 281 insertions(+)
+>   create mode 100644 drivers/gpu/drm/xe/xe_guard.h
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_guard.h b/drivers/gpu/drm/xe/xe_guard.h
+> new file mode 100644
+> index 000000000000..333f8e13b5a1
+> --- /dev/null
+> +++ b/drivers/gpu/drm/xe/xe_guard.h
+> @@ -0,0 +1,119 @@
+> +/* SPDX-License-Identifier: MIT */
+> +/*
+> + * Copyright © 2025 Intel Corporation
+> + */
+> +
+> +#ifndef _XE_GUARD_H_
+> +#define _XE_GUARD_H_
+> +
+> +#include <linux/spinlock.h>
+> +
+> +/**
+> + * struct xe_guard - Simple logic to protect a feature.
+> + *
+> + * Implements simple semaphore-like logic that can be used to lockdown the
+> + * feature unless it is already in use.  Allows enabling of the otherwise
 
-Lets have this as the first line.
+Nit: double space before 'Allows'
 
 
->   	int clk = 0;
->   	u32 d8, pll_reg_5, pll_reg_3, pll_reg_57, m2div_frac, m2div_int;
->   	u64 temp0, temp1;
-> @@ -1727,11 +1730,14 @@ intel_lt_phy_calc_hdmi_port_clock(const struct intel_lt_phy_pll_state *lt_state)
->   	 * frequency = (m2div * refclk_khz / (d8 * 10))
->   	 */
->   	d8 = (pll_reg_57 & REG_GENMASK(14, 7)) >> 7;
-> +	if (d8 == 0) {
-> +		drm_WARN_ON(display->drm,
-> +			    "Invalid port clock using lowest HDMI portclock\n");
-> +		return 270000;
+> + * incompatible features, where we can't follow the strict owner semantics
+> + * required by the &rw_semaphore.
+> + *
+> + * NOTE! It shouldn't be used to protect a data, use &rw_semaphore instead.
+> + */
+> +struct xe_guard {
+> +	/**
+> +	 * @counter: implements simple exclusive/lockdown logic:
+> +	 *           if == 0 then guard/feature is idle/not in use,
+> +	 *           if < 0 then feature is active and can't be locked-down,
+> +	 *           if > 0 then feature is lockded-down and can't be activated.
+> +	 */
+> +	int counter;
+> +
+> +	/** @name: the name of the guard (useful for debug) */
+> +	const char *name;
+> +
+> +	/** @owner: the info about the last owner of the guard (for debug) */
+> +	void *owner;
+> +
+> +	/** @lock: protects guard's data */
+> +	spinlock_t lock;
+> +};
+> +
+> +/**
+> + * xe_guard_init() - Initialize the guard.
+> + * @guard: the &xe_guard to init
+> + * @name: name of the guard
+> + */
+> +static inline void xe_guard_init(struct xe_guard *guard, const char *name)
+> +{
+> +	spin_lock_init(&guard->lock);
+> +	guard->counter = 0;
+> +	guard->name = name;
+> +}
+> +
+> +/**
+> + * xe_guard_arm() - Arm the guard for the exclusive/lockdown mode.
+> + * @guard: the &xe_guard to arm
+> + * @lockdown: arm for lockdown(true) or exclusive(false) mode
+> + * @who: optional owner info (for debug only)
+> + *
+> + * Multiple lockdown requests are allowed.
+> + * Only single exclusive access can be granted.
+> + * Will fail if the guard is already in exclusive mode.
+> + * On success, must call the xe_guard_disarm() to release.
+> + *
+> + * Return: 0 on success or a negative error code on failure.
+> + */
 
-Perhaps return xe3plpd_lt_hdmi_252.clock?
+I am not sold on the arm/disarm and exclusive/lockdown naming. Something 
+like 'get/put' and 'exclusive/shared' sounds more familiar, but that's 
+just a personal opinion.
 
+None the less the solution looks clean and does what it should so:
+
+Reviewed-by: Christoph Manszewski <christoph.manszewski@intel.com>
 
 Regards,
+Christoph
 
-Ankit
-
+> +static inline int xe_guard_arm(struct xe_guard *guard, bool lockdown, void *who)
+> +{
+> +	guard(spinlock)(&guard->lock);
+> +
+> +	if (lockdown) {
+> +		if (guard->counter < 0)
+> +			return -EBUSY;
+> +		guard->counter++;
+> +	} else {
+> +		if (guard->counter > 0)
+> +			return -EPERM; > +		if (guard->counter < 0)
+> +			return -EUSERS;
+> +		guard->counter--;
 > +	}
->   	m2div_int = (pll_reg_3  & REG_GENMASK(14, 5)) >> 5;
->   	temp0 = ((u64)m2div_frac * REF_CLK_KHZ) >> 32;
->   	temp1 = (u64)m2div_int * REF_CLK_KHZ;
-> -	if (d8 == 0)
-> -		return 0;
+> +
+> +	guard->owner = who;
+> +	return 0;
+> +}
+> +
+> +/**
+> + * xe_guard_disarm() - Disarm the guard from exclusive/lockdown mode.
+> + * @guard: the &xe_guard to disarm
+> + * @lockdown: disarm from lockdown(true) or exclusive(false) mode
+> + *
+> + * Return: true if successfully disarmed or false in case of mismatch.
+> + */
+> +static inline bool xe_guard_disarm(struct xe_guard *guard, bool lockdown)
+> +{
+> +	guard(spinlock)(&guard->lock);
+> +
+> +	if (lockdown) {
+> +		if (guard->counter <= 0)
+> +			return false;
+> +		guard->counter--;
+> +	} else {
+> +		if (guard->counter != -1)
+> +			return false;
+> +		guard->counter++;
+> +	}
+> +	return true;
+> +}
+> +
+> +/**
+> + * xe_guard_mode_str() - Convert guard mode into a string.
+> + * @lockdown: flag used to select lockdown or exclusive mode
+> + *
+> + * Return: "lockdown" or "exclusive" string.
+> + */
+> +static inline const char *xe_guard_mode_str(bool lockdown)
+> +{
+> +	return lockdown ? "lockdown" : "exclusive";
+> +}
+> +
+> +#endif
+> diff --git a/drivers/gpu/drm/xe/xe_pci_sriov.c b/drivers/gpu/drm/xe/xe_pci_sriov.c
+> index d0fcde66a774..9ff69c4843b0 100644
+> --- a/drivers/gpu/drm/xe/xe_pci_sriov.c
+> +++ b/drivers/gpu/drm/xe/xe_pci_sriov.c
+> @@ -94,6 +94,20 @@ static int resize_vf_vram_bar(struct xe_device *xe, int num_vfs)
+>   	return pci_iov_vf_bar_set_size(pdev, VF_LMEM_BAR, __fls(sizes));
+>   }
 >   
->   	clk = div_u64((temp1 + temp0), d8 * 10);
+> +static int pf_prepare_vfs_enabling(struct xe_device *xe)
+> +{
+> +	xe_assert(xe, IS_SRIOV_PF(xe));
+> +	/* make sure we are not locked-down by other components */
+> +	return xe_sriov_pf_arm_guard(xe, &xe->sriov.pf.guard_vfs_enabling, false, NULL);
+> +}
+> +
+> +static void pf_finish_vfs_enabling(struct xe_device *xe)
+> +{
+> +	xe_assert(xe, IS_SRIOV_PF(xe));
+> +	/* allow other components to lockdown VFs enabling */
+> +	xe_sriov_pf_disarm_guard(xe, &xe->sriov.pf.guard_vfs_enabling, false, NULL);
+> +}
+> +
+>   static int pf_enable_vfs(struct xe_device *xe, int num_vfs)
+>   {
+>   	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
+> @@ -109,6 +123,10 @@ static int pf_enable_vfs(struct xe_device *xe, int num_vfs)
+>   	if (err)
+>   		goto out;
 >   
-> @@ -1760,7 +1766,7 @@ intel_lt_phy_calc_port_clock(struct intel_encoder *encoder,
->   				      lt_state->config[0]);
->   		clk = intel_lt_phy_get_dp_clock(rate);
->   	} else {
-> -		clk = intel_lt_phy_calc_hdmi_port_clock(lt_state);
-> +		clk = intel_lt_phy_calc_hdmi_port_clock(crtc_state);
->   	}
+> +	err = pf_prepare_vfs_enabling(xe);
+> +	if (err)
+> +		goto out;
+> +
+>   	/*
+>   	 * We must hold additional reference to the runtime PM to keep PF in D0
+>   	 * during VFs lifetime, as our VFs do not implement the PM capability.
+> @@ -148,6 +166,7 @@ static int pf_enable_vfs(struct xe_device *xe, int num_vfs)
+>   failed:
+>   	xe_sriov_pf_unprovision_vfs(xe, num_vfs);
+>   	xe_pm_runtime_put(xe);
+> +	pf_finish_vfs_enabling(xe);
+>   out:
+>   	xe_sriov_notice(xe, "Failed to enable %u VF%s (%pe)\n",
+>   			num_vfs, str_plural(num_vfs), ERR_PTR(err));
+> @@ -179,6 +198,8 @@ static int pf_disable_vfs(struct xe_device *xe)
+>   	/* not needed anymore - see pf_enable_vfs() */
+>   	xe_pm_runtime_put(xe);
 >   
->   	return clk;
+> +	pf_finish_vfs_enabling(xe);
+> +
+>   	xe_sriov_info(xe, "Disabled %u VF%s\n", num_vfs, str_plural(num_vfs));
+>   	return 0;
+>   }
+> diff --git a/drivers/gpu/drm/xe/xe_sriov_pf.c b/drivers/gpu/drm/xe/xe_sriov_pf.c
+> index b8af93eb5b5f..7ec33f083fe6 100644
+> --- a/drivers/gpu/drm/xe/xe_sriov_pf.c
+> +++ b/drivers/gpu/drm/xe/xe_sriov_pf.c
+> @@ -102,6 +102,8 @@ int xe_sriov_pf_init_early(struct xe_device *xe)
+>   	if (err)
+>   		return err;
+>   
+> +	xe_guard_init(&xe->sriov.pf.guard_vfs_enabling, "vfs_enabling");
+> +
+>   	xe_sriov_pf_service_init(xe);
+>   
+>   	return 0;
+> @@ -162,6 +164,102 @@ int xe_sriov_pf_wait_ready(struct xe_device *xe)
+>   	return 0;
+>   }
+>   
+> +/**
+> + * xe_sriov_pf_arm_guard() - Arm the guard for exclusive/lockdown mode.
+> + * @xe: the PF &xe_device
+> + * @guard: the &xe_guard to arm
+> + * @lockdown: arm for lockdown(true) or exclusive(false) mode
+> + * @who: the address of the new owner, or NULL if it's a caller
+> + *
+> + * This function can only be called on PF.
+> + *
+> + * It is a simple wrapper for xe_guard_arm() with additional debug
+> + * messages.
+> + *
+> + * Return: 0 on success or a negative error code on failure.
+> + */
+> +int xe_sriov_pf_arm_guard(struct xe_device *xe, struct xe_guard *guard,
+> +			  bool lockdown, void *who)
+> +{
+> +	void *new_owner = who ?: __builtin_return_address(0);
+> +	int err;
+> +
+> +	err = xe_guard_arm(guard, lockdown, new_owner);
+> +	if (err) {
+> +		xe_sriov_dbg(xe, "%s/%s mode denied (%pe) last owner %ps\n",
+> +			     guard->name, xe_guard_mode_str(lockdown),
+> +			     ERR_PTR(err), guard->owner);
+> +		return err;
+> +	}
+> +
+> +	xe_sriov_dbg_verbose(xe, "%s/%s by %ps\n",
+> +			     guard->name, xe_guard_mode_str(lockdown),
+> +			     new_owner);
+> +	return 0;
+> +}
+> +
+> +/**
+> + * xe_sriov_pf_disarm_guard() - Disarm the guard.
+> + * @xe: the PF &xe_device
+> + * @guard: the &xe_guard to disarm
+> + * @lockdown: disarm from lockdown(true) or exclusive(false) mode
+> + * @who: the address of the indirect owner, or NULL if it's a caller
+> + *
+> + * This function can only be called on PF.
+> + *
+> + * It is a simple wrapper for xe_guard_disarm() with additional debug
+> + * messages and xe_assert() to easily catch any illegal calls.
+> + */
+> +void xe_sriov_pf_disarm_guard(struct xe_device *xe, struct xe_guard *guard,
+> +			      bool lockdown, void *who)
+> +{
+> +	bool disarmed;
+> +
+> +	xe_sriov_dbg_verbose(xe, "%s/%s by %ps\n",
+> +			     guard->name, xe_guard_mode_str(lockdown),
+> +			     who ?: __builtin_return_address(0));
+> +
+> +	disarmed = xe_guard_disarm(guard, lockdown);
+> +	xe_assert_msg(xe, disarmed, "%s/%s not armed? last owner %ps",
+> +		      guard->name, xe_guard_mode_str(lockdown), guard->owner);
+> +}
+> +
+> +/**
+> + * xe_sriov_pf_lockdown() - Lockdown the PF to prevent VFs enabling.
+> + * @xe: the PF &xe_device
+> + *
+> + * This function can only be called on PF.
+> + *
+> + * Once the PF is locked down, it will not enable VFs.
+> + * If VFs are already enabled, the -EBUSY will be returned.
+> + * To allow the PF enable VFs again call xe_sriov_pf_end_lockdown().
+> + *
+> + * Return: 0 on success or a negative error code on failure.
+> + */
+> +int xe_sriov_pf_lockdown(struct xe_device *xe)
+> +{
+> +	xe_assert(xe, IS_SRIOV_PF(xe));
+> +
+> +	/* lockdown the VFs enabling by taking read-only guard access */
+> +	return xe_sriov_pf_arm_guard(xe, &xe->sriov.pf.guard_vfs_enabling, true,
+> +				     __builtin_return_address(0));
+> +}
+> +
+> +/**
+> + * xe_sriov_pf_end_lockdown() - Allow the PF to enable VFs again.
+> + * @xe: the PF &xe_device
+> + *
+> + * This function can only be called on PF.
+> + * See xe_sriov_pf_lockdown() for details.
+> + */
+> +void xe_sriov_pf_end_lockdown(struct xe_device *xe)
+> +{
+> +	xe_assert(xe, IS_SRIOV_PF(xe));
+> +
+> +	xe_sriov_pf_disarm_guard(xe, &xe->sriov.pf.guard_vfs_enabling, true,
+> +				 __builtin_return_address(0));
+> +}
+> +
+>   /**
+>    * xe_sriov_pf_print_vfs_summary - Print SR-IOV PF information.
+>    * @xe: the &xe_device to print info from
+> diff --git a/drivers/gpu/drm/xe/xe_sriov_pf.h b/drivers/gpu/drm/xe/xe_sriov_pf.h
+> index cba3fde9581f..b5bee3a549c1 100644
+> --- a/drivers/gpu/drm/xe/xe_sriov_pf.h
+> +++ b/drivers/gpu/drm/xe/xe_sriov_pf.h
+> @@ -17,11 +17,15 @@ bool xe_sriov_pf_readiness(struct xe_device *xe);
+>   int xe_sriov_pf_init_early(struct xe_device *xe);
+>   int xe_sriov_pf_init_late(struct xe_device *xe);
+>   int xe_sriov_pf_wait_ready(struct xe_device *xe);
+> +int xe_sriov_pf_lockdown(struct xe_device *xe);
+> +void xe_sriov_pf_end_lockdown(struct xe_device *xe);
+>   void xe_sriov_pf_print_vfs_summary(struct xe_device *xe, struct drm_printer *p);
+>   #else
+>   static inline bool xe_sriov_pf_readiness(struct xe_device *xe) { return false; }
+>   static inline int xe_sriov_pf_init_early(struct xe_device *xe) { return 0; }
+>   static inline int xe_sriov_pf_init_late(struct xe_device *xe) { return 0; }
+> +int xe_sriov_pf_lockdown(struct xe_device *xe) { return 0; }
+> +void xe_sriov_pf_end_lockdown(struct xe_device *xe) { }
+>   #endif
+>   
+>   #endif
+> diff --git a/drivers/gpu/drm/xe/xe_sriov_pf_debugfs.c b/drivers/gpu/drm/xe/xe_sriov_pf_debugfs.c
+> index a81aa05c5532..1c5d19ce7b63 100644
+> --- a/drivers/gpu/drm/xe/xe_sriov_pf_debugfs.c
+> +++ b/drivers/gpu/drm/xe/xe_sriov_pf_debugfs.c
+> @@ -98,10 +98,40 @@ static inline int xe_sriov_pf_restore_auto_provisioning(struct xe_device *xe)
+>   
+>   DEFINE_SRIOV_ATTRIBUTE(restore_auto_provisioning);
+>   
+> +static int lockdown_vfs_enabling_open(struct inode *inode, struct file *file)
+> +{
+> +	struct dentry *dent = file_dentry(file);
+> +	struct xe_device *xe = extract_xe(dent);
+> +	ssize_t ret;
+> +
+> +	ret = xe_sriov_pf_lockdown(xe);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	file->private_data = xe;
+> +	return nonseekable_open(inode, file);
+> +}
+> +
+> +static int lockdown_vfs_enabling_release(struct inode *inode, struct file *file)
+> +{
+> +	struct xe_device *xe = file->private_data;
+> +
+> +	xe_sriov_pf_end_lockdown(xe);
+> +	return 0;
+> +}
+> +
+> +static const struct file_operations lockdown_vfs_enabling_fops = {
+> +	.owner		= THIS_MODULE,
+> +	.open		= lockdown_vfs_enabling_open,
+> +	.release	= lockdown_vfs_enabling_release,
+> +};
+> +
+>   static void pf_populate_root(struct xe_device *xe, struct dentry *dent)
+>   {
+>   	debugfs_create_file("restore_auto_provisioning", 0200, dent, xe,
+>   			    &restore_auto_provisioning_fops);
+> +	debugfs_create_file("lockdown_vfs_enabling", 0400, dent, xe,
+> +			    &lockdown_vfs_enabling_fops);
+>   }
+>   
+>   static int simple_show(struct seq_file *m, void *data)
+> diff --git a/drivers/gpu/drm/xe/xe_sriov_pf_helpers.h b/drivers/gpu/drm/xe/xe_sriov_pf_helpers.h
+> index 4a4340fb633a..a348fd31a91f 100644
+> --- a/drivers/gpu/drm/xe/xe_sriov_pf_helpers.h
+> +++ b/drivers/gpu/drm/xe/xe_sriov_pf_helpers.h
+> @@ -54,4 +54,9 @@ static inline struct mutex *xe_sriov_pf_master_mutex(struct xe_device *xe)
+>   	return &xe->sriov.pf.master_lock;
+>   }
+>   
+> +int xe_sriov_pf_arm_guard(struct xe_device *xe, struct xe_guard *guard,
+> +			  bool write, void *who);
+> +void xe_sriov_pf_disarm_guard(struct xe_device *xe, struct xe_guard *guard,
+> +			      bool write, void *who);
+> +
+>   #endif
+> diff --git a/drivers/gpu/drm/xe/xe_sriov_pf_types.h b/drivers/gpu/drm/xe/xe_sriov_pf_types.h
+> index b3cd9797194b..2fb5f426d588 100644
+> --- a/drivers/gpu/drm/xe/xe_sriov_pf_types.h
+> +++ b/drivers/gpu/drm/xe/xe_sriov_pf_types.h
+> @@ -9,6 +9,7 @@
+>   #include <linux/mutex.h>
+>   #include <linux/types.h>
+>   
+> +#include "xe_guard.h"
+>   #include "xe_sriov_pf_provision_types.h"
+>   #include "xe_sriov_pf_service_types.h"
+>   
+> @@ -38,6 +39,9 @@ struct xe_device_pf {
+>   	/** @driver_max_vfs: Maximum number of VFs supported by the driver. */
+>   	u16 driver_max_vfs;
+>   
+> +	/** @guard_vfs_enabling: guards VFs enabling */
+> +	struct xe_guard guard_vfs_enabling;
+> +
+>   	/** @master_lock: protects all VFs configurations across GTs */
+>   	struct mutex master_lock;
+>   
+
