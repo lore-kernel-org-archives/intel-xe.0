@@ -4,27 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3756DCCFA1A
-	for <intel-xe@archiver.kernel.org>; Thu,  6 Nov 2025 15:13:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F1E27CCFA13
+	for <intel-xe@archiver.kernel.org>; Thu,  6 Nov 2025 15:20:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B774710E8FF;
-	Thu,  6 Nov 2025 15:12:59 +0000 (UTC)
-Received: from 10055242dc62 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2C09D10E8FF;
- Thu,  6 Nov 2025 15:12:58 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_drm/i915/rps=3A_call_rps?=
- =?utf-8?q?_functions_through_the_parent_interface?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 568DC10E90F;
+	Thu,  6 Nov 2025 15:20:55 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aq3cGM5m";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C645210E90A;
+ Thu,  6 Nov 2025 15:20:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1762442454; x=1793978454;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Kzrq3hi4nLv+Gn0UkYmm67VVcDVy1cQwb8JOoUUSZnQ=;
+ b=aq3cGM5mAv13WT28XQ4StoHg6HB4gdUogwCDxPL3jj7Z0gtwxzw0tzUT
+ muuG8j58/4fANJdWrdqcz5S1S0BKSmIpuHUhlCTL5xfPVbONeLVQ+611b
+ DDSv6nKhdExFyYA3NL5tlmkXOEFc7EFL9JZWw+QjQO31+J5Z0wx/xsutE
+ p2Il1fc/WXFX8TRaTf7vV20wMPX3IaYWpKZE7jczKEF6WU9c4yeMLOOB1
+ tYFb3uevCDV2bIq/Nh/k4MB5MUuYj9x60MBPc23uuYrcWfs0jEG6as8j+
+ iUBUZL/wjLLddiQG1+Tm4F1zylHuC/XFyyZL6kmObF8sp/G13SJlxEQSf g==;
+X-CSE-ConnectionGUID: OKkPdwb7Qm+XQnFfOo58Nw==
+X-CSE-MsgGUID: 18TMNpwsTUCJSXYWEf8EDg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11604"; a="76030523"
+X-IronPort-AV: E=Sophos;i="6.19,284,1754982000"; d="scan'208";a="76030523"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Nov 2025 07:20:53 -0800
+X-CSE-ConnectionGUID: H0unao3TQDWSuTEpn/UzZw==
+X-CSE-MsgGUID: rrgofHX+StiAiqIzqGeaqQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,284,1754982000"; d="scan'208";a="187941250"
+Received: from egrumbac-mobl6.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.213])
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Nov 2025 07:20:53 -0800
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 06 Nov 2025 15:12:58 -0000
-Message-ID: <176244197817.25862.5648864251752162451@10055242dc62>
-X-Patchwork-Hint: ignore
-References: <cover.1762440096.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1762440096.git.jani.nikula@intel.com>
+Subject: [PATCH v2 00/10] drm/i915: Stop the intel_de_wait_custom() abuse
+Date: Thu,  6 Nov 2025 17:20:39 +0200
+Message-ID: <20251106152049.21115-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.49.1
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,61 +64,42 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Series: drm/i915/rps: call rps functions through the parent interface
-URL   : https://patchwork.freedesktop.org/series/157164/
-State : warning
+Get rid of all the custom fast vs. slow intel_de_wait_custom()
+timeouts that have started to spread like a cancer recently.
 
-== Summary ==
+The eventual aim is to get rid of the fast vs. slow timeout
+stuff entirely and switch over to poll_timeout_us()...
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 6aa8d62a50c33f091548cc961a713223d488d6ad
-Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
-Fast mode used, each commit won't be checked separately.
--
-+drivers/gpu/drm/i915/i915_irq.c:466:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:466:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:474:16: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:474:16: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:479:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:479:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:479:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:517:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:517:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:525:16: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:525:16: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:530:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:530:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:530:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:574:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:574:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:577:15: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:577:15: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:581:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:581:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:588:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:588:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:588:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:588:9: warning: unreplaced symbol '<noident>'
+v2: Drop the extraneous timeout debugs to make it simpler to change them
+    Use the slow timeout in all cases where we have both slow and fast
 
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+Ville Syrjälä (10):
+  drm/i915/cx0: Print the correct timeout
+  drm/i915/cx0: Nuke extraneous timeout debugs
+  drm/i915/ltphy: Nuke extraneous timeout debugs
+  drm/i915/cx0: Replace XELPDP_PORT_POWERDOWN_UPDATE_TIMEOUT_US with
+    XELPDP_PORT_POWERDOWN_UPDATE_TIMEOUT_MS
+  drm/i915/cx0: Get rid of XELPDP_MSGBUS_TIMEOUT_FAST_US
+  drm/i915/cx0: s/XELPDP_MSGBUS_TIMEOUT_SLOW/XELPDP_MSGBUS_TIMEOUT_MS/
+  drm/i915/cx0:
+    s/XELPDP_PORT_RESET_END_TIMEOUT/XELPDP_PORT_RESET_END_TIMEOUT_US/
+  drm/i915/ltphy: Nuke bogus weird timeouts
+  drm/i915/hdcp: Use the default 2 usec fast polling timeout
+  drm/i915/pmdemand: Use the default 2 usec fast polling timeout
 
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c  | 52 +++++++++----------
+ .../gpu/drm/i915/display/intel_cx0_phy_regs.h |  7 ++-
+ drivers/gpu/drm/i915/display/intel_hdcp.c     |  2 +-
+ drivers/gpu/drm/i915/display/intel_lt_phy.c   | 47 ++++++++---------
+ .../gpu/drm/i915/display/intel_lt_phy_regs.h  |  7 ++-
+ drivers/gpu/drm/i915/display/intel_pmdemand.c |  2 +-
+ 6 files changed, 54 insertions(+), 63 deletions(-)
+
+-- 
+2.49.1
 
