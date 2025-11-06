@@ -4,59 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 80BE2CCFA05
-	for <intel-xe@archiver.kernel.org>; Thu,  6 Nov 2025 16:10:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2BB8ECCFA05
+	for <intel-xe@archiver.kernel.org>; Thu,  6 Nov 2025 16:25:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0457C10E037;
-	Thu,  6 Nov 2025 16:10:21 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="m9uGYCLS";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 34B9410E037;
- Thu,  6 Nov 2025 16:10:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1762445420; x=1793981420;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=j+IZAucuIm37fSj80MjoIxr+KjN6jtrg9jQ/rxl87aE=;
- b=m9uGYCLSCVs/dzAYmOXam0swB0Ish+thUc0Pis5Z1UczkH3VmwGUllXp
- TlnABOBsdZn6OfSwl8Ol0znmXAvdyqtytf96AvJeqqAhbFdAp7zVkx3dH
- Zd8OecR9Rrifnq/0OQEuzw95cdA70Qv8gGqV5h+VGjCwXjYjT4H5gMhwO
- 11wCvei+fI9j3XKQcXuUomKRA4mgtco7GwyTHYDc6C377OJRwxo7K5OfV
- 8MwMwz/2wsUuPoWbfPfv+a2vCkhyUbedjUfdA0HuYLdXO7I470zUuqxiq
- GgT4FCS/k9EVk/A1UyuJveeOM0BxE48x6+oHp4llNokY2NuKb3VJSuvMT A==;
-X-CSE-ConnectionGUID: /GZvEmMMQd2ErQS4aDi8fg==
-X-CSE-MsgGUID: W8hcL3cCTjWZWRlciKTjwA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11604"; a="75274714"
-X-IronPort-AV: E=Sophos;i="6.19,284,1754982000"; d="scan'208";a="75274714"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Nov 2025 08:10:20 -0800
-X-CSE-ConnectionGUID: ZUekMjhJSLm/Mo5Br4RCcg==
-X-CSE-MsgGUID: lyIXAklAShqG55rjwiL8bA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,284,1754982000"; d="scan'208";a="218454675"
-Received: from egrumbac-mobl6.ger.corp.intel.com (HELO localhost)
- ([10.245.244.213])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Nov 2025 08:10:18 -0800
-Date: Thu, 6 Nov 2025 18:10:15 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH v2 00/10] drm/i915: Stop the intel_de_wait_custom() abuse
-Message-ID: <aQzIZzjEqNyP872A@intel.com>
-References: <20251106152049.21115-1-ville.syrjala@linux.intel.com>
- <e83b667c90f6c4a92b3d67c63a49954bade3da0a@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id A1BF410E94B;
+	Thu,  6 Nov 2025 16:25:37 +0000 (UTC)
+Received: from 10055242dc62 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2415110E94B;
+ Thu,  6 Nov 2025 16:25:37 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8688283741226863844=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <e83b667c90f6c4a92b3d67c63a49954bade3da0a@intel.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Subject: =?utf-8?b?4pyTIFhlLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJtL2k5MTU6IFN0b3AgdGhlIGlu?=
+ =?utf-8?b?dGVsX2RlX3dhaXRfY3VzdG9tKCkgYWJ1c2UgKHJldjIp?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 06 Nov 2025 16:25:37 -0000
+Message-ID: <176244633713.25862.16194223755285741992@10055242dc62>
+X-Patchwork-Hint: ignore
+References: <20251106152049.21115-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20251106152049.21115-1-ville.syrjala@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,45 +36,110 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Nov 06, 2025 at 05:43:12PM +0200, Jani Nikula wrote:
-> On Thu, 06 Nov 2025, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> >
-> > Get rid of all the custom fast vs. slow intel_de_wait_custom()
-> > timeouts that have started to spread like a cancer recently.
-> >
-> > The eventual aim is to get rid of the fast vs. slow timeout
-> > stuff entirely and switch over to poll_timeout_us()...
-> 
-> Are you planning on still having intel_de_wait_something_something, or
-> do you mean using poll_timeout_us() directly?
-> 
-> I think I like the intel_de_* wait helpers, but just a coherent small
-> set, and everything beyond that should use poll_timeout_us() instead of
-> adding obscure helpers for one-off cases.
+--===============8688283741226863844==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Yeah, I think the helpers are fairly nice for the common stuff so
-I guess we should keep them. But not too many, so probably just
-intel_de_wait_{,for_set,for_clear}_us().
+== Series Details ==
 
-My current branch has both _us() and _ms() versions of those, but
-as discussed in the meeting we should probably just go for _us()
-eventually. I think I'll want to have the _ms() stuff around for
-a while though since it makes some of the mechanical conversions
-easier.
+Series: drm/i915: Stop the intel_de_wait_custom() abuse (rev2)
+URL   : https://patchwork.freedesktop.org/series/157098/
+State : success
 
-I also haven't quite figured out is what to do about the poll
-interval for poll_timeout_us(). I was thinking of starting with
-something simple like 'interval=max(timeout/8+1,100)' and then
-try to capture some data on how many iterations we end up in
-at least some of the more important places (eg. AUX, PPS, etc).
-I suppose in the worst case we might need custom intervals in
-some places, but I'm hoping some kind of generic approach works
-well enough for most stuff.
+== Summary ==
 
--- 
-Ville Syrjälä
-Intel
+CI Bug Log - changes from xe-4058-6aa8d62a50c33f091548cc961a713223d488d6ad_BAT -> xe-pw-157098v2_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (13 -> 13)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8612 -> IGT_8613
+  * Linux: xe-4058-6aa8d62a50c33f091548cc961a713223d488d6ad -> xe-pw-157098v2
+
+  IGT_8612: 8612
+  IGT_8613: b542242f5b116e3b554b4068ef5dfa4451075b2b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-4058-6aa8d62a50c33f091548cc961a713223d488d6ad: 6aa8d62a50c33f091548cc961a713223d488d6ad
+  xe-pw-157098v2: 157098v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157098v2/index.html
+
+--===============8688283741226863844==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: Stop the intel_de_wait_custom() abuse (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/157098/">https://patchwork.freedesktop.org/series/157098/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157098v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157098v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4058-6aa8d62a50c33f091548cc961a713223d488d6ad_BAT -&gt; xe-pw-157098v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8612 -&gt; IGT_8613</li>
+<li>Linux: xe-4058-6aa8d62a50c33f091548cc961a713223d488d6ad -&gt; xe-pw-157098v2</li>
+</ul>
+<p>IGT_8612: 8612<br />
+  IGT_8613: b542242f5b116e3b554b4068ef5dfa4451075b2b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-4058-6aa8d62a50c33f091548cc961a713223d488d6ad: 6aa8d62a50c33f091548cc961a713223d488d6ad<br />
+  xe-pw-157098v2: 157098v2</p>
+
+</body>
+</html>
+
+--===============8688283741226863844==--
