@@ -4,44 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2E938CCFA05
-	for <intel-xe@archiver.kernel.org>; Thu,  6 Nov 2025 20:32:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 23DAECCFA13
+	for <intel-xe@archiver.kernel.org>; Thu,  6 Nov 2025 20:59:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9A0FC10E9C8;
-	Thu,  6 Nov 2025 20:32:08 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="br2jkCpV";
-	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 11C4589798;
- Thu,  6 Nov 2025 20:32:07 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id B8D6440772;
- Thu,  6 Nov 2025 20:32:06 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 79C3DC113D0;
- Thu,  6 Nov 2025 20:32:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1762461126;
- bh=ru1GhP+q0Wpwu435I6x2PEDaBttoa2Fc8XVDF4pZDGw=;
- h=Date:From:To:Cc:Subject:In-Reply-To:From;
- b=br2jkCpVobbIq7GQy2orrEc9TtqqtCK5bbitkvMFd4+oqz0QNh4ovJ7Sa3ofK6qHd
- Pl8c6l6RRkrb1mwAtU+Ph36smLv2eYvu+O6rNtMNY28Lu6BsRAhnIRti3KWl6gmOTW
- WoJe+xrHek+02api/pPyMLcgLV/GJECmoREuWmp6RTBgwdsyEQ4vtDMd2ZW/g22zXx
- W+bvvIFGhkD+P66dgH99PL7T8sq6sfvQhQKRoW8L08qFHACuRPkBP8Yg67NIYO47xY
- jlLd9rmSGOhLh9N+fmcjb4xn+gpNgto28lffRp+Vx2ukE41BlD2M7C40UAKVfdeX6B
- jYjZYcv02zhQg==
-Date: Thu, 6 Nov 2025 14:32:05 -0600
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Simon Richter <Simon.Richter@hogyros.de>
-Cc: dri-devel@lists.freedesktop.org,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- linux-pci@vger.kernel.org, Alex Williamson <alex@shazbot.org>
-Subject: Re: Unreachable cards in vgaarb
-Message-ID: <20251106203205.GA1967804@bhelgaas>
+	by gabe.freedesktop.org (Postfix) with ESMTP id A8CAD10E9D5;
+	Thu,  6 Nov 2025 20:59:43 +0000 (UTC)
+Received: from 10055242dc62 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6AC0410E9D5;
+ Thu,  6 Nov 2025 20:59:42 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2895679654992333282=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <c9594cc3-031b-43cc-9268-85c32f98ba49@hogyros.de>
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/psr=3A_fix_pipe_to?=
+ =?utf-8?q?_vblank_conversion?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 06 Nov 2025 20:59:42 -0000
+Message-ID: <176246278242.27759.13648716569645629883@10055242dc62>
+X-Patchwork-Hint: ignore
+References: <20251106200000.1455164-1-jani.nikula@intel.com>
+In-Reply-To: <20251106200000.1455164-1-jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,72 +36,139 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-[+cc Alex]
+--===============2895679654992333282==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On Thu, Nov 06, 2025 at 12:16:24PM +0900, Simon Richter wrote:
-> Hi,
-> 
-> I have a card whose VGA registers are not actually reachable, for multiple
-> reasons:
-> 
-> 1. the system in question has multiple PCI domains
-> 2. the system in question does not support IO access
-> 3. one of the bridges involved does not support VGA register forwarding
-> 
-> Obviously, the "works for me" solution would be to teach vgaarb to check if
-> the VGA bit actually got set in the bridge control register (because
-> apparently, that is how a bridge indicates missing support), and return an
-> error. I plan to do that, but that doesn't solve the others.
-> 
-> The specific actual problem I'm trying to solve here is that there is a
-> workaround in the i915 and xe drivers that pokes the VGA register space on
-> the same card after changing power states, and this falls over on my system.
-> Skipping this is safe if we can guarantee that vgacon will not generate
-> accesses later, so I think having vgaarb recognize that the card is
-> unreachable and returning an error is sufficient here.
-> 
-> I have no idea whether this will break other systems though -- can we
-> reasonably assume that any PCI or PCIe bridge that is capable of forwarding
-> VGA accesses will proudly display the VGA bit set in the bridge control
-> register, or is a quirk needed here?
+== Series Details ==
 
-I think we can assume that a bridge with PCI_BRIDGE_CTL_VGA set
-forwards VGA accesses, and bridges without it do not.
+Series: drm/i915/psr: fix pipe to vblank conversion
+URL   : https://patchwork.freedesktop.org/series/157186/
+State : success
 
-> For multiple PCI domains, I have no clue how to determine where accesses end
-> up. My feeling is that it's supposed to be "all of them, mediated by VGA
-> bits on root bridges", but I don't know if this is actually true. Is anyone
-> actually building machines with a CPU architecture that has a separate IO
-> range, and multiple PCI domains?
+== Summary ==
 
-Multiple PCI domains were supported on ia64, and I think multiple VGA
-devices were also supported, but I don't remember the details about
-how.  That code has all been removed but should still be in the git
-history.
+CI Bug Log - changes from xe-4060-9deffe4baace482f9414f36f53f3385868533fd6_BAT -> xe-pw-157186v1_BAT
+====================================================
 
-> For "no IO access", it is even more complex -- it appears that the approach
-> on POWER is to define inb/outb as MMIO, offset from a global variable that
-> points at a PCI range, which means this access will only show up in one of
-> the PCI(e) controllers.
-> 
-> What is unclear to me is
-> 
-> 1. whether there is supposed to be a mechanism to generate IO accesses from
-> those,
-> 2. whether this range should be excluded from MMIO to not accidentally
-> create conflicts
-> 3. whether vgaarb needs to adjust this variable too
-> 4. if this variable should instead be maintained by vgaarb
-> 5. if we should have dedicated vga_inb/vga_outb macros or if we can assume
-> that any inb/outb on machines that don't have an IO range will be VGA
-> accesses anyway
-> 6. whether it is interesting to create special handling for cards that have
-> VGA registers at the beginning of their non-prefetchable MMIO range (AFAIK,
-> some Intel cards do, and you can address them either via IO or via MMIO to
-> their non-prefetchable mapping).
-> 7. whether this affects more than two users.
-> 
->    Simon
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (13 -> 13)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-157186v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@xe_waitfence@abstime:
+    - bat-dg2-oem2:       [TIMEOUT][1] ([Intel XE#6506]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4060-9deffe4baace482f9414f36f53f3385868533fd6/bat-dg2-oem2/igt@xe_waitfence@abstime.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157186v1/bat-dg2-oem2/igt@xe_waitfence@abstime.html
+
+  * igt@xe_waitfence@engine:
+    - bat-dg2-oem2:       [FAIL][3] ([Intel XE#6519]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4060-9deffe4baace482f9414f36f53f3385868533fd6/bat-dg2-oem2/igt@xe_waitfence@engine.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157186v1/bat-dg2-oem2/igt@xe_waitfence@engine.html
+
+  
+  [Intel XE#6506]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506
+  [Intel XE#6519]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519
+
+
+Build changes
+-------------
+
+  * Linux: xe-4060-9deffe4baace482f9414f36f53f3385868533fd6 -> xe-pw-157186v1
+
+  IGT_8613: b542242f5b116e3b554b4068ef5dfa4451075b2b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-4060-9deffe4baace482f9414f36f53f3385868533fd6: 9deffe4baace482f9414f36f53f3385868533fd6
+  xe-pw-157186v1: 157186v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157186v1/index.html
+
+--===============2895679654992333282==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/psr: fix pipe to vblank conversion</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/157186/">https://patchwork.freedesktop.org/series/157186/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157186v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157186v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4060-9deffe4baace482f9414f36f53f3385868533fd6_BAT -&gt; xe-pw-157186v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-157186v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@xe_waitfence@abstime:</p>
+<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4060-9deffe4baace482f9414f36f53f3385868533fd6/bat-dg2-oem2/igt@xe_waitfence@abstime.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506">Intel XE#6506</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157186v1/bat-dg2-oem2/igt@xe_waitfence@abstime.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@xe_waitfence@engine:</p>
+<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4060-9deffe4baace482f9414f36f53f3385868533fd6/bat-dg2-oem2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519">Intel XE#6519</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157186v1/bat-dg2-oem2/igt@xe_waitfence@engine.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4060-9deffe4baace482f9414f36f53f3385868533fd6 -&gt; xe-pw-157186v1</li>
+</ul>
+<p>IGT_8613: b542242f5b116e3b554b4068ef5dfa4451075b2b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-4060-9deffe4baace482f9414f36f53f3385868533fd6: 9deffe4baace482f9414f36f53f3385868533fd6<br />
+  xe-pw-157186v1: 157186v1</p>
+
+</body>
+</html>
+
+--===============2895679654992333282==--
