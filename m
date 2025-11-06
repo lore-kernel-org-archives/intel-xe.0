@@ -4,50 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 711BDCCFA05
-	for <intel-xe@archiver.kernel.org>; Thu,  6 Nov 2025 14:58:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3756DCCFA1A
+	for <intel-xe@archiver.kernel.org>; Thu,  6 Nov 2025 15:13:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E7B0910E916;
-	Thu,  6 Nov 2025 14:58:05 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="S0cxmtmR";
-	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B7BAC10E908;
- Thu,  6 Nov 2025 14:58:04 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id 33DF44165A;
- Thu,  6 Nov 2025 14:58:04 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A6199C4CEF7;
- Thu,  6 Nov 2025 14:58:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1762441084;
- bh=3MzzI7eda1HcBKQQLuDs92NFebxA65nvy9xo/gSXejE=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=S0cxmtmRiyLuJnpNgUqFMrYRYHP/Sn3IgwSPXA8zVNJ27uJVauSMUd3DujH71CqqQ
- FT3LlbX89aDaiTBvzk0ucsearN8iQvLDJgZTogLtm+FBd8IYX5rCKzq4ogBK+t57eN
- 0/JFB7NXK0SKQs3mkT+qRI4K5VsW/vx0SxLbc3wkUor4L3aBB/ASw4HbPgFa94ssjB
- Q3RsecprggSAaQMRQJju9/TzV/dUo6iOfjP+8JJQnluWV4LzUqcanJ7oibMmd5fhxN
- CTn/6n/TfbDuTjs8i2OUjKFRf4x504KwZwRe4fXlpH241YkgORAn0vKMM1ZBVrkkvg
- CYEtvZSJUynWA==
-Date: Thu, 6 Nov 2025 06:58:02 -0800
-From: Jakub Kicinski <kuba@kernel.org>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: <dri-devel@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
- "Zack McKevitt" <zachary.mckevitt@oss.qualcomm.com>, Lukas Wunner
- <lukas@wunner.de>, Lijo Lazar <lijo.lazar@amd.com>, Hawking Zhang
- <Hawking.Zhang@amd.com>, Aravind Iddamsetty
- <aravind.iddamsetty@linux.intel.com>
-Subject: Re: [PATCH 1/2] drm/ras: Introduce the DRM RAS infrastructure over
- generic netlink
-Message-ID: <20251106065802.76d8ac77@kernel.org>
-In-Reply-To: <aQyi_VL5AzzXsYtT@intel.com>
-References: <20250929214415.326414-4-rodrigo.vivi@intel.com>
- <20250929214415.326414-5-rodrigo.vivi@intel.com>
- <20251030183254.10d64ee1@kernel.org> <aQyi_VL5AzzXsYtT@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id B774710E8FF;
+	Thu,  6 Nov 2025 15:12:59 +0000 (UTC)
+Received: from 10055242dc62 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2C09D10E8FF;
+ Thu,  6 Nov 2025 15:12:58 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_drm/i915/rps=3A_call_rps?=
+ =?utf-8?q?_functions_through_the_parent_interface?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 06 Nov 2025 15:12:58 -0000
+Message-ID: <176244197817.25862.5648864251752162451@10055242dc62>
+X-Patchwork-Hint: ignore
+References: <cover.1762440096.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1762440096.git.jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,33 +36,61 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 6 Nov 2025 08:30:37 -0500 Rodrigo Vivi wrote:
-> > If you're using Fedora or another good distro ynl CLI is packaged (for
-> > Fedora in kernel-tools). The in-tree syntax is a bit verbose.  
-> 
-> I didn't know this tool was getting package with the kernel-tools
-> I thought it was only helping for debug during the development.
-> 
-> Now I'm even wondering if we really need to code a user-space tool
-> for this drm-ras, or simply recommending the kernel-tools/ynl as
-> the official consumer of this API.
+== Series Details ==
 
-Right, depends on the intended use of the API. In many cases,
-especially for configuration interfaces we no longer write separate 
-CLI tools. But for certain things typing in the JSON gets a bit
-tedious, and other cases need some sort of summarization if the kernel
-output is too verbose. So YMMV.
+Series: drm/i915/rps: call rps functions through the parent interface
+URL   : https://patchwork.freedesktop.org/series/157164/
+State : warning
 
-> > Separate handling of -EMSGSIZE and returning skb->len is not necessary
-> > as of a few releases ago. Just return ret; core will do the right thing
-> > if ret == -EMSGSIZE and skb->len != 0  
-> 
-> Any good modern example that I could get the right inspiration from?
+== Summary ==
 
-It's a moving target but:
++ trap cleanup EXIT
++ KERNEL=/kernel
++ MT=/root/linux/maintainer-tools
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
+Cloning into '/root/linux/maintainer-tools'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ make -C /root/linux/maintainer-tools
+make: Entering directory '/root/linux/maintainer-tools'
+cc -O2 -g -Wextra -o remap-log remap-log.c
+make: Leaving directory '/root/linux/maintainer-tools'
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ /root/linux/maintainer-tools/dim sparse --fast 6aa8d62a50c33f091548cc961a713223d488d6ad
+Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
+Fast mode used, each commit won't be checked separately.
+-
++drivers/gpu/drm/i915/i915_irq.c:466:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:466:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:474:16: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:474:16: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:479:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:479:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:479:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:517:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:517:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:525:16: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:525:16: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:530:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:530:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:530:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:574:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:574:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:577:15: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:577:15: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:581:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:581:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:588:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:588:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:588:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:588:9: warning: unreplaced symbol '<noident>'
 
-net/core/netdev-genl.c
-net/psp/psp_nl.c
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
+
+
