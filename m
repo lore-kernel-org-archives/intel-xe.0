@@ -4,57 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 24A67CCFA0D
-	for <intel-xe@archiver.kernel.org>; Thu,  6 Nov 2025 03:35:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C58CFCCFA0D
+	for <intel-xe@archiver.kernel.org>; Thu,  6 Nov 2025 03:47:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B6B3E10E311;
-	Thu,  6 Nov 2025 03:35:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4BEF310E312;
+	Thu,  6 Nov 2025 03:47:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ErGzO9Tp";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gIk0lDG5";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2987510E310;
- Thu,  6 Nov 2025 03:35:53 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6D15510E312;
+ Thu,  6 Nov 2025 03:47:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1762400153; x=1793936153;
+ t=1762400856; x=1793936856;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=zgNTFpCXM3o9g2ZXsFBLXyEVmzMgXOrMc94PnKAGIk4=;
- b=ErGzO9TpEgJcIzowgQW0hZOVFzq7goc0tFreBFSgD+mliayLMDRqAsc/
- 7G8ZvIEQz04Pg8osSDmDoo3ksJ0vb1wiUolJbCiSOwoQr+kTwCpbGCoYp
- MaKvAXwd4zbyNYumPkswtcv+qfpYuQFeSnC8+7S8ZTPUD+o0c6UQQDWE+
- DLewftXlsPnCFO2VKg2eqGPnqgPayaHUlu+YRV6YkVCICJzFC0/vBT2+4
- 66Q8NAcelDMHHvqcuo0kDQSgDblTE/yTA0DtYGYVv5K9I+bsc32IJn850
- CQFk9YmWK+CpHD0t2LyJ2Bhnvev6R63jTUTYt2/a6aRlSZZJKpczUtXsB g==;
-X-CSE-ConnectionGUID: 5xQVDF3zS9KzGknaqVLryA==
-X-CSE-MsgGUID: u6PXnHzOSzWQGJYuik6H3g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="68367886"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="68367886"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Nov 2025 19:35:53 -0800
-X-CSE-ConnectionGUID: 8eewTtwKTtSfZG6ABkdL9A==
-X-CSE-MsgGUID: 9FhqImc5SwqqvQ0/2wOfbw==
+ bh=/yDhqu+70UOByXGEKCn1Vlavvz3WkBkpVVPL0RHTw6Y=;
+ b=gIk0lDG5C3aiVICvixNcr/jQtEPUIUiofnEfdgxEp0tk4/sgkP4BXNtD
+ /8AS834oPb2869l/0LUEAaYkawT55HR69GLcgPYUS5yI9ymVCP6kEuqxX
+ KuN283VgNWrouJ4NEU1Qf98/DSl3UjaYT2P19D2FDdQH1xzxfSkTEbZOI
+ QEhP6HFQTKrRmmkF1/O50e/lrcDZaGg5uOsD/Q5IB0Cb8jJ79Q/k9Rb1G
+ X+EcV8NJwy0yAWwcdZVqh1vVXtx+IO/h7BlkV9ZanN2vPcU2DFuwgaeoW
+ whC8RxgAa/w2RA/Wtv0+d6z8i27IsWSyXN4p0p9rF+xyuBK5NdyNcToRE w==;
+X-CSE-ConnectionGUID: nZMLjfEwR7uVkg6TAeOiaQ==
+X-CSE-MsgGUID: WApU+SnWSnqKV+UMtD28Ow==
+X-IronPort-AV: E=McAfee;i="6800,10657,11604"; a="63539959"
+X-IronPort-AV: E=Sophos;i="6.19,283,1754982000"; d="scan'208";a="63539959"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Nov 2025 19:47:36 -0800
+X-CSE-ConnectionGUID: VuShRrlrSDWopmpdYs4wJQ==
+X-CSE-MsgGUID: Kh1HADSQR3u8B5z4ahljpQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,283,1754982000"; d="scan'208";a="187351125"
-Received: from junxiao.bj.intel.com ([10.238.152.69])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Nov 2025 19:35:49 -0800
-From: Junxiao Chang <junxiao.chang@intel.com>
-To: lucas.demarchi@intel.com, thomas.hellstrom@linux.intel.com,
- rodrigo.vivi@intel.com, airlied@gmail.com, simona@ffwll.ch,
- bigeasy@linutronix.de, clrkwllms@kernel.org, rostedt@goodmis.org,
- daniele.ceraolospurio@intel.com, alexander.usyskin@intel.com,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, linux-rt-devel@lists.linux.dev
-Cc: baoli.zhang@intel.com,
-	junxiao.chang@intel.com
-Subject: [PATCH] drm/me/gsc: mei interrupt top half should be in irq disabled
- context
-Date: Fri,  7 Nov 2025 11:31:52 +0800
-Message-ID: <20251107033152.834960-1-junxiao.chang@intel.com>
-X-Mailer: git-send-email 2.43.0
+X-IronPort-AV: E=Sophos;i="6.19,283,1754982000"; d="scan'208";a="187806847"
+Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
+ by orviesa008.jf.intel.com with ESMTP; 05 Nov 2025 19:47:34 -0800
+From: Suraj Kandpal <suraj.kandpal@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Cc: Arun R Murthy <arun.r.murthy@intel.com>,
+ Suraj Kandpal <suraj.kandpal@intel.com>
+Subject: [PATCH 1/2] drm/i915/display: Add register definitions for common SDP
+Date: Thu,  6 Nov 2025 09:17:28 +0530
+Message-Id: <20251106034729.259128-1-suraj.kandpal@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -71,47 +65,53 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-MEI GSC interrupt comes from i915 or xe driver. It has top half and
-bottom half. Top half is called from i915/xe interrupt handler. It
-should be in irq disabled context.
+From: Arun R Murthy <arun.r.murthy@intel.com>
 
-With RT kernel(PREEMPT_RT enabled), by default IRQ handler is in
-threaded IRQ. MEI GSC top half might be in threaded IRQ context.
-generic_handle_irq_safe API could be called from either IRQ or
-process context, it disables local IRQ then calls MEI GSC interrupt
-top half.
+Add registers definitions for common SDP transmission line
 
-This change fixes B580 GPU boot issue with RT enabled.
-
-Fixes: e02cea83d32d ("drm/xe/gsc: add Battlemage support")
-Tested-by: Baoli Zhang <baoli.zhang@intel.com>
-Signed-off-by: Junxiao Chang <junxiao.chang@intel.com>
+Bspec: 74384
+Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 ---
- drivers/gpu/drm/xe/xe_heci_gsc.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ .../gpu/drm/i915/display/intel_display_regs.h | 25 +++++++++++++++++++
+ 1 file changed, 25 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_heci_gsc.c b/drivers/gpu/drm/xe/xe_heci_gsc.c
-index a415ca4887914..32d509b113915 100644
---- a/drivers/gpu/drm/xe/xe_heci_gsc.c
-+++ b/drivers/gpu/drm/xe/xe_heci_gsc.c
-@@ -221,7 +221,7 @@ void xe_heci_gsc_irq_handler(struct xe_device *xe, u32 iir)
- 	if (xe->heci_gsc.irq < 0)
- 		return;
+diff --git a/drivers/gpu/drm/i915/display/intel_display_regs.h b/drivers/gpu/drm/i915/display/intel_display_regs.h
+index 9d71e26a4fa2..f8c1865a575d 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_regs.h
++++ b/drivers/gpu/drm/i915/display/intel_display_regs.h
+@@ -1916,6 +1916,31 @@
+ 							 _VLV_VIDEO_DIP_DATA_B, \
+ 							 _CHV_VIDEO_DIP_DATA_C)
  
--	ret = generic_handle_irq(xe->heci_gsc.irq);
-+	ret = generic_handle_irq_safe(xe->heci_gsc.irq);
- 	if (ret)
- 		drm_err_ratelimited(&xe->drm, "error handling GSC irq: %d\n", ret);
- }
-@@ -241,7 +241,7 @@ void xe_heci_csc_irq_handler(struct xe_device *xe, u32 iir)
- 	if (xe->heci_gsc.irq < 0)
- 		return;
- 
--	ret = generic_handle_irq(xe->heci_gsc.irq);
-+	ret = generic_handle_irq_safe(xe->heci_gsc.irq);
- 	if (ret)
- 		drm_err_ratelimited(&xe->drm, "error handling GSC irq: %d\n", ret);
- }
++/* SDP Re-architecture */
++#define _CMN_SDP_TL_A			0x6020C
++#define _CMN_SDP_TL_B			0x6120C
++#define _CMN_SDP_TL_C			0x6220C
++#define _CMN_SDP_TL_D			0x6320C
++#define CMN_SDP_TL(display, trans)	_MMIO_TRANS2(display, (trans), _CMN_SDP_TL_A)
++#define  TRANSMISSION_LINE_ENABLE	REG_BIT(31)
++#define  BASE_TRANSMISSION_LINE_MASK	REG_GENMASK(12, 0)
++#define  BASE_TRANSMISSION_LINE(x)	REG_FIELD_PREP(BASE_TRANSMISSION_LINE_MASK, x)
++
++#define _CMN_SDP_TL_STGR_CTL_A			0x60214
++#define _CMN_SDP_TL_STGR_CTL_B			0x61214
++#define _CMN_SDP_TL_STGR_CTL_C			0x62214
++#define _CMN_SDP_TL_STGR_CTL_D			0x63214
++#define CMN_SDP_TL_STGR_CTL(display, trans)	_MMIO_TRANS2(display, (trans), _CMN_SDP_TL_STGR_CTL_A)
++#define  VSC_EXT_STAGGER_MASK			REG_GENMASK(11, 8)
++#define  VSC_EXT_STAGGER(x)			REG_FIELD_PREP(VSC_EXT_STAGGER_MASK, x)
++#define  VSC_EXT_STAGGER_DEFAULT		0x2
++#define  PPS_STAGGER_MASK			REG_GENMASK(7, 4)
++#define  PPS_STAGGER(x)				REG_FIELD_PREP(PPS_STAGGER_MASK, x)
++#define  PPS_STAGGER_DEFAULT			0x1
++#define  GMP_STAGGER_MASK			REG_GENMASK(3, 0)
++#define  GMP_STAGGER(x)				REG_FIELD_PREP(GMP_STAGGER_MASK, x)
++#define  GMP_STAGGER_DEFAULT			0x0
++
+ #define _VLV_VIDEO_DIP_GDCP_PAYLOAD_A	0x60210
+ #define _VLV_VIDEO_DIP_GDCP_PAYLOAD_B	0x61178
+ #define _CHV_VIDEO_DIP_GDCP_PAYLOAD_C	0x611f8
 -- 
-2.43.0
+2.34.1
 
