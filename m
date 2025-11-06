@@ -4,27 +4,33 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 033B2CCFA05
-	for <intel-xe@archiver.kernel.org>; Thu,  6 Nov 2025 02:53:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 980E0CCFA05
+	for <intel-xe@archiver.kernel.org>; Thu,  6 Nov 2025 03:16:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8849F10E004;
-	Thu,  6 Nov 2025 02:53:27 +0000 (UTC)
-Received: from 10055242dc62 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E952710E004;
- Thu,  6 Nov 2025 02:53:25 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0540403575904535668=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 58DD210E7F5;
+	Thu,  6 Nov 2025 03:16:31 +0000 (UTC)
+Received: from psionic.psi5.com (psionic.psi5.com [185.187.169.70])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C2FDD10E004;
+ Thu,  6 Nov 2025 03:16:29 +0000 (UTC)
+Received: from [IPV6:2400:2410:b120:f200:a1f3:73da:3a04:160d] (unknown
+ [IPv6:2400:2410:b120:f200:a1f3:73da:3a04:160d])
+ (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+ key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+ (Client did not present a certificate)
+ by psionic.psi5.com (Postfix) with ESMTPSA id 6549C3F11A;
+ Thu,  6 Nov 2025 04:16:27 +0100 (CET)
+Message-ID: <c9594cc3-031b-43cc-9268-85c32f98ba49@hogyros.de>
+Date: Thu, 6 Nov 2025 12:16:24 +0900
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Add_SoC_remapper_support_fo?=
- =?utf-8?q?r_system_controller?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Umesh Nerlige Ramappa" <umesh.nerlige.ramappa@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 06 Nov 2025 02:53:25 -0000
-Message-ID: <176239760592.20673.582800780636938143@10055242dc62>
-X-Patchwork-Hint: ignore
-References: <20251105234753.603647-6-umesh.nerlige.ramappa@intel.com>
-In-Reply-To: <20251105234753.603647-6-umesh.nerlige.ramappa@intel.com>
+User-Agent: Mozilla Thunderbird
+Content-Language: en-US
+To: dri-devel@lists.freedesktop.org,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ linux-pci@vger.kernel.org
+From: Simon Richter <Simon.Richter@hogyros.de>
+Subject: Unreachable cards in vgaarb
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,124 +42,61 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0540403575904535668==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hi,
 
-== Series Details ==
+I have a card whose VGA registers are not actually reachable, for 
+multiple reasons:
 
-Series: Add SoC remapper support for system controller
-URL   : https://patchwork.freedesktop.org/series/157103/
-State : success
+1. the system in question has multiple PCI domains
+2. the system in question does not support IO access
+3. one of the bridges involved does not support VGA register forwarding
 
-== Summary ==
+Obviously, the "works for me" solution would be to teach vgaarb to check 
+if the VGA bit actually got set in the bridge control register (because 
+apparently, that is how a bridge indicates missing support), and return 
+an error. I plan to do that, but that doesn't solve the others.
 
-CI Bug Log - changes from xe-4053-b68b360d3df2b2f221a6b2395911630bc9749512_BAT -> xe-pw-157103v1_BAT
-====================================================
+The specific actual problem I'm trying to solve here is that there is a 
+workaround in the i915 and xe drivers that pokes the VGA register space 
+on the same card after changing power states, and this falls over on my 
+system. Skipping this is safe if we can guarantee that vgacon will not 
+generate accesses later, so I think having vgaarb recognize that the 
+card is unreachable and returning an error is sufficient here.
 
-Summary
--------
+I have no idea whether this will break other systems though -- can we 
+reasonably assume that any PCI or PCIe bridge that is capable of 
+forwarding VGA accesses will proudly display the VGA bit set in the 
+bridge control register, or is a quirk needed here?
 
-  **SUCCESS**
+For multiple PCI domains, I have no clue how to determine where accesses 
+end up. My feeling is that it's supposed to be "all of them, mediated by 
+VGA bits on root bridges", but I don't know if this is actually true. Is 
+anyone actually building machines with a CPU architecture that has a 
+separate IO range, and multiple PCI domains?
 
-  No regressions found.
+For "no IO access", it is even more complex -- it appears that the 
+approach on POWER is to define inb/outb as MMIO, offset from a global 
+variable that points at a PCI range, which means this access will only 
+show up in one of the PCI(e) controllers.
 
-  
+What is unclear to me is
 
-Participating hosts (12 -> 12)
-------------------------------
+1. whether there is supposed to be a mechanism to generate IO accesses 
+from those,
+2. whether this range should be excluded from MMIO to not accidentally 
+create conflicts
+3. whether vgaarb needs to adjust this variable too
+4. if this variable should instead be maintained by vgaarb
+5. if we should have dedicated vga_inb/vga_outb macros or if we can 
+assume that any inb/outb on machines that don't have an IO range will be 
+VGA accesses anyway
+6. whether it is interesting to create special handling for cards that 
+have VGA registers at the beginning of their non-prefetchable MMIO range 
+(AFAIK, some Intel cards do, and you can address them either via IO or 
+via MMIO to their non-prefetchable mapping).
+7. whether this affects more than two users.
 
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-157103v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@xe_waitfence@engine:
-    - bat-dg2-oem2:       [FAIL][1] -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4053-b68b360d3df2b2f221a6b2395911630bc9749512/bat-dg2-oem2/igt@xe_waitfence@engine.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157103v1/bat-dg2-oem2/igt@xe_waitfence@engine.html
-
-  
-
-
-Build changes
--------------
-
-  * Linux: xe-4053-b68b360d3df2b2f221a6b2395911630bc9749512 -> xe-pw-157103v1
-
-  IGT_8608: 42ea0108ec47e4a00aed97d6f98e5339847c7331 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-4053-b68b360d3df2b2f221a6b2395911630bc9749512: b68b360d3df2b2f221a6b2395911630bc9749512
-  xe-pw-157103v1: 157103v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157103v1/index.html
-
---===============0540403575904535668==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Add SoC remapper support for system controller</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/157103/">https://patchwork.freedesktop.org/series/157103/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157103v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157103v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4053-b68b360d3df2b2f221a6b2395911630bc9749512_BAT -&gt; xe-pw-157103v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (12 -&gt; 12)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-157103v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_waitfence@engine:<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4053-b68b360d3df2b2f221a6b2395911630bc9749512/bat-dg2-oem2/igt@xe_waitfence@engine.html">FAIL</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157103v1/bat-dg2-oem2/igt@xe_waitfence@engine.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4053-b68b360d3df2b2f221a6b2395911630bc9749512 -&gt; xe-pw-157103v1</li>
-</ul>
-<p>IGT_8608: 42ea0108ec47e4a00aed97d6f98e5339847c7331 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-4053-b68b360d3df2b2f221a6b2395911630bc9749512: b68b360d3df2b2f221a6b2395911630bc9749512<br />
-  xe-pw-157103v1: 157103v1</p>
-
-</body>
-</html>
-
---===============0540403575904535668==--
+    Simon
