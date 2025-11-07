@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1023DCCFA1E
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B38C5CCFA1A
 	for <intel-xe@archiver.kernel.org>; Fri,  7 Nov 2025 18:13:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A911210EB83;
-	Fri,  7 Nov 2025 18:13:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6819510EB8E;
+	Fri,  7 Nov 2025 18:13:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RabG9YhE";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZlY2xS68";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 01D8210EB7B
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 65AE110EB7B
  for <intel-xe@lists.freedesktop.org>; Fri,  7 Nov 2025 18:13:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1762539211; x=1794075211;
+ t=1762539210; x=1794075210;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=9mUBj2WXPqjDfsIuYVocl2aOEq3k8oW2vNln0rn6P1Q=;
- b=RabG9YhEX7e96fxnAagXuDpqqkHjNuKnTf2ReE3+c2MoLBeiGtngg6bN
- eBdHKUjT3ORlw6v1Igj6IRpPpxVvxuowRVGHVtJoLkjgaDuFHVnX/XB5L
- O4KPUhnpA2y04TEWqGBSyElCv/wF03f9DAaRYY0uZvWf7i6oVeke/Uo5U
- zp3Uke+hq50aLN9w5H3ThTLZ0IArT24Hho8uzAIYjlSaKAagJuWVBCKGf
- ntSprswXWeba5ErZwQR4elhaweennQfCo6PrI1ozEtv+cJAiyulkUo+1T
- l7ZzVI5hzlf7ZtXl6e1cuc/3+lkMm5bWJrHaA/kK7MdgB+Anzgny7bb8n g==;
-X-CSE-ConnectionGUID: x50ZQsNTQYCtDN37rsdrXw==
-X-CSE-MsgGUID: 1dW5Sb/vRzW0em24EpVh0g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11606"; a="64733152"
-X-IronPort-AV: E=Sophos;i="6.19,287,1754982000"; d="scan'208";a="64733152"
+ bh=XTn3AB1FtmHP1+1tKFmx8JQL4UcTsKfwkwSwNi7IUuI=;
+ b=ZlY2xS681o9fcr9F8WA04yJetgWg0H37CushF2XzdENmlYf8hI9KmoVS
+ CMOpKGVcxb3qLjBRqLDgqGD75PY4jje7BwgJ9dsCL5MaVhYaTDs8cnCKp
+ /702eX4LOyifNWvQ/xl9+/LhpVMHUwcZ/h6QagAd9E1pVhYjgbhIgPapv
+ byluWCUo0qc/7xbLrSaWGhmpw6rw015xSDVntOVhYAR1U3uoVlVHkZ0Ir
+ GS3ajNXl5GlMKCZgidW4k4cX7Dnr6wU/ehRw7FOpxlz77Et7PZXX3MLXZ
+ J+DdOzLj7VOefH21aIArSA9cy31hXg3iSV9mxL2PNrbaacnk2h+hZbHuc Q==;
+X-CSE-ConnectionGUID: fIMUcZD7RfGwjGky/KmeZg==
+X-CSE-MsgGUID: uKxjNmFLQZGqlmfH91uPVw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11606"; a="64733146"
+X-IronPort-AV: E=Sophos;i="6.19,287,1754982000"; d="scan'208";a="64733146"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  07 Nov 2025 10:13:30 -0800
-X-CSE-ConnectionGUID: LCHUG3NQStG1L8om3u/aqQ==
-X-CSE-MsgGUID: nmvT180tQ+2sZnOtHX7ixA==
+X-CSE-ConnectionGUID: BfxqosdxRLKy9eQp9o9rHA==
+X-CSE-MsgGUID: 9cBqJCf5QeG2zR7kZ5aLBA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,287,1754982000"; d="scan'208";a="193271207"
+X-IronPort-AV: E=Sophos;i="6.19,287,1754982000"; d="scan'208";a="193271185"
 Received: from mdroper-desk1.fm.intel.com ([10.1.39.133])
  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Nov 2025 10:13:30 -0800
+ 07 Nov 2025 10:13:29 -0800
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.d.roper@intel.com
-Subject: [PATCH 19/33] drm/xe/display: Use scoped-cleanup
-Date: Fri,  7 Nov 2025 10:13:35 -0800
-Message-ID: <20251107181315.631642-54-matthew.d.roper@intel.com>
+Subject: [PATCH 13/33] drm/xe/mocs: Use scope-based cleanup
+Date: Fri,  7 Nov 2025 10:13:29 -0800
+Message-ID: <20251107181315.631642-48-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.51.1
 In-Reply-To: <20251107181315.631642-35-matthew.d.roper@intel.com>
 References: <20251107181315.631642-35-matthew.d.roper@intel.com>
@@ -66,152 +66,109 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Eliminate some goto-based cleanup by utilizing scoped cleanup helpers.
+Using scope-based cleanup for runtime PM and forcewake in the MOCS code
+allows us to eliminate some goto-based error handling and simplify some
+other functions.
 
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/display/xe_fb_pin.c   | 24 +++++++++---------------
- drivers/gpu/drm/xe/display/xe_hdcp_gsc.c | 23 +++++++----------------
- 2 files changed, 16 insertions(+), 31 deletions(-)
+ drivers/gpu/drm/xe/tests/xe_mocs.c | 13 +++----------
+ drivers/gpu/drm/xe/xe_mocs.c       | 17 +++++------------
+ 2 files changed, 8 insertions(+), 22 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-index 1fd4a815e784..33f5b031a21c 100644
---- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
-+++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-@@ -210,10 +210,10 @@ static int __xe_pin_fb_vma_ggtt(const struct intel_framebuffer *fb,
- 	/* TODO: Consider sharing framebuffer mapping?
- 	 * embed i915_vma inside intel_framebuffer
- 	 */
--	xe_pm_runtime_get_noresume(xe);
--	ret = mutex_lock_interruptible(&ggtt->lock);
--	if (ret)
--		goto out;
-+	guard(xe_pm_runtime_noresume)(xe);
-+	ACQUIRE(mutex_intr, lock)(&ggtt->lock);
-+	if ((ret = ACQUIRE_ERR(mutex_intr, &lock)))
-+		return ret;
- 
- 	align = XE_PAGE_SIZE;
- 	if (xe_bo_is_vram(bo) && ggtt->flags & XE_GGTT_FLAGS_64K)
-@@ -223,15 +223,13 @@ static int __xe_pin_fb_vma_ggtt(const struct intel_framebuffer *fb,
- 		vma->node = bo->ggtt_node[tile0->id];
- 	} else if (view->type == I915_GTT_VIEW_NORMAL) {
- 		vma->node = xe_ggtt_node_init(ggtt);
--		if (IS_ERR(vma->node)) {
--			ret = PTR_ERR(vma->node);
--			goto out_unlock;
--		}
-+		if (IS_ERR(vma->node))
-+			return PTR_ERR(vma->node);
- 
- 		ret = xe_ggtt_node_insert_locked(vma->node, xe_bo_size(bo), align, 0);
- 		if (ret) {
- 			xe_ggtt_node_fini(vma->node);
--			goto out_unlock;
-+			return ret;
- 		}
- 
- 		xe_ggtt_map_bo(ggtt, vma->node, bo, xe->pat.idx[XE_CACHE_NONE]);
-@@ -245,13 +243,13 @@ static int __xe_pin_fb_vma_ggtt(const struct intel_framebuffer *fb,
- 		vma->node = xe_ggtt_node_init(ggtt);
- 		if (IS_ERR(vma->node)) {
- 			ret = PTR_ERR(vma->node);
--			goto out_unlock;
-+			return ret;
- 		}
- 
- 		ret = xe_ggtt_node_insert_locked(vma->node, size, align, 0);
- 		if (ret) {
- 			xe_ggtt_node_fini(vma->node);
--			goto out_unlock;
-+			return ret;
- 		}
- 
- 		ggtt_ofs = vma->node->base.start;
-@@ -265,10 +263,6 @@ static int __xe_pin_fb_vma_ggtt(const struct intel_framebuffer *fb,
- 					   rot_info->plane[i].dst_stride);
- 	}
- 
--out_unlock:
--	mutex_unlock(&ggtt->lock);
--out:
--	xe_pm_runtime_put(xe);
- 	return ret;
- }
- 
-diff --git a/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c b/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c
-index 80fd3844c41c..084baddb160e 100644
---- a/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c
-+++ b/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c
-@@ -37,7 +37,6 @@ bool intel_hdcp_gsc_check_status(struct drm_device *drm)
- 	struct xe_gt *gt = tile->media_gt;
- 	struct xe_gsc *gsc = &gt->uc.gsc;
- 	bool ret = true;
+diff --git a/drivers/gpu/drm/xe/tests/xe_mocs.c b/drivers/gpu/drm/xe/tests/xe_mocs.c
+index 611050d49d0b..16681a0f1f77 100644
+--- a/drivers/gpu/drm/xe/tests/xe_mocs.c
++++ b/drivers/gpu/drm/xe/tests/xe_mocs.c
+@@ -42,16 +42,13 @@ static void read_l3cc_table(struct xe_gt *gt,
+ 			    const struct xe_mocs_info *info)
+ {
+ 	struct kunit *test = kunit_get_current_test();
 -	struct xe_force_wake_ref fw_ref;
+ 	u32 l3cc, l3cc_expected;
+ 	unsigned int i;
+ 	u32 reg_val;
  
- 	if (!gsc || !xe_uc_fw_is_enabled(&gsc->fw)) {
- 		drm_dbg_kms(&xe->drm,
-@@ -45,21 +44,17 @@ bool intel_hdcp_gsc_check_status(struct drm_device *drm)
- 		return false;
- 	}
- 
--	xe_pm_runtime_get(xe);
--	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FW_GSC);
-+	guard(xe_pm_runtime)(xe);
-+	CLASS(xe_force_wake, fw_ref)(gt_to_fw(gt), XE_FW_GSC);
- 	if (!fw_ref.domains) {
- 		drm_dbg_kms(&xe->drm,
- 			    "failed to get forcewake to check proxy status\n");
--		ret = false;
--		goto out;
-+		return false;
- 	}
- 
- 	if (!xe_gsc_proxy_init_done(gsc))
- 		ret = false;
- 
--	xe_force_wake_put(fw_ref);
--out:
--	xe_pm_runtime_put(xe);
- 	return ret;
- }
- 
-@@ -166,17 +161,15 @@ ssize_t intel_hdcp_gsc_msg_send(struct intel_hdcp_gsc_context *gsc_context,
- 	u32 addr_out_off, addr_in_wr_off = 0;
- 	int ret, tries = 0;
- 
--	if (msg_in_len > max_msg_size || msg_out_len > max_msg_size) {
--		ret = -ENOSPC;
--		goto out;
+-	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
+-	if (!xe_force_wake_ref_has_domain(fw_ref, XE_FORCEWAKE_ALL)) {
+-		xe_force_wake_put(fw_ref);
++	CLASS(xe_force_wake, fw_ref)(gt_to_fw(gt), XE_FORCEWAKE_ALL);
++	if (!xe_force_wake_ref_has_domain(fw_ref, XE_FORCEWAKE_ALL))
+ 		KUNIT_ASSERT_TRUE_MSG(test, true, "Forcewake Failed.\n");
 -	}
-+	if (msg_in_len > max_msg_size || msg_out_len > max_msg_size)
-+		return -ENOSPC;
  
- 	msg_size_in = msg_in_len + HDCP_GSC_HEADER_SIZE;
- 	msg_size_out = msg_out_len + HDCP_GSC_HEADER_SIZE;
- 	addr_out_off = PAGE_SIZE;
- 
- 	host_session_id = xe_gsc_create_host_session_id();
--	xe_pm_runtime_get_noresume(xe);
-+	guard(xe_pm_runtime_noresume)(xe);
- 	addr_in_wr_off = xe_gsc_emit_header(xe, &gsc_context->hdcp_bo->vmap,
- 					    addr_in_wr_off, HECI_MEADDRESS_HDCP,
- 					    host_session_id, msg_in_len);
-@@ -201,13 +194,11 @@ ssize_t intel_hdcp_gsc_msg_send(struct intel_hdcp_gsc_context *gsc_context,
- 	} while (++tries < 20);
- 
- 	if (ret)
--		goto out;
-+		return ret;
- 
- 	xe_map_memcpy_from(xe, msg_out, &gsc_context->hdcp_bo->vmap,
- 			   addr_out_off + HDCP_GSC_HEADER_SIZE,
- 			   msg_out_len);
- 
--out:
--	xe_pm_runtime_put(xe);
- 	return ret;
+ 	for (i = 0; i < info->num_mocs_regs; i++) {
+ 		if (!(i & 1)) {
+@@ -75,14 +72,12 @@ static void read_l3cc_table(struct xe_gt *gt,
+ 		KUNIT_EXPECT_EQ_MSG(test, l3cc_expected, l3cc,
+ 				    "l3cc idx=%u has incorrect val.\n", i);
+ 	}
+-	xe_force_wake_put(fw_ref);
  }
+ 
+ static void read_mocs_table(struct xe_gt *gt,
+ 			    const struct xe_mocs_info *info)
+ {
+ 	struct kunit *test = kunit_get_current_test();
+-	struct xe_force_wake_ref fw_ref;
+ 	u32 mocs, mocs_expected;
+ 	unsigned int i;
+ 	u32 reg_val;
+@@ -90,7 +85,7 @@ static void read_mocs_table(struct xe_gt *gt,
+ 	KUNIT_EXPECT_TRUE_MSG(test, info->unused_entries_index,
+ 			      "Unused entries index should have been defined\n");
+ 
+-	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
++	CLASS(xe_force_wake, fw_ref)(gt_to_fw(gt), XE_FW_GT);
+ 	KUNIT_ASSERT_NE_MSG(test, fw_ref.domains, 0, "Forcewake Failed.\n");
+ 
+ 	for (i = 0; i < info->num_mocs_regs; i++) {
+@@ -108,8 +103,6 @@ static void read_mocs_table(struct xe_gt *gt,
+ 		KUNIT_EXPECT_EQ_MSG(test, mocs_expected, mocs,
+ 				    "mocs reg 0x%x has incorrect val.\n", i);
+ 	}
+-
+-	xe_force_wake_put(fw_ref);
+ }
+ 
+ static int mocs_kernel_test_run_device(struct xe_device *xe)
+diff --git a/drivers/gpu/drm/xe/xe_mocs.c b/drivers/gpu/drm/xe/xe_mocs.c
+index 7b7b71ef82f1..1c590fe5eca3 100644
+--- a/drivers/gpu/drm/xe/xe_mocs.c
++++ b/drivers/gpu/drm/xe/xe_mocs.c
+@@ -811,27 +811,20 @@ int xe_mocs_dump(struct xe_gt *gt, struct drm_printer *p)
+ 	struct xe_device *xe = gt_to_xe(gt);
+ 	enum xe_force_wake_domains domain;
+ 	struct xe_mocs_info table;
+-	struct xe_force_wake_ref fw_ref;
+ 	unsigned int flags;
+-	int err = 0;
+ 
+ 	flags = get_mocs_settings(xe, &table);
+ 
+ 	domain = flags & HAS_LNCF_MOCS ? XE_FORCEWAKE_ALL : XE_FW_GT;
+-	xe_pm_runtime_get_noresume(xe);
+-	fw_ref = xe_force_wake_get(gt_to_fw(gt), domain);
+ 
+-	if (!xe_force_wake_ref_has_domain(fw_ref, domain)) {
+-		err = -ETIMEDOUT;
+-		goto err_fw;
+-	}
++	guard(xe_pm_runtime_noresume)(xe);
++	CLASS(xe_force_wake, fw_ref)(gt_to_fw(gt), domain);
++	if (!xe_force_wake_ref_has_domain(fw_ref, domain))
++		return -ETIMEDOUT;
+ 
+ 	table.ops->dump(&table, flags, gt, p);
+ 
+-err_fw:
+-	xe_force_wake_put(fw_ref);
+-	xe_pm_runtime_put(xe);
+-	return err;
++	return 0;
+ }
+ 
+ #if IS_ENABLED(CONFIG_DRM_XE_KUNIT_TEST)
 -- 
 2.51.1
 
