@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3F9D5CCFA1F
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5DBFDCD11C2
 	for <intel-xe@archiver.kernel.org>; Fri,  7 Nov 2025 18:13:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DF07510EB97;
+	by gabe.freedesktop.org (Postfix) with ESMTP id E3C8410EB98;
 	Fri,  7 Nov 2025 18:13:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="O0q5fL+q";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iVdc+Fdf";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D864A10EB84
- for <intel-xe@lists.freedesktop.org>; Fri,  7 Nov 2025 18:13:30 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AC73C10EB84
+ for <intel-xe@lists.freedesktop.org>; Fri,  7 Nov 2025 18:13:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1762539211; x=1794075211;
+ t=1762539212; x=1794075212;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=5dMhNeKLH954EbScjXMsWKD6AoSs7rmfV8sk9wcGaI4=;
- b=O0q5fL+q/mFUKydJRmvFVdv5byjJSan1+ZEj2qR4ltPUYneWoN/udyBU
- uQgvmpKB66CvjsycY9Oki6mgVERRMcpbvkn1ptP0jFx+u64mAcn9JFoqg
- Q5DhRGafg/7CEWwCJXr3xCzeOZNb0kyM4W12CMyKG9gOh56mhDiD7A71V
- a7adY7CB5PvKhvnFU5uaW9U32zNpYnfzZWW9xFydv56xr5G7ozqPzM/nE
- UAJ7GhG/H0kEMYKKiTPxuqyZPuCFMCPC3Oqs0sIGzP+p40iaXClJJiL5q
- VNPdi7bMlqEAEjqYFJQiEIxxDUaTrASZMtbsB+Um1ZhZn3+aVcHhmxLOw g==;
-X-CSE-ConnectionGUID: TNHllGWeRKWp4VSaePpmYg==
-X-CSE-MsgGUID: O95J4OEJQOm5pMUaj5rzfQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11606"; a="64733151"
-X-IronPort-AV: E=Sophos;i="6.19,287,1754982000"; d="scan'208";a="64733151"
+ bh=YNzuWfzvpe4wnfvDfD46wF3cy/wm0D4rg89c7eyJXlw=;
+ b=iVdc+FdfCYdRO8EBpxOkpHEKW/xfJxKSm8A6LvJR3gIwWFcdznTsY7fT
+ emRnLtNYtvNL41OWWlUCXu4TImIdjn5S6NZaaasxnlxj4jCw6Tvj2mgT7
+ sl/qseb8tw9J3u5EidRPPxVoUfB2kKwYuYTX/54D5RlxP0fATrk7t974+
+ zLG+h7kkTGTYE4/Ffhr4lXg9Q9l6bw0CHihG1qmiQUn4SQbDbOqunHMme
+ D7tMrxXfdYOJQwADaunsdbMJP8a4pOLEwEdEP5Z0ud1nZQG1gl6WHwFr5
+ TnIu2qsL4UW6HiahniEQjJPULBLIP2dh5DMKABGcErIie+ivKq/GwtIGD A==;
+X-CSE-ConnectionGUID: ZP4QuMaXTWy9znEa1LgHhg==
+X-CSE-MsgGUID: eTdBx6nRRoOm8xywwKCMFw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11606"; a="64733165"
+X-IronPort-AV: E=Sophos;i="6.19,287,1754982000"; d="scan'208";a="64733165"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Nov 2025 10:13:30 -0800
-X-CSE-ConnectionGUID: KNKiKoQDSFC2ouFxzyFwTg==
-X-CSE-MsgGUID: xJFHrm4fQCWZuzIKktAJCQ==
+ 07 Nov 2025 10:13:31 -0800
+X-CSE-ConnectionGUID: EtE0aC/eRUGz00g1n8ePow==
+X-CSE-MsgGUID: JCe7abtmQXqwd1i8TGHZGg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,287,1754982000"; d="scan'208";a="193271204"
+X-IronPort-AV: E=Sophos;i="6.19,287,1754982000"; d="scan'208";a="193271244"
 Received: from mdroper-desk1.fm.intel.com ([10.1.39.133])
  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Nov 2025 10:13:30 -0800
+ 07 Nov 2025 10:13:31 -0800
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.d.roper@intel.com
-Subject: [PATCH 18/33] drm/xe/devcoredump: Use scope-based cleanup
-Date: Fri,  7 Nov 2025 10:13:34 -0800
-Message-ID: <20251107181315.631642-53-matthew.d.roper@intel.com>
+Subject: [PATCH 30/33] drm/xe/sriov: Use scope-based runtime PM
+Date: Fri,  7 Nov 2025 10:13:46 -0800
+Message-ID: <20251107181315.631642-65-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.51.1
 In-Reply-To: <20251107181315.631642-35-matthew.d.roper@intel.com>
 References: <20251107181315.631642-35-matthew.d.roper@intel.com>
@@ -66,101 +66,127 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Use scope-based cleanup for forcewake and runtime PM in the devcoredump
-code.  This eliminates some goto-based error handling and slightly
-simplifies other functions.
+Use scope-based runtime power management in the SRIOV code for
+consistency with other parts of the driver.
 
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/xe_devcoredump.c | 26 ++++++++++----------------
- 1 file changed, 10 insertions(+), 16 deletions(-)
+ drivers/gpu/drm/xe/xe_pci_sriov.c             | 3 +--
+ drivers/gpu/drm/xe/xe_sriov_pf_debugfs.c      | 6 ++----
+ drivers/gpu/drm/xe/xe_sriov_pf_sysfs.c        | 6 ++----
+ drivers/gpu/drm/xe/xe_sriov_vf_ccs.c          | 5 +----
+ drivers/gpu/drm/xe/xe_tile_sriov_pf_debugfs.c | 3 +--
+ 5 files changed, 7 insertions(+), 16 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_devcoredump.c b/drivers/gpu/drm/xe/xe_devcoredump.c
-index eb0b40ffffaa..3f58ee4b7c0f 100644
---- a/drivers/gpu/drm/xe/xe_devcoredump.c
-+++ b/drivers/gpu/drm/xe/xe_devcoredump.c
-@@ -276,7 +276,6 @@ static void xe_devcoredump_deferred_snap_work(struct work_struct *work)
- 	struct xe_devcoredump_snapshot *ss = container_of(work, typeof(*ss), work);
- 	struct xe_devcoredump *coredump = container_of(ss, typeof(*coredump), snapshot);
- 	struct xe_device *xe = coredump_to_xe(coredump);
--	struct xe_force_wake_ref fw_ref;
- 
- 	/*
- 	 * NB: Despite passing a GFP_ flags parameter here, more allocations are done
-@@ -287,15 +286,15 @@ static void xe_devcoredump_deferred_snap_work(struct work_struct *work)
- 			      xe_devcoredump_read, xe_devcoredump_free,
- 			      XE_COREDUMP_TIMEOUT_JIFFIES);
+diff --git a/drivers/gpu/drm/xe/xe_pci_sriov.c b/drivers/gpu/drm/xe/xe_pci_sriov.c
+index d0fcde66a774..4b16748fe2ed 100644
+--- a/drivers/gpu/drm/xe/xe_pci_sriov.c
++++ b/drivers/gpu/drm/xe/xe_pci_sriov.c
+@@ -212,12 +212,11 @@ int xe_pci_sriov_configure(struct pci_dev *pdev, int num_vfs)
+ 	if (num_vfs && pci_num_vf(pdev))
+ 		return -EBUSY;
  
 -	xe_pm_runtime_get(xe);
 +	guard(xe_pm_runtime)(xe);
+ 	if (num_vfs > 0)
+ 		ret = pf_enable_vfs(xe, num_vfs);
+ 	else
+ 		ret = pf_disable_vfs(xe);
+-	xe_pm_runtime_put(xe);
  
- 	/* keep going if fw fails as we still want to save the memory and SW data */
--	fw_ref = xe_force_wake_get(gt_to_fw(ss->gt), XE_FORCEWAKE_ALL);
--	if (!xe_force_wake_ref_has_domain(fw_ref, XE_FORCEWAKE_ALL))
--		xe_gt_info(ss->gt, "failed to get forcewake for coredump capture\n");
--	xe_vm_snapshot_capture_delayed(ss->vm);
--	xe_guc_exec_queue_snapshot_capture_delayed(ss->ge);
--	xe_force_wake_put(fw_ref);
-+	xe_with_force_wake(fw_ref, gt_to_fw(ss->gt), XE_FORCEWAKE_ALL) {
-+		if (!xe_force_wake_ref_has_domain(fw_ref, XE_FORCEWAKE_ALL))
-+			xe_gt_info(ss->gt, "failed to get forcewake for coredump capture\n");
-+		xe_vm_snapshot_capture_delayed(ss->vm);
-+		xe_guc_exec_queue_snapshot_capture_delayed(ss->ge);
-+	}
+ 	return ret;
+ }
+diff --git a/drivers/gpu/drm/xe/xe_sriov_pf_debugfs.c b/drivers/gpu/drm/xe/xe_sriov_pf_debugfs.c
+index a81aa05c5532..21eafe333cb5 100644
+--- a/drivers/gpu/drm/xe/xe_sriov_pf_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_sriov_pf_debugfs.c
+@@ -69,9 +69,8 @@ static ssize_t from_file_write_to_xe_call(struct file *file, const char __user *
+ 	if (ret < 0)
+ 		return ret;
+ 	if (yes) {
+-		xe_pm_runtime_get(xe);
++		guard(xe_pm_runtime)(xe);
+ 		ret = call(xe);
+-		xe_pm_runtime_put(xe);
+ 	}
+ 	if (ret < 0)
+ 		return ret;
+@@ -157,9 +156,8 @@ static ssize_t from_file_write_to_vf_call(struct file *file, const char __user *
+ 	if (ret < 0)
+ 		return ret;
+ 	if (yes) {
+-		xe_pm_runtime_get(xe);
++		guard(xe_pm_runtime)(xe);
+ 		ret = call(xe, vfid);
+-		xe_pm_runtime_put(xe);
+ 	}
+ 	if (ret < 0)
+ 		return ret;
+diff --git a/drivers/gpu/drm/xe/xe_sriov_pf_sysfs.c b/drivers/gpu/drm/xe/xe_sriov_pf_sysfs.c
+index c0b767ac735c..f0777976335c 100644
+--- a/drivers/gpu/drm/xe/xe_sriov_pf_sysfs.c
++++ b/drivers/gpu/drm/xe/xe_sriov_pf_sysfs.c
+@@ -394,9 +394,8 @@ static ssize_t xe_sriov_dev_attr_store(struct kobject *kobj, struct attribute *a
+ 	if (!vattr->store)
+ 		return -EPERM;
  
- 	ss->read.chunk_position = 0;
+-	xe_pm_runtime_get(xe);
++	guard(xe_pm_runtime)(xe);
+ 	ret = xe_sriov_pf_wait_ready(xe) ?: vattr->store(xe, buf, count);
+-	xe_pm_runtime_put(xe);
  
-@@ -306,7 +305,7 @@ static void xe_devcoredump_deferred_snap_work(struct work_struct *work)
- 		ss->read.buffer = kvmalloc(XE_DEVCOREDUMP_CHUNK_MAX,
- 					   GFP_USER);
- 		if (!ss->read.buffer)
--			goto put_pm;
-+			return;
+ 	return ret;
+ }
+@@ -430,9 +429,8 @@ static ssize_t xe_sriov_vf_attr_store(struct kobject *kobj, struct attribute *at
+ 	if (!vattr->store)
+ 		return -EPERM;
  
- 		__xe_devcoredump_read(ss->read.buffer,
- 				      XE_DEVCOREDUMP_CHUNK_MAX,
-@@ -314,15 +313,12 @@ static void xe_devcoredump_deferred_snap_work(struct work_struct *work)
- 	} else {
- 		ss->read.buffer = kvmalloc(ss->read.size, GFP_USER);
- 		if (!ss->read.buffer)
--			goto put_pm;
-+			return;
+-	xe_pm_runtime_get(xe);
++	guard(xe_pm_runtime)(xe);
+ 	ret = xe_sriov_pf_wait_ready(xe) ?: vattr->store(xe, vfid, buf, count);
+-	xe_pm_runtime_get(xe);
  
- 		__xe_devcoredump_read(ss->read.buffer, ss->read.size, 0,
- 				      coredump);
- 		xe_devcoredump_snapshot_free(ss);
+ 	return ret;
+ }
+diff --git a/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c b/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c
+index 797a4b866226..e1cdc46ad710 100644
+--- a/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c
++++ b/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c
+@@ -463,8 +463,7 @@ void xe_sriov_vf_ccs_print(struct xe_device *xe, struct drm_printer *p)
+ 	if (!IS_VF_CCS_READY(xe))
+ 		return;
+ 
+-	xe_pm_runtime_get(xe);
+-
++	guard(xe_pm_runtime)(xe);
+ 	for_each_ccs_rw_ctx(ctx_id) {
+ 		bb_pool = xe->sriov.vf.ccs.contexts[ctx_id].mem.ccs_bb_pool;
+ 		if (!bb_pool)
+@@ -475,6 +474,4 @@ void xe_sriov_vf_ccs_print(struct xe_device *xe, struct drm_printer *p)
+ 		drm_suballoc_dump_debug_info(&bb_pool->base, p, xe_sa_manager_gpu_addr(bb_pool));
+ 		drm_puts(p, "\n");
  	}
 -
--put_pm:
 -	xe_pm_runtime_put(xe);
  }
- 
- static void devcoredump_snapshot(struct xe_devcoredump *coredump,
-@@ -332,7 +328,6 @@ static void devcoredump_snapshot(struct xe_devcoredump *coredump,
- 	struct xe_devcoredump_snapshot *ss = &coredump->snapshot;
- 	struct xe_guc *guc = exec_queue_to_guc(q);
- 	const char *process_name = "no process";
--	struct xe_force_wake_ref fw_ref;
- 	bool cookie;
- 
- 	ss->snapshot_time = ktime_get_real();
-@@ -351,7 +346,7 @@ static void devcoredump_snapshot(struct xe_devcoredump *coredump,
- 	cookie = dma_fence_begin_signalling();
- 
- 	/* keep going if fw fails as we still want to save the memory and SW data */
--	fw_ref = xe_force_wake_get(gt_to_fw(q->gt), XE_FORCEWAKE_ALL);
-+	CLASS(xe_force_wake, fw_ref)(gt_to_fw(q->gt), XE_FORCEWAKE_ALL);
- 
- 	ss->guc.log = xe_guc_log_snapshot_capture(&guc->log, true);
- 	ss->guc.ct = xe_guc_ct_snapshot_capture(&guc->ct);
-@@ -364,7 +359,6 @@ static void devcoredump_snapshot(struct xe_devcoredump *coredump,
- 
- 	queue_work(system_unbound_wq, &ss->work);
- 
--	xe_force_wake_put(fw_ref);
- 	dma_fence_end_signalling(cookie);
- }
- 
+diff --git a/drivers/gpu/drm/xe/xe_tile_sriov_pf_debugfs.c b/drivers/gpu/drm/xe/xe_tile_sriov_pf_debugfs.c
+index f3f478f14ff5..7f97db2f89bb 100644
+--- a/drivers/gpu/drm/xe/xe_tile_sriov_pf_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_tile_sriov_pf_debugfs.c
+@@ -141,12 +141,11 @@ static int NAME##_set(void *data, u64 val)					\
+ 	if (val > (TYPE)~0ull)							\
+ 		return -EOVERFLOW;						\
+ 										\
+-	xe_pm_runtime_get(xe);							\
++	guard(xe_pm_runtime)(xe);						\
+ 	err = xe_sriov_pf_wait_ready(xe) ?:					\
+ 	      xe_gt_sriov_pf_config_set_##CONFIG(gt, vfid, val);		\
+ 	if (!err)								\
+ 		xe_sriov_pf_provision_set_custom_mode(xe);			\
+-	xe_pm_runtime_put(xe);							\
+ 										\
+ 	return err;								\
+ }										\
 -- 
 2.51.1
 
