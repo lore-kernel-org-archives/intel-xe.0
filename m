@@ -4,57 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 262C7CCFA05
-	for <intel-xe@archiver.kernel.org>; Fri,  7 Nov 2025 10:16:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7EC29CCFA05
+	for <intel-xe@archiver.kernel.org>; Fri,  7 Nov 2025 10:29:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D9C0410EA60;
-	Fri,  7 Nov 2025 10:16:22 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PTgzp4Wq";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ECEEA10EA60;
- Fri,  7 Nov 2025 10:16:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1762510581; x=1794046581;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=H6UfRJMKeG4Oo8SKwS1TWf/EvxTNIQumbRuOSCTLak4=;
- b=PTgzp4WqFfdaMxrGQgXwviBfd9GJhbLnfMJ1NczhW6IjzRYF4c5zk/ZE
- zsw0paj/pzT7asRA7ptBbWN8Uc9Qo//o6L62Dt84ALL7HsFKRqZa7kIKd
- LxsDHCNNKl+kaWydyPTEqyOdYWkH6lnX0B+jzLDzTN8NhUasPDJBPrE2M
- Z8ChPWtqHCZIVQjj356SajUz4MXAgIqEPmcc/XzX+bYe8+JwBuLXD9nr5
- 3t0O49amA2t3ghAvLVZARP3mvZp20u4N0vDL7/JJWsr92hDO4Ckgmxst9
- xzwo86VO+u1ln2WU3TCj6HKGNTS4Ue66NHdoROYLNKYM5mT0dkGmOHlFX g==;
-X-CSE-ConnectionGUID: sLjCZI01RpyJ3AagdPYNdg==
-X-CSE-MsgGUID: OxTJqnLfQc2j6Nxd1rSZfA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11605"; a="90129538"
-X-IronPort-AV: E=Sophos;i="6.19,286,1754982000"; d="scan'208";a="90129538"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Nov 2025 02:16:21 -0800
-X-CSE-ConnectionGUID: 7euSyXmKSRacHGGawJU6ZA==
-X-CSE-MsgGUID: QOupXzkuRjq963b+kSf+gg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,286,1754982000"; d="scan'208";a="211448477"
-Received: from ettammin-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.124])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Nov 2025 02:16:18 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Vinod Govindapillai <vinod.govindapillai@intel.com>,
- intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
-Cc: vinod.govindapillai@intel.com, uma.shankar@intel.com,
- kunal1.joshi@intel.com
-Subject: Re: [PATCH] drm/i915/fbc: Apply wa_15018326506
-In-Reply-To: <20251107100734.67236-1-vinod.govindapillai@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20251107100734.67236-1-vinod.govindapillai@intel.com>
-Date: Fri, 07 Nov 2025 12:16:15 +0200
-Message-ID: <fb7031734a4c6b9cc0f26ff287fdf9fb23d07e65@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 311B310EA6C;
+	Fri,  7 Nov 2025 10:29:33 +0000 (UTC)
+Received: from 10055242dc62 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2053D10EA6C;
+ Fri,  7 Nov 2025 10:29:32 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_series_starting_with_=5B?=
+ =?utf-8?q?v2=2C1/2=5D_drm/i915/ltphy=3A_Implement_HDMI_Algo_for_Pll_state?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Suraj Kandpal" <suraj.kandpal@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 07 Nov 2025 10:29:32 -0000
+Message-ID: <176251137212.28862.14079943830823549735@10055242dc62>
+X-Patchwork-Hint: ignore
+References: <20251107093512.533577-1-suraj.kandpal@intel.com>
+In-Reply-To: <20251107093512.533577-1-suraj.kandpal@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,78 +36,43 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, 07 Nov 2025, Vinod Govindapillai <vinod.govindapillai@intel.com> wrote:
-> Disable FBC as part for the wa for the bmg variant
->
-> Bspec: 74212
-> Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_display_wa.c |  4 ++++
->  drivers/gpu/drm/i915/display/intel_display_wa.h |  1 +
->  drivers/gpu/drm/i915/display/intel_fbc.c        | 10 ++++++++++
->  3 files changed, 15 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.c b/drivers/gpu/drm/i915/display/intel_display_wa.c
-> index c528aaa679ca..ba2272d85a04 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_wa.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_wa.c
-> @@ -10,6 +10,7 @@
->  #include "intel_display_core.h"
->  #include "intel_display_regs.h"
->  #include "intel_display_wa.h"
-> +#include "intel_step.h"
->  
->  static void gen11_display_wa_apply(struct intel_display *display)
->  {
-> @@ -69,6 +70,9 @@ bool __intel_display_wa(struct intel_display *display, enum intel_display_wa wa,
->  		return DISPLAY_VER(display) == 13;
->  	case INTEL_DISPLAY_WA_22014263786:
->  		return IS_DISPLAY_VERx100(display, 1100, 1400);
-> +	case INTEL_DISPLAY_WA_15018326506:
-> +		return DISPLAY_VERx100(display) == 1401 &&
-> +		       INTEL_DISPLAY_STEP(display) == STEP_C0;
+== Series Details ==
 
-IS_DISPLAY_VERx100_STEP().
+Series: series starting with [v2,1/2] drm/i915/ltphy: Implement HDMI Algo for Pll state
+URL   : https://patchwork.freedesktop.org/series/157210/
+State : warning
 
->  	default:
->  		drm_WARN(display->drm, 1, "Missing Wa number: %s\n", name);
->  		break;
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.h b/drivers/gpu/drm/i915/display/intel_display_wa.h
-> index 3644e8e2b724..f648b00cb97d 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_wa.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_wa.h
-> @@ -26,6 +26,7 @@ enum intel_display_wa {
->  	INTEL_DISPLAY_WA_16025573575,
->  	INTEL_DISPLAY_WA_14011503117,
->  	INTEL_DISPLAY_WA_22014263786,
-> +	INTEL_DISPLAY_WA_15018326506,
->  };
->  
->  bool __intel_display_wa(struct intel_display *display, enum intel_display_wa wa, const char *name);
-> diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
-> index a1e3083022ee..16cd99db2978 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fbc.c
-> +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-> @@ -1521,6 +1521,16 @@ static int intel_fbc_check_plane(struct intel_atomic_state *state,
->  		return 0;
->  	}
->  
-> +	/*
-> +	 * wa_15018326506:
-> +	 * Fixes: Underrun during media decode
-> +	 * Workaround: Do not enable FBC
-> +	 */
-> +	if (intel_display_wa(display, 15018326506)) {
-> +		plane_state->no_fbc_reason = "Wa_15018326506";
-> +		return 0;
-> +	}
-> +
->  	/* WaFbcTurnOffFbcWhenHyperVisorIsUsed:skl,bxt */
->  	if (intel_display_vtd_active(display) &&
->  	    (display->platform.skylake || display->platform.broxton)) {
+== Summary ==
 
--- 
-Jani Nikula, Intel
++ trap cleanup EXIT
++ KERNEL=/kernel
++ MT=/root/linux/maintainer-tools
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
+Cloning into '/root/linux/maintainer-tools'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ make -C /root/linux/maintainer-tools
+make: Entering directory '/root/linux/maintainer-tools'
+cc -O2 -g -Wextra -o remap-log remap-log.c
+make: Leaving directory '/root/linux/maintainer-tools'
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ /root/linux/maintainer-tools/dim sparse --fast 1f25afd37c14352cd24ada205fe16ff022784bd4
+Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
+Fast mode used, each commit won't be checked separately.
++drivers/gpu/drm/i915/display/intel_ddi.c: note: in included file:
++drivers/gpu/drm/i915/display/intel_display_types.h:2073:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2073:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2073:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2073:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2086:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2086:24: warning: unreplaced symbol '<noident>'
+
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
+
+
