@@ -4,61 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 76C1CCCFA05
-	for <intel-xe@archiver.kernel.org>; Fri,  7 Nov 2025 11:08:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DDA6ACCF9F8
+	for <intel-xe@archiver.kernel.org>; Fri,  7 Nov 2025 11:17:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2FDDD10EA87;
-	Fri,  7 Nov 2025 11:08:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9B41310EA94;
+	Fri,  7 Nov 2025 11:17:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GsVxtlZ+";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GSrifeqv";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 082CB10EA87;
- Fri,  7 Nov 2025 11:08:20 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 45CB210EA94
+ for <intel-xe@lists.freedesktop.org>; Fri,  7 Nov 2025 11:17:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1762513700; x=1794049700;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=45lxTcY9PQ9pFAjvQEjBvM3JJ/clJUHRayGsjdjymkY=;
- b=GsVxtlZ+2cbps9RCkdC42rzXQltNjssVfe3AeKeECpATTtjxUutPmZL2
- qzcavR+5gDHTDaCTYyKnBMUauNNWloadN1BafkXXgstNHeTzGifhkxFFe
- msgs9DRanfCuPhiTC/c2jJu7hYViFzXu6R+MRzNrnPfFFvlM3ktRu8pJE
- qxntsNNJm1oDGfktlPqhxz7O9sAeTZQwz8ree42DVnnc0HI9Pf8mCxqLB
- fhfCUfsr7opn6Wc30gVipZDIl7L0RPUK0d9tcw1o45S8/z/GKRvj0QEpd
- IoDU8ChFHRW5e4MUTPg7LmvRWrJMt9bgMFPWje70dbb6ENMR9Gn5Yrz0t A==;
-X-CSE-ConnectionGUID: qeu9yAItTbKnrLfMipG9Ug==
-X-CSE-MsgGUID: EabWX3EiSVmTFFyvPOzzAw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11605"; a="64817213"
-X-IronPort-AV: E=Sophos;i="6.19,286,1754982000"; d="scan'208";a="64817213"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Nov 2025 03:08:20 -0800
-X-CSE-ConnectionGUID: wqKfMF0cTOWjluCnsHPkbw==
-X-CSE-MsgGUID: mmdFLngnS3+xovx1v6/AkQ==
+ t=1762514271; x=1794050271;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=3xQ0rgIZMfCRjLZ3a9ss1ezshj+uDZPTnQHXMRS7ue0=;
+ b=GSrifeqvpJmFvzSOTSo3J7Ws6pcVWUoZ7TToDiGLtdtYWIKHuP7xIX7G
+ g8TxBaGp6EJgvUOImu6beNrKpXDlmXy9poucP8ifNEH2HNL/JYtCQrlcr
+ imXb1gmElToxhtLfQIQMFjcrTSZEJqSI4vC90SLbLCSTaPPDlIEloPgpG
+ Euf4uAjqkoMc3FL1i9e4AN3Cs2yGzL51tlrx4p4p18N+9d3z00mjUiqz3
+ Fei6EEV5ToBVjsUlRy00VzCm6skeffRSJIy9EbCdch6x7BAyD7dL1oi/r
+ DRxeyTf2jrQT/MHufdrLRnAIqqZj2mG4Y86HZQ/EerlUKPbo3u679R1vV g==;
+X-CSE-ConnectionGUID: WdBKwOxOTou3AyP3QmgEcA==
+X-CSE-MsgGUID: tff8kB7lQ+yvgQEPY2WkHw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11605"; a="68309999"
+X-IronPort-AV: E=Sophos;i="6.19,286,1754982000"; d="scan'208";a="68309999"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Nov 2025 03:17:51 -0800
+X-CSE-ConnectionGUID: EoEFUjVYQ5m+pofbpXP0fw==
+X-CSE-MsgGUID: pldp/U+1QaO20G5yHFxl5Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,286,1754982000"; d="scan'208";a="187959045"
-Received: from ettammin-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.124])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Nov 2025 03:08:18 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: "Govindapillai, Vinod" <vinod.govindapillai@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Cc: "Shankar, Uma" <uma.shankar@intel.com>, "Joshi, Kunal1"
- <kunal1.joshi@intel.com>
-Subject: Re: [PATCH] drm/i915/fbc: Apply wa_15018326506
-In-Reply-To: <ea443f4c5bf41ff20f65bef1ee4e74313d76f62f.camel@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20251107100734.67236-1-vinod.govindapillai@intel.com>
- <fb7031734a4c6b9cc0f26ff287fdf9fb23d07e65@intel.com>
- <ea443f4c5bf41ff20f65bef1ee4e74313d76f62f.camel@intel.com>
-Date: Fri, 07 Nov 2025 13:08:15 +0200
-Message-ID: <917da7d1e8e3a33d5724023f3275c51e36c3f834@intel.com>
+X-IronPort-AV: E=Sophos;i="6.19,286,1754982000"; d="scan'208";a="192107811"
+Received: from nitin-super-server.iind.intel.com ([10.190.238.72])
+ by orviesa003.jf.intel.com with ESMTP; 07 Nov 2025 03:17:49 -0800
+From: Nitin Gote <nitin.r.gote@intel.com>
+To: matthew.brost@intel.com
+Cc: intel-xe@lists.freedesktop.org, matthew.auld@intel.com,
+ michal.mrozek@intel.com, Nitin Gote <nitin.r.gote@intel.com>
+Subject: [PATCH v5 0/3] drm/xe: add VM_BIND DECOMPRESS support and on‑demand decompression
+Date: Fri,  7 Nov 2025 17:17:58 +0530
+Message-ID: <20251107114757.561671-5-nitin.r.gote@intel.com>
+X-Mailer: git-send-email 2.50.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,112 +65,55 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, 07 Nov 2025, "Govindapillai, Vinod" <vinod.govindapillai@intel.com>=
- wrote:
-> On Fri, 2025-11-07 at 12:16 +0200, Jani Nikula wrote:
->> On Fri, 07 Nov 2025, Vinod Govindapillai
->> <vinod.govindapillai@intel.com> wrote:
->> > Disable FBC as part for the wa for the bmg variant
->> >=20
->> > Bspec: 74212
->> > Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
->> > ---
->> > =C2=A0drivers/gpu/drm/i915/display/intel_display_wa.c |=C2=A0 4 ++++
->> > =C2=A0drivers/gpu/drm/i915/display/intel_display_wa.h |=C2=A0 1 +
->> > =C2=A0drivers/gpu/drm/i915/display/intel_fbc.c=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 | 10 ++++++++++
->> > =C2=A03 files changed, 15 insertions(+)
->> >=20
->> > diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.c
->> > b/drivers/gpu/drm/i915/display/intel_display_wa.c
->> > index c528aaa679ca..ba2272d85a04 100644
->> > --- a/drivers/gpu/drm/i915/display/intel_display_wa.c
->> > +++ b/drivers/gpu/drm/i915/display/intel_display_wa.c
->> > @@ -10,6 +10,7 @@
->> > =C2=A0#include "intel_display_core.h"
->> > =C2=A0#include "intel_display_regs.h"
->> > =C2=A0#include "intel_display_wa.h"
->> > +#include "intel_step.h"
->> > =C2=A0
->> > =C2=A0static void gen11_display_wa_apply(struct intel_display *display)
->> > =C2=A0{
->> > @@ -69,6 +70,9 @@ bool __intel_display_wa(struct intel_display
->> > *display, enum intel_display_wa wa,
->> > =C2=A0		return DISPLAY_VER(display) =3D=3D 13;
->> > =C2=A0	case INTEL_DISPLAY_WA_22014263786:
->> > =C2=A0		return IS_DISPLAY_VERx100(display, 1100, 1400);
->> > +	case INTEL_DISPLAY_WA_15018326506:
->> > +		return DISPLAY_VERx100(display) =3D=3D 1401 &&
->> > +		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 INTEL_DISPLAY_STEP(display) =
-=3D=3D STEP_C0;
->>=20
->> IS_DISPLAY_VERx100_STEP().
->
-> I was looking into the comments for that macro! This wa apply only for
-> step c0 (as of now)! I wasn't sure what the "until" part could be in
-> that macro! So what do you suggest for the "until"  STEP_D0 or
-> STEP_FOREVER in such cases!
+This series implements VM_BIND decompression support in the XE driver
+for both non-fault mode and fault mode.
 
-If it's C0 only, then C1 is the next step, not D0.
+Tested with https://patchwork.freedesktop.org/series/154711/
+which validates basic VM_BIND DECOMPRESS behavior for both
+regular and FAULT_MODE VMs.
 
-Basically there's only one user of INTEL_DISPLAY_STEP() outside of the
-macros themselves, and we should avoid adding more users.
+v5: (Matt)
+   - Correct the condition check of xe_pat_index_get_comp_en
 
-BR,
-Jani.
+v4: (Matt)
+  - Simplify xe_migrate_resolve(), use single BO/resource;
+    remove copy_only_ccs argument as it's always false.
+  - Introduce xe_pat_index_get_comp_en(), which checks
+    XE2_COMP_EN for the pat_index
+  - .interruptible should be true, everything else false
+
+v3: (Matt)
+   - s/xe_bo_schedule_decompress/xe_bo_decompress
+   - skip the decrompress step if the BO isn't in VRAM
+   - start/size not required in xe_bo_schedule_decompress
+   - Use xe_bo_move_notify instead of xe_vm_invalidate_vma
+     with respect to invalidation.
+   - Nits
+
+v2:
+   - Add kernel doc (Matt)
+   - Move decompression work out of vm_bind ioctl. (Matt)
+   - Put that work in a small helper at the BO/migrate layer invoke it
+     from vma_lock_and_validate which already runs under drm_exec.
+   - Move lightweight checks to vm_bind_ioctl_check_args (Matthew Auld)
 
 
+Nitin Gote (3):
+  drm/xe: add VM_BIND DECOMPRESS uapi flag
+  drm/xe: add xe_migrate_resolve wrapper and is_vram_resolve support
+  drm/xe: implement VM_BIND decompression in vm_bind_ioctl
 
->
-> BR
-> Vinod
->
->
->>=20
->> > =C2=A0	default:
->> > =C2=A0		drm_WARN(display->drm, 1, "Missing Wa number:
->> > %s\n", name);
->> > =C2=A0		break;
->> > diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.h
->> > b/drivers/gpu/drm/i915/display/intel_display_wa.h
->> > index 3644e8e2b724..f648b00cb97d 100644
->> > --- a/drivers/gpu/drm/i915/display/intel_display_wa.h
->> > +++ b/drivers/gpu/drm/i915/display/intel_display_wa.h
->> > @@ -26,6 +26,7 @@ enum intel_display_wa {
->> > =C2=A0	INTEL_DISPLAY_WA_16025573575,
->> > =C2=A0	INTEL_DISPLAY_WA_14011503117,
->> > =C2=A0	INTEL_DISPLAY_WA_22014263786,
->> > +	INTEL_DISPLAY_WA_15018326506,
->> > =C2=A0};
->> > =C2=A0
->> > =C2=A0bool __intel_display_wa(struct intel_display *display, enum
->> > intel_display_wa wa, const char *name);
->> > diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c
->> > b/drivers/gpu/drm/i915/display/intel_fbc.c
->> > index a1e3083022ee..16cd99db2978 100644
->> > --- a/drivers/gpu/drm/i915/display/intel_fbc.c
->> > +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
->> > @@ -1521,6 +1521,16 @@ static int intel_fbc_check_plane(struct
->> > intel_atomic_state *state,
->> > =C2=A0		return 0;
->> > =C2=A0	}
->> > =C2=A0
->> > +	/*
->> > +	 * wa_15018326506:
->> > +	 * Fixes: Underrun during media decode
->> > +	 * Workaround: Do not enable FBC
->> > +	 */
->> > +	if (intel_display_wa(display, 15018326506)) {
->> > +		plane_state->no_fbc_reason =3D "Wa_15018326506";
->> > +		return 0;
->> > +	}
->> > +
->> > =C2=A0	/* WaFbcTurnOffFbcWhenHyperVisorIsUsed:skl,bxt */
->> > =C2=A0	if (intel_display_vtd_active(display) &&
->> > =C2=A0	=C2=A0=C2=A0=C2=A0 (display->platform.skylake || display-
->> > >platform.broxton)) {
->>=20
->
+ drivers/gpu/drm/xe/xe_bo.c       | 52 ++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_bo.h       |  2 +
+ drivers/gpu/drm/xe/xe_migrate.c  | 83 +++++++++++++++++++++-----------
+ drivers/gpu/drm/xe/xe_migrate.h  |  4 ++
+ drivers/gpu/drm/xe/xe_pat.c      |  6 +++
+ drivers/gpu/drm/xe/xe_pat.h      | 10 ++++
+ drivers/gpu/drm/xe/xe_vm.c       | 40 ++++++++++-----
+ drivers/gpu/drm/xe/xe_vm_types.h |  2 +
+ include/uapi/drm/xe_drm.h        |  8 +++
+ 9 files changed, 169 insertions(+), 38 deletions(-)
 
---=20
-Jani Nikula, Intel
+-- 
+2.50.1
+
