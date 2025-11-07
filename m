@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B38C5CCFA1A
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B4224CD13CF
 	for <intel-xe@archiver.kernel.org>; Fri,  7 Nov 2025 18:13:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6819510EB8E;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 477D210EB8C;
 	Fri,  7 Nov 2025 18:13:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZlY2xS68";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dL01QNuc";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 65AE110EB7B
- for <intel-xe@lists.freedesktop.org>; Fri,  7 Nov 2025 18:13:30 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DE01510EB7F
+ for <intel-xe@lists.freedesktop.org>; Fri,  7 Nov 2025 18:13:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1762539210; x=1794075210;
+ t=1762539212; x=1794075212;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=XTn3AB1FtmHP1+1tKFmx8JQL4UcTsKfwkwSwNi7IUuI=;
- b=ZlY2xS681o9fcr9F8WA04yJetgWg0H37CushF2XzdENmlYf8hI9KmoVS
- CMOpKGVcxb3qLjBRqLDgqGD75PY4jje7BwgJ9dsCL5MaVhYaTDs8cnCKp
- /702eX4LOyifNWvQ/xl9+/LhpVMHUwcZ/h6QagAd9E1pVhYjgbhIgPapv
- byluWCUo0qc/7xbLrSaWGhmpw6rw015xSDVntOVhYAR1U3uoVlVHkZ0Ir
- GS3ajNXl5GlMKCZgidW4k4cX7Dnr6wU/ehRw7FOpxlz77Et7PZXX3MLXZ
- J+DdOzLj7VOefH21aIArSA9cy31hXg3iSV9mxL2PNrbaacnk2h+hZbHuc Q==;
-X-CSE-ConnectionGUID: fIMUcZD7RfGwjGky/KmeZg==
-X-CSE-MsgGUID: uKxjNmFLQZGqlmfH91uPVw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11606"; a="64733146"
-X-IronPort-AV: E=Sophos;i="6.19,287,1754982000"; d="scan'208";a="64733146"
+ bh=A/blABBVz3lfLBT2XRkOfnmmld1rdKsTWLSk+YyvHeM=;
+ b=dL01QNucmjbuaIRIe5YbfZyyqQWBtc2gFNSo5rZjfjxW5isSMtPQw9rv
+ po+MrDkP/gEqlA7/4yhIqf0Z5wgxgv5jmorSd+MOzUF4NM5ZRM9lQw4Yd
+ nhDdROlStHE+APBffDVDXY/050JOmrPJfqK2VGMe8i34VfFL/Y69w5je7
+ SAcPw9OA2IvQIP7cFe2MQbzNvIP0WxQjfBE1+ostvIlApPdHk6exaAZ/Z
+ ljJFPTiJlj2L4lhOF2jQwTjl1fI8HrQj3jEeszLPjHQ2wcIhtsc4+tMDZ
+ Ed1KFOU8+B/NCQ4cXWEanVnnGfIXDm+YaTHztF/JEdKWnq5zBe7ECvygh Q==;
+X-CSE-ConnectionGUID: Ur/PJ14PSqSG7X6fFt4Ztg==
+X-CSE-MsgGUID: Notkv/TXT3SX1/r3vkjSeA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11606"; a="64733167"
+X-IronPort-AV: E=Sophos;i="6.19,287,1754982000"; d="scan'208";a="64733167"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Nov 2025 10:13:30 -0800
-X-CSE-ConnectionGUID: BfxqosdxRLKy9eQp9o9rHA==
-X-CSE-MsgGUID: 9cBqJCf5QeG2zR7kZ5aLBA==
+ 07 Nov 2025 10:13:32 -0800
+X-CSE-ConnectionGUID: FvLsDGEkTqCNRBjdOMTmlw==
+X-CSE-MsgGUID: dKVvdn7jSmS2ssUuKHHj8A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,287,1754982000"; d="scan'208";a="193271185"
+X-IronPort-AV: E=Sophos;i="6.19,287,1754982000"; d="scan'208";a="193271250"
 Received: from mdroper-desk1.fm.intel.com ([10.1.39.133])
  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Nov 2025 10:13:29 -0800
+ 07 Nov 2025 10:13:31 -0800
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.d.roper@intel.com
-Subject: [PATCH 13/33] drm/xe/mocs: Use scope-based cleanup
-Date: Fri,  7 Nov 2025 10:13:29 -0800
-Message-ID: <20251107181315.631642-48-matthew.d.roper@intel.com>
+Subject: [PATCH 32/33] drm/xe/sysfs: Use scope-based runtime power management
+Date: Fri,  7 Nov 2025 10:13:48 -0800
+Message-ID: <20251107181315.631642-67-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.51.1
 In-Reply-To: <20251107181315.631642-35-matthew.d.roper@intel.com>
 References: <20251107181315.631642-35-matthew.d.roper@intel.com>
@@ -66,109 +66,278 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Using scope-based cleanup for runtime PM and forcewake in the MOCS code
-allows us to eliminate some goto-based error handling and simplify some
-other functions.
+Switch sysfs to use scope-based runtime power management to slightly
+simplify the code.
 
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/tests/xe_mocs.c | 13 +++----------
- drivers/gpu/drm/xe/xe_mocs.c       | 17 +++++------------
- 2 files changed, 8 insertions(+), 22 deletions(-)
+ drivers/gpu/drm/xe/xe_device_sysfs.c          | 33 ++++++++-----------
+ drivers/gpu/drm/xe/xe_gt_freq.c               | 27 +++++----------
+ drivers/gpu/drm/xe/xe_gt_throttle.c           |  3 +-
+ drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.c |  6 ++--
+ 4 files changed, 25 insertions(+), 44 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/tests/xe_mocs.c b/drivers/gpu/drm/xe/tests/xe_mocs.c
-index 611050d49d0b..16681a0f1f77 100644
---- a/drivers/gpu/drm/xe/tests/xe_mocs.c
-+++ b/drivers/gpu/drm/xe/tests/xe_mocs.c
-@@ -42,16 +42,13 @@ static void read_l3cc_table(struct xe_gt *gt,
- 			    const struct xe_mocs_info *info)
- {
- 	struct kunit *test = kunit_get_current_test();
--	struct xe_force_wake_ref fw_ref;
- 	u32 l3cc, l3cc_expected;
- 	unsigned int i;
- 	u32 reg_val;
+diff --git a/drivers/gpu/drm/xe/xe_device_sysfs.c b/drivers/gpu/drm/xe/xe_device_sysfs.c
+index ec9c06b06fb5..a73e0e957cb0 100644
+--- a/drivers/gpu/drm/xe/xe_device_sysfs.c
++++ b/drivers/gpu/drm/xe/xe_device_sysfs.c
+@@ -57,9 +57,8 @@ vram_d3cold_threshold_store(struct device *dev, struct device_attribute *attr,
  
--	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
--	if (!xe_force_wake_ref_has_domain(fw_ref, XE_FORCEWAKE_ALL)) {
--		xe_force_wake_put(fw_ref);
-+	CLASS(xe_force_wake, fw_ref)(gt_to_fw(gt), XE_FORCEWAKE_ALL);
-+	if (!xe_force_wake_ref_has_domain(fw_ref, XE_FORCEWAKE_ALL))
- 		KUNIT_ASSERT_TRUE_MSG(test, true, "Forcewake Failed.\n");
--	}
+ 	drm_dbg(&xe->drm, "vram_d3cold_threshold: %u\n", vram_d3cold_threshold);
  
- 	for (i = 0; i < info->num_mocs_regs; i++) {
- 		if (!(i & 1)) {
-@@ -75,14 +72,12 @@ static void read_l3cc_table(struct xe_gt *gt,
- 		KUNIT_EXPECT_EQ_MSG(test, l3cc_expected, l3cc,
- 				    "l3cc idx=%u has incorrect val.\n", i);
- 	}
--	xe_force_wake_put(fw_ref);
- }
- 
- static void read_mocs_table(struct xe_gt *gt,
- 			    const struct xe_mocs_info *info)
- {
- 	struct kunit *test = kunit_get_current_test();
--	struct xe_force_wake_ref fw_ref;
- 	u32 mocs, mocs_expected;
- 	unsigned int i;
- 	u32 reg_val;
-@@ -90,7 +85,7 @@ static void read_mocs_table(struct xe_gt *gt,
- 	KUNIT_EXPECT_TRUE_MSG(test, info->unused_entries_index,
- 			      "Unused entries index should have been defined\n");
- 
--	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
-+	CLASS(xe_force_wake, fw_ref)(gt_to_fw(gt), XE_FW_GT);
- 	KUNIT_ASSERT_NE_MSG(test, fw_ref.domains, 0, "Forcewake Failed.\n");
- 
- 	for (i = 0; i < info->num_mocs_regs; i++) {
-@@ -108,8 +103,6 @@ static void read_mocs_table(struct xe_gt *gt,
- 		KUNIT_EXPECT_EQ_MSG(test, mocs_expected, mocs,
- 				    "mocs reg 0x%x has incorrect val.\n", i);
- 	}
--
--	xe_force_wake_put(fw_ref);
- }
- 
- static int mocs_kernel_test_run_device(struct xe_device *xe)
-diff --git a/drivers/gpu/drm/xe/xe_mocs.c b/drivers/gpu/drm/xe/xe_mocs.c
-index 7b7b71ef82f1..1c590fe5eca3 100644
---- a/drivers/gpu/drm/xe/xe_mocs.c
-+++ b/drivers/gpu/drm/xe/xe_mocs.c
-@@ -811,27 +811,20 @@ int xe_mocs_dump(struct xe_gt *gt, struct drm_printer *p)
- 	struct xe_device *xe = gt_to_xe(gt);
- 	enum xe_force_wake_domains domain;
- 	struct xe_mocs_info table;
--	struct xe_force_wake_ref fw_ref;
- 	unsigned int flags;
--	int err = 0;
- 
- 	flags = get_mocs_settings(xe, &table);
- 
- 	domain = flags & HAS_LNCF_MOCS ? XE_FORCEWAKE_ALL : XE_FW_GT;
--	xe_pm_runtime_get_noresume(xe);
--	fw_ref = xe_force_wake_get(gt_to_fw(gt), domain);
- 
--	if (!xe_force_wake_ref_has_domain(fw_ref, domain)) {
--		err = -ETIMEDOUT;
--		goto err_fw;
--	}
-+	guard(xe_pm_runtime_noresume)(xe);
-+	CLASS(xe_force_wake, fw_ref)(gt_to_fw(gt), domain);
-+	if (!xe_force_wake_ref_has_domain(fw_ref, domain))
-+		return -ETIMEDOUT;
- 
- 	table.ops->dump(&table, flags, gt, p);
- 
--err_fw:
--	xe_force_wake_put(fw_ref);
+-	xe_pm_runtime_get(xe);
++	guard(xe_pm_runtime)(xe);
+ 	ret = xe_pm_set_vram_threshold(xe, vram_d3cold_threshold);
 -	xe_pm_runtime_put(xe);
--	return err;
-+	return 0;
- }
  
- #if IS_ENABLED(CONFIG_DRM_XE_KUNIT_TEST)
+ 	return ret ?: count;
+ }
+@@ -84,33 +83,31 @@ lb_fan_control_version_show(struct device *dev, struct device_attribute *attr, c
+ 	u16 major = 0, minor = 0, hotfix = 0, build = 0;
+ 	int ret;
+ 
+-	xe_pm_runtime_get(xe);
++	guard(xe_pm_runtime)(xe);
+ 
+ 	ret = xe_pcode_read(root, PCODE_MBOX(PCODE_LATE_BINDING, GET_CAPABILITY_STATUS, 0),
+ 			    &cap, NULL);
+ 	if (ret)
+-		goto out;
++		return ret;
+ 
+ 	if (REG_FIELD_GET(V1_FAN_PROVISIONED, cap)) {
+ 		ret = xe_pcode_read(root, PCODE_MBOX(PCODE_LATE_BINDING, GET_VERSION_LOW, 0),
+ 				    &ver_low, NULL);
+ 		if (ret)
+-			goto out;
++			return ret;
+ 
+ 		ret = xe_pcode_read(root, PCODE_MBOX(PCODE_LATE_BINDING, GET_VERSION_HIGH, 0),
+ 				    &ver_high, NULL);
+ 		if (ret)
+-			goto out;
++			return ret;
+ 
+ 		major = REG_FIELD_GET(MAJOR_VERSION_MASK, ver_low);
+ 		minor = REG_FIELD_GET(MINOR_VERSION_MASK, ver_low);
+ 		hotfix = REG_FIELD_GET(HOTFIX_VERSION_MASK, ver_high);
+ 		build = REG_FIELD_GET(BUILD_VERSION_MASK, ver_high);
+ 	}
+-out:
+-	xe_pm_runtime_put(xe);
+ 
+-	return ret ?: sysfs_emit(buf, "%u.%u.%u.%u\n", major, minor, hotfix, build);
++	return sysfs_emit(buf, "%u.%u.%u.%u\n", major, minor, hotfix, build);
+ }
+ static DEVICE_ATTR_ADMIN_RO(lb_fan_control_version);
+ 
+@@ -123,33 +120,31 @@ lb_voltage_regulator_version_show(struct device *dev, struct device_attribute *a
+ 	u16 major = 0, minor = 0, hotfix = 0, build = 0;
+ 	int ret;
+ 
+-	xe_pm_runtime_get(xe);
++	guard(xe_pm_runtime)(xe);
+ 
+ 	ret = xe_pcode_read(root, PCODE_MBOX(PCODE_LATE_BINDING, GET_CAPABILITY_STATUS, 0),
+ 			    &cap, NULL);
+ 	if (ret)
+-		goto out;
++		return ret;
+ 
+ 	if (REG_FIELD_GET(VR_PARAMS_PROVISIONED, cap)) {
+ 		ret = xe_pcode_read(root, PCODE_MBOX(PCODE_LATE_BINDING, GET_VERSION_LOW, 0),
+ 				    &ver_low, NULL);
+ 		if (ret)
+-			goto out;
++			return ret;
+ 
+ 		ret = xe_pcode_read(root, PCODE_MBOX(PCODE_LATE_BINDING, GET_VERSION_HIGH, 0),
+ 				    &ver_high, NULL);
+ 		if (ret)
+-			goto out;
++			return ret;
+ 
+ 		major = REG_FIELD_GET(MAJOR_VERSION_MASK, ver_low);
+ 		minor = REG_FIELD_GET(MINOR_VERSION_MASK, ver_low);
+ 		hotfix = REG_FIELD_GET(HOTFIX_VERSION_MASK, ver_high);
+ 		build = REG_FIELD_GET(BUILD_VERSION_MASK, ver_high);
+ 	}
+-out:
+-	xe_pm_runtime_put(xe);
+ 
+-	return ret ?: sysfs_emit(buf, "%u.%u.%u.%u\n", major, minor, hotfix, build);
++	return sysfs_emit(buf, "%u.%u.%u.%u\n", major, minor, hotfix, build);
+ }
+ static DEVICE_ATTR_ADMIN_RO(lb_voltage_regulator_version);
+ 
+@@ -233,9 +228,8 @@ auto_link_downgrade_capable_show(struct device *dev, struct device_attribute *at
+ 	struct xe_device *xe = pdev_to_xe_device(pdev);
+ 	u32 cap, val;
+ 
+-	xe_pm_runtime_get(xe);
++	guard(xe_pm_runtime)(xe);
+ 	val = xe_mmio_read32(xe_root_tile_mmio(xe), BMG_PCIE_CAP);
+-	xe_pm_runtime_put(xe);
+ 
+ 	cap = REG_FIELD_GET(LINK_DOWNGRADE, val);
+ 	return sysfs_emit(buf, "%u\n", cap == DOWNGRADE_CAPABLE);
+@@ -251,11 +245,10 @@ auto_link_downgrade_status_show(struct device *dev, struct device_attribute *att
+ 	u32 val = 0;
+ 	int ret;
+ 
+-	xe_pm_runtime_get(xe);
++	guard(xe_pm_runtime)(xe);
+ 	ret = xe_pcode_read(xe_device_get_root_tile(xe),
+ 			    PCODE_MBOX(DGFX_PCODE_STATUS, DGFX_GET_INIT_STATUS, 0),
+ 			    &val, NULL);
+-	xe_pm_runtime_put(xe);
+ 
+ 	return ret ?: sysfs_emit(buf, "%u\n", REG_FIELD_GET(DGFX_LINK_DOWNGRADE_STATUS, val));
+ }
+diff --git a/drivers/gpu/drm/xe/xe_gt_freq.c b/drivers/gpu/drm/xe/xe_gt_freq.c
+index 849ea6c86e8e..6284a4daf00a 100644
+--- a/drivers/gpu/drm/xe/xe_gt_freq.c
++++ b/drivers/gpu/drm/xe/xe_gt_freq.c
+@@ -70,9 +70,8 @@ static ssize_t act_freq_show(struct kobject *kobj,
+ 	struct xe_guc_pc *pc = dev_to_pc(dev);
+ 	u32 freq;
+ 
+-	xe_pm_runtime_get(dev_to_xe(dev));
++	guard(xe_pm_runtime)(dev_to_xe(dev));
+ 	freq = xe_guc_pc_get_act_freq(pc);
+-	xe_pm_runtime_put(dev_to_xe(dev));
+ 
+ 	return sysfs_emit(buf, "%d\n", freq);
+ }
+@@ -86,9 +85,8 @@ static ssize_t cur_freq_show(struct kobject *kobj,
+ 	u32 freq;
+ 	ssize_t ret;
+ 
+-	xe_pm_runtime_get(dev_to_xe(dev));
++	guard(xe_pm_runtime)(dev_to_xe(dev));
+ 	ret = xe_guc_pc_get_cur_freq(pc, &freq);
+-	xe_pm_runtime_put(dev_to_xe(dev));
+ 	if (ret)
+ 		return ret;
+ 
+@@ -113,9 +111,8 @@ static ssize_t rpe_freq_show(struct kobject *kobj,
+ 	struct xe_guc_pc *pc = dev_to_pc(dev);
+ 	u32 freq;
+ 
+-	xe_pm_runtime_get(dev_to_xe(dev));
++	guard(xe_pm_runtime)(dev_to_xe(dev));
+ 	freq = xe_guc_pc_get_rpe_freq(pc);
+-	xe_pm_runtime_put(dev_to_xe(dev));
+ 
+ 	return sysfs_emit(buf, "%d\n", freq);
+ }
+@@ -128,9 +125,8 @@ static ssize_t rpa_freq_show(struct kobject *kobj,
+ 	struct xe_guc_pc *pc = dev_to_pc(dev);
+ 	u32 freq;
+ 
+-	xe_pm_runtime_get(dev_to_xe(dev));
++	guard(xe_pm_runtime)(dev_to_xe(dev));
+ 	freq = xe_guc_pc_get_rpa_freq(pc);
+-	xe_pm_runtime_put(dev_to_xe(dev));
+ 
+ 	return sysfs_emit(buf, "%d\n", freq);
+ }
+@@ -154,9 +150,8 @@ static ssize_t min_freq_show(struct kobject *kobj,
+ 	u32 freq;
+ 	ssize_t ret;
+ 
+-	xe_pm_runtime_get(dev_to_xe(dev));
++	guard(xe_pm_runtime)(dev_to_xe(dev));
+ 	ret = xe_guc_pc_get_min_freq(pc, &freq);
+-	xe_pm_runtime_put(dev_to_xe(dev));
+ 	if (ret)
+ 		return ret;
+ 
+@@ -175,9 +170,8 @@ static ssize_t min_freq_store(struct kobject *kobj,
+ 	if (ret)
+ 		return ret;
+ 
+-	xe_pm_runtime_get(dev_to_xe(dev));
++	guard(xe_pm_runtime)(dev_to_xe(dev));
+ 	ret = xe_guc_pc_set_min_freq(pc, freq);
+-	xe_pm_runtime_put(dev_to_xe(dev));
+ 	if (ret)
+ 		return ret;
+ 
+@@ -193,9 +187,8 @@ static ssize_t max_freq_show(struct kobject *kobj,
+ 	u32 freq;
+ 	ssize_t ret;
+ 
+-	xe_pm_runtime_get(dev_to_xe(dev));
++	guard(xe_pm_runtime)(dev_to_xe(dev));
+ 	ret = xe_guc_pc_get_max_freq(pc, &freq);
+-	xe_pm_runtime_put(dev_to_xe(dev));
+ 	if (ret)
+ 		return ret;
+ 
+@@ -214,9 +207,8 @@ static ssize_t max_freq_store(struct kobject *kobj,
+ 	if (ret)
+ 		return ret;
+ 
+-	xe_pm_runtime_get(dev_to_xe(dev));
++	guard(xe_pm_runtime)(dev_to_xe(dev));
+ 	ret = xe_guc_pc_set_max_freq(pc, freq);
+-	xe_pm_runtime_put(dev_to_xe(dev));
+ 	if (ret)
+ 		return ret;
+ 
+@@ -243,9 +235,8 @@ static ssize_t power_profile_store(struct kobject *kobj,
+ 	struct xe_guc_pc *pc = dev_to_pc(dev);
+ 	int err;
+ 
+-	xe_pm_runtime_get(dev_to_xe(dev));
++	guard(xe_pm_runtime)(dev_to_xe(dev));
+ 	err = xe_guc_pc_set_power_profile(pc, buff);
+-	xe_pm_runtime_put(dev_to_xe(dev));
+ 
+ 	return err ?: count;
+ }
+diff --git a/drivers/gpu/drm/xe/xe_gt_throttle.c b/drivers/gpu/drm/xe/xe_gt_throttle.c
+index 82c5fbcdfbe3..0ee288389e71 100644
+--- a/drivers/gpu/drm/xe/xe_gt_throttle.c
++++ b/drivers/gpu/drm/xe/xe_gt_throttle.c
+@@ -97,9 +97,8 @@ u32 xe_gt_throttle_get_limit_reasons(struct xe_gt *gt)
+ 	else
+ 		mask = GT0_PERF_LIMIT_REASONS_MASK;
+ 
+-	xe_pm_runtime_get(xe);
++	guard(xe_pm_runtime)(xe);
+ 	val = xe_mmio_read32(&gt->mmio, reg) & mask;
+-	xe_pm_runtime_put(xe);
+ 
+ 	return val;
+ }
+diff --git a/drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.c b/drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.c
+index 640950172088..1d3511d0d025 100644
+--- a/drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.c
++++ b/drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.c
+@@ -47,9 +47,8 @@ static ssize_t xe_hw_engine_class_sysfs_attr_show(struct kobject *kobj,
+ 
+ 	kattr = container_of(attr, struct kobj_attribute, attr);
+ 	if (kattr->show) {
+-		xe_pm_runtime_get(xe);
++		guard(xe_pm_runtime)(xe);
+ 		ret = kattr->show(kobj, kattr, buf);
+-		xe_pm_runtime_put(xe);
+ 	}
+ 
+ 	return ret;
+@@ -66,9 +65,8 @@ static ssize_t xe_hw_engine_class_sysfs_attr_store(struct kobject *kobj,
+ 
+ 	kattr = container_of(attr, struct kobj_attribute, attr);
+ 	if (kattr->store) {
+-		xe_pm_runtime_get(xe);
++		guard(xe_pm_runtime)(xe);
+ 		ret = kattr->store(kobj, kattr, buf, count);
+-		xe_pm_runtime_put(xe);
+ 	}
+ 
+ 	return ret;
 -- 
 2.51.1
 
