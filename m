@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D4184CCFA1E
-	for <intel-xe@archiver.kernel.org>; Fri,  7 Nov 2025 18:13:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 26580CCFA1A
+	for <intel-xe@archiver.kernel.org>; Fri,  7 Nov 2025 18:13:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 895D110EB7D;
+	by gabe.freedesktop.org (Postfix) with ESMTP id C77BC10EB82;
 	Fri,  7 Nov 2025 18:13:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CRB/e8JB";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MSHSnNeo";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1E0F110E1D2
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 31B7F10EB78
  for <intel-xe@lists.freedesktop.org>; Fri,  7 Nov 2025 18:13:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1762539209; x=1794075209;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=+ORIlrfkqlas7Sx23S78s8YIliKIFKSOc0wQ5fO0Lpw=;
- b=CRB/e8JBoBd30G32Mx//kVJIajw30cS9nDmHjg1dQLCgwUNp7k8mfZPO
- v2gTYzCWp6SLPmQqMpQl4NlCR4nvUtP5x7Car5M9jb8sx0yosGgUu0Qxt
- W1pcF3c23hINrqbASFuP8NWCoQExjvfQe1lS5N82VMTYFyKYaDzCKG1M5
- YNep++/U6uMFadvRjxvsyzQLL2H5NRDIWWwyKuDGQVGIJvp9xDVaKF4Ee
- hETZdPSr0PZOLB+kMhXbYKRp96xyhypfdClFEcXG1aKMti2nUV/V8heth
- 2c+HeTUmocoOeVG6VHAGwGAWrtK1sweLR9lodqvwFcrEvVwQOd8YTVHJS g==;
-X-CSE-ConnectionGUID: UVDSg2hcS4qgV0lIKSKvjQ==
-X-CSE-MsgGUID: sHToxiuVSk6TpIJnj+/KvQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11606"; a="64730183"
-X-IronPort-AV: E=Sophos;i="6.19,287,1754982000"; d="scan'208";a="64730183"
+ bh=y2dNeE9uhAWPLmzoYu40GOgpAFdEpWxJ0bR2W1GPmSg=;
+ b=MSHSnNeoKCtaZCsjW7q11NizLj/4AvWRPfBZmFjxTqHFLRbIVY/V69wr
+ FOaNsGwk51rycOJoia8+Wv9OwGr7z9sMQGD9XCsUX4RSxtrr93PWXe6tT
+ /iao9iCzY8ikaQTquB0WlyIu5eYOJuO40IDJHe0jc1e6EVGBmV6lLoYQF
+ dwPoxfTVZXm9EIAolFYQKsm2sCtoTYESnlLBedX0S/GAXC6F2s0Ek1taW
+ 1yamOgkL3l0HyZX4ImXlfyMbVeAlCi++1doVee3Xfq+/5ByPy4WM74W+G
+ Gmb0kf025OSR88lqOkMvLVpuiRL1/0Y2uX1S3l8EfxmPKuYc8531NTVJn w==;
+X-CSE-ConnectionGUID: l1DxEoIvRaGtdYrAWqbvzg==
+X-CSE-MsgGUID: AkjMJPLkSwSMkCFiqvA6EQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11606"; a="64730184"
+X-IronPort-AV: E=Sophos;i="6.19,287,1754982000"; d="scan'208";a="64730184"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  07 Nov 2025 10:13:29 -0800
-X-CSE-ConnectionGUID: Gzc4EGvATdC64b27LILj2Q==
-X-CSE-MsgGUID: RW60ZXPzSju0MDBBOVGs6g==
+X-CSE-ConnectionGUID: LusWqpDyRhK0ueSiHtsLmQ==
+X-CSE-MsgGUID: 88PRti4IT0OnRFdYwG+WNA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,287,1754982000"; d="scan'208";a="193271153"
+X-IronPort-AV: E=Sophos;i="6.19,287,1754982000"; d="scan'208";a="193271157"
 Received: from mdroper-desk1.fm.intel.com ([10.1.39.133])
  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  07 Nov 2025 10:13:28 -0800
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: matthew.d.roper@intel.com,
-	Ashutosh Dixit <ashutosh.dixit@intel.com>
-Subject: [PATCH 03/33] drm/xe/oa: Store forcewake reference in stream structure
-Date: Fri,  7 Nov 2025 10:13:19 -0800
-Message-ID: <20251107181315.631642-38-matthew.d.roper@intel.com>
+Cc: matthew.d.roper@intel.com
+Subject: [PATCH 04/33] drm/xe/forcewake: Create dedicated type for forcewake
+ references
+Date: Fri,  7 Nov 2025 10:13:20 -0800
+Message-ID: <20251107181315.631642-39-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.51.1
 In-Reply-To: <20251107181315.631642-35-matthew.d.roper@intel.com>
 References: <20251107181315.631642-35-matthew.d.roper@intel.com>
@@ -67,78 +67,271 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Calls to xe_force_wake_put() should generally pass the exact reference
-returned by xe_force_wake_get().  Since OA grabs and releases forcewake
-in different functions, xe_oa_stream_destroy() is currently calling put
-with a hardcoded ALL mask.  Although this works for now, it's somewhat
-fragile in case OA moves to more precise power domain management in the
+xe_force_wake_get() currently returns an integer mask of power domains
+that were successfully awoken; both this mask and a pointer to the force
+wake collection must be passed to xe_force_wake_put() to release the
+wake reference.
+
+Create a dedicated structure type to hold both the mask and the
+collection pointer.  While this change does little on its own, it will
+make it easier for us to add scope-based cleanup of forcewake in the
 future.
 
-Stash the original reference obtained during stream initialization
-inside the stream structure so that we can use it directly when the
-stream is destroyed.
+FIXME:
+   For ease of review, this patch contains only the manual changes to
+   add the structure and change the get/put function definitions; it
+   does not build on its own since the rest of the driver is still
+   trying to call the get/put functions with the old signature.  The
+   next patch contains the coccinelle-generated changes necessary
+   elsewhere in the driver to adapt to the new interface.  The two
+   patches will be squashed together when applied, remain separate for
+   now to help reviewers.
 
-Cc: Ashutosh Dixit <ashutosh.dixit@intel.com>
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/xe_oa.c       | 9 ++++-----
- drivers/gpu/drm/xe/xe_oa_types.h | 3 +++
- 2 files changed, 7 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/xe/xe_debugfs.c          | 23 ++++++++++++++++++-----
+ drivers/gpu/drm/xe/xe_drm_client.c       |  4 ++--
+ drivers/gpu/drm/xe/xe_eu_stall.c         |  2 +-
+ drivers/gpu/drm/xe/xe_force_wake.c       | 19 ++++++++++++-------
+ drivers/gpu/drm/xe/xe_force_wake.h       | 11 ++++++-----
+ drivers/gpu/drm/xe/xe_force_wake_types.h | 15 +++++++++++++++
+ drivers/gpu/drm/xe/xe_oa_types.h         |  2 +-
+ drivers/gpu/drm/xe/xe_pmu.c              |  6 ++----
+ 8 files changed, 57 insertions(+), 25 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
-index 7a13a7bd99a6..87a2bf53d661 100644
---- a/drivers/gpu/drm/xe/xe_oa.c
-+++ b/drivers/gpu/drm/xe/xe_oa.c
-@@ -870,7 +870,7 @@ static void xe_oa_stream_destroy(struct xe_oa_stream *stream)
- 
- 	xe_oa_free_oa_buffer(stream);
- 
--	xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL);
-+	xe_force_wake_put(gt_to_fw(gt), stream->fw_ref);
- 	xe_pm_runtime_put(stream->oa->xe);
- 
- 	/* Wa_1509372804:pvc: Unset the override of GUCRC mode to enable rc6 */
-@@ -1717,7 +1717,6 @@ static int xe_oa_stream_init(struct xe_oa_stream *stream,
- 			     struct xe_oa_open_param *param)
- {
- 	struct xe_gt *gt = param->hwe->gt;
+diff --git a/drivers/gpu/drm/xe/xe_debugfs.c b/drivers/gpu/drm/xe/xe_debugfs.c
+index e91da9589c5f..2d858110922b 100644
+--- a/drivers/gpu/drm/xe/xe_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_debugfs.c
+@@ -198,7 +198,7 @@ static int forcewake_open(struct inode *inode, struct file *file)
+ 	struct xe_device *xe = inode->i_private;
+ 	struct xe_gt *gt;
+ 	u8 id, last_gt;
 -	unsigned int fw_ref;
- 	int ret;
++	struct xe_force_wake_ref fw_ref;
  
- 	stream->exec_q = param->exec_q;
-@@ -1772,8 +1771,8 @@ static int xe_oa_stream_init(struct xe_oa_stream *stream,
+ 	xe_pm_runtime_get(xe);
+ 	for_each_gt(gt, xe, id) {
+@@ -213,10 +213,19 @@ static int forcewake_open(struct inode *inode, struct file *file)
  
- 	/* Take runtime pm ref and forcewake to disable RC6 */
- 	xe_pm_runtime_get(stream->oa->xe);
--	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
--	if (!xe_force_wake_ref_has_domain(fw_ref, XE_FORCEWAKE_ALL)) {
-+	stream->fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
-+	if (!xe_force_wake_ref_has_domain(stream->fw_ref, XE_FORCEWAKE_ALL)) {
- 		ret = -ETIMEDOUT;
- 		goto err_fw_put;
+ err_fw_get:
+ 	for_each_gt(gt, xe, id) {
++		struct xe_force_wake_ref all_fw_ref;
++
++		/*
++		 * A bit of a hack since we didn't save the actual forcewake
++		 * reference above.
++		 */
++		all_fw_ref.fw = gt_to_fw(gt);
++		all_fw_ref.domains = XE_FORCEWAKE_ALL;
++
+ 		if (id < last_gt)
+-			xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL);
++			xe_force_wake_put(all_fw_ref);
+ 		else if (id == last_gt)
+-			xe_force_wake_put(gt_to_fw(gt), fw_ref);
++			xe_force_wake_put(fw_ref);
+ 		else
+ 			break;
  	}
-@@ -1818,7 +1817,7 @@ static int xe_oa_stream_init(struct xe_oa_stream *stream,
- err_free_oa_buf:
- 	xe_oa_free_oa_buffer(stream);
- err_fw_put:
--	xe_force_wake_put(gt_to_fw(gt), fw_ref);
-+	xe_force_wake_put(gt_to_fw(gt), stream->fw_ref);
- 	xe_pm_runtime_put(stream->oa->xe);
- 	if (stream->override_gucrc)
- 		xe_gt_WARN_ON(gt, xe_guc_pc_unset_gucrc_mode(&gt->uc.guc.pc));
+@@ -228,11 +237,15 @@ static int forcewake_open(struct inode *inode, struct file *file)
+ static int forcewake_release(struct inode *inode, struct file *file)
+ {
+ 	struct xe_device *xe = inode->i_private;
++	struct xe_force_wake_ref all_fw_ref;
+ 	struct xe_gt *gt;
+ 	u8 id;
+ 
+-	for_each_gt(gt, xe, id)
+-		xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL);
++	all_fw_ref.domains = XE_FORCEWAKE_ALL;
++	for_each_gt(gt, xe, id) {
++		all_fw_ref.fw = gt_to_fw(gt);
++		xe_force_wake_put(all_fw_ref);
++	}
+ 	xe_pm_runtime_put(xe);
+ 
+ 	return 0;
+diff --git a/drivers/gpu/drm/xe/xe_drm_client.c b/drivers/gpu/drm/xe/xe_drm_client.c
+index f931ff9b1ec0..60a6ea7c88e4 100644
+--- a/drivers/gpu/drm/xe/xe_drm_client.c
++++ b/drivers/gpu/drm/xe/xe_drm_client.c
+@@ -287,7 +287,7 @@ static struct xe_hw_engine *any_engine(struct xe_device *xe)
+ 
+ static bool force_wake_get_any_engine(struct xe_device *xe,
+ 				      struct xe_hw_engine **phwe,
+-				      unsigned int *pfw_ref)
++				      struct xe_force_wake_ref *pfw_ref)
+ {
+ 	enum xe_force_wake_domains domain;
+ 	unsigned int fw_ref;
+@@ -322,7 +322,7 @@ static void show_run_ticks(struct drm_printer *p, struct drm_file *file)
+ 	struct xe_hw_engine *hwe;
+ 	struct xe_exec_queue *q;
+ 	u64 gpu_timestamp;
+-	unsigned int fw_ref;
++	struct xe_force_wake_ref fw_ref;
+ 
+ 	/*
+ 	 * RING_TIMESTAMP registers are inaccessible in VF mode.
+diff --git a/drivers/gpu/drm/xe/xe_eu_stall.c b/drivers/gpu/drm/xe/xe_eu_stall.c
+index 97dfb7945b7a..8b3da9ae6888 100644
+--- a/drivers/gpu/drm/xe/xe_eu_stall.c
++++ b/drivers/gpu/drm/xe/xe_eu_stall.c
+@@ -49,7 +49,7 @@ struct xe_eu_stall_data_stream {
+ 	wait_queue_head_t poll_wq;
+ 	size_t data_record_size;
+ 	size_t per_xecore_buf_size;
+-	unsigned int fw_ref;
++	struct xe_force_wake_ref fw_ref;
+ 
+ 	struct xe_gt *gt;
+ 	struct xe_bo *bo;
+diff --git a/drivers/gpu/drm/xe/xe_force_wake.c b/drivers/gpu/drm/xe/xe_force_wake.c
+index c59a9b330697..2e675536b36e 100644
+--- a/drivers/gpu/drm/xe/xe_force_wake.c
++++ b/drivers/gpu/drm/xe/xe_force_wake.c
+@@ -169,11 +169,12 @@ static int domain_sleep_wait(struct xe_gt *gt,
+  * Return: opaque reference to woken domains or zero if none of requested
+  * domains were awake.
+  */
+-unsigned int __must_check xe_force_wake_get(struct xe_force_wake *fw,
+-					    enum xe_force_wake_domains domains)
++struct xe_force_wake_ref __must_check xe_force_wake_get(struct xe_force_wake *fw,
++							enum xe_force_wake_domains domains)
+ {
+ 	struct xe_gt *gt = fw->gt;
+ 	struct xe_force_wake_domain *domain;
++	struct xe_force_wake_ref fw_ref;
+ 	unsigned int ref_incr = 0, awake_rqst = 0, awake_failed = 0;
+ 	unsigned int tmp, ref_rqst;
+ 	unsigned long flags;
+@@ -208,7 +209,10 @@ unsigned int __must_check xe_force_wake_get(struct xe_force_wake *fw,
+ 	if (domains == XE_FORCEWAKE_ALL && ref_incr == fw->initialized_domains)
+ 		ref_incr |= XE_FORCEWAKE_ALL;
+ 
+-	return ref_incr;
++	fw_ref.fw = fw;
++	fw_ref.domains = ref_incr;
++
++	return fw_ref;
+ }
+ 
+ /**
+@@ -221,8 +225,9 @@ unsigned int __must_check xe_force_wake_get(struct xe_force_wake *fw,
+  * and waits for acknowledgment for domain to sleep within 50 milisec timeout.
+  * Warns in case of timeout of ack from domain.
+  */
+-void xe_force_wake_put(struct xe_force_wake *fw, unsigned int fw_ref)
++void xe_force_wake_put(struct xe_force_wake_ref fw_ref)
+ {
++	struct xe_force_wake *fw = fw_ref.fw;
+ 	struct xe_gt *gt = fw->gt;
+ 	struct xe_force_wake_domain *domain;
+ 	unsigned int tmp, sleep = 0;
+@@ -233,14 +238,14 @@ void xe_force_wake_put(struct xe_force_wake *fw, unsigned int fw_ref)
+ 	 * Avoid unnecessary lock and unlock when the function is called
+ 	 * in error path of individual domains.
+ 	 */
+-	if (!fw_ref)
++	if (!fw_ref.domains)
+ 		return;
+ 
+ 	if (xe_force_wake_ref_has_domain(fw_ref, XE_FORCEWAKE_ALL))
+-		fw_ref = fw->initialized_domains;
++		fw_ref.domains = fw->initialized_domains;
+ 
+ 	spin_lock_irqsave(&fw->lock, flags);
+-	for_each_fw_domain_masked(domain, fw_ref, fw, tmp) {
++	for_each_fw_domain_masked(domain, fw_ref.domains, fw, tmp) {
+ 		xe_gt_assert(gt, domain->ref);
+ 
+ 		if (!--domain->ref) {
+diff --git a/drivers/gpu/drm/xe/xe_force_wake.h b/drivers/gpu/drm/xe/xe_force_wake.h
+index 0e3e84bfa51c..86e9bca7cac9 100644
+--- a/drivers/gpu/drm/xe/xe_force_wake.h
++++ b/drivers/gpu/drm/xe/xe_force_wake.h
+@@ -15,9 +15,9 @@ void xe_force_wake_init_gt(struct xe_gt *gt,
+ 			   struct xe_force_wake *fw);
+ void xe_force_wake_init_engines(struct xe_gt *gt,
+ 				struct xe_force_wake *fw);
+-unsigned int __must_check xe_force_wake_get(struct xe_force_wake *fw,
+-					    enum xe_force_wake_domains domains);
+-void xe_force_wake_put(struct xe_force_wake *fw, unsigned int fw_ref);
++struct xe_force_wake_ref __must_check xe_force_wake_get(struct xe_force_wake *fw,
++							enum xe_force_wake_domains domains);
++void xe_force_wake_put(struct xe_force_wake_ref fw_ref);
+ 
+ static inline int
+ xe_force_wake_ref(struct xe_force_wake *fw,
+@@ -56,9 +56,10 @@ xe_force_wake_assert_held(struct xe_force_wake *fw,
+  * Return: true if domain is refcounted.
+  */
+ static inline bool
+-xe_force_wake_ref_has_domain(unsigned int fw_ref, enum xe_force_wake_domains domain)
++xe_force_wake_ref_has_domain(struct xe_force_wake_ref fw_ref,
++			     enum xe_force_wake_domains domain)
+ {
+-	return fw_ref & domain;
++	return fw_ref.domains & domain;
+ }
+ 
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_force_wake_types.h b/drivers/gpu/drm/xe/xe_force_wake_types.h
+index 9cfa28faf7bc..26df4adba4c5 100644
+--- a/drivers/gpu/drm/xe/xe_force_wake_types.h
++++ b/drivers/gpu/drm/xe/xe_force_wake_types.h
+@@ -107,4 +107,19 @@ struct xe_force_wake {
+ 	struct xe_force_wake_domain domains[XE_FW_DOMAIN_ID_COUNT];
+ };
+ 
++/**
++ * struct xe_force_wake_ref - Xe force wake reference
++ *
++ * Represents a wakeref for a subset of the power domains belonging to an
++ * xe_force_wake collection.  Returned by xe_force_wake_get() and passed
++ * to xe_force_wake_put().
++ */
++struct xe_force_wake_ref {
++	/** @fw: back pointer to force wake collection */
++	struct xe_force_wake *fw;
++
++	/** @domains: mask of individual domains held by this reference */
++	unsigned int domains;
++};
++
+ #endif
 diff --git a/drivers/gpu/drm/xe/xe_oa_types.h b/drivers/gpu/drm/xe/xe_oa_types.h
-index daf701b5d48b..cf080f412189 100644
+index cf080f412189..84bd5018d0f3 100644
 --- a/drivers/gpu/drm/xe/xe_oa_types.h
 +++ b/drivers/gpu/drm/xe/xe_oa_types.h
-@@ -264,5 +264,8 @@ struct xe_oa_stream {
- 
- 	/** @syncs: syncs to wait on and to signal */
+@@ -266,6 +266,6 @@ struct xe_oa_stream {
  	struct xe_sync_entry *syncs;
-+
-+	/** @fw_ref: Forcewake reference */
-+	unsigned int fw_ref;
+ 
+ 	/** @fw_ref: Forcewake reference */
+-	unsigned int fw_ref;
++	struct xe_force_wake_ref fw_ref;
  };
  #endif
+diff --git a/drivers/gpu/drm/xe/xe_pmu.c b/drivers/gpu/drm/xe/xe_pmu.c
+index c63335eb69e5..dbd95327f9fc 100644
+--- a/drivers/gpu/drm/xe/xe_pmu.c
++++ b/drivers/gpu/drm/xe/xe_pmu.c
+@@ -214,12 +214,10 @@ static bool event_param_valid(struct perf_event *event)
+ static void xe_pmu_event_destroy(struct perf_event *event)
+ {
+ 	struct xe_device *xe = container_of(event->pmu, typeof(*xe), pmu.base);
+-	struct xe_gt *gt;
+-	unsigned int *fw_ref = event->pmu_private;
++	struct xe_force_wake_ref *fw_ref = event->pmu_private;
+ 
+ 	if (fw_ref) {
+-		gt = xe_device_get_gt(xe, config_to_gt_id(event->attr.config));
+-		xe_force_wake_put(gt_to_fw(gt), *fw_ref);
++		xe_force_wake_put(*fw_ref);
+ 		kfree(fw_ref);
+ 		event->pmu_private = NULL;
+ 	}
 -- 
 2.51.1
 
