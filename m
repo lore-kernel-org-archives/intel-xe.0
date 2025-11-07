@@ -4,185 +4,190 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id ECDBDCCF9E3
-	for <intel-xe@archiver.kernel.org>; Fri,  7 Nov 2025 07:01:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 11312CCFA05
+	for <intel-xe@archiver.kernel.org>; Fri,  7 Nov 2025 07:03:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 81FEA10EA2F;
-	Fri,  7 Nov 2025 07:01:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BB9A210EA2F;
+	Fri,  7 Nov 2025 07:03:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="T5XC15J8";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ke9Ilvf1";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1FA38893AB
- for <intel-xe@lists.freedesktop.org>; Fri,  7 Nov 2025 07:01:56 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9F0BD89D8E;
+ Fri,  7 Nov 2025 07:03:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1762498916; x=1794034916;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=E9XIKoG7KFQtlJ50Ea4j9lsfeCmKRuZrmYX7LfYw6aw=;
- b=T5XC15J8k2ETi3iyNYwxs1DkSgzQDL3FjACffrfqTiBq2QNwo4fmLRhq
- jlpAwmP+sFBh351Q2xnZzfqyf7IthDHmkHm2NLMX/5h5itrvnpL+bAj3R
- lDoUsUVO3hS9o3HTMDomRllo/Xf7zhKzs+vtmWe3uTiB95+1OPsdBBDeZ
- zqzFaNSjPln3In9GFeHNM+pGONE18gpNVys/PoBWjO5m+8N+UTBSl0/3A
- 28r5eIOwAph3c/8q76JoWtQq4nGGNyK97pHZ2YmW3Mlb4pZHbFzZSp036
- dY0t28Ou2Od3GxnwBhdI+DgjRBq9msX4ec+zlTNZU8ujnkWi5/dKLkxiz Q==;
-X-CSE-ConnectionGUID: l893LaFhQEW12WsPJcXYDg==
-X-CSE-MsgGUID: xPKA0bFGQhqP+KXdAMnl1g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11605"; a="74938611"
-X-IronPort-AV: E=Sophos;i="6.19,286,1754982000"; d="scan'208";a="74938611"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Nov 2025 23:01:56 -0800
-X-CSE-ConnectionGUID: 1+1uFyA5Ryy+1oCCGXISqg==
-X-CSE-MsgGUID: P0CpjKwGSDu/c4fNsvySqw==
+ t=1762499003; x=1794035003;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-id:content-transfer-encoding: mime-version;
+ bh=rrt4H9LpvMiW3F2bXwKaAckYYAg1cDHRE/nwLpaS0Ew=;
+ b=ke9Ilvf1v7NO3fefh2pOxPvXgtki7WIZrqiVyjylQZPn0O4XppvKdBH5
+ rtWy+4y7NOKplfR+WofZX7ocqJRUzuI8SAmpKJYKRzspfZiSWs+y+X3Aa
+ ocwiXEasv1zSLEbjveFZYvBhaBaXbbBIY1X2x+Iawcibah1/V40xqBjpf
+ RToVZ5zCviwij/7ZZ6VKQQnRnf9rhuvb2BTf6R+DW8kT6t6EwBJKnX2BJ
+ Uu8RYlGoUfMo079U6cXRu2VPIgmMFYTEFhLdaVN4WwnfKoNmJzthTOCpI
+ OK1ChGwD6vJA1OIWe9w++08iUi6CFl2FiBKPpVh//EINr200nc6PaLZy2 A==;
+X-CSE-ConnectionGUID: mejjheQzTA+RX1SPhq7gxw==
+X-CSE-MsgGUID: /HrFrI9jRTysNKqkZcHZ7Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11605"; a="68294683"
+X-IronPort-AV: E=Sophos;i="6.19,286,1754982000"; d="scan'208";a="68294683"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Nov 2025 23:03:23 -0800
+X-CSE-ConnectionGUID: E2JzqV2OR5Wjx7rWKvg7bQ==
+X-CSE-MsgGUID: 0hGeW3eeQsyDMhEAB0BBxQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,286,1754982000"; d="scan'208";a="188405251"
-Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
- by fmviesa009.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Nov 2025 23:01:55 -0800
-Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
- fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.19,286,1754982000"; d="scan'208";a="225228806"
+Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
+ by orviesa001.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Nov 2025 23:03:23 -0800
+Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Thu, 6 Nov 2025 23:01:55 -0800
+ 15.2.2562.27; Thu, 6 Nov 2025 23:03:22 -0800
 Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
- FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27 via Frontend Transport; Thu, 6 Nov 2025 23:01:55 -0800
-Received: from SN4PR2101CU001.outbound.protection.outlook.com (40.93.195.41)
- by edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
+ 15.2.2562.27 via Frontend Transport; Thu, 6 Nov 2025 23:03:22 -0800
+Received: from SA9PR02CU001.outbound.protection.outlook.com (40.93.196.55) by
+ edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Thu, 6 Nov 2025 23:01:54 -0800
+ 15.2.2562.27; Thu, 6 Nov 2025 23:03:21 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=X4GkDJ6Py5BYxDIpB8z43ZU+eR41lFPW9Pg8amqmQ/YuJ5cnUHkPqnepUTr1k9gTqHZE3kaNkWbZrlBe1xUpacFrSlKvaM4QdkuZpwJJmv/HDK3wNRgF+nIQGOTCKo07FPRgSD9atZi+pQHr8nqKkE7yGshvF68Kb+o9gjn4cAKsiymrbKAHLil0nK1XmlkOY4wZiQa//wGWngm57bMURq5m9BjD+RyEMlATzR/J0tIWhesFFJMN5c0OkBOJgujwRuiLLxo0PclrNLkQFrUKOwOtLhIg/uQIvqGTpbnIpAXRgE1jrKz1/nIWCjACV1PFIMkSPwrMMy0bCMQxfJmAkw==
+ b=GdZVuFSs1HxAYGgXjWMvqLRibj2fcNNudJvfXsycehfy5u2DprnsA3rVC4JDpm1dk9oyz+CrB0/fcwCR6hCsp90YSB/hEsqJvdHzuzQ2TPhcLOmj3KW4TYy+AcJfqVzR6s/UxPpQORdYdCvwweEk5ysGML0+FHtQ7mbqcucCzb9K4AVwuwKKnwkboRRmeMxlICKCd2SZiQcPvOjETNrePXas21X5qE4inGGfK4ycyF5j6FWEXiGhdC+aV78YIlSG3Ubz/AeYIhMpvLCAElF9jy6RihhxPXJ4+AVKIBF1kwMeh/BUlIKclRZKFCGlsHRSNEfadHJUxr2jOnUK660Fyg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=PGEgsfraFQ0l0bu0YcbIMxEaYs7xQ1tkM8xujxvR+lY=;
- b=CSMJUdBfTzOiNhQ16RqfEKKGfx8wDhFZ86HtZaK3qikdaDSPPmZsR1K0FSpRMlYn8NJ9Z17WRM6r/0q6kFFRrG6rx2vJ0Xd4b8NpGDZS1JTtr1mu601ozHBMy5NvjmqFaqbfnUKKjPLE7IN74IZUwMFylwWRSnoU1IRWIZWYCQNJBiIXEg3KX/Btqm0WXYrUU2yNTL5FKZDxo9/TkReH7dxgdYw+IoZMzRu43b8uxfjt4/u89vxQQGPSB/qDMGv2RjX3d0puQcuGHpVTfE6DXqAQsJfBVNGB/dy1ljwRfTNSAL8EJb7q10ma0lTUyltk4Cuq2sqLw6Q1JRZS5Y/htg==
+ bh=rrt4H9LpvMiW3F2bXwKaAckYYAg1cDHRE/nwLpaS0Ew=;
+ b=nRnnA6PXGybthXT+qF+Xb8sXo8F4ZhFGv51aZlA2QHVdrqn8Titj/2ibhih0RYTFOazWUdsdGLlBLFrfUw10TJkoy/LzjOUtFciW7XZxhLwZ953qE4rpD1dXtwDf2GiqAHL5Cq5nlDcR8Bum34lGJcqcN5UaXcxcj29u7KrfHGY0CxeXSj6blCM4lYWIqd1X+29KYqhjcpxsGOIT488l+TjU3i0TF0ZJo5DVJzLvsyk2lxFLDzuSm6iGdq4BLEsuQyz1d6CRQrDW70bZOoZZNy9lEhMFpGqKxXbz9lHNhyWWp7/xIFZc+ipoqhe70CtwZDSIry/C+RBGaNo88Vo2mA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
+Received: from DM4PR11MB6019.namprd11.prod.outlook.com (2603:10b6:8:60::5) by
+ DM4PR11MB5277.namprd11.prod.outlook.com (2603:10b6:5:388::23) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9298.12; Fri, 7 Nov 2025 07:03:20 +0000
+Received: from DM4PR11MB6019.namprd11.prod.outlook.com
+ ([fe80::fc1:e80f:134c:5ed2]) by DM4PR11MB6019.namprd11.prod.outlook.com
+ ([fe80::fc1:e80f:134c:5ed2%5]) with mapi id 15.20.9298.010; Fri, 7 Nov 2025
+ 07:03:20 +0000
+From: "Hogander, Jouni" <jouni.hogander@intel.com>
+To: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "Nikula, Jani" <jani.nikula@intel.com>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>
+CC: "stable@vger.kernel.org" <stable@vger.kernel.org>
+Subject: Re: [PATCH] drm/i915/psr: fix pipe to vblank conversion
+Thread-Topic: [PATCH] drm/i915/psr: fix pipe to vblank conversion
+Thread-Index: AQHcT1gF8Xg2otNz10+2A9OW6t2447TmyoAA
+Date: Fri, 7 Nov 2025 07:03:19 +0000
+Message-ID: <df54e434d95553c02fe9e7a8607cbc25652ef107.camel@intel.com>
+References: <20251106200000.1455164-1-jani.nikula@intel.com>
+In-Reply-To: <20251106200000.1455164-1-jani.nikula@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by MN2PR11MB4600.namprd11.prod.outlook.com (2603:10b6:208:26e::16)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9298.8; Fri, 7 Nov
- 2025 07:01:53 +0000
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::9e94:e21f:e11a:332]) by PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::9e94:e21f:e11a:332%3]) with mapi id 15.20.9298.007; Fri, 7 Nov 2025
- 07:01:52 +0000
-Date: Thu, 6 Nov 2025 23:01:50 -0800
-From: Matthew Brost <matthew.brost@intel.com>
-To: "Summers, Stuart" <stuart.summers@intel.com>
-CC: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, "Roper, 
- Matthew D" <matthew.d.roper@intel.com>, "De Marchi, Lucas"
- <lucas.demarchi@intel.com>
-Subject: Re: [PATCH v2 11/12] drm/xe: Add context-based invalidation to GuC
- TLB invalidation backend
-Message-ID: <aQ2ZXhKjys6Rdwiw@lstrano-desk.jf.intel.com>
-References: <20251104195616.3339137-1-matthew.brost@intel.com>
- <20251104195616.3339137-12-matthew.brost@intel.com>
- <746dd3acad81c8af5cb408ff4b50936ecacfeb5c.camel@intel.com>
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DM4PR11MB6019:EE_|DM4PR11MB5277:EE_
+x-ms-office365-filtering-correlation-id: 62e8006c-0977-48fd-f916-08de1dcbbbd2
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|10070799003|376014|1800799024|366016|38070700021; 
+x-microsoft-antispam-message-info: =?utf-8?B?Nlg4THRWcGhyanRHQXhtRFlkUktyQXMwTDJ2ZDN5eENtL2N0M1BrVnRlbmNG?=
+ =?utf-8?B?ZVRLQ0NIbWt3ZjhTZWs3NC9lSUJqRm1hdi9RTVpvcW5KcXVKMTVOQ0VMUEZ4?=
+ =?utf-8?B?MGViQXZnc3FCYUFxQ2VYUXFZRS95OXZxWTkyY0lNT3cyZnJJbnNUTi95SW1L?=
+ =?utf-8?B?bm1RdmQ1Vm9oSHBGdVpNNkhqR0xUbVNZMk1YYTB5b0ZzTUx0dVpMR2dhRXkx?=
+ =?utf-8?B?RktNSUdQRFJDdlgvWnptNGZFMnBXUjdLQjdWQzFqdWdabVZTY2lyZ1BjL1Z3?=
+ =?utf-8?B?ZkI0d3RTVHVnVVVZb2pzbmRWUVpqR29jdFdMdXJ4Vm9mT0M0Nll6TUQ0dUZG?=
+ =?utf-8?B?YjFOdkY0MzV2RHRYUzdoQ1dJdTZOT2RRZm85aWhmTzBMYUN1VUN6b3RZOVhR?=
+ =?utf-8?B?RGJGWGZTZ2JBWXYvS2lQWGxsQ08yYStkdnNHaysyWlUzRHNxc3U2WitFRWcy?=
+ =?utf-8?B?cjVjbm52MjZ1YTlkSThYeVhudFg1VW5qc2xtSVpNUTJ6U3drNkZSQ3pFTEE1?=
+ =?utf-8?B?dzMrd2ZKbmxISHM0VEZLdE5MQ0hXYzhuMDgxY3FkekRuUjlpeUtYMFFGVFZX?=
+ =?utf-8?B?b2duOFM0NWpYNm1tTjNyOXBvUnpSa0ZIZkFjYjlBOUFNUFZzUzhhUHRBczBC?=
+ =?utf-8?B?QVdob2tqR2VNdkk1MmVyWHlXeVppdlpFSDZURUZ6Q1JwN1hCa25kaUdBV3Fk?=
+ =?utf-8?B?eGYrYTN3eW0wQUhDL1JJWGc2OSt0QXI4RkNUZndxclBtb3BIZy9Xcm5uM25t?=
+ =?utf-8?B?cFNPRTFNZHg1VTRsdVFpbEg5eTR1b25lMVY2Y1RVNEhmeUJUNHYrYlVaRHly?=
+ =?utf-8?B?QUNYWVJUUEJRTFBac3hBb1BEdC9SdDVidmltd1pSVmVFeXdWaG9JcExsZzM5?=
+ =?utf-8?B?dnNOeWFrMVI5RW11dllmNzNQUUp6aXJQN2ZyYXhsOVp4NEltR2RtcHlhYzZN?=
+ =?utf-8?B?Y0JEVGNQSHRwdlhaME04OURDUlRoQ2JBT09SWWdwNnlnOTU4RzM2YTZqQVR3?=
+ =?utf-8?B?YXAzWW1GY0ErVS8zaU5NaXExQlhCaUV6MVpyMUcxcTZwKzhLdnhHQUtzQ3lB?=
+ =?utf-8?B?eUE5UGN0dHczWjJqSlh2aWtqZEFzSmo1S1ZMdkhHR1Vubjc1T0JBVkdQcVRE?=
+ =?utf-8?B?MjNtalJCRmladG1zMnRjdnUyZHIxWng0aXBtbEpYZldsZ1BLZmtJSklnWWdY?=
+ =?utf-8?B?RmtyeUlWTVhMMzZkam96MFdtL2pZVWRnSFVPaVJDZzI2bUtVeHNQa0FTdlVH?=
+ =?utf-8?B?bGZSZExsckU0Qk5uaWFDcDF6OUZsRDF6TU9veHBFNW1BNFBucU9MT28xcENh?=
+ =?utf-8?B?KzRsUHJhQzc0YU10MmUzazFJQTk5amlNVThOWHU2Ni95bjdkK1B2Tm5LdWw0?=
+ =?utf-8?B?Q2ttV1FpUVhlYzNEWitMTlJ5Y3dmdkxjcXpGbldXTTV4VEJWaEs4dXY1ZC8z?=
+ =?utf-8?B?N1N2c1MzMW40N2ZDWmZtS0xwUEFNNmUvdk8reERKdWY2SnNlNWhGZzZsU28w?=
+ =?utf-8?B?RHo4UlVTRC9YeFZDREZGcWJjVUlObDBsZTA0eGJGZ1drUVZRbWFMbWhrZFZH?=
+ =?utf-8?B?bnFGamZCcFR1WlZOUHIwbWhtT2tGVmd2clZMd2tDdEkyQXlhMlR1ZmxYWGZP?=
+ =?utf-8?B?aWFpUU13TVUzTVYrUmc5bXFKcWxaUWlpenUyRmEwT0JsaUFoaUlueHNyb2Vw?=
+ =?utf-8?B?R0I3dWxPNFZtN3ZmdGZMZUE3L0F1TkdrTjRvQ2c2Nk9TTEJRMWlQK0tCeEh5?=
+ =?utf-8?B?YzJaQmR1N3lwTHNxK1BLODl0YjluZTVhQnBxdmdzaDNBdW94QVJGaFE0TURz?=
+ =?utf-8?B?MGFzcngzUEFlU0M3NnhBRWhGcHdmaXZkMmNTbDZCMkljcUpSMEkxVmRrVm80?=
+ =?utf-8?B?N1dGYlhYK2tYWEx4WnBpZWw0MHB2eEhPSi9NbERraUpra0RGRDUwN2pPb0Ur?=
+ =?utf-8?B?cUpBcHBWWCtYK1BUQWJTMFBFbk1Qb1NzeE4zU01jQS8yNmtKaWR1RlVuaUt5?=
+ =?utf-8?B?V0RBdGo2Q01ZNGtETll2clBrL0d5ZWR4ZFJTZlQ3eHpnTzdkMng1TmxUMVBL?=
+ =?utf-8?Q?wcTObx?=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB6019.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(10070799003)(376014)(1800799024)(366016)(38070700021); DIR:OUT;
+ SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?Y010cTRJWGduRndUYmZlYytnem96UWRXRFRpOTc2SlR6UzVTOHZjcVVRM3NZ?=
+ =?utf-8?B?OGFNWWw5UEliSTd3MnUxVCtIY3VTV3FjejdkYzhGbXdkOXY3bFdXd21GK1dN?=
+ =?utf-8?B?QzUwM0pHc1poVjhGSFU4SHlRQ1R0UGhITzV2S04yZ1gvZHNmd3ZRaFE0dC9m?=
+ =?utf-8?B?bGVSTGFlY0Rzby9yZmZOa2d1bFlvUVo0ekREVWlxKzlqSlJLWDhScGVOQUJ1?=
+ =?utf-8?B?RW1ZQWlrNVNzeHkxdDBWeVdqL3UrMGVlWVpYUDF1UVA1WG1UQ1BQb3Fxa0My?=
+ =?utf-8?B?V1phVDRkeHUwTVBxU29NTzQ1bDVMNTdWTkJUSU9KRm1qaGl5OGF0aXZtTVpS?=
+ =?utf-8?B?TGIyV3lhbUtXZUhqRUFrdS9IQ0h6K3Z2ckZMOUpDQkY4eFgzSllVVUdjM29a?=
+ =?utf-8?B?a1BSZHNIYUJ2NkhCdXhkQjFBWFRaWk5xVzFuY0JIYmZUU3NnL0IzSGlPWERP?=
+ =?utf-8?B?RUIyTGtvTnA2cjhVT2tQdWMyQ3BZeW5pQUdUdmhiSkduYXQ1Y1ZoOE5MQUhV?=
+ =?utf-8?B?UTlLM0I0WG41M3VlT0lSQTZjMlhYWXVLelRHRzJlK2hjY2MvYTJ5VXpHUUxy?=
+ =?utf-8?B?cUF2MFZ4bEE1dnd2NE1TaWxYamVIKy9HMUMzWW5LR0J4M1lMR0MxK09XYkcz?=
+ =?utf-8?B?MEgrZit1WTM3RUxNK1BXU250MzZDa1h0M0lmUzE3L0RheDg4aStBVER1a1VO?=
+ =?utf-8?B?cm5QYTZVaysvb0RsUkI3dkQwZkVYbkJpRG4vNXcrQk5uWXdiT1lQR2h5b1hx?=
+ =?utf-8?B?Uy9VN0ROd3dRM1d2N1N5T05oY3J6TklZbUZnN2cxV3J1Y2poMnV3UXZycUly?=
+ =?utf-8?B?SjZiUlJjSnEvekQ2bXBIcHFlR29YbzlUa0FSdVdGZU85a0htWVpib0prRFRN?=
+ =?utf-8?B?TldZeFJWeFZkOE96ZEdvWTdhVTF4akhQREdnUWNwelZLZUJ2cDRaRGIyTHN5?=
+ =?utf-8?B?TXJPNWpOVWFwMy9aOUU0VVJjMlFnakVra2tPd3JvTVNIYWpGYWlyUVFUZ1l3?=
+ =?utf-8?B?SFluK2lPZ3V2UGxHVGxNNkhwK3RqQm15bnVxSzJiRWR0b1BaTlpQRXp3a0ky?=
+ =?utf-8?B?QWZxRXFZWTJOYWo0Q2tRWWV1bGpoajgwR0JyRnVrSVYyZlZlUlZCM1NoRkhX?=
+ =?utf-8?B?WHR4RkVWT1NQanozaHBOWE81ZG1XK2lHY2tlSkFjYzRxLzhHWTZETHFTcnJX?=
+ =?utf-8?B?YTVaSUpmblVIMW1sNGc0bVNPOXBrVWQ3a284ditOQUJRNnp6bnUvQVRnbkh4?=
+ =?utf-8?B?VHlvTC9aaFhEOTFGbGUzUUpoTkdCMDJPMEt1UERBQnFZcEVGTVhHNnM3ZXRG?=
+ =?utf-8?B?UmlPVFFIYzA2L21zVkc4a0dVUFRvdk5ReFViY3B6VWthMnJidStTcnUzVUdT?=
+ =?utf-8?B?QktyWHpDSXlEQll2eE83VVJVMW4yTHNSeXNHUFFkaktqSHZFMlo1SmIyTjVt?=
+ =?utf-8?B?dkxxM0RIMUtEbkc5cjlTMjJpVmZqOVQ1Umx0MXhMb2hGOHlQK2djbkFKOUd0?=
+ =?utf-8?B?SVJEMVFzRm5SODVaQ3c5V1U0NnZ4bmxESi9GeFZIK09BUGNuME9vZ1RUZWV3?=
+ =?utf-8?B?RXc5L1pQZ0p0L3FXeWtIQTZLWFJWSlJVTDJoeVE0VXRxcGxLY2dBOUg4UUxP?=
+ =?utf-8?B?YjNINUQwaGhWRzdXNHd3d0syM2ZaOGN1Mnp5UFF2NVNtaXhWUWdienM1Q3I2?=
+ =?utf-8?B?NklFdFdyUnRLU1FrRzdscGhUWVFGbDhYQ3RSeDNsNFR5cDdCTkFrU1M5UVJK?=
+ =?utf-8?B?emNoQlhFYzFuTHZUamVMQ3dFbExSTmYrWkorNkRuaG9FWXorclFreXp1ckR1?=
+ =?utf-8?B?VnNqek9wTWlxUlhCcDBPZmM5NmhsUDZIK2tkY0lsUnljbXJ6SDB3L1RGbFZZ?=
+ =?utf-8?B?a3dTZ0UycStkWmtYMHpnUkxDOW96STNOUUhHajE4ZldTRWhOUGsyOGw0bldw?=
+ =?utf-8?B?dTBiVzg1OHJIc3RHYy9rMmJyaUFJYXgrTXN6Zlk4Q3lYU25pV0NWc0tDamEz?=
+ =?utf-8?B?ZFRyMXZEekdrOGM1bW1YS2FTRDBLbTkxUTI0NkJJUVN1RnR5SkFGKzg5NXlN?=
+ =?utf-8?B?N3VJNXZ4TnJrTE5oZnoxa3FkbGlMMXFBckFZU1ZQQlAzZUo5NTVlcFBEelBV?=
+ =?utf-8?B?dS9RYiswOFBVNm5SOXg0bWE4eGZHa1FwQ2tIUG1NekdSeGNYRUlFNm9zYlVW?=
+ =?utf-8?B?cUovWEF3SWpvU1B4VGNHcE1nNDNwTnV6elhtTXlVU2hiRHk4ODJjMEtyL25H?=
+ =?utf-8?B?NnBFYlRxbHZha0UrOExDazVtUFRRPT0=?=
 Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <746dd3acad81c8af5cb408ff4b50936ecacfeb5c.camel@intel.com>
-X-ClientProxiedBy: SJ0PR03CA0058.namprd03.prod.outlook.com
- (2603:10b6:a03:33e::33) To PH7PR11MB6522.namprd11.prod.outlook.com
- (2603:10b6:510:212::12)
+Content-ID: <20BC00FEF464C046955EAECA3B7E09B4@namprd11.prod.outlook.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|MN2PR11MB4600:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4de50e94-7506-4f66-8470-08de1dcb87be
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?dDRQUkJhaHlKaXg0NGt2TVNVOGtSYkd2REJwR2thTGNPSTlEZXpDN0I4OTJ2?=
- =?utf-8?B?Slk5dVVCOXBicGpTYnJvRjBNL3A3MjFQN1ZGaVlGNnpmdHpNNCtBZkd4Vm1k?=
- =?utf-8?B?cVl4ZjRoNitmRUdzZ0hreEgraThYN0dXS2hHSGU2NDROekd6OGpJcmEyZGds?=
- =?utf-8?B?MENSVnZqbzc1WDhkUE9MZU0wZFhSdkk4SkxYS2kvUVB1a29HVHNkOVZhdG9H?=
- =?utf-8?B?Wkpla0diRG54S3lxTU1UdGRNZnYvYVlFZHVMbThtTm5CWFRjdXNJS2FBYThU?=
- =?utf-8?B?bkdQakN3TGRPcHJ4dlVDczZxNHA2T0JpekFnSWY1eENVWUdvWmZabVdjY0dB?=
- =?utf-8?B?Yjc3TGEwclBxYi85ZFdWN3F6MkZpZVBISklvVEhNY0YrdlJVOWRLa0FpVHA2?=
- =?utf-8?B?WjRCWisvLzRMTysyMElMTUJOVEZDYjVmNzkrU1Z3a2duL0JBd3RpOVpMVGND?=
- =?utf-8?B?UEZiR1I5TjJYclpFNEJ4VEh1dXVpL1k2a3M0eVgrK3J6TW81bFp6R2RzY1gv?=
- =?utf-8?B?THdWNWtQWDQ1bkhwdnZXYUE4dXY0enlCQWRqWUJlOXpGUWMyMkFvQTFBQk1o?=
- =?utf-8?B?aUZEdjgvY1REaEVURE1JYU9YcmQvRDBkU0xMV2RSOVdpL3FZZ2VRRUc2aGQy?=
- =?utf-8?B?OEcrOXBqajk4dnh6Yk5Lb3pvU2R4TjY5RXhnSm9BMkZJVXdXT1l2RFJxWE92?=
- =?utf-8?B?OTZSRkh5c2ozYlZKNi93UXcwZFBhWWJPRytDSVEza0Q0OG9VVkZwenhUa1F3?=
- =?utf-8?B?L3drQUJodkg0V3JtRDBQSUpJVFB3M3hiODZ4WFJqbWdUdHVJbFViRGhOT0M4?=
- =?utf-8?B?QkR2MG04eTRZenF3djlrbDBIck8zQzR0MzJzSldEMkJ4ZGE3bGsxR1dTMzRE?=
- =?utf-8?B?cDhKckNaOUFQaFRTc25ocTFJeldEbVhPSmlWbWVJY0VNbUVaSDFkU05WZ09Y?=
- =?utf-8?B?TFl0a1ZYWVpYN0xDRlowOWlwajIwSlpXeE1ZWko0dFNOZE5yemF2UVg2K0xE?=
- =?utf-8?B?MEYyYTZQdGVGL2lLZjBxZmRXY21aeTFiMTlQekR2UDA2eHRWNURmVEVXVnpH?=
- =?utf-8?B?bjBUWDFQRlRJZ1ovT3Z4bnEzTGFkR29sc0RIVURvTzJBdksvMitzc1NsODd3?=
- =?utf-8?B?U01wcmtsaXNRdXU3UTNib3gwcWNyaUJuZWZDcURjOEdKOTNQYkp4NTEyVGFV?=
- =?utf-8?B?ekRXdHZicmcydzRVMElkZ0JJclFiNkh5b3R4cnhGMW52a294Q3dYZS82N21a?=
- =?utf-8?B?MjI1SHNvMG13MHEwTFlRSnJubndJdUcvQkVEQWkrL3NxdmY4TmxEOEdycEl2?=
- =?utf-8?B?VHdSUDB3aDk0Y1N5bWpVTjdSc3FPNE9KbGxTVURIL1cySVI0b1EvNlBScFI2?=
- =?utf-8?B?TXNYc2RlckFybTRMR01ybEJYY0lyM2N3aVJWMmNFL0pTRXZnYnBiRUdCbVBR?=
- =?utf-8?B?eHRNTW1HZ2tjL0hSSzNzOWY2TE1TYUpaZVBqWldySWMvZnJDams2bm5QdERu?=
- =?utf-8?B?UTMvMjdhMlJpMXMzUFhONElpbGhydlJodDhBOUJhZ3h6VWpBdlhvTFF0OHNv?=
- =?utf-8?B?KzhzUWFQZG8zUzFuMzJZTXl1ZjQ1NjRFQkxZQk5kTFhKNXM2b1JOdEg1TGpy?=
- =?utf-8?B?Umg4U2gvN1Rkblk0Q3ZGdUxZaVFicVVqNGpHTjFJVGxPOEpXRXY2aTZDTGJR?=
- =?utf-8?B?elFqZkZ4cFVqamdsSGlSaGliYlBhQTcyamZLQjVwemhkVDdJb3U0clliMkkv?=
- =?utf-8?B?NzNvWTNsRmpQWFV6N203Q1hVc3FwbFJacWkwWUdqVEZFWVAxQUNUdmN1WHpx?=
- =?utf-8?B?TVMyb3ZLUEhVR05XR2cwd21oaTNUYmQ4Skgxb2w2YTBQa0Ezdm1xTFBLTFNp?=
- =?utf-8?B?aC80SDQrY2ZzS2xrcUFKemFrQTBDeXBiMHlCNzdDUWp4TGdOTC9VSnZ3SU9Y?=
- =?utf-8?Q?RAqFUVHIeJus8QlGIpueLCjZ7krmc/T6?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MFdhQ01DbkdiTERRcVR6MSt6OGlyZHdRZlFoanhSN2RucW0yUXhlODliK3hW?=
- =?utf-8?B?NjFmTXcwRW16YlRTaGlGVnEzWGh2YjNmWjhFNEZHbEVxYjhFT3E0ZmZpVkNt?=
- =?utf-8?B?TUZkOXRJU2JNb3ZNTi9Hbk02bUtCdWZzcENodVoyMVl4THpVOTRkQ083eGVp?=
- =?utf-8?B?SVA2SURobCs0a0M1dW9ROUR0MjJUWVlyS3JRNmhuZllKbnhiV3pKZVBCZ1Nk?=
- =?utf-8?B?NXFXOG81Wm5zMFRSdzRNSHU2WEtWOVU4cFIwVjNGRTJha0ZOSFJxQlRUVE4y?=
- =?utf-8?B?cjAwNG9zUUxiWmhLSTBWTDFLZ2FKUFpub0J3ZmFONytPNWdxMTk4cDNsWTBH?=
- =?utf-8?B?YmEvclljR3dFOXlZWjdZWDREenY2Y3V4TlVCS1B5MWRlVkxKck8yR2t1NHYy?=
- =?utf-8?B?QWt1N1ZGZzJ0dFJGbzRGRmNkZ296YVNlNnRQYkxHbW9EcjNkdHRnVlpnOXRD?=
- =?utf-8?B?U1hEdG5IV3dPN2wxMllXdUF0WXJGU0RoeTNRTFZRQ2wyd3dBakJsdHhEc2xQ?=
- =?utf-8?B?Z0tHOGpTRkpVL1doMGtiM25zWDFaeUxjSGg1cHhoNGlrVXlvTUFDWnF5RDVM?=
- =?utf-8?B?OXM5Q25xb3dTVWx2NnFPT1pPaVlGbTBDNzhIWDRtazNXQmt1b1RoK1FuTytF?=
- =?utf-8?B?T0hJY01vcSt5ZVhUKzk3Z3VESEpxRUthRHFlNTQ3NmY0bm9GV1VjazliSGto?=
- =?utf-8?B?d1ZYWGJPOGEvWEhhdVluMjJLZzJnRmwrQWhlSzFIQVgxNnV0NC81cFNJREw2?=
- =?utf-8?B?bnRaTTFHRFI0dWtHRGgveXRlQy8wa3VsWXBOSVJNbkV5VjJ0QWpBdUVHM05l?=
- =?utf-8?B?VkpJR2FHb3pucVQ4TkNnYldSbFc0djlIN3VuVWIwUEVXa2ZHNVVWRzgrcmtP?=
- =?utf-8?B?MHhlQWxlWERZZzNKNWhaY2RCQXNwd0pHenRneGpMVUFudDRTNzV4MkZ5aWFJ?=
- =?utf-8?B?UmZIdzlFdVFUZDNydEFKTE5IcUs5SzVCeWRVK1hRbEdMSTRhUkFxYU8rdDl3?=
- =?utf-8?B?ZkhKOUl4bVZqUkJHNWhwczdWOE9DOWVwa1dUQXZ4MG5kdGlyTlpMck55ajFz?=
- =?utf-8?B?bTc0aDJTWDQwU0VpZHVwT0NlZnlhbzF4SmFDeW9TaTNuc3o0dHgvZU1DdW9R?=
- =?utf-8?B?SHZjSGNDeVEvTmI5eDg4ZytVbkdoUHB2RlgraUg3SmRZc1Q3bmEwU1lyL0o4?=
- =?utf-8?B?RWtyRzhnUGZVT2dLb1g2djVtTElvbU55SEJLTnBzT3pHVzIzRlZqYjZsUWs1?=
- =?utf-8?B?MGkrQk00dzBqcDVpTjVKdWMwSWwwalZwM2pkUnBPWUxualdvRm84dVJZTDMw?=
- =?utf-8?B?SmJzb3JsN2VURSswdVp6ZGJJWlRxZE1ySEh6VitZUHAwWWViMWRCWmFPRWhO?=
- =?utf-8?B?N3Z4dTNLODlVTE9YQ2MwVC9tdHBLY1Vjc2RiRDBucVhreWNYMVlSUmNRSlUw?=
- =?utf-8?B?K0RnODlzT01FbVRTZ1FITzVWQVhpNlM1T2lIN21oWGZOazhwZVhnbEw4TVR6?=
- =?utf-8?B?TFZmVkRySU5Kd2ZUd1g1R1VtbStleWdZMGh2NVdDK09Xb20rUmJXeEtnOTV5?=
- =?utf-8?B?NnhoU0dBUXhjSm01USt1OE9mM0hoNGFyc2NOdEdVRzdVd2hFR3hocjlMdlBu?=
- =?utf-8?B?MFBMSXJiazM3NDRramNJS1pja0lEdVE4VXl1R2kxNUI0ditCVEQyS3pKb3la?=
- =?utf-8?B?NTNhY1NwU2h2Sy9QNnNYSFMvZTFHMzI3Y2t6Ykt4VGpzL0pFLzMwTUs4YWR0?=
- =?utf-8?B?Z05zZ2todmRjUXczeGNPNXhab3QvK1pZZXhzTk9FWHN4YnpCK0x2MWY5M2l0?=
- =?utf-8?B?NDhLUDBKbW51MW5EQXNHNlQ4Y3VUWk9oK25yU3drK1JTWXE0TENYZmFnaDFD?=
- =?utf-8?B?cWU5bENmK3Fna0VzWENtUjZwb3ZSVzJCV1VqZldPelBCWTU0UjUyT1dFNFFN?=
- =?utf-8?B?ZjBOWGVFUWJvNlRXck1EY2xaWXorRitOSjh0b0d5ZEF0ZGwrTTV2VUVJRjU2?=
- =?utf-8?B?N3ZvTG5pRWJUMFBXK1U3Y1hTNlUxcjM2azNCbFhtZ0t6R3k5MFFNUTREa3hT?=
- =?utf-8?B?TlVXZ0FKcXd5YUN3L28xZGY2YWNnZkZzZ0g1TXVjRElVV3I3WUJLKzNBMFZ3?=
- =?utf-8?B?K1BqMjRXenRSdFFGdkhOZmdvMk5RbTd3TjhvbXFWdlk4bDFRV3lNaXc5S0RY?=
- =?utf-8?B?bUE9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4de50e94-7506-4f66-8470-08de1dcb87be
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Nov 2025 07:01:52.7538 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: tKO/vCtImGdRRg0pKjBrDRW53SOmi3hr3mx7HVllaZeCynLc79ZGkB+ArVnREhDiBAGbBo3XkT7CTSWPXL6/YA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR11MB4600
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB6019.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 62e8006c-0977-48fd-f916-08de1dcbbbd2
+X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Nov 2025 07:03:19.9319 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: nDbDfu42PFZv+Tf6KAFkFVOnHdibM464npDZgmJ57ilyd+d70sUIajrzngQQAzdQC5uBEc2M0kHCiWEALJOrgTK3NlDWxirU3EEiy/zBvxQ=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB5277
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -198,355 +203,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Nov 06, 2025 at 02:50:45PM -0700, Summers, Stuart wrote:
-> On Tue, 2025-11-04 at 11:56 -0800, Matthew Brost wrote:
-> > Introduce context-based invalidation support to the GuC TLB
-> > invalidation
-> > backend. This is implemented by iterating over each exec queue per GT
-> > within a VM, skipping inactive queues, and issuing a context-based
-> > (GuC
-> > ID) H2G TLB invalidation. All H2G messages, except the final one, are
-> > sent with an invalid seqno, which the G2H handler drops to ensure the
-> > TLB invalidation fence is only signaled once all H2G messages are
-> > completed.
-> > 
-> > A watermark mechanism is also added to switch between context-based
-> > TLB
-> > invalidations and full device-wide invalidations, as the return on
-> > investment for context-based invalidation diminishes when many exec
-> > queues are mapped.
-> > 
-> > v2:
-> >  - Fix checkpatch warnings
-> > 
-> > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> > ---
-> >  drivers/gpu/drm/xe/xe_device_types.h  |   2 +
-> >  drivers/gpu/drm/xe/xe_guc_tlb_inval.c | 122
-> > +++++++++++++++++++++++++-
-> >  drivers/gpu/drm/xe/xe_pci.c           |   1 +
-> >  drivers/gpu/drm/xe/xe_pci_types.h     |   1 +
-> >  4 files changed, 124 insertions(+), 2 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/xe/xe_device_types.h
-> > b/drivers/gpu/drm/xe/xe_device_types.h
-> > index 145951dd95c9..ca285f4bce11 100644
-> > --- a/drivers/gpu/drm/xe/xe_device_types.h
-> > +++ b/drivers/gpu/drm/xe/xe_device_types.h
-> > @@ -316,6 +316,8 @@ struct xe_device {
-> >                 u8 has_mem_copy_instr:1;
-> >                 /** @info.has_pxp: Device has PXP support */
-> >                 u8 has_pxp:1;
-> > +               /** @info.has_ctx_tlb_inval: Has context based TLB
-> > invalidations */
-> > +               u8 has_ctx_tlb_inval:1;
-> >                 /** @info.has_range_tlb_inval: Has range based TLB
-> > invalidations */
-> >                 u8 has_range_tlb_inval:1;
-> >                 /** @info.has_sriov: Supports SR-IOV */
-> > diff --git a/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
-> > b/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
-> > index 6978ee8edf2e..1baaf577cded 100644
-> > --- a/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
-> > +++ b/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
-> > @@ -6,14 +6,17 @@
-> >  #include "abi/guc_actions_abi.h"
-> >  
-> >  #include "xe_device.h"
-> > +#include "xe_exec_queue_types.h"
-> >  #include "xe_gt_stats.h"
-> >  #include "xe_gt_types.h"
-> >  #include "xe_guc.h"
-> >  #include "xe_guc_ct.h"
-> > +#include "xe_guc_exec_queue_types.h"
-> >  #include "xe_guc_tlb_inval.h"
-> >  #include "xe_force_wake.h"
-> >  #include "xe_mmio.h"
-> >  #include "xe_tlb_inval.h"
-> > +#include "xe_vm.h"
-> >  
-> >  #include "regs/xe_guc_regs.h"
-> >  
-> > @@ -136,10 +139,16 @@ static int send_tlb_inval_ppgtt(struct xe_guc
-> > *guc, u32 seqno, u64 start,
-> >  {
-> >  #define MAX_TLB_INVALIDATION_LEN       7
-> >         struct xe_gt *gt = guc_to_gt(guc);
-> > +       struct xe_device *xe = guc_to_xe(guc);
-> >         u32 action[MAX_TLB_INVALIDATION_LEN];
-> >         u64 length = end - start;
-> >         int len = 0;
-> >  
-> > +       xe_gt_assert(gt, (type == XE_GUC_TLB_INVAL_PAGE_SELECTIVE &&
-> > +                         !xe->info.has_ctx_tlb_inval) ||
-> > +                    (type == XE_GUC_TLB_INVAL_PAGE_SELECTIVE_CTX &&
-> > +                     xe->info.has_ctx_tlb_inval));
-> > +
-> >         action[len++] = XE_GUC_ACTION_TLB_INVALIDATION;
-> >         action[len++] = seqno;
-> >         if (!gt_to_xe(gt)->info.has_range_tlb_inval ||
-> > @@ -176,6 +185,100 @@ static int send_tlb_inval_asid_ppgtt(struct
-> > xe_tlb_inval *tlb_inval, u32 seqno,
-> >                                     XE_GUC_TLB_INVAL_PAGE_SELECTIVE);
-> >  }
-> >  
-> > +static bool queue_mapped_in_guc(struct xe_guc *guc, struct
-> > xe_exec_queue *q)
-> > +{
-> > +       return q->gt == guc_to_gt(guc);
-> > +}
-> > +
-> > +static int send_tlb_inval_ctx_ppgtt(struct xe_tlb_inval *tlb_inval,
-> > u32 seqno,
-> > +                                   u64 start, u64 end, u32 asid)
-> > +{
-> > +       struct xe_guc *guc = tlb_inval->private;
-> > +       struct xe_device *xe = guc_to_xe(guc);
-> > +       struct xe_exec_queue *q, *last_q = NULL;
-> > +       struct xe_vm *vm;
-> > +       int err = 0;
-> > +
-> > +       lockdep_assert_held(&tlb_inval->seqno_lock);
-> > +
-> > +       if (xe->info.force_execlist)
-> > +               return -ECANCELED;
-> > +
-> > +       vm = xe_device_asid_to_vm(xe, asid);
-> > +       if (IS_ERR(vm))
-> > +               return PTR_ERR(vm);
-> > +
-> > +       down_read(&vm->exec_queues.lock);
-> > +
-> > +       /*
-> > +        * XXX: Randomly picking a threshold for now. This will need
-> > to be
-> > +        * tuned based on expected UMD queue counts and performance
-> > profiling.
-> > +        */
-> > +#define EXEC_QUEUE_COUNT_FULL_THRESHOLD        8
-> 
-> Does seem interesting for this to be configurable. Maybe different
-> applications have different requirements here... But also we should
-> have some kind of default. No issue with what you 
-> 
-
-Yes, I figure we can make this tunable somehow.
-
-> > +       if (vm->exec_queues.count[guc_to_gt(guc)->info.id] >=
-> > +           EXEC_QUEUE_COUNT_FULL_THRESHOLD) {
-> > +               u32 action[] = {
-> > +                       XE_GUC_ACTION_TLB_INVALIDATION,
-> > +                       seqno,
-> > +                       MAKE_INVAL_OP(XE_GUC_TLB_INVAL_FULL),
-> > +               };
-> > +
-> > +               err = send_tlb_inval(guc, action,
-> > ARRAY_SIZE(action));
-> > +               goto err_unlock;
-> > +       }
-> > +#undef EXEC_QUEUE_COUNT_FULL_THRESHOLD
-> > +
-> > +       list_for_each_entry_reverse(q, &vm->exec_queues.list,
-> > +                                   vm_exec_queue_link)
-> 
-> Braces here around the if() {}. Otherwise it's too easy to accidentally
-> add lines below the if condition with unintended behavior.
-> 
-> > +               if (queue_mapped_in_guc(guc, q) && q->ops->active(q))
-> > {
-> > +                       last_q = q;
-> > +                       break;
-> > +               }
-> > +
-> > +       if (!last_q) {
-> > +               /*
-> > +                * We can't break fence ordering for TLB invalidation
-> > jobs, if
-> > +                * TLB invalidations are inflight issue a dummy
-> > invalidation to
-> > +                * maintain ordering. Nor can we move safely the
-> > seqno_recv when
-> > +                * returning -ECANCELED if TLB invalidations are in
-> > flight. Use
-> > +                * GGTT invalidation as dummy invalidation given ASID
-> > +                * invalidations are unsupported here.
-> > +                */
-> > +               if (xe_tlb_inval_idle(tlb_inval))
-> > +                       err = -ECANCELED;
-> > +               else
-> > +                       err = send_tlb_inval_ggtt(tlb_inval, seqno);
-> > +               goto err_unlock;
-> > +       }
-> > +
-> > +       list_for_each_entry(q, &vm->exec_queues.list,
-> > vm_exec_queue_link) {
-> > +               int __seqno = last_q == q ? seqno :
-> > +                       TLB_INVALIDATION_SEQNO_INVALID;
-> > +               u32 type = XE_GUC_TLB_INVAL_PAGE_SELECTIVE_CTX;
-> > +
-> > +               /*
-> > +                * XXX: Techincally we can race here and queue can
-> > become
-> > +                * inactive, not ideal. The TLB invalidation will
-> > timeout in
-> > +                * this case unless we get GuC support to convert to
-> > NOP...
-> 
-> We actually can't support this. It won't just time out, GuC will return
-
-Yes, I agree. I think we'd receive a failure response to
-GUC_HXG_TYPE_FAST_REQUEST, but if I recall correctly, in my testing I
-only saw timeouts on TLB invalidations sent to unregistered GuC IDs. Let
-me follow on failure case (I hit this in case when then the multi-GT
-code wasn't quite right yet).
-
-> an error (invalid parameter that the context isn't registered and we're
-> trying to submit something via context invalidation - nothing actually
-> gets sent to hardware) and we will issue a GT reset. We should make
-
-A failure response to GUC_HXG_TYPE_FAST_REQUEST is indeed a GT reset.
-
-> sure when we send this, the context is registered and any
-> deregistration explicitly happens afterwards.
-> 
-> This is why generally we want to do this add/remove not at the queue
-> level but at the guc registration/deregistration level to guarantee
-> this. But I see you split the queue add and the submission based on
-> this active flag. Right now I believe we're tracking "pending
-> deregistration" with exec_queue_destroyed && exec_queue_registered,
-> although it might be nice to have an explicit state there.
-
-Locking is required to make this race-free, which just doesn't work.
-
-- TLB invalidations must be issued if the context is enabled or even if a
-  disable is pending—otherwise, we risk memory corruption, which could be
-  catastrophic.
-- The context disable "done" G2H is received under the CT lock; the
-  subsequent deregister is also issued under the CT lock.
-- The lock that iterates over a VM's exec queues (contexts) is the outer
-  lock of the CT lock.
-
-As far as I can tell, we can't resolve this race without inverting the
-locking order—at least not in any way I'd consider a reasonable locking
-scheme for the KMD.
-
-> 
-> Alternatively we could also capture that error response from GuC,
-> although there are a few different places we can get an error there and
-> we might not want to overload the CT error handler in the event there
-> is a legitimate state or hardware error that requires a guc reload/GT
-> reset.
-> 
-
-I believe the solution lies in GuC support. We could introduce a flag in
-the H2G TLB invalidation that signals: "I understand the risks—this may
-race. If it does, discard the TLB invalidation and still return a valid
-G2H TLB done response."
-
-We’d likely disable this in CI builds unless it causes noise. In
-production, if we hit this race (which should be rare, given CI passes
-with the race exposed), the worst-case outcome is an extra TLB
-invalidation—which is acceptable.
-
-Matt
-
-> Thanks,
-> Stuart
-> 
-> > +                */
-> > +               if (!queue_mapped_in_guc(guc, q) || !q->ops-
-> > >active(q))
-> > +                       continue;
-> > +
-> > +               xe_assert(xe, q->vm == vm);
-> > +
-> > +               err = send_tlb_inval_ppgtt(guc, __seqno, start, end,
-> > +                                          q->guc->id, type);
-> > +               if (err)
-> > +                       goto err_unlock;
-> > +       }
-> > +
-> > +err_unlock:
-> > +       up_read(&vm->exec_queues.lock);
-> > +       xe_vm_put(vm);
-> > +
-> > +       return err;
-> > +}
-> > +
-> >  static bool tlb_inval_initialized(struct xe_tlb_inval *tlb_inval)
-> >  {
-> >         struct xe_guc *guc = tlb_inval->private;
-> > @@ -203,7 +306,7 @@ static long tlb_inval_timeout_delay(struct
-> > xe_tlb_inval *tlb_inval)
-> >         return hw_tlb_timeout + 2 * delay;
-> >  }
-> >  
-> > -static const struct xe_tlb_inval_ops guc_tlb_inval_ops = {
-> > +static const struct xe_tlb_inval_ops guc_tlb_inval_asid_ops = {
-> >         .all = send_tlb_inval_all,
-> >         .ggtt = send_tlb_inval_ggtt,
-> >         .ppgtt = send_tlb_inval_asid_ppgtt,
-> > @@ -212,6 +315,15 @@ static const struct xe_tlb_inval_ops
-> > guc_tlb_inval_ops = {
-> >         .timeout_delay = tlb_inval_timeout_delay,
-> >  };
-> >  
-> > +static const struct xe_tlb_inval_ops guc_tlb_inval_ctx_ops = {
-> > +       .ggtt = send_tlb_inval_ggtt,
-> > +       .all = send_tlb_inval_all,
-> > +       .ppgtt = send_tlb_inval_ctx_ppgtt,
-> > +       .initialized = tlb_inval_initialized,
-> > +       .flush = tlb_inval_flush,
-> > +       .timeout_delay = tlb_inval_timeout_delay,
-> > +};
-> > +
-> >  /**
-> >   * xe_guc_tlb_inval_init_early() - Init GuC TLB invalidation early
-> >   * @guc: GuC object
-> > @@ -223,8 +335,14 @@ static const struct xe_tlb_inval_ops
-> > guc_tlb_inval_ops = {
-> >  void xe_guc_tlb_inval_init_early(struct xe_guc *guc,
-> >                                  struct xe_tlb_inval *tlb_inval)
-> >  {
-> > +       struct xe_device *xe = guc_to_xe(guc);
-> > +
-> >         tlb_inval->private = guc;
-> > -       tlb_inval->ops = &guc_tlb_inval_ops;
-> > +
-> > +       if (xe->info.has_ctx_tlb_inval)
-> > +               tlb_inval->ops = &guc_tlb_inval_ctx_ops;
-> > +       else
-> > +               tlb_inval->ops = &guc_tlb_inval_asid_ops;
-> >  }
-> >  
-> >  /**
-> > diff --git a/drivers/gpu/drm/xe/xe_pci.c
-> > b/drivers/gpu/drm/xe/xe_pci.c
-> > index 1959de3f7a27..9a11066c7d4a 100644
-> > --- a/drivers/gpu/drm/xe/xe_pci.c
-> > +++ b/drivers/gpu/drm/xe/xe_pci.c
-> > @@ -863,6 +863,7 @@ static int xe_info_init(struct xe_device *xe,
-> >                 xe->info.has_device_atomics_on_smem = 1;
-> >  
-> >         xe->info.has_range_tlb_inval = graphics_desc-
-> > >has_range_tlb_inval;
-> > +       xe->info.has_ctx_tlb_inval = graphics_desc-
-> > >has_ctx_tlb_inval;
-> >         xe->info.has_usm = graphics_desc->has_usm;
-> >         xe->info.has_64bit_timestamp = graphics_desc-
-> > >has_64bit_timestamp;
-> >  
-> > diff --git a/drivers/gpu/drm/xe/xe_pci_types.h
-> > b/drivers/gpu/drm/xe/xe_pci_types.h
-> > index 9892c063a9c5..c08857c06c7e 100644
-> > --- a/drivers/gpu/drm/xe/xe_pci_types.h
-> > +++ b/drivers/gpu/drm/xe/xe_pci_types.h
-> > @@ -63,6 +63,7 @@ struct xe_graphics_desc {
-> >         u8 has_atomic_enable_pte_bit:1;
-> >         u8 has_indirect_ring_state:1;
-> >         u8 has_range_tlb_inval:1;
-> > +       u8 has_ctx_tlb_inval:1;
-> >         u8 has_usm:1;
-> >         u8 has_64bit_timestamp:1;
-> >  };
-> 
+T24gVGh1LCAyMDI1LTExLTA2IGF0IDIyOjAwICswMjAwLCBKYW5pIE5pa3VsYSB3cm90ZToNCj4g
+Rmlyc3QsIHdlIGNhbid0IGFzc3VtZSBwaXBlID09IGNydGMgaW5kZXguIElmIGEgcGlwZSBpcyBm
+dXNlZCBvZmYgaW4NCj4gYmV0d2VlbiwgaXQgbm8gbG9uZ2VyIGhvbGRzLiBpbnRlbF9jcnRjX2Zv
+cl9waXBlKCkgaXMgdGhlIG9ubHkgcHJvcGVyDQo+IHdheSB0byBnZXQgZnJvbSBhIHBpcGUgdG8g
+dGhlIGNvcnJlc3BvbmRpbmcgY3J0Yy4NCj4gDQo+IFNlY29uZCwgZHJpdmVycyBhcmVuJ3Qgc3Vw
+cG9zZWQgdG8gYWNjZXNzIG9yIGluZGV4IGRybS0+dmJsYW5rW10NCj4gZGlyZWN0bHkuIFRoZXJl
+J3MgZHJtX2NydGNfdmJsYW5rX2NydGMoKSBmb3IgdGhpcy4NCj4gDQo+IFVzZSBib3RoIGZ1bmN0
+aW9ucyB0byBmaXggdGhlIHBpcGUgdG8gdmJsYW5rIGNvbnZlcnNpb24uDQoNClJldmlld2VkLWJ5
+OiBKb3VuaSBIw7ZnYW5kZXIgPGpvdW5pLmhvZ2FuZGVyQGludGVsLmNvbT4NCj4gDQo+IEZpeGVz
+OiBmMDI2NThjNDZjZjcgKCJkcm0vaTkxNS9wc3I6IEFkZCBtZWNoYW5pc20gdG8gbm90aWZ5IFBT
+UiBvZg0KPiBwaXBlIGVuYWJsZS9kaXNhYmxlIikNCj4gQ2M6IEpvdW5pIEjDtmdhbmRlciA8am91
+bmkuaG9nYW5kZXJAaW50ZWwuY29tPg0KPiBDYzogPHN0YWJsZUB2Z2VyLmtlcm5lbC5vcmc+ICMg
+djYuMTYrDQo+IFNpZ25lZC1vZmYtYnk6IEphbmkgTmlrdWxhIDxqYW5pLm5pa3VsYUBpbnRlbC5j
+b20+DQo+IC0tLQ0KPiDCoGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfcHNyLmMg
+fCAzICsrLQ0KPiDCoDEgZmlsZSBjaGFuZ2VkLCAyIGluc2VydGlvbnMoKyksIDEgZGVsZXRpb24o
+LSkNCj4gDQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVs
+X3Bzci5jDQo+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9wc3IuYw0KPiBp
+bmRleCAwNTAxNGZmZTNjZTEuLmM3N2E5MmVhNzkxOSAxMDA2NDQNCj4gLS0tIGEvZHJpdmVycy9n
+cHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9wc3IuYw0KPiArKysgYi9kcml2ZXJzL2dwdS9kcm0v
+aTkxNS9kaXNwbGF5L2ludGVsX3Bzci5jDQo+IEBAIC05MzIsNyArOTMyLDggQEAgc3RhdGljIGJv
+b2wgaXNfZGM1X2RjNl9ibG9ja2VkKHN0cnVjdCBpbnRlbF9kcA0KPiAqaW50ZWxfZHApDQo+IMKg
+ew0KPiDCoAlzdHJ1Y3QgaW50ZWxfZGlzcGxheSAqZGlzcGxheSA9IHRvX2ludGVsX2Rpc3BsYXko
+aW50ZWxfZHApOw0KPiDCoAl1MzIgY3VycmVudF9kY19zdGF0ZSA9DQo+IGludGVsX2Rpc3BsYXlf
+cG93ZXJfZ2V0X2N1cnJlbnRfZGNfc3RhdGUoZGlzcGxheSk7DQo+IC0Jc3RydWN0IGRybV92Ymxh
+bmtfY3J0YyAqdmJsYW5rID0gJmRpc3BsYXktPmRybS0NCj4gPnZibGFua1tpbnRlbF9kcC0+cHNy
+LnBpcGVdOw0KPiArCXN0cnVjdCBpbnRlbF9jcnRjICpjcnRjID0gaW50ZWxfY3J0Y19mb3JfcGlw
+ZShkaXNwbGF5LA0KPiBpbnRlbF9kcC0+cHNyLnBpcGUpOw0KPiArCXN0cnVjdCBkcm1fdmJsYW5r
+X2NydGMgKnZibGFuayA9IGRybV9jcnRjX3ZibGFua19jcnRjKCZjcnRjLQ0KPiA+YmFzZSk7DQo+
+IMKgDQo+IMKgCXJldHVybiAoY3VycmVudF9kY19zdGF0ZSAhPSBEQ19TVEFURV9FTl9VUFRPX0RD
+NSAmJg0KPiDCoAkJY3VycmVudF9kY19zdGF0ZSAhPSBEQ19TVEFURV9FTl9VUFRPX0RDNikgfHwN
+Cg0K
