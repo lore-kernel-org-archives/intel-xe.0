@@ -4,33 +4,33 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5312DCCFA19
-	for <intel-xe@archiver.kernel.org>; Fri,  7 Nov 2025 19:39:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5D5C3CCF9E3
+	for <intel-xe@archiver.kernel.org>; Fri,  7 Nov 2025 19:39:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1968910EB63;
-	Fri,  7 Nov 2025 19:39:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1A6E510EB66;
+	Fri,  7 Nov 2025 19:39:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="HLrHiiea";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="NBGnR7zw";
 	dkim-atps=neutral
 Received: from lankhorst.se (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 41A0210EAFB
- for <intel-xe@lists.freedesktop.org>; Fri,  7 Nov 2025 19:39:50 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F396210EB62
+ for <intel-xe@lists.freedesktop.org>; Fri,  7 Nov 2025 19:39:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1762544389;
- bh=ayTfIiXKSdAI7v9LVwmS0rL6yyY/P57eSpD8YoJWyyg=;
+ s=default; t=1762544390;
+ bh=Fd7xqMKtI1czeZVZmJUm2zI3Khx3lzpsyMWufRJ+Cw8=;
  h=From:To:Subject:Date:In-Reply-To:References:From;
- b=HLrHiiea3PJXsn3717feAZN2v2BEFrhbjoN4HvTSsWHI3lfeywFtUkb2qxs8ksayL
- anGEjupYYhs5uOAYqtdvOXf9dsLs7daPNWPMFCB5/CVX6fHxDwjdJKjbo3A9hSDUTI
- 9t5VXQptKEfvFAKcfuzSfFmJd4OJ/4/oKiILIeYdkB1K1pYnJARLyqtuXmrSNhr0Ld
- Qu82xTfsQ8uVTv8BDuIaLaVi0grAsXqTKj+8GMnQbL21n132a9pHH24NppZij0nnhL
- VIUWJ8daa6EpHgEb0oQGcqBuubMXqRknYBXa7+/iBOKJJTwadna3osnKPA6mfcJkzR
- mZJecvS+kKDtQ==
+ b=NBGnR7zwEC4Sf5jlg3y8fwahT9QeAR79f51Yq4hSuxU+e37WsGzOtNGsEBXMHK6Jp
+ Nt+bGmyOX7CH3BPctGuUm5ETSJ1IRCw9g9EP0aTtKeNEgmicN9Z5BRpQtKWc9hDGAG
+ LC9mGZnXqI7RH/D7xKJ9VCvlrV349Vkn9yp9M/+/2JxmVdCY2hqSYwHCe3v3/YZUhi
+ Es1V/ZNYTXykRkf20ur9/Lhg4922lq7auNw0WMDpCfqfMZn5boSCeUpGBtL2MctwiZ
+ frjAuLSaQIYTIbNw+ccwjHD8TT+oHsieSaH9wDY8oWWyB8mSkjpBJ9QJIYao15aeM6
+ q/syF1cUSWGDQ==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-xe@lists.freedesktop.org
-Subject: [FOR-CI 03/10] drm/i915/display: Move vblank put until after critical
- section
-Date: Fri,  7 Nov 2025 20:39:38 +0100
-Message-ID: <20251107193946.1075137-4-dev@lankhorst.se>
+Subject: [FOR-CI 06/10] drm/i915/display: Enable interrupts earlier on
+ PREEMPT_RT
+Date: Fri,  7 Nov 2025 20:39:41 +0100
+Message-ID: <20251107193946.1075137-7-dev@lankhorst.se>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20251107193946.1075137-1-dev@lankhorst.se>
 References: <20251107193946.1075137-1-dev@lankhorst.se>
@@ -50,62 +50,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-drm_crtc_vblank_put may take some locks, this should probably
-not be the first thing we do after entering the time sensitive
-part.
+The last part of the vblank evasion is about updating bookkeeping,
+not programming hardware registers.
 
-A better place is after programming is completed. Add a flag
-to put the vblank after completion.
-
-In the case of drm_vblank_work_schedule, we may not even need
-to disable the vblank interrupt any more if it takes its own
-reference.
+The interrupts cannot stay disabled here on PREEMPT_RT since the
+spinlocks get converted to mutexes.
 
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/i915/display/intel_cursor.c | 8 ++++++--
- 1 file changed, 6 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_crtc.c | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
-index 7aa14348aa6d4..6b3bc8d94e51a 100644
---- a/drivers/gpu/drm/i915/display/intel_cursor.c
-+++ b/drivers/gpu/drm/i915/display/intel_cursor.c
-@@ -816,6 +816,7 @@ intel_legacy_cursor_update(struct drm_plane *_plane,
- 		to_intel_crtc_state(crtc->base.state);
- 	struct intel_crtc_state *new_crtc_state;
- 	struct intel_vblank_evade_ctx evade;
-+	bool has_vblank = false;
- 	int ret;
+diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
+index 9d2a23c96c61b..b87f6b4a4f3d7 100644
+--- a/drivers/gpu/drm/i915/display/intel_crtc.c
++++ b/drivers/gpu/drm/i915/display/intel_crtc.c
+@@ -688,6 +688,14 @@ void intel_pipe_update_end(struct intel_atomic_state *state,
+ 	    intel_crtc_has_type(new_crtc_state, INTEL_OUTPUT_DSI))
+ 		icl_dsi_frame_update(new_crtc_state);
  
- 	/*
-@@ -913,6 +914,8 @@ intel_legacy_cursor_update(struct drm_plane *_plane,
- 	intel_psr_lock(crtc_state);
- 
- 	if (!drm_WARN_ON(display->drm, drm_crtc_vblank_get(&crtc->base))) {
-+		has_vblank = true;
++#if IS_ENABLED(CONFIG_PREEMPT_RT)
++	/*
++	 * Timing sensitive register writing completed, non-deterministic
++	 * locking from here on out.
++	 */
++	local_irq_enable();
++#endif
 +
- 		/*
- 		 * TODO: maybe check if we're still in PSR
- 		 * and skip the vblank evasion entirely?
-@@ -922,8 +925,6 @@ intel_legacy_cursor_update(struct drm_plane *_plane,
- 		local_irq_disable();
+ 	/* We're still in the vblank-evade critical section, this can't race.
+ 	 * Would be slightly nice to just grab the vblank count and arm the
+ 	 * event outside of the critical section - the spinlock might spin for a
+@@ -735,7 +743,9 @@ void intel_pipe_update_end(struct intel_atomic_state *state,
+ 	if (!state->base.legacy_cursor_update)
+ 		intel_vrr_send_push(NULL, new_crtc_state);
  
- 		intel_vblank_evade(&evade);
--
--		drm_crtc_vblank_put(&crtc->base);
- 	} else {
- 		local_irq_disable();
- 	}
-@@ -939,6 +940,9 @@ intel_legacy_cursor_update(struct drm_plane *_plane,
++#if !IS_ENABLED(CONFIG_PREEMPT_RT)
+ 	local_irq_enable();
++#endif
  
- 	intel_psr_unlock(crtc_state);
- 
-+	if (has_vblank)
-+		drm_crtc_vblank_put(&crtc->base);
-+
- 	if (old_plane_state->ggtt_vma != new_plane_state->ggtt_vma) {
- 		drm_vblank_work_init(&old_plane_state->unpin_work, &crtc->base,
- 				     intel_cursor_unpin_work);
+ 	if (intel_vgpu_active(dev_priv))
+ 		goto out;
 -- 
 2.51.0
 
