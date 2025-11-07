@@ -4,49 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 457D7CCF9F8
-	for <intel-xe@archiver.kernel.org>; Fri,  7 Nov 2025 11:18:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B7F69CCFA05
+	for <intel-xe@archiver.kernel.org>; Fri,  7 Nov 2025 11:18:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 080C310EA94;
-	Fri,  7 Nov 2025 11:18:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 713ED10EA97;
+	Fri,  7 Nov 2025 11:18:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KDJHVnie";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aGVCbAH9";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3C95C10EA94
- for <intel-xe@lists.freedesktop.org>; Fri,  7 Nov 2025 11:18:15 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 71E0D10EA97
+ for <intel-xe@lists.freedesktop.org>; Fri,  7 Nov 2025 11:18:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1762514295; x=1794050295;
+ t=1762514299; x=1794050299;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=2w0dxgHkJN7l2drjB1UooXhwJNHXvGX+rnTrP/niARE=;
- b=KDJHVnieSEA9IPFBLuD+khdMHg9EQeAlLzfv561idDQc6ltpv8bu9Lza
- A6pfG5GQ5uWpinx+eKUaB0RNpcm730Qot3acQdRm4nWspjHWb7w6/m9cF
- P/JKjsM+V6U53QcP7FMrhVxp4Ln2F5+Xp0pCl7LvkbvT7Cla3S7IPrgc5
- zwn5VaF0W0qAaDspkfSAp1GfMZv1KkN7T/P9Ja65nzlVr1SwXbwdJVH+Z
- o4UMWnoWrA9PDTs92MRlwBMHNvyy0axFR4HSFCMtNeKqGB7r0F40Mxrkx
- zs96jdqJrFGiySYJ10YfaVFVV11bM5GAQFYlBT7C/Q8GCaknO6cLslFt+ g==;
-X-CSE-ConnectionGUID: bb6y/lfrSbGeH8XfuP/i5Q==
-X-CSE-MsgGUID: /bgg3637RkeoDzJiEXYhQA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11605"; a="68523716"
-X-IronPort-AV: E=Sophos;i="6.19,286,1754982000"; d="scan'208";a="68523716"
+ bh=/MFoHP1KCeMqvrTB8IwrJha/3/eJHh2KjBi9AE7MNOY=;
+ b=aGVCbAH9xufapSv8wSzpjXovEOCKhrBBMvESHFW0wj91ATHQ+jMwA2fV
+ C5EJiqmHDrCzxEKG8YfDrEZXgWPtVx8n6Xm3lfCVTrBY9lx26NlctH3CQ
+ tT/9aSPnQtE3QVMi3p3EF1gKokVb1k7GJIicBfBE4RXUFUAYofuoGeUPl
+ pzVgkTC/V/WU9+7Qx9Lc80NS3oQeD6ixZ+3ZpzXBK+IVOndRaJjdyT23b
+ P2mMVHbkOCLefU5qOTN8FfUsjpic4QU+/3Xb+PDoiQ1wpsjsk35B90FxB
+ 4S1cHKBvEWuqRBzJB8TYj2kHAGqXeRMRMyUYpJilqJKchCiwLyelrJp6o w==;
+X-CSE-ConnectionGUID: Fl3QKLFeQS68tpn8Ag7cSw==
+X-CSE-MsgGUID: r+r+rXP2TYSQjBxTRMvSNQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11605"; a="68523734"
+X-IronPort-AV: E=Sophos;i="6.19,286,1754982000"; d="scan'208";a="68523734"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Nov 2025 03:18:15 -0800
-X-CSE-ConnectionGUID: 9uMj21A5TbanWH1KZ6sfUg==
-X-CSE-MsgGUID: IAdXkiOSSTWjsahqdhJvUA==
+ 07 Nov 2025 03:18:19 -0800
+X-CSE-ConnectionGUID: 1FOL1sb8Td+W/Iu9pOjGLA==
+X-CSE-MsgGUID: 69+i8IkSQKW76oUWxPn1sw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,286,1754982000"; d="scan'208";a="192107895"
+X-IronPort-AV: E=Sophos;i="6.19,286,1754982000"; d="scan'208";a="192107912"
 Received: from nitin-super-server.iind.intel.com ([10.190.238.72])
- by orviesa003.jf.intel.com with ESMTP; 07 Nov 2025 03:18:13 -0800
+ by orviesa003.jf.intel.com with ESMTP; 07 Nov 2025 03:18:17 -0800
 From: Nitin Gote <nitin.r.gote@intel.com>
 To: matthew.brost@intel.com
 Cc: intel-xe@lists.freedesktop.org, matthew.auld@intel.com,
  michal.mrozek@intel.com, Nitin Gote <nitin.r.gote@intel.com>
-Subject: [PATCH v5 1/3] drm/xe: add VM_BIND DECOMPRESS uapi flag
-Date: Fri,  7 Nov 2025 17:17:59 +0530
-Message-ID: <20251107114757.561671-6-nitin.r.gote@intel.com>
+Subject: [PATCH v5 2/3] drm/xe: add xe_migrate_resolve wrapper and
+ is_vram_resolve support
+Date: Fri,  7 Nov 2025 17:18:00 +0530
+Message-ID: <20251107114757.561671-7-nitin.r.gote@intel.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20251107114757.561671-5-nitin.r.gote@intel.com>
 References: <20251107114757.561671-5-nitin.r.gote@intel.com>
@@ -66,62 +67,151 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add a new VM_BIND flag, DRM_XE_VM_BIND_FLAG_DECOMPRESS, that lets userspace
-express intent for the driver to perform on-device in-place decompression
-for the GPU mapping created by a MAP bind operation.
+Introduce an internal __xe_migrate_copy(..., is_vram_resolve) path and
+expose a small wrapper xe_migrate_resolve() that calls it with
+is_vram_resolve=true.
 
-This flag is used by subsequent driver changes to trigger scheduling of
-GPU work that resolves compressed VRAM pages into an uncompressed PAT
-VM mapping.
+For resolve/decompression operations we must ensure the copy code uses
+the compression PAT index when appropriate; this change centralizes that
+behavior and allows callers to schedule a resolve (decompress) operation
+via the migrate API.
 
-Behavior and semantics:
-- Valid only for DRM_XE_VM_BIND_OP_MAP. IOCTLs using this flag on other ops
-  are rejected (-EINVAL).
-- The bind's pat_index must select the device "no-compression" PAT entry;
-  otherwise the ioctl is rejected (-EINVAL).
-- Only meaningful for VRAM-backed BOs on devices that support Flat CCS and
-  the required hardware generation (driver will return -EOPNOTSUPP if not).
-- On success the driver schedules a migrate/resolve and installs the
-  returned dma_fence into the BO's kernel reservation
-  (DMA_RESV_USAGE_KERNEL).
-
-v2: Add kernel doc (Matt)
+v2: (Matt)
+  - Simplify xe_migrate_resolve(), use single BO/resource;
+    remove copy_only_ccs argument as it's always false.
 
 Cc: Matthew Brost <matthew.brost@intel.com>
 Cc: Matthew Auld <matthew.auld@intel.com>
-Cc: Michal Mrozek <michal.mrozek@intel.com>
 Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 Signed-off-by: Nitin Gote <nitin.r.gote@intel.com>
 ---
- include/uapi/drm/xe_drm.h | 8 ++++++++
- 1 file changed, 8 insertions(+)
+ drivers/gpu/drm/xe/xe_migrate.c | 83 ++++++++++++++++++++++-----------
+ drivers/gpu/drm/xe/xe_migrate.h |  4 ++
+ 2 files changed, 60 insertions(+), 27 deletions(-)
 
-diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index 47853659a705..e706f1512fd0 100644
---- a/include/uapi/drm/xe_drm.h
-+++ b/include/uapi/drm/xe_drm.h
-@@ -1031,6 +1031,13 @@ struct drm_xe_vm_destroy {
-  *    not invoke autoreset. Neither will stack variables going out of scope.
-  *    Therefore it's recommended to always explicitly reset the madvises when
-  *    freeing the memory backing a region used in a &DRM_IOCTL_XE_MADVISE call.
-+ *  - DRM_XE_VM_BIND_FLAG_DECOMPRESS - Request on-device decompression for a MAP.
-+ *    When set on a MAP bind operation, request the driver schedule an on-device
-+ *    in-place decompression (via the migrate/resolve path) for the GPU mapping
-+ *    created by this bind. Only valid for DRM_XE_VM_BIND_OP_MAP; usage on
-+ *    other ops is rejected. The bind's pat_index must select the device's
-+ *    "no-compression" PAT. Only meaningful for VRAM-backed BOs on devices that
-+ *    support Flat CCS and the required HW generation XE2+.
-  *
-  * The @prefetch_mem_region_instance for %DRM_XE_VM_BIND_OP_PREFETCH can also be:
-  *  - %DRM_XE_CONSULT_MEM_ADVISE_PREF_LOC, which ensures prefetching occurs in
-@@ -1138,6 +1145,7 @@ struct drm_xe_vm_bind_op {
- #define DRM_XE_VM_BIND_FLAG_CHECK_PXP	(1 << 4)
- #define DRM_XE_VM_BIND_FLAG_CPU_ADDR_MIRROR	(1 << 5)
- #define DRM_XE_VM_BIND_FLAG_MADVISE_AUTORESET	(1 << 6)
-+#define DRM_XE_VM_BIND_FLAG_DECOMPRESS (1 << 7)
- 	/** @flags: Bind flags */
- 	__u32 flags;
+diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+index 5003e3c4dd17..ffc8c10123fa 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.c
++++ b/drivers/gpu/drm/xe/xe_migrate.c
+@@ -832,31 +832,13 @@ static u32 xe_migrate_ccs_copy(struct xe_migrate *m,
+ 	return flush_flags;
+ }
  
+-/**
+- * xe_migrate_copy() - Copy content of TTM resources.
+- * @m: The migration context.
+- * @src_bo: The buffer object @src is currently bound to.
+- * @dst_bo: If copying between resources created for the same bo, set this to
+- * the same value as @src_bo. If copying between buffer objects, set it to
+- * the buffer object @dst is currently bound to.
+- * @src: The source TTM resource.
+- * @dst: The dst TTM resource.
+- * @copy_only_ccs: If true copy only CCS metadata
+- *
+- * Copies the contents of @src to @dst: On flat CCS devices,
+- * the CCS metadata is copied as well if needed, or if not present,
+- * the CCS metadata of @dst is cleared for security reasons.
+- *
+- * Return: Pointer to a dma_fence representing the last copy batch, or
+- * an error pointer on failure. If there is a failure, any copy operation
+- * started by the function call has been synced.
+- */
+-struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
+-				  struct xe_bo *src_bo,
+-				  struct xe_bo *dst_bo,
+-				  struct ttm_resource *src,
+-				  struct ttm_resource *dst,
+-				  bool copy_only_ccs)
++static struct dma_fence *__xe_migrate_copy(struct xe_migrate *m,
++					   struct xe_bo *src_bo,
++					   struct xe_bo *dst_bo,
++					   struct ttm_resource *src,
++					   struct ttm_resource *dst,
++					   bool copy_only_ccs,
++					   bool is_vram_resolve)
+ {
+ 	struct xe_gt *gt = m->tile->primary_gt;
+ 	struct xe_device *xe = gt_to_xe(gt);
+@@ -877,8 +859,15 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
+ 	bool copy_ccs = xe_device_has_flat_ccs(xe) &&
+ 		xe_bo_needs_ccs_pages(src_bo) && xe_bo_needs_ccs_pages(dst_bo);
+ 	bool copy_system_ccs = copy_ccs && (!src_is_vram || !dst_is_vram);
+-	bool use_comp_pat = type_device && xe_device_has_flat_ccs(xe) &&
+-		GRAPHICS_VER(xe) >= 20 && src_is_vram && !dst_is_vram;
++
++	/*
++	 * For decompression operation, always use the compression PAT index.
++	 * Otherwise, only use the compression PAT index for device memory
++	 * when copying from VRAM to system memory.
++	 */
++	bool use_comp_pat = is_vram_resolve || (type_device &&
++			    xe_device_has_flat_ccs(xe) &&
++			    GRAPHICS_VER(xe) >= 20 && src_is_vram && !dst_is_vram);
+ 
+ 	/* Copying CCS between two different BOs is not supported yet. */
+ 	if (XE_WARN_ON(copy_ccs && src_bo != dst_bo))
+@@ -1037,6 +1026,46 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
+ 	return fence;
+ }
+ 
++/**
++ * xe_migrate_copy() - Copy content of TTM resources.
++ * @m: The migration context.
++ * @src_bo: The buffer object @src is currently bound to.
++ * @dst_bo: If copying between resources created for the same bo, set this to
++ * the same value as @src_bo. If copying between buffer objects, set it to
++ * the buffer object @dst is currently bound to.
++ * @src: The source TTM resource.
++ * @dst: The dst TTM resource.
++ * @copy_only_ccs: If true copy only CCS metadata
++ *
++ * Copies the contents of @src to @dst: On flat CCS devices,
++ * the CCS metadata is copied as well if needed, or if not present,
++ * the CCS metadata of @dst is cleared for security reasons.
++ *
++ * Return: Pointer to a dma_fence representing the last copy batch, or
++ * an error pointer on failure. If there is a failure, any copy operation
++ * started by the function call has been synced.
++ */
++struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
++				  struct xe_bo *src_bo,
++				  struct xe_bo *dst_bo,
++				  struct ttm_resource *src,
++				  struct ttm_resource *dst,
++				  bool copy_only_ccs)
++{
++	return __xe_migrate_copy(m, src_bo, dst_bo, src, dst, copy_only_ccs, false);
++}
++
++/**
++ * xe_migrate_resolve() - Resolve and decompress a buffer object if required.
++ * This wrapper forwards to __xe_migrate_copy() with is_vram_resolve=true.
++ */
++struct dma_fence *xe_migrate_resolve(struct xe_migrate *m,
++				     struct xe_bo *bo,
++				     struct ttm_resource *res)
++{
++	return __xe_migrate_copy(m, bo, bo, res, res, false, true);
++}
++
+ /**
+  * xe_migrate_lrc() - Get the LRC from migrate context.
+  * @migrate: Migrate context.
+diff --git a/drivers/gpu/drm/xe/xe_migrate.h b/drivers/gpu/drm/xe/xe_migrate.h
+index 9b5791617f5e..633c89968af6 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.h
++++ b/drivers/gpu/drm/xe/xe_migrate.h
+@@ -125,6 +125,10 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
+ 				  struct ttm_resource *dst,
+ 				  bool copy_only_ccs);
+ 
++struct dma_fence *xe_migrate_resolve(struct xe_migrate *m,
++				     struct xe_bo *bo,
++				     struct ttm_resource *res);
++
+ int xe_migrate_ccs_rw_copy(struct xe_tile *tile, struct xe_exec_queue *q,
+ 			   struct xe_bo *src_bo,
+ 			   enum xe_sriov_vf_ccs_rw_ctxs read_write);
 -- 
 2.50.1
 
