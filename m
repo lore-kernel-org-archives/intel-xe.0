@@ -4,52 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DDA6ACCF9F8
-	for <intel-xe@archiver.kernel.org>; Fri,  7 Nov 2025 11:17:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 457D7CCF9F8
+	for <intel-xe@archiver.kernel.org>; Fri,  7 Nov 2025 11:18:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9B41310EA94;
-	Fri,  7 Nov 2025 11:17:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 080C310EA94;
+	Fri,  7 Nov 2025 11:18:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GSrifeqv";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KDJHVnie";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 45CB210EA94
- for <intel-xe@lists.freedesktop.org>; Fri,  7 Nov 2025 11:17:51 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3C95C10EA94
+ for <intel-xe@lists.freedesktop.org>; Fri,  7 Nov 2025 11:18:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1762514271; x=1794050271;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=3xQ0rgIZMfCRjLZ3a9ss1ezshj+uDZPTnQHXMRS7ue0=;
- b=GSrifeqvpJmFvzSOTSo3J7Ws6pcVWUoZ7TToDiGLtdtYWIKHuP7xIX7G
- g8TxBaGp6EJgvUOImu6beNrKpXDlmXy9poucP8ifNEH2HNL/JYtCQrlcr
- imXb1gmElToxhtLfQIQMFjcrTSZEJqSI4vC90SLbLCSTaPPDlIEloPgpG
- Euf4uAjqkoMc3FL1i9e4AN3Cs2yGzL51tlrx4p4p18N+9d3z00mjUiqz3
- Fei6EEV5ToBVjsUlRy00VzCm6skeffRSJIy9EbCdch6x7BAyD7dL1oi/r
- DRxeyTf2jrQT/MHufdrLRnAIqqZj2mG4Y86HZQ/EerlUKPbo3u679R1vV g==;
-X-CSE-ConnectionGUID: WdBKwOxOTou3AyP3QmgEcA==
-X-CSE-MsgGUID: tff8kB7lQ+yvgQEPY2WkHw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11605"; a="68309999"
-X-IronPort-AV: E=Sophos;i="6.19,286,1754982000"; d="scan'208";a="68309999"
+ t=1762514295; x=1794050295;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=2w0dxgHkJN7l2drjB1UooXhwJNHXvGX+rnTrP/niARE=;
+ b=KDJHVnieSEA9IPFBLuD+khdMHg9EQeAlLzfv561idDQc6ltpv8bu9Lza
+ A6pfG5GQ5uWpinx+eKUaB0RNpcm730Qot3acQdRm4nWspjHWb7w6/m9cF
+ P/JKjsM+V6U53QcP7FMrhVxp4Ln2F5+Xp0pCl7LvkbvT7Cla3S7IPrgc5
+ zwn5VaF0W0qAaDspkfSAp1GfMZv1KkN7T/P9Ja65nzlVr1SwXbwdJVH+Z
+ o4UMWnoWrA9PDTs92MRlwBMHNvyy0axFR4HSFCMtNeKqGB7r0F40Mxrkx
+ zs96jdqJrFGiySYJ10YfaVFVV11bM5GAQFYlBT7C/Q8GCaknO6cLslFt+ g==;
+X-CSE-ConnectionGUID: bb6y/lfrSbGeH8XfuP/i5Q==
+X-CSE-MsgGUID: /bgg3637RkeoDzJiEXYhQA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11605"; a="68523716"
+X-IronPort-AV: E=Sophos;i="6.19,286,1754982000"; d="scan'208";a="68523716"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Nov 2025 03:17:51 -0800
-X-CSE-ConnectionGUID: EoEFUjVYQ5m+pofbpXP0fw==
-X-CSE-MsgGUID: pldp/U+1QaO20G5yHFxl5Q==
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Nov 2025 03:18:15 -0800
+X-CSE-ConnectionGUID: 9uMj21A5TbanWH1KZ6sfUg==
+X-CSE-MsgGUID: IAdXkiOSSTWjsahqdhJvUA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,286,1754982000"; d="scan'208";a="192107811"
+X-IronPort-AV: E=Sophos;i="6.19,286,1754982000"; d="scan'208";a="192107895"
 Received: from nitin-super-server.iind.intel.com ([10.190.238.72])
- by orviesa003.jf.intel.com with ESMTP; 07 Nov 2025 03:17:49 -0800
+ by orviesa003.jf.intel.com with ESMTP; 07 Nov 2025 03:18:13 -0800
 From: Nitin Gote <nitin.r.gote@intel.com>
 To: matthew.brost@intel.com
 Cc: intel-xe@lists.freedesktop.org, matthew.auld@intel.com,
  michal.mrozek@intel.com, Nitin Gote <nitin.r.gote@intel.com>
-Subject: [PATCH v5 0/3] drm/xe: add VM_BIND DECOMPRESS support and on‑demand decompression
-Date: Fri,  7 Nov 2025 17:17:58 +0530
-Message-ID: <20251107114757.561671-5-nitin.r.gote@intel.com>
+Subject: [PATCH v5 1/3] drm/xe: add VM_BIND DECOMPRESS uapi flag
+Date: Fri,  7 Nov 2025 17:17:59 +0530
+Message-ID: <20251107114757.561671-6-nitin.r.gote@intel.com>
 X-Mailer: git-send-email 2.50.1
+In-Reply-To: <20251107114757.561671-5-nitin.r.gote@intel.com>
+References: <20251107114757.561671-5-nitin.r.gote@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -65,55 +66,62 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This series implements VM_BIND decompression support in the XE driver
-for both non-fault mode and fault mode.
+Add a new VM_BIND flag, DRM_XE_VM_BIND_FLAG_DECOMPRESS, that lets userspace
+express intent for the driver to perform on-device in-place decompression
+for the GPU mapping created by a MAP bind operation.
 
-Tested with https://patchwork.freedesktop.org/series/154711/
-which validates basic VM_BIND DECOMPRESS behavior for both
-regular and FAULT_MODE VMs.
+This flag is used by subsequent driver changes to trigger scheduling of
+GPU work that resolves compressed VRAM pages into an uncompressed PAT
+VM mapping.
 
-v5: (Matt)
-   - Correct the condition check of xe_pat_index_get_comp_en
+Behavior and semantics:
+- Valid only for DRM_XE_VM_BIND_OP_MAP. IOCTLs using this flag on other ops
+  are rejected (-EINVAL).
+- The bind's pat_index must select the device "no-compression" PAT entry;
+  otherwise the ioctl is rejected (-EINVAL).
+- Only meaningful for VRAM-backed BOs on devices that support Flat CCS and
+  the required hardware generation (driver will return -EOPNOTSUPP if not).
+- On success the driver schedules a migrate/resolve and installs the
+  returned dma_fence into the BO's kernel reservation
+  (DMA_RESV_USAGE_KERNEL).
 
-v4: (Matt)
-  - Simplify xe_migrate_resolve(), use single BO/resource;
-    remove copy_only_ccs argument as it's always false.
-  - Introduce xe_pat_index_get_comp_en(), which checks
-    XE2_COMP_EN for the pat_index
-  - .interruptible should be true, everything else false
+v2: Add kernel doc (Matt)
 
-v3: (Matt)
-   - s/xe_bo_schedule_decompress/xe_bo_decompress
-   - skip the decrompress step if the BO isn't in VRAM
-   - start/size not required in xe_bo_schedule_decompress
-   - Use xe_bo_move_notify instead of xe_vm_invalidate_vma
-     with respect to invalidation.
-   - Nits
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Matthew Auld <matthew.auld@intel.com>
+Cc: Michal Mrozek <michal.mrozek@intel.com>
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+Signed-off-by: Nitin Gote <nitin.r.gote@intel.com>
+---
+ include/uapi/drm/xe_drm.h | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-v2:
-   - Add kernel doc (Matt)
-   - Move decompression work out of vm_bind ioctl. (Matt)
-   - Put that work in a small helper at the BO/migrate layer invoke it
-     from vma_lock_and_validate which already runs under drm_exec.
-   - Move lightweight checks to vm_bind_ioctl_check_args (Matthew Auld)
-
-
-Nitin Gote (3):
-  drm/xe: add VM_BIND DECOMPRESS uapi flag
-  drm/xe: add xe_migrate_resolve wrapper and is_vram_resolve support
-  drm/xe: implement VM_BIND decompression in vm_bind_ioctl
-
- drivers/gpu/drm/xe/xe_bo.c       | 52 ++++++++++++++++++++
- drivers/gpu/drm/xe/xe_bo.h       |  2 +
- drivers/gpu/drm/xe/xe_migrate.c  | 83 +++++++++++++++++++++-----------
- drivers/gpu/drm/xe/xe_migrate.h  |  4 ++
- drivers/gpu/drm/xe/xe_pat.c      |  6 +++
- drivers/gpu/drm/xe/xe_pat.h      | 10 ++++
- drivers/gpu/drm/xe/xe_vm.c       | 40 ++++++++++-----
- drivers/gpu/drm/xe/xe_vm_types.h |  2 +
- include/uapi/drm/xe_drm.h        |  8 +++
- 9 files changed, 169 insertions(+), 38 deletions(-)
-
+diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+index 47853659a705..e706f1512fd0 100644
+--- a/include/uapi/drm/xe_drm.h
++++ b/include/uapi/drm/xe_drm.h
+@@ -1031,6 +1031,13 @@ struct drm_xe_vm_destroy {
+  *    not invoke autoreset. Neither will stack variables going out of scope.
+  *    Therefore it's recommended to always explicitly reset the madvises when
+  *    freeing the memory backing a region used in a &DRM_IOCTL_XE_MADVISE call.
++ *  - DRM_XE_VM_BIND_FLAG_DECOMPRESS - Request on-device decompression for a MAP.
++ *    When set on a MAP bind operation, request the driver schedule an on-device
++ *    in-place decompression (via the migrate/resolve path) for the GPU mapping
++ *    created by this bind. Only valid for DRM_XE_VM_BIND_OP_MAP; usage on
++ *    other ops is rejected. The bind's pat_index must select the device's
++ *    "no-compression" PAT. Only meaningful for VRAM-backed BOs on devices that
++ *    support Flat CCS and the required HW generation XE2+.
+  *
+  * The @prefetch_mem_region_instance for %DRM_XE_VM_BIND_OP_PREFETCH can also be:
+  *  - %DRM_XE_CONSULT_MEM_ADVISE_PREF_LOC, which ensures prefetching occurs in
+@@ -1138,6 +1145,7 @@ struct drm_xe_vm_bind_op {
+ #define DRM_XE_VM_BIND_FLAG_CHECK_PXP	(1 << 4)
+ #define DRM_XE_VM_BIND_FLAG_CPU_ADDR_MIRROR	(1 << 5)
+ #define DRM_XE_VM_BIND_FLAG_MADVISE_AUTORESET	(1 << 6)
++#define DRM_XE_VM_BIND_FLAG_DECOMPRESS (1 << 7)
+ 	/** @flags: Bind flags */
+ 	__u32 flags;
+ 
 -- 
 2.50.1
 
