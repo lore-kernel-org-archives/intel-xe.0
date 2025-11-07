@@ -4,59 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 36B2ACCF9F8
-	for <intel-xe@archiver.kernel.org>; Fri,  7 Nov 2025 18:11:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DEECBCCF9E3
+	for <intel-xe@archiver.kernel.org>; Fri,  7 Nov 2025 18:11:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BFE0910EB63;
-	Fri,  7 Nov 2025 18:11:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 74BBF10EB68;
+	Fri,  7 Nov 2025 18:11:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PDZGe/U3";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DH5guWTx";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6018810EB63
- for <intel-xe@lists.freedesktop.org>; Fri,  7 Nov 2025 18:11:05 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4E43A10EB68;
+ Fri,  7 Nov 2025 18:11:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1762539066; x=1794075066;
+ t=1762539092; x=1794075092;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=/2AkKj5XAvlcADnVXeu004b1z/wvuWmotyG0fn2u0vs=;
- b=PDZGe/U32cEuz3QiOXPMuS0Ni4JcGq1HsEhZ+sDG/9+Cx8NS6Fsy8AZQ
- QNwGwpY0svrRn7/zZ4vBVuFXfS/o3zzGVTTMaJ5cdiW0P7TpiBPmz/1h4
- w4eTauwDK6pXF//+pp8B/q5Pv8NXwhfxtVQ+cz/4q9JroFpzrCCdzTBK2
- wMm/FWkISLtjawtQ/OqQy0SBKbJ/DqhaK43QsvdV73JxTuq+7N8THzA1R
- vZJHGAu0KDGFi5ymf5Qtptz/qrnUsxxbkgouqB/1t/kPVFK+aseADQjAA
- 5JEkBkyrQcIy4nYeIFQ/iF5EMR3daNNEoUbdWL1AMkgQuMKRfcdTXdSoJ A==;
-X-CSE-ConnectionGUID: yBN9Fn/rRFK5jS+9yGKxBA==
-X-CSE-MsgGUID: CuJDc7PmTBKuHItwPh9bNA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11606"; a="68531488"
-X-IronPort-AV: E=Sophos;i="6.19,287,1754982000"; d="scan'208";a="68531488"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Nov 2025 10:11:05 -0800
-X-CSE-ConnectionGUID: MGslGrFmQC6wJgp8beA/2A==
-X-CSE-MsgGUID: P9QpsGVrTW+ZAWyXb6sIjw==
+ bh=yi8XtzjDiSG8Piu6iwaFno6G3eMf55dn7IApEXFhz2w=;
+ b=DH5guWTxZXEX21cRPLgJrDLtjnlEat7G3goXqvA4Pj9ZhDHD7pldEi0k
+ 0/CV4EzEfUubXYkBGrrjCsiC9tFxgV6sjOUZugNPAlXU+BAI5hL5z8RSw
+ j9S69zQStcktzOwEWc9lPOjmPrH7u5J33juvcCxco31Cf5pXAix1yGcWu
+ P5NbGoVvzSIq2491AqMXJoMx2emrNV67V8OS7pW/PQ4QorxF6wY+O76fI
+ KfXdBGBX13K9Kc3FYkY14dvMrB1g3rvgwBL2AbIdxQnbIxJN8QvBMYUkr
+ w0sis7l+OROY0UDDJiOBzl7kSPa3D9Esg4bhVE4NCHimu3sMW4YtnzvKm g==;
+X-CSE-ConnectionGUID: iT8qHmn+QC+c64r9Evp1zA==
+X-CSE-MsgGUID: X8sENP1SQtWqENSb2a1tdw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11606"; a="64574526"
+X-IronPort-AV: E=Sophos;i="6.19,287,1754982000"; d="scan'208";a="64574526"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Nov 2025 10:11:31 -0800
+X-CSE-ConnectionGUID: xowdHl0ZRmSTFTfE29E9Lg==
+X-CSE-MsgGUID: gOvYHWMYRc6Riq28s+eD3g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,287,1754982000"; d="scan'208";a="187398529"
-Received: from lucas-s2600cw.jf.intel.com ([10.54.55.69])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Nov 2025 10:11:04 -0800
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>,
- Francois Dugast <francois.dugast@intel.com>,
- Priyanka Dandamudi <priyanka.dandamudi@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>
-Subject: [PATCH 0/2] drm/xe/xe3p: Add page fault prefetch bit handling
-Date: Fri,  7 Nov 2025 10:10:23 -0800
-Message-ID: <20251107-pagefault-prefetch-v1-0-93291d619126@intel.com>
-X-Mailer: git-send-email 2.51.2
+X-IronPort-AV: E=Sophos;i="6.19,287,1754982000"; d="scan'208";a="218754598"
+Received: from dalessan-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.106])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Nov 2025 10:11:30 -0800
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
+Subject: [PATCH 0/9] drm/i915: Further drm_get_format_info() stuff
+Date: Fri,  7 Nov 2025 20:11:17 +0200
+Message-ID: <20251107181126.5743-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.49.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-X-Change-ID: 20251107-pagefault-prefetch-6177a6a30c47
-X-Mailer: b4 0.15-dev-50d74
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -72,30 +67,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-First patch is just some prep work. Second patch contains the details
-about the new bit in the page fault descriptor for Xe3p.
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Sharing this for early review and CI - the previous implementation was
-done before the page fault overhaul from commit 816e12793c6d ("drm/xe:
-Remove unused GT page fault code"). I'm still working to get all the
-pieces together to be able to test in the relevant platforms.
+Finish eliminating the expensive extra format info lookups.
 
-Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
----
-Lucas De Marchi (2):
-      drm/xe: Coalesce pagefault logging
-      drm/xe/xe3p: Add support for prefetch page fault
+And since I ended up strafing the cursor code in the end I included
+a few additional claenups there.
 
- drivers/gpu/drm/xe/xe_gt_stats.c        |  1 +
- drivers/gpu/drm/xe/xe_gt_stats_types.h  |  1 +
- drivers/gpu/drm/xe/xe_guc_fwif.h        |  5 +++--
- drivers/gpu/drm/xe/xe_guc_pagefault.c   |  2 ++
- drivers/gpu/drm/xe/xe_pagefault.c       | 22 +++++++++++++++-------
- drivers/gpu/drm/xe/xe_pagefault_types.h |  7 ++++++-
- 6 files changed, 28 insertions(+), 10 deletions(-)
+Ville Syrjälä (9):
+  drm/i915: Introduce intel_dumb_fb_max_stride()
+  drm/i915: Pass drm_format_info into plane->max_stride()
+  drm/i915: Populate fb->format accurately in BIOS FB readout
+  drm/i915: Nuke intel_plane_config.tiling
+  drm/i915/fb: Init 'ret' in each error branch in
+    intel_framebuffer_init()
+  drm/i915/wm: Use drm_get_format_info() in SKL+ cursor DDB allocation
+  drm/i915: Use mode_config->cursor_width for cursor DDB allocation
+  drm/i915/cursor: Extract intel_cursor_mode_config_init()
+  drm/i915/cursor: Initialize 845 vs 865 cursor size separately
 
-base-commit: c52463739ee9b9e6cdc34d31aa705c75c82679ec
-change-id: 20251107-pagefault-prefetch-6177a6a30c47
+ drivers/gpu/drm/i915/display/i9xx_plane.c     | 32 ++++++++-----------
+ drivers/gpu/drm/i915/display/i9xx_plane.h     |  5 +--
+ drivers/gpu/drm/i915/display/intel_cursor.c   | 28 +++++++++++++---
+ drivers/gpu/drm/i915/display/intel_cursor.h   |  2 ++
+ drivers/gpu/drm/i915/display/intel_display.c  | 24 ++++++++++----
+ drivers/gpu/drm/i915/display/intel_display.h  |  8 +++--
+ .../drm/i915/display/intel_display_driver.c   | 13 ++------
+ .../drm/i915/display/intel_display_types.h    |  5 ++-
+ drivers/gpu/drm/i915/display/intel_fb.c       | 23 +++++++------
+ .../drm/i915/display/intel_plane_initial.c    | 11 ++++---
+ drivers/gpu/drm/i915/display/intel_sprite.c   | 10 +++---
+ .../drm/i915/display/skl_universal_plane.c    | 22 ++++++-------
+ drivers/gpu/drm/i915/display/skl_watermark.c  | 15 ++++++---
+ drivers/gpu/drm/i915/gem/i915_gem_create.c    |  4 +--
+ 14 files changed, 118 insertions(+), 84 deletions(-)
 
-Lucas De Marchi
+-- 
+2.49.1
 
