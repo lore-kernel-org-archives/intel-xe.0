@@ -4,56 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E8D59CCFA05
-	for <intel-xe@archiver.kernel.org>; Fri,  7 Nov 2025 10:08:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 64831CCF9F8
+	for <intel-xe@archiver.kernel.org>; Fri,  7 Nov 2025 10:13:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A7EFF10EA63;
-	Fri,  7 Nov 2025 10:08:13 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nTpOspxq";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EA74D10EA62;
- Fri,  7 Nov 2025 10:08:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1762510093; x=1794046093;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=jGuSemxFTfWjNxAO5eZ2SiiEOBQbqenoxroufj1pUxI=;
- b=nTpOspxqKk6H4bF9vQquqXLwJ7JNMRhRlcLV17PBO4oCvRFS3GQlMG7v
- lCjCG5hZKd+xVmOXxeWFKhqn104F5prjBy7XYn5UaAE1sd85UOkWyK1vr
- YPrVDr3jbKE/yrTdsvKOtZoGqnPMGK5FXQYkYG1D+HKh9v3FliM+UpE1a
- GwUpiAdbjzU8Sbqwdbk/acAV1ljY22tSAwwl3OaAdfkueQxEiYTtREVmS
- zIgy0yxG4NmF3vLhCMj/a4SB3FqUEZTTo7/pg/epXS9SmIzJ4hfDYowat
- gxuakQvAL5NGd9aHFiRYbVaoNcqqOBmia5jwGhpkj7HR1YsfwgiLTH8uc Q==;
-X-CSE-ConnectionGUID: k6fATGWYS1WLD7PbpguuPA==
-X-CSE-MsgGUID: Pi7cN1WuRgWSCXVwupH5Bg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11605"; a="75268600"
-X-IronPort-AV: E=Sophos;i="6.19,286,1754982000"; d="scan'208";a="75268600"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Nov 2025 02:08:13 -0800
-X-CSE-ConnectionGUID: OzuyaZZGQ5y0vr1t+KF0Pg==
-X-CSE-MsgGUID: fMPeJJmxRVugqciwK034kA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,286,1754982000"; d="scan'208";a="225262945"
-Received: from aotchere-mobl1.ger.corp.intel.com (HELO
- vgovind2-mobl4.intel.com) ([10.245.246.114])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Nov 2025 02:08:10 -0800
-From: Vinod Govindapillai <vinod.govindapillai@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Cc: vinod.govindapillai@intel.com, uma.shankar@intel.com,
- kunal1.joshi@intel.com
-Subject: [PATCH] drm/i915/fbc: Apply wa_15018326506
-Date: Fri,  7 Nov 2025 12:07:34 +0200
-Message-ID: <20251107100734.67236-1-vinod.govindapillai@intel.com>
-X-Mailer: git-send-email 2.43.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0CFAE10EA56;
+	Fri,  7 Nov 2025 10:13:11 +0000 (UTC)
+Received: from 10055242dc62 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2FE4A10EA56;
+ Fri,  7 Nov 2025 10:13:09 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_series_starting_with_=5Bv?=
+ =?utf-8?q?2=2C1/2=5D_drm/i915/ltphy=3A_Implement_HDMI_Algo_for_Pll_state?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Suraj Kandpal" <suraj.kandpal@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 07 Nov 2025 10:13:09 -0000
+Message-ID: <176251038919.28862.1272234928442227336@10055242dc62>
+X-Patchwork-Hint: ignore
+References: <20251107093512.533577-1-suraj.kandpal@intel.com>
+In-Reply-To: <20251107093512.533577-1-suraj.kandpal@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,74 +36,80 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Disable FBC as part for the wa for the bmg variant
+== Series Details ==
 
-Bspec: 74212
-Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display_wa.c |  4 ++++
- drivers/gpu/drm/i915/display/intel_display_wa.h |  1 +
- drivers/gpu/drm/i915/display/intel_fbc.c        | 10 ++++++++++
- 3 files changed, 15 insertions(+)
+Series: series starting with [v2,1/2] drm/i915/ltphy: Implement HDMI Algo for Pll state
+URL   : https://patchwork.freedesktop.org/series/157210/
+State : warning
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.c b/drivers/gpu/drm/i915/display/intel_display_wa.c
-index c528aaa679ca..ba2272d85a04 100644
---- a/drivers/gpu/drm/i915/display/intel_display_wa.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_wa.c
-@@ -10,6 +10,7 @@
- #include "intel_display_core.h"
- #include "intel_display_regs.h"
- #include "intel_display_wa.h"
-+#include "intel_step.h"
- 
- static void gen11_display_wa_apply(struct intel_display *display)
- {
-@@ -69,6 +70,9 @@ bool __intel_display_wa(struct intel_display *display, enum intel_display_wa wa,
- 		return DISPLAY_VER(display) == 13;
- 	case INTEL_DISPLAY_WA_22014263786:
- 		return IS_DISPLAY_VERx100(display, 1100, 1400);
-+	case INTEL_DISPLAY_WA_15018326506:
-+		return DISPLAY_VERx100(display) == 1401 &&
-+		       INTEL_DISPLAY_STEP(display) == STEP_C0;
- 	default:
- 		drm_WARN(display->drm, 1, "Missing Wa number: %s\n", name);
- 		break;
-diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.h b/drivers/gpu/drm/i915/display/intel_display_wa.h
-index 3644e8e2b724..f648b00cb97d 100644
---- a/drivers/gpu/drm/i915/display/intel_display_wa.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_wa.h
-@@ -26,6 +26,7 @@ enum intel_display_wa {
- 	INTEL_DISPLAY_WA_16025573575,
- 	INTEL_DISPLAY_WA_14011503117,
- 	INTEL_DISPLAY_WA_22014263786,
-+	INTEL_DISPLAY_WA_15018326506,
- };
- 
- bool __intel_display_wa(struct intel_display *display, enum intel_display_wa wa, const char *name);
-diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
-index a1e3083022ee..16cd99db2978 100644
---- a/drivers/gpu/drm/i915/display/intel_fbc.c
-+++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-@@ -1521,6 +1521,16 @@ static int intel_fbc_check_plane(struct intel_atomic_state *state,
- 		return 0;
- 	}
- 
-+	/*
-+	 * wa_15018326506:
-+	 * Fixes: Underrun during media decode
-+	 * Workaround: Do not enable FBC
-+	 */
-+	if (intel_display_wa(display, 15018326506)) {
-+		plane_state->no_fbc_reason = "Wa_15018326506";
-+		return 0;
-+	}
-+
- 	/* WaFbcTurnOffFbcWhenHyperVisorIsUsed:skl,bxt */
- 	if (intel_display_vtd_active(display) &&
- 	    (display->platform.skylake || display->platform.broxton)) {
--- 
-2.43.0
+== Summary ==
+
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+d9120d4d84745cf011b4b3efb338747e69179dfb
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 6e5bd5d5636f5d3c2a342a0488ca2a33ee7eec96
+Author: Suraj Kandpal <suraj.kandpal@intel.com>
+Date:   Fri Nov 7 15:05:12 2025 +0530
+
+    drm/i915/ltphy: Return lowest portclock for HDMI from reverse algorithm
+    
+    Return the lowest port clock for HDMI when the reverse algorithm
+    calculates it to be 0 to avoid errors later but throw a warn.
+    
+    Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
++ /mt/dim checkpatch 1f25afd37c14352cd24ada205fe16ff022784bd4 drm-intel
+ce31ed6ee7e6 drm/i915/ltphy: Implement HDMI Algo for Pll state
+-:138: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i' - possible side-effects?
+#138: FILE: drivers/gpu/drm/i915/display/intel_lt_phy.c:1471:
++#define DATA_ASSIGN(i, val)	\
++	do {			\
++		lt_state->data[i][0] = (u8)(((val) & 0xFF000000) >> 24); \
++		lt_state->data[i][1] = (u8)(((val) & 0x00FF0000) >> 16); \
++		lt_state->data[i][2] = (u8)(((val) & 0x0000FF00) >> 8); \
++		lt_state->data[i][3] = (u8)(((val) & 0x000000FF));	\
++	} while (0)
+
+-:138: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'val' - possible side-effects?
+#138: FILE: drivers/gpu/drm/i915/display/intel_lt_phy.c:1471:
++#define DATA_ASSIGN(i, val)	\
++	do {			\
++		lt_state->data[i][0] = (u8)(((val) & 0xFF000000) >> 24); \
++		lt_state->data[i][1] = (u8)(((val) & 0x00FF0000) >> 16); \
++		lt_state->data[i][2] = (u8)(((val) & 0x0000FF00) >> 8); \
++		lt_state->data[i][3] = (u8)(((val) & 0x000000FF));	\
++	} while (0)
+
+-:145: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i' - possible side-effects?
+#145: FILE: drivers/gpu/drm/i915/display/intel_lt_phy.c:1478:
++#define ADDR_ASSIGN(i, pll_reg)	\
++	do {			\
++		lt_state->addr_msb[i] = ((pll_reg).addr >> 8) & 0xFF;	\
++		lt_state->addr_lsb[i] = (pll_reg).addr & 0xFF;		\
++	} while (0)
+
+-:145: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pll_reg' - possible side-effects?
+#145: FILE: drivers/gpu/drm/i915/display/intel_lt_phy.c:1478:
++#define ADDR_ASSIGN(i, pll_reg)	\
++	do {			\
++		lt_state->addr_msb[i] = ((pll_reg).addr >> 8) & 0xFF;	\
++		lt_state->addr_lsb[i] = (pll_reg).addr & 0xFF;		\
++	} while (0)
+
+-:396: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'base' - possible side-effects?
+#396: FILE: drivers/gpu/drm/i915/display/intel_lt_phy_regs.h:90:
++#define PLL_REG_ADDR(base, pll_type)		((pll_type) ? (base) + PLL_TYPE_OFFSET : (base))
+
+total: 0 errors, 0 warnings, 5 checks, 370 lines checked
+6e5bd5d5636f drm/i915/ltphy: Return lowest portclock for HDMI from reverse algorithm
+
 
