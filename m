@@ -4,27 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3AC95CCF9F8
-	for <intel-xe@archiver.kernel.org>; Fri,  7 Nov 2025 23:44:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B23D0CCF9E3
+	for <intel-xe@archiver.kernel.org>; Fri,  7 Nov 2025 23:51:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DBBB810EB9E;
-	Fri,  7 Nov 2025 23:44:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 75D3410EB9E;
+	Fri,  7 Nov 2025 23:51:22 +0000 (UTC)
 Received: from 10055242dc62 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0CAE710EB9E;
- Fri,  7 Nov 2025 23:44:34 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0851844602550115614=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EA78010EB9E;
+ Fri,  7 Nov 2025 23:51:20 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/pcode=3A_Rework_erro?=
- =?utf-8?q?r_mapping?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Fixed_PREEMPT=5FRT_CI_run?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lucas De Marchi" <lucas.demarchi@intel.com>
+To: "Maarten Lankhorst" <dev@lankhorst.se>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 07 Nov 2025 23:44:34 -0000
-Message-ID: <176255907404.31057.13196073687084306543@10055242dc62>
+Date: Fri, 07 Nov 2025 23:51:20 -0000
+Message-ID: <176255948095.31057.14236079893730721286@10055242dc62>
 X-Patchwork-Hint: ignore
-References: <20251107-pcode-errmap-v1-1-8e564673bf00@intel.com>
-In-Reply-To: <20251107-pcode-errmap-v1-1-8e564673bf00@intel.com>
+References: <20251107193946.1075137-1-dev@lankhorst.se>
+In-Reply-To: <20251107193946.1075137-1-dev@lankhorst.se>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,106 +39,94 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0851844602550115614==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe/pcode: Rework error mapping
-URL   : https://patchwork.freedesktop.org/series/157255/
-State : success
+Series: Fixed PREEMPT_RT CI run
+URL   : https://patchwork.freedesktop.org/series/157258/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-4073-4dff427fe8bbfd0bdbf7935d23a2aba0c350ab2d_BAT -> xe-pw-157255v1_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+d9120d4d84745cf011b4b3efb338747e69179dfb
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 30cafd6d26ac641ff42a4994fe48031aabc766de
+Author: Maarten Lankhorst <dev@lankhorst.se>
+Date:   Fri Nov 7 20:39:45 2025 +0100
 
-Summary
--------
+    PREEMPT_RT injection
+    
+    Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
++ /mt/dim checkpatch 2bc418aa7efaae562e49d84e8b28f799cf624745 drm-intel
+4324864efa69 drm/i915/display: Make get_vblank_counter use intel_de_read_fw()
+-:8: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#8: 
+<3> BUG: sleeping function called from invalid context at kernel/locking/spinlock_rt.c:48
 
-  **SUCCESS**
+total: 0 errors, 1 warnings, 0 checks, 8 lines checked
+a6edc5130e3c drm/i915/display: Use intel_de_write_fw in intel_pipe_fastset
+-:14: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#14: 
+<3> BUG: sleeping function called from invalid context at kernel/locking/spinlock_rt.c:48
 
-  No regressions found.
+-:201: WARNING:MISSING_FIXES_TAG: The commit message has 'Call Trace:', perhaps it also needs a 'Fixes:' tag?
 
-  
+total: 0 errors, 2 warnings, 0 checks, 110 lines checked
+8bd53dcdacb4 drm/i915/display: Move vblank put until after critical section
+6a3a2dd7d366 drm/i915/display: Remove locking from intel_vblank_evade critical section
+-:59: WARNING:LINE_SPACING: Missing a blank line after declarations
+#59: FILE: drivers/gpu/drm/i915/display/intel_vblank.c:734:
++		DEFINE_WAIT(wait);
++		while (!vblank_evadable(evade, &scanline) && timeout > 0) {
 
-Participating hosts (13 -> 12)
-------------------------------
+total: 0 errors, 1 warnings, 0 checks, 61 lines checked
+8d20dbc82b5d drm/i915/display: Make icl_dsi_frame_update use _fw too
+a072f375917b drm/i915/display: Enable interrupts earlier on PREEMPT_RT
+b6d79d5912c2 drm/i915: Use preempt_disable/enable_rt() where recommended
+-:7: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#7: 
+  ad3543ede630f ("drm/intel: Push get_scanout_position() timestamping into kms driver.")
 
-  Missing    (1): bat-bmg-3 
+-:45: WARNING:LINE_SPACING: Missing a blank line after declarations
+#45: FILE: drivers/gpu/drm/i915/display/intel_vblank.c:325:
++	struct drm_i915_private *i915 = to_i915(display->drm);
++	spin_lock_irqsave(&i915->uncore.lock, *flags);
 
+-:52: WARNING:LINE_SPACING: Missing a blank line after declarations
+#52: FILE: drivers/gpu/drm/i915/display/intel_vblank.c:332:
++	struct drm_i915_private *i915 = to_i915(display->drm);
++	spin_unlock_irqrestore(&i915->uncore.lock, flags);
 
-Changes
--------
+total: 0 errors, 3 warnings, 0 checks, 78 lines checked
+500c8f8c2e40 drm/i915/display: Make set_pipeconf use the fw variants
+-:11: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#11: 
+| BUG: sleeping function called from invalid context at kernel/locking/spinlock_rt.c:48
 
-  No changes found
+-:46: WARNING:BAD_REPORTED_BY_LINK: Reported-by: should be immediately followed by Closes: with a URL to the report
+#46: 
+Reported-by: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 
+-:76: WARNING:MISSING_FIXES_TAG: The commit message has 'Call Trace:', perhaps it also needs a 'Fixes:' tag?
 
-Build changes
--------------
+total: 0 errors, 3 warnings, 0 checks, 22 lines checked
+0a0931bf2c62 drm/i915/display: Remove dirty_rect from fbc state
+-:13: WARNING:BAD_REPORTED_BY_LINK: Reported-by: should be immediately followed by Closes: with a URL to the report
+#13: 
+Reported-by: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+Fixes: af23476af8a9 ("drm/i915/fbc: handle dirty rect coords for the first frame")
 
-  * IGT: IGT_8613 -> IGT_8614
-  * Linux: xe-4073-4dff427fe8bbfd0bdbf7935d23a2aba0c350ab2d -> xe-pw-157255v1
+total: 0 errors, 1 warnings, 0 checks, 217 lines checked
+30cafd6d26ac PREEMPT_RT injection
+-:7: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
 
-  IGT_8613: b542242f5b116e3b554b4068ef5dfa4451075b2b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_8614: 8614
-  xe-4073-4dff427fe8bbfd0bdbf7935d23a2aba0c350ab2d: 4dff427fe8bbfd0bdbf7935d23a2aba0c350ab2d
-  xe-pw-157255v1: 157255v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157255v1/index.html
-
---===============0851844602550115614==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/pcode: Rework error mapping</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/157255/">https://patchwork.freedesktop.org/series/157255/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157255v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157255v1/index.html</a></td></tr>
-
-</table>
+total: 0 errors, 1 warnings, 0 checks, 43 lines checked
 
 
-    <h1>CI Bug Log - changes from xe-4073-4dff427fe8bbfd0bdbf7935d23a2aba0c350ab2d_BAT -&gt; xe-pw-157255v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 12)</h2>
-<p>Missing    (1): bat-bmg-3 </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8613 -&gt; IGT_8614</li>
-<li>Linux: xe-4073-4dff427fe8bbfd0bdbf7935d23a2aba0c350ab2d -&gt; xe-pw-157255v1</li>
-</ul>
-<p>IGT_8613: b542242f5b116e3b554b4068ef5dfa4451075b2b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_8614: 8614<br />
-  xe-4073-4dff427fe8bbfd0bdbf7935d23a2aba0c350ab2d: 4dff427fe8bbfd0bdbf7935d23a2aba0c350ab2d<br />
-  xe-pw-157255v1: 157255v1</p>
-
-</body>
-</html>
-
---===============0851844602550115614==--
