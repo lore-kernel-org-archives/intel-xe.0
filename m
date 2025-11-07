@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 322B5CCFA1A
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0FF56CCFA19
 	for <intel-xe@archiver.kernel.org>; Fri,  7 Nov 2025 18:13:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AC48A10EB95;
+	by gabe.freedesktop.org (Postfix) with ESMTP id A3EED10EB93;
 	Fri,  7 Nov 2025 18:13:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AbwwcKDj";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PvladeGu";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2A0CA10EB83
- for <intel-xe@lists.freedesktop.org>; Fri,  7 Nov 2025 18:13:31 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B86E310EB7F
+ for <intel-xe@lists.freedesktop.org>; Fri,  7 Nov 2025 18:13:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1762539211; x=1794075211;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=hYErGLmJMZBLmsY2d9aNfST312K33Rgmgb7ZOZOH3Ck=;
- b=AbwwcKDjJvqpt1lGUdLpUPtRM3WGiYJyWtBrf4GEt+QAnOZy7nM/07qD
- yJFF6K1pO1HhoeEalw2MNxepPXTUJ5edLqYWF3E4x5zNCh6aqRTXc0T1B
- pELl0rvIHgg3o048Ej4NIhxedbRQFIprQ4+oDsAbvCXnBYYfuqEn+jhsE
- SzJ8ScAZo0n85OXrOyfsQBodh69tx6fBSUqYO4VMeWDFeVMLSjeCtZAjH
- 4le0SigFOd8s4KSOvDmNHM2Fr+ScQHCyC+mECjvULBNQiSHG1uQ+f6LRT
- WJS+Uj4UQggTSR/UuB9luL3DqV/Iva4rPOxBjwgzuSxNkz1mjJzdHUhrE Q==;
-X-CSE-ConnectionGUID: BV355MWNSjWSoSMKoUOosQ==
-X-CSE-MsgGUID: y51As/UAQjmg9DQDpgAXsg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11606"; a="64733154"
-X-IronPort-AV: E=Sophos;i="6.19,287,1754982000"; d="scan'208";a="64733154"
+ bh=9pXPc289IVsniua1XBHIA9prMgrRfuPDtXmi7pgQhxc=;
+ b=PvladeGu+mowZQT5rWlBRusTgHLeX9+r13cM4YDSY2L9URyGus9bzAUF
+ gNs4fCF6r6YjMknw7LhdS5Fzk3S1Nag0w8/m5xRXROD/XSdmXBhwbrPno
+ SOKu77epxbKYselVLhuA9NXu5bmgoeoCGKT10iA7MTH6w6hBYeYJI6+P6
+ lxR9vlr720QzCsOqfqATWGZ/LYRRKU0YUX/FfCjh+srFTVmCnbtZy3IJE
+ Eswrn1U63tt8aqWRvgbuPdgOo4aVwBHWd+sbFa7LfsSQ6aLKlQO75TL9U
+ 5IvDVkuEiy9O0dkXyRJbzyi2w/U+0E8ZhrvglmO4EZIxWLYuuqqtlCEkR Q==;
+X-CSE-ConnectionGUID: QONz6aTFRROQ6EpV6zcfNQ==
+X-CSE-MsgGUID: iwQACsY5SrecJV6uo1Li6A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11606"; a="64733149"
+X-IronPort-AV: E=Sophos;i="6.19,287,1754982000"; d="scan'208";a="64733149"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Nov 2025 10:13:31 -0800
-X-CSE-ConnectionGUID: wbMgDAv9Q9+t8PZCqgf15A==
-X-CSE-MsgGUID: /aZaEg7qSN6kfL3F2c53ag==
+ 07 Nov 2025 10:13:30 -0800
+X-CSE-ConnectionGUID: A9ix05arSx2Y+NOuAeSmrA==
+X-CSE-MsgGUID: a14T9TNCQC+D2UcdL+ktFA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,287,1754982000"; d="scan'208";a="193271214"
+X-IronPort-AV: E=Sophos;i="6.19,287,1754982000"; d="scan'208";a="193271195"
 Received: from mdroper-desk1.fm.intel.com ([10.1.39.133])
  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  07 Nov 2025 10:13:30 -0800
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.d.roper@intel.com
-Subject: [PATCH 21/33] drm/xe/drm_client: Use scope-based cleanup
-Date: Fri,  7 Nov 2025 10:13:37 -0800
-Message-ID: <20251107181315.631642-56-matthew.d.roper@intel.com>
+Subject: [PATCH 16/33] drm/xe/gsc: Use scope-based cleanup
+Date: Fri,  7 Nov 2025 10:13:32 -0800
+Message-ID: <20251107181315.631642-51-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.51.1
 In-Reply-To: <20251107181315.631642-35-matthew.d.roper@intel.com>
 References: <20251107181315.631642-35-matthew.d.roper@intel.com>
@@ -66,73 +66,114 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Use scope-based cleanup for forcewake and runtime PM.
+Use scope-based cleanup for forcewake and runtime PM to eliminate some
+goto-based error handling and simplify other functions.
 
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/xe_drm_client.c | 39 +++++++++++++-----------------
- 1 file changed, 17 insertions(+), 22 deletions(-)
+ drivers/gpu/drm/xe/xe_gsc.c       | 19 +++++--------------
+ drivers/gpu/drm/xe/xe_gsc_proxy.c | 17 +++++++----------
+ 2 files changed, 12 insertions(+), 24 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_drm_client.c b/drivers/gpu/drm/xe/xe_drm_client.c
-index 6e0a05eeb587..b3486d748951 100644
---- a/drivers/gpu/drm/xe/xe_drm_client.c
-+++ b/drivers/gpu/drm/xe/xe_drm_client.c
-@@ -338,7 +338,6 @@ static void show_run_ticks(struct drm_printer *p, struct drm_file *file)
- 	struct xe_hw_engine *hwe;
- 	struct xe_exec_queue *q;
- 	u64 gpu_timestamp;
+diff --git a/drivers/gpu/drm/xe/xe_gsc.c b/drivers/gpu/drm/xe/xe_gsc.c
+index 59519c9023bd..aa1cec8f57bc 100644
+--- a/drivers/gpu/drm/xe/xe_gsc.c
++++ b/drivers/gpu/drm/xe/xe_gsc.c
+@@ -353,7 +353,6 @@ static void gsc_work(struct work_struct *work)
+ 	struct xe_gsc *gsc = container_of(work, typeof(*gsc), work);
+ 	struct xe_gt *gt = gsc_to_gt(gsc);
+ 	struct xe_device *xe = gt_to_xe(gt);
 -	struct xe_force_wake_ref fw_ref;
+ 	u32 actions;
+ 	int ret;
  
- 	/*
- 	 * RING_TIMESTAMP registers are inaccessible in VF mode.
-@@ -355,30 +354,26 @@ static void show_run_ticks(struct drm_printer *p, struct drm_file *file)
- 	wait_var_event(&xef->exec_queue.pending_removal,
- 		       !atomic_read(&xef->exec_queue.pending_removal));
+@@ -362,13 +361,12 @@ static void gsc_work(struct work_struct *work)
+ 	gsc->work_actions = 0;
+ 	spin_unlock_irq(&gsc->lock);
  
 -	xe_pm_runtime_get(xe);
--	fw_ref = force_wake_get_any_engine(xe, &hwe);
--	if (!hwe) {
--		xe_pm_runtime_put(xe);
--		return;
--	}
--
--	/* Accumulate all the exec queues from this client */
--	mutex_lock(&xef->exec_queue.lock);
--	xa_for_each(&xef->exec_queue.xa, i, q) {
--		xe_exec_queue_get(q);
--		mutex_unlock(&xef->exec_queue.lock);
--
--		xe_exec_queue_update_run_ticks(q);
-+	scoped_guard(xe_pm_runtime, xe) {
-+		CLASS(xe_force_wake_any_engine, fw_ref)(xe, &hwe);
-+		if (!hwe)
-+			return;
+-	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FW_GSC);
++	guard(xe_pm_runtime)(xe);
++	CLASS(xe_force_wake, fw_ref)(gt_to_fw(gt), XE_FW_GSC);
  
-+		/* Accumulate all the exec queues from this client */
- 		mutex_lock(&xef->exec_queue.lock);
--		xe_exec_queue_put(q);
-+		xa_for_each(&xef->exec_queue.xa, i, q) {
-+			xe_exec_queue_get(q);
-+			mutex_unlock(&xef->exec_queue.lock);
-+
-+			xe_exec_queue_update_run_ticks(q);
-+
-+			mutex_lock(&xef->exec_queue.lock);
-+			xe_exec_queue_put(q);
-+		}
-+		mutex_unlock(&xef->exec_queue.lock);
-+
-+		gpu_timestamp = xe_hw_engine_read_timestamp(hwe);
+ 	if (actions & GSC_ACTION_ER_COMPLETE) {
+-		ret = gsc_er_complete(gt);
+-		if (ret)
+-			goto out;
++		if (gsc_er_complete(gt))
++			return;
  	}
--	mutex_unlock(&xef->exec_queue.lock);
+ 
+ 	if (actions & GSC_ACTION_FW_LOAD) {
+@@ -381,10 +379,6 @@ static void gsc_work(struct work_struct *work)
+ 
+ 	if (actions & GSC_ACTION_SW_PROXY)
+ 		xe_gsc_proxy_request_handler(gsc);
 -
--	gpu_timestamp = xe_hw_engine_read_timestamp(hwe);
+-out:
+-	xe_force_wake_put(fw_ref);
+-	xe_pm_runtime_put(xe);
+ }
+ 
+ void xe_gsc_hwe_irq_handler(struct xe_hw_engine *hwe, u16 intr_vec)
+@@ -616,7 +610,6 @@ void xe_gsc_print_info(struct xe_gsc *gsc, struct drm_printer *p)
+ {
+ 	struct xe_gt *gt = gsc_to_gt(gsc);
+ 	struct xe_mmio *mmio = &gt->mmio;
+-	struct xe_force_wake_ref fw_ref;
+ 
+ 	xe_uc_fw_print(&gsc->fw, p);
+ 
+@@ -625,7 +618,7 @@ void xe_gsc_print_info(struct xe_gsc *gsc, struct drm_printer *p)
+ 	if (!xe_uc_fw_is_enabled(&gsc->fw))
+ 		return;
+ 
+-	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FW_GSC);
++	CLASS(xe_force_wake, fw_ref)(gt_to_fw(gt), XE_FW_GSC);
+ 	if (!fw_ref.domains)
+ 		return;
+ 
+@@ -636,6 +629,4 @@ void xe_gsc_print_info(struct xe_gsc *gsc, struct drm_printer *p)
+ 			xe_mmio_read32(mmio, HECI_FWSTS4(MTL_GSC_HECI1_BASE)),
+ 			xe_mmio_read32(mmio, HECI_FWSTS5(MTL_GSC_HECI1_BASE)),
+ 			xe_mmio_read32(mmio, HECI_FWSTS6(MTL_GSC_HECI1_BASE)));
+-
+-	xe_force_wake_put(fw_ref);
+ }
+diff --git a/drivers/gpu/drm/xe/xe_gsc_proxy.c b/drivers/gpu/drm/xe/xe_gsc_proxy.c
+index ba1211fe5a60..e7573a0c5e5d 100644
+--- a/drivers/gpu/drm/xe/xe_gsc_proxy.c
++++ b/drivers/gpu/drm/xe/xe_gsc_proxy.c
+@@ -440,22 +440,19 @@ static void xe_gsc_proxy_remove(void *arg)
+ 	struct xe_gsc *gsc = arg;
+ 	struct xe_gt *gt = gsc_to_gt(gsc);
+ 	struct xe_device *xe = gt_to_xe(gt);
+-	struct xe_force_wake_ref fw_ref;
+ 
+ 	if (!gsc->proxy.component_added)
+ 		return;
+ 
+ 	/* disable HECI2 IRQs */
+-	xe_pm_runtime_get(xe);
+-	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FW_GSC);
+-	if (!fw_ref.domains)
+-		xe_gt_err(gt, "failed to get forcewake to disable GSC interrupts\n");
++	scoped_guard(xe_pm_runtime, xe) {
++		CLASS(xe_force_wake, fw_ref)(gt_to_fw(gt), XE_FW_GSC);
++		if (!fw_ref.domains)
++			xe_gt_err(gt, "failed to get forcewake to disable GSC interrupts\n");
+ 
+-	/* try do disable irq even if forcewake failed */
+-	gsc_proxy_irq_toggle(gsc, false);
 -
 -	xe_force_wake_put(fw_ref);
 -	xe_pm_runtime_put(xe);
++		/* try do disable irq even if forcewake failed */
++		gsc_proxy_irq_toggle(gsc, false);
++	}
  
- 	for (class = 0; class < XE_ENGINE_CLASS_MAX; class++) {
- 		const char *class_name;
+ 	xe_gsc_wait_for_worker_completion(gsc);
+ 
 -- 
 2.51.1
 
