@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 492F8CCF9F8
-	for <intel-xe@archiver.kernel.org>; Sat,  8 Nov 2025 01:47:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A988CCCF9E3
+	for <intel-xe@archiver.kernel.org>; Sat,  8 Nov 2025 01:52:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0CE6B10E1E6;
-	Sat,  8 Nov 2025 01:47:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 589DA10E1E6;
+	Sat,  8 Nov 2025 01:52:58 +0000 (UTC)
 Received: from 10055242dc62 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C0E1810E1E6;
- Sat,  8 Nov 2025 01:47:32 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============9114454933290655121=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AB92E10E1E6;
+ Sat,  8 Nov 2025 01:52:57 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/pf=3A_Add_runtime_re?=
- =?utf-8?q?gisters_for_GFX_ver_=3E=3D_35_=28rev2=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/i915/display=3A_Add_i?=
+ =?utf-8?q?nitial_support_for_Xe3p=5FLPD_=28rev4=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Piotr_Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>
+To: "Gustavo Sousa" <gustavo.sousa@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Sat, 08 Nov 2025 01:47:32 -0000
-Message-ID: <176256645278.29335.4663349311921191882@10055242dc62>
+Date: Sat, 08 Nov 2025 01:52:57 -0000
+Message-ID: <176256677769.31057.6191780670652449184@10055242dc62>
 X-Patchwork-Hint: ignore
-References: <20251107211845.3633633-1-piotr.piorkowski@intel.com>
-In-Reply-To: <20251107211845.3633633-1-piotr.piorkowski@intel.com>
+References: <20251107-xe3p_lpd-basic-enabling-v4-0-ab3367f65f15@intel.com>
+In-Reply-To: <20251107-xe3p_lpd-basic-enabling-v4-0-ab3367f65f15@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,136 +40,64 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============9114454933290655121==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe/pf: Add runtime registers for GFX ver >= 35 (rev2)
-URL   : https://patchwork.freedesktop.org/series/157181/
-State : success
+Series: drm/i915/display: Add initial support for Xe3p_LPD (rev4)
+URL   : https://patchwork.freedesktop.org/series/155951/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-4074-2bc418aa7efaae562e49d84e8b28f799cf624745_BAT -> xe-pw-157181v2_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+d9120d4d84745cf011b4b3efb338747e69179dfb
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 8975da4a18ed8f2b3185357ac5b8c6a4ea4c94b5
+Author: Gustavo Sousa <gustavo.sousa@intel.com>
+Date:   Fri Nov 7 21:05:44 2025 -0300
 
-Summary
--------
+    drm/i915/display: Use HAS_LT_PHY() for LT PHY AUX power
+    
+    Bspec states that the new AUX power enable/disable sequences are
+    associated with the LT PHY.  As such, use HAS_LT_PHY() instead of IP
+    checks in those paths in the driver code.
+    
+    While at it, also move the comment that we can't use the power status
+    flag to the "else" branch, since that comment is not applicable for the
+    LT PHY.
+    
+    Bspec: 68967
+    Cc: Matt Roper <matthew.d.roper@intel.com>
+    Cc: Suraj Kandpal <suraj.kandpal@intel.com>
+    Suggested-by: Matt Roper <matthew.d.roper@intel.com>
+    Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+    Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
++ /mt/dim checkpatch 2bc418aa7efaae562e49d84e8b28f799cf624745 drm-intel
+838858cf34e0 drm/i915/wm: Do not make latency values monotonic on Xe3 onward
+fcd9b615992e drm/i915/vbt: Add fields dedicated_external and dyn_port_over_tc
+ec551d2110d1 drm/i915/power: Use intel_encoder_is_tc()
+abb83f6d3cb3 drm/i915/display: Handle dedicated external ports in intel_encoder_is_tc()
+aa19ee63ea65 drm/i915/fbc: Add intel_fbc_id_for_pipe()
+9d40f63f7004 drm/i915/xe3p_lpd: Handle underrun debug bits
+-:15: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#15: 
+[1] https://lore.kernel.org/all/20251015-xe3p_lpd-basic-enabling-v1-12-d2d1e26520aa@intel.com/
 
-  **SUCCESS**
+total: 0 errors, 1 warnings, 0 checks, 201 lines checked
+2057c8655f70 drm/i915/xe3p_lpd: Extend Type-C flow for static DDI allocation
+-:49: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'tc_port' - possible side-effects?
+#49: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:2928:
++#define   IOM_DDI_CONSUMER_STATIC_TC(tc_port)	IOM_DDI_CONSUMER(tc_port, 0x8 + (tc_port))
 
-  No regressions found.
-
-  
-
-Participating hosts (13 -> 13)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-157181v2_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_flip@basic-plain-flip@c-edp1:
-    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#4543]) +1 other test dmesg-warn
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4074-2bc418aa7efaae562e49d84e8b28f799cf624745/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157181v2/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_flip@basic-flip-vs-modeset@d-edp1:
-    - bat-adlp-7:         [DMESG-WARN][3] ([Intel XE#4543]) -> [PASS][4] +1 other test pass
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4074-2bc418aa7efaae562e49d84e8b28f799cf624745/bat-adlp-7/igt@kms_flip@basic-flip-vs-modeset@d-edp1.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157181v2/bat-adlp-7/igt@kms_flip@basic-flip-vs-modeset@d-edp1.html
-
-  
-  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
-
-
-Build changes
--------------
-
-  * Linux: xe-4074-2bc418aa7efaae562e49d84e8b28f799cf624745 -> xe-pw-157181v2
-
-  IGT_8614: 8614
-  xe-4074-2bc418aa7efaae562e49d84e8b28f799cf624745: 2bc418aa7efaae562e49d84e8b28f799cf624745
-  xe-pw-157181v2: 157181v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157181v2/index.html
-
---===============9114454933290655121==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+total: 0 errors, 0 warnings, 1 checks, 219 lines checked
+92774145328a drm/i915/nvls: Add NVL-S display support
+1392c6a263cc drm/i915/display: Use platform check in HAS_LT_PHY()
+7ce295f55fad drm/i915/display: Move HAS_LT_PHY() to intel_display_device.h
+8975da4a18ed drm/i915/display: Use HAS_LT_PHY() for LT PHY AUX power
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/pf: Add runtime registers for GFX ver &gt;= 35 (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/157181/">https://patchwork.freedesktop.org/series/157181/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157181v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157181v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4074-2bc418aa7efaae562e49d84e8b28f799cf624745_BAT -&gt; xe-pw-157181v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-157181v2_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@kms_flip@basic-plain-flip@c-edp1:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4074-2bc418aa7efaae562e49d84e8b28f799cf624745/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157181v2/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) +1 other test dmesg-warn</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_flip@basic-flip-vs-modeset@d-edp1:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4074-2bc418aa7efaae562e49d84e8b28f799cf624745/bat-adlp-7/igt@kms_flip@basic-flip-vs-modeset@d-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157181v2/bat-adlp-7/igt@kms_flip@basic-flip-vs-modeset@d-edp1.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4074-2bc418aa7efaae562e49d84e8b28f799cf624745 -&gt; xe-pw-157181v2</li>
-</ul>
-<p>IGT_8614: 8614<br />
-  xe-4074-2bc418aa7efaae562e49d84e8b28f799cf624745: 2bc418aa7efaae562e49d84e8b28f799cf624745<br />
-  xe-pw-157181v2: 157181v2</p>
-
-</body>
-</html>
-
---===============9114454933290655121==--
