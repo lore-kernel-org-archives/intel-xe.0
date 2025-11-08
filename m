@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5662ECCF9E3
-	for <intel-xe@archiver.kernel.org>; Sat,  8 Nov 2025 02:09:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9F39FCCF9E3
+	for <intel-xe@archiver.kernel.org>; Sat,  8 Nov 2025 02:31:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 146E010E202;
-	Sat,  8 Nov 2025 02:09:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 229D910E233;
+	Sat,  8 Nov 2025 02:31:49 +0000 (UTC)
 Received: from 10055242dc62 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2C30110E202;
- Sat,  8 Nov 2025 02:09:22 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4E43110E233;
+ Sat,  8 Nov 2025 02:31:47 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7119224605621605116=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_drm/i915/display=3A_Add_?=
- =?utf-8?q?initial_support_for_Xe3p=5FLPD_=28rev4=29?=
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_drm/i915/display=3A_Add_ini?=
+ =?utf-8?q?tial_support_for_Xe3p=5FLPD_=28rev4=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Gustavo Sousa" <gustavo.sousa@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Sat, 08 Nov 2025 02:09:22 -0000
-Message-ID: <176256776215.31057.14284958426230334777@10055242dc62>
+Date: Sat, 08 Nov 2025 02:31:47 -0000
+Message-ID: <176256910731.31057.3657912157967859800@10055242dc62>
 X-Patchwork-Hint: ignore
 References: <20251107-xe3p_lpd-basic-enabling-v4-0-ab3367f65f15@intel.com>
 In-Reply-To: <20251107-xe3p_lpd-basic-enabling-v4-0-ab3367f65f15@intel.com>
@@ -40,71 +40,163 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============7119224605621605116==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
 == Series Details ==
 
 Series: drm/i915/display: Add initial support for Xe3p_LPD (rev4)
 URL   : https://patchwork.freedesktop.org/series/155951/
-State : warning
+State : failure
 
 == Summary ==
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 2bc418aa7efaae562e49d84e8b28f799cf624745
-Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
-Fast mode used, each commit won't be checked separately.
--
-+drivers/gpu/drm/i915/display/intel_alpm.c: note: in included file:
-+drivers/gpu/drm/i915/display/intel_casf.c:147:21: error: too long token expansion
-+drivers/gpu/drm/i915/display/intel_cdclk.c: note: in included file:
-+drivers/gpu/drm/i915/display/intel_ddi.c: note: in included file:
-+drivers/gpu/drm/i915/display/intel_display_types.h:2074:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:2074:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:2074:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:2074:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:2074:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:2074:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:2074:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:2074:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:2074:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:2074:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:2074:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:2074:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:2074:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:2074:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:2074:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:2074:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:2087:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:2087:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:2087:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_hdcp.c: note: in included file:
-+drivers/gpu/drm/i915/display/intel_hotplug.c: note: in included file:
-+drivers/gpu/drm/i915/display/intel_lt_phy.c:1603:35: warning: Using plain integer as NULL pointer
-+drivers/gpu/drm/i915/display/intel_pps.c: note: in included file:
-+drivers/gpu/drm/i915/display/intel_psr.c: note: in included file:
-+drivers/gpu/drm/i915/intel_uncore.c:1930:1: warning: context imbalance in 'fwtable_read8' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:1931:1: warning: context imbalance in 'fwtable_read16' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:1932:1: warning: context imbalance in 'fwtable_read32' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:1933:1: warning: context imbalance in 'fwtable_read64' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:1998:1: warning: context imbalance in 'gen6_write8' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:1999:1: warning: context imbalance in 'gen6_write16' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:2000:1: warning: context imbalance in 'gen6_write32' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:2020:1: warning: context imbalance in 'fwtable_write8' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:2021:1: warning: context imbalance in 'fwtable_write16' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:2022:1: warning: context imbalance in 'fwtable_write32' - unexpected unlock
+CI Bug Log - changes from xe-4074-2bc418aa7efaae562e49d84e8b28f799cf624745_BAT -> xe-pw-155951v4_BAT
+====================================================
 
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with xe-pw-155951v4_BAT absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-155951v4_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  
+
+Participating hosts (13 -> 13)
+------------------------------
+
+  No changes in participating hosts
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in xe-pw-155951v4_BAT:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@xe_module_load@load:
+    - bat-bmg-2:          [PASS][1] -> [ABORT][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4074-2bc418aa7efaae562e49d84e8b28f799cf624745/bat-bmg-2/igt@xe_module_load@load.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155951v4/bat-bmg-2/igt@xe_module_load@load.html
+    - bat-bmg-3:          [PASS][3] -> [ABORT][4]
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4074-2bc418aa7efaae562e49d84e8b28f799cf624745/bat-bmg-3/igt@xe_module_load@load.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155951v4/bat-bmg-3/igt@xe_module_load@load.html
+    - bat-bmg-1:          [PASS][5] -> [ABORT][6]
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4074-2bc418aa7efaae562e49d84e8b28f799cf624745/bat-bmg-1/igt@xe_module_load@load.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155951v4/bat-bmg-1/igt@xe_module_load@load.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in xe-pw-155951v4_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@kms_flip@basic-flip-vs-modeset@d-edp1:
+    - bat-adlp-7:         [DMESG-WARN][7] ([Intel XE#4543]) -> [PASS][8] +1 other test pass
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4074-2bc418aa7efaae562e49d84e8b28f799cf624745/bat-adlp-7/igt@kms_flip@basic-flip-vs-modeset@d-edp1.html
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155951v4/bat-adlp-7/igt@kms_flip@basic-flip-vs-modeset@d-edp1.html
+
+  
+  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
 
 
+Build changes
+-------------
+
+  * Linux: xe-4074-2bc418aa7efaae562e49d84e8b28f799cf624745 -> xe-pw-155951v4
+
+  IGT_8614: 8614
+  xe-4074-2bc418aa7efaae562e49d84e8b28f799cf624745: 2bc418aa7efaae562e49d84e8b28f799cf624745
+  xe-pw-155951v4: 155951v4
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155951v4/index.html
+
+--===============7119224605621605116==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/display: Add initial support for Xe3p_LPD (rev4)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/155951/">https://patchwork.freedesktop.org/series/155951/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155951v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155951v4/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4074-2bc418aa7efaae562e49d84e8b28f799cf624745_BAT -&gt; xe-pw-155951v4_BAT</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-155951v4_BAT absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-155951v4_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-155951v4_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@xe_module_load@load:<ul>
+<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4074-2bc418aa7efaae562e49d84e8b28f799cf624745/bat-bmg-2/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155951v4/bat-bmg-2/igt@xe_module_load@load.html">ABORT</a></li>
+<li>bat-bmg-3:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4074-2bc418aa7efaae562e49d84e8b28f799cf624745/bat-bmg-3/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155951v4/bat-bmg-3/igt@xe_module_load@load.html">ABORT</a></li>
+<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4074-2bc418aa7efaae562e49d84e8b28f799cf624745/bat-bmg-1/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155951v4/bat-bmg-1/igt@xe_module_load@load.html">ABORT</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-155951v4_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@kms_flip@basic-flip-vs-modeset@d-edp1:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4074-2bc418aa7efaae562e49d84e8b28f799cf624745/bat-adlp-7/igt@kms_flip@basic-flip-vs-modeset@d-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155951v4/bat-adlp-7/igt@kms_flip@basic-flip-vs-modeset@d-edp1.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4074-2bc418aa7efaae562e49d84e8b28f799cf624745 -&gt; xe-pw-155951v4</li>
+</ul>
+<p>IGT_8614: 8614<br />
+  xe-4074-2bc418aa7efaae562e49d84e8b28f799cf624745: 2bc418aa7efaae562e49d84e8b28f799cf624745<br />
+  xe-pw-155951v4: 155951v4</p>
+
+</body>
+</html>
+
+--===============7119224605621605116==--
