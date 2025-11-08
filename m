@@ -4,27 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EFB21CCFA0D
-	for <intel-xe@archiver.kernel.org>; Sat,  8 Nov 2025 04:49:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 00FF2CCFA1A
+	for <intel-xe@archiver.kernel.org>; Sat,  8 Nov 2025 07:40:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A688E10E345;
-	Sat,  8 Nov 2025 04:49:58 +0000 (UTC)
-Received: from 10055242dc62 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7681510E345;
- Sat,  8 Nov 2025 04:49:57 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4485837779331342353=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9BC5110E09A;
+	Sat,  8 Nov 2025 07:40:21 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="f3DqREQC";
+	dkim-atps=neutral
+Received: from lankhorst.se (lankhorst.se [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 52E2110E09A
+ for <intel-xe@lists.freedesktop.org>; Sat,  8 Nov 2025 07:40:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
+ s=default; t=1762587618;
+ bh=crK0/63Ab3p44lO3J0xjIdWwIphVbo9BjJvI/T/0fHA=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=f3DqREQCEtu2uBp+dCT7F0xMVJW7GU6CerkNOPzw+gwypYJ4Q1iymribtENF/Tu2B
+ M6vmmObwyYHb4NqOkG5IJoAAFh7FRITxbhNfPSuWGpcrx2QdaEJM/KRTpMVYJewd0O
+ vLGVTxr54ILdEXK7TOn19fYx/WBDZ2hXkw4dntc1t6HJTppFvMdsLMMYX97CEKxL0E
+ 05YgB3Yzci8VpTlfVOsUdcMCT74JUIW8/ic2fjyT5QMR0wxSUQgVbSWUDHDralMO6D
+ Go2c02mo3DQiJFFtXx2Ol6+Rotw1e5AJN2ilHnswxt7grZl0WEVKM+sorvx7EgwjuX
+ WhZvEJWyQTY2w==
+Message-ID: <3cdfe321-0cf2-4992-9163-f227581ef1a6@lankhorst.se>
+Date: Sat, 8 Nov 2025 08:40:17 +0100
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Fix_MTL_vm=5Fmax?=
- =?utf-8?q?=5Flevel?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Rodrigo Vivi" <rodrigo.vivi@intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [FOR-CI 01/10] drm/i915/display: Make get_vblank_counter use
+ intel_de_read_fw()
+To: Matt Roper <matthew.d.roper@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Sat, 08 Nov 2025 04:49:57 -0000
-Message-ID: <176257739747.31057.11683940213070430635@10055242dc62>
-X-Patchwork-Hint: ignore
-References: <20251108040634.6376-2-rodrigo.vivi@intel.com>
-In-Reply-To: <20251108040634.6376-2-rodrigo.vivi@intel.com>
+References: <20251107193946.1075137-1-dev@lankhorst.se>
+ <20251107193946.1075137-2-dev@lankhorst.se>
+ <20251107204300.GJ3905809@mdroper-desk1.amr.corp.intel.com>
+Content-Language: en-US
+From: Maarten Lankhorst <dev@lankhorst.se>
+In-Reply-To: <20251107204300.GJ3905809@mdroper-desk1.amr.corp.intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,155 +52,117 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============4485837779331342353==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hey,
 
-== Series Details ==
+Den 2025-11-07 kl. 21:43, skrev Matt Roper:
+> On Fri, Nov 07, 2025 at 08:39:36PM +0100, Maarten Lankhorst wrote:
+>> Fixes the following lockdep splat on PREEMPT_RT:
+>> <3> BUG: sleeping function called from invalid context at kernel/locking/spinlock_rt.c:48
+>> <3> in_atomic(): 1, irqs_disabled(): 0, non_block: 0, pid: 1373, name: xe_module_load
+>> <3> preempt_count: 1, expected: 0
+>> <3> RCU nest depth: 0, expected: 0
+>> <4> 11 locks held by xe_module_load/1373:
+>> <4>  #0: ffff888107b691a0 (&dev->mutex){....}-{3:3}, at: __driver_attach+0x104/0x220
+>> <4>  #1: ffff88813cd30280 (&dev->clientlist_mutex){+.+.}-{3:3}, at: drm_client_register+0x32/0xe0
+>> <4>  #2: ffffffff837f88f8 (registration_lock){+.+.}-{3:3}, at: register_framebuffer+0x1b/0x50
+>> <4>  #3: ffffffff835985e0 (console_lock){+.+.}-{0:0}, at: fbcon_fb_registered+0x6f/0x90
+>> <4>  #4: ffff88812589e6a0 (&helper->lock){+.+.}-{3:3}, at: __drm_fb_helper_restore_fbdev_mode_unlocked+0x7b/0x110
+>> <4>  #5: ffff88813cd30158 (&dev->master_mutex){+.+.}-{3:3}, at: drm_master_internal_acquire+0x20/0x50
+>> <4>  #6: ffff88812589e488 (&client->modeset_mutex){+.+.}-{3:3}, at: drm_client_modeset_commit_locked+0x2a/0x1b0
+>> <4>  #7: ffffc9000031eef0 (crtc_ww_class_acquire){+.+.}-{0:0}, at: drm_client_modeset_commit_atomic+0x4c/0x2b0
+>> <4>  #8: ffffc9000031ef18 (crtc_ww_class_mutex){+.+.}-{3:3}, at: drm_client_modeset_commit_atomic+0x4c/0x2b0
+>> <4>  #9: ffff888114f7b8b8 (&intel_dp->psr.lock){+.+.}-{3:3}, at: intel_psr_lock+0xc5/0xf0 [xe]
+>> <4>  #10: ffff88812a0cbbc0 (&wl->lock){+.+.}-{2:2}, at: intel_dmc_wl_get+0x3c/0x140 [xe]
+>>
+>> This splat will happen otherwise on all tracepoints too, for similar reasons.
+> 
+> Drive-by comment, but this isn't really a proper fix, right?  Using the
+> *_fw register access variants means that (among other things) the call
+> doesn't acquire uncore->lock.  On some older i915 platforms,
+> simultaneous register access from two different threads would hang the
+> system.  The uncore spinlock ensures that register accesses are always
+> serialized so that we can't trigger those crashes (the uncore spinlock
+> also protects other stuff like forcewake handling, but that's not
+> relevant here).  If we use the "_fw" variant of register access, we're
+> removing the protection and allowing register accesses to race again if
+> we aren't already holding the lock explicitly at a higher level of the
+> code.  I'm not sure exactly which platform(s) had the problems with
+> simultaneous register access; it isn't a concern for newer platforms so
+> Xe doesn't need to worry about it, only i915.
+> 
+> PREEMPT_RT creates a huge mess because it silently changes spinlock_t
+> from a real spinlock into a into a sleeping mutex, and that means it
+> can't be used anywhere that sleeping is disallowed.  Since regular
+> register reads/writes require spinlock protection in i915, that also
+> means that we suddenly can't perform regular register reads/writes in
+> those areas either.
+> 
+> I guess a real fix would be to convert uncore->lock into a
+> raw_spinlock_t which is still a "real" spinlock, even with PREEMPT.
+I think you misunderstand the fix.
 
-Series: drm/xe: Fix MTL vm_max_level
-URL   : https://patchwork.freedesktop.org/series/157282/
-State : success
+Vblank evasion flow:
+ - spin_lock(uncore->lock);
+ - local_irq_disable();
+ - while (in_vblank()) {
+	local_irq_enable();
+	spin_unlock();
 
-== Summary ==
+	/* Wait for vblank completion */
 
-CI Bug Log - changes from xe-4074-2bc418aa7efaae562e49d84e8b28f799cf624745_BAT -> xe-pw-157282v1_BAT
-====================================================
+	spin_lock();
+	irq_disable();
+ - }
 
-Summary
--------
+ - /* vblank evasion programming */
 
-  **SUCCESS**
+ - local_irq_enable();
+ - spin_unlock(uncore->lock);
 
-  No regressions found.
+The other timing sensitive call:
 
-  
+i915_get_crtc_scanoutpos()
+  - intel_vblank_section_enter()
+      spin_lock(uncore->lock);
+  - preempt_disable();
 
-Participating hosts (13 -> 13)
-------------------------------
+  (do magic stuff)
 
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-157282v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_waitfence@abstime:
-    - bat-dg2-oem2:       [PASS][1] -> [TIMEOUT][2] ([Intel XE#6506])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4074-2bc418aa7efaae562e49d84e8b28f799cf624745/bat-dg2-oem2/igt@xe_waitfence@abstime.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157282v1/bat-dg2-oem2/igt@xe_waitfence@abstime.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_flip@basic-flip-vs-modeset@d-edp1:
-    - bat-adlp-7:         [DMESG-WARN][3] ([Intel XE#4543]) -> [PASS][4] +1 other test pass
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4074-2bc418aa7efaae562e49d84e8b28f799cf624745/bat-adlp-7/igt@kms_flip@basic-flip-vs-modeset@d-edp1.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157282v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-modeset@d-edp1.html
-
-  * igt@xe_waitfence@engine:
-    - bat-dg2-oem2:       [FAIL][5] ([Intel XE#6519]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4074-2bc418aa7efaae562e49d84e8b28f799cf624745/bat-dg2-oem2/igt@xe_waitfence@engine.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157282v1/bat-dg2-oem2/igt@xe_waitfence@engine.html
-
-  
-  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
-  [Intel XE#6506]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506
-  [Intel XE#6519]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519
-
-
-Build changes
--------------
-
-  * Linux: xe-4074-2bc418aa7efaae562e49d84e8b28f799cf624745 -> xe-pw-157282v1
-
-  IGT_8614: 8614
-  xe-4074-2bc418aa7efaae562e49d84e8b28f799cf624745: 2bc418aa7efaae562e49d84e8b28f799cf624745
-  xe-pw-157282v1: 157282v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157282v1/index.html
-
---===============4485837779331342353==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+  - preempt_enable();
+  - intel_vblank_section_enter()
+      spin_unlock(uncore->lock);
 
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Fix MTL vm_max_level</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/157282/">https://patchwork.freedesktop.org/series/157282/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
+Using raw_spin_lock would just mean adding more contention. And still deadlock when using the _fw calls..
 
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157282v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157282v1/index.html</a></td></tr>
+> 
+> 
+> Matt
+> 
+>>
+>> Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
+>> ---
+>>  drivers/gpu/drm/i915/display/intel_vblank.c | 2 +-
+>>  1 file changed, 1 insertion(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/display/intel_vblank.c b/drivers/gpu/drm/i915/display/intel_vblank.c
+>> index 671f357c65638..2b106ffa3f5f5 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_vblank.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_vblank.c
+>> @@ -133,7 +133,7 @@ u32 g4x_get_vblank_counter(struct drm_crtc *crtc)
+>>  	if (!vblank->max_vblank_count)
+>>  		return 0;
+>>  
+>> -	return intel_de_read(display, PIPE_FRMCOUNT_G4X(display, pipe));
+>> +	return intel_de_read_fw(display, PIPE_FRMCOUNT_G4X(display, pipe));
+>>  }
+>>  
+>>  static u32 intel_crtc_scanlines_since_frame_timestamp(struct intel_crtc *crtc)
+>> -- 
+>> 2.51.0
+>>
+> 
 
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4074-2bc418aa7efaae562e49d84e8b28f799cf624745_BAT -&gt; xe-pw-157282v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-157282v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@xe_waitfence@abstime:<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4074-2bc418aa7efaae562e49d84e8b28f799cf624745/bat-dg2-oem2/igt@xe_waitfence@abstime.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157282v1/bat-dg2-oem2/igt@xe_waitfence@abstime.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506">Intel XE#6506</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@kms_flip@basic-flip-vs-modeset@d-edp1:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4074-2bc418aa7efaae562e49d84e8b28f799cf624745/bat-adlp-7/igt@kms_flip@basic-flip-vs-modeset@d-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157282v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-modeset@d-edp1.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_waitfence@engine:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4074-2bc418aa7efaae562e49d84e8b28f799cf624745/bat-dg2-oem2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519">Intel XE#6519</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157282v1/bat-dg2-oem2/igt@xe_waitfence@engine.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4074-2bc418aa7efaae562e49d84e8b28f799cf624745 -&gt; xe-pw-157282v1</li>
-</ul>
-<p>IGT_8614: 8614<br />
-  xe-4074-2bc418aa7efaae562e49d84e8b28f799cf624745: 2bc418aa7efaae562e49d84e8b28f799cf624745<br />
-  xe-pw-157282v1: 157282v1</p>
-
-</body>
-</html>
-
---===============4485837779331342353==--
