@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 633BACCF9F8
-	for <intel-xe@archiver.kernel.org>; Sun,  9 Nov 2025 04:55:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BA112CCFA13
+	for <intel-xe@archiver.kernel.org>; Sun,  9 Nov 2025 06:07:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F0CC510E226;
-	Sun,  9 Nov 2025 04:55:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5891210E13D;
+	Sun,  9 Nov 2025 06:07:03 +0000 (UTC)
 Received: from 10055242dc62 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8494110E13D;
- Sun,  9 Nov 2025 04:55:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D49F310E13D;
+ Sun,  9 Nov 2025 06:07:01 +0000 (UTC)
 Content-Type: multipart/alternative;
- boundary="===============7306605480558963274=="
+ boundary="===============4527159308816500700=="
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EFull=3A_failure_for_drm/xe=3A_Tile_address_cha?=
- =?utf-8?q?nge?=
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EFull=3A_failure_for_drm/xe/pcode=3A_Rework_err?=
+ =?utf-8?q?or_mapping?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Lucas De Marchi" <lucas.demarchi@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Sun, 09 Nov 2025 04:55:22 -0000
-Message-ID: <176266412252.33496.8165840853584862008@10055242dc62>
+Date: Sun, 09 Nov 2025 06:07:01 -0000
+Message-ID: <176266842186.33229.7064232621063725444@10055242dc62>
 X-Patchwork-Hint: ignore
-References: <20251107-tile-addr-v1-0-a3014aadc2e7@intel.com>
-In-Reply-To: <20251107-tile-addr-v1-0-a3014aadc2e7@intel.com>
+References: <20251107-pcode-errmap-v1-1-8e564673bf00@intel.com>
+In-Reply-To: <20251107-pcode-errmap-v1-1-8e564673bf00@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,15 +40,15 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7306605480558963274==
+--===============4527159308816500700==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 
 == Series Details ==
 
-Series: drm/xe: Tile address change
-URL   : https://patchwork.freedesktop.org/series/157254/
+Series: drm/xe/pcode: Rework error mapping
+URL   : https://patchwork.freedesktop.org/series/157255/
 State : failure
 
 == Summary ==
@@ -57,9 +57,9 @@ ERROR: The runconfig 'xe-4073-4dff427fe8bbfd0bdbf7935d23a2aba0c350ab2d_FULL' doe
 
 == Logs ==
 
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157254v1/index.html
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157255v1/index.html
 
---===============7306605480558963274==
+--===============4527159308816500700==
 Content-Type: text/html; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -79,11 +79,11 @@ Content-Transfer-Encoding: 7bit
 
 <b>Patch Details</b>
 <table>
-<tr><td><b>Series:</b></td><td>drm/xe: Tile address change</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/157254/">https://patchwork.freedesktop.org/series/157254/</a></td></tr>
+<tr><td><b>Series:</b></td><td>drm/xe/pcode: Rework error mapping</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/157255/">https://patchwork.freedesktop.org/series/157255/</a></td></tr>
 <tr><td><b>State:</b></td><td>failure</td></tr>
 
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157254v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157254v1/index.html</a></td></tr>
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157255v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157255v1/index.html</a></td></tr>
 
 </table>
 
@@ -93,4 +93,4 @@ Content-Transfer-Encoding: 7bit
 </body>
 </html>
 
---===============7306605480558963274==--
+--===============4527159308816500700==--
