@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EDFDCCD3423
-	for <intel-xe@archiver.kernel.org>; Mon, 10 Nov 2025 18:48:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C8B20CD3429
+	for <intel-xe@archiver.kernel.org>; Mon, 10 Nov 2025 18:48:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A4DE010E49F;
-	Mon, 10 Nov 2025 18:48:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7ABFA10E4A4;
+	Mon, 10 Nov 2025 18:48:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QHyU5y9t";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="c3samGbT";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AC88510E2F7;
- Mon, 10 Nov 2025 18:47:58 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2C55E10E48B;
+ Mon, 10 Nov 2025 18:47:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1762800479; x=1794336479;
+ t=1762800477; x=1794336477;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=vfFJiF5Jws09gjgjKdTNrvEfoqRScmV1z1nMj3uwJf8=;
- b=QHyU5y9tZ3RJBaMiW18bpC7LjVXa2cjLvtc3iIOFkMwsMuUqwSuAK2rZ
- LCOHddPoVdp61cD+B9QI1T+FtA1TntIN0fDMpqUgYtCYvHVqzTAWg9zgj
- kBMOO2RhwtqoGTfKopQBq29SiaBqr8J6G2kDoPgRSTiUXq6eKxtk2mGWx
- LzpjOrsBk5QbZzCZx4S1lDS2TOhMw9UpcJa9zdaxNO603Tyaalart13Sl
- gMXGIymCR9tQExes2ad6MGvLppps5SqbiztMhFphhD9PK1W9zQSGl4U9G
- BbZlTwAbgWshORR9y0aKQ7m6Mh3OuQhZbc6LjnbsoKiI8AkvkwiIpIqj8 Q==;
-X-CSE-ConnectionGUID: hccwTlBNRES/u+EULuF2TA==
-X-CSE-MsgGUID: McDDhQNCSYG4pn3c9G8ioA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11609"; a="76307331"
-X-IronPort-AV: E=Sophos;i="6.19,294,1754982000"; d="scan'208";a="76307331"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Nov 2025 10:47:59 -0800
-X-CSE-ConnectionGUID: Ht2etEAvTa2/P79MAcMXVw==
-X-CSE-MsgGUID: q70WGSfeRhCBG0Zd32Rwgg==
+ bh=DySdZiGxSs+gsbZxfXnAJatGRJpSLxwf+8Bw1sALkpU=;
+ b=c3samGbTpyuybhRifOoScCk1T7JE9CuhonobNoUO+2WbPl1JTFZjV8of
+ cbyJhzc7w4C11s1oOM+lQ4hNLmKmdVRNR0WBTiCATRVWb1U/JpE0w6DRy
+ VJHAxlYwrGVakvzHM16QE+OrIVAwMWd/x/VGsWj2TMaEvLamGUzP7RDnL
+ aLMLbWwcfdpoQ+JQDjQ8aXVBqrtvWlpfoGSUU+NZdWlX78KJgmX1Chp5r
+ Vf8FRbSvivAD6adl0ZpiyFYMNwt64T2+E57amwVhFzABDHi9B7uoKT+ZS
+ ShO5Zc7VR/vO/x3QVDQPJH4pZPfAidK7Q2SRcVUduBGYSBZY58JJzH8AY A==;
+X-CSE-ConnectionGUID: KwkABWpqSOqwanleI99fDw==
+X-CSE-MsgGUID: UwfVn972S32Z83peF4rSwQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11609"; a="76204675"
+X-IronPort-AV: E=Sophos;i="6.19,294,1754982000"; d="scan'208";a="76204675"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Nov 2025 10:47:57 -0800
+X-CSE-ConnectionGUID: ZPmdgmbPQjmNWf1il/2vCw==
+X-CSE-MsgGUID: GAqEbGvXQ963nXoaPj790A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,294,1754982000"; d="scan'208";a="226005244"
+X-IronPort-AV: E=Sophos;i="6.19,294,1754982000"; d="scan'208";a="188985824"
 Received: from black.igk.intel.com ([10.91.253.5])
- by orviesa001.jf.intel.com with ESMTP; 10 Nov 2025 10:47:49 -0800
+ by fmviesa008.fm.intel.com with ESMTP; 10 Nov 2025 10:47:48 -0800
 Received: by black.igk.intel.com (Postfix, from userid 1003)
- id 499D5A2; Mon, 10 Nov 2025 19:47:29 +0100 (CET)
+ id 2F1A39E; Mon, 10 Nov 2025 19:47:29 +0100 (CET)
 From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 To: Corey Minyard <corey@minyard.net>,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
@@ -114,9 +114,9 @@ Cc: Rasmus Villemoes <linux@rasmusvillemoes.dk>,
  Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
  Andrew Morton <akpm@linux-foundation.org>,
  Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>
-Subject: [PATCH v1 13/23] media: av7110: Switch to use %ptSp
-Date: Mon, 10 Nov 2025 19:40:32 +0100
-Message-ID: <20251110184727.666591-14-andriy.shevchenko@linux.intel.com>
+Subject: [PATCH v1 09/23] drm/xe: Switch to use %ptSp
+Date: Mon, 10 Nov 2025 19:40:28 +0100
+Message-ID: <20251110184727.666591-10-andriy.shevchenko@linux.intel.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20251110184727.666591-1-andriy.shevchenko@linux.intel.com>
 References: <20251110184727.666591-1-andriy.shevchenko@linux.intel.com>
@@ -141,21 +141,24 @@ struct timespec64 in human readable format.
 
 Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 ---
- drivers/staging/media/av7110/av7110.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_devcoredump.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/staging/media/av7110/av7110.c b/drivers/staging/media/av7110/av7110.c
-index bc9a2a40afcb..602342d1174f 100644
---- a/drivers/staging/media/av7110/av7110.c
-+++ b/drivers/staging/media/av7110/av7110.c
-@@ -321,7 +321,7 @@ static inline void print_time(char *s)
- 	struct timespec64 ts;
+diff --git a/drivers/gpu/drm/xe/xe_devcoredump.c b/drivers/gpu/drm/xe/xe_devcoredump.c
+index 203e3038cc81..d444eda65ca6 100644
+--- a/drivers/gpu/drm/xe/xe_devcoredump.c
++++ b/drivers/gpu/drm/xe/xe_devcoredump.c
+@@ -106,9 +106,9 @@ static ssize_t __xe_devcoredump_read(char *buffer, ssize_t count,
+ 	drm_puts(&p, "module: " KBUILD_MODNAME "\n");
  
- 	ktime_get_real_ts64(&ts);
--	pr_info("%s(): %lld.%09ld\n", s, (s64)ts.tv_sec, ts.tv_nsec);
-+	pr_info("%s(): %ptSp\n", s, &ts);
- #endif
- }
+ 	ts = ktime_to_timespec64(ss->snapshot_time);
+-	drm_printf(&p, "Snapshot time: %lld.%09ld\n", ts.tv_sec, ts.tv_nsec);
++	drm_printf(&p, "Snapshot time: %ptSp\n", &ts);
+ 	ts = ktime_to_timespec64(ss->boot_time);
+-	drm_printf(&p, "Uptime: %lld.%09ld\n", ts.tv_sec, ts.tv_nsec);
++	drm_printf(&p, "Uptime: %ptSp\n", &ts);
+ 	drm_printf(&p, "Process: %s [%d]\n", ss->process_name, ss->pid);
+ 	xe_device_snapshot_print(xe, &p);
  
 -- 
 2.50.1
