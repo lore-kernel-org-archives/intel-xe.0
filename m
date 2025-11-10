@@ -4,50 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 162C4CCFA1A
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 250DBCD13CF
 	for <intel-xe@archiver.kernel.org>; Mon, 10 Nov 2025 23:20:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C71BF10E45A;
+	by gabe.freedesktop.org (Postfix) with ESMTP id D48E510E4B0;
 	Mon, 10 Nov 2025 23:20:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lvco/Mt3";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Gmudsw4L";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A13B610E49A
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2890810E444
  for <intel-xe@lists.freedesktop.org>; Mon, 10 Nov 2025 23:20:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1762816834; x=1794352834;
+ t=1762816833; x=1794352833;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=IoemOF0/h0kQG8A+E/JfaRlgWIhdbXphLY/bwZYRI/k=;
- b=lvco/Mt3CeQvrZaBOE04L5FjNUWnCdY/2s574W9hjl1VYtz6eJO6hDAF
- wphFfMr/V0uqBQ5PMgxheoczbDcppNdOiXAcU99lPeZtYvE/SjxWigs55
- 6fbmWoIUDpGBtT+qU7wx6OEkJDGhjZktsJnMbWid0BL0Ph+CekAdd9u7J
- y33blU/P30QJN2+wBlSo7U9n7r/wQGqjdSajnMvpMjme5V4QGIlA/LiEI
- Ug1/fT2PGqp/cQyi05+ajepZt2jnA7DEreNu1eDJHTOd7F5ooOWGxwFvJ
- kXJQ3s4CPKFfo+NX5cLzlSGcjTpsYt5iIHqPYbiEHr5oKm8WBO0fSNFOd w==;
-X-CSE-ConnectionGUID: Wpf2ZQI0RxGXV0yhRdEmIg==
-X-CSE-MsgGUID: VmRWRjcLRTWoR23FejFntg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11609"; a="75486454"
-X-IronPort-AV: E=Sophos;i="6.19,294,1754982000"; d="scan'208";a="75486454"
+ bh=58cD7d2wgJ3XXGbOWrB9qapjg4BzJCKQgzPqwqqIMzw=;
+ b=Gmudsw4LApV7/pi89mY9KKrQYCB2CFvXGHJqogidU5kqi2jDsTx5dOr+
+ 9+0cBJDXCyk5v8xrm0+68d36PeAMqLFOyreSeockDGFUMoKtumR7Mqgq1
+ hPZJGaierSoL+gxhrwePG1A0spdyEu0qu5hXHYehHSkJWHJLR7ZJLkieH
+ BtlsTguOqQKgSIqICRBIwpn43ufoP/4XzYJehKo7bEkfsH/Or6/ojtd6d
+ 5JaM+qDteJCRlBcvEmcik4bOeZeOCmFXgZ+3jHmZ3FIDc3DFPdqZPF7Xk
+ gfKO3u7qG/9tXfTO82255FyFsPtpveRD1FyJYtYIjWVRPSKXq8iTfJHQn g==;
+X-CSE-ConnectionGUID: zSNqVogsRLyrblk0fSKXdA==
+X-CSE-MsgGUID: /1u2YWo4TI2bYOVWXDuMsw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11609"; a="75486448"
+X-IronPort-AV: E=Sophos;i="6.19,294,1754982000"; d="scan'208";a="75486448"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  10 Nov 2025 15:20:32 -0800
-X-CSE-ConnectionGUID: wRAdbBmvQyOVsVsQryEU1w==
-X-CSE-MsgGUID: ax5+NeN7Thqj8tCnGFTZWA==
+X-CSE-ConnectionGUID: aT+cxmHCQFy3yUW0fApyLA==
+X-CSE-MsgGUID: HlwqU1w0Qoubl2ZH6wXIbQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,294,1754982000"; d="scan'208";a="189243999"
+X-IronPort-AV: E=Sophos;i="6.19,294,1754982000"; d="scan'208";a="189243982"
 Received: from mdroper-desk1.fm.intel.com ([10.1.39.133])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  10 Nov 2025 15:20:32 -0800
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.d.roper@intel.com
-Subject: [PATCH v2 17/30] drm/xe: Create scoped cleanup class for
- force_wake_get_any_engine()
-Date: Mon, 10 Nov 2025 15:20:35 -0800
-Message-ID: <20251110232017.1475869-49-matthew.d.roper@intel.com>
+Subject: [PATCH v2 12/30] drm/xe/pxp: Use scope-based cleanup
+Date: Mon, 10 Nov 2025 15:20:30 -0800
+Message-ID: <20251110232017.1475869-44-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.51.1
 In-Reply-To: <20251110232017.1475869-32-matthew.d.roper@intel.com>
 References: <20251110232017.1475869-32-matthew.d.roper@intel.com>
@@ -67,130 +66,162 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-force_wake_get_any_engine() is a single-use function to pick any engine
-present on the platform and grab its forcewake.  The signature
-(returning a boolean success and both the engine pointer and a forcewake
-ref by reference) is a bit awkward.  Rewrite it such that the
-forcewake ref is the function's return value and the caller can
-determine success/failure by checking the engine pointer against NULL.
-
-With this new signature, the function can serve as a scoped cleanup
-class constructor, so define the corresponding class.  Note that if we
-fail to obtain forcewake (or if the platform somehow has no engines),
-the constructor can fail, returning an invalid fw_ref.  In such cases,
-fw_ref.fw will be NULL, making it clear that the reference is invalid;
-this fact can be used to create a thin wrapper around xe_force_wake_put
-that can be used as a destructor for this class.
+Use scope-based cleanup for forcewake and runtime pm.  This allows us to
+eliminate some goto-based error handling and simplify other functions.
 
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/xe_drm_client.c | 52 +++++++++++++++++++-----------
- 1 file changed, 34 insertions(+), 18 deletions(-)
+ drivers/gpu/drm/xe/xe_pxp.c | 55 ++++++++++++-------------------------
+ 1 file changed, 18 insertions(+), 37 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_drm_client.c b/drivers/gpu/drm/xe/xe_drm_client.c
-index f931ff9b1ec0..9deb258ba204 100644
---- a/drivers/gpu/drm/xe/xe_drm_client.c
-+++ b/drivers/gpu/drm/xe/xe_drm_client.c
-@@ -6,6 +6,7 @@
- 
- #include <drm/drm_print.h>
- #include <uapi/drm/xe_drm.h>
-+#include <linux/cleanup.h>
- #include <linux/kernel.h>
- #include <linux/slab.h>
- #include <linux/types.h>
-@@ -285,34 +286,48 @@ static struct xe_hw_engine *any_engine(struct xe_device *xe)
- 	return NULL;
- }
- 
--static bool force_wake_get_any_engine(struct xe_device *xe,
--				      struct xe_hw_engine **phwe,
--				      unsigned int *pfw_ref)
-+/*
-+ * Pick any engine and grab its forcewake.  On error phwe will be NULL and
-+ * the returned forcewake reference will be invalid.  Callers should check
-+ * phwe against NULL.
-+ */
-+static struct xe_force_wake_ref force_wake_get_any_engine(struct xe_device *xe,
-+							  struct xe_hw_engine **phwe)
+diff --git a/drivers/gpu/drm/xe/xe_pxp.c b/drivers/gpu/drm/xe/xe_pxp.c
+index bdbdbbf6a678..508f4c128a48 100644
+--- a/drivers/gpu/drm/xe/xe_pxp.c
++++ b/drivers/gpu/drm/xe/xe_pxp.c
+@@ -58,10 +58,9 @@ bool xe_pxp_is_enabled(const struct xe_pxp *pxp)
+ static bool pxp_prerequisites_done(const struct xe_pxp *pxp)
  {
- 	enum xe_force_wake_domains domain;
+ 	struct xe_gt *gt = pxp->gt;
 -	unsigned int fw_ref;
-+	struct xe_force_wake_ref fw_ref = {};
- 	struct xe_hw_engine *hwe;
--	struct xe_force_wake *fw;
-+
-+	*phwe = NULL;
+ 	bool ready;
  
- 	hwe = any_engine(xe);
- 	if (!hwe)
--		return false;
-+		return fw_ref;	/* will be invalid */
- 
- 	domain = xe_hw_engine_to_fw_domain(hwe);
--	fw = gt_to_fw(hwe->gt);
- 
--	fw_ref = xe_force_wake_get(fw, domain);
--	if (!xe_force_wake_ref_has_domain(fw_ref, domain)) {
--		xe_force_wake_put(fw, fw_ref);
--		return false;
--	}
-+	fw_ref.fw = gt_to_fw(hwe->gt);
-+	fw_ref.domains = xe_force_wake_get(fw_ref.fw, domain);
-+	if (xe_force_wake_ref_has_domain(fw_ref.domains, domain))
-+		*phwe = hwe;	/* valid forcewake */
- 
--	*phwe = hwe;
--	*pfw_ref = fw_ref;
-+	return fw_ref;
-+}
- 
--	return true;
-+static void drop_fw_if_valid(struct xe_force_wake_ref fw_ref)
-+{
-+	/*
-+	 * If force_wake_get_any_engine() fails, there's no real forcewake
-+	 * reference to drop, and fw_ref.fw will be NULL.
-+	 */
-+	if (fw_ref.fw)
-+		xe_force_wake_put(fw_ref.fw, fw_ref.domains);
- }
- 
-+DEFINE_CLASS(xe_force_wake_any_engine, struct xe_force_wake_ref,
-+	     drop_fw_if_valid(_T), force_wake_get_any_engine(xe, phwe),
-+	     struct xe_device *xe, struct xe_hw_engine **phwe);
-+
- static void show_run_ticks(struct drm_printer *p, struct drm_file *file)
- {
- 	unsigned long class, i, gt_id, capacity[XE_ENGINE_CLASS_MAX] = { };
-@@ -322,7 +337,7 @@ static void show_run_ticks(struct drm_printer *p, struct drm_file *file)
- 	struct xe_hw_engine *hwe;
- 	struct xe_exec_queue *q;
- 	u64 gpu_timestamp;
--	unsigned int fw_ref;
-+	struct xe_force_wake_ref fw_ref;
+-	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
++	CLASS(xe_force_wake, fw_ref)(gt_to_fw(gt), XE_FORCEWAKE_ALL);
  
  	/*
- 	 * RING_TIMESTAMP registers are inaccessible in VF mode.
-@@ -340,7 +355,8 @@ static void show_run_ticks(struct drm_printer *p, struct drm_file *file)
- 		       !atomic_read(&xef->exec_queue.pending_removal));
+ 	 * If force_wake fails we could falsely report the prerequisites as not
+@@ -71,14 +70,12 @@ static bool pxp_prerequisites_done(const struct xe_pxp *pxp)
+ 	 * PXP. Therefore, we can just log the force_wake error and not escalate
+ 	 * it.
+ 	 */
+-	XE_WARN_ON(!xe_force_wake_ref_has_domain(fw_ref, XE_FORCEWAKE_ALL));
++	XE_WARN_ON(!xe_force_wake_ref_has_domain(fw_ref.domains, XE_FORCEWAKE_ALL));
  
- 	xe_pm_runtime_get(xe);
--	if (!force_wake_get_any_engine(xe, &hwe, &fw_ref)) {
-+	fw_ref = force_wake_get_any_engine(xe, &hwe);
-+	if (!hwe) {
- 		xe_pm_runtime_put(xe);
- 		return;
+ 	/* PXP requires both HuC authentication via GSC and GSC proxy initialized */
+ 	ready = xe_huc_is_authenticated(&gt->uc.huc, XE_HUC_AUTH_VIA_GSC) &&
+ 		xe_gsc_proxy_init_done(&gt->uc.gsc);
+ 
+-	xe_force_wake_put(gt_to_fw(gt), fw_ref);
+-
+ 	return ready;
+ }
+ 
+@@ -104,13 +101,12 @@ int xe_pxp_get_readiness_status(struct xe_pxp *pxp)
+ 	    xe_uc_fw_status_to_error(pxp->gt->uc.gsc.fw.status))
+ 		return -EIO;
+ 
+-	xe_pm_runtime_get(pxp->xe);
++	guard(xe_pm_runtime)(pxp->xe);
+ 
+ 	/* PXP requires both HuC loaded and GSC proxy initialized */
+ 	if (pxp_prerequisites_done(pxp))
+ 		ret = 1;
+ 
+-	xe_pm_runtime_put(pxp->xe);
+ 	return ret;
+ }
+ 
+@@ -135,35 +131,28 @@ static void pxp_invalidate_queues(struct xe_pxp *pxp);
+ static int pxp_terminate_hw(struct xe_pxp *pxp)
+ {
+ 	struct xe_gt *gt = pxp->gt;
+-	unsigned int fw_ref;
+ 	int ret = 0;
+ 
+ 	drm_dbg(&pxp->xe->drm, "Terminating PXP\n");
+ 
+-	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
+-	if (!xe_force_wake_ref_has_domain(fw_ref, XE_FW_GT)) {
+-		ret = -EIO;
+-		goto out;
+-	}
++	CLASS(xe_force_wake, fw_ref)(gt_to_fw(gt), XE_FW_GT);
++	if (!xe_force_wake_ref_has_domain(fw_ref.domains, XE_FW_GT))
++		return -EIO;
+ 
+ 	/* terminate the hw session */
+ 	ret = xe_pxp_submit_session_termination(pxp, ARB_SESSION);
+ 	if (ret)
+-		goto out;
++		return ret;
+ 
+ 	ret = pxp_wait_for_session_state(pxp, ARB_SESSION, false);
+ 	if (ret)
+-		goto out;
++		return ret;
+ 
+ 	/* Trigger full HW cleanup */
+ 	xe_mmio_write32(&gt->mmio, KCR_GLOBAL_TERMINATE, 1);
+ 
+ 	/* now we can tell the GSC to clean up its own state */
+-	ret = xe_pxp_submit_session_invalidation(&pxp->gsc_res, ARB_SESSION);
+-
+-out:
+-	xe_force_wake_put(gt_to_fw(gt), fw_ref);
+-	return ret;
++	return xe_pxp_submit_session_invalidation(&pxp->gsc_res, ARB_SESSION);
+ }
+ 
+ static void mark_termination_in_progress(struct xe_pxp *pxp)
+@@ -326,14 +315,12 @@ static int kcr_pxp_set_status(const struct xe_pxp *pxp, bool enable)
+ {
+ 	u32 val = enable ? _MASKED_BIT_ENABLE(KCR_INIT_ALLOW_DISPLAY_ME_WRITES) :
+ 		  _MASKED_BIT_DISABLE(KCR_INIT_ALLOW_DISPLAY_ME_WRITES);
+-	unsigned int fw_ref;
+ 
+-	fw_ref = xe_force_wake_get(gt_to_fw(pxp->gt), XE_FW_GT);
+-	if (!xe_force_wake_ref_has_domain(fw_ref, XE_FW_GT))
++	CLASS(xe_force_wake, fw_ref)(gt_to_fw(pxp->gt), XE_FW_GT);
++	if (!xe_force_wake_ref_has_domain(fw_ref.domains, XE_FW_GT))
+ 		return -EIO;
+ 
+ 	xe_mmio_write32(&pxp->gt->mmio, KCR_INIT, val);
+-	xe_force_wake_put(gt_to_fw(pxp->gt), fw_ref);
+ 
+ 	return 0;
+ }
+@@ -453,34 +440,28 @@ int xe_pxp_init(struct xe_device *xe)
+ static int __pxp_start_arb_session(struct xe_pxp *pxp)
+ {
+ 	int ret;
+-	unsigned int fw_ref;
+ 
+-	fw_ref = xe_force_wake_get(gt_to_fw(pxp->gt), XE_FW_GT);
+-	if (!xe_force_wake_ref_has_domain(fw_ref, XE_FW_GT))
++	CLASS(xe_force_wake, fw_ref)(gt_to_fw(pxp->gt), XE_FW_GT);
++	if (!xe_force_wake_ref_has_domain(fw_ref.domains, XE_FW_GT))
+ 		return -EIO;
+ 
+-	if (pxp_session_is_in_play(pxp, ARB_SESSION)) {
+-		ret = -EEXIST;
+-		goto out_force_wake;
+-	}
++	if (pxp_session_is_in_play(pxp, ARB_SESSION))
++		return -EEXIST;
+ 
+ 	ret = xe_pxp_submit_session_init(&pxp->gsc_res, ARB_SESSION);
+ 	if (ret) {
+ 		drm_err(&pxp->xe->drm, "Failed to init PXP arb session: %pe\n", ERR_PTR(ret));
+-		goto out_force_wake;
++		return ret;
  	}
-@@ -360,7 +376,7 @@ static void show_run_ticks(struct drm_printer *p, struct drm_file *file)
  
- 	gpu_timestamp = xe_hw_engine_read_timestamp(hwe);
+ 	ret = pxp_wait_for_session_state(pxp, ARB_SESSION, true);
+ 	if (ret) {
+ 		drm_err(&pxp->xe->drm, "PXP ARB session failed to go in play%pe\n", ERR_PTR(ret));
+-		goto out_force_wake;
++		return ret;
+ 	}
  
--	xe_force_wake_put(gt_to_fw(hwe->gt), fw_ref);
-+	xe_force_wake_put(gt_to_fw(hwe->gt), fw_ref.domains);
- 	xe_pm_runtime_put(xe);
+ 	drm_dbg(&pxp->xe->drm, "PXP ARB session is active\n");
+-
+-out_force_wake:
+-	xe_force_wake_put(gt_to_fw(pxp->gt), fw_ref);
+-	return ret;
++	return 0;
+ }
  
- 	for (class = 0; class < XE_ENGINE_CLASS_MAX; class++) {
+ /**
 -- 
 2.51.1
 
