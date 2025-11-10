@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5AA04CCF9E3
-	for <intel-xe@archiver.kernel.org>; Mon, 10 Nov 2025 22:15:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6C644CCFA13
+	for <intel-xe@archiver.kernel.org>; Mon, 10 Nov 2025 22:15:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F0B0510E0A4;
-	Mon, 10 Nov 2025 22:15:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 16DD610E0D6;
+	Mon, 10 Nov 2025 22:15:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="itzNFnt3";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Lzz1/Bne";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CF80710E0D6
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 67FE510E0A4
  for <intel-xe@lists.freedesktop.org>; Mon, 10 Nov 2025 22:15:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1762812908; x=1794348908;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=veIsYAAVLzMf/3ucXnGFvGkhCn/J2rqcbCqid5NiVpw=;
- b=itzNFnt3HfNwylBD2EqC2SGRwuD7BvFScI4krAsitU4TZAE75jD7XMPd
- 24SZapifzwS9Ux7qIqlgZGk59ClX8wWdI4M6vLXQO6EpSaHimtz6+qicL
- G+RpkRAtxbCy4hI2dDQJ6DQCISSgDGu8X7/dDpNoXK7Pww6VdveTP2oY9
- 6g9z0V9KCN+Ra963fKKrvvvhdgJ71wlhbww/WJBQV+8WKyslFXGTzoYEG
- t+FlNRAuaRBH2jR21sPe/LRzT5pP9z9bL6qdxXrJI06CJ4gfL1e4SVQ67
- N8e69SEY6rfKiFJDa5qFYYIVKvIiG8q8ZZ9BIVIsb3KmuvTmy7orplwst Q==;
-X-CSE-ConnectionGUID: 9ITf9O0dRxu+ohEdYu/SGg==
-X-CSE-MsgGUID: z7c/sK3GSNm/B2uAn4TKyw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11609"; a="65025120"
-X-IronPort-AV: E=Sophos;i="6.19,294,1754982000"; d="scan'208";a="65025120"
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=4VexLu/MzCzmDL4dD+GwfgH09eXO6Pztaopf3nNQf/o=;
+ b=Lzz1/BneRszDB9A1TVA/EiuouVL6nh4wb1rdL4tjFCwKRfyhHEGKZaU/
+ k33Fd24zfoPy22JIN+Uou5qdoIcMY7AxUZWlAkYC1H8CMdDIQ3R7RBUJT
+ buScVwi+TUW5iD8dFGPiPyCL/KX5XuhzuswdjqaK3trDz6syTf9/eB29M
+ Xr7jV0Tffml/aaaNaMOt5HtBKj1SlcoYaHSa8Dv5GWqW0jXcjFXKNBVLW
+ VJMrodswqGIHNCIr4Wjp4IP4m3RYquhz3cS8NCVJ7eA0FOaaMrcWyI8ul
+ VTLhm+BO5d7IixnpohSOYTGc4mG8TvbCgwRhePmHchKlGbnj186x34P2w Q==;
+X-CSE-ConnectionGUID: Et8be/sES1OmaEq7FPhW3Q==
+X-CSE-MsgGUID: KyuAJPkVQQGLtWWljM1NEA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11609"; a="65025119"
+X-IronPort-AV: E=Sophos;i="6.19,294,1754982000"; d="scan'208";a="65025119"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  10 Nov 2025 14:15:07 -0800
-X-CSE-ConnectionGUID: 2PrrcBcQTjGg/U1MKAETKg==
-X-CSE-MsgGUID: 5HdMbHUbQk2uvMlCMer2BA==
+X-CSE-ConnectionGUID: niEYbQ+WRsm4nLCLScj+Bg==
+X-CSE-MsgGUID: +xkdWOIPQE+ffIHjWWs/TA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,294,1754982000"; d="scan'208";a="188961397"
+X-IronPort-AV: E=Sophos;i="6.19,294,1754982000"; d="scan'208";a="188961387"
 Received: from dut6304bmgfrd.fm.intel.com ([10.36.21.69])
  by orviesa008.jf.intel.com with ESMTP; 10 Nov 2025 14:15:07 -0800
 From: Xin Wang <x.wang@intel.com>
@@ -45,12 +45,10 @@ To: intel-xe@lists.freedesktop.org
 Cc: shuicheng.lin@intel.com, alex.zuo@intel.com, nitin.r.gote@intel.com,
  sanjay.kumar.yadav@intel.com, matthew.d.roper@intel.com,
  matthew.auld@intel.com, Xin Wang <x.wang@intel.com>
-Subject: [PATCH 1/1] drm/xe/pat: Add helper to query compression enable status
-Date: Mon, 10 Nov 2025 22:14:58 +0000
-Message-ID: <20251110221458.1864507-2-x.wang@intel.com>
+Subject: [PATCH 0/1] drm/xe/pat: Add helper to query compression enable status
+Date: Mon, 10 Nov 2025 22:14:57 +0000
+Message-ID: <20251110221458.1864507-1-x.wang@intel.com>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20251110221458.1864507-1-x.wang@intel.com>
-References: <20251110221458.1864507-1-x.wang@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -67,56 +65,24 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add xe_pat_index_get_comp_en() helper function to check whether
-compression is enabled for a given PAT index by extracting the
-XE2_COMP_EN bit from the PAT table entry.
+There are currently three in-flight patch series that each implement
+a similar compression query helper:
 
-CC: Nitin Gote <nitin.r.gote@intel.com>
-CC: Sanjay Yadav <sanjay.kumar.yadav@intel.com>
-CC: Matt Roper <matthew.d.roper@intel.com>
-Suggested-by: Matthew Auld <matthew.auld@intel.com>
-Signed-off-by: Xin Wang <x.wang@intel.com>
----
+  https://patchwork.freedesktop.org/series/156658/
+  https://patchwork.freedesktop.org/series/157036/
+  https://patchwork.freedesktop.org/series/154714/
+
+To avoid duplication and facilitate integration, let's extract this
+helper into a separate patch that can be merged first, allowing the
+other series to rebase on top of it.
+
+Xin Wang (1):
+  drm/xe/pat: Add helper to query compression enable status
+
  drivers/gpu/drm/xe/xe_pat.c |  6 ++++++
  drivers/gpu/drm/xe/xe_pat.h | 10 ++++++++++
  2 files changed, 16 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_pat.c b/drivers/gpu/drm/xe/xe_pat.c
-index 68171cceea18..1b4d5d3def0f 100644
---- a/drivers/gpu/drm/xe/xe_pat.c
-+++ b/drivers/gpu/drm/xe/xe_pat.c
-@@ -196,6 +196,12 @@ u16 xe_pat_index_get_coh_mode(struct xe_device *xe, u16 pat_index)
- 	return xe->pat.table[pat_index].coh_mode;
- }
- 
-+bool xe_pat_index_get_comp_en(struct xe_device *xe, u16 pat_index)
-+{
-+	WARN_ON(pat_index >= xe->pat.n_entries);
-+	return !!(xe->pat.table[pat_index].value & XE2_COMP_EN);
-+}
-+
- static void program_pat(struct xe_gt *gt, const struct xe_pat_table_entry table[],
- 			int n_entries)
- {
-diff --git a/drivers/gpu/drm/xe/xe_pat.h b/drivers/gpu/drm/xe/xe_pat.h
-index 05dae03a5f54..b8559120989e 100644
---- a/drivers/gpu/drm/xe/xe_pat.h
-+++ b/drivers/gpu/drm/xe/xe_pat.h
-@@ -58,4 +58,14 @@ int xe_pat_dump(struct xe_gt *gt, struct drm_printer *p);
-  */
- u16 xe_pat_index_get_coh_mode(struct xe_device *xe, u16 pat_index);
- 
-+/**
-+ * xe_pat_index_get_comp_en - Extract the compression enable flag for
-+ * the given pat_index.
-+ * @xe: xe device
-+ * @pat_index: The pat_index to query
-+ *
-+ * Return: true if compression is enabled for this pat_index, false otherwise.
-+ */
-+bool xe_pat_index_get_comp_en(struct xe_device *xe, u16 pat_index);
-+
- #endif
 -- 
 2.43.0
 
