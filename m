@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 29097CCF9E3
-	for <intel-xe@archiver.kernel.org>; Mon, 10 Nov 2025 17:56:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 932D2CCFA13
+	for <intel-xe@archiver.kernel.org>; Mon, 10 Nov 2025 18:01:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C5EDA10E08A;
-	Mon, 10 Nov 2025 17:56:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5877F10E2DE;
+	Mon, 10 Nov 2025 18:01:25 +0000 (UTC)
 Received: from 10055242dc62 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6D18010E08A;
- Mon, 10 Nov 2025 17:56:05 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8607197331381118889=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AB63410E2DE;
+ Mon, 10 Nov 2025 18:01:24 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/pcode=3A_Rework_erro?=
- =?utf-8?q?r_mapping_=28rev2=29?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/i915/de=3A_Register_p?=
+ =?utf-8?q?olling_cleanup?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lucas De Marchi" <lucas.demarchi@intel.com>
+To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 10 Nov 2025 17:56:05 -0000
-Message-ID: <176279736543.35461.5125309817266779467@10055242dc62>
+Date: Mon, 10 Nov 2025 18:01:24 -0000
+Message-ID: <176279768469.35467.5421934184670884660@10055242dc62>
 X-Patchwork-Hint: ignore
-References: <20251110-pcode-errmap-v2-1-cb18c8f54238@intel.com>
-In-Reply-To: <20251110-pcode-errmap-v2-1-cb18c8f54238@intel.com>
+References: <20251110172756.2132-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20251110172756.2132-1-ville.syrjala@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,121 +40,55 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8607197331381118889==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe/pcode: Rework error mapping (rev2)
-URL   : https://patchwork.freedesktop.org/series/157255/
-State : success
+Series: drm/i915/de: Register polling cleanup
+URL   : https://patchwork.freedesktop.org/series/157343/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-4081-168074b8e855f611374ca5338a7d4dca0fc62ffa_BAT -> xe-pw-157255v2_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+d9120d4d84745cf011b4b3efb338747e69179dfb
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 2114070788a38f8429aedc1faf23438d9f086675
+Author: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Date:   Mon Nov 10 19:27:55 2025 +0200
 
-Summary
--------
+    drm/i915/dpio: Use the intel_de_wait_ms() out value
+    
+    Utilize the 'out_value' output parameter of intel_de_wait_ms()
+    isntead of re-readiong the DPLL/DPIO_PHY_STATUS register after
+    polling has finished.
+    
+    Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
++ /mt/dim checkpatch a9792b1ab75123e4aceaba953a89809e745919c6 drm-intel
+658731ac3077 drm/i915/de: Implement register waits one way
+a3268024d19e drm/i915/de: Have intel_de_wait() hand out the final register value
+86c29acd092f drm/i915/de: Include units in intel_de_wait*() function names
+-:294: WARNING:LONG_LINE: line length of 104 exceeds 100 columns
+#294: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy.c:2816:
++		if (intel_de_wait_for_clear_ms(display, XELPDP_PORT_M2P_MSGBUS_CTL(display, port, lane),
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (13 -> 13)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-157255v2_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@xe_waitfence@engine:
-    - bat-dg2-oem2:       [FAIL][1] ([Intel XE#6519]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4081-168074b8e855f611374ca5338a7d4dca0fc62ffa/bat-dg2-oem2/igt@xe_waitfence@engine.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157255v2/bat-dg2-oem2/igt@xe_waitfence@engine.html
-
-  
-  [Intel XE#6519]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519
-
-
-Build changes
--------------
-
-  * Linux: xe-4081-168074b8e855f611374ca5338a7d4dca0fc62ffa -> xe-pw-157255v2
-
-  IGT_8617: 8617
-  xe-4081-168074b8e855f611374ca5338a7d4dca0fc62ffa: 168074b8e855f611374ca5338a7d4dca0fc62ffa
-  xe-pw-157255v2: 157255v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157255v2/index.html
-
---===============8607197331381118889==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+total: 0 errors, 1 warnings, 0 checks, 1017 lines checked
+2594223826a6 drm/i915/de: Introduce intel_de_wait_us()
+138ef48fe0ea drm/i915/de: Use intel_de_wait_us()
+e18c22634610 drm/i915/de: Use intel_de_wait_ms() for the obvious cases
+f58340e52a2a drm/i915/de: Nuke intel_de_wait_custom()
+d4a79f50146d drm/i915/de: Introduce intel_de_wait_for_{set, clear}_us()
+feddee473752 drm/i915/de: Use intel_de_wait_for_{set,clear}_us()
+f45394511c0c drm/i915/de: Use intel_de_wait_for_{set,clear}_ms()
+09f85f89e247 drm/1915/dpio: Stop using intel_de_wait_fw_ms()
+0af77b721ede drm/u195/de: Replace __intel_de_rmw_nowl() with intel_de_rmw_fw()
+40260f0cac20 drm/i915/de: Nuke wakelocks from intel_de_wait_fw_ms()
+c951edddd49b drm/i915/de: Replace __intel_de_wait_for_register_nowl() with intel_de_wait_fw_us_atomic()
+702e16883d67 drm/i915/power: Use the intel_de_wait_ms() out value
+2114070788a3 drm/i915/dpio: Use the intel_de_wait_ms() out value
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/pcode: Rework error mapping (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/157255/">https://patchwork.freedesktop.org/series/157255/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157255v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157255v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4081-168074b8e855f611374ca5338a7d4dca0fc62ffa_BAT -&gt; xe-pw-157255v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-157255v2_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_waitfence@engine:<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4081-168074b8e855f611374ca5338a7d4dca0fc62ffa/bat-dg2-oem2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519">Intel XE#6519</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157255v2/bat-dg2-oem2/igt@xe_waitfence@engine.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4081-168074b8e855f611374ca5338a7d4dca0fc62ffa -&gt; xe-pw-157255v2</li>
-</ul>
-<p>IGT_8617: 8617<br />
-  xe-4081-168074b8e855f611374ca5338a7d4dca0fc62ffa: 168074b8e855f611374ca5338a7d4dca0fc62ffa<br />
-  xe-pw-157255v2: 157255v2</p>
-
-</body>
-</html>
-
---===============8607197331381118889==--
