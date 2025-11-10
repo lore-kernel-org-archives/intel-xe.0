@@ -4,167 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E0D8FCCFA1A
-	for <intel-xe@archiver.kernel.org>; Mon, 10 Nov 2025 05:13:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EBA74CCF9E3
+	for <intel-xe@archiver.kernel.org>; Mon, 10 Nov 2025 06:20:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7D7AB10E079;
-	Mon, 10 Nov 2025 05:13:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A56C510E049;
+	Mon, 10 Nov 2025 06:20:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="VG9l0NM7";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="K6KDNa4e";
 	dkim-atps=neutral
-Received: from CO1PR03CU002.outbound.protection.outlook.com
- (mail-westus2azon11010013.outbound.protection.outlook.com [52.101.46.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 55C0710E079;
- Mon, 10 Nov 2025 05:13:54 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=zPEJRAU12/gFqqrpD9ZWbb2wodlLnK2Fa0xYNYaTPFVXenFw5qU1g79whRhS5gI1mkc9uehH3Ene2/spDQURo3VpOzjEmVBBbJjokO6MeHs0h6MsJY4ul5RG1zJVSaPnRMFNPhFJZ/kKtnXH6uXBJXvOkonWOEjzysakSP7FOumjcD33+a6mRxQp4u/Wzf68Fwp7wTowZUlZG+KUZQmtKqWCagOCPWZ4OiDm7rKmiiOIoB7wJ3lzpA3xrvrh2SnWFpipo2O7dmn4uutBt4M8T+F4jz/obsqWI6rEQDMc73LdgZ/l3sTeAk/sWU5g4Nzq4IwDivfxFgHv5ySVU9xkew==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=QIaRcwX0nvP0ObzDWRKBKNcBeBrYqTRt376NNf2i0EY=;
- b=Lf0Qbw4Ol4+A1YN+IBO4VrLzFLxpXYDrobYFpTSSWgN6YJMofvaPLCJOOLuxgiBXMCoMSBPoeJHcV1YiSUmzEPGbeRMNVlPNyE+N+NkE9LrYb0atXRCKt4NAZawaf+bFVS3PcvHMVLiZKdgT9Q3B5WoqcAQp8XZyMaqX9jNquH8Z8jlIErosJlDdP0Hjc/oqc2WIu/xatSSDNEWD4FAQRBeulEQUfpE7K7ICrrnKQSRM/lSEMsHA7JyT5dpzD2IVFbIdlucIemI1COmJvaqqa0WiM5oC9yBriYvG3YHdtGLsS8WeC3gHdMY+rfKBo3bnlNTLOXqe4cJ9lt62qt7L1Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=QIaRcwX0nvP0ObzDWRKBKNcBeBrYqTRt376NNf2i0EY=;
- b=VG9l0NM7QTT6EsssUDjWnfhabuTOgVFR+MkTK86iJ8/MPGhIHAsSZLeTYIGXaE7FgUHlEcCJXjGx4tucD6jbKXxy6D5TC/3OtqY1kfQOmk8PWh6x8UM14i5zIC3usUjtoeWu2UPFkHsEGqU1NRIlCKz/DNMsBvHDgGfor9fiWkB0hiID3Tii+DZ7uFEChzPJ20tZaozB2U5I6jrRrLqT+DEDXDsSuKNT7RFSwb8CH7ztjg+ePKJ1LzoDrzHkPBsHJ46rk0TbxUbb29C0LXrq4QBDOzmfJudJ03H2TS6zcwTs+XmD5iNnP+h+7KnAxYpcdJ3c/m1yhHfSphJjEh1YHQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from BY5PR12MB4116.namprd12.prod.outlook.com (2603:10b6:a03:210::13)
- by CH3PR12MB9145.namprd12.prod.outlook.com (2603:10b6:610:19b::8)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9298.16; Mon, 10 Nov
- 2025 05:13:49 +0000
-Received: from BY5PR12MB4116.namprd12.prod.outlook.com
- ([fe80::81b6:1af8:921b:3fb4]) by BY5PR12MB4116.namprd12.prod.outlook.com
- ([fe80::81b6:1af8:921b:3fb4%4]) with mapi id 15.20.9298.015; Mon, 10 Nov 2025
- 05:13:49 +0000
-Message-ID: <46a79392-3fd4-4481-8db5-1014a5563434@nvidia.com>
-Date: Sun, 9 Nov 2025 21:13:07 -0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: DRM_RAS for CPER Error logging?!
-To: Dave Airlie <airlied@gmail.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: "Zhang, Hawking" <Hawking.Zhang@amd.com>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Simona Vetter <simona.vetter@ffwll.ch>,
- "Deucher, Alexander" <Alexander.Deucher@amd.com>,
- Zack McKevitt <zachary.mckevitt@oss.qualcomm.com>,
- Lukas Wunner <lukas@wunner.de>,
- Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>,
- "Zhou1, Tao" <Tao.Zhou1@amd.com>, "Liu, Xiang(Dean)" <Xiang.Liu@amd.com>,
- Jason Gunthorpe <jgg@nvidia.com>, Steven Rostedt <rostedt@goodmis.org>,
- Will Davis <wdavis@nvidia.com>
-References: <20250929214415.326414-4-rodrigo.vivi@intel.com>
- <aQEVy1qjaDCwL_cc@intel.com>
- <BN9PR12MB52574F4EE2FF679D2230BBEFFCFAA@BN9PR12MB5257.namprd12.prod.outlook.com>
- <aQyftlgZN11YYQXy@intel.com>
- <CAPM=9tybY_LECdMNH6iw5pzxtd2=Z+4vwLt-_kuMQFUaEXsdpw@mail.gmail.com>
-Content-Language: en-US
-From: John Hubbard <jhubbard@nvidia.com>
-In-Reply-To: <CAPM=9tybY_LECdMNH6iw5pzxtd2=Z+4vwLt-_kuMQFUaEXsdpw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: PH7P221CA0054.NAMP221.PROD.OUTLOOK.COM
- (2603:10b6:510:33c::34) To BY5PR12MB4116.namprd12.prod.outlook.com
- (2603:10b6:a03:210::13)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 256EA10E049;
+ Mon, 10 Nov 2025 06:20:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1762755611; x=1794291611;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=OTKKqpj7k0FFchbFdlvnipI21/lXJ856vOkiRLO0Mck=;
+ b=K6KDNa4emOK+b4wVn8WwVKWD4vHO1ftRCcIP662Lkm5gligcTFhtTL4z
+ 5Kg8MMCpOhX1rkhXttZbQm0o35fRKXCf8J6pzdrcu5cwAhmKTmgr5lxda
+ aYTWrhmiIxPGaPFGefZLLUP2cJYqZUz1k2Hw1k3djwDzMHMBRxYko0Uq5
+ Kp6Ge9xVphwWqMN5/9AZYZU77NRAS9CB0jaNYFjzsMPz+DTQeomYKkJA/
+ 7Of4QFXfKC/Z0NbAejQ2W9hBX1bVB2ovwXDxRdSUvuhLMGbv4atvmka0K
+ 5KAqizUqd3mb221PG2I636dXrWE1B5MOYWrVJwsgRX+mvg1CQmgP1bE57 A==;
+X-CSE-ConnectionGUID: +tvgsG/0Rx+qrv1VqhDZ8A==
+X-CSE-MsgGUID: WErJhKEJSN6vV1AUPEgXbQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11608"; a="87432146"
+X-IronPort-AV: E=Sophos;i="6.19,293,1754982000"; d="scan'208";a="87432146"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Nov 2025 22:20:11 -0800
+X-CSE-ConnectionGUID: RmGn+C2CT2yjbISL/WOUBg==
+X-CSE-MsgGUID: aYrf1cYJTYCv3vgQS9ovIw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,293,1754982000"; d="scan'208";a="193604469"
+Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
+ by fmviesa004.fm.intel.com with ESMTP; 09 Nov 2025 22:20:08 -0800
+From: Suraj Kandpal <suraj.kandpal@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Cc: ankit.k.nautiyal@intel.com,
+	Suraj Kandpal <suraj.kandpal@intel.com>
+Subject: [PATCH v3 1/2] drm/i915/ltphy: Implement HDMI Algo for Pll state
+Date: Mon, 10 Nov 2025 11:49:40 +0530
+Message-Id: <20251110061940.545183-1-suraj.kandpal@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BY5PR12MB4116:EE_|CH3PR12MB9145:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1a9e8c5f-4978-4f6d-c4c9-08de2017ee65
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|366016|376014|7416014|10070799003; 
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?QnU0SGZzeWJDWWswVzNidkJnZWFlY3pxMnhJci9pT2ZVaTJGN3hFNXpmRHhs?=
- =?utf-8?B?VnpNRC9UWGpZK2hxN0UxemljUHpqMFhldU9XVk5Ea3I5TnZhY0lVZC8wekFI?=
- =?utf-8?B?NXBrQkhBOEtlamY0eFJOS1NCZlgvL1Iwa0wvcTRzc3VkV3VYRTFtOXVzMHNq?=
- =?utf-8?B?M0N0RjJhMXE2RWZxOHYweXVBcXRXeFNWRGJkbFhhN3JyRzRENG5aTEtya0xq?=
- =?utf-8?B?bU9YRWt4dmVrWmhReFVqbk9SUUZMQW5qc3ZKbyttVC9MTHZLZHd2MTEyNWgy?=
- =?utf-8?B?eDZVNnFpVy9LZWZsNXRmT1g4TnY3R0IxMjljZi9JNzcyY1FJT3QvSlhpNlUr?=
- =?utf-8?B?d3dWRGpJakVnanhhOVQ4b3doSUQ0cHV6R2NLMThXREcvUWRuRFUrZ0JHRXI2?=
- =?utf-8?B?RjJIRVprL2xDeWxEeGU5UWVNZXh2c1B6TFpTUHpXdUI1bHQ0Mml6Zm55SDhi?=
- =?utf-8?B?T3R5bnVyRzZJUGJGZXEzVDE1eW81ZEQ2NmpzMVRhQ1VNVzRzdTZBYVlDSDcz?=
- =?utf-8?B?b3k0dVNiUDZXQzJPd3lSZnF5bWY2RGtQRTNzejVvZXU3eGt3ZndBSllWWmtr?=
- =?utf-8?B?d3o4elNhUGZGbVp1NEx6Qk5DSzJKZEdKaG40d1pxYVFrUTNjMDBIS3IyZmQv?=
- =?utf-8?B?RWpqbXhwRzZacEgrcyt4S2c1M0NINU9lbFBmVUVTQjdOU1hoMG1DaXU2TEpU?=
- =?utf-8?B?Z2FFUHhRNUVHdEhoeWJjMUM0b2ZIay9WaDRrcUxVVVhDVDV3My9POXBxY2tT?=
- =?utf-8?B?U2NpSmdWcXZGQVpwbGhSM2c0cnMxcnhndHZsWHRYbXhTdTBjYmI5UEUyTEI3?=
- =?utf-8?B?ejZRRGNqcXpobkpoQTg0cGR2RFJzV05McGllWWNIOWJJRkl3Y3lBNFU4cXBR?=
- =?utf-8?B?Y2JadnU0K0NkRSt3OGx1STEzZDZ0L2Nod21oRjhpaUFoUzJQUGlhNElmQ2JE?=
- =?utf-8?B?WmxMeTlYUWM0WHMxUGNzWm53M0N3SmswQ0lVaGpPWDREWktHZzU0MXRpUDZO?=
- =?utf-8?B?WWhISmtBWVR1NThDUTh2aFViSmZQM0xWemQ0Qnc3b3V2QUJrM1dRblZXNkZS?=
- =?utf-8?B?cUlRRUt2UThkUTU3ODlKYzZxQkhuR3ZUM29mMXFUMXJjazFWNTYvcVp5OVo0?=
- =?utf-8?B?REtNV3BCYUplOUNFN0d1bk10dkFmQ0ppejJBQ3BSZDVGb0hRMUtEWXE4TGFN?=
- =?utf-8?B?T1h6R1ZrSlh5bHJtTlRCdFJKTVR4ZVI4WVY3a2dsc0dySkNKNUJVZHlLMzJx?=
- =?utf-8?B?R3hJNUFaNEo5bkcyVkNGTW9pOEpOeTByYU4vNW55dTRUdTZYcnJaZzdrWEVW?=
- =?utf-8?B?R1BkTDYzakRmZm51NU5jOGp5bUhWODBDVW85UkxPNWl2WnRYc0orMUFVellK?=
- =?utf-8?B?UHJWUGNsSDFWbXNONERMM1RUNkxmWkJSK1FnaG5Ic01zZUdHWTczZ2xjdFN3?=
- =?utf-8?B?cVROWVp4ei9MR00yVFB6a0VKVHlFK3k3VWNuZGQ0am0vMmZQQWFGRHg4eEFW?=
- =?utf-8?B?UG8rSXc0dVRWSmhRT2UzenAvVXo1YU9sblRmMjM1dUlZL0puZkVId2x4dUJu?=
- =?utf-8?B?TkZ1dG0yYjJyVXl0TTgwcjhuTnV2a2ZtbWV0MitEQWFHY2t0M1R4V0dNOHAw?=
- =?utf-8?B?Unl3Um1TRGx6SUZsYWhSL0c1dU44Z043bFI3RWZORVkwWktxU0FEaTZHd2lW?=
- =?utf-8?B?eFpsWHcvdEN1THBRVllEYmhRTUIxdzlLMVF1eEFRamdVSm56cjZyRU1EN1ds?=
- =?utf-8?B?bTdhOVBxd3V1L3c1SWhkRkJaTU10VC9xcEw1bXhycEplb25VUytUdy8yMEVL?=
- =?utf-8?B?alNSMUhNSzViSlltYlRpOHJyY0FrenpVL0FiQ2FKNlJINjMvTmZsV0tJbFgw?=
- =?utf-8?B?d1o3MkQzK0NEay9GRmpuc2xkWW5BV002REJXQXRscytrQ0pvamZUemVLWm9Y?=
- =?utf-8?Q?lLdaRkBGsDDMXfNKhhGD6INlGMFqh3+z?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BY5PR12MB4116.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014)(7416014)(10070799003); DIR:OUT;
- SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?cWhFWXB3YktBend6TXpidEYxM1JvSFl1Z2toWVZBb0ZnOGtvakR1M3VzOWZw?=
- =?utf-8?B?bDA3L2hwN2ZpM3N4MzNXNWVPOW9lL25PazliY3ZOUG9sUzZ2bDJhWFd3dnBa?=
- =?utf-8?B?cVRTRzZmNUtDRTFLb3lCd1NCemJWckJyT1U4TlgwWFBHQWVzUG1vdDEyTk91?=
- =?utf-8?B?RS8xWmtKUlBzT212N3dySEh6RDY0Y3FWTkllc25wckdPOWYwNzRJNmc2aUxH?=
- =?utf-8?B?RGRoc3BlNisyN3BqdFRyRjd1Z1hRVWxYTmNoRGhwNGpVVy8zVk5EM1QvK25U?=
- =?utf-8?B?cERwMTFwS2hoY1lET3ArZGg0Z2UxcnZzYVd1cUREd1N0TXVJN2t4MEJMaHJL?=
- =?utf-8?B?MUFlU29SMEFKbXBxN1hPN2NVZ2RmMjVPeHJPTGp6RnAzZXNNbXhPcGZCcmIv?=
- =?utf-8?B?WGozTzJycTRpbHM4YkQwVEpSclk5TytzR29zb1F5R1ZNU0M0VElyQ1Vobi9P?=
- =?utf-8?B?NjJZZmF1WmloY20vaExXTm8vbnRjYkdwNnRrU0Z3OWFxc3BMSVg1ZWhUOVZF?=
- =?utf-8?B?MjZqMWNBc3FNUFlaQjJVSW9GUThTT3dsR1pNSmFJVk52WkN6TStqWnJFOFNG?=
- =?utf-8?B?YXdWUCtnZXlRWjRKa2NPRngrYWNJcllQTVY0OHB1WmJVSU8vQTdHVEE2Z3dF?=
- =?utf-8?B?Y1lkOXRVbWR6UFNwc1ZMdHNxQTZmMGVibURQNEQzZlZJbUFOZ3ZRdGRRS25H?=
- =?utf-8?B?akZsenVpVkd0TUhJQU10L0hJdjIxWnFvNjNkaUJ4TE40blBWcGZvUkIvbGo0?=
- =?utf-8?B?SjU5djJCYVdQR1dBQ2NnY1JOandoZnpCYmtmbWNTSXR3NUQvQXhmUDVKbEZt?=
- =?utf-8?B?NUdrS3pBYkVKUkNVdUg0N3VNZWEwYnlVOG0rTTV4aHE1eVcvYWZxemYrdHNo?=
- =?utf-8?B?dGFQSjQyancxVXBzNGJVd29TM1NMazNtRkR3Z1dYUCtqNnZlZHl4Vzl3MTFS?=
- =?utf-8?B?Z0xBeEwxLzZtVms2UmpMNTlrVGdtV1JqV0hpTmVJeXFCN281ZEg0engrWTFK?=
- =?utf-8?B?TUR3N1N5RThFUDR0Mmo1eGh0SzQ3VHl4UFkyTVhyUU5COHZwYVljNlhYYXln?=
- =?utf-8?B?cWJNaTd3KzNLcS8xYzVIN3VPZnJaNVdkVmpzOGZhUWszNFFlWEVYenlzZXVw?=
- =?utf-8?B?NURtTmhENjZRWlQveWdGSlBmR0NCT0ltUEtTdUhRQ2VIeVZSeWs4OE00cTVP?=
- =?utf-8?B?TGtFMzBuUU54bzRlTHNXSzdHU1ExWWR2Sm9ZT1pyMWw3SmF3amJMYnhUUDRS?=
- =?utf-8?B?eWlCME9UekVHRGtGcFgvcFFPZG5ldEhOVjlLdzc3OE9lRkFFZ0puYXJGSE5q?=
- =?utf-8?B?MDU1b0JEYTM2WFFvQ2tjalRzaUlIK21JRFVHQ0RYdWNrWDVhN0pPM3d4NlRI?=
- =?utf-8?B?ZnhpV2FuWW1FaGdoQ1Jud2dmdmlremU0VExPTjdRYklFYllCZ2k0UHZpblVI?=
- =?utf-8?B?M1JYTU1uekROeXE4UXRzbEFZZWJRdkE5OWpjMHdhUFhZQjFCQ3ljVWh2TlFy?=
- =?utf-8?B?Slprd2ZSRnBQWDdGbnBjWVJQTHRXSmJDc3BmWFFOYU9WTlJXclZMamRqYkF5?=
- =?utf-8?B?THpUMFk4YXZvR1ZvdVlOd0tLK0xER2hVbStDeXZGYmlnTjlaVitYWkIwVFFk?=
- =?utf-8?B?dTByQ0VXYzM0Q3FtUk1zOVY3allGd0llR2JJcHQ0bjIrbEVpb0xzVUJQR0xI?=
- =?utf-8?B?SzJVVVdOYTBDQVFHZnV5bjRxejlsQXVLZUtuU1Vvdlo2eUx0WVpCbE01eE1m?=
- =?utf-8?B?SFVOcHhMdkJ6MXNFemxNWXk3SWp4bHZCMGsrUHdwa0UxNFZwQkx6aFFVd0Uv?=
- =?utf-8?B?d0cwNzdReTBzRUt6WC9NUFFPZGY2aFN4REJSeTJ1YTN6OFMweWZxWHo1c2lK?=
- =?utf-8?B?NjdNZ1FaUnVyY3RoMVRnbEs2UkNkU1hPenZsakk4UG10cVFSQXNVQy9UMUFy?=
- =?utf-8?B?YzV4aXZFQk5EdWZoNXFlTzc0alZVSWNuQTg0dk92N0VDajFtbVFZb1k2NnVQ?=
- =?utf-8?B?cVNFY3dKT3ExZzREUlYvUXpldURscHp1VmVCYjh5ZC9xOUYwcmNaQURuM25q?=
- =?utf-8?B?OE1vVFZDell0cEE2R3ZsOWpRZlNacy9uaXV1c0tiQ1R3dHJKM2xUT0ZuaDVL?=
- =?utf-8?B?cW5XSGs3ZklySW96a3g1UERQbHYwQ00xRzY0c2RvWjNmWmU5ZFVmc0E1bjhv?=
- =?utf-8?B?U2c9PQ==?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1a9e8c5f-4978-4f6d-c4c9-08de2017ee65
-X-MS-Exchange-CrossTenant-AuthSource: BY5PR12MB4116.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Nov 2025 05:13:49.0744 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: xObdYVHX/1n6EZHutxh3ECXB4b4KvxCp4lrUSB0Xy3YCfr+OULNy6PYQpXxaTWlP2ImSh6MAVUWJvE9oBCE+aQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB9145
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -179,71 +65,437 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 11/9/25 7:34 PM, Dave Airlie wrote:
-> On Thu, 6 Nov 2025 at 23:16, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
->>
->> On Wed, Oct 29, 2025 at 02:00:38AM +0000, Zhang, Hawking wrote:
->>>     [AMD Official Use Only - AMD Internal Distribution Only]
->>>     + [1]@Zhou1, Tao and [2]@Liu, Xiang(Dean) for the awareness.
->>>
->>>     RE - AMD folks, would you consider this to replace the current debugfs you
->>>     have?
->>>
->>>     [Hawking]:
->>>
->>>     Replacing the debugfs is not the primary concern.
->>
->> My initial plan was to go with debugfs like you are doing, but
->> I keep hearing complains that debugfs is not global and we need
->> to take into account some cases where debugfs is not available
->> in production images.
->>
->>> The main concern is
->>>     whether drm_ras can effectively support the necessary RAS information for
->>>     all device vendors, as this largely depends on the design of the hardware
->>>     and firmware.
->>
->> I fully agree. This is the main reason I'm doing my best to make the drm-ras
->> the most generic and expansible as possible.
->>
->> node registration with different node types, and names.
->>
->> I imagined something like:
->>
->> [{'FRU': 'String with device info', 'CPER': !@#$#!@#$},
->>
->> based on the format that the current non-standard-cper tracefs uses, with
->> the FRU + CPER. But we could avoid the FRU and make the FRU as node name.
->>
->>>
->>>     AMD is currently evaluating the proposed interface for error logging.
->>
->> The design of the details and the implementation is pretty much open for discussion
->> at this point.
->>
->> What I'm really looking forward is:
->>
->> to know if the path is acceptable overall
->> even if different drivers are opting for different node types?
->>
->> Is there any blocker on using this drm-ras/netlink for the CPER?
-> 
-> sorry for delay on this, I just had to read what CPER was :-)
-> 
-> I'm not offended by the idea of using tracefs here, I definitely think
-> debugfs is a bad idea coming from the enterprise distro land where we
-> don't like having it.
-> 
-> I'm ccing a few other people that might have opinions on exposing CPER
-> compatible logs for RAS purposes from devices, I assume there might be
-> more than GPUs wanting to do something like this,
-> 
-> Dave.
+Implement the HDMI Algorithm to dynamically create LT PHY state
+based on the port clock provided.
 
-I'm adding Will Davis, who was looking into CPER for our Open RM driver.
+Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+---
 
+v1 -> v2:
+-Add new macro functions and definitions for address assignment(Ankit)
+-Introduce a structure lt_phy_param for code readability (Ankit)
 
-thanks,
+v2 ->v3:
+-Seprate out param calulation wherever possible (Ankit)
+-Modify Macro to accept pll_reg (Ankit)
+
+ drivers/gpu/drm/i915/display/intel_lt_phy.c   | 345 +++++++++++++++++-
+ drivers/gpu/drm/i915/display/intel_lt_phy.h   |   3 +
+ .../gpu/drm/i915/display/intel_lt_phy_regs.h  |  16 +
+ 3 files changed, 362 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.c b/drivers/gpu/drm/i915/display/intel_lt_phy.c
+index af48d6cde226..d88dbfbe97b1 100644
+--- a/drivers/gpu/drm/i915/display/intel_lt_phy.c
++++ b/drivers/gpu/drm/i915/display/intel_lt_phy.c
+@@ -31,6 +31,32 @@
+ #define INTEL_LT_PHY_BOTH_LANES		(INTEL_LT_PHY_LANE1 |\
+ 					 INTEL_LT_PHY_LANE0)
+ #define MODE_DP				3
++#define Q32_TO_INT(x)	((x) >> 32)
++#define Q32_TO_FRAC(x)	((x) & 0xFFFFFFFF)
++#define DCO_MIN_FREQ_MHZ	11850
++#define REF_CLK_KHZ	38400
++#define TDC_RES_MULTIPLIER	10000000ULL
++
++struct phy_param_t {
++	u32 val;
++	u32 addr;
++};
++
++struct lt_phy_params {
++	struct phy_param_t pll_reg4;
++	struct phy_param_t pll_reg3;
++	struct phy_param_t pll_reg5;
++	struct phy_param_t pll_reg57;
++	struct phy_param_t lf;
++	struct phy_param_t tdc;
++	struct phy_param_t ssc;
++	struct phy_param_t bias2;
++	struct phy_param_t bias_trim;
++	struct phy_param_t dco_med;
++	struct phy_param_t dco_fine;
++	struct phy_param_t ssc_inj;
++	struct phy_param_t surv_bonus;
++};
+ 
+ static const struct intel_lt_phy_pll_state xe3plpd_lt_dp_rbr = {
+ 	.clock = 162000,
+@@ -1356,10 +1382,322 @@ intel_lt_phy_pll_is_ssc_enabled(struct intel_crtc_state *crtc_state,
+ 	return false;
+ }
+ 
++static u64 mul_q32_u32(u64 a_q32, u32 b)
++{
++	u64 p0, p1, carry, result;
++	u64 x_hi = a_q32 >> 32;
++	u64 x_lo = a_q32 & 0xFFFFFFFFULL;
++
++	p0 = x_lo * (u64)b;
++	p1 = x_hi * (u64)b;
++	carry = p0 >> 32;
++	result = (p1 << 32) + (carry << 32) + (p0 & 0xFFFFFFFFULL);
++
++	return result;
++}
++
++static bool
++calculate_target_dco_and_loop_cnt(u32 frequency_khz, u64 *target_dco_mhz, u32 *loop_cnt)
++{
++	u32 ppm_value = 1;
++	u32 dco_min_freq = DCO_MIN_FREQ_MHZ;
++	u32 dco_max_freq = 16200;
++	u32 dco_min_freq_low = 10000;
++	u32 dco_max_freq_low = 12000;
++	u64 val = 0;
++	u64 refclk_khz = REF_CLK_KHZ;
++	u64 m2div = 0;
++	u64 val_with_frac = 0;
++	u64 ppm = 0;
++	u64 temp0 = 0, temp1, scale;
++	int ppm_cnt, dco_count, y;
++
++	for (ppm_cnt = 0; ppm_cnt < 5; ppm_cnt++) {
++		ppm_value = ppm_cnt == 2 ? 2 : 1;
++		for (dco_count = 0; dco_count < 2; dco_count++) {
++			if (dco_count == 1) {
++				dco_min_freq = dco_min_freq_low;
++				dco_max_freq = dco_max_freq_low;
++			}
++			for (y = 2; y <= 255; y += 2) {
++				val = div64_u64((u64)y * frequency_khz, 200);
++				m2div = div64_u64(((u64)(val) << 32), refclk_khz);
++				m2div = mul_q32_u32(m2div, 500);
++				val_with_frac = mul_q32_u32(m2div, refclk_khz);
++				val_with_frac = div64_u64(val_with_frac, 500);
++				temp1 = Q32_TO_INT(val_with_frac);
++				temp0 = (temp1 > val) ? (temp1 - val) :
++					(val - temp1);
++				ppm = div64_u64(temp0, val);
++				if (temp1 >= dco_min_freq &&
++				    temp1 <= dco_max_freq &&
++				    ppm < ppm_value) {
++					/* Round to two places */
++					scale = (1ULL << 32) / 100;
++					temp0 = DIV_ROUND_UP_ULL(val_with_frac,
++								 scale);
++					*target_dco_mhz = temp0 * scale;
++					*loop_cnt = y;
++					return true;
++				}
++			}
++		}
++	}
++
++	return false;
++}
++
++static void set_phy_vdr_addresses(struct lt_phy_params *p, int pll_type)
++{
++	p->pll_reg4.addr = PLL_REG_ADDR(PLL_REG4_ADDR, pll_type);
++	p->pll_reg3.addr = PLL_REG_ADDR(PLL_REG3_ADDR, pll_type);
++	p->pll_reg5.addr = PLL_REG_ADDR(PLL_REG5_ADDR, pll_type);
++	p->pll_reg57.addr = PLL_REG_ADDR(PLL_REG57_ADDR, pll_type);
++	p->lf.addr = PLL_REG_ADDR(PLL_LF_ADDR, pll_type);
++	p->tdc.addr = PLL_REG_ADDR(PLL_TDC_ADDR, pll_type);
++	p->ssc.addr = PLL_REG_ADDR(PLL_SSC_ADDR, pll_type);
++	p->bias2.addr = PLL_REG_ADDR(PLL_BIAS2_ADDR, pll_type);
++	p->bias_trim.addr = PLL_REG_ADDR(PLL_BIAS_TRIM_ADDR, pll_type);
++	p->dco_med.addr = PLL_REG_ADDR(PLL_DCO_MED_ADDR, pll_type);
++	p->dco_fine.addr = PLL_REG_ADDR(PLL_DCO_FINE_ADDR, pll_type);
++	p->ssc_inj.addr = PLL_REG_ADDR(PLL_SSC_INJ_ADDR, pll_type);
++	p->surv_bonus.addr = PLL_REG_ADDR(PLL_SURV_BONUS_ADDR, pll_type);
++}
++
++static void compute_ssc(struct lt_phy_params *p, u32 ana_cfg)
++{
++	int ssc_stepsize = 0;
++	int ssc_steplen = 0;
++	int ssc_steplog = 0;
++
++	p->ssc.val = (1 << 31) | (ana_cfg << 24) | (ssc_steplog << 16) |
++		(ssc_stepsize << 8) | ssc_steplen;
++}
++
++static void compute_bias2(struct lt_phy_params *p)
++{
++	u32 ssc_en_local = 0;
++	u64 dynctrl_ovrd_en = 0;
++
++	p->bias2.val = (dynctrl_ovrd_en << 31) | (ssc_en_local << 30) |
++		(1 << 23) | (1 << 24) | (32 << 16) | (1 << 8);
++}
++
++static void compute_tdc(struct lt_phy_params *p, u64 tdc_fine)
++{
++	u32 settling_time = 15;
++	u32 bias_ovr_en = 1;
++	u32 coldstart = 1;
++	u32 true_lock = 2;
++	u32 early_lock = 1;
++	u32 lock_ovr_en = 1;
++	u32 lock_thr = tdc_fine ? 3 : 5;
++	u32 unlock_thr = tdc_fine ? 5 : 11;
++
++	p->tdc.val = (u32)((2 << 30) + (settling_time << 16) + (bias_ovr_en << 15) +
++		    (lock_ovr_en << 14) + (coldstart << 12) + (true_lock << 10) +
++		    (early_lock << 8) + (unlock_thr << 4) + lock_thr);
++}
++
++static void compute_dco_med(struct lt_phy_params *p)
++{
++	u32 cselmed_en = 0;
++	u32 cselmed_dyn_adj = 0;
++	u32 cselmed_ratio = 39;
++	u32 cselmed_thr = 8;
++
++	p->dco_med.val = (cselmed_en << 31) + (cselmed_dyn_adj << 30) +
++		(cselmed_ratio << 24) + (cselmed_thr << 21);
++}
++
++static void compute_dco_fine(struct lt_phy_params *p, u32 dco_12g)
++{
++	u32 dco_fine0_tune_2_0 = 0;
++	u32 dco_fine1_tune_2_0 = 0;
++	u32 dco_fine2_tune_2_0 = 0;
++	u32 dco_fine3_tune_2_0 = 0;
++	u32 dco_dith0_tune_2_0 = 0;
++	u32 dco_dith1_tune_2_0 = 0;
++
++	dco_fine0_tune_2_0 = dco_12g ? 4 : 3;
++	dco_fine1_tune_2_0 = 2;
++	dco_fine2_tune_2_0 = dco_12g ? 2 : 1;
++	dco_fine3_tune_2_0 = 5;
++	dco_dith0_tune_2_0 = dco_12g ? 4 : 3;
++	dco_dith1_tune_2_0 = 2;
++
++	p->dco_fine.val = (dco_dith1_tune_2_0 << 19)
++		+ (dco_dith0_tune_2_0 << 16)
++		+ (dco_fine3_tune_2_0 << 11)
++		+ (dco_fine2_tune_2_0 << 8)
++		+ (dco_fine1_tune_2_0 << 3)
++		+ dco_fine0_tune_2_0;
++}
++
++int
++intel_lt_phy_calculate_hdmi_state(struct intel_lt_phy_pll_state *lt_state,
++				  u32 frequency_khz)
++{
++#define DATA_ASSIGN(i, pll_reg)	\
++	do {			\
++		lt_state->data[i][0] = (u8)((((pll_reg).val) & 0xFF000000) >> 24); \
++		lt_state->data[i][1] = (u8)((((pll_reg).val) & 0x00FF0000) >> 16); \
++		lt_state->data[i][2] = (u8)((((pll_reg).val) & 0x0000FF00) >> 8); \
++		lt_state->data[i][3] = (u8)((((pll_reg).val) & 0x000000FF));	\
++	} while (0)
++#define ADDR_ASSIGN(i, pll_reg)	\
++	do {			\
++		lt_state->addr_msb[i] = ((pll_reg).addr >> 8) & 0xFF;	\
++		lt_state->addr_lsb[i] = (pll_reg).addr & 0xFF;		\
++	} while (0)
++
++	bool found = false;
++	struct lt_phy_params p;
++	u32 dco_fmin = DCO_MIN_FREQ_MHZ;
++	u64 refclk_khz = REF_CLK_KHZ;
++	u64 m2div = 0;
++	u64 target_dco_mhz = 0;
++	u64 tdc_fine;
++	u64 tdc_targetcnt;
++	u64 feedfwd_gain;
++	u64 feedfwd_cal_en;
++	u64 tdc_res = 30;
++	u32 prop_coeff;
++	u32 int_coeff;
++	u32 ndiv = 1;
++	u32 m1div = 1;
++	u32 m2div_int;
++	u32 m2div_frac;
++	u32 frac_en;
++	u32 ana_cfg;
++	u32 loop_cnt = 0;
++	u32 gain_ctrl = 2;
++	u32 refclk_mhz_int = 38;
++	u32 postdiv = 0;
++	u32 d6_new = 0;
++	u32 dco_12g = 0;
++	u32 pll_type = 0;
++	u32 d1 = 2;
++	u32 d3 = 5;
++	u32 d5 = 0;
++	u32 d6 = 0;
++	u32 d7;
++	u32 d8 = 0;
++	u32 d4 = 0;
++	u32 bonus_7_0 = 0;
++	u32 csel2fo = 11;
++	u32 csel2fo_ovrd_en = 1;
++	u64 temp0, temp1, temp2, temp3;
++
++	p.surv_bonus.val = (bonus_7_0 << 16);
++	p.pll_reg4.val = (refclk_mhz_int << 17) +
++		(ndiv << 9) + (1 << 4);
++	p.bias_trim.val = (csel2fo_ovrd_en << 30) + (csel2fo << 24);
++	p.ssc_inj.val = 0;
++	found = calculate_target_dco_and_loop_cnt(frequency_khz, &target_dco_mhz, &loop_cnt);
++	if (!found)
++		return -EINVAL;
++
++	m2div = div64_u64(target_dco_mhz, (refclk_khz * ndiv * m1div));
++	m2div = mul_q32_u32(m2div, 1000);
++	if (Q32_TO_INT(m2div) > 511)
++		return -EINVAL;
++
++	m2div_int = (u32)Q32_TO_INT(m2div);
++	m2div_frac = (u32)(Q32_TO_FRAC(m2div));
++	frac_en = (m2div_frac > 0) ? 1 : 0;
++
++	if (frac_en > 0)
++		tdc_res = 70;
++	else
++		tdc_res = 36;
++	tdc_fine = tdc_res > 50 ? 1 : 0;
++	temp0 = tdc_res * 40 * 11;
++	temp1 = div64_u64(((4 * TDC_RES_MULTIPLIER) + temp0) * 500, temp0 * refclk_khz);
++	temp2 = div64_u64(temp0 * refclk_khz, 1000);
++	temp3 = div64_u64(((8 * TDC_RES_MULTIPLIER) + temp2), temp2);
++	tdc_targetcnt = tdc_res < 50 ? (int)(temp1) : (int)(temp3);
++	tdc_targetcnt = (int)(tdc_targetcnt / 2);
++	temp0 = mul_q32_u32(target_dco_mhz, tdc_res);
++	temp0 >>= 32;
++	feedfwd_gain = (m2div_frac > 0) ? div64_u64(m1div * TDC_RES_MULTIPLIER, temp0) : 0;
++	feedfwd_cal_en = frac_en;
++
++	temp0 = (u32)Q32_TO_INT(target_dco_mhz);
++	prop_coeff = (temp0 >= dco_fmin) ? 3 : 4;
++	int_coeff = (temp0 >= dco_fmin) ? 7 : 8;
++	ana_cfg = (temp0 >= dco_fmin) ? 8 : 6;
++	dco_12g = (temp0 >= dco_fmin) ? 0 : 1;
++
++	if (temp0 > 12960)
++		d7 = 10;
++	else
++		d7 = 8;
++
++	d8 = loop_cnt / 2;
++	d4 = d8 * 2;
++
++	/* Compute pll_reg3,5,57 & lf */
++	p.pll_reg3.val = (u32)((d4 << 21) + (d3 << 18) + (d1 << 15) + (m2div_int << 5));
++	p.pll_reg5.val = m2div_frac;
++	postdiv = (d5 == 0) ? 9 : d5;
++	d6_new = (d6 == 0) ? 40 : d6;
++	p.pll_reg57.val = (d7 << 24) + (postdiv << 15) + (d8 << 7) + d6_new;
++	p.lf.val = (u32)((frac_en << 31) + (1 << 30) + (frac_en << 29) +
++		   (feedfwd_cal_en << 28) + (tdc_fine << 27) +
++		   (gain_ctrl << 24) + (feedfwd_gain << 16) +
++		   (int_coeff << 12) + (prop_coeff << 8) + tdc_targetcnt);
++
++	/* Compute ssc / bias2 */
++	compute_ssc(&p, ana_cfg);
++	compute_bias2(&p);
++
++	/* Compute tdc/dco_med */
++	compute_tdc(&p, tdc_fine);
++	compute_dco_med(&p);
++
++	/* Compute dcofine */
++	compute_dco_fine(&p, dco_12g);
++
++	pll_type = ((frequency_khz == 10000) || (frequency_khz == 20000) ||
++		    (frequency_khz == 2500) || (dco_12g == 1)) ? 0 : 1;
++	set_phy_vdr_addresses(&p, pll_type);
++
++	lt_state->config[0] = 0x84;
++	lt_state->config[1] = 0x2d;
++	ADDR_ASSIGN(0, p.pll_reg4);
++	ADDR_ASSIGN(1, p.pll_reg3);
++	ADDR_ASSIGN(2, p.pll_reg5);
++	ADDR_ASSIGN(3, p.pll_reg57);
++	ADDR_ASSIGN(4, p.lf);
++	ADDR_ASSIGN(5, p.tdc);
++	ADDR_ASSIGN(6, p.ssc);
++	ADDR_ASSIGN(7, p.bias2);
++	ADDR_ASSIGN(8, p.bias_trim);
++	ADDR_ASSIGN(9, p.dco_med);
++	ADDR_ASSIGN(10, p.dco_fine);
++	ADDR_ASSIGN(11, p.ssc_inj);
++	ADDR_ASSIGN(12, p.surv_bonus);
++	DATA_ASSIGN(0, p.pll_reg4);
++	DATA_ASSIGN(1, p.pll_reg3);
++	DATA_ASSIGN(2, p.pll_reg5);
++	DATA_ASSIGN(3, p.pll_reg57);
++	DATA_ASSIGN(4, p.lf);
++	DATA_ASSIGN(5, p.tdc);
++	DATA_ASSIGN(6, p.ssc);
++	DATA_ASSIGN(7, p.bias2);
++	DATA_ASSIGN(8, p.bias_trim);
++	DATA_ASSIGN(9, p.dco_med);
++	DATA_ASSIGN(10, p.dco_fine);
++	DATA_ASSIGN(11, p.ssc_inj);
++	DATA_ASSIGN(12, p.surv_bonus);
++
++	return 0;
++}
++
+ static int
+ intel_lt_phy_calc_hdmi_port_clock(const struct intel_lt_phy_pll_state *lt_state)
+ {
+-#define REF_CLK_KHZ 38400
+ #define REGVAL(i) (				\
+ 	(lt_state->data[i][3])		|	\
+ 	(lt_state->data[i][2] << 8)	|	\
+@@ -1472,7 +1810,10 @@ intel_lt_phy_pll_calc_state(struct intel_crtc_state *crtc_state,
+ 		}
+ 	}
+ 
+-	/* TODO: Add a function to compute the data for HDMI TMDS*/
++	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI)) {
++		return intel_lt_phy_calculate_hdmi_state(&crtc_state->dpll_hw_state.ltpll,
++							 crtc_state->port_clock);
++	}
+ 
+ 	return -EINVAL;
+ }
+diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.h b/drivers/gpu/drm/i915/display/intel_lt_phy.h
+index a538d4c69210..b7911acd7dcd 100644
+--- a/drivers/gpu/drm/i915/display/intel_lt_phy.h
++++ b/drivers/gpu/drm/i915/display/intel_lt_phy.h
+@@ -35,6 +35,9 @@ void intel_lt_phy_pll_readout_hw_state(struct intel_encoder *encoder,
+ 				       struct intel_lt_phy_pll_state *pll_state);
+ void intel_lt_phy_pll_state_verify(struct intel_atomic_state *state,
+ 				   struct intel_crtc *crtc);
++int
++intel_lt_phy_calculate_hdmi_state(struct intel_lt_phy_pll_state *lt_state,
++				  u32 frequency_khz);
+ void intel_xe3plpd_pll_enable(struct intel_encoder *encoder,
+ 			      const struct intel_crtc_state *crtc_state);
+ void intel_xe3plpd_pll_disable(struct intel_encoder *encoder);
+diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy_regs.h b/drivers/gpu/drm/i915/display/intel_lt_phy_regs.h
+index 9223487d764e..dc7b7679cd06 100644
+--- a/drivers/gpu/drm/i915/display/intel_lt_phy_regs.h
++++ b/drivers/gpu/drm/i915/display/intel_lt_phy_regs.h
+@@ -72,4 +72,20 @@
+ #define XE3PLPD_PORT_P2M_MSGBUS_STATUS_P2P(port, lane)	 _XE3PLPD_PORT_P2M_MSGBUS_STATUS_P2P(__xe2lpd_port_idx(port), \
+ 											    lane)
+ #define   XE3LPD_PORT_P2M_ADDR_MASK			REG_GENMASK(11, 0)
++
++#define PLL_REG4_ADDR		0x8510
++#define PLL_REG3_ADDR		0x850C
++#define PLL_REG5_ADDR		0x8514
++#define PLL_REG57_ADDR		0x85E4
++#define PLL_LF_ADDR		0x860C
++#define PLL_TDC_ADDR		0x8610
++#define PLL_SSC_ADDR		0x8614
++#define PLL_BIAS2_ADDR		0x8618
++#define PLL_BIAS_TRIM_ADDR	0x8648
++#define PLL_DCO_MED_ADDR	0x8640
++#define PLL_DCO_FINE_ADDR	0x864C
++#define PLL_SSC_INJ_ADDR	0x8624
++#define PLL_SURV_BONUS_ADDR	0x8644
++#define PLL_TYPE_OFFSET		0x200
++#define PLL_REG_ADDR(base, pll_type)		((pll_type) ? (base) + PLL_TYPE_OFFSET : (base))
+ #endif /* __INTEL_LT_PHY_REGS_H__ */
 -- 
-John Hubbard
+2.34.1
 
