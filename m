@@ -4,51 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7E961CCFA13
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A3A0ECCF9E3
 	for <intel-xe@archiver.kernel.org>; Mon, 10 Nov 2025 23:20:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2A5BA10E45A;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3441C10E385;
 	Mon, 10 Nov 2025 23:20:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KaoU/Q1e";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VtFiOEBt";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 378A110E444
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8901F10E45A
  for <intel-xe@lists.freedesktop.org>; Mon, 10 Nov 2025 23:20:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1762816832; x=1794352832;
+ t=1762816833; x=1794352833;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=+ORIlrfkqlas7Sx23S78s8YIliKIFKSOc0wQ5fO0Lpw=;
- b=KaoU/Q1eZvcLifno6MXo0yYqN/X/eHchrgWgiages5+imxX7O5tggT7v
- xeIbmEdMVJTW0fJi4EMTIz8FfJ8vuUT89roizp40z416NBNrHFpJ0MqD0
- EQAgopAtUoujA3IdhO236FAnRFFZOpr4ofvGekLmBMJGZTwzVv611vTNC
- PQJVzbXw56xdcY1KZGcPDAqurmyIFA8oL25Om5xrCaOTYAWy+2AzCRN9t
- mmP/PaEp7jA7OyxEGnhcgFKhOyEZ7MD+jZ7e9r51ygdHRk9B4utmADwMR
- +YTBixOWVgH2pQh6w2dTBhiECXav3kgnaVE9aiAqTkev4nRd3/Rx0Y2RG g==;
-X-CSE-ConnectionGUID: srEzVEolTx+PA/I3mG3D0Q==
-X-CSE-MsgGUID: sznbWPgBSou0NqUGZAVfHA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11609"; a="67480248"
-X-IronPort-AV: E=Sophos;i="6.19,294,1754982000"; d="scan'208";a="67480248"
+ bh=lbUeWbp9R0akmXoPs+vvuQ0mfz7JxF3mC8si/IP4yJU=;
+ b=VtFiOEBt0Ukgj1BB8moI4xgDzjBeW33NYQdeNIkwldbZdq47/XPD/0/T
+ U7DELZF6+Myw2sZVuAATzvSmmr5O1QjUGNLK4LxpDKNf0rXp1MqoQw5DO
+ QTg6/luDV3XUAYw08jyujRc1vNao+jvcdiKCpdfoMapEmB3DFwOaq6Tfh
+ yhWvuFoit1H2LNdLMEU6+l01vKYvjdneDueilQlU9HVjTy2rToyCD3RQo
+ PjOWP5mBx6i3sPKQnHGoYlSZP0cVFHVr/+a8ASmYSeEbhWEVWZIj5npuP
+ OLjvR04f9wyyTrlbCZ5d+xFnvft3L95TbPsm0h/Sa8xQ+GO6bYFw4cqVw g==;
+X-CSE-ConnectionGUID: hhZiC4xSRvCNCT8htxvC8A==
+X-CSE-MsgGUID: Q5SIhAMISOqPxz8P1MLtfQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11609"; a="67480250"
+X-IronPort-AV: E=Sophos;i="6.19,294,1754982000"; d="scan'208";a="67480250"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  10 Nov 2025 15:20:32 -0800
-X-CSE-ConnectionGUID: yCDGg5c3R7apWN34KJsyow==
-X-CSE-MsgGUID: u/3wG4fHRIKx+cOf+SI/Fw==
+X-CSE-ConnectionGUID: picvqgI7RkqUqIW+MiIctw==
+X-CSE-MsgGUID: RA8gHsKJTHiORHAVMx5YcA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,294,1754982000"; d="scan'208";a="189243954"
+X-IronPort-AV: E=Sophos;i="6.19,294,1754982000"; d="scan'208";a="189243960"
 Received: from mdroper-desk1.fm.intel.com ([10.1.39.133])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  10 Nov 2025 15:20:31 -0800
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: matthew.d.roper@intel.com,
-	Ashutosh Dixit <ashutosh.dixit@intel.com>
-Subject: [PATCH v2 03/30] drm/xe/oa: Store forcewake reference in stream
- structure
-Date: Mon, 10 Nov 2025 15:20:21 -0800
-Message-ID: <20251110232017.1475869-35-matthew.d.roper@intel.com>
+Cc: matthew.d.roper@intel.com
+Subject: [PATCH v2 05/30] drm/xe/pm: Add scope-based cleanup helper for
+ runtime PM
+Date: Mon, 10 Nov 2025 15:20:23 -0800
+Message-ID: <20251110232017.1475869-37-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.51.1
 In-Reply-To: <20251110232017.1475869-32-matthew.d.roper@intel.com>
 References: <20251110232017.1475869-32-matthew.d.roper@intel.com>
@@ -68,77 +67,75 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Calls to xe_force_wake_put() should generally pass the exact reference
-returned by xe_force_wake_get().  Since OA grabs and releases forcewake
-in different functions, xe_oa_stream_destroy() is currently calling put
-with a hardcoded ALL mask.  Although this works for now, it's somewhat
-fragile in case OA moves to more precise power domain management in the
-future.
+Add a scope-based helpers for runtime PM that may be used to simplify
+cleanup logic and potentially avoid goto-based cleanup.
 
-Stash the original reference obtained during stream initialization
-inside the stream structure so that we can use it directly when the
-stream is destroyed.
+For example, using
 
-Cc: Ashutosh Dixit <ashutosh.dixit@intel.com>
+        guard(xe_pm_runtime)(xe);
+
+will get runtime PM and cause a corresponding put to occur automatically
+when the current scope is exited.  'xe_pm_runtime_noresume' can be used
+as a guard replacement for the corresponding 'noresume' variant.
+There's also an xe_pm_runtime_ioctl conditional guard that can be used
+as a replacement for xe_runtime_ioctl():
+
+        ACQUIRE(xe_pm_runtime_ioctl, pm)(xe);
+        if ((ret = ACQUIRE_ERR(xe_pm_runtime_ioctl, &pm)) < 0)
+                /* failed */
+
+In a few rare cases (such as gt_reset_worker()) we need to ensure that
+runtime PM is dropped when the function is exited by any means
+(including error paths), but the function does not need to acquire
+runtime PM because that has already been done earlier by a different
+function.  For these special cases, an 'xe_pm_runtime_release_only'
+guard can be used to handle the release without doing an acquisition.
+
+These guards will be used in future patches to eliminate some of our
+goto-based cleanup.
+
+v2:
+ - Specify success condition for xe_pm runtime_ioctl as _RET >= 0 so
+   that positive values will be properly identified as success and
+   trigger destructor cleanup properly.
+
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/xe_oa.c       | 9 ++++-----
- drivers/gpu/drm/xe/xe_oa_types.h | 3 +++
- 2 files changed, 7 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/xe/xe_pm.h | 17 +++++++++++++++++
+ 1 file changed, 17 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
-index 7a13a7bd99a6..87a2bf53d661 100644
---- a/drivers/gpu/drm/xe/xe_oa.c
-+++ b/drivers/gpu/drm/xe/xe_oa.c
-@@ -870,7 +870,7 @@ static void xe_oa_stream_destroy(struct xe_oa_stream *stream)
+diff --git a/drivers/gpu/drm/xe/xe_pm.h b/drivers/gpu/drm/xe/xe_pm.h
+index f7f89a18b6fc..6b27039e7b2d 100644
+--- a/drivers/gpu/drm/xe/xe_pm.h
++++ b/drivers/gpu/drm/xe/xe_pm.h
+@@ -6,6 +6,7 @@
+ #ifndef _XE_PM_H_
+ #define _XE_PM_H_
  
- 	xe_oa_free_oa_buffer(stream);
++#include <linux/cleanup.h>
+ #include <linux/pm_runtime.h>
  
--	xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL);
-+	xe_force_wake_put(gt_to_fw(gt), stream->fw_ref);
- 	xe_pm_runtime_put(stream->oa->xe);
+ #define DEFAULT_VRAM_THRESHOLD 300 /* in MB */
+@@ -37,4 +38,20 @@ int xe_pm_block_on_suspend(struct xe_device *xe);
+ void xe_pm_might_block_on_suspend(void);
+ int xe_pm_module_init(void);
  
- 	/* Wa_1509372804:pvc: Unset the override of GUCRC mode to enable rc6 */
-@@ -1717,7 +1717,6 @@ static int xe_oa_stream_init(struct xe_oa_stream *stream,
- 			     struct xe_oa_open_param *param)
- {
- 	struct xe_gt *gt = param->hwe->gt;
--	unsigned int fw_ref;
- 	int ret;
- 
- 	stream->exec_q = param->exec_q;
-@@ -1772,8 +1771,8 @@ static int xe_oa_stream_init(struct xe_oa_stream *stream,
- 
- 	/* Take runtime pm ref and forcewake to disable RC6 */
- 	xe_pm_runtime_get(stream->oa->xe);
--	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
--	if (!xe_force_wake_ref_has_domain(fw_ref, XE_FORCEWAKE_ALL)) {
-+	stream->fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
-+	if (!xe_force_wake_ref_has_domain(stream->fw_ref, XE_FORCEWAKE_ALL)) {
- 		ret = -ETIMEDOUT;
- 		goto err_fw_put;
- 	}
-@@ -1818,7 +1817,7 @@ static int xe_oa_stream_init(struct xe_oa_stream *stream,
- err_free_oa_buf:
- 	xe_oa_free_oa_buffer(stream);
- err_fw_put:
--	xe_force_wake_put(gt_to_fw(gt), fw_ref);
-+	xe_force_wake_put(gt_to_fw(gt), stream->fw_ref);
- 	xe_pm_runtime_put(stream->oa->xe);
- 	if (stream->override_gucrc)
- 		xe_gt_WARN_ON(gt, xe_guc_pc_unset_gucrc_mode(&gt->uc.guc.pc));
-diff --git a/drivers/gpu/drm/xe/xe_oa_types.h b/drivers/gpu/drm/xe/xe_oa_types.h
-index daf701b5d48b..cf080f412189 100644
---- a/drivers/gpu/drm/xe/xe_oa_types.h
-+++ b/drivers/gpu/drm/xe/xe_oa_types.h
-@@ -264,5 +264,8 @@ struct xe_oa_stream {
- 
- 	/** @syncs: syncs to wait on and to signal */
- 	struct xe_sync_entry *syncs;
++static inline void __xe_pm_runtime_noop(struct xe_device *xe) {}
 +
-+	/** @fw_ref: Forcewake reference */
-+	unsigned int fw_ref;
- };
++DEFINE_GUARD(xe_pm_runtime, struct xe_device *,
++	     xe_pm_runtime_get(_T), xe_pm_runtime_put(_T))
++DEFINE_GUARD(xe_pm_runtime_noresume, struct xe_device *,
++	     xe_pm_runtime_get_noresume(_T), xe_pm_runtime_put(_T))
++DEFINE_GUARD_COND(xe_pm_runtime, _ioctl, xe_pm_runtime_get_ioctl(_T), _RET >= 0)
++
++/*
++ * Used when a function needs to release runtime PM in all possible cases
++ * and error paths, but the wakeref was already acquired by a different
++ * function (i.e., get() has already happened so only a put() is needed).
++ */
++DEFINE_GUARD(xe_pm_runtime_release_only, struct xe_device *,
++	     __xe_pm_runtime_noop(_T), xe_pm_runtime_put(_T));
++
  #endif
 -- 
 2.51.1
