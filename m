@@ -4,61 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C5ED3CCF9E3
-	for <intel-xe@archiver.kernel.org>; Mon, 10 Nov 2025 12:09:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 68820CCF9E3
+	for <intel-xe@archiver.kernel.org>; Mon, 10 Nov 2025 12:21:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7283410E382;
-	Mon, 10 Nov 2025 12:09:34 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="l061i/Ls";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AF87010E382;
- Mon, 10 Nov 2025 12:09:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1762776573; x=1794312573;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=JpZQkw1F2ye+MTUuPQBtV9mwE7sa6358w2LDG9XmMCs=;
- b=l061i/Lskcgek1xPuta3BerkRsoxcRhiRMMsUeBa2Hgm8ntMtgwTHC6r
- +oaPcDIMZTpijvdv0yIzF0/78CbsXTF8XZFYPEBDFZhg3Wbuft75oBh3S
- yCR1s4DRsj3KibeGl2CF+z3drwM6kH1i/jKfDHt22lPRZYI7QouAZtPsA
- ZvjUVJv21TgE77HSk/NKKbe1vb56syY/l0PtCnYhe2I+m0EIT64nLoQ5h
- mpmYuOeIeOfbuOgHjJE0qOSgw/8tufHn5VbM0lb/hwUz+oJRzdToootXT
- 8MGAe6oBdocbIbf9y2Gpi3eXVTl6AhpYV+8XsMiRrZbMKvhOmWo0qo/Ij w==;
-X-CSE-ConnectionGUID: owYZAatrTbGhvpGe350DMg==
-X-CSE-MsgGUID: Bsmm/NhiS7qayBNJQeGm7g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11608"; a="75510428"
-X-IronPort-AV: E=Sophos;i="6.19,293,1754982000"; d="scan'208";a="75510428"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Nov 2025 04:09:33 -0800
-X-CSE-ConnectionGUID: zTxLIN3QR/yg8/FrTYuNdw==
-X-CSE-MsgGUID: bDns6lTeTzSj9zGvDGGWug==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,293,1754982000"; d="scan'208";a="192769070"
-Received: from ettammin-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.202])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Nov 2025 04:09:28 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Uma Shankar <uma.shankar@intel.com>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Cc: chaitanya.kumar.borah@intel.com, ville.syrjala@linux.intel.com,
- pekka.paalanen@collabora.com, contact@emersion.fr, harry.wentland@amd.com,
- mwen@igalia.com, jadahl@redhat.com, sebastian.wick@redhat.com,
- shashank.sharma@amd.com, swati2.sharma@intel.com, alex.hung@amd.com, Uma
- Shankar <uma.shankar@intel.com>
-Subject: Re: [v6 15/16] drm/i915/color: Add 3D LUT to color pipeline
-In-Reply-To: <20251105123413.2671075-16-uma.shankar@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20251105123413.2671075-1-uma.shankar@intel.com>
- <20251105123413.2671075-16-uma.shankar@intel.com>
-Date: Mon, 10 Nov 2025 14:09:25 +0200
-Message-ID: <6a310c6396adb711e5f996136a4f3c813c71e2bc@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0834510E2C0;
+	Mon, 10 Nov 2025 12:21:26 +0000 (UTC)
+Received: from 10055242dc62 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AE5AA10E2C0;
+ Mon, 10 Nov 2025 12:21:24 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6340452644207716667=="
 MIME-Version: 1.0
-Content-Type: text/plain
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_drm/i915/rom=3A_convert_int?=
+ =?utf-8?q?el=5From_interfaces_to_struct_drm=5Fdevice_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 10 Nov 2025 12:21:24 -0000
+Message-ID: <176277728470.33991.1452577915928010450@10055242dc62>
+X-Patchwork-Hint: ignore
+References: <20251110112048.2366725-1-jani.nikula@intel.com>
+In-Reply-To: <20251110112048.2366725-1-jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,255 +36,189 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 05 Nov 2025, Uma Shankar <uma.shankar@intel.com> wrote:
-> From: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
->
-> Add helpers to program the 3D LUT registers and arm them.
->
-> Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
-> Signed-off-by: Uma Shankar <uma.shankar@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_color.c    | 57 +++++++++++++++++++
->  drivers/gpu/drm/i915/display/intel_color.h    |  2 +
->  .../drm/i915/display/intel_color_pipeline.c   | 35 +++++++++++-
->  .../drm/i915/display/intel_color_pipeline.h   |  3 +-
->  .../drm/i915/display/intel_display_limits.h   |  1 +
->  .../drm/i915/display/intel_display_types.h    |  2 +-
->  drivers/gpu/drm/i915/display/intel_plane.c    |  2 +
->  7 files changed, 97 insertions(+), 5 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm/i915/display/intel_color.c
-> index f290432f3c31..ab9e889ce19f 100644
-> --- a/drivers/gpu/drm/i915/display/intel_color.c
-> +++ b/drivers/gpu/drm/i915/display/intel_color.c
-> @@ -4061,6 +4061,44 @@ xelpd_plane_load_luts(struct intel_dsb *dsb, const struct intel_plane_state *pla
->  		xelpd_program_plane_post_csc_lut(dsb, plane_state);
->  }
->  
-> +static u32 glk_3dlut_10(const struct drm_color_lut32 *color)
-> +{
-> +	return REG_FIELD_PREP(LUT_3D_DATA_RED_MASK, drm_color_lut32_extract(color->red, 10)) |
-> +		REG_FIELD_PREP(LUT_3D_DATA_GREEN_MASK, drm_color_lut32_extract(color->green, 10)) |
-> +		REG_FIELD_PREP(LUT_3D_DATA_BLUE_MASK, drm_color_lut32_extract(color->blue, 10));
-> +}
-> +
-> +static void glk_load_lut_3d(struct intel_dsb *dsb,
-> +			    struct intel_crtc *crtc,
-> +			    const struct drm_property_blob *blob)
-> +{
-> +	struct intel_display *display = to_intel_display(crtc->base.dev);
-> +	const struct drm_color_lut32 *lut = blob->data;
-> +	int i, lut_size = drm_color_lut32_size(blob);
-> +	enum pipe pipe = crtc->pipe;
-> +
-> +	WARN_ON(intel_de_read(display, LUT_3D_CTL(pipe)) & LUT_3D_READY);
+--===============6340452644207716667==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Why?
+== Series Details ==
 
-> +	intel_de_write_dsb(display, dsb, LUT_3D_INDEX(pipe), LUT_3D_AUTO_INCREMENT);
-> +	for (i = 0; i < lut_size; i++)
-> +		intel_de_write_dsb(display, dsb, LUT_3D_DATA(pipe), glk_3dlut_10(&lut[i]));
-> +	intel_de_write_dsb(display, dsb, LUT_3D_INDEX(pipe), 0);
-> +}
-> +
-> +static void glk_lut_3d_commit(struct intel_dsb *dsb, struct intel_crtc *crtc, bool enable)
-> +{
-> +	struct intel_display *display = to_intel_display(crtc);
-> +	enum pipe pipe = crtc->pipe;
-> +	u32 val;
-> +
-> +	WARN_ON(intel_de_read(display, LUT_3D_CTL(pipe)) & LUT_3D_READY);
+Series: drm/i915/rom: convert intel_rom interfaces to struct drm_device (rev2)
+URL   : https://patchwork.freedesktop.org/series/156401/
+State : failure
 
-Why?
+== Summary ==
 
-> +
-> +	if (enable)
-> +		val = LUT_3D_ENABLE | LUT_3D_READY | LUT_3D_BIND_PLANE_1;
-> +	else
-> +		val = 0;
-> +	intel_de_write_dsb(display, dsb, LUT_3D_CTL(pipe), val);
-> +}
-> +
->  static const struct intel_color_funcs chv_color_funcs = {
->  	.color_check = chv_color_check,
->  	.color_commit_arm = i9xx_color_commit_arm,
-> @@ -4190,6 +4228,14 @@ static const struct intel_color_funcs ilk_color_funcs = {
->  	.get_config = ilk_get_config,
->  };
->  
-> +void intel_color_plane_commit_arm(struct intel_dsb *dsb,
-> +				  const struct intel_plane_state *plane_state)
-> +{
-> +	struct intel_crtc *crtc = to_intel_crtc(plane_state->uapi.crtc);
-> +
-> +	glk_lut_3d_commit(dsb, crtc, !!plane_state->hw.lut_3d);
-> +}
-> +
->  static void
->  intel_color_load_plane_csc_matrix(struct intel_dsb *dsb,
->  				  const struct intel_plane_state *plane_state)
-> @@ -4210,6 +4256,15 @@ intel_color_load_plane_luts(struct intel_dsb *dsb,
->  		display->funcs.color->load_plane_luts(dsb, plane_state);
->  }
->  
-> +static void
-> +intel_color_load_3dlut(struct intel_dsb *dsb,
-> +		       const struct intel_plane_state *plane_state)
-> +{
-> +	struct intel_crtc *crtc = to_intel_crtc(plane_state->uapi.crtc);
-> +
-> +	glk_load_lut_3d(dsb, crtc, plane_state->hw.lut_3d);
-> +}
-> +
->  void intel_color_plane_program_pipeline(struct intel_dsb *dsb,
->  					const struct intel_plane_state *plane_state)
->  {
-> @@ -4217,6 +4272,8 @@ void intel_color_plane_program_pipeline(struct intel_dsb *dsb,
->  		intel_color_load_plane_csc_matrix(dsb, plane_state);
->  	if (plane_state->hw.degamma_lut || plane_state->hw.gamma_lut)
->  		intel_color_load_plane_luts(dsb, plane_state);
-> +	if (plane_state->hw.lut_3d)
-> +		intel_color_load_3dlut(dsb, plane_state);
->  }
->  
->  void intel_color_crtc_init(struct intel_crtc *crtc)
-> diff --git a/drivers/gpu/drm/i915/display/intel_color.h b/drivers/gpu/drm/i915/display/intel_color.h
-> index 8051c827a1d8..a70df0c2bd9a 100644
-> --- a/drivers/gpu/drm/i915/display/intel_color.h
-> +++ b/drivers/gpu/drm/i915/display/intel_color.h
-> @@ -43,4 +43,6 @@ bool intel_color_lut_equal(const struct intel_crtc_state *crtc_state,
->  void intel_color_assert_luts(const struct intel_crtc_state *crtc_state);
->  void intel_color_plane_program_pipeline(struct intel_dsb *dsb,
->  					const struct intel_plane_state *plane_state);
-> +void intel_color_plane_commit_arm(struct intel_dsb *dsb,
-> +				  const struct intel_plane_state *plane_state);
->  #endif /* __INTEL_COLOR_H__ */
-> diff --git a/drivers/gpu/drm/i915/display/intel_color_pipeline.c b/drivers/gpu/drm/i915/display/intel_color_pipeline.c
-> index b6e6ebdd0dff..fd7d63ce6d9f 100644
-> --- a/drivers/gpu/drm/i915/display/intel_color_pipeline.c
-> +++ b/drivers/gpu/drm/i915/display/intel_color_pipeline.c
-> @@ -12,11 +12,24 @@
->  #define PLANE_DEGAMMA_SIZE 128
->  #define PLANE_GAMMA_SIZE 32
->  
-> +static inline bool
-> +intel_crtc_has_lut_3d(struct intel_display *display, enum pipe pipe)
-> +{
-> +	if (DISPLAY_VER(display) >= 12)
-> +		return pipe == PIPE_A || pipe == PIPE_B;
-> +	else if (DISPLAY_VER(display) >= 10 /*|| IS_GEMINILAKE(display)*/)
-> +		return pipe == PIPE_A;
-> +	else
-> +		return false;
-> +}
-> +
->  static
-> -int _intel_color_pipeline_plane_init(struct drm_plane *plane, struct drm_prop_enum_list *list)
-> +int _intel_color_pipeline_plane_init(struct drm_plane *plane, struct drm_prop_enum_list *list,
-> +				     enum pipe pipe)
->  {
->  	struct intel_colorop *colorop;
->  	struct drm_device *dev = plane->dev;
-> +	struct intel_display *display = to_intel_display(dev);
->  	int ret;
->  	struct drm_colorop *prev_op;
->  
-> @@ -36,6 +49,22 @@ int _intel_color_pipeline_plane_init(struct drm_plane *plane, struct drm_prop_en
->  	/* TODO: handle failures and clean up */
->  	prev_op = &colorop->base;
->  
-> +	if (DISPLAY_VER(display) >= 35 &&
-> +	    intel_crtc_has_lut_3d(display, pipe) &&
-> +	    plane->type == DRM_PLANE_TYPE_PRIMARY) {
-> +		colorop = intel_colorop_create(INTEL_PLANE_CB_3DLUT);
-> +
-> +		ret = drm_plane_colorop_3dlut_init(dev, &colorop->base, plane, 17,
-> +						   DRM_COLOROP_LUT3D_INTERPOLATION_TETRAHEDRAL,
-> +						   true);
-> +		if (ret)
-> +			return ret;
-> +
-> +		drm_colorop_set_next_property(prev_op, &colorop->base);
-> +
-> +		prev_op = &colorop->base;
-> +	}
-> +
->  	colorop = intel_colorop_create(INTEL_PLANE_CB_CSC);
->  	ret = drm_plane_colorop_ctm_3x4_init(dev, &colorop->base, plane,
->  					     DRM_COLOROP_FLAG_ALLOW_BYPASS);
-> @@ -58,7 +87,7 @@ int _intel_color_pipeline_plane_init(struct drm_plane *plane, struct drm_prop_en
->  	return 0;
->  }
->  
-> -int intel_color_pipeline_plane_init(struct drm_plane *plane)
-> +int intel_color_pipeline_plane_init(struct drm_plane *plane, enum pipe pipe)
->  {
->  	struct drm_device *dev = plane->dev;
->  	struct intel_display *display = to_intel_display(dev);
-> @@ -77,7 +106,7 @@ int intel_color_pipeline_plane_init(struct drm_plane *plane)
->  	len++;
->  
->  	/* Add pipeline consisting of transfer functions */
-> -	ret = _intel_color_pipeline_plane_init(plane, &pipelines[len]);
-> +	ret = _intel_color_pipeline_plane_init(plane, &pipelines[len], pipe);
->  	if (ret)
->  		return ret;
->  	len++;
-> diff --git a/drivers/gpu/drm/i915/display/intel_color_pipeline.h b/drivers/gpu/drm/i915/display/intel_color_pipeline.h
-> index 7f1d32bc9202..a457d306da7f 100644
-> --- a/drivers/gpu/drm/i915/display/intel_color_pipeline.h
-> +++ b/drivers/gpu/drm/i915/display/intel_color_pipeline.h
-> @@ -7,7 +7,8 @@
->  #define __INTEL_COLOR_PIPELINE_H__
->  
->  struct drm_plane;
-> +enum pipe;
->  
-> -int intel_color_pipeline_plane_init(struct drm_plane *plane);
-> +int intel_color_pipeline_plane_init(struct drm_plane *plane, enum pipe pipe);
->  
->  #endif /* __INTEL_COLOR_PIPELINE_H__ */
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_limits.h b/drivers/gpu/drm/i915/display/intel_display_limits.h
-> index 55fd574ba313..cb3c9c665c44 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_limits.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_limits.h
-> @@ -142,6 +142,7 @@ enum intel_color_block {
->  	INTEL_PLANE_CB_PRE_CSC_LUT,
->  	INTEL_PLANE_CB_CSC,
->  	INTEL_PLANE_CB_POST_CSC_LUT,
-> +	INTEL_PLANE_CB_3DLUT,
->  
->  	INTEL_CB_MAX
->  };
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-> index d8fe80a55601..50a14f75b727 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> @@ -646,7 +646,7 @@ struct intel_plane_state {
->  		enum drm_color_encoding color_encoding;
->  		enum drm_color_range color_range;
->  		enum drm_scaling_filter scaling_filter;
-> -		struct drm_property_blob *ctm, *degamma_lut, *gamma_lut;
-> +		struct drm_property_blob *ctm, *degamma_lut, *gamma_lut, *lut_3d;
->  	} hw;
->  
->  	struct i915_vma *ggtt_vma;
-> diff --git a/drivers/gpu/drm/i915/display/intel_plane.c b/drivers/gpu/drm/i915/display/intel_plane.c
-> index 298f8e186fee..7c230a2832c2 100644
-> --- a/drivers/gpu/drm/i915/display/intel_plane.c
-> +++ b/drivers/gpu/drm/i915/display/intel_plane.c
-> @@ -348,6 +348,8 @@ intel_plane_colorop_replace_blob(struct intel_plane_state *plane_state,
->  		return	drm_property_replace_blob(&plane_state->hw.degamma_lut, blob);
->  	else if (intel_colorop->id == INTEL_PLANE_CB_POST_CSC_LUT)
->  		return drm_property_replace_blob(&plane_state->hw.gamma_lut, blob);
-> +	else if (intel_colorop->id == INTEL_PLANE_CB_3DLUT)
-> +		return	drm_property_replace_blob(&plane_state->hw.lut_3d, blob);
->  
->  	return false;
->  }
+CI Bug Log - changes from xe-4077-144eb08548d505314bae41b6cb1139032a389f17_BAT -> xe-pw-156401v2_BAT
+====================================================
 
--- 
-Jani Nikula, Intel
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with xe-pw-156401v2_BAT absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-156401v2_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  
+
+Participating hosts (13 -> 13)
+------------------------------
+
+  No changes in participating hosts
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in xe-pw-156401v2_BAT:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@xe_waitfence@abstime:
+    - bat-pvc-2:          [PASS][1] -> [TIMEOUT][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4077-144eb08548d505314bae41b6cb1139032a389f17/bat-pvc-2/igt@xe_waitfence@abstime.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156401v2/bat-pvc-2/igt@xe_waitfence@abstime.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in xe-pw-156401v2_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_waitfence@engine:
+    - bat-dg2-oem2:       [PASS][3] -> [FAIL][4] ([Intel XE#6519])
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4077-144eb08548d505314bae41b6cb1139032a389f17/bat-dg2-oem2/igt@xe_waitfence@engine.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156401v2/bat-dg2-oem2/igt@xe_waitfence@engine.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_flip@basic-plain-flip@c-edp1:
+    - bat-adlp-7:         [DMESG-WARN][5] ([Intel XE#4543]) -> [PASS][6] +1 other test pass
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4077-144eb08548d505314bae41b6cb1139032a389f17/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156401v2/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html
+
+  * igt@xe_waitfence@reltime:
+    - bat-dg2-oem2:       [FAIL][7] ([Intel XE#6520]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4077-144eb08548d505314bae41b6cb1139032a389f17/bat-dg2-oem2/igt@xe_waitfence@reltime.html
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156401v2/bat-dg2-oem2/igt@xe_waitfence@reltime.html
+
+  
+  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
+  [Intel XE#6519]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519
+  [Intel XE#6520]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520
+
+
+Build changes
+-------------
+
+  * Linux: xe-4077-144eb08548d505314bae41b6cb1139032a389f17 -> xe-pw-156401v2
+
+  IGT_8616: 862eb176244feac8ee711f381fe1be1fdc6a7ede @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-4077-144eb08548d505314bae41b6cb1139032a389f17: 144eb08548d505314bae41b6cb1139032a389f17
+  xe-pw-156401v2: 156401v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156401v2/index.html
+
+--===============6340452644207716667==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/rom: convert intel_rom interfaces to struct drm_device (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/156401/">https://patchwork.freedesktop.org/series/156401/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156401v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156401v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4077-144eb08548d505314bae41b6cb1139032a389f17_BAT -&gt; xe-pw-156401v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-156401v2_BAT absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-156401v2_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-156401v2_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@xe_waitfence@abstime:<ul>
+<li>bat-pvc-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4077-144eb08548d505314bae41b6cb1139032a389f17/bat-pvc-2/igt@xe_waitfence@abstime.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156401v2/bat-pvc-2/igt@xe_waitfence@abstime.html">TIMEOUT</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-156401v2_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@xe_waitfence@engine:<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4077-144eb08548d505314bae41b6cb1139032a389f17/bat-dg2-oem2/igt@xe_waitfence@engine.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156401v2/bat-dg2-oem2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519">Intel XE#6519</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@kms_flip@basic-plain-flip@c-edp1:</p>
+<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4077-144eb08548d505314bae41b6cb1139032a389f17/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156401v2/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_waitfence@reltime:</p>
+<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4077-144eb08548d505314bae41b6cb1139032a389f17/bat-dg2-oem2/igt@xe_waitfence@reltime.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520">Intel XE#6520</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156401v2/bat-dg2-oem2/igt@xe_waitfence@reltime.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4077-144eb08548d505314bae41b6cb1139032a389f17 -&gt; xe-pw-156401v2</li>
+</ul>
+<p>IGT_8616: 862eb176244feac8ee711f381fe1be1fdc6a7ede @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-4077-144eb08548d505314bae41b6cb1139032a389f17: 144eb08548d505314bae41b6cb1139032a389f17<br />
+  xe-pw-156401v2: 156401v2</p>
+
+</body>
+</html>
+
+--===============6340452644207716667==--
