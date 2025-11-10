@@ -4,58 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0B01BCCFA1A
-	for <intel-xe@archiver.kernel.org>; Mon, 10 Nov 2025 23:00:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8338BCCFA13
+	for <intel-xe@archiver.kernel.org>; Mon, 10 Nov 2025 23:02:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 96B0910E333;
-	Mon, 10 Nov 2025 23:00:02 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Fq25NlIc";
-	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5D24E10E0F7;
- Mon, 10 Nov 2025 23:00:01 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id 267E144289;
- Mon, 10 Nov 2025 23:00:01 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D9D6EC116B1;
- Mon, 10 Nov 2025 23:00:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1762815601;
- bh=BujzcxiDCu1XUvYvuSazspHPPX6uO2Q49KTJHCnBteM=;
- h=Date:From:To:Cc:Subject:In-Reply-To:From;
- b=Fq25NlIcNfb7ZrirU5L6qzWU2I/qH/CWKW/w8OQC2ZXdZNuXWy0/pVOpyDz+PppPs
- 3cnnoS0+U7zqxefMGHK+GcEJ1bPvMoc9WS5T/PFJNOdssnEq8A1E4C/BY8kNYJO98f
- YAfdrTMd2JgFSj+9TM8Va4dY/j+X06X1GOXnZDGrWg3G4JdxW+BZrft8hp8xxrEbtN
- a1v++eycBKbmZ0FpC1z3pgSkWip7JeVzveINO/Tl8Sc09OVUpiRhUagLR5vm58ignH
- 7BjniRQXXNFTzb/SlajwviaVC9iw2kmcUH4O/at9YIK46ab2ZALQt8lHOIBaXVqYGS
- 0zWwumfG8/b8w==
-Date: Mon, 10 Nov 2025 16:59:58 -0600
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>
-Cc: Alex =?utf-8?Q?Benn=C3=A9e?= <alex.bennee@linaro.org>,
- Simon Richter <Simon.Richter@hogyros.de>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- amd-gfx@lists.freedesktop.org, Bjorn Helgaas <bhelgaas@google.com>,
- David Airlie <airlied@gmail.com>, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- linux-pci@vger.kernel.org, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Simona Vetter <simona@ffwll.ch>, Tvrtko Ursulin <tursulin@ursulin.net>,
- Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
- Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- =?utf-8?Q?Micha=C5=82?= Winiarski <michal.winiarski@intel.com>,
- LKML <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 1/9] PCI: Prevent resource tree corruption when BAR
- resize fails
-Message-ID: <20251110225958.GA2142254@bhelgaas>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2925110E385;
+	Mon, 10 Nov 2025 23:02:51 +0000 (UTC)
+Received: from 10055242dc62 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1FE2610E385;
+ Mon, 10 Nov 2025 23:02:50 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3635735923229100312=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <d697c9e1-580e-6449-796c-a3f5198e0934@linux.intel.com>
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/pat=3A_Add_helper_to?=
+ =?utf-8?q?_query_compression_enable_status?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Wang, X" <x.wang@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 10 Nov 2025 23:02:50 -0000
+Message-ID: <176281577012.38378.8796927383842933409@10055242dc62>
+X-Patchwork-Hint: ignore
+References: <20251110221458.1864507-1-x.wang@intel.com>
+In-Reply-To: <20251110221458.1864507-1-x.wang@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,38 +36,125 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Oct 30, 2025 at 10:22:27AM +0200, Ilpo Järvinen wrote:
-> On Wed, 29 Oct 2025, Bjorn Helgaas wrote:
-> 
-> > On Tue, Oct 28, 2025 at 07:35:43PM +0200, Ilpo Järvinen wrote:
-> > > pbus_reassign_bridge_resources() saves bridge windows into the saved
-> > > list before attempting to adjust resource assignments to perform a BAR
-> > > resize operation. If resource adjustments cannot be completed fully,
-> > > rollback is attempted by restoring the resource from the saved list.
-> > 
-> > > Fixes: 8bb705e3e79d ("PCI: Add pci_resize_resource() for resizing BARs")
-> > > Reported-by: Simon Richter <Simon.Richter@hogyros.de>
-> > > Reported-by: Alex Bennée <alex.bennee@linaro.org>
-> > 
-> > If these reports were public, can we include lore URLs for them?
-> > 
-> > Same question for [PATCH 5/9] PCI: Fix restoring BARs on BAR resize
-> > rollback path.
-> > 
-> > I put these all on pci/resource for build testing.  I assume we'll
-> > tweak these based on testing reports and sorting out the pci/rebar
-> > conflicts.
-> 
-> Thanks, the links will come in v2 along with fixing a few things found by 
-> more extensive tests by LKP. E.g., it seems clang thinks guard() cannot be 
-> used here because goto jumps over it (auto variable initialization gets 
-> skipped so it's kind of understandable limitation).
+--===============3635735923229100312==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Just a ping on this.  The lkp robot did build this fine:
-https://lore.kernel.org/r/202510311139.1VIkw3Ez-lkp@intel.com
+== Series Details ==
 
-I'm happy to put it in pci/next as-is, especially if the amdgpu and
-i915 folks are ok with it.
+Series: drm/xe/pat: Add helper to query compression enable status
+URL   : https://patchwork.freedesktop.org/series/157352/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from xe-4084-a9792b1ab75123e4aceaba953a89809e745919c6_BAT -> xe-pw-157352v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (13 -> 13)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-157352v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@xe_waitfence@reltime:
+    - bat-dg2-oem2:       [FAIL][1] ([Intel XE#6520]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4084-a9792b1ab75123e4aceaba953a89809e745919c6/bat-dg2-oem2/igt@xe_waitfence@reltime.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157352v1/bat-dg2-oem2/igt@xe_waitfence@reltime.html
+
+  
+  [Intel XE#6520]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520
+
+
+Build changes
+-------------
+
+  * Linux: xe-4084-a9792b1ab75123e4aceaba953a89809e745919c6 -> xe-pw-157352v1
+
+  IGT_8618: 8618
+  xe-4084-a9792b1ab75123e4aceaba953a89809e745919c6: a9792b1ab75123e4aceaba953a89809e745919c6
+  xe-pw-157352v1: 157352v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157352v1/index.html
+
+--===============3635735923229100312==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/pat: Add helper to query compression enable status</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/157352/">https://patchwork.freedesktop.org/series/157352/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157352v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157352v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4084-a9792b1ab75123e4aceaba953a89809e745919c6_BAT -&gt; xe-pw-157352v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-157352v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_waitfence@reltime:<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4084-a9792b1ab75123e4aceaba953a89809e745919c6/bat-dg2-oem2/igt@xe_waitfence@reltime.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520">Intel XE#6520</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157352v1/bat-dg2-oem2/igt@xe_waitfence@reltime.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4084-a9792b1ab75123e4aceaba953a89809e745919c6 -&gt; xe-pw-157352v1</li>
+</ul>
+<p>IGT_8618: 8618<br />
+  xe-4084-a9792b1ab75123e4aceaba953a89809e745919c6: a9792b1ab75123e4aceaba953a89809e745919c6<br />
+  xe-pw-157352v1: 157352v1</p>
+
+</body>
+</html>
+
+--===============3635735923229100312==--
