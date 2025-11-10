@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AA9BCCD13D9
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D0E14CD13DE
 	for <intel-xe@archiver.kernel.org>; Mon, 10 Nov 2025 23:20:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 385C910E4A2;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 762AE10E4A7;
 	Mon, 10 Nov 2025 23:20:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Up4uPY5g";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HtreUlE1";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 54B8B10E49B
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5A95F10E4A2
  for <intel-xe@lists.freedesktop.org>; Mon, 10 Nov 2025 23:20:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1762816834; x=1794352834;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=IK/vwrUcjmFzHPnxpiXQGDDElpnubeWYv6LR85GFAkw=;
- b=Up4uPY5gJuApeAjxgJuzbNCN8ZdVByTXOntfe4t6iiwDHUqHhtVppjA6
- r5Ihi2rFZ0kbg0g17vbo7YKSK7/23J4sX/KbZF4ub9UP6CHBNavtLrfYr
- bDQkANo3yonLFxFOpegLvjDKh4IUrhMDXOWWfuYjCLp32LUPLpSKvKBAf
- AR05dQTTAXAnj8P4QYiNgOZAiWUIe9ckA7WHS9SMaURzfS9E3Vxyx6FHj
- AhgOLKXjNIKhfSeI0JMRo5GM9v5k0WXoYmA4R2aZuwT1oUm7Xt8YmRf+c
- kYm+bsj4vWHny3lA5BC7gV9kzqLVxqYWqRsFuAB5ZN4E2nlUe1ve1gpnS g==;
-X-CSE-ConnectionGUID: ro3BmLxRT8GAJDVWxNKWHg==
-X-CSE-MsgGUID: sZc7rgYXRL2Hte+XjOP27g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11609"; a="75486463"
-X-IronPort-AV: E=Sophos;i="6.19,294,1754982000"; d="scan'208";a="75486463"
+ bh=YNzuWfzvpe4wnfvDfD46wF3cy/wm0D4rg89c7eyJXlw=;
+ b=HtreUlE112b/3d6W/z/wz9W2KKr8pwhrYnrzHRGFig8Fh7lXLEHgB7cN
+ Tnl2IEJ9/ieqGsr/zBX31cK1uIZNuLR3q38f63u5tZZncPo5PdLyaiMZP
+ b2EMldDySuv4rhD+EOOeDs/E5cGvC2H1kzHeF8uQXHIaQaxBNdVtftzch
+ Kf1JfnvGwdwbRuwTBPoAog1bpll6aW9er7uR2LtAAWLK+j/mXUOEHWZBA
+ 1AxUExf7v3Yad8tt6JqNouk/w0MLWkL2nwTSO5fJvIpOphCNtT9KPeLZT
+ odLKFk3IWwKvBYEDoS3ya7hszeGSpg9+Azf9bebtRwSL0ujU5c4zhbLqU g==;
+X-CSE-ConnectionGUID: 8mrefuLiQ4izmOvNwnBNaA==
+X-CSE-MsgGUID: jF4GveG2SwaFWYZlwdDNjQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11609"; a="75486464"
+X-IronPort-AV: E=Sophos;i="6.19,294,1754982000"; d="scan'208";a="75486464"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  10 Nov 2025 15:20:33 -0800
-X-CSE-ConnectionGUID: +u1VPHYjRXCM/iTT4AAbhQ==
-X-CSE-MsgGUID: sigrzn9rRSalYyyEazeLAg==
+X-CSE-ConnectionGUID: xGLouZaDTfWbTP1fZV/yBQ==
+X-CSE-MsgGUID: IOU/AjGcRvKi92AjTiV8Qg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,294,1754982000"; d="scan'208";a="189244025"
+X-IronPort-AV: E=Sophos;i="6.19,294,1754982000"; d="scan'208";a="189244029"
 Received: from mdroper-desk1.fm.intel.com ([10.1.39.133])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  10 Nov 2025 15:20:32 -0800
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.d.roper@intel.com
-Subject: [PATCH v2 26/30] drm/xe/hwmon: Use scope-based runtime PM
-Date: Mon, 10 Nov 2025 15:20:44 -0800
-Message-ID: <20251110232017.1475869-58-matthew.d.roper@intel.com>
+Subject: [PATCH v2 27/30] drm/xe/sriov: Use scope-based runtime PM
+Date: Mon, 10 Nov 2025 15:20:45 -0800
+Message-ID: <20251110232017.1475869-59-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.51.1
 In-Reply-To: <20251110232017.1475869-32-matthew.d.roper@intel.com>
 References: <20251110232017.1475869-32-matthew.d.roper@intel.com>
@@ -66,90 +66,127 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Use scope-based runtime power management in the hwmon code for
+Use scope-based runtime power management in the SRIOV code for
 consistency with other parts of the driver.
 
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/xe_hwmon.c | 16 ++++------------
- 1 file changed, 4 insertions(+), 12 deletions(-)
+ drivers/gpu/drm/xe/xe_pci_sriov.c             | 3 +--
+ drivers/gpu/drm/xe/xe_sriov_pf_debugfs.c      | 6 ++----
+ drivers/gpu/drm/xe/xe_sriov_pf_sysfs.c        | 6 ++----
+ drivers/gpu/drm/xe/xe_sriov_vf_ccs.c          | 5 +----
+ drivers/gpu/drm/xe/xe_tile_sriov_pf_debugfs.c | 3 +--
+ 5 files changed, 7 insertions(+), 16 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
-index 97879daeefc1..5ad351fad6e2 100644
---- a/drivers/gpu/drm/xe/xe_hwmon.c
-+++ b/drivers/gpu/drm/xe/xe_hwmon.c
-@@ -502,7 +502,7 @@ xe_hwmon_power_max_interval_show(struct device *dev, struct device_attribute *at
+diff --git a/drivers/gpu/drm/xe/xe_pci_sriov.c b/drivers/gpu/drm/xe/xe_pci_sriov.c
+index d0fcde66a774..4b16748fe2ed 100644
+--- a/drivers/gpu/drm/xe/xe_pci_sriov.c
++++ b/drivers/gpu/drm/xe/xe_pci_sriov.c
+@@ -212,12 +212,11 @@ int xe_pci_sriov_configure(struct pci_dev *pdev, int num_vfs)
+ 	if (num_vfs && pci_num_vf(pdev))
+ 		return -EBUSY;
  
- 	int ret = 0;
+-	xe_pm_runtime_get(xe);
++	guard(xe_pm_runtime)(xe);
+ 	if (num_vfs > 0)
+ 		ret = pf_enable_vfs(xe, num_vfs);
+ 	else
+ 		ret = pf_disable_vfs(xe);
+-	xe_pm_runtime_put(xe);
  
--	xe_pm_runtime_get(hwmon->xe);
-+	guard(xe_pm_runtime)(hwmon->xe);
- 
- 	mutex_lock(&hwmon->hwmon_lock);
- 
-@@ -521,8 +521,6 @@ xe_hwmon_power_max_interval_show(struct device *dev, struct device_attribute *at
- 
- 	mutex_unlock(&hwmon->hwmon_lock);
- 
--	xe_pm_runtime_put(hwmon->xe);
--
- 	x = REG_FIELD_GET(PWR_LIM_TIME_X, reg_val);
- 	y = REG_FIELD_GET(PWR_LIM_TIME_Y, reg_val);
- 
-@@ -604,7 +602,7 @@ xe_hwmon_power_max_interval_store(struct device *dev, struct device_attribute *a
- 	rxy = REG_FIELD_PREP(PWR_LIM_TIME_X, x) |
- 			       REG_FIELD_PREP(PWR_LIM_TIME_Y, y);
- 
--	xe_pm_runtime_get(hwmon->xe);
-+	guard(xe_pm_runtime)(hwmon->xe);
- 
- 	mutex_lock(&hwmon->hwmon_lock);
- 
-@@ -616,8 +614,6 @@ xe_hwmon_power_max_interval_store(struct device *dev, struct device_attribute *a
- 
- 	mutex_unlock(&hwmon->hwmon_lock);
- 
--	xe_pm_runtime_put(hwmon->xe);
--
- 	return count;
- }
- 
-@@ -1126,7 +1122,7 @@ xe_hwmon_read(struct device *dev, enum hwmon_sensor_types type, u32 attr,
- 	struct xe_hwmon *hwmon = dev_get_drvdata(dev);
- 	int ret;
- 
--	xe_pm_runtime_get(hwmon->xe);
-+	guard(xe_pm_runtime)(hwmon->xe);
- 
- 	switch (type) {
- 	case hwmon_temp:
-@@ -1152,8 +1148,6 @@ xe_hwmon_read(struct device *dev, enum hwmon_sensor_types type, u32 attr,
- 		break;
- 	}
- 
--	xe_pm_runtime_put(hwmon->xe);
--
  	return ret;
  }
- 
-@@ -1164,7 +1158,7 @@ xe_hwmon_write(struct device *dev, enum hwmon_sensor_types type, u32 attr,
- 	struct xe_hwmon *hwmon = dev_get_drvdata(dev);
- 	int ret;
- 
--	xe_pm_runtime_get(hwmon->xe);
-+	guard(xe_pm_runtime)(hwmon->xe);
- 
- 	switch (type) {
- 	case hwmon_power:
-@@ -1178,8 +1172,6 @@ xe_hwmon_write(struct device *dev, enum hwmon_sensor_types type, u32 attr,
- 		break;
+diff --git a/drivers/gpu/drm/xe/xe_sriov_pf_debugfs.c b/drivers/gpu/drm/xe/xe_sriov_pf_debugfs.c
+index a81aa05c5532..21eafe333cb5 100644
+--- a/drivers/gpu/drm/xe/xe_sriov_pf_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_sriov_pf_debugfs.c
+@@ -69,9 +69,8 @@ static ssize_t from_file_write_to_xe_call(struct file *file, const char __user *
+ 	if (ret < 0)
+ 		return ret;
+ 	if (yes) {
+-		xe_pm_runtime_get(xe);
++		guard(xe_pm_runtime)(xe);
+ 		ret = call(xe);
+-		xe_pm_runtime_put(xe);
  	}
+ 	if (ret < 0)
+ 		return ret;
+@@ -157,9 +156,8 @@ static ssize_t from_file_write_to_vf_call(struct file *file, const char __user *
+ 	if (ret < 0)
+ 		return ret;
+ 	if (yes) {
+-		xe_pm_runtime_get(xe);
++		guard(xe_pm_runtime)(xe);
+ 		ret = call(xe, vfid);
+-		xe_pm_runtime_put(xe);
+ 	}
+ 	if (ret < 0)
+ 		return ret;
+diff --git a/drivers/gpu/drm/xe/xe_sriov_pf_sysfs.c b/drivers/gpu/drm/xe/xe_sriov_pf_sysfs.c
+index c0b767ac735c..f0777976335c 100644
+--- a/drivers/gpu/drm/xe/xe_sriov_pf_sysfs.c
++++ b/drivers/gpu/drm/xe/xe_sriov_pf_sysfs.c
+@@ -394,9 +394,8 @@ static ssize_t xe_sriov_dev_attr_store(struct kobject *kobj, struct attribute *a
+ 	if (!vattr->store)
+ 		return -EPERM;
  
--	xe_pm_runtime_put(hwmon->xe);
--
+-	xe_pm_runtime_get(xe);
++	guard(xe_pm_runtime)(xe);
+ 	ret = xe_sriov_pf_wait_ready(xe) ?: vattr->store(xe, buf, count);
+-	xe_pm_runtime_put(xe);
+ 
  	return ret;
  }
+@@ -430,9 +429,8 @@ static ssize_t xe_sriov_vf_attr_store(struct kobject *kobj, struct attribute *at
+ 	if (!vattr->store)
+ 		return -EPERM;
  
+-	xe_pm_runtime_get(xe);
++	guard(xe_pm_runtime)(xe);
+ 	ret = xe_sriov_pf_wait_ready(xe) ?: vattr->store(xe, vfid, buf, count);
+-	xe_pm_runtime_get(xe);
+ 
+ 	return ret;
+ }
+diff --git a/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c b/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c
+index 797a4b866226..e1cdc46ad710 100644
+--- a/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c
++++ b/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c
+@@ -463,8 +463,7 @@ void xe_sriov_vf_ccs_print(struct xe_device *xe, struct drm_printer *p)
+ 	if (!IS_VF_CCS_READY(xe))
+ 		return;
+ 
+-	xe_pm_runtime_get(xe);
+-
++	guard(xe_pm_runtime)(xe);
+ 	for_each_ccs_rw_ctx(ctx_id) {
+ 		bb_pool = xe->sriov.vf.ccs.contexts[ctx_id].mem.ccs_bb_pool;
+ 		if (!bb_pool)
+@@ -475,6 +474,4 @@ void xe_sriov_vf_ccs_print(struct xe_device *xe, struct drm_printer *p)
+ 		drm_suballoc_dump_debug_info(&bb_pool->base, p, xe_sa_manager_gpu_addr(bb_pool));
+ 		drm_puts(p, "\n");
+ 	}
+-
+-	xe_pm_runtime_put(xe);
+ }
+diff --git a/drivers/gpu/drm/xe/xe_tile_sriov_pf_debugfs.c b/drivers/gpu/drm/xe/xe_tile_sriov_pf_debugfs.c
+index f3f478f14ff5..7f97db2f89bb 100644
+--- a/drivers/gpu/drm/xe/xe_tile_sriov_pf_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_tile_sriov_pf_debugfs.c
+@@ -141,12 +141,11 @@ static int NAME##_set(void *data, u64 val)					\
+ 	if (val > (TYPE)~0ull)							\
+ 		return -EOVERFLOW;						\
+ 										\
+-	xe_pm_runtime_get(xe);							\
++	guard(xe_pm_runtime)(xe);						\
+ 	err = xe_sriov_pf_wait_ready(xe) ?:					\
+ 	      xe_gt_sriov_pf_config_set_##CONFIG(gt, vfid, val);		\
+ 	if (!err)								\
+ 		xe_sriov_pf_provision_set_custom_mode(xe);			\
+-	xe_pm_runtime_put(xe);							\
+ 										\
+ 	return err;								\
+ }										\
 -- 
 2.51.1
 
