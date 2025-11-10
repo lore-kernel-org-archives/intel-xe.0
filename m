@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B4631CD13D2
-	for <intel-xe@archiver.kernel.org>; Mon, 10 Nov 2025 18:48:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EDFDCCD3423
+	for <intel-xe@archiver.kernel.org>; Mon, 10 Nov 2025 18:48:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3B15910E4A0;
-	Mon, 10 Nov 2025 18:48:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A4DE010E49F;
+	Mon, 10 Nov 2025 18:48:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BvgTBGa+";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QHyU5y9t";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EFF6810E2F7;
- Mon, 10 Nov 2025 18:47:59 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AC88510E2F7;
+ Mon, 10 Nov 2025 18:47:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1762800480; x=1794336480;
+ t=1762800479; x=1794336479;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=e8WeGxOtZtcbZrMvs9n+wJZzGptxfxh9oxsAvrP2sMQ=;
- b=BvgTBGa+NDM06HOxosH4oO1KhE/vilbqXAJBH0CYg7Q3gL69alQpk/XP
- BFWgBQmIxyw69stvlt5bZDKjQBU0JegReW/aDb7U78Etq4nLlzyAHph1U
- gGBuBP4sjNudJXrgfl/96yJq6xmsvocNctpuzwOtiFINmEI6Q0eNlj6M8
- 8iKr5Nz26BJyliE2lCIlY4KOdwubBXzX8AMv8EFs7EZT47+jmM7Va+ehX
- +uHL70DZTCiKbGSIXmWbaaNDOcwI8SOCGnYmWyjjP9BCFpsp0kgO4ACng
- 3UfOTno5qm6Wf+GevwCc329N1+hTNa5/ME786O+buRlTjrd5o7akue03/ g==;
-X-CSE-ConnectionGUID: TMZgr5S5RXC0ThDSgN3nJg==
-X-CSE-MsgGUID: ArgWFDKpTZOkHBGv5/UrAA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11609"; a="52415060"
-X-IronPort-AV: E=Sophos;i="6.19,294,1754982000"; d="scan'208";a="52415060"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Nov 2025 10:48:00 -0800
-X-CSE-ConnectionGUID: 5iZ/YAniSBy0K9n38hItYw==
-X-CSE-MsgGUID: yh/8jfdkSnaYN+YU0UrbJw==
+ bh=vfFJiF5Jws09gjgjKdTNrvEfoqRScmV1z1nMj3uwJf8=;
+ b=QHyU5y9tZ3RJBaMiW18bpC7LjVXa2cjLvtc3iIOFkMwsMuUqwSuAK2rZ
+ LCOHddPoVdp61cD+B9QI1T+FtA1TntIN0fDMpqUgYtCYvHVqzTAWg9zgj
+ kBMOO2RhwtqoGTfKopQBq29SiaBqr8J6G2kDoPgRSTiUXq6eKxtk2mGWx
+ LzpjOrsBk5QbZzCZx4S1lDS2TOhMw9UpcJa9zdaxNO603Tyaalart13Sl
+ gMXGIymCR9tQExes2ad6MGvLppps5SqbiztMhFphhD9PK1W9zQSGl4U9G
+ BbZlTwAbgWshORR9y0aKQ7m6Mh3OuQhZbc6LjnbsoKiI8AkvkwiIpIqj8 Q==;
+X-CSE-ConnectionGUID: hccwTlBNRES/u+EULuF2TA==
+X-CSE-MsgGUID: McDDhQNCSYG4pn3c9G8ioA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11609"; a="76307331"
+X-IronPort-AV: E=Sophos;i="6.19,294,1754982000"; d="scan'208";a="76307331"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Nov 2025 10:47:59 -0800
+X-CSE-ConnectionGUID: Ht2etEAvTa2/P79MAcMXVw==
+X-CSE-MsgGUID: q70WGSfeRhCBG0Zd32Rwgg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,294,1754982000"; d="scan'208";a="193125673"
+X-IronPort-AV: E=Sophos;i="6.19,294,1754982000"; d="scan'208";a="226005244"
 Received: from black.igk.intel.com ([10.91.253.5])
- by orviesa004.jf.intel.com with ESMTP; 10 Nov 2025 10:47:51 -0800
+ by orviesa001.jf.intel.com with ESMTP; 10 Nov 2025 10:47:49 -0800
 Received: by black.igk.intel.com (Postfix, from userid 1003)
- id 5DFC7A5; Mon, 10 Nov 2025 19:47:29 +0100 (CET)
+ id 499D5A2; Mon, 10 Nov 2025 19:47:29 +0100 (CET)
 From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 To: Corey Minyard <corey@minyard.net>,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
@@ -114,9 +114,9 @@ Cc: Rasmus Villemoes <linux@rasmusvillemoes.dk>,
  Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
  Andrew Morton <akpm@linux-foundation.org>,
  Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>
-Subject: [PATCH v1 16/23] net: dsa: sja1105: Switch to use %ptSp
-Date: Mon, 10 Nov 2025 19:40:35 +0100
-Message-ID: <20251110184727.666591-17-andriy.shevchenko@linux.intel.com>
+Subject: [PATCH v1 13/23] media: av7110: Switch to use %ptSp
+Date: Mon, 10 Nov 2025 19:40:32 +0100
+Message-ID: <20251110184727.666591-14-andriy.shevchenko@linux.intel.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20251110184727.666591-1-andriy.shevchenko@linux.intel.com>
 References: <20251110184727.666591-1-andriy.shevchenko@linux.intel.com>
@@ -141,34 +141,21 @@ struct timespec64 in human readable format.
 
 Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 ---
- drivers/net/dsa/sja1105/sja1105_tas.c | 8 +++-----
- 1 file changed, 3 insertions(+), 5 deletions(-)
+ drivers/staging/media/av7110/av7110.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/net/dsa/sja1105/sja1105_tas.c b/drivers/net/dsa/sja1105/sja1105_tas.c
-index d7818710bc02..d5949d2c3e71 100644
---- a/drivers/net/dsa/sja1105/sja1105_tas.c
-+++ b/drivers/net/dsa/sja1105/sja1105_tas.c
-@@ -775,9 +775,8 @@ static void sja1105_tas_state_machine(struct work_struct *work)
- 		base_time_ts = ns_to_timespec64(base_time);
- 		now_ts = ns_to_timespec64(now);
+diff --git a/drivers/staging/media/av7110/av7110.c b/drivers/staging/media/av7110/av7110.c
+index bc9a2a40afcb..602342d1174f 100644
+--- a/drivers/staging/media/av7110/av7110.c
++++ b/drivers/staging/media/av7110/av7110.c
+@@ -321,7 +321,7 @@ static inline void print_time(char *s)
+ 	struct timespec64 ts;
  
--		dev_dbg(ds->dev, "OPER base time %lld.%09ld (now %lld.%09ld)\n",
--			base_time_ts.tv_sec, base_time_ts.tv_nsec,
--			now_ts.tv_sec, now_ts.tv_nsec);
-+		dev_dbg(ds->dev, "OPER base time %ptSp (now %ptSp)\n",
-+			&base_time_ts, &now_ts);
- 
- 		break;
- 
-@@ -798,8 +797,7 @@ static void sja1105_tas_state_machine(struct work_struct *work)
- 		if (now < tas_data->oper_base_time) {
- 			/* TAS has not started yet */
- 			diff = ns_to_timespec64(tas_data->oper_base_time - now);
--			dev_dbg(ds->dev, "time to start: [%lld.%09ld]",
--				diff.tv_sec, diff.tv_nsec);
-+			dev_dbg(ds->dev, "time to start: [%ptSp]", &diff);
- 			break;
- 		}
+ 	ktime_get_real_ts64(&ts);
+-	pr_info("%s(): %lld.%09ld\n", s, (s64)ts.tv_sec, ts.tv_nsec);
++	pr_info("%s(): %ptSp\n", s, &ts);
+ #endif
+ }
  
 -- 
 2.50.1
