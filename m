@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9EE91CCFA13
-	for <intel-xe@archiver.kernel.org>; Mon, 10 Nov 2025 18:47:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B17A3CD3420
+	for <intel-xe@archiver.kernel.org>; Mon, 10 Nov 2025 18:48:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5213810E2E8;
-	Mon, 10 Nov 2025 18:47:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2B3DA10E2D8;
+	Mon, 10 Nov 2025 18:48:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SNveR/f2";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eVYvrkWj";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2585F10E48A;
- Mon, 10 Nov 2025 18:47:57 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9143710E48A;
+ Mon, 10 Nov 2025 18:47:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1762800477; x=1794336477;
+ t=1762800480; x=1794336480;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Re9XzxeVgaRpFu9Nr8p7rXjuLRXS6TBbrXT9/XQ7Zd0=;
- b=SNveR/f2KBiO0XEB8ZvRWWvBacbmrj7IoAUb81kXwImd1gGpl+Bc1D9t
- 5Luo2tOLn6nNUopVDXWkRGARPsQV7LR5x1e4ytlZrVV5E4+ih7f7wuBjM
- A9JpcBsc4DYlxkhpqPxIxJx5NyiQkyvrdypKM7U/67cpx2VneADoq+61c
- 8QIhuGY/6Q6Ckr8LSWV6OZRmxi5y+9TUL6aZOXQa8Y5rpDNR2rTLwmZJl
- so4dIFdhB/7SnZnj0BaZYwjAieaYx12+yk2Xx6iicCcdt0YI6AzBmOjlV
- 1ccwXXIUCFU1PCMkIMd3aVPhbQBk2QRVf3Ztfk/LcaVQbOmXm8QjxT20T Q==;
-X-CSE-ConnectionGUID: /Sei6BCnTH+cjZtfpbRm0Q==
-X-CSE-MsgGUID: Mr6kzgsZQnOOA/TdfAkUjg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11609"; a="64897583"
-X-IronPort-AV: E=Sophos;i="6.19,294,1754982000"; d="scan'208";a="64897583"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Nov 2025 10:47:57 -0800
-X-CSE-ConnectionGUID: xYHtbT9SR/mNMyLa35Gtcw==
-X-CSE-MsgGUID: o0fIDUZxQyyrUK7H/cG3FA==
+ bh=oiUH/MiG9bvVHCRWpyZuJmqnh7B0oNIzC+jHMWYJItY=;
+ b=eVYvrkWjxGsIwYmRe9ZwRCXXODgi3NxtrRPhPCU3/rpMNRYhUONhwUbs
+ mmn/Jq2K6VxSFhXZ1+9I+8U7u9N66u3tSjhIqIo3EgmGG8hjzcTMy/ury
+ dSfEuSldptNVqr/Jg+ng4Y6x3V8TgBDy+cfe9fT3dYpUxTIR83YWqfcrn
+ 0festNpXMA7LyxWWigfSkYKgC89nhl9GmtacGqzxkWMC10UZhIRxAb0Ci
+ SAK0qP23ckIAkT9AKtNoooRB4q1y5patWIIpnEEEWvy2DHaSwD/9ZTtSb
+ ZovmZm85+VbtwxwKzU8uwVx1bZFNN3idfduUYP31UBM+yKk8FXrLhy8L3 A==;
+X-CSE-ConnectionGUID: ywjXlV2KRxKMIPbOA0K2Lg==
+X-CSE-MsgGUID: aSJy/GubQ5e1NfkdnPLsrA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11609"; a="63861737"
+X-IronPort-AV: E=Sophos;i="6.19,294,1754982000"; d="scan'208";a="63861737"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Nov 2025 10:47:59 -0800
+X-CSE-ConnectionGUID: MuEJTZ4URW+LdYzVyf898w==
+X-CSE-MsgGUID: Dj/AQkpFTdO4UAI/pAx3Tw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,294,1754982000"; d="scan'208";a="189190253"
+X-IronPort-AV: E=Sophos;i="6.19,294,1754982000"; d="scan'208";a="188705041"
 Received: from black.igk.intel.com ([10.91.253.5])
- by fmviesa009.fm.intel.com with ESMTP; 10 Nov 2025 10:47:48 -0800
+ by orviesa007.jf.intel.com with ESMTP; 10 Nov 2025 10:47:49 -0800
 Received: by black.igk.intel.com (Postfix, from userid 1003)
- id 219C19C; Mon, 10 Nov 2025 19:47:29 +0100 (CET)
+ id 57559A4; Mon, 10 Nov 2025 19:47:29 +0100 (CET)
 From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 To: Corey Minyard <corey@minyard.net>,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
@@ -114,9 +114,9 @@ Cc: Rasmus Villemoes <linux@rasmusvillemoes.dk>,
  Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
  Andrew Morton <akpm@linux-foundation.org>,
  Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>
-Subject: [PATCH v1 07/23] drm/msm: Switch to use %ptSp
-Date: Mon, 10 Nov 2025 19:40:26 +0100
-Message-ID: <20251110184727.666591-8-andriy.shevchenko@linux.intel.com>
+Subject: [PATCH v1 15/23] mmc: mmc_test: Switch to use %ptSp
+Date: Mon, 10 Nov 2025 19:40:34 +0100
+Message-ID: <20251110184727.666591-16-andriy.shevchenko@linux.intel.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20251110184727.666591-1-andriy.shevchenko@linux.intel.com>
 References: <20251110184727.666591-1-andriy.shevchenko@linux.intel.com>
@@ -141,38 +141,45 @@ struct timespec64 in human readable format.
 
 Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 ---
- drivers/gpu/drm/msm/disp/msm_disp_snapshot_util.c | 3 +--
- drivers/gpu/drm/msm/msm_gpu.c                     | 3 +--
- 2 files changed, 2 insertions(+), 4 deletions(-)
+ drivers/mmc/core/mmc_test.c | 18 +++++++-----------
+ 1 file changed, 7 insertions(+), 11 deletions(-)
 
-diff --git a/drivers/gpu/drm/msm/disp/msm_disp_snapshot_util.c b/drivers/gpu/drm/msm/disp/msm_disp_snapshot_util.c
-index 071bcdea80f7..19b470968f4d 100644
---- a/drivers/gpu/drm/msm/disp/msm_disp_snapshot_util.c
-+++ b/drivers/gpu/drm/msm/disp/msm_disp_snapshot_util.c
-@@ -82,8 +82,7 @@ void msm_disp_state_print(struct msm_disp_state *state, struct drm_printer *p)
- 	drm_printf(p, "kernel: " UTS_RELEASE "\n");
- 	drm_printf(p, "module: " KBUILD_MODNAME "\n");
- 	drm_printf(p, "dpu devcoredump\n");
--	drm_printf(p, "time: %lld.%09ld\n",
--		state->time.tv_sec, state->time.tv_nsec);
-+	drm_printf(p, "time: %ptSp\n", &state->time);
+diff --git a/drivers/mmc/core/mmc_test.c b/drivers/mmc/core/mmc_test.c
+index a74089df4547..c17b7b200798 100644
+--- a/drivers/mmc/core/mmc_test.c
++++ b/drivers/mmc/core/mmc_test.c
+@@ -586,14 +586,11 @@ static void mmc_test_print_avg_rate(struct mmc_test_card *test, uint64_t bytes,
+ 	rate = mmc_test_rate(tot, &ts);
+ 	iops = mmc_test_rate(count * 100, &ts); /* I/O ops per sec x 100 */
  
- 	list_for_each_entry_safe(block, tmp, &state->blocks, node) {
- 		drm_printf(p, "====================%s================\n", block->name);
-diff --git a/drivers/gpu/drm/msm/msm_gpu.c b/drivers/gpu/drm/msm/msm_gpu.c
-index 17759abc46d7..a4251afe4541 100644
---- a/drivers/gpu/drm/msm/msm_gpu.c
-+++ b/drivers/gpu/drm/msm/msm_gpu.c
-@@ -197,8 +197,7 @@ static ssize_t msm_gpu_devcoredump_read(char *buffer, loff_t offset,
- 	drm_printf(&p, "---\n");
- 	drm_printf(&p, "kernel: " UTS_RELEASE "\n");
- 	drm_printf(&p, "module: " KBUILD_MODNAME "\n");
--	drm_printf(&p, "time: %lld.%09ld\n",
--		state->time.tv_sec, state->time.tv_nsec);
-+	drm_printf(&p, "time: %ptSp\n", &state->time);
- 	if (state->comm)
- 		drm_printf(&p, "comm: %s\n", state->comm);
- 	if (state->cmd)
+-	pr_info("%s: Transfer of %u x %u sectors (%u x %u%s KiB) took "
+-			 "%llu.%09u seconds (%u kB/s, %u KiB/s, "
+-			 "%u.%02u IOPS, sg_len %d)\n",
+-			 mmc_hostname(test->card->host), count, sectors, count,
+-			 sectors >> 1, (sectors & 1 ? ".5" : ""),
+-			 (u64)ts.tv_sec, (u32)ts.tv_nsec,
+-			 rate / 1000, rate / 1024, iops / 100, iops % 100,
+-			 test->area.sg_len);
++	pr_info("%s: Transfer of %u x %u sectors (%u x %u%s KiB) took %ptSp seconds (%u kB/s, %u KiB/s, %u.%02u IOPS, sg_len %d)\n",
++		 mmc_hostname(test->card->host), count, sectors, count,
++		 sectors >> 1, (sectors & 1 ? ".5" : ""), &ts,
++		 rate / 1000, rate / 1024, iops / 100, iops % 100,
++		 test->area.sg_len);
+ 
+ 	mmc_test_save_transfer_result(test, count, sectors, ts, rate, iops);
+ }
+@@ -3074,9 +3071,8 @@ static int mtf_test_show(struct seq_file *sf, void *data)
+ 		seq_printf(sf, "Test %d: %d\n", gr->testcase + 1, gr->result);
+ 
+ 		list_for_each_entry(tr, &gr->tr_lst, link) {
+-			seq_printf(sf, "%u %d %llu.%09u %u %u.%02u\n",
+-				tr->count, tr->sectors,
+-				(u64)tr->ts.tv_sec, (u32)tr->ts.tv_nsec,
++			seq_printf(sf, "%u %d %ptSp %u %u.%02u\n",
++				tr->count, tr->sectors, &tr->ts,
+ 				tr->rate, tr->iops / 100, tr->iops % 100);
+ 		}
+ 	}
 -- 
 2.50.1
 
