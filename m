@@ -4,53 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5F4EDCCFA13
-	for <intel-xe@archiver.kernel.org>; Mon, 10 Nov 2025 19:57:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 46406CCF9E3
+	for <intel-xe@archiver.kernel.org>; Mon, 10 Nov 2025 20:02:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2467C10E0D0;
-	Mon, 10 Nov 2025 19:57:33 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="RejfgAbF";
-	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E60AB10E0D0
- for <intel-xe@lists.freedesktop.org>; Mon, 10 Nov 2025 19:57:32 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id B3BC9445DD;
- Mon, 10 Nov 2025 19:57:32 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8AE84C2BC87;
- Mon, 10 Nov 2025 19:57:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1762804652;
- bh=8jymNanNDh6OTlugBO11d9IPEUWdygDIcCUgZeTZ+BY=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=RejfgAbFBT59TuDSFk3Cyjg8poBLbGKWa8PYKiE8jadpNf2V5WdYycEwKl5vLFb6y
- OJ3VzPUlRRUibfewgWupWbyVDD6Ibst15G0n/GeAONyUSJlJ+W3Vul28N2JfU8Ja5z
- UAwB5VW6BDO1c+SlW0ZfYqImnhGm7sHyfm26Pz5Gl+Y+f7ibHuObZgtDfbJNYSj6jC
- ouvlDEckUak8RQNs3PMpYwnxjNOKxAm0KU4bmvDbFEac9TCsxzT7LsLxA3+CuTuPxC
- yuPujKOd1PD4I2rJdekjtZDnwON3YiUsjqzhjdazn+zl7OwLM184H7FKLRgB+LMEpI
- XX5PtvuEUO/YQ==
-From: Sasha Levin <sashal@kernel.org>
-To: patches@lists.linux.dev,
-	stable@vger.kernel.org
-Cc: Tejas Upadhyay <tejas.upadhyay@intel.com>,
- Nitin Gote <nitin.r.gote@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Sasha Levin <sashal@kernel.org>, thomas.hellstrom@linux.intel.com,
- rodrigo.vivi@intel.com, intel-xe@lists.freedesktop.org
-Subject: [PATCH AUTOSEL 6.17-6.12] drm/xe: Move declarations under conditional
- branch
-Date: Mon, 10 Nov 2025 14:57:06 -0500
-Message-ID: <20251110195718.859919-6-sashal@kernel.org>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20251110195718.859919-1-sashal@kernel.org>
-References: <20251110195718.859919-1-sashal@kernel.org>
+	by gabe.freedesktop.org (Postfix) with ESMTP id EEC8210E1A3;
+	Mon, 10 Nov 2025 20:02:07 +0000 (UTC)
+Received: from 10055242dc62 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 94EAA10E1A3;
+ Mon, 10 Nov 2025 20:02:06 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
-X-stable-base: Linux 6.17.7
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_treewide=3A_Introduce_=25?=
+ =?utf-8?q?ptS_for_struct_timespec64_and_convert_users?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Andy Shevchenko" <andriy.shevchenko@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 10 Nov 2025 20:02:06 -0000
+Message-ID: <176280492660.35461.4668532660325353948@10055242dc62>
+X-Patchwork-Hint: ignore
+References: <20251110184727.666591-1-andriy.shevchenko@linux.intel.com>
+In-Reply-To: <20251110184727.666591-1-andriy.shevchenko@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,165 +36,101 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Tejas Upadhyay <tejas.upadhyay@intel.com>
+== Series Details ==
 
-[ Upstream commit 9cd27eec872f0b95dcdd811edc39d2d32e4158c8 ]
+Series: treewide: Introduce %ptS for struct timespec64 and convert users
+URL   : https://patchwork.freedesktop.org/series/157346/
+State : warning
 
-The xe_device_shutdown() function was needing a few declarations
-that were only required under a specific condition. This change
-moves those declarations to be within that conditional branch
-to avoid unnecessary declarations.
+== Summary ==
 
-Reviewed-by: Nitin Gote <nitin.r.gote@intel.com>
-Link: https://patchwork.freedesktop.org/patch/msgid/20251007100208.1407021-1-tejas.upadhyay@intel.com
-Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
-(cherry picked from commit 15b3036045188f4da4ca62b2ed01b0f160252e9b)
-Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+d9120d4d84745cf011b4b3efb338747e69179dfb
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 58b9814a5114f2b94fc2be6f7b9a90aea1df6347
+Author: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Date:   Mon Nov 10 19:40:42 2025 +0100
 
-LLM Generated explanations, may be completely bogus:
+    tracing: Switch to use %ptSp
+    
+    Use %ptSp instead of open coded variants to print content of
+    struct timespec64 in human readable format.
+    
+    Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+    Acked-by: Steven Rostedt (Google) <rostedt@goodmis.org>
++ /mt/dim checkpatch a9792b1ab75123e4aceaba953a89809e745919c6 drm-intel
+9374ba89907d lib/vsprintf: Add specifier for printing struct timespec64
+-:76: ERROR:CODE_INDENT: code indent should use tabs where possible
+#76: FILE: lib/vsprintf.c:1997:
++                     struct printf_spec spec, const char *fmt)$
 
-Based on my analysis using semantic code analysis tools and git
-repository examination, here is my assessment:
+-:76: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#76: FILE: lib/vsprintf.c:1997:
++                     struct printf_spec spec, const char *fmt)$
 
-## Answer: YES
+total: 1 errors, 1 warnings, 0 checks, 85 lines checked
+76657a2b6ffc ALSA: seq: Switch to use %ptSp
+057313bd82d6 ceph: Switch to use %ptSp
+-:66: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#66: FILE: fs/ceph/inode.c:901:
++			doutc(cl, "mtime %ptSp -> %ptSp tw %d -> %d\n", &imtime, mtime,
+ 			     ci->i_time_warp_seq, (int)time_warp_seq);
 
-## Detailed Analysis:
+total: 0 errors, 0 warnings, 1 checks, 129 lines checked
+1262eee7dc60 libceph: Switch to use %ptSp
+2a4e93f401e3 dma-buf: Switch to use %ptSp
+53b8657970cb drm/amdgpu: Switch to use %ptSp
+aa08f3769a8a drm/msm: Switch to use %ptSp
+74fde8076f4d drm/vblank: Switch to use %ptSp
+53df36491325 drm/xe: Switch to use %ptSp
+e6b3f5e4023f e1000e: Switch to use %ptSp
+4a7a17ffda83 igb: Switch to use %ptSp
+80cdc2f1a0f1 ipmi: Switch to use %ptSp
+b7afcbc5cd99 media: av7110: Switch to use %ptSp
+80513a4aef68 media: v4l2-ioctl: Switch to use %ptSp
+-:22: WARNING:LOGGING_CONTINUATION: Avoid logging continuation uses where feasible
+#22: FILE: drivers/media/v4l2-core/v4l2-ioctl.c:794:
++	pr_cont("type=0x%x, pending=%u, sequence=%u, id=%u, timestamp=%ptSp\n",
 
-### 1. Semantic Analysis Tools Used:
+total: 0 errors, 1 warnings, 0 checks, 11 lines checked
+b9fdd5df2216 mmc: mmc_test: Switch to use %ptSp
+-:28: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#28: FILE: drivers/mmc/core/mmc_test.c:590:
++	pr_info("%s: Transfer of %u x %u sectors (%u x %u%s KiB) took %ptSp seconds (%u kB/s, %u KiB/s, %u.%02u IOPS, sg_len %d)\n",
++		 mmc_hostname(test->card->host), count, sectors, count,
 
-**mcp__semcode__find_function**: Located the `xe_device_shutdown`
-function in drivers/gpu/drm/xe/xe_device.c:963-983
+-:43: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#43: FILE: drivers/mmc/core/mmc_test.c:3075:
++			seq_printf(sf, "%u %d %ptSp %u %u.%02u\n",
++				tr->count, tr->sectors, &tr->ts,
 
-**mcp__semcode__find_callers**: Identified that `xe_device_shutdown` is
-called by `xe_pci_shutdown` (the PCI device shutdown handler at
-drivers/gpu/drm/xe/xe_pci.c:877)
+total: 0 errors, 0 warnings, 2 checks, 30 lines checked
+9ed591ea7c51 net: dsa: sja1105: Switch to use %ptSp
+056b1224817f PCI: epf-test: Switch to use %ptSp
+5ac41f6d1ed4 pps: Switch to use %ptSp
+8dd21dbdf482 ptp: ocp: Switch to use %ptSp
+149b3ec31bee s390/dasd: Switch to use %ptSp
+75daf3897569 scsi: fnic: Switch to use %ptS
+3baaa4d28aa9 scsi: snic: Switch to use %ptSp
+-:34: CHECK:SPACING: No space is necessary after a cast
+#34: FILE: drivers/scsi/snic/snic_debugfs.c:301:
++		   (u64) stats->misc.last_isr_time, &last_isr_tms,
 
-**mcp__semcode__diff_functions**: Attempted to analyze semantic
-differences in the diff
+-:35: CHECK:SPACING: No space is necessary after a cast
+#35: FILE: drivers/scsi/snic/snic_debugfs.c:302:
++		   (u64) stats->misc.last_ack_time, &last_ack_tms,
 
-**Git history analysis**: Examined the commit chain and discovered the
-critical dependency relationship
+total: 0 errors, 0 warnings, 2 checks, 33 lines checked
+58b9814a5114 tracing: Switch to use %ptSp
 
-### 2. Key Findings:
-
-**This commit is explicitly marked as a stable dependency** for commit
-b11a020d914c3 ("drm/xe: Do clean shutdown also when using flr"). The git
-log shows:
-```
-Stable-dep-of: b11a020d914c ("drm/xe: Do clean shutdown also when using
-flr")
-```
-
-**The dependent bug fix (b11a020d914c3)**:
-- Fixes a real bug causing "random warnings from pending related works
-  as the underlying hardware is reset in the middle of their execution"
-- Has a `Fixes:` tag pointing to 501d799a47e2 ("drm/xe: Wire up device
-  shutdown handler")
-- Includes `Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>`
-  indicating maintainer involvement
-- Is already cherry-picked and destined for stable trees
-
-### 3. Code Change Analysis:
-
-**What this commit does**:
-- Moves variable declarations (`struct xe_gt *gt` and `u8 id`) from
-  function start into the conditional block where they're actually used
-- Purely a code organization change with **zero behavioral impact**
-- Changes from:
-  ```c
-  void xe_device_shutdown(struct xe_device *xe) {
-  struct xe_gt *gt;  // Declared at top
-  u8 id;
-  if (xe_driver_flr_disabled(xe)) {
-  // use gt and id here
-  }
-  }
-  ```
-  To:
-  ```c
-  void xe_device_shutdown(struct xe_device *xe) {
-  if (xe_driver_flr_disabled(xe)) {
-  struct xe_gt *gt;  // Declared inside conditional
-  u8 id;
-  // use gt and id here
-  }
-  }
-  ```
-
-### 4. Impact Scope:
-
-- **Affected function**: Single function `xe_device_shutdown` in xe DRM
-  driver
-- **Call path**: User shutdown/reboot → PCI shutdown handler →
-  xe_pci_shutdown → xe_device_shutdown
-- **Risk level**: Minimal - this is a refactoring that doesn't change
-  behavior
-- **Subsystem**: Intel Xe GPU driver (drm/xe) - not a core kernel
-  subsystem
-
-### 5. Why This Should Be Backported:
-
-**Primary Reason**: **Stable Dependency Requirement**
-- The subsequent bug fix b11a020d914c3 needs this commit for clean
-  application
-- Without it, the bug fix patch may have context conflicts or require
-  manual adjustment
-- Stable tree maintainers have already identified this as a required
-  dependency
-
-**Secondary Reasons**:
-- **Zero risk**: Pure code movement with no behavioral change
-- **Small scope**: Single function in a device driver
-- **Cherry-picked**: Already cherry-picked with signature `(cherry
-  picked from commit 15b3036045188f4da4ca62b2ed01b0f160252e9b)`
-- **Enables important fix**: Required for fixing shutdown warnings that
-  affect users
-
-### 6. Stable Tree Rules Compliance:
-
-✅ **Fixes real issue** (as a dependency for an actual bug fix)
-✅ **Small and contained** (single function, declaration movement)
-✅ **No new features** (refactoring only)
-✅ **Low regression risk** (no behavioral change)
-✅ **Explicitly marked for stable** (Stable-dep-of tag)
-
-### Conclusion:
-
-This commit should be backported to stable trees because it is
-explicitly marked as a stable dependency for an important bug fix. While
-it doesn't fix a bug itself, it's a necessary prerequisite that ensures
-the subsequent fix (b11a020d914c3) applies cleanly. The change is safe
-(zero behavioral impact), small (single function), and already
-identified by maintainers as required for stable tree integration.
-
- drivers/gpu/drm/xe/xe_device.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
-
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 1c9907b8a4e9e..e7f838fed3298 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -962,12 +962,12 @@ void xe_device_remove(struct xe_device *xe)
- 
- void xe_device_shutdown(struct xe_device *xe)
- {
--	struct xe_gt *gt;
--	u8 id;
--
- 	drm_dbg(&xe->drm, "Shutting down device\n");
- 
- 	if (xe_driver_flr_disabled(xe)) {
-+		struct xe_gt *gt;
-+		u8 id;
-+
- 		xe_display_pm_shutdown(xe);
- 
- 		xe_irq_suspend(xe);
--- 
-2.51.0
 
