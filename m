@@ -4,36 +4,34 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 92C2ACED247
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0E863CED240
 	for <intel-xe@archiver.kernel.org>; Mon, 17 Nov 2025 13:22:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 40C1710E3B8;
-	Mon, 17 Nov 2025 13:22:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 222D210E38B;
+	Mon, 17 Nov 2025 13:22:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=aruba.it header.i=@aruba.it header.b="AXJ4e5dw";
+	dkim=pass (1024-bit key; unprotected) header.d=linux.dev header.i=@linux.dev header.b="U0xyIRec";
 	dkim-atps=neutral
-X-Greylist: delayed 422 seconds by postgrey-1.36 at gabe;
- Tue, 11 Nov 2025 08:17:03 UTC
-Received: from smtpweb147.aruba.it (smtpweb147.aruba.it [62.149.158.147])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5EED910E503
- for <intel-xe@lists.freedesktop.org>; Tue, 11 Nov 2025 08:17:03 +0000 (UTC)
-Received: from [192.168.1.56] ([79.0.204.227]) by Aruba SMTP with ESMTPSA
- id IjRpvB89Z3rWiIjRpvo9yP; Tue, 11 Nov 2025 09:09:59 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aruba.it; s=a1;
- t=1762848599; bh=e2VKfhLBtfetGdLzQaFZSLBhdVbkUGkXPf4jjXRKteg=;
- h=Date:MIME-Version:Subject:To:From:Content-Type;
- b=AXJ4e5dw+jSyszcMYBEFl9RCo64n6ctWLi7ALyEfBW2CsNHdns58uFEPi6BIP0fSo
- +tB0UztyXs5sQMBKQyycck0J3O4LR0Dnk3QAhsnI09tGu8FmU8DcYE1wR6HJcad5yZ
- TLc+0c06i9zJ5NVTRlQs5GjG5nsPj9le/gGOTqLTjYyWY5Qcu3FWjQq5gmMaKCWsin
- /zKDeh7ZKMAATnb3tk1WbFnrvz4a8/3SGmCbbZzLCD1af4amWVvDCH5XIDWdZFYyW6
- QyGNAYKhUugKEMfbzLpPCuFgDDAzuQZNrfICnaEmr/m/0fSopNWEOSkZx7p8Qn9Y80
- b8l0RNeGvbW6A==
-Message-ID: <6c8b4205-e5d2-4bce-a1ab-addb099097b8@enneenne.com>
-Date: Tue, 11 Nov 2025 09:09:52 +0100
+X-Greylist: delayed 454 seconds by postgrey-1.36 at gabe;
+ Mon, 10 Nov 2025 23:45:33 UTC
+Received: from out-170.mta0.migadu.com (out-170.mta0.migadu.com
+ [91.218.175.170])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 79FBA10E333;
+ Mon, 10 Nov 2025 23:45:33 +0000 (UTC)
+Message-ID: <3eb5379f-c7ad-4aea-ab9a-20e07b7f34d0@linux.dev>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+ t=1762817866;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=N5NdZ3Il1D+l8lwQLcK5dXwNIadjasDY9t8ilnV/mV0=;
+ b=U0xyIRecUBR+iYd+jFcmevJu/4H+A2bbNJnN96yfE0hlgn9ZMrH3LxAIKYqZS4s3cJ1uvm
+ +7WK+gk43pd/VuQQ8rDReqm1AlKlWm8GBWmK3v11GgPPZIdbI1RU8LPuoyCqW5EbUBDj5d
+ 3Ou4TSlLX99wMRUdq/vNAC0vrqSI3Ow=
+Date: Mon, 10 Nov 2025 23:37:33 +0000
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 18/23] pps: Switch to use %ptSp
-Content-Language: en-US
+Subject: Re: [PATCH v1 19/23] ptp: ocp: Switch to use %ptSp
 To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
  Corey Minyard <corey@minyard.net>, =?UTF-8?Q?Christian_K=C3=B6nig?=
  <christian.koenig@amd.com>, "Dr. David Alan Gilbert" <linux@treblig.org>,
@@ -84,9 +82,8 @@ Cc: Rasmus Villemoes <linux@rasmusvillemoes.dk>,
  Przemek Kitszel <przemyslaw.kitszel@intel.com>,
  =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
  Kishon Vijay Abraham I <kishon@kernel.org>,
- Bjorn Helgaas <bhelgaas@google.com>,
- Jonathan Lemon <jonathan.lemon@gmail.com>,
- Vadim Fedorenko <vadim.fedorenko@linux.dev>,
+ Bjorn Helgaas <bhelgaas@google.com>, Rodolfo Giometti
+ <giometti@enneenne.com>, Jonathan Lemon <jonathan.lemon@gmail.com>,
  Richard Cochran <richardcochran@gmail.com>,
  Stefan Haberland <sth@linux.ibm.com>, Jan Hoeppner <hoeppner@linux.ibm.com>,
  Heiko Carstens <hca@linux.ibm.com>, Vasily Gorbik <gor@linux.ibm.com>,
@@ -102,41 +99,15 @@ Cc: Rasmus Villemoes <linux@rasmusvillemoes.dk>,
  Andrew Morton <akpm@linux-foundation.org>, Jaroslav Kysela <perex@perex.cz>,
  Takashi Iwai <tiwai@suse.com>
 References: <20251110184727.666591-1-andriy.shevchenko@linux.intel.com>
- <20251110184727.666591-19-andriy.shevchenko@linux.intel.com>
-From: Rodolfo Giometti <giometti@enneenne.com>
-In-Reply-To: <20251110184727.666591-19-andriy.shevchenko@linux.intel.com>
+ <20251110184727.666591-20-andriy.shevchenko@linux.intel.com>
+Content-Language: en-US
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and
+ include these headers.
+From: Vadim Fedorenko <vadim.fedorenko@linux.dev>
+In-Reply-To: <20251110184727.666591-20-andriy.shevchenko@linux.intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-CMAE-Envelope: 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
+X-Migadu-Flow: FLOW_OUT
 X-Mailman-Approved-At: Mon, 17 Nov 2025 13:22:47 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -152,55 +123,59 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 10/11/25 19:40, Andy Shevchenko wrote:
+On 10/11/2025 18:40, Andy Shevchenko wrote:
 > Use %ptSp instead of open coded variants to print content of
 > struct timespec64 in human readable format.
 > 
-> Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-
-Acked-by: Rodolfo Giometti <giometti@enneenne.com>
-
-Thanks,
-
-Rodolfo Giometti
-
-> ---
->   drivers/pps/generators/pps_gen_parport.c | 3 +--
->   drivers/pps/kapi.c                       | 3 +--
->   2 files changed, 2 insertions(+), 4 deletions(-)
+> While at it, fix wrong use of %ptT against struct timespec64.
+> It's kinda lucky that it worked just because the first member
+> there 64-bit and it's of time64_t type. Now with %ptS it may
+> be used correctly.
 > 
-> diff --git a/drivers/pps/generators/pps_gen_parport.c b/drivers/pps/generators/pps_gen_parport.c
-> index f5eeb4dd01ad..05bbf8d30ef1 100644
-> --- a/drivers/pps/generators/pps_gen_parport.c
-> +++ b/drivers/pps/generators/pps_gen_parport.c
-> @@ -80,8 +80,7 @@ static enum hrtimer_restart hrtimer_event(struct hrtimer *timer)
->   	/* check if we are late */
->   	if (expire_time.tv_sec != ts1.tv_sec || ts1.tv_nsec > lim) {
->   		local_irq_restore(flags);
-> -		pr_err("we are late this time %lld.%09ld\n",
-> -				(s64)ts1.tv_sec, ts1.tv_nsec);
-> +		pr_err("we are late this time %ptSp\n", &ts1);
->   		goto done;
->   	}
+> Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+> ---
+>   drivers/ptp/ptp_ocp.c | 15 ++++++---------
+>   1 file changed, 6 insertions(+), 9 deletions(-)
+> 
+> diff --git a/drivers/ptp/ptp_ocp.c b/drivers/ptp/ptp_ocp.c
+> index a5c363252986..a0bb8d3045d2 100644
+> --- a/drivers/ptp/ptp_ocp.c
+> +++ b/drivers/ptp/ptp_ocp.c
+> @@ -3261,7 +3261,7 @@ signal_show(struct device *dev, struct device_attribute *attr, char *buf)
+>   			   signal->duty, signal->phase, signal->polarity);
 >   
-> diff --git a/drivers/pps/kapi.c b/drivers/pps/kapi.c
-> index e9389876229e..6985c34de2ce 100644
-> --- a/drivers/pps/kapi.c
-> +++ b/drivers/pps/kapi.c
-> @@ -163,8 +163,7 @@ void pps_event(struct pps_device *pps, struct pps_event_time *ts, int event,
->   	/* check event type */
->   	BUG_ON((event & (PPS_CAPTUREASSERT | PPS_CAPTURECLEAR)) == 0);
+>   	ts = ktime_to_timespec64(signal->start);
+> -	count += sysfs_emit_at(buf, count, " %ptT TAI\n", &ts);
+> +	count += sysfs_emit_at(buf, count, " %ptS TAI\n", &ts);
 >   
-> -	dev_dbg(&pps->dev, "PPS event at %lld.%09ld\n",
-> -			(s64)ts->ts_real.tv_sec, ts->ts_real.tv_nsec);
-> +	dev_dbg(&pps->dev, "PPS event at %ptSp\n", &ts->ts_real);
+>   	return count;
+>   }
+> @@ -4287,11 +4287,9 @@ ptp_ocp_summary_show(struct seq_file *s, void *data)
+>   		ns += (s64)bp->utc_tai_offset * NSEC_PER_SEC;
+>   		sys_ts = ns_to_timespec64(ns);
 >   
->   	timespec_to_pps_ktime(&ts_real, ts->ts_real);
+> -		seq_printf(s, "%7s: %lld.%ld == %ptT TAI\n", "PHC",
+> -			   ts.tv_sec, ts.tv_nsec, &ts);
+> -		seq_printf(s, "%7s: %lld.%ld == %ptT UTC offset %d\n", "SYS",
+> -			   sys_ts.tv_sec, sys_ts.tv_nsec, &sys_ts,
+> -			   bp->utc_tai_offset);
+> +		seq_printf(s, "%7s: %ptSp == %ptS TAI\n", "PHC", &ts, &ts);
+> +		seq_printf(s, "%7s: %ptSp == %ptS UTC offset %d\n", "SYS",
+> +			   &sys_ts, &sys_ts, bp->utc_tai_offset);
+>   		seq_printf(s, "%7s: PHC:SYS offset: %lld  window: %lld\n", "",
+>   			   timespec64_to_ns(&ts) - ns,
+>   			   post_ns - pre_ns);
+> @@ -4499,9 +4497,8 @@ ptp_ocp_phc_info(struct ptp_ocp *bp)
+>   		 ptp_clock_index(bp->ptp));
 >   
+>   	if (!ptp_ocp_gettimex(&bp->ptp_info, &ts, NULL))
+> -		dev_info(&bp->pdev->dev, "Time: %lld.%ld, %s\n",
+> -			 ts.tv_sec, ts.tv_nsec,
+> -			 bp->sync ? "in-sync" : "UNSYNCED");
+> +		dev_info(&bp->pdev->dev, "Time: %ptSp, %s\n",
+> +			 &ts, bp->sync ? "in-sync" : "UNSYNCED");
+>   }
+>   
+>   static void
 
-
--- 
-GNU/Linux Solutions                  e-mail: giometti@enneenne.com
-Linux Device Driver                          giometti@linux.it
-Embedded Systems                     phone:  +39 349 2432127
-UNIX programming
+Acked-by: Vadim Fedorenko <vadim.fedorenko@linux.dev>
