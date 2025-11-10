@@ -4,184 +4,181 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 25CABCCFA13
-	for <intel-xe@archiver.kernel.org>; Mon, 10 Nov 2025 09:46:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8E80DCCFA13
+	for <intel-xe@archiver.kernel.org>; Mon, 10 Nov 2025 09:53:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D94C910E36E;
-	Mon, 10 Nov 2025 09:46:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 34C5F10E2CB;
+	Mon, 10 Nov 2025 09:53:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="X3zj+W4A";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="c4iERMEp";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 29E4310E36E
- for <intel-xe@lists.freedesktop.org>; Mon, 10 Nov 2025 09:46:42 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9123110E2CB;
+ Mon, 10 Nov 2025 09:53:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1762768002; x=1794304002;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=yigm95NYYK0odq7Rkul+HxVRvClb3ZwwOjc0ojEpfIU=;
- b=X3zj+W4AE6s3vIKqbKsOkCxd6wxoKimbfjiSgZm2TZFTY5HXwZlis+wX
- tBrxjjIQ0YxqYykcAjC9NML2adjZK8vBirqTQmOIHu4Fp7fjxvHAbk8HJ
- XF2eDa/4Oc3btZ4ChbSuvThUvB2rNLoe6r4HYU9XjMKEYBjf4cdHLO3VF
- 3Vq6YymI08oQZJUI5z823hyNDMBNc3mjvuvglYxcDU88CbWs+oX7CzFT9
- NiNV7kLEiQHSGdgd3jL6SFLc+I941V6jnHBl2/atiLJQjE9jw3zVF4zZy
- 1FR6GTrhPH4ppaelFUyvYwK4eP5TxZ6RO4UoPOmxYRwXY1zOZnK+Rm3Sd Q==;
-X-CSE-ConnectionGUID: qlawkjRzSRmaGztH2NkUvg==
-X-CSE-MsgGUID: yA5hK5rKSxOBedROG3OILA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11608"; a="75108748"
-X-IronPort-AV: E=Sophos;i="6.19,293,1754982000"; d="scan'208";a="75108748"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Nov 2025 01:46:42 -0800
-X-CSE-ConnectionGUID: 26hMe2P1RcWptLu1Id5hVg==
-X-CSE-MsgGUID: ysGm1qEUTWmeeIzbUCw8Mw==
+ t=1762768420; x=1794304420;
+ h=message-id:date:subject:to:references:from:in-reply-to:
+ content-transfer-encoding:mime-version;
+ bh=ysKs/N9de4fzQcHXcl1lEWjYzEaDHObPg/DhUyA2VoY=;
+ b=c4iERMEpS1Hl4FfIV4cK37OuaWx4PQvyrOHRMpphiTKRD9bqyWROh10Q
+ UKypV0jJA0u3xEiFLnBMHabRiofpndaWrbYqEpPqa1YRdOLteN7Gki7fi
+ bi6CDQqit6+QxuEl0iEI7HOUMzAr2zCe5WAcADPaaXQLQqgcKlHh/4GAH
+ 4JgjyZzKsOsrN/ZbpjFdeMvIqpLMd6aZYiQ1oFIK0QtUdMnPD84aY1AN1
+ 2RWVBXQGPTrHZzbjH4QHb/YqqxVEgssVRqzhWLOPzYpfGHWqYpG247Rcv
+ hkdH4atRVFarvdy0sS8auwxgZ7odMBBNsbo1c2pqhmU7/LqFbsLPr2GXr w==;
+X-CSE-ConnectionGUID: mx7Kch/dSUK0i9KfiWlh1A==
+X-CSE-MsgGUID: j3PWzL0VR9G72MS+WVrhRA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11608"; a="64970110"
+X-IronPort-AV: E=Sophos;i="6.19,293,1754982000"; d="scan'208";a="64970110"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Nov 2025 01:53:39 -0800
+X-CSE-ConnectionGUID: G2RkM1BuRtiPFuboPtIGDw==
+X-CSE-MsgGUID: jlc+WzNBS8205xa1OZgMuQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,293,1754982000"; d="scan'208";a="188794440"
-Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
- by orviesa008.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Nov 2025 01:46:42 -0800
-Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
- fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.19,293,1754982000"; d="scan'208";a="219360955"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by fmviesa001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Nov 2025 01:53:39 -0800
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Mon, 10 Nov 2025 01:46:41 -0800
-Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
- FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ 15.2.2562.27; Mon, 10 Nov 2025 01:53:38 -0800
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27 via Frontend Transport; Mon, 10 Nov 2025 01:46:41 -0800
-Received: from CH1PR05CU001.outbound.protection.outlook.com (52.101.193.25) by
- edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
+ 15.2.2562.27 via Frontend Transport; Mon, 10 Nov 2025 01:53:38 -0800
+Received: from PH0PR06CU001.outbound.protection.outlook.com (40.107.208.51) by
+ edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Mon, 10 Nov 2025 01:46:40 -0800
+ 15.2.2562.27; Mon, 10 Nov 2025 01:53:38 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=D5nkM48Q98IT1oNcSLylz75/x5BAZnHRT6YlP15B+fxZEy/2KsTHodS2J1mksGRTRAD7/GUAB6an6ecdI4Lcfz7z+cqMsQoWY9+UCrTrmKzL4tBDZUl5Cj4X4HIvvsjXq5ZaqLo0PqnuzMsRK9oavhUboyR1gPQ8Dob4FZMXmpUkCzMsxxhJaYg2WXWKB4vcVGd06UP2ttDuCwloKO+nYkFP68KQiAuRAAfh5LGOMTikY/jep4ZUtNDdxRkDdMJJMH2TqMtWrlUVBmAs3bfk4Oek9TCDbizeQQtLNt+QRNCcReyYy34shgq+QvoNLpWflEoibpSoUZLBp7NnHKKo/g==
+ b=De9tGOKFEdAWOddBGFiI+IvdD25+FJmj5LUAI2hGfjFmJ/7nPJPw+DPKGaeiHzSlTEWM8LSTGlCdPJyG0M1cHweCQeFeyatHzXtdni7N+rMVc92CmCsrIFnpexYIugJeLRJnAO/oIzJr+Kyfk7QOLfisuRJOHal/8tZ77hwGsCxwdaIJk6YVQ1uwRlq1BkEWwXClxcvYgWnApvJkBVJSUzWEHpBmB+Usnxe7vbuM5Gl9GtQZ4C0EdxyAIqOyhwdrbsgITq3EA959fV7gmpSUQmoCmCUVTaRtQri4DwtIgz9xFuoE5T0+l3Um+8sCmIepfi3WitWb5yM/lBDtw79lVQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=vfKh9RnHuqPjryDZU/53xwRBssAytP2rFAM5MPPR3M8=;
- b=Z3zFN+zZYl/arpfDMXXHqHgbKRP/B9/K+MZLbTu9cvWKRCtr1PB/FHEQgLSPJCURLgsvWe8Y7edXgv9bPjSDpAXDsSqzwUaPfMmthBMfe/Lf2dwXEyss5EE1aouRJTSX3EhWQPgf4Y9wQDOmLyeDwCTwvnyN4GWrC/+lWXE/vHg20wk25wUSzmVDdxdecspteSXctxAThK3Z9AJpi2cMAyplK4rxr76PPBazZKR/zvV0/S41YHSLtOzdEcVNYv0b/FxB2WtfA37Pb+SyjCW7GnNN5eXVQD609LpTM3CUdp1ipcikRNeWjH/ccL4j9PpkM8sYGwg9CUnNKMpvKzDOoQ==
+ bh=5LD+G695LZFvy22vTE4vSe5tRGGS5ouG0k1PQBj0fqk=;
+ b=XZ0GOTfbukNX9+r5T6DQtVH7cvUNpFX/eW7AS0GeiVU5zJRucmv2FbKCpA0+oBDWud3gJXUtZ3Ca8FKLQfYYCMWSYsHg/NC8BPU2QX2mvOOzMzR9KPqzomW22F5zXBIrCNygf/e41lNXwMjhkMbqzVQiBx0SPju7P5mezasU4hP3vSMUIn8o23s2xc96u8t5qG5CYnu57sf+LRc0xKkbDVmGa6zUohzXHrrZYpGrnDxTfq0GUIY2c0OeJn4uNhT+rJtPoE+wriNeyNxdge2NpsVu5jrGouB3BdR3dn3s6Fdf4Ulz/kZjUB5fAO2v3kTtmqQNl4/97pnBuDPx//XHSQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB8252.namprd11.prod.outlook.com (2603:10b6:510:1aa::14)
- by SA2PR11MB5162.namprd11.prod.outlook.com (2603:10b6:806:114::22)
- with Microsoft SMTP Server (version=TLS1_2,
+Received: from DM4PR11MB5341.namprd11.prod.outlook.com (2603:10b6:5:390::22)
+ by PH0PR11MB5143.namprd11.prod.outlook.com (2603:10b6:510:3f::15) with
+ Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9298.16; Mon, 10 Nov
- 2025 09:46:34 +0000
-Received: from PH7PR11MB8252.namprd11.prod.outlook.com
- ([fe80::9f66:9d6f:3199:78b2]) by PH7PR11MB8252.namprd11.prod.outlook.com
- ([fe80::9f66:9d6f:3199:78b2%5]) with mapi id 15.20.9298.015; Mon, 10 Nov 2025
- 09:46:33 +0000
-Message-ID: <4109ed73-1c14-4903-973b-b05cd6c2fa54@intel.com>
-Date: Mon, 10 Nov 2025 15:16:26 +0530
+ 2025 09:53:36 +0000
+Received: from DM4PR11MB5341.namprd11.prod.outlook.com
+ ([fe80::397:7566:d626:e839]) by DM4PR11MB5341.namprd11.prod.outlook.com
+ ([fe80::397:7566:d626:e839%7]) with mapi id 15.20.9298.010; Mon, 10 Nov 2025
+ 09:53:35 +0000
+Message-ID: <70139248-c7c5-45df-8e4b-c999d0c85414@intel.com>
+Date: Mon, 10 Nov 2025 15:23:29 +0530
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 1/2] drm/xe/guc: Eliminate RPe caching for SLPC
- parameter handling
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, <anshuman.gupta@intel.com>,
- <badal.nilawar@intel.com>, <riana.tauro@intel.com>,
- <karthik.poosa@intel.com>, <raag.jadav@intel.com>, <soham.purkait@intel.com>, 
- <mallesh.koujalagi@intel.com>, <vinay.belgaumkar@intel.com>
-References: <20251104195735.1606126-4-sk.anirban@intel.com>
- <20251104195735.1606126-5-sk.anirban@intel.com> <aQ63pHic8tUHW13w@intel.com>
+Subject: Re: [PATCH v3 1/2] drm/i915/ltphy: Implement HDMI Algo for Pll state
+To: Suraj Kandpal <suraj.kandpal@intel.com>, <intel-xe@lists.freedesktop.org>, 
+ <intel-gfx@lists.freedesktop.org>
+References: <20251110061940.545183-1-suraj.kandpal@intel.com>
 Content-Language: en-US
-From: "Anirban, Sk" <sk.anirban@intel.com>
-In-Reply-To: <aQ63pHic8tUHW13w@intel.com>
+From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+In-Reply-To: <20251110061940.545183-1-suraj.kandpal@intel.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MA5PR01CA0003.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:174::13) To PH7PR11MB8252.namprd11.prod.outlook.com
- (2603:10b6:510:1aa::14)
+X-ClientProxiedBy: MA0P287CA0012.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:d9::11) To DM4PR11MB5341.namprd11.prod.outlook.com
+ (2603:10b6:5:390::22)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB8252:EE_|SA2PR11MB5162:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1e472f3b-ad5a-4c2f-99ef-08de203e086d
+X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|PH0PR11MB5143:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9ae1040d-7594-46b0-b526-08de203f03f5
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?eWlSeFI2T3lVcWZpeWNWdWM1U09DZXpSSEkvWWVqbXdScGNXdElnZ2JYMnNr?=
- =?utf-8?B?QndOVGpmbTNGaEo0ZkpTRUVMWCs0djNQWncyeHl5d044SmZQMVF6dDIva205?=
- =?utf-8?B?VUY1ZHdNS2VJOUM5eGU0SHVkU1pnZFRzYXV0VFcyK1BrZUV6Y3hlSjg5elRN?=
- =?utf-8?B?UTA1Tm5PdjB6Y21IWE5seEVtbXFBSUQ5WFVWeWlHTGZBbFNFTHl6NnRwdWJ4?=
- =?utf-8?B?MjBPenR0bnNGT0ljQ0hLQitYcTN3bHVFL0VVbytHdExMSnlVK1dWUUZLek1q?=
- =?utf-8?B?QnVGZDkvTURqUU1Zd1hhdW15ZU1nOFZwM3h5MDhpWVJEdmpoS2lmTkJaUkt2?=
- =?utf-8?B?UmQzSzdVQTZDMDByNS9NWmtvRDhCVUdxQmxjSlV0dk9zNGxRVU1DM3MrRnZu?=
- =?utf-8?B?aDZmdlBFMDA4Y1NBdklTbnRNLzJTSE1xSEtHSURYWG9xVlRiRWp6UTRjeWxS?=
- =?utf-8?B?YllSSGN0bTFKUHRZL09BL2NyRC9mMThIbVpHZHlKMlU5TnJ1aVgzbVk5endr?=
- =?utf-8?B?TE1nMmhrZVFsN1J4MStlWmdZL0J4SmRTU1BBREhXcXRMZVdvYXQzd25RWmhw?=
- =?utf-8?B?Z0E4L2krMDFkUDZDemRlZGdORkhWQytXeU1Qa3MrNlZZZ1d5dHAyc2dZa29u?=
- =?utf-8?B?ZWdmZnhiQ2hzcHdrVDlOWlUwL2xOb3VpK082WDFZU0pDU2E1MXY0M0lXUUdn?=
- =?utf-8?B?dWpIOEo5cnJCbi9tR1VqemtrdW5QRUZtZU1hQWlkWERTNDBGaEZhWDZkeUI5?=
- =?utf-8?B?Vm9taFVkTElkRGxRMTlybWNseGlNU0w3NHRieW9xRkc5a0thTko5U1dVNS9T?=
- =?utf-8?B?VjY2c0RUNGxPQVIyUDNUWVRXZ0JjMVZIRGJsNVF6THcxSnNQU1h4cHI4ZEVE?=
- =?utf-8?B?akh2SVVEMGp6aytGVDI0c1gyemYxbHV3SmY3YUVtbUN0R1p6eVVHaGp4Ykdi?=
- =?utf-8?B?MnpMSjZtS1ZjeUYwWFlhaENYajY4aDhSVlFrYzhMd2d4bjNMN2VFVFhjeFps?=
- =?utf-8?B?cWQ1Z2JwblM3QTlqNW1sSm9NZFJvOHhnaVdjVEI0Ukt3WFppdFFXWkgrMDVB?=
- =?utf-8?B?akFoNzU0Tk5rdTJldzB3d2tObWxvUktkWXVGTWhjWStVMXNRMjhhTmVTeTdZ?=
- =?utf-8?B?aW1ST21PVkFUeUp6L2tWMjljSndrOFFCVXRBYXdXRzFkVGlQMjJZYTFIMGxt?=
- =?utf-8?B?VitFOGtGUjhBMW5vUlh0WUlsckxNVTJNVnhVTFlWS2FVL3Z4My9CTkVSWllQ?=
- =?utf-8?B?bk8vRHFFZGhhcmZBVVZucTlTMGlabUxjNU9BQU1Zd3hnaENQcWk4bmhUTXlH?=
- =?utf-8?B?d2RyQ1ZIWEo0bFZQanhQY3VqenNMenEzR2F2ZUIvcVBvTFlyaXYyUm9yTkhL?=
- =?utf-8?B?NmhhdW5PbHYvOVNHME5DdGU0NVRXbHNiZEF0V3UxemM1ZzBHZWdnUXB5cFNy?=
- =?utf-8?B?ZlQ4bFNmcjJUd2M1Z3RvVFhkMjJwMU1meEVUQ1loaWdHWGlZYUZNUzk5OVU0?=
- =?utf-8?B?QWk5dkF5NENJaVl0WnMyelhieThnRUtZeEhEZUhGczY3NWVPR1hhcSt3NEd4?=
- =?utf-8?B?YS8wMm9hQUJSTXJMS2pDTmlEcmVGWEl4a1pXSUQ0VnFUTStqWWZvRHBVamxm?=
- =?utf-8?B?VlhzQjJwQkFkMWtHT2Z1RmhGUU5XbUVsWG1YK2l5L25rblFWbjRDK252YXJR?=
- =?utf-8?B?V1Q3eTduNk0rV0kzOWZjS0wwaGkwN0V4bnlqOUo2aytKeU1hWE9UQTUxRXFI?=
- =?utf-8?B?R3lKZEptTStJTVNPRlBFZzZDdzJOMVQxZXI5THphV2tiSWxHRlhrbEkrWWZL?=
- =?utf-8?B?UnVvc2VYclV1YWxiUEd0YTg1TkRiRWczZ1kzcHVZbnVDTVoxczRVaTNKd3J2?=
- =?utf-8?B?MTlHSHV3TG9qeHJJbENJU1UxcWxVTXZYdVJGKy94N2dHR3c9PQ==?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?d2UyeUVkSzZ2UTlWUksxSVdCSFUvWlMzcldjVTB2R2lOcUt2ZVhYWVRyclhv?=
+ =?utf-8?B?Rk5BS29CNHFaazFFOU9Ta25LR084L0g0UXhIRGdUaVVzRHJIdGIrd09lMUg1?=
+ =?utf-8?B?bXZnM1ZmNjU1S25zb01Oa1ZoTDJxU21tZUgwZ05wMDE2RjUwZHpYZXNDaldW?=
+ =?utf-8?B?dDVLTHZZMU45T1BsOUI3QUFBQ2JRSmJoTDI1QUFWaDl0L1Q2ZG5Pa1k1dkRy?=
+ =?utf-8?B?VUpOTGd2M005NXZDK3hHcUJ6T3BteFJNelJCcmVZckpGUkh6UVNEcWx1UlNV?=
+ =?utf-8?B?MkQxZFF3b1ZmTXFNdE5Jc1VKTnhxMno0RDJ2Z3JPRDFJMzUrZnhEdDg0cmU2?=
+ =?utf-8?B?enZrVG10K2RCRG0zZmFCcjE5UlU4TnVHUjZ6emVjUy92WGJpWkE2WlpmR01o?=
+ =?utf-8?B?Y2JHdWppa1JqeHdSZjA2cDhUK1lxSmdiVklrQWdRaWl0UTE5a1hBd3I3TVRC?=
+ =?utf-8?B?bUFmYkdWT0c1d3pjeFdFd21MOTFNQXpLWHN3cW1rUi91emQ2QWZVZE13M3lI?=
+ =?utf-8?B?QTFjL09HZklrY3dTUkpnaHlEOWNVdFcwcVczZWRtS1hDeTFYUElEK2FacEpy?=
+ =?utf-8?B?RUpUVEFTQUpRbUxGK2FwNjRwbG9GejVRWDN6bTVVT3h6cW9vWVpNSHpYUDlI?=
+ =?utf-8?B?WlF3SVhFQzBKZThpTUp0RXF4dHFXSkhiNk1EcnE1M2NsdzhrYXhkRG1sMFpZ?=
+ =?utf-8?B?Zk05emxQQXpKcWtLZHR3N0YreGJxLzdoV0lXVHJ5eUp5N2ZJTnNlUXIzUFlq?=
+ =?utf-8?B?QW9QTEtEM1hCN2t5eHZZNit4Yno3R1RtcUhrcmRQY3EyV21vU0lBWXhJV3U1?=
+ =?utf-8?B?bHErNHVXZ2Y5R1NmR3RmaS8rVVRMVG91ZTdPVWtPVitKV0ZpVW14Si8rbTUy?=
+ =?utf-8?B?WFF5SnM4UFl2a2pWUTRzWDNaMnFHK3kzallzdC80RU83blNzZ241TTB5amNE?=
+ =?utf-8?B?ZjIySjRCQ0g2Tkc1dWxvY211UDFoN3ZpZENPMzFLZEdJbk5Vc3RjSEJ2L0Jl?=
+ =?utf-8?B?T0gvUVFzQ1p4bGNnM2cxZ3dCbENEMTExUHhYYldHUjJJODdQQWxodEJLNlR2?=
+ =?utf-8?B?bXAvWTkrNy9JV0FqVmRWMFpKYklBQTRFM0hDWDdWZWpmV0o5Mkk4YXVqTUhD?=
+ =?utf-8?B?MlBFQzU3emhJellaQS9EYklCUnZMUFZQRnJqWE5BeFBXdktSZzZKU2ZSMWU0?=
+ =?utf-8?B?a09XUkNGbTJ2ZDZ4YWhZd1VYM1VNNlRvOHVsR1RIeDZad0J4VlY0a1Y3MDJ3?=
+ =?utf-8?B?eEtEdjV6UmJSSmlIeFQyUXJEVEhEVGswbXRsZ1NvY2lyQWNNQ2FSK2JGbk9T?=
+ =?utf-8?B?Z2d5UGhIeDVLV2tyaEY3NmU0TjNmNy9aeFpJRzFRcTR2OW5WcXZidHppM1ZH?=
+ =?utf-8?B?SUw3ZW5YTU9UWllrMStQMzVycTdrbzZ5T1E3RTNRY2J4cUZhTWY2Z3Q5Y3Mz?=
+ =?utf-8?B?OS9SMjlXU25HcFlLMHpyVTJ2S3JydWNocGkyTGpuMFJBTlFBYmQrbk1IQjky?=
+ =?utf-8?B?dzRqeDJxaXRyWm05V1UyUFF1eDhrUG5BbEVTOWJmSWhWekZwYkZtajNGK2Ew?=
+ =?utf-8?B?WEVFeUxlb0FXa3p4dHlDdnlIREtiZ0t1TlVwZmhVRnNyTFN0MzBDZTBKdUVz?=
+ =?utf-8?B?T2poNkY3M0tJc1djcGpaVEdSUTgvRUZjN1FaZkE1TTU0OEs2ams3Z2dmdWFH?=
+ =?utf-8?B?bE53aVNNUUh1djc5akY4STVnQ1ZBOHR1QVdEMVlOQ0FZeXkrcVAzNDdlblF6?=
+ =?utf-8?B?b0RWcWpPWWNUWUZrRUNWYVpUTEFOZTFaWU9ielBuODB2eCswdGtaRWZWaWFL?=
+ =?utf-8?B?b3BwU2o1K252aThrWm1SNlJ0c0RKdWljcml0ZkdtUXNDQWNBdGJYaHVING9S?=
+ =?utf-8?B?OUhiWU5VZElDVCtoWGtWcDc0WVlqNC94bEtoZVdCZmZBN0hUTVJ0NVZmREEr?=
+ =?utf-8?Q?HrNmrTvUy7j9i4H0WHKCKr7oEipg2loQ?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB8252.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB5341.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NmQzVWk5T2VkTkVKM2FPNHpHdTQya1d0TTJqR3Qzb0FuWmZwS1hjVEl6ZXo5?=
- =?utf-8?B?ZW5kZnloaTk5OTcvcHg0V1I3MkhnNXEwTFVIUlh6cXlGSW91QWVSU1oxVU96?=
- =?utf-8?B?c0JSNjdRRXh4bldZZ2s3NkYwNzFtTXFLN0d4SVZBcC9wY3BwWDRzYlArOWlh?=
- =?utf-8?B?MDZCV2dvWUtvZTlranRDZmNDYTdLMFMzMjJ1dHBjQXdaZENSekQ3S1V1a2N6?=
- =?utf-8?B?RFVJcERMa0FPWlNhUnpJbFNUQVZBMU1kVTRXaGs1bmdtc1RJenVmWUI2K3Uz?=
- =?utf-8?B?UTY1Vmtyckdsell1SlBjY01jVmFBK0pySEhsS1djTHlhMlhZbWNpYmVjOXFD?=
- =?utf-8?B?SVdvYllUWU9mT2lFVlY2TmdtRzdtUjh5eWdOS1NlenRncmQ4MEY2N2RDT0hP?=
- =?utf-8?B?NVRGaUlkQThhSm5Na3lTaGpnanlOWWRoQzBhZUM3eG9CQ3FyY01PTExkUHZu?=
- =?utf-8?B?a1hoUmJnR3grKzlVZVlxNmxaTExPWXFEL3JRNmxhWnV0VmJJdjNneUdoT0N4?=
- =?utf-8?B?SnJIczBFbWRiTzNzK1RUc1o0MXArSlB5bW8wa1FralFRTTd1dUVIb25KazJ0?=
- =?utf-8?B?L3RFRUxlaWxrVVd4VWRpand2QWRoZXZHTnhlZW1QK1JPMUFJOEZCcmhCOVFR?=
- =?utf-8?B?U3psTEpYbWlVa0xTU1U4elpkL3JlVTNVbEY4K0ttZEVBSUIzTUtiMlgzRnA1?=
- =?utf-8?B?SWRwVVB1Y1l2SmFXMEpYa0JMODJ4UlI0SExBU2ZkM0JNQVl6RVRxei9MNWk1?=
- =?utf-8?B?dUZab2F1TzEvVkRWM1NXcEdqZzZPWFRERjI1Qm5ad0JxdW9taUpyQlJFdFdL?=
- =?utf-8?B?K2QwdG9HQVRRK2NzRFFMbFFsYTdIT2tTY0VpVmQ0SlprVkdNZ1hHTWJ3Z2hm?=
- =?utf-8?B?TTBTOVVQMFgvQ3FYdktIaWtHV2JqTEh2YXlaamw5VEhoWmd4bUFxbjhZckRr?=
- =?utf-8?B?NThRS2x1VXE4T1Vla0w1M2ZvdUJrL0xTWElkYUJKZy9HSUFvTDlkcjdJQWRQ?=
- =?utf-8?B?MDQ3SVRwMVJleENoRmsrb2dNS21wV1BtVWl6YUhyeEgzMnVLWmYzUzBzLytl?=
- =?utf-8?B?WlFGTGVxMFdIbUpTSW5VSmFubnoxR1NKck01RlFlQklPZHNidDJnWS9PWTZP?=
- =?utf-8?B?YWNNUEd4WG9iVmRtL1ZreDg5WFBOd3Z4aVRhY2J6SmY2VEw5RlROb3QxOWlv?=
- =?utf-8?B?K3A0ZXlZWVNoSDkzb1JLWFd2eTl1STEzcUs4L1Q3WkZKVCt6ZVNidzlVaGFm?=
- =?utf-8?B?R2ppTjBWZGtyWlRpNjQyK1lubDg2Ym1NcGJ0Wm40emJZYVBNZit5b3U3Q0ZB?=
- =?utf-8?B?MkN0eFc2U2FzSTNNUndEMFc5MUlROHlxMkJ2RjZSRURGV3dLVitsbEdMUWs5?=
- =?utf-8?B?dVFIQ0k3NENHSmN0ZnNYbkkxQVZPOHlRSGExSHM1V015Tm1reXZReVpodXBC?=
- =?utf-8?B?Rkwxdk1MMzduSHFKUXY4THlMVUJUL3llMFNUM2cyTzAzcmpiRzlCcGtyV1l0?=
- =?utf-8?B?U0NndCtpREVxWm5vWk5jM1lnb3k0S2hIdlp0M0x2Vk0vSGtBYjVIdGZmZ2tw?=
- =?utf-8?B?QlU0T1A2MTRqRXBsWTYvOEQ2bXZ1ZGpYYmNSK1N4Zm16cTAwMUowaURXTlFV?=
- =?utf-8?B?Y1RWNUZ1RjlWamt1bFJHbmFDSmFQd0prRnhIaGZVUHNQVkFrandqdGFtTGhm?=
- =?utf-8?B?UjZOcnZLU1JvZms3dHkyMmFtV0RmVndyUW1ETHlsTitJV0ZnQngvRmYzcnd6?=
- =?utf-8?B?UnNweHRmNHVYeVlXMUlxeTNmUnc4bEd6MXdNTHhhcHFhQzI4U29TUEpPSDhR?=
- =?utf-8?B?WkRPYmlxZkVma0tvb1ZObi9sVkt2dnVKditsNTdLS1RJcTE3R1VsRlNlUVBT?=
- =?utf-8?B?M3FSUDhCWFVMZnQ1SHpLdGJlS09BRStENTI0dmZCOU5LRmphQzRzWUlZb0c5?=
- =?utf-8?B?TnBqbXhRQ0tOQ1BMbXo1ZXFGUEUzUFlubDVGUEVOWTl3a0E2YnErTUR0VWNH?=
- =?utf-8?B?QTNYa1VaN3JZTzdra1Brd3FJaHh3aEdtd3piRlhneFVCYUtoR0RTVTZVVW53?=
- =?utf-8?B?d1ZVMFlYcFUydW04Q3ZUeHBZOUVhOFdqdllKcVNMQ2FMYkVHaTNlNkcweU5G?=
- =?utf-8?Q?6Brpq+zoqYxnuqlm/we1Oc1f+?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1e472f3b-ad5a-4c2f-99ef-08de203e086d
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB8252.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?YjVjQTQ4S09HNnBJSlRpeXlrdlFTcVU3bnh4eHQ3VjdoQ2I0eXhLVlhnM3F1?=
+ =?utf-8?B?RXVxenZVTmhXcTB3SHhYNEpOc0Vickt5aU1ucm5HK3V2bkRJV3ZyRnFmSmRt?=
+ =?utf-8?B?RTNuQ1hyaTNua3A1NU9wRWtuWlQzcDRXVGdkd1NERzRaSTFKR3VXdkU2VzZE?=
+ =?utf-8?B?MmorQjZTQ3NFZHBGTUFQQXFwenVhVTFaNkp4S0I4bXk1ZEVXQlVHSWlRb3Z3?=
+ =?utf-8?B?KzU5a0cyQVcyUTFUY2VJVU5xQkdUN2Jqa09CY0pVd1hCcWsvRHVCY0dMWHFR?=
+ =?utf-8?B?VVZWTk1hcG1vbWZ0MjRZK1FReWF4SGd2VDZaREJUZDVrdGNxVVY3c1hJb0JG?=
+ =?utf-8?B?Ry9yaEloRmdYNlFMMUVrZGozem9UM1E5L2NkOGZCbzY2b3RQYTIvemtsRTAv?=
+ =?utf-8?B?MmVxbGpCY3JWUDA0WWdPZzhKTE5VWnB6TGlDTkpvTmxTbnY0ekV4NjNzUUJ2?=
+ =?utf-8?B?bXJHREpURnRhbDRhQk1GMm1FTmp2UU9SQUVuTWUxYzE4eHNDUG5GQi9yc2pT?=
+ =?utf-8?B?dm5va2R2d3UrK2RTenl0RkQ1QmVwdlZKUTRCYkp4TkVUVUV0bk9XYWxPRTJp?=
+ =?utf-8?B?RXRKN2poQ0Y3SzIzYkZ5SFN0akE4UnZSNEpHZU8wWUkxaHRaQTJyWkFMcUZa?=
+ =?utf-8?B?Ny9jc2VxK1RKYnMweUc3emhLd2x0TFVjOU1XVUVIazd5VnNPaWFRQTdRbm5N?=
+ =?utf-8?B?MnZ6Z0xad2JWQ3V1K0wralBaWkJhRjZiNjhnT0RleHM0SmM0bGZLSll1eUxF?=
+ =?utf-8?B?RGpBWldSRXhIcXkydCs5VjB0U2RkNTcrNys5bytzR1R2SGNOaCtWNnVnampq?=
+ =?utf-8?B?NnJydnFMNStXQzYwaFZ0aVBTTHRpOGlZOTZHMDhsYytkb28wMTg1N0lpR1hr?=
+ =?utf-8?B?bEY1bFFiNUJib1JVdGNlbTZWdTZaVm0xVnl5VUxmVHhsOTVhTnZVNUpXL1pI?=
+ =?utf-8?B?a01pcHhqTjViOVAycitQY1N5VFZsb1NYdlh5b2UrK2JTQlgzdmxnaFFIWXRK?=
+ =?utf-8?B?NFBHVjhFcDV6c21CS2lZdVFCK3VpMWdac3F5L0dSTEZjM0FOcndMSFlkeWhq?=
+ =?utf-8?B?UnhOeFhKNkdXNHBoWUVGQ3dGSWdvQ2RralNycUs2a2pKcFVaa2V2Tk9DZklj?=
+ =?utf-8?B?WE1zMGd5bUxpVzNld0NFa3ZmTFQxai9FdzY2UlB3N3JlRFcxQVZ2RE1SVlhz?=
+ =?utf-8?B?eXN0Ym9nZ0Qrc2JuMy9FdlpFVjF5eENwTGpSMXRWWS9NZmRxMVZTa243WG4z?=
+ =?utf-8?B?ai9GTEJQbzdtM1A4QmRtMDhxSmU3OUF1Tk1JZ0dnNHdGTnI4QmxCbFgxbmJ1?=
+ =?utf-8?B?RlF6L0Z5Zko1QU5jL0ZreTJDcFRxdzdmbVlRNDlUZE9MRWs1RjgwZnRIcU44?=
+ =?utf-8?B?UVUyS1VFK3d3dG4xNEJEUDFEWlN0WW8xR3FKWE5sQkVHRHJUMGdGaGRJc1hX?=
+ =?utf-8?B?Z05YRzlld2NQYjJJSFJZYmxvTnM3MFpFbDh2bTNXYjFrMU4zN0UxeTg5TEd4?=
+ =?utf-8?B?RUM0eWpPVThTNVNHbk9yMEViSld0U29lZE9WVys5NXhjdVBOYVBHcDVLMEVw?=
+ =?utf-8?B?c2lKL0YrdVlzMXZQZkVBZW1xT3NMMzlyek1BSmJGTEZHVzhoYkVzQXVTMWIr?=
+ =?utf-8?B?V2VzdzkycHpsRVRDRTc4cFR1VFJqa09BbmgrWVluK1dqTHhMYkZxc3FUTWRh?=
+ =?utf-8?B?V2t4L2lRQ3J6ZU9hSjNJaVlFSzN5N3FTMHVqMkZic3E2Nzl1dUtJbyttNGl2?=
+ =?utf-8?B?R21WZGlDbTJjcFQ4M0pWNEdia1BXWVJzaTFaRHJpZkYxNXZ3cVBxLzAwa3FJ?=
+ =?utf-8?B?MkRoampkR0tzRjZLQ3ZVM3c2eWpSK01VYkpOa3RxbnhqZ0lWdmxWakN2ZzdP?=
+ =?utf-8?B?aHJReDlYT3p2TlFheGx2S3EwaVA3ZzdKbjI4UEI5YTY5b0QvS3YxZHpZeno3?=
+ =?utf-8?B?bUJod2s0dXVSSGd4Ti9xOUtDV3hwcGNxWlVVQjk1LzBaak1wUGtqamNNZWwz?=
+ =?utf-8?B?TDhHQzZXdGw5QXp2cjhwMTNNbldCUWFZYjZHZW9WK0FOY0dyOUpFbG1kVFU0?=
+ =?utf-8?B?MWtUOGhZcEI0dGFybWk1WFF0NElweVpJbzdrbTJZUDgvUUEzU0x2WXlnbUlX?=
+ =?utf-8?B?aDNxK3VMczQvZUM5WTN5cnlYTHo1ekNYeXBZZnNueUwzTjRpQ3ZKT2w3WEk3?=
+ =?utf-8?B?ZkE9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9ae1040d-7594-46b0-b526-08de203f03f5
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5341.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Nov 2025 09:46:33.8598 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Nov 2025 09:53:35.9359 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Sbf/u+4r/bFP71TgN31Ow83vMWxyRwnFAEF2H1KF75AALq4Nlm7/tB6euI+yQL06ThsN6VOvGZoLrM1+lX/Z4g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR11MB5162
+X-MS-Exchange-CrossTenant-UserPrincipalName: mzg/0cETEhMokmoN4PjvCSJPudB/+MOjPmS23JMoyU1RRleVT/tc9pxw7ubtoIq47l+aODVTfO1DFsVbJ0EvpNDJp3U2M8161yYGMYYtKY8=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB5143
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -197,189 +194,489 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi,
 
-On 08-11-2025 08:53, Rodrigo Vivi wrote:
-> On Wed, Nov 05, 2025 at 01:27:37AM +0530, Sk Anirban wrote:
->> RPe is runtime-determined by PCODE and caching it caused stale values,
->> leading to incorrect GuC SLPC parameter settings.
->> Drop the cached rpe_freq field and query fresh values from hardware
->> on each use to ensure GuC SLPC parameters reflect current RPe.
->>
->> v2: Remove cached RPe frequency field (Rodrigo)
->> v3: Remove extra variable (Vinay)
->>      Modify function name (Vinay)
->> v4: Maintain a separate function for PVC (Rodrigo)
->> v5: Avoid RPn update while fetching RPe frequency (Rodrigo)
-> dang, now I regret on having asked that... I'm not trusting on the
-> CI results any longer.
+On 11/10/2025 11:49 AM, Suraj Kandpal wrote:
+> Implement the HDMI Algorithm to dynamically create LT PHY state
+> based on the port clock provided.
 >
-> Did you run this full xe_gt_freq tests in your machine?
-> I forgot the machine that made us to introduce this rpn hack...
-I can revert those changes, but since RPn is fused and won’t change—as 
-Vinay also confirmed—I considered removing it entirely.
-I ran over 500 iterations on LNL, and all passed successfully for the 
-specific test.
-
-Thanks,
-Anirban
+> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+> ---
 >
->> Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/5166
->> Signed-off-by: Sk Anirban <sk.anirban@intel.com>
->> ---
->>   drivers/gpu/drm/xe/xe_guc_pc.c       | 68 ++++++++++++++--------------
->>   drivers/gpu/drm/xe/xe_guc_pc_types.h |  2 -
->>   2 files changed, 35 insertions(+), 35 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_pc.c
->> index ff22235857f8..efa9318c4587 100644
->> --- a/drivers/gpu/drm/xe/xe_guc_pc.c
->> +++ b/drivers/gpu/drm/xe/xe_guc_pc.c
->> @@ -331,7 +331,7 @@ static int pc_set_min_freq(struct xe_guc_pc *pc, u32 freq)
->>   	 * Our goal is to have the admin choices respected.
->>   	 */
->>   	pc_action_set_param(pc, SLPC_PARAM_IGNORE_EFFICIENT_FREQUENCY,
->> -			    freq < pc->rpe_freq);
->> +			    freq < xe_guc_pc_get_rpe_freq(pc));
->>   
->>   	return pc_action_set_param(pc,
->>   				   SLPC_PARAM_GLOBAL_MIN_GT_UNSLICE_FREQ_MHZ,
->> @@ -376,7 +376,7 @@ static void mtl_update_rpa_value(struct xe_guc_pc *pc)
->>   	pc->rpa_freq = decode_freq(REG_FIELD_GET(MTL_RPA_MASK, reg));
->>   }
->>   
->> -static void mtl_update_rpe_value(struct xe_guc_pc *pc)
->> +static u32 mtl_get_rpe_freq(struct xe_guc_pc *pc)
->>   {
->>   	struct xe_gt *gt = pc_to_gt(pc);
->>   	u32 reg;
->> @@ -386,7 +386,7 @@ static void mtl_update_rpe_value(struct xe_guc_pc *pc)
->>   	else
->>   		reg = xe_mmio_read32(&gt->mmio, MTL_GT_RPE_FREQUENCY);
->>   
->> -	pc->rpe_freq = decode_freq(REG_FIELD_GET(MTL_RPE_MASK, reg));
->> +	return decode_freq(REG_FIELD_GET(MTL_RPE_MASK, reg));
->>   }
->>   
->>   static void tgl_update_rpa_value(struct xe_guc_pc *pc)
->> @@ -409,24 +409,22 @@ static void tgl_update_rpa_value(struct xe_guc_pc *pc)
->>   	}
->>   }
->>   
->> -static void tgl_update_rpe_value(struct xe_guc_pc *pc)
->> +static u32 pvc_get_rpe_freq(struct xe_guc_pc *pc)
->>   {
->>   	struct xe_gt *gt = pc_to_gt(pc);
->> -	struct xe_device *xe = gt_to_xe(gt);
->>   	u32 reg;
->>   
->> -	/*
->> -	 * For PVC we still need to use fused RP1 as the approximation for RPe
->> -	 * For other platforms than PVC we get the resolved RPe directly from
->> -	 * PCODE at a different register
->> -	 */
->> -	if (xe->info.platform == XE_PVC) {
->> -		reg = xe_mmio_read32(&gt->mmio, PVC_RP_STATE_CAP);
->> -		pc->rpe_freq = REG_FIELD_GET(RP1_MASK, reg) * GT_FREQUENCY_MULTIPLIER;
->> -	} else {
->> -		reg = xe_mmio_read32(&gt->mmio, FREQ_INFO_REC);
->> -		pc->rpe_freq = REG_FIELD_GET(RPE_MASK, reg) * GT_FREQUENCY_MULTIPLIER;
->> -	}
->> +	reg = xe_mmio_read32(&gt->mmio, PVC_RP_STATE_CAP);
->> +	return REG_FIELD_GET(RP1_MASK, reg) * GT_FREQUENCY_MULTIPLIER;
->> +}
->> +
->> +static u32 tgl_get_rpe_freq(struct xe_guc_pc *pc)
->> +{
->> +	struct xe_gt *gt = pc_to_gt(pc);
->> +	u32 reg;
->> +
->> +	reg = xe_mmio_read32(&gt->mmio, FREQ_INFO_REC);
->> +	return REG_FIELD_GET(RPE_MASK, reg) * GT_FREQUENCY_MULTIPLIER;
->>   }
->>   
->>   static void pc_update_rp_values(struct xe_guc_pc *pc)
->> @@ -434,20 +432,10 @@ static void pc_update_rp_values(struct xe_guc_pc *pc)
->>   	struct xe_gt *gt = pc_to_gt(pc);
->>   	struct xe_device *xe = gt_to_xe(gt);
->>   
->> -	if (GRAPHICS_VERx100(xe) >= 1270) {
->> +	if (GRAPHICS_VERx100(xe) >= 1270)
->>   		mtl_update_rpa_value(pc);
->> -		mtl_update_rpe_value(pc);
->> -	} else {
->> +	else
->>   		tgl_update_rpa_value(pc);
->> -		tgl_update_rpe_value(pc);
->> -	}
->> -
->> -	/*
->> -	 * RPe is decided at runtime by PCODE. In the rare case where that's
->> -	 * smaller than the fused min, we will trust the PCODE and use that
->> -	 * as our minimum one.
->> -	 */
->> -	pc->rpn_freq = min(pc->rpn_freq, pc->rpe_freq);
->>   }
->>   
->>   /**
->> @@ -561,9 +549,23 @@ u32 xe_guc_pc_get_rpa_freq(struct xe_guc_pc *pc)
->>    */
->>   u32 xe_guc_pc_get_rpe_freq(struct xe_guc_pc *pc)
->>   {
->> -	pc_update_rp_values(pc);
->> +	struct xe_gt *gt = pc_to_gt(pc);
->> +	struct xe_device *xe = gt_to_xe(gt);
->> +	u32 freq;
->>   
->> -	return pc->rpe_freq;
->> +	/*
->> +	 * For PVC we still need to use fused RP1 as the approximation for RPe
->> +	 * For other platforms than PVC we get the resolved RPe directly from
->> +	 * PCODE at a different register
->> +	 */
->> +	if (GRAPHICS_VERx100(xe) == 1260)
->> +		freq = pvc_get_rpe_freq(pc);
->> +	else if (GRAPHICS_VERx100(xe) >= 1270)
->> +		freq = mtl_get_rpe_freq(pc);
->> +	else
->> +		freq = tgl_get_rpe_freq(pc);
->> +
->> +	return freq;
->>   }
->>   
->>   /**
->> @@ -1022,7 +1024,7 @@ static int pc_set_mert_freq_cap(struct xe_guc_pc *pc)
->>   	/*
->>   	 * Ensure min and max are bound by MERT_FREQ_CAP until driver loads.
->>   	 */
->> -	ret = pc_set_min_freq(pc, min(pc->rpe_freq, pc_max_freq_cap(pc)));
->> +	ret = pc_set_min_freq(pc, min(xe_guc_pc_get_rpe_freq(pc), pc_max_freq_cap(pc)));
->>   	if (!ret)
->>   		ret = pc_set_max_freq(pc, min(pc->rp0_freq, pc_max_freq_cap(pc)));
->>   
->> @@ -1340,7 +1342,7 @@ static void xe_guc_pc_fini_hw(void *arg)
->>   	XE_WARN_ON(xe_guc_pc_stop(pc));
->>   
->>   	/* Bind requested freq to mert_freq_cap before unload */
->> -	pc_set_cur_freq(pc, min(pc_max_freq_cap(pc), pc->rpe_freq));
->> +	pc_set_cur_freq(pc, min(pc_max_freq_cap(pc), xe_guc_pc_get_rpe_freq(pc)));
->>   
->>   	xe_force_wake_put(gt_to_fw(pc_to_gt(pc)), fw_ref);
->>   }
->> diff --git a/drivers/gpu/drm/xe/xe_guc_pc_types.h b/drivers/gpu/drm/xe/xe_guc_pc_types.h
->> index 5e4ea53fbee6..f27c05d81706 100644
->> --- a/drivers/gpu/drm/xe/xe_guc_pc_types.h
->> +++ b/drivers/gpu/drm/xe/xe_guc_pc_types.h
->> @@ -21,8 +21,6 @@ struct xe_guc_pc {
->>   	u32 rp0_freq;
->>   	/** @rpa_freq: HW RPa frequency - The Achievable one */
->>   	u32 rpa_freq;
->> -	/** @rpe_freq: HW RPe frequency - The Efficient one */
->> -	u32 rpe_freq;
->>   	/** @rpn_freq: HW RPN frequency - The Minimum one */
->>   	u32 rpn_freq;
->>   	/** @user_requested_min: Stash the minimum requested freq by user */
->> -- 
->> 2.43.0
->>
+> v1 -> v2:
+> -Add new macro functions and definitions for address assignment(Ankit)
+> -Introduce a structure lt_phy_param for code readability (Ankit)
+>
+> v2 ->v3:
+> -Seprate out param calulation wherever possible (Ankit)
+> -Modify Macro to accept pll_reg (Ankit)
+>
+>   drivers/gpu/drm/i915/display/intel_lt_phy.c   | 345 +++++++++++++++++-
+>   drivers/gpu/drm/i915/display/intel_lt_phy.h   |   3 +
+>   .../gpu/drm/i915/display/intel_lt_phy_regs.h  |  16 +
+>   3 files changed, 362 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.c b/drivers/gpu/drm/i915/display/intel_lt_phy.c
+> index af48d6cde226..d88dbfbe97b1 100644
+> --- a/drivers/gpu/drm/i915/display/intel_lt_phy.c
+> +++ b/drivers/gpu/drm/i915/display/intel_lt_phy.c
+> @@ -31,6 +31,32 @@
+>   #define INTEL_LT_PHY_BOTH_LANES		(INTEL_LT_PHY_LANE1 |\
+>   					 INTEL_LT_PHY_LANE0)
+>   #define MODE_DP				3
+> +#define Q32_TO_INT(x)	((x) >> 32)
+> +#define Q32_TO_FRAC(x)	((x) & 0xFFFFFFFF)
+> +#define DCO_MIN_FREQ_MHZ	11850
+> +#define REF_CLK_KHZ	38400
+> +#define TDC_RES_MULTIPLIER	10000000ULL
+> +
+> +struct phy_param_t {
+> +	u32 val;
+> +	u32 addr;
+> +};
+> +
+> +struct lt_phy_params {
+> +	struct phy_param_t pll_reg4;
+> +	struct phy_param_t pll_reg3;
+> +	struct phy_param_t pll_reg5;
+> +	struct phy_param_t pll_reg57;
+> +	struct phy_param_t lf;
+> +	struct phy_param_t tdc;
+> +	struct phy_param_t ssc;
+> +	struct phy_param_t bias2;
+> +	struct phy_param_t bias_trim;
+> +	struct phy_param_t dco_med;
+> +	struct phy_param_t dco_fine;
+> +	struct phy_param_t ssc_inj;
+> +	struct phy_param_t surv_bonus;
+> +};
+>   
+>   static const struct intel_lt_phy_pll_state xe3plpd_lt_dp_rbr = {
+>   	.clock = 162000,
+> @@ -1356,10 +1382,322 @@ intel_lt_phy_pll_is_ssc_enabled(struct intel_crtc_state *crtc_state,
+>   	return false;
+>   }
+>   
+> +static u64 mul_q32_u32(u64 a_q32, u32 b)
+> +{
+> +	u64 p0, p1, carry, result;
+> +	u64 x_hi = a_q32 >> 32;
+> +	u64 x_lo = a_q32 & 0xFFFFFFFFULL;
+> +
+> +	p0 = x_lo * (u64)b;
+> +	p1 = x_hi * (u64)b;
+> +	carry = p0 >> 32;
+> +	result = (p1 << 32) + (carry << 32) + (p0 & 0xFFFFFFFFULL);
+> +
+> +	return result;
+> +}
+> +
+> +static bool
+> +calculate_target_dco_and_loop_cnt(u32 frequency_khz, u64 *target_dco_mhz, u32 *loop_cnt)
+> +{
+> +	u32 ppm_value = 1;
+> +	u32 dco_min_freq = DCO_MIN_FREQ_MHZ;
+> +	u32 dco_max_freq = 16200;
+> +	u32 dco_min_freq_low = 10000;
+> +	u32 dco_max_freq_low = 12000;
+> +	u64 val = 0;
+> +	u64 refclk_khz = REF_CLK_KHZ;
+> +	u64 m2div = 0;
+> +	u64 val_with_frac = 0;
+> +	u64 ppm = 0;
+> +	u64 temp0 = 0, temp1, scale;
+> +	int ppm_cnt, dco_count, y;
+> +
+> +	for (ppm_cnt = 0; ppm_cnt < 5; ppm_cnt++) {
+> +		ppm_value = ppm_cnt == 2 ? 2 : 1;
+> +		for (dco_count = 0; dco_count < 2; dco_count++) {
+> +			if (dco_count == 1) {
+> +				dco_min_freq = dco_min_freq_low;
+> +				dco_max_freq = dco_max_freq_low;
+> +			}
+> +			for (y = 2; y <= 255; y += 2) {
+> +				val = div64_u64((u64)y * frequency_khz, 200);
+> +				m2div = div64_u64(((u64)(val) << 32), refclk_khz);
+> +				m2div = mul_q32_u32(m2div, 500);
+> +				val_with_frac = mul_q32_u32(m2div, refclk_khz);
+> +				val_with_frac = div64_u64(val_with_frac, 500);
+> +				temp1 = Q32_TO_INT(val_with_frac);
+> +				temp0 = (temp1 > val) ? (temp1 - val) :
+> +					(val - temp1);
+> +				ppm = div64_u64(temp0, val);
+> +				if (temp1 >= dco_min_freq &&
+> +				    temp1 <= dco_max_freq &&
+> +				    ppm < ppm_value) {
+> +					/* Round to two places */
+> +					scale = (1ULL << 32) / 100;
+> +					temp0 = DIV_ROUND_UP_ULL(val_with_frac,
+> +								 scale);
+> +					*target_dco_mhz = temp0 * scale;
+> +					*loop_cnt = y;
+> +					return true;
+> +				}
+> +			}
+> +		}
+> +	}
+> +
+> +	return false;
+> +}
+> +
+> +static void set_phy_vdr_addresses(struct lt_phy_params *p, int pll_type)
+> +{
+> +	p->pll_reg4.addr = PLL_REG_ADDR(PLL_REG4_ADDR, pll_type);
+> +	p->pll_reg3.addr = PLL_REG_ADDR(PLL_REG3_ADDR, pll_type);
+> +	p->pll_reg5.addr = PLL_REG_ADDR(PLL_REG5_ADDR, pll_type);
+> +	p->pll_reg57.addr = PLL_REG_ADDR(PLL_REG57_ADDR, pll_type);
+> +	p->lf.addr = PLL_REG_ADDR(PLL_LF_ADDR, pll_type);
+> +	p->tdc.addr = PLL_REG_ADDR(PLL_TDC_ADDR, pll_type);
+> +	p->ssc.addr = PLL_REG_ADDR(PLL_SSC_ADDR, pll_type);
+> +	p->bias2.addr = PLL_REG_ADDR(PLL_BIAS2_ADDR, pll_type);
+> +	p->bias_trim.addr = PLL_REG_ADDR(PLL_BIAS_TRIM_ADDR, pll_type);
+> +	p->dco_med.addr = PLL_REG_ADDR(PLL_DCO_MED_ADDR, pll_type);
+> +	p->dco_fine.addr = PLL_REG_ADDR(PLL_DCO_FINE_ADDR, pll_type);
+> +	p->ssc_inj.addr = PLL_REG_ADDR(PLL_SSC_INJ_ADDR, pll_type);
+> +	p->surv_bonus.addr = PLL_REG_ADDR(PLL_SURV_BONUS_ADDR, pll_type);
+> +}
+> +
+> +static void compute_ssc(struct lt_phy_params *p, u32 ana_cfg)
+> +{
+> +	int ssc_stepsize = 0;
+> +	int ssc_steplen = 0;
+> +	int ssc_steplog = 0;
+> +
+> +	p->ssc.val = (1 << 31) | (ana_cfg << 24) | (ssc_steplog << 16) |
+> +		(ssc_stepsize << 8) | ssc_steplen;
+> +}
+> +
+> +static void compute_bias2(struct lt_phy_params *p)
+> +{
+> +	u32 ssc_en_local = 0;
+> +	u64 dynctrl_ovrd_en = 0;
+> +
+> +	p->bias2.val = (dynctrl_ovrd_en << 31) | (ssc_en_local << 30) |
+> +		(1 << 23) | (1 << 24) | (32 << 16) | (1 << 8);
+> +}
+> +
+> +static void compute_tdc(struct lt_phy_params *p, u64 tdc_fine)
+> +{
+> +	u32 settling_time = 15;
+> +	u32 bias_ovr_en = 1;
+> +	u32 coldstart = 1;
+> +	u32 true_lock = 2;
+> +	u32 early_lock = 1;
+> +	u32 lock_ovr_en = 1;
+> +	u32 lock_thr = tdc_fine ? 3 : 5;
+> +	u32 unlock_thr = tdc_fine ? 5 : 11;
+> +
+> +	p->tdc.val = (u32)((2 << 30) + (settling_time << 16) + (bias_ovr_en << 15) +
+> +		    (lock_ovr_en << 14) + (coldstart << 12) + (true_lock << 10) +
+> +		    (early_lock << 8) + (unlock_thr << 4) + lock_thr);
+> +}
+> +
+> +static void compute_dco_med(struct lt_phy_params *p)
+> +{
+> +	u32 cselmed_en = 0;
+> +	u32 cselmed_dyn_adj = 0;
+> +	u32 cselmed_ratio = 39;
+> +	u32 cselmed_thr = 8;
+> +
+> +	p->dco_med.val = (cselmed_en << 31) + (cselmed_dyn_adj << 30) +
+> +		(cselmed_ratio << 24) + (cselmed_thr << 21);
+> +}
+> +
+> +static void compute_dco_fine(struct lt_phy_params *p, u32 dco_12g)
+> +{
+> +	u32 dco_fine0_tune_2_0 = 0;
+> +	u32 dco_fine1_tune_2_0 = 0;
+> +	u32 dco_fine2_tune_2_0 = 0;
+> +	u32 dco_fine3_tune_2_0 = 0;
+> +	u32 dco_dith0_tune_2_0 = 0;
+> +	u32 dco_dith1_tune_2_0 = 0;
+> +
+> +	dco_fine0_tune_2_0 = dco_12g ? 4 : 3;
+> +	dco_fine1_tune_2_0 = 2;
+> +	dco_fine2_tune_2_0 = dco_12g ? 2 : 1;
+> +	dco_fine3_tune_2_0 = 5;
+> +	dco_dith0_tune_2_0 = dco_12g ? 4 : 3;
+> +	dco_dith1_tune_2_0 = 2;
+> +
+> +	p->dco_fine.val = (dco_dith1_tune_2_0 << 19)
+> +		+ (dco_dith0_tune_2_0 << 16)
+> +		+ (dco_fine3_tune_2_0 << 11)
+> +		+ (dco_fine2_tune_2_0 << 8)
+> +		+ (dco_fine1_tune_2_0 << 3)
+> +		+ dco_fine0_tune_2_0;
 
+I think this should have operator at the end:
+
+     p.dco_fine.val = (dco_dith1_tune_2_0 << 19) +
+              (dco_dith0_tune_2_0 << 16) +
+              (dco_fine3_tune_2_0 << 11) +
+              (dco_fine2_tune_2_0 << 8) +
+              (dco_fine1_tune_2_0 << 3) +
+              dco_fine0_tune_2_0;
+
+> +}
+> +
+> +int
+> +intel_lt_phy_calculate_hdmi_state(struct intel_lt_phy_pll_state *lt_state,
+> +				  u32 frequency_khz)
+> +{
+> +#define DATA_ASSIGN(i, pll_reg)	\
+> +	do {			\
+> +		lt_state->data[i][0] = (u8)((((pll_reg).val) & 0xFF000000) >> 24); \
+> +		lt_state->data[i][1] = (u8)((((pll_reg).val) & 0x00FF0000) >> 16); \
+> +		lt_state->data[i][2] = (u8)((((pll_reg).val) & 0x0000FF00) >> 8); \
+> +		lt_state->data[i][3] = (u8)((((pll_reg).val) & 0x000000FF));	\
+> +	} while (0)
+> +#define ADDR_ASSIGN(i, pll_reg)	\
+> +	do {			\
+> +		lt_state->addr_msb[i] = ((pll_reg).addr >> 8) & 0xFF;	\
+> +		lt_state->addr_lsb[i] = (pll_reg).addr & 0xFF;		\
+> +	} while (0)
+> +
+> +	bool found = false;
+> +	struct lt_phy_params p;
+> +	u32 dco_fmin = DCO_MIN_FREQ_MHZ;
+> +	u64 refclk_khz = REF_CLK_KHZ;
+> +	u64 m2div = 0;
+> +	u64 target_dco_mhz = 0;
+> +	u64 tdc_fine;
+> +	u64 tdc_targetcnt;
+
+I think the variables which have same context can be grouped together 
+like below:
+
+u64 tdc_fine, tdc_targetcnt;
+
+> +	u64 feedfwd_gain;
+> +	u64 feedfwd_cal_en;
+
+
+u64 feedfwd_gain, feedfwd_cal_en;
+
+> +	u64 tdc_res = 30;
+> +	u32 prop_coeff;
+> +	u32 int_coeff;
+> +	u32 ndiv = 1;
+> +	u32 m1div = 1;
+> +	u32 m2div_int;
+> +	u32 m2div_frac;
+These 3 can come in same line:
+> +	u32 frac_en;
+> +	u32 ana_cfg;
+> +	u32 loop_cnt = 0;
+> +	u32 gain_ctrl = 2;
+> +	u32 refclk_mhz_int = 38;
+
+u32 refclk_mhz_int = REF_CLK_KHZ / 1000;
+Can be moved near to u64 refclk_khz above.
+
+> +	u32 postdiv = 0;
+> +	u32 d6_new = 0;
+> +	u32 dco_12g = 0;
+> +	u32 pll_type = 0;
+> +	u32 d1 = 2;
+> +	u32 d3 = 5;
+> +	u32 d5 = 0;
+> +	u32 d6 = 0;
+> +	u32 d7;
+> +	u32 d8 = 0;
+> +	u32 d4 = 0;
+
+All of these can be be grouped together including the d6_new above:
+
+u32 d1 = 2, d3 = 5, d4 = 0, d5 = 0;
+u32 d6 = 0, d6_new = 0;
+u32 d7, d8 = 0;
+
+
+> +	u32 bonus_7_0 = 0;
+> +	u32 csel2fo = 11;
+> +	u32 csel2fo_ovrd_en = 1;
+> +	u64 temp0, temp1, temp2, temp3;
+> +
+> +	p.surv_bonus.val = (bonus_7_0 << 16);
+> +	p.pll_reg4.val = (refclk_mhz_int << 17) +
+> +		(ndiv << 9) + (1 << 4);
+> +	p.bias_trim.val = (csel2fo_ovrd_en << 30) + (csel2fo << 24);
+> +	p.ssc_inj.val = 0;
+> +	found = calculate_target_dco_and_loop_cnt(frequency_khz, &target_dco_mhz, &loop_cnt);
+> +	if (!found)
+> +		return -EINVAL;
+> +
+> +	m2div = div64_u64(target_dco_mhz, (refclk_khz * ndiv * m1div));
+> +	m2div = mul_q32_u32(m2div, 1000);
+> +	if (Q32_TO_INT(m2div) > 511)
+> +		return -EINVAL;
+> +
+> +	m2div_int = (u32)Q32_TO_INT(m2div);
+> +	m2div_frac = (u32)(Q32_TO_FRAC(m2div));
+> +	frac_en = (m2div_frac > 0) ? 1 : 0;
+> +
+> +	if (frac_en > 0)
+> +		tdc_res = 70;
+> +	else
+> +		tdc_res = 36;
+> +	tdc_fine = tdc_res > 50 ? 1 : 0;
+> +	temp0 = tdc_res * 40 * 11;
+> +	temp1 = div64_u64(((4 * TDC_RES_MULTIPLIER) + temp0) * 500, temp0 * refclk_khz);
+> +	temp2 = div64_u64(temp0 * refclk_khz, 1000);
+> +	temp3 = div64_u64(((8 * TDC_RES_MULTIPLIER) + temp2), temp2);
+> +	tdc_targetcnt = tdc_res < 50 ? (int)(temp1) : (int)(temp3);
+> +	tdc_targetcnt = (int)(tdc_targetcnt / 2);
+> +	temp0 = mul_q32_u32(target_dco_mhz, tdc_res);
+> +	temp0 >>= 32;
+> +	feedfwd_gain = (m2div_frac > 0) ? div64_u64(m1div * TDC_RES_MULTIPLIER, temp0) : 0;
+> +	feedfwd_cal_en = frac_en;
+> +
+> +	temp0 = (u32)Q32_TO_INT(target_dco_mhz);
+> +	prop_coeff = (temp0 >= dco_fmin) ? 3 : 4;
+> +	int_coeff = (temp0 >= dco_fmin) ? 7 : 8;
+> +	ana_cfg = (temp0 >= dco_fmin) ? 8 : 6;
+> +	dco_12g = (temp0 >= dco_fmin) ? 0 : 1;
+> +
+> +	if (temp0 > 12960)
+> +		d7 = 10;
+> +	else
+> +		d7 = 8;
+> +
+> +	d8 = loop_cnt / 2;
+> +	d4 = d8 * 2;
+> +
+> +	/* Compute pll_reg3,5,57 & lf */
+> +	p.pll_reg3.val = (u32)((d4 << 21) + (d3 << 18) + (d1 << 15) + (m2div_int << 5));
+> +	p.pll_reg5.val = m2div_frac;
+> +	postdiv = (d5 == 0) ? 9 : d5;
+> +	d6_new = (d6 == 0) ? 40 : d6;
+> +	p.pll_reg57.val = (d7 << 24) + (postdiv << 15) + (d8 << 7) + d6_new;
+> +	p.lf.val = (u32)((frac_en << 31) + (1 << 30) + (frac_en << 29) +
+> +		   (feedfwd_cal_en << 28) + (tdc_fine << 27) +
+> +		   (gain_ctrl << 24) + (feedfwd_gain << 16) +
+> +		   (int_coeff << 12) + (prop_coeff << 8) + tdc_targetcnt);
+> +
+> +	/* Compute ssc / bias2 */
+> +	compute_ssc(&p, ana_cfg);
+> +	compute_bias2(&p);
+> +
+> +	/* Compute tdc/dco_med */
+> +	compute_tdc(&p, tdc_fine);
+> +	compute_dco_med(&p);
+> +
+> +	/* Compute dcofine */
+
+Now I think we can do away with the comments above.
+
+With the minor changes suggested above the patch looks good to me.
+
+Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+
+
+I was thinking if we should have a separate file for this, similar to 
+one for snps phy hdmi plls, but in that case we were using it for snps 
+PHY and C10 phy which have similar algorithm.
+
+In the present LT PHY case it might be not a be a good idea for now.
+
+
+Regards,
+
+Ankit
+
+
+> +	compute_dco_fine(&p, dco_12g);
+> +
+> +	pll_type = ((frequency_khz == 10000) || (frequency_khz == 20000) ||
+> +		    (frequency_khz == 2500) || (dco_12g == 1)) ? 0 : 1;
+> +	set_phy_vdr_addresses(&p, pll_type);
+> +
+> +	lt_state->config[0] = 0x84;
+> +	lt_state->config[1] = 0x2d;
+> +	ADDR_ASSIGN(0, p.pll_reg4);
+> +	ADDR_ASSIGN(1, p.pll_reg3);
+> +	ADDR_ASSIGN(2, p.pll_reg5);
+> +	ADDR_ASSIGN(3, p.pll_reg57);
+> +	ADDR_ASSIGN(4, p.lf);
+> +	ADDR_ASSIGN(5, p.tdc);
+> +	ADDR_ASSIGN(6, p.ssc);
+> +	ADDR_ASSIGN(7, p.bias2);
+> +	ADDR_ASSIGN(8, p.bias_trim);
+> +	ADDR_ASSIGN(9, p.dco_med);
+> +	ADDR_ASSIGN(10, p.dco_fine);
+> +	ADDR_ASSIGN(11, p.ssc_inj);
+> +	ADDR_ASSIGN(12, p.surv_bonus);
+> +	DATA_ASSIGN(0, p.pll_reg4);
+> +	DATA_ASSIGN(1, p.pll_reg3);
+> +	DATA_ASSIGN(2, p.pll_reg5);
+> +	DATA_ASSIGN(3, p.pll_reg57);
+> +	DATA_ASSIGN(4, p.lf);
+> +	DATA_ASSIGN(5, p.tdc);
+> +	DATA_ASSIGN(6, p.ssc);
+> +	DATA_ASSIGN(7, p.bias2);
+> +	DATA_ASSIGN(8, p.bias_trim);
+> +	DATA_ASSIGN(9, p.dco_med);
+> +	DATA_ASSIGN(10, p.dco_fine);
+> +	DATA_ASSIGN(11, p.ssc_inj);
+> +	DATA_ASSIGN(12, p.surv_bonus);
+> +
+> +	return 0;
+> +}
+> +
+>   static int
+>   intel_lt_phy_calc_hdmi_port_clock(const struct intel_lt_phy_pll_state *lt_state)
+>   {
+> -#define REF_CLK_KHZ 38400
+>   #define REGVAL(i) (				\
+>   	(lt_state->data[i][3])		|	\
+>   	(lt_state->data[i][2] << 8)	|	\
+> @@ -1472,7 +1810,10 @@ intel_lt_phy_pll_calc_state(struct intel_crtc_state *crtc_state,
+>   		}
+>   	}
+>   
+> -	/* TODO: Add a function to compute the data for HDMI TMDS*/
+> +	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI)) {
+> +		return intel_lt_phy_calculate_hdmi_state(&crtc_state->dpll_hw_state.ltpll,
+> +							 crtc_state->port_clock);
+> +	}
+>   
+>   	return -EINVAL;
+>   }
+> diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.h b/drivers/gpu/drm/i915/display/intel_lt_phy.h
+> index a538d4c69210..b7911acd7dcd 100644
+> --- a/drivers/gpu/drm/i915/display/intel_lt_phy.h
+> +++ b/drivers/gpu/drm/i915/display/intel_lt_phy.h
+> @@ -35,6 +35,9 @@ void intel_lt_phy_pll_readout_hw_state(struct intel_encoder *encoder,
+>   				       struct intel_lt_phy_pll_state *pll_state);
+>   void intel_lt_phy_pll_state_verify(struct intel_atomic_state *state,
+>   				   struct intel_crtc *crtc);
+> +int
+> +intel_lt_phy_calculate_hdmi_state(struct intel_lt_phy_pll_state *lt_state,
+> +				  u32 frequency_khz);
+>   void intel_xe3plpd_pll_enable(struct intel_encoder *encoder,
+>   			      const struct intel_crtc_state *crtc_state);
+>   void intel_xe3plpd_pll_disable(struct intel_encoder *encoder);
+> diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy_regs.h b/drivers/gpu/drm/i915/display/intel_lt_phy_regs.h
+> index 9223487d764e..dc7b7679cd06 100644
+> --- a/drivers/gpu/drm/i915/display/intel_lt_phy_regs.h
+> +++ b/drivers/gpu/drm/i915/display/intel_lt_phy_regs.h
+> @@ -72,4 +72,20 @@
+>   #define XE3PLPD_PORT_P2M_MSGBUS_STATUS_P2P(port, lane)	 _XE3PLPD_PORT_P2M_MSGBUS_STATUS_P2P(__xe2lpd_port_idx(port), \
+>   											    lane)
+>   #define   XE3LPD_PORT_P2M_ADDR_MASK			REG_GENMASK(11, 0)
+> +
+> +#define PLL_REG4_ADDR		0x8510
+> +#define PLL_REG3_ADDR		0x850C
+> +#define PLL_REG5_ADDR		0x8514
+> +#define PLL_REG57_ADDR		0x85E4
+> +#define PLL_LF_ADDR		0x860C
+> +#define PLL_TDC_ADDR		0x8610
+> +#define PLL_SSC_ADDR		0x8614
+> +#define PLL_BIAS2_ADDR		0x8618
+> +#define PLL_BIAS_TRIM_ADDR	0x8648
+> +#define PLL_DCO_MED_ADDR	0x8640
+> +#define PLL_DCO_FINE_ADDR	0x864C
+> +#define PLL_SSC_INJ_ADDR	0x8624
+> +#define PLL_SURV_BONUS_ADDR	0x8644
+> +#define PLL_TYPE_OFFSET		0x200
+> +#define PLL_REG_ADDR(base, pll_type)		((pll_type) ? (base) + PLL_TYPE_OFFSET : (base))
+>   #endif /* __INTEL_LT_PHY_REGS_H__ */
