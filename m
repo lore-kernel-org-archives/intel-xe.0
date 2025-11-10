@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E2D60CD13DD
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C7515CD13DA
 	for <intel-xe@archiver.kernel.org>; Mon, 10 Nov 2025 23:20:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 782BD10E4AA;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6D47D10E4A6;
 	Mon, 10 Nov 2025 23:20:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jnzENP0m";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eHBVsc4j";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C844510E47D
- for <intel-xe@lists.freedesktop.org>; Mon, 10 Nov 2025 23:20:33 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C6BC310E49A
+ for <intel-xe@lists.freedesktop.org>; Mon, 10 Nov 2025 23:20:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1762816834; x=1794352834;
+ t=1762816835; x=1794352835;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=yEw+DKavo0+G7+jAmiD31dy5LXyPhpUqiG8sBkD50to=;
- b=jnzENP0m7T/kxv32lCsWe2bdbT1AkuCcHgR45zd/DqVMLIc2F1IkgA32
- ssk6wPMhAt12dakLG0m6dL9LDHJRRdQe5i/AQ/OTGZciTZEHTKja0DjDK
- 7FzOv/uwHdzp25d1sW3DxmxNmBbeYmLvaVFuZZ253gZPALYGDvWz3ybbJ
- RO4Cb1hM2p3SDBx2ljuHHXAeYBIo0nbydapGVtoGHzEY6AtFhsSPzbi2h
- HvAw+zwnz9Fk38eF4e+70+lBjOwJx7u8s8xxI0pl2btIQznZaW3OnDUek
- pvBuLUDxeAAVTIEbsnFrCtR4maKl0wR4iw5Wyf2sIVlLA0InsImICp2Kt w==;
-X-CSE-ConnectionGUID: GGPL6REhSbu61RRI6Pg1RA==
-X-CSE-MsgGUID: wqBXbew2Rvi/lkA8dFaj6A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11609"; a="75486456"
-X-IronPort-AV: E=Sophos;i="6.19,294,1754982000"; d="scan'208";a="75486456"
+ bh=xV4Snj0e9WhVJja2Qng8aQb9b51G9ccS1h8Z9zKw9DA=;
+ b=eHBVsc4j1KqFE/ytBY1iUdygogEXlN1f+RPK/Vb16Dx/6QYXL7B1MwLk
+ TuDgvm9Obfh6piUD4NBdYOrxPj2vu2cMIOuVTogyaOCmij77fRV3Bngvc
+ yO/GpeWw0lwJNGQSOk6jI4PGAOZoFBX6grDOG6SbgsCqf5Wevo489tbIQ
+ YLDffXIae3A6s+KXEGlw7myUJSODrvxOBrdELFBBz9xR3usUpJnIJwB5A
+ ZcvJxX7aRNGVblWTCNGFy7tTs+MPe25JarjFkcgf6HGhnfxhcoaKGwvkT
+ 1006MP1iQCosFzs8/f6BVQw+eRjM1DhtAza7i9hB6G+erv2PQinMz/ROI w==;
+X-CSE-ConnectionGUID: tMgT+EjwRXmQrfAK+6klqg==
+X-CSE-MsgGUID: WOCaeedLT6eqDa9/giS5rg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11609"; a="75486468"
+X-IronPort-AV: E=Sophos;i="6.19,294,1754982000"; d="scan'208";a="75486468"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Nov 2025 15:20:32 -0800
-X-CSE-ConnectionGUID: VsgHmllvThyFLyy6wkQGjg==
-X-CSE-MsgGUID: TjvmGGTKSL6ixamOfq8Xkg==
+ 10 Nov 2025 15:20:33 -0800
+X-CSE-ConnectionGUID: n2QN8buYQ9a/LUafUzXjQQ==
+X-CSE-MsgGUID: 7stVxk4nRHeePof1C4pJKA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,294,1754982000"; d="scan'208";a="189244004"
+X-IronPort-AV: E=Sophos;i="6.19,294,1754982000"; d="scan'208";a="189244037"
 Received: from mdroper-desk1.fm.intel.com ([10.1.39.133])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  10 Nov 2025 15:20:32 -0800
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.d.roper@intel.com
-Subject: [PATCH v2 19/30] drm/xe/gt_debugfs: Use scope-based cleanup
-Date: Mon, 10 Nov 2025 15:20:37 -0800
-Message-ID: <20251110232017.1475869-51-matthew.d.roper@intel.com>
+Subject: [PATCH v2 30/30] drm/xe/debugfs: Use scope-based runtime PM
+Date: Mon, 10 Nov 2025 15:20:48 -0800
+Message-ID: <20251110232017.1475869-62-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.51.1
 In-Reply-To: <20251110232017.1475869-32-matthew.d.roper@intel.com>
 References: <20251110232017.1475869-32-matthew.d.roper@intel.com>
@@ -66,82 +66,218 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Use scope-based cleanup for forcewake and runtime PM to simplify the
-debugfs code slightly.
+Switch the debugfs code to use scope-based runtime PM where possible,
+for consistency with other parts of the driver.
 
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_debugfs.c | 29 ++++++++---------------------
- 1 file changed, 8 insertions(+), 21 deletions(-)
+ drivers/gpu/drm/xe/xe_debugfs.c             | 16 +++++-----------
+ drivers/gpu/drm/xe/xe_gsc_debugfs.c         |  3 +--
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c | 12 ++++--------
+ drivers/gpu/drm/xe/xe_guc_debugfs.c         |  3 +--
+ drivers/gpu/drm/xe/xe_huc_debugfs.c         |  3 +--
+ drivers/gpu/drm/xe/xe_tile_debugfs.c        |  3 +--
+ 6 files changed, 13 insertions(+), 27 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_debugfs.c b/drivers/gpu/drm/xe/xe_gt_debugfs.c
-index e4fd632f43cf..7c3de6539044 100644
---- a/drivers/gpu/drm/xe/xe_gt_debugfs.c
-+++ b/drivers/gpu/drm/xe/xe_gt_debugfs.c
-@@ -105,35 +105,24 @@ int xe_gt_debugfs_show_with_rpm(struct seq_file *m, void *data)
- 	struct drm_info_node *node = m->private;
- 	struct xe_gt *gt = node_to_gt(node);
- 	struct xe_device *xe = gt_to_xe(gt);
--	int ret;
- 
--	xe_pm_runtime_get(xe);
--	ret = xe_gt_debugfs_simple_show(m, data);
--	xe_pm_runtime_put(xe);
--
--	return ret;
-+	guard(xe_pm_runtime)(xe);
-+	return xe_gt_debugfs_simple_show(m, data);
- }
- 
- static int hw_engines(struct xe_gt *gt, struct drm_printer *p)
- {
- 	struct xe_hw_engine *hwe;
- 	enum xe_hw_engine_id id;
--	unsigned int fw_ref;
--	int ret = 0;
- 
--	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
--	if (!xe_force_wake_ref_has_domain(fw_ref, XE_FORCEWAKE_ALL)) {
--		ret = -ETIMEDOUT;
--		goto fw_put;
--	}
-+	CLASS(xe_force_wake, fw_ref)(gt_to_fw(gt), XE_FORCEWAKE_ALL);
-+	if (!xe_force_wake_ref_has_domain(fw_ref.domains, XE_FORCEWAKE_ALL))
-+		return -ETIMEDOUT;
- 
- 	for_each_hw_engine(hwe, gt, id)
- 		xe_hw_engine_print(hwe, p);
- 
--fw_put:
--	xe_force_wake_put(gt_to_fw(gt), fw_ref);
--
--	return ret;
-+	return 0;
- }
- 
- static int steering(struct xe_gt *gt, struct drm_printer *p)
-@@ -269,9 +258,8 @@ static void force_reset(struct xe_gt *gt)
- {
- 	struct xe_device *xe = gt_to_xe(gt);
+diff --git a/drivers/gpu/drm/xe/xe_debugfs.c b/drivers/gpu/drm/xe/xe_debugfs.c
+index e91da9589c5f..1d5a2a43a9d7 100644
+--- a/drivers/gpu/drm/xe/xe_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_debugfs.c
+@@ -68,7 +68,7 @@ static int info(struct seq_file *m, void *data)
+ 	struct xe_gt *gt;
+ 	u8 id;
  
 -	xe_pm_runtime_get(xe);
 +	guard(xe_pm_runtime)(xe);
- 	xe_gt_reset_async(gt);
+ 
+ 	drm_printf(&p, "graphics_verx100 %d\n", xe->info.graphics_verx100);
+ 	drm_printf(&p, "media_verx100 %d\n", xe->info.media_verx100);
+@@ -95,7 +95,6 @@ static int info(struct seq_file *m, void *data)
+ 			   gt->info.engine_mask);
+ 	}
+ 
 -	xe_pm_runtime_put(xe);
+ 	return 0;
  }
  
- static ssize_t force_reset_write(struct file *file,
-@@ -297,9 +285,8 @@ static void force_reset_sync(struct xe_gt *gt)
+@@ -110,9 +109,8 @@ static int sriov_info(struct seq_file *m, void *data)
+ 
+ static int workarounds(struct xe_device *xe, struct drm_printer *p)
  {
- 	struct xe_device *xe = gt_to_xe(gt);
+-	xe_pm_runtime_get(xe);
++	guard(xe_pm_runtime)(xe);
+ 	xe_wa_device_dump(xe, p);
+-	xe_pm_runtime_put(xe);
+ 
+ 	return 0;
+ }
+@@ -134,7 +132,7 @@ static int dgfx_pkg_residencies_show(struct seq_file *m, void *data)
+ 
+ 	xe = node_to_xe(m->private);
+ 	p = drm_seq_file_printer(m);
+-	xe_pm_runtime_get(xe);
++	guard(xe_pm_runtime)(xe);
+ 	mmio = xe_root_tile_mmio(xe);
+ 	static const struct {
+ 		u32 offset;
+@@ -151,7 +149,6 @@ static int dgfx_pkg_residencies_show(struct seq_file *m, void *data)
+ 	for (int i = 0; i < ARRAY_SIZE(residencies); i++)
+ 		read_residency_counter(xe, mmio, residencies[i].offset, residencies[i].name, &p);
+ 
+-	xe_pm_runtime_put(xe);
+ 	return 0;
+ }
+ 
+@@ -163,7 +160,7 @@ static int dgfx_pcie_link_residencies_show(struct seq_file *m, void *data)
+ 
+ 	xe = node_to_xe(m->private);
+ 	p = drm_seq_file_printer(m);
+-	xe_pm_runtime_get(xe);
++	guard(xe_pm_runtime)(xe);
+ 	mmio = xe_root_tile_mmio(xe);
+ 
+ 	static const struct {
+@@ -178,7 +175,6 @@ static int dgfx_pcie_link_residencies_show(struct seq_file *m, void *data)
+ 	for (int i = 0; i < ARRAY_SIZE(residencies); i++)
+ 		read_residency_counter(xe, mmio, residencies[i].offset, residencies[i].name, &p);
+ 
+-	xe_pm_runtime_put(xe);
+ 	return 0;
+ }
+ 
+@@ -277,16 +273,14 @@ static ssize_t wedged_mode_set(struct file *f, const char __user *ubuf,
+ 
+ 	xe->wedged.mode = wedged_mode;
  
 -	xe_pm_runtime_get(xe);
 +	guard(xe_pm_runtime)(xe);
- 	xe_gt_reset(gt);
+ 	for_each_gt(gt, xe, id) {
+ 		ret = xe_guc_ads_scheduler_policy_toggle_reset(&gt->uc.guc.ads);
+ 		if (ret) {
+ 			xe_gt_err(gt, "Failed to update GuC ADS scheduler policy. GuC may still cause engine reset even with wedged_mode=2\n");
+-			xe_pm_runtime_put(xe);
+ 			return -EIO;
+ 		}
+ 	}
 -	xe_pm_runtime_put(xe);
- }
  
- static ssize_t force_reset_sync_write(struct file *file,
+ 	return size;
+ }
+diff --git a/drivers/gpu/drm/xe/xe_gsc_debugfs.c b/drivers/gpu/drm/xe/xe_gsc_debugfs.c
+index 461d7e99c2b3..b13928b50eb9 100644
+--- a/drivers/gpu/drm/xe/xe_gsc_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_gsc_debugfs.c
+@@ -37,9 +37,8 @@ static int gsc_info(struct seq_file *m, void *data)
+ 	struct xe_device *xe = gsc_to_xe(gsc);
+ 	struct drm_printer p = drm_seq_file_printer(m);
+ 
+-	xe_pm_runtime_get(xe);
++	guard(xe_pm_runtime)(xe);
+ 	xe_gsc_print_info(gsc, &p);
+-	xe_pm_runtime_put(xe);
+ 
+ 	return 0;
+ }
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
+index 838beb7f6327..ddb64e78b988 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
+@@ -123,11 +123,10 @@ static int POLICY##_set(void *data, u64 val)					\
+ 	if (val > (TYPE)~0ull)							\
+ 		return -EOVERFLOW;						\
+ 										\
+-	xe_pm_runtime_get(xe);							\
++	guard(xe_pm_runtime)(xe);							\
+ 	err = xe_gt_sriov_pf_policy_set_##POLICY(gt, val);			\
+ 	if (!err)								\
+ 		xe_sriov_pf_provision_set_custom_mode(xe);			\
+-	xe_pm_runtime_put(xe);							\
+ 										\
+ 	return err;								\
+ }										\
+@@ -189,12 +188,11 @@ static int CONFIG##_set(void *data, u64 val)					\
+ 	if (val > (TYPE)~0ull)							\
+ 		return -EOVERFLOW;						\
+ 										\
+-	xe_pm_runtime_get(xe);							\
++	guard(xe_pm_runtime)(xe);							\
+ 	err = xe_sriov_pf_wait_ready(xe) ?:					\
+ 	      xe_gt_sriov_pf_config_set_##CONFIG(gt, vfid, val);		\
+ 	if (!err)								\
+ 		xe_sriov_pf_provision_set_custom_mode(xe);			\
+-	xe_pm_runtime_put(xe);							\
+ 										\
+ 	return err;								\
+ }										\
+@@ -249,11 +247,10 @@ static int set_threshold(void *data, u64 val, enum xe_guc_klv_threshold_index in
+ 	if (val > (u32)~0ull)
+ 		return -EOVERFLOW;
+ 
+-	xe_pm_runtime_get(xe);
++	guard(xe_pm_runtime)(xe);
+ 	err = xe_gt_sriov_pf_config_set_threshold(gt, vfid, index, val);
+ 	if (!err)
+ 		xe_sriov_pf_provision_set_custom_mode(xe);
+-	xe_pm_runtime_put(xe);
+ 
+ 	return err;
+ }
+@@ -361,9 +358,8 @@ static ssize_t control_write(struct file *file, const char __user *buf, size_t c
+ 		xe_gt_assert(gt, sizeof(cmd) > strlen(control_cmds[n].cmd));
+ 
+ 		if (sysfs_streq(cmd, control_cmds[n].cmd)) {
+-			xe_pm_runtime_get(xe);
++			guard(xe_pm_runtime)(xe);
+ 			ret = control_cmds[n].fn ? (*control_cmds[n].fn)(gt, vfid) : 0;
+-			xe_pm_runtime_put(xe);
+ 			break;
+ 		}
+ 	}
+diff --git a/drivers/gpu/drm/xe/xe_guc_debugfs.c b/drivers/gpu/drm/xe/xe_guc_debugfs.c
+index 0b102ab46c4d..2198141526ae 100644
+--- a/drivers/gpu/drm/xe/xe_guc_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_guc_debugfs.c
+@@ -72,9 +72,8 @@ static int guc_debugfs_show(struct seq_file *m, void *data)
+ 	int (*print)(struct xe_guc *, struct drm_printer *) = node->info_ent->data;
+ 	int ret;
+ 
+-	xe_pm_runtime_get(xe);
++	guard(xe_pm_runtime)(xe);
+ 	ret = print(&gt->uc.guc, &p);
+-	xe_pm_runtime_put(xe);
+ 
+ 	return ret;
+ }
+diff --git a/drivers/gpu/drm/xe/xe_huc_debugfs.c b/drivers/gpu/drm/xe/xe_huc_debugfs.c
+index 3a888a40188b..df9c4d79b710 100644
+--- a/drivers/gpu/drm/xe/xe_huc_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_huc_debugfs.c
+@@ -37,9 +37,8 @@ static int huc_info(struct seq_file *m, void *data)
+ 	struct xe_device *xe = huc_to_xe(huc);
+ 	struct drm_printer p = drm_seq_file_printer(m);
+ 
+-	xe_pm_runtime_get(xe);
++	guard(xe_pm_runtime)(xe);
+ 	xe_huc_print_info(huc, &p);
+-	xe_pm_runtime_put(xe);
+ 
+ 	return 0;
+ }
+diff --git a/drivers/gpu/drm/xe/xe_tile_debugfs.c b/drivers/gpu/drm/xe/xe_tile_debugfs.c
+index fff242a5ae56..773d352da6de 100644
+--- a/drivers/gpu/drm/xe/xe_tile_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_tile_debugfs.c
+@@ -84,9 +84,8 @@ int xe_tile_debugfs_show_with_rpm(struct seq_file *m, void *data)
+ 	struct xe_device *xe = tile_to_xe(tile);
+ 	int ret;
+ 
+-	xe_pm_runtime_get(xe);
++	guard(xe_pm_runtime)(xe);
+ 	ret = xe_tile_debugfs_simple_show(m, data);
+-	xe_pm_runtime_put(xe);
+ 
+ 	return ret;
+ }
 -- 
 2.51.1
 
