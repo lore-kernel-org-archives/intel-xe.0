@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6A32BCD1297
-	for <intel-xe@archiver.kernel.org>; Mon, 10 Nov 2025 18:48:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 167E8CD342F
+	for <intel-xe@archiver.kernel.org>; Mon, 10 Nov 2025 18:48:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BCAB810E2E6;
-	Mon, 10 Nov 2025 18:48:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AA31510E4B0;
+	Mon, 10 Nov 2025 18:48:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ftM6UnUf";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QrD8nQIY";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EAB0E10E4AF;
- Mon, 10 Nov 2025 18:48:07 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 14AD510E4B1;
+ Mon, 10 Nov 2025 18:48:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1762800488; x=1794336488;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=4juQ99p3e3KtM6te/hbvKyOPptF+QeNnwr8ndteNapw=;
- b=ftM6UnUf8GKrrx2cEUo2JRnFF3PuIB2puWGck/l9Q3QqMXc2UdVDbNiZ
- akrW+xf71cB4p7t8WUjmT1ftA4usBogvB/xIXrAmOLSnVBTZc/GorqFJP
- dJt53RB0WE7S9r5Zvdq1nPb0IuKOfyvnmIsUNfog+CCQqoVgyanxJlPm0
- aKPdJK8Knqw25NZHw99Qe8ayhql3M2PmhFa/fp0mYpqbTm1ZCiEUdUjvt
- qOl0HpjHlSM320HIYzpJIUCnlcEMKeAHpc4e+A2bM7wL3VjX5roTfNGNr
- NHQdr7PSchGdN43aF4zhVf3nR5Fab0icirGwidkpFNLfs74dQRn7Wi/5N Q==;
-X-CSE-ConnectionGUID: Ut0tbh2uRviy6mA1AT8cSA==
-X-CSE-MsgGUID: y8WMg/dJQ8qdbW3qHQOilw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11609"; a="82484656"
-X-IronPort-AV: E=Sophos;i="6.19,294,1754982000"; d="scan'208";a="82484656"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Nov 2025 10:48:07 -0800
-X-CSE-ConnectionGUID: 3ynojx9aTemebvQa2QUulQ==
-X-CSE-MsgGUID: twHEdvfkR26b2l2EM+qABw==
+ bh=QGRUCvRhLj/TwbX4dQMKGketmqckWUD9lEEl/Hr0Xm0=;
+ b=QrD8nQIYrnDtdaaSaHWIyzrAH7HPg1HwbEPI8pokhWniu6TmTRoU14KG
+ Y+Q7dQzOnvzu1zj4tz6E53GZmCu8X/mi3t6nx1QjPI8jPY3AyKHkufz7x
+ YXvRDpP1XMQSMfRlJST7jxHAVsmF8cuBi534SU+IRfdNnaLHh84xEjEYF
+ zB7KRjLUQvJk9BgQ+Zq/D+cTeHT+/P2JEUEnx7coPBk4LIZpUIM2ynozq
+ 75qRSvya+lTZLfM5fiy088idTIgalEo9U9Lr1QEVFk5xGCuIj/R6LqscR
+ BCytYfSSzGOamjua6sAgutC3xZOudwS2HnXzAWzOHmO/9dlM5Xl03fMuz g==;
+X-CSE-ConnectionGUID: dYmhplxQT+GraNvcyz71Qw==
+X-CSE-MsgGUID: 6kZL/p9OT46jJXcnGpG3Iw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11609"; a="64945525"
+X-IronPort-AV: E=Sophos;i="6.19,294,1754982000"; d="scan'208";a="64945525"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Nov 2025 10:48:08 -0800
+X-CSE-ConnectionGUID: nY+7EE6iTdmlvdOdF/MRgA==
+X-CSE-MsgGUID: ur4itLZhTBu7r9UEfABuHA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,294,1754982000"; d="scan'208";a="189472138"
+X-IronPort-AV: E=Sophos;i="6.19,294,1754982000"; d="scan'208";a="219402036"
 Received: from black.igk.intel.com ([10.91.253.5])
- by fmviesa010.fm.intel.com with ESMTP; 10 Nov 2025 10:47:59 -0800
+ by orviesa002.jf.intel.com with ESMTP; 10 Nov 2025 10:47:58 -0800
 Received: by black.igk.intel.com (Postfix, from userid 1003)
- id 8C76DAC; Mon, 10 Nov 2025 19:47:29 +0100 (CET)
+ id 78395A9; Mon, 10 Nov 2025 19:47:29 +0100 (CET)
 From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 To: Corey Minyard <corey@minyard.net>,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
@@ -114,9 +114,9 @@ Cc: Rasmus Villemoes <linux@rasmusvillemoes.dk>,
  Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
  Andrew Morton <akpm@linux-foundation.org>,
  Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>
-Subject: [PATCH v1 23/23] tracing: Switch to use %ptSp
-Date: Mon, 10 Nov 2025 19:40:42 +0100
-Message-ID: <20251110184727.666591-24-andriy.shevchenko@linux.intel.com>
+Subject: [PATCH v1 20/23] s390/dasd: Switch to use %ptSp
+Date: Mon, 10 Nov 2025 19:40:39 +0100
+Message-ID: <20251110184727.666591-21-andriy.shevchenko@linux.intel.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20251110184727.666591-1-andriy.shevchenko@linux.intel.com>
 References: <20251110184727.666591-1-andriy.shevchenko@linux.intel.com>
@@ -141,29 +141,23 @@ struct timespec64 in human readable format.
 
 Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 ---
- kernel/trace/trace_output.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ drivers/s390/block/dasd.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
-diff --git a/kernel/trace/trace_output.c b/kernel/trace/trace_output.c
-index ebbab3e9622b..cc2d3306bb60 100644
---- a/kernel/trace/trace_output.c
-+++ b/kernel/trace/trace_output.c
-@@ -1490,12 +1490,12 @@ trace_hwlat_print(struct trace_iterator *iter, int flags,
- 
- 	trace_assign_type(field, entry);
- 
--	trace_seq_printf(s, "#%-5u inner/outer(us): %4llu/%-5llu ts:%lld.%09ld count:%d",
-+	trace_seq_printf(s, "#%-5u inner/outer(us): %4llu/%-5llu ts:%ptSp count:%d",
- 			 field->seqnum,
- 			 field->duration,
- 			 field->outer_duration,
--			 (long long)field->timestamp.tv_sec,
--			 field->timestamp.tv_nsec, field->count);
-+			 &field->timestamp,
-+			 field->count);
- 
- 	if (field->nmi_count) {
- 		/*
+diff --git a/drivers/s390/block/dasd.c b/drivers/s390/block/dasd.c
+index 7765e40f7cea..97dcc70f669e 100644
+--- a/drivers/s390/block/dasd.c
++++ b/drivers/s390/block/dasd.c
+@@ -974,8 +974,7 @@ static void dasd_stats_array(struct seq_file *m, unsigned int *array)
+ static void dasd_stats_seq_print(struct seq_file *m,
+ 				 struct dasd_profile_info *data)
+ {
+-	seq_printf(m, "start_time %lld.%09ld\n",
+-		   (s64)data->starttod.tv_sec, data->starttod.tv_nsec);
++	seq_printf(m, "start_time %ptSp\n", &data->starttod);
+ 	seq_printf(m, "total_requests %u\n", data->dasd_io_reqs);
+ 	seq_printf(m, "total_sectors %u\n", data->dasd_io_sects);
+ 	seq_printf(m, "total_pav %u\n", data->dasd_io_alias);
 -- 
 2.50.1
 
