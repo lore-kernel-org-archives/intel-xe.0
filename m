@@ -4,53 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2616ECD13DF
-	for <intel-xe@archiver.kernel.org>; Mon, 10 Nov 2025 23:20:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 58496CCF9E3
+	for <intel-xe@archiver.kernel.org>; Mon, 10 Nov 2025 23:29:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C7E3910E4C1;
-	Mon, 10 Nov 2025 23:20:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 11D8310E0FE;
+	Mon, 10 Nov 2025 23:29:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fInJ7rNQ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cR/CcNxY";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 07F1110E49B
- for <intel-xe@lists.freedesktop.org>; Mon, 10 Nov 2025 23:20:34 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E374F10E0FE
+ for <intel-xe@lists.freedesktop.org>; Mon, 10 Nov 2025 23:29:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1762816834; x=1794352834;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=Rou4WBzSRSWKYeC417pCe2Ep385TrA7W+o5MsuJxuGs=;
- b=fInJ7rNQlXIYDfaC5CtM2QpbwxvdWHU658m52elUM6wkaHePxC1xf0xT
- 1HG4uFeOxxtVsCUBo7B1XfiAPrJ+rsnseqGG0QYnGv/HGQorUbtOKzbJj
- p6oARC4EDOKGywRRNBkYh784UT46mPmknbRKv8aUada7UV2f30idBngva
- 09N3z/JNnZdqYsKUTigXPOXOaOZTVt2MgDBs75hiKgfDKIDJciP5Ul7SD
- DyJomZkmKtIr91QZTic5CfvI9txKtWyq2fMzWAY7sZAdGGoWOtQw1kN4g
- qbiWEvgBlSgw9ht0k1KGJyaOTKrxj8Z0NSyaMBoBeEQAEbMZ/jQpQ8z0i A==;
-X-CSE-ConnectionGUID: UngMsU5+SHyAX9dh9ZxKzg==
-X-CSE-MsgGUID: 2GM+bQ0RRyeUCBUWagNSLw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11609"; a="75486460"
-X-IronPort-AV: E=Sophos;i="6.19,294,1754982000"; d="scan'208";a="75486460"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Nov 2025 15:20:33 -0800
-X-CSE-ConnectionGUID: uSql1vjhR7ilbpUnu8tlsw==
-X-CSE-MsgGUID: 1qEsuGm/S8KUmGqVqyNrwQ==
+ t=1762817354; x=1794353354;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=J76QDW3q+AZvvAyd0eOpc60Fj90OplGrnWO+vfqb7NY=;
+ b=cR/CcNxY4FTrv9DJSXIjQ4HIIdFy5iSLeYoCaqh7df8HBqiohurDsAKH
+ G1Oy48X5dSw264JwRk2BMxB+E9PHvBIQdF1Xo13UbKWqNDfkUKsveCmi9
+ YlAItMzLNpMt1rDgJ82ubwefp3/uEp6VxXOAFx0VWtUOH/mUBH82H4ESW
+ XSSHmt6r3QtMgB+NroYHeSZNH+SiLYZJ2C+vOaFeM6XeyAAfgjF3kVzUQ
+ ks+6p6bobqSET50BZ3O+BSP1lZyqg19wuVYQx1XSYHaYUye5QhRIYDY4M
+ d39sOsnkNmwKNJBTlXipV0eZ/HRaQwCJvYXgWGfs+QwQ2sBwhpRcB0Bpz A==;
+X-CSE-ConnectionGUID: 73RXkAStTcagtHVmQIYrJA==
+X-CSE-MsgGUID: MjUDer4FTmeFAUofUUZn0A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11609"; a="82271071"
+X-IronPort-AV: E=Sophos;i="6.19,294,1754982000"; d="scan'208";a="82271071"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Nov 2025 15:29:13 -0800
+X-CSE-ConnectionGUID: ahTQB+n3RWeIaLkMl0hVdw==
+X-CSE-MsgGUID: ykm1APPjRmmiSyozXP0fSg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,294,1754982000"; d="scan'208";a="189244016"
-Received: from mdroper-desk1.fm.intel.com ([10.1.39.133])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Nov 2025 15:20:32 -0800
-From: Matt Roper <matthew.d.roper@intel.com>
+X-IronPort-AV: E=Sophos;i="6.19,294,1754982000"; d="scan'208";a="193185327"
+Received: from osgc-linux-buildserver.sh.intel.com ([10.112.232.103])
+ by orviesa004.jf.intel.com with ESMTP; 10 Nov 2025 15:29:12 -0800
+From: Shuicheng Lin <shuicheng.lin@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: matthew.d.roper@intel.com
-Subject: [PATCH v2 23/30] drm/xe/vram: Use scope-based forcewake
-Date: Mon, 10 Nov 2025 15:20:41 -0800
-Message-ID: <20251110232017.1475869-55-matthew.d.roper@intel.com>
-X-Mailer: git-send-email 2.51.1
-In-Reply-To: <20251110232017.1475869-32-matthew.d.roper@intel.com>
-References: <20251110232017.1475869-32-matthew.d.roper@intel.com>
+Cc: Shuicheng Lin <shuicheng.lin@intel.com>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>
+Subject: [PATCH] drm/xe: Remove duplicate DRM_EXEC selection from Kconfig
+Date: Mon, 10 Nov 2025 23:26:58 +0000
+Message-ID: <20251110232657.1807998-2-shuicheng.lin@intel.com>
+X-Mailer: git-send-email 2.49.0
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -66,46 +66,29 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Switch VRAM code to use scope-based forcewake for consistency with other
-parts of the driver.
+There are 2 identical "select DRM_EXEC" lines for DRM_XE.
+Remove one to clean up the configuration.
 
-Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+Fixes: d490ecf57790 ("drm/xe: Rework xe_exec and the VM rebind worker to use the drm_exec helper")
+Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Signed-off-by: Shuicheng Lin <shuicheng.lin@intel.com>
 ---
- drivers/gpu/drm/xe/xe_vram.c | 7 ++-----
- 1 file changed, 2 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/xe/Kconfig | 1 -
+ 1 file changed, 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_vram.c b/drivers/gpu/drm/xe/xe_vram.c
-index b62a96f8ef9e..11d18741313b 100644
---- a/drivers/gpu/drm/xe/xe_vram.c
-+++ b/drivers/gpu/drm/xe/xe_vram.c
-@@ -245,7 +245,6 @@ static int tile_vram_size(struct xe_tile *tile, u64 *vram_size,
- {
- 	struct xe_device *xe = tile_to_xe(tile);
- 	struct xe_gt *gt = tile->primary_gt;
--	unsigned int fw_ref;
- 	u64 offset;
- 	u32 reg;
- 
-@@ -265,8 +264,8 @@ static int tile_vram_size(struct xe_tile *tile, u64 *vram_size,
- 		return 0;
- 	}
- 
--	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
--	if (!fw_ref)
-+	CLASS(xe_force_wake, fw_ref)(gt_to_fw(gt), XE_FW_GT);
-+	if (!fw_ref.domains)
- 		return -ETIMEDOUT;
- 
- 	/* actual size */
-@@ -289,8 +288,6 @@ static int tile_vram_size(struct xe_tile *tile, u64 *vram_size,
- 	/* remove the tile offset so we have just the available size */
- 	*vram_size = offset - *tile_offset;
- 
--	xe_force_wake_put(gt_to_fw(gt), fw_ref);
--
- 	return 0;
- }
- 
+diff --git a/drivers/gpu/drm/xe/Kconfig b/drivers/gpu/drm/xe/Kconfig
+index 7219f6b884b6..4b288eb3f5b0 100644
+--- a/drivers/gpu/drm/xe/Kconfig
++++ b/drivers/gpu/drm/xe/Kconfig
+@@ -13,7 +13,6 @@ config DRM_XE
+ 	select TMPFS
+ 	select DRM_BUDDY
+ 	select DRM_CLIENT_SELECTION
+-	select DRM_EXEC
+ 	select DRM_KMS_HELPER
+ 	select DRM_KUNIT_TEST_HELPERS if DRM_XE_KUNIT_TEST != n
+ 	select DRM_PANEL
 -- 
-2.51.1
+2.49.0
 
