@@ -4,60 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 56645CCFA1E
-	for <intel-xe@archiver.kernel.org>; Mon, 10 Nov 2025 17:46:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 29097CCF9E3
+	for <intel-xe@archiver.kernel.org>; Mon, 10 Nov 2025 17:56:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 06C6210E2E1;
-	Mon, 10 Nov 2025 17:46:04 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="f2cbKSP1";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 766E710E2E1;
- Mon, 10 Nov 2025 17:46:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1762796762; x=1794332762;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=rNxhafV1eenMHHAmTU6nOTjxT2gmS4nhDy+CSjrviGM=;
- b=f2cbKSP1Giak4MhQWz9807ly4HBGlaqZDDbDjPv+sKXrO9/m/2BSnyjz
- Z7L3+j0Y/qVtUpt8TWE+UPD5/c9wg4lOfpgWgsfXYar5HxrFDJxYPCSZE
- /XEls2h9DevIRWX3am5SENRvQa98YYiH93ZIWApf37ZXoHx7zAGpZOX0E
- Fa+KWyvE9LHoLJlZlormf2P/MQlt/keZgPdQMYdY7qeHSopIgvSKyRIaH
- KpzdnNbPzkqwwwedNk8JG8n1OJY6jmjIIs9++9QkkLSlsTk37/O2ZEgEm
- Lya8IylL/+iubSEdlJcK2RMdOpkNY9hvf7M0YAJrdGsrtP+HeOkhn6E6+ A==;
-X-CSE-ConnectionGUID: T6vN8CsERRWO8/xnuW26Jg==
-X-CSE-MsgGUID: XhPuYhJcQOWDeZC9TmHxyQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11609"; a="64892682"
-X-IronPort-AV: E=Sophos;i="6.19,294,1754982000"; d="scan'208";a="64892682"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Nov 2025 09:46:02 -0800
-X-CSE-ConnectionGUID: 8BLSbjjwTeeSAbFQcIDzBQ==
-X-CSE-MsgGUID: JLm2tNy7ROiaNsRFOqfDxQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,294,1754982000"; d="scan'208";a="188039597"
-Received: from bergbenj-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.244.30])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Nov 2025 09:46:01 -0800
-Date: Mon, 10 Nov 2025 19:45:57 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>
-Subject: Re: [PATCH 23/24] drm/vblank: reduce pipe checks
-Message-ID: <aRIk1Q6ivG6temIY@intel.com>
-References: <cover.1762791343.git.jani.nikula@intel.com>
- <472777431de3c0f8a8d43e2ee7a55b3a170d138c.1762791343.git.jani.nikula@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id C5EDA10E08A;
+	Mon, 10 Nov 2025 17:56:06 +0000 (UTC)
+Received: from 10055242dc62 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6D18010E08A;
+ Mon, 10 Nov 2025 17:56:05 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8607197331381118889=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <472777431de3c0f8a8d43e2ee7a55b3a170d138c.1762791343.git.jani.nikula@intel.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/pcode=3A_Rework_erro?=
+ =?utf-8?q?r_mapping_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Lucas De Marchi" <lucas.demarchi@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 10 Nov 2025 17:56:05 -0000
+Message-ID: <176279736543.35461.5125309817266779467@10055242dc62>
+X-Patchwork-Hint: ignore
+References: <20251110-pcode-errmap-v2-1-cb18c8f54238@intel.com>
+In-Reply-To: <20251110-pcode-errmap-v2-1-cb18c8f54238@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,146 +36,125 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Nov 10, 2025 at 06:17:41PM +0200, Jani Nikula wrote:
-> Now that drm_vblank_crtc() is the only place that indexes dev->vblank[],
-> and its usage has reduced considerably, add the primary pipe
-> out-of-bounds check there, and return NULL. Expect callers to check it
-> and act accordingly.
-> 
-> In drm_crtc_vblank_crtc(), warn and return NULL, and let it go boom. If
-> the crtc->pipe is out of bounds, it's a driver error that needs to be
-> fixed.
-> 
-> Remove superfluous pipe checks all around.
-> 
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> ---
->  drivers/gpu/drm/drm_vblank.c | 36 +++++++++++++++---------------------
->  1 file changed, 15 insertions(+), 21 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/drm_vblank.c b/drivers/gpu/drm/drm_vblank.c
-> index 44fb8d225485..7829e64e42b4 100644
-> --- a/drivers/gpu/drm/drm_vblank.c
-> +++ b/drivers/gpu/drm/drm_vblank.c
-> @@ -177,13 +177,22 @@ MODULE_PARM_DESC(timestamp_precision_usec, "Max. error on timestamps [usecs]");
->  static struct drm_vblank_crtc *
->  drm_vblank_crtc(struct drm_device *dev, unsigned int pipe)
->  {
-> +	if (pipe >= dev->num_crtcs)
-> +		return NULL;
-> +
->  	return &dev->vblank[pipe];
->  }
->  
->  struct drm_vblank_crtc *
->  drm_crtc_vblank_crtc(struct drm_crtc *crtc)
->  {
-> -	return drm_vblank_crtc(crtc->dev, drm_crtc_index(crtc));
-> +	struct drm_vblank_crtc *vblank;
-> +
-> +	vblank = drm_vblank_crtc(crtc->dev, drm_crtc_index(crtc));
-> +	if (drm_WARN_ON(crtc->dev, !vblank))
-> +		return NULL;
-> +
-> +	return vblank;
->  }
->  EXPORT_SYMBOL(drm_crtc_vblank_crtc);
->  
-> @@ -631,7 +640,6 @@ void drm_calc_timestamping_constants(struct drm_crtc *crtc,
->  				     const struct drm_display_mode *mode)
->  {
->  	struct drm_device *dev = crtc->dev;
-> -	unsigned int pipe = drm_crtc_index(crtc);
->  	struct drm_vblank_crtc *vblank = drm_crtc_vblank_crtc(crtc);
->  	int linedur_ns = 0, framedur_ns = 0;
->  	int dotclock = mode->crtc_clock;
-> @@ -639,9 +647,6 @@ void drm_calc_timestamping_constants(struct drm_crtc *crtc,
->  	if (!drm_dev_has_vblank(dev))
->  		return;
+--===============8607197331381118889==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-I belive this at least gets called from the atomic helpers even
-for drivers that don't have vblank support. In which case the
-drm_crtc_vblank_crtc() call would have to be done after the
-drm_dev_has_vblank() check or else you'll get spurious WARNs.
+== Series Details ==
 
-I don't remember if there are other cases like this as well.
+Series: drm/xe/pcode: Rework error mapping (rev2)
+URL   : https://patchwork.freedesktop.org/series/157255/
+State : success
 
->  
-> -	if (drm_WARN_ON(dev, pipe >= dev->num_crtcs))
-> -		return;
-> -
->  	/* Valid dotclock? */
->  	if (dotclock > 0) {
->  		int frame_size = mode->crtc_htotal * mode->crtc_vtotal;
-> @@ -724,11 +729,6 @@ drm_crtc_vblank_helper_get_vblank_timestamp_internal(
->  	int vpos, hpos, i;
->  	int delta_ns, duration_ns;
->  
-> -	if (pipe >= dev->num_crtcs) {
-> -		drm_err(dev, "Invalid crtc %u\n", pipe);
-> -		return false;
-> -	}
-> -
->  	/* Scanout position query not supported? Should not happen. */
->  	if (!get_scanout_position) {
->  		drm_err(dev, "Called from CRTC w/o get_scanout_position()!?\n");
-> @@ -1339,9 +1339,6 @@ void drm_crtc_vblank_off(struct drm_crtc *crtc)
->  	ktime_t now;
->  	u64 seq;
->  
-> -	if (drm_WARN_ON(dev, pipe >= dev->num_crtcs))
-> -		return;
-> -
->  	/*
->  	 * Grab event_lock early to prevent vblank work from being scheduled
->  	 * while we're in the middle of shutting down vblank interrupts
-> @@ -1480,9 +1477,6 @@ void drm_crtc_vblank_on_config(struct drm_crtc *crtc,
->  	unsigned int pipe = drm_crtc_index(crtc);
->  	struct drm_vblank_crtc *vblank = drm_crtc_vblank_crtc(crtc);
->  
-> -	if (drm_WARN_ON(dev, pipe >= dev->num_crtcs))
-> -		return;
-> -
->  	spin_lock_irq(&dev->vbl_lock);
->  	drm_dbg_vbl(dev, "crtc %d, vblank enabled %d, inmodeset %d\n",
->  		    pipe, vblank->enabled, vblank->inmodeset);
-> @@ -1764,10 +1758,9 @@ int drm_wait_vblank_ioctl(struct drm_device *dev, void *data,
->  		pipe = pipe_index;
->  	}
->  
-> -	if (pipe >= dev->num_crtcs)
-> -		return -EINVAL;
-> -
->  	vblank = drm_vblank_crtc(dev, pipe);
-> +	if (!vblank)
-> +		return -EINVAL;
->  
->  	/* If the counter is currently enabled and accurate, short-circuit
->  	 * queries to return the cached timestamp of the last vblank.
-> @@ -1902,14 +1895,15 @@ static void drm_handle_vblank_events(struct drm_vblank_crtc *vblank)
->   */
->  bool drm_handle_vblank(struct drm_device *dev, unsigned int pipe)
->  {
-> -	struct drm_vblank_crtc *vblank = drm_vblank_crtc(dev, pipe);
-> +	struct drm_vblank_crtc *vblank;
->  	unsigned long irqflags;
->  	bool disable_irq;
->  
->  	if (drm_WARN_ON_ONCE(dev, !drm_dev_has_vblank(dev)))
->  		return false;
->  
-> -	if (drm_WARN_ON(dev, pipe >= dev->num_crtcs))
-> +	vblank = drm_vblank_crtc(dev, pipe);
-> +	if (drm_WARN_ON(dev, !vblank))
->  		return false;
->  
->  	spin_lock_irqsave(&dev->event_lock, irqflags);
-> -- 
-> 2.47.3
+== Summary ==
 
--- 
-Ville Syrjälä
-Intel
+CI Bug Log - changes from xe-4081-168074b8e855f611374ca5338a7d4dca0fc62ffa_BAT -> xe-pw-157255v2_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (13 -> 13)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-157255v2_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@xe_waitfence@engine:
+    - bat-dg2-oem2:       [FAIL][1] ([Intel XE#6519]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4081-168074b8e855f611374ca5338a7d4dca0fc62ffa/bat-dg2-oem2/igt@xe_waitfence@engine.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157255v2/bat-dg2-oem2/igt@xe_waitfence@engine.html
+
+  
+  [Intel XE#6519]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519
+
+
+Build changes
+-------------
+
+  * Linux: xe-4081-168074b8e855f611374ca5338a7d4dca0fc62ffa -> xe-pw-157255v2
+
+  IGT_8617: 8617
+  xe-4081-168074b8e855f611374ca5338a7d4dca0fc62ffa: 168074b8e855f611374ca5338a7d4dca0fc62ffa
+  xe-pw-157255v2: 157255v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157255v2/index.html
+
+--===============8607197331381118889==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/pcode: Rework error mapping (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/157255/">https://patchwork.freedesktop.org/series/157255/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157255v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157255v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4081-168074b8e855f611374ca5338a7d4dca0fc62ffa_BAT -&gt; xe-pw-157255v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-157255v2_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_waitfence@engine:<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4081-168074b8e855f611374ca5338a7d4dca0fc62ffa/bat-dg2-oem2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519">Intel XE#6519</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157255v2/bat-dg2-oem2/igt@xe_waitfence@engine.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4081-168074b8e855f611374ca5338a7d4dca0fc62ffa -&gt; xe-pw-157255v2</li>
+</ul>
+<p>IGT_8617: 8617<br />
+  xe-4081-168074b8e855f611374ca5338a7d4dca0fc62ffa: 168074b8e855f611374ca5338a7d4dca0fc62ffa<br />
+  xe-pw-157255v2: 157255v2</p>
+
+</body>
+</html>
+
+--===============8607197331381118889==--
