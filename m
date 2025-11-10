@@ -4,68 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 03F04CCF9E3
-	for <intel-xe@archiver.kernel.org>; Mon, 10 Nov 2025 11:45:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 23D84CCFA13
+	for <intel-xe@archiver.kernel.org>; Mon, 10 Nov 2025 11:46:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A716710E2B7;
-	Mon, 10 Nov 2025 11:45:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D841A10E2B7;
+	Mon, 10 Nov 2025 11:46:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fIlLRfBb";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ja3K9l4w";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 24B0B10E02B;
- Mon, 10 Nov 2025 11:45:57 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A479C10E2B7
+ for <intel-xe@lists.freedesktop.org>; Mon, 10 Nov 2025 11:46:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1762775157; x=1794311157;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=R0xzZLgfIdIv5gcdCMIr0jhuGovR7SJ0ZHgEiHH3130=;
- b=fIlLRfBbsSSISUT1SSnQCXjOPRLcleFqj+c06qdxzRSW7R9UvaFmfKGH
- fh1+n9GTBhJPmSExL9Lqoue1sLtLDoGzpEfJf+zSp+wk2nxCejqvrwuqa
- LXvBAgW7B6+RXWglADCWrkUJTWc5zdukXU9kt5G43cqeRp3+6JAHo4E3t
- Jka5JCtbyScy49mZE4LR64v9B+9D52iKUwIp69TtLZgab0n0WkTJJeHSh
- qiHOhzTUgHyZy8SRtmHYKFjGcv74031AW8fLFE3/8UkqnTZv8yWwq0TEK
- lywabw+qQK/GqDvwr4WmXq+ZhS0SEh7l6IGIjp/PchHkQN7DsRcChk5hz A==;
-X-CSE-ConnectionGUID: 2hTs+P55Qba0vuNCuNMH1g==
-X-CSE-MsgGUID: pd2AT0AORdG1j2Qc8I0AaQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11608"; a="64522990"
-X-IronPort-AV: E=Sophos;i="6.19,293,1754982000"; d="scan'208";a="64522990"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Nov 2025 03:45:56 -0800
-X-CSE-ConnectionGUID: E4BG49yfT6Wrf0KKHQQYgg==
-X-CSE-MsgGUID: 4R8YfVI9Qi6NYCYqsbq0dw==
+ t=1762775188; x=1794311188;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=dEsHV467pH9QHId8FSgMhudm9X0LAZJTpc9/z1cFpps=;
+ b=ja3K9l4wIuQTNLawUGoe283SwEfazrGMgZiAkeddbCXoT/3/yipThzmH
+ bNo6HidVQMflbL0YxuqOXsaDd4D5/w1kR8gJgla4yzJCsongVoTi6wn8Q
+ tS2gcnkprOQoOvX9WXxtHkKfs5hUcFfiYzJz9YPw1MRSwSNyMjgLZ7LOJ
+ mTuVfO4e36ikIomrxkJzSh/lQGrhpjqewR9cIYQS5EG5u2kieoP/rAWa+
+ 1vadGEuC2OMpqQShvE9dCbektHWLQSDg92xBthddsMQzFKPIGnMHvgeqZ
+ Wb7vRxN6FloJST3FZamnZ1uumxB2GruMV/FfjR9m7a+HpMHqJDGgD3aUL g==;
+X-CSE-ConnectionGUID: /uJDk8zJRemd1SdSTmyd8g==
+X-CSE-MsgGUID: csee5xeIR1GBxgnc/Glg1A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11608"; a="64863578"
+X-IronPort-AV: E=Sophos;i="6.19,293,1754982000"; d="scan'208";a="64863578"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Nov 2025 03:46:28 -0800
+X-CSE-ConnectionGUID: XAZnAimhQI6ds7GT4Rl0tw==
+X-CSE-MsgGUID: DIaOKVr1TKaLMCqPkXK1og==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,293,1754982000"; d="scan'208";a="193664470"
-Received: from ettammin-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.202])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Nov 2025 03:45:51 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Gustavo Sousa <gustavo.sousa@intel.com>, intel-xe@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org
-Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>, Dnyaneshwar Bhadane
- <dnyaneshwar.bhadane@intel.com>, Gustavo Sousa <gustavo.sousa@intel.com>,
- Jouni =?utf-8?Q?H=C3=B6gander?= <jouni.hogander@intel.com>, Juha-pekka
- Heikkila <juha-pekka.heikkila@intel.com>, Luca Coelho
- <luciano.coelho@intel.com>, Lucas De Marchi <lucas.demarchi@intel.com>,
- Matt Atwood <matthew.s.atwood@intel.com>, Matt Roper
- <matthew.d.roper@intel.com>, Ravi Kumar Vodapalli
- <ravi.kumar.vodapalli@intel.com>, Shekhar Chauhan
- <shekhar.chauhan@intel.com>, Vinod Govindapillai
- <vinod.govindapillai@intel.com>, Ville =?utf-8?B?U3lyasOkbMOk?=
- <ville.syrjala@linux.intel.com>
-Subject: Re: [PATCH v4 06/11] drm/i915/xe3p_lpd: Handle underrun debug bits
-In-Reply-To: <20251107-xe3p_lpd-basic-enabling-v4-6-ab3367f65f15@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20251107-xe3p_lpd-basic-enabling-v4-0-ab3367f65f15@intel.com>
- <20251107-xe3p_lpd-basic-enabling-v4-6-ab3367f65f15@intel.com>
-Date: Mon, 10 Nov 2025 13:45:48 +0200
-Message-ID: <cd8a88c0e6f02aa1209abd3f1188e1bacf1ec1c1@intel.com>
+X-IronPort-AV: E=Sophos;i="6.19,293,1754982000"; d="scan'208";a="188902617"
+Received: from kniemiec-mobl1.ger.corp.intel.com (HELO [10.245.244.9])
+ ([10.245.244.9])
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Nov 2025 03:46:26 -0800
+Message-ID: <a6d92296-31b3-41bf-9ae1-d3942bd017c4@intel.com>
+Date: Mon, 10 Nov 2025 11:46:24 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 3/3] drm/xe: implement VM_BIND decompression in
+ vm_bind_ioctl
+To: Nitin Gote <nitin.r.gote@intel.com>, matthew.brost@intel.com
+Cc: intel-xe@lists.freedesktop.org, michal.mrozek@intel.com,
+ sanjay Yadav <sanjay.kumar.yadav@intel.com>, "Wang, X" <x.wang@intel.com>
+References: <20251107114757.561671-5-nitin.r.gote@intel.com>
+ <20251107114757.561671-8-nitin.r.gote@intel.com>
+Content-Language: en-GB
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <20251107114757.561671-8-nitin.r.gote@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,311 +72,372 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, 07 Nov 2025, Gustavo Sousa <gustavo.sousa@intel.com> wrote:
-> Xe3p_LPD added several bits containing information that can be relevant
-> to debugging FIFO underruns.  Add the logic necessary to handle them
-> when reporting underruns.
->
-> This was adapted from the initial patch[1] from Sai Teja Pottumuttu.
->
-> [1] https://lore.kernel.org/all/20251015-xe3p_lpd-basic-enabling-v1-12-d2=
-d1e26520aa@intel.com/
->
-> Bspec: 69111, 69561, 74411, 74412
-> Cc: Jani Nikula <jani.nikula@intel.com>
-> Cc: Matt Roper <matthew.d.roper@intel.com>
-> Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
+On 07/11/2025 11:48, Nitin Gote wrote:
+> Implement handling of VM_BIND(..., DECOMPRESS) in xe_vm_bind_ioctl.
+> 
+> Key changes:
+> - Parse and record per-op intent (op->map.request_decompress) when the
+>    DECOMPRESS flag is present.
+> - Introduce xe_pat_index_get_comp_en() helper to check if a PAT index
+>    has compression enabled via the XE2_COMP_EN bit.
+> - Validate DECOMPRESS preconditions in the ioctl path:
+>    - Only valid for MAP ops.
+>    - The provided pat_index must select the device's "no-compression" PAT.
+>    - Only meaningful on devices with flat CCS and the required XE2+
+>      otherwise return -EOPNOTSUPP.
+>    - Use XE_IOCTL_DBG for uAPI sanity checks.
+> - Implement xe_bo_decompress():
+>    For VRAM BOs run xe_bo_move_notify(), reserve one fence slot,
+>    schedule xe_migrate_resolve(), and attach the returned fence
+>    with DMA_RESV_USAGE_KERNEL. Non-VRAM cases are silent no-ops.
+> - Wire scheduling into vma_lock_and_validate() so VM_BIND will schedule
+>    decompression when request_decompress is set.
+> - Handle fault-mode VMs by performing decompression synchronously during
+>    the bind process, ensuring that the resolve is completed before the bind
+>    finishes.
+> 
+> This schedules an in-place GPU resolve (xe_migrate_resolve) for
+> decompression.
+> 
+> v5: (Matt)
+>     - Correct the condition check of xe_pat_index_get_comp_en
+> 
+> v4: (Matt)
+>     - Introduce xe_pat_index_get_comp_en(), which checks
+>       XE2_COMP_EN for the pat_index
+>     - .interruptible should be true, everything else false
+> 
+> v3: (Matt)
+>     - s/xe_bo_schedule_decompress/xe_bo_decompress
+>     - skip the decrompress step if the BO isn't in VRAM
+>     - start/size not required in xe_bo_schedule_decompress
+>     - Use xe_bo_move_notify instead of xe_vm_invalidate_vma
+>       with respect to invalidation.
+>     - Nits
+> 
+> v2:
+>     - Move decompression work out of vm_bind ioctl. (Matt)
+>     - Put that work in a small helper at the BO/migrate layer invoke it
+>       from vma_lock_and_validate which already runs under drm_exec.
+>     - Move lightweight checks to vm_bind_ioctl_check_args (Matthew Auld)
+> 
+> Cc: Matthew Brost <matthew.brost@intel.com>
+> Cc: Matthew Auld <matthew.auld@intel.com>
+> Acked-by: Michal Mrozek <michal.mrozek@intel.com>
+> Signed-off-by: Nitin Gote <nitin.r.gote@intel.com>
 > ---
-> I tested this by adding a change on top of this series that updates
-> Xe3p_LPD's CDCLK table to use bad values and I got the following
-> messages:
->
->     [  +0.000237] xe 0000:00:02.0: [drm:intel_modeset_verify_crtc [xe]] [=
-CRTC:88:pipe A]
->     [  +0.000674] xe 0000:00:02.0: [drm] *ERROR* CPU pipe A FIFO underrun
->     [  +0.000015] xe 0000:00:02.0: [drm] *ERROR* Pipe A FIFO underrun inf=
-o: DBUF block not valid on planes: [1]
->     [  +0.000001] xe 0000:00:02.0: [drm] *ERROR* Pipe A FIFO underrun inf=
-o: DDB empty on planes: [1]
->     [  +0.000001] xe 0000:00:02.0: [drm] *ERROR* Pipe A FIFO underrun inf=
-o: DBUF below WM0 on planes: [1]
->     [  +0.000004] xe 0000:00:02.0: [drm] *ERROR* Pipe A FIFO underrun inf=
-o: frame count: 1890, line count: 44
-> ---
->  .../gpu/drm/i915/display/intel_display_device.h    |   1 +
->  drivers/gpu/drm/i915/display/intel_display_regs.h  |  16 +++
->  drivers/gpu/drm/i915/display/intel_fbc_regs.h      |   2 +
->  drivers/gpu/drm/i915/display/intel_fifo_underrun.c | 128 +++++++++++++++=
-++++++
->  4 files changed, 147 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/driver=
-s/gpu/drm/i915/display/intel_display_device.h
-> index b559ef43d547..91d8cfac5eff 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_device.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_device.h
-> @@ -197,6 +197,7 @@ struct intel_display_platforms {
->  #define HAS_TRANSCODER(__display, trans)	((DISPLAY_RUNTIME_INFO(__displa=
-y)->cpu_transcoder_mask & \
->  						  BIT(trans)) !=3D 0)
->  #define HAS_UNCOMPRESSED_JOINER(__display)	(DISPLAY_VER(__display) >=3D =
-13)
-> +#define HAS_UNDERRUN_DBG_INFO(__display)	(DISPLAY_VER(__display) >=3D 35)
->  #define HAS_ULTRAJOINER(__display)	(((__display)->platform.dgfx && \
->  					  DISPLAY_VER(__display) =3D=3D 14) && HAS_DSC(__display))
->  #define HAS_VRR(__display)		(DISPLAY_VER(__display) >=3D 11)
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_regs.h b/drivers/=
-gpu/drm/i915/display/intel_display_regs.h
-> index 9d71e26a4fa2..89ea0156ee06 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_regs.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_regs.h
-> @@ -882,6 +882,21 @@
->  #define   PIPE_MISC2_FLIP_INFO_PLANE_SEL_MASK		REG_GENMASK(2, 0) /* tgl+=
- */
->  #define   PIPE_MISC2_FLIP_INFO_PLANE_SEL(plane_id)	REG_FIELD_PREP(PIPE_M=
-ISC2_FLIP_INFO_PLANE_SEL_MASK, (plane_id))
->=20=20
-> +#define _UNDERRUN_DBG1_A			0x70064
-> +#define _UNDERRUN_DBG1_B			0x71064
-> +#define UNDERRUN_DBG1(pipe)			_MMIO_PIPE(pipe, _UNDERRUN_DBG1_A, _UNDERR=
-UN_DBG1_B)
-> +#define   UNDERRUN_DBUF_BLOCK_NOT_VALID_MASK	REG_GENMASK(29, 24)
-> +#define   UNDERRUN_DDB_EMPTY_MASK		REG_GENMASK(21, 16)
-> +#define   UNDERRUN_DBUF_NOT_FILLED_MASK		REG_GENMASK(13, 8)
-> +#define   UNDERRUN_BELOW_WM0_MASK		REG_GENMASK(5, 0)
-> +
-> +#define _UNDERRUN_DBG2_A			0x70068
-> +#define _UNDERRUN_DBG2_B			0x71068
-> +#define UNDERRUN_DBG2(pipe)			_MMIO_PIPE(pipe, _UNDERRUN_DBG2_A, _UNDERR=
-UN_DBG2_B)
-> +#define   UNDERRUN_FRAME_LINE_COUNTERS_FROZEN	REG_BIT(31)
-> +#define   UNDERRUN_PIPE_FRAME_COUNT_MASK	REG_GENMASK(30, 20)
-> +#define   UNDERRUN_LINE_COUNT_MASK		REG_GENMASK(19, 0)
-> +
->  #define DPINVGTT				_MMIO(VLV_DISPLAY_BASE + 0x7002c) /* VLV/CHV only */
->  #define   DPINVGTT_EN_MASK_CHV				REG_GENMASK(27, 16)
->  #define   DPINVGTT_EN_MASK_VLV				REG_GENMASK(23, 16)
-> @@ -1416,6 +1431,7 @@
->=20=20
->  #define GEN12_DCPR_STATUS_1				_MMIO(0x46440)
->  #define  XELPDP_PMDEMAND_INFLIGHT_STATUS		REG_BIT(26)
-> +#define  XE3P_UNDERRUN_PKGC				REG_BIT(21)
->=20=20
->  #define FUSE_STRAP		_MMIO(0x42014)
->  #define   ILK_INTERNAL_GRAPHICS_DISABLE	REG_BIT(31)
-> diff --git a/drivers/gpu/drm/i915/display/intel_fbc_regs.h b/drivers/gpu/=
-drm/i915/display/intel_fbc_regs.h
-> index b1d0161a3196..77d8321c4fb3 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fbc_regs.h
-> +++ b/drivers/gpu/drm/i915/display/intel_fbc_regs.h
-> @@ -88,6 +88,8 @@
->  #define DPFC_FENCE_YOFF			_MMIO(0x3218)
->  #define ILK_DPFC_FENCE_YOFF(fbc_id)	_MMIO_PIPE((fbc_id), 0x43218, 0x4325=
-8)
->  #define DPFC_CHICKEN			_MMIO(0x3224)
-> +#define FBC_DEBUG_STATUS(fbc_id)	_MMIO_PIPE((fbc_id), 0x43220, 0x43260)
-> +#define   FBC_UNDERRUN_DECMPR			REG_BIT(27)
->  #define ILK_DPFC_CHICKEN(fbc_id)	_MMIO_PIPE((fbc_id), 0x43224, 0x43264)
->  #define   DPFC_HT_MODIFY			REG_BIT(31) /* pre-ivb */
->  #define   DPFC_NUKE_ON_ANY_MODIFICATION		REG_BIT(23) /* bdw+ */
-> diff --git a/drivers/gpu/drm/i915/display/intel_fifo_underrun.c b/drivers=
-/gpu/drm/i915/display/intel_fifo_underrun.c
-> index c2ce8461ac9e..8a05b5c5fccd 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fifo_underrun.c
-> +++ b/drivers/gpu/drm/i915/display/intel_fifo_underrun.c
-> @@ -25,6 +25,8 @@
->   *
->   */
->=20=20
-> +#include <linux/seq_buf.h>
-> +
->  #include <drm/drm_print.h>
->=20=20
->  #include "i915_reg.h"
-> @@ -34,6 +36,7 @@
->  #include "intel_display_trace.h"
->  #include "intel_display_types.h"
->  #include "intel_fbc.h"
-> +#include "intel_fbc_regs.h"
->  #include "intel_fifo_underrun.h"
->  #include "intel_pch_display.h"
->=20=20
-> @@ -57,6 +60,118 @@
->   * The code also supports underrun detection on the PCH transcoder.
->   */
->=20=20
-> +#define UNDERRUN_DBG1_NUM_PLANES 6
-> +
-> +static void read_underrun_dbg1(struct intel_display *display, enum pipe =
-pipe, bool log)
+> Hi Matt,
+> 
+> You're correct. The polarity of the xe_pat_index_get_comp_en
+> check was wrong. I misread it, sorry for the confusion.
+> Corrected it in this version.
+> 
+> Thank you,
+> -Nitin
+> 
+> 
+>   drivers/gpu/drm/xe/xe_bo.c       | 52 ++++++++++++++++++++++++++++++++
+>   drivers/gpu/drm/xe/xe_bo.h       |  2 ++
+>   drivers/gpu/drm/xe/xe_pat.c      |  6 ++++
+>   drivers/gpu/drm/xe/xe_pat.h      | 10 ++++++
+>   drivers/gpu/drm/xe/xe_vm.c       | 40 +++++++++++++++++-------
+>   drivers/gpu/drm/xe/xe_vm_types.h |  2 ++
+>   6 files changed, 101 insertions(+), 11 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+> index b0bd31d14bb9..95331285c418 100644
+> --- a/drivers/gpu/drm/xe/xe_bo.c
+> +++ b/drivers/gpu/drm/xe/xe_bo.c
+> @@ -3330,6 +3330,58 @@ int xe_gem_mmap_offset_ioctl(struct drm_device *dev, void *data,
+>   	return 0;
+>   }
+>   
+> +/**
+> + * xe_bo_decompress - schedule in-place decompress and install fence
+> + * @bo:   buffer object (caller should hold drm_exec reservations for VM+BO)
+> + * @vm:   VM containing the VMA range
+> + *
+> + * Schedules an in-place resolve via the migrate layer and installs the
+> + * returned dma_fence into the BO kernel reservation slot (DMA_RESV_USAGE_KERNEL).
+> + * In preempt fence mode, this operation interrupts hardware execution
+> + * which is expensive. Page fault mode is recommended for better performance.
+
+Maybe add a comment somewhere here that this only currently works on 
+dgpu? In case someone tries to use this on igpu also, which below will 
+silently skip.
+
+> + *
+> + * Returns 0 on success, negative errno on error.
+> + */
+> +int xe_bo_decompress(struct xe_bo *bo, struct xe_vm *vm)
 > +{
-> +	u32 val =3D intel_de_read(display, UNDERRUN_DBG1(pipe));
+> +	struct xe_tile *tile = xe_device_get_root_tile(vm->xe);
 
-Nitpick, I really don't like the style of using "functional" (for want
-of a better word) initializers. Complicated is fine, like below for
-masks[], but doing something with the hardware or something that can
-fail, feels iffy.
+Look like we could extract this from the bo instead:
 
-> +	struct {
-> +		u32 plane_mask;
-> +		const char *info;
-> +	} masks[] =3D {
-> +		{ REG_FIELD_GET(UNDERRUN_DBUF_BLOCK_NOT_VALID_MASK, val), "DBUF block =
-not valid" },
-> +		{ REG_FIELD_GET(UNDERRUN_DDB_EMPTY_MASK, val), "DDB empty" },
-> +		{ REG_FIELD_GET(UNDERRUN_DBUF_NOT_FILLED_MASK, val), "DBUF not complet=
-ely filled" },
-> +		{ REG_FIELD_GET(UNDERRUN_BELOW_WM0_MASK, val), "DBUF below WM0" },
+xe = xe_bo_device(bo);
+xe_device_get_root_tile(xe);
+
+And we can then drop the vm arg?
+
+> +	struct dma_fence *decomp_fence = NULL;
+> +	int err = 0;
+
+Nit: Please put err at the end of the block. Reverse Christmas tree.
+
+> +	struct ttm_operation_ctx op_ctx = {
+> +		.interruptible = true,
+> +		.no_wait_gpu = false,
+> +		.gfp_retry_mayfail = false,
 > +	};
-> +	DECLARE_SEQ_BUF(planes_desc, 32);
 > +
+> +	/* Silently skip decompression for non-VRAM buffers */
+> +	if (!bo->ttm.resource || !mem_type_is_vram(bo->ttm.resource->mem_type))
+> +		return 0;
+> +
+> +	/* Notify before scheduling resolve */
+> +	err = xe_bo_move_notify(bo, &op_ctx);
+> +	if (err)
+> +		return err;
+> +
+> +	/* Reserve fence slot before scheduling */
+> +	err = dma_resv_reserve_fences(bo->ttm.base.resv, 1);
+> +	if (err)
+> +		return err;
+> +
+> +	/* Schedule the in-place decompression */
+> +	decomp_fence = xe_migrate_resolve(tile->migrate,
+> +					  bo,
+> +					  bo->ttm.resource);
+> +
+> +	if (IS_ERR(decomp_fence))
+> +		return PTR_ERR(decomp_fence);
+> +
+> +	/* Install kernel-usage fence */
+> +	dma_resv_add_fence(bo->ttm.base.resv, decomp_fence, DMA_RESV_USAGE_KERNEL);
+> +	dma_fence_put(decomp_fence);
+> +
+> +	return 0;
+> +}
+> +
+>   /**
+>    * xe_bo_lock() - Lock the buffer object's dma_resv object
+>    * @bo: The struct xe_bo whose lock is to be taken
+> diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
+> index 911d5b90461a..346b50a1247c 100644
+> --- a/drivers/gpu/drm/xe/xe_bo.h
+> +++ b/drivers/gpu/drm/xe/xe_bo.h
+> @@ -309,6 +309,8 @@ int xe_bo_dumb_create(struct drm_file *file_priv,
+>   
+>   bool xe_bo_needs_ccs_pages(struct xe_bo *bo);
+>   
+> +int xe_bo_decompress(struct xe_bo *bo, struct xe_vm *vm);
+> +
+>   static inline size_t xe_bo_ccs_pages_start(struct xe_bo *bo)
+>   {
+>   	return PAGE_ALIGN(xe_bo_size(bo));
+> diff --git a/drivers/gpu/drm/xe/xe_pat.c b/drivers/gpu/drm/xe/xe_pat.c
+> index 68171cceea18..1b4d5d3def0f 100644
+> --- a/drivers/gpu/drm/xe/xe_pat.c
+> +++ b/drivers/gpu/drm/xe/xe_pat.c
+> @@ -196,6 +196,12 @@ u16 xe_pat_index_get_coh_mode(struct xe_device *xe, u16 pat_index)
+>   	return xe->pat.table[pat_index].coh_mode;
+>   }
+>   
+> +bool xe_pat_index_get_comp_en(struct xe_device *xe, u16 pat_index)
+> +{
+> +	WARN_ON(pat_index >= xe->pat.n_entries);
+> +	return !!(xe->pat.table[pat_index].value & XE2_COMP_EN);
+> +}
 
-IMO there's also a lot more clarity in having the assignment and the
-check back to back here:
+Looks like there no now three in-flight series each implementing a 
+helper like this. But all slightly different. Also not sure which is 
+going be be merged first. I personally prefer making this the same as 
+coh_mode above, and have a comp_en field, but either works.
 
-	val =3D intel_de_read(display, UNDERRUN_DBG1(pipe));
-	if (!val)
-		return;
+https://patchwork.freedesktop.org/series/156658/
+https://patchwork.freedesktop.org/series/157036/
 
-Ditto below.
+Wondering if it would make sense to split this helper into a separate 
+patch and merge that first, and then have all three series converge on 
+that? Also hopefully prevents accidently merging multiple helpers for 
+this, depending on the merge order?
 
-BR,
-Jani.
++ Sanjay & Xin
 
+> +
+>   static void program_pat(struct xe_gt *gt, const struct xe_pat_table_entry table[],
+>   			int n_entries)
+>   {
+> diff --git a/drivers/gpu/drm/xe/xe_pat.h b/drivers/gpu/drm/xe/xe_pat.h
+> index 05dae03a5f54..b8559120989e 100644
+> --- a/drivers/gpu/drm/xe/xe_pat.h
+> +++ b/drivers/gpu/drm/xe/xe_pat.h
+> @@ -58,4 +58,14 @@ int xe_pat_dump(struct xe_gt *gt, struct drm_printer *p);
+>    */
+>   u16 xe_pat_index_get_coh_mode(struct xe_device *xe, u16 pat_index);
+>   
+> +/**
+> + * xe_pat_index_get_comp_en - Extract the compression enable flag for
+> + * the given pat_index.
+> + * @xe: xe device
+> + * @pat_index: The pat_index to query
+> + *
+> + * Return: true if compression is enabled for this pat_index, false otherwise.
+> + */
+> +bool xe_pat_index_get_comp_en(struct xe_device *xe, u16 pat_index);
+> +
+>   #endif
+> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+> index 8fb5cc6a69ec..a9927e665ad0 100644
+> --- a/drivers/gpu/drm/xe/xe_vm.c
+> +++ b/drivers/gpu/drm/xe/xe_vm.c
+> @@ -2302,6 +2302,7 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_vma_ops *vops,
+>   				op->map.vma_flags |= XE_VMA_DUMPABLE;
+>   			if (flags & DRM_XE_VM_BIND_FLAG_MADVISE_AUTORESET)
+>   				op->map.vma_flags |= XE_VMA_MADV_AUTORESET;
+> +			op->map.request_decompress = flags & DRM_XE_VM_BIND_FLAG_DECOMPRESS;
+>   			op->map.pat_index = pat_index;
+>   			op->map.invalidate_on_bind =
+>   				__xe_vm_needs_clear_scratch_pages(vm, flags);
+> @@ -2838,7 +2839,7 @@ static void vm_bind_ioctl_ops_unwind(struct xe_vm *vm,
+>   }
+>   
+>   static int vma_lock_and_validate(struct drm_exec *exec, struct xe_vma *vma,
+> -				 bool res_evict, bool validate)
+> +				 bool res_evict, bool validate, bool request_decompress)
+>   {
+>   	struct xe_bo *bo = xe_vma_bo(vma);
+>   	struct xe_vm *vm = xe_vma_vm(vma);
+> @@ -2851,6 +2852,12 @@ static int vma_lock_and_validate(struct drm_exec *exec, struct xe_vma *vma,
+>   			err = xe_bo_validate(bo, vm,
+>   					     !xe_vm_in_preempt_fence_mode(vm) &&
+>   					     res_evict, exec);
+> +
+> +		if (err)
+> +			return err;
+> +
+> +		if (request_decompress)
+> +			err = xe_bo_decompress(bo, vm);
+>   	}
+>   
+>   	return err;
+> @@ -2938,7 +2945,8 @@ static int op_lock_and_prep(struct drm_exec *exec, struct xe_vm *vm,
+>   			err = vma_lock_and_validate(exec, op->map.vma,
+>   						    res_evict,
+>   						    !xe_vm_in_fault_mode(vm) ||
+> -						    op->map.immediate);
+> +						    op->map.immediate,
+> +						    op->map.request_decompress);
+>   		break;
+>   	case DRM_GPUVA_OP_REMAP:
+>   		err = check_ufence(gpuva_to_vma(op->base.remap.unmap->va));
+> @@ -2947,13 +2955,13 @@ static int op_lock_and_prep(struct drm_exec *exec, struct xe_vm *vm,
+>   
+>   		err = vma_lock_and_validate(exec,
+>   					    gpuva_to_vma(op->base.remap.unmap->va),
+> -					    res_evict, false);
+> +					    res_evict, false, false);
+>   		if (!err && op->remap.prev)
+>   			err = vma_lock_and_validate(exec, op->remap.prev,
+> -						    res_evict, true);
+> +						    res_evict, true, false);
+>   		if (!err && op->remap.next)
+>   			err = vma_lock_and_validate(exec, op->remap.next,
+> -						    res_evict, true);
+> +						    res_evict, true, false);
+>   		break;
+>   	case DRM_GPUVA_OP_UNMAP:
+>   		err = check_ufence(gpuva_to_vma(op->base.unmap.va));
+> @@ -2962,7 +2970,7 @@ static int op_lock_and_prep(struct drm_exec *exec, struct xe_vm *vm,
+>   
+>   		err = vma_lock_and_validate(exec,
+>   					    gpuva_to_vma(op->base.unmap.va),
+> -					    res_evict, false);
+> +					    res_evict, false, false);
+>   		break;
+>   	case DRM_GPUVA_OP_PREFETCH:
+>   	{
+> @@ -2977,7 +2985,7 @@ static int op_lock_and_prep(struct drm_exec *exec, struct xe_vm *vm,
+>   
+>   		err = vma_lock_and_validate(exec,
+>   					    gpuva_to_vma(op->base.prefetch.va),
+> -					    res_evict, false);
+> +					    res_evict, false, false);
+>   		if (!err && !xe_vma_has_no_bo(vma))
+>   			err = xe_bo_migrate(xe_vma_bo(vma),
+>   					    region_to_mem_type[region],
+> @@ -3299,7 +3307,8 @@ ALLOW_ERROR_INJECTION(vm_bind_ioctl_ops_execute, ERRNO);
+>   	 DRM_XE_VM_BIND_FLAG_DUMPABLE | \
+>   	 DRM_XE_VM_BIND_FLAG_CHECK_PXP | \
+>   	 DRM_XE_VM_BIND_FLAG_CPU_ADDR_MIRROR | \
+> -	 DRM_XE_VM_BIND_FLAG_MADVISE_AUTORESET)
+> +	 DRM_XE_VM_BIND_FLAG_MADVISE_AUTORESET | \
+> +	 DRM_XE_VM_BIND_FLAG_DECOMPRESS)
+>   
+>   #ifdef TEST_VM_OPS_ERROR
+>   #define SUPPORTED_FLAGS	(SUPPORTED_FLAGS_STUB | FORCE_OP_ERROR)
+> @@ -3357,6 +3366,7 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe, struct xe_vm *vm,
+>   		bool is_null = flags & DRM_XE_VM_BIND_FLAG_NULL;
+>   		bool is_cpu_addr_mirror = flags &
+>   			DRM_XE_VM_BIND_FLAG_CPU_ADDR_MIRROR;
+> +		bool is_decompress = flags & DRM_XE_VM_BIND_FLAG_DECOMPRESS;
+>   		u16 pat_index = (*bind_ops)[i].pat_index;
+>   		u16 coh_mode;
+>   
+> @@ -3391,7 +3401,9 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe, struct xe_vm *vm,
+>   		    XE_IOCTL_DBG(xe, obj_offset && (is_null ||
+>   						    is_cpu_addr_mirror)) ||
+>   		    XE_IOCTL_DBG(xe, op != DRM_XE_VM_BIND_OP_MAP &&
+> -				 (is_null || is_cpu_addr_mirror)) ||
+> +				 (is_decompress || is_null || is_cpu_addr_mirror)) ||
+> +		    XE_IOCTL_DBG(xe, is_decompress &&
+> +				 xe_pat_index_get_comp_en(xe, pat_index)) ||
+>   		    XE_IOCTL_DBG(xe, !obj &&
+>   				 op == DRM_XE_VM_BIND_OP_MAP &&
+>   				 !is_null && !is_cpu_addr_mirror) ||
+> @@ -3411,8 +3423,8 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe, struct xe_vm *vm,
+>   				 op == DRM_XE_VM_BIND_OP_PREFETCH) ||
+>   		    XE_IOCTL_DBG(xe, prefetch_region &&
+>   				 op != DRM_XE_VM_BIND_OP_PREFETCH) ||
+> -		    XE_IOCTL_DBG(xe,  (prefetch_region != DRM_XE_CONSULT_MEM_ADVISE_PREF_LOC &&
+> -				       !(BIT(prefetch_region) & xe->info.mem_region_mask))) ||
+> +		    XE_IOCTL_DBG(xe, (prefetch_region != DRM_XE_CONSULT_MEM_ADVISE_PREF_LOC &&
+> +				      !(BIT(prefetch_region) & xe->info.mem_region_mask))) ||
 
-> +	if (!val)
-> +		return;
+Is this just fixing whitespace? If so, please consider splitting 
+unrelated styling/cosmetic fixes into a separate patch.
+
+Otherwise lgtm,
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+
+>   		    XE_IOCTL_DBG(xe, obj &&
+>   				 op == DRM_XE_VM_BIND_OP_UNMAP) ||
+>   		    XE_IOCTL_DBG(xe, (flags & DRM_XE_VM_BIND_FLAG_MADVISE_AUTORESET) &&
+> @@ -3429,6 +3441,12 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe, struct xe_vm *vm,
+>   			err = -EINVAL;
+>   			goto free_bind_ops;
+>   		}
 > +
-> +	intel_de_write(display, UNDERRUN_DBG1(pipe), val);
-> +
-> +	if (!log)
-> +		return;
-> +
-> +	for (int i =3D 0; i < ARRAY_SIZE(masks); i++) {
-> +		if (!masks[i].plane_mask)
-> +			continue;
-> +
-> +		seq_buf_clear(&planes_desc);
-> +
-> +		for (int j =3D 0; j < UNDERRUN_DBG1_NUM_PLANES; j++) {
-> +			if (!(masks[i].plane_mask & REG_BIT(j)))
-> +				continue;
-> +
-> +			if (j =3D=3D 0)
-> +				seq_buf_puts(&planes_desc, "[C]");
-> +			else
-> +				seq_buf_printf(&planes_desc, "[%d]", j);
+> +		if (is_decompress && (XE_IOCTL_DBG(xe, !xe_device_has_flat_ccs(xe)) ||
+> +				      XE_IOCTL_DBG(xe, GRAPHICS_VER(xe) < 20))) {
+> +			err = -EOPNOTSUPP;
+> +			goto free_bind_ops;
 > +		}
-> +
-> +		drm_err(display->drm,
-> +			"Pipe %c FIFO underrun info: %s on planes: %s\n",
-> +			pipe_name(pipe), masks[i].info, seq_buf_str(&planes_desc));
-> +
-> +		drm_WARN_ON(display->drm, seq_buf_has_overflowed(&planes_desc));
-> +	}
-> +}
-> +
-> +static void read_underrun_dbg2(struct intel_display *display, enum pipe =
-pipe, bool log)
-> +{
-> +	u32 val =3D intel_de_read(display, UNDERRUN_DBG2(pipe));
-> +
-> +	if (!(val & UNDERRUN_FRAME_LINE_COUNTERS_FROZEN))
-> +		return;
-> +
-> +	intel_de_write(display, UNDERRUN_DBG2(pipe), UNDERRUN_FRAME_LINE_COUNTE=
-RS_FROZEN);
-> +
-> +	if (log)
-> +		drm_err(display->drm,
-> +			"Pipe %c FIFO underrun info: frame count: %u, line count: %u\n",
-> +			pipe_name(pipe),
-> +			REG_FIELD_GET(UNDERRUN_PIPE_FRAME_COUNT_MASK, val),
-> +			REG_FIELD_GET(UNDERRUN_LINE_COUNT_MASK, val));
-> +}
-> +
-> +static void read_underrun_dbg_fbc(struct intel_display *display, enum pi=
-pe pipe, bool log)
-> +{
-> +	enum intel_fbc_id fbc_id =3D intel_fbc_id_for_pipe(pipe);
-> +	u32 val =3D intel_de_read(display, FBC_DEBUG_STATUS(fbc_id));
-> +
-> +	if (!(val & FBC_UNDERRUN_DECMPR))
-> +		return;
-> +
-> +	intel_de_write(display, FBC_DEBUG_STATUS(fbc_id), FBC_UNDERRUN_DECMPR);
-> +
-> +	if (log)
-> +		drm_err(display->drm,
-> +			"Pipe %c FIFO underrun info: FBC decompressing\n",
-> +			pipe_name(pipe));
-> +}
-> +
-> +static void read_underrun_dbg_pkgc(struct intel_display *display, bool l=
-og)
-> +{
-> +	u32 val =3D intel_de_read(display, GEN12_DCPR_STATUS_1);
-> +
-> +	if (!(val & XE3P_UNDERRUN_PKGC))
-> +		return;
-> +
-> +	/*
-> +	 * Note: If there are multiple pipes enabled, only one of them will see
-> +	 * XE3P_UNDERRUN_PKGC set.
-> +	 */
-> +	intel_de_write(display, GEN12_DCPR_STATUS_1, XE3P_UNDERRUN_PKGC);
-> +
-> +	if (log)
-> +		drm_err(display->drm,
-> +			"General FIFO underrun info: Package C-state blocking memory\n");
-> +}
-> +
-> +static void read_underrun_dbg_info(struct intel_display *display,
-> +				   enum pipe pipe,
-> +				   bool log)
-> +{
-> +	if (!HAS_UNDERRUN_DBG_INFO(display))
-> +		return;
-> +
-> +	read_underrun_dbg1(display, pipe, log);
-> +	read_underrun_dbg2(display, pipe, log);
-> +	read_underrun_dbg_fbc(display, pipe, log);
-> +	read_underrun_dbg_pkgc(display, log);
-> +}
-> +
->  static bool ivb_can_enable_err_int(struct intel_display *display)
->  {
->  	struct intel_crtc *crtc;
-> @@ -262,6 +377,17 @@ static bool __intel_set_cpu_fifo_underrun_reporting(=
-struct intel_display *displa
->  	old =3D !crtc->cpu_fifo_underrun_disabled;
->  	crtc->cpu_fifo_underrun_disabled =3D !enable;
->=20=20
-> +	/*
-> +	 * The debug bits get latched at the time of the FIFO underrun ISR bit
-> +	 * getting set.  That means that any existing debug bit that is set when
-> +	 * handling a FIFO underrun interrupt has the potential to belong to
-> +	 * another underrun event (past or future).  To alleviate this problem,
-> +	 * let's clear existing bits before enabling the interrupt, so that at
-> +	 * least we don't get information that is too out-of-date.
-> +	 */
-> +	if (enable && !old)
-> +		read_underrun_dbg_info(display, pipe, false);
-> +
->  	if (HAS_GMCH(display))
->  		i9xx_set_fifo_underrun_reporting(display, pipe, enable, old);
->  	else if (display->platform.ironlake || display->platform.sandybridge)
-> @@ -379,6 +505,8 @@ void intel_cpu_fifo_underrun_irq_handler(struct intel=
-_display *display,
->  		trace_intel_cpu_fifo_underrun(display, pipe);
->=20=20
->  		drm_err(display->drm, "CPU pipe %c FIFO underrun\n", pipe_name(pipe));
-> +
-> +		read_underrun_dbg_info(display, pipe, true);
->  	}
->=20=20
->  	intel_fbc_handle_fifo_underrun_irq(display);
+>   	}
+>   
+>   	return 0;
+> diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
+> index ccd6cc090309..f4962ca0df09 100644
+> --- a/drivers/gpu/drm/xe/xe_vm_types.h
+> +++ b/drivers/gpu/drm/xe/xe_vm_types.h
+> @@ -346,6 +346,8 @@ struct xe_vma_op_map {
+>   	bool immediate;
+>   	/** @read_only: Read only */
+>   	bool invalidate_on_bind;
+> +	/** @request_decompress: schedule decompression for GPU map */
+> +	bool request_decompress;
+>   	/** @pat_index: The pat index to use for this operation. */
+>   	u16 pat_index;
+>   };
 
---=20
-Jani Nikula, Intel
