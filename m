@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BC281CCFA13
-	for <intel-xe@archiver.kernel.org>; Mon, 10 Nov 2025 18:47:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9425ECD13D2
+	for <intel-xe@archiver.kernel.org>; Mon, 10 Nov 2025 18:47:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6237E10E442;
-	Mon, 10 Nov 2025 18:47:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3666610E2D8;
+	Mon, 10 Nov 2025 18:47:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hSWhOmDk";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CiBdtdyW";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7E72F10E2D8;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0959B10E2EA;
  Mon, 10 Nov 2025 18:47:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1762800469; x=1794336469;
+ t=1762800468; x=1794336468;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=IGdEkd/jBvqKgZjw7w5+yaG8DDD/mA6muB0zmivTRgc=;
- b=hSWhOmDkzFQmD3KCZSh+NYOEXripq1jUtk8aP7XqP9T4xl+6J0+OUOYE
- beKWBO1cFVf8q1JZwLX1XfpNBgUlsAxJQkgkOrHSKo+OU7Whs0kHMAArt
- FzqIo4KDWGxlYHvkeDdAQvdiWhL1yh4EM/R4wa0rb2EoSmR8HPf8M7NIm
- 72TEByY7zWtp/dFxiJTbaTlhoYJGzwtE9USL4scW0s/Iwu2bSyQalRwex
- l7t7sL+8Sve1bHKJhtoRk9eKe2sR7VNVe/bTulztpZFVAkmdzKau52gcL
- 5UDthgw0oTBCJfnvZxiqFxldZtK73RsNt2Le/ceUEO9CKpo03sO5gVLoV w==;
-X-CSE-ConnectionGUID: MnYR6LdNR8yG2tOxl34nnQ==
-X-CSE-MsgGUID: ibsms87tRsGA4ayrB8Xjig==
-X-IronPort-AV: E=McAfee;i="6800,10657,11609"; a="63861715"
-X-IronPort-AV: E=Sophos;i="6.19,294,1754982000"; d="scan'208";a="63861715"
+ bh=fCt0uZJtXQzZViSDNcneyMtrnn/y5yDZ8tsLO9qgG3A=;
+ b=CiBdtdyWymNjBZZ8GKXHeKNsOdLWp7u4dqTdo8MaYrWPkmlxjEL4yM0O
+ +3m0AWSypxbTjU0VG+LbGClindsmh3YiD8fCAbcE7obqqpLfAvR14PgjA
+ IEoTBd/TmGnWaq7rhIcDC07Zpmi58vSIBeVa5RUo4naGqRAJ+sywyTHfG
+ FqlqwUAUmRs7sYghlTqx4E4YFYVwnVOnX3GkEyyc2gxTelsNemQPoQ+a9
+ XYUulVOZq8E/I8VyVkiBZVxuQCzy6BplNBhW6b9H1y2gHJZkUpCR0vUQH
+ w0xZ1AlLF+YMeuQUQT7KtHbJZ6h4AGZ6HSpfjeAt/UZVbggw7KLjaRIj+ Q==;
+X-CSE-ConnectionGUID: woMRvPeJT0uiNKo1Lqyptg==
+X-CSE-MsgGUID: k3g3Uz+NRICGhNILiI+7Qw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11609"; a="63861710"
+X-IronPort-AV: E=Sophos;i="6.19,294,1754982000"; d="scan'208";a="63861710"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  10 Nov 2025 10:47:48 -0800
-X-CSE-ConnectionGUID: LkgqeFEXSlGGOQhcCKfx+g==
-X-CSE-MsgGUID: Fl2BvAN5TXur7aO2d4V6ng==
+X-CSE-ConnectionGUID: vLwpzXxWTlqMkVe0jU7QSA==
+X-CSE-MsgGUID: vqdaBx3wRd2oCOgUpZsMtg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,294,1754982000"; d="scan'208";a="189190200"
+X-IronPort-AV: E=Sophos;i="6.19,294,1754982000"; d="scan'208";a="189190196"
 Received: from black.igk.intel.com ([10.91.253.5])
  by fmviesa009.fm.intel.com with ESMTP; 10 Nov 2025 10:47:39 -0800
 Received: by black.igk.intel.com (Postfix, from userid 1003)
- id 1487D9A; Mon, 10 Nov 2025 19:47:29 +0100 (CET)
+ id 0116B97; Mon, 10 Nov 2025 19:47:28 +0100 (CET)
 From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 To: Corey Minyard <corey@minyard.net>,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
@@ -114,9 +114,9 @@ Cc: Rasmus Villemoes <linux@rasmusvillemoes.dk>,
  Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
  Andrew Morton <akpm@linux-foundation.org>,
  Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>
-Subject: [PATCH v1 05/23] dma-buf: Switch to use %ptSp
-Date: Mon, 10 Nov 2025 19:40:24 +0100
-Message-ID: <20251110184727.666591-6-andriy.shevchenko@linux.intel.com>
+Subject: [PATCH v1 02/23] ALSA: seq: Switch to use %ptSp
+Date: Mon, 10 Nov 2025 19:40:21 +0100
+Message-ID: <20251110184727.666591-3-andriy.shevchenko@linux.intel.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20251110184727.666591-1-andriy.shevchenko@linux.intel.com>
 References: <20251110184727.666591-1-andriy.shevchenko@linux.intel.com>
@@ -141,22 +141,47 @@ struct timespec64 in human readable format.
 
 Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 ---
- drivers/dma-buf/sync_debug.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ sound/core/seq/seq_queue.c | 2 +-
+ sound/core/seq/seq_timer.c | 6 +++---
+ 2 files changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/dma-buf/sync_debug.c b/drivers/dma-buf/sync_debug.c
-index 67cd69551e42..9e5d662cd4e8 100644
---- a/drivers/dma-buf/sync_debug.c
-+++ b/drivers/dma-buf/sync_debug.c
-@@ -59,7 +59,7 @@ static void sync_print_fence(struct seq_file *s,
- 		struct timespec64 ts64 =
- 			ktime_to_timespec64(fence->timestamp);
- 
--		seq_printf(s, "@%lld.%09ld", (s64)ts64.tv_sec, ts64.tv_nsec);
-+		seq_printf(s, "@%ptSp", &ts64);
+diff --git a/sound/core/seq/seq_queue.c b/sound/core/seq/seq_queue.c
+index f5c0e401c8ae..f6e86cbf38bc 100644
+--- a/sound/core/seq/seq_queue.c
++++ b/sound/core/seq/seq_queue.c
+@@ -699,7 +699,7 @@ void snd_seq_info_queues_read(struct snd_info_entry *entry,
+ 		snd_iprintf(buffer, "current tempo      : %d\n", tmr->tempo);
+ 		snd_iprintf(buffer, "tempo base         : %d ns\n", tmr->tempo_base);
+ 		snd_iprintf(buffer, "current BPM        : %d\n", bpm);
+-		snd_iprintf(buffer, "current time       : %d.%09d s\n", tmr->cur_time.tv_sec, tmr->cur_time.tv_nsec);
++		snd_iprintf(buffer, "current time       : %ptSp s\n", &tmr->cur_time);
+ 		snd_iprintf(buffer, "current tick       : %d\n", tmr->tick.cur_tick);
+ 		snd_iprintf(buffer, "\n");
  	}
- 
- 	seq_printf(s, ": %lld", fence->seqno);
+diff --git a/sound/core/seq/seq_timer.c b/sound/core/seq/seq_timer.c
+index 29b018a212fc..06074d822bae 100644
+--- a/sound/core/seq/seq_timer.c
++++ b/sound/core/seq/seq_timer.c
+@@ -442,7 +442,7 @@ void snd_seq_info_timer_read(struct snd_info_entry *entry,
+ 	int idx;
+ 	struct snd_seq_timer *tmr;
+ 	struct snd_timer_instance *ti;
+-	unsigned long resolution;
++	struct timespec64 resolution;
+ 	
+ 	for (idx = 0; idx < SNDRV_SEQ_MAX_QUEUES; idx++) {
+ 		struct snd_seq_queue *q __free(snd_seq_queue) = queueptr(idx);
+@@ -457,8 +457,8 @@ void snd_seq_info_timer_read(struct snd_info_entry *entry,
+ 			if (!ti)
+ 				break;
+ 			snd_iprintf(buffer, "Timer for queue %i : %s\n", q->queue, ti->timer->name);
+-			resolution = snd_timer_resolution(ti) * tmr->ticks;
+-			snd_iprintf(buffer, "  Period time : %lu.%09lu\n", resolution / 1000000000, resolution % 1000000000);
++			resolution = ns_to_timespec64(snd_timer_resolution(ti) * tmr->ticks);
++			snd_iprintf(buffer, "  Period time : %ptSp\n", &resolution);
+ 			snd_iprintf(buffer, "  Skew : %u / %u\n", tmr->skew, tmr->skew_base);
+ 		}
+  	}
 -- 
 2.50.1
 
