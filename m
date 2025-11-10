@@ -4,136 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 41FADCCFA13
-	for <intel-xe@archiver.kernel.org>; Mon, 10 Nov 2025 09:57:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 72BAECD13D2
+	for <intel-xe@archiver.kernel.org>; Mon, 10 Nov 2025 11:07:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D84A710E375;
-	Mon, 10 Nov 2025 09:57:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8BEAB10E2BD;
+	Mon, 10 Nov 2025 11:07:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="xHWfjebd";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="nb2DrwK7";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="xHWfjebd";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="nb2DrwK7";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TjGFbpkg";
 	dkim-atps=neutral
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E826310E375
- for <intel-xe@lists.freedesktop.org>; Mon, 10 Nov 2025 09:57:55 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
- [IPv6:2a07:de40:b281:104:10:150:64:97])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id 7BC4A21DA1;
- Mon, 10 Nov 2025 09:57:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1762768674; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=EcrznZYzunxe9HV8ThxOMfBLRQxklnJy5TcUr85YSdo=;
- b=xHWfjebdIXu0anVMHuHAgh39BcyDJ6PVh13pOIyMiZwSBQGfze3zq/myh3CZBrZ9igS40P
- fgpWXlUNsNdvJ+EG/HrJEdLTfl3lXloYYnoiuUsTMdEljICCz0yR57kUGcC5vYCUHr/KYt
- zZ6kl3O/U3fEG/IX1d5JETA/B4HPFmo=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1762768674;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=EcrznZYzunxe9HV8ThxOMfBLRQxklnJy5TcUr85YSdo=;
- b=nb2DrwK7pINHcO+mf8yy8Gx6cMKdnp1GKT3FK8517w53kY9td10ApbtkWGW6PjtPc8tuxX
- FqPfVOhHcedZX+DA==
-Authentication-Results: smtp-out1.suse.de;
- dkim=pass header.d=suse.de header.s=susede2_rsa header.b=xHWfjebd;
- dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=nb2DrwK7
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1762768674; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=EcrznZYzunxe9HV8ThxOMfBLRQxklnJy5TcUr85YSdo=;
- b=xHWfjebdIXu0anVMHuHAgh39BcyDJ6PVh13pOIyMiZwSBQGfze3zq/myh3CZBrZ9igS40P
- fgpWXlUNsNdvJ+EG/HrJEdLTfl3lXloYYnoiuUsTMdEljICCz0yR57kUGcC5vYCUHr/KYt
- zZ6kl3O/U3fEG/IX1d5JETA/B4HPFmo=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1762768674;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=EcrznZYzunxe9HV8ThxOMfBLRQxklnJy5TcUr85YSdo=;
- b=nb2DrwK7pINHcO+mf8yy8Gx6cMKdnp1GKT3FK8517w53kY9td10ApbtkWGW6PjtPc8tuxX
- FqPfVOhHcedZX+DA==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 5723514328;
- Mon, 10 Nov 2025 09:57:54 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id zU0VFCK3EWmUBgAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Mon, 10 Nov 2025 09:57:54 +0000
-Message-ID: <29b1cc39-7868-4b15-bac6-7dc97869dbdb@suse.de>
-Date: Mon, 10 Nov 2025 10:57:53 +0100
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 12A1210E196;
+ Mon, 10 Nov 2025 11:07:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1762772876; x=1794308876;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=WUa+ymYSXlIo7Nu8Tt1hbG9nCOHyKrnFIw2GaundiqA=;
+ b=TjGFbpkg2JC6aokYovdAP/T3Ik4bzXDO4BHizQsAN6LfdmvIl37VeK7v
+ iHAdGj7qWob5rO20XLks88WA68uZR6JQCbDz+gLqeqzl94QjTPoAeGF7w
+ 3kXnl/IsO/2tyic1CCuKaoKz3mYfMDQwRxLke+RhuwM2F2LqvkUEXYX5s
+ 3+JAoJ/A/ah5GxDR7KtCHy0GLP848y3urezvhj2xLIcurlDWQWQmogrMZ
+ F0zVUbqi5+cViUXc5EiW5sc50w+2D/5bOj1iieNKS4gPSgNzJeB7G4Pvq
+ qXUY5xLPC1LTBsGRh6Xjs3ZQOZTmgrPIlpcuzPqKdMi2yjJANm95flKm9 g==;
+X-CSE-ConnectionGUID: xS3YfQsSQomrppS4QRxC1g==
+X-CSE-MsgGUID: clSo8H4aQOWRjJ+VLiASvA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11608"; a="68463852"
+X-IronPort-AV: E=Sophos;i="6.19,293,1754982000"; d="scan'208";a="68463852"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Nov 2025 03:07:55 -0800
+X-CSE-ConnectionGUID: ObZNL5nFTxO/F8/N7wzbtQ==
+X-CSE-MsgGUID: 3foiEEykRH+eoYTD5Oi31w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,293,1754982000"; d="scan'208";a="192756294"
+Received: from ettammin-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.202])
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Nov 2025 03:07:54 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 5/9] drm/i915/fb: Init 'ret' in each error branch in
+ intel_framebuffer_init()
+In-Reply-To: <20251107181126.5743-6-ville.syrjala@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20251107181126.5743-1-ville.syrjala@linux.intel.com>
+ <20251107181126.5743-6-ville.syrjala@linux.intel.com>
+Date: Mon, 10 Nov 2025 13:07:51 +0200
+Message-ID: <af1c5d6c1b8fa5b7a7dd36714b187383a4435b03@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/6] drm/atomic: use drm_crtc_vblank_waitqueue()
-To: Jani Nikula <jani.nikula@intel.com>, dri-devel@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- ville.syrjala@linux.intel.com
-References: <cover.1762513240.git.jani.nikula@intel.com>
- <1097348197acea9110da8baebbbc189890d01660.1762513240.git.jani.nikula@intel.com>
-Content-Language: en-US
-From: Thomas Zimmermann <tzimmermann@suse.de>
-Autocrypt: addr=tzimmermann@suse.de; keydata=
- xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
- XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
- BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
- hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
- 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
- AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
- AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
- AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
- lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
- U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
- vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
- 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
- j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
- T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
- 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
- GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
- hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
- EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
- C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
- yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
- SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
- Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
- 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
-In-Reply-To: <1097348197acea9110da8baebbbc189890d01660.1762513240.git.jani.nikula@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: 7BC4A21DA1
-X-Rspamd-Action: no action
-X-Rspamd-Server: rspamd1.dmz-prg2.suse.org
-X-Spamd-Result: default: False [-4.51 / 50.00]; BAYES_HAM(-3.00)[100.00%];
- NEURAL_HAM_LONG(-1.00)[-1.000];
- R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
- MX_GOOD(-0.01)[]; RCVD_VIA_SMTP_AUTH(0.00)[];
- FUZZY_RATELIMITED(0.00)[rspamd.com]; ARC_NA(0.00)[];
- RCVD_TLS_ALL(0.00)[]; MIME_TRACE(0.00)[0:+];
- RBL_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:104:10:150:64:97:from]; 
- SPAMHAUS_XBL(0.00)[2a07:de40:b281:104:10:150:64:97:from];
- TO_DN_SOME(0.00)[];
- RECEIVED_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:106:10:150:64:167:received];
- MID_RHS_MATCH_FROM(0.00)[];
- DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- FROM_EQ_ENVFROM(0.00)[]; FROM_HAS_DN(0.00)[];
- RCPT_COUNT_FIVE(0.00)[5]; RCVD_COUNT_TWO(0.00)[2];
- TO_MATCH_ENVRCPT_ALL(0.00)[];
- DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,imap1.dmz-prg2.suse.org:rdns,imap1.dmz-prg2.suse.org:helo,bootlin.com:url,suse.de:dkim,suse.de:mid,suse.de:email,suse.com:url];
- URIBL_BLOCKED(0.00)[intel.com:email,imap1.dmz-prg2.suse.org:rdns,imap1.dmz-prg2.suse.org:helo,suse.de:dkim,suse.de:mid,suse.de:email,suse.com:url,bootlin.com:url];
- DKIM_TRACE(0.00)[suse.de:+]
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -148,72 +71,88 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi
-
-Am 07.11.25 um 12:04 schrieb Jani Nikula:
-> We have drm_crtc_vblank_waitqueue() to get the wait_queue_head_t pointer
-> for a vblank. Use it instead of poking at dev->vblank[] directly.
+On Fri, 07 Nov 2025, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 >
-> Due to the macro maze of wait_event_timeout() that uses the address-of
-> operator on the argument, we have to pass it in with the indirection
-> operator.
+> Make the order of things a bit less fragile in
+> intel_framebuffer_init() by assinging 'ret' in each
+
+*assigning
+
+> error branch instead of depending on some earlier
+> assignment.
 >
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-
-Reviewed-by Thomas Zimmermann <tzimmermann@suse.de>
-
-But... drm_crtc_vblank_waitqueue() is a terrible interface IMHO, as it 
-exports internal details of the vblank implementation.
-
-I wonder if the existing users at [1] and [2] couldn't be replaced with 
-a common vblank helper.
-
-And there's drm_wait_one_vblank() [3] and the waiting that's being fixed 
-here [4]. The latter looks like [3] but with multiple CRTC waiting for 
-their next vblank. I'd say this could be a single implementation within 
-the vblank code.
-
-[1] 
-https://elixir.bootlin.com/linux/v6.18-rc4/source/drivers/gpu/drm/i915/display/intel_display_rps.c#L73
-[2] 
-https://elixir.bootlin.com/linux/v6.18-rc4/source/drivers/gpu/drm/i915/display/intel_vblank.c#L715
-[3] 
-https://elixir.bootlin.com/linux/v6.18-rc4/source/drivers/gpu/drm/drm_vblank.c#L1304
-[4] 
-https://elixir.bootlin.com/linux/v6.18-rc4/source/drivers/gpu/drm/drm_atomic_helper.c#L1837
-
-Best regards
-Thomas
-
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 > ---
->   drivers/gpu/drm/drm_atomic_helper.c | 4 +++-
->   1 file changed, 3 insertions(+), 1 deletion(-)
+>  drivers/gpu/drm/i915/display/intel_fb.c | 7 ++++++-
+>  1 file changed, 6 insertions(+), 1 deletion(-)
 >
-> diff --git a/drivers/gpu/drm/drm_atomic_helper.c b/drivers/gpu/drm/drm_atomic_helper.c
-> index 5a473a274ff0..e641fcf8c568 100644
-> --- a/drivers/gpu/drm/drm_atomic_helper.c
-> +++ b/drivers/gpu/drm/drm_atomic_helper.c
-> @@ -1831,10 +1831,12 @@ drm_atomic_helper_wait_for_vblanks(struct drm_device *dev,
->   	}
->   
->   	for_each_old_crtc_in_state(state, crtc, old_crtc_state, i) {
-> +		wait_queue_head_t *queue = drm_crtc_vblank_waitqueue(crtc);
-> +
->   		if (!(crtc_mask & drm_crtc_mask(crtc)))
->   			continue;
->   
-> -		ret = wait_event_timeout(dev->vblank[i].queue,
-> +		ret = wait_event_timeout(*queue,
->   					 state->crtcs[i].last_vblank_count !=
->   						drm_crtc_vblank_count(crtc),
->   					 msecs_to_jiffies(100));
+> diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i9=
+15/display/intel_fb.c
+> index 2eddccb1bc9e..b34b4961fe1c 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fb.c
+> +++ b/drivers/gpu/drm/i915/display/intel_fb.c
+> @@ -2234,13 +2234,13 @@ int intel_framebuffer_init(struct intel_framebuff=
+er *intel_fb,
+>  	if (ret)
+>  		goto err_frontbuffer_put;
+>=20=20
+> -	ret =3D -EINVAL;
+>  	if (!drm_any_plane_has_format(display->drm,
+>  				      mode_cmd->pixel_format,
+>  				      mode_cmd->modifier[0])) {
+>  		drm_dbg_kms(display->drm,
+>  			    "unsupported pixel format %p4cc / modifier 0x%llx\n",
+>  			    &mode_cmd->pixel_format, mode_cmd->modifier[0]);
+> +		ret =3D -EINVAL;
+>  		goto err_bo_framebuffer_fini;
+>  	}
+>=20=20
+> @@ -2251,6 +2251,7 @@ int intel_framebuffer_init(struct intel_framebuffer=
+ *intel_fb,
+>  			    mode_cmd->modifier[0] !=3D DRM_FORMAT_MOD_LINEAR ?
+>  			    "tiled" : "linear",
+>  			    mode_cmd->pitches[0], max_stride);
+> +		ret =3D -EINVAL;
+>  		goto err_bo_framebuffer_fini;
+>  	}
+>=20=20
+> @@ -2259,6 +2260,7 @@ int intel_framebuffer_init(struct intel_framebuffer=
+ *intel_fb,
+>  		drm_dbg_kms(display->drm,
+>  			    "plane 0 offset (0x%08x) must be 0\n",
+>  			    mode_cmd->offsets[0]);
+> +		ret =3D -EINVAL;
+>  		goto err_bo_framebuffer_fini;
+>  	}
+>=20=20
+> @@ -2269,6 +2271,7 @@ int intel_framebuffer_init(struct intel_framebuffer=
+ *intel_fb,
+>=20=20
+>  		if (mode_cmd->handles[i] !=3D mode_cmd->handles[0]) {
+>  			drm_dbg_kms(display->drm, "bad plane %d handle\n", i);
+> +			ret =3D -EINVAL;
+>  			goto err_bo_framebuffer_fini;
+>  		}
+>=20=20
+> @@ -2277,6 +2280,7 @@ int intel_framebuffer_init(struct intel_framebuffer=
+ *intel_fb,
+>  			drm_dbg_kms(display->drm,
+>  				    "plane %d pitch (%d) must be at least %u byte aligned\n",
+>  				    i, fb->pitches[i], stride_alignment);
+> +			ret =3D -EINVAL;
+>  			goto err_bo_framebuffer_fini;
+>  		}
+>=20=20
+> @@ -2287,6 +2291,7 @@ int intel_framebuffer_init(struct intel_framebuffer=
+ *intel_fb,
+>  				drm_dbg_kms(display->drm,
+>  					    "ccs aux plane %d pitch (%d) must be %d\n",
+>  					    i, fb->pitches[i], ccs_aux_stride);
+> +				ret =3D -EINVAL;
+>  				goto err_bo_framebuffer_fini;
+>  			}
+>  		}
 
--- 
---
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Frankenstr. 146, 90461 Nürnberg, Germany, www.suse.com
-GF: Jochen Jaser, Andrew McDonald, Werner Knoblich, (HRB 36809, AG Nürnberg)
-
-
+--=20
+Jani Nikula, Intel
