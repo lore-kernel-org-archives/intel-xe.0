@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 50F40CD13DA
-	for <intel-xe@archiver.kernel.org>; Tue, 11 Nov 2025 12:28:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 45EE6CD13DF
+	for <intel-xe@archiver.kernel.org>; Tue, 11 Nov 2025 12:28:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9A3E710E566;
-	Tue, 11 Nov 2025 12:28:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3B65010E586;
+	Tue, 11 Nov 2025 12:28:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EwN5B3Mh";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CUB+l1r2";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ADFA710E575;
- Tue, 11 Nov 2025 12:28:05 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C664F10E581;
+ Tue, 11 Nov 2025 12:28:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1762864085; x=1794400085;
+ t=1762864088; x=1794400088;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=+wzhaFxSnGOIgXfPGWXmMsmYdpSBfK5IjZcpII7NT9c=;
- b=EwN5B3MhLnSyBvRHdh+S8nracGYz7IjJQEIpECOoSFyxRYDlMa7phHsv
- D/Mlqjy5A3CtXNiFy10lYvaPZO8eRFhBljeLnQalKUEV1AxJLOKWrjzFZ
- oI932+rgSsfLVfKYcxAV2pNgl6BdigN/TBs/coj+2cvWQzzF0mwkD7LWt
- fgR7sNyec0bGs2px0cU1sOa5ZwarTqvCQCNNQfYibDKKxNBbe8TtkteQ8
- g1F5tDvy6tge21zcKBxUu91H9ILLbDHGUrMZzTPan955ZWwU0RAN7uZod
- 2ActzPRG2YXuHm1lc2kzOGUKYFsZlHaxfCWq/L1j/xU+O6UJZGe5UKxaW g==;
-X-CSE-ConnectionGUID: y64axyd8SZiXUht4BFSNpg==
-X-CSE-MsgGUID: CiMXZsyFRquSPhBTsYNKQA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11609"; a="82553059"
-X-IronPort-AV: E=Sophos;i="6.19,296,1754982000"; d="scan'208";a="82553059"
+ bh=o4N7T+qVK77oOwqrK9kudMEIR18gnJzq4LSbPHl39rw=;
+ b=CUB+l1r2Xc8LXzWfPfO23zpDPWWnfWKU0pxmoQBEyZcq0sMBrtf0Azeq
+ LYkNA3b5fFKHr7wkPP1MWpvXe+Vr4BoUNLRq8TmwERdQhQ8LVkulcOomE
+ rp9HxUjb1G1aFQmIgj1TcDrOuQCXQxahYKglX743kIG9TQvWDApBXuTXx
+ 26o6G0DdXL+KYn0V5BTKSZPryhjhdiN9nU5Pn8fqfBPiH8U2Yg0YMv+3D
+ FfIFUw6bDQF5+ymSbucnnwM6s91Av2DFyY4TDYRXCgBUzB89wRLy/iUqb
+ 8gpv87fE4dO+qWef67z/IF8D94DPBW+47QE+wfZPpkGCjK32cXHEE0NKL w==;
+X-CSE-ConnectionGUID: /PCNizDLRXm0B1glcPRObA==
+X-CSE-MsgGUID: 0op3gGBOQfKU5pssLhqfsQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11609"; a="82553156"
+X-IronPort-AV: E=Sophos;i="6.19,296,1754982000"; d="scan'208";a="82553156"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Nov 2025 04:28:04 -0800
-X-CSE-ConnectionGUID: YCUNN0rBQSKms4DPvG3Osw==
-X-CSE-MsgGUID: OOBpz+NVSHuE8x7EZz4beA==
+ 11 Nov 2025 04:28:06 -0800
+X-CSE-ConnectionGUID: Hn85aRXLRIiDkJXShcu/eg==
+X-CSE-MsgGUID: m86TCvpNRS+dWjQns2H6LA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,296,1754982000"; d="scan'208";a="212343319"
+X-IronPort-AV: E=Sophos;i="6.19,296,1754982000"; d="scan'208";a="212343325"
 Received: from black.igk.intel.com ([10.91.253.5])
- by fmviesa002.fm.intel.com with ESMTP; 11 Nov 2025 04:27:57 -0800
+ by fmviesa002.fm.intel.com with ESMTP; 11 Nov 2025 04:27:58 -0800
 Received: by black.igk.intel.com (Postfix, from userid 1003)
- id 242CFA2; Tue, 11 Nov 2025 13:27:38 +0100 (CET)
+ id 37AEBA5; Tue, 11 Nov 2025 13:27:38 +0100 (CET)
 From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 To: Corey Minyard <corey@minyard.net>,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
@@ -112,9 +112,9 @@ Cc: Rasmus Villemoes <linux@rasmusvillemoes.dk>,
  Masami Hiramatsu <mhiramat@kernel.org>,
  Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
  Andrew Morton <akpm@linux-foundation.org>
-Subject: [PATCH v2 12/21] media: av7110: Switch to use %ptSp
-Date: Tue, 11 Nov 2025 13:20:12 +0100
-Message-ID: <20251111122735.880607-13-andriy.shevchenko@linux.intel.com>
+Subject: [PATCH v2 15/21] PCI: epf-test: Switch to use %ptSp
+Date: Tue, 11 Nov 2025 13:20:15 +0100
+Message-ID: <20251111122735.880607-16-andriy.shevchenko@linux.intel.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20251111122735.880607-1-andriy.shevchenko@linux.intel.com>
 References: <20251111122735.880607-1-andriy.shevchenko@linux.intel.com>
@@ -137,25 +137,28 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 Use %ptSp instead of open coded variants to print content of
 struct timespec64 in human readable format.
 
-Acked-by: Hans Verkuil <hverkuil+cisco@kernel.org>
+Acked-by: Bjorn Helgaas <bhelgaas@google.com>
 Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 ---
- drivers/staging/media/av7110/av7110.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/pci/endpoint/functions/pci-epf-test.c | 5 ++---
+ 1 file changed, 2 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/staging/media/av7110/av7110.c b/drivers/staging/media/av7110/av7110.c
-index bc9a2a40afcb..602342d1174f 100644
---- a/drivers/staging/media/av7110/av7110.c
-+++ b/drivers/staging/media/av7110/av7110.c
-@@ -321,7 +321,7 @@ static inline void print_time(char *s)
- 	struct timespec64 ts;
+diff --git a/drivers/pci/endpoint/functions/pci-epf-test.c b/drivers/pci/endpoint/functions/pci-epf-test.c
+index b05e8db575c3..debd235253c5 100644
+--- a/drivers/pci/endpoint/functions/pci-epf-test.c
++++ b/drivers/pci/endpoint/functions/pci-epf-test.c
+@@ -331,9 +331,8 @@ static void pci_epf_test_print_rate(struct pci_epf_test *epf_test,
+ 		rate = div64_u64(size * NSEC_PER_SEC, ns * 1000);
  
- 	ktime_get_real_ts64(&ts);
--	pr_info("%s(): %lld.%09ld\n", s, (s64)ts.tv_sec, ts.tv_nsec);
-+	pr_info("%s(): %ptSp\n", s, &ts);
- #endif
+ 	dev_info(&epf_test->epf->dev,
+-		 "%s => Size: %llu B, DMA: %s, Time: %llu.%09u s, Rate: %llu KB/s\n",
+-		 op, size, dma ? "YES" : "NO",
+-		 (u64)ts.tv_sec, (u32)ts.tv_nsec, rate);
++		 "%s => Size: %llu B, DMA: %s, Time: %ptSp s, Rate: %llu KB/s\n",
++		 op, size, dma ? "YES" : "NO", &ts, rate);
  }
  
+ static void pci_epf_test_copy(struct pci_epf_test *epf_test,
 -- 
 2.50.1
 
