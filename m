@@ -4,139 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A5DD9CCF9E3
-	for <intel-xe@archiver.kernel.org>; Tue, 11 Nov 2025 08:23:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B0EE6CCFA18
+	for <intel-xe@archiver.kernel.org>; Tue, 11 Nov 2025 08:23:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BD3FE10E506;
-	Tue, 11 Nov 2025 08:23:04 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="Of/Qk2bX";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="dbMkhpB5";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="QBK0YIiv";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="WnskaGKY";
-	dkim-atps=neutral
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 645C110E506
- for <intel-xe@lists.freedesktop.org>; Tue, 11 Nov 2025 08:23:03 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
- [IPv6:2a07:de40:b281:104:10:150:64:97])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id DD99321F4A;
- Tue, 11 Nov 2025 08:23:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1762849382; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=3JuN8plNBjeGGK27l3qAya7/zsSqqC6h7IKgIdJ3iGg=;
- b=Of/Qk2bXjPZOeHMeixU4IH8C+TVpwzGzICZB5yFgEarT0hne0UggaAL/MkdfoCTrksqbi2
- Xy3keQm9z3v2cW3FhTMkaWUzwBMDFM9LArrb+V90ZWaf5OV5rIEbom5Ys3kFSt2f8ighMY
- CYfoOi8EaUqsVxifApKquT/EI5s76o0=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1762849382;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=3JuN8plNBjeGGK27l3qAya7/zsSqqC6h7IKgIdJ3iGg=;
- b=dbMkhpB5O5oG5MXNo6wNc9Z80WiwgthUXfJ/Wdf/iwuRwsEo9s+KLNy64DNsMMQVDg8pm4
- /k41q/wUNc3ESADg==
-Authentication-Results: smtp-out1.suse.de;
- dkim=pass header.d=suse.de header.s=susede2_rsa header.b=QBK0YIiv;
- dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=WnskaGKY
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1762849381; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=3JuN8plNBjeGGK27l3qAya7/zsSqqC6h7IKgIdJ3iGg=;
- b=QBK0YIivxKzIEZkWVwlDFtRpDfYRotCskQ7ZYFvbpqyFih+TGWqXqRhD/PiPtTw6iFwxZm
- HWc5kOp3oHXMfSdWKl4n+S+fRZBJuz4M8cmmOyq90J7pWV3apwznBgOdZTW3v1fA/oac09
- coCKjdE+wWfPlHDQ7wYNU80FamOXhxw=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1762849381;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=3JuN8plNBjeGGK27l3qAya7/zsSqqC6h7IKgIdJ3iGg=;
- b=WnskaGKYo8XBq7rnEWRu+l1aMJVjM4/IvfWhVJPXRFvneM2uX0P+YPfwhiMFMnVIzlc+2O
- r6LJ1rHQvDKAGICQ==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id B736E1486A;
- Tue, 11 Nov 2025 08:23:01 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id iPuHK2XyEmmXLAAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Tue, 11 Nov 2025 08:23:01 +0000
-Message-ID: <e62501be-fb9e-4387-9c22-5019d80f7523@suse.de>
-Date: Tue, 11 Nov 2025 09:23:00 +0100
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6B5F610E50B;
+	Tue, 11 Nov 2025 08:23:13 +0000 (UTC)
+Received: from 10055242dc62 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AA33010E508;
+ Tue, 11 Nov 2025 08:23:11 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7296718738499933733=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 05/24] drm/vblank: use the drm_vblank_crtc() and
- drm_crtc_vblank_crtc() helpers more
-To: Jani Nikula <jani.nikula@intel.com>, dri-devel@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- ville.syrjala@linux.intel.com
-References: <cover.1762791343.git.jani.nikula@intel.com>
- <84b53d5530efc51a8efa01d7cd3699f136789b6e.1762791343.git.jani.nikula@intel.com>
-Content-Language: en-US
-From: Thomas Zimmermann <tzimmermann@suse.de>
-Autocrypt: addr=tzimmermann@suse.de; keydata=
- xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
- XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
- BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
- hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
- 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
- AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
- AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
- AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
- lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
- U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
- vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
- 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
- j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
- T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
- 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
- GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
- hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
- EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
- C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
- yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
- SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
- Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
- 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
-In-Reply-To: <84b53d5530efc51a8efa01d7cd3699f136789b6e.1762791343.git.jani.nikula@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: DD99321F4A
-X-Rspamd-Server: rspamd2.dmz-prg2.suse.org
-X-Spamd-Result: default: False [-4.51 / 50.00]; BAYES_HAM(-3.00)[100.00%];
- NEURAL_HAM_LONG(-1.00)[-1.000];
- R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
- MX_GOOD(-0.01)[];
- DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- FUZZY_RATELIMITED(0.00)[rspamd.com]; ARC_NA(0.00)[];
- MIME_TRACE(0.00)[0:+];
- RBL_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:104:10:150:64:97:from]; 
- SPAMHAUS_XBL(0.00)[2a07:de40:b281:104:10:150:64:97:from];
- TO_DN_SOME(0.00)[]; TO_MATCH_ENVRCPT_ALL(0.00)[];
- FROM_HAS_DN(0.00)[]; RCVD_TLS_ALL(0.00)[];
- DNSWL_BLOCKED(0.00)[2a07:de40:b281:106:10:150:64:167:received,2a07:de40:b281:104:10:150:64:97:from];
- RCVD_COUNT_TWO(0.00)[2]; FROM_EQ_ENVFROM(0.00)[];
- RCPT_COUNT_FIVE(0.00)[5]; MID_RHS_MATCH_FROM(0.00)[];
- RCVD_VIA_SMTP_AUTH(0.00)[];
- RECEIVED_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:106:10:150:64:167:received];
- DKIM_TRACE(0.00)[suse.de:+];
- DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:email, suse.de:mid, suse.de:dkim,
- intel.com:email, suse.com:url, imap1.dmz-prg2.suse.org:helo,
- imap1.dmz-prg2.suse.org:rdns]
-X-Rspamd-Action: no action
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/=7Bi915=2C_xe=7D/irq=3A?=
+ =?utf-8?q?_clarify_display_and_parent_driver_interfaces_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 11 Nov 2025 08:23:11 -0000
+Message-ID: <176284939168.39852.15777226454121998625@10055242dc62>
+X-Patchwork-Hint: ignore
+References: <cover.1762846363.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1762846363.git.jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -148,71 +36,155 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============7296718738499933733==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+== Series Details ==
+
+Series: drm/{i915, xe}/irq: clarify display and parent driver interfaces (rev2)
+URL   : https://patchwork.freedesktop.org/series/157350/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from xe-4085-4ce351022716985e9c1dd18583acd4d3d149cb5b_BAT -> xe-pw-157350v2_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (13 -> 13)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-157350v2_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_flip@basic-plain-flip@b-edp1:
+    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#4543]) +1 other test dmesg-warn
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4085-4ce351022716985e9c1dd18583acd4d3d149cb5b/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157350v2/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html
+
+  * igt@xe_waitfence@abstime:
+    - bat-dg2-oem2:       [PASS][3] -> [TIMEOUT][4] ([Intel XE#6506])
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4085-4ce351022716985e9c1dd18583acd4d3d149cb5b/bat-dg2-oem2/igt@xe_waitfence@abstime.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157350v2/bat-dg2-oem2/igt@xe_waitfence@abstime.html
+
+  * igt@xe_waitfence@engine:
+    - bat-dg2-oem2:       [PASS][5] -> [FAIL][6] ([Intel XE#6519])
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4085-4ce351022716985e9c1dd18583acd4d3d149cb5b/bat-dg2-oem2/igt@xe_waitfence@engine.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157350v2/bat-dg2-oem2/igt@xe_waitfence@engine.html
+
+  
+  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
+  [Intel XE#6506]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506
+  [Intel XE#6519]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519
 
 
-Am 10.11.25 um 17:17 schrieb Jani Nikula:
-> We have the helpers to avoid open coding dev->vblank[pipe] access.
->
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+Build changes
+-------------
 
-Reviewed-by: Thomas Zimmermann <tzimmermann@suse.de>
+  * IGT: IGT_8618 -> IGT_8620
+  * Linux: xe-4085-4ce351022716985e9c1dd18583acd4d3d149cb5b -> xe-pw-157350v2
 
-> ---
->   drivers/gpu/drm/drm_vblank.c | 10 ++++++----
->   1 file changed, 6 insertions(+), 4 deletions(-)
->
-> diff --git a/drivers/gpu/drm/drm_vblank.c b/drivers/gpu/drm/drm_vblank.c
-> index 503eb23d38d2..e3a5a783686f 100644
-> --- a/drivers/gpu/drm/drm_vblank.c
-> +++ b/drivers/gpu/drm/drm_vblank.c
-> @@ -551,7 +551,7 @@ int drm_vblank_init(struct drm_device *dev, unsigned int num_crtcs)
->   	dev->num_crtcs = num_crtcs;
->   
->   	for (i = 0; i < num_crtcs; i++) {
-> -		struct drm_vblank_crtc *vblank = &dev->vblank[i];
-> +		struct drm_vblank_crtc *vblank = drm_vblank_crtc(dev, i);
->   
->   		vblank->dev = dev;
->   		vblank->pipe = i;
-> @@ -605,7 +605,9 @@ EXPORT_SYMBOL(drm_dev_has_vblank);
->    */
->   wait_queue_head_t *drm_crtc_vblank_waitqueue(struct drm_crtc *crtc)
->   {
-> -	return &crtc->dev->vblank[drm_crtc_index(crtc)].queue;
-> +	struct drm_vblank_crtc *vblank = drm_crtc_vblank_crtc(crtc);
-> +
-> +	return &vblank->queue;
->   }
->   EXPORT_SYMBOL(drm_crtc_vblank_waitqueue);
->   
-> @@ -710,7 +712,7 @@ drm_crtc_vblank_helper_get_vblank_timestamp_internal(
->   {
->   	struct drm_device *dev = crtc->dev;
->   	unsigned int pipe = crtc->index;
-> -	struct drm_vblank_crtc *vblank = &dev->vblank[pipe];
-> +	struct drm_vblank_crtc *vblank = drm_vblank_crtc(dev, pipe);
->   	struct timespec64 ts_etime, ts_vblank_time;
->   	ktime_t stime, etime;
->   	bool vbl_status;
-> @@ -1782,7 +1784,7 @@ int drm_wait_vblank_ioctl(struct drm_device *dev, void *data,
->   	if (pipe >= dev->num_crtcs)
->   		return -EINVAL;
->   
-> -	vblank = &dev->vblank[pipe];
-> +	vblank = drm_vblank_crtc(dev, pipe);
->   
->   	/* If the counter is currently enabled and accurate, short-circuit
->   	 * queries to return the cached timestamp of the last vblank.
+  IGT_8618: 8618
+  IGT_8620: 8620
+  xe-4085-4ce351022716985e9c1dd18583acd4d3d149cb5b: 4ce351022716985e9c1dd18583acd4d3d149cb5b
+  xe-pw-157350v2: 157350v2
 
--- 
---
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Frankenstr. 146, 90461 Nürnberg, Germany, www.suse.com
-GF: Jochen Jaser, Andrew McDonald, Werner Knoblich, (HRB 36809, AG Nürnberg)
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157350v2/index.html
+
+--===============7296718738499933733==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
 
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/{i915, xe}/irq: clarify display and parent driver interfaces (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/157350/">https://patchwork.freedesktop.org/series/157350/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157350v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157350v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4085-4ce351022716985e9c1dd18583acd4d3d149cb5b_BAT -&gt; xe-pw-157350v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-157350v2_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@kms_flip@basic-plain-flip@b-edp1:</p>
+<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4085-4ce351022716985e9c1dd18583acd4d3d149cb5b/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157350v2/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) +1 other test dmesg-warn</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_waitfence@abstime:</p>
+<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4085-4ce351022716985e9c1dd18583acd4d3d149cb5b/bat-dg2-oem2/igt@xe_waitfence@abstime.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157350v2/bat-dg2-oem2/igt@xe_waitfence@abstime.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506">Intel XE#6506</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_waitfence@engine:</p>
+<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4085-4ce351022716985e9c1dd18583acd4d3d149cb5b/bat-dg2-oem2/igt@xe_waitfence@engine.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157350v2/bat-dg2-oem2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519">Intel XE#6519</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8618 -&gt; IGT_8620</li>
+<li>Linux: xe-4085-4ce351022716985e9c1dd18583acd4d3d149cb5b -&gt; xe-pw-157350v2</li>
+</ul>
+<p>IGT_8618: 8618<br />
+  IGT_8620: 8620<br />
+  xe-4085-4ce351022716985e9c1dd18583acd4d3d149cb5b: 4ce351022716985e9c1dd18583acd4d3d149cb5b<br />
+  xe-pw-157350v2: 157350v2</p>
+
+</body>
+</html>
+
+--===============7296718738499933733==--
