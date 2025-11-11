@@ -4,57 +4,111 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CFFEACCF9E3
-	for <intel-xe@archiver.kernel.org>; Tue, 11 Nov 2025 08:01:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6B373CCF9E3
+	for <intel-xe@archiver.kernel.org>; Tue, 11 Nov 2025 08:05:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9469D10E4F5;
-	Tue, 11 Nov 2025 08:01:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 45C5F10E4FA;
+	Tue, 11 Nov 2025 08:05:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EPb8J3vV";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="NUIP1don";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 00CF310E504;
- Tue, 11 Nov 2025 08:01:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1762848079; x=1794384079;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=ndt2VmTsrdZBqIE5PPd67OOZK7+vS6hKkjpnv+QczYU=;
- b=EPb8J3vVVHXX6isYc7H4Di0UNsEJYEpGFQ0iRNdc72jzWdXRQBPmu/Bi
- Wi9ks1yAMKpbzFA0KKyrquzreMCOzWqXmSpKIU6jNCMCnOeUTuJoQ0Ita
- fWZo6wbAyE2sEORHA7odxBmUIzeZ5AoUGJ1wJYTe0Or74jsNwrOIG4Fmd
- nnMIfX34XwiJ6LRF62fT1QfEZlm45YCA2WCgQWD6aGvkFvcQjeskzd3MD
- XhOGN1c5nJJV3ft5TUUTOiWfRUOBLXuqBX8nbjlQ+tSDfWb13NU7yUx0f
- kXqBaTA9W5b6hiIODAo9yT5ZAjBjRthOx+8MMNnyq0Tl1szSTKeneZmjY A==;
-X-CSE-ConnectionGUID: fUwcqb4/QPOc06WlSMTuHQ==
-X-CSE-MsgGUID: 6u4TCQbnQ2qSQw9bmG1yIw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="64823294"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="64823294"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Nov 2025 00:01:18 -0800
-X-CSE-ConnectionGUID: ZZUsAlGLTvmqN8kCsaz9fw==
-X-CSE-MsgGUID: DYTr7gYxTWuKEH64iuStXQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,296,1754982000"; d="scan'208";a="193282768"
-Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.239])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Nov 2025 00:01:17 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 00/16] drm/i915/de: Register polling cleanup
-In-Reply-To: <20251110172756.2132-1-ville.syrjala@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20251110172756.2132-1-ville.syrjala@linux.intel.com>
-Date: Tue, 11 Nov 2025 10:01:14 +0200
-Message-ID: <72502cbc1d1587e3a2671a8f84bae8a441b67908@intel.com>
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F163F10E4F9;
+ Tue, 11 Nov 2025 08:05:13 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by tor.source.kernel.org (Postfix) with ESMTP id E86426191A;
+ Tue, 11 Nov 2025 08:05:12 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 758BFC116D0;
+ Tue, 11 Nov 2025 08:04:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1762848312;
+ bh=L5yMR8hp8K6n3p5Uz6MrsGqp/GNA0slthJowCoOHAbM=;
+ h=Date:From:Subject:To:Cc:References:In-Reply-To:From;
+ b=NUIP1don/7EEjqY/+TuMC7+CtmpG/nW2STT6PfNtEFuFU+HXZKqLbbnEAMH/X/3JJ
+ WVWvR5dg7fblvx/9940inFYgR2C5Gv8VCu1k/MG3tLYRY2844vpHtjrgDZFeK1fdOO
+ JM9vzH3/AWqsGZIFSz7EL/soDKXXUbKHVx/PFFqkGRFYGIzvUKJH2LfpLXAxaji/IR
+ Vs8kH4VSFB0ma/R7k8kHRT0ZJzgV8pEkXXgoavVjbaLi01h+sab77WCI8dWWJ+fyMQ
+ Px0GCJGzWonU67OPy+OHOih22E625vhqYo9ne3sB2zFxHcVeAaZEH4KOlSEdxaEekL
+ 55nfUGgl/CXGw==
+Message-ID: <fd47654d-c4cc-4cbc-95da-824f1e6bbbf9@kernel.org>
+Date: Tue, 11 Nov 2025 09:04:55 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+From: Hans Verkuil <hverkuil+cisco@kernel.org>
+Subject: Re: [PATCH v1 14/23] media: v4l2-ioctl: Switch to use %ptSp
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Corey Minyard <corey@minyard.net>, =?UTF-8?Q?Christian_K=C3=B6nig?=
+ <christian.koenig@amd.com>, "Dr. David Alan Gilbert" <linux@treblig.org>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+ Rob Clark <robin.clark@oss.qualcomm.com>,
+ Matthew Brost <matthew.brost@intel.com>, Hans Verkuil <hverkuil@kernel.org>,
+ Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+ Ulf Hansson <ulf.hansson@linaro.org>,
+ Vitaly Lifshits <vitaly.lifshits@intel.com>,
+ Manivannan Sadhasivam <mani@kernel.org>, Niklas Cassel <cassel@kernel.org>,
+ Calvin Owens <calvin@wbinvd.org>, Sagi Maimon <maimon.sagi@gmail.com>,
+ "Martin K. Petersen" <martin.petersen@oracle.com>,
+ Karan Tilak Kumar <kartilak@cisco.com>,
+ Casey Schaufler <casey@schaufler-ca.com>,
+ Steven Rostedt <rostedt@goodmis.org>, Petr Mladek <pmladek@suse.com>,
+ Max Kellermann <max.kellermann@ionos.com>, Takashi Iwai <tiwai@suse.de>,
+ linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
+ openipmi-developer@lists.sourceforge.net, linux-media@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org,
+ amd-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+ freedreno@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ linux-mmc@vger.kernel.org, netdev@vger.kernel.org,
+ intel-wired-lan@lists.osuosl.org, linux-pci@vger.kernel.org,
+ linux-s390@vger.kernel.org, linux-scsi@vger.kernel.org,
+ linux-staging@lists.linux.dev, ceph-devel@vger.kernel.org,
+ linux-trace-kernel@vger.kernel.org, linux-sound@vger.kernel.org
+Cc: Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+ Sergey Senozhatsky <senozhatsky@chromium.org>,
+ Jonathan Corbet <corbet@lwn.net>, Sumit Semwal <sumit.semwal@linaro.org>,
+ Gustavo Padovan <gustavo@padovan.org>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Dmitry Baryshkov <lumag@kernel.org>,
+ Abhinav Kumar <abhinav.kumar@linux.dev>,
+ Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ Konrad Dybcio <konradybcio@kernel.org>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Vladimir Oltean <olteanv@gmail.com>, Andrew Lunn <andrew@lunn.ch>,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Tony Nguyen <anthony.l.nguyen@intel.com>,
+ Przemek Kitszel <przemyslaw.kitszel@intel.com>,
+ =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>,
+ Bjorn Helgaas <bhelgaas@google.com>, Rodolfo Giometti
+ <giometti@enneenne.com>, Jonathan Lemon <jonathan.lemon@gmail.com>,
+ Vadim Fedorenko <vadim.fedorenko@linux.dev>,
+ Richard Cochran <richardcochran@gmail.com>,
+ Stefan Haberland <sth@linux.ibm.com>, Jan Hoeppner <hoeppner@linux.ibm.com>,
+ Heiko Carstens <hca@linux.ibm.com>, Vasily Gorbik <gor@linux.ibm.com>,
+ Alexander Gordeev <agordeev@linux.ibm.com>,
+ Christian Borntraeger <borntraeger@linux.ibm.com>,
+ Sven Schnelle <svens@linux.ibm.com>, Satish Kharat <satishkh@cisco.com>,
+ Sesidhar Baddela <sebaddel@cisco.com>,
+ "James E.J. Bottomley" <James.Bottomley@HansenPartnership.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Xiubo Li
+ <xiubli@redhat.com>, Ilya Dryomov <idryomov@gmail.com>,
+ Masami Hiramatsu <mhiramat@kernel.org>,
+ Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
+ Andrew Morton <akpm@linux-foundation.org>, Jaroslav Kysela <perex@perex.cz>,
+ Takashi Iwai <tiwai@suse.com>
+References: <20251110184727.666591-1-andriy.shevchenko@linux.intel.com>
+ <20251110184727.666591-15-andriy.shevchenko@linux.intel.com>
+Content-Language: en-US, nl
+In-Reply-To: <20251110184727.666591-15-andriy.shevchenko@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,103 +123,51 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 10 Nov 2025, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->
-> Clean up the register polling stuff:
-> - rename the current wait stuff to
->   intel_de_wait_{,for_set,for_clear}_ms()
-> - introduce intel_de_wait_{,for_set,for_clear}_us()
-> - nuke intel_de_wait_custom()
-> - change the wakelock stuff to use _fw() instead of
->   hand rolling yet another level of register accessors
-> - a few other minor cleanups
->
-> After this it should be fairly easy to switch over to
-> poll_timeout_us().
+On 10/11/2025 19:40, Andy Shevchenko wrote:
+> Use %ptSp instead of open coded variants to print content of
+> struct timespec64 in human readable format.
+> 
+> Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+> ---
+>  drivers/media/v4l2-core/v4l2-ioctl.c | 5 ++---
+>  1 file changed, 2 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/media/v4l2-core/v4l2-ioctl.c b/drivers/media/v4l2-core/v4l2-ioctl.c
+> index 01cf52c3ea33..edc4d97b4161 100644
+> --- a/drivers/media/v4l2-core/v4l2-ioctl.c
+> +++ b/drivers/media/v4l2-core/v4l2-ioctl.c
+> @@ -791,9 +791,8 @@ static void v4l_print_event(const void *arg, bool write_only)
+>  	const struct v4l2_event *p = arg;
+>  	const struct v4l2_event_ctrl *c;
+>  
+> -	pr_cont("type=0x%x, pending=%u, sequence=%u, id=%u, timestamp=%llu.%9.9llu\n",
+> -			p->type, p->pending, p->sequence, p->id,
+> -			p->timestamp.tv_sec, p->timestamp.tv_nsec);
+> +	pr_cont("type=0x%x, pending=%u, sequence=%u, id=%u, timestamp=%ptSp\n",
+> +		p->type, p->pending, p->sequence, p->id, &p->timestamp);
 
-Overall the series looks fine.
+Hmm, p->timestamp is a struct __kernel_timespec, but that's not quite the
+same thing as struct timespec64:
 
-Acked-by: Jani Nikula <jani.nikula@intel.com>
+struct __kernel_timespec {
+        __kernel_time64_t       tv_sec;                 /* seconds */
+        long long               tv_nsec;                /* nanoseconds */
+};
 
-since Suraj already did the detailed review.
+vs:
 
-One questions remains unanswered, and I guess I'll have to wait for
-follow-up to see the answer. I really *really* dislike how the i915
-variants are somewhat ambiguously atomic, i.e. atomic when slow timeout
-is 0, and the xe wrappers replicate that behaviour. xe_mmio_wait32() has
-atomic as parameter.
+struct timespec64 {
+        time64_t        tv_sec;                 /* seconds */
+        long            tv_nsec;                /* nanoseconds */
+};
 
-I would like the atomic variants to be explicit, and separate. Similar
-to poll_timeout_us() and poll_timeout_us_atomic(). You immediately know
-from the call whether you're doing the right thing or not. And that
-really should not directly depend on the timeout length. Since you plan
-on using the generic poll helpers, I presume this will propagate to the
-register polling helpers.
+So I'm not sure this will work.
 
-Since we do a lot of non-atomic millisecond waits, I guess it's worth
-having the _ms variants, although like I said before, I'd kind of like
-going for _us all over the place. But no big deal, in the end the _ms
-variants can be trivial wrappers on the non-atomic _us ones.
+Regards,
 
-BR,
-Jani.
+	Hans
 
->
-> Ville Syrj=C3=A4l=C3=A4 (16):
->   drm/i915/de: Implement register waits one way
->   drm/i915/de: Have intel_de_wait() hand out the final register value
->   drm/i915/de: Include units in intel_de_wait*() function names
->   drm/i915/de: Introduce intel_de_wait_us()
->   drm/i915/de: Use intel_de_wait_us()
->   drm/i915/de: Use intel_de_wait_ms() for the obvious cases
->   drm/i915/de: Nuke intel_de_wait_custom()
->   drm/i915/de: Introduce intel_de_wait_for_{set,clear}_us()
->   drm/i915/de: Use intel_de_wait_for_{set,clear}_us()
->   drm/i915/de: Use intel_de_wait_for_{set,clear}_ms()
->   drm/1915/dpio: Stop using intel_de_wait_fw_ms()
->   drm/u195/de: Replace __intel_de_rmw_nowl() with intel_de_rmw_fw()
->   drm/i915/de: Nuke wakelocks from intel_de_wait_fw_ms()
->   drm/i915/de: Replace __intel_de_wait_for_register_nowl() with
->     intel_de_wait_fw_us_atomic()
->   drm/i915/power: Use the intel_de_wait_ms() out value
->   drm/i915/dpio: Use the intel_de_wait_ms() out value
->
->  drivers/gpu/drm/i915/display/hsw_ips.c        |   4 +-
->  drivers/gpu/drm/i915/display/icl_dsi.c        |  35 +++---
->  drivers/gpu/drm/i915/display/intel_cdclk.c    |  30 +++--
->  drivers/gpu/drm/i915/display/intel_crt.c      |  16 +--
->  drivers/gpu/drm/i915/display/intel_cx0_phy.c  |  98 ++++++++--------
->  drivers/gpu/drm/i915/display/intel_ddi.c      |  34 +++---
->  drivers/gpu/drm/i915/display/intel_de.h       | 107 +++++++++---------
->  drivers/gpu/drm/i915/display/intel_display.c  |   4 +-
->  .../drm/i915/display/intel_display_power.c    |  14 +--
->  .../i915/display/intel_display_power_well.c   |  42 +++----
->  drivers/gpu/drm/i915/display/intel_dmc_wl.c   |  25 ++--
->  drivers/gpu/drm/i915/display/intel_dp_aux.c   |   6 +-
->  drivers/gpu/drm/i915/display/intel_dp_hdcp.c  |  14 +--
->  drivers/gpu/drm/i915/display/intel_dpio_phy.c |  10 +-
->  drivers/gpu/drm/i915/display/intel_dpll.c     |   4 +-
->  drivers/gpu/drm/i915/display/intel_dpll_mgr.c |  27 +++--
->  drivers/gpu/drm/i915/display/intel_fbc.c      |   4 +-
->  drivers/gpu/drm/i915/display/intel_flipq.c    |   8 +-
->  drivers/gpu/drm/i915/display/intel_gmbus.c    |   2 +-
->  drivers/gpu/drm/i915/display/intel_hdcp.c     |  49 ++++----
->  drivers/gpu/drm/i915/display/intel_hdmi.c     |   4 +-
->  drivers/gpu/drm/i915/display/intel_lt_phy.c   |  57 +++++-----
->  drivers/gpu/drm/i915/display/intel_lvds.c     |   6 +-
->  .../gpu/drm/i915/display/intel_pch_display.c  |  12 +-
->  .../gpu/drm/i915/display/intel_pch_refclk.c   |  10 +-
->  drivers/gpu/drm/i915/display/intel_pmdemand.c |  18 +--
->  drivers/gpu/drm/i915/display/intel_psr.c      |  10 +-
->  drivers/gpu/drm/i915/display/intel_sbi.c      |   6 +-
->  drivers/gpu/drm/i915/display/intel_snps_phy.c |   8 +-
->  drivers/gpu/drm/i915/display/intel_tc.c       |   8 +-
->  drivers/gpu/drm/i915/display/intel_vrr.c      |   6 +-
->  drivers/gpu/drm/i915/display/vlv_dsi.c        |  54 ++++-----
->  drivers/gpu/drm/i915/display/vlv_dsi_pll.c    |   8 +-
->  .../drm/xe/compat-i915-headers/intel_uncore.h |  31 ++---
->  34 files changed, 369 insertions(+), 402 deletions(-)
+>  	switch (p->type) {
+>  	case V4L2_EVENT_VSYNC:
+>  		printk(KERN_DEBUG "field=%s\n",
 
---=20
-Jani Nikula, Intel
