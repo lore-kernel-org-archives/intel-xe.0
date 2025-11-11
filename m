@@ -4,59 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2FACFCCF9E3
-	for <intel-xe@archiver.kernel.org>; Tue, 11 Nov 2025 07:39:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F32B0CCF9E3
+	for <intel-xe@archiver.kernel.org>; Tue, 11 Nov 2025 07:40:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E4AFA10E4F8;
-	Tue, 11 Nov 2025 07:39:20 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="O4oUGYnG";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9B83810E4F5;
- Tue, 11 Nov 2025 07:39:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1762846760; x=1794382760;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=Dz/71WuzknrAYPLrJArYMfAy5l8TTtBrOYXlp+0qQGo=;
- b=O4oUGYnGAKWI/R8Xng0E/q7zT+KvRyQXui4IOB4ORiAwPW+dsE57AP9l
- rXyX0HH90k9kjtIvsXsbVeQqbsQ2VlaYCYu2xOwsBzqRHRM3e1cPyr2o6
- P323hnjI8+vu6HM6kTUY1w5KSjqqy49FarYU61NVXsvULcNvm0vP+0d9p
- bgTQlGkKXG7q7zxj9812uw0rwp7A/1OUqy1uv5VCYzD6OxLT9f4AyZqiy
- vRRm6w6p1xb9nCjhCKQV1IHghtdqimV9XpFgWDKlEZ+/scs2KubKjaN5e
- 5CK1whBDyKhmHH2ihShuHCLRjzOiJST+YRVXum8ZjHlezXAGuqYG4RRM3 Q==;
-X-CSE-ConnectionGUID: v/vRGhgFSdqJoBRPvNNnoA==
-X-CSE-MsgGUID: MESU60dWTiiFHqeboyShrA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11609"; a="90374817"
-X-IronPort-AV: E=Sophos;i="6.19,296,1754982000"; d="scan'208";a="90374817"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Nov 2025 23:39:19 -0800
-X-CSE-ConnectionGUID: 1z49sreIRnG/j4pGBsbIhw==
-X-CSE-MsgGUID: aFwt1QBOTvGSKd5UItaAGA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,296,1754982000"; d="scan'208";a="188733594"
-Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.239])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Nov 2025 23:39:18 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 1/4] drm/{i915,xe}/display: move irq calls to parent
- interface
-In-Reply-To: <aRJLn_9QFUdbkvgV@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1762803004.git.jani.nikula@intel.com>
- <9196bbef7c56ae3f0cc06d96ba5caa7eedd21344.1762803004.git.jani.nikula@intel.com>
- <aRJLn_9QFUdbkvgV@intel.com>
-Date: Tue, 11 Nov 2025 09:39:15 +0200
-Message-ID: <ee5830da79fe36f4e638b008c0e23fa15fabacce@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id B95EE10E4F2;
+	Tue, 11 Nov 2025 07:40:14 +0000 (UTC)
+Received: from 10055242dc62 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A50C910E4F2;
+ Tue, 11 Nov 2025 07:40:13 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/=7Bi915=2C_xe=7D/irq?=
+ =?utf-8?q?=3A_clarify_display_and_parent_driver_interfaces_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 11 Nov 2025 07:40:13 -0000
+Message-ID: <176284681366.39852.4172825382936075976@10055242dc62>
+X-Patchwork-Hint: ignore
+References: <cover.1762846363.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1762846363.git.jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,37 +36,61 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 10 Nov 2025, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
-> wrote:
-> On Mon, Nov 10, 2025 at 09:31:36PM +0200, Jani Nikula wrote:
->> @@ -146,7 +145,7 @@ void ilk_update_display_irq(struct intel_display *di=
-splay,
->>  	new_val |=3D (~enabled_irq_mask & interrupt_mask);
->>=20=20
->>  	if (new_val !=3D display->irq.ilk_de_imr_mask &&
->> -	    !drm_WARN_ON(display->drm, !intel_irqs_enabled(dev_priv))) {
->> +	    !drm_WARN_ON(display->drm, !display->parent->irq->enabled(display-=
->drm))) {
->
-> Can't we keep intel_irqs_enabled()/etc. as wrapper functions instead of
-> open coding all that pointer chasing everywhere?
+== Series Details ==
 
-I opted for a compromise in v2, keeping the static wrappers inside
-intel_display_irq.c, the most common caller of the interface, and
-pointer chasing everywhere else.
+Series: drm/{i915, xe}/irq: clarify display and parent driver interfaces (rev2)
+URL   : https://patchwork.freedesktop.org/series/157350/
+State : warning
 
-I'm still a bit undecided how to deal with this in general. Currently
-intel_display_rpm.c wraps the calls for rpm. But should we have
-dedicated file(s) for the wrappers, with uniform naming conventions for
-both the files and the wrappers? And do they *all* need a wrapper, even
-when there's just one caller?
+== Summary ==
 
-BR,
-Jani.
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+d9120d4d84745cf011b4b3efb338747e69179dfb
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 4c9ce8e8ac6fa9f6168c88d7e8dc7c66eea007ea
+Author: Jani Nikula <jani.nikula@intel.com>
+Date:   Tue Nov 11 09:34:04 2025 +0200
+
+    drm/{i915, xe}/display: move irq calls to parent interface
+    
+    Add an irq parent driver interface for the .enabled and .synchronize
+    calls. This lets us drop the dependency on i915_drv.h and i915_irq.h in
+    multiple places, and subsequently remove the compat i915_irq.h and
+    i915_irq.c files along with the display/ext directory from xe
+    altogether.
+    
+    Use intel_irqs_enabled() and intel_synchronize_irq() static wrappers for
+    parent interface calls in intel_display_irq.c while chasing the function
+    pointers everywhere else. It's still a bit uncertain if we should
+    universally have wrappers for the parent interface calls or not.
+    
+    v2: Keep static wrappers in intel_display_irq.c (Ville)
+    
+    Signed-off-by: Jani Nikula <jani.nikula@intel.com>
++ /mt/dim checkpatch 4ce351022716985e9c1dd18583acd4d3d149cb5b drm-intel
+a5d8522d18e9 drm/{i915, xe}/display: duplicate gen2 irq/error init/reset in display irq
+-:59: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#59: FILE: drivers/gpu/drm/i915/display/intel_display_irq.c:61:
++	WARN(1,
++		 "Interrupt register 0x%x is not zero: 0x%08x\n",
+
+total: 0 errors, 0 warnings, 1 checks, 203 lines checked
+a7997a261b5e drm/i915/display: convert the display irq interfaces to struct intel_display
+4c9ce8e8ac6f drm/{i915, xe}/display: move irq calls to parent interface
+-:501: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#501: 
+deleted file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 439 lines checked
 
 
---=20
-Jani Nikula, Intel
