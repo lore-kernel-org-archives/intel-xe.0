@@ -4,56 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 487B2CCFA1A
-	for <intel-xe@archiver.kernel.org>; Tue, 11 Nov 2025 13:53:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 17B89CCFA1A
+	for <intel-xe@archiver.kernel.org>; Tue, 11 Nov 2025 14:12:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0A36210E07F;
-	Tue, 11 Nov 2025 13:53:07 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AZCUvUOt";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2B7B810E07F;
- Tue, 11 Nov 2025 13:53:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1762869186; x=1794405186;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=2qMc8CyGnsEEmklqgvb4wAoogxATbF9EnQOKBAEPpFo=;
- b=AZCUvUOtnf2/jSI9ojyLu7gya7bhONzzy1LOSGGrzqgtJ6hUCiikhRCr
- J/C1+zxtik3qj4KB21eRX8oh3S3Mm9uAu3OnWZKtxaubs1RgCqDJGUlVX
- +pznRhXNlIJCxlx4XU7qB4VZ2JP3ixjdupa9qZ4XDogJwtvi5puUnd7Bu
- G0hbXNcKcDFU68ZinQlLca17pvaALFM2D7hQDn5V2U0acuM2vRLEGgxh7
- L2hEVGdKah0AiN6pl71y+7T0CuhKYXfFUAGYHdoUnF3l3NsbxMRMJ5Tuq
- XO9fgrVjPT85Vpinj5SEzPiCkF0nSyqZ7P5MLjVzl0EDYas6L5u/7dt+l w==;
-X-CSE-ConnectionGUID: 6MS3WvSiSOKNzh6f47YC8w==
-X-CSE-MsgGUID: TnXgcwcnTTG4cTpko4U6hg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11609"; a="87560330"
-X-IronPort-AV: E=Sophos;i="6.19,296,1754982000"; d="scan'208";a="87560330"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Nov 2025 05:53:05 -0800
-X-CSE-ConnectionGUID: 7+mAbl1jTS61J3sg+/k14Q==
-X-CSE-MsgGUID: lZGsiLs5TOyvTnAtl2a/Tg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,296,1754982000"; d="scan'208";a="193220075"
-Received: from dibin-nuc7i7bnh.iind.intel.com ([10.190.239.19])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Nov 2025 05:53:03 -0800
-From: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: arun.r.murthy@intel.com,
-	jani.nikula@linux.intel.com
-Subject: [PATCH v2] drm/i915/fbdev: Hold runtime PM ref during fbdev BO
- creation
-Date: Tue, 11 Nov 2025 19:24:03 +0530
-Message-ID: <20251111135403.3415947-1-dibin.moolakadan.subrahmanian@intel.com>
-X-Mailer: git-send-email 2.43.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id BA36210E5D7;
+	Tue, 11 Nov 2025 14:12:45 +0000 (UTC)
+Received: from 10055242dc62 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1D38210E5EC;
+ Tue, 11 Nov 2025 14:12:45 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4445582938233122761=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/fbc=3A_Apply_wa=5F?=
+ =?utf-8?q?15018326506_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Vinod Govindapillai" <vinod.govindapillai@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 11 Nov 2025 14:12:45 -0000
+Message-ID: <176287036511.41437.6597164887547518409@10055242dc62>
+X-Patchwork-Hint: ignore
+References: <20251111124606.402380-1-vinod.govindapillai@intel.com>
+In-Reply-To: <20251111124606.402380-1-vinod.govindapillai@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,65 +36,125 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-During fbdev probe, the xe driver allocates and pins a framebuffer
-BO (via xe_bo_create_pin_map_novm() → xe_ggtt_insert_bo()).
+--===============4445582938233122761==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Without a runtime PM reference, xe_pm_runtime_get_noresume() warns about
-missing outer PM protection as below:
+== Series Details ==
 
-	xe 0000:03:00.0: [drm] Missing outer runtime PM protection
+Series: drm/i915/fbc: Apply wa_15018326506 (rev2)
+URL   : https://patchwork.freedesktop.org/series/157211/
+State : success
 
-Acquire a runtime PM reference before framebuffer allocation to ensure
-xe_ggtt_insert_bo()  executes  under active runtime PM context.
+== Summary ==
 
-Changes in v2:
- - Update commit message to add Fixes tag (Jani Nikula)
+CI Bug Log - changes from xe-4086-52764bea2cf028d285b0f4d86ee1ebfd4e196486_BAT -> xe-pw-157211v2_BAT
+====================================================
 
-Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/6350
-Fixes: 44e694958b95 ("drm/xe/display: Implement display support")
-Cc: Jani Nikula <jani.nikula@linux.intel.com>
-Signed-off-by: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
----
- drivers/gpu/drm/i915/display/intel_fbdev.c | 11 +++++++----
- 1 file changed, 7 insertions(+), 4 deletions(-)
+Summary
+-------
 
-diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/drm/i915/display/intel_fbdev.c
-index e5449c41cfa1..7173bd1cbffd 100644
---- a/drivers/gpu/drm/i915/display/intel_fbdev.c
-+++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
-@@ -288,13 +288,18 @@ int intel_fbdev_driver_fbdev_probe(struct drm_fb_helper *helper,
- 		drm_framebuffer_put(&fb->base);
- 		fb = NULL;
- 	}
-+
-+	wakeref = intel_display_rpm_get(display);
-+
- 	if (!fb || drm_WARN_ON(display->drm, !intel_fb_bo(&fb->base))) {
- 		drm_dbg_kms(display->drm,
- 			    "no BIOS fb, allocating a new one\n");
- 
- 		fb = __intel_fbdev_fb_alloc(display, sizes);
--		if (IS_ERR(fb))
--			return PTR_ERR(fb);
-+		if (IS_ERR(fb)) {
-+			ret = PTR_ERR(fb);
-+			goto out_unlock;
-+		}
- 	} else {
- 		drm_dbg_kms(display->drm, "re-using BIOS fb\n");
- 		prealloc = true;
-@@ -302,8 +307,6 @@ int intel_fbdev_driver_fbdev_probe(struct drm_fb_helper *helper,
- 		sizes->fb_height = fb->base.height;
- 	}
- 
--	wakeref = intel_display_rpm_get(display);
--
- 	/* Pin the GGTT vma for our access via info->screen_base.
- 	 * This also validates that any existing fb inherited from the
- 	 * BIOS is suitable for own access.
--- 
-2.43.0
+  **SUCCESS**
 
+  No regressions found.
+
+  
+
+Participating hosts (13 -> 13)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-157211v2_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@xe_waitfence@reltime:
+    - bat-pvc-2:          [FAIL][1] ([Intel XE#6520]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4086-52764bea2cf028d285b0f4d86ee1ebfd4e196486/bat-pvc-2/igt@xe_waitfence@reltime.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157211v2/bat-pvc-2/igt@xe_waitfence@reltime.html
+
+  
+  [Intel XE#6520]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520
+
+
+Build changes
+-------------
+
+  * Linux: xe-4086-52764bea2cf028d285b0f4d86ee1ebfd4e196486 -> xe-pw-157211v2
+
+  IGT_8620: 8620
+  xe-4086-52764bea2cf028d285b0f4d86ee1ebfd4e196486: 52764bea2cf028d285b0f4d86ee1ebfd4e196486
+  xe-pw-157211v2: 157211v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157211v2/index.html
+
+--===============4445582938233122761==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/fbc: Apply wa_15018326506 (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/157211/">https://patchwork.freedesktop.org/series/157211/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157211v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157211v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4086-52764bea2cf028d285b0f4d86ee1ebfd4e196486_BAT -&gt; xe-pw-157211v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-157211v2_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_waitfence@reltime:<ul>
+<li>bat-pvc-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4086-52764bea2cf028d285b0f4d86ee1ebfd4e196486/bat-pvc-2/igt@xe_waitfence@reltime.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520">Intel XE#6520</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157211v2/bat-pvc-2/igt@xe_waitfence@reltime.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4086-52764bea2cf028d285b0f4d86ee1ebfd4e196486 -&gt; xe-pw-157211v2</li>
+</ul>
+<p>IGT_8620: 8620<br />
+  xe-4086-52764bea2cf028d285b0f4d86ee1ebfd4e196486: 52764bea2cf028d285b0f4d86ee1ebfd4e196486<br />
+  xe-pw-157211v2: 157211v2</p>
+
+</body>
+</html>
+
+--===============4445582938233122761==--
