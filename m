@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 39352CCFA18
-	for <intel-xe@archiver.kernel.org>; Tue, 11 Nov 2025 15:41:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 21283CCFA1A
+	for <intel-xe@archiver.kernel.org>; Tue, 11 Nov 2025 15:46:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0127B10E5F3;
-	Tue, 11 Nov 2025 15:41:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D6E9810E5F3;
+	Tue, 11 Nov 2025 15:46:23 +0000 (UTC)
 Received: from 10055242dc62 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BC51610E5F3;
- Tue, 11 Nov 2025 15:41:29 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2631682638700750485=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 81F4C10E343;
+ Tue, 11 Nov 2025 15:46:23 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/fbdev=3A_Hold_runt?=
- =?utf-8?q?ime_PM_ref_during_fbdev_BO_creation_=28rev2=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_mtd=3A_intel-dg=3A_Fix_ac?=
+ =?utf-8?q?cessing_regions_before_setting_nregions?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Dibin Moolakadan Subrahmanian" <dibin.moolakadan.subrahmanian@intel.com>
+To: "Lucas De Marchi" <lucas.demarchi@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 11 Nov 2025 15:41:29 -0000
-Message-ID: <176287568975.42606.10520643678689410818@10055242dc62>
+Date: Tue, 11 Nov 2025 15:46:23 -0000
+Message-ID: <176287598352.42606.9098963422879312332@10055242dc62>
 X-Patchwork-Hint: ignore
-References: <20251111135403.3415947-1-dibin.moolakadan.subrahmanian@intel.com>
-In-Reply-To: <20251111135403.3415947-1-dibin.moolakadan.subrahmanian@intel.com>
+References: <20251111-mtd-nregions-v1-1-61db61e78c63@intel.com>
+In-Reply-To: <20251111-mtd-nregions-v1-1-61db61e78c63@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,151 +40,49 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============2631682638700750485==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/i915/fbdev: Hold runtime PM ref during fbdev BO creation (rev2)
-URL   : https://patchwork.freedesktop.org/series/157148/
-State : success
+Series: mtd: intel-dg: Fix accessing regions before setting nregions
+URL   : https://patchwork.freedesktop.org/series/157392/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-4086-52764bea2cf028d285b0f4d86ee1ebfd4e196486_BAT -> xe-pw-157148v2_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+d9120d4d84745cf011b4b3efb338747e69179dfb
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 7b674888ea77b0b871c58f4e278b21373712dd52
+Author: Lucas De Marchi <lucas.demarchi@intel.com>
+Date:   Tue Nov 11 07:28:25 2025 -0800
 
-Summary
--------
+    mtd: intel-dg: Fix accessing regions before setting nregions
+    
+    The regions array is counted by nregions, but it's set only after
+    accessing it:
+    
+            [] UBSAN: array-index-out-of-bounds in drivers/mtd/devices/mtd_intel_dg.c:750:15
+            [] index 0 is out of range for type '<unknown> [*]'
+    
+    Fix it by also fixing an undesired behavior: the loop silently ignores
+    ENOMEM and continues setting the other entries.
+    
+    Cc: Alexander Usyskin <alexander.usyskin@intel.com>
+    Reported-by: Jani Partanen <jiipee@sotapeli.fi>
+    Closes: https://lore.kernel.org/all/caca6c67-4f1d-49f1-948f-e63b6b937b29@sotapeli.fi
+    Fixes: ceb5ab3cb646 ("mtd: add driver for intel graphics non-volatile memory device")
+    Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
++ /mt/dim checkpatch 52764bea2cf028d285b0f4d86ee1ebfd4e196486 drm-intel
+7b674888ea77 mtd: intel-dg: Fix accessing regions before setting nregions
+-:9: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#9: 
+	[] UBSAN: array-index-out-of-bounds in drivers/mtd/devices/mtd_intel_dg.c:750:15
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (13 -> 13)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-157148v2_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_waitfence@abstime:
-    - bat-dg2-oem2:       [PASS][1] -> [TIMEOUT][2] ([Intel XE#6506])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4086-52764bea2cf028d285b0f4d86ee1ebfd4e196486/bat-dg2-oem2/igt@xe_waitfence@abstime.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157148v2/bat-dg2-oem2/igt@xe_waitfence@abstime.html
-
-  * igt@xe_waitfence@engine:
-    - bat-dg2-oem2:       [PASS][3] -> [FAIL][4] ([Intel XE#6519])
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4086-52764bea2cf028d285b0f4d86ee1ebfd4e196486/bat-dg2-oem2/igt@xe_waitfence@engine.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157148v2/bat-dg2-oem2/igt@xe_waitfence@engine.html
-
-  
-#### Possible fixes ####
-
-  * igt@xe_waitfence@reltime:
-    - bat-pvc-2:          [FAIL][5] ([Intel XE#6520]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4086-52764bea2cf028d285b0f4d86ee1ebfd4e196486/bat-pvc-2/igt@xe_waitfence@reltime.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157148v2/bat-pvc-2/igt@xe_waitfence@reltime.html
-
-  
-  [Intel XE#6506]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506
-  [Intel XE#6519]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519
-  [Intel XE#6520]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520
+total: 0 errors, 1 warnings, 0 checks, 25 lines checked
 
 
-Build changes
--------------
-
-  * Linux: xe-4086-52764bea2cf028d285b0f4d86ee1ebfd4e196486 -> xe-pw-157148v2
-
-  IGT_8620: 8620
-  xe-4086-52764bea2cf028d285b0f4d86ee1ebfd4e196486: 52764bea2cf028d285b0f4d86ee1ebfd4e196486
-  xe-pw-157148v2: 157148v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157148v2/index.html
-
---===============2631682638700750485==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/fbdev: Hold runtime PM ref during fbdev BO creation (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/157148/">https://patchwork.freedesktop.org/series/157148/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157148v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157148v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4086-52764bea2cf028d285b0f4d86ee1ebfd4e196486_BAT -&gt; xe-pw-157148v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-157148v2_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@xe_waitfence@abstime:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4086-52764bea2cf028d285b0f4d86ee1ebfd4e196486/bat-dg2-oem2/igt@xe_waitfence@abstime.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157148v2/bat-dg2-oem2/igt@xe_waitfence@abstime.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506">Intel XE#6506</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_waitfence@engine:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4086-52764bea2cf028d285b0f4d86ee1ebfd4e196486/bat-dg2-oem2/igt@xe_waitfence@engine.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157148v2/bat-dg2-oem2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519">Intel XE#6519</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_waitfence@reltime:<ul>
-<li>bat-pvc-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4086-52764bea2cf028d285b0f4d86ee1ebfd4e196486/bat-pvc-2/igt@xe_waitfence@reltime.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520">Intel XE#6520</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157148v2/bat-pvc-2/igt@xe_waitfence@reltime.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4086-52764bea2cf028d285b0f4d86ee1ebfd4e196486 -&gt; xe-pw-157148v2</li>
-</ul>
-<p>IGT_8620: 8620<br />
-  xe-4086-52764bea2cf028d285b0f4d86ee1ebfd4e196486: 52764bea2cf028d285b0f4d86ee1ebfd4e196486<br />
-  xe-pw-157148v2: 157148v2</p>
-
-</body>
-</html>
-
---===============2631682638700750485==--
