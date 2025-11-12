@@ -4,53 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8812ACD3438
-	for <intel-xe@archiver.kernel.org>; Wed, 12 Nov 2025 18:57:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 97AF7CD343F
+	for <intel-xe@archiver.kernel.org>; Wed, 12 Nov 2025 18:57:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 45AAE10E1C7;
-	Wed, 12 Nov 2025 18:57:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 59A4710E1CB;
+	Wed, 12 Nov 2025 18:57:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AB0icwqA";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="d1xbt2Pt";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D889F10E1C7
- for <intel-xe@lists.freedesktop.org>; Wed, 12 Nov 2025 18:57:20 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 437FD10E1CB
+ for <intel-xe@lists.freedesktop.org>; Wed, 12 Nov 2025 18:57:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1762973841; x=1794509841;
+ t=1762973844; x=1794509844;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=u550tqZZxekkFxHlgHaSn2ZsWTynIREs0w4CpGod4WE=;
- b=AB0icwqAghzU+mBgS7ijc5Oh9b0M7PBX6Ak3PFusxgInJpFUMw2wlKFQ
- pXMWQeQNNsjxvnW6f/aY7wrNoUaRa9dBMoN/QgORXsbflSi+poR5zCL+c
- 9JN6g+6se/to7F/1ZoBA6jiDIsAPU1aKwmJ4rF+7JmwnM54si/KJzhXyC
- YyTyjSRWHJ7BdCE++SFN/A00v8suWJQ3egr+4Hw4/jYIi0qR5AIsaUtHL
- 6TqfmmplNNSpAuAOD3sC1db0a9gAfmQ3XiUlHGEWcSEsyfsz0Ectq2FEk
- czpEu+FVPDzdMoHyup7pPDG1u5/qnYz5rGAvuJjIIkC21V7lgVDX3JWtH g==;
-X-CSE-ConnectionGUID: hiUVZnjfTLKHrf6PH/xlLQ==
-X-CSE-MsgGUID: JTrvvBY2QZeoBJaa9hJQ8A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11611"; a="65084772"
-X-IronPort-AV: E=Sophos;i="6.19,300,1754982000"; d="scan'208";a="65084772"
+ bh=7uz1mCMTca+q9HDdkpQo/np+CO4xXbRyb70VJMxzJB0=;
+ b=d1xbt2PtO/MQbTAAF1M+45X88QI8PGXUDZhhic5YmjxVZ8vGPnqtBKKs
+ KH1NZZf6wCyrZpsbsO7NvpXGmRyNdxTPOuSMJirVMCotT3J4KFWVtjC1t
+ 24D/LpqFFgPZ6UnyrQO4pTJ2jGXKOLMVC+jev8XC/Obv5/JmAp+PVWTHs
+ LkSY4CvDJeEjajw2AEeIbLkKw5VKlcdrwAImy8nMD4d1EjqsmFn3tzPfe
+ J3zY/C76UlVMxQLggLvej+rkPjd9w6dCKtPMO6JQ+pR36tA3kthCKKmE/
+ Hj68Z7bm+gC7Y9/sl82P0X02pq7qlpSTZn839NGLJWslDH40YQufcktnK w==;
+X-CSE-ConnectionGUID: EL7HW8RpT5u9cT63M57tzA==
+X-CSE-MsgGUID: oi1RjoFcS3aOP2cOcKThRQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11611"; a="65084780"
+X-IronPort-AV: E=Sophos;i="6.19,300,1754982000"; d="scan'208";a="65084780"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Nov 2025 10:57:20 -0800
-X-CSE-ConnectionGUID: oR4incVmTX+lLwCStHAQ2Q==
-X-CSE-MsgGUID: 4jA25A2/QiSt+esS/o0BvQ==
+ 12 Nov 2025 10:57:24 -0800
+X-CSE-ConnectionGUID: CU8OV2GOQWm1qLCdoCJ+Hw==
+X-CSE-MsgGUID: 8yqLHYrkSFqOEaXKp/oCWg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,300,1754982000"; d="scan'208";a="194487656"
+X-IronPort-AV: E=Sophos;i="6.19,300,1754982000"; d="scan'208";a="194487669"
 Received: from anirban-z690i-a-ultra-plus.iind.intel.com ([10.190.216.83])
  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Nov 2025 10:57:18 -0800
+ 12 Nov 2025 10:57:21 -0800
 From: Sk Anirban <sk.anirban@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: anshuman.gupta@intel.com, badal.nilawar@intel.com, riana.tauro@intel.com,
  karthik.poosa@intel.com, raag.jadav@intel.com, soham.purkait@intel.com,
  mallesh.koujalagi@intel.com, vinay.belgaumkar@intel.com,
  rodrigo.vivi@intel.com, Sk Anirban <sk.anirban@intel.com>
-Subject: [PATCH v6 1/2] drm/xe/guc: Eliminate RPe caching for SLPC parameter
- handling
-Date: Thu, 13 Nov 2025 00:21:55 +0530
-Message-ID: <20251112185153.3593145-5-sk.anirban@intel.com>
+Subject: [PATCH v6 2/2] drm/xe/guc: Eliminate RPa frequency caching
+Date: Thu, 13 Nov 2025 00:21:56 +0530
+Message-ID: <20251112185153.3593145-6-sk.anirban@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20251112185153.3593145-4-sk.anirban@intel.com>
 References: <20251112185153.3593145-4-sk.anirban@intel.com>
@@ -70,168 +69,139 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-RPe is runtime-determined by PCODE and caching it caused stale values,
-leading to incorrect GuC SLPC parameter settings.
-Drop the cached rpe_freq field and query fresh values from hardware
-on each use to ensure GuC SLPC parameters reflect current RPe.
+Remove the cached pc->rpa_freq field and refactor RPA frequency handling
+to fetch values directly from hardware registers on each request.
 
-v2: Remove cached RPe frequency field (Rodrigo)
-v3: Remove extra variable (Vinay)
-    Modify function name (Vinay)
-v4: Maintain a separate function for PVC (Rodrigo)
-v5: Avoid RPn update while fetching RPe frequency (Rodrigo)
-v6: Split platform-specific RPe comments (Vinay)
+v2: Check graphics version instead of platform (Rodrigo)
+v3: Fix graphics version check (Badal)
 
-Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/5166
+Suggested-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Suggested-by: Badal Nilawar <badal.nilawar@intel.com>
 Signed-off-by: Sk Anirban <sk.anirban@intel.com>
-Reviewed-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc_pc.c       | 61 +++++++++++++++-------------
+ drivers/gpu/drm/xe/xe_guc_pc.c       | 55 +++++++++++++---------------
  drivers/gpu/drm/xe/xe_guc_pc_types.h |  2 -
- 2 files changed, 32 insertions(+), 31 deletions(-)
+ 2 files changed, 26 insertions(+), 31 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_pc.c
-index ff22235857f8..4c48115f1795 100644
+index 4c48115f1795..951a49fb1d3e 100644
 --- a/drivers/gpu/drm/xe/xe_guc_pc.c
 +++ b/drivers/gpu/drm/xe/xe_guc_pc.c
-@@ -331,7 +331,7 @@ static int pc_set_min_freq(struct xe_guc_pc *pc, u32 freq)
- 	 * Our goal is to have the admin choices respected.
- 	 */
- 	pc_action_set_param(pc, SLPC_PARAM_IGNORE_EFFICIENT_FREQUENCY,
--			    freq < pc->rpe_freq);
-+			    freq < xe_guc_pc_get_rpe_freq(pc));
- 
- 	return pc_action_set_param(pc,
- 				   SLPC_PARAM_GLOBAL_MIN_GT_UNSLICE_FREQ_MHZ,
-@@ -376,7 +376,7 @@ static void mtl_update_rpa_value(struct xe_guc_pc *pc)
- 	pc->rpa_freq = decode_freq(REG_FIELD_GET(MTL_RPA_MASK, reg));
+@@ -363,7 +363,7 @@ static int pc_set_max_freq(struct xe_guc_pc *pc, u32 freq)
+ 				   freq);
  }
  
--static void mtl_update_rpe_value(struct xe_guc_pc *pc)
-+static u32 mtl_get_rpe_freq(struct xe_guc_pc *pc)
+-static void mtl_update_rpa_value(struct xe_guc_pc *pc)
++static u32 mtl_get_rpa_freq(struct xe_guc_pc *pc)
  {
  	struct xe_gt *gt = pc_to_gt(pc);
  	u32 reg;
-@@ -386,7 +386,7 @@ static void mtl_update_rpe_value(struct xe_guc_pc *pc)
+@@ -373,7 +373,7 @@ static void mtl_update_rpa_value(struct xe_guc_pc *pc)
  	else
- 		reg = xe_mmio_read32(&gt->mmio, MTL_GT_RPE_FREQUENCY);
+ 		reg = xe_mmio_read32(&gt->mmio, MTL_GT_RPA_FREQUENCY);
  
--	pc->rpe_freq = decode_freq(REG_FIELD_GET(MTL_RPE_MASK, reg));
-+	return decode_freq(REG_FIELD_GET(MTL_RPE_MASK, reg));
+-	pc->rpa_freq = decode_freq(REG_FIELD_GET(MTL_RPA_MASK, reg));
++	return decode_freq(REG_FIELD_GET(MTL_RPA_MASK, reg));
  }
  
- static void tgl_update_rpa_value(struct xe_guc_pc *pc)
-@@ -409,24 +409,29 @@ static void tgl_update_rpa_value(struct xe_guc_pc *pc)
- 	}
+ static u32 mtl_get_rpe_freq(struct xe_guc_pc *pc)
+@@ -389,24 +389,28 @@ static u32 mtl_get_rpe_freq(struct xe_guc_pc *pc)
+ 	return decode_freq(REG_FIELD_GET(MTL_RPE_MASK, reg));
  }
  
--static void tgl_update_rpe_value(struct xe_guc_pc *pc)
-+static u32 pvc_get_rpe_freq(struct xe_guc_pc *pc)
+-static void tgl_update_rpa_value(struct xe_guc_pc *pc)
++static u32 pvc_get_rpa_freq(struct xe_guc_pc *pc)
  {
- 	struct xe_gt *gt = pc_to_gt(pc);
+-	struct xe_gt *gt = pc_to_gt(pc);
 -	struct xe_device *xe = gt_to_xe(gt);
- 	u32 reg;
- 
+-	u32 reg;
+-
  	/*
- 	 * For PVC we still need to use fused RP1 as the approximation for RPe
--	 * For other platforms than PVC we get the resolved RPe directly from
-+	 */
-+	reg = xe_mmio_read32(&gt->mmio, PVC_RP_STATE_CAP);
-+	return REG_FIELD_GET(RP1_MASK, reg) * GT_FREQUENCY_MULTIPLIER;
-+}
-+
-+static u32 tgl_get_rpe_freq(struct xe_guc_pc *pc)
-+{
-+	struct xe_gt *gt = pc_to_gt(pc);
-+	u32 reg;
-+
-+	/*
-+	 * For other platforms than PVC, we get the resolved RPe directly from
+ 	 * For PVC we still need to use fused RP0 as the approximation for RPa
+ 	 * For other platforms than PVC we get the resolved RPa directly from
  	 * PCODE at a different register
  	 */
 -	if (xe->info.platform == XE_PVC) {
 -		reg = xe_mmio_read32(&gt->mmio, PVC_RP_STATE_CAP);
--		pc->rpe_freq = REG_FIELD_GET(RP1_MASK, reg) * GT_FREQUENCY_MULTIPLIER;
+-		pc->rpa_freq = REG_FIELD_GET(RP0_MASK, reg) * GT_FREQUENCY_MULTIPLIER;
 -	} else {
 -		reg = xe_mmio_read32(&gt->mmio, FREQ_INFO_REC);
--		pc->rpe_freq = REG_FIELD_GET(RPE_MASK, reg) * GT_FREQUENCY_MULTIPLIER;
+-		pc->rpa_freq = REG_FIELD_GET(RPA_MASK, reg) * GT_FREQUENCY_MULTIPLIER;
 -	}
++
++	struct xe_gt *gt = pc_to_gt(pc);
++	u32 reg;
++
++	reg = xe_mmio_read32(&gt->mmio, PVC_RP_STATE_CAP);
++	return REG_FIELD_GET(RP0_MASK, reg) * GT_FREQUENCY_MULTIPLIER;
++}
++
++static u32 tgl_get_rpa_freq(struct xe_guc_pc *pc)
++{
++	struct xe_gt *gt = pc_to_gt(pc);
++	u32 reg;
++
 +	reg = xe_mmio_read32(&gt->mmio, FREQ_INFO_REC);
-+	return REG_FIELD_GET(RPE_MASK, reg) * GT_FREQUENCY_MULTIPLIER;
++	return REG_FIELD_GET(RPA_MASK, reg) * GT_FREQUENCY_MULTIPLIER;
  }
  
- static void pc_update_rp_values(struct xe_guc_pc *pc)
-@@ -434,20 +439,10 @@ static void pc_update_rp_values(struct xe_guc_pc *pc)
- 	struct xe_gt *gt = pc_to_gt(pc);
- 	struct xe_device *xe = gt_to_xe(gt);
+ static u32 pvc_get_rpe_freq(struct xe_guc_pc *pc)
+@@ -434,17 +438,6 @@ static u32 tgl_get_rpe_freq(struct xe_guc_pc *pc)
+ 	return REG_FIELD_GET(RPE_MASK, reg) * GT_FREQUENCY_MULTIPLIER;
+ }
  
--	if (GRAPHICS_VERx100(xe) >= 1270) {
-+	if (GRAPHICS_VERx100(xe) >= 1270)
- 		mtl_update_rpa_value(pc);
--		mtl_update_rpe_value(pc);
--	} else {
-+	else
- 		tgl_update_rpa_value(pc);
--		tgl_update_rpe_value(pc);
--	}
+-static void pc_update_rp_values(struct xe_guc_pc *pc)
+-{
+-	struct xe_gt *gt = pc_to_gt(pc);
+-	struct xe_device *xe = gt_to_xe(gt);
 -
--	/*
--	 * RPe is decided at runtime by PCODE. In the rare case where that's
--	 * smaller than the fused min, we will trust the PCODE and use that
--	 * as our minimum one.
--	 */
--	pc->rpn_freq = min(pc->rpn_freq, pc->rpe_freq);
- }
- 
+-	if (GRAPHICS_VERx100(xe) >= 1270)
+-		mtl_update_rpa_value(pc);
+-	else
+-		tgl_update_rpa_value(pc);
+-}
+-
  /**
-@@ -561,9 +556,17 @@ u32 xe_guc_pc_get_rpa_freq(struct xe_guc_pc *pc)
+  * xe_guc_pc_get_act_freq - Get Actual running frequency
+  * @pc: The GuC PC
+@@ -543,9 +536,15 @@ u32 xe_guc_pc_get_rp0_freq(struct xe_guc_pc *pc)
   */
- u32 xe_guc_pc_get_rpe_freq(struct xe_guc_pc *pc)
+ u32 xe_guc_pc_get_rpa_freq(struct xe_guc_pc *pc)
  {
 -	pc_update_rp_values(pc);
-+	struct xe_device *xe = pc_to_xe(pc);
-+	u32 freq;
++	struct xe_gt *gt = pc_to_gt(pc);
++	struct xe_device *xe = gt_to_xe(gt);
  
--	return pc->rpe_freq;
+-	return pc->rpa_freq;
 +	if (GRAPHICS_VERx100(xe) == 1260)
-+		freq = pvc_get_rpe_freq(pc);
++		return pvc_get_rpa_freq(pc);
 +	else if (GRAPHICS_VERx100(xe) >= 1270)
-+		freq = mtl_get_rpe_freq(pc);
++		return mtl_get_rpa_freq(pc);
 +	else
-+		freq = tgl_get_rpe_freq(pc);
-+
-+	return freq;
++		return tgl_get_rpa_freq(pc);
  }
  
  /**
-@@ -1022,7 +1025,7 @@ static int pc_set_mert_freq_cap(struct xe_guc_pc *pc)
+@@ -1136,8 +1135,6 @@ static int pc_init_freqs(struct xe_guc_pc *pc)
+ 	if (ret)
+ 		goto out;
+ 
+-	pc_update_rp_values(pc);
+-
+ 	pc_init_pcode_freq(pc);
+ 
  	/*
- 	 * Ensure min and max are bound by MERT_FREQ_CAP until driver loads.
- 	 */
--	ret = pc_set_min_freq(pc, min(pc->rpe_freq, pc_max_freq_cap(pc)));
-+	ret = pc_set_min_freq(pc, min(xe_guc_pc_get_rpe_freq(pc), pc_max_freq_cap(pc)));
- 	if (!ret)
- 		ret = pc_set_max_freq(pc, min(pc->rp0_freq, pc_max_freq_cap(pc)));
- 
-@@ -1340,7 +1343,7 @@ static void xe_guc_pc_fini_hw(void *arg)
- 	XE_WARN_ON(xe_guc_pc_stop(pc));
- 
- 	/* Bind requested freq to mert_freq_cap before unload */
--	pc_set_cur_freq(pc, min(pc_max_freq_cap(pc), pc->rpe_freq));
-+	pc_set_cur_freq(pc, min(pc_max_freq_cap(pc), xe_guc_pc_get_rpe_freq(pc)));
- 
- 	xe_force_wake_put(gt_to_fw(pc_to_gt(pc)), fw_ref);
- }
 diff --git a/drivers/gpu/drm/xe/xe_guc_pc_types.h b/drivers/gpu/drm/xe/xe_guc_pc_types.h
-index 5e4ea53fbee6..f27c05d81706 100644
+index f27c05d81706..711bbcdcb0d3 100644
 --- a/drivers/gpu/drm/xe/xe_guc_pc_types.h
 +++ b/drivers/gpu/drm/xe/xe_guc_pc_types.h
-@@ -21,8 +21,6 @@ struct xe_guc_pc {
+@@ -19,8 +19,6 @@ struct xe_guc_pc {
+ 	atomic_t flush_freq_limit;
+ 	/** @rp0_freq: HW RP0 frequency - The Maximum one */
  	u32 rp0_freq;
- 	/** @rpa_freq: HW RPa frequency - The Achievable one */
- 	u32 rpa_freq;
--	/** @rpe_freq: HW RPe frequency - The Efficient one */
--	u32 rpe_freq;
+-	/** @rpa_freq: HW RPa frequency - The Achievable one */
+-	u32 rpa_freq;
  	/** @rpn_freq: HW RPN frequency - The Minimum one */
  	u32 rpn_freq;
  	/** @user_requested_min: Stash the minimum requested freq by user */
