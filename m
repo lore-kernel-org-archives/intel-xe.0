@@ -4,57 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 97AF7CD343F
-	for <intel-xe@archiver.kernel.org>; Wed, 12 Nov 2025 18:57:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D654CCCFA1E
+	for <intel-xe@archiver.kernel.org>; Wed, 12 Nov 2025 19:01:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 59A4710E1CB;
-	Wed, 12 Nov 2025 18:57:26 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="d1xbt2Pt";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 437FD10E1CB
- for <intel-xe@lists.freedesktop.org>; Wed, 12 Nov 2025 18:57:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1762973844; x=1794509844;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=7uz1mCMTca+q9HDdkpQo/np+CO4xXbRyb70VJMxzJB0=;
- b=d1xbt2PtO/MQbTAAF1M+45X88QI8PGXUDZhhic5YmjxVZ8vGPnqtBKKs
- KH1NZZf6wCyrZpsbsO7NvpXGmRyNdxTPOuSMJirVMCotT3J4KFWVtjC1t
- 24D/LpqFFgPZ6UnyrQO4pTJ2jGXKOLMVC+jev8XC/Obv5/JmAp+PVWTHs
- LkSY4CvDJeEjajw2AEeIbLkKw5VKlcdrwAImy8nMD4d1EjqsmFn3tzPfe
- J3zY/C76UlVMxQLggLvej+rkPjd9w6dCKtPMO6JQ+pR36tA3kthCKKmE/
- Hj68Z7bm+gC7Y9/sl82P0X02pq7qlpSTZn839NGLJWslDH40YQufcktnK w==;
-X-CSE-ConnectionGUID: EL7HW8RpT5u9cT63M57tzA==
-X-CSE-MsgGUID: oi1RjoFcS3aOP2cOcKThRQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11611"; a="65084780"
-X-IronPort-AV: E=Sophos;i="6.19,300,1754982000"; d="scan'208";a="65084780"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Nov 2025 10:57:24 -0800
-X-CSE-ConnectionGUID: CU8OV2GOQWm1qLCdoCJ+Hw==
-X-CSE-MsgGUID: 8yqLHYrkSFqOEaXKp/oCWg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,300,1754982000"; d="scan'208";a="194487669"
-Received: from anirban-z690i-a-ultra-plus.iind.intel.com ([10.190.216.83])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Nov 2025 10:57:21 -0800
-From: Sk Anirban <sk.anirban@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: anshuman.gupta@intel.com, badal.nilawar@intel.com, riana.tauro@intel.com,
- karthik.poosa@intel.com, raag.jadav@intel.com, soham.purkait@intel.com,
- mallesh.koujalagi@intel.com, vinay.belgaumkar@intel.com,
- rodrigo.vivi@intel.com, Sk Anirban <sk.anirban@intel.com>
-Subject: [PATCH v6 2/2] drm/xe/guc: Eliminate RPa frequency caching
-Date: Thu, 13 Nov 2025 00:21:56 +0530
-Message-ID: <20251112185153.3593145-6-sk.anirban@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20251112185153.3593145-4-sk.anirban@intel.com>
-References: <20251112185153.3593145-4-sk.anirban@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9CD1410E1C7;
+	Wed, 12 Nov 2025 19:01:28 +0000 (UTC)
+Received: from 10055242dc62 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E62E910E1C7;
+ Wed, 12 Nov 2025 19:01:26 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5289514187702804855=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Prevent_BIT=28=29?=
+ =?utf-8?q?_overflow_when_handling_invalid_prefetch_region_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Shuicheng Lin" <shuicheng.lin@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 12 Nov 2025 19:01:26 -0000
+Message-ID: <176297408693.46943.4119902564492054618@10055242dc62>
+X-Patchwork-Hint: ignore
+References: <20251112181005.2120521-2-shuicheng.lin@intel.com>
+In-Reply-To: <20251112181005.2120521-2-shuicheng.lin@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,145 +36,125 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Remove the cached pc->rpa_freq field and refactor RPA frequency handling
-to fetch values directly from hardware registers on each request.
+--===============5289514187702804855==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-v2: Check graphics version instead of platform (Rodrigo)
-v3: Fix graphics version check (Badal)
+== Series Details ==
 
-Suggested-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Suggested-by: Badal Nilawar <badal.nilawar@intel.com>
-Signed-off-by: Sk Anirban <sk.anirban@intel.com>
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
----
- drivers/gpu/drm/xe/xe_guc_pc.c       | 55 +++++++++++++---------------
- drivers/gpu/drm/xe/xe_guc_pc_types.h |  2 -
- 2 files changed, 26 insertions(+), 31 deletions(-)
+Series: drm/xe: Prevent BIT() overflow when handling invalid prefetch region (rev2)
+URL   : https://patchwork.freedesktop.org/series/157406/
+State : success
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_pc.c
-index 4c48115f1795..951a49fb1d3e 100644
---- a/drivers/gpu/drm/xe/xe_guc_pc.c
-+++ b/drivers/gpu/drm/xe/xe_guc_pc.c
-@@ -363,7 +363,7 @@ static int pc_set_max_freq(struct xe_guc_pc *pc, u32 freq)
- 				   freq);
- }
- 
--static void mtl_update_rpa_value(struct xe_guc_pc *pc)
-+static u32 mtl_get_rpa_freq(struct xe_guc_pc *pc)
- {
- 	struct xe_gt *gt = pc_to_gt(pc);
- 	u32 reg;
-@@ -373,7 +373,7 @@ static void mtl_update_rpa_value(struct xe_guc_pc *pc)
- 	else
- 		reg = xe_mmio_read32(&gt->mmio, MTL_GT_RPA_FREQUENCY);
- 
--	pc->rpa_freq = decode_freq(REG_FIELD_GET(MTL_RPA_MASK, reg));
-+	return decode_freq(REG_FIELD_GET(MTL_RPA_MASK, reg));
- }
- 
- static u32 mtl_get_rpe_freq(struct xe_guc_pc *pc)
-@@ -389,24 +389,28 @@ static u32 mtl_get_rpe_freq(struct xe_guc_pc *pc)
- 	return decode_freq(REG_FIELD_GET(MTL_RPE_MASK, reg));
- }
- 
--static void tgl_update_rpa_value(struct xe_guc_pc *pc)
-+static u32 pvc_get_rpa_freq(struct xe_guc_pc *pc)
- {
--	struct xe_gt *gt = pc_to_gt(pc);
--	struct xe_device *xe = gt_to_xe(gt);
--	u32 reg;
--
- 	/*
- 	 * For PVC we still need to use fused RP0 as the approximation for RPa
- 	 * For other platforms than PVC we get the resolved RPa directly from
- 	 * PCODE at a different register
- 	 */
--	if (xe->info.platform == XE_PVC) {
--		reg = xe_mmio_read32(&gt->mmio, PVC_RP_STATE_CAP);
--		pc->rpa_freq = REG_FIELD_GET(RP0_MASK, reg) * GT_FREQUENCY_MULTIPLIER;
--	} else {
--		reg = xe_mmio_read32(&gt->mmio, FREQ_INFO_REC);
--		pc->rpa_freq = REG_FIELD_GET(RPA_MASK, reg) * GT_FREQUENCY_MULTIPLIER;
--	}
-+
-+	struct xe_gt *gt = pc_to_gt(pc);
-+	u32 reg;
-+
-+	reg = xe_mmio_read32(&gt->mmio, PVC_RP_STATE_CAP);
-+	return REG_FIELD_GET(RP0_MASK, reg) * GT_FREQUENCY_MULTIPLIER;
-+}
-+
-+static u32 tgl_get_rpa_freq(struct xe_guc_pc *pc)
-+{
-+	struct xe_gt *gt = pc_to_gt(pc);
-+	u32 reg;
-+
-+	reg = xe_mmio_read32(&gt->mmio, FREQ_INFO_REC);
-+	return REG_FIELD_GET(RPA_MASK, reg) * GT_FREQUENCY_MULTIPLIER;
- }
- 
- static u32 pvc_get_rpe_freq(struct xe_guc_pc *pc)
-@@ -434,17 +438,6 @@ static u32 tgl_get_rpe_freq(struct xe_guc_pc *pc)
- 	return REG_FIELD_GET(RPE_MASK, reg) * GT_FREQUENCY_MULTIPLIER;
- }
- 
--static void pc_update_rp_values(struct xe_guc_pc *pc)
--{
--	struct xe_gt *gt = pc_to_gt(pc);
--	struct xe_device *xe = gt_to_xe(gt);
--
--	if (GRAPHICS_VERx100(xe) >= 1270)
--		mtl_update_rpa_value(pc);
--	else
--		tgl_update_rpa_value(pc);
--}
--
- /**
-  * xe_guc_pc_get_act_freq - Get Actual running frequency
-  * @pc: The GuC PC
-@@ -543,9 +536,15 @@ u32 xe_guc_pc_get_rp0_freq(struct xe_guc_pc *pc)
-  */
- u32 xe_guc_pc_get_rpa_freq(struct xe_guc_pc *pc)
- {
--	pc_update_rp_values(pc);
-+	struct xe_gt *gt = pc_to_gt(pc);
-+	struct xe_device *xe = gt_to_xe(gt);
- 
--	return pc->rpa_freq;
-+	if (GRAPHICS_VERx100(xe) == 1260)
-+		return pvc_get_rpa_freq(pc);
-+	else if (GRAPHICS_VERx100(xe) >= 1270)
-+		return mtl_get_rpa_freq(pc);
-+	else
-+		return tgl_get_rpa_freq(pc);
- }
- 
- /**
-@@ -1136,8 +1135,6 @@ static int pc_init_freqs(struct xe_guc_pc *pc)
- 	if (ret)
- 		goto out;
- 
--	pc_update_rp_values(pc);
--
- 	pc_init_pcode_freq(pc);
- 
- 	/*
-diff --git a/drivers/gpu/drm/xe/xe_guc_pc_types.h b/drivers/gpu/drm/xe/xe_guc_pc_types.h
-index f27c05d81706..711bbcdcb0d3 100644
---- a/drivers/gpu/drm/xe/xe_guc_pc_types.h
-+++ b/drivers/gpu/drm/xe/xe_guc_pc_types.h
-@@ -19,8 +19,6 @@ struct xe_guc_pc {
- 	atomic_t flush_freq_limit;
- 	/** @rp0_freq: HW RP0 frequency - The Maximum one */
- 	u32 rp0_freq;
--	/** @rpa_freq: HW RPa frequency - The Achievable one */
--	u32 rpa_freq;
- 	/** @rpn_freq: HW RPN frequency - The Minimum one */
- 	u32 rpn_freq;
- 	/** @user_requested_min: Stash the minimum requested freq by user */
--- 
-2.43.0
+== Summary ==
 
+CI Bug Log - changes from xe-4091-bef8705a5dfd309ce7304ca98b11566045bc4018_BAT -> xe-pw-157406v2_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (13 -> 13)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-157406v2_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@kms_flip@basic-plain-flip@c-edp1:
+    - bat-adlp-7:         [DMESG-WARN][1] ([Intel XE#4543]) -> [PASS][2] +1 other test pass
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4091-bef8705a5dfd309ce7304ca98b11566045bc4018/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157406v2/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html
+
+  
+  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
+
+
+Build changes
+-------------
+
+  * Linux: xe-4091-bef8705a5dfd309ce7304ca98b11566045bc4018 -> xe-pw-157406v2
+
+  IGT_8621: 8621
+  xe-4091-bef8705a5dfd309ce7304ca98b11566045bc4018: bef8705a5dfd309ce7304ca98b11566045bc4018
+  xe-pw-157406v2: 157406v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157406v2/index.html
+
+--===============5289514187702804855==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Prevent BIT() overflow when handling invalid prefetch region (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/157406/">https://patchwork.freedesktop.org/series/157406/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157406v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157406v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4091-bef8705a5dfd309ce7304ca98b11566045bc4018_BAT -&gt; xe-pw-157406v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-157406v2_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@kms_flip@basic-plain-flip@c-edp1:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4091-bef8705a5dfd309ce7304ca98b11566045bc4018/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157406v2/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4091-bef8705a5dfd309ce7304ca98b11566045bc4018 -&gt; xe-pw-157406v2</li>
+</ul>
+<p>IGT_8621: 8621<br />
+  xe-4091-bef8705a5dfd309ce7304ca98b11566045bc4018: bef8705a5dfd309ce7304ca98b11566045bc4018<br />
+  xe-pw-157406v2: 157406v2</p>
+
+</body>
+</html>
+
+--===============5289514187702804855==--
