@@ -4,52 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A8E49CD343C
-	for <intel-xe@archiver.kernel.org>; Wed, 12 Nov 2025 18:12:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6D807CD343E
+	for <intel-xe@archiver.kernel.org>; Wed, 12 Nov 2025 18:13:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6782110E78C;
-	Wed, 12 Nov 2025 18:12:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 32B4410E78D;
+	Wed, 12 Nov 2025 18:13:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IHz0LTdm";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ez4mttZI";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 65D2E10E78C
- for <intel-xe@lists.freedesktop.org>; Wed, 12 Nov 2025 18:12:37 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F2CAB10E78E;
+ Wed, 12 Nov 2025 18:13:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1762971157; x=1794507157;
+ t=1762971226; x=1794507226;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=pXBpMbO7JwnkmEOYiY2bivPb05DBSARSwoGTpZiRGyU=;
- b=IHz0LTdmghS4wSCyOUzKl8PJAUo52/ykADQBcLLBdJB0nmsMFsko0L8W
- ufrYcu1r4qlmvUjM2N16HMHdb2Iwood4/CKIJ3rg/8boqNnqrxPYeaFqf
- cxcATTW7+r96MEfS2bwlYh2qfFQ+CBwNfH5SsZE/cs/tOdLU7fezEnLE9
- mAGmxI8HQsLx2efxUEX/ycp8T8qh86LqNSsgSdRr61bBcNXq8lu7kHn5v
- 6PDBPSNNuW4zHjyVw4a6l2FPjPEhKqtVSb5a9HFYqImTMjJUL4kZ0oVYi
- agZrUIX35/COtWTrYttvUs1H0+zBYHiZX/kY+BdW/EjAMrlUBiTnHw8t7 A==;
-X-CSE-ConnectionGUID: BkbmQDz7Tx+k4bMhoorF9g==
-X-CSE-MsgGUID: OTRIQh02TIGidGqXSSI+Tw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="64967137"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="64967137"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Nov 2025 10:12:37 -0800
-X-CSE-ConnectionGUID: c36GhNUJShWzqo0BEaTqdg==
-X-CSE-MsgGUID: yaxx+PhBQhqhlwusnkxorw==
+ bh=+u0Gbna4O7zoZSxWbAOEpzw/77DKzB5y9Qhwv9PLy34=;
+ b=Ez4mttZI5NOeev7r4Knpb1VbvFWKMn2wofzpt1Shr29uSGsKD/5BJQan
+ XeRiPMSGZwYaoGTHsXNMnLNRDq75Q669asbDn/tm5z7rMrWruzlYzm1Sm
+ kMRElja9MV5fr2U84CpPBSHxFoj/3aGjbn33CFudxCTwsBFUWWPf9NN28
+ PbjbvcweppdD986/Q68ixibXvJxQiK4pJLLbYkhBJBSSCzxDUHoZgt3Xn
+ T17BSEkU+ctTFetS0Ss3+Xh6N+waEQRJ5kI4KwRGoChN+2Fyg/QRFcok1
+ F2yfhB+pfSBoI7KycReUj/x4njrQvKb2Ru4bhujtzIlIM+1eqQr5irAdE A==;
+X-CSE-ConnectionGUID: mEsI6EHDQ1mykQafMC3y2g==
+X-CSE-MsgGUID: lDmNlTY6SqGfyWFbqv0dXw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11611"; a="64051729"
+X-IronPort-AV: E=Sophos;i="6.19,300,1754982000"; d="scan'208";a="64051729"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Nov 2025 10:13:46 -0800
+X-CSE-ConnectionGUID: tMpPUUHyQHSNbncQNWlRWw==
+X-CSE-MsgGUID: /N4yqnBLR5C7SWFvs7Uwew==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,300,1754982000"; d="scan'208";a="189061491"
-Received: from osgc-linux-buildserver.sh.intel.com ([10.112.232.103])
- by orviesa009.jf.intel.com with ESMTP; 12 Nov 2025 10:12:36 -0800
-From: Shuicheng Lin <shuicheng.lin@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Shuicheng Lin <shuicheng.lin@intel.com>, stable@vger.kernel.org,
- Matthew Auld <matthew.auld@intel.com>
-Subject: [PATCH v2] drm/xe: Prevent BIT() overflow when handling invalid
- prefetch region
-Date: Wed, 12 Nov 2025 18:10:06 +0000
-Message-ID: <20251112181005.2120521-2-shuicheng.lin@intel.com>
-X-Mailer: git-send-email 2.49.0
+X-IronPort-AV: E=Sophos;i="6.19,300,1754982000"; d="scan'208";a="190023456"
+Received: from ettammin-desk.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.54])
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Nov 2025 10:13:45 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@intel.com
+Subject: [PATCH] drm/i915/ltphy: include intel_display_utils.h instead of
+ i915_utils.h
+Date: Wed, 12 Nov 2025 20:13:42 +0200
+Message-ID: <20251112181342.107911-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.47.3
 MIME-Version: 1.0
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -65,56 +68,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-If user provides a large value (such as 0x80) for parameter
-prefetch_mem_region_instance in vm_bind ioctl, it will cause
-BIT(prefetch_region) overflow as below:
-"
- ------------[ cut here ]------------
- UBSAN: shift-out-of-bounds in drivers/gpu/drm/xe/xe_vm.c:3414:7
- shift exponent 128 is too large for 64-bit type 'long unsigned int'
- CPU: 8 UID: 0 PID: 53120 Comm: xe_exec_system_ Tainted: G        W           6.18.0-rc1-lgci-xe-kernel+ #200 PREEMPT(voluntary)
- Tainted: [W]=WARN
- Hardware name: ASUS System Product Name/PRIME Z790-P WIFI, BIOS 0812 02/24/2023
- Call Trace:
-  <TASK>
-  dump_stack_lvl+0xa0/0xc0
-  dump_stack+0x10/0x20
-  ubsan_epilogue+0x9/0x40
-  __ubsan_handle_shift_out_of_bounds+0x10e/0x170
-  ? mutex_unlock+0x12/0x20
-  xe_vm_bind_ioctl.cold+0x20/0x3c [xe]
- ...
-"
-Fix it by validating prefetch_region before the BIT() usage.
+Display code stopped using i915_utils.h in favour of
+intel_display_utils.h. Fix recent additions.
 
-v2: Add Closes and Cc stable kernels. (Matt)
-
-Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
-Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/6478
-Cc: <stable@vger.kernel.org> # v6.8+
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
-Signed-off-by: Shuicheng Lin <shuicheng.lin@intel.com>
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/xe/xe_vm.c | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_lt_phy.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 8fb5cc6a69ec..7cac646bdf1c 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -3411,8 +3411,10 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe, struct xe_vm *vm,
- 				 op == DRM_XE_VM_BIND_OP_PREFETCH) ||
- 		    XE_IOCTL_DBG(xe, prefetch_region &&
- 				 op != DRM_XE_VM_BIND_OP_PREFETCH) ||
--		    XE_IOCTL_DBG(xe,  (prefetch_region != DRM_XE_CONSULT_MEM_ADVISE_PREF_LOC &&
--				       !(BIT(prefetch_region) & xe->info.mem_region_mask))) ||
-+		    XE_IOCTL_DBG(xe, (prefetch_region != DRM_XE_CONSULT_MEM_ADVISE_PREF_LOC &&
-+				      /* Guard against undefined shift in BIT(prefetch_region) */
-+				      (prefetch_region >= (sizeof(xe->info.mem_region_mask) * 8) ||
-+				      !(BIT(prefetch_region) & xe->info.mem_region_mask)))) ||
- 		    XE_IOCTL_DBG(xe, obj &&
- 				 op == DRM_XE_VM_BIND_OP_UNMAP) ||
- 		    XE_IOCTL_DBG(xe, (flags & DRM_XE_VM_BIND_FLAG_MADVISE_AUTORESET) &&
+diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.c b/drivers/gpu/drm/i915/display/intel_lt_phy.c
+index bebd7488aab9..a67eb4f7f897 100644
+--- a/drivers/gpu/drm/i915/display/intel_lt_phy.c
++++ b/drivers/gpu/drm/i915/display/intel_lt_phy.c
+@@ -6,7 +6,6 @@
+ #include <drm/drm_print.h>
+ 
+ #include "i915_reg.h"
+-#include "i915_utils.h"
+ #include "intel_cx0_phy.h"
+ #include "intel_cx0_phy_regs.h"
+ #include "intel_ddi.h"
+@@ -14,6 +13,7 @@
+ #include "intel_de.h"
+ #include "intel_display.h"
+ #include "intel_display_types.h"
++#include "intel_display_utils.h"
+ #include "intel_dpll_mgr.h"
+ #include "intel_hdmi.h"
+ #include "intel_lt_phy.h"
 -- 
-2.49.0
+2.47.3
 
