@@ -4,63 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EB644CCF9F8
-	for <intel-xe@archiver.kernel.org>; Wed, 12 Nov 2025 08:26:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E4DC1CCFA1A
+	for <intel-xe@archiver.kernel.org>; Wed, 12 Nov 2025 09:06:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ACAF710E6CE;
-	Wed, 12 Nov 2025 08:26:22 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OXkQrVMr";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7F60610E6CE;
- Wed, 12 Nov 2025 08:26:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1762935981; x=1794471981;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=Dniwzyf76YH6d4fpxPAv8r8H/O0vpQhX3SNiLdrKHGk=;
- b=OXkQrVMrrXHR+rVVPT2bKbfTy04Pix1wXnPB3sMNo4VUGyzfBYtwkl6Z
- kbcC75DQt0b2dzge2HOw9M8GnZ659oG3wBrnjS5IgHpai9asfgzk/Ut2p
- ZgDlzKWEbFEGK2vIhn0K4noW2cWueM5PitC/hQtOe4KEZ8JlUkpKz6Hql
- kcbE5prj3eycPdcPoYjooqGipQUVey18xRxrx707Sl1cXE5Y3UipFu7fE
- TXNXBCO6pJGnqB3xXmrX3uDNRIn8RntXXxB5TRAfDwLh2AHPLuF1Ufzk3
- zxTnmgTAH0XsTXKVheMssZ0Eap6qYl2kLbteYNqPHKvKY8RBBtmml+whq g==;
-X-CSE-ConnectionGUID: BENzbKQtTNyGfGHcLmQ+kg==
-X-CSE-MsgGUID: p58aegjVR2+10ID06HMUkQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11610"; a="68854957"
-X-IronPort-AV: E=Sophos;i="6.19,298,1754982000"; d="scan'208";a="68854957"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Nov 2025 00:26:21 -0800
-X-CSE-ConnectionGUID: 41AK376eSuOFgXgIiD/Y8Q==
-X-CSE-MsgGUID: JtZBdPssSRKSBpajRXU+FA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,298,1754982000"; d="scan'208";a="219815590"
-Received: from ettammin-desk.ger.corp.intel.com (HELO localhost)
- ([10.245.246.54])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Nov 2025 00:26:19 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Cc: Thomas Zimmermann <tzimmermann@suse.de>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 06/24] drm/vblank: prefer drm_crtc_vblank_crtc() over
- drm_vblank_crtc()
-In-Reply-To: <aRNdpcS79vWmeuHL@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1762791343.git.jani.nikula@intel.com>
- <2a20632181adc85a737b0a87dce7e753ff8d5b0d.1762791343.git.jani.nikula@intel.com>
- <bcdc1246-d589-4769-b89f-d779ac4984b2@suse.de>
- <acce5e2b3827d8dfa12e571f8a4dfef475f7f232@intel.com>
- <aRNdpcS79vWmeuHL@intel.com>
-Date: Wed, 12 Nov 2025 10:26:15 +0200
-Message-ID: <3388028ad51de9b229cc39a24f657e327c14cc2e@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id A9EA610E03A;
+	Wed, 12 Nov 2025 09:06:54 +0000 (UTC)
+Received: from 10055242dc62 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 70AE310E03A;
+ Wed, 12 Nov 2025 09:06:53 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4990581822348311314=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/fbdev=3A_Hold_runt?=
+ =?utf-8?q?ime_PM_ref_during_fbdev_BO_creation_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Dibin Moolakadan Subrahmanian" <dibin.moolakadan.subrahmanian@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 12 Nov 2025 09:06:53 -0000
+Message-ID: <176293841345.42606.17416835749649397516@10055242dc62>
+X-Patchwork-Hint: ignore
+References: <20251111135403.3415947-1-dibin.moolakadan.subrahmanian@intel.com>
+In-Reply-To: <20251111135403.3415947-1-dibin.moolakadan.subrahmanian@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,44 +36,129 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 11 Nov 2025, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
-> wrote:
-> On Tue, Nov 11, 2025 at 10:43:15AM +0200, Jani Nikula wrote:
->> On Tue, 11 Nov 2025, Thomas Zimmermann <tzimmermann@suse.de> wrote:
->> > Am 10.11.25 um 17:17 schrieb Jani Nikula:
->> >> Use the higher level function where crtc is available.
->> >>
->> >> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->> >
->> > Reviewed-by: Thomas Zimmermann <tzimmermann@suse.de>
->> >
->> > Is there a long-term plan to replace drm_vblank_crtc() entirely?=20
->> > Otherwise this looks a bit pointless.
->>=20
->> Well, almost entirely. There are a few cases (plus the one that Ville
->> mentioned later in the series) that need to operate on dev + pipe
->> alone. The main point is that when you have a crtc and use that for the
->> source of pipe, you don't have to do range checks on the pipe. This
->> becomes gradually more evident in the series.
->
-> I've actaully been thinking about doing the exact opposite.
-> Ie. switch drm_vblank.c over to drm_vblank_crtc completely.
->
-> That is one of those things that might help with implementing
-> pipe/crtc virtualization in i915. We basically want all interrupt
-> stuff (including vblanks) to be tied to our hardware pipes and
-> not the uapi drm_crtc. So we'd make drm_vblank_crtc=3D=3Dpipe, and
-> introduce some kind of dynamic drm_crtc<->drm_vblank_crtc mapping
-> for the uapi facing parts of drm_vblank.c...
+--===============4990581822348311314==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Ugh, so you're saying the series at hand is counter-productive?
+== Series Details ==
 
-BR,
-Jani.
+Series: drm/i915/fbdev: Hold runtime PM ref during fbdev BO creation (rev3)
+URL   : https://patchwork.freedesktop.org/series/157148/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from xe-4089-f2a06cc6e63a449c2074f95c7a61b18f6326769c_BAT -> xe-pw-157148v3_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (13 -> 13)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-157148v3_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_waitfence@engine:
+    - bat-dg2-oem2:       [PASS][1] -> [FAIL][2] ([Intel XE#6519])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4089-f2a06cc6e63a449c2074f95c7a61b18f6326769c/bat-dg2-oem2/igt@xe_waitfence@engine.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157148v3/bat-dg2-oem2/igt@xe_waitfence@engine.html
+
+  
+  [Intel XE#6519]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519
 
 
---=20
-Jani Nikula, Intel
+Build changes
+-------------
+
+  * IGT: IGT_8620 -> IGT_8621
+  * Linux: xe-4089-f2a06cc6e63a449c2074f95c7a61b18f6326769c -> xe-pw-157148v3
+
+  IGT_8620: 8620
+  IGT_8621: 8621
+  xe-4089-f2a06cc6e63a449c2074f95c7a61b18f6326769c: f2a06cc6e63a449c2074f95c7a61b18f6326769c
+  xe-pw-157148v3: 157148v3
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157148v3/index.html
+
+--===============4990581822348311314==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/fbdev: Hold runtime PM ref during fbdev BO creation (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/157148/">https://patchwork.freedesktop.org/series/157148/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157148v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157148v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4089-f2a06cc6e63a449c2074f95c7a61b18f6326769c_BAT -&gt; xe-pw-157148v3_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-157148v3_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@xe_waitfence@engine:<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4089-f2a06cc6e63a449c2074f95c7a61b18f6326769c/bat-dg2-oem2/igt@xe_waitfence@engine.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157148v3/bat-dg2-oem2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519">Intel XE#6519</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8620 -&gt; IGT_8621</li>
+<li>Linux: xe-4089-f2a06cc6e63a449c2074f95c7a61b18f6326769c -&gt; xe-pw-157148v3</li>
+</ul>
+<p>IGT_8620: 8620<br />
+  IGT_8621: 8621<br />
+  xe-4089-f2a06cc6e63a449c2074f95c7a61b18f6326769c: f2a06cc6e63a449c2074f95c7a61b18f6326769c<br />
+  xe-pw-157148v3: 157148v3</p>
+
+</body>
+</html>
+
+--===============4990581822348311314==--
