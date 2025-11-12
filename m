@@ -4,60 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9AFE5CCFA1A
-	for <intel-xe@archiver.kernel.org>; Wed, 12 Nov 2025 14:19:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 485FDCCF9F8
+	for <intel-xe@archiver.kernel.org>; Wed, 12 Nov 2025 14:45:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4E15B10E749;
-	Wed, 12 Nov 2025 14:19:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DDA0910E0A9;
+	Wed, 12 Nov 2025 14:45:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bkam7AuX";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="A0uNLRZG";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A3CB910E17A;
- Wed, 12 Nov 2025 14:19:15 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AB26F10E0A9
+ for <intel-xe@lists.freedesktop.org>; Wed, 12 Nov 2025 14:45:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1762957156; x=1794493156;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=LEWDcjvnJHEeTINa/9LBDNEh1Q1iYGH+TxZ6VnWf5OU=;
- b=bkam7AuXoynRMe/OlBuxha2+/gIVfAEUprWoWbPeRvRr4pENP/1TauyB
- Yoe3i8Ga++Io9PMYyXsNyM873HsNZ2EAerM7p1RIATfImVVCm6HXGlek+
- gEdHZjlKw1tct8qXKSgHDp48RJjwMs4lmlXOn6CizPfTg72lqJkoECRkX
- aggp56x0hcClhPS/BIS2xksj1ph2lPFY3YmoYHsdiyIJeUd58uAVq1Tu1
- iUljF+gzqvNq1UotWHcKFWjTtwvUH9U8poqXbKkRHRzKKrrvty4rP6xUX
- c/lBMHANF7r/DkEHGcOxPpniakCiPea4cGJbYEq7DKzyF9VHRW50x6rTo g==;
-X-CSE-ConnectionGUID: vvsCcvLOQQaaCklqTjXGjg==
-X-CSE-MsgGUID: O0sV5dGqR4i/jwKt670YFw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11611"; a="87660778"
-X-IronPort-AV: E=Sophos;i="6.19,299,1754982000"; d="scan'208";a="87660778"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Nov 2025 06:19:15 -0800
-X-CSE-ConnectionGUID: +MwskesrRxWzkYO8Zk/GCA==
-X-CSE-MsgGUID: tcMihyvkTgKakPrIAGRa5w==
+ t=1762958720; x=1794494720;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=y6vt2e6SztTot+yV+g8QqJ6+Ke6RruJfZOkqAPipwSE=;
+ b=A0uNLRZG/RKjvtpHVP+8rhkk1Umx9EGquFzWlEgiZl3xtpvxwD8mtR/v
+ 8t+hYm7kMA9m2fT66xFbUrJf7gYcRI69svIi4S0P4TY+cZ78Y9tK3dJsz
+ Sv2ATbKlmhlXrg/vltDMEhO5+80cHGQlQVN17i1W0qijbiOhfFIo5qHHu
+ dDW4KpXR7qMjE0+YSWGpVDAc2u+joSblHoY9VylBM7o6NcJ2+JE5l14J+
+ ztdD2P5WduokmOQ4peTeAm5nFSjB5aQnvcHZaVvxbMOPgKWA5nYGQQFsX
+ yvy2Yxbe8WcDjHJM0hrgVfPHKrE/x2i6KowHqFSlg8tUpAHNsrSkxvBpb Q==;
+X-CSE-ConnectionGUID: I76pMokqQyuuQRC2lAuGBA==
+X-CSE-MsgGUID: Jgxq+SyeSwaRt+vo2fsXng==
+X-IronPort-AV: E=McAfee;i="6800,10657,11611"; a="75702035"
+X-IronPort-AV: E=Sophos;i="6.19,299,1754982000"; d="scan'208";a="75702035"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Nov 2025 06:45:19 -0800
+X-CSE-ConnectionGUID: qf9A4qwiT3ivJMmAYoBa1g==
+X-CSE-MsgGUID: ezeuUTHmTZ2d9e6FSiKAYA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,299,1754982000"; d="scan'208";a="219978225"
-Received: from ettammin-desk.ger.corp.intel.com (HELO localhost)
- ([10.245.246.54])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Nov 2025 06:19:13 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH v2 3/3] drm/{i915,xe}/display: move irq calls to parent
- interface
-In-Reply-To: <13b044a043667b1247f6d12df01014bcb8edf708@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1762846363.git.jani.nikula@intel.com>
- <d0b480c27105b1013153212aafcb06bdf81a8757.1762846363.git.jani.nikula@intel.com>
- <aRNbNOb-bJsg4k35@intel.com>
- <13b044a043667b1247f6d12df01014bcb8edf708@intel.com>
-Date: Wed, 12 Nov 2025 16:19:10 +0200
-Message-ID: <30fdcb1be4b9046453a2ba00d5fd99478948538a@intel.com>
+X-IronPort-AV: E=Sophos;i="6.19,299,1754982000"; d="scan'208";a="189007332"
+Received: from black.igk.intel.com ([10.91.253.5])
+ by orviesa009.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Nov 2025 06:45:17 -0800
+Date: Wed, 12 Nov 2025 15:45:14 +0100
+From: Raag Jadav <raag.jadav@intel.com>
+To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>, rodrigo.vivi@intel.com,
+ intel-xe@lists.freedesktop.org, riana.tauro@intel.com,
+ matthew.brost@intel.com, michal.wajdeczko@intel.com,
+ badal.nilawar@intel.com
+Subject: Re: [PATCH v2] drm/xe/pcode: Convert unsupported commands to debug
+ level
+Message-ID: <aRSdenIjmrfTaw8U@black.igk.intel.com>
+References: <20251107055746.110055-1-raag.jadav@intel.com>
+ <b4f677ximgoni5pzf6bsh6kkchh52fy6drckbiasqsaekvnzbj@o3rkfqwcg6or>
+ <aQ3xItyGMVnKdzoi@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <aQ3xItyGMVnKdzoi@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,57 +73,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 12 Nov 2025, Jani Nikula <jani.nikula@intel.com> wrote:
-> On Tue, 11 Nov 2025, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.c=
-om> wrote:
->> On Tue, Nov 11, 2025 at 09:34:04AM +0200, Jani Nikula wrote:
->>> Add an irq parent driver interface for the .enabled and .synchronize
->>> calls. This lets us drop the dependency on i915_drv.h and i915_irq.h in
->>> multiple places, and subsequently remove the compat i915_irq.h and
->>> i915_irq.c files along with the display/ext directory from xe
->>> altogether.
->>>=20
->>> Use intel_irqs_enabled() and intel_synchronize_irq() static wrappers for
->>> parent interface calls in intel_display_irq.c while chasing the function
->>> pointers everywhere else. It's still a bit uncertain if we should
->>> universally have wrappers for the parent interface calls or not.
->>
->> Why would we want those ugly pointer chains anywhere (except perhaps
->> for single use cases)?
->
-> I guess my main point is, I'm not yet sure how those wrappers should be
-> organized, and I'm simply postponing the decision. But let's discuss.
->
-> I'm leaning towards putting them in files that are separate from the
-> implementation, i.e. intel_irqs_enabled() and intel_synchronize_irq()
-> would *not* be in intel_display_irq.[ch] but rather in
-> something_parent_something.[ch]. Because it's not so much about the
-> functionality, it's all about calling the parent interface.
->
-> Maybe just one file grouping *all* parent interface access, similar to
-> how include/drm/intel/display_parent_interface.h defines the interface.
->
-> And then should the naming indicate it's calling the parent? I think
-> there's value in knowing where the call ends up when reading the
-> code. But then do the function names end up being unweildy?
->
-> If you simply translate display->parent->irq->enabled to a function
-> name, it would be display_parent_irq_enabled(). Or perhaps
-> intel_parent_irq_enabled(). And you'd have the naming scheme right
-> there, always 1:1 without further thinking.
->
-> intel_display_rpm.[ch] has it all in a dedicated file now. But there's
-> really nothing runtime pm specific there anymore, it's just mechanical
-> calling of the interface and relaying parameters and return values.
->
-> I think we have too much "intel_display_something_something.[ch]" so
-> maybe intel_parent.[ch] and intel_parent_<SUBSTRUCT>_<FUNCTION>()?
+On Fri, Nov 07, 2025 at 03:16:18PM +0200, Ville Syrjälä wrote:
+> On Fri, Nov 07, 2025 at 06:03:28AM -0600, Lucas De Marchi wrote:
+> > On Fri, Nov 07, 2025 at 11:26:11AM +0530, Raag Jadav wrote:
+> > > If the device is running older pcode firmware, it is possible that newer
+> > > mailbox commands are not supported by it. The respective functionality
+> > > isn't useful in that case but neither is error logging, since it doesn't
+> > > particularly signify anything wrong with pcode firmware or device as a
+> > > whole. This is useful in cases where we want to make a decision on driver
+> > > functionality based on pcode return codes and a bit simpler design choice
+> > > compared to other solutions like checking pcode firmware version, which
+> > > comes with additional complexity of binding every single command to a
+> > > specific version and deems pcode commands useless in case driver fails to
+> > > obtain it for reasons unrelated to pcode.
+> > 
+> > yeah.. I don't think we should regress the support in new kernel
+> > versions and require users to update their IFWI. However dropping the
+> > error message here also makes it harder to find cases in which we are
+> > indeed using a wrong command.
+> > 
+> > I'd say to decide on err vs dbg based on CONFIG_DRM_XE_DEBUG so
+> > developers can still see the error and take the right action.
+> 
+> I think the caller should decide this. If it's explicitly probing
+> for something that may or may not exist then use  dbg(), otherwise
+> use err().
 
-Typed it up, I like it, sent as v3.
+I like the idea. What I'm afraid is that once we open that door it'll
+probably start getting abused.
 
-BR,
-Jani.
+So rather we can check if we're really *in* probe()? Wait for a v3.
 
-
---=20
-Jani Nikula, Intel
+Raag
