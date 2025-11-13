@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6CE56CD8C82
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A9D9DCD6E7D
 	for <intel-xe@archiver.kernel.org>; Thu, 13 Nov 2025 15:02:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2EE6C10E87B;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 684C610E862;
 	Thu, 13 Nov 2025 15:02:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TcEfITID";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YiLnhQ3o";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0217D10E85D;
- Thu, 13 Nov 2025 15:02:56 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 880C610E87B;
+ Thu, 13 Nov 2025 15:02:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1763046177; x=1794582177;
+ t=1763046179; x=1794582179;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=EefPNFQBUNuGlR0DgULcxn8v9QseDyeQnp72XVg7OAg=;
- b=TcEfITIDZMj5bC7dbrMsby6hJIvVcDnuNXYDGxqRqo/DROr6KLJ8SwPL
- d+EMOE8tHwfb2ObcGfGn+IZlVPDAeyYHAXwqTZEUMHBfViV4SfCsfq+Ms
- tWN2U8HEeQ/BwQsW5wTt7qH4aj6HP4igPwPj8soEV1uiTQBwS82ZPwZ+d
- t9eXo3u7LwdTS4Gdntc1IFDMmC5nFZkrkWZDYElkc1ItzUi+tqoWkPrX8
- 6fyVDAcyEqcdz/bdifFGvDQxePAGL6GF2bUNsxoRRO7EMV+rY9mdCfgeS
- TU0NPEvxkvoomUtl66IDftVXaWBNs/3Y7HPMZWpUYW0H7jwGojO5UdTa1 g==;
-X-CSE-ConnectionGUID: T5VKwJ3CSRC0e/GPw23qVg==
-X-CSE-MsgGUID: CSqeBVa1QoiY/WWUUfcC2Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="65054299"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="65054299"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Nov 2025 07:02:50 -0800
-X-CSE-ConnectionGUID: t3LH8vXXT7maKnUeZlI+Ig==
-X-CSE-MsgGUID: oTk1ntIWRFul66CPsbOOZg==
+ bh=GOmlU8+AxY4qiyUG0euFaX4L/EDMDObrk8lwMAMh1Z8=;
+ b=YiLnhQ3otwj+Bhyk6lMOGhMM8k0i9kJJ3XTuEbUmt/CAMg63EUE2EmoR
+ AVL7Pmlj7QCx7ACahUlxSXKbM8RJqVNQzV1x11jQJyvDH/X8AZXHNzsl6
+ s1PwIbu7WzELbUTqKSLT9JuU7DinhYKCXDVKHeJMFM/7RVZt8Xw5zPUPx
+ GqCBfN4RGLUHKCNIda0tqNlhSWSbALgNmyUeSxddn+ZnGSux3WFFcAKeQ
+ UY3Y2lg08QflNsvA1O4x2+GKxYUYGMjyUXmn676K9fgXaJ8L/NqS55gJA
+ vM9H6rb9LgcyXd9uu4iCDXnAwaREt/V+8QhUCloHBAk7sBY1M3Okfodhh w==;
+X-CSE-ConnectionGUID: OQG7Xh8mR6GWKSpLWUVU8g==
+X-CSE-MsgGUID: VMhb9P6RRhyOWyPwln4L+Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11612"; a="68991730"
+X-IronPort-AV: E=Sophos;i="6.19,302,1754982000"; d="scan'208";a="68991730"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Nov 2025 07:02:58 -0800
+X-CSE-ConnectionGUID: VoHVivOhTuuJ8F2T91fvwQ==
+X-CSE-MsgGUID: aM4vg+x7RCGNGIIJNMHExw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,302,1754982000"; d="scan'208";a="220324984"
+X-IronPort-AV: E=Sophos;i="6.19,302,1754982000"; d="scan'208";a="188810329"
 Received: from black.igk.intel.com ([10.91.253.5])
- by fmviesa001.fm.intel.com with ESMTP; 13 Nov 2025 07:02:37 -0800
+ by orviesa010.jf.intel.com with ESMTP; 13 Nov 2025 07:02:48 -0800
 Received: by black.igk.intel.com (Postfix, from userid 1003)
- id 2D4249D; Thu, 13 Nov 2025 16:02:19 +0100 (CET)
+ id 6DC70A7; Thu, 13 Nov 2025 16:02:19 +0100 (CET)
 From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 To: Corey Minyard <corey@minyard.net>,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
@@ -113,9 +113,9 @@ Cc: Rasmus Villemoes <linux@rasmusvillemoes.dk>,
  Masami Hiramatsu <mhiramat@kernel.org>,
  Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
  Andrew Morton <akpm@linux-foundation.org>
-Subject: [PATCH v3 07/21] drm/vblank: Switch to use %ptSp
-Date: Thu, 13 Nov 2025 15:32:21 +0100
-Message-ID: <20251113150217.3030010-8-andriy.shevchenko@linux.intel.com>
+Subject: [PATCH v3 17/21] ptp: ocp: Switch to use %ptSp
+Date: Thu, 13 Nov 2025 15:32:31 +0100
+Message-ID: <20251113150217.3030010-18-andriy.shevchenko@linux.intel.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20251113150217.3030010-1-andriy.shevchenko@linux.intel.com>
 References: <20251113150217.3030010-1-andriy.shevchenko@linux.intel.com>
@@ -138,28 +138,48 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 Use %ptSp instead of open coded variants to print content of
 struct timespec64 in human readable format.
 
+While at it, fix wrong use of %ptT against struct timespec64.
+It's kinda lucky that it worked just because the first member
+there 64-bit and it's of time64_t type. Now with %ptS it may
+be used correctly.
+
+Acked-by: Vadim Fedorenko <vadim.fedorenko@linux.dev>
 Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 ---
- drivers/gpu/drm/drm_vblank.c | 6 ++----
- 1 file changed, 2 insertions(+), 4 deletions(-)
+ drivers/ptp/ptp_ocp.c | 13 +++++--------
+ 1 file changed, 5 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/drm_vblank.c b/drivers/gpu/drm/drm_vblank.c
-index 32d013c5c8fc..5c14140cd0c2 100644
---- a/drivers/gpu/drm/drm_vblank.c
-+++ b/drivers/gpu/drm/drm_vblank.c
-@@ -806,10 +806,8 @@ drm_crtc_vblank_helper_get_vblank_timestamp_internal(
- 	ts_vblank_time = ktime_to_timespec64(*vblank_time);
+diff --git a/drivers/ptp/ptp_ocp.c b/drivers/ptp/ptp_ocp.c
+index eeebe4d149f7..21a8109fae34 100644
+--- a/drivers/ptp/ptp_ocp.c
++++ b/drivers/ptp/ptp_ocp.c
+@@ -4293,11 +4293,9 @@ ptp_ocp_summary_show(struct seq_file *s, void *data)
+ 		ns += (s64)bp->utc_tai_offset * NSEC_PER_SEC;
+ 		sys_ts = ns_to_timespec64(ns);
  
- 	drm_dbg_vbl(dev,
--		    "crtc %u : v p(%d,%d)@ %lld.%06ld -> %lld.%06ld [e %d us, %d rep]\n",
--		    pipe, hpos, vpos,
--		    (u64)ts_etime.tv_sec, ts_etime.tv_nsec / 1000,
--		    (u64)ts_vblank_time.tv_sec, ts_vblank_time.tv_nsec / 1000,
-+		    "crtc %u : v p(%d,%d)@ %ptSp -> %ptSp [e %d us, %d rep]\n",
-+		    pipe, hpos, vpos, &ts_etime, &ts_vblank_time,
- 		    duration_ns / 1000, i);
+-		seq_printf(s, "%7s: %lld.%ld == %ptT TAI\n", "PHC",
+-			   ts.tv_sec, ts.tv_nsec, &ts);
+-		seq_printf(s, "%7s: %lld.%ld == %ptT UTC offset %d\n", "SYS",
+-			   sys_ts.tv_sec, sys_ts.tv_nsec, &sys_ts,
+-			   bp->utc_tai_offset);
++		seq_printf(s, "%7s: %ptSp == %ptS TAI\n", "PHC", &ts, &ts);
++		seq_printf(s, "%7s: %ptSp == %ptS UTC offset %d\n", "SYS",
++			   &sys_ts, &sys_ts, bp->utc_tai_offset);
+ 		seq_printf(s, "%7s: PHC:SYS offset: %lld  window: %lld\n", "",
+ 			   timespec64_to_ns(&ts) - ns,
+ 			   post_ns - pre_ns);
+@@ -4505,9 +4503,8 @@ ptp_ocp_phc_info(struct ptp_ocp *bp)
+ 		 ptp_clock_index(bp->ptp));
  
- 	return true;
+ 	if (!ptp_ocp_gettimex(&bp->ptp_info, &ts, NULL))
+-		dev_info(&bp->pdev->dev, "Time: %lld.%ld, %s\n",
+-			 ts.tv_sec, ts.tv_nsec,
+-			 bp->sync ? "in-sync" : "UNSYNCED");
++		dev_info(&bp->pdev->dev, "Time: %ptSp, %s\n",
++			 &ts, bp->sync ? "in-sync" : "UNSYNCED");
+ }
+ 
+ static void
 -- 
 2.50.1
 
