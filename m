@@ -4,27 +4,69 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 26731CD5BD1
-	for <intel-xe@archiver.kernel.org>; Thu, 13 Nov 2025 18:03:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6DC4ACD8CBD
+	for <intel-xe@archiver.kernel.org>; Thu, 13 Nov 2025 18:03:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DDEA310E91C;
-	Thu, 13 Nov 2025 18:03:13 +0000 (UTC)
-Received: from 10055242dc62 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2FAB610E91C;
- Thu, 13 Nov 2025 18:03:12 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 246CC10E91D;
+	Thu, 13 Nov 2025 18:03:21 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="n3C5BY2B";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BD4E710E916;
+ Thu, 13 Nov 2025 18:03:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1763057000; x=1794593000;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=e5pHv3WKNR67jU/OKNlgxz1wxiWJXKsANnUH51oNoN4=;
+ b=n3C5BY2B9Nt0XJT2oOlh3vZfBJIxx4RVhvfZq182eHFXcsvPzj5L32Zl
+ QOYJzLAlD+BHaP+9/rLioss6nRENkdDazsRliRXfHcUuKj56xKSuIrWZz
+ pZnjiY0C80+ucmgjAGcwErVv4c57G21W86uyoIm5ibCho4M+zS+SYHRrR
+ E8CY7zrd/woHLLphHxuczvFd10Bc07FK1iLQ11a70WFwUUzjt1J6Pgg5G
+ 3M/oMd/77+sE1FXWdmYQAxdM7AHcx/Uqbr8M7r+pAgn5FC36LxhARUh3m
+ x6esLUI7GhitnI2rwdJruNue13W4nu6705xt45mFrp2NLShQaY3COP446 w==;
+X-CSE-ConnectionGUID: iRU0/E4bReS2Qf5GgjcYew==
+X-CSE-MsgGUID: m++JWxkfQHyq1NBZ4IN+Aw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11612"; a="65186393"
+X-IronPort-AV: E=Sophos;i="6.19,302,1754982000"; d="scan'208";a="65186393"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Nov 2025 10:03:19 -0800
+X-CSE-ConnectionGUID: vw5syRMES/e5N/FePsjwlQ==
+X-CSE-MsgGUID: GX9mxbz3QqCr9ylcbbcFmg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,302,1754982000"; d="scan'208";a="194001333"
+Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.164])
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Nov 2025 10:03:13 -0800
+From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
+To: linux-pci@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>,
+ =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
+ Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org,
+ David Airlie <airlied@gmail.com>, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Simona Vetter <simona@ffwll.ch>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ "Michael J . Ruhl" <mjruhl@habana.ai>,
+ Andi Shyti <andi.shyti@linux.intel.com>, linux-kernel@vger.kernel.org
+Cc: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
+Subject: [PATCH v4 10/11] drm/amdgpu: Use pci_rebar_get_max_size()
+Date: Thu, 13 Nov 2025 20:00:52 +0200
+Message-Id: <20251113180053.27944-11-ilpo.jarvinen@linux.intel.com>
+X-Mailer: git-send-email 2.39.5
+In-Reply-To: <20251113180053.27944-1-ilpo.jarvinen@linux.intel.com>
+References: <20251113180053.27944-1-ilpo.jarvinen@linux.intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/i915/display=3A_stop_?=
- =?utf-8?q?using_the_configurable_fence_timeout_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 13 Nov 2025 18:03:12 -0000
-Message-ID: <176305699219.52219.7188471974810751734@10055242dc62>
-X-Patchwork-Hint: ignore
-References: <20251112155612.8320-1-jani.nikula@intel.com>
-In-Reply-To: <20251112155612.8320-1-jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,52 +78,45 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Use pci_rebar_get_max_size() to simplify amdgpu_device_resize_fb_bar().
 
-Series: drm/i915/display: stop using the configurable fence timeout (rev2)
-URL   : https://patchwork.freedesktop.org/series/157440/
-State : warning
+Signed-off-by: Ilpo Järvinen <ilpo.jarvinen@linux.intel.com>
+Reviewed-by: Christian König <christian.koenig@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 8 +++++---
+ 1 file changed, 5 insertions(+), 3 deletions(-)
 
-== Summary ==
-
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-d9120d4d84745cf011b4b3efb338747e69179dfb
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit 67b82ef9d0bda1cae61bb4d4137b65ff55b6a232
-Author: Jani Nikula <jani.nikula@intel.com>
-Date:   Thu Nov 13 17:53:32 2025 +0200
-
-    drm/i915/display: stop using the configurable fence timeout
-    
-    i915 has the Kconfig option DRM_I915_FENCE_TIMEOUT, defaulting to 10
-    seconds. xe doesn't use it, instead defaulting to
-    MAX_SCHEDULE_TIMEOUT. Unify the behaviour by switching to
-    dma_fence_wait() which defaults to MAX_SCHEDULE_TIMEOUT.
-    
-    As dma_fence_wait() returns 0 when the fence was signaled, update the
-    return value check.
-    
-    v2: Use dma_fence_wait(), fix return value check (Maarten)
-    
-    Reviewed-by: Maarten Lankhorst <dev@lankhorst.se>
-    Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-    Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-+ /mt/dim checkpatch 9d61bbd3042d1976dc5f67a30e0aa6c010cbc98f drm-intel
-67b82ef9d0bd drm/i915/display: stop using the configurable fence timeout
--:56: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#56: 
-deleted file mode 100644
-
-total: 0 errors, 1 warnings, 0 checks, 25 lines checked
-
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+index f11a255786d7..da2b6158b65f 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+@@ -1673,9 +1673,9 @@ int amdgpu_device_resize_fb_bar(struct amdgpu_device *adev)
+ 	int rbar_size = pci_rebar_bytes_to_size(adev->gmc.real_vram_size);
+ 	struct pci_bus *root;
+ 	struct resource *res;
++	int max_size, r;
+ 	unsigned int i;
+ 	u16 cmd;
+-	int r;
+ 
+ 	if (!IS_ENABLED(CONFIG_PHYS_ADDR_T_64BIT))
+ 		return 0;
+@@ -1721,8 +1721,10 @@ int amdgpu_device_resize_fb_bar(struct amdgpu_device *adev)
+ 		return 0;
+ 
+ 	/* Limit the BAR size to what is available */
+-	rbar_size = min(fls(pci_rebar_get_possible_sizes(adev->pdev, 0)) - 1,
+-			rbar_size);
++	max_size = pci_rebar_get_max_size(adev->pdev, 0);
++	if (max_size < 0)
++		return 0;
++	rbar_size = min(max_size, rbar_size);
+ 
+ 	/* Disable memory decoding while we change the BAR addresses and size */
+ 	pci_read_config_word(adev->pdev, PCI_COMMAND, &cmd);
+-- 
+2.39.5
 
