@@ -4,57 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CC750CD8C9D
-	for <intel-xe@archiver.kernel.org>; Thu, 13 Nov 2025 16:57:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 60C2ACD8CA4
+	for <intel-xe@archiver.kernel.org>; Thu, 13 Nov 2025 17:10:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9051610E8D5;
-	Thu, 13 Nov 2025 16:57:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1C11710E8EA;
+	Thu, 13 Nov 2025 17:10:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="e+qg4lkz";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JyAFl1Bf";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 19D7B10E8D5;
- Thu, 13 Nov 2025 16:57:43 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id CFCD941A7D;
- Thu, 13 Nov 2025 16:57:42 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 85372C4CEFB;
- Thu, 13 Nov 2025 16:57:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1763053062;
- bh=GYMl84uOyw1qOLVxM8g1QeRFBc0QP2rjuLETvSvGF+8=;
- h=Date:From:To:Cc:Subject:In-Reply-To:From;
- b=e+qg4lkzb8JVZPmAq8f+RZNKCKx7PBOXzfdHxJ9AoAazhEv+USLriQCChCv3RE3s4
- r3mUFdHjD6xH5Rf3gK/6vPhvw0gdiRDUe5CfpKd5jFdCkIlNDcYnuDYVbSW4MTURa5
- oVMn9fmO1taFYFp9e9AGrE8jHBUS0hORyHyOOItLgIBFiecHbsPAT7CzCT81NNIDR1
- 5GnznoD7VSdmm/DBWDXyBaQHTzzx5kUTNK2Nj2EYc4E4LLe5zzg3iOIZv6ADwhYZh0
- EgzSZcipbUZtZbFM7etNYGxkiP0r0hwZybkvUEmj7b3CXEDuqeaLVSTGxy3Edd+gUl
- 8OiupaqeLTIBA==
-Date: Thu, 13 Nov 2025 10:57:41 -0600
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>
-Cc: Alex =?utf-8?Q?Benn=C3=A9e?= <alex.bennee@linaro.org>,
- Simon Richter <Simon.Richter@hogyros.de>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- amd-gfx@lists.freedesktop.org, Bjorn Helgaas <bhelgaas@google.com>,
- David Airlie <airlied@gmail.com>, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- linux-pci@vger.kernel.org, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Simona Vetter <simona@ffwll.ch>, Tvrtko Ursulin <tursulin@ursulin.net>,
- Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
- Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- =?utf-8?Q?Micha=C5=82?= Winiarski <michal.winiarski@intel.com>,
- LKML <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 2/9] PCI/IOV: Adjust ->barsz[] when changing BAR size
-Message-ID: <20251113165741.GA2288786@bhelgaas>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <fe9bd3af-51f6-c1af-9cdc-c78aee7aaef9@linux.intel.com>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B91AE10E8DF
+ for <intel-xe@lists.freedesktop.org>; Thu, 13 Nov 2025 17:10:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1763053801; x=1794589801;
+ h=date:message-id:from:to:cc:subject:in-reply-to:
+ references:mime-version;
+ bh=jECs0t07a237I8/M7XTNjUgoALlpha/e9TwS0muqvRs=;
+ b=JyAFl1Bfe564KWDGmphKT/3yutH3gwHSyliA0RpzlGH40Lnq0UqkdFMH
+ tpPfxOr5cPgvrLX4WAWahfkZ59s664vXW2FUjHJ8x+cDQnH/XufSq8Mdj
+ HgGXeS845U+rZlwGkDpdHAqgkhT4FJB/7G1TMdUjFuen++tFmbgIo9A0H
+ CxMQRV3/XJK/EwcRoBgkvVNCv5rd6IbmOS5hFVRzlMQ8IElS1yZhU0XEU
+ uLAlJkOng+0IbaaK79nl6s8r8SWNy3pfQTAkBelxowOol5HkOuU/D0wOD
+ ejW1V7hpuOT5Xk9TyHdcYXU4hYzpH3iCxxbPG4YfGqk1cviQMcs3yBINc g==;
+X-CSE-ConnectionGUID: qQ4nQ8+yR4Cy5Afy1p9SlA==
+X-CSE-MsgGUID: swB4aYswRyKquHgxPFADag==
+X-IronPort-AV: E=McAfee;i="6800,10657,11612"; a="64345396"
+X-IronPort-AV: E=Sophos;i="6.19,302,1754982000"; d="scan'208";a="64345396"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Nov 2025 09:10:01 -0800
+X-CSE-ConnectionGUID: q+rgRyiRRkWQBvDO1CORLw==
+X-CSE-MsgGUID: 1K/ftqF6ROSUSIcMp0Zlig==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,302,1754982000"; d="scan'208";a="194704591"
+Received: from nkoirala-mobl1.amr.corp.intel.com (HELO adixit-MOBL3.intel.com)
+ ([10.125.0.41])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Nov 2025 09:10:02 -0800
+Date: Thu, 13 Nov 2025 09:10:00 -0800
+Message-ID: <871pm1voyf.wl-ashutosh.dixit@intel.com>
+From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+To: Matt Roper <matthew.d.roper@intel.com>
+Cc: <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH v2 03/30] drm/xe/oa: Store forcewake reference in stream
+ structure
+In-Reply-To: <20251110232017.1475869-35-matthew.d.roper@intel.com>
+References: <20251110232017.1475869-32-matthew.d.roper@intel.com>
+ <20251110232017.1475869-35-matthew.d.roper@intel.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
+ Emacs/30.2 (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,15 +71,17 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Nov 13, 2025 at 06:35:26PM +0200, Ilpo Järvinen wrote:
-> On Thu, 13 Nov 2025, Bjorn Helgaas wrote:
-> > On Tue, Oct 28, 2025 at 07:35:44PM +0200, Ilpo Järvinen wrote:
-> > > pci_rebar_set_size() adjusts BAR size for both normal and IOV BARs. The
-> > > struct pci_srvio keeps a cached copy of BAR size in unit of
-> > > resource_size_t in ->barsz[] ...
-> > 
-> > Nit: s/pci_srvio/pci/sriov/  (fixed locally, FYI in case you post a v2)
-> 
-> I just posted v2 without seeing this first. :-(
+On Mon, 10 Nov 2025 15:20:21 -0800, Matt Roper wrote:
+>
+> Calls to xe_force_wake_put() should generally pass the exact reference
+> returned by xe_force_wake_get().  Since OA grabs and releases forcewake
+> in different functions, xe_oa_stream_destroy() is currently calling put
+> with a hardcoded ALL mask.  Although this works for now, it's somewhat
+> fragile in case OA moves to more precise power domain management in the
+> future.
+>
+> Stash the original reference obtained during stream initialization
+> inside the stream structure so that we can use it directly when the
+> stream is destroyed.
 
-Perfect, we crossed in the mail!  I'll tweak this locally.
+Reviewed-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
