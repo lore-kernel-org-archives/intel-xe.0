@@ -4,182 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 371D9CD6E55
-	for <intel-xe@archiver.kernel.org>; Thu, 13 Nov 2025 13:37:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4444ECD6E55
+	for <intel-xe@archiver.kernel.org>; Thu, 13 Nov 2025 13:37:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E1C7F10E807;
-	Thu, 13 Nov 2025 13:37:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0862610E812;
+	Thu, 13 Nov 2025 13:37:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="W19d5FXu";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PY7D4usX";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 443E010E807
- for <intel-xe@lists.freedesktop.org>; Thu, 13 Nov 2025 13:37:35 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D480810E810;
+ Thu, 13 Nov 2025 13:37:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1763041055; x=1794577055;
- h=content-transfer-encoding:in-reply-to:references:subject:
- from:cc:to:date:message-id:mime-version;
- bh=ToFW/YP7iSEVnb71zhZpDLxasN/YoApisCzuwT0h2xA=;
- b=W19d5FXuqL7u1oBxGgnCtAuEQSuSOInXpNntXRBWwf+p0sk96oWauXT2
- lWGGnyOls0eX/HSr8vYFPA0A5tU2agDKXPwdBlu1eYCs5mmlvNRI4fUNh
- tmvpEZgjBhTfIOY9TkLlVIcnRMQSmF0WSqhz+YR/NV3YssZcuP+PvoZDo
- 4I0OhBwvsF+Wvt3gtRAbq4RJbocZGS7ftIPjqgfC6ysPpvrvsJ2A6b9H/
- jGJe5eHRGGg1hcpbPapjfLIJiDHVHgJ7wrfswB0Y7Lf14ydBfpbSOjUUn
- NK8tyy4CC0cUwBs3Y0OAQCx4SInkg3BVL3+2ukR35DfDr68HKnfAiHcbN A==;
-X-CSE-ConnectionGUID: pYG9LChrQAKTgVmHkYuMOQ==
-X-CSE-MsgGUID: bgUrQEiGRGaJf7F1G2aJxA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11612"; a="64127853"
-X-IronPort-AV: E=Sophos;i="6.19,302,1754982000"; d="scan'208";a="64127853"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Nov 2025 05:37:35 -0800
-X-CSE-ConnectionGUID: /VbW3pzAS9mkJy5tpn/2bA==
-X-CSE-MsgGUID: JrHf7LBBQgGU8hcMTUYb5g==
+ t=1763041066; x=1794577066;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=mC7m8KbszPDHXEANUzQdLRZ0KVvrTU3TzBH+NSYJYZc=;
+ b=PY7D4usXIanoDUOVOTWp+lOiOLTAKE1e8ImD2wlI6PZXHrwtIjaP4PHw
+ ybSBzhQUqGrRWmfG/djh/lHIVMpcQF/Oh/+R0gstaZ0zRPG6dgEmEVyC1
+ gjO8ZYPksIh43l42OfYh2xyCaCvfwyzjoI3ShP6KBJa8MUCHT/otaBTOL
+ VEix3DJh7Yxs3dthfRJ0l9SWz6QBvDkUvrwbDkr3etxPqKUX/itAEnN4y
+ n8Y7VzJDF2tuSTPownV7q/DoI10lHehCHYMBIoHt0eT9Fp1tav4vsw6Cs
+ 9nxhiuD17hCelF9TIoWDxD/Tk/td93HD7ZOfzseuYAGESFoWxTPaJMXZu A==;
+X-CSE-ConnectionGUID: 1hCa+Yq6RL6XG2nphBtvCA==
+X-CSE-MsgGUID: bqpPb8R3QyaFC1K97XhU8w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11612"; a="65004445"
+X-IronPort-AV: E=Sophos;i="6.19,302,1754982000"; d="scan'208";a="65004445"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Nov 2025 05:37:45 -0800
+X-CSE-ConnectionGUID: ycvd4ytdQ1ibkBE4wii9Kw==
+X-CSE-MsgGUID: z7Fzhd4SQ42HKfHDcmPpuA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,302,1754982000"; d="scan'208";a="194497456"
-Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
- by fmviesa004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Nov 2025 05:37:34 -0800
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Thu, 13 Nov 2025 05:37:34 -0800
-Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27 via Frontend Transport; Thu, 13 Nov 2025 05:37:34 -0800
-Received: from CH4PR04CU002.outbound.protection.outlook.com (40.107.201.44) by
- edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Thu, 13 Nov 2025 05:37:34 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=xF6FOChOYFDeE6aIr37BVNvzrxUKZ6ChOsYi+uKdT8v+1qrGWhAoC1xuxHGqvhTDtO/jDWeyj3nEcbCC0iNcsIkhNfqtFn2IXxU/K7wM5GdJNqoyQcRm6gqeUNhuzU8VDqD7T+avWGy48jJD4n9EuzBY7L2Rl4e6CvIaDgfokNp1cd32eBvLbLVZWzB0i/XVm3v3UBujqFBt6PoaB9cgj4K5Zn5h/X1Y2JaJEm8KDrfaaV/6x7cEqf+WbkdO0G/bxZZW4JKq2APiqiz4O1MRjuAdWZn5xGJdmvBw1/oCNUdqvBfsJVImUWPJwtAuje7peocVJGwT6N36W8CZ1QnMIw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=8TCqBZEXGvFB+prp0+/PX0jK72npOI8dpi6HbDjntZU=;
- b=FSH/Iv35UmeY8qbkO4QC1jfBKSh+UdGXA7xtZQ6zp8QBT4tZlGxhWS6dxSGkJJKBz2nCEwsPJ5WIcYMprS0uJ91n9utX3XtYqUsHvZ37BGw9t2VYZdjr6stG8gerg7wjNmMQEMdTZmcY7N/XGKU9FdzXW3XLLP0f9jIh65jhMzornaVfYrG8PETCCqYGjeLLZ7txkXi+rRRXELEfMd4/ht2MTPg00mQFsGbvrvsSI3on4MCGmjVsHi+BaSR0LUGVUhMeCzKmHcJPn21+MlZxgvEfG3JoRRCZamlgW7V1LZXEwoP7O8np12djOE/Z0sPO9jCYI+JPDWtfyD+mDtpJKg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH8PR11MB8287.namprd11.prod.outlook.com (2603:10b6:510:1c7::14)
- by DM4PR11MB6334.namprd11.prod.outlook.com (2603:10b6:8:b5::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9320.15; Thu, 13 Nov
- 2025 13:37:27 +0000
-Received: from PH8PR11MB8287.namprd11.prod.outlook.com
- ([fe80::7e8b:2e5:8ce4:2350]) by PH8PR11MB8287.namprd11.prod.outlook.com
- ([fe80::7e8b:2e5:8ce4:2350%7]) with mapi id 15.20.9320.013; Thu, 13 Nov 2025
- 13:37:26 +0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20251110232017.1475869-43-matthew.d.roper@intel.com>
-References: <20251110232017.1475869-32-matthew.d.roper@intel.com>
- <20251110232017.1475869-43-matthew.d.roper@intel.com>
-Subject: Re: [PATCH v2 11/30] drm/xe/pat: Use scope-based forcewake
-From: Gustavo Sousa <gustavo.sousa@intel.com>
-CC: <matthew.d.roper@intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>, <intel-xe@lists.freedesktop.org>
-Date: Thu, 13 Nov 2025 10:37:09 -0300
-Message-ID: <176304102941.3698.12112253020128921728@intel.com>
-User-Agent: alot/0.12.dev22+g972188619
-X-ClientProxiedBy: SJ0PR13CA0159.namprd13.prod.outlook.com
- (2603:10b6:a03:2c7::14) To PH8PR11MB8287.namprd11.prod.outlook.com
- (2603:10b6:510:1c7::14)
+X-IronPort-AV: E=Sophos;i="6.19,302,1754982000"; d="scan'208";a="212901700"
+Received: from aotchere-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.135])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Nov 2025 05:37:44 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
+Cc: ville.syrjala@linux.intel.com,
+	uma.shankar@intel.com
+Subject: [PATCH] drm/i915/gmch: split out i915_gmch.[ch] from soc
+Date: Thu, 13 Nov 2025 15:37:38 +0200
+Message-ID: <20251113133738.696502-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.47.3
+In-Reply-To: <cover.1763027774.git.jani.nikula@intel.com>
+References: <cover.1763027774.git.jani.nikula@intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH8PR11MB8287:EE_|DM4PR11MB6334:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7e57d024-4a1e-45e2-4bd4-08de22b9c8df
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?TkROWjh4RG5weWVnRjljYkQwUGdTbFA3NGJUT1lXSkIybTFMVkVQZ3BGb3RI?=
- =?utf-8?B?M0R5OS94R1FLQzB2WVBMSFRKUTVQQjJwR1pXWHFnait0OEZwa1BhQUZkVGJt?=
- =?utf-8?B?NjliYVFlQ01vblM2SDlCNCtFWHRnY1ZjYW1kVU5PZ0d4QlFQSlowVUxLeE1G?=
- =?utf-8?B?dWh4b2RidUhRK1RMcnZkV1lQZkMxbVhnRnBSelNZcEpONU03UndkYmhVeFJE?=
- =?utf-8?B?NFVvN29URzNCMFppc3hmYTJoVzNNditzQUI2eWsvUWtrNlVoMVE5Z3Q3R2xt?=
- =?utf-8?B?WjBISlRjUXhaNmZTMnZjUXRSQWViTGZBYmhBVDBMakIxdFdJM3RrTlVwSUdt?=
- =?utf-8?B?MERnVlI2ZU5kMlBZYTJFMUNYY2NvdTBkNkcvSWNwZHdLZWhhYUFrRWQ1ZjRO?=
- =?utf-8?B?OU95cVNnWThLZ0JobkgrYTFRM3JuZGVuR055MzFYL3BzVTliM2ZlUjV3Q0ho?=
- =?utf-8?B?WWVvNkVwTE40VnJzTkF4dzBsdWZDMXB2aWo2VkZuNzE3dDRRNTMzNmU5UE52?=
- =?utf-8?B?OWJYa0FqTE9HdEFiaE5KUGJXelhCSXAxVnlldEs2SlprREVySWl0UHFKa2pr?=
- =?utf-8?B?RFFpQUhUVDhpejFDS2tQQ1h3djY1M0tpUENGRWdXSnJYaTRMZy9tTzEzWVo4?=
- =?utf-8?B?MWp6dE80NU5ic0dlandrSU80ZlExRnBHaWdsUkdFVzk0Zk4xbk1xa1YrTGQw?=
- =?utf-8?B?VWVVcFV6bVlwT1BKdHVOZVVaWDhOcWhKME0xY012dmE3dEh3K0hOWUNUYlB3?=
- =?utf-8?B?eHVLdlR3OXR3bUJtek1JVEdGbUxZZkRkelByaFRhbGtQRnJhRC9rcEhwWlJP?=
- =?utf-8?B?S1lLL0pZWGR2QUlSZWdnQXJhbGZjYzJENk4wOXAvM2tQUnpOeHY0bkVoN1Nw?=
- =?utf-8?B?K0lXUXpacUtsLzM2Z1NZQzlGVzh4cGJoRDZ3NlBwSW8zaXY5THZHVDV0STk1?=
- =?utf-8?B?L1FxclRkSlpra2h1a0lWMEp4b1ppcjdZQWYyOGRENlNvR2o3b3BBbGoxbTRY?=
- =?utf-8?B?UWloOVFYWkxxQjVGQ3NUaGViREp3Y1RuT1A4YWg0M0hiZlQ5L0hWYndNSWYw?=
- =?utf-8?B?ODMwblIwMzZ1MW5IVk81UURVaWJMRmhNY2Z0cGUxMkkvRGxRNUoyTHRVQXFJ?=
- =?utf-8?B?ak1kRTNOejVJYVVWbTZCeFhVbEQ4VG5HVGJHTFAyVE52TEJYSUI0d3ZKdlFi?=
- =?utf-8?B?M1ZmZllwUnJDbSt6aEh2cHV1REZ1ZTFtVWxWZ1NHNDNlMFpycW5jU2h4ZjA1?=
- =?utf-8?B?Sk92VEE2eUJsdkNqUEpZaXRLaFp0ejdEUEhVT1Rma1ZyQzAvMXV1dnVnZVNX?=
- =?utf-8?B?eDZNSlFUT3c0OVpQVkhDWjVoMnpBbDIrUDIvaVJHUFc3SXVyTHdPSDhJMTlN?=
- =?utf-8?B?MlFPWmx0L1lISnBkNFB4amI4bUpMVHFRYUcyRlUwSzZ0aEhBV2dWS2d5YVhJ?=
- =?utf-8?B?cUlKYVVvQ3pJdDB0WFNnNmNHNld0dmgwUlNBRGM2NUVkdmppSUk4eC9MQXNr?=
- =?utf-8?B?ZnNYZGp5WWErQXQ1Zk03czlMUFpZTnZoT0dubGFqR1dmUHhpcnNpVC91WGlG?=
- =?utf-8?B?V29weC8wTktHTWg3VWRFaDdHRVpaNjN4ZjkrT0RxdzdMbjcxaGFlNGV4aWcv?=
- =?utf-8?B?N1E0VlM3OW9WMG5EcVpEQTR4VkVXendJdmdJbmZtNERQREc5RlpTNFRsclFB?=
- =?utf-8?B?RnpZVkZTaXJLM3FHU0RiM3Q5TmxvSlVsMmo0VVY2MFJnL3psdU1od1RJNktu?=
- =?utf-8?B?RnZIQU1ybnFiQm5zSTRhSW45KzdRakEvRWN3dWhMVForUnlyS3NRaGtrOTZy?=
- =?utf-8?B?M1doSnU4VjNYaHVKSHJVTnd1a2Z4K0dwQTBRUlhVZmFVUy9NbHJWMlZlazJJ?=
- =?utf-8?B?SnVVRnNyTmpyN2lmR2JUN05zL1hwVlh0MDMreTIyNHo1S25oczJIQ1pxekU1?=
- =?utf-8?Q?Ts6WC/UD8CbMecTpidsaW0iaZv2nrll5?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH8PR11MB8287.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?U2ZFQ1Bha0JGZTRCVmpiSXNod0RiZUVVbGh2TkRUVjBHUW9jS1c0ajNheEI1?=
- =?utf-8?B?NzVsOTJGcWtwQnBjNG9RTEtCZWtZam9Zc1JiYmFpeTlqSXlEbDVodytHdGFC?=
- =?utf-8?B?Y3RSQ21sOExkMmhxa2l6OFMvbUN4VUR6Z0pOTHgvdjBtQXhZZ0s0VkVkVERK?=
- =?utf-8?B?VzNnd3NWWFhMVzdoc2IwcWVrYWExVEg0TTFVQkJ1dEZtR2kxY1p5a2YxeXZp?=
- =?utf-8?B?eE9oc3R2MzNNM2dLRE9UWUpNdncyb1lZWDViSnlEZFZOaUN1YWtRRlRobHB0?=
- =?utf-8?B?eDM1ZHA0VnczVi9BU1cyOWY2YllzK1dzc09ROWJQblY0M2daSlRVWUI2VlY5?=
- =?utf-8?B?ZlMrVVJvanc2VlFxU3BWRERxY2tIN3RQamwyZmJnajRqRGZJSmF4VWlBRU1H?=
- =?utf-8?B?YmpxNkg0RHVia0ZBanRjdllkNXU3TVZTdHlVT0p6TU1PSVgyUW9nYnpWeDQz?=
- =?utf-8?B?ekgzdzdZU3BURDBLWnc3LzJXRmh0V0tlTDhNalpCOWNlWHdNcHg5bU5sRWNF?=
- =?utf-8?B?U1RqcisxV0FlYUlYcHpWMUtiNFZkdGxobTRnVytsc3JXYlJSdXRoV2xmNk16?=
- =?utf-8?B?Z1ZMK2JxT1ZGNVhLWThaakdPeExnU1dielRtT0xFOEtuVHlybjhISjVab3pU?=
- =?utf-8?B?NmRmdVc0L1JQM1J3TmNMTTFTSStXOURDL2NuMnRsMzRBSUNsM2RMU09rUUtL?=
- =?utf-8?B?SmlISTlJdEo1T0JqcSt4YnNoOHB2OUVta3loUjQrejNLWmkzQnQxNlRaRHdD?=
- =?utf-8?B?MWhZZ3IxdWExUG1WV3ZuTzJjRDUyMWlHb1Zrd3M3VEV1TUluaWJ6L2Yyay9v?=
- =?utf-8?B?eDlrNG1nVVVvKzVxNWRYekxLcE9zMmRxOGNoU1FmeUdGZ0I2cTRXcmh5NXhV?=
- =?utf-8?B?R1ErWnlQek1lMkFhTVduK0U1b2lLaWVxcksrd0xuc0RZMDQ0R0h6REJkeE1w?=
- =?utf-8?B?WlMyK0dwRVY5L2JaQStpS1N3SlFPRlFNbGZ5UmpXUTNtOEhNTDhPTFYrQ2tJ?=
- =?utf-8?B?aitlK0JNbTZQalZXS25IV295OUtocC9IRXA5Ymtielhpd2lSSytNKzJacU9m?=
- =?utf-8?B?TzJKeXE5ckFYdFlFUHd4U1M0RCtXRWxSa3pHQnhFMkxXOUQ3c3ZhRzJUV1Z4?=
- =?utf-8?B?K0E4RlQ1eUg1NHZtUHY4WGtiTnd6aTBLMFFMQmZqb0Y4anh3UHJBakZBaFFF?=
- =?utf-8?B?bEVYSGh3RFFlR2ZWNHUxVzhEcU4yM0ZtWlBCZ3BhZjNkZHZzcjg5OXhJMDJY?=
- =?utf-8?B?L1ZhTkFiZmRFS0xiSGxVVTU1dHNKeVIzakF2NUQ4RmF3ZmtwRHNFWWlJQ2lL?=
- =?utf-8?B?TDhCekoyYmFad2hZRVRudTI0ZG02a1ZGSE9DVjVxUUZHVDhVN3dQZDArS3Bt?=
- =?utf-8?B?Q3QvZ05UaDQ2V01CL1VpSXpvT2RwMHdjaXEzaUlFS2pwakY3bE91R21QOXBG?=
- =?utf-8?B?NU9vblRnd1dDWktnNHV5VHJQWnFKK0pDS3hDcWtSSXVETDJRVXB6bDRHUlFO?=
- =?utf-8?B?SFllNTVVRUY2RkRPNWF5cjdzVkpkT3ZCVHhZWUhhdWxReTdpVEx4ZzJvcEY0?=
- =?utf-8?B?MVpMTGs5V1BkcXRJSUFQakVnSklTOGpqQzkrYk8zQll3WkZQT24vMlMwdlgv?=
- =?utf-8?B?a24vcFFXMW8wRjhnS3ZpdDkrODNxU01NY2s5ZXJSak5LZTc0eHRXWkZlSEVx?=
- =?utf-8?B?UFA2Nlh2NFRUNGFtd1Jnb2V4OFBXcXNVRG82MWpzN2Nvb2U3QTRIZ1JsVW02?=
- =?utf-8?B?TGloUlhiNVNGODhkM2FXTTNuTjFJaVhMSTFncTFES25GSGJzaG9tQ1lvbE9i?=
- =?utf-8?B?VTRGOFZRaGFNVS8xSjBES0FlWmhKeVVPQ2VxUVc1K05zU2lFeng0eXVqaVNN?=
- =?utf-8?B?b1FPUVdQK1lpUkF6Yzd2OGg0RjZyL3JleE44emYzTzcvNnRQQytvSzgxdHRR?=
- =?utf-8?B?NnNIZlRSd3EvcENRaUpIS1VQbEpzaXBWQ29ma2M4NWtUNFNxUXpMcHNkaGxO?=
- =?utf-8?B?dFpqVlVsWXJqcmFLbXpNVkpHOC9MeFhFYnhRT3BXWnI0MndNYTdRN3hpZTR2?=
- =?utf-8?B?QnFNU05zZnZsMDhRSlM2aS84c1Z4Qlg3eFd0VFltSGZGKy9kUUpWUjc2anBJ?=
- =?utf-8?B?ZnYyN202RjAxTjljTEQ3VHIrSmJUMUZvU0ZKK3FuS0duenBOemFiQnFmeWZn?=
- =?utf-8?B?MUE9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7e57d024-4a1e-45e2-4bd4-08de22b9c8df
-X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB8287.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Nov 2025 13:37:26.8848 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Imj3wgmfioYrzhq3syeHpE9qYQGQGCs/n+h2lPfeNWmG4aVRjFz3Vo08yoNGUBPUGYnNjyKkxc49du+a7IsF/w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB6334
-X-OriginatorOrg: intel.com
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -194,165 +71,422 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Quoting Matt Roper (2025-11-10 20:20:29-03:00)
->Use scope-based cleanup for forcewake in the PAT code to slightly
->simplify the code.
->
->Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+Most of the soc/intel_gmch.[ch] code is i915 core specific. Split it out
+to i915_gmch.[ch].
 
-Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/i915/Makefile         |   1 +
+ drivers/gpu/drm/i915/i915_driver.c    |  11 +-
+ drivers/gpu/drm/i915/i915_gmch.c      | 141 ++++++++++++++++++++++++++
+ drivers/gpu/drm/i915/i915_gmch.h      |  13 +++
+ drivers/gpu/drm/i915/soc/intel_gmch.c | 132 ------------------------
+ drivers/gpu/drm/i915/soc/intel_gmch.h |   3 -
+ 6 files changed, 160 insertions(+), 141 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/i915_gmch.c
+ create mode 100644 drivers/gpu/drm/i915/i915_gmch.h
 
->---
-> drivers/gpu/drm/xe/xe_pat.c | 36 ++++++++++++------------------------
-> 1 file changed, 12 insertions(+), 24 deletions(-)
->
->diff --git a/drivers/gpu/drm/xe/xe_pat.c b/drivers/gpu/drm/xe/xe_pat.c
->index 68171cceea18..97b5e995f7d7 100644
->--- a/drivers/gpu/drm/xe/xe_pat.c
->+++ b/drivers/gpu/drm/xe/xe_pat.c
->@@ -233,11 +233,10 @@ static void program_pat_mcr(struct xe_gt *gt, const =
-struct xe_pat_table_entry ta
-> static int xelp_dump(struct xe_gt *gt, struct drm_printer *p)
-> {
->         struct xe_device *xe =3D gt_to_xe(gt);
->-        unsigned int fw_ref;
->         int i;
->=20
->-        fw_ref =3D xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
->-        if (!fw_ref)
->+        CLASS(xe_force_wake, fw_ref)(gt_to_fw(gt), XE_FW_GT);
->+        if (!fw_ref.domains)
->                 return -ETIMEDOUT;
->=20
->         drm_printf(p, "PAT table:\n");
->@@ -250,7 +249,6 @@ static int xelp_dump(struct xe_gt *gt, struct drm_prin=
-ter *p)
->                            XELP_MEM_TYPE_STR_MAP[mem_type], pat);
->         }
->=20
->-        xe_force_wake_put(gt_to_fw(gt), fw_ref);
->         return 0;
-> }
->=20
->@@ -262,11 +260,10 @@ static const struct xe_pat_ops xelp_pat_ops =3D {
-> static int xehp_dump(struct xe_gt *gt, struct drm_printer *p)
-> {
->         struct xe_device *xe =3D gt_to_xe(gt);
->-        unsigned int fw_ref;
->         int i;
->=20
->-        fw_ref =3D xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
->-        if (!fw_ref)
->+        CLASS(xe_force_wake, fw_ref)(gt_to_fw(gt), XE_FW_GT);
->+        if (!fw_ref.domains)
->                 return -ETIMEDOUT;
->=20
->         drm_printf(p, "PAT table:\n");
->@@ -281,7 +278,6 @@ static int xehp_dump(struct xe_gt *gt, struct drm_prin=
-ter *p)
->                            XELP_MEM_TYPE_STR_MAP[mem_type], pat);
->         }
->=20
->-        xe_force_wake_put(gt_to_fw(gt), fw_ref);
->         return 0;
-> }
->=20
->@@ -293,11 +289,10 @@ static const struct xe_pat_ops xehp_pat_ops =3D {
-> static int xehpc_dump(struct xe_gt *gt, struct drm_printer *p)
-> {
->         struct xe_device *xe =3D gt_to_xe(gt);
->-        unsigned int fw_ref;
->         int i;
->=20
->-        fw_ref =3D xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
->-        if (!fw_ref)
->+        CLASS(xe_force_wake, fw_ref)(gt_to_fw(gt), XE_FW_GT);
->+        if (!fw_ref.domains)
->                 return -ETIMEDOUT;
->=20
->         drm_printf(p, "PAT table:\n");
->@@ -310,7 +305,6 @@ static int xehpc_dump(struct xe_gt *gt, struct drm_pri=
-nter *p)
->                            REG_FIELD_GET(XEHPC_CLOS_LEVEL_MASK, pat), pat=
-);
->         }
->=20
->-        xe_force_wake_put(gt_to_fw(gt), fw_ref);
->         return 0;
-> }
->=20
->@@ -322,11 +316,10 @@ static const struct xe_pat_ops xehpc_pat_ops =3D {
-> static int xelpg_dump(struct xe_gt *gt, struct drm_printer *p)
-> {
->         struct xe_device *xe =3D gt_to_xe(gt);
->-        unsigned int fw_ref;
->         int i;
->=20
->-        fw_ref =3D xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
->-        if (!fw_ref)
->+        CLASS(xe_force_wake, fw_ref)(gt_to_fw(gt), XE_FW_GT);
->+        if (!fw_ref.domains)
->                 return -ETIMEDOUT;
->=20
->         drm_printf(p, "PAT table:\n");
->@@ -344,7 +337,6 @@ static int xelpg_dump(struct xe_gt *gt, struct drm_pri=
-nter *p)
->                            REG_FIELD_GET(XELPG_INDEX_COH_MODE_MASK, pat),=
- pat);
->         }
->=20
->-        xe_force_wake_put(gt_to_fw(gt), fw_ref);
->         return 0;
-> }
->=20
->@@ -361,12 +353,11 @@ static const struct xe_pat_ops xelpg_pat_ops =3D {
-> static int xe2_dump(struct xe_gt *gt, struct drm_printer *p)
-> {
->         struct xe_device *xe =3D gt_to_xe(gt);
->-        unsigned int fw_ref;
->         u32 pat;
->         int i;
->=20
->-        fw_ref =3D xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
->-        if (!fw_ref)
->+        CLASS(xe_force_wake, fw_ref)(gt_to_fw(gt), XE_FW_GT);
->+        if (!fw_ref.domains)
->                 return -ETIMEDOUT;
->=20
->         drm_printf(p, "PAT table: (* =3D reserved entry)\n");
->@@ -406,7 +397,6 @@ static int xe2_dump(struct xe_gt *gt, struct drm_print=
-er *p)
->                    REG_FIELD_GET(XE2_COH_MODE, pat),
->                    pat);
->=20
->-        xe_force_wake_put(gt_to_fw(gt), fw_ref);
->         return 0;
-> }
->=20
->@@ -419,12 +409,11 @@ static const struct xe_pat_ops xe2_pat_ops =3D {
-> static int xe3p_xpc_dump(struct xe_gt *gt, struct drm_printer *p)
-> {
->         struct xe_device *xe =3D gt_to_xe(gt);
->-        unsigned int fw_ref;
->         u32 pat;
->         int i;
->=20
->-        fw_ref =3D xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
->-        if (!fw_ref)
->+        CLASS(xe_force_wake, fw_ref)(gt_to_fw(gt), XE_FW_GT);
->+        if (!fw_ref.domains)
->                 return -ETIMEDOUT;
->=20
->         drm_printf(p, "PAT table: (* =3D reserved entry)\n");
->@@ -456,7 +445,6 @@ static int xe3p_xpc_dump(struct xe_gt *gt, struct drm_=
-printer *p)
->                    REG_FIELD_GET(XE2_COH_MODE, pat),
->                    pat);
->=20
->-        xe_force_wake_put(gt_to_fw(gt), fw_ref);
->         return 0;
-> }
->=20
->--=20
->2.51.1
->
+diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
+index c7ef64b8f99a..90588d5bb908 100644
+--- a/drivers/gpu/drm/i915/Makefile
++++ b/drivers/gpu/drm/i915/Makefile
+@@ -30,6 +30,7 @@ i915-y += \
+ 	i915_edram.o \
+ 	i915_freq.o \
+ 	i915_getparam.o \
++	i915_gmch.o \
+ 	i915_ioctl.o \
+ 	i915_irq.o \
+ 	i915_mitigations.o \
+diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+index 1dc6ba4cf5a9..1fc7c5e82923 100644
+--- a/drivers/gpu/drm/i915/i915_driver.c
++++ b/drivers/gpu/drm/i915/i915_driver.c
+@@ -87,8 +87,6 @@
+ #include "pxp/intel_pxp_debugfs.h"
+ #include "pxp/intel_pxp_pm.h"
+ 
+-#include "soc/intel_gmch.h"
+-
+ #include "i915_debugfs.h"
+ #include "i915_driver.h"
+ #include "i915_drm_client.h"
+@@ -96,6 +94,7 @@
+ #include "i915_edram.h"
+ #include "i915_file_private.h"
+ #include "i915_getparam.h"
++#include "i915_gmch.h"
+ #include "i915_hwmon.h"
+ #include "i915_ioc32.h"
+ #include "i915_ioctl.h"
+@@ -322,7 +321,7 @@ static int i915_driver_mmio_probe(struct drm_i915_private *dev_priv)
+ 	if (i915_inject_probe_failure(dev_priv))
+ 		return -ENODEV;
+ 
+-	ret = intel_gmch_bridge_setup(dev_priv);
++	ret = i915_gmch_bridge_setup(dev_priv);
+ 	if (ret < 0)
+ 		return ret;
+ 
+@@ -339,7 +338,7 @@ static int i915_driver_mmio_probe(struct drm_i915_private *dev_priv)
+ 	}
+ 
+ 	/* Try to make sure MCHBAR is enabled before poking at it */
+-	intel_gmch_bar_setup(dev_priv);
++	i915_gmch_bar_setup(dev_priv);
+ 	intel_device_info_runtime_init(dev_priv);
+ 	intel_display_device_info_runtime_init(display);
+ 
+@@ -355,7 +354,7 @@ static int i915_driver_mmio_probe(struct drm_i915_private *dev_priv)
+ 	return 0;
+ 
+ err_uncore:
+-	intel_gmch_bar_teardown(dev_priv);
++	i915_gmch_bar_teardown(dev_priv);
+ 
+ 	return ret;
+ }
+@@ -366,7 +365,7 @@ static int i915_driver_mmio_probe(struct drm_i915_private *dev_priv)
+  */
+ static void i915_driver_mmio_release(struct drm_i915_private *dev_priv)
+ {
+-	intel_gmch_bar_teardown(dev_priv);
++	i915_gmch_bar_teardown(dev_priv);
+ }
+ 
+ /**
+diff --git a/drivers/gpu/drm/i915/i915_gmch.c b/drivers/gpu/drm/i915/i915_gmch.c
+new file mode 100644
+index 000000000000..2d55831b3c58
+--- /dev/null
++++ b/drivers/gpu/drm/i915/i915_gmch.c
+@@ -0,0 +1,141 @@
++// SPDX-License-Identifier: MIT
++/* Copyright © 2025 Intel Corporation */
++
++#include <linux/pnp.h>
++
++#include <drm/drm_managed.h>
++#include <drm/drm_print.h>
++
++#include "i915_drv.h"
++#include "i915_gmch.h"
++#include "intel_pci_config.h"
++
++static void i915_gmch_bridge_release(struct drm_device *dev, void *bridge)
++{
++	pci_dev_put(bridge);
++}
++
++int i915_gmch_bridge_setup(struct drm_i915_private *i915)
++{
++	int domain = pci_domain_nr(to_pci_dev(i915->drm.dev)->bus);
++
++	i915->gmch.pdev = pci_get_domain_bus_and_slot(domain, 0, PCI_DEVFN(0, 0));
++	if (!i915->gmch.pdev) {
++		drm_err(&i915->drm, "bridge device not found\n");
++		return -EIO;
++	}
++
++	return drmm_add_action_or_reset(&i915->drm, i915_gmch_bridge_release,
++					i915->gmch.pdev);
++}
++
++static int mchbar_reg(struct drm_i915_private *i915)
++{
++	return GRAPHICS_VER(i915) >= 4 ? MCHBAR_I965 : MCHBAR_I915;
++}
++
++/* Allocate space for the MCH regs if needed, return nonzero on error */
++static int
++intel_alloc_mchbar_resource(struct drm_i915_private *i915)
++{
++	u32 temp_lo, temp_hi = 0;
++	u64 mchbar_addr;
++	int ret;
++
++	if (GRAPHICS_VER(i915) >= 4)
++		pci_read_config_dword(i915->gmch.pdev, mchbar_reg(i915) + 4, &temp_hi);
++	pci_read_config_dword(i915->gmch.pdev, mchbar_reg(i915), &temp_lo);
++	mchbar_addr = ((u64)temp_hi << 32) | temp_lo;
++
++	/* If ACPI doesn't have it, assume we need to allocate it ourselves */
++	if (IS_ENABLED(CONFIG_PNP) && mchbar_addr &&
++	    pnp_range_reserved(mchbar_addr, mchbar_addr + MCHBAR_SIZE))
++		return 0;
++
++	/* Get some space for it */
++	i915->gmch.mch_res.name = "i915 MCHBAR";
++	i915->gmch.mch_res.flags = IORESOURCE_MEM;
++	ret = pci_bus_alloc_resource(i915->gmch.pdev->bus,
++				     &i915->gmch.mch_res,
++				     MCHBAR_SIZE, MCHBAR_SIZE,
++				     PCIBIOS_MIN_MEM,
++				     0, pcibios_align_resource,
++				     i915->gmch.pdev);
++	if (ret) {
++		drm_dbg(&i915->drm, "failed bus alloc: %d\n", ret);
++		i915->gmch.mch_res.start = 0;
++		return ret;
++	}
++
++	if (GRAPHICS_VER(i915) >= 4)
++		pci_write_config_dword(i915->gmch.pdev, mchbar_reg(i915) + 4,
++				       upper_32_bits(i915->gmch.mch_res.start));
++
++	pci_write_config_dword(i915->gmch.pdev, mchbar_reg(i915),
++			       lower_32_bits(i915->gmch.mch_res.start));
++	return 0;
++}
++
++/* Setup MCHBAR if possible, return true if we should disable it again */
++void i915_gmch_bar_setup(struct drm_i915_private *i915)
++{
++	u32 temp;
++	bool enabled;
++
++	if (IS_VALLEYVIEW(i915) || IS_CHERRYVIEW(i915))
++		return;
++
++	i915->gmch.mchbar_need_disable = false;
++
++	if (IS_I915G(i915) || IS_I915GM(i915)) {
++		pci_read_config_dword(i915->gmch.pdev, DEVEN, &temp);
++		enabled = !!(temp & DEVEN_MCHBAR_EN);
++	} else {
++		pci_read_config_dword(i915->gmch.pdev, mchbar_reg(i915), &temp);
++		enabled = temp & 1;
++	}
++
++	/* If it's already enabled, don't have to do anything */
++	if (enabled)
++		return;
++
++	if (intel_alloc_mchbar_resource(i915))
++		return;
++
++	i915->gmch.mchbar_need_disable = true;
++
++	/* Space is allocated or reserved, so enable it. */
++	if (IS_I915G(i915) || IS_I915GM(i915)) {
++		pci_write_config_dword(i915->gmch.pdev, DEVEN,
++				       temp | DEVEN_MCHBAR_EN);
++	} else {
++		pci_read_config_dword(i915->gmch.pdev, mchbar_reg(i915), &temp);
++		pci_write_config_dword(i915->gmch.pdev, mchbar_reg(i915), temp | 1);
++	}
++}
++
++void i915_gmch_bar_teardown(struct drm_i915_private *i915)
++{
++	if (i915->gmch.mchbar_need_disable) {
++		if (IS_I915G(i915) || IS_I915GM(i915)) {
++			u32 deven_val;
++
++			pci_read_config_dword(i915->gmch.pdev, DEVEN,
++					      &deven_val);
++			deven_val &= ~DEVEN_MCHBAR_EN;
++			pci_write_config_dword(i915->gmch.pdev, DEVEN,
++					       deven_val);
++		} else {
++			u32 mchbar_val;
++
++			pci_read_config_dword(i915->gmch.pdev, mchbar_reg(i915),
++					      &mchbar_val);
++			mchbar_val &= ~1;
++			pci_write_config_dword(i915->gmch.pdev, mchbar_reg(i915),
++					       mchbar_val);
++		}
++	}
++
++	if (i915->gmch.mch_res.start)
++		release_resource(&i915->gmch.mch_res);
++}
+diff --git a/drivers/gpu/drm/i915/i915_gmch.h b/drivers/gpu/drm/i915/i915_gmch.h
+new file mode 100644
+index 000000000000..3ae50bef04ea
+--- /dev/null
++++ b/drivers/gpu/drm/i915/i915_gmch.h
+@@ -0,0 +1,13 @@
++/* SPDX-License-Identifier: MIT */
++/* Copyright © 2025 Intel Corporation */
++
++#ifndef __I915_GMCH_H__
++#define __I915_GMCH_H__
++
++struct drm_i915_private;
++
++int i915_gmch_bridge_setup(struct drm_i915_private *i915);
++void i915_gmch_bar_setup(struct drm_i915_private *i915);
++void i915_gmch_bar_teardown(struct drm_i915_private *i915);
++
++#endif /* __I915_GMCH_H__ */
+diff --git a/drivers/gpu/drm/i915/soc/intel_gmch.c b/drivers/gpu/drm/i915/soc/intel_gmch.c
+index 271da30c8290..30f489417064 100644
+--- a/drivers/gpu/drm/i915/soc/intel_gmch.c
++++ b/drivers/gpu/drm/i915/soc/intel_gmch.c
+@@ -4,10 +4,8 @@
+  */
+ 
+ #include <linux/pci.h>
+-#include <linux/pnp.h>
+ #include <linux/vgaarb.h>
+ 
+-#include <drm/drm_managed.h>
+ #include <drm/drm_print.h>
+ #include <drm/intel/i915_drm.h>
+ 
+@@ -17,136 +15,6 @@
+ #include "intel_gmch.h"
+ #include "intel_pci_config.h"
+ 
+-static void intel_gmch_bridge_release(struct drm_device *dev, void *bridge)
+-{
+-	pci_dev_put(bridge);
+-}
+-
+-int intel_gmch_bridge_setup(struct drm_i915_private *i915)
+-{
+-	int domain = pci_domain_nr(to_pci_dev(i915->drm.dev)->bus);
+-
+-	i915->gmch.pdev = pci_get_domain_bus_and_slot(domain, 0, PCI_DEVFN(0, 0));
+-	if (!i915->gmch.pdev) {
+-		drm_err(&i915->drm, "bridge device not found\n");
+-		return -EIO;
+-	}
+-
+-	return drmm_add_action_or_reset(&i915->drm, intel_gmch_bridge_release,
+-					i915->gmch.pdev);
+-}
+-
+-static int mchbar_reg(struct drm_i915_private *i915)
+-{
+-	return GRAPHICS_VER(i915) >= 4 ? MCHBAR_I965 : MCHBAR_I915;
+-}
+-
+-/* Allocate space for the MCH regs if needed, return nonzero on error */
+-static int
+-intel_alloc_mchbar_resource(struct drm_i915_private *i915)
+-{
+-	u32 temp_lo, temp_hi = 0;
+-	u64 mchbar_addr;
+-	int ret;
+-
+-	if (GRAPHICS_VER(i915) >= 4)
+-		pci_read_config_dword(i915->gmch.pdev, mchbar_reg(i915) + 4, &temp_hi);
+-	pci_read_config_dword(i915->gmch.pdev, mchbar_reg(i915), &temp_lo);
+-	mchbar_addr = ((u64)temp_hi << 32) | temp_lo;
+-
+-	/* If ACPI doesn't have it, assume we need to allocate it ourselves */
+-	if (IS_ENABLED(CONFIG_PNP) && mchbar_addr &&
+-	    pnp_range_reserved(mchbar_addr, mchbar_addr + MCHBAR_SIZE))
+-		return 0;
+-
+-	/* Get some space for it */
+-	i915->gmch.mch_res.name = "i915 MCHBAR";
+-	i915->gmch.mch_res.flags = IORESOURCE_MEM;
+-	ret = pci_bus_alloc_resource(i915->gmch.pdev->bus,
+-				     &i915->gmch.mch_res,
+-				     MCHBAR_SIZE, MCHBAR_SIZE,
+-				     PCIBIOS_MIN_MEM,
+-				     0, pcibios_align_resource,
+-				     i915->gmch.pdev);
+-	if (ret) {
+-		drm_dbg(&i915->drm, "failed bus alloc: %d\n", ret);
+-		i915->gmch.mch_res.start = 0;
+-		return ret;
+-	}
+-
+-	if (GRAPHICS_VER(i915) >= 4)
+-		pci_write_config_dword(i915->gmch.pdev, mchbar_reg(i915) + 4,
+-				       upper_32_bits(i915->gmch.mch_res.start));
+-
+-	pci_write_config_dword(i915->gmch.pdev, mchbar_reg(i915),
+-			       lower_32_bits(i915->gmch.mch_res.start));
+-	return 0;
+-}
+-
+-/* Setup MCHBAR if possible, return true if we should disable it again */
+-void intel_gmch_bar_setup(struct drm_i915_private *i915)
+-{
+-	u32 temp;
+-	bool enabled;
+-
+-	if (IS_VALLEYVIEW(i915) || IS_CHERRYVIEW(i915))
+-		return;
+-
+-	i915->gmch.mchbar_need_disable = false;
+-
+-	if (IS_I915G(i915) || IS_I915GM(i915)) {
+-		pci_read_config_dword(i915->gmch.pdev, DEVEN, &temp);
+-		enabled = !!(temp & DEVEN_MCHBAR_EN);
+-	} else {
+-		pci_read_config_dword(i915->gmch.pdev, mchbar_reg(i915), &temp);
+-		enabled = temp & 1;
+-	}
+-
+-	/* If it's already enabled, don't have to do anything */
+-	if (enabled)
+-		return;
+-
+-	if (intel_alloc_mchbar_resource(i915))
+-		return;
+-
+-	i915->gmch.mchbar_need_disable = true;
+-
+-	/* Space is allocated or reserved, so enable it. */
+-	if (IS_I915G(i915) || IS_I915GM(i915)) {
+-		pci_write_config_dword(i915->gmch.pdev, DEVEN,
+-				       temp | DEVEN_MCHBAR_EN);
+-	} else {
+-		pci_read_config_dword(i915->gmch.pdev, mchbar_reg(i915), &temp);
+-		pci_write_config_dword(i915->gmch.pdev, mchbar_reg(i915), temp | 1);
+-	}
+-}
+-
+-void intel_gmch_bar_teardown(struct drm_i915_private *i915)
+-{
+-	if (i915->gmch.mchbar_need_disable) {
+-		if (IS_I915G(i915) || IS_I915GM(i915)) {
+-			u32 deven_val;
+-
+-			pci_read_config_dword(i915->gmch.pdev, DEVEN,
+-					      &deven_val);
+-			deven_val &= ~DEVEN_MCHBAR_EN;
+-			pci_write_config_dword(i915->gmch.pdev, DEVEN,
+-					       deven_val);
+-		} else {
+-			u32 mchbar_val;
+-
+-			pci_read_config_dword(i915->gmch.pdev, mchbar_reg(i915),
+-					      &mchbar_val);
+-			mchbar_val &= ~1;
+-			pci_write_config_dword(i915->gmch.pdev, mchbar_reg(i915),
+-					       mchbar_val);
+-		}
+-	}
+-
+-	if (i915->gmch.mch_res.start)
+-		release_resource(&i915->gmch.mch_res);
+-}
+-
+ int intel_gmch_vga_set_state(struct drm_i915_private *i915, bool enable_decode)
+ {
+ 	struct intel_display *display = i915->display;
+diff --git a/drivers/gpu/drm/i915/soc/intel_gmch.h b/drivers/gpu/drm/i915/soc/intel_gmch.h
+index 23be2d113afd..907e1ae921e0 100644
+--- a/drivers/gpu/drm/i915/soc/intel_gmch.h
++++ b/drivers/gpu/drm/i915/soc/intel_gmch.h
+@@ -11,9 +11,6 @@
+ struct pci_dev;
+ struct drm_i915_private;
+ 
+-int intel_gmch_bridge_setup(struct drm_i915_private *i915);
+-void intel_gmch_bar_setup(struct drm_i915_private *i915);
+-void intel_gmch_bar_teardown(struct drm_i915_private *i915);
+ int intel_gmch_vga_set_state(struct drm_i915_private *i915, bool enable_decode);
+ unsigned int intel_gmch_vga_set_decode(struct pci_dev *pdev, bool enable_decode);
+ 
+-- 
+2.47.3
+
