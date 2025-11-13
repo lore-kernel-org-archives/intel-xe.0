@@ -4,27 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E2806CD8C8F
-	for <intel-xe@archiver.kernel.org>; Thu, 13 Nov 2025 16:04:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 23530CD8C94
+	for <intel-xe@archiver.kernel.org>; Thu, 13 Nov 2025 16:10:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 738A910E864;
-	Thu, 13 Nov 2025 16:04:13 +0000 (UTC)
-Received: from 10055242dc62 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9343510E864;
- Thu, 13 Nov 2025 16:04:12 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1677183284464894347=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id DB73E10E88F;
+	Thu, 13 Nov 2025 16:10:22 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EjtR4Mo6";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 528B710E88F;
+ Thu, 13 Nov 2025 16:10:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1763050222; x=1794586222;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=gGxMW0ne1K82OqNdTElWez/C9rruj92jfffY6GL6lw4=;
+ b=EjtR4Mo6L6UQhS3wVmYD0imMpZj54AIri9pNMTwavlmqavkbz2HzY3bt
+ BAs1AkNaPaMP2r9+8ZiVEfiVEx5qjv5y8M/nj/Lxn8Vbv2N8Io3l9fpmT
+ 8GIy9smuvQgg1Xk/0/6TMpARnM7S7qWYIlJvrnxL/GVhNf+lhWCDV4qx1
+ BxNwx0H+fs8jjmK6HvBBvzu62r+rKwdEnYHb6HAqwrbWRszvWvrGhPvd2
+ RUpQcRsSfT/Jwb83rrbKD2K5iYHE0SvFIuApjLWsCn2C7mJppM/2nFYTa
+ Bc/oBbC0RZsoIq3WCPjAPwQeA4GQQXuPpLmiBEn1pkx917pRHLZozZz7O g==;
+X-CSE-ConnectionGUID: JX2qCz34TPO2IzT3JYZnqQ==
+X-CSE-MsgGUID: HRqcLnaWSNCJKyykFLMXnw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="65071567"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="65071567"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Nov 2025 08:10:21 -0800
+X-CSE-ConnectionGUID: v9QzH/c0SVixOxmSh2ssLA==
+X-CSE-MsgGUID: vklF9oYoSAiW2bTAriUORQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,302,1754982000"; d="scan'208";a="226853873"
+Received: from aotchere-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.135])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Nov 2025 08:10:18 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: "Kandpal, Suraj" <suraj.kandpal@intel.com>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Cc: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>, "Murthy, Arun R"
+ <arun.r.murthy@intel.com>, "Deak, Imre" <imre.deak@intel.com>
+Subject: RE: [PATCH] drm/display/dp_mst: Add protection against 0 vcpi
+In-Reply-To: <b2b7c5cbec76955ffdcc0a7ebf6cd83ad67e8b04@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20251113043918.716367-1-suraj.kandpal@intel.com>
+ <c47f1221281e998f53169ffd0a2e06b301bb1605@intel.com>
+ <DM3PPF208195D8D7C8C263E115ABED5A500E3CDA@DM3PPF208195D8D.namprd11.prod.outlook.com>
+ <b2b7c5cbec76955ffdcc0a7ebf6cd83ad67e8b04@intel.com>
+Date: Thu, 13 Nov 2025 18:10:15 +0200
+Message-ID: <33b509a4c9357933291e274f0456707c1808f6d0@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_drm/xe/uapi=3A_Add_NO=5FCOM?=
- =?utf-8?q?PRESSION_BO_flag_and_query_capability?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Sanjay Yadav" <sanjay.kumar.yadav@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 13 Nov 2025 16:04:12 -0000
-Message-ID: <176304985259.50964.14921521783372518675@10055242dc62>
-X-Patchwork-Hint: ignore
-References: <20251113132656.1907474-2-sanjay.kumar.yadav@intel.com>
-In-Reply-To: <20251113132656.1907474-2-sanjay.kumar.yadav@intel.com>
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,214 +71,16 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1677183284464894347==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Thu, 13 Nov 2025, Jani Nikula <jani.nikula@linux.intel.com> wrote:
+>> Refer to gitlab xe issue:  6303
 
-== Series Details ==
+Also, please don't make everyone figure out the URL.
 
-Series: drm/xe/uapi: Add NO_COMPRESSION BO flag and query capability
-URL   : https://patchwork.freedesktop.org/series/157499/
-State : failure
-
-== Summary ==
-
-CI Bug Log - changes from xe-4098-643055091beeceb59164e42ca982632505b66a13_BAT -> xe-pw-157499v1_BAT
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with xe-pw-157499v1_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-157499v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-Participating hosts (13 -> 13)
-------------------------------
-
-  No changes in participating hosts
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-157499v1_BAT:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@xe_waitfence@abstime:
-    - bat-pvc-2:          [PASS][1] -> [TIMEOUT][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4098-643055091beeceb59164e42ca982632505b66a13/bat-pvc-2/igt@xe_waitfence@abstime.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157499v1/bat-pvc-2/igt@xe_waitfence@abstime.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in xe-pw-157499v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_waitfence@abstime:
-    - bat-dg2-oem2:       [PASS][3] -> [TIMEOUT][4] ([Intel XE#6506])
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4098-643055091beeceb59164e42ca982632505b66a13/bat-dg2-oem2/igt@xe_waitfence@abstime.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157499v1/bat-dg2-oem2/igt@xe_waitfence@abstime.html
-
-  * igt@xe_waitfence@engine:
-    - bat-pvc-2:          [PASS][5] -> [FAIL][6] ([Intel XE#6519])
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4098-643055091beeceb59164e42ca982632505b66a13/bat-pvc-2/igt@xe_waitfence@engine.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157499v1/bat-pvc-2/igt@xe_waitfence@engine.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_flip@basic-plain-flip@b-edp1:
-    - bat-adlp-7:         [DMESG-WARN][7] ([Intel XE#4543]) -> [PASS][8] +1 other test pass
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4098-643055091beeceb59164e42ca982632505b66a13/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157499v1/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html
-
-  * igt@xe_waitfence@engine:
-    - bat-dg2-oem2:       [FAIL][9] ([Intel XE#6519]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4098-643055091beeceb59164e42ca982632505b66a13/bat-dg2-oem2/igt@xe_waitfence@engine.html
-   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157499v1/bat-dg2-oem2/igt@xe_waitfence@engine.html
-
-  * igt@xe_waitfence@reltime:
-    - bat-dg2-oem2:       [FAIL][11] ([Intel XE#6520]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4098-643055091beeceb59164e42ca982632505b66a13/bat-dg2-oem2/igt@xe_waitfence@reltime.html
-   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157499v1/bat-dg2-oem2/igt@xe_waitfence@reltime.html
-
-  
-  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
-  [Intel XE#6506]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506
-  [Intel XE#6519]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519
-  [Intel XE#6520]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520
+https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/6303
 
 
-Build changes
--------------
-
-  * Linux: xe-4098-643055091beeceb59164e42ca982632505b66a13 -> xe-pw-157499v1
-
-  IGT_8622: 8622
-  xe-4098-643055091beeceb59164e42ca982632505b66a13: 643055091beeceb59164e42ca982632505b66a13
-  xe-pw-157499v1: 157499v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157499v1/index.html
-
---===============1677183284464894347==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/uapi: Add NO_COMPRESSION BO flag and query capability</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/157499/">https://patchwork.freedesktop.org/series/157499/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157499v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157499v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4098-643055091beeceb59164e42ca982632505b66a13_BAT -&gt; xe-pw-157499v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-157499v1_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-157499v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-157499v1_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@xe_waitfence@abstime:<ul>
-<li>bat-pvc-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4098-643055091beeceb59164e42ca982632505b66a13/bat-pvc-2/igt@xe_waitfence@abstime.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157499v1/bat-pvc-2/igt@xe_waitfence@abstime.html">TIMEOUT</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-157499v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@xe_waitfence@abstime:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4098-643055091beeceb59164e42ca982632505b66a13/bat-dg2-oem2/igt@xe_waitfence@abstime.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157499v1/bat-dg2-oem2/igt@xe_waitfence@abstime.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506">Intel XE#6506</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_waitfence@engine:</p>
-<ul>
-<li>bat-pvc-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4098-643055091beeceb59164e42ca982632505b66a13/bat-pvc-2/igt@xe_waitfence@engine.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157499v1/bat-pvc-2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519">Intel XE#6519</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@kms_flip@basic-plain-flip@b-edp1:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4098-643055091beeceb59164e42ca982632505b66a13/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157499v1/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_waitfence@engine:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4098-643055091beeceb59164e42ca982632505b66a13/bat-dg2-oem2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519">Intel XE#6519</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157499v1/bat-dg2-oem2/igt@xe_waitfence@engine.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@xe_waitfence@reltime:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4098-643055091beeceb59164e42ca982632505b66a13/bat-dg2-oem2/igt@xe_waitfence@reltime.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520">Intel XE#6520</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157499v1/bat-dg2-oem2/igt@xe_waitfence@reltime.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4098-643055091beeceb59164e42ca982632505b66a13 -&gt; xe-pw-157499v1</li>
-</ul>
-<p>IGT_8622: 8622<br />
-  xe-4098-643055091beeceb59164e42ca982632505b66a13: 643055091beeceb59164e42ca982632505b66a13<br />
-  xe-pw-157499v1: 157499v1</p>
-
-</body>
-</html>
-
---===============1677183284464894347==--
+-- 
+Jani Nikula, Intel
