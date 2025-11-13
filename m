@@ -4,27 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2B1EECD8C9D
-	for <intel-xe@archiver.kernel.org>; Thu, 13 Nov 2025 17:58:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6288ACD8C9D
+	for <intel-xe@archiver.kernel.org>; Thu, 13 Nov 2025 18:01:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E6E2510E901;
-	Thu, 13 Nov 2025 17:58:11 +0000 (UTC)
-Received: from 10055242dc62 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BF34C10E901;
- Thu, 13 Nov 2025 17:58:10 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1053197483401713331=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1236F10E901;
+	Thu, 13 Nov 2025 18:01:10 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bIMbvRtT";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D241B10E901;
+ Thu, 13 Nov 2025 18:01:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1763056868; x=1794592868;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=nA81Fk9n7LIA98JvH5Hk8Vg1CCfb82xA0OlHFv7E1lg=;
+ b=bIMbvRtTh16/JyATDWB+V0q9fdGUD9WJxEP4/xxURg4BndECdzJgmI4x
+ tR9cOov9VTBzEgoFokM/itcfoBO0lO301v/33FK4Oa3UyIyG4dD5PMrt5
+ rB5gnpE1ix5gm70BXEHYK3tGJMPsllERtG96rQpfZz5f47FMPXA3ZX8JX
+ Ldv0v5X6OMCElxN+mkKlOVLVy94ldhYliV6sCpzUYOumj5YW3EYOmkYIE
+ xvMAjFveBWvL5Gkdb00gu8wBVALXlkVY0uX+VBAh3lhx+uM/jCklvjyH4
+ AvfWAh3g62mWuWtML4LwsFZzZaY1jwkjd/Y24ryDXiTSyyNRUMaft6kV8 w==;
+X-CSE-ConnectionGUID: JIWez+mhQm6NzYHrcNcitw==
+X-CSE-MsgGUID: DDsrVXyfRyGBm4CNBf8XLw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11612"; a="75826823"
+X-IronPort-AV: E=Sophos;i="6.19,302,1754982000"; d="scan'208";a="75826823"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Nov 2025 10:01:08 -0800
+X-CSE-ConnectionGUID: amGgviHGTPilQnAo1TeNbw==
+X-CSE-MsgGUID: g0CH5JkHSjq0koaZP/hR0w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,302,1754982000"; d="scan'208";a="194713548"
+Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.164])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Nov 2025 10:01:01 -0800
+From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
+To: linux-pci@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>,
+ =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
+ Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org,
+ David Airlie <airlied@gmail.com>, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Simona Vetter <simona@ffwll.ch>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ "Michael J . Ruhl" <mjruhl@habana.ai>,
+ Andi Shyti <andi.shyti@linux.intel.com>
+Cc: linux-kernel@vger.kernel.org,
+ =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
+Subject: [PATCH v4 00/11] PCI: Resizable BAR improvements
+Date: Thu, 13 Nov 2025 20:00:42 +0200
+Message-Id: <20251113180053.27944-1-ilpo.jarvinen@linux.intel.com>
+X-Mailer: git-send-email 2.39.5
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_treewide=3A_Introduce_=25pt?=
- =?utf-8?q?S_for_struct_timespec64_and_convert_users_=28rev3=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Andy Shevchenko" <andriy.shevchenko@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 13 Nov 2025 17:58:10 -0000
-Message-ID: <176305669077.52218.6111777804913414069@10055242dc62>
-X-Patchwork-Hint: ignore
-References: <20251113150217.3030010-1-andriy.shevchenko@linux.intel.com>
-In-Reply-To: <20251113150217.3030010-1-andriy.shevchenko@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,139 +77,82 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1053197483401713331==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+pci.c has been used as catch everything that doesn't fits elsewhere
+within PCI core and thus resizable BAR code has been placed there as
+well. Move Resizable BAR related code to a newly introduced rebar.c to
+reduce size of pci.c. After move, there are no pci_rebar_*() calls from
+pci.c indicating this is indeed well-defined subset of PCI core.
 
-== Series Details ==
+Endpoint drivers perform Resizable BAR related operations which could
+well be performed by PCI core to simplify driver-side code. This
+series adds a few new API functions to that effect and converts the
+drivers to use the new APIs (in separate patches).
 
-Series: treewide: Introduce %ptS for struct timespec64 and convert users (rev3)
-URL   : https://patchwork.freedesktop.org/series/157346/
-State : success
+While at it, also convert BAR sizes bitmask to u64 as PCIe spec already
+specifies more sizes than what will fit u32 to make the API typing more
+future-proof. The extra sizes beyond 128TB are not added at this point.
 
-== Summary ==
+Some parts of this are to be used by the resizable BAR changes into the
+resource fitting/assingment logic but these seem to stand on their own
+so sending these out now to reduce the size of the other patch series.
 
-CI Bug Log - changes from xe-4099-3462442c8cd967b22f9b9d250560be1e29e1d24f_BAT -> xe-pw-157346v3_BAT
-====================================================
+This v4 rebases what's currently in pci/rebar on top of the BAR resize
+changes in pci/resource as they'd have nasty conflicts otherwise so
+they can start to peacefully coexist in the pci/resource branch.
 
-Summary
--------
+v4:
+- Rebased on top of pci/resource changes to solve conflicts
 
-  **SUCCESS**
+v3: https://lore.kernel.org/linux-pci/20251022133331.4357-1-ilpo.jarvinen@linux.intel.com/
+- Rebased to solve minor conflicts
 
-  No regressions found.
+v2: https://lore.kernel.org/linux-pci/20250915091358.9203-1-ilpo.jarvinen@linux.intel.com/
+- Kerneldoc:
+  - Improve formatting of errno returns
+  - Open "ctrl" -> "control"
+  - Removed mislead "bit" words (when referring to BAR size)
+  - Rewrote pci_rebar_get_possible_sizes() kernel doc to not claim the
+    returned bitmask is defined in PCIe spec as the capability bits now
+    span across two registers in the spec and are not continuous (we
+    don't support the second block of bits yet, but this API is expected
+    to return the bits without the hole so it will not be matching with
+    the spec layout).
+- Dropped superfluous zero check from pci_rebar_size_supported()
+- Small improvement to changelog of patch 7
 
-  
+Ilpo Järvinen (11):
+  PCI: Move Resizable BAR code to rebar.c
+  PCI: Clean up pci_rebar_bytes_to_size() and move to rebar.c
+  PCI: Move pci_rebar_size_to_bytes() and export it
+  PCI: Improve Resizable BAR functions kernel doc
+  PCI: Add pci_rebar_size_supported() helper
+  drm/i915/gt: Use pci_rebar_size_supported()
+  drm/xe/vram: Use PCI rebar helpers in resize_vram_bar()
+  PCI: Add pci_rebar_get_max_size()
+  drm/xe/vram: Use pci_rebar_get_max_size()
+  drm/amdgpu: Use pci_rebar_get_max_size()
+  PCI: Convert BAR sizes bitmasks to u64
 
-Participating hosts (13 -> 13)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-157346v3_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@xe_waitfence@abstime:
-    - bat-dg2-oem2:       [TIMEOUT][1] ([Intel XE#6506]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4099-3462442c8cd967b22f9b9d250560be1e29e1d24f/bat-dg2-oem2/igt@xe_waitfence@abstime.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157346v3/bat-dg2-oem2/igt@xe_waitfence@abstime.html
-
-  * igt@xe_waitfence@engine:
-    - bat-dg2-oem2:       [FAIL][3] ([Intel XE#6519]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4099-3462442c8cd967b22f9b9d250560be1e29e1d24f/bat-dg2-oem2/igt@xe_waitfence@engine.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157346v3/bat-dg2-oem2/igt@xe_waitfence@engine.html
-
-  
-  [Intel XE#6506]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506
-  [Intel XE#6519]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519
-
-
-Build changes
--------------
-
-  * Linux: xe-4099-3462442c8cd967b22f9b9d250560be1e29e1d24f -> xe-pw-157346v3
-
-  IGT_8622: 8622
-  xe-4099-3462442c8cd967b22f9b9d250560be1e29e1d24f: 3462442c8cd967b22f9b9d250560be1e29e1d24f
-  xe-pw-157346v3: 157346v3
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157346v3/index.html
-
---===============1053197483401713331==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+ Documentation/driver-api/pci/pci.rst        |   3 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c  |   8 +-
+ drivers/gpu/drm/i915/gt/intel_region_lmem.c |  10 +-
+ drivers/gpu/drm/xe/xe_vram.c                |  32 +-
+ drivers/pci/Makefile                        |   2 +-
+ drivers/pci/iov.c                           |  10 +-
+ drivers/pci/pci-sysfs.c                     |   2 +-
+ drivers/pci/pci.c                           | 149 ---------
+ drivers/pci/pci.h                           |   5 +-
+ drivers/pci/rebar.c                         | 325 ++++++++++++++++++++
+ drivers/pci/setup-res.c                     |  85 -----
+ include/linux/pci.h                         |  15 +-
+ 12 files changed, 361 insertions(+), 285 deletions(-)
+ create mode 100644 drivers/pci/rebar.c
 
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>treewide: Introduce %ptS for struct timespec64 and convert users (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/157346/">https://patchwork.freedesktop.org/series/157346/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
+base-commit: 5388d5c3a95dd4f28714a4689c2877ba8c990b6b
+-- 
+2.39.5
 
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157346v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157346v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4099-3462442c8cd967b22f9b9d250560be1e29e1d24f_BAT -&gt; xe-pw-157346v3_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-157346v3_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@xe_waitfence@abstime:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4099-3462442c8cd967b22f9b9d250560be1e29e1d24f/bat-dg2-oem2/igt@xe_waitfence@abstime.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506">Intel XE#6506</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157346v3/bat-dg2-oem2/igt@xe_waitfence@abstime.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@xe_waitfence@engine:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4099-3462442c8cd967b22f9b9d250560be1e29e1d24f/bat-dg2-oem2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519">Intel XE#6519</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157346v3/bat-dg2-oem2/igt@xe_waitfence@engine.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4099-3462442c8cd967b22f9b9d250560be1e29e1d24f -&gt; xe-pw-157346v3</li>
-</ul>
-<p>IGT_8622: 8622<br />
-  xe-4099-3462442c8cd967b22f9b9d250560be1e29e1d24f: 3462442c8cd967b22f9b9d250560be1e29e1d24f<br />
-  xe-pw-157346v3: 157346v3</p>
-
-</body>
-</html>
-
---===============1053197483401713331==--
