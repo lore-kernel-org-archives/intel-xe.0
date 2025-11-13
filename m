@@ -4,71 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C871ECD5BD1
-	for <intel-xe@archiver.kernel.org>; Thu, 13 Nov 2025 18:03:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 26731CD5BD1
+	for <intel-xe@archiver.kernel.org>; Thu, 13 Nov 2025 18:03:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8154510E918;
-	Thu, 13 Nov 2025 18:03:07 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="X51RPD2T";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CEFE410E91B;
- Thu, 13 Nov 2025 18:03:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1763056987; x=1794592987;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=zzHUHDFiSrAkWDG3zV+mEV8zw5HhIV42xiqeOVVULv8=;
- b=X51RPD2TKEPUFHDLYEIoJ/nPESYfuN25ko4fupWe7Pxs+l2nIFdWOYSz
- jZRs7SsfMqqw2tVht3pPuqmGIl/WOD/GjF1JqZJ7xTDVNli54hm1UIent
- unLbDgcRs6BLZN3FK1EydhOiqVC6P2mg5dy5ELodCKJYLKREUC8/qZszJ
- QfydIzFPjsfXfm2EwgpnTmXriLjoeP3iUYAlLq7oplvQS4UA/M4ksBaP4
- gMamCw/iD4biF9HYtyCjhUJ1cBh1YtXBvbVTu66+b9BRxa1eK+E0Dkz+N
- QlQ3DXo4cRLdUpLhZtYXCscj8OCHNStDJsuH6U+k/Lb/bEa6DT8PB7rPh A==;
-X-CSE-ConnectionGUID: JBMAfmj3T3mj3WUtdWlCnQ==
-X-CSE-MsgGUID: cuE64Lg2SQC3KCseLulKxg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11612"; a="76490903"
-X-IronPort-AV: E=Sophos;i="6.19,302,1754982000"; d="scan'208";a="76490903"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Nov 2025 10:03:07 -0800
-X-CSE-ConnectionGUID: jfhU2e5sR4OutZlp++bzsg==
-X-CSE-MsgGUID: OQItNN3zSxaXHybVHw/VwQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,302,1754982000"; d="scan'208";a="189407998"
-Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.245.164])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Nov 2025 10:02:59 -0800
-From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-To: linux-pci@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>,
- =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
- Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org,
- David Airlie <airlied@gmail.com>, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Simona Vetter <simona@ffwll.ch>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- "Michael J . Ruhl" <mjruhl@habana.ai>,
- Andi Shyti <andi.shyti@linux.intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- linux-kernel@vger.kernel.org
-Cc: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Subject: [PATCH v4 09/11] drm/xe/vram: Use pci_rebar_get_max_size()
-Date: Thu, 13 Nov 2025 20:00:51 +0200
-Message-Id: <20251113180053.27944-10-ilpo.jarvinen@linux.intel.com>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20251113180053.27944-1-ilpo.jarvinen@linux.intel.com>
-References: <20251113180053.27944-1-ilpo.jarvinen@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id DDEA310E91C;
+	Thu, 13 Nov 2025 18:03:13 +0000 (UTC)
+Received: from 10055242dc62 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2FAB610E91C;
+ Thu, 13 Nov 2025 18:03:12 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/i915/display=3A_stop_?=
+ =?utf-8?q?using_the_configurable_fence_timeout_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 13 Nov 2025 18:03:12 -0000
+Message-ID: <176305699219.52219.7188471974810751734@10055242dc62>
+X-Patchwork-Hint: ignore
+References: <20251112155612.8320-1-jani.nikula@intel.com>
+In-Reply-To: <20251112155612.8320-1-jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,63 +36,52 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Use pci_rebar_get_max_size() from PCI core in resize_vram_bar() to simplify
-code.
+== Series Details ==
 
-Signed-off-by: Ilpo Järvinen <ilpo.jarvinen@linux.intel.com>
-Acked-by: Christian König <christian.koenig@amd.com>
-Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
----
- drivers/gpu/drm/xe/xe_vram.c | 15 +++++++--------
- 1 file changed, 7 insertions(+), 8 deletions(-)
+Series: drm/i915/display: stop using the configurable fence timeout (rev2)
+URL   : https://patchwork.freedesktop.org/series/157440/
+State : warning
 
-diff --git a/drivers/gpu/drm/xe/xe_vram.c b/drivers/gpu/drm/xe/xe_vram.c
-index 57c224fa0b56..524469f8a4bd 100644
---- a/drivers/gpu/drm/xe/xe_vram.c
-+++ b/drivers/gpu/drm/xe/xe_vram.c
-@@ -53,16 +53,11 @@ static void resize_vram_bar(struct xe_device *xe)
- 	resource_size_t current_size;
- 	resource_size_t rebar_size;
- 	struct resource *root_res;
--	u32 bar_size_mask;
-+	int max_size, i;
- 	u32 pci_cmd;
--	int i;
- 
- 	/* gather some relevant info */
- 	current_size = pci_resource_len(pdev, LMEM_BAR);
--	bar_size_mask = pci_rebar_get_possible_sizes(pdev, LMEM_BAR);
--
--	if (!bar_size_mask)
--		return;
- 
- 	if (force_vram_bar_size < 0)
- 		return;
-@@ -76,7 +71,8 @@ static void resize_vram_bar(struct xe_device *xe)
- 			drm_info(&xe->drm,
- 				 "Requested size: %lluMiB is not supported by rebar sizes: 0x%x. Leaving default: %lluMiB\n",
- 				 (u64)pci_rebar_size_to_bytes(rebar_size) >> 20,
--				 bar_size_mask, (u64)current_size >> 20);
-+				 pci_rebar_get_possible_sizes(pdev, LMEM_BAR),
-+				 (u64)current_size >> 20);
- 			return;
- 		}
- 
-@@ -84,7 +80,10 @@ static void resize_vram_bar(struct xe_device *xe)
- 		if (rebar_size == current_size)
- 			return;
- 	} else {
--		rebar_size = pci_rebar_size_to_bytes(__fls(bar_size_mask));
-+		max_size = pci_rebar_get_max_size(pdev, LMEM_BAR);
-+		if (max_size < 0)
-+			return;
-+		rebar_size = pci_rebar_size_to_bytes(max_size);
- 
- 		/* only resize if larger than current */
- 		if (rebar_size <= current_size)
--- 
-2.39.5
+== Summary ==
+
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+d9120d4d84745cf011b4b3efb338747e69179dfb
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 67b82ef9d0bda1cae61bb4d4137b65ff55b6a232
+Author: Jani Nikula <jani.nikula@intel.com>
+Date:   Thu Nov 13 17:53:32 2025 +0200
+
+    drm/i915/display: stop using the configurable fence timeout
+    
+    i915 has the Kconfig option DRM_I915_FENCE_TIMEOUT, defaulting to 10
+    seconds. xe doesn't use it, instead defaulting to
+    MAX_SCHEDULE_TIMEOUT. Unify the behaviour by switching to
+    dma_fence_wait() which defaults to MAX_SCHEDULE_TIMEOUT.
+    
+    As dma_fence_wait() returns 0 when the fence was signaled, update the
+    return value check.
+    
+    v2: Use dma_fence_wait(), fix return value check (Maarten)
+    
+    Reviewed-by: Maarten Lankhorst <dev@lankhorst.se>
+    Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+    Signed-off-by: Jani Nikula <jani.nikula@intel.com>
++ /mt/dim checkpatch 9d61bbd3042d1976dc5f67a30e0aa6c010cbc98f drm-intel
+67b82ef9d0bd drm/i915/display: stop using the configurable fence timeout
+-:56: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#56: 
+deleted file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 25 lines checked
+
 
