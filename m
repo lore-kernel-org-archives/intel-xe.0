@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8FD4FCD8C82
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D35CDCD8C83
 	for <intel-xe@archiver.kernel.org>; Thu, 13 Nov 2025 15:02:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3955210E871;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8945C10E875;
 	Thu, 13 Nov 2025 15:02:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kJfqWhik";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ADAHD46Y";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ACBAE10E848;
- Thu, 13 Nov 2025 15:02:49 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B2C4E10E874;
+ Thu, 13 Nov 2025 15:02:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1763046170; x=1794582170;
+ t=1763046172; x=1794582172;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=jhQAb/y0XW4Cp8ya1S6FBNc1pzeLrYTXe+I39wWdlNQ=;
- b=kJfqWhikr0722NOWtI1sKYMy8bYXhfC/OVwHs4RK7+oFqSggXiqitqi0
- uotN0PRX/0vZIkrRM72sNBw/ISTlw7J13EDM5GxLCzOFpozGbgcs/lU06
- ArSUomM+lMBcocysLRkYFve7HO9dSflAYq+W31nT9nPLRV6Vlb1YZVI2x
- znWCaUCSLCWVHKCgBQ543nLHDQrxvP/bywQRBM6Jcyy6pDfIxIBhSt85o
- kOEBHNC9d3f17adhI73UB1IARYDGk8P1VDYh6K2L8hSnynQdNEgFF2FRE
- XCwxay+8+EpWVC8IBTgWFmzToR7aH24y0HuZv73jle6W2VpCf0RMEALsa A==;
-X-CSE-ConnectionGUID: Bcx7Y8pPQKSZSKDJJaqg5w==
-X-CSE-MsgGUID: rtmb9xZFTqup1MY/n3BYFg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="65054185"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="65054185"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Nov 2025 07:02:46 -0800
-X-CSE-ConnectionGUID: WU/yiIdnT0O1Qw74SR8zbA==
-X-CSE-MsgGUID: zYVOcnDCRgSmt0uZMzxNsw==
+ bh=BwaKCkNATJNlmCsZoxHG8nMGNG622vSbYsVrimboxjA=;
+ b=ADAHD46Y/RbNkQg/bAN5AKCOoMAGOytE1kylCWP5U1aqwRAO6x/s35ez
+ 1395IKpq3geya9QLQy4o3X1EK+8bcqsZomB1gsOPokY+s2uvqI+C4Vi+N
+ Xc95/rYbOx8b0Ukx95lZ/GdgUx6xStY1I3gssiN4vKTBavn7n3GAx6JMS
+ D0XHjEWgqhnib1fL3a8mY0QpdTFLfAtBf8ztcoTpe4GHnol+UlC2e/ffH
+ Z03VHxJX8bwcos1tZrUViYL86vWxEfjcfYPuFbxKfTvOgeixscSVvRV5E
+ EvXslC+8DRvy8FNuLM1+XgB/bpH8SotSqUjEaOrsgxWj/ucLHZlub0amd A==;
+X-CSE-ConnectionGUID: D3xpcqAQR5ODHHhv0URLNw==
+X-CSE-MsgGUID: K1f/6r86T9SrLJhRF+oFYg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11612"; a="68991615"
+X-IronPort-AV: E=Sophos;i="6.19,302,1754982000"; d="scan'208";a="68991615"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Nov 2025 07:02:50 -0800
+X-CSE-ConnectionGUID: 2wgA8owXSv+Wg/jcvvYtPw==
+X-CSE-MsgGUID: 2OD1IJ/BS2+4saLwohCFmg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,302,1754982000"; d="scan'208";a="220324902"
+X-IronPort-AV: E=Sophos;i="6.19,302,1754982000"; d="scan'208";a="188810290"
 Received: from black.igk.intel.com ([10.91.253.5])
- by fmviesa001.fm.intel.com with ESMTP; 13 Nov 2025 07:02:32 -0800
+ by orviesa010.jf.intel.com with ESMTP; 13 Nov 2025 07:02:41 -0800
 Received: by black.igk.intel.com (Postfix, from userid 1003)
- id 206FD9B; Thu, 13 Nov 2025 16:02:19 +0100 (CET)
+ id 40CA1A0; Thu, 13 Nov 2025 16:02:19 +0100 (CET)
 From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 To: Corey Minyard <corey@minyard.net>,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
@@ -113,9 +113,9 @@ Cc: Rasmus Villemoes <linux@rasmusvillemoes.dk>,
  Masami Hiramatsu <mhiramat@kernel.org>,
  Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
  Andrew Morton <akpm@linux-foundation.org>
-Subject: [PATCH v3 05/21] drm/amdgpu: Switch to use %ptSp
-Date: Thu, 13 Nov 2025 15:32:19 +0100
-Message-ID: <20251113150217.3030010-6-andriy.shevchenko@linux.intel.com>
+Subject: [PATCH v3 10/21] igb: Switch to use %ptSp
+Date: Thu, 13 Nov 2025 15:32:24 +0100
+Message-ID: <20251113150217.3030010-11-andriy.shevchenko@linux.intel.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20251113150217.3030010-1-andriy.shevchenko@linux.intel.com>
 References: <20251113150217.3030010-1-andriy.shevchenko@linux.intel.com>
@@ -138,26 +138,33 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 Use %ptSp instead of open coded variants to print content of
 struct timespec64 in human readable format.
 
-Acked-by: Alex Deucher <alexander.deucher@amd.com>
+Reviewed-by: Aleksandr Loktionov <aleksandr.loktionov@intel.com>
 Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_dev_coredump.c | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+ drivers/net/ethernet/intel/igb/igb_ptp.c | 7 ++-----
+ 1 file changed, 2 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_dev_coredump.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_dev_coredump.c
-index 8a026bc9ea44..4e2fe6674db8 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_dev_coredump.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_dev_coredump.c
-@@ -217,8 +217,7 @@ amdgpu_devcoredump_read(char *buffer, loff_t offset, size_t count,
- 	drm_printf(&p, "version: " AMDGPU_COREDUMP_VERSION "\n");
- 	drm_printf(&p, "kernel: " UTS_RELEASE "\n");
- 	drm_printf(&p, "module: " KBUILD_MODNAME "\n");
--	drm_printf(&p, "time: %lld.%09ld\n", coredump->reset_time.tv_sec,
--		   coredump->reset_time.tv_nsec);
-+	drm_printf(&p, "time: %ptSp\n", &coredump->reset_time);
+diff --git a/drivers/net/ethernet/intel/igb/igb_ptp.c b/drivers/net/ethernet/intel/igb/igb_ptp.c
+index a7876882aeaf..bd85d02ecadd 100644
+--- a/drivers/net/ethernet/intel/igb/igb_ptp.c
++++ b/drivers/net/ethernet/intel/igb/igb_ptp.c
+@@ -840,14 +840,11 @@ static void igb_ptp_overflow_check(struct work_struct *work)
+ 	struct igb_adapter *igb =
+ 		container_of(work, struct igb_adapter, ptp_overflow_work.work);
+ 	struct timespec64 ts;
+-	u64 ns;
  
- 	if (coredump->reset_task_info.task.pid)
- 		drm_printf(&p, "process_name: %s PID: %d\n",
+ 	/* Update the timecounter */
+-	ns = timecounter_read(&igb->tc);
++	ts = ns_to_timespec64(timecounter_read(&igb->tc));
+ 
+-	ts = ns_to_timespec64(ns);
+-	pr_debug("igb overflow check at %lld.%09lu\n",
+-		 (long long) ts.tv_sec, ts.tv_nsec);
++	pr_debug("igb overflow check at %ptSp\n", &ts);
+ 
+ 	schedule_delayed_work(&igb->ptp_overflow_work,
+ 			      IGB_SYSTIM_OVERFLOW_PERIOD);
 -- 
 2.50.1
 
