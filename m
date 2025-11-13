@@ -4,60 +4,182 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C5DC9CD4F2F
-	for <intel-xe@archiver.kernel.org>; Thu, 13 Nov 2025 13:40:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 36027CD4F2F
+	for <intel-xe@archiver.kernel.org>; Thu, 13 Nov 2025 13:41:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8931A10E81C;
-	Thu, 13 Nov 2025 13:40:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E9A3010E816;
+	Thu, 13 Nov 2025 13:41:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XAJ095td";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Rrr7mP3f";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E203010E816;
- Thu, 13 Nov 2025 13:39:58 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 84B7110E816
+ for <intel-xe@lists.freedesktop.org>; Thu, 13 Nov 2025 13:41:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1763041199; x=1794577199;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=sapvOV5Pj1KdCp+k/kGjkInnwm7vnzwze+yLICHU8lE=;
- b=XAJ095td33CTtSGC8vc+iILGU3E6rZcq2EtKUDfDfLVwl++5BWDhBoRY
- 19jjzR8lwuEu9xKfH/TKuUH+eSSwoB7S08k31579JTZt8vrdHWjWqpuQE
- 9gPbvG4psOoL4ZyQd1ez0SRQ9io1XMYRC9jU2bhZySMWViLHJaba/JVgf
- OwIm3VRkH3btsPtSxkdS5Dfe5xh8hEY50TBghklMnru1OLnjFq1Ll8nBs
- WOTXELsr/fjK1AynIZorG1z/UMlyt7AyD2e8LXn6aTDS6f4E2R9P/aMGq
- 8SJxzz7mBwE3DOxT0dvWD/6tuIigQ0Xhia0JJhklwF06U3YYOLwQjnAv1 A==;
-X-CSE-ConnectionGUID: kHpx39kgQlCijQgpsVVIkw==
-X-CSE-MsgGUID: ded6zMy1SiW9tGxuRNFZsg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11612"; a="52683196"
-X-IronPort-AV: E=Sophos;i="6.19,302,1754982000"; d="scan'208";a="52683196"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Nov 2025 05:39:58 -0800
-X-CSE-ConnectionGUID: Kax+rjKdRHCdh80Co2RtjQ==
-X-CSE-MsgGUID: GMBUxraORgmitc3XO95f+A==
+ t=1763041265; x=1794577265;
+ h=content-transfer-encoding:in-reply-to:references:subject:
+ from:cc:to:date:message-id:mime-version;
+ bh=4f+5fXScbk7samVo4UlI8XFK1HSPlTr+xTuaRWH1bKU=;
+ b=Rrr7mP3ff4Xf4/ZIesFKrqnbAwDIMM+Fs1wwufc9ggIS2P9BDq59tDRS
+ b+h/PxF28cRjp1uQJmNmx901kFdcR369E0KoEU2bTVBBweDSCnWvKfisz
+ Sh9cnVijXPtOjC8KW9n3idGuRIMri7L2Kwlp9MbekrhErddq6IpU5W7tM
+ jcj1l3xNavsLM/c6v89aTD6i9a2hPUO3/yVh+qAD3m2bfvbO/tqhRamJq
+ EdpF/AQ0axVog9H+Co56o6fm2rfg4kBhgCMuAuXYjU6FMuU6XJgQV57TQ
+ 110m3az+61MqruYIDpLDgTAvZSb8dcMb27oiLl0SIqvyRwxtwZLw3oDbt Q==;
+X-CSE-ConnectionGUID: EzAkH1XoQHGuU7rKUHvlBw==
+X-CSE-MsgGUID: GN7lW6D/ReKx4qJwbExa1w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11612"; a="65158553"
+X-IronPort-AV: E=Sophos;i="6.19,302,1754982000"; d="scan'208";a="65158553"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Nov 2025 05:41:05 -0800
+X-CSE-ConnectionGUID: GLpVj+kqSb+HB0jBeLe2+w==
+X-CSE-MsgGUID: nKXcMYfbSn+P8AfX0JfLqQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,302,1754982000"; d="scan'208";a="226802418"
-Received: from klitkey1-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.245.81])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Nov 2025 05:39:56 -0800
-Date: Thu, 13 Nov 2025 15:39:54 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- uma.shankar@intel.com
-Subject: Re: [PATCH 5/8] drm/i915/dram: convert to struct intel_display
-Message-ID: <aRXfqt3OMWs6emKW@intel.com>
-References: <cover.1763027774.git.jani.nikula@intel.com>
- <cc7e5fe8a73296dae9fd162c51fbcbd3b7e52147.1763027774.git.jani.nikula@intel.com>
+X-IronPort-AV: E=Sophos;i="6.19,302,1754982000"; d="scan'208";a="189772766"
+Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
+ by fmviesa008.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Nov 2025 05:41:05 -0800
+Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.27; Thu, 13 Nov 2025 05:41:04 -0800
+Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
+ FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.27 via Frontend Transport; Thu, 13 Nov 2025 05:41:04 -0800
+Received: from PH8PR06CU001.outbound.protection.outlook.com (40.107.209.2) by
+ edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.27; Thu, 13 Nov 2025 05:41:04 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=YQaPH+J1ihbR73Q5elXFrIHxOE/k2KpRmQAi2LuBfXY0qIh3GAzHxlAYoL7ef/tqX9KRT7fobtsPUl/C263sJTRxyttCNzefkF85HxhdOCLWGMM3WINwCl4Cr64BQq3MiWWLw0HuTrO2TfmwGzWF8SSH+s1CBv1ijnh9QUpspcYwIgsuiLIxF+7aUDSrvYvrTs+2jFekvRk4BgsnSdV86Q2gAP28vT/M/lOSnjZEtGFjLu721Roc9tLBGSjLl2cpcMQQzf1esuQAZWCNEsaLcPftXE+4fZEQmlEl+LSmnBI4Lvyl3p/sa6GOdXkcMcYeO7ojgKjU7herfBkbsv8Rqg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=0NVxTQiMpEetDI1V2vnGjAB4RdEpncSskcQyaFbpiGg=;
+ b=RNUtv6/dqUjjMiqBLJra4s+9Hc76uR984/1ZC98mXGNA9QHbkI+wQA/dpBbHRdcrR/jdCEn2QK6ci7Cl4YW0KHhXZt/LwBvmHM49O7ZrRf+VolBCDTlZ/e0tDVLoAVsF7ZRyBGOegHj79gZvVrr96sTkKZQCtqVXz6MkOD/ib2dWMutzDgChc1xxuO5qkHm7YcJS0vAz/QVW61gzdYW4bR+q/0t0/oOTIeECHkvn0mskaT0Mw0IM6CCw6MHCcAmvl6Gw1s7HJHJoOzfeHjRBHed/4HOIVFC4xN5AX3/DZUqicV68pAVdG/Ellmz6EycAhsH5CWjWy0tARJQr6j791g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from PH8PR11MB8287.namprd11.prod.outlook.com (2603:10b6:510:1c7::14)
+ by CY8PR11MB7924.namprd11.prod.outlook.com (2603:10b6:930:7a::20)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9320.17; Thu, 13 Nov
+ 2025 13:40:57 +0000
+Received: from PH8PR11MB8287.namprd11.prod.outlook.com
+ ([fe80::7e8b:2e5:8ce4:2350]) by PH8PR11MB8287.namprd11.prod.outlook.com
+ ([fe80::7e8b:2e5:8ce4:2350%7]) with mapi id 15.20.9320.013; Thu, 13 Nov 2025
+ 13:40:57 +0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20251110232017.1475869-44-matthew.d.roper@intel.com>
+References: <20251110232017.1475869-32-matthew.d.roper@intel.com>
+ <20251110232017.1475869-44-matthew.d.roper@intel.com>
+Subject: Re: [PATCH v2 12/30] drm/xe/pxp: Use scope-based cleanup
+From: Gustavo Sousa <gustavo.sousa@intel.com>
+CC: <matthew.d.roper@intel.com>
+To: Matt Roper <matthew.d.roper@intel.com>, <intel-xe@lists.freedesktop.org>
+Date: Thu, 13 Nov 2025 10:40:39 -0300
+Message-ID: <176304123951.3698.6745332835580573152@intel.com>
+User-Agent: alot/0.12.dev22+g972188619
+X-ClientProxiedBy: BYAPR03CA0026.namprd03.prod.outlook.com
+ (2603:10b6:a02:a8::39) To PH8PR11MB8287.namprd11.prod.outlook.com
+ (2603:10b6:510:1c7::14)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <cc7e5fe8a73296dae9fd162c51fbcbd3b7e52147.1763027774.git.jani.nikula@intel.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH8PR11MB8287:EE_|CY8PR11MB7924:EE_
+X-MS-Office365-Filtering-Correlation-Id: eebbdbac-4160-4992-7b17-08de22ba4627
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?RXdzQVFEVDU0K1dQRUJ4Y0xZWlJDd1lMU3ZJUVpkUkZSUTdweHFvZkNLazdm?=
+ =?utf-8?B?NVpFQVJzTzR4aHhtdE9DOFZuY21oMkZvTWhydFFoSUlzU3ZiTkZmQklDQ3NF?=
+ =?utf-8?B?RDh1cXdXM1BLWm1XOWNqTkJrbEFsOEVZRGc3VjVLUXdoYnp1R3MyUW5rZHds?=
+ =?utf-8?B?OXUxWjlXRkFhMzNOMDVveUtSS1FyVXJtOFlkUURyQXkwd21LazhRdHU0MnRT?=
+ =?utf-8?B?UFlWK1dTajNwaEliV3BGaWJVS21qWFcxZjR6UVhkVk5SM0RyN3E1TktNc3RZ?=
+ =?utf-8?B?NGpNT2swbFlIUFh6YlVmMCs4NUdOZFErSkRVQWsrT3EyREtDekhvT1daWkZR?=
+ =?utf-8?B?SGxzQXhvaXhpblpQOEtnREFEdW45OStoVFk2Z0I1R3NreXlUMkhtcEIyRmlJ?=
+ =?utf-8?B?SHlhdit2RmpoZnlhSTRidWY1LzFCM1BsMlRGNE9CWVFNSk8xNnVHY1U4SVVF?=
+ =?utf-8?B?TkFaZTlsVDdhRUdhako1VThacWRmc1plaVhZRWhHUkdmWkZyV2NGdG9zYXpC?=
+ =?utf-8?B?emhLNXRCVnFFRVg5U21HblVveTUvOHE0WS9pK01CeStITnBmVFFWOEY0a2dz?=
+ =?utf-8?B?c1ZZdU4xOTBRbW5icnUveTY1ZFlVV3JQdVd6ZUtHQ2p2ZWxzTjZyanhURDVL?=
+ =?utf-8?B?RjIwQm1SMEgrUkpZK2lOekI4LysxK0FRN1pPZ3hZM05scnJrSnJUci9DTWVl?=
+ =?utf-8?B?cldISjRxbHEvTGxQWnRhd2JqclF4aFdFZGlXRDdMTGY3Ui94dG1TUzV3Z2Zj?=
+ =?utf-8?B?Nlp5Uk1VNCtITnEzbkpvSjdLQ1dIMWVYMENSdEFXTzZKdnFnOGdlb1M1bWpU?=
+ =?utf-8?B?N1BUODdSWjRCcit6ZHJMdUpaekRZcDR6K1d2MkxWdHNJaU1iS0tteGo0ZWNl?=
+ =?utf-8?B?ejFVaC93ZUlpamtZNGFXbHJFaTJqZGdtUkdJRzZuN1A2Kzlyc29tWTlaNWtO?=
+ =?utf-8?B?QjRRbXE1TFdhM3BQR3NRUjFQOUJGTzdMcHBFMUxKU1ZpVmJidTJmTWVKcUxv?=
+ =?utf-8?B?RDhXaktBNVNud3JBRjJ0eUlzNnpEbGw2YVpQSjM0M2M4VkV4ZFdBN2RmMU1H?=
+ =?utf-8?B?S2R0TnVvbjRxcVVVQXhCSkVmMThyY3Njak5yMTBZM2lWMzVWcmhZVFJxNmNX?=
+ =?utf-8?B?cWorMnZ5WTgraWZWVXNPOTdaUWFkUnBBTy8rRjZlVXhEd0EvNkxFNkNzWTFk?=
+ =?utf-8?B?bEgvb0grQ2NFaFQzb0ptb1BVMnJsR1B4dTVwUVN3dzc1ZnV6N2ZGdjZ3dFAx?=
+ =?utf-8?B?RHg4OTBIYXRVZTZhRTc0bkJMMTZIaGcwUVB5eXcyY1ZVYitxUnVkZ3ovajdQ?=
+ =?utf-8?B?Tys4b3J3MWxmMld4MWhpeWV6ZUx0MUFEbkxpaXY1bTVtQzEzQVF6N1FySjFM?=
+ =?utf-8?B?NGxwNFhpOXU5TG1Cenp2MDkvUzlMWGttVXMvelNwYTRsZE8yR3I2U1RCeUZw?=
+ =?utf-8?B?NldEdkQzZDF3NmlXWk5QY1RtUkNwU3k2aDVGalRjMlVSTGRxdGQ1Nkx1NHZq?=
+ =?utf-8?B?TlJ2Q21RZXdOOW54N1NCRFQxR2NxQlBMeEZUM0RFOE9sakZkQ1BmSkw1MXFl?=
+ =?utf-8?B?aTZQVXU2akFSdnNhSzFxZjJmYlZJWFlTVjV3Zm1tdnhaWkFHM2wreDBhR2k5?=
+ =?utf-8?B?b01OTU83RFN3djFwbVVhdXFWNTN2enBTcEpEQ2F3aTAvcmZmeU1TM1FiT2dM?=
+ =?utf-8?B?cWZxeXZ3d2dRdVkxVlZUTVpoTk44NFVKS2RXaWhUcXlSdlY3MjhTMDZmYXRl?=
+ =?utf-8?B?OW9aejlkb1FHYS9TTGR1NVhxUG5STGdDdUFuNzFBNlkvMjhjd2cxOTdjUUh2?=
+ =?utf-8?B?L3lrTVZaVm1vR3plTzRZVjdTU3NNbzdhZmxpTnhmcWFSS0U4MTlzcE5tME5t?=
+ =?utf-8?B?ejIxcTF6bm50blJ0Mlh6NnRYTnBUR2lPdFJwbEJZbmdOY242cURxTitwUG5W?=
+ =?utf-8?Q?Ubii7A3h1hlqgVndfoJc0j2EuPNzvvGi?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH8PR11MB8287.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(366016)(1800799024); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MjZTWGFCT1FHZlF2Z0tnYlQwcWVHM1FHdG5UWXRpR3NlNUtJMEVhKzBQNkpO?=
+ =?utf-8?B?SGhncmIwYnRqbkFTSFJid0pCeDdCNDJycnRrNWh6bmVTbjNjcGM0cVEzUXVs?=
+ =?utf-8?B?UnkzSFNJa1k0cDNGNDg2ZDJLd1RpKzg2aVNHU0cxZFlaRlN6dVo4aUwyeXJE?=
+ =?utf-8?B?OTdRSm9QQlV4emJPUVZtcnEvakc1RzhTR2FOR2hjWjZodUtXakJqS3JzVm5T?=
+ =?utf-8?B?NGdtSW40TzVJK294eUNYVm80YlNxZWVwVVUzSXc1VGJpUWF3TzhMc2hFeFh0?=
+ =?utf-8?B?SlIwUVZ6T2w3cTZwdEJjWDlTSHgrWnZuT3V1cDFlbFUxMkxjSG00OCtLcUxz?=
+ =?utf-8?B?T1BLQnJXVEtPcnBhanhFTW5SeFNhQW5RdEFkN1ZtZ2c0UDZKVE9wZ3JHbHpB?=
+ =?utf-8?B?SDUzeFI3WGc2Ukd4TlRXOTRBTUt0WWV2YWdyZHB6R1o0SFRXUlRYRm5HQkZj?=
+ =?utf-8?B?SDZsUUVaWmVDM3EzV0lvQVYyQXRqdEJORkx3N1M1OFNMQnBkUzNJMElodk5U?=
+ =?utf-8?B?clBobEpVSGh6bHRPT2R2VlFTOVM4L3Q2N0VMemdKOGpaTXNZL0NyVlhpQTd3?=
+ =?utf-8?B?YjYxUGFVWC9iY3dYNlFhVTYxQkhJdHZYSUdFS1FiWjYzWXlUcUZQYTV6V3dh?=
+ =?utf-8?B?cXhna29wY3FNSEJac1BIalVrcjdqT0c2a2tuZ1A0SUg1SGtUWVlMSzdmYW1F?=
+ =?utf-8?B?elhBMFR1R3ExZXZGdisyMmhXSXFMbmdoMFo3akdHc0QzOWo1Q2pXUU9JUzJh?=
+ =?utf-8?B?TFNVOUdmMUJXWXFyT2tTT3VRUW1mQWxJRlN0VWZoemVIc1UwSFhyWHhzL1dG?=
+ =?utf-8?B?R0FFTnY1dzhSR054ZXRuUndSVlJsb08xWllwWkpNWkI4aEE1TWFaN0ltbXVt?=
+ =?utf-8?B?WllZNlQ3bTljcU9Sdm9OUnVja3dsUWVxNFhGQkJQdXVESHlONGdFbS9FWWlx?=
+ =?utf-8?B?Rm5qSEZrNUVFK2V5ODNWTWNTaTkrSGtrMVpzaTdZckdlekV0RVF3dVd1eG4r?=
+ =?utf-8?B?VnB6MFRZcFhXNFA2RXBqUVpUSTFIbzRsTTJsSVJGQytPWlRCQ0VQMUVrdHE4?=
+ =?utf-8?B?S1VPVVNFUzFmbE0zZHZQalU1VWgxTE4zdnI0aWZoRXBaa0w4b2RRUW5ER1lY?=
+ =?utf-8?B?WUxFcDdzVkptR3dBTVlZaGpsaU4reDY0dzErb3NESDhndnhaRzcwLzdjWDJQ?=
+ =?utf-8?B?WFgrRGxHaW5OaytzbWY0VDZkcW5zNi9hakpNSCt1MDg5Tm1NV051QlhMbHdM?=
+ =?utf-8?B?MHFWVGZQMkc0dndaK3FYQnJOOEVKRHhSdTlKZkZneHdjMVJYVmJvbEZ1cnZk?=
+ =?utf-8?B?SHdOdUNtUkQwSmRQVVJReE4vQVFsME53NUZ2dUdFY3F2ZFBEc09aM2gzUkQ2?=
+ =?utf-8?B?WEVkZWUvRmVDcUNXZHdydjZhcUpEL1lHVUdaYzE5S0p3OEl5ZXY2ZkUrOGxO?=
+ =?utf-8?B?bGFwVFlXUktTNngrQzBtWEJCbXBCUENIMGZ1YS9ZUlFiUmpQMUl4WUc4RW5M?=
+ =?utf-8?B?M1p1ci9lN2d5UEhIWW41QnFndnkyMmtnaGd1b25UVWl4d0ladnpReklnV3Q5?=
+ =?utf-8?B?bklHSThadFJpLzgxZDlXNURQSnZJL1RCNHRHZ3BrU1pSMnRHblloSFRPclNB?=
+ =?utf-8?B?eTI5NDJmR0t6ZFZ2RmJacHVIeEdSMGkrM3hXUENTUVl4S2JwWVlkRkdKWnd2?=
+ =?utf-8?B?eCtrWHZHWk0ybEx0Q1BERnRwQmI4dUJTbk1yTlFNMXozQXBwYmJiZjM0QTd6?=
+ =?utf-8?B?TnM3WkxPY1RUUWlKdG5sUHdQRUt3THM2RzNXamlzK2FRZjZUUWxMMitMclNU?=
+ =?utf-8?B?S0k5SXBwaHB4ajJiRFNlTEJWVUVhWHFLaDdUYlczYmZ5U1hXdUpOakxTS2Na?=
+ =?utf-8?B?V1NWUUlYQTNwSCtsMjFTVExEcUFaa1ZxWXJXTmJOQW5iYlZRbGFSWWFoWlRB?=
+ =?utf-8?B?QllZRFl3aXNWNHcrM3Q4NVd2bUFzdFdraGVsMU5venVpNFZoN0RYNlhZNkhC?=
+ =?utf-8?B?TlZwcWxadys2NUhaMzdBUzcvMnF6VnJ2VkYxVDFlcFIxa2d4SnQ4UG5Md3ZJ?=
+ =?utf-8?B?WnI1a05VRVQxYnh4b1h6SmZEd2ZVbzBTb0I1WVdOUDJ4NnB4M0RMekpoTEJD?=
+ =?utf-8?B?aEMxNFgyenVMeDNyVWxmZU1LT3VtejVvcUY3Wi9MM3BsK0lXWlZGWEdxaHVn?=
+ =?utf-8?B?WWc9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: eebbdbac-4160-4992-7b17-08de22ba4627
+X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB8287.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Nov 2025 13:40:57.1471 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: SMlhkMJUhcouYAC6nEUCsJkDXRyE9LboL4yt4RDVuWUPSZ+EGKhKz/bcvfL607aJ4Z9sJazGSiZZZ5rpuxIOzA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB7924
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,654 +194,180 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Nov 13, 2025 at 11:58:02AM +0200, Jani Nikula wrote:
-> Convert everything except uncore access to struct intel_display.
-> 
-> While at it, convert logging to drm_dbg_kms().
-> 
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/i9xx_wm.c        |   2 +-
->  drivers/gpu/drm/i915/display/intel_bw.c       |   2 +-
->  drivers/gpu/drm/i915/display/intel_cdclk.c    |   4 +-
->  .../drm/i915/display/intel_display_power.c    |   2 +-
->  drivers/gpu/drm/i915/display/intel_dram.c     | 195 +++++++++---------
->  drivers/gpu/drm/i915/display/intel_dram.h     |  11 +-
->  drivers/gpu/drm/i915/display/skl_watermark.c  |   4 +-
->  drivers/gpu/drm/i915/i915_driver.c            |   2 +-
->  drivers/gpu/drm/xe/display/xe_display.c       |   2 +-
->  9 files changed, 115 insertions(+), 109 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/i9xx_wm.c b/drivers/gpu/drm/i915/display/i9xx_wm.c
-> index 27e2d73bc505..167277cd8877 100644
-> --- a/drivers/gpu/drm/i915/display/i9xx_wm.c
-> +++ b/drivers/gpu/drm/i915/display/i9xx_wm.c
-> @@ -90,7 +90,7 @@ static const struct cxsr_latency cxsr_latency_table[] = {
->  
->  static const struct cxsr_latency *pnv_get_cxsr_latency(struct intel_display *display)
->  {
-> -	const struct dram_info *dram_info = intel_dram_info(display->drm);
-> +	const struct dram_info *dram_info = intel_dram_info(display);
->  	bool is_ddr3 = dram_info->type == INTEL_DRAM_DDR3;
->  	int i;
->  
-> diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
-> index 957c90e62569..d27835ed49c2 100644
-> --- a/drivers/gpu/drm/i915/display/intel_bw.c
-> +++ b/drivers/gpu/drm/i915/display/intel_bw.c
-> @@ -799,7 +799,7 @@ static unsigned int icl_qgv_bw(struct intel_display *display,
->  
->  void intel_bw_init_hw(struct intel_display *display)
->  {
-> -	const struct dram_info *dram_info = intel_dram_info(display->drm);
-> +	const struct dram_info *dram_info = intel_dram_info(display);
->  
->  	if (!HAS_DISPLAY(display))
->  		return;
-> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-> index 531819391c8c..5c90e53b4e46 100644
-> --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-> @@ -3737,10 +3737,8 @@ static int pch_rawclk(struct intel_display *display)
->  
->  static int i9xx_hrawclk(struct intel_display *display)
->  {
-> -	struct drm_i915_private *i915 = to_i915(display->drm);
-> -
->  	/* hrawclock is 1/4 the FSB frequency */
-> -	return DIV_ROUND_CLOSEST(intel_fsb_freq(i915), 4);
-> +	return DIV_ROUND_CLOSEST(intel_fsb_freq(display), 4);
->  }
->  
->  /**
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
-> index df717b66d30a..69301aa25cfd 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_power.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-> @@ -1617,7 +1617,7 @@ static const struct buddy_page_mask wa_1409767108_buddy_page_masks[] = {
->  
->  static void tgl_bw_buddy_init(struct intel_display *display)
->  {
-> -	const struct dram_info *dram_info = intel_dram_info(display->drm);
-> +	const struct dram_info *dram_info = intel_dram_info(display);
->  	const struct buddy_page_mask *table;
->  	unsigned long abox_mask = DISPLAY_INFO(display)->abox_mask;
->  	int config, i;
-> diff --git a/drivers/gpu/drm/i915/display/intel_dram.c b/drivers/gpu/drm/i915/display/intel_dram.c
-> index 8729338c6dcc..5816434cd563 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dram.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dram.c
-> @@ -56,14 +56,17 @@ const char *intel_dram_type_str(enum intel_dram_type type)
->  
->  #undef DRAM_TYPE_STR
->  
-> -static enum intel_dram_type pnv_dram_type(struct drm_i915_private *i915)
-> +static enum intel_dram_type pnv_dram_type(struct intel_display *display)
->  {
-> +	struct drm_i915_private *i915 = to_i915(display->drm);
-> +
->  	return intel_uncore_read(&i915->uncore, CSHRDDR3CTL) & CSHRDDR3CTL_DDR3 ?
->  		INTEL_DRAM_DDR3 : INTEL_DRAM_DDR2;
->  }
->  
-> -static unsigned int pnv_mem_freq(struct drm_i915_private *dev_priv)
-> +static unsigned int pnv_mem_freq(struct intel_display *display)
->  {
-> +	struct drm_i915_private *dev_priv = to_i915(display->drm);
->  	u32 tmp;
->  
->  	tmp = intel_uncore_read(&dev_priv->uncore, CLKCFG);
-> @@ -80,8 +83,9 @@ static unsigned int pnv_mem_freq(struct drm_i915_private *dev_priv)
->  	return 0;
->  }
->  
-> -static unsigned int ilk_mem_freq(struct drm_i915_private *dev_priv)
-> +static unsigned int ilk_mem_freq(struct intel_display *display)
->  {
-> +	struct drm_i915_private *dev_priv = to_i915(display->drm);
->  	u16 ddrpll;
->  
->  	ddrpll = intel_uncore_read16(&dev_priv->uncore, DDRMPLL1);
-> @@ -95,19 +99,19 @@ static unsigned int ilk_mem_freq(struct drm_i915_private *dev_priv)
->  	case 0x18:
->  		return 1600000;
->  	default:
-> -		drm_dbg(&dev_priv->drm, "unknown memory frequency 0x%02x\n",
-> -			ddrpll & 0xff);
-> +		drm_dbg_kms(display->drm, "unknown memory frequency 0x%02x\n",
-> +			    ddrpll & 0xff);
->  		return 0;
->  	}
->  }
->  
-> -static unsigned int chv_mem_freq(struct drm_i915_private *i915)
-> +static unsigned int chv_mem_freq(struct intel_display *display)
->  {
->  	u32 val;
->  
-> -	vlv_iosf_sb_get(&i915->drm, BIT(VLV_IOSF_SB_CCK));
-> -	val = vlv_iosf_sb_read(&i915->drm, VLV_IOSF_SB_CCK, CCK_FUSE_REG);
-> -	vlv_iosf_sb_put(&i915->drm, BIT(VLV_IOSF_SB_CCK));
-> +	vlv_iosf_sb_get(display->drm, BIT(VLV_IOSF_SB_CCK));
-> +	val = vlv_iosf_sb_read(display->drm, VLV_IOSF_SB_CCK, CCK_FUSE_REG);
-> +	vlv_iosf_sb_put(display->drm, BIT(VLV_IOSF_SB_CCK));
->  
->  	switch ((val >> 2) & 0x7) {
->  	case 3:
-> @@ -117,13 +121,13 @@ static unsigned int chv_mem_freq(struct drm_i915_private *i915)
->  	}
->  }
->  
-> -static unsigned int vlv_mem_freq(struct drm_i915_private *i915)
-> +static unsigned int vlv_mem_freq(struct intel_display *display)
->  {
->  	u32 val;
->  
-> -	vlv_iosf_sb_get(&i915->drm, BIT(VLV_IOSF_SB_PUNIT));
-> -	val = vlv_iosf_sb_read(&i915->drm, VLV_IOSF_SB_PUNIT, PUNIT_REG_GPU_FREQ_STS);
-> -	vlv_iosf_sb_put(&i915->drm, BIT(VLV_IOSF_SB_PUNIT));
-> +	vlv_iosf_sb_get(display->drm, BIT(VLV_IOSF_SB_PUNIT));
-> +	val = vlv_iosf_sb_read(display->drm, VLV_IOSF_SB_PUNIT, PUNIT_REG_GPU_FREQ_STS);
-> +	vlv_iosf_sb_put(display->drm, BIT(VLV_IOSF_SB_PUNIT));
->  
->  	switch ((val >> 6) & 3) {
->  	case 0:
-> @@ -138,22 +142,23 @@ static unsigned int vlv_mem_freq(struct drm_i915_private *i915)
->  	return 0;
->  }
->  
-> -unsigned int intel_mem_freq(struct drm_i915_private *i915)
-> +unsigned int intel_mem_freq(struct intel_display *display)
->  {
-> -	if (IS_PINEVIEW(i915))
-> -		return pnv_mem_freq(i915);
-> -	else if (GRAPHICS_VER(i915) == 5)
-> -		return ilk_mem_freq(i915);
-> -	else if (IS_CHERRYVIEW(i915))
-> -		return chv_mem_freq(i915);
-> -	else if (IS_VALLEYVIEW(i915))
-> -		return vlv_mem_freq(i915);
-> +	if (display->platform.pineview)
-> +		return pnv_mem_freq(display);
-> +	else if (DISPLAY_VER(display) == 5)
-> +		return ilk_mem_freq(display);
-> +	else if (display->platform.cherryview)
-> +		return chv_mem_freq(display);
-> +	else if (display->platform.valleyview)
-> +		return vlv_mem_freq(display);
->  	else
->  		return 0;
->  }
->  
-> -static unsigned int i9xx_fsb_freq(struct drm_i915_private *i915)
-> +static unsigned int i9xx_fsb_freq(struct intel_display *display)
->  {
-> +	struct drm_i915_private *i915 = to_i915(display->drm);
->  	u32 fsb;
->  
->  	/*
-> @@ -166,7 +171,7 @@ static unsigned int i9xx_fsb_freq(struct drm_i915_private *i915)
->  	 */
->  	fsb = intel_uncore_read(&i915->uncore, CLKCFG) & CLKCFG_FSB_MASK;
->  
-> -	if (IS_PINEVIEW(i915) || IS_MOBILE(i915)) {
-> +	if (display->platform.pineview || display->platform.mobile) {
->  		switch (fsb) {
->  		case CLKCFG_FSB_400:
->  			return 400000;
-> @@ -207,8 +212,9 @@ static unsigned int i9xx_fsb_freq(struct drm_i915_private *i915)
->  	}
->  }
->  
-> -static unsigned int ilk_fsb_freq(struct drm_i915_private *dev_priv)
-> +static unsigned int ilk_fsb_freq(struct intel_display *display)
->  {
-> +	struct drm_i915_private *dev_priv = to_i915(display->drm);
->  	u16 fsb;
->  
->  	fsb = intel_uncore_read16(&dev_priv->uncore, CSIPLL0) & 0x3ff;
-> @@ -229,33 +235,33 @@ static unsigned int ilk_fsb_freq(struct drm_i915_private *dev_priv)
->  	case 0x018:
->  		return 6400000;
->  	default:
-> -		drm_dbg(&dev_priv->drm, "unknown fsb frequency 0x%04x\n", fsb);
-> +		drm_dbg_kms(display->drm, "unknown fsb frequency 0x%04x\n", fsb);
->  		return 0;
->  	}
->  }
->  
-> -unsigned int intel_fsb_freq(struct drm_i915_private *i915)
-> +unsigned int intel_fsb_freq(struct intel_display *display)
->  {
-> -	if (GRAPHICS_VER(i915) == 5)
-> -		return ilk_fsb_freq(i915);
-> -	else if (GRAPHICS_VER(i915) == 3 || GRAPHICS_VER(i915) == 4)
-> -		return i9xx_fsb_freq(i915);
-> +	if (DISPLAY_VER(display) == 5)
-> +		return ilk_fsb_freq(display);
-> +	else if (IS_DISPLAY_VER(display, 3, 4))
-> +		return i9xx_fsb_freq(display);
->  	else
->  		return 0;
->  }
->  
-> -static int i915_get_dram_info(struct drm_i915_private *i915, struct dram_info *dram_info)
-> +static int i915_get_dram_info(struct intel_display *display, struct dram_info *dram_info)
->  {
-> -	dram_info->fsb_freq = intel_fsb_freq(i915);
-> +	dram_info->fsb_freq = intel_fsb_freq(display);
->  	if (dram_info->fsb_freq)
-> -		drm_dbg(&i915->drm, "FSB frequency: %d kHz\n", dram_info->fsb_freq);
-> +		drm_dbg_kms(display->drm, "FSB frequency: %d kHz\n", dram_info->fsb_freq);
->  
-> -	dram_info->mem_freq = intel_mem_freq(i915);
-> +	dram_info->mem_freq = intel_mem_freq(display);
->  	if (dram_info->mem_freq)
-> -		drm_dbg(&i915->drm, "DDR speed: %d kHz\n", dram_info->mem_freq);
-> +		drm_dbg_kms(display->drm, "DDR speed: %d kHz\n", dram_info->mem_freq);
->  
-> -	if (IS_PINEVIEW(i915))
-> -		dram_info->type = pnv_dram_type(i915);
-> +	if (display->platform.pineview)
-> +		dram_info->type = pnv_dram_type(display);
->  
->  	return 0;
->  }
-> @@ -339,11 +345,11 @@ skl_is_16gb_dimm(const struct dram_dimm_info *dimm)
->  }
->  
->  static void
-> -skl_dram_get_dimm_info(struct drm_i915_private *i915,
-> +skl_dram_get_dimm_info(struct intel_display *display,
->  		       struct dram_dimm_info *dimm,
->  		       int channel, char dimm_name, u16 val)
->  {
-> -	if (GRAPHICS_VER(i915) >= 11) {
-> +	if (DISPLAY_VER(display) >= 11) {
->  		dimm->size = icl_get_dimm_size(val);
->  		dimm->width = icl_get_dimm_width(val);
->  		dimm->ranks = icl_get_dimm_ranks(val);
-> @@ -353,24 +359,24 @@ skl_dram_get_dimm_info(struct drm_i915_private *i915,
->  		dimm->ranks = skl_get_dimm_ranks(val);
->  	}
->  
-> -	drm_dbg_kms(&i915->drm,
-> +	drm_dbg_kms(display->drm,
->  		    "CH%u DIMM %c size: %u Gb, width: X%u, ranks: %u, 16Gb+ DIMMs: %s\n",
->  		    channel, dimm_name, dimm->size, dimm->width, dimm->ranks,
->  		    str_yes_no(skl_is_16gb_dimm(dimm)));
->  }
->  
->  static int
-> -skl_dram_get_channel_info(struct drm_i915_private *i915,
-> +skl_dram_get_channel_info(struct intel_display *display,
->  			  struct dram_channel_info *ch,
->  			  int channel, u32 val)
->  {
-> -	skl_dram_get_dimm_info(i915, &ch->dimm_l,
-> +	skl_dram_get_dimm_info(display, &ch->dimm_l,
->  			       channel, 'L', val & 0xffff);
-> -	skl_dram_get_dimm_info(i915, &ch->dimm_s,
-> +	skl_dram_get_dimm_info(display, &ch->dimm_s,
->  			       channel, 'S', val >> 16);
->  
->  	if (ch->dimm_l.size == 0 && ch->dimm_s.size == 0) {
-> -		drm_dbg_kms(&i915->drm, "CH%u not populated\n", channel);
-> +		drm_dbg_kms(display->drm, "CH%u not populated\n", channel);
->  		return -EINVAL;
->  	}
->  
-> @@ -384,7 +390,7 @@ skl_dram_get_channel_info(struct drm_i915_private *i915,
->  	ch->is_16gb_dimm = skl_is_16gb_dimm(&ch->dimm_l) ||
->  		skl_is_16gb_dimm(&ch->dimm_s);
->  
-> -	drm_dbg_kms(&i915->drm, "CH%u ranks: %u, 16Gb+ DIMMs: %s\n",
-> +	drm_dbg_kms(display->drm, "CH%u ranks: %u, 16Gb+ DIMMs: %s\n",
->  		    channel, ch->ranks, str_yes_no(ch->is_16gb_dimm));
->  
->  	return 0;
-> @@ -400,8 +406,9 @@ intel_is_dram_symmetric(const struct dram_channel_info *ch0,
->  }
->  
->  static int
-> -skl_dram_get_channels_info(struct drm_i915_private *i915, struct dram_info *dram_info)
-> +skl_dram_get_channels_info(struct intel_display *display, struct dram_info *dram_info)
->  {
-> +	struct drm_i915_private *i915 = to_i915(display->drm);
->  	struct dram_channel_info ch0 = {}, ch1 = {};
->  	u32 val;
->  	int ret;
-> @@ -411,23 +418,23 @@ skl_dram_get_channels_info(struct drm_i915_private *i915, struct dram_info *dram
->  
->  	val = intel_uncore_read(&i915->uncore,
->  				SKL_MAD_DIMM_CH0_0_0_0_MCHBAR_MCMAIN);
-> -	ret = skl_dram_get_channel_info(i915, &ch0, 0, val);
-> +	ret = skl_dram_get_channel_info(display, &ch0, 0, val);
->  	if (ret == 0)
->  		dram_info->num_channels++;
->  
->  	val = intel_uncore_read(&i915->uncore,
->  				SKL_MAD_DIMM_CH1_0_0_0_MCHBAR_MCMAIN);
-> -	ret = skl_dram_get_channel_info(i915, &ch1, 1, val);
-> +	ret = skl_dram_get_channel_info(display, &ch1, 1, val);
->  	if (ret == 0)
->  		dram_info->num_channels++;
->  
->  	if (dram_info->num_channels == 0) {
-> -		drm_info(&i915->drm, "Number of memory channels is zero\n");
-> +		drm_info(display->drm, "Number of memory channels is zero\n");
->  		return -EINVAL;
->  	}
->  
->  	if (ch0.ranks == 0 && ch1.ranks == 0) {
-> -		drm_info(&i915->drm, "couldn't get memory rank information\n");
-> +		drm_info(display->drm, "couldn't get memory rank information\n");
->  		return -EINVAL;
->  	}
->  
-> @@ -435,18 +442,19 @@ skl_dram_get_channels_info(struct drm_i915_private *i915, struct dram_info *dram
->  
->  	dram_info->symmetric_memory = intel_is_dram_symmetric(&ch0, &ch1);
->  
-> -	drm_dbg_kms(&i915->drm, "Memory configuration is symmetric? %s\n",
-> +	drm_dbg_kms(display->drm, "Memory configuration is symmetric? %s\n",
->  		    str_yes_no(dram_info->symmetric_memory));
->  
-> -	drm_dbg_kms(&i915->drm, "16Gb+ DIMMs: %s\n",
-> +	drm_dbg_kms(display->drm, "16Gb+ DIMMs: %s\n",
->  		    str_yes_no(dram_info->has_16gb_dimms));
->  
->  	return 0;
->  }
->  
->  static enum intel_dram_type
-> -skl_get_dram_type(struct drm_i915_private *i915)
-> +skl_get_dram_type(struct intel_display *display)
->  {
-> +	struct drm_i915_private *i915 = to_i915(display->drm);
->  	u32 val;
->  
->  	val = intel_uncore_read(&i915->uncore,
-> @@ -468,13 +476,13 @@ skl_get_dram_type(struct drm_i915_private *i915)
->  }
->  
->  static int
-> -skl_get_dram_info(struct drm_i915_private *i915, struct dram_info *dram_info)
-> +skl_get_dram_info(struct intel_display *display, struct dram_info *dram_info)
->  {
->  	int ret;
->  
-> -	dram_info->type = skl_get_dram_type(i915);
-> +	dram_info->type = skl_get_dram_type(display);
->  
-> -	ret = skl_dram_get_channels_info(i915, dram_info);
-> +	ret = skl_dram_get_channels_info(display, dram_info);
->  	if (ret)
->  		return ret;
->  
-> @@ -559,8 +567,9 @@ static void bxt_get_dimm_info(struct dram_dimm_info *dimm, u32 val)
->  	dimm->size = bxt_get_dimm_size(val) * intel_dimm_num_devices(dimm);
->  }
->  
-> -static int bxt_get_dram_info(struct drm_i915_private *i915, struct dram_info *dram_info)
-> +static int bxt_get_dram_info(struct intel_display *display, struct dram_info *dram_info)
->  {
-> +	struct drm_i915_private *i915 = to_i915(display->drm);
->  	u32 val;
->  	u8 valid_ranks = 0;
->  	int i;
-> @@ -581,11 +590,11 @@ static int bxt_get_dram_info(struct drm_i915_private *i915, struct dram_info *dr
->  		bxt_get_dimm_info(&dimm, val);
->  		type = bxt_get_dimm_type(val);
->  
-> -		drm_WARN_ON(&i915->drm, type != INTEL_DRAM_UNKNOWN &&
-> +		drm_WARN_ON(display->drm, type != INTEL_DRAM_UNKNOWN &&
->  			    dram_info->type != INTEL_DRAM_UNKNOWN &&
->  			    dram_info->type != type);
->  
-> -		drm_dbg_kms(&i915->drm,
-> +		drm_dbg_kms(display->drm,
->  			    "CH%u DIMM size: %u Gb, width: X%u, ranks: %u\n",
->  			    i - BXT_D_CR_DRP0_DUNIT_START,
->  			    dimm.size, dimm.width, dimm.ranks);
-> @@ -598,25 +607,25 @@ static int bxt_get_dram_info(struct drm_i915_private *i915, struct dram_info *dr
->  	}
->  
->  	if (dram_info->type == INTEL_DRAM_UNKNOWN || valid_ranks == 0) {
-> -		drm_info(&i915->drm, "couldn't get memory information\n");
-> +		drm_info(display->drm, "couldn't get memory information\n");
->  		return -EINVAL;
->  	}
->  
->  	return 0;
->  }
->  
-> -static int icl_pcode_read_mem_global_info(struct drm_i915_private *dev_priv,
-> +static int icl_pcode_read_mem_global_info(struct intel_display *display,
->  					  struct dram_info *dram_info)
->  {
->  	u32 val = 0;
->  	int ret;
->  
-> -	ret = intel_pcode_read(&dev_priv->drm, ICL_PCODE_MEM_SUBSYSYSTEM_INFO |
-> +	ret = intel_pcode_read(display->drm, ICL_PCODE_MEM_SUBSYSYSTEM_INFO |
->  			       ICL_PCODE_MEM_SS_READ_GLOBAL_INFO, &val, NULL);
->  	if (ret)
->  		return ret;
->  
-> -	if (GRAPHICS_VER(dev_priv) == 12) {
-> +	if (DISPLAY_VER(display) == 12) {
->  		switch (val & 0xf) {
->  		case 0:
->  			dram_info->type = INTEL_DRAM_DDR4;
-> @@ -667,25 +676,25 @@ static int icl_pcode_read_mem_global_info(struct drm_i915_private *dev_priv,
->  	return 0;
->  }
->  
-> -static int gen11_get_dram_info(struct drm_i915_private *i915, struct dram_info *dram_info)
-> +static int gen11_get_dram_info(struct intel_display *display, struct dram_info *dram_info)
->  {
->  	int ret;
->  
-> -	ret = skl_dram_get_channels_info(i915, dram_info);
-> +	ret = skl_dram_get_channels_info(display, dram_info);
->  	if (ret)
->  		return ret;
->  
-> -	return icl_pcode_read_mem_global_info(i915, dram_info);
-> +	return icl_pcode_read_mem_global_info(display, dram_info);
->  }
->  
-> -static int gen12_get_dram_info(struct drm_i915_private *i915, struct dram_info *dram_info)
-> +static int gen12_get_dram_info(struct intel_display *display, struct dram_info *dram_info)
->  {
-> -	return icl_pcode_read_mem_global_info(i915, dram_info);
-> +	return icl_pcode_read_mem_global_info(display, dram_info);
->  }
->  
-> -static int xelpdp_get_dram_info(struct drm_i915_private *i915, struct dram_info *dram_info)
-> +static int xelpdp_get_dram_info(struct intel_display *display, struct dram_info *dram_info)
->  {
-> -	struct intel_display *display = i915->display;
-> +	struct drm_i915_private *i915 = to_i915(display->drm);
->  	u32 val = intel_uncore_read(&i915->uncore, MTL_MEM_SS_INFO_GLOBAL);
->  
->  	switch (REG_FIELD_GET(MTL_DDR_TYPE_MASK, val)) {
-> @@ -708,11 +717,11 @@ static int xelpdp_get_dram_info(struct drm_i915_private *i915, struct dram_info
->  		dram_info->type = INTEL_DRAM_LPDDR3;
->  		break;
->  	case 8:
-> -		drm_WARN_ON(&i915->drm, !IS_DGFX(i915));
-> +		drm_WARN_ON(display->drm, !display->platform.dgfx);
->  		dram_info->type = INTEL_DRAM_GDDR;
->  		break;
->  	case 9:
-> -		drm_WARN_ON(&i915->drm, !IS_DGFX(i915));
-> +		drm_WARN_ON(display->drm, !display->platform.dgfx);
->  		dram_info->type = INTEL_DRAM_GDDR_ECC;
->  		break;
->  	default:
-> @@ -730,41 +739,41 @@ static int xelpdp_get_dram_info(struct drm_i915_private *i915, struct dram_info
->  	return 0;
->  }
->  
-> -int intel_dram_detect(struct drm_i915_private *i915)
-> +int intel_dram_detect(struct intel_display *display)
->  {
-> -	struct intel_display *display = i915->display;
-> +	struct drm_i915_private *i915 = to_i915(display->drm);
->  	struct dram_info *dram_info;
->  	int ret;
->  
-> -	if (IS_DG2(i915) || !intel_display_device_present(display))
-> +	if (display->platform.dg2 || !HAS_DISPLAY(display))
->  		return 0;
->  
-> -	dram_info = drmm_kzalloc(&i915->drm, sizeof(*dram_info), GFP_KERNEL);
-> +	dram_info = drmm_kzalloc(display->drm, sizeof(*dram_info), GFP_KERNEL);
->  	if (!dram_info)
->  		return -ENOMEM;
->  
->  	i915->dram_info = dram_info;
->  
->  	if (DISPLAY_VER(display) >= 14)
-> -		ret = xelpdp_get_dram_info(i915, dram_info);
-> -	else if (GRAPHICS_VER(i915) >= 12)
-> -		ret = gen12_get_dram_info(i915, dram_info);
-> -	else if (GRAPHICS_VER(i915) >= 11)
-> -		ret = gen11_get_dram_info(i915, dram_info);
-> -	else if (IS_BROXTON(i915) || IS_GEMINILAKE(i915))
-> -		ret = bxt_get_dram_info(i915, dram_info);
-> -	else if (GRAPHICS_VER(i915) >= 9)
-> -		ret = skl_get_dram_info(i915, dram_info);
-> +		ret = xelpdp_get_dram_info(display, dram_info);
-> +	else if (DISPLAY_VER(display) >= 12)
-> +		ret = gen12_get_dram_info(display, dram_info);
+Quoting Matt Roper (2025-11-10 20:20:30-03:00)
+>Use scope-based cleanup for forcewake and runtime pm.  This allows us to
+>eliminate some goto-based error handling and simplify other functions.
+>
+>Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 
-I was wondering if we have any situations here where the display
-vs. graphics ver differs, but can't immediately think of anything
-that would go wrong here. So seems fine.
+Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
 
-I think we should land https://patchwork.freedesktop.org/series/156793/
-before this one though, just in case we late discover that we need
-a stable backport of it.
-
-> +	else if (DISPLAY_VER(display) >= 11)
-> +		ret = gen11_get_dram_info(display, dram_info);
-> +	else if (display->platform.broxton || display->platform.geminilake)
-> +		ret = bxt_get_dram_info(display, dram_info);
-> +	else if (DISPLAY_VER(display) >= 9)
-> +		ret = skl_get_dram_info(display, dram_info);
->  	else
-> -		ret = i915_get_dram_info(i915, dram_info);
-> +		ret = i915_get_dram_info(display, dram_info);
->  
-> -	drm_dbg_kms(&i915->drm, "DRAM type: %s\n",
-> +	drm_dbg_kms(display->drm, "DRAM type: %s\n",
->  		    intel_dram_type_str(dram_info->type));
->  
-> -	drm_dbg_kms(&i915->drm, "DRAM channels: %u\n", dram_info->num_channels);
-> +	drm_dbg_kms(display->drm, "DRAM channels: %u\n", dram_info->num_channels);
->  
-> -	drm_dbg_kms(&i915->drm, "Num QGV points %u\n", dram_info->num_qgv_points);
-> -	drm_dbg_kms(&i915->drm, "Num PSF GV points %u\n", dram_info->num_psf_gv_points);
-> +	drm_dbg_kms(display->drm, "Num QGV points %u\n", dram_info->num_qgv_points);
-> +	drm_dbg_kms(display->drm, "Num PSF GV points %u\n", dram_info->num_psf_gv_points);
->  
->  	/* TODO: Do we want to abort probe on dram detection failures? */
->  	if (ret)
-> @@ -778,9 +787,9 @@ int intel_dram_detect(struct drm_i915_private *i915)
->   * checks, and prefer not dereferencing on platforms that shouldn't look at dram
->   * info, to catch accidental and incorrect dram info checks.
->   */
-> -const struct dram_info *intel_dram_info(struct drm_device *drm)
-> +const struct dram_info *intel_dram_info(struct intel_display *display)
->  {
-> -	struct drm_i915_private *i915 = to_i915(drm);
-> +	struct drm_i915_private *i915 = to_i915(display->drm);
->  
->  	return i915->dram_info;
->  }
-> diff --git a/drivers/gpu/drm/i915/display/intel_dram.h b/drivers/gpu/drm/i915/display/intel_dram.h
-> index 58aaf2f91afe..5800b7b4e614 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dram.h
-> +++ b/drivers/gpu/drm/i915/display/intel_dram.h
-> @@ -8,8 +8,7 @@
->  
->  #include <linux/types.h>
->  
-> -struct drm_i915_private;
-> -struct drm_device;
-> +struct intel_display;
->  
->  struct dram_info {
->  	enum intel_dram_type {
-> @@ -35,10 +34,10 @@ struct dram_info {
->  	bool has_16gb_dimms;
->  };
->  
-> -int intel_dram_detect(struct drm_i915_private *i915);
-> -unsigned int intel_fsb_freq(struct drm_i915_private *i915);
-> -unsigned int intel_mem_freq(struct drm_i915_private *i915);
-> -const struct dram_info *intel_dram_info(struct drm_device *drm);
-> +int intel_dram_detect(struct intel_display *display);
-> +unsigned int intel_fsb_freq(struct intel_display *display);
-> +unsigned int intel_mem_freq(struct intel_display *display);
-> +const struct dram_info *intel_dram_info(struct intel_display *display);
->  const char *intel_dram_type_str(enum intel_dram_type type);
->  
->  #endif /* __INTEL_DRAM_H__ */
-> diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
-> index a33e0cec8cba..7964cfffdaae 100644
-> --- a/drivers/gpu/drm/i915/display/skl_watermark.c
-> +++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-> @@ -3125,7 +3125,7 @@ static bool skl_watermark_ipc_can_enable(struct intel_display *display)
->  	if (display->platform.kabylake ||
->  	    display->platform.coffeelake ||
->  	    display->platform.cometlake) {
-> -		const struct dram_info *dram_info = intel_dram_info(display->drm);
-> +		const struct dram_info *dram_info = intel_dram_info(display);
->  
->  		return dram_info->symmetric_memory;
->  	}
-> @@ -3169,7 +3169,7 @@ static void increase_wm_latency(struct intel_display *display, int inc)
->  
->  static bool need_16gb_dimm_wa(struct intel_display *display)
->  {
-> -	const struct dram_info *dram_info = intel_dram_info(display->drm);
-> +	const struct dram_info *dram_info = intel_dram_info(display);
->  
->  	return (display->platform.skylake || display->platform.kabylake ||
->  		display->platform.coffeelake || display->platform.cometlake ||
-> diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-> index 356f7fa5cdb8..1dc6ba4cf5a9 100644
-> --- a/drivers/gpu/drm/i915/i915_driver.c
-> +++ b/drivers/gpu/drm/i915/i915_driver.c
-> @@ -573,7 +573,7 @@ static int i915_driver_hw_probe(struct drm_i915_private *dev_priv)
->  	 * Fill the dram structure to get the system dram info. This will be
->  	 * used for memory latency calculation.
->  	 */
-> -	ret = intel_dram_detect(dev_priv);
-> +	ret = intel_dram_detect(display);
->  	if (ret)
->  		goto err_opregion;
->  
-> diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
-> index c29f96da0617..1127a699cded 100644
-> --- a/drivers/gpu/drm/xe/display/xe_display.c
-> +++ b/drivers/gpu/drm/xe/display/xe_display.c
-> @@ -122,7 +122,7 @@ int xe_display_init_early(struct xe_device *xe)
->  	 * Fill the dram structure to get the system dram info. This will be
->  	 * used for memory latency calculation.
->  	 */
-> -	err = intel_dram_detect(xe);
-> +	err = intel_dram_detect(display);
->  	if (err)
->  		goto err_opregion;
->  
-> -- 
-> 2.47.3
-
--- 
-Ville Syrjälä
-Intel
+>---
+> drivers/gpu/drm/xe/xe_pxp.c | 55 ++++++++++++-------------------------
+> 1 file changed, 18 insertions(+), 37 deletions(-)
+>
+>diff --git a/drivers/gpu/drm/xe/xe_pxp.c b/drivers/gpu/drm/xe/xe_pxp.c
+>index bdbdbbf6a678..508f4c128a48 100644
+>--- a/drivers/gpu/drm/xe/xe_pxp.c
+>+++ b/drivers/gpu/drm/xe/xe_pxp.c
+>@@ -58,10 +58,9 @@ bool xe_pxp_is_enabled(const struct xe_pxp *pxp)
+> static bool pxp_prerequisites_done(const struct xe_pxp *pxp)
+> {
+>         struct xe_gt *gt =3D pxp->gt;
+>-        unsigned int fw_ref;
+>         bool ready;
+>=20
+>-        fw_ref =3D xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
+>+        CLASS(xe_force_wake, fw_ref)(gt_to_fw(gt), XE_FORCEWAKE_ALL);
+>=20
+>         /*
+>          * If force_wake fails we could falsely report the prerequisites =
+as not
+>@@ -71,14 +70,12 @@ static bool pxp_prerequisites_done(const struct xe_pxp=
+ *pxp)
+>          * PXP. Therefore, we can just log the force_wake error and not e=
+scalate
+>          * it.
+>          */
+>-        XE_WARN_ON(!xe_force_wake_ref_has_domain(fw_ref, XE_FORCEWAKE_ALL=
+));
+>+        XE_WARN_ON(!xe_force_wake_ref_has_domain(fw_ref.domains, XE_FORCE=
+WAKE_ALL));
+>=20
+>         /* PXP requires both HuC authentication via GSC and GSC proxy ini=
+tialized */
+>         ready =3D xe_huc_is_authenticated(&gt->uc.huc, XE_HUC_AUTH_VIA_GS=
+C) &&
+>                 xe_gsc_proxy_init_done(&gt->uc.gsc);
+>=20
+>-        xe_force_wake_put(gt_to_fw(gt), fw_ref);
+>-
+>         return ready;
+> }
+>=20
+>@@ -104,13 +101,12 @@ int xe_pxp_get_readiness_status(struct xe_pxp *pxp)
+>             xe_uc_fw_status_to_error(pxp->gt->uc.gsc.fw.status))
+>                 return -EIO;
+>=20
+>-        xe_pm_runtime_get(pxp->xe);
+>+        guard(xe_pm_runtime)(pxp->xe);
+>=20
+>         /* PXP requires both HuC loaded and GSC proxy initialized */
+>         if (pxp_prerequisites_done(pxp))
+>                 ret =3D 1;
+>=20
+>-        xe_pm_runtime_put(pxp->xe);
+>         return ret;
+> }
+>=20
+>@@ -135,35 +131,28 @@ static void pxp_invalidate_queues(struct xe_pxp *pxp=
+);
+> static int pxp_terminate_hw(struct xe_pxp *pxp)
+> {
+>         struct xe_gt *gt =3D pxp->gt;
+>-        unsigned int fw_ref;
+>         int ret =3D 0;
+>=20
+>         drm_dbg(&pxp->xe->drm, "Terminating PXP\n");
+>=20
+>-        fw_ref =3D xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
+>-        if (!xe_force_wake_ref_has_domain(fw_ref, XE_FW_GT)) {
+>-                ret =3D -EIO;
+>-                goto out;
+>-        }
+>+        CLASS(xe_force_wake, fw_ref)(gt_to_fw(gt), XE_FW_GT);
+>+        if (!xe_force_wake_ref_has_domain(fw_ref.domains, XE_FW_GT))
+>+                return -EIO;
+>=20
+>         /* terminate the hw session */
+>         ret =3D xe_pxp_submit_session_termination(pxp, ARB_SESSION);
+>         if (ret)
+>-                goto out;
+>+                return ret;
+>=20
+>         ret =3D pxp_wait_for_session_state(pxp, ARB_SESSION, false);
+>         if (ret)
+>-                goto out;
+>+                return ret;
+>=20
+>         /* Trigger full HW cleanup */
+>         xe_mmio_write32(&gt->mmio, KCR_GLOBAL_TERMINATE, 1);
+>=20
+>         /* now we can tell the GSC to clean up its own state */
+>-        ret =3D xe_pxp_submit_session_invalidation(&pxp->gsc_res, ARB_SES=
+SION);
+>-
+>-out:
+>-        xe_force_wake_put(gt_to_fw(gt), fw_ref);
+>-        return ret;
+>+        return xe_pxp_submit_session_invalidation(&pxp->gsc_res, ARB_SESS=
+ION);
+> }
+>=20
+> static void mark_termination_in_progress(struct xe_pxp *pxp)
+>@@ -326,14 +315,12 @@ static int kcr_pxp_set_status(const struct xe_pxp *p=
+xp, bool enable)
+> {
+>         u32 val =3D enable ? _MASKED_BIT_ENABLE(KCR_INIT_ALLOW_DISPLAY_ME=
+_WRITES) :
+>                   _MASKED_BIT_DISABLE(KCR_INIT_ALLOW_DISPLAY_ME_WRITES);
+>-        unsigned int fw_ref;
+>=20
+>-        fw_ref =3D xe_force_wake_get(gt_to_fw(pxp->gt), XE_FW_GT);
+>-        if (!xe_force_wake_ref_has_domain(fw_ref, XE_FW_GT))
+>+        CLASS(xe_force_wake, fw_ref)(gt_to_fw(pxp->gt), XE_FW_GT);
+>+        if (!xe_force_wake_ref_has_domain(fw_ref.domains, XE_FW_GT))
+>                 return -EIO;
+>=20
+>         xe_mmio_write32(&pxp->gt->mmio, KCR_INIT, val);
+>-        xe_force_wake_put(gt_to_fw(pxp->gt), fw_ref);
+>=20
+>         return 0;
+> }
+>@@ -453,34 +440,28 @@ int xe_pxp_init(struct xe_device *xe)
+> static int __pxp_start_arb_session(struct xe_pxp *pxp)
+> {
+>         int ret;
+>-        unsigned int fw_ref;
+>=20
+>-        fw_ref =3D xe_force_wake_get(gt_to_fw(pxp->gt), XE_FW_GT);
+>-        if (!xe_force_wake_ref_has_domain(fw_ref, XE_FW_GT))
+>+        CLASS(xe_force_wake, fw_ref)(gt_to_fw(pxp->gt), XE_FW_GT);
+>+        if (!xe_force_wake_ref_has_domain(fw_ref.domains, XE_FW_GT))
+>                 return -EIO;
+>=20
+>-        if (pxp_session_is_in_play(pxp, ARB_SESSION)) {
+>-                ret =3D -EEXIST;
+>-                goto out_force_wake;
+>-        }
+>+        if (pxp_session_is_in_play(pxp, ARB_SESSION))
+>+                return -EEXIST;
+>=20
+>         ret =3D xe_pxp_submit_session_init(&pxp->gsc_res, ARB_SESSION);
+>         if (ret) {
+>                 drm_err(&pxp->xe->drm, "Failed to init PXP arb session: %=
+pe\n", ERR_PTR(ret));
+>-                goto out_force_wake;
+>+                return ret;
+>         }
+>=20
+>         ret =3D pxp_wait_for_session_state(pxp, ARB_SESSION, true);
+>         if (ret) {
+>                 drm_err(&pxp->xe->drm, "PXP ARB session failed to go in p=
+lay%pe\n", ERR_PTR(ret));
+>-                goto out_force_wake;
+>+                return ret;
+>         }
+>=20
+>         drm_dbg(&pxp->xe->drm, "PXP ARB session is active\n");
+>-
+>-out_force_wake:
+>-        xe_force_wake_put(gt_to_fw(pxp->gt), fw_ref);
+>-        return ret;
+>+        return 0;
+> }
+>=20
+> /**
+>--=20
+>2.51.1
+>
