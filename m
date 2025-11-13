@@ -4,103 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3CCA7CD6E5C
-	for <intel-xe@archiver.kernel.org>; Thu, 13 Nov 2025 13:23:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C4AE7CD4F2F
+	for <intel-xe@archiver.kernel.org>; Thu, 13 Nov 2025 13:27:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C744D10E807;
-	Thu, 13 Nov 2025 13:23:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6935810E056;
+	Thu, 13 Nov 2025 13:27:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="avVTJyok";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="VERKj4Rv";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="rEXLq3sc";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="l7Z0dvqS";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="N1meW/AZ";
 	dkim-atps=neutral
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AF16E10E807
- for <intel-xe@lists.freedesktop.org>; Thu, 13 Nov 2025 13:23:21 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id 482521F78A;
- Thu, 13 Nov 2025 13:23:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1763040200; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=eyQkhei8HmaXiLxVT29gG+tiGO6nKZp+mVwAeq2WXnU=;
- b=avVTJyok3Gu9kriSvqt/tev+tRjTObMMJhIKjPG5Lyw6Eela72I9k2unb4OEvf67hM2I3T
- Qg85/0i8abLhfrrsL7Wfr3ZHkDOgYwqM/U2xC+0XQJNutjt6utXuZTQa3p1thPr4/fiU6Y
- 3fLchc+7gwIdL1ZlVbqI678LvweEa0Q=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1763040200;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=eyQkhei8HmaXiLxVT29gG+tiGO6nKZp+mVwAeq2WXnU=;
- b=VERKj4RvHYCQos5BMtms0SX5H6WZqq7uhtqbk79foPXuaFhSQvmNIkAOx6V26GicpyzIK/
- i/J5hRIpfmS9ZkCQ==
-Authentication-Results: smtp-out2.suse.de;
-	none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1763040199; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=eyQkhei8HmaXiLxVT29gG+tiGO6nKZp+mVwAeq2WXnU=;
- b=rEXLq3sc29Ej16pB+qTNOfY2Z2TZBQQ1oW1jSL51l1maaYyNrpjCx3MU5sK0zX0X52JSNU
- eQQ78LO3cRwmPIRYPnzEGA59OV9rugZG5daYEmlBagcct0MfyMMakAqGIoRxk3Swjoz0xi
- PtQT/Q/UlHNs+EI97qPt0QKrSObYtxQ=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1763040199;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=eyQkhei8HmaXiLxVT29gG+tiGO6nKZp+mVwAeq2WXnU=;
- b=l7Z0dvqSPXoxTxK/3E8yh6qcuYbQnM6ZPQFuvC2F8soqwyZdeXTB166XfIRVogXiLhG20j
- Sx/paogTat+hzqCw==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id CE0793EA61;
- Thu, 13 Nov 2025 13:23:18 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id 8MITMcbbFWmnYAAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Thu, 13 Nov 2025 13:23:18 +0000
-Date: Thu, 13 Nov 2025 14:23:17 +0100
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-misc-fixes
-Message-ID: <20251113132317.GA451885@linux.fritz.box>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D18BB10E056
+ for <intel-xe@lists.freedesktop.org>; Thu, 13 Nov 2025 13:27:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1763040467; x=1794576467;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=cI1dXwjxOpOxl55g1VXrnmxr/9ClxZG3+pGbDFr93wE=;
+ b=N1meW/AZSHUOrmEda5bA0fgiEpKBk4GcZUJ9dq0meb2Nki8uRxYxcC9b
+ mbFhy+WFrIik9h7HM5yZbEsXYrrRDQ11+lUEYvkw/IBiLUZG0ZcxNdLOR
+ sP6+dOF74jnoloSt6jm8Q+sa8udAd7Gw3bGX6+lGN5yowvzxH/Pse0GeX
+ V8RTMVZACrH0WaARnKcc4aLps2+uf2/9ILoTwGVIqjPY+QN5ZGIM8lGNN
+ c9P2zUJVbgO8hyKUJrcFlaYc0hvHmseHJZd7QKk24Xt+mP9B014SifiiM
+ le1HngEho9+LiyRO2srkG9d0Vd4agJcZcTYioBXThW93PMrK+kvufoRLx g==;
+X-CSE-ConnectionGUID: 8307aO+SR5Gz6UIR0mu03g==
+X-CSE-MsgGUID: 0nLxqnsLRXm0IOgAzongww==
+X-IronPort-AV: E=McAfee;i="6800,10657,11612"; a="75729255"
+X-IronPort-AV: E=Sophos;i="6.19,301,1754982000"; d="scan'208";a="75729255"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Nov 2025 05:27:46 -0800
+X-CSE-ConnectionGUID: tPq7sPE+RiyglSGNa7cI/A==
+X-CSE-MsgGUID: ah6S6b9aQBea2SgyKqCzKw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,301,1754982000"; d="scan'208";a="193747661"
+Received: from yadavs-z690i-a-ultra-plus.iind.intel.com ([10.190.216.90])
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Nov 2025 05:27:44 -0800
+From: Sanjay Yadav <sanjay.kumar.yadav@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: matthew.auld@intel.com,
+	jose.souza@intel.com
+Subject: [PATCH v3] drm/xe/uapi: Add NO_COMPRESSION BO flag and query
+ capability
+Date: Thu, 13 Nov 2025 18:56:57 +0530
+Message-ID: <20251113132656.1907474-2-sanjay.kumar.yadav@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [-4.30 / 50.00]; BAYES_HAM(-3.00)[100.00%];
- NEURAL_HAM_LONG(-1.00)[-1.000];
- NEURAL_HAM_SHORT(-0.20)[-0.999]; MIME_GOOD(-0.10)[text/plain];
- MISSING_XM_UA(0.00)[]; RCVD_VIA_SMTP_AUTH(0.00)[];
- MIME_TRACE(0.00)[0:+]; RCPT_COUNT_TWELVE(0.00)[16];
- FUZZY_RATELIMITED(0.00)[rspamd.com]; ARC_NA(0.00)[];
- FREEMAIL_TO(0.00)[gmail.com,ffwll.ch];
- FREEMAIL_ENVRCPT(0.00)[gmail.com];
- DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- FROM_EQ_ENVFROM(0.00)[]; FROM_HAS_DN(0.00)[];
- TO_DN_SOME(0.00)[]; RCVD_TLS_ALL(0.00)[];
- TO_MATCH_ENVRCPT_ALL(0.00)[]; RCVD_COUNT_TWO(0.00)[2];
- DBL_BLOCKED_OPENRESOLVER(0.00)[suse.com:url]
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -115,75 +67,230 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Dave, Sima,
+Introduce DRM_XE_GEM_CREATE_FLAG_NO_COMPRESSION to let userspace
+opt out of CCS compression on a per-BO basis. When set, the driver
+maps this to XE_BO_FLAG_NO_COMPRESSION, skips CCS metadata
+allocation/clearing, and rejects compressed PAT indices at vm_bind.
+This avoids extra memory ops and manual CCS state handling for buffers.
 
-here's the weekly PR for drm-misc-fixes.
+To allow userspace to detect at runtime whether the kernel supports this
+feature, add DRM_XE_QUERY_CONFIG_FLAG_HAS_NO_COMPRESSION_HINT and expose
+it via query_config() on Xe2+ platforms.
 
-Best regards
-Thomas
+v2
+- Changed error code from -EINVAL to -EOPNOTSUPP for unsupported flag
+  usage on pre-Xe2 platforms
+- Fixed checkpatch warning in xe_vm.c
+- Fixed kernel-doc formatting in xe_drm.h
 
-drm-misc-fixes-2025-11-13:
-Short summary of fixes pull:
+v3
+- Rebase
+- Updated commit title and description
+- Added UAPI for DRM_XE_QUERY_CONFIG_FLAG_HAS_NO_COMPRESSION_HINT and
+  exposed it via query_config()
 
-client:
-- Fix description of module parameter
+Suggested-by: Matthew Auld <matthew.auld@intel.com>
+Suggested-by: Jos√© Roberto de Souza <jose.souza@intel.com>
+Signed-off-by: Sanjay Yadav <sanjay.kumar.yadav@intel.com>
+---
+ drivers/gpu/drm/xe/xe_bo.c    | 15 +++++++++++++--
+ drivers/gpu/drm/xe/xe_bo.h    |  1 +
+ drivers/gpu/drm/xe/xe_pat.c   |  9 ++++++++-
+ drivers/gpu/drm/xe/xe_pat.h   | 15 +++++++++++++++
+ drivers/gpu/drm/xe/xe_query.c |  3 +++
+ drivers/gpu/drm/xe/xe_vm.c    |  5 +++++
+ include/uapi/drm/xe_drm.h     | 16 ++++++++++++++++
+ 7 files changed, 61 insertions(+), 3 deletions(-)
 
-panthor:
-- Flush writes before mapping buffers
-
-vmwgfx:
-- Improve command validation
-- Improve ref counting
-- Fix cursor-plane support
-The following changes since commit b750f5a9d64df6cfe9103c7feb7314694318818d:
-
-  drm/tiny: pixpaper: add explicit dependency on MMU (2025-11-06 13:47:29 +0100)
-
-are available in the Git repository at:
-
-  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-fixes-2025-11-13
-
-for you to fetch changes up to 0a4a18e888ae8c8004582f665c5792c84a681668:
-
-  drm/client: fix MODULE_PARM_DESC string for "active" (2025-11-13 14:15:24 +0100)
-
-----------------------------------------------------------------
-Short summary of fixes pull:
-
-client:
-- Fix description of module parameter
-
-panthor:
-- Flush writes before mapping buffers
-
-vmwgfx:
-- Improve command validation
-- Improve ref counting
-- Fix cursor-plane support
-
-----------------------------------------------------------------
-Boris Brezillon (1):
-      drm/panthor: Flush shmem writes before mapping buffers CPU-uncached
-
-Ian Forbes (3):
-      drm/vmwgfx: Validate command header size against SVGA_CMD_MAX_DATASIZE
-      drm/vmwgfx: Use kref in vmw_bo_dirty
-      drm/vmwgfx: Restore Guest-Backed only cursor plane support
-
-Randy Dunlap (1):
-      drm/client: fix MODULE_PARM_DESC string for "active"
-
- drivers/gpu/drm/clients/drm_client_setup.c   |  4 ++--
- drivers/gpu/drm/panthor/panthor_gem.c        | 18 ++++++++++++++++++
- drivers/gpu/drm/vmwgfx/vmwgfx_cursor_plane.c | 16 +++++++++++++++-
- drivers/gpu/drm/vmwgfx/vmwgfx_cursor_plane.h |  1 +
- drivers/gpu/drm/vmwgfx/vmwgfx_execbuf.c      |  5 +++++
- drivers/gpu/drm/vmwgfx/vmwgfx_page_dirty.c   | 12 +++++-------
- 6 files changed, 46 insertions(+), 10 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index b0bd31d14bb9..c969c2bc4249 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -3183,7 +3183,8 @@ int xe_gem_create_ioctl(struct drm_device *dev, void *data,
+ 	if (XE_IOCTL_DBG(xe, args->flags &
+ 			 ~(DRM_XE_GEM_CREATE_FLAG_DEFER_BACKING |
+ 			   DRM_XE_GEM_CREATE_FLAG_SCANOUT |
+-			   DRM_XE_GEM_CREATE_FLAG_NEEDS_VISIBLE_VRAM)))
++			   DRM_XE_GEM_CREATE_FLAG_NEEDS_VISIBLE_VRAM |
++			   DRM_XE_GEM_CREATE_FLAG_NO_COMPRESSION)))
+ 		return -EINVAL;
+ 
+ 	if (XE_IOCTL_DBG(xe, args->handle))
+@@ -3205,6 +3206,12 @@ int xe_gem_create_ioctl(struct drm_device *dev, void *data,
+ 	if (args->flags & DRM_XE_GEM_CREATE_FLAG_SCANOUT)
+ 		bo_flags |= XE_BO_FLAG_SCANOUT;
+ 
++	if (args->flags & DRM_XE_GEM_CREATE_FLAG_NO_COMPRESSION) {
++		if (GRAPHICS_VER(xe) < 20)
++			return -EOPNOTSUPP;
++		bo_flags |= XE_BO_FLAG_NO_COMPRESSION;
++	}
++
+ 	bo_flags |= args->placement << (ffs(XE_BO_FLAG_SYSTEM) - 1);
+ 
+ 	/* CCS formats need physical placement at a 64K alignment in VRAM. */
+@@ -3526,8 +3533,12 @@ bool xe_bo_needs_ccs_pages(struct xe_bo *bo)
+ 	 * Compression implies coh_none, therefore we know for sure that WB
+ 	 * memory can't currently use compression, which is likely one of the
+ 	 * common cases.
++	 * Additionally, userspace may explicitly request no compression via the
++	 * DRM_XE_GEM_CREATE_FLAG_NO_COMPRESSION flag, which should also disable
++	 * CCS usage.
+ 	 */
+-	if (bo->cpu_caching == DRM_XE_GEM_CPU_CACHING_WB)
++	if (bo->cpu_caching == DRM_XE_GEM_CPU_CACHING_WB ||
++	    bo->flags & XE_BO_FLAG_NO_COMPRESSION)
+ 		return false;
+ 
+ 	return true;
+diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
+index 911d5b90461a..8ab4474129c3 100644
+--- a/drivers/gpu/drm/xe/xe_bo.h
++++ b/drivers/gpu/drm/xe/xe_bo.h
+@@ -50,6 +50,7 @@
+ #define XE_BO_FLAG_GGTT3		BIT(23)
+ #define XE_BO_FLAG_CPU_ADDR_MIRROR	BIT(24)
+ #define XE_BO_FLAG_FORCE_USER_VRAM	BIT(25)
++#define XE_BO_FLAG_NO_COMPRESSION	BIT(26)
+ 
+ /* this one is trigger internally only */
+ #define XE_BO_FLAG_INTERNAL_TEST	BIT(30)
+diff --git a/drivers/gpu/drm/xe/xe_pat.c b/drivers/gpu/drm/xe/xe_pat.c
+index 68171cceea18..7f9d6710ac86 100644
+--- a/drivers/gpu/drm/xe/xe_pat.c
++++ b/drivers/gpu/drm/xe/xe_pat.c
+@@ -116,7 +116,8 @@ static const struct xe_pat_table_entry xelpg_pat_table[] = {
+ 			REG_FIELD_PREP(XE2_COH_MODE, __coh_mode), \
+ 		.coh_mode = (BUILD_BUG_ON_ZERO(__coh_mode && comp_en) || __coh_mode) ? \
+ 			XE_COH_AT_LEAST_1WAY : XE_COH_NONE, \
+-		.valid = 1 \
++		.valid = 1, \
++		.compressed = comp_en, \
+ 	}
+ 
+ static const struct xe_pat_table_entry xe2_pat_table[] = {
+@@ -196,6 +197,12 @@ u16 xe_pat_index_get_coh_mode(struct xe_device *xe, u16 pat_index)
+ 	return xe->pat.table[pat_index].coh_mode;
+ }
+ 
++bool xe_pat_index_has_compression(struct xe_device *xe, u16 pat_index)
++{
++	xe_assert(xe, pat_index < xe->pat.n_entries);
++	return xe->pat.table[pat_index].compressed;
++}
++
+ static void program_pat(struct xe_gt *gt, const struct xe_pat_table_entry table[],
+ 			int n_entries)
+ {
+diff --git a/drivers/gpu/drm/xe/xe_pat.h b/drivers/gpu/drm/xe/xe_pat.h
+index 05dae03a5f54..1c32237d74dd 100644
+--- a/drivers/gpu/drm/xe/xe_pat.h
++++ b/drivers/gpu/drm/xe/xe_pat.h
+@@ -34,6 +34,11 @@ struct xe_pat_table_entry {
+ 	 * @valid: Set to 1 if the entry is valid, 0 if it's reserved.
+ 	 */
+ 	u16 valid;
++
++	/**
++	 * @compressed: Whether compression is enabled or not with @value.
++	 */
++	bool compressed;
+ };
+ 
+ /**
+@@ -58,4 +63,14 @@ int xe_pat_dump(struct xe_gt *gt, struct drm_printer *p);
+  */
+ u16 xe_pat_index_get_coh_mode(struct xe_device *xe, u16 pat_index);
+ 
++/**
++ * xe_pat_index_has_compression - Check if the given pat_index enables
++ * compression.
++ * @xe: xe device
++ * @pat_index: The pat_index to query
++ *
++ * Note: Only applicable to Xe2+, where compression is part of the PAT index.
++ */
++bool xe_pat_index_has_compression(struct xe_device *xe, u16 pat_index);
++
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
+index 1c0915e2cc16..b392c9b3f0c9 100644
+--- a/drivers/gpu/drm/xe/xe_query.c
++++ b/drivers/gpu/drm/xe/xe_query.c
+@@ -342,6 +342,9 @@ static int query_config(struct xe_device *xe, struct drm_xe_device_query *query)
+ 	if (xe->info.has_usm && IS_ENABLED(CONFIG_DRM_XE_GPUSVM))
+ 		config->info[DRM_XE_QUERY_CONFIG_FLAGS] |=
+ 			DRM_XE_QUERY_CONFIG_FLAG_HAS_CPU_ADDR_MIRROR;
++	if (GRAPHICS_VER(xe) >= 20)
++		config->info[DRM_XE_QUERY_CONFIG_FLAGS] |=
++			DRM_XE_QUERY_CONFIG_FLAG_HAS_NO_COMPRESSION_HINT;
+ 	config->info[DRM_XE_QUERY_CONFIG_FLAGS] |=
+ 			DRM_XE_QUERY_CONFIG_FLAG_HAS_LOW_LATENCY;
+ 	config->info[DRM_XE_QUERY_CONFIG_MIN_ALIGNMENT] =
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 8fb5cc6a69ec..7575ed579ccd 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -3482,6 +3482,11 @@ static int xe_vm_bind_ioctl_validate_bo(struct xe_device *xe, struct xe_bo *bo,
+ {
+ 	u16 coh_mode;
+ 
++	/* Reject compressed PAT index for BO with NO_COMPRESSION flag */
++	if ((bo->flags & XE_BO_FLAG_NO_COMPRESSION) &&
++	    xe_pat_index_has_compression(xe, pat_index))
++		return -EINVAL;
++
+ 	if (XE_IOCTL_DBG(xe, range > xe_bo_size(bo)) ||
+ 	    XE_IOCTL_DBG(xe, obj_offset >
+ 			 xe_bo_size(bo) - range)) {
+diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+index 47853659a705..b9840cb77360 100644
+--- a/include/uapi/drm/xe_drm.h
++++ b/include/uapi/drm/xe_drm.h
+@@ -403,6 +403,9 @@ struct drm_xe_query_mem_regions {
+  *      has low latency hint support
+  *    - %DRM_XE_QUERY_CONFIG_FLAG_HAS_CPU_ADDR_MIRROR - Flag is set if the
+  *      device has CPU address mirroring support
++ *    - %DRM_XE_QUERY_CONFIG_FLAG_HAS_NO_COMPRESSION_HINT - Flag is set if the
++ *      device supports the userspace hint %DRM_XE_GEM_CREATE_FLAG_NO_COMPRESSION.
++ *      This is exposed only on Xe2+.
+  *  - %DRM_XE_QUERY_CONFIG_MIN_ALIGNMENT - Minimal memory alignment
+  *    required by this device, typically SZ_4K or SZ_64K
+  *  - %DRM_XE_QUERY_CONFIG_VA_BITS - Maximum bits of a virtual address
+@@ -421,6 +424,7 @@ struct drm_xe_query_config {
+ 	#define DRM_XE_QUERY_CONFIG_FLAG_HAS_VRAM	(1 << 0)
+ 	#define DRM_XE_QUERY_CONFIG_FLAG_HAS_LOW_LATENCY	(1 << 1)
+ 	#define DRM_XE_QUERY_CONFIG_FLAG_HAS_CPU_ADDR_MIRROR	(1 << 2)
++	#define DRM_XE_QUERY_CONFIG_FLAG_HAS_NO_COMPRESSION_HINT (1 << 3)
+ #define DRM_XE_QUERY_CONFIG_MIN_ALIGNMENT		2
+ #define DRM_XE_QUERY_CONFIG_VA_BITS			3
+ #define DRM_XE_QUERY_CONFIG_MAX_EXEC_QUEUE_PRIORITY	4
+@@ -791,6 +795,17 @@ struct drm_xe_device_query {
+  *    need to use VRAM for display surfaces, therefore the kernel requires
+  *    setting this flag for such objects, otherwise an error is thrown on
+  *    small-bar systems.
++ *  - %DRM_XE_GEM_CREATE_FLAG_NO_COMPRESSION - Allows userspace to
++ *    hint that compression (CCS) should be disabled for the buffer being
++ *    created. This can avoid unnecessary memory operations and CCS state
++ *    management.
++ *    On pre-Xe2 platforms, this flag is currently rejected as compression
++ *    control is not supported via PAT index. On Xe2+ platforms, compression
++ *    is controlled via PAT entries. If this flag is set, the driver will reject
++ *    any VM bind that requests a PAT index enabling compression for this BO.
++ *    Note: On dGPU platforms, there is currently no change in behavior with
++ *    this flag, but future improvements may leverage it. The current benefit is
++ *    primarily applicable to iGPU platforms.
+  *
+  * @cpu_caching supports the following values:
+  *  - %DRM_XE_GEM_CPU_CACHING_WB - Allocate the pages with write-back
+@@ -837,6 +852,7 @@ struct drm_xe_gem_create {
+ #define DRM_XE_GEM_CREATE_FLAG_DEFER_BACKING		(1 << 0)
+ #define DRM_XE_GEM_CREATE_FLAG_SCANOUT			(1 << 1)
+ #define DRM_XE_GEM_CREATE_FLAG_NEEDS_VISIBLE_VRAM	(1 << 2)
++#define DRM_XE_GEM_CREATE_FLAG_NO_COMPRESSION		(1 << 3)
+ 	/**
+ 	 * @flags: Flags, currently a mask of memory instances of where BO can
+ 	 * be placed
 -- 
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Frankenstr. 146, 90461 N¸rnberg, Germany, www.suse.com
-GF: Jochen Jaser, Andrew McDonald, Werner Knoblich, (HRB 36809, AG N¸rnberg)
+2.43.0
+
