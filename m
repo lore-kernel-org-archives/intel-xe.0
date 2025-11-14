@@ -4,67 +4,148 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 71C64CE7B06
-	for <intel-xe@archiver.kernel.org>; Fri, 14 Nov 2025 12:49:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DBAE5CE7B09
+	for <intel-xe@archiver.kernel.org>; Fri, 14 Nov 2025 12:59:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 35C6210EA60;
-	Fri, 14 Nov 2025 12:49:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8E50810EA64;
+	Fri, 14 Nov 2025 12:59:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="az1xF04J";
+	dkim=pass (2048-bit key; unprotected) header.d=suse.com header.i=@suse.com header.b="YuIaXwa+";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6363C10EA60;
- Fri, 14 Nov 2025 12:49:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1763124542; x=1794660542;
- h=from:date:to:cc:subject:in-reply-to:message-id:
- references:mime-version:content-id;
- bh=Vs1j3k+egiqigYTw8Bu/0q6YTfCwbX01X7FAVLFuegQ=;
- b=az1xF04JkPFUQN9wzHn0L40lBXzwLzwlvSTrglLM5DYUqMUpURrpegS1
- h1xug+Sdq71gA6MPbj+bt9JEbBzrRwwPJpNGTdYZQOy7XOw+5MsBJhEZ/
- 6/Ifuq6rJ7lNnIJFMM4t6EGGtbZYJIZ3A5bqAWhMmGy2nj/DaGVvvoXKD
- vdCPfwVEuW6H+kpkk+TNLDNKUSHuBVPaV2+MGIAts0FjuhREVD0AHHA5Q
- lGaxr14Ivok5WAOwkHMwnLts+KzKI1qWORlNLLmNZKK1RotuUG7e0P3Ph
- l7Z9L1iH9Q6A1TzR7Qn1P82pBn/kgrubKAdDLqdUTWtVNTJ4qVmIzBfAQ A==;
-X-CSE-ConnectionGUID: AM5z1+OMS3OgFiv6YtHB/Q==
-X-CSE-MsgGUID: 5t4aBq6oRSenMWjnQHUPlQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11612"; a="65120323"
-X-IronPort-AV: E=Sophos;i="6.19,304,1754982000"; d="scan'208";a="65120323"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Nov 2025 04:48:55 -0800
-X-CSE-ConnectionGUID: U6d+MCYmTIq1xaNsEtxY+Q==
-X-CSE-MsgGUID: KpimQk4BTG+luBVtzfZkPA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,304,1754982000"; d="scan'208";a="189616838"
-Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.244.31])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Nov 2025 04:48:50 -0800
-From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Date: Fri, 14 Nov 2025 14:48:46 +0200 (EET)
-To: =?ISO-8859-15?Q?Alex_Benn=E9e?= <alex.bennee@linaro.org>
-cc: Simon Richter <Simon.Richter@hogyros.de>, 
- Lucas De Marchi <lucas.demarchi@intel.com>, 
- Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org, 
- Bjorn Helgaas <bhelgaas@google.com>, David Airlie <airlied@gmail.com>, 
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org, Jani Nikula <jani.nikula@linux.intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
- linux-pci@vger.kernel.org, Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Simona Vetter <simona@ffwll.ch>, Tvrtko Ursulin <tursulin@ursulin.net>, 
- =?ISO-8859-15?Q?Christian_K=F6nig?= <christian.koenig@amd.com>, 
- =?ISO-8859-15?Q?Thomas_Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>, 
- =?ISO-8859-2?Q?Micha=B3_Winiarski?= <michal.winiarski@intel.com>
-Subject: Re: [PATCH v2 00/11] PCI: BAR resizing fix/rework
-In-Reply-To: <87jyzsq0nr.fsf@draig.linaro.org>
-Message-ID: <7321c165-e38b-6016-54b0-48fcdfdaa199@linux.intel.com>
-References: <20251113162628.5946-1-ilpo.jarvinen@linux.intel.com>
- <87jyzsq0nr.fsf@draig.linaro.org>
+Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com
+ [209.85.208.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1C48E10EA65
+ for <intel-xe@lists.freedesktop.org>; Fri, 14 Nov 2025 12:59:45 +0000 (UTC)
+Received: by mail-ed1-f41.google.com with SMTP id
+ 4fb4d7f45d1cf-64080ccf749so2788053a12.2
+ for <intel-xe@lists.freedesktop.org>; Fri, 14 Nov 2025 04:59:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=suse.com; s=google; t=1763125183; x=1763729983; darn=lists.freedesktop.org; 
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=lIa30kEZfIOzXn6c2Ch+jzSexECrPYWXzGffwwy3r9Q=;
+ b=YuIaXwa+fLkz6OKdz7Qb5f4ZJrrZVmThIMGrjbAVL2gojv2kWXnpe302ZpgiYav1QG
+ ydN1cM8U8WCE3+C1vKz8FZ20TOLZQt3az/oxUqgIGYVLxuFdI3CJ5ZVmkez/fxLMGpNY
+ 7eD/+vAUMA/I9KzCyYbbGEmcb0BgYnqmCFeh3XGaM3fMeGk8sVLYzmuni/W9aaLUQwJY
+ xa9grzZMqyj9BfF3sbzZtvjtNeQdTH3vPjTczovRJc1bdfoe+2dgqS9V2IFMoq5tFlvZ
+ J6MiQsl5tzAUgWNAPtiYk6rLiWvLD9F1UOEQX2EaKwwVWzmRGRfL2zwljrAktehGOZBm
+ Hxrw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1763125183; x=1763729983;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=lIa30kEZfIOzXn6c2Ch+jzSexECrPYWXzGffwwy3r9Q=;
+ b=ZlLJaPbKRiXsBoFfLVWoNv/8lhLdH760jKbEcJb2lq6rpZIaQiwaTVEgdOd9BE+dZ5
+ hcqahoWqzDQhHIjjWRqrlOEfj/0s3Rx6WMpkQE/AQgPui/fBW68j24ij2ukT3lVlZ47Z
+ jplfKlTJRL3v69XYZaUB3z+MmOvEnOfAay4FxNasgv7iOgP/C3uqRrPTk0G1qUR/gX3P
+ 4NtHzM/kY5Qcz8UjhpPvMhmdt07iOdT/SKRvYUEpdNQpbWWfheaBwsTU/a7k8G4mwK8n
+ BH4hbomfbotFr9Kt5X35Mk2F/9otRTRl6+kArRL2JL2FutKOCCrIsS37cqeMj2mKVjri
+ 8BWg==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCU7SWNPdarB39QqNyhIuJTTEPeRVEgY2NkUVds16/o79UisNerexItHd1Sh5i4W0AfgrGSs5cxGqA==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwHbZ0Bh1N+nQs7xMFKwjjfTWDB3Ob5QOX8Qg48cqQzLgfUTt9z
+ lbXv6IfI0Ofd+v10ElKWYIQoAohQ60QdqotsnGHyiijfH+9Py2KZGu90DhdQOR2Dvxk=
+X-Gm-Gg: ASbGnctVQ/pZHAopldzS3NrQgtp4ywMn5y35cjrVR/rB1cFex+C254DQEgBOX8ORJUU
+ 2GqyYt7QDGaCOYZoPA/fFEGyMMu/daYO1g0SezhhWzm9lE3iwUr6HzzZL5s3ZY59njql+3YpUww
+ PUw/ZUGBtk2YiyG4VeBBDEAESByKmubOeRnAFgyNN7XWDNO/Cpr8aJeV0URdkN1Oi009nYZhc/S
+ H/EXsYkdBwCFm8fEETpB/UKpHzxEr/c19XSFt4TB437zVZ+HGzrlM4Cq06zw7UJl6bbz1N2TjEO
+ 4D3GL7CdbWGkwqv6IrmDpOaoHxY+GG1m9TfPLkvSsG5B+Yu5ByefxRdup6BP/vrI22WgLAacche
+ DVBS7AYrlumMbiplBfAmRHJsCUKU7Fhb98N8a4mXnPXyttYLjHnqvSzgHfWNAngaW9aWVc2oB7f
+ txqZA=
+X-Google-Smtp-Source: AGHT+IH6H5eoyoDiGCawX8hcyfAIsFqjcgfKx5GqQ3M5ZUeRqB23EXgoQaPPEhXoJ1r2rQPfP0tLQA==
+X-Received: by 2002:a17:906:f105:b0:b73:7652:ef9e with SMTP id
+ a640c23a62f3a-b737652f76bmr38125366b.55.1763125183501; 
+ Fri, 14 Nov 2025 04:59:43 -0800 (PST)
+Received: from pathway.suse.cz ([176.114.240.130])
+ by smtp.gmail.com with ESMTPSA id
+ a640c23a62f3a-b734fd80a3asm382714666b.37.2025.11.14.04.59.40
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 14 Nov 2025 04:59:42 -0800 (PST)
+Date: Fri, 14 Nov 2025 13:59:38 +0100
+From: Petr Mladek <pmladek@suse.com>
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: Corey Minyard <corey@minyard.net>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ "Dr. David Alan Gilbert" <linux@treblig.org>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+ Rob Clark <robin.clark@oss.qualcomm.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Ulf Hansson <ulf.hansson@linaro.org>,
+ Aleksandr Loktionov <aleksandr.loktionov@intel.com>,
+ Vitaly Lifshits <vitaly.lifshits@intel.com>,
+ Manivannan Sadhasivam <mani@kernel.org>,
+ Niklas Cassel <cassel@kernel.org>, Calvin Owens <calvin@wbinvd.org>,
+ Vadim Fedorenko <vadim.fedorenko@linux.dev>,
+ Sagi Maimon <maimon.sagi@gmail.com>,
+ "Martin K. Petersen" <martin.petersen@oracle.com>,
+ Karan Tilak Kumar <kartilak@cisco.com>,
+ Hans Verkuil <hverkuil+cisco@kernel.org>,
+ Casey Schaufler <casey@schaufler-ca.com>,
+ Steven Rostedt <rostedt@goodmis.org>,
+ Viacheslav Dubeyko <Slava.Dubeyko@ibm.com>,
+ Max Kellermann <max.kellermann@ionos.com>,
+ linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
+ openipmi-developer@lists.sourceforge.net,
+ linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linaro-mm-sig@lists.linaro.org, amd-gfx@lists.freedesktop.org,
+ linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, linux-mmc@vger.kernel.org,
+ netdev@vger.kernel.org, intel-wired-lan@lists.osuosl.org,
+ linux-pci@vger.kernel.org, linux-s390@vger.kernel.org,
+ linux-scsi@vger.kernel.org, linux-staging@lists.linux.dev,
+ ceph-devel@vger.kernel.org, linux-trace-kernel@vger.kernel.org,
+ Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+ Sergey Senozhatsky <senozhatsky@chromium.org>,
+ Jonathan Corbet <corbet@lwn.net>, Sumit Semwal <sumit.semwal@linaro.org>,
+ Gustavo Padovan <gustavo@padovan.org>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Dmitry Baryshkov <lumag@kernel.org>,
+ Abhinav Kumar <abhinav.kumar@linux.dev>,
+ Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ Konrad Dybcio <konradybcio@kernel.org>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Vladimir Oltean <olteanv@gmail.com>, Andrew Lunn <andrew@lunn.ch>,
+ "David S. Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Tony Nguyen <anthony.l.nguyen@intel.com>,
+ Przemek Kitszel <przemyslaw.kitszel@intel.com>,
+ Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>,
+ Bjorn Helgaas <bhelgaas@google.com>,
+ Rodolfo Giometti <giometti@enneenne.com>,
+ Jonathan Lemon <jonathan.lemon@gmail.com>,
+ Richard Cochran <richardcochran@gmail.com>,
+ Stefan Haberland <sth@linux.ibm.com>,
+ Jan Hoeppner <hoeppner@linux.ibm.com>, Heiko Carstens <hca@linux.ibm.com>,
+ Vasily Gorbik <gor@linux.ibm.com>,
+ Alexander Gordeev <agordeev@linux.ibm.com>,
+ Christian Borntraeger <borntraeger@linux.ibm.com>,
+ Sven Schnelle <svens@linux.ibm.com>, Satish Kharat <satishkh@cisco.com>,
+ Sesidhar Baddela <sebaddel@cisco.com>,
+ "James E.J. Bottomley" <James.Bottomley@hansenpartnership.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Xiubo Li <xiubli@redhat.com>, Ilya Dryomov <idryomov@gmail.com>,
+ Masami Hiramatsu <mhiramat@kernel.org>,
+ Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
+ Andrew Morton <akpm@linux-foundation.org>
+Subject: Re: [PATCH v3 01/21] lib/vsprintf: Add specifier for printing struct
+ timespec64
+Message-ID: <aRcnug35DOZ3IGNi@pathway.suse.cz>
+References: <20251113150217.3030010-1-andriy.shevchenko@linux.intel.com>
+ <20251113150217.3030010-2-andriy.shevchenko@linux.intel.com>
 MIME-Version: 1.0
-Content-Type: multipart/mixed; BOUNDARY="8323328-860166094-1763122538=:1008"
-Content-ID: <8d7e8208-1885-0d8b-a6cf-f1895a519fae@linux.intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251113150217.3030010-2-andriy.shevchenko@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,58 +160,24 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-  This message is in MIME format.  The first part should be readable text,
-  while the remaining parts are likely unreadable without MIME-aware tools.
+On Thu 2025-11-13 15:32:15, Andy Shevchenko wrote:
+> A handful drivers want to print a content of the struct timespec64
+> in a format of %lld:%09ld. In order to make their lives easier, add
+> the respecting specifier directly to the printf() implementation.
+> 
+> Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 
---8323328-860166094-1763122538=:1008
-Content-Type: text/plain; CHARSET=ISO-8859-15
-Content-Transfer-Encoding: QUOTED-PRINTABLE
-Content-ID: <01e8aae0-c24c-7924-0748-50421fa6d7ac@linux.intel.com>
+Looks goor to me:
 
-On Fri, 14 Nov 2025, Alex Benn=E9e wrote:
+Reviewed-by: Petr Mladek <pmladek@suse.com>
+Tested-by: Petr Mladek <pmladek@suse.com>
 
-> Ilpo J=E4rvinen <ilpo.jarvinen@linux.intel.com> writes:
->=20
-> > Hi all,
-> >
-> > Thanks to issue reports from Simon Richter and Alex Benn=E9e, I
-> > discovered BAR resize rollback can corrupt the resource tree. As fixing
-> > corruption requires avoiding overlapping resource assignments, the
-> > correct fix can unfortunately results in worse user experience, what
-> > appeared to be "working" previously might no longer do so. Thus, I had
-> > to do a larger rework to pci_resize_resource() in order to properly
-> > restore resource states as it was prior to BAR resize.
-> <snip>
-> >
-> > base-commit: 3a8660878839faadb4f1a6dd72c3179c1df56787
->=20
-> Ahh I have applied to 6.18-rc5 with minor conflicts and can verify that
-> on my AVA the AMD GPU shows up again and I can run inference jobs
-> against it. So for that case:
->=20
-> Tested-by: Alex Benn=E9e <alex.bennee@linaro.org>
+I wonder how to move forward. I could take the whole patchset via
+printk tree. There is no conflict with linux-next at the moment.
 
-Thanks for testing! (And saving me the effort of backporting to 6.17 :-))
+It seems that only 3 patches haven't got any ack yet. I am going
+to wait for more feedback and push it later the following week
+(Wednesday or so) unless anyone complains.
 
-I'd be interested to see the dmesg with this series applied just to check=
-=20
-there isn't anything else I should still look at (even if it now appears=20
-to work).
-
-You seemed to have only a few io resource assignment failures to occur=20
-during BAR resize which might be the reason the kernel thought rollback=20
-is necessary (so AFAICT, the rollback likely was entirely unnecessary as=20
-the mem resources did assign successfully).
-
-I made the resize to ignore unrelated (reoccuring) io resource failures in=
-=20
-the commit 31af09b3eaf3 ("PCI: Fix failure detection during resource=20
-resize"), but that might not have been backported to 6.15 you took the log=
-=20
-from (in the initial report). So kernel might not even do rollback at all=
-=20
-with 6.18-rc5.
-
---=20
- i.
---8323328-860166094-1763122538=:1008--
+Best Regards,
+Petr
