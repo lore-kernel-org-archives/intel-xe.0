@@ -4,60 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E322ECE7B12
-	for <intel-xe@archiver.kernel.org>; Fri, 14 Nov 2025 14:21:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EF723CE7B13
+	for <intel-xe@archiver.kernel.org>; Fri, 14 Nov 2025 14:29:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9C7E910EA84;
-	Fri, 14 Nov 2025 14:21:40 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RkIkPWDR";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A630C10EA84;
- Fri, 14 Nov 2025 14:21:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1763130100; x=1794666100;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=5wQv1TmV1xieH5oFFkOP4bDdhI+tbsGUyG6ivskBZsM=;
- b=RkIkPWDROnjmkKS3oj95Cltm39Om0o1cv1ytdvA8Vq8yxA035p0k71b9
- 4+WgBXnqNy/upJvkxkJXpqr7MkrHSvYCRx1zugYgYsr12WlHAqC2yZCKN
- mZMQrcHKzvvnMPE9Wwjb46VoBhoQyArYfAhh0RO0KGjHo8JPbFJFy2SJ7
- xb0hPk4YughW5sE9uD76xG9ji3ngbF/3p29M63iJW4AUoaoTnFoML6j25
- K5KBVsYVJz6dqZ6jpILbCOX/AcgUPq5A6GrDuJGH87QmgKRv37XKyycQy
- eSOX1gmklFnDF55b//UpF7Y8Azwy0VWz0D1gDiRV/DR8IyxndQWJLMyR4 A==;
-X-CSE-ConnectionGUID: 2vbdfzUXTT633yx5pu8tdw==
-X-CSE-MsgGUID: iyygpVqSTFK17Bx32jW78w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11612"; a="65127694"
-X-IronPort-AV: E=Sophos;i="6.19,305,1754982000"; d="scan'208";a="65127694"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Nov 2025 06:21:39 -0800
-X-CSE-ConnectionGUID: jRy8/xtSSdWtspfpdu2xyQ==
-X-CSE-MsgGUID: s41Sw5sOS92Or58DiqJoxQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,305,1754982000"; d="scan'208";a="189055392"
-Received: from klitkey1-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.244.70])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Nov 2025 06:21:38 -0800
-Date: Fri, 14 Nov 2025 16:21:35 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 08/10] drm/i915/rps: postpone i915 fence check to boost
-Message-ID: <aRc67_nycxi-U5Nw@intel.com>
-References: <cover.1763115899.git.jani.nikula@intel.com>
- <cea4ca198ccb5272df49c93bbfb73394912e1219.1763115899.git.jani.nikula@intel.com>
- <aRc5n-WdlZuZNfMP@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9DC2210EA56;
+	Fri, 14 Nov 2025 14:29:17 +0000 (UTC)
+Received: from 10055242dc62 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5483910EA56;
+ Fri, 14 Nov 2025 14:29:16 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5530031261321645234=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <aRc5n-WdlZuZNfMP@intel.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/pf=3A_Fix_kernel-doc?=
+ =?utf-8?q?_warning_in_migration=5Fsave=5Fconsume?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Micha=C5=82_Winiarski?= <michal.winiarski@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 14 Nov 2025 14:29:16 -0000
+Message-ID: <176313055633.55553.1872654328059672078@10055242dc62>
+X-Patchwork-Hint: ignore
+References: <20251114134030.1795947-1-michal.winiarski@intel.com>
+In-Reply-To: <20251114134030.1795947-1-michal.winiarski@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,91 +36,125 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Nov 14, 2025 at 04:15:59PM +0200, Ville Syrjälä wrote:
-> On Fri, Nov 14, 2025 at 12:26:47PM +0200, Jani Nikula wrote:
-> > Make the RPS boost code independent of i915 request code by moving the
-> > dma_fence_is_i915() check to the RPS boost call.
-> > 
-> > Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> > 
-> > ---
-> > 
-> > I'm not actually sure what the non-i915 fences would be here, and what
-> > kind of overhead they would cause.
-> 
-> The fence could be from another GPU driver that did the rendering,
-> and then we can't convert the fence to i915 request.
-> 
-> At some point we should probably look into using the fence
-> .set_deadline() stuff instead of this "boost when late"
-> approach, but that's one of those things that probably needs
-> some amount of hand tuning, so real work required.
-> 
-> Anyways I think this should be fine, we just set up the vblank
-> miss thingy even for non-i915 fences now and then do nothing
-> if it triggers.
-> 
-> aReviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+--===============5530031261321645234==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Rather
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+== Series Details ==
 
-> 
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_display_rps.c | 4 ----
-> >  drivers/gpu/drm/i915/gt/intel_rps.c              | 7 ++++++-
-> >  2 files changed, 6 insertions(+), 5 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display_rps.c b/drivers/gpu/drm/i915/display/intel_display_rps.c
-> > index e70c4f0eab80..86e757423c0a 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display_rps.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_display_rps.c
-> > @@ -9,7 +9,6 @@
-> >  #include <drm/drm_vblank.h>
-> >  
-> >  #include "i915_reg.h"
-> > -#include "i915_request.h"
-> >  #include "intel_display_core.h"
-> >  #include "intel_display_irq.h"
-> >  #include "intel_display_rps.h"
-> > @@ -49,9 +48,6 @@ void intel_display_rps_boost_after_vblank(struct drm_crtc *crtc,
-> >  	if (!intel_parent_rps_available(display))
-> >  		return;
-> >  
-> > -	if (!dma_fence_is_i915(fence))
-> > -		return;
-> > -
-> >  	if (DISPLAY_VER(display) < 6)
-> >  		return;
-> >  
-> > diff --git a/drivers/gpu/drm/i915/gt/intel_rps.c b/drivers/gpu/drm/i915/gt/intel_rps.c
-> > index 61d746bda462..05b21de6c24b 100644
-> > --- a/drivers/gpu/drm/i915/gt/intel_rps.c
-> > +++ b/drivers/gpu/drm/i915/gt/intel_rps.c
-> > @@ -2917,7 +2917,12 @@ EXPORT_SYMBOL_GPL(i915_gpu_turbo_disable);
-> >  
-> >  static void boost(struct dma_fence *fence)
-> >  {
-> > -	struct i915_request *rq = to_request(fence);
-> > +	struct i915_request *rq;
-> > +
-> > +	if (!dma_fence_is_i915(fence))
-> > +		return;
-> > +
-> > +	rq = to_request(fence);
-> >  
-> >  	/*
-> >  	 * If we missed the vblank, but the request is already running it
-> > -- 
-> > 2.47.3
-> 
-> -- 
-> Ville Syrjälä
-> Intel
+Series: drm/xe/pf: Fix kernel-doc warning in migration_save_consume
+URL   : https://patchwork.freedesktop.org/series/157580/
+State : success
 
--- 
-Ville Syrjälä
-Intel
+== Summary ==
+
+CI Bug Log - changes from xe-4106-09454f8115d510182b41dd65a887e1eca1bce610_BAT -> xe-pw-157580v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (13 -> 13)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-157580v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@xe_waitfence@engine:
+    - bat-dg2-oem2:       [FAIL][1] ([Intel XE#6519]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4106-09454f8115d510182b41dd65a887e1eca1bce610/bat-dg2-oem2/igt@xe_waitfence@engine.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157580v1/bat-dg2-oem2/igt@xe_waitfence@engine.html
+
+  
+  [Intel XE#6519]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519
+
+
+Build changes
+-------------
+
+  * Linux: xe-4106-09454f8115d510182b41dd65a887e1eca1bce610 -> xe-pw-157580v1
+
+  IGT_8623: 8623
+  xe-4106-09454f8115d510182b41dd65a887e1eca1bce610: 09454f8115d510182b41dd65a887e1eca1bce610
+  xe-pw-157580v1: 157580v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157580v1/index.html
+
+--===============5530031261321645234==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/pf: Fix kernel-doc warning in migration_save_consume</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/157580/">https://patchwork.freedesktop.org/series/157580/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157580v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157580v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4106-09454f8115d510182b41dd65a887e1eca1bce610_BAT -&gt; xe-pw-157580v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-157580v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_waitfence@engine:<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4106-09454f8115d510182b41dd65a887e1eca1bce610/bat-dg2-oem2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519">Intel XE#6519</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157580v1/bat-dg2-oem2/igt@xe_waitfence@engine.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4106-09454f8115d510182b41dd65a887e1eca1bce610 -&gt; xe-pw-157580v1</li>
+</ul>
+<p>IGT_8623: 8623<br />
+  xe-4106-09454f8115d510182b41dd65a887e1eca1bce610: 09454f8115d510182b41dd65a887e1eca1bce610<br />
+  xe-pw-157580v1: 157580v1</p>
+
+</body>
+</html>
+
+--===============5530031261321645234==--
