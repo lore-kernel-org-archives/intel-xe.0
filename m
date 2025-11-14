@@ -4,58 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B8932CE7B13
-	for <intel-xe@archiver.kernel.org>; Fri, 14 Nov 2025 14:05:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 578DECE7B0E
+	for <intel-xe@archiver.kernel.org>; Fri, 14 Nov 2025 14:07:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6FBAB10EA77;
-	Fri, 14 Nov 2025 14:05:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E8F6D10EA7A;
+	Fri, 14 Nov 2025 14:07:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PLNfVX52";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="k4GW91ee";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D3FF110EA77
- for <intel-xe@lists.freedesktop.org>; Fri, 14 Nov 2025 14:05:14 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6D76010EA79
+ for <intel-xe@lists.freedesktop.org>; Fri, 14 Nov 2025 14:07:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1763129115; x=1794665115;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=PQszCpf/77jd/myDNzNExlDVeGv2LjpI5PKDDM++TGk=;
- b=PLNfVX527XwFbAagJfJGx8iVXFXqVG95ulsKj7TrugXl7RDP0ZWTkWIA
- 8GsWXEp47ateO8A+r2IJaspsIzScd+H+jpJ7WUGLeagkpHTkhQ99dIlMZ
- 8l4Zp4CwRBQLzRf9HskP67svMk8CjSr8yENXQp4kANWo6L5heLz29+O5H
- h8Jwtw3r8A2rIabZowUyLq/rj6tWeVSvt5w7KXDZOrZp4SOXXtFM5oGve
- 0TnnSfcEzSZTfVbiqvGK1dso2QKjWASLlzurbIpyDrAGHbGBSDXv36TQ8
- /0u+1bctm2KLhVK6f+Nh02TCnhcSVliTGRMFe5zfacpVUE0PwR3XX0g9m Q==;
-X-CSE-ConnectionGUID: RS0fNpjWQoiRZSmnnOpmdA==
-X-CSE-MsgGUID: AkH2tnSBQoCVAo+mQgCLcw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11612"; a="76569451"
-X-IronPort-AV: E=Sophos;i="6.19,305,1754982000"; d="scan'208";a="76569451"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Nov 2025 06:05:15 -0800
-X-CSE-ConnectionGUID: hwyWzw3OTser45lcqEaXqg==
-X-CSE-MsgGUID: uoZLd03+Q9SnNpfVrN65MA==
+ t=1763129257; x=1794665257;
+ h=message-id:date:mime-version:subject:from:to:cc:
+ references:in-reply-to:content-transfer-encoding;
+ bh=gEawhwi9WXRUMkWteLOkIe++U3FotnsQNjv3EgeJbK0=;
+ b=k4GW91ee9YzbumsLs4UwvB3pRBMUqo1RhTSZQNgHkOR2YaRXb5iMPcaY
+ WdgPtYjvptCm2va/N/8HSkQBgg8nK9OGgfBYEr0JyAuTrFnrRwc4+ZAsZ
+ bjRt4cXj01gYH5DVLobv/CdXCuAHOASMS9iiSRP1xEYIT2kuREEvi2SOD
+ r1KA2esKQAqkG0Z8vq7kqeyb+/+KmpmBvwOn5DhEKL16ckEgF5/oIY5uH
+ VNAtoeU89sJM0CRGpMLDkftNWe8C1oq9No4e+5JjV8ILrjJKWCMezABje
+ dUgb0gZpV3OWMPYmCftxjAHG2Uz3JAvicPMyqKyeI12W3BsLGc4WufRZS A==;
+X-CSE-ConnectionGUID: Kt44nIElRVKLoqWZkQ2uWQ==
+X-CSE-MsgGUID: sswqrM8XTa+DVFuZ9ZVoSw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11612"; a="65126663"
+X-IronPort-AV: E=Sophos;i="6.19,305,1754982000"; d="scan'208";a="65126663"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Nov 2025 06:07:37 -0800
+X-CSE-ConnectionGUID: F7RsYVdQTyqXs6kK9pImXg==
+X-CSE-MsgGUID: PMmAmUpUTO65YPnmj1oLKw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,305,1754982000"; d="scan'208";a="190031087"
+X-IronPort-AV: E=Sophos;i="6.19,305,1754982000"; d="scan'208";a="189980729"
 Received: from egrumbac-mobl6.ger.corp.intel.com (HELO [10.245.244.26])
  ([10.245.244.26])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Nov 2025 06:05:13 -0800
-Message-ID: <d2ddc2b2-e22a-4cfb-aa27-9332b03ecbc3@intel.com>
-Date: Fri, 14 Nov 2025 14:05:11 +0000
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Nov 2025 06:07:35 -0800
+Message-ID: <9bdaca79-15ea-45c7-9c90-64ce38dec423@intel.com>
+Date: Fri, 14 Nov 2025 14:07:32 +0000
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] drm/xe: Prevent BIT() overflow when handling invalid
- prefetch region
-To: Shuicheng Lin <shuicheng.lin@intel.com>, intel-xe@lists.freedesktop.org
-Cc: stable@vger.kernel.org
-References: <20251112181005.2120521-2-shuicheng.lin@intel.com>
-Content-Language: en-GB
+Subject: Re: [PATCH 1/1] drm/xe/pat: Add helper to query compression enable
+ status
 From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20251112181005.2120521-2-shuicheng.lin@intel.com>
+To: Xin Wang <x.wang@intel.com>, intel-xe@lists.freedesktop.org
+Cc: shuicheng.lin@intel.com, alex.zuo@intel.com, nitin.r.gote@intel.com,
+ sanjay.kumar.yadav@intel.com, matthew.d.roper@intel.com
+References: <20251110221458.1864507-1-x.wang@intel.com>
+ <20251110221458.1864507-2-x.wang@intel.com>
+ <c2fd04e5-5d34-4a22-a2e8-03021d4eed55@intel.com>
+Content-Language: en-GB
+In-Reply-To: <c2fd04e5-5d34-4a22-a2e8-03021d4eed55@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,63 +73,70 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 12/11/2025 18:10, Shuicheng Lin wrote:
-> If user provides a large value (such as 0x80) for parameter
-> prefetch_mem_region_instance in vm_bind ioctl, it will cause
-> BIT(prefetch_region) overflow as below:
-> "
->   ------------[ cut here ]------------
->   UBSAN: shift-out-of-bounds in drivers/gpu/drm/xe/xe_vm.c:3414:7
->   shift exponent 128 is too large for 64-bit type 'long unsigned int'
->   CPU: 8 UID: 0 PID: 53120 Comm: xe_exec_system_ Tainted: G        W           6.18.0-rc1-lgci-xe-kernel+ #200 PREEMPT(voluntary)
->   Tainted: [W]=WARN
->   Hardware name: ASUS System Product Name/PRIME Z790-P WIFI, BIOS 0812 02/24/2023
->   Call Trace:
->    <TASK>
->    dump_stack_lvl+0xa0/0xc0
->    dump_stack+0x10/0x20
->    ubsan_epilogue+0x9/0x40
->    __ubsan_handle_shift_out_of_bounds+0x10e/0x170
->    ? mutex_unlock+0x12/0x20
->    xe_vm_bind_ioctl.cold+0x20/0x3c [xe]
->   ...
-> "
-> Fix it by validating prefetch_region before the BIT() usage.
+On 11/11/2025 09:40, Matthew Auld wrote:
+> On 10/11/2025 22:14, Xin Wang wrote:
+>> Add xe_pat_index_get_comp_en() helper function to check whether
+>> compression is enabled for a given PAT index by extracting the
+>> XE2_COMP_EN bit from the PAT table entry.
 > 
-> v2: Add Closes and Cc stable kernels. (Matt)
+> Just wondering if we should mention that multiple upcoming series are 
+> going to directly use this, in case someone wonders why we are adding a 
+> function with no user.
 > 
-> Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
-> Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/6478
-> Cc: <stable@vger.kernel.org> # v6.8+
+>>
+>> CC: Nitin Gote <nitin.r.gote@intel.com>
+>> CC: Sanjay Yadav <sanjay.kumar.yadav@intel.com>
+>> CC: Matt Roper <matthew.d.roper@intel.com>
+>> Suggested-by: Matthew Auld <matthew.auld@intel.com>
+>> Signed-off-by: Xin Wang <x.wang@intel.com>
+> 
 > Reviewed-by: Matthew Auld <matthew.auld@intel.com>
-> Signed-off-by: Shuicheng Lin <shuicheng.lin@intel.com>
 
-Pushed with added:
+Now pushed.
 
-Reported-by: Koen Koning <koen.koning@intel.com>
-Reported-by: Peter Senna Tschudin <peter.senna@linux.intel.com>
-
-Thanks for the fix.
-
-> ---
->   drivers/gpu/drm/xe/xe_vm.c | 6 ++++--
->   1 file changed, 4 insertions(+), 2 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-> index 8fb5cc6a69ec..7cac646bdf1c 100644
-> --- a/drivers/gpu/drm/xe/xe_vm.c
-> +++ b/drivers/gpu/drm/xe/xe_vm.c
-> @@ -3411,8 +3411,10 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe, struct xe_vm *vm,
->   				 op == DRM_XE_VM_BIND_OP_PREFETCH) ||
->   		    XE_IOCTL_DBG(xe, prefetch_region &&
->   				 op != DRM_XE_VM_BIND_OP_PREFETCH) ||
-> -		    XE_IOCTL_DBG(xe,  (prefetch_region != DRM_XE_CONSULT_MEM_ADVISE_PREF_LOC &&
-> -				       !(BIT(prefetch_region) & xe->info.mem_region_mask))) ||
-> +		    XE_IOCTL_DBG(xe, (prefetch_region != DRM_XE_CONSULT_MEM_ADVISE_PREF_LOC &&
-> +				      /* Guard against undefined shift in BIT(prefetch_region) */
-> +				      (prefetch_region >= (sizeof(xe->info.mem_region_mask) * 8) ||
-> +				      !(BIT(prefetch_region) & xe->info.mem_region_mask)))) ||
->   		    XE_IOCTL_DBG(xe, obj &&
->   				 op == DRM_XE_VM_BIND_OP_UNMAP) ||
->   		    XE_IOCTL_DBG(xe, (flags & DRM_XE_VM_BIND_FLAG_MADVISE_AUTORESET) &&
+>> ---
+>>   drivers/gpu/drm/xe/xe_pat.c |  6 ++++++
+>>   drivers/gpu/drm/xe/xe_pat.h | 10 ++++++++++
+>>   2 files changed, 16 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/xe/xe_pat.c b/drivers/gpu/drm/xe/xe_pat.c
+>> index 68171cceea18..1b4d5d3def0f 100644
+>> --- a/drivers/gpu/drm/xe/xe_pat.c
+>> +++ b/drivers/gpu/drm/xe/xe_pat.c
+>> @@ -196,6 +196,12 @@ u16 xe_pat_index_get_coh_mode(struct xe_device 
+>> *xe, u16 pat_index)
+>>       return xe->pat.table[pat_index].coh_mode;
+>>   }
+>> +bool xe_pat_index_get_comp_en(struct xe_device *xe, u16 pat_index)
+>> +{
+>> +    WARN_ON(pat_index >= xe->pat.n_entries);
+>> +    return !!(xe->pat.table[pat_index].value & XE2_COMP_EN);
+>> +}
+>> +
+>>   static void program_pat(struct xe_gt *gt, const struct 
+>> xe_pat_table_entry table[],
+>>               int n_entries)
+>>   {
+>> diff --git a/drivers/gpu/drm/xe/xe_pat.h b/drivers/gpu/drm/xe/xe_pat.h
+>> index 05dae03a5f54..b8559120989e 100644
+>> --- a/drivers/gpu/drm/xe/xe_pat.h
+>> +++ b/drivers/gpu/drm/xe/xe_pat.h
+>> @@ -58,4 +58,14 @@ int xe_pat_dump(struct xe_gt *gt, struct 
+>> drm_printer *p);
+>>    */
+>>   u16 xe_pat_index_get_coh_mode(struct xe_device *xe, u16 pat_index);
+>> +/**
+>> + * xe_pat_index_get_comp_en - Extract the compression enable flag for
+>> + * the given pat_index.
+>> + * @xe: xe device
+>> + * @pat_index: The pat_index to query
+>> + *
+>> + * Return: true if compression is enabled for this pat_index, false 
+>> otherwise.
+>> + */
+>> +bool xe_pat_index_get_comp_en(struct xe_device *xe, u16 pat_index);
+>> +
+>>   #endif
+> 
 
