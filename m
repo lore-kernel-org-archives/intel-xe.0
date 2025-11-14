@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7AF40CEACE1
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 85BC9CEACE2
 	for <intel-xe@archiver.kernel.org>; Fri, 14 Nov 2025 21:43:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3122110EB3C;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 20E5D10EB3B;
 	Fri, 14 Nov 2025 21:43:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TQuH9Qdj";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YpZPuhcc";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D789C10EB30
- for <intel-xe@lists.freedesktop.org>; Fri, 14 Nov 2025 21:43:48 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 753E910EB34
+ for <intel-xe@lists.freedesktop.org>; Fri, 14 Nov 2025 21:43:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1763156629; x=1794692629;
+ t=1763156630; x=1794692630;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=xRnQa4vFtV7NfQTDgpTjH9T9RaY0uwBn1VYdi9MM9lA=;
- b=TQuH9Qdje7oXx966McS/VuNnGJ2ryVJZCuTC+cfUKkZOrXDcXENnHt6F
- 0cUQntTAoQOpPtiLlObtSjfFrESUv6IcSNSV3T8jLASHgPxGQtcon0U8U
- L3KK/l4LPjt17bp1rVWhfMw19OxMi5SoVGCqjaEl0QUmmbAFPlFKaWQbS
- dqEroGF5L/+MVo4Q0yVzZuvECHP/ynsoDsVh0zx+/HNZmt4lcBvCPmWaX
- bIkwJc6Ja+o5eCHCMndAmqJ4BWjLoBNTahrgHzvkgiup0CO/1TY0w5bzz
- zwA87RRw5hnoz0m4oNJ28fzLtB83EUt6wxfN86IzzlJt55/5wgPNXgvEV g==;
-X-CSE-ConnectionGUID: qEAF2Zc5SiaUSM3Tl+CuJg==
-X-CSE-MsgGUID: IeMM7dguR6iQQBvc4CDtnw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11613"; a="82648312"
-X-IronPort-AV: E=Sophos;i="6.19,305,1754982000"; d="scan'208";a="82648312"
+ bh=OXJYTMWJO/kOdnCRdbwB1OGfY0Ju7B5XEZ2h+LbC09U=;
+ b=YpZPuhccY6DBG+co+LnATgivq3S4S9UQZIqGDE84kd19k+IciO9Y20Ki
+ sPpIbkUyDp/BGyXUycTnIqVB15qaip65bvhxR5XwGRxQpwAOOm2v9UVRR
+ VuL2KvZvF9RCnIA8pqMFdHfs7Ssr1Q6E85XMMyRrM5l3qrmp+cpQqPjxR
+ jALmC650T0BGefh+lNbXq4zNSEY615K/DbptbPZXNYkGRq/66Q00CQUWz
+ X1ByfcD/IWz3oBOMSp1lURxv7ohcwCITcjaRfVAFQmGHEbPk0NSKBI2mt
+ aTc5OBd+NDyhJfZnqoZZX1A0zOCTv6SDlOJdpBoqEwlGtM4fjlgH49d7O w==;
+X-CSE-ConnectionGUID: rI7OyrwHRSeSrgZIgyb7UQ==
+X-CSE-MsgGUID: h8UV6x+zTLu+vJrbsrz8WA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11613"; a="82648323"
+X-IronPort-AV: E=Sophos;i="6.19,305,1754982000"; d="scan'208";a="82648323"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  14 Nov 2025 13:43:49 -0800
-X-CSE-ConnectionGUID: u8yfNZyzSUihM96nyEqzYA==
-X-CSE-MsgGUID: 1YEwXS9dS1Wy8TCf38TTgw==
+X-CSE-ConnectionGUID: yw9eugvSSZKl9Al23pWh6A==
+X-CSE-MsgGUID: mmbKGHg1S6eP5ubAmu0KzA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,305,1754982000"; d="scan'208";a="190308302"
+X-IronPort-AV: E=Sophos;i="6.19,305,1754982000"; d="scan'208";a="190308330"
 Received: from mdroper-desk1.fm.intel.com ([10.1.39.133])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  14 Nov 2025 13:43:48 -0800
@@ -45,9 +45,9 @@ From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.d.roper@intel.com,
 	Gustavo Sousa <gustavo.sousa@intel.com>
-Subject: [PATCH v3 10/27] drm/xe/gsc: Use scope-based cleanup
-Date: Fri, 14 Nov 2025 13:43:46 -0800
-Message-ID: <20251114214335.2388972-39-matthew.d.roper@intel.com>
+Subject: [PATCH v3 19/27] drm/xe/reg_sr: Use scope-based forcewake
+Date: Fri, 14 Nov 2025 13:43:55 -0800
+Message-ID: <20251114214335.2388972-48-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.51.1
 In-Reply-To: <20251114214335.2388972-29-matthew.d.roper@intel.com>
 References: <20251114214335.2388972-29-matthew.d.roper@intel.com>
@@ -67,117 +67,52 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Use scope-based cleanup for forcewake and runtime PM to eliminate some
-goto-based error handling and simplify other functions.
+Use scope-based forcewake to slightly simplify the reg_sr code.
 
 Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gsc.c       | 21 ++++++---------------
- drivers/gpu/drm/xe/xe_gsc_proxy.c | 17 +++++++----------
- 2 files changed, 13 insertions(+), 25 deletions(-)
+ drivers/gpu/drm/xe/xe_reg_sr.c | 17 +++++------------
+ 1 file changed, 5 insertions(+), 12 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gsc.c b/drivers/gpu/drm/xe/xe_gsc.c
-index dd69cb834f8e..a3157b0fe791 100644
---- a/drivers/gpu/drm/xe/xe_gsc.c
-+++ b/drivers/gpu/drm/xe/xe_gsc.c
-@@ -352,7 +352,6 @@ static void gsc_work(struct work_struct *work)
- 	struct xe_gsc *gsc = container_of(work, typeof(*gsc), work);
- 	struct xe_gt *gt = gsc_to_gt(gsc);
- 	struct xe_device *xe = gt_to_xe(gt);
--	unsigned int fw_ref;
- 	u32 actions;
- 	int ret;
- 
-@@ -361,13 +360,12 @@ static void gsc_work(struct work_struct *work)
- 	gsc->work_actions = 0;
- 	spin_unlock_irq(&gsc->lock);
- 
--	xe_pm_runtime_get(xe);
--	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FW_GSC);
-+	guard(xe_pm_runtime)(xe);
-+	CLASS(xe_force_wake, fw_ref)(gt_to_fw(gt), XE_FW_GSC);
- 
- 	if (actions & GSC_ACTION_ER_COMPLETE) {
--		ret = gsc_er_complete(gt);
--		if (ret)
--			goto out;
-+		if (gsc_er_complete(gt))
-+			return;
- 	}
- 
- 	if (actions & GSC_ACTION_FW_LOAD) {
-@@ -380,10 +378,6 @@ static void gsc_work(struct work_struct *work)
- 
- 	if (actions & GSC_ACTION_SW_PROXY)
- 		xe_gsc_proxy_request_handler(gsc);
--
--out:
--	xe_force_wake_put(gt_to_fw(gt), fw_ref);
--	xe_pm_runtime_put(xe);
- }
- 
- void xe_gsc_hwe_irq_handler(struct xe_hw_engine *hwe, u16 intr_vec)
-@@ -615,7 +609,6 @@ void xe_gsc_print_info(struct xe_gsc *gsc, struct drm_printer *p)
+diff --git a/drivers/gpu/drm/xe/xe_reg_sr.c b/drivers/gpu/drm/xe/xe_reg_sr.c
+index fc8447a838c4..1a465385f909 100644
+--- a/drivers/gpu/drm/xe/xe_reg_sr.c
++++ b/drivers/gpu/drm/xe/xe_reg_sr.c
+@@ -168,7 +168,6 @@ void xe_reg_sr_apply_mmio(struct xe_reg_sr *sr, struct xe_gt *gt)
  {
- 	struct xe_gt *gt = gsc_to_gt(gsc);
- 	struct xe_mmio *mmio = &gt->mmio;
+ 	struct xe_reg_sr_entry *entry;
+ 	unsigned long reg;
 -	unsigned int fw_ref;
  
- 	xe_uc_fw_print(&gsc->fw, p);
- 
-@@ -624,8 +617,8 @@ void xe_gsc_print_info(struct xe_gsc *gsc, struct drm_printer *p)
- 	if (!xe_uc_fw_is_enabled(&gsc->fw))
+ 	if (xa_empty(&sr->xa))
  		return;
+@@ -178,20 +177,14 @@ void xe_reg_sr_apply_mmio(struct xe_reg_sr *sr, struct xe_gt *gt)
  
--	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FW_GSC);
--	if (!fw_ref)
-+	CLASS(xe_force_wake, fw_ref)(gt_to_fw(gt), XE_FW_GSC);
-+	if (!fw_ref.domains)
- 		return;
+ 	xe_gt_dbg(gt, "Applying %s save-restore MMIOs\n", sr->name);
  
- 	drm_printf(p, "\nHECI1 FWSTS: 0x%08x 0x%08x 0x%08x 0x%08x 0x%08x 0x%08x\n",
-@@ -635,6 +628,4 @@ void xe_gsc_print_info(struct xe_gsc *gsc, struct drm_printer *p)
- 			xe_mmio_read32(mmio, HECI_FWSTS4(MTL_GSC_HECI1_BASE)),
- 			xe_mmio_read32(mmio, HECI_FWSTS5(MTL_GSC_HECI1_BASE)),
- 			xe_mmio_read32(mmio, HECI_FWSTS6(MTL_GSC_HECI1_BASE)));
--
--	xe_force_wake_put(gt_to_fw(gt), fw_ref);
- }
-diff --git a/drivers/gpu/drm/xe/xe_gsc_proxy.c b/drivers/gpu/drm/xe/xe_gsc_proxy.c
-index 464282a89eef..e7573a0c5e5d 100644
---- a/drivers/gpu/drm/xe/xe_gsc_proxy.c
-+++ b/drivers/gpu/drm/xe/xe_gsc_proxy.c
-@@ -440,22 +440,19 @@ static void xe_gsc_proxy_remove(void *arg)
- 	struct xe_gsc *gsc = arg;
- 	struct xe_gt *gt = gsc_to_gt(gsc);
- 	struct xe_device *xe = gt_to_xe(gt);
--	unsigned int fw_ref = 0;
- 
- 	if (!gsc->proxy.component_added)
- 		return;
- 
- 	/* disable HECI2 IRQs */
--	xe_pm_runtime_get(xe);
--	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FW_GSC);
--	if (!fw_ref)
--		xe_gt_err(gt, "failed to get forcewake to disable GSC interrupts\n");
-+	scoped_guard(xe_pm_runtime, xe) {
-+		CLASS(xe_force_wake, fw_ref)(gt_to_fw(gt), XE_FW_GSC);
-+		if (!fw_ref.domains)
-+			xe_gt_err(gt, "failed to get forcewake to disable GSC interrupts\n");
- 
--	/* try do disable irq even if forcewake failed */
--	gsc_proxy_irq_toggle(gsc, false);
--
--	xe_force_wake_put(gt_to_fw(gt), fw_ref);
--	xe_pm_runtime_put(xe);
-+		/* try do disable irq even if forcewake failed */
-+		gsc_proxy_irq_toggle(gsc, false);
+-	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
+-	if (!xe_force_wake_ref_has_domain(fw_ref, XE_FORCEWAKE_ALL))
+-		goto err_force_wake;
++	CLASS(xe_force_wake, fw_ref)(gt_to_fw(gt), XE_FORCEWAKE_ALL);
++	if (!xe_force_wake_ref_has_domain(fw_ref.domains, XE_FORCEWAKE_ALL)) {
++		xe_gt_err(gt, "Failed to apply, err=-ETIMEDOUT\n");
++		return;
 +	}
  
- 	xe_gsc_wait_for_worker_completion(gsc);
+ 	xa_for_each(&sr->xa, reg, entry)
+ 		apply_one_mmio(gt, entry);
+-
+-	xe_force_wake_put(gt_to_fw(gt), fw_ref);
+-
+-	return;
+-
+-err_force_wake:
+-	xe_force_wake_put(gt_to_fw(gt), fw_ref);
+-	xe_gt_err(gt, "Failed to apply, err=-ETIMEDOUT\n");
+ }
  
+ /**
 -- 
 2.51.1
 
