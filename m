@@ -4,68 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 40341CEACD6
-	for <intel-xe@archiver.kernel.org>; Fri, 14 Nov 2025 20:53:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D2ADACEACCE
+	for <intel-xe@archiver.kernel.org>; Fri, 14 Nov 2025 21:00:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 07E9010EB20;
-	Fri, 14 Nov 2025 20:53:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8F07C10EB2D;
+	Fri, 14 Nov 2025 21:00:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="S98mMH/s";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="n6KJJBUO";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BEF7A10EB24;
- Fri, 14 Nov 2025 20:53:48 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E162A10EB2D
+ for <intel-xe@lists.freedesktop.org>; Fri, 14 Nov 2025 21:00:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1763153629; x=1794689629;
- h=from:date:subject:mime-version:content-transfer-encoding:
- message-id:references:in-reply-to:to:cc;
- bh=SriZsParPvLEeH6ke6kn0oyDdj8mbW8ocA4Xeh9QyS4=;
- b=S98mMH/sy6PlsqXYrJ6oh5u+U4ntN96D6y3gsB3okC6HMx2SMHhTXQmS
- AXNj+ns2BkRF7lAsMxOmlRKt9JVP3Hgjrss9D/pJE/3IIvbKCX5RV2n3H
- lAnRX6UxigWpmV8+bAU8ppW5f55yuvHhiKo9hHQzlksomRNGiwAkxToC+
- l5cPyQQc34gdYsrIUeRr+hR4Mq5NlEsnFmrc5OHLxgeVf5gJOBc9aLrnH
- TSE4HWnKIbefIbc0MCHET0BtTj//v/1HV1V5gAa/dNosNfNT+fmj/ngKN
- HGa4dnMsHNx9rJKeDRtv1iNpk7jV+7tF7GVLO4aFaT460mZvX06Lj11rr w==;
-X-CSE-ConnectionGUID: ORDNP9FNTNigLCdcfNTC7A==
-X-CSE-MsgGUID: 6pRcm/QBTYSnvEPkHLo1Ag==
-X-IronPort-AV: E=McAfee;i="6800,10657,11613"; a="67859926"
-X-IronPort-AV: E=Sophos;i="6.19,305,1754982000"; d="scan'208";a="67859926"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Nov 2025 12:53:47 -0800
-X-CSE-ConnectionGUID: /Abad/DiQMK64qlDPsMFKg==
-X-CSE-MsgGUID: 2NDZt670Su2gpIv8+59s/w==
+ t=1763154018; x=1794690018;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=pUrv8i98TaaSImYING74rn1rdc2ArxoQc2sKO5PRvjw=;
+ b=n6KJJBUOITKt07Ef43wDtpIDwDGOgSsDbTXwMO6az89Gt+qUb3CfLh/4
+ MYmcttFrB6Gdq1RLm01fpXBeRDTA0eatGyLxIRnClDu2Z2HwRPLPsrlcU
+ q87HtjcI3dv1QSYFPYKAPRbOtRP1d89MXJ8IuaS3ks3D5vRWUJ07egT1I
+ gIRo7UeCaCPb1ipwT/YVIeF+1a13zhV79G5KxSSIrr+4zbE4/r11+YUi1
+ r4am9HKkP/MbFnc//7xXlSM085vTm+xZ+j7dPcA4gi/LZSgKfVP1baJwK
+ ZbelstDEc/v6OSqxVJCIqZO0ZgkD11mKU4wOoISuZoni98JnhgUbZnNR1 Q==;
+X-CSE-ConnectionGUID: mKgC9ZW/SxqfU6szRU6FHA==
+X-CSE-MsgGUID: SIvK1dO8Q0O1aQqul9/61g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="65190254"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="65190254"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Nov 2025 13:00:18 -0800
+X-CSE-ConnectionGUID: V6A53ildTkybBjJl5TCcBg==
+X-CSE-MsgGUID: PLCmi2TCR4KVhwXy7btDZw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,305,1754982000"; d="scan'208";a="227214235"
-Received: from dnelso2-mobl.amr.corp.intel.com (HELO [192.168.1.16])
- ([10.124.220.50])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Nov 2025 12:53:44 -0800
-From: Gustavo Sousa <gustavo.sousa@intel.com>
-Date: Fri, 14 Nov 2025 17:52:15 -0300
-Subject: [PATCH v5 8/8] drm/i915/display: Use HAS_LT_PHY() for LT PHY AUX power
+X-IronPort-AV: E=Sophos;i="6.19,305,1754982000"; d="scan'208";a="220512509"
+Received: from osgc-linux-buildserver.sh.intel.com ([10.112.232.103])
+ by orviesa002.jf.intel.com with ESMTP; 14 Nov 2025 13:00:17 -0800
+From: Shuicheng Lin <shuicheng.lin@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Shuicheng Lin <shuicheng.lin@intel.com>
+Subject: [PATCH] drm/xe: Fix freq kobject leak on sysfs_create_files failure
+Date: Fri, 14 Nov 2025 20:56:39 +0000
+Message-ID: <20251114205638.2184529-2-shuicheng.lin@intel.com>
+X-Mailer: git-send-email 2.49.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251114-xe3p_lpd-basic-enabling-v5-8-c183388367f4@intel.com>
-References: <20251114-xe3p_lpd-basic-enabling-v5-0-c183388367f4@intel.com>
-In-Reply-To: <20251114-xe3p_lpd-basic-enabling-v5-0-c183388367f4@intel.com>
-To: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
-Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>, 
- Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>, 
- Gustavo Sousa <gustavo.sousa@intel.com>, 
- =?utf-8?q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>, 
- Juha-pekka Heikkila <juha-pekka.heikkila@intel.com>, 
- Luca Coelho <luciano.coelho@intel.com>, 
- Lucas De Marchi <lucas.demarchi@intel.com>, 
- Matt Atwood <matthew.s.atwood@intel.com>, 
- Matt Roper <matthew.d.roper@intel.com>, 
- Ravi Kumar Vodapalli <ravi.kumar.vodapalli@intel.com>, 
- Shekhar Chauhan <shekhar.chauhan@intel.com>, 
- Vinod Govindapillai <vinod.govindapillai@intel.com>, 
- Suraj Kandpal <suraj.kandpal@intel.com>
-X-Mailer: b4 0.15-dev
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,65 +63,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Bspec states that the new AUX power enable/disable sequences are
-associated with the LT PHY.  As such, use HAS_LT_PHY() instead of IP
-checks in those paths in the driver code.
+Ensure gt->freq is released when sysfs_create_files() fails
+in xe_gt_freq_init(). Without this, the kobject would leak.
+Add kobject_put() before returning the error.
 
-While at it, also move the comment that we can't use the power status
-flag to the "else" branch, since that comment is not applicable for the
-LT PHY.
-
-Bspec: 68967
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Cc: Suraj Kandpal <suraj.kandpal@intel.com>
-Suggested-by: Matt Roper <matthew.d.roper@intel.com>
-Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
-Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
+Fixes: fdc81c43f0c1 ("drm/xe: use devm_add_action_or_reset() helper")
+Signed-off-by: Shuicheng Lin <shuicheng.lin@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_power_well.c | 16 ++++++++--------
- 1 file changed, 8 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/xe/xe_gt_freq.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-index 40d6b44c0b74..d2cb11626c1a 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-@@ -1873,19 +1873,19 @@ static void xelpdp_aux_power_well_enable(struct intel_display *display,
- 		     XELPDP_DP_AUX_CH_CTL_POWER_REQUEST,
- 		     XELPDP_DP_AUX_CH_CTL_POWER_REQUEST);
+diff --git a/drivers/gpu/drm/xe/xe_gt_freq.c b/drivers/gpu/drm/xe/xe_gt_freq.c
+index 849ea6c86e8e..ce3c7810469f 100644
+--- a/drivers/gpu/drm/xe/xe_gt_freq.c
++++ b/drivers/gpu/drm/xe/xe_gt_freq.c
+@@ -293,8 +293,10 @@ int xe_gt_freq_init(struct xe_gt *gt)
+ 		return -ENOMEM;
  
--	/*
--	 * The power status flag cannot be used to determine whether aux
--	 * power wells have finished powering up.  Instead we're
--	 * expected to just wait a fixed 600us after raising the request
--	 * bit.
--	 */
--	if (DISPLAY_VER(display) >= 35) {
-+	if (HAS_LT_PHY(display)) {
- 		if (intel_de_wait_for_set_ms(display, XELPDP_DP_AUX_CH_CTL(display, aux_ch),
- 					     XELPDP_DP_AUX_CH_CTL_POWER_STATUS, 2))
- 			drm_warn(display->drm,
- 				 "Timeout waiting for PHY %c AUX channel power to be up\n",
- 				 phy_name(phy));
- 	} else {
-+		/*
-+		 * The power status flag cannot be used to determine whether aux
-+		 * power wells have finished powering up.  Instead we're
-+		 * expected to just wait a fixed 600us after raising the request
-+		 * bit.
-+		 */
- 		usleep_range(600, 1200);
- 	}
- }
-@@ -1900,7 +1900,7 @@ static void xelpdp_aux_power_well_disable(struct intel_display *display,
- 		     XELPDP_DP_AUX_CH_CTL_POWER_REQUEST,
- 		     0);
+ 	err = sysfs_create_files(gt->freq, freq_attrs);
+-	if (err)
++	if (err) {
++		kobject_put(gt->freq);
+ 		return err;
++	}
  
--	if (DISPLAY_VER(display) >= 35) {
-+	if (HAS_LT_PHY(display)) {
- 		if (intel_de_wait_for_clear_ms(display, XELPDP_DP_AUX_CH_CTL(display, aux_ch),
- 					       XELPDP_DP_AUX_CH_CTL_POWER_STATUS, 1))
- 			drm_warn(display->drm,
-
+ 	err = devm_add_action_or_reset(xe->drm.dev, freq_fini, gt->freq);
+ 	if (err)
 -- 
-2.51.0
+2.49.0
 
