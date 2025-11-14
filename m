@@ -4,57 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CBE93CD4F49
-	for <intel-xe@archiver.kernel.org>; Fri, 14 Nov 2025 05:40:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B39BFCD4F49
+	for <intel-xe@archiver.kernel.org>; Fri, 14 Nov 2025 05:45:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8B68710E220;
-	Fri, 14 Nov 2025 05:40:45 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="e5SzxHRH";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2035410E9B6;
- Fri, 14 Nov 2025 05:40:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1763098843; x=1794634843;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=22rbecp8M82stQWmmzX3bkp9yWBAn4F1FmRf3LT8ux4=;
- b=e5SzxHRH5mfBzzaUXIuw+Ex71IeJ6PuUahVAqk6tL0V7bVSNVLDNzU9+
- pX3u4tu8jQk5INW4FbOLjIyoVNgEiv26askRn9dCaMVZaSG9gB3UWek5b
- boz92cv0POQygezfdWv9jeGaHwu53c38GUU98VqgOF57k+lh3gsHYhQww
- 5xhvABMkz/WayFyUev0Li9b72TQLtwVHUCTj55SW0d+VBnPYbdIz/10fS
- 4hRUOsVjCsMXVb8tHLi01SITQlksW4v6DtUzSBAmRqySLmxU9Q22olBzg
- dObgXFt7CFTQloWrdGZ6k6tXVPUdQw6CVFEMWgzz2rqG1HqvGmgBlhjN9 g==;
-X-CSE-ConnectionGUID: 0IJTrsLTTMWgK9ZE12Nu/g==
-X-CSE-MsgGUID: TuZzTAjbTu27adzVVo4bgQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11612"; a="76536307"
-X-IronPort-AV: E=Sophos;i="6.19,304,1754982000"; d="scan'208";a="76536307"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Nov 2025 21:40:43 -0800
-X-CSE-ConnectionGUID: SeUYchwJT7y/djrq2V84Ew==
-X-CSE-MsgGUID: PVUwBCaBR4WUR8p100dMlg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,304,1754982000"; d="scan'208";a="189543676"
-Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Nov 2025 21:40:41 -0800
-From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jouni.hogander@intel.com, ville.syrjala@linux.intel.com,
- animesh.manna@intel.com, Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH 5/5] drm/i915/alpm: Disable LOBF around transitioning for
- LRR/seamless MN
-Date: Fri, 14 Nov 2025 10:57:46 +0530
-Message-ID: <20251114052746.158751-6-ankit.k.nautiyal@intel.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20251114052746.158751-1-ankit.k.nautiyal@intel.com>
-References: <20251114052746.158751-1-ankit.k.nautiyal@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 74D0110E9B3;
+	Fri, 14 Nov 2025 05:45:51 +0000 (UTC)
+Received: from 10055242dc62 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8F46010E9B3;
+ Fri, 14 Nov 2025 05:45:49 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_LOBF_fixes?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 14 Nov 2025 05:45:49 -0000
+Message-ID: <176309914958.54405.9360691589519726286@10055242dc62>
+X-Patchwork-Hint: ignore
+References: <20251114052746.158751-1-ankit.k.nautiyal@intel.com>
+In-Reply-To: <20251114052746.158751-1-ankit.k.nautiyal@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,47 +35,51 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-When enabling LRR/seamless MN disable LOBF first and re-enable
-afterwards.
-- pre_plane_update: if LOBF was enabled, run pre even when new==old
-  whenever update_lrr || update_m_n is set (to disable LOBF before the
-  transition).
-- post_plane_update: run post to re-enable LOBF after the transition.
+== Series Details ==
 
-Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_alpm.c | 8 ++++++--
- 1 file changed, 6 insertions(+), 2 deletions(-)
+Series: LOBF fixes
+URL   : https://patchwork.freedesktop.org/series/157554/
+State : warning
 
-diff --git a/drivers/gpu/drm/i915/display/intel_alpm.c b/drivers/gpu/drm/i915/display/intel_alpm.c
-index db2b9608f7f8..e3079cf7af9d 100644
---- a/drivers/gpu/drm/i915/display/intel_alpm.c
-+++ b/drivers/gpu/drm/i915/display/intel_alpm.c
-@@ -462,7 +462,9 @@ void intel_alpm_pre_plane_update(struct intel_atomic_state *state,
- 		return;
- 
- 	if (!old_crtc_state->has_lobf ||
--	    crtc_state->has_lobf == old_crtc_state->has_lobf)
-+	    (crtc_state->has_lobf == old_crtc_state->has_lobf &&
-+	     !crtc_state->update_lrr &&
-+	     !crtc_state->update_m_n))
- 		return;
- 
- 	for_each_intel_encoder_mask(display->drm, encoder,
-@@ -517,7 +519,9 @@ void intel_alpm_post_plane_update(struct intel_atomic_state *state,
- 		return;
- 
- 	if (!crtc_state->has_lobf ||
--	    crtc_state->has_lobf == old_crtc_state->has_lobf)
-+	    (crtc_state->has_lobf == old_crtc_state->has_lobf &&
-+	     !crtc_state->update_lrr &&
-+	     !crtc_state->update_m_n))
- 		return;
- 
- 	for_each_intel_encoder_mask(display->drm, encoder,
--- 
-2.45.2
+== Summary ==
+
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+d9120d4d84745cf011b4b3efb338747e69179dfb
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit a1852e35794176c3330b7c8334e5bc04db148f33
+Author: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Date:   Fri Nov 14 10:57:46 2025 +0530
+
+    drm/i915/alpm: Disable LOBF around transitioning for LRR/seamless MN
+    
+    When enabling LRR/seamless MN disable LOBF first and re-enable
+    afterwards.
+    - pre_plane_update: if LOBF was enabled, run pre even when new==old
+      whenever update_lrr || update_m_n is set (to disable LOBF before the
+      transition).
+    - post_plane_update: run post to re-enable LOBF after the transition.
+    
+    Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
++ /mt/dim checkpatch e15c082b1af0c5cd053273ea096ab84fbc309657 drm-intel
+8c43f7952984 drm/i915/alpm: Compute LOBF late after guardband is already determined
+-:146: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#146: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 115 lines checked
+7b20dcb39692 drm/i915/alpm: Allow LOBF only if window1 > alpm check_entry lines
+692dec3c875e drm/i915/alpm: Allow LOBF only for platform that have Always on VRR TG
+1fa44f47aceb drm/i915/alpm: Simplify and align LOBF checks in pre/post plane update
+a1852e357941 drm/i915/alpm: Disable LOBF around transitioning for LRR/seamless MN
+
 
