@@ -4,192 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 640ADCDE003
-	for <intel-xe@archiver.kernel.org>; Fri, 14 Nov 2025 04:12:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D0A63CDE006
+	for <intel-xe@archiver.kernel.org>; Fri, 14 Nov 2025 05:25:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2575D10E9A2;
-	Fri, 14 Nov 2025 04:12:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7F89E10E220;
+	Fri, 14 Nov 2025 05:25:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.b="WcdvIvc3";
-	dkim=pass (2048-bit key; unprotected) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="bLj585zx";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Mw9Ea3eK";
 	dkim-atps=neutral
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com
- [205.220.180.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B1D5410E9A1
- for <intel-xe@lists.freedesktop.org>; Fri, 14 Nov 2025 04:12:33 +0000 (UTC)
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
- by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id
- 5ADMb93P1498581
- for <intel-xe@lists.freedesktop.org>; Fri, 14 Nov 2025 04:12:33 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
- cc:content-type:date:from:in-reply-to:message-id:mime-version
- :references:subject:to; s=qcppdkim1; bh=l9FUBbeUidxIV00pdQyQahKH
- PpoxkuEk9fyNczKyhZ4=; b=WcdvIvc3sMDYJHBly1X7GlPj50GGKCEK4vrDj8k0
- 5eaZ80++Ws3b6M4a/w2eVgp5fBZPqpReXJ6xcZvCuGqlyHQVAUPNMJplXDtRkmjR
- y6847o+zGxT2XJUEtVt8QOs1dNpy77MXiVZuOJgYMs0BamIgUtjw2hTVBYrDWjPI
- ByZ746JdSL8Gv5MgaoTNMk2yzeUNW4jCf/D2j643Vd/vNt+46rBlvy+jz4Ihw0Z+
- fTd/SLbn6SPCPWVriGZp93nSNSFJRad1vxT6ksE51c5WW0OqhiOxjWbi0pFY79Eh
- 201wVoknTjIeNpA4GWGoZTCf94s18YBclqS5YUrFYMV7Vg==
-Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com
- [209.85.222.200])
- by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4adr9drry8-1
- (version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
- for <intel-xe@lists.freedesktop.org>; Fri, 14 Nov 2025 04:12:32 +0000 (GMT)
-Received: by mail-qk1-f200.google.com with SMTP id
- af79cd13be357-891504015e5so474111185a.3
- for <intel-xe@lists.freedesktop.org>; Thu, 13 Nov 2025 20:12:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=oss.qualcomm.com; s=google; t=1763093552; x=1763698352;
- darn=lists.freedesktop.org; 
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=l9FUBbeUidxIV00pdQyQahKHPpoxkuEk9fyNczKyhZ4=;
- b=bLj585zxy40JbPQnB7TYeZCwkJjtX5VPngjGilbV+u4+wuN5Cpl8HwU50qQp27+ivz
- X1O2UYJ/KzjWfW1OIWn5ex3sWdxO7C+Jh9wf3PG3EJyWcYbTO8GkE6njFVQBFoh2XxBb
- RLDeHS9gsxXlhJ6uoiWzQgQuoo8H0iYmq+onuLvtddVMc5Mjw2todKy/HBitYQ9/TdY9
- couWxutqUko0LPLCOExipha+bGUG83HMlOYTysxEVWgiwlexMJmk/raLHlEU74bEHVBq
- pkkLSoV0T7MylTmfg0V11/f4aFM0VPpN67/RIXNA9OQi6GsR3e1+BXmKKK/l2s4RlVoC
- OW6g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1763093552; x=1763698352;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=l9FUBbeUidxIV00pdQyQahKHPpoxkuEk9fyNczKyhZ4=;
- b=HRbKxthLEqCKXs+KL/x3Y+QsEywqlYlhdoP/fAx9jJqbgR7v6Ku6SMw41O9fn0Rk6i
- V6CcdgdowRNfXfUp4a+5NaONxasOOTSkT+A8EfrKl5XfTwnkiYloqf721uKsvzVHJn56
- jGv0qSMVGCNhuS4iIvwJVS6xumjh6x/Imzc6o40jcKlRi8cMZKyJ9ep5+dHDE7mzwkRt
- yKvEUsGwxMsym2xUW23wODFB1MqYj69X+ZK9oi8epw7oRSfRL1QaYgi/bO6sp2n2JeKG
- thWyhAEW/YW3bebYkUl2k6NDev6ECvxHtqkAAf0gz/DsBPJuaLOp/YeDb3+WEPOqMlDF
- +2gA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVzkfIxYJZr7ueP5KmJJFQixvXr4+SuiyAEiAwmKHn4pePv8wplz3omIJdfEC5MSuJJmG2v/Y2mDg==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxSya6+ZTg0AcW4Dj4yEY9tG7Jr3OqyLuZQjWpyuq81+u/GqWO4
- T0Kf2iEkgp41e561bNPC/vUgf4Zi7kLWyYeH5AAo+e5pcGBrfKZA7K+TeB5yAGD/KI3dKO7rB7z
- hbaOrYisnlcgPvyPaSnMX7vXBZG30mvGDA4oglHBQGbh+go7OjE+9h/t8WyUs9T5TYG1wtg==
-X-Gm-Gg: ASbGncvw4XJZdbWPnCZcKi1ZPRRxqgHzh6qODRz2S5VUfRvFSWDZvdYh3xX6LqNvrTi
- ssQKiYDw352NUIyLBB0+LV+mAnihAhJsaEZixMlKinZEtqt5b59qHq0CCL5z6tfrYn6GxIU1AJk
- qIpJ1k+AbxceY8RcpbHzyRvVCLO4arv63W0e6TdkVVbpkLZWrpX0H17saOp4xvphPV7q/gDzvZb
- Kzz7/w0+Zq+VifeIMiItPYt7atMPY7tT5CDYl6+wQrxcXtw65OhnZOyylqaa31o+2jvGWusR02M
- Q4BVGIJO0uXWBd+EpNxTIb2L4f1/i/A/9lEFO82YSx7kRGbxXolmJMum7lXzBWhMMouVCjrqB/V
- Z/uvvph/Kclz8zm/ku7WpScXfRWkmlliJ9N4NPfbbICYwFpMgjp86amxrL5QYGMri6VPvYKc3Io
- D2EoZHwmYQmdAK
-X-Received: by 2002:a05:620a:4628:b0:8b1:ed55:e4f1 with SMTP id
- af79cd13be357-8b2c3175d59mr235427985a.39.1763093551905; 
- Thu, 13 Nov 2025 20:12:31 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IGRBRFxxiAD30mEJm55HBtKCBqJwVeb/nqEO1wa7PZ+U+vRFrL3SI4k/Rw4EJ92OxtkmKQ+nw==
-X-Received: by 2002:a05:620a:4628:b0:8b1:ed55:e4f1 with SMTP id
- af79cd13be357-8b2c3175d59mr235424485a.39.1763093551352; 
- Thu, 13 Nov 2025 20:12:31 -0800 (PST)
-Received: from umbar.lan
- (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi.
- [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
- by smtp.gmail.com with ESMTPSA id
- 2adb3069b0e04-59580405a4esm784867e87.95.2025.11.13.20.12.30
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 13 Nov 2025 20:12:30 -0800 (PST)
-Date: Fri, 14 Nov 2025 06:12:28 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: Corey Minyard <corey@minyard.net>,
- Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
- "Dr. David Alan Gilbert" <linux@treblig.org>,
- Alex Deucher <alexander.deucher@amd.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Clark <robin.clark@oss.qualcomm.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Ulf Hansson <ulf.hansson@linaro.org>,
- Aleksandr Loktionov <aleksandr.loktionov@intel.com>,
- Vitaly Lifshits <vitaly.lifshits@intel.com>,
- Manivannan Sadhasivam <mani@kernel.org>,
- Niklas Cassel <cassel@kernel.org>, Calvin Owens <calvin@wbinvd.org>,
- Vadim Fedorenko <vadim.fedorenko@linux.dev>,
- Sagi Maimon <maimon.sagi@gmail.com>,
- "Martin K. Petersen" <martin.petersen@oracle.com>,
- Karan Tilak Kumar <kartilak@cisco.com>,
- Hans Verkuil <hverkuil+cisco@kernel.org>,
- Casey Schaufler <casey@schaufler-ca.com>,
- Steven Rostedt <rostedt@goodmis.org>, Petr Mladek <pmladek@suse.com>,
- Viacheslav Dubeyko <Slava.Dubeyko@ibm.com>,
- Max Kellermann <max.kellermann@ionos.com>, linux-doc@vger.kernel.org,
- linux-kernel@vger.kernel.org, openipmi-developer@lists.sourceforge.net,
- linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linaro-mm-sig@lists.linaro.org, amd-gfx@lists.freedesktop.org,
- linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, linux-mmc@vger.kernel.org,
- netdev@vger.kernel.org, intel-wired-lan@lists.osuosl.org,
- linux-pci@vger.kernel.org, linux-s390@vger.kernel.org,
- linux-scsi@vger.kernel.org, linux-staging@lists.linux.dev,
- ceph-devel@vger.kernel.org, linux-trace-kernel@vger.kernel.org,
- Rasmus Villemoes <linux@rasmusvillemoes.dk>,
- Sergey Senozhatsky <senozhatsky@chromium.org>,
- Jonathan Corbet <corbet@lwn.net>, Sumit Semwal <sumit.semwal@linaro.org>,
- Gustavo Padovan <gustavo@padovan.org>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Dmitry Baryshkov <lumag@kernel.org>,
- Abhinav Kumar <abhinav.kumar@linux.dev>,
- Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- Konrad Dybcio <konradybcio@kernel.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Vladimir Oltean <olteanv@gmail.com>, Andrew Lunn <andrew@lunn.ch>,
- "David S. Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Tony Nguyen <anthony.l.nguyen@intel.com>,
- Przemek Kitszel <przemyslaw.kitszel@intel.com>,
- Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>,
- Bjorn Helgaas <bhelgaas@google.com>,
- Rodolfo Giometti <giometti@enneenne.com>,
- Jonathan Lemon <jonathan.lemon@gmail.com>,
- Richard Cochran <richardcochran@gmail.com>,
- Stefan Haberland <sth@linux.ibm.com>,
- Jan Hoeppner <hoeppner@linux.ibm.com>,
- Heiko Carstens <hca@linux.ibm.com>, Vasily Gorbik <gor@linux.ibm.com>,
- Alexander Gordeev <agordeev@linux.ibm.com>,
- Christian Borntraeger <borntraeger@linux.ibm.com>,
- Sven Schnelle <svens@linux.ibm.com>, Satish Kharat <satishkh@cisco.com>,
- Sesidhar Baddela <sebaddel@cisco.com>,
- "James E.J. Bottomley" <James.Bottomley@hansenpartnership.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Xiubo Li <xiubli@redhat.com>, Ilya Dryomov <idryomov@gmail.com>,
- Masami Hiramatsu <mhiramat@kernel.org>,
- Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
- Andrew Morton <akpm@linux-foundation.org>
-Subject: Re: [PATCH v3 06/21] drm/msm: Switch to use %ptSp
-Message-ID: <ngzyqzrjg2msv6odahkirdipjizbpaecfscfgnic3su5fl6hs7@qgdb53svq64p>
-References: <20251113150217.3030010-1-andriy.shevchenko@linux.intel.com>
- <20251113150217.3030010-7-andriy.shevchenko@linux.intel.com>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 573E910E220
+ for <intel-xe@lists.freedesktop.org>; Fri, 14 Nov 2025 05:25:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1763097921; x=1794633921;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=i15UC9z87s+BwQI4y28S/fvFf04ZI88GcXB+t053TBU=;
+ b=Mw9Ea3eK/E3xx0oQvF+4XXumJt5vN5aiWko8cQHD4bm1R2tNmYBoxyV3
+ /fOzHmjEKkLMdupbquvoq9VB2HXGVcZIVfzukDBhgylTZwZpT3Lgbb/Ln
+ rvxPRhib7jg28oZc+z9lAmc1jq9eQg7ArPXaIvMm0g4EFWmmu9ndlAkwz
+ jVH1pBIsSP8380y6IncsmKOU4RNLCqGFzHTfzRTDR0sXxr6RxwH/or3fQ
+ t66mynq9Kmw2GEVgl4W1In3KtkJR6+s4u52zwdOpFrdFBggORhH/FYaki
+ Optwyr+IyJ+LYMXhJoAfQwPdB0+K8AcGzUkJWQ5m3AESJJbThhqNqocO/ g==;
+X-CSE-ConnectionGUID: nD1V88JLQj2lHpV9xEYGUQ==
+X-CSE-MsgGUID: aEIQhhGJQmu8ypSzgwrPyg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11612"; a="65228440"
+X-IronPort-AV: E=Sophos;i="6.19,304,1754982000"; d="scan'208";a="65228440"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Nov 2025 21:25:21 -0800
+X-CSE-ConnectionGUID: HCflsD+rS0WMls/eGYUQrw==
+X-CSE-MsgGUID: l8fCzfOrT2mw7FtwKfJRVg==
+X-ExtLoop1: 1
+Received: from black.igk.intel.com ([10.91.253.5])
+ by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Nov 2025 21:25:19 -0800
+Date: Fri, 14 Nov 2025 06:25:16 +0100
+From: Raag Jadav <raag.jadav@intel.com>
+To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>, rodrigo.vivi@intel.com,
+ intel-xe@lists.freedesktop.org, riana.tauro@intel.com,
+ matthew.brost@intel.com, michal.wajdeczko@intel.com,
+ badal.nilawar@intel.com
+Subject: Re: [PATCH v2] drm/xe/pcode: Convert unsupported commands to debug
+ level
+Message-ID: <aRa9PL9qmh_1qqxL@black.igk.intel.com>
+References: <20251107055746.110055-1-raag.jadav@intel.com>
+ <b4f677ximgoni5pzf6bsh6kkchh52fy6drckbiasqsaekvnzbj@o3rkfqwcg6or>
+ <aQ3xItyGMVnKdzoi@intel.com> <aRSdenIjmrfTaw8U@black.igk.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20251113150217.3030010-7-andriy.shevchenko@linux.intel.com>
-X-Authority-Analysis: v=2.4 cv=IaiKmGqa c=1 sm=1 tr=0 ts=6916ac30 cx=c_pps
- a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=QyXUC8HyAAAA:8 a=EUspDBNiAAAA:8 a=JNz3O4sEs4oywJvo4n4A:9 a=CjuIK1q_8ugA:10
- a=PEH46H7Ffwr30OY-TuGO:22
-X-Proofpoint-ORIG-GUID: eewnq3Fbj0j73MvOoZUR_ucsRfB4EntD
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTE0MDAzMCBTYWx0ZWRfX+Ukxyj/rNGJB
- Xmkxj9VZWVG6XZrV6Ygp84ZfQ1I8JlmJjHEkQvt0edXZNZougP8m9VXQodJGGNoy7MN3CXJGWMi
- Wmt0KOL9Jpbv6p9F4EbcbdV8Bft4nqQu7FwT09C/YD5LD27Ta5PJYhaBbff6GQIlTZog/ZEAqGg
- 55ovH+TP8INk37X3fjbr08q46jUwrGi7WyL4jEqgGBggO6lw0gu9DVthJpbogrpm/Ik21buCbeC
- xbT87Ese/3bSdkxuUiv9FQ4qMVmEwtQy8KQrLVhQRrVOnmqjgEw+zWqdR2GgaFpB7HYwezPLhbH
- 8ew3fCQKUu4/a6sueAZ1Nue8JRHb2fKH8DM8vBNf1hrUrR7yBsowFbR1DEZc/YwRPuxrBFBs4oW
- GjnRsevh+w0xYIjK611zIwLxd6BlZw==
-X-Proofpoint-GUID: eewnq3Fbj0j73MvOoZUR_ucsRfB4EntD
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-13_07,2025-11-13_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 priorityscore=1501 adultscore=0 bulkscore=0 phishscore=0
- clxscore=1011 spamscore=0 malwarescore=0 lowpriorityscore=0 suspectscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511140030
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <aRSdenIjmrfTaw8U@black.igk.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -204,20 +72,42 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Nov 13, 2025 at 03:32:20PM +0100, Andy Shevchenko wrote:
-> Use %ptSp instead of open coded variants to print content of
-> struct timespec64 in human readable format.
+On Wed, Nov 12, 2025 at 03:45:19PM +0100, Raag Jadav wrote:
+> On Fri, Nov 07, 2025 at 03:16:18PM +0200, Ville Syrjälä wrote:
+> > On Fri, Nov 07, 2025 at 06:03:28AM -0600, Lucas De Marchi wrote:
+> > > On Fri, Nov 07, 2025 at 11:26:11AM +0530, Raag Jadav wrote:
+> > > > If the device is running older pcode firmware, it is possible that newer
+> > > > mailbox commands are not supported by it. The respective functionality
+> > > > isn't useful in that case but neither is error logging, since it doesn't
+> > > > particularly signify anything wrong with pcode firmware or device as a
+> > > > whole. This is useful in cases where we want to make a decision on driver
+> > > > functionality based on pcode return codes and a bit simpler design choice
+> > > > compared to other solutions like checking pcode firmware version, which
+> > > > comes with additional complexity of binding every single command to a
+> > > > specific version and deems pcode commands useless in case driver fails to
+> > > > obtain it for reasons unrelated to pcode.
+> > > 
+> > > yeah.. I don't think we should regress the support in new kernel
+> > > versions and require users to update their IFWI. However dropping the
+> > > error message here also makes it harder to find cases in which we are
+> > > indeed using a wrong command.
+> > > 
+> > > I'd say to decide on err vs dbg based on CONFIG_DRM_XE_DEBUG so
+> > > developers can still see the error and take the right action.
+
+Forgot to add here before floating v3. This is no different from current
+situation because we don't have a way to make sure that the changes are
+tested on all possible versions of IFWI and since we like to force everyone
+to upgrade (atleast internally), it is still possible that we hit some
+corner case in the field.
+
+Raag
+
+> > I think the caller should decide this. If it's explicitly probing
+> > for something that may or may not exist then use  dbg(), otherwise
+> > use err().
 > 
-> Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-> ---
->  drivers/gpu/drm/msm/disp/msm_disp_snapshot_util.c | 3 +--
->  drivers/gpu/drm/msm/msm_gpu.c                     | 3 +--
->  2 files changed, 2 insertions(+), 4 deletions(-)
+> I like the idea. What I'm afraid is that once we open that door it'll
+> probably start getting abused.
 > 
-
-Acked-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-
-
--- 
-With best wishes
-Dmitry
+> So rather we can check if we're really *in* probe()? Wait for a v3.
