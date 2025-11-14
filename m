@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 949BBCEACD2
-	for <intel-xe@archiver.kernel.org>; Fri, 14 Nov 2025 22:56:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5E82ACEACFB
+	for <intel-xe@archiver.kernel.org>; Fri, 14 Nov 2025 23:22:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3D7E610E27B;
-	Fri, 14 Nov 2025 22:56:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0898710EB2F;
+	Fri, 14 Nov 2025 23:22:02 +0000 (UTC)
 Received: from 10055242dc62 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A03F110E269;
- Fri, 14 Nov 2025 22:56:26 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0139941140555018185=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E4F8B10EB2F;
+ Fri, 14 Nov 2025 23:22:00 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Fix_freq_kobject_?=
- =?utf-8?q?leak_on_sysfs=5Fcreate=5Ffiles_failure?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Scope-based_forcewake_and?=
+ =?utf-8?q?_runtime_PM_=28rev4=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Shuicheng Lin" <shuicheng.lin@intel.com>
+To: "Matt Roper" <matthew.d.roper@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 14 Nov 2025 22:56:26 -0000
-Message-ID: <176316098664.56641.1607016435246505816@10055242dc62>
+Date: Fri, 14 Nov 2025 23:22:00 -0000
+Message-ID: <176316252093.56641.12806589317022912607@10055242dc62>
 X-Patchwork-Hint: ignore
-References: <20251114205638.2184529-2-shuicheng.lin@intel.com>
-In-Reply-To: <20251114205638.2184529-2-shuicheng.lin@intel.com>
+References: <20251114214335.2388972-29-matthew.d.roper@intel.com>
+In-Reply-To: <20251114214335.2388972-29-matthew.d.roper@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,135 +40,71 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0139941140555018185==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe: Fix freq kobject leak on sysfs_create_files failure
-URL   : https://patchwork.freedesktop.org/series/157601/
-State : success
+Series: Scope-based forcewake and runtime PM (rev4)
+URL   : https://patchwork.freedesktop.org/series/157253/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-4110-5f250ba2e3bb0b4541473f2bd5dd8a8f22305b61_BAT -> xe-pw-157601v1_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+2de9a3901bc28757c7906b454717b64e2a214021
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 45f0cad405f735d7bf5e5c05b1d6253ac9ce3bc7
+Author: Matt Roper <matthew.d.roper@intel.com>
+Date:   Fri Nov 14 13:44:03 2025 -0800
 
-Summary
--------
+    drm/xe/debugfs: Use scope-based runtime PM
+    
+    Switch the debugfs code to use scope-based runtime PM where possible,
+    for consistency with other parts of the driver.
+    
+    v2:
+     - Drop unnecessary 'ret' variables.  (Gustavo)
+    
+    Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
+    Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
++ /mt/dim checkpatch 3e04a6544879d3b9d186bf466fc9c1a8b4d1fa36 drm-intel
+b4691c81e5d2 drm/xe/forcewake: Add scope-based cleanup for forcewake
+-:102: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'done' - possible side-effects?
+#102: FILE: drivers/gpu/drm/xe/xe_force_wake.h:88:
++#define __xe_with_force_wake(ref, fw, domains, done) \
++	for (CLASS(xe_force_wake, ref)(fw, domains), *(done) = NULL; \
++	     !(done); (done) = (void *)1)
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (13 -> 13)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-157601v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@xe_waitfence@abstime:
-    - bat-dg2-oem2:       [TIMEOUT][1] ([Intel XE#6506]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4110-5f250ba2e3bb0b4541473f2bd5dd8a8f22305b61/bat-dg2-oem2/igt@xe_waitfence@abstime.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157601v1/bat-dg2-oem2/igt@xe_waitfence@abstime.html
-
-  * igt@xe_waitfence@engine:
-    - bat-dg2-oem2:       [FAIL][3] ([Intel XE#6519]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4110-5f250ba2e3bb0b4541473f2bd5dd8a8f22305b61/bat-dg2-oem2/igt@xe_waitfence@engine.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157601v1/bat-dg2-oem2/igt@xe_waitfence@engine.html
-
-  
-  [Intel XE#6506]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506
-  [Intel XE#6519]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519
-
-
-Build changes
--------------
-
-  * Linux: xe-4110-5f250ba2e3bb0b4541473f2bd5dd8a8f22305b61 -> xe-pw-157601v1
-
-  IGT_8625: 69d0aa3606a205aec90d6145bb20cbae755e8559 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-4110-5f250ba2e3bb0b4541473f2bd5dd8a8f22305b61: 5f250ba2e3bb0b4541473f2bd5dd8a8f22305b61
-  xe-pw-157601v1: 157601v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157601v1/index.html
-
---===============0139941140555018185==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+total: 0 errors, 0 warnings, 1 checks, 57 lines checked
+d076fcdfb3e1 drm/xe/pm: Add scope-based cleanup helper for runtime PM
+e8ac9db4f339 drm/xe/gt: Use scope-based cleanup
+c4dbd6928320 drm/xe/gt_idle: Use scope-based cleanup
+b23dc8980338 drm/xe/guc: Use scope-based cleanup
+7300889aa6f3 drm/xe/guc_pc: Use scope-based cleanup
+9a813dd4bb52 drm/xe/mocs: Use scope-based cleanup
+14ea82867271 drm/xe/pat: Use scope-based forcewake
+79228806d76d drm/xe/pxp: Use scope-based cleanup
+19be5fa06d00 drm/xe/gsc: Use scope-based cleanup
+b0040dddf147 drm/xe/device: Use scope-based cleanup
+3c4d8c7524c9 drm/xe/devcoredump: Use scope-based cleanup
+0d1e54d870cc drm/xe/display: Use scoped-cleanup
+cfa7602e542d drm/xe: Return forcewake reference type from force_wake_get_any_engine()
+8fd17fc05f3d drm/xe/drm_client: Use scope-based cleanup
+ec660a956fc0 drm/xe/gt_debugfs: Use scope-based cleanup
+46307f7f58e0 drm/xe/huc: Use scope-based forcewake
+2a65cd5c5e33 drm/xe/query: Use scope-based forcewake
+087a2e897b0e drm/xe/reg_sr: Use scope-based forcewake
+bcc19884ddde drm/xe/vram: Use scope-based forcewake
+91ae50d776f2 drm/xe/bo: Use scope-based runtime PM
+4360c707c862 drm/xe/ggtt: Use scope-based runtime pm
+fe2920d106cc drm/xe/hwmon: Use scope-based runtime PM
+134ae8bed7bf drm/xe/sriov: Use scope-based runtime PM
+1b238e870830 drm/xe/tests: Use scope-based runtime PM
+140917ded73a drm/xe/sysfs: Use scope-based runtime power management
+45f0cad405f7 drm/xe/debugfs: Use scope-based runtime PM
 
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Fix freq kobject leak on sysfs_create_files failure</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/157601/">https://patchwork.freedesktop.org/series/157601/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157601v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157601v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4110-5f250ba2e3bb0b4541473f2bd5dd8a8f22305b61_BAT -&gt; xe-pw-157601v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-157601v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@xe_waitfence@abstime:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4110-5f250ba2e3bb0b4541473f2bd5dd8a8f22305b61/bat-dg2-oem2/igt@xe_waitfence@abstime.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506">Intel XE#6506</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157601v1/bat-dg2-oem2/igt@xe_waitfence@abstime.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@xe_waitfence@engine:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4110-5f250ba2e3bb0b4541473f2bd5dd8a8f22305b61/bat-dg2-oem2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519">Intel XE#6519</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157601v1/bat-dg2-oem2/igt@xe_waitfence@engine.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4110-5f250ba2e3bb0b4541473f2bd5dd8a8f22305b61 -&gt; xe-pw-157601v1</li>
-</ul>
-<p>IGT_8625: 69d0aa3606a205aec90d6145bb20cbae755e8559 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-4110-5f250ba2e3bb0b4541473f2bd5dd8a8f22305b61: 5f250ba2e3bb0b4541473f2bd5dd8a8f22305b61<br />
-  xe-pw-157601v1: 157601v1</p>
-
-</body>
-</html>
-
---===============0139941140555018185==--
