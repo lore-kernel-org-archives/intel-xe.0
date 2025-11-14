@@ -4,51 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 171F2CEACDB
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4F0FBCEACCE
 	for <intel-xe@archiver.kernel.org>; Fri, 14 Nov 2025 20:53:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CA4F110EB28;
-	Fri, 14 Nov 2025 20:53:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 161E710EB2B;
+	Fri, 14 Nov 2025 20:53:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ej7Rb8kM";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mu7cpjb5";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 613AC10EB1C;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 80C4810EB23;
  Fri, 14 Nov 2025 20:53:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1763153624; x=1794689624;
  h=from:date:subject:mime-version:content-transfer-encoding:
  message-id:references:in-reply-to:to:cc;
- bh=DxTDzJMydiPWb2zkSao7xMF7cCQNPst16TMZsrMn3l0=;
- b=Ej7Rb8kM2CzDkRgz/6xw9fxcEK1IBonetvIHL1V2/5EDmTN0v7Xo96ak
- Rls9aqVjRUO54aDf96+BQcd9H4/Rqbpxhr8Z3wNcrljHObE4FfXoeEa3x
- hWa8dbuOz05glXaqj69kxjSh95Kb99XdoTeqIN+hqBUTq0310hXmwSxer
- BYeqnt3eD8tJW3bBexy7+T0scXq41+wcfLpvd2IM8rjwzW8m58Kn54HQe
- 3G4HZE8RCd6/RjJMLkvycWoQ7Jgc8GnopikH4rkPyS3N9Kx895XCBMHPq
- NRvrYG4Z1PVlDszNL+85C08nZlrpqbUSgMsXDxeLGDwtaIoSaxZ4dk07n A==;
-X-CSE-ConnectionGUID: 8pJvQb7jTDiybEjdKp1UBw==
-X-CSE-MsgGUID: 4wQlC+SSRAa4f3WdyNiuTQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11613"; a="67859900"
-X-IronPort-AV: E=Sophos;i="6.19,305,1754982000"; d="scan'208";a="67859900"
+ bh=s1hYBnUOmBP7eQR/kqzwpoMvp9gDWqjgQdpVGLob5fQ=;
+ b=mu7cpjb5PgFwdN7L+wt8CXf2neyyA7be/Zzi4STLpEfEaHZC4orT27df
+ +/Lzgcdm37T1kbd876rgYDC6YnHYkpUroLI3W89hnwfL1U8cYzR7IZeMj
+ EfnBszcpBSrXbptFfyxWnC4+yzVjx1Ib3oH4sll5Ud+ugcms2/wV5YDL6
+ Y4b+dzuluayeUiSujN3Lx785tFsEJLL/jLg763rcvYoFdRcJffiIdv3aW
+ rwkujdFRAwBIWL9sVUgbQY/MFNFmxkGG6mK2X4gJCYInEXADJCrKMHDDK
+ JABEylowK9xcmUG5epuJC2NRguMBXFT8Q659KLbnux8Tn4y6cAbgq//1y w==;
+X-CSE-ConnectionGUID: avfbpjasRv2vdkPlaB6YSw==
+X-CSE-MsgGUID: shBOyuLdSqqYJhRmlpSjqg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11613"; a="67859913"
+X-IronPort-AV: E=Sophos;i="6.19,305,1754982000"; d="scan'208";a="67859913"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Nov 2025 12:53:36 -0800
-X-CSE-ConnectionGUID: 1uDGXfeeR3GKAvRwAFbtZQ==
-X-CSE-MsgGUID: fy8gTd2gTUmSOR03Ku6erA==
+ 14 Nov 2025 12:53:44 -0800
+X-CSE-ConnectionGUID: lP13r9PzQJiV3mftKyqX/Q==
+X-CSE-MsgGUID: Mrd+k3ZiR2CcfwyIzJlMWA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,305,1754982000"; d="scan'208";a="227214223"
+X-IronPort-AV: E=Sophos;i="6.19,305,1754982000"; d="scan'208";a="227214230"
 Received: from dnelso2-mobl.amr.corp.intel.com (HELO [192.168.1.16])
  ([10.124.220.50])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Nov 2025 12:53:32 -0800
+ 14 Nov 2025 12:53:40 -0800
 From: Gustavo Sousa <gustavo.sousa@intel.com>
-Date: Fri, 14 Nov 2025 17:52:12 -0300
-Subject: [PATCH v5 5/8] drm/i915/nvls: Add NVL-S display support
+Date: Fri, 14 Nov 2025 17:52:14 -0300
+Subject: [PATCH v5 7/8] drm/i915/display: Move HAS_LT_PHY() to
+ intel_display_device.h
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20251114-xe3p_lpd-basic-enabling-v5-5-c183388367f4@intel.com>
+Message-Id: <20251114-xe3p_lpd-basic-enabling-v5-7-c183388367f4@intel.com>
 References: <20251114-xe3p_lpd-basic-enabling-v5-0-c183388367f4@intel.com>
 In-Reply-To: <20251114-xe3p_lpd-basic-enabling-v5-0-c183388367f4@intel.com>
 To: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
@@ -64,7 +65,7 @@ Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
  Ravi Kumar Vodapalli <ravi.kumar.vodapalli@intel.com>, 
  Shekhar Chauhan <shekhar.chauhan@intel.com>, 
  Vinod Govindapillai <vinod.govindapillai@intel.com>, 
- Sai Teja Pottumuttu <sai.teja.pottumuttu@intel.com>
+ Suraj Kandpal <suraj.kandpal@intel.com>
 X-Mailer: b4 0.15-dev
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -80,57 +81,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Sai Teja Pottumuttu <sai.teja.pottumuttu@intel.com>
+We will need to HAS_LT_PHY() that macro in code outside of LT PHY
+implementation. Move its definition to intel_display_device.h.
 
-Add platform description and PCI IDs for NVL-S.
-
-BSpec: 74201
-Signed-off-by: Sai Teja Pottumuttu <sai.teja.pottumuttu@intel.com>
-Reviewed-by: Shekhar Chauhan <shekhar.chauhan@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Cc: Suraj Kandpal <suraj.kandpal@intel.com>
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_device.c | 5 +++++
- drivers/gpu/drm/i915/display/intel_display_device.h | 4 +++-
- 2 files changed, 8 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_display_device.h | 1 +
+ drivers/gpu/drm/i915/display/intel_lt_phy.h         | 2 --
+ 2 files changed, 1 insertion(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_device.c b/drivers/gpu/drm/i915/display/intel_display_device.c
-index 1170afaa8680..471f236c9ddf 100644
---- a/drivers/gpu/drm/i915/display/intel_display_device.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_device.c
-@@ -1420,6 +1420,10 @@ static const struct platform_desc ptl_desc = {
- 	}
- };
- 
-+static const struct platform_desc nvl_desc = {
-+	PLATFORM(novalake),
-+};
-+
- __diag_pop();
- 
- /*
-@@ -1495,6 +1499,7 @@ static const struct {
- 	INTEL_BMG_IDS(INTEL_DISPLAY_DEVICE, &bmg_desc),
- 	INTEL_PTL_IDS(INTEL_DISPLAY_DEVICE, &ptl_desc),
- 	INTEL_WCL_IDS(INTEL_DISPLAY_DEVICE, &ptl_desc),
-+	INTEL_NVLS_IDS(INTEL_DISPLAY_DEVICE, &nvl_desc),
- };
- 
- static const struct {
 diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
-index 91d8cfac5eff..9affb6a53da4 100644
+index 9affb6a53da4..2455ec826abe 100644
 --- a/drivers/gpu/drm/i915/display/intel_display_device.h
 +++ b/drivers/gpu/drm/i915/display/intel_display_device.h
-@@ -103,7 +103,9 @@ struct pci_dev;
- 	func(battlemage) \
- 	/* Display ver 30 (based on GMD ID) */ \
- 	func(pantherlake) \
--	func(pantherlake_wildcatlake)
-+	func(pantherlake_wildcatlake) \
-+	/* Display ver 35 (based on GMD ID) */ \
-+	func(novalake)
+@@ -187,6 +187,7 @@ struct intel_display_platforms {
+ #define HAS_IPS(__display)		((__display)->platform.haswell_ult || (__display)->platform.broadwell)
+ #define HAS_LRR(__display)		(DISPLAY_VER(__display) >= 12)
+ #define HAS_LSPCON(__display)		(IS_DISPLAY_VER(__display, 9, 10))
++#define HAS_LT_PHY(__display)		((__display)->platform.novalake)
+ #define HAS_MBUS_JOINING(__display)	((__display)->platform.alderlake_p || DISPLAY_VER(__display) >= 14)
+ #define HAS_MSO(__display)		(DISPLAY_VER(__display) >= 12)
+ #define HAS_OVERLAY(__display)		(DISPLAY_INFO(__display)->has_overlay)
+diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.h b/drivers/gpu/drm/i915/display/intel_lt_phy.h
+index 0820968e51b5..7659c92b6c3c 100644
+--- a/drivers/gpu/drm/i915/display/intel_lt_phy.h
++++ b/drivers/gpu/drm/i915/display/intel_lt_phy.h
+@@ -42,6 +42,4 @@ void intel_xe3plpd_pll_enable(struct intel_encoder *encoder,
+ 			      const struct intel_crtc_state *crtc_state);
+ void intel_xe3plpd_pll_disable(struct intel_encoder *encoder);
  
- 
- #define __MEMBER(name) unsigned long name:1;
+-#define HAS_LT_PHY(display) ((display)->platform.novalake)
+-
+ #endif /* __INTEL_LT_PHY_H__ */
 
 -- 
 2.51.0
