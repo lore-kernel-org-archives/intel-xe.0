@@ -4,74 +4,94 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 68ED5CED243
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4B623CED245
 	for <intel-xe@archiver.kernel.org>; Mon, 17 Nov 2025 13:22:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5104C10E3BA;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1EFE610E3B6;
 	Mon, 17 Nov 2025 13:22:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="IBcG7+Ek";
+	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="YU++uOa/";
 	dkim-atps=neutral
-Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com
- [209.85.210.173])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A03AD10E0F5
- for <intel-xe@lists.freedesktop.org>; Mon, 10 Nov 2025 18:43:26 +0000 (UTC)
-Received: by mail-pf1-f173.google.com with SMTP id
- d2e1a72fcca58-7afd7789ccdso3169069b3a.2
- for <intel-xe@lists.freedesktop.org>; Mon, 10 Nov 2025 10:43:26 -0800 (PST)
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com
+ [209.85.128.42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B7E7710EA6C
+ for <intel-xe@lists.freedesktop.org>; Fri, 14 Nov 2025 13:10:14 +0000 (UTC)
+Received: by mail-wm1-f42.google.com with SMTP id
+ 5b1f17b1804b1-477632d9326so14283745e9.1
+ for <intel-xe@lists.freedesktop.org>; Fri, 14 Nov 2025 05:10:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1762800206; x=1763405006; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=qTyxgohfMyFm4qb2O3+6usfTAZwsXPA5PRmH04j0Qmo=;
- b=IBcG7+EkFMbDd0gppNbMC8/E5KEROm5I2pI75nTjadrOKS68AVIVjJb0omvcyAPyY4
- qa/PbvLezPh+4opsxGNAhFd9y72Vd8l8eFQefzFDLtvVbIDY3UPJemifiJ64Gg462zjW
- KJOJhvKbjWwqgLHKzHVtL0njTibA50tjjkwXihIpeXy/U+R6LF0eYxYGWkhn6T2ZnaHT
- bWNgP8lfJpqwWbDOhA2hS76j9znkidEotA9lvDWxTTDkxadgNrCdODs7qb0aeJ2fRbgC
- +k2QB09NrB57BH7mVgGCVGYH9x23XZwhCGF+TsPZ+TvdIwMh45sZdXZEsm1tuH0h/FjV
- Zxzw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1762800206; x=1763405006;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ d=linaro.org; s=google; t=1763125813; x=1763730613; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:user-agent
+ :references:in-reply-to:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=qTyxgohfMyFm4qb2O3+6usfTAZwsXPA5PRmH04j0Qmo=;
- b=mr1DdP5x+edvqqntJOF4pgKnAaIcdkio3xRKvuJ5q1BEF7eV7cnPe4XU9VlmJuyK3n
- hblunuquwvqAiF3QS52i41k/R+sDbkLih/SJrvD3y7xFKOJX4dgtHIsp3LqyVNigCyRy
- toGAgZi5siKi5yTbqn/yID/Uzz+mecoR52l3w4v9R2BDeCVVrFloenYVgkZ1qpsv7v7x
- p7ztDMa1G+mzdDuTJmI3QG/FBD6vJNdI21sQ4tjbrrxesB7ATWsl7zyM/d0Hz7N5/LRx
- /yRtCqS4hf5ng5c8xVPHSsewEsxdT8PQI881vBLmO6Lf1qhGnBD9HiH93SOLNVnsXCZ1
- eM+A==
-X-Gm-Message-State: AOJu0YzRU0KbTIX22ZwQJpzrldxjPtu5D0Vnf2QsMK0IHy00/pVMO0mM
- bQP4ZpFtuHiYz+dGppwwax8gEiOmw9MUvJXSyEG/VKzj1OYcbIslFeZY
-X-Gm-Gg: ASbGncvDmUBIct6EFGULevJyOMn5hl5HDUHJtBbqEjZuIgL5vm/FejcVb8EpZW8DXAZ
- vQTEGNwYP15t5hy+yvcri63XhlSFJfl5NOHPkOC/K3PnpnIYkUBCUxYCKNZfXsBG9UncfbbAenV
- e+/UEwOfnrgN3ZLOHwj1RVTFzprHStil/dhfUpsCI9kfS31GT3sEjXclHsQgI/ZJ0m02P+hxKqR
- Sv1TXIefs4T5VX+Bujvi/KKjQijnsbxrTnN+5/O1pyHTK5FtIzrCFm7esxWdwd0JXXTWCA87Pvo
- 1cWOhtyNvxZ4niHjqZhRJLc5fZiDHIA5g7UnOb/4xJ56pRgWl0TWNnAtmuAHRAVXf3o4+mRuDAb
- BYAouorNxMieJRf5IY1UrXHZ9xDQeDaFksTc4lGJEB9BIOAEiixwQCEz4/XRxEnmCOMxpmrFfzv
- hqnmRm0slj6J9HzXlR
-X-Google-Smtp-Source: AGHT+IF4fMPiC1+hZjj42Db+3of7c2CrTI3c2MCrSQNXvPFvgkM/x/aKN8kmrrpZocQqP6cAFKLHxw==
-X-Received: by 2002:a17:90b:4a10:b0:340:9d52:44c1 with SMTP id
- 98e67ed59e1d1-3436cd0bd74mr12391588a91.35.1762800206045; 
- Mon, 10 Nov 2025 10:43:26 -0800 (PST)
-Received: from crl-3.node2.local ([125.63.65.162])
- by smtp.gmail.com with ESMTPSA id
- 98e67ed59e1d1-343bf922ef8sm65515a91.0.2025.11.10.10.43.22
+ bh=EJ9S8y/liwc1XSXK0RvzbAJey2hh3NqcyHJfhnjyxSE=;
+ b=YU++uOa/prmyZdae+fODyXW3wecgtfGXB+Mt8uCcw5T07DnltADGzjPP2nkrVrU61g
+ FwploZLaPwsU5qgTnCw6xYlJgyi7WWLUdeMIt/9xe9sSs4wOdN84qY+WcE1Q7EbMApLG
+ 4m90WEdsyuJiHaS3Rg4fSqO6o9YZlYNl37ZgfweAtZK+dXxKosJM707C1+SuT1wfj1mn
+ 7M/2Nb/PfqPna17ZfJAJx2CPguUDmUMF2XMoFMr1pha5FcsnCF+2Emj3ToYBcO0ALLyF
+ nhf/zMjhLcBQt6P9YQAEudvWWnUhSt9DlC5bB7jpTraP223MuehUpjT5BPgbOtMSWrtJ
+ S/Tg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1763125813; x=1763730613;
+ h=content-transfer-encoding:mime-version:message-id:date:user-agent
+ :references:in-reply-to:subject:cc:to:from:x-gm-gg
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=EJ9S8y/liwc1XSXK0RvzbAJey2hh3NqcyHJfhnjyxSE=;
+ b=j6liX1rV5K0IY/Aw0KrG8mnzUoHO24HgWrB9KU6hyffDYlOcL5kbFkFVTXvv59bwxP
+ k8NWoKiAbqr5X7bGuvnzcSQ223S1ICrd9ob1YNPIIHpjbN//miotsHsxjuUwAmfoPCUr
+ 7BwhLo3+90u8ULs081eY5ck9hkA3UV2DydNc60cNRFBFfZuDagR1XMpd1M3lDUA+kkDO
+ gZTPTDuL/s5mLqha5XLSOpD9ceYSmaC5rfpluOfaAD9Trz7LnpS+toimOIzlc5EcSxO7
+ DYsRL/VNXlUqleB/uMr5NiFSF0cBcZTTWpHZm/JWWUHdKi29wSt3i3XJGXLcW0HxK3/2
+ KFZA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCV3/zIR9NsWu1Vho/WxdLvWwrOK3V1VZ1TwbwLuPZe0W+mhulD0iACoNmd/D7vixqdf4H9lAB55NQ==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yz1XoOjG5UtjJcx9e5Spxy1tAXakrAKT5WTO7ruu313CUb//Q8Y
+ NLKJtEyFT8/pPfy13/VDwwU4Tblxlaa40vHDnosyG9FdN8UrkqTAmAipVlmVD6kTbHg=
+X-Gm-Gg: ASbGncsHySgz46UIs6/Mjwpt/M1lOqBo/1zyDvOsvfE1aBxFT4UdqvRvYEdmjO1LFI7
+ z2XQBB7L1HZRqJebfeHg4BM6Vyd0B9ypPFE41jRK3iLPvdf8KcqPtkvI9V7uRkfukaZHIwTQo+H
+ fnQBVon7wdgWzYEfH02PKeNMVRr6iwhEOYYtrBHOzaXWbb032VwaDD21qEFlpIAU3hb2z/p2sYp
+ dE60wGCJu7GfxEkxVKRlk+kg+i/TfdRjACk5euxxwc+5/20r6H9z4l+ZFkokY4PdwjBojx9zXw1
+ qZc3O2qZRGllDmgItal+YLQTTrcKqKtyn6765+ffrVaS3IvU1Q8USjLS5muCmMF5wCSMyIcmw+U
+ UjspuhlcUe9CoyK+0/JwOzc/kJZL6PNnw6gPNnZqjiTRlXJSGBA3ngHJpFiwAjnjoTmlqrCkyp8
+ FK
+X-Google-Smtp-Source: AGHT+IFRUwKdmMnVHD85N3NvYRNZUnPZKMrSMMhF+DQcXz4gku9fHv+s1niWianlCFXxAAY6/RwthA==
+X-Received: by 2002:a05:600c:3587:b0:477:63b5:7148 with SMTP id
+ 5b1f17b1804b1-4778fe55174mr31972855e9.6.1763125812943; 
+ Fri, 14 Nov 2025 05:10:12 -0800 (PST)
+Received: from draig.lan ([185.126.160.19]) by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-4779527a656sm5951845e9.10.2025.11.14.05.10.11
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 10 Nov 2025 10:43:25 -0800 (PST)
-From: Kriish Sharma <kriish.sharma2006@gmail.com>
-To: lucas.demarchi@intel.com, thomas.hellstrom@linux.intel.com,
- rodrigo.vivi@intel.com, airlied@gmail.com, simona@ffwll.ch
-Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Kriish Sharma <kriish.sharma2006@gmail.com>,
- kernel test robot <lkp@intel.com>
-Subject: [PATCH] drm/xe: fix kernel-doc function name mismatch in xe_pm.c
-Date: Mon, 10 Nov 2025 18:42:06 +0000
-Message-Id: <20251110184206.2113830-1-kriish.sharma2006@gmail.com>
-X-Mailer: git-send-email 2.34.1
+ Fri, 14 Nov 2025 05:10:11 -0800 (PST)
+Received: from draig (localhost [IPv6:::1])
+ by draig.lan (Postfix) with ESMTP id 1B92A5F820;
+ Fri, 14 Nov 2025 13:10:11 +0000 (GMT)
+From: =?utf-8?Q?Alex_Benn=C3=A9e?= <alex.bennee@linaro.org>
+To: Ilpo =?utf-8?Q?J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
+Cc: Simon Richter <Simon.Richter@hogyros.de>,  Lucas De Marchi
+ <lucas.demarchi@intel.com>,  Alex Deucher <alexander.deucher@amd.com>,
+ amd-gfx@lists.freedesktop.org,  Bjorn Helgaas <bhelgaas@google.com>,
+ David Airlie <airlied@gmail.com>,  dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org,  intel-xe@lists.freedesktop.org,  Jani
+ Nikula <jani.nikula@linux.intel.com>,  Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>,  linux-pci@vger.kernel.org,  Rodrigo
+ Vivi <rodrigo.vivi@intel.com>,  Simona Vetter <simona@ffwll.ch>,  Tvrtko
+ Ursulin <tursulin@ursulin.net>,  Christian =?utf-8?Q?K=C3=B6nig?=
+ <christian.koenig@amd.com>,  Thomas =?utf-8?Q?Hellstr=C3=B6m?=
+ <thomas.hellstrom@linux.intel.com>,  =?utf-8?Q?Micha=C5=82?= Winiarski
+ <michal.winiarski@intel.com>,  linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 08/11] drm/xe: Remove driver side BAR release before
+ resize
+In-Reply-To: <20251113162628.5946-9-ilpo.jarvinen@linux.intel.com> ("Ilpo
+ =?utf-8?Q?J=C3=A4rvinen=22's?= message of "Thu, 13 Nov 2025 18:26:25
+ +0200")
+References: <20251113162628.5946-1-ilpo.jarvinen@linux.intel.com>
+ <20251113162628.5946-9-ilpo.jarvinen@linux.intel.com>
+User-Agent: mu4e 1.12.14-dev2; emacs 30.1
+Date: Fri, 14 Nov 2025 13:10:11 +0000
+Message-ID: <87ecq0pxos.fsf@draig.linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Mon, 17 Nov 2025 13:22:47 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -87,37 +107,42 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Documentation build reported:
+Ilpo J=C3=A4rvinen <ilpo.jarvinen@linux.intel.com> writes:
 
-   WARNING: ./drivers/gpu/drm/xe/xe_pm.c:131 expecting prototype for xe_pm_might_block_on_suspend(). Prototype was for xe_pm_block_on_suspend() instead
+> PCI core handles releasing device's resources and their rollback in
+> case of failure of a BAR resizing operation. Releasing resource prior
+> to calling pci_resize_resource() prevents PCI core from restoring the
+> BARs as they were.
+>
+> Remove driver-side release of BARs from the xe driver.
+>
+> Signed-off-by: Ilpo J=C3=A4rvinen <ilpo.jarvinen@linux.intel.com>
+> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+> ---
+>  drivers/gpu/drm/xe/xe_vram.c | 3 ---
+>  1 file changed, 3 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/xe/xe_vram.c b/drivers/gpu/drm/xe/xe_vram.c
+> index 00dd027057df..5aacab9358a4 100644
+> --- a/drivers/gpu/drm/xe/xe_vram.c
+> +++ b/drivers/gpu/drm/xe/xe_vram.c
+> @@ -33,9 +33,6 @@ _resize_bar(struct xe_device *xe, int resno, resource_s=
+ize_t size)
+>  	int bar_size =3D pci_rebar_bytes_to_size(size);
+>  	int ret;
+>=20=20
+> -	if (pci_resource_len(pdev, resno))
+> -		pci_release_resource(pdev, resno);
+> -
+>  	ret =3D pci_resize_resource(pdev, resno, bar_size, 0);
+>  	if (ret) {
+>  		drm_info(&xe->drm, "Failed to resize BAR%d to %dM (%pe). Consider enab=
+ling 'Resizable BAR' support in your BIOS\n",
 
-The kernel-doc comment for xe_pm_block_on_suspend() incorrectly used
-the function name xe_pm_might_block_on_suspend(). Fix the header to
-match the actual function prototype.
+This didn't apply, I assume due to a clash with:
 
-No functional changes.
+  d30203739be79 (drm/xe: Move rebar to be done earlier)
 
-Fixes: f73f6dd312a5 ("drm/xe/pm: Add lockdep annotation for the pm_block completion")
-Reported-by: kernel test robot <lkp@intel.com>
-Closes: https://lore.kernel.org/oe-kbuild-all/202511061736.CiuroL7H-lkp@intel.com/
-Signed-off-by: Kriish Sharma <kriish.sharma2006@gmail.com>
----
- drivers/gpu/drm/xe/xe_pm.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
-index 7b089e6fb63f..44924512830f 100644
---- a/drivers/gpu/drm/xe/xe_pm.c
-+++ b/drivers/gpu/drm/xe/xe_pm.c
-@@ -112,7 +112,7 @@ void xe_pm_might_block_on_suspend(void)
- }
- 
- /**
-- * xe_pm_might_block_on_suspend() - Block pending suspend.
-+ * xe_pm_block_on_suspend() - Block pending suspend.
-  * @xe: The xe device about to be suspended.
-  *
-  * Block if the pm notifier has start evicting bos, to avoid
--- 
-2.34.1
-
+--=20
+Alex Benn=C3=A9e
+Virtualisation Tech Lead @ Linaro
