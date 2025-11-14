@@ -4,171 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 26CE6CEACD2
-	for <intel-xe@archiver.kernel.org>; Fri, 14 Nov 2025 21:32:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3B7E7CEACCC
+	for <intel-xe@archiver.kernel.org>; Fri, 14 Nov 2025 21:43:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D47C910EB20;
-	Fri, 14 Nov 2025 21:32:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F1CAC10EB2B;
+	Fri, 14 Nov 2025 21:43:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Gv+0kP8b";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VAgkDiD5";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A180F89861
- for <intel-xe@lists.freedesktop.org>; Fri, 14 Nov 2025 21:32:15 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8767A10EB2A
+ for <intel-xe@lists.freedesktop.org>; Fri, 14 Nov 2025 21:43:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1763155936; x=1794691936;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=5vbgU3TUYLRiVrnriht7MHACUIE2qOPlyic9KUftS0I=;
- b=Gv+0kP8bcuLL1ovtUzrsWfh5bNelkXS6uNt4i74HGgDXELkKPWe9l3t+
- omoWeiw51keqAHeP52qXNViewtEuC+MCMK8MBOoA962fiCEsFm7vdq30d
- Mrh2uhdlknvd6z4EjDHHjAi84gipzSbjKjVbGHC2+VIposkCAhMCzBlrl
- swDkGtEbWRSbD2X5CevL3MzMAadFRWYLHrDV6VVs7ZX/GO3ha/lYeUCip
- ksFXZvMOb7nlI9ol9iqCiqI0+7n1+t+opPg4QTdybP4MBKy+L/aDYfbD5
- hc/ipqX5lZDEDU6raMCMiJ31BfEGmo4PDobmnXR9YdHp19d0qsw3vTs/t A==;
-X-CSE-ConnectionGUID: yTFjhGzTSMq+eVLaBzUetg==
-X-CSE-MsgGUID: G1F0hjx+SwCrASB/K8syjg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11613"; a="64965995"
-X-IronPort-AV: E=Sophos;i="6.19,305,1754982000"; d="scan'208";a="64965995"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Nov 2025 13:32:16 -0800
-X-CSE-ConnectionGUID: r37Y0EqEQyaMcwG6qt7XNw==
-X-CSE-MsgGUID: TF8ibda4RP+8rP7cV9o+yg==
+ t=1763156626; x=1794692626;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=8HlVBidhbY8LAvRI/KmZEKbebmURR51xkF8oXch7zow=;
+ b=VAgkDiD57dJetE4J/GQFkvZAKragGw3VbYQ+FfGm1ZF/2nKoUj9PIH5y
+ qyCx3iIX8RWSPmnWdjQO/GEEJ1rc20R77B61YWA0CxflqoFkLtGgOvS/9
+ eeODaD7mWceAFoQ0lzpUh5xgfh90c/7QuV/o2uJNQtDEcd0f8sO9Qw018
+ XMYj/0N4ClSLeLk6Xvr5CFOZnG6Ii8cpv6zDtaCPM5m8cSRfa1Ev72FcM
+ KPXdFd5HPsxyW150W02mrxhvRz1kIO9/Uy/EmxdTxQ0sSU9MwxlH6gtzp
+ XRjkJdRS4YLxpyBJHtxI1pGRUig/zHrp/d5xRwpHz92brpExAWR88ny2I A==;
+X-CSE-ConnectionGUID: puWXucFGSFWKzOz/Q6hmhw==
+X-CSE-MsgGUID: aGOGg69LRb+J2bSgQsfy0g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11613"; a="82648288"
+X-IronPort-AV: E=Sophos;i="6.19,305,1754982000"; d="scan'208";a="82648288"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Nov 2025 13:43:46 -0800
+X-CSE-ConnectionGUID: pJAhB7JySAGoJQwpaQIvaA==
+X-CSE-MsgGUID: /g/c9qBFS8SYZcN3oAykZg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,305,1754982000"; d="scan'208";a="189896523"
-Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
- by orviesa007.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Nov 2025 13:32:16 -0800
-Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
- fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Fri, 14 Nov 2025 13:32:14 -0800
-Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
- FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27 via Frontend Transport; Fri, 14 Nov 2025 13:32:14 -0800
-Received: from SN4PR2101CU001.outbound.protection.outlook.com (40.93.195.3) by
- edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Fri, 14 Nov 2025 13:32:14 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=jJ85IvlQle7gX4Iu7dem9XUeaxlfHJrLZpd2WzA4+MUcjBhxvVdv+hurvsN2htS5dISfGvu+uuhPCP5RHXIYaXkxWtRDaKTWV4hrd2xtSNjGyGkLwYBYDSCMRR/iNCV3ypDpZfDteYpZLjsvfg60mTMgXrw8UnScJ33u7Objed08HU4qAwb1mU2pjr+3cSAA4a2roWjqrCde1GpLseBV2qgTJKZ6b7QNUmIX3tuvMCoIhZNIogPQzyiY4Ycl6OiGtoBQZOWO2ahshV4zswL6TSmRbQZn+bPGVa4Itf3dIZCsEhuzGs0uo7xrGpHkTlUtyHiuv9vpqFRb30RVFOGPWw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=didvc8kA52rj0924yeKjwLNLXAGHEkynEbHFl1UZ/sA=;
- b=tzBsIHUNd9ZaFCW+xvhTQAii1SayoZ04No+0M2he8XpTsqRwX/pr28Wx6FXn/fgGdXQpErJ/kqxHhpaR0b7+QBlXNrmLADrOuHP0OisGeG2162EAdLWiqQL7cpeDJ14ulpXXDsTLyOjntAcBgsdG6PPjaB/BqyrTq3/ISFlgknS6QX5jGGR4E62sxGT76193fZ0NimEqgm1/lBY3RhIx9wV9ewnN96lo57HhPv2A+3FAr2NYvGdxZoxCqoL4Ptk/lDw/qkRMjJWgX9nWfVtIA0riOCyCYinveEEiVg3rCQNBFu9yXptgp0sT2p4LvuQbawOJZNIVs9L1YeS9Wu5aMw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from SA3PR11MB8046.namprd11.prod.outlook.com (2603:10b6:806:2fb::22)
- by PH0PR11MB7167.namprd11.prod.outlook.com (2603:10b6:510:1e9::8)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9320.17; Fri, 14 Nov
- 2025 21:32:12 +0000
-Received: from SA3PR11MB8046.namprd11.prod.outlook.com
- ([fe80::f04:d46a:1742:5c3c]) by SA3PR11MB8046.namprd11.prod.outlook.com
- ([fe80::f04:d46a:1742:5c3c%4]) with mapi id 15.20.9320.013; Fri, 14 Nov 2025
- 21:32:12 +0000
-From: "Wang, X" <x.wang@intel.com>
-To: "Lin, Shuicheng" <shuicheng.lin@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-CC: "Lin, Shuicheng" <shuicheng.lin@intel.com>
-Subject: RE: [PATCH] drm/xe: Fix freq kobject leak on sysfs_create_files
- failure
-Thread-Topic: [PATCH] drm/xe: Fix freq kobject leak on sysfs_create_files
- failure
-Thread-Index: AQHcVanLM8RFtzv7W0SoSjEUO4416rTyrsXA
-Date: Fri, 14 Nov 2025 21:32:12 +0000
-Message-ID: <SA3PR11MB804611CDBF833093BEDBB0DF86CAA@SA3PR11MB8046.namprd11.prod.outlook.com>
-References: <20251114205638.2184529-2-shuicheng.lin@intel.com>
-In-Reply-To: <20251114205638.2184529-2-shuicheng.lin@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SA3PR11MB8046:EE_|PH0PR11MB7167:EE_
-x-ms-office365-filtering-correlation-id: f59824aa-a63f-4d72-e178-08de23c54614
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|42112799006|1800799024|366016|376014|38070700021|7053199007; 
-x-microsoft-antispam-message-info: =?us-ascii?Q?udwDKB3jqybZiU41Mttl8LQj7dpW/eCLyoZB1V8GEtucEVUWNVyhqrvzkwZR?=
- =?us-ascii?Q?tdJBaYqTzdKqFtOyMgpwANsK0qjMdshnynLE+NTsZp4DGMHaB2AFAQtfsyTC?=
- =?us-ascii?Q?xVUPAnHso21rP2Olgsb8OIF9Mvb24BzEMKoSJBKkasgzEKIRHQVJhYhjOUAr?=
- =?us-ascii?Q?7bacv3ndMCcXe9q7w4i608SNmsUZTNxyCZdw/tx+6UHgjgSvhtIv9FqiviLp?=
- =?us-ascii?Q?MVlm2IMlSt1XFseM4kGa1kzx3pf0TZ4JH/f6dKihLxV2k6JN5Ftr7V5zqhD6?=
- =?us-ascii?Q?j/oqeAFBDrAjMCBaU++mc3jxpCrqaYl7uLs/+H0TDdROobdC3L9VxwCqyP19?=
- =?us-ascii?Q?6MNKBtHcvPYDdndiqxxrijWTqQ1dWdIaZcczNwupfw8H7VJpSaMQnpi5XGKF?=
- =?us-ascii?Q?ZwSYBwKwFQq7cOUD8jVLEL1ByUc9v35j337v8X1RZoTDTX4OO/uDrre25Udp?=
- =?us-ascii?Q?4YM56221k9Fzj+wyCmmYLGTLG2BDLo1c9u/bKOoQ6P/fTw6H0pEiYtZHNkKB?=
- =?us-ascii?Q?xBZjOxr1JdcwifQPtGmT/DtgQLushcHkAGHhTnydiz2fjUaeDsRmwlEN0G4P?=
- =?us-ascii?Q?8bItutUibZJNCNkqYQAlLAn7ps85r3yVtOuTisXppouVg3hh5BySaH+0eX4O?=
- =?us-ascii?Q?CwtqiKBszFAFw/wCBGzTR+ghCP9oPDsWLnw60CidbMF/tC1gsjM5Q3EVQPB+?=
- =?us-ascii?Q?BQwC6m8JJGMuUgY7CX8JpODfQtYmN4tNDJcY3THjDrjcaOoDw2/CkgvwcGMn?=
- =?us-ascii?Q?CnfWguLpBk6tSTvHbjG1Q16w6Ewd0nIBDlGqNS+VjzNUt4c3y2+0efG4US00?=
- =?us-ascii?Q?VV9vavsqAjKOMa0HqyIoIrIDvhGyBcjJNDsoAivPMQA+0XQ5ttUKt/8MBjIh?=
- =?us-ascii?Q?tWAr5mAyBgC41KNIedMMBh5Nxmb6jfdfSXFBowNl5WSiMwFhSu6Y05elxE2O?=
- =?us-ascii?Q?JyHVW6r2EEFdo4ibTYmBpVzyFzdjfj5Idyixq3rq+pfpWgiyfa+x9thZewYQ?=
- =?us-ascii?Q?JXbpWINHkyhuCuZQfQPM/tZF1eNnWPAjCZEHPU8yfAe1Fi8EpwL2CkROEVJ7?=
- =?us-ascii?Q?qm7ivDJlDi6Ct5GWyuqlIl7+993uStQxi+y4MbIHFM3HQNDU02UmQ3Z+cy/v?=
- =?us-ascii?Q?os4oKDIUR3+pWZXI8gAgvOhTyLXKbGK8b7ZgI3pBElWQET6Ny3Mk0LtotFqm?=
- =?us-ascii?Q?3X5phcgpUUOF2/hJJ4hzI/f7f8WDqUgqFgDHpFxUNPusieA10YFtqB46v13Q?=
- =?us-ascii?Q?S9zlbyOKaMZiO8TlhyLBLB9kD7FFl09j5mHnoj7a3SksqID4awsiwquLnTEm?=
- =?us-ascii?Q?t2hdpMi+lz3jnEsyZFIIjHv67QoFgRr+L8fGGzP9YW24vQg24bGGlOG1GQij?=
- =?us-ascii?Q?rC/beTOG0niQHzRimkMz0FPEYolxdMw/oHeS9yC8pZ/AXFENWiOCpvKESZmN?=
- =?us-ascii?Q?URpRJGuEyKnumRBzT3WRnD5Qx9y0YpaHGHwdj/JmN8ZWUnimB+xFnCDlciZO?=
- =?us-ascii?Q?nfZpHFDm+9BDQWw+QubJIrOcRhYV+CUWgVTX?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SA3PR11MB8046.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(42112799006)(1800799024)(366016)(376014)(38070700021)(7053199007);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?WjwY+CzL20HtoFSTQe3Ug8Uuv/tyCIE1xLvp2zPflc2KxL3YQBeSgkjmeOc6?=
- =?us-ascii?Q?0ey9i019u9WorLatw1t6EtabBBSWIYuMUCvJM7uY8v7QUVYRwgFLYverd9hx?=
- =?us-ascii?Q?yOLO2RADBbcZ13ETV2pkf2S5Han+OyWJ3yQOex5/aliYBaHeTJJOo0ac8aq5?=
- =?us-ascii?Q?QE+sjoY2/eZiirDmBmkUE4UQRjIwTDrEpaxtsE3kEyvXLAgk+oGZh+7A2sns?=
- =?us-ascii?Q?MhXvjGj3EKerZl6FrZSw6+3SEAXbsL5bX4kOGQMToLmN6+DML/T68iwhECzN?=
- =?us-ascii?Q?rqeBOBsQ3twvmawWHTL5ELdK9UxpACoE5YaiUiSvbMFRuYuyYaAL/uGefNUi?=
- =?us-ascii?Q?CMV2H3z1H8w6ooonAF/5gU3SEHXUrCOQzc+oWezXlXjEerU9JYzcNvNxhv64?=
- =?us-ascii?Q?V1NYFGd0HILo23+9HtGV/ulzGC6k0tLhJXcC5e16g5epFQmGVB3ljaCCl5nv?=
- =?us-ascii?Q?qSl7Q9tz3RzD2pUfM9TIuglOF3/86VCopmU6zwvGkZTej31iUiJtTvukD0Dk?=
- =?us-ascii?Q?RfC815fJOX6KIMD1WOMdFoWf9hQaW6wsaZm/NA+Lu61aLw1E/+q0jKzoJ4NH?=
- =?us-ascii?Q?RrrLwiBYQFDF7Y9C3diRLVDBKPyCPTHcBIakQxti/Drs094TWv80pYffJbaf?=
- =?us-ascii?Q?6FqTA6i3+7Sea1wkA/9dvEiOGUlep2jG78zkjaxG0R4TMsuQSplqE20ZV0cI?=
- =?us-ascii?Q?NwCfxhPo4DOOZ9LQcv7da6Ygvysyzx5QlUjTVlpjhU0D1shEpdoeUrddfMM+?=
- =?us-ascii?Q?7l8sPX4eJCgidgnPxyALhsZQZho1m0//oqkPtU+rRqy99Hvno/OiDbXL5T1z?=
- =?us-ascii?Q?wvQH8WB+GTwrxMx350ZIkoz2LnIkp6M9mUJHQ1udWFKkS3z9P+qytykJ0RHi?=
- =?us-ascii?Q?iTurmVRUvtXt+ZAUOIhCrwGxOf0S0HAqf8iKEJhvoeLqT0HsvVd9Iq+dahMj?=
- =?us-ascii?Q?p5VCmGFpje7JjeJ/Z5CaOD9S+HaCkZ1JfkC23KLvaNKw/qWGrudEtmOxwMv6?=
- =?us-ascii?Q?lNNlJzjH/nhhypmUq81yv5CPHm8UaLoBmkdp2jHCVfYjSnp5kbPYMINUldrW?=
- =?us-ascii?Q?gN5SgsCWNPUJ1muF2f/YXLPTw102Ad9eTdhJSX9Fd4w67lAVbkW/BDfj1X5m?=
- =?us-ascii?Q?LE+Oa6i5nSvyYd1XsMIcNLZC7M8t9K2zYU5LlP6OKEjqoYYIjHAqitcE8iox?=
- =?us-ascii?Q?I8F2+eo97Mf5N/Oi+8inKaIHHwz2BjrNj/KVO61LRXKrae0l4Ww/4gWYd5w1?=
- =?us-ascii?Q?LRLfAvBKspcu2uaMNGlvcS7HbVQ348BKF3TFK25/WfLp9bpy8wmQTKneUwBI?=
- =?us-ascii?Q?Wk/OkqUsPlfcV4zyfy3zghmiQ8R+vFcpIdKjuxChdsABaVXsJly7gc7wHDR0?=
- =?us-ascii?Q?z+SNvyDCaVn9vk+nnuRBoxmGaXEHmCdiYx8fDkLhAgOZoYQJ22ibnjEqTijU?=
- =?us-ascii?Q?yFO6HK4INEsrKLcixCrP3EjR+iAIcsNwEyYJ9wtxB1wj/xewpImInfLiubq/?=
- =?us-ascii?Q?Rm5rlBLfGh88+Ylf0NSRqh+91HzoicjcxqUL3t/AksFZ+er3Y9wKRHLSe0kg?=
- =?us-ascii?Q?LeGS+ttD1ES2SsJ2W1I=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-IronPort-AV: E=Sophos;i="6.19,305,1754982000"; d="scan'208";a="190308247"
+Received: from mdroper-desk1.fm.intel.com ([10.1.39.133])
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Nov 2025 13:43:45 -0800
+From: Matt Roper <matthew.d.roper@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: matthew.d.roper@intel.com, Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Gustavo Sousa <gustavo.sousa@intel.com>
+Subject: [PATCH v3 00/27] Scope-based forcewake and runtime PM
+Date: Fri, 14 Nov 2025 13:43:36 -0800
+Message-ID: <20251114214335.2388972-29-matthew.d.roper@intel.com>
+X-Mailer: git-send-email 2.51.1
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SA3PR11MB8046.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f59824aa-a63f-4d72-e178-08de23c54614
-X-MS-Exchange-CrossTenant-originalarrivaltime: 14 Nov 2025 21:32:12.4230 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: EisGC38LOa56rNkOzC+CaMAcmlYLRPSg9shlam6j+vwkTlKtcUcFz3BHSSXiSYHqqoJ2LH+FzrNV2pVRhsMuGQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB7167
-X-OriginatorOrg: intel.com
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -183,50 +66,191 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-A similar issue can be found in function :  xe_gt_ccs_mode_sysfs_init(struc=
-t xe_gt *gt)
-drivers/gpu/drm/xe/xe_gt_ccs_mode.c
+Forcewake and runtime PM both follow reference-counted get/put models;
+when used in functions that can encounter errors and return early, it's
+easy for developers to make mistakes and fail to drop a reference on all
+of the error paths.  Cleanup of these reference counts is often
+addressed by goto-based error handling which is somewhat ugly and
+subject to its own set of mistakes once we accumulate too many error
+labels in a function.
 
-Can you fix it also?
+Scope-based cleanup ([1][2]) has been gaining increasing popularity in
+the Linux kernel for cleaning up various kinds of resources in a more
+automated way when code has lots of error paths and early exits.  Let's
+add scope-based cleanup for both forcewake and runtime PM, based on the
+mechanisms provided in include/linux/cleanup.h.  Scope-based cleanup
+allows cleanup destructors to be executed automatically when the current
+scope is exited by any means (end of block, return, break, etc.).
 
-- Xin
-> -----Original Message-----
-> From: Intel-xe <intel-xe-bounces@lists.freedesktop.org> On Behalf Of
-> Shuicheng Lin
-> Sent: Friday, November 14, 2025 12:57
-> To: intel-xe@lists.freedesktop.org
-> Cc: Lin, Shuicheng <shuicheng.lin@intel.com>
-> Subject: [PATCH] drm/xe: Fix freq kobject leak on sysfs_create_files fail=
-ure
->=20
-> Ensure gt->freq is released when sysfs_create_files() fails in xe_gt_freq=
-_init().
-> Without this, the kobject would leak.
-> Add kobject_put() before returning the error.
->=20
-> Fixes: fdc81c43f0c1 ("drm/xe: use devm_add_action_or_reset() helper")
-> Signed-off-by: Shuicheng Lin <shuicheng.lin@intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_gt_freq.c | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
->=20
-> diff --git a/drivers/gpu/drm/xe/xe_gt_freq.c
-> b/drivers/gpu/drm/xe/xe_gt_freq.c index 849ea6c86e8e..ce3c7810469f
-> 100644
-> --- a/drivers/gpu/drm/xe/xe_gt_freq.c
-> +++ b/drivers/gpu/drm/xe/xe_gt_freq.c
-> @@ -293,8 +293,10 @@ int xe_gt_freq_init(struct xe_gt *gt)
->  		return -ENOMEM;
->=20
->  	err =3D sysfs_create_files(gt->freq, freq_attrs);
-> -	if (err)
-> +	if (err) {
-> +		kobject_put(gt->freq);
->  		return err;
-> +	}
->=20
->  	err =3D devm_add_action_or_reset(xe->drm.dev, freq_fini, gt->freq);
->  	if (err)
-> --
-> 2.49.0
+For xe_runtime_pm_{get,put} pairs that were grabbed and released within
+a single function or block, the preferred replacement is now just
+
+        guard(xe_pm_runtime_noresume)(xe);
+
+which will take care of releasing the runtime PM reference
+automatically.  scoped_guard() can be used instead if the reference
+should only be held over part of the block.  There are also guard
+variants added for xe_pm_runtime_noresume and xe_pm_runtime_ioctl that
+allow replacement of those alternate functions as well.
+
+Unlike runtime PM, where all reference tracking is done within the
+object parameter itself, forcewake is currently a model where get
+operations return a cookie that needs to be passed back to put
+operations.  That necessitates a slightly different type of cleanup
+helper (CLASS instead of guard), although the underlying mechanisms are
+the same.  For forcewake that is grabbed and released within a single
+function or block, the preferred form is now:
+
+        CLASS(xe_force_wake, fw_ref)(gt_to_fw(gt), XE_FW_GT);
+
+which, like the runtime PM equivalent, will cause the forcewake
+reference to be dropped automatically.  If forcewake needs to be held
+over only a subset of the current block,
+
+        xe_with_force_wake(fw_ref, gt_to_fw(gt), XE_FW_GT) { ... }
+
+can be used in the same way scoped_guard() is used for runtime PM.
+
+The first few patches in this series make some general cleanups and
+restructuring of the existing force wake code.  Then the new guards and
+classes for runtime PM and forcewake are defined.  Finally, most of the
+existing runtime PM and forcewake usage in the driver is converted to
+the scope-based form in the remainder of the series.  Some of the
+conversions eliminate goto-based cleanup models and/or significantly
+simplify the code.  Other conversions don't significantly simplify the
+code (aside from a slight reduction in line count), but are still useful
+for consistency across our codebase.
+
+An advantage of doing the conversion everywhere possible, not just the
+places where it noticeably simplifies the code, is that it helps
+highlight the remaining get/put usage as special cases where wake
+references follow more complicated lifetimes (e.g., obtained in one
+function and released in a different one, often tied to some other type
+of resource or operation).  With fewer direct get/put calls overall, its
+easier to identify the ones that remain as special cases and make sure
+they truly are paired up properly.
+
+There's other areas where scope-based cleanup could potentially be
+applied in the future (e.g., mutex locks, bo locking, etc.), but this
+series does not try to address those, even in places where those
+resources are also part of the same error handling cleanup paths as
+forcewake and runtime PM.  We can potentially think about converting
+other types of resources to scope-based cleanup down the road if it
+winds up working well here for forcewake and PM.
+
+v2:
+ - Add a proper success condition to the xe_pm_runtime_ioctl class so
+   that conditional guards properly distinguish success (requiring
+   cleanup) from errors (no cleanup).  (CI)
+ - Don't bother changing the signature of xe_force_wake_get() before
+   adding the forcewake class.  Simply create a separate constructor
+   that wraps xe_force_wake_get().  (Michal)
+ - Split ACQUIRE_ERR assignments from the condition checks.  Even though
+   this takes an extra line of code and deviates from most of the other
+   uses in the kernel, it's easier to read (and avoids checkpatch
+   warnings).
+
+v3:
+ - Wrap xe_with_force_wake's 'done' marker in __UNIQUE_ID. (Gustavo)
+ - Add a general xe_force_wake_release_only class which eliminates the
+   need for the one-off xe_force_wake_any_engine class later in the
+   series.  (Gustavo)
+ - Drop scope-based usage from gt_reset_worker() since goto-based flows
+   are still used there.  (Gustavo)
+ - Add kerneldoc to existing _get functions explaining that scope-based
+   options should be preferred when possible.  (Gustavo)
+ - Eliminate several 'ret' local variables that become unnecessary after
+   the scope-based conversion.  (Gustavo)
+
+References:
+ [1] https://www.kernel.org/doc/html/next/core-api/cleanup.html
+ [2] https://lwn.net/Articles/934679/
+
+
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Gustavo Sousa <gustavo.sousa@intel.com>
+
+Matt Roper (27):
+  drm/xe/forcewake: Add scope-based cleanup for forcewake
+  drm/xe/pm: Add scope-based cleanup helper for runtime PM
+  drm/xe/gt: Use scope-based cleanup
+  drm/xe/gt_idle: Use scope-based cleanup
+  drm/xe/guc: Use scope-based cleanup
+  drm/xe/guc_pc: Use scope-based cleanup
+  drm/xe/mocs: Use scope-based cleanup
+  drm/xe/pat: Use scope-based forcewake
+  drm/xe/pxp: Use scope-based cleanup
+  drm/xe/gsc: Use scope-based cleanup
+  drm/xe/device: Use scope-based cleanup
+  drm/xe/devcoredump: Use scope-based cleanup
+  drm/xe/display: Use scoped-cleanup
+  drm/xe: Return forcewake reference type from
+    force_wake_get_any_engine()
+  drm/xe/drm_client: Use scope-based cleanup
+  drm/xe/gt_debugfs: Use scope-based cleanup
+  drm/xe/huc: Use scope-based forcewake
+  drm/xe/query: Use scope-based forcewake
+  drm/xe/reg_sr: Use scope-based forcewake
+  drm/xe/vram: Use scope-based forcewake
+  drm/xe/bo: Use scope-based runtime PM
+  drm/xe/ggtt: Use scope-based runtime pm
+  drm/xe/hwmon: Use scope-based runtime PM
+  drm/xe/sriov: Use scope-based runtime PM
+  drm/xe/tests: Use scope-based runtime PM
+  drm/xe/sysfs: Use scope-based runtime power management
+  drm/xe/debugfs: Use scope-based runtime PM
+
+ drivers/gpu/drm/xe/display/xe_fb_pin.c        |  23 ++--
+ drivers/gpu/drm/xe/display/xe_hdcp_gsc.c      |  31 ++---
+ drivers/gpu/drm/xe/tests/xe_bo.c              |  10 +-
+ drivers/gpu/drm/xe/tests/xe_dma_buf.c         |   3 +-
+ drivers/gpu/drm/xe/tests/xe_migrate.c         |  10 +-
+ drivers/gpu/drm/xe/tests/xe_mocs.c            |  27 ++--
+ drivers/gpu/drm/xe/xe_bo.c                    |   8 +-
+ drivers/gpu/drm/xe/xe_debugfs.c               |  16 +--
+ drivers/gpu/drm/xe/xe_devcoredump.c           |  30 ++--
+ drivers/gpu/drm/xe/xe_device.c                |  33 ++---
+ drivers/gpu/drm/xe/xe_device_sysfs.c          |  33 ++---
+ drivers/gpu/drm/xe/xe_drm_client.c            |  69 +++++-----
+ drivers/gpu/drm/xe/xe_force_wake.c            |   7 +
+ drivers/gpu/drm/xe/xe_force_wake.h            |  40 ++++++
+ drivers/gpu/drm/xe/xe_ggtt.c                  |   3 +-
+ drivers/gpu/drm/xe/xe_gsc.c                   |  21 +--
+ drivers/gpu/drm/xe/xe_gsc_debugfs.c           |   3 +-
+ drivers/gpu/drm/xe/xe_gsc_proxy.c             |  17 +--
+ drivers/gpu/drm/xe/xe_gt.c                    | 130 ++++++------------
+ drivers/gpu/drm/xe/xe_gt_debugfs.c            |  29 ++--
+ drivers/gpu/drm/xe/xe_gt_freq.c               |  27 ++--
+ drivers/gpu/drm/xe/xe_gt_idle.c               |  41 ++----
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c   |  12 +-
+ drivers/gpu/drm/xe/xe_gt_throttle.c           |   9 +-
+ drivers/gpu/drm/xe/xe_guc.c                   |  13 +-
+ drivers/gpu/drm/xe/xe_guc_debugfs.c           |   8 +-
+ drivers/gpu/drm/xe/xe_guc_log.c               |  10 +-
+ drivers/gpu/drm/xe/xe_guc_pc.c                |  62 +++------
+ drivers/gpu/drm/xe/xe_guc_submit.c            |  11 +-
+ drivers/gpu/drm/xe/xe_guc_tlb_inval.c         |   4 +-
+ drivers/gpu/drm/xe/xe_huc.c                   |   7 +-
+ drivers/gpu/drm/xe/xe_huc_debugfs.c           |   3 +-
+ drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.c |  16 +--
+ drivers/gpu/drm/xe/xe_hwmon.c                 |  52 ++-----
+ drivers/gpu/drm/xe/xe_mocs.c                  |  18 +--
+ drivers/gpu/drm/xe/xe_pat.c                   |  36 ++---
+ drivers/gpu/drm/xe/xe_pci_sriov.c             |  10 +-
+ drivers/gpu/drm/xe/xe_pm.c                    |  21 +++
+ drivers/gpu/drm/xe/xe_pm.h                    |  17 +++
+ drivers/gpu/drm/xe/xe_pxp.c                   |  55 +++-----
+ drivers/gpu/drm/xe/xe_query.c                 |  16 +--
+ drivers/gpu/drm/xe/xe_reg_sr.c                |  17 +--
+ drivers/gpu/drm/xe/xe_sriov_pf_debugfs.c      |   6 +-
+ drivers/gpu/drm/xe/xe_sriov_pf_sysfs.c        |  16 +--
+ drivers/gpu/drm/xe/xe_sriov_vf_ccs.c          |   5 +-
+ drivers/gpu/drm/xe/xe_tile_debugfs.c          |   8 +-
+ drivers/gpu/drm/xe/xe_tile_sriov_pf_debugfs.c |   3 +-
+ drivers/gpu/drm/xe/xe_vram.c                  |   6 +-
+ 48 files changed, 399 insertions(+), 653 deletions(-)
+
+-- 
+2.51.1
 
