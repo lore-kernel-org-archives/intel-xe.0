@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 19070CEACEF
-	for <intel-xe@archiver.kernel.org>; Sat, 15 Nov 2025 00:14:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D396ECEACF9
+	for <intel-xe@archiver.kernel.org>; Sat, 15 Nov 2025 00:23:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C928710ED54;
-	Sat, 15 Nov 2025 00:14:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9A05810EBC2;
+	Sat, 15 Nov 2025 00:23:23 +0000 (UTC)
 Received: from 10055242dc62 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B80A110ED59;
- Sat, 15 Nov 2025 00:14:42 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6952083015148554720=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 268B010EBA9;
+ Sat, 15 Nov 2025 00:23:23 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Scope-based_forcewake_and_r?=
- =?utf-8?q?untime_PM_=28rev4=29?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe=3A_expose_PAT_soft?=
+ =?utf-8?q?ware_table_via_debugfs_=28rev3=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matt Roper" <matthew.d.roper@intel.com>
+To: "Xin Wang" <x.wang@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Sat, 15 Nov 2025 00:14:42 -0000
-Message-ID: <176316568274.55609.2521696956660746826@10055242dc62>
+Date: Sat, 15 Nov 2025 00:23:23 -0000
+Message-ID: <176316620315.56641.17272607946105411340@10055242dc62>
 X-Patchwork-Hint: ignore
-References: <20251114214335.2388972-29-matthew.d.roper@intel.com>
-In-Reply-To: <20251114214335.2388972-29-matthew.d.roper@intel.com>
+References: <20251114224055.242690-1-x.wang@intel.com>
+In-Reply-To: <20251114224055.242690-1-x.wang@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,121 +40,82 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============6952083015148554720==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: Scope-based forcewake and runtime PM (rev4)
-URL   : https://patchwork.freedesktop.org/series/157253/
-State : success
+Series: drm/xe: expose PAT software table via debugfs (rev3)
+URL   : https://patchwork.freedesktop.org/series/157558/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-4110-5f250ba2e3bb0b4541473f2bd5dd8a8f22305b61_BAT -> xe-pw-157253v4_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+2de9a3901bc28757c7906b454717b64e2a214021
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 6904574765cf2cd5aa77bcb2f51688b6c1d402e2
+Author: Xin Wang <x.wang@intel.com>
+Date:   Fri Nov 14 22:40:55 2025 +0000
 
-Summary
--------
+    drm/xe: expose PAT software table via debugfs
+    
+    The existing "pat" debugfs node dumps the live PAT registers. Under SR-IOV
+    the VF cannot touch those registers, so the file vanishes and users lose
+    all PAT visibility. Add a VF-safe "pat_sw_config" entry to the VF-safe
+    debugfs list. It prints the cached PAT table the driver programmed, rather
+    than poking HW, so PF and VF instances present the same view.
+    
+    This lets IGT and other tools query the PAT configuration without carrying
+    platform-specific tables or mirroring kernel logic.
+    
+    v2: (Jonathan)
+    - Only append "(* = reserved entry)" to the PAT table header on Xe2+
+    platforms where it actually applies.
+    - Deduplicate the PTA/ATS mode printing by introducing the small
+    drm_printf_pat_mode() helper macro.
+    
+    v3: (Matt)
+    - Print IDX[XE_CACHE_NONE_COMPRESSION] on every Xe2+ platform so the dump
+    always reflects the value the driver might use (even if it defaults to 0)
+    and future IP revisions don’t need extra condition tweaks.
+    
+    Suggested-by: Matt Roper <matthew.d.roper@intel.com>
+    Signed-off-by: Xin Wang <x.wang@intel.com>
+    Reviewed-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
++ /mt/dim checkpatch 5edcc4403be062363cc220b7c5840bda1c14615f drm-intel
+6904574765cf drm/xe: expose PAT software table via debugfs
+-:54: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pat' - possible side-effects?
+#54: FILE: drivers/gpu/drm/xe/xe_pat.c:588:
++#define drm_printf_pat_mode(p, name, pat) \
++	{ \
++		drm_printf(p, name "= [ %u, %u, %u, %u, %u, %u ]  (%#8x)\n", \
++		   !!(pat & XE2_NO_PROMOTE), \
++		   !!(pat & XE2_COMP_EN), \
++		   REG_FIELD_GET(XE2_L3_CLOS, pat), \
++		   REG_FIELD_GET(XE2_L3_POLICY, pat), \
++		   REG_FIELD_GET(XE2_L4_POLICY, pat), \
++		   REG_FIELD_GET(XE2_COH_MODE, pat), \
++		   pat); \
++	}
 
-  **SUCCESS**
+-:54: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'pat' may be better as '(pat)' to avoid precedence issues
+#54: FILE: drivers/gpu/drm/xe/xe_pat.c:588:
++#define drm_printf_pat_mode(p, name, pat) \
++	{ \
++		drm_printf(p, name "= [ %u, %u, %u, %u, %u, %u ]  (%#8x)\n", \
++		   !!(pat & XE2_NO_PROMOTE), \
++		   !!(pat & XE2_COMP_EN), \
++		   REG_FIELD_GET(XE2_L3_CLOS, pat), \
++		   REG_FIELD_GET(XE2_L3_POLICY, pat), \
++		   REG_FIELD_GET(XE2_L4_POLICY, pat), \
++		   REG_FIELD_GET(XE2_COH_MODE, pat), \
++		   pat); \
++	}
 
-  No regressions found.
-
-  
-
-Participating hosts (13 -> 13)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-157253v4_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@xe_waitfence@engine:
-    - bat-dg2-oem2:       [FAIL][1] ([Intel XE#6519]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4110-5f250ba2e3bb0b4541473f2bd5dd8a8f22305b61/bat-dg2-oem2/igt@xe_waitfence@engine.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157253v4/bat-dg2-oem2/igt@xe_waitfence@engine.html
-
-  
-  [Intel XE#6519]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519
-
-
-Build changes
--------------
-
-  * Linux: xe-4110-5f250ba2e3bb0b4541473f2bd5dd8a8f22305b61 -> xe-pw-157253v4
-
-  IGT_8625: 69d0aa3606a205aec90d6145bb20cbae755e8559 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-4110-5f250ba2e3bb0b4541473f2bd5dd8a8f22305b61: 5f250ba2e3bb0b4541473f2bd5dd8a8f22305b61
-  xe-pw-157253v4: 157253v4
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157253v4/index.html
-
---===============6952083015148554720==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Scope-based forcewake and runtime PM (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/157253/">https://patchwork.freedesktop.org/series/157253/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157253v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157253v4/index.html</a></td></tr>
-
-</table>
+total: 0 errors, 0 warnings, 2 checks, 104 lines checked
 
 
-    <h1>CI Bug Log - changes from xe-4110-5f250ba2e3bb0b4541473f2bd5dd8a8f22305b61_BAT -&gt; xe-pw-157253v4_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-157253v4_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_waitfence@engine:<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4110-5f250ba2e3bb0b4541473f2bd5dd8a8f22305b61/bat-dg2-oem2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519">Intel XE#6519</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157253v4/bat-dg2-oem2/igt@xe_waitfence@engine.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4110-5f250ba2e3bb0b4541473f2bd5dd8a8f22305b61 -&gt; xe-pw-157253v4</li>
-</ul>
-<p>IGT_8625: 69d0aa3606a205aec90d6145bb20cbae755e8559 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-4110-5f250ba2e3bb0b4541473f2bd5dd8a8f22305b61: 5f250ba2e3bb0b4541473f2bd5dd8a8f22305b61<br />
-  xe-pw-157253v4: 157253v4</p>
-
-</body>
-</html>
-
---===============6952083015148554720==--
