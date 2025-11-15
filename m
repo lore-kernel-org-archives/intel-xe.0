@@ -4,52 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 00B12CEB2DD
-	for <intel-xe@archiver.kernel.org>; Sat, 15 Nov 2025 15:27:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5A8CDCEB2C6
+	for <intel-xe@archiver.kernel.org>; Sat, 15 Nov 2025 16:00:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B8DA710E0BE;
-	Sat, 15 Nov 2025 15:27:10 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PtW+vrCe";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0511610E072
- for <intel-xe@lists.freedesktop.org>; Sat, 15 Nov 2025 15:27:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1763220430; x=1794756430;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=M6WnkzuSMGimXYRXw8NxukjHx/6YS8M0iO5ko/Vj/Wg=;
- b=PtW+vrCepefbSKEkPABI//Kcqo6yA/qFhaXbZPkE/RP0VowUWkgaG/45
- ufZgt1of1kpqDgcaMsq3i2JaDvSkyMb/IVeu25qecMAzuqPOMQEKuWGbq
- whQfZ/DhXaiDd63YQi3nadzj9i+cVIQmSlPFO3KMgUC2x8rGu7cCe59LH
- cXkhLpIb3k0oOvzya5sc7I6lK5qyJ2PMfoP7dfAj4HHwpqvzTu2TAdi5N
- Ds6Hdol868mMJPF2OaSDPpD58z7ArZSE4nk9txwBwr6+WXXCMPM3zZWEK
- nH6Lq+WNEjfUZXrWfb6rDyOcUFi3/PxH9fgZN7VwI+4Ee3BZb0ghpjnUp A==;
-X-CSE-ConnectionGUID: aVtnie/xTy2snuasYtTLCA==
-X-CSE-MsgGUID: FhGEPaSySnGWEy4bCwi5jw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11614"; a="75607961"
-X-IronPort-AV: E=Sophos;i="6.19,307,1754982000"; d="scan'208";a="75607961"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Nov 2025 07:27:09 -0800
-X-CSE-ConnectionGUID: U1wpV3KDQDCewPCzPzoctA==
-X-CSE-MsgGUID: 7RGlM8OeReKf5wpOJweSHg==
-X-ExtLoop1: 1
-Received: from ngusev-mobl1.ger.corp.intel.com (HELO
- mwajdecz-hp.clients.intel.com) ([10.245.98.92])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Nov 2025 07:27:08 -0800
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH] drm/xe/pf: Fix .bulk_profile/sched_priority description
-Date: Sat, 15 Nov 2025 16:26:58 +0100
-Message-ID: <20251115152659.10853-1-michal.wajdeczko@intel.com>
-X-Mailer: git-send-email 2.43.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id A21E110E062;
+	Sat, 15 Nov 2025 16:00:47 +0000 (UTC)
+Received: from 10055242dc62 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1657810E062;
+ Sat, 15 Nov 2025 16:00:46 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7741548672416525035=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/pf=3A_Use_div=5Fu64_?=
+ =?utf-8?q?when_calculating_GGTT_profile?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Sat, 15 Nov 2025 16:00:46 -0000
+Message-ID: <176322244608.60065.14552670877564599696@10055242dc62>
+X-Patchwork-Hint: ignore
+References: <20251115151323.10828-1-michal.wajdeczko@intel.com>
+In-Reply-To: <20251115151323.10828-1-michal.wajdeczko@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,32 +36,155 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The .bulk_profile/sched_priority file is always write-only, unlike
-the profile/sched_priority files which can be either read-write or
-read-only (in case of PF or VFs respectively).
+--===============7741548672416525035==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Fixes: 6b514ed2d9a7 ("drm/xe/pf: Add documentation for sriov_admin attributes")
-Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
----
- Documentation/ABI/testing/sysfs-driver-intel-xe-sriov | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+== Series Details ==
 
-diff --git a/Documentation/ABI/testing/sysfs-driver-intel-xe-sriov b/Documentation/ABI/testing/sysfs-driver-intel-xe-sriov
-index 2fd7e9b7bacc..7f5ef9eada53 100644
---- a/Documentation/ABI/testing/sysfs-driver-intel-xe-sriov
-+++ b/Documentation/ABI/testing/sysfs-driver-intel-xe-sriov
-@@ -119,7 +119,7 @@ Description:
- 			The GT preemption timeout (PT) in [us] to be applied to all functions.
- 			See sriov_admin/{pf,vf<N>}/profile/preempt_timeout_us for more details.
- 
--		sched_priority: (RW/RO) string
-+		sched_priority: (WO) string
- 			The GT scheduling priority to be applied for all functions.
- 			See sriov_admin/{pf,vf<N>}/profile/sched_priority for more details.
- 
--- 
-2.47.1
+Series: drm/xe/pf: Use div_u64 when calculating GGTT profile
+URL   : https://patchwork.freedesktop.org/series/157626/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from xe-4114-5edcc4403be062363cc220b7c5840bda1c14615f_BAT -> xe-pw-157626v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (13 -> 13)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-157626v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_waitfence@engine:
+    - bat-dg2-oem2:       [PASS][1] -> [FAIL][2] ([Intel XE#6519])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4114-5edcc4403be062363cc220b7c5840bda1c14615f/bat-dg2-oem2/igt@xe_waitfence@engine.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157626v1/bat-dg2-oem2/igt@xe_waitfence@engine.html
+
+  
+#### Possible fixes ####
+
+  * igt@xe_waitfence@abstime:
+    - bat-dg2-oem2:       [TIMEOUT][3] ([Intel XE#6506]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4114-5edcc4403be062363cc220b7c5840bda1c14615f/bat-dg2-oem2/igt@xe_waitfence@abstime.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157626v1/bat-dg2-oem2/igt@xe_waitfence@abstime.html
+
+  * igt@xe_waitfence@reltime:
+    - bat-dg2-oem2:       [FAIL][5] ([Intel XE#6520]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4114-5edcc4403be062363cc220b7c5840bda1c14615f/bat-dg2-oem2/igt@xe_waitfence@reltime.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157626v1/bat-dg2-oem2/igt@xe_waitfence@reltime.html
+
+  
+  [Intel XE#6506]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506
+  [Intel XE#6519]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519
+  [Intel XE#6520]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520
+
+
+Build changes
+-------------
+
+  * Linux: xe-4114-5edcc4403be062363cc220b7c5840bda1c14615f -> xe-pw-157626v1
+
+  IGT_8625: 69d0aa3606a205aec90d6145bb20cbae755e8559 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-4114-5edcc4403be062363cc220b7c5840bda1c14615f: 5edcc4403be062363cc220b7c5840bda1c14615f
+  xe-pw-157626v1: 157626v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157626v1/index.html
+
+--===============7741548672416525035==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/pf: Use div_u64 when calculating GGTT profile</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/157626/">https://patchwork.freedesktop.org/series/157626/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157626v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157626v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4114-5edcc4403be062363cc220b7c5840bda1c14615f_BAT -&gt; xe-pw-157626v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-157626v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@xe_waitfence@engine:<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4114-5edcc4403be062363cc220b7c5840bda1c14615f/bat-dg2-oem2/igt@xe_waitfence@engine.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157626v1/bat-dg2-oem2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519">Intel XE#6519</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@xe_waitfence@abstime:</p>
+<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4114-5edcc4403be062363cc220b7c5840bda1c14615f/bat-dg2-oem2/igt@xe_waitfence@abstime.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506">Intel XE#6506</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157626v1/bat-dg2-oem2/igt@xe_waitfence@abstime.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@xe_waitfence@reltime:</p>
+<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4114-5edcc4403be062363cc220b7c5840bda1c14615f/bat-dg2-oem2/igt@xe_waitfence@reltime.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520">Intel XE#6520</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157626v1/bat-dg2-oem2/igt@xe_waitfence@reltime.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4114-5edcc4403be062363cc220b7c5840bda1c14615f -&gt; xe-pw-157626v1</li>
+</ul>
+<p>IGT_8625: 69d0aa3606a205aec90d6145bb20cbae755e8559 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-4114-5edcc4403be062363cc220b7c5840bda1c14615f: 5edcc4403be062363cc220b7c5840bda1c14615f<br />
+  xe-pw-157626v1: 157626v1</p>
+
+</body>
+</html>
+
+--===============7741548672416525035==--
