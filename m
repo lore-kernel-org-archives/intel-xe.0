@@ -4,110 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0E863CED240
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C42C5CED24D
 	for <intel-xe@archiver.kernel.org>; Mon, 17 Nov 2025 13:22:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 222D210E38B;
-	Mon, 17 Nov 2025 13:22:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 550F610E3BE;
+	Mon, 17 Nov 2025 13:22:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linux.dev header.i=@linux.dev header.b="U0xyIRec";
+	dkim=pass (2048-bit key; secure) header.d=wbinvd.org header.i=@wbinvd.org header.b="J7YCQsWd";
 	dkim-atps=neutral
-X-Greylist: delayed 454 seconds by postgrey-1.36 at gabe;
- Mon, 10 Nov 2025 23:45:33 UTC
-Received: from out-170.mta0.migadu.com (out-170.mta0.migadu.com
- [91.218.175.170])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 79FBA10E333;
- Mon, 10 Nov 2025 23:45:33 +0000 (UTC)
-Message-ID: <3eb5379f-c7ad-4aea-ab9a-20e07b7f34d0@linux.dev>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
- t=1762817866;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=N5NdZ3Il1D+l8lwQLcK5dXwNIadjasDY9t8ilnV/mV0=;
- b=U0xyIRecUBR+iYd+jFcmevJu/4H+A2bbNJnN96yfE0hlgn9ZMrH3LxAIKYqZS4s3cJ1uvm
- +7WK+gk43pd/VuQQ8rDReqm1AlKlWm8GBWmK3v11GgPPZIdbI1RU8LPuoyCqW5EbUBDj5d
- 3Ou4TSlLX99wMRUdq/vNAC0vrqSI3Ow=
-Date: Mon, 10 Nov 2025 23:37:33 +0000
+Received: from mail-pg1-f182.google.com (mail-pg1-f182.google.com
+ [209.85.215.182])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9FD0B10E113
+ for <intel-xe@lists.freedesktop.org>; Sun, 16 Nov 2025 16:12:21 +0000 (UTC)
+Received: by mail-pg1-f182.google.com with SMTP id
+ 41be03b00d2f7-bc4b952cc9dso2258495a12.3
+ for <intel-xe@lists.freedesktop.org>; Sun, 16 Nov 2025 08:12:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=wbinvd.org; s=wbinvd; t=1763309541; x=1763914341; darn=lists.freedesktop.org;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=t5cd4+npAUuKnvf7yqSeiNwdTs4BeFZNvL4j+IfglEU=;
+ b=J7YCQsWdriTDBavzIwU+4xs3R71UrUuvTyvEI7HSrR/rL9VK05BcUieRgLjQJMdTnB
+ bEQ7mz06/YvPEvTn2IogpgcGaoyuqFAhzW98pqimz/sp1nFH/UlDWoNjzM/LpobVet/W
+ xFmYI4WOkNgaJx4ZdIoWojB4cKQduVg5wKx1UR1fMacNo0zUfzh38huNqfCatW3m3XzO
+ a/1YJ9yJY7DRpcEK8xsE+mJXf9C7Yy/PVCHAL5kW+S5InHmkY2gmOiS/nmVKOARLYc30
+ qhLcPw1Ph3OiM8XLCeTSP1zE5vlG3SyyyhHoQMmjnlMzQNtfRGzkbkoyFCTVlimTAjvJ
+ WEUw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1763309541; x=1763914341;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc:subject
+ :date:message-id:reply-to;
+ bh=t5cd4+npAUuKnvf7yqSeiNwdTs4BeFZNvL4j+IfglEU=;
+ b=IJk3Ol5F0b1TizAgYeOV5PzS/F6PF2FGjUqNrr1L+QX/NNeqQtoXl5qx9NFDA8J5E9
+ WWSDUnXWWWHR0z1YGELIpQManALsfNvxW4DkQE+PCfmHpIvJ+3cHid9vsOz3rhXCDR5+
+ 3ft5l62a34kAQyeLywjnVHClcMF0Nvmvb5/QWk+Ahg8v4CzIiu9+abfqODZQ+0ujs70E
+ +7fWoXAY1pn6ytd69fuad5HfKPMojTle5NBMfAokgUpHuHJHiIsxNmTnQeHaMDWdljt7
+ pgxy06gIspSop+ePmod4n3Hqj7f5Zck8i3mEEidpG9MgUxL8kTMzhIIZN/rHrsQ4XMve
+ q3aw==
+X-Gm-Message-State: AOJu0YwoedWRqXl7x1oALK9ViyNxoXOuUw9DV+cDMdAeo3KKN3djHXq+
+ B8dvmlvz5ZPynU/qKLiM6hwI9UwCwK9Q3DqbwUFn1S7zfME0VcgA6/r3l0+FuaHE2p4YneIfTyf
+ KLjST
+X-Gm-Gg: ASbGncvP2lB4n1QoVdSBUDQh3aiyAaLy7Y9NKIGABC2GCel6iDTl18/dxSaJsyhMPz4
+ M4ZM7NrmHhjlrIhZil3+9xESz1IS7Dn3kGx7Pz7I1RP4YKO2Rcsmb5n2FAAKQmQYFx/JVJgsdxO
+ jgKP7g+QKeU4ZSqIKh8r5sAG1jR3CsJ8zRqiZwb+txphL7YdYExeeOhFveuR2kQrCQfOU2t+AEy
+ EZncEa53PYWVh/pPQzmoiSt7EF+QZbXXOmheC/cYlpKblx9U6oYIzaROkOhYm9IHHlOvRI7Lr3B
+ lluRzIwudobTO2gOqHaqD21xNi2TsUs9Ufh5qzcv51efU7RBJJ0i6p1y/2Zf83pfw0zD+rn6mDa
+ B906zzwKrtj4msaFtMNZDFnJBL5rrtnnEMOHnxKeu4zaxkOpN7nkMS6JjRu/j7mRZgLECXQRcO2
+ rbRKTkCspfd5+t
+X-Google-Smtp-Source: AGHT+IEgRBL5n4O5zcxJxJLjlRSEVpWjai/AT9ZcI0adC+UPrmC/nlwR70Z2rybbM+dwBGXjQzzTBw==
+X-Received: by 2002:a05:7022:43a6:b0:11b:1cae:a0fa with SMTP id
+ a92af1059eb24-11b40b29828mr5936023c88.0.1763309540940; 
+ Sun, 16 Nov 2025 08:12:20 -0800 (PST)
+Received: from mozart.vkv.me ([192.184.167.117])
+ by smtp.gmail.com with ESMTPSA id
+ a92af1059eb24-11b06088625sm37265033c88.8.2025.11.16.08.12.19
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sun, 16 Nov 2025 08:12:20 -0800 (PST)
+Date: Sun, 16 Nov 2025 08:12:19 -0800
+From: Calvin Owens <calvin@wbinvd.org>
+To: intel-xe@lists.freedesktop.org, i915-ci-infra@lists.freedesktop.org
+Subject: Re: =?utf-8?B?4pyXIExHQ0kuVmVyaWZpY2F0aW9u?=
+ =?utf-8?Q?Failed=3A_failure_fo?= =?utf-8?Q?r?= drm/xe: Don't use absolute
+ path in generated header comment
+Message-ID: <aRn3492nsl0L6mcD@mozart.vkv.me>
+References: <7fa5ef0acc89a9d94c328f6651c1d405bcd833a4.1761920974.git.calvin@wbinvd.org>
+ <176217600352.11629.2483305359054343329@10055242dc62>
 MIME-Version: 1.0
-Subject: Re: [PATCH v1 19/23] ptp: ocp: Switch to use %ptSp
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Corey Minyard <corey@minyard.net>, =?UTF-8?Q?Christian_K=C3=B6nig?=
- <christian.koenig@amd.com>, "Dr. David Alan Gilbert" <linux@treblig.org>,
- Alex Deucher <alexander.deucher@amd.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
- Rob Clark <robin.clark@oss.qualcomm.com>,
- Matthew Brost <matthew.brost@intel.com>, Hans Verkuil <hverkuil@kernel.org>,
- Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
- Ulf Hansson <ulf.hansson@linaro.org>,
- Vitaly Lifshits <vitaly.lifshits@intel.com>,
- Manivannan Sadhasivam <mani@kernel.org>, Niklas Cassel <cassel@kernel.org>,
- Calvin Owens <calvin@wbinvd.org>, Sagi Maimon <maimon.sagi@gmail.com>,
- "Martin K. Petersen" <martin.petersen@oracle.com>,
- Karan Tilak Kumar <kartilak@cisco.com>,
- Casey Schaufler <casey@schaufler-ca.com>,
- Steven Rostedt <rostedt@goodmis.org>, Petr Mladek <pmladek@suse.com>,
- Max Kellermann <max.kellermann@ionos.com>, Takashi Iwai <tiwai@suse.de>,
- linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
- openipmi-developer@lists.sourceforge.net, linux-media@vger.kernel.org,
- dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org,
- amd-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
- freedreno@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- linux-mmc@vger.kernel.org, netdev@vger.kernel.org,
- intel-wired-lan@lists.osuosl.org, linux-pci@vger.kernel.org,
- linux-s390@vger.kernel.org, linux-scsi@vger.kernel.org,
- linux-staging@lists.linux.dev, ceph-devel@vger.kernel.org,
- linux-trace-kernel@vger.kernel.org, linux-sound@vger.kernel.org
-Cc: Rasmus Villemoes <linux@rasmusvillemoes.dk>,
- Sergey Senozhatsky <senozhatsky@chromium.org>,
- Jonathan Corbet <corbet@lwn.net>, Sumit Semwal <sumit.semwal@linaro.org>,
- Gustavo Padovan <gustavo@padovan.org>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Dmitry Baryshkov <lumag@kernel.org>,
- Abhinav Kumar <abhinav.kumar@linux.dev>,
- Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- Konrad Dybcio <konradybcio@kernel.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Vladimir Oltean <olteanv@gmail.com>, Andrew Lunn <andrew@lunn.ch>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Tony Nguyen <anthony.l.nguyen@intel.com>,
- Przemek Kitszel <przemyslaw.kitszel@intel.com>,
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>,
- Bjorn Helgaas <bhelgaas@google.com>, Rodolfo Giometti
- <giometti@enneenne.com>, Jonathan Lemon <jonathan.lemon@gmail.com>,
- Richard Cochran <richardcochran@gmail.com>,
- Stefan Haberland <sth@linux.ibm.com>, Jan Hoeppner <hoeppner@linux.ibm.com>,
- Heiko Carstens <hca@linux.ibm.com>, Vasily Gorbik <gor@linux.ibm.com>,
- Alexander Gordeev <agordeev@linux.ibm.com>,
- Christian Borntraeger <borntraeger@linux.ibm.com>,
- Sven Schnelle <svens@linux.ibm.com>, Satish Kharat <satishkh@cisco.com>,
- Sesidhar Baddela <sebaddel@cisco.com>,
- "James E.J. Bottomley" <James.Bottomley@HansenPartnership.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Xiubo Li
- <xiubli@redhat.com>, Ilya Dryomov <idryomov@gmail.com>,
- Masami Hiramatsu <mhiramat@kernel.org>,
- Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
- Andrew Morton <akpm@linux-foundation.org>, Jaroslav Kysela <perex@perex.cz>,
- Takashi Iwai <tiwai@suse.com>
-References: <20251110184727.666591-1-andriy.shevchenko@linux.intel.com>
- <20251110184727.666591-20-andriy.shevchenko@linux.intel.com>
-Content-Language: en-US
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and
- include these headers.
-From: Vadim Fedorenko <vadim.fedorenko@linux.dev>
-In-Reply-To: <20251110184727.666591-20-andriy.shevchenko@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Migadu-Flow: FLOW_OUT
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <176217600352.11629.2483305359054343329@10055242dc62>
 X-Mailman-Approved-At: Mon, 17 Nov 2025 13:22:47 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -123,59 +89,17 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 10/11/2025 18:40, Andy Shevchenko wrote:
-> Use %ptSp instead of open coded variants to print content of
-> struct timespec64 in human readable format.
+On Monday 11/03 at 13:20 -0000, Patchwork wrote:
+> == Series Details ==
 > 
-> While at it, fix wrong use of %ptT against struct timespec64.
-> It's kinda lucky that it worked just because the first member
-> there 64-bit and it's of time64_t type. Now with %ptS it may
-> be used correctly.
+> Series: drm/xe: Don't use absolute path in generated header comment
+> URL   : https://patchwork.freedesktop.org/series/156919/
+> State : failure
 > 
-> Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-> ---
->   drivers/ptp/ptp_ocp.c | 15 ++++++---------
->   1 file changed, 6 insertions(+), 9 deletions(-)
+> == Summary ==
 > 
-> diff --git a/drivers/ptp/ptp_ocp.c b/drivers/ptp/ptp_ocp.c
-> index a5c363252986..a0bb8d3045d2 100644
-> --- a/drivers/ptp/ptp_ocp.c
-> +++ b/drivers/ptp/ptp_ocp.c
-> @@ -3261,7 +3261,7 @@ signal_show(struct device *dev, struct device_attribute *attr, char *buf)
->   			   signal->duty, signal->phase, signal->polarity);
->   
->   	ts = ktime_to_timespec64(signal->start);
-> -	count += sysfs_emit_at(buf, count, " %ptT TAI\n", &ts);
-> +	count += sysfs_emit_at(buf, count, " %ptS TAI\n", &ts);
->   
->   	return count;
->   }
-> @@ -4287,11 +4287,9 @@ ptp_ocp_summary_show(struct seq_file *s, void *data)
->   		ns += (s64)bp->utc_tai_offset * NSEC_PER_SEC;
->   		sys_ts = ns_to_timespec64(ns);
->   
-> -		seq_printf(s, "%7s: %lld.%ld == %ptT TAI\n", "PHC",
-> -			   ts.tv_sec, ts.tv_nsec, &ts);
-> -		seq_printf(s, "%7s: %lld.%ld == %ptT UTC offset %d\n", "SYS",
-> -			   sys_ts.tv_sec, sys_ts.tv_nsec, &sys_ts,
-> -			   bp->utc_tai_offset);
-> +		seq_printf(s, "%7s: %ptSp == %ptS TAI\n", "PHC", &ts, &ts);
-> +		seq_printf(s, "%7s: %ptSp == %ptS UTC offset %d\n", "SYS",
-> +			   &sys_ts, &sys_ts, bp->utc_tai_offset);
->   		seq_printf(s, "%7s: PHC:SYS offset: %lld  window: %lld\n", "",
->   			   timespec64_to_ns(&ts) - ns,
->   			   post_ns - pre_ns);
-> @@ -4499,9 +4497,8 @@ ptp_ocp_phc_info(struct ptp_ocp *bp)
->   		 ptp_clock_index(bp->ptp));
->   
->   	if (!ptp_ocp_gettimex(&bp->ptp_info, &ts, NULL))
-> -		dev_info(&bp->pdev->dev, "Time: %lld.%ld, %s\n",
-> -			 ts.tv_sec, ts.tv_nsec,
-> -			 bp->sync ? "in-sync" : "UNSYNCED");
-> +		dev_info(&bp->pdev->dev, "Time: %ptSp, %s\n",
-> +			 &ts, bp->sync ? "in-sync" : "UNSYNCED");
->   }
->   
->   static void
+> Address 'calvin@wbinvd.org' is not on the allowlist, which prevents CI from being triggered for this patch.
+> If you want Intel GFX CI to accept this address, please contact the script maintainers at i915-ci-infra@lists.freedesktop.org.
+> Exception occurred during validation, bailing out!
 
-Acked-by: Vadim Fedorenko <vadim.fedorenko@linux.dev>
+Do I need to get myself added to this allowlist and resend the patch?
