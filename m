@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 82DB2CEBF8D
-	for <intel-xe@archiver.kernel.org>; Mon, 17 Nov 2025 10:59:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DAEDDCED247
+	for <intel-xe@archiver.kernel.org>; Mon, 17 Nov 2025 10:59:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3515610E364;
-	Mon, 17 Nov 2025 10:59:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8C1DD10E379;
+	Mon, 17 Nov 2025 10:59:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="R3zmHIpx";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XjaZdy3n";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AFE3010E355;
- Mon, 17 Nov 2025 10:59:14 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5954510E36B;
+ Mon, 17 Nov 2025 10:59:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1763377154; x=1794913154;
+ t=1763377164; x=1794913164;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=6c0KBauH/luHyRV1wjw7G0VDZpSNFHQROHdf3pMEnrs=;
- b=R3zmHIpxdfcehNGtKPSFCDBSWHT4bujsV5wKchhHhP4uV3uRWlTbdVmG
- jp8z/3/wVkOiDCXVCUwZJPvXNwNk4Uo6+FxRi+z8JMge0mVYyfJ7l4Pvn
- 2Q05KDsUbsU2dusoVcvYzwsgsPbRbDz0XgqusuvMVimh+gPSXBiLU0qv0
- ePgM4eECpPV+I0kuHXXCDuZvVSGMvtwBtO2uosJzdkWfGaVa5a8NBmn9V
- RCtnXa2KhFuynRP0rbTAKp6jhujqjsD9nyrvt0GTH3FTZ05t7VJpQZ+UZ
- Vw/a/zOHhlDllsLIkz871RZw8QhiCiyYeea2YS42UlYJqw+hEBMtnSHpM w==;
-X-CSE-ConnectionGUID: yIZEY/xYTgWQuCBFHNYIHQ==
-X-CSE-MsgGUID: abwkVz08T/6d8m+Dp0536g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11615"; a="76475367"
-X-IronPort-AV: E=Sophos;i="6.19,311,1754982000"; d="scan'208";a="76475367"
+ bh=8VqFQevqArQK9/cspy3BYhdsBiKOqdzVobD63Sq5JkE=;
+ b=XjaZdy3nh/+wWpAnU7XQotV9ooCqFU30lxjVXhWogfTzSTcNlNq4BBpb
+ y5VJaFcT1mAmkkm/+Wg3oHqIpRUsyHt6pn1Ej6QWH/7T8A03ldmJTU/8t
+ ImZ+mPsjrMBE384bTxDgE/aeKL+MDg0G1wDVIq/8AHuBV0XDzxCDMij+Z
+ 6x7fraGfUKYmFJdK4JmnNqIc9jugiLiNHSmrlDwXaJ8gR9UuSI2uIhi3D
+ 1tRXOoUl2iR6m0EJx8qj/TwYyfQF9jRrP1K83Q1qL/kW58DcKRZJyBfPV
+ fd0a49LyPd2CMHEavafIRrOgzehjXGEm0LDJQ1Vm233ab1oJYRIvxmsh1 w==;
+X-CSE-ConnectionGUID: l9wyTaSVRRSEFuy9xjhwUg==
+X-CSE-MsgGUID: /H2tbeBMRP6VE2Ezlggcew==
+X-IronPort-AV: E=McAfee;i="6800,10657,11615"; a="76475389"
+X-IronPort-AV: E=Sophos;i="6.19,311,1754982000"; d="scan'208";a="76475389"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Nov 2025 02:59:14 -0800
-X-CSE-ConnectionGUID: csbML4m+Q26n/144AYD19g==
-X-CSE-MsgGUID: x2AZnDPmRWmvu/ZcdMUPzA==
+ 17 Nov 2025 02:59:24 -0800
+X-CSE-ConnectionGUID: 82ZQyWxtSrOeM+cANdYwHQ==
+X-CSE-MsgGUID: UuJwa4i/ROOhzDCKEre9MQ==
 X-ExtLoop1: 1
 Received: from display-adls.igk.intel.com ([10.211.131.198])
- by fmviesa003.fm.intel.com with ESMTP; 17 Nov 2025 02:59:13 -0800
+ by fmviesa003.fm.intel.com with ESMTP; 17 Nov 2025 02:59:23 -0800
 From: Mika Kahola <mika.kahola@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Cc: Imre Deak <imre.deak@intel.com>, Mika Kahola <mika.kahola@intel.com>,
- Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH v2 10/32] drm/i915/cx0: Read out the Cx0 PHY SSC enabled state
-Date: Mon, 17 Nov 2025 12:45:40 +0200
-Message-Id: <20251117104602.2363671-11-mika.kahola@intel.com>
+Cc: Mika Kahola <mika.kahola@intel.com>,
+	Imre Deak <imre.deak@intel.com>
+Subject: [PATCH v2 17/32] drm/i915/cx0: Update C10/C20 state calculation
+Date: Mon, 17 Nov 2025 12:45:47 +0200
+Message-Id: <20251117104602.2363671-18-mika.kahola@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251117104602.2363671-1-mika.kahola@intel.com>
 References: <20251117104602.2363671-1-mika.kahola@intel.com>
@@ -66,85 +66,218 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Imre Deak <imre.deak@intel.com>
+This patch updates several functions in intel_cx0_phy.c to
+make PLL state management more explicit.
 
-Read out the C10, C20 PHY PLLs SSC enabled state, so the PLL HW/SW state
-verification can check this state as well.
-
-C10 PHY PLLs program some PLL registers zeroed out for the non-SSC case,
-while programming non-zero values to the same registers for the SSC
-case, so check that these PLL registers being zero or non-zero matches
-the PLL's overall SSC-enabled state (stored in the
-intel_c10pll_state::ssc_enabled flag).
+Changes include
+ * adding 'const' qualifiers to intel_crtc_state parameter for
+   cx0 state calculation functions
+ * refactoring C10/C20 PLL state calculations helpers to take
+   explicit hardware state pointers instead of directly modifying
+   'crtc_state->dpll_hw_state'
 
 Signed-off-by: Imre Deak <imre.deak@intel.com>
 Signed-off-by: Mika Kahola <mika.kahola@intel.com>
-Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cx0_phy.c | 25 ++++++++++++++++++++
- 1 file changed, 25 insertions(+)
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c | 68 ++++++++++----------
+ drivers/gpu/drm/i915/display/intel_cx0_phy.h |  5 +-
+ drivers/gpu/drm/i915/display/intel_dpll.c    |  2 +-
+ 3 files changed, 40 insertions(+), 35 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-index f190762e4871..4562e47042d2 100644
+index 31db79f0636b..de71805a065c 100644
 --- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
 +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-@@ -2062,6 +2062,12 @@ static void intel_cx0pll_update_ssc(struct intel_encoder *encoder,
- #define C10_PLL_SSC_REG_START_IDX	4
- #define C10_PLL_SSC_REG_COUNT		5
+@@ -2029,7 +2029,7 @@ static const struct intel_c20pll_state * const mtl_c20_hdmi_tables[] = {
+ };
  
-+static bool intel_c10pll_ssc_enabled(const struct intel_c10pll_state *pll_state)
-+{
-+	return memchr_inv(&pll_state->pll[C10_PLL_SSC_REG_START_IDX],
-+			  0, sizeof(pll_state->pll[0]) * C10_PLL_SSC_REG_COUNT);
-+}
-+
- static void intel_c10pll_update_pll(struct intel_encoder *encoder,
- 				    struct intel_cx0pll_state *pll_state)
+ static const struct intel_c10pll_state * const *
+-intel_c10pll_tables_get(struct intel_crtc_state *crtc_state,
++intel_c10pll_tables_get(const struct intel_crtc_state *crtc_state,
+ 			struct intel_encoder *encoder)
  {
-@@ -2193,10 +2199,20 @@ static int readout_enabled_lane_count(struct intel_encoder *encoder)
- 	return enabled_tx_lane_count;
+ 	if (intel_crtc_has_dp_encoder(crtc_state)) {
+@@ -2133,8 +2133,9 @@ static int intel_c10pll_calc_state_from_table(struct intel_encoder *encoder,
+ 	return -EINVAL;
  }
  
-+static bool readout_ssc_state(struct intel_encoder *encoder, bool is_mpll_b)
-+{
-+	struct intel_display *display = to_intel_display(encoder);
-+
-+	return intel_de_read(display, XELPDP_PORT_CLOCK_CTL(display, encoder->port)) &
-+		(is_mpll_b ? XELPDP_SSC_ENABLE_PLLB : XELPDP_SSC_ENABLE_PLLA);
-+}
-+
- static void intel_c10pll_readout_hw_state(struct intel_encoder *encoder,
- 					  struct intel_cx0pll_state *cx0pll_state)
+-static int intel_c10pll_calc_state(struct intel_crtc_state *crtc_state,
+-				   struct intel_encoder *encoder)
++static int intel_c10pll_calc_state(const struct intel_crtc_state *crtc_state,
++				   struct intel_encoder *encoder,
++				   struct intel_dpll_hw_state *hw_state)
  {
- 	struct intel_c10pll_state *pll_state = &cx0pll_state->c10;
-+	struct intel_display *display = to_intel_display(encoder);
-+	enum phy phy = intel_encoder_to_phy(encoder);
- 	u8 lane = INTEL_CX0_LANE0;
- 	intel_wakeref_t wakeref;
- 	int i;
-@@ -2222,6 +2238,13 @@ static void intel_c10pll_readout_hw_state(struct intel_encoder *encoder,
- 	intel_cx0_phy_transaction_end(encoder, wakeref);
+ 	struct intel_display *display = to_intel_display(encoder);
+ 	bool is_dp = intel_crtc_has_dp_encoder(crtc_state);
+@@ -2147,21 +2148,20 @@ static int intel_c10pll_calc_state(struct intel_crtc_state *crtc_state,
  
- 	pll_state->clock = intel_c10pll_calc_port_clock(encoder, pll_state);
+ 	err = intel_c10pll_calc_state_from_table(encoder, tables, is_dp,
+ 						 crtc_state->port_clock, crtc_state->lane_count,
+-						 &crtc_state->dpll_hw_state.cx0pll);
++						 &hw_state->cx0pll);
+ 
+ 	if (err == 0 || !intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI))
+ 		return err;
+ 
+ 	/* For HDMI PLLs try SNPS PHY algorithm, if there are no precomputed tables */
+-	intel_snps_hdmi_pll_compute_c10pll(&crtc_state->dpll_hw_state.cx0pll.c10,
++	intel_snps_hdmi_pll_compute_c10pll(&hw_state->cx0pll.c10,
+ 					   crtc_state->port_clock);
+-	intel_c10pll_update_pll(encoder,
+-				&crtc_state->dpll_hw_state.cx0pll);
+-	crtc_state->dpll_hw_state.cx0pll.use_c10 = true;
+-	crtc_state->dpll_hw_state.cx0pll.lane_count = crtc_state->lane_count;
++	intel_c10pll_update_pll(encoder, &hw_state->cx0pll);
+ 
+-	drm_WARN_ON(display->drm,
+-		    is_dp != c10pll_state_is_dp(&crtc_state->dpll_hw_state.cx0pll.c10));
++	hw_state->cx0pll.use_c10 = true;
++	hw_state->cx0pll.lane_count = crtc_state->lane_count;
 +
-+	cx0pll_state->ssc_enabled = readout_ssc_state(encoder, true);
-+	drm_WARN(display->drm,
-+		 cx0pll_state->ssc_enabled != intel_c10pll_ssc_enabled(pll_state),
-+		 "PHY %c: SSC enabled state (%s), doesn't match PLL configuration (%s)\n",
-+		 phy_name(phy), str_yes_no(cx0pll_state->ssc_enabled),
-+		 intel_c10pll_ssc_enabled(pll_state) ? "SSC-enabled" : "SSC-disabled");
++	drm_WARN_ON(display->drm, is_dp != c10pll_state_is_dp(&hw_state->cx0pll.c10));
+ 
+ 	return 0;
+ }
+@@ -2350,7 +2350,7 @@ static bool is_arrowlake_s_by_host_bridge(void)
+ 	return pdev && IS_ARROWLAKE_S_BY_HOST_BRIDGE_ID(host_bridge_pci_dev_id);
  }
  
- static void intel_c10_pll_program(struct intel_display *display,
-@@ -2753,6 +2776,8 @@ static void intel_c20pll_readout_hw_state(struct intel_encoder *encoder,
- 	pll_state->clock = intel_c20pll_calc_port_clock(encoder, pll_state);
- 
- 	intel_cx0_phy_transaction_end(encoder, wakeref);
-+
-+	cx0pll_state->ssc_enabled = readout_ssc_state(encoder, intel_c20phy_use_mpllb(pll_state));
+-static u16 intel_c20_hdmi_tmds_tx_cgf_1(struct intel_crtc_state *crtc_state)
++static u16 intel_c20_hdmi_tmds_tx_cgf_1(const struct intel_crtc_state *crtc_state)
+ {
+ 	struct intel_display *display = to_intel_display(crtc_state);
+ 	u16 tx_misc;
+@@ -2374,9 +2374,9 @@ static u16 intel_c20_hdmi_tmds_tx_cgf_1(struct intel_crtc_state *crtc_state)
+ 		C20_PHY_TX_DCC_BYPASS | C20_PHY_TX_TERM_CTL(tx_term_ctrl));
  }
  
- static void intel_c20pll_dump_hw_state(struct intel_display *display,
+-static int intel_c20_compute_hdmi_tmds_pll(struct intel_crtc_state *crtc_state)
++static int intel_c20_compute_hdmi_tmds_pll(const struct intel_crtc_state *crtc_state,
++					   struct intel_c20pll_state *pll_state)
+ {
+-	struct intel_c20pll_state *pll_state = &crtc_state->dpll_hw_state.cx0pll.c20;
+ 	u64 datarate;
+ 	u64 mpll_tx_clk_div;
+ 	u64 vco_freq_shift;
+@@ -2629,8 +2629,9 @@ intel_c20_pll_find_table(const struct intel_crtc_state *crtc_state,
+ 	return NULL;
+ }
+ 
+-static int intel_c20pll_calc_state_from_table(struct intel_crtc_state *crtc_state,
+-					      struct intel_encoder *encoder)
++static int intel_c20pll_calc_state_from_table(const struct intel_crtc_state *crtc_state,
++					      struct intel_encoder *encoder,
++					      struct intel_cx0pll_state *pll_state)
+ {
+ 	const struct intel_c20pll_state *table;
+ 
+@@ -2638,52 +2639,53 @@ static int intel_c20pll_calc_state_from_table(struct intel_crtc_state *crtc_stat
+ 	if (!table)
+ 		return -EINVAL;
+ 
+-	crtc_state->dpll_hw_state.cx0pll.c20 = *table;
++	pll_state->c20 = *table;
+ 
+-	intel_cx0pll_update_ssc(encoder, &crtc_state->dpll_hw_state.cx0pll,
+-				intel_crtc_has_dp_encoder(crtc_state));
++	intel_cx0pll_update_ssc(encoder, pll_state, intel_crtc_has_dp_encoder(crtc_state));
+ 
+ 	return 0;
+ }
+ 
+-static int intel_c20pll_calc_state(struct intel_crtc_state *crtc_state,
+-				   struct intel_encoder *encoder)
++static int intel_c20pll_calc_state(const struct intel_crtc_state *crtc_state,
++				   struct intel_encoder *encoder,
++				   struct intel_dpll_hw_state *hw_state)
+ {
+ 	struct intel_display *display = to_intel_display(encoder);
+ 	bool is_dp = intel_crtc_has_dp_encoder(crtc_state);
+ 	int err = -ENOENT;
+ 
+-	crtc_state->dpll_hw_state.cx0pll.use_c10 = false;
+-	crtc_state->dpll_hw_state.cx0pll.lane_count = crtc_state->lane_count;
++	hw_state->cx0pll.use_c10 = false;
++	hw_state->cx0pll.lane_count = crtc_state->lane_count;
+ 
+ 	/* try computed C20 HDMI tables before using consolidated tables */
+ 	if (!is_dp)
+ 		/* TODO: Update SSC state for HDMI as well */
+-		err = intel_c20_compute_hdmi_tmds_pll(crtc_state);
++		err = intel_c20_compute_hdmi_tmds_pll(crtc_state, &hw_state->cx0pll.c20);
+ 
+ 	if (err)
+-		err = intel_c20pll_calc_state_from_table(crtc_state, encoder);
++		err = intel_c20pll_calc_state_from_table(crtc_state, encoder,
++							 &hw_state->cx0pll);
+ 
+ 	if (err)
+ 		return err;
+ 
+-	intel_c20_calc_vdr_params(&crtc_state->dpll_hw_state.cx0pll.c20.vdr,
++	intel_c20_calc_vdr_params(&hw_state->cx0pll.c20.vdr,
+ 				  is_dp, crtc_state->port_clock);
+ 
+-	drm_WARN_ON(display->drm,
+-		    is_dp != c20pll_state_is_dp(&crtc_state->dpll_hw_state.cx0pll.c20));
++	drm_WARN_ON(display->drm, is_dp != c20pll_state_is_dp(&hw_state->cx0pll.c20));
+ 
+ 	return 0;
+ }
+ 
+-int intel_cx0pll_calc_state(struct intel_crtc_state *crtc_state,
+-			    struct intel_encoder *encoder)
++int intel_cx0pll_calc_state(const struct intel_crtc_state *crtc_state,
++			    struct intel_encoder *encoder,
++			    struct intel_dpll_hw_state *hw_state)
+ {
+-	memset(&crtc_state->dpll_hw_state, 0, sizeof(crtc_state->dpll_hw_state));
++	memset(hw_state, 0, sizeof(*hw_state));
+ 
+ 	if (intel_encoder_is_c10phy(encoder))
+-		return intel_c10pll_calc_state(crtc_state, encoder);
+-	return intel_c20pll_calc_state(crtc_state, encoder);
++		return intel_c10pll_calc_state(crtc_state, encoder, hw_state);
++	return intel_c20pll_calc_state(crtc_state, encoder, hw_state);
+ }
+ 
+ static bool intel_c20phy_use_mpllb(const struct intel_c20pll_state *state)
+diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.h b/drivers/gpu/drm/i915/display/intel_cx0_phy.h
+index 0b98892ee8ac..d52e864f5e19 100644
+--- a/drivers/gpu/drm/i915/display/intel_cx0_phy.h
++++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.h
+@@ -19,6 +19,7 @@ struct intel_crtc;
+ struct intel_crtc_state;
+ struct intel_cx0pll_state;
+ struct intel_display;
++struct intel_dpll_hw_state;
+ struct intel_encoder;
+ struct intel_hdmi;
+ 
+@@ -32,7 +33,9 @@ enum icl_port_dpll_id
+ intel_mtl_port_pll_type(struct intel_encoder *encoder,
+ 			const struct intel_crtc_state *crtc_state);
+ 
+-int intel_cx0pll_calc_state(struct intel_crtc_state *crtc_state, struct intel_encoder *encoder);
++int intel_cx0pll_calc_state(const struct intel_crtc_state *crtc_state,
++			    struct intel_encoder *encoder,
++			    struct intel_dpll_hw_state *hw_state);
+ void intel_cx0pll_readout_hw_state(struct intel_encoder *encoder,
+ 				   struct intel_cx0pll_state *pll_state);
+ int intel_cx0pll_calc_port_clock(struct intel_encoder *encoder,
+diff --git a/drivers/gpu/drm/i915/display/intel_dpll.c b/drivers/gpu/drm/i915/display/intel_dpll.c
+index 4f1db8493a2e..342d46b7b1af 100644
+--- a/drivers/gpu/drm/i915/display/intel_dpll.c
++++ b/drivers/gpu/drm/i915/display/intel_dpll.c
+@@ -1221,7 +1221,7 @@ static int mtl_crtc_compute_clock(struct intel_atomic_state *state,
+ 		intel_get_crtc_new_encoder(state, crtc_state);
+ 	int ret;
+ 
+-	ret = intel_cx0pll_calc_state(crtc_state, encoder);
++	ret = intel_cx0pll_calc_state(crtc_state, encoder, &crtc_state->dpll_hw_state);
+ 	if (ret)
+ 		return ret;
+ 
 -- 
 2.34.1
 
