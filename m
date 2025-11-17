@@ -4,179 +4,165 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C8276CE8D6B
-	for <intel-xe@archiver.kernel.org>; Mon, 17 Nov 2025 17:58:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D9537CEACEF
+	for <intel-xe@archiver.kernel.org>; Mon, 17 Nov 2025 18:25:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 909F110E0E5;
-	Mon, 17 Nov 2025 17:58:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7967110E0FC;
+	Mon, 17 Nov 2025 18:25:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lLMry1QO";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dZ3jozNx";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 10DFD10E0E4;
- Mon, 17 Nov 2025 17:58:12 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 96B0910E0EE
+ for <intel-xe@lists.freedesktop.org>; Mon, 17 Nov 2025 18:25:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1763402292; x=1794938292;
- h=date:from:to:cc:subject:message-id:reply-to:references:
+ t=1763403932; x=1794939932;
+ h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=W+AbXLVHJQy0cpFa19Gt6XhQjkbE8hzE4dRLJ4tKMIM=;
- b=lLMry1QOoa48cvo8CJO1TsZEZDpRvZFkw4PQeim5EVBh5zChFAW0TX4x
- n57WY7/974/UUAiAGzST688BYy83gDpEP/gGq0AftTiM2zUwLUPPlX1be
- 0OeMgYr+V5aWvhOSFkOugrXkUMUXmd7qcBEM2nijxDnWAFZ0zOTfxtZWs
- QZ33zPTH9PHJbL/bczkHohmEikFUMy+FNlrJRPO8/X3fmgU8h7CD1H14O
- AL1zKIxBhv1EiBdT3HOtkWR0JUxSLfPzNmhFdFw5PH2Zlfh9aAtbNIqb+
- IHeDr3Vdk9a0LZBzIzTGiEqYRazaVvsVBdSyLcNzJ+iI/FPj2xpirYaz0 g==;
-X-CSE-ConnectionGUID: 8lPJ9dEjQEy/8sd2FDW96Q==
-X-CSE-MsgGUID: z0lTPmv3RrOpuWwYRmtghg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11616"; a="90886867"
-X-IronPort-AV: E=Sophos;i="6.19,312,1754982000"; d="scan'208";a="90886867"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Nov 2025 09:58:12 -0800
-X-CSE-ConnectionGUID: AzrM8T+yRbm62eBzZ86kSw==
-X-CSE-MsgGUID: UmOhnKrvSFax87LIQ5Uz9Q==
+ bh=xXNtFTwFcPWrPumDFirol+4y5R1NqPBnvx9LWNWxOus=;
+ b=dZ3jozNxn26nzV3QLnN8kTzeOO8Lg6RCNaFKGO+Pk27reOihdmTLxIKs
+ fg3NABM0AxzvzQprAM15kVvONxBFxIicYRSZu6/j1SFJ4Xd6Jva8NYuLQ
+ 8IY7Wrx1P5F1+tPbpeEGZgo1YuMo5DM+evFnBRhF9BdaKzmnbrszM4X1/
+ 3ekDzHu9VtpfmCwdt+VgSONudp6nosaMFGtqJtwI4dXlbhtzEFvWOsoEB
+ L6FVzH+yPQzq+QTY5XRiiH7+MkN/ATscrjfH0Z471BIo0Kpc7xyxlVNZU
+ XDrHxZ+fHN/Xje7nxfRgZ4M21ONihunKOuxoQHtyjy8MKhEyBU+SR/fYc g==;
+X-CSE-ConnectionGUID: v3H1MI+sSW+KpLMRo1jPHw==
+X-CSE-MsgGUID: 8u0GHhs7Tmy/JWWfP5WL4Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11616"; a="88061186"
+X-IronPort-AV: E=Sophos;i="6.19,312,1754982000"; d="scan'208";a="88061186"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Nov 2025 10:25:32 -0800
+X-CSE-ConnectionGUID: zZZRcu/pQQyPJbZXNFMHKw==
+X-CSE-MsgGUID: xda2Km66Q+il+UaoZ4eVQQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,312,1754982000"; d="scan'208";a="221175253"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by orviesa002.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Nov 2025 09:58:11 -0800
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.19,312,1754982000"; d="scan'208";a="194989295"
+Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
+ by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Nov 2025 10:25:31 -0800
+Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Mon, 17 Nov 2025 09:58:11 -0800
-Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ 15.2.2562.27; Mon, 17 Nov 2025 10:25:30 -0800
+Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
+ FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27 via Frontend Transport; Mon, 17 Nov 2025 09:58:11 -0800
-Received: from DM1PR04CU001.outbound.protection.outlook.com (52.101.61.39) by
- edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
+ 15.2.2562.27 via Frontend Transport; Mon, 17 Nov 2025 10:25:30 -0800
+Received: from PH0PR06CU001.outbound.protection.outlook.com (40.107.208.14) by
+ edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Mon, 17 Nov 2025 09:58:10 -0800
+ 15.2.2562.27; Mon, 17 Nov 2025 10:25:30 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=e48xKOOJnBVdwKnxUfB8sA2/VuWZ5izwRyYInYPmer+15j3EvtnBTiV9GaM2lhfsfRnOY+F9nc0RmKplZoauwunjaq9sqRqoawAL93STs6Ht4omfSqqc+jX9xRT/NlUbymOrnMNv1PGjfjaypkBeY8HY8MYQw8iTlBG/sat9J1Da1eT7iY3Vob2BW1t4lg6B9V8XZnYPREw9busp3/+IKg1XXBhazzZr3LLgJgS3bvaHwUrBK6ACwbICHwBSSXJaqtsql2gSSLg4xx/Kd5LNBvXY01IrEKuumnbzw3TNUjLk/DGApTcHXo1IQnLqx4chQkWd+fjbhMdzQg46se4H3Q==
+ b=vukEeHBWkoxcnt0WkpZrlaZpmMVLP51SOHFRqDyiRhKyc2hfb30pv+W9fjOh97nGKYNaKMYfnPqxp6HzmfhXE8PUMZEiyFBi8Q3WaCr69ARCtLVWRlanImomjOM8RpX50iu98xQkkOVhwSYW9IqR3tXQkAXBuH4oje37YdosNaOTBVXeb45sQzoWT0B6Wh+q6QyBcXKC/UxE6abaMM8gzHvU6jIdZBwHZFImHq0uQfzzlPH+wKWLVPDjDvpWY7me1dKndmrE0wtBRYoCtMMCifdGDN6bYNm/Yq7iLY9PUQEF8cQxD8IFMTrUFNApwnxB7BJ6oteVz6wFYpVOSMPL1w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=pbSgdfyaIY9UFmc2zQhMBJ2UwqL0drCbXCSpXiicbI8=;
- b=I3AyOYcHKO3DjiaT0/Y3Dw1WzzGYzatPaCmi00AtjutIMDCRQ1o/M/NuCoUtknpCznBUbpJXYgW1+IWiMp0aTu4x2qBiykpxcWJHNMCRsQjXi0MHuG61QEZUleGIB6r7C8H3BqBcx41RzZmxbvsHQc1eMcFFZAV1uY70bo9JUWblt/T1s06eqJvONdAD/PFCbfU+oURvhzKVy/LdxpM9mCFXKSn72cmxvm2MyqXCbGb5nJDgj/ksgzjcKtjES/IYpARjb2Rtg2oXSORLRFRCik7oKufbpZzlR0Hyp8zp1rj/3Ogzwi5jGTiXIdqOr823kUtq/YpZS9N/QzOe7mSsKg==
+ bh=n7qK9NSzBdErUiRY0wuf0D4SRgMtXRNAyqWjp0easdc=;
+ b=Qom167TZC0tMPoBBqdhzcedEcf6h/dh0JfevQg+JdgPFgAt+FoP20BLf/qDoNQg47wuVvM9xgXeLS906KTuGUTm26tz7e3q73tBbkykLRWzEaKU7DXEugvlGrsRITXGa51MX4lIlDleBgDa+RfjYrIEkII7r2OsV4e3lQ2VLbQUZ2ErBvxEclcN0nEGatIQRF2Ot0lVjHN0YGYuyxSygHdStpj6hnE07w5K2+FhgdIXRV2jpNQPAEJdrF0PWJK7FdXQoLuGVsTMqMkaaNxhKdNseY87ZGt0OjruqqTp8XinDnQzmCgGG9D2hSVaQFUSIpr6EoFM3j9kFblO0gRdEig==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from SJ0PR11MB4845.namprd11.prod.outlook.com (2603:10b6:a03:2d1::10)
- by BL1PR11MB6002.namprd11.prod.outlook.com (2603:10b6:208:386::12)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9320.22; Mon, 17 Nov
- 2025 17:58:07 +0000
-Received: from SJ0PR11MB4845.namprd11.prod.outlook.com
- ([fe80::8900:d137:e757:ac9f]) by SJ0PR11MB4845.namprd11.prod.outlook.com
- ([fe80::8900:d137:e757:ac9f%3]) with mapi id 15.20.9320.021; Mon, 17 Nov 2025
- 17:58:07 +0000
-Date: Mon, 17 Nov 2025 19:58:00 +0200
-From: Imre Deak <imre.deak@intel.com>
-To: Gustavo Sousa <gustavo.sousa@intel.com>
-CC: Jouni =?iso-8859-1?Q?H=F6gander?= <jouni.hogander@intel.com>, "Ankit
- Nautiyal" <ankit.k.nautiyal@intel.com>, Dnyaneshwar Bhadane
- <dnyaneshwar.bhadane@intel.com>, Juha-pekka Heikkila
- <juha-pekka.heikkila@intel.com>, Luca Coelho <luciano.coelho@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>, Matt Atwood
- <matthew.s.atwood@intel.com>, Matt Roper <matthew.d.roper@intel.com>, "Ravi
- Kumar Vodapalli" <ravi.kumar.vodapalli@intel.com>, Shekhar Chauhan
- <shekhar.chauhan@intel.com>, Vinod Govindapillai
- <vinod.govindapillai@intel.com>, <intel-gfx@lists.freedesktop.org>,
- <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH v4 07/11] drm/i915/xe3p_lpd: Extend Type-C flow for
- static DDI allocation
-Message-ID: <aRtiKDZAsYyNYoqw@ideak-desk>
-References: <20251107-xe3p_lpd-basic-enabling-v4-0-ab3367f65f15@intel.com>
- <20251107-xe3p_lpd-basic-enabling-v4-7-ab3367f65f15@intel.com>
- <aRTJq2h7ic7EcpL6@ideak-desk>
- <176314958906.3698.11640605946760436324@intel.com>
- <aRfL-CWPYR6gC6F6@ideak-desk> <aRfV2MuICSW1jR4I@ideak-desk>
- <176339175784.5989.15280881790145867529@intel.com>
- <aRs8nFHQ-syeq4SB@ideak-desk>
- <176340023109.5989.13935406990721055950@intel.com>
+Received: from BL3PR11MB6508.namprd11.prod.outlook.com (2603:10b6:208:38f::5)
+ by DM3PR11MB8760.namprd11.prod.outlook.com (2603:10b6:0:4b::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9320.21; Mon, 17 Nov
+ 2025 18:25:27 +0000
+Received: from BL3PR11MB6508.namprd11.prod.outlook.com
+ ([fe80::53c9:f6c2:ffa5:3cb5]) by BL3PR11MB6508.namprd11.prod.outlook.com
+ ([fe80::53c9:f6c2:ffa5:3cb5%5]) with mapi id 15.20.9320.013; Mon, 17 Nov 2025
+ 18:25:26 +0000
+Date: Mon, 17 Nov 2025 10:25:22 -0800
+From: Matthew Brost <matthew.brost@intel.com>
+To: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+CC: <intel-xe@lists.freedesktop.org>, Michal Wajdeczko
+ <michal.wajdeczko@intel.com>, Matthew Auld <matthew.auld@intel.com>
+Subject: Re: [PATCH v2 1/2] drm/xe/sa: Shadow buffer support in the
+ sub-allocator pool
+Message-ID: <aRtokkXM4Iad73gw@lstrano-desk.jf.intel.com>
+References: <20251105121151.2680100-1-satyanarayana.k.v.p@intel.com>
+ <20251105121151.2680100-2-satyanarayana.k.v.p@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <176340023109.5989.13935406990721055950@intel.com>
-X-ClientProxiedBy: LO2P265CA0224.GBRP265.PROD.OUTLOOK.COM
- (2603:10a6:600:b::20) To SJ0PR11MB4845.namprd11.prod.outlook.com
- (2603:10b6:a03:2d1::10)
+In-Reply-To: <20251105121151.2680100-2-satyanarayana.k.v.p@intel.com>
+X-ClientProxiedBy: MW4PR03CA0293.namprd03.prod.outlook.com
+ (2603:10b6:303:b5::28) To BL3PR11MB6508.namprd11.prod.outlook.com
+ (2603:10b6:208:38f::5)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ0PR11MB4845:EE_|BL1PR11MB6002:EE_
-X-MS-Office365-Filtering-Correlation-Id: a7411726-a032-4c9c-d5b3-08de2602dd22
+X-MS-TrafficTypeDiagnostic: BL3PR11MB6508:EE_|DM3PR11MB8760:EE_
+X-MS-Office365-Filtering-Correlation-Id: 18cc7a37-88c2-4b04-1722-08de2606ad9b
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0; ARA:13230040|10070799003|376014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?EHhJSEvVfToFFvUBtbBp7Oc3dVwZ2J0MSdVxHcxJj2CV74/0sYKxeKI3d51o?=
- =?us-ascii?Q?7gfMvV90lB3ukADiUGFM5c4A3jQdrKIdWH9pAJrVIKmxSVtXCf5kyfYJ/yg8?=
- =?us-ascii?Q?6g8KDkVdTRdDTxbSWDINaGbL5O1JDadujGyCpw2neg4A+3os1exEpPr4Huk1?=
- =?us-ascii?Q?EORlpYwKjjDYbZgCKT0Rv1PnKv9rWtOb4WqdrAVGaSacp6K2L7ygWduND181?=
- =?us-ascii?Q?ynXcQb1zzeUAfNAwjzKiZ8Yb/XxaTSgTrEKmoH5ERTkQQCo8PNxhxVd0XhWs?=
- =?us-ascii?Q?Me92365iODx367IrO4kAXgxZEGX4oitZm5BYUeSByXMXSjN3ftHEtXWpR6Rd?=
- =?us-ascii?Q?TCf11qZPqZEunB6scuUMAEaud7PfCau5W+83I2vLXDXXrt/iY8irmiezyV99?=
- =?us-ascii?Q?JrDf6XwCUIdXafKkLTuUFpM6dNaqu6nDi3pweM+jFkO3ALv7PbJoWpUegLDS?=
- =?us-ascii?Q?N23S56goQ7LieQG12FCpdr1ghq2hU9utNaCAth5dfO1BPvKWtvMJquT+PIth?=
- =?us-ascii?Q?LUZhNRsKZezW3UVmKnVYSCpTFWuASAF5lB3ISjDbRFKRpnIhDB9PqCa+V23s?=
- =?us-ascii?Q?rvzAIyMXwMsjmROIItdQDWoat/7d612PlxZZ9pArm929IxDEQg4O0gzQx++5?=
- =?us-ascii?Q?XVubM5LtmjgKxJ+C3eRev1pwNerLAyuh2vrWnV2D99cQc5JLRXdA/KXufyJO?=
- =?us-ascii?Q?CoKcvTqUZa4KoANqTwqNcAArro0eTi/0ZKhw5RG5wLK3ubGU69itCxg2ywKV?=
- =?us-ascii?Q?u1F9V4D6NEIn0XfVFBtVoczMHNSQcQKo9tYTKFP43REZBG3ipf9gZK/cKFRv?=
- =?us-ascii?Q?m7jq3t+Kmz/8yaKD/UUCJZtAOH6O1yMqjrxHDB7UsRSjtndw1LXB/5y7dreN?=
- =?us-ascii?Q?zlC6/CPvVLViWYtCpjJSqJI8c+NYOWmRGxyKe+4olGdAedOp8+yv/vlJqIJ6?=
- =?us-ascii?Q?sdeAO6rQD6OOReZl942Y6YktK4Jza0jjxBfIO5F+IZy+7nmpEacHlmkBwVeO?=
- =?us-ascii?Q?pH/LX5j9YpysLkprjj0EMfNNkR+zp8XclsEaLVrwaeC9AGRlEMochDLXJpEV?=
- =?us-ascii?Q?eFJqxlYFp4lIG+zdH7tpfGmhCuVqx1lLi6aZ+4Q0rSKzKcHaVcjatK0IW2Vc?=
- =?us-ascii?Q?wiLhKk1z2EBf4Wc95kieR4XVIOmRSEmKnjuhIgbUp/CsXGxGhY97aMKq5TEm?=
- =?us-ascii?Q?nQOoyO9xTXcJ3SxAM/hMcc7tw0+Y5DRBD9UwXMlgaZ+b16M8yL5B37rWVW2M?=
- =?us-ascii?Q?zHVfOG5GCxvGrQ0Di0TgXvfaN4vyg/2MoqW9LNZVgIdphJHPgpSzglRTdCoP?=
- =?us-ascii?Q?dfhIJVfhHQOlOB3wfUUCu+gTUb7jetgwsJZ2c7+VsbD9K9MNFgu6txHggapb?=
- =?us-ascii?Q?fsCb521F0e6UovoVEBdHkyAohtsOLpnD3AvfLzp/eudI/2kuP1rML3sOd0K6?=
- =?us-ascii?Q?gRAJ7ojhsj4w15Ql7teWMtEHSuC4dwAi?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?lHamBJcQ8BM4tu78fDYFWoXplM4AXpNb7L3uyB5f8R2sBfj9MgLg9nwiYr3n?=
+ =?us-ascii?Q?2ue9QBkPurgRvY0YnjHt6ddPa12BFInY89wWuXvDyI1tl7i6H2XAXFkzddhT?=
+ =?us-ascii?Q?gBY79m0NbqclgA6bnUsirWLokpBlHKnAiIMCW+Q2/enJX0CBli1N1pJgNclI?=
+ =?us-ascii?Q?QMdn83okBPvJLZTEkrBbH2ru3WVK+pFIKE+jp7NftckRqW7+Cq6CtQ5Ufxnp?=
+ =?us-ascii?Q?SlcvEf3GXhX3wnEjw1+KwNCcx5FMBWlpXg4vFjfmvy7qcY9AQ7I8GH6WeE6X?=
+ =?us-ascii?Q?NaXxV74ObFtocP0ONxjAQ0Gi36626SAlyFf4g8MrqVYBhGznBp6Qm4gLn22P?=
+ =?us-ascii?Q?MnNFvMKDPsOjo8XhBT0iwq3QbrbvQy0B06AF1yS0Rf7ECR+1JpOFoC1hYvaz?=
+ =?us-ascii?Q?JRFxJJmPgd4tNFThrksOp/QX4us+SREmcp6FmFPr6eAzUNLugBbDr3CAOpDi?=
+ =?us-ascii?Q?W4I72/JF95A8yaEgEiOv+Gh+P1I1AV4uwvmmBUXgfq0dSEQr5breTBzwnZti?=
+ =?us-ascii?Q?w3L86qO9Wv0Wr5lhUeOJI9Q/KmO23mTzZOwz+816vJYthxC1IgknuFPKdsBG?=
+ =?us-ascii?Q?OGBU9wpkT1glbOPkSF/w8az+xdUyfh1q8rZqVbMPjl/Ir5sPLtIuZajk/NT/?=
+ =?us-ascii?Q?C7Sya1vYWTeCVNEQFcOstY/elaC7jlSKQx4kI9HQkA7VotQGW0KGvVz/uFJ+?=
+ =?us-ascii?Q?JAq5YIHxppS+OZs3T7VsERFaADGTGgkqEL6Nl0eZeQEae0UGFchYFTV0CRqz?=
+ =?us-ascii?Q?/aCv2HLqElElFdWortrMbH4SlhVULN2BIFok/veBymTwoTRXZum+hr0ic/kG?=
+ =?us-ascii?Q?9AWasQsBRqD9aPPZYAFmgUjO4lDUozp3WsupOrCS5t+ikP2pFk2ZwZ92beqj?=
+ =?us-ascii?Q?wICA5OTZEZVjuNV07c0Lq2TsU679xeXK9F3JwwqffjPxkCqqvotlLiZE805o?=
+ =?us-ascii?Q?2A/ag2GpQK0oryIwJx4Zq0eHeq2TJkHQH7HA+Jtq/YzJ+LiV3n74I3pPfFCO?=
+ =?us-ascii?Q?qIMTiRxAwJQ8vK9sHNBPMUzbtR06fmYgme4eJ0P6nyIJdV3ggscAHAa2vzbz?=
+ =?us-ascii?Q?9khIp5yRD+ZfxU4d5rzGIsW5kJsQivAW3eUvyf+KlWYQ3oqFhQ50f6BfZ/z+?=
+ =?us-ascii?Q?BVAqWO7sWA6K4ak8KfaCCDdZMJnpOob5snS00GpZj69VzbxMGJkzoR+a/S9X?=
+ =?us-ascii?Q?km7U/mAU8E4G2CV3E69jcF27dELy4jsRxuHCU29KkH3EdhoWgx7soViGEojw?=
+ =?us-ascii?Q?4dxdFM/1no0zJQIxgFcMAlK2gZQky2nHmRwkz0yKJpkBuTydlQTp9WkVGh+E?=
+ =?us-ascii?Q?QrmBNtwye1fa4BJMu3JFTA3vIJb9IqgAiURRh82AeCLPfUKeUMi1wex5fAPa?=
+ =?us-ascii?Q?+TiBwc1dfKAcQWEtFRMSIaI1vJH4SrWifZ0jeZ8yzSt63T22HOKM3p+XfpWP?=
+ =?us-ascii?Q?nNQhM1vew6C9Mdym03lGZQu7WzvquW4E?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SJ0PR11MB4845.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(10070799003)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:BL3PR11MB6508.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?BDmmNsJmXbSdcFWW+9xsO4eQrq7vq47JaEmAef8YHuMyGaoSRVk9Xfp9rQq2?=
- =?us-ascii?Q?twISsn7RahwjEOjT5yMpCmkTm/3b7Djx+uNHj+FN347Ay7Eh1oX5T2D6a6ZE?=
- =?us-ascii?Q?YF9lDbdvUtMVk7eQ8FRft0/RKp7n2xNLJ8i+xCyyqrpq16G0J8RH5MeurjeP?=
- =?us-ascii?Q?QvO1W2lZSmGrn95RqQit0/Seyxp7PrOxRWAi7iLs4enu2wU4QYwUo+puYVjQ?=
- =?us-ascii?Q?FIk4l9bcK7Dc0ptlTmWMj//cjPI7KH57W6vLxF+GPY1H3rCdzApwnic9tp0/?=
- =?us-ascii?Q?1HyeAk6rex7i5cySYwHo0OFJxtp6MhhU0mlvv4jaEcYvFM44XbO2l9Gbi8j3?=
- =?us-ascii?Q?RyKdsrucqGAc4tarCvg3LWEkcDNHZTQ+wwTO/v1er6d/TlxjyNrpxA6g2HE5?=
- =?us-ascii?Q?UO/nbtBqq3V9MTooslHQMJhxjtK50UUb0uCzWw56TTbwPGC8vAW1HErDlEfL?=
- =?us-ascii?Q?KdZXfKXVWd3Wvy5tkXqgxNzCVK3eIGumNeDMIZlO274SgrNh9NpL+6GLpUNt?=
- =?us-ascii?Q?ZfppU6l/rm7pHdgyGGRpFbrbkTStuVCK47TJJAvkGeseCv2hmtv7lxfMogGh?=
- =?us-ascii?Q?pvU1RjM09zMK9pldxUX8RSRXUv+9lLaUi3lq4+/9K4xQ1yyBSKI23qPvtEob?=
- =?us-ascii?Q?6E36+zXobBIQwl7zV9qhRytxrsvrGjC3dVG88id/Ye8eG7HjkOfdTdozoR8F?=
- =?us-ascii?Q?G8f/qMiatqBT1ac8d//9vsQjI/pNrb6/30Xlnu7qio10mT0NyLMRZ52nj0cO?=
- =?us-ascii?Q?dnvrxYxG1Wa07y9sK+PC9eetLlnk2wwqN0k5QYfAp9eZRuKFCmXeqRGTB8Ex?=
- =?us-ascii?Q?YdKOMod9cHGTpyzAZFMs04hBwtVmccgCnvh45H8BERGBXwP8ZIeXeA/7ILEz?=
- =?us-ascii?Q?U2UiOqAf0UwuEpjcol6kHSpfxJdladpRvcqo0iHeA2Zo8stQLtjKsr4IZl2j?=
- =?us-ascii?Q?snhhajonoE1ahxcKw16UFnieeyRgJTWO+z8jsDnBcddA3lyvIXTr/LjQNGMo?=
- =?us-ascii?Q?uwGExHTuirYcPg+SVobTi+TmpOBFkhwUYNGXeWX5sVYwyM3NA+0aSCVFzUCm?=
- =?us-ascii?Q?xYOdpUex/hdi5q2ZkzxEzhUNIuoYQw5L3cVw+bqsY/GeS+vnby19S8MULdl6?=
- =?us-ascii?Q?iES+13+wjFJUbRUO0bTdES0Du84bxsQsWSLJXJz2mAWAOw/9/kyLzGCCwHJt?=
- =?us-ascii?Q?VzkOBxxSnem4422jCZ8KU+Uu3yIwrbpHy29+9lG6+YYLww8pLVhflSzwbg3f?=
- =?us-ascii?Q?OyUr64CoW8YGrV3kLU4ZRKf/bnXlm6qwWnkaDAyD3t+KNDAuSNJHCN8krUqX?=
- =?us-ascii?Q?k28pFZghkXnPVrT/J/I2w6+67svOKzTtNX0ClgfwUQmI4cuwC6TlHvMjxA99?=
- =?us-ascii?Q?qJGZn1TzDxVkVT347TSkKU+/2UDK35HtlsnKYqKGbFYA66PxbGDQbvZ/l1QM?=
- =?us-ascii?Q?i0S+/qxIZKCNjgvIxMr2VhQsAMFFE4NkU+mcVouPjjU/4DgDQoovQZRr/9xi?=
- =?us-ascii?Q?72Q2UdRpwL+PY4Mkty689Q/P0a8N5HhDfv8kEtY51UBxpCIUxAz1hgIURkHG?=
- =?us-ascii?Q?qkDtJGIkv97m9XLc+NKEc61zncSnA0hw75EvnoE4NHqbmrJyggAqLqmsYVnK?=
- =?us-ascii?Q?HcIuPmo7dMlVf/lmz2deO3+hj/hRhmkrcGYtYw1F+/sj?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: a7411726-a032-4c9c-d5b3-08de2602dd22
-X-MS-Exchange-CrossTenant-AuthSource: SJ0PR11MB4845.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?oFwjIBuQvDKCZKdvnAJGt2kAtZe0bh94N2mzO86Tec6FZvPqYY/l4oWAOfSd?=
+ =?us-ascii?Q?G2lp3jSX9xNgMCVjILKrfRnb8VezSIJEZ/JEQzQ6CeCaiGf84P1T83ynBqZv?=
+ =?us-ascii?Q?ZQxQPR2hvdUaTcTvhwwlw/TU4A1DR6e31pmOi1JBcPaGMiCk7+SL3q8mv+4K?=
+ =?us-ascii?Q?C/z/fU0GthQL2mSl19IvEmNF5+gtS5/fhegpIEcwJwo5WjIY+7BcoFW/C7AT?=
+ =?us-ascii?Q?QGlM6kFR6I2eZg2tBlgfv6VBK44+ANCNUvUfJNEzxl6k9ivcuA9eF4PyHAm7?=
+ =?us-ascii?Q?rNbAzphR0oXb8CbMIYPgV5p3EKSLN/kVPhFXjqI4NZAyHjIqT7zqN77uvHO/?=
+ =?us-ascii?Q?5nN2qbSwMdpYMqCf7wAt4JQl6pvCK9K+hDFqjK0CvQ6YqRsW4MUCI6PgIehh?=
+ =?us-ascii?Q?F1bBTm6tH6x3Iycg5JBJjthRp5kk5Nl2InLdjIsrQ8fFPHs1Hzn2U4ELgXp3?=
+ =?us-ascii?Q?5rqDF5YHlN9EmVk0ZSciIgmRhPctEdVhXom3VM93AaZGwn8Ssro/a9JdmEMG?=
+ =?us-ascii?Q?euF1nHHsAu3bAAzbYbQenKvmSW90EZuUzgYkOOMcQk+HyB351VKISfOvK94o?=
+ =?us-ascii?Q?6Em53UXGro/FM7oHuRgVkab2CJIXOmjGoIYp1D/b65rLZAc74p0uvZYWRQDX?=
+ =?us-ascii?Q?E2/UeNcg9V+GbKXX/uGWNW9J512N9yBXLLLrzyyG06z6ZK767lAnwVY+HITB?=
+ =?us-ascii?Q?XF7uFcX+VYsbFA0WbUjYGwux9lAa0JjzrsOxtWSHSz6/arEmdu5LtCFXKMJf?=
+ =?us-ascii?Q?959IVvadX91+7+fajI/FotEO3VU0M6KABRehh15z/EaO43WdAwGGqRibn5nH?=
+ =?us-ascii?Q?/Tvo+Nq4uzVChhxPqunPjFsVDk+y4E7IlC/krBUzf7Eqp54oNDMsfJfGC5LW?=
+ =?us-ascii?Q?aL96945GJuS1yMGzdsWILWv5/sbNAZNkwvAwT+3TMb8a/7CqCLd5WKwQrX/Y?=
+ =?us-ascii?Q?/v6vu6BJUolYMSn1ALlDonqO2YGJoHp7NjSjfb/bFgNzlD7GZq3K6vZgzc+7?=
+ =?us-ascii?Q?eMM+v2czyaT8Slxqgb7eN0lniT6O/2+eOCCpCIpgo8/cNK7CR8Tf+Trug4MF?=
+ =?us-ascii?Q?lzvxb6xjuQr0SYoYWmwumxHJfF1OZpu0SXafA440Z5y8qKKZ2kT4iRNT7pfd?=
+ =?us-ascii?Q?pkDndqjHu7cDVx8hEYEh6VZkzKXJig7zu9L1ppT1Xui2D26cHqls9jCGR+rs?=
+ =?us-ascii?Q?wUEha79GUHgIRr/gcSHqgQzSqLNaAjP6snDz+7UD77pQYUEo1jmV9xGHOOeV?=
+ =?us-ascii?Q?ea+Kgz5txpkxKKLctkt8Pdazk2wQBLylG/xUj8b7xC7I9+QJNzI8oAuR8ePc?=
+ =?us-ascii?Q?pJmvnJAsuq4pUyYOiTsA0DA3qjYZPhLfYH2dzC2Chv7F1GaTDma7MySAkVp3?=
+ =?us-ascii?Q?jJ24HSgTZV+UaXdG4FwCKstIh9WrDGIEFw+EYFw0koDLYiOqp+QVAEsnU5BQ?=
+ =?us-ascii?Q?QrKeW0et2vedkuwFTjuwnKcELhNzrBsrhV3x8hJju+JrBghABuoxuGHliOQo?=
+ =?us-ascii?Q?TBTlRPhaSx9TMMz3kmkZgc3PUPkHzb37FbPhO2xJcbF8qSfI33xXeySKqCed?=
+ =?us-ascii?Q?rdzJkB2zPKK0pYo96XUBPdbOyzUONoXCIU2EYErNM2sGr0kjTBQiBCYqe0oL?=
+ =?us-ascii?Q?5A=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 18cc7a37-88c2-4b04-1722-08de2606ad9b
+X-MS-Exchange-CrossTenant-AuthSource: BL3PR11MB6508.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Nov 2025 17:58:07.6724 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Nov 2025 18:25:25.9569 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: bx5eDYkiZwJb2ikCqIgZZGhseZpdk/8p3Ba7jV9BgC9gTbnYWbgTkxE3KK3/zdF9JkAp+OR4hOnAiR/kgnOO7Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR11MB6002
+X-MS-Exchange-CrossTenant-UserPrincipalName: gCX1DWwxYQI/O3Rv02H7aPqJLVz5Efbhds/VlHsMBIy+jW64yNjiaYKfACkLq+Zu/ie9PAuaOrTlHHBdDRZ9ZQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM3PR11MB8760
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -189,133 +175,231 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Nov 17, 2025 at 02:23:51PM -0300, Gustavo Sousa wrote:
-> Quoting Imre Deak (2025-11-17 12:17:48-03:00)
-> >On Mon, Nov 17, 2025 at 12:02:37PM -0300, Gustavo Sousa wrote:
-> >> [...]
-> >> >> > >> +        if (iom_dp_resource_lock(tc))
-> >> >> > >> +                return false;
-> >> >> > >> +
-> >> >> > >> +        val = intel_de_read(display, IOM_DP_RESOURCE_MNG);
-> >> >> > >> +
-> >> >> > >> +        consumer = val & IOM_DDI_CONSUMER_MASK(tc_port);
-> >> >> > >> +        consumer >>= IOM_DDI_CONSUMER_SHIFT(tc_port);
-> >> >> > >> +
-> >> >> > >> +        /*
-> >> >> > >> +         * Bspec instructs to select first available DDI, but our driver is not
-> >> >> > >> +         * ready for such dynamic allocation yet. For now, we force a "static"
-> >> >> > >> +         * allocation: map the physical port (where HPD happens) to the
-> >> >> > >> +         * encoder's DDI (logical TC port, represented by tc_port).
-> >> >> > >> +         */
-> >> >> > >> +        expected_consumer = IOM_DDI_CONSUMER_STATIC_TC(tc_port);
-> >> >> > >> +        expected_consumer >>= IOM_DDI_CONSUMER_SHIFT(tc_port);
-> >> >> 
-> >> >> One more thing occured to me: why can't this allocate any free DDI? IOW
-> >> >> does the address of DDI_BUF_CTL (aka DDI_CTL_DE) used for tc_port depend
-> >> >> on which DDI gets allocated (or is there any other dependency on which
-> >> >> DDI got allocated)? AFAICS there is no such dependency and the above
-> >> >> address would be DDI_BUF_CTL(encoder->port) regardless of the allocated
-> >> >> DDI. In that case any free DDI could be allocated here.
-> >> >
-> >> >Ok, checking this again, DDI_BUF_CTL etc. DDI register addresses will
-> >> >depend on the allocated DDI. So nvm the above, the mapping needs to
-> >> >stay 1:1 for now until all the DDI reg accesses are converted to index
-> >> >the registers with the allocated DDI index.
-> >> 
-> >> As far as I understand this, especially after talking with Windows
-> >> folks, the allocated DDI will define the port index for the whole
-> >> programming, including the registers used to program the PHY - and the
-> >> hardware would take care of routing to the correct PHY.
-> >
-> >Correct, that's how I also understood it after "checking this again".
-> >
-> >> Thus, it appears we would need to do the allocation at hotplug time,
-> >> like saying "this PHY will be driven by DDI x".
-> >
-> >To clarify, if the mapping is 1:1, as in this patch, the allocation can
-> >be done statically during driver loading as discussed earlier. This is
-> >the only way it will work atm, because the DDI allocation cannot fail
-> >during runtime.
+On Wed, Nov 05, 2025 at 12:11:50PM +0000, Satyanarayana K V P wrote:
+> The existing sub-allocator is limited to managing a single buffer object.
+> This enhancement introduces shadow buffer functionality to support
+> scenarios requiring dual buffer management.
 > 
-> Two scenarios that come to mind about doing this on probe time:
+> The changes include added shadow buffer object creation capability,
+> Management for both primary and shadow buffers, and appropriate locking
+> mechanisms for thread-safe operations.
 > 
->   1) The driver could be loaded with nothing yet attached to the legacy
->      connector.  However, I believe the TCSS doesn't require the
->      connector to be attached for the allocation to work.  So, we are
->      probably fine here.
+> This enables more flexible buffer allocation strategies in scenarios where
+> shadow buffering is required.
 > 
->   2) If the legacy connector is never used during the driver's lifetime,
->      we are basically holding a resource that could have been used by a
->      DP-alt/TBT connection.
+> Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+> Suggested-by: Matthew Brost <matthew.brost@intel.com>
 
-Yes, this is also the way how things work at the moment: a legacy
-connector reserves a DDI whether or not a sink will be connected to it.
-I think keeping that existing behavior for now is what makes sense.
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 
-> For the dynamic feature (to be implemented in the future), how to you
-> see this?
+> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+> Cc: Matthew Auld <matthew.auld@intel.com>
 > 
->   1) Should we allocate the DDI at HPD time and fail report the
->      connector as disconnected on failure?
->   2) Should we allocate the DDI as part of the atomic check phase and
->      fail the modeset if we can't do it?
->   3) Should we allocate the DDI as part of the atomic tail (hardware
->      commit) and raise errors if the allocation fails?
-
-I think the only way for enabling the dynamic allocation of DDIs is to
-do that whenever the PHY is used, i.e. when the PHY is connected via
-intel_tc_port_lock() or intel_tc_port_get_link(). That's because even
-AUX transfers for a detection need an allocated DDI. This is what the
-patch is currently doing, however, that can be done only once the
-remapping of a connector/encoder -> allocated DDI is in place and the
-driver can also handle a modeset on a legacy connector for which the DDI
-allocation fails.
-
-> Another question: once we implement the dynamic feature, this "allocate
-> on probe time" thing will have to go away, right? 
-
-The allocation would simply have to moved back to happen during
-connecting the PHY.
-
-> In that case, we would basically suffer the same runtime risks that we
-> would be trying to avoid, no?
-
-No, then the driver will be able to handle a modeset for a legacy
-connector without a DDI allocated to it.
-
-> Perhaps I'm missing something, but, if not: I wonder if doing the
-> "allocate on probe time" thing is really worth implementing, since it
-> will be a "temporary" thing that would be reverted later.  In that case,
-> we could try implementing the static allocation in the same place where
-> dynamic allocation would happen.
-
-I still think for now it makes sense to implement the allocate on probe
-time thing, which is simple enough and provides what we have now (legacy
-connectors keep a DDI reserved). Adding support for dynamic DDI
-allocations will allow enabling 3 TBT DP tunnels instead of the current
-2 DP tunnels for instance, but this requires a lot of changes affecting
-current platforms as well. I think moving back the allocation to happen
-during connecting the PHY - when the changes for that are in place -
-would be also simple.
-
-> >> One of the reasons I think we can't allocate a free DDI at the moment is
-> >> that the driver is expecting a 1:1 static mapping for HPD interations.
-> >> We will neeed to make the driver aware of the mapping in order to use
-> >> the correct encoder when handling HPD events.
-> >
-> >Again clarifying, that the above is true only for legacy connectors. IOW
-> >for a TBT/DP-alt connector, where IOM does the DDI allocation, the HPD
-> >IRQ delivered to the driver will be already according to the allocated
-> >DDI. That is those connectors are _different_ wrt. to the mapping
-> >requirement than the dynamic legacy connectors, for those TBT/DP-alt
-> >connectors the DDI registers will be accessed based on the
-> >tc_port/encoder->port to which the HPD IRQ is delivered.
+> ---
+> V1 -> V2:
+> - Added kernel doc for xe_sa_bo_swap_shadow() and xe_sa_bo_sync_shadow()
+> functions (Matt B).
+> - Removed xe_sa_bo_swap_guard_lock() and xe_sa_bo_swap_guard_unlock() and
+> created xe_sa_bo_swap_guard() to which return mutex. (Michal W).
+> ---
+>  drivers/gpu/drm/xe/xe_guc_buf.c      |  2 +-
+>  drivers/gpu/drm/xe/xe_sa.c           | 67 +++++++++++++++++++++++++++-
+>  drivers/gpu/drm/xe/xe_sa.h           | 20 ++++++++-
+>  drivers/gpu/drm/xe/xe_sa_types.h     |  3 ++
+>  drivers/gpu/drm/xe/xe_sriov_vf_ccs.c |  3 ++
+>  5 files changed, 91 insertions(+), 4 deletions(-)
 > 
-> That's my understanding as well.
+> diff --git a/drivers/gpu/drm/xe/xe_guc_buf.c b/drivers/gpu/drm/xe/xe_guc_buf.c
+> index 3ce442500130..c36fc31e0438 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_buf.c
+> +++ b/drivers/gpu/drm/xe/xe_guc_buf.c
+> @@ -30,7 +30,7 @@ static int guc_buf_cache_init(struct xe_guc_buf_cache *cache, u32 size)
+>  	struct xe_gt *gt = cache_to_gt(cache);
+>  	struct xe_sa_manager *sam;
+>  
+> -	sam = __xe_sa_bo_manager_init(gt_to_tile(gt), size, 0, sizeof(u32));
+> +	sam = __xe_sa_bo_manager_init(gt_to_tile(gt), size, 0, sizeof(u32), 0);
+>  	if (IS_ERR(sam))
+>  		return PTR_ERR(sam);
+>  	cache->sam = sam;
+> diff --git a/drivers/gpu/drm/xe/xe_sa.c b/drivers/gpu/drm/xe/xe_sa.c
+> index 63a5263dcf1b..a87c1436c7c1 100644
+> --- a/drivers/gpu/drm/xe/xe_sa.c
+> +++ b/drivers/gpu/drm/xe/xe_sa.c
+> @@ -29,6 +29,7 @@ static void xe_sa_bo_manager_fini(struct drm_device *drm, void *arg)
+>  		kvfree(sa_manager->cpu_ptr);
+>  
+>  	sa_manager->bo = NULL;
+> +	sa_manager->shadow = NULL;
+>  }
+>  
+>  /**
+> @@ -37,12 +38,14 @@ static void xe_sa_bo_manager_fini(struct drm_device *drm, void *arg)
+>   * @size: number of bytes to allocate
+>   * @guard: number of bytes to exclude from suballocations
+>   * @align: alignment for each suballocated chunk
+> + * @flags: flags for suballocator
+>   *
+>   * Prepares the suballocation manager for suballocations.
+>   *
+>   * Return: a pointer to the &xe_sa_manager or an ERR_PTR on failure.
+>   */
+> -struct xe_sa_manager *__xe_sa_bo_manager_init(struct xe_tile *tile, u32 size, u32 guard, u32 align)
+> +struct xe_sa_manager *__xe_sa_bo_manager_init(struct xe_tile *tile, u32 size,
+> +					      u32 guard, u32 align, u32 flags)
+>  {
+>  	struct xe_device *xe = tile_to_xe(tile);
+>  	struct xe_sa_manager *sa_manager;
+> @@ -79,6 +82,26 @@ struct xe_sa_manager *__xe_sa_bo_manager_init(struct xe_tile *tile, u32 size, u3
+>  		memset(sa_manager->cpu_ptr, 0, bo->ttm.base.size);
+>  	}
+>  
+> +	if (flags & XE_SA_BO_MANAGER_FLAG_SHADOW) {
+> +		struct xe_bo *shadow;
+> +
+> +		ret = drmm_mutex_init(&xe->drm, &sa_manager->swap_guard);
+> +		if (ret)
+> +			return ERR_PTR(ret);
+> +
+> +		shadow = xe_managed_bo_create_pin_map(xe, tile, size,
+> +						      XE_BO_FLAG_VRAM_IF_DGFX(tile) |
+> +						      XE_BO_FLAG_GGTT |
+> +						      XE_BO_FLAG_GGTT_INVALIDATE |
+> +						      XE_BO_FLAG_PINNED_NORESTORE);
+> +		if (IS_ERR(shadow)) {
+> +			drm_err(&xe->drm, "Failed to prepare %uKiB BO for SA manager (%pe)\n",
+> +				size / SZ_1K, shadow);
+> +			return ERR_CAST(shadow);
+> +		}
+> +		sa_manager->shadow = shadow;
+> +	}
+> +
+>  	drm_suballoc_manager_init(&sa_manager->base, managed_size, align);
+>  	ret = drmm_add_action_or_reset(&xe->drm, xe_sa_bo_manager_fini,
+>  				       sa_manager);
+> @@ -88,6 +111,48 @@ struct xe_sa_manager *__xe_sa_bo_manager_init(struct xe_tile *tile, u32 size, u3
+>  	return sa_manager;
+>  }
+>  
+> +/**
+> + * xe_sa_bo_swap_shadow() - Swap the SA BO with shadow BO.
+> + * @sa_manager: the XE sub allocator manager
+> + *
+> + * Swaps the sub-allocator primary buffer object with shadow buffer object.
+> + *
+> + * Return: None.
+> + */
+> +void xe_sa_bo_swap_shadow(struct xe_sa_manager *sa_manager)
+> +{
+> +	struct xe_device *xe = tile_to_xe(sa_manager->bo->tile);
+> +
+> +	xe_assert(xe, sa_manager->shadow);
+> +	lockdep_assert_held(&sa_manager->swap_guard);
+> +
+> +	swap(sa_manager->bo, sa_manager->shadow);
+> +	if (!sa_manager->bo->vmap.is_iomem)
+> +		sa_manager->cpu_ptr = sa_manager->bo->vmap.vaddr;
+> +}
+> +
+> +/**
+> + * xe_sa_bo_sync_shadow() - Sync the SA Shadow BO with primary BO.
+> + * @sa_bo: the sub-allocator buffer object.
+> + *
+> + * Synchronize sub-allocator shadow buffer object with primary buffer object.
+> + *
+> + * Return: None.
+> + */
+> +void xe_sa_bo_sync_shadow(struct drm_suballoc *sa_bo)
+> +{
+> +	struct xe_sa_manager *sa_manager = to_xe_sa_manager(sa_bo->manager);
+> +	struct xe_device *xe = tile_to_xe(sa_manager->bo->tile);
+> +
+> +	xe_assert(xe, sa_manager->shadow);
+> +	lockdep_assert_held(&sa_manager->swap_guard);
+> +
+> +	xe_map_memcpy_to(xe, &sa_manager->shadow->vmap,
+> +			 drm_suballoc_soffset(sa_bo),
+> +			 xe_sa_bo_cpu_addr(sa_bo),
+> +			 drm_suballoc_size(sa_bo));
+> +}
+> +
+>  /**
+>   * __xe_sa_bo_new() - Make a suballocation but use custom gfp flags.
+>   * @sa_manager: the &xe_sa_manager
+> diff --git a/drivers/gpu/drm/xe/xe_sa.h b/drivers/gpu/drm/xe/xe_sa.h
+> index 1be744350836..05e9a4e00e78 100644
+> --- a/drivers/gpu/drm/xe/xe_sa.h
+> +++ b/drivers/gpu/drm/xe/xe_sa.h
+> @@ -14,12 +14,14 @@
+>  struct dma_fence;
+>  struct xe_tile;
+>  
+> -struct xe_sa_manager *__xe_sa_bo_manager_init(struct xe_tile *tile, u32 size, u32 guard, u32 align);
+> +#define XE_SA_BO_MANAGER_FLAG_SHADOW	BIT(0)
+> +struct xe_sa_manager *__xe_sa_bo_manager_init(struct xe_tile *tile, u32 size,
+> +					      u32 guard, u32 align, u32 flags);
+>  struct drm_suballoc *__xe_sa_bo_new(struct xe_sa_manager *sa_manager, u32 size, gfp_t gfp);
+>  
+>  static inline struct xe_sa_manager *xe_sa_bo_manager_init(struct xe_tile *tile, u32 size, u32 align)
+>  {
+> -	return __xe_sa_bo_manager_init(tile, size, SZ_4K, align);
+> +	return __xe_sa_bo_manager_init(tile, size, SZ_4K, align, 0);
+>  }
+>  
+>  /**
+> @@ -69,4 +71,18 @@ static inline void *xe_sa_bo_cpu_addr(struct drm_suballoc *sa)
+>  		drm_suballoc_soffset(sa);
+>  }
+>  
+> +void xe_sa_bo_swap_shadow(struct xe_sa_manager *sa_manager);
+> +void xe_sa_bo_sync_shadow(struct drm_suballoc *sa_bo);
+> +
+> +/**
+> + * xe_sa_bo_swap_guard() - Retrieve the SA BO swap guard within sub-allocator.
+> + * @sa_manager: the &xe_sa_manager
+> + *
+> + * Return: Sub alloctor swap guard mutex.
+> + */
+> +static inline struct mutex *xe_sa_bo_swap_guard(struct xe_sa_manager *sa_manager)
+> +{
+> +	return &sa_manager->swap_guard;
+> +}
+> +
+>  #endif
+> diff --git a/drivers/gpu/drm/xe/xe_sa_types.h b/drivers/gpu/drm/xe/xe_sa_types.h
+> index cb7238799dcb..1085c9c37d6b 100644
+> --- a/drivers/gpu/drm/xe/xe_sa_types.h
+> +++ b/drivers/gpu/drm/xe/xe_sa_types.h
+> @@ -12,6 +12,9 @@ struct xe_bo;
+>  struct xe_sa_manager {
+>  	struct drm_suballoc_manager base;
+>  	struct xe_bo *bo;
+> +	struct xe_bo *shadow;
+> +	/** @swap_guard: Timeline guard updating @bo and @shadow */
+> +	struct mutex swap_guard;
+>  	void *cpu_ptr;
+>  	bool is_iomem;
+>  };
+> diff --git a/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c b/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c
+> index 797a4b866226..9959d619addc 100644
+> --- a/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c
+> +++ b/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c
+> @@ -162,9 +162,12 @@ static int alloc_bb_pool(struct xe_tile *tile, struct xe_sriov_vf_ccs_ctx *ctx)
+>  	offset = 0;
+>  	xe_map_memset(xe, &sa_manager->bo->vmap, offset, MI_NOOP,
+>  		      bb_pool_size);
+> +	xe_map_memset(xe, &sa_manager->shadow->vmap, offset, MI_NOOP,
+> +		      bb_pool_size);
+>  
+>  	offset = bb_pool_size - sizeof(u32);
+>  	xe_map_wr(xe, &sa_manager->bo->vmap, offset, u32, MI_BATCH_BUFFER_END);
+> +	xe_map_wr(xe, &sa_manager->shadow->vmap, offset, u32, MI_BATCH_BUFFER_END);
+>  
+>  	ctx->mem.ccs_bb_pool = sa_manager;
+>  
+> -- 
+> 2.43.0
 > 
-> --
-> Gustavo Sousa
