@@ -4,55 +4,190 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B743BCEBF61
-	for <intel-xe@archiver.kernel.org>; Mon, 17 Nov 2025 13:54:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8E77CCEBF61
+	for <intel-xe@archiver.kernel.org>; Mon, 17 Nov 2025 13:57:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7DDD389056;
-	Mon, 17 Nov 2025 13:54:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 470D210E025;
+	Mon, 17 Nov 2025 13:57:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GRUFFL39";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mzklEXtQ";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A027289056
- for <intel-xe@lists.freedesktop.org>; Mon, 17 Nov 2025 13:54:36 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5538D10E025
+ for <intel-xe@lists.freedesktop.org>; Mon, 17 Nov 2025 13:57:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1763387677; x=1794923677;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=NrJo0T0adWR98cWizBITU+U2dlvCwMqJzIUA5NUMg/s=;
- b=GRUFFL39VHDEfZfhpVFIgu6q+dJUt8N6AyZmoLctChv/nTRiykGqmhGW
- /BocXV8Or1BSHp03ibrphy/LXzyakJIRfm0sgaZYwRr3qQCs2xNKRdhMs
- w9+iBk1rrcLT4LS05FSOZ6sGy+KJfOth9hGzgJq3BdbzDmIB6kTiwlD9B
- X9rQE+bOo90SljXKRxltw00eK5RJJaggwKZym2tLDCgdONrDhrPPE8u9v
- ugyTfvfJU9vdYbKsZriWbcg78JOUPbZLarvwe/7TDuKwGtOaLqLblr1wJ
- ZL2lJHWzlVxrpB68J3PuM66b2/kgA0MrIHHpuRQNP6vxvUG5zdjH+jT6R Q==;
-X-CSE-ConnectionGUID: Mq3zR+NiQz2IXAaeP8OUdw==
-X-CSE-MsgGUID: NpRHmbHgTCynbPqRBocAyA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11616"; a="64387248"
-X-IronPort-AV: E=Sophos;i="6.19,311,1754982000"; d="scan'208";a="64387248"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Nov 2025 05:54:36 -0800
-X-CSE-ConnectionGUID: 0kSphry6Ro631IFiH53KNA==
-X-CSE-MsgGUID: X3hy0HHbTR2ZFaZR18LAuA==
+ t=1763387856; x=1794923856;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-id:content-transfer-encoding: mime-version;
+ bh=FzpT3zY38p4L0xyX6a+Au8W5i9zncqsa2p5rrw5Fqjo=;
+ b=mzklEXtQosv8G2r+glaql51cZf9PJMlTbW7hAbb+Hc+/h6ruDIAM35UQ
+ S7NZ46EvyZjyvBkfHkiMEW6vyTNBX3uGQK3BzEl0AHK5x/Ck0W1HKhdWz
+ oLfPTnsirUZy2Lb/rFwNE5YvAOY25ieOyjNGdHzmg7OMVPX1eNV7Vofx7
+ ZLXKC699xo4tt/UachHfhg1y/9jTi1jGy5d6XEjnYFDA7YbY/Bm6Qa37a
+ FrtVFKS23AJpctrXpaGimQ8tTDGVNmy5g1jIsOj6PQbIj984u0EJAO0Om
+ FSpG6YwiTGFsaRMKfyUMN7nQg2ZXZbLukPtg/e5nLWH77HBAc5eynhYKe w==;
+X-CSE-ConnectionGUID: xGrqtvyTRV6bNfDReHbpOQ==
+X-CSE-MsgGUID: F3qU1wxuRw2f7iNH7kCEaw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11616"; a="69007357"
+X-IronPort-AV: E=Sophos;i="6.19,312,1754982000"; d="scan'208";a="69007357"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Nov 2025 05:57:36 -0800
+X-CSE-ConnectionGUID: Ephnb+ybT5qL2FAxCSSRrA==
+X-CSE-MsgGUID: whuJWAzqQ4qfpyf//695eg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,311,1754982000"; d="scan'208";a="189705675"
-Received: from yadavs-z690i-a-ultra-plus.iind.intel.com ([10.190.216.90])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Nov 2025 05:54:35 -0800
-From: Sanjay Yadav <sanjay.kumar.yadav@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: matthew.auld@intel.com,
- =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
-Subject: [PATCH v4] drm/xe/uapi: Add NO_COMPRESSION BO flag and query
+X-IronPort-AV: E=Sophos;i="6.19,312,1754982000"; d="scan'208";a="221102587"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by orviesa002.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Nov 2025 05:57:36 -0800
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.27; Mon, 17 Nov 2025 05:57:35 -0800
+Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.27 via Frontend Transport; Mon, 17 Nov 2025 05:57:35 -0800
+Received: from SN4PR0501CU005.outbound.protection.outlook.com (40.93.194.66)
+ by edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.27; Mon, 17 Nov 2025 05:57:35 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=ewjCFB5ANvxV+uy18Pbg5TW0p5zfNgY7x1OpE0mb2jM2sNFMg542ro+a8h5DaSk+IgYS60xD9D2Ox5KLpZMyaUpsyOryYnkI4oUNEl9rd/laqU8/KCumXncT3ey3SUDttxwoRGYmEWzEZ5TCSYXCsjbRehTQwn0p95QnQ/prF4zQ8T4m42kyFq/R3eTVOVwatrTDq1n8NBbY9y9ceXe9knHA4isIQ2HsExNMqoBoctURAvAnikFSUnBTD7Ro8Xc3JlTlDRqKSNinTLXdoYScRrJF7Y5NEreLNQxJRGwD5pDOu59dCDHPM2Fitnr1DUkRbQb6pRt/f8s+F5R0Uk6v8g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=FzpT3zY38p4L0xyX6a+Au8W5i9zncqsa2p5rrw5Fqjo=;
+ b=X3ZzxueDJylaVmGHDSvAoMbKiqUrG9v8/ztqa9fCw/KQFLFTf4AIKQZPB3tFeRuVq428ifE/kTTEihNSsa6AVRo7doUQBHuy3dfeKmxZPik1DzJhFDAKdVUbCCA2YaZwr8ZR85bzlTE3m4TouRQYYG4Nte2LkceBGlwPCq9Rz/g5YHaAApCZQBha74dpx/VeRO9a+clh7vD/E9T77/1WXaRJOpjfR8A7Jyn5rDrvXaA18akLmBf2MHitQKVT7UIUhpsWSWDFg3z1lEgfOpNJQUrT8CMlpot8HAuXYPYN+K5zfPx5pvTzVglSAuglvgrbUhV+znKO7xe7UGRM6BvdXQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from CH3PR11MB8185.namprd11.prod.outlook.com (2603:10b6:610:159::12)
+ by CH3PR11MB8442.namprd11.prod.outlook.com (2603:10b6:610:1ae::12)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9320.21; Mon, 17 Nov
+ 2025 13:57:32 +0000
+Received: from CH3PR11MB8185.namprd11.prod.outlook.com
+ ([fe80::1be5:55ed:3261:fefb]) by CH3PR11MB8185.namprd11.prod.outlook.com
+ ([fe80::1be5:55ed:3261:fefb%7]) with mapi id 15.20.9320.018; Mon, 17 Nov 2025
+ 13:57:32 +0000
+From: "Souza, Jose" <jose.souza@intel.com>
+To: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, "Yadav, 
+ Sanjay Kumar" <sanjay.kumar.yadav@intel.com>
+CC: "Auld, Matthew" <matthew.auld@intel.com>
+Subject: Re: [PATCH v4] drm/xe/uapi: Add NO_COMPRESSION BO flag and query
  capability
-Date: Mon, 17 Nov 2025 19:23:28 +0530
-Message-ID: <20251117135327.2866171-2-sanjay.kumar.yadav@intel.com>
-X-Mailer: git-send-email 2.43.0
+Thread-Topic: [PATCH v4] drm/xe/uapi: Add NO_COMPRESSION BO flag and query
+ capability
+Thread-Index: AQHcV8m9B0s9iNo0q0inIXYsDQ26krT25GeA
+Date: Mon, 17 Nov 2025 13:57:32 +0000
+Message-ID: <8cc63eb758966922425df4e92ba810ae2db40c5a.camel@intel.com>
+References: <20251117135327.2866171-2-sanjay.kumar.yadav@intel.com>
+In-Reply-To: <20251117135327.2866171-2-sanjay.kumar.yadav@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: CH3PR11MB8185:EE_|CH3PR11MB8442:EE_
+x-ms-office365-filtering-correlation-id: bc840f9e-77d5-439f-fae5-08de25e1413e
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|376014|366016|1800799024|38070700021|3122999009; 
+x-microsoft-antispam-message-info: =?utf-8?B?ckkxMWlYS2YwYmh3YlhYVnY2dytuR0x1S2U5LzVVM01HM3lrbWJJOG1Oc3ZY?=
+ =?utf-8?B?clZ5L3dtTE9aVThrbnJ1Q3RpWW82djhsVVhQM2JJTmtwaHA3d1hJY21VU0xF?=
+ =?utf-8?B?TzNJWXJaMjVtSmxqZnBsVmwzUm9ZZEVWUmhyeEtOMXNpOTNrSlRvc3ZtU2lO?=
+ =?utf-8?B?c0oyM0R1V2lkcWhGYlRKV0N6bUk0UG1PcDhiNEpwZEorK2pzbXlCOHFvR1g3?=
+ =?utf-8?B?d1pjbVgzQ3pVZEE3OUNrMjhiYlNlZ0VjczBoUnVKYWVPUHM1NEJMeE5TU2Mr?=
+ =?utf-8?B?am0ydkw5NlNoM0FGSGM3OEcxdmhlOEJZeDNZaDRrVy9CQ01veVIzaTBzbitY?=
+ =?utf-8?B?N3pqbStUVjgzeTgvMGJSK28zOTVKZmErMlE4Qi9QMTNUaitXaURHakV1Um4x?=
+ =?utf-8?B?ZmZvN1h4VkxGL0JWVEVVSFRyYkVEQ3NEbzhHZU9USGZDY3pVbHY1L2VQcUUv?=
+ =?utf-8?B?dlNJTGRLblRxdlFqTWZhRlBuVFZ5RzJtTng1d0xmOUtqQ2xzSWNhSSt2VVpi?=
+ =?utf-8?B?dHVYTDRyTk1ERWoydHN6emY1VUNuTU5LV29NQ0hld0JHSGdlU25oWnJtSytR?=
+ =?utf-8?B?T21aaG91N0NoVysrZ0NJczErSmcrSTZ5WE0rbEo1Q0tscVkySnVHWnloUkRu?=
+ =?utf-8?B?MURUNDdybUxDL1dxb245YnBhUk4yOFJRNUVsV01vL3FKb1RxTEhyM3RBTkdJ?=
+ =?utf-8?B?TDBBLzZnb242TGFtcFh6OFFKQXA2Znc3WitKcG9uWk9jR0FIUVRJWkU5VVFa?=
+ =?utf-8?B?M1lPVy9KTkxNOER3K0ZseXZKb2RFSVVHZjZSeHlYcy9vZnpXT0NaZ25OeSsz?=
+ =?utf-8?B?ZDljV3VxMEozcVNiRFVhOXJGZjVTNG5JL1ZVUXA3YzBlYTZPSEJqSTZUREp4?=
+ =?utf-8?B?MGVreWJJdDRMN0o2c2dFQTkyQUxGTWxzVVJKa0M3cTY3dml1ZzRiNjduQ2kw?=
+ =?utf-8?B?ZTFUVXBvK0g3NThzcnY0YzVyZkJPR0hqcHlwTWN5ZjFZUlBvT3l3T3daaHBo?=
+ =?utf-8?B?K0NuQnhlamx1ZEdmcXg2NGRYVytHM2g1WGhYY0VIM3RlU2FqQ3h6Tm0wdmNu?=
+ =?utf-8?B?Zno4YWVuYUhiWGdJQnUxUHVvM0c5d2JEbUpNVGNBdGN6Q0dmZGdVUU53a0dx?=
+ =?utf-8?B?TXZSU1UvRWNuaVdZcWEyOFdHa2VsZ0tGTnEyNlpDSkt4ZjNkYjkweTByU2VR?=
+ =?utf-8?B?SXV4VHZXNzVSQVBTVk1YVnRKcjJZN1B5WnRsa0wvTGtndjAveEE4ZUkwcmty?=
+ =?utf-8?B?MWd5MXgyNWROZGNBTlo3UmZxQnk4elQxQmVjWGtBdkZlakpuMXFDYVJPNndz?=
+ =?utf-8?B?bWsvMkxDekMvQ1l3UEpHaXpLT1N1VHMwY2VLbk9VWWJsVmJBSVp3ZGhaSEJS?=
+ =?utf-8?B?eG1HZGhUMzlnMHpkOXpIeWppRTlPMjdGVnd1R2l6dmZNRXV1eHBMSGhRaE1T?=
+ =?utf-8?B?bTAvelF5d1o1OU1LTi9yL1BvQ3J4WFc1UWtYREpJS09RK28wbU94ZG5UNU1J?=
+ =?utf-8?B?bFFGQ3hTYVhCaVVCR29WZjEwRTV2N0N4ZHBaeVF0K3RjamtLRG84NlFVOWh6?=
+ =?utf-8?B?c1pvbEQrdXc3eE01a3R5TkkvU2ZkWFhXUzlraC92dDlyMlZlMmVXeDhmaFBo?=
+ =?utf-8?B?T1FtVnAwSGdzVzNUQll5ZDMvQS9tVEhleEtVNW1jWGIwaW9XQlIxQnlRMEFu?=
+ =?utf-8?B?c2pUdkRzNmJNTWM2eEtLNDlLYUNUb290RnJxd1p1UE1iYlZyNXBDZ3RzZ05F?=
+ =?utf-8?B?dTlHdmV3dDV6Q0RVNmJ3clJyWVVvNko3T08vaWFhOEF0WVA1S05pbFNWaUkx?=
+ =?utf-8?B?c1dSYU44SGNmSU9GQm0ySWgvMjlmYzM1RHRpZXpqMEhoYTY2K3hyaDNuOGNK?=
+ =?utf-8?B?OWgwWWpXU2cwQ0wwYWNzdFAvak9tZ0R5dk8yRitaZXdyQWdnR3NhY3h3bFdk?=
+ =?utf-8?B?RU9vbEdoc2tvMHkvK3VZRmhnUUI0c0ZhK1FEMFg5UDVGTHFVQjZMTVFLNlFC?=
+ =?utf-8?B?UzJXVjNZNEhrRmNMU3lRVVowWWFQbTJJVEdCRlM4cXFkU3B5Y2NtK3A2Ny9s?=
+ =?utf-8?Q?OMimX2?=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CH3PR11MB8185.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(366016)(1800799024)(38070700021)(3122999009); DIR:OUT;
+ SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?SU80a1N3VmZ3Q0FjT1J4eU92c1Rjd2VhTTNoLzNUQ2UwckgrQVJOWDJnYnhw?=
+ =?utf-8?B?Q0Y4a0ovY29QdU5yS3kzY2RlWVBzaHl2dGgyUUozRTh1S2RFdnRvQThOdzBu?=
+ =?utf-8?B?WnNoZ0pYWS9qL25qWkZpZjczVWpOTmtPNktHV3p0UXMySTVobHUrYjJrZjBm?=
+ =?utf-8?B?ZHZkU3JrTDRVUlQ2SDk0VVRRNXJkZ3J0L2F5ankyK2NxM3dOYTZDdkhweERF?=
+ =?utf-8?B?TjRKNXgySWx0TFZidytmN2N4TFEwUHk2cnBtZUtNQU0rL2tTWDBRMS9xRWZj?=
+ =?utf-8?B?QXZqMlY3eTdCUUZRaSt6YWJUamIvWTNVM0pMTEZCdVJqNHQ2RWNWdzRXRHFw?=
+ =?utf-8?B?QUtITityVlVLQlJ1QjRKMWx1OXcvcGQ0cFlocjVWNkVrZ0tWTHVuY08ySDF4?=
+ =?utf-8?B?YWlWMXNidEQ5TUljMU1HbWEwdEgyTHk2TlFBb0NLNHIxZzRjWEtjSEVTbnFm?=
+ =?utf-8?B?UEsyZVBDZ1BINWVhTWZBaFA5SjhQRU5MYTc2ZFFqZHNWaXpaajl4QmhoeEo4?=
+ =?utf-8?B?NEl6cFJTbTVTMGpXa1hSbzFjeDNGMSs0N0dTQ2pqVHBLM0JhMXlUdjZkbHJE?=
+ =?utf-8?B?U05qY2ZJYnpmRjZEMmZmRForTzZ3aTJYdUV5bW8zRWlNRHEyeU1Qc0o1ZEUv?=
+ =?utf-8?B?VVFIMW9ZSzR1QTRWYlhWbnpYeFFhUHk0VjFjUERxZmFNMG1hUlBnamhPVWNF?=
+ =?utf-8?B?YlNPV0t0Mno0SXBtRDRwZUF3WE1iSFlaZzd6YlErZjRmb3pzWnJGUEo5Vm5C?=
+ =?utf-8?B?YXhwUWZjUEppaFQxeTJTYmZKSVBuNVJtc1Rad3grMXJCNWx4bVhOSlpCVmxw?=
+ =?utf-8?B?OFhFYTgzWGxSR1VabXk4TEpoNmNPVyt5djhYUDB6dFJwcTZNL2Z4T0RmdnR3?=
+ =?utf-8?B?M3V3d0NhNi9FZ1ltMjZDdXRTN2VJc2Y3Q2tvUmpvbEhSZGV5SU13WEFIT3FI?=
+ =?utf-8?B?OUx0ZzFHaVpTOXpFS0syVG9jOWRLaDJrK0g1c0VJdStzNER2dE9Ud0xJWmV0?=
+ =?utf-8?B?WVZmZmhkc3pXUEJJZ0VlZDQ2bEpSaWRncTZoOW01OEJJRDlvMFpselZ2dlA2?=
+ =?utf-8?B?QkxVcCtDTk5LeVkrQUJMVWRHdEsxSmFTeGZCdlZpSEZrUVRjek1ubi92UTJz?=
+ =?utf-8?B?V2o1U1RPQ1JoMFh5SjdGTU15cHZvQTNHYmJEQ0ZkRnpXaUE4SUdhZi9KclVY?=
+ =?utf-8?B?Z2xVdTVGdzl2cTVTRHR0K3Z1bDJiMDFDT0RQS0Flb2RMWG9Mdkw5azNVQXlH?=
+ =?utf-8?B?bVpYQkNZWnNWcXVwcjhEbUdPU0tWR2pnTkFrSlVFRTQwdVEyZTlDaytyVnND?=
+ =?utf-8?B?S0ptbGNVRVlnTENFbkROMkt3NmhySU1HdnRNUDQrUmVBTS9aaVVlSWFiZzlW?=
+ =?utf-8?B?NEsvdXBKV09xbVBrT3htc1JhM05tK09RT3ZueTIya3hBalowVVBkdEZ2WFJK?=
+ =?utf-8?B?T1VLeW1QeVdUeWhrVVRzOWdHL3ZxQXB2YU5xSEE2Um5KSzhuTjhGNkRlYWxJ?=
+ =?utf-8?B?cW50cDZ5VWRQdDFCMVdhYXU4cE9VVXJITHlXZk5sYU1jQVVBZ3dTa1RjeXBX?=
+ =?utf-8?B?cjh1b09nZklCNmwrUE1SS3V4QTFTaWdibmZ0MnNXNitwSWwzV1ZQbUR5Qy9S?=
+ =?utf-8?B?TFlxNjBmRlJWbTVDeUYvb1c1ZlIvR0YwVmJsaml6RUI0OGM0ajM2TDV2NGNC?=
+ =?utf-8?B?cVNlWWFwZnNHcWVGWVg1YWdVb2FUU0l0UDBCbko0RlVJNWpDaVhxV3U2KzZI?=
+ =?utf-8?B?UVR3SG5uWUpGWFMvcytFbDRqNHB5Vm9jRVNYTFJ6NFE5bVdVWXJXZjBZMUpS?=
+ =?utf-8?B?WE9pOWdBU3NmbVB6NXZKamdtaWRIei85M0tsOVNwL0pWZjY4a3lWTGxmTUFG?=
+ =?utf-8?B?ZTkzVVpqVlNPQ005RElqUzFCMUZoelFHS2JzWUU4SGVqUnVWOVgzbHBzWFo2?=
+ =?utf-8?B?MENjSDkvd2RtMjBvWTl6NDNZdjNoZ3RDZzhMKytkT1c1bUxsYUpXQnVRcWVK?=
+ =?utf-8?B?Z1NKQ3I4Q21VdzYzL3pFTDc4UWNCakZTUjlZYVd0MUYvS0Vmc2hHQ1JhL0tK?=
+ =?utf-8?B?c01mRlRiUDRieVdIVUo1ZlFtWTlNSTFmc1QrZU1aNEIyMnFpUFZYeGJySkEr?=
+ =?utf-8?Q?xiI78hVGT9Ht4j9SPaGzLznAX?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <0F8F3D32F09CF8479F07275F363CF4ED@namprd11.prod.outlook.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: CH3PR11MB8185.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: bc840f9e-77d5-439f-fae5-08de25e1413e
+X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Nov 2025 13:57:32.5317 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: lrRp/k/GAq1ZGaE0jy/9p9PZm2zspVTr31mwYg5QseBkREuAFb43ijYD4z50WePr9HOulaVHb/jWcD1qG+QHRA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR11MB8442
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,233 +202,194 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Introduce DRM_XE_GEM_CREATE_FLAG_NO_COMPRESSION to let userspace
-opt out of CCS compression on a per-BO basis. When set, the driver
-maps this to XE_BO_FLAG_NO_COMPRESSION, skips CCS metadata
-allocation/clearing, and rejects compressed PAT indices at vm_bind.
-This avoids extra memory ops and manual CCS state handling for buffers.
-
-To allow userspace to detect at runtime whether the kernel supports this
-feature, add DRM_XE_QUERY_CONFIG_FLAG_HAS_NO_COMPRESSION_HINT and expose
-it via query_config() on Xe2+ platforms.
-
-v2
-- Changed error code from -EINVAL to -EOPNOTSUPP for unsupported flag
-  usage on pre-Xe2 platforms
-- Fixed checkpatch warning in xe_vm.c
-- Fixed kernel-doc formatting in xe_drm.h
-
-v3
-- Rebase
-- Updated commit title and description
-- Added UAPI for DRM_XE_QUERY_CONFIG_FLAG_HAS_NO_COMPRESSION_HINT and
-  exposed it via query_config()
-
-v4
-- Rebase
-
-Suggested-by: Matthew Auld <matthew.auld@intel.com>
-Suggested-by: José Roberto de Souza <jose.souza@intel.com>
-Signed-off-by: Sanjay Yadav <sanjay.kumar.yadav@intel.com>
----
- drivers/gpu/drm/xe/xe_bo.c    | 15 +++++++++++++--
- drivers/gpu/drm/xe/xe_bo.h    |  1 +
- drivers/gpu/drm/xe/xe_pat.c   |  9 ++++++++-
- drivers/gpu/drm/xe/xe_pat.h   | 15 +++++++++++++++
- drivers/gpu/drm/xe/xe_query.c |  3 +++
- drivers/gpu/drm/xe/xe_vm.c    |  5 +++++
- include/uapi/drm/xe_drm.h     | 16 ++++++++++++++++
- 7 files changed, 61 insertions(+), 3 deletions(-)
-
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index b0bd31d14bb9..c969c2bc4249 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -3183,7 +3183,8 @@ int xe_gem_create_ioctl(struct drm_device *dev, void *data,
- 	if (XE_IOCTL_DBG(xe, args->flags &
- 			 ~(DRM_XE_GEM_CREATE_FLAG_DEFER_BACKING |
- 			   DRM_XE_GEM_CREATE_FLAG_SCANOUT |
--			   DRM_XE_GEM_CREATE_FLAG_NEEDS_VISIBLE_VRAM)))
-+			   DRM_XE_GEM_CREATE_FLAG_NEEDS_VISIBLE_VRAM |
-+			   DRM_XE_GEM_CREATE_FLAG_NO_COMPRESSION)))
- 		return -EINVAL;
- 
- 	if (XE_IOCTL_DBG(xe, args->handle))
-@@ -3205,6 +3206,12 @@ int xe_gem_create_ioctl(struct drm_device *dev, void *data,
- 	if (args->flags & DRM_XE_GEM_CREATE_FLAG_SCANOUT)
- 		bo_flags |= XE_BO_FLAG_SCANOUT;
- 
-+	if (args->flags & DRM_XE_GEM_CREATE_FLAG_NO_COMPRESSION) {
-+		if (GRAPHICS_VER(xe) < 20)
-+			return -EOPNOTSUPP;
-+		bo_flags |= XE_BO_FLAG_NO_COMPRESSION;
-+	}
-+
- 	bo_flags |= args->placement << (ffs(XE_BO_FLAG_SYSTEM) - 1);
- 
- 	/* CCS formats need physical placement at a 64K alignment in VRAM. */
-@@ -3526,8 +3533,12 @@ bool xe_bo_needs_ccs_pages(struct xe_bo *bo)
- 	 * Compression implies coh_none, therefore we know for sure that WB
- 	 * memory can't currently use compression, which is likely one of the
- 	 * common cases.
-+	 * Additionally, userspace may explicitly request no compression via the
-+	 * DRM_XE_GEM_CREATE_FLAG_NO_COMPRESSION flag, which should also disable
-+	 * CCS usage.
- 	 */
--	if (bo->cpu_caching == DRM_XE_GEM_CPU_CACHING_WB)
-+	if (bo->cpu_caching == DRM_XE_GEM_CPU_CACHING_WB ||
-+	    bo->flags & XE_BO_FLAG_NO_COMPRESSION)
- 		return false;
- 
- 	return true;
-diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
-index 911d5b90461a..8ab4474129c3 100644
---- a/drivers/gpu/drm/xe/xe_bo.h
-+++ b/drivers/gpu/drm/xe/xe_bo.h
-@@ -50,6 +50,7 @@
- #define XE_BO_FLAG_GGTT3		BIT(23)
- #define XE_BO_FLAG_CPU_ADDR_MIRROR	BIT(24)
- #define XE_BO_FLAG_FORCE_USER_VRAM	BIT(25)
-+#define XE_BO_FLAG_NO_COMPRESSION	BIT(26)
- 
- /* this one is trigger internally only */
- #define XE_BO_FLAG_INTERNAL_TEST	BIT(30)
-diff --git a/drivers/gpu/drm/xe/xe_pat.c b/drivers/gpu/drm/xe/xe_pat.c
-index 1b4d5d3def0f..1363a3e4e47e 100644
---- a/drivers/gpu/drm/xe/xe_pat.c
-+++ b/drivers/gpu/drm/xe/xe_pat.c
-@@ -116,7 +116,8 @@ static const struct xe_pat_table_entry xelpg_pat_table[] = {
- 			REG_FIELD_PREP(XE2_COH_MODE, __coh_mode), \
- 		.coh_mode = (BUILD_BUG_ON_ZERO(__coh_mode && comp_en) || __coh_mode) ? \
- 			XE_COH_AT_LEAST_1WAY : XE_COH_NONE, \
--		.valid = 1 \
-+		.valid = 1, \
-+		.compressed = comp_en, \
- 	}
- 
- static const struct xe_pat_table_entry xe2_pat_table[] = {
-@@ -202,6 +203,12 @@ bool xe_pat_index_get_comp_en(struct xe_device *xe, u16 pat_index)
- 	return !!(xe->pat.table[pat_index].value & XE2_COMP_EN);
- }
- 
-+bool xe_pat_index_has_compression(struct xe_device *xe, u16 pat_index)
-+{
-+	xe_assert(xe, pat_index < xe->pat.n_entries);
-+	return xe->pat.table[pat_index].compressed;
-+}
-+
- static void program_pat(struct xe_gt *gt, const struct xe_pat_table_entry table[],
- 			int n_entries)
- {
-diff --git a/drivers/gpu/drm/xe/xe_pat.h b/drivers/gpu/drm/xe/xe_pat.h
-index b8559120989e..0bbe803b8ce5 100644
---- a/drivers/gpu/drm/xe/xe_pat.h
-+++ b/drivers/gpu/drm/xe/xe_pat.h
-@@ -34,6 +34,11 @@ struct xe_pat_table_entry {
- 	 * @valid: Set to 1 if the entry is valid, 0 if it's reserved.
- 	 */
- 	u16 valid;
-+
-+	/**
-+	 * @compressed: Whether compression is enabled or not with @value.
-+	 */
-+	bool compressed;
- };
- 
- /**
-@@ -68,4 +73,14 @@ u16 xe_pat_index_get_coh_mode(struct xe_device *xe, u16 pat_index);
-  */
- bool xe_pat_index_get_comp_en(struct xe_device *xe, u16 pat_index);
- 
-+/**
-+ * xe_pat_index_has_compression - Check if the given pat_index enables
-+ * compression.
-+ * @xe: xe device
-+ * @pat_index: The pat_index to query
-+ *
-+ * Note: Only applicable to Xe2+, where compression is part of the PAT index.
-+ */
-+bool xe_pat_index_has_compression(struct xe_device *xe, u16 pat_index);
-+
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
-index 1c0915e2cc16..b392c9b3f0c9 100644
---- a/drivers/gpu/drm/xe/xe_query.c
-+++ b/drivers/gpu/drm/xe/xe_query.c
-@@ -342,6 +342,9 @@ static int query_config(struct xe_device *xe, struct drm_xe_device_query *query)
- 	if (xe->info.has_usm && IS_ENABLED(CONFIG_DRM_XE_GPUSVM))
- 		config->info[DRM_XE_QUERY_CONFIG_FLAGS] |=
- 			DRM_XE_QUERY_CONFIG_FLAG_HAS_CPU_ADDR_MIRROR;
-+	if (GRAPHICS_VER(xe) >= 20)
-+		config->info[DRM_XE_QUERY_CONFIG_FLAGS] |=
-+			DRM_XE_QUERY_CONFIG_FLAG_HAS_NO_COMPRESSION_HINT;
- 	config->info[DRM_XE_QUERY_CONFIG_FLAGS] |=
- 			DRM_XE_QUERY_CONFIG_FLAG_HAS_LOW_LATENCY;
- 	config->info[DRM_XE_QUERY_CONFIG_MIN_ALIGNMENT] =
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 7cac646bdf1c..e377c872ec0f 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -3484,6 +3484,11 @@ static int xe_vm_bind_ioctl_validate_bo(struct xe_device *xe, struct xe_bo *bo,
- {
- 	u16 coh_mode;
- 
-+	/* Reject compressed PAT index for BO with NO_COMPRESSION flag */
-+	if ((bo->flags & XE_BO_FLAG_NO_COMPRESSION) &&
-+	    xe_pat_index_has_compression(xe, pat_index))
-+		return -EINVAL;
-+
- 	if (XE_IOCTL_DBG(xe, range > xe_bo_size(bo)) ||
- 	    XE_IOCTL_DBG(xe, obj_offset >
- 			 xe_bo_size(bo) - range)) {
-diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index 47853659a705..b9840cb77360 100644
---- a/include/uapi/drm/xe_drm.h
-+++ b/include/uapi/drm/xe_drm.h
-@@ -403,6 +403,9 @@ struct drm_xe_query_mem_regions {
-  *      has low latency hint support
-  *    - %DRM_XE_QUERY_CONFIG_FLAG_HAS_CPU_ADDR_MIRROR - Flag is set if the
-  *      device has CPU address mirroring support
-+ *    - %DRM_XE_QUERY_CONFIG_FLAG_HAS_NO_COMPRESSION_HINT - Flag is set if the
-+ *      device supports the userspace hint %DRM_XE_GEM_CREATE_FLAG_NO_COMPRESSION.
-+ *      This is exposed only on Xe2+.
-  *  - %DRM_XE_QUERY_CONFIG_MIN_ALIGNMENT - Minimal memory alignment
-  *    required by this device, typically SZ_4K or SZ_64K
-  *  - %DRM_XE_QUERY_CONFIG_VA_BITS - Maximum bits of a virtual address
-@@ -421,6 +424,7 @@ struct drm_xe_query_config {
- 	#define DRM_XE_QUERY_CONFIG_FLAG_HAS_VRAM	(1 << 0)
- 	#define DRM_XE_QUERY_CONFIG_FLAG_HAS_LOW_LATENCY	(1 << 1)
- 	#define DRM_XE_QUERY_CONFIG_FLAG_HAS_CPU_ADDR_MIRROR	(1 << 2)
-+	#define DRM_XE_QUERY_CONFIG_FLAG_HAS_NO_COMPRESSION_HINT (1 << 3)
- #define DRM_XE_QUERY_CONFIG_MIN_ALIGNMENT		2
- #define DRM_XE_QUERY_CONFIG_VA_BITS			3
- #define DRM_XE_QUERY_CONFIG_MAX_EXEC_QUEUE_PRIORITY	4
-@@ -791,6 +795,17 @@ struct drm_xe_device_query {
-  *    need to use VRAM for display surfaces, therefore the kernel requires
-  *    setting this flag for such objects, otherwise an error is thrown on
-  *    small-bar systems.
-+ *  - %DRM_XE_GEM_CREATE_FLAG_NO_COMPRESSION - Allows userspace to
-+ *    hint that compression (CCS) should be disabled for the buffer being
-+ *    created. This can avoid unnecessary memory operations and CCS state
-+ *    management.
-+ *    On pre-Xe2 platforms, this flag is currently rejected as compression
-+ *    control is not supported via PAT index. On Xe2+ platforms, compression
-+ *    is controlled via PAT entries. If this flag is set, the driver will reject
-+ *    any VM bind that requests a PAT index enabling compression for this BO.
-+ *    Note: On dGPU platforms, there is currently no change in behavior with
-+ *    this flag, but future improvements may leverage it. The current benefit is
-+ *    primarily applicable to iGPU platforms.
-  *
-  * @cpu_caching supports the following values:
-  *  - %DRM_XE_GEM_CPU_CACHING_WB - Allocate the pages with write-back
-@@ -837,6 +852,7 @@ struct drm_xe_gem_create {
- #define DRM_XE_GEM_CREATE_FLAG_DEFER_BACKING		(1 << 0)
- #define DRM_XE_GEM_CREATE_FLAG_SCANOUT			(1 << 1)
- #define DRM_XE_GEM_CREATE_FLAG_NEEDS_VISIBLE_VRAM	(1 << 2)
-+#define DRM_XE_GEM_CREATE_FLAG_NO_COMPRESSION		(1 << 3)
- 	/**
- 	 * @flags: Flags, currently a mask of memory instances of where BO can
- 	 * be placed
--- 
-2.43.0
-
+T24gTW9uLCAyMDI1LTExLTE3IGF0IDE5OjIzICswNTMwLCBTYW5qYXkgWWFkYXYgd3JvdGU6DQo+
+IEludHJvZHVjZSBEUk1fWEVfR0VNX0NSRUFURV9GTEFHX05PX0NPTVBSRVNTSU9OIHRvIGxldCB1
+c2Vyc3BhY2UNCj4gb3B0IG91dCBvZiBDQ1MgY29tcHJlc3Npb24gb24gYSBwZXItQk8gYmFzaXMu
+IFdoZW4gc2V0LCB0aGUgZHJpdmVyDQo+IG1hcHMgdGhpcyB0byBYRV9CT19GTEFHX05PX0NPTVBS
+RVNTSU9OLCBza2lwcyBDQ1MgbWV0YWRhdGENCj4gYWxsb2NhdGlvbi9jbGVhcmluZywgYW5kIHJl
+amVjdHMgY29tcHJlc3NlZCBQQVQgaW5kaWNlcyBhdCB2bV9iaW5kLg0KPiBUaGlzIGF2b2lkcyBl
+eHRyYSBtZW1vcnkgb3BzIGFuZCBtYW51YWwgQ0NTIHN0YXRlIGhhbmRsaW5nIGZvcg0KPiBidWZm
+ZXJzLg0KPiANCj4gVG8gYWxsb3cgdXNlcnNwYWNlIHRvIGRldGVjdCBhdCBydW50aW1lIHdoZXRo
+ZXIgdGhlIGtlcm5lbCBzdXBwb3J0cw0KPiB0aGlzDQo+IGZlYXR1cmUsIGFkZCBEUk1fWEVfUVVF
+UllfQ09ORklHX0ZMQUdfSEFTX05PX0NPTVBSRVNTSU9OX0hJTlQgYW5kDQo+IGV4cG9zZQ0KPiBp
+dCB2aWEgcXVlcnlfY29uZmlnKCkgb24gWGUyKyBwbGF0Zm9ybXMuDQo+IA0KPiB2Mg0KPiAtIENo
+YW5nZWQgZXJyb3IgY29kZSBmcm9tIC1FSU5WQUwgdG8gLUVPUE5PVFNVUFAgZm9yIHVuc3VwcG9y
+dGVkIGZsYWcNCj4gwqAgdXNhZ2Ugb24gcHJlLVhlMiBwbGF0Zm9ybXMNCj4gLSBGaXhlZCBjaGVj
+a3BhdGNoIHdhcm5pbmcgaW4geGVfdm0uYw0KPiAtIEZpeGVkIGtlcm5lbC1kb2MgZm9ybWF0dGlu
+ZyBpbiB4ZV9kcm0uaA0KPiANCj4gdjMNCj4gLSBSZWJhc2UNCj4gLSBVcGRhdGVkIGNvbW1pdCB0
+aXRsZSBhbmQgZGVzY3JpcHRpb24NCj4gLSBBZGRlZCBVQVBJIGZvciBEUk1fWEVfUVVFUllfQ09O
+RklHX0ZMQUdfSEFTX05PX0NPTVBSRVNTSU9OX0hJTlQgYW5kDQo+IMKgIGV4cG9zZWQgaXQgdmlh
+IHF1ZXJ5X2NvbmZpZygpDQo+IA0KPiB2NA0KPiAtIFJlYmFzZQ0KDQpQbGVhc2UgaW5jbHVkZSB0
+aGUgVU1EIGltcGxlbWVudGF0aW9uIGxpbmsgdG8gdGhlIGNvbW1pdCBkZXNjcmlwdGlvbiwNCmNo
+ZWNrIG9sZGVyIHBhdGNocyBhYm91dCB3aGF0IHRhZy9mb3JtYXQgdG8gdXNlIGJ1dCB5b3UgbmVl
+ZCB0byBoYXZlDQp0aGF0IGluIHRoZSBjb21taXQgZGVzY3JpcHRpb24gdG8gbGFuZCB1QVBJIGNo
+YW5nZXMuDQpodHRwczovL2dpdGxhYi5mcmVlZGVza3RvcC5vcmcvbWVzYS9tZXNhLy0vbWVyZ2Vf
+cmVxdWVzdHMvMzg0MjUNCg0KQWxzbyBwbGVhc2UgaW5jbHVkZSBteSBhY2suDQoNCkFja2VkLWJ5
+OiBKb3PDqSBSb2JlcnRvIGRlIFNvdXphIDxqb3NlLnNvdXphQGludGVsLmNvbT4NCg0KPiANCj4g
+U3VnZ2VzdGVkLWJ5OiBNYXR0aGV3IEF1bGQgPG1hdHRoZXcuYXVsZEBpbnRlbC5jb20+DQo+IFN1
+Z2dlc3RlZC1ieTogSm9zw6kgUm9iZXJ0byBkZSBTb3V6YSA8am9zZS5zb3V6YUBpbnRlbC5jb20+
+DQo+IFNpZ25lZC1vZmYtYnk6IFNhbmpheSBZYWRhdiA8c2FuamF5Lmt1bWFyLnlhZGF2QGludGVs
+LmNvbT4NCj4gLS0tDQo+IMKgZHJpdmVycy9ncHUvZHJtL3hlL3hlX2JvLmPCoMKgwqAgfCAxNSAr
+KysrKysrKysrKysrLS0NCj4gwqBkcml2ZXJzL2dwdS9kcm0veGUveGVfYm8uaMKgwqDCoCB8wqAg
+MSArDQo+IMKgZHJpdmVycy9ncHUvZHJtL3hlL3hlX3BhdC5jwqDCoCB8wqAgOSArKysrKysrKy0N
+Cj4gwqBkcml2ZXJzL2dwdS9kcm0veGUveGVfcGF0LmjCoMKgIHwgMTUgKysrKysrKysrKysrKysr
+DQo+IMKgZHJpdmVycy9ncHUvZHJtL3hlL3hlX3F1ZXJ5LmMgfMKgIDMgKysrDQo+IMKgZHJpdmVy
+cy9ncHUvZHJtL3hlL3hlX3ZtLmPCoMKgwqAgfMKgIDUgKysrKysNCj4gwqBpbmNsdWRlL3VhcGkv
+ZHJtL3hlX2RybS5owqDCoMKgwqAgfCAxNiArKysrKysrKysrKysrKysrDQo+IMKgNyBmaWxlcyBj
+aGFuZ2VkLCA2MSBpbnNlcnRpb25zKCspLCAzIGRlbGV0aW9ucygtKQ0KPiANCj4gZGlmZiAtLWdp
+dCBhL2RyaXZlcnMvZ3B1L2RybS94ZS94ZV9iby5jIGIvZHJpdmVycy9ncHUvZHJtL3hlL3hlX2Jv
+LmMNCj4gaW5kZXggYjBiZDMxZDE0YmI5Li5jOTY5YzJiYzQyNDkgMTAwNjQ0DQo+IC0tLSBhL2Ry
+aXZlcnMvZ3B1L2RybS94ZS94ZV9iby5jDQo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS94ZS94ZV9i
+by5jDQo+IEBAIC0zMTgzLDcgKzMxODMsOCBAQCBpbnQgeGVfZ2VtX2NyZWF0ZV9pb2N0bChzdHJ1
+Y3QgZHJtX2RldmljZSAqZGV2LA0KPiB2b2lkICpkYXRhLA0KPiDCoAlpZiAoWEVfSU9DVExfREJH
+KHhlLCBhcmdzLT5mbGFncyAmDQo+IMKgCQkJIH4oRFJNX1hFX0dFTV9DUkVBVEVfRkxBR19ERUZF
+Ul9CQUNLSU5HIHwNCj4gwqAJCQnCoMKgIERSTV9YRV9HRU1fQ1JFQVRFX0ZMQUdfU0NBTk9VVCB8
+DQo+IC0JCQnCoMKgDQo+IERSTV9YRV9HRU1fQ1JFQVRFX0ZMQUdfTkVFRFNfVklTSUJMRV9WUkFN
+KSkpDQo+ICsJCQnCoMKgIERSTV9YRV9HRU1fQ1JFQVRFX0ZMQUdfTkVFRFNfVklTSUJMRV9WUkFN
+DQo+IHwNCj4gKwkJCcKgwqAgRFJNX1hFX0dFTV9DUkVBVEVfRkxBR19OT19DT01QUkVTU0lPTikp
+KQ0KPiDCoAkJcmV0dXJuIC1FSU5WQUw7DQo+IMKgDQo+IMKgCWlmIChYRV9JT0NUTF9EQkcoeGUs
+IGFyZ3MtPmhhbmRsZSkpDQo+IEBAIC0zMjA1LDYgKzMyMDYsMTIgQEAgaW50IHhlX2dlbV9jcmVh
+dGVfaW9jdGwoc3RydWN0IGRybV9kZXZpY2UNCj4gKmRldiwgdm9pZCAqZGF0YSwNCj4gwqAJaWYg
+KGFyZ3MtPmZsYWdzICYgRFJNX1hFX0dFTV9DUkVBVEVfRkxBR19TQ0FOT1VUKQ0KPiDCoAkJYm9f
+ZmxhZ3MgfD0gWEVfQk9fRkxBR19TQ0FOT1VUOw0KPiDCoA0KPiArCWlmIChhcmdzLT5mbGFncyAm
+IERSTV9YRV9HRU1fQ1JFQVRFX0ZMQUdfTk9fQ09NUFJFU1NJT04pIHsNCj4gKwkJaWYgKEdSQVBI
+SUNTX1ZFUih4ZSkgPCAyMCkNCj4gKwkJCXJldHVybiAtRU9QTk9UU1VQUDsNCj4gKwkJYm9fZmxh
+Z3MgfD0gWEVfQk9fRkxBR19OT19DT01QUkVTU0lPTjsNCj4gKwl9DQo+ICsNCj4gwqAJYm9fZmxh
+Z3MgfD0gYXJncy0+cGxhY2VtZW50IDw8IChmZnMoWEVfQk9fRkxBR19TWVNURU0pIC0gMSk7DQo+
+IMKgDQo+IMKgCS8qIENDUyBmb3JtYXRzIG5lZWQgcGh5c2ljYWwgcGxhY2VtZW50IGF0IGEgNjRL
+IGFsaWdubWVudCBpbg0KPiBWUkFNLiAqLw0KPiBAQCAtMzUyNiw4ICszNTMzLDEyIEBAIGJvb2wg
+eGVfYm9fbmVlZHNfY2NzX3BhZ2VzKHN0cnVjdCB4ZV9ibyAqYm8pDQo+IMKgCSAqIENvbXByZXNz
+aW9uIGltcGxpZXMgY29oX25vbmUsIHRoZXJlZm9yZSB3ZSBrbm93IGZvciBzdXJlDQo+IHRoYXQg
+V0INCj4gwqAJICogbWVtb3J5IGNhbid0IGN1cnJlbnRseSB1c2UgY29tcHJlc3Npb24sIHdoaWNo
+IGlzIGxpa2VseQ0KPiBvbmUgb2YgdGhlDQo+IMKgCSAqIGNvbW1vbiBjYXNlcy4NCj4gKwkgKiBB
+ZGRpdGlvbmFsbHksIHVzZXJzcGFjZSBtYXkgZXhwbGljaXRseSByZXF1ZXN0IG5vDQo+IGNvbXBy
+ZXNzaW9uIHZpYSB0aGUNCj4gKwkgKiBEUk1fWEVfR0VNX0NSRUFURV9GTEFHX05PX0NPTVBSRVNT
+SU9OIGZsYWcsIHdoaWNoIHNob3VsZA0KPiBhbHNvIGRpc2FibGUNCj4gKwkgKiBDQ1MgdXNhZ2Uu
+DQo+IMKgCSAqLw0KPiAtCWlmIChiby0+Y3B1X2NhY2hpbmcgPT0gRFJNX1hFX0dFTV9DUFVfQ0FD
+SElOR19XQikNCj4gKwlpZiAoYm8tPmNwdV9jYWNoaW5nID09IERSTV9YRV9HRU1fQ1BVX0NBQ0hJ
+TkdfV0IgfHwNCj4gKwnCoMKgwqAgYm8tPmZsYWdzICYgWEVfQk9fRkxBR19OT19DT01QUkVTU0lP
+TikNCj4gwqAJCXJldHVybiBmYWxzZTsNCj4gwqANCj4gwqAJcmV0dXJuIHRydWU7DQo+IGRpZmYg
+LS1naXQgYS9kcml2ZXJzL2dwdS9kcm0veGUveGVfYm8uaCBiL2RyaXZlcnMvZ3B1L2RybS94ZS94
+ZV9iby5oDQo+IGluZGV4IDkxMWQ1YjkwNDYxYS4uOGFiNDQ3NDEyOWMzIDEwMDY0NA0KPiAtLS0g
+YS9kcml2ZXJzL2dwdS9kcm0veGUveGVfYm8uaA0KPiArKysgYi9kcml2ZXJzL2dwdS9kcm0veGUv
+eGVfYm8uaA0KPiBAQCAtNTAsNiArNTAsNyBAQA0KPiDCoCNkZWZpbmUgWEVfQk9fRkxBR19HR1RU
+MwkJQklUKDIzKQ0KPiDCoCNkZWZpbmUgWEVfQk9fRkxBR19DUFVfQUREUl9NSVJST1IJQklUKDI0
+KQ0KPiDCoCNkZWZpbmUgWEVfQk9fRkxBR19GT1JDRV9VU0VSX1ZSQU0JQklUKDI1KQ0KPiArI2Rl
+ZmluZSBYRV9CT19GTEFHX05PX0NPTVBSRVNTSU9OCUJJVCgyNikNCj4gwqANCj4gwqAvKiB0aGlz
+IG9uZSBpcyB0cmlnZ2VyIGludGVybmFsbHkgb25seSAqLw0KPiDCoCNkZWZpbmUgWEVfQk9fRkxB
+R19JTlRFUk5BTF9URVNUCUJJVCgzMCkNCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS94
+ZS94ZV9wYXQuYw0KPiBiL2RyaXZlcnMvZ3B1L2RybS94ZS94ZV9wYXQuYw0KPiBpbmRleCAxYjRk
+NWQzZGVmMGYuLjEzNjNhM2U0ZTQ3ZSAxMDA2NDQNCj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL3hl
+L3hlX3BhdC5jDQo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS94ZS94ZV9wYXQuYw0KPiBAQCAtMTE2
+LDcgKzExNiw4IEBAIHN0YXRpYyBjb25zdCBzdHJ1Y3QgeGVfcGF0X3RhYmxlX2VudHJ5DQo+IHhl
+bHBnX3BhdF90YWJsZVtdID0gew0KPiDCoAkJCVJFR19GSUVMRF9QUkVQKFhFMl9DT0hfTU9ERSwg
+X19jb2hfbW9kZSksIFwNCj4gwqAJCS5jb2hfbW9kZSA9IChCVUlMRF9CVUdfT05fWkVSTyhfX2Nv
+aF9tb2RlICYmDQo+IGNvbXBfZW4pIHx8IF9fY29oX21vZGUpID8gXA0KPiDCoAkJCVhFX0NPSF9B
+VF9MRUFTVF8xV0FZIDogWEVfQ09IX05PTkUsIFwNCj4gLQkJLnZhbGlkID0gMSBcDQo+ICsJCS52
+YWxpZCA9IDEsIFwNCj4gKwkJLmNvbXByZXNzZWQgPSBjb21wX2VuLCBcDQo+IMKgCX0NCj4gwqAN
+Cj4gwqBzdGF0aWMgY29uc3Qgc3RydWN0IHhlX3BhdF90YWJsZV9lbnRyeSB4ZTJfcGF0X3RhYmxl
+W10gPSB7DQo+IEBAIC0yMDIsNiArMjAzLDEyIEBAIGJvb2wgeGVfcGF0X2luZGV4X2dldF9jb21w
+X2VuKHN0cnVjdCB4ZV9kZXZpY2UNCj4gKnhlLCB1MTYgcGF0X2luZGV4KQ0KPiDCoAlyZXR1cm4g
+ISEoeGUtPnBhdC50YWJsZVtwYXRfaW5kZXhdLnZhbHVlICYgWEUyX0NPTVBfRU4pOw0KPiDCoH0N
+Cj4gwqANCj4gK2Jvb2wgeGVfcGF0X2luZGV4X2hhc19jb21wcmVzc2lvbihzdHJ1Y3QgeGVfZGV2
+aWNlICp4ZSwgdTE2DQo+IHBhdF9pbmRleCkNCj4gK3sNCj4gKwl4ZV9hc3NlcnQoeGUsIHBhdF9p
+bmRleCA8IHhlLT5wYXQubl9lbnRyaWVzKTsNCj4gKwlyZXR1cm4geGUtPnBhdC50YWJsZVtwYXRf
+aW5kZXhdLmNvbXByZXNzZWQ7DQo+ICt9DQo+ICsNCj4gwqBzdGF0aWMgdm9pZCBwcm9ncmFtX3Bh
+dChzdHJ1Y3QgeGVfZ3QgKmd0LCBjb25zdCBzdHJ1Y3QNCj4geGVfcGF0X3RhYmxlX2VudHJ5IHRh
+YmxlW10sDQo+IMKgCQkJaW50IG5fZW50cmllcykNCj4gwqB7DQo+IGRpZmYgLS1naXQgYS9kcml2
+ZXJzL2dwdS9kcm0veGUveGVfcGF0LmgNCj4gYi9kcml2ZXJzL2dwdS9kcm0veGUveGVfcGF0LmgN
+Cj4gaW5kZXggYjg1NTkxMjA5ODllLi4wYmJlODAzYjhjZTUgMTAwNjQ0DQo+IC0tLSBhL2RyaXZl
+cnMvZ3B1L2RybS94ZS94ZV9wYXQuaA0KPiArKysgYi9kcml2ZXJzL2dwdS9kcm0veGUveGVfcGF0
+LmgNCj4gQEAgLTM0LDYgKzM0LDExIEBAIHN0cnVjdCB4ZV9wYXRfdGFibGVfZW50cnkgew0KPiDC
+oAkgKiBAdmFsaWQ6IFNldCB0byAxIGlmIHRoZSBlbnRyeSBpcyB2YWxpZCwgMCBpZiBpdCdzDQo+
+IHJlc2VydmVkLg0KPiDCoAkgKi8NCj4gwqAJdTE2IHZhbGlkOw0KPiArDQo+ICsJLyoqDQo+ICsJ
+ICogQGNvbXByZXNzZWQ6IFdoZXRoZXIgY29tcHJlc3Npb24gaXMgZW5hYmxlZCBvciBub3Qgd2l0
+aA0KPiBAdmFsdWUuDQo+ICsJICovDQo+ICsJYm9vbCBjb21wcmVzc2VkOw0KPiDCoH07DQo+IMKg
+DQo+IMKgLyoqDQo+IEBAIC02OCw0ICs3MywxNCBAQCB1MTYgeGVfcGF0X2luZGV4X2dldF9jb2hf
+bW9kZShzdHJ1Y3QgeGVfZGV2aWNlDQo+ICp4ZSwgdTE2IHBhdF9pbmRleCk7DQo+IMKgICovDQo+
+IMKgYm9vbCB4ZV9wYXRfaW5kZXhfZ2V0X2NvbXBfZW4oc3RydWN0IHhlX2RldmljZSAqeGUsIHUx
+NiBwYXRfaW5kZXgpOw0KPiDCoA0KPiArLyoqDQo+ICsgKiB4ZV9wYXRfaW5kZXhfaGFzX2NvbXBy
+ZXNzaW9uIC0gQ2hlY2sgaWYgdGhlIGdpdmVuIHBhdF9pbmRleA0KPiBlbmFibGVzDQo+ICsgKiBj
+b21wcmVzc2lvbi4NCj4gKyAqIEB4ZTogeGUgZGV2aWNlDQo+ICsgKiBAcGF0X2luZGV4OiBUaGUg
+cGF0X2luZGV4IHRvIHF1ZXJ5DQo+ICsgKg0KPiArICogTm90ZTogT25seSBhcHBsaWNhYmxlIHRv
+IFhlMissIHdoZXJlIGNvbXByZXNzaW9uIGlzIHBhcnQgb2YgdGhlDQo+IFBBVCBpbmRleC4NCj4g
+KyAqLw0KPiArYm9vbCB4ZV9wYXRfaW5kZXhfaGFzX2NvbXByZXNzaW9uKHN0cnVjdCB4ZV9kZXZp
+Y2UgKnhlLCB1MTYNCj4gcGF0X2luZGV4KTsNCj4gKw0KPiDCoCNlbmRpZg0KPiBkaWZmIC0tZ2l0
+IGEvZHJpdmVycy9ncHUvZHJtL3hlL3hlX3F1ZXJ5LmMNCj4gYi9kcml2ZXJzL2dwdS9kcm0veGUv
+eGVfcXVlcnkuYw0KPiBpbmRleCAxYzA5MTVlMmNjMTYuLmIzOTJjOWIzZjBjOSAxMDA2NDQNCj4g
+LS0tIGEvZHJpdmVycy9ncHUvZHJtL3hlL3hlX3F1ZXJ5LmMNCj4gKysrIGIvZHJpdmVycy9ncHUv
+ZHJtL3hlL3hlX3F1ZXJ5LmMNCj4gQEAgLTM0Miw2ICszNDIsOSBAQCBzdGF0aWMgaW50IHF1ZXJ5
+X2NvbmZpZyhzdHJ1Y3QgeGVfZGV2aWNlICp4ZSwNCj4gc3RydWN0IGRybV94ZV9kZXZpY2VfcXVl
+cnkgKnF1ZXJ5KQ0KPiDCoAlpZiAoeGUtPmluZm8uaGFzX3VzbSAmJiBJU19FTkFCTEVEKENPTkZJ
+R19EUk1fWEVfR1BVU1ZNKSkNCj4gwqAJCWNvbmZpZy0+aW5mb1tEUk1fWEVfUVVFUllfQ09ORklH
+X0ZMQUdTXSB8PQ0KPiDCoAkJCURSTV9YRV9RVUVSWV9DT05GSUdfRkxBR19IQVNfQ1BVX0FERFJf
+TUlSUk9SDQo+IDsNCj4gKwlpZiAoR1JBUEhJQ1NfVkVSKHhlKSA+PSAyMCkNCj4gKwkJY29uZmln
+LT5pbmZvW0RSTV9YRV9RVUVSWV9DT05GSUdfRkxBR1NdIHw9DQo+ICsJCQlEUk1fWEVfUVVFUllf
+Q09ORklHX0ZMQUdfSEFTX05PX0NPTVBSRVNTSU9OXw0KPiBISU5UOw0KPiDCoAljb25maWctPmlu
+Zm9bRFJNX1hFX1FVRVJZX0NPTkZJR19GTEFHU10gfD0NCj4gwqAJCQlEUk1fWEVfUVVFUllfQ09O
+RklHX0ZMQUdfSEFTX0xPV19MQVRFTkNZOw0KPiDCoAljb25maWctPmluZm9bRFJNX1hFX1FVRVJZ
+X0NPTkZJR19NSU5fQUxJR05NRU5UXSA9DQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0v
+eGUveGVfdm0uYyBiL2RyaXZlcnMvZ3B1L2RybS94ZS94ZV92bS5jDQo+IGluZGV4IDdjYWM2NDZi
+ZGYxYy4uZTM3N2M4NzJlYzBmIDEwMDY0NA0KPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0veGUveGVf
+dm0uYw0KPiArKysgYi9kcml2ZXJzL2dwdS9kcm0veGUveGVfdm0uYw0KPiBAQCAtMzQ4NCw2ICsz
+NDg0LDExIEBAIHN0YXRpYyBpbnQgeGVfdm1fYmluZF9pb2N0bF92YWxpZGF0ZV9ibyhzdHJ1Y3QN
+Cj4geGVfZGV2aWNlICp4ZSwgc3RydWN0IHhlX2JvICpibywNCj4gwqB7DQo+IMKgCXUxNiBjb2hf
+bW9kZTsNCj4gwqANCj4gKwkvKiBSZWplY3QgY29tcHJlc3NlZCBQQVQgaW5kZXggZm9yIEJPIHdp
+dGggTk9fQ09NUFJFU1NJT04NCj4gZmxhZyAqLw0KPiArCWlmICgoYm8tPmZsYWdzICYgWEVfQk9f
+RkxBR19OT19DT01QUkVTU0lPTikgJiYNCj4gKwnCoMKgwqAgeGVfcGF0X2luZGV4X2hhc19jb21w
+cmVzc2lvbih4ZSwgcGF0X2luZGV4KSkNCj4gKwkJcmV0dXJuIC1FSU5WQUw7DQo+ICsNCj4gwqAJ
+aWYgKFhFX0lPQ1RMX0RCRyh4ZSwgcmFuZ2UgPiB4ZV9ib19zaXplKGJvKSkgfHwNCj4gwqAJwqDC
+oMKgIFhFX0lPQ1RMX0RCRyh4ZSwgb2JqX29mZnNldCA+DQo+IMKgCQkJIHhlX2JvX3NpemUoYm8p
+IC0gcmFuZ2UpKSB7DQo+IGRpZmYgLS1naXQgYS9pbmNsdWRlL3VhcGkvZHJtL3hlX2RybS5oIGIv
+aW5jbHVkZS91YXBpL2RybS94ZV9kcm0uaA0KPiBpbmRleCA0Nzg1MzY1OWE3MDUuLmI5ODQwY2I3
+NzM2MCAxMDA2NDQNCj4gLS0tIGEvaW5jbHVkZS91YXBpL2RybS94ZV9kcm0uaA0KPiArKysgYi9p
+bmNsdWRlL3VhcGkvZHJtL3hlX2RybS5oDQo+IEBAIC00MDMsNiArNDAzLDkgQEAgc3RydWN0IGRy
+bV94ZV9xdWVyeV9tZW1fcmVnaW9ucyB7DQo+IMKgICrCoMKgwqDCoMKgIGhhcyBsb3cgbGF0ZW5j
+eSBoaW50IHN1cHBvcnQNCj4gwqAgKsKgwqDCoCAtICVEUk1fWEVfUVVFUllfQ09ORklHX0ZMQUdf
+SEFTX0NQVV9BRERSX01JUlJPUiAtIEZsYWcgaXMgc2V0DQo+IGlmIHRoZQ0KPiDCoCAqwqDCoMKg
+wqDCoCBkZXZpY2UgaGFzIENQVSBhZGRyZXNzIG1pcnJvcmluZyBzdXBwb3J0DQo+ICsgKsKgwqDC
+oCAtICVEUk1fWEVfUVVFUllfQ09ORklHX0ZMQUdfSEFTX05PX0NPTVBSRVNTSU9OX0hJTlQgLSBG
+bGFnIGlzDQo+IHNldCBpZiB0aGUNCj4gKyAqwqDCoMKgwqDCoCBkZXZpY2Ugc3VwcG9ydHMgdGhl
+IHVzZXJzcGFjZSBoaW50DQo+ICVEUk1fWEVfR0VNX0NSRUFURV9GTEFHX05PX0NPTVBSRVNTSU9O
+Lg0KPiArICrCoMKgwqDCoMKgIFRoaXMgaXMgZXhwb3NlZCBvbmx5IG9uIFhlMisuDQo+IMKgICrC
+oCAtICVEUk1fWEVfUVVFUllfQ09ORklHX01JTl9BTElHTk1FTlQgLSBNaW5pbWFsIG1lbW9yeSBh
+bGlnbm1lbnQNCj4gwqAgKsKgwqDCoCByZXF1aXJlZCBieSB0aGlzIGRldmljZSwgdHlwaWNhbGx5
+IFNaXzRLIG9yIFNaXzY0Sw0KPiDCoCAqwqAgLSAlRFJNX1hFX1FVRVJZX0NPTkZJR19WQV9CSVRT
+IC0gTWF4aW11bSBiaXRzIG9mIGEgdmlydHVhbA0KPiBhZGRyZXNzDQo+IEBAIC00MjEsNiArNDI0
+LDcgQEAgc3RydWN0IGRybV94ZV9xdWVyeV9jb25maWcgew0KPiDCoAkjZGVmaW5lIERSTV9YRV9R
+VUVSWV9DT05GSUdfRkxBR19IQVNfVlJBTQkoMSA8PCAwKQ0KPiDCoAkjZGVmaW5lIERSTV9YRV9R
+VUVSWV9DT05GSUdfRkxBR19IQVNfTE9XX0xBVEVOQ1kJKDENCj4gPDwgMSkNCj4gwqAJI2RlZmlu
+ZSBEUk1fWEVfUVVFUllfQ09ORklHX0ZMQUdfSEFTX0NQVV9BRERSX01JUlJPUgkoMQ0KPiA8PCAy
+KQ0KPiArCSNkZWZpbmUgRFJNX1hFX1FVRVJZX0NPTkZJR19GTEFHX0hBU19OT19DT01QUkVTU0lP
+Tl9ISU5UICgxDQo+IDw8IDMpDQo+IMKgI2RlZmluZSBEUk1fWEVfUVVFUllfQ09ORklHX01JTl9B
+TElHTk1FTlQJCTINCj4gwqAjZGVmaW5lIERSTV9YRV9RVUVSWV9DT05GSUdfVkFfQklUUwkJCTMN
+Cj4gwqAjZGVmaW5lIERSTV9YRV9RVUVSWV9DT05GSUdfTUFYX0VYRUNfUVVFVUVfUFJJT1JJVFkJ
+NA0KPiBAQCAtNzkxLDYgKzc5NSwxNyBAQCBzdHJ1Y3QgZHJtX3hlX2RldmljZV9xdWVyeSB7DQo+
+IMKgICrCoMKgwqAgbmVlZCB0byB1c2UgVlJBTSBmb3IgZGlzcGxheSBzdXJmYWNlcywgdGhlcmVm
+b3JlIHRoZSBrZXJuZWwNCj4gcmVxdWlyZXMNCj4gwqAgKsKgwqDCoCBzZXR0aW5nIHRoaXMgZmxh
+ZyBmb3Igc3VjaCBvYmplY3RzLCBvdGhlcndpc2UgYW4gZXJyb3IgaXMNCj4gdGhyb3duIG9uDQo+
+IMKgICrCoMKgwqAgc21hbGwtYmFyIHN5c3RlbXMuDQo+ICsgKsKgIC0gJURSTV9YRV9HRU1fQ1JF
+QVRFX0ZMQUdfTk9fQ09NUFJFU1NJT04gLSBBbGxvd3MgdXNlcnNwYWNlIHRvDQo+ICsgKsKgwqDC
+oCBoaW50IHRoYXQgY29tcHJlc3Npb24gKENDUykgc2hvdWxkIGJlIGRpc2FibGVkIGZvciB0aGUg
+YnVmZmVyDQo+IGJlaW5nDQo+ICsgKsKgwqDCoCBjcmVhdGVkLiBUaGlzIGNhbiBhdm9pZCB1bm5l
+Y2Vzc2FyeSBtZW1vcnkgb3BlcmF0aW9ucyBhbmQgQ0NTDQo+IHN0YXRlDQo+ICsgKsKgwqDCoCBt
+YW5hZ2VtZW50Lg0KPiArICrCoMKgwqAgT24gcHJlLVhlMiBwbGF0Zm9ybXMsIHRoaXMgZmxhZyBp
+cyBjdXJyZW50bHkgcmVqZWN0ZWQgYXMNCj4gY29tcHJlc3Npb24NCj4gKyAqwqDCoMKgIGNvbnRy
+b2wgaXMgbm90IHN1cHBvcnRlZCB2aWEgUEFUIGluZGV4LiBPbiBYZTIrIHBsYXRmb3JtcywNCj4g
+Y29tcHJlc3Npb24NCj4gKyAqwqDCoMKgIGlzIGNvbnRyb2xsZWQgdmlhIFBBVCBlbnRyaWVzLiBJ
+ZiB0aGlzIGZsYWcgaXMgc2V0LCB0aGUgZHJpdmVyDQo+IHdpbGwgcmVqZWN0DQo+ICsgKsKgwqDC
+oCBhbnkgVk0gYmluZCB0aGF0IHJlcXVlc3RzIGEgUEFUIGluZGV4IGVuYWJsaW5nIGNvbXByZXNz
+aW9uIGZvcg0KPiB0aGlzIEJPLg0KPiArICrCoMKgwqAgTm90ZTogT24gZEdQVSBwbGF0Zm9ybXMs
+IHRoZXJlIGlzIGN1cnJlbnRseSBubyBjaGFuZ2UgaW4NCj4gYmVoYXZpb3Igd2l0aA0KPiArICrC
+oMKgwqAgdGhpcyBmbGFnLCBidXQgZnV0dXJlIGltcHJvdmVtZW50cyBtYXkgbGV2ZXJhZ2UgaXQu
+IFRoZQ0KPiBjdXJyZW50IGJlbmVmaXQgaXMNCj4gKyAqwqDCoMKgIHByaW1hcmlseSBhcHBsaWNh
+YmxlIHRvIGlHUFUgcGxhdGZvcm1zLg0KPiDCoCAqDQo+IMKgICogQGNwdV9jYWNoaW5nIHN1cHBv
+cnRzIHRoZSBmb2xsb3dpbmcgdmFsdWVzOg0KPiDCoCAqwqAgLSAlRFJNX1hFX0dFTV9DUFVfQ0FD
+SElOR19XQiAtIEFsbG9jYXRlIHRoZSBwYWdlcyB3aXRoIHdyaXRlLQ0KPiBiYWNrDQo+IEBAIC04
+MzcsNiArODUyLDcgQEAgc3RydWN0IGRybV94ZV9nZW1fY3JlYXRlIHsNCj4gwqAjZGVmaW5lIERS
+TV9YRV9HRU1fQ1JFQVRFX0ZMQUdfREVGRVJfQkFDS0lORwkJKDEgPDwgMCkNCj4gwqAjZGVmaW5l
+IERSTV9YRV9HRU1fQ1JFQVRFX0ZMQUdfU0NBTk9VVAkJCSgxIDw8IDEpDQo+IMKgI2RlZmluZSBE
+Uk1fWEVfR0VNX0NSRUFURV9GTEFHX05FRURTX1ZJU0lCTEVfVlJBTQkoMSA8PCAyKQ0KPiArI2Rl
+ZmluZSBEUk1fWEVfR0VNX0NSRUFURV9GTEFHX05PX0NPTVBSRVNTSU9OCQkoMSA8PCAzKQ0KPiDC
+oAkvKioNCj4gwqAJICogQGZsYWdzOiBGbGFncywgY3VycmVudGx5IGEgbWFzayBvZiBtZW1vcnkg
+aW5zdGFuY2VzIG9mDQo+IHdoZXJlIEJPIGNhbg0KPiDCoAkgKiBiZSBwbGFjZWQNCg==
