@@ -4,53 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7DF44CEBF9A
-	for <intel-xe@archiver.kernel.org>; Mon, 17 Nov 2025 12:10:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 23500CEACEF
+	for <intel-xe@archiver.kernel.org>; Mon, 17 Nov 2025 12:15:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2657610E3B5;
-	Mon, 17 Nov 2025 12:10:00 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UwWmvDml";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F191D10E33B;
- Mon, 17 Nov 2025 12:09:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1763381399; x=1794917399;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=4nWa5NOhUFsWW8rXCFQ1udElTHywSOjeCR8BTlj4+WU=;
- b=UwWmvDml1rdciKxfUmOc/ZBHuP5mmQvUvEzcTz2X8rLFqL4XRklqDezV
- tJRrXCYuik0BP8B1dFUb3gG3gALHM06oiFqmccEPI7NYIYn9gGDT+iHy3
- hLy0GZlLOwr2r/YDNu1znBk+5tlKaLCcyaxrmSfKF/OttQasUQtwJCy2y
- JpGGAJpkBxOlfdN8DeYtpVic8jUdUyZ6T1gZiTmWQHRDwIabjS/+gbWtT
- nWkLV/K2wn+au+X25QX8OFrm2++HjXBQgG8cVp65egkS934Pb6I81g/5u
- z4t28kES4q0oFKultqaQFs8R+Bi3zhqJLiRdAtZ0aMq7w5oHny1mhfszF g==;
-X-CSE-ConnectionGUID: kNyCb+zRQfyImiH9slyp/g==
-X-CSE-MsgGUID: /NmZBTKbQmucLWBUMo12Xg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11615"; a="52945791"
-X-IronPort-AV: E=Sophos;i="6.19,311,1754982000"; d="scan'208";a="52945791"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Nov 2025 04:09:59 -0800
-X-CSE-ConnectionGUID: IC2MYL+YTnKBctqxEVnhmg==
-X-CSE-MsgGUID: ibnUwXacQBaZN46LANKoig==
-X-ExtLoop1: 1
-Received: from srr4-3-linux-101-amanna.iind.intel.com ([10.223.74.76])
- by fmviesa003.fm.intel.com with ESMTP; 17 Nov 2025 04:09:57 -0800
-From: Animesh Manna <animesh.manna@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: Animesh Manna <animesh.manna@intel.com>
-Subject: [RFC 8/8] drm/i915/cmtg: enable cmtg ctl
-Date: Mon, 17 Nov 2025 17:12:16 +0530
-Message-Id: <20251117114216.1522615-9-animesh.manna@intel.com>
-X-Mailer: git-send-email 2.29.0
-In-Reply-To: <20251117114216.1522615-1-animesh.manna@intel.com>
-References: <20251117114216.1522615-1-animesh.manna@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id D4F6B10E3BF;
+	Mon, 17 Nov 2025 12:15:23 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3FF1510E3D1;
+ Mon, 17 Nov 2025 12:15:22 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_CMTG_enablement?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Animesh Manna" <animesh.manna@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 17 Nov 2025 12:15:22 -0000
+Message-ID: <176338172224.356.9158603084681775752@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20251117114216.1522615-1-animesh.manna@intel.com>
+In-Reply-To: <20251117114216.1522615-1-animesh.manna@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,49 +35,64 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Enable CMTG through control register.
+== Series Details ==
 
-Signed-off-by: Animesh Manna <animesh.manna@intel.com>
----
- drivers/gpu/drm/i915/display/intel_cmtg.c | 17 +++++++++++++++++
- 1 file changed, 17 insertions(+)
+Series: CMTG enablement
+URL   : https://patchwork.freedesktop.org/series/157663/
+State : warning
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cmtg.c b/drivers/gpu/drm/i915/display/intel_cmtg.c
-index d5793842815f..fb2ce22d136b 100644
---- a/drivers/gpu/drm/i915/display/intel_cmtg.c
-+++ b/drivers/gpu/drm/i915/display/intel_cmtg.c
-@@ -257,6 +257,20 @@ static void intel_cpu_cmtg_transcoder_set_m_n(const struct intel_crtc_state *crt
- 	intel_de_write(display, TRANS_LINKN1_CMTG(cpu_transcoder), m_n->link_n);
- }
- 
-+static void intel_cmtg_ctl_enable(const struct intel_crtc_state *crtc_state)
-+{
-+	struct intel_display *display = to_intel_display(crtc_state);
-+	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
-+	u32 val = 0;
+== Summary ==
+
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+2de9a3901bc28757c7906b454717b64e2a214021
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit d4e4ac3bc97a0be5e88eb7a0300c4d40906a5e2a
+Author: Animesh Manna <animesh.manna@intel.com>
+Date:   Mon Nov 17 17:12:16 2025 +0530
+
+    drm/i915/cmtg: enable cmtg ctl
+    
+    Enable CMTG through control register.
+    
+    Signed-off-by: Animesh Manna <animesh.manna@intel.com>
++ /mt/dim checkpatch b2e41c70a5eeddce427dc6df02508b6856eb4a11 drm-intel
+f651c06793f9 drm/i915/cmtg: enable cmtg LNL onwards
+-:33: ERROR:SPACING: space required before the open parenthesis '('
+#33: FILE: drivers/gpu/drm/i915/display/intel_dp.c:3424:
++	if(DISPLAY_VER(display) >= 15 && intel_dp_is_edp(intel_dp)) {
+
+-:35: ERROR:SPACING: space required after that ',' (ctx:VxV)
+#35: FILE: drivers/gpu/drm/i915/display/intel_dp.c:3426:
++		drm_dbg_kms(display->drm,"ANI-DBG: intel_dp_compute_config\n");
+ 		                        ^
+
+-:35: WARNING:EMBEDDED_FUNCTION_NAME: Prefer using '"%s...", __func__' to using 'intel_dp_compute_config', this function's name, in a string
+#35: FILE: drivers/gpu/drm/i915/display/intel_dp.c:3426:
++		drm_dbg_kms(display->drm,"ANI-DBG: intel_dp_compute_config\n");
+
+total: 2 errors, 1 warnings, 0 checks, 20 lines checked
+bb64cd8ac65e drm/i915/cmtg: cmtg set clock select
+d669f168cd16 drm/i915/cmtg: set timings for cmtg
+-:49: CHECK:BRACES: Blank lines aren't necessary before a close brace '}'
+#49: FILE: drivers/gpu/drm/i915/display/intel_cmtg.c:241:
 +
-+	val = intel_de_read(display, TRANS_CMTG_CTL(cpu_transcoder));
-+
-+	val |= CMTG_ENABLE;
-+
-+	intel_de_write(display, TRANS_CMTG_CTL(cpu_transcoder), val);
-+	drm_dbg_kms(display->drm, "CMTG enabled\n");
 +}
-+
- void intel_cmtg_enable(const struct intel_crtc_state *crtc_state)
- {
- 	struct intel_display *display = to_intel_display(crtc_state);
-@@ -277,4 +291,7 @@ void intel_cmtg_enable(const struct intel_crtc_state *crtc_state)
- 
- 	/* Program Cmtg Sync to Port Sync, TRANS_CMTG_CTL */
- 	intel_de_rmw(display, TRANS_CMTG_CTL(cpu_transcoder), CMTG_SYNC_TO_PORT, CMTG_SYNC_TO_PORT);
-+
-+	/* Program Enable Cmtg */
-+	intel_cmtg_ctl_enable(crtc_state);
- }
--- 
-2.29.0
+
+total: 0 errors, 0 warnings, 1 checks, 79 lines checked
+7353a6524f32 drm/i915/cmtg: program vrr registers of cmtg
+ac089b3b7603 drm/i915/cmtg: program set context latency of cmtg
+31c15d66c27b drm/i915/cmtg: set transcoder mn for cmtg
+5e806bbb973a drm/i915/cmtg: program sync to port for cmtg
+d4e4ac3bc97a drm/i915/cmtg: enable cmtg ctl
+
 
