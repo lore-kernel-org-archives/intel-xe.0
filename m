@@ -4,74 +4,103 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E032FCFC284
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A8BB4CFC283
 	for <intel-xe@archiver.kernel.org>; Fri, 21 Nov 2025 13:53:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7228610E8A9;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 63F0710E8A2;
 	Fri, 21 Nov 2025 13:53:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="Z5Y4toe4";
+	dkim=permerror (0-bit key) header.d=shazbot.org header.i=@shazbot.org header.b="PFanATlL";
+	dkim=permerror (0-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="hU9uqeYg";
 	dkim-atps=neutral
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
- [136.143.188.112])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B6CC310E3F9;
- Mon, 17 Nov 2025 19:13:14 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; t=1763406786; cv=none; 
- d=zohomail.com; s=zohoarc; 
- b=S4S4oot7NqAPseBWv4WoV/K5QiqXh+jRX8TXcWeIhlAMrth6kW3bk4loT6h6Q1Xt1VxMu+DkhvhJO4r8wcP11y014oztNkCIdgeGw6bedHyNSiDJpTLl6aNuazVaJyEMBYsP/YtyAONSBL1TPRehilAlnvzoFREIjWX8QGyehMA=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
- s=zohoarc; t=1763406786;
- h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
- bh=2d0k/LuL/udDSP5MXsPj+vrCjkqFJCvyb8zuefLEfUs=; 
- b=Gyg8YOwSeedwYsb7XmKV6ZYD4uxUuj/MR+l0KFGlD/XXBesT6B4jlyJ1p9A//wau7tt2rXGG5fSHeKqtIUgGTkkM5ji/NLoOU/QHI2O7DaUVXmtglBxNYrgiZkFCzTOy0srTX01a/BLiZjdW/j9OytYPg8f8fUpeLNkTMSt/Jgs=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
- dkim=pass  header.i=collabora.com;
- spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
- dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1763406786; 
- s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
- h=From:From:Date:Date:Subject:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:Message-Id:References:In-Reply-To:To:To:Cc:Cc:Reply-To;
- bh=2d0k/LuL/udDSP5MXsPj+vrCjkqFJCvyb8zuefLEfUs=;
- b=Z5Y4toe4Tj8bWAkFBjnelsdI9Le4bXBiFc57eIPMBcaGAeErDWwdjg1N1YwrGLFQ
- aAAdIMgs/zrgiKq+6i4Ehm5J67lMAG1ChgyStNdj/sNRfPfXGkP2LFbMO5OGuNyw6w3
- 5Y4c7X4qx3J+tlCWfv05EkV1zs8I+WQtuQ/J6rwA=
-Received: by mx.zohomail.com with SMTPS id 1763406784495196.5777941542043;
- Mon, 17 Nov 2025 11:13:04 -0800 (PST)
-From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Date: Mon, 17 Nov 2025 20:11:51 +0100
-Subject: [PATCH v4 07/10] drm/display: hdmi-state-helper: Act on color
- format DRM property
+X-Greylist: delayed 471 seconds by postgrey-1.36 at gabe;
+ Mon, 17 Nov 2025 18:56:09 UTC
+Received: from fhigh-a8-smtp.messagingengine.com
+ (fhigh-a8-smtp.messagingengine.com [103.168.172.159])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 888B710E103
+ for <intel-xe@lists.freedesktop.org>; Mon, 17 Nov 2025 18:56:09 +0000 (UTC)
+Received: from phl-compute-06.internal (phl-compute-06.internal [10.202.2.46])
+ by mailfhigh.phl.internal (Postfix) with ESMTP id CAB16140020E;
+ Mon, 17 Nov 2025 13:48:17 -0500 (EST)
+Received: from phl-mailfrontend-02 ([10.202.2.163])
+ by phl-compute-06.internal (MEProxy); Mon, 17 Nov 2025 13:48:17 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=shazbot.org; h=
+ cc:cc:content-transfer-encoding:content-type:content-type:date
+ :date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+ :references:reply-to:subject:subject:to:to; s=fm2; t=1763405297;
+ x=1763491697; bh=PCLFg0q3YzCL23S3qPi7qqYmhGuoDLREakt4kCUJj9s=; b=
+ PFanATlLcy2AbR4pDmZmar5zSYcpGiHwqupfLUY6m+QBhv6a7h8M/HfuypF4RguD
+ KuDkjDJ/Fha3ZO7nM0FCf9AT2ZiZ2zC/9QPml/VdE0sfKppYCUbRVsV/lYTleV0F
+ /ileJEVNFXT3kwiExIWu5N2wQPOAgNy9BjFZQtpriiGm2PpxZ0jUoSzcggP2JwD3
+ VYRZpTJbhpdknO1tddUSh36TPVASmnncYgxZDpqOJCHC1xOmCmq6fMGaaEk8V8gv
+ CBNftdw3pnyo+bZhM+DLABw1glyjz8x/CxEvCwbRbLnmNnLf+qYw2pvryvw0atpP
+ Ge2qzWjy7PuAjJV56S337g==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:cc:content-transfer-encoding
+ :content-type:content-type:date:date:feedback-id:feedback-id
+ :from:from:in-reply-to:in-reply-to:message-id:mime-version
+ :references:reply-to:subject:subject:to:to:x-me-proxy
+ :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1763405297; x=
+ 1763491697; bh=PCLFg0q3YzCL23S3qPi7qqYmhGuoDLREakt4kCUJj9s=; b=h
+ U9uqeYgvzD3Kvuex9KGSsMdzxNgDhazfFAuNKY86Wvm23A+FwD5aLgq386xvPIVH
+ s8H5bXbgLm003IurcFe+q4ovBUnZBTxNQjNfdUMspABI4WNdBZzAe09pvuQRbgS0
+ +xxgUMqCNKfQEnlNgxF4hsytglp5JTf01ega9VhHr3idHE1EG/wxDIQSrl26qGA5
+ ZsbKIfDD1/Kr+3SlpsPHfqzsEz98t8gyNA+Q8u2q+hIF2gI6LH0tDKWa1eQSxKcz
+ TuLL2R4C+Pa8bAbFgQE1pVTeCWtr/rbcQTQrvotyUzAc4mcyJvRZ4AybR4tkCY25
+ 0fX6uUulzNYSLVN3PlVzw==
+X-ME-Sender: <xms:8G0baULeYVr0RT4js3CG-9mHv7KJ_jS5lOkZEDP2AvkXmYcwHSQnMw>
+ <xme:8G0baUm1n6Xr0G1hWTMr5CFRF20EwWlQMYLB47BCVEg90GbvYr8BqPbMvnzb6WiBB
+ ikRTc8mzpikCO9fW_1xjgPjo8Xlj3Tgln3s-GXHounFjlk2u8LPjQ>
+X-ME-Received: <xmr:8G0baaIJ6kPf5kjSjqGn3WC-7Co54KYveGuXzOn03Enybofs5DrYtYb6>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdeggddvudelvddvucetufdoteggodetrf
+ dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfurfetoffkrfgpnffqhgenuceu
+ rghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujf
+ gurhepfffhvfevuffkjghfgggtgfesthhqredttddtjeenucfhrhhomheptehlvgigucgh
+ ihhllhhirghmshhonhcuoegrlhgvgiesshhhrgiisghothdrohhrgheqnecuggftrfgrth
+ htvghrnhepiefgjedugeduhfdviedtteelgfdvjeffieetfffhtdejudegheehkeejteef
+ gfeunecuffhomhgrihhnpehgihhtlhgrsgdrtghomhenucevlhhushhtvghrufhiiigvpe
+ dtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegrlhgvgiesshhhrgiisghothdrohhrghdp
+ nhgspghrtghpthhtohepvddupdhmohguvgepshhmthhpohhuthdprhgtphhtthhopehmih
+ gthhgrlhdrfihinhhirghrshhkihesihhnthgvlhdrtghomhdprhgtphhtthhopehluhgt
+ rghsrdguvghmrghrtghhihesihhnthgvlhdrtghomhdprhgtphhtthhopehthhhomhgrsh
+ drhhgvlhhlshhtrhhomheslhhinhhugidrihhnthgvlhdrtghomhdprhgtphhtthhopehr
+ ohgurhhighhordhvihhvihesihhnthgvlhdrtghomhdprhgtphhtthhopehjghhgseiiih
+ gvphgvrdgtrgdprhgtphhtthhopeihihhshhgrihhhsehnvhhiughirgdrtghomhdprhgt
+ phhtthhopehkvghvihhnrdhtihgrnhesihhnthgvlhdrtghomhdprhgtphhtthhopehskh
+ holhhothhhuhhmthhhohesnhhvihguihgrrdgtohhmpdhrtghpthhtohepihhnthgvlhdq
+ gigvsehlihhsthhsrdhfrhgvvgguvghskhhtohhprdhorhhg
+X-ME-Proxy: <xmx:8G0bafX83aLxwbJCUGohFVV_DMh1vQbgDKSPeElNH-d5Wd4L79xMEQ>
+ <xmx:8G0bafNKXGkYeNUoZ9-7kxF3HjqhQ10jyk7aI7Zmwwp5s4glc5z6Sg>
+ <xmx:8G0bablCb6-z7KutzOmn4AgmhAXxGDnZRZJ4eUWDeXzvyJvEk8vtcA>
+ <xmx:8G0baSWEn_9RTz0NM0NKo2NZXdFLn8wqhJjdVKYjkPuiHrNcA-4wtA>
+ <xmx:8W0baZsGYQYLydH-_L4kHR0nrZTbwc9C6Y6BsD1D7Bq4lPS7e26wO86N>
+Feedback-ID: i03f14258:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
+ 17 Nov 2025 13:48:14 -0500 (EST)
+Date: Mon, 17 Nov 2025 11:48:13 -0700
+From: Alex Williamson <alex@shazbot.org>
+To: =?UTF-8?B?TWljaGHFgg==?= Winiarski <michal.winiarski@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>, Thomas =?UTF-8?B?SGVsbHN0?=
+ =?UTF-8?B?csO2bQ==?= <thomas.hellstrom@linux.intel.com>, Rodrigo Vivi
+ <rodrigo.vivi@intel.com>, Jason Gunthorpe <jgg@ziepe.ca>, Yishai Hadas
+ <yishaih@nvidia.com>, Kevin Tian <kevin.tian@intel.com>, Shameer Kolothum
+ <skolothumtho@nvidia.com>, <intel-xe@lists.freedesktop.org>,
+ <linux-kernel@vger.kernel.org>, <kvm@vger.kernel.org>, Matthew Brost
+ <matthew.brost@intel.com>, "Michal Wajdeczko" <michal.wajdeczko@intel.com>,
+ <dri-devel@lists.freedesktop.org>, Jani Nikula
+ <jani.nikula@linux.intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, "Lukasz
+ Laguna" <lukasz.laguna@intel.com>, Christoph Hellwig <hch@infradead.org>
+Subject: Re: [PATCH v5 24/28] drm/xe/pf: Enable SR-IOV VF migration
+Message-ID: <20251117114813.67fbea04.alex@shazbot.org>
+In-Reply-To: <20251111010439.347045-25-michal.winiarski@intel.com>
+References: <20251111010439.347045-1-michal.winiarski@intel.com>
+ <20251111010439.347045-25-michal.winiarski@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251117-color-format-v4-7-0ded72bd1b00@collabora.com>
-References: <20251117-color-format-v4-0-0ded72bd1b00@collabora.com>
-In-Reply-To: <20251117-color-format-v4-0-0ded72bd1b00@collabora.com>
-To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
- Rodrigo Siqueira <siqueira@igalia.com>, 
- Alex Deucher <alexander.deucher@amd.com>, 
- =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- Andrzej Hajda <andrzej.hajda@intel.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Sandy Huang <hjc@rock-chips.com>, 
- =?utf-8?q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, 
- Andy Yan <andy.yan@rock-chips.com>, 
- Jani Nikula <jani.nikula@linux.intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
- Tvrtko Ursulin <tursulin@ursulin.net>
-Cc: kernel@collabora.com, amd-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
- Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-X-Mailer: b4 0.14.3
-X-Mailman-Approved-At: Fri, 21 Nov 2025 13:53:12 +0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Fri, 21 Nov 2025 13:53:11 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -86,41 +115,23 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-With the introduction of the "color format" DRM property, which allows
-userspace to request a specific color format, the HDMI state helper
-should implement this.
+On Tue, 11 Nov 2025 02:04:35 +0100
+Micha=C5=82 Winiarski <michal.winiarski@intel.com> wrote:
+> +static void pf_gt_migration_check_support(struct xe_gt *gt)
+> +{
+> +	if (IS_ENABLED(CONFIG_DRM_XE_DEBUG))
+> +		return;
+> +
+> +	if (GUC_FIRMWARE_VER(&gt->uc.guc) < MAKE_GUC_VER(70, 54, 0))
+> +		xe_sriov_pf_migration_disable(gt_to_xe(gt), "requires GuC version >=3D=
+ 70.54.0");
+> +}
+> +
 
-Implement it by checking whether the property is set and set to
-something other than auto. If so, pass the requested color format, and
-otherwise set RGB.
+The latest GuC firmware I see in the linux-firmware package is
+70.53.0[1], is this newer firmware available anywhere?  Thanks,
 
-Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
----
- drivers/gpu/drm/display/drm_hdmi_state_helper.c | 8 +++++++-
- 1 file changed, 7 insertions(+), 1 deletion(-)
+Alex
 
-diff --git a/drivers/gpu/drm/display/drm_hdmi_state_helper.c b/drivers/gpu/drm/display/drm_hdmi_state_helper.c
-index a561f124be99..add0d51fce33 100644
---- a/drivers/gpu/drm/display/drm_hdmi_state_helper.c
-+++ b/drivers/gpu/drm/display/drm_hdmi_state_helper.c
-@@ -650,9 +650,15 @@ hdmi_compute_config(const struct drm_connector *connector,
- 				       conn_state->max_bpc,
- 				       8, connector->max_bpc);
- 	int ret;
-+	enum hdmi_colorspace hdmi_colorspace;
-+
-+	if (conn_state->color_format && conn_state->color_format != DRM_COLOR_FORMAT_AUTO)
-+		hdmi_colorspace = color_format_to_hdmi_colorspace(conn_state->color_format);
-+	else
-+		hdmi_colorspace = HDMI_COLORSPACE_RGB;
- 
- 	ret = hdmi_compute_format_bpc(connector, conn_state, mode, max_bpc,
--				      HDMI_COLORSPACE_RGB);
-+				      hdmi_colorspace);
- 	if (ret) {
- 		if (connector->ycbcr_420_allowed) {
- 			ret = hdmi_compute_format_bpc(connector, conn_state,
-
--- 
-2.51.2
-
+[1]https://gitlab.com/kernel-firmware/linux-firmware/-/commit/9444af1a20eb2=
+4a39dba0eb0c511ee47c9d2631f
