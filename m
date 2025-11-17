@@ -4,27 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 094D3CE8D6B
-	for <intel-xe@archiver.kernel.org>; Mon, 17 Nov 2025 12:09:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5485DCEACEF
+	for <intel-xe@archiver.kernel.org>; Mon, 17 Nov 2025 12:09:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 973B710E1C4;
-	Mon, 17 Nov 2025 12:09:08 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 165F310E1C4;
- Mon, 17 Nov 2025 12:09:07 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4258016963106680561=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id E455C10E33B;
+	Mon, 17 Nov 2025 12:09:43 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aRMxkCr4";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 101C310E1C4;
+ Mon, 17 Nov 2025 12:09:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1763381383; x=1794917383;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=+fvUikktBEJ+e5ZRE80DdA06K8LvY4w15XdHtzKKHcA=;
+ b=aRMxkCr41XV5WCZy/Oze6xlGRJR/nmjrWPi6bU+GBHTWsU1IxoWZpKtv
+ lF/K/sXg/Utb9BXXLcf3DHUuS4+4Yx5x1RO4SZSlK1gmzuz9WI6TqtiR5
+ v2Q7NzxynLunIH2nphDlg01j39FTdMCD82J5WOg8+nzqJ811LfINbJu7H
+ a1jRYShx0bS+41B4JcJMEulxRJhlVKT26lf1kPWxwYohZuw+Chc1KPltU
+ 6zzdODY8hOXlJUvrdffXrir/QrLauSczo6arL69490lIzgwKPVjudSIaU
+ +V9DwN4lwtMZRVle1vlKtgErEsOqzW+FPG7uS5zI5gQNK9j55gWYVsHkc A==;
+X-CSE-ConnectionGUID: 6tcYOTuRRF+sb2UcvIpznQ==
+X-CSE-MsgGUID: EjcHDdvsRc6WVmyN7ABw6Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11615"; a="52945776"
+X-IronPort-AV: E=Sophos;i="6.19,311,1754982000"; d="scan'208";a="52945776"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Nov 2025 04:09:43 -0800
+X-CSE-ConnectionGUID: tSyOpaHNQOiSIqpAaiwroQ==
+X-CSE-MsgGUID: ibU+Qxi5QbKy/1cQipCP0A==
+X-ExtLoop1: 1
+Received: from srr4-3-linux-101-amanna.iind.intel.com ([10.223.74.76])
+ by fmviesa003.fm.intel.com with ESMTP; 17 Nov 2025 04:09:41 -0800
+From: Animesh Manna <animesh.manna@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: Animesh Manna <animesh.manna@intel.com>
+Subject: [RFC 0/8] CMTG enablement
+Date: Mon, 17 Nov 2025 17:12:08 +0530
+Message-Id: <20251117114216.1522615-1-animesh.manna@intel.com>
+X-Mailer: git-send-email 2.29.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/cx0=3A_Add_MTL+_pl?=
- =?utf-8?q?atforms_to_support_dpll_framework?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Mika Kahola" <mika.kahola@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 17 Nov 2025 12:09:07 -0000
-Message-ID: <176338134708.356.17975846707200633795@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20251117104602.2363671-1-mika.kahola@intel.com>
-In-Reply-To: <20251117104602.2363671-1-mika.kahola@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,155 +60,36 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============4258016963106680561==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Common mode timing generator (CMTG) support is added LNL onwards.
+Enable CMTG which will be needed by other fearure like dynamic dc
+state enablement later. 
 
-== Series Details ==
+Testing ongoing, sending in advance for early feedback.
 
-Series: drm/i915/cx0: Add MTL+ platforms to support dpll framework
-URL   : https://patchwork.freedesktop.org/series/157658/
-State : success
+Signed-off-by: Animesh Manna <animesh.manna@intel.com>
 
-== Summary ==
+Animesh Manna (8):
+  drm/i915/cmtg: enable cmtg LNL onwards
+  drm/i915/cmtg: cmtg set clock select
+  drm/i915/cmtg: set timings for cmtg
+  drm/i915/cmtg: program vrr registers of cmtg
+  drm/i915/cmtg: program set context latency of cmtg
+  drm/i915/cmtg: set transcoder mn for cmtg
+  drm/i915/cmtg: program sync to port for cmtg
+  drm/i915/cmtg: enable cmtg ctl
 
-CI Bug Log - changes from xe-4116-b2e41c70a5eeddce427dc6df02508b6856eb4a11_BAT -> xe-pw-157658v1_BAT
-====================================================
+ drivers/gpu/drm/i915/display/intel_cmtg.c     | 109 ++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_cmtg.h     |   3 +
+ .../gpu/drm/i915/display/intel_cmtg_regs.h    |  27 +++++
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c  |   8 +-
+ drivers/gpu/drm/i915/display/intel_display.c  |   4 +
+ .../drm/i915/display/intel_display_types.h    |   3 +
+ drivers/gpu/drm/i915/display/intel_dp.c       |   5 +
+ 7 files changed, 157 insertions(+), 2 deletions(-)
 
-Summary
--------
+-- 
+2.29.0
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (13 -> 13)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-157658v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_force_connector_basic@force-connector-state:
-    - bat-bmg-2:          [PASS][1] -> [ABORT][2] ([Intel XE#1727] / [Intel XE#4760])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4116-b2e41c70a5eeddce427dc6df02508b6856eb4a11/bat-bmg-2/igt@kms_force_connector_basic@force-connector-state.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157658v1/bat-bmg-2/igt@kms_force_connector_basic@force-connector-state.html
-
-  * igt@xe_module_load@load:
-    - bat-bmg-1:          [PASS][3] -> [ABORT][4] ([Intel XE#4760])
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4116-b2e41c70a5eeddce427dc6df02508b6856eb4a11/bat-bmg-1/igt@xe_module_load@load.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157658v1/bat-bmg-1/igt@xe_module_load@load.html
-
-  * igt@xe_waitfence@abstime:
-    - bat-dg2-oem2:       [PASS][5] -> [TIMEOUT][6] ([Intel XE#6506])
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4116-b2e41c70a5eeddce427dc6df02508b6856eb4a11/bat-dg2-oem2/igt@xe_waitfence@abstime.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157658v1/bat-dg2-oem2/igt@xe_waitfence@abstime.html
-
-  
-  [Intel XE#1727]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1727
-  [Intel XE#4760]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4760
-  [Intel XE#6506]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506
-
-
-Build changes
--------------
-
-  * IGT: IGT_8626 -> IGT_8628
-  * Linux: xe-4116-b2e41c70a5eeddce427dc6df02508b6856eb4a11 -> xe-pw-157658v1
-
-  IGT_8626: 8626
-  IGT_8628: 8628
-  xe-4116-b2e41c70a5eeddce427dc6df02508b6856eb4a11: b2e41c70a5eeddce427dc6df02508b6856eb4a11
-  xe-pw-157658v1: 157658v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157658v1/index.html
-
---===============4258016963106680561==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/cx0: Add MTL+ platforms to support dpll framework</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/157658/">https://patchwork.freedesktop.org/series/157658/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157658v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157658v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4116-b2e41c70a5eeddce427dc6df02508b6856eb4a11_BAT -&gt; xe-pw-157658v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-157658v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@kms_force_connector_basic@force-connector-state:</p>
-<ul>
-<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4116-b2e41c70a5eeddce427dc6df02508b6856eb4a11/bat-bmg-2/igt@kms_force_connector_basic@force-connector-state.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157658v1/bat-bmg-2/igt@kms_force_connector_basic@force-connector-state.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1727">Intel XE#1727</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4760">Intel XE#4760</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_module_load@load:</p>
-<ul>
-<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4116-b2e41c70a5eeddce427dc6df02508b6856eb4a11/bat-bmg-1/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157658v1/bat-bmg-1/igt@xe_module_load@load.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4760">Intel XE#4760</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_waitfence@abstime:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4116-b2e41c70a5eeddce427dc6df02508b6856eb4a11/bat-dg2-oem2/igt@xe_waitfence@abstime.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157658v1/bat-dg2-oem2/igt@xe_waitfence@abstime.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506">Intel XE#6506</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8626 -&gt; IGT_8628</li>
-<li>Linux: xe-4116-b2e41c70a5eeddce427dc6df02508b6856eb4a11 -&gt; xe-pw-157658v1</li>
-</ul>
-<p>IGT_8626: 8626<br />
-  IGT_8628: 8628<br />
-  xe-4116-b2e41c70a5eeddce427dc6df02508b6856eb4a11: b2e41c70a5eeddce427dc6df02508b6856eb4a11<br />
-  xe-pw-157658v1: 157658v1</p>
-
-</body>
-</html>
-
---===============4258016963106680561==--
