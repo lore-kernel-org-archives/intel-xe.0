@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6DA89CEACEF
-	for <intel-xe@archiver.kernel.org>; Mon, 17 Nov 2025 23:47:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 24D5ECEACEF
+	for <intel-xe@archiver.kernel.org>; Mon, 17 Nov 2025 23:52:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2995310E1DC;
-	Mon, 17 Nov 2025 23:47:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DD26B10E3FE;
+	Mon, 17 Nov 2025 23:52:36 +0000 (UTC)
 Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B5FD110E1DC;
- Mon, 17 Nov 2025 23:47:30 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3256491949260517848=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 00BD910E404;
+ Mon, 17 Nov 2025 23:52:36 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_expose_PAT_softwa?=
- =?utf-8?q?re_table_via_debugfs_=28rev4=29?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe=3A_Add_xe=5Fpci=5F?=
+ =?utf-8?q?rebar_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Xin Wang" <x.wang@intel.com>
+To: "Lucas De Marchi" <lucas.demarchi@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 17 Nov 2025 23:47:30 -0000
-Message-ID: <176342325073.3464.4278600643747815774@a3b018990fe9>
+Date: Mon, 17 Nov 2025 23:52:35 -0000
+Message-ID: <176342355599.3464.18042318072868400586@a3b018990fe9>
 X-Patchwork-Hint: ignore
-References: <20251117230156.366860-1-x.wang@intel.com>
-In-Reply-To: <20251117230156.366860-1-x.wang@intel.com>
+References: <20251117-xe-pci-rebar-2-part-2-v2-0-9f3dac7dec36@intel.com>
+In-Reply-To: <20251117-xe-pci-rebar-2-part-2-v2-0-9f3dac7dec36@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,141 +40,62 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============3256491949260517848==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe: expose PAT software table via debugfs (rev4)
-URL   : https://patchwork.freedesktop.org/series/157558/
-State : success
+Series: drm/xe: Add xe_pci_rebar (rev2)
+URL   : https://patchwork.freedesktop.org/series/156871/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-4120-20744479a199bade84330420eabd6ec30772e03b_BAT -> xe-pw-157558v4_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+2de9a3901bc28757c7906b454717b64e2a214021
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit ed16d833bb2899d33fa486a46d518f54d805e5c5
+Author: Lucas De Marchi <lucas.demarchi@intel.com>
+Date:   Mon Nov 17 15:42:47 2025 -0800
 
-Summary
--------
+    drm/xe: Improve rebar log messages
+    
+    Some minor improvements to the log messages in the rebar logic:
+    use xe-oriented printk, switch unit from M to MiB in a few places for
+    consistency and use ilog2(SZ_1M) for clarity.
+    
+    Suggested-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+    Suggested-by: Ilpo Järvinen <ilpo.jarvinen@linux.intel.com>
+    Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+    Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
++ /mt/dim checkpatch 91fc6d984707c9bfd4a60550e6a85f1a991e7ec8 drm-intel
+a5c05281a563 FOR-CI: pci changes for drm-tip
+-:6: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#6: 
+PCI change from git://git.kernel.org/pub/scm/linux/kernel/git/pci/pci.git 1f16dbb3b4ed8cd8a852f0cc90b78e71ed6cbc99
 
-  **SUCCESS**
+-:570: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#570: 
+new file mode 100644
 
-  No regressions found.
+-:655: WARNING:ENOTSUPP: ENOTSUPP is not a SUSV4 error code, prefer EOPNOTSUPP
+#655: FILE: drivers/pci/rebar.c:81:
++		return -ENOTSUPP;
 
-  
+-:874: WARNING:ENOTSUPP: ENOTSUPP is not a SUSV4 error code, prefer EOPNOTSUPP
+#874: FILE: drivers/pci/rebar.c:300:
++		return -ENOTSUPP;
 
-Participating hosts (13 -> 13)
-------------------------------
+total: 0 errors, 4 warnings, 0 checks, 1123 lines checked
+92ad0e6607dc drm/xe: Move rebar to its own file
+-:50: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#50: 
+new file mode 100644
 
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-157558v4_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_waitfence@engine:
-    - bat-dg2-oem2:       [PASS][1] -> [FAIL][2] ([Intel XE#6519])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4120-20744479a199bade84330420eabd6ec30772e03b/bat-dg2-oem2/igt@xe_waitfence@engine.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157558v4/bat-dg2-oem2/igt@xe_waitfence@engine.html
-    - bat-pvc-2:          [PASS][3] -> [FAIL][4] ([Intel XE#6519])
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4120-20744479a199bade84330420eabd6ec30772e03b/bat-pvc-2/igt@xe_waitfence@engine.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157558v4/bat-pvc-2/igt@xe_waitfence@engine.html
-
-  
-#### Possible fixes ####
-
-  * igt@xe_waitfence@abstime:
-    - bat-dg2-oem2:       [TIMEOUT][5] ([Intel XE#6506]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4120-20744479a199bade84330420eabd6ec30772e03b/bat-dg2-oem2/igt@xe_waitfence@abstime.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157558v4/bat-dg2-oem2/igt@xe_waitfence@abstime.html
-
-  
-  [Intel XE#6506]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506
-  [Intel XE#6519]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519
-
-
-Build changes
--------------
-
-  * Linux: xe-4120-20744479a199bade84330420eabd6ec30772e03b -> xe-pw-157558v4
-
-  IGT_8628: 8628
-  xe-4120-20744479a199bade84330420eabd6ec30772e03b: 20744479a199bade84330420eabd6ec30772e03b
-  xe-pw-157558v4: 157558v4
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157558v4/index.html
-
---===============3256491949260517848==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+total: 0 errors, 1 warnings, 0 checks, 247 lines checked
+ed16d833bb28 drm/xe: Improve rebar log messages
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: expose PAT software table via debugfs (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/157558/">https://patchwork.freedesktop.org/series/157558/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157558v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157558v4/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4120-20744479a199bade84330420eabd6ec30772e03b_BAT -&gt; xe-pw-157558v4_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-157558v4_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@xe_waitfence@engine:<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4120-20744479a199bade84330420eabd6ec30772e03b/bat-dg2-oem2/igt@xe_waitfence@engine.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157558v4/bat-dg2-oem2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519">Intel XE#6519</a>)</li>
-<li>bat-pvc-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4120-20744479a199bade84330420eabd6ec30772e03b/bat-pvc-2/igt@xe_waitfence@engine.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157558v4/bat-pvc-2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519">Intel XE#6519</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_waitfence@abstime:<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4120-20744479a199bade84330420eabd6ec30772e03b/bat-dg2-oem2/igt@xe_waitfence@abstime.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506">Intel XE#6506</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157558v4/bat-dg2-oem2/igt@xe_waitfence@abstime.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4120-20744479a199bade84330420eabd6ec30772e03b -&gt; xe-pw-157558v4</li>
-</ul>
-<p>IGT_8628: 8628<br />
-  xe-4120-20744479a199bade84330420eabd6ec30772e03b: 20744479a199bade84330420eabd6ec30772e03b<br />
-  xe-pw-157558v4: 157558v4</p>
-
-</body>
-</html>
-
---===============3256491949260517848==--
