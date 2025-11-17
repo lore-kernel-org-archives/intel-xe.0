@@ -4,53 +4,137 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9157ACEBF9A
-	for <intel-xe@archiver.kernel.org>; Mon, 17 Nov 2025 10:59:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BB06DCE8D6B
+	for <intel-xe@archiver.kernel.org>; Mon, 17 Nov 2025 11:01:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 500BA10E3A3;
-	Mon, 17 Nov 2025 10:59:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7746E10E3A8;
+	Mon, 17 Nov 2025 11:01:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IhTMWuVv";
+	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="rGWYzEGJ";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A4BED10E3A1;
- Mon, 17 Nov 2025 10:59:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1763377184; x=1794913184;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=Np4XVGHkXASCaUM9l4idgulFHqXKvlA6FBNla3Y5UAs=;
- b=IhTMWuVvS3x31OlrcB6cUU/3QFIne1fv0MyNp/G+tyVjW9tz6hNLBWyh
- jd7A2thVmwpKpH2Q0W4uAfAxw8dFsxx9Ve2Kc9mXYdnSjtIjz/EO355eA
- WOhZh+E6iUlM3dKhD8dQw/7Mrm1Unf5cWzv5wKGl+4S/cWVjGEtyNlc06
- 2CXgkd57e9DSHHWVvBECGJJxNoc96oXL/ClzfPa3DYNhKA8A6PahbEK1C
- boWTw5znkbfg1ZAESq9fgFseNJdDx8NKxy34SBbKyQ8kzMGh1Yv4znXX9
- UU4LSl/wGD/hT/lPAVws0jwJRBoJxkwKDLFZzir5euPtAuyB61sQtTd02 w==;
-X-CSE-ConnectionGUID: FxCd2YH6QvqoeOx+Jfwvyw==
-X-CSE-MsgGUID: r03hRo52R/O2fomfRUWttQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11615"; a="76475437"
-X-IronPort-AV: E=Sophos;i="6.19,311,1754982000"; d="scan'208";a="76475437"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Nov 2025 02:59:44 -0800
-X-CSE-ConnectionGUID: HFAQrywLSBOXVB4xiYVpRw==
-X-CSE-MsgGUID: OMXyhHmmS2+iUpl7IzMYUQ==
-X-ExtLoop1: 1
-Received: from display-adls.igk.intel.com ([10.211.131.198])
- by fmviesa003.fm.intel.com with ESMTP; 17 Nov 2025 02:59:43 -0800
-From: Mika Kahola <mika.kahola@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: Mika Kahola <mika.kahola@intel.com>
-Subject: [PATCH v2 32/32] drm/i915/cx0: Enable dpll framework for MTL+
-Date: Mon, 17 Nov 2025 12:46:02 +0200
-Message-Id: <20251117104602.2363671-33-mika.kahola@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20251117104602.2363671-1-mika.kahola@intel.com>
-References: <20251117104602.2363671-1-mika.kahola@intel.com>
+Received: from mail-yx1-f43.google.com (mail-yx1-f43.google.com
+ [74.125.224.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4112F10E3A9
+ for <intel-xe@lists.freedesktop.org>; Mon, 17 Nov 2025 11:01:15 +0000 (UTC)
+Received: by mail-yx1-f43.google.com with SMTP id
+ 956f58d0204a3-6420c0cf4abso296374d50.1
+ for <intel-xe@lists.freedesktop.org>; Mon, 17 Nov 2025 03:01:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linaro.org; s=google; t=1763377274; x=1763982074; darn=lists.freedesktop.org;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=/RSfdrwfxNJQiZz80hQXf9twz6yOQXKrW5ZfA5HxaxE=;
+ b=rGWYzEGJqEi99qHctaP87trGMrdAGuwv4GrrQXjH3cU+eAResOFjd1qo5/ugh57pLN
+ /32eix5G2SniEuad4khM+xi4mkAbBnQwcnoOFxUEnebbVBRK8cjBFVkP2mGpsJF4xH7v
+ 40kl4fX1DNVz6LkWqGQDaJeU8ID+Y2JM2FqOQ5HzrzZJQ44rA4NlP+Fpug5M3XdUr6X1
+ 6lYE0UCqUTwjiONC6szlx/AHer8mzCgOBdGJq7LhX/QfFxxJDHktGefqs9UZq3B6cLMb
+ ExtpH9Wu9whBjnboY8+T/HokG15TUIzP8nK3fB12na76M9Tz9XDr3tCz5k29G+hNvnoO
+ ZSZg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1763377274; x=1763982074;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=/RSfdrwfxNJQiZz80hQXf9twz6yOQXKrW5ZfA5HxaxE=;
+ b=Nr4Ylj7kRZiRZ4GPhhbp0gKWAswqX7ktdY3WFdHs9n9LyQAyI3TrYwi7jcefeKm+R9
+ A/Tjqd3sT6LRg6IA5e8LoGC2uj05RoDwuhstLW4fk1vOZHfYVQuOuK8ntwhD29L0H2WJ
+ Wfq5378k35vkDD43M2sbOenaoGRrD4tN3fooauMZrQqeJw06uP26h3uqYJtBe39pN4DX
+ MGSYTXH8A9JzNioT/m+Xo61C0cFyndrXpLV61apCPAkPWgue3affTLhRAVzCiPcqxGWA
+ 81Uw5QDleaC2erHhvkHNu5r3tF647tvOVnJ5qU5E+Zkv29PEhJR2FIBddNBYUEAQiRZ0
+ rNnQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCXmZcppY/sJ4Lyl7DFqeimnvgrOFgTUxhFHChGeYNGv6hRudRnV1B5cZsD3nr4MqBPUVhb39UDrYA==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwsHm3QjtuFj4Yyb2+Q+ZS2LR9s8Sw5tqCxtpyRr5P1k/mmlid9
+ uP/y0kyWLv2hLX2ulPjHhWsqAU1uFs0huoFgDpwS7yVsSs0qX+emvbQJLttKGtrdXI6Ir8KliJ2
+ TmWg/ect0WvE5bq6HaG2oVBGl8NAYBaLmanwKwe70WA==
+X-Gm-Gg: ASbGnctDNJUrzpZaqIr1Yu1gTYQhsb/lAAkSlI7tob0EqoG9VEVZd6URnt1GAl3JVel
+ CaVHa+MMN7/sil03XT2kOR2cLAzWBhMgHFxV+9jNfAvedy8LxflVc9I3Lo5YOQ/+KrJ1/D9QttD
+ aYHpnhqpaT1eeGa54Rhu7bz3c10i1udkmN3ZiCagLxv06pZZw6Nm1MGhLbHVdHgHfeIr6UAObgd
+ xRVg9HnnCs7xyrpuzQtDa78AFfxwHOEjALcstN+s7YFkDDpFDDUcD2ywkNY+zVij68Fl/KggVXk
+ /+8klPE=
+X-Google-Smtp-Source: AGHT+IEjvegoUIWfi8UaBD0jEKwHtT+y2Cbu5UHhJ+VHUPJu6okR0AoxTFiIq+cxtmlIxdFEnLzs3e2dtieQR/hKIVs=
+X-Received: by 2002:a05:690e:d86:b0:642:84a:7ba4 with SMTP id
+ 956f58d0204a3-642084a7c6bmr1567493d50.85.1763377273901; Mon, 17 Nov 2025
+ 03:01:13 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20251113150217.3030010-1-andriy.shevchenko@linux.intel.com>
+ <20251113150217.3030010-14-andriy.shevchenko@linux.intel.com>
+In-Reply-To: <20251113150217.3030010-14-andriy.shevchenko@linux.intel.com>
+From: Ulf Hansson <ulf.hansson@linaro.org>
+Date: Mon, 17 Nov 2025 12:00:38 +0100
+X-Gm-Features: AWmQ_bk2fwrMGKoLr3e8DW_NORum6cYwB-Ynf9Wgckyt3WUUk5QWFuYE7vXt0wM
+Message-ID: <CAPDyKFotmQyHzBim-8nib-KVvQaQgA_ELbgdC_Q4Y95-GrvRSw@mail.gmail.com>
+Subject: Re: [PATCH v3 13/21] mmc: mmc_test: Switch to use %ptSp
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: Corey Minyard <corey@minyard.net>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ "Dr. David Alan Gilbert" <linux@treblig.org>,
+ Alex Deucher <alexander.deucher@amd.com>, 
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
+ Rob Clark <robin.clark@oss.qualcomm.com>,
+ Matthew Brost <matthew.brost@intel.com>, 
+ Aleksandr Loktionov <aleksandr.loktionov@intel.com>,
+ Vitaly Lifshits <vitaly.lifshits@intel.com>, 
+ Manivannan Sadhasivam <mani@kernel.org>, Niklas Cassel <cassel@kernel.org>,
+ Calvin Owens <calvin@wbinvd.org>, 
+ Vadim Fedorenko <vadim.fedorenko@linux.dev>,
+ Sagi Maimon <maimon.sagi@gmail.com>, 
+ "Martin K. Petersen" <martin.petersen@oracle.com>,
+ Karan Tilak Kumar <kartilak@cisco.com>, 
+ Hans Verkuil <hverkuil+cisco@kernel.org>,
+ Casey Schaufler <casey@schaufler-ca.com>, 
+ Steven Rostedt <rostedt@goodmis.org>, Petr Mladek <pmladek@suse.com>, 
+ Viacheslav Dubeyko <Slava.Dubeyko@ibm.com>,
+ Max Kellermann <max.kellermann@ionos.com>, 
+ linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ openipmi-developer@lists.sourceforge.net, linux-media@vger.kernel.org, 
+ dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org, 
+ amd-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org, 
+ freedreno@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
+ linux-mmc@vger.kernel.org, netdev@vger.kernel.org, 
+ intel-wired-lan@lists.osuosl.org, linux-pci@vger.kernel.org, 
+ linux-s390@vger.kernel.org, linux-scsi@vger.kernel.org, 
+ linux-staging@lists.linux.dev, ceph-devel@vger.kernel.org, 
+ linux-trace-kernel@vger.kernel.org, 
+ Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+ Sergey Senozhatsky <senozhatsky@chromium.org>, 
+ Jonathan Corbet <corbet@lwn.net>, Sumit Semwal <sumit.semwal@linaro.org>, 
+ Gustavo Padovan <gustavo@padovan.org>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Dmitry Baryshkov <lumag@kernel.org>, Abhinav Kumar <abhinav.kumar@linux.dev>, 
+ Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>, 
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, 
+ Lucas De Marchi <lucas.demarchi@intel.com>, 
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Vladimir Oltean <olteanv@gmail.com>,
+ Andrew Lunn <andrew@lunn.ch>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+ Tony Nguyen <anthony.l.nguyen@intel.com>,
+ Przemek Kitszel <przemyslaw.kitszel@intel.com>, 
+ =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
+ Kishon Vijay Abraham I <kishon@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+ Rodolfo Giometti <giometti@enneenne.com>,
+ Jonathan Lemon <jonathan.lemon@gmail.com>, 
+ Richard Cochran <richardcochran@gmail.com>,
+ Stefan Haberland <sth@linux.ibm.com>, 
+ Jan Hoeppner <hoeppner@linux.ibm.com>, Heiko Carstens <hca@linux.ibm.com>, 
+ Vasily Gorbik <gor@linux.ibm.com>, Alexander Gordeev <agordeev@linux.ibm.com>, 
+ Christian Borntraeger <borntraeger@linux.ibm.com>,
+ Sven Schnelle <svens@linux.ibm.com>, 
+ Satish Kharat <satishkh@cisco.com>, Sesidhar Baddela <sebaddel@cisco.com>, 
+ "James E.J. Bottomley" <James.Bottomley@hansenpartnership.com>, 
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Xiubo Li <xiubli@redhat.com>, Ilya Dryomov <idryomov@gmail.com>, 
+ Masami Hiramatsu <mhiramat@kernel.org>,
+ Mathieu Desnoyers <mathieu.desnoyers@efficios.com>, 
+ Andrew Morton <akpm@linux-foundation.org>
+Content-Type: text/plain; charset="UTF-8"
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,252 +149,61 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Now that MTL+ platforms are supported by dpll framework
-remove a separate check for hw comparison and rely solely
-on dpll framework hw comparison.
+On Thu, 13 Nov 2025 at 16:03, Andy Shevchenko
+<andriy.shevchenko@linux.intel.com> wrote:
+>
+> Use %ptSp instead of open coded variants to print content of
+> struct timespec64 in human readable format.
+>
+> Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 
-Finally, all required hooks are now in place so initialize
-PLL manager for MTL+ platforms and remove the redirections
-to the legacy code paths from the following interfaces:
+Acked-by: Ulf Hansson <ulf.hansson@linaro.org>
 
-* intel_encoder::clock_enable/disable()
-* intel_encoder::get_config()
-* intel_dpll_funcs::get_hw_state()
-* intel_ddi_update_active_dpll()
-* pipe_config_pll_mismatch()
+Kind regards
+Uffe
 
-Signed-off-by: Mika Kahola <mika.kahola@intel.com>
----
- drivers/gpu/drm/i915/display/intel_cx0_phy.c  | 10 -------
- drivers/gpu/drm/i915/display/intel_ddi.c      | 29 ++++---------------
- drivers/gpu/drm/i915/display/intel_display.c  | 29 -------------------
- drivers/gpu/drm/i915/display/intel_dpll.c     | 23 +--------------
- drivers/gpu/drm/i915/display/intel_dpll_mgr.c |  5 ++--
- 5 files changed, 9 insertions(+), 87 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-index 9d96e8940838..96ab7f3b5539 100644
---- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-@@ -3432,9 +3432,6 @@ void intel_mtl_pll_enable_clock(struct intel_encoder *encoder,
- 
- 	if (intel_tc_port_in_tbt_alt_mode(dig_port))
- 		intel_mtl_tbt_pll_enable_clock(encoder, crtc_state->port_clock);
--	else
--		/* TODO: remove when PLL mgr is in place. */
--		intel_mtl_pll_enable(encoder, NULL, &crtc_state->dpll_hw_state);
- }
- 
- /*
-@@ -3598,9 +3595,6 @@ void intel_mtl_pll_disable_clock(struct intel_encoder *encoder)
- 
- 	if (intel_tc_port_in_tbt_alt_mode(dig_port))
- 		intel_mtl_tbt_pll_disable_clock(encoder);
--	else
--		/* TODO: remove when PLL mgr is in place. */
--		intel_mtl_pll_disable(encoder);
- }
- 
- enum icl_port_dpll_id
-@@ -3629,10 +3623,6 @@ bool intel_cx0pll_readout_hw_state(struct intel_encoder *encoder,
- {
- 	memset(pll_state, 0, sizeof(*pll_state));
- 
--	pll_state->tbt_mode = intel_tc_port_in_tbt_alt_mode(enc_to_dig_port(encoder));
--	if (pll_state->tbt_mode)
--		return true;
--
- 	if (!intel_cx0_pll_is_enabled(encoder))
- 		return false;
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index 689bd3224919..4e379b0b066d 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -3669,8 +3669,10 @@ void intel_ddi_update_active_dpll(struct intel_atomic_state *state,
- 		intel_atomic_get_new_crtc_state(state, crtc);
- 	struct intel_crtc *pipe_crtc;
- 
--	/* FIXME: Add MTL pll_mgr */
--	if (DISPLAY_VER(display) >= 14 || !intel_encoder_is_tc(encoder))
-+	if (!intel_encoder_is_tc(encoder))
-+		return;
-+
-+	if (!HAS_LT_PHY(display))
- 		return;
- 
- 	if (!HAS_LT_PHY(display))
-@@ -4260,19 +4262,6 @@ static void xe3plpd_ddi_get_config(struct intel_encoder *encoder,
- 	intel_ddi_get_config(encoder, crtc_state);
- }
- 
--static void mtl_ddi_get_config(struct intel_encoder *encoder,
--			       struct intel_crtc_state *crtc_state)
--{
--	intel_cx0pll_readout_hw_state(encoder, &crtc_state->dpll_hw_state.cx0pll);
--
--	if (crtc_state->dpll_hw_state.cx0pll.tbt_mode)
--		crtc_state->port_clock = intel_mtl_tbt_calc_port_clock(encoder);
--	else
--		crtc_state->port_clock = intel_cx0pll_calc_port_clock(encoder, &crtc_state->dpll_hw_state.cx0pll);
--
--	intel_ddi_get_config(encoder, crtc_state);
--}
--
- static bool icl_ddi_tc_pll_is_tbt(const struct intel_dpll *pll)
- {
- 	return pll->info->id == DPLL_ID_ICL_TBTPLL;
-@@ -4319,10 +4308,6 @@ static void mtl_ddi_non_tc_phy_get_config(struct intel_encoder *encoder,
- {
- 	struct intel_display *display = to_intel_display(encoder);
- 
--	/* TODO: Remove when the PLL manager is in place. */
--	mtl_ddi_get_config(encoder, crtc_state);
--	return;
--
- 	mtl_ddi_cx0_get_config(encoder, crtc_state, ICL_PORT_DPLL_DEFAULT,
- 			       mtl_port_to_pll_id(display, encoder->port));
- }
-@@ -4332,10 +4317,6 @@ static void mtl_ddi_tc_phy_get_config(struct intel_encoder *encoder,
- {
- 	struct intel_display *display = to_intel_display(encoder);
- 
--	/* TODO: Remove when the PLL manager is in place. */
--	mtl_ddi_get_config(encoder, crtc_state);
--	return;
--
- 	if (intel_tc_port_in_tbt_alt_mode(enc_to_dig_port(encoder)))
- 		mtl_ddi_cx0_get_config(encoder, crtc_state, ICL_PORT_DPLL_DEFAULT,
- 				       DPLL_ID_ICL_TBTPLL);
-@@ -5325,7 +5306,7 @@ void intel_ddi_init(struct intel_display *display,
- 	} else if (DISPLAY_VER(display) >= 14) {
- 		encoder->enable_clock = intel_mtl_pll_enable_clock;
- 		encoder->disable_clock = intel_mtl_pll_disable_clock;
--		encoder->port_pll_type = intel_mtl_port_pll_type;
-+		encoder->port_pll_type = icl_ddi_tc_port_pll_type;
- 		if (intel_encoder_is_tc(encoder))
- 			encoder->get_config = mtl_ddi_tc_phy_get_config;
- 		else
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index e7bb8ec0d6bb..6c8a7f63111e 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -4977,23 +4977,6 @@ pipe_config_pll_mismatch(struct drm_printer *p, bool fastset,
- 	intel_dpll_dump_hw_state(display, p, b);
- }
- 
--static void
--pipe_config_cx0pll_mismatch(struct drm_printer *p, bool fastset,
--			    const struct intel_crtc *crtc,
--			    const char *name,
--			    const struct intel_cx0pll_state *a,
--			    const struct intel_cx0pll_state *b)
--{
--	char *chipname = a->use_c10 ? "C10" : "C20";
--
--	pipe_config_mismatch(p, fastset, crtc, name, chipname);
--
--	drm_printf(p, "expected:\n");
--	intel_cx0pll_dump_hw_state(p, a);
--	drm_printf(p, "found:\n");
--	intel_cx0pll_dump_hw_state(p, b);
--}
--
- static bool allow_vblank_delay_fastset(const struct intel_crtc_state *old_crtc_state)
- {
- 	struct intel_display *display = to_intel_display(old_crtc_state);
-@@ -5145,16 +5128,6 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
- 	} \
- } while (0)
- 
--#define PIPE_CONF_CHECK_PLL_CX0(name) do { \
--	if (!intel_cx0pll_compare_hw_state(&current_config->name, \
--					   &pipe_config->name)) { \
--		pipe_config_cx0pll_mismatch(&p, fastset, crtc, __stringify(name), \
--					    &current_config->name, \
--					    &pipe_config->name); \
--		ret = false; \
--	} \
--} while (0)
--
- #define PIPE_CONF_CHECK_PLL_LT(name) do { \
- 	if (!intel_lt_phy_pll_compare_hw_state(&current_config->name, \
- 					       &pipe_config->name)) { \
-@@ -5394,8 +5367,6 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
- 	/* FIXME convert MTL+ platforms over to dpll_mgr */
- 	if (HAS_LT_PHY(display))
- 		PIPE_CONF_CHECK_PLL_LT(dpll_hw_state.ltpll);
--	else if (DISPLAY_VER(display) >= 14)
--		PIPE_CONF_CHECK_PLL_CX0(dpll_hw_state.cx0pll);
- 
- 	PIPE_CONF_CHECK_X(dsi_pll.ctrl);
- 	PIPE_CONF_CHECK_X(dsi_pll.div);
-diff --git a/drivers/gpu/drm/i915/display/intel_dpll.c b/drivers/gpu/drm/i915/display/intel_dpll.c
-index 2da65bb20f1c..a4f372c9e6fc 100644
---- a/drivers/gpu/drm/i915/display/intel_dpll.c
-+++ b/drivers/gpu/drm/i915/display/intel_dpll.c
-@@ -1212,27 +1212,6 @@ static int dg2_crtc_compute_clock(struct intel_atomic_state *state,
- 	return 0;
- }
- 
--static int mtl_crtc_compute_clock(struct intel_atomic_state *state,
--				  struct intel_crtc *crtc)
--{
--	struct intel_crtc_state *crtc_state =
--		intel_atomic_get_new_crtc_state(state, crtc);
--	struct intel_encoder *encoder =
--		intel_get_crtc_new_encoder(state, crtc_state);
--	int ret;
--
--	ret = intel_cx0pll_calc_state(crtc_state, encoder, &crtc_state->dpll_hw_state);
--	if (ret)
--		return ret;
--
--	/* TODO: Do the readback via intel_dpll_compute() */
--	crtc_state->port_clock = intel_cx0pll_calc_port_clock(encoder, &crtc_state->dpll_hw_state.cx0pll);
--
--	crtc_state->hw.adjusted_mode.crtc_clock = intel_crtc_dotclock(crtc_state);
--
--	return 0;
--}
--
- static int xe3plpd_crtc_compute_clock(struct intel_atomic_state *state,
- 				      struct intel_crtc *crtc)
- {
-@@ -1719,7 +1698,7 @@ static const struct intel_dpll_global_funcs xe3plpd_dpll_funcs = {
- };
- 
- static const struct intel_dpll_global_funcs mtl_dpll_funcs = {
--	.crtc_compute_clock = mtl_crtc_compute_clock,
-+	.crtc_compute_clock = hsw_crtc_compute_clock,
- 	.crtc_get_dpll = hsw_crtc_get_dpll,
- };
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-index 8fd3b06f393d..6c94dd2e1a15 100644
---- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-+++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-@@ -4558,7 +4558,6 @@ static bool mtl_compare_hw_state(const struct intel_dpll_hw_state *_a,
- 	return intel_cx0pll_compare_hw_state(a, b);
- }
- 
--__maybe_unused
- static const struct intel_dpll_mgr mtl_pll_mgr = {
- 	.dpll_info = mtl_plls,
- 	.compute_dplls = mtl_compute_dplls,
-@@ -4584,9 +4583,11 @@ void intel_dpll_init(struct intel_display *display)
- 
- 	mutex_init(&display->dpll.lock);
- 
--	if (DISPLAY_VER(display) >= 14 || display->platform.dg2)
-+	if (display->platform.dg2)
- 		/* No shared DPLLs on DG2; port PLLs are part of the PHY */
- 		dpll_mgr = NULL;
-+	else if (DISPLAY_VER(display) >= 14)
-+		dpll_mgr = &mtl_pll_mgr;
- 	else if (display->platform.alderlake_p)
- 		dpll_mgr = &adlp_pll_mgr;
- 	else if (display->platform.alderlake_s)
--- 
-2.34.1
-
+> ---
+>  drivers/mmc/core/mmc_test.c | 20 ++++++++------------
+>  1 file changed, 8 insertions(+), 12 deletions(-)
+>
+> diff --git a/drivers/mmc/core/mmc_test.c b/drivers/mmc/core/mmc_test.c
+> index a74089df4547..01d1e62c2ce7 100644
+> --- a/drivers/mmc/core/mmc_test.c
+> +++ b/drivers/mmc/core/mmc_test.c
+> @@ -586,14 +586,11 @@ static void mmc_test_print_avg_rate(struct mmc_test_card *test, uint64_t bytes,
+>         rate = mmc_test_rate(tot, &ts);
+>         iops = mmc_test_rate(count * 100, &ts); /* I/O ops per sec x 100 */
+>
+> -       pr_info("%s: Transfer of %u x %u sectors (%u x %u%s KiB) took "
+> -                        "%llu.%09u seconds (%u kB/s, %u KiB/s, "
+> -                        "%u.%02u IOPS, sg_len %d)\n",
+> -                        mmc_hostname(test->card->host), count, sectors, count,
+> -                        sectors >> 1, (sectors & 1 ? ".5" : ""),
+> -                        (u64)ts.tv_sec, (u32)ts.tv_nsec,
+> -                        rate / 1000, rate / 1024, iops / 100, iops % 100,
+> -                        test->area.sg_len);
+> +       pr_info("%s: Transfer of %u x %u sectors (%u x %u%s KiB) took %ptSp seconds (%u kB/s, %u KiB/s, %u.%02u IOPS, sg_len %d)\n",
+> +               mmc_hostname(test->card->host), count, sectors, count,
+> +               sectors >> 1, (sectors & 1 ? ".5" : ""), &ts,
+> +               rate / 1000, rate / 1024, iops / 100, iops % 100,
+> +               test->area.sg_len);
+>
+>         mmc_test_save_transfer_result(test, count, sectors, ts, rate, iops);
+>  }
+> @@ -3074,10 +3071,9 @@ static int mtf_test_show(struct seq_file *sf, void *data)
+>                 seq_printf(sf, "Test %d: %d\n", gr->testcase + 1, gr->result);
+>
+>                 list_for_each_entry(tr, &gr->tr_lst, link) {
+> -                       seq_printf(sf, "%u %d %llu.%09u %u %u.%02u\n",
+> -                               tr->count, tr->sectors,
+> -                               (u64)tr->ts.tv_sec, (u32)tr->ts.tv_nsec,
+> -                               tr->rate, tr->iops / 100, tr->iops % 100);
+> +                       seq_printf(sf, "%u %d %ptSp %u %u.%02u\n",
+> +                                  tr->count, tr->sectors, &tr->ts, tr->rate,
+> +                                  tr->iops / 100, tr->iops % 100);
+>                 }
+>         }
+>
+> --
+> 2.50.1
+>
