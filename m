@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 490C7CE8D6B
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7FC1FCED242
 	for <intel-xe@archiver.kernel.org>; Mon, 17 Nov 2025 10:59:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 09F2F10E393;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 36B0F10E396;
 	Mon, 17 Nov 2025 10:59:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VVld9DP2";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XDCTFkmm";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F125C10E37F;
- Mon, 17 Nov 2025 10:59:30 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C075810E38A;
+ Mon, 17 Nov 2025 10:59:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1763377171; x=1794913171;
+ t=1763377174; x=1794913174;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Xbrstm7Hublsf5sEEybVkVvJv4iiM6p3gtEwE0+I2Lg=;
- b=VVld9DP2ad0z7FkHHMrXVCJrHdQ2maNPhrgTM/wDuam40aBhBNyvmxch
- QJvZnIEVzhieCKffeLzVt7Yas3JwqoRytnrwxbJSMiylB0SZLCv4L9mrv
- eNvMzzu3igLysBBtFG1kVqZqix8rpeKcL8yDapPsyiITvu1mY8Csh6o8q
- BL+tfdbjr9NKmhfNAosIgQNV/eLu6MEXLWijt8cqzrPdMKt2H1GBJlH2S
- v2Lss3bdR1KSUn6sMC0A/K59UJU764vW1hqt9RZBR+b0ZpBVNFoVfshNm
- oaaxU1SpgArtZKj8cg1HPAc1Ug41XEfRDrfzkXgJSfAtPf48IKXFHXAsR g==;
-X-CSE-ConnectionGUID: ZGsmPUpZS6eVsqFKKoAjpw==
-X-CSE-MsgGUID: VSPFe9A6T8WC1VrbSxceSA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11615"; a="76475410"
-X-IronPort-AV: E=Sophos;i="6.19,311,1754982000"; d="scan'208";a="76475410"
+ bh=LF4rfdYKYkbWh6OyUcGGVNedfGVqfpa74CGhoql7kvE=;
+ b=XDCTFkmmRBfblQ2lceTwxnQFAYFItPBhWwT7un+V0r+zxhJ8f15mWJL8
+ QtABiy5g7pBxgRWqRUjTcQ4AjnO//4tmkwZDjFLC4o8lwPcueNzPpEGeh
+ lbNqS14zmIPAHdwOj+78mOvbSxtu0EWRFwiCR1T+sSimZ2hFJ/tLmJK4J
+ e/ZOCIXYxwGHOa8wNeSJEzC67/UqM8O7MZe38w2ZVz79bbLvRkfXZPtgF
+ KO+Om+b6Yr5RP6Rog16cMlsZqSM3NyWitXlD15uzsv7oxs6hZJfeUAU+/
+ jA86EN2AI2PUnmLVsUQFOCu85Gb7efJaC2Z3JjhiIqpbqi+74nlH/FHvT A==;
+X-CSE-ConnectionGUID: NYkkz97ZQ5u9IA4YYCVqeQ==
+X-CSE-MsgGUID: yW2z9jgwQwOdjTjrev1htA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11615"; a="76475420"
+X-IronPort-AV: E=Sophos;i="6.19,311,1754982000"; d="scan'208";a="76475420"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Nov 2025 02:59:31 -0800
-X-CSE-ConnectionGUID: MqcRDiImSVy7/c1kje2+Lw==
-X-CSE-MsgGUID: PggM5SfMRRWe7RFJQGTtfQ==
+ 17 Nov 2025 02:59:33 -0800
+X-CSE-ConnectionGUID: kyIEpxhQTSOwdLYcb7SdfA==
+X-CSE-MsgGUID: CPP1HkZeTcmcYcihtvmVYg==
 X-ExtLoop1: 1
 Received: from display-adls.igk.intel.com ([10.211.131.198])
- by fmviesa003.fm.intel.com with ESMTP; 17 Nov 2025 02:59:29 -0800
+ by fmviesa003.fm.intel.com with ESMTP; 17 Nov 2025 02:59:32 -0800
 From: Mika Kahola <mika.kahola@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Mika Kahola <mika.kahola@intel.com>,
  Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH v2 22/32] drm/i915/cx0: Add MTL+ .update_dpll_ref_clks hook
-Date: Mon, 17 Nov 2025 12:45:52 +0200
-Message-Id: <20251117104602.2363671-23-mika.kahola@intel.com>
+Subject: [PATCH v2 24/32] drm/i915/cx0: Add .compare_hw_state hook
+Date: Mon, 17 Nov 2025 12:45:54 +0200
+Message-Id: <20251117104602.2363671-25-mika.kahola@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251117104602.2363671-1-mika.kahola@intel.com>
 References: <20251117104602.2363671-1-mika.kahola@intel.com>
@@ -66,25 +66,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add .update_dpll_ref_clks function pointer to MTL+
-platforms to support dpll framework. Reuse ICL
-function pointer.
+Add .compare_hw_state function pointer for MTL+ platforms
+to support dpll framework.
 
 Signed-off-by: Mika Kahola <mika.kahola@intel.com>
 Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-index e6dd6f1123d6..32e52babf265 100644
+index aee8f1a5848a..c0ba269dc714 100644
 --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
 +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-@@ -4450,6 +4450,7 @@ static const struct intel_dpll_mgr mtl_pll_mgr = {
- 	.get_dplls = mtl_get_dplls,
- 	.put_dplls = icl_put_dplls,
+@@ -4449,6 +4449,15 @@ static void mtl_dump_hw_state(struct drm_printer *p,
+ 	intel_cx0pll_dump_hw_state(p, &dpll_hw_state->cx0pll);
+ }
+ 
++static bool mtl_compare_hw_state(const struct intel_dpll_hw_state *_a,
++				 const struct intel_dpll_hw_state *_b)
++{
++	const struct intel_cx0pll_state *a = &_a->cx0pll;
++	const struct intel_cx0pll_state *b = &_b->cx0pll;
++
++	return intel_cx0pll_compare_hw_state(a, b);
++}
++
+ __maybe_unused
+ static const struct intel_dpll_mgr mtl_pll_mgr = {
+ 	.dpll_info = mtl_plls,
+@@ -4458,6 +4467,7 @@ static const struct intel_dpll_mgr mtl_pll_mgr = {
  	.update_active_dpll = icl_update_active_dpll,
-+	.update_ref_clks = icl_update_dpll_ref_clks,
+ 	.update_ref_clks = icl_update_dpll_ref_clks,
+ 	.dump_hw_state = mtl_dump_hw_state,
++	.compare_hw_state = mtl_compare_hw_state,
  };
  
  /**
