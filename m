@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BBC72CEBF8D
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 811DECEBF93
 	for <intel-xe@archiver.kernel.org>; Mon, 17 Nov 2025 10:59:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6B6DD10E35D;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3024010E1C3;
 	Mon, 17 Nov 2025 10:59:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BbtH4v5X";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kuE7BM7d";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5E7BD10E1D0;
- Mon, 17 Nov 2025 10:59:07 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B82A910E34A;
+ Mon, 17 Nov 2025 10:59:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1763377147; x=1794913147;
+ t=1763377152; x=1794913152;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=CvyV+RpceiYdIETzMarCcyi0xpKX8+q+M+jVJE0X8is=;
- b=BbtH4v5XgFydrvB6CrUpmF7QqnyVy+FYfI5xF+2wFrqo/rxpqSBxBueJ
- g3MxmviX1CHqBpJvVzft6779EqLG7wtFmmmmngBIrH+5kgCoz8Vkcax0c
- SQYy6jha9fybTD8f0kwdZErvG3G/4K6hWZhanb2uft4DDgjN4ihi7tB9n
- uDHvH0NAAUDgdwE0kajxJFKgr6nn3keR5rOUo8/erH+cvc+jWnHMG6DL8
- ZiVF7O2qPoWOaL4we/kA+vKbJoaOhxCOyAfUbu8K6PaZdXB1Z6FWFiJoM
- 6Ep50mROuEN1t+ejpPNE2oaFQh9BNgAbckXWKKG/N++16PEDehlpEMIhS A==;
-X-CSE-ConnectionGUID: fgApvzQtTDmVAM7I+iTJmg==
-X-CSE-MsgGUID: qPG02mIaT+mqrHzIuV7P9A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11615"; a="76475331"
-X-IronPort-AV: E=Sophos;i="6.19,311,1754982000"; d="scan'208";a="76475331"
+ bh=jeOAVsMfVpvoZ+XNvvNYy7QBWP2s64jtuQ0H9sE+dIM=;
+ b=kuE7BM7d2hDrODQ7C2uX8JEzRSRKfjOwaYbbrGSHVy5RVr+B9BFYxUs5
+ B2xG9FjZ0zJdfIJ+BNDsvIx+xr1gkyhmMINT4gXlHd6hXCw/vj9AwLfC6
+ zcD6x4FwKNqGWbsCZecKVuWdUuWjbbkKJjmsFLkAmidUyRRLQcgDxdP1a
+ DKzMN7VibAAA3TrZ1iAn8b3+ytoUqKwSyEOLQFEQkhj7MNO9L8lxAEXiY
+ ewMfSlFLVrHu18PtCevFfbppHQg+JRymZtdL31hYMCJhphwFmONQ7SZJH
+ tSaYxxIfhGwX7qdZcUCgJTd4LsIB23i8krtfUlzcY0JLUiQEi5POhbb/k g==;
+X-CSE-ConnectionGUID: tG2Z3UpyRICYwudaTaNZcA==
+X-CSE-MsgGUID: 437/QxT7Q8akYGIF0C9O/Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11615"; a="76475354"
+X-IronPort-AV: E=Sophos;i="6.19,311,1754982000"; d="scan'208";a="76475354"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Nov 2025 02:59:07 -0800
-X-CSE-ConnectionGUID: IxcADTwfQVK76yFlZrfYRA==
-X-CSE-MsgGUID: ScH1GaTATSuWNA95x0wxWQ==
+ 17 Nov 2025 02:59:11 -0800
+X-CSE-ConnectionGUID: pyeVTEZ3QKKEVW9jbn4L9Q==
+X-CSE-MsgGUID: JnXX+zs6RWOWoMG/IZk03g==
 X-ExtLoop1: 1
 Received: from display-adls.igk.intel.com ([10.211.131.198])
- by fmviesa003.fm.intel.com with ESMTP; 17 Nov 2025 02:59:05 -0800
+ by fmviesa003.fm.intel.com with ESMTP; 17 Nov 2025 02:59:10 -0800
 From: Mika Kahola <mika.kahola@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Cc: Imre Deak <imre.deak@intel.com>,
-	Mika Kahola <mika.kahola@intel.com>
-Subject: [PATCH v2 05/32] drm/i915/cx0: Track the C20 PHY VDR state in the PLL
- state
-Date: Mon, 17 Nov 2025 12:45:35 +0200
-Message-Id: <20251117104602.2363671-6-mika.kahola@intel.com>
+Cc: Imre Deak <imre.deak@intel.com>, Mika Kahola <mika.kahola@intel.com>,
+ Suraj Kandpal <suraj.kandpal@intel.com>
+Subject: [PATCH v2 08/32] drm/i915/cx0: Track the Cx0 PHY enabled lane count
+ in the PLL state
+Date: Mon, 17 Nov 2025 12:45:38 +0200
+Message-Id: <20251117104602.2363671-9-mika.kahola@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251117104602.2363671-1-mika.kahola@intel.com>
 References: <20251117104602.2363671-1-mika.kahola@intel.com>
@@ -69,224 +69,202 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Imre Deak <imre.deak@intel.com>
 
-The Cx0 PLL enable programming needs to know if the PLL is in DP or HDMI
-mode. The PLL manager framework doesn't pass the CRTC state to the PLL's
-enable hook, so prepare here for the conversion to use the PLL manager
-for Cx0 PHY PLLs by tracking the DP/HDMI mode in the PLL state.
+The Cx0 PLL enable programming requires the enabled lane count. The PLL
+manager framework doesn't pass the CRTC state to the PLL's enable hook,
+so prepare here for the conversion to use the PLL manager, by tracking
+the enabled lane count in the PLL state as well. This has the advantage,
+that the enabled lane count can be verified against the PHY/PLL's
+enabled TX lanes.
 
-This change has the advantage, that the VDR HW/SW state can be verified
-now.
-
-A follow up change will convert the PLL enable function to retrieve the
-DP/HDMI mode parameter from the PLL state.
-
-This also allows dropping the is_dp and port clock params from the
-intel_c20_pll_program() function, since it can retrieve these now from
+This also allows dropping the lane count param from the
+__intel_cx0pll_enable() function, since it can retrieve this now from
 the PLL state.
-
-v2: Fix comment to under same multicomment line (Suraj)
 
 Signed-off-by: Imre Deak <imre.deak@intel.com>
 Signed-off-by: Mika Kahola <mika.kahola@intel.com>
+Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cx0_phy.c  | 119 +++++++++++++-----
- drivers/gpu/drm/i915/display/intel_dpll_mgr.h |   5 +
- 2 files changed, 92 insertions(+), 32 deletions(-)
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c  | 55 ++++++++++++++++---
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.h |  1 +
+ 2 files changed, 49 insertions(+), 7 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-index a1f2272fed14..fd0409565c68 100644
+index 9515157ee6b3..2ab93d02fdf1 100644
 --- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
 +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-@@ -2357,6 +2357,75 @@ intel_c20_pll_tables_get(const struct intel_crtc_state *crtc_state,
- 	return NULL;
+@@ -11,6 +11,7 @@
+ #include "intel_alpm.h"
+ #include "intel_cx0_phy.h"
+ #include "intel_cx0_phy_regs.h"
++#include "intel_display_regs.h"
+ #include "intel_ddi.h"
+ #include "intel_ddi_buf_trans.h"
+ #include "intel_de.h"
+@@ -2078,7 +2079,7 @@ static void intel_c10pll_update_pll(struct intel_encoder *encoder,
+  */
+ static int intel_c10pll_calc_state_from_table(struct intel_encoder *encoder,
+ 					      const struct intel_c10pll_state * const *tables,
+-					      bool is_dp, int port_clock,
++					      bool is_dp, int port_clock, int lane_count,
+ 					      struct intel_cx0pll_state *pll_state)
+ {
+ 	int i;
+@@ -2088,7 +2089,9 @@ static int intel_c10pll_calc_state_from_table(struct intel_encoder *encoder,
+ 			pll_state->c10 = *tables[i];
+ 			intel_cx0pll_update_ssc(encoder, pll_state, is_dp);
+ 			intel_c10pll_update_pll(encoder, pll_state);
++
+ 			pll_state->use_c10 = true;
++			pll_state->lane_count = lane_count;
+ 
+ 			return 0;
+ 		}
+@@ -2109,7 +2112,7 @@ static int intel_c10pll_calc_state(struct intel_crtc_state *crtc_state,
+ 
+ 	err = intel_c10pll_calc_state_from_table(encoder, tables,
+ 						 intel_crtc_has_dp_encoder(crtc_state),
+-						 crtc_state->port_clock,
++						 crtc_state->port_clock, crtc_state->lane_count,
+ 						 &crtc_state->dpll_hw_state.cx0pll);
+ 
+ 	if (err == 0 || !intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI))
+@@ -2121,6 +2124,7 @@ static int intel_c10pll_calc_state(struct intel_crtc_state *crtc_state,
+ 	intel_c10pll_update_pll(encoder,
+ 				&crtc_state->dpll_hw_state.cx0pll);
+ 	crtc_state->dpll_hw_state.cx0pll.use_c10 = true;
++	crtc_state->dpll_hw_state.cx0pll.lane_count = crtc_state->lane_count;
+ 
+ 	return 0;
+ }
+@@ -2152,6 +2156,37 @@ static int intel_c10pll_calc_port_clock(struct intel_encoder *encoder,
+ 	return tmpclk;
  }
  
-+static u8 intel_c20_get_dp_rate(u32 clock);
-+static u8 intel_c20_get_hdmi_rate(u32 clock);
-+static int intel_get_c20_custom_width(u32 clock, bool dp);
-+
-+static void intel_c20_calc_vdr_params(struct intel_c20pll_vdr_state *vdr, bool is_dp,
-+				      int port_clock)
-+{
-+	vdr->custom_width = intel_get_c20_custom_width(port_clock, is_dp);
-+
-+	vdr->serdes_rate = 0;
-+	vdr->hdmi_rate = 0;
-+
-+	if (is_dp) {
-+		vdr->serdes_rate = PHY_C20_IS_DP |
-+				   PHY_C20_DP_RATE(intel_c20_get_dp_rate(port_clock));
-+	} else {
-+		if (intel_hdmi_is_frl(port_clock))
-+			vdr->serdes_rate = PHY_C20_IS_HDMI_FRL;
-+
-+		vdr->hdmi_rate = intel_c20_get_hdmi_rate(port_clock);
-+	}
-+}
-+
-+#define PHY_C20_SERDES_RATE_MASK	(PHY_C20_IS_DP | PHY_C20_DP_RATE_MASK | PHY_C20_IS_HDMI_FRL)
-+
-+static void intel_c20_readout_vdr_params(struct intel_encoder *encoder,
-+					 struct intel_c20pll_vdr_state *vdr, bool *cntx)
-+{
-+	u8 serdes;
-+
-+	serdes = intel_cx0_read(encoder, INTEL_CX0_LANE0, PHY_C20_VDR_CUSTOM_SERDES_RATE);
-+	*cntx = serdes & PHY_C20_CONTEXT_TOGGLE;
-+
-+	vdr->custom_width = intel_cx0_read(encoder, INTEL_CX0_LANE0, PHY_C20_VDR_CUSTOM_WIDTH) &
-+			    PHY_C20_CUSTOM_WIDTH_MASK;
-+
-+	vdr->serdes_rate = serdes & PHY_C20_SERDES_RATE_MASK;
-+	if (!(vdr->serdes_rate & PHY_C20_IS_DP))
-+		vdr->hdmi_rate = intel_cx0_read(encoder, INTEL_CX0_LANE0, PHY_C20_VDR_HDMI_RATE) &
-+				 PHY_C20_HDMI_RATE_MASK;
-+	else
-+		vdr->hdmi_rate = 0;
-+}
-+
-+static void intel_c20_program_vdr_params(struct intel_encoder *encoder,
-+					 const struct intel_c20pll_vdr_state *vdr,
-+					 u8 owned_lane_mask)
++static int readout_enabled_lane_count(struct intel_encoder *encoder)
 +{
 +	struct intel_display *display = to_intel_display(encoder);
++	u8 enabled_tx_lane_count = 0;
++	int max_tx_lane_count;
++	int tx_lane;
 +
-+	drm_WARN_ON(display->drm, vdr->custom_width & ~PHY_C20_CUSTOM_WIDTH_MASK);
-+	intel_cx0_rmw(encoder, owned_lane_mask, PHY_C20_VDR_CUSTOM_WIDTH,
-+		      PHY_C20_CUSTOM_WIDTH_MASK, vdr->custom_width,
-+		      MB_WRITE_COMMITTED);
++	/*
++	 * TODO: also check inactive TX lanes in all PHY lanes owned by the
++	 * display. For now checking only those PHY lane(s) which are owned
++	 * based on the active TX lane count (i.e.
++	 *   1,2 active TX lanes -> PHY lane#0
++	 *   3,4 active TX lanes -> PHY lane#0 and PHY lane#1).
++	 */
++	max_tx_lane_count = DDI_PORT_WIDTH_GET(intel_de_read(display, DDI_BUF_CTL(encoder->port)));
++	if (!drm_WARN_ON(display->drm, max_tx_lane_count == 0))
++		max_tx_lane_count = roundup_pow_of_two(max_tx_lane_count);
 +
-+	drm_WARN_ON(display->drm, vdr->serdes_rate & ~PHY_C20_SERDES_RATE_MASK);
-+	intel_cx0_rmw(encoder, owned_lane_mask, PHY_C20_VDR_CUSTOM_SERDES_RATE,
-+		      PHY_C20_SERDES_RATE_MASK, vdr->serdes_rate,
-+		      MB_WRITE_COMMITTED);
++	for (tx_lane = 0; tx_lane < max_tx_lane_count; tx_lane++) {
++		u8 phy_lane_mask = tx_lane < 2 ? INTEL_CX0_LANE0 : INTEL_CX0_LANE1;
++		int tx = tx_lane % 2 + 1;
++		u8 val;
 +
-+	if (vdr->serdes_rate & PHY_C20_IS_DP)
-+		return;
++		val = intel_cx0_read(encoder, phy_lane_mask, PHY_CX0_TX_CONTROL(tx, 2));
++		if (!(val & CONTROL2_DISABLE_SINGLE_TX))
++			enabled_tx_lane_count++;
++	}
 +
-+	drm_WARN_ON(display->drm, vdr->hdmi_rate & ~PHY_C20_HDMI_RATE_MASK);
-+	intel_cx0_rmw(encoder, INTEL_CX0_BOTH_LANES, PHY_C20_VDR_HDMI_RATE,
-+		      PHY_C20_HDMI_RATE_MASK, vdr->hdmi_rate,
-+		      MB_WRITE_COMMITTED);
++	return enabled_tx_lane_count;
 +}
 +
- static const struct intel_c20pll_state *
- intel_c20_pll_find_table(const struct intel_crtc_state *crtc_state,
- 			 struct intel_encoder *encoder)
-@@ -2395,19 +2464,26 @@ static int intel_c20pll_calc_state_from_table(struct intel_crtc_state *crtc_stat
- static int intel_c20pll_calc_state(struct intel_crtc_state *crtc_state,
- 				   struct intel_encoder *encoder)
+ static void intel_c10pll_readout_hw_state(struct intel_encoder *encoder,
+ 					  struct intel_cx0pll_state *cx0pll_state)
  {
-+	bool is_dp = intel_crtc_has_dp_encoder(crtc_state);
+@@ -2170,6 +2205,8 @@ static void intel_c10pll_readout_hw_state(struct intel_encoder *encoder,
+ 	 */
+ 	intel_c10_msgbus_access_begin(encoder, lane);
+ 
++	cx0pll_state->lane_count = readout_enabled_lane_count(encoder);
++
+ 	for (i = 0; i < ARRAY_SIZE(pll_state->pll); i++)
+ 		pll_state->pll[i] = intel_cx0_read(encoder, lane, PHY_C10_VDR_PLL(i));
+ 
+@@ -2562,6 +2599,7 @@ static int intel_c20pll_calc_state(struct intel_crtc_state *crtc_state,
  	int err = -ENOENT;
  
  	crtc_state->dpll_hw_state.cx0pll.use_c10 = false;
++	crtc_state->dpll_hw_state.cx0pll.lane_count = crtc_state->lane_count;
  
  	/* try computed C20 HDMI tables before using consolidated tables */
--	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI))
-+	if (!is_dp)
- 		/* TODO: Update SSC state for HDMI as well */
- 		err = intel_c20_compute_hdmi_tmds_pll(crtc_state);
- 
- 	if (err)
- 		err = intel_c20pll_calc_state_from_table(crtc_state, encoder);
- 
--	return err;
-+	if (err)
-+		return err;
-+
-+	intel_c20_calc_vdr_params(&crtc_state->dpll_hw_state.cx0pll.c20.vdr,
-+				  is_dp, crtc_state->port_clock);
-+
-+	return 0;
- }
- 
- int intel_cx0pll_calc_state(struct intel_crtc_state *crtc_state,
-@@ -2481,8 +2557,8 @@ static void intel_c20pll_readout_hw_state(struct intel_encoder *encoder,
+ 	if (!is_dp)
+@@ -2651,6 +2689,8 @@ static void intel_c20pll_readout_hw_state(struct intel_encoder *encoder,
  
  	wakeref = intel_cx0_phy_transaction_begin(encoder);
  
--	/* 1. Read current context selection */
--	cntx = intel_cx0_read(encoder, INTEL_CX0_LANE0, PHY_C20_VDR_CUSTOM_SERDES_RATE) & PHY_C20_CONTEXT_TOGGLE;
-+	/* 1. Read VDR params and current context selection */
-+	intel_c20_readout_vdr_params(encoder, &pll_state->vdr, &cntx);
++	cx0pll_state->lane_count = readout_enabled_lane_count(encoder);
++
+ 	/* 1. Read VDR params and current context selection */
+ 	intel_c20_readout_vdr_params(encoder, &pll_state->vdr, &cntx);
  
- 	/* Read Tx configuration */
- 	for (i = 0; i < ARRAY_SIZE(pll_state->tx); i++) {
-@@ -2657,11 +2733,9 @@ static int intel_get_c20_custom_width(u32 clock, bool dp)
+@@ -3089,7 +3129,7 @@ static u32 intel_cx0_get_pclk_pll_ack(u8 lane_mask)
  
- static void intel_c20_pll_program(struct intel_display *display,
- 				  struct intel_encoder *encoder,
--				  const struct intel_c20pll_state *pll_state,
--				  bool is_dp, int port_clock)
-+				  const struct intel_c20pll_state *pll_state)
+ static void __intel_cx0pll_enable(struct intel_encoder *encoder,
+ 				  const struct intel_cx0pll_state *pll_state,
+-				  bool is_dp, int port_clock, int lane_count)
++				  bool is_dp, int port_clock)
  {
- 	u8 owned_lane_mask = intel_cx0_get_owned_lane_mask(encoder);
--	u8 serdes;
- 	bool cntx;
- 	int i;
- 
-@@ -2730,30 +2804,11 @@ static void intel_c20_pll_program(struct intel_display *display,
- 		}
- 	}
- 
--	/* 4. Program custom width to match the link protocol */
--	intel_cx0_rmw(encoder, owned_lane_mask, PHY_C20_VDR_CUSTOM_WIDTH,
--		      PHY_C20_CUSTOM_WIDTH_MASK,
--		      PHY_C20_CUSTOM_WIDTH(intel_get_c20_custom_width(port_clock, is_dp)),
--		      MB_WRITE_COMMITTED);
--
--	/* 5. For DP or 6. For HDMI */
--	serdes = 0;
--	if (is_dp)
--		serdes = PHY_C20_IS_DP |
--			 PHY_C20_DP_RATE(intel_c20_get_dp_rate(port_clock));
--	else if (intel_hdmi_is_frl(port_clock))
--		serdes = PHY_C20_IS_HDMI_FRL;
--
--	intel_cx0_rmw(encoder, owned_lane_mask, PHY_C20_VDR_CUSTOM_SERDES_RATE,
--		      PHY_C20_IS_DP | PHY_C20_DP_RATE_MASK | PHY_C20_IS_HDMI_FRL,
--		      serdes,
--		      MB_WRITE_COMMITTED);
--
--	if (!is_dp)
--		intel_cx0_rmw(encoder, INTEL_CX0_BOTH_LANES, PHY_C20_VDR_HDMI_RATE,
--			      PHY_C20_HDMI_RATE_MASK,
--			      intel_c20_get_hdmi_rate(port_clock),
--			      MB_WRITE_COMMITTED);
-+	/*
-+	 * 4. Program custom width to match the link protocol.
-+	 * 5. For DP or 6. For HDMI
-+	 */
-+	intel_c20_program_vdr_params(encoder, &pll_state->vdr, owned_lane_mask);
- 
- 	/*
- 	 * 7. Write Vendor specific registers to toggle context setting to load
-@@ -3077,7 +3132,7 @@ static void __intel_cx0pll_enable(struct intel_encoder *encoder,
- 	if (intel_encoder_is_c10phy(encoder))
- 		intel_c10_pll_program(display, encoder, &pll_state->c10);
- 	else
--		intel_c20_pll_program(display, encoder, &pll_state->c20, is_dp, port_clock);
-+		intel_c20_pll_program(display, encoder, &pll_state->c20);
- 
- 	/*
+ 	struct intel_display *display = to_intel_display(encoder);
+ 	enum phy phy = intel_encoder_to_phy(encoder);
+@@ -3131,7 +3171,7 @@ static void __intel_cx0pll_enable(struct intel_encoder *encoder,
  	 * 6. Program the enabled and disabled owned PHY lane
+ 	 * transmitters over message bus
+ 	 */
+-	intel_cx0_program_phy_lane(encoder, lane_count, lane_reversal);
++	intel_cx0_program_phy_lane(encoder, pll_state->lane_count, lane_reversal);
+ 
+ 	/*
+ 	 * 7. Follow the Display Voltage Frequency Switching - Sequence
+@@ -3174,7 +3214,7 @@ static void intel_cx0pll_enable(struct intel_encoder *encoder,
+ {
+ 	__intel_cx0pll_enable(encoder, &crtc_state->dpll_hw_state.cx0pll,
+ 			      intel_crtc_has_dp_encoder(crtc_state),
+-			      crtc_state->port_clock, crtc_state->lane_count);
++			      crtc_state->port_clock);
+ }
+ 
+ int intel_mtl_tbt_calc_port_clock(struct intel_encoder *encoder)
+@@ -3700,6 +3740,7 @@ void intel_cx0_pll_power_save_wa(struct intel_display *display)
+ 	for_each_intel_encoder(display->drm, encoder) {
+ 		struct intel_cx0pll_state pll_state = {};
+ 		int port_clock = 162000;
++		int lane_count = 4;
+ 
+ 		if (!intel_encoder_is_dig_port(encoder))
+ 			continue;
+@@ -3712,7 +3753,7 @@ void intel_cx0_pll_power_save_wa(struct intel_display *display)
+ 
+ 		if (intel_c10pll_calc_state_from_table(encoder,
+ 						       mtl_c10_edp_tables,
+-						       true, port_clock,
++						       true, port_clock, lane_count,
+ 						       &pll_state) < 0) {
+ 			drm_WARN_ON(display->drm,
+ 				    "Unable to calc C10 state from the tables\n");
+@@ -3723,7 +3764,7 @@ void intel_cx0_pll_power_save_wa(struct intel_display *display)
+ 			    "[ENCODER:%d:%s] Applying power saving workaround on disabled PLL\n",
+ 			    encoder->base.base.id, encoder->base.name);
+ 
+-		__intel_cx0pll_enable(encoder, &pll_state, true, port_clock, 4);
++		__intel_cx0pll_enable(encoder, &pll_state, true, port_clock);
+ 		intel_cx0pll_disable(encoder);
+ 	}
+ }
 diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h b/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
-index 6183da90b28d..a0238a3e7288 100644
+index a0238a3e7288..a7946ff13cb6 100644
 --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
 +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
-@@ -255,6 +255,11 @@ struct intel_c20pll_state {
- 		u16 mplla[10];
- 		u16 mpllb[11];
+@@ -267,6 +267,7 @@ struct intel_cx0pll_state {
+ 		struct intel_c10pll_state c10;
+ 		struct intel_c20pll_state c20;
  	};
-+	struct intel_c20pll_vdr_state {
-+		u8 custom_width;
-+		u8 serdes_rate;
-+		u8 hdmi_rate;
-+	} vdr;
- };
- 
- struct intel_cx0pll_state {
++	int lane_count;
+ 	bool ssc_enabled;
+ 	bool use_c10;
+ 	bool tbt_mode;
 -- 
 2.34.1
 
