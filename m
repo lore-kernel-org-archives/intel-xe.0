@@ -4,182 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C0282CEBF61
-	for <intel-xe@archiver.kernel.org>; Mon, 17 Nov 2025 14:27:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 26321CEBF61
+	for <intel-xe@archiver.kernel.org>; Mon, 17 Nov 2025 14:32:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 78E9310E3BC;
-	Mon, 17 Nov 2025 14:27:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DB1DC10E1C5;
+	Mon, 17 Nov 2025 14:32:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hJ5eml3D";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="oFwaUlw7";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AF64B10E3C8
- for <intel-xe@lists.freedesktop.org>; Mon, 17 Nov 2025 14:27:56 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 09CB410E1C5
+ for <intel-xe@lists.freedesktop.org>; Mon, 17 Nov 2025 14:32:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1763389676; x=1794925676;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=rRIPV02TkjGOnQrKgyyurdXOau+y+MsK8R42l+K/Wfc=;
- b=hJ5eml3DcKYsStNWY83OxIXsSD5Rl01m08GlmvaXoB1ROVFXZFcWTUrW
- MZds6ZJ4/lDnVKAINdQ4TxVLfndRC6OatGDyXOFY8BvIvUEV17kYCpGC+
- GuWH9YR7cXDDufwNTFRUHCsRQbJTWNAwbtX5gFrSnFQRXmDQc1svlv3Lm
- TWuYgrduEhOEuxl5/1WFZEHKsM4pqRqZT0c9a6hJQArL1KRH8ZAD/773a
- IfKL2/aXc+0AZfy6F8rN4W1ZVnC0/LGe/lwJv6K5zAh/hatBNPHE15GeC
- +/L/+bBR0NnWqBjU08THlQEX+jgoLOzCXwolGOitUGQWHLZ5TKnNqkdom g==;
-X-CSE-ConnectionGUID: p3cQI5HSRe+WKPG3ZcgRaw==
-X-CSE-MsgGUID: 26tJcYz5S0a4DyoyO8IN5Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11616"; a="67995774"
-X-IronPort-AV: E=Sophos;i="6.19,312,1754982000"; d="scan'208";a="67995774"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Nov 2025 06:27:56 -0800
-X-CSE-ConnectionGUID: PChsG/MISHGr3MQ5Rvxa9w==
-X-CSE-MsgGUID: TTEuzc5iRBGlH8tW5n0LTw==
+ t=1763389950; x=1794925950;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=KfxQFXEK4yzMMn4TSyhivSCtIHVi/MsMyiQwPI/CvmA=;
+ b=oFwaUlw7qeCDWaGAoSpdSjQM6zeV3+Xtq631k1IBdahfjrSkx3QyRnlj
+ sbuMdsQtzolkHkh/l4wq4mCbujm/IN3pkTnpT8ztptlv8z4kUMOkhqatY
+ Y7q7pyv5MYlDOYZZQkoh91y0SDKTIr0VhMxHVSygXIkpFkvYt4uoW1HzF
+ u+nIOCJXH+cXLExOoIZteEaHpU5Vxf0RJnPrmowdEzgIYdUSgIAGHmLqO
+ fMyJTi+3Xkme/EmDLoLEiO750Ut2uPoXPpIBAFlwS1sSF9qFdS5XcyAHl
+ KIf/T/anGDxwk4q4etR4imTuQJfvhcRxkuJjOisGb6F8fxmGmHoTcBMJf g==;
+X-CSE-ConnectionGUID: lJCzYdlVR5WbcBB3kBu8Qw==
+X-CSE-MsgGUID: +lWBKyyqSk2hNNp7qGWCeQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11616"; a="83015468"
+X-IronPort-AV: E=Sophos;i="6.19,312,1754982000"; d="scan'208";a="83015468"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Nov 2025 06:32:29 -0800
+X-CSE-ConnectionGUID: pxi9OKVUSQWjO1e6P156Tw==
+X-CSE-MsgGUID: Va9zLRlITrqrKjqbVszm2Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,312,1754982000"; d="scan'208";a="190480475"
-Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
- by orviesa007.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Nov 2025 06:27:57 -0800
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Mon, 17 Nov 2025 06:27:55 -0800
-Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27 via Frontend Transport; Mon, 17 Nov 2025 06:27:55 -0800
-Received: from BYAPR05CU005.outbound.protection.outlook.com (52.101.85.54) by
- edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Mon, 17 Nov 2025 06:27:55 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=iSKO/ZS+6/dspjoX6wnvoHI+/cMXRJg2HnmqU0aye0Z9ortHGpc9l4UESyWiwDLWrawTgQSyAeiF3nHmydWrjNXdKT+bIJXYUJTDlJoSb4grGuBnpwFSYdmK6iL0KPpbEvjycYfye+sfe3sKHv4248G9XZsiONGA1MAVYSBujuFDgBHUNgVzQgDzYLnekTciOFuhVeZD8MqKl6Zd7O1nS7JsfCr2qowzsfvDdQqsw110UrnupertiK+JFcu7JpqQfMBFYXW6QtxaFPUoxNgonLAm/21Amj3T4TZMIZiEeggtAuDt0KPtfa7Nd6ocMB4rz5D4ZuJgkgQj1MgCnKUb4g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=2na0YKmK/ixhlQGFjDR6rYsTry8WCoNU4DJzLm1dIOI=;
- b=IE/VzmPT+/SBbQ6HYe4crZvkYs9AAA24kuC3pip8uRvWn4u4xzl7e7bnWD4iSad/lip2HNQ0yifuaZbLXFgW+IgeFqDFFWJEZpnYqm9/5Nb/TL9tUV0/a3kvFnEOaHtmEHtIY75T5bI8z5DWbeBrv8Rj/eoyNCgHs7/+IQbGCOVqPIjDnanXJqeUr1vtp0Wtopo0s46ja0lTdPof4H8kMEVAZfGrI3XoO9fy9s6dao52F7J1ErGghFt0IR0lePy9AxDmlqKV7Ekrq0TZc954UzIoJNFJ37KY4VOh1JrZ96gi9ZPIoka3CxEJGcg2G8eSQV/YCpW9Fpl4lnYcC03Odg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MN0PR11MB6135.namprd11.prod.outlook.com (2603:10b6:208:3c9::9)
- by SA3PR11MB8023.namprd11.prod.outlook.com (2603:10b6:806:2ff::11)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9320.22; Mon, 17 Nov
- 2025 14:27:54 +0000
-Received: from MN0PR11MB6135.namprd11.prod.outlook.com
- ([fe80::3225:d4ad:74a:6d7a]) by MN0PR11MB6135.namprd11.prod.outlook.com
- ([fe80::3225:d4ad:74a:6d7a%4]) with mapi id 15.20.9320.018; Mon, 17 Nov 2025
- 14:27:53 +0000
-Date: Mon, 17 Nov 2025 15:27:51 +0100
-From: Piotr =?utf-8?Q?Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>
-To: Michal Wajdeczko <michal.wajdeczko@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, kernel test robot <lkp@intel.com>
-Subject: Re: [PATCH] drm/xe/pf: Use div_u64 when calculating GGTT profile
-Message-ID: <20251117142751.oivv7jy4x4rjyntu@intel.com>
-References: <20251115151323.10828-1-michal.wajdeczko@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20251115151323.10828-1-michal.wajdeczko@intel.com>
-X-ClientProxiedBy: BE1P281CA0201.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:b10:89::7) To MN0PR11MB6135.namprd11.prod.outlook.com
- (2603:10b6:208:3c9::9)
+X-IronPort-AV: E=Sophos;i="6.19,312,1754982000"; d="scan'208";a="194785141"
+Received: from egrumbac-mobl6.ger.corp.intel.com (HELO [10.245.244.254])
+ ([10.245.244.254])
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Nov 2025 06:32:28 -0800
+Message-ID: <41d8f41c-37e0-4cd7-b1f5-2e9f474a1e58@intel.com>
+Date: Mon, 17 Nov 2025 14:32:26 +0000
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6135:EE_|SA3PR11MB8023:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8e46c3e9-029f-4ef7-6fca-08de25e57ebd
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?Y3lDcjRTeTBVQ2RLdyt3aGdSYVY0VHljQksvZW5pYVpabkx4WVpxKzB2WlF3?=
- =?utf-8?B?YzlEaEVkOFZpL1ZDdGs5TFBZUnZXeFo0ZWgyMS9PSHR3ekRpOG9yVzV3dk81?=
- =?utf-8?B?Tkltd2o4Z3lvZnc1RkhDVVN5TlhBMWRTUG81cXJOU01sK2ltbEEvY3VaMXF2?=
- =?utf-8?B?ZGFhOUVPZitBVHh3Wkp1UUZ4Vzdld2FpZUR2cDh4MTI1UStTWCtsNHRuenlL?=
- =?utf-8?B?ejB6bUVmbVd3VFhpcjRMR3NHQTdNWGNBQVBSeUhBS2NyeEZuNUpuWnZoN3pV?=
- =?utf-8?B?Vk9kdmlDRCt1S3dLcm5vNVVmU3BlSkpBV1ZtVnFObDV2ZkZ4cWRPRnRNcFIv?=
- =?utf-8?B?Z21xSUgzUG1Ya1FwZmtYTllIdXJuR3J6S2dZWVFFYi8vcFZIZEQxa3VaOFZI?=
- =?utf-8?B?ak92S0ZkYWVWUm5SeGhCYitMTzJlRkQzNkpWcnlQL1cwR0VBV3BsYUFkVzQz?=
- =?utf-8?B?QnBZNzJ3UzlkVnlTNXFlandWejI4aUFKZjhmK2lmSStEaW5hdC9KeGhkZjFW?=
- =?utf-8?B?YXR6Vy9zR1FGL1Y1WktVS0RsTzh1VXFWMHRTbkE0dWtJTHQvOFd1UENSK1NF?=
- =?utf-8?B?UndiTWRzOUFrdVhkekllbGZNYjhkV241Q29XOHBRVjBJTmRjeG5PV05sU0xX?=
- =?utf-8?B?Y2xIeXhFREtGQUdyTzV0K0FkSEZWdU1iKzNyQWFhdWJMWjJsSnFucG03WEJ1?=
- =?utf-8?B?QXpibmo5eFNReHBNa1h6bkhOeW9pNENWTFh1cXV3d04xZjgvU0NrV1prUXFh?=
- =?utf-8?B?T1BsUk5GdTVoWTY5aHNreDRFb3AzaXViN3RGMHJRelR6MEdMbmphUTJmeXQv?=
- =?utf-8?B?eFFpNnppQkxLaGpYajBVY0g5RHB5WnVYTUM3a0l6b3F1SUlHVXJnUWJUWE9O?=
- =?utf-8?B?UzBiSldHVXI3Z0RPb3d4aGdpT3RsbUVVM0tVeGIrYXNiRURNczhIeHY4S0Q3?=
- =?utf-8?B?Y3VxcGpHYXBXbFNGbWVnQVFXLzArZksvdWV3TDFYaFhYaGZZOWs5RmVQL2Nw?=
- =?utf-8?B?V2lCWnh1Q1ZoK2FOYUpPT2F6aFpJTnpqVDR6T1FKb0ZnUjNLUXpEd1lia1R3?=
- =?utf-8?B?UC8wS2ZERWxlOW54SDBNZWhWaWFxL1dGODQveEVZQTkyQm41NGR6NldtekRt?=
- =?utf-8?B?NWt3VWRjc0ZoVjZzNVVNWG5Gd29UZTdKd0lXb3VwR3pkNjMrcVFCY3B3cU5Z?=
- =?utf-8?B?YnZzdGZQaUQ0Sllld3VvYkwwTEVtY2RlclpMbVAwaXlIN0Qwd1JCU0dqZzBm?=
- =?utf-8?B?QjZ4UmFLK2orQVZ3MDNaWk4wdnhCMHFMOWh3ZWR4VkZxb1ZMK2VHc3lzNEMv?=
- =?utf-8?B?d3VZRnBuUk1pQ1QrQ0tiV3JXNURkOWpZUytDK01yQlhOdGorM20vcXRuNjVJ?=
- =?utf-8?B?WDhma0Z4SlN6L0U1eGx0amFmNXEvV3RLdDVrRDU0L21Lb2VHV3JiNVY2dWNC?=
- =?utf-8?B?b1ROT3c4L1A5akFGR1duaGZZMnVlUXkvL2ZpdEZsS1VXdjl3MmV5OGdGVDJi?=
- =?utf-8?B?MVh6cmg3eFJTVk9rNjF4TkJJU3lyYWdvY0lOeXFGQVNobXhLWTNwZmVrZEl5?=
- =?utf-8?B?cWRFcWo4Z1hBR0RBY0Z5dnFYSDViM0FRZUVqUzFadm1lTERtUEswWVVpa3FW?=
- =?utf-8?B?Tit2MER4QXRROHN3ZzRLTktlN3RqVG9hY0xVZUJMdS9NQ050aXozV1QxY2lV?=
- =?utf-8?B?RW1MSmdGWFlRbEViZzVyR3NKdVFSL3MwcUJ5RGtJeHQ0WWFWTytOS2orMmxw?=
- =?utf-8?B?djZFSXpVWFdmalVJUVlDeXlqcmNQbG1iREFJSjNqS2Zpb1FqQmg0VzNMelM2?=
- =?utf-8?B?V1Ezcmd4RXlzZk5qOC80bGJuM25GOS9wdkdHb0hjQnpSVDU5ajgyMFZlOGxl?=
- =?utf-8?B?di9vNGNPaHJPcHNMUktKN0dDamRMRVVieW9RWnFyZFVlbTJRMklBR2RQRUwx?=
- =?utf-8?B?bm90cVJLMVd4ektYQ1EzVXl1dURaWU1ud2pWQlpaVWkyMW5oVkdaczRLMGc5?=
- =?utf-8?B?dFBvN0JqQlJBPT0=?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN0PR11MB6135.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TXgvaytjTjg1WkhHM1FUbnJJMGk1dDV6dTFQSk9XT3AzUFd0RmpDQmE5OWMw?=
- =?utf-8?B?S1Y3bWJLODdsYktxWDV5VGFmcTU1R1BUekIvUW1jN0ZFTXRJbkxyWUgzaW9h?=
- =?utf-8?B?NHdNYUwwVVhxR1dib2lWcEpPT3ZFempPYU1hZDFlcTJVeHI5N1lYOUQ1clRa?=
- =?utf-8?B?QVluQXJiUmhJMC9JUlRuMGV5eUZualN6ME9RUGRTUENjVDNjcGZZRjlnQVN5?=
- =?utf-8?B?RUJOdlpjSkpJQzMvQU9JUC9DMkx5R2JaRElweUFxWnBPMERVMHB3dTByM29Q?=
- =?utf-8?B?N0pENmhIbUJGelVBc1JOb3NBVHZ4cnZra2ZtNXVXMHNBYk91dXhQeG82RmVE?=
- =?utf-8?B?emM3MmIrdG8weThaL2F1YWFuQzlFSW5YeHRUdjJFNVlpUGNxYXpESDJVWmI5?=
- =?utf-8?B?anRKUGdMZ1VGcUNPSXlGLzRTcnVadUV2TUl1Rm1EcDM4cndWa0NpbWNHL1FE?=
- =?utf-8?B?WXZuZTRLZGhSTEVIK0tURlhGbFNiZjZ6em0vSWJkMVZmV20vWEJCQ080cC9p?=
- =?utf-8?B?d2xHYUpnalRHNUN3aHdIZWdpZEtuOUhBYzNid1czNWE5M3VMcHRrY0dSWmZr?=
- =?utf-8?B?a1h4QzNheVdBVzNMT2lqVEJoTnhENGJwUEhNeHdZQTQwd1VLcklyWUN5STlY?=
- =?utf-8?B?Tnh6aGRrWWxiZTJXUkltOHpKcXkydVlZb2RQL0NkZVN3SE5IV1ZnWDhrVVR6?=
- =?utf-8?B?RGVsRXRJSUhLNDNpVDFhMCtZMDg3N044ZnN2U2QwTjZBQ0ttWENPUWJoYmoy?=
- =?utf-8?B?SC9icXlLc3gzTFJJemE1YVhyWkZvVnprNWNlZVBIbDgrMndzbTBzb0ErYzA0?=
- =?utf-8?B?T0RHZHlEaXlJc3NGU3VNa0pmdTR5emx4eU1GSng3dUpFUWFTQ0s1dlFMS1Zu?=
- =?utf-8?B?Uk9CcUxONXZMVjkzUlBMdnM3MlJybHp5ckxMZit4UXRDai9Ea3EwTExLTW1H?=
- =?utf-8?B?SGtJbThvSXowMG9xWTVDbEFzWG4xVXFiL2FHWVl3enAxcSt5NFRFRkYwaVg3?=
- =?utf-8?B?SGlMRVNlbHgvNFh5WUVhMUVWMzlHUXJmK29lWEZFVXVTaHdhUFJ2WS9CRlhH?=
- =?utf-8?B?d1dZWG9vcENzMjFpZUcxRmZUMFlWUG5KemZnMmJTWklicXF6c25ra2llU0VY?=
- =?utf-8?B?ZE9YNDZCZlgwZlY3OWV2KzIyZkNjcnFCWXhoZlM2SjJJdkJIU0FCaXJxL080?=
- =?utf-8?B?TCs3VU9pTHp6cWcrMVhlL0FJYWpLdGlUUS9LNUgxMlYzT2Ntd3QwVExidyt0?=
- =?utf-8?B?cm8wcTMzVS93RUZuamFkaE9Ka2EzSkpCRFVNY21iaFdDQi9iZlBSY3ladUtl?=
- =?utf-8?B?VWk0QUQvVW9PSmFzbWpmdmlKSWp6eVMvN1pRcDFXZFpscUh4U0RBc3ZtcjJH?=
- =?utf-8?B?anF2dlpER28yQVhmUmhocmVYak1CN3FtbzlWOC9kTG15aHJ2dWRJYjljSDMr?=
- =?utf-8?B?Z1Z2cHZ0QXlmMGRubXBpckhmUVIzYVBIbnEzL1BBSVF1UXZZQnNxem9tM3dG?=
- =?utf-8?B?RzJYa2U0V2VGU0piWVBlclQ1TjJTaDdBSjhHeGRWdVRhODNyY0IwWEpCcWRu?=
- =?utf-8?B?YkV1Nzg3K1A4Q2hwa1FBbWdKdHpZQUludnhPeFVaQ2JqOTdFTGNiYzVZWGVw?=
- =?utf-8?B?WWs4UUtyWktpV1J4R3QzemlPSi9Od2RSbHNnTlVkY2cxZUVDNkQ4VjJkdTFZ?=
- =?utf-8?B?a0dBWmlNZGVDaDVoaHpOOXIvcnY0UGEyUFZPdm44VnZjMEdJNGcwbnRmZkcz?=
- =?utf-8?B?ZlJISm1XWHFrczJ4eEYxclYzWUZuQ0RkTFRNekdpYkVmbFBXcVMrNlROSzl4?=
- =?utf-8?B?eXhORTBXaVF3c2lxMGYvV1VsMHEva000ekZOQUxGQXRWTU5pemR3ajdNRlZv?=
- =?utf-8?B?WHhJWlRpSXd2WGgxYkFVUDFndTRJK201bzloZ2lFWENKUHJ2cWZ1QXlYUDRZ?=
- =?utf-8?B?YTNkTXpUOVE4WVVUQWRhRHdFYXlmaVorWGs1YXdscG1rOXBsNmI2Unk1a21T?=
- =?utf-8?B?SlNjWTBSRFpLN04zK0x0VG9LU2k4YTFxK3N0UzgrcHNySFE3Qnd6QWlVL0ZZ?=
- =?utf-8?B?SU9KYWorckhTc2ttRnZSTEdoZTRjYWg0czlFTHgrOWlSd2pCbldwVEw4Mk1k?=
- =?utf-8?B?YmVRUnVDZy9hakE1S1VCOWRqczQ0T09xWDROZUV6d3lKNHhXbVFKSS9uNVl1?=
- =?utf-8?B?eXc9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8e46c3e9-029f-4ef7-6fca-08de25e57ebd
-X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6135.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Nov 2025 14:27:53.8467 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: RU+RaMjfqm2QsQlF8Ys+kut18wOzNErdjdGRFV53o9X8wCB9GfWraV3+7NhLwHbhfKWTqNfPDNr8K9asuWqdu56dfosaI6ruB2gyfo1qsnE=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR11MB8023
-X-OriginatorOrg: intel.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4] drm/xe/uapi: Add NO_COMPRESSION BO flag and query
+ capability
+To: Sanjay Yadav <sanjay.kumar.yadav@intel.com>, intel-xe@lists.freedesktop.org
+Cc: =?UTF-8?Q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>
+References: <20251117135327.2866171-2-sanjay.kumar.yadav@intel.com>
+Content-Language: en-GB
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <20251117135327.2866171-2-sanjay.kumar.yadav@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -194,39 +70,237 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Michal Wajdeczko <michal.wajdeczko@intel.com> wrote on sob [2025-lis-15 16:13:22 +0100]:
-> This will fix the following error seen on some 32-bit config:
+On 17/11/2025 13:53, Sanjay Yadav wrote:
+> Introduce DRM_XE_GEM_CREATE_FLAG_NO_COMPRESSION to let userspace
+> opt out of CCS compression on a per-BO basis. When set, the driver
+> maps this to XE_BO_FLAG_NO_COMPRESSION, skips CCS metadata
+> allocation/clearing, and rejects compressed PAT indices at vm_bind.
+> This avoids extra memory ops and manual CCS state handling for buffers.
 > 
-> "ERROR: modpost: "__udivdi3" [drivers/gpu/drm/xe/xe.ko] undefined!"
+> To allow userspace to detect at runtime whether the kernel supports this
+> feature, add DRM_XE_QUERY_CONFIG_FLAG_HAS_NO_COMPRESSION_HINT and expose
+> it via query_config() on Xe2+ platforms.
 > 
-> Reported-by: kernel test robot <lkp@intel.com>
-> Closes: https://lore.kernel.org/oe-kbuild-all/202511150929.3vUi6PEJ-lkp@intel.com/
-> Fixes: e448372e8a8e ("drm/xe/pf: Use migration-friendly GGTT auto-provisioning")
-> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+> v2
+> - Changed error code from -EINVAL to -EOPNOTSUPP for unsupported flag
+>    usage on pre-Xe2 platforms
+> - Fixed checkpatch warning in xe_vm.c
+> - Fixed kernel-doc formatting in xe_drm.h
+> 
+> v3
+> - Rebase
+> - Updated commit title and description
+> - Added UAPI for DRM_XE_QUERY_CONFIG_FLAG_HAS_NO_COMPRESSION_HINT and
+>    exposed it via query_config()
+> 
+> v4
+> - Rebase
+> 
+> Suggested-by: Matthew Auld <matthew.auld@intel.com>
+> Suggested-by: José Roberto de Souza <jose.souza@intel.com>
+> Signed-off-by: Sanjay Yadav <sanjay.kumar.yadav@intel.com>
 > ---
-> Cc: Piotr Piórkowski <piotr.piorkowski@intel.com>
-
-Reviewed-by: Piotr Piórkowski <piotr.piorkowski@intel.com>
-
-> ---
->  drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>   drivers/gpu/drm/xe/xe_bo.c    | 15 +++++++++++++--
+>   drivers/gpu/drm/xe/xe_bo.h    |  1 +
+>   drivers/gpu/drm/xe/xe_pat.c   |  9 ++++++++-
+>   drivers/gpu/drm/xe/xe_pat.h   | 15 +++++++++++++++
+>   drivers/gpu/drm/xe/xe_query.c |  3 +++
+>   drivers/gpu/drm/xe/xe_vm.c    |  5 +++++
+>   include/uapi/drm/xe_drm.h     | 16 ++++++++++++++++
+>   7 files changed, 61 insertions(+), 3 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-> index 62f6cc45a764..59c5c6b4d994 100644
-> --- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-> @@ -711,7 +711,7 @@ static u64 pf_profile_fair_ggtt(struct xe_gt *gt, unsigned int num_vfs)
->  	if (num_vfs > 56)
->  		return SZ_64M - SZ_8M;
->  
-> -	return rounddown_pow_of_two(shareable / num_vfs);
-> +	return rounddown_pow_of_two(div_u64(shareable, num_vfs));
->  }
->  
->  /**
-> -- 
-> 2.47.1
-> 
+> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+> index b0bd31d14bb9..c969c2bc4249 100644
+> --- a/drivers/gpu/drm/xe/xe_bo.c
+> +++ b/drivers/gpu/drm/xe/xe_bo.c
+> @@ -3183,7 +3183,8 @@ int xe_gem_create_ioctl(struct drm_device *dev, void *data,
+>   	if (XE_IOCTL_DBG(xe, args->flags &
+>   			 ~(DRM_XE_GEM_CREATE_FLAG_DEFER_BACKING |
+>   			   DRM_XE_GEM_CREATE_FLAG_SCANOUT |
+> -			   DRM_XE_GEM_CREATE_FLAG_NEEDS_VISIBLE_VRAM)))
+> +			   DRM_XE_GEM_CREATE_FLAG_NEEDS_VISIBLE_VRAM |
+> +			   DRM_XE_GEM_CREATE_FLAG_NO_COMPRESSION)))
+>   		return -EINVAL;
+>   
+>   	if (XE_IOCTL_DBG(xe, args->handle))
+> @@ -3205,6 +3206,12 @@ int xe_gem_create_ioctl(struct drm_device *dev, void *data,
+>   	if (args->flags & DRM_XE_GEM_CREATE_FLAG_SCANOUT)
+>   		bo_flags |= XE_BO_FLAG_SCANOUT;
+>   
+> +	if (args->flags & DRM_XE_GEM_CREATE_FLAG_NO_COMPRESSION) {
+> +		if (GRAPHICS_VER(xe) < 20)
+> +			return -EOPNOTSUPP;
+> +		bo_flags |= XE_BO_FLAG_NO_COMPRESSION;
+> +	}
+> +
+>   	bo_flags |= args->placement << (ffs(XE_BO_FLAG_SYSTEM) - 1);
+>   
+>   	/* CCS formats need physical placement at a 64K alignment in VRAM. */
+> @@ -3526,8 +3533,12 @@ bool xe_bo_needs_ccs_pages(struct xe_bo *bo)
+>   	 * Compression implies coh_none, therefore we know for sure that WB
+>   	 * memory can't currently use compression, which is likely one of the
+>   	 * common cases.
+> +	 * Additionally, userspace may explicitly request no compression via the
+> +	 * DRM_XE_GEM_CREATE_FLAG_NO_COMPRESSION flag, which should also disable
+> +	 * CCS usage.
+>   	 */
+> -	if (bo->cpu_caching == DRM_XE_GEM_CPU_CACHING_WB)
+> +	if (bo->cpu_caching == DRM_XE_GEM_CPU_CACHING_WB ||
+> +	    bo->flags & XE_BO_FLAG_NO_COMPRESSION)
+>   		return false;
+>   
+>   	return true;
+> diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
+> index 911d5b90461a..8ab4474129c3 100644
+> --- a/drivers/gpu/drm/xe/xe_bo.h
+> +++ b/drivers/gpu/drm/xe/xe_bo.h
+> @@ -50,6 +50,7 @@
+>   #define XE_BO_FLAG_GGTT3		BIT(23)
+>   #define XE_BO_FLAG_CPU_ADDR_MIRROR	BIT(24)
+>   #define XE_BO_FLAG_FORCE_USER_VRAM	BIT(25)
+> +#define XE_BO_FLAG_NO_COMPRESSION	BIT(26)
+>   
+>   /* this one is trigger internally only */
+>   #define XE_BO_FLAG_INTERNAL_TEST	BIT(30)
+> diff --git a/drivers/gpu/drm/xe/xe_pat.c b/drivers/gpu/drm/xe/xe_pat.c
+> index 1b4d5d3def0f..1363a3e4e47e 100644
+> --- a/drivers/gpu/drm/xe/xe_pat.c
+> +++ b/drivers/gpu/drm/xe/xe_pat.c
+> @@ -116,7 +116,8 @@ static const struct xe_pat_table_entry xelpg_pat_table[] = {
+>   			REG_FIELD_PREP(XE2_COH_MODE, __coh_mode), \
+>   		.coh_mode = (BUILD_BUG_ON_ZERO(__coh_mode && comp_en) || __coh_mode) ? \
+>   			XE_COH_AT_LEAST_1WAY : XE_COH_NONE, \
+> -		.valid = 1 \
+> +		.valid = 1, \
+> +		.compressed = comp_en, \
+>   	}
+>   
+>   static const struct xe_pat_table_entry xe2_pat_table[] = {
+> @@ -202,6 +203,12 @@ bool xe_pat_index_get_comp_en(struct xe_device *xe, u16 pat_index)
+>   	return !!(xe->pat.table[pat_index].value & XE2_COMP_EN);
+>   }
+>   
+> +bool xe_pat_index_has_compression(struct xe_device *xe, u16 pat_index)
+> +{
+> +	xe_assert(xe, pat_index < xe->pat.n_entries);
+> +	return xe->pat.table[pat_index].compressed;
+> +}
 
--- 
+Please use xe_pat_index_get_comp_en() instead.
+
+Otherwise lgtm.
+
+> +
+>   static void program_pat(struct xe_gt *gt, const struct xe_pat_table_entry table[],
+>   			int n_entries)
+>   {
+> diff --git a/drivers/gpu/drm/xe/xe_pat.h b/drivers/gpu/drm/xe/xe_pat.h
+> index b8559120989e..0bbe803b8ce5 100644
+> --- a/drivers/gpu/drm/xe/xe_pat.h
+> +++ b/drivers/gpu/drm/xe/xe_pat.h
+> @@ -34,6 +34,11 @@ struct xe_pat_table_entry {
+>   	 * @valid: Set to 1 if the entry is valid, 0 if it's reserved.
+>   	 */
+>   	u16 valid;
+> +
+> +	/**
+> +	 * @compressed: Whether compression is enabled or not with @value.
+> +	 */
+> +	bool compressed;
+>   };
+>   
+>   /**
+> @@ -68,4 +73,14 @@ u16 xe_pat_index_get_coh_mode(struct xe_device *xe, u16 pat_index);
+>    */
+>   bool xe_pat_index_get_comp_en(struct xe_device *xe, u16 pat_index);
+>   
+> +/**
+> + * xe_pat_index_has_compression - Check if the given pat_index enables
+> + * compression.
+> + * @xe: xe device
+> + * @pat_index: The pat_index to query
+> + *
+> + * Note: Only applicable to Xe2+, where compression is part of the PAT index.
+> + */
+> +bool xe_pat_index_has_compression(struct xe_device *xe, u16 pat_index);
+> +
+>   #endif
+> diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
+> index 1c0915e2cc16..b392c9b3f0c9 100644
+> --- a/drivers/gpu/drm/xe/xe_query.c
+> +++ b/drivers/gpu/drm/xe/xe_query.c
+> @@ -342,6 +342,9 @@ static int query_config(struct xe_device *xe, struct drm_xe_device_query *query)
+>   	if (xe->info.has_usm && IS_ENABLED(CONFIG_DRM_XE_GPUSVM))
+>   		config->info[DRM_XE_QUERY_CONFIG_FLAGS] |=
+>   			DRM_XE_QUERY_CONFIG_FLAG_HAS_CPU_ADDR_MIRROR;
+> +	if (GRAPHICS_VER(xe) >= 20)
+> +		config->info[DRM_XE_QUERY_CONFIG_FLAGS] |=
+> +			DRM_XE_QUERY_CONFIG_FLAG_HAS_NO_COMPRESSION_HINT;
+>   	config->info[DRM_XE_QUERY_CONFIG_FLAGS] |=
+>   			DRM_XE_QUERY_CONFIG_FLAG_HAS_LOW_LATENCY;
+>   	config->info[DRM_XE_QUERY_CONFIG_MIN_ALIGNMENT] =
+> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+> index 7cac646bdf1c..e377c872ec0f 100644
+> --- a/drivers/gpu/drm/xe/xe_vm.c
+> +++ b/drivers/gpu/drm/xe/xe_vm.c
+> @@ -3484,6 +3484,11 @@ static int xe_vm_bind_ioctl_validate_bo(struct xe_device *xe, struct xe_bo *bo,
+>   {
+>   	u16 coh_mode;
+>   
+> +	/* Reject compressed PAT index for BO with NO_COMPRESSION flag */
+> +	if ((bo->flags & XE_BO_FLAG_NO_COMPRESSION) &&
+> +	    xe_pat_index_has_compression(xe, pat_index))
+> +		return -EINVAL;
+> +
+>   	if (XE_IOCTL_DBG(xe, range > xe_bo_size(bo)) ||
+>   	    XE_IOCTL_DBG(xe, obj_offset >
+>   			 xe_bo_size(bo) - range)) {
+> diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+> index 47853659a705..b9840cb77360 100644
+> --- a/include/uapi/drm/xe_drm.h
+> +++ b/include/uapi/drm/xe_drm.h
+> @@ -403,6 +403,9 @@ struct drm_xe_query_mem_regions {
+>    *      has low latency hint support
+>    *    - %DRM_XE_QUERY_CONFIG_FLAG_HAS_CPU_ADDR_MIRROR - Flag is set if the
+>    *      device has CPU address mirroring support
+> + *    - %DRM_XE_QUERY_CONFIG_FLAG_HAS_NO_COMPRESSION_HINT - Flag is set if the
+> + *      device supports the userspace hint %DRM_XE_GEM_CREATE_FLAG_NO_COMPRESSION.
+> + *      This is exposed only on Xe2+.
+>    *  - %DRM_XE_QUERY_CONFIG_MIN_ALIGNMENT - Minimal memory alignment
+>    *    required by this device, typically SZ_4K or SZ_64K
+>    *  - %DRM_XE_QUERY_CONFIG_VA_BITS - Maximum bits of a virtual address
+> @@ -421,6 +424,7 @@ struct drm_xe_query_config {
+>   	#define DRM_XE_QUERY_CONFIG_FLAG_HAS_VRAM	(1 << 0)
+>   	#define DRM_XE_QUERY_CONFIG_FLAG_HAS_LOW_LATENCY	(1 << 1)
+>   	#define DRM_XE_QUERY_CONFIG_FLAG_HAS_CPU_ADDR_MIRROR	(1 << 2)
+> +	#define DRM_XE_QUERY_CONFIG_FLAG_HAS_NO_COMPRESSION_HINT (1 << 3)
+>   #define DRM_XE_QUERY_CONFIG_MIN_ALIGNMENT		2
+>   #define DRM_XE_QUERY_CONFIG_VA_BITS			3
+>   #define DRM_XE_QUERY_CONFIG_MAX_EXEC_QUEUE_PRIORITY	4
+> @@ -791,6 +795,17 @@ struct drm_xe_device_query {
+>    *    need to use VRAM for display surfaces, therefore the kernel requires
+>    *    setting this flag for such objects, otherwise an error is thrown on
+>    *    small-bar systems.
+> + *  - %DRM_XE_GEM_CREATE_FLAG_NO_COMPRESSION - Allows userspace to
+> + *    hint that compression (CCS) should be disabled for the buffer being
+> + *    created. This can avoid unnecessary memory operations and CCS state
+> + *    management.
+> + *    On pre-Xe2 platforms, this flag is currently rejected as compression
+> + *    control is not supported via PAT index. On Xe2+ platforms, compression
+> + *    is controlled via PAT entries. If this flag is set, the driver will reject
+> + *    any VM bind that requests a PAT index enabling compression for this BO.
+> + *    Note: On dGPU platforms, there is currently no change in behavior with
+> + *    this flag, but future improvements may leverage it. The current benefit is
+> + *    primarily applicable to iGPU platforms.
+>    *
+>    * @cpu_caching supports the following values:
+>    *  - %DRM_XE_GEM_CPU_CACHING_WB - Allocate the pages with write-back
+> @@ -837,6 +852,7 @@ struct drm_xe_gem_create {
+>   #define DRM_XE_GEM_CREATE_FLAG_DEFER_BACKING		(1 << 0)
+>   #define DRM_XE_GEM_CREATE_FLAG_SCANOUT			(1 << 1)
+>   #define DRM_XE_GEM_CREATE_FLAG_NEEDS_VISIBLE_VRAM	(1 << 2)
+> +#define DRM_XE_GEM_CREATE_FLAG_NO_COMPRESSION		(1 << 3)
+>   	/**
+>   	 * @flags: Flags, currently a mask of memory instances of where BO can
+>   	 * be placed
+
