@@ -4,48 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 29EB5CEBF97
-	for <intel-xe@archiver.kernel.org>; Mon, 17 Nov 2025 10:59:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 25C5BCEACEF
+	for <intel-xe@archiver.kernel.org>; Mon, 17 Nov 2025 10:59:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 96D9E10E36B;
-	Mon, 17 Nov 2025 10:59:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D46FB10E369;
+	Mon, 17 Nov 2025 10:59:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mAF2luH3";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ET3WZMIU";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EAB3510E36D;
- Mon, 17 Nov 2025 10:59:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C8EE610E364;
+ Mon, 17 Nov 2025 10:59:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1763377163; x=1794913163;
+ t=1763377158; x=1794913158;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Sz3GB/dJe+0qhZzHL9m2k/zxVCRzGxWT+KrJEj2f3VE=;
- b=mAF2luH3to+5q5gciQO8deWN6Ln4m+Wa2x+jKKwsjpl5VEr9apyMGh4A
- yzzFWK+yfwmxVGbrRcqotFjyGNPkk/mucDYhtJSiV5fSExAicbYqvNxpC
- FGEcelcsjQk5RYxfPuUDMXqywJgptlSA0U9vUdFe4xNb+ZdBjXYlXR/Er
- v0tXPrcla4S9ZgupkePVKoJqOt+mJXvKvhkdjMMYXgUkoq4TLafx+v/nj
- tbwPUdKCaAzJYhIAJpDiXczXV/oyeonbTRHXX5EFvlLu6osdxuNbGQoP2
- hgTEY1x+SFuXvC4JGcSdf2xrSLKCFJzsu+mEbRcSOHTvYJOBM2sDV0nV/ Q==;
-X-CSE-ConnectionGUID: 84UogewuQhuA6y6O16g7oQ==
-X-CSE-MsgGUID: eirkvAGkR0+WqHrTJ1HzfA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11615"; a="76475385"
-X-IronPort-AV: E=Sophos;i="6.19,311,1754982000"; d="scan'208";a="76475385"
+ bh=1a4Rf59WQwy17WyUWrEhOp7H2gB8LHaSXkf61LZgMLU=;
+ b=ET3WZMIUxRy5MsER85h4i7dSzqOYNJ7yJF4FsxOygCKClmH/APml5lRb
+ reLTDOvbaPHDvVq+ZN0ZvdHnQIs9MNO6WmMqBhyQdq5jOiWoaM750k3Vu
+ gOn0its90HEPhL89Xbu/Sdg7vchYBj+R1CaXZQtPOrCuEHBnbeYaOsmMW
+ LxBFsPM4Fm2X9H31bxOcG9gco70zNBO3LoiIMb4VLRbGa7GYZFG8tdXSl
+ ZUFIh+Jj/IBf7pLsg8pydRUqt3JM12LartoZO6lJQ/G/znjS6+8AplEh6
+ BcEnl33VrOCbOv5oLdrpXCzGxmUPazfYw7wcP6LjG3ie5Hkx6bPZbgvAS A==;
+X-CSE-ConnectionGUID: u5+9akYCS2u5mfd2h8AgEA==
+X-CSE-MsgGUID: Vi/mqBD7Qy25rr3CVk/hZA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11615"; a="76475374"
+X-IronPort-AV: E=Sophos;i="6.19,311,1754982000"; d="scan'208";a="76475374"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Nov 2025 02:59:23 -0800
-X-CSE-ConnectionGUID: yamczFVESmqwM97xw3hwrA==
-X-CSE-MsgGUID: OjNc8bK/TpS8dVQeWyrkig==
+ 17 Nov 2025 02:59:17 -0800
+X-CSE-ConnectionGUID: nIgKnZ0YSGiHzgtH5qguSw==
+X-CSE-MsgGUID: H11j81a/QZes0Nh9EDcNmg==
 X-ExtLoop1: 1
 Received: from display-adls.igk.intel.com ([10.211.131.198])
- by fmviesa003.fm.intel.com with ESMTP; 17 Nov 2025 02:59:21 -0800
+ by fmviesa003.fm.intel.com with ESMTP; 17 Nov 2025 02:59:16 -0800
 From: Mika Kahola <mika.kahola@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Cc: Mika Kahola <mika.kahola@intel.com>
-Subject: [PATCH v2 16/32] drm/i915/cx0: Add PLL information for MTL+
-Date: Mon, 17 Nov 2025 12:45:46 +0200
-Message-Id: <20251117104602.2363671-17-mika.kahola@intel.com>
+Cc: Imre Deak <imre.deak@intel.com>, Mika Kahola <mika.kahola@intel.com>,
+ Suraj Kandpal <suraj.kandpal@intel.com>
+Subject: [PATCH v2 12/32] drm/i915/cx0: Determine Cx0 PLL port clock from PLL
+ state
+Date: Mon, 17 Nov 2025 12:45:42 +0200
+Message-Id: <20251117104602.2363671-13-mika.kahola@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251117104602.2363671-1-mika.kahola@intel.com>
 References: <20251117104602.2363671-1-mika.kahola@intel.com>
@@ -65,49 +67,69 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Start bringing MTL+ platforms as part of PLL framework.
-The work is started by adding PLL information and related
-function hooks.
+From: Imre Deak <imre.deak@intel.com>
 
-BSpec: 55726
+The port clock is tracked in the PLL state, so there is no need to pass
+it separately to __intel_cx0pll_enable(). Drop the port clock function
+param accordingly.
 
-v2: Revise commit message and add BSpec ID (Suraj)
-
+Signed-off-by: Imre Deak <imre.deak@intel.com>
 Signed-off-by: Mika Kahola <mika.kahola@intel.com>
+Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 19 +++++++++++++++++++
- 1 file changed, 19 insertions(+)
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c | 17 +++++------------
+ 1 file changed, 5 insertions(+), 12 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-index 8c345e1bdd94..23f22c495ec7 100644
---- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-+++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-@@ -4305,6 +4305,25 @@ static const struct intel_dpll_mgr adlp_pll_mgr = {
- 	.compare_hw_state = icl_compare_hw_state,
- };
+diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+index 29dfbd60c7ce..0ad9fae230c9 100644
+--- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
++++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+@@ -3188,10 +3188,10 @@ static u32 intel_cx0_get_pclk_pll_ack(u8 lane_mask)
+ 	return val;
+ }
  
-+static const struct intel_dpll_funcs mtl_pll_funcs = {
-+};
-+
-+static const struct dpll_info mtl_plls[] = {
-+	{ .name = "DPLL 0", .funcs = &mtl_pll_funcs, .id = DPLL_ID_ICL_DPLL0, },
-+	{ .name = "DPLL 1", .funcs = &mtl_pll_funcs, .id = DPLL_ID_ICL_DPLL1, },
-+	/* TODO: Add TBT PLL */
-+	{ .name = "TC PLL 1", .funcs = &mtl_pll_funcs, .id = DPLL_ID_ICL_MGPLL1, },
-+	{ .name = "TC PLL 2", .funcs = &mtl_pll_funcs, .id = DPLL_ID_ICL_MGPLL2, },
-+	{ .name = "TC PLL 3", .funcs = &mtl_pll_funcs, .id = DPLL_ID_ICL_MGPLL3, },
-+	{ .name = "TC PLL 4", .funcs = &mtl_pll_funcs, .id = DPLL_ID_ICL_MGPLL4, },
-+	{}
-+};
-+
-+__maybe_unused
-+static const struct intel_dpll_mgr mtl_pll_mgr = {
-+	.dpll_info = mtl_plls,
-+};
-+
- /**
-  * intel_dpll_init - Initialize DPLLs
-  * @display: intel_display device
+-static void __intel_cx0pll_enable(struct intel_encoder *encoder,
+-				  const struct intel_cx0pll_state *pll_state,
+-				  int port_clock)
++static void intel_cx0pll_enable(struct intel_encoder *encoder,
++				const struct intel_cx0pll_state *pll_state)
+ {
++	int port_clock = pll_state->use_c10 ? pll_state->c10.clock : pll_state->c20.clock;
+ 	struct intel_display *display = to_intel_display(encoder);
+ 	enum phy phy = intel_encoder_to_phy(encoder);
+ 	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
+@@ -3270,13 +3270,6 @@ static void __intel_cx0pll_enable(struct intel_encoder *encoder,
+ 	intel_cx0_phy_transaction_end(encoder, wakeref);
+ }
+ 
+-static void intel_cx0pll_enable(struct intel_encoder *encoder,
+-				const struct intel_crtc_state *crtc_state)
+-{
+-	__intel_cx0pll_enable(encoder, &crtc_state->dpll_hw_state.cx0pll,
+-			      crtc_state->port_clock);
+-}
+-
+ int intel_mtl_tbt_calc_port_clock(struct intel_encoder *encoder)
+ {
+ 	struct intel_display *display = to_intel_display(encoder);
+@@ -3403,7 +3396,7 @@ void intel_mtl_pll_enable(struct intel_encoder *encoder,
+ 	if (intel_tc_port_in_tbt_alt_mode(dig_port))
+ 		intel_mtl_tbt_pll_enable(encoder, crtc_state);
+ 	else
+-		intel_cx0pll_enable(encoder, crtc_state);
++		intel_cx0pll_enable(encoder, &crtc_state->dpll_hw_state.cx0pll);
+ }
+ 
+ /*
+@@ -3824,7 +3817,7 @@ void intel_cx0_pll_power_save_wa(struct intel_display *display)
+ 			    "[ENCODER:%d:%s] Applying power saving workaround on disabled PLL\n",
+ 			    encoder->base.base.id, encoder->base.name);
+ 
+-		__intel_cx0pll_enable(encoder, &pll_state, port_clock);
++		intel_cx0pll_enable(encoder, &pll_state);
+ 		intel_cx0pll_disable(encoder);
+ 	}
+ }
 -- 
 2.34.1
 
