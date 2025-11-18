@@ -4,55 +4,170 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 18D79CEDD89
-	for <intel-xe@archiver.kernel.org>; Tue, 18 Nov 2025 13:42:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 11F30CEDD86
+	for <intel-xe@archiver.kernel.org>; Tue, 18 Nov 2025 13:42:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D0A3010E4B8;
-	Tue, 18 Nov 2025 13:42:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C383510E4AF;
+	Tue, 18 Nov 2025 13:42:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="joz0OYyo";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="D6WwhRT0";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4B41B10E4B4;
- Tue, 18 Nov 2025 13:42:00 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9B09F10E4AF
+ for <intel-xe@lists.freedesktop.org>; Tue, 18 Nov 2025 13:42:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1763473320; x=1795009320;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=/pypvc84VtxvQgkT5SBQizWTS6zRUp46MINtEaHXESU=;
- b=joz0OYyo5bFtUXvZDpm76FLl4mbPt6HYtr2WjM403dWCaslDoOYMOBcA
- xmr6ndUmrt7dQQVJ09rOptzC7+7ZPLy0yDx2r0v8/ohVxeHGR8spQzB5z
- nLwFlRpyTDshEDSjaEM3cHm+a+UHkM1hBVE+N0ImTwn0FHD74O6DnATQl
- ZYm4XnTG7NE3YPOt2f/X/KrEfNOabrgFm7NBR223oyuICF0m738C0l/Fw
- XJzJSxqwXJAlTSLdT/m7jgzy2pS5UzFDxwAAZByg40GR/U9KzkFpEqPy/
- fMG6c7lqDj3MjQmzUty4IQReQ36BqFrUiW56uIJDjCzO05OdsCgRwx0oz Q==;
-X-CSE-ConnectionGUID: fumKWqqYStWAyre8yBMkow==
-X-CSE-MsgGUID: qVBaX0VcQz6417w9c7PMgA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11616"; a="88143831"
-X-IronPort-AV: E=Sophos;i="6.19,314,1754982000"; d="scan'208";a="88143831"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Nov 2025 05:42:00 -0800
-X-CSE-ConnectionGUID: Ry4NpMMKQka8rnFiOGG00w==
-X-CSE-MsgGUID: Zho5JMAYQy612gyKQzji0A==
+ t=1763473350; x=1795009350;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=AZ7IeLrWw5tzm4kYgCuVgK5VefSoSij61mrtfbA8xgI=;
+ b=D6WwhRT06H71jJ9mnk9xXQKfRzNtPG52GrZzZkBW39xvXqw9sU5Wkz1C
+ LJlVPLgEIr+PPnzHIbkabFK72nXhcCNbS06iQ4Y4+zDszPc+OFyhJaW1h
+ hz6sQUQIYoVXs9mUhmVZUya9eeDkdzXaJC9EDne9exLx2NjmkWj9jXlBb
+ 378XxHPG6qZpl0wpbfMDv6v8+StrB/PetJQUVfWUoj7nbWs/hUXGpO1z8
+ EpoHoguM4YFOuTIutlBLLAD3BBSrSlikKbBIuIO5UL7lqolEd2a7hHlxA
+ cCNBukIRJ8E1b4xagOwe/zEsy62om82QUW3hdV8mRb3tLzg3HyCj8qPxE g==;
+X-CSE-ConnectionGUID: tsZsaBEERRyVVCXbdE4E9Q==
+X-CSE-MsgGUID: +m2Xmv4bT46rCQUZiRollg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11616"; a="69346559"
+X-IronPort-AV: E=Sophos;i="6.19,314,1754982000"; d="scan'208";a="69346559"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Nov 2025 05:42:30 -0800
+X-CSE-ConnectionGUID: LWuRFDTOSeCPsKbP1PiOkA==
+X-CSE-MsgGUID: liAfpM6gR3uTFSk99It6Dg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,314,1754982000"; d="scan'208";a="194873145"
-Received: from display-adls.igk.intel.com ([10.211.131.198])
- by orviesa003.jf.intel.com with ESMTP; 18 Nov 2025 05:41:59 -0800
-From: Mika Kahola <mika.kahola@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: suraj.kandpal@intel.com,
-	Mika Kahola <mika.kahola@intel.com>
-Subject: [PATCH v3 32/32] drm/i915/cx0: Enable dpll framework for MTL+
-Date: Tue, 18 Nov 2025 15:28:59 +0200
-Message-Id: <20251118132859.2584452-1-mika.kahola@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20251117104602.2363671-33-mika.kahola@intel.com>
-References: <20251117104602.2363671-33-mika.kahola@intel.com>
-MIME-Version: 1.0
+X-IronPort-AV: E=Sophos;i="6.19,314,1754982000"; d="scan'208";a="214157465"
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Nov 2025 05:42:30 -0800
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.27; Tue, 18 Nov 2025 05:42:29 -0800
+Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.27 via Frontend Transport; Tue, 18 Nov 2025 05:42:29 -0800
+Received: from SN4PR0501CU005.outbound.protection.outlook.com (40.93.194.1) by
+ edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.27; Tue, 18 Nov 2025 05:42:29 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=xNe0S5ZGzQW4oHbLoMkkXD82MMV1Ln68Dr8cThUm9qfr2z2rooQJEinNDRexWisyI/X7OGXwu4BjDPJatLdGG6qBPvn1Li3i4mo8eWjEJvRJHBdh+ulk/3+noELSEy2C+LqqwpN8mFJXugBOOqSEFQTViQeD/Z8jQrKJPSnHp8/ILwBNlL246vip9YKbhHJ75KXtRgARIeD09k2Ttaw58/HOBwFYusuekbgbaryDaxFde1F637xij5qP8fqqyRVYpxD6kImNurhEUkK313+mawhhbFmo8DnGNUE/U/TxJpbAaAAq+Q7BFrf9nRfy4b47e2Mcnwi15b3VZ6zWopRW4Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=SAayJAt2Vgxd4YaTW+pfS3UreqiQXTc6gC9CxluGFkE=;
+ b=sx7NWAZJQzpGssOD9l0dpdKOgMAE854b+FOnu/FPQ02zghtYqjNtxQX8I27UgLdTy/jIpUcIn3XUEo7dpH/05wrTEs80yMBoiVav+QAKGM1JS2pt2ceoIgubv0RDBI+LV1QAPMq//foL5n7XxF/nTs9K8cFoQyYSNdvnDStx2J1Cbe6Xe3atZMfwqO+ifByN2qgqYH5YlOszLGiypmbJgyGOVC1cBb4PZz8qCdzvMe65iEHLKZsjvEnpELdrApWMu9bfBKRAkF/H2Lf4hH039inuZDyo24WfgBXq6m93m7V+c5rlaEvqZ7sEShYZDIGR0e5UlhqzFvguopBKxA5CTg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from CYYPR11MB8430.namprd11.prod.outlook.com (2603:10b6:930:c6::19)
+ by LV1PR11MB8842.namprd11.prod.outlook.com (2603:10b6:408:2b3::8)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9320.22; Tue, 18 Nov
+ 2025 13:42:24 +0000
+Received: from CYYPR11MB8430.namprd11.prod.outlook.com
+ ([fe80::76d2:8036:2c6b:7563]) by CYYPR11MB8430.namprd11.prod.outlook.com
+ ([fe80::76d2:8036:2c6b:7563%6]) with mapi id 15.20.9320.021; Tue, 18 Nov 2025
+ 13:42:24 +0000
+Date: Tue, 18 Nov 2025 08:42:19 -0500
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Raag Jadav <raag.jadav@intel.com>
+CC: <lucas.demarchi@intel.com>, <jani.nikula@intel.com>,
+ <intel-xe@lists.freedesktop.org>, <riana.tauro@intel.com>,
+ <matthew.brost@intel.com>, <michal.wajdeczko@intel.com>,
+ <badal.nilawar@intel.com>, <ville.syrjala@linux.intel.com>,
+ <karthik.poosa@intel.com>, <anshuman.gupta@intel.com>
+Subject: Re: [PATCH v1 1/4] drm/xe/pcode: Introduce xe_pcode_read_probe()
+Message-ID: <aRx3u9LuWvhGvMZj@intel.com>
+References: <20251118090012.608250-1-raag.jadav@intel.com>
+ <20251118090012.608250-2-raag.jadav@intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20251118090012.608250-2-raag.jadav@intel.com>
+X-ClientProxiedBy: SJ0PR05CA0086.namprd05.prod.outlook.com
+ (2603:10b6:a03:332::31) To CYYPR11MB8430.namprd11.prod.outlook.com
+ (2603:10b6:930:c6::19)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CYYPR11MB8430:EE_|LV1PR11MB8842:EE_
+X-MS-Office365-Filtering-Correlation-Id: cd587e0c-a6c0-462f-189d-08de26a84e36
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
+X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?XdRXGMOgMxEisdTjl5E2B1Kd6ZNQijlI30FwCWA7eLbbHEZmD33tNIXXcW?=
+ =?iso-8859-1?Q?kLUz9Gct7AEhCWFISrjSetrvPvCBe7BGAfAIDSlPkU6y8FNq9pOlPDKDTM?=
+ =?iso-8859-1?Q?/MKdxmSW4/sDvucCz7iWX0wPEMWCpgnAWDrxp1wYjgoNoNJ3hcKcksWcfM?=
+ =?iso-8859-1?Q?Tb9IO0fMOH2KDEe6FzRjrtXhmCCa8idSwFnxbgxLHIiL/JKCKLnIIAo9OY?=
+ =?iso-8859-1?Q?DLDk8yVQRNpOlmty8sMF0mxexNHIAYphcMRxbV6qpeZYIJnzPCMUhKoVjC?=
+ =?iso-8859-1?Q?L9WTFBvbDTFE7IYF7abLoTwyX2dLpZKsbsSvB99k553Plta5OfgjoIlRzf?=
+ =?iso-8859-1?Q?37C/juEU0CKGgmR89STkGrpoAQzZnLyUMOa6PMjjIYH1gQRG6xWECIGTuA?=
+ =?iso-8859-1?Q?oXvQ7gxNfQONJ2AytqPl0+Zz8Ojz/sMIK9NIFRti4CTeVW97r4x2dRIudJ?=
+ =?iso-8859-1?Q?VCZ3C3Q7Pzs9jo1z654xQDyZhTXdO11PIYWRwtRWgGgxr4wz9Sn+mMDsFH?=
+ =?iso-8859-1?Q?jPzL+oFGnIJDdVvDeeinz0lbE+yslUzbK7pPqoJnYIpkPxe4NcAL+L0DCR?=
+ =?iso-8859-1?Q?97L5zlMXD1xYIK40Tlg+Uv3QGTc/eDBcJhdDtwbyohTPmJ9L0owZznpuwW?=
+ =?iso-8859-1?Q?KEL9XPLVvVTV4lWCCWEMlQ75k4JlsemTGOpcpku6vgQ5krwhm4qGPpgrr9?=
+ =?iso-8859-1?Q?jTQv6miupqaUKGO8ytnbzJT189o3kInvMQiyKGZeSohb4YPHKdJmJqIYqy?=
+ =?iso-8859-1?Q?yF14Z2GKn5OlZbusMM4DDiy9iqO/gAnDkzCrQIbqi3MWxnqthSDaOiVjW5?=
+ =?iso-8859-1?Q?/QP6Jlc3UIdbC55EmqsUNJxfBt9/+1fyJbvZ63uRNG3tj9+4IBx90H0vvr?=
+ =?iso-8859-1?Q?6bs4FhvTOo/gob9+ExcFfnVMGXqhzupuQilglBYwFW8vB4998XWZoMSHIY?=
+ =?iso-8859-1?Q?7cBq/iqdkgqUjV1V4e7UARnHeKBBhocC8zfEgScMcu9Oax4jCFDRjq9rzh?=
+ =?iso-8859-1?Q?VTMcDq76xd1K7TX4/iwy4afYLyeE6J0g1iLiwQo0Dj0U3aCZiDQDQG7djg?=
+ =?iso-8859-1?Q?F9hgFhBarE4HBDGc/3ZEEbAIvRf4GV2+7UwiSFF6qN56SNTfDu+F93ax9i?=
+ =?iso-8859-1?Q?BrnvAK/gJ8ioVmo1hWL5yoDBIGGuRjjFpSMV0CCuyRAIfrQvcKrg87/992?=
+ =?iso-8859-1?Q?ELYGZs7ZdfUxidV4saEKFyEaOpKJt7yqyKAFXEFPeFpK3QyKHHbKSqIg/0?=
+ =?iso-8859-1?Q?AtNYxQnJfc/QoyZeyLs+22dNQIi/PrTwwrsu9uNiff3+1oZoFJ7A3VzQeO?=
+ =?iso-8859-1?Q?+bA6lpgkZEUgi37emzQc5dJNiZn8hARQTwLdJu1WhXAzaiHq86cD6bxCHp?=
+ =?iso-8859-1?Q?zA9348USz9TDOLmfZhgcQ7oe8hk7T32GhooRYjFB1/KptItIH9BPYoLC6E?=
+ =?iso-8859-1?Q?IdlEMevTh2Pq3r65fGiCzvxakOZc2tumbOC3TRRy/1iVGLbSdYtmbUoC4c?=
+ =?iso-8859-1?Q?fnRiu4lMLn2NxCKpLMjnzJ?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CYYPR11MB8430.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?M1ZiN1V9z/1iqXmpdxcy9uHzS45621za2yVvQ2rNNz2FkF/XWCHDbsVU01?=
+ =?iso-8859-1?Q?7cX35aFyNwNVLNakY9TQTWmqT3+iO9lu7npk1/weG1YqNBjO+0z/1BrrR3?=
+ =?iso-8859-1?Q?/VqAHNYomf/te26XhJHHdX0G2yiMDHvPRijNDSZy9ABJiE9Dh90hVkr7Hp?=
+ =?iso-8859-1?Q?PLCXMKJ14o5PKkkAmOttIbbe8mUifx0DUy6eCa/ArlxwP5oUhv/mitd0Y4?=
+ =?iso-8859-1?Q?wceJn7GyfGuPkunQecs5PXnVbG4iOXtvEv/q5nqvqTqjrOVAd9zOIxRJ8z?=
+ =?iso-8859-1?Q?0ujdtsvoJoRTsxhGDr35+U9tJzhBoI/r8FtNsyp2lZxaKxENv09PRWkLcn?=
+ =?iso-8859-1?Q?Rcps7HKfalluTlJ6oHSFjsPwLJVg5jXdgbJ9bzPHaFfbCmmgJpfz5+Fi6r?=
+ =?iso-8859-1?Q?nWa62wAyKEsgMpWGdw9iPGjy/BjoLe1jqNZu7W9pcpkubtuRtiRKHqoQmZ?=
+ =?iso-8859-1?Q?8+zSbWJ6H18r2q3pTghEXJCGhcgAtOtbGla1kdTnTyVqBuyHrKEBovvh7m?=
+ =?iso-8859-1?Q?ukHjatXKcUt288r6+OStBn5FQ6Yfwdc5smF9ziYRgTUFgFUZT2fkvDD7lC?=
+ =?iso-8859-1?Q?982gSyWjG1unYIcOI4zlzz6pBDiKh5NoU8yLMS7UFNn1LJO/Bufi2By3Kt?=
+ =?iso-8859-1?Q?X+30hYpvPsRY7RwbWHKdQOzYs123FwTNgqT1aT1dZdZ36VYAW58+Svswzp?=
+ =?iso-8859-1?Q?WSJrSu1hDPovqvhi4PEya1rBrkHK2/GU2rIg/V9pE0TXerA2BuWKixZXhb?=
+ =?iso-8859-1?Q?boynzQUU034jUEjvnGomqklUQt/+XxBNkZWBVxrApzH7YMlRWn4O2X2Nlu?=
+ =?iso-8859-1?Q?ZOVhVuH1NeCoVVjmPU9405cQp94z3K7p8XG8xOKDvuLy3BZly1gUyqJPga?=
+ =?iso-8859-1?Q?XGSPYSwC3GzFHUbl0fFBy9dksFpBvBe3OOsk9n0+06NxNJasea+EmMP19m?=
+ =?iso-8859-1?Q?qhspNQ5d0Sv71VhAoxLibbY0WlE8NY+cqsh31QqgO5KyEPCgwIrsjEmcm5?=
+ =?iso-8859-1?Q?i3ideJmAT/baQAtn+TLx7gwlWp8tQKvnak0l82jMeXcjHQw0Y5USoLrwGB?=
+ =?iso-8859-1?Q?L8kUPe5WHrLqgYqIMx4j9L+oix4MCwWqgnQWlI/zjFHll828AZo7n+IB3K?=
+ =?iso-8859-1?Q?S3/SWV9Kt/4qGc/zwkW/wuekMNIqmxwX6pzqjWwSckMRXIefzk5k3+y5Tv?=
+ =?iso-8859-1?Q?IxPH+0yaMC4PvjLF97cAfCaFWHYTfMecn+bapzpolvpdKWWfBjgF09K+Yl?=
+ =?iso-8859-1?Q?sk86tyVf+6hlkfxJqr/719wtx1zq5kmcRdQ8O8+sRtkVPtGITjep+i+WQs?=
+ =?iso-8859-1?Q?mx4UWl+eNixSDaCWKcC2bfNls54uQmya8xX76V8NmPGY/XHI5LQiDti0ko?=
+ =?iso-8859-1?Q?4B6azIZJxWU4NQ+3RkykLc4qgjlaworsEPL9hXvgArPX+1EH9nAlkzedg6?=
+ =?iso-8859-1?Q?3ODX6uXbGgWX2wYQMK7FiONWOrhDg4SPwyNPvmMDCPjIzX25lA58ru93Jx?=
+ =?iso-8859-1?Q?8h0rig/hUJY53Ja7owARZw9oEHeEhFrhU8uTvEmIKQ3U70DZzt1nbWzFSk?=
+ =?iso-8859-1?Q?RKkV6xQwKuAjOaOJ6s2ZMdoHVSna5/Du4LVFryrKL1Jt2QEimJx0fndFUS?=
+ =?iso-8859-1?Q?M9uuZAZ02CkgwjKm9yiAhBN/7JGnOpPrZW?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: cd587e0c-a6c0-462f-189d-08de26a84e36
+X-MS-Exchange-CrossTenant-AuthSource: CYYPR11MB8430.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Nov 2025 13:42:24.4411 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: jKB3RK9vqwv1gcrEAORcccVDuqecK5LX4eyEv4wyjdxWbwyfyx8F8XiYc9obt1KOfOk2LsnuZ/Hd3YWoU97+Ig==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV1PR11MB8842
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,244 +182,188 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-MTL+ platforms are supported by dpll framework remove a separate
-check for hw comparison and rely solely on dpll framework
-hw comparison.
+On Tue, Nov 18, 2025 at 02:29:17PM +0530, Raag Jadav wrote:
+> If the device is running older pcode firmware, it is possible that newer
+> mailbox commands are not supported by it. The respective functionality
+> isn't useful in that case but nor is error logging, as it doesn't
+> particularly signify anything wrong with pcode firmware or device as a
+> whole. Introduce xe_pcode_read_probe() which allows the caller to check
+> for mailbox command support and determine if the respective functionality
+> exists on the device without it being reported as an error. This is useful
+> in cases where we want to make functionality decisions in the driver based
+> on pcode return codes and a relatively simpler design choice compared to
+> other solutions like checking pcode firmware version, which comes with
+> additional complexity of binding every single command to a specific version
+> and deems pcode commands useless in case the driver fails to obtain it for
+> reasons unrelated to pcode.
+> 
+> This only silences command related failures and still reports other
+> failures as errors, so we don't end up hiding the genuine ones.
+> 
+> Suggested-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> Signed-off-by: Raag Jadav <raag.jadav@intel.com>
+> ---
+>  drivers/gpu/drm/xe/xe_pcode.c | 42 ++++++++++++++++++++++++-----------
+>  drivers/gpu/drm/xe/xe_pcode.h |  1 +
+>  2 files changed, 30 insertions(+), 13 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_pcode.c b/drivers/gpu/drm/xe/xe_pcode.c
+> index 0d33c14ea0cf..797b757f7a68 100644
+> --- a/drivers/gpu/drm/xe/xe_pcode.c
+> +++ b/drivers/gpu/drm/xe/xe_pcode.c
+> @@ -30,7 +30,7 @@
+>   * - PCODE for display operations
+>   */
+>  
+> -static int pcode_mailbox_status(struct xe_tile *tile)
+> +static int pcode_mailbox_status(struct xe_tile *tile, bool probe)
+>  {
+>  	const char *err_str;
+>  	int err_decode;
+> @@ -57,8 +57,12 @@ static int pcode_mailbox_status(struct xe_tile *tile)
+>  	}
+>  
+>  	if (err) {
+> -		drm_err(&tile_to_xe(tile)->drm, "PCODE Mailbox failed: %d %s",
+> -			err_decode, err_str);
+> +		if (probe && err_decode == -ENXIO)
+> +			drm_dbg(&tile_to_xe(tile)->drm, "PCODE Mailbox unsupported: %d %s",
+> +				err_decode, err_str);
+> +		else
+> +			drm_err(&tile_to_xe(tile)->drm, "PCODE Mailbox failed: %d %s",
+> +				err_decode, err_str);
+>  
+>  		return err_decode;
+>  	}
+> @@ -69,7 +73,7 @@ static int pcode_mailbox_status(struct xe_tile *tile)
+>  
+>  static int __pcode_mailbox_rw(struct xe_tile *tile, u32 mbox, u32 *data0, u32 *data1,
+>  			      unsigned int timeout_ms, bool return_data,
+> -			      bool atomic)
+> +			      bool atomic, bool probe)
+>  {
+>  	struct xe_mmio *mmio = &tile->mmio;
+>  	int err;
+> @@ -95,19 +99,20 @@ static int __pcode_mailbox_rw(struct xe_tile *tile, u32 mbox, u32 *data0, u32 *d
+>  			*data1 = xe_mmio_read32(mmio, PCODE_DATA1);
+>  	}
+>  
+> -	return pcode_mailbox_status(tile);
+> +	return pcode_mailbox_status(tile, probe);
+>  }
+>  
+>  static int pcode_mailbox_rw(struct xe_tile *tile, u32 mbox, u32 *data0, u32 *data1,
+>  			    unsigned int timeout_ms, bool return_data,
+> -			    bool atomic)
+> +			    bool atomic, bool probe)
+>  {
+>  	if (tile_to_xe(tile)->info.skip_pcode)
+>  		return 0;
+>  
+>  	lockdep_assert_held(&tile->pcode.lock);
+>  
+> -	return __pcode_mailbox_rw(tile, mbox, data0, data1, timeout_ms, return_data, atomic);
+> +	return __pcode_mailbox_rw(tile, mbox, data0, data1, timeout_ms, return_data,
+> +				  atomic, probe);
+>  }
+>  
+>  int xe_pcode_write_timeout(struct xe_tile *tile, u32 mbox, u32 data, int timeout)
+> @@ -115,7 +120,7 @@ int xe_pcode_write_timeout(struct xe_tile *tile, u32 mbox, u32 data, int timeout
+>  	int err;
+>  
+>  	mutex_lock(&tile->pcode.lock);
+> -	err = pcode_mailbox_rw(tile, mbox, &data, NULL, timeout, false, false);
+> +	err = pcode_mailbox_rw(tile, mbox, &data, NULL, timeout, false, false, false);
+>  	mutex_unlock(&tile->pcode.lock);
+>  
+>  	return err;
+> @@ -126,7 +131,7 @@ int xe_pcode_write64_timeout(struct xe_tile *tile, u32 mbox, u32 data0, u32 data
+>  	int err;
+>  
+>  	mutex_lock(&tile->pcode.lock);
+> -	err = pcode_mailbox_rw(tile, mbox, &data0, &data1, timeout, false, false);
+> +	err = pcode_mailbox_rw(tile, mbox, &data0, &data1, timeout, false, false, false);
+>  	mutex_unlock(&tile->pcode.lock);
+>  
+>  	return err;
+> @@ -137,7 +142,18 @@ int xe_pcode_read(struct xe_tile *tile, u32 mbox, u32 *val, u32 *val1)
+>  	int err;
+>  
+>  	mutex_lock(&tile->pcode.lock);
+> -	err = pcode_mailbox_rw(tile, mbox, val, val1, 1, true, false);
+> +	err = pcode_mailbox_rw(tile, mbox, val, val1, 1, true, false, false);
+> +	mutex_unlock(&tile->pcode.lock);
+> +
+> +	return err;
+> +}
+> +
+> +int xe_pcode_read_probe(struct xe_tile *tile, u32 mbox, u32 *val, u32 *val1)
+> +{
+> +	int err;
+> +
+> +	mutex_lock(&tile->pcode.lock);
+> +	err = pcode_mailbox_rw(tile, mbox, val, val1, 1, true, false, true);
+>  	mutex_unlock(&tile->pcode.lock);
+>  
+>  	return err;
+> @@ -154,10 +170,10 @@ static int pcode_try_request(struct xe_tile *tile, u32 mbox,
+>  	for (slept = 0; slept < timeout_us; slept += wait) {
+>  		if (locked)
+>  			*status = pcode_mailbox_rw(tile, mbox, &request, NULL, 1, true,
+> -						   atomic);
+> +						   atomic, false);
+>  		else
+>  			*status = __pcode_mailbox_rw(tile, mbox, &request, NULL, 1, true,
+> -						     atomic);
+> +						     atomic, false);
+>  		if ((*status == 0) && ((request & reply_mask) == reply))
+>  			return 0;
+>  
+> @@ -268,7 +284,7 @@ int xe_pcode_init_min_freq_table(struct xe_tile *tile, u32 min_gt_freq,
+>  		u32 data = freq << PCODE_FREQ_RING_RATIO_SHIFT | freq;
+>  
+>  		ret = pcode_mailbox_rw(tile, PCODE_WRITE_MIN_FREQ_TABLE,
+> -				       &data, NULL, 1, false, false);
+> +				       &data, NULL, 1, false, false, false);
+>  		if (ret)
+>  			goto unlock;
+>  	}
+> diff --git a/drivers/gpu/drm/xe/xe_pcode.h b/drivers/gpu/drm/xe/xe_pcode.h
+> index a5584c1c75f9..688eca8f24e6 100644
+> --- a/drivers/gpu/drm/xe/xe_pcode.h
+> +++ b/drivers/gpu/drm/xe/xe_pcode.h
+> @@ -18,6 +18,7 @@ int xe_pcode_ready(struct xe_device *xe, bool locked);
+>  int xe_pcode_init_min_freq_table(struct xe_tile *tile, u32 min_gt_freq,
+>  				 u32 max_gt_freq);
+>  int xe_pcode_read(struct xe_tile *tile, u32 mbox, u32 *val, u32 *val1);
+> +int xe_pcode_read_probe(struct xe_tile *tile, u32 mbox, u32 *val, u32 *val1);
 
-Finally, all required hooks are now in place so initialize
-PLL manager for MTL+ platforms and remove the redirections
-to the legacy code paths from the following interfaces:
+Is "probe" the right condition? I mean, the right name for the exported function?
 
-* intel_encoder::clock_enable/disable()
-* intel_encoder::get_config()
-* intel_dpll_funcs::get_hw_state()
-* intel_ddi_update_active_dpll()
-* pipe_config_pll_mismatch()
+The caller is deciding to downgrade the Illegal command from error to debug, but
+is it because it is in the probe? Or because we know that most of FW out there
+might not have this command yet and driver knows that and will handle the
+lack of backward compatibility properly... in a way that this is not an error.
 
-v2: Rebase on !HAS_LT_PHY check in intel_ddi_update_active_dpll()
-v3: Rebase on !display->dpll.mgr check in intel_ddi_update_active_dpll()
-    Add check for NVL as the platform is not part of pll framework (Suraj)
+But is this 'probe' ?!
 
-Signed-off-by: Mika Kahola <mika.kahola@intel.com>
----
- drivers/gpu/drm/i915/display/intel_cx0_phy.c  | 10 -------
- drivers/gpu/drm/i915/display/intel_ddi.c      | 23 +--------------
- drivers/gpu/drm/i915/display/intel_display.c  | 29 -------------------
- drivers/gpu/drm/i915/display/intel_dpll.c     | 23 +--------------
- drivers/gpu/drm/i915/display/intel_dpll_mgr.c |  7 +++--
- 5 files changed, 6 insertions(+), 86 deletions(-)
+I'm bad with naming as well, so asking help from AI:
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-index 9d96e8940838..96ab7f3b5539 100644
---- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-@@ -3432,9 +3432,6 @@ void intel_mtl_pll_enable_clock(struct intel_encoder *encoder,
- 
- 	if (intel_tc_port_in_tbt_alt_mode(dig_port))
- 		intel_mtl_tbt_pll_enable_clock(encoder, crtc_state->port_clock);
--	else
--		/* TODO: remove when PLL mgr is in place. */
--		intel_mtl_pll_enable(encoder, NULL, &crtc_state->dpll_hw_state);
- }
- 
- /*
-@@ -3598,9 +3595,6 @@ void intel_mtl_pll_disable_clock(struct intel_encoder *encoder)
- 
- 	if (intel_tc_port_in_tbt_alt_mode(dig_port))
- 		intel_mtl_tbt_pll_disable_clock(encoder);
--	else
--		/* TODO: remove when PLL mgr is in place. */
--		intel_mtl_pll_disable(encoder);
- }
- 
- enum icl_port_dpll_id
-@@ -3629,10 +3623,6 @@ bool intel_cx0pll_readout_hw_state(struct intel_encoder *encoder,
- {
- 	memset(pll_state, 0, sizeof(*pll_state));
- 
--	pll_state->tbt_mode = intel_tc_port_in_tbt_alt_mode(enc_to_dig_port(encoder));
--	if (pll_state->tbt_mode)
--		return true;
--
- 	if (!intel_cx0_pll_is_enabled(encoder))
- 		return false;
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index d024a1073e03..c2e08c453ae1 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -4257,19 +4257,6 @@ static void xe3plpd_ddi_get_config(struct intel_encoder *encoder,
- 	intel_ddi_get_config(encoder, crtc_state);
- }
- 
--static void mtl_ddi_get_config(struct intel_encoder *encoder,
--			       struct intel_crtc_state *crtc_state)
--{
--	intel_cx0pll_readout_hw_state(encoder, &crtc_state->dpll_hw_state.cx0pll);
--
--	if (crtc_state->dpll_hw_state.cx0pll.tbt_mode)
--		crtc_state->port_clock = intel_mtl_tbt_calc_port_clock(encoder);
--	else
--		crtc_state->port_clock = intel_cx0pll_calc_port_clock(encoder, &crtc_state->dpll_hw_state.cx0pll);
--
--	intel_ddi_get_config(encoder, crtc_state);
--}
--
- static bool icl_ddi_tc_pll_is_tbt(const struct intel_dpll *pll)
- {
- 	return pll->info->id == DPLL_ID_ICL_TBTPLL;
-@@ -4316,10 +4303,6 @@ static void mtl_ddi_non_tc_phy_get_config(struct intel_encoder *encoder,
- {
- 	struct intel_display *display = to_intel_display(encoder);
- 
--	/* TODO: Remove when the PLL manager is in place. */
--	mtl_ddi_get_config(encoder, crtc_state);
--	return;
--
- 	mtl_ddi_cx0_get_config(encoder, crtc_state, ICL_PORT_DPLL_DEFAULT,
- 			       mtl_port_to_pll_id(display, encoder->port));
- }
-@@ -4329,10 +4312,6 @@ static void mtl_ddi_tc_phy_get_config(struct intel_encoder *encoder,
- {
- 	struct intel_display *display = to_intel_display(encoder);
- 
--	/* TODO: Remove when the PLL manager is in place. */
--	mtl_ddi_get_config(encoder, crtc_state);
--	return;
--
- 	if (intel_tc_port_in_tbt_alt_mode(enc_to_dig_port(encoder)))
- 		mtl_ddi_cx0_get_config(encoder, crtc_state, ICL_PORT_DPLL_DEFAULT,
- 				       DPLL_ID_ICL_TBTPLL);
-@@ -5322,7 +5301,7 @@ void intel_ddi_init(struct intel_display *display,
- 	} else if (DISPLAY_VER(display) >= 14) {
- 		encoder->enable_clock = intel_mtl_pll_enable_clock;
- 		encoder->disable_clock = intel_mtl_pll_disable_clock;
--		encoder->port_pll_type = intel_mtl_port_pll_type;
-+		encoder->port_pll_type = icl_ddi_tc_port_pll_type;
- 		if (intel_encoder_is_tc(encoder))
- 			encoder->get_config = mtl_ddi_tc_phy_get_config;
- 		else
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index e7bb8ec0d6bb..6c8a7f63111e 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -4977,23 +4977,6 @@ pipe_config_pll_mismatch(struct drm_printer *p, bool fastset,
- 	intel_dpll_dump_hw_state(display, p, b);
- }
- 
--static void
--pipe_config_cx0pll_mismatch(struct drm_printer *p, bool fastset,
--			    const struct intel_crtc *crtc,
--			    const char *name,
--			    const struct intel_cx0pll_state *a,
--			    const struct intel_cx0pll_state *b)
--{
--	char *chipname = a->use_c10 ? "C10" : "C20";
--
--	pipe_config_mismatch(p, fastset, crtc, name, chipname);
--
--	drm_printf(p, "expected:\n");
--	intel_cx0pll_dump_hw_state(p, a);
--	drm_printf(p, "found:\n");
--	intel_cx0pll_dump_hw_state(p, b);
--}
--
- static bool allow_vblank_delay_fastset(const struct intel_crtc_state *old_crtc_state)
- {
- 	struct intel_display *display = to_intel_display(old_crtc_state);
-@@ -5145,16 +5128,6 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
- 	} \
- } while (0)
- 
--#define PIPE_CONF_CHECK_PLL_CX0(name) do { \
--	if (!intel_cx0pll_compare_hw_state(&current_config->name, \
--					   &pipe_config->name)) { \
--		pipe_config_cx0pll_mismatch(&p, fastset, crtc, __stringify(name), \
--					    &current_config->name, \
--					    &pipe_config->name); \
--		ret = false; \
--	} \
--} while (0)
--
- #define PIPE_CONF_CHECK_PLL_LT(name) do { \
- 	if (!intel_lt_phy_pll_compare_hw_state(&current_config->name, \
- 					       &pipe_config->name)) { \
-@@ -5394,8 +5367,6 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
- 	/* FIXME convert MTL+ platforms over to dpll_mgr */
- 	if (HAS_LT_PHY(display))
- 		PIPE_CONF_CHECK_PLL_LT(dpll_hw_state.ltpll);
--	else if (DISPLAY_VER(display) >= 14)
--		PIPE_CONF_CHECK_PLL_CX0(dpll_hw_state.cx0pll);
- 
- 	PIPE_CONF_CHECK_X(dsi_pll.ctrl);
- 	PIPE_CONF_CHECK_X(dsi_pll.div);
-diff --git a/drivers/gpu/drm/i915/display/intel_dpll.c b/drivers/gpu/drm/i915/display/intel_dpll.c
-index 2da65bb20f1c..a4f372c9e6fc 100644
---- a/drivers/gpu/drm/i915/display/intel_dpll.c
-+++ b/drivers/gpu/drm/i915/display/intel_dpll.c
-@@ -1212,27 +1212,6 @@ static int dg2_crtc_compute_clock(struct intel_atomic_state *state,
- 	return 0;
- }
- 
--static int mtl_crtc_compute_clock(struct intel_atomic_state *state,
--				  struct intel_crtc *crtc)
--{
--	struct intel_crtc_state *crtc_state =
--		intel_atomic_get_new_crtc_state(state, crtc);
--	struct intel_encoder *encoder =
--		intel_get_crtc_new_encoder(state, crtc_state);
--	int ret;
--
--	ret = intel_cx0pll_calc_state(crtc_state, encoder, &crtc_state->dpll_hw_state);
--	if (ret)
--		return ret;
--
--	/* TODO: Do the readback via intel_dpll_compute() */
--	crtc_state->port_clock = intel_cx0pll_calc_port_clock(encoder, &crtc_state->dpll_hw_state.cx0pll);
--
--	crtc_state->hw.adjusted_mode.crtc_clock = intel_crtc_dotclock(crtc_state);
--
--	return 0;
--}
--
- static int xe3plpd_crtc_compute_clock(struct intel_atomic_state *state,
- 				      struct intel_crtc *crtc)
- {
-@@ -1719,7 +1698,7 @@ static const struct intel_dpll_global_funcs xe3plpd_dpll_funcs = {
- };
- 
- static const struct intel_dpll_global_funcs mtl_dpll_funcs = {
--	.crtc_compute_clock = mtl_crtc_compute_clock,
-+	.crtc_compute_clock = hsw_crtc_compute_clock,
- 	.crtc_get_dpll = hsw_crtc_get_dpll,
- };
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-index 8fd3b06f393d..6d7d5394713d 100644
---- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-+++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-@@ -4558,7 +4558,6 @@ static bool mtl_compare_hw_state(const struct intel_dpll_hw_state *_a,
- 	return intel_cx0pll_compare_hw_state(a, b);
- }
- 
--__maybe_unused
- static const struct intel_dpll_mgr mtl_pll_mgr = {
- 	.dpll_info = mtl_plls,
- 	.compute_dplls = mtl_compute_dplls,
-@@ -4584,9 +4583,11 @@ void intel_dpll_init(struct intel_display *display)
- 
- 	mutex_init(&display->dpll.lock);
- 
--	if (DISPLAY_VER(display) >= 14 || display->platform.dg2)
--		/* No shared DPLLs on DG2; port PLLs are part of the PHY */
-+	if (DISPLAY_VER(display) >= 35 || display->platform.dg2)
-+		/* No shared DPLLs on NVL or DG2; port PLLs are part of the PHY */
- 		dpll_mgr = NULL;
-+	else if (DISPLAY_VER(display) >= 14)
-+		dpll_mgr = &mtl_pll_mgr;
- 	else if (display->platform.alderlake_p)
- 		dpll_mgr = &adlp_pll_mgr;
- 	else if (display->platform.alderlake_s)
--- 
-2.34.1
+Alternative naming ideas:
+xe_pcode_read_optional
+(Indicates the command is optional and failure is acceptable.)
+xe_pcode_read_safe
+(Suggests a safe read that won't break if unsupported.)
+xe_pcode_read_tolerant
+(Highlights tolerance for missing command.)
+xe_pcode_try_read
+(Common pattern for non-fatal attempts.)
+xe_pcode_read_if_supported
+(Explicit about conditional support.)
 
+>  int xe_pcode_write_timeout(struct xe_tile *tile, u32 mbox, u32 val,
+>  			   int timeout_ms);
+>  int xe_pcode_write64_timeout(struct xe_tile *tile, u32 mbox, u32 data0,
+> -- 
+> 2.43.0
+> 
