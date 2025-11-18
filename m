@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5A324CEE346
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8DE22CEE347
 	for <intel-xe@archiver.kernel.org>; Tue, 18 Nov 2025 16:44:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0AF8410E50E;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 442A110E513;
 	Tue, 18 Nov 2025 16:44:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PeAY9UE1";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VpAZsWsb";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0252A10E4F7
- for <intel-xe@lists.freedesktop.org>; Tue, 18 Nov 2025 16:43:49 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CD2F210E4FB
+ for <intel-xe@lists.freedesktop.org>; Tue, 18 Nov 2025 16:43:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1763484230; x=1795020230;
+ t=1763484232; x=1795020232;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=8zPrmGOm220yxTGEyxhO/K+vFgy9UbsVEvphGy4Vyuk=;
- b=PeAY9UE1mNEjDcSuZqfocy3Kh2v1HYzvgieBuhp5sXdiUntWDaLw0hZa
- IibwQ9ORQc3Gr9gtWUvK85kc7hNCP9ekxNmQHvAPDJmMSPt0Fdh5968Ho
- cbZlkd4O0BtKCNrwOwW4dB/HEoLgrcEYRGtvD31Zhc/cDbnS2kilAEIwU
- +9e8OLD+IlC0uXLNmOUdfPt/XSkThJM993n63BS+PXfIQiJUmXuQIbPRv
- ogSvFMZB+P9icgjBDxh//hmV2/XTko3muzNK0VbjLjJ8oFgWQt2vY1+hH
- I/BW+guItu2pkq7I1HmBBQRa/aduN50NY3anDBV7HddRpy11rEYlBkQR+ w==;
-X-CSE-ConnectionGUID: BfzMEYgHTAuDXC9LRa2t6A==
-X-CSE-MsgGUID: raS2wk8WSdueT64uoKL/qw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11617"; a="65544766"
-X-IronPort-AV: E=Sophos;i="6.19,314,1754982000"; d="scan'208";a="65544766"
+ bh=WLb9QvEeSlvzTAlebm7ZC36H1XFDrq889eJZVZQhpXM=;
+ b=VpAZsWsb7GjrchEQXWP2o90Qa4dIV4Xw6ZpZ8pOZDWbxu8BEiKGh8E/x
+ wamHfl6M7Mmwe65IaLEqN8Wn8K77LNSvHdZM3goPsqFaK3flaHmEl1fx1
+ 3T0vOzGjMiip2eKHxwpHqknr1esmQeeTTxZBoY0bhSKLX+yn6hLMwP7Z7
+ YJkztIh5ThOKhbFp1D1tozpUsVrakuYeVB5ZUaVmUkpCBAJww5CvI0R8W
+ +EBIkdpy2GVnNpVSdWD6iHDMniRfhHShQd+3L7GEvGDSS9/AyLI/QEnem
+ f1M68z4U5ct5l2g+FQgh0z3aAEs69TNLG4sOkbJK8syGV0mvR7f9OHg3/ w==;
+X-CSE-ConnectionGUID: cstBAOP8TCCs1Vat2cDm9g==
+X-CSE-MsgGUID: /WUwe48vTqmTM5DUtKQf2g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11617"; a="65544793"
+X-IronPort-AV: E=Sophos;i="6.19,314,1754982000"; d="scan'208";a="65544793"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Nov 2025 08:43:50 -0800
-X-CSE-ConnectionGUID: mXRHI24GTzmVdxMY4j7hmQ==
-X-CSE-MsgGUID: Pt4NkB0CTIy6ujVBpkXokw==
+ 18 Nov 2025 08:43:52 -0800
+X-CSE-ConnectionGUID: d7kwD110RhStklI+4JkpHw==
+X-CSE-MsgGUID: c4smI6VzThC1fw0ohBMn9g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,314,1754982000"; d="scan'208";a="190952212"
+X-IronPort-AV: E=Sophos;i="6.19,314,1754982000"; d="scan'208";a="190952277"
 Received: from mdroper-desk1.fm.intel.com ([10.1.39.133])
  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Nov 2025 08:43:50 -0800
+ 18 Nov 2025 08:43:52 -0800
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.d.roper@intel.com
-Subject: [CI 06/27] drm/xe/guc_pc: Use scope-based cleanup
-Date: Tue, 18 Nov 2025 08:43:45 -0800
-Message-ID: <20251118164338.3572146-35-matthew.d.roper@intel.com>
+Subject: [CI 26/27] drm/xe/sysfs: Use scope-based runtime power management
+Date: Tue, 18 Nov 2025 08:44:05 -0800
+Message-ID: <20251118164338.3572146-55-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.51.1
 In-Reply-To: <20251118164338.3572146-29-matthew.d.roper@intel.com>
 References: <20251118164338.3572146-29-matthew.d.roper@intel.com>
@@ -66,200 +66,312 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Use scope-based cleanup for forcewake and runtime PM in the GuC PC code.
-This allows us to eliminate to goto-based cleanup and simplifies some
-other functions.
+Switch sysfs to use scope-based runtime power management to slightly
+simplify the code.
+
+v2:
+ - Drop unnecessary local variables.  (Gustavo)
 
 Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc_pc.c | 62 ++++++++++------------------------
- 1 file changed, 17 insertions(+), 45 deletions(-)
+ drivers/gpu/drm/xe/xe_device_sysfs.c          | 33 ++++++++-----------
+ drivers/gpu/drm/xe/xe_gt_freq.c               | 27 +++++----------
+ drivers/gpu/drm/xe/xe_gt_throttle.c           |  9 ++---
+ drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.c | 16 ++++-----
+ 4 files changed, 31 insertions(+), 54 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_pc.c
-index 951a49fb1d3e..e2e6edb851ae 100644
---- a/drivers/gpu/drm/xe/xe_guc_pc.c
-+++ b/drivers/gpu/drm/xe/xe_guc_pc.c
-@@ -499,21 +499,17 @@ u32 xe_guc_pc_get_cur_freq_fw(struct xe_guc_pc *pc)
- int xe_guc_pc_get_cur_freq(struct xe_guc_pc *pc, u32 *freq)
- {
- 	struct xe_gt *gt = pc_to_gt(pc);
--	unsigned int fw_ref;
+diff --git a/drivers/gpu/drm/xe/xe_device_sysfs.c b/drivers/gpu/drm/xe/xe_device_sysfs.c
+index ec9c06b06fb5..a73e0e957cb0 100644
+--- a/drivers/gpu/drm/xe/xe_device_sysfs.c
++++ b/drivers/gpu/drm/xe/xe_device_sysfs.c
+@@ -57,9 +57,8 @@ vram_d3cold_threshold_store(struct device *dev, struct device_attribute *attr,
  
- 	/*
- 	 * GuC SLPC plays with cur freq request when GuCRC is enabled
- 	 * Block RC6 for a more reliable read.
- 	 */
--	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
--	if (!xe_force_wake_ref_has_domain(fw_ref, XE_FW_GT)) {
--		xe_force_wake_put(gt_to_fw(gt), fw_ref);
-+	CLASS(xe_force_wake, fw_ref)(gt_to_fw(gt), XE_FW_GT);
-+	if (!xe_force_wake_ref_has_domain(fw_ref.domains, XE_FW_GT))
- 		return -ETIMEDOUT;
--	}
+ 	drm_dbg(&xe->drm, "vram_d3cold_threshold: %u\n", vram_d3cold_threshold);
  
- 	*freq = get_cur_freq(gt);
+-	xe_pm_runtime_get(xe);
++	guard(xe_pm_runtime)(xe);
+ 	ret = xe_pm_set_vram_threshold(xe, vram_d3cold_threshold);
+-	xe_pm_runtime_put(xe);
  
--	xe_force_wake_put(gt_to_fw(gt), fw_ref);
- 	return 0;
+ 	return ret ?: count;
  }
- 
-@@ -1087,13 +1083,8 @@ int xe_guc_pc_gucrc_disable(struct xe_guc_pc *pc)
-  */
- int xe_guc_pc_override_gucrc_mode(struct xe_guc_pc *pc, enum slpc_gucrc_mode mode)
- {
--	int ret;
--
--	xe_pm_runtime_get(pc_to_xe(pc));
--	ret = pc_action_set_param(pc, SLPC_PARAM_PWRGATE_RC_MODE, mode);
--	xe_pm_runtime_put(pc_to_xe(pc));
--
--	return ret;
-+	guard(xe_pm_runtime)(pc_to_xe(pc));
-+	return pc_action_set_param(pc, SLPC_PARAM_PWRGATE_RC_MODE, mode);
- }
- 
- /**
-@@ -1104,13 +1095,8 @@ int xe_guc_pc_override_gucrc_mode(struct xe_guc_pc *pc, enum slpc_gucrc_mode mod
-  */
- int xe_guc_pc_unset_gucrc_mode(struct xe_guc_pc *pc)
- {
--	int ret;
--
--	xe_pm_runtime_get(pc_to_xe(pc));
--	ret = pc_action_unset_param(pc, SLPC_PARAM_PWRGATE_RC_MODE);
--	xe_pm_runtime_put(pc_to_xe(pc));
--
--	return ret;
-+	guard(xe_pm_runtime)(pc_to_xe(pc));
-+	return pc_action_unset_param(pc, SLPC_PARAM_PWRGATE_RC_MODE);
- }
- 
- static void pc_init_pcode_freq(struct xe_guc_pc *pc)
-@@ -1198,7 +1184,7 @@ int xe_guc_pc_set_power_profile(struct xe_guc_pc *pc, const char *buf)
- 		return -EINVAL;
- 
- 	guard(mutex)(&pc->freq_lock);
--	xe_pm_runtime_get_noresume(pc_to_xe(pc));
-+	guard(xe_pm_runtime_noresume)(pc_to_xe(pc));
- 
- 	ret = pc_action_set_param(pc,
- 				  SLPC_PARAM_POWER_PROFILE,
-@@ -1209,8 +1195,6 @@ int xe_guc_pc_set_power_profile(struct xe_guc_pc *pc, const char *buf)
- 	else
- 		pc->power_profile = val;
- 
--	xe_pm_runtime_put(pc_to_xe(pc));
--
- 	return ret;
- }
- 
-@@ -1223,17 +1207,14 @@ int xe_guc_pc_start(struct xe_guc_pc *pc)
- 	struct xe_device *xe = pc_to_xe(pc);
- 	struct xe_gt *gt = pc_to_gt(pc);
- 	u32 size = PAGE_ALIGN(sizeof(struct slpc_shared_data));
--	unsigned int fw_ref;
- 	ktime_t earlier;
+@@ -84,33 +83,31 @@ lb_fan_control_version_show(struct device *dev, struct device_attribute *attr, c
+ 	u16 major = 0, minor = 0, hotfix = 0, build = 0;
  	int ret;
  
- 	xe_gt_assert(gt, xe_device_uc_enabled(xe));
+-	xe_pm_runtime_get(xe);
++	guard(xe_pm_runtime)(xe);
  
--	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
--	if (!xe_force_wake_ref_has_domain(fw_ref, XE_FW_GT)) {
--		xe_force_wake_put(gt_to_fw(gt), fw_ref);
-+	CLASS(xe_force_wake, fw_ref)(gt_to_fw(gt), XE_FW_GT);
-+	if (!xe_force_wake_ref_has_domain(fw_ref.domains, XE_FW_GT))
- 		return -ETIMEDOUT;
--	}
- 
- 	if (xe->info.skip_guc_pc) {
- 		if (xe->info.platform != XE_PVC)
-@@ -1241,9 +1222,7 @@ int xe_guc_pc_start(struct xe_guc_pc *pc)
- 
- 		/* Request max possible since dynamic freq mgmt is not enabled */
- 		pc_set_cur_freq(pc, UINT_MAX);
--
--		ret = 0;
--		goto out;
-+		return 0;
- 	}
- 
- 	xe_map_memset(xe, &pc->bo->vmap, 0, 0, size);
-@@ -1252,7 +1231,7 @@ int xe_guc_pc_start(struct xe_guc_pc *pc)
- 	earlier = ktime_get();
- 	ret = pc_action_reset(pc);
+ 	ret = xe_pcode_read(root, PCODE_MBOX(PCODE_LATE_BINDING, GET_CAPABILITY_STATUS, 0),
+ 			    &cap, NULL);
  	if (ret)
 -		goto out;
 +		return ret;
  
- 	if (wait_for_pc_state(pc, SLPC_GLOBAL_STATE_RUNNING,
- 			      SLPC_RESET_TIMEOUT_MS)) {
-@@ -1263,8 +1242,7 @@ int xe_guc_pc_start(struct xe_guc_pc *pc)
- 		if (wait_for_pc_state(pc, SLPC_GLOBAL_STATE_RUNNING,
- 				      SLPC_RESET_EXTENDED_TIMEOUT_MS)) {
- 			xe_gt_err(gt, "GuC PC Start failed: Dynamic GT frequency control and GT sleep states are now disabled.\n");
--			ret = -EIO;
+ 	if (REG_FIELD_GET(V1_FAN_PROVISIONED, cap)) {
+ 		ret = xe_pcode_read(root, PCODE_MBOX(PCODE_LATE_BINDING, GET_VERSION_LOW, 0),
+ 				    &ver_low, NULL);
+ 		if (ret)
 -			goto out;
-+			return -EIO;
- 		}
++			return ret;
  
- 		xe_gt_warn(gt, "GuC PC excessive start time: %lldms",
-@@ -1273,21 +1251,20 @@ int xe_guc_pc_start(struct xe_guc_pc *pc)
+ 		ret = xe_pcode_read(root, PCODE_MBOX(PCODE_LATE_BINDING, GET_VERSION_HIGH, 0),
+ 				    &ver_high, NULL);
+ 		if (ret)
+-			goto out;
++			return ret;
  
- 	ret = pc_init_freqs(pc);
+ 		major = REG_FIELD_GET(MAJOR_VERSION_MASK, ver_low);
+ 		minor = REG_FIELD_GET(MINOR_VERSION_MASK, ver_low);
+ 		hotfix = REG_FIELD_GET(HOTFIX_VERSION_MASK, ver_high);
+ 		build = REG_FIELD_GET(BUILD_VERSION_MASK, ver_high);
+ 	}
+-out:
+-	xe_pm_runtime_put(xe);
+ 
+-	return ret ?: sysfs_emit(buf, "%u.%u.%u.%u\n", major, minor, hotfix, build);
++	return sysfs_emit(buf, "%u.%u.%u.%u\n", major, minor, hotfix, build);
+ }
+ static DEVICE_ATTR_ADMIN_RO(lb_fan_control_version);
+ 
+@@ -123,33 +120,31 @@ lb_voltage_regulator_version_show(struct device *dev, struct device_attribute *a
+ 	u16 major = 0, minor = 0, hotfix = 0, build = 0;
+ 	int ret;
+ 
+-	xe_pm_runtime_get(xe);
++	guard(xe_pm_runtime)(xe);
+ 
+ 	ret = xe_pcode_read(root, PCODE_MBOX(PCODE_LATE_BINDING, GET_CAPABILITY_STATUS, 0),
+ 			    &cap, NULL);
  	if (ret)
 -		goto out;
 +		return ret;
  
- 	ret = pc_set_mert_freq_cap(pc);
- 	if (ret)
--		goto out;
-+		return ret;
+ 	if (REG_FIELD_GET(VR_PARAMS_PROVISIONED, cap)) {
+ 		ret = xe_pcode_read(root, PCODE_MBOX(PCODE_LATE_BINDING, GET_VERSION_LOW, 0),
+ 				    &ver_low, NULL);
+ 		if (ret)
+-			goto out;
++			return ret;
  
- 	if (xe->info.platform == XE_PVC) {
- 		xe_guc_pc_gucrc_disable(pc);
--		ret = 0;
--		goto out;
-+		return 0;
+ 		ret = xe_pcode_read(root, PCODE_MBOX(PCODE_LATE_BINDING, GET_VERSION_HIGH, 0),
+ 				    &ver_high, NULL);
+ 		if (ret)
+-			goto out;
++			return ret;
+ 
+ 		major = REG_FIELD_GET(MAJOR_VERSION_MASK, ver_low);
+ 		minor = REG_FIELD_GET(MINOR_VERSION_MASK, ver_low);
+ 		hotfix = REG_FIELD_GET(HOTFIX_VERSION_MASK, ver_high);
+ 		build = REG_FIELD_GET(BUILD_VERSION_MASK, ver_high);
+ 	}
+-out:
+-	xe_pm_runtime_put(xe);
+ 
+-	return ret ?: sysfs_emit(buf, "%u.%u.%u.%u\n", major, minor, hotfix, build);
++	return sysfs_emit(buf, "%u.%u.%u.%u\n", major, minor, hotfix, build);
+ }
+ static DEVICE_ATTR_ADMIN_RO(lb_voltage_regulator_version);
+ 
+@@ -233,9 +228,8 @@ auto_link_downgrade_capable_show(struct device *dev, struct device_attribute *at
+ 	struct xe_device *xe = pdev_to_xe_device(pdev);
+ 	u32 cap, val;
+ 
+-	xe_pm_runtime_get(xe);
++	guard(xe_pm_runtime)(xe);
+ 	val = xe_mmio_read32(xe_root_tile_mmio(xe), BMG_PCIE_CAP);
+-	xe_pm_runtime_put(xe);
+ 
+ 	cap = REG_FIELD_GET(LINK_DOWNGRADE, val);
+ 	return sysfs_emit(buf, "%u\n", cap == DOWNGRADE_CAPABLE);
+@@ -251,11 +245,10 @@ auto_link_downgrade_status_show(struct device *dev, struct device_attribute *att
+ 	u32 val = 0;
+ 	int ret;
+ 
+-	xe_pm_runtime_get(xe);
++	guard(xe_pm_runtime)(xe);
+ 	ret = xe_pcode_read(xe_device_get_root_tile(xe),
+ 			    PCODE_MBOX(DGFX_PCODE_STATUS, DGFX_GET_INIT_STATUS, 0),
+ 			    &val, NULL);
+-	xe_pm_runtime_put(xe);
+ 
+ 	return ret ?: sysfs_emit(buf, "%u\n", REG_FIELD_GET(DGFX_LINK_DOWNGRADE_STATUS, val));
+ }
+diff --git a/drivers/gpu/drm/xe/xe_gt_freq.c b/drivers/gpu/drm/xe/xe_gt_freq.c
+index 849ea6c86e8e..6284a4daf00a 100644
+--- a/drivers/gpu/drm/xe/xe_gt_freq.c
++++ b/drivers/gpu/drm/xe/xe_gt_freq.c
+@@ -70,9 +70,8 @@ static ssize_t act_freq_show(struct kobject *kobj,
+ 	struct xe_guc_pc *pc = dev_to_pc(dev);
+ 	u32 freq;
+ 
+-	xe_pm_runtime_get(dev_to_xe(dev));
++	guard(xe_pm_runtime)(dev_to_xe(dev));
+ 	freq = xe_guc_pc_get_act_freq(pc);
+-	xe_pm_runtime_put(dev_to_xe(dev));
+ 
+ 	return sysfs_emit(buf, "%d\n", freq);
+ }
+@@ -86,9 +85,8 @@ static ssize_t cur_freq_show(struct kobject *kobj,
+ 	u32 freq;
+ 	ssize_t ret;
+ 
+-	xe_pm_runtime_get(dev_to_xe(dev));
++	guard(xe_pm_runtime)(dev_to_xe(dev));
+ 	ret = xe_guc_pc_get_cur_freq(pc, &freq);
+-	xe_pm_runtime_put(dev_to_xe(dev));
+ 	if (ret)
+ 		return ret;
+ 
+@@ -113,9 +111,8 @@ static ssize_t rpe_freq_show(struct kobject *kobj,
+ 	struct xe_guc_pc *pc = dev_to_pc(dev);
+ 	u32 freq;
+ 
+-	xe_pm_runtime_get(dev_to_xe(dev));
++	guard(xe_pm_runtime)(dev_to_xe(dev));
+ 	freq = xe_guc_pc_get_rpe_freq(pc);
+-	xe_pm_runtime_put(dev_to_xe(dev));
+ 
+ 	return sysfs_emit(buf, "%d\n", freq);
+ }
+@@ -128,9 +125,8 @@ static ssize_t rpa_freq_show(struct kobject *kobj,
+ 	struct xe_guc_pc *pc = dev_to_pc(dev);
+ 	u32 freq;
+ 
+-	xe_pm_runtime_get(dev_to_xe(dev));
++	guard(xe_pm_runtime)(dev_to_xe(dev));
+ 	freq = xe_guc_pc_get_rpa_freq(pc);
+-	xe_pm_runtime_put(dev_to_xe(dev));
+ 
+ 	return sysfs_emit(buf, "%d\n", freq);
+ }
+@@ -154,9 +150,8 @@ static ssize_t min_freq_show(struct kobject *kobj,
+ 	u32 freq;
+ 	ssize_t ret;
+ 
+-	xe_pm_runtime_get(dev_to_xe(dev));
++	guard(xe_pm_runtime)(dev_to_xe(dev));
+ 	ret = xe_guc_pc_get_min_freq(pc, &freq);
+-	xe_pm_runtime_put(dev_to_xe(dev));
+ 	if (ret)
+ 		return ret;
+ 
+@@ -175,9 +170,8 @@ static ssize_t min_freq_store(struct kobject *kobj,
+ 	if (ret)
+ 		return ret;
+ 
+-	xe_pm_runtime_get(dev_to_xe(dev));
++	guard(xe_pm_runtime)(dev_to_xe(dev));
+ 	ret = xe_guc_pc_set_min_freq(pc, freq);
+-	xe_pm_runtime_put(dev_to_xe(dev));
+ 	if (ret)
+ 		return ret;
+ 
+@@ -193,9 +187,8 @@ static ssize_t max_freq_show(struct kobject *kobj,
+ 	u32 freq;
+ 	ssize_t ret;
+ 
+-	xe_pm_runtime_get(dev_to_xe(dev));
++	guard(xe_pm_runtime)(dev_to_xe(dev));
+ 	ret = xe_guc_pc_get_max_freq(pc, &freq);
+-	xe_pm_runtime_put(dev_to_xe(dev));
+ 	if (ret)
+ 		return ret;
+ 
+@@ -214,9 +207,8 @@ static ssize_t max_freq_store(struct kobject *kobj,
+ 	if (ret)
+ 		return ret;
+ 
+-	xe_pm_runtime_get(dev_to_xe(dev));
++	guard(xe_pm_runtime)(dev_to_xe(dev));
+ 	ret = xe_guc_pc_set_max_freq(pc, freq);
+-	xe_pm_runtime_put(dev_to_xe(dev));
+ 	if (ret)
+ 		return ret;
+ 
+@@ -243,9 +235,8 @@ static ssize_t power_profile_store(struct kobject *kobj,
+ 	struct xe_guc_pc *pc = dev_to_pc(dev);
+ 	int err;
+ 
+-	xe_pm_runtime_get(dev_to_xe(dev));
++	guard(xe_pm_runtime)(dev_to_xe(dev));
+ 	err = xe_guc_pc_set_power_profile(pc, buff);
+-	xe_pm_runtime_put(dev_to_xe(dev));
+ 
+ 	return err ?: count;
+ }
+diff --git a/drivers/gpu/drm/xe/xe_gt_throttle.c b/drivers/gpu/drm/xe/xe_gt_throttle.c
+index 82c5fbcdfbe3..096a6187ff12 100644
+--- a/drivers/gpu/drm/xe/xe_gt_throttle.c
++++ b/drivers/gpu/drm/xe/xe_gt_throttle.c
+@@ -85,7 +85,7 @@ u32 xe_gt_throttle_get_limit_reasons(struct xe_gt *gt)
+ {
+ 	struct xe_device *xe = gt_to_xe(gt);
+ 	struct xe_reg reg;
+-	u32 val, mask;
++	u32 mask;
+ 
+ 	if (xe_gt_is_media_type(gt))
+ 		reg = MTL_MEDIA_PERF_LIMIT_REASONS;
+@@ -97,11 +97,8 @@ u32 xe_gt_throttle_get_limit_reasons(struct xe_gt *gt)
+ 	else
+ 		mask = GT0_PERF_LIMIT_REASONS_MASK;
+ 
+-	xe_pm_runtime_get(xe);
+-	val = xe_mmio_read32(&gt->mmio, reg) & mask;
+-	xe_pm_runtime_put(xe);
+-
+-	return val;
++	guard(xe_pm_runtime)(xe);
++	return xe_mmio_read32(&gt->mmio, reg) & mask;
+ }
+ 
+ static bool is_throttled_by(struct xe_gt *gt, u32 mask)
+diff --git a/drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.c b/drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.c
+index 640950172088..cb45cdceef67 100644
+--- a/drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.c
++++ b/drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.c
+@@ -43,16 +43,14 @@ static ssize_t xe_hw_engine_class_sysfs_attr_show(struct kobject *kobj,
+ {
+ 	struct xe_device *xe = kobj_to_xe(kobj);
+ 	struct kobj_attribute *kattr;
+-	ssize_t ret = -EIO;
+ 
+ 	kattr = container_of(attr, struct kobj_attribute, attr);
+ 	if (kattr->show) {
+-		xe_pm_runtime_get(xe);
+-		ret = kattr->show(kobj, kattr, buf);
+-		xe_pm_runtime_put(xe);
++		guard(xe_pm_runtime)(xe);
++		return kattr->show(kobj, kattr, buf);
  	}
  
- 	ret = pc_action_setup_gucrc(pc, GUCRC_FIRMWARE_CONTROL);
- 	if (ret)
--		goto out;
-+		return ret;
- 
- 	/* Enable SLPC Optimized Strategy for compute */
- 	ret = pc_action_set_strategy(pc, SLPC_OPTIMIZED_STRATEGY_COMPUTE);
-@@ -1297,8 +1274,6 @@ int xe_guc_pc_start(struct xe_guc_pc *pc)
- 	if (unlikely(ret))
- 		xe_gt_err(gt, "Failed to set SLPC power profile: %pe\n", ERR_PTR(ret));
- 
--out:
--	xe_force_wake_put(gt_to_fw(gt), fw_ref);
- 	return ret;
+-	return ret;
++	return -EIO;
  }
  
-@@ -1330,19 +1305,16 @@ static void xe_guc_pc_fini_hw(void *arg)
+ static ssize_t xe_hw_engine_class_sysfs_attr_store(struct kobject *kobj,
+@@ -62,16 +60,14 @@ static ssize_t xe_hw_engine_class_sysfs_attr_store(struct kobject *kobj,
  {
- 	struct xe_guc_pc *pc = arg;
- 	struct xe_device *xe = pc_to_xe(pc);
--	unsigned int fw_ref;
+ 	struct xe_device *xe = kobj_to_xe(kobj);
+ 	struct kobj_attribute *kattr;
+-	ssize_t ret = -EIO;
  
- 	if (xe_device_wedged(xe))
- 		return;
+ 	kattr = container_of(attr, struct kobj_attribute, attr);
+ 	if (kattr->store) {
+-		xe_pm_runtime_get(xe);
+-		ret = kattr->store(kobj, kattr, buf, count);
+-		xe_pm_runtime_put(xe);
++		guard(xe_pm_runtime)(xe);
++		return kattr->store(kobj, kattr, buf, count);
+ 	}
  
--	fw_ref = xe_force_wake_get(gt_to_fw(pc_to_gt(pc)), XE_FORCEWAKE_ALL);
-+	CLASS(xe_force_wake, fw_ref)(gt_to_fw(pc_to_gt(pc)), XE_FORCEWAKE_ALL);
- 	xe_guc_pc_gucrc_disable(pc);
- 	XE_WARN_ON(xe_guc_pc_stop(pc));
- 
- 	/* Bind requested freq to mert_freq_cap before unload */
- 	pc_set_cur_freq(pc, min(pc_max_freq_cap(pc), xe_guc_pc_get_rpe_freq(pc)));
--
--	xe_force_wake_put(gt_to_fw(pc_to_gt(pc)), fw_ref);
+-	return ret;
++	return -EIO;
  }
  
- /**
+ static const struct sysfs_ops xe_hw_engine_class_sysfs_ops = {
 -- 
 2.51.1
 
