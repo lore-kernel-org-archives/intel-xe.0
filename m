@@ -4,63 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 693C5CED603
-	for <intel-xe@archiver.kernel.org>; Tue, 18 Nov 2025 11:06:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EF522CED60F
+	for <intel-xe@archiver.kernel.org>; Tue, 18 Nov 2025 11:17:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 82DBA10E353;
-	Tue, 18 Nov 2025 11:06:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AD2BF10E481;
+	Tue, 18 Nov 2025 11:17:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="O8fj0FSX";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CKAheXcu";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 021A210E346;
- Tue, 18 Nov 2025 11:06:12 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 61E8510E481
+ for <intel-xe@lists.freedesktop.org>; Tue, 18 Nov 2025 11:17:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1763463973; x=1794999973;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=XUyPpZWQO/7hHOnEZDr1T6NuMTPjfTBry/dhI/ipHGw=;
- b=O8fj0FSXbMxNcAZ8Cvi8Vh0Dy1vN6MLeW3tNWEKglVfGjwh9kJBu7slC
- 9STxll8wwZ5MYlpbViVZKkWyVIOsYGhKfAHtFBQCzYAzlQymQMlgNBcs6
- Uxozq/qeOR3apvAtiFM+QqstaxuLiuWRK+jsme5Vn9T48ZkjLfQ3jkih6
- MziT/pYdBFMV4Qit+LTIOHj+MVwWme3Ui7JeeyiV4UqX6vkoDtNuqzmyj
- DFLMMhhOKzqLqJXgi2j6pWsRl4ytKtPsYaUqmygO2NIyYqw21MYQnIH+a
- CsbckKJ2oDk1AHOFNWsR9KvWbm7TZtxbGMrxTOmMP+S/XSUR3Pusx4UU9 A==;
-X-CSE-ConnectionGUID: 6uKFaPI5QWCNdo6nLdVO0w==
-X-CSE-MsgGUID: ia1Iy5QCQgqWuJz676XS3A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11616"; a="76585322"
-X-IronPort-AV: E=Sophos;i="6.19,314,1754982000"; d="scan'208";a="76585322"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Nov 2025 03:06:12 -0800
-X-CSE-ConnectionGUID: IEHaxSpnQwiBpVLSMx2jcw==
-X-CSE-MsgGUID: eMP72bHjRrardTeBuMC4eg==
+ t=1763464632; x=1795000632;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=7KJlS6rSmGjUblJiNObwNrbdSfEgMPu7tqScAm1dFAc=;
+ b=CKAheXcucdq1CxUdHQDaxP1LENKeIsiY2OgVyrhWpONm7lKR7jjwh5bR
+ 1VBkoeLOu8jWFHJzY2fFVkNGdEkNf+Xvt40CC9x2YMGn5TlPzv5W1WNfg
+ X2gzQ8VeuloLCmJDNKI/0EJyZxUGjoN8YzB4z2f7q6/nYpXQB3ElpV8cE
+ EIwTtxDwLRMPBtJ0kHSga+Xdrp94DKxz4mG4ZDuQvTX+SrcYH6tYaembE
+ 2ebfsqYeaAFCBBP0XbDKJQPFt/oYpZrqY2k8IAIQ1JdSwzIWdfSOYGstT
+ Cgl5Lr5ps4Q1sCmhmZlgrwYF02/O6rRbXn/qpi5seeqh3R5GDx0fjGHy1 g==;
+X-CSE-ConnectionGUID: WF+pLyqsQYeLaeGX6CPWWg==
+X-CSE-MsgGUID: NvU6SgRtTDCzCONjgA6Weg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11616"; a="76084074"
+X-IronPort-AV: E=Sophos;i="6.19,314,1754982000"; d="scan'208";a="76084074"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Nov 2025 03:15:02 -0800
+X-CSE-ConnectionGUID: yxCyGmgBRGGu5XLF4nwL+A==
+X-CSE-MsgGUID: OOkQ58QUTb2kdsFg6K4Wvg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,314,1754982000"; d="scan'208";a="191503038"
-Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
- ([10.245.246.125])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Nov 2025 03:06:09 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: "Manna, Animesh" <animesh.manna@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
-Cc: "Kandpal, Suraj" <suraj.kandpal@intel.com>, "Hogander, Jouni"
- <jouni.hogander@intel.com>
-Subject: RE: [PATCH v4 02/10] drm/i915/alpm: alpm_init() for DP2.1
-In-Reply-To: <DS0PR11MB80498D83C22B8B0F77FD1411F9D6A@DS0PR11MB8049.namprd11.prod.outlook.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20251113120119.1437955-1-animesh.manna@intel.com>
- <20251113120119.1437955-3-animesh.manna@intel.com>
- <4577de7373cb6bf2954d8d599168f408c87730c7@intel.com>
- <DS0PR11MB80498D83C22B8B0F77FD1411F9D6A@DS0PR11MB8049.namprd11.prod.outlook.com>
-Date: Tue, 18 Nov 2025 13:06:06 +0200
-Message-ID: <f34b3346ed026210c40e30cebd4d3a3209bb3d77@intel.com>
+X-IronPort-AV: E=Sophos;i="6.19,314,1754982000"; d="scan'208";a="214122734"
+Received: from yadavs-z690i-a-ultra-plus.iind.intel.com ([10.190.216.90])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Nov 2025 03:15:00 -0800
+From: Sanjay Yadav <sanjay.kumar.yadav@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: matthew.auld@intel.com,
+ =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
+Subject: [PATCH v5] drm/xe/uapi: Add NO_COMPRESSION BO flag and query
+ capability
+Date: Tue, 18 Nov 2025 16:43:43 +0530
+Message-ID: <20251118111342.3366359-2-sanjay.kumar.yadav@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,198 +67,181 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 18 Nov 2025, "Manna, Animesh" <animesh.manna@intel.com> wrote:
->> -----Original Message-----
->> From: Nikula, Jani <jani.nikula@intel.com>
->> Sent: Monday, November 17, 2025 8:59 PM
->> To: Manna, Animesh <animesh.manna@intel.com>; intel-
->> gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org; dri-
->> devel@lists.freedesktop.org
->> Cc: Kandpal, Suraj <suraj.kandpal@intel.com>; Manna, Animesh
->> <animesh.manna@intel.com>; Hogander, Jouni
->> <jouni.hogander@intel.com>
->> Subject: Re: [PATCH v4 02/10] drm/i915/alpm: alpm_init() for DP2.1
->>=20
->> On Thu, 13 Nov 2025, Animesh Manna <animesh.manna@intel.com> wrote:
->> > Initialize ALPM for DP2.1 and separate out ALPM mutex-init from
->> > alpm-init.
->>=20
->> I thought I said you're going to need multiple init functions. Don't mov=
-e the
->> alpm mutex init away from alpm code. It needs to stay in alpm code.
->
-> Only for mutex-init do you want me to add a separate function?
+Introduce DRM_XE_GEM_CREATE_FLAG_NO_COMPRESSION to let userspace
+opt out of CCS compression on a per-BO basis. When set, the driver
+maps this to XE_BO_FLAG_NO_COMPRESSION, skips CCS metadata
+allocation/clearing, and rejects compressed PAT indices at vm_bind.
+This avoids extra memory ops and manual CCS state handling for buffers.
 
-Yes, I absolutely do.
+To allow userspace to detect at runtime whether the kernel supports this
+feature, add DRM_XE_QUERY_CONFIG_FLAG_HAS_NO_COMPRESSION_HINT and expose
+it via query_config() on Xe2+ platforms.
 
-It's not about how small or big something is, it's about the
-organization of the code. All things alpm should be in
-intel_alpm.[ch]. We also have alpm sub-struct in struct intel_dp; as a
-rule of thumb only intel_alpm.[ch] should touch stuff in that
-sub-struct.
+Mesa PR: https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/38425
+IGT PR: https://patchwork.freedesktop.org/patch/685180/
 
-This also sets the example of what to do next, and where to add stuff
-next. If you have the mutex init in intel_dp.c, if more init is needed
-later, it'll also get added in intel_dp.c, intead of intel_alpm.c where
-it belongs.
+v2
+- Changed error code from -EINVAL to -EOPNOTSUPP for unsupported flag
+  usage on pre-Xe2 platforms
+- Fixed checkpatch warning in xe_vm.c
+- Fixed kernel-doc formatting in xe_drm.h
 
->> And now the whole patch and subject and commit message talk of
->> completely different things.
->
-> Earlier alpm is initialized for EDP only, now its extended for DP2.1 in t=
-his patch.
-> Earlier mutex init is part of alpm-init. Now after feedback I also felt i=
-t can be separate out because reading dpcd always not possible if the displ=
-ay is disconnected for dp-connector but mutex-init can be done.
-> So mentioned as separate out ALPM mutex-init from alpm-init().
->
->>=20
->> Please read the review comments, and ask questions if they comments are
->> not clear.
->
-> Currently I am little confused, need change in code or commit description=
-. From here onwards if you can point out some specific change will modify a=
-ccordingly in next version.
+v3
+- Rebase
+- Updated commit title and description
+- Added UAPI for DRM_XE_QUERY_CONFIG_FLAG_HAS_NO_COMPRESSION_HINT and
+  exposed it via query_config()
 
-As the first thing, I think you should add a function such as
-intel_alpm_init_dpcd(), and move the DPCD parts of intel_alpm_init()
-there. The mutex init should remain in
-intel_alpm_init(). intel_alpm_init_dpcd() should be called from
-intel_edp_init_dpcd().
+v4
+- Rebase
 
-That's it, that's the first thing. Don't add anything more. The commit
-message should of course describe those changes. It should be all
-non-functional, no addition of new platform checks or anything.
+v5
+- Included Mesa PR and IGT PR in the commit description
+- Used xe_pat_index_get_comp_en() to extract the compression
 
-The next part would be moving intel_alpm_init() to be done for all DP,
-not just eDP, and calling intel_alpm_init_dpcd() also from
-intel_dp_detect_dpcd(), where supported.
+Suggested-by: Matthew Auld <matthew.auld@intel.com>
+Suggested-by: José Roberto de Souza <jose.souza@intel.com>
+Acked-by: José Roberto de Souza <jose.souza@intel.com>
+Signed-off-by: Sanjay Yadav <sanjay.kumar.yadav@intel.com>
+---
+ drivers/gpu/drm/xe/xe_bo.c    | 15 +++++++++++++--
+ drivers/gpu/drm/xe/xe_bo.h    |  1 +
+ drivers/gpu/drm/xe/xe_query.c |  3 +++
+ drivers/gpu/drm/xe/xe_vm.c    |  5 +++++
+ include/uapi/drm/xe_drm.h     | 16 ++++++++++++++++
+ 5 files changed, 38 insertions(+), 2 deletions(-)
 
-Small incremental things, one thing at a time.
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index b0bd31d14bb9..c969c2bc4249 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -3183,7 +3183,8 @@ int xe_gem_create_ioctl(struct drm_device *dev, void *data,
+ 	if (XE_IOCTL_DBG(xe, args->flags &
+ 			 ~(DRM_XE_GEM_CREATE_FLAG_DEFER_BACKING |
+ 			   DRM_XE_GEM_CREATE_FLAG_SCANOUT |
+-			   DRM_XE_GEM_CREATE_FLAG_NEEDS_VISIBLE_VRAM)))
++			   DRM_XE_GEM_CREATE_FLAG_NEEDS_VISIBLE_VRAM |
++			   DRM_XE_GEM_CREATE_FLAG_NO_COMPRESSION)))
+ 		return -EINVAL;
+ 
+ 	if (XE_IOCTL_DBG(xe, args->handle))
+@@ -3205,6 +3206,12 @@ int xe_gem_create_ioctl(struct drm_device *dev, void *data,
+ 	if (args->flags & DRM_XE_GEM_CREATE_FLAG_SCANOUT)
+ 		bo_flags |= XE_BO_FLAG_SCANOUT;
+ 
++	if (args->flags & DRM_XE_GEM_CREATE_FLAG_NO_COMPRESSION) {
++		if (GRAPHICS_VER(xe) < 20)
++			return -EOPNOTSUPP;
++		bo_flags |= XE_BO_FLAG_NO_COMPRESSION;
++	}
++
+ 	bo_flags |= args->placement << (ffs(XE_BO_FLAG_SYSTEM) - 1);
+ 
+ 	/* CCS formats need physical placement at a 64K alignment in VRAM. */
+@@ -3526,8 +3533,12 @@ bool xe_bo_needs_ccs_pages(struct xe_bo *bo)
+ 	 * Compression implies coh_none, therefore we know for sure that WB
+ 	 * memory can't currently use compression, which is likely one of the
+ 	 * common cases.
++	 * Additionally, userspace may explicitly request no compression via the
++	 * DRM_XE_GEM_CREATE_FLAG_NO_COMPRESSION flag, which should also disable
++	 * CCS usage.
+ 	 */
+-	if (bo->cpu_caching == DRM_XE_GEM_CPU_CACHING_WB)
++	if (bo->cpu_caching == DRM_XE_GEM_CPU_CACHING_WB ||
++	    bo->flags & XE_BO_FLAG_NO_COMPRESSION)
+ 		return false;
+ 
+ 	return true;
+diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
+index 911d5b90461a..8ab4474129c3 100644
+--- a/drivers/gpu/drm/xe/xe_bo.h
++++ b/drivers/gpu/drm/xe/xe_bo.h
+@@ -50,6 +50,7 @@
+ #define XE_BO_FLAG_GGTT3		BIT(23)
+ #define XE_BO_FLAG_CPU_ADDR_MIRROR	BIT(24)
+ #define XE_BO_FLAG_FORCE_USER_VRAM	BIT(25)
++#define XE_BO_FLAG_NO_COMPRESSION	BIT(26)
+ 
+ /* this one is trigger internally only */
+ #define XE_BO_FLAG_INTERNAL_TEST	BIT(30)
+diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
+index 1c0915e2cc16..b392c9b3f0c9 100644
+--- a/drivers/gpu/drm/xe/xe_query.c
++++ b/drivers/gpu/drm/xe/xe_query.c
+@@ -342,6 +342,9 @@ static int query_config(struct xe_device *xe, struct drm_xe_device_query *query)
+ 	if (xe->info.has_usm && IS_ENABLED(CONFIG_DRM_XE_GPUSVM))
+ 		config->info[DRM_XE_QUERY_CONFIG_FLAGS] |=
+ 			DRM_XE_QUERY_CONFIG_FLAG_HAS_CPU_ADDR_MIRROR;
++	if (GRAPHICS_VER(xe) >= 20)
++		config->info[DRM_XE_QUERY_CONFIG_FLAGS] |=
++			DRM_XE_QUERY_CONFIG_FLAG_HAS_NO_COMPRESSION_HINT;
+ 	config->info[DRM_XE_QUERY_CONFIG_FLAGS] |=
+ 			DRM_XE_QUERY_CONFIG_FLAG_HAS_LOW_LATENCY;
+ 	config->info[DRM_XE_QUERY_CONFIG_MIN_ALIGNMENT] =
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 7cac646bdf1c..0cf5f538a4aa 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -3484,6 +3484,11 @@ static int xe_vm_bind_ioctl_validate_bo(struct xe_device *xe, struct xe_bo *bo,
+ {
+ 	u16 coh_mode;
+ 
++	/* Reject compressed PAT index for BO with NO_COMPRESSION flag */
++	if ((bo->flags & XE_BO_FLAG_NO_COMPRESSION) &&
++	    xe_pat_index_get_comp_en(xe, pat_index))
++		return -EINVAL;
++
+ 	if (XE_IOCTL_DBG(xe, range > xe_bo_size(bo)) ||
+ 	    XE_IOCTL_DBG(xe, obj_offset >
+ 			 xe_bo_size(bo) - range)) {
+diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+index 47853659a705..b9840cb77360 100644
+--- a/include/uapi/drm/xe_drm.h
++++ b/include/uapi/drm/xe_drm.h
+@@ -403,6 +403,9 @@ struct drm_xe_query_mem_regions {
+  *      has low latency hint support
+  *    - %DRM_XE_QUERY_CONFIG_FLAG_HAS_CPU_ADDR_MIRROR - Flag is set if the
+  *      device has CPU address mirroring support
++ *    - %DRM_XE_QUERY_CONFIG_FLAG_HAS_NO_COMPRESSION_HINT - Flag is set if the
++ *      device supports the userspace hint %DRM_XE_GEM_CREATE_FLAG_NO_COMPRESSION.
++ *      This is exposed only on Xe2+.
+  *  - %DRM_XE_QUERY_CONFIG_MIN_ALIGNMENT - Minimal memory alignment
+  *    required by this device, typically SZ_4K or SZ_64K
+  *  - %DRM_XE_QUERY_CONFIG_VA_BITS - Maximum bits of a virtual address
+@@ -421,6 +424,7 @@ struct drm_xe_query_config {
+ 	#define DRM_XE_QUERY_CONFIG_FLAG_HAS_VRAM	(1 << 0)
+ 	#define DRM_XE_QUERY_CONFIG_FLAG_HAS_LOW_LATENCY	(1 << 1)
+ 	#define DRM_XE_QUERY_CONFIG_FLAG_HAS_CPU_ADDR_MIRROR	(1 << 2)
++	#define DRM_XE_QUERY_CONFIG_FLAG_HAS_NO_COMPRESSION_HINT (1 << 3)
+ #define DRM_XE_QUERY_CONFIG_MIN_ALIGNMENT		2
+ #define DRM_XE_QUERY_CONFIG_VA_BITS			3
+ #define DRM_XE_QUERY_CONFIG_MAX_EXEC_QUEUE_PRIORITY	4
+@@ -791,6 +795,17 @@ struct drm_xe_device_query {
+  *    need to use VRAM for display surfaces, therefore the kernel requires
+  *    setting this flag for such objects, otherwise an error is thrown on
+  *    small-bar systems.
++ *  - %DRM_XE_GEM_CREATE_FLAG_NO_COMPRESSION - Allows userspace to
++ *    hint that compression (CCS) should be disabled for the buffer being
++ *    created. This can avoid unnecessary memory operations and CCS state
++ *    management.
++ *    On pre-Xe2 platforms, this flag is currently rejected as compression
++ *    control is not supported via PAT index. On Xe2+ platforms, compression
++ *    is controlled via PAT entries. If this flag is set, the driver will reject
++ *    any VM bind that requests a PAT index enabling compression for this BO.
++ *    Note: On dGPU platforms, there is currently no change in behavior with
++ *    this flag, but future improvements may leverage it. The current benefit is
++ *    primarily applicable to iGPU platforms.
+  *
+  * @cpu_caching supports the following values:
+  *  - %DRM_XE_GEM_CPU_CACHING_WB - Allocate the pages with write-back
+@@ -837,6 +852,7 @@ struct drm_xe_gem_create {
+ #define DRM_XE_GEM_CREATE_FLAG_DEFER_BACKING		(1 << 0)
+ #define DRM_XE_GEM_CREATE_FLAG_SCANOUT			(1 << 1)
+ #define DRM_XE_GEM_CREATE_FLAG_NEEDS_VISIBLE_VRAM	(1 << 2)
++#define DRM_XE_GEM_CREATE_FLAG_NO_COMPRESSION		(1 << 3)
+ 	/**
+ 	 * @flags: Flags, currently a mask of memory instances of where BO can
+ 	 * be placed
+-- 
+2.43.0
 
-BR,
-Jani.
-
-
-
-
-
->
-> Regards,
-> Animesh=20
->
->>=20
->> BR,
->> Jani.
->>=20
->>=20
->> >
->> > v2: Separate out mutex-init. [Jani]
->> > v3: Refactor further to avoid DISPLAY_VER check in multiple places.
->> > [Jani]
->> > V4: Cosmetic changes. [Suraj]
->> >
->> > Cc: Jouni H=C3=B6gander <jouni.hogander@intel.com>
->> > Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
->> > Signed-off-by: Animesh Manna <animesh.manna@intel.com>
->> > ---
->> >  drivers/gpu/drm/i915/display/intel_alpm.c | 16 ++++++++++++++--
->> > drivers/gpu/drm/i915/display/intel_alpm.h |  3 ++-
->> >  drivers/gpu/drm/i915/display/intel_dp.c   |  8 +++++++-
->> >  3 files changed, 23 insertions(+), 4 deletions(-)
->> >
->> > diff --git a/drivers/gpu/drm/i915/display/intel_alpm.c
->> > b/drivers/gpu/drm/i915/display/intel_alpm.c
->> > index 6372f533f65b..14acd6717e59 100644
->> > --- a/drivers/gpu/drm/i915/display/intel_alpm.c
->> > +++ b/drivers/gpu/drm/i915/display/intel_alpm.c
->> > @@ -41,7 +41,20 @@ bool intel_alpm_is_alpm_aux_less(struct intel_dp
->> *intel_dp,
->> >  		(crtc_state->has_lobf &&
->> > intel_alpm_aux_less_wake_supported(intel_dp));
->> >  }
->> >
->> > -void intel_alpm_init(struct intel_dp *intel_dp)
->> > +bool intel_alpm_source_supported(struct intel_connector *connector) {
->> > +	struct intel_display *display =3D to_intel_display(connector);
->> > +
->> > +	if (!((connector->base.connector_type =3D=3D
->> DRM_MODE_CONNECTOR_DisplayPort &&
->> > +	       DISPLAY_VER(display) >=3D 35) ||
->> > +	    (connector->base.connector_type =3D=3D
->> DRM_MODE_CONNECTOR_eDP &&
->> > +	     DISPLAY_VER(display) >=3D 20)))
->> > +		return false;
->> > +
->> > +	return true;
->> > +}
->> > +
->> > +void intel_alpm_get_sink_capability(struct intel_dp *intel_dp)
->> >  {
->> >  	u8 dpcd;
->> >
->> > @@ -49,7 +62,6 @@ void intel_alpm_init(struct intel_dp *intel_dp)
->> >  		return;
->> >
->> >  	intel_dp->alpm_dpcd =3D dpcd;
->> > -	mutex_init(&intel_dp->alpm.lock);
->> >  }
->> >
->> >  static int get_silence_period_symbols(const struct intel_crtc_state
->> > *crtc_state) diff --git a/drivers/gpu/drm/i915/display/intel_alpm.h
->> > b/drivers/gpu/drm/i915/display/intel_alpm.h
->> > index 53599b464dea..bcc354a46a1d 100644
->> > --- a/drivers/gpu/drm/i915/display/intel_alpm.h
->> > +++ b/drivers/gpu/drm/i915/display/intel_alpm.h
->> > @@ -15,7 +15,8 @@ struct intel_connector;  struct intel_atomic_state;
->> > struct intel_crtc;
->> >
->> > -void intel_alpm_init(struct intel_dp *intel_dp);
->> > +bool intel_alpm_source_supported(struct intel_connector *connector);
->> > +void intel_alpm_get_sink_capability(struct intel_dp *intel_dp);
->> >  bool intel_alpm_compute_params(struct intel_dp *intel_dp,
->> >  			       struct intel_crtc_state *crtc_state);  void
->> > intel_alpm_lobf_compute_config(struct intel_dp *intel_dp, diff --git
->> > a/drivers/gpu/drm/i915/display/intel_dp.c
->> > b/drivers/gpu/drm/i915/display/intel_dp.c
->> > index 0ec82fcbcf48..81dd5bf7e3c5 100644
->> > --- a/drivers/gpu/drm/i915/display/intel_dp.c
->> > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
->> > @@ -6074,6 +6074,9 @@ intel_dp_detect(struct drm_connector
->> *_connector,
->> >  	if (ret =3D=3D 1)
->> >  		connector->base.epoch_counter++;
->> >
->> > +	if (intel_alpm_source_supported(connector))
->> > +		intel_alpm_get_sink_capability(intel_dp);
->> > +
->> >  	if (!intel_dp_is_edp(intel_dp))
->> >  		intel_psr_init_dpcd(intel_dp);
->> >
->> > @@ -6716,7 +6719,7 @@ static bool intel_edp_init_connector(struct
->> intel_dp *intel_dp,
->> >  	 */
->> >  	intel_hpd_enable_detection(encoder);
->> >
->> > -	intel_alpm_init(intel_dp);
->> > +	intel_alpm_get_sink_capability(intel_dp);
->> >
->> >  	/* Cache DPCD and EDID for edp. */
->> >  	has_dpcd =3D intel_edp_init_dpcd(intel_dp, connector); @@ -6932,6
->> > +6935,9 @@ intel_dp_init_connector(struct intel_digital_port
->> > *dig_port,
->> >
->> >  	intel_psr_init(intel_dp);
->> >
->> > +	if (intel_alpm_source_supported(connector))
->> > +		mutex_init(&intel_dp->alpm.lock);
->> > +
->> >  	return true;
->> >
->> >  fail:
->>=20
->> --
->> Jani Nikula, Intel
-
---=20
-Jani Nikula, Intel
