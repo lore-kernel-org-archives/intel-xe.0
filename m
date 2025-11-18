@@ -4,45 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D89EFCCD19A
-	for <intel-xe@archiver.kernel.org>; Tue, 18 Nov 2025 06:23:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C04AFCEBF97
+	for <intel-xe@archiver.kernel.org>; Tue, 18 Nov 2025 06:27:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9D78610E413;
-	Tue, 18 Nov 2025 06:23:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 45C1D10E414;
+	Tue, 18 Nov 2025 06:27:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gvHWM6gw";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XoZnOQzD";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DCCD110E412;
- Tue, 18 Nov 2025 06:23:39 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 247FE10E413;
+ Tue, 18 Nov 2025 06:27:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1763447020; x=1794983020;
+ t=1763447274; x=1794983274;
  h=message-id:date:mime-version:subject:to:cc:references:
  from:in-reply-to:content-transfer-encoding;
- bh=o0Os0yCWoDXKZYizKvM7nchHjT3IMt9PymQ9wsTSCAU=;
- b=gvHWM6gwKcpCLofRSeY36K5v2j8cK7V8kQxHY42yQ0Pu4IXXeYHkiER5
- Zpl3ZSzrBsyAs/TZt7XCl2itggTFwcHEtcH157R6rw3g+1WSLKWAWaOJf
- GcKtl/QS0Eki1dAs16BiG8AMCN/Vwk5Q5QnOSN5dzf55eHCAga/E/Vi+T
- jI8++r/XwvBSjhCSdp7JrhNtHj+Hv0KQRzlHqNAQshBpGNPOaznhzcosU
- jYcF7K9cHA2vRFaTdKSCCk0+hy26fp/KtX8mxbwuvz3/1BUi6s0TKUm9e
- rZ4yz4PSaJJXFtdjEBWzXKQQaF7acqZn53PYuloqk5vtXIUr3BiOsLE5o g==;
-X-CSE-ConnectionGUID: 84DMKkB/RnOY5InF8/hrmQ==
-X-CSE-MsgGUID: CSUoL7q5SpKULmebfAB/yw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11616"; a="76811708"
-X-IronPort-AV: E=Sophos;i="6.19,314,1754982000"; d="scan'208";a="76811708"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Nov 2025 22:23:39 -0800
-X-CSE-ConnectionGUID: yS5W5kFpQVySZliJZaBRyw==
-X-CSE-MsgGUID: WPRLsngoQ3Gsm6IB1j1V4w==
+ bh=qjBNPO7akwtbKWj3lWzGjKv3g/58FuL7oZxZeQoOHGI=;
+ b=XoZnOQzDoY8mfcL7xty96WNRraDZ8my/2nBr3zW0q3BFxofrxHKFd51c
+ udNt+1SmsjddN2zqURa2U0C/NE8LN0qf9AUb8PQtXcnhDbKk7s8Fogqau
+ ohhGF7b4nxKTxG+zhT88F/kNwFbzDwgluWnknzS3StNqUvPjQFZCIzq67
+ PjwQsX8cDFNIif1rqqYsvb/u2xtLK1TkGWPhbKXTafMQ8s4+w/f8m1j1A
+ CuMhjwyA3RR0cxszmBRaOYOqoKgnwdhgEjgtcYS7GIfbPh7h/E5Wnwq6W
+ 1CHlmTb0JtNMzy4VnAkx3TN2u1WOuK/afd8Bj3ToLqX+gp/jVO+kvlwIu g==;
+X-CSE-ConnectionGUID: sdNzcDQkTnCtB8Vrg8gtsQ==
+X-CSE-MsgGUID: znfhniktTLOmgHM9ha/BZQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11616"; a="64460977"
+X-IronPort-AV: E=Sophos;i="6.19,314,1754982000"; d="scan'208";a="64460977"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Nov 2025 22:27:54 -0800
+X-CSE-ConnectionGUID: 5J5NUgveTGupXBGK3jEYeQ==
+X-CSE-MsgGUID: n+vYmvMKSTqJ9vm45RIe4g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,314,1754982000"; d="scan'208";a="214064899"
+X-IronPort-AV: E=Sophos;i="6.19,314,1754982000"; d="scan'208";a="190331718"
 Received: from allen-sbox.sh.intel.com (HELO [10.239.159.30]) ([10.239.159.30])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Nov 2025 22:23:37 -0800
-Message-ID: <bf5de414-ef1a-42bb-8d20-c14d8d1dc037@linux.intel.com>
-Date: Tue, 18 Nov 2025 14:19:24 +0800
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Nov 2025 22:27:52 -0800
+Message-ID: <5ec170fa-d5e1-473d-a7b8-8d1737efb241@linux.intel.com>
+Date: Tue, 18 Nov 2025 14:23:38 +0800
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: REGRESSION on linux-next (next-20251106)
@@ -78,19 +78,19 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 On 11/18/25 12:04, Tian, Kevin wrote:
->> I'm still interested to know if there is an iommu error that is
->> somehow not getting into the log?
-> Just re-checked the code:
-> 
-> dmar_fault() -> dmar_fault_do_one() -> dmar_fault_dump_ptes():
-> 
->          pr_info("Dump %s table entries for IOVA 0x%llx\n", iommu->name, addr);
-> 
-> before reaching that point, there are several early exits:
-> 
-> - advanced fault log, which I don't think will happen (Baolu?)
+>> 46 bits is not particularly big... Hmm, I wonder if we have some issue
+>> with the sign-extend? iommupt does that properly and IIRC the old code
+>> did not. Which of the page table formats is this using second stage or
+>> first stage?
+> Assume it's first stage for kernel IOVA, if available in hw
 
-Advanced fault log is not used in the VT-d driver.
+It's the first stage (x86_64 fmt) according to the PASID entry setup:
+
+IOMMU dmar0: Root Table Address: 0x105a82000
+B.D.F	Root_entry				Context_entry				PASID	PASID_table_entry
+00:02.0	0x0000000000000000:0x0000000105a85001 
+0x0000000000000000:0x0000000105a84405	0 
+0x0000000105a86000:0x0000000000000002:0x0000000000000049
 
 Thanks,
 baolu
