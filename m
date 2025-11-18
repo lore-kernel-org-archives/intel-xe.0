@@ -4,50 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F32AECEE33B
-	for <intel-xe@archiver.kernel.org>; Tue, 18 Nov 2025 16:43:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E8EC5CEDDA4
+	for <intel-xe@archiver.kernel.org>; Tue, 18 Nov 2025 16:43:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B1FF510E4F7;
-	Tue, 18 Nov 2025 16:43:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AF71010E4F6;
+	Tue, 18 Nov 2025 16:43:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fbUVFJqp";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IaJy6ki5";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E2B7F10E4F6
- for <intel-xe@lists.freedesktop.org>; Tue, 18 Nov 2025 16:43:48 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CFCA710E4F6
+ for <intel-xe@lists.freedesktop.org>; Tue, 18 Nov 2025 16:43:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1763484229; x=1795020229;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=tL3cEduVZi8kEUBshd47Cb3wIaYanrRjdX9EY/UBzDk=;
- b=fbUVFJqpgD3uoaUEK26SvVz8f4ApbXxaTa1a5Q7WmsHXVt89j2PXhknW
- wl3JCPSwY4rcDMpYYZfYlX6L2m4DIXNhZ43+3pfyVuxgBerv7F+bVCryA
- IhEcEA7YV9DLKyRsWsi8poyPMRzXFtPskUAM/TPd6j/zg9/So3rwM7X1J
- Sa4RUcEVZo1JLN7QmLDdWOYzZtVRIYoK8+5blqMDOXMk/qA0wxxtyIhzJ
- XvmlGWBtGAOYvXyO2WQElRtJWHiyF5C/6QmgRem73Oup7mD+6jJxHP6dA
- 51CoPxbga36km8YQUXKSAkFAB85MnqqWWmf27/LGeB38ulGM892sNlAIT w==;
-X-CSE-ConnectionGUID: EgDxvtpAT2erq2vZeaX6sg==
-X-CSE-MsgGUID: 4csjfuxATV2yc0zVJON9JQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11617"; a="65544754"
-X-IronPort-AV: E=Sophos;i="6.19,314,1754982000"; d="scan'208";a="65544754"
+ t=1763484230; x=1795020230;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=ZS8pMBOMFV9A9FuBLlE6+0OaavQTI+8QqRU08s9709c=;
+ b=IaJy6ki5701lcbh5F/bq+b9ei2JalljvfiJ3pKyJdlGErJ5M32NvuU3N
+ szt/RGn3elWr7S4rSHuj3OoQ4J3vncfQCs3SYakohaEkDvE5E6AxfCehC
+ nsVMzWvv9zBx4krjoNxsJtE3VQTjCcU9E71Mtry+wS5fw8Ucz7FOOuQXg
+ itkfyf4Xy3enbn7h0p6IpQSIwfma+HNQ9AU9hpaqZYL0y2zS81Wb0ujIM
+ ZloCjB635FkOSRyVscCV1jFCQD1JLTJ35ZE7u7SQJmT2pVevb6331774l
+ LH++yw84PrHgpHj0+v3VRKjNYPA8SXmNBPOQXkq2rfSCwysndUtxNEm66 w==;
+X-CSE-ConnectionGUID: JuJ3bFLtSMegqhsYITf1JA==
+X-CSE-MsgGUID: 6EELhsOPTJKrVDXKIEMPFw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11617"; a="65544765"
+X-IronPort-AV: E=Sophos;i="6.19,314,1754982000"; d="scan'208";a="65544765"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Nov 2025 08:43:49 -0800
-X-CSE-ConnectionGUID: aQcvjagiTJ+M8XnOo0sHZQ==
-X-CSE-MsgGUID: gI9X4aqXSfStFXj5KvlY4g==
+ 18 Nov 2025 08:43:50 -0800
+X-CSE-ConnectionGUID: XbF5boBdT4+8C5qphGPGWg==
+X-CSE-MsgGUID: RGPnlkiFSc6Ld2Hn+mhH2g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,314,1754982000"; d="scan'208";a="190952189"
+X-IronPort-AV: E=Sophos;i="6.19,314,1754982000"; d="scan'208";a="190952215"
 Received: from mdroper-desk1.fm.intel.com ([10.1.39.133])
  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Nov 2025 08:43:49 -0800
+ 18 Nov 2025 08:43:50 -0800
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.d.roper@intel.com
-Subject: [CI 00/27] Scope-based forcewake and runtime PM
-Date: Tue, 18 Nov 2025 08:43:39 -0800
-Message-ID: <20251118164338.3572146-29-matthew.d.roper@intel.com>
+Subject: [CI 07/27] drm/xe/mocs: Use scope-based cleanup
+Date: Tue, 18 Nov 2025 08:43:46 -0800
+Message-ID: <20251118164338.3572146-36-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.51.1
+In-Reply-To: <20251118164338.3572146-29-matthew.d.roper@intel.com>
+References: <20251118164338.3572146-29-matthew.d.roper@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -64,194 +66,111 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Forcewake and runtime PM both follow reference-counted get/put models;
-when used in functions that can encounter errors and return early, it's
-easy for developers to make mistakes and fail to drop a reference on all
-of the error paths.  Cleanup of these reference counts is often
-addressed by goto-based error handling which is somewhat ugly and
-subject to its own set of mistakes once we accumulate too many error
-labels in a function.
+Using scope-based cleanup for runtime PM and forcewake in the MOCS code
+allows us to eliminate some goto-based error handling and simplify some
+other functions.
 
-Scope-based cleanup ([1][2]) has been gaining increasing popularity in
-the Linux kernel for cleaning up various kinds of resources in a more
-automated way when code has lots of error paths and early exits.  Let's
-add scope-based cleanup for both forcewake and runtime PM, based on the
-mechanisms provided in include/linux/cleanup.h.  Scope-based cleanup
-allows cleanup destructors to be executed automatically when the current
-scope is exited by any means (end of block, return, break, etc.).
+Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
+Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+---
+ drivers/gpu/drm/xe/tests/xe_mocs.c | 17 ++++++-----------
+ drivers/gpu/drm/xe/xe_mocs.c       | 18 ++++++------------
+ 2 files changed, 12 insertions(+), 23 deletions(-)
 
-For xe_runtime_pm_{get,put} pairs that were grabbed and released within
-a single function or block, the preferred replacement is now just
-
-        guard(xe_pm_runtime_noresume)(xe);
-
-which will take care of releasing the runtime PM reference
-automatically.  scoped_guard() can be used instead if the reference
-should only be held over part of the block.  There are also guard
-variants added for xe_pm_runtime_noresume and xe_pm_runtime_ioctl that
-allow replacement of those alternate functions as well.
-
-Unlike runtime PM, where all reference tracking is done within the
-object parameter itself, forcewake is currently a model where get
-operations return a cookie that needs to be passed back to put
-operations.  That necessitates a slightly different type of cleanup
-helper (CLASS instead of guard), although the underlying mechanisms are
-the same.  For forcewake that is grabbed and released within a single
-function or block, the preferred form is now:
-
-        CLASS(xe_force_wake, fw_ref)(gt_to_fw(gt), XE_FW_GT);
-
-which, like the runtime PM equivalent, will cause the forcewake
-reference to be dropped automatically.  If forcewake needs to be held
-over only a subset of the current block,
-
-        xe_with_force_wake(fw_ref, gt_to_fw(gt), XE_FW_GT) { ... }
-
-can be used in the same way scoped_guard() is used for runtime PM.
-
-The first few patches in this series make some general cleanups and
-restructuring of the existing force wake code.  Then the new guards and
-classes for runtime PM and forcewake are defined.  Finally, most of the
-existing runtime PM and forcewake usage in the driver is converted to
-the scope-based form in the remainder of the series.  Some of the
-conversions eliminate goto-based cleanup models and/or significantly
-simplify the code.  Other conversions don't significantly simplify the
-code (aside from a slight reduction in line count), but are still useful
-for consistency across our codebase.
-
-An advantage of doing the conversion everywhere possible, not just the
-places where it noticeably simplifies the code, is that it helps
-highlight the remaining get/put usage as special cases where wake
-references follow more complicated lifetimes (e.g., obtained in one
-function and released in a different one, often tied to some other type
-of resource or operation).  With fewer direct get/put calls overall, its
-easier to identify the ones that remain as special cases and make sure
-they truly are paired up properly.
-
-There's other areas where scope-based cleanup could potentially be
-applied in the future (e.g., mutex locks, bo locking, etc.), but this
-series does not try to address those, even in places where those
-resources are also part of the same error handling cleanup paths as
-forcewake and runtime PM.  We can potentially think about converting
-other types of resources to scope-based cleanup down the road if it
-winds up working well here for forcewake and PM.
-
-v2:
- - Add a proper success condition to the xe_pm_runtime_ioctl class so
-   that conditional guards properly distinguish success (requiring
-   cleanup) from errors (no cleanup).  (CI)
- - Don't bother changing the signature of xe_force_wake_get() before
-   adding the forcewake class.  Simply create a separate constructor
-   that wraps xe_force_wake_get().  (Michal)
- - Split ACQUIRE_ERR assignments from the condition checks.  Even though
-   this takes an extra line of code and deviates from most of the other
-   uses in the kernel, it's easier to read (and avoids checkpatch
-   warnings).
-
-v3:
- - Wrap xe_with_force_wake's 'done' marker in __UNIQUE_ID. (Gustavo)
- - Add a general xe_force_wake_release_only class which eliminates the
-   need for the one-off xe_force_wake_any_engine class later in the
-   series.  (Gustavo)
- - Drop scope-based usage from gt_reset_worker() since goto-based flows
-   are still used there.  (Gustavo)
- - Add kerneldoc to existing _get functions explaining that scope-based
-   options should be preferred when possible.  (Gustavo)
- - Eliminate several 'ret' local variables that become unnecessary after
-   the scope-based conversion.  (Gustavo)
-
-v4:
- - Add NULL check on fw in release_only variant.  (Gustavo)
-
-References:
- [1] https://www.kernel.org/doc/html/next/core-api/cleanup.html
- [2] https://lwn.net/Articles/934679/
-
-
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Gustavo Sousa <gustavo.sousa@intel.com>
-
-Matt Roper (27):
-  drm/xe/forcewake: Add scope-based cleanup for forcewake
-  drm/xe/pm: Add scope-based cleanup helper for runtime PM
-  drm/xe/gt: Use scope-based cleanup
-  drm/xe/gt_idle: Use scope-based cleanup
-  drm/xe/guc: Use scope-based cleanup
-  drm/xe/guc_pc: Use scope-based cleanup
-  drm/xe/mocs: Use scope-based cleanup
-  drm/xe/pat: Use scope-based forcewake
-  drm/xe/pxp: Use scope-based cleanup
-  drm/xe/gsc: Use scope-based cleanup
-  drm/xe/device: Use scope-based cleanup
-  drm/xe/devcoredump: Use scope-based cleanup
-  drm/xe/display: Use scoped-cleanup
-  drm/xe: Return forcewake reference type from
-    force_wake_get_any_engine()
-  drm/xe/drm_client: Use scope-based cleanup
-  drm/xe/gt_debugfs: Use scope-based cleanup
-  drm/xe/huc: Use scope-based forcewake
-  drm/xe/query: Use scope-based forcewake
-  drm/xe/reg_sr: Use scope-based forcewake
-  drm/xe/vram: Use scope-based forcewake
-  drm/xe/bo: Use scope-based runtime PM
-  drm/xe/ggtt: Use scope-based runtime pm
-  drm/xe/hwmon: Use scope-based runtime PM
-  drm/xe/sriov: Use scope-based runtime PM
-  drm/xe/tests: Use scope-based runtime PM
-  drm/xe/sysfs: Use scope-based runtime power management
-  drm/xe/debugfs: Use scope-based runtime PM
-
- drivers/gpu/drm/xe/display/xe_fb_pin.c        |  23 ++--
- drivers/gpu/drm/xe/display/xe_hdcp_gsc.c      |  31 ++---
- drivers/gpu/drm/xe/tests/xe_bo.c              |  10 +-
- drivers/gpu/drm/xe/tests/xe_dma_buf.c         |   3 +-
- drivers/gpu/drm/xe/tests/xe_migrate.c         |  10 +-
- drivers/gpu/drm/xe/tests/xe_mocs.c            |  27 ++--
- drivers/gpu/drm/xe/xe_bo.c                    |   8 +-
- drivers/gpu/drm/xe/xe_debugfs.c               |  16 +--
- drivers/gpu/drm/xe/xe_devcoredump.c           |  30 ++--
- drivers/gpu/drm/xe/xe_device.c                |  33 ++---
- drivers/gpu/drm/xe/xe_device_sysfs.c          |  33 ++---
- drivers/gpu/drm/xe/xe_drm_client.c            |  69 +++++-----
- drivers/gpu/drm/xe/xe_force_wake.c            |   7 +
- drivers/gpu/drm/xe/xe_force_wake.h            |  40 ++++++
- drivers/gpu/drm/xe/xe_ggtt.c                  |   3 +-
- drivers/gpu/drm/xe/xe_gsc.c                   |  21 +--
- drivers/gpu/drm/xe/xe_gsc_debugfs.c           |   3 +-
- drivers/gpu/drm/xe/xe_gsc_proxy.c             |  17 +--
- drivers/gpu/drm/xe/xe_gt.c                    | 130 ++++++------------
- drivers/gpu/drm/xe/xe_gt_debugfs.c            |  29 ++--
- drivers/gpu/drm/xe/xe_gt_freq.c               |  27 ++--
- drivers/gpu/drm/xe/xe_gt_idle.c               |  41 ++----
- drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c   |  12 +-
- drivers/gpu/drm/xe/xe_gt_throttle.c           |   9 +-
- drivers/gpu/drm/xe/xe_guc.c                   |  13 +-
- drivers/gpu/drm/xe/xe_guc_debugfs.c           |   8 +-
- drivers/gpu/drm/xe/xe_guc_log.c               |  10 +-
- drivers/gpu/drm/xe/xe_guc_pc.c                |  62 +++------
- drivers/gpu/drm/xe/xe_guc_submit.c            |  11 +-
- drivers/gpu/drm/xe/xe_guc_tlb_inval.c         |   4 +-
- drivers/gpu/drm/xe/xe_huc.c                   |   7 +-
- drivers/gpu/drm/xe/xe_huc_debugfs.c           |   3 +-
- drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.c |  16 +--
- drivers/gpu/drm/xe/xe_hwmon.c                 |  52 ++-----
- drivers/gpu/drm/xe/xe_mocs.c                  |  18 +--
- drivers/gpu/drm/xe/xe_pat.c                   |  36 ++---
- drivers/gpu/drm/xe/xe_pci_sriov.c             |  10 +-
- drivers/gpu/drm/xe/xe_pm.c                    |  21 +++
- drivers/gpu/drm/xe/xe_pm.h                    |  17 +++
- drivers/gpu/drm/xe/xe_pxp.c                   |  55 +++-----
- drivers/gpu/drm/xe/xe_query.c                 |  16 +--
- drivers/gpu/drm/xe/xe_reg_sr.c                |  17 +--
- drivers/gpu/drm/xe/xe_sriov_pf_debugfs.c      |   6 +-
- drivers/gpu/drm/xe/xe_sriov_pf_sysfs.c        |  16 +--
- drivers/gpu/drm/xe/xe_sriov_vf_ccs.c          |   5 +-
- drivers/gpu/drm/xe/xe_tile_debugfs.c          |   8 +-
- drivers/gpu/drm/xe/xe_tile_sriov_pf_debugfs.c |   3 +-
- drivers/gpu/drm/xe/xe_vram.c                  |   6 +-
- 48 files changed, 399 insertions(+), 653 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/tests/xe_mocs.c b/drivers/gpu/drm/xe/tests/xe_mocs.c
+index 6bb278167aaf..28374330b894 100644
+--- a/drivers/gpu/drm/xe/tests/xe_mocs.c
++++ b/drivers/gpu/drm/xe/tests/xe_mocs.c
+@@ -43,14 +43,12 @@ static void read_l3cc_table(struct xe_gt *gt,
+ {
+ 	struct kunit *test = kunit_get_current_test();
+ 	u32 l3cc, l3cc_expected;
+-	unsigned int fw_ref, i;
++	unsigned int i;
+ 	u32 reg_val;
+ 
+-	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
+-	if (!xe_force_wake_ref_has_domain(fw_ref, XE_FORCEWAKE_ALL)) {
+-		xe_force_wake_put(gt_to_fw(gt), fw_ref);
++	CLASS(xe_force_wake, fw_ref)(gt_to_fw(gt), XE_FORCEWAKE_ALL);
++	if (!xe_force_wake_ref_has_domain(fw_ref.domains, XE_FORCEWAKE_ALL))
+ 		KUNIT_FAIL_AND_ABORT(test, "Forcewake Failed.\n");
+-	}
+ 
+ 	for (i = 0; i < info->num_mocs_regs; i++) {
+ 		if (!(i & 1)) {
+@@ -74,7 +72,6 @@ static void read_l3cc_table(struct xe_gt *gt,
+ 		KUNIT_EXPECT_EQ_MSG(test, l3cc_expected, l3cc,
+ 				    "l3cc idx=%u has incorrect val.\n", i);
+ 	}
+-	xe_force_wake_put(gt_to_fw(gt), fw_ref);
+ }
+ 
+ static void read_mocs_table(struct xe_gt *gt,
+@@ -82,14 +79,14 @@ static void read_mocs_table(struct xe_gt *gt,
+ {
+ 	struct kunit *test = kunit_get_current_test();
+ 	u32 mocs, mocs_expected;
+-	unsigned int fw_ref, i;
++	unsigned int i;
+ 	u32 reg_val;
+ 
+ 	KUNIT_EXPECT_TRUE_MSG(test, info->unused_entries_index,
+ 			      "Unused entries index should have been defined\n");
+ 
+-	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
+-	KUNIT_ASSERT_NE_MSG(test, fw_ref, 0, "Forcewake Failed.\n");
++	CLASS(xe_force_wake, fw_ref)(gt_to_fw(gt), XE_FW_GT);
++	KUNIT_ASSERT_NE_MSG(test, fw_ref.domains, 0, "Forcewake Failed.\n");
+ 
+ 	for (i = 0; i < info->num_mocs_regs; i++) {
+ 		if (regs_are_mcr(gt))
+@@ -106,8 +103,6 @@ static void read_mocs_table(struct xe_gt *gt,
+ 		KUNIT_EXPECT_EQ_MSG(test, mocs_expected, mocs,
+ 				    "mocs reg 0x%x has incorrect val.\n", i);
+ 	}
+-
+-	xe_force_wake_put(gt_to_fw(gt), fw_ref);
+ }
+ 
+ static int mocs_kernel_test_run_device(struct xe_device *xe)
+diff --git a/drivers/gpu/drm/xe/xe_mocs.c b/drivers/gpu/drm/xe/xe_mocs.c
+index 6613d3b48a84..0b7225bd77e0 100644
+--- a/drivers/gpu/drm/xe/xe_mocs.c
++++ b/drivers/gpu/drm/xe/xe_mocs.c
+@@ -811,26 +811,20 @@ int xe_mocs_dump(struct xe_gt *gt, struct drm_printer *p)
+ 	struct xe_device *xe = gt_to_xe(gt);
+ 	enum xe_force_wake_domains domain;
+ 	struct xe_mocs_info table;
+-	unsigned int fw_ref, flags;
+-	int err = 0;
++	unsigned int flags;
+ 
+ 	flags = get_mocs_settings(xe, &table);
+ 
+ 	domain = flags & HAS_LNCF_MOCS ? XE_FORCEWAKE_ALL : XE_FW_GT;
+-	xe_pm_runtime_get_noresume(xe);
+-	fw_ref = xe_force_wake_get(gt_to_fw(gt), domain);
+ 
+-	if (!xe_force_wake_ref_has_domain(fw_ref, domain)) {
+-		err = -ETIMEDOUT;
+-		goto err_fw;
+-	}
++	guard(xe_pm_runtime_noresume)(xe);
++	CLASS(xe_force_wake, fw_ref)(gt_to_fw(gt), domain);
++	if (!xe_force_wake_ref_has_domain(fw_ref.domains, domain))
++		return -ETIMEDOUT;
+ 
+ 	table.ops->dump(&table, flags, gt, p);
+ 
+-err_fw:
+-	xe_force_wake_put(gt_to_fw(gt), fw_ref);
+-	xe_pm_runtime_put(xe);
+-	return err;
++	return 0;
+ }
+ 
+ #if IS_ENABLED(CONFIG_DRM_XE_KUNIT_TEST)
 -- 
 2.51.1
 
