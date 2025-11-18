@@ -4,52 +4,168 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 96606CED240
-	for <intel-xe@archiver.kernel.org>; Tue, 18 Nov 2025 04:21:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CAAF3CED240
+	for <intel-xe@archiver.kernel.org>; Tue, 18 Nov 2025 04:21:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3972010E1DD;
-	Tue, 18 Nov 2025 04:21:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6E83510E1E6;
+	Tue, 18 Nov 2025 04:21:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jEuheWDA";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TgbfpYsS";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CE44A10E1DD
- for <intel-xe@lists.freedesktop.org>; Tue, 18 Nov 2025 04:21:05 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7640410E1DD;
+ Tue, 18 Nov 2025 04:21:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1763439666; x=1794975666;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=X4nnQbdBsymWxAdUV6Zxg1sf26JXOKhwbpYDnVrKFhw=;
- b=jEuheWDAMfeaA1MFABQ1AD3PyCf/lTd4IU0398dl+vu17OLUmew6yFLu
- MP6fFyZx1A6FUCYeVHUbA9LxnK3Eq86nNUsJSADstn+wAEEO6BTQMdbgL
- +NR5H5GIue9hTSGpPjsFX83bqWu6zayEt2o/u/Gt1YsUM6bMyybBdzAm9
- Z/L2yJy6GYqHJimyNv02qwj8mWclVbEcmqxaBasMIv0VsfBlLV248FgnG
- rHb7YbhvMpYjl1uaWjNp3IaIupL/vwn0sPeKYDkjihMP9okgXiKvCPvHZ
- GUOezHBG+RMqMnH0hqvOreeCrvtx4P7eLJ1QyYNJhyMK5BqROrOXUX5aL A==;
-X-CSE-ConnectionGUID: WSP0RpVYSGWU7W3nopvLvw==
-X-CSE-MsgGUID: KP76eKgaTKu7WXbamDsgyg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11616"; a="65390389"
-X-IronPort-AV: E=Sophos;i="6.19,313,1754982000"; d="scan'208";a="65390389"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Nov 2025 20:21:05 -0800
-X-CSE-ConnectionGUID: eg4OMG78SjqVD94tFqrvXA==
-X-CSE-MsgGUID: LKlnx5/HSW2htvKUt6zrBA==
+ t=1763439686; x=1794975686;
+ h=from:to:subject:date:message-id:references:in-reply-to:
+ content-transfer-encoding:mime-version;
+ bh=Cy3FuNhgSB/+orwh6MtilZrabIBRz2sniHs05B/jZh4=;
+ b=TgbfpYsSI8QETKhDk870nsgq5LKpDPDTpELy4/iZJyHj3o2pAA+gRjom
+ wvAu/wJR3byyArAZ+V/1oN3ey6ysZ78sEOENYUnO/Xw2YUoRIPV12zpxE
+ Y7j7n/i/QQl3ztHcxEzZwJFxkiSA2i8WyE+WIyx+AfwZ6nN9mVQWAo7RC
+ GsNsUoXaZL9UYXMicFj79kXvnct2CvaqQf9OxwzajPS1lgOGHorGulbkG
+ 0IcbhGLLVefrYUU+gLwLn3183P5QF3HPpoKEsD46v+P/iiIEUXcj/+z5r
+ sohgsuP3+rGtmBeEisn2wR4575NoEFkk4lhygkIY5d6ghAXO1DN0KqEOu A==;
+X-CSE-ConnectionGUID: vUWsiW5JTSCHCFyq53RJTA==
+X-CSE-MsgGUID: 6DIycbXQQ36sMQvKSVBjzA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11616"; a="65386327"
+X-IronPort-AV: E=Sophos;i="6.19,313,1754982000"; d="scan'208";a="65386327"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Nov 2025 20:21:21 -0800
+X-CSE-ConnectionGUID: 0wHssOmDTtuCjn1q+XrZ4g==
+X-CSE-MsgGUID: o7tSGY5gTminUb+7S3cBpA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,313,1754982000"; d="scan'208";a="214042844"
-Received: from dut6304bmgfrd.fm.intel.com ([10.36.21.69])
- by fmviesa002.fm.intel.com with ESMTP; 17 Nov 2025 20:21:03 -0800
-From: Xin Wang <x.wang@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: shuicheng.lin@intel.com, alex.zuo@intel.com, matthew.d.roper@intel.com,
- matthew.auld@intel.com, Xin Wang <x.wang@intel.com>
-Subject: [PATCH v2] drm/xe: Allow compressible surfaces to be 1-way coherent
-Date: Tue, 18 Nov 2025 04:20:48 +0000
-Message-ID: <20251118042048.597801-1-x.wang@intel.com>
-X-Mailer: git-send-email 2.43.0
+X-IronPort-AV: E=Sophos;i="6.19,313,1754982000"; d="scan'208";a="190312647"
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Nov 2025 20:21:19 -0800
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.27; Mon, 17 Nov 2025 20:21:18 -0800
+Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.27 via Frontend Transport; Mon, 17 Nov 2025 20:21:18 -0800
+Received: from PH7PR06CU001.outbound.protection.outlook.com (52.101.201.47) by
+ edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.27; Mon, 17 Nov 2025 20:21:18 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=uKXQwr3/KkdXLi+0ugeaYFAZZS+cmUR/9AwUc4AWn7gT48n7YvS4k+5+2fZXagQ8SAPEySKs0SP33xNF33Fmuv86/XQPYNlim1TN+RayK0z/Ek6bOAyBsukITPvlVxL4j1WWTWyGuX90MgIge9Hh81PrOB3eEnS8cR3FovXPfKjpMmeJyETrOi46r5JRAe9BiuRer0R0waU3qfSaYsppCnO6Y7VeW/ddKOo3sncOmjLVIrrf2LgGaFTrNRX9pV2pJihVRpUAz3txfb52Af9Bpu0d3jTGhgfVE1MJwgwZ/acVEUI3DY2uGi+BvuPDbP3eyG8emT2tQF4nH0jiRi1zXQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=SINJyvU51JzWuyqpKpG+nMSZbJgtJA2bonHHCh8x3ns=;
+ b=DmUPROZ23gAJEzpJdfjkvZ30FpIsK5TLG7n2xrZdtyXrN57XFnBJZLwAjebi2mlpEQURlzISnMeswAlelVkVnkroQHCNEO9jF+RWElq+gH3GomkDxY+OWyiBwbPrlaJimNWa2Isyb4XK2h1Gm5zgPZLjypfrliVsqTrrfx6yAp1ghrJgOtjuGAcsYuvUdzGfLNiFu+NuVckdYlIWyP9xDxI3L0hy8O3OguDC2a6IEJ5k0JyH/Qma0PFKq7Ok5ihz3095GBckaqzdxVxfGS5MnJhlkQkfCR2rbbI4MYJw9QNegCWxL/bOMF14APPIApRed60pGjVLjGKTQqexQxXRkw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from DM3PPF208195D8D.namprd11.prod.outlook.com
+ (2603:10b6:f:fc00::f13) by DM4PR11MB5247.namprd11.prod.outlook.com
+ (2603:10b6:5:38a::20) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9320.23; Tue, 18 Nov
+ 2025 04:21:16 +0000
+Received: from DM3PPF208195D8D.namprd11.prod.outlook.com
+ ([fe80::95c9:5973:5297:d3cc]) by DM3PPF208195D8D.namprd11.prod.outlook.com
+ ([fe80::95c9:5973:5297:d3cc%6]) with mapi id 15.20.9343.009; Tue, 18 Nov 2025
+ 04:21:16 +0000
+From: "Kandpal, Suraj" <suraj.kandpal@intel.com>
+To: "Kahola, Mika" <mika.kahola@intel.com>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>, "intel-xe@lists.freedesktop.org"
+ <intel-xe@lists.freedesktop.org>
+Subject: RE: [PATCH v2 21/32] drm/i915/cx0: Add MTL+ .update_active_dpll hook
+Thread-Topic: [PATCH v2 21/32] drm/i915/cx0: Add MTL+ .update_active_dpll hook
+Thread-Index: AQHcV7FFJqiKvDQqK02f+q3tNUakHLT31Smw
+Date: Tue, 18 Nov 2025 04:21:16 +0000
+Message-ID: <DM3PPF208195D8DBE4AE64DE33D9372C5BBE3D6A@DM3PPF208195D8D.namprd11.prod.outlook.com>
+References: <20251117104602.2363671-1-mika.kahola@intel.com>
+ <20251117104602.2363671-22-mika.kahola@intel.com>
+In-Reply-To: <20251117104602.2363671-22-mika.kahola@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DM3PPF208195D8D:EE_|DM4PR11MB5247:EE_
+x-ms-office365-filtering-correlation-id: a1390005-2eb2-44e8-6d52-08de2659ea96
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0; ARA:13230040|366016|376014|1800799024|38070700021;
+x-microsoft-antispam-message-info: =?us-ascii?Q?1FaVAcV5+SKLQCMkNhbuJ40EyiMo41BCFBGzazRJE/KlSY0sY+87c+5b5wuQ?=
+ =?us-ascii?Q?E9VgbPSx7xmX95ktQTfhcZCy78fJEzkTkMGO82nkzOoHwZ68zJInoTeHs6YI?=
+ =?us-ascii?Q?3vGsDz86OYTqdLXeZWBdAR4qfP6AlGFbF8sMhxt0NHPKDXPwX2ekiPwJOa7f?=
+ =?us-ascii?Q?b1PQVTg+vOnZ0AGYXNPPBYpitVb5bXj/WLbv7+7Ug0U/bmYBcWGySQ2V/ycW?=
+ =?us-ascii?Q?AZtbplIlyyYIY8zJ0Q1UOJ4YZrVjhbohYbhs98vFSWZxSzw2giRL9nsqTgFs?=
+ =?us-ascii?Q?tqHnIkKy1UUJMYrqsdDLsO5iCZ6zJPBypYFV5ET46Wodq1jffFp/awhHcp93?=
+ =?us-ascii?Q?GrzwBDoz1kC4mJUPWZCta0OSaQtjjYTVFk48o2fAY8ynWMZGt6Gy+zqdpDf8?=
+ =?us-ascii?Q?0QgIRN2l3wLsZvHqs3T7395ecSsYHoW20UiYB0Z7ngYDkcj8QkXOw2+kuurO?=
+ =?us-ascii?Q?FUuxP+54alNUfN3AGVQ87pjfcfgwJt6dASqXQHnzy/6Gl3wNX6WrvH13lZpr?=
+ =?us-ascii?Q?sSm50E4a8yhTRwj+ZdhPGDF/7IS6BMr6Cbv99N94nWDLORTUfjw64u82yKIy?=
+ =?us-ascii?Q?8weQ4Iq8Vw70jyOjaw2dZP4xE++dOg7jlrKf30RKHEQZaZ1Gtr/4+B17lNCS?=
+ =?us-ascii?Q?8GdxZl9Y8UcdkQ9R6GjWSwyPxEqzXVaEuA9UliepYzNkxEnID7ovB13m61Mn?=
+ =?us-ascii?Q?0WjiVljDmuwhc7MQE3iUgAJ7iBwfZ6ZZ61e8WSzwBBYTwRWXopdIyRRUextw?=
+ =?us-ascii?Q?j5mdq3LvJdaU5dQggIWO4JeeEaM9RqqXc1xpd1HOFW84dFtcdmCieWj74LjO?=
+ =?us-ascii?Q?HFQzSlb307+E0O5/K6PCjwjIalNNg9OMDkDmGa6M/q6w1RKk1ecfrufUMJiY?=
+ =?us-ascii?Q?aLARgYucQorFUDCvyYkaTVvphhnb4Q65MWkWusAdsXrzAAW7/aTGp8DGpLvA?=
+ =?us-ascii?Q?O2DTaRVRN8YbIyFkiZig8QlCvm9HxNEZzocmd4ljGDEItFsl+iHwhSHOKIjS?=
+ =?us-ascii?Q?iUMlFimppkLBt36ABqy4jGZTk1VDXQ7wyqd/mRlu90k+Vuug6gFdkQInw8ka?=
+ =?us-ascii?Q?9nZKYICoRyg/WKeq7uRQeTUVc4r0wi7KHAg9CutTuDOfPhFIfhshgKgHmmRw?=
+ =?us-ascii?Q?kwRfKUcLUC1wJc1uhOaus6dFU/v7+2T+05wDZfL1hJmavXldxLn5GubOR+PF?=
+ =?us-ascii?Q?G77S27DaCbKVUCobb92WvdmFtAfNziWVxF+1nni2DJOmZaPnyhCmBKeYRJzw?=
+ =?us-ascii?Q?DlAUt4z7K2yUJgjJzLX9g0IFptCZDIeckMg6vSOdYEUlCKG++6jjKTY5WvBQ?=
+ =?us-ascii?Q?SaUxBb1KAwPHKWW4jznu/wfFbGtB1ebnm8qkE3iPXe/TiRa27cv7zfF2H0ss?=
+ =?us-ascii?Q?8NswFY1vQRy+u5m3+TrPWhq4ZGE+UvmGNHkWW6V39udmWfL74J52QO9aBrF+?=
+ =?us-ascii?Q?z1ln3DLiyNtKpXQSXTWTx27/5DlFXJGLQ8sDZMJTnKfnxFvX0Hvd4sBN/g4R?=
+ =?us-ascii?Q?M2h5FlhxsB12fQDNRn03aycWlzPVjWpDZnXV?=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM3PPF208195D8D.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(1800799024)(38070700021); DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?pEb/zWNcA0/MdUiZd7OojsGGkWCagZj2dJn/CaJbf3BmqIxWJZ/0YlTA+GSf?=
+ =?us-ascii?Q?srcPoyrwo6NM2p1oLEKvS78752AP2f4C03j2uYQEvduUl3Xg+kumAM+fp07i?=
+ =?us-ascii?Q?nmEYuCDQs0+UWWL0eecDMjf3xG9jjZ11uoMyH2+VswUvfbwHR3RwoOErvJaM?=
+ =?us-ascii?Q?fBOyNrOuynnWyoNET7uWP+nrVkiyJxF+SSGru7fUEVH4bzOOVi0dwcFlmm2C?=
+ =?us-ascii?Q?3QcnGNMrWV7EznL+98brk/yv6KCZavn+pvp8BEXF0zvOKqxy3kGCF25S6MVo?=
+ =?us-ascii?Q?4cDJ8I60IGGAS1/7NJSe505KOKgNDmxMF89bW42PWdqDl9eeHB04UpW/uo34?=
+ =?us-ascii?Q?qQ49ml9VxYt40oWRlSqnUCsCHrEMmgyoSABNg/53S/4E7TpW8Axsz4yBeo5G?=
+ =?us-ascii?Q?RNAiT7lzr7sW22pNDeVvlclS7aNG3TVhnq2ReP16Bsv28CfouBKGXdbSEnYg?=
+ =?us-ascii?Q?5Iee23SjlqO9r1ezm+EgCtfd+FTnaxnyISRufyHDBFpkQYqHA/vm3EqAZ5gm?=
+ =?us-ascii?Q?J099l8Gw9087vbFFuW06Tlmttyt4qnO1a5LU/KsmwZT1FVN6ndPCpTxDT1xe?=
+ =?us-ascii?Q?Q4o/dRSX6dVDdcA95y4kuSk9+ZK2Dy1BLiljtJqCoqFL9IOPdB4KBnUkrfpl?=
+ =?us-ascii?Q?8B1SArv51oXLgcOrgphgjNC+ER/oGk8ld0YYagYl2zzwptfUPfKhbHGs0xmS?=
+ =?us-ascii?Q?vOBEg1xpbolcZFdfCwIFLXve2PTa/4O/4+B2LpBDp1kb65LrlL0FUkb1KjyC?=
+ =?us-ascii?Q?PV2oIRxtwXIQpX8FujvY7VULFOOpVTOOXGUsNMdaTS2DFIW8i/g8fHhyCAVK?=
+ =?us-ascii?Q?GttKQPo9t1HOZq9EHJ0OQIBsjJH2r/9Eu1nSMAjJAtk+tANVKxdfR7kpGVr/?=
+ =?us-ascii?Q?jQuHZAs6Kts5GDYuCGqkP6B1WfG+x1ruZFpVbhXl87TADtmTwsxOhEaI6rmF?=
+ =?us-ascii?Q?7X/hKxGMrMV2Y0BGXFlnqpCc19qXohigoFzRf8NcDS4fuCcX0VD+hPdKj/zZ?=
+ =?us-ascii?Q?omTp8Yjvt6Zs3HZ1qYqTK00vPME37whsjV758f8u+I9TorhHe1TSHygrKyQQ?=
+ =?us-ascii?Q?bV22pNfpZWGQkb8YU5s8yDPKJiHy6SUWTgqYMmyBDOL+KXYArPXow1t6fY/z?=
+ =?us-ascii?Q?7CQDSYD/hw0QaOpFms1w06hOCIcKNIOYmidb2gdrDlxAscY9WwVmnP0rWqhR?=
+ =?us-ascii?Q?tXy7nN/H494orbJFdjt3baGW7KgohMQVFUt8WnJH3Ete00YK5UxPuT6wKwHw?=
+ =?us-ascii?Q?QDsVCyHPpm7mEWKVSTrjAvwk0FbJWfBSHfihKo8KR7p3ipJZ3GpfrHK0fCKY?=
+ =?us-ascii?Q?CostyD/mhehzu2tOXAWh5uuDn4x4RXeLPUZO5OJi8LZMi5wh3cg0krNTKjO7?=
+ =?us-ascii?Q?cgt/QxU2HmOOKkepcmeQzsLVGDu3cwgCkx9uPkMZhI0vVrRWjVtE/52Qma45?=
+ =?us-ascii?Q?KSK+HV0j/lHbu8oEerrJwbGrIdqh40KeDR7ekzqEk0YsTwnMi7gwuqA9o9Jx?=
+ =?us-ascii?Q?HPbKUxVS4j9yq/jt1F7QT4PfAlEsG/loy2cphQnISl2qa5Qt2vULLYMr8O1G?=
+ =?us-ascii?Q?3Uz1QjEik6llAxYRJV855GDoExJpMqJuRfI8kofk?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM3PPF208195D8D.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a1390005-2eb2-44e8-6d52-08de2659ea96
+X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Nov 2025 04:21:16.2712 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: W2sbCuVfBx8ZSLD/+OeWEjVwdpPX4Pxd/RU5BNI7IqkvLco+vt61O9bnq5ezbkEM0CNJGATXANqbmWArEu1TNQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB5247
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,264 +180,69 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Previously, compressible surfaces were required to be non-coherent (allocated
-as WC) because compression and coherency were mutually exclusive. Starting
-with Xe3, hardware supports combining compression with 1-way coherency,
-allowing compressible surfaces to be allocated as WB memory. This provides
-applications with more efficient memory allocation by avoiding WC allocation
-overhead that can cause system stuttering and memory management challenges.
+> Subject: [PATCH v2 21/32] drm/i915/cx0: Add MTL+ .update_active_dpll hook
+>=20
+> Add .update_active_dpll function pointer to support dpll framework. Reuse=
+ ICL
+> function pointer.
+>=20
+> v2: Add check for !HAS_LT_PHY (Suraj)
 
-The implementation adds support for compressed+coherent PAT entry for the
-xe3_lpg devices and updates the driver logic to handle the new compression
-capabilities.
+I did not comment asking for this change also brings some questions in my m=
+ind here
 
-v2: (Matthew Auld)
-- Improved error handling with XE_IOCTL_DBG()
-- Enhanced documentation and comments
-- Fixed xe_bo_needs_ccs_pages() outdated compression assumptions
+>=20
+> Signed-off-by: Mika Kahola <mika.kahola@intel.com>
+> Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_ddi.c      | 3 +++
+>  drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 1 +
+>  2 files changed, 4 insertions(+)
+>=20
+> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c
+> b/drivers/gpu/drm/i915/display/intel_ddi.c
+> index 002ccd47856d..6b43d326e50c 100644
+> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> @@ -3671,6 +3671,9 @@ void intel_ddi_update_active_dpll(struct
+> intel_atomic_state *state,
+>  	if (DISPLAY_VER(display) >=3D 14 || !intel_encoder_is_tc(encoder))
 
-Bspec: 71582, 59361, 59399
-Signed-off-by: Xin Wang <x.wang@intel.com>
----
- drivers/gpu/drm/xe/regs/xe_gt_regs.h |  6 ++++
- drivers/gpu/drm/xe/xe_bo.c           |  9 +++---
- drivers/gpu/drm/xe/xe_gt.c           | 32 +++++++++++++++++++
- drivers/gpu/drm/xe/xe_pat.c          | 47 ++++++++++++++++++++++++----
- drivers/gpu/drm/xe/xe_vm.c           | 13 ++++++++
- 5 files changed, 96 insertions(+), 11 deletions(-)
+So this check here will never let you call dpll_mgr->update_active_dpll hoo=
+k
+So do you not what to remove it.
+If the answer is you want to keep this check then you do not need (!HAS_LT_=
+PHY)
+If the answer is you need to get this removed only then does it make sense =
+to have this check
+And the check should be return if (HAS_LT_PHY())
 
-diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-index 917a088c28f2..043ba797fb56 100644
---- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-@@ -89,6 +89,7 @@
- #define   UNIFIED_COMPRESSION_FORMAT		REG_GENMASK(3, 0)
- 
- #define XE2_GAMREQSTRM_CTRL			XE_REG_MCR(0x4194)
-+#define   EN_CMP_1WCOH				REG_BIT(15)
- #define   CG_DIS_CNTLBUS			REG_BIT(6)
- 
- #define CCS_AUX_INV				XE_REG(0x4208)
-@@ -101,6 +102,11 @@
- 
- #define XE2_LMEM_CFG				XE_REG(0x48b0)
- 
-+#define XE2_GAMWALK_CTRL			0x47e4
-+#define XE2_GAMWALK_CTRL_MEDIA			XE_REG(XE2_GAMWALK_CTRL + MEDIA_GT_GSI_OFFSET)
-+#define XE2_GAMWALK_CTRL_3D			XE_REG_MCR(XE2_GAMWALK_CTRL)
-+#define   EN_CMP_1WCOH_GW			REG_BIT(14)
-+
- #define XEHP_FLAT_CCS_BASE_ADDR			XE_REG_MCR(0x4910)
- #define XEHP_FLAT_CCS_PTR			REG_GENMASK(31, 8)
- 
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index b0bd31d14bb9..f6a89d0d4f3b 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -3523,11 +3523,10 @@ bool xe_bo_needs_ccs_pages(struct xe_bo *bo)
- 		return false;
- 
- 	/*
--	 * Compression implies coh_none, therefore we know for sure that WB
--	 * memory can't currently use compression, which is likely one of the
--	 * common cases.
--	 */
--	if (bo->cpu_caching == DRM_XE_GEM_CPU_CACHING_WB)
-+	* Pre-Xe3: WB memory incompatible with compression.
-+	* Xe3+: WB memory may use compression.
-+	*/
-+	if (bo->cpu_caching == DRM_XE_GEM_CPU_CACHING_WB && GRAPHICS_VER(xe) < 30)
- 		return false;
- 
- 	return true;
-diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-index dbb5e7a9bc6a..05de6da997c1 100644
---- a/drivers/gpu/drm/xe/xe_gt.c
-+++ b/drivers/gpu/drm/xe/xe_gt.c
-@@ -145,6 +145,36 @@ static void xe_gt_disable_host_l2_vram(struct xe_gt *gt)
- 	xe_force_wake_put(gt_to_fw(gt), fw_ref);
- }
- 
-+static void xe_gt_enable_comp_1wcoh(struct xe_gt *gt)
-+{
-+	struct xe_device *xe = gt_to_xe(gt);
-+	unsigned int fw_ref;
-+	u32 reg;
-+
-+	if (IS_SRIOV_VF(xe))
-+		return;
-+
-+	if (GRAPHICS_VER(xe) >= 30 && xe->info.has_flat_ccs) {
-+		fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
-+		if (!fw_ref)
-+			return;
-+
-+		reg = xe_gt_mcr_unicast_read_any(gt, XE2_GAMREQSTRM_CTRL);
-+		reg |= EN_CMP_1WCOH;
-+		xe_gt_mcr_multicast_write(gt, XE2_GAMREQSTRM_CTRL, reg);
-+
-+		if (xe_gt_is_media_type(gt)) {
-+			xe_mmio_rmw32(&gt->mmio, XE2_GAMWALK_CTRL_MEDIA, 0, EN_CMP_1WCOH_GW);
-+		} else {
-+			reg = xe_gt_mcr_unicast_read_any(gt, XE2_GAMWALK_CTRL_3D);
-+			reg |= EN_CMP_1WCOH_GW;
-+			xe_gt_mcr_multicast_write(gt, XE2_GAMWALK_CTRL_3D, reg);
-+		}
-+
-+		xe_force_wake_put(gt_to_fw(gt), fw_ref);
-+	}
-+}
-+
- static void gt_reset_worker(struct work_struct *w);
- 
- static int emit_job_sync(struct xe_exec_queue *q, struct xe_bb *bb,
-@@ -474,6 +504,7 @@ static int gt_init_with_gt_forcewake(struct xe_gt *gt)
- 	xe_gt_topology_init(gt);
- 	xe_gt_mcr_init(gt);
- 	xe_gt_enable_host_l2_vram(gt);
-+	xe_gt_enable_comp_1wcoh(gt);
- 
- 	if (xe_gt_is_main_type(gt)) {
- 		err = xe_ggtt_init(gt_to_tile(gt)->mem.ggtt);
-@@ -771,6 +802,7 @@ static int do_gt_restart(struct xe_gt *gt)
- 	xe_pat_init(gt);
- 
- 	xe_gt_enable_host_l2_vram(gt);
-+	xe_gt_enable_comp_1wcoh(gt);
- 
- 	xe_gt_mcr_set_implicit_defaults(gt);
- 	xe_reg_sr_apply_mmio(&gt->reg_sr, gt);
-diff --git a/drivers/gpu/drm/xe/xe_pat.c b/drivers/gpu/drm/xe/xe_pat.c
-index 1b4d5d3def0f..f4f3627be069 100644
---- a/drivers/gpu/drm/xe/xe_pat.c
-+++ b/drivers/gpu/drm/xe/xe_pat.c
-@@ -102,9 +102,10 @@ static const struct xe_pat_table_entry xelpg_pat_table[] = {
-  * in the table.
-  *
-  * Note: There is an implicit assumption in the driver that compression and
-- * coh_1way+ are mutually exclusive. If this is ever not true then userptr
-- * and imported dma-buf from external device will have uncleared ccs state. See
-- * also xe_bo_needs_ccs_pages().
-+ * coh_1way+ are mutually exclusive for platforms prior to Xe3. Starting
-+ * with Xe3, compression can be combined with coherency. If using compression
-+ * with coherency, userptr and imported dma-buf from external device will
-+ * have uncleared ccs state. See also xe_bo_needs_ccs_pages().
-  */
- #define XE2_PAT(no_promote, comp_en, l3clos, l3_policy, l4_policy, __coh_mode) \
- 	{ \
-@@ -114,8 +115,7 @@ static const struct xe_pat_table_entry xelpg_pat_table[] = {
- 			REG_FIELD_PREP(XE2_L3_POLICY, l3_policy) | \
- 			REG_FIELD_PREP(XE2_L4_POLICY, l4_policy) | \
- 			REG_FIELD_PREP(XE2_COH_MODE, __coh_mode), \
--		.coh_mode = (BUILD_BUG_ON_ZERO(__coh_mode && comp_en) || __coh_mode) ? \
--			XE_COH_AT_LEAST_1WAY : XE_COH_NONE, \
-+		.coh_mode = __coh_mode ? XE_COH_AT_LEAST_1WAY : XE_COH_NONE, \
- 		.valid = 1 \
- 	}
- 
-@@ -151,6 +151,38 @@ static const struct xe_pat_table_entry xe2_pat_table[] = {
- 	[31] = XE2_PAT( 0, 0, 3, 0, 3, 3 ),
- };
- 
-+static const struct xe_pat_table_entry xe3_lpg_pat_table[] = {
-+	[ 0] = XE2_PAT( 0, 0, 0, 0, 3, 0 ),
-+	[ 1] = XE2_PAT( 0, 0, 0, 0, 3, 2 ),
-+	[ 2] = XE2_PAT( 0, 0, 0, 0, 3, 3 ),
-+	[ 3] = XE2_PAT( 0, 0, 0, 3, 3, 0 ),
-+	[ 4] = XE2_PAT( 0, 0, 0, 3, 0, 2 ),
-+	[ 5] = XE2_PAT( 0, 0, 0, 3, 3, 2 ),
-+	[ 6] = XE2_PAT( 1, 0, 0, 1, 3, 0 ),
-+	[ 7] = XE2_PAT( 0, 0, 0, 3, 0, 3 ),
-+	[ 8] = XE2_PAT( 0, 0, 0, 3, 0, 0 ),
-+	[ 9] = XE2_PAT( 0, 1, 0, 0, 3, 0 ),
-+	[10] = XE2_PAT( 0, 1, 0, 3, 0, 0 ),
-+	[11] = XE2_PAT( 1, 1, 0, 1, 3, 0 ),
-+	[12] = XE2_PAT( 0, 1, 0, 3, 3, 0 ),
-+	[13] = XE2_PAT( 0, 0, 0, 0, 0, 0 ),
-+	[14] = XE2_PAT( 0, 1, 0, 0, 0, 0 ),
-+	[15] = XE2_PAT( 1, 1, 0, 1, 1, 0 ),
-+	[16] = XE2_PAT( 0, 1, 0, 0, 3, 2 ),
-+	/* 17..19 are reserved; leave set to all 0's */
-+	[20] = XE2_PAT( 0, 0, 1, 0, 3, 0 ),
-+	[21] = XE2_PAT( 0, 1, 1, 0, 3, 0 ),
-+	[22] = XE2_PAT( 0, 0, 1, 0, 3, 2 ),
-+	[23] = XE2_PAT( 0, 0, 1, 0, 3, 3 ),
-+	[24] = XE2_PAT( 0, 0, 2, 0, 3, 0 ),
-+	[25] = XE2_PAT( 0, 1, 2, 0, 3, 0 ),
-+	[26] = XE2_PAT( 0, 0, 2, 0, 3, 2 ),
-+	[27] = XE2_PAT( 0, 0, 2, 0, 3, 3 ),
-+	[28] = XE2_PAT( 0, 0, 3, 0, 3, 0 ),
-+	[29] = XE2_PAT( 0, 1, 3, 0, 3, 0 ),
-+	[30] = XE2_PAT( 0, 0, 3, 0, 3, 2 ),
-+	[31] = XE2_PAT( 0, 0, 3, 0, 3, 3 ),
-+};
- /* Special PAT values programmed outside the main table */
- static const struct xe_pat_table_entry xe2_pat_ats = XE2_PAT( 0, 0, 0, 0, 3, 3 );
- static const struct xe_pat_table_entry xe2_pat_pta = XE2_PAT( 0, 0, 0, 0, 3, 0 );
-@@ -485,7 +517,10 @@ void xe_pat_init_early(struct xe_device *xe)
- 		xe->pat.idx[XE_CACHE_WB] = 2;
- 	} else if (GRAPHICS_VER(xe) == 30 || GRAPHICS_VER(xe) == 20) {
- 		xe->pat.ops = &xe2_pat_ops;
--		xe->pat.table = xe2_pat_table;
-+		if (GRAPHICS_VER(xe) == 30)
-+			xe->pat.table = xe3_lpg_pat_table;
-+		else
-+			xe->pat.table = xe2_pat_table;
- 		xe->pat.pat_ats = &xe2_pat_ats;
- 		if (IS_DGFX(xe))
- 			xe->pat.pat_pta = &xe2_pat_pta;
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 7cac646bdf1c..b8811269fc92 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -3359,6 +3359,7 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe, struct xe_vm *vm,
- 			DRM_XE_VM_BIND_FLAG_CPU_ADDR_MIRROR;
- 		u16 pat_index = (*bind_ops)[i].pat_index;
- 		u16 coh_mode;
-+		bool comp_en;
- 
- 		if (XE_IOCTL_DBG(xe, is_cpu_addr_mirror &&
- 				 (!xe_vm_in_fault_mode(vm) ||
-@@ -3375,6 +3376,7 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe, struct xe_vm *vm,
- 		pat_index = array_index_nospec(pat_index, xe->pat.n_entries);
- 		(*bind_ops)[i].pat_index = pat_index;
- 		coh_mode = xe_pat_index_get_coh_mode(xe, pat_index);
-+		comp_en = xe_pat_index_get_comp_en(xe, pat_index);
- 		if (XE_IOCTL_DBG(xe, !coh_mode)) { /* hw reserved */
- 			err = -EINVAL;
- 			goto free_bind_ops;
-@@ -3405,6 +3407,8 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe, struct xe_vm *vm,
- 				 op == DRM_XE_VM_BIND_OP_MAP_USERPTR) ||
- 		    XE_IOCTL_DBG(xe, coh_mode == XE_COH_NONE &&
- 				 op == DRM_XE_VM_BIND_OP_MAP_USERPTR) ||
-+		    XE_IOCTL_DBG(xe, comp_en &&
-+				 op == DRM_XE_VM_BIND_OP_MAP_USERPTR) ||
- 		    XE_IOCTL_DBG(xe, op == DRM_XE_VM_BIND_OP_MAP_USERPTR &&
- 				 !IS_ENABLED(CONFIG_DRM_GPUSVM)) ||
- 		    XE_IOCTL_DBG(xe, obj &&
-@@ -3483,6 +3487,7 @@ static int xe_vm_bind_ioctl_validate_bo(struct xe_device *xe, struct xe_bo *bo,
- 					u16 pat_index, u32 op, u32 bind_flags)
- {
- 	u16 coh_mode;
-+	bool comp_en;
- 
- 	if (XE_IOCTL_DBG(xe, range > xe_bo_size(bo)) ||
- 	    XE_IOCTL_DBG(xe, obj_offset >
-@@ -3524,6 +3529,14 @@ static int xe_vm_bind_ioctl_validate_bo(struct xe_device *xe, struct xe_bo *bo,
- 		return -EINVAL;
- 	}
- 
-+	/*
-+	 * Ensures that imported buffer objects (dma-bufs) are not mapped
-+	 * with a PAT index that enables compression.
-+	 */
-+	comp_en = xe_pat_index_get_comp_en(xe, pat_index);
-+	if (XE_IOCTL_DBG(xe, bo->ttm.base.import_attach && comp_en))
-+		return -EINVAL;
-+
- 	/* If a BO is protected it can only be mapped if the key is still valid */
- 	if ((bind_flags & DRM_XE_VM_BIND_FLAG_CHECK_PXP) && xe_bo_is_protected(bo) &&
- 	    op != DRM_XE_VM_BIND_OP_UNMAP && op != DRM_XE_VM_BIND_OP_UNMAP_ALL)
--- 
-2.43.0
+Regards,
+Suraj Kandpal
+
+>  		return;
+>=20
+> +	if (!HAS_LT_PHY(display))
+> +		return;
+> +
+>  	for_each_intel_crtc_in_pipe_mask(display->drm, pipe_crtc,
+>=20
+> intel_crtc_joined_pipe_mask(crtc_state))
+>  		intel_dpll_update_active(state, pipe_crtc, encoder); diff --git
+> a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+> b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+> index c45f18201ee8..e6dd6f1123d6 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+> @@ -4449,6 +4449,7 @@ static const struct intel_dpll_mgr mtl_pll_mgr =3D =
+{
+>  	.compute_dplls =3D mtl_compute_dplls,
+>  	.get_dplls =3D mtl_get_dplls,
+>  	.put_dplls =3D icl_put_dplls,
+> +	.update_active_dpll =3D icl_update_active_dpll,
+>  };
+>=20
+>  /**
+> --
+> 2.34.1
 
