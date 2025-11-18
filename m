@@ -4,61 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CED0ACEBF97
-	for <intel-xe@archiver.kernel.org>; Tue, 18 Nov 2025 14:48:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A4D17CEDDA4
+	for <intel-xe@archiver.kernel.org>; Tue, 18 Nov 2025 14:48:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 69CA810E4D7;
-	Tue, 18 Nov 2025 14:48:18 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="P0GkFg3S";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CD02E10E1A4
- for <intel-xe@lists.freedesktop.org>; Tue, 18 Nov 2025 14:48:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1763477297; x=1795013297;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=JCwIIu7sA6ys6q5QAkHnXDxRAJEJ75Q65NAogHTl46E=;
- b=P0GkFg3SzQyqVgPhRnqSnPwrthzJ+2WYg3/HGkDOReAUZ38eE2GPQhTO
- sZYL2qfX0eN7aAyki3Ewcjas85YVqiEFSEU/mNkn8ZO4aeUZpoHz8jkRC
- lMhT9d/63kJQHMCzprrr9+s9tD9t0Vul+kclROLkq9frjxiIal9r9TyNy
- +JlK15JFLuRDFvOfwCknyIfYYb5s+ByvGR/hfxqGVBZ+WLOuftOB0cVD9
- 7V3IlZAmjUMR7omaakNETgrYglMCMYsjp1fiqS4ge+5+fw4grrMBG+8wt
- G+iVEqxVG3rw0awfbXEjtE4t35zAk7p12L1TLhVYFfm3klwT0dX1Qy8fj A==;
-X-CSE-ConnectionGUID: LxzbDpXtRVmZ7INV6tgqmw==
-X-CSE-MsgGUID: RXP3LmRgRKSxUoNWjXDwzw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11617"; a="68101581"
-X-IronPort-AV: E=Sophos;i="6.19,314,1754982000"; d="scan'208";a="68101581"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Nov 2025 06:48:16 -0800
-X-CSE-ConnectionGUID: nSCl4aujSNGNSDGUjAWNPw==
-X-CSE-MsgGUID: T8uynXXMShCDaAZY1pLbeQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,314,1754982000"; d="scan'208";a="195233749"
-Received: from mwiniars-mobl.ger.corp.intel.com (HELO mkuoppal-desk.intel.com)
- ([10.245.246.131])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Nov 2025 06:48:14 -0800
-From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
- Jan Sokolowski <jan.sokolowski@intel.com>,
- Dominik Grzegorzek <dominik.grzegorzek@intel.com>,
- Maciej Patelczyk <maciej.patelczyk@intel.com>
-Subject: [PATCH 16/20] drm/xe/eudebug: Mark guc contexts as debuggable
-Date: Tue, 18 Nov 2025 16:48:04 +0200
-Message-ID: <20251118144804.2540812-1-mika.kuoppala@linux.intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20251006111711.201906-17-mika.kuoppala@linux.intel.com>
-References: <20251006111711.201906-17-mika.kuoppala@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 719E510E1A4;
+	Tue, 18 Nov 2025 14:48:20 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EBBE210E1A4;
+ Tue, 18 Nov 2025 14:48:17 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7020709355850338341=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?b?4pyTIFhlLkNJLkJBVDogc3VjY2VzcyBmb3IgSW1wcm92ZSBDQ1Mgc2F2ZS9yZXN0?=
+ =?utf-8?b?b3JlIHNlcmllcyAoY29udC4uLikgKHJldjQp?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Satyanarayana K V P" <satyanarayana.k.v.p@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 18 Nov 2025 14:48:17 -0000
+Message-ID: <176347729795.5561.9188682026724934989@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20251118120745.3460172-1-satyanarayana.k.v.p@intel.com>
+In-Reply-To: <20251118120745.3460172-1-satyanarayana.k.v.p@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,199 +36,143 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We need to inform to guc which contexts are debuggable
-as their handling is different from ordinary contexts.
+--===============7020709355850338341==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-v2: void return, use xe_gt_dbg, no need for lrc (Matt)
-v3: add the workaround enabling (Daniele)
-v4: version needed to 70.49.4
+== Series Details ==
 
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Cc: Jan Sokolowski <jan.sokolowski@intel.com>
-Co-developed-by: Dominik Grzegorzek <dominik.grzegorzek@intel.com>
-Co-developed-by: Maciej Patelczyk <maciej.patelczyk@intel.com>
-Signed-off-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
----
- drivers/gpu/drm/xe/abi/guc_actions_abi.h |  5 +++
- drivers/gpu/drm/xe/abi/guc_klvs_abi.h    |  1 +
- drivers/gpu/drm/xe/xe_eudebug_hw.h       |  7 ++++
- drivers/gpu/drm/xe/xe_guc_ads.c          | 18 ++++++++++
- drivers/gpu/drm/xe/xe_guc_submit.c       | 45 ++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_wa_oob.rules       |  2 ++
- 6 files changed, 78 insertions(+)
+Series: Improve CCS save/restore series (cont...) (rev4)
+URL   : https://patchwork.freedesktop.org/series/156932/
+State : success
 
-diff --git a/drivers/gpu/drm/xe/abi/guc_actions_abi.h b/drivers/gpu/drm/xe/abi/guc_actions_abi.h
-index 47756e4674a1..32a5f680a6d2 100644
---- a/drivers/gpu/drm/xe/abi/guc_actions_abi.h
-+++ b/drivers/gpu/drm/xe/abi/guc_actions_abi.h
-@@ -155,6 +155,7 @@ enum xe_guc_action {
- 	XE_GUC_ACTION_NOTIFY_FLUSH_LOG_BUFFER_TO_FILE = 0x8003,
- 	XE_GUC_ACTION_NOTIFY_CRASH_DUMP_POSTED = 0x8004,
- 	XE_GUC_ACTION_NOTIFY_EXCEPTION = 0x8005,
-+	XE_GUC_ACTION_EU_KERNEL_DEBUG = 0x8006,
- 	XE_GUC_ACTION_TEST_G2G_SEND = 0xF001,
- 	XE_GUC_ACTION_TEST_G2G_RECV = 0xF002,
- 	XE_GUC_ACTION_LIMIT
-@@ -278,4 +279,8 @@ enum xe_guc_g2g_type {
- /* invalid type for XE_GUC_ACTION_NOTIFY_MEMORY_CAT_ERROR */
- #define XE_GUC_CAT_ERR_TYPE_INVALID 0xdeadbeef
- 
-+enum  xe_guc_eu_kernel_debug_request_type {
-+	XE_GUC_EU_KERNEL_DEBUG_ENABLE = 0x3,
-+};
-+
- #endif
-diff --git a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h b/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
-index 265a135e7061..fba190d4f84b 100644
---- a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
-+++ b/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
-@@ -423,6 +423,7 @@ enum xe_guc_klv_ids {
- 	GUC_WA_KLV_WAKE_POWER_DOMAINS_FOR_OUTBOUND_MMIO					= 0x900a,
- 	GUC_WA_KLV_RESET_BB_STACK_PTR_ON_VF_SWITCH					= 0x900b,
- 	GUC_WA_KLV_RESTORE_UNSAVED_MEDIA_CONTROL_REG					= 0x900c,
-+	GUC_WA_KLV_RESET_DEP_ENGINES_ON_DEBUG_CTX_SWITCH				= 0x900d,
- };
- 
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_eudebug_hw.h b/drivers/gpu/drm/xe/xe_eudebug_hw.h
-index 8f59ec574e4e..7c5df12859ac 100644
---- a/drivers/gpu/drm/xe/xe_eudebug_hw.h
-+++ b/drivers/gpu/drm/xe/xe_eudebug_hw.h
-@@ -14,6 +14,13 @@ struct xe_eudebug;
- struct xe_hw_engine;
- struct xe_gt;
- 
-+#define XE_EUDEBUG_GUC_VER_MAJOR 70
-+#define XE_EUDEBUG_GUC_VER_MINOR 49
-+#define XE_EUDEBUG_GUC_VER_PATCH 4
-+#define XE_EUDEBUG_GUC_VER_MIN MAKE_GUC_VER(XE_EUDEBUG_GUC_VER_MAJOR, \
-+					    XE_EUDEBUG_GUC_VER_MINOR, \
-+					    XE_EUDEBUG_GUC_VER_PATCH)
-+
- #if IS_ENABLED(CONFIG_DRM_XE_EUDEBUG)
- 
- void xe_eudebug_hw_init(struct xe_eudebug *d);
-diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c b/drivers/gpu/drm/xe/xe_guc_ads.c
-index 58e0b0294a5b..8ff90437c976 100644
---- a/drivers/gpu/drm/xe/xe_guc_ads.c
-+++ b/drivers/gpu/drm/xe/xe_guc_ads.c
-@@ -16,6 +16,7 @@
- #include "regs/xe_gt_regs.h"
- #include "regs/xe_guc_regs.h"
- #include "xe_bo.h"
-+#include "xe_eudebug_hw.h"
- #include "xe_gt.h"
- #include "xe_gt_ccs_mode.h"
- #include "xe_gt_printk.h"
-@@ -363,6 +364,23 @@ static void guc_waklv_init(struct xe_guc_ads *ads)
- 		guc_waklv_enable(ads, NULL, 0, &offset, &remain,
- 				 GUC_WORKAROUND_KLV_DISABLE_PSMI_INTERRUPTS_AT_C6_ENTRY_RESTORE_AT_EXIT);
- 
-+#if IS_ENABLED(CONFIG_DRM_XE_EUDEBUG)
-+	if (XE_GT_WA(gt, 14022766366)) {
-+		const struct xe_uc_fw_version needed = {
-+			.major = XE_EUDEBUG_GUC_VER_MAJOR,
-+			.minor = XE_EUDEBUG_GUC_VER_MINOR,
-+			.patch = XE_EUDEBUG_GUC_VER_PATCH,
-+		};
-+
-+		if (GUC_FIRMWARE_VER(&gt->uc.guc) >= MAKE_GUC_VER_STRUCT(needed))
-+			guc_waklv_enable(ads, NULL, 0, &offset, &remain,
-+					 GUC_WA_KLV_RESET_DEP_ENGINES_ON_DEBUG_CTX_SWITCH);
-+		else
-+			xe_gt_warn(gt, "eudebug needs GuC version %u.%u.%u or greater\n",
-+				   needed.major, needed.minor, needed.patch);
-+	}
-+#endif
-+
- 	size = guc_ads_waklv_size(ads) - remain;
- 	if (!size)
- 		return;
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index 16f78376f196..26dc4a4a67f0 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -21,6 +21,7 @@
- #include "xe_assert.h"
- #include "xe_devcoredump.h"
- #include "xe_device.h"
-+#include "xe_eudebug_hw.h"
- #include "xe_exec_queue.h"
- #include "xe_force_wake.h"
- #include "xe_gpu_scheduler.h"
-@@ -608,6 +609,47 @@ static void __register_exec_queue(struct xe_guc *guc,
- 	xe_guc_ct_send(&guc->ct, action, ARRAY_SIZE(action), 0, 0);
- }
- 
-+static bool xe_guc_has_debug_contexts(struct xe_guc *guc)
-+{
-+	return GUC_FIRMWARE_VER(guc) >=	XE_EUDEBUG_GUC_VER_MIN;
-+}
-+
-+static int xe_guc_action_eu_kernel_debug_enable(struct xe_guc *guc,
-+						struct xe_exec_queue *q)
-+{
-+	struct xe_gt *gt = q->hwe->gt;
-+	const u32 action[] = {
-+		XE_GUC_ACTION_EU_KERNEL_DEBUG,
-+		q->guc->id,
-+		XE_GUC_EU_KERNEL_DEBUG_ENABLE,
-+		0, /* reserved */
-+	};
-+	int ret;
-+
-+	ret = xe_guc_ct_send(&guc->ct, action,
-+			     ARRAY_SIZE(action), 0, 0);
-+
-+	if (ret)
-+		xe_gt_dbg(gt, "GuC ctx=%d debug enabling failed with %d",
-+			  action[1], ret);
-+	else
-+		xe_gt_dbg(gt, "GuC ctx=%d enabled for debug", action[1]);
-+
-+	return ret;
-+}
-+
-+static void set_debug(struct xe_guc *guc, struct xe_exec_queue *q)
-+{
-+	int ret;
-+
-+	if (!xe_guc_has_debug_contexts(guc))
-+		return;
-+
-+	ret = xe_guc_action_eu_kernel_debug_enable(guc, q);
-+	if (ret)
-+		xe_gt_warn(q->gt, "Failed to set eu kernel debug enable");
-+}
-+
- static void register_exec_queue(struct xe_exec_queue *q, int ctx_type)
- {
- 	struct xe_guc *guc = exec_queue_to_guc(q);
-@@ -662,6 +704,9 @@ static void register_exec_queue(struct xe_exec_queue *q, int ctx_type)
- 	else
- 		__register_exec_queue(guc, &info);
- 	init_policies(guc, q);
-+
-+	if (xe_exec_queue_is_debuggable(q))
-+		set_debug(guc, q);
- }
- 
- static u32 wq_space_until_wrap(struct xe_exec_queue *q)
-diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
-index e8f09ae7a67b..31272c83c6e0 100644
---- a/drivers/gpu/drm/xe/xe_wa_oob.rules
-+++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
-@@ -85,3 +85,5 @@
- #eudebug
- 18022722726	GRAPHICS_VERSION_RANGE(1250, 1274)
- 14015474168	PLATFORM(PVC)
-+14022766366	GRAPHICS_VERSION_RANGE(2000, 2004)
-+		GRAPHICS_VERSION_RANGE(3000, 3005)
--- 
-2.43.0
+== Summary ==
 
+CI Bug Log - changes from xe-4121-91fc6d984707c9bfd4a60550e6a85f1a991e7ec8_BAT -> xe-pw-156932v4_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (13 -> 13)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-156932v4_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@xe_waitfence@abstime:
+    - bat-dg2-oem2:       [TIMEOUT][1] ([Intel XE#6506]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4121-91fc6d984707c9bfd4a60550e6a85f1a991e7ec8/bat-dg2-oem2/igt@xe_waitfence@abstime.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156932v4/bat-dg2-oem2/igt@xe_waitfence@abstime.html
+
+  * igt@xe_waitfence@engine:
+    - bat-dg2-oem2:       [FAIL][3] ([Intel XE#6519]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4121-91fc6d984707c9bfd4a60550e6a85f1a991e7ec8/bat-dg2-oem2/igt@xe_waitfence@engine.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156932v4/bat-dg2-oem2/igt@xe_waitfence@engine.html
+
+  
+  [Intel XE#6506]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506
+  [Intel XE#6519]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8629 -> IGT_8631
+  * Linux: xe-4121-91fc6d984707c9bfd4a60550e6a85f1a991e7ec8 -> xe-pw-156932v4
+
+  IGT_8629: 3813b62c3c6200f69d6cc8be1c5e621243ace24f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_8631: 8631
+  xe-4121-91fc6d984707c9bfd4a60550e6a85f1a991e7ec8: 91fc6d984707c9bfd4a60550e6a85f1a991e7ec8
+  xe-pw-156932v4: 156932v4
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156932v4/index.html
+
+--===============7020709355850338341==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Improve CCS save/restore series (cont...) (rev4)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/156932/">https://patchwork.freedesktop.org/series/156932/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156932v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156932v4/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4121-91fc6d984707c9bfd4a60550e6a85f1a991e7ec8_BAT -&gt; xe-pw-156932v4_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-156932v4_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@xe_waitfence@abstime:</p>
+<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4121-91fc6d984707c9bfd4a60550e6a85f1a991e7ec8/bat-dg2-oem2/igt@xe_waitfence@abstime.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506">Intel XE#6506</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156932v4/bat-dg2-oem2/igt@xe_waitfence@abstime.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@xe_waitfence@engine:</p>
+<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4121-91fc6d984707c9bfd4a60550e6a85f1a991e7ec8/bat-dg2-oem2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519">Intel XE#6519</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156932v4/bat-dg2-oem2/igt@xe_waitfence@engine.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8629 -&gt; IGT_8631</li>
+<li>Linux: xe-4121-91fc6d984707c9bfd4a60550e6a85f1a991e7ec8 -&gt; xe-pw-156932v4</li>
+</ul>
+<p>IGT_8629: 3813b62c3c6200f69d6cc8be1c5e621243ace24f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_8631: 8631<br />
+  xe-4121-91fc6d984707c9bfd4a60550e6a85f1a991e7ec8: 91fc6d984707c9bfd4a60550e6a85f1a991e7ec8<br />
+  xe-pw-156932v4: 156932v4</p>
+
+</body>
+</html>
+
+--===============7020709355850338341==--
