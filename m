@@ -4,55 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2D7F3CEDD89
-	for <intel-xe@archiver.kernel.org>; Tue, 18 Nov 2025 13:43:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CE987CEDD8A
+	for <intel-xe@archiver.kernel.org>; Tue, 18 Nov 2025 14:03:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E59B710E4B2;
-	Tue, 18 Nov 2025 13:43:41 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SdQT/1+j";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 337D310E4AF;
- Tue, 18 Nov 2025 13:43:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1763473420; x=1795009420;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version; bh=8bd2RPTjCSEHbbwrigGrellv5uqtPISQVSy0zJDvkeA=;
- b=SdQT/1+jmpdEer/dSXFUBLFOqmqJllt/kamvDYoz74cIa9dsJQsMFrTY
- GFik2P9l7H+3tod9r+/mimpBUymqpZ+bJzS1rWVgM37l2hc0IPvgJhRsW
- ER3eN8GInKiptipM+ro3VtdpVZOW2hx54Ft7+LZrxma6tPdxxprx3YjyD
- cze+Q2j6+fa6CBXqowF1Vnhf/AGT0EDjeGiN3Vi67u6q3OTYtfwmZTYEm
- j+aU77jqhrPz4qy2THHOpQoT9qavwIWboFrb0Arfi0vgU4ZIlPwdP8j9i
- Kw3CPRTANP/yUzBAvlG4P14NOT4d+vqcNgVxHUbJChRh2eImdYyA2DRvB A==;
-X-CSE-ConnectionGUID: 4slUY7QnQcWmzy6k0uJ4LQ==
-X-CSE-MsgGUID: 2K982zxyS1WoW1z6aJYUgg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11616"; a="64493411"
-X-IronPort-AV: E=Sophos;i="6.19,314,1754982000"; d="scan'208";a="64493411"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Nov 2025 05:43:40 -0800
-X-CSE-ConnectionGUID: lrgBQP6RR6WVLocXky9JhA==
-X-CSE-MsgGUID: pNhun8/+RHGlXaC7QbOgrg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,314,1754982000"; d="scan'208";a="190023813"
-Received: from lfiedoro-mobl.ger.corp.intel.com (HELO localhost)
- ([10.245.246.147])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Nov 2025 05:43:39 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH v2] drm/i915/display: change pipe order for platforms
- with big joiner
-In-Reply-To: <20251118133758.2373008-1-jani.nikula@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20251118095801.2248786-1-jani.nikula@intel.com>
- <20251118133758.2373008-1-jani.nikula@intel.com>
-Date: Tue, 18 Nov 2025 15:43:35 +0200
-Message-ID: <0989b7647aef0c1dfacbdd302e5b3720d3a558c4@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 918CA10E4D2;
+	Tue, 18 Nov 2025 14:03:50 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 850CF10E4D2;
+ Tue, 18 Nov 2025 14:03:49 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0946657747249884224=="
 MIME-Version: 1.0
-Content-Type: text/plain
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/oa=3A_Fix_potential_?=
+ =?utf-8?q?UAF_in_xe=5Foa=5Fadd=5Fconfig=5Fioctl=28=29_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Sanjay Yadav" <sanjay.kumar.yadav@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 18 Nov 2025 14:03:49 -0000
+Message-ID: <176347462953.5561.14282148621760126010@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20251118114859.3379952-2-sanjay.kumar.yadav@intel.com>
+In-Reply-To: <20251118114859.3379952-2-sanjay.kumar.yadav@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,115 +36,143 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 18 Nov 2025, Jani Nikula <jani.nikula@intel.com> wrote:
-> When big joiner is enabled, it reserves the adjacent pipe as the
-> secondary pipe. This happens without the user space knowing, and
-> subsequent attempts at using the CRTC with that pipe will fail. If the
-> user space does not have a coping mechanism, i.e. trying another pipe,
-> this leads to a black screen.
->
-> If the platform allows joining A+B, map the CRTCs to pipes in order A,
-> C, B, and D to trick userspace to using pipes that are more likely to be
-> available for joining.
->
-> Although there are currently no platforms with more than four pipes, add
-> a fallback for initializing the rest of the pipes to not miss them.
->
-> v2: Also remove WARN_ON()
+--===============0946657747249884224==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-There's still this in intel_atomic_check_joiner():
+== Series Details ==
 
-		/*
-		 * The state copy logic assumes the primary crtc gets processed
-		 * before the secondary crtc during the main compute_config loop.
-		 * This works because the crtcs are created in pipe order,
-		 * and the hardware requires primary pipe < secondary pipe as well.
-		 * Should that change we need to rethink the logic.
-		 */
-		if (WARN_ON(drm_crtc_index(&primary_crtc->base) >
-			    drm_crtc_index(&secondary_crtc->base)))
-			return -EINVAL;
+Series: drm/xe/oa: Fix potential UAF in xe_oa_add_config_ioctl() (rev2)
+URL   : https://patchwork.freedesktop.org/series/157672/
+State : success
 
-This still works for A+B and C+D joining, but will fail loudly for B+C
-joining.
+== Summary ==
 
-Ideas?
+CI Bug Log - changes from xe-4121-91fc6d984707c9bfd4a60550e6a85f1a991e7ec8_BAT -> xe-pw-157672v2_BAT
+====================================================
 
-BR,
-Jani.
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (13 -> 13)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-157672v2_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@xe_waitfence@abstime:
+    - bat-dg2-oem2:       [TIMEOUT][1] ([Intel XE#6506]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4121-91fc6d984707c9bfd4a60550e6a85f1a991e7ec8/bat-dg2-oem2/igt@xe_waitfence@abstime.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157672v2/bat-dg2-oem2/igt@xe_waitfence@abstime.html
+
+  * igt@xe_waitfence@engine:
+    - bat-dg2-oem2:       [FAIL][3] ([Intel XE#6519]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4121-91fc6d984707c9bfd4a60550e6a85f1a991e7ec8/bat-dg2-oem2/igt@xe_waitfence@engine.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157672v2/bat-dg2-oem2/igt@xe_waitfence@engine.html
+
+  
+  [Intel XE#6506]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506
+  [Intel XE#6519]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519
 
 
->
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->
-> ---
->
-> Let's see what breaks...
-> ---
->  drivers/gpu/drm/i915/display/intel_crtc.c     |  2 --
->  .../drm/i915/display/intel_display_driver.c   | 26 ++++++++++++++++++-
->  2 files changed, 25 insertions(+), 3 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
-> index 9d2a23c96c61..11e58d07ddef 100644
-> --- a/drivers/gpu/drm/i915/display/intel_crtc.c
-> +++ b/drivers/gpu/drm/i915/display/intel_crtc.c
-> @@ -394,8 +394,6 @@ int intel_crtc_init(struct intel_display *display, enum pipe pipe)
->  
->  	cpu_latency_qos_add_request(&crtc->vblank_pm_qos, PM_QOS_DEFAULT_VALUE);
->  
-> -	drm_WARN_ON(display->drm, drm_crtc_index(&crtc->base) != crtc->pipe);
-> -
->  	if (HAS_CASF(display))
->  		drm_crtc_create_sharpness_strength_property(&crtc->base);
->  
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
-> index 7e000ba3e08b..83aad727017b 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_driver.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
-> @@ -452,6 +452,7 @@ bool intel_display_driver_check_access(struct intel_display *display)
->  /* part #2: call after irq install, but before gem init */
->  int intel_display_driver_probe_nogem(struct intel_display *display)
->  {
-> +	u8 pipe_mask = U8_MAX;
->  	enum pipe pipe;
->  	int ret;
->  
-> @@ -470,7 +471,30 @@ int intel_display_driver_probe_nogem(struct intel_display *display)
->  		    INTEL_NUM_PIPES(display),
->  		    INTEL_NUM_PIPES(display) > 1 ? "s" : "");
->  
-> -	for_each_pipe(display, pipe) {
-> +	/*
-> +	 * If we have a joiner that can join A+B, expose the pipes in order A,
-> +	 * C, B, D to trick user space into using pipes that are more likely to
-> +	 * be available for both a) user space if pipe B has been reserved for
-> +	 * the joiner, and b) the joiner if pipe A doesn't need the joiner.
-> +	 *
-> +	 * Fall back to normal initialization for the remaining pipes, if any.
-> +	 */
-> +	if (HAS_BIGJOINER(display) && DISPLAY_VER(display) >= 12) {
-> +		enum pipe pipe_order[] = { PIPE_A, PIPE_C, PIPE_B, PIPE_D };
-> +		int i;
-> +
-> +		for (i = 0; i < ARRAY_SIZE(pipe_order); i++) {
-> +			pipe = pipe_order[i];
-> +
-> +			ret = intel_crtc_init(display, pipe);
-> +			if (ret)
-> +				goto err_mode_config;
-> +
-> +			pipe_mask &= ~BIT(pipe);
-> +		}
-> +	}
-> +
-> +	for_each_pipe_masked(display, pipe, pipe_mask) {
->  		ret = intel_crtc_init(display, pipe);
->  		if (ret)
->  			goto err_mode_config;
+Build changes
+-------------
 
--- 
-Jani Nikula, Intel
+  * IGT: IGT_8629 -> IGT_8631
+  * Linux: xe-4121-91fc6d984707c9bfd4a60550e6a85f1a991e7ec8 -> xe-pw-157672v2
+
+  IGT_8629: 3813b62c3c6200f69d6cc8be1c5e621243ace24f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_8631: 8631
+  xe-4121-91fc6d984707c9bfd4a60550e6a85f1a991e7ec8: 91fc6d984707c9bfd4a60550e6a85f1a991e7ec8
+  xe-pw-157672v2: 157672v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157672v2/index.html
+
+--===============0946657747249884224==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/oa: Fix potential UAF in xe_oa_add_config_ioctl() (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/157672/">https://patchwork.freedesktop.org/series/157672/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157672v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157672v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4121-91fc6d984707c9bfd4a60550e6a85f1a991e7ec8_BAT -&gt; xe-pw-157672v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-157672v2_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@xe_waitfence@abstime:</p>
+<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4121-91fc6d984707c9bfd4a60550e6a85f1a991e7ec8/bat-dg2-oem2/igt@xe_waitfence@abstime.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506">Intel XE#6506</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157672v2/bat-dg2-oem2/igt@xe_waitfence@abstime.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@xe_waitfence@engine:</p>
+<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4121-91fc6d984707c9bfd4a60550e6a85f1a991e7ec8/bat-dg2-oem2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519">Intel XE#6519</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157672v2/bat-dg2-oem2/igt@xe_waitfence@engine.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8629 -&gt; IGT_8631</li>
+<li>Linux: xe-4121-91fc6d984707c9bfd4a60550e6a85f1a991e7ec8 -&gt; xe-pw-157672v2</li>
+</ul>
+<p>IGT_8629: 3813b62c3c6200f69d6cc8be1c5e621243ace24f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_8631: 8631<br />
+  xe-4121-91fc6d984707c9bfd4a60550e6a85f1a991e7ec8: 91fc6d984707c9bfd4a60550e6a85f1a991e7ec8<br />
+  xe-pw-157672v2: 157672v2</p>
+
+</body>
+</html>
+
+--===============0946657747249884224==--
