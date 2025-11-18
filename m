@@ -4,42 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8EF63CCD19A
-	for <intel-xe@archiver.kernel.org>; Tue, 18 Nov 2025 09:02:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AB4E4CCD19A
+	for <intel-xe@archiver.kernel.org>; Tue, 18 Nov 2025 09:02:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4241B10E446;
-	Tue, 18 Nov 2025 09:02:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7018110E454;
+	Tue, 18 Nov 2025 09:02:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WfudogOV";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OrgvWrn5";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6A81F10E446
- for <intel-xe@lists.freedesktop.org>; Tue, 18 Nov 2025 09:02:05 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EC63D10E454
+ for <intel-xe@lists.freedesktop.org>; Tue, 18 Nov 2025 09:02:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1763456525; x=1794992525;
+ t=1763456529; x=1794992529;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=zVsI3W5B/yxETDyHEiswiJmdWMx18/JBJwvlJJO1wrQ=;
- b=WfudogOV5/WL5wNap6zC1HvIklWWRrx25trso9nYiaOTyYOvcmITA0B9
- qXTE7ugCDxFsYZFxRKNgUQC8czi6B4+EL/N/DPH3QM/ql/sVtDVxhFJBw
- aXJxnD6BL8KdtxX6/kkimOI0ro2JvucABJJ1UU8O+tsGf0fDHG907nDbc
- o4lJMWZA4Ulv+OIEe6ujqNAbviB65O53IDhXPjMqpU7SeVbGzNOvix6g9
- zDruJ6ygj+bDciT7xHjgFuOce6yauvirJuDYZTNGTYQ4ulUz2H4hxvhpq
- sq16no6UrbeQ0IlFav91zTcLPpOu6LiKAK+VD4S2CnCyGWEJXgNMxtpTQ g==;
-X-CSE-ConnectionGUID: JcVhoioUT86e9ObCxUR/Og==
-X-CSE-MsgGUID: KiywZ6WbRxqiO6AVAExZ9w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11616"; a="53042284"
-X-IronPort-AV: E=Sophos;i="6.19,314,1754982000"; d="scan'208";a="53042284"
+ bh=RyXgkYCZ43y71e148PQXEYf3jlAXUY7BhWK14Tn1jVc=;
+ b=OrgvWrn55N1AjXQWD3Q70Nb5AWEOlWDyBHnzJIdgxcyKkemI2bL3MFLK
+ U+ey4sKOlf7avCMIoWq4qZq7sxHTvA8CyaA55BAnd2gRyyb/Q/d+Stz6F
+ MiGriT5CvWuLEJMMrYvNVn21WdEBVdFReh1gx1WR0Zi1O2H9FoZ/0u5dA
+ WIaaWfcbV3Ekg8KaJiuRbrKSaI/F40Wi1WG8VNiS9tspFWI333WoiwWYa
+ tQU3jNU3WU8xVKL/ZNPsV0hpjg5F6F81dYB85lCk6rPKnpmXLw1mhQo8x
+ QLlDkuVa1NS4heB2St/XHlek2feXvp9Ib2U/d6j2qCxfvSw65UiTRGbNV Q==;
+X-CSE-ConnectionGUID: hzgz0SD+QJWnm9ErajBdJg==
+X-CSE-MsgGUID: AVUtsdG3TNy5WNNkJrD3+g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11616"; a="53042286"
+X-IronPort-AV: E=Sophos;i="6.19,314,1754982000"; d="scan'208";a="53042286"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Nov 2025 01:02:05 -0800
-X-CSE-ConnectionGUID: BaYHh5z7Q6eQcYKIBwCr+Q==
-X-CSE-MsgGUID: R90SjPx1RLin0QGhKRzYLA==
+ 18 Nov 2025 01:02:09 -0800
+X-CSE-ConnectionGUID: 4PXk6w1SSOiTnibH1PYHSA==
+X-CSE-MsgGUID: B3R5PRGYQKOwwQQ2ZO9L0w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,314,1754982000"; d="scan'208";a="228042508"
+X-IronPort-AV: E=Sophos;i="6.19,314,1754982000"; d="scan'208";a="228042523"
 Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
- by orviesa001.jf.intel.com with ESMTP; 18 Nov 2025 01:02:02 -0800
+ by orviesa001.jf.intel.com with ESMTP; 18 Nov 2025 01:02:05 -0800
 From: Raag Jadav <raag.jadav@intel.com>
 To: lucas.demarchi@intel.com,
 	rodrigo.vivi@intel.com,
@@ -49,14 +49,14 @@ Cc: intel-xe@lists.freedesktop.org, riana.tauro@intel.com,
  badal.nilawar@intel.com, ville.syrjala@linux.intel.com,
  karthik.poosa@intel.com, anshuman.gupta@intel.com,
  Raag Jadav <raag.jadav@intel.com>
-Subject: [PATCH v1 1/4] drm/xe/pcode: Introduce xe_pcode_read_probe()
-Date: Tue, 18 Nov 2025 14:29:17 +0530
-Message-ID: <20251118090012.608250-2-raag.jadav@intel.com>
+Subject: [PATCH v1 2/4] drm/xe/sysfs: Use xe_pcode_read_probe() to check for
+ mailbox command support
+Date: Tue, 18 Nov 2025 14:29:18 +0530
+Message-ID: <20251118090012.608250-3-raag.jadav@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20251118090012.608250-1-raag.jadav@intel.com>
 References: <20251118090012.608250-1-raag.jadav@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -72,163 +72,29 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-If the device is running older pcode firmware, it is possible that newer
-mailbox commands are not supported by it. The respective functionality
-isn't useful in that case but nor is error logging, as it doesn't
-particularly signify anything wrong with pcode firmware or device as a
-whole. Introduce xe_pcode_read_probe() which allows the caller to check
-for mailbox command support and determine if the respective functionality
-exists on the device without it being reported as an error. This is useful
-in cases where we want to make functionality decisions in the driver based
-on pcode return codes and a relatively simpler design choice compared to
-other solutions like checking pcode firmware version, which comes with
-additional complexity of binding every single command to a specific version
-and deems pcode commands useless in case the driver fails to obtain it for
-reasons unrelated to pcode.
+Use xe_pcode_read_probe() to check for mailbox command support on the
+device while exposing respective sysfs attributes.
 
-This only silences command related failures and still reports other
-failures as errors, so we don't end up hiding the genuine ones.
-
-Suggested-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 Signed-off-by: Raag Jadav <raag.jadav@intel.com>
 ---
- drivers/gpu/drm/xe/xe_pcode.c | 42 ++++++++++++++++++++++++-----------
- drivers/gpu/drm/xe/xe_pcode.h |  1 +
- 2 files changed, 30 insertions(+), 13 deletions(-)
+ drivers/gpu/drm/xe/xe_device_sysfs.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_pcode.c b/drivers/gpu/drm/xe/xe_pcode.c
-index 0d33c14ea0cf..797b757f7a68 100644
---- a/drivers/gpu/drm/xe/xe_pcode.c
-+++ b/drivers/gpu/drm/xe/xe_pcode.c
-@@ -30,7 +30,7 @@
-  * - PCODE for display operations
-  */
+diff --git a/drivers/gpu/drm/xe/xe_device_sysfs.c b/drivers/gpu/drm/xe/xe_device_sysfs.c
+index ec9c06b06fb5..30326de826a7 100644
+--- a/drivers/gpu/drm/xe/xe_device_sysfs.c
++++ b/drivers/gpu/drm/xe/xe_device_sysfs.c
+@@ -168,8 +168,8 @@ static umode_t late_bind_attr_is_visible(struct kobject *kobj,
+ 	u32 cap = 0;
+ 	int ret;
  
--static int pcode_mailbox_status(struct xe_tile *tile)
-+static int pcode_mailbox_status(struct xe_tile *tile, bool probe)
- {
- 	const char *err_str;
- 	int err_decode;
-@@ -57,8 +57,12 @@ static int pcode_mailbox_status(struct xe_tile *tile)
- 	}
- 
- 	if (err) {
--		drm_err(&tile_to_xe(tile)->drm, "PCODE Mailbox failed: %d %s",
--			err_decode, err_str);
-+		if (probe && err_decode == -ENXIO)
-+			drm_dbg(&tile_to_xe(tile)->drm, "PCODE Mailbox unsupported: %d %s",
-+				err_decode, err_str);
-+		else
-+			drm_err(&tile_to_xe(tile)->drm, "PCODE Mailbox failed: %d %s",
-+				err_decode, err_str);
- 
- 		return err_decode;
- 	}
-@@ -69,7 +73,7 @@ static int pcode_mailbox_status(struct xe_tile *tile)
- 
- static int __pcode_mailbox_rw(struct xe_tile *tile, u32 mbox, u32 *data0, u32 *data1,
- 			      unsigned int timeout_ms, bool return_data,
--			      bool atomic)
-+			      bool atomic, bool probe)
- {
- 	struct xe_mmio *mmio = &tile->mmio;
- 	int err;
-@@ -95,19 +99,20 @@ static int __pcode_mailbox_rw(struct xe_tile *tile, u32 mbox, u32 *data0, u32 *d
- 			*data1 = xe_mmio_read32(mmio, PCODE_DATA1);
- 	}
- 
--	return pcode_mailbox_status(tile);
-+	return pcode_mailbox_status(tile, probe);
- }
- 
- static int pcode_mailbox_rw(struct xe_tile *tile, u32 mbox, u32 *data0, u32 *data1,
- 			    unsigned int timeout_ms, bool return_data,
--			    bool atomic)
-+			    bool atomic, bool probe)
- {
- 	if (tile_to_xe(tile)->info.skip_pcode)
+-	ret = xe_pcode_read(root, PCODE_MBOX(PCODE_LATE_BINDING, GET_CAPABILITY_STATUS, 0),
+-			    &cap, NULL);
++	ret = xe_pcode_read_probe(root, PCODE_MBOX(PCODE_LATE_BINDING, GET_CAPABILITY_STATUS, 0),
++				  &cap, NULL);
+ 	if (ret)
  		return 0;
  
- 	lockdep_assert_held(&tile->pcode.lock);
- 
--	return __pcode_mailbox_rw(tile, mbox, data0, data1, timeout_ms, return_data, atomic);
-+	return __pcode_mailbox_rw(tile, mbox, data0, data1, timeout_ms, return_data,
-+				  atomic, probe);
- }
- 
- int xe_pcode_write_timeout(struct xe_tile *tile, u32 mbox, u32 data, int timeout)
-@@ -115,7 +120,7 @@ int xe_pcode_write_timeout(struct xe_tile *tile, u32 mbox, u32 data, int timeout
- 	int err;
- 
- 	mutex_lock(&tile->pcode.lock);
--	err = pcode_mailbox_rw(tile, mbox, &data, NULL, timeout, false, false);
-+	err = pcode_mailbox_rw(tile, mbox, &data, NULL, timeout, false, false, false);
- 	mutex_unlock(&tile->pcode.lock);
- 
- 	return err;
-@@ -126,7 +131,7 @@ int xe_pcode_write64_timeout(struct xe_tile *tile, u32 mbox, u32 data0, u32 data
- 	int err;
- 
- 	mutex_lock(&tile->pcode.lock);
--	err = pcode_mailbox_rw(tile, mbox, &data0, &data1, timeout, false, false);
-+	err = pcode_mailbox_rw(tile, mbox, &data0, &data1, timeout, false, false, false);
- 	mutex_unlock(&tile->pcode.lock);
- 
- 	return err;
-@@ -137,7 +142,18 @@ int xe_pcode_read(struct xe_tile *tile, u32 mbox, u32 *val, u32 *val1)
- 	int err;
- 
- 	mutex_lock(&tile->pcode.lock);
--	err = pcode_mailbox_rw(tile, mbox, val, val1, 1, true, false);
-+	err = pcode_mailbox_rw(tile, mbox, val, val1, 1, true, false, false);
-+	mutex_unlock(&tile->pcode.lock);
-+
-+	return err;
-+}
-+
-+int xe_pcode_read_probe(struct xe_tile *tile, u32 mbox, u32 *val, u32 *val1)
-+{
-+	int err;
-+
-+	mutex_lock(&tile->pcode.lock);
-+	err = pcode_mailbox_rw(tile, mbox, val, val1, 1, true, false, true);
- 	mutex_unlock(&tile->pcode.lock);
- 
- 	return err;
-@@ -154,10 +170,10 @@ static int pcode_try_request(struct xe_tile *tile, u32 mbox,
- 	for (slept = 0; slept < timeout_us; slept += wait) {
- 		if (locked)
- 			*status = pcode_mailbox_rw(tile, mbox, &request, NULL, 1, true,
--						   atomic);
-+						   atomic, false);
- 		else
- 			*status = __pcode_mailbox_rw(tile, mbox, &request, NULL, 1, true,
--						     atomic);
-+						     atomic, false);
- 		if ((*status == 0) && ((request & reply_mask) == reply))
- 			return 0;
- 
-@@ -268,7 +284,7 @@ int xe_pcode_init_min_freq_table(struct xe_tile *tile, u32 min_gt_freq,
- 		u32 data = freq << PCODE_FREQ_RING_RATIO_SHIFT | freq;
- 
- 		ret = pcode_mailbox_rw(tile, PCODE_WRITE_MIN_FREQ_TABLE,
--				       &data, NULL, 1, false, false);
-+				       &data, NULL, 1, false, false, false);
- 		if (ret)
- 			goto unlock;
- 	}
-diff --git a/drivers/gpu/drm/xe/xe_pcode.h b/drivers/gpu/drm/xe/xe_pcode.h
-index a5584c1c75f9..688eca8f24e6 100644
---- a/drivers/gpu/drm/xe/xe_pcode.h
-+++ b/drivers/gpu/drm/xe/xe_pcode.h
-@@ -18,6 +18,7 @@ int xe_pcode_ready(struct xe_device *xe, bool locked);
- int xe_pcode_init_min_freq_table(struct xe_tile *tile, u32 min_gt_freq,
- 				 u32 max_gt_freq);
- int xe_pcode_read(struct xe_tile *tile, u32 mbox, u32 *val, u32 *val1);
-+int xe_pcode_read_probe(struct xe_tile *tile, u32 mbox, u32 *val, u32 *val1);
- int xe_pcode_write_timeout(struct xe_tile *tile, u32 mbox, u32 val,
- 			   int timeout_ms);
- int xe_pcode_write64_timeout(struct xe_tile *tile, u32 mbox, u32 data0,
 -- 
 2.43.0
 
