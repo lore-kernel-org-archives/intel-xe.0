@@ -4,146 +4,69 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2503FCFC288
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 778CACFC28A
 	for <intel-xe@archiver.kernel.org>; Fri, 21 Nov 2025 13:53:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A947710E8AD;
+	by gabe.freedesktop.org (Postfix) with ESMTP id EEAFE10E8B2;
 	Fri, 21 Nov 2025 13:53:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="gvTslMjy";
+	dkim=pass (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="UTV8MhzG";
 	dkim-atps=neutral
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com
- [209.85.128.50])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2983F10E147
- for <intel-xe@lists.freedesktop.org>; Tue, 18 Nov 2025 18:50:29 +0000 (UTC)
-Received: by mail-wm1-f50.google.com with SMTP id
- 5b1f17b1804b1-4779cd413b4so2400475e9.2
- for <intel-xe@lists.freedesktop.org>; Tue, 18 Nov 2025 10:50:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1763491828; x=1764096628; darn=lists.freedesktop.org;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=/xelqTh0MJxdYizhebw3VTy7C2C4gWnDlrkViLNdgoU=;
- b=gvTslMjyHqSFnIJ0jXlO3q/bKlFYTDxReAhuu8rOy8LYGEUx4Xesu7Z92Y32SrQuHd
- W1NCTAIjmh5UIw2JIK2fXyla1vfX6TIlvcEslNlwVUyzVX5oagVddujX1hKavLPo333l
- 556o/wqnMnDwI+BoDuX7Ul6cyKi6YJi5MxO93ciCbN7F4lKawg69pB72asGJPJLQB/vC
- WBQO9kjMkvulL+GE5Ch88JM1LgIRoatXb6ApNoXV6gpWp511brNYgeaxvJCc6W9qxfj/
- qX+OSn/IV5OkMeM2fbEYlNSq5DAAWgQTkolEkh0J6cwIw8NM31o4W/v67XTPV2MNvHm8
- Didw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1763491828; x=1764096628;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=/xelqTh0MJxdYizhebw3VTy7C2C4gWnDlrkViLNdgoU=;
- b=pQJujj728Xvr1FmsuYduXiVE0OPNS+uEGKmdi1h19ZvOqip2YiS1jYwoWwPNlgaWP9
- WAlyVMO6tk1YMVafj3zaaFrVLVI6+nRJCjCc4duCvWoi6Z4l/2hy8ZeYUOo2Tk9u2RhR
- FjjLpMNe8SECni11Wc63zfeQGnIP0XJwZDrVgPP1+uKsrcw2Dyhc2ul21jsomIlDuGq1
- hsJFrXUNH6WFiNsruvPoTPh6unH+pJwFXoNWznlJTJkG7F4YXYxhsF6vhZ74lJOROjtZ
- 08kNIqXOqG+AJ8pad3kXw45Eg+C78s//moVARC7R4z7IaAoB8tKFn/GWgQyHN72RPvJ4
- z5BA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXhl+MzFh+Y48dCTY1LKiypNyZm/6d33CEyqluXmn+PQeTdQ6ScyaFeQjJHYdAdi7oxyDayyHv1/Q==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxZJenkmhbhctnwcwIg06GXSAL/j4xAcNzz5JLzB9/W2nVy8Zz1
- euhyN4OHlOvRjn5Bb3eS25grC1dIqz82MuHohZr20iwlG3q4LPQYHKaV
-X-Gm-Gg: ASbGncs196HMDaHtCWBdGFQ66L2gosTcK0eDFlz+Lz7hqw21V+DpcpfwEad0+0u1aPq
- l/fDavidWmOMu9sk3VSRfMtF6XVGn3JxLZU/9Cfa5OcPfdgSu9FRimm/1Xm759iPxcijJLFZPSQ
- cA3Mrb7TaaVY/6F2mOUDT2zDDwbOUV8foSFzKDxrVHwkGkczY/a8KLAA86J871JDwOPPMRcT0cG
- NOplEV/8dTRJ7OBKbeAmTQd8Zu/A+vJcJ1Ta8qGyR5l0x2DAG0Fr5P8FcO6hEP2AqqNjdS4QcFn
- 4qD9olDn9e+SFo9Tt/5QUEvuteEVGuPPh3vTqRC0VQA3pSfwfc3Hhj/Pp1iyIGV4E0gCxW/eMF7
- bWGUywOys1ReP6tGD7AHcUQwF8tkZBP93/QGKF3rSNr4Dcu/L9+nP0SKab0I/icJYj49k0TMMgl
- yNmrETXmsziBIb
-X-Google-Smtp-Source: AGHT+IHx6i4VYWR6pSTcXtSoFlN4Y9U/3Z/PI54PVyQA5JnsfbBaJwpdM3LzkIBKtiuh5JtXbYxanA==
-X-Received: by 2002:a05:600c:1547:b0:477:5c70:e14e with SMTP id
- 5b1f17b1804b1-4778feabadamr87966605e9.5.1763491827278; 
- Tue, 18 Nov 2025 10:50:27 -0800 (PST)
-Received: from skbuf ([2a02:2f04:d106:d600:9ac1:9a91:7d1:a813])
- by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-477a9df99d3sm22110705e9.12.2025.11.18.10.50.19
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 18 Nov 2025 10:50:23 -0800 (PST)
-Date: Tue, 18 Nov 2025 20:50:17 +0200
-From: Vladimir Oltean <olteanv@gmail.com>
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: Corey Minyard <corey@minyard.net>,
- Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
- "Dr. David Alan Gilbert" <linux@treblig.org>,
+Received: from bali.collaboradmins.com (bali.collaboradmins.com
+ [148.251.105.195])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8E82610E504;
+ Tue, 18 Nov 2025 20:00:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+ s=mail; t=1763496009;
+ bh=Ouz3sykA6NZWtw6Ox5elkRDV5HgOt7b0f0GP8Kov1EI=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=UTV8MhzGZCT6pEbkvadKMx88eRgkHh/BuJwjL7ViFkX8GYKo/Kklgll2xVBXkZlQF
+ ZBDDmOe+RdQMe08+xVVPmYlsa3GF5Lw/PjdGBsKdTsYqoZJV/wQ9Zh0YMyPvEGzo7Y
+ axSvCTEV+OYbBjghz5nybkVV2zcXM6sAxV4Umijn2BdAvXKVbgA3DCf2VDs3YT9YOT
+ LYz8OowQRHgsRHjB2iaR0yuFmK+CgnHMkfF4uwNYt4ueo9cu20LqAY4W3Y9sm4j8EH
+ Rwdm06n+iHYdq08roCIF3rHHZD3K+D9QZinZRYCgC5ADRTB0V3+J9sPvmlujWxP5QR
+ HP+nOID4xnnpQ==
+Received: from [192.168.1.90] (unknown [82.79.138.145])
+ (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested) (Authenticated sender: cristicc)
+ by bali.collaboradmins.com (Postfix) with ESMTPSA id C39BF17E0610;
+ Tue, 18 Nov 2025 21:00:08 +0100 (CET)
+Message-ID: <3863e0e5-677b-4225-9854-3ee420828275@collabora.com>
+Date: Tue, 18 Nov 2025 22:00:08 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 05/10] drm/bridge: dw-hdmi-qp: Set bridge
+ supported_formats
+To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
+ Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ Rodrigo Siqueira <siqueira@igalia.com>,
  Alex Deucher <alexander.deucher@amd.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
- Rob Clark <robin.clark@oss.qualcomm.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Ulf Hansson <ulf.hansson@linaro.org>,
- Aleksandr Loktionov <aleksandr.loktionov@intel.com>,
- Vitaly Lifshits <vitaly.lifshits@intel.com>,
- Manivannan Sadhasivam <mani@kernel.org>,
- Niklas Cassel <cassel@kernel.org>, Calvin Owens <calvin@wbinvd.org>,
- Vadim Fedorenko <vadim.fedorenko@linux.dev>,
- Sagi Maimon <maimon.sagi@gmail.com>,
- "Martin K. Petersen" <martin.petersen@oracle.com>,
- Karan Tilak Kumar <kartilak@cisco.com>,
- Hans Verkuil <hverkuil+cisco@kernel.org>,
- Casey Schaufler <casey@schaufler-ca.com>,
- Steven Rostedt <rostedt@goodmis.org>, Petr Mladek <pmladek@suse.com>,
- Viacheslav Dubeyko <Slava.Dubeyko@ibm.com>,
- Max Kellermann <max.kellermann@ionos.com>,
- linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
- openipmi-developer@lists.sourceforge.net,
- linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linaro-mm-sig@lists.linaro.org, amd-gfx@lists.freedesktop.org,
- linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, linux-mmc@vger.kernel.org,
- netdev@vger.kernel.org, intel-wired-lan@lists.osuosl.org,
- linux-pci@vger.kernel.org, linux-s390@vger.kernel.org,
- linux-scsi@vger.kernel.org, linux-staging@lists.linux.dev,
- ceph-devel@vger.kernel.org, linux-trace-kernel@vger.kernel.org,
- Rasmus Villemoes <linux@rasmusvillemoes.dk>,
- Sergey Senozhatsky <senozhatsky@chromium.org>,
- Jonathan Corbet <corbet@lwn.net>, Sumit Semwal <sumit.semwal@linaro.org>,
- Gustavo Padovan <gustavo@padovan.org>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
  David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Dmitry Baryshkov <lumag@kernel.org>,
- Abhinav Kumar <abhinav.kumar@linux.dev>,
- Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- Konrad Dybcio <konradybcio@kernel.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Andrew Lunn <andrew@lunn.ch>,
- "David S. Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Tony Nguyen <anthony.l.nguyen@intel.com>,
- Przemek Kitszel <przemyslaw.kitszel@intel.com>,
- Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>,
- Bjorn Helgaas <bhelgaas@google.com>,
- Rodolfo Giometti <giometti@enneenne.com>,
- Jonathan Lemon <jonathan.lemon@gmail.com>,
- Richard Cochran <richardcochran@gmail.com>,
- Stefan Haberland <sth@linux.ibm.com>,
- Jan Hoeppner <hoeppner@linux.ibm.com>, Heiko Carstens <hca@linux.ibm.com>,
- Vasily Gorbik <gor@linux.ibm.com>,
- Alexander Gordeev <agordeev@linux.ibm.com>,
- Christian Borntraeger <borntraeger@linux.ibm.com>,
- Sven Schnelle <svens@linux.ibm.com>, Satish Kharat <satishkh@cisco.com>,
- Sesidhar Baddela <sebaddel@cisco.com>,
- "James E.J. Bottomley" <James.Bottomley@HansenPartnership.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Xiubo Li <xiubli@redhat.com>, Ilya Dryomov <idryomov@gmail.com>,
- Masami Hiramatsu <mhiramat@kernel.org>,
- Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
- Andrew Morton <akpm@linux-foundation.org>
-Subject: Re: [PATCH v3 14/21] net: dsa: sja1105: Switch to use %ptSp
-Message-ID: <20251118185017.kk7binsumhh27n7x@skbuf>
-References: <20251113150217.3030010-1-andriy.shevchenko@linux.intel.com>
- <20251113150217.3030010-15-andriy.shevchenko@linux.intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251113150217.3030010-15-andriy.shevchenko@linux.intel.com>
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Sandy Huang <hjc@rock-chips.com>, =?UTF-8?Q?Heiko_St=C3=BCbner?=
+ <heiko@sntech.de>, Andy Yan <andy.yan@rock-chips.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>
+Cc: kernel@collabora.com, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+References: <20251117-color-format-v4-0-0ded72bd1b00@collabora.com>
+ <20251117-color-format-v4-5-0ded72bd1b00@collabora.com>
+Content-Language: en-US
+From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+In-Reply-To: <20251117-color-format-v4-5-0ded72bd1b00@collabora.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Mailman-Approved-At: Fri, 21 Nov 2025 13:53:12 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -159,21 +82,48 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Andy,
+Hi Nicolas,
 
-On Thu, Nov 13, 2025 at 03:32:28PM +0100, Andy Shevchenko wrote:
-> Use %ptSp instead of open coded variants to print content of
-> struct timespec64 in human readable format.
+On 11/17/25 9:11 PM, Nicolas Frattaroli wrote:
+> The drm_bridge "supported_formats" member stores a bitmask of supported
+> HDMI output formats if the bridge is in fact an HDMI bridge.
 > 
-> Reviewed-by: Aleksandr Loktionov <aleksandr.loktionov@intel.com>
-> Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+> However, until now, the synopsys dw-hdmi-qp driver did not set this
+> member in the bridge it creates.
+> 
+> Set it based on the platform data's supported_formats member, and
+> default to BIT(HDMI_COLORSPACE_RGB) if it's absent, which preserves the
+> previous behaviour.
+> 
+> Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
 > ---
+>  drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c | 5 +++++
+>  1 file changed, 5 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c b/drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c
+> index fe4c026280f0..cf888236bd65 100644
+> --- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c
+> +++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c
+> @@ -1269,6 +1269,11 @@ struct dw_hdmi_qp *dw_hdmi_qp_bind(struct platform_device *pdev,
+>  		dev_warn(dev, "Set ref_clk_rate to vendor default\n");
+>  	}
+>  
+> +	if (plat_data->supported_formats)
+> +		hdmi->bridge.supported_formats = plat_data->supported_formats;
 
-Acked-by: Vladimir Oltean <olteanv@gmail.com>
-Tested-by: Vladimir Oltean <olteanv@gmail.com>
+This duplicates a change already introduced via commit 1ff27c5929ab
+("drm/bridge: dw-hdmi-qp: Handle platform supported formats and color depth").
 
-Thanks!
+> +	else
+> +		hdmi->bridge.supported_formats = BIT(HDMI_COLORSPACE_RGB);
 
-This is a rarely modified portion of the SJA1105 driver, and it doesn't
-conflict with other changes that I have planned, so from my PoV there is
-no problem with the patch being picked up via other trees.
+And this one looks redundant as well, since RGB is supposed to be mandatory:
+supported_formats defaults to RGB in drm_bridge_connector_init() if there's no
+HDMI bridge in the pipeline overriding it, while drmm_connector_hdmi_init()
+errors out if supported_formats is unset or doesn't advertise RGB.
+
+Hence I think this patch can be dropped.
+
+Regards,
+Cristian
+
