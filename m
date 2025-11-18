@@ -4,169 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6DDEECCD19A
-	for <intel-xe@archiver.kernel.org>; Tue, 18 Nov 2025 04:14:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 96606CED240
+	for <intel-xe@archiver.kernel.org>; Tue, 18 Nov 2025 04:21:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0503210E1E5;
-	Tue, 18 Nov 2025 04:14:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3972010E1DD;
+	Tue, 18 Nov 2025 04:21:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aoEWefW6";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jEuheWDA";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7B53E10E1DD;
- Tue, 18 Nov 2025 04:14:08 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CE44A10E1DD
+ for <intel-xe@lists.freedesktop.org>; Tue, 18 Nov 2025 04:21:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1763439249; x=1794975249;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=+qj5vqClJ22rbN0U07U7pZngf8fwAaECgcrS9gH8V18=;
- b=aoEWefW6EZrFSPgo82HEfBV7vGUWfiuZ9cdFtr5eDc0YnzoHgTieBXq4
- JzID0mWf/uDF7KMxRDvhnZ/AmZqxa9xtuu+XT6JLq25mpRikgmtqPgtMQ
- 4/cYY0wlURGcuh4eRG+Tjp2AWrglfYNm8B2KIi7h2XV0md3aPuG2iyqft
- HVr94nhZU6dc9Jtko1IkxRONqGtmrYhkOE3IVh+g+eKzGthXLZYLEgNWV
- FQcx6P+GSw9JB7G6b3Jk1SZ824uRGEyaXzN+9DEMoH5zYHlzHQ1vvGPvR
- bJH7fPx6qVv28532FOg1MyS5Uq7GFrJqkzqr1KZpgUjHYHvaQlxRvN1M0 g==;
-X-CSE-ConnectionGUID: 13ThhZ4sTXOwm3zGEvG0cA==
-X-CSE-MsgGUID: SCs87E+sQwKRLc05Aa+qQg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11616"; a="75774473"
-X-IronPort-AV: E=Sophos;i="6.19,313,1754982000"; d="scan'208";a="75774473"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Nov 2025 20:14:09 -0800
-X-CSE-ConnectionGUID: UhqilNCjTLaNhktw7lDXzw==
-X-CSE-MsgGUID: vBrlBedBT/Wl9dVY3UTGSw==
+ t=1763439666; x=1794975666;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=X4nnQbdBsymWxAdUV6Zxg1sf26JXOKhwbpYDnVrKFhw=;
+ b=jEuheWDAMfeaA1MFABQ1AD3PyCf/lTd4IU0398dl+vu17OLUmew6yFLu
+ MP6fFyZx1A6FUCYeVHUbA9LxnK3Eq86nNUsJSADstn+wAEEO6BTQMdbgL
+ +NR5H5GIue9hTSGpPjsFX83bqWu6zayEt2o/u/Gt1YsUM6bMyybBdzAm9
+ Z/L2yJy6GYqHJimyNv02qwj8mWclVbEcmqxaBasMIv0VsfBlLV248FgnG
+ rHb7YbhvMpYjl1uaWjNp3IaIupL/vwn0sPeKYDkjihMP9okgXiKvCPvHZ
+ GUOezHBG+RMqMnH0hqvOreeCrvtx4P7eLJ1QyYNJhyMK5BqROrOXUX5aL A==;
+X-CSE-ConnectionGUID: WSP0RpVYSGWU7W3nopvLvw==
+X-CSE-MsgGUID: KP76eKgaTKu7WXbamDsgyg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11616"; a="65390389"
+X-IronPort-AV: E=Sophos;i="6.19,313,1754982000"; d="scan'208";a="65390389"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Nov 2025 20:21:05 -0800
+X-CSE-ConnectionGUID: eg4OMG78SjqVD94tFqrvXA==
+X-CSE-MsgGUID: LKlnx5/HSW2htvKUt6zrBA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,313,1754982000"; d="scan'208";a="221546363"
-Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
- by fmviesa001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Nov 2025 20:14:08 -0800
-Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
- fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Mon, 17 Nov 2025 20:14:07 -0800
-Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
- FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27 via Frontend Transport; Mon, 17 Nov 2025 20:14:07 -0800
-Received: from MW6PR02CU001.outbound.protection.outlook.com (52.101.48.58) by
- edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Mon, 17 Nov 2025 20:14:07 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=nG+sl7zioP2AYGMiRbWwVwHcZZtkJJo2XS312ihwYWJUAg+sXFeSQVhc4fH8GSpIAtXHCrJ99MzEqq7u+lZlhrA4yiP8PWhUIJDf1tFHeDgHDcT6JjqhiPlesJ0hLCM8IPLReWdVg13E+b5PBW7BCG5cSdajD6HymNthbf8pCS8X/5f4ZUiFgeCcb8dBDF+TB7ZAOwDKtRSDj7Si/qw0gPQ9+U55fK5xpNg9Dkpq5XKxOzUS/mt/av/zYn+V73trBKJLSkxbDNCA/nfHwPeG2rMgb1TmZy4iv3YiHsEgg0BgX2k5J0NDAffkiTn4StJ5dtrMixxIKyfeU3t8eLkLAw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=G+XIIXhlVsq3ZPWYbvobj+dbAK3EoNGx0u+y1U4vaKA=;
- b=VTHmAOG3PVPzCOvko0du5HGRL5Au+X3YcjolZkgxEUVWWTlut74ZoVI7o98tMNlC4/1WJ5dD4r0ewG3w5LsD14NcmPertSXvdZdERy+NmQlPuZzqCYVn3M/zLEPNzHK2eXtpWtRTs478GSdGFzZH383k92mbfsPGTR/ty5SRXXbtMIhBcZy+Ho8Um/n5Rc4vA77uCLJz/rLLAPETJvnoCASAIQohrAQ8veIMPt2N8kI5M65sd8FgW/25VL8XvY+IC/TKibf/V6HrbE99ReblJaRAvwQ1qcmmBLgPdfPFRKYBSjBQFxfaT4FpTKRBFhJVRQLgrOUfhOiouxWdIDkc7A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DM3PPF208195D8D.namprd11.prod.outlook.com
- (2603:10b6:f:fc00::f13) by CO1PR11MB5171.namprd11.prod.outlook.com
- (2603:10b6:303:94::15) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9320.21; Tue, 18 Nov
- 2025 04:14:05 +0000
-Received: from DM3PPF208195D8D.namprd11.prod.outlook.com
- ([fe80::95c9:5973:5297:d3cc]) by DM3PPF208195D8D.namprd11.prod.outlook.com
- ([fe80::95c9:5973:5297:d3cc%6]) with mapi id 15.20.9343.009; Tue, 18 Nov 2025
- 04:14:05 +0000
-From: "Kandpal, Suraj" <suraj.kandpal@intel.com>
-To: "Kahola, Mika" <mika.kahola@intel.com>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>, "intel-xe@lists.freedesktop.org"
- <intel-xe@lists.freedesktop.org>
-CC: "Kahola, Mika" <mika.kahola@intel.com>
-Subject: RE: [PATCH v2 32/32] drm/i915/cx0: Enable dpll framework for MTL+
-Thread-Topic: [PATCH v2 32/32] drm/i915/cx0: Enable dpll framework for MTL+
-Thread-Index: AQHcV7KzY00QtEXMc0e4uZcSpbkb7bT3094w
-Date: Tue, 18 Nov 2025 04:14:05 +0000
-Message-ID: <DM3PPF208195D8DCA115673102EB6D2DE51E3D6A@DM3PPF208195D8D.namprd11.prod.outlook.com>
-References: <20251117104602.2363671-1-mika.kahola@intel.com>
- <20251117104602.2363671-33-mika.kahola@intel.com>
-In-Reply-To: <20251117104602.2363671-33-mika.kahola@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM3PPF208195D8D:EE_|CO1PR11MB5171:EE_
-x-ms-office365-filtering-correlation-id: b002af67-844d-4ef8-62b0-08de2658e9cf
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0; ARA:13230040|1800799024|366016|376014|38070700021;
-x-microsoft-antispam-message-info: =?us-ascii?Q?KNePKWRN6DMZTuma6nkfpQhf38GetxSkhvFFpR4W9yDl7KBi/TyxDg35iHLF?=
- =?us-ascii?Q?zwvj7tUKDvVSY2KxbE1WJDCjJHZMle55yA4R8fSYabmFkSunQlBbjryVYIAH?=
- =?us-ascii?Q?Sf7Ip24cNjQIdlQIsHOT/FV1TGXy5U75fHI9eYcDy9DhkYO+amdUzM4ekUOe?=
- =?us-ascii?Q?d6+uLU2j6VpnEIzRREY0QptLwIC+GXBH2+dQGP4whTyq4sMDjY4eGBEL3rZT?=
- =?us-ascii?Q?nYdSWZ1hG6dhXZhT38ZGXRE57Pxue9VeVxa5OEOU+cLt4y7DmZuODCzbGZTq?=
- =?us-ascii?Q?KyvP/xEZDSd2jUvAsx+DHRRQ12sQ80/gxRIJH4Lt4iHPnyiIxctqe3WiObHQ?=
- =?us-ascii?Q?2Ko8zYTu6Nr95t5cjtOvqAeUXA56NeOVIlGbmYX3cynIfgVUmsbIBs9HHsoF?=
- =?us-ascii?Q?Uzes8zkLwg328jbvDMD6I9l2ta4woxQ255W4+I5nL9MuxIc6iM2ilVui4r0D?=
- =?us-ascii?Q?g0k2IO6VI/4225OtMf8BBSPUGttzC1v+cgNrs1vLrMNgszt8wokt5xfxdm4f?=
- =?us-ascii?Q?qdiFdx5Sx41qM0H1Eh06iFSUYIm2vfhxgM4TtBFQNv+bMSUJUkGpauW0BIoR?=
- =?us-ascii?Q?gGcSrk5pXHsXbmWCY3TznJ8YXUzQOOA0D6lhgjIg0nKT8hPytrAUNniK1tqD?=
- =?us-ascii?Q?Q2pHElCeMhktQsAV1rHk9ZsNKAhec4ivNmIXBkjo2kjTy0/58Whr++WQJxCe?=
- =?us-ascii?Q?0qDlESrkxXejYZMblTSCjtUy4UcjxUBne2g6ATHxkh1ZwEvUG7QLOHSyqfFq?=
- =?us-ascii?Q?OMiHUrThEsR/DASVO/V7eqPmMrbr560pING1TBfI+vtYgO+9zBDXWqtP3iDE?=
- =?us-ascii?Q?YxQNMCqGnUl5Nn/FoM5sUQX0pZ4m4BHMHDqUeiKCy/rEukVpOUKyqMZZiz6c?=
- =?us-ascii?Q?/3aGiRWO1jxPpYqGRjLcbmjp6kNL+6VnsCTLtVseGcYoj2qpVz9EaS3DQqSR?=
- =?us-ascii?Q?x0QesM6wFAFk1N06PrrO2SGxGwFqVFrcT2A3UyzfeIy0SqVrk/WvnH7tXHQQ?=
- =?us-ascii?Q?h0h2twl1hXqS9RK7fgnDeg2XRqAM0rdnhjXNfqShSl3ZGNruoM9hkgBaoFjT?=
- =?us-ascii?Q?TysWJf0C0igoUQKiCP73J4sKiH7N222UuWHr6SxJXUITJfKHeix3jxJEgZXc?=
- =?us-ascii?Q?17ota4PhgnZGE/0m/xvC4LcQLwa6QWYp+5MiwoiK4vUfy/IzACPcSGG1MHel?=
- =?us-ascii?Q?VOpHw70qNPWKcffyY56xFR+7BZhNM5HzB6N3/koebSoWR/jNry+o19hpH0ng?=
- =?us-ascii?Q?swFtuMuTjX3WzN8F6KG+SmM3qBuE7VWj4djTo5zRtp2j0ADaH5X/TS1K2f4y?=
- =?us-ascii?Q?frWnZn6/Q6sPHejSmr/pUbCoD/6mmVGnj3+uDfNVfe5pFCdcIjR1GPRi/NIN?=
- =?us-ascii?Q?1+b/G+U1sHOGanuDHkenwP3cfJUP0jGsXA0F3cknR2xsFKvxGm57qLu4M7Bz?=
- =?us-ascii?Q?qlDfWIyPo5jRLolMxVZQMomjA7TD+NnnAUdI0qGRSCs1r5Zi9XI2WhIApyML?=
- =?us-ascii?Q?OwVyyi51HjYdt8tOAJRJ90ztjN97awDyMZSe?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM3PPF208195D8D.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014)(38070700021); DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?bqQOF/zxcR7ItyaXxJkyW0nfkYkpdPfOYO6ErU5pRfOyBjPIToLR2tdy3xQl?=
- =?us-ascii?Q?ij+C7W/dJ2Fcf3dt9hlFdLPW5pcDV8Uu+GYGfJVYCkLrRN0RvpVHSbVduTTM?=
- =?us-ascii?Q?HtwWSxMqcOn2SnDEa/eUoJW2+5uwt4dcoTCYEVkHi8tySCaMLH6FMsY2saHU?=
- =?us-ascii?Q?zIHLkpS2E8CXYsSL24ZBHnS1DVP0V0KzKgzUemuOvFI7ScbS+6XVZWx7e3Kg?=
- =?us-ascii?Q?zo2GE8lpXJMvZix+emrAeuFRIwWBDyqSjlwu5PfWuCxyxVY8tcLxs3I1xH35?=
- =?us-ascii?Q?2Hv2qd2w4YZ7UvRkId3fAacDn6Gx0uHiJ+DWV5WGCHuXVL8QMnmjkcHN9rm6?=
- =?us-ascii?Q?h5Vmf7OO2JqIdOF7ZD+yODVZbfKHc3yHad2k+xAakFNYFKbMMw+T4NnDJm/+?=
- =?us-ascii?Q?EBaS4tBo3sfYAohn1RoszbWKNqeEnVtcRMSzE+S4jpFXfTUBUrIzhMBAVIr2?=
- =?us-ascii?Q?GpJVk/30TDa7kGbTw5uEP7Fiz+EBMJuaMuyIYCKaGA5kOKWtHbpi3iPbc/88?=
- =?us-ascii?Q?MO8Rew0AJjFbtgQzi1Wxun2Qsb+EW/5PLLr9ENlGgNm33BgCqjSZeFb9nsrK?=
- =?us-ascii?Q?x+VPb8nLqOHg3VVCTpwWSyKI9uhWtCC/1AQT1NYBtm5PS1xObLlawQfyRU35?=
- =?us-ascii?Q?y0ILT7zioGoT9skERWNqL3VXmpGKf+qOfNVCrPF45otpIfWT2QvPf4hPOtgp?=
- =?us-ascii?Q?ES4qcdftUKBX3SCFGLldid0V1qNcRQyBJ3kYKPBA0t1SrDMSlPLFi9ScZhau?=
- =?us-ascii?Q?3iUn94DYM3DtvdzBN+vqd/t7EBWVCPnZwpB+NMONz/svxAF2TV0n6PTQCo84?=
- =?us-ascii?Q?BegfbMxBsLnvQDgrZ9NoAQ423B4afh06qAAoePZ7yv7Fk5aFLK/Yk7kMNI94?=
- =?us-ascii?Q?5BCqWCfaYv79PBCPNtDh1NCbEsbKAvQ9LpH8pfPYs9n4E2EECI4aV3LXjDJx?=
- =?us-ascii?Q?lwSrYxABU/Fu/9iIbhRHaRw4L3PzjFE7ABd8rQt6aIA7TUYIkyMDf5zPXhWc?=
- =?us-ascii?Q?iFPRz4vnkFeKsyav6GYfj6ZKSR0UZ3KHrelvUVy8AMbopoPTonBEjU7uq1ab?=
- =?us-ascii?Q?kMQj1kNmrvy+I/E5EdivVDBXebHIY9U/1SA+ZmPRWpSDt5pC4CsRr6joiET4?=
- =?us-ascii?Q?i3tryLqNXbHAKJYoH0eXRPMvfzo/DDnnui9T2RcpLfdacqOS2zyW+3Yri8j+?=
- =?us-ascii?Q?P3jLCTnZG5UWKECbFKBwdYJxwHViqUI99oEyMPIXOuqqNCuDtxSQ7SuVKElQ?=
- =?us-ascii?Q?3nbklyv4tWhSVWgAwiID2yK5CnOgVirgb2f00tXUaOQTcD/jwZt4c6ZhDyhc?=
- =?us-ascii?Q?0d+rHwLyQJy7F6B0EJAipJyoytzBn1sWZu16b2/1JUYjIKLMa3o+G44aOlsY?=
- =?us-ascii?Q?YyNVLaQAFeN7Jcf7eMxTMi44SGKA4xIXUFUPLVCKo2K1WDHGqzuEVCkvOyiJ?=
- =?us-ascii?Q?LjwQ01bzFX5PZs4ZZ8+M4ZpBevia0EKh590vC4YN1FC4l6/2mBR5GmZXuy2Y?=
- =?us-ascii?Q?IALj2Ver1kYy0DiUjoIrSryU94bZt8QSgLd4snAmSEPEAMp5GRU+0vqcKS5D?=
- =?us-ascii?Q?o49ZdFwliIXGutRwfGfhzuDxMx5gMWefj0nHq5Dg?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-IronPort-AV: E=Sophos;i="6.19,313,1754982000"; d="scan'208";a="214042844"
+Received: from dut6304bmgfrd.fm.intel.com ([10.36.21.69])
+ by fmviesa002.fm.intel.com with ESMTP; 17 Nov 2025 20:21:03 -0800
+From: Xin Wang <x.wang@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: shuicheng.lin@intel.com, alex.zuo@intel.com, matthew.d.roper@intel.com,
+ matthew.auld@intel.com, Xin Wang <x.wang@intel.com>
+Subject: [PATCH v2] drm/xe: Allow compressible surfaces to be 1-way coherent
+Date: Tue, 18 Nov 2025 04:20:48 +0000
+Message-ID: <20251118042048.597801-1-x.wang@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM3PPF208195D8D.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b002af67-844d-4ef8-62b0-08de2658e9cf
-X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Nov 2025 04:14:05.4361 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: ctHvVi7R+ud0BEuyKTcJS/sDhj6+qCanO//ndZjWSoZLptcTQJm8v+cpgwOxZrpwwKClWtRJ2lP80pNtRzO+tg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR11MB5171
-X-OriginatorOrg: intel.com
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -181,285 +64,264 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-> Subject: [PATCH v2 32/32] drm/i915/cx0: Enable dpll framework for MTL+
->=20
-> Now that MTL+ platforms are supported by dpll framework remove a separate
-> check for hw comparison and rely solely on dpll framework hw comparison.
->=20
-> Finally, all required hooks are now in place so initialize PLL manager fo=
-r MTL+
-> platforms and remove the redirections to the legacy code paths from the
-> following interfaces:
->=20
-> * intel_encoder::clock_enable/disable()
-> * intel_encoder::get_config()
-> * intel_dpll_funcs::get_hw_state()
-> * intel_ddi_update_active_dpll()
-> * pipe_config_pll_mismatch()
->=20
-> Signed-off-by: Mika Kahola <mika.kahola@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_cx0_phy.c  | 10 -------
->  drivers/gpu/drm/i915/display/intel_ddi.c      | 29 ++++---------------
->  drivers/gpu/drm/i915/display/intel_display.c  | 29 -------------------
->  drivers/gpu/drm/i915/display/intel_dpll.c     | 23 +--------------
->  drivers/gpu/drm/i915/display/intel_dpll_mgr.c |  5 ++--
->  5 files changed, 9 insertions(+), 87 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-> b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-> index 9d96e8940838..96ab7f3b5539 100644
-> --- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-> +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-> @@ -3432,9 +3432,6 @@ void intel_mtl_pll_enable_clock(struct intel_encode=
-r
-> *encoder,
->=20
->  	if (intel_tc_port_in_tbt_alt_mode(dig_port))
->  		intel_mtl_tbt_pll_enable_clock(encoder, crtc_state->port_clock);
-> -	else
-> -		/* TODO: remove when PLL mgr is in place. */
-> -		intel_mtl_pll_enable(encoder, NULL, &crtc_state-
-> >dpll_hw_state);
->  }
->=20
->  /*
-> @@ -3598,9 +3595,6 @@ void intel_mtl_pll_disable_clock(struct intel_encod=
-er
-> *encoder)
->=20
->  	if (intel_tc_port_in_tbt_alt_mode(dig_port))
->  		intel_mtl_tbt_pll_disable_clock(encoder);
-> -	else
-> -		/* TODO: remove when PLL mgr is in place. */
-> -		intel_mtl_pll_disable(encoder);
->  }
->=20
->  enum icl_port_dpll_id
-> @@ -3629,10 +3623,6 @@ bool intel_cx0pll_readout_hw_state(struct
-> intel_encoder *encoder,  {
->  	memset(pll_state, 0, sizeof(*pll_state));
->=20
-> -	pll_state->tbt_mode =3D
-> intel_tc_port_in_tbt_alt_mode(enc_to_dig_port(encoder));
-> -	if (pll_state->tbt_mode)
-> -		return true;
-> -
->  	if (!intel_cx0_pll_is_enabled(encoder))
->  		return false;
->=20
-> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c
-> b/drivers/gpu/drm/i915/display/intel_ddi.c
-> index 689bd3224919..4e379b0b066d 100644
-> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> @@ -3669,8 +3669,10 @@ void intel_ddi_update_active_dpll(struct
-> intel_atomic_state *state,
->  		intel_atomic_get_new_crtc_state(state, crtc);
->  	struct intel_crtc *pipe_crtc;
->=20
-> -	/* FIXME: Add MTL pll_mgr */
-> -	if (DISPLAY_VER(display) >=3D 14 || !intel_encoder_is_tc(encoder))
-> +	if (!intel_encoder_is_tc(encoder))
-> +		return;
-> +
-> +	if (!HAS_LT_PHY(display))
->  		return;
->=20
->  	if (!HAS_LT_PHY(display))
-> @@ -4260,19 +4262,6 @@ static void xe3plpd_ddi_get_config(struct
-> intel_encoder *encoder,
->  	intel_ddi_get_config(encoder, crtc_state);  }
->=20
-> -static void mtl_ddi_get_config(struct intel_encoder *encoder,
-> -			       struct intel_crtc_state *crtc_state)
-> -{
-> -	intel_cx0pll_readout_hw_state(encoder, &crtc_state-
-> >dpll_hw_state.cx0pll);
-> -
-> -	if (crtc_state->dpll_hw_state.cx0pll.tbt_mode)
-> -		crtc_state->port_clock =3D intel_mtl_tbt_calc_port_clock(encoder);
-> -	else
-> -		crtc_state->port_clock =3D intel_cx0pll_calc_port_clock(encoder,
-> &crtc_state->dpll_hw_state.cx0pll);
-> -
-> -	intel_ddi_get_config(encoder, crtc_state);
-> -}
-> -
->  static bool icl_ddi_tc_pll_is_tbt(const struct intel_dpll *pll)  {
->  	return pll->info->id =3D=3D DPLL_ID_ICL_TBTPLL; @@ -4319,10 +4308,6
-> @@ static void mtl_ddi_non_tc_phy_get_config(struct intel_encoder *encode=
-r,
-> {
->  	struct intel_display *display =3D to_intel_display(encoder);
->=20
-> -	/* TODO: Remove when the PLL manager is in place. */
-> -	mtl_ddi_get_config(encoder, crtc_state);
-> -	return;
-> -
->  	mtl_ddi_cx0_get_config(encoder, crtc_state, ICL_PORT_DPLL_DEFAULT,
->  			       mtl_port_to_pll_id(display, encoder->port));  } @@
-> -4332,10 +4317,6 @@ static void mtl_ddi_tc_phy_get_config(struct
-> intel_encoder *encoder,  {
->  	struct intel_display *display =3D to_intel_display(encoder);
->=20
-> -	/* TODO: Remove when the PLL manager is in place. */
-> -	mtl_ddi_get_config(encoder, crtc_state);
-> -	return;
-> -
->  	if (intel_tc_port_in_tbt_alt_mode(enc_to_dig_port(encoder)))
->  		mtl_ddi_cx0_get_config(encoder, crtc_state,
-> ICL_PORT_DPLL_DEFAULT,
->  				       DPLL_ID_ICL_TBTPLL);
-> @@ -5325,7 +5306,7 @@ void intel_ddi_init(struct intel_display *display,
->  	} else if (DISPLAY_VER(display) >=3D 14) {
->  		encoder->enable_clock =3D intel_mtl_pll_enable_clock;
->  		encoder->disable_clock =3D intel_mtl_pll_disable_clock;
-> -		encoder->port_pll_type =3D intel_mtl_port_pll_type;
-> +		encoder->port_pll_type =3D icl_ddi_tc_port_pll_type;
->  		if (intel_encoder_is_tc(encoder))
->  			encoder->get_config =3D mtl_ddi_tc_phy_get_config;
->  		else
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c
-> b/drivers/gpu/drm/i915/display/intel_display.c
-> index e7bb8ec0d6bb..6c8a7f63111e 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -4977,23 +4977,6 @@ pipe_config_pll_mismatch(struct drm_printer *p,
-> bool fastset,
->  	intel_dpll_dump_hw_state(display, p, b);  }
->=20
-> -static void
-> -pipe_config_cx0pll_mismatch(struct drm_printer *p, bool fastset,
-> -			    const struct intel_crtc *crtc,
-> -			    const char *name,
-> -			    const struct intel_cx0pll_state *a,
-> -			    const struct intel_cx0pll_state *b)
-> -{
-> -	char *chipname =3D a->use_c10 ? "C10" : "C20";
-> -
-> -	pipe_config_mismatch(p, fastset, crtc, name, chipname);
-> -
-> -	drm_printf(p, "expected:\n");
-> -	intel_cx0pll_dump_hw_state(p, a);
-> -	drm_printf(p, "found:\n");
-> -	intel_cx0pll_dump_hw_state(p, b);
-> -}
-> -
->  static bool allow_vblank_delay_fastset(const struct intel_crtc_state
-> *old_crtc_state)  {
->  	struct intel_display *display =3D to_intel_display(old_crtc_state); @@ =
--
-> 5145,16 +5128,6 @@ intel_pipe_config_compare(const struct intel_crtc_stat=
-e
-> *current_config,
->  	} \
->  } while (0)
->=20
-> -#define PIPE_CONF_CHECK_PLL_CX0(name) do { \
-> -	if (!intel_cx0pll_compare_hw_state(&current_config->name, \
-> -					   &pipe_config->name)) { \
-> -		pipe_config_cx0pll_mismatch(&p, fastset, crtc,
-> __stringify(name), \
-> -					    &current_config->name, \
-> -					    &pipe_config->name); \
-> -		ret =3D false; \
-> -	} \
-> -} while (0)
-> -
->  #define PIPE_CONF_CHECK_PLL_LT(name) do { \
->  	if (!intel_lt_phy_pll_compare_hw_state(&current_config->name, \
->  					       &pipe_config->name)) { \
-> @@ -5394,8 +5367,6 @@ intel_pipe_config_compare(const struct
-> intel_crtc_state *current_config,
->  	/* FIXME convert MTL+ platforms over to dpll_mgr */
->  	if (HAS_LT_PHY(display))
->  		PIPE_CONF_CHECK_PLL_LT(dpll_hw_state.ltpll);
-> -	else if (DISPLAY_VER(display) >=3D 14)
-> -		PIPE_CONF_CHECK_PLL_CX0(dpll_hw_state.cx0pll);
->=20
->  	PIPE_CONF_CHECK_X(dsi_pll.ctrl);
->  	PIPE_CONF_CHECK_X(dsi_pll.div);
-> diff --git a/drivers/gpu/drm/i915/display/intel_dpll.c
-> b/drivers/gpu/drm/i915/display/intel_dpll.c
-> index 2da65bb20f1c..a4f372c9e6fc 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dpll.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dpll.c
-> @@ -1212,27 +1212,6 @@ static int dg2_crtc_compute_clock(struct
-> intel_atomic_state *state,
->  	return 0;
->  }
->=20
-> -static int mtl_crtc_compute_clock(struct intel_atomic_state *state,
-> -				  struct intel_crtc *crtc)
-> -{
-> -	struct intel_crtc_state *crtc_state =3D
-> -		intel_atomic_get_new_crtc_state(state, crtc);
-> -	struct intel_encoder *encoder =3D
-> -		intel_get_crtc_new_encoder(state, crtc_state);
-> -	int ret;
-> -
-> -	ret =3D intel_cx0pll_calc_state(crtc_state, encoder, &crtc_state-
-> >dpll_hw_state);
-> -	if (ret)
-> -		return ret;
-> -
-> -	/* TODO: Do the readback via intel_dpll_compute() */
-> -	crtc_state->port_clock =3D intel_cx0pll_calc_port_clock(encoder,
-> &crtc_state->dpll_hw_state.cx0pll);
-> -
-> -	crtc_state->hw.adjusted_mode.crtc_clock =3D
-> intel_crtc_dotclock(crtc_state);
-> -
-> -	return 0;
-> -}
-> -
->  static int xe3plpd_crtc_compute_clock(struct intel_atomic_state *state,
->  				      struct intel_crtc *crtc)
->  {
-> @@ -1719,7 +1698,7 @@ static const struct intel_dpll_global_funcs
-> xe3plpd_dpll_funcs =3D {  };
->=20
->  static const struct intel_dpll_global_funcs mtl_dpll_funcs =3D {
-> -	.crtc_compute_clock =3D mtl_crtc_compute_clock,
-> +	.crtc_compute_clock =3D hsw_crtc_compute_clock,
->  	.crtc_get_dpll =3D hsw_crtc_get_dpll,
->  };
->=20
-> diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> index 8fd3b06f393d..6c94dd2e1a15 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> @@ -4558,7 +4558,6 @@ static bool mtl_compare_hw_state(const struct
-> intel_dpll_hw_state *_a,
->  	return intel_cx0pll_compare_hw_state(a, b);  }
->=20
-> -__maybe_unused
->  static const struct intel_dpll_mgr mtl_pll_mgr =3D {
->  	.dpll_info =3D mtl_plls,
->  	.compute_dplls =3D mtl_compute_dplls,
-> @@ -4584,9 +4583,11 @@ void intel_dpll_init(struct intel_display *display=
-)
->=20
->  	mutex_init(&display->dpll.lock);
->=20
-> -	if (DISPLAY_VER(display) >=3D 14 || display->platform.dg2)
-> +	if (display->platform.dg2)
+Previously, compressible surfaces were required to be non-coherent (allocated
+as WC) because compression and coherency were mutually exclusive. Starting
+with Xe3, hardware supports combining compression with 1-way coherency,
+allowing compressible surfaces to be allocated as WB memory. This provides
+applications with more efficient memory allocation by avoiding WC allocation
+overhead that can cause system stuttering and memory management challenges.
 
-This needs to become (HAS_LT_PHY || dg2)
-	Dpll_mgr =3D NULL
+The implementation adds support for compressed+coherent PAT entry for the
+xe3_lpg devices and updates the driver logic to handle the new compression
+capabilities.
 
-Regards,
-Suraj Kandpal
+v2: (Matthew Auld)
+- Improved error handling with XE_IOCTL_DBG()
+- Enhanced documentation and comments
+- Fixed xe_bo_needs_ccs_pages() outdated compression assumptions
 
->  		/* No shared DPLLs on DG2; port PLLs are part of the PHY */
->  		dpll_mgr =3D NULL;
-> +	else if (DISPLAY_VER(display) >=3D 14)
-> +		dpll_mgr =3D &mtl_pll_mgr;
->  	else if (display->platform.alderlake_p)
->  		dpll_mgr =3D &adlp_pll_mgr;
->  	else if (display->platform.alderlake_s)
-> --
-> 2.34.1
+Bspec: 71582, 59361, 59399
+Signed-off-by: Xin Wang <x.wang@intel.com>
+---
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h |  6 ++++
+ drivers/gpu/drm/xe/xe_bo.c           |  9 +++---
+ drivers/gpu/drm/xe/xe_gt.c           | 32 +++++++++++++++++++
+ drivers/gpu/drm/xe/xe_pat.c          | 47 ++++++++++++++++++++++++----
+ drivers/gpu/drm/xe/xe_vm.c           | 13 ++++++++
+ 5 files changed, 96 insertions(+), 11 deletions(-)
+
+diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+index 917a088c28f2..043ba797fb56 100644
+--- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+@@ -89,6 +89,7 @@
+ #define   UNIFIED_COMPRESSION_FORMAT		REG_GENMASK(3, 0)
+ 
+ #define XE2_GAMREQSTRM_CTRL			XE_REG_MCR(0x4194)
++#define   EN_CMP_1WCOH				REG_BIT(15)
+ #define   CG_DIS_CNTLBUS			REG_BIT(6)
+ 
+ #define CCS_AUX_INV				XE_REG(0x4208)
+@@ -101,6 +102,11 @@
+ 
+ #define XE2_LMEM_CFG				XE_REG(0x48b0)
+ 
++#define XE2_GAMWALK_CTRL			0x47e4
++#define XE2_GAMWALK_CTRL_MEDIA			XE_REG(XE2_GAMWALK_CTRL + MEDIA_GT_GSI_OFFSET)
++#define XE2_GAMWALK_CTRL_3D			XE_REG_MCR(XE2_GAMWALK_CTRL)
++#define   EN_CMP_1WCOH_GW			REG_BIT(14)
++
+ #define XEHP_FLAT_CCS_BASE_ADDR			XE_REG_MCR(0x4910)
+ #define XEHP_FLAT_CCS_PTR			REG_GENMASK(31, 8)
+ 
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index b0bd31d14bb9..f6a89d0d4f3b 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -3523,11 +3523,10 @@ bool xe_bo_needs_ccs_pages(struct xe_bo *bo)
+ 		return false;
+ 
+ 	/*
+-	 * Compression implies coh_none, therefore we know for sure that WB
+-	 * memory can't currently use compression, which is likely one of the
+-	 * common cases.
+-	 */
+-	if (bo->cpu_caching == DRM_XE_GEM_CPU_CACHING_WB)
++	* Pre-Xe3: WB memory incompatible with compression.
++	* Xe3+: WB memory may use compression.
++	*/
++	if (bo->cpu_caching == DRM_XE_GEM_CPU_CACHING_WB && GRAPHICS_VER(xe) < 30)
+ 		return false;
+ 
+ 	return true;
+diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+index dbb5e7a9bc6a..05de6da997c1 100644
+--- a/drivers/gpu/drm/xe/xe_gt.c
++++ b/drivers/gpu/drm/xe/xe_gt.c
+@@ -145,6 +145,36 @@ static void xe_gt_disable_host_l2_vram(struct xe_gt *gt)
+ 	xe_force_wake_put(gt_to_fw(gt), fw_ref);
+ }
+ 
++static void xe_gt_enable_comp_1wcoh(struct xe_gt *gt)
++{
++	struct xe_device *xe = gt_to_xe(gt);
++	unsigned int fw_ref;
++	u32 reg;
++
++	if (IS_SRIOV_VF(xe))
++		return;
++
++	if (GRAPHICS_VER(xe) >= 30 && xe->info.has_flat_ccs) {
++		fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
++		if (!fw_ref)
++			return;
++
++		reg = xe_gt_mcr_unicast_read_any(gt, XE2_GAMREQSTRM_CTRL);
++		reg |= EN_CMP_1WCOH;
++		xe_gt_mcr_multicast_write(gt, XE2_GAMREQSTRM_CTRL, reg);
++
++		if (xe_gt_is_media_type(gt)) {
++			xe_mmio_rmw32(&gt->mmio, XE2_GAMWALK_CTRL_MEDIA, 0, EN_CMP_1WCOH_GW);
++		} else {
++			reg = xe_gt_mcr_unicast_read_any(gt, XE2_GAMWALK_CTRL_3D);
++			reg |= EN_CMP_1WCOH_GW;
++			xe_gt_mcr_multicast_write(gt, XE2_GAMWALK_CTRL_3D, reg);
++		}
++
++		xe_force_wake_put(gt_to_fw(gt), fw_ref);
++	}
++}
++
+ static void gt_reset_worker(struct work_struct *w);
+ 
+ static int emit_job_sync(struct xe_exec_queue *q, struct xe_bb *bb,
+@@ -474,6 +504,7 @@ static int gt_init_with_gt_forcewake(struct xe_gt *gt)
+ 	xe_gt_topology_init(gt);
+ 	xe_gt_mcr_init(gt);
+ 	xe_gt_enable_host_l2_vram(gt);
++	xe_gt_enable_comp_1wcoh(gt);
+ 
+ 	if (xe_gt_is_main_type(gt)) {
+ 		err = xe_ggtt_init(gt_to_tile(gt)->mem.ggtt);
+@@ -771,6 +802,7 @@ static int do_gt_restart(struct xe_gt *gt)
+ 	xe_pat_init(gt);
+ 
+ 	xe_gt_enable_host_l2_vram(gt);
++	xe_gt_enable_comp_1wcoh(gt);
+ 
+ 	xe_gt_mcr_set_implicit_defaults(gt);
+ 	xe_reg_sr_apply_mmio(&gt->reg_sr, gt);
+diff --git a/drivers/gpu/drm/xe/xe_pat.c b/drivers/gpu/drm/xe/xe_pat.c
+index 1b4d5d3def0f..f4f3627be069 100644
+--- a/drivers/gpu/drm/xe/xe_pat.c
++++ b/drivers/gpu/drm/xe/xe_pat.c
+@@ -102,9 +102,10 @@ static const struct xe_pat_table_entry xelpg_pat_table[] = {
+  * in the table.
+  *
+  * Note: There is an implicit assumption in the driver that compression and
+- * coh_1way+ are mutually exclusive. If this is ever not true then userptr
+- * and imported dma-buf from external device will have uncleared ccs state. See
+- * also xe_bo_needs_ccs_pages().
++ * coh_1way+ are mutually exclusive for platforms prior to Xe3. Starting
++ * with Xe3, compression can be combined with coherency. If using compression
++ * with coherency, userptr and imported dma-buf from external device will
++ * have uncleared ccs state. See also xe_bo_needs_ccs_pages().
+  */
+ #define XE2_PAT(no_promote, comp_en, l3clos, l3_policy, l4_policy, __coh_mode) \
+ 	{ \
+@@ -114,8 +115,7 @@ static const struct xe_pat_table_entry xelpg_pat_table[] = {
+ 			REG_FIELD_PREP(XE2_L3_POLICY, l3_policy) | \
+ 			REG_FIELD_PREP(XE2_L4_POLICY, l4_policy) | \
+ 			REG_FIELD_PREP(XE2_COH_MODE, __coh_mode), \
+-		.coh_mode = (BUILD_BUG_ON_ZERO(__coh_mode && comp_en) || __coh_mode) ? \
+-			XE_COH_AT_LEAST_1WAY : XE_COH_NONE, \
++		.coh_mode = __coh_mode ? XE_COH_AT_LEAST_1WAY : XE_COH_NONE, \
+ 		.valid = 1 \
+ 	}
+ 
+@@ -151,6 +151,38 @@ static const struct xe_pat_table_entry xe2_pat_table[] = {
+ 	[31] = XE2_PAT( 0, 0, 3, 0, 3, 3 ),
+ };
+ 
++static const struct xe_pat_table_entry xe3_lpg_pat_table[] = {
++	[ 0] = XE2_PAT( 0, 0, 0, 0, 3, 0 ),
++	[ 1] = XE2_PAT( 0, 0, 0, 0, 3, 2 ),
++	[ 2] = XE2_PAT( 0, 0, 0, 0, 3, 3 ),
++	[ 3] = XE2_PAT( 0, 0, 0, 3, 3, 0 ),
++	[ 4] = XE2_PAT( 0, 0, 0, 3, 0, 2 ),
++	[ 5] = XE2_PAT( 0, 0, 0, 3, 3, 2 ),
++	[ 6] = XE2_PAT( 1, 0, 0, 1, 3, 0 ),
++	[ 7] = XE2_PAT( 0, 0, 0, 3, 0, 3 ),
++	[ 8] = XE2_PAT( 0, 0, 0, 3, 0, 0 ),
++	[ 9] = XE2_PAT( 0, 1, 0, 0, 3, 0 ),
++	[10] = XE2_PAT( 0, 1, 0, 3, 0, 0 ),
++	[11] = XE2_PAT( 1, 1, 0, 1, 3, 0 ),
++	[12] = XE2_PAT( 0, 1, 0, 3, 3, 0 ),
++	[13] = XE2_PAT( 0, 0, 0, 0, 0, 0 ),
++	[14] = XE2_PAT( 0, 1, 0, 0, 0, 0 ),
++	[15] = XE2_PAT( 1, 1, 0, 1, 1, 0 ),
++	[16] = XE2_PAT( 0, 1, 0, 0, 3, 2 ),
++	/* 17..19 are reserved; leave set to all 0's */
++	[20] = XE2_PAT( 0, 0, 1, 0, 3, 0 ),
++	[21] = XE2_PAT( 0, 1, 1, 0, 3, 0 ),
++	[22] = XE2_PAT( 0, 0, 1, 0, 3, 2 ),
++	[23] = XE2_PAT( 0, 0, 1, 0, 3, 3 ),
++	[24] = XE2_PAT( 0, 0, 2, 0, 3, 0 ),
++	[25] = XE2_PAT( 0, 1, 2, 0, 3, 0 ),
++	[26] = XE2_PAT( 0, 0, 2, 0, 3, 2 ),
++	[27] = XE2_PAT( 0, 0, 2, 0, 3, 3 ),
++	[28] = XE2_PAT( 0, 0, 3, 0, 3, 0 ),
++	[29] = XE2_PAT( 0, 1, 3, 0, 3, 0 ),
++	[30] = XE2_PAT( 0, 0, 3, 0, 3, 2 ),
++	[31] = XE2_PAT( 0, 0, 3, 0, 3, 3 ),
++};
+ /* Special PAT values programmed outside the main table */
+ static const struct xe_pat_table_entry xe2_pat_ats = XE2_PAT( 0, 0, 0, 0, 3, 3 );
+ static const struct xe_pat_table_entry xe2_pat_pta = XE2_PAT( 0, 0, 0, 0, 3, 0 );
+@@ -485,7 +517,10 @@ void xe_pat_init_early(struct xe_device *xe)
+ 		xe->pat.idx[XE_CACHE_WB] = 2;
+ 	} else if (GRAPHICS_VER(xe) == 30 || GRAPHICS_VER(xe) == 20) {
+ 		xe->pat.ops = &xe2_pat_ops;
+-		xe->pat.table = xe2_pat_table;
++		if (GRAPHICS_VER(xe) == 30)
++			xe->pat.table = xe3_lpg_pat_table;
++		else
++			xe->pat.table = xe2_pat_table;
+ 		xe->pat.pat_ats = &xe2_pat_ats;
+ 		if (IS_DGFX(xe))
+ 			xe->pat.pat_pta = &xe2_pat_pta;
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 7cac646bdf1c..b8811269fc92 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -3359,6 +3359,7 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe, struct xe_vm *vm,
+ 			DRM_XE_VM_BIND_FLAG_CPU_ADDR_MIRROR;
+ 		u16 pat_index = (*bind_ops)[i].pat_index;
+ 		u16 coh_mode;
++		bool comp_en;
+ 
+ 		if (XE_IOCTL_DBG(xe, is_cpu_addr_mirror &&
+ 				 (!xe_vm_in_fault_mode(vm) ||
+@@ -3375,6 +3376,7 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe, struct xe_vm *vm,
+ 		pat_index = array_index_nospec(pat_index, xe->pat.n_entries);
+ 		(*bind_ops)[i].pat_index = pat_index;
+ 		coh_mode = xe_pat_index_get_coh_mode(xe, pat_index);
++		comp_en = xe_pat_index_get_comp_en(xe, pat_index);
+ 		if (XE_IOCTL_DBG(xe, !coh_mode)) { /* hw reserved */
+ 			err = -EINVAL;
+ 			goto free_bind_ops;
+@@ -3405,6 +3407,8 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe, struct xe_vm *vm,
+ 				 op == DRM_XE_VM_BIND_OP_MAP_USERPTR) ||
+ 		    XE_IOCTL_DBG(xe, coh_mode == XE_COH_NONE &&
+ 				 op == DRM_XE_VM_BIND_OP_MAP_USERPTR) ||
++		    XE_IOCTL_DBG(xe, comp_en &&
++				 op == DRM_XE_VM_BIND_OP_MAP_USERPTR) ||
+ 		    XE_IOCTL_DBG(xe, op == DRM_XE_VM_BIND_OP_MAP_USERPTR &&
+ 				 !IS_ENABLED(CONFIG_DRM_GPUSVM)) ||
+ 		    XE_IOCTL_DBG(xe, obj &&
+@@ -3483,6 +3487,7 @@ static int xe_vm_bind_ioctl_validate_bo(struct xe_device *xe, struct xe_bo *bo,
+ 					u16 pat_index, u32 op, u32 bind_flags)
+ {
+ 	u16 coh_mode;
++	bool comp_en;
+ 
+ 	if (XE_IOCTL_DBG(xe, range > xe_bo_size(bo)) ||
+ 	    XE_IOCTL_DBG(xe, obj_offset >
+@@ -3524,6 +3529,14 @@ static int xe_vm_bind_ioctl_validate_bo(struct xe_device *xe, struct xe_bo *bo,
+ 		return -EINVAL;
+ 	}
+ 
++	/*
++	 * Ensures that imported buffer objects (dma-bufs) are not mapped
++	 * with a PAT index that enables compression.
++	 */
++	comp_en = xe_pat_index_get_comp_en(xe, pat_index);
++	if (XE_IOCTL_DBG(xe, bo->ttm.base.import_attach && comp_en))
++		return -EINVAL;
++
+ 	/* If a BO is protected it can only be mapped if the key is still valid */
+ 	if ((bind_flags & DRM_XE_VM_BIND_FLAG_CHECK_PXP) && xe_bo_is_protected(bo) &&
+ 	    op != DRM_XE_VM_BIND_OP_UNMAP && op != DRM_XE_VM_BIND_OP_UNMAP_ALL)
+-- 
+2.43.0
 
