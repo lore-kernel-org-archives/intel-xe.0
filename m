@@ -4,42 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8B273CCD19A
-	for <intel-xe@archiver.kernel.org>; Tue, 18 Nov 2025 09:02:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 537FACEBF92
+	for <intel-xe@archiver.kernel.org>; Tue, 18 Nov 2025 09:02:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 36CAF10E451;
-	Tue, 18 Nov 2025 09:02:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 178EC10E470;
+	Tue, 18 Nov 2025 09:02:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RKPq7Sg9";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RRkRDksL";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6B8CF10E451
- for <intel-xe@lists.freedesktop.org>; Tue, 18 Nov 2025 09:02:12 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F01DD10E47A
+ for <intel-xe@lists.freedesktop.org>; Tue, 18 Nov 2025 09:02:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1763456532; x=1794992532;
+ t=1763456536; x=1794992536;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=2ipx5XlB5DkOEMkJqHyGz3tnJj9Y7y4qdccVAWTvyOs=;
- b=RKPq7Sg9vqsroO7R0IeDvbcxbXuR51/sv+h++AOaRNeZ+wIUehBjKojw
- yvIkssIO7pNg/7mkgAqaxZwPIKrvtz+OO3NvSfHIu3ETQe7Ru96t9qyrG
- Jg5/GEQIlWiUD74FG9j7JKvYQTdN6sV7xxv9Lppx3pQpv0bNcCi9MTtcz
- 5v4SCddV/vv9LmU9SvZ2UBnNQiYOfls+NAt9GTmDhdSDYjmZGFekXv/ad
- 1A4/KFEw/OwxdAUqY8rUDWkFzNrv+WnCenw+v0L7r7tlMBAhgxZSe/P95
- A6CcU//vRt5LL/RzvjBWJmUkk4JZO+ZkoHo0vVxELTiXQfiV9Cb3XU9sG A==;
-X-CSE-ConnectionGUID: Lp/Rt2jgQRiTQOaae9tYPw==
-X-CSE-MsgGUID: ZJML8TzmQh2jcoykoYNRLg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11616"; a="53042287"
-X-IronPort-AV: E=Sophos;i="6.19,314,1754982000"; d="scan'208";a="53042287"
+ bh=gIo8gZ5CJlIzJ6e8Mnq4xsWc+ZkfeyD9/o7TScvYNdU=;
+ b=RRkRDksLIO7lidoGfq0T8t0hXXybSks4YfD3grCD8T8DOY1YwCsVT8aY
+ FxfUeETtsZiqmt9alLir7X6hiZS25kTkIuNfriA5FDuftDP0M20ivwcvp
+ QVq6wrefr9kOGF02YDSw6B4tcinxpWn4tZQwTH7DRgxpUTozBcunHc1o3
+ H7Dh0d0aH8qPI3qC0Nz2L+ZGc7CuQgG99gRZX06mbKyeR9q+PVfZfjUcj
+ y1A/enXg7ZCZ5S5HNXhHONiIoYqDXHQBee+HE95sAcsQRTCItc78wbnEr
+ WBbhIF9Ju7o+pZ+l5TLH5zQ7SS/I/dpOvb2otftpLHq8E2OEnbyAIwsXs g==;
+X-CSE-ConnectionGUID: j9OcCNBVRq+kmtctm/LpLQ==
+X-CSE-MsgGUID: FVipjFWcRRuULHmsMY3uvQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11616"; a="53042293"
+X-IronPort-AV: E=Sophos;i="6.19,314,1754982000"; d="scan'208";a="53042293"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Nov 2025 01:02:12 -0800
-X-CSE-ConnectionGUID: mAs8Y0PSRRmxFL/8zJu+tQ==
-X-CSE-MsgGUID: CRPfB4JsTvyUSFcjFT/qYw==
+ 18 Nov 2025 01:02:16 -0800
+X-CSE-ConnectionGUID: jD2UUNhSSgyutJI5qwMv+A==
+X-CSE-MsgGUID: EZPofDolSDmrcEB53q+W7w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,314,1754982000"; d="scan'208";a="228042538"
+X-IronPort-AV: E=Sophos;i="6.19,314,1754982000"; d="scan'208";a="228042558"
 Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
- by orviesa001.jf.intel.com with ESMTP; 18 Nov 2025 01:02:09 -0800
+ by orviesa001.jf.intel.com with ESMTP; 18 Nov 2025 01:02:12 -0800
 From: Raag Jadav <raag.jadav@intel.com>
 To: lucas.demarchi@intel.com,
 	rodrigo.vivi@intel.com,
@@ -49,10 +49,10 @@ Cc: intel-xe@lists.freedesktop.org, riana.tauro@intel.com,
  badal.nilawar@intel.com, ville.syrjala@linux.intel.com,
  karthik.poosa@intel.com, anshuman.gupta@intel.com,
  Raag Jadav <raag.jadav@intel.com>
-Subject: [PATCH v1 3/4] drm/xe/hwmon: Use xe_pcode_read_probe() to check for
- mailbox command support
-Date: Tue, 18 Nov 2025 14:29:19 +0530
-Message-ID: <20251118090012.608250-4-raag.jadav@intel.com>
+Subject: [PATCH v1 4/4] drm/xe/late_bind: Use xe_pcode_read_probe() to check
+ for mailbox command support
+Date: Tue, 18 Nov 2025 14:29:20 +0530
+Message-ID: <20251118090012.608250-5-raag.jadav@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20251118090012.608250-1-raag.jadav@intel.com>
 References: <20251118090012.608250-1-raag.jadav@intel.com>
@@ -73,44 +73,29 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Use xe_pcode_read_probe() to check for mailbox command support on the
-device while exposing respective hwmon attributes.
+device while initializing late binding firmware.
 
 Signed-off-by: Raag Jadav <raag.jadav@intel.com>
 ---
- drivers/gpu/drm/xe/xe_hwmon.c | 13 +++++--------
- 1 file changed, 5 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/xe/xe_late_bind_fw.c | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
-index 97879daeefc1..b2ae0e1bb68f 100644
---- a/drivers/gpu/drm/xe/xe_hwmon.c
-+++ b/drivers/gpu/drm/xe/xe_hwmon.c
-@@ -698,13 +698,9 @@ static int xe_hwmon_pcode_read_i1(const struct xe_hwmon *hwmon, u32 *uval)
- {
- 	struct xe_tile *root_tile = xe_device_get_root_tile(hwmon->xe);
+diff --git a/drivers/gpu/drm/xe/xe_late_bind_fw.c b/drivers/gpu/drm/xe/xe_late_bind_fw.c
+index 768442ca7da6..3dc88655d29e 100644
+--- a/drivers/gpu/drm/xe/xe_late_bind_fw.c
++++ b/drivers/gpu/drm/xe/xe_late_bind_fw.c
+@@ -189,8 +189,9 @@ static int xe_late_bind_fw_num_fans(struct xe_late_bind *late_bind, u32 *num_fan
+ 	struct xe_device *xe = late_bind_to_xe(late_bind);
+ 	struct xe_tile *root_tile = xe_device_get_root_tile(xe);
  
--	/* Avoid Illegal Subcommand error */
--	if (hwmon->xe->info.platform == XE_DG2)
--		return -ENXIO;
--
--	return xe_pcode_read(root_tile, PCODE_MBOX(PCODE_POWER_SETUP,
--			     POWER_SETUP_SUBCOMMAND_READ_I1, 0),
--			     uval, NULL);
+-	return xe_pcode_read(root_tile,
+-			     PCODE_MBOX(FAN_SPEED_CONTROL, FSC_READ_NUM_FANS, 0), num_fans, NULL);
 +	return xe_pcode_read_probe(root_tile,
-+				   PCODE_MBOX(PCODE_POWER_SETUP, POWER_SETUP_SUBCOMMAND_READ_I1, 0),
-+				   uval, NULL);
++				   PCODE_MBOX(FAN_SPEED_CONTROL, FSC_READ_NUM_FANS, 0),
++				   num_fans, NULL);
  }
  
- static int xe_hwmon_pcode_write_i1(const struct xe_hwmon *hwmon, u32 uval)
-@@ -726,7 +722,8 @@ static int xe_hwmon_pcode_read_fan_control(const struct xe_hwmon *hwmon, u32 sub
- 		return 0;
- 	}
- 
--	return xe_pcode_read(root_tile, PCODE_MBOX(FAN_SPEED_CONTROL, subcmd, 0), uval, NULL);
-+	return xe_pcode_read_probe(root_tile, PCODE_MBOX(FAN_SPEED_CONTROL, subcmd, 0),
-+				   uval, NULL);
- }
- 
- static int xe_hwmon_power_curr_crit_read(struct xe_hwmon *hwmon, int channel,
+ void xe_late_bind_wait_for_worker_completion(struct xe_late_bind *late_bind)
 -- 
 2.43.0
 
