@@ -4,176 +4,173 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DF08ACF58C9
-	for <intel-xe@archiver.kernel.org>; Wed, 19 Nov 2025 19:06:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 39002CF58C9
+	for <intel-xe@archiver.kernel.org>; Wed, 19 Nov 2025 19:28:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8C78610E257;
-	Wed, 19 Nov 2025 19:06:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D8FF510E265;
+	Wed, 19 Nov 2025 19:28:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GqNv/TGl";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ENjpdffI";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1136E10E254;
- Wed, 19 Nov 2025 19:06:28 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 61F5B10E265;
+ Wed, 19 Nov 2025 19:28:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1763579188; x=1795115188;
+ t=1763580518; x=1795116518;
  h=date:from:to:cc:subject:message-id:references:
  content-transfer-encoding:in-reply-to:mime-version;
- bh=+OIQk8PZdxVTH/ZlH7GYFalAdtxrdz0U+gPuDC/szkI=;
- b=GqNv/TGlvokH0846hLgdrV8WrcoJrDGz39JUBfVw5m0aUO0NfFKuT7sx
- dZazeZTLm/6Mxr4XQswrvly+nJhHnnAUYewP/jTq3a+TD5n67zI5Fy4up
- PN9hYOB/jhQIfEjmuOG0iVfqxUJKF817VY/c4wLrCMBesLNb4GhQ0LMjD
- HO4RTRJ6+mP0Fjs+bNjlb3KKlNbBrO7swDMf16hPH7EpbGIf9g1XzAwAp
- Bxy6ZJqbfhyyNCxFFwi4EpD0BSjQHGaQRMitCufSjm59fRh8KkEhpzeUc
- YaYdkI/Ice8MSxM6+APbppG1DrEG+gYuHW13aSljLla7MNw71ySKPJATQ Q==;
-X-CSE-ConnectionGUID: coU+wgrJSVaVji+trCf1CQ==
-X-CSE-MsgGUID: J0Cjc1tDRxe/OkVkx5kZSQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11618"; a="69250871"
-X-IronPort-AV: E=Sophos;i="6.19,316,1754982000"; d="scan'208";a="69250871"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Nov 2025 11:06:27 -0800
-X-CSE-ConnectionGUID: 5y2YXJzdQq+DDJXtsFFNGg==
-X-CSE-MsgGUID: YbSnW3AoQxyP4seht224PQ==
+ bh=wtx9XNVWPvtA8XS8iBEdXfZZ5gsRmB0fNXpEcoug9Qg=;
+ b=ENjpdffIozKd8hRvcysZRnsp4oj/b9qiCWHsS9w0a+XMjb1DL5vzw22a
+ 34cNboI+Omfk8L9TYHTIz3IIiuWOJBQgbHWUWORTlGFbhb3c341uV9HaX
+ jwcKm11fhmoxzNixQLKTtFCQtYSz+cuq/tqiAJLv6At2zxmPfr67Uh04A
+ a6Rwy9ads0u5TQgBEha0JW0Qk4zUvgARrFNuqpKvVIYOpl523zGhCuiBj
+ 7J0fYbaIvthANmHg8WWC/QBSH+sVz2wlhujukjUCM0ZvXWVqe6+UXMNnK
+ WMS9RvXy2/54TiNOv84Aq2MxN4DGjmzbN2tsc9xMmIix0S0DnwoVhN/eK Q==;
+X-CSE-ConnectionGUID: RXTPSJfKS/yUeww+5KtRaQ==
+X-CSE-MsgGUID: 3s4BR08GS5+vRE8710bmQg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11618"; a="65567607"
+X-IronPort-AV: E=Sophos;i="6.19,316,1754982000"; d="scan'208";a="65567607"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Nov 2025 11:28:37 -0800
+X-CSE-ConnectionGUID: ZR59HPmSR3qEkoZEFknK7g==
+X-CSE-MsgGUID: da5BE1d0RzG9bYvmNfgnlQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,316,1754982000"; d="scan'208";a="191576390"
+X-IronPort-AV: E=Sophos;i="6.19,316,1754982000"; d="scan'208";a="191405852"
 Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by fmviesa009.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Nov 2025 11:06:27 -0800
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
+ by fmviesa008.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Nov 2025 11:28:36 -0800
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
  ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Wed, 19 Nov 2025 11:06:27 -0800
+ 15.2.2562.27; Wed, 19 Nov 2025 11:28:35 -0800
 Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27 via Frontend Transport; Wed, 19 Nov 2025 11:06:27 -0800
-Received: from PH8PR06CU001.outbound.protection.outlook.com (40.107.209.14) by
+ 15.2.2562.27 via Frontend Transport; Wed, 19 Nov 2025 11:28:35 -0800
+Received: from BL2PR02CU003.outbound.protection.outlook.com (52.101.52.55) by
  edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Wed, 19 Nov 2025 11:06:29 -0800
+ 15.2.2562.27; Wed, 19 Nov 2025 11:28:38 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=LLmFwRim4OrC5kl19jbFb5LeX76j5k4eAqlHDBmh0ebIa8tAQOcGIUukrP6CR6uJCWZerNkiweAp04mQCUSasM/dA3UO4uiu/BOfehu2C+NMAnqYI/b7CyCD91Cz5xeIhgjKt36FEn231lKMC9eFI/PGyXmlM6LFw3REQy+lfHsSjL7WWAIn6n/BPapA60vmWi9o2NPwGJxIygEfV0ZANlCQpgy1Cf45vorch7PnkOXpV3FvsiRL71XwiFmugwHGGEmW4Z8jptLxq2s6rZxTtzIMdXLZciFLarOX3Pc9m2V50ZezKY1+AmQkpbPtoLZWYelPd5YieHkaUdgX4skLZw==
+ b=yrXit5T4PbYxugEqTSBTme5sffhIbZfkhHqYOCA81ZglZlzd8hZbBVwLVOxN0AGv0LVlMsLOCqLf6I2UksdzCRZpu2lqvQCDxkCZgnfowjxOcmpZAFPzkQxG3Jg/m8fNUrMvwDYnnNWFoFlnIGF8jk7sm7SHxZPAYWDAYBzMpmz/Ud5Odxt6mrCuaPa9BctPxLTihb9l+JrW9Y8czJUeq8H686LgnEMnwtCUJVdhurgMA4x5IbfzQ5endZVbqjEZesloFEzGpT7wNrYt5rOwSKPbEcssrXHdBRg5XlIroGPwN1SHo+BnpHfLLRNYnG17P6CegB6yRDjRvmpUI2dYdg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=63hXrsRxYfOZkvrg6PIzG71nx0jlBfqxhN21M3wSZBI=;
- b=uQj420Zb3T8z0zConKyzaEEpwmlumOGikUYa7PexfaLKPFH0ptgDD8ct6dI9SE8o1dr6Lt1DCwUCQ3PwH2irjIL+NjrctvhZm1c6xb4VMeDppUYsTgY9So/1S8Fjd6a7R2r+L+yW2/VRicIg+Iw8xgKSnOhw6WDbBjmHTkVFtRgVwnW7l1cPxpHkKnOBj/cMtmv/3vIB0yKNc/0hwj5c1tqjgJCIog1s51aH5zIAZSNPdj0D35w5lzpzejHCn2RjUWikflajcRvhB+ANaa9kg1CbhD+rHBY/IyuChvutoDzAe8wATeO0fjZUR+dmwtmCKMdQaTwmks9fUT+R+3pveA==
+ bh=vXf9V+KrbCDRQ9YEjRkSxPyCvxZEABFJ2gxFQBIXvVM=;
+ b=C5RdcfuTjHTVW3V3dPU2+5im4YIhssyoR8HBbR3VvkPZBAWboYgZgYm4POmL8iG2XmLWNmq/54cv0TobwTRWzqr9OCugq3wfEbIeRuYUBJdEueKhBwxqazMGUblkiRCpi+JIAr6sbSk594Lx7W0R3nJa7sL6eAjuDxLzLEDUGjAhiWd7+wTcPcwOeg26IXtTwcXVP0kRG1xAqEJrW9zjl+6Tp5RaQv6OnC2EWM8LuCnzCAxZ6l3ex2jLLG4/LWg1wyV0hpj5+LqnRzCOnjnXy9bZPC/UXqkJUpgq+PIi43NR8fVaq8xPgK4nJ5Hb3ASr9ps4gCYGuNfIj4RS/AkF5Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DS0PR11MB8182.namprd11.prod.outlook.com (2603:10b6:8:163::17)
- by MW3PR11MB4684.namprd11.prod.outlook.com (2603:10b6:303:5d::14) with
- Microsoft SMTP Server (version=TLS1_2,
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
+ by DM3PPFD3EB37DFC.namprd11.prod.outlook.com (2603:10b6:f:fc00::f52)
+ with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9343.10; Wed, 19 Nov
- 2025 19:06:24 +0000
-Received: from DS0PR11MB8182.namprd11.prod.outlook.com
- ([fe80::7b65:81e6:c6c4:449e]) by DS0PR11MB8182.namprd11.prod.outlook.com
- ([fe80::7b65:81e6:c6c4:449e%4]) with mapi id 15.20.9343.009; Wed, 19 Nov 2025
- 19:06:24 +0000
-Date: Wed, 19 Nov 2025 11:06:21 -0800
-From: Matt Roper <matthew.d.roper@intel.com>
-To: Gustavo Sousa <gustavo.sousa@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, <intel-gfx@lists.freedesktop.org>,
- "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>, Dnyaneshwar Bhadane
- <dnyaneshwar.bhadane@intel.com>, Jouni =?iso-8859-1?Q?H=F6gander?=
- <jouni.hogander@intel.com>, Juha-pekka Heikkila
- <juha-pekka.heikkila@intel.com>, Luca Coelho <luciano.coelho@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>, Matt Atwood
- <matthew.s.atwood@intel.com>, Ravi Kumar Vodapalli
- <ravi.kumar.vodapalli@intel.com>, Shekhar Chauhan
- <shekhar.chauhan@intel.com>, Vinod Govindapillai
- <vinod.govindapillai@intel.com>, Jani Nikula <jani.nikula@intel.com>, Ville
- =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Subject: Re: [PATCH v5 4/8] drm/i915/xe3p_lpd: Handle underrun debug bits
-Message-ID: <20251119190621.GZ3905809@mdroper-desk1.amr.corp.intel.com>
-References: <20251114-xe3p_lpd-basic-enabling-v5-0-c183388367f4@intel.com>
- <20251114-xe3p_lpd-basic-enabling-v5-4-c183388367f4@intel.com>
+ 2025 19:28:28 +0000
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::9e94:e21f:e11a:332]) by PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::9e94:e21f:e11a:332%3]) with mapi id 15.20.9343.009; Wed, 19 Nov 2025
+ 19:28:28 +0000
+Date: Wed, 19 Nov 2025 11:28:25 -0800
+From: Matthew Brost <matthew.brost@intel.com>
+To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+CC: <intel-xe@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
+ <himal.prasad.ghimiray@intel.com>, <apopple@nvidia.com>, <airlied@gmail.com>, 
+ Simona Vetter <simona.vetter@ffwll.ch>, <felix.kuehling@amd.com>, Christian
+ =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, <dakr@kernel.org>,
+ "Mrozek, Michal" <michal.mrozek@intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>
+Subject: Re: [PATCH v2 05/17] drm/pagemap: Add a drm_pagemap cache and shrinker
+Message-ID: <aR4aWV5KAbLOVsaU@lstrano-desk.jf.intel.com>
+References: <20251111164408.113070-1-thomas.hellstrom@linux.intel.com>
+ <20251111164408.113070-6-thomas.hellstrom@linux.intel.com>
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20251114-xe3p_lpd-basic-enabling-v5-4-c183388367f4@intel.com>
-X-ClientProxiedBy: SJ0PR13CA0068.namprd13.prod.outlook.com
- (2603:10b6:a03:2c4::13) To DS0PR11MB8182.namprd11.prod.outlook.com
- (2603:10b6:8:163::17)
+In-Reply-To: <20251111164408.113070-6-thomas.hellstrom@linux.intel.com>
+X-ClientProxiedBy: SJ0PR05CA0015.namprd05.prod.outlook.com
+ (2603:10b6:a03:33b::20) To PH7PR11MB6522.namprd11.prod.outlook.com
+ (2603:10b6:510:212::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR11MB8182:EE_|MW3PR11MB4684:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7f286d05-7f54-4e7e-5f8e-08de279ebb87
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|DM3PPFD3EB37DFC:EE_
+X-MS-Office365-Filtering-Correlation-Id: 955e3ecc-4591-4631-6efb-08de27a1d0b5
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
-X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?BwAUvNzlBeFoiqtF9ePmuee+dUjZATEUH93wVOaWJSG+67EydpMPCNlbWA?=
- =?iso-8859-1?Q?gGwo3Ku2/UeQ1W9ovhXpoAaCqW+00KKFDKgD3ejKsrvT3qPTqFY90PotjR?=
- =?iso-8859-1?Q?7gny1AUfwbNyPmosmgh0En+LKJqsJgRCTw+zO48bGlBM3Duf0Tc2EuESwN?=
- =?iso-8859-1?Q?lrA8Q0jmNbaGZQEx3TCVVDN6QcdGiUngtBZLxzPz7xW2M2m64YSWyWUJ9M?=
- =?iso-8859-1?Q?0iOGaMYiwz2TRX3Q96A7vXeUcl4huQXo6JI/PlfSFY3ofxQMifi3lDjia/?=
- =?iso-8859-1?Q?etH3UwpIzTUtCraiPMH+uAcxF+279xSArhN4KENah2wGHn0fc7KtuIqqK3?=
- =?iso-8859-1?Q?rKBTJeTXyxuHuvmWRz59TCZ/QEQj2ztwIFcocLJROaV0OC5mTevc29helg?=
- =?iso-8859-1?Q?WEnv3oGwVGjUYAmii5J+kqIK/+2ocqD+bM8e6jOEarqjI8/MPn390vRp24?=
- =?iso-8859-1?Q?CGFxbz0JmVZF4BuCLzLlNiy9ZDpPI6oF8x7DkxNq1X0IpOiuzMjPS8VTfn?=
- =?iso-8859-1?Q?fFIPt9ugKgv8NogsEtyjbjmTT4feGZYYYY3DaEUX3tXHEwElC6KAwAMlkc?=
- =?iso-8859-1?Q?PWLqLngJooznnDURmSol15hdHYqzYnRm/i1mKTZHkp03yQsRSzr/luJqKr?=
- =?iso-8859-1?Q?nUu0Jhd4aQ7XL2Mb3PIBqcNg6J88XIEJyjzlSSQaqoXvpzqEeLAZBFMk/6?=
- =?iso-8859-1?Q?ylo+4TqMULDo9M+K4a3LUTZrROc3mYeKHC60rcw/kgynvQBpL1v/rClE1r?=
- =?iso-8859-1?Q?hxM8xj/lLjchL2tS+kK8BUPKUegYN22p5lrDFtCvcaKjf9N4cEe4dssrVr?=
- =?iso-8859-1?Q?5M4BL3EN6+BAU/aAAX/LYwrg30z8EYC8FYTUcJmqTIa3+f87/YGu1QzZmj?=
- =?iso-8859-1?Q?r9bODH/AjEAXtPI7N0Kw6mJSYMRiB4H7yapoIxAJfm069MNrG70Gdlpw6N?=
- =?iso-8859-1?Q?s7TvxDLoFZptba+X+WrHjUK3GetV/7XKKrJS0j0jglDtEQIauVrx66ZmNQ?=
- =?iso-8859-1?Q?OAD0iw3+vErrWfgJhTBNqTA/vRMtJl9XQqj8Xu6f/eFWQSZM1w/c5BkMcN?=
- =?iso-8859-1?Q?3g+xSNueG23aDysEDGO7D8oyStgagJQRl5WciuCD7l1k1xQJpkPEzVSQku?=
- =?iso-8859-1?Q?UzZj/O38kk8YUZkThmLTJWDKZ2/wnTZAfBkGX79yA6SudwCC3jOGXnwjSP?=
- =?iso-8859-1?Q?xIIyiJX++v/X1n5Cc3vA0W592N0q5eD30HHisj4LZyHpxcS8mnMwBf2dNB?=
- =?iso-8859-1?Q?syU0jAvMTlmdouFRoy9kC+bBf1RUYOdWc2HfBmBXEPwkpz/y2pbcaFjbTn?=
- =?iso-8859-1?Q?Y2Ob+CnfluKb9oXzHIn5YVf2mzwhBhu4x/zynoPmrt0dz+jDnYW6UK9C0P?=
- =?iso-8859-1?Q?Gv7hC4Tlb968Nlt+0VYY3hnbrOy6hffu0Q6ZciRaVmQQZ5GPfnGhwKmrBP?=
- =?iso-8859-1?Q?2JEVACvq89F7GANEwRXsmSKS0Iy3b4RC2hrHSzbfJ0ND9zBRlFKQoYqR5Q?=
- =?iso-8859-1?Q?XuEnRdN8mh3eWbPYD6piwATyaOUG44N2E9ryJiSG7hDg=3D=3D?=
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|366016|376014|7416014|1800799024|7053199007; 
+X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?thpHSMBv6eZo+8GQo3d6gO++0E17uLGqG12HZQirUnVWpi0RnE1MaZDW34?=
+ =?iso-8859-1?Q?HL6WjpAC7NqhRAnt3y5j1anWj55SWdMycEpUZ/dDsm7vIOmZV+4L0j5XuP?=
+ =?iso-8859-1?Q?ypIDtKypiq2U+CPcW3UiDkoEXWAZMY93x6gjXykUeN+SBUbIp3akU5A/Nk?=
+ =?iso-8859-1?Q?NtzXfjcjGwaEOPNW5aSKOZUIIHjEiKpF1Kck6WzjSXx687Y0TFAg9ecffb?=
+ =?iso-8859-1?Q?SRMeYy08PLsM8+bKLPVASo33osnku+XO9mWhbTBHp3yldxeCA7RqY0bmyz?=
+ =?iso-8859-1?Q?8IW8QsF7jFSAtjp45EgwCq3MAVrMcNSW46BJwYPTa8GxV+86u50ZAiHo0r?=
+ =?iso-8859-1?Q?GHnW3dGaQzl+YJu4R7G6NHcSrhysDoTaGh1U3RlAjwPY6JoqJdZ9iOF9eE?=
+ =?iso-8859-1?Q?hKIFDgBJ1K73C5nsEq6Czwvi6sBbvsj9NEbeuN2S+x9DhHMxgwJyVQa7Vb?=
+ =?iso-8859-1?Q?LULt80BBfPNyKuAq8zC0zkkrU74FumEGmWBPBwSBwrrO4C3pKe5T8Q57h9?=
+ =?iso-8859-1?Q?SDcIXSAfqGrO0RVBsARjKiZlSKdo4fuFuzWqBkIPF89QlEJMZlZl7bYWnc?=
+ =?iso-8859-1?Q?niJtXkeSpWPc1WvODxbdeUw4lhYS9duakjBlfRJQEVl8a80KN+g0h+KK8z?=
+ =?iso-8859-1?Q?5c0/xCXyci8fu5CMQzte4ifVATh4XvLK0WCZoXG4oFfdcpOjH2YgJQaO0U?=
+ =?iso-8859-1?Q?LEaRqHudRQLVWQQTNhYJVTLehSVsoLw2zS0ZaE3BODaRrughOjAZ8Jn1Cj?=
+ =?iso-8859-1?Q?hBu1cVcGRXaDgVVLpJDOS9Df+8PDMSIhzNNz6WRSA3EEc1F3k7uncfKyfp?=
+ =?iso-8859-1?Q?LMxrq5fPw1ENz+9I5fGxUMBcU6b7dmj1ieRCBWkrgmrcqZ5c4qRtW/1MXS?=
+ =?iso-8859-1?Q?2gpfEurzPwjdFk/t7ixG4WV9AvNGW03JcRYbhcHLW5S49yOQ9uqjJc/utI?=
+ =?iso-8859-1?Q?4VwSVMwmO1EgHlsLViLboOv7lqUoU6pxOoi7aOLzDk3p+aO5wpm9vvY0j5?=
+ =?iso-8859-1?Q?iSmAsN9xdInbwtTanYnL4d8FQR29F3vdhL150EHsaKjSw0gr4KmJLAY1xd?=
+ =?iso-8859-1?Q?Wah8T6xqdoQEs85qecmWD+XeEu5G7/hZjZcUmXnxkjfRKgrz/hkFdMyysN?=
+ =?iso-8859-1?Q?9TrRQh0d7FfhO9bd/Tt68QU/RvqhWn69ZW9ud0COC4bBRQF5yCHSRyNkzp?=
+ =?iso-8859-1?Q?kgwZWfOUyOVu7yEEmWFsGDq+cE4SOH71qLtYBhpAsLUVU6Buh9dZg6gmSV?=
+ =?iso-8859-1?Q?nMY0WjaAltSYq4p5B3daXnGpiZJcRr4maeA1C7N/ILd2uxu2dr8guQHUMR?=
+ =?iso-8859-1?Q?Lxfk25nkExzAWNzNqSYMgmossyOpEXLHt1JsBy1VZaTp18MpvSMsd5u65s?=
+ =?iso-8859-1?Q?py8UKljZzaeRYDubu3d1G0tw7LLUFjJI0EXxATrwxLjEafXjfB40n0qr+z?=
+ =?iso-8859-1?Q?yIxgC1dSULvwHEe0WeNM6crarEcb1z1W922QOed2v68lA65EKhpklHyzOb?=
+ =?iso-8859-1?Q?G6upLym7hQCUzsrUuDId4V?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR11MB8182.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(7416014)(1800799024)(7053199007); DIR:OUT;
+ SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?EjkLncVflMnsvSFgh9peNx24mYoMgE5fr3WgmeKBWC28RFv0I5aqpKo0ou?=
- =?iso-8859-1?Q?6jaM2bE+i3+7B0uU7r8ElKNDWRQ2zRM0f//Nrr+uyfDd7rrI7TaKheR+L3?=
- =?iso-8859-1?Q?vsJsNpVyjhuTF6YjqyFDNfvH4g928wymehP+cOqrmEmWPRvrvtEhPqcmfZ?=
- =?iso-8859-1?Q?XzHkoV3shPhJd+gCysZCyMxLW79z+Me0J/dRhURwymLJTLtxMqDnDRaA+n?=
- =?iso-8859-1?Q?aLw4Az8ALsmH6Sm73oQcMotGsKlovSs7iPoWOXfhxGpWh3785jDdwIGKJL?=
- =?iso-8859-1?Q?8J0TxM0A604sMe0KScxAFFCTE3Hu2AYYFaNbD6e467PifuJLO6OcrAyVjk?=
- =?iso-8859-1?Q?+C7fnPLg+PXClBlBMcs3UC4/LdmSQY/Y+arWz8KQZUJdnjpBXRUAD21Gab?=
- =?iso-8859-1?Q?QW7hhwFtZmo7xUFF3gGMX/ls1TqF59O8RFTigKd/h6gAwxyMwSk/vr6xKX?=
- =?iso-8859-1?Q?4Sgumyr6gqZqq0v1xeyqJZrdLzmmfec6BF3k6kkXz+u3M0xYKnVIp3A9La?=
- =?iso-8859-1?Q?buC3h3mNI7O0LlMEYMK1lhy8FLIw35RH8ZFAvbkxj7sMRT1Exb6KE2CT8W?=
- =?iso-8859-1?Q?vmjaK2Rpw1w9Z4PJwN0YbXgbJFg8QJl3sgm6gbVuv8vWP+OCOq92fqFLnA?=
- =?iso-8859-1?Q?H/2W3B3xaMv6xDWO8MLvp8DdHpH6c1WwH/oE64qRtqwnj3lbWpDvOkxOp3?=
- =?iso-8859-1?Q?Jo7JSu3qLvR7BUutSmF/ZqMnSIRzfxRp1WQ+hZV2rmn+WVjFOSK7zFtoEq?=
- =?iso-8859-1?Q?Q98FHvQL+DYVFfrk3i0NFfd0sI0T0Fb8LJQc6H9H3q23gMNICj3YEkVjSv?=
- =?iso-8859-1?Q?dYOMlKcqsDDC6ptXLuR0+mZfmiHqhqdqnULUuR2wS+vAWNOi6dMIKE8i8J?=
- =?iso-8859-1?Q?MMsO3NmB6vtS/Uf+Hsma+/MrqSGJhRB9+NnJLNq8qVVV2cTtd1t84pSOJX?=
- =?iso-8859-1?Q?/hOrucj8wPBuQC2VbhCLOVa8MEDjv7lzYCcqvt5qvxB4Ui4Jc7OBFx8YdS?=
- =?iso-8859-1?Q?bemkkTeBZIx2BM10K8wHPjtK6l/OB4LNzgAUL84FXgUWlDo/+olAZzbOVW?=
- =?iso-8859-1?Q?1CZ/0q2q4kV80tzuj5RHskI8Ctr6Ulz5wrqqoQaY/u/H5/gx2blxWegbb0?=
- =?iso-8859-1?Q?YHPvqknv5KNx8CAty3v0385z0JQ0KHqgmhcZxzc5n4iDx62cDJA1yWHYpy?=
- =?iso-8859-1?Q?Psn2XUP2+mRa4EtpfYmxN4k7Cskb0GNsyS1e7mxFTXD1ytvX6JdK6E+owN?=
- =?iso-8859-1?Q?puFfobHBL64QxMch0IwkLOTvr7RPbVJsr+yb/w+0tBVtvsEUfWXjFnKA8G?=
- =?iso-8859-1?Q?gV2Dchb7nBxLzbKEhjPByJ2T65zvxa3/mvGKN5IKL38eU5O/wRCS7KH99u?=
- =?iso-8859-1?Q?mc+OF47yJ/U90flmJV+voVHY4R4WEJSHZYVft+GQeAaB3jFyoSGMpv0mVD?=
- =?iso-8859-1?Q?zIBAK6TpzTWEN8XK3iETeuaCTfzSOl+5Yjj1IHcFWXVEdyUOMzobHw6iHz?=
- =?iso-8859-1?Q?4jtRYqUhxySvJiwDToUzArki3NM0sCwTSF4KVQI172jUxPLgDYj8iMWXAx?=
- =?iso-8859-1?Q?kbPHw+2HRl7uEndGyzFG63qVECyz9xZ6eaLm+YLZYLM5T0FCDVcttgUJvE?=
- =?iso-8859-1?Q?Rbjvo/2iqXRyOCykxm6KrEt/MEg5JUtx9lxTo5k0CMXCr+lSDGZAHuMg?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?hlLFjhDPl1k6XqU3+du+DXjIkiWEWe3Fdxi4Zf3SEO8K3cOnNqT35mIEjZ?=
+ =?iso-8859-1?Q?0qQQfWU4F8lTyMkVGcQolnrFd8KjHWI1rrw6BOlv46PhdVg3PPZQKO0l8J?=
+ =?iso-8859-1?Q?pxeYPMqddZxSuXLeSfI9znwKQ9bAT7UayI546T5yQBOWHRwhrxKO3vnMWt?=
+ =?iso-8859-1?Q?9ZU5hK9akbaPYSKBjx7/Iu83E++svYMlq9mACEX5zVKCbF5lIejShYFG5q?=
+ =?iso-8859-1?Q?qj3KjU65hB7uzE/RVsEmEECBhaPJH++jF3EQUdrwfQWz0u0nlqyFbyJKYL?=
+ =?iso-8859-1?Q?zOg9Ropvc+C6dCJ/t92t1MdvsfEXglxJS5/hymYb4Q1XiVrXSAGnk5j8Mp?=
+ =?iso-8859-1?Q?UQS9vpp0kMEG3JjdPKiWZJbyANbpbirqxpjiWNybjPCEbxm07r5DNuiBIT?=
+ =?iso-8859-1?Q?Hj1P3MUPXEy6J1IGlNBxjqewrDw9nMjzgYfB5C+NOPMMoMFASnWLm1YsZl?=
+ =?iso-8859-1?Q?Lp/5gzmDCFO2bQV/UFWQ/VPhQIuGlrtS9OMR6j9Dwccmo11X8MK7nfhcrK?=
+ =?iso-8859-1?Q?jkTJbeI+XrmNtJDrjdpZfeFXZ1VhWGxJpO7b2X0esBdbe49tX3DlGY/lQX?=
+ =?iso-8859-1?Q?0d3B0T5qh7u7cx79k6pEdaxZqprB6etN+YdnqtCOh9ujPstcg9vP49nLdf?=
+ =?iso-8859-1?Q?zu/jsQZqZVBUTVlCi5zEYlKYS+2YoeIUEphVqMgZgIpRSFcCfTjZy6ewnG?=
+ =?iso-8859-1?Q?A/0LoCMmy6UvkEOrHHC8kKd+Ub1kPCC4Bz3Ds9+UnAUSqjTQE6KgZYMIV3?=
+ =?iso-8859-1?Q?fqqOP7xtK+hKYwnO8zzca27FwmgNgPWjNwVn00Lf3p5N/LMcvbVR2Z3S3j?=
+ =?iso-8859-1?Q?Se9iSj5BvKiu/5CKx2rdaT2GCN3HcNfQ8BHuUU45ht5M4N4K2wJ3ubR0jT?=
+ =?iso-8859-1?Q?lMRt4W0MWW1S2U0dCZiHx4vD+ikAli+gBvAn5uLI/jk+ePQGbop7Cg8SvL?=
+ =?iso-8859-1?Q?t0h7FXPtmSaqAdxyqjIGKsfiU5J7bnLNyCdeey9pPep2fNGQN4Zv/0JJu6?=
+ =?iso-8859-1?Q?yrC1wo9NrWAuQl38cQnFLDPAN3Y9P088wO7XKhVhuyDftSmPm+oEsfmHMZ?=
+ =?iso-8859-1?Q?LIbUD5I9eDjx3xP/QfxMM3I5d4N2CD7gXznDa2/p5bsCSlBMZJMZbsR8de?=
+ =?iso-8859-1?Q?wEK3uKBsJAWX7Wpy1V1GuE3e4kL8dc9BR3tii5PEBs1ZpsBUYmYFKXLN2+?=
+ =?iso-8859-1?Q?nZp5k0Siu6fvRtELEdda7FcLGTTuZt2vAsh8VwMZE+3Pe7wpyzT3mIFXxT?=
+ =?iso-8859-1?Q?+y1hh6Y7r8ayqNbZMylxvDKUU9TdfkRN3lqsSKHrICNK6nxZkKa4a01tvv?=
+ =?iso-8859-1?Q?jbcZzySeQSG2vZyo814m5zJo9lEblNSmHxcBXHeMbyDGv/hzEKiSOxAqw9?=
+ =?iso-8859-1?Q?CMM4RRJA8hu73TwKu0nPfxY8H0HdOuuJCWtLyOgg0dAi0k71nY8X1kCh1o?=
+ =?iso-8859-1?Q?3SaibmlQj3dZuEinsW+qr4213aX30C/X9duVwga5WDxYxmxioEhRPDxMuM?=
+ =?iso-8859-1?Q?KYOZPeJqFvIOCd8Emx4A4JtALvw3N7VHlYvS3aeD5ePZZG6gWgS0S4BPEE?=
+ =?iso-8859-1?Q?1gH/zEjn/MKArfFHbxjX2akxd08e2GNhA/BqCX/kr9+2BuqMog6XbS8wXA?=
+ =?iso-8859-1?Q?iB6OWmp/lLltmg8z7EgZ9gKDNNay4ctQgz5x7oh0Isd15LBLfo3ufazg?=
  =?iso-8859-1?Q?=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7f286d05-7f54-4e7e-5f8e-08de279ebb87
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB8182.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 955e3ecc-4591-4631-6efb-08de27a1d0b5
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Nov 2025 19:06:24.0635 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Nov 2025 19:28:27.9746 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 3Phro02LlHfdWcNeiP9V1Z1lNcVgAT4V+n8X+vJhk+yj5feRHWrDBMdkHrJW8wjGTXh061j7vkjgOUsPFx8KbsBVK1zdJRj1ryugXJn16DE=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR11MB4684
+X-MS-Exchange-CrossTenant-UserPrincipalName: 9l4NZRvcmNhKZ77A506ZGj1k+8DsxXDjQ6fs7T2sa0T5raybiHWbveP4bcdFI+9Ct5iPsSn0YArKofR96DofdQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM3PPFD3EB37DFC
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -189,356 +186,801 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Nov 14, 2025 at 05:52:11PM -0300, Gustavo Sousa wrote:
-> Xe3p_LPD added several bits containing information that can be relevant
-> to debugging FIFO underruns.  Add the logic necessary to handle them
-> when reporting underruns.
+On Tue, Nov 11, 2025 at 05:43:55PM +0100, Thomas Hellström wrote:
+> Pagemaps are costly to set up and tear down, and they consume a lot
+> of system memory for the struct pages. Ideally they should be
+> created only when needed.
 > 
-> This was adapted from the initial patch[1] from Sai Teja Pottumuttu.
+> Add a caching mechanism to allow doing just that: Create the drm_pagemaps
+> when needed for migration. Keep them around to avoid destruction and
+> re-creation latencies and destroy inactive/unused drm_pagemaps on memory
+> pressure using a shrinker.
 > 
-> [1] https://lore.kernel.org/all/20251015-xe3p_lpd-basic-enabling-v1-12-d2d1e26520aa@intel.com/
+> Only add the helper functions. They will be hooked up to the xe driver
+> in the upcoming patch.
 > 
 > v2:
->   - Handle FBC-related bits in intel_fbc.c. (Ville)
->   - Do not use intel_fbc_id_for_pipe (promoted from
->     skl_fbc_id_for_pipe), but use pipe's primary plane to get the FBC
->     instance. (Ville, Matt)
->   - Improve code readability by moving logic specific to logging fields
->     of UNDERRUN_DBG1 to a separate function. (Jani)
+> - Add lockdep checking for drm_pagemap_put(). (Matt Brost)
+> - Add a copyright notice. (Matt Brost)
 > 
-> Bspec: 69111, 69561, 74411, 74412
-> Cc: Jani Nikula <jani.nikula@intel.com>
-> Cc: Matt Roper <matthew.d.roper@intel.com>
-> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
+> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+
 > ---
-> I tested this by adding a change on top of this series that updates
-> Xe3p_LPD's CDCLK table to use bad values and I got the following
-> messages:
+>  drivers/gpu/drm/Makefile           |   3 +-
+>  drivers/gpu/drm/drm_pagemap.c      |  83 +++++-
+>  drivers/gpu/drm/drm_pagemap_util.c | 450 +++++++++++++++++++++++++++++
+>  include/drm/drm_pagemap.h          |  53 +++-
+>  include/drm/drm_pagemap_util.h     |  42 +++
+>  5 files changed, 613 insertions(+), 18 deletions(-)
+>  create mode 100644 drivers/gpu/drm/drm_pagemap_util.c
+>  create mode 100644 include/drm/drm_pagemap_util.h
 > 
->     [  +0.000237] xe 0000:00:02.0: [drm:intel_modeset_verify_crtc [xe]] [CRTC:88:pipe A]
->     [  +0.000674] xe 0000:00:02.0: [drm] *ERROR* CPU pipe A FIFO underrun
->     [  +0.000015] xe 0000:00:02.0: [drm] *ERROR* Pipe A FIFO underrun info: DBUF block not valid on planes: [1]
->     [  +0.000001] xe 0000:00:02.0: [drm] *ERROR* Pipe A FIFO underrun info: DDB empty on planes: [1]
->     [  +0.000001] xe 0000:00:02.0: [drm] *ERROR* Pipe A FIFO underrun info: DBUF below WM0 on planes: [1]
->     [  +0.000004] xe 0000:00:02.0: [drm] *ERROR* Pipe A FIFO underrun info: frame count: 1890, line count: 44
-> ---
->  .../gpu/drm/i915/display/intel_display_device.h    |   1 +
->  drivers/gpu/drm/i915/display/intel_display_regs.h  |  16 +++
->  drivers/gpu/drm/i915/display/intel_fbc.c           |  50 ++++++++++
->  drivers/gpu/drm/i915/display/intel_fbc.h           |   3 +
->  drivers/gpu/drm/i915/display/intel_fbc_regs.h      |   2 +
->  drivers/gpu/drm/i915/display/intel_fifo_underrun.c | 109 +++++++++++++++++++++
->  6 files changed, 181 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
-> index b559ef43d547..91d8cfac5eff 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_device.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_device.h
-> @@ -197,6 +197,7 @@ struct intel_display_platforms {
->  #define HAS_TRANSCODER(__display, trans)	((DISPLAY_RUNTIME_INFO(__display)->cpu_transcoder_mask & \
->  						  BIT(trans)) != 0)
->  #define HAS_UNCOMPRESSED_JOINER(__display)	(DISPLAY_VER(__display) >= 13)
-> +#define HAS_UNDERRUN_DBG_INFO(__display)	(DISPLAY_VER(__display) >= 35)
->  #define HAS_ULTRAJOINER(__display)	(((__display)->platform.dgfx && \
->  					  DISPLAY_VER(__display) == 14) && HAS_DSC(__display))
->  #define HAS_VRR(__display)		(DISPLAY_VER(__display) >= 11)
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_regs.h b/drivers/gpu/drm/i915/display/intel_display_regs.h
-> index 9d71e26a4fa2..89ea0156ee06 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_regs.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_regs.h
-> @@ -882,6 +882,21 @@
->  #define   PIPE_MISC2_FLIP_INFO_PLANE_SEL_MASK		REG_GENMASK(2, 0) /* tgl+ */
->  #define   PIPE_MISC2_FLIP_INFO_PLANE_SEL(plane_id)	REG_FIELD_PREP(PIPE_MISC2_FLIP_INFO_PLANE_SEL_MASK, (plane_id))
+> diff --git a/drivers/gpu/drm/Makefile b/drivers/gpu/drm/Makefile
+> index 7789f42027ff..04ff0b3e55b0 100644
+> --- a/drivers/gpu/drm/Makefile
+> +++ b/drivers/gpu/drm/Makefile
+> @@ -107,7 +107,8 @@ obj-$(CONFIG_DRM_GPUVM) += drm_gpuvm.o
 >  
-> +#define _UNDERRUN_DBG1_A			0x70064
-> +#define _UNDERRUN_DBG1_B			0x71064
-> +#define UNDERRUN_DBG1(pipe)			_MMIO_PIPE(pipe, _UNDERRUN_DBG1_A, _UNDERRUN_DBG1_B)
-> +#define   UNDERRUN_DBUF_BLOCK_NOT_VALID_MASK	REG_GENMASK(29, 24)
-> +#define   UNDERRUN_DDB_EMPTY_MASK		REG_GENMASK(21, 16)
-> +#define   UNDERRUN_DBUF_NOT_FILLED_MASK		REG_GENMASK(13, 8)
-> +#define   UNDERRUN_BELOW_WM0_MASK		REG_GENMASK(5, 0)
-> +
-> +#define _UNDERRUN_DBG2_A			0x70068
-> +#define _UNDERRUN_DBG2_B			0x71068
-> +#define UNDERRUN_DBG2(pipe)			_MMIO_PIPE(pipe, _UNDERRUN_DBG2_A, _UNDERRUN_DBG2_B)
-> +#define   UNDERRUN_FRAME_LINE_COUNTERS_FROZEN	REG_BIT(31)
-> +#define   UNDERRUN_PIPE_FRAME_COUNT_MASK	REG_GENMASK(30, 20)
-> +#define   UNDERRUN_LINE_COUNT_MASK		REG_GENMASK(19, 0)
-> +
->  #define DPINVGTT				_MMIO(VLV_DISPLAY_BASE + 0x7002c) /* VLV/CHV only */
->  #define   DPINVGTT_EN_MASK_CHV				REG_GENMASK(27, 16)
->  #define   DPINVGTT_EN_MASK_VLV				REG_GENMASK(23, 16)
-> @@ -1416,6 +1431,7 @@
+>  drm_gpusvm_helper-y := \
+>  	drm_gpusvm.o\
+> -	drm_pagemap.o
+> +	drm_pagemap.o\
+> +	drm_pagemap_util.o
+>  obj-$(CONFIG_DRM_GPUSVM) += drm_gpusvm_helper.o
 >  
->  #define GEN12_DCPR_STATUS_1				_MMIO(0x46440)
->  #define  XELPDP_PMDEMAND_INFLIGHT_STATUS		REG_BIT(26)
-> +#define  XE3P_UNDERRUN_PKGC				REG_BIT(21)
+>  obj-$(CONFIG_DRM_BUDDY) += drm_buddy.o
+> diff --git a/drivers/gpu/drm/drm_pagemap.c b/drivers/gpu/drm/drm_pagemap.c
+> index fb18a80d6a1c..50d3963ddbbc 100644
+> --- a/drivers/gpu/drm/drm_pagemap.c
+> +++ b/drivers/gpu/drm/drm_pagemap.c
+> @@ -8,6 +8,7 @@
+>  #include <linux/pagemap.h>
+>  #include <drm/drm_drv.h>
+>  #include <drm/drm_pagemap.h>
+> +#include <drm/drm_pagemap_util.h>
+>  #include <drm/drm_print.h>
 >  
->  #define FUSE_STRAP		_MMIO(0x42014)
->  #define   ILK_INTERNAL_GRAPHICS_DISABLE	REG_BIT(31)
-> diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
-> index 437d2fda20a7..ec316f9843c6 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fbc.c
-> +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-> @@ -129,6 +129,25 @@ struct intel_fbc {
->  	const char *no_fbc_reason;
->  };
->  
-> +static struct intel_fbc *intel_fbc_for_pipe(struct intel_display *display, enum pipe pipe)
-> +{
-> +	struct intel_crtc *crtc = intel_crtc_for_pipe(display, pipe);
-> +	struct intel_plane *primary = NULL;
-> +	struct intel_plane *plane;
-> +
-> +	for_each_intel_plane_on_crtc(display->drm, crtc, plane) {
-> +		if (plane->base.type == DRM_PLANE_TYPE_PRIMARY) {
-
-Can't we just use crtc->base.primary rather than looping to find it?
-While it's legal at the DRM layer for modern drivers to not register a
-primary plane (which in turn means no support for some pre-atomic KMS
-APIs), i915 has always always created and registered one in
-intel_crtc_init().  Other FBC code already uses the primary pointer to
-grab the FBC associated with a CRTC (intel_fbc_min_cdclk,
-intel_fbc_crtc_debugfs_add, etc.).
-
-
-Matt
-
-> +			primary = plane;
-> +			break;
-> +		}
-> +	}
-> +
-> +	if (drm_WARN_ON(display->drm, !primary))
-> +		return NULL;
-> +
-> +	return primary->fbc;
-> +}
-> +
->  /* plane stride in pixels */
->  static unsigned int intel_fbc_plane_stride(const struct intel_plane_state *plane_state)
->  {
-> @@ -2119,6 +2138,37 @@ void intel_fbc_handle_fifo_underrun_irq(struct intel_display *display)
->  		__intel_fbc_handle_fifo_underrun_irq(fbc);
+>  /**
+> @@ -578,7 +579,7 @@ static void drm_pagemap_release(struct kref *ref)
+>  	 * pagemap provider drm_device and its module.
+>  	 */
+>  	dpagemap->dev_hold = NULL;
+> -	kfree(dpagemap);
+> +	drm_pagemap_shrinker_add(dpagemap);
+>  	llist_add(&dev_hold->link, &drm_pagemap_unhold_list);
+>  	schedule_work(&drm_pagemap_work);
+>  	/*
+> @@ -628,6 +629,58 @@ drm_pagemap_dev_hold(struct drm_pagemap *dpagemap)
+>  	return dev_hold;
 >  }
 >  
 > +/**
-> + * intel_fbc_read_underrun_dbg_info - Read and log FBC-related FIFO underrun debug info
-> + * @display: display device instance
-> + * @pipe: the pipe possibly containing the FBC
-> + * @log: log the info?
+> + * drm_pagemap_reinit() - Reinitialize a drm_pagemap
+> + * @dpagemap: The drm_pagemap to reinitialize
 > + *
-> + * If @pipe does not contain an FBC instance, this function bails early.
-> + * Otherwise, FBC-related FIFO underrun is read and cleared, and then, if @log
-> + * is true, printed with error level.
+> + * Reinitialize a drm_pagemap, for which drm_pagemap_release
+> + * has already been called. This interface is intended for the
+> + * situation where the driver caches a destroyed drm_pagemap.
+> + *
+> + * Return: 0 on success, negative error code on failure.
 > + */
-> +void intel_fbc_read_underrun_dbg_info(struct intel_display *display,
-> +				      enum pipe pipe, bool log)
+> +int drm_pagemap_reinit(struct drm_pagemap *dpagemap)
 > +{
-> +	struct intel_fbc *fbc = intel_fbc_for_pipe(display, pipe);
-> +	u32 val;
+> +	dpagemap->dev_hold = drm_pagemap_dev_hold(dpagemap);
+> +	if (IS_ERR(dpagemap->dev_hold))
+> +		return PTR_ERR(dpagemap->dev_hold);
 > +
-> +	if (!fbc)
-> +		return;
+> +	kref_init(&dpagemap->ref);
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL(drm_pagemap_reinit);
 > +
-> +	val = intel_de_read(display, FBC_DEBUG_STATUS(fbc->id));
-> +	if (!(val & FBC_UNDERRUN_DECMPR))
-> +		return;
+> +/**
+> + * drm_pagemap_init() - Initialize a pre-allocated drm_pagemap
+> + * @dpagemap: The drm_pagemap to initialize.
+> + * @pagemap: The associated dev_pagemap providing the device
+> + * private pages.
+> + * @drm: The drm device. The drm_pagemap holds a reference on the
+> + * drm_device and the module owning the drm_device until
+> + * drm_pagemap_release(). This facilitates drm_pagemap exporting.
+> + * @ops: The drm_pagemap ops.
+> + *
+> + * Initialize and take an initial reference on a drm_pagemap.
+> + * After successful return, use drm_pagemap_put() to destroy.
+> + *
+> + ** Return: 0 on success, negative error code on error.
+> + */
+> +int drm_pagemap_init(struct drm_pagemap *dpagemap,
+> +		     struct dev_pagemap *pagemap,
+> +		     struct drm_device *drm,
+> +		     const struct drm_pagemap_ops *ops)
+> +{
+> +	kref_init(&dpagemap->ref);
+> +	dpagemap->ops = ops;
+> +	dpagemap->pagemap = pagemap;
+> +	dpagemap->drm = drm;
+> +	dpagemap->cache = NULL;
+> +	INIT_LIST_HEAD(&dpagemap->shrink_link);
 > +
-> +	intel_de_write(display, FBC_DEBUG_STATUS(fbc->id), FBC_UNDERRUN_DECMPR);
+> +	return drm_pagemap_reinit(dpagemap);
+> +}
+> +EXPORT_SYMBOL(drm_pagemap_init);
 > +
-> +	if (log)
-> +		drm_err(display->drm,
-> +			"Pipe %c FIFO underrun info: FBC decompressing\n",
-> +			pipe_name(pipe));
+>  /**
+>   * drm_pagemap_create() - Create a struct drm_pagemap.
+>   * @drm: Pointer to a struct drm_device providing the device-private memory.
+> @@ -645,22 +698,14 @@ drm_pagemap_create(struct drm_device *drm,
+>  		   const struct drm_pagemap_ops *ops)
+>  {
+>  	struct drm_pagemap *dpagemap = kzalloc(sizeof(*dpagemap), GFP_KERNEL);
+> -	struct drm_pagemap_dev_hold *dev_hold;
+> +	int err;
+>  
+>  	if (!dpagemap)
+>  		return ERR_PTR(-ENOMEM);
+>  
+> -	kref_init(&dpagemap->ref);
+> -	dpagemap->drm = drm;
+> -	dpagemap->ops = ops;
+> -	dpagemap->pagemap = pagemap;
+> -
+> -	dev_hold = drm_pagemap_dev_hold(dpagemap);
+> -	if (IS_ERR(dev_hold)) {
+> -		kfree(dpagemap);
+> -		return ERR_CAST(dev_hold);
+> -	}
+> -	dpagemap->dev_hold = dev_hold;
+> +	err = drm_pagemap_init(dpagemap, pagemap, drm, ops);
+> +	if (err)
+> +		return ERR_PTR(err);
+>  
+>  	return dpagemap;
+>  }
+> @@ -675,8 +720,10 @@ EXPORT_SYMBOL(drm_pagemap_create);
+>   */
+>  void drm_pagemap_put(struct drm_pagemap *dpagemap)
+>  {
+> -	if (likely(dpagemap))
+> +	if (likely(dpagemap)) {
+> +		drm_pagemap_shrinker_might_lock(dpagemap);
+>  		kref_put(&dpagemap->ref, drm_pagemap_release);
+> +	}
+>  }
+>  EXPORT_SYMBOL(drm_pagemap_put);
+>  
+> @@ -1023,6 +1070,14 @@ int drm_pagemap_populate_mm(struct drm_pagemap *dpagemap,
+>  }
+>  EXPORT_SYMBOL(drm_pagemap_populate_mm);
+>  
+> +void drm_pagemap_destroy(struct drm_pagemap *dpagemap, bool is_atomic_or_reclaim)
+> +{
+> +	if (dpagemap->ops->destroy)
+> +		dpagemap->ops->destroy(dpagemap, is_atomic_or_reclaim);
+> +	else
+> +		kfree(dpagemap);
 > +}
 > +
->  /*
->   * The DDX driver changes its behavior depending on the value it reads from
->   * i915.enable_fbc, so sanitize it by translating the default value into either
-> diff --git a/drivers/gpu/drm/i915/display/intel_fbc.h b/drivers/gpu/drm/i915/display/intel_fbc.h
-> index 91424563206a..f0255ddae2b6 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fbc.h
-> +++ b/drivers/gpu/drm/i915/display/intel_fbc.h
-> @@ -9,6 +9,7 @@
->  #include <linux/types.h>
->  
->  enum fb_op_origin;
-> +enum pipe;
->  struct intel_atomic_state;
->  struct intel_crtc;
->  struct intel_crtc_state;
-> @@ -46,6 +47,8 @@ void intel_fbc_flush(struct intel_display *display,
->  		     unsigned int frontbuffer_bits, enum fb_op_origin origin);
->  void intel_fbc_add_plane(struct intel_fbc *fbc, struct intel_plane *plane);
->  void intel_fbc_handle_fifo_underrun_irq(struct intel_display *display);
-> +void intel_fbc_read_underrun_dbg_info(struct intel_display *display,
-> +				      enum pipe, bool log);
->  void intel_fbc_reset_underrun(struct intel_display *display);
->  void intel_fbc_crtc_debugfs_add(struct intel_crtc *crtc);
->  void intel_fbc_debugfs_register(struct intel_display *display);
-> diff --git a/drivers/gpu/drm/i915/display/intel_fbc_regs.h b/drivers/gpu/drm/i915/display/intel_fbc_regs.h
-> index b1d0161a3196..77d8321c4fb3 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fbc_regs.h
-> +++ b/drivers/gpu/drm/i915/display/intel_fbc_regs.h
-> @@ -88,6 +88,8 @@
->  #define DPFC_FENCE_YOFF			_MMIO(0x3218)
->  #define ILK_DPFC_FENCE_YOFF(fbc_id)	_MMIO_PIPE((fbc_id), 0x43218, 0x43258)
->  #define DPFC_CHICKEN			_MMIO(0x3224)
-> +#define FBC_DEBUG_STATUS(fbc_id)	_MMIO_PIPE((fbc_id), 0x43220, 0x43260)
-> +#define   FBC_UNDERRUN_DECMPR			REG_BIT(27)
->  #define ILK_DPFC_CHICKEN(fbc_id)	_MMIO_PIPE((fbc_id), 0x43224, 0x43264)
->  #define   DPFC_HT_MODIFY			REG_BIT(31) /* pre-ivb */
->  #define   DPFC_NUKE_ON_ANY_MODIFICATION		REG_BIT(23) /* bdw+ */
-> diff --git a/drivers/gpu/drm/i915/display/intel_fifo_underrun.c b/drivers/gpu/drm/i915/display/intel_fifo_underrun.c
-> index c2ce8461ac9e..b413b3e871d8 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fifo_underrun.c
-> +++ b/drivers/gpu/drm/i915/display/intel_fifo_underrun.c
-> @@ -25,6 +25,8 @@
->   *
->   */
->  
-> +#include <linux/seq_buf.h>
+>  static void drm_pagemap_exit(void)
+>  {
+>  	flush_work(&drm_pagemap_work);
+> diff --git a/drivers/gpu/drm/drm_pagemap_util.c b/drivers/gpu/drm/drm_pagemap_util.c
+> new file mode 100644
+> index 000000000000..84a7a4807bef
+> --- /dev/null
+> +++ b/drivers/gpu/drm/drm_pagemap_util.c
+> @@ -0,0 +1,450 @@
+> +// SPDX-License-Identifier: GPL-2.0-only OR MIT
+> +/*
+> + * Copyright © 2025 Intel Corporation
+> + */
 > +
->  #include <drm/drm_print.h>
->  
->  #include "i915_reg.h"
-> @@ -57,6 +59,100 @@
->   * The code also supports underrun detection on the PCH transcoder.
->   */
->  
-> +#define UNDERRUN_DBG1_NUM_PLANES 6
+> +#include <drm/drm_drv.h>
+> +#include <drm/drm_managed.h>
+> +#include <drm/drm_pagemap.h>
+> +#include <drm/drm_pagemap_util.h>
+> +#include <drm/drm_print.h>
 > +
-> +static void log_underrun_dbg1(struct intel_display *display, enum pipe pipe,
-> +			      unsigned long plane_mask, const char *info)
+> +/**
+> + * struct drm_pagemap_cache - Lookup structure for pagemaps
+> + *
+> + * Structure to keep track of active (refcount > 1) and inactive
+> + * (refcount == 0) pagemaps. Inactive pagemaps can be made active
+> + * again by waiting for the @queued completion (indicating that the
+> + * pagemap has been put on the @shrinker's list of shrinkable
+> + * pagemaps, and then successfully removing it from @shrinker's
+> + * list. The latter may fail if the shrinker is already in the
+> + * process of freeing the pagemap. A struct drm_pagemap_cache can
+> + * hold a single struct drm_pagemap.
+> + */
+> +struct drm_pagemap_cache {
+> +	/** @lookup_mutex: Mutex making the lookup process atomic */
+> +	struct mutex lookup_mutex;
+> +	/** @lock: Lock protecting the @dpagemap pointer */
+> +	spinlock_t lock;
+> +	/** @shrinker: Pointer to the shrinker used for this cache. Immutable. */
+> +	struct drm_pagemap_shrinker *shrinker;
+> +	/** @dpagemap: Non-refcounted pointer to the drm_pagemap */
+> +	struct drm_pagemap *dpagemap;
+> +	/**
+> +	 * @queued: Signals when an inactive drm_pagemap has been put on
+> +	 * @shrinker's list.
+> +	 */
+> +	struct completion queued;
+> +};
+> +
+> +/**
+> + * struct drm_pagemap_shrinker - Shrinker to remove unused pagemaps
+> + */
+> +struct drm_pagemap_shrinker {
+> +	/** @drm: Pointer to the drm device. */
+> +	struct drm_device *drm;
+> +	/** @lock: Spinlock to protect the @dpagemaps list. */
+> +	spinlock_t lock;
+> +	/** @dpagemaps: List of unused dpagemaps. */
+> +	struct list_head dpagemaps;
+> +	/** @num_dpagemaps: Number of unused dpagemaps in @dpagemaps. */
+> +	atomic_t num_dpagemaps;
+> +	/** @shrink: Pointer to the struct shrinker. */
+> +	struct shrinker *shrink;
+> +};
+> +
+> +static bool drm_pagemap_shrinker_cancel(struct drm_pagemap *dpagemap);
+> +
+> +static void drm_pagemap_cache_fini(void *arg)
 > +{
-> +	DECLARE_SEQ_BUF(planes_desc, 32);
-> +	unsigned int i;
+> +	struct drm_pagemap_cache *cache = arg;
+> +	struct drm_pagemap *dpagemap;
 > +
-> +	if (!plane_mask)
-> +		return;
-> +
-> +	for_each_set_bit(i, &plane_mask, UNDERRUN_DBG1_NUM_PLANES) {
-> +		if (i == 0)
-> +			seq_buf_puts(&planes_desc, "[C]");
-> +		else
-> +			seq_buf_printf(&planes_desc, "[%d]", i);
+> +	drm_dbg(cache->shrinker->drm, "Destroying dpagemap cache.\n");
+> +	spin_lock(&cache->lock);
+> +	dpagemap = cache->dpagemap;
+> +	if (!dpagemap) {
+> +		spin_unlock(&cache->lock);
+> +		goto out;
 > +	}
 > +
-> +	drm_err(display->drm, "Pipe %c FIFO underrun info: %s on planes: %s\n",
-> +		pipe_name(pipe), info, seq_buf_str(&planes_desc));
+> +	if (drm_pagemap_shrinker_cancel(dpagemap)) {
+> +		cache->dpagemap = NULL;
+> +		spin_unlock(&cache->lock);
+> +		drm_pagemap_destroy(dpagemap, false);
+> +	}
 > +
-> +	drm_WARN_ON(display->drm, seq_buf_has_overflowed(&planes_desc));
+> +out:
+> +	mutex_destroy(&cache->lookup_mutex);
+> +	kfree(cache);
 > +}
 > +
-> +static void read_underrun_dbg1(struct intel_display *display, enum pipe pipe, bool log)
+> +/**
+> + * drm_pagemap_cache_create_devm() - Create a drm_pagemap_cache
+> + * @shrinker: Pointer to a struct drm_pagemap_shrinker.
+> + *
+> + * Create a device-managed drm_pagemap cache. The cache is automatically
+> + * destroyed on struct device removal, at which point any *inactive*
+> + * drm_pagemap's are destroyed.
+> + *
+> + * Return: Pointer to a struct drm_pagemap_cache on success. Error pointer
+> + * on failure.
+> + */
+> +struct drm_pagemap_cache *drm_pagemap_cache_create_devm(struct drm_pagemap_shrinker *shrinker)
 > +{
-> +	u32 val = intel_de_read(display, UNDERRUN_DBG1(pipe));
+> +	struct drm_pagemap_cache *cache = kzalloc(sizeof(*cache), GFP_KERNEL);
+> +	int err;
 > +
-> +	if (!val)
-> +		return;
+> +	if (!cache)
+> +		return ERR_PTR(-ENOMEM);
 > +
-> +	intel_de_write(display, UNDERRUN_DBG1(pipe), val);
+> +	mutex_init(&cache->lookup_mutex);
+> +	spin_lock_init(&cache->lock);
+> +	cache->shrinker = shrinker;
+> +	init_completion(&cache->queued);
+> +	err = devm_add_action_or_reset(shrinker->drm->dev, drm_pagemap_cache_fini, cache);
+> +	if (err)
+> +		return ERR_PTR(err);
 > +
-> +	if (!log)
-> +		return;
+> +	return cache;
+> +}
+> +EXPORT_SYMBOL(drm_pagemap_cache_create_devm);
 > +
-> +	log_underrun_dbg1(display, pipe, REG_FIELD_GET(UNDERRUN_DBUF_BLOCK_NOT_VALID_MASK, val),
-> +			  "DBUF block not valid");
-> +	log_underrun_dbg1(display, pipe, REG_FIELD_GET(UNDERRUN_DDB_EMPTY_MASK, val),
-> +			  "DDB empty");
-> +	log_underrun_dbg1(display, pipe, REG_FIELD_GET(UNDERRUN_DBUF_NOT_FILLED_MASK, val),
-> +			  "DBUF not completely filled");
-> +	log_underrun_dbg1(display, pipe, REG_FIELD_GET(UNDERRUN_BELOW_WM0_MASK, val),
-> +			  "DBUF below WM0");
+> +/**
+> + * DOC: Cache lookup
+> + *
+> + * Cache lookup should be done under a locked mutex, so that a
+> + * failed drm_pagemap_get_from_cache() and a following
+> + * drm_pagemap_cache_setpagemap() are carried out as an atomic
+> + * operation WRT other lookups. Otherwise, racing lookups may
+> + * unnecessarily concurrently create pagemaps to fulfill a
+> + * failed lookup. The API provides two functions to perform this lock,
+> + * drm_pagemap_lock_lookup() and drm_pagemap_unlock_lookup() and they
+> + * should be used in the following way:
+> + *
+> + * .. code-block:: c
+> + *
+> + *		drm_pagemap_lock_lookup(cache);
+> + *		dpagemap = drm_pagemap_get_from_cache(cache);
+> + *		if (dpagemap)
+> + *			goto out_unlock;
+> + *
+> + *		dpagemap = driver_create_new_dpagemap();
+> + *		if (!IS_ERR(dpagemap))
+> + *			drm_pagemap_cache_set_pagemap(cache, dpagemap);
+> + *
+> + *     out_unlock:
+> + *		drm_pagemap_unlock_lookup(cache);
+> + */
+> +
+> +/**
+> + * drm_pagemap_cache_lock_lookup() Lock a drm_pagemap_cache for lookup
+> + * @cache: The drm_pagemap_cache to lock.
+> + *
+> + * Return: %-EINTR if interrupted while blocking. %0 otherwise.
+> + */
+> +int drm_pagemap_cache_lock_lookup(struct drm_pagemap_cache *cache)
+> +{
+> +	return mutex_lock_interruptible(&cache->lookup_mutex);
+> +}
+> +EXPORT_SYMBOL(drm_pagemap_cache_lock_lookup);
+> +
+> +/**
+> + * drm_pagemap_cache_unlock_lookup() Unlock a drm_pagemap_cache after lookup
+> + * @cache: The drm_pagemap_cache to unlock.
+> + */
+> +void drm_pagemap_cache_unlock_lookup(struct drm_pagemap_cache *cache)
+> +{
+> +	mutex_unlock(&cache->lookup_mutex);
+> +}
+> +EXPORT_SYMBOL(drm_pagemap_cache_unlock_lookup);
+> +
+> +/**
+> + * drm_pagemap_get_from_cache() -  Lookup of drm_pagemaps.
+> + * @cache: The cache used for lookup.
+> + *
+> + * If an active pagemap is present in the cache, it is immediately returned.
+> + * If an inactive pagemap is present, it's removed from the shrinker list and
+> + * an attempt is made to make it active.
+> + * If no pagemap present or the attempt to make it active failed, %NULL is returned
+> + * to indicate to the caller to create a new drm_pagemap and insert it into
+> + * the cache.
+> + *
+> + * Return: A reference-counted pointer to a drm_pagemap if successful. An error
+> + * pointer if an error occurred, or %NULL if no drm_pagemap was found and
+> + * the caller should insert a new one.
+> + */
+> +struct drm_pagemap *drm_pagemap_get_from_cache(struct drm_pagemap_cache *cache)
+> +{
+> +	struct drm_pagemap *dpagemap;
+> +	int err;
+> +
+> +	lockdep_assert_held(&cache->lookup_mutex);
+> +retry:
+> +	spin_lock(&cache->lock);
+> +	dpagemap = cache->dpagemap;
+> +	if (drm_pagemap_get_unless_zero(dpagemap)) {
+> +		spin_unlock(&cache->lock);
+> +		return dpagemap;
+> +	}
+> +
+> +	if (!dpagemap) {
+> +		spin_unlock(&cache->lock);
+> +		return NULL;
+> +	}
+> +
+> +	if (!try_wait_for_completion(&cache->queued)) {
+> +		spin_unlock(&cache->lock);
+> +		err = wait_for_completion_interruptible(&cache->queued);
+> +		if (err)
+> +			return ERR_PTR(err);
+> +		goto retry;
+> +	}
+> +
+> +	if (drm_pagemap_shrinker_cancel(dpagemap)) {
+> +		cache->dpagemap = NULL;
+> +		spin_unlock(&cache->lock);
+> +		err = drm_pagemap_reinit(dpagemap);
+> +		if (err) {
+> +			drm_pagemap_destroy(dpagemap, false);
+> +			return ERR_PTR(err);
+> +		}
+> +		drm_pagemap_cache_set_pagemap(cache, dpagemap);
+> +	} else {
+> +		cache->dpagemap = NULL;
+> +		spin_unlock(&cache->lock);
+> +		dpagemap = NULL;
+> +	}
+> +
+> +	return dpagemap;
+> +}
+> +EXPORT_SYMBOL(drm_pagemap_get_from_cache);
+> +
+> +/**
+> + * drm_pagemap_cache_set_pagemap() - Assign a drm_pagemap to a drm_pagemap_cache
+> + * @cache: The cache to assign the drm_pagemap to.
+> + * @dpagemap: The drm_pagemap to assign.
+> + *
+> + * The function must be called to populate a drm_pagemap_cache only
+> + * after a call to drm_pagemap_get_from_cache() returns NULL.
+> + */
+> +void drm_pagemap_cache_set_pagemap(struct drm_pagemap_cache *cache, struct drm_pagemap *dpagemap)
+> +{
+> +	struct drm_device *drm = dpagemap->drm;
+> +
+> +	lockdep_assert_held(&cache->lookup_mutex);
+> +	spin_lock(&cache->lock);
+> +	dpagemap->cache = cache;
+> +	swap(cache->dpagemap, dpagemap);
+> +	reinit_completion(&cache->queued);
+> +	spin_unlock(&cache->lock);
+> +	drm_WARN_ON(drm, !!dpagemap);
+> +}
+> +EXPORT_SYMBOL(drm_pagemap_cache_set_pagemap);
+> +
+> +/**
+> + * drm_pagemap_get_from_cache_if_active() - Quick lookup of active drm_pagemaps
+> + * @cache: The cache to lookup from.
+> + *
+> + * Function that should be used to lookup a drm_pagemap that is already active.
+> + * (refcount > 0).
+> + *
+> + * Return: A pointer to the cache's drm_pagemap if it's active; %NULL otherwise.
+> + */
+> +struct drm_pagemap *drm_pagemap_get_from_cache_if_active(struct drm_pagemap_cache *cache)
+> +{
+> +	struct drm_pagemap *dpagemap;
+> +
+> +	spin_lock(&cache->lock);
+> +	dpagemap = drm_pagemap_get_unless_zero(cache->dpagemap);
+> +	spin_unlock(&cache->lock);
+> +
+> +	return dpagemap;
+> +}
+> +EXPORT_SYMBOL(drm_pagemap_get_from_cache_if_active);
+> +
+> +static bool drm_pagemap_shrinker_cancel(struct drm_pagemap *dpagemap)
+> +{
+> +	struct drm_pagemap_cache *cache = dpagemap->cache;
+> +	struct drm_pagemap_shrinker *shrinker = cache->shrinker;
+> +
+> +	spin_lock(&shrinker->lock);
+> +	if (list_empty(&dpagemap->shrink_link)) {
+> +		spin_unlock(&shrinker->lock);
+> +		return false;
+> +	}
+> +
+> +	list_del_init(&dpagemap->shrink_link);
+> +	atomic_dec(&shrinker->num_dpagemaps);
+> +	spin_unlock(&shrinker->lock);
+> +	return true;
 > +}
 > +
-> +static void read_underrun_dbg2(struct intel_display *display, enum pipe pipe, bool log)
+> +#ifdef CONFIG_PROVE_LOCKING
+> +/**
+> + * drm_pagemap_shrinker_might_lock() - lockdep test for drm_pagemap_shrinker_add()
+> + * @dpagemap: The drm pagemap.
+> + *
+> + * The drm_pagemap_shrinker_add() function performs some locking.
+> + * This function can be called in code-paths that might
+> + * call drm_pagemap_shrinker_add() to detect any lockdep problems early.
+> + */
+> +void drm_pagemap_shrinker_might_lock(struct drm_pagemap *dpagemap)
 > +{
-> +	u32 val = intel_de_read(display, UNDERRUN_DBG2(pipe));
+> +	int idx;
 > +
-> +	if (!(val & UNDERRUN_FRAME_LINE_COUNTERS_FROZEN))
-> +		return;
+> +	if (drm_dev_enter(dpagemap->drm, &idx)) {
+> +		struct drm_pagemap_cache *cache = dpagemap->cache;
 > +
-> +	intel_de_write(display, UNDERRUN_DBG2(pipe), UNDERRUN_FRAME_LINE_COUNTERS_FROZEN);
+> +		if (cache)
+> +			might_lock(&cache->shrinker->lock);
 > +
-> +	if (log)
-> +		drm_err(display->drm,
-> +			"Pipe %c FIFO underrun info: frame count: %u, line count: %u\n",
-> +			pipe_name(pipe),
-> +			REG_FIELD_GET(UNDERRUN_PIPE_FRAME_COUNT_MASK, val),
-> +			REG_FIELD_GET(UNDERRUN_LINE_COUNT_MASK, val));
+> +		drm_dev_exit(idx);
+> +	}
 > +}
+> +#endif
 > +
-> +static void read_underrun_dbg_pkgc(struct intel_display *display, bool log)
+> +/**
+> + * drm_pagemap_shrinker_add() - Add a drm_pagemap to the shrinker list or destroy
+> + * @dpagemap: The drm_pagemap.
+> + *
+> + * If @dpagemap is associated with a &struct drm_pagemap_cache AND the
+> + * struct device backing the drm device is still alive, add @dpagemap to
+> + * the &struct drm_pagemap_shrinker list of shrinkable drm_pagemaps.
+> + *
+> + * Otherwise destroy the pagemap directly using drm_pagemap_destroy().
+> + *
+> + * This is an internal function which is not intended to be exposed to drivers.
+> + */
+> +void drm_pagemap_shrinker_add(struct drm_pagemap *dpagemap)
 > +{
-> +	u32 val = intel_de_read(display, GEN12_DCPR_STATUS_1);
-> +
-> +	if (!(val & XE3P_UNDERRUN_PKGC))
-> +		return;
+> +	struct drm_pagemap_cache *cache;
+> +	struct drm_pagemap_shrinker *shrinker;
+> +	int idx;
 > +
 > +	/*
-> +	 * Note: If there are multiple pipes enabled, only one of them will see
-> +	 * XE3P_UNDERRUN_PKGC set.
+> +	 * The pagemap cache and shrinker are disabled at
+> +	 * pci device remove time. After that, dpagemaps
+> +	 * are freed directly.
 > +	 */
-> +	intel_de_write(display, GEN12_DCPR_STATUS_1, XE3P_UNDERRUN_PKGC);
+> +	if (!drm_dev_enter(dpagemap->drm, &idx))
+> +		goto out_no_cache;
 > +
-> +	if (log)
-> +		drm_err(display->drm,
-> +			"General FIFO underrun info: Package C-state blocking memory\n");
+> +	cache = dpagemap->cache;
+> +	if (!cache) {
+> +		drm_dev_exit(idx);
+> +		goto out_no_cache;
+> +	}
+> +
+> +	shrinker = cache->shrinker;
+> +	spin_lock(&shrinker->lock);
+> +	list_add_tail(&dpagemap->shrink_link, &shrinker->dpagemaps);
+> +	atomic_inc(&shrinker->num_dpagemaps);
+> +	spin_unlock(&shrinker->lock);
+> +	complete_all(&cache->queued);
+> +	drm_dev_exit(idx);
+> +	return;
+> +
+> +out_no_cache:
+> +	drm_pagemap_destroy(dpagemap, true);
 > +}
 > +
-> +static void read_underrun_dbg_info(struct intel_display *display,
-> +				   enum pipe pipe,
-> +				   bool log)
+> +static unsigned long
+> +drm_pagemap_shrinker_count(struct shrinker *shrink, struct shrink_control *sc)
 > +{
-> +	if (!HAS_UNDERRUN_DBG_INFO(display))
-> +		return;
+> +	struct drm_pagemap_shrinker *shrinker = shrink->private_data;
+> +	unsigned long count = atomic_read(&shrinker->num_dpagemaps);
 > +
-> +	read_underrun_dbg1(display, pipe, log);
-> +	read_underrun_dbg2(display, pipe, log);
-> +	intel_fbc_read_underrun_dbg_info(display, pipe, log);
-> +	read_underrun_dbg_pkgc(display, log);
+> +	return count ? : SHRINK_EMPTY;
 > +}
 > +
->  static bool ivb_can_enable_err_int(struct intel_display *display)
->  {
->  	struct intel_crtc *crtc;
-> @@ -262,6 +358,17 @@ static bool __intel_set_cpu_fifo_underrun_reporting(struct intel_display *displa
->  	old = !crtc->cpu_fifo_underrun_disabled;
->  	crtc->cpu_fifo_underrun_disabled = !enable;
+> +static unsigned long
+> +drm_pagemap_shrinker_scan(struct shrinker *shrink, struct shrink_control *sc)
+> +{
+> +	struct drm_pagemap_shrinker *shrinker = shrink->private_data;
+> +	struct drm_pagemap *dpagemap;
+> +	struct drm_pagemap_cache *cache;
+> +	unsigned long nr_freed = 0;
+> +
+> +	sc->nr_scanned = 0;
+> +	spin_lock(&shrinker->lock);
+> +	do {
+> +		dpagemap = list_first_entry_or_null(&shrinker->dpagemaps, typeof(*dpagemap),
+> +						    shrink_link);
+> +		if (!dpagemap)
+> +			break;
+> +
+> +		atomic_dec(&shrinker->num_dpagemaps);
+> +		list_del_init(&dpagemap->shrink_link);
+> +		spin_unlock(&shrinker->lock);
+> +
+> +		sc->nr_scanned++;
+> +		nr_freed++;
+> +
+> +		cache = dpagemap->cache;
+> +		spin_lock(&cache->lock);
+> +		cache->dpagemap = NULL;
+> +		spin_unlock(&cache->lock);
+> +
+> +		drm_dbg(dpagemap->drm, "Shrinking dpagemap %p.\n", dpagemap);
+> +		drm_pagemap_destroy(dpagemap, true);
+> +		spin_lock(&shrinker->lock);
+> +	} while (sc->nr_scanned < sc->nr_to_scan);
+> +	spin_unlock(&shrinker->lock);
+> +
+> +	return sc->nr_scanned ? nr_freed : SHRINK_STOP;
+> +}
+> +
+> +static void drm_pagemap_shrinker_fini(void *arg)
+> +{
+> +	struct drm_pagemap_shrinker *shrinker = arg;
+> +
+> +	drm_dbg(shrinker->drm, "Destroying dpagemap shrinker.\n");
+> +	drm_WARN_ON(shrinker->drm, !!atomic_read(&shrinker->num_dpagemaps));
+> +	shrinker_free(shrinker->shrink);
+> +	kfree(shrinker);
+> +}
+> +
+> +/**
+> + * drm_pagemap_shrinker_create_devm() - Create and register a pagemap shrinker
+> + * @drm: The drm device
+> + *
+> + * Create and register a pagemap shrinker that shrinks unused pagemaps
+> + * and thereby reduces memory footprint.
+> + * The shrinker is drm_device managed and unregisters itself when
+> + * the drm device is removed.
+> + *
+> + * Return: %0 on success, negative error code on failure.
+> + */
+> +struct drm_pagemap_shrinker *drm_pagemap_shrinker_create_devm(struct drm_device *drm)
+> +{
+> +	struct drm_pagemap_shrinker *shrinker;
+> +	struct shrinker *shrink;
+> +	int err;
+> +
+> +	shrinker = kzalloc(sizeof(*shrinker), GFP_KERNEL);
+> +	if (!shrinker)
+> +		return ERR_PTR(-ENOMEM);
+> +
+> +	shrink = shrinker_alloc(0, "drm-drm_pagemap:%s", drm->unique);
+> +	if (!shrink) {
+> +		kfree(shrinker);
+> +		return ERR_PTR(-ENOMEM);
+> +	}
+> +
+> +	spin_lock_init(&shrinker->lock);
+> +	INIT_LIST_HEAD(&shrinker->dpagemaps);
+> +	shrinker->drm = drm;
+> +	shrinker->shrink = shrink;
+> +	shrink->count_objects = drm_pagemap_shrinker_count;
+> +	shrink->scan_objects = drm_pagemap_shrinker_scan;
+> +	shrink->private_data = shrinker;
+> +	shrinker_register(shrink);
+> +
+> +	err = devm_add_action_or_reset(drm->dev, drm_pagemap_shrinker_fini, shrinker);
+> +	if (err)
+> +		return ERR_PTR(err);
+> +
+> +	return shrinker;
+> +}
+> +EXPORT_SYMBOL(drm_pagemap_shrinker_create_devm);
+> diff --git a/include/drm/drm_pagemap.h b/include/drm/drm_pagemap.h
+> index 5cfe54331ba7..4b9af5e785c6 100644
+> --- a/include/drm/drm_pagemap.h
+> +++ b/include/drm/drm_pagemap.h
+> @@ -9,6 +9,7 @@
+>  #define NR_PAGES(order) (1U << (order))
 >  
-> +	/*
-> +	 * The debug bits get latched at the time of the FIFO underrun ISR bit
-> +	 * getting set.  That means that any non-zero debug bit that is read when
-> +	 * handling a FIFO underrun interrupt has the potential to belong to
-> +	 * another underrun event (past or future).  To alleviate this problem,
-> +	 * let's clear existing bits before enabling the interrupt, so that at
-> +	 * least we don't get information that is too out-of-date.
+>  struct drm_pagemap;
+> +struct drm_pagemap_cache;
+>  struct drm_pagemap_dev_hold;
+>  struct drm_pagemap_zdd;
+>  struct device;
+> @@ -124,6 +125,25 @@ struct drm_pagemap_ops {
+>  			   unsigned long start, unsigned long end,
+>  			   struct mm_struct *mm,
+>  			   unsigned long timeslice_ms);
+> +	/**
+> +	 * @destroy: Destroy the drm_pagemap and associated resources.
+> +	 * @dpagemap: The drm_pagemap to destroy.
+> +	 * @is_atomic_or_reclaim: The function may be called from
+> +	 * atomic- or reclaim context.
+> +	 *
+> +	 * The implementation should take care not to attempt to
+> +	 * destroy resources that may already have been destroyed
+> +	 * using devm_ callbacks, since this function may be called
+> +	 * after the underlying struct device has been unbound.
+> +	 * If the implementation defers the execution to a work item
+> +	 * to avoid locking issues, then it must make sure the work
+> +	 * items are flushed before module exit. If the destroy call
+> +	 * happens after the provider's pci_remove() callback has
+> +	 * been executed, a module reference and drm device reference is
+> +	 * held across the destroy callback.
 > +	 */
-> +	if (enable && !old)
-> +		read_underrun_dbg_info(display, pipe, false);
-> +
->  	if (HAS_GMCH(display))
->  		i9xx_set_fifo_underrun_reporting(display, pipe, enable, old);
->  	else if (display->platform.ironlake || display->platform.sandybridge)
-> @@ -379,6 +486,8 @@ void intel_cpu_fifo_underrun_irq_handler(struct intel_display *display,
->  		trace_intel_cpu_fifo_underrun(display, pipe);
+> +	void (*destroy)(struct drm_pagemap *dpagemap,
+> +			bool is_atomic_or_reclaim);
+>  };
 >  
->  		drm_err(display->drm, "CPU pipe %c FIFO underrun\n", pipe_name(pipe));
-> +
-> +		read_underrun_dbg_info(display, pipe, true);
->  	}
+>  /**
+> @@ -135,6 +155,10 @@ struct drm_pagemap_ops {
+>   * @pagemap: Pointer to the underlying dev_pagemap.
+>   * @dev_hold: Pointer to a struct drm_pagemap_dev_hold for
+>   * device referencing.
+> + * @cache: Back-pointer to the &struct drm_pagemap_cache used for this
+> + * &struct drm_pagemap. May be NULL if no cache is used.
+> + * @shrink_link: Link into the shrinker's list of drm_pagemaps. Only
+> + * used if also using a pagemap cache.
+>   */
+>  struct drm_pagemap {
+>  	const struct drm_pagemap_ops *ops;
+> @@ -142,6 +166,8 @@ struct drm_pagemap {
+>  	struct drm_device *drm;
+>  	struct dev_pagemap *pagemap;
+>  	struct drm_pagemap_dev_hold *dev_hold;
+> +	struct drm_pagemap_cache *cache;
+> +	struct list_head shrink_link;
+>  };
 >  
->  	intel_fbc_handle_fifo_underrun_irq(display);
-> 
+>  struct drm_pagemap_devmem;
+> @@ -210,6 +236,11 @@ struct drm_pagemap_devmem_ops {
+>  			   unsigned long npages);
+>  };
+>  
+> +int drm_pagemap_init(struct drm_pagemap *dpagemap,
+> +		     struct dev_pagemap *pagemap,
+> +		     struct drm_device *drm,
+> +		     const struct drm_pagemap_ops *ops);
+> +
+>  struct drm_pagemap *drm_pagemap_create(struct drm_device *drm,
+>  				       struct dev_pagemap *pagemap,
+>  				       const struct drm_pagemap_ops *ops);
+> @@ -228,9 +259,9 @@ static inline void drm_pagemap_put(struct drm_pagemap *dpagemap)
+>  
+>  /**
+>   * drm_pagemap_get() - Obtain a reference on a struct drm_pagemap
+> - * @dpagemap: Pointer to the struct drm_pagemap.
+> + * @dpagemap: Pointer to the struct drm_pagemap, or NULL.
+>   *
+> - * Return: Pointer to the struct drm_pagemap.
+> + * Return: Pointer to the struct drm_pagemap, or NULL.
+>   */
+>  static inline struct drm_pagemap *
+>  drm_pagemap_get(struct drm_pagemap *dpagemap)
+> @@ -241,6 +272,20 @@ drm_pagemap_get(struct drm_pagemap *dpagemap)
+>  	return dpagemap;
+>  }
+>  
+> +/**
+> + * drm_pagemap_get_unless_zero() - Obtain a reference on a struct drm_pagemap
+> + * unless the current reference count is zero.
+> + * @dpagemap: Pointer to the drm_pagemap or NULL.
+> + *
+> + * Return: A pointer to @dpagemap if the reference count was successfully
+> + * incremented. NULL if @dpagemap was NULL, or its refcount was 0.
+> + */
+> +static inline struct drm_pagemap * __must_check
+> +drm_pagemap_get_unless_zero(struct drm_pagemap *dpagemap)
+> +{
+> +	return (dpagemap && kref_get_unless_zero(&dpagemap->ref)) ? dpagemap : NULL;
+> +}
+> +
+>  /**
+>   * struct drm_pagemap_devmem - Structure representing a GPU SVM device memory allocation
+>   *
+> @@ -284,5 +329,7 @@ int drm_pagemap_populate_mm(struct drm_pagemap *dpagemap,
+>  			    struct mm_struct *mm,
+>  			    unsigned long timeslice_ms);
+>  
+> -#endif
+> +void drm_pagemap_destroy(struct drm_pagemap *dpagemap, bool is_atomic_or_reclaim);
+>  
+> +int drm_pagemap_reinit(struct drm_pagemap *dpagemap);
+> +#endif
+> diff --git a/include/drm/drm_pagemap_util.h b/include/drm/drm_pagemap_util.h
+> new file mode 100644
+> index 000000000000..924244d5b899
+> --- /dev/null
+> +++ b/include/drm/drm_pagemap_util.h
+> @@ -0,0 +1,42 @@
+> +/* SPDX-License-Identifier: MIT */
+> +/*
+> + * Copyright © 2025 Intel Corporation
+> + */
+> +
+> +#ifndef _DRM_PAGEMAP_UTIL_H_
+> +#define _DRM_PAGEMAP_UTIL_H_
+> +
+> +struct drm_device;
+> +struct drm_pagemap;
+> +struct drm_pagemap_cache;
+> +struct drm_pagemap_shrinker;
+> +
+> +void drm_pagemap_shrinker_add(struct drm_pagemap *dpagemap);
+> +
+> +int drm_pagemap_cache_lock_lookup(struct drm_pagemap_cache *cache);
+> +
+> +void drm_pagemap_cache_unlock_lookup(struct drm_pagemap_cache *cache);
+> +
+> +struct drm_pagemap_shrinker *drm_pagemap_shrinker_create_devm(struct drm_device *drm);
+> +
+> +struct drm_pagemap_cache *drm_pagemap_cache_create_devm(struct drm_pagemap_shrinker *shrinker);
+> +
+> +struct drm_pagemap *drm_pagemap_get_from_cache(struct drm_pagemap_cache *cache);
+> +
+> +void drm_pagemap_cache_set_pagemap(struct drm_pagemap_cache *cache, struct drm_pagemap *dpagemap);
+> +
+> +struct drm_pagemap *drm_pagemap_get_from_cache_if_active(struct drm_pagemap_cache *cache);
+> +
+> +#ifdef CONFIG_PROVE_LOCKING
+> +
+> +void drm_pagemap_shrinker_might_lock(struct drm_pagemap *dpagemap);
+> +
+> +#else
+> +
+> +static inline void drm_pagemap_shrinker_might_lock(struct drm_pagemap *dpagemap)
+> +{
+> +}
+> +
+> +#endif /* CONFIG_PROVE_LOCKING */
+> +
+> +#endif
 > -- 
-> 2.51.0
+> 2.51.1
 > 
-
--- 
-Matt Roper
-Graphics Software Engineer
-Linux GPU Platform Enablement
-Intel Corporation
