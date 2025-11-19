@@ -4,56 +4,72 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AE1D4CF34D3
-	for <intel-xe@archiver.kernel.org>; Wed, 19 Nov 2025 15:33:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 01C1ACF34D3
+	for <intel-xe@archiver.kernel.org>; Wed, 19 Nov 2025 15:33:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6ED9710E03E;
-	Wed, 19 Nov 2025 15:33:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B525710E03E;
+	Wed, 19 Nov 2025 15:33:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CQFy+aBk";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="J459P6Ld";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EB83A89CF6;
- Wed, 19 Nov 2025 15:33:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1763566414; x=1795102414;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=jRt1Y4ovh0GuuDEnUtMCR1HGU/wcfzASTRI88wYXniA=;
- b=CQFy+aBkJtWuuEyVBwGraTu+J8114Pkwce7/ttbVLj8GLorFXKuxn5iW
- 9Qy8UaRnWs+24wr/2wIiVI400zr2V20njL1DGFCnupzQTJ9if1mdaDen1
- O3AzoTcHFKiynFugzqcmaFYo+aKHztok3Ph/Kv+M1F362xTb7GZh1E4ol
- uyFYhmQA6r1tA8GHe9OqAMwkXXdcqmk3OZSmH1rz1MRbVOd8+XKK1rpPJ
- sgNKMKECpPb5hsAPj+9qV8XC2m7oQmGNA3Pcf3HjHSxJ5K/n9MpEzy5ZX
- l+deP4w1heNq+6ejete6IaBN8Iok2szbThDhri5y++zAR5duXupbL00xI Q==;
-X-CSE-ConnectionGUID: dO2EN1ymRIWx3MEMKN5gQw==
-X-CSE-MsgGUID: G7NryTFCSn6JhtUUsJJgRA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11618"; a="91089337"
-X-IronPort-AV: E=Sophos;i="6.19,315,1754982000"; d="scan'208";a="91089337"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Nov 2025 07:33:28 -0800
-X-CSE-ConnectionGUID: gNywifgwTAiS6AwZYttAzQ==
-X-CSE-MsgGUID: waUO113RS5iLrcaILqOH+Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,315,1754982000"; d="scan'208";a="191210695"
-Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.187])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Nov 2025 07:33:27 -0800
-From: Jani Nikula <jani.nikula@intel.com>
+Received: from mail-pg1-f178.google.com (mail-pg1-f178.google.com
+ [209.85.215.178])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 16E7F10E03E
+ for <intel-xe@lists.freedesktop.org>; Wed, 19 Nov 2025 15:33:48 +0000 (UTC)
+Received: by mail-pg1-f178.google.com with SMTP id
+ 41be03b00d2f7-bc0e6d91222so5108697a12.2
+ for <intel-xe@lists.freedesktop.org>; Wed, 19 Nov 2025 07:33:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1763566427; x=1764171227; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=JFDb6c2JZWuaLGSfnoCesjNWdQPTSohr+0a0IhhrJq8=;
+ b=J459P6LdfN0HkzeRyekqixK7qz1UaZeZ1m0U/HKloLcwWI8lFekXN4GDL3dzgoRzcD
+ lmEYxrCRjZS3S6Bs6ZvUyNncsprt0AZ0SoaSDqs5xB8zHhXfMTs/EfkMdqt99TV06zDc
+ q/AVz10vq0YcB/7ruj3M/Bxpq1tMEu2j7Na90l6R0y6HBz0fOO4kXc+/3k3GNQmj1Fa8
+ yKimIAnQ4FyWXZi8rRXaMwqobf8sLe2eXSd4tTkrBZr/TS1I08AVVd69A5e0da/0iOZN
+ KtCnN9Kjn79AQZn4fp++09Z8VDgLm6O8dwHAhdObPeo5+Eq1tGOK1lTvzdIKupS7lrAV
+ rZ5Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1763566427; x=1764171227;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=JFDb6c2JZWuaLGSfnoCesjNWdQPTSohr+0a0IhhrJq8=;
+ b=GHuBbw4UiS0vDo4iZbrXBWwVof8Gd2GFanbhptQuEHRYNTXnQCAvMQdKkbZghdu09T
+ Pm0QljRhnQGqjTpETiGr9+Eer1Aml2Mvd3r0d0deE61VaekcImUDV/Jmx6r2c60LNtif
+ bqCE8p/1jZl+/noJZG3/BacrmCwV8005aDRbNWFbTRbkBF4rieBdLmbREd5hFVcO6ZJ/
+ zIDaGgh6WWo1J3ziMFj02V7jro7+CqvLcFvUFjPIXr22ePi2i5LCqayGGd1xOXNIfHO+
+ c8aETQofVKT41v8idfh9bHcFM5PhAkcGYNAF2DaOx6VXeXREvmuSNBies6Wkg0tyEHOl
+ QRqA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWD00oeT0eeJrNMQ/HfANK5OoiYB/i9LL/h0xJay+8sV+GhdCp/PUw62026HX7Z/nQAURRVnnNytg==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzqmQgIdU3uzUtel+/b36aV1XPx1d9E3vOQXMBqG+41VNH5yc4X
+ hJWFXW3Vj1/IqZi+wxPr+wIufQO/w9Hgidt2HDxXDHJTRQbLYgZCoNew
+X-Gm-Gg: ASbGncsljtDy5MUNFWKV9dLBMW1t8R/thAVREAFByvyc9QUEsQ6LtQEbf/Ie2whL+NN
+ mfIRRUlXvZLXESWUasby3+qjFtXtlkzyeAbb61B+AmHNVazkCj3zrRMEqQqhDYtxGGVgY/Z86tL
+ bEDry0hd2RZYfrzRyyYV5LCak+k+chKPfUsL/OrI+H+vACIP9eSjYpaHvxn0lpOgvA8kfYrXqPT
+ 72k4LA3+on5xWiAFTCen2BFFZtua2ZpAgeh0m7mS0mkTBXIx5t0/HEq1BoAsJJgkfwVbQKMWNVO
+ 3mL1gKuNFnd8GxfNcdfi9Wwhsn8faq/WjDcq1uKQhmgOG0CKrfm/KeiPlrCKMGnaZx9zprT/laL
+ vaCCli+q5wMB4l+E9ibOxAgpcaLRQcUxJEtjlrwqng7Q71qNLknpoxKV4kzIuf4NGxGjdbTwfcC
+ IdOoJd/Vp0ba3Jm2KZ5950buxG8g==
+X-Google-Smtp-Source: AGHT+IEMeIRzWxM8Mo3lgGEFyym9360jwoy6nbYqawzqz2rn3upWxUWgozDHjujTiGf/J8XssbjvVQ==
+X-Received: by 2002:a05:7022:1707:b0:11b:7970:ea3f with SMTP id
+ a92af1059eb24-11b7970ec72mr4159915c88.25.1763566427263; 
+ Wed, 19 Nov 2025 07:33:47 -0800 (PST)
+Received: from localhost ([192.55.55.44]) by smtp.gmail.com with ESMTPSA id
+ 5a478bee46e88-2a6d2570e69sm14147182eec.2.2025.11.19.07.33.46
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 19 Nov 2025 07:33:46 -0800 (PST)
+From: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com,
-	ville.syrjala@linux.intel.com
-Subject: [PATCH v3] drm/i915/display: change pipe allocation order for
- discrete platforms
-Date: Wed, 19 Nov 2025 17:33:21 +0200
-Message-ID: <20251119153321.2640969-1-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.47.3
+Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+Subject: [PATCH 0/1] Switch to use kernel standard fault injection in i915
+Date: Wed, 19 Nov 2025 17:32:56 +0200
+Message-ID: <20251119153257.570726-1-juhapekka.heikkila@gmail.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -69,96 +85,60 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-When big joiner is enabled, it reserves the adjacent pipe as the
-secondary pipe. This happens without the user space knowing, and
-subsequent attempts at using the CRTC with that pipe will fail. If the
-user space does not have a coping mechanism, i.e. trying another CRTC,
-this leads to a black screen.
+Here taken out calls to i915_inject_probe_failure and changed to use
+ALLOW_ERROR_INJECTION for the same functions.
 
-Try to reduce the impact of the problem on discrete platforms by mapping
-the CRTCs to pipes in order A, C, B, and D. If the user space reserves
-CRTCs in order, this should trick it to using pipes that are more likely
-to be available for and after joining.
+Below functions are dropped from testing since I couldn't hit those
+at module bind time, testing these would just fail the tests.
+To include these in test would need to find way to cause resetting in i915
+which would trigger these:
 
-Limit this to discrete platforms, which have four pipes, and no eDP, a
-combination that should benefit the most with least drawbacks.
+intel_gvt_init
+intel_wopcm_init
+intel_uc_fw_upload
+intel_gt_init with expected -EIO (-EINVAL is tested)
+lrc_init_wa_ctx
+intel_huc_auth
+guc_check_version_range
+intel_uc_fw_fetch
+uc_fw_xfer
+__intel_uc_reset_hw
+guc_enable_communication
+uc_init_wopcm
+..and all stages of __force_fw_fetch_failures
 
-Although there are currently no platforms with more than four pipes, add
-a fallback for initializing the rest of the pipes to not miss them.
+This is resend of the last version just to get igt changes tested.
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+/Juha-Pekka
 
----
+Test-with: 20251118143301.510707-1-juhapekka.heikkila@gmail.com
 
-v2: Also remove WARN_ON()
 
-v3: Limit to discrete
+Juha-Pekka Heikkila (1):
+  drm/i915: switch to use kernel standard error injection
 
-There are a number of issues in IGT with assuming CRTC index == pipe, at
-least with CRC and vblank waits. With them being used a lot in tests, we
-won't get enough test coverage until they're fixed.
----
- drivers/gpu/drm/i915/display/intel_crtc.c     |  2 --
- .../drm/i915/display/intel_display_driver.c   | 26 ++++++++++++++++++-
- 2 files changed, 25 insertions(+), 3 deletions(-)
+ .../gpu/drm/i915/display/intel_connector.c    | 14 +----
+ .../drm/i915/display/intel_display_driver.c   |  5 +-
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c     |  4 +-
+ drivers/gpu/drm/i915/gt/intel_gt.c            |  9 +--
+ drivers/gpu/drm/i915/gt/intel_gt_print.h      |  5 +-
+ drivers/gpu/drm/i915/gt/intel_lrc.c           |  4 --
+ drivers/gpu/drm/i915/gt/intel_wopcm.c         |  3 -
+ drivers/gpu/drm/i915/gt/intel_wopcm.h         |  1 +
+ drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c     |  8 +--
+ drivers/gpu/drm/i915/gt/uc/intel_huc.c        |  4 --
+ drivers/gpu/drm/i915/gt/uc/intel_uc.c         | 17 +-----
+ drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c      | 60 +------------------
+ drivers/gpu/drm/i915/i915_driver.c            | 12 +---
+ drivers/gpu/drm/i915/i915_params.c            |  5 --
+ drivers/gpu/drm/i915/i915_params.h            |  1 -
+ drivers/gpu/drm/i915/i915_pci.c               |  6 +-
+ drivers/gpu/drm/i915/i915_utils.c             | 30 +---------
+ drivers/gpu/drm/i915/i915_utils.h             | 22 +------
+ drivers/gpu/drm/i915/intel_gvt.c              |  3 -
+ drivers/gpu/drm/i915/intel_uncore.c           |  4 +-
+ 20 files changed, 18 insertions(+), 199 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
-index 9d2a23c96c61..11e58d07ddef 100644
---- a/drivers/gpu/drm/i915/display/intel_crtc.c
-+++ b/drivers/gpu/drm/i915/display/intel_crtc.c
-@@ -394,8 +394,6 @@ int intel_crtc_init(struct intel_display *display, enum pipe pipe)
- 
- 	cpu_latency_qos_add_request(&crtc->vblank_pm_qos, PM_QOS_DEFAULT_VALUE);
- 
--	drm_WARN_ON(display->drm, drm_crtc_index(&crtc->base) != crtc->pipe);
--
- 	if (HAS_CASF(display))
- 		drm_crtc_create_sharpness_strength_property(&crtc->base);
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
-index 7e000ba3e08b..b5c9cdf14a43 100644
---- a/drivers/gpu/drm/i915/display/intel_display_driver.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
-@@ -452,6 +452,7 @@ bool intel_display_driver_check_access(struct intel_display *display)
- /* part #2: call after irq install, but before gem init */
- int intel_display_driver_probe_nogem(struct intel_display *display)
- {
-+	u8 pipe_mask = U8_MAX;
- 	enum pipe pipe;
- 	int ret;
- 
-@@ -470,7 +471,30 @@ int intel_display_driver_probe_nogem(struct intel_display *display)
- 		    INTEL_NUM_PIPES(display),
- 		    INTEL_NUM_PIPES(display) > 1 ? "s" : "");
- 
--	for_each_pipe(display, pipe) {
-+	/*
-+	 * Expose the pipes in order A, C, B, D on discrete platforms to trick
-+	 * user space into using pipes that are more likely to be available for
-+	 * both a) user space if pipe B has been reserved for the joiner, and b)
-+	 * the joiner if pipe A doesn't need the joiner.
-+	 *
-+	 * Fall back to normal initialization for the remaining pipes, if any.
-+	 */
-+	if (HAS_BIGJOINER(display) && display->platform.dgfx) {
-+		enum pipe pipe_order[] = { PIPE_A, PIPE_C, PIPE_B, PIPE_D };
-+		int i;
-+
-+		for (i = 0; i < ARRAY_SIZE(pipe_order); i++) {
-+			pipe = pipe_order[i];
-+
-+			ret = intel_crtc_init(display, pipe);
-+			if (ret)
-+				goto err_mode_config;
-+
-+			pipe_mask &= ~BIT(pipe);
-+		}
-+	}
-+
-+	for_each_pipe_masked(display, pipe, pipe_mask) {
- 		ret = intel_crtc_init(display, pipe);
- 		if (ret)
- 			goto err_mode_config;
 -- 
-2.47.3
+2.43.0
 
