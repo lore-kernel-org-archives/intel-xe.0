@@ -4,54 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1178CCF58FE
-	for <intel-xe@archiver.kernel.org>; Wed, 19 Nov 2025 22:05:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E9486CF6486
+	for <intel-xe@archiver.kernel.org>; Wed, 19 Nov 2025 22:29:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A34C710E267;
-	Wed, 19 Nov 2025 22:05:11 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lrkWXhHE";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 16A4B10E267
- for <intel-xe@lists.freedesktop.org>; Wed, 19 Nov 2025 22:05:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1763589909; x=1795125909;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=/hVuLt80yXwqzirl+E3ewrQ4iGG44FIPvmy0RbyRKY4=;
- b=lrkWXhHEutVcoM/cEvXdyTKqS/tWU6U2C0MXtlBO9AfcImzjRfU+TGfY
- 92TdSFJwHbuqECH6UF0rv9jl402fk6G4cfFAQz3iYYtvpmT2t+gGjepU0
- zSdfpC+BG60Dy786k5z4e/RDT1MXh6TvDb8bH90kAJyIyQjnJNCkBYHtV
- 6BsRbH6aNrfwPAa/HcgSSnAHbduSTHC3HLrSqfIsElGWErynNNEDKXLwY
- eiTLRT8TAmZDFOCRs9AH/N8kcyBasmOhndEg+epw2BlRaY1ap7nMwFB5u
- wKN9u02JeLEu+gHAWWLI9YNRwDn61V6Vqej/WEW01I8l3wVZ1vgO5RBRA A==;
-X-CSE-ConnectionGUID: thI8CM9URBWw3MmG/nrmCg==
-X-CSE-MsgGUID: QCOJ+tYRQbeMlx/dItVJ2w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11618"; a="75974880"
-X-IronPort-AV: E=Sophos;i="6.19,316,1754982000"; d="scan'208";a="75974880"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Nov 2025 14:05:09 -0800
-X-CSE-ConnectionGUID: iZ2vtwDxQYaBBvYHVCWLkQ==
-X-CSE-MsgGUID: PcJoHvuvSAqfhIcJCUOmEw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,316,1754982000"; d="scan'208";a="228497029"
-Received: from mdroper-desk1.fm.intel.com ([10.1.39.133])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Nov 2025 14:05:09 -0800
-From: Matt Roper <matthew.d.roper@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: matthew.d.roper@intel.com
-Subject: [PATCH 2/2] drm/xe/lnl: Drop pre-production workaround support
-Date: Wed, 19 Nov 2025 14:05:01 -0800
-Message-ID: <20251119220459.3997343-4-matthew.d.roper@intel.com>
-X-Mailer: git-send-email 2.51.1
-In-Reply-To: <20251119220459.3997343-3-matthew.d.roper@intel.com>
-References: <20251119220459.3997343-3-matthew.d.roper@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7D5C910E26E;
+	Wed, 19 Nov 2025 22:29:43 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C446210E26E;
+ Wed, 19 Nov 2025 22:29:41 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3697928761471058247=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915=3A_dissolve_soc/?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 19 Nov 2025 22:29:41 -0000
+Message-ID: <176359138179.11451.6799160224170886074@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <cover.1763578288.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1763578288.git.jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,195 +35,152 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-LNL has been out long enough that all of our internal usage of
-pre-production hardware has been phased out and we no longer need to
-maintain workarounds that were exclusive to pre-production parts.
+--===============3697928761471058247==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Production LNL hardware always has B0 or later steppings for both
-graphics and media IP.  Eliminate all workarounds that were exclusive to
-A-step hardware and set the 'has_prod_wa_only' device flag for LNL to
-make sure we warn and taint if someone tries to load the driver on an
-old pre-production part.
+== Series Details ==
 
-Bspec: 70821
-Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
----
- drivers/gpu/drm/xe/xe_guc_ads.c    |  2 +-
- drivers/gpu/drm/xe/xe_pci.c        |  1 +
- drivers/gpu/drm/xe/xe_ring_ops.c   | 14 ----------
- drivers/gpu/drm/xe/xe_wa.c         | 45 ------------------------------
- drivers/gpu/drm/xe/xe_wa_oob.rules |  6 +---
- 5 files changed, 3 insertions(+), 65 deletions(-)
+Series: drm/i915: dissolve soc/
+URL   : https://patchwork.freedesktop.org/series/157792/
+State : success
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c b/drivers/gpu/drm/xe/xe_guc_ads.c
-index bcb85a1bf26d..e06c6aa335bf 100644
---- a/drivers/gpu/drm/xe/xe_guc_ads.c
-+++ b/drivers/gpu/drm/xe/xe_guc_ads.c
-@@ -317,7 +317,7 @@ static void guc_waklv_init(struct xe_guc_ads *ads)
- 	offset = guc_ads_waklv_offset(ads);
- 	remain = guc_ads_waklv_size(ads);
- 
--	if (XE_GT_WA(gt, 14019882105) || XE_GT_WA(gt, 16021333562))
-+	if (XE_GT_WA(gt, 16021333562))
- 		guc_waklv_enable(ads, NULL, 0, &offset, &remain,
- 				 GUC_WORKAROUND_KLV_BLOCK_INTERRUPTS_WHEN_MGSR_BLOCKED);
- 	if (XE_GT_WA(gt, 18024947630))
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index 25365a891f9d..368d4e72df8a 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -343,6 +343,7 @@ static const struct xe_device_desc lnl_desc = {
- 	.has_flat_ccs = 1,
- 	.has_pxp = true,
- 	.has_mem_copy_instr = true,
-+	.has_prod_wa_only = true,
- 	.max_gt_per_tile = 2,
- 	.needs_scratch = true,
- 	.va_bits = 48,
-diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
-index ac0c6dcffe15..2c0ce6b5f9cd 100644
---- a/drivers/gpu/drm/xe/xe_ring_ops.c
-+++ b/drivers/gpu/drm/xe/xe_ring_ops.c
-@@ -201,18 +201,6 @@ static int emit_render_cache_flush(struct xe_sched_job *job, u32 *dw, int i)
- 	return emit_pipe_control(dw, i, PIPE_CONTROL0_HDC_PIPELINE_FLUSH, flags, 0, 0);
- }
- 
--static int emit_pipe_control_to_ring_end(struct xe_hw_engine *hwe, u32 *dw, int i)
--{
--	if (hwe->class != XE_ENGINE_CLASS_RENDER)
--		return i;
--
--	if (XE_GT_WA(hwe->gt, 16020292621))
--		i = emit_pipe_control(dw, i, 0, PIPE_CONTROL_LRI_POST_SYNC,
--				      RING_NOPID(hwe->mmio_base).addr, 0);
--
--	return i;
--}
--
- static int emit_pipe_imm_ggtt(u32 addr, u32 value, bool stall_only, u32 *dw,
- 			      int i)
- {
-@@ -395,8 +383,6 @@ static void __emit_job_gen12_render_compute(struct xe_sched_job *job,
- 
- 	i = emit_user_interrupt(dw, i);
- 
--	i = emit_pipe_control_to_ring_end(job->q->hwe, dw, i);
--
- 	xe_gt_assert(gt, i <= MAX_JOB_SIZE_DW);
- 
- 	xe_lrc_write_ring(lrc, dw, i * sizeof(*dw));
-diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
-index 3764abca3d4f..199c1a6ff8a2 100644
---- a/drivers/gpu/drm/xe/xe_wa.c
-+++ b/drivers/gpu/drm/xe/xe_wa.c
-@@ -216,20 +216,6 @@ static const struct xe_rtp_entry_sr gt_was[] = {
- 	  XE_RTP_ACTIONS(SET(XELPMP_SQCNT1, ENFORCE_RAR))
- 	},
- 
--	/* Xe2_LPG */
--
--	{ XE_RTP_NAME("16020975621"),
--	  XE_RTP_RULES(GRAPHICS_VERSION(2004), GRAPHICS_STEP(A0, B0)),
--	  XE_RTP_ACTIONS(SET(XEHP_SLICE_UNIT_LEVEL_CLKGATE, SBEUNIT_CLKGATE_DIS))
--	},
--	{ XE_RTP_NAME("14018157293"),
--	  XE_RTP_RULES(GRAPHICS_VERSION(2004), GRAPHICS_STEP(A0, B0)),
--	  XE_RTP_ACTIONS(SET(XEHPC_L3CLOS_MASK(0), ~0),
--			 SET(XEHPC_L3CLOS_MASK(1), ~0),
--			 SET(XEHPC_L3CLOS_MASK(2), ~0),
--			 SET(XEHPC_L3CLOS_MASK(3), ~0))
--	},
--
- 	/* Xe2_LPM */
- 
- 	{ XE_RTP_NAME("14017421178"),
-@@ -512,11 +498,6 @@ static const struct xe_rtp_entry_sr engine_was[] = {
- 	  XE_RTP_RULES(GRAPHICS_VERSION(2004), FUNC(xe_rtp_match_first_render_or_compute)),
- 	  XE_RTP_ACTIONS(SET(LSC_CHICKEN_BIT_0_UDW, XE2_ALLOC_DPA_STARVE_FIX_DIS))
- 	},
--	{ XE_RTP_NAME("14018957109"),
--	  XE_RTP_RULES(GRAPHICS_VERSION(2004), GRAPHICS_STEP(A0, B0),
--		       FUNC(xe_rtp_match_first_render_or_compute)),
--	  XE_RTP_ACTIONS(SET(HALF_SLICE_CHICKEN5, DISABLE_SAMPLE_G_PERFORMANCE))
--	},
- 	{ XE_RTP_NAME("14020338487"),
- 	  XE_RTP_RULES(GRAPHICS_VERSION(2004), FUNC(xe_rtp_match_first_render_or_compute)),
- 	  XE_RTP_ACTIONS(SET(ROW_CHICKEN3, XE2_EUPEND_CHK_FLUSH_DIS))
-@@ -526,11 +507,6 @@ static const struct xe_rtp_entry_sr engine_was[] = {
- 		       FUNC(xe_rtp_match_first_render_or_compute)),
- 	  XE_RTP_ACTIONS(SET(ROW_CHICKEN4, DISABLE_TDL_PUSH))
- 	},
--	{ XE_RTP_NAME("14019322943"),
--	  XE_RTP_RULES(GRAPHICS_VERSION(2004), GRAPHICS_STEP(A0, B0),
--		       FUNC(xe_rtp_match_first_render_or_compute)),
--	  XE_RTP_ACTIONS(SET(LSC_CHICKEN_BIT_0, TGM_WRITE_EOM_FORCE))
--	},
- 	{ XE_RTP_NAME("14018471104"),
- 	  XE_RTP_RULES(GRAPHICS_VERSION(2004), FUNC(xe_rtp_match_first_render_or_compute)),
- 	  XE_RTP_ACTIONS(SET(LSC_CHICKEN_BIT_0_UDW, ENABLE_SMP_LD_RENDER_SURFACE_CONTROL))
-@@ -807,17 +783,6 @@ static const struct xe_rtp_entry_sr lrc_was[] = {
- 
- 	/* Xe2_LPG */
- 
--	{ XE_RTP_NAME("16020518922"),
--	  XE_RTP_RULES(GRAPHICS_VERSION(2004), GRAPHICS_STEP(A0, B0),
--		       ENGINE_CLASS(RENDER)),
--	  XE_RTP_ACTIONS(SET(FF_MODE,
--			     DIS_TE_AUTOSTRIP |
--			     DIS_MESH_PARTIAL_AUTOSTRIP |
--			     DIS_MESH_AUTOSTRIP),
--			 SET(VFLSKPD,
--			     DIS_PARTIAL_AUTOSTRIP |
--			     DIS_AUTOSTRIP))
--	},
- 	{ XE_RTP_NAME("14019386621"),
- 	  XE_RTP_RULES(GRAPHICS_VERSION(2004), ENGINE_CLASS(RENDER)),
- 	  XE_RTP_ACTIONS(SET(VF_SCRATCHPAD, XE2_VFG_TED_CREDIT_INTERFACE_DISABLE))
-@@ -826,20 +791,10 @@ static const struct xe_rtp_entry_sr lrc_was[] = {
- 	  XE_RTP_RULES(GRAPHICS_VERSION(2004), ENGINE_CLASS(RENDER)),
- 	  XE_RTP_ACTIONS(SET(XEHP_PSS_CHICKEN, FD_END_COLLECT))
- 	},
--	{ XE_RTP_NAME("14020013138"),
--	  XE_RTP_RULES(GRAPHICS_VERSION(2004), GRAPHICS_STEP(A0, B0),
--		       ENGINE_CLASS(RENDER)),
--	  XE_RTP_ACTIONS(SET(WM_CHICKEN3, HIZ_PLANE_COMPRESSION_DIS))
--	},
- 	{ XE_RTP_NAME("14019988906"),
- 	  XE_RTP_RULES(GRAPHICS_VERSION(2004), ENGINE_CLASS(RENDER)),
- 	  XE_RTP_ACTIONS(SET(XEHP_PSS_CHICKEN, FLSH_IGNORES_PSD))
- 	},
--	{ XE_RTP_NAME("16020183090"),
--	  XE_RTP_RULES(GRAPHICS_VERSION(2004), GRAPHICS_STEP(A0, B0),
--		       ENGINE_CLASS(RENDER)),
--	  XE_RTP_ACTIONS(SET(INSTPM(RENDER_RING_BASE), ENABLE_SEMAPHORE_POLL_BIT))
--	},
- 	{ XE_RTP_NAME("18033852989"),
- 	  XE_RTP_RULES(GRAPHICS_VERSION(2004), ENGINE_CLASS(RENDER)),
- 	  XE_RTP_ACTIONS(SET(COMMON_SLICE_CHICKEN1, DISABLE_BOTTOM_CLIP_RECTANGLE_TEST))
-diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
-index fb38eb3d6e9a..fac6191708da 100644
---- a/drivers/gpu/drm/xe/xe_wa_oob.rules
-+++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
-@@ -16,15 +16,11 @@
- 16017236439	PLATFORM(PVC)
- 14019821291	MEDIA_VERSION_RANGE(1300, 2000)
- 14015076503	MEDIA_VERSION(1300)
--16020292621	GRAPHICS_VERSION(2004), GRAPHICS_STEP(A0, B0)
--14018913170	GRAPHICS_VERSION(2004), GRAPHICS_STEP(A0, B0)
--		MEDIA_VERSION(2000), GRAPHICS_STEP(A0, A1)
--		GRAPHICS_VERSION_RANGE(1270, 1274)
-+14018913170	GRAPHICS_VERSION_RANGE(1270, 1274)
- 		MEDIA_VERSION(1300)
- 		PLATFORM(DG2)
- 14018094691	GRAPHICS_VERSION_RANGE(2001, 2002)
- 		GRAPHICS_VERSION(2004)
--14019882105	GRAPHICS_VERSION(2004), GRAPHICS_STEP(A0, B0)
- 18024947630	GRAPHICS_VERSION(2001)
- 		GRAPHICS_VERSION(2004)
- 		MEDIA_VERSION(2000)
--- 
-2.51.1
+== Summary ==
 
+CI Bug Log - changes from xe-4131-a95032b2166b5ae428c065917b843a1caf1e82b8_BAT -> xe-pw-157792v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (13 -> 13)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-157792v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_force_connector_basic@force-connector-state:
+    - bat-bmg-2:          [PASS][1] -> [ABORT][2] ([Intel XE#1727] / [Intel XE#4760])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4131-a95032b2166b5ae428c065917b843a1caf1e82b8/bat-bmg-2/igt@kms_force_connector_basic@force-connector-state.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157792v1/bat-bmg-2/igt@kms_force_connector_basic@force-connector-state.html
+
+  * igt@xe_waitfence@engine:
+    - bat-dg2-oem2:       [PASS][3] -> [FAIL][4] ([Intel XE#6519])
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4131-a95032b2166b5ae428c065917b843a1caf1e82b8/bat-dg2-oem2/igt@xe_waitfence@engine.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157792v1/bat-dg2-oem2/igt@xe_waitfence@engine.html
+
+  * igt@xe_waitfence@reltime:
+    - bat-dg2-oem2:       [PASS][5] -> [FAIL][6] ([Intel XE#6520])
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4131-a95032b2166b5ae428c065917b843a1caf1e82b8/bat-dg2-oem2/igt@xe_waitfence@reltime.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157792v1/bat-dg2-oem2/igt@xe_waitfence@reltime.html
+
+  
+  [Intel XE#1727]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1727
+  [Intel XE#4760]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4760
+  [Intel XE#6519]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519
+  [Intel XE#6520]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520
+
+
+Build changes
+-------------
+
+  * Linux: xe-4131-a95032b2166b5ae428c065917b843a1caf1e82b8 -> xe-pw-157792v1
+
+  IGT_8633: 8633
+  xe-4131-a95032b2166b5ae428c065917b843a1caf1e82b8: a95032b2166b5ae428c065917b843a1caf1e82b8
+  xe-pw-157792v1: 157792v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157792v1/index.html
+
+--===============3697928761471058247==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: dissolve soc/</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/157792/">https://patchwork.freedesktop.org/series/157792/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157792v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157792v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4131-a95032b2166b5ae428c065917b843a1caf1e82b8_BAT -&gt; xe-pw-157792v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-157792v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@kms_force_connector_basic@force-connector-state:</p>
+<ul>
+<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4131-a95032b2166b5ae428c065917b843a1caf1e82b8/bat-bmg-2/igt@kms_force_connector_basic@force-connector-state.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157792v1/bat-bmg-2/igt@kms_force_connector_basic@force-connector-state.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1727">Intel XE#1727</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4760">Intel XE#4760</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_waitfence@engine:</p>
+<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4131-a95032b2166b5ae428c065917b843a1caf1e82b8/bat-dg2-oem2/igt@xe_waitfence@engine.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157792v1/bat-dg2-oem2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519">Intel XE#6519</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_waitfence@reltime:</p>
+<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4131-a95032b2166b5ae428c065917b843a1caf1e82b8/bat-dg2-oem2/igt@xe_waitfence@reltime.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157792v1/bat-dg2-oem2/igt@xe_waitfence@reltime.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520">Intel XE#6520</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4131-a95032b2166b5ae428c065917b843a1caf1e82b8 -&gt; xe-pw-157792v1</li>
+</ul>
+<p>IGT_8633: 8633<br />
+  xe-4131-a95032b2166b5ae428c065917b843a1caf1e82b8: a95032b2166b5ae428c065917b843a1caf1e82b8<br />
+  xe-pw-157792v1: 157792v1</p>
+
+</body>
+</html>
+
+--===============3697928761471058247==--
