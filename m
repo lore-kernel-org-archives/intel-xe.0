@@ -4,58 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4FD8CCF58CA
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1A7B2CF58CC
 	for <intel-xe@archiver.kernel.org>; Wed, 19 Nov 2025 18:53:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 731A410E67A;
-	Wed, 19 Nov 2025 18:53:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EA89A10E665;
+	Wed, 19 Nov 2025 18:53:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nhGDMy1n";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hYdPTnmr";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4619E10E268;
- Wed, 19 Nov 2025 18:53:16 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CDC9910E259;
+ Wed, 19 Nov 2025 18:53:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1763578396; x=1795114396;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=0fyteZ9AmIAvVb+5nTUEQRY4fFENNZRAHvpPTxahHvQ=;
- b=nhGDMy1nZBRhIP2hf14reMBF3K7IXcEeIONzCut5nMu6uAJo1XINDAYi
- zXhV4XykoBnaO9u0UsQhpxn5curpjMLykAeD6RTJR9TXDmDbJwvMINVaV
- 0OP1/6L2//QN8EjFD7dI8C4H3qKB6dNtCG35EJgbgYSBvNHEtrx9PUnAu
- RITyRzu4RPCzXPNAY2gCGfyOEmpRR5Noi9I1rVvrXZPtQHK9WVB01+vQ5
- +BfGJzmeGGfMVJrZeTRIPUP8ciZylmR8HYmu62ITT8Qbv3+PF1HNWK8fu
- aVM1QxQ1g2+qugoOcHS2wq7MSvTU5SyFfMGG8B17cTv3Fji1qAGsVvIpi Q==;
-X-CSE-ConnectionGUID: 3ZGp28A7QS6pVxIi6XucLQ==
-X-CSE-MsgGUID: 01DvHiBZROyaZOgUVD/L+g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11618"; a="65334649"
-X-IronPort-AV: E=Sophos;i="6.19,316,1754982000"; d="scan'208";a="65334649"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Nov 2025 10:53:16 -0800
-X-CSE-ConnectionGUID: JoIgHEK0SdOcDyrTeEjKiQ==
-X-CSE-MsgGUID: CvkFKkkJRC+S4Xd9OAkYQw==
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=6T4UJfDSRr98KswXYtAOakVXrc1Nn196PdXmi+1wO/Q=;
+ b=hYdPTnmrFPjbsAaQCJqNUVQspb3ydz4s8Z8HudKOcITL++qtY7CLtEZI
+ KjD2/2S1b1RWga2mwdlcDaIpUbHpq5O8hXSr7sB2yuhWwsYZZhK+gBN4n
+ e+DCbtHCj6HtEDeYqPxgXibTy0W07nQumqdpCtUQITHDysdN46MkdPRyP
+ mruoXE2PEZVH3WoQ0DbIpTt0zfMnul5URP0xwSdwWPw6cbCqGkU9Id9pr
+ OYmExT61mVEi2qAKFPwknvNWKynbWRTzdI28//C980f6khISGvCy4lcp9
+ HQ04bZfGDqN7sHLjUraGHNkXHDkramb717FaxDEg8WeuHYWJdgRTN1klf A==;
+X-CSE-ConnectionGUID: cexNbHlMREyVBCh+jO/OZw==
+X-CSE-MsgGUID: zi7jhlhfS5yBeKnmVrOmwQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11618"; a="53205173"
+X-IronPort-AV: E=Sophos;i="6.19,316,1754982000"; d="scan'208";a="53205173"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Nov 2025 10:53:15 -0800
+X-CSE-ConnectionGUID: sHeZgk+QT5ajE1QJSPd2bg==
+X-CSE-MsgGUID: sCl3hQcmTnWzRppjOAF3Xw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,316,1754982000"; d="scan'208";a="190948480"
-Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.187])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Nov 2025 10:53:14 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com
-Subject: [PATCH v2 04/13] drm/xe: remove MISSING_CASE() from compat
- i915_utils.h
-Date: Wed, 19 Nov 2025 20:52:43 +0200
-Message-ID: <b967e605ff9d9ad459f3d12a9dfc9244458d83a1.1763578288.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <cover.1763578288.git.jani.nikula@intel.com>
-References: <cover.1763578288.git.jani.nikula@intel.com>
+X-IronPort-AV: E=Sophos;i="6.19,316,1754982000"; d="scan'208";a="190387646"
+Received: from aschofie-mobl2.amr.corp.intel.com (HELO localhost)
+ ([10.124.221.119])
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Nov 2025 10:53:15 -0800
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
+Subject: [PATCH 0/2] drm/i915: Go back to using AUX interrupts
+Date: Wed, 19 Nov 2025 20:53:08 +0200
+Message-ID: <20251119185310.10428-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.49.1
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -71,30 +67,21 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-There are no longer users for MISSING_CASE() in the compat
-i915_utils.h. Remove it to prevent new users from showing up.
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/xe/compat-i915-headers/i915_utils.h | 6 ------
- 1 file changed, 6 deletions(-)
+Start relying on AUX interrupts for the AUX completion
+again. The polling approach is not great.
 
-diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_utils.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_utils.h
-index bcd441dc0fce..3639721f0bf8 100644
---- a/drivers/gpu/drm/xe/compat-i915-headers/i915_utils.h
-+++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_utils.h
-@@ -3,11 +3,5 @@
-  * Copyright © 2023 Intel Corporation
-  */
- 
--/* for soc/ */
--#ifndef MISSING_CASE
--#define MISSING_CASE(x) WARN(1, "Missing case (%s == %ld)\n", \
--			     __stringify(x), (long)(x))
--#endif
--
- /* for a couple of users under i915/display */
- #define i915_inject_probe_failure(unused) ((unused) && 0)
+Ville Syrjälä (2):
+  drm/i915: Enable DDI A/B AUX interrupts on LNL+
+  Revert "drm/i915/dp: change aux_ctl reg read to polling read"
+
+ drivers/gpu/drm/i915/display/intel_display_irq.c | 12 +++++++++++-
+ drivers/gpu/drm/i915/display/intel_display_irq.h |  2 ++
+ drivers/gpu/drm/i915/display/intel_dp_aux.c      | 12 +++++++-----
+ drivers/gpu/drm/i915/display/intel_hotplug_irq.c |  5 +----
+ 4 files changed, 21 insertions(+), 10 deletions(-)
+
 -- 
-2.47.3
+2.49.1
 
