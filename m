@@ -4,58 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C823ACF58C8
-	for <intel-xe@archiver.kernel.org>; Wed, 19 Nov 2025 18:53:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0EA59CF58CA
+	for <intel-xe@archiver.kernel.org>; Wed, 19 Nov 2025 18:53:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7B04B10E681;
-	Wed, 19 Nov 2025 18:53:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C758710E67E;
+	Wed, 19 Nov 2025 18:53:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IAvYa2Ng";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="m12EV5Ai";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BB4A110E259;
- Wed, 19 Nov 2025 18:53:14 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1123110E67D;
+ Wed, 19 Nov 2025 18:53:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1763578395; x=1795114395;
+ t=1763578400; x=1795114400;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=rwV15eI4LnFfWsOcodq0S3+zfoYLk+wM1UpHo98nrAQ=;
- b=IAvYa2Ng8xmHEyjLldWmm0Yf7SpF6Xcfp4P0zPOLKpbqI5R62Md1vmJO
- DvkdzZddGlQTUu8D9iO+SbLPRJf9+jwQSBoDBsCEDNp+rXAOxwba6G39N
- /71naoC7pdlMpiGk2n1fyoLFKq6bVpvtPbtF52XoZFpOmbK12zfhnc1A4
- fGcTOHzOrTXI7RMf9xXJ7SdTeQfwB1g5hm277DVeqDF41aZVmEVuBqbe+
- NW7YI5cdsm//CIyzAh7AiK5CvazcMkd4Gr1UpzmT4LbI48FNPHJ0byxx3
- pcggKjxd31IhdaVw3Nrs6FFT7hzAkc7omP700drRb2BDM7+nwXUbaaqDb A==;
-X-CSE-ConnectionGUID: BsMg3RgPTbOwRapxr+ysYg==
-X-CSE-MsgGUID: JAhlGm09RVCXWCs7bxTu7g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11618"; a="65334628"
-X-IronPort-AV: E=Sophos;i="6.19,316,1754982000"; d="scan'208";a="65334628"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Nov 2025 10:53:02 -0800
-X-CSE-ConnectionGUID: 5yShn9ywS1aYA9l7FQO+xA==
-X-CSE-MsgGUID: avY2xViFTrelXc6q+uHJYw==
+ bh=BHfUtpOZKG/IC7WF7lQXQyqXh7Q6r7aPT15o1QM+IIg=;
+ b=m12EV5AiFHtg8QOEegPgt9oGEQ6RVoNjxVWaYan2aaHaURhXPK7Gmtjg
+ q19r5zHx7DunwsJtmL0ygtUT5wGRz/7IBwGKbuvb/NdqvcD7+e/hqh2/j
+ BZAChBDxZhB0rQEmBku5X7mVXegxnSgXCGu8CZiaCG2XiJkPXH6ylS+zL
+ /PTzq12v8nk9lN7Ktx8lLTVJ6ZJ1fuofVIcz216GZHp514BnAEJvf0Ivm
+ 6+3rvgNaLftwVKcm8kmUkQhcAgLUC9xJ7VfX81sOHtGJAAEubglWhYRNy
+ l+fpwSoY7LBgYb4gM5phtmSj3wjCSuXf2Vjqz6fCM25btEl17S75iR+4v w==;
+X-CSE-ConnectionGUID: AqTuEdKXQJOasCS3lUtnpg==
+X-CSE-MsgGUID: 9zbaUOHcSJWms/eUYn44vA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11618"; a="53205178"
+X-IronPort-AV: E=Sophos;i="6.19,316,1754982000"; d="scan'208";a="53205178"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Nov 2025 10:53:20 -0800
+X-CSE-ConnectionGUID: 05Xy/XhhRM2dOArO8/URQg==
+X-CSE-MsgGUID: /czu8/79SUGI61bfHJNcRQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,316,1754982000"; d="scan'208";a="190948419"
-Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.187])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Nov 2025 10:53:00 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com
-Subject: [PATCH v2 01/13] drm/i915/edram: extract i915_edram.[ch] for edram
- detection
-Date: Wed, 19 Nov 2025 20:52:40 +0200
-Message-ID: <612edb7b70755655fbf193ba8af1c539fb93b698.1763578288.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <cover.1763578288.git.jani.nikula@intel.com>
-References: <cover.1763578288.git.jani.nikula@intel.com>
+X-IronPort-AV: E=Sophos;i="6.19,316,1754982000"; d="scan'208";a="190387666"
+Received: from aschofie-mobl2.amr.corp.intel.com (HELO localhost)
+ ([10.124.221.119])
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Nov 2025 10:53:19 -0800
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
+Subject: [PATCH 1/2] drm/i915: Enable DDI A/B AUX interrupts on LNL+
+Date: Wed, 19 Nov 2025 20:53:09 +0200
+Message-ID: <20251119185310.10428-2-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.49.1
+In-Reply-To: <20251119185310.10428-1-ville.syrjala@linux.intel.com>
+References: <20251119185310.10428-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -71,198 +69,77 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-While edram detection ostensibly belongs with the rest of the dram stuff
-in soc/intel_dram.c, it's only required by i915 core, not
-display. Extract it to a separate i915_edram.[ch] file.
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-This allows us to drop the edram_size_mb member from struct xe_device.
+Apparently the DDI A/B AUX interrupts move onto the PICA side
+on LNL. Unmask them properly so that we actually get the
+interrupts. The interrupt handler was already trying to handle
+them despite the interrupts remaining masked.
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/Makefile         |  1 +
- drivers/gpu/drm/i915/i915_driver.c    |  3 +-
- drivers/gpu/drm/i915/i915_edram.c     | 44 +++++++++++++++++++++++++++
- drivers/gpu/drm/i915/i915_edram.h     | 11 +++++++
- drivers/gpu/drm/i915/soc/intel_dram.c | 36 ----------------------
- drivers/gpu/drm/i915/soc/intel_dram.h |  1 -
- drivers/gpu/drm/xe/xe_device_types.h  |  6 ----
- 7 files changed, 58 insertions(+), 44 deletions(-)
- create mode 100644 drivers/gpu/drm/i915/i915_edram.c
- create mode 100644 drivers/gpu/drm/i915/i915_edram.h
+ drivers/gpu/drm/i915/display/intel_display_irq.c | 12 +++++++++++-
+ drivers/gpu/drm/i915/display/intel_display_irq.h |  2 ++
+ drivers/gpu/drm/i915/display/intel_hotplug_irq.c |  5 +----
+ 3 files changed, 14 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
-index 9a4f89c9a1cd..3ca4e0cace76 100644
---- a/drivers/gpu/drm/i915/Makefile
-+++ b/drivers/gpu/drm/i915/Makefile
-@@ -27,6 +27,7 @@ i915-y += \
- 	i915_config.o \
- 	i915_driver.o \
- 	i915_drm_client.o \
-+	i915_edram.o \
- 	i915_getparam.o \
- 	i915_ioctl.o \
- 	i915_irq.o \
-diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-index 7c60b6873934..44a17ffc3058 100644
---- a/drivers/gpu/drm/i915/i915_driver.c
-+++ b/drivers/gpu/drm/i915/i915_driver.c
-@@ -94,6 +94,7 @@
- #include "i915_driver.h"
- #include "i915_drm_client.h"
- #include "i915_drv.h"
-+#include "i915_edram.h"
- #include "i915_file_private.h"
- #include "i915_getparam.h"
- #include "i915_hwmon.h"
-@@ -493,7 +494,7 @@ static int i915_driver_hw_probe(struct drm_i915_private *dev_priv)
+diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
+index d2933ac3acb4..9adeebb376b1 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_irq.c
++++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
+@@ -2410,10 +2410,20 @@ void gen8_de_irq_postinstall(struct intel_display *display)
  	}
- 
- 	/* needs to be done before ggtt probe */
--	intel_dram_edram_detect(dev_priv);
-+	i915_edram_detect(dev_priv);
- 
- 	ret = i915_set_dma_info(dev_priv);
- 	if (ret)
-diff --git a/drivers/gpu/drm/i915/i915_edram.c b/drivers/gpu/drm/i915/i915_edram.c
-new file mode 100644
-index 000000000000..5818ec396d1e
---- /dev/null
-+++ b/drivers/gpu/drm/i915/i915_edram.c
-@@ -0,0 +1,44 @@
-+// SPDX-License-Identifier: MIT
-+/* Copyright © 2025 Intel Corporation */
-+
-+#include <drm/drm_print.h>
-+
-+#include "i915_drv.h"
-+#include "i915_edram.h"
-+#include "i915_reg.h"
-+
-+static u32 gen9_edram_size_mb(struct drm_i915_private *i915, u32 cap)
-+{
-+	static const u8 ways[8] = { 4, 8, 12, 16, 16, 16, 16, 16 };
-+	static const u8 sets[4] = { 1, 1, 2, 2 };
-+
-+	return EDRAM_NUM_BANKS(cap) *
-+		ways[EDRAM_WAYS_IDX(cap)] *
-+		sets[EDRAM_SETS_IDX(cap)];
-+}
-+
-+void i915_edram_detect(struct drm_i915_private *i915)
-+{
-+	u32 edram_cap = 0;
-+
-+	if (!(IS_HASWELL(i915) || IS_BROADWELL(i915) || GRAPHICS_VER(i915) >= 9))
-+		return;
-+
-+	edram_cap = intel_uncore_read_fw(&i915->uncore, HSW_EDRAM_CAP);
-+
-+	/* NB: We can't write IDICR yet because we don't have gt funcs set up */
-+
-+	if (!(edram_cap & EDRAM_ENABLED))
-+		return;
-+
-+	/*
-+	 * The needed capability bits for size calculation are not there with
-+	 * pre gen9 so return 128MB always.
-+	 */
-+	if (GRAPHICS_VER(i915) < 9)
-+		i915->edram_size_mb = 128;
-+	else
-+		i915->edram_size_mb = gen9_edram_size_mb(i915, edram_cap);
-+
-+	drm_info(&i915->drm, "Found %uMB of eDRAM\n", i915->edram_size_mb);
-+}
-diff --git a/drivers/gpu/drm/i915/i915_edram.h b/drivers/gpu/drm/i915/i915_edram.h
-new file mode 100644
-index 000000000000..8319422ace9d
---- /dev/null
-+++ b/drivers/gpu/drm/i915/i915_edram.h
-@@ -0,0 +1,11 @@
-+/* SPDX-License-Identifier: MIT */
-+/* Copyright © 2025 Intel Corporation */
-+
-+#ifndef __I915_DRAM_H__
-+#define __I915_DRAM_H__
-+
-+struct drm_i915_private;
-+
-+void i915_edram_detect(struct drm_i915_private *i915);
-+
-+#endif /* __I915_DRAM_H__ */
-diff --git a/drivers/gpu/drm/i915/soc/intel_dram.c b/drivers/gpu/drm/i915/soc/intel_dram.c
-index 739cfe48f6db..cfe96c3c1b1a 100644
---- a/drivers/gpu/drm/i915/soc/intel_dram.c
-+++ b/drivers/gpu/drm/i915/soc/intel_dram.c
-@@ -861,39 +861,3 @@ const struct dram_info *intel_dram_info(struct drm_device *drm)
- 
- 	return i915->dram_info;
  }
--
--static u32 gen9_edram_size_mb(struct drm_i915_private *i915, u32 cap)
--{
--	static const u8 ways[8] = { 4, 8, 12, 16, 16, 16, 16, 16 };
--	static const u8 sets[4] = { 1, 1, 2, 2 };
--
--	return EDRAM_NUM_BANKS(cap) *
--		ways[EDRAM_WAYS_IDX(cap)] *
--		sets[EDRAM_SETS_IDX(cap)];
--}
--
--void intel_dram_edram_detect(struct drm_i915_private *i915)
--{
--	u32 edram_cap = 0;
--
--	if (!(IS_HASWELL(i915) || IS_BROADWELL(i915) || GRAPHICS_VER(i915) >= 9))
--		return;
--
--	edram_cap = intel_uncore_read_fw(&i915->uncore, HSW_EDRAM_CAP);
--
--	/* NB: We can't write IDICR yet because we don't have gt funcs set up */
--
--	if (!(edram_cap & EDRAM_ENABLED))
--		return;
--
--	/*
--	 * The needed capability bits for size calculation are not there with
--	 * pre gen9 so return 128MB always.
--	 */
--	if (GRAPHICS_VER(i915) < 9)
--		i915->edram_size_mb = 128;
--	else
--		i915->edram_size_mb = gen9_edram_size_mb(i915, edram_cap);
--
--	drm_info(&i915->drm, "Found %uMB of eDRAM\n", i915->edram_size_mb);
--}
-diff --git a/drivers/gpu/drm/i915/soc/intel_dram.h b/drivers/gpu/drm/i915/soc/intel_dram.h
-index 8475ee379daa..58aaf2f91afe 100644
---- a/drivers/gpu/drm/i915/soc/intel_dram.h
-+++ b/drivers/gpu/drm/i915/soc/intel_dram.h
-@@ -35,7 +35,6 @@ struct dram_info {
- 	bool has_16gb_dimms;
- };
  
--void intel_dram_edram_detect(struct drm_i915_private *i915);
- int intel_dram_detect(struct drm_i915_private *i915);
- unsigned int intel_fsb_freq(struct drm_i915_private *i915);
- unsigned int intel_mem_freq(struct drm_i915_private *i915);
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index 0b2fa7c56d38..a072c020b84b 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -650,12 +650,6 @@ struct xe_device {
- 	 */
- 	const struct dram_info *dram_info;
++u32 xelpdp_pica_aux_mask(struct intel_display *display)
++{
++	u32 mask = XELPDP_AUX_TC_MASK;
++
++	if (DISPLAY_VER(display) >= 20)
++		mask |= XE2LPD_AUX_DDI_MASK;
++
++	return mask;
++}
++
+ static void mtp_irq_postinstall(struct intel_display *display)
+ {
+ 	u32 sde_mask = SDE_GMBUS_ICP | SDE_PICAINTERRUPT;
+-	u32 de_hpd_mask = XELPDP_AUX_TC_MASK;
++	u32 de_hpd_mask = xelpdp_pica_aux_mask(display);
+ 	u32 de_hpd_enables = de_hpd_mask | XELPDP_DP_ALT_HOTPLUG_MASK |
+ 			     XELPDP_TBT_HOTPLUG_MASK;
  
--	/*
--	 * edram size in MB.
--	 * Cannot be determined by PCIID. You must always read a register.
--	 */
--	u32 edram_size_mb;
+diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.h b/drivers/gpu/drm/i915/display/intel_display_irq.h
+index 84acd31948cf..b25d180254d7 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_irq.h
++++ b/drivers/gpu/drm/i915/display/intel_display_irq.h
+@@ -16,6 +16,8 @@ struct drm_printer;
+ struct intel_display;
+ struct intel_display_irq_snapshot;
+ 
++u32 xelpdp_pica_aux_mask(struct intel_display *display);
++
+ void valleyview_enable_display_irqs(struct intel_display *display);
+ void valleyview_disable_display_irqs(struct intel_display *display);
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_hotplug_irq.c b/drivers/gpu/drm/i915/display/intel_hotplug_irq.c
+index 46c47b3d6f42..82c39e4ffa37 100644
+--- a/drivers/gpu/drm/i915/display/intel_hotplug_irq.c
++++ b/drivers/gpu/drm/i915/display/intel_hotplug_irq.c
+@@ -519,12 +519,9 @@ void xelpdp_pica_irq_handler(struct intel_display *display, u32 iir)
+ {
+ 	enum hpd_pin pin;
+ 	u32 hotplug_trigger = iir & (XELPDP_DP_ALT_HOTPLUG_MASK | XELPDP_TBT_HOTPLUG_MASK);
+-	u32 trigger_aux = iir & XELPDP_AUX_TC_MASK;
++	u32 trigger_aux = iir & xelpdp_pica_aux_mask(display);
+ 	u32 pin_mask = 0, long_mask = 0;
+ 
+-	if (DISPLAY_VER(display) >= 20)
+-		trigger_aux |= iir & XE2LPD_AUX_DDI_MASK;
 -
- 	struct intel_uncore {
- 		spinlock_t lock;
- 	} uncore;
+ 	for (pin = HPD_PORT_TC1; pin <= HPD_PORT_TC4; pin++) {
+ 		u32 val;
+ 
 -- 
-2.47.3
+2.49.1
 
