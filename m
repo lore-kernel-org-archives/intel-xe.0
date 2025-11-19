@@ -4,56 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3424FCF58C6
-	for <intel-xe@archiver.kernel.org>; Wed, 19 Nov 2025 18:53:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 131ECCF58C8
+	for <intel-xe@archiver.kernel.org>; Wed, 19 Nov 2025 18:53:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EAC8A10E67C;
-	Wed, 19 Nov 2025 18:53:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C945910E68A;
+	Wed, 19 Nov 2025 18:53:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="M2LZ5/Mf";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="chuUxBf9";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A99C910E686;
- Wed, 19 Nov 2025 18:53:24 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 22FB710E67C;
+ Wed, 19 Nov 2025 18:53:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1763578405; x=1795114405;
+ t=1763578406; x=1795114406;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=MhtJQNSm/iaA1bSY5/PI+du8hktq745Sub+ExRDfisA=;
- b=M2LZ5/MfIAJqz6Kc+6a1gUtCd088kFSgtoNn6R7X65XvI8CQNOjCaVWe
- QuMvK16rdFC08HuCBed9NANuWRC5OJMNtpGcxe33oQhwD9tAMLxoD8Hj1
- 815FkVVLUJ1MkkFH5J4e7RvZOKOp4TNihF563ARX8F/1vpACJkbm7pByP
- iPhn/c832CvFMu8b9MafSQUzlWpEYkgJSOz+m+32nd7ML4xgrRvEgWhY2
- OZBU86DO8R7kNroaHxyu9mhyZJzBIyL+g2BSdPwnlAr5ndNPk0trGfX83
- b00T9ZTJtIkZTsY8W3ePHeM2OeOuPySSTL4JXaE22j2pl7pEi3DjLb2Vh w==;
-X-CSE-ConnectionGUID: 5Y4yQ7/bRB2q+kJbt1xATw==
-X-CSE-MsgGUID: CkC83RlbTrOpHNBk51XTFQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11618"; a="53205184"
-X-IronPort-AV: E=Sophos;i="6.19,316,1754982000"; d="scan'208";a="53205184"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Nov 2025 10:53:24 -0800
-X-CSE-ConnectionGUID: u8tbRxM4RGuJSFTkRMGPIw==
-X-CSE-MsgGUID: ddRmSdAyTXWQcKjC8fCadg==
+ bh=b1Aw1ZfEIOvtAc/PHUGWv4wOOOobrYfcwHg8Vc4mQ5s=;
+ b=chuUxBf96Cyn0/WOKBSkYhaiB1Bt/lSIYp4oWijkARswZMRYRFCLPhUF
+ Z2rdUt4nEXcfK1hop39By2AWexeS1DNuaV/m3DM8rvQ7nk7pGKX29JL09
+ KwjTsjWP/Jlw1brg8fIo3gFArkPle27ndCEG85BjxOU/eQWZkEnXJuSIH
+ 3oZvzRtq3JBbhDInfvBAN4zFt6dh5Z/fo7LYdhBWip8k5G0bQsbOL9ut/
+ m9V7ZJSTY/cRur2VV3GyqPjsD8QBzPVp6DxmrUZi8DFdNml3A0jaDGVb3
+ m9GR+skh1ZH7kLpIgej4avQZBnBJvJm/1UB5pdrDdKatjfePXoejdqoor A==;
+X-CSE-ConnectionGUID: Rzu5rnp0SNuG/I0C3V4o0Q==
+X-CSE-MsgGUID: SfVardy5SbC0az5kJdUjCg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11618"; a="65672351"
+X-IronPort-AV: E=Sophos;i="6.19,316,1754982000"; d="scan'208";a="65672351"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Nov 2025 10:53:26 -0800
+X-CSE-ConnectionGUID: 7TItPjB3R2qprXL5XWy4WQ==
+X-CSE-MsgGUID: hsQ7g6PfQW2yW+lHIIUffg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,316,1754982000"; d="scan'208";a="190387693"
-Received: from aschofie-mobl2.amr.corp.intel.com (HELO localhost)
- ([10.124.221.119])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+X-IronPort-AV: E=Sophos;i="6.19,316,1754982000"; d="scan'208";a="196279699"
+Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.187])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  19 Nov 2025 10:53:24 -0800
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 2/2] Revert "drm/i915/dp: change aux_ctl reg read to polling
- read"
-Date: Wed, 19 Nov 2025 20:53:10 +0200
-Message-ID: <20251119185310.10428-3-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.49.1
-In-Reply-To: <20251119185310.10428-1-ville.syrjala@linux.intel.com>
-References: <20251119185310.10428-1-ville.syrjala@linux.intel.com>
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@intel.com
+Subject: [PATCH v2 06/13] drm/i915: move dram_info to struct intel_display
+Date: Wed, 19 Nov 2025 20:52:45 +0200
+Message-ID: <cbbca93003952ea24ae60e66d79d901dba78ccd8.1763578288.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.47.3
+In-Reply-To: <cover.1763578288.git.jani.nikula@intel.com>
+References: <cover.1763578288.git.jani.nikula@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -70,74 +69,105 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+With all of dram code under display, also move dram_info to struct
+intel_display.
 
-This reverts commit 5a9b0c7418448ed3766f61ba0a71d08f259c3181.
+This further cleans up struct xe_device from display related members.
 
-The switch from AUX interrupts to pollign was very hand-wavy.
-Yes, there have been some situations in CI on a few platforms
-where the AUX hardware seemingly forgets to signal the timeout,
-but those have been happening after we switched to polling as
-well. So I don't think we have any conclusive evidence that
-polling actually helps here.
-
-Someone really should root cause the actual problem, and see
-if there is a proper workaround we could implemnt (eg. disabling
-clock gating/etc.). In the meantime just go back to using the
-interrupt for AUX completion.
-
-If the hardware fails to signal the timeout we will just hit
-the wait_event_timeout() software timeout instead. I suppose
-we could try to tune the software timeout to more closely
-match the expected hardware timeout. Might need to use
-wait_event_hrtimeout() or something to avoid jiffies
-granularity issues...
-
-The AUX polling is also a hinderance towards using poll_timeout_us()
-because we have a very long timeout, but would need a fairly short
-polling interval to keep AUX transfer reasonably fast. Someone would
-need to come up with good numbers in a somewhat scientific way.
-
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp_aux.c | 12 +++++++-----
- 1 file changed, 7 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display_core.h | 4 ++++
+ drivers/gpu/drm/i915/display/intel_dram.c         | 7 ++-----
+ drivers/gpu/drm/i915/i915_drv.h                   | 3 ---
+ drivers/gpu/drm/xe/xe_device_types.h              | 2 --
+ 4 files changed, 6 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux.c b/drivers/gpu/drm/i915/display/intel_dp_aux.c
-index 809799f63e32..d1a93e4a59b5 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_aux.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_aux.c
-@@ -6,6 +6,7 @@
- #include <drm/drm_print.h>
+diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
+index 9b8414b77c15..9b36654b593d 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_core.h
++++ b/drivers/gpu/drm/i915/display/intel_display_core.h
+@@ -394,6 +394,10 @@ struct intel_display {
+ 		u32 mmio_base;
+ 	} dsi;
  
- #include "intel_de.h"
-+#include "intel_display_jiffies.h"
- #include "intel_display_types.h"
- #include "intel_display_utils.h"
- #include "intel_dp.h"
-@@ -60,16 +61,17 @@ intel_dp_aux_wait_done(struct intel_dp *intel_dp)
- 	i915_reg_t ch_ctl = intel_dp->aux_ch_ctl_reg(intel_dp);
- 	const unsigned int timeout_ms = 10;
- 	u32 status;
--	int ret;
-+	bool done;
++	struct {
++		const struct dram_info *info;
++	} dram;
++
+ 	struct {
+ 		/* list of fbdev register on this device */
+ 		struct intel_fbdev *fbdev;
+diff --git a/drivers/gpu/drm/i915/display/intel_dram.c b/drivers/gpu/drm/i915/display/intel_dram.c
+index 3dfcc7938740..b078fd9fe3c0 100644
+--- a/drivers/gpu/drm/i915/display/intel_dram.c
++++ b/drivers/gpu/drm/i915/display/intel_dram.c
+@@ -817,7 +817,6 @@ static int xelpdp_get_dram_info(struct intel_display *display, struct dram_info
  
--	ret = intel_de_wait_ms(display, ch_ctl,
--			       DP_AUX_CH_CTL_SEND_BUSY, 0,
--			       timeout_ms, &status);
-+#define C (((status = intel_de_read_notrace(display, ch_ctl)) & DP_AUX_CH_CTL_SEND_BUSY) == 0)
-+	done = wait_event_timeout(display->gmbus.wait_queue, C,
-+				  msecs_to_jiffies_timeout(timeout_ms));
+ int intel_dram_detect(struct intel_display *display)
+ {
+-	struct drm_i915_private *i915 = to_i915(display->drm);
+ 	struct dram_info *dram_info;
+ 	int ret;
  
--	if (ret == -ETIMEDOUT)
-+	if (!done)
- 		drm_err(display->drm,
- 			"%s: did not complete or timeout within %ums (status 0x%08x)\n",
- 			intel_dp->aux.name, timeout_ms, status);
-+#undef C
+@@ -828,7 +827,7 @@ int intel_dram_detect(struct intel_display *display)
+ 	if (!dram_info)
+ 		return -ENOMEM;
  
- 	return status;
+-	i915->dram_info = dram_info;
++	display->dram.info = dram_info;
+ 
+ 	if (DISPLAY_VER(display) >= 14)
+ 		ret = xelpdp_get_dram_info(display, dram_info);
+@@ -865,7 +864,5 @@ int intel_dram_detect(struct intel_display *display)
+  */
+ const struct dram_info *intel_dram_info(struct intel_display *display)
+ {
+-	struct drm_i915_private *i915 = to_i915(display->drm);
+-
+-	return i915->dram_info;
++	return display->dram.info;
  }
+diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+index 5381a934a671..96af7776bee5 100644
+--- a/drivers/gpu/drm/i915/i915_drv.h
++++ b/drivers/gpu/drm/i915/i915_drv.h
+@@ -60,7 +60,6 @@
+ #include "intel_step.h"
+ #include "intel_uncore.h"
+ 
+-struct dram_info;
+ struct drm_i915_clock_gating_funcs;
+ struct intel_display;
+ struct intel_pxp;
+@@ -279,8 +278,6 @@ struct drm_i915_private {
+ 	u32 suspend_count;
+ 	struct vlv_s0ix_state *vlv_s0ix_state;
+ 
+-	const struct dram_info *dram_info;
+-
+ 	struct intel_runtime_pm runtime_pm;
+ 
+ 	struct i915_perf perf;
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index a072c020b84b..6ce3247d1bd8 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -35,7 +35,6 @@
+ #define TEST_VM_OPS_ERROR
+ #endif
+ 
+-struct dram_info;
+ struct intel_display;
+ struct intel_dg_nvm_dev;
+ struct xe_ggtt;
+@@ -648,7 +647,6 @@ struct xe_device {
+ 	 * drm_i915_private during build. After cleanup these should go away,
+ 	 * migrating to the right sub-structs
+ 	 */
+-	const struct dram_info *dram_info;
+ 
+ 	struct intel_uncore {
+ 		spinlock_t lock;
 -- 
-2.49.1
+2.47.3
 
