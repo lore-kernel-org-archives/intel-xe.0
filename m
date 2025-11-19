@@ -4,51 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7AED3CF58CD
-	for <intel-xe@archiver.kernel.org>; Wed, 19 Nov 2025 18:53:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C823ACF58C8
+	for <intel-xe@archiver.kernel.org>; Wed, 19 Nov 2025 18:53:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6EE2610E672;
-	Wed, 19 Nov 2025 18:53:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7B04B10E681;
+	Wed, 19 Nov 2025 18:53:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MuLBAEo8";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IAvYa2Ng";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 53A7510E259;
- Wed, 19 Nov 2025 18:53:15 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BB4A110E259;
+ Wed, 19 Nov 2025 18:53:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1763578395; x=1795114395;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=eGqz1lMxoke8CC1XXqg1RgqW6UQ3yx+p61tXAgx+CGw=;
- b=MuLBAEo8TL6Gp6tARDNPgT8vGrDezfNUsk++gPx07SvTBvBFnkdDLSn+
- zbCgKFuw0W2SKbXnm+UJlg6TP9rqQJZqdBWxgBSwRjlb1PvbwF+0RlBLz
- Ou4MVKVVWWDeBlNHGuZov/YY5E9wg9nWYJdDF47v4Rg4iAyPfO/nUGpzm
- jcZLhqiO/Q5KT55NNEtyB5VM7l/WPJLSreh1ixxSNGKoF0SifyvFn3sOT
- +Dt6BQUu1uyMd+d1ITVmwtREhbEdlW+ZOOypOXRB6hQX+K47lfDexgu2H
- hx6OyVL/MfbrhBCr8ZMiqEvemQsI1NFRI41WZXHXUc70w0W10sdzaE2Hs g==;
-X-CSE-ConnectionGUID: tRztvPdoTyqpBctb5MgEug==
-X-CSE-MsgGUID: UephxzPBRXOFpkTeGmHCEA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11618"; a="65334644"
-X-IronPort-AV: E=Sophos;i="6.19,316,1754982000"; d="scan'208";a="65334644"
+ bh=rwV15eI4LnFfWsOcodq0S3+zfoYLk+wM1UpHo98nrAQ=;
+ b=IAvYa2Ng8xmHEyjLldWmm0Yf7SpF6Xcfp4P0zPOLKpbqI5R62Md1vmJO
+ DvkdzZddGlQTUu8D9iO+SbLPRJf9+jwQSBoDBsCEDNp+rXAOxwba6G39N
+ /71naoC7pdlMpiGk2n1fyoLFKq6bVpvtPbtF52XoZFpOmbK12zfhnc1A4
+ fGcTOHzOrTXI7RMf9xXJ7SdTeQfwB1g5hm277DVeqDF41aZVmEVuBqbe+
+ NW7YI5cdsm//CIyzAh7AiK5CvazcMkd4Gr1UpzmT4LbI48FNPHJ0byxx3
+ pcggKjxd31IhdaVw3Nrs6FFT7hzAkc7omP700drRb2BDM7+nwXUbaaqDb A==;
+X-CSE-ConnectionGUID: BsMg3RgPTbOwRapxr+ysYg==
+X-CSE-MsgGUID: JAhlGm09RVCXWCs7bxTu7g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11618"; a="65334628"
+X-IronPort-AV: E=Sophos;i="6.19,316,1754982000"; d="scan'208";a="65334628"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Nov 2025 10:53:11 -0800
-X-CSE-ConnectionGUID: 9vMmN8jPQUCWTmoBCfmsHw==
-X-CSE-MsgGUID: 8L0JQaRfRee+EcGu1zqPYQ==
+ 19 Nov 2025 10:53:02 -0800
+X-CSE-ConnectionGUID: 5yShn9ywS1aYA9l7FQO+xA==
+X-CSE-MsgGUID: avY2xViFTrelXc6q+uHJYw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,316,1754982000"; d="scan'208";a="190948459"
+X-IronPort-AV: E=Sophos;i="6.19,316,1754982000"; d="scan'208";a="190948419"
 Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.187])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Nov 2025 10:53:09 -0800
+ 19 Nov 2025 10:53:00 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH v2 03/13] drm/i915: move intel_dram.[ch] from soc/ to display/
-Date: Wed, 19 Nov 2025 20:52:42 +0200
-Message-ID: <4c0fbdab989a70d287536a7eafb002dc836ced12.1763578288.git.jani.nikula@intel.com>
+Subject: [PATCH v2 01/13] drm/i915/edram: extract i915_edram.[ch] for edram
+ detection
+Date: Wed, 19 Nov 2025 20:52:40 +0200
+Message-ID: <612edb7b70755655fbf193ba8af1c539fb93b698.1763578288.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <cover.1763578288.git.jani.nikula@intel.com>
 References: <cover.1763578288.git.jani.nikula@intel.com>
@@ -70,251 +71,198 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The remaining users of intel_dram.[ch] are all in display. Move them
-under display.
+While edram detection ostensibly belongs with the rest of the dram stuff
+in soc/intel_dram.c, it's only required by i915 core, not
+display. Extract it to a separate i915_edram.[ch] file.
 
-This allows us to remove the compat soc/intel_dram.h from xe.
+This allows us to drop the edram_size_mb member from struct xe_device.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/Makefile                           | 2 +-
- drivers/gpu/drm/i915/display/i9xx_wm.c                  | 3 +--
- drivers/gpu/drm/i915/display/intel_bw.c                 | 3 +--
- drivers/gpu/drm/i915/display/intel_cdclk.c              | 3 +--
- drivers/gpu/drm/i915/display/intel_display_power.c      | 3 +--
- drivers/gpu/drm/i915/{soc => display}/intel_dram.c      | 5 ++---
- drivers/gpu/drm/i915/{soc => display}/intel_dram.h      | 0
- drivers/gpu/drm/i915/display/skl_watermark.c            | 2 +-
- drivers/gpu/drm/i915/i915_driver.c                      | 2 +-
- drivers/gpu/drm/xe/Makefile                             | 2 +-
- drivers/gpu/drm/xe/compat-i915-headers/soc/intel_dram.h | 6 ------
- drivers/gpu/drm/xe/display/xe_display.c                 | 2 +-
- 12 files changed, 11 insertions(+), 22 deletions(-)
- rename drivers/gpu/drm/i915/{soc => display}/intel_dram.c (99%)
- rename drivers/gpu/drm/i915/{soc => display}/intel_dram.h (100%)
- delete mode 100644 drivers/gpu/drm/xe/compat-i915-headers/soc/intel_dram.h
+ drivers/gpu/drm/i915/Makefile         |  1 +
+ drivers/gpu/drm/i915/i915_driver.c    |  3 +-
+ drivers/gpu/drm/i915/i915_edram.c     | 44 +++++++++++++++++++++++++++
+ drivers/gpu/drm/i915/i915_edram.h     | 11 +++++++
+ drivers/gpu/drm/i915/soc/intel_dram.c | 36 ----------------------
+ drivers/gpu/drm/i915/soc/intel_dram.h |  1 -
+ drivers/gpu/drm/xe/xe_device_types.h  |  6 ----
+ 7 files changed, 58 insertions(+), 44 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/i915_edram.c
+ create mode 100644 drivers/gpu/drm/i915/i915_edram.h
 
 diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
-index a696d8b77b4d..838c8e58e4a2 100644
+index 9a4f89c9a1cd..3ca4e0cace76 100644
 --- a/drivers/gpu/drm/i915/Makefile
 +++ b/drivers/gpu/drm/i915/Makefile
-@@ -58,7 +58,6 @@ i915-y += \
- 
- # core peripheral code
- i915-y += \
--	soc/intel_dram.o \
- 	soc/intel_gmch.o \
- 	soc/intel_rom.o
- 
-@@ -268,6 +267,7 @@ i915-y += \
- 	display/intel_dpll_mgr.o \
- 	display/intel_dpt.o \
- 	display/intel_dpt_common.o \
-+	display/intel_dram.o \
- 	display/intel_drrs.o \
- 	display/intel_dsb.o \
- 	display/intel_dsb_buffer.o \
-diff --git a/drivers/gpu/drm/i915/display/i9xx_wm.c b/drivers/gpu/drm/i915/display/i9xx_wm.c
-index 01f3803fa09f..27e2d73bc505 100644
---- a/drivers/gpu/drm/i915/display/i9xx_wm.c
-+++ b/drivers/gpu/drm/i915/display/i9xx_wm.c
-@@ -7,8 +7,6 @@
- 
- #include <drm/drm_print.h>
- 
--#include "soc/intel_dram.h"
--
- #include "i915_drv.h"
- #include "i915_reg.h"
- #include "i9xx_wm.h"
-@@ -19,6 +17,7 @@
- #include "intel_display.h"
- #include "intel_display_regs.h"
- #include "intel_display_trace.h"
-+#include "intel_dram.h"
- #include "intel_fb.h"
- #include "intel_mchbar_regs.h"
- #include "intel_wm.h"
-diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
-index 1f6461be50ef..957c90e62569 100644
---- a/drivers/gpu/drm/i915/display/intel_bw.c
-+++ b/drivers/gpu/drm/i915/display/intel_bw.c
-@@ -6,8 +6,6 @@
- #include <drm/drm_atomic_state_helper.h>
- #include <drm/drm_print.h>
- 
--#include "soc/intel_dram.h"
--
- #include "i915_drv.h"
- #include "i915_reg.h"
- #include "intel_bw.h"
-@@ -16,6 +14,7 @@
- #include "intel_display_regs.h"
- #include "intel_display_types.h"
- #include "intel_display_utils.h"
-+#include "intel_dram.h"
- #include "intel_mchbar_regs.h"
- #include "intel_pcode.h"
- #include "intel_uncore.h"
-diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-index 37801c744b05..531819391c8c 100644
---- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-+++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-@@ -28,8 +28,6 @@
- #include <drm/drm_fixed.h>
- #include <drm/drm_print.h>
- 
--#include "soc/intel_dram.h"
--
- #include "hsw_ips.h"
- #include "i915_drv.h"
- #include "i915_reg.h"
-@@ -42,6 +40,7 @@
- #include "intel_display_regs.h"
- #include "intel_display_types.h"
- #include "intel_display_utils.h"
-+#include "intel_dram.h"
- #include "intel_mchbar_regs.h"
- #include "intel_pci_config.h"
- #include "intel_pcode.h"
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
-index a383ef23391d..9c5f0277d8c2 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-@@ -8,8 +8,6 @@
- 
- #include <drm/drm_print.h>
- 
--#include "soc/intel_dram.h"
--
- #include "i915_drv.h"
- #include "i915_reg.h"
- #include "intel_backlight_regs.h"
-@@ -25,6 +23,7 @@
- #include "intel_display_types.h"
- #include "intel_display_utils.h"
- #include "intel_dmc.h"
-+#include "intel_dram.h"
- #include "intel_mchbar_regs.h"
- #include "intel_parent.h"
- #include "intel_pch_refclk.h"
-diff --git a/drivers/gpu/drm/i915/soc/intel_dram.c b/drivers/gpu/drm/i915/display/intel_dram.c
-similarity index 99%
-rename from drivers/gpu/drm/i915/soc/intel_dram.c
-rename to drivers/gpu/drm/i915/display/intel_dram.c
-index cfe96c3c1b1a..7142772f2a6e 100644
---- a/drivers/gpu/drm/i915/soc/intel_dram.c
-+++ b/drivers/gpu/drm/i915/display/intel_dram.c
-@@ -8,11 +8,10 @@
- #include <drm/drm_managed.h>
- #include <drm/drm_print.h>
- 
--#include "../display/intel_display_core.h" /* FIXME */
--
- #include "i915_drv.h"
- #include "i915_reg.h"
--#include "i915_utils.h"
-+#include "intel_display_core.h"
-+#include "intel_display_utils.h"
- #include "intel_dram.h"
- #include "intel_mchbar_regs.h"
- #include "intel_pcode.h"
-diff --git a/drivers/gpu/drm/i915/soc/intel_dram.h b/drivers/gpu/drm/i915/display/intel_dram.h
-similarity index 100%
-rename from drivers/gpu/drm/i915/soc/intel_dram.h
-rename to drivers/gpu/drm/i915/display/intel_dram.h
-diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
-index 54e9e0be019d..a33e0cec8cba 100644
---- a/drivers/gpu/drm/i915/display/skl_watermark.c
-+++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-@@ -8,7 +8,6 @@
- #include <drm/drm_blend.h>
- #include <drm/drm_print.h>
- 
--#include "soc/intel_dram.h"
- #include "i915_reg.h"
- #include "i9xx_wm.h"
- #include "intel_atomic.h"
-@@ -23,6 +22,7 @@
- #include "intel_display_rpm.h"
- #include "intel_display_types.h"
- #include "intel_display_utils.h"
-+#include "intel_dram.h"
- #include "intel_fb.h"
- #include "intel_fixed.h"
- #include "intel_flipq.h"
+@@ -27,6 +27,7 @@ i915-y += \
+ 	i915_config.o \
+ 	i915_driver.o \
+ 	i915_drm_client.o \
++	i915_edram.o \
+ 	i915_getparam.o \
+ 	i915_ioctl.o \
+ 	i915_irq.o \
 diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-index 44a17ffc3058..d1f573f1b6cc 100644
+index 7c60b6873934..44a17ffc3058 100644
 --- a/drivers/gpu/drm/i915/i915_driver.c
 +++ b/drivers/gpu/drm/i915/i915_driver.c
-@@ -59,6 +59,7 @@
- #include "display/intel_dmc.h"
- #include "display/intel_dp.h"
- #include "display/intel_dpt.h"
-+#include "display/intel_dram.h"
- #include "display/intel_encoder.h"
- #include "display/intel_fbdev.h"
- #include "display/intel_gmbus.h"
-@@ -87,7 +88,6 @@
- #include "pxp/intel_pxp_debugfs.h"
- #include "pxp/intel_pxp_pm.h"
+@@ -94,6 +94,7 @@
+ #include "i915_driver.h"
+ #include "i915_drm_client.h"
+ #include "i915_drv.h"
++#include "i915_edram.h"
+ #include "i915_file_private.h"
+ #include "i915_getparam.h"
+ #include "i915_hwmon.h"
+@@ -493,7 +494,7 @@ static int i915_driver_hw_probe(struct drm_i915_private *dev_priv)
+ 	}
  
--#include "soc/intel_dram.h"
- #include "soc/intel_gmch.h"
+ 	/* needs to be done before ggtt probe */
+-	intel_dram_edram_detect(dev_priv);
++	i915_edram_detect(dev_priv);
  
- #include "i915_debugfs.h"
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index 1a3aa041820d..85642340a8fa 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -224,7 +224,6 @@ xe-$(CONFIG_DRM_XE_DISPLAY) += \
+ 	ret = i915_set_dma_info(dev_priv);
+ 	if (ret)
+diff --git a/drivers/gpu/drm/i915/i915_edram.c b/drivers/gpu/drm/i915/i915_edram.c
+new file mode 100644
+index 000000000000..5818ec396d1e
+--- /dev/null
++++ b/drivers/gpu/drm/i915/i915_edram.c
+@@ -0,0 +1,44 @@
++// SPDX-License-Identifier: MIT
++/* Copyright © 2025 Intel Corporation */
++
++#include <drm/drm_print.h>
++
++#include "i915_drv.h"
++#include "i915_edram.h"
++#include "i915_reg.h"
++
++static u32 gen9_edram_size_mb(struct drm_i915_private *i915, u32 cap)
++{
++	static const u8 ways[8] = { 4, 8, 12, 16, 16, 16, 16, 16 };
++	static const u8 sets[4] = { 1, 1, 2, 2 };
++
++	return EDRAM_NUM_BANKS(cap) *
++		ways[EDRAM_WAYS_IDX(cap)] *
++		sets[EDRAM_SETS_IDX(cap)];
++}
++
++void i915_edram_detect(struct drm_i915_private *i915)
++{
++	u32 edram_cap = 0;
++
++	if (!(IS_HASWELL(i915) || IS_BROADWELL(i915) || GRAPHICS_VER(i915) >= 9))
++		return;
++
++	edram_cap = intel_uncore_read_fw(&i915->uncore, HSW_EDRAM_CAP);
++
++	/* NB: We can't write IDICR yet because we don't have gt funcs set up */
++
++	if (!(edram_cap & EDRAM_ENABLED))
++		return;
++
++	/*
++	 * The needed capability bits for size calculation are not there with
++	 * pre gen9 so return 128MB always.
++	 */
++	if (GRAPHICS_VER(i915) < 9)
++		i915->edram_size_mb = 128;
++	else
++		i915->edram_size_mb = gen9_edram_size_mb(i915, edram_cap);
++
++	drm_info(&i915->drm, "Found %uMB of eDRAM\n", i915->edram_size_mb);
++}
+diff --git a/drivers/gpu/drm/i915/i915_edram.h b/drivers/gpu/drm/i915/i915_edram.h
+new file mode 100644
+index 000000000000..8319422ace9d
+--- /dev/null
++++ b/drivers/gpu/drm/i915/i915_edram.h
+@@ -0,0 +1,11 @@
++/* SPDX-License-Identifier: MIT */
++/* Copyright © 2025 Intel Corporation */
++
++#ifndef __I915_DRAM_H__
++#define __I915_DRAM_H__
++
++struct drm_i915_private;
++
++void i915_edram_detect(struct drm_i915_private *i915);
++
++#endif /* __I915_DRAM_H__ */
+diff --git a/drivers/gpu/drm/i915/soc/intel_dram.c b/drivers/gpu/drm/i915/soc/intel_dram.c
+index 739cfe48f6db..cfe96c3c1b1a 100644
+--- a/drivers/gpu/drm/i915/soc/intel_dram.c
++++ b/drivers/gpu/drm/i915/soc/intel_dram.c
+@@ -861,39 +861,3 @@ const struct dram_info *intel_dram_info(struct drm_device *drm)
  
- # SOC code shared with i915
- xe-$(CONFIG_DRM_XE_DISPLAY) += \
--	i915-soc/intel_dram.o \
- 	i915-soc/intel_rom.o
- 
- # Display code shared with i915
-@@ -276,6 +275,7 @@ xe-$(CONFIG_DRM_XE_DISPLAY) += \
- 	i915-display/intel_dpll.o \
- 	i915-display/intel_dpll_mgr.o \
- 	i915-display/intel_dpt_common.o \
-+	i915-display/intel_dram.o \
- 	i915-display/intel_drrs.o \
- 	i915-display/intel_dsb.o \
- 	i915-display/intel_dsi.o \
-diff --git a/drivers/gpu/drm/xe/compat-i915-headers/soc/intel_dram.h b/drivers/gpu/drm/xe/compat-i915-headers/soc/intel_dram.h
-deleted file mode 100644
-index 65707e20c557..000000000000
---- a/drivers/gpu/drm/xe/compat-i915-headers/soc/intel_dram.h
-+++ /dev/null
-@@ -1,6 +0,0 @@
--/* SPDX-License-Identifier: MIT */
--/*
-- * Copyright © 2023 Intel Corporation
-- */
+ 	return i915->dram_info;
+ }
 -
--#include "../../../i915/soc/intel_dram.h"
-diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
-index e3320d9e6314..9b1d21e03df0 100644
---- a/drivers/gpu/drm/xe/display/xe_display.c
-+++ b/drivers/gpu/drm/xe/display/xe_display.c
-@@ -17,7 +17,6 @@
- #include <drm/intel/display_parent_interface.h>
- #include <uapi/drm/xe_drm.h>
+-static u32 gen9_edram_size_mb(struct drm_i915_private *i915, u32 cap)
+-{
+-	static const u8 ways[8] = { 4, 8, 12, 16, 16, 16, 16, 16 };
+-	static const u8 sets[4] = { 1, 1, 2, 2 };
+-
+-	return EDRAM_NUM_BANKS(cap) *
+-		ways[EDRAM_WAYS_IDX(cap)] *
+-		sets[EDRAM_SETS_IDX(cap)];
+-}
+-
+-void intel_dram_edram_detect(struct drm_i915_private *i915)
+-{
+-	u32 edram_cap = 0;
+-
+-	if (!(IS_HASWELL(i915) || IS_BROADWELL(i915) || GRAPHICS_VER(i915) >= 9))
+-		return;
+-
+-	edram_cap = intel_uncore_read_fw(&i915->uncore, HSW_EDRAM_CAP);
+-
+-	/* NB: We can't write IDICR yet because we don't have gt funcs set up */
+-
+-	if (!(edram_cap & EDRAM_ENABLED))
+-		return;
+-
+-	/*
+-	 * The needed capability bits for size calculation are not there with
+-	 * pre gen9 so return 128MB always.
+-	 */
+-	if (GRAPHICS_VER(i915) < 9)
+-		i915->edram_size_mb = 128;
+-	else
+-		i915->edram_size_mb = gen9_edram_size_mb(i915, edram_cap);
+-
+-	drm_info(&i915->drm, "Found %uMB of eDRAM\n", i915->edram_size_mb);
+-}
+diff --git a/drivers/gpu/drm/i915/soc/intel_dram.h b/drivers/gpu/drm/i915/soc/intel_dram.h
+index 8475ee379daa..58aaf2f91afe 100644
+--- a/drivers/gpu/drm/i915/soc/intel_dram.h
++++ b/drivers/gpu/drm/i915/soc/intel_dram.h
+@@ -35,7 +35,6 @@ struct dram_info {
+ 	bool has_16gb_dimms;
+ };
  
--#include "soc/intel_dram.h"
- #include "intel_acpi.h"
- #include "intel_audio.h"
- #include "intel_bw.h"
-@@ -29,6 +28,7 @@
- #include "intel_dmc.h"
- #include "intel_dmc_wl.h"
- #include "intel_dp.h"
-+#include "intel_dram.h"
- #include "intel_encoder.h"
- #include "intel_fbdev.h"
- #include "intel_hdcp.h"
+-void intel_dram_edram_detect(struct drm_i915_private *i915);
+ int intel_dram_detect(struct drm_i915_private *i915);
+ unsigned int intel_fsb_freq(struct drm_i915_private *i915);
+ unsigned int intel_mem_freq(struct drm_i915_private *i915);
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index 0b2fa7c56d38..a072c020b84b 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -650,12 +650,6 @@ struct xe_device {
+ 	 */
+ 	const struct dram_info *dram_info;
+ 
+-	/*
+-	 * edram size in MB.
+-	 * Cannot be determined by PCIID. You must always read a register.
+-	 */
+-	u32 edram_size_mb;
+-
+ 	struct intel_uncore {
+ 		spinlock_t lock;
+ 	} uncore;
 -- 
 2.47.3
 
