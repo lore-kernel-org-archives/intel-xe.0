@@ -4,55 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E0C8CCF256B
-	for <intel-xe@archiver.kernel.org>; Wed, 19 Nov 2025 08:59:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C8FD3CF259E
+	for <intel-xe@archiver.kernel.org>; Wed, 19 Nov 2025 08:59:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8FFED10E5C0;
-	Wed, 19 Nov 2025 08:59:11 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZtEz2AXZ";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 891B410E5AE
- for <intel-xe@lists.freedesktop.org>; Wed, 19 Nov 2025 08:59:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1763542749; x=1795078749;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=mbQLCx0Nf7eFy3+h24DzXxWc+lNWrDysCorismzKQf8=;
- b=ZtEz2AXZNlpa9sfdDqIhSD7MUSm5Se1cr6E/6DSs616r0uTX75GeIY47
- yNLmrZOlai2pXBLSM317y61zwtCbYpQhFZ3DkpVEZ8RxGThTZJB4Af8Sb
- f++WFONa15408Qbt9lY3lUjskFs2PvLw1lvPa6dGPC3uNsoLpAgOpINHz
- HS2o6GGCrqZ8067ITyxTU36q0xsK19210TqQIUY5OS/iB/aHNzKou+sSq
- WYm5I9IiyHGS6HRL/Kaq/DgjGCARU6+LrqmeklTr8a56F2i5aB6vUwU4y
- RZsCf6cgkyTgpn1tQln8gpOJx7FUh9N7E+gnOBZZLyDErwpz+oybJvMU6 w==;
-X-CSE-ConnectionGUID: gC/dV1MYRmWhumgpS4Vnxg==
-X-CSE-MsgGUID: XtkUTu2RQ0eyq2y5tfFGLQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11617"; a="64774887"
-X-IronPort-AV: E=Sophos;i="6.19,315,1754982000"; d="scan'208";a="64774887"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Nov 2025 00:59:08 -0800
-X-CSE-ConnectionGUID: LebYcQCwT0GGbbNHTCkUAQ==
-X-CSE-MsgGUID: OErAdOB2RJOZu17n656l7g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,315,1754982000"; d="scan'208";a="190652238"
-Received: from yadavs-z690i-a-ultra-plus.iind.intel.com ([10.190.216.90])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Nov 2025 00:59:06 -0800
-From: Sanjay Yadav <sanjay.kumar.yadav@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: matthew.auld@intel.com,
- =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
-Subject: [PATCH v6] drm/xe/uapi: Add NO_COMPRESSION BO flag and query
- capability
-Date: Wed, 19 Nov 2025 14:27:38 +0530
-Message-ID: <20251119085737.3885949-2-sanjay.kumar.yadav@intel.com>
-X-Mailer: git-send-email 2.52.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8CB2810E356;
+	Wed, 19 Nov 2025 08:59:38 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 46AD610E235;
+ Wed, 19 Nov 2025 08:59:38 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1418567403675949312=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_drm/i915/display=3A_change_?=
+ =?utf-8?q?pipe_order_for_platforms_with_big_joiner_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 19 Nov 2025 08:59:38 -0000
+Message-ID: <176354277828.8491.6924424298714401892@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20251118095801.2248786-1-jani.nikula@intel.com>
+In-Reply-To: <20251118095801.2248786-1-jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,186 +36,209 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Introduce DRM_XE_GEM_CREATE_FLAG_NO_COMPRESSION to let userspace
-opt out of CCS compression on a per-BO basis. When set, the driver
-maps this to XE_BO_FLAG_NO_COMPRESSION, skips CCS metadata
-allocation/clearing, and rejects compressed PAT indices at vm_bind.
-This avoids extra memory ops and manual CCS state handling for buffers.
+--===============1418567403675949312==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-To allow userspace to detect at runtime whether the kernel supports this
-feature, add DRM_XE_QUERY_CONFIG_FLAG_HAS_NO_COMPRESSION_HINT and expose
-it via query_config() on Xe2+ platforms.
+== Series Details ==
 
-Mesa PR: https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/38425
-IGT PR: https://patchwork.freedesktop.org/patch/685180/
+Series: drm/i915/display: change pipe order for platforms with big joiner (rev2)
+URL   : https://patchwork.freedesktop.org/series/157703/
+State : failure
 
-v2
-- Changed error code from -EINVAL to -EOPNOTSUPP for unsupported flag
-  usage on pre-Xe2 platforms
-- Fixed checkpatch warning in xe_vm.c
-- Fixed kernel-doc formatting in xe_drm.h
+== Summary ==
 
-v3
-- Rebase
-- Updated commit title and description
-- Added UAPI for DRM_XE_QUERY_CONFIG_FLAG_HAS_NO_COMPRESSION_HINT and
-  exposed it via query_config()
+CI Bug Log - changes from xe-4123-27427255cc2b36b2612a868bf937d576d15e8c9c_BAT -> xe-pw-157703v2_BAT
+====================================================
 
-v4
-- Rebase
+Summary
+-------
 
-v5
-- Included Mesa PR and IGT PR in the commit description
-- Used xe_pat_index_get_comp_en() to extract the compression
+  **FAILURE**
 
-v6
-- Added XE_IOCTL_DBG() checks for argument validation
+  Serious unknown changes coming with xe-pw-157703v2_BAT absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-157703v2_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
 
-Suggested-by: Matthew Auld <matthew.auld@intel.com>
-Suggested-by: José Roberto de Souza <jose.souza@intel.com>
-Acked-by: José Roberto de Souza <jose.souza@intel.com>
-Signed-off-by: Sanjay Yadav <sanjay.kumar.yadav@intel.com>
----
- drivers/gpu/drm/xe/xe_bo.c    | 15 +++++++++++++--
- drivers/gpu/drm/xe/xe_bo.h    |  1 +
- drivers/gpu/drm/xe/xe_query.c |  3 +++
- drivers/gpu/drm/xe/xe_vm.c    |  4 ++++
- include/uapi/drm/xe_drm.h     | 16 ++++++++++++++++
- 5 files changed, 37 insertions(+), 2 deletions(-)
+  
 
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index b0bd31d14bb9..a800e86ba3d3 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -3183,7 +3183,8 @@ int xe_gem_create_ioctl(struct drm_device *dev, void *data,
- 	if (XE_IOCTL_DBG(xe, args->flags &
- 			 ~(DRM_XE_GEM_CREATE_FLAG_DEFER_BACKING |
- 			   DRM_XE_GEM_CREATE_FLAG_SCANOUT |
--			   DRM_XE_GEM_CREATE_FLAG_NEEDS_VISIBLE_VRAM)))
-+			   DRM_XE_GEM_CREATE_FLAG_NEEDS_VISIBLE_VRAM |
-+			   DRM_XE_GEM_CREATE_FLAG_NO_COMPRESSION)))
- 		return -EINVAL;
- 
- 	if (XE_IOCTL_DBG(xe, args->handle))
-@@ -3205,6 +3206,12 @@ int xe_gem_create_ioctl(struct drm_device *dev, void *data,
- 	if (args->flags & DRM_XE_GEM_CREATE_FLAG_SCANOUT)
- 		bo_flags |= XE_BO_FLAG_SCANOUT;
- 
-+	if (args->flags & DRM_XE_GEM_CREATE_FLAG_NO_COMPRESSION) {
-+		if (XE_IOCTL_DBG(xe, GRAPHICS_VER(xe) < 20))
-+			return -EOPNOTSUPP;
-+		bo_flags |= XE_BO_FLAG_NO_COMPRESSION;
-+	}
-+
- 	bo_flags |= args->placement << (ffs(XE_BO_FLAG_SYSTEM) - 1);
- 
- 	/* CCS formats need physical placement at a 64K alignment in VRAM. */
-@@ -3526,8 +3533,12 @@ bool xe_bo_needs_ccs_pages(struct xe_bo *bo)
- 	 * Compression implies coh_none, therefore we know for sure that WB
- 	 * memory can't currently use compression, which is likely one of the
- 	 * common cases.
-+	 * Additionally, userspace may explicitly request no compression via the
-+	 * DRM_XE_GEM_CREATE_FLAG_NO_COMPRESSION flag, which should also disable
-+	 * CCS usage.
- 	 */
--	if (bo->cpu_caching == DRM_XE_GEM_CPU_CACHING_WB)
-+	if (bo->cpu_caching == DRM_XE_GEM_CPU_CACHING_WB ||
-+	    bo->flags & XE_BO_FLAG_NO_COMPRESSION)
- 		return false;
- 
- 	return true;
-diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
-index 911d5b90461a..8ab4474129c3 100644
---- a/drivers/gpu/drm/xe/xe_bo.h
-+++ b/drivers/gpu/drm/xe/xe_bo.h
-@@ -50,6 +50,7 @@
- #define XE_BO_FLAG_GGTT3		BIT(23)
- #define XE_BO_FLAG_CPU_ADDR_MIRROR	BIT(24)
- #define XE_BO_FLAG_FORCE_USER_VRAM	BIT(25)
-+#define XE_BO_FLAG_NO_COMPRESSION	BIT(26)
- 
- /* this one is trigger internally only */
- #define XE_BO_FLAG_INTERNAL_TEST	BIT(30)
-diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
-index 1c0915e2cc16..b392c9b3f0c9 100644
---- a/drivers/gpu/drm/xe/xe_query.c
-+++ b/drivers/gpu/drm/xe/xe_query.c
-@@ -342,6 +342,9 @@ static int query_config(struct xe_device *xe, struct drm_xe_device_query *query)
- 	if (xe->info.has_usm && IS_ENABLED(CONFIG_DRM_XE_GPUSVM))
- 		config->info[DRM_XE_QUERY_CONFIG_FLAGS] |=
- 			DRM_XE_QUERY_CONFIG_FLAG_HAS_CPU_ADDR_MIRROR;
-+	if (GRAPHICS_VER(xe) >= 20)
-+		config->info[DRM_XE_QUERY_CONFIG_FLAGS] |=
-+			DRM_XE_QUERY_CONFIG_FLAG_HAS_NO_COMPRESSION_HINT;
- 	config->info[DRM_XE_QUERY_CONFIG_FLAGS] |=
- 			DRM_XE_QUERY_CONFIG_FLAG_HAS_LOW_LATENCY;
- 	config->info[DRM_XE_QUERY_CONFIG_MIN_ALIGNMENT] =
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 7cac646bdf1c..f5681f0c9288 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -3484,6 +3484,10 @@ static int xe_vm_bind_ioctl_validate_bo(struct xe_device *xe, struct xe_bo *bo,
- {
- 	u16 coh_mode;
- 
-+	if (XE_IOCTL_DBG(xe, (bo->flags & XE_BO_FLAG_NO_COMPRESSION) &&
-+			 xe_pat_index_get_comp_en(xe, pat_index)))
-+		return -EINVAL;
-+
- 	if (XE_IOCTL_DBG(xe, range > xe_bo_size(bo)) ||
- 	    XE_IOCTL_DBG(xe, obj_offset >
- 			 xe_bo_size(bo) - range)) {
-diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index 47853659a705..b9840cb77360 100644
---- a/include/uapi/drm/xe_drm.h
-+++ b/include/uapi/drm/xe_drm.h
-@@ -403,6 +403,9 @@ struct drm_xe_query_mem_regions {
-  *      has low latency hint support
-  *    - %DRM_XE_QUERY_CONFIG_FLAG_HAS_CPU_ADDR_MIRROR - Flag is set if the
-  *      device has CPU address mirroring support
-+ *    - %DRM_XE_QUERY_CONFIG_FLAG_HAS_NO_COMPRESSION_HINT - Flag is set if the
-+ *      device supports the userspace hint %DRM_XE_GEM_CREATE_FLAG_NO_COMPRESSION.
-+ *      This is exposed only on Xe2+.
-  *  - %DRM_XE_QUERY_CONFIG_MIN_ALIGNMENT - Minimal memory alignment
-  *    required by this device, typically SZ_4K or SZ_64K
-  *  - %DRM_XE_QUERY_CONFIG_VA_BITS - Maximum bits of a virtual address
-@@ -421,6 +424,7 @@ struct drm_xe_query_config {
- 	#define DRM_XE_QUERY_CONFIG_FLAG_HAS_VRAM	(1 << 0)
- 	#define DRM_XE_QUERY_CONFIG_FLAG_HAS_LOW_LATENCY	(1 << 1)
- 	#define DRM_XE_QUERY_CONFIG_FLAG_HAS_CPU_ADDR_MIRROR	(1 << 2)
-+	#define DRM_XE_QUERY_CONFIG_FLAG_HAS_NO_COMPRESSION_HINT (1 << 3)
- #define DRM_XE_QUERY_CONFIG_MIN_ALIGNMENT		2
- #define DRM_XE_QUERY_CONFIG_VA_BITS			3
- #define DRM_XE_QUERY_CONFIG_MAX_EXEC_QUEUE_PRIORITY	4
-@@ -791,6 +795,17 @@ struct drm_xe_device_query {
-  *    need to use VRAM for display surfaces, therefore the kernel requires
-  *    setting this flag for such objects, otherwise an error is thrown on
-  *    small-bar systems.
-+ *  - %DRM_XE_GEM_CREATE_FLAG_NO_COMPRESSION - Allows userspace to
-+ *    hint that compression (CCS) should be disabled for the buffer being
-+ *    created. This can avoid unnecessary memory operations and CCS state
-+ *    management.
-+ *    On pre-Xe2 platforms, this flag is currently rejected as compression
-+ *    control is not supported via PAT index. On Xe2+ platforms, compression
-+ *    is controlled via PAT entries. If this flag is set, the driver will reject
-+ *    any VM bind that requests a PAT index enabling compression for this BO.
-+ *    Note: On dGPU platforms, there is currently no change in behavior with
-+ *    this flag, but future improvements may leverage it. The current benefit is
-+ *    primarily applicable to iGPU platforms.
-  *
-  * @cpu_caching supports the following values:
-  *  - %DRM_XE_GEM_CPU_CACHING_WB - Allocate the pages with write-back
-@@ -837,6 +852,7 @@ struct drm_xe_gem_create {
- #define DRM_XE_GEM_CREATE_FLAG_DEFER_BACKING		(1 << 0)
- #define DRM_XE_GEM_CREATE_FLAG_SCANOUT			(1 << 1)
- #define DRM_XE_GEM_CREATE_FLAG_NEEDS_VISIBLE_VRAM	(1 << 2)
-+#define DRM_XE_GEM_CREATE_FLAG_NO_COMPRESSION		(1 << 3)
- 	/**
- 	 * @flags: Flags, currently a mask of memory instances of where BO can
- 	 * be placed
--- 
-2.52.0
+Participating hosts (13 -> 13)
+------------------------------
 
+  No changes in participating hosts
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in xe-pw-157703v2_BAT:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24:
+    - bat-adlp-7:         [PASS][1] -> [FAIL][2] +20 other tests fail
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4123-27427255cc2b36b2612a868bf937d576d15e8c9c/bat-adlp-7/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157703v2/bat-adlp-7/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24.html
+
+  * igt@kms_pipe_crc_basic@hang-read-crc@pipe-c-edp-1:
+    - bat-ptl-2:          [PASS][3] -> [FAIL][4] +20 other tests fail
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4123-27427255cc2b36b2612a868bf937d576d15e8c9c/bat-ptl-2/igt@kms_pipe_crc_basic@hang-read-crc@pipe-c-edp-1.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157703v2/bat-ptl-2/igt@kms_pipe_crc_basic@hang-read-crc@pipe-c-edp-1.html
+
+  * igt@kms_pipe_crc_basic@hang-read-crc@pipe-c-hdmi-a-3:
+    - bat-bmg-1:          [PASS][5] -> [FAIL][6] +20 other tests fail
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4123-27427255cc2b36b2612a868bf937d576d15e8c9c/bat-bmg-1/igt@kms_pipe_crc_basic@hang-read-crc@pipe-c-hdmi-a-3.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157703v2/bat-bmg-1/igt@kms_pipe_crc_basic@hang-read-crc@pipe-c-hdmi-a-3.html
+
+  * igt@kms_pipe_crc_basic@nonblocking-crc:
+    - bat-dg2-oem2:       [PASS][7] -> [FAIL][8] +20 other tests fail
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4123-27427255cc2b36b2612a868bf937d576d15e8c9c/bat-dg2-oem2/igt@kms_pipe_crc_basic@nonblocking-crc.html
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157703v2/bat-dg2-oem2/igt@kms_pipe_crc_basic@nonblocking-crc.html
+
+  * igt@xe_module_load@load:
+    - bat-lnl-1:          [PASS][9] -> [ABORT][10]
+   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4123-27427255cc2b36b2612a868bf937d576d15e8c9c/bat-lnl-1/igt@xe_module_load@load.html
+   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157703v2/bat-lnl-1/igt@xe_module_load@load.html
+    - bat-lnl-2:          [PASS][11] -> [ABORT][12]
+   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4123-27427255cc2b36b2612a868bf937d576d15e8c9c/bat-lnl-2/igt@xe_module_load@load.html
+   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157703v2/bat-lnl-2/igt@xe_module_load@load.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in xe-pw-157703v2_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@xe_waitfence@reltime:
+    - bat-dg2-oem2:       [FAIL][13] ([Intel XE#6520]) -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4123-27427255cc2b36b2612a868bf937d576d15e8c9c/bat-dg2-oem2/igt@xe_waitfence@reltime.html
+   [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157703v2/bat-dg2-oem2/igt@xe_waitfence@reltime.html
+
+  
+  [Intel XE#6520]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520
+
+
+Build changes
+-------------
+
+  * Linux: xe-4123-27427255cc2b36b2612a868bf937d576d15e8c9c -> xe-pw-157703v2
+
+  IGT_8631: 8631
+  xe-4123-27427255cc2b36b2612a868bf937d576d15e8c9c: 27427255cc2b36b2612a868bf937d576d15e8c9c
+  xe-pw-157703v2: 157703v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157703v2/index.html
+
+--===============1418567403675949312==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/display: change pipe order for platforms with big joiner (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/157703/">https://patchwork.freedesktop.org/series/157703/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157703v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157703v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4123-27427255cc2b36b2612a868bf937d576d15e8c9c_BAT -&gt; xe-pw-157703v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-157703v2_BAT absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-157703v2_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-157703v2_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>
+<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24:</p>
+<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4123-27427255cc2b36b2612a868bf937d576d15e8c9c/bat-adlp-7/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157703v2/bat-adlp-7/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24.html">FAIL</a> +20 other tests fail</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@hang-read-crc@pipe-c-edp-1:</p>
+<ul>
+<li>bat-ptl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4123-27427255cc2b36b2612a868bf937d576d15e8c9c/bat-ptl-2/igt@kms_pipe_crc_basic@hang-read-crc@pipe-c-edp-1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157703v2/bat-ptl-2/igt@kms_pipe_crc_basic@hang-read-crc@pipe-c-edp-1.html">FAIL</a> +20 other tests fail</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@hang-read-crc@pipe-c-hdmi-a-3:</p>
+<ul>
+<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4123-27427255cc2b36b2612a868bf937d576d15e8c9c/bat-bmg-1/igt@kms_pipe_crc_basic@hang-read-crc@pipe-c-hdmi-a-3.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157703v2/bat-bmg-1/igt@kms_pipe_crc_basic@hang-read-crc@pipe-c-hdmi-a-3.html">FAIL</a> +20 other tests fail</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@nonblocking-crc:</p>
+<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4123-27427255cc2b36b2612a868bf937d576d15e8c9c/bat-dg2-oem2/igt@kms_pipe_crc_basic@nonblocking-crc.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157703v2/bat-dg2-oem2/igt@kms_pipe_crc_basic@nonblocking-crc.html">FAIL</a> +20 other tests fail</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_module_load@load:</p>
+<ul>
+<li>bat-lnl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4123-27427255cc2b36b2612a868bf937d576d15e8c9c/bat-lnl-1/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157703v2/bat-lnl-1/igt@xe_module_load@load.html">ABORT</a></li>
+<li>bat-lnl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4123-27427255cc2b36b2612a868bf937d576d15e8c9c/bat-lnl-2/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157703v2/bat-lnl-2/igt@xe_module_load@load.html">ABORT</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-157703v2_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_waitfence@reltime:<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4123-27427255cc2b36b2612a868bf937d576d15e8c9c/bat-dg2-oem2/igt@xe_waitfence@reltime.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520">Intel XE#6520</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157703v2/bat-dg2-oem2/igt@xe_waitfence@reltime.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4123-27427255cc2b36b2612a868bf937d576d15e8c9c -&gt; xe-pw-157703v2</li>
+</ul>
+<p>IGT_8631: 8631<br />
+  xe-4123-27427255cc2b36b2612a868bf937d576d15e8c9c: 27427255cc2b36b2612a868bf937d576d15e8c9c<br />
+  xe-pw-157703v2: 157703v2</p>
+
+</body>
+</html>
+
+--===============1418567403675949312==--
