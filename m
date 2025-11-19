@@ -4,57 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B323CCF58C3
-	for <intel-xe@archiver.kernel.org>; Wed, 19 Nov 2025 18:16:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 66DB2CF58C8
+	for <intel-xe@archiver.kernel.org>; Wed, 19 Nov 2025 18:23:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 77CE610E65F;
-	Wed, 19 Nov 2025 18:16:41 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nvPH3NeR";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7ABCF10E679;
- Wed, 19 Nov 2025 18:16:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1763576199; x=1795112199;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=9fvAfzdnquge2YXtqd+I9H6+unvI9F8DqH0w8F0iip4=;
- b=nvPH3NeRWYwmGQaD21li249HiRtZnLvKRV+POc+c/C2rh3lHsmHeiXNI
- T4kxQgkbT9R/5xkvMrfpQLbWDyh9khR+OOwTEwtLrdT9pfJJSVIPz/c51
- 5zcu3GnNnwZFhJJoZf1lklVuCh33TuSSSrcloz7gDEjR3hQj7utC5lohs
- PrbZnNYHcoYsl43q0abiH4K+j8NlI4VNiW1gerPLzvkKbIaPkF+W7aKxj
- 4EkGQM0dUTcQq9AYsYtb+u90/LlQoyN7Euu5WuaPlqrQ42/jMa1F+dXkb
- QEsrdhDByIQWMCWG8W9KNVq1Llwd4yKouyDIIuLBtt9/lMlU/pxoTotaN Q==;
-X-CSE-ConnectionGUID: WL+SfGvsTQOhZ8YsWwbPMw==
-X-CSE-MsgGUID: dQrQXwsaRkuUcuYQIVQ1Dg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11618"; a="76987764"
-X-IronPort-AV: E=Sophos;i="6.19,316,1754982000"; d="scan'208";a="76987764"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Nov 2025 10:16:39 -0800
-X-CSE-ConnectionGUID: 5EavzRuiTS+i3W7weNq/mA==
-X-CSE-MsgGUID: c8uP2W4MQ5C9AEj7GNyWtg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,316,1754982000"; d="scan'208";a="190916644"
-Received: from aschofie-mobl2.amr.corp.intel.com (HELO localhost)
- ([10.124.221.119])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Nov 2025 10:16:38 -0800
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 6/6] drm/i915/panic: Clean up the variables
-Date: Wed, 19 Nov 2025 20:16:06 +0200
-Message-ID: <20251119181606.17129-7-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.49.1
-In-Reply-To: <20251119181606.17129-1-ville.syrjala@linux.intel.com>
-References: <20251119181606.17129-1-ville.syrjala@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2231B10E67B;
+	Wed, 19 Nov 2025 18:23:40 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8A10F10E67A;
+ Wed, 19 Nov 2025 18:23:39 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0718322504553004353=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_drm/i915/display=3A_change_?=
+ =?utf-8?q?pipe_allocation_order_for_discrete_platforms?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 19 Nov 2025 18:23:39 -0000
+Message-ID: <176357661955.8491.7974686455683071436@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20251119153321.2640969-1-jani.nikula@intel.com>
+In-Reply-To: <20251119153321.2640969-1-jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,163 +36,175 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+--===============0718322504553004353==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Use the standard variable names for things, and get rid of any
-annoying alasing variables. And sprinkle the consts in while at
-it.
+== Series Details ==
 
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/intel_plane.c | 55 ++++++++++------------
- drivers/gpu/drm/i915/display/intel_psr.c   |  4 +-
- drivers/gpu/drm/i915/display/intel_psr.h   |  3 +-
- 3 files changed, 29 insertions(+), 33 deletions(-)
+Series: drm/i915/display: change pipe allocation order for discrete platforms
+URL   : https://patchwork.freedesktop.org/series/157782/
+State : failure
 
-diff --git a/drivers/gpu/drm/i915/display/intel_plane.c b/drivers/gpu/drm/i915/display/intel_plane.c
-index 6a3d4ddc52a1..d1df4f1c0bc1 100644
---- a/drivers/gpu/drm/i915/display/intel_plane.c
-+++ b/drivers/gpu/drm/i915/display/intel_plane.c
-@@ -1274,34 +1274,33 @@ static unsigned int intel_4tile_get_offset(unsigned int width, unsigned int x, u
- 	return offset;
- }
- 
--static void intel_panic_flush(struct drm_plane *plane)
-+static void intel_panic_flush(struct drm_plane *_plane)
- {
--	struct intel_plane_state *plane_state = to_intel_plane_state(plane->state);
-+	struct intel_plane *plane = to_intel_plane(_plane);
-+	struct intel_display *display = to_intel_display(plane);
-+	const struct intel_plane_state *plane_state = to_intel_plane_state(plane->base.state);
- 	struct intel_crtc *crtc = to_intel_crtc(plane_state->hw.crtc);
--	struct intel_crtc_state *crtc_state = to_intel_crtc_state(crtc->base.state);
--	struct intel_plane *iplane = to_intel_plane(plane);
--	struct intel_display *display = to_intel_display(iplane);
--	struct drm_framebuffer *fb = plane_state->hw.fb;
--	struct intel_framebuffer *intel_fb = to_intel_framebuffer(fb);
-+	const struct intel_crtc_state *crtc_state = to_intel_crtc_state(crtc->base.state);
-+	const struct intel_framebuffer *fb = to_intel_framebuffer(plane_state->hw.fb);
- 
--	intel_panic_finish(intel_fb->panic);
-+	intel_panic_finish(fb->panic);
- 
- 	if (crtc_state->enable_psr2_sel_fetch) {
- 		/* Force a full update for psr2 */
--		intel_psr2_panic_force_full_update(display, crtc_state);
-+		intel_psr2_panic_force_full_update(crtc_state);
- 	}
- 
- 	/* Flush the cache and don't disable tiling if it's the fbdev framebuffer.*/
--	if (intel_fb == intel_fbdev_framebuffer(display->fbdev.fbdev)) {
-+	if (fb == intel_fbdev_framebuffer(display->fbdev.fbdev)) {
- 		struct iosys_map map;
- 
- 		intel_fbdev_get_map(display->fbdev.fbdev, &map);
--		drm_clflush_virt_range(map.vaddr, fb->pitches[0] * fb->height);
-+		drm_clflush_virt_range(map.vaddr, fb->base.pitches[0] * fb->base.height);
- 		return;
- 	}
- 
--	if (fb->modifier && iplane->disable_tiling)
--		iplane->disable_tiling(iplane);
-+	if (fb->base.modifier != DRM_FORMAT_MOD_LINEAR && plane->disable_tiling)
-+		plane->disable_tiling(plane);
- }
- 
- static unsigned int (*intel_get_tiling_func(u64 fb_modifier))(unsigned int width,
-@@ -1339,45 +1338,43 @@ static int intel_get_scanout_buffer(struct drm_plane *plane,
- {
- 	struct intel_plane_state *plane_state;
- 	struct drm_gem_object *obj;
--	struct drm_framebuffer *fb;
--	struct intel_framebuffer *intel_fb;
-+	struct intel_framebuffer *fb;
- 	struct intel_display *display = to_intel_display(plane->dev);
- 
- 	if (!plane->state || !plane->state->fb || !plane->state->visible)
- 		return -ENODEV;
- 
- 	plane_state = to_intel_plane_state(plane->state);
--	fb = plane_state->hw.fb;
--	intel_fb = to_intel_framebuffer(fb);
-+	fb = to_intel_framebuffer(plane_state->hw.fb);
- 
--	obj = intel_fb_bo(fb);
-+	obj = intel_fb_bo(&fb->base);
- 	if (!obj)
- 		return -ENODEV;
- 
--	if (intel_fb == intel_fbdev_framebuffer(display->fbdev.fbdev)) {
-+	if (fb == intel_fbdev_framebuffer(display->fbdev.fbdev)) {
- 		intel_fbdev_get_map(display->fbdev.fbdev, &sb->map[0]);
- 	} else {
- 		int ret;
- 		/* Can't disable tiling if DPT is in use */
--		if (intel_fb_uses_dpt(fb)) {
--			if (fb->format->cpp[0] != 4)
-+		if (intel_fb_uses_dpt(&fb->base)) {
-+			if (fb->base.format->cpp[0] != 4)
- 				return -EOPNOTSUPP;
--			intel_fb->panic_tiling = intel_get_tiling_func(fb->modifier);
--			if (!intel_fb->panic_tiling)
-+			fb->panic_tiling = intel_get_tiling_func(fb->base.modifier);
-+			if (!fb->panic_tiling)
- 				return -EOPNOTSUPP;
- 		}
--		sb->private = intel_fb;
--		ret = intel_panic_setup(intel_fb->panic, sb);
-+		sb->private = fb;
-+		ret = intel_panic_setup(fb->panic, sb);
- 		if (ret)
- 			return ret;
- 	}
--	sb->width = fb->width;
--	sb->height = fb->height;
-+	sb->width = fb->base.width;
-+	sb->height = fb->base.height;
- 	/* Use the generic linear format, because tiling, RC, CCS, CC
- 	 * will be disabled in disable_tiling()
- 	 */
--	sb->format = drm_format_info(fb->format->format);
--	sb->pitch[0] = fb->pitches[0];
-+	sb->format = drm_format_info(fb->base.format->format);
-+	sb->pitch[0] = fb->base.pitches[0];
- 
- 	return 0;
- }
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 65d58d485ed3..61ce23b50bce 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -2998,9 +2998,9 @@ int intel_psr2_sel_fetch_update(struct intel_atomic_state *state,
- 	return 0;
- }
- 
--void intel_psr2_panic_force_full_update(struct intel_display *display,
--					struct intel_crtc_state *crtc_state)
-+void intel_psr2_panic_force_full_update(const struct intel_crtc_state *crtc_state)
- {
-+	struct intel_display *display = to_intel_display(crtc_state);
- 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
- 	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
- 	u32 val = man_trk_ctl_enable_bit_get(display);
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.h b/drivers/gpu/drm/i915/display/intel_psr.h
-index 620b35928832..024ee4c30985 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.h
-+++ b/drivers/gpu/drm/i915/display/intel_psr.h
-@@ -59,8 +59,7 @@ int intel_psr2_sel_fetch_update(struct intel_atomic_state *state,
- 				struct intel_crtc *crtc);
- void intel_psr2_program_trans_man_trk_ctl(struct intel_dsb *dsb,
- 					  const struct intel_crtc_state *crtc_state);
--void intel_psr2_panic_force_full_update(struct intel_display *display,
--					struct intel_crtc_state *crtc_state);
-+void intel_psr2_panic_force_full_update(const struct intel_crtc_state *crtc_state);
- void intel_psr_pause(struct intel_dp *intel_dp);
- void intel_psr_resume(struct intel_dp *intel_dp);
- bool intel_psr_needs_vblank_notification(const struct intel_crtc_state *crtc_state);
--- 
-2.49.1
+== Summary ==
 
+CI Bug Log - changes from xe-4128-186229155346a45a09ce797200476a00872abbd2_BAT -> xe-pw-157782v1_BAT
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with xe-pw-157782v1_BAT absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-157782v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  
+
+Participating hosts (13 -> 13)
+------------------------------
+
+  No changes in participating hosts
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in xe-pw-157782v1_BAT:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@kms_pipe_crc_basic@nonblocking-crc:
+    - bat-dg2-oem2:       [PASS][1] -> [FAIL][2] +20 other tests fail
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4128-186229155346a45a09ce797200476a00872abbd2/bat-dg2-oem2/igt@kms_pipe_crc_basic@nonblocking-crc.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157782v1/bat-dg2-oem2/igt@kms_pipe_crc_basic@nonblocking-crc.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in xe-pw-157782v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_waitfence@reltime:
+    - bat-dg2-oem2:       [PASS][3] -> [FAIL][4] ([Intel XE#6520])
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4128-186229155346a45a09ce797200476a00872abbd2/bat-dg2-oem2/igt@xe_waitfence@reltime.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157782v1/bat-dg2-oem2/igt@xe_waitfence@reltime.html
+
+  
+#### Possible fixes ####
+
+  * igt@xe_waitfence@engine:
+    - bat-dg2-oem2:       [FAIL][5] ([Intel XE#6519]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4128-186229155346a45a09ce797200476a00872abbd2/bat-dg2-oem2/igt@xe_waitfence@engine.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157782v1/bat-dg2-oem2/igt@xe_waitfence@engine.html
+
+  
+  [Intel XE#6519]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519
+  [Intel XE#6520]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520
+
+
+Build changes
+-------------
+
+  * Linux: xe-4128-186229155346a45a09ce797200476a00872abbd2 -> xe-pw-157782v1
+
+  IGT_8633: 8633
+  xe-4128-186229155346a45a09ce797200476a00872abbd2: 186229155346a45a09ce797200476a00872abbd2
+  xe-pw-157782v1: 157782v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157782v1/index.html
+
+--===============0718322504553004353==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/display: change pipe allocation order for discrete platforms</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/157782/">https://patchwork.freedesktop.org/series/157782/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157782v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157782v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4128-186229155346a45a09ce797200476a00872abbd2_BAT -&gt; xe-pw-157782v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-157782v1_BAT absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-157782v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-157782v1_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@kms_pipe_crc_basic@nonblocking-crc:<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4128-186229155346a45a09ce797200476a00872abbd2/bat-dg2-oem2/igt@kms_pipe_crc_basic@nonblocking-crc.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157782v1/bat-dg2-oem2/igt@kms_pipe_crc_basic@nonblocking-crc.html">FAIL</a> +20 other tests fail</li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-157782v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@xe_waitfence@reltime:<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4128-186229155346a45a09ce797200476a00872abbd2/bat-dg2-oem2/igt@xe_waitfence@reltime.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157782v1/bat-dg2-oem2/igt@xe_waitfence@reltime.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520">Intel XE#6520</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_waitfence@engine:<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4128-186229155346a45a09ce797200476a00872abbd2/bat-dg2-oem2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519">Intel XE#6519</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157782v1/bat-dg2-oem2/igt@xe_waitfence@engine.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4128-186229155346a45a09ce797200476a00872abbd2 -&gt; xe-pw-157782v1</li>
+</ul>
+<p>IGT_8633: 8633<br />
+  xe-4128-186229155346a45a09ce797200476a00872abbd2: 186229155346a45a09ce797200476a00872abbd2<br />
+  xe-pw-157782v1: 157782v1</p>
+
+</body>
+</html>
+
+--===============0718322504553004353==--
