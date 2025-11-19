@@ -4,185 +4,182 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 68342CEE35E
-	for <intel-xe@archiver.kernel.org>; Wed, 19 Nov 2025 02:48:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 76023CF2564
+	for <intel-xe@archiver.kernel.org>; Wed, 19 Nov 2025 03:18:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 24E8E10E219;
-	Wed, 19 Nov 2025 02:48:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 307A710E0B8;
+	Wed, 19 Nov 2025 03:18:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="m8upnVaQ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EL+PEJyS";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 977E910E219
- for <intel-xe@lists.freedesktop.org>; Wed, 19 Nov 2025 02:48:35 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EB22810E0B8
+ for <intel-xe@lists.freedesktop.org>; Wed, 19 Nov 2025 03:18:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1763520515; x=1795056515;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:mime-version;
- bh=qORvh097S8d64g6GfFFGmEWVEfKpqqs74S2oYPxjU+4=;
- b=m8upnVaQfT3x8XLQbvwa5WgI4XQG94rF44SdfTzNSPmf8krQuIOUKTmm
- MjrLPtrtSH60piw1NY5iaNUjxe0Ppc72D05/iyWkZwTZdHBtoafSzQcZh
- zxSfAPhsd4jwXiR1ZHD9aODoEAiOipBhg4Iz1b+HgQA5BJdimcukj+zd8
- AmkRNvEnU4uv8d1sjcB2wPGhJYQhbeMY6lFitacIFAmmzKlLbBClLPIvb
- Ax/tvJYSMg7JVeonRJdtNATbeXxHZaM2kIwDgJB5QvFyiNl4wY5d+iFeV
- qbGwd+kAE/88/rpHR8pQQtG2P/oeyqNZLCLuMhVSKYKt7yvCEFQaih7qa A==;
-X-CSE-ConnectionGUID: yPFaNKEISYigKs4Yh6rSmw==
-X-CSE-MsgGUID: c3Clc17DS1ikfyvHza6jVA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11617"; a="69406806"
-X-IronPort-AV: E=Sophos;i="6.19,315,1754982000"; d="scan'208,217";a="69406806"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Nov 2025 18:48:35 -0800
-X-CSE-ConnectionGUID: /xXZKQzRTe2HD+iMkeWWlw==
-X-CSE-MsgGUID: I8kWEbN1TsevHtGRI+QlSA==
+ t=1763522284; x=1795058284;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=xiIvsmr7S318J76dJ94eg/vWP5O62ffP9EBFItFO9lM=;
+ b=EL+PEJySYlQBoCGCKKn1c9nySupdMgafValJRSqNji3XDXoqIs/f+vyN
+ 0G+v46xhrY9D6ZF9NLijDyqhPnPaEA5nnMqWetW7F9ldvfWFqTCOpsmG5
+ GhRw588Zz2D4veWVsPiVZt4L0QsKHChY+Be/fKgAnL0YYHsl6hmfrNUQv
+ 1Lt/nCQlSpFpm2onu3RehzCaA43C0dA7qx/vHKlkcj8VmBwP2KFevsn9f
+ yrBes304aLiCHKbg3YmddSczW67ytgsbODjZjB/dj0SJ2Vy/8pOkzWNcI
+ RFrFoj3vwSI7UC3jo7+uD3Vcy+YHA8tOYenB9L0NWOQ4+bjTeFadydYEq g==;
+X-CSE-ConnectionGUID: QjLrZEf+RVyGJa5rzVfSMA==
+X-CSE-MsgGUID: t25oIUTkQiaQeOZOoYf0Cw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11617"; a="65259688"
+X-IronPort-AV: E=Sophos;i="6.19,315,1754982000"; d="scan'208";a="65259688"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Nov 2025 19:18:04 -0800
+X-CSE-ConnectionGUID: JEcgBdWTQxiyyOC4/JfLFA==
+X-CSE-MsgGUID: N+JOmtevTfy9bfXiAx07xQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,315,1754982000"; 
- d="scan'208,217";a="190178405"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Nov 2025 18:48:36 -0800
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.19,315,1754982000"; d="scan'208";a="195400944"
+Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
+ by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Nov 2025 19:18:03 -0800
+Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Tue, 18 Nov 2025 18:48:34 -0800
-Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ 15.2.2562.27; Tue, 18 Nov 2025 19:18:03 -0800
+Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
+ FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27 via Frontend Transport; Tue, 18 Nov 2025 18:48:34 -0800
-Received: from PH0PR06CU001.outbound.protection.outlook.com (40.107.208.56) by
- edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
+ 15.2.2562.27 via Frontend Transport; Tue, 18 Nov 2025 19:18:03 -0800
+Received: from SJ2PR03CU001.outbound.protection.outlook.com (52.101.43.41) by
+ edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Tue, 18 Nov 2025 18:48:34 -0800
+ 15.2.2562.27; Tue, 18 Nov 2025 19:18:03 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=bRhzAM3UjWv7wZhSHj+PCMa/Oh6BoIV6KHYJFSn07Hz6j8C7uxrUhg0hTF6cYOJzOv9n1aeJ5PDWbwL8MUiulqptlSKT09cNF9Ie+JpvxUvjjNmQpcUYV3hB6l8myENomDhsNUbaLeEapLaOCIC6aM4rWo3ORYUq80N5yOZ79euGRs/5evnvlDaBxAnJvEPx9oFf6mrgesEOkaINtC4HBWfrwj5HG7tO1b8urkrDORPLTz9/YivwqaqE2Q5K6FIiQ9BSuV3NGG6gynrhAXDlWDWcP0aF3xEBr3qPWWoNmxG71eXeucpQLe1ddF4lWIiukj/qsGPPnOuluX3PO5WsTw==
+ b=jcCO6+GaqbPgK2a+8m1LwLWKpRdHPpJc9SUJEMgjS2OWtNnrkwEqWGdS/bujZ66xmTrPD1idk197robaqwf76ea4azML4494Kj+0N05sFK2u8VC4ebR0zaYGJ7wGpnY3wViiGiPFY8rnMUZCccdMGshWHBM6ikiO3fgqdIDX6iLT5FyOUqI+iJsjRo8qOJKW1jtUnVV50qNFkJRcjhz0rupUwz6aGXx+9+/fU7n2VR7bfoUTcXELK6U/iZcp0WlBbYnZjWqSesjtGIyaa3ePxClp0knDrmtwmUQ1Tc1EPA1NNNvNAuYiGVI9nCyc+X2NWerxEk/5yINrAN5SlMmaPQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=6ALHtJgbfYiSqCRxl9v48cc/brYFMNRe7ZOMpB9x+vs=;
- b=nKbIt58lGN3qA7De3Qjr74RTrUczoPxtqNn/KTHgjWzkPHZ/pBEo7gily2GTWt6aVyxFAIGdU1jDVM/y6ANH0rfVuCMJYk41hQKeWnYIoMVVnMFjwjjhQ0JRi0JFKe0OylJ5EdRfe+MotJyLvaXR09nr0znvGFMkNrJ6uVQPIIPBTWoU8VNMp6EbBq0RSthip+sZDbdclJ39S9eVox8eVJpKPTVskAzaAixvxbybtC9ui+IAyCUE28iqHklusPxgVByrYFzmTvCzqDoNjtbUgbk5cZ1Dn3BstrWa11v910vDnGV7lpfT4goEdgki4KHhkcBEP4VBeCBfhoMa7r+cqw==
+ bh=/bSebZ3zV55XEB54PlA78XEFIJMmpGIMg9cjeBeWzzM=;
+ b=obxkvhJAvHLzJDyCtc1iBP6Vq9rb0G17Jlk6LuL5lerxeEHYCKi4WOg4EKwjkYlXFHRoCVp2MCEE6x4h0QCFs/IFNHxIvfPw8EzPrGUY70LcLqTjWxuUwuMPBalxT8YUHpQvQhY/iQjTkMGFW5dk5vBGBUiqTlFVsfeHjRZuA/SPq9jp86GPtuHCQSqXGFmTyBJwc38/oUVlARYZKmLH7ArsJGT7QymRa45qA6n3aVmd6CMLyJngNouT9NcJ33T4SSSZQrnd+ITjsQSiqZubnvVMShtOwYkrB60vY9Su5uKfNMn4E9msT/kJEgXE1risAqHJ/BhI+Rr/4Pq8DxmGHg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from IA3PR11MB9226.namprd11.prod.outlook.com (2603:10b6:208:574::13)
- by SA3PR11MB9464.namprd11.prod.outlook.com (2603:10b6:806:464::23)
- with Microsoft SMTP Server (version=TLS1_2,
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
+ by DS0PR11MB8019.namprd11.prod.outlook.com (2603:10b6:8:12e::18) with
+ Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9320.22; Wed, 19 Nov
- 2025 02:48:33 +0000
-Received: from IA3PR11MB9226.namprd11.prod.outlook.com
- ([fe80::8602:e97d:97d7:af09]) by IA3PR11MB9226.namprd11.prod.outlook.com
- ([fe80::8602:e97d:97d7:af09%6]) with mapi id 15.20.9343.009; Wed, 19 Nov 2025
- 02:48:33 +0000
-Content-Type: multipart/alternative;
- boundary="------------QyqwybwJTPlc6y4IVvTrCoPm"
-Message-ID: <28f6a7e1-469a-4f83-8492-94cf9396c58a@intel.com>
-Date: Wed, 19 Nov 2025 03:48:28 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] drm/xe/vf: Start re-emission from first unsignaled job
- during VF migration
-To: Matthew Brost <matthew.brost@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, <michal.wajdeczko@intel.com>
-References: <20251031201345.3015516-1-matthew.brost@intel.com>
- <9c179328-bc36-49c6-9147-869b9ce2f77b@intel.com>
- <aQ2kVCs94QjLECVQ@lstrano-desk.jf.intel.com>
-Content-Language: en-US
-From: "Lis, Tomasz" <tomasz.lis@intel.com>
-In-Reply-To: <aQ2kVCs94QjLECVQ@lstrano-desk.jf.intel.com>
-X-ClientProxiedBy: WA2P291CA0021.POLP291.PROD.OUTLOOK.COM
- (2603:10a6:1d0:1e::29) To IA3PR11MB9226.namprd11.prod.outlook.com
- (2603:10b6:208:574::13)
+ 2025 03:18:01 +0000
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::9e94:e21f:e11a:332]) by PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::9e94:e21f:e11a:332%3]) with mapi id 15.20.9320.021; Wed, 19 Nov 2025
+ 03:18:00 +0000
+Date: Tue, 18 Nov 2025 19:17:58 -0800
+From: Matthew Brost <matthew.brost@intel.com>
+To: "Dong, Zhanjun" <zhanjun.dong@intel.com>
+CC: <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH v3] drm/xe/uc: Add stop on hardware initialization error
+Message-ID: <aR025izk8Q10bFOl@lstrano-desk.jf.intel.com>
+References: <20251028153820.3139977-1-zhanjun.dong@intel.com>
+ <aQEgDjfMVDYELrWJ@lstrano-desk.jf.intel.com>
+ <55e77810-bf9a-4914-9eec-8984d29684da@intel.com>
+ <84fa5b89-61e7-4aec-ab17-5057f9c52d74@intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <84fa5b89-61e7-4aec-ab17-5057f9c52d74@intel.com>
+X-ClientProxiedBy: MW3PR06CA0023.namprd06.prod.outlook.com
+ (2603:10b6:303:2a::28) To PH7PR11MB6522.namprd11.prod.outlook.com
+ (2603:10b6:510:212::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: IA3PR11MB9226:EE_|SA3PR11MB9464:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1af2677a-926f-4333-9c2d-08de271620d8
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|DS0PR11MB8019:EE_
+X-MS-Office365-Filtering-Correlation-Id: ddf80178-46d2-4a9f-3880-08de271a3e6e
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|1800799024|366016|13003099007|8096899003; 
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?cGt0ZEREYWhLa1VtQ1NQQnZpYVhxU2t0eG5xdmpSbjVDeGI2N1F4dmZxc3JV?=
- =?utf-8?B?cDNJRXhJc2swTVpmdlJ4SGlRSUhsaWtCNDNSaitaM0RkUzNQYWZNMnNRdHFE?=
- =?utf-8?B?WEtodUZFZnFqNVJicng3U3YzQXk1RG5qcitEWXZjUm1iaEU5SkZEYmxaMWh1?=
- =?utf-8?B?QnpvejdhNHphc0daRVpUTmdKVTkzRWdNanE3Z0Zld0hKeS84YVdNU0FzYWMr?=
- =?utf-8?B?SEdsK3pzb3V0QkRMK1k5ZWhRSGRPUlI2OFhUcU9VYzdmazQ0ZVRzQVV1Kzdx?=
- =?utf-8?B?R1JQNUZWbUNaY0tRUm9PTEpkalBmc3FyalJvdWUvNm1jRDBCdDBCaXRCVlRO?=
- =?utf-8?B?S2Yra0Y1bDJ2NUQyb2lleFZRNkxFbUQ4VVBqRU04VWJob0c1VXdhblFmT2l3?=
- =?utf-8?B?ZWlEaUVxeXdWOHVOTEE0WmJxekt2cFB1cTA4OHpuUFRVZzJPUVRqeGhZa0dZ?=
- =?utf-8?B?UkluYndTbXJONXp2dDZpM2ZRK29DTGc2N0E5eDFObzJUOENFN0hGTi9yeEh3?=
- =?utf-8?B?aXVSTTRVbW9IWTNReVFrcjlxbmI5dWQwaWgwSDV0U1UzNnJ2ZlhWYlpMWnpN?=
- =?utf-8?B?QXQrbjl4eDdwTG83OGpaMloyS0xER0V5Q3E0dVpEellOaS95NnVEVXc1ZzZK?=
- =?utf-8?B?UDBSZWpxeVMrdUNhZ1ZTanhxY2RGVnRZTkRLYUoweGlOWHVVeHpiVHJOL0dF?=
- =?utf-8?B?aUdsUXI1OTNWU0ZtMHdqQ1g0UUkwZHRXb29CeVZpUGF4amJTcnEzeHZ1ZndM?=
- =?utf-8?B?ZkVaYkpmcWFkVEFKK1k3aXR3bysxNVFHd2ROVkduUWIvQWNRRzR0TG1oZkhh?=
- =?utf-8?B?Wm0xbG1WU1ROVUlvMk5DTlNhKzhVMjRiL3pJdG0rUGZkWDFFd1FFS1JqVE5r?=
- =?utf-8?B?dHBwa0srRklzYmROTUZYMWFEQStwNlQ2OU5ka0E4c3hpR1JabDgxT1dDYWJy?=
- =?utf-8?B?WG54RFJVL1lOWEQ2L3NHem96WjBvL3F2RW5BU3hKU3pjN3YxRVU4YVVneFJr?=
- =?utf-8?B?c1pZYUQyOHUxak52bE11U2pQakJ3UTNYSjRMcjVNVlZSMkNvZWU3QXF6WDVV?=
- =?utf-8?B?SzhXVGwvaWJGakVTT3hBV1RRMkVNa2JJYnQ1WUFtdkwwSFBRblNITW4rdEcz?=
- =?utf-8?B?cngzQXJ3VTlta0xWYUJlV2ZibzdFcERiS1VVVzUvUElCbGJ4S0dCYitoWi9n?=
- =?utf-8?B?b1NWNW9WZ1J5OWdBdTJWeWx4YmlsNGFrKzIzd1dEc08zRkg1RGxyUEJzS0pT?=
- =?utf-8?B?NDBwSFpobmhPNE42T2cvODdkOXNQbHhUelQwamFNRzFtWndROUg1SVJaRVZT?=
- =?utf-8?B?cnhDTGRZR2syMzg0ZzhiOW1KOGVwNHFxVE1XSW8zY2hycUVIUkM5OU5rV2R0?=
- =?utf-8?B?L24veGl6NGNrUDRBZU5KRUdGL1VlRGM4bWQ3V3doUW5DUlJ0cHZXK252Z1J1?=
- =?utf-8?B?TEJDNXQwalg4YTg3cEhBV29XejRNUFZQUGVUa1J2d1kzaWFjdkI1QW9LeVNW?=
- =?utf-8?B?TUxRcFJLcEJHeFRsYk0vMk1BM1hYbEViNVpxT045UWpIR2o2VkNtS3BLZWFV?=
- =?utf-8?B?QVBmWnQ3KzNCOFN4djNDUkN2QnlSMHVabW5PL2NlaExFSXo1eFVVSTkvajhv?=
- =?utf-8?B?Qnc0TE9oU0dIWmJlOEwwbUpYVGMzR21WcFNnMks2ZExSTVBQZmRrdU9leW4z?=
- =?utf-8?B?dlFtdVpHRGRwdmQ4b0dsYUwzZDlsU2VucXlKVk0vQ2hCYWRHb0ZtYnFlU2Yw?=
- =?utf-8?B?OXJieTdPY3RLMHpYTk1BTEdRdHM4TTRhQWd6Y1haM0xLZzBPQm52Q2hJeTBX?=
- =?utf-8?B?VjFtQzA1ajQyNWtjMHpodDV1K3ZYSlVOWEMwQ254NkQyZFRRaDI5cnA1cE1K?=
- =?utf-8?B?bTNib0d3Q0xKYS8vL2daRUJEblJtNDR0RFNGampiNmJHZ1E9PQ==?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?bTkvV3kwMnVwZWpLS0pzdlpydExkMHhiTW41dDJhRFB4TlJORXI2MUdRK2pQ?=
+ =?utf-8?B?aGlBSTh1eUxVcW5SM2JIeit4My9aVHVSMndRS2xIL1U1SXphbUc3TTJiOWNr?=
+ =?utf-8?B?Ly9yeUR4aHJRR2htR3ZkQkJsS1BxbDhHNWlWREF0ejR1MnZTT05jZWUzL3NV?=
+ =?utf-8?B?UGMwYnduc0lPYW4zNGJQOXJreHNxYkIvVDBpdEh2ckFjcDN4V2kydndYQ1Vq?=
+ =?utf-8?B?RzZNNVlwR0kwbEJBbG5DbDRmM0ttRm5zSk1EcE1mRDhiUGgwTWkySTZFb3dN?=
+ =?utf-8?B?a0tTTDdqUE5LQ0hGM3p4a2JaRktyb2F0cUlhakROYkt3RldHRkVWYUpXWity?=
+ =?utf-8?B?Q0JPZHJiU1U5MFZ1emZPYUhPKzdyMFR4ZndlSVd4L3JCY3htTWZTTGJUcDdy?=
+ =?utf-8?B?c2dmbTJURGtibkJ5SVFRSkRrTGVNbWtjdTFkek9vaWpPZExZdnNHR2FYMk96?=
+ =?utf-8?B?cGdQTjVTR0V3ZFpTUG5ZM3lOTVY4TXJ0aytySDFNUjRHcnQvUCtzTnBnOENM?=
+ =?utf-8?B?WGhINlVuTzk3Zm15dUVIL3NPSVhuMm8rOUQ0R3lsR0VYRUNxQmJMamJMeE5I?=
+ =?utf-8?B?UXFJSm9pTHAyNW83eGE0cTc2dXJPbWh6S2E2TDZuSENuWVpRNWtsWXJ5azUx?=
+ =?utf-8?B?c3FLejBJZnlEUFc4QllST2dZZFdGb2pXNERMUDlQd0ZTQ09kck5QSkMycWxx?=
+ =?utf-8?B?R3dpOVY0NE5nT05tOGdZUDNDZnFweEg5aXVBZTRWa3RDNHl4bUF6eGtzSW9R?=
+ =?utf-8?B?SjdleFV4U2RNZTJEcllrR3gxbTVtV0ZuNGhxUnRpUGkzUFVCVUJaK0NCdStN?=
+ =?utf-8?B?em1FUXN4ZGkxZzlpOHhYK1JmUmhQMVVtNkJ6eFFxNkhWVVdzWDVuVEdNMFJG?=
+ =?utf-8?B?OHo3QXFNVGFwTFhiRFNaSVFtM0hXbThsVllxZnp0RXJlNC84by9USllDZnNp?=
+ =?utf-8?B?YkR2Z1dUcFRiVHlJWFlnMGRNL0N5MFBWUUF1OXNVY0JFUVFKazhTalhoS3lI?=
+ =?utf-8?B?MHR0S0V4K3NmMXlURkNLelU4WmVveWlVSWtMOENFT3NDQW1vbTBSVGRUVXZS?=
+ =?utf-8?B?cXJiNmhOT3JNZzJEWkNuUDJXRnBWSGZPdjBhWG9nVEgwWUp3OVZ3cUlGUXBi?=
+ =?utf-8?B?dVVLM2lSa2ltMjUzL2N4R3ZFaU5RUHRjUWxKcHBlTURxdXp5WmNtVHExemZS?=
+ =?utf-8?B?UHpVTjlzVHJsZS9hK05BcTdUYmF5RU5XZHI5b3ptZGhjNDdlNG4ra2orRG1t?=
+ =?utf-8?B?WjFzMkJKSnl0cnZPQ0x0OGhROWJycFZUN0hkc3dzMUJiOVFxcXRxV2dIcnVX?=
+ =?utf-8?B?K2R6VENJa1FyVElkYWdPbzZMTlp1OFJ6cENsa2ZXU3VoM3Y4NDNEY2NSbDdC?=
+ =?utf-8?B?QTYrZTgvejgvdWlySVYxcUdEdFJIOTMramU0U2lkT3hOemo5M0dJd3k1SDdN?=
+ =?utf-8?B?aGttNC9tUXk5ZWNYYUJ0ZGg2ZWhpd290dkVIQWQwS2lZTitJcFFSU0ZnQ2dJ?=
+ =?utf-8?B?ejRmbkZ5Q3dnbmpmTndvc1l5d1BqUHVDcExwYzJiY1FTZDRQb3EyTWl6Z2x2?=
+ =?utf-8?B?bDkvc1lNYlVaUFN2QThrVC9VdmhhcEFTWFIzclNPYW1DWWFtalp5L1ArS3kr?=
+ =?utf-8?B?eVIxOEF2VnlWVWRDd0NrWFZTS1B0elVlMXNTZ0dpVGdCdVA5ZjU3TFY2Uy9U?=
+ =?utf-8?B?L09FVjJQcW9mL1diS0ZUNXRoV1lCNzJObzk5SVFvKzdEdDZUaFFmVUY5NzEv?=
+ =?utf-8?B?a0NQaHdFcENJU1l6Z3E2bHlpaC8zajFBdmhmb25FZ25ONzEvZjkzSGEzSDMy?=
+ =?utf-8?B?UERTN2hPZEV1dVZ6K1ZRUkloZll0NkVROXpiU0d1VlpNWXpZSDVYNDJRVzN2?=
+ =?utf-8?B?OGJhdlV1YnRlTkVxNWtHNWI3a3Z3clNoTEtiZzBjZjJBZnc9PQ==?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:IA3PR11MB9226.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016)(13003099007)(8096899003); DIR:OUT;
- SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?aWl4d1BTTXhOM0gvYUExZHNnMDY3U3NoYjhYaW5VUEdWaFFhYlp2V1ExcFdq?=
- =?utf-8?B?SWJMSnJyVm5TajBVd1AybGc3aXlURnNWcFBHbUExeHIrOTM5OFJYdzNuNHJr?=
- =?utf-8?B?S0lJNU5iakdVbTgwUFNublZRc3UvR0NjallrQ0lhb2Z4SmJSbTlTNnpqc2hH?=
- =?utf-8?B?cUIyYUJKMXFSK1Bzd3NQaFBkbVdFNGRnc1Zaa0hjUnlhR1czUm9YTFVIRjh1?=
- =?utf-8?B?eDdCQmJqaDdYRWR2YWV5Q3d0UGRmKzFXbjdwMTJrMGtvUTZUM0l3aFNOU2lI?=
- =?utf-8?B?VldaaW9SRjJxMGtnNlY1M1RKaCtvRHZJZHdwUVNlSllXTWRrSFhaUlhSc3ph?=
- =?utf-8?B?NHpHSVNMZlp5djJpUlo4MnRCUWZyN2JQbEQyWEhSRmcxbTFoWCtlSDZvM2li?=
- =?utf-8?B?dEVVZEh2ai9XbEtwWG1DZ1N2VnJ3b0NEMnRjcjlqM0hFdmVBeTk3ZEpneUxy?=
- =?utf-8?B?VW51SFVvY3M3M3ZjaDhncjluem0wajdDdzJyY2YycnNmdDhSR0lvL084MlVo?=
- =?utf-8?B?MWNJQmhPNXBrQUxOZTIrQTdTbTBMb1lDU3ZsUlRSdWR2SCtMZnBQbzZ6VDhG?=
- =?utf-8?B?SDZVVjcyWERCeHYzemM2cnhEVXY3TnNpL0ZXRERNb2Y2RUtnSXpQcnNHSFpX?=
- =?utf-8?B?cDI5cGpWd2dFc2RIQmJ4TEo3MDc5bUZyT3ZNMTQzYzJkMEFJNXIrYTd3TUZr?=
- =?utf-8?B?cmRqMTdxZXVHV1Z2dmlrNUtPL2JSNEpnUGJ5MjFlOTV1Mm5oU1Y0MTZscVR0?=
- =?utf-8?B?SnJPbCtCaU4rejdZaWRPVnREQjJqdm9ueVZyTzlvOEN2dTl2TEJCZEpWOFNE?=
- =?utf-8?B?ZHk4U0RFdHJMR1RtNk05SmFONWdZbnJVS2lybFF1c1pMWEdMaGgxOUFpQkJv?=
- =?utf-8?B?UnRxOTArMVRWT09Md3NySGJ2ZHNycTFzSGxQYzhzNmNaaXQvMzFoV1BIOUtx?=
- =?utf-8?B?bWhYNVBJaTR6TDFXV2Y5aTkrRHFGTlJYS2JmckFRWU8yUFU1bVNVOHVKZVRG?=
- =?utf-8?B?V2Q2SjY5cVdXZlhaWmFpd1AwVEV2dGxyMGk3a1lxcDJZc0h2M3VGaC9sL2sv?=
- =?utf-8?B?Uzl3Z09aTVVkZ3JySExPdThYdVFxRWYyc1pXOTVtY1pTellIWHV5RXNvU0lP?=
- =?utf-8?B?UTZvWDhFaURPc1pUOGFhS0ZuVVAvczVad3ZPcWI1U3hUZWxGUzZFUjYxaHZY?=
- =?utf-8?B?VWNtMVhPeXhJSTFLcUx5ZUV3UHlnNnIrRHBiM1JFU0owemViWU13N0Jwd0pR?=
- =?utf-8?B?dGROVEhzVkoxVTFmamJHZm1VUnY0NEZsTUNqc3FYczluMmgzU0VsUERFUC9t?=
- =?utf-8?B?anZvZFhXSlo1VjVlNEtocUhxNWl4WGhFOTZYdHBUeE5tK0pWVDJQZHF5aU1J?=
- =?utf-8?B?OTlHekswUXhablVTVFZYV3k0RC9ZMjRYQWJndEV5enF5NmtwOWUyZlBxSkdQ?=
- =?utf-8?B?OUI1V2VBYWJrZWlGR1F0ZzU4REIzZGJma0Jnd0VTcmtMcGtWYW5xMGh2Skxy?=
- =?utf-8?B?Y1FXOHVvZk1PdlVkYkt3U0ZLZjZKc0ZaMGl4K1Y3aXFaa0xMdklMRDM1ZnB5?=
- =?utf-8?B?R3ZzVmUza3FVU1UvUmI4Um9iVGUvTEt6S1M5eHBxTWl5ZldGeHppQWxMYU8w?=
- =?utf-8?B?TjJKNktXY2E3MlYrRmZ1ZW8yWmhHWFhCTkJFbU9SWDRWUmFMMDJZUVpDRElB?=
- =?utf-8?B?OG81SU9rZHpidHExZ1lhQ3lNRWhoNW51b1BneHovSEs1STJ3M2xWK0tPN0VD?=
- =?utf-8?B?Z2I3U1FBaVlzRnJ3NjBzSXMyaHBwc2Q4cWRCbmtNTjgzb044cWJaMktCeEN2?=
- =?utf-8?B?V0JEcGZ3c2dtZnJRdEhFZWxqTjlKMGpKcWVNL3l2OG5KNW1GeGpwcmJtWjFx?=
- =?utf-8?B?b05xemYxRWFMQlFybzRLNXlDZ0thVEFmKzc0R3Z6RzhIUzlSLzRocUhSYUlp?=
- =?utf-8?B?VEdOd0UxMTBoOWRKSzRnY0NIazFLSzc5TU14NENHOG5QbnZ6K1Rob3RSUk0y?=
- =?utf-8?B?NGZlV2paNU9tTDAwVnMyRlZaS29pOUFUbFh6bGc0Vm1ZNlczQmJ0UzIyMmI2?=
- =?utf-8?B?NzJaQ3ZOUzgxL3NKcU5HRG9uczEyelZ6a3RIM0JmVkdmVkViTXU5VXhsVWZv?=
- =?utf-8?Q?+hFey9lpMcXMjZnc9JfWky56y?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1af2677a-926f-4333-9c2d-08de271620d8
-X-MS-Exchange-CrossTenant-AuthSource: IA3PR11MB9226.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?V0FhMXE4UHhLRWpNNlV0Vkdrai9SSnozRTRZNkIvRDNya2RpN3Qzb3ZBSWhq?=
+ =?utf-8?B?ZVZFazVna21ad0dyV2FncDQxZGt3Zy91MjdLRC9pbm5uanIwdkhqcXZrQmEw?=
+ =?utf-8?B?MDdiU2Y5SDBDM25GWWJuQ1E4TlIySlBDVWNpSWhaa2hQRDR3UE5ZYnE1VkxR?=
+ =?utf-8?B?THhXOExTanVvRGkzR1JmOURmRVJ2bGtYcVozMHl4MFdXSG1IMG9nMG5lOXFN?=
+ =?utf-8?B?NWlvR1NnaGFZa1I4OHNqUlZGYkxyeEtZMUxlc3IxbEY5NC91SHBwaHNaUEhD?=
+ =?utf-8?B?TFlkNVdVaFRQcnFFbkw1aDF0SmdlcmIwWTFWWVRCaE1vM2FlYm5XNXYxQXl1?=
+ =?utf-8?B?cm5oN2RlWE02TVF3MytmVnJlVzBrZzFmQnV5OXF5enEvWlA5cUg0K3dEZ1Z0?=
+ =?utf-8?B?S1hwWGFQS0k4OUt0Vk1TcnZWcU1pSisvNWxiaFBEWjZraWN6MVRSYklIUlVR?=
+ =?utf-8?B?TTNlRGw1MFBaSi9kWDJuQlRkbmFvd1ZCMmhHZlBYaFAzaG9TOXJIL3pLaUwr?=
+ =?utf-8?B?RFAzazY2cUVZTEdTZlFWSlNYdndVOW9GL2xuaE56OUpiVlV4Q01PSEdGTGhN?=
+ =?utf-8?B?VWNsTmpLVVpCZHZPNTJKZk8wOFJUZldjSU9Iamg3bFlrZk0yNWM5Wlc1dEhq?=
+ =?utf-8?B?eElYK3VvYVpXUmVrMWIyK2pMbHJGeGRhUndXVnlmYVpFK1ZEeFVPdUtsNHVO?=
+ =?utf-8?B?c2NPL2VaZktlUDRZdHFTcmFqOXRkYjB4SHRsYjgzNVk2RTU3RlJ0VStlV1hx?=
+ =?utf-8?B?SU1TWGQwa1Z3Z3ZYR3o3NU9zUXk2RGhhenhRUSs0QWg1MjBnK2lLRVgrM2Jm?=
+ =?utf-8?B?cncyQmp3dEEzRU8vVmd6Mys4d1ZReVBvTk1wUU1wOXZNTkFyZFArQ2ZvL3Bp?=
+ =?utf-8?B?cFJOeHkwOVR6WmpudENObE11QllJUmhqaVVlODJwUm5ZMVZHRVRJN1cwSGtE?=
+ =?utf-8?B?MDVUM1ZYOXpzcGN1SS8yeEN2Wk5uQmRNZFA5OVMyQ2NUVkp0OVFUTUlvSGZ1?=
+ =?utf-8?B?c25sTHZORi81T0c1amNkN1BtMmVnMjdNb2tTeWJaVGxHSm5NQmlkZjFXQ0w2?=
+ =?utf-8?B?Qm00L0dPY28yZXIwQzAvTCtoZjJFWGhhM2RxeG5ZQlhBYS9vZzE4NDlaVEoz?=
+ =?utf-8?B?UjJkWTViYmgxRXdqakg1N0hMQ2dJTXdmSEltVXU2TXAzVDRjYzJldWVlZm1P?=
+ =?utf-8?B?VGpraGdUeFhhVVdnK1l3Vm8xN0E5OTBhQ0oraWFRYWhkKzJNSURnd1Q3cTF5?=
+ =?utf-8?B?L2d1b1VSU3FpTUNYNU9GWUg5dmlMdVBockgrakI0NG5ZNFQwYVMyWnNIYjE0?=
+ =?utf-8?B?RXh6eXUvRjBLL21Cd3VmWXcvQTBqNHFuRWowQi84RmdySkFER2xnczBWckRq?=
+ =?utf-8?B?Tk9JTnhFRzdnMEIwbG5Sbmh3TEk0em8zU2IvejN0NldURmJyd0pYcDljY0h0?=
+ =?utf-8?B?SUlLL1h1UUVXVjV1YXE0dDZ4OFNHYS9sbURZK3NIbUxUZHFlRTNVQm9OMGg0?=
+ =?utf-8?B?UzgxdDMybG1pL3dzYlhpTWN4Nmo3WUlGSEh6VStpT2JhWlNRNlVmbjIzTGEr?=
+ =?utf-8?B?eXloeXNtZ1JIT3VFaGtnS3hsRkpId1hTa05NRjNzeEwxWSt5K0c4eW9EQ2JV?=
+ =?utf-8?B?SmppMGlGZ053SHlIKzdIODV0bHN3NVhxZVZXbWtkMGQ5ZlUxS2g0UkRoY2pF?=
+ =?utf-8?B?aTVtTlFGKzJYMjRXZERTSGlLNE9GRVErbWg0ZC93WTc4NmtoVCttajlNM2s2?=
+ =?utf-8?B?amhnK281M1VKNTR0eFpGdmljOUkxS0M1MUNYdVZuWkt4M2VVVkZ5S21qd1Fl?=
+ =?utf-8?B?Y1NOTUFQUlVrTjgvMEFxM0pqbVpveHU2aUJpL2ZuTUpLQytmcWJQY1JkbEVv?=
+ =?utf-8?B?TFZPTUZBbkNESm1ndWpuV1pqNGdGTjNVblI5cHZzK1BYMTFQR2NnMXJSV3Uv?=
+ =?utf-8?B?N3FuaEZsbUQrUVFaMWhvekl0bUZ5cmFBVDlxV2x3dUdNZ2FOK1g2NDA5aUJ1?=
+ =?utf-8?B?K05BWE9IVG41V0dpNFlKdklIZE9HN0d2aVROb0oyLy9Dc0YrTTFKWS9ZQS9a?=
+ =?utf-8?B?WU85a1Q5ajdkcHk3UmNEZWJ0TTRJeGZiVWptRnlSbmhtZU9OSXhBeG1OZVJn?=
+ =?utf-8?B?UlV5U3JvQ1pVZTRHWUU1RUwxOTljeVN6RWVnWTVwYjJ2UFpMMzNwclJ6aHJU?=
+ =?utf-8?B?RXc9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: ddf80178-46d2-4a9f-3880-08de271a3e6e
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Nov 2025 02:48:32.8479 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Nov 2025 03:18:00.5424 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: XSY60NY8Tdtp7ObqxoQzqlvbZgag9ycwun+gqTQCtXAcF4c7IvNL/3gB4BB/r6G52rhqYEYRYKYOEC8ONzzWeQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR11MB9464
+X-MS-Exchange-CrossTenant-UserPrincipalName: tb6TI66GW7OAZvJrjsrJ1+YyckY3bHFxbkQuIWjsuYYidSPV0KIaSacvr12ZUStWT+vPMrZNxHYOuEcjx3u8tQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB8019
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -198,434 +195,95 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---------------QyqwybwJTPlc6y4IVvTrCoPm
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
+On Tue, Nov 04, 2025 at 11:33:19AM -0500, Dong, Zhanjun wrote:
+> 
+> 
+> On 2025-10-28 6:36 p.m., Dong, Zhanjun wrote:
+> > 
+> > 
+> > On 2025-10-28 3:57 p.m., Matthew Brost wrote:
+> > > On Tue, Oct 28, 2025 at 11:38:20AM -0400, Zhanjun Dong wrote:
+> > > > On hardware init fail, the hardware might no longer response,
+> > > > add GuC stop
+> > > > to clean up exec_queue items.
+> > > > 
+> > > > Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/5466
+> > > > Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/5530
+> > > > Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
+> > > > ---
+> > > > v3: Switch to xe_guc_stop
+> > > > v2: Switch to xe_guc_ct_stop
+> > > > ---
+> > > >   drivers/gpu/drm/xe/xe_uc.c | 2 ++
+> > > >   1 file changed, 2 insertions(+)
+> > > > 
+> > > > diff --git a/drivers/gpu/drm/xe/xe_uc.c b/drivers/gpu/drm/xe/xe_uc.c
+> > > > index 465bda355443..00ca5883e006 100644
+> > > > --- a/drivers/gpu/drm/xe/xe_uc.c
+> > > > +++ b/drivers/gpu/drm/xe/xe_uc.c
+> > > > @@ -173,6 +173,7 @@ static int vf_uc_load_hw(struct xe_uc *uc)
+> > > >       return 0;
+> > > >   err_out:
+> > > > +    xe_guc_stop(&uc->guc);
+> > > 
+> > > If exec queues are destroyed later—after the submission backend has been
+> > > stopped—the final put on the queue may be lost, leading to dangling
+> > > memory when aborting the driver load or unloading it.
+> > > 
+> > > I think you'll need to call xe_guc_submit_pause_abort somewhere to
+> > > ensure the final put cleanup messages are processed by the queues. Maybe
+> > > we add this call in guc_submit_fini before wait_event_timeout?
+> > > 
+> > > Matt
+> > Thanks for review.
+> > My original thought is through xe_guc_stop/xe_guc_submit_stop/
+> > guc_exec_queue_stop, where will do clean up, might be not covers all
+> > conditions, let me try.
+> Tested with call xe_guc_submit_pause_abort in guc_submit_fini before
+> wait_event_timeout, works in some condition, while there is 1 condition
+> might not cover: for lr queues, it won't clear, so I'm thinking of:
+> 
+> @@ -2375,7 +2382,9 @@ void xe_guc_submit_pause_abort(struct xe_guc *guc)
+>                         continue;
+> 
+>                 xe_sched_submission_start(sched);
+> -               if (exec_queue_killed_or_banned_or_wedged(q))
+> +               if (exec_queue_killed_or_banned_or_wedged(q) || \
+> 		    exec_queue_registered(q))
+>                         xe_guc_exec_queue_trigger_cleanup(q);
+>         }
+>         mutex_unlock(&guc->submission_state.lock);
+> 
+> @Matthew Brost <matthew.brost@intel.com>, Do you think this change has side
+> effect to migration worker? I can make it another function if true.
+> 
 
+Probably actually just change this function to forcefully kill all exec
+queues, i.e., call guc_exec_queue_kill. That is likely what I should
+have done in VF migration from the start and what you want to do here.
 
-On 11/7/2025 8:48 AM, Matthew Brost wrote:
-> On Sat, Nov 01, 2025 at 02:33:07AM +0100, Lis, Tomasz wrote:
->> On 10/31/2025 9:13 PM, Matthew Brost wrote:
->>> The LRC software ring tail is reset to the first unsignaled pending
->>> job's head.
->>>
->>> Fix the re-emission logic to begin submitting from the first unsignaled
->>> job detected, rather than scanning all pending jobs, which can cause
->>> imbalance.
->>>
->>> v2:
->>>    - Include missing local changes
+Matt 
 
-Explanation of previous remarks and a request for a code comment below; 
-but other than that:
-
-Reviewed-by: Tomasz Lis <tomasz.lis@intel.com>
-
->>> Fixes: c25c1010df88 ("drm/xe/vf: Replay GuC submission state on pause / unpause")
->>> Signed-off-by: Matthew Brost<matthew.brost@intel.com>
->>> ---
->>>    drivers/gpu/drm/xe/xe_gpu_scheduler.h |  5 +++--
->>>    drivers/gpu/drm/xe/xe_guc_submit.c    | 19 +++++++++++--------
->>>    2 files changed, 14 insertions(+), 10 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/xe/xe_gpu_scheduler.h b/drivers/gpu/drm/xe/xe_gpu_scheduler.h
->>> index 9955397aaaa9..357afaec68d7 100644
->>> --- a/drivers/gpu/drm/xe/xe_gpu_scheduler.h
->>> +++ b/drivers/gpu/drm/xe/xe_gpu_scheduler.h
->>> @@ -54,13 +54,14 @@ static inline void xe_sched_tdr_queue_imm(struct xe_gpu_scheduler *sched)
->>>    static inline void xe_sched_resubmit_jobs(struct xe_gpu_scheduler *sched)
->>>    {
->>>    	struct drm_sched_job *s_job;
->>> +	bool skip_emit = false;
->>>    	list_for_each_entry(s_job, &sched->base.pending_list, list) {
->>>    		struct drm_sched_fence *s_fence = s_job->s_fence;
->>>    		struct dma_fence *hw_fence = s_fence->parent;
->>> -		if (to_xe_sched_job(s_job)->skip_emit ||
->>> -		    (hw_fence && !dma_fence_is_signaled(hw_fence)))
->>> +		skip_emit |= to_xe_sched_job(s_job)->skip_emit;
->>> +		if (skip_emit || (hw_fence && !dma_fence_is_signaled(hw_fence)))
->> This looks ok, but what is the mechanism which could lead to a job after the
->> first  `skip_emit=1` job to have the `skip_emit` flag lifted?
->>
-> This shouldn't be possible with the current code, since we're checking
-> hw_fence. If we were relying on the software fence (i.e., the job's
-> finished fence), the state wouldn't be stable. I think our eventually
-> the is goal is to use the software fence [1] to avoid DRM scheduler's
-> violations, so defensively / future proofed coded here.
->
-> [1]https://patchwork.freedesktop.org/series/155314/
-Makes sense.
->> Wouldn't the only possibility be that jobs were executed out of order?
->>
->>>    			sched->base.ops->run_job(s_job);
->>>    	}
->>>    }
->>> diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
->>> index d4ffdb71ef3d..f25b71aca498 100644
->>> --- a/drivers/gpu/drm/xe/xe_guc_submit.c
->>> +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
->>> @@ -2152,6 +2152,8 @@ static void guc_exec_queue_pause(struct xe_guc *guc, struct xe_exec_queue *q)
->>>    	job = xe_sched_first_pending_job(sched);
->>>    	if (job) {
->>> +		job->skip_emit = true;
->>> +
->>>    		/*
->>>    		 * Adjust software tail so jobs submitted overwrite previous
->>>    		 * position in ring buffer with new GGTT addresses.
->>> @@ -2241,17 +2243,18 @@ static void guc_exec_queue_unpause_prepare(struct xe_guc *guc,
->>>    					   struct xe_exec_queue *q)
->>>    {
->>>    	struct xe_gpu_scheduler *sched = &q->guc->sched;
->>> -	struct drm_sched_job *s_job;
->>>    	struct xe_sched_job *job = NULL;
->>> +	bool skip_emit = false;
->>> -	list_for_each_entry(s_job, &sched->base.pending_list, list) {
->>> -		job = to_xe_sched_job(s_job);
->>> -
->>> -		xe_gt_dbg(guc_to_gt(guc), "Replay JOB - guc_id=%d, seqno=%d",
->>> -			  q->guc->id, xe_sched_job_seqno(job));
->>> +	list_for_each_entry(job, &sched->base.pending_list, drm.list) {
->>> +		skip_emit |= job->skip_emit;
->> All emitted jobs have the skip_emit set, unless their EQ got submitted to
->> GuC which clears it, but if it got unsubmitted without finishing then the
->> flag is raised again.
->>
->> So this does seem to select unfinished jobs.
->>
->> Though this introduces an assertion that within Command Streamer ring area
->> of a job, there are no GGTT references between seqno increment and end of
->> the job commands. Maybe worth commenting in code that we're working on that
->> assumption? Example issue would be if someone introduces saving some kind of
->> metrics there.
->>
->> (this assumption was in power before this patch too, but now as we're
->> skipping fixups for finished jobs still in pending list, it becomes more
->> important)
->>
->> Also we're emitting jobs which have a flag names "skip_emit" set. This
->> disconnect needs a comment too.
->>
-> I am not following this comment.
-
-What I described might be non-issue; but regardless, let me try again:
-
-Every job has an area allocated on the ring buffer; the area contains 
-commands, which:
-
-1. Jump to the user batch buffer
-
-2. Increase seqno (by GGTT write)
-
-3. Trigger user interrupt
-
-4. Do some finishing commands
-
-
-What I tried to describe before is a situation where commands from (1) 
-and (2) were
-
-executed, but then the context got preempted, before reaching end of 
-(4). In such
-
-case, the code with `skip_emit` would consider the job finished and 
-would not apply
-
-any fixups. This could become a problem if during (4) we did some GGTT 
-writes.
-
-Now, it this realistic:
-
-* Currently we do add some workaround commands to (4), but MMIO writes only.
-
-But since there is a precedence of placing WAs there, a GGTT write could 
-be added
-
-at some point.
-
-* But the whole premise requires that there will be preemption point 
-between end
-
-of (2)  and end of (4). This is not a case, and I would be very 
-surprised if that ever
-
-changed.
-
-So, the above is not an issue.
-
-
-A second remark I had is that we're introducing a code like this:
-
-if (skip_emit) then do_emit();
-
-The issue there is that someone reading the code will see it as 
-self-contradictory.
-
-The first thought will be "did they forgot to negate the condition here"?
-
-The code is ok, but a comment would help to avoid this confusion. Ie.
-
-/*
-
-  * If emitting will be skipped when re-scheduling the job, then the emitted
-
-  * commands need to be refreshed now, to keep GGTT references valid.
-
-  */
-
--Tomasz
-
-> The idea is that in guc_exec_queue_pause, we set skip_emit—this acts as
-> a marker to iterate over and resubmit jobs regardless of other
-> conditions. As I mentioned, if this marker were based on a software
-> fence, the state could change between guc_exec_queue_pause and
-> guc_exec_queue_unpause_prepare. The current code uses the hardware
-> fence, but that could change between pause / unpause too.
->
-> We need to keep the iteration consistent because it also affects the KMD
-> software state. Even if a job signals during this flow, there's no issue
-> with the hardware; the key is maintaining a consistent software state
-> throughout the iteration phases: pause, unpause_prepare, and unpause.
->
-> Matt
->
->> -Tomasz
->>
->>> +		if (skip_emit) {
->>> +			xe_gt_dbg(guc_to_gt(guc), "Replay JOB - guc_id=%d, seqno=%d",
->>> +				  q->guc->id, xe_sched_job_seqno(job));
->>> -		q->ring_ops->emit_job(job);
->>> -		job->skip_emit = true;
->>> +			q->ring_ops->emit_job(job);
->>> +			job->skip_emit = true;
->>> +		}
->>>    	}
->>>    	if (job)
---------------QyqwybwJTPlc6y4IVvTrCoPm
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-
-<!DOCTYPE html><html><head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  </head>
-  <body>
-    <p><br>
-    </p>
-    <div class="moz-cite-prefix">On 11/7/2025 8:48 AM, Matthew Brost
-      wrote:<br>
-    </div>
-    <blockquote type="cite" cite="mid:aQ2kVCs94QjLECVQ@lstrano-desk.jf.intel.com">
-      <pre wrap="" class="moz-quote-pre">On Sat, Nov 01, 2025 at 02:33:07AM +0100, Lis, Tomasz wrote:
-</pre>
-      <blockquote type="cite">
-        <pre wrap="" class="moz-quote-pre">
-On 10/31/2025 9:13 PM, Matthew Brost wrote:
-</pre>
-        <blockquote type="cite">
-          <pre wrap="" class="moz-quote-pre">The LRC software ring tail is reset to the first unsignaled pending
-job's head.
-
-Fix the re-emission logic to begin submitting from the first unsignaled
-job detected, rather than scanning all pending jobs, which can cause
-imbalance.
-
-v2:
-  - Include missing local changes
-</pre>
-        </blockquote>
-      </blockquote>
-    </blockquote>
-    <p>Explanation of previous remarks and a request for a code comment
-      below; but other than that:</p>
-    <p>Reviewed-by: Tomasz Lis <a class="moz-txt-link-rfc2396E" href="mailto:tomasz.lis@intel.com">&lt;tomasz.lis@intel.com&gt;</a></p>
-    <blockquote type="cite" cite="mid:aQ2kVCs94QjLECVQ@lstrano-desk.jf.intel.com">
-      <blockquote type="cite">
-        <blockquote type="cite">
-          <pre wrap="" class="moz-quote-pre">
-Fixes: c25c1010df88 (&quot;drm/xe/vf: Replay GuC submission state on pause / unpause&quot;)
-Signed-off-by: Matthew Brost<a class="moz-txt-link-rfc2396E" href="mailto:matthew.brost@intel.com">&lt;matthew.brost@intel.com&gt;</a>
----
-  drivers/gpu/drm/xe/xe_gpu_scheduler.h |  5 +++--
-  drivers/gpu/drm/xe/xe_guc_submit.c    | 19 +++++++++++--------
-  2 files changed, 14 insertions(+), 10 deletions(-)
-
-diff --git a/drivers/gpu/drm/xe/xe_gpu_scheduler.h b/drivers/gpu/drm/xe/xe_gpu_scheduler.h
-index 9955397aaaa9..357afaec68d7 100644
---- a/drivers/gpu/drm/xe/xe_gpu_scheduler.h
-+++ b/drivers/gpu/drm/xe/xe_gpu_scheduler.h
-@@ -54,13 +54,14 @@ static inline void xe_sched_tdr_queue_imm(struct xe_gpu_scheduler *sched)
-  static inline void xe_sched_resubmit_jobs(struct xe_gpu_scheduler *sched)
-  {
-  	struct drm_sched_job *s_job;
-+	bool skip_emit = false;
-  	list_for_each_entry(s_job, &amp;sched-&gt;base.pending_list, list) {
-  		struct drm_sched_fence *s_fence = s_job-&gt;s_fence;
-  		struct dma_fence *hw_fence = s_fence-&gt;parent;
--		if (to_xe_sched_job(s_job)-&gt;skip_emit ||
--		    (hw_fence &amp;&amp; !dma_fence_is_signaled(hw_fence)))
-+		skip_emit |= to_xe_sched_job(s_job)-&gt;skip_emit;
-+		if (skip_emit || (hw_fence &amp;&amp; !dma_fence_is_signaled(hw_fence)))
-</pre>
-        </blockquote>
-        <pre wrap="" class="moz-quote-pre">
-This looks ok, but what is the mechanism which could lead to a job after the
-first&nbsp; `skip_emit=1` job to have the `skip_emit` flag lifted?
-
-</pre>
-      </blockquote>
-      <pre wrap="" class="moz-quote-pre">
-This shouldn't be possible with the current code, since we're checking
-hw_fence. If we were relying on the software fence (i.e., the job's
-finished fence), the state wouldn't be stable. I think our eventually
-the is goal is to use the software fence [1] to avoid DRM scheduler's
-violations, so defensively / future proofed coded here.
-
-[1] <a class="moz-txt-link-freetext" href="https://patchwork.freedesktop.org/series/155314/">https://patchwork.freedesktop.org/series/155314/</a></pre>
-    </blockquote>
-    Makes sense.
-    <blockquote type="cite" cite="mid:aQ2kVCs94QjLECVQ@lstrano-desk.jf.intel.com">
-      <pre wrap="" class="moz-quote-pre">
-</pre>
-      <blockquote type="cite">
-        <pre wrap="" class="moz-quote-pre">Wouldn't the only possibility be that jobs were executed out of order?
-
-</pre>
-        <blockquote type="cite">
-          <pre wrap="" class="moz-quote-pre">  			sched-&gt;base.ops-&gt;run_job(s_job);
-  	}
-  }
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index d4ffdb71ef3d..f25b71aca498 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -2152,6 +2152,8 @@ static void guc_exec_queue_pause(struct xe_guc *guc, struct xe_exec_queue *q)
-  	job = xe_sched_first_pending_job(sched);
-  	if (job) {
-+		job-&gt;skip_emit = true;
-+
-  		/*
-  		 * Adjust software tail so jobs submitted overwrite previous
-  		 * position in ring buffer with new GGTT addresses.
-@@ -2241,17 +2243,18 @@ static void guc_exec_queue_unpause_prepare(struct xe_guc *guc,
-  					   struct xe_exec_queue *q)
-  {
-  	struct xe_gpu_scheduler *sched = &amp;q-&gt;guc-&gt;sched;
--	struct drm_sched_job *s_job;
-  	struct xe_sched_job *job = NULL;
-+	bool skip_emit = false;
--	list_for_each_entry(s_job, &amp;sched-&gt;base.pending_list, list) {
--		job = to_xe_sched_job(s_job);
--
--		xe_gt_dbg(guc_to_gt(guc), &quot;Replay JOB - guc_id=%d, seqno=%d&quot;,
--			  q-&gt;guc-&gt;id, xe_sched_job_seqno(job));
-+	list_for_each_entry(job, &amp;sched-&gt;base.pending_list, drm.list) {
-+		skip_emit |= job-&gt;skip_emit;
-</pre>
-        </blockquote>
-        <pre wrap="" class="moz-quote-pre">
-All emitted jobs have the skip_emit&nbsp;set, unless their EQ got submitted to
-GuC which clears it, but if it got unsubmitted without finishing then the
-flag is raised again.
-
-So this does seem to select unfinished jobs.
-
-Though this introduces an assertion that within Command Streamer ring area
-of a job, there are no GGTT references between seqno increment and end of
-the job commands. Maybe worth commenting in code that we're working on that
-assumption? Example issue would be if someone introduces saving some kind of
-metrics there.
-
-(this assumption was in power before this patch too, but now as we're
-skipping fixups for finished jobs still in pending list, it becomes more
-important)
-
-Also we're emitting jobs which have a flag names &quot;skip_emit&quot; set. This
-disconnect needs a comment too.
-
-</pre>
-      </blockquote>
-      <pre wrap="" class="moz-quote-pre">
-I am not following this comment.</pre>
-    </blockquote>
-    <p>What I described might be non-issue; but regardless, let me try
-      again:</p>
-    <p>Every job has an area allocated on the ring buffer; the area
-      contains commands, which:</p>
-    <p>1. Jump to the user batch buffer</p>
-    <p>2. Increase seqno (by GGTT write)</p>
-    <p>3. Trigger user interrupt</p>
-    <p>4. Do some finishing commands</p>
-    <p><br>
-    </p>
-    <p>What I tried to describe before is a situation where commands
-      from (1) and (2) were</p>
-    <p>executed, but then the context got preempted, before reaching end
-      of (4). In such</p>
-    <p>case, the code with `<span style="white-space: pre-wrap">skip_emit` would consider the job finished and would not apply</span></p>
-    <p><span style="white-space: pre-wrap">any fixups. This could become a problem if during (4) we did some GGTT writes.</span></p>
-    <p><span style="white-space: pre-wrap">Now, it this realistic:</span></p>
-    <p><span style="white-space: pre-wrap">* Currently we do add some workaround commands to (4), but MMIO writes only.</span></p>
-    <p><span style="white-space: pre-wrap">But since there is a precedence of placing WAs there, a GGTT write could be added</span></p>
-    <p><span style="white-space: pre-wrap">at some point.</span></p>
-    <p>* But the whole premise requires that there will be preemption
-      point between end</p>
-    <p>of (2)&nbsp; and end of (4). This is not a case, and I would be very
-      surprised if that ever</p>
-    <p>changed.</p>
-    <p>So, the above is not an issue.</p>
-    <p><br>
-    </p>
-    <p>A second remark I had is that we're introducing a code like this:</p>
-    <p>if (skip_emit) then do_emit();</p>
-    <p>The issue there is that someone reading the code will see it as
-      self-contradictory.</p>
-    <p>The first thought will be &quot;did they forgot to negate the
-      condition here&quot;?</p>
-    <p>The code is ok, but a comment would help to avoid this confusion.
-      Ie.</p>
-    <p>/*</p>
-    <p>&nbsp;* If emitting will be skipped when re-scheduling the job, then
-      the emitted</p>
-    <p>&nbsp;* commands need to be refreshed now, to keep GGTT references
-      valid.</p>
-    <p>&nbsp;*/</p>
-    <p>-Tomasz</p>
-    <blockquote type="cite" cite="mid:aQ2kVCs94QjLECVQ@lstrano-desk.jf.intel.com">
-      <pre wrap="" class="moz-quote-pre">
-The idea is that in guc_exec_queue_pause, we set skip_emit—this acts as
-a marker to iterate over and resubmit jobs regardless of other
-conditions. As I mentioned, if this marker were based on a software
-fence, the state could change between guc_exec_queue_pause and
-guc_exec_queue_unpause_prepare. The current code uses the hardware
-fence, but that could change between pause / unpause too.
-
-We need to keep the iteration consistent because it also affects the KMD
-software state. Even if a job signals during this flow, there's no issue
-with the hardware; the key is maintaining a consistent software state
-throughout the iteration phases: pause, unpause_prepare, and unpause.
-
-Matt
-
-</pre>
-      <blockquote type="cite">
-        <pre wrap="" class="moz-quote-pre">-Tomasz
-
-</pre>
-        <blockquote type="cite">
-          <pre wrap="" class="moz-quote-pre">+		if (skip_emit) {
-+			xe_gt_dbg(guc_to_gt(guc), &quot;Replay JOB - guc_id=%d, seqno=%d&quot;,
-+				  q-&gt;guc-&gt;id, xe_sched_job_seqno(job));
--		q-&gt;ring_ops-&gt;emit_job(job);
--		job-&gt;skip_emit = true;
-+			q-&gt;ring_ops-&gt;emit_job(job);
-+			job-&gt;skip_emit = true;
-+		}
-  	}
-  	if (job)
-</pre>
-        </blockquote>
-      </blockquote>
-    </blockquote>
-  </body>
-</html>
-
---------------QyqwybwJTPlc6y4IVvTrCoPm--
+> Regards,
+> Zhanjun Dong
+> 
+> > 
+> > Regards,
+> > Zhanjun Dong
+> > 
+> > > 
+> > > >       xe_guc_sanitize(&uc->guc);
+> > > >       return err;
+> > > >   }
+> > > > @@ -228,6 +229,7 @@ int xe_uc_load_hw(struct xe_uc *uc)
+> > > >       return 0;
+> > > >   err_out:
+> > > > +    xe_guc_stop(&uc->guc);
+> > > >       xe_guc_sanitize(&uc->guc);
+> > > >       return ret;
+> > > >   }
+> > > > -- 
+> > > > 2.34.1
+> > > > 
+> > 
+> 
