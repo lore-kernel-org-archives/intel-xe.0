@@ -4,147 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3927DCF3188
-	for <intel-xe@archiver.kernel.org>; Wed, 19 Nov 2025 10:09:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 17864CF3185
+	for <intel-xe@archiver.kernel.org>; Wed, 19 Nov 2025 10:11:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DF38D10E5CD;
-	Wed, 19 Nov 2025 10:09:26 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=suse.com header.i=@suse.com header.b="FYaT17tX";
-	dkim-atps=neutral
-Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com
- [209.85.218.48])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 305CE10E5CD
- for <intel-xe@lists.freedesktop.org>; Wed, 19 Nov 2025 10:09:25 +0000 (UTC)
-Received: by mail-ej1-f48.google.com with SMTP id
- a640c23a62f3a-b725ead5800so792649066b.1
- for <intel-xe@lists.freedesktop.org>; Wed, 19 Nov 2025 02:09:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=suse.com; s=google; t=1763546963; x=1764151763; darn=lists.freedesktop.org; 
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=mZmwnZeJsVmH4Emd6Sk7OTkRxBmCW6aXF7g1I/Zjods=;
- b=FYaT17tXz9hnVh0b5oJUXY+NSfhWUh2JXjWI+0X3THd2NJdrJwj25G5bcrhDEEWjS9
- z5XFHtkrmM1RplaxJEhxemh5AOb58SXfWMyYT5a/aIfk7Bge0XJz7jjZO28gjgKzoDIu
- P1cv3GYO2F30NTkVP4KE4NUiRHZg2cCKlaOUiQcILyEcSnkc4gNhc0PUx9Yddd0KcEtZ
- Gix8NKnU/S4+rCOy/4FvltuwBGOXwdwtPe7BYyAAz3p+/fQn5tVynOlAUwY2NuMJESOx
- 5Y31epf6tSWVfPa5crvYt/e/4Ipyxv25RN0QQzgGvAxFV2fGIm7z+1JtQIP8+/V3i8A8
- yRmA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1763546963; x=1764151763;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=mZmwnZeJsVmH4Emd6Sk7OTkRxBmCW6aXF7g1I/Zjods=;
- b=NiKpy9knSkwYDQl7/6CpkQF6rWQbnk6pKtlTgrZO8F7IWvxbcN5DPobtPHa03pK8xu
- QVrpE1N8wMd001iq4//Nm3wpW2Kh/kl3T4P/5ZUqhQhCNapjd/FDQZIDBad0oy1rQIFc
- sXcxJMNup6VcgpVT97zWSvmeIluqrQmekEaaZ2CxynG6vlXVhFMM0trBC2LfHPdXGTki
- p4rFZUBYCiU66q6dr+ioezZ9OxjTfnzvAaPKZdwscP+8ubQjRhif3h3LVn2xCmgcfRI8
- cyy3mK5bz0S8FnlruL98u2n5X/YAlnkxQc8knzmvUBIUTRFRthv8h7sZMMZ9Oo8HW7RA
- wS9w==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVjPuaU6JQd10N93PHZJpoo2qwVuUzxJgXP6g1sn7uf/G9l2zN8R+noztFKunMHHuLn8wnuJjQK/Q==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzaSnbIHE5JtoyVRMpNQQGvq/fq7YnqmM/LzwcDajIdNzq1Tl5i
- BajZaXNJSwbCSqXYIATeGnRUHJ83tqjC60tvSiq6GCJZ6yEMselmPZQKgSJ/LSB/mhY=
-X-Gm-Gg: ASbGnct9012+D9zU/XsH1+ieFrcDFG6QMIjgnwoS2mPdwWQ9fkLHvaWtSYJomf3DJiR
- gBjk/Slw24iXyQeFu3UgEQS/B2z62veIxCBNUAqW6qUwdhJu8XXAcr9B2UarsII+5+5QGocsNm9
- 92TuoYUfQmQtkwSPKwii8GuVzirv34zMbWLY7yOMDxEWj71SiIigAXCsYHYwzqP0WHcmFz2cmum
- e5E3sxtjGq29MEIBwYcATzz1EphaWxSy6gw7lnV4zkjHM3HHbStRh8SihZDJ+njzF9NvOc167vR
- QztvgqdOQVNI7Tj+LaZ9nPQgilWD5dfU2xNLjW1FG9J6wyXmYpqzvBWIrQ458+cwqDmkqbON3SY
- VBMPS7r88K/mIBpsAQm9O7XZwMGC0cDANoO9cYdfa/jaYFnCVHPtd32eiJGLBWUTfWueUfCFQ3U
- PejhP34HxAP2Gm3jeqUbu4FyuS
-X-Google-Smtp-Source: AGHT+IHL60A5nBupA1OyvdeZdvK8rVJqcdAj2UJ8GMSSqilZDEkvpcYDaNSL65+yyn9lVOsemK499g==
-X-Received: by 2002:a17:907:1c81:b0:b72:d2df:641c with SMTP id
- a640c23a62f3a-b736795d498mr2006941666b.49.1763546963352; 
- Wed, 19 Nov 2025 02:09:23 -0800 (PST)
-Received: from pathway.suse.cz ([176.114.240.130])
- by smtp.gmail.com with ESMTPSA id
- a640c23a62f3a-b734fda8bc8sm1594056066b.49.2025.11.19.02.09.20
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 19 Nov 2025 02:09:22 -0800 (PST)
-Date: Wed, 19 Nov 2025 11:08:01 +0100
-From: Petr Mladek <pmladek@suse.com>
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: Corey Minyard <corey@minyard.net>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- "Dr. David Alan Gilbert" <linux@treblig.org>,
- Alex Deucher <alexander.deucher@amd.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
- Rob Clark <robin.clark@oss.qualcomm.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Ulf Hansson <ulf.hansson@linaro.org>,
- Aleksandr Loktionov <aleksandr.loktionov@intel.com>,
- Vitaly Lifshits <vitaly.lifshits@intel.com>,
- Manivannan Sadhasivam <mani@kernel.org>,
- Niklas Cassel <cassel@kernel.org>, Calvin Owens <calvin@wbinvd.org>,
- Vadim Fedorenko <vadim.fedorenko@linux.dev>,
- Sagi Maimon <maimon.sagi@gmail.com>,
- "Martin K. Petersen" <martin.petersen@oracle.com>,
- Karan Tilak Kumar <kartilak@cisco.com>,
- Hans Verkuil <hverkuil+cisco@kernel.org>,
- Casey Schaufler <casey@schaufler-ca.com>,
- Steven Rostedt <rostedt@goodmis.org>,
- Viacheslav Dubeyko <Slava.Dubeyko@ibm.com>,
- Max Kellermann <max.kellermann@ionos.com>,
- linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
- openipmi-developer@lists.sourceforge.net,
- linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linaro-mm-sig@lists.linaro.org, amd-gfx@lists.freedesktop.org,
- linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, linux-mmc@vger.kernel.org,
- netdev@vger.kernel.org, intel-wired-lan@lists.osuosl.org,
- linux-pci@vger.kernel.org, linux-s390@vger.kernel.org,
- linux-scsi@vger.kernel.org, linux-staging@lists.linux.dev,
- ceph-devel@vger.kernel.org, linux-trace-kernel@vger.kernel.org,
- Rasmus Villemoes <linux@rasmusvillemoes.dk>,
- Sergey Senozhatsky <senozhatsky@chromium.org>,
- Jonathan Corbet <corbet@lwn.net>, Sumit Semwal <sumit.semwal@linaro.org>,
- Gustavo Padovan <gustavo@padovan.org>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Dmitry Baryshkov <lumag@kernel.org>,
- Abhinav Kumar <abhinav.kumar@linux.dev>,
- Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- Konrad Dybcio <konradybcio@kernel.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Vladimir Oltean <olteanv@gmail.com>, Andrew Lunn <andrew@lunn.ch>,
- "David S. Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Tony Nguyen <anthony.l.nguyen@intel.com>,
- Przemek Kitszel <przemyslaw.kitszel@intel.com>,
- Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>,
- Bjorn Helgaas <bhelgaas@google.com>,
- Rodolfo Giometti <giometti@enneenne.com>,
- Jonathan Lemon <jonathan.lemon@gmail.com>,
- Richard Cochran <richardcochran@gmail.com>,
- Stefan Haberland <sth@linux.ibm.com>,
- Jan Hoeppner <hoeppner@linux.ibm.com>, Heiko Carstens <hca@linux.ibm.com>,
- Vasily Gorbik <gor@linux.ibm.com>,
- Alexander Gordeev <agordeev@linux.ibm.com>,
- Christian Borntraeger <borntraeger@linux.ibm.com>,
- Sven Schnelle <svens@linux.ibm.com>, Satish Kharat <satishkh@cisco.com>,
- Sesidhar Baddela <sebaddel@cisco.com>,
- "James E.J. Bottomley" <James.Bottomley@hansenpartnership.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Xiubo Li <xiubli@redhat.com>, Ilya Dryomov <idryomov@gmail.com>,
- Masami Hiramatsu <mhiramat@kernel.org>,
- Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
- Andrew Morton <akpm@linux-foundation.org>
-Subject: Re: [PATCH v3 19/21] scsi: fnic: Switch to use %ptSp
-Message-ID: <aR2XAYWTEgMZu_Mx@pathway.suse.cz>
-References: <20251113150217.3030010-1-andriy.shevchenko@linux.intel.com>
- <20251113150217.3030010-20-andriy.shevchenko@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id C165410E5D8;
+	Wed, 19 Nov 2025 10:11:10 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5E5A110E5CF;
+ Wed, 19 Nov 2025 10:11:09 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251113150217.3030010-20-andriy.shevchenko@linux.intel.com>
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/display/dp=5Fmst=3A_A?=
+ =?utf-8?q?dd_protection_against_0_vcpi_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Suraj Kandpal" <suraj.kandpal@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 19 Nov 2025 10:11:09 -0000
+Message-ID: <176354706938.8491.3583962379638491179@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20251113043918.716367-1-suraj.kandpal@intel.com>
+In-Reply-To: <20251113043918.716367-1-suraj.kandpal@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -156,116 +36,99 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu 2025-11-13 15:32:33, Andy Shevchenko wrote:
-> Use %ptSp instead of open coded variants to print content of
-> struct timespec64 in human readable format.
+== Series Details ==
 
-I was about to commit the changes into printk/linux.git and
-found a mistake during the final double check, see below.
+Series: drm/display/dp_mst: Add protection against 0 vcpi (rev2)
+URL   : https://patchwork.freedesktop.org/series/157471/
+State : warning
 
-> diff --git a/drivers/scsi/fnic/fnic_trace.c b/drivers/scsi/fnic/fnic_trace.c
-> index cdc6b12b1ec2..0a849a195a8e 100644
-> --- a/drivers/scsi/fnic/fnic_trace.c
-> +++ b/drivers/scsi/fnic/fnic_trace.c
-> @@ -215,30 +213,26 @@ int fnic_get_stats_data(struct stats_debug_info *debug,
->  {
->  	int len = 0;
->  	int buf_size = debug->buf_size;
-> -	struct timespec64 val1, val2;
-> +	struct timespec64 val, val1, val2;
->  	int i = 0;
->  
-> -	ktime_get_real_ts64(&val1);
-> +	ktime_get_real_ts64(&val);
->  	len = scnprintf(debug->debug_buffer + len, buf_size - len,
->  		"------------------------------------------\n"
->  		 "\t\tTime\n"
->  		"------------------------------------------\n");
->  
-> +	val1 = timespec64_sub(val, stats->stats_timestamps.last_reset_time);
-> +	val2 = timespec64_sub(val, stats->stats_timestamps.last_read_time);
->  	len += scnprintf(debug->debug_buffer + len, buf_size - len,
-> -		"Current time :          [%lld:%ld]\n"
-> -		"Last stats reset time:  [%lld:%09ld]\n"
-> -		"Last stats read time:   [%lld:%ld]\n"
-> -		"delta since last reset: [%lld:%ld]\n"
-> -		"delta since last read:  [%lld:%ld]\n",
-> -	(s64)val1.tv_sec, val1.tv_nsec,
-> -	(s64)stats->stats_timestamps.last_reset_time.tv_sec,
-> -	stats->stats_timestamps.last_reset_time.tv_nsec,
-> -	(s64)stats->stats_timestamps.last_read_time.tv_sec,
-> -	stats->stats_timestamps.last_read_time.tv_nsec,
-> -	(s64)timespec64_sub(val1, stats->stats_timestamps.last_reset_time).tv_sec,
-> -	timespec64_sub(val1, stats->stats_timestamps.last_reset_time).tv_nsec,
-> -	(s64)timespec64_sub(val1, stats->stats_timestamps.last_read_time).tv_sec,
-> -	timespec64_sub(val1, stats->stats_timestamps.last_read_time).tv_nsec);
-> +			 "Current time :          [%ptSp]\n"
-> +			 "Last stats reset time:  [%ptSp]\n"
-> +			 "Last stats read time:   [%ptSp]\n"
-> +			 "delta since last reset: [%ptSp]\n"
-> +			 "delta since last read:  [%ptSp]\n",
+== Summary ==
 
-Both delta times are printed at the end.
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+2de9a3901bc28757c7906b454717b64e2a214021
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 54a0c901e1d19b8fee0d90fb97800bf42515cf05
+Author: Suraj Kandpal <suraj.kandpal@intel.com>
+Date:   Wed Nov 19 15:16:50 2025 +0530
 
-> +			 &val,
-> +			 &stats->stats_timestamps.last_reset_time, &val1,
-> +			 &stats->stats_timestamps.last_read_time, &val2);
+    drm/display/dp_mst: Add protection against 0 vcpi
+    
+    When releasing a timeslot there is a slight chance we may end up
+    with the wrong payload mask due to overflow if the delayed_destroy_work
+    ends up coming into play after a DP 2.1 monitor gets disconnected
+    which causes vcpi to become 0 then we try to make the payload =
+    ~BIT(vcpi - 1) which is a negative shift. VCPI id should never
+    really be 0 hence skip changing the payload mask if VCPI is 0.
+    
+    Otherwise it leads to
+    <7> [515.287237] xe 0000:03:00.0: [drm:drm_dp_mst_get_port_malloc
+    [drm_display_helper]] port ffff888126ce9000 (3)
+    <4> [515.287267] -----------[ cut here ]-----------
+    <3> [515.287268] UBSAN: shift-out-of-bounds in
+    ../drivers/gpu/drm/display/drm_dp_mst_topology.c:4575:36
+    <3> [515.287271] shift exponent -1 is negative
+    <4> [515.287275] CPU: 7 UID: 0 PID: 3108 Comm: kworker/u64:33 Tainted: G
+    S U 6.17.0-rc6-lgci-xe-xe-3795-3e79699fa1b216e92+ #1 PREEMPT(voluntary)
+    <4> [515.287279] Tainted: [S]=CPU_OUT_OF_SPEC, [U]=USER
+    <4> [515.287279] Hardware name: ASUS System Product Name/PRIME Z790-P
+    WIFI, BIOS 1645 03/15/2024
+    <4> [515.287281] Workqueue: drm_dp_mst_wq drm_dp_delayed_destroy_work
+    [drm_display_helper]
+    <4> [515.287303] Call Trace:
+    <4> [515.287304] <TASK>
+    <4> [515.287306] dump_stack_lvl+0xc1/0xf0
+    <4> [515.287313] dump_stack+0x10/0x20
+    <4> [515.287316] __ubsan_handle_shift_out_of_bounds+0x133/0x2e0
+    <4> [515.287324] ? drm_atomic_get_private_obj_state+0x186/0x1d0
+    <4> [515.287333] drm_dp_atomic_release_time_slots.cold+0x17/0x3d
+    [drm_display_helper]
+    <4> [515.287355] mst_connector_atomic_check+0x159/0x180 [xe]
+    <4> [515.287546] drm_atomic_helper_check_modeset+0x4d9/0xfa0
+    <4> [515.287550] ? __ww_mutex_lock.constprop.0+0x6f/0x1a60
+    <4> [515.287562] intel_atomic_check+0x119/0x2b80 [xe]
+    <4> [515.287740] ? find_held_lock+0x31/0x90
+    <4> [515.287747] ? lock_release+0xce/0x2a0
+    <4> [515.287754] drm_atomic_check_only+0x6a2/0xb40
+    <4> [515.287758] ? drm_atomic_add_affected_connectors+0x12b/0x140
+    <4> [515.287765] drm_atomic_commit+0x6e/0xf0
+    <4> [515.287766] ? _pfx__drm_printfn_info+0x10/0x10
+    <4> [515.287774] drm_client_modeset_commit_atomic+0x25c/0x2b0
+    <4> [515.287794] drm_client_modeset_commit_locked+0x60/0x1b0
+    <4> [515.287795] ? mutex_lock_nested+0x1b/0x30
+    <4> [515.287801] drm_client_modeset_commit+0x26/0x50
+    <4> [515.287804] __drm_fb_helper_restore_fbdev_mode_unlocked+0xdc/0x110
+    <4> [515.287810] drm_fb_helper_hotplug_event+0x120/0x140
+    <4> [515.287814] drm_fbdev_client_hotplug+0x28/0xd0
+    <4> [515.287819] drm_client_hotplug+0x6c/0xf0
+    <4> [515.287824] drm_client_dev_hotplug+0x9e/0xd0
+    <4> [515.287829] drm_kms_helper_hotplug_event+0x1a/0x30
+    <4> [515.287834] drm_dp_delayed_destroy_work+0x3df/0x410
+    [drm_display_helper]
+    <4> [515.287861] process_one_work+0x22b/0x6f0
+    <4> [515.287874] worker_thread+0x1e8/0x3d0
+    <4> [515.287879] ? __pfx_worker_thread+0x10/0x10
+    <4> [515.287882] kthread+0x11c/0x250
+    <4> [515.287886] ? __pfx_kthread+0x10/0x10
+    <4> [515.287890] ret_from_fork+0x2d7/0x310
+    <4> [515.287894] ? __pfx_kthread+0x10/0x10
+    <4> [515.287897] ret_from_fork_asm+0x1a/0x30
+    
+    Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/6303
+    Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
++ /mt/dim checkpatch 80939f90d3e68b92b868017ea450e6695f756666 drm-intel
+54a0c901e1d1 drm/display/dp_mst: Add protection against 0 vcpi
+-:82: WARNING:MISSING_FIXES_TAG: The commit message has 'Call Trace:', perhaps it also needs a 'Fixes:' tag?
 
-I think that this should be:
-
-			 &stats->stats_timestamps.last_reset_time,
-			 &stats->stats_timestamps.last_read_time,
-			 &val1, &val2);
-
->  	stats->stats_timestamps.last_read_time = val1;
-
-The original code stored the current time in "val1". This should be:
-
-	stats->stats_timestamps.last_read_time = val;
-
-> @@ -416,8 +410,8 @@ int fnic_get_stats_data(struct stats_debug_info *debug,
->  	jiffies_to_timespec64(stats->misc_stats.last_ack_time, &val2);
-
-Just for record. Another values are stored into @val1 and @val2 at
-this point.
-
->  	len += scnprintf(debug->debug_buffer + len, buf_size - len,
-> -		  "Last ISR time: %llu (%8llu.%09lu)\n"
-> -		  "Last ACK time: %llu (%8llu.%09lu)\n"
-> +		  "Last ISR time: %llu (%ptSp)\n"
-> +		  "Last ACK time: %llu (%ptSp)\n"
->  		  "Max ISR jiffies: %llu\n"
->  		  "Max ISR time (ms) (0 denotes < 1 ms): %llu\n"
->  		  "Corr. work done: %llu\n"
-> @@ -437,10 +431,8 @@ int fnic_get_stats_data(struct stats_debug_info *debug,
->  		  "Number of rport not ready: %lld\n"
->  		 "Number of receive frame errors: %lld\n"
->  		 "Port speed (in Mbps): %lld\n",
-> -		  (u64)stats->misc_stats.last_isr_time,
-> -		  (s64)val1.tv_sec, val1.tv_nsec,
-> -		  (u64)stats->misc_stats.last_ack_time,
-> -		  (s64)val2.tv_sec, val2.tv_nsec,
-> +		  (u64)stats->misc_stats.last_isr_time, &val1,
-> +		  (u64)stats->misc_stats.last_ack_time, &val2,
-
-So, this is correct!
-
->  		  (u64)atomic64_read(&stats->misc_stats.max_isr_jiffies),
->  		  (u64)atomic64_read(&stats->misc_stats.max_isr_time_ms),
->  		  (u64)atomic64_read(&stats->misc_stats.corr_work_done),
+total: 0 errors, 1 warnings, 0 checks, 9 lines checked
 
 
-Now, I think that there is no need to resend the entire huge patchset.
-
-I could either fix this when comitting or commit the rest and
-you could send only this patch for review.
-
-Best Regards,
-Petr
-
-PS: All other patches look good. Well, nobody acked 7th patch yet.
-    But I think that the change is pretty straightforward and
-    we could do it even without an ack.
