@@ -4,60 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B8E4ACF8562
-	for <intel-xe@archiver.kernel.org>; Thu, 20 Nov 2025 08:56:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 75285CF8561
+	for <intel-xe@archiver.kernel.org>; Thu, 20 Nov 2025 09:02:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6C89D10E718;
-	Thu, 20 Nov 2025 08:56:19 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Sa1Ri4Wp";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 018B010E714;
- Thu, 20 Nov 2025 08:56:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1763628978; x=1795164978;
- h=date:from:to:cc:subject:in-reply-to:message-id:
- references:mime-version:content-id;
- bh=oA1afS3am/WuNGiiKhM/r0CEwMJg6MoRFU2jp7PZlpg=;
- b=Sa1Ri4WpnF82nOO8IaYDudMqxLlsfxMWNTAkfeR+wsQamzu+xN/WjYln
- 7QsJbmA6IHWdogMbmIod/LUNVrsHfStzGizap94VhzXfeyEWQvnQ6wnZl
- /4tiru2NaWkfFtDe3mSKuV3W7CJy4xDWj0ffDALYkNc5XeELYEoBW9Rp1
- vV4xtv3bnLulZK0INm+PIJOUQoNsFeIVppW2Inv7urTcr+ETqVeoPAQXM
- T1QwnjrLCkX6PMwfP6PfmCVUYTPVdKbkWIxvmjUm1PcbOId3+JXDM7tZn
- 1xAdORXJwWnvQkA5Dzh8yy4+jq9F4j4YVFD3YdrcFsVeK3xQbnJykh2Cu w==;
-X-CSE-ConnectionGUID: 3kuDb2BNTsu2plx3i+YUgQ==
-X-CSE-MsgGUID: bgkWGZAyT0Sz7XEPWlrDsA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11618"; a="68297209"
-X-IronPort-AV: E=Sophos;i="6.19,317,1754982000"; d="scan'208";a="68297209"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Nov 2025 00:56:18 -0800
-X-CSE-ConnectionGUID: 5rClW/dKT2WQKwoo5gG5Pw==
-X-CSE-MsgGUID: MFTTOXYkQZyr2UUR9pGJ9w==
-X-ExtLoop1: 1
-Received: from administrator-system-product-name.igk.intel.com
- ([10.91.214.181])
- by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Nov 2025 00:56:15 -0800
-Date: Thu, 20 Nov 2025 09:56:13 +0100 (CET)
-From: =?ISO-8859-2?Q?Micha=B3_Grzelak?= <michal.grzelak@intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-cc: =?ISO-8859-2?Q?Micha=B3_Grzelak?= <michal.grzelak@intel.com>, 
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Jani Nikula <jani.nikula@linux.intel.com>, 
- Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>, 
- =?ISO-8859-15?Q?Thomas_Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-Subject: Re: [REGRESSION][RFC] memleak on xe load & unload on PTL
-In-Reply-To: <qalol3lam5khiijztfdysgl7qj3fhgwizyclkld6hae6bqazz5@6xqir2p45nkt>
-Message-ID: <0f5ba970-24cf-bf2c-59c1-cfc77804881a@intel.com>
-References: <c1245e1a-2856-83e6-69ed-1ddead4ad3d0@intel.com>
- <qalol3lam5khiijztfdysgl7qj3fhgwizyclkld6hae6bqazz5@6xqir2p45nkt>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 344EB10E719;
+	Thu, 20 Nov 2025 09:02:28 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C432110E719;
+ Thu, 20 Nov 2025 09:02:26 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0086960163368120376=="
 MIME-Version: 1.0
-Content-Type: multipart/mixed; BOUNDARY="8323329-2030057926-1763579828=:270825"
-Content-ID: <dbab0f61-25ca-9180-ce5e-c3025867452c@intel.com>
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/cx0=3A_Fix_port_to?=
+ =?utf-8?q?_PLL_ID_mapping_on_BMG?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Imre Deak" <imre.deak@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 20 Nov 2025 09:02:26 -0000
+Message-ID: <176362934679.13300.5192506243163664800@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20251120073845.1270159-1-imre.deak@intel.com>
+In-Reply-To: <20251120073845.1270159-1-imre.deak@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,98 +36,311 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-  This message is in MIME format.  The first part should be readable text,
-  while the remaining parts are likely unreadable without MIME-aware tools.
+--===============0086960163368120376==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
---8323329-2030057926-1763579828=:270825
-Content-Type: text/plain; CHARSET=ISO-8859-2; format=flowed
-Content-Transfer-Encoding: 8BIT
-Content-ID: <bf4241a6-9ede-c45e-c339-6eb2681b5243@intel.com>
+== Series Details ==
 
-On Wed, 19 Nov 2025, Lucas De Marchi wrote:
-> On Tue, Nov 18, 2025 at 01:35:53PM +0100, Micha³ Grzelak wrote:
->> Hi,
->> 
->> just hit memory leak on xe module load & unload:
->> 
->> unreferenced object 0xffff88811b047d10 (size 16):
->>  comm "modprobe", pid 1058, jiffies 4297578480
->>  hex dump (first 16 bytes):
->>    00 6b 4b 2d 81 88 ff ff 80 7e 4b 2d 81 88 ff ff  .kK-.....~K-....
->>  backtrace (crc 4f169eaf):
->>    kmemleak_alloc+0x4a/0x90
->>    __kmalloc_cache_noprof+0x488/0x800
->>    drm_buddy_init+0xc2/0x330 [drm_buddy]
->>    __xe_ttm_vram_mgr_init+0xc3/0x190 [xe]
->>    xe_ttm_stolen_mgr_init+0xf5/0x9d0 [xe]
->>    xe_device_probe+0x326/0x9e0 [xe]
->>    xe_pci_probe+0x39a/0x610 [xe]
->>    local_pci_probe+0x47/0xb0
->>    pci_device_probe+0xf3/0x260
->>    really_probe+0xf1/0x3c0
->>    __driver_probe_device+0x8c/0x180
->>    driver_probe_device+0x24/0xd0
->>    __driver_attach+0x10f/0x220
->>    bus_for_each_dev+0x7f/0xe0
->>    driver_attach+0x1e/0x30
->>    bus_add_driver+0x151/0x290
->> 
->> Issue was reproduced on PTL & BMG, booted with latest kernel from
->> drm-tip. Looks like fault was introduced in commit d4cd665c9
->> ("drm/buddy: Separate clear and dirty free block trees"), since reverting 
->> it
->> makes the leak disappear. Also attached RFC patch, which at first
->> glance could fix the issue.
->> 
->> Added xe maintainers and the author to Cc.
->
-> the backtrace above and the commit message below could be merged
-> together
->
->> From 914aa53c18a88834310b8560323b63bae98fb29d Mon Sep 17 00:00:00 2001
->> From: =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
->> Date: Tue, 18 Nov 2025 11:34:11 +0100
->> Subject: [PATCH] drm/buddy: release free_trees array on buddy mm teardown
->> MIME-Version: 1.0
->> Content-Type: text/plain; charset=UTF-8
->> Content-Transfer-Encoding: 8bit
->> Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 
->> 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
->> 
->> During initialization of DRM buddy memory manager at drm_buddy_init,
->> mm->free_trees array is allocated for both clear and dirty RB trees.
->> During cleanup happening at drm_buddy_fini it is never freed, leading to
->> memory leaks observed on xe module load & unload cycles.
->> 
->> Deallocate array for free trees when cleaning up buddy memory manager.
->> 
->> Fixes: d4cd665c ("drm/buddy: Separate clear and dirty free block trees")
->> Signed-off-by: Micha³ Grzelak <michal.grzelak@intel.com>
->> ---
->> drivers/gpu/drm/drm_buddy.c | 1 +
->> 1 file changed, 1 insertion(+)
->> 
->> diff --git a/drivers/gpu/drm/drm_buddy.c b/drivers/gpu/drm/drm_buddy.c
->> index 2f279b46bd2c..8308116058cc 100644
->> --- a/drivers/gpu/drm/drm_buddy.c
->> +++ b/drivers/gpu/drm/drm_buddy.c
->> @@ -420,6 +420,7 @@ void drm_buddy_fini(struct drm_buddy *mm)
->>
->> 	for_each_free_tree(i)
->> 		kfree(mm->free_trees[i]);
->> +	kfree(mm->free_trees);
->
-> looks correct to me and also matches the out_free_tree label in
-> drm_buddy_init()
->
-> Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Series: drm/i915/cx0: Fix port to PLL ID mapping on BMG
+URL   : https://patchwork.freedesktop.org/series/157824/
+State : success
 
-Thank you Lucas for your review. I will update the commit message with
-your R-B applied when resending the patch.
+== Summary ==
 
-BR,
-Micha³
---8323329-2030057926-1763579828=:270825--
+CI Bug Log - changes from xe-4132-9e9925b18a12a6226ec09a7ff19af83470b4534b_BAT -> xe-pw-157824v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (13 -> 13)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-157824v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
+    - bat-bmg-1:          NOTRUN -> [SKIP][1] ([Intel XE#2233])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157824v1/bat-bmg-1/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
+
+  * igt@kms_dsc@dsc-basic:
+    - bat-bmg-1:          NOTRUN -> [SKIP][2] ([Intel XE#2244])
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157824v1/bat-bmg-1/igt@kms_dsc@dsc-basic.html
+
+  * igt@kms_flip@basic-plain-flip@a-edp1:
+    - bat-adlp-7:         [PASS][3] -> [DMESG-WARN][4] ([Intel XE#4543]) +1 other test dmesg-warn
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4132-9e9925b18a12a6226ec09a7ff19af83470b4534b/bat-adlp-7/igt@kms_flip@basic-plain-flip@a-edp1.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157824v1/bat-adlp-7/igt@kms_flip@basic-plain-flip@a-edp1.html
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - bat-bmg-2:          NOTRUN -> [SKIP][5] ([Intel XE#2434] / [Intel XE#2548])
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157824v1/bat-bmg-2/igt@kms_frontbuffer_tracking@basic.html
+
+  * igt@kms_pipe_crc_basic@hang-read-crc:
+    - bat-bmg-2:          NOTRUN -> [SKIP][6] ([Intel XE#2489] / [Intel XE#3419]) +6 other tests skip
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157824v1/bat-bmg-2/igt@kms_pipe_crc_basic@hang-read-crc.html
+
+  * igt@kms_psr@psr-sprite-plane-onoff:
+    - bat-bmg-2:          NOTRUN -> [SKIP][7] ([Intel XE#1406] / [Intel XE#2234] / [Intel XE#2850]) +2 other tests skip
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157824v1/bat-bmg-2/igt@kms_psr@psr-sprite-plane-onoff.html
+    - bat-bmg-1:          NOTRUN -> [SKIP][8] ([Intel XE#1406] / [Intel XE#2234] / [Intel XE#2850]) +2 other tests skip
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157824v1/bat-bmg-1/igt@kms_psr@psr-sprite-plane-onoff.html
+
+  * igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit:
+    - bat-bmg-2:          NOTRUN -> [SKIP][9] ([Intel XE#2229])
+   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157824v1/bat-bmg-2/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html
+    - bat-bmg-1:          NOTRUN -> [SKIP][10] ([Intel XE#2229])
+   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157824v1/bat-bmg-1/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html
+
+  * igt@xe_pat@pat-index-xehpc:
+    - bat-bmg-2:          NOTRUN -> [SKIP][11] ([Intel XE#1420])
+   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157824v1/bat-bmg-2/igt@xe_pat@pat-index-xehpc.html
+    - bat-bmg-1:          NOTRUN -> [SKIP][12] ([Intel XE#1420])
+   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157824v1/bat-bmg-1/igt@xe_pat@pat-index-xehpc.html
+
+  * igt@xe_pat@pat-index-xelp:
+    - bat-bmg-2:          NOTRUN -> [SKIP][13] ([Intel XE#2245])
+   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157824v1/bat-bmg-2/igt@xe_pat@pat-index-xelp.html
+    - bat-bmg-1:          NOTRUN -> [SKIP][14] ([Intel XE#2245])
+   [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157824v1/bat-bmg-1/igt@xe_pat@pat-index-xelp.html
+
+  * igt@xe_pat@pat-index-xelpg:
+    - bat-bmg-2:          NOTRUN -> [SKIP][15] ([Intel XE#2236])
+   [15]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157824v1/bat-bmg-2/igt@xe_pat@pat-index-xelpg.html
+    - bat-bmg-1:          NOTRUN -> [SKIP][16] ([Intel XE#2236])
+   [16]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157824v1/bat-bmg-1/igt@xe_pat@pat-index-xelpg.html
+
+  * igt@xe_waitfence@engine:
+    - bat-dg2-oem2:       [PASS][17] -> [FAIL][18] ([Intel XE#6519])
+   [17]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4132-9e9925b18a12a6226ec09a7ff19af83470b4534b/bat-dg2-oem2/igt@xe_waitfence@engine.html
+   [18]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157824v1/bat-dg2-oem2/igt@xe_waitfence@engine.html
+
+  * igt@xe_waitfence@reltime:
+    - bat-dg2-oem2:       [PASS][19] -> [FAIL][20] ([Intel XE#6520])
+   [19]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4132-9e9925b18a12a6226ec09a7ff19af83470b4534b/bat-dg2-oem2/igt@xe_waitfence@reltime.html
+   [20]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157824v1/bat-dg2-oem2/igt@xe_waitfence@reltime.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_force_connector_basic@force-connector-state:
+    - bat-bmg-2:          [ABORT][21] ([Intel XE#1727] / [Intel XE#4760]) -> [PASS][22]
+   [21]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4132-9e9925b18a12a6226ec09a7ff19af83470b4534b/bat-bmg-2/igt@kms_force_connector_basic@force-connector-state.html
+   [22]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157824v1/bat-bmg-2/igt@kms_force_connector_basic@force-connector-state.html
+
+  * igt@xe_module_load@load:
+    - bat-bmg-1:          [ABORT][23] ([Intel XE#4760]) -> [PASS][24]
+   [23]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4132-9e9925b18a12a6226ec09a7ff19af83470b4534b/bat-bmg-1/igt@xe_module_load@load.html
+   [24]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157824v1/bat-bmg-1/igt@xe_module_load@load.html
+
+  * igt@xe_waitfence@abstime:
+    - bat-dg2-oem2:       [TIMEOUT][25] ([Intel XE#6506]) -> [PASS][26]
+   [25]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4132-9e9925b18a12a6226ec09a7ff19af83470b4534b/bat-dg2-oem2/igt@xe_waitfence@abstime.html
+   [26]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157824v1/bat-dg2-oem2/igt@xe_waitfence@abstime.html
+
+  
+  [Intel XE#1406]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1406
+  [Intel XE#1420]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1420
+  [Intel XE#1727]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1727
+  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
+  [Intel XE#2233]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2233
+  [Intel XE#2234]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2234
+  [Intel XE#2236]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2236
+  [Intel XE#2244]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2244
+  [Intel XE#2245]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2245
+  [Intel XE#2434]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2434
+  [Intel XE#2489]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2489
+  [Intel XE#2548]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2548
+  [Intel XE#2850]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2850
+  [Intel XE#3419]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3419
+  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
+  [Intel XE#4760]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4760
+  [Intel XE#6506]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506
+  [Intel XE#6519]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519
+  [Intel XE#6520]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520
+
+
+Build changes
+-------------
+
+  * Linux: xe-4132-9e9925b18a12a6226ec09a7ff19af83470b4534b -> xe-pw-157824v1
+
+  IGT_8635: 8635
+  xe-4132-9e9925b18a12a6226ec09a7ff19af83470b4534b: 9e9925b18a12a6226ec09a7ff19af83470b4534b
+  xe-pw-157824v1: 157824v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157824v1/index.html
+
+--===============0086960163368120376==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/cx0: Fix port to PLL ID mapping on BMG</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/157824/">https://patchwork.freedesktop.org/series/157824/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157824v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157824v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4132-9e9925b18a12a6226ec09a7ff19af83470b4534b_BAT -&gt; xe-pw-157824v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-157824v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:</p>
+<ul>
+<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157824v1/bat-bmg-1/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2233">Intel XE#2233</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_dsc@dsc-basic:</p>
+<ul>
+<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157824v1/bat-bmg-1/igt@kms_dsc@dsc-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2244">Intel XE#2244</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@basic-plain-flip@a-edp1:</p>
+<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4132-9e9925b18a12a6226ec09a7ff19af83470b4534b/bat-adlp-7/igt@kms_flip@basic-plain-flip@a-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157824v1/bat-adlp-7/igt@kms_flip@basic-plain-flip@a-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) +1 other test dmesg-warn</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@basic:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157824v1/bat-bmg-2/igt@kms_frontbuffer_tracking@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2434">Intel XE#2434</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2548">Intel XE#2548</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@hang-read-crc:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157824v1/bat-bmg-2/igt@kms_pipe_crc_basic@hang-read-crc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2489">Intel XE#2489</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3419">Intel XE#3419</a>) +6 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@psr-sprite-plane-onoff:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157824v1/bat-bmg-2/igt@kms_psr@psr-sprite-plane-onoff.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1406">Intel XE#1406</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2234">Intel XE#2234</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2850">Intel XE#2850</a>) +2 other tests skip</li>
+<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157824v1/bat-bmg-1/igt@kms_psr@psr-sprite-plane-onoff.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1406">Intel XE#1406</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2234">Intel XE#2234</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2850">Intel XE#2850</a>) +2 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157824v1/bat-bmg-2/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>)</li>
+<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157824v1/bat-bmg-1/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xehpc:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157824v1/bat-bmg-2/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1420">Intel XE#1420</a>)</li>
+<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157824v1/bat-bmg-1/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1420">Intel XE#1420</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xelp:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157824v1/bat-bmg-2/igt@xe_pat@pat-index-xelp.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2245">Intel XE#2245</a>)</li>
+<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157824v1/bat-bmg-1/igt@xe_pat@pat-index-xelp.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2245">Intel XE#2245</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xelpg:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157824v1/bat-bmg-2/igt@xe_pat@pat-index-xelpg.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2236">Intel XE#2236</a>)</li>
+<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157824v1/bat-bmg-1/igt@xe_pat@pat-index-xelpg.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2236">Intel XE#2236</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_waitfence@engine:</p>
+<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4132-9e9925b18a12a6226ec09a7ff19af83470b4534b/bat-dg2-oem2/igt@xe_waitfence@engine.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157824v1/bat-dg2-oem2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519">Intel XE#6519</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_waitfence@reltime:</p>
+<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4132-9e9925b18a12a6226ec09a7ff19af83470b4534b/bat-dg2-oem2/igt@xe_waitfence@reltime.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157824v1/bat-dg2-oem2/igt@xe_waitfence@reltime.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520">Intel XE#6520</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@kms_force_connector_basic@force-connector-state:</p>
+<ul>
+<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4132-9e9925b18a12a6226ec09a7ff19af83470b4534b/bat-bmg-2/igt@kms_force_connector_basic@force-connector-state.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1727">Intel XE#1727</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4760">Intel XE#4760</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157824v1/bat-bmg-2/igt@kms_force_connector_basic@force-connector-state.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@xe_module_load@load:</p>
+<ul>
+<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4132-9e9925b18a12a6226ec09a7ff19af83470b4534b/bat-bmg-1/igt@xe_module_load@load.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4760">Intel XE#4760</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157824v1/bat-bmg-1/igt@xe_module_load@load.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@xe_waitfence@abstime:</p>
+<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4132-9e9925b18a12a6226ec09a7ff19af83470b4534b/bat-dg2-oem2/igt@xe_waitfence@abstime.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506">Intel XE#6506</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157824v1/bat-dg2-oem2/igt@xe_waitfence@abstime.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4132-9e9925b18a12a6226ec09a7ff19af83470b4534b -&gt; xe-pw-157824v1</li>
+</ul>
+<p>IGT_8635: 8635<br />
+  xe-4132-9e9925b18a12a6226ec09a7ff19af83470b4534b: 9e9925b18a12a6226ec09a7ff19af83470b4534b<br />
+  xe-pw-157824v1: 157824v1</p>
+
+</body>
+</html>
+
+--===============0086960163368120376==--
