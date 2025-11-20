@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0C204CFA44D
-	for <intel-xe@archiver.kernel.org>; Thu, 20 Nov 2025 22:44:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A26DACF887F
+	for <intel-xe@archiver.kernel.org>; Thu, 20 Nov 2025 22:49:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AA7C810E08A;
-	Thu, 20 Nov 2025 22:44:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4D6FF10E0A8;
+	Thu, 20 Nov 2025 22:49:40 +0000 (UTC)
 Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AD75C10E08A;
- Thu, 20 Nov 2025 22:44:33 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7921333623793255246=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9FF0110E08A;
+ Thu, 20 Nov 2025 22:49:39 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_series_starting_with_=5B1/5?=
- =?utf-8?q?=5D_drm/i915/cx0=3A_Fix_port_to_PLL_ID_mapping_on_BMG?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/i915=3A_Walk_crtcs_in?=
+ =?utf-8?q?_pipe_order_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Imre Deak" <imre.deak@intel.com>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 20 Nov 2025 22:44:33 -0000
-Message-ID: <176367867370.15649.11714107907771333158@a3b018990fe9>
+Date: Thu, 20 Nov 2025 22:49:39 -0000
+Message-ID: <176367897965.15064.16352181145325855474@a3b018990fe9>
 X-Patchwork-Hint: ignore
-References: <20251120172358.1282765-1-imre.deak@intel.com>
-In-Reply-To: <20251120172358.1282765-1-imre.deak@intel.com>
+References: <20251120144910.13028-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20251120144910.13028-1-ville.syrjala@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,271 +40,266 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7921333623793255246==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: series starting with [1/5] drm/i915/cx0: Fix port to PLL ID mapping on BMG
-URL   : https://patchwork.freedesktop.org/series/157862/
-State : success
+Series: drm/i915: Walk crtcs in pipe order (rev2)
+URL   : https://patchwork.freedesktop.org/series/157852/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-4135-3d718db04a365cc44a3bc81ffa4db7bbd2e645d7_BAT -> xe-pw-157862v1_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+2de9a3901bc28757c7906b454717b64e2a214021
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 6d692204380792bb7c66ad27ca5031f81147460d
+Author: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Date:   Thu Nov 20 21:21:37 2025 +0200
 
-Summary
--------
+    drm/i915: Walk crtcs in pipe order
+    
+    Currently our crtcs are registered in pipe order, and thus
+    all the for_intel_crtc*() iterators walk the crtcs in pipe
+    order. There are a bunch of places that more or less depend
+    on that. Eg. during plane updates and such we want joined
+    pipes to be processed back-to-back to give a better chance
+    of an atomic update across the whole set.
+    
+    When we start to register crtcs in a different order we don't
+    want to change the order in which the pipes get handled.
+    Decouple the for_each_intel_crtc*() iterators from the crtc
+    registration order by using a separate list which will be
+    sorted by the pipe rather than the crtc index.
+    
+    We could priobably use a simple array or something, but that
+    would require some kind of extra iterator variable for the
+    macros, and thus would require a lot more changes. Using
+    a linked list keeps the fallout minimal. We can look at
+    using a more optimal data structure later.
+    
+    I also added this extra junk to the atomic state iterators:
+    "(__i) = drm_crtc_index(&(crtc)->base), (void)(__i)"
+    even though the macro itself no longer needs the "__i" iterator.
+    This in case the "__i" is used by the caller, and to
+    avoid compiler warnings if it's completely unused now.
+    
+    v2: Flip the pipe comparison (Jani)
+    
+    Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+    Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
++ /mt/dim checkpatch 3d718db04a365cc44a3bc81ffa4db7bbd2e645d7 drm-intel
+6d6922043807 drm/i915: Walk crtcs in pipe order
+-:118: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#118: FILE: drivers/gpu/drm/i915/display/intel_display.h:251:
++#define for_each_intel_crtc_in_pipe_mask(dev, crtc, pipe_mask) \
++	for_each_intel_crtc((dev), (crtc)) \
++		for_each_if((pipe_mask) & BIT((crtc)->pipe))
 
-  **SUCCESS**
+BUT SEE:
 
-  No regressions found.
+   do {} while (0) advice is over-stated in a few situations:
 
-  
+   The more obvious case is macros, like MODULE_PARM_DESC, invoked at
+   file-scope, where C disallows code (it must be in functions).  See
+   $exceptions if you have one to add by name.
 
-Participating hosts (13 -> 13)
-------------------------------
+   More troublesome is declarative macros used at top of new scope,
+   like DECLARE_PER_CPU.  These might just compile with a do-while-0
+   wrapper, but would be incorrect.  Most of these are handled by
+   detecting struct,union,etc declaration primitives in $exceptions.
 
-  No changes in participating hosts
+   Theres also macros called inside an if (block), which "return" an
+   expression.  These cannot do-while, and need a ({}) wrapper.
 
-Known issues
-------------
+   Enjoy this qualification while we work to improve our heuristics.
 
-  Here are the changes found in xe-pw-157862v1_BAT that come from known issues:
+-:118: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'crtc' - possible side-effects?
+#118: FILE: drivers/gpu/drm/i915/display/intel_display.h:251:
++#define for_each_intel_crtc_in_pipe_mask(dev, crtc, pipe_mask) \
++	for_each_intel_crtc((dev), (crtc)) \
++		for_each_if((pipe_mask) & BIT((crtc)->pipe))
 
-### IGT changes ###
+-:127: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#127: FILE: drivers/gpu/drm/i915/display/intel_display.h:255:
++#define for_each_intel_crtc_in_pipe_mask_reverse(dev, crtc, pipe_mask) \
++	for_each_intel_crtc_reverse((dev), (crtc)) \
++		for_each_if((pipe_mask) & BIT((crtc)->pipe))
 
-#### Issues hit ####
+BUT SEE:
 
-  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
-    - bat-bmg-1:          NOTRUN -> [SKIP][1] ([Intel XE#2233])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157862v1/bat-bmg-1/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
+   do {} while (0) advice is over-stated in a few situations:
 
-  * igt@kms_dsc@dsc-basic:
-    - bat-bmg-1:          NOTRUN -> [SKIP][2] ([Intel XE#2244])
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157862v1/bat-bmg-1/igt@kms_dsc@dsc-basic.html
+   The more obvious case is macros, like MODULE_PARM_DESC, invoked at
+   file-scope, where C disallows code (it must be in functions).  See
+   $exceptions if you have one to add by name.
 
-  * igt@kms_frontbuffer_tracking@basic:
-    - bat-bmg-2:          NOTRUN -> [SKIP][3] ([Intel XE#2434] / [Intel XE#2548])
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157862v1/bat-bmg-2/igt@kms_frontbuffer_tracking@basic.html
+   More troublesome is declarative macros used at top of new scope,
+   like DECLARE_PER_CPU.  These might just compile with a do-while-0
+   wrapper, but would be incorrect.  Most of these are handled by
+   detecting struct,union,etc declaration primitives in $exceptions.
 
-  * igt@kms_pipe_crc_basic@hang-read-crc:
-    - bat-bmg-2:          NOTRUN -> [SKIP][4] ([Intel XE#2489] / [Intel XE#3419]) +6 other tests skip
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157862v1/bat-bmg-2/igt@kms_pipe_crc_basic@hang-read-crc.html
+   Theres also macros called inside an if (block), which "return" an
+   expression.  These cannot do-while, and need a ({}) wrapper.
 
-  * igt@kms_psr@psr-sprite-plane-onoff:
-    - bat-bmg-2:          NOTRUN -> [SKIP][5] ([Intel XE#1406] / [Intel XE#2234] / [Intel XE#2850]) +2 other tests skip
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157862v1/bat-bmg-2/igt@kms_psr@psr-sprite-plane-onoff.html
-    - bat-bmg-1:          NOTRUN -> [SKIP][6] ([Intel XE#1406] / [Intel XE#2234] / [Intel XE#2850]) +2 other tests skip
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157862v1/bat-bmg-1/igt@kms_psr@psr-sprite-plane-onoff.html
+   Enjoy this qualification while we work to improve our heuristics.
 
-  * igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit:
-    - bat-bmg-2:          NOTRUN -> [SKIP][7] ([Intel XE#2229])
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157862v1/bat-bmg-2/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html
-    - bat-bmg-1:          NOTRUN -> [SKIP][8] ([Intel XE#2229])
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157862v1/bat-bmg-1/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html
+-:127: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'crtc' - possible side-effects?
+#127: FILE: drivers/gpu/drm/i915/display/intel_display.h:255:
++#define for_each_intel_crtc_in_pipe_mask_reverse(dev, crtc, pipe_mask) \
++	for_each_intel_crtc_reverse((dev), (crtc)) \
++		for_each_if((pipe_mask) & BIT((crtc)->pipe))
 
-  * igt@xe_pat@pat-index-xehpc:
-    - bat-bmg-2:          NOTRUN -> [SKIP][9] ([Intel XE#1420])
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157862v1/bat-bmg-2/igt@xe_pat@pat-index-xehpc.html
-    - bat-bmg-1:          NOTRUN -> [SKIP][10] ([Intel XE#1420])
-   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157862v1/bat-bmg-1/igt@xe_pat@pat-index-xehpc.html
+-:175: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#175: FILE: drivers/gpu/drm/i915/display/intel_display.h:316:
++#define for_each_old_intel_crtc_in_state(__state, crtc, old_crtc_state, __i) \
++	for_each_intel_crtc((__state)->base.dev, (crtc)) \
++		for_each_if(((__i) = drm_crtc_index(&(crtc)->base), (void)(__i), \
++			     (old_crtc_state) = intel_atomic_get_old_crtc_state((__state), (crtc))))
 
-  * igt@xe_pat@pat-index-xelp:
-    - bat-bmg-2:          NOTRUN -> [SKIP][11] ([Intel XE#2245])
-   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157862v1/bat-bmg-2/igt@xe_pat@pat-index-xelp.html
-    - bat-bmg-1:          NOTRUN -> [SKIP][12] ([Intel XE#2245])
-   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157862v1/bat-bmg-1/igt@xe_pat@pat-index-xelp.html
+BUT SEE:
 
-  * igt@xe_pat@pat-index-xelpg:
-    - bat-bmg-2:          NOTRUN -> [SKIP][13] ([Intel XE#2236])
-   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157862v1/bat-bmg-2/igt@xe_pat@pat-index-xelpg.html
-    - bat-bmg-1:          NOTRUN -> [SKIP][14] ([Intel XE#2236])
-   [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157862v1/bat-bmg-1/igt@xe_pat@pat-index-xelpg.html
+   do {} while (0) advice is over-stated in a few situations:
 
-  
-#### Possible fixes ####
+   The more obvious case is macros, like MODULE_PARM_DESC, invoked at
+   file-scope, where C disallows code (it must be in functions).  See
+   $exceptions if you have one to add by name.
 
-  * igt@kms_force_connector_basic@force-connector-state:
-    - bat-bmg-2:          [ABORT][15] ([Intel XE#1727] / [Intel XE#4760]) -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4135-3d718db04a365cc44a3bc81ffa4db7bbd2e645d7/bat-bmg-2/igt@kms_force_connector_basic@force-connector-state.html
-   [16]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157862v1/bat-bmg-2/igt@kms_force_connector_basic@force-connector-state.html
+   More troublesome is declarative macros used at top of new scope,
+   like DECLARE_PER_CPU.  These might just compile with a do-while-0
+   wrapper, but would be incorrect.  Most of these are handled by
+   detecting struct,union,etc declaration primitives in $exceptions.
 
-  * igt@xe_module_load@load:
-    - bat-bmg-1:          [ABORT][17] ([Intel XE#4760]) -> [PASS][18]
-   [17]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4135-3d718db04a365cc44a3bc81ffa4db7bbd2e645d7/bat-bmg-1/igt@xe_module_load@load.html
-   [18]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157862v1/bat-bmg-1/igt@xe_module_load@load.html
+   Theres also macros called inside an if (block), which "return" an
+   expression.  These cannot do-while, and need a ({}) wrapper.
 
-  * igt@xe_waitfence@engine:
-    - bat-dg2-oem2:       [FAIL][19] ([Intel XE#6519]) -> [PASS][20]
-   [19]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4135-3d718db04a365cc44a3bc81ffa4db7bbd2e645d7/bat-dg2-oem2/igt@xe_waitfence@engine.html
-   [20]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157862v1/bat-dg2-oem2/igt@xe_waitfence@engine.html
+   Enjoy this qualification while we work to improve our heuristics.
 
-  
-  [Intel XE#1406]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1406
-  [Intel XE#1420]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1420
-  [Intel XE#1727]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1727
-  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
-  [Intel XE#2233]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2233
-  [Intel XE#2234]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2234
-  [Intel XE#2236]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2236
-  [Intel XE#2244]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2244
-  [Intel XE#2245]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2245
-  [Intel XE#2434]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2434
-  [Intel XE#2489]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2489
-  [Intel XE#2548]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2548
-  [Intel XE#2850]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2850
-  [Intel XE#3419]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3419
-  [Intel XE#4760]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4760
-  [Intel XE#6519]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519
+-:175: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__state' - possible side-effects?
+#175: FILE: drivers/gpu/drm/i915/display/intel_display.h:316:
++#define for_each_old_intel_crtc_in_state(__state, crtc, old_crtc_state, __i) \
++	for_each_intel_crtc((__state)->base.dev, (crtc)) \
++		for_each_if(((__i) = drm_crtc_index(&(crtc)->base), (void)(__i), \
++			     (old_crtc_state) = intel_atomic_get_old_crtc_state((__state), (crtc))))
+
+-:175: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'crtc' - possible side-effects?
+#175: FILE: drivers/gpu/drm/i915/display/intel_display.h:316:
++#define for_each_old_intel_crtc_in_state(__state, crtc, old_crtc_state, __i) \
++	for_each_intel_crtc((__state)->base.dev, (crtc)) \
++		for_each_if(((__i) = drm_crtc_index(&(crtc)->base), (void)(__i), \
++			     (old_crtc_state) = intel_atomic_get_old_crtc_state((__state), (crtc))))
+
+-:175: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__i' - possible side-effects?
+#175: FILE: drivers/gpu/drm/i915/display/intel_display.h:316:
++#define for_each_old_intel_crtc_in_state(__state, crtc, old_crtc_state, __i) \
++	for_each_intel_crtc((__state)->base.dev, (crtc)) \
++		for_each_if(((__i) = drm_crtc_index(&(crtc)->base), (void)(__i), \
++			     (old_crtc_state) = intel_atomic_get_old_crtc_state((__state), (crtc))))
+
+-:180: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#180: FILE: drivers/gpu/drm/i915/display/intel_display.h:321:
++#define for_each_new_intel_crtc_in_state(__state, crtc, new_crtc_state, __i) \
++	for_each_intel_crtc((__state)->base.dev, (crtc)) \
++		for_each_if(((__i) = drm_crtc_index(&(crtc)->base), (void)(__i), \
++			     (new_crtc_state) = intel_atomic_get_new_crtc_state((__state), (crtc))))
+
+BUT SEE:
+
+   do {} while (0) advice is over-stated in a few situations:
+
+   The more obvious case is macros, like MODULE_PARM_DESC, invoked at
+   file-scope, where C disallows code (it must be in functions).  See
+   $exceptions if you have one to add by name.
+
+   More troublesome is declarative macros used at top of new scope,
+   like DECLARE_PER_CPU.  These might just compile with a do-while-0
+   wrapper, but would be incorrect.  Most of these are handled by
+   detecting struct,union,etc declaration primitives in $exceptions.
+
+   Theres also macros called inside an if (block), which "return" an
+   expression.  These cannot do-while, and need a ({}) wrapper.
+
+   Enjoy this qualification while we work to improve our heuristics.
+
+-:180: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__state' - possible side-effects?
+#180: FILE: drivers/gpu/drm/i915/display/intel_display.h:321:
++#define for_each_new_intel_crtc_in_state(__state, crtc, new_crtc_state, __i) \
++	for_each_intel_crtc((__state)->base.dev, (crtc)) \
++		for_each_if(((__i) = drm_crtc_index(&(crtc)->base), (void)(__i), \
++			     (new_crtc_state) = intel_atomic_get_new_crtc_state((__state), (crtc))))
+
+-:180: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'crtc' - possible side-effects?
+#180: FILE: drivers/gpu/drm/i915/display/intel_display.h:321:
++#define for_each_new_intel_crtc_in_state(__state, crtc, new_crtc_state, __i) \
++	for_each_intel_crtc((__state)->base.dev, (crtc)) \
++		for_each_if(((__i) = drm_crtc_index(&(crtc)->base), (void)(__i), \
++			     (new_crtc_state) = intel_atomic_get_new_crtc_state((__state), (crtc))))
+
+-:180: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__i' - possible side-effects?
+#180: FILE: drivers/gpu/drm/i915/display/intel_display.h:321:
++#define for_each_new_intel_crtc_in_state(__state, crtc, new_crtc_state, __i) \
++	for_each_intel_crtc((__state)->base.dev, (crtc)) \
++		for_each_if(((__i) = drm_crtc_index(&(crtc)->base), (void)(__i), \
++			     (new_crtc_state) = intel_atomic_get_new_crtc_state((__state), (crtc))))
+
+-:185: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#185: FILE: drivers/gpu/drm/i915/display/intel_display.h:326:
++#define for_each_new_intel_crtc_in_state_reverse(__state, crtc, new_crtc_state, __i) \
++	for_each_intel_crtc_reverse((__state)->base.dev, (crtc)) \
++		for_each_if(((__i) = drm_crtc_index(&(crtc)->base), (void)(__i), \
++			     (new_crtc_state) = intel_atomic_get_new_crtc_state((__state), (crtc))))
+
+BUT SEE:
+
+   do {} while (0) advice is over-stated in a few situations:
+
+   The more obvious case is macros, like MODULE_PARM_DESC, invoked at
+   file-scope, where C disallows code (it must be in functions).  See
+   $exceptions if you have one to add by name.
+
+   More troublesome is declarative macros used at top of new scope,
+   like DECLARE_PER_CPU.  These might just compile with a do-while-0
+   wrapper, but would be incorrect.  Most of these are handled by
+   detecting struct,union,etc declaration primitives in $exceptions.
+
+   Theres also macros called inside an if (block), which "return" an
+   expression.  These cannot do-while, and need a ({}) wrapper.
+
+   Enjoy this qualification while we work to improve our heuristics.
+
+-:185: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__state' - possible side-effects?
+#185: FILE: drivers/gpu/drm/i915/display/intel_display.h:326:
++#define for_each_new_intel_crtc_in_state_reverse(__state, crtc, new_crtc_state, __i) \
++	for_each_intel_crtc_reverse((__state)->base.dev, (crtc)) \
++		for_each_if(((__i) = drm_crtc_index(&(crtc)->base), (void)(__i), \
++			     (new_crtc_state) = intel_atomic_get_new_crtc_state((__state), (crtc))))
+
+-:185: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'crtc' - possible side-effects?
+#185: FILE: drivers/gpu/drm/i915/display/intel_display.h:326:
++#define for_each_new_intel_crtc_in_state_reverse(__state, crtc, new_crtc_state, __i) \
++	for_each_intel_crtc_reverse((__state)->base.dev, (crtc)) \
++		for_each_if(((__i) = drm_crtc_index(&(crtc)->base), (void)(__i), \
++			     (new_crtc_state) = intel_atomic_get_new_crtc_state((__state), (crtc))))
+
+-:185: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__i' - possible side-effects?
+#185: FILE: drivers/gpu/drm/i915/display/intel_display.h:326:
++#define for_each_new_intel_crtc_in_state_reverse(__state, crtc, new_crtc_state, __i) \
++	for_each_intel_crtc_reverse((__state)->base.dev, (crtc)) \
++		for_each_if(((__i) = drm_crtc_index(&(crtc)->base), (void)(__i), \
++			     (new_crtc_state) = intel_atomic_get_new_crtc_state((__state), (crtc))))
+
+-:200: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#200: FILE: drivers/gpu/drm/i915/display/intel_display.h:334:
++			     (old_crtc_state) = intel_atomic_get_old_crtc_state((__state), (crtc)), \
+
+-:213: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#213: FILE: drivers/gpu/drm/i915/display/intel_display.h:340:
++			     (old_crtc_state) = intel_atomic_get_old_crtc_state((__state), (crtc)), \
+
+total: 5 errors, 2 warnings, 11 checks, 193 lines checked
 
 
-Build changes
--------------
-
-  * Linux: xe-4135-3d718db04a365cc44a3bc81ffa4db7bbd2e645d7 -> xe-pw-157862v1
-
-  IGT_8636: 254cd102396ff95d61f2ebe49fc09128878bf483 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-4135-3d718db04a365cc44a3bc81ffa4db7bbd2e645d7: 3d718db04a365cc44a3bc81ffa4db7bbd2e645d7
-  xe-pw-157862v1: 157862v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157862v1/index.html
-
---===============7921333623793255246==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [1/5] drm/i915/cx0: Fix port to PLL ID mapping on BMG</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/157862/">https://patchwork.freedesktop.org/series/157862/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157862v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157862v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4135-3d718db04a365cc44a3bc81ffa4db7bbd2e645d7_BAT -&gt; xe-pw-157862v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-157862v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:</p>
-<ul>
-<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157862v1/bat-bmg-1/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2233">Intel XE#2233</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_dsc@dsc-basic:</p>
-<ul>
-<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157862v1/bat-bmg-1/igt@kms_dsc@dsc-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2244">Intel XE#2244</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@basic:</p>
-<ul>
-<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157862v1/bat-bmg-2/igt@kms_frontbuffer_tracking@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2434">Intel XE#2434</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2548">Intel XE#2548</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@hang-read-crc:</p>
-<ul>
-<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157862v1/bat-bmg-2/igt@kms_pipe_crc_basic@hang-read-crc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2489">Intel XE#2489</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3419">Intel XE#3419</a>) +6 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@psr-sprite-plane-onoff:</p>
-<ul>
-<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157862v1/bat-bmg-2/igt@kms_psr@psr-sprite-plane-onoff.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1406">Intel XE#1406</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2234">Intel XE#2234</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2850">Intel XE#2850</a>) +2 other tests skip</li>
-<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157862v1/bat-bmg-1/igt@kms_psr@psr-sprite-plane-onoff.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1406">Intel XE#1406</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2234">Intel XE#2234</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2850">Intel XE#2850</a>) +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit:</p>
-<ul>
-<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157862v1/bat-bmg-2/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>)</li>
-<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157862v1/bat-bmg-1/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xehpc:</p>
-<ul>
-<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157862v1/bat-bmg-2/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1420">Intel XE#1420</a>)</li>
-<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157862v1/bat-bmg-1/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1420">Intel XE#1420</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xelp:</p>
-<ul>
-<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157862v1/bat-bmg-2/igt@xe_pat@pat-index-xelp.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2245">Intel XE#2245</a>)</li>
-<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157862v1/bat-bmg-1/igt@xe_pat@pat-index-xelp.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2245">Intel XE#2245</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xelpg:</p>
-<ul>
-<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157862v1/bat-bmg-2/igt@xe_pat@pat-index-xelpg.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2236">Intel XE#2236</a>)</li>
-<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157862v1/bat-bmg-1/igt@xe_pat@pat-index-xelpg.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2236">Intel XE#2236</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@kms_force_connector_basic@force-connector-state:</p>
-<ul>
-<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4135-3d718db04a365cc44a3bc81ffa4db7bbd2e645d7/bat-bmg-2/igt@kms_force_connector_basic@force-connector-state.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1727">Intel XE#1727</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4760">Intel XE#4760</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157862v1/bat-bmg-2/igt@kms_force_connector_basic@force-connector-state.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@xe_module_load@load:</p>
-<ul>
-<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4135-3d718db04a365cc44a3bc81ffa4db7bbd2e645d7/bat-bmg-1/igt@xe_module_load@load.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4760">Intel XE#4760</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157862v1/bat-bmg-1/igt@xe_module_load@load.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@xe_waitfence@engine:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4135-3d718db04a365cc44a3bc81ffa4db7bbd2e645d7/bat-dg2-oem2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519">Intel XE#6519</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157862v1/bat-dg2-oem2/igt@xe_waitfence@engine.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4135-3d718db04a365cc44a3bc81ffa4db7bbd2e645d7 -&gt; xe-pw-157862v1</li>
-</ul>
-<p>IGT_8636: 254cd102396ff95d61f2ebe49fc09128878bf483 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-4135-3d718db04a365cc44a3bc81ffa4db7bbd2e645d7: 3d718db04a365cc44a3bc81ffa4db7bbd2e645d7<br />
-  xe-pw-157862v1: 157862v1</p>
-
-</body>
-</html>
-
---===============7921333623793255246==--
