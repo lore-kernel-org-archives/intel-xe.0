@@ -4,170 +4,114 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0EB5ACF8861
-	for <intel-xe@archiver.kernel.org>; Thu, 20 Nov 2025 15:07:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A6CCECF8861
+	for <intel-xe@archiver.kernel.org>; Thu, 20 Nov 2025 15:13:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CF0D010E770;
-	Thu, 20 Nov 2025 15:07:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6246010E773;
+	Thu, 20 Nov 2025 15:13:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aPNV6BOW";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="cpwKhtPE";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="+J0hEc9P";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="cpwKhtPE";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="+J0hEc9P";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5B76810E76E
- for <intel-xe@lists.freedesktop.org>; Thu, 20 Nov 2025 15:07:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1763651227; x=1795187227;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=5B12H1Ujk7jGv0CtJhxAC+lv3pJfaqiqdJiOzGTWdt8=;
- b=aPNV6BOWAU6dXZn+CYhYR4PBRj23aP3/enQ4D/1X4i2QNrV6wD8C9Svw
- DqV9L85uh9MKZUhXgEAGcBMwFMMWs68udzspvjuT/ISdMqoeoCc2r/F48
- EJksHZzB2sS4YWsZS2kBhXMJBCWnpxRmWvPuBTK3nlMwV32cMaVCMPLAF
- b5GzUBc8Yf6N0UAeqN6TbS3E/DMGHsvK4drTTTSuFiCjYGY/5xLH6ZIJ1
- 1BucPNuiIHPD2h0AgiKs92Mr75J4XRnhydE/+DdyqQ2vFe1aFqSEMOtYJ
- zsGWg+pG0ibczJ3u7msADXpWfCY1rOpNCtjVgmM6/caXTOOB+S6bqRryz w==;
-X-CSE-ConnectionGUID: Nz4ltyHzRnW0fo3bLQOm0w==
-X-CSE-MsgGUID: JjXE+WiiRHmKsBmaL6KnyA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11619"; a="76333204"
-X-IronPort-AV: E=Sophos;i="6.20,213,1758610800"; d="scan'208";a="76333204"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Nov 2025 07:07:06 -0800
-X-CSE-ConnectionGUID: grG4OzUzQcq9DmCDxTA7HA==
-X-CSE-MsgGUID: mdPbaxt9SwyJP2C2w2nttQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,213,1758610800"; d="scan'208";a="191640202"
-Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
- by fmviesa008.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Nov 2025 07:07:04 -0800
-Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
- fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Thu, 20 Nov 2025 07:07:03 -0800
-Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
- FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27 via Frontend Transport; Thu, 20 Nov 2025 07:07:03 -0800
-Received: from CY3PR05CU001.outbound.protection.outlook.com (40.93.201.28) by
- edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Thu, 20 Nov 2025 07:06:12 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=dQ+WshDNnF54Y7AqZLKUIx+QGw0cPWnY4e2Pce2IC26hGNlttGYYchN3IY3x+CPy6KHl5ihwuD2kVim3QZ75hYZbahJdDfTKlPh0oqoiNowVKKY94EjS5xEwS8aJXTfXbEaoh7aYXyyOZ1mcZPDc5JzjHY6aVUq6h/xNzbf2WMZcIqQJ/r0a5DjXLYQVVhhMgrU5WoFqn5K+zpl+5rzUEMSkvnN2AmkU17hLCsuwf5C+2455gSdmDAXEora1clr0fOw6j5UJdeE+TJN8L0DuS9TU/gqQMa6G7QC+GnPdtw3r4YRLlGO6UTBA6CXx37wjDAhruIA9reTKIzEDcMyO9A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=BuqAgwLTI7jHO7wnz1NwDNsQEw0h10e6mRKJtIEw3Ws=;
- b=oJAhBESNORWQ7Io8AdwxkeubKk4Mrse9VU7mndkrrly6G8KGr5L7PMdJWY1/le7G6lesU0Fk//ZlZqg2SOqjZtguPHBlA+yT20/h3MOarRY31JGq7gaDccaJoknztEsEVpmOXFtxYspUdzCVyvRffcbZcv4YhAKidUw40Fr3X+1Fy+HuJUkK/EeFytfRTU5ZwUkKQJoUqkhp46biOSfBOE4lHMk3Yvun+P15l8VqflcJuXwULjgN/sXYml9968GQziWDhw0CnqEZdby4CU81YefA0KLK4d0J5JF2SgTvKNW0+dUNcqy6OBs+9T7Q3JbTWIrZ87bhSsEc6m3wb/jjEg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by MW4PR11MB6810.namprd11.prod.outlook.com (2603:10b6:303:207::5)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9343.10; Thu, 20 Nov
- 2025 15:06:07 +0000
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::9e94:e21f:e11a:332]) by PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::9e94:e21f:e11a:332%3]) with mapi id 15.20.9343.009; Thu, 20 Nov 2025
- 15:06:07 +0000
-Date: Thu, 20 Nov 2025 07:06:04 -0800
-From: Matthew Brost <matthew.brost@intel.com>
-To: Matthew Auld <matthew.auld@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, Thomas =?iso-8859-1?Q?Hellstr=F6m?=
- <thomas.hellstrom@linux.intel.com>, =?iso-8859-1?Q?Jos=E9?= Roberto de Souza
- <jose.souza@intel.com>, Michal Mrozek <michal.mrozek@intel.com>, Carl Zhang
- <carl.zhang@intel.com>, <stable@vger.kernel.org>
-Subject: Re: [PATCH v3 1/2] drm/xe/uapi: disallow bind queue sharing
-Message-ID: <aR8uXCNK/jJx0Rsc@lstrano-desk.jf.intel.com>
-References: <20251120132727.575986-4-matthew.auld@intel.com>
- <20251120132727.575986-5-matthew.auld@intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E627310E775
+ for <intel-xe@lists.freedesktop.org>; Thu, 20 Nov 2025 15:13:11 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
+ [IPv6:2a07:de40:b281:104:10:150:64:97])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id 690C41F441;
+ Thu, 20 Nov 2025 15:13:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1763651590; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=Ial72GLszEleezwa1Z30bChDpXZLG7wGDUUVENhegr0=;
+ b=cpwKhtPEWGDtq0OINKW2wGBc2pnD3luRGpED17Q8jhbxSIFfRwZpXl/kQQHcRYbaV+WuT+
+ lrrQSboi4F4iTdUWvvOyZS9ve5o9ck9aS2WVswIIIRCxCGY9ml+vhJrHPRbuzwQR2gc9vT
+ i9U6blzByK9qOQQYP8dLfoRg1XoB6c4=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1763651590;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=Ial72GLszEleezwa1Z30bChDpXZLG7wGDUUVENhegr0=;
+ b=+J0hEc9PPn5QqRe1cqbc8hg/Jkpm4udxWT9FKlPeKOaeSXKzp7ffXHqBjJpvUk3hPDlXYY
+ 82xAmusaMFVc4gDA==
+Authentication-Results: smtp-out2.suse.de;
+ dkim=pass header.d=suse.de header.s=susede2_rsa header.b=cpwKhtPE;
+ dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=+J0hEc9P
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1763651590; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=Ial72GLszEleezwa1Z30bChDpXZLG7wGDUUVENhegr0=;
+ b=cpwKhtPEWGDtq0OINKW2wGBc2pnD3luRGpED17Q8jhbxSIFfRwZpXl/kQQHcRYbaV+WuT+
+ lrrQSboi4F4iTdUWvvOyZS9ve5o9ck9aS2WVswIIIRCxCGY9ml+vhJrHPRbuzwQR2gc9vT
+ i9U6blzByK9qOQQYP8dLfoRg1XoB6c4=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1763651590;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=Ial72GLszEleezwa1Z30bChDpXZLG7wGDUUVENhegr0=;
+ b=+J0hEc9PPn5QqRe1cqbc8hg/Jkpm4udxWT9FKlPeKOaeSXKzp7ffXHqBjJpvUk3hPDlXYY
+ 82xAmusaMFVc4gDA==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id EAE083EA61;
+ Thu, 20 Nov 2025 15:13:09 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap1.dmz-prg2.suse.org with ESMTPSA id Cj2iNwUwH2lNcwAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Thu, 20 Nov 2025 15:13:09 +0000
+Date: Thu, 20 Nov 2025 16:13:08 +0100
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-misc-fixes
+Message-ID: <20251120151308.GA589436@linux.fritz.box>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20251120132727.575986-5-matthew.auld@intel.com>
-X-ClientProxiedBy: SJ0PR03CA0338.namprd03.prod.outlook.com
- (2603:10b6:a03:39c::13) To PH7PR11MB6522.namprd11.prod.outlook.com
- (2603:10b6:510:212::12)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|MW4PR11MB6810:EE_
-X-MS-Office365-Filtering-Correlation-Id: d1911c8f-59a5-42af-1082-08de284654e0
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?ormovJbmJZ4Mfxe5hyTeM0QFuMztj7Nl+1yrpV8LyjHcu6tO2liALOaFVo?=
- =?iso-8859-1?Q?dRrcKucopw2E53GnflGMP6h0a2Lpv55q78VrFaPAp2tPGgeWjrU8SqOSlt?=
- =?iso-8859-1?Q?hf+v5/9vsotiFNnW2WZLhticYgjZTH/+ZjF7ybjADrPu23dsqWDV5yBXIG?=
- =?iso-8859-1?Q?IRExwaJdnIbUYdHoAHMO6ODi5pG5S8YAo+JPiDBKriZ/81ZLHQGPoxqnLV?=
- =?iso-8859-1?Q?kXyV40+i/3Rj+QtfpAv8XERws+GvJt17yilsj37FhBLmc4CyMUCCrZhSB5?=
- =?iso-8859-1?Q?zn9pOBenL6b6LGNs0uRVS9EpVv8nymDgP+CfwLB7TItKo/ZsvfhntrU6gI?=
- =?iso-8859-1?Q?DPvXcxe7p0MoFYTUNblpDmYh/rGuoa4uFwIdRorA5Aw66w4V2js53Q6diB?=
- =?iso-8859-1?Q?HZnvngwI1pZJdw2BBUQWOEbdowZKwgYC7rSi3yuNdH53WQMNTKatwh5EMi?=
- =?iso-8859-1?Q?/e1Kca06RSLQ0yCF3rkAjIcEgGAseK3hRuSUn6+rRd6+hCgILK40Xp52ko?=
- =?iso-8859-1?Q?/mNIUBhW69b1xK7Xm4JFjuclXYa49AFt/+Qv4Mp0faaUAELzPGQhT6/aTA?=
- =?iso-8859-1?Q?xV+uO1XaLTwg1JNaDfY09hQxD4YxP/AwFjR4bJqwNVBNu9eAaVCk7WuyDC?=
- =?iso-8859-1?Q?QkiwzNQ2/pYQ/bx1ElKqiQfEtwRBlGZKEMSvIb85jaeVi63qCVyYmKmRmx?=
- =?iso-8859-1?Q?gmNgd/2EYM8DNpxkuAnOs9nfsRu01pmqkSYMspo0wAeeFymfbQF7QeGYzY?=
- =?iso-8859-1?Q?JeFHVvgvc2dZag8yZGWOmKHbgWW4w1JSsbY4FuEyR68qWEYHSS6oo6Eea1?=
- =?iso-8859-1?Q?g5D4WeTxMXcfRyA4vfvw/toDW5vGInME+nLafLq+bdPbDycE8YFVyRwc9z?=
- =?iso-8859-1?Q?m13viiDMom+E5n83DOaR66ebNeNVEMtnIWzNTm6WUWlbthyfANDN0w3vJZ?=
- =?iso-8859-1?Q?dCqJFVEOxfA84NxBMPexsFWV7TiQeKzv5uVnWUGg/dEhtYnlHvvWakaUsH?=
- =?iso-8859-1?Q?r70ZjsZAqtbsCuj5kALUbC2pWfVhpbfwtCHjvOkultbyLWQ9gw8qYp3WTs?=
- =?iso-8859-1?Q?hUnMeGrTjhRfQIvfZ880HUDVAU44TnfNZcPayZv3MlpccTDbxkD1PYrNzV?=
- =?iso-8859-1?Q?Snc9voq/3u19DevU+Q85Lmro0me8HksHeIu5J3vW9X3At/RON1MFM/3O8b?=
- =?iso-8859-1?Q?MoHXcn8ahWWbr4Q+0TYZS0kW0zoJa7D0Z2CVH/45k+9n+TR2je74uSkm+z?=
- =?iso-8859-1?Q?QMFELx1f0ZIpnBzV8rNWx+Ao/IQ/Hd0x2swPaIha1mvU1e3uo0HH52efdO?=
- =?iso-8859-1?Q?lK7b56h24E14uUzXd9Q2z7ux8pRyQaISUfAt9lzGEhGJOIwNlvRlH+9nAm?=
- =?iso-8859-1?Q?o8sByB6H2s/VLNhwW5LuGItKdN0KMTMw4QrfhmGDx61ZyAfR4BHV+ZRODI?=
- =?iso-8859-1?Q?x8WqohnCylhvdq9ghP3Gxpc8kbptuCPI07GHSO2yqdpw7f0TqGGH5HOd9R?=
- =?iso-8859-1?Q?Mj+6szQEbUul/5gqbBnV9H?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?AeqQDeUQ3ofw5+BdJJMx1+yu9tZIMRe5ENTub+sjJhBYWyIUdsmTlKWwKx?=
- =?iso-8859-1?Q?T8a/lQ+AMwGiqI3HizyZvqYbFat6yA/K4K8s15WUrM0tYR7IdNSuAxOX3U?=
- =?iso-8859-1?Q?qzgcY1ukHLqFJVbas8alTNCKrmsyMzUSRyxICxv+DZz7aNumYChIsHGnhl?=
- =?iso-8859-1?Q?RLPBMdrfz5PIGzw3yBzVxAwaYbopqox6RWU40FsC4eLLxwZlOpiYvBhbg2?=
- =?iso-8859-1?Q?VflT1PAzhrIMRCarG47dxgzQZGOpaPYdOam/uwU3B1ukFjvFnRWNmt0wFY?=
- =?iso-8859-1?Q?fUqWvaM1T2W9Dlp8PwX7HK7f92J5sOG6lHlrcO5YrSmDvXtzieS0LIeThH?=
- =?iso-8859-1?Q?qPh6kAXCaI+eh2TbA+cBjX7VW5IFKC6lHkK2n7Hqvv7wVqowP+g9bBJ/Y3?=
- =?iso-8859-1?Q?b+ZVSJFVGEmJWfdX9qFnGjwTFMwfbS931LDedr/ESe/mD/CvbAyNC1LO2Z?=
- =?iso-8859-1?Q?0yUxDg+4UBvxt2WdGHT/APZzVvH2QWOetco/hiQJ+Z5iqEo02twySqRuXo?=
- =?iso-8859-1?Q?9XVSixg6vNEG599evBYStwgOEaGCbL7q5WSQc0JRcVCqHiZyK8TDj/5JTx?=
- =?iso-8859-1?Q?LslAcODIEpdK7yVOyqKCD/tinIRC47E5FC5aW1gJwdAwGhTPpgw9RYK1tK?=
- =?iso-8859-1?Q?T5/CTiN1PCxMfAGmnPYERZmzkXxqXOQbSDQNKu8VSLFmW4SPZtUR725fca?=
- =?iso-8859-1?Q?CXICpwBO85WSVfPNcfb7vS1MR7mKUhWZTi0a9AmtAPWoxFdsC1+MJ6wHKt?=
- =?iso-8859-1?Q?6gED1paE4MQ+qx2O4Qy46clh2cWZDbq3OfhqfBudoEzTRaoNJHekZGiMO0?=
- =?iso-8859-1?Q?eYGY4P3RUpnnQRW0VbZGtcAgPsWf2Nqo9eXHCp4HdYUwR6pER1JptDEWDK?=
- =?iso-8859-1?Q?SMoQAuJCjF/o7Bcmkg/J9ObPP/HyXVON5UbLFm0raUFfGrjWAu0bNUDi1S?=
- =?iso-8859-1?Q?+uZi56tue/h90UW0Q7HthoSa+CseKPr4327bfJAF7nNbPmFGrxA2hWoUQQ?=
- =?iso-8859-1?Q?CrXXFUxC2FLLeQAwlmNeGtbfL2mv1EaGU31xXpOBQOnDjk9uf2CGa11mIL?=
- =?iso-8859-1?Q?5x4ynCaQAjL459N1qnoC3wqhjl7ajsdpuV0A5Yl8gkMAMFbiH9IjdpGwr4?=
- =?iso-8859-1?Q?UeXokE11YvskauX5j5ats9zvUSzHrbbKICcVXpfLW5Sstpg8qjieg0cenK?=
- =?iso-8859-1?Q?XMWIJmAUgzYWaDWuLSBsvn+wHtnYnd1Cta2Rn9M8Mvw1/rJ+Nkaw/p6Rny?=
- =?iso-8859-1?Q?nKnXwc4eCk9Hn607kFHcCSSX1DHhazGfvyzX2JZoyaXs0MadzFQd/FQiVb?=
- =?iso-8859-1?Q?EkSxqfYYhQZcLq3Ne1FvwZQgXPSx/ZKCYOCdKqukxaC7YcAer4hq/FI4Wu?=
- =?iso-8859-1?Q?UCFOHDc3qvp4abPJ5LQY9ZWcJhPZUeMmbtPKL0fj7AjmiVNo3I7QyhU7gy?=
- =?iso-8859-1?Q?2iOSpyJVbglvNvtcDnJr4d/8lPAKk0I0V2Lvo9U3SD4c+CTDcerpfC2t9F?=
- =?iso-8859-1?Q?KDfg2YQAuqlOe9Xx42CYzQwtNezAFJk7q7AAEYmSGRpwqB+Tf7hW1a6bNr?=
- =?iso-8859-1?Q?JWNnaJWdKXCdoRG431cYyJ2VSLfGIhjXMo2/cm2FAv5KmTZXo4nM8KHsj1?=
- =?iso-8859-1?Q?2oTXQwMyqf37XYVqtmIWuOn4YWVQHSvffvR6+vkRRPBZKNA/Ty6TwMHg?=
- =?iso-8859-1?Q?=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: d1911c8f-59a5-42af-1082-08de284654e0
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Nov 2025 15:06:07.1887 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: hf/gq6graOiEgKE9O9Yke9oq82EkIIqhoxZZNX5AXhOxcP52bk2myuh6bO7edqfhZ2fum3RJGMtwEfGGHq3w/g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR11MB6810
-X-OriginatorOrg: intel.com
+X-Rspamd-Queue-Id: 690C41F441
+X-Rspamd-Server: rspamd2.dmz-prg2.suse.org
+X-Spamd-Result: default: False [-4.51 / 50.00]; BAYES_HAM(-3.00)[100.00%];
+ NEURAL_HAM_LONG(-1.00)[-1.000];
+ R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
+ MX_GOOD(-0.01)[]; MIME_TRACE(0.00)[0:+];
+ FREEMAIL_TO(0.00)[gmail.com,ffwll.ch];
+ DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ SPAMHAUS_XBL(0.00)[2a07:de40:b281:104:10:150:64:97:from];
+ RCPT_COUNT_TWELVE(0.00)[16];
+ RBL_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:104:10:150:64:97:from]; 
+ FUZZY_RATELIMITED(0.00)[rspamd.com]; ARC_NA(0.00)[];
+ FREEMAIL_ENVRCPT(0.00)[gmail.com]; TO_DN_SOME(0.00)[];
+ RCVD_COUNT_TWO(0.00)[2]; FROM_EQ_ENVFROM(0.00)[];
+ FROM_HAS_DN(0.00)[]; TO_MATCH_ENVRCPT_ALL(0.00)[];
+ RECEIVED_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:106:10:150:64:167:received];
+ MISSING_XM_UA(0.00)[]; RCVD_VIA_SMTP_AUTH(0.00)[];
+ RCVD_TLS_ALL(0.00)[]; DKIM_TRACE(0.00)[suse.de:+];
+ DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:helo,
+ imap1.dmz-prg2.suse.org:rdns, suse.com:url, suse.de:dkim]
+X-Rspamd-Action: no action
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -182,202 +126,81 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Nov 20, 2025 at 01:27:29PM +0000, Matthew Auld wrote:
-> Currently this is very broken if someone attempts to create a bind
-> queue and share it across multiple VMs. For example currently we assume
-> it is safe to acquire the user VM lock to protect some of the bind queue
-> state, but if allow sharing the bind queue with multiple VMs then this
-> quickly breaks down.
-> 
-> To fix this reject using a bind queue with any VM that is not the same
-> VM that was originally passed when creating the bind queue. This a uAPI
-> change, however this was more of an oversight on kernel side that we
-> didn't reject this, and expectation is that userspace shouldn't be using
-> bind queues in this way, so in theory this change should go unnoticed.
-> 
-> Based on a patch from Matt Brost.
-> 
-> v2 (Matt B):
->   - Hold the vm lock over queue create, to ensure it can't be closed as
->     we attach the user_vm to the queue.
->   - Make sure we actually check for NULL user_vm in destruction path.
-> v3:
->   - Fix error path handling.
-> 
-> Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
-> Reported-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-> Cc: José Roberto de Souza <jose.souza@intel.com>
-> Cc: Matthew Brost <matthew.brost@intel.com>
+Hi Dave, Sima,
 
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+here's the PR for drm-misc-fixes.
 
-> Cc: Michal Mrozek <michal.mrozek@intel.com>
-> Cc: Carl Zhang <carl.zhang@intel.com>
-> Cc: <stable@vger.kernel.org> # v6.8+
-> Acked-by: José Roberto de Souza <jose.souza@intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_exec_queue.c       | 32 +++++++++++++++++++++++-
->  drivers/gpu/drm/xe/xe_exec_queue.h       |  1 +
->  drivers/gpu/drm/xe/xe_exec_queue_types.h |  6 +++++
->  drivers/gpu/drm/xe/xe_sriov_vf_ccs.c     |  2 +-
->  drivers/gpu/drm/xe/xe_vm.c               |  7 +++++-
->  5 files changed, 45 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-> index 8724f8de67e2..779d7e7e2d2e 100644
-> --- a/drivers/gpu/drm/xe/xe_exec_queue.c
-> +++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-> @@ -328,6 +328,7 @@ struct xe_exec_queue *xe_exec_queue_create_class(struct xe_device *xe, struct xe
->   * @xe: Xe device.
->   * @tile: tile which bind exec queue belongs to.
->   * @flags: exec queue creation flags
-> + * @user_vm: The user VM which this exec queue belongs to
->   * @extensions: exec queue creation extensions
->   *
->   * Normalize bind exec queue creation. Bind exec queue is tied to migration VM
-> @@ -341,6 +342,7 @@ struct xe_exec_queue *xe_exec_queue_create_class(struct xe_device *xe, struct xe
->   */
->  struct xe_exec_queue *xe_exec_queue_create_bind(struct xe_device *xe,
->  						struct xe_tile *tile,
-> +						struct xe_vm *user_vm,
->  						u32 flags, u64 extensions)
->  {
->  	struct xe_gt *gt = tile->primary_gt;
-> @@ -377,6 +379,9 @@ struct xe_exec_queue *xe_exec_queue_create_bind(struct xe_device *xe,
->  			xe_exec_queue_put(q);
->  			return ERR_PTR(err);
->  		}
-> +
-> +		if (user_vm)
-> +			q->user_vm = xe_vm_get(user_vm);
->  	}
->  
->  	return q;
-> @@ -407,6 +412,11 @@ void xe_exec_queue_destroy(struct kref *ref)
->  			xe_exec_queue_put(eq);
->  	}
->  
-> +	if (q->user_vm) {
-> +		xe_vm_put(q->user_vm);
-> +		q->user_vm = NULL;
-> +	}
-> +
->  	q->ops->destroy(q);
->  }
->  
-> @@ -742,6 +752,22 @@ int xe_exec_queue_create_ioctl(struct drm_device *dev, void *data,
->  		    XE_IOCTL_DBG(xe, eci[0].engine_instance != 0))
->  			return -EINVAL;
->  
-> +		vm = xe_vm_lookup(xef, args->vm_id);
-> +		if (XE_IOCTL_DBG(xe, !vm))
-> +			return -ENOENT;
-> +
-> +		err = down_read_interruptible(&vm->lock);
-> +		if (err) {
-> +			xe_vm_put(vm);
-> +			return err;
-> +		}
-> +
-> +		if (XE_IOCTL_DBG(xe, xe_vm_is_closed_or_banned(vm))) {
-> +			up_read(&vm->lock);
-> +			xe_vm_put(vm);
-> +			return -ENOENT;
-> +		}
-> +
->  		for_each_tile(tile, xe, id) {
->  			struct xe_exec_queue *new;
->  
-> @@ -749,9 +775,11 @@ int xe_exec_queue_create_ioctl(struct drm_device *dev, void *data,
->  			if (id)
->  				flags |= EXEC_QUEUE_FLAG_BIND_ENGINE_CHILD;
->  
-> -			new = xe_exec_queue_create_bind(xe, tile, flags,
-> +			new = xe_exec_queue_create_bind(xe, tile, vm, flags,
->  							args->extensions);
->  			if (IS_ERR(new)) {
-> +				up_read(&vm->lock);
-> +				xe_vm_put(vm);
->  				err = PTR_ERR(new);
->  				if (q)
->  					goto put_exec_queue;
-> @@ -763,6 +791,8 @@ int xe_exec_queue_create_ioctl(struct drm_device *dev, void *data,
->  				list_add_tail(&new->multi_gt_list,
->  					      &q->multi_gt_link);
->  		}
-> +		up_read(&vm->lock);
-> +		xe_vm_put(vm);
->  	} else {
->  		logical_mask = calc_validate_logical_mask(xe, eci,
->  							  args->width,
-> diff --git a/drivers/gpu/drm/xe/xe_exec_queue.h b/drivers/gpu/drm/xe/xe_exec_queue.h
-> index fda4d4f9bda8..37a9da22f420 100644
-> --- a/drivers/gpu/drm/xe/xe_exec_queue.h
-> +++ b/drivers/gpu/drm/xe/xe_exec_queue.h
-> @@ -28,6 +28,7 @@ struct xe_exec_queue *xe_exec_queue_create_class(struct xe_device *xe, struct xe
->  						 u32 flags, u64 extensions);
->  struct xe_exec_queue *xe_exec_queue_create_bind(struct xe_device *xe,
->  						struct xe_tile *tile,
-> +						struct xe_vm *user_vm,
->  						u32 flags, u64 extensions);
->  
->  void xe_exec_queue_fini(struct xe_exec_queue *q);
-> diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-> index 771ffe35cd0c..3a4263c92b3d 100644
-> --- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
-> +++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-> @@ -54,6 +54,12 @@ struct xe_exec_queue {
->  	struct kref refcount;
->  	/** @vm: VM (address space) for this exec queue */
->  	struct xe_vm *vm;
-> +	/**
-> +	 * @user_vm: User VM (address space) for this exec queue (bind queues
-> +	 * only)
-> +	 */
-> +	struct xe_vm *user_vm;
-> +
->  	/** @class: class of this exec queue */
->  	enum xe_engine_class class;
->  	/**
-> diff --git a/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c b/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c
-> index 052a5071e69f..db023fb66a27 100644
-> --- a/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c
-> +++ b/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c
-> @@ -350,7 +350,7 @@ int xe_sriov_vf_ccs_init(struct xe_device *xe)
->  		flags = EXEC_QUEUE_FLAG_KERNEL |
->  			EXEC_QUEUE_FLAG_PERMANENT |
->  			EXEC_QUEUE_FLAG_MIGRATE;
-> -		q = xe_exec_queue_create_bind(xe, tile, flags, 0);
-> +		q = xe_exec_queue_create_bind(xe, tile, NULL, flags, 0);
->  		if (IS_ERR(q)) {
->  			err = PTR_ERR(q);
->  			goto err_ret;
-> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-> index f9989a7a710c..7973d654540a 100644
-> --- a/drivers/gpu/drm/xe/xe_vm.c
-> +++ b/drivers/gpu/drm/xe/xe_vm.c
-> @@ -1614,7 +1614,7 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags, struct xe_file *xef)
->  			if (!vm->pt_root[id])
->  				continue;
->  
-> -			q = xe_exec_queue_create_bind(xe, tile, create_flags, 0);
-> +			q = xe_exec_queue_create_bind(xe, tile, vm, create_flags, 0);
->  			if (IS_ERR(q)) {
->  				err = PTR_ERR(q);
->  				goto err_close;
-> @@ -3571,6 +3571,11 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
->  		}
->  	}
->  
-> +	if (XE_IOCTL_DBG(xe, q && vm != q->user_vm)) {
-> +		err = -EINVAL;
-> +		goto put_exec_queue;
-> +	}
-> +
->  	/* Ensure all UNMAPs visible */
->  	xe_svm_flush(vm);
->  
-> -- 
-> 2.51.1
-> 
+Best regards
+Thomas
+
+drm-misc-fixes-2025-11-20:
+Short summary of fixes pull:
+
+atomic:
+- Return error codes on failed blob creation for planes
+
+nouveau:
+- Fix memory leak
+
+tegra:
+- Fix device ref counting
+- Fix pid ref counting
+- Revert booting on Pixel C
+The following changes since commit 6a23ae0a96a600d1d12557add110e0bb6e32730c:
+
+  Linux 6.18-rc6 (2025-11-16 14:25:38 -0800)
+
+are available in the Git repository at:
+
+  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-fixes-2025-11-20
+
+for you to fetch changes up to cead55e24cf9e092890cf51c0548eccd7569defa:
+
+  drm/plane: Fix create_in_format_blob() return value (2025-11-19 19:37:04 +0200)
+
+----------------------------------------------------------------
+Short summary of fixes pull:
+
+atomic:
+- Return error codes on failed blob creation for planes
+
+nouveau:
+- Fix memory leak
+
+tegra:
+- Fix device ref counting
+- Fix pid ref counting
+- Revert booting on Pixel C
+
+----------------------------------------------------------------
+Diogo Ivo (1):
+      Revert "drm/tegra: dsi: Clear enable register if powered by bootloader"
+
+Ma Ke (1):
+      drm/tegra: dc: Fix reference leak in tegra_dc_couple()
+
+Nam Cao (1):
+      nouveau/firmware: Add missing kfree() of nvkm_falcon_fw::boot
+
+Prateek Agarwal (1):
+      drm/tegra: Add call to put_pid()
+
+Thomas Zimmermann (1):
+      Merge drm/drm-fixes into drm-misc-fixes
+
+Ville Syrjälä (1):
+      drm/plane: Fix create_in_format_blob() return value
+
+ drivers/gpu/drm/drm_plane.c              | 4 ++--
+ drivers/gpu/drm/nouveau/nvkm/falcon/fw.c | 2 ++
+ drivers/gpu/drm/tegra/dc.c               | 1 +
+ drivers/gpu/drm/tegra/dsi.c              | 9 ---------
+ drivers/gpu/drm/tegra/uapi.c             | 7 +++++--
+ 5 files changed, 10 insertions(+), 13 deletions(-)
+
+-- 
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Frankenstr. 146, 90461 Nürnberg, Germany, www.suse.com
+GF: Jochen Jaser, Andrew McDonald, Werner Knoblich, (HRB 36809, AG Nürnberg)
