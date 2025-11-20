@@ -4,59 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 92845CF64AB
-	for <intel-xe@archiver.kernel.org>; Thu, 20 Nov 2025 09:33:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 39BE8CF857B
+	for <intel-xe@archiver.kernel.org>; Thu, 20 Nov 2025 09:39:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 52EB610E730;
-	Thu, 20 Nov 2025 09:33:09 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JWWgJZNB";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AE24F10E72F;
- Thu, 20 Nov 2025 09:33:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1763631187; x=1795167187;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=BFRDqnxKzPbFpAy+HzvLtoetiDD9w+amRW72DoDHlI4=;
- b=JWWgJZNB2Ia4rRC3pd1pDnKVEnYtzodVyos5SdD9BL3L7BgeMvvuSKd2
- eyIx0qZi/kxTgf3yVpGOHU0kYF+fG5j6skl48GOyqzH7vSYu7HQv1krxc
- jYpligg6H9J3YUzMWolPXZctfEcqpBwijdeQpL/y/cC3fmiUX+T5nZ1ZG
- jrqI1xcNGSNvf2MH2OSWA0AFR+XAE7tK+HjouXk4NDHMhvQY3kWxtSOuJ
- fZpPY49UOsi+QnOGy6HQjtne0Pw5qn/+4qjTo8TkymzlEPAHbbf4DQ9EM
- ipyBnMrBcRdOAeIB+i/wH96ZxM2SOzroe2+t6HjObRGmiZPCvigj/Svfx Q==;
-X-CSE-ConnectionGUID: Igwp15zkT7S5EKrYmwb2kQ==
-X-CSE-MsgGUID: wbQGuorxTuCSvIF1Km94iQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11618"; a="53265098"
-X-IronPort-AV: E=Sophos;i="6.19,317,1754982000"; d="scan'208";a="53265098"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Nov 2025 01:33:07 -0800
-X-CSE-ConnectionGUID: 0/I9vzHxQKmbcAo5fLLydw==
-X-CSE-MsgGUID: ft5GJutNQV2iFbIBDJaDcQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,317,1754982000"; d="scan'208";a="190564869"
-Received: from administrator-system-product-name.igk.intel.com
- ([10.91.214.181])
- by orviesa006.jf.intel.com with ESMTP; 20 Nov 2025 01:33:05 -0800
-From: =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Cc: lucas.demarchi@intel.com, rodrigo.vivi@intel.com,
- jani.nikula@linux.intel.com, Arunpravin.PaneerSelvam@amd.com,
- thomas.hellstrom@linux.intel.com,
- =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
-Subject: [PATCH] drm/buddy: release free_trees array on buddy mm teardown
-Date: Thu, 20 Nov 2025 10:30:21 +0100
-Message-ID: <20251120093022.276551-1-michal.grzelak@intel.com>
-X-Mailer: git-send-email 2.45.2
+	by gabe.freedesktop.org (Postfix) with ESMTP id EF6FD10E732;
+	Thu, 20 Nov 2025 09:39:02 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 91FFE10E732;
+ Thu, 20 Nov 2025 09:39:01 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
- 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
 Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/buddy=3A_release_free?=
+ =?utf-8?q?=5Ftrees_array_on_buddy_mm_teardown?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Micha=C5=82_Grzelak?= <michal.grzelak@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 20 Nov 2025 09:39:01 -0000
+Message-ID: <176363154159.13267.3058421019374623898@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20251120093022.276551-1-michal.grzelak@intel.com>
+In-Reply-To: <20251120093022.276551-1-michal.grzelak@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,53 +36,67 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-During initialization of DRM buddy memory manager at drm_buddy_init,
-mm->free_trees array is allocated for both clear and dirty RB trees.
-During cleanup happening at drm_buddy_fini it is never freed, leading to
-following memory leaks observed on xe module load & unload cycles:
+== Series Details ==
 
-    kmemleak_alloc+0x4a/0x90
-    __kmalloc_cache_noprof+0x488/0x800
-    drm_buddy_init+0xc2/0x330 [drm_buddy]
-    __xe_ttm_vram_mgr_init+0xc3/0x190 [xe]
-    xe_ttm_stolen_mgr_init+0xf5/0x9d0 [xe]
-    xe_device_probe+0x326/0x9e0 [xe]
-    xe_pci_probe+0x39a/0x610 [xe]
-    local_pci_probe+0x47/0xb0
-    pci_device_probe+0xf3/0x260
-    really_probe+0xf1/0x3c0
-    __driver_probe_device+0x8c/0x180
-    driver_probe_device+0x24/0xd0
-    __driver_attach+0x10f/0x220
-    bus_for_each_dev+0x7f/0xe0
-    driver_attach+0x1e/0x30
-    bus_add_driver+0x151/0x290
+Series: drm/buddy: release free_trees array on buddy mm teardown
+URL   : https://patchwork.freedesktop.org/series/157829/
+State : warning
 
-Deallocate array for free trees when cleaning up buddy memory manager
-in the same way as if going through out_free_tree label.
+== Summary ==
 
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+2de9a3901bc28757c7906b454717b64e2a214021
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit bce7e4f0f8c01f83c17209bf517b66db20ec2e86
+Author: Michał Grzelak <michal.grzelak@intel.com>
+Date:   Thu Nov 20 10:30:21 2025 +0100
+
+    drm/buddy: release free_trees array on buddy mm teardown
+    
+    During initialization of DRM buddy memory manager at drm_buddy_init,
+    mm->free_trees array is allocated for both clear and dirty RB trees.
+    During cleanup happening at drm_buddy_fini it is never freed, leading to
+    following memory leaks observed on xe module load & unload cycles:
+    
+        kmemleak_alloc+0x4a/0x90
+        __kmalloc_cache_noprof+0x488/0x800
+        drm_buddy_init+0xc2/0x330 [drm_buddy]
+        __xe_ttm_vram_mgr_init+0xc3/0x190 [xe]
+        xe_ttm_stolen_mgr_init+0xf5/0x9d0 [xe]
+        xe_device_probe+0x326/0x9e0 [xe]
+        xe_pci_probe+0x39a/0x610 [xe]
+        local_pci_probe+0x47/0xb0
+        pci_device_probe+0xf3/0x260
+        really_probe+0xf1/0x3c0
+        __driver_probe_device+0x8c/0x180
+        driver_probe_device+0x24/0xd0
+        __driver_attach+0x10f/0x220
+        bus_for_each_dev+0x7f/0xe0
+        driver_attach+0x1e/0x30
+        bus_add_driver+0x151/0x290
+    
+    Deallocate array for free trees when cleaning up buddy memory manager
+    in the same way as if going through out_free_tree label.
+    
+    Fixes: d4cd665c ("drm/buddy: Separate clear and dirty free block trees")
+    Signed-off-by: Michał Grzelak <michal.grzelak@intel.com>
+    Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
++ /mt/dim checkpatch 9e9925b18a12a6226ec09a7ff19af83470b4534b drm-intel
+bce7e4f0f8c0 drm/buddy: release free_trees array on buddy mm teardown
+-:34: WARNING:BAD_FIXES_TAG: Please use correct Fixes: style 'Fixes: <12+ chars of sha1> ("<title line>")' - ie: 'Fixes: d4cd665c98c1 ("drm/buddy: Separate clear and dirty free block trees")'
+#34: 
 Fixes: d4cd665c ("drm/buddy: Separate clear and dirty free block trees")
-Signed-off-by: Michał Grzelak <michal.grzelak@intel.com>
-Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
----
- drivers/gpu/drm/drm_buddy.c | 1 +
- 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/gpu/drm/drm_buddy.c b/drivers/gpu/drm/drm_buddy.c
-index 2f279b46bd2c..8308116058cc 100644
---- a/drivers/gpu/drm/drm_buddy.c
-+++ b/drivers/gpu/drm/drm_buddy.c
-@@ -420,6 +420,7 @@ void drm_buddy_fini(struct drm_buddy *mm)
- 
- 	for_each_free_tree(i)
- 		kfree(mm->free_trees[i]);
-+	kfree(mm->free_trees);
- 	kfree(mm->roots);
- }
- EXPORT_SYMBOL(drm_buddy_fini);
--- 
-2.45.2
+total: 0 errors, 1 warnings, 0 checks, 7 lines checked
+
 
