@@ -4,51 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 325B0CF8856
-	for <intel-xe@archiver.kernel.org>; Thu, 20 Nov 2025 13:42:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6606FCF8856
+	for <intel-xe@archiver.kernel.org>; Thu, 20 Nov 2025 13:42:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E23D210E280;
-	Thu, 20 Nov 2025 13:42:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2A7C010E0E0;
+	Thu, 20 Nov 2025 13:42:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SBIgVdUM";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="a4YdFYcC";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CA73E10E280
- for <intel-xe@lists.freedesktop.org>; Thu, 20 Nov 2025 13:42:01 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 09B7E10E29D
+ for <intel-xe@lists.freedesktop.org>; Thu, 20 Nov 2025 13:42:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1763646122; x=1795182122;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=LI27MFIAz2Q3xsCwxXQifKVcw9mi/CxxY8AFTqrcx3g=;
- b=SBIgVdUM/+TYrYpvyUYbemRyppbLxo9Sol3yXbWE/Nu/f/aSf9kn65C6
- /4gY6LwnCJZIQa+hY8FiMf0HNMXdXAO7TGhGFJPPoBiplQDrj08irhMGR
- M2FOuaMEB0T8vQFZPbuamzd7x6JtYQl0bUrAo+OSMy1N+9Egm4EVD4vcd
- sUNZPJ/CLhlm1ZS6poixVeRUU9N+5xbe0Hh78+jLtUvPgLWVC7EiB0+9l
- DVHLAlb5YaKGg6/WdmSmcYwGPgRIVBihMch5a7/6QQCv7Ggqdg5+0YkiS
- RBWC9WDUU4D1JyngeMhU54GVJ7wa+gry7QcN5reV6bx8vDr0depPV9J0O A==;
-X-CSE-ConnectionGUID: 6/lGTiw2Syi04sdXFn0rYg==
-X-CSE-MsgGUID: v/NwuobjQS67w4peZ/GKGA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11619"; a="65742279"
-X-IronPort-AV: E=Sophos;i="6.20,213,1758610800"; d="scan'208";a="65742279"
+ t=1763646123; x=1795182123;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=0hrzIUJ7lHZV/NsgWPjtLzl+6Ol/otp/Az1fKVr0scc=;
+ b=a4YdFYcCZkIXc4GnClSzyVxHZNBs8xUfQQQT+oYFAaltXXKe2STGLocc
+ j0+G27asPY3UIxetFTVLCyABA6zt8qeZj5tr4MoaK/ohM+CZ05+3QRfRh
+ aITvcam3GfV2ggwr6GjRYdYBzqViU8ABUd476vHCRdKoIoPgM2a9nk6RA
+ b2kiPsdFcL4R8twu0dsp/YxJZyAMu7K8iOs5k4naeMkiVIp8cIMvswdVF
+ iUnQngH35JZKUSV5CyNAVgL8SrPO6K+kCqTylh4fVcHSUmEWMm3DGHG5k
+ ojnES/opbp3pGMyymvAvDq5to3Bzm93H16aK3lPOJt1dezMSTbUJubNfP Q==;
+X-CSE-ConnectionGUID: aiUOZu3DQRysWEvvpBBTlw==
+X-CSE-MsgGUID: R8PmYUOXRuOKdetmEglMcQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11619"; a="65742281"
+X-IronPort-AV: E=Sophos;i="6.20,213,1758610800"; d="scan'208";a="65742281"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Nov 2025 05:42:01 -0800
-X-CSE-ConnectionGUID: BWum72Q6TlyaIY/jA04rww==
-X-CSE-MsgGUID: iBceTK9TROyBrshOR/+dvA==
+ 20 Nov 2025 05:42:03 -0800
+X-CSE-ConnectionGUID: 6FNnhaqeR0yWaX2dVxVYdA==
+X-CSE-MsgGUID: g3z+Im+eR/2Cet4w3/61/A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,213,1758610800"; d="scan'208";a="196509684"
+X-IronPort-AV: E=Sophos;i="6.20,213,1758610800"; d="scan'208";a="196509687"
 Received: from ettammin-desk.ger.corp.intel.com (HELO fdugast-desk.home)
  ([10.245.246.4])
  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Nov 2025 05:42:00 -0800
+ 20 Nov 2025 05:42:02 -0800
 From: Francois Dugast <francois.dugast@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Francois Dugast <francois.dugast@intel.com>
-Subject: [PATCH 0/2] Add tracepoints to profile SVM page faults and migration
-Date: Thu, 20 Nov 2025 14:41:28 +0100
-Message-ID: <20251120134148.1450441-1-francois.dugast@intel.com>
+Cc: Francois Dugast <francois.dugast@intel.com>,
+ Stuart Summers <stuart.summers@intel.com>
+Subject: [PATCH 1/2] drm/xe/migrate: Add tracepoint during VRAM copy
+Date: Thu, 20 Nov 2025 14:41:29 +0100
+Message-ID: <20251120134148.1450441-2-francois.dugast@intel.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20251120134148.1450441-1-francois.dugast@intel.com>
+References: <20251120134148.1450441-1-francois.dugast@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -65,17 +68,86 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-v3: Rebase
+Add a new tracepoint when migrating memory to/from VRAM.
 
-Francois Dugast (2):
-  drm/xe/migrate: Add tracepoint during VRAM copy
-  drm/xe/pagefault: Add tracepoints for page faults
+Signed-off-by: Francois Dugast <francois.dugast@intel.com>
+Reviewed-by: Stuart Summers <stuart.summers@intel.com>
+---
+ drivers/gpu/drm/xe/xe_migrate.c |  3 +++
+ drivers/gpu/drm/xe/xe_trace.h   | 32 ++++++++++++++++++++++++++++++++
+ 2 files changed, 35 insertions(+)
 
- drivers/gpu/drm/xe/xe_migrate.c   |  3 ++
- drivers/gpu/drm/xe/xe_pagefault.c |  7 ++-
- drivers/gpu/drm/xe/xe_trace.h     | 85 +++++++++++++++++++++++++++++++
- 3 files changed, 94 insertions(+), 1 deletion(-)
-
+diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+index f3b66b55acfb..0c2b706923a7 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.c
++++ b/drivers/gpu/drm/xe/xe_migrate.c
+@@ -36,6 +36,7 @@
+ #include "xe_sched_job.h"
+ #include "xe_sriov_vf_ccs.h"
+ #include "xe_sync.h"
++#include "xe_trace.h"
+ #include "xe_trace_bo.h"
+ #include "xe_validation.h"
+ #include "xe_vm.h"
+@@ -2130,6 +2131,8 @@ static struct dma_fence *xe_migrate_vram(struct xe_migrate *m,
+ 	unsigned long i, j;
+ 	bool use_pde = xe_migrate_vram_use_pde(sram_addr, len + sram_offset);
+ 
++	trace_xe_migrate_vram(xe, len, vram_addr, dir);
++
+ 	if (!xe->info.has_mem_copy_instr &&
+ 	    drm_WARN_ON(&xe->drm,
+ 			(!IS_ALIGNED(len, pitch)) || (sram_offset | vram_addr) & XE_CACHELINE_MASK))
+diff --git a/drivers/gpu/drm/xe/xe_trace.h b/drivers/gpu/drm/xe/xe_trace.h
+index 79a97b086cb2..965b334bf348 100644
+--- a/drivers/gpu/drm/xe/xe_trace.h
++++ b/drivers/gpu/drm/xe/xe_trace.h
+@@ -16,6 +16,7 @@
+ #include "xe_gpu_scheduler_types.h"
+ #include "xe_gt_types.h"
+ #include "xe_guc_exec_queue_types.h"
++#include "xe_migrate.h"
+ #include "xe_sched_job.h"
+ #include "xe_tlb_inval_types.h"
+ #include "xe_vm.h"
+@@ -464,6 +465,37 @@ TRACE_EVENT(xe_exec_queue_reach_max_job_count,
+ 		      __entry->class, __entry->logical_mask, __entry->guc_id)
+ );
+ 
++DECLARE_EVENT_CLASS(xe_migrate,
++		    TP_PROTO(struct xe_device *xe, unsigned long len,
++			     u64 vram_addr, u8 dir),
++		    TP_ARGS(xe, len, vram_addr, dir),
++
++		    TP_STRUCT__entry(
++			    __string(dev, __dev_name_xe(xe))
++			    __field(u32, len)
++			    __field(u64, vram_addr)
++			    __field(u8, dir)
++			    ),
++
++		    TP_fast_assign(
++			    __assign_str(dev);
++			    __entry->len = len;
++			    __entry->vram_addr = vram_addr;
++			    __entry->dir = dir;
++			    ),
++
++		    TP_printk("dev=%s len=%x vram_addr=%llx dir=%s",
++			      __get_str(dev), __entry->len, __entry->vram_addr,
++			      __entry->dir == XE_MIGRATE_COPY_TO_VRAM ?
++			      "TO_VRAM" : "TO_SRAM")
++);
++
++DEFINE_EVENT(xe_migrate, xe_migrate_vram,
++	     TP_PROTO(struct xe_device *xe, unsigned long len, u64 vram_addr,
++		      u8 dir),
++	     TP_ARGS(xe, len, vram_addr, dir)
++);
++
+ #endif
+ 
+ /* This part must be outside protection */
 -- 
 2.43.0
 
