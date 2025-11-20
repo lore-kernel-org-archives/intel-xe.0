@@ -4,114 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A6CCECF8861
-	for <intel-xe@archiver.kernel.org>; Thu, 20 Nov 2025 15:13:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4AC4ACF8861
+	for <intel-xe@archiver.kernel.org>; Thu, 20 Nov 2025 15:16:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6246010E773;
-	Thu, 20 Nov 2025 15:13:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0779010E074;
+	Thu, 20 Nov 2025 15:16:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="cpwKhtPE";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="+J0hEc9P";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="cpwKhtPE";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="+J0hEc9P";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="V/nZlmvT";
 	dkim-atps=neutral
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E627310E775
- for <intel-xe@lists.freedesktop.org>; Thu, 20 Nov 2025 15:13:11 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
- [IPv6:2a07:de40:b281:104:10:150:64:97])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id 690C41F441;
- Thu, 20 Nov 2025 15:13:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1763651590; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=Ial72GLszEleezwa1Z30bChDpXZLG7wGDUUVENhegr0=;
- b=cpwKhtPEWGDtq0OINKW2wGBc2pnD3luRGpED17Q8jhbxSIFfRwZpXl/kQQHcRYbaV+WuT+
- lrrQSboi4F4iTdUWvvOyZS9ve5o9ck9aS2WVswIIIRCxCGY9ml+vhJrHPRbuzwQR2gc9vT
- i9U6blzByK9qOQQYP8dLfoRg1XoB6c4=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1763651590;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=Ial72GLszEleezwa1Z30bChDpXZLG7wGDUUVENhegr0=;
- b=+J0hEc9PPn5QqRe1cqbc8hg/Jkpm4udxWT9FKlPeKOaeSXKzp7ffXHqBjJpvUk3hPDlXYY
- 82xAmusaMFVc4gDA==
-Authentication-Results: smtp-out2.suse.de;
- dkim=pass header.d=suse.de header.s=susede2_rsa header.b=cpwKhtPE;
- dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=+J0hEc9P
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1763651590; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=Ial72GLszEleezwa1Z30bChDpXZLG7wGDUUVENhegr0=;
- b=cpwKhtPEWGDtq0OINKW2wGBc2pnD3luRGpED17Q8jhbxSIFfRwZpXl/kQQHcRYbaV+WuT+
- lrrQSboi4F4iTdUWvvOyZS9ve5o9ck9aS2WVswIIIRCxCGY9ml+vhJrHPRbuzwQR2gc9vT
- i9U6blzByK9qOQQYP8dLfoRg1XoB6c4=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1763651590;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=Ial72GLszEleezwa1Z30bChDpXZLG7wGDUUVENhegr0=;
- b=+J0hEc9PPn5QqRe1cqbc8hg/Jkpm4udxWT9FKlPeKOaeSXKzp7ffXHqBjJpvUk3hPDlXYY
- 82xAmusaMFVc4gDA==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id EAE083EA61;
- Thu, 20 Nov 2025 15:13:09 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id Cj2iNwUwH2lNcwAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Thu, 20 Nov 2025 15:13:09 +0000
-Date: Thu, 20 Nov 2025 16:13:08 +0100
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-misc-fixes
-Message-ID: <20251120151308.GA589436@linux.fritz.box>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F22CD10E074
+ for <intel-xe@lists.freedesktop.org>; Thu, 20 Nov 2025 15:16:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1763651791; x=1795187791;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=sUQ8WQcGBIUHo+dRAfc6gyVjSJBONGdvKFlSJxFQdkQ=;
+ b=V/nZlmvTtjR+NyMD/FxrRBVWBqte+ii1lm6E3OUG8S9KsA2/gIqcBU7p
+ UQhj5NbDyERWqJKPkDlokgId4B63sx86bUvE2qXR2BBY335UttYIXwbnI
+ cDm3XFPO2JQTGpgvEZTMV4Er/hq+YXr3DBB8QpU2HQuM1EA0JwiriPM/W
+ mx9uxUclaHUw6fUEv2WfLFEyQtiyIY5n4/o//WIMvv6IkjvmcDOGwOCxJ
+ 1SWRtSN78b2POE4+2Ln52ASuYrxY6Ah5DZ+KWDh5701UtFpOwjs1ECqsR
+ N6YxkDELz/uz78XXFHB8zItMZMKIPzSAJajGFPgnivSEpmbPoAyUmiQh9 A==;
+X-CSE-ConnectionGUID: yjRtxEnvQSKdzbDHHJHpJA==
+X-CSE-MsgGUID: yKVar6JiRj+kf/5ZvvP4vw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11619"; a="64731470"
+X-IronPort-AV: E=Sophos;i="6.20,213,1758610800"; d="scan'208";a="64731470"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Nov 2025 07:16:30 -0800
+X-CSE-ConnectionGUID: lrnP2DsmR62yDsWoKtHTdg==
+X-CSE-MsgGUID: U1wOR88sTw+0zaKr0Kdd4Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.20,213,1758610800"; d="scan'208";a="196366112"
+Received: from art-dev-395.igk.intel.com ([10.211.135.233])
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Nov 2025 07:16:29 -0800
+From: Jan Maslak <jan.maslak@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: maciej.patelczyk@intel.com, joonas.lahtinen@intel.com,
+ Jan Maslak <jan.maslak@intel.com>
+Subject: [PATCH 0/1] drm/xe/guc: Don't run jobs during GT reset
+Date: Thu, 20 Nov 2025 16:16:10 +0100
+Message-Id: <20251120151611.2205914-1-jan.maslak@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: 690C41F441
-X-Rspamd-Server: rspamd2.dmz-prg2.suse.org
-X-Spamd-Result: default: False [-4.51 / 50.00]; BAYES_HAM(-3.00)[100.00%];
- NEURAL_HAM_LONG(-1.00)[-1.000];
- R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
- MX_GOOD(-0.01)[]; MIME_TRACE(0.00)[0:+];
- FREEMAIL_TO(0.00)[gmail.com,ffwll.ch];
- DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- SPAMHAUS_XBL(0.00)[2a07:de40:b281:104:10:150:64:97:from];
- RCPT_COUNT_TWELVE(0.00)[16];
- RBL_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:104:10:150:64:97:from]; 
- FUZZY_RATELIMITED(0.00)[rspamd.com]; ARC_NA(0.00)[];
- FREEMAIL_ENVRCPT(0.00)[gmail.com]; TO_DN_SOME(0.00)[];
- RCVD_COUNT_TWO(0.00)[2]; FROM_EQ_ENVFROM(0.00)[];
- FROM_HAS_DN(0.00)[]; TO_MATCH_ENVRCPT_ALL(0.00)[];
- RECEIVED_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:106:10:150:64:167:received];
- MISSING_XM_UA(0.00)[]; RCVD_VIA_SMTP_AUTH(0.00)[];
- RCVD_TLS_ALL(0.00)[]; DKIM_TRACE(0.00)[suse.de:+];
- DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:helo,
- imap1.dmz-prg2.suse.org:rdns, suse.com:url, suse.de:dkim]
-X-Rspamd-Action: no action
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -126,81 +65,14 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Dave, Sima,
 
-here's the PR for drm-misc-fixes.
 
-Best regards
-Thomas
+Jan Maslak (1):
+  drm/xe/guc: Don't run jobs during GT reset
 
-drm-misc-fixes-2025-11-20:
-Short summary of fixes pull:
-
-atomic:
-- Return error codes on failed blob creation for planes
-
-nouveau:
-- Fix memory leak
-
-tegra:
-- Fix device ref counting
-- Fix pid ref counting
-- Revert booting on Pixel C
-The following changes since commit 6a23ae0a96a600d1d12557add110e0bb6e32730c:
-
-  Linux 6.18-rc6 (2025-11-16 14:25:38 -0800)
-
-are available in the Git repository at:
-
-  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-fixes-2025-11-20
-
-for you to fetch changes up to cead55e24cf9e092890cf51c0548eccd7569defa:
-
-  drm/plane: Fix create_in_format_blob() return value (2025-11-19 19:37:04 +0200)
-
-----------------------------------------------------------------
-Short summary of fixes pull:
-
-atomic:
-- Return error codes on failed blob creation for planes
-
-nouveau:
-- Fix memory leak
-
-tegra:
-- Fix device ref counting
-- Fix pid ref counting
-- Revert booting on Pixel C
-
-----------------------------------------------------------------
-Diogo Ivo (1):
-      Revert "drm/tegra: dsi: Clear enable register if powered by bootloader"
-
-Ma Ke (1):
-      drm/tegra: dc: Fix reference leak in tegra_dc_couple()
-
-Nam Cao (1):
-      nouveau/firmware: Add missing kfree() of nvkm_falcon_fw::boot
-
-Prateek Agarwal (1):
-      drm/tegra: Add call to put_pid()
-
-Thomas Zimmermann (1):
-      Merge drm/drm-fixes into drm-misc-fixes
-
-Ville Syrjälä (1):
-      drm/plane: Fix create_in_format_blob() return value
-
- drivers/gpu/drm/drm_plane.c              | 4 ++--
- drivers/gpu/drm/nouveau/nvkm/falcon/fw.c | 2 ++
- drivers/gpu/drm/tegra/dc.c               | 1 +
- drivers/gpu/drm/tegra/dsi.c              | 9 ---------
- drivers/gpu/drm/tegra/uapi.c             | 7 +++++--
- 5 files changed, 10 insertions(+), 13 deletions(-)
+ drivers/gpu/drm/xe/xe_guc_submit.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
 -- 
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Frankenstr. 146, 90461 Nürnberg, Germany, www.suse.com
-GF: Jochen Jaser, Andrew McDonald, Werner Knoblich, (HRB 36809, AG Nürnberg)
+2.34.1
+
