@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 16D2ECF9C7A
-	for <intel-xe@archiver.kernel.org>; Thu, 20 Nov 2025 19:14:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 35EF5CFA442
+	for <intel-xe@archiver.kernel.org>; Thu, 20 Nov 2025 19:19:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C219110E7CF;
-	Thu, 20 Nov 2025 19:14:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E638110E082;
+	Thu, 20 Nov 2025 19:19:50 +0000 (UTC)
 Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E0E4A10E7CF;
- Thu, 20 Nov 2025 19:14:25 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8005275728711084916=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B3EB810E082;
+ Thu, 20 Nov 2025 19:19:49 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Fix_memory_leak_w?=
- =?utf-8?q?hen_handling_pagefault_vma?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/i915=3A_dissolve_soc/?=
+ =?utf-8?q?_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Mika Kuoppala" <mika.kuoppala@linux.intel.com>
+To: "Jani Nikula" <jani.nikula@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 20 Nov 2025 19:14:25 -0000
-Message-ID: <176366606591.15313.17434176999359874676@a3b018990fe9>
+Date: Thu, 20 Nov 2025 19:19:49 -0000
+Message-ID: <176366638972.15313.9162431708596454235@a3b018990fe9>
 X-Patchwork-Hint: ignore
-References: <20251120161435.3674556-1-mika.kuoppala@linux.intel.com>
-In-Reply-To: <20251120161435.3674556-1-mika.kuoppala@linux.intel.com>
+References: <cover.1763578288.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1763578288.git.jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,121 +40,76 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8005275728711084916==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe: Fix memory leak when handling pagefault vma
-URL   : https://patchwork.freedesktop.org/series/157856/
-State : success
+Series: drm/i915: dissolve soc/ (rev2)
+URL   : https://patchwork.freedesktop.org/series/157792/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-4135-3d718db04a365cc44a3bc81ffa4db7bbd2e645d7_BAT -> xe-pw-157856v1_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+2de9a3901bc28757c7906b454717b64e2a214021
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 0d943d9ca07e3e52e1f32b216d0115982d387c83
+Author: Jani Nikula <jani.nikula@intel.com>
+Date:   Wed Nov 19 20:52:52 2025 +0200
 
-Summary
--------
+    drm/xe/vga: use the same intel_gmch_vga_set_decode() as i915
+    
+    Drop the #ifdef I915, and use the same intel_gmch_vga_set_decode() for
+    both i915 and xe.
+    
+    Signed-off-by: Jani Nikula <jani.nikula@intel.com>
++ /mt/dim checkpatch 3d718db04a365cc44a3bc81ffa4db7bbd2e645d7 drm-intel
+c1877a71173b drm/i915/edram: extract i915_edram.[ch] for edram detection
+-:48: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#48: 
+new file mode 100644
 
-  **SUCCESS**
+total: 0 errors, 1 warnings, 0 checks, 99 lines checked
+b70838457b07 drm/i915: split out i915_freq.[ch]
+-:82: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#82: 
+new file mode 100644
 
-  No regressions found.
+total: 0 errors, 1 warnings, 0 checks, 172 lines checked
+57eef214ba18 drm/i915: move intel_dram.[ch] from soc/ to display/
+-:119: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#119: 
+rename from drivers/gpu/drm/i915/soc/intel_dram.c
 
-  
+total: 0 errors, 1 warnings, 0 checks, 143 lines checked
+24d0e6688075 drm/xe: remove MISSING_CASE() from compat i915_utils.h
+f41a8ec2326d drm/i915/dram: convert to struct intel_display
+2f61ba005236 drm/i915: move dram_info to struct intel_display
+e805c4f80dba drm/i915: move intel_rom.[ch] from soc/ to display/
+-:58: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#58: 
+rename from drivers/gpu/drm/i915/soc/intel_rom.c
 
-Participating hosts (13 -> 13)
-------------------------------
+total: 0 errors, 1 warnings, 0 checks, 59 lines checked
+4f993700b177 drm/xe: remove remaining platform checks from compat i915_drv.h
+831c39f82388 drm/i915/gmch: split out i915_gmch.[ch] from soc
+-:81: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#81: 
+new file mode 100644
 
-  No changes in participating hosts
+total: 0 errors, 1 warnings, 0 checks, 363 lines checked
+744f78f9028f drm/i915/gmch: switch to use pci_bus_{read, write}_config_word()
+a3dba9b7fe9a drm/i915/gmch: convert intel_gmch.c to struct intel_display
+ac2970096674 drm/i915: merge soc/intel_gmch.[ch] to display/intel_vga.c
+-:108: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#108: 
+deleted file mode 100644
 
-Known issues
-------------
-
-  Here are the changes found in xe-pw-157856v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@xe_waitfence@reltime:
-    - bat-dg2-oem2:       [FAIL][1] ([Intel XE#6520]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4135-3d718db04a365cc44a3bc81ffa4db7bbd2e645d7/bat-dg2-oem2/igt@xe_waitfence@reltime.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157856v1/bat-dg2-oem2/igt@xe_waitfence@reltime.html
-
-  
-  [Intel XE#6520]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520
-
-
-Build changes
--------------
-
-  * Linux: xe-4135-3d718db04a365cc44a3bc81ffa4db7bbd2e645d7 -> xe-pw-157856v1
-
-  IGT_8636: 254cd102396ff95d61f2ebe49fc09128878bf483 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-4135-3d718db04a365cc44a3bc81ffa4db7bbd2e645d7: 3d718db04a365cc44a3bc81ffa4db7bbd2e645d7
-  xe-pw-157856v1: 157856v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157856v1/index.html
-
---===============8005275728711084916==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Fix memory leak when handling pagefault vma</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/157856/">https://patchwork.freedesktop.org/series/157856/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157856v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157856v1/index.html</a></td></tr>
-
-</table>
+total: 0 errors, 1 warnings, 0 checks, 85 lines checked
+0d943d9ca07e drm/xe/vga: use the same intel_gmch_vga_set_decode() as i915
 
 
-    <h1>CI Bug Log - changes from xe-4135-3d718db04a365cc44a3bc81ffa4db7bbd2e645d7_BAT -&gt; xe-pw-157856v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-157856v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_waitfence@reltime:<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4135-3d718db04a365cc44a3bc81ffa4db7bbd2e645d7/bat-dg2-oem2/igt@xe_waitfence@reltime.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520">Intel XE#6520</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157856v1/bat-dg2-oem2/igt@xe_waitfence@reltime.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4135-3d718db04a365cc44a3bc81ffa4db7bbd2e645d7 -&gt; xe-pw-157856v1</li>
-</ul>
-<p>IGT_8636: 254cd102396ff95d61f2ebe49fc09128878bf483 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-4135-3d718db04a365cc44a3bc81ffa4db7bbd2e645d7: 3d718db04a365cc44a3bc81ffa4db7bbd2e645d7<br />
-  xe-pw-157856v1: 157856v1</p>
-
-</body>
-</html>
-
---===============8005275728711084916==--
