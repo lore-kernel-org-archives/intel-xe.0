@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 20515CF885A
-	for <intel-xe@archiver.kernel.org>; Thu, 20 Nov 2025 13:47:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9157CCF885C
+	for <intel-xe@archiver.kernel.org>; Thu, 20 Nov 2025 13:52:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BBC4710E280;
-	Thu, 20 Nov 2025 13:47:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4FB7910E280;
+	Thu, 20 Nov 2025 13:52:29 +0000 (UTC)
 Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E2D7D10E280;
- Thu, 20 Nov 2025 13:47:47 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1991108812800883946=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3303B10E280;
+ Thu, 20 Nov 2025 13:52:28 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_locking/ww=5Fmutex=2C_dma-b?=
- =?utf-8?q?uf/dma-resv=3A_Improve_detection_of_unheld_locks?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Some_bind_queue_fixes_=28?=
+ =?utf-8?q?rev3=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+To: "Matthew Auld" <matthew.auld@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 20 Nov 2025 13:47:47 -0000
-Message-ID: <176364646792.13788.8145732279171326278@a3b018990fe9>
+Date: Thu, 20 Nov 2025 13:52:28 -0000
+Message-ID: <176364674820.13718.15310200680380655521@a3b018990fe9>
 X-Patchwork-Hint: ignore
-References: <20251120110341.2425-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20251120110341.2425-1-thomas.hellstrom@linux.intel.com>
+References: <20251120132727.575986-4-matthew.auld@intel.com>
+In-Reply-To: <20251120132727.575986-4-matthew.auld@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,245 +40,49 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1991108812800883946==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: locking/ww_mutex, dma-buf/dma-resv: Improve detection of unheld locks
-URL   : https://patchwork.freedesktop.org/series/157838/
-State : failure
+Series: Some bind queue fixes (rev3)
+URL   : https://patchwork.freedesktop.org/series/157801/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-4133-434668b827ca78eb5bf6645ad31fa6d0217c3872_BAT -> xe-pw-157838v1_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+2de9a3901bc28757c7906b454717b64e2a214021
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit b7e572f240eaa9518dcc482b2c259ee8631ca39f
+Author: Matthew Auld <matthew.auld@intel.com>
+Date:   Thu Nov 20 13:27:30 2025 +0000
 
-Summary
--------
+    drm/xe/migrate: fix job lock assert
+    
+    We are meant to be checking the user vm for the bind queue, but actually
+    we are checking the migrate vm. For various reasons this is not
+    currently firing but this will likely change in the future.
+    
+    Now that we have the user_vm attached to the bind queue, we can fix this
+    by directly checking that here.
+    
+    Fixes: dba89840a920 ("drm/xe: Add GT TLB invalidation jobs")
+    Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+    Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+    Cc: Matthew Brost <matthew.brost@intel.com>
+    Reviewed-by: Matthew Brost <matthew.brost@intel.com>
++ /mt/dim checkpatch 13909978d70fc4ded88b778a313b68ad86ba881a drm-intel
+ed2548fd3511 drm/xe/uapi: disallow bind queue sharing
+-:31: WARNING:BAD_REPORTED_BY_LINK: Reported-by: should be immediately followed by Closes: with a URL to the report
+#31: 
+Reported-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Signed-off-by: Matthew Auld <matthew.auld@intel.com>
 
-  **FAILURE**
-
-  Serious unknown changes coming with xe-pw-157838v1_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-157838v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-Participating hosts (12 -> 13)
-------------------------------
-
-  Additional (1): bat-dg2-oem2 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-157838v1_BAT:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@kms_cursor_legacy@basic-flip-after-cursor-atomic:
-    - bat-dg2-oem2:       NOTRUN -> [ABORT][1]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157838v1/bat-dg2-oem2/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
-
-  * igt@kms_flip@basic-flip-vs-dpms:
-    - bat-adlp-7:         [PASS][2] -> [ABORT][3] +1 other test abort
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4133-434668b827ca78eb5bf6645ad31fa6d0217c3872/bat-adlp-7/igt@kms_flip@basic-flip-vs-dpms.html
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157838v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-dpms.html
-    - bat-ptl-2:          [PASS][4] -> [ABORT][5] +1 other test abort
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4133-434668b827ca78eb5bf6645ad31fa6d0217c3872/bat-ptl-2/igt@kms_flip@basic-flip-vs-dpms.html
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157838v1/bat-ptl-2/igt@kms_flip@basic-flip-vs-dpms.html
-
-  * igt@kms_flip@basic-flip-vs-dpms@c-edp1:
-    - bat-ptl-2:          [PASS][6] -> [DMESG-WARN][7] +2 other tests dmesg-warn
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4133-434668b827ca78eb5bf6645ad31fa6d0217c3872/bat-ptl-2/igt@kms_flip@basic-flip-vs-dpms@c-edp1.html
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157838v1/bat-ptl-2/igt@kms_flip@basic-flip-vs-dpms@c-edp1.html
-
-  * igt@kms_flip@basic-flip-vs-dpms@d-edp1:
-    - bat-adlp-7:         [PASS][8] -> [DMESG-WARN][9] +2 other tests dmesg-warn
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4133-434668b827ca78eb5bf6645ad31fa6d0217c3872/bat-adlp-7/igt@kms_flip@basic-flip-vs-dpms@d-edp1.html
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157838v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-dpms@d-edp1.html
-
-  * igt@xe_compute@compute-square:
-    - bat-ptl-1:          [PASS][10] -> [ABORT][11]
-   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4133-434668b827ca78eb5bf6645ad31fa6d0217c3872/bat-ptl-1/igt@xe_compute@compute-square.html
-   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157838v1/bat-ptl-1/igt@xe_compute@compute-square.html
-    - bat-ptl-vm:         [PASS][12] -> [ABORT][13]
-   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4133-434668b827ca78eb5bf6645ad31fa6d0217c3872/bat-ptl-vm/igt@xe_compute@compute-square.html
-   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157838v1/bat-ptl-vm/igt@xe_compute@compute-square.html
-    - bat-pvc-2:          [PASS][14] -> [ABORT][15]
-   [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4133-434668b827ca78eb5bf6645ad31fa6d0217c3872/bat-pvc-2/igt@xe_compute@compute-square.html
-   [15]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157838v1/bat-pvc-2/igt@xe_compute@compute-square.html
-    - bat-adlp-vm:        [PASS][16] -> [ABORT][17]
-   [16]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4133-434668b827ca78eb5bf6645ad31fa6d0217c3872/bat-adlp-vm/igt@xe_compute@compute-square.html
-   [17]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157838v1/bat-adlp-vm/igt@xe_compute@compute-square.html
-    - bat-atsm-2:         [PASS][18] -> [ABORT][19]
-   [18]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4133-434668b827ca78eb5bf6645ad31fa6d0217c3872/bat-atsm-2/igt@xe_compute@compute-square.html
-   [19]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157838v1/bat-atsm-2/igt@xe_compute@compute-square.html
-
-  * igt@xe_exec_basic@multigpu-once-basic:
-    - bat-bmg-3:          [PASS][20] -> [ABORT][21]
-   [20]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4133-434668b827ca78eb5bf6645ad31fa6d0217c3872/bat-bmg-3/igt@xe_exec_basic@multigpu-once-basic.html
-   [21]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157838v1/bat-bmg-3/igt@xe_exec_basic@multigpu-once-basic.html
-
-  * igt@xe_module_load@load:
-    - bat-lnl-1:          [PASS][22] -> [ABORT][23]
-   [22]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4133-434668b827ca78eb5bf6645ad31fa6d0217c3872/bat-lnl-1/igt@xe_module_load@load.html
-   [23]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157838v1/bat-lnl-1/igt@xe_module_load@load.html
-    - bat-lnl-2:          [PASS][24] -> [ABORT][25]
-   [24]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4133-434668b827ca78eb5bf6645ad31fa6d0217c3872/bat-lnl-2/igt@xe_module_load@load.html
-   [25]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157838v1/bat-lnl-2/igt@xe_module_load@load.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in xe-pw-157838v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
-    - bat-dg2-oem2:       NOTRUN -> [SKIP][26] ([Intel XE#623])
-   [26]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157838v1/bat-dg2-oem2/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
-
-  
-  [Intel XE#623]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/623
+total: 0 errors, 1 warnings, 0 checks, 122 lines checked
+b7e572f240ea drm/xe/migrate: fix job lock assert
 
 
-Build changes
--------------
-
-  * Linux: xe-4133-434668b827ca78eb5bf6645ad31fa6d0217c3872 -> xe-pw-157838v1
-
-  IGT_8635: 8635
-  xe-4133-434668b827ca78eb5bf6645ad31fa6d0217c3872: 434668b827ca78eb5bf6645ad31fa6d0217c3872
-  xe-pw-157838v1: 157838v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157838v1/index.html
-
---===============1991108812800883946==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>locking/ww_mutex, dma-buf/dma-resv: Improve detection of unheld locks</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/157838/">https://patchwork.freedesktop.org/series/157838/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157838v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157838v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4133-434668b827ca78eb5bf6645ad31fa6d0217c3872_BAT -&gt; xe-pw-157838v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-157838v1_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-157838v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (12 -&gt; 13)</h2>
-<p>Additional (1): bat-dg2-oem2 </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-157838v1_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>
-<p>igt@kms_cursor_legacy@basic-flip-after-cursor-atomic:</p>
-<ul>
-<li>bat-dg2-oem2:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157838v1/bat-dg2-oem2/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html">ABORT</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-dpms:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4133-434668b827ca78eb5bf6645ad31fa6d0217c3872/bat-adlp-7/igt@kms_flip@basic-flip-vs-dpms.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157838v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-dpms.html">ABORT</a> +1 other test abort</li>
-<li>bat-ptl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4133-434668b827ca78eb5bf6645ad31fa6d0217c3872/bat-ptl-2/igt@kms_flip@basic-flip-vs-dpms.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157838v1/bat-ptl-2/igt@kms_flip@basic-flip-vs-dpms.html">ABORT</a> +1 other test abort</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-dpms@c-edp1:</p>
-<ul>
-<li>bat-ptl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4133-434668b827ca78eb5bf6645ad31fa6d0217c3872/bat-ptl-2/igt@kms_flip@basic-flip-vs-dpms@c-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157838v1/bat-ptl-2/igt@kms_flip@basic-flip-vs-dpms@c-edp1.html">DMESG-WARN</a> +2 other tests dmesg-warn</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-dpms@d-edp1:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4133-434668b827ca78eb5bf6645ad31fa6d0217c3872/bat-adlp-7/igt@kms_flip@basic-flip-vs-dpms@d-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157838v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-dpms@d-edp1.html">DMESG-WARN</a> +2 other tests dmesg-warn</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_compute@compute-square:</p>
-<ul>
-<li>bat-ptl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4133-434668b827ca78eb5bf6645ad31fa6d0217c3872/bat-ptl-1/igt@xe_compute@compute-square.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157838v1/bat-ptl-1/igt@xe_compute@compute-square.html">ABORT</a></li>
-<li>bat-ptl-vm:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4133-434668b827ca78eb5bf6645ad31fa6d0217c3872/bat-ptl-vm/igt@xe_compute@compute-square.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157838v1/bat-ptl-vm/igt@xe_compute@compute-square.html">ABORT</a></li>
-<li>bat-pvc-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4133-434668b827ca78eb5bf6645ad31fa6d0217c3872/bat-pvc-2/igt@xe_compute@compute-square.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157838v1/bat-pvc-2/igt@xe_compute@compute-square.html">ABORT</a></li>
-<li>bat-adlp-vm:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4133-434668b827ca78eb5bf6645ad31fa6d0217c3872/bat-adlp-vm/igt@xe_compute@compute-square.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157838v1/bat-adlp-vm/igt@xe_compute@compute-square.html">ABORT</a></li>
-<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4133-434668b827ca78eb5bf6645ad31fa6d0217c3872/bat-atsm-2/igt@xe_compute@compute-square.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157838v1/bat-atsm-2/igt@xe_compute@compute-square.html">ABORT</a></li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_basic@multigpu-once-basic:</p>
-<ul>
-<li>bat-bmg-3:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4133-434668b827ca78eb5bf6645ad31fa6d0217c3872/bat-bmg-3/igt@xe_exec_basic@multigpu-once-basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157838v1/bat-bmg-3/igt@xe_exec_basic@multigpu-once-basic.html">ABORT</a></li>
-</ul>
-</li>
-<li>
-<p>igt@xe_module_load@load:</p>
-<ul>
-<li>bat-lnl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4133-434668b827ca78eb5bf6645ad31fa6d0217c3872/bat-lnl-1/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157838v1/bat-lnl-1/igt@xe_module_load@load.html">ABORT</a></li>
-<li>bat-lnl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4133-434668b827ca78eb5bf6645ad31fa6d0217c3872/bat-lnl-2/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157838v1/bat-lnl-2/igt@xe_module_load@load.html">ABORT</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-157838v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:<ul>
-<li>bat-dg2-oem2:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157838v1/bat-dg2-oem2/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/623">Intel XE#623</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4133-434668b827ca78eb5bf6645ad31fa6d0217c3872 -&gt; xe-pw-157838v1</li>
-</ul>
-<p>IGT_8635: 8635<br />
-  xe-4133-434668b827ca78eb5bf6645ad31fa6d0217c3872: 434668b827ca78eb5bf6645ad31fa6d0217c3872<br />
-  xe-pw-157838v1: 157838v1</p>
-
-</body>
-</html>
-
---===============1991108812800883946==--
