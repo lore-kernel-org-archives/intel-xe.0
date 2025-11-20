@@ -4,58 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C349BCF9C4C
-	for <intel-xe@archiver.kernel.org>; Thu, 20 Nov 2025 16:52:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 23959CF9C56
+	for <intel-xe@archiver.kernel.org>; Thu, 20 Nov 2025 17:01:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8345F10E76E;
-	Thu, 20 Nov 2025 16:52:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D46D710E78C;
+	Thu, 20 Nov 2025 17:01:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RSzxHeLH";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZZpvkGRm";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C087410E76E;
- Thu, 20 Nov 2025 16:52:13 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EFF4110E78C
+ for <intel-xe@lists.freedesktop.org>; Thu, 20 Nov 2025 17:01:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1763657534; x=1795193534;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=mOjLvqt2L18vOJJ1CfnlAgnqzdNkC7or8XdZEKhI3LY=;
- b=RSzxHeLH8GHFqo1H1qYBpVUVOoZ+s4t9RdR1qfVfybzrk0DuKJdwpLHJ
- LCXkb3rlYG0kZufy/ifHVWdI1mnTyFaXz7P/QjI6lMZ3Vi/jXr5XeruPA
- WvnUsXFlcrcr31PCR30TWpExWBPUFmdRAahbumsOg5iNLJ4rT4CWBiSqB
- VY0cxJZVnvKQRsUQY9cygobDadfPi/RDYwfuDYb+zrI3j65FYj45ckOy+
- kl3TA7Uv3ftGLp2R73V2VJlyant58DqzS7O6+YYJMzY9TIQKG1Bd4IEtq
- Z8UPYJBPsUt+HG108eNg3kwiRNWZWi4VnyVOqxSGN6S1BWtuGYHTqderO g==;
-X-CSE-ConnectionGUID: hExGB6iAQRWE+E0pQDikIA==
-X-CSE-MsgGUID: 64hxk14ZTWavrKdKCJPMwQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11619"; a="65824416"
-X-IronPort-AV: E=Sophos;i="6.20,213,1758610800"; d="scan'208";a="65824416"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Nov 2025 08:52:13 -0800
-X-CSE-ConnectionGUID: z94JKRXARe6YIvr5c2WNOg==
-X-CSE-MsgGUID: qzre9ounQkm3EnRqbxrQCg==
+ t=1763658064; x=1795194064;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=J0L82qu/yaKm9YkMYrXQam1Dc8kw68J8O4txKzpJxT4=;
+ b=ZZpvkGRm9YUI7B0wF3d5D1WtwcnYVQtkJUQdzO1HxCHiIB5EWD2EMKaC
+ FH8PrOLPMWoMkNVD0O9IRDFWNT92oBbWbMj4+xjPXykrL2bqEn2i+mdcX
+ o/BJQvK3mlaLL8p6OoOTR4rperNoIzWL0uummOTdGdKzZhbRfb99/iBsq
+ alk6BPx/7K5bxTrSbKNAoXu03pAnyTehCNkXGH3IIvnVHsEgRcl8S8kyo
+ jrXG0KLoXp/yTl//4CRa/gpAemN81eSqyvw+Wsujick680D43J92IcGth
+ kpD9OFxu2gUrpnpKZP/9JdqJEPuNFYBlC9spuMa/On/R3Dqkd7tXsA3Zy A==;
+X-CSE-ConnectionGUID: DMHLgBy/R+6L5GEvKi2poA==
+X-CSE-MsgGUID: 1iXwZpQwSFqrIRuzcTTlDA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11619"; a="64744931"
+X-IronPort-AV: E=Sophos;i="6.20,213,1758610800"; d="scan'208";a="64744931"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Nov 2025 09:01:04 -0800
+X-CSE-ConnectionGUID: F/PnKSx/SMSLs5TV09zftQ==
+X-CSE-MsgGUID: QS/uAnrzTHSZeYb11d6Ypg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,213,1758610800"; d="scan'208";a="222366188"
-Received: from inaky-mobl1.amr.corp.intel.com (HELO localhost)
- ([10.245.244.92])
+X-IronPort-AV: E=Sophos;i="6.20,213,1758610800"; d="scan'208";a="228728404"
+Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.6])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Nov 2025 08:52:12 -0800
-Date: Thu, 20 Nov 2025 18:52:08 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH v2 00/13] drm/i915: dissolve soc/
-Message-ID: <aR9HOF9fKqTwdrEP@intel.com>
-References: <cover.1763578288.git.jani.nikula@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <cover.1763578288.git.jani.nikula@intel.com>
-X-Patchwork-Hint: comment
+ 20 Nov 2025 09:01:01 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Matt Roper <matthew.d.roper@intel.com>, intel-xe@lists.freedesktop.org
+Cc: matthew.d.roper@intel.com
+Subject: Re: [PATCH 1/2] drm/xe: Track pre-production workaround support
+In-Reply-To: <20251119220459.3997343-3-matthew.d.roper@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20251119220459.3997343-3-matthew.d.roper@intel.com>
+Date: Thu, 20 Nov 2025 19:00:58 +0200
+Message-ID: <6727682007acb8a501b42b7de8b696c87443d874@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,87 +67,184 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Nov 19, 2025 at 08:52:39PM +0200, Jani Nikula wrote:
-> Split soc/ to i915 and display specific parts, and relocate code
-> accordingly.
-> 
-> In v2, cover all of soc/.
-> 
-> BR,
-> Jani.
-> 
-> Jani Nikula (13):
->   drm/i915/edram: extract i915_edram.[ch] for edram detection
->   drm/i915: split out i915_freq.[ch]
->   drm/i915: move intel_dram.[ch] from soc/ to display/
->   drm/xe: remove MISSING_CASE() from compat i915_utils.h
->   drm/i915/dram: convert to struct intel_display
->   drm/i915: move dram_info to struct intel_display
->   drm/i915: move intel_rom.[ch] from soc/ to display/
->   drm/xe: remove remaining platform checks from compat i915_drv.h
->   drm/i915/gmch: split out i915_gmch.[ch] from soc
->   drm/i915/gmch: switch to use pci_bus_{read,write}_config_word()
->   drm/i915/gmch: convert intel_gmch.c to struct intel_display
->   drm/i915: merge soc/intel_gmch.[ch] to display/intel_vga.c
->   drm/xe/vga: use the same intel_gmch_vga_set_decode() as i915
+On Wed, 19 Nov 2025, Matt Roper <matthew.d.roper@intel.com> wrote:
+> When we're initially enabling driver support for a new platform/IP, we
+> usually implement all workarounds documented in the WA database in the
+> driver.  Many of those workarounds are restricted to early steppings
+> that only showed up in pre-production hardware (i.e., internal test
+> chips that are not available to the general public).  Since the
+> workarounds for early, pre-production steppings tend to be some of the
+> ugliest and most complicated workarounds, we generally want to eliminate
+> them and simplify the code once the platform has launched and our
+> internal usage of those pre-production parts have been phased out.
+>
+> Let's add a flag to the device info that tracks which platforms we've
+> removed pre-production workarounds for so that we can print a warning
+> and taint if someone tries to load the driver on a pre-production part.
+> This will help our internal users understand the likely problems they'll
+> encounter if they try to load the driver on an old pre-production
+> device.
+>
+> The Xe behavior here is similar to what we've done for many years on
+> i915 (see intel_detect_preproduction_hw()), except that instead of
+> manually coding up ranges of device steppings that we believe to be
+> pre-production hardware, Xe will use the hardware's own production vs
+> pre-production fusing status, which we can read from the FUSE2 register.
+> This fuse didn't exist on older Intel hardware, but should be present on
+> all platforms supported by the Xe driver.
+>
+> Going forward, let's set the expectation that we'll start looking into
+> removing pre-production workarounds for a platform around the time that
+> platforms of the next major IP stepping are having their force_probe
+> requirement lifted.  This timing is just a rough guideline; there may be
+> cases where some instances of pre-production parts are still being
+> actively used in CI farms, internal device pools, etc. and we'll need to
+> wait a bit longer for those to be swapped out.
 
-Looks all right to me. Series is
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Nice!
 
-> 
->  drivers/gpu/drm/i915/Makefile                 |  11 +-
->  drivers/gpu/drm/i915/display/i9xx_wm.c        |   5 +-
->  drivers/gpu/drm/i915/display/intel_bios.c     |   3 +-
->  drivers/gpu/drm/i915/display/intel_bw.c       |   5 +-
->  drivers/gpu/drm/i915/display/intel_cdclk.c    |   7 +-
->  .../gpu/drm/i915/display/intel_display_core.h |   4 +
->  .../drm/i915/display/intel_display_power.c    |   5 +-
->  .../drm/i915/{soc => display}/intel_dram.c    | 249 ++++++++----------
->  .../drm/i915/{soc => display}/intel_dram.h    |  12 +-
->  .../gpu/drm/i915/{soc => display}/intel_rom.c |   0
->  .../gpu/drm/i915/{soc => display}/intel_rom.h |   0
->  drivers/gpu/drm/i915/display/intel_vga.c      |  44 +++-
->  drivers/gpu/drm/i915/display/skl_watermark.c  |   6 +-
->  .../gpu/drm/i915/gt/intel_gt_clock_utils.c    |   4 +-
->  drivers/gpu/drm/i915/gt/intel_rps.c           |   6 +-
->  drivers/gpu/drm/i915/i915_driver.c            |  18 +-
->  drivers/gpu/drm/i915/i915_drv.h               |   3 -
->  drivers/gpu/drm/i915/i915_edram.c             |  44 ++++
->  drivers/gpu/drm/i915/i915_edram.h             |  11 +
->  drivers/gpu/drm/i915/i915_freq.c              | 111 ++++++++
->  drivers/gpu/drm/i915/i915_freq.h              |  13 +
->  .../i915/{soc/intel_gmch.c => i915_gmch.c}    |  61 +----
->  drivers/gpu/drm/i915/i915_gmch.h              |  13 +
->  drivers/gpu/drm/i915/soc/intel_gmch.h         |  20 --
->  drivers/gpu/drm/xe/Makefile                   |  13 +-
->  .../gpu/drm/xe/compat-i915-headers/i915_drv.h |  15 --
->  .../drm/xe/compat-i915-headers/i915_utils.h   |   6 -
->  .../xe/compat-i915-headers/soc/intel_dram.h   |   6 -
->  .../xe/compat-i915-headers/soc/intel_gmch.h   |   6 -
->  .../xe/compat-i915-headers/soc/intel_rom.h    |   6 -
->  drivers/gpu/drm/xe/display/xe_display.c       |   4 +-
->  drivers/gpu/drm/xe/display/xe_display_misc.c  |  16 --
->  drivers/gpu/drm/xe/xe_device_types.h          |   8 -
->  33 files changed, 394 insertions(+), 341 deletions(-)
->  rename drivers/gpu/drm/i915/{soc => display}/intel_dram.c (70%)
->  rename drivers/gpu/drm/i915/{soc => display}/intel_dram.h (68%)
->  rename drivers/gpu/drm/i915/{soc => display}/intel_rom.c (100%)
->  rename drivers/gpu/drm/i915/{soc => display}/intel_rom.h (100%)
->  create mode 100644 drivers/gpu/drm/i915/i915_edram.c
->  create mode 100644 drivers/gpu/drm/i915/i915_edram.h
->  create mode 100644 drivers/gpu/drm/i915/i915_freq.c
->  create mode 100644 drivers/gpu/drm/i915/i915_freq.h
->  rename drivers/gpu/drm/i915/{soc/intel_gmch.c => i915_gmch.c} (68%)
->  create mode 100644 drivers/gpu/drm/i915/i915_gmch.h
->  delete mode 100644 drivers/gpu/drm/i915/soc/intel_gmch.h
->  delete mode 100644 drivers/gpu/drm/xe/compat-i915-headers/soc/intel_dram.h
->  delete mode 100644 drivers/gpu/drm/xe/compat-i915-headers/soc/intel_gmch.h
->  delete mode 100644 drivers/gpu/drm/xe/compat-i915-headers/soc/intel_rom.h
->  delete mode 100644 drivers/gpu/drm/xe/display/xe_display_misc.c
-> 
-> -- 
-> 2.47.3
+I fear the i915 checks have pretty much gone stale, and not all old
+workarounds have been removed.
+
+> Bspec: 78271, 52544
+> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+> ---
+>  drivers/gpu/drm/xe/regs/xe_gt_regs.h |  3 ++
+>  drivers/gpu/drm/xe/xe_device.c       | 48 ++++++++++++++++++++++++++++
+>  drivers/gpu/drm/xe/xe_device_types.h |  2 ++
+>  drivers/gpu/drm/xe/xe_pci.c          |  1 +
+>  drivers/gpu/drm/xe/xe_pci_types.h    |  1 +
+>  5 files changed, 55 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+> index 917a088c28f2..93643da57428 100644
+> --- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+> +++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+> @@ -227,6 +227,9 @@
+>  
+>  #define MIRROR_FUSE1				XE_REG(0x911c)
+>  
+> +#define FUSE2					XE_REG(0x9120)
+> +#define   PRODUCTION_HW				REG_BIT(2)
+> +
+>  #define MIRROR_L3BANK_ENABLE			XE_REG(0x9130)
+>  #define   XE3_L3BANK_ENABLE			REG_GENMASK(31, 0)
+>  
+> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+> index 1197f914ef77..ed758888cfa1 100644
+> --- a/drivers/gpu/drm/xe/xe_device.c
+> +++ b/drivers/gpu/drm/xe/xe_device.c
+> @@ -797,6 +797,52 @@ static int probe_has_flat_ccs(struct xe_device *xe)
+>  	return 0;
+>  }
+>  
+> +/*
+> + * Detect if the driver is being run on pre-production hardware.  We don't
+> + * keep workarounds for pre-production hardware long term, so print an
+> + * error and add taint if we're being loaded on a pre-production platform
+> + * for which the pre-prod workarounds have already been removed.
+> + *
+> + * The general policy is that we'll remove any workarounds that only apply to
+> + * pre-production hardware around the time force_probe restrictions are lifted
+> + * for a platform of the next major IP generation (for example, Xe2 pre-prod
+> + * workarounds should be removed around the time the first Xe3 platforms have
+> + * force_probe lifted).
+> + */
+> +static void detect_preproduction_hw(struct xe_device *xe)
+> +{
+> +	struct xe_gt *gt;
+> +	int id;
+> +
+> +	/*
+> +	 * The "SW_CAP" fuse contains a bit indicating whether the device is a
+> +	 * production or pre-production device.  This fuse is reflected through
+> +	 * the GT "FUSE2" register, even though the contents of the fuse are
+> +	 * not GT-specific.  Every GT's reflection of this fuse should show the
+> +	 * same value, so we'll just use the first available GT for lookup.
+> +	 */
+> +	for_each_gt(gt, xe, id)
+> +		break;
+> +
+> +	if (!gt)
+> +		return;
+> +
+> +	CLASS(xe_force_wake, fw_ref)(gt_to_fw(gt), XE_FW_GT);
+> +	if (xe_force_wake_ref_has_domain(fw_ref.domains, XE_FW_GT)) {
+> +		xe_gt_err(gt, "Forcewake failure; cannot determine production/pre-production hw status.\n");
+> +		return;
+> +	}
+> +
+> +	if (xe_mmio_read32(&gt->mmio, FUSE2) & PRODUCTION_HW)
+> +		return;
+> +
+> +	xe_info(xe, "Pre-production hardware detected.\n");
+> +	if (xe->info.has_prod_wa_only) {
+
+Would it make sense to flip this flag around? Otherwise you'll need to
+keep the flag indefinitely for production hardware.
+
+Say, if you had .has_pre_production_wa, you'd initially set that and
+.require_force_probe, then at some point drop .require_force_probe, and
+later still drop .has_pre_production_wa.
+
+BR,
+Jani.
+
+
+> +		xe_err(xe, "Pre-production workarounds for this platform have already been removed.\n");
+> +		add_taint(TAINT_MACHINE_CHECK, LOCKDEP_STILL_OK);
+> +	}
+> +}
+> +
+>  int xe_device_probe(struct xe_device *xe)
+>  {
+>  	struct xe_tile *tile;
+> @@ -967,6 +1013,8 @@ int xe_device_probe(struct xe_device *xe)
+>  	if (err)
+>  		goto err_unregister_display;
+>  
+> +	detect_preproduction_hw(xe);
+> +
+>  	return devm_add_action_or_reset(xe->drm.dev, xe_device_sanitize, xe);
+>  
+>  err_unregister_display:
+> diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+> index 0b2fa7c56d38..fe76640db859 100644
+> --- a/drivers/gpu/drm/xe/xe_device_types.h
+> +++ b/drivers/gpu/drm/xe/xe_device_types.h
+> @@ -308,6 +308,8 @@ struct xe_device {
+>  		u8 has_mbx_power_limits:1;
+>  		/** @info.has_mem_copy_instr: Device supports MEM_COPY instruction */
+>  		u8 has_mem_copy_instr:1;
+> +		/** @info.has_prod_wa_only: Only production hardware workarounds supported */
+> +		u8 has_prod_wa_only:1;
+>  		/** @info.has_pxp: Device has PXP support */
+>  		u8 has_pxp:1;
+>  		/** @info.has_range_tlb_inval: Has range based TLB invalidations */
+> diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+> index cd03b4b3ebdb..25365a891f9d 100644
+> --- a/drivers/gpu/drm/xe/xe_pci.c
+> +++ b/drivers/gpu/drm/xe/xe_pci.c
+> @@ -673,6 +673,7 @@ static int xe_info_init_early(struct xe_device *xe,
+>  	xe->info.has_heci_cscfi = desc->has_heci_cscfi;
+>  	xe->info.has_late_bind = desc->has_late_bind;
+>  	xe->info.has_llc = desc->has_llc;
+> +	xe->info.has_prod_wa_only = desc->has_prod_wa_only;
+>  	xe->info.has_pxp = desc->has_pxp;
+>  	xe->info.has_sriov = xe_configfs_primary_gt_allowed(to_pci_dev(xe->drm.dev)) &&
+>  		desc->has_sriov;
+> diff --git a/drivers/gpu/drm/xe/xe_pci_types.h b/drivers/gpu/drm/xe/xe_pci_types.h
+> index 9892c063a9c5..3045e860221c 100644
+> --- a/drivers/gpu/drm/xe/xe_pci_types.h
+> +++ b/drivers/gpu/drm/xe/xe_pci_types.h
+> @@ -47,6 +47,7 @@ struct xe_device_desc {
+>  	u8 has_llc:1;
+>  	u8 has_mbx_power_limits:1;
+>  	u8 has_mem_copy_instr:1;
+> +	u8 has_prod_wa_only:1;
+>  	u8 has_pxp:1;
+>  	u8 has_sriov:1;
+>  	u8 needs_scratch:1;
 
 -- 
-Ville Syrjälä
-Intel
+Jani Nikula, Intel
