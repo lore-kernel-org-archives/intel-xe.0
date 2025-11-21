@@ -4,171 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A5F17CF2564
-	for <intel-xe@archiver.kernel.org>; Fri, 21 Nov 2025 03:50:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 848D7CFA46E
+	for <intel-xe@archiver.kernel.org>; Fri, 21 Nov 2025 03:52:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4B36810E0C7;
-	Fri, 21 Nov 2025 03:50:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3681410E7E5;
+	Fri, 21 Nov 2025 03:52:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OkgMI5t8";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IlUDo9n/";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 79FC910E0C7;
- Fri, 21 Nov 2025 03:50:50 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3CC1F10E7E9
+ for <intel-xe@lists.freedesktop.org>; Fri, 21 Nov 2025 03:52:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1763697050; x=1795233050;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=+7N6Etux1LsxnhiGF3V9uU47RqN8+03q0Edva61ALlY=;
- b=OkgMI5t8cUvjGvsmSvKVum138X0lDAexcUbFt4uwkOnWSbKfffZ70IFz
- bth389IU7h/MRDu57wnOLkzUu2a5McIcpJb9dOZCsqWZkUuMDfFOI2EQW
- jJ6RZd7jV0V/dOuEcOc8XFqXSTq8DS1HFQKXK4FT2twYIMQegdz8IMESN
- KHWmiPQ6wS8Esd/dJA/snb+do4hAVE2bE5J2jX2naTy9nj4XVXEWz0DAj
- LN68AjQhtmU49h7gZAt4BjjvxVWKfUg63Yu5rw+/GzB74pl3KrN0yWgHy
- apQJFPtIGP5BmntzDuTYKLxaUPd0RWzHKpS6PRf2fNc2nzpbO554HFU4+ Q==;
-X-CSE-ConnectionGUID: 80114i1tQpmqs99lVA5vqQ==
-X-CSE-MsgGUID: Y+mmhQDLQm+zHO26lDO25Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11619"; a="53356852"
-X-IronPort-AV: E=Sophos;i="6.20,214,1758610800"; d="scan'208";a="53356852"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Nov 2025 19:50:50 -0800
-X-CSE-ConnectionGUID: Qxyt3AOPRQWvGYznRD65qQ==
-X-CSE-MsgGUID: I7hFEXtDQleVCdKPXOAMXQ==
+ t=1763697142; x=1795233142;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=GX0lAaoQFU1yLMsgJh4BFwn69Oa2gHgTm41zPcIzkMw=;
+ b=IlUDo9n/XvPwqg3P38vbVNYVpWM7DBORaiPEWo8nEXz7oo5dDlU8MPpo
+ oD7/JeH5z/hnHMEGCkK7fFtN6WPkla7kvH933IrYlgYvcYglIWqMk++fa
+ YpuqZ8x26CSDjuSaT9ql0AEcGP7dWMPm3XQ+y1cVz5t/+bWLzyNlWXF/X
+ Ib9J3PqucswCIVNxqW2lt7hoCu1qduP9331f+YKwS9jHwigCnlGfX3MOK
+ xcXsB/1RD6lMMzX1p2BVqYb75NkJz87uZm5KD0wziESvOKaYk7hIxAkWp
+ v1DBky1tRnvoc1ARwKVR+d3W+aia0g5LaEL2C29IcKU9jECO1nCkQ5a0X g==;
+X-CSE-ConnectionGUID: UMawUD//R2antJ1N98hqaw==
+X-CSE-MsgGUID: LPovboPdQo2Wk8RMKz5Bdg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11619"; a="76110536"
+X-IronPort-AV: E=Sophos;i="6.20,214,1758610800"; d="scan'208";a="76110536"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Nov 2025 19:52:21 -0800
+X-CSE-ConnectionGUID: 1xNv2Pt0SV+cE3jrLlBA4g==
+X-CSE-MsgGUID: LX+3HzorQwmCPss4ICj6mw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,214,1758610800"; d="scan'208";a="190787817"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Nov 2025 19:50:50 -0800
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Thu, 20 Nov 2025 19:50:49 -0800
-Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27 via Frontend Transport; Thu, 20 Nov 2025 19:50:49 -0800
-Received: from DM5PR21CU001.outbound.protection.outlook.com (52.101.62.20) by
- edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Thu, 20 Nov 2025 19:50:48 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=iddTJMXJ+IWtshsOaNt+ZE0WbseMEmoR+4C5o5d0nQ0KifFoO1zgYk3fIKXH8BhglK4XTBiFs91CiY/x0/cXNVJvFgJ47HIAkvj15jPmye5V4NsrDU/kkx54CUt5uF9rpmrx6YoRBIYsi7K4zcBQQvsPRure51N+asgcINILfj11faVWfatGwvoB90X9DTiJg6fu3Rx90SmzTV+G7JkmQ19EsD9aBslA6EthJFwRvUcH5u6QxBjfj/XM6wozdwLI+5lPMWBRhXQY3HyNxNZfUvBrZVvW23HPcW4B1RPMgWISpzWlwYY2EG/0iDnlefWUmQtm3BxzPXA8SFkD2xPJjg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=jiVULbD+j9fRmcLV7ZzvKCl6we/QhQPXKFnBrhSVzpo=;
- b=R5oF2XOGB5uaCt9PZBeM+TgXhuctkAID5w3gbSP4GWHXQ4iIW10SxfBd3fjueg//YHcaCSIN7xnu/I0uRVoXMt8sZSIHkrS9ykN+rLtbaGH9+lBf1nbwWO4umbEeBXOKlNfiCXM1ODE6RV/0QeyPMtA+Asny/LTtShW135jmWXQHux2oK14UXMQs/MSWZkpiy2U0bkK7PVj9kHSXg/n6XIdc06JYi7+M2H/QrJLJEWj6vVRL5D25XJVeYlCfMHh/TrhorHBcUK8mNMd1jRuyD06XkeZdeCQOF7DitAuQJboorEtSMVW8qobNye+bBfI4vySIq8DD9Kq6aSa7svQyEQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DM3PPF208195D8D.namprd11.prod.outlook.com
- (2603:10b6:f:fc00::f13) by PH0PR11MB7521.namprd11.prod.outlook.com
- (2603:10b6:510:283::16) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9343.10; Fri, 21 Nov
- 2025 03:50:46 +0000
-Received: from DM3PPF208195D8D.namprd11.prod.outlook.com
- ([fe80::95c9:5973:5297:d3cc]) by DM3PPF208195D8D.namprd11.prod.outlook.com
- ([fe80::95c9:5973:5297:d3cc%6]) with mapi id 15.20.9343.011; Fri, 21 Nov 2025
- 03:50:46 +0000
-From: "Kandpal, Suraj" <suraj.kandpal@intel.com>
-To: "Deak, Imre" <imre.deak@intel.com>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>, "intel-xe@lists.freedesktop.org"
- <intel-xe@lists.freedesktop.org>
-CC: "Kahola, Mika" <mika.kahola@intel.com>
-Subject: RE: [PATCH 4/5] drm/i915/cx0: Read out power-down state of both TXs
- in PHY lane 0
-Thread-Topic: [PATCH 4/5] drm/i915/cx0: Read out power-down state of both TXs
- in PHY lane 0
-Thread-Index: AQHcWkKJp1+nXPy8l0amTwZDVIVNAbT8f17A
-Date: Fri, 21 Nov 2025 03:50:46 +0000
-Message-ID: <DM3PPF208195D8DDE60F2C4304CF76F8F17E3D5A@DM3PPF208195D8D.namprd11.prod.outlook.com>
-References: <20251120172358.1282765-1-imre.deak@intel.com>
- <20251120172358.1282765-4-imre.deak@intel.com>
-In-Reply-To: <20251120172358.1282765-4-imre.deak@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM3PPF208195D8D:EE_|PH0PR11MB7521:EE_
-x-ms-office365-filtering-correlation-id: 6a30d711-c568-43ad-330c-08de28b1272c
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0; ARA:13230040|366016|376014|1800799024|38070700021;
-x-microsoft-antispam-message-info: =?us-ascii?Q?IQNV+i5YtRxsNW1odkSXUXqw0OXivalhAap9Tn/lwrv3hVqYHE4cuEZCuCL3?=
- =?us-ascii?Q?75Cnr7T0UKNvCWZtXTF36EaE0t5ahEEDaZYg3ybz4SzXhqzlLFl/yzLxhInW?=
- =?us-ascii?Q?OwtAmZg95+tLs87vmm4TLiL/95DvekrEANVj+GR0QqaAyzfuetoSYQWbg9T1?=
- =?us-ascii?Q?D23HjOgeMZNGqJvnowwB2u/8PRw3ZKGYq/Torzh3zxz02QPFQbAsZjlqBKcr?=
- =?us-ascii?Q?bBULBrigUwtnwF65lX3JiGd2oVnaXE3VX42sbGRly4sraACj+hqWwtneLbMU?=
- =?us-ascii?Q?qzNRnnH1f64K6+KE2hjdIrG91+jtKFgvzVZrJ8L7NTpzP8IL/+5Dr8X/Ck/E?=
- =?us-ascii?Q?vclargnBIHVlHirfskMvMcq4KijFJXVzp93OFQRTx6xkCHlq4eegNFeRaqHT?=
- =?us-ascii?Q?1SpL2luT53hw835jQF/c9+3/vW2w2WccyCTjCyYEZ0EIkjhTEbjS0c6S6pmf?=
- =?us-ascii?Q?ELvEGTL7MPVeVeeuZ0iuDMWGU8QJtbmS9k4pFT/SO8k/iKzpOQVv2OvrlTwT?=
- =?us-ascii?Q?BD7FUUO+z7//xjPyqxT3NTATLdypc2Pz83cpvImUpJ/3cqvSl7aSjgdC5vkx?=
- =?us-ascii?Q?ZmnI93ZuVXSyI3Zf66wPIpJ/saBKUlVEFwad9cpzO52SmRTfWIauAvPofUw+?=
- =?us-ascii?Q?qLkq25hpUw41RzU1qS81G4vGtQr1pfeYHwkS5pNTg5fGeOiDdnqheYBmcIHJ?=
- =?us-ascii?Q?Ua21lFkcXmpbLcW/tJTZnUbnmxu21JnUWRH+o83eZx2qbEnae1Z/r/IQ02V+?=
- =?us-ascii?Q?o8QSBQ3dCzIXMDfWkkYtPkoLgSmmNOgX17C+fC2Dfz3lWT4cGtZJRi8fK4mV?=
- =?us-ascii?Q?x7bFZQlxSvXvS4XTsHoxXJ0yUS7xN3K+ruq+hveyQP92t0vTAM4jELk5sso6?=
- =?us-ascii?Q?Wn6GyoLbK38cjHBvNmOrSYWHilB61E9fHtInH0posVmmUlHnbjRIll6izzxX?=
- =?us-ascii?Q?3zZ3IVQ53XEsje+1u9OHGm4OGfZfs92DXmaSwA0nz2MBu8gVrZtXTn/8rIjr?=
- =?us-ascii?Q?Xaf4zpJ2GbOGn3vBhIJoRUHN/kZ0ndvXu0TVgzKoSPXfHxCNXYveT5Lf0iz2?=
- =?us-ascii?Q?pOmiMmwDmBAvW9HyY0p7aENz4CtqZmzDmONQGF/ZonyX4QxDHptTu/X5zYVz?=
- =?us-ascii?Q?KbgNxX2qDNSY/6BSM/WOXS086VsPw7MJcMFajZQSBdhePLfLGSfClH/LCVoc?=
- =?us-ascii?Q?ZUJGF08WzEouVTwFbuprDi7FDcDWvWBTZWDUJOYEoHOumM1UKZ2u5uE39Cxj?=
- =?us-ascii?Q?rNv6IjbhHbQ2gF2/V/MeaajWZVY36wlLfHamEJmikEaCsfszlHJ+mMghmDYi?=
- =?us-ascii?Q?D9e3Acy4jjoZiGTvmaf/698UhjY84HJ7fjGRwp+fPMEAO4xdDynjTYpoff2b?=
- =?us-ascii?Q?S5NX44jBn+pFmjIKP00d5sD9PYDd6U0nAXPtE2skgPWExQyYNFr03QTK5cj1?=
- =?us-ascii?Q?Dy3m6RTX8LM8qBv1hbfGC7HW+KRncMS9/WRYFXAH0fzN5MbAupummuE6iboa?=
- =?us-ascii?Q?SkOe0PfSbTyx6vYm24F6D4O3+6+dMARrjZB+?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM3PPF208195D8D.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(1800799024)(38070700021); DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?2aUKRr0TjTIFRak1OWUw9UNsLLA8YN7IL1iPI9g21izAF063JsZbTHiCcZUP?=
- =?us-ascii?Q?anviK3EPtF8EP+fV0ldwKxweN4RmYVl33y5iALiwE3eH5L1ZANGmgSuAPBAK?=
- =?us-ascii?Q?4M4XMePL6EN2JmO3Yuik4ywNYveobpqVQHzv71H7oRauh+YrjeornEi7ADL8?=
- =?us-ascii?Q?KaP0ZeTQuYFJhsgZQ4d8/MmNING/el1ohNP+8qNccrlRk3QmrAvqioXZj0Fx?=
- =?us-ascii?Q?wZ84CHuh8G2o+OhETG3tJTIgXlvL3VCzA91nJzVp61etHqRK+UD5IZZcCgjs?=
- =?us-ascii?Q?HdFyOStkRmQvAthY0GQgYyROo35GpO+80jATAHObRR/ra7FivZgGXFdQla/e?=
- =?us-ascii?Q?ayXr5lHkZoBM+suQdH4qyIdy/mtPWhwc79iZxPEaOL1oxXdRNv498eEK3daA?=
- =?us-ascii?Q?elQIvJ6hSr6FRuXeg23eEwk4CTmcNUU/1IoH2sl/BCYbkY+dm/kcmXLTuiuP?=
- =?us-ascii?Q?kPARMM9N/Ks664sSTQiC8oT6lLR31fBkdszFjuvi4wQ579zsKb8spm1sClkt?=
- =?us-ascii?Q?oRP1rLDx4QCiZxoAHyMHRIBwZmEcZBiATwtVQDuRkiFVzS1Wdqah6I0wX/ED?=
- =?us-ascii?Q?3XUtz63DVvLNzBRhC8cFWxLJtgQK1yUqMKQxBUBWWQ8cAsLubXDpZe1QqV5h?=
- =?us-ascii?Q?1tI3eBviNyJB07ppKTWQRv8dM21YqPhGfJXF+E7koQioMxZPAScr1AjUOdAa?=
- =?us-ascii?Q?VJOgFZiYDIKQBgdmyrLp09wADFDE6frqrZhCezK6SKkXpSdkuZ+rr+RSZW/h?=
- =?us-ascii?Q?ddxNA+yLg0UkGlxM6q61iOWNiq3zIl0oW2Wdc1x99oNdNB2KNCvjPAqRuvmp?=
- =?us-ascii?Q?x4PfV8UQgEUjRrii4eGv1f8Wxd3+JC1WGxxnPATPzrzcA+XMvqUvzcI4b4ik?=
- =?us-ascii?Q?CZTwN9w474AKGS6cVJTeB3bDc9MjHE1lfy3a22U9okJYJMLvDuw19RrabtGB?=
- =?us-ascii?Q?IfVBlHnE/jTnu/gv8qvMgu8o7w7/93Tag/dLtBDRSSOatbEVnnUx+VYI7JKZ?=
- =?us-ascii?Q?foirKfm9G5OZOW9db2OkIYgi+l/IOWauBpM2ROdKNnE8qAHnQrDJBgM4URI9?=
- =?us-ascii?Q?9arU9i3UBRDKKp9IelFlNA2whgFn8uS/+i9gCH3n9nCLIMnpSjsleqicUohl?=
- =?us-ascii?Q?H5RKl651lkImi8i4dlaA2BuImU77F9gc60H42rEHoYNTC31Q9DMbESTsJxNw?=
- =?us-ascii?Q?Z0/5aiZU5gurr0cJGhHTsUoISJRGOWN6wA0vuwWilbDxhC3ap6ixWQRYUm4Y?=
- =?us-ascii?Q?9e6L6KXog+t/++WBzvN/cOgc3cFntFXISA/5XYi2SmPoE8DRg3SeyToBL+Qd?=
- =?us-ascii?Q?HJEazPlriUihdL283rnNWNb71jKRAaiIi0kBiGzb+1TTfZgvdkAUF8lRdV4S?=
- =?us-ascii?Q?CIQsohP/MlXyAZUoW/Rd3cvchea4/5xDQTNWKDjGfA5anmJ//ZBuTHq1WVLL?=
- =?us-ascii?Q?A04ZZp0pQZUU9VsOGpW+9RO7jfIxUKremXHfjQ8Q+4PqkKwcIiKB3g5R6+x5?=
- =?us-ascii?Q?jny3cNUHQz7hG1WF3OQMVSzAnHEe0HClTD6N9ShFRicmhM9KpI1VZmZdCrQY?=
- =?us-ascii?Q?ckVoUh2QLLQIMq+bCLiEsdjbLae6taahswoHLuLx?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-IronPort-AV: E=Sophos;i="6.20,214,1758610800"; d="scan'208";a="190857813"
+Received: from nvishwa1-desk.sc.intel.com ([172.25.29.139])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Nov 2025 19:52:21 -0800
+From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: matthew.brost@intel.com
+Subject: [PATCH v3 09/18] drm/xe/multi_queue: Handle tearing down of a multi
+ queue
+Date: Thu, 20 Nov 2025 19:51:43 -0800
+Message-ID: <20251121035147.766072-29-niranjana.vishwanathapura@intel.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20251121035147.766072-20-niranjana.vishwanathapura@intel.com>
+References: <20251121035147.766072-20-niranjana.vishwanathapura@intel.com>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM3PPF208195D8D.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6a30d711-c568-43ad-330c-08de28b1272c
-X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Nov 2025 03:50:46.4560 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: m7iLLn/m4c7qyJcdZhjZL5aFVNUuDHvx4uUiwYdkV2+pfsS48tn72Sw35JcInm9k3bk5rwZv/7jHyRTXldyofg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB7521
-X-OriginatorOrg: intel.com
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -183,49 +67,335 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-> Subject: [PATCH 4/5] drm/i915/cx0: Read out power-down state of both TXs =
-in
-> PHY lane 0
->=20
-> If the number of used lanes is 1 or 2 then the power-down state of both T=
-X
-> lanes in PHY lane 0 should be read out. If 1 lane is used only 1 TX lane =
-will be
-> checked, make sure both TXs are checked in this case.
->=20
-> Cc: Mika Kahola <mika.kahola@intel.com>
-> Cc: Suraj Kandpal <suraj.kandpal@intel.com>
-> Fixes: 230d4c748113 ("drm/i915/cx0: Track the Cx0 PHY enabled lane count =
-in
-> the PLL state")
-> Signed-off-by: Imre Deak <imre.deak@intel.com>
+As all queues of a multi queue group use the primary queue of the group
+to interface with GuC. Hence there is a dependency between the queues of
+the group. So, when primary queue of a multi queue group is cleaned up,
+also trigger a cleanup of the secondary queues also. During cleanup, stop
+and re-start submission for all queues of a multi queue group to avoid
+any submission happening in parallel when a queue is being cleaned up.
 
-LGTM,
-Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
+v2: Initialize group->list_lock, add fs_reclaim dependency, remove
+    unwanted secondary queues cleanup (Matt Brost)
+v3: Properly handle cleanup of multi-queue group (Matt Brost)
 
+Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+---
+ drivers/gpu/drm/xe/xe_exec_queue.c       |  10 ++
+ drivers/gpu/drm/xe/xe_exec_queue_types.h |   6 +
+ drivers/gpu/drm/xe/xe_guc_submit.c       | 154 ++++++++++++++++++-----
+ 3 files changed, 142 insertions(+), 28 deletions(-)
 
-> ---
->  drivers/gpu/drm/i915/display/intel_cx0_phy.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->=20
-> diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-> b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-> index 96ab7f3b5539c..0d524735dcf95 100644
-> --- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-> +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-> @@ -2209,7 +2209,7 @@ static int readout_enabled_lane_count(struct
-> intel_encoder *encoder)
->  	 */
->  	max_tx_lane_count =3D DDI_PORT_WIDTH_GET(intel_de_read(display,
-> DDI_BUF_CTL(encoder->port)));
->  	if (!drm_WARN_ON(display->drm, max_tx_lane_count =3D=3D 0))
-> -		max_tx_lane_count =3D
-> roundup_pow_of_two(max_tx_lane_count);
-> +		max_tx_lane_count =3D round_up(max_tx_lane_count, 2);
->=20
->  	for (tx_lane =3D 0; tx_lane < max_tx_lane_count; tx_lane++) {
->  		u8 phy_lane_mask =3D tx_lane < 2 ? INTEL_CX0_LANE0 :
-> INTEL_CX0_LANE1;
-> --
-> 2.49.1
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
+index cdc044d3c96c..ab161b74fef0 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue.c
++++ b/drivers/gpu/drm/xe/xe_exec_queue.c
+@@ -87,6 +87,7 @@ static void xe_exec_queue_group_cleanup(struct xe_exec_queue *q)
+ 		xe_lrc_put(lrc);
+ 
+ 	xa_destroy(&group->xa);
++	mutex_destroy(&group->list_lock);
+ 	xe_bo_unpin_map_no_vm(group->cgp_bo);
+ 	kfree(group);
+ }
+@@ -627,9 +628,18 @@ static int xe_exec_queue_group_init(struct xe_device *xe, struct xe_exec_queue *
+ 
+ 	group->primary = q;
+ 	group->cgp_bo = bo;
++	INIT_LIST_HEAD(&group->list);
+ 	xa_init_flags(&group->xa, XA_FLAGS_ALLOC1);
++	mutex_init(&group->list_lock);
+ 	q->multi_queue.group = group;
+ 
++	/* group->list_lock is used in submission backend */
++	if (!IS_ENABLED(CONFIG_LOCKDEP)) {
++		fs_reclaim_acquire(GFP_KERNEL);
++		might_lock(&group->list_lock);
++		fs_reclaim_release(GFP_KERNEL);
++	}
++
+ 	return 0;
+ }
+ 
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+index cafb3ba9a123..5721fb4bad1a 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
++++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+@@ -58,6 +58,10 @@ struct xe_exec_queue_group {
+ 	struct xe_bo *cgp_bo;
+ 	/** @xa: xarray to store LRCs */
+ 	struct xarray xa;
++	/** @list: List of all secondary queues in the group */
++	struct list_head list;
++	/** @list_lock: Secondary queue list lock */
++	struct mutex list_lock;
+ 	/** @sync_pending: CGP_SYNC_DONE g2h response pending */
+ 	bool sync_pending;
+ };
+@@ -145,6 +149,8 @@ struct xe_exec_queue {
+ 	struct {
+ 		/** @multi_queue.group: Queue group information */
+ 		struct xe_exec_queue_group *group;
++		/** @multi_queue.link: Link into group's secondary queues list */
++		struct list_head link;
+ 		/** @multi_queue.priority: Queue priority within the multi-queue group */
+ 		enum xe_multi_queue_priority priority;
+ 		/** @multi_queue.pos: Position of queue within the multi-queue group */
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index ce870a119800..2e5fff7ad69b 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -577,6 +577,45 @@ static bool vf_recovery(struct xe_guc *guc)
+ 	return xe_gt_recovery_pending(guc_to_gt(guc));
+ }
+ 
++static void xe_guc_exec_queue_trigger_cleanup(struct xe_exec_queue *q)
++{
++	struct xe_guc *guc = exec_queue_to_guc(q);
++	struct xe_device *xe = guc_to_xe(guc);
++
++	/** to wakeup xe_wait_user_fence ioctl if exec queue is reset */
++	wake_up_all(&xe->ufence_wq);
++
++	if (xe_exec_queue_is_lr(q))
++		queue_work(guc_to_gt(guc)->ordered_wq, &q->guc->lr_tdr);
++	else
++		xe_sched_tdr_queue_imm(&q->guc->sched);
++}
++
++static void xe_guc_exec_queue_reset_trigger_cleanup(struct xe_exec_queue *q)
++{
++	if (xe_exec_queue_is_multi_queue(q)) {
++		struct xe_exec_queue *primary = xe_exec_queue_multi_queue_primary(q);
++		struct xe_exec_queue_group *group = q->multi_queue.group;
++		struct xe_exec_queue *eq;
++
++		set_exec_queue_reset(primary);
++		if (!exec_queue_banned(primary) && !exec_queue_check_timeout(primary))
++			xe_guc_exec_queue_trigger_cleanup(primary);
++
++		mutex_lock(&group->list_lock);
++		list_for_each_entry(eq, &group->list, multi_queue.link) {
++			set_exec_queue_reset(eq);
++			if (!exec_queue_banned(eq) && !exec_queue_check_timeout(eq))
++				xe_guc_exec_queue_trigger_cleanup(eq);
++		}
++		mutex_unlock(&group->list_lock);
++	} else {
++		set_exec_queue_reset(q);
++		if (!exec_queue_banned(q) && !exec_queue_check_timeout(q))
++			xe_guc_exec_queue_trigger_cleanup(q);
++	}
++}
++
+ #define parallel_read(xe_, map_, field_) \
+ 	xe_map_rd_field(xe_, &map_, 0, struct guc_submit_parallel_scratch, \
+ 			field_)
+@@ -939,6 +978,50 @@ static void wq_item_append(struct xe_exec_queue *q)
+ 	parallel_write(xe, map, wq_desc.tail, q->guc->wqi_tail);
+ }
+ 
++static void xe_guc_exec_queue_submission_start(struct xe_exec_queue *q)
++{
++	/*
++	 * If the exec queue is part of a multi queue group, then start submission
++	 * on all queues of the multi queue group.
++	 */
++	if (xe_exec_queue_is_multi_queue(q)) {
++		struct xe_exec_queue *primary = xe_exec_queue_multi_queue_primary(q);
++		struct xe_exec_queue_group *group = q->multi_queue.group;
++		struct xe_exec_queue *eq;
++
++		xe_sched_submission_start(&primary->guc->sched);
++
++		mutex_lock(&group->list_lock);
++		list_for_each_entry(eq, &group->list, multi_queue.link)
++			xe_sched_submission_start(&eq->guc->sched);
++		mutex_unlock(&group->list_lock);
++	} else {
++		xe_sched_submission_start(&q->guc->sched);
++	}
++}
++
++static void xe_guc_exec_queue_submission_stop(struct xe_exec_queue *q)
++{
++	/*
++	 * If the exec queue is part of a multi queue group, then stop submission
++	 * on all queues of the multi queue group.
++	 */
++	if (xe_exec_queue_is_multi_queue(q)) {
++		struct xe_exec_queue *primary = xe_exec_queue_multi_queue_primary(q);
++		struct xe_exec_queue_group *group = q->multi_queue.group;
++		struct xe_exec_queue *eq;
++
++		xe_sched_submission_stop(&primary->guc->sched);
++
++		mutex_lock(&group->list_lock);
++		list_for_each_entry(eq, &group->list, multi_queue.link)
++			xe_sched_submission_stop(&eq->guc->sched);
++		mutex_unlock(&group->list_lock);
++	} else {
++		xe_sched_submission_stop(&q->guc->sched);
++	}
++}
++
+ #define RESUME_PENDING	~0x0ull
+ static void submit_exec_queue(struct xe_exec_queue *q, struct xe_sched_job *job)
+ {
+@@ -1117,20 +1200,6 @@ static void disable_scheduling_deregister(struct xe_guc *guc,
+ 			       G2H_LEN_DW_DEREGISTER_CONTEXT, 2);
+ }
+ 
+-static void xe_guc_exec_queue_trigger_cleanup(struct xe_exec_queue *q)
+-{
+-	struct xe_guc *guc = exec_queue_to_guc(q);
+-	struct xe_device *xe = guc_to_xe(guc);
+-
+-	/** to wakeup xe_wait_user_fence ioctl if exec queue is reset */
+-	wake_up_all(&xe->ufence_wq);
+-
+-	if (xe_exec_queue_is_lr(q))
+-		queue_work(guc_to_gt(guc)->ordered_wq, &q->guc->lr_tdr);
+-	else
+-		xe_sched_tdr_queue_imm(&q->guc->sched);
+-}
+-
+ /**
+  * xe_guc_submit_wedge() - Wedge GuC submission
+  * @guc: the GuC object
+@@ -1204,8 +1273,12 @@ static void xe_guc_exec_queue_lr_cleanup(struct work_struct *w)
+ 	if (!exec_queue_killed(q))
+ 		wedged = guc_submit_hint_wedged(exec_queue_to_guc(q));
+ 
+-	/* Kill the run_job / process_msg entry points */
+-	xe_sched_submission_stop(sched);
++	/*
++	 * Kill the run_job / process_msg entry points.
++	 * As this function is serialized across exec queues, it is safe to
++	 * stop and restart submission on all queues of a multi queue group.
++	 */
++	xe_guc_exec_queue_submission_stop(q);
+ 
+ 	/*
+ 	 * Engine state now mostly stable, disable scheduling / deregister if
+@@ -1241,7 +1314,7 @@ static void xe_guc_exec_queue_lr_cleanup(struct work_struct *w)
+ 				   q->guc->id);
+ 			xe_devcoredump(q, NULL, "Schedule disable failed to respond, guc_id=%d\n",
+ 				       q->guc->id);
+-			xe_sched_submission_start(sched);
++			xe_guc_exec_queue_submission_start(q);
+ 			xe_gt_reset_async(q->gt);
+ 			return;
+ 		}
+@@ -1252,7 +1325,7 @@ static void xe_guc_exec_queue_lr_cleanup(struct work_struct *w)
+ 
+ 	xe_hw_fence_irq_stop(q->fence_irq);
+ 
+-	xe_sched_submission_start(sched);
++	xe_guc_exec_queue_submission_start(q);
+ 
+ 	spin_lock(&sched->base.job_list_lock);
+ 	list_for_each_entry(job, &sched->base.pending_list, drm.list)
+@@ -1410,8 +1483,12 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
+ 	    vf_recovery(guc))
+ 		return DRM_GPU_SCHED_STAT_NO_HANG;
+ 
+-	/* Kill the run_job entry point */
+-	xe_sched_submission_stop(sched);
++	/*
++	 * Kill the run_job entry point.
++	 * As this function is serialized across exec queues, it is safe to
++	 * stop and restart submission on all queues of a multi queue group.
++	 */
++	xe_guc_exec_queue_submission_stop(q);
+ 
+ 	/* Must check all state after stopping scheduler */
+ 	skip_timeout_check = exec_queue_reset(q) ||
+@@ -1568,7 +1645,7 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
+ 	 * fences that are complete
+ 	 */
+ 	xe_sched_add_pending_job(sched, job);
+-	xe_sched_submission_start(sched);
++	xe_guc_exec_queue_submission_start(q);
+ 
+ 	xe_guc_exec_queue_trigger_cleanup(q);
+ 
+@@ -1592,7 +1669,7 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
+ 	 * but there is not currently an easy way to do in DRM scheduler. With
+ 	 * some thought, do this in a follow up.
+ 	 */
+-	xe_sched_submission_start(sched);
++	xe_guc_exec_queue_submission_start(q);
+ handle_vf_resume:
+ 	return DRM_GPU_SCHED_STAT_NO_HANG;
+ }
+@@ -1623,6 +1700,14 @@ static void __guc_exec_queue_destroy_async(struct work_struct *w)
+ 	guard(xe_pm_runtime)(guc_to_xe(guc));
+ 	trace_xe_exec_queue_destroy(q);
+ 
++	if (xe_exec_queue_is_multi_queue_secondary(q)) {
++		struct xe_exec_queue_group *group = q->multi_queue.group;
++
++		mutex_lock(&group->list_lock);
++		list_del(&q->multi_queue.link);
++		mutex_unlock(&group->list_lock);
++	}
++
+ 	if (xe_exec_queue_is_lr(q))
+ 		cancel_work_sync(&ge->lr_tdr);
+ 	/* Confirm no work left behind accessing device structures */
+@@ -1913,6 +1998,19 @@ static int guc_exec_queue_init(struct xe_exec_queue *q)
+ 
+ 	xe_exec_queue_assign_name(q, q->guc->id);
+ 
++	/*
++	 * Maintain secondary queues of the multi queue group in a list
++	 * for handling dependencies across the queues in the group.
++	 */
++	if (xe_exec_queue_is_multi_queue_secondary(q)) {
++		struct xe_exec_queue_group *group = q->multi_queue.group;
++
++		INIT_LIST_HEAD(&q->multi_queue.link);
++		mutex_lock(&group->list_lock);
++		list_add_tail(&q->multi_queue.link, &group->list);
++		mutex_unlock(&group->list_lock);
++	}
++
+ 	trace_xe_exec_queue_create(q);
+ 
+ 	return 0;
+@@ -2140,6 +2238,10 @@ static void guc_exec_queue_resume(struct xe_exec_queue *q)
+ 
+ static bool guc_exec_queue_reset_status(struct xe_exec_queue *q)
+ {
++	if (xe_exec_queue_is_multi_queue_secondary(q) &&
++	    guc_exec_queue_reset_status(xe_exec_queue_multi_queue_primary(q)))
++		return true;
++
+ 	return exec_queue_reset(q) || exec_queue_killed_or_banned_or_wedged(q);
+ }
+ 
+@@ -2801,9 +2903,7 @@ int xe_guc_exec_queue_reset_handler(struct xe_guc *guc, u32 *msg, u32 len)
+ 	 * jobs by setting timeout of the job to the minimum value kicking
+ 	 * guc_exec_queue_timedout_job.
+ 	 */
+-	set_exec_queue_reset(q);
+-	if (!exec_queue_banned(q) && !exec_queue_check_timeout(q))
+-		xe_guc_exec_queue_trigger_cleanup(q);
++	xe_guc_exec_queue_reset_trigger_cleanup(q);
+ 
+ 	return 0;
+ }
+@@ -2882,9 +2982,7 @@ int xe_guc_exec_queue_memory_cat_error_handler(struct xe_guc *guc, u32 *msg,
+ 	trace_xe_exec_queue_memory_cat_error(q);
+ 
+ 	/* Treat the same as engine reset */
+-	set_exec_queue_reset(q);
+-	if (!exec_queue_banned(q) && !exec_queue_check_timeout(q))
+-		xe_guc_exec_queue_trigger_cleanup(q);
++	xe_guc_exec_queue_reset_trigger_cleanup(q);
+ 
+ 	return 0;
+ }
+-- 
+2.43.0
 
