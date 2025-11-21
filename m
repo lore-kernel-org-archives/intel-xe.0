@@ -4,54 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AEB71CFA46C
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D9DA2CFA470
 	for <intel-xe@archiver.kernel.org>; Fri, 21 Nov 2025 03:52:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6F79D10E7E5;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9A55410E7E8;
 	Fri, 21 Nov 2025 03:52:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bMf8ayN7";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="O9Mu5sMk";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 882AE10E7E7
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A67A210E7E5
  for <intel-xe@lists.freedesktop.org>; Fri, 21 Nov 2025 03:52:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1763697141; x=1795233141;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=jfSBkkmmDb/d4nBeE10w+/mLUZ0TcW17WhMk8oHcW9c=;
- b=bMf8ayN7mNmmqu2MItObjZ8nK+orjS5uMhDfzz96JZM8MZH5Hu5IrMev
- TSyGY7v631+BIOn4mCI2lrxVvywERs5rC+JMCEKSWdiIJ/IkSLrqmz64M
- Nm+nlluCLvaaz3cjdoMz0cYLw7g3uXc1Nbkho6iHzbXHb9Lvh3hA9OjjB
- WeH0ugE4wrFNWFe5AwMPNXKJGWVxhgEB1ExnLJHIRwkUnp1+hy6jnDcJT
- t5hP1XgQhBIZ3Jxb55HLbwwMMsUG5qonClCZkfykwELr2nKcpVs1V0v5V
- t23i+e6IBK+vNFVzhIy/1YrCo+n9zkRnM6I/ULneIPR5h70O2KorcKh5n A==;
-X-CSE-ConnectionGUID: VKsh+vWyR5uXrtQ29/8O0A==
-X-CSE-MsgGUID: VGceHW+xQ/69X3REyl7UHg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11619"; a="76110530"
-X-IronPort-AV: E=Sophos;i="6.20,214,1758610800"; d="scan'208";a="76110530"
+ bh=thKec8/BSZqUjozzEblzHdzXXec4ygBVmvMvR25QVvE=;
+ b=O9Mu5sMkuQkhlTyhcw2RSrE7ZvJObGso/AscGi7dv5naLpSQ1/uOTaqo
+ /6hLOf3yMKQEMIm5aAr19rr1dlahOTvbmpb8H9FS7fzURrW6UUanT7C3G
+ 53bdK3LkQ94U06haXdad5/WwkChGH3eygg4yOruQkSCuOLs7mz5l5eTJj
+ IkhNAV2sWJvMjygnCmcCeZWc95Ohl1zJQg/ZfwHbh3ZJ14JYfBXFmwb9W
+ ZuTrv33W4vF1dhRS8WVfNDJnHSN87ETWnE4KCcYfqeMwd14MdiAU5zWmQ
+ l3LB4WBJwltM73Aqysnwshn01g98J5iKtLsg34pdPQBkfRM1BUXo+axR3 g==;
+X-CSE-ConnectionGUID: yM1xolACTFyCe36PfCpMaQ==
+X-CSE-MsgGUID: LPemi4b7Qee8mqUEFCFLRg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11619"; a="76110531"
+X-IronPort-AV: E=Sophos;i="6.20,214,1758610800"; d="scan'208";a="76110531"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  20 Nov 2025 19:52:21 -0800
-X-CSE-ConnectionGUID: V16QyheiR5+30lOhuFudBg==
-X-CSE-MsgGUID: P+SLLrTfT4O3SIMfoyLmqw==
+X-CSE-ConnectionGUID: i1fave2/T2yYuPsO23q+Ow==
+X-CSE-MsgGUID: Mj3E3PjdTPSGD6UJ5r3xIA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,214,1758610800"; d="scan'208";a="190857793"
+X-IronPort-AV: E=Sophos;i="6.20,214,1758610800"; d="scan'208";a="190857796"
 Received: from nvishwa1-desk.sc.intel.com ([172.25.29.139])
  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  20 Nov 2025 19:52:21 -0800
 From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.brost@intel.com
-Subject: [PATCH v3 03/18] drm/xe/multi_queue: Add GuC interface for multi
- queue support
-Date: Thu, 20 Nov 2025 19:51:37 -0800
-Message-ID: <20251121035147.766072-23-niranjana.vishwanathapura@intel.com>
+Subject: [PATCH v3 04/18] drm/xe/multi_queue: Add multi queue priority property
+Date: Thu, 20 Nov 2025 19:51:38 -0800
+Message-ID: <20251121035147.766072-24-niranjana.vishwanathapura@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20251121035147.766072-20-niranjana.vishwanathapura@intel.com>
 References: <20251121035147.766072-20-niranjana.vishwanathapura@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -67,556 +67,213 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Implement GuC commands and response along with the Context
-Group Page (CGP) interface for multi queue support.
+Add support for queues of a multi queue group to set
+their priority within the queue group by adding property
+DRM_XE_EXEC_QUEUE_SET_PROPERTY_MULTI_QUEUE_PRIORITY.
+This is the only other property supported by secondary
+queues of a multi queue group, other than
+DRM_XE_EXEC_QUEUE_SET_PROPERTY_MULTI_QUEUE.
 
-Ensure that only primary queue (q0) of a multi queue group
-communicate with GuC. The secondary queues of the group only
-need to maintain LRCA and interface with drm scheduler.
+v2: Add kernel doc for enum xe_multi_queue_priority,
+    Add assert for priority values, fix includes and
+    declarations (Matt Brost)
+v3: update uapi kernel-doc (Matt Brost)
 
-Use primary queue's submit_wq for all secondary queues of a multi
-queue group. This serialization avoids any locking around CGP
-synchronization with GuC.
-
-v2: Fix G2H_LEN_DW_MULTI_QUEUE_CONTEXT value, add more comments
-    (Matt Brost)
-v3: Minor code refactro, use xe_gt_assert
-
-Signed-off-by: Stuart Summers <stuart.summers@intel.com>
 Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 ---
- drivers/gpu/drm/xe/abi/guc_actions_abi.h |   3 +
- drivers/gpu/drm/xe/xe_exec_queue_types.h |   2 +
- drivers/gpu/drm/xe/xe_guc_ct.c           |   4 +
- drivers/gpu/drm/xe/xe_guc_fwif.h         |   3 +
- drivers/gpu/drm/xe/xe_guc_submit.c       | 276 +++++++++++++++++++++--
- drivers/gpu/drm/xe/xe_guc_submit.h       |   1 +
- 6 files changed, 267 insertions(+), 22 deletions(-)
+ drivers/gpu/drm/xe/xe_exec_queue.c       | 17 +++++++++++++-
+ drivers/gpu/drm/xe/xe_exec_queue_types.h | 16 +++++++++++++
+ drivers/gpu/drm/xe/xe_guc_submit.c       |  1 +
+ drivers/gpu/drm/xe/xe_lrc.c              | 29 ++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_lrc.h              |  3 +++
+ include/uapi/drm/xe_drm.h                |  4 ++++
+ 6 files changed, 69 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/abi/guc_actions_abi.h b/drivers/gpu/drm/xe/abi/guc_actions_abi.h
-index 47756e4674a1..3e9fbed9cda6 100644
---- a/drivers/gpu/drm/xe/abi/guc_actions_abi.h
-+++ b/drivers/gpu/drm/xe/abi/guc_actions_abi.h
-@@ -139,6 +139,9 @@ enum xe_guc_action {
- 	XE_GUC_ACTION_DEREGISTER_G2G = 0x4508,
- 	XE_GUC_ACTION_DEREGISTER_CONTEXT_DONE = 0x4600,
- 	XE_GUC_ACTION_REGISTER_CONTEXT_MULTI_LRC = 0x4601,
-+	XE_GUC_ACTION_REGISTER_CONTEXT_MULTI_QUEUE = 0x4602,
-+	XE_GUC_ACTION_MULTI_QUEUE_CONTEXT_CGP_SYNC = 0x4603,
-+	XE_GUC_ACTION_NOTIFY_MULTI_QUEUE_CONTEXT_CGP_SYNC_DONE = 0x4604,
- 	XE_GUC_ACTION_CLIENT_SOFT_RESET = 0x5507,
- 	XE_GUC_ACTION_SET_ENG_UTIL_BUFF = 0x550A,
- 	XE_GUC_ACTION_SET_DEVICE_ENGINE_ACTIVITY_BUFFER = 0x550C,
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-index f429b1952be9..b9da51ab7eaf 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
-+++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-@@ -44,6 +44,8 @@ struct xe_exec_queue_group {
- 	struct xe_bo *cgp_bo;
- 	/** @xa: xarray to store LRCs */
- 	struct xarray xa;
-+	/** @sync_pending: CGP_SYNC_DONE g2h response pending */
-+	bool sync_pending;
- };
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
+index 330b5103222c..6debcae8ce11 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue.c
++++ b/drivers/gpu/drm/xe/xe_exec_queue.c
+@@ -179,6 +179,7 @@ static struct xe_exec_queue *__xe_exec_queue_alloc(struct xe_device *xe,
+ 	INIT_LIST_HEAD(&q->multi_gt_link);
+ 	INIT_LIST_HEAD(&q->hw_engine_group_link);
+ 	INIT_LIST_HEAD(&q->pxp.link);
++	q->multi_queue.priority = XE_MULTI_QUEUE_PRIORITY_NORMAL;
  
- /**
-diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
-index 2697d711adb2..43a79bcdfb18 100644
---- a/drivers/gpu/drm/xe/xe_guc_ct.c
-+++ b/drivers/gpu/drm/xe/xe_guc_ct.c
-@@ -1307,6 +1307,7 @@ static int parse_g2h_event(struct xe_guc_ct *ct, u32 *msg, u32 len)
- 	lockdep_assert_held(&ct->lock);
- 
- 	switch (action) {
-+	case XE_GUC_ACTION_NOTIFY_MULTI_QUEUE_CONTEXT_CGP_SYNC_DONE:
- 	case XE_GUC_ACTION_SCHED_CONTEXT_MODE_DONE:
- 	case XE_GUC_ACTION_DEREGISTER_CONTEXT_DONE:
- 	case XE_GUC_ACTION_SCHED_ENGINE_MODE_DONE:
-@@ -1569,6 +1570,9 @@ static int process_g2h_msg(struct xe_guc_ct *ct, u32 *msg, u32 len)
- 		ret = xe_guc_g2g_test_notification(guc, payload, adj_len);
- 		break;
- #endif
-+	case XE_GUC_ACTION_NOTIFY_MULTI_QUEUE_CONTEXT_CGP_SYNC_DONE:
-+		ret = xe_guc_exec_queue_cgp_sync_done_handler(guc, payload, adj_len);
-+		break;
- 	default:
- 		xe_gt_err(gt, "unexpected G2H action 0x%04x\n", action);
- 	}
-diff --git a/drivers/gpu/drm/xe/xe_guc_fwif.h b/drivers/gpu/drm/xe/xe_guc_fwif.h
-index c90dd266e9cf..9b090d9b95f1 100644
---- a/drivers/gpu/drm/xe/xe_guc_fwif.h
-+++ b/drivers/gpu/drm/xe/xe_guc_fwif.h
-@@ -16,6 +16,7 @@
- #define G2H_LEN_DW_DEREGISTER_CONTEXT		3
- #define G2H_LEN_DW_TLB_INVALIDATE		3
- #define G2H_LEN_DW_G2G_NOTIFY_MIN		3
-+#define G2H_LEN_DW_MULTI_QUEUE_CONTEXT		3
- 
- #define GUC_ID_MAX			65535
- #define GUC_ID_UNKNOWN			0xffffffff
-@@ -62,6 +63,8 @@ struct guc_ctxt_registration_info {
- 	u32 wq_base_lo;
- 	u32 wq_base_hi;
- 	u32 wq_size;
-+	u32 cgp_lo;
-+	u32 cgp_hi;
- 	u32 hwlrca_lo;
- 	u32 hwlrca_hi;
- };
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index 7e0882074a99..c68739fd7592 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -19,6 +19,7 @@
- #include "abi/guc_klvs_abi.h"
- #include "regs/xe_lrc_layout.h"
- #include "xe_assert.h"
-+#include "xe_bo.h"
- #include "xe_devcoredump.h"
- #include "xe_device.h"
- #include "xe_exec_queue.h"
-@@ -541,7 +542,8 @@ static void init_policies(struct xe_guc *guc, struct xe_exec_queue *q)
- 	u32 slpc_exec_queue_freq_req = 0;
- 	u32 preempt_timeout_us = q->sched_props.preempt_timeout_us;
- 
--	xe_gt_assert(guc_to_gt(guc), exec_queue_registered(q));
-+	xe_gt_assert(guc_to_gt(guc), exec_queue_registered(q) &&
-+		     !xe_exec_queue_is_multi_queue_secondary(q));
- 
- 	if (q->flags & EXEC_QUEUE_FLAG_LOW_LATENCY)
- 		slpc_exec_queue_freq_req |= SLPC_CTX_FREQ_REQ_IS_COMPUTE;
-@@ -561,6 +563,8 @@ static void set_min_preemption_timeout(struct xe_guc *guc, struct xe_exec_queue
- {
- 	struct exec_queue_policy policy;
- 
-+	xe_assert(guc_to_xe(guc), !xe_exec_queue_is_multi_queue_secondary(q));
-+
- 	__guc_exec_queue_policy_start_klv(&policy, q->guc->id);
- 	__guc_exec_queue_policy_add_preemption_timeout(&policy, 1);
- 
-@@ -568,6 +572,11 @@ static void set_min_preemption_timeout(struct xe_guc *guc, struct xe_exec_queue
- 		       __guc_exec_queue_policy_action_size(&policy), 0, 0);
+ 	q->sched_props.timeslice_us = hwe->eclass->sched_props.timeslice_us;
+ 	q->sched_props.preempt_timeout_us =
+@@ -740,6 +741,17 @@ static int exec_queue_set_multi_group(struct xe_device *xe, struct xe_exec_queue
+ 	return xe_exec_queue_group_validate(xe, q, value);
  }
  
-+static bool vf_recovery(struct xe_guc *guc)
++static int exec_queue_set_multi_queue_priority(struct xe_device *xe, struct xe_exec_queue *q,
++					       u64 value)
 +{
-+	return xe_gt_recovery_pending(guc_to_gt(guc));
-+}
++	if (XE_IOCTL_DBG(xe, value > XE_MULTI_QUEUE_PRIORITY_HIGH))
++		return -EINVAL;
 +
- #define parallel_read(xe_, map_, field_) \
- 	xe_map_rd_field(xe_, &map_, 0, struct guc_submit_parallel_scratch, \
- 			field_)
-@@ -575,6 +584,117 @@ static void set_min_preemption_timeout(struct xe_guc *guc, struct xe_exec_queue
- 	xe_map_wr_field(xe_, &map_, 0, struct guc_submit_parallel_scratch, \
- 			field_, val_)
- 
-+#define CGP_VERSION_MAJOR_SHIFT	8
-+
-+static void xe_guc_exec_queue_group_cgp_update(struct xe_device *xe,
-+					       struct xe_exec_queue *q)
-+{
-+	struct xe_exec_queue_group *group = q->multi_queue.group;
-+	u32 guc_id = group->primary->guc->id;
-+
-+	/* Currently implementing CGP version 1.0 */
-+	xe_map_wr(xe, &group->cgp_bo->vmap, 0, u32,
-+		  1 << CGP_VERSION_MAJOR_SHIFT);
-+
-+	xe_map_wr(xe, &group->cgp_bo->vmap,
-+		  (32 + q->multi_queue.pos * 2) * sizeof(u32),
-+		  u32, lower_32_bits(xe_lrc_descriptor(q->lrc[0])));
-+
-+	xe_map_wr(xe, &group->cgp_bo->vmap,
-+		  (33 + q->multi_queue.pos * 2) * sizeof(u32),
-+		  u32, guc_id);
-+
-+	if (q->multi_queue.pos / 32) {
-+		xe_map_wr(xe, &group->cgp_bo->vmap, 17 * sizeof(u32),
-+			  u32, BIT(q->multi_queue.pos % 32));
-+		xe_map_wr(xe, &group->cgp_bo->vmap, 16 * sizeof(u32), u32, 0);
-+	} else {
-+		xe_map_wr(xe, &group->cgp_bo->vmap, 16 * sizeof(u32),
-+			  u32, BIT(q->multi_queue.pos));
-+		xe_map_wr(xe, &group->cgp_bo->vmap, 17 * sizeof(u32), u32, 0);
-+	}
-+}
-+
-+static void xe_guc_exec_queue_group_cgp_sync(struct xe_guc *guc,
-+					     struct xe_exec_queue *q,
-+					     const u32 *action, u32 len)
-+{
-+	struct xe_exec_queue_group *group = q->multi_queue.group;
-+	struct xe_device *xe = guc_to_xe(guc);
-+	long ret;
-+
-+	/*
-+	 * As all queues of a multi queue group use single drm scheduler
-+	 * submit workqueue, CGP synchronization with GuC are serialized.
-+	 * Hence, no locking is required here.
-+	 * Wait for any pending CGP_SYNC_DONE response before updating the
-+	 * CGP page and sending CGP_SYNC message.
-+	 */
-+	ret = wait_event_timeout(guc->ct.wq,
-+				 !READ_ONCE(group->sync_pending) ||
-+				 xe_guc_read_stopped(guc), HZ);
-+	if ((!ret && !vf_recovery(guc)) || xe_guc_read_stopped(guc)) {
-+		xe_gt_warn(guc_to_gt(guc), "Wait for CGP_SYNC_DONE response failed!\n");
-+		return;
-+	}
-+
-+	xe_guc_exec_queue_group_cgp_update(xe, q);
-+
-+	WRITE_ONCE(group->sync_pending, true);
-+	xe_guc_ct_send(&guc->ct, action, len, G2H_LEN_DW_MULTI_QUEUE_CONTEXT, 1);
-+}
-+
-+static void __register_exec_queue_group(struct xe_guc *guc,
-+					struct xe_exec_queue *q,
-+					struct guc_ctxt_registration_info *info)
-+{
-+#define MAX_MULTI_QUEUE_REG_SIZE	(8)
-+	u32 action[MAX_MULTI_QUEUE_REG_SIZE];
-+	int len = 0;
-+
-+	action[len++] = XE_GUC_ACTION_REGISTER_CONTEXT_MULTI_QUEUE;
-+	action[len++] = info->flags;
-+	action[len++] = info->context_idx;
-+	action[len++] = info->engine_class;
-+	action[len++] = info->engine_submit_mask;
-+	action[len++] = 0; /* Reserved */
-+	action[len++] = info->cgp_lo;
-+	action[len++] = info->cgp_hi;
-+
-+	xe_gt_assert(guc_to_gt(guc), len <= MAX_MULTI_QUEUE_REG_SIZE);
-+#undef MAX_MULTI_QUEUE_REG_SIZE
-+
-+	/*
-+	 * The above XE_GUC_ACTION_REGISTER_CONTEXT_MULTI_QUEUE do expect a
-+	 * XE_GUC_ACTION_NOTIFY_MULTI_QUEUE_CONTEXT_CGP_SYNC_DONE response
-+	 * from guc.
-+	 */
-+	xe_guc_exec_queue_group_cgp_sync(guc, q, action, len);
-+}
-+
-+static void xe_guc_exec_queue_group_add(struct xe_guc *guc,
-+					struct xe_exec_queue *q)
-+{
-+#define MAX_MULTI_QUEUE_CGP_SYNC_SIZE  (2)
-+	u32 action[MAX_MULTI_QUEUE_CGP_SYNC_SIZE];
-+	int len = 0;
-+
-+	xe_gt_assert(guc_to_gt(guc), xe_exec_queue_is_multi_queue_secondary(q));
-+
-+	action[len++] = XE_GUC_ACTION_MULTI_QUEUE_CONTEXT_CGP_SYNC;
-+	action[len++] = q->multi_queue.group->primary->guc->id;
-+
-+	xe_gt_assert(guc_to_gt(guc), len <= MAX_MULTI_QUEUE_CGP_SYNC_SIZE);
-+#undef MAX_MULTI_QUEUE_CGP_SYNC_SIZE
-+
-+	/*
-+	 * The above XE_GUC_ACTION_MULTI_QUEUE_CONTEXT_CGP_SYNC do expect a
-+	 * XE_GUC_ACTION_NOTIFY_MULTI_QUEUE_CONTEXT_CGP_SYNC_DONE response
-+	 * from guc.
-+	 */
-+	xe_guc_exec_queue_group_cgp_sync(guc, q, action, len);
-+}
-+
- static void __register_mlrc_exec_queue(struct xe_guc *guc,
- 				       struct xe_exec_queue *q,
- 				       struct guc_ctxt_registration_info *info)
-@@ -670,6 +790,13 @@ static void register_exec_queue(struct xe_exec_queue *q, int ctx_type)
- 	info.flags = CONTEXT_REGISTRATION_FLAG_KMD |
- 		FIELD_PREP(CONTEXT_REGISTRATION_FLAG_TYPE, ctx_type);
- 
-+	if (xe_exec_queue_is_multi_queue(q)) {
-+		struct xe_exec_queue_group *group = q->multi_queue.group;
-+
-+		info.cgp_lo = xe_bo_ggtt_addr(group->cgp_bo);
-+		info.cgp_hi = 0;
-+	}
-+
- 	if (xe_exec_queue_is_parallel(q)) {
- 		u64 ggtt_addr = xe_lrc_parallel_ggtt_addr(lrc);
- 		struct iosys_map map = xe_lrc_parallel_map(lrc);
-@@ -700,11 +827,18 @@ static void register_exec_queue(struct xe_exec_queue *q, int ctx_type)
- 
- 	set_exec_queue_registered(q);
- 	trace_xe_exec_queue_register(q);
--	if (xe_exec_queue_is_parallel(q))
-+	if (xe_exec_queue_is_multi_queue_primary(q))
-+		__register_exec_queue_group(guc, q, &info);
-+	else if (xe_exec_queue_is_parallel(q))
- 		__register_mlrc_exec_queue(guc, q, &info);
--	else
-+	else if (!xe_exec_queue_is_multi_queue_secondary(q))
- 		__register_exec_queue(guc, &info);
--	init_policies(guc, q);
-+
-+	if (!xe_exec_queue_is_multi_queue_secondary(q))
-+		init_policies(guc, q);
-+
-+	if (xe_exec_queue_is_multi_queue_secondary(q))
-+		xe_guc_exec_queue_group_add(guc, q);
- }
- 
- static u32 wq_space_until_wrap(struct xe_exec_queue *q)
-@@ -712,11 +846,6 @@ static u32 wq_space_until_wrap(struct xe_exec_queue *q)
- 	return (WQ_SIZE - q->guc->wqi_tail);
- }
- 
--static bool vf_recovery(struct xe_guc *guc)
--{
--	return xe_gt_recovery_pending(guc_to_gt(guc));
--}
--
- static int wq_wait_for_space(struct xe_exec_queue *q, u32 wqi_size)
- {
- 	struct xe_guc *guc = exec_queue_to_guc(q);
-@@ -833,6 +962,12 @@ static void submit_exec_queue(struct xe_exec_queue *q, struct xe_sched_job *job)
- 	if (exec_queue_suspended(q) && !xe_exec_queue_is_parallel(q))
- 		return;
- 
-+	/*
-+	 * All queues in a multi-queue group will use the primary queue
-+	 * of the group to interface with GuC.
-+	 */
-+	q = xe_exec_queue_multi_queue_primary(q);
-+
- 	if (!exec_queue_enabled(q) && !exec_queue_suspended(q)) {
- 		action[len++] = XE_GUC_ACTION_SCHED_CONTEXT_MODE_SET;
- 		action[len++] = q->guc->id;
-@@ -879,6 +1014,18 @@ guc_exec_queue_run_job(struct drm_sched_job *drm_job)
- 	trace_xe_sched_job_run(job);
- 
- 	if (!killed_or_banned_or_wedged && !xe_sched_job_is_error(job)) {
-+		if (xe_exec_queue_is_multi_queue_secondary(q)) {
-+			struct xe_exec_queue *primary = xe_exec_queue_multi_queue_primary(q);
-+
-+			if (exec_queue_killed_or_banned_or_wedged(primary)) {
-+				killed_or_banned_or_wedged = true;
-+				goto run_job_out;
-+			}
-+
-+			if (!exec_queue_registered(primary))
-+				register_exec_queue(primary, GUC_CONTEXT_NORMAL);
-+		}
-+
- 		if (!exec_queue_registered(q))
- 			register_exec_queue(q, GUC_CONTEXT_NORMAL);
- 		if (!job->skip_emit)
-@@ -887,6 +1034,7 @@ guc_exec_queue_run_job(struct drm_sched_job *drm_job)
- 		job->skip_emit = false;
- 	}
- 
-+run_job_out:
- 	/*
- 	 * We don't care about job-fence ordering in LR VMs because these fences
- 	 * are never exported; they are used solely to keep jobs on the pending
-@@ -912,6 +1060,11 @@ int xe_guc_read_stopped(struct xe_guc *guc)
- 	return atomic_read(&guc->submission_state.stopped);
- }
- 
-+static void handle_multi_queue_secondary_sched_done(struct xe_guc *guc,
-+						    struct xe_exec_queue *q,
-+						    u32 runnable_state);
-+static void handle_deregister_done(struct xe_guc *guc, struct xe_exec_queue *q);
-+
- #define MAKE_SCHED_CONTEXT_ACTION(q, enable_disable)			\
- 	u32 action[] = {						\
- 		XE_GUC_ACTION_SCHED_CONTEXT_MODE_SET,			\
-@@ -925,7 +1078,9 @@ static void disable_scheduling_deregister(struct xe_guc *guc,
- 	MAKE_SCHED_CONTEXT_ACTION(q, DISABLE);
- 	int ret;
- 
--	set_min_preemption_timeout(guc, q);
-+	if (!xe_exec_queue_is_multi_queue_secondary(q))
-+		set_min_preemption_timeout(guc, q);
-+
- 	smp_rmb();
- 	ret = wait_event_timeout(guc->ct.wq,
- 				 (!exec_queue_pending_enable(q) &&
-@@ -953,9 +1108,12 @@ static void disable_scheduling_deregister(struct xe_guc *guc,
- 	 * Reserve space for both G2H here as the 2nd G2H is sent from a G2H
- 	 * handler and we are not allowed to reserved G2H space in handlers.
- 	 */
--	xe_guc_ct_send(&guc->ct, action, ARRAY_SIZE(action),
--		       G2H_LEN_DW_SCHED_CONTEXT_MODE_SET +
--		       G2H_LEN_DW_DEREGISTER_CONTEXT, 2);
-+	if (xe_exec_queue_is_multi_queue_secondary(q))
-+		handle_multi_queue_secondary_sched_done(guc, q, 0);
-+	else
-+		xe_guc_ct_send(&guc->ct, action, ARRAY_SIZE(action),
-+			       G2H_LEN_DW_SCHED_CONTEXT_MODE_SET +
-+			       G2H_LEN_DW_DEREGISTER_CONTEXT, 2);
- }
- 
- static void xe_guc_exec_queue_trigger_cleanup(struct xe_exec_queue *q)
-@@ -1161,8 +1319,11 @@ static void enable_scheduling(struct xe_exec_queue *q)
- 	set_exec_queue_enabled(q);
- 	trace_xe_exec_queue_scheduling_enable(q);
- 
--	xe_guc_ct_send(&guc->ct, action, ARRAY_SIZE(action),
--		       G2H_LEN_DW_SCHED_CONTEXT_MODE_SET, 1);
-+	if (xe_exec_queue_is_multi_queue_secondary(q))
-+		handle_multi_queue_secondary_sched_done(guc, q, 1);
-+	else
-+		xe_guc_ct_send(&guc->ct, action, ARRAY_SIZE(action),
-+			       G2H_LEN_DW_SCHED_CONTEXT_MODE_SET, 1);
- 
- 	ret = wait_event_timeout(guc->ct.wq,
- 				 !exec_queue_pending_enable(q) ||
-@@ -1186,14 +1347,17 @@ static void disable_scheduling(struct xe_exec_queue *q, bool immediate)
- 	xe_gt_assert(guc_to_gt(guc), exec_queue_registered(q));
- 	xe_gt_assert(guc_to_gt(guc), !exec_queue_pending_disable(q));
- 
--	if (immediate)
-+	if (immediate && !xe_exec_queue_is_multi_queue_secondary(q))
- 		set_min_preemption_timeout(guc, q);
- 	clear_exec_queue_enabled(q);
- 	set_exec_queue_pending_disable(q);
- 	trace_xe_exec_queue_scheduling_disable(q);
- 
--	xe_guc_ct_send(&guc->ct, action, ARRAY_SIZE(action),
--		       G2H_LEN_DW_SCHED_CONTEXT_MODE_SET, 1);
-+	if (xe_exec_queue_is_multi_queue_secondary(q))
-+		handle_multi_queue_secondary_sched_done(guc, q, 0);
-+	else
-+		xe_guc_ct_send(&guc->ct, action, ARRAY_SIZE(action),
-+			       G2H_LEN_DW_SCHED_CONTEXT_MODE_SET, 1);
- }
- 
- static void __deregister_exec_queue(struct xe_guc *guc, struct xe_exec_queue *q)
-@@ -1211,8 +1375,11 @@ static void __deregister_exec_queue(struct xe_guc *guc, struct xe_exec_queue *q)
- 	set_exec_queue_destroyed(q);
- 	trace_xe_exec_queue_deregister(q);
- 
--	xe_guc_ct_send(&guc->ct, action, ARRAY_SIZE(action),
--		       G2H_LEN_DW_DEREGISTER_CONTEXT, 1);
-+	if (xe_exec_queue_is_multi_queue_secondary(q))
-+		handle_deregister_done(guc, q);
-+	else
-+		xe_guc_ct_send(&guc->ct, action, ARRAY_SIZE(action),
-+			       G2H_LEN_DW_DEREGISTER_CONTEXT, 1);
- }
- 
- static enum drm_gpu_sched_stat
-@@ -1655,6 +1822,7 @@ static int guc_exec_queue_init(struct xe_exec_queue *q)
- {
- 	struct xe_gpu_scheduler *sched;
- 	struct xe_guc *guc = exec_queue_to_guc(q);
-+	struct workqueue_struct *submit_wq = NULL;
- 	struct xe_guc_exec_queue *ge;
- 	long timeout;
- 	int err, i;
-@@ -1675,8 +1843,20 @@ static int guc_exec_queue_init(struct xe_exec_queue *q)
- 
- 	timeout = (q->vm && xe_vm_in_lr_mode(q->vm)) ? MAX_SCHEDULE_TIMEOUT :
- 		  msecs_to_jiffies(q->sched_props.job_timeout_ms);
-+
-+	/*
-+	 * Use primary queue's submit_wq for all secondary queues of a
-+	 * multi queue group. This serialization avoids any locking around
-+	 * CGP synchronization with GuC.
-+	 */
-+	if (xe_exec_queue_is_multi_queue_secondary(q)) {
-+		struct xe_exec_queue *primary = xe_exec_queue_multi_queue_primary(q);
-+
-+		submit_wq = primary->guc->sched.base.submit_wq;
-+	}
-+
- 	err = xe_sched_init(&ge->sched, &drm_sched_ops, &xe_sched_ops,
--			    NULL, xe_lrc_ring_size() / MAX_JOB_SIZE_BYTES, 64,
-+			    submit_wq, xe_lrc_ring_size() / MAX_JOB_SIZE_BYTES, 64,
- 			    timeout, guc_to_gt(guc)->ordered_wq, NULL,
- 			    q->name, gt_to_xe(q->gt)->drm.dev);
- 	if (err)
-@@ -2413,7 +2593,11 @@ static void deregister_exec_queue(struct xe_guc *guc, struct xe_exec_queue *q)
- 
- 	trace_xe_exec_queue_deregister(q);
- 
--	xe_guc_ct_send_g2h_handler(&guc->ct, action, ARRAY_SIZE(action));
-+	if (xe_exec_queue_is_multi_queue_secondary(q))
-+		handle_deregister_done(guc, q);
-+	else
-+		xe_guc_ct_send_g2h_handler(&guc->ct, action,
-+					   ARRAY_SIZE(action));
- }
- 
- static void handle_sched_done(struct xe_guc *guc, struct xe_exec_queue *q,
-@@ -2463,6 +2647,16 @@ static void handle_sched_done(struct xe_guc *guc, struct xe_exec_queue *q,
- 	}
- }
- 
-+static void handle_multi_queue_secondary_sched_done(struct xe_guc *guc,
-+						    struct xe_exec_queue *q,
-+						    u32 runnable_state)
-+{
-+	/* Take CT lock here as handle_sched_done() do send a h2g message */
-+	mutex_lock(&guc->ct.lock);
-+	handle_sched_done(guc, q, runnable_state);
-+	mutex_unlock(&guc->ct.lock);
-+}
-+
- int xe_guc_sched_done_handler(struct xe_guc *guc, u32 *msg, u32 len)
- {
- 	struct xe_exec_queue *q;
-@@ -2667,6 +2861,44 @@ int xe_guc_exec_queue_reset_failure_handler(struct xe_guc *guc, u32 *msg, u32 le
- 	return 0;
- }
- 
-+/**
-+ * xe_guc_exec_queue_cgp_sync_done_handler - CGP synchronization done handler
-+ * @guc: guc
-+ * @msg: message indicating CGP sync done
-+ * @len: length of message
-+ *
-+ * Set multi queue group's sync_pending flag to false and wakeup anyone waiting
-+ * for CGP synchronization to complete.
-+ *
-+ * Return: 0 on success, -EPROTO for malformed messages.
-+ */
-+int xe_guc_exec_queue_cgp_sync_done_handler(struct xe_guc *guc, u32 *msg, u32 len)
-+{
-+	struct xe_device *xe = guc_to_xe(guc);
-+	struct xe_exec_queue *q;
-+	u32 guc_id = msg[0];
-+
-+	if (unlikely(len < 1)) {
-+		drm_err(&xe->drm, "Invalid CGP_SYNC_DONE length %u", len);
-+		return -EPROTO;
-+	}
-+
-+	q = g2h_exec_queue_lookup(guc, guc_id);
-+	if (unlikely(!q))
-+		return -EPROTO;
-+
-+	if (!xe_exec_queue_is_multi_queue_primary(q)) {
-+		drm_err(&xe->drm, "Unexpected CGP_SYNC_DONE response");
-+		return -EPROTO;
-+	}
-+
-+	/* Wakeup the serialized cgp update wait */
-+	WRITE_ONCE(q->multi_queue.group->sync_pending, false);
-+	wake_up_all(&guc->ct.wq);
++	q->multi_queue.priority = value;
 +
 +	return 0;
 +}
 +
- static void
- guc_exec_queue_wq_snapshot_capture(struct xe_exec_queue *q,
- 				   struct xe_guc_submit_exec_queue_snapshot *snapshot)
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.h b/drivers/gpu/drm/xe/xe_guc_submit.h
-index b49a2748ec46..abfa94bce391 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.h
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.h
-@@ -34,6 +34,7 @@ int xe_guc_exec_queue_memory_cat_error_handler(struct xe_guc *guc, u32 *msg,
- 					       u32 len);
- int xe_guc_exec_queue_reset_failure_handler(struct xe_guc *guc, u32 *msg, u32 len);
- int xe_guc_error_capture_handler(struct xe_guc *guc, u32 *msg, u32 len);
-+int xe_guc_exec_queue_cgp_sync_done_handler(struct xe_guc *guc, u32 *msg, u32 len);
+ typedef int (*xe_exec_queue_set_property_fn)(struct xe_device *xe,
+ 					     struct xe_exec_queue *q,
+ 					     u64 value);
+@@ -749,6 +761,8 @@ static const xe_exec_queue_set_property_fn exec_queue_set_property_funcs[] = {
+ 	[DRM_XE_EXEC_QUEUE_SET_PROPERTY_TIMESLICE] = exec_queue_set_timeslice,
+ 	[DRM_XE_EXEC_QUEUE_SET_PROPERTY_PXP_TYPE] = exec_queue_set_pxp_type,
+ 	[DRM_XE_EXEC_QUEUE_SET_PROPERTY_MULTI_GROUP] = exec_queue_set_multi_group,
++	[DRM_XE_EXEC_QUEUE_SET_PROPERTY_MULTI_QUEUE_PRIORITY] =
++							exec_queue_set_multi_queue_priority,
+ };
  
- struct xe_guc_submit_exec_queue_snapshot *
- xe_guc_exec_queue_snapshot_capture(struct xe_exec_queue *q);
+ static int exec_queue_user_ext_set_property(struct xe_device *xe,
+@@ -770,7 +784,8 @@ static int exec_queue_user_ext_set_property(struct xe_device *xe,
+ 	    XE_IOCTL_DBG(xe, ext.property != DRM_XE_EXEC_QUEUE_SET_PROPERTY_PRIORITY &&
+ 			 ext.property != DRM_XE_EXEC_QUEUE_SET_PROPERTY_TIMESLICE &&
+ 			 ext.property != DRM_XE_EXEC_QUEUE_SET_PROPERTY_PXP_TYPE &&
+-			 ext.property != DRM_XE_EXEC_QUEUE_SET_PROPERTY_MULTI_GROUP))
++			 ext.property != DRM_XE_EXEC_QUEUE_SET_PROPERTY_MULTI_GROUP &&
++			 ext.property != DRM_XE_EXEC_QUEUE_SET_PROPERTY_MULTI_QUEUE_PRIORITY))
+ 		return -EINVAL;
+ 
+ 	idx = array_index_nospec(ext.property, ARRAY_SIZE(exec_queue_set_property_funcs));
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+index b9da51ab7eaf..445ae4979c0c 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
++++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+@@ -32,6 +32,20 @@ enum xe_exec_queue_priority {
+ 	XE_EXEC_QUEUE_PRIORITY_COUNT
+ };
+ 
++/**
++ * enum xe_multi_queue_priority - Multi Queue priority values
++ *
++ * The priority values of the queues within the multi queue group.
++ */
++enum xe_multi_queue_priority {
++	/** @XE_MULTI_QUEUE_PRIORITY_LOW: Priority low */
++	XE_MULTI_QUEUE_PRIORITY_LOW = 0,
++	/** @XE_MULTI_QUEUE_PRIORITY_NORMAL: Priority normal */
++	XE_MULTI_QUEUE_PRIORITY_NORMAL,
++	/** @XE_MULTI_QUEUE_PRIORITY_HIGH: Priority high */
++	XE_MULTI_QUEUE_PRIORITY_HIGH,
++};
++
+ /**
+  * struct xe_exec_queue_group - Execution multi queue group
+  *
+@@ -131,6 +145,8 @@ struct xe_exec_queue {
+ 	struct {
+ 		/** @multi_queue.group: Queue group information */
+ 		struct xe_exec_queue_group *group;
++		/** @multi_queue.priority: Queue priority within the multi-queue group */
++		enum xe_multi_queue_priority priority;
+ 		/** @multi_queue.pos: Position of queue within the multi-queue group */
+ 		u8 pos;
+ 		/** @multi_queue.valid: Queue belongs to a multi queue group */
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index c68739fd7592..8a75d0ed7ee9 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -638,6 +638,7 @@ static void xe_guc_exec_queue_group_cgp_sync(struct xe_guc *guc,
+ 		return;
+ 	}
+ 
++	xe_lrc_set_multi_queue_priority(q->lrc[0], q->multi_queue.priority);
+ 	xe_guc_exec_queue_group_cgp_update(xe, q);
+ 
+ 	WRITE_ONCE(group->sync_pending, true);
+diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
+index b5083c99dd50..56836a5546d8 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.c
++++ b/drivers/gpu/drm/xe/xe_lrc.c
+@@ -44,6 +44,11 @@
+ #define LRC_INDIRECT_CTX_BO_SIZE		SZ_4K
+ #define LRC_INDIRECT_RING_STATE_SIZE		SZ_4K
+ 
++#define LRC_PRIORITY				GENMASK_ULL(10, 9)
++#define LRC_PRIORITY_LOW			0
++#define LRC_PRIORITY_NORMAL			1
++#define LRC_PRIORITY_HIGH			2
++
+ /*
+  * Layout of the LRC and associated data allocated as
+  * lrc->bo:
+@@ -1386,6 +1391,30 @@ setup_indirect_ctx(struct xe_lrc *lrc, struct xe_hw_engine *hwe)
+ 	return 0;
+ }
+ 
++static u8 xe_multi_queue_prio_to_lrc(struct xe_lrc *lrc, enum xe_multi_queue_priority priority)
++{
++	struct xe_device *xe = gt_to_xe(lrc->gt);
++
++	xe_assert(xe, (priority >= XE_MULTI_QUEUE_PRIORITY_LOW &&
++		       priority <= XE_MULTI_QUEUE_PRIORITY_HIGH));
++
++	/* xe_multi_queue_priority is directly mapped to LRC priority values */
++	return priority;
++}
++
++/**
++ * xe_lrc_set_multi_queue_priority() - Set multi queue priority in LRC
++ * @lrc: Logical Ring Context
++ * @priority: Multi queue priority of the exec queue
++ *
++ * Convert @priority to LRC multi queue priority and update the @lrc descriptor
++ */
++void xe_lrc_set_multi_queue_priority(struct xe_lrc *lrc, enum xe_multi_queue_priority priority)
++{
++	lrc->desc &= ~LRC_PRIORITY;
++	lrc->desc |= FIELD_PREP(LRC_PRIORITY, xe_multi_queue_prio_to_lrc(lrc, priority));
++}
++
+ static int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
+ 		       struct xe_vm *vm, u32 ring_size, u16 msix_vec,
+ 		       u32 init_flags)
+diff --git a/drivers/gpu/drm/xe/xe_lrc.h b/drivers/gpu/drm/xe/xe_lrc.h
+index 2fb628da5c43..569ca380676e 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.h
++++ b/drivers/gpu/drm/xe/xe_lrc.h
+@@ -13,6 +13,7 @@ struct drm_printer;
+ struct xe_bb;
+ struct xe_device;
+ struct xe_exec_queue;
++enum xe_multi_queue_priority;
+ enum xe_engine_class;
+ struct xe_gt;
+ struct xe_hw_engine;
+@@ -133,6 +134,8 @@ void xe_lrc_dump_default(struct drm_printer *p,
+ 
+ u32 *xe_lrc_emit_hwe_state_instructions(struct xe_exec_queue *q, u32 *cs);
+ 
++void xe_lrc_set_multi_queue_priority(struct xe_lrc *lrc, enum xe_multi_queue_priority priority);
++
+ struct xe_lrc_snapshot *xe_lrc_snapshot_capture(struct xe_lrc *lrc);
+ void xe_lrc_snapshot_capture_delayed(struct xe_lrc_snapshot *snapshot);
+ void xe_lrc_snapshot_print(struct xe_lrc_snapshot *snapshot, struct drm_printer *p);
+diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+index 4de21e0a4fcf..240eeea99cb0 100644
+--- a/include/uapi/drm/xe_drm.h
++++ b/include/uapi/drm/xe_drm.h
+@@ -1260,6 +1260,9 @@ struct drm_xe_vm_bind {
+  *    queue's exec_queue_id is specified in the lower 32 bits of the 'value' field.
+  *    All the other non-relevant bits of extension's 'value' field while adding the
+  *    primary or the secondary queues of the group must be set to 0.
++ *  - %DRM_XE_EXEC_QUEUE_SET_PROPERTY_MULTI_QUEUE_PRIORITY - Set the queue
++ *    priority within the multi-queue group. Current valid priority values are 0–2
++ *    (default is 1), with higher values indicating higher priority.
+  *
+  * The example below shows how to use @drm_xe_exec_queue_create to create
+  * a simple exec_queue (no parallel submission) of class
+@@ -1302,6 +1305,7 @@ struct drm_xe_exec_queue_create {
+ #define   DRM_XE_EXEC_QUEUE_SET_PROPERTY_PXP_TYPE		2
+ #define   DRM_XE_EXEC_QUEUE_SET_PROPERTY_MULTI_GROUP		3
+ #define     DRM_XE_MULTI_GROUP_CREATE				(1ull << 63)
++#define   DRM_XE_EXEC_QUEUE_SET_PROPERTY_MULTI_QUEUE_PRIORITY	4
+ 	/** @extensions: Pointer to the first extension struct, if any */
+ 	__u64 extensions;
+ 
 -- 
 2.43.0
 
