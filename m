@@ -4,49 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8BDE0CFA754
-	for <intel-xe@archiver.kernel.org>; Fri, 21 Nov 2025 08:48:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 87E41CFA762
+	for <intel-xe@archiver.kernel.org>; Fri, 21 Nov 2025 09:46:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7EA8610E7F4;
-	Fri, 21 Nov 2025 08:48:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2C9C810E133;
+	Fri, 21 Nov 2025 09:46:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ezq1SOME";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BdObhguZ";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3047B10E7EC;
- Fri, 21 Nov 2025 08:48:36 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5F84210E133;
+ Fri, 21 Nov 2025 09:46:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1763714916; x=1795250916;
- h=from:to:subject:date:message-id:mime-version:
+ t=1763718399; x=1795254399;
+ h=date:from:to:cc:subject:message-id:mime-version:
  content-transfer-encoding;
- bh=skPdEAb/6Imu9ZEn+UjYDXK6l7rlLY8/RWjHoMs+6Yc=;
- b=Ezq1SOMEO6vMjsIZnVwKWZu8bZ5NivFvBYqu3AQ4PepurmIXIsKC/BHR
- Bk25T+hITeQQXv87SBPJx02B6VfYtdyAhGqeN6PyMAPt+dA4sgBpj8LGT
- y8DPxvFiW+8dUoLMGGT6AnWTp2H+RDTzZN2szF1BpWMeTwRkzaMb7nQuk
- Yi0EViWFI+4duQ4kBsTQWc8t9KZPUXLY4A6dXxCBa2zd3SmWOv1RXFGOv
- oz4uo4RL0tw5dH0MDmJbnK1atpvhXO+DmEiLhR//PV81wbCK859AohluI
- eS8btkuADssCKDD0sBalbSftcIgU1cOrSHA0H5rJCPtoaBCw2BkG/Gk6l A==;
-X-CSE-ConnectionGUID: fLCOuCipTqW1ubPNTeTriw==
-X-CSE-MsgGUID: ktfO5L+PQ6GPAhwpRPYA1g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11619"; a="65737047"
-X-IronPort-AV: E=Sophos;i="6.20,215,1758610800"; d="scan'208";a="65737047"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Nov 2025 00:48:32 -0800
-X-CSE-ConnectionGUID: dFbYbMK6SlqvvaYQLjICXQ==
-X-CSE-MsgGUID: EwJGR2h/TEiCWQ3DbqNDaA==
+ bh=qAYRXDP3YxcNC7GNhMYVfpJnXpiA3jEZmGW3pib3VS8=;
+ b=BdObhguZkwwRsVUjHuNr7gWFvIfzgEUQbwTPK/3P+VJO98E0o6HF80tg
+ 2KZrUAlzj7MUa4gnh3md6XMZ5fW9YVbKv+xjFeeqVYwrfv+e+MpO23cmS
+ bpTweLlEa77dMoDIgXZrcJPgDCcGepYDHVfuUSlS/t/2bh7sMajl5GxGM
+ XWgaTNDhUmYNatk2xOkRyhSLNosHERJX0cyy97QXvp7qqpMdS21G/E7uq
+ nUg25rAHbuwxwlwT5o3hCGP+8mmrV7LyeWRdoXlznEqMYxwKZS3/qvUiz
+ LOyfphnqlctqhDaCt9Ggl9Xn4K33ewuWOC1ghaf/G+P5af7CS9vs3o9cD w==;
+X-CSE-ConnectionGUID: UQWe4BZSQk6yJj6Yw389oA==
+X-CSE-MsgGUID: 2nKz1I5hRMiKvmLGSwiVEg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11619"; a="77276438"
+X-IronPort-AV: E=Sophos;i="6.20,215,1758610800"; d="scan'208";a="77276438"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Nov 2025 01:46:39 -0800
+X-CSE-ConnectionGUID: NuRQ+670QAyo3mH1T6plGw==
+X-CSE-MsgGUID: NYY+zMblQP2C7VcHKL/Njw==
 X-ExtLoop1: 1
-Received: from dut-2a59.iind.intel.com ([10.190.239.113])
- by fmviesa003.fm.intel.com with ESMTP; 21 Nov 2025 00:48:31 -0800
-From: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Subject: [PATCH] fbcon: Reschedule cursor worker if try lock fails
-Date: Fri, 21 Nov 2025 14:01:38 +0530
-Message-Id: <20251121083138.468339-1-chaitanya.kumar.borah@intel.com>
-X-Mailer: git-send-email 2.25.1
+X-IronPort-AV: E=Sophos;i="6.20,215,1758610800"; d="scan'208";a="191440131"
+Received: from klitkey1-mobl1.ger.corp.intel.com (HELO fedora) ([10.245.245.9])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Nov 2025 01:46:35 -0800
+Date: Fri, 21 Nov 2025 10:46:24 +0100
+From: Thomas Hellstrom <thomas.hellstrom@linux.intel.com>
+To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-xe-next-fixes
+Message-ID: <aSA08EW9JMU3LkIu@fedora>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -62,56 +76,42 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-With the removal of timer implementation for cursor work[1],
-the cursor delayed work does not get rescheduled if it fails
-to acquire the console lock.
+Hi Dave, Simona
 
-This has been found to cause issue during the resume sequence
-of the IGT test kms_fbcon_fbt@fbc-suspend[2]. The test expects
-cursor blinking to start after the system resumes from suspend
-state.
+This week's drm-xe-next-fixes PR for drm-next.
 
- fbcon_resumed()
-	 redraw_screen()
-		 set_cursor()
-			 fb_flashcursor()
+drm-xe-next-fixes-2025-11-21:
+Driver Changes:
+- A couple of SR-IOV fixes (Michal Winiarski)
+- Fix a potential UAF (Sanjay)
 
-But the cursor work fails to acuire the lock and it never gets
-rescheduled unless some other function comes in and invokes
-fbcon_add_cursor_work() which adds the worker to the queue.
-From empirical evidence this happens if we tweak the console
-log level.
+The following changes since commit f0ded972d37150f9f889de75c9eecc5cb0730013:
 
-Push the cursor work to the queue if we fail to acquire the lock.
+  Merge tag 'drm-rust-next-2025-11-18' of https://gitlab.freedesktop.org/drm/rust/kernel into drm-next (2025-11-20 10:44:50 +1000)
 
-v2:
- - s/opt/par
+are available in the Git repository at:
 
-[1] commit 3b0fb6ab25dd ("fbcon: Use delayed work for cursor")
-[2] https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17565/re-mtlp-11/igt@kms_fbcon_fbt@fbc-suspend.html
+  https://gitlab.freedesktop.org/drm/xe/kernel.git tags/drm-xe-next-fixes-2025-11-21
 
-Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
----
- drivers/video/fbdev/core/fbcon.c | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+for you to fetch changes up to dcb171931954c51a1a7250d558f02b8f36570783:
 
-diff --git a/drivers/video/fbdev/core/fbcon.c b/drivers/video/fbdev/core/fbcon.c
-index 9771134beb8a..6ee993db9995 100644
---- a/drivers/video/fbdev/core/fbcon.c
-+++ b/drivers/video/fbdev/core/fbcon.c
-@@ -401,8 +401,11 @@ static void fb_flashcursor(struct work_struct *work)
- 	/* instead we just fail to flash the cursor if we can't get
- 	 * the lock instead of blocking fbcon deinit */
- 	ret = console_trylock();
--	if (ret == 0)
-+	if (ret == 0) {
-+		queue_delayed_work(system_power_efficient_wq, &par->cursor_work,
-+				   par->cur_blink_jiffies);
- 		return;
-+	}
- 
- 	/* protected by console_lock */
- 	info = par->info;
--- 
-2.25.1
+  drm/xe/oa: Fix potential UAF in xe_oa_add_config_ioctl() (2025-11-21 08:41:04 +0100)
 
+----------------------------------------------------------------
+Driver Changes:
+- A couple of SR-IOV fixes (Michal Winiarski)
+- Fix a potential UAF (Sanjay)
+
+----------------------------------------------------------------
+Michał Winiarski (3):
+      drm/xe/pf: Fix kernel-doc warning in migration_save_consume
+      drm/xe/pf: Drop the VF VRAM BO reference on successful restore
+      drm/xe/pf: Check for fence error on VRAM save/restore
+
+Sanjay Yadav (1):
+      drm/xe/oa: Fix potential UAF in xe_oa_add_config_ioctl()
+
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_migration.c | 11 +++++++++++
+ drivers/gpu/drm/xe/xe_oa.c                    |  8 +++++---
+ drivers/gpu/drm/xe/xe_sriov_pf_migration.c    |  2 --
+ 3 files changed, 16 insertions(+), 5 deletions(-)
