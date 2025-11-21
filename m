@@ -4,58 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8BEB2CFA76B
-	for <intel-xe@archiver.kernel.org>; Fri, 21 Nov 2025 10:30:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0E025CFA777
+	for <intel-xe@archiver.kernel.org>; Fri, 21 Nov 2025 11:17:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 14B3410E84D;
-	Fri, 21 Nov 2025 10:30:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6464D10E85E;
+	Fri, 21 Nov 2025 11:17:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mofjgAAG";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PCx4BhAr";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D669C10E84B;
- Fri, 21 Nov 2025 10:30:10 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 447A110E84E;
+ Fri, 21 Nov 2025 11:17:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1763721011; x=1795257011;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=PFk6zOL2oO8RIG1++OADRnO1MzLea1XCw4mskQlSgvY=;
- b=mofjgAAGQZk4xUDZvKC7i2rGi1NPIK+ytGE/k37a4pFQLJt2BWXqkcfv
- UGSrWhWTLaHfPhBDyJLBu172gVGmQOH4k0PgRIlCXEtvj9pCMwX7GV+gO
- N5BtJj3f6wh3iCjHVmf9AWgj9rNmjfSx60+0hiiBGLIcNcyHwjUjzUnTM
- 5XUHlwxfoxbKiktSA/12VGKSuwDpqCY0Xv8XkXz1GONInTetE4F5kUmvb
- TnkUauE7qtaAV4qPf71xV6y2hR70cx4txGg8Xjk/4pqG86EcIuIGaYh8c
- UUOqXV8iXxZ8tCygDbWYB+d1IrbjBfqDtAFiUSfIbgx2EcZpWIgPvDo8d A==;
-X-CSE-ConnectionGUID: yHsS3iusQrOtfXMfIIZbFw==
-X-CSE-MsgGUID: tlr224/MT1GcXiV0ndjeDQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11619"; a="65745372"
-X-IronPort-AV: E=Sophos;i="6.20,215,1758610800"; d="scan'208";a="65745372"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Nov 2025 02:30:11 -0800
-X-CSE-ConnectionGUID: 4zp7Xsc6RAaG2y4/ua1GQg==
-X-CSE-MsgGUID: uQGu9QHaTCi5pd672tepEg==
+ t=1763723830; x=1795259830;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=6fMvGyow//PozJ/83rqSvKAeq11G8lNUEAk4MUa2iG0=;
+ b=PCx4BhArLR7PGf/BNVLP8MonauQJk/xJ7Cr2MQJ/o0ZemUWzvCB/KA3q
+ gHXr+9RD4Yfo1Nc8Ciwz5Xm5S06boRl4n7Gw8kXuuGIPgIdU3KcZaShMW
+ bmk4xlH0EHrcE1BjRPmbJlDdZel7nrIZyRnEQjCURvQ6LAchJsl6WGJwr
+ KAWtImle21aKal+XLYc+E8vZ9Ir+105o81+Aa6GHolZb6EuZJJ/PR4nNt
+ k4i8aWxFl+pLCPhTUQA+T6FqElPJv7S1ytgI/LFLeyVeIOMlEvGDJ8tLV
+ +14L8OxJbMDVQfILggIv+c/IpaewoxzIvSeyqxBW2S/Tc6D1jDIRPj77N g==;
+X-CSE-ConnectionGUID: sMnkI5xgQESUO7XC0osb2Q==
+X-CSE-MsgGUID: s3geWtf5QSCkKRGQP64deQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11619"; a="65845511"
+X-IronPort-AV: E=Sophos;i="6.20,215,1758610800"; d="scan'208";a="65845511"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Nov 2025 03:17:09 -0800
+X-CSE-ConnectionGUID: 0b1Y/lHhSmOgkH5ijcBJ3w==
+X-CSE-MsgGUID: nR5eyokQSrW95YtrECf17Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,215,1758610800"; d="scan'208";a="190867475"
-Received: from ettammin-desk.ger.corp.intel.com (HELO localhost)
- ([10.245.246.86])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Nov 2025 02:30:09 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH v2 13/13] drm/xe/vga: use the same
- intel_gmch_vga_set_decode() as i915
-In-Reply-To: <2bkiopdfnvb7clswdyxugft55za25esifpji35mjcmxv7qjctn@2v6het7sh7f4>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1763578288.git.jani.nikula@intel.com>
- <f4121e6c70bac6c26ef3cf51aaf72822f2cb2d54.1763578288.git.jani.nikula@intel.com>
- <2bkiopdfnvb7clswdyxugft55za25esifpji35mjcmxv7qjctn@2v6het7sh7f4>
-Date: Fri, 21 Nov 2025 12:30:03 +0200
-Message-ID: <4cd82f1b10776abd6b78da078d5444c8099802a0@intel.com>
+X-IronPort-AV: E=Sophos;i="6.20,215,1758610800"; d="scan'208";a="196801974"
+Received: from krybak-mobl1.ger.corp.intel.com (HELO jhogande-mobl3.intel.com)
+ ([10.245.246.72])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Nov 2025 03:17:08 -0800
+From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+Subject: [PATCH 0/8] Move PSR/Panel Replay sink data into intel_connector
+Date: Fri, 21 Nov 2025 13:16:47 +0200
+Message-ID: <20251121111655.164830-1-jouni.hogander@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,34 +68,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 20 Nov 2025, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
-> On Wed, Nov 19, 2025 at 08:52:52PM +0200, Jani Nikula wrote:
->>Drop the #ifdef I915, and use the same intel_gmch_vga_set_decode() for
->>both i915 and xe.
->
-> I hope this doesn't regress our display side on other archs. We are very
-> close to having display working, but this messing with VGA is likely to
-> break it.
->
-> See "drm/i915/display: Stop touching vga on post enable", which is
-> needed for xe to use a DG2/BMG with a raspberry pi (+pci/resources
-> branch + a few other patches).
+This is a preparation patch set for MST Panel Replay.
 
-I'm feeling confident [1] that the patch at hand does not have similar
-issues. This is about VGA arbitration on the PCI bridge, not about
-actually poking at VGA registers.
+In case of MST Panel Replay we may have several CRTCs on single
+pipe. There CRTCs representing virtual devices within e.g. docking
+station. All these virtual devices has their own DPCD registers
+containing their Panel Replay capability information. These needs to
+be taken into account when computing used Panel Replay state. Due to
+this we can't continue having only sink capabilities stored in struct
+intel_dp.
 
-I went ahead and merged the series. If there are any ill effects with
-the last patch, we can revert with a low bar.
+This patch set is moving Panel Replay capabilities into struct
+intel_connector to make them available for Panel Replay CRTC state
+computation.
 
+Jouni Högander (8):
+  drm/i915/psr: Add panel granularity information into intel_connector
+  drm/i915/psr: Use SU granularity information available in
+    intel_connector
+  drm/i915/psr: Compute Panel Replay/Adaptive coexistence behavior
+  drm/i915/psr: Move pr_dpcd and psr_dpcd to intel_connector
+  drm/i915/psr: Clear pr_dpcd as well on disconnect
+  drm/i915/psr: Move Panel Replay DSC sink support data to
+    intel_connector
+  drm/i915/psr: Move sink PSR and Panel Replay booleans to
+    intel_connector
+  drm/i915/psr: Move sink_sync_latency to intel_connector
 
-BR,
-Jani.
-
-
-
-[1] https://en.wikipedia.org/wiki/Dunning%E2%80%93Kruger_effect
-
+ drivers/gpu/drm/i915/display/intel_alpm.c     |   6 +-
+ .../drm/i915/display/intel_display_types.h    |  43 ++-
+ drivers/gpu/drm/i915/display/intel_dp.c       |  11 +-
+ drivers/gpu/drm/i915/display/intel_psr.c      | 283 ++++++++++--------
+ drivers/gpu/drm/i915/display/intel_psr.h      |   2 +-
+ 5 files changed, 192 insertions(+), 153 deletions(-)
 
 -- 
-Jani Nikula, Intel
+2.43.0
+
