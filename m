@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7A9A2CF2564
-	for <intel-xe@archiver.kernel.org>; Fri, 21 Nov 2025 03:52:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 88321CFA46C
+	for <intel-xe@archiver.kernel.org>; Fri, 21 Nov 2025 03:52:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3169910E7E7;
-	Fri, 21 Nov 2025 03:52:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3E61610E7E8;
+	Fri, 21 Nov 2025 03:52:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GYAXtGxe";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FRbqC3cj";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3F1DA10E7E7
- for <intel-xe@lists.freedesktop.org>; Fri, 21 Nov 2025 03:52:20 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 26DCC10E7E8
+ for <intel-xe@lists.freedesktop.org>; Fri, 21 Nov 2025 03:52:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1763697141; x=1795233141;
+ t=1763697142; x=1795233142;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=7UUdK6HmeDbA0Cty3Ah/vX+YY+JP8WctufekR/OANNU=;
- b=GYAXtGxeLlobvUxp0CEReYKaDzv0iFzzHGIYo9l9JBkMoMMXpf9D/0jC
- L8vqVLqJIhNihr/NenfVTdY0oq7bQJnBvSJ/Kb9RQSD/S76lCAR0jQ5SB
- +3+xSJuZgOF6IrIhZNSneReae6YwyEPuGzgkAW/4fmNtxHhOEtO9Oy2H0
- a7BIhBOg4Zy7NhDb+2mT9QidIqv9VGIj48huIjXYfFLSHaskB0spx1mUF
- R3yHIh1vNaHpT/rhFTRbai8UVWLZaIXCdz7SMntYtl31SlX8VOK34+WQy
- wmW0YiBW+c71kehokYclvALkwn4xaTKw9mbo/yjWi39rClFlsrniLxBzS Q==;
-X-CSE-ConnectionGUID: ONL8DFZNQbW2egsUPAP17A==
-X-CSE-MsgGUID: aZGoacKmS/S5PPBFpm+gEQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11619"; a="76110528"
-X-IronPort-AV: E=Sophos;i="6.20,214,1758610800"; d="scan'208";a="76110528"
+ bh=YPQzVoLJn4U/Z/ODQsSS3VaJiQZUdweSI/2QsvZ2ohA=;
+ b=FRbqC3cjhN+azfcY34DGMHsZWUSzii4+agz4Q5yXXZomB/LOpuDkZwsy
+ 4fuPeRcDjfwVvcvAneAfJx7NH3rSM+Lz7RXI7WgBu/ArPJeSGyW3+UvGh
+ sbOyfZ3RfLLLjA4y70JOQ07trflKGnfwdBACIdWJ7b965YApLRSN+tOdK
+ Cqxid1U/aw4ZFO/WM6sQ6Vqv6kT5b17iESBdfDinyrRIaPp6LQEYRSVB/
+ e3iyMwHYAKj3qJ9qd2oM+zK4y7jnjn++q1lfBFcJVyNY5g+/kP7LjbpjS
+ 68GCexob+qA10AMhJBX5OCPXAJ6XxLwq2vEhghrlV1iZ7IFhnjyceB41d A==;
+X-CSE-ConnectionGUID: dTwUUw5RQKCFwohL7cj75w==
+X-CSE-MsgGUID: fDeoq+UtTxKm7V4KnvBzZg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11619"; a="76110535"
+X-IronPort-AV: E=Sophos;i="6.20,214,1758610800"; d="scan'208";a="76110535"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Nov 2025 19:52:20 -0800
-X-CSE-ConnectionGUID: nSSBZy7+TN+rGG/kpE4CMQ==
-X-CSE-MsgGUID: y0v1RrYsSxG+hGHuO/IvzA==
+ 20 Nov 2025 19:52:21 -0800
+X-CSE-ConnectionGUID: 2ssEQCYkSZu1YatFX4hayA==
+X-CSE-MsgGUID: v8bJEXfBTWGVMqX+QhcviQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,214,1758610800"; d="scan'208";a="190857786"
+X-IronPort-AV: E=Sophos;i="6.20,214,1758610800"; d="scan'208";a="190857809"
 Received: from nvishwa1-desk.sc.intel.com ([172.25.29.139])
  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Nov 2025 19:52:20 -0800
+ 20 Nov 2025 19:52:21 -0800
 From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.brost@intel.com
-Subject: [PATCH v3 01/18] drm/xe/multi_queue: Add multi_queue_enable_mask to
- gt information
-Date: Thu, 20 Nov 2025 19:51:35 -0800
-Message-ID: <20251121035147.766072-21-niranjana.vishwanathapura@intel.com>
+Subject: [PATCH v3 08/18] drm/xe/multi_queue: Add multi queue information to
+ guc_info dump
+Date: Thu, 20 Nov 2025 19:51:42 -0800
+Message-ID: <20251121035147.766072-28-niranjana.vishwanathapura@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20251121035147.766072-20-niranjana.vishwanathapura@intel.com>
 References: <20251121035147.766072-20-niranjana.vishwanathapura@intel.com>
@@ -67,75 +67,71 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add multi_queue_enable_mask field to the gt information structure
-which is bitmask of all engine classes with multi queue support
-enabled.
+Dump multi queue specific information in the guc exec queue
+dump.
 
-v2: Rename multi_queue_enable_mask to multi_queue_engine_class_mask
-    (Matt Brost)
+v2: Move multi queue related fields inside the multi_queue
+    sub-structure (Matt Brost)
 
 Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_debugfs.c   | 2 ++
- drivers/gpu/drm/xe/xe_gt_types.h  | 5 +++++
- drivers/gpu/drm/xe/xe_pci.c       | 1 +
- drivers/gpu/drm/xe/xe_pci_types.h | 1 +
- 4 files changed, 9 insertions(+)
+ drivers/gpu/drm/xe/xe_guc_submit.c       | 10 ++++++++++
+ drivers/gpu/drm/xe/xe_guc_submit_types.h | 13 +++++++++++++
+ 2 files changed, 23 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_debugfs.c b/drivers/gpu/drm/xe/xe_debugfs.c
-index 1d5a2a43a9d7..330855470a75 100644
---- a/drivers/gpu/drm/xe/xe_debugfs.c
-+++ b/drivers/gpu/drm/xe/xe_debugfs.c
-@@ -93,6 +93,8 @@ static int info(struct seq_file *m, void *data)
- 			   xe_force_wake_ref(gt_to_fw(gt), XE_FW_GT));
- 		drm_printf(&p, "gt%d engine_mask 0x%llx\n", id,
- 			   gt->info.engine_mask);
-+		drm_printf(&p, "gt%d multi_queue_engine_class_mask 0x%x\n", id,
-+			   gt->info.multi_queue_engine_class_mask);
- 	}
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index 54636d3a5eb2..ce870a119800 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -3048,6 +3048,11 @@ xe_guc_exec_queue_snapshot_capture(struct xe_exec_queue *q)
+ 	if (snapshot->parallel_execution)
+ 		guc_exec_queue_wq_snapshot_capture(q, snapshot);
  
- 	return 0;
-diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
-index 0a728180b6fe..5318d92fd473 100644
---- a/drivers/gpu/drm/xe/xe_gt_types.h
-+++ b/drivers/gpu/drm/xe/xe_gt_types.h
-@@ -140,6 +140,11 @@ struct xe_gt {
- 		u64 engine_mask;
- 		/** @info.gmdid: raw GMD_ID value from hardware */
- 		u32 gmdid;
++	if (xe_exec_queue_is_multi_queue(q)) {
++		snapshot->multi_queue.valid = true;
++		snapshot->multi_queue.primary = xe_exec_queue_multi_queue_primary(q)->guc->id;
++		snapshot->multi_queue.pos = q->multi_queue.pos;
++	}
+ 	spin_lock(&sched->base.job_list_lock);
+ 	snapshot->pending_list_size = list_count_nodes(&sched->base.pending_list);
+ 	snapshot->pending_list = kmalloc_array(snapshot->pending_list_size,
+@@ -3130,6 +3135,11 @@ xe_guc_exec_queue_snapshot_print(struct xe_guc_submit_exec_queue_snapshot *snaps
+ 	if (snapshot->parallel_execution)
+ 		guc_exec_queue_wq_snapshot_print(snapshot, p);
+ 
++	if (snapshot->multi_queue.valid) {
++		drm_printf(p, "\tMulti queue primary GuC ID: %d\n", snapshot->multi_queue.primary);
++		drm_printf(p, "\tMulti queue position: %d\n", snapshot->multi_queue.pos);
++	}
++
+ 	for (i = 0; snapshot->pending_list && i < snapshot->pending_list_size;
+ 	     i++)
+ 		drm_printf(p, "\tJob: seqno=%d, fence=%d, finished=%d\n",
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit_types.h b/drivers/gpu/drm/xe/xe_guc_submit_types.h
+index dc7456c34583..25e29e85502c 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit_types.h
++++ b/drivers/gpu/drm/xe/xe_guc_submit_types.h
+@@ -135,6 +135,19 @@ struct xe_guc_submit_exec_queue_snapshot {
+ 		u32 wq[WQ_SIZE / sizeof(u32)];
+ 	} parallel;
+ 
++	/** @multi_queue: snapshot of the multi queue information */
++	struct {
 +		/**
-+		 * @multi_queue_engine_class_mask: Bitmask of engine classes with
-+		 * multi queue support enabled.
++		 * @multi_queue.primary: GuC id of the primary exec queue
++		 * of the multi queue group.
 +		 */
-+		u16 multi_queue_engine_class_mask;
- 		/** @info.id: Unique ID of this GT within the PCI Device */
- 		u8 id;
- 		/** @info.has_indirect_ring_state: GT has indirect ring state support */
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index 10eb18bc740e..f9464398e3ea 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -754,6 +754,7 @@ static struct xe_gt *alloc_primary_gt(struct xe_tile *tile,
- 	gt->info.type = XE_GT_TYPE_MAIN;
- 	gt->info.id = tile->id * xe->info.max_gt_per_tile;
- 	gt->info.has_indirect_ring_state = graphics_desc->has_indirect_ring_state;
-+	gt->info.multi_queue_engine_class_mask = graphics_desc->multi_queue_engine_class_mask;
- 	gt->info.engine_mask = graphics_desc->hw_engine_mask;
- 
- 	/*
-diff --git a/drivers/gpu/drm/xe/xe_pci_types.h b/drivers/gpu/drm/xe/xe_pci_types.h
-index 9892c063a9c5..975e9857f70c 100644
---- a/drivers/gpu/drm/xe/xe_pci_types.h
-+++ b/drivers/gpu/drm/xe/xe_pci_types.h
-@@ -58,6 +58,7 @@ struct xe_device_desc {
- 
- struct xe_graphics_desc {
- 	u64 hw_engine_mask;	/* hardware engines provided by graphics IP */
-+	u16 multi_queue_engine_class_mask; /* bitmask of engine classes which support multi queue */
- 
- 	u8 has_asid:1;
- 	u8 has_atomic_enable_pte_bit:1;
++		u32 primary;
++		/** @multi_queue.pos: Position of the exec queue within the multi queue group */
++		u8 pos;
++		/** @valid: The exec queue is part of a multi queue group */
++		bool valid;
++	} multi_queue;
++
+ 	/** @pending_list_size: Size of the pending list snapshot array */
+ 	int pending_list_size;
+ 	/** @pending_list: snapshot of the pending list info */
 -- 
 2.43.0
 
