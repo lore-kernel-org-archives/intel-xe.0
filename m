@@ -4,53 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1084BCFA761
-	for <intel-xe@archiver.kernel.org>; Fri, 21 Nov 2025 10:07:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7AC3BCFA76C
+	for <intel-xe@archiver.kernel.org>; Fri, 21 Nov 2025 10:19:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE63E10E80A;
-	Fri, 21 Nov 2025 10:07:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3E3C610E84D;
+	Fri, 21 Nov 2025 10:19:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="H2gMX8Sm";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mGdd3on0";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 02EC410E80A
- for <intel-xe@lists.freedesktop.org>; Fri, 21 Nov 2025 10:07:38 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 820B210E849;
+ Fri, 21 Nov 2025 10:19:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1763719659; x=1795255659;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=wMnPlHSkRFRsl+c6isnnOCEWRsEFWDhgOhBk1Cu22eQ=;
- b=H2gMX8SmZsqK5tA6HwOAAEaPhiT047xkEF4wIlg6mSTlxsuiPF/ept87
- oXb3VvIyMUxfzNm7scZTBkrVffm6D4U6Oh+G4zsZ4bNzGsrgk+ZGIzfsC
- sKQPbDDEhslqlrsxZNTNUdnvEzXELy43qgFvhZb3RYEp1cbLEU7OfGpkt
- KW1/po0+N5vzTovwzjaWjJWOUheZloj7i2X3hFBkt3ZbUYTjQA0Ol/QLK
- WNRVaEFlRcupjnajz7HwDT3jANnbBnHCYfpWKq9zXh+bk/M2IF8hTspkp
- 0aiSQspyGL5M5UYFw0ifh2OPhBvzH+A/V2HSl/nq6N2+DfoofjgdjR6LH g==;
-X-CSE-ConnectionGUID: Boj78fnHThGaq3z1GmQorg==
-X-CSE-MsgGUID: X+lgwMLpScWzFv4pZhcX6A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11619"; a="65688163"
-X-IronPort-AV: E=Sophos;i="6.20,215,1758610800"; d="scan'208";a="65688163"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Nov 2025 02:07:38 -0800
-X-CSE-ConnectionGUID: nDa8ly0PRK2aukHrIV2Jbg==
-X-CSE-MsgGUID: 7LGvvh3fSHumJs19VoqlkA==
+ t=1763720376; x=1795256376;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=ImYrT4ezOGbF3CP/zqe9wmHgOUPHDvbUTkb7IowfDTc=;
+ b=mGdd3on0/UPJb3LIISkNAaQThucODjpGQv05nj4OpMloWD9kaGzhPJ7c
+ uX9rLZXkwPZ9YooiKtg1bwqx5VfBl0Td1yoKGV5RZl0nuNl8jFA6CVsEA
+ 8xyMAg++tfQZoGgINF6dFAx348y0Lx7mDNDFluExDUxcH8oYv3MbDVnee
+ bUp2T52X0DwJM1B1LyxkuY+MJqHnBPGNYNoMJRZJlTFyTQv8arRgu1V5a
+ ALP8wTgBJ3pTDLPmT/yUdrNteplClVfiDgT3X0xYAmuQ3SVjURbZt2Sro
+ xFaVYQxmNwsBXntT8Gk01fSmAoKr9Wl1h7e42MCqYrQ4Nh8EUhfEW1F0v Q==;
+X-CSE-ConnectionGUID: wDIzIBhUQ+K8lyBidU/XFw==
+X-CSE-MsgGUID: YShc3l6bRXuJztx0HAP1JQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11619"; a="65744814"
+X-IronPort-AV: E=Sophos;i="6.20,215,1758610800"; d="scan'208";a="65744814"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Nov 2025 02:19:35 -0800
+X-CSE-ConnectionGUID: qe5RUukAT6mmyZcI9/lB2w==
+X-CSE-MsgGUID: uOkXJz9ZTtKONrRjsswzDQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,215,1758610800"; d="scan'208";a="192103636"
-Received: from bvivekan-desk.iind.intel.com ([10.190.238.63])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Nov 2025 02:07:37 -0800
-From: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>
-Subject: [PATCH v2] drm/xe/xe3_lpg: Apply Wa_16028005424
-Date: Fri, 21 Nov 2025 15:38:23 +0530
-Message-ID: <20251121100822.20076-2-balasubramani.vivekanandan@intel.com>
-X-Mailer: git-send-email 2.43.0
+X-IronPort-AV: E=Sophos;i="6.20,215,1758610800"; d="scan'208";a="191448644"
+Received: from klitkey1-mobl1.ger.corp.intel.com (HELO [10.245.245.9])
+ ([10.245.245.9])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Nov 2025 02:19:31 -0800
+Message-ID: <ee0b6593e57360a21e76698e8e0adf6dde63cb87.camel@linux.intel.com>
+Subject: Re: [PATCH v2 02/17] drm/pagemap, drm/xe: Add refcounting to struct
+ drm_pagemap
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>, 
+ intel-xe@lists.freedesktop.org
+Cc: Matthew Brost <matthew.brost@intel.com>,
+ dri-devel@lists.freedesktop.org, 	apopple@nvidia.com, airlied@gmail.com,
+ Simona Vetter <simona.vetter@ffwll.ch>, 	felix.kuehling@amd.com, Christian
+ =?ISO-8859-1?Q?K=F6nig?=	 <christian.koenig@amd.com>, dakr@kernel.org,
+ "Mrozek, Michal"	 <michal.mrozek@intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>
+Date: Fri, 21 Nov 2025 11:19:29 +0100
+In-Reply-To: <c02af65a-4b5c-47d6-b1b0-6216fd0e3e0c@intel.com>
+References: <20251111164408.113070-1-thomas.hellstrom@linux.intel.com>
+ <20251111164408.113070-3-thomas.hellstrom@linux.intel.com>
+ <c02af65a-4b5c-47d6-b1b0-6216fd0e3e0c@intel.com>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.54.3 (3.54.3-2.fc41) 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,57 +78,67 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Applied Wa_16028005424 to Graphics version from 30.00 to 30.05
+Hi, Himal!
 
-Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
-Signed-off-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
----
+On Wed, 2025-11-12 at 11:37 +0530, Ghimiray, Himal Prasad wrote:
+>=20
+>=20
+> On 11-11-2025 22:13, Thomas Hellstr=C3=B6m wrote:
+> > With the end goal of being able to free unused pagemaps
+> > and allocate them on demand, add a refcount to struct drm_pagemap,
+> > remove the xe embedded drm_pagemap, allocating and freeing it
+> > explicitly.
+> >=20
+> > v2:
+> > - Make the drm_pagemap pointer in drm_gpusvm_pages reference-
+> > counted.
+> >=20
+> > Signed-off-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+> > Reviewed-by: Matthew Brost <matthew.brost@intel.com> #v1
+> > ---
+> > =C2=A0 drivers/gpu/drm/drm_gpusvm.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ |=C2=A0 4 ++-
+> > =C2=A0 drivers/gpu/drm/drm_pagemap.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 51
+> > ++++++++++++++++++++++++++++++
+> > =C2=A0 drivers/gpu/drm/xe/xe_svm.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 | 26 ++++++++++-----
+> > =C2=A0 drivers/gpu/drm/xe/xe_vram_types.h |=C2=A0 2 +-
+> > =C2=A0 include/drm/drm_pagemap.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 | 36 +++++++++++++++++++++
+> > =C2=A0 5 files changed, 109 insertions(+), 10 deletions(-)
+> >=20
+> > diff --git a/drivers/gpu/drm/drm_gpusvm.c
+> > b/drivers/gpu/drm/drm_gpusvm.c
+> > index 73e550c8ff8c..1f96375d1f2b 100644
+> > --- a/drivers/gpu/drm/drm_gpusvm.c
+> > +++ b/drivers/gpu/drm/drm_gpusvm.c
+> > @@ -1038,6 +1038,7 @@ static void __drm_gpusvm_unmap_pages(struct
+> > drm_gpusvm *gpusvm,
+> > =C2=A0=C2=A0		flags.has_dma_mapping =3D false;
+> > =C2=A0=C2=A0		WRITE_ONCE(svm_pages->flags.__flags,
+> > flags.__flags);
+> > =C2=A0=20
+> > +		drm_pagemap_put(svm_pages->dpagemap);
+> > =C2=A0=C2=A0		svm_pages->dpagemap =3D NULL;
+> > =C2=A0=C2=A0	}
+> > =C2=A0 }
+> > @@ -1431,7 +1432,8 @@ int drm_gpusvm_get_pages(struct drm_gpusvm
+> > *gpusvm,
+> > =C2=A0=20
+> > =C2=A0=C2=A0	if (pagemap) {
+> > =C2=A0=C2=A0		flags.has_devmem_pages =3D true;
+> > -		svm_pages->dpagemap =3D dpagemap;
+> > +		drm_pagemap_put(svm_pages->dpagemap);
+>=20
+> Dont we risk a UAF for dpagemap if svm_pages->dpagemap is same as
+> dpagemap ?
 
-v2:
-  Move register definition to place it as per its address (MattR)
+Thanks for reviewing. Here the dpagemap refcount is protected from
+dropping to zero by a page presence in the CPU address space and us
+holding the notifier lock. But agree that this looks bad from a
+reader's perspective. I'll fix that up.
 
----
- drivers/gpu/drm/xe/regs/xe_guc_regs.h | 3 +++
- drivers/gpu/drm/xe/xe_wa.c            | 5 +++++
- 2 files changed, 8 insertions(+)
+Thanks,
+Thomas
 
-diff --git a/drivers/gpu/drm/xe/regs/xe_guc_regs.h b/drivers/gpu/drm/xe/regs/xe_guc_regs.h
-index 2118f7dec287..87984713dd12 100644
---- a/drivers/gpu/drm/xe/regs/xe_guc_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_guc_regs.h
-@@ -90,6 +90,9 @@
- #define GUC_SEND_INTERRUPT			XE_REG(0xc4c8)
- #define   GUC_SEND_TRIGGER			REG_BIT(0)
- 
-+#define GUC_INTR_CHICKEN			XE_REG(0xc50c)
-+#define   DISABLE_SIGNALING_ENGINES		REG_BIT(1)
-+
- #define GUC_BCS_RCS_IER				XE_REG(0xc550)
- #define GUC_VCS2_VCS1_IER			XE_REG(0xc554)
- #define GUC_WD_VECS_IER				XE_REG(0xc558)
-diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
-index 3764abca3d4f..7fdb2b7cb8e4 100644
---- a/drivers/gpu/drm/xe/xe_wa.c
-+++ b/drivers/gpu/drm/xe/xe_wa.c
-@@ -15,6 +15,7 @@
- 
- #include "regs/xe_engine_regs.h"
- #include "regs/xe_gt_regs.h"
-+#include "regs/xe_guc_regs.h"
- #include "regs/xe_regs.h"
- #include "xe_device_types.h"
- #include "xe_force_wake.h"
-@@ -323,6 +324,10 @@ static const struct xe_rtp_entry_sr gt_was[] = {
- 	  XE_RTP_ACTIONS(SET(VDBOX_CGCTL3F10(0), RAMDFTUNIT_CLKGATE_DIS)),
- 	  XE_RTP_ENTRY_FLAG(FOREACH_ENGINE),
- 	},
-+	{ XE_RTP_NAME("16028005424"),
-+	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(3000, 3005)),
-+	  XE_RTP_ACTIONS(SET(GUC_INTR_CHICKEN, DISABLE_SIGNALING_ENGINES))
-+	},
- };
- 
- static const struct xe_rtp_entry_sr engine_was[] = {
--- 
-2.43.0
 
