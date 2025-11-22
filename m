@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 49DD7CF64B1
-	for <intel-xe@archiver.kernel.org>; Sat, 22 Nov 2025 04:58:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4617BCFC515
+	for <intel-xe@archiver.kernel.org>; Sat, 22 Nov 2025 04:58:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AF09410E04D;
-	Sat, 22 Nov 2025 04:58:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E4ABE10E174;
+	Sat, 22 Nov 2025 04:58:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ns21urFJ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Yfx/20Bs";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C417010E04D
- for <intel-xe@lists.freedesktop.org>; Sat, 22 Nov 2025 04:58:17 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 769AC10E174
+ for <intel-xe@lists.freedesktop.org>; Sat, 22 Nov 2025 04:58:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1763787498; x=1795323498;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=fiKRpfGcZKKV1u5vgmSs2uCDofY5FrxJBb+9HRxU7L0=;
- b=Ns21urFJmPhC2dlATfRE24VQIatW6X/OaAmhtFsg/3hBlrbcjyXObof2
- AOpCohHEIydYLkwmmKIxKoqq9htvc7vNJ4JXxtyqp6y78nQ/qOdcP+L2/
- 0IrTQgF+0oPOdE9ngxcFNBwldYpRAd5N3SueCM0NaOn7bc0Tx0Nmtg/dc
- j46N1UBz96CNLyJZNf7PoYv2a0Ng1JtsoIQZmCIHyT0OvBm+2965g7Rwk
- THqyLTIXOzVyeeKYqO21sjbeJI8aOR/ehkdY6KChb8RJVyrUhAyk1v3vO
- xZ/zSB8AalMMxPtcmquFAR5Bk1d5SzqhQMW6O1MF84WFK3/ItNS5jQK2z Q==;
-X-CSE-ConnectionGUID: a9aeuZwsRiiYz0rkmE2HVA==
-X-CSE-MsgGUID: 6UOz7P+hTKaEqAcJerKblg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11620"; a="65921451"
-X-IronPort-AV: E=Sophos;i="6.20,217,1758610800"; d="scan'208";a="65921451"
+ t=1763787500; x=1795323500;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=riVb1xxw8dYWRTYfK63nMPxFPk3KFZJ1o1UTYEe5vJw=;
+ b=Yfx/20BsjfwNCscWw5tn+CRVCbqDw4l167kOVDsfA0aUcZTrpr4KbmEQ
+ x/oVKwlF9SfPWlpdDA49vwgBHMZ1PgqFKgKsPxZVbs7sG0+/aEOfqVr+5
+ jaAXSGw+dVm6AkMAo9zlgyq0tjIzXogS8c/M2kabqfym+8FDboZ3Ao0bz
+ GHUcrvuEhUpLfwaO25nFXUgM4ACPjYTEM8XYWCpQasUJ8ElLDqri8ElEG
+ iFpJ+e5nOXM7yG9JMCr0czpIiJPL8q5AJDtfw/8dTyr/+TVenWWkt3ENe
+ THArAjpSyzfjKc1XtJM7SWCoqHsPkLjeDODcFP5dY4qXgJmXT9AuJl4l4 w==;
+X-CSE-ConnectionGUID: TN3YuV5eT5SdExEWIpTJBw==
+X-CSE-MsgGUID: wpVjdcZrTn2Wwtvc6t8JoA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11620"; a="65921453"
+X-IronPort-AV: E=Sophos;i="6.20,217,1758610800"; d="scan'208";a="65921453"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Nov 2025 20:58:17 -0800
-X-CSE-ConnectionGUID: Lxb5K4U5TaybyarnGUy9rw==
-X-CSE-MsgGUID: 5g8qTGWYR6OrlrA2YBmVTQ==
+ 21 Nov 2025 20:58:20 -0800
+X-CSE-ConnectionGUID: sannqGNwQXec4QV+XgIwng==
+X-CSE-MsgGUID: DLbQZnorSGe4ShfLIXgjqg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,217,1758610800"; d="scan'208";a="191976540"
+X-IronPort-AV: E=Sophos;i="6.20,217,1758610800"; d="scan'208";a="191976551"
 Received: from anoopcvi-vm.gar.corp.intel.com ([10.109.80.88])
  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Nov 2025 20:58:13 -0800
+ 21 Nov 2025 20:58:16 -0800
 From: "Anoop, Vijay" <anoop.c.vijay@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: rodrigo.vivi@intel.com, aravind.iddamsetty@intel.com,
@@ -48,12 +48,14 @@ Cc: rodrigo.vivi@intel.com, aravind.iddamsetty@intel.com,
  umesh.nerlige.ramappa@intel.com, matthew.d.roper@intel.com,
  michael.j.ruhl@intel.com, mohamed.mansoor.v@intel.com, kam.nasim@intel.com,
  anoop.c.vijay@intel.com
-Subject: [RFC 0/5] drm/xe: Add System Controller support for Xe3p dGPU
- platforms
-Date: Fri, 21 Nov 2025 20:58:02 -0800
-Message-ID: <20251122045803.3616201-7-anoop.c.vijay@intel.com>
+Subject: [RFC 1/5] drm/xe/soc_remapper: Initialize SoC remapper during Xe probe
+Date: Fri, 21 Nov 2025 20:58:03 -0800
+Message-ID: <20251122045803.3616201-8-anoop.c.vijay@intel.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20251122045803.3616201-7-anoop.c.vijay@intel.com>
+References: <20251122045803.3616201-7-anoop.c.vijay@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -69,60 +71,116 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Anoop Vijay <anoop.c.vijay@intel.com>
+From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 
-This RFC series introduces System Controller (SC) driver support for Intel 
-Xe3p dGPU platforms.
+SoC remapper is used to map different HW functions in the SoC to their
+respective drivers. Initialize SoC remapper during driver load.
 
-The series includes:
+Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+---
+ drivers/gpu/drm/xe/Makefile          |  1 +
+ drivers/gpu/drm/xe/xe_device.c       |  5 +++++
+ drivers/gpu/drm/xe/xe_device_types.h |  6 ++++++
+ drivers/gpu/drm/xe/xe_soc_remapper.c | 15 +++++++++++++++
+ drivers/gpu/drm/xe/xe_soc_remapper.h | 15 +++++++++++++++
+ 5 files changed, 42 insertions(+)
+ create mode 100644 drivers/gpu/drm/xe/xe_soc_remapper.c
+ create mode 100644 drivers/gpu/drm/xe/xe_soc_remapper.h
 
-1. SoC Remapper Infrastructure (Patches 1-4) - Memory mapping infrastructure 
-   for accessing system controller regions and SoC components.
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index 1a3aa041820d..7ebfbf9051bf 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -110,6 +110,7 @@ xe-y += xe_bb.o \
+ 	xe_range_fence.o \
+ 	xe_reg_sr.o \
+ 	xe_reg_whitelist.o \
++	xe_soc_remapper.o \
+ 	xe_ring_ops.o \
+ 	xe_rtp.o \
+ 	xe_sa.o \
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index 1197f914ef77..f15489c100af 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -60,6 +60,7 @@
+ #include "xe_psmi.h"
+ #include "xe_pxp.h"
+ #include "xe_query.h"
++#include "xe_soc_remapper.h"
+ #include "xe_shrinker.h"
+ #include "xe_survivability_mode.h"
+ #include "xe_sriov.h"
+@@ -906,6 +907,10 @@ int xe_device_probe(struct xe_device *xe)
+ 
+ 	xe_nvm_init(xe);
+ 
++	err = xe_soc_remapper_init(xe);
++	if (err)
++		return err;
++
+ 	err = xe_heci_gsc_init(xe);
+ 	if (err)
+ 		return err;
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index 0b2fa7c56d38..4d23b75bc728 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -552,6 +552,12 @@ struct xe_device {
+ 		struct mutex lock;
+ 	} pmt;
+ 
++	/* @soc_remapper: SoC remapper object */
++	struct {
++		/* Serialize access to SoC Remapper's index registers */
++		spinlock_t lock;
++	} soc_remapper;
++
+ 	/**
+ 	 * @pm_callback_task: Track the active task that is running in either
+ 	 * the runtime_suspend or runtime_resume callbacks.
+diff --git a/drivers/gpu/drm/xe/xe_soc_remapper.c b/drivers/gpu/drm/xe/xe_soc_remapper.c
+new file mode 100644
+index 000000000000..f5a02abd6ab1
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_soc_remapper.c
+@@ -0,0 +1,15 @@
++// SPDX-License-Identifier: MIT
++/*
++ * Copyright © 2025 Intel Corporation
++ */
++
++#include <linux/spinlock.h>
++
++#include "xe_soc_remapper.h"
++
++int xe_soc_remapper_init(struct xe_device *xe)
++{
++	spin_lock_init(&xe->soc_remapper.lock);
++
++	return 0;
++}
+diff --git a/drivers/gpu/drm/xe/xe_soc_remapper.h b/drivers/gpu/drm/xe/xe_soc_remapper.h
+new file mode 100644
+index 000000000000..3cfd44f1fd74
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_soc_remapper.h
+@@ -0,0 +1,15 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2025 Intel Corporation
++ */
++
++#ifndef _XE_SOC_REMAPPER_H_
++#define _XE_SOC_REMAPPER_H_
++
++#include <linux/types.h>
++
++#include "xe_device_types.h"
++
++int xe_soc_remapper_init(struct xe_device *xe);
++
++#endif
+-- 
+2.43.0
 
-2. System Controller Driver (Patch 5) - Core SC communication using MKHI 
-   protocol over a mailbox interface for firmware communication.
-
-Key features:
-- Detection and initialization of the SC interface on Xe3p dGPU platforms
-- Mailbox communication with SC firmware
-- Fragmented message transfer for large command payloads
-
-Note: Patch 5 (SC driver) is not tested on simulation platforms.
-
-This implementation establishes the base for future SC feature
-enablement and firmware command handling.
-
-Anoop Vijay (1):
-  drm/xe/sc: Add system controller component for Xe3p dGPU platforms
-
-Umesh Nerlige Ramappa (4):
-  drm/xe/soc_remapper: Initialize SoC remapper during Xe probe
-  drm/xe/soc_remapper: Use SoC remapper herlper from VSEC code
-  drm/xe/soc_remapper: Add system controller config for SoC remapper
-  drm/xe/remapper: Reprogram remapper index on PM resume events
-
- drivers/gpu/drm/xe/Makefile                   |   3 +
- drivers/gpu/drm/xe/regs/xe_pmt.h              |   3 -
- drivers/gpu/drm/xe/regs/xe_sc_regs.h          |  49 +++
- drivers/gpu/drm/xe/regs/xe_soc_remapper_regs.h    |  14 +
- drivers/gpu/drm/xe/xe_device.c                |  10 +
- drivers/gpu/drm/xe/xe_device_types.h          |  17 +
- drivers/gpu/drm/xe/xe_pm.c                    |   5 +
- drivers/gpu/drm/xe/xe_sc.c                    |  89 +++++
- drivers/gpu/drm/xe/xe_sc.h                    |  15 +
- drivers/gpu/drm/xe/xe_sc_mailbox.c            | 374 ++++++++++++++++++
- drivers/gpu/drm/xe/xe_sc_mailbox.h            |  61 +++
- drivers/gpu/drm/xe/xe_sc_types.h              |  35 ++
- drivers/gpu/drm/xe/xe_soc_remapper.c          |  54 +++
- drivers/gpu/drm/xe/xe_soc_remapper.h          |  18 +
- drivers/gpu/drm/xe/xe_vsec.c                  |  56 +--
- 15 files changed, 720 insertions(+), 84 deletions(-)
- create mode 100644 drivers/gpu/drm/xe/regs/xe_sc_regs.h
- create mode 100644 drivers/gpu/drm/xe/xe_sc.c
- create mode 100644 drivers/gpu/drm/xe/xe_sc.h
- create mode 100644 drivers/gpu/drm/xe/xe_sc_mailbox.c
- create mode 100644 drivers/gpu/drm/xe/xe_sc_mailbox.h
- create mode 100644 drivers/gpu/drm/xe/xe_sc_types.h
-
---
-2.45.0
