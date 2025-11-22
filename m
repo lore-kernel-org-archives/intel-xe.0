@@ -4,165 +4,163 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 957E8CFD2E8
-	for <intel-xe@archiver.kernel.org>; Sat, 22 Nov 2025 19:33:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A5F52CFD2EB
+	for <intel-xe@archiver.kernel.org>; Sat, 22 Nov 2025 19:42:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3431B10E0AB;
-	Sat, 22 Nov 2025 19:33:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4482A10E0AB;
+	Sat, 22 Nov 2025 19:42:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Wu8l7FLU";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LoSGIaVt";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8BA9D10E0AB
- for <intel-xe@lists.freedesktop.org>; Sat, 22 Nov 2025 19:32:59 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 603A810E0AB
+ for <intel-xe@lists.freedesktop.org>; Sat, 22 Nov 2025 19:42:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1763839979; x=1795375979;
+ t=1763840569; x=1795376569;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=d/uYtofxDvrI4YokdzFrWcvLf3pwSWtTpaCphgIawLE=;
- b=Wu8l7FLUDjvddVvcYMfdL1p/lHA/w7dOujLsLPt5mzwrewr2hPiWjGUe
- X86BMQnaRcnrOa76t7eIQr6ayiP1QZGxjWEHM9L450cqae7Lq+Po62kpx
- k2P62p4Q92Lg2tFytS2WI3i4U8msOYYDMMK+6FDr38McKRZYpFxrwj/zN
- 2zoaGKAfAtgx2L88hceT1FYPW4pPpftgXS+WCmBXxapcs8hbVOkF1OGmf
- mBjttS0CqI5UTPsvcQFpas9CIIBRGQi7gi9RENK68Q2A44vWlmA8W+jhN
- 3RR4/qSjnnrGHaltRQwxHojvTcNJr9SHnMtA2hCDKme3MWLVx8kSW3Kqd Q==;
-X-CSE-ConnectionGUID: QnAc6ZMLRDqe/81bFdXfeA==
-X-CSE-MsgGUID: 5O9evNqsQPKT/WBJZl5Twg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11621"; a="65851964"
-X-IronPort-AV: E=Sophos;i="6.20,219,1758610800"; d="scan'208";a="65851964"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Nov 2025 11:32:59 -0800
-X-CSE-ConnectionGUID: D5k+dTAyTnWeNFCCpIwMMg==
-X-CSE-MsgGUID: N1R26idGRb+2SANrf5/H3Q==
+ bh=GIYEMT6G2mqU5ClEsqRWBO4htbPpSTAIfCFi4jvZbEo=;
+ b=LoSGIaVtW0xRfSbKdMQ5m0jXVxMGFFAPFTXiZWX3FqYP3BwPTE5ZvPaq
+ 4kIsDicMixNoa+tAlWyxv1geb4kW+L7ycdpoDnoi5XWpWAZe1TQZpLz81
+ A6Ma9BriOetPfGlQrcQe6zHGKSp3keybMP83qgbKxLOXVLdnItP0AgzJ7
+ 4b4B7ujhbygNXxw4g/E37L5beZ47ZivlFvN7ZMxH3iOWGSzd2GjPFm0Bt
+ N27Ld+ato4Y4z12xQ0gINC/DmIvWCBTy+osAFUKi052c+pTU1HzQTOvyl
+ DfMYyraoDOdXWnA8YMIJSSvBLl+MPOI3DrTvQVqGmzwIu5eTaU1DM9WN4 g==;
+X-CSE-ConnectionGUID: jf7auS1GQOWW2CHBbFfOZQ==
+X-CSE-MsgGUID: WfaZIj3PTAacdOlVZyvEyg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11621"; a="91383641"
+X-IronPort-AV: E=Sophos;i="6.20,219,1758610800"; d="scan'208";a="91383641"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Nov 2025 11:42:47 -0800
+X-CSE-ConnectionGUID: A+EdKLOHTWuKq+qczDvqfQ==
+X-CSE-MsgGUID: h2yCSvtjQ6ODRHmn1Vk82Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,219,1758610800"; d="scan'208";a="191155818"
-Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
- by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Nov 2025 11:32:59 -0800
-Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
- fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.20,219,1758610800"; d="scan'208";a="196442075"
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Nov 2025 11:42:47 -0800
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Sat, 22 Nov 2025 11:32:58 -0800
-Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
- FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ 15.2.2562.27; Sat, 22 Nov 2025 11:42:46 -0800
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27 via Frontend Transport; Sat, 22 Nov 2025 11:32:58 -0800
-Received: from PH8PR06CU001.outbound.protection.outlook.com (40.107.209.7) by
- edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
+ 15.2.2562.27 via Frontend Transport; Sat, 22 Nov 2025 11:42:46 -0800
+Received: from PH0PR06CU001.outbound.protection.outlook.com (40.107.208.35) by
+ edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Sat, 22 Nov 2025 11:32:58 -0800
+ 15.2.2562.27; Sat, 22 Nov 2025 11:42:46 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=O+/00UFwb25kajSKxm61RIB351JQiRZO6NYU6eYUWDSUh7Q3SbeJZ48BpzFNiVoq0OMPpxWyItkOZ2ymkdvFwyRNYuWbS5rvimWCsuWcCUHj4PqokdHk1J8jwzBZIraHfhNcohfxI0VXTHRSzKZYtw0FAdAfo+LcWePe/WRDZNDzSL1aHDppns/5JZR43K/WN7KRJn10W/ldr7IrElnQM/SvLB9okvTVlTTNqcyNP5ekXyrBzQRPtS7CWmlI+EfmsbfWfn7LAzmEORm5neYCqfs/4ZMbVdCSIwKaWdjDt7mI+jjG2dihcKZAr0APIA83xmGwhVxkszgLR3PVstsMWg==
+ b=fljv2nnoxF5IoEZjTiPOWNQHUwhYTXcvnMm4xM9cccR5VQMUNXWmGUDTdKhMCQ5BU1YuMBPEPGceagMj7+w98jsBF7F3ZGY9ildrMiHuKOmLsBNOT3Yi611aLXdErGYmYpHPdM5h+OqWkE94kwj7GuTQ8YXSRXYJ0z5lxHs1ROPOdZLgHKYqEzr2MdXCDvVmYzt0Ce3BO1I0uMHOGOxyZmi4bG2NIjkTeGcomccfxdXCJBnoA4B+S+71SVeGgfHFEbhGDj9EExCGHDlgB4NKCIA+TwbbYiI8MPTQkibvrfOYG9VIAhoUCU2xW+dJHbF1Qe1P/Vsx8EYS2naZeNFrLQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=bupVCUSFpNHWxfyfir9gYaxmVqAtO5OnNBcRnZ6x9wg=;
- b=JaOLKH2HsHt2BtRS/MlrNsVZcm67C5MLUIGCfzD2Vx/Rvz8bfwnnLH11YkdsqVzcMm8yhALhfmPiWitBUkEcO2sRd2GcquLeCZYlr7BSLkhw7jGdJyayoQwU1hhvlxmCRpvYqlAhG5E6q2K1OciZFR3d3j+qUjnrsS5C3g39inMazf9LJhFgp+pI83DFBxNbnkIo2faGOXUEjjJ7T2PzH8/h/205VSWK6LWYg5ivyiQqUZsevGlKpr6ktASc1tbFYBFeSuHwJLRLuEnAVjxXXLbGcY9pm/x3ZUus+x0X1zGpdpax5V9BXHomIBfOqMgTBQv+0GbB9DdItXZR8dfwfA==
+ bh=HNnXZicJddc3pDwc+GQhdtGF2uxwU+CvexuSFYn1sqM=;
+ b=pQ0R0cLbzVoa785HY8ACkvs2UTx5uppkwS9i/PK+ZWMR6DnUU0C8stMFVHHy8ig7rIwuIJfunFjjblxo0ICyYvFGmIqc2xtkatYiLJEygMtJ/II8InRT+Mp0q8GMdxDD6gvBiaVRTW/8BP657BT7yqidlsUOf4UoZ5ozZPLP73b+ui5UvsuiQ2grE5RzU8lV89aRwAc3pcCh/J3Asu6bZyawcc4hXRGgDYKdWYK91tfjxQXiWb9G0U4vrcgmAuH8QLMoUq1QSmw4OyhehYV50t78swQR+0UkOtF1s+iq2Dqphb3dYjF1ABDTf1128a46zmbpdpmgvk1ryeuUxT19wg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by CO1PR11MB4867.namprd11.prod.outlook.com (2603:10b6:303:9a::13)
+ by PH8PR11MB6658.namprd11.prod.outlook.com (2603:10b6:510:1c1::16)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9343.15; Sat, 22 Nov
- 2025 19:32:51 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9343.11; Sat, 22 Nov
+ 2025 19:42:44 +0000
 Received: from PH7PR11MB6522.namprd11.prod.outlook.com
  ([fe80::9e94:e21f:e11a:332]) by PH7PR11MB6522.namprd11.prod.outlook.com
  ([fe80::9e94:e21f:e11a:332%3]) with mapi id 15.20.9343.011; Sat, 22 Nov 2025
- 19:32:51 +0000
-Date: Sat, 22 Nov 2025 11:32:49 -0800
+ 19:42:44 +0000
+Date: Sat, 22 Nov 2025 11:42:41 -0800
 From: Matthew Brost <matthew.brost@intel.com>
 To: Brian Nguyen <brian3.nguyen@intel.com>
 CC: <intel-xe@lists.freedesktop.org>, <tejas.upadhyay@intel.com>,
  <shuicheng.lin@intel.com>, <stuart.summers@intel.com>
-Subject: Re: [PATCH 03/11] drm/xe/xe_tlb_inval: Modify fence interface to
- support PPC flush
-Message-ID: <aSIP4QQRfts2PAtg@lstrano-desk.jf.intel.com>
+Subject: Re: [PATCH 07/11] drm/xe: Suballocate BO for page reclaim
+Message-ID: <aSISMU58l2MPAFcd@lstrano-desk.jf.intel.com>
 References: <20251118090552.246243-1-brian3.nguyen@intel.com>
- <20251118090552.246243-4-brian3.nguyen@intel.com>
+ <20251118090552.246243-8-brian3.nguyen@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20251118090552.246243-4-brian3.nguyen@intel.com>
-X-ClientProxiedBy: BYAPR01CA0038.prod.exchangelabs.com (2603:10b6:a03:94::15)
- To PH7PR11MB6522.namprd11.prod.outlook.com
+In-Reply-To: <20251118090552.246243-8-brian3.nguyen@intel.com>
+X-ClientProxiedBy: MW4PR04CA0062.namprd04.prod.outlook.com
+ (2603:10b6:303:6b::7) To PH7PR11MB6522.namprd11.prod.outlook.com
  (2603:10b6:510:212::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|CO1PR11MB4867:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4907d974-a957-4adc-3d37-08de29fdecd2
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|PH8PR11MB6658:EE_
+X-MS-Office365-Filtering-Correlation-Id: df860a99-8845-45e7-f16d-08de29ff4e66
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?vNsWiSzP1/YaAiK2CWWPhzRJjpoYfYndSDCnO/OiLJ7ajRcVM4d0A3X7ALuA?=
- =?us-ascii?Q?rFFClOQJMGy8JyLjKhKrXqEtwlSsmAOCDYzqgFcbp3bh8k2zwXQom6du2Xl8?=
- =?us-ascii?Q?/JNChcIXXTUfx4YnNHwOdpGvLaHWwJoOYWjORICBVIu9yz7E/QOj1/5wlA6d?=
- =?us-ascii?Q?IeHvPRc4LBN680jQtdMmftNjYDogvX/7q5G4RRi/R9LbbVc21ALU9w04jyna?=
- =?us-ascii?Q?NZ0LD5QtroBawcxoT7uIgNiBnzlurLepsL289Ja1Lm/NK7memhtwV3R4MBwI?=
- =?us-ascii?Q?6RtVg0DtkeneccYpdnAKGMNvEjcYMNUpdJ1g+2PiYR9G2Oe7LzPVCtK42bzA?=
- =?us-ascii?Q?uSTiLiUxMJXFby/SIDjLul6QRnqjQMXylHkYuppA24gVqXJCyGOtSfk9NmK+?=
- =?us-ascii?Q?KzcKnde1y407mlUS6GwYFDmTSX4Ie+jaZOt+RwPpZr4oIi4R7prBP42xt8s/?=
- =?us-ascii?Q?L2F38QwB6tLV+jP/8F9XVyWYnABB/eZ//C69yL/H+IRc1u/haxzlCpIZXBrO?=
- =?us-ascii?Q?sEs8UISECc/CcqGyW2d4DW4U+lfjZvsHcRlhgj6R+pDxd+0WSpMz6JFyfC1G?=
- =?us-ascii?Q?acYYrOXgAQfyYBCbGSnG3nLYkhtgh6sSBK8Y3Ea3XyRhQxDq76F2q7k1VsFl?=
- =?us-ascii?Q?d4/uKElSvhjcIFZq1+ROcT9zxmhcebeBMLZSkBENKwqROkJuc1uigzNwYIiT?=
- =?us-ascii?Q?I3PFVGWNv87NuPnQuEmrwEXCc4YTOdAd+5Tdq9xZcBTDjNxtvBPSm6eVfKru?=
- =?us-ascii?Q?6KqYdMKnkN6HbUR1CNCsdJtq9SVjnTkhpEiEe9oZY9XdidVcqLiz2heX92NI?=
- =?us-ascii?Q?Ei5sDbs7BawRsO7Lq4sUhe5pT5eENaCkZtnHggYQ3/WiQrpZxw8QpOKbe0tg?=
- =?us-ascii?Q?QfOhjV+Kt6dXPJJP2h+0y5WLsiGqw93o04+f8eLueuT36phkFPoelfgjx7Mo?=
- =?us-ascii?Q?lIOd3bI+ttZv12Q/GxAUwd3oKyXHHf+kNWX2GJeB6VqrOBiV6RNTwxmPkkeh?=
- =?us-ascii?Q?3YMBw6+MqmoeKa+r6OIhWlbSK+bQYBJ178TTLTkR6hTnzib8vIT8DYQdR/Io?=
- =?us-ascii?Q?ySYSt+3DW/cQ/i+xBBhl9SmUYie2NcTf2PWz9mEwOL9NDbn1h4li5ZSA14/9?=
- =?us-ascii?Q?I6AgBJVJZqUOzW06LJ1U5CfhXWIMuJXpR7PnHJ0SwiW80BXeV7XPxRR2TEiz?=
- =?us-ascii?Q?aX6usCtsjjdYXcLwdtusewkRU2K7HF1K+Y38NzUtg2lL65rvlXT+6VTqekX1?=
- =?us-ascii?Q?tkgb/i/0RdzfycNdjJsK/AxhesCOiUxKnwHjWwbYYkXAFK9rI5oWZKRvnHrh?=
- =?us-ascii?Q?ifER4L5s9USfbgU7qVGJub7YkSS0ALEU/Owz1cnsPRKRuGqMq3aE0MiEPmVc?=
- =?us-ascii?Q?A9rComFhtwMreaUk3zBx5LtTwXmUjOtE8Avlvi73coZSBpOpgz6IzOFEu7ng?=
- =?us-ascii?Q?3m4UPfzaO8JrR2Emv65FLXMjnzmYudPU?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?5prAv0B0QB57dJ1g+8tfmC+1rNNNab6kk9HUfV2+Wc68SfbyO0DIk+/L2kV8?=
+ =?us-ascii?Q?2tpsCIyW4fWeKc46CT0Y9OcM22CBA3QwyeJnjq0BpiRqCTRgUbEuoDtRZN51?=
+ =?us-ascii?Q?v2QTLo6cUaniCwTetxCYjNqF7CDC/9y5YmY+70qV+a1mhNQ39rd3SYA1vp1F?=
+ =?us-ascii?Q?qvUvQQ/1HgwmOTkJ8QJC09FMVc2ptsNqBJtwzzQrqdQHP5RNCaJUnKe7on7K?=
+ =?us-ascii?Q?WLZzupx6QT8SX/aQ7IhkCNChC90u6MT6hmCabrawPeIKEoruFoW9wr6ZX0ps?=
+ =?us-ascii?Q?BUeqBK+8UEkPjqErQRPRUyCNQ811CIW4oRlPqhc48NIm8wndTEU0B14x5fdl?=
+ =?us-ascii?Q?DLwHTxTpGrbN8jELZJeJi/hptNqjZhjoUUZ71ipO3jALToTPG1aicayUc7Gs?=
+ =?us-ascii?Q?L+8rNwS7Zu7qz3qgRXAU/e8HUS/plG9KxEWTn+JVgyAhh/vZSBoMDhMuRYpg?=
+ =?us-ascii?Q?XLTVkKd/HEgyr64ivzqOf4htFXWn+PzDmFvpWgqyoQa/W32QbYmZ3wdLwL//?=
+ =?us-ascii?Q?IotHGAB6q+PKOWimwYCDZB76RLkfPy3ZoVY2SCXYD92/yK9Tm/nTpXT2WGaM?=
+ =?us-ascii?Q?GiypQzf2aRFPlPDg/Hgx0OFPyTVhj3FEMi+OdARUyEGwlx6A1sMeE8Wng/P8?=
+ =?us-ascii?Q?FcxQ91pVejAc2n46LwSHhp/xt4yJbzqS25vh/M9Iw3eBw3VVlZDB6C/gf4eT?=
+ =?us-ascii?Q?hI4SHpNqLy7YBi5QUPjxWDP3n1+jaPBRzxjbZiqSMKU3UShWromuKMlntBYJ?=
+ =?us-ascii?Q?Pj/QPLOjRv4nA3/1ykKPHxzHGL1gih2jy4Opp0pUdiLqysPtQNzcfqrmS3qi?=
+ =?us-ascii?Q?CSyevwR/mKjK/PmGrdZ1uoufZ3RTcuU9vRWMc9C4jTgZ2gNCX8H1uEBV9VsQ?=
+ =?us-ascii?Q?TjvWqgKblHAOeITUIRBl08NwOIqgjpnouZv+Qo+rI58Cp7mi0LzaXjX+SVcB?=
+ =?us-ascii?Q?TwWcaXJNID32Ci7+zYfh+4FtqveJ4cKmESgay/HNeiNe77GbZAXAxm07iM+b?=
+ =?us-ascii?Q?wZSWNR05+tWMx4Oie+Xj6jx933lWzrM4ULKKuIsrbWPWh9A13XkZvPTM4nz1?=
+ =?us-ascii?Q?trCpTdMbXyiv4H103MnGIr0+ZJPOzdvJS2g4O97sR4qI1WPN7QgOycc5PeqR?=
+ =?us-ascii?Q?SV48Ff1XSjjSSoqAwxXXEu3zbKedqe3ghj/V5AMhFM7TXHF1GkTBtdbYPDMu?=
+ =?us-ascii?Q?fyEInsTJaI7mqmjx+aqZ59geuM7j+2USTT5CYsK9LMa3VjPy3C4oHSYJ00FH?=
+ =?us-ascii?Q?JsbqZM5SB/J/PoN+tC/r52WeSRzQLVojA6tBoB9I2q8LLvh10FrsJChOc+yX?=
+ =?us-ascii?Q?pJg2T6j38BBfacdaRQTUEvxZqDBBFIX/0groVS8BDMOuJZysjDqBgGmBndLY?=
+ =?us-ascii?Q?GtkYWjMcBoILYMq7XW9KPqcJOzDahiZev7F2ZUHsJvN+jGg6Eg=3D=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
+ SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?Qq6bZDn/eJBn9IOIY1Ya0trn/QBfeTjrdgwDocTqERXXvuy7UnUx6JoLiqSw?=
- =?us-ascii?Q?7Dk0jAeaVb136Ug2yg9Ai1Zm3+pAEerUjF8SQUVEGMPk3u1nNv0Lzbs3SgBp?=
- =?us-ascii?Q?H696WCm5iiruvJQDlfGTgy1SqKmtHjVkU7CTqlobD2yY2p1elaK6/szvo1/Q?=
- =?us-ascii?Q?pc9uz+qkxm0gLCp/81ILesqdS3X5oRgAvx/Rsy1Vm0Nr+LTibDmNduU2D13h?=
- =?us-ascii?Q?d8aWc4tlIvf5sY59hoSh8DrXHjvbYJsR8XgjgDvKV6aa915GO+qfh4xnWDb+?=
- =?us-ascii?Q?TkYYP5RYi2AMVMvbDjlKCDYywNOFb7vkBuPRETY6FWN4OZ90zw+k+iKihYHZ?=
- =?us-ascii?Q?LGtLw3haaJnR/YIVtkcONBhjIkZthnDdrtWDRyGL5PZkKPWSrlZ4AbU7rYhS?=
- =?us-ascii?Q?FS7JwU0JqN9Q82UIO7/duD6XOsxs3fZhPo7lmO6wGznakBNdmEzl782pPHyU?=
- =?us-ascii?Q?yPS6DHleOlr7zMLNulfCV59tYxvrJatEEwAaW76lASfK3p1rIt9vFWL/I+iG?=
- =?us-ascii?Q?VZ66umCq45gYbM056a7cTGjDTpq8AOaoucGvALIOx+N2sDlq6dKYe4maexRY?=
- =?us-ascii?Q?GgtuU6BQCuBAblVErp5ipGfC4pDhP398iC2BWfp7s2ZcTeASKxmDdaTn6vqj?=
- =?us-ascii?Q?3CYoeMtuuYz86ZTXntp7rQb+rX1VCy0yhA168PoGN+wh+d//w3tdcIpkmOzj?=
- =?us-ascii?Q?k2IwIvRkA0BZ2FO3S8XZkONIl3XzGJn3Z/YChuppJUc9duGx4xEHb/z2rrN7?=
- =?us-ascii?Q?AkH3aeXLTZvb/bXiBtclPdAC2sYRzc+CrxxLeg2BR98TZPureFPZ1I4UJ39X?=
- =?us-ascii?Q?oaLTysaP+TF0BJs38ULVcW4PkollMaXfwt0pYcooWS+2DJyNzlvcyFlSZ9pz?=
- =?us-ascii?Q?ytJB6Wc62StjxuuikPKl2PBAf9H9q51nR0ZwsTsKGMY581odJvt4CGEVIbIj?=
- =?us-ascii?Q?3e3LNHRyD6nWyDG6LYZjkro4/ugNWtyVgm4jam1Guv/oCPz3PPyuT+AlNeid?=
- =?us-ascii?Q?pgp5HZHoiqe6P+mpFTV4c9aLa21ykK7VXMd+4yvW+m91CHdoH5iL1YvzO1VT?=
- =?us-ascii?Q?P8u3yrjBBudkvpfGEU3U4chWCOn9xOOpwPHaXT52FcpTFqJLWCIxL/1WmRTZ?=
- =?us-ascii?Q?ANrSx4cKmxdKQfxZwyA3BpGGJUqaETfoEJfeYzXYY7Si+F0rzgVlp53m7Vhn?=
- =?us-ascii?Q?vgR+7b+XfQpoSdwYh70022aQpVoFO+o88zlnMY2x0PC3f7JjOCPMRJTozh4M?=
- =?us-ascii?Q?B347tnGYgZ7T0NJErEYkgpZko8UeeyK+exd5rLeNqIJ3NoZVUjy9sJuCx6hf?=
- =?us-ascii?Q?fr45wAb+EUatMqAlQAB5Vqr4PCO4hPGh9OVk9/8qkWQMwISCVqu/WW7p3jf3?=
- =?us-ascii?Q?GonoJUYF/yyyKsE7lSYcx8IAmEQrHRGbRsIPHyR5MgqeHlQHcWkHyXpXIvNc?=
- =?us-ascii?Q?v7Rt4WWLeC6Eu0jFLVtCQic+yGrlgzvNQyYvyIyrT0+Rk8ada36i6g6a+v0m?=
- =?us-ascii?Q?AFuHpRkgZMtigMXXbzCF099AMF0Evhf7uddeFNUAa4NXz+4buE/qvI8T0lGo?=
- =?us-ascii?Q?UP4x02haArO6XgWNQPGA1uD5i7eAYKf5qItKZ8IgBg+/BCZ6goYd+Z+0cRjR?=
- =?us-ascii?Q?yQ=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4907d974-a957-4adc-3d37-08de29fdecd2
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?0SvJCtbT4ilLr6XNnovQx240x9MjNCODS0NZynskvJTevbuAjZfG6fK76xC6?=
+ =?us-ascii?Q?3JSdJbDh8QUkuAYlqOwoGaPzVCEsDiH0/FYll5KCur5ZdSlyTr41lst4qhpi?=
+ =?us-ascii?Q?O0uHiNPUUEmg9sMlIXcPky0haKuSr6Gn8YWsUaYmCsRsnAhq+076O6U3V2AL?=
+ =?us-ascii?Q?YMuMXQiRszubLe6JwHujkIw/9tZDom4BTo756lD/pMdw6GqsogddHDq3cFR3?=
+ =?us-ascii?Q?yxwkd8K+n0Kg4eOM17brAPj9Z5SXBFQsTJNe/DBYEwTIJ7VSuSId0Ma46N0B?=
+ =?us-ascii?Q?Lsg1Rb5yD9wjfuSTgmilQWfiXtxlpMJqmagtXDBNCpeB1QuNf6yA3RSKglDg?=
+ =?us-ascii?Q?ymSD9e8Rx1GQQRguqbf7OH/GswnvyhSQKx/CwQVcWCGvz4ZQPISj5WK/j5RV?=
+ =?us-ascii?Q?KUVZD6veBJuyclgIL5onhET2YnsDFFA56Orzjg3Rbmv9uiWX/6G13cixclsO?=
+ =?us-ascii?Q?/JpbBRZ06VWn60ZsjnOODWYpb3v8BjJLYtYCAfMIu9AjOo62MJc0eSuaACSq?=
+ =?us-ascii?Q?cIXWoYbKyHMeCFsCcYh4A/ySO2Ivw8DA8nJKz2/6LfjUrCimcD3wfwjZdvAX?=
+ =?us-ascii?Q?QMXm6T1lLXqrN22bOon9JkfYUUZj8k0nC6m8GKesqabgwPPFqWr7hkurDtEP?=
+ =?us-ascii?Q?eh0BMjLPJXmh4dO6+2KH+CtAaXbBb/dHKMOBI4I5CSKomL5HdVAjIwDB/FfO?=
+ =?us-ascii?Q?GRXfZiiFWsy7quR37VAPzt4E4XMnclTz3bh3gaUz4dLZ+GlqAe3ZDzFB7dNY?=
+ =?us-ascii?Q?yHdJ4x7nQd7TYN7f7G1TvFrQa5xZy4mAc768aV0n3D1q4DmSfsxEocPO3m9X?=
+ =?us-ascii?Q?J9dJujxO03BganCMb0jqQCF2aRwGA3uEG1KscYqOcjoC+uzyo4lJO6QrFvCV?=
+ =?us-ascii?Q?JKqTMYw+bNcB7r1JiUQ7Y1wfl0RSgminohhc6fl3rUr0/IBHOGlqZD34g0uM?=
+ =?us-ascii?Q?zoWZPTI5lDcn+zhhziSkZv3tcGbTlcSknm4R6B2ZQAzFfGDC/4flV1OrlOra?=
+ =?us-ascii?Q?msVbZgwu6ZVTWZmeo7VGOi7d7w1j9nT0u0oMIWWhDAOP1gKINYkJgAgUrsHu?=
+ =?us-ascii?Q?iiPvtE+6DwB8NsMJb2OW/AJPk5oD84avzFouXR37e3r6Uh8R9iEUIxLgA2Le?=
+ =?us-ascii?Q?OoAecF+48TZ6HxanqGn4/cikelfEimu5z7bhlW2rzCQmLIBi7VcMUGzBg7sT?=
+ =?us-ascii?Q?6g2KzjzqqLggG1FiIYehYwpmHOroPAA7pfFkhod5o6XBZhrQvro8fjh7Qq34?=
+ =?us-ascii?Q?OcvkVYksOChxTipAxTapUak+nu3uRq5YuHYoBJY6EB2kkPXZg1wezrEIVIpw?=
+ =?us-ascii?Q?HmRoFuKJMTb6wZzyvdWUWmJ/rNDL2R+y5/3wH9VttrpIT3F4P/OSp2yP8fHk?=
+ =?us-ascii?Q?f0H3QWDpYPiT+p8ECfNTE0mLC73vj7kQRWLpMMCBAZUVl5/PXxVEc7KN/ivj?=
+ =?us-ascii?Q?4qt5x/yDLmEky2TpPf3/+NbX6M6pec5HRaXps8pgDX5YHm3jlvyynHXzwhlm?=
+ =?us-ascii?Q?9kRBQa6/PLBWvZr+LeyMqzxdbC3LStx21nEPEe0zuOTybVr6Hf/jqtuHOgXo?=
+ =?us-ascii?Q?dUP5Z53E+u7eiBOs+Cy2OtLz0Yc3q52S2eaC8NpagEFzQ/EoE4p7y1z8ircQ?=
+ =?us-ascii?Q?bA=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: df860a99-8845-45e7-f16d-08de29ff4e66
 X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Nov 2025 19:32:51.1742 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Nov 2025 19:42:44.3426 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: SgJXlc8H9vaAHSpGd0bqubjX+x0u0KVx+ojq6LEgVZAFRrgqrKK3BYvKagiJB4nqXYV49bPPjzpWBoZPFYAmig==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR11MB4867
+X-MS-Exchange-CrossTenant-UserPrincipalName: O/Lni1ty87XsdLfNSXB7Mu+vbmpV+fy/faxH1eVJqBQuA7fFP9N7rhg7356Kx6WuzL7xOYcIvYkdDIYGcw7mbA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR11MB6658
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -178,209 +176,221 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Nov 18, 2025 at 05:05:44PM +0800, Brian Nguyen wrote:
-> Allow for tlb_invalidation to configure when driver wants to flush the
-> Private Physical Cache (PPC) as a process of the tlb invalidation
-> process.
+On Tue, Nov 18, 2025 at 05:05:48PM +0800, Brian Nguyen wrote:
+> Page reclamation feature needs the PRL to be suballocated into a
+> GGTT-mapped BO. On allocation failure, fallback to default tlb
+> invalidation with full PPC flush.
 > 
-> Default behavior is still to always flush the PPC but driver now has the
-> option to disable it.
+> PRL's BO allocation is managed in separate pool to ensure 4K alignment
+> for proper GGTT address.
+> 
+> With BO, pass into TLB invalidation backend and modify fence to
+> accomadate accordingly.
 > 
 > Signed-off-by: Brian Nguyen <brian3.nguyen@intel.com>
+> Suggested-by: Matthew Brost <matthew.brost@intel.com>
 > ---
->  drivers/gpu/drm/xe/xe_guc_tlb_inval.c   | 11 +++++++----
->  drivers/gpu/drm/xe/xe_tlb_inval.c       | 21 ++++++++++++++++++---
->  drivers/gpu/drm/xe/xe_tlb_inval.h       |  5 +++--
->  drivers/gpu/drm/xe/xe_tlb_inval_job.c   |  2 +-
->  drivers/gpu/drm/xe/xe_tlb_inval_types.h |  5 ++++-
->  drivers/gpu/drm/xe/xe_vm.c              |  4 ++--
->  6 files changed, 35 insertions(+), 13 deletions(-)
+>  drivers/gpu/drm/xe/xe_device_types.h    |  7 ++++++
+>  drivers/gpu/drm/xe/xe_page_reclaim.c    | 33 +++++++++++++++++++++++++
+>  drivers/gpu/drm/xe/xe_page_reclaim.h    |  4 +++
+>  drivers/gpu/drm/xe/xe_tile.c            |  5 ++++
+>  drivers/gpu/drm/xe/xe_tlb_inval.c       | 18 ++++++++++++--
+>  drivers/gpu/drm/xe/xe_tlb_inval_types.h |  5 ++++
+>  6 files changed, 70 insertions(+), 2 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/xe/xe_guc_tlb_inval.c b/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
-> index cd126c53faab..c05709a5bc98 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
-> @@ -34,9 +34,12 @@ static int send_tlb_inval(struct xe_guc *guc, const u32 *action, int len)
->  			      G2H_LEN_DW_TLB_INVALIDATE, 1);
->  }
->  
-> -#define MAKE_INVAL_OP(type)	((type << XE_GUC_TLB_INVAL_TYPE_SHIFT) | \
-> +#define MAKE_INVAL_OP_FLUSH(type, flush_cache)	((type << XE_GUC_TLB_INVAL_TYPE_SHIFT) | \
->  		XE_GUC_TLB_INVAL_MODE_HEAVY << XE_GUC_TLB_INVAL_MODE_SHIFT | \
-> -		XE_GUC_TLB_INVAL_FLUSH_CACHE)
-> +		(flush_cache ? \
-> +		XE_GUC_TLB_INVAL_FLUSH_CACHE : 0))
+> diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+> index 268c8e28601a..057df3f9dc1d 100644
+> --- a/drivers/gpu/drm/xe/xe_device_types.h
+> +++ b/drivers/gpu/drm/xe/xe_device_types.h
+> @@ -184,6 +184,13 @@ struct xe_tile {
+>  		 * Media GT shares a pool with its primary GT.
+>  		 */
+>  		struct xe_sa_manager *kernel_bb_pool;
 > +
-> +#define MAKE_INVAL_OP(type)	MAKE_INVAL_OP_FLUSH(type, true)
+> +		/**
+> +		 * @mem.reclaim_pool: Pool for PRLs allocated.
+> +		 *
+> +		 * Only main GT has page reclaim list allocations.
+> +		 */
+> +		struct xe_sa_manager *reclaim_pool;
+>  	} mem;
 >  
->  static int send_tlb_inval_all(struct xe_tlb_inval *tlb_inval, u32 seqno)
->  {
-> @@ -100,7 +103,7 @@ static int send_tlb_inval_ggtt(struct xe_tlb_inval *tlb_inval, u32 seqno)
->  #define MAX_RANGE_TLB_INVALIDATION_LENGTH (rounddown_pow_of_two(ULONG_MAX))
->  
->  static int send_tlb_inval_ppgtt(struct xe_tlb_inval *tlb_inval, u32 seqno,
-> -				u64 start, u64 end, u32 asid)
-> +				u64 start, u64 end, u32 asid, bool flush_cache)
+>  	/** @sriov: tile level virtualization data */
+> diff --git a/drivers/gpu/drm/xe/xe_page_reclaim.c b/drivers/gpu/drm/xe/xe_page_reclaim.c
+> index a0d15efff58c..801a7f1731c0 100644
+> --- a/drivers/gpu/drm/xe/xe_page_reclaim.c
+> +++ b/drivers/gpu/drm/xe/xe_page_reclaim.c
+> @@ -13,6 +13,39 @@
+>  #include "regs/xe_gt_regs.h"
+>  #include "xe_assert.h"
+>  #include "xe_macros.h"
+> +#include "xe_sa.h"
+> +#include "xe_tlb_inval_types.h"
+> +
+> +/**
+> + * xe_page_reclaim_create_prl_bo() - Back a PRL with a suballocated GGTT BO
+> + * @tlb_inval: TLB invalidation frontend associated with the request
+> + * @fence: Fence carrying the PRL metadata
+> + *
+> + * Suballocates a 4K BO out of the tile reclaim pool, copies the PRL CPU
+> + * copy into the BO and queues the buffer for release when @fence signals.
+> + *
+> + * Return: 0 on success or -ENOMEM if the suballocation fails.
+> + */
+> +int xe_page_reclaim_create_prl_bo(struct xe_tlb_inval *tlb_inval, struct xe_tlb_inval_fence *fence)
 
-Later in the series a drm_suballoc is passed in as an argument here.
-Isn't that enough to know if we need to flush the cache?
+As discussed here [1] let's try to avoid storing anything in related to
+PRL in "struct xe_tlb_inval_fence". So I think reclaim_entries + number
+entries should be argumen to this function and return "struct
+drm_subaloc*) or ERR_PTR here.
 
->  {
->  #define MAX_TLB_INVALIDATION_LEN	7
->  	struct xe_guc *guc = tlb_inval->private;
-> @@ -154,7 +157,7 @@ static int send_tlb_inval_ppgtt(struct xe_tlb_inval *tlb_inval, u32 seqno,
->  						    ilog2(SZ_2M) + 1)));
->  		xe_gt_assert(gt, IS_ALIGNED(start, length));
->  
-> -		action[len++] = MAKE_INVAL_OP(XE_GUC_TLB_INVAL_PAGE_SELECTIVE);
-> +		action[len++] = MAKE_INVAL_OP_FLUSH(XE_GUC_TLB_INVAL_PAGE_SELECTIVE, flush_cache);
->  		action[len++] = asid;
->  		action[len++] = lower_32_bits(start);
->  		action[len++] = upper_32_bits(start);
-> diff --git a/drivers/gpu/drm/xe/xe_tlb_inval.c b/drivers/gpu/drm/xe/xe_tlb_inval.c
-> index 50f05d6b5672..de275759743c 100644
-> --- a/drivers/gpu/drm/xe/xe_tlb_inval.c
-> +++ b/drivers/gpu/drm/xe/xe_tlb_inval.c
-> @@ -324,10 +324,10 @@ int xe_tlb_inval_ggtt(struct xe_tlb_inval *tlb_inval)
->   */
->  int xe_tlb_inval_range(struct xe_tlb_inval *tlb_inval,
->  		       struct xe_tlb_inval_fence *fence, u64 start, u64 end,
-> -		       u32 asid)
-> +		       u32 asid, bool flush_cache)
+[1] https://patchwork.freedesktop.org/patch/689042/?series=157698&rev=1#comment_1267062
 
-Then here, later in the series PRL is attached to the fence but can we
-change that to an argument here?
+> +{
+> +	struct xe_gt *gt = container_of(tlb_inval, struct xe_gt, tlb_inval);
+> +	struct xe_tile *tile = gt_to_tile(gt);
+> +
+> +	/* Maximum size of PRL is 1 4K-page */
+> +	fence->prl_sa = __xe_sa_bo_new(tile->mem.reclaim_pool,
+> +				       XE_PAGE_RECLAIM_LIST_MAX_SIZE, GFP_ATOMIC);
 
->  {
->  	return xe_tlb_inval_issue(tlb_inval, fence, tlb_inval->ops->ppgtt,
-> -				  start, end, asid);
-> +				  start, end, asid, flush_cache);
->  }
+Any reason we can't pass in the number of entries for better
+suballocation? Or does PRL in GuC interface need to be page aligned?
+
+> +	if (IS_ERR(fence->prl_sa))
+> +		return -ENOMEM;
+> +
+> +	memcpy(xe_sa_bo_cpu_addr(fence->prl_sa), fence->reclaim_entries,
+> +	       XE_PAGE_RECLAIM_LIST_MAX_SIZE);
+
+If we had the number of entries we could save a few instructions on the
+memory copy too.
+
+> +	xe_sa_bo_flush_write(fence->prl_sa);
+> +
+> +	/* Queue up sa_bo_free on fence signal */
+> +	xe_sa_bo_free(fence->prl_sa, &fence->base);
+> +
+> +	return 0;
+> +}
 >  
 >  /**
-> @@ -343,7 +343,7 @@ void xe_tlb_inval_vm(struct xe_tlb_inval *tlb_inval, struct xe_vm *vm)
->  	u64 range = 1ull << vm->xe->info.va_bits;
+>   * xe_page_reclaim_list_invalidate() - Mark a PRL as invalid
+> diff --git a/drivers/gpu/drm/xe/xe_page_reclaim.h b/drivers/gpu/drm/xe/xe_page_reclaim.h
+> index d066d7d97f79..f82b4d0865e0 100644
+> --- a/drivers/gpu/drm/xe/xe_page_reclaim.h
+> +++ b/drivers/gpu/drm/xe/xe_page_reclaim.h
+> @@ -15,6 +15,9 @@
+>  #define XE_PAGE_RECLAIM_MAX_ENTRIES	512
+>  #define XE_PAGE_RECLAIM_LIST_MAX_SIZE	SZ_4K
 >  
->  	xe_tlb_inval_fence_init(tlb_inval, &fence, true);
-> -	xe_tlb_inval_range(tlb_inval, &fence, 0, range, vm->usm.asid);
-> +	xe_tlb_inval_range(tlb_inval, &fence, 0, range, vm->usm.asid, true);
->  	xe_tlb_inval_fence_wait(&fence);
->  }
->  
-> @@ -420,6 +420,20 @@ static const struct dma_fence_ops inval_fence_ops = {
->  	.get_timeline_name = xe_inval_fence_get_timeline_name,
+> +struct xe_tlb_inval;
+> +struct xe_tlb_inval_fence;
+> +
+>  struct xe_guc_page_reclaim_entry {
+>  	u32 valid:1;
+>  	u32 reclamation_size:6;
+> @@ -32,6 +35,7 @@ struct xe_page_reclaim_list {
+>  #define XE_PAGE_RECLAIM_INVALID_LIST	-1
 >  };
 >  
-> +/**
-> + * xe_tlb_inval_fence_flush_cache - Control PPC flush at invalidation
-> + * @fence: TLB inval fence
-> + * @flush_cache: whether to perform PPC cache flush
-> + *
-> + * Helper function to modify the tlb_inval fence to control the PPC flush.
-> + * Other components shouldn't modify fence directly.
-> + */
-> +void xe_tlb_inval_fence_flush_cache(struct xe_tlb_inval_fence *fence,
-> +				    bool flush_cache)
-> +{
-> +	fence->flush_cache = flush_cache;
-> +}
+> +int xe_page_reclaim_create_prl_bo(struct xe_tlb_inval *tlb_inval, struct xe_tlb_inval_fence *fence);
+>  void xe_page_reclaim_list_invalidate(struct xe_page_reclaim_list *prl);
+>  int xe_page_reclaim_list_alloc_entries(struct xe_page_reclaim_list *prl);
+>  static inline void xe_page_reclaim_entries_get(struct xe_guc_page_reclaim_entry *entries)
+> diff --git a/drivers/gpu/drm/xe/xe_tile.c b/drivers/gpu/drm/xe/xe_tile.c
+> index 4f4f9a5c43af..63c060c2ea5c 100644
+> --- a/drivers/gpu/drm/xe/xe_tile.c
+> +++ b/drivers/gpu/drm/xe/xe_tile.c
+> @@ -209,6 +209,11 @@ int xe_tile_init(struct xe_tile *tile)
+>  	if (IS_ERR(tile->mem.kernel_bb_pool))
+>  		return PTR_ERR(tile->mem.kernel_bb_pool);
+>  
+> +	/* Optimistically anticipate at most 256 TLB fences with PRL */
+> +	tile->mem.reclaim_pool = xe_sa_bo_manager_init(tile, SZ_1M, XE_PAGE_RECLAIM_LIST_MAX_SIZE);
+> +	if (IS_ERR(tile->mem.reclaim_pool))
+> +		return PTR_ERR(tile->mem.reclaim_pool);
 > +
+>  	return 0;
+>  }
+>  void xe_tile_migrate_wait(struct xe_tile *tile)
+> diff --git a/drivers/gpu/drm/xe/xe_tlb_inval.c b/drivers/gpu/drm/xe/xe_tlb_inval.c
+> index de275759743c..67a047521165 100644
+> --- a/drivers/gpu/drm/xe/xe_tlb_inval.c
+> +++ b/drivers/gpu/drm/xe/xe_tlb_inval.c
+> @@ -15,6 +15,7 @@
+>  #include "xe_guc_ct.h"
+>  #include "xe_guc_tlb_inval.h"
+>  #include "xe_mmio.h"
+> +#include "xe_page_reclaim.h"
+>  #include "xe_pm.h"
+>  #include "xe_tlb_inval.h"
+>  #include "xe_trace.h"
+> @@ -326,8 +327,19 @@ int xe_tlb_inval_range(struct xe_tlb_inval *tlb_inval,
+>  		       struct xe_tlb_inval_fence *fence, u64 start, u64 end,
+>  		       u32 asid, bool flush_cache)
+>  {
+> -	return xe_tlb_inval_issue(tlb_inval, fence, tlb_inval->ops->ppgtt,
+> -				  start, end, asid, flush_cache);
+> +	int err;
+> +
+> +	if (fence->reclaim_entries) {
+> +		err = xe_page_reclaim_create_prl_bo(tlb_inval, fence);
+> +		if (err) {
+> +			flush_cache = true;
+> +			fence->prl_sa = NULL;
+> +		}
+> +	}
+
+Should we do the above step in run_job of the TLB invalidation job? I
+think that might be cleaner wrt to layering and make it clear only TLB
+invalidation jobs can use PRL. I don't see an easy way to implement
+non-job based TLB invalidations with a PRL as those are typically in the
+path of reclaim (no memory allocations).
+
+> +	err = xe_tlb_inval_issue(tlb_inval, fence, tlb_inval->ops->ppgtt,
+> +				 start, end, asid, flush_cache);
+> +
+> +	return err;
+>  }
+>  
 >  /**
->   * xe_tlb_inval_fence_init() - Initialize TLB invalidation fence
->   * @tlb_inval: TLB invalidation client
-> @@ -446,4 +460,5 @@ void xe_tlb_inval_fence_init(struct xe_tlb_inval *tlb_inval,
->  	else
+> @@ -461,4 +473,6 @@ void xe_tlb_inval_fence_init(struct xe_tlb_inval *tlb_inval,
 >  		dma_fence_get(&fence->base);
 >  	fence->tlb_inval = tlb_inval;
-> +	fence->flush_cache = true;
+>  	fence->flush_cache = true;
+> +	fence->reclaim_entries = NULL;
+> +	fence->prl_sa = NULL;
+>  }
+> diff --git a/drivers/gpu/drm/xe/xe_tlb_inval_types.h b/drivers/gpu/drm/xe/xe_tlb_inval_types.h
+> index c3c3943fb07e..7cf741e6a0c7 100644
+> --- a/drivers/gpu/drm/xe/xe_tlb_inval_types.h
+> +++ b/drivers/gpu/drm/xe/xe_tlb_inval_types.h
+> @@ -9,6 +9,7 @@
+>  #include <linux/workqueue.h>
+>  #include <linux/dma-fence.h>
+>  
+> +struct xe_guc_page_reclaim_entry;
+>  struct xe_tlb_inval;
+>  
+>  /** struct xe_tlb_inval_ops - TLB invalidation ops (backend) */
+> @@ -129,6 +130,10 @@ struct xe_tlb_inval_fence {
+>  	ktime_t inval_time;
+>  	/** @flush_cache: bool for PPC flush, default is true */
+>  	bool flush_cache;
+> +	/** @reclaim_entries: list of pages to reclaim */
+> +	struct xe_guc_page_reclaim_entry *reclaim_entries;
+> +	/** @prl_sa: BO allocation for page reclaim list */
+> +	struct drm_suballoc *prl_sa;
 
-I don't think we want PRL (later in the series) or flush_cache stored in
-the fence (i.e., don't modify the fence structure in this series) rather
-store the PRL in the job and pass into xe_tlb_inval_range as argument,
-NULL implictly implies flush the cache.
+Again, let's try to hard move all of these things out the fence (store
+them in the job if needed).
 
 Matt
 
->  }
-> diff --git a/drivers/gpu/drm/xe/xe_tlb_inval.h b/drivers/gpu/drm/xe/xe_tlb_inval.h
-> index 9dbddc310eb9..b84ce3e6f294 100644
-> --- a/drivers/gpu/drm/xe/xe_tlb_inval.h
-> +++ b/drivers/gpu/drm/xe/xe_tlb_inval.h
-> @@ -24,8 +24,9 @@ int xe_tlb_inval_ggtt(struct xe_tlb_inval *tlb_inval);
->  void xe_tlb_inval_vm(struct xe_tlb_inval *tlb_inval, struct xe_vm *vm);
->  int xe_tlb_inval_range(struct xe_tlb_inval *tlb_inval,
->  		       struct xe_tlb_inval_fence *fence,
-> -		       u64 start, u64 end, u32 asid);
-> -
-> +		       u64 start, u64 end, u32 asid, bool flush_cache);
-> +void xe_tlb_inval_fence_flush_cache(struct xe_tlb_inval_fence *fence,
-> +				    bool flush_cache);
->  void xe_tlb_inval_fence_init(struct xe_tlb_inval *tlb_inval,
->  			     struct xe_tlb_inval_fence *fence,
->  			     bool stack);
-> diff --git a/drivers/gpu/drm/xe/xe_tlb_inval_job.c b/drivers/gpu/drm/xe/xe_tlb_inval_job.c
-> index 1ae0dec2cf31..6248f90323a9 100644
-> --- a/drivers/gpu/drm/xe/xe_tlb_inval_job.c
-> +++ b/drivers/gpu/drm/xe/xe_tlb_inval_job.c
-> @@ -49,7 +49,7 @@ static struct dma_fence *xe_tlb_inval_job_run(struct xe_dep_job *dep_job)
->  		container_of(job->fence, typeof(*ifence), base);
->  
->  	xe_tlb_inval_range(job->tlb_inval, ifence, job->start,
-> -			   job->end, job->vm->usm.asid);
-> +			   job->end, job->vm->usm.asid, ifence->flush_cache);
->  
->  	return job->fence;
->  }
-> diff --git a/drivers/gpu/drm/xe/xe_tlb_inval_types.h b/drivers/gpu/drm/xe/xe_tlb_inval_types.h
-> index 7a6967ce3b76..c3c3943fb07e 100644
-> --- a/drivers/gpu/drm/xe/xe_tlb_inval_types.h
-> +++ b/drivers/gpu/drm/xe/xe_tlb_inval_types.h
-> @@ -40,12 +40,13 @@ struct xe_tlb_inval_ops {
->  	 * @start: Start address
->  	 * @end: End address
->  	 * @asid: Address space ID
-> +	 * @flush_cache: PPC flush control
->  	 *
->  	 * Return 0 on success, -ECANCELED if backend is mid-reset, error on
->  	 * failure
->  	 */
->  	int (*ppgtt)(struct xe_tlb_inval *tlb_inval, u32 seqno, u64 start,
-> -		     u64 end, u32 asid);
-> +		     u64 end, u32 asid, bool flush_cache);
->  
->  	/**
->  	 * @initialized: Backend is initialized
-> @@ -126,6 +127,8 @@ struct xe_tlb_inval_fence {
->  	int seqno;
->  	/** @inval_time: time of TLB invalidation */
->  	ktime_t inval_time;
-> +	/** @flush_cache: bool for PPC flush, default is true */
-> +	bool flush_cache;
 >  };
 >  
 >  #endif
-> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-> index 7cac646bdf1c..5fb5226574c5 100644
-> --- a/drivers/gpu/drm/xe/xe_vm.c
-> +++ b/drivers/gpu/drm/xe/xe_vm.c
-> @@ -3907,7 +3907,7 @@ int xe_vm_range_tilemask_tlb_inval(struct xe_vm *vm, u64 start,
->  
->  		err = xe_tlb_inval_range(&tile->primary_gt->tlb_inval,
->  					 &fence[fence_id], start, end,
-> -					 vm->usm.asid);
-> +					 vm->usm.asid, true);
->  		if (err)
->  			goto wait;
->  		++fence_id;
-> @@ -3920,7 +3920,7 @@ int xe_vm_range_tilemask_tlb_inval(struct xe_vm *vm, u64 start,
->  
->  		err = xe_tlb_inval_range(&tile->media_gt->tlb_inval,
->  					 &fence[fence_id], start, end,
-> -					 vm->usm.asid);
-> +					 vm->usm.asid, true);
->  		if (err)
->  			goto wait;
->  		++fence_id;
 > -- 
 > 2.51.2
 > 
