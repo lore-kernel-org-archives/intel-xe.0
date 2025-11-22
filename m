@@ -4,168 +4,170 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 17D9CCFC518
-	for <intel-xe@archiver.kernel.org>; Sat, 22 Nov 2025 01:46:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5CFF1CFC518
+	for <intel-xe@archiver.kernel.org>; Sat, 22 Nov 2025 01:53:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B2BF810E16B;
-	Sat, 22 Nov 2025 01:46:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0981610E043;
+	Sat, 22 Nov 2025 01:53:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Hz5O/dSi";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OiPAQtbg";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 21DBB10E156;
- Sat, 22 Nov 2025 01:46:21 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2535210E043
+ for <intel-xe@lists.freedesktop.org>; Sat, 22 Nov 2025 01:53:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1763775981; x=1795311981;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=4fIVecUjlO9UzecZnOa2cE95DW/ZWynXPBYv8oY4dfM=;
- b=Hz5O/dSifClnfJuzhmiD/QlOQjg9RXDGxxrZ+l/ZPlf6ZWj5LjhhKjom
- OdkBoQJ24Rs/oXlXOrVTyO9uqLgiWbf1WfxILB+XZ7UDaYyBWsnI8icdr
- cxBOPwq3CyGbgEBIsyQHNg1i90CMF0OXZNdTaFJ61eccZRHec/2ytBypT
- Q0FQp51PyyiAT3shcJJptJopLkyyeWAqjqZXyXAsnFtXmKi9BH0ayrCI0
- eIhWls5yvAiqhKkRI8AG5xisqB+4DLe56m4fqtQ7pgc5Jqh+dKNAJ1hoH
- PmPqXAoHvDVYcPydoS4V01imC29oSunqTcSrA89pXeGFoFBRqylvpkFwp g==;
-X-CSE-ConnectionGUID: an4BETWNQqGnU3l2Zljr7w==
-X-CSE-MsgGUID: GOhwxqkEQ0O/iW2QH3o/vg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11620"; a="91354792"
-X-IronPort-AV: E=Sophos;i="6.20,217,1758610800"; d="scan'208";a="91354792"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Nov 2025 17:46:16 -0800
-X-CSE-ConnectionGUID: zEJQkr36QkOpiiLQmkZMqQ==
-X-CSE-MsgGUID: ovemfV2WTzOUahM9IRidaA==
+ t=1763776385; x=1795312385;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=OurgRgrRUHN8MCEh5FTNXEA5p4iLsbbwiXVcVU4fBHc=;
+ b=OiPAQtbgW01rfku1q259tuwXE2/nbuOvHJXC9SaTuOa1pK5E9MaZhw3G
+ AG9FoVIz444tTQ+yLBrrjTGMNxc8I71sHN6rUHio7t2DPV2aoLQ4eaVZC
+ o27d2P+w2jiGyhcqDDh6G8yyv8Wtvv5vbfcn3aGLzXYntipr3mTRVE+P4
+ fByiOJior+qFfWu3tFo6f/FhEIqKy7mO8BF1ViiSOYjN4tCy1RiINhSJY
+ s+yYvtDlTyKIEUbZB6nhKErS7tolmjOsi8d+hFwS9tG9bQecEJzYa3h9i
+ 3NQvpSJpkcOUhTHERSZH1dhbd0ce4IFtDIanfJlysM6UKlRQSkq1y4l0r Q==;
+X-CSE-ConnectionGUID: MI/CmtqVS0iusbppUdZx7A==
+X-CSE-MsgGUID: FEMNv09tTT6j/DDRFIsqag==
+X-IronPort-AV: E=McAfee;i="6800,10657,11620"; a="69730907"
+X-IronPort-AV: E=Sophos;i="6.20,217,1758610800"; d="scan'208";a="69730907"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Nov 2025 17:53:04 -0800
+X-CSE-ConnectionGUID: K0vc/7LmTlGBKLyZ1GZvew==
+X-CSE-MsgGUID: L8Sa8LaiSe2g3cVfgtqyxw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,217,1758610800"; d="scan'208";a="196309494"
-Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
- by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Nov 2025 17:46:17 -0800
-Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
- fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.20,217,1758610800"; d="scan'208";a="191717837"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by fmviesa006.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Nov 2025 17:53:04 -0800
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Fri, 21 Nov 2025 17:46:15 -0800
-Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
- FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ 15.2.2562.27; Fri, 21 Nov 2025 17:53:03 -0800
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27 via Frontend Transport; Fri, 21 Nov 2025 17:46:15 -0800
-Received: from CH4PR04CU002.outbound.protection.outlook.com (40.107.201.42) by
- edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
+ 15.2.2562.27 via Frontend Transport; Fri, 21 Nov 2025 17:53:03 -0800
+Received: from PH0PR06CU001.outbound.protection.outlook.com (40.107.208.64) by
+ edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Fri, 21 Nov 2025 17:46:15 -0800
+ 15.2.2562.27; Fri, 21 Nov 2025 17:53:03 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=GBnGH7H4tksdIJQZevdlMsyZ68rw58ltmBT/52wYzYTmADkOOOFQoGiXFhEODiGfcfTE7CHI+SX4VafnwmGfpQFoUV3MBWSYKWufSv/Hp1yE05HfFPOhY5/vGga+d0bZKEKMkhQUc6W+nH4TCe5RO2fYJCn7smwUcAfYVoscbg0Jl1VFvBP7mO1OMxdW1wAknobZxD275U1VgjhHrxVNzoJZy1F9hhl/TC/Ip47VXXcsFiKc+LEju7lnoqVOy7yUIzqdxB/0bDVBoTnz4iuvWFOC+PypBHckVk0gwpk0M3eDnBKy8i7stLWiDgqGRJwQ5LXDYPQFcS40Euit+3pc2A==
+ b=mxlX0bVTubTgPo3o+YWZFf4nfy3lgxRd3lbTzwMMflSgXSW1SxNq+vatvNKIUbXxghKxgJytaufMnaq3H5x8g0wssuC8BWHhsZQTPAGSZBBgfXXfOVJ9TTXFeNn4Rq06sMJ3cCQT2aG6c9BIgmyHzW2NU9LuOvf3PddiRWH00mzwn0xOz9y2w97Y7Zzm72xDEsTsxfh2ob+f3xyq0PIkgf+3p4ashHRyNZfJQAsy0HHGb9UxJ+ca4nudqS+FDDT2o32gnu3Ppmc1gzpXcoLhk+XBjeh5Ev8G+FcvXowiPsaW1IfHgK1QO6cv5jfTNTLoo8FC8/581dQtPjs1HxJe0g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=qcB+HsBmdYnSU0i5IjlPqqCfqJlr/uM/v2Ln3VaNjRU=;
- b=AwwiumUopN0hrpUYQuTTJ6QFJ/c157WuPF6lRrvFYFbESBA827j12RAlE/IxLMNMbFwa8MVA/O1BuZs8FV9WHvvbMvUNWWP6mnoWtWSSHGU+0EIaqmA1DnCp0rAxN2mJD2b+cMSwtUpbqSUbTghn9Hd6R+Jnu/HvlbgRjIngMr2ZUquqJLjSEt97Z0FqYZznlp2qHXRbz/MNaMw1ZhekMV92fgz4CSJfUZPwo9CE6DtEyUIjYRwcvXu8/+OH3p/u8lkbDmrv5Qa9gugpK3zbP2jJD4dvUI+cg/Qnt1Mwks9DWyzPgb5REEcKffy6cK0MBTk9OKw+PrOITXd2baGduA==
+ bh=+7Oc/16xTxevMgnpkr3QVkqF0zN/YmWhBS7bmjcx16w=;
+ b=ccy+DFkCstxONdPoZOX4uRaysbKVv5Y3kaUTrdphzLPDALngKpiM46ouV7x61fAutCPl6IYt57QH4YQGFwk2Fp/DFXm5IsRJsu++2WAuMjaj9lVSlLXo0p5onOS8TeXga1SOWTs1Eb9JqdMfbU2CSIMp/8plfceS3uDQP3EoZeebkA9rPkdy8gzqAlK1KKZS4pyZhy/U6PRR342UcYqOyqcpuQsHzTf8Id2D3jWXTRhYcKyNg+ZKoz5cecr7RnhuQmNU8tJRQlUofXaUxuZ7E+g+xK71aLCOfibzEiABxIIkZifi7M84IuBCh/CoA/nEalKCf4Ux1+JyiHnlWHQ/nw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
- by BL1PR11MB6001.namprd11.prod.outlook.com (2603:10b6:208:385::12)
- with Microsoft SMTP Server (version=TLS1_2,
+Received: from SA1PR11MB8839.namprd11.prod.outlook.com (2603:10b6:806:467::17)
+ by DS0PR11MB7788.namprd11.prod.outlook.com (2603:10b6:8:f5::11) with
+ Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9343.10; Sat, 22 Nov
- 2025 01:46:09 +0000
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::7141:316f:77a0:9c44]) by CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::7141:316f:77a0:9c44%6]) with mapi id 15.20.9343.011; Sat, 22 Nov 2025
- 01:46:08 +0000
-Date: Fri, 21 Nov 2025 19:46:05 -0600
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-CC: <intel-xe@lists.freedesktop.org>, <intel-gfx@lists.freedesktop.org>
-Subject: Re: [PATCH] drm/i915/display: Stop touching vga on post enable
-Message-ID: <udz3nrp4b4fe3jnpoc2fhg7sy3oh5thtzany25yc5zjcva33ey@vh4hh2sdrivy>
-References: <20251119-ioport-v1-1-ec43f1e12c49@intel.com>
- <aR4zAKLW0CZttPfi@intel.com>
- <p5nf5oxagtpoil4iv4xdwria22v5kg5lwkuy3hhzpvm5xd6pdc@ggzlv6v2kyvi>
- <aSD0DpGKeOCF1LUZ@intel.com>
-Content-Type: text/plain; charset="iso-8859-1"; format=flowed
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <aSD0DpGKeOCF1LUZ@intel.com>
-X-ClientProxiedBy: BYAPR06CA0031.namprd06.prod.outlook.com
- (2603:10b6:a03:d4::44) To CY5PR11MB6139.namprd11.prod.outlook.com
- (2603:10b6:930:29::17)
+ 2025 01:53:01 +0000
+Received: from SA1PR11MB8839.namprd11.prod.outlook.com
+ ([fe80::ce6c:3c7f:92ef:1394]) by SA1PR11MB8839.namprd11.prod.outlook.com
+ ([fe80::ce6c:3c7f:92ef:1394%5]) with mapi id 15.20.9343.011; Sat, 22 Nov 2025
+ 01:53:01 +0000
+From: "Nguyen, Brian3" <brian3.nguyen@intel.com>
+To: "Lin, Shuicheng" <shuicheng.lin@intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+CC: "Upadhyay, Tejas" <tejas.upadhyay@intel.com>, "Brost, Matthew"
+ <matthew.brost@intel.com>, "Summers, Stuart" <stuart.summers@intel.com>
+Subject: RE: [PATCH 02/11] drm/xe: Reset tlb fence timeout on invalid seqno
+ received
+Thread-Topic: [PATCH 02/11] drm/xe: Reset tlb fence timeout on invalid seqno
+ received
+Thread-Index: AQHcWGqSOYUmEJIdUU6XDqgaSmxvObT9ZlcAgABVxGA=
+Date: Sat, 22 Nov 2025 01:53:01 +0000
+Message-ID: <SA1PR11MB883996BF7F0D1553CC028170AAD2A@SA1PR11MB8839.namprd11.prod.outlook.com>
+References: <20251118090552.246243-1-brian3.nguyen@intel.com>
+ <20251118090552.246243-3-brian3.nguyen@intel.com>
+ <DM4PR11MB545681A0612A0F22E4EFF9D5EAD5A@DM4PR11MB5456.namprd11.prod.outlook.com>
+In-Reply-To: <DM4PR11MB545681A0612A0F22E4EFF9D5EAD5A@DM4PR11MB5456.namprd11.prod.outlook.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SA1PR11MB8839:EE_|DS0PR11MB7788:EE_
+x-ms-office365-filtering-correlation-id: 29887f4a-75a5-4c3a-bb41-08de2969de9a
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0; ARA:13230040|376014|366016|1800799024|38070700021;
+x-microsoft-antispam-message-info: =?us-ascii?Q?E5CzLK7IihRVA+Vr7gqV9U3l4lNFSCBciCbCktHPXapLnSRa0OWVhWXBf4rT?=
+ =?us-ascii?Q?SJNz+QvgnJWUtLFwb7ojOduipnVEH2PpTCyOvhPVOdVv2+qhPcV6InBLatzI?=
+ =?us-ascii?Q?p4FIzXJxdTT2SzcwAUagPXkmEaVhGZf9mIP9HI2JUCclByzbmFRjCuBu8iBO?=
+ =?us-ascii?Q?9LBBQtkv1q3egpStpbGt8Tp4opsGIjSVqVxLCU7Otdx6pRoDqjUpUdio9b0a?=
+ =?us-ascii?Q?CxS1PLb8UcPaRrRAQybFiWfXuEFtHXEPv2dnI7QVNWzDgQZYnxg9AHGef9SW?=
+ =?us-ascii?Q?RVOZqhgKzjAGUPrznnzo5ecILlhlPWXJ3NSckuf4m1uAfLLdAMBPo2BfpMnD?=
+ =?us-ascii?Q?47zltK2cKxF11IFX1UmHoppXfaJysxi9vKBaW9YS0N6Wnt7hEmGlYS4qjS9h?=
+ =?us-ascii?Q?3FrLShGq8ghd/NR8yhLkJUnKjPlUiKyzW1W8cHo+4zMIYKGqEXgb8aO8m6pG?=
+ =?us-ascii?Q?ysXhdK2HGT5FOR3lIXnmWIQZHG3je9XAQpGD10cN+ykTcpcXOPQUSUwrKuKu?=
+ =?us-ascii?Q?+XOltzdrcvQr9bLiZd64Sm48g3H8DiIgfgfYbn7muNraAT1ux3Ag5BkZbWpA?=
+ =?us-ascii?Q?5XVHVV1JtQq1wa/MV7kRHCkwxl7W+HRsXpIRSly/PSF4t5HNgW6FiU+ga73z?=
+ =?us-ascii?Q?9I2wEFDhya20Cj3+bZ3xLd2J/WPUByKars0u8Q1FEECrUSW1UCivhS5fxL5C?=
+ =?us-ascii?Q?rjYam75BN/gMVvWxYWvCQFmlTvXjHEyTSf8pPFnM9WrBTm1/LFBuynBALZLm?=
+ =?us-ascii?Q?3fvm/U1gDQ9buqqJfmWG7ku5OCYd+UGByIv+uw81W7Qx0iI/giYxKlKP4Ccx?=
+ =?us-ascii?Q?+4pX9nURFE7QOlX542HmRFTVz0rFYQqOwHgMW62BLdBjN8dOF8TFU66SMHP6?=
+ =?us-ascii?Q?PvtzO5drx6XiHhg5tm3ZOKJKC9U4uZSx3A3/5ztoVy0kW159R8gi/+UvvRco?=
+ =?us-ascii?Q?8fI9Fc1puRih0Nna+tRqdMHN9qf74KswR+9TDNivo1SJ0JbvHZRJ/JTacMiB?=
+ =?us-ascii?Q?3trdrHK5ZztFug0JDqGF426NYLb0r7ZfD+PwuJ3GhbQV6AlWYryupnuT6Yhu?=
+ =?us-ascii?Q?OZgVTvjxjAi7Zkh8YZVxXMrPIo0SRDMO0IS9px4HLA1JYQsvon+aaYtNNgsc?=
+ =?us-ascii?Q?YSUyH1XcYfY80uYM8/az/h4NiHangFdpwXzieuYE0uGGrdsAJhn4Z9pnYl7Q?=
+ =?us-ascii?Q?FuNIZqhTnxKPd5MxLLcSqE23PYdOvLJ0rKiEWLGa0Yoo29TekBkmleUBQzrK?=
+ =?us-ascii?Q?3NJiTuFsNFV5f/BLgCoojekqu2/D00BfVG02/AZckqWoQ8wEXyKvFI/GIkgQ?=
+ =?us-ascii?Q?seryXKKeTtMreSpwVIsdj5DspXCCft/0hf4gYJdbdtzPk7xtAaI1aYbc2e15?=
+ =?us-ascii?Q?b8d094j9NVqvWvhaMTjOsIrQJcc5rGfazXJ5nmDMaPcU42wFDKxa6LE/BeTp?=
+ =?us-ascii?Q?YiUtXfc1I5vm0mEQD9Vtmrued3g9ZY4JMNGdL6LiGyLVa1MtD7BKnQ=3D=3D?=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SA1PR11MB8839.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(366016)(1800799024)(38070700021); DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?WnbrqHV2n6fTTHJmjurhgqg1QRTeNN1+7OoSaSAT/KqYwcSYVy1MbFVQ/78+?=
+ =?us-ascii?Q?mdGCDSE/8Q1y4lzCKGyaZjGNwOb4QgRE43QUWyovt57k9A/fUy1Kd6vowwVF?=
+ =?us-ascii?Q?EHeI+NUoUzOqImkQvx5BJwudchbq7DG9qr4rL0XfldmcDfW3znH4lhOvGsDn?=
+ =?us-ascii?Q?Bw2z7AjfrAcs5v89Yrir/aBxCjBebAjnCBhC9PCF5J8suD0MHMrbi0Mv1KKk?=
+ =?us-ascii?Q?0z4yIoydsrk4FCJUFf5rZWGx/wKJ6IbA7RG3q7lDY1i/TdQYTBzcUhOi8ZA5?=
+ =?us-ascii?Q?RUfSE9kFPDRx605dZz2UIYEEsdWL65hr7b54jpPR8e5rVhOihMkTDFFzgWEx?=
+ =?us-ascii?Q?awkQo6mAB7Ixy3PSVLH3XnqRQwwzG6grgKHzzkbbaxac4kx2CdhvK5LpdUIf?=
+ =?us-ascii?Q?5ygWksmXmkdy/M1c4fUC5kwmQTKEqOHtgdoHePoL6LS3ExYbcT/+PL7+lybz?=
+ =?us-ascii?Q?YJjAu6V88wmnJtfHqBM67KDm3r65xZ7p3iff94CF9ZNDDpAwXVOXhT+D5lEn?=
+ =?us-ascii?Q?1hYk1Q5YP6iEeOEq8oL4SKbH9gqMzr4VV78f9eD/LyTbajcDrUxqmqS3rhW/?=
+ =?us-ascii?Q?ThbeXeqF+VjGe2fZKdT23ksOQEORh2g4S8e9gMns5Rte70YHWjtVkNL1OxOi?=
+ =?us-ascii?Q?XBUZWvZyVSrbI6e1kfarS1tC1bav1BJhNFKIIuE+tGaJU70+kGNirOa79RqJ?=
+ =?us-ascii?Q?I3TvewfuCABME8QBqdVMxuwWLGfS7YaCHkaiyc1E+g9sABbaIwclnwzLmrD+?=
+ =?us-ascii?Q?raPYofGOaUSiAE279wHjUGJULJmK/N4jDKLN3kYrxy73PH/O9EAMTpiH4Oi1?=
+ =?us-ascii?Q?mdQZXG4Qi6AbagOhLaMqNCnERlgU734XrcRau7GEVDlfnOvtCE608aHDZLVo?=
+ =?us-ascii?Q?moqg9eaewb3Sr6ZN38YrYfcNny4tB/S2gxfIYFdR9WHQJdVl7LCoM0BoEv6p?=
+ =?us-ascii?Q?BebXrUNTjqiILWYSKrCv7eh2t2SHa2z5shCouVfIfot6nZzaN74BsxLjhZ3c?=
+ =?us-ascii?Q?HY7Sk+5BZpTMpj2Sj/7k7rRtM4nklqtPd0Np1WJ9nFMR2vShjWawnGLQRw9d?=
+ =?us-ascii?Q?uadQ2yMM25OTu+B+f06ETEBYgeN/qGSRRTVIa/d1BMQvat9pcsjgiFWgPvCz?=
+ =?us-ascii?Q?5mLEsmfGtRCDbYCP9rtL6uHXAZr+l6wMVjLfMo+vrSR9D7hPGl+r7QyY6HYk?=
+ =?us-ascii?Q?/vkrf1Irz368RUQ8fPw+vna304yA/8vCGtasAlPYrd1Tqk0PZdyUqPHG2C8f?=
+ =?us-ascii?Q?ckrAwlbQuOleolb8AW7mwOG6NwaVHCyBIfea3E9ABnqmMPtsAuVp7r7dRCsu?=
+ =?us-ascii?Q?85EIlNAE1bRMlxNkpFqYUSV8uZPaxzCRSxZugTrZ+u8U+3++WnBu1WZzwh6k?=
+ =?us-ascii?Q?dq6oAXU33SdQbE7GIlDdPdsvC/bcyw5UQQ+AAeyxnCoWkHRw4YvpPX7AcqmN?=
+ =?us-ascii?Q?zAfh++E3tlQeolinM8jem5Gf5qh/wVVUnljLbVIEa1IXi+ASO4LqJz6Skduo?=
+ =?us-ascii?Q?nJoEex+4L6MAElSWb0XrPJ57Pbai4kPYXDCkI51/dKhRf3wsCuuIYdsIjOkW?=
+ =?us-ascii?Q?rxwNUm8aS7/Rnrxmzp88uZJRUGGyg9dqa3VoPFvm?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|BL1PR11MB6001:EE_
-X-MS-Office365-Filtering-Correlation-Id: bffb6e2f-c164-47c3-ef9a-08de2968e7f4
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
-X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?WFwdNvGlrZ3moeOKVGM5IMtN9q3WttHZkueA65agwb8EIHreMu9Vh1JDUu?=
- =?iso-8859-1?Q?rwlQp6LfdT+qbdUnSaCtB/QFtqFdwkJiIwfPHt0ERPTbDXKxwHMbkteG17?=
- =?iso-8859-1?Q?YHvyB/u/8dOQWk4moIG3pgS1lTwKEDtHPli6CgPJR2y1qI8HdtCBrc3Et1?=
- =?iso-8859-1?Q?Y8NRlGvW5XCY2gEbCr2UJiC+bX8N2XpJZvHyRl3mnhjj0+u0Svr117L75e?=
- =?iso-8859-1?Q?aZjY7OUeAH1x9AIaKMIWnjitwvF+Vp0JGo4f8oXvflQjH78o3at32XLWe+?=
- =?iso-8859-1?Q?fnaoPqlRKctjzfqFDsBUHTgylxm6tT6qWnfT7VPQY77aGH3sG0ZJUAMmU1?=
- =?iso-8859-1?Q?Z9YGlxmvsEYJ/ANt0flU1OToSlsNb8net04pwG92oh30RFjAQLEJtG2oJU?=
- =?iso-8859-1?Q?X3DAPcsDioqK3hoAXbgkxzQJeAjsXOQ5Ig+yiEGkRv1mtIgjk8YK1NSE1g?=
- =?iso-8859-1?Q?jBYrYt6eLAKbpZ1g5HLkaYUPJrlzNcZJArW+M73DDJYpS6HRXL6PzQOclj?=
- =?iso-8859-1?Q?d4fA1Y+BY7rwO/OV5lVRXRywajm/0zHhO1L33iKIzC9ZRyNI/PCIbqONik?=
- =?iso-8859-1?Q?Jd0xbH6xRm/UQ5HqSjzRkh3I/SC4i0I0hdzq4LuGG0aPsAHpdC93tGGZr0?=
- =?iso-8859-1?Q?tiQODtw8KUST0yUhhy0TTD7uYs4U//4X4RKZ8Q8wgJnu1qTt3cUGv2CJgL?=
- =?iso-8859-1?Q?gkKE7D5ik7O9iV3D/RGwtqVLG439XveySCCcETGJtnrjMrIUnR4AOsxm5d?=
- =?iso-8859-1?Q?+geP505W3vGSUakIWcMr7anqOkiHkycjkG6cs+0i0R91tNAiuzM2zr1bze?=
- =?iso-8859-1?Q?r59K6oGRCKxh9/TsSYk93raXYyW59A1E93GUAiv+p4OqdC9JEqM8TtLFXy?=
- =?iso-8859-1?Q?2oq+aVXHKGUg2rfD1L7PhwsBPyzX+yq4jM9XUY7fK6LqjWfKgCM9i9v0oR?=
- =?iso-8859-1?Q?Mcdi/sc61UFofI4ui7j43t++hR1EwwByqRWeZoQrqTNzpjxqErzUb4M5sH?=
- =?iso-8859-1?Q?63WWqeMDKQgkFJN4TDxEuhX5dqw4kUIapPeqynatG1PnSuixs7as6qqV/v?=
- =?iso-8859-1?Q?OABO6hQTjylLocjNhgZQBbr6EIiV30ArXKz+4u2CXdGRQf+RBcMEq2tb3w?=
- =?iso-8859-1?Q?/Xc21Pyv+tS5SeAviF4cBVwRwm4g7pE8xdfYFrBVVKt5DscDBsR+YfC+lZ?=
- =?iso-8859-1?Q?8d6H2wj5/f0hQCfMO0KBKyxsqZ3Ao9ff8t17ysuIJxJ20++wjOB6Hr5Smu?=
- =?iso-8859-1?Q?WKDd4rzspnBahwFxpbo2bsfVgLqfS2nYtH3e8vP8TDg+GB4miHyZO8z9z/?=
- =?iso-8859-1?Q?NSAlWU+sOQ3Ii6lnHmVwnNrRQY3gjYm6TTFwcuDL+XfY28Ix9uehb9j//A?=
- =?iso-8859-1?Q?e/Jwg6+TzS18VzHS1r9MpmAXUY3wZ7o0KEJSOIz9H5yBqiKRLVHyStHQxF?=
- =?iso-8859-1?Q?Wp8AhHjJ2tvxozplnH2Vo7ZxYgE4RLaGxkzsNuypcR8fKIo3PAMCe0OD1F?=
- =?iso-8859-1?Q?isVkuhD3qp3hbJdbiDKA4+?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?dzF7K2Fqt7YJfXAYjkmj56ZU/8a5k7SDhg2fZiw05sQi3dviBBWBfIQ6xv?=
- =?iso-8859-1?Q?USbuqRixex+m6wzqdpaulKzDOtX2UYCUwAGWH6fCe9jcJ0K7sePYUmBvP2?=
- =?iso-8859-1?Q?GmXx2OAh7/Ds60NicOaRNzrhNKmuGdr5HgPuYY4OP6GTErfzsJVowAeyCb?=
- =?iso-8859-1?Q?ik2XpjCfIxB/opmRIr+FWxOIEo0IRtOg4esPOMtEJ03CpoB1920FgMWSFA?=
- =?iso-8859-1?Q?C2ubxQ8d3004Wv5XxHa2cM4MOLIwvkO15s0IumTdinyex0npTRpaah5v5C?=
- =?iso-8859-1?Q?YGv6GRduYTFnaLG54NsSF3udvAhjxPjZ/+Sn87bJ6JeiIwgUP0s5Ms5D9t?=
- =?iso-8859-1?Q?W6dFOwc9O9OhzHWe9F8dEqSGSEw3hpYonqIXVfeQWiEYSbKeo8mkzwebxx?=
- =?iso-8859-1?Q?KWoTk2RiI11iCj9bnvkF9UNl7wyN/w3sG8srDnYccMQFIbOOVdvvkamflp?=
- =?iso-8859-1?Q?fT9Uq887KVv5wX2ms9mMQSs2mcyEmYYUma+wt9/uDx98x8Z0ZzbGuGyGyQ?=
- =?iso-8859-1?Q?PjMr6FfaYAwBcu2AQh1B6WCMOHIgcW66zF7kzaeMjg2V/27Wp5/V2vJNlh?=
- =?iso-8859-1?Q?PUqPD3wXR3T0kQQcE1j8BGBiewGnj3xulQykP+A1dvVYwTvf9eb75zvTjj?=
- =?iso-8859-1?Q?7ODOkfRr+0sDmcenAWbyKqg3mm1eUkLqf+wA+FlIudDMUmVBRTS3U0hIjF?=
- =?iso-8859-1?Q?o/PlxEcCpQ0puWUV1PFiRStRPMkMzVxvEno9VOeunmWhccCUJfhhw7RhMA?=
- =?iso-8859-1?Q?sdpdBY9qVsyUo7KlBf5HGIVKyjRZm+VT/jU12PWSCm0rzDl4WJpokxvQRP?=
- =?iso-8859-1?Q?QQWTO6oI9fycl0fb0vNL2AReMm6j3009PzTPCkQ3d4RKa34SMU5b2M0E75?=
- =?iso-8859-1?Q?n2hq3IT+SD9Ug/RDta1S4+EzYze95O/u93Oz6ViT6k31FiDYN/lc/VUeCs?=
- =?iso-8859-1?Q?5JXK8dFcbwtm5Yl470Kl1yW0ESmwful3M4hIVQEM84u3mnBzE8hFtAqg/H?=
- =?iso-8859-1?Q?5Vf3jfnHc7wfFi9BrTj9hFiBL3YrJqGqmuyM7m/1wcTgHQ6pWD/AgckRkW?=
- =?iso-8859-1?Q?aeNEsRhizC9ceSSs4XN/vXRcU/4NA7hhxxM2t7FzEMgNOtKNaFTBFEsY9Q?=
- =?iso-8859-1?Q?FkaUns7eIyLp/y+gekdj9909SkVcKlNj0EFov9Hzs0O4EkRyllptQfjqvs?=
- =?iso-8859-1?Q?aez7WwoSHOZm+envTt0t1Pg7ekiiZbYU9pVB6ro88w+IgarGnceKP/D2oO?=
- =?iso-8859-1?Q?MJDQ9d8T3GvLsDL4xSMzaR45WdCSZVxXEHJEUekLIs7iAvLN5T4ECvdfwc?=
- =?iso-8859-1?Q?4Y1zTSPYvxOf/sFw7mvkEnISphSFKYfys8lzz7xGZklqVyhJFgWk1IRSqq?=
- =?iso-8859-1?Q?Dk1ifLKZ4W7v8MMeRiECAOcSdKo7QNZf/0oGK8BtZfgbGIGs38bM+UFhwo?=
- =?iso-8859-1?Q?dfZ7zfjDkc6ZPxliq7BZazmmbM4B5nkLzlLUyV+81Tt2AIKMFHSVx2G5W6?=
- =?iso-8859-1?Q?oYKpg6IiOQw+ZfHJu8Zezg3ls7mY5JzhZoFMhMZ3uRtjWT0dpCJDKmtOiB?=
- =?iso-8859-1?Q?wzx6fQP7umMaTU+jPFOfuwvAB9nDNikTnptD4kd85dnrFs1LjN63iWyc0s?=
- =?iso-8859-1?Q?4+cIpSLl8lXDqAycZ1QIxni0AQEXKsdtNnz3ynJeiq4W+rw3gFBsCTSg?=
- =?iso-8859-1?Q?=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: bffb6e2f-c164-47c3-ef9a-08de2968e7f4
-X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Nov 2025 01:46:08.0613 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: L2EBpOby7lTWT5LGSnavAUJPVM5fjpl9SOx+bSyhiLLXr7Mvc4BrYrEQ5yZmV6pFgjalbf2/rHm3v5ecN92hmnbDCWdBiiypFdnTbeYxY7c=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR11MB6001
+X-MS-Exchange-CrossTenant-AuthSource: SA1PR11MB8839.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 29887f4a-75a5-4c3a-bb41-08de2969de9a
+X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Nov 2025 01:53:01.6123 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: NauO7osTIWR0JkYdtwlDgUOxMj2r6XqejCmWxn1qhZ/7KAZRTMAbeEsbD+XjfaULcDQpvaCjR+vm59EiIlHaFw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB7788
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -181,100 +183,125 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Sat, Nov 22, 2025 at 01:21:50AM +0200, Ville Syrjälä wrote:
->On Wed, Nov 19, 2025 at 10:28:20PM -0600, Lucas De Marchi wrote:
->> On Thu, Nov 20, 2025 at 02:41:22AM +0200, Ville Syrjälä wrote:
->> >On Wed, Nov 19, 2025 at 12:04:38PM -0800, Lucas De Marchi wrote:
->> >> Touching VGA_MIS_W goes back to commit f9dcb0dfee98 ("drm/i915: touch
->> >> VGA MSR after we enable the power well"). That case doesn't seem to be
->> >> reproduced anymore, even considering that the unclaimed accesses are now
->> >> printed with debug log level. Also note that the original issue was
->> >> reproduced with vgacon, but that is not used anymore on x86 when booted
->> >> with EFI.
->> >>
->> >> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
->> >> ---
->> >> WIP to drop the VGA accesses and allow xe driver to be used with
->> >> non-x86 platforms. There are multiple patches floating around, some
->> >> disabling code for non-x86, some disabling for !CONFIG_VGA_CONSOLE.
->> >>
->> >> For this v1, I think the entire workaround can be removed. Sending it
->> >> for CI while I look into the other cases.
->> >
->> >I think this would need to be tested on a machine that has a
->> >second VGA card in it to make the the iGPU doesn't end up eating
->> >the VGA memory accesses when they should be going to the other
->> >card.
->> >
->> >I was perusing the CPU/chipset docs for this a bit, in the hopes
->> >of finding some sane way to turn off VGA decoding for the iGPU.
->> >Alas no such luck. According to the docs the iGPU always has the
->> >highest decode priority, and the accesses won't get forwarded
->> >to PCIe/DMI/PCI if the iGPU grabs them.
->> >
->> >IIRC the docs say that the reset state for the VGA memory decode
->> >should be "off". But I don't think that's quite true given that
->> >we had to add this workaround.
->>
->> confused... What are you are saying seems to be something about
->> the vga accesses in intel_vga_disable().
->>
->> commit f9dcb0dfee98 ("drm/i915: touch VGA MSR after we enable the power well")
->> describes it as:
->>
->> 	- 1 igpu with eDP + HDMI
->> 	- after power well is enabled/disabled, drop the drm, and unbind
->> 	  vtcon (note it's not unbinding the module). Note that it's not
->> 	  about unbinding the module.
->>
->> And that was caused by our printk from inside the irq handler causing
->> things to be printed via vgacon and that generating an interrupt that
->> print something again, creating a loop. I'm not sure what platform that
->> was about back in 2013, but looking around at the code I suppose it was
->> Ironlake and in the irq handler calling intel_uncore_check_errors().
+On Friday, November 21, 2025 9:24 AM Lin, Shuicheng wrote:
+> On Tue, Nov 18, 2025 1:06 AM Brian3 Nguyen wrote:
+> > TLB_INVALIDATION_SEQNO_INVALID are now used to indicate in progress
+> > multi-step TLB invalidations, so reset tdr to ensure that action won't
+> > prematurely trigger when G2H actions are still ongoing.
+>=20
+> I am not sure should we re-use the SEQNO_INVALID to indicate that multi-
+> step TLB invalidations.
+
+My understanding is that SEQNO_INVALID is already used for the
+intermediate steps of Context based TLB invalidations patchset [1],
+which should also benefit from this? Since fence request time starts
+on first TLB CTB action, it is good to reset the TDR on G2H ack.
+GuC processed through one CTB action, but we are waiting
+for one or more of the same timeout durations for TLB actions,
+like page reclaim sending 2 CTB actions.
+
+> Before this reuse, is there possible case that the SEQNO_INVALID will be =
+sent?
+
+SEQNO_INVALID here is used to indicate that the seqno itself
+is not possible to get normally, so it should be fine to continue
+using this value. It is the purpose of the addition of this new value.
+
+The other possible case so far is done by that patch series, when
+multiple TLB invalidations are sent per one seqno, thus every TLB
+invalidation action except the last one has this SEQNO_INVALID.
+
+> If yes, we should use another value to indicate the multi-step.
+> If no, why previous patch add the msg[0] !=3D SEQNO_INVALID check?
 >
->It was hsw or bdw. Earlier platforms don't have power wells.
->
->>
->> 12 years later we have a few different things:
->>
->> 	- I don't see us handling intel_uncore_check_errors() the way we
->> 	  were before, inside the irq handler. It seems commit
->> 	  7571494004d8 ("drm/i915: Do one shot unclaimed mmio detection
->> 	  less frequently") moved it out from the irq path (it makes
->> 	  sense not printing to the console from inside the irq handler)
->
->On some platforms there is an actual error interrupt that
->gets triggered by unclaimed mmio acceses.
->
->> 	- vgacon is not really used anymore. If it was only this, we
->> 	  could add a check and do it conditionally, but to me it seems
->> 	  we can completely drop this
->
->It's not really only about vgacon. If anyone actually wants VGA
->memory accesses to go to some external GPU then the iGPU has to
->be told to not claim them. And that can only be done by poking
->that particular VGA register.
 
-but here we are *not* disabling the decoding. We are reading the
-register and writing the same value back:
+The previous patch added this check because we only want to handle
+the tlb invalidation fence after all actions are completed. No need to
+call the done_handler early. We are just tagging this H2G action as
+an intermediate operation so that we don't ack the fence completion
+early.
 
-	outb(inb(VGA_MIS_R), VGA_MIS_W);
+[1] https://patchwork.freedesktop.org/series/156874/
+> >
+> > Signed-off-by: Brian Nguyen <brian3.nguyen@intel.com>
+> > ---
+> >  drivers/gpu/drm/xe/xe_guc_tlb_inval.c |  2 ++
+> >  drivers/gpu/drm/xe/xe_tlb_inval.c     | 16 ++++++++++++++++
+> >  drivers/gpu/drm/xe/xe_tlb_inval.h     |  1 +
+> >  3 files changed, 19 insertions(+)
+> >
+> > diff --git a/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
+> > b/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
+> > index f1fd2dd90742..cd126c53faab 100644
+> > --- a/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
+> > +++ b/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
+> > @@ -238,6 +238,8 @@ int xe_guc_tlb_inval_done_handler(struct xe_guc
+> > *guc, u32 *msg, u32 len)
+> >
+> >  	if (msg[0] !=3D TLB_INVALIDATION_SEQNO_INVALID)
+> >  		xe_tlb_inval_done_handler(&gt->tlb_inval, msg[0]);
+> > +	else
+> > +		xe_tlb_inval_reset_timeout(&gt->tlb_inval);
+>=20
+> So SEQNO_INVALID is re-used for page reclaim. And for previous code, this
+> else path should never be hit.
+> GuC will not set this seqno to SEQNO_INVALID in any failure case. Is it r=
+ight?
+>=20
+> Shuicheng
+>=20
 
-I guess you're talking about bit 1? If that is needed on a platform
-we are supposed to enable/disable it on the callback from the vgaarb
-rather than here. That would make vga_get(pdev, ...) to actually select
-the device.  So for igpu it would write 0 to that bit when disabling.
+Yes. Existing code before context tlb invalidation and page reclamation wil=
+l
+not hit this path. GuC shouldn't be modifying any seqno that KMD provides
+it in my understanding.
 
-This specific path was added in the commit mentioned above to allow
-access to register 0x3D5, that is used by vgacon, without causing
-unclaimed registers. To me that indicates more a bug in the unclaimed
-register detection on that platform rather than something we need to carry
-forward. Particularly because on later platforms we actually don't
-have an interrupt on unclaimed registers.
+Brian
 
-An alternative to not break anything would be to check for dgfx or
-a suitable gen that doesn't have such interrupt. From bspec 4248 it
-seems to be since BDW. Would that be better?
+> >
+> >  	return 0;
+> >  }
+> > diff --git a/drivers/gpu/drm/xe/xe_tlb_inval.c
+> > b/drivers/gpu/drm/xe/xe_tlb_inval.c
+> > index 918a59e686ea..50f05d6b5672 100644
+> > --- a/drivers/gpu/drm/xe/xe_tlb_inval.c
+> > +++ b/drivers/gpu/drm/xe/xe_tlb_inval.c
+> > @@ -199,6 +199,22 @@ void xe_tlb_inval_reset(struct xe_tlb_inval
+> > *tlb_inval)
+> >  	mutex_unlock(&tlb_inval->seqno_lock);
+> >  }
+> >
+> > +/**
+> > + * xe_tlb_inval_reset_timeout() - Reset TLB inval fence timeout
+> > + * @tlb_inval: TLB invalidation client
+> > + *
+> > + * Reset the TLB invalidation timeout timer.
+> > + */
+> > +void xe_tlb_inval_reset_timeout(struct xe_tlb_inval *tlb_inval) {
+> > +	unsigned long flags;
+> > +
+> > +	spin_lock_irqsave(&tlb_inval->pending_lock, flags);
+> > +	mod_delayed_work(system_wq, &tlb_inval->fence_tdr,
+> > +			 tlb_inval->ops->timeout_delay(tlb_inval));
+> > +	spin_unlock_irqrestore(&tlb_inval->pending_lock, flags); }
+> > +
+> >  static bool xe_tlb_inval_seqno_past(struct xe_tlb_inval *tlb_inval, in=
+t
+> seqno)  {
+> >  	int seqno_recv =3D READ_ONCE(tlb_inval->seqno_recv); diff --git
+> > a/drivers/gpu/drm/xe/xe_tlb_inval.h
+> > b/drivers/gpu/drm/xe/xe_tlb_inval.h
+> > index 05614915463a..9dbddc310eb9 100644
+> > --- a/drivers/gpu/drm/xe/xe_tlb_inval.h
+> > +++ b/drivers/gpu/drm/xe/xe_tlb_inval.h
+> > @@ -17,6 +17,7 @@ struct xe_vm;
+> >  int xe_gt_tlb_inval_init_early(struct xe_gt *gt);
+> >
+> >  void xe_tlb_inval_reset(struct xe_tlb_inval *tlb_inval);
+> > +void xe_tlb_inval_reset_timeout(struct xe_tlb_inval *tlb_inval);
+> >  int xe_tlb_inval_all(struct xe_tlb_inval *tlb_inval,
+> >  		     struct xe_tlb_inval_fence *fence);  int
+> > xe_tlb_inval_ggtt(struct xe_tlb_inval *tlb_inval);
+> > --
+> > 2.51.2
 
-Lucas De Marchi
