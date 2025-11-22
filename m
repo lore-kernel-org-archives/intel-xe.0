@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EAB4ACFC515
-	for <intel-xe@archiver.kernel.org>; Sat, 22 Nov 2025 04:58:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E9647CFC515
+	for <intel-xe@archiver.kernel.org>; Sat, 22 Nov 2025 04:58:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AB4BF10E04D;
-	Sat, 22 Nov 2025 04:58:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A754D10E174;
+	Sat, 22 Nov 2025 04:58:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DqaCkExs";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Mi0oCKQm";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4CD0E10E8BC
- for <intel-xe@lists.freedesktop.org>; Sat, 22 Nov 2025 04:58:31 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2A1EE10E8BC
+ for <intel-xe@lists.freedesktop.org>; Sat, 22 Nov 2025 04:58:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1763787511; x=1795323511;
+ t=1763787515; x=1795323515;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=8zRcMyqhSsSDVjqDFxcsiDGpp2NTTwnDDuK1+imXKuI=;
- b=DqaCkExs4AIZzIl/P5WqdzoWADblv0mFlmw5sC+JsSLkxlWd4rmgO7am
- ZLtCk8DerYxCYGKwMRXWENuG6LwXUcb7eJqfltbIO300r763Llq2/jwUC
- hnC8D3RAQ6VRuXoUxce6qhdemXJI56yBbBiETGnrcJkz0H8VAP+EXSnSU
- of0+JROvW7dEvbfi8SzxH27+euGqpmdjrag1r/6cjvqHlEEQWQtkn+NWq
- sJDhlJl1+VBBuVsP9kuLsNHTOcsCX2tFumR8Y0lesIJgBg5YOjcqTA9wv
- 1wCkwfU/eQXzi2nnIDtEcZWtxPFF5RZzaxMwmAFsms0tPGGOReL5mBTJA g==;
-X-CSE-ConnectionGUID: TSGIn9KzS1maKrkOO5sFrg==
-X-CSE-MsgGUID: Z9mFdOQfTs+R8NvePwrMZw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11620"; a="65921462"
-X-IronPort-AV: E=Sophos;i="6.20,217,1758610800"; d="scan'208";a="65921462"
+ bh=N368QrKhfk7ZZG6+Ud3dpBVH0vpUTLPcbrOmYvgd5AM=;
+ b=Mi0oCKQmoLVJqzPruqodDwoz3C+FaS2GbbR2qXFjJlwXbMp8kwj+vnfk
+ T2OeIS9V/2bJhJUdpx1Ov5UIsbQOFD++yVJgwvxsN00mZzir5W3pPy/sa
+ BxP8sWh6/3udLODKcMd1Wb08hI2yh5EBHLhMoMQKC+CFRbOHmPGo0uffa
+ 762fTDetE2CUfu0Z6ndIcJkRQ7B+LU5rKtTHb7sbzOTwVg2TSEI+A7DSN
+ U3nVcOHtzv1y2U0TSNNmXVTZPWhqQato8rF+rSMCEbtcW/+7ujMhMtrNo
+ 9jEQN29OT6BLvC0MWrx+u4IQaVZfZ0ElzShM3gGCORggEos114HjswWYg A==;
+X-CSE-ConnectionGUID: Y64R8il2TvGcNCnDTn5X/A==
+X-CSE-MsgGUID: 2XtZy/SSTN20GiVNJuodeQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11620"; a="65921466"
+X-IronPort-AV: E=Sophos;i="6.20,217,1758610800"; d="scan'208";a="65921466"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Nov 2025 20:58:31 -0800
-X-CSE-ConnectionGUID: W/9mfgsqRY+eYt6eETuKmQ==
-X-CSE-MsgGUID: +CjNulICRxSglwROVQHiAg==
+ 21 Nov 2025 20:58:35 -0800
+X-CSE-ConnectionGUID: lav8vwpcScak4aGxaAiRIw==
+X-CSE-MsgGUID: pomNqHsCSXuXSHxTtLyLKA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,217,1758610800"; d="scan'208";a="191976566"
+X-IronPort-AV: E=Sophos;i="6.20,217,1758610800"; d="scan'208";a="191976574"
 Received: from anoopcvi-vm.gar.corp.intel.com ([10.109.80.88])
  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Nov 2025 20:58:27 -0800
+ 21 Nov 2025 20:58:31 -0800
 From: "Anoop, Vijay" <anoop.c.vijay@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: rodrigo.vivi@intel.com, aravind.iddamsetty@intel.com,
@@ -48,14 +48,15 @@ Cc: rodrigo.vivi@intel.com, aravind.iddamsetty@intel.com,
  umesh.nerlige.ramappa@intel.com, matthew.d.roper@intel.com,
  michael.j.ruhl@intel.com, mohamed.mansoor.v@intel.com, kam.nasim@intel.com,
  anoop.c.vijay@intel.com
-Subject: [RFC 4/5] drm/xe/remapper: Reprogram remapper index on PM resume
- events
-Date: Fri, 21 Nov 2025 20:58:06 -0800
-Message-ID: <20251122045803.3616201-11-anoop.c.vijay@intel.com>
+Subject: [RFC 5/5] drm/xe/sc: Add system controller component for Xe3p dGPU
+ platforms
+Date: Fri, 21 Nov 2025 20:58:07 -0800
+Message-ID: <20251122045803.3616201-12-anoop.c.vijay@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20251122045803.3616201-7-anoop.c.vijay@intel.com>
 References: <20251122045803.3616201-7-anoop.c.vijay@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -71,114 +72,759 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+From: Anoop Vijay <anoop.c.vijay@intel.com>
 
-Device enters the D3 cold state during both runtime and system suspend,
-which requires reprogramming the SoC re-mapper index
+Add a new system controller (SC) component for Intel Xe3p dGPU platforms.
 
-Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+This component provides the foundational infrastructure for communication
+with the SC firmware using the MKHI protocol over a mailbox interface.
+
+Key features introduced:
+- Detection and initialization of the SC interface on Xe3p dGPU platforms
+- Mailbox communication with SC firmware
+- Fragmented message transfer for large command payloads
+
+This implementation establishes the base for future SC feature
+enablement and firmware command handling.
+
+Signed-off-by: Anoop Vijay <anoop.c.vijay@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device_types.h |  6 ++++++
- drivers/gpu/drm/xe/xe_pm.c           |  5 +++++
- drivers/gpu/drm/xe/xe_soc_remapper.c | 17 ++++++++++++++++-
- drivers/gpu/drm/xe/xe_soc_remapper.h |  1 +
- 4 files changed, 28 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/Makefile          |   2 +
+ drivers/gpu/drm/xe/regs/xe_sc_regs.h |  49 ++++
+ drivers/gpu/drm/xe/xe_device.c       |   5 +
+ drivers/gpu/drm/xe/xe_device_types.h |   5 +
+ drivers/gpu/drm/xe/xe_sc.c           |  89 +++++++
+ drivers/gpu/drm/xe/xe_sc.h           |  15 ++
+ drivers/gpu/drm/xe/xe_sc_mailbox.c   | 374 +++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_sc_mailbox.h   |  61 +++++
+ drivers/gpu/drm/xe/xe_sc_types.h     |  35 +++
+ 9 files changed, 635 insertions(+)
+ create mode 100644 drivers/gpu/drm/xe/regs/xe_sc_regs.h
+ create mode 100644 drivers/gpu/drm/xe/xe_sc.c
+ create mode 100644 drivers/gpu/drm/xe/xe_sc.h
+ create mode 100644 drivers/gpu/drm/xe/xe_sc_mailbox.c
+ create mode 100644 drivers/gpu/drm/xe/xe_sc_mailbox.h
+ create mode 100644 drivers/gpu/drm/xe/xe_sc_types.h
 
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index 7ebfbf9051bf..50e8dc86d915 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -114,7 +114,9 @@ xe-y += xe_bb.o \
+ 	xe_ring_ops.o \
+ 	xe_rtp.o \
+ 	xe_sa.o \
++	xe_sc.o \
+ 	xe_sched_job.o \
++	xe_sc_mailbox.o \
+ 	xe_shrinker.o \
+ 	xe_step.o \
+ 	xe_survivability_mode.o \
+diff --git a/drivers/gpu/drm/xe/regs/xe_sc_regs.h b/drivers/gpu/drm/xe/regs/xe_sc_regs.h
+new file mode 100644
+index 000000000000..2b7053586197
+--- /dev/null
++++ b/drivers/gpu/drm/xe/regs/xe_sc_regs.h
+@@ -0,0 +1,49 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2025 Intel Corporation
++ */
++
++#ifndef _XE_SC_REGS_H_
++#define _XE_SC_REGS_H_
++
++#include "xe_regs.h"
++
++#define SYSCTRL_BASE_OFFSET		0xDB000
++#define SYSCTRL_BASE			(SOC_BASE + SYSCTRL_BASE_OFFSET)
++#define SYSCTRL_MAILBOX_INDEX		0x03
++#define SC_BAR_LENGTH			0x1000
++
++#define SC_MB_CTRL			XE_REG(SYSCTRL_BASE + 0x10)
++#define   SC_MB_CTRL_RUN_BUSY		REG_BIT(31)
++#define   SC_MB_CTRL_IRQ		REG_BIT(30)
++#define   SC_MB_CTRL_RUN_BUSY_OUT	REG_BIT(29)
++#define   SC_MB_CTRL_PARAM3		REG_GENMASK(28, 24)
++#define   SC_MB_CTRL_PARAM2		REG_GENMASK(23, 16)
++#define   SC_MB_CTRL_PARAM1		REG_GENMASK(15, 8)
++#define   SC_MB_CTRL_COMMAND		REG_GENMASK(7, 0)
++
++#define SC_MB_DATA0			XE_REG(SYSCTRL_BASE + 0x14)
++#define SC_MB_DATA1			XE_REG(SYSCTRL_BASE + 0x18)
++#define SC_MB_DATA2			XE_REG(SYSCTRL_BASE + 0x1C)
++#define SC_MB_DATA3			XE_REG(SYSCTRL_BASE + 0x20)
++
++#define MKHI_FRAME_PHASE		REG_BIT(24)
++#define MKHI_FRAME_CURRENT		REG_GENMASK(21, 16)
++#define MKHI_FRAME_TOTAL		REG_GENMASK(13, 8)
++#define MKHI_FRAME_COMMAND		REG_GENMASK(7, 0)
++
++#define MKHI_HDR_RESULT			REG_GENMASK(31, 24)
++#define MKHI_HDR_IS_RESPONSE		REG_BIT(15)
++#define MKHI_HDR_COMMAND		REG_GENMASK(14, 8)
++#define MKHI_HDR_GROUP_ID		REG_GENMASK(7, 0)
++
++#define SC_MB_FRAME_SIZE		16
++#define SC_MB_MAX_FRAMES		64
++#define SC_MB_MAX_MESSAGE_SIZE		(SC_MB_FRAME_SIZE * SC_MB_MAX_FRAMES)
++#define SC_MKHI_COMMAND			5
++
++#define SC_MB_DEFAULT_TIMEOUT_MS	500
++#define SC_MB_RETRY_TIMEOUT_MS		20
++#define SC_MB_POLL_INTERVAL_US		100
++
++#endif /* _XE_SC_REGS_H_ */
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index f15489c100af..9fbd0b084c74 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -60,6 +60,7 @@
+ #include "xe_psmi.h"
+ #include "xe_pxp.h"
+ #include "xe_query.h"
++#include "xe_sc.h"
+ #include "xe_soc_remapper.h"
+ #include "xe_shrinker.h"
+ #include "xe_survivability_mode.h"
+@@ -963,6 +964,10 @@ int xe_device_probe(struct xe_device *xe)
+ 	if (err)
+ 		goto err_unregister_display;
+ 
++	err = xe_sc_init(xe);
++	if (err)
++		goto err_unregister_display;
++
+ 	for_each_gt(gt, xe, id)
+ 		xe_gt_sanitize_freq(gt);
+ 
 diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index 4d23b75bc728..3f118c64a124 100644
+index 3f118c64a124..86a0c83c802d 100644
 --- a/drivers/gpu/drm/xe/xe_device_types.h
 +++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -556,6 +556,12 @@ struct xe_device {
- 	struct {
- 		/* Serialize access to SoC Remapper's index registers */
- 		spinlock_t lock;
-+
-+		/* Last value of INDEX1 register */
-+		u32 state;
-+
-+		/* A flag indicating state is initialized */
-+		bool state_initialized;
- 	} soc_remapper;
+@@ -314,6 +314,8 @@ struct xe_device {
+ 		u8 has_range_tlb_inval:1;
+ 		/** @info.has_sriov: Supports SR-IOV */
+ 		u8 has_sriov:1;
++		/** @info.has_sysctrl: Supports System Controller */
++		u8 has_sysctrl:1;
+ 		/** @info.has_usm: Device has unified shared memory support */
+ 		u8 has_usm:1;
+ 		/** @info.has_64bit_timestamp: Device supports 64-bit timestamps */
+@@ -576,6 +578,9 @@ struct xe_device {
+ 	/** @heci_gsc: graphics security controller */
+ 	struct xe_heci_gsc heci_gsc;
  
- 	/**
-diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
-index ad92a142dc7e..2196c21c4bb1 100644
---- a/drivers/gpu/drm/xe/xe_pm.c
-+++ b/drivers/gpu/drm/xe/xe_pm.c
-@@ -24,6 +24,7 @@
- #include "xe_late_bind_fw.h"
- #include "xe_pcode.h"
- #include "xe_pxp.h"
++	/** @sc: System Controller */
++	struct xe_sc *sc;
++
+ 	/** @nvm: discrete graphics non-volatile memory */
+ 	struct intel_dg_nvm_dev *nvm;
+ 
+diff --git a/drivers/gpu/drm/xe/xe_sc.c b/drivers/gpu/drm/xe/xe_sc.c
+new file mode 100644
+index 000000000000..18448efc173f
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_sc.c
+@@ -0,0 +1,89 @@
++// SPDX-License-Identifier: MIT
++/*
++ * Copyright © 2025 Intel Corporation
++ */
++
++#include "xe_sc.h"
++
++#include <linux/mutex.h>
++
++#include <drm/drm_managed.h>
++#include <drm/drm_print.h>
++
++#include "regs/xe_sc_regs.h"
++#include "xe_device.h"
++#include "xe_mmio.h"
++#include "xe_platform_types.h"
 +#include "xe_soc_remapper.h"
- #include "xe_sriov_vf_ccs.h"
- #include "xe_trace.h"
- #include "xe_vm.h"
-@@ -236,6 +237,8 @@ int xe_pm_resume(struct xe_device *xe)
- 	drm_dbg(&xe->drm, "Resuming device\n");
- 	trace_xe_pm_resume(xe, __builtin_return_address(0));
- 
-+	xe_soc_remapper_resume(xe);
++#include "xe_sc_types.h"
++#include "xe_tile.h"
 +
- 	for_each_gt(gt, xe, id)
- 		xe_gt_idle_disable_c6(gt);
- 
-@@ -629,6 +632,8 @@ int xe_pm_runtime_resume(struct xe_device *xe)
- 
- 	xe_rpm_lockmap_acquire(xe);
- 
-+	xe_soc_remapper_resume(xe);
-+
- 	for_each_gt(gt, xe, id)
- 		xe_gt_idle_disable_c6(gt);
- 
-diff --git a/drivers/gpu/drm/xe/xe_soc_remapper.c b/drivers/gpu/drm/xe/xe_soc_remapper.c
-index ed6b6c594e51..c425195f7152 100644
---- a/drivers/gpu/drm/xe/xe_soc_remapper.c
-+++ b/drivers/gpu/drm/xe/xe_soc_remapper.c
-@@ -13,9 +13,12 @@ static void xe_soc_remapper_set_region(struct xe_device *xe, struct xe_reg reg,
- 				       u32 mask, u32 val)
- {
- 	unsigned long flags;
-+	u32 old;
- 
- 	spin_lock_irqsave(&xe->soc_remapper.lock, flags);
--	xe_mmio_rmw32(xe_root_tile_mmio(xe), reg, mask, val);
-+	old = xe_mmio_rmw32(xe_root_tile_mmio(xe), reg, mask, val);
-+	xe->soc_remapper.state = (old & ~mask) | val;
-+	xe->soc_remapper.state_initialized = true;
- 	spin_unlock_irqrestore(&xe->soc_remapper.lock, flags);
- }
- 
-@@ -31,6 +34,18 @@ void xe_soc_remapper_set_sysctrl_region(struct xe_device *xe, u32 index)
- 				   REG_FIELD_PREP(SG_REMAP_SYSCTRL_MASK, index));
- }
- 
-+void xe_soc_remapper_resume(struct xe_device *xe)
++static void xe_sc_remove(struct drm_device *drm, void *arg)
 +{
-+	unsigned long flags;
++	struct xe_sc *sc = arg;
++	struct xe_device *xe;
 +
-+	if (!xe->soc_remapper.state_initialized)
++	if (!sc)
 +		return;
 +
-+	spin_lock_irqsave(&xe->soc_remapper.lock, flags);
-+	xe_mmio_write32(xe_root_tile_mmio(xe), SG_REMAP_INDEX1, xe->soc_remapper.state);
-+	spin_unlock_irqrestore(&xe->soc_remapper.lock, flags);
++	xe = to_xe_device(drm);
++
++	mutex_destroy(&sc->cmd_lock);
++
++	xe_soc_remapper_set_sysctrl_region(xe, 0);
++
++	xe->sc = NULL;
 +}
 +
- int xe_soc_remapper_init(struct xe_device *xe)
- {
- 	spin_lock_init(&xe->soc_remapper.lock);
-diff --git a/drivers/gpu/drm/xe/xe_soc_remapper.h b/drivers/gpu/drm/xe/xe_soc_remapper.h
-index 289aa41c3408..507701c74f6f 100644
---- a/drivers/gpu/drm/xe/xe_soc_remapper.h
-+++ b/drivers/gpu/drm/xe/xe_soc_remapper.h
-@@ -13,5 +13,6 @@
- int xe_soc_remapper_init(struct xe_device *xe);
- void xe_soc_remapper_set_telem_region(struct xe_device *xe, u32 index);
- void xe_soc_remapper_set_sysctrl_region(struct xe_device *xe, u32 index);
-+void xe_soc_remapper_resume(struct xe_device *xe);
- 
- #endif
++static int xe_sc_probe(struct xe_device *xe)
++{
++	struct xe_tile *tile = xe_device_get_root_tile(xe);
++	struct xe_sc *sc;
++	int ret;
++
++	sc = drmm_kzalloc(&xe->drm, sizeof(*sc), GFP_KERNEL);
++	if (!sc)
++		return -ENOMEM;
++
++	sc->xe = xe;
++	xe->sc = sc;
++
++	ret = drmm_add_action_or_reset(&xe->drm, xe_sc_remove, sc);
++	if (ret) {
++		xe->sc = NULL;
++		return ret;
++	}
++
++	xe_soc_remapper_set_sysctrl_region(xe, SYSCTRL_MAILBOX_INDEX);
++
++	xe_mmio_init(&sc->mmio, tile, tile->mmio.regs, tile->mmio.regs_size);
++
++	mutex_init(&sc->cmd_lock);
++
++	sc->phase_bit = 0;
++
++	return 0;
++}
++
++/**
++ * xe_sc_init - Initialize SC subsystem
++ * @xe: xe device instance
++ *
++ * Entry point for SC initialization, called from xe_device_probe().
++ * This function checks platform support and calls the main probe function.
++ *
++ * Return: 0 on success, error code on failure
++ */
++int xe_sc_init(struct xe_device *xe)
++{
++	int ret;
++
++	if (!xe->info.has_sysctrl)
++		return 0;
++
++	ret = xe_sc_probe(xe);
++	if (ret)
++		drm_err(&xe->drm, "sysctrl: Probe failed: %d\n", ret);
++
++	return ret;
++}
+diff --git a/drivers/gpu/drm/xe/xe_sc.h b/drivers/gpu/drm/xe/xe_sc.h
+new file mode 100644
+index 000000000000..0e5c89ddc957
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_sc.h
+@@ -0,0 +1,15 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2025 Intel Corporation
++ */
++
++#ifndef __XE_SC_H__
++#define __XE_SC_H__
++
++#include <linux/types.h>
++
++struct xe_device;
++
++int xe_sc_init(struct xe_device *xe);
++
++#endif /* __XE_SC_H__ */
+diff --git a/drivers/gpu/drm/xe/xe_sc_mailbox.c b/drivers/gpu/drm/xe/xe_sc_mailbox.c
+new file mode 100644
+index 000000000000..6f2500c63a3c
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_sc_mailbox.c
+@@ -0,0 +1,374 @@
++// SPDX-License-Identifier: MIT
++/*
++ * Copyright © 2025 Intel Corporation
++ */
++
++#include <linux/bitfield.h>
++#include <linux/errno.h>
++#include <linux/minmax.h>
++#include <linux/mutex.h>
++#include <linux/slab.h>
++#include <linux/string.h>
++#include <linux/types.h>
++
++#include <drm/drm_print.h>
++
++#include "regs/xe_sc_regs.h"
++#include "xe_device.h"
++#include "xe_mmio.h"
++#include "xe_pm.h"
++#include "xe_sc.h"
++#include "xe_sc_mailbox.h"
++#include "xe_sc_types.h"
++
++static bool sc_mb_wait_bit_clear(struct xe_sc *sc, u32 bit_mask,
++				 unsigned int timeout_ms)
++{
++	int ret;
++
++	if (timeout_ms == 0) {
++		ret = xe_mmio_wait32_not(&sc->mmio, SC_MB_CTRL, bit_mask, bit_mask,
++					 0, NULL, false);
++	} else {
++		ret = xe_mmio_wait32_not(&sc->mmio, SC_MB_CTRL, bit_mask, bit_mask,
++					 timeout_ms * 1000, NULL, false);
++	}
++
++	return ret == 0;
++}
++
++static bool sc_mb_wait_bit_set(struct xe_sc *sc, u32 bit_mask,
++			       unsigned int timeout_ms)
++{
++	int ret;
++
++	if (timeout_ms == 0) {
++		ret = xe_mmio_wait32(&sc->mmio, SC_MB_CTRL, bit_mask, bit_mask,
++				     0, NULL, false);
++	} else {
++		ret = xe_mmio_wait32(&sc->mmio, SC_MB_CTRL, bit_mask, bit_mask,
++				     timeout_ms * 1000, NULL, false);
++	}
++
++	return ret == 0;
++}
++
++static void sc_mb_write_frame(struct xe_sc *sc, const void *buffer,
++			      size_t offset)
++{
++	const u32 *data = (const u32 *)((const u8 *)buffer + offset);
++
++	xe_mmio_write32(&sc->mmio, SC_MB_DATA0, data[0]);
++	xe_mmio_write32(&sc->mmio, SC_MB_DATA1, data[1]);
++	xe_mmio_write32(&sc->mmio, SC_MB_DATA2, data[2]);
++	xe_mmio_write32(&sc->mmio, SC_MB_DATA3, data[3]);
++}
++
++static void sc_mb_read_frame(struct xe_sc *sc, void *buffer,
++			     size_t offset)
++{
++	u32 *data = (u32 *)((u8 *)buffer + offset);
++
++	data[0] = xe_mmio_read32(&sc->mmio, SC_MB_DATA0);
++	data[1] = xe_mmio_read32(&sc->mmio, SC_MB_DATA1);
++	data[2] = xe_mmio_read32(&sc->mmio, SC_MB_DATA2);
++	data[3] = xe_mmio_read32(&sc->mmio, SC_MB_DATA3);
++}
++
++static void sc_mb_clear_response(struct xe_sc *sc)
++{
++	xe_mmio_write32(&sc->mmio, SC_MB_CTRL, SC_MB_CTRL_RUN_BUSY_OUT);
++}
++
++static int sc_mb_prepare_command(struct xe_sc *sc,
++				 const struct xe_sc_mailbox_app_msg_hdr *msg_hdr,
++				 const void *data_in, size_t data_in_len,
++				 u8 **cmd_buffer, size_t *cmd_size)
++{
++	struct xe_sc_mailbox_mkhi_msg_hdr mkhi_hdr = {0};
++
++	mkhi_hdr.group_id = msg_hdr->group_id;
++	mkhi_hdr.command = msg_hdr->command & 0x7F;
++	mkhi_hdr.is_response = 0;
++	mkhi_hdr.reserved = 0;
++	mkhi_hdr.result = 0;
++
++	*cmd_size = sizeof(struct xe_sc_mailbox_mkhi_msg_hdr) + data_in_len;
++
++	if (*cmd_size > SC_MB_MAX_MESSAGE_SIZE) {
++		drm_err(&sc->xe->drm, "SC: Message too large: %zu bytes (max %u)\n",
++			*cmd_size, SC_MB_MAX_MESSAGE_SIZE);
++		return -EINVAL;
++	}
++
++	*cmd_buffer = kmalloc(*cmd_size, GFP_KERNEL);
++	if (!*cmd_buffer)
++		return -ENOMEM;
++
++	memcpy(*cmd_buffer, &mkhi_hdr, sizeof(struct xe_sc_mailbox_mkhi_msg_hdr));
++	if (data_in && data_in_len)
++		memcpy(*cmd_buffer + sizeof(struct xe_sc_mailbox_mkhi_msg_hdr),
++		       data_in, data_in_len);
++
++	drm_dbg(&sc->xe->drm, "SC: request: group=0x%02x cmd=0x%02x payload=%zu bytes\n",
++		mkhi_hdr.group_id, mkhi_hdr.command, data_in_len);
++
++	return 0;
++}
++
++static int sc_mb_send_frames(struct xe_sc *sc, const u8 *cmd_buffer,
++			     size_t cmd_size, unsigned int timeout_ms)
++{
++	u32 ctrl_reg, total_frames, current_frame;
++	size_t bytes_sent, bytes_to_send;
++
++	total_frames = DIV_ROUND_UP(cmd_size, SC_MB_FRAME_SIZE);
++	if (total_frames > SC_MB_MAX_FRAMES) {
++		drm_err(&sc->xe->drm, "SC: Message too large: %zu bytes (%u frames, max %u)\n",
++			cmd_size, total_frames, SC_MB_MAX_FRAMES);
++		return -EINVAL;
++	}
++
++	if (!sc_mb_wait_bit_clear(sc, SC_MB_CTRL_RUN_BUSY, timeout_ms)) {
++		drm_err(&sc->xe->drm, "SC: Mailbox busy (RUN_BUSY timeout)\n");
++		return -EBUSY;
++	}
++
++	sc->phase_bit ^= 1;
++
++	drm_dbg(&sc->xe->drm, "SC: Sending message: %zu bytes, %u frames, phase=%u\n",
++		cmd_size, total_frames, sc->phase_bit);
++
++	bytes_sent = 0;
++	for (current_frame = 0; current_frame < total_frames; current_frame++) {
++		bytes_to_send = min(cmd_size - bytes_sent, (size_t)SC_MB_FRAME_SIZE);
++
++		sc_mb_write_frame(sc, cmd_buffer, bytes_sent);
++
++		ctrl_reg = SC_MB_CTRL_RUN_BUSY |
++			   FIELD_PREP(MKHI_FRAME_CURRENT, current_frame) |
++			   FIELD_PREP(MKHI_FRAME_TOTAL, total_frames - 1) |
++			   FIELD_PREP(MKHI_FRAME_COMMAND, SC_MKHI_COMMAND);
++		if (sc->phase_bit)
++			ctrl_reg |= FIELD_PREP(MKHI_FRAME_PHASE, 1);
++
++		xe_mmio_write32(&sc->mmio, SC_MB_CTRL, ctrl_reg);
++
++		drm_dbg(&sc->xe->drm, "SC: Sent frame %u/%u\n",
++			current_frame, total_frames - 1);
++
++		if (!sc_mb_wait_bit_clear(sc, SC_MB_CTRL_RUN_BUSY, timeout_ms)) {
++			drm_err(&sc->xe->drm, "SC: Frame %u acknowledgment timeout\n",
++				current_frame);
++			return -ETIMEDOUT;
++		}
++
++		bytes_sent += bytes_to_send;
++	}
++
++	drm_dbg(&sc->xe->drm, "SC: All frames sent successfully (%zu bytes)\n", bytes_sent);
++	return 0;
++}
++
++static int sc_mb_validate_response_header(struct xe_sc *sc,
++					  const struct xe_sc_mailbox_app_msg_hdr *msg_hdr,
++					  const struct xe_sc_mailbox_mkhi_msg_hdr *resp_hdr)
++{
++	if (!resp_hdr->is_response ||
++	    resp_hdr->group_id != msg_hdr->group_id ||
++	    resp_hdr->command != (msg_hdr->command & 0x7F)) {
++		drm_err(&sc->xe->drm, "SC: Invalid response header\n");
++		return -EPROTO;
++	}
++
++	if (resp_hdr->result != 0) {
++		drm_err(&sc->xe->drm, "SC: Firmware error: result=0x%02x\n",
++			resp_hdr->result);
++		return -EIO;
++	}
++
++	drm_dbg(&sc->xe->drm, "SC: response: group=0x%02x cmd=0x%02x\n",
++		resp_hdr->group_id, resp_hdr->command);
++
++	return 0;
++}
++
++static int sc_mb_receive_frames(struct xe_sc *sc,
++				const struct xe_sc_mailbox_app_msg_hdr *msg_hdr,
++				void *data_out, size_t data_out_len,
++				size_t *bytes_received, unsigned int timeout_ms)
++{
++	u32 ctrl_reg, total_frames, current_frame;
++	size_t payload_size;
++	int ret;
++
++	*bytes_received = 0;
++
++	do {
++		ctrl_reg = xe_mmio_read32(&sc->mmio, SC_MB_CTRL);
++		current_frame = FIELD_GET(MKHI_FRAME_CURRENT, ctrl_reg);
++		total_frames = FIELD_GET(MKHI_FRAME_TOTAL, ctrl_reg) + 1;
++
++		drm_dbg(&sc->xe->drm, "SC: Receiving frame %u/%u\n",
++			current_frame, total_frames - 1);
++
++		if (current_frame == 0) {
++			u32 temp_frame[4];
++			struct xe_sc_mailbox_mkhi_msg_hdr *resp_hdr;
++
++			sc_mb_read_frame(sc, temp_frame, 0);
++			resp_hdr = (struct xe_sc_mailbox_mkhi_msg_hdr *)temp_frame;
++
++			ret = sc_mb_validate_response_header(sc, msg_hdr, resp_hdr);
++			if (ret)
++				return ret;
++
++			payload_size = SC_MB_FRAME_SIZE - sizeof(struct xe_sc_mailbox_mkhi_msg_hdr);
++			if (payload_size > data_out_len) {
++				drm_err(&sc->xe->drm, "SC: Response buffer too small\n");
++				return -ENOSPC;
++			}
++
++			memcpy(data_out,
++			       (u8 *)temp_frame + sizeof(struct xe_sc_mailbox_mkhi_msg_hdr),
++			       payload_size);
++			*bytes_received = payload_size;
++		} else {
++			size_t frame_size = SC_MB_FRAME_SIZE;
++
++			if (current_frame == total_frames - 1) {
++				size_t total_response = (total_frames - 1) *
++							SC_MB_FRAME_SIZE +
++							sizeof(struct xe_sc_mailbox_mkhi_msg_hdr);
++				size_t remaining = total_response -
++						   *bytes_received -
++						   sizeof(struct xe_sc_mailbox_mkhi_msg_hdr);
++				frame_size = min(frame_size, remaining);
++			}
++
++			if (*bytes_received + frame_size > data_out_len) {
++				drm_err(&sc->xe->drm, "SC: Response buffer too small\n");
++				return -ENOSPC;
++			}
++
++			sc_mb_read_frame(sc, data_out, *bytes_received);
++			*bytes_received += frame_size;
++		}
++
++		sc_mb_clear_response(sc);
++
++		if (current_frame + 1 < total_frames &&
++		    !sc_mb_wait_bit_set(sc, SC_MB_CTRL_RUN_BUSY_OUT, timeout_ms)) {
++			drm_err(&sc->xe->drm, "SC: Response frame %u timeout\n",
++				current_frame + 1);
++			return -ETIMEDOUT;
++		}
++
++	} while (current_frame + 1 < total_frames);
++
++	return 0;
++}
++
++static int sc_mb_send_command(struct xe_sc *sc,
++			      const struct xe_sc_mailbox_app_msg_hdr *msg_hdr,
++			      const u8 *cmd_buffer, size_t cmd_size,
++			      void *data_out, size_t data_out_len,
++			      size_t *rdata_len, unsigned int timeout_ms)
++{
++	size_t bytes_received;
++	int ret;
++
++	if (rdata_len)
++		*rdata_len = 0;
++
++	ret = sc_mb_send_frames(sc, cmd_buffer, cmd_size, timeout_ms);
++	if (ret)
++		return ret;
++
++	if (!data_out) {
++		drm_dbg(&sc->xe->drm, "SC: Command completed (no response expected)\n");
++		return 0;
++	}
++
++	if (!sc_mb_wait_bit_set(sc, SC_MB_CTRL_RUN_BUSY_OUT, timeout_ms)) {
++		drm_err(&sc->xe->drm, "SC: Response timeout (RUN_BUSY_OUT not set)\n");
++		return -ETIMEDOUT;
++	}
++
++	ret = sc_mb_receive_frames(sc, msg_hdr, data_out, data_out_len,
++				   &bytes_received, timeout_ms);
++	if (ret) {
++		sc_mb_clear_response(sc);
++		return ret;
++	}
++
++	if (rdata_len)
++		*rdata_len = bytes_received;
++
++	drm_dbg(&sc->xe->drm, "SC: MKHI message completed: %zu bytes payload received\n",
++		bytes_received);
++
++	return 0;
++}
++
++/**
++ * xe_sc_mailbox_send_command - Send command to System Controller via mailbox
++ * @handle: XE device handle containing the system controller
++ * @cmd_buffer: Pointer to xe_sc_mailbox_command structure
++ * @rdata_len: Pointer to store actual response data size (can be NULL)
++ *
++ * Send a command to the System Controller using MKHI protocol. Handles
++ * command preparation, fragmentation, transmission, and response reception.
++ * Optimized to move memory allocation outside the critical section.
++ *
++ * Return: 0 on success, negative error code on failure
++ */
++int xe_sc_mailbox_send_command(void *handle, void *cmd_buffer, size_t *rdata_len)
++{
++	struct xe_device *xe = handle;
++	struct xe_sc *sc;
++	struct xe_sc_mailbox_command *cmd = cmd_buffer;
++	u8 *command_buffer = NULL;
++	size_t command_size;
++	int ret;
++
++	if (!xe || !cmd)
++		return -EINVAL;
++
++	sc = xe->sc;
++	if (!sc)
++		return -ENODEV;
++
++	if (!cmd->data_in && cmd->data_in_len)
++		return -EINVAL;
++
++	if (!cmd->data_out && cmd->data_out_len)
++		return -EINVAL;
++
++	might_sleep();
++
++	ret = sc_mb_prepare_command(sc, &cmd->header, cmd->data_in, cmd->data_in_len,
++				    &command_buffer, &command_size);
++	if (ret) {
++		drm_err(&sc->xe->drm, "SC: Failed to prepare command: %d\n", ret);
++		return ret;
++	}
++
++	mutex_lock(&sc->cmd_lock);
++
++	xe_pm_runtime_get(xe);
++
++	ret = sc_mb_send_command(sc, &cmd->header, command_buffer, command_size,
++				 cmd->data_out, cmd->data_out_len, rdata_len,
++				 SC_MB_DEFAULT_TIMEOUT_MS);
++	if (ret)
++		drm_err(&sc->xe->drm, "SC: Mailbox command failed: %d\n", ret);
++
++	xe_pm_runtime_put(xe);
++
++	mutex_unlock(&sc->cmd_lock);
++
++	kfree(command_buffer);
++
++	return ret;
++}
+diff --git a/drivers/gpu/drm/xe/xe_sc_mailbox.h b/drivers/gpu/drm/xe/xe_sc_mailbox.h
+new file mode 100644
+index 000000000000..d5ca43c40f1a
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_sc_mailbox.h
+@@ -0,0 +1,61 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2025 Intel Corporation
++ */
++
++#ifndef __XE_SC_MAILBOX_H__
++#define __XE_SC_MAILBOX_H__
++
++#include <linux/types.h>
++
++struct xe_sc;
++
++/**
++ * struct xe_sc_mailbox_mkhi_msg_hdr - MKHI protocol message header
++ */
++struct xe_sc_mailbox_mkhi_msg_hdr {
++	/** @group_id: Message group identifier */
++	u32 group_id    : 8;
++	/** @command: Command identifier within the group */
++	u32 command     : 7;
++	/** @is_response: Response flag - 0 for request, 1 for response */
++	u32 is_response : 1;
++	/** @reserved: Reserved field, must be zero */
++	u32 reserved    : 8;
++	/** @result: Result code from firmware */
++	u32 result      : 8;
++} __packed;
++
++/**
++ * struct xe_sc_mailbox_app_msg_hdr - Application message header
++ */
++struct xe_sc_mailbox_app_msg_hdr {
++	/** @group_id: Application group identifier */
++	u32 group_id  : 8;
++	/** @command: Specific command within the application group */
++	u32 command   : 8;
++	/** @version: Protocol version */
++	u32 version   : 8;
++	/** @reserved: Reserved field, must be zero */
++	u32 reserved  : 8;
++} __packed;
++
++/**
++ * struct xe_sc_mailbox_command - System Controller mailbox command structure
++ */
++struct xe_sc_mailbox_command {
++	/** @header: Application message header containing command information */
++	struct xe_sc_mailbox_app_msg_hdr header;
++	/** @data_in: Pointer to input payload data (can be NULL if no input data) */
++	void *data_in;
++	/** @data_in_len: Size of input payload in bytes (0 if no input data) */
++	size_t data_in_len;
++	/** @data_out: Pointer to output buffer for response data (can be NULL if no response) */
++	void *data_out;
++	/** @data_out_len: Size of output buffer in bytes (0 if no response expected) */
++	size_t data_out_len;
++};
++
++int xe_sc_mailbox_send_command(void *handle, void *cmd_buffer, size_t *rdata_len);
++
++#endif /* __XE_SC_MAILBOX_H__ */
+diff --git a/drivers/gpu/drm/xe/xe_sc_types.h b/drivers/gpu/drm/xe/xe_sc_types.h
+new file mode 100644
+index 000000000000..5ec2126cebe4
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_sc_types.h
+@@ -0,0 +1,35 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2025 Intel Corporation
++ */
++
++#ifndef _XE_SC_TYPES_H_
++#define _XE_SC_TYPES_H_
++
++#include <linux/completion.h>
++#include <linux/mutex.h>
++#include <linux/types.h>
++#include <linux/workqueue.h>
++
++#include "xe_device_types.h"
++#include "xe_sc_mailbox.h"
++
++struct xe_device;
++
++/**
++ * struct xe_sc - System Controller driver context
++ */
++struct xe_sc {
++	/** @xe: Back pointer to xe_device */
++	struct xe_device *xe;
++	/** @mmio: MMIO region for SC registers */
++	struct xe_mmio mmio;
++
++	/** @cmd_lock: Mutex protecting mailbox command operations */
++	struct mutex cmd_lock;
++
++	/** @phase_bit: MKHI message boundary phase toggle bit */
++	u32 phase_bit;
++};
++
++#endif /* _XE_SC_TYPES_H_ */
 -- 
 2.43.0
 
