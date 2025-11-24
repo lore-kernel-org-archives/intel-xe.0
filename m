@@ -4,51 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 23669CFA466
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E458FCFD313
 	for <intel-xe@archiver.kernel.org>; Mon, 24 Nov 2025 15:49:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D4B728984C;
-	Mon, 24 Nov 2025 15:49:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A8F6410E2E5;
+	Mon, 24 Nov 2025 15:49:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XbvSgTC9";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YPmpq1pc";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CEABC8984C
- for <intel-xe@lists.freedesktop.org>; Mon, 24 Nov 2025 15:49:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1943310E2E5
+ for <intel-xe@lists.freedesktop.org>; Mon, 24 Nov 2025 15:49:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1763999394; x=1795535394;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=bPF8bavHyLhTmsfCOCDFL62NmZkqdRXbOiAgep8bAWc=;
- b=XbvSgTC9ffzKZrYgh3L24+uOeL3iQgQH5G6njwZnIQxW8a8x0Z6TXkhM
- Spz7N2+5YKAeyjZEuPrdp+YkMASVr0ZgKJIMFAIIBoG0Bll8uc9qUi1h9
- 7FWobjHZk+yv0jQ/HpfN0EFeZM1WSzZpMX8gCMAQLjewR5jEdyhSobRxo
- GSEXCIjIgRE+Zz9Chqf/rTbTPExAtwffc/wvNlhP2VgQBjFhSzcLO5+Gt
- tSBu0dOaEYe7IBMqzOvq7kVM6JIivMgyh/hvx6NoNB62A7FKrZf6/1k+Q
- fTgC+9NVNZdzkx6ZZhXGAlvQyv6s18sNLCw83JtJP8Ikgrhz3E1Us5r/V A==;
-X-CSE-ConnectionGUID: DxftinVuRYKzeBpp1Qonzg==
-X-CSE-MsgGUID: Y91cX31WSlG7emW5qlRr2A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11623"; a="65002169"
-X-IronPort-AV: E=Sophos;i="6.20,223,1758610800"; d="scan'208";a="65002169"
+ t=1763999395; x=1795535395;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=Cv0hkYeUAqs8IN9fxywStBMpBrEbLOHS4dlULmtn5pE=;
+ b=YPmpq1pcGQu0wZ2AzEdox4yTJxvNjSOnkqo1ROs4zEg62ibu0IksRHIV
+ H5VzBXXkyx9jWqlZSdkgwza8Mlm6GW6YTx6lkj7UTW2Pb0SnPt3cl3uz+
+ SMCnltXcvA7zea/s+iD0e+aKRRym/PBPg5lF9dCgboftbh00sv+ZyEkdL
+ LL/kq/MtnJrPx3NwL3aC5xJo9enBZQSQLYKoTdUYdVszmCD2+XcXNXDAH
+ Zcu62QiskuqHiQHmyH+g1i1bbk1Ob4/k1zVfalFC0Q8ldllQSJQK749QX
+ AE+8R8hVzjlRQvdYfRnD3rHIwNmP1Sr45yTMg2PZa8PUND+QVexFOqhrn g==;
+X-CSE-ConnectionGUID: VTqSROxrRQa2MyjjQiJIkA==
+X-CSE-MsgGUID: hV7gI518SjOv9QbszEJfHQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11623"; a="65002171"
+X-IronPort-AV: E=Sophos;i="6.20,223,1758610800"; d="scan'208";a="65002171"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Nov 2025 07:49:53 -0800
-X-CSE-ConnectionGUID: GKAzL4LOTyy+HQu0UApakQ==
-X-CSE-MsgGUID: xse7GJF+TjmoBm9nyGZlag==
+ 24 Nov 2025 07:49:55 -0800
+X-CSE-ConnectionGUID: iibgm7rFSFeFYqMlu/5Icw==
+X-CSE-MsgGUID: 7CYjxH2hRgix/o9SppcnCQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,223,1758610800"; d="scan'208";a="196662191"
+X-IronPort-AV: E=Sophos;i="6.20,223,1758610800"; d="scan'208";a="196662199"
 Received: from labhost1.iind.intel.com ([10.190.230.69])
- by fmviesa005.fm.intel.com with ESMTP; 24 Nov 2025 07:49:52 -0800
+ by fmviesa005.fm.intel.com with ESMTP; 24 Nov 2025 07:49:53 -0800
 From: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
-Subject: [PATCH v6 0/3] VF double migration
-Date: Mon, 24 Nov 2025 21:37:20 +0530
-Message-ID: <20251124160719.29812-5-satyanarayana.k.v.p@intel.com>
+Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>,
+ Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>, Tomasz Lis <tomasz.lis@intel.com>
+Subject: [PATCH v6 1/3] drm/xe/vf: Enable VF migration only on supported GuC
+ versions
+Date: Mon, 24 Nov 2025 21:37:21 +0530
+Message-ID: <20251124160719.29812-6-satyanarayana.k.v.p@intel.com>
 X-Mailer: git-send-email 2.51.0
+In-Reply-To: <20251124160719.29812-5-satyanarayana.k.v.p@intel.com>
+References: <20251124160719.29812-5-satyanarayana.k.v.p@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -64,70 +68,73 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
- In scenarios involving double migration, the VF KMD may encounter
- situations where it is instructed to re-migrate before having the
- opportunity to send RESFIX_DONE for the initial migration. This can occur
- when the fix-up for the prior migration is still underway, but the VF KMD
- is migrated again.
+Enable VF migration starting with GuC 70.54.0 (compatibility version
+1.27.0) which supports additional VF2GUC_RESFIX_START message required
+to handle migration recovery in a more robust way.
 
- Consequently, this may lead to the possibility of sending two migration
- notifications (i.e., pending fix-up for the first migration and a second
- notification for the new migration). Upon receiving the first RES_FIX
- notification, the GuC will resume VF submission on the GPU, potentially
- resulting in undefined behavior, such as system hangs or crashes.
+Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Tomasz Lis <tomasz.lis@intel.com>
 
- To avoid these hangs, a new VF2GUC action `VF2GUC_RESFIX_START` is
- sent along with marker and when GUC receives the same marker with
- `VF2GUC_RESFIX_DONE`action, it starts scheduling work loads from VF.
-
- ---
- V5 -> V6:
- - Fixed review comments (Michal W).
-- Updated resfix_done and res_fix_start function names.
-- Handled XE_GUC_RESPONSE_VF_MIGRATED error case received from GuC.
-- Remove skip_resfix error when another migration is in queue.
+---
+V5 -> V6:
 - Fixed review comments (Michal W).
-- Removed timeout and VF KMD waits infinately when resfix_stoppers bits
-are set.
-- Created helper macro for WAIT positions.
+- Updated commit message.
+- return xe_sriov_vf_migration_supported() from vf_migration_init_late().
 
- V4 -> V5:
- - Fixed review comments (Michal W).
- - Created new function vf_migration_init_late().
- - Fixed minor debug log levels and documentation part.
- - Moved complete marker logic to vf_post_migration_resfix_start_marker()
- - Updated debugfs entries.
+V4 -> V5:
+- Created new function vf_migration_init_late() (Michal W).
 
- V3 -> V4:
- - Gated Save/restore on Guc version 70.54.0
- - Enabled RESFIX_START by default.
- - Updated RESFIX_DONE documention.
+V3 -> V4:
+- New commit
 
- V2 -> V3:
- - Fixed review comments (Michal W).
- - Updated commit message.
- - Fixed CI.BAT issues.
- - Added helper function to assert on unsupported GUC versions.
- - Added debugfs entries to test VF double migration.
+V2 -> V3:
+- None.
 
- V1 -> V2:
- - Squashed "Enable RESFIX start marker only on supported GUC
- versions" commit into a single commit. (Matt B)
- - Use fault injection for testing VF double  migration feature (Matt B).
+V1 -> V2:
+- None.
+---
+ drivers/gpu/drm/xe/xe_sriov_vf.c | 19 +++++++++++++++++++
+ 1 file changed, 19 insertions(+)
 
-Satyanarayana K V P (3):
-  drm/xe/vf: Enable VF migration only on supported GuC versions
-  drm/xe/vf: Introduce RESFIX start marker support
-  drm/xe/vf: Add debugfs entries to test VF double migration
-
- .../gpu/drm/xe/abi/guc_actions_sriov_abi.h    |  67 +++++++--
- drivers/gpu/drm/xe/xe_gt_sriov_vf.c           | 137 ++++++++++++++----
- drivers/gpu/drm/xe/xe_gt_sriov_vf_debugfs.c   |   5 +
- drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h     |  13 ++
- drivers/gpu/drm/xe/xe_guc.c                   |  13 +-
- drivers/gpu/drm/xe/xe_sriov_vf.c              |  59 +++++++-
- 6 files changed, 252 insertions(+), 42 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/xe_sriov_vf.c b/drivers/gpu/drm/xe/xe_sriov_vf.c
+index 284ce37ca92d..f53d68f2f1d2 100644
+--- a/drivers/gpu/drm/xe/xe_sriov_vf.c
++++ b/drivers/gpu/drm/xe/xe_sriov_vf.c
+@@ -170,6 +170,22 @@ void xe_sriov_vf_init_early(struct xe_device *xe)
+ 	vf_migration_init_early(xe);
+ }
+ 
++static bool vf_migration_init_late(struct xe_device *xe)
++{
++	struct xe_gt *gt = xe_root_mmio_gt(xe);
++	struct xe_uc_fw_version guc_version;
++
++	xe_gt_sriov_vf_guc_versions(gt, NULL, &guc_version);
++	if (MAKE_GUC_VER_STRUCT(guc_version) < MAKE_GUC_VER(1, 27, 0)) {
++		xe_sriov_vf_migration_disable(xe,
++					      "requires GuC ABI >= 1.27.0, but only %u.%u.%u found",
++					      guc_version.major, guc_version.minor,
++					      guc_version.patch);
++	}
++
++	return xe_sriov_vf_migration_supported(xe);
++}
++
+ /**
+  * xe_sriov_vf_init_late() - SR-IOV VF late initialization functions.
+  * @xe: the &xe_device to initialize
+@@ -180,6 +196,9 @@ void xe_sriov_vf_init_early(struct xe_device *xe)
+  */
+ int xe_sriov_vf_init_late(struct xe_device *xe)
+ {
++	if (!vf_migration_init_late(xe))
++		return 0;
++
+ 	return xe_sriov_vf_ccs_init(xe);
+ }
+ 
 -- 
 2.51.0
 
