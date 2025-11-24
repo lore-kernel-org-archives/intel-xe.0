@@ -4,181 +4,181 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 775CFCFA466
-	for <intel-xe@archiver.kernel.org>; Mon, 24 Nov 2025 13:43:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 14305CFA466
+	for <intel-xe@archiver.kernel.org>; Mon, 24 Nov 2025 13:52:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3632E10E2C8;
-	Mon, 24 Nov 2025 13:43:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B750D10E2CA;
+	Mon, 24 Nov 2025 13:52:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZG4Ho0Qt";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JJBGm6yI";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1229F10E2C8
- for <intel-xe@lists.freedesktop.org>; Mon, 24 Nov 2025 13:43:46 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7B0B310E2CD
+ for <intel-xe@lists.freedesktop.org>; Mon, 24 Nov 2025 13:52:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1763991827; x=1795527827;
+ t=1763992367; x=1795528367;
  h=date:from:to:cc:subject:message-id:references:
  content-transfer-encoding:in-reply-to:mime-version;
- bh=y5c7Yxlm9ZTXW/tAa0csmzuyXuLv0imiYbHsuLEcOLg=;
- b=ZG4Ho0QthTGnA0yyDNI2m4y5D0JI2UDhUF6YryI9tpuAbObhhIQQO9OE
- d7VI3lfCjMuOjHtyqiG9pzubwzznk4eLLjHBJpStW8CGIK+bPhS5Hxg8w
- KSHCDtIFrW/qmlx2xrSKeyxkuZZGjQuJwKZHNIKr9DWB9MtCvda7/ytpX
- d+3FGM4fPibVGn/wTaz8CsnSdL41Ol15TrcukXKPQVBBt+oQeTsMqI2bB
- GuPh19dzNZZyRt+GlqnfO9bJ/Tim+NoGVEj5VIS8NJAXX1WyEDzFT88I1
- M2RwPvID2GBQsxCrclrgK1IH/2ttG4Ih3gpR4yGSZf5M5HNP83qnykV35 Q==;
-X-CSE-ConnectionGUID: 7OLeUjxFTTqOsLkUuA2v+Q==
-X-CSE-MsgGUID: t64Zf50RQjeEBj782BoPwA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11623"; a="69607159"
-X-IronPort-AV: E=Sophos;i="6.20,222,1758610800"; d="scan'208";a="69607159"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Nov 2025 05:43:46 -0800
-X-CSE-ConnectionGUID: oogFpWJDShus4k1OftvR1w==
-X-CSE-MsgGUID: Vhi3Rn6VTNi/QFyiu5ooAg==
+ bh=kogCCRdsnNQF617qwoeLZO/sTMjMfgpXwJrGyqn6Ld0=;
+ b=JJBGm6yICG0BVUQk4Jx62h49fV59QYw0WK3Cesumpp0pjupUjJuv8E7c
+ UQvdOscoxoA7RnDlnrCF2BoQJdqBGj0lVIrIEUAmRnG8oNqYvnMxZ5D79
+ AtImaKXRZxftA5/I60c7hbhtPA/zVsrmAT5LahZ/bMor7iNge0lyB1kMi
+ +VReQUO3apyFSD/XCTdp2iEhbqudQITkwUK7ZiOJ4LtBO4GU4wb/4Lb5q
+ ftUGxm8/Kex9znxjRTtqCSBxLHe31hJpnIrTaW0kcLbdPH55Bvwgy/9JY
+ jkiqQuhg+XTXxXYY/cJ7MT/8PxL+7gv/t2VPpHfIsdhyaYlPnVV6g4idn w==;
+X-CSE-ConnectionGUID: P9JMHmYdQmumqhlC84+hDw==
+X-CSE-MsgGUID: RZGDzEE0Txyh3MOozuT59A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11623"; a="76603081"
+X-IronPort-AV: E=Sophos;i="6.20,222,1758610800"; d="scan'208";a="76603081"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Nov 2025 05:52:47 -0800
+X-CSE-ConnectionGUID: pnkhHDDZRourrti1b7Ypbg==
+X-CSE-MsgGUID: Po46LtYhTe2UIygIHHAcVg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,222,1758610800"; d="scan'208";a="196792707"
-Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
- by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Nov 2025 05:43:46 -0800
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.20,222,1758610800"; d="scan'208";a="192435888"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by orviesa008.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Nov 2025 05:52:47 -0800
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Mon, 24 Nov 2025 05:43:45 -0800
-Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ 15.2.2562.29; Mon, 24 Nov 2025 05:52:46 -0800
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29 via Frontend Transport; Mon, 24 Nov 2025 05:43:45 -0800
-Received: from SA9PR02CU001.outbound.protection.outlook.com (40.93.196.17) by
- edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
+ 15.2.2562.29 via Frontend Transport; Mon, 24 Nov 2025 05:52:46 -0800
+Received: from MW6PR02CU001.outbound.protection.outlook.com (52.101.48.29) by
+ edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Mon, 24 Nov 2025 05:43:45 -0800
+ 15.2.2562.27; Mon, 24 Nov 2025 05:52:46 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=pTL6alslN41A5tdu8Y39SYfPLnIaXyJ23/DZbipVD/n+3/W9BcFwujabQefpMRHoO/f6gTeyza5NyCzwborBDnvEtpB6LFNANjex0S+8zFohRqTrS970ZoDACiY/+EgW5HGiSMMGGpQkCpZ6JfzgSK3rEv85d6ohUH9trSBdwKJAXcox4aym2Jc5DRPZDtFsIx1IqJBIvXs9gU6X6oQvi7pnwx2nJ+bJJQTuzDbNzSq4Gu8Ra+S2VmwWtcQtKWsrQ0wwz3frvcYw03mEYvQorUTA2ZuWgotdCvL3ZR662H7qQerBVL0W1grWy2m+8WvIhw9FTIxyK7C0DUPRVReGug==
+ b=jt44HSW72sNga9dN3qZxR1uG5SFgjUzuk71cwZfIInZtEBpNPJKxzt7MmPVkcFscnTNR6uVArAKG3Kb3WiRB/LhczKf6hSxtk/VYSRWYbsKLgoWViITdh6geL5Ag8ZBDR79iiPGSI8sQGuE+s2CSPU+BA2HNt1GjFIxz4J3iQSOvchEqGHG7ST71Y5WbAMoSvIIDdBtEbIXi8cJl8pfJOQEjnBw1qYM0xE9y0I+AD1Qz8AM61Tt5r8ugXduVDuIqZkG400Ms58X0ZZD+T9IrIwk0PEUKTAl25aIiffZMlO6Paxcq0pwSnbIJt0ziB1ZuAvp+TfaL0r1oSC20iSaSDg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=okArpC84mqAAhWdHsYfh5zSJbg80onOGrIoStelKFFQ=;
- b=f0EtwlQX/Yzprphj28LAZFiW4UdUz/KVTPIn4GBtyrZj5rV9ILkxN7FXl9buHkAaW19YphU35j0t1QuB3XZl9riEqVyxiCK9b+un6zr/VXlh6CnYNVrKDO8xLke9KM3U5WBuochswjFDAmT9lbwZ+QY8O6lujBo9+dw6wbWGrm/jLsikJs+CwHzHajxrTGV5AVD1q6fQIM4F1frNJhaK0yZtUPJ8b0RCXRlEVgYDCN5Qdz/qYQl30/MmhjejhLwBcinZ7Z12azIPB48KPJITxLDKoiDKlX8KD26GSHSyDj4V+qEV27tqjigbSqQz+KiMdyAcHJDg9/tDFwl1XnDXkg==
+ bh=LjbDZn+vKCb8kQBmNb+i4chynxOI2rmCZ9fxO5dt1pg=;
+ b=lljcmyXga0CN1LKgOg1EbDuPoMknmcuxOVRK+8UxrVtbbZHUpg+3cnAlByhZWY040QHg9sUs3J9Ri9txxJRzkdV+jMuvj3XoCzxeZGP7MA0IVOJBcU2TpEeyLiWtLRM5wovHR7rmSrMmQUQ3bNNTOaiaJXsrN1hoOxR7MRjYFkQ9LTbpuZfhwHetPfd7Iy+VKSS7RpYsFLMoVOp74O7lYAuc+bKTaB35chuKa0pt7qRc4yvtQXvJ3RIosU6EQgSw4RJWFX7XV+LTPLzwR3wy6rnBI56gThUs0ZoZg5SF/e6JIKn8Pd35QtyAPkXiPdxd6k5Byo8nX7zWjyAsnDIx8A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from MN0PR11MB6135.namprd11.prod.outlook.com (2603:10b6:208:3c9::9)
- by DS0PR11MB7334.namprd11.prod.outlook.com (2603:10b6:8:11d::21) with
- Microsoft SMTP Server (version=TLS1_2,
+ by SJ5PPFD56E32CC2.namprd11.prod.outlook.com
+ (2603:10b6:a0f:fc02::859) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9343.17; Mon, 24 Nov
- 2025 13:43:43 +0000
+ 2025 13:52:44 +0000
 Received: from MN0PR11MB6135.namprd11.prod.outlook.com
  ([fe80::3225:d4ad:74a:6d7a]) by MN0PR11MB6135.namprd11.prod.outlook.com
  ([fe80::3225:d4ad:74a:6d7a%4]) with mapi id 15.20.9343.016; Mon, 24 Nov 2025
- 13:43:42 +0000
-Date: Mon, 24 Nov 2025 14:43:39 +0100
+ 13:52:44 +0000
+Date: Mon, 24 Nov 2025 14:52:41 +0100
 From: Piotr =?utf-8?Q?Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>
 To: Lukasz Laguna <lukasz.laguna@intel.com>
 CC: <intel-xe@lists.freedesktop.org>, <michal.wajdeczko@intel.com>
-Subject: Re: [PATCH v2 3/4] drm/xe/pf: Add TLB invalidation support for MERT
-Message-ID: <20251124134339.cauzham6bamvnww2@intel.com>
+Subject: Re: [PATCH v2 4/4] drm/xe/pf: Handle MERT catastrophic errors
+Message-ID: <20251124135241.7tdfq7lpz54ec4gg@intel.com>
 References: <20251031080501.844-1-lukasz.laguna@intel.com>
- <20251031080501.844-4-lukasz.laguna@intel.com>
+ <20251031080501.844-5-lukasz.laguna@intel.com>
 Content-Type: text/plain; charset="utf-8"
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20251031080501.844-4-lukasz.laguna@intel.com>
-X-ClientProxiedBy: WA2P291CA0017.POLP291.PROD.OUTLOOK.COM
- (2603:10a6:1d0:1e::17) To MN0PR11MB6135.namprd11.prod.outlook.com
+In-Reply-To: <20251031080501.844-5-lukasz.laguna@intel.com>
+X-ClientProxiedBy: WA0P291CA0024.POLP291.PROD.OUTLOOK.COM
+ (2603:10a6:1d0:1::26) To MN0PR11MB6135.namprd11.prod.outlook.com
  (2603:10b6:208:3c9::9)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6135:EE_|DS0PR11MB7334:EE_
-X-MS-Office365-Filtering-Correlation-Id: 02443b3e-d94b-474d-1fe1-08de2b5f7b5b
+X-MS-TrafficTypeDiagnostic: MN0PR11MB6135:EE_|SJ5PPFD56E32CC2:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5e029a29-3e54-40bd-aa18-08de2b60be34
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?YysyVFR5QmpxTmRHQXJkMklNckUydzU1bnFzbXdiem8rY0wzOWRBRE9VN1RC?=
- =?utf-8?B?Yk5raC9oYml0anNlK3hXYVYrb2ZjWVNvZ3RRYUp0bFpaZlEzaVJ3K09KMENo?=
- =?utf-8?B?akRoS0FTT0lYaXZCNUFPeGdmbEN4T3VIOTEzMVBYaU4yeDhVeFoxVVZhcUVP?=
- =?utf-8?B?UkZyNVA0N3k2QkFINVZTVmkzVDArMSthaHpVdDIxYzRmbGFIVWk1N0hTT2Jy?=
- =?utf-8?B?WkV2dlU3Q1YrWmV2WHpoWTZKWTluUGd0bHBuMW5sb2hSYjdXRVJNMWxub0kx?=
- =?utf-8?B?ekN0enc5ZzZkVXJyM0Q0cWUxeEV3MThKUk9pMEpkSmk2OHJwT2VwOXpoQUxD?=
- =?utf-8?B?emVyUSs4cnRVVDRISFFDTkVoNHVRUG5rcmJGcEhTMWZIUWl5NVJYOUJZZjYv?=
- =?utf-8?B?Wnk3MW0yMmRrcCt1cytNMFNadEVHYk5EMkU1cWdTUGIxdHJjN2dva0hFWkF6?=
- =?utf-8?B?RXo4NjZORmFsWE02OUNXaUxHb2dxdyszdXNZdzZmUU1RTjUvNTgzU0hmTnBU?=
- =?utf-8?B?c3l1eDNiUWVIVmhja281L01nMVdHSUFVZ0htek5ySjFOM3VQS2hOVkVPY1k5?=
- =?utf-8?B?bzRXWTh0VDdyamhZLzMxdXRUektsL0RWbWdER2ZqUTRQK3d3d29XYWh6dFJm?=
- =?utf-8?B?WTUvVWlkYlg2eDBKcVdhQ0lOL0c0N01ieUlkMXNzeGlmREoweTE4TlFtYnZR?=
- =?utf-8?B?NWhmd2Y2YTZ4cjVCN0RraGZwZndXOFdka1F4cCtUbDUyTXhQcXhUUVU1Z3RC?=
- =?utf-8?B?aXJJZWpWVTlmSXZXUkF2OThCbnhBRmdmYktrQnV5a21JWUptUmRTajIzZWEr?=
- =?utf-8?B?VVV0VTRlYVVuWlVSTjVQWDFvTHVoU2o1R1MwTjBtNGtEYkFVWU05SXo2Ykwv?=
- =?utf-8?B?N256R3VvVzlOUm9IZFEvQ2VlaUtoTWh2YWQ5c015WmVTZC9nbi9JWkg2QWNr?=
- =?utf-8?B?QUsrT3ZoYzRyS1BaWUhoVlgzbCs1Nm05V21SVHc3UkFmR0g4b2h5TlpqNGFR?=
- =?utf-8?B?Y2hvWUZLdmdLWFczeEFpWlY5V3VHSzUzYk44dmx5aXVNdksreldZeXk1V2RG?=
- =?utf-8?B?QUU0WDFkWTFWd25ST085ekUvQk9nQTZPS3ZKZzFRMnlOR1pac09SZWVMd0JJ?=
- =?utf-8?B?SkRQRXZhUjlEelArZ3JQL1lNMGdtbXNEd1UvYlRwcW5kZGUzOE85U3ZES1pT?=
- =?utf-8?B?ck5pa3NvTzNMY2FjeTFHVXM5SjZIbnNhRksyaVYwMG1jYzhXNEsyOWh6a2tK?=
- =?utf-8?B?TTYrUEk2QTBYLzJkQ2VuRU94QTBnZmNyTHlWTlkrdFFxWkEvQTZweDcyS0xm?=
- =?utf-8?B?OGF5WDdoM0JreVM0dm9vSkU5TWkycXlkTm1tU0Q1S1ZYOU1xazhKZ0JVRll6?=
- =?utf-8?B?WWlSazZxUVNQUjVDWjliUzc2OGlRTGF6MlF0d0ZYbXovejk1NS9aemZRenlp?=
- =?utf-8?B?THZIZXZmMGI5eUlWRVJORWtrV1JPQUVRc0duemdyUjlabWdFQnJyQ2xNZm1X?=
- =?utf-8?B?dndqdjF1U2pBdUdIb0dzdHNYbkl5U0hHdnZla3lQUm5rTkhCZVFTQWJSdE1m?=
- =?utf-8?B?Wi80TkJRVU9mVnlUUHZ5VnN4ellVSlM0MkpqaU5BQm9xTDdWSXJHcVFLWGVo?=
- =?utf-8?B?eERyQlg0VnRUYXdxeGtnaGxQTTZFUHFqd0ovaktwbGFaRDJwOVRtemVlc0Nl?=
- =?utf-8?B?eDdTWGU1TXBXODhnTG5nRHFrQjQyekxiaUVnYnR3OUlac2RYc3RQNlRDRjl0?=
- =?utf-8?B?S0l5N3J3MFJuTk9YY2M2Mmo4THVzaDhSbTlKb3IxajR4bXdHVTdOTDRiUUda?=
- =?utf-8?B?S1dia3lIcnRmcCsyUWRWUzNUTmEvRTBWcVFha0xPR0ZYRVlMTWR3TUdldFpF?=
- =?utf-8?B?aXJaTk1YRXduNVVVbVk4TVdJS1RkQnVZWVRWa245MmJxOCtUL0doTzFaWXRs?=
- =?utf-8?Q?gVUxd6KOsKUYmDKIek0qhMSfZLkXHIx0?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?TTE1bXFKdC9FamhUa1pxTktmNURZekZsc0ZQL3JPZWJaQThxTnJqUFRnSmNX?=
+ =?utf-8?B?ZVF6WlRrOVY4a1BGbWhndXNMSUF3clNPbmJCK01zakpPbXM3UUxIemgwSk5j?=
+ =?utf-8?B?cnZLQXllWlc0WHdnRjFkUk1uNTk4Vzg5UXVnejE4YmkveVVVMlROKzJzbjdp?=
+ =?utf-8?B?dHBUdDVXS3ZaaGFWQkFpdUVZbWRxQ01oRmRuMkNqTmNuOGJUUUh1QWhaNmUr?=
+ =?utf-8?B?cmhmM1RtNk0zZXpaU3BWN3RZZ0NEQW9IWW1ZdWJmblJRQUV5M2dJYjlEc28w?=
+ =?utf-8?B?T2RudEZhdmRKY285UnJkQXNWUmdGdDl5a25kN1NtT0tvV1o4Y09lTGhhU1kx?=
+ =?utf-8?B?Zm9ySGswc0tuNXVqV3hjSng1dUFBSmZnbENscHNvbUViSlc0Y1ljSk9TUlcr?=
+ =?utf-8?B?dHNHOGg1clgxZmZrS2ZBd3dQQlRLam1BcWtjVk5OM1g1clBia3Z2c1I3SHlX?=
+ =?utf-8?B?eUxSTmxrZ0FYczZwRE9BUFdaai95VktEWldyQVdidFpiRGdKQlV0YzdmaUp5?=
+ =?utf-8?B?Q3RTSVFVSng0WVdlUzU1VnU3NkVXcHU4R3FQdUdIc1ZjcDQwLy96TDFrZVYx?=
+ =?utf-8?B?V0YzMDRSVkwxSXFZY0FGbEwraElZSmdLd1F2TFlFNUpad0xrMGZxem5ROURZ?=
+ =?utf-8?B?eDV3U25GT3hWV3YyQ3o0WXdKbUV6U0NHMmVPcFQrV1pUakViUHJvYXFXVkJr?=
+ =?utf-8?B?akRFaXk5R0pjVEFCSzBNY1BBaUZHbHpreHJ4cUJTR3BWajNncHg1Wk9ZdHZE?=
+ =?utf-8?B?cVZXcklDTnd1bDVXNFpqbGlQenhnSXpPQWhHa3BPTkdWVzlxeFkxQ1NUVEJX?=
+ =?utf-8?B?bmhEMGtHREZscm9tVEJWd3ZVZHBoSDFYc20rcmpLbUxwbVZaT3AyMkhJTDMv?=
+ =?utf-8?B?YVB3RzFLUCtDN1VHZUQ1bElSRjZkTFhmSks2MjVCbE5qVnZ6Z0hOS0JzQ0Uw?=
+ =?utf-8?B?c3J5dGNrbDFONjZTemNzejZKWnJTOEJLUVhHbHdYUDVmbVhNei9aelFMK0Vm?=
+ =?utf-8?B?RWNvS09WS0lETHVRRVBVZWhJOVVGWnRjMnJXZjFtcnMzbm1zRllaR3RLa0lr?=
+ =?utf-8?B?TXRhVWZtUkpoVGNHY0FjVktpNkk1TlJWbEtoY3JhdnZldm04Ym5rakRPVnAr?=
+ =?utf-8?B?WEkwU2pVbWVpSXJRYkgwRUdUL0dNQXNhUTE3ZXFYZDJvOGZBaGZuZGs1NTJO?=
+ =?utf-8?B?RW9PSU4wS1N5ZE91TmVxcStHeDkxNVBSSTlGUEtSYjJvR3dsWUdGcEd5eU9R?=
+ =?utf-8?B?cllSQmo1Y1FpMUdjK2lRb0lwczRZVGdzS255ZW4yZWpaVjFhbDhRQURTY1Zk?=
+ =?utf-8?B?eW5jRkJqeStweWZTY2VDajA0RzQ4UFloR3RnZ0p1bHd2NFp1R2VlZzZhcDJO?=
+ =?utf-8?B?NEdpQWtjYXorWWVpV1kzWk1WbWc5djBNYW9YNDc2K0p5NksrUmNxNlZPM0Mz?=
+ =?utf-8?B?VVdsRWtBWWZTRlZmalg0RW53RGdTdE1RSDV6dnlzTk1SazNOK0ltdSsrQWJk?=
+ =?utf-8?B?Yng4eW1YbVJFNDNuK2d6dkRmOEJsMGpUcFZVN1lOWHdZVXphTkhiTjRyYmlu?=
+ =?utf-8?B?NGljZko1cERTYUVNckI3RWJTYjRnWWpzL3podEdxRURuMDNpckZDSWdiTVFv?=
+ =?utf-8?B?WEJxVm5VbTNkb3ZmQVJ1WGtmbmNxZVpYZ2o3V3cyR3J4elBNM2NudzdsTGhw?=
+ =?utf-8?B?S1QyQi9MRTJveVpJWU54N1l2QmdNWmdUTGh1YkUzVEhKVUpZZzhhOFN5eEhS?=
+ =?utf-8?B?NisvN2swRFRlT1lDZStqdTJaeERDcmJXZ2tnZHBPWEFBdi96d2IzK1Njam1o?=
+ =?utf-8?B?Z2R3aW1VRDBVa21RY0xYWVlNVkhFdnRlYndwTGt2UGlCK1EvRlh1bWx3OHNu?=
+ =?utf-8?B?bVZpL0t2M0pmS0p4TWpIb3R5a2Z0WjRYTXhEMzdKZTNyREdvalVLT0w4OU5K?=
+ =?utf-8?Q?+0nCRh3Q1oiOusdCbw0c/XMKeX9I6tYS?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:MN0PR11MB6135.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
+ SFS:(13230040)(376014)(366016)(1800799024); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?YVVQb2ZoT3AwVXhYU1hkd05YOG1Vd3ZDK2lvS2ZlT09XaHFiaG0zSHJPcUdU?=
- =?utf-8?B?UVlXaUVxZHM4U0x3RVhVaUFZS2poQys5OWRXZGFERXZQOThWL3J6SS9NYXRu?=
- =?utf-8?B?emVEaXczdkxQTXpFT2svUTliMUI0T2FIdjdONWNNSDBMVHFEQmNXVmc0aHFL?=
- =?utf-8?B?SVNKSUl5WU8rSnZxUjJIbXJ0RHNJUmxmRUhRMFNRYVkrVEJDd3FvL05iNTlU?=
- =?utf-8?B?THJxNUwxais5K3hQeWdBUmczYXJFTGRYbHIyZmlqQTN3cG9KMUppbXlkWW5M?=
- =?utf-8?B?Nm9wbG1GTlJYWEdHUHlja1ljY1BqZm42dkVlUXVjSUlEMmEzN0crMWRWWXE3?=
- =?utf-8?B?RDBjWVJhL2VKL0RHbTlQNFp2S2tyRi9SbVYxQUNHMnlZelhpM3M5SUl5TWRV?=
- =?utf-8?B?Q2Zrdm1SQUREWlc3QUhLZXdQc04rTG1QYkZXY1pteDZ0ek1vNXk5a0g5a2dq?=
- =?utf-8?B?T0JzQlE1TTJidnNFZVBNUFZjdzBITnBQVGhRSzJuTkhXNVcwNWpjZ1UybnpP?=
- =?utf-8?B?RE9LMXhqYXR4djI1YlA4bUo5bVU5dFM5QmlvRnNEMWlrRHl2eTRDeU5FdFZJ?=
- =?utf-8?B?NFZFQy9wc0xLVGF2VC9BUisvajVmdkoxeDRaY2xxWVgvYXVubHlCMkUvWC8x?=
- =?utf-8?B?T2ljUVc4QkVqSjJyUjZmV1RGZVNraFVDNnNDTTdhVXJEdDVHM2xnQUlCUmlV?=
- =?utf-8?B?Y1BuYjZsdWpjMjRUY0lXbDA1NGtkbWNtU3kweFFaQU43OFBnLzVsRFBxSkN2?=
- =?utf-8?B?a0N4WG1XZWpjWXY0Z0VTNVg0UVBGbkJyckxSUjc1UDU5Yjd6eUh0OWxPaGVF?=
- =?utf-8?B?WWdJdC9OV0lOZFVYOUY3UU1kVTQ1aERRbGNlVURaQjRzWEYyb0d1dEYycTFl?=
- =?utf-8?B?cFNic0ZlNW8vaHcreDF4TEovRHZocXRPKzFNL2JWWTlwazNhMmRtUVZtQjVG?=
- =?utf-8?B?cXZjY0txYTNnN3U1SENuY1NMODE4Vmd3NHRiWVJDOGo1ZklaU3RVSm9Ea0Ny?=
- =?utf-8?B?dkdHMG16MVVhZWYvS25mMHR6ZUdaZXBaeEgvWWFWc3JUVG9WNGp0WWZMUGxl?=
- =?utf-8?B?WFBPdDQ4ZEVoUWh3dzFmTFZJZnVvU0NxOFlvbGcybW96Uy9FbjI2MS85WEUx?=
- =?utf-8?B?dEtMTlZNL2J3OVBUK3duYzhjNE5IcHJIakxjUi9FUjVzdVcvS0VMTXNzSzNO?=
- =?utf-8?B?RXlsTUhBY0NFOUM3ZERjMzlPNlNsbmRUR0FOd1dieS8xVGpmV2t6YVRXdXpY?=
- =?utf-8?B?U25OU2k0THhrejRkY3A5eklSTlB2emQ2U0hKbXBwS3ZPWUpwMVY2NmJldXBz?=
- =?utf-8?B?UFN5SVlUSEdUeXpEMjdaYVhPNHdEMUw0b05ZckJvTGVRNVBTL3lhL1NHYkI2?=
- =?utf-8?B?MFlBTDhBYlhwbjRpTlJILzJZUUpMaTRpT3VtWXNaTnk0YVRTK3pEOFNIVUtr?=
- =?utf-8?B?ZW0xS2xXeVdGTGVrMnNBZjg0ckZla0dqaG9kaUtFVE11WUhWTFJHR3NKd1Vk?=
- =?utf-8?B?dzVOdEdZYWJXelprOTFwb1ZoeWVJRW9RelliNEY4SmJpMkFHSnZJNnhhQjZT?=
- =?utf-8?B?MVFSczZRbTNuSWdMT0dQZWJoNjNkZXJOMW5jc2F0TTFaTHRWVWNqUkxQY2NW?=
- =?utf-8?B?Zmp6YTduVXQvVEZqN29Ed0wrL0VmejdLOEVmZHQ1L0dTOXpCQ1JIL0ZOOW5u?=
- =?utf-8?B?VGJEZmNmczREQlZ4VXRBQmdFS3FyN2l3UXcxZDhFTVdlSk1ma2VDaGtNNE5t?=
- =?utf-8?B?aS9ueVIrK3RTWVZFL3lIbzQ3Z1ZVN2ltc004UCtrL1BsZXJ2aFpkZzE2ZDIw?=
- =?utf-8?B?NUFGa2o4SFZLNDU1UWpLVmVLUHRxNG1oMVpkWnNHbEdZQkNWSEowb1NSLzNS?=
- =?utf-8?B?d1h2UUIrTW1BTVJtMlRDRTlDdnBSYitJVkZ0ZVduQjhJZ0t1WjR5ckJrKzha?=
- =?utf-8?B?VUZ3cDlTdURScDcxTWpoYjdhK3JEaEt3M0t0d2ROUlpOOFZ6REdPaXo3STRi?=
- =?utf-8?B?bURNTThsT3diSmhGbFVOWkZJMTFXUEkrUG5pcm9pYUFWMmc3N3JjVHQ1enZF?=
- =?utf-8?B?MkQrTElYSk91ZjlaTzhQVWtOSHVYMk56bFIxRGVqN3pnZUdHMDE3YjEyZ0g1?=
- =?utf-8?B?VTdvU0paclRJTWRla1pRdWhRdTNINXJ1YnNvcld1TEdwNWRTcTR6ck9yc2ph?=
- =?utf-8?B?Y3c9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 02443b3e-d94b-474d-1fe1-08de2b5f7b5b
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?S09zeUd2SXkvTWNmSy9WcmhkV2UxSjhIVEVVSUhFWUJmdGZ2YmduNTBjSHRV?=
+ =?utf-8?B?cFhMQXUrTmpldmYvc1M3cEYxWElWVW5EWjdhVkFVSXozWWFZaHpIQTFlbXZK?=
+ =?utf-8?B?R1Y5Z0JNWEpTOXpkcmsxQUF2Q0E5dkJidjJPSlpyVGMvdEZIRll5Z3NJV3R6?=
+ =?utf-8?B?WC9YQVRXeGlMeDVscXR1RlBubWtRYVlLZWYvUDR4MEh4QjY2UldmOEpFeklq?=
+ =?utf-8?B?RitYNjNTQ1NBQlV0OEtKa0NjV1RUaDZVTmpBY29IVDRZSFRnVVdXbVJPMTl1?=
+ =?utf-8?B?eTlpekpPWCt0UDYzdm43NVQ4TXJ6RDhXZ2tmQ1NkSXB3Y0g1Sy85Y0JBTTVR?=
+ =?utf-8?B?Z0xQUlFKcWtQdzMwQzk1UXVWQXYrbmU4UEZUaEhBbXpOcXpwYjRLd2JhSzVZ?=
+ =?utf-8?B?MzYzOGZCWjZ4V1crMGNuWHZDeUFxaURqM2JBb3JaNjVPU1BkTzNFYkRHMG5N?=
+ =?utf-8?B?WU16cVFGVGQzRHB6bW1UTGNXMmk2REZqUU1UdFlpWC85bmpxL09UK2VaWlMw?=
+ =?utf-8?B?L2NySG9oZG1GVUk4QjhsRDRsKzdiTHdidTFSSnk3MzRhclNEa0dSUytKL2ZQ?=
+ =?utf-8?B?ektFOEdraFZNdUtiOG8rdU1lblBUZXBVRTU2KzJkRWcrN0RGM0F0TjRKVE5B?=
+ =?utf-8?B?SlArWkErT28rdkxzdFhieCtpQTI5S0ZuY0xiYUplODBDeElTOTZBNGJwdmlK?=
+ =?utf-8?B?U1pOZDUrTWJnc3QyVUlaem1DajZEdWs0UTFXL25RdURWY1VQbHFRQnhoZkJi?=
+ =?utf-8?B?TDVad1U3UXVvdTE2WGVKYjduNHV2QStUZ3RZNGxhNnF1UmVIM01SMGVLMkt3?=
+ =?utf-8?B?RFhUaVlZTmY0YUd2U3Nzd3BZTHY2QXpqOFRUVmtPRTRTZytsbHNCWTkveTEz?=
+ =?utf-8?B?dUhzUGl1WEdrcWNVdXNMdTBGWW4xZWt2emlVWloxWm12VzFBbythVWN3QkhF?=
+ =?utf-8?B?WWxzUUYvWlJWaUdFUFVFTlBVOWwwdG9qMFpQZy9uY3kya3RSQ3l4eHVqRXZl?=
+ =?utf-8?B?WWUvWmRlZWJIdlpLRzNROS9QaUcrbFJsMWQ2eWE1dXhJQzBoUkdzaGJ4YXdt?=
+ =?utf-8?B?bWpDblJzSTczTHVzS1ZhZk56T2o3Rkt5RXg3bUd4b1Jxd0RvOEZrUXhDTGZi?=
+ =?utf-8?B?OEM4RUc0bUtvT01GSmpPRkpWSWNzczZFR3Z3ck9mcVpLeFdGbUlTeGVyMU1B?=
+ =?utf-8?B?cHlSWm5vN3VPYVBra3JLNnVHVmt1Y2xmeVNrVXY5QXViY3lUZ3JRdkEzekJx?=
+ =?utf-8?B?THJ6Wi9Oclo5NG45Q3ZvZzJ6Q0RDblZXd25aMkR1UVdPTHNNMnROeVk5TWNn?=
+ =?utf-8?B?Y2dTZVdXdnR4UGdCak1ONkdxeWk4YzJEV0RpQks3SmFQMXd4a0FvK05scWxC?=
+ =?utf-8?B?azFueGZqRlBkL2h1UjIxWkp3ZGVrL3J4aXlQSHZ2QWs0YVBrdlZJWUFxZEtW?=
+ =?utf-8?B?RFByOHN1VjZsMGQ4QkdVTUhlakVGQ3MyazBkT3VwenowSER5di90dXdqWW5y?=
+ =?utf-8?B?YjJzb3lyRTRhc1NRVTIwcUtWbkNuSjdYOXJNYTNUMGVhT0dDcHpEdkRRd1h0?=
+ =?utf-8?B?YnhSdWsrVDF5OW4zV2RCTjJlSWxYUWpCT2hZb2VlNy9XL2g0K3RFUWVWV2Nq?=
+ =?utf-8?B?clVpWTAwcVlVd0thVFR6clV3Y0ZDWTNnKyt3NTRwaFhRb2VpQUxDWE04YkFu?=
+ =?utf-8?B?NDhHYnVtYWVjMVFVNkZrSXhDMmZkYWhudHExNENoZnZTUGVZa09tbEJiYWJY?=
+ =?utf-8?B?NXpzanFxZzVZaHhXSnJ3akR1V2RuZHB6enNyVlRZVi9PS3ZzQmNhd1hRVUpr?=
+ =?utf-8?B?V1lVYVV1UFpqL0pHSHlZUkdTK0lRci9vSW1qWmoxQ2dTRVAvTmVJWUtZWE5O?=
+ =?utf-8?B?TG4zOWptdDR6azVXWlVObk5TaDRSSlIyVjl6MFUrM0lETGdtTjZ4SEoxUlRy?=
+ =?utf-8?B?aDg5VVpmWU5zWmNTcnZNSWZ2a3NMLzBkakZhWFR3NDZMSkRFSmR2NmY5SEVX?=
+ =?utf-8?B?dmNpK2lCMjhKdmQ5VFJaQUxnVWtZekJxMDNwUFhtb1Z4Q2pENWUzellNTHdz?=
+ =?utf-8?B?RzdFQXhsWjZJY3JjaVcybVpqbkZpNytKRWdEZFh0Z0RmSmpwOWQ3VDR4WnRj?=
+ =?utf-8?B?TVV3aDhRYTJGbXp0akVRZnFCRWRkOUtISVFzbDhQYmVJQ1VncTBuRWJlSlRN?=
+ =?utf-8?B?QVE9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5e029a29-3e54-40bd-aa18-08de2b60be34
 X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6135.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Nov 2025 13:43:42.7724 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Nov 2025 13:52:44.2637 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 9f4qU14SREl3W3Yj5V4GoyqfyJCrhV+LpsSGjJz7w2DCr5wcWFYj2ZuLLfI+SEaRD4yIbgy1cNAaQ6OYbSW94OCMRyG1U82Qn0qbAZKBDyY=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB7334
+X-MS-Exchange-CrossTenant-UserPrincipalName: 9Cn8j/N2OT4UrTODFnjZpcnReDD1ATNKXXoE9kcWvAnjUD1VAQoHSf3l8Ioh1+p5zEdh5y9ptUxITeavLCl95CyhiQyUeBvm+3hD+g2k62I=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ5PPFD56E32CC2
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -194,299 +194,71 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Lukasz Laguna <lukasz.laguna@intel.com> wrote on pią [2025-paź-31 09:05:00 +0100]:
-> Add support for triggering and handling MERT TLB invalidation. After
-> LMTT updates, the MERT TLB invalidation is initiated to ensure memory
-> translations remain coherent.
-> 
-> Completion of the invalidation is signaled via MERT interrupt (bit 13 in
-> the GFX master interrupt register). Detect and handle this interrupt to
-> properly synchronize the invalidation flow.
+Lukasz Laguna <lukasz.laguna@intel.com> wrote on pią [2025-paź-31 09:05:01 +0100]:
+> The MERT block triggers an interrupt when a catastrophic error occurs.
+> Update the interrupt handler to read the MERT catastrophic error type
+> and log appropriate debug message.
 > 
 > Signed-off-by: Lukasz Laguna <lukasz.laguna@intel.com>
 > ---
 > v2:
->  - squash commits (Matt Roper),
->  - fix locking (Matt Brost, Lucas),
->  - move the implementation to xe_mert.c (Michal Wajdeczko).
+>  - rebase,
+>  - fix the VF ID extraction from the read value.
 > ---
->  drivers/gpu/drm/xe/Makefile            |  1 +
->  drivers/gpu/drm/xe/regs/xe_irq_regs.h  |  1 +
->  drivers/gpu/drm/xe/regs/xe_mert_regs.h |  3 ++
->  drivers/gpu/drm/xe/xe_device_types.h   |  4 ++
->  drivers/gpu/drm/xe/xe_irq.c            |  2 +
->  drivers/gpu/drm/xe/xe_lmtt.c           | 15 +++++-
->  drivers/gpu/drm/xe/xe_mert.c           | 71 ++++++++++++++++++++++++++
->  drivers/gpu/drm/xe/xe_mert.h           | 32 ++++++++++++
->  drivers/gpu/drm/xe/xe_sriov_pf.c       |  4 ++
->  9 files changed, 131 insertions(+), 2 deletions(-)
->  create mode 100644 drivers/gpu/drm/xe/xe_mert.c
->  create mode 100644 drivers/gpu/drm/xe/xe_mert.h
+>  drivers/gpu/drm/xe/regs/xe_mert_regs.h |  5 +++++
+>  drivers/gpu/drm/xe/xe_mert.c           | 11 +++++++++++
+>  2 files changed, 16 insertions(+)
 > 
-> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-> index bfc72f3dd61b..e2a7e460c2d9 100644
-> --- a/drivers/gpu/drm/xe/Makefile
-> +++ b/drivers/gpu/drm/xe/Makefile
-> @@ -172,6 +172,7 @@ xe-$(CONFIG_PCI_IOV) += \
->  	xe_lmtt.o \
->  	xe_lmtt_2l.o \
->  	xe_lmtt_ml.o \
-> +	xe_mert.o \
->  	xe_pci_sriov.o \
->  	xe_sriov_pf.o \
->  	xe_sriov_pf_control.o \
-> diff --git a/drivers/gpu/drm/xe/regs/xe_irq_regs.h b/drivers/gpu/drm/xe/regs/xe_irq_regs.h
-> index 2f97662d958d..9d74f454d3ff 100644
-> --- a/drivers/gpu/drm/xe/regs/xe_irq_regs.h
-> +++ b/drivers/gpu/drm/xe/regs/xe_irq_regs.h
-> @@ -20,6 +20,7 @@
->  #define   GU_MISC_IRQ				REG_BIT(29)
->  #define   ERROR_IRQ(x)				REG_BIT(26 + (x))
->  #define   DISPLAY_IRQ				REG_BIT(16)
-> +#define   SOC_H2DMEMINT_IRQ			REG_BIT(13)
->  #define   I2C_IRQ				REG_BIT(12)
->  #define   GT_DW_IRQ(x)				REG_BIT(x)
->  
 > diff --git a/drivers/gpu/drm/xe/regs/xe_mert_regs.h b/drivers/gpu/drm/xe/regs/xe_mert_regs.h
-> index 5b7c15e08747..aef66c04901d 100644
+> index aef66c04901d..c345e11ceea8 100644
 > --- a/drivers/gpu/drm/xe/regs/xe_mert_regs.h
 > +++ b/drivers/gpu/drm/xe/regs/xe_mert_regs.h
-> @@ -10,4 +10,7 @@
+> @@ -10,6 +10,11 @@
 >  
 >  #define MERT_LMEM_CFG				XE_REG(0x1448b0)
 >  
-> +#define MERT_TLB_INV_DESC_A			XE_REG(0x14cf7c)
-> +#define   MERT_TLB_INV_DESC_A_VALID		REG_BIT(0)
+> +#define MERT_TLB_CT_INTR_ERR_ID_PORT		XE_REG(0x145190)
+> +#define   MERT_TLB_CT_VFID_MASK			REG_GENMASK(16, 9)
+> +#define   MERT_TLB_CT_ERROR_MASK		REG_GENMASK(5, 0)
+> +#define     MERT_TLB_CT_LMTT_FAULT		0x05
 > +
->  #endif /* _XE_MERT_REGS_H_ */
-> diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-> index 0b95d6539bc0..38623def6f30 100644
-> --- a/drivers/gpu/drm/xe/xe_device_types.h
-> +++ b/drivers/gpu/drm/xe/xe_device_types.h
-> @@ -17,6 +17,7 @@
->  #include "xe_late_bind_fw_types.h"
->  #include "xe_lmtt_types.h"
->  #include "xe_memirq_types.h"
-> +#include "xe_mert.h"
->  #include "xe_oa_types.h"
->  #include "xe_platform_types.h"
->  #include "xe_pmu_types.h"
-> @@ -219,6 +220,9 @@ struct xe_tile {
+>  #define MERT_TLB_INV_DESC_A			XE_REG(0x14cf7c)
+>  #define   MERT_TLB_INV_DESC_A_VALID		REG_BIT(0)
 >  
->  	/** @debugfs: debugfs directory associated with this tile */
->  	struct dentry *debugfs;
-> +
-> +	/** @mert: MERT-related data */
-> +	struct xe_mert mert;
->  };
->  
->  /**
-> diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
-> index e5ed0242f7b1..919ef19149be 100644
-> --- a/drivers/gpu/drm/xe/xe_irq.c
-> +++ b/drivers/gpu/drm/xe/xe_irq.c
-> @@ -21,6 +21,7 @@
->  #include "xe_hw_error.h"
->  #include "xe_i2c.h"
->  #include "xe_memirq.h"
-> +#include "xe_mert.h"
->  #include "xe_mmio.h"
->  #include "xe_pxp.h"
->  #include "xe_sriov.h"
-> @@ -525,6 +526,7 @@ static irqreturn_t dg1_irq_handler(int irq, void *arg)
->  				xe_heci_csc_irq_handler(xe, master_ctl);
->  			xe_display_irq_handler(xe, master_ctl);
->  			xe_i2c_irq_handler(xe, master_ctl);
-> +			xe_mert_irq_handler(xe, master_ctl);
->  			gu_misc_iir = gu_misc_irq_ack(xe, master_ctl);
->  		}
->  	}
-> diff --git a/drivers/gpu/drm/xe/xe_lmtt.c b/drivers/gpu/drm/xe/xe_lmtt.c
-> index f50c5a4b9edf..3059ea6525bc 100644
-> --- a/drivers/gpu/drm/xe/xe_lmtt.c
-> +++ b/drivers/gpu/drm/xe/xe_lmtt.c
-> @@ -15,6 +15,7 @@
->  #include "xe_tlb_inval.h"
->  #include "xe_lmtt.h"
->  #include "xe_map.h"
-> +#include "xe_mert.h"
->  #include "xe_mmio.h"
->  #include "xe_res_cursor.h"
->  #include "xe_sriov.h"
-> @@ -270,19 +271,29 @@ static int lmtt_invalidate_hw(struct xe_lmtt *lmtt)
->   * @lmtt: the &xe_lmtt to invalidate
->   *
->   * Send requests to all GuCs on this tile to invalidate all TLBs.
-> + * If the platform has a standalone MERT, also invalidate MERT's TLB.
->   *
->   * This function should be called only when running as a PF driver.
->   */
->  void xe_lmtt_invalidate_hw(struct xe_lmtt *lmtt)
->  {
-> +	struct xe_tile *tile = lmtt_to_tile(lmtt);
-> +	struct xe_device *xe = lmtt_to_xe(lmtt);
->  	int err;
->  
-> -	lmtt_assert(lmtt, IS_SRIOV_PF(lmtt_to_xe(lmtt)));
-> +	lmtt_assert(lmtt, IS_SRIOV_PF(xe));
->  
->  	err = lmtt_invalidate_hw(lmtt);
->  	if (err)
-> -		xe_tile_sriov_err(lmtt_to_tile(lmtt), "LMTT invalidation failed (%pe)",
-> +		xe_tile_sriov_err(tile, "LMTT invalidation failed (%pe)",
->  				  ERR_PTR(err));
-> +
-> +	if (xe_device_has_mert(xe) && xe_tile_is_root(tile)) {
-> +		err = xe_mert_invalidate_lmtt(tile);
-> +		if (err)
-> +			xe_tile_sriov_err(tile, "MERT LMTT invalidation failed (%pe)",
-> +					  ERR_PTR(err));
-> +	}
->  }
->  
->  static void lmtt_write_pte(struct xe_lmtt *lmtt, struct xe_lmtt_pt *pt,
 > diff --git a/drivers/gpu/drm/xe/xe_mert.c b/drivers/gpu/drm/xe/xe_mert.c
-> new file mode 100644
-> index 000000000000..304cc8421999
-> --- /dev/null
+> index 304cc8421999..e5e0ad872506 100644
+> --- a/drivers/gpu/drm/xe/xe_mert.c
 > +++ b/drivers/gpu/drm/xe/xe_mert.c
-> @@ -0,0 +1,71 @@
-> +// SPDX-License-Identifier: MIT
-> +/*
-> + * Copyright(c) 2025, Intel Corporation. All rights reserved.
-> + */
-> +
-> +#include "regs/xe_irq_regs.h"
-> +#include "regs/xe_mert_regs.h"
-> +
-> +#include "xe_device.h"
-> +#include "xe_mert.h"
-> +#include "xe_mmio.h"
-> +#include "xe_tile.h"
-> +
-> +/**
-> + * xe_mert_invalidate_lmtt - Invalidate MERT LMTT
-> + * @tile: the &xe_tile
-> + *
-> + * Trigger invalidation of the MERT LMTT and wait for completion.
-> + *
-> + * Return: 0 on success or -ETIMEDOUT in case of a timeout.
-> + */
-> +int xe_mert_invalidate_lmtt(struct xe_tile *tile)
-> +{
-> +	struct xe_device *xe = tile_to_xe(tile);
-> +	struct xe_mert *mert = &tile->mert;
-> +	const long timeout = HZ / 4;
-> +	unsigned long flags;
-> +
-> +	xe_assert(xe, xe_device_has_mert(xe));
-> +	xe_assert(xe, xe_tile_is_root(tile));
-> +
-> +	spin_lock_irqsave(&mert->lock, flags);
-> +	if (!mert->tlb_inv_triggered) {
-> +		mert->tlb_inv_triggered = true;
-> +		reinit_completion(&mert->tlb_inv_done);
-> +		xe_mmio_write32(&tile->mmio, MERT_TLB_INV_DESC_A, MERT_TLB_INV_DESC_A_VALID);
-> +	}
-> +	spin_unlock_irqrestore(&mert->lock, flags);
-> +
-> +	if (!wait_for_completion_timeout(&mert->tlb_inv_done, timeout))
-> +		return -ETIMEDOUT;
-> +
-> +	return 0;
-> +}
-> +
-> +/**
-> + * xe_mert_irq_handler - Handler for MERT interrupts
-> + * @xe: the &xe_device
-> + * @master_ctl: interrupt register
-> + *
-> + * Handle interrupts generated by MERT.
-> + */
-> +void xe_mert_irq_handler(struct xe_device *xe, u32 master_ctl)
-> +{
-> +	struct xe_tile *tile = xe_device_get_root_tile(xe);
-> +	unsigned long flags;
-> +	u32 reg_val;
-> +
-> +	if (!(master_ctl & SOC_H2DMEMINT_IRQ))
-> +		return;
-> +
-> +	spin_lock_irqsave(&tile->mert.lock, flags);
-> +	if (tile->mert.tlb_inv_triggered) {
-> +		reg_val = xe_mmio_read32(&tile->mmio, MERT_TLB_INV_DESC_A);
-> +		if (!(reg_val & MERT_TLB_INV_DESC_A_VALID)) {
-> +			tile->mert.tlb_inv_triggered = false;
-> +			complete_all(&tile->mert.tlb_inv_done);
-> +		}
-> +	}
-> +	spin_unlock_irqrestore(&tile->mert.lock, flags);
-> +}
-> diff --git a/drivers/gpu/drm/xe/xe_mert.h b/drivers/gpu/drm/xe/xe_mert.h
-> new file mode 100644
-> index 000000000000..2e14c5dec008
-> --- /dev/null
-> +++ b/drivers/gpu/drm/xe/xe_mert.h
-> @@ -0,0 +1,32 @@
-> +/* SPDX-License-Identifier: MIT */
-> +/*
-> + * Copyright(c) 2025, Intel Corporation. All rights reserved.
-> + */
-> +
-> +#ifndef __XE_MERT_H__
-> +#define __XE_MERT_H__
-> +
-> +#include <linux/completion.h>
-> +#include <linux/spinlock.h>
-> +#include <linux/types.h>
-> +
-> +struct xe_device;
-> +struct xe_tile;
-> +
-> +struct xe_mert {
-> +	/** @lock: protects the TLB invalidation status */
-> +	spinlock_t lock;
-> +	/** @tlb_inv_triggered: indicates if TLB invalidation was triggered */
-> +	bool tlb_inv_triggered;
-> +	/** @mert.tlb_inv_done: completion of TLB invalidation */
-> +	struct completion tlb_inv_done;
-> +};
-> +
-> +#ifdef CONFIG_PCI_IOV
-> +int xe_mert_invalidate_lmtt(struct xe_tile *tile);
-> +void xe_mert_irq_handler(struct xe_device *xe, u32 master_ctl);
-> +#else
-> +static inline void xe_mert_irq_handler(struct xe_device *xe, u32 master_ctl) { }
-> +#endif
-> +
-> +#endif /* __XE_MERT_H__ */
-> diff --git a/drivers/gpu/drm/xe/xe_sriov_pf.c b/drivers/gpu/drm/xe/xe_sriov_pf.c
-> index bc1ab9ee31d9..00e80f6d0634 100644
-> --- a/drivers/gpu/drm/xe/xe_sriov_pf.c
-> +++ b/drivers/gpu/drm/xe/xe_sriov_pf.c
-> @@ -88,6 +88,7 @@ bool xe_sriov_pf_readiness(struct xe_device *xe)
->   */
->  int xe_sriov_pf_init_early(struct xe_device *xe)
->  {
-> +	struct xe_mert *mert = &xe_device_get_root_tile(xe)->mert;
->  	int err;
+> @@ -55,10 +55,21 @@ void xe_mert_irq_handler(struct xe_device *xe, u32 master_ctl)
+>  	struct xe_tile *tile = xe_device_get_root_tile(xe);
+>  	unsigned long flags;
+>  	u32 reg_val;
+> +	u8 err;
 >  
->  	xe_assert(xe, IS_SRIOV_PF(xe));
-> @@ -103,6 +104,9 @@ int xe_sriov_pf_init_early(struct xe_device *xe)
+>  	if (!(master_ctl & SOC_H2DMEMINT_IRQ))
+>  		return;
 >  
->  	xe_sriov_pf_service_init(xe);
->  
-> +	spin_lock_init(&mert->lock);
-> +	init_completion(&mert->tlb_inv_done);
+> +	reg_val = xe_mmio_read32(&tile->mmio, MERT_TLB_CT_INTR_ERR_ID_PORT);
+> +	xe_mmio_write32(&tile->mmio, MERT_TLB_CT_INTR_ERR_ID_PORT, 0);
 > +
->  	return 0;
->  }
+> +	err = reg_val & MERT_TLB_CT_ERROR_MASK;
+
+NIT: To be consistent with the rest of the code, I would also use FIELD_GET here.
+
+
+> +	if (err == MERT_TLB_CT_LMTT_FAULT)
+> +		drm_dbg(&xe->drm, "MERT catastrophic error: LMTT fault (VF%u)\n",
+> +			FIELD_GET(MERT_TLB_CT_VFID_MASK, reg_val));
+> +	else if (err)
+> +		drm_dbg(&xe->drm, "MERT catastrophic error: Unexpected fault (0x%x)\n", err);
+> +
+>  	spin_lock_irqsave(&tile->mert.lock, flags);
+>  	if (tile->mert.tlb_inv_triggered) {
+>  		reg_val = xe_mmio_read32(&tile->mmio, MERT_TLB_INV_DESC_A);
 
 LGTM:
 Reviewed-by: Piotr Piórkowski <piotr.piorkowski@intel.com>
 
-
->  
 > -- 
 > 2.40.0
 > 
