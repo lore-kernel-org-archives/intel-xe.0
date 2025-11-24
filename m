@@ -4,52 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1A09ACFD356
-	for <intel-xe@archiver.kernel.org>; Mon, 24 Nov 2025 20:31:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E4C83CFD356
+	for <intel-xe@archiver.kernel.org>; Mon, 24 Nov 2025 20:37:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BCC1510E259;
-	Mon, 24 Nov 2025 20:31:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A9AAB10E259;
+	Mon, 24 Nov 2025 20:37:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IDOhOoDC";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jHdmCGY6";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4D33B10E257
- for <intel-xe@lists.freedesktop.org>; Mon, 24 Nov 2025 20:31:51 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E4CCC10E259
+ for <intel-xe@lists.freedesktop.org>; Mon, 24 Nov 2025 20:37:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1764016311; x=1795552311;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=M27rXX8GvGqXB0EotxbAoSN//2uGDQi+xuVCnbDEabM=;
- b=IDOhOoDCEm38ZlopkEPrlB/20509kI0z7kwTOjJMYKs2CVhz7fM7wLvJ
- qcCqxBai1UcspLzOqm/TJTYPBMsCwjBXbfCWB0RerpATAlJzmsjdGWvPL
- SQiv4A7sbbb4HKcfCKq7Qbl1kH8xhHHjEqxSVGKcit3ZsLSYIg1EQQ63Y
- zyFYaN67E0ufca2yzTiZL/5HS7CvJOsg9PB/AlCuysss+owflMRnI2Yf0
- loH7IKgWn6/9XvQ1d8bH2Is6P59JPfYH+B7c8z+9ypIvxl2tyMjXOP/Xl
- 4vRS+tlxqLfJcsj5habjfwr1ERPhLR+0Nha9sxFo/3oelG/EBM+RL8rS3 g==;
-X-CSE-ConnectionGUID: WgYZ5hh6Tm2QvzRPO6V9Gw==
-X-CSE-MsgGUID: jFFvMhK0TnKqN2wcMdXV9g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11623"; a="76650430"
-X-IronPort-AV: E=Sophos;i="6.20,223,1758610800"; d="scan'208";a="76650430"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Nov 2025 12:31:51 -0800
-X-CSE-ConnectionGUID: lfy0FwreRsSc7cu7eqk4Ww==
-X-CSE-MsgGUID: G84GqBHUS1OjqeE4kDv+Rg==
+ t=1764016666; x=1795552666;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=4Q4c6VLC08VWD5aAD2yzdgle2am/V5o6IyTnCoM8Kt0=;
+ b=jHdmCGY6QtxQwVX21ep0NYf4PEkF57m066ZWst5v7Ofbwp+HBwLu1IJZ
+ /g9E/4G+7Iq/Kz5scs1GhSjyvh2+8u4eqhNbXf4H0cq/BTkMrVbpozxVi
+ v5OZWY1BZE0fo61X0G/C62eQ+yOSNlntekY7uJ1TyW+wyzJz2VPHLa2FH
+ EWu0TeHKfzt3Nvp0N9Z7pVQoR6nPAbVB7mI10iZOEsM3T3a5o+feYgfoj
+ vVZ+1ec1Jy8ZidHhu0+cKd4TBug8BcC5SoXohUnTS0RWqNcEL7RFiZj9L
+ 4862wjGDDxr6Cvd3mmiFVi8gqFYmtB1CgsRIV6NSgaT/gVriPpA9XI6WN Q==;
+X-CSE-ConnectionGUID: BgQf6VIASiOwRxAbNY3GaQ==
+X-CSE-MsgGUID: uOCAISx3RUStxT19MlJGxA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11623"; a="65980549"
+X-IronPort-AV: E=Sophos;i="6.20,223,1758610800"; d="scan'208";a="65980549"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Nov 2025 12:37:45 -0800
+X-CSE-ConnectionGUID: r7dgt6fDTZytF6f1/+sKgA==
+X-CSE-MsgGUID: SZaZTahOR3+8UiCd4sFffw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,223,1758610800"; d="scan'208";a="192329957"
+X-IronPort-AV: E=Sophos;i="6.20,223,1758610800"; d="scan'208";a="197553434"
 Received: from mdroper-desk1.fm.intel.com ([10.1.39.133])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Nov 2025 12:31:51 -0800
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Nov 2025 12:37:45 -0800
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: matthew.d.roper@intel.com
-Subject: [PATCH v3 2/2] drm/xe/lnl: Drop pre-production workaround support
-Date: Mon, 24 Nov 2025 12:31:47 -0800
-Message-ID: <20251124203145.809419-4-matthew.d.roper@intel.com>
+Cc: matthew.d.roper@intel.com,
+	Lucas De Marchi <lucas.demarchi@intel.com>
+Subject: [PATCH v4 1/2] drm/xe: Track pre-production workaround support
+Date: Mon, 24 Nov 2025 12:37:44 -0800
+Message-ID: <20251124203743.819477-3-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.51.1
-In-Reply-To: <20251124203145.809419-3-matthew.d.roper@intel.com>
-References: <20251124203145.809419-3-matthew.d.roper@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -66,192 +65,228 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-LNL has been out long enough that all of our internal usage of
-pre-production hardware has been phased out and we no longer need to
-maintain workarounds that were exclusive to pre-production parts.
+When we're initially enabling driver support for a new platform/IP, we
+usually implement all workarounds documented in the WA database in the
+driver.  Many of those workarounds are restricted to early steppings
+that only showed up in pre-production hardware (i.e., internal test
+chips that are not available to the general public).  Since the
+workarounds for early, pre-production steppings tend to be some of the
+ugliest and most complicated workarounds, we generally want to eliminate
+them and simplify the code once the platform has launched and our
+internal usage of those pre-production parts have been phased out.
 
-Production LNL hardware always has B0 or later steppings for both
-graphics and media IP.  Eliminate all workarounds that were exclusive to
-A-step hardware and set the 'has_prod_wa_only' device flag for LNL to
-make sure we warn and taint if someone tries to load the driver on an
-old pre-production part.
+Let's add a flag to the device info that tracks which platforms still
+have support for pre-production workarounds for so that we can print a
+warning and taint if someone tries to load the driver on a
+pre-production part for a platform without pre-production workarounds.
+This will help our internal users understand the likely problems they'll
+encounter if they try to load the driver on an old pre-production
+device.
 
-Bspec: 70821
+The Xe behavior here is similar to what we've done for many years on
+i915 (see intel_detect_preproduction_hw()), except that instead of
+manually coding up ranges of device steppings that we believe to be
+pre-production hardware, Xe will use the hardware's own production vs
+pre-production fusing status, which we can read from the FUSE2 register.
+This fuse didn't exist on older Intel hardware, but should be present on
+all platforms supported by the Xe driver.
+
+Going forward, let's set the expectation that we'll start looking into
+removing pre-production workarounds for a platform around the time that
+platforms of the next major IP stepping are having their force_probe
+requirement lifted.  This timing is just a rough guideline; there may be
+cases where some instances of pre-production parts are still being
+actively used in CI farms, internal device pools, etc. and we'll need to
+wait a bit longer for those to be swapped out.
+
+v2:
+ - Fix inverted forcewake check
+
+v3:
+ - Invert flag and add it to the platforms on which we still have
+   pre-prod workarounds.  (Jani, Lucas)
+
+v4:
+ - Avoid checking pre-production on VF since they don't have access to
+   the FUSE2 register.
+
+Bspec: 78271, 52544
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc_ads.c    |  2 +-
- drivers/gpu/drm/xe/xe_pci.c        |  1 -
- drivers/gpu/drm/xe/xe_ring_ops.c   | 14 ----------
- drivers/gpu/drm/xe/xe_wa.c         | 45 ------------------------------
- drivers/gpu/drm/xe/xe_wa_oob.rules |  6 +---
- 5 files changed, 2 insertions(+), 66 deletions(-)
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h |  3 ++
+ drivers/gpu/drm/xe/xe_device.c       | 57 ++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_device_types.h |  2 +
+ drivers/gpu/drm/xe/xe_pci.c          |  6 +++
+ drivers/gpu/drm/xe/xe_pci_types.h    |  1 +
+ 5 files changed, 69 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c b/drivers/gpu/drm/xe/xe_guc_ads.c
-index bcb85a1bf26d..e06c6aa335bf 100644
---- a/drivers/gpu/drm/xe/xe_guc_ads.c
-+++ b/drivers/gpu/drm/xe/xe_guc_ads.c
-@@ -317,7 +317,7 @@ static void guc_waklv_init(struct xe_guc_ads *ads)
- 	offset = guc_ads_waklv_offset(ads);
- 	remain = guc_ads_waklv_size(ads);
+diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+index 917a088c28f2..93643da57428 100644
+--- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+@@ -227,6 +227,9 @@
  
--	if (XE_GT_WA(gt, 14019882105) || XE_GT_WA(gt, 16021333562))
-+	if (XE_GT_WA(gt, 16021333562))
- 		guc_waklv_enable(ads, NULL, 0, &offset, &remain,
- 				 GUC_WORKAROUND_KLV_BLOCK_INTERRUPTS_WHEN_MGSR_BLOCKED);
- 	if (XE_GT_WA(gt, 18024947630))
+ #define MIRROR_FUSE1				XE_REG(0x911c)
+ 
++#define FUSE2					XE_REG(0x9120)
++#define   PRODUCTION_HW				REG_BIT(2)
++
+ #define MIRROR_L3BANK_ENABLE			XE_REG(0x9130)
+ #define   XE3_L3BANK_ENABLE			REG_GENMASK(31, 0)
+ 
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index 1197f914ef77..5780cfba04eb 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -797,6 +797,61 @@ static int probe_has_flat_ccs(struct xe_device *xe)
+ 	return 0;
+ }
+ 
++/*
++ * Detect if the driver is being run on pre-production hardware.  We don't
++ * keep workarounds for pre-production hardware long term, so print an
++ * error and add taint if we're being loaded on a pre-production platform
++ * for which the pre-prod workarounds have already been removed.
++ *
++ * The general policy is that we'll remove any workarounds that only apply to
++ * pre-production hardware around the time force_probe restrictions are lifted
++ * for a platform of the next major IP generation (for example, Xe2 pre-prod
++ * workarounds should be removed around the time the first Xe3 platforms have
++ * force_probe lifted).
++ */
++static void detect_preproduction_hw(struct xe_device *xe)
++{
++	struct xe_gt *gt;
++	int id;
++
++	/*
++	 * SR-IOV VFs don't have access to the FUSE2 register, so we can't
++	 * check pre-production status there.  But the host OS will notice
++	 * and report the pre-production status, which should be enough to
++	 * help us catch mistaken use of pre-production hardware.
++	 */
++	if (IS_SRIOV_VF(xe))
++		return;
++
++	/*
++	 * The "SW_CAP" fuse contains a bit indicating whether the device is a
++	 * production or pre-production device.  This fuse is reflected through
++	 * the GT "FUSE2" register, even though the contents of the fuse are
++	 * not GT-specific.  Every GT's reflection of this fuse should show the
++	 * same value, so we'll just use the first available GT for lookup.
++	 */
++	for_each_gt(gt, xe, id)
++		break;
++
++	if (!gt)
++		return;
++
++	CLASS(xe_force_wake, fw_ref)(gt_to_fw(gt), XE_FW_GT);
++	if (!xe_force_wake_ref_has_domain(fw_ref.domains, XE_FW_GT)) {
++		xe_gt_err(gt, "Forcewake failure; cannot determine production/pre-production hw status.\n");
++		return;
++	}
++
++	if (xe_mmio_read32(&gt->mmio, FUSE2) & PRODUCTION_HW)
++		return;
++
++	xe_info(xe, "Pre-production hardware detected.\n");
++	if (!xe->info.has_pre_prod_wa) {
++		xe_err(xe, "Pre-production workarounds for this platform have already been removed.\n");
++		add_taint(TAINT_MACHINE_CHECK, LOCKDEP_STILL_OK);
++	}
++}
++
+ int xe_device_probe(struct xe_device *xe)
+ {
+ 	struct xe_tile *tile;
+@@ -967,6 +1022,8 @@ int xe_device_probe(struct xe_device *xe)
+ 	if (err)
+ 		goto err_unregister_display;
+ 
++	detect_preproduction_hw(xe);
++
+ 	return devm_add_action_or_reset(xe->drm.dev, xe_device_sanitize, xe);
+ 
+ err_unregister_display:
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index 6ce3247d1bd8..58efae17dab5 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -307,6 +307,8 @@ struct xe_device {
+ 		u8 has_mbx_power_limits:1;
+ 		/** @info.has_mem_copy_instr: Device supports MEM_COPY instruction */
+ 		u8 has_mem_copy_instr:1;
++		/** @info.has_pre_prod_wa: Pre-production workarounds still present in driver */
++		u8 has_pre_prod_wa:1;
+ 		/** @info.has_pxp: Device has PXP support */
+ 		u8 has_pxp:1;
+ 		/** @info.has_range_tlb_inval: Has range based TLB invalidations */
 diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index 5a1092a394d3..994bbdaa7b0d 100644
+index cd03b4b3ebdb..5a1092a394d3 100644
 --- a/drivers/gpu/drm/xe/xe_pci.c
 +++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -341,7 +341,6 @@ static const struct xe_device_desc lnl_desc = {
+@@ -341,6 +341,7 @@ static const struct xe_device_desc lnl_desc = {
  	.dma_mask_size = 46,
  	.has_display = true,
  	.has_flat_ccs = 1,
--	.has_pre_prod_wa = 1,
++	.has_pre_prod_wa = 1,
  	.has_pxp = true,
  	.has_mem_copy_instr = true,
  	.max_gt_per_tile = 2,
-diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
-index ac0c6dcffe15..2c0ce6b5f9cd 100644
---- a/drivers/gpu/drm/xe/xe_ring_ops.c
-+++ b/drivers/gpu/drm/xe/xe_ring_ops.c
-@@ -201,18 +201,6 @@ static int emit_render_cache_flush(struct xe_sched_job *job, u32 *dw, int i)
- 	return emit_pipe_control(dw, i, PIPE_CONTROL0_HDC_PIPELINE_FLUSH, flags, 0, 0);
- }
- 
--static int emit_pipe_control_to_ring_end(struct xe_hw_engine *hwe, u32 *dw, int i)
--{
--	if (hwe->class != XE_ENGINE_CLASS_RENDER)
--		return i;
--
--	if (XE_GT_WA(hwe->gt, 16020292621))
--		i = emit_pipe_control(dw, i, 0, PIPE_CONTROL_LRI_POST_SYNC,
--				      RING_NOPID(hwe->mmio_base).addr, 0);
--
--	return i;
--}
--
- static int emit_pipe_imm_ggtt(u32 addr, u32 value, bool stall_only, u32 *dw,
- 			      int i)
- {
-@@ -395,8 +383,6 @@ static void __emit_job_gen12_render_compute(struct xe_sched_job *job,
- 
- 	i = emit_user_interrupt(dw, i);
- 
--	i = emit_pipe_control_to_ring_end(job->q->hwe, dw, i);
--
- 	xe_gt_assert(gt, i <= MAX_JOB_SIZE_DW);
- 
- 	xe_lrc_write_ring(lrc, dw, i * sizeof(*dw));
-diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
-index 3764abca3d4f..199c1a6ff8a2 100644
---- a/drivers/gpu/drm/xe/xe_wa.c
-+++ b/drivers/gpu/drm/xe/xe_wa.c
-@@ -216,20 +216,6 @@ static const struct xe_rtp_entry_sr gt_was[] = {
- 	  XE_RTP_ACTIONS(SET(XELPMP_SQCNT1, ENFORCE_RAR))
- 	},
- 
--	/* Xe2_LPG */
--
--	{ XE_RTP_NAME("16020975621"),
--	  XE_RTP_RULES(GRAPHICS_VERSION(2004), GRAPHICS_STEP(A0, B0)),
--	  XE_RTP_ACTIONS(SET(XEHP_SLICE_UNIT_LEVEL_CLKGATE, SBEUNIT_CLKGATE_DIS))
--	},
--	{ XE_RTP_NAME("14018157293"),
--	  XE_RTP_RULES(GRAPHICS_VERSION(2004), GRAPHICS_STEP(A0, B0)),
--	  XE_RTP_ACTIONS(SET(XEHPC_L3CLOS_MASK(0), ~0),
--			 SET(XEHPC_L3CLOS_MASK(1), ~0),
--			 SET(XEHPC_L3CLOS_MASK(2), ~0),
--			 SET(XEHPC_L3CLOS_MASK(3), ~0))
--	},
--
- 	/* Xe2_LPM */
- 
- 	{ XE_RTP_NAME("14017421178"),
-@@ -512,11 +498,6 @@ static const struct xe_rtp_entry_sr engine_was[] = {
- 	  XE_RTP_RULES(GRAPHICS_VERSION(2004), FUNC(xe_rtp_match_first_render_or_compute)),
- 	  XE_RTP_ACTIONS(SET(LSC_CHICKEN_BIT_0_UDW, XE2_ALLOC_DPA_STARVE_FIX_DIS))
- 	},
--	{ XE_RTP_NAME("14018957109"),
--	  XE_RTP_RULES(GRAPHICS_VERSION(2004), GRAPHICS_STEP(A0, B0),
--		       FUNC(xe_rtp_match_first_render_or_compute)),
--	  XE_RTP_ACTIONS(SET(HALF_SLICE_CHICKEN5, DISABLE_SAMPLE_G_PERFORMANCE))
--	},
- 	{ XE_RTP_NAME("14020338487"),
- 	  XE_RTP_RULES(GRAPHICS_VERSION(2004), FUNC(xe_rtp_match_first_render_or_compute)),
- 	  XE_RTP_ACTIONS(SET(ROW_CHICKEN3, XE2_EUPEND_CHK_FLUSH_DIS))
-@@ -526,11 +507,6 @@ static const struct xe_rtp_entry_sr engine_was[] = {
- 		       FUNC(xe_rtp_match_first_render_or_compute)),
- 	  XE_RTP_ACTIONS(SET(ROW_CHICKEN4, DISABLE_TDL_PUSH))
- 	},
--	{ XE_RTP_NAME("14019322943"),
--	  XE_RTP_RULES(GRAPHICS_VERSION(2004), GRAPHICS_STEP(A0, B0),
--		       FUNC(xe_rtp_match_first_render_or_compute)),
--	  XE_RTP_ACTIONS(SET(LSC_CHICKEN_BIT_0, TGM_WRITE_EOM_FORCE))
--	},
- 	{ XE_RTP_NAME("14018471104"),
- 	  XE_RTP_RULES(GRAPHICS_VERSION(2004), FUNC(xe_rtp_match_first_render_or_compute)),
- 	  XE_RTP_ACTIONS(SET(LSC_CHICKEN_BIT_0_UDW, ENABLE_SMP_LD_RENDER_SURFACE_CONTROL))
-@@ -807,17 +783,6 @@ static const struct xe_rtp_entry_sr lrc_was[] = {
- 
- 	/* Xe2_LPG */
- 
--	{ XE_RTP_NAME("16020518922"),
--	  XE_RTP_RULES(GRAPHICS_VERSION(2004), GRAPHICS_STEP(A0, B0),
--		       ENGINE_CLASS(RENDER)),
--	  XE_RTP_ACTIONS(SET(FF_MODE,
--			     DIS_TE_AUTOSTRIP |
--			     DIS_MESH_PARTIAL_AUTOSTRIP |
--			     DIS_MESH_AUTOSTRIP),
--			 SET(VFLSKPD,
--			     DIS_PARTIAL_AUTOSTRIP |
--			     DIS_AUTOSTRIP))
--	},
- 	{ XE_RTP_NAME("14019386621"),
- 	  XE_RTP_RULES(GRAPHICS_VERSION(2004), ENGINE_CLASS(RENDER)),
- 	  XE_RTP_ACTIONS(SET(VF_SCRATCHPAD, XE2_VFG_TED_CREDIT_INTERFACE_DISABLE))
-@@ -826,20 +791,10 @@ static const struct xe_rtp_entry_sr lrc_was[] = {
- 	  XE_RTP_RULES(GRAPHICS_VERSION(2004), ENGINE_CLASS(RENDER)),
- 	  XE_RTP_ACTIONS(SET(XEHP_PSS_CHICKEN, FD_END_COLLECT))
- 	},
--	{ XE_RTP_NAME("14020013138"),
--	  XE_RTP_RULES(GRAPHICS_VERSION(2004), GRAPHICS_STEP(A0, B0),
--		       ENGINE_CLASS(RENDER)),
--	  XE_RTP_ACTIONS(SET(WM_CHICKEN3, HIZ_PLANE_COMPRESSION_DIS))
--	},
- 	{ XE_RTP_NAME("14019988906"),
- 	  XE_RTP_RULES(GRAPHICS_VERSION(2004), ENGINE_CLASS(RENDER)),
- 	  XE_RTP_ACTIONS(SET(XEHP_PSS_CHICKEN, FLSH_IGNORES_PSD))
- 	},
--	{ XE_RTP_NAME("16020183090"),
--	  XE_RTP_RULES(GRAPHICS_VERSION(2004), GRAPHICS_STEP(A0, B0),
--		       ENGINE_CLASS(RENDER)),
--	  XE_RTP_ACTIONS(SET(INSTPM(RENDER_RING_BASE), ENABLE_SEMAPHORE_POLL_BIT))
--	},
- 	{ XE_RTP_NAME("18033852989"),
- 	  XE_RTP_RULES(GRAPHICS_VERSION(2004), ENGINE_CLASS(RENDER)),
- 	  XE_RTP_ACTIONS(SET(COMMON_SLICE_CHICKEN1, DISABLE_BOTTOM_CLIP_RECTANGLE_TEST))
-diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
-index fb38eb3d6e9a..fac6191708da 100644
---- a/drivers/gpu/drm/xe/xe_wa_oob.rules
-+++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
-@@ -16,15 +16,11 @@
- 16017236439	PLATFORM(PVC)
- 14019821291	MEDIA_VERSION_RANGE(1300, 2000)
- 14015076503	MEDIA_VERSION(1300)
--16020292621	GRAPHICS_VERSION(2004), GRAPHICS_STEP(A0, B0)
--14018913170	GRAPHICS_VERSION(2004), GRAPHICS_STEP(A0, B0)
--		MEDIA_VERSION(2000), GRAPHICS_STEP(A0, A1)
--		GRAPHICS_VERSION_RANGE(1270, 1274)
-+14018913170	GRAPHICS_VERSION_RANGE(1270, 1274)
- 		MEDIA_VERSION(1300)
- 		PLATFORM(DG2)
- 14018094691	GRAPHICS_VERSION_RANGE(2001, 2002)
- 		GRAPHICS_VERSION(2004)
--14019882105	GRAPHICS_VERSION(2004), GRAPHICS_STEP(A0, B0)
- 18024947630	GRAPHICS_VERSION(2001)
- 		GRAPHICS_VERSION(2004)
- 		MEDIA_VERSION(2000)
+@@ -362,6 +363,7 @@ static const struct xe_device_desc bmg_desc = {
+ 	.has_gsc_nvm = 1,
+ 	.has_heci_cscfi = 1,
+ 	.has_late_bind = true,
++	.has_pre_prod_wa = 1,
+ 	.has_sriov = true,
+ 	.has_mem_copy_instr = true,
+ 	.max_gt_per_tile = 2,
+@@ -381,6 +383,7 @@ static const struct xe_device_desc ptl_desc = {
+ 	.has_flat_ccs = 1,
+ 	.has_sriov = true,
+ 	.has_mem_copy_instr = true,
++	.has_pre_prod_wa = 1,
+ 	.max_gt_per_tile = 2,
+ 	.needs_scratch = true,
+ 	.needs_shared_vf_gt_wq = true,
+@@ -394,6 +397,7 @@ static const struct xe_device_desc nvls_desc = {
+ 	.has_display = true,
+ 	.has_flat_ccs = 1,
+ 	.has_mem_copy_instr = true,
++	.has_pre_prod_wa = 1,
+ 	.max_gt_per_tile = 2,
+ 	.require_force_probe = true,
+ 	.va_bits = 48,
+@@ -407,6 +411,7 @@ static const struct xe_device_desc cri_desc = {
+ 	.has_display = false,
+ 	.has_flat_ccs = false,
+ 	.has_mbx_power_limits = true,
++	.has_pre_prod_wa = 1,
+ 	.has_sriov = true,
+ 	.max_gt_per_tile = 2,
+ 	.require_force_probe = true,
+@@ -673,6 +678,7 @@ static int xe_info_init_early(struct xe_device *xe,
+ 	xe->info.has_heci_cscfi = desc->has_heci_cscfi;
+ 	xe->info.has_late_bind = desc->has_late_bind;
+ 	xe->info.has_llc = desc->has_llc;
++	xe->info.has_pre_prod_wa = desc->has_pre_prod_wa;
+ 	xe->info.has_pxp = desc->has_pxp;
+ 	xe->info.has_sriov = xe_configfs_primary_gt_allowed(to_pci_dev(xe->drm.dev)) &&
+ 		desc->has_sriov;
+diff --git a/drivers/gpu/drm/xe/xe_pci_types.h b/drivers/gpu/drm/xe/xe_pci_types.h
+index 9892c063a9c5..2b480a4fba73 100644
+--- a/drivers/gpu/drm/xe/xe_pci_types.h
++++ b/drivers/gpu/drm/xe/xe_pci_types.h
+@@ -47,6 +47,7 @@ struct xe_device_desc {
+ 	u8 has_llc:1;
+ 	u8 has_mbx_power_limits:1;
+ 	u8 has_mem_copy_instr:1;
++	u8 has_pre_prod_wa:1;
+ 	u8 has_pxp:1;
+ 	u8 has_sriov:1;
+ 	u8 needs_scratch:1;
 -- 
 2.51.1
 
