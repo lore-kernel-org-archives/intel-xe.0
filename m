@@ -4,58 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 96CB9CFD352
-	for <intel-xe@archiver.kernel.org>; Mon, 24 Nov 2025 19:19:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E8990CFD352
+	for <intel-xe@archiver.kernel.org>; Mon, 24 Nov 2025 19:26:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 00F6C10E253;
-	Mon, 24 Nov 2025 19:19:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ABD1010E251;
+	Mon, 24 Nov 2025 19:26:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PJ/Moyfl";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VnVpJYwt";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B698D10E253
- for <intel-xe@lists.freedesktop.org>; Mon, 24 Nov 2025 19:19:03 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 248AB10E251
+ for <intel-xe@lists.freedesktop.org>; Mon, 24 Nov 2025 19:26:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1764011944; x=1795547944;
+ t=1764012401; x=1795548401;
  h=date:message-id:from:to:cc:subject:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Oi5UtYhlNTDUTtdaNgp2Jxxda9NHc9uK4HKgw1Mcxfo=;
- b=PJ/MoyflKX0yF1q05NuV7AxH0adWNRbXaPg9K4E5YcxwkUGNoL75Vuaw
- 5L7N/EevDzYt0oDHdDfRWPNJCJWfODiJQy+PCJ3k5cn+D87j65gNywIs+
- xYPPQ0iuxSJ03E7i2mR5UQF4C5zLqj+0yQdPst+oULX+ZJVm4cFueGeyk
- ZIUXzVFxt2SDjZFk0Yd5AkhCg/p6o8B+kN8CUHyF4CRUfyVpvJtyaRIFL
- jF9VCWOwW+WesRJnvBEIpxHsa6RiwOSQAo0VYP5aMqoAi+bo6o6x7R2HG
- soYAA1W6BqYaYeQeK1pvG8NuLkZr6RxENqxIySHPJ7+Twazl5ozJjTUvc w==;
-X-CSE-ConnectionGUID: uEzid4EgQT+C2O4HqSN2Rw==
-X-CSE-MsgGUID: AX4tOKTeQ3iI8XH+B6CHwg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11623"; a="65205171"
-X-IronPort-AV: E=Sophos;i="6.20,223,1758610800"; d="scan'208";a="65205171"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Nov 2025 11:18:53 -0800
-X-CSE-ConnectionGUID: s96HD5isTXqUyo+XEun+DA==
-X-CSE-MsgGUID: flt+5bJ9SHav5CMgNFiq8A==
+ bh=68WXMDs9JSZaUps02KyUypANrWAwfVsHeV7/9xqX/ag=;
+ b=VnVpJYwtKk12TCaaRj0E9FtJOfDJZqqZczlguIsQDphte8p+dXQ8FgBB
+ pJw1pR9wp4wQ8svd5fY2X/eaKbNjMriCzm3YnszjDkeZ8OCMmydQyqYTW
+ ennP0YHpDs5yo6FA84lA3mCpXyHAJSjVo+FgGppdin7pqjCI1SWS4Hdq2
+ wIdkHvEebpGA3LAbfYuZHwbZA+nFNxlVrqdfkPUfPyIRc5CHCxM460+Mr
+ bNc+6qGyYTqmeWkYtuRnUeECP1S6bZf0GkqCeR89tIS/6u1Az474/cExY
+ T77J3quKOt83X905Msk3cAs63X4ace4si7D0Y3AR/5IbOvsBw82hgEETC Q==;
+X-CSE-ConnectionGUID: M6vWG0+nT2+6Iymq2xlPaw==
+X-CSE-MsgGUID: CYHif329QfS8DeKLt1u2cQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11623"; a="65913026"
+X-IronPort-AV: E=Sophos;i="6.20,223,1758610800"; d="scan'208";a="65913026"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Nov 2025 11:26:41 -0800
+X-CSE-ConnectionGUID: FhwImFufRh6Q9QhSNERSeg==
+X-CSE-MsgGUID: dL5shRiaQVyLSWqDVN2mXA==
 X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.20,223,1758610800"; d="scan'208";a="223083543"
 Received: from mdsouz-mobl2.amr.corp.intel.com (HELO adixit-MOBL3.intel.com)
  ([10.125.163.10])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Nov 2025 11:18:53 -0800
-Date: Mon, 24 Nov 2025 11:18:52 -0800
-Message-ID: <87bjkrutlv.wl-ashutosh.dixit@intel.com>
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Nov 2025 11:26:41 -0800
+Date: Mon, 24 Nov 2025 11:26:39 -0800
+Message-ID: <87a50but8w.wl-ashutosh.dixit@intel.com>
 From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
 To: Lukasz Laguna <lukasz.laguna@intel.com>
-Cc: intel-xe@lists.freedesktop.org, michal.wajdeczko@intel.com,
- piotr.piorkowski@intel.com
+Cc: <intel-xe@lists.freedesktop.org>, <michal.wajdeczko@intel.com>,
+ <piotr.piorkowski@intel.com>
 Subject: Re: [PATCH v3 2/4] drm/xe/pf: Configure LMTT in MERT
-In-Reply-To: <20251124190237.20503-3-lukasz.laguna@intel.com>
-References: <20251124190237.20503-1-lukasz.laguna@intel.com>
- <20251124190237.20503-3-lukasz.laguna@intel.com>
+In-Reply-To: <87bjkrutlv.wl-ashutosh.dixit@intel.com>
+References: <20251124190237.20503-1-lukasz.laguna@intel.com>	<20251124190237.20503-3-lukasz.laguna@intel.com>	<87bjkrutlv.wl-ashutosh.dixit@intel.com>
 User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
  FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
  Emacs/30.2 (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
 MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -71,13 +71,20 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 24 Nov 2025 11:02:35 -0800, Lukasz Laguna wrote:
+On Mon, 24 Nov 2025 11:18:52 -0800, Dixit, Ashutosh wrote:
 >
-> On platforms with standalone MERT, the PF driver needs to program LMTT
-> in MERT's LMEM_CFG register.
+> On Mon, 24 Nov 2025 11:02:35 -0800, Lukasz Laguna wrote:
+> >
+> > On platforms with standalone MERT, the PF driver needs to program LMTT
+> > in MERT's LMEM_CFG register.
+> >
+> > Signed-off-by: Lukasz Laguna <lukasz.laguna@intel.com>
+> > Reviewed-by: Piotr Pi=F3rkowski <piotr.piorkowski@intel.com>
 >
-> Signed-off-by: Lukasz Laguna <lukasz.laguna@intel.com>
-> Reviewed-by: Piotr Pi=C3=B3rkowski <piotr.piorkowski@intel.com>
+> Not sure if it matters but there's something wrong with the character
+> encoding here, the name should display as Piotr Pi=F3rkowski.
 
-Not sure if it matters but there's something wrong with the character
-encoding here, the name should display as Piotr Pi=C3=B3rkowski.
+Looks like my mailer has actually fixed the character encoding, but you can
+see the distortion in the original email in plain text. Even the copyright
+character in the file headers is wrong. Maybe it's ok, not sure. I don't
+believe it's something at my end. Thanks.
