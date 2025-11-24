@@ -4,28 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BA531CFD360
-	for <intel-xe@archiver.kernel.org>; Mon, 24 Nov 2025 22:20:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 14AC5CFD362
+	for <intel-xe@archiver.kernel.org>; Mon, 24 Nov 2025 22:25:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 59AFE10E275;
-	Mon, 24 Nov 2025 22:20:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CB1CE10E31E;
+	Mon, 24 Nov 2025 22:25:36 +0000 (UTC)
 Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4DB4C10E275;
- Mon, 24 Nov 2025 22:20:21 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8087657194399379898=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5237010E276;
+ Mon, 24 Nov 2025 22:25:36 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_series_starting_with_=5B1/2?=
- =?utf-8?q?=5D_drm/gpusvm=3A_Limit_the_number_of_retries_in_drm=5Fgpusvm=5Fg?=
- =?utf-8?q?et=5Fpages?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe=3A_Add_System_Cont?=
+ =?utf-8?q?roller_support_for_Xe3p_dGPU_platforms?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Brost" <matthew.brost@intel.com>
+To: "Anoop, Vijay" <anoop.c.vijay@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 24 Nov 2025 22:20:21 -0000
-Message-ID: <176402282130.23084.1319150608540859455@a3b018990fe9>
+Date: Mon, 24 Nov 2025 22:25:36 -0000
+Message-ID: <176402313633.23084.10135367988725216391@a3b018990fe9>
 X-Patchwork-Hint: ignore
-References: <20251122012502.382587-1-matthew.brost@intel.com>
-In-Reply-To: <20251122012502.382587-1-matthew.brost@intel.com>
+References: <20251122045803.3616201-7-anoop.c.vijay@intel.com>
+In-Reply-To: <20251122045803.3616201-7-anoop.c.vijay@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,121 +40,63 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8087657194399379898==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: series starting with [1/2] drm/gpusvm: Limit the number of retries in drm_gpusvm_get_pages
-URL   : https://patchwork.freedesktop.org/series/157936/
-State : success
+Series: drm/xe: Add System Controller support for Xe3p dGPU platforms
+URL   : https://patchwork.freedesktop.org/series/157937/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-4140-ed157ca0caebebe3af6d38ca0fb64a403c84ce77_BAT -> xe-pw-157936v1_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+2de9a3901bc28757c7906b454717b64e2a214021
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit e173e4fea32a54e3f86631f3b89d04be659286ca
+Author: Anoop Vijay <anoop.c.vijay@intel.com>
+Date:   Fri Nov 21 20:58:07 2025 -0800
 
-Summary
--------
+    drm/xe/sc: Add system controller component for Xe3p dGPU platforms
+    
+    Add a new system controller (SC) component for Intel Xe3p dGPU platforms.
+    
+    This component provides the foundational infrastructure for communication
+    with the SC firmware using the MKHI protocol over a mailbox interface.
+    
+    Key features introduced:
+    - Detection and initialization of the SC interface on Xe3p dGPU platforms
+    - Mailbox communication with SC firmware
+    - Fragmented message transfer for large command payloads
+    
+    This implementation establishes the base for future SC feature
+    enablement and firmware command handling.
+    
+    Signed-off-by: Anoop Vijay <anoop.c.vijay@intel.com>
++ /mt/dim checkpatch ed157ca0caebebe3af6d38ca0fb64a403c84ce77 drm-intel
+772b3260eca8 drm/xe/soc_remapper: Initialize SoC remapper during Xe probe
+-:64: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#64: 
+new file mode 100644
 
-  **SUCCESS**
+total: 0 errors, 1 warnings, 0 checks, 66 lines checked
+42aa9b58ef4e drm/xe/soc_remapper: Use SoC remapper herlper from VSEC code
+-:26: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#26: 
+new file mode 100644
 
-  No regressions found.
+total: 0 errors, 1 warnings, 0 checks, 70 lines checked
+ef0e4c3abd43 drm/xe/soc_remapper: Add system controller config for SoC remapper
+ccb35d3c011f drm/xe/remapper: Reprogram remapper index on PM resume events
+e173e4fea32a drm/xe/sc: Add system controller component for Xe3p dGPU platforms
+-:37: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#37: 
+new file mode 100644
 
-  
-
-Participating hosts (12 -> 12)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-157936v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_waitfence@reltime:
-    - bat-pvc-2:          [PASS][1] -> [FAIL][2] ([Intel XE#6520])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4140-ed157ca0caebebe3af6d38ca0fb64a403c84ce77/bat-pvc-2/igt@xe_waitfence@reltime.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157936v1/bat-pvc-2/igt@xe_waitfence@reltime.html
-
-  
-  [Intel XE#6520]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520
-
-
-Build changes
--------------
-
-  * Linux: xe-4140-ed157ca0caebebe3af6d38ca0fb64a403c84ce77 -> xe-pw-157936v1
-
-  IGT_8636: 254cd102396ff95d61f2ebe49fc09128878bf483 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-4140-ed157ca0caebebe3af6d38ca0fb64a403c84ce77: ed157ca0caebebe3af6d38ca0fb64a403c84ce77
-  xe-pw-157936v1: 157936v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157936v1/index.html
-
---===============8087657194399379898==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+total: 0 errors, 1 warnings, 0 checks, 666 lines checked
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [1/2] drm/gpusvm: Limit the number of retries in drm_gpusvm_get_pages</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/157936/">https://patchwork.freedesktop.org/series/157936/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157936v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157936v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4140-ed157ca0caebebe3af6d38ca0fb64a403c84ce77_BAT -&gt; xe-pw-157936v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (12 -&gt; 12)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-157936v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@xe_waitfence@reltime:<ul>
-<li>bat-pvc-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4140-ed157ca0caebebe3af6d38ca0fb64a403c84ce77/bat-pvc-2/igt@xe_waitfence@reltime.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157936v1/bat-pvc-2/igt@xe_waitfence@reltime.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520">Intel XE#6520</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4140-ed157ca0caebebe3af6d38ca0fb64a403c84ce77 -&gt; xe-pw-157936v1</li>
-</ul>
-<p>IGT_8636: 254cd102396ff95d61f2ebe49fc09128878bf483 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-4140-ed157ca0caebebe3af6d38ca0fb64a403c84ce77: ed157ca0caebebe3af6d38ca0fb64a403c84ce77<br />
-  xe-pw-157936v1: 157936v1</p>
-
-</body>
-</html>
-
---===============8087657194399379898==--
