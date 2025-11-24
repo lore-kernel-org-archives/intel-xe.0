@@ -4,75 +4,32 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3619BCFD313
-	for <intel-xe@archiver.kernel.org>; Mon, 24 Nov 2025 14:42:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2799DCFD313
+	for <intel-xe@archiver.kernel.org>; Mon, 24 Nov 2025 15:17:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CF6D810E2DB;
-	Mon, 24 Nov 2025 14:42:31 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="BdxTKsp1";
-	dkim-atps=neutral
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com
- [209.85.128.51])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1B67510E2E8
- for <intel-xe@lists.freedesktop.org>; Mon, 24 Nov 2025 14:42:30 +0000 (UTC)
-Received: by mail-wm1-f51.google.com with SMTP id
- 5b1f17b1804b1-47796a837c7so28690635e9.0
- for <intel-xe@lists.freedesktop.org>; Mon, 24 Nov 2025 06:42:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1763995348; x=1764600148; darn=lists.freedesktop.org;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=EV8DYul7mBzDMPH+60MmrdvXP0RiXOiCALt1um7SoO8=;
- b=BdxTKsp1rOSFLQvuk1FOu02urvdn0KG77o3TqdPM3fPpghAY6+129cEQneEQkZcamh
- k+3m8LjNDxpOd7t397gXJptDu7YvT4FmaQZY+YLONp5HRu5M7ucbkg12/oNzsx/zpNG1
- C7tMu3jKn9rEC7SKFMP9/isH72AyzBQu8HI5flv1ttD0zm9SxFVi+T+i2GSuEt3pAgeq
- UtgyiKHNkNS3IYu96vWqU171hIAkOavOYJpLO0lMUnuEdGnh9bUjm1R4T4+75fesI2Hp
- xFTiOjf18UJfTjdcUJBnpx8oG7OSIoQ1UEoYpXviY1AwfB6d7OyEiJgEV9QaEhZ8PWn4
- PqKA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1763995348; x=1764600148;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=EV8DYul7mBzDMPH+60MmrdvXP0RiXOiCALt1um7SoO8=;
- b=wXh8n/wWnego1TImIpMQslE7gCg+zRSjbKjyepHXdyrzlcsUcaSIIZAJfHDqU3kL/a
- IV2ajYOO96V8f8WAXZxRq6bLjYAGtMbIjpj6TBlUZ/73qmkH7GHq/l6fEMsvF1rhKaUT
- aCCZzq8liO5+jJ/Y16XFDZFhTnZEFO+DdIY3aKabk4aH5X6t77jTFq7dTVdpFetA0V97
- e1DvVINSpvFPs/FtaORDI3owwgq9C1JMVGutHa/nTw2GQQHYCuXBjKJ6zdxYQbmQmv8f
- 9/j6AY29bXHIJhInHbDw164kJhEVhUKE9g0aKn81zHQGDLr72Jh/mf1RiIms6jppsl9+
- TgMA==
-X-Gm-Message-State: AOJu0Yw21Ua9QkjeolxD0hpfrrxAo5IqEXwA0zqrjv8kXFEGxTf1Wzfx
- HvouIJO3N9+GkzQWDY+J1Lf911c43uQBDqIyAUKCOz1pSGXpbf5dUfZDfaXZELkaz2s=
-X-Gm-Gg: ASbGncsRpS8WMA61C5WjESUiWmm3OMwgGtJHK4dPs377OeJCEaXGWyzPAzjymZG5zxM
- q46KxfPk+Oai0JsOMBxdzwAC3D47M5kZTvr3Nl3a/F4UR2JOVW7I/wifdO+oEy0fq9vhmchrmZk
- c5sibvE8sVxb9eKtxj300DT+ClAbTXgHQUmBqMGvdnyl6eG2/jreyRgCnh8N4aUjVLSbigmjZx5
- k7yLSvHvhbx+qRh/09bS4jPil2kscxu2giIUyMyaZMdp+NQfaA3XNUJQbe7QVV18Ka69I80QL52
- G0NyQK7va/n1vTnPfpJPMZOnfKoZFiqIsmvjBZX8LFIxKshA/v3BwGocqZW+eCUuXozdHbNIRDI
- JY7X/+FkVd3rCpitHZ/GIO8x2+dVb+1Tp6iBk2S50lUFbG4eFtD90w9TycZoO9v8yFlVA/YHf/+
- foFBGNonXX3vbSpgTF
-X-Google-Smtp-Source: AGHT+IGhHvZS1EoYKpFgisC9wiD5yeSMDzE24VfTytXsLV58bsyDlRR+S/0v6V9gnx1IwmMI+fwEgw==
-X-Received: by 2002:a05:600c:1d0e:b0:477:89d5:fdb2 with SMTP id
- 5b1f17b1804b1-477c017d9damr120760485e9.14.1763995348224; 
- Mon, 24 Nov 2025 06:42:28 -0800 (PST)
-Received: from localhost ([196.207.164.177])
- by smtp.gmail.com with UTF8SMTPSA id
- 5b1f17b1804b1-477bf3af0ecsm201472145e9.9.2025.11.24.06.42.27
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 24 Nov 2025 06:42:27 -0800 (PST)
-Date: Mon, 24 Nov 2025 17:42:23 +0300
-From: Dan Carpenter <dan.carpenter@linaro.org>
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Subject: Re: [bug report] drm/xe: Enforce correct user fence signaling order
- using
-Message-ID: <aSRuz7C77FFp17NI@stanley.mountain>
-References: <aRyNbk3D91Hzb9Cy@stanley.mountain>
- <aRynS3MfRj0V0VGh@lstrano-desk.jf.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id B9A0B10E2DF;
+	Mon, 24 Nov 2025 15:17:03 +0000 (UTC)
+Received: from out28-195.mail.aliyun.com (out28-195.mail.aliyun.com
+ [115.124.28.195])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 67E8910E1CF;
+ Mon, 24 Nov 2025 06:56:18 +0000 (UTC)
+Received: from aliyun.com(mailfrom:zhangzhijie@bosc.ac.cn
+ fp:SMTPD_---.fUO4C3w_1763967375 cluster:ay29) by smtp.aliyun-inc.com;
+ Mon, 24 Nov 2025 14:56:16 +0800
+From: zhangzhijie <zhangzhijie@bosc.ac.cn>
+To: jani.nikula@linux.intel.com, jeff@jeffgeerling.com, zhangzhijie@bosc.ac.cn,
+ wangran@bosc.ac.cn, zhangjian@bosc.ac.cn, daniel@ffwll.ch,
+ rodrigo.vivi@intel.com, joonas.lahtinen@linux.intel.com,
+ tursulin@ursulin.net, airlied@gmail.com, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+Subject: [PATCH v2] i915: Support Intel GPU porting on any non-x86 system.
+Date: Mon, 24 Nov 2025 14:56:12 +0800
+Message-Id: <20251124065612.1920389-1-zhangzhijie@bosc.ac.cn>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aRynS3MfRj0V0VGh@lstrano-desk.jf.intel.com>
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Mon, 24 Nov 2025 15:17:03 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -87,108 +44,66 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Nov 18, 2025 at 09:05:15AM -0800, Matthew Brost wrote:
-> On Tue, Nov 18, 2025 at 06:14:54PM +0300, Dan Carpenter wrote:
-> > Hello Matthew Brost,
-> > 
-> > Commit adda4e855ab6 ("drm/xe: Enforce correct user fence signaling
-> > order using") from Oct 31, 2025 (linux-next), leads to the following
-> > Smatch static checker warning:
-> > 
-> > 	drivers/gpu/drm/xe/xe_oa.c:1867 xe_oa_stream_open_ioctl_locked()
-> > 	error: double free of 'param->syncs' (line 1863)
-> > 
-> > drivers/gpu/drm/xe/xe_oa.c
-> >     1831 static int xe_oa_stream_open_ioctl_locked(struct xe_oa *oa,
-> >     1832                                           struct xe_oa_open_param *param)
-> >     1833 {
-> >     1834         struct xe_oa_stream *stream;
-> >     1835         struct drm_syncobj *ufence_syncobj;
-> >     1836         int stream_fd;
-> >     1837         int ret;
-> >     1838 
-> >     1839         /* We currently only allow exclusive access */
-> >     1840         if (param->oa_unit->exclusive_stream) {
-> >     1841                 drm_dbg(&oa->xe->drm, "OA unit already in use\n");
-> >     1842                 ret = -EBUSY;
-> >     1843                 goto exit;
-> >     1844         }
-> >     1845 
-> >     1846         ret = drm_syncobj_create(&ufence_syncobj, DRM_SYNCOBJ_CREATE_SIGNALED,
-> >     1847                                  NULL);
-> >     1848         if (ret)
-> >     1849                 goto exit;
-> >     1850 
-> >     1851         stream = kzalloc(sizeof(*stream), GFP_KERNEL);
-> >     1852         if (!stream) {
-> >     1853                 ret = -ENOMEM;
-> >     1854                 goto err_syncobj;
-> >     1855         }
-> >     1856         stream->ufence_syncobj = ufence_syncobj;
-> >     1857         stream->oa = oa;
-> >     1858 
-> >     1859         ret = xe_oa_parse_syncs(oa, stream, param);
-> >     1860         if (ret)
-> >     1861                 goto err_free;
-> >     1862 
-> >     1863         ret = xe_oa_stream_init(stream, param);
-> >     1864         if (ret) {
-> >     1865                 while (param->num_syncs--)
-> >     1866                         xe_sync_entry_cleanup(&param->syncs[param->num_syncs]);
-> > --> 1867                 kfree(param->syncs);
-> >                          ^^^^^^^^^^^^^^^^^^^^
-> > 
-> > xe_oa_stream_init() already frees param->syncs when it calls
-> > xe_oa_emit_oa_config().
-> > 
-> 
-> Admittedly this coded poorly but I think this a false positive.
-> param->syncs is only freed when xe_oa_stream_init returns success.
-> 
-> That said this should probably be refactored a bit for clarity.
-> 
+inb/outb speccial wire not support on other ARCH.
+Should detect whether arch platform support or not.
 
-Sorry for this.  It's a bug in Smatch, yes.  I'm testing a fix for this.
+Signed-off-by: zhangzhijie <zhangzhijie@bosc.ac.cn>
+---
+ drivers/gpu/drm/i915/display/intel_vga.c | 27 ++++++++++++++++++------
+ 1 file changed, 20 insertions(+), 7 deletions(-)
 
-Thanks for looking into it.
+diff --git a/drivers/gpu/drm/i915/display/intel_vga.c b/drivers/gpu/drm/i915/display/intel_vga.c
+index 6e125564db34..d5d6c4ba6434 100644
+--- a/drivers/gpu/drm/i915/display/intel_vga.c
++++ b/drivers/gpu/drm/i915/display/intel_vga.c
+@@ -41,6 +41,15 @@ static bool has_vga_pipe_sel(struct intel_display *display)
+ 	return DISPLAY_VER(display) < 7;
+ }
+ 
++static bool intel_arch_support_vga_pm(struct intel_display *display)
++{
++#if defined(CONFIG_X86) || defined(CONFIG_X86_64)
++	return true;
++#else
++	return false;
++#endif
++}
++
+ /* Disable the VGA plane that we never use */
+ void intel_vga_disable(struct intel_display *display)
+ {
+@@ -66,11 +75,13 @@ void intel_vga_disable(struct intel_display *display)
+ 
+ 	/* WaEnableVGAAccessThroughIOPort:ctg,elk,ilk,snb,ivb,vlv,hsw */
+ 	vga_get_uninterruptible(pdev, VGA_RSRC_LEGACY_IO);
+-	outb(0x01, VGA_SEQ_I);
+-	sr1 = inb(VGA_SEQ_D);
+-	outb(sr1 | VGA_SR01_SCREEN_OFF, VGA_SEQ_D);
+-	vga_put(pdev, VGA_RSRC_LEGACY_IO);
+-	udelay(300);
++	if (likely(intel_arch_support_vga_pm(display))) {
++		outb(0x01, VGA_SEQ_I);
++		sr1 = inb(VGA_SEQ_D);
++		outb(sr1 | VGA_SR01_SCREEN_OFF, VGA_SEQ_D);
++		vga_put(pdev, VGA_RSRC_LEGACY_IO);
++		udelay(300);
++	}
+ 
+ 	intel_de_write(display, vga_reg, VGA_DISP_DISABLE);
+ 	intel_de_posting_read(display, vga_reg);
+@@ -91,8 +102,10 @@ void intel_vga_reset_io_mem(struct intel_display *display)
+ 	 * and error messages.
+ 	 */
+ 	vga_get_uninterruptible(pdev, VGA_RSRC_LEGACY_IO);
+-	outb(inb(VGA_MIS_R), VGA_MIS_W);
+-	vga_put(pdev, VGA_RSRC_LEGACY_IO);
++	if (likely(intel_arch_support_vga_pm(display))) {
++		outb(inb(VGA_MIS_R), VGA_MIS_W);
++		vga_put(pdev, VGA_RSRC_LEGACY_IO);
++	}
+ }
+ 
+ int intel_vga_register(struct intel_display *display)
+-- 
+2.34.1
 
-regards,
-dan carpenter
-
-
-> Matt
-> 
-> >     1868                 goto err_free;
-> >     1869         }
-> >     1870 
-> >     1871         if (!param->disabled) {
-> >     1872                 ret = xe_oa_enable_locked(stream);
-> >     1873                 if (ret)
-> >     1874                         goto err_destroy;
-> >     1875         }
-> >     1876 
-> >     1877         stream_fd = anon_inode_getfd("[xe_oa]", &xe_oa_fops, stream, 0);
-> >     1878         if (stream_fd < 0) {
-> >     1879                 ret = stream_fd;
-> >     1880                 goto err_disable;
-> >     1881         }
-> >     1882 
-> >     1883         /* Hold a reference on the drm device till stream_fd is released */
-> >     1884         drm_dev_get(&stream->oa->xe->drm);
-> >     1885 
-> >     1886         return stream_fd;
-> >     1887 err_disable:
-> >     1888         if (!param->disabled)
-> >     1889                 xe_oa_disable_locked(stream);
-> >     1890 err_destroy:
-> >     1891         xe_oa_stream_destroy(stream);
-> >     1892 err_free:
-> >     1893         kfree(stream);
-> >     1894 err_syncobj:
-> >     1895         drm_syncobj_put(ufence_syncobj);
-> >     1896 exit:
-> >     1897         return ret;
-> >     1898 }
-> > 
-> > regards,
-> > dan carpenter
