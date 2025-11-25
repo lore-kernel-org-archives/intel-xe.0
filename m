@@ -4,27 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 94633D0EE0F
-	for <intel-xe@archiver.kernel.org>; Tue, 25 Nov 2025 19:36:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0F561D0EE18
+	for <intel-xe@archiver.kernel.org>; Tue, 25 Nov 2025 19:42:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4298110E44D;
-	Tue, 25 Nov 2025 19:36:17 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 42E2510E450;
- Tue, 25 Nov 2025 19:36:15 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1297530017835851022=="
-MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/xe=5Ffile=3A_change_?=
- =?utf-8?q?pid_type_from_pid=5Ft_to_pid_pointer?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Andrzej Hajda" <andrzej.hajda@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id B189E10E444;
+	Tue, 25 Nov 2025 19:42:03 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hmdHkdCr";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A84C510E082;
+ Tue, 25 Nov 2025 19:42:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1764099722; x=1795635722;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=PI386nP+RcPyvriG3AEkYN5yihnLI+NdFE4WUucODGc=;
+ b=hmdHkdCrZJImAcCPMwCNkSzA2jJ2Q2gfZ/ONdcp8LkjMr97pAkUPeYif
+ sosUG72pZBDJkZUpXhQyKXT3/UGNntIbjaU4s7U2+k6qBlz7963O34j+M
+ ndrxytGpjuJywBxcy9ms+oCNrBsk6t3i4Exdda8S01ZtXaZ1rowdBo2Pr
+ 0YHhPLxq89mnhfLnj5zG7CeNmedKytqsKx6icRtFMCgzDBMfMjcaYObJz
+ xHAh6vpZRdi5wudGDEFfKo7tL87qr9I6867br/0dFsMaAGccwFzkHkI+V
+ 6s/3dWbBNH89wGDl3/CBafarhjAAF2bRrfdBOh5d6QA/9CYqcD0yXt9pq w==;
+X-CSE-ConnectionGUID: tvK7au/WQ7OEl4NkGjxmqA==
+X-CSE-MsgGUID: Z7xNouo4RA2AAxmsdAG8bg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11624"; a="66207335"
+X-IronPort-AV: E=Sophos;i="6.20,226,1758610800"; d="scan'208";a="66207335"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Nov 2025 11:42:01 -0800
+X-CSE-ConnectionGUID: 0g2ILfIYS3qnUdxYneHYhw==
+X-CSE-MsgGUID: zhOy77ImSY2BS36uN9xKGQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.20,226,1758610800"; d="scan'208";a="192631831"
+Received: from ettammin-desk.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.213])
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Nov 2025 11:42:00 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 25 Nov 2025 19:36:15 -0000
-Message-ID: <176409937526.27008.12076442912605805797@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20251125-change_pid_t_to_ppid-v1-1-6ddd817a953e@intel.com>
-In-Reply-To: <20251125-change_pid_t_to_ppid-v1-1-6ddd817a953e@intel.com>
+Subject: Re: [PATCH 0/6] drm/i915: uapi vs. hw state fixes
+In-Reply-To: <20251119181606.17129-1-ville.syrjala@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20251119181606.17129-1-ville.syrjala@linux.intel.com>
+Date: Tue, 25 Nov 2025 21:41:56 +0200
+Message-ID: <edf417bd82db5bcb9572655d943a51cb1d686e75@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,139 +66,34 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1297530017835851022==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Wed, 19 Nov 2025, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>
+> Spotted a few places using the uapi state when they most
+> likely should have been using the hw state. Fix those up.
 
-== Series Details ==
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-Series: drm/xe/xe_file: change pid type from pid_t to pid pointer
-URL   : https://patchwork.freedesktop.org/series/158028/
-State : success
+>
+> Ville Syrj=C3=A4l=C3=A4 (6):
+>   drm/i915: Use the proper (hw.crtc) for the cursor unpin vblank worker
+>   drm/i915/psr: Use hw.crtc instead of uapi.crtc
+>   drm/i915/psr: Use hw.rotation instead of uapi.rotation
+>   drm/i915: Use hw.active instead of uapi.active in the initial plane
+>     readout
+>   drm/i915/panic: Get the crtc from the correct place
+>   drm/i915/panic: Clean up the variables
+>
+>  drivers/gpu/drm/i915/display/intel_crtc.c     |  4 +-
+>  drivers/gpu/drm/i915/display/intel_plane.c    | 58 +++++++++----------
+>  .../drm/i915/display/intel_plane_initial.c    |  6 +-
+>  drivers/gpu/drm/i915/display/intel_psr.c      | 12 ++--
+>  drivers/gpu/drm/i915/display/intel_psr.h      |  3 +-
+>  drivers/gpu/drm/xe/display/xe_plane_initial.c |  6 +-
+>  6 files changed, 45 insertions(+), 44 deletions(-)
 
-== Summary ==
-
-CI Bug Log - changes from xe-4144-0a21e96e0b6840d2a4e0b45a957679eeddeb4362_BAT -> xe-pw-158028v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (12 -> 12)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-158028v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@xe_waitfence@abstime:
-    - bat-dg2-oem2:       [TIMEOUT][1] ([Intel XE#6506]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4144-0a21e96e0b6840d2a4e0b45a957679eeddeb4362/bat-dg2-oem2/igt@xe_waitfence@abstime.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158028v1/bat-dg2-oem2/igt@xe_waitfence@abstime.html
-
-  * igt@xe_waitfence@reltime:
-    - bat-dg2-oem2:       [FAIL][3] ([Intel XE#6520]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4144-0a21e96e0b6840d2a4e0b45a957679eeddeb4362/bat-dg2-oem2/igt@xe_waitfence@reltime.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158028v1/bat-dg2-oem2/igt@xe_waitfence@reltime.html
-
-  
-  [Intel XE#6506]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506
-  [Intel XE#6520]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520
-
-
-Build changes
--------------
-
-  * Linux: xe-4144-0a21e96e0b6840d2a4e0b45a957679eeddeb4362 -> xe-pw-158028v1
-
-  IGT_8638: 72d5c74eb3cf46af2f46daba8109d84c3dd19363 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-4144-0a21e96e0b6840d2a4e0b45a957679eeddeb4362: 0a21e96e0b6840d2a4e0b45a957679eeddeb4362
-  xe-pw-158028v1: 158028v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158028v1/index.html
-
---===============1297530017835851022==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/xe_file: change pid type from pid_t to pid pointer</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/158028/">https://patchwork.freedesktop.org/series/158028/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158028v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158028v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4144-0a21e96e0b6840d2a4e0b45a957679eeddeb4362_BAT -&gt; xe-pw-158028v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (12 -&gt; 12)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-158028v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@xe_waitfence@abstime:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4144-0a21e96e0b6840d2a4e0b45a957679eeddeb4362/bat-dg2-oem2/igt@xe_waitfence@abstime.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506">Intel XE#6506</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158028v1/bat-dg2-oem2/igt@xe_waitfence@abstime.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@xe_waitfence@reltime:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4144-0a21e96e0b6840d2a4e0b45a957679eeddeb4362/bat-dg2-oem2/igt@xe_waitfence@reltime.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520">Intel XE#6520</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158028v1/bat-dg2-oem2/igt@xe_waitfence@reltime.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4144-0a21e96e0b6840d2a4e0b45a957679eeddeb4362 -&gt; xe-pw-158028v1</li>
-</ul>
-<p>IGT_8638: 72d5c74eb3cf46af2f46daba8109d84c3dd19363 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-4144-0a21e96e0b6840d2a4e0b45a957679eeddeb4362: 0a21e96e0b6840d2a4e0b45a957679eeddeb4362<br />
-  xe-pw-158028v1: 158028v1</p>
-
-</body>
-</html>
-
---===============1297530017835851022==--
+--=20
+Jani Nikula, Intel
