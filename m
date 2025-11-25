@@ -4,36 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 46652D0EE10
-	for <intel-xe@archiver.kernel.org>; Tue, 25 Nov 2025 17:24:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0D831D0EE10
+	for <intel-xe@archiver.kernel.org>; Tue, 25 Nov 2025 17:30:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0821B10E573;
-	Tue, 25 Nov 2025 17:24:19 +0000 (UTC)
-Received: from out28-2.mail.aliyun.com (out28-2.mail.aliyun.com [115.124.28.2])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6BA1910E106;
- Tue, 25 Nov 2025 03:31:09 +0000 (UTC)
-Received: from 172.38.10.120(mailfrom:zhangzhijie@bosc.ac.cn
- fp:SMTPD_---.fV56p1x_1764041465 cluster:ay29) by smtp.aliyun-inc.com;
- Tue, 25 Nov 2025 11:31:06 +0800
-Message-ID: <16876d5f-311e-4c06-ad8a-e05b4a240aba@bosc.ac.cn>
-Date: Tue, 25 Nov 2025 11:31:04 +0800
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5F47910E583;
+	Tue, 25 Nov 2025 17:30:54 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Bcs2h2Uc";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B591110E582;
+ Tue, 25 Nov 2025 17:30:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1764091853; x=1795627853;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=O6Ts/eXcnu1k52sWSJjEC1xQvx8A5Gb4+RUjIHyOiLg=;
+ b=Bcs2h2UcLgmf1teDfAX6S7JZ/OZrPszZ77YqQeRzdl7jH8/P0+QAVGaP
+ WNXLvlecAviUswxaX/9256WBWZAXVMowBHUI8YWa0xAnHUegbzRPjr5gV
+ +/f31excYymvbKrTBetqQXt1Ekrtq6nqaH5NdUA00UnpMmco9hqjFQT+r
+ amCXqoBcsO019M6N4+/efuKLVxJBmhV1bcmueuxynuQDdhvdRZEdC+Qb2
+ 6SCNBpsTBR2AaM8GahW7yk9B/feEmIhX06qK+t41BLopxtM5GSYEcdCGd
+ hSPInrDSi/8PZJqQje2v7sba/CmZLoq2c6YS+1/23QrBaEygxFkQZULBZ w==;
+X-CSE-ConnectionGUID: aoiIggV/T8+bKpfzcpwkgg==
+X-CSE-MsgGUID: ypuWrwN/QK+ITY5KmQ+lSQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11624"; a="76742836"
+X-IronPort-AV: E=Sophos;i="6.20,226,1758610800"; d="scan'208";a="76742836"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Nov 2025 09:30:53 -0800
+X-CSE-ConnectionGUID: bq+yzOP+RSm1sT70HQhPuw==
+X-CSE-MsgGUID: TUAMaa6iQEeDll4qLZisDQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.20,226,1758610800"; d="scan'208";a="223663525"
+Received: from bkammerd-mobl.amr.corp.intel.com (HELO localhost)
+ ([10.124.222.230])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Nov 2025 09:30:50 -0800
+Date: Tue, 25 Nov 2025 19:30:48 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+Subject: Re: [RFC] drm/i915: move i915 specific display adaptation files to
+ display-adapt
+Message-ID: <aSXnyB8JjEY7qelM@intel.com>
+References: <20251015160140.2296120-1-jani.nikula@intel.com>
+ <929e694adba1e3942c685826906bd8123a1696d3@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] i915: Support Intel GPU porting on any non-x86 system.
-To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Cc: jani.nikula@linux.intel.com, jeff@jeffgeerling.com, wangran@bosc.ac.cn,
- zhangjian@bosc.ac.cn, daniel@ffwll.ch, rodrigo.vivi@intel.com,
- joonas.lahtinen@linux.intel.com, tursulin@ursulin.net, airlied@gmail.com,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-References: <20251124065612.1920389-1-zhangzhijie@bosc.ac.cn>
- <aSTIsRbrtEfJQzWU@intel.com>
-Content-Language: en-US
-From: ZhangZhiJie <zhangzhijie@bosc.ac.cn>
-In-Reply-To: <aSTIsRbrtEfJQzWU@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Tue, 25 Nov 2025 17:24:03 +0000
+In-Reply-To: <929e694adba1e3942c685826906bd8123a1696d3@intel.com>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,88 +74,59 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On Tue, Nov 25, 2025 at 04:01:11PM +0200, Jani Nikula wrote:
+> On Wed, 15 Oct 2025, Jani Nikula <jani.nikula@intel.com> wrote:
+> > The display/ subdirectory currently contains files that are about i915
+> > core driver adaptation to display rather than generic display
+> > implementation. Move them to a new i915 subdirectory display-adapt/.
+> >
+> > In the xe driver, all of its display/ is basically xe core adaptation to
+> > display. It's just that i915 display/ contains the actual display
+> > implementation for both. Ideally, we'd have the shared display code
+> > somewhere else, and the adaptation in i915 would be under display/, but
+> > we're not quite ready for that kind of churn yet. So let's just call it
+> > display-adapt for now.
+> >
+> > xe basically has equivalent files to the ones that are being moved,
+> > apart from intel_dpt.c, for which the implementation is quite different.
+> >
+> > Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+> > Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> > Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/Makefile                 | 23 +++++++++++--------
+> >  .../{display => display-adapt}/intel_bo.c     |  3 ++-
+> >  .../intel_display_rpm.c                       |  5 ++--
+> >  .../{display => display-adapt}/intel_dpt.c    | 11 +++++----
+> >  .../intel_dsb_buffer.c                        |  5 ++--
+> >  .../{display => display-adapt}/intel_fb_bo.c  |  9 ++++----
+> >  .../{display => display-adapt}/intel_fb_pin.c | 14 +++++------
+> >  .../intel_fbdev_fb.c                          |  5 +++-
+> >  .../intel_hdcp_gsc.c                          |  2 +-
+> >  .../{display => display-adapt}/intel_panic.c  |  6 ++---
+> >  .../intel_plane_initial.c                     | 17 +++++++-------
+> >  11 files changed, 56 insertions(+), 44 deletions(-)
+> >  rename drivers/gpu/drm/i915/{display => display-adapt}/intel_bo.c (98%)
+> >  rename drivers/gpu/drm/i915/{display => display-adapt}/intel_display_rpm.c (95%)
+> >  rename drivers/gpu/drm/i915/{display => display-adapt}/intel_dpt.c (97%)
+> >  rename drivers/gpu/drm/i915/{display => display-adapt}/intel_dsb_buffer.c (96%)
+> >  rename drivers/gpu/drm/i915/{display => display-adapt}/intel_fb_bo.c (94%)
+> >  rename drivers/gpu/drm/i915/{display => display-adapt}/intel_fb_pin.c (97%)
+> >  rename drivers/gpu/drm/i915/{display => display-adapt}/intel_fbdev_fb.c (94%)
+> >  rename drivers/gpu/drm/i915/{display => display-adapt}/intel_hdcp_gsc.c (99%)
+> >  rename drivers/gpu/drm/i915/{display => display-adapt}/intel_panic.c (84%)
+> >  rename drivers/gpu/drm/i915/{display => display-adapt}/intel_plane_initial.c (97%)
+> 
+> I've been postponing the series pending other refactoring.
+> 
+> Anyway, Ville, are you okay with moving intel_dpt.c to i915? Doesn't
+> that reflect the reality with i915 and xe implementations?
 
+Yeah. Seems fine.
 
-On 2025/11/25 05:05, Ville SyrjÃ¤lÃ¤ wrote:
-> On Mon, Nov 24, 2025 at 02:56:12PM +0800, zhangzhijie wrote:
->> inb/outb speccial wire not support on other ARCH.
->> Should detect whether arch platform support or not.
->>
->> Signed-off-by: zhangzhijie <zhangzhijie@bosc.ac.cn>
->> ---
->>   drivers/gpu/drm/i915/display/intel_vga.c | 27 ++++++++++++++++++------
->>   1 file changed, 20 insertions(+), 7 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/display/intel_vga.c b/drivers/gpu/drm/i915/display/intel_vga.c
->> index 6e125564db34..d5d6c4ba6434 100644
->> --- a/drivers/gpu/drm/i915/display/intel_vga.c
->> +++ b/drivers/gpu/drm/i915/display/intel_vga.c
->> @@ -41,6 +41,15 @@ static bool has_vga_pipe_sel(struct intel_display *display)
->>   	return DISPLAY_VER(display) < 7;
->>   }
->>   
->> +static bool intel_arch_support_vga_pm(struct intel_display *display)
-> 
-> whatis "pm"?
-I'd wana to power-manage . or can using better function name
-> 
->> +{
->> +#if defined(CONFIG_X86) || defined(CONFIG_X86_64)
->> +	return true;
->> +#else
->> +	return false;
->> +#endif
-> 
-> Isn't there already some kind of ARCH_HAS_PORTIO thing?
-> Does that not work?
-> 
-configs had HAS_IOPORT, But non-x86 arch not support  ioport for  VGA_SEQ_*
->> +}
->> +
->>   /* Disable the VGA plane that we never use */
->>   void intel_vga_disable(struct intel_display *display)
->>   {
->> @@ -66,11 +75,13 @@ void intel_vga_disable(struct intel_display *display)
->>   
-> 
-> I wouldn't expect us to get this far. The VGA plane should
-> never have been enabled in the first place.
-> 
->>   	/* WaEnableVGAAccessThroughIOPort:ctg,elk,ilk,snb,ivb,vlv,hsw */
->>   	vga_get_uninterruptible(pdev, VGA_RSRC_LEGACY_IO);
-> 
-> Why are you leaving the vga_get() outside the check?
-> 
-Sorry forgot , I will take new patch for fix this misstake
->> -	outb(0x01, VGA_SEQ_I);
->> -	sr1 = inb(VGA_SEQ_D);
->> -	outb(sr1 | VGA_SR01_SCREEN_OFF, VGA_SEQ_D);
->> -	vga_put(pdev, VGA_RSRC_LEGACY_IO);
->> -	udelay(300);
->> +	if (likely(intel_arch_support_vga_pm(display))) {
->> +		outb(0x01, VGA_SEQ_I);
->> +		sr1 = inb(VGA_SEQ_D);
->> +		outb(sr1 | VGA_SR01_SCREEN_OFF, VGA_SEQ_D);
->> +		vga_put(pdev, VGA_RSRC_LEGACY_IO);
->> +		udelay(300);
->> +	}
->>   
->>   	intel_de_write(display, vga_reg, VGA_DISP_DISABLE);
->>   	intel_de_posting_read(display, vga_reg);
->> @@ -91,8 +102,10 @@ void intel_vga_reset_io_mem(struct intel_display *display)
->>   	 * and error messages.
->>   	 */
->>   	vga_get_uninterruptible(pdev, VGA_RSRC_LEGACY_IO);
->> -	outb(inb(VGA_MIS_R), VGA_MIS_W);
->> -	vga_put(pdev, VGA_RSRC_LEGACY_IO);
->> +	if (likely(intel_arch_support_vga_pm(display))) {
->> +		outb(inb(VGA_MIS_R), VGA_MIS_W);
->> +		vga_put(pdev, VGA_RSRC_LEGACY_IO);
->> +	}
->>   }
->>   
->>   int intel_vga_register(struct intel_display *display)
->> -- 
->> 2.34.1
-> 
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
+-- 
+Ville Syrjälä
+Intel
