@@ -4,51 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CB99ECFD379
-	for <intel-xe@archiver.kernel.org>; Tue, 25 Nov 2025 09:44:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 29417CFD315
+	for <intel-xe@archiver.kernel.org>; Tue, 25 Nov 2025 09:44:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8ACBC10E3A1;
+	by gabe.freedesktop.org (Postfix) with ESMTP id AFC4310E3A0;
 	Tue, 25 Nov 2025 09:44:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mveTJVMi";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eVlL2P+7";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F0DC310E39A
- for <intel-xe@lists.freedesktop.org>; Tue, 25 Nov 2025 09:44:02 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 18F7910E39D
+ for <intel-xe@lists.freedesktop.org>; Tue, 25 Nov 2025 09:44:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1764063843; x=1795599843;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=m8w8SwVMHxDMlV4rC+zwWLYInw9722mLgmTkB4K7Jes=;
- b=mveTJVMiznWN3MO95ECrKENxlOfoBqnhOGSe+o6rjR9YUj9C6L5+5aLE
- cNXND76SkT+Z8UihMfaYe3ZLtRV90sXeSuoxsXXcR4eEBoMXn9Q+CvQIp
- fWSAE1p7jwSWEcEN6oOTifNQJ36WWTVqJjbr7Zd3u+4QfH4M2xYAcVSLa
- oXKHrvOlMnoNckLUf22RY8ALo6U0q5yUqsvp9GLxk88z05MblvUpi22q0
- CAaBGoP7KAbvPyzOsamHyRkqXGolt/MlHcm3KSXf7FGaEj03ylHjwDlD2
- thUhmvqJv9Agnjg+CXtpc3Ez6eMSmTgvzq7Q6bpXDwWOeBUFmYuSzK0Om A==;
-X-CSE-ConnectionGUID: 7OXFarIAT0amKylrWaPXKA==
-X-CSE-MsgGUID: x8KqMYQuQQGFPcXAHnX9oQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11623"; a="69934126"
-X-IronPort-AV: E=Sophos;i="6.20,225,1758610800"; d="scan'208";a="69934126"
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=Jy+5tcCV8/Z+Xcv7X4ZJeEDuZA5zc7s4LMT0zuREfko=;
+ b=eVlL2P+7fo9N0zExXV5w+j9g5YCQPEHcE0/0id40WqC+Nw578fS34aGg
+ V19YV0Nb0x2/UWIeWWKVzn4qrXL0q8+9qcIiIeHU1VAt29uWfI/SWx4vs
+ hLS/7VBq3GSLcJ7OD4ZTLX3GR8vyJYxGMQSl2SzcZMJ8xW1BlwLNManiu
+ OwRGrvW8ph+5QcQ9dvlKfj/y+pfEwd2NYREOqUXawRonbZtwT0fGP/YLr
+ E1oBPj94og1f06GjK6CykOsJOzwhPvKgbywOfLvsJni29SIBrBjosIgD1
+ D6VGaCqllBmDl7YtZQD0NRTa46LsTeAlbpcOAkwTf1nwUP+TobtgEuvmm g==;
+X-CSE-ConnectionGUID: VhFU9LJbSg+9l+CC1QGShg==
+X-CSE-MsgGUID: hb+PePBlTfmXoklWMGeoiA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11623"; a="69934129"
+X-IronPort-AV: E=Sophos;i="6.20,225,1758610800"; d="scan'208";a="69934129"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Nov 2025 01:43:58 -0800
-X-CSE-ConnectionGUID: SQ2FJU00T2aF9ervHY4c/A==
-X-CSE-MsgGUID: P8ROMApBSzqvGwntwWQVwA==
+ 25 Nov 2025 01:44:02 -0800
+X-CSE-ConnectionGUID: 4odjZvH6T9SysmWNlJyZeA==
+X-CSE-MsgGUID: /s+zqO0SR4mMqs6pcEubig==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,225,1758610800"; d="scan'208";a="192405207"
+X-IronPort-AV: E=Sophos;i="6.20,225,1758610800"; d="scan'208";a="192405230"
 Received: from tejasupa-desk.iind.intel.com (HELO tejasupa-desk..)
  ([10.190.239.37])
  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Nov 2025 01:43:57 -0800
+ 25 Nov 2025 01:44:01 -0800
 From: Tejas Upadhyay <tejas.upadhyay@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Tejas Upadhyay <tejas.upadhyay@intel.com>
-Subject: [PATCH 0/3] drm/xe/xe3p_lpg: L2 flush optimization
-Date: Tue, 25 Nov 2025 15:13:32 +0530
-Message-Id: <20251125094335.12028-1-tejas.upadhyay@intel.com>
+Subject: [PATCH 3/3] drm/xe/xe3p: Skip TD flush
+Date: Tue, 25 Nov 2025 15:13:35 +0530
+Message-Id: <20251125094335.12028-4-tejas.upadhyay@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20251125094335.12028-1-tejas.upadhyay@intel.com>
+References: <20251125094335.12028-1-tejas.upadhyay@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -65,34 +67,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The optimization involves two key changes:
+Xe3p has HW ability to do transient display flush so the xe driver can
+enable this HW feature by default and skip the software TD flush.
 
-Hardware-assisted Transient Display Flush: 
-The new hardware can automatically manage the flushing of "transient" 
-display data from the L2 cache. This eliminates the need for manual 
-(software-driven) transient display (TD) flushes by the driver, 
-simplifying the code and likely improving efficiency.
+Bspec: 60002
+Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
+---
+ drivers/gpu/drm/xe/xe_device.c | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-Transient Application (App) Cacheline Management: 
-The hardware gains the ability to flush transient application cache 
-lines more efficiently. The patch handles the necessary integration 
-to utilize this new functionality and manages manual flushing where 
-it is still required, ensuring data coherency and optimizing 
-performance. 
-
-Tejas Upadhyay (3):
-  drm/xe/xe3p_lpg: flush userptr/shrinker bo cachelines manually
-  drm/xe/xe3p_lpg: Enable L2 flush optimization feature
-  drm/xe/xe3p: Skip TD flush
-
- drivers/gpu/drm/xe/xe_bo.c       |  3 ++-
- drivers/gpu/drm/xe/xe_device.c   | 28 ++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_device.h   |  1 +
- drivers/gpu/drm/xe/xe_guc.c      |  3 +++
- drivers/gpu/drm/xe/xe_guc_fwif.h |  1 +
- drivers/gpu/drm/xe/xe_userptr.c  |  3 ++-
- 6 files changed, 37 insertions(+), 2 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index 6e8335b493e8..6885cdbc7dfd 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -1121,6 +1121,14 @@ void xe_device_td_flush(struct xe_device *xe)
+ {
+ 	struct xe_gt *root_gt;
+ 
++	/*
++	 * From Xe3p onward the HW takes care of flush of TD entries also along
++	 * with flushing XA entries, which will be at the usual sync points,
++	 * like at the end of submission, so no manual flush is needed here.
++	 */
++	if (GRAPHICS_VER(xe) >= 35)
++		return;
++
+ 	if (!IS_DGFX(xe) || GRAPHICS_VER(xe) < 20)
+ 		return;
+ 
 -- 
 2.34.1
 
