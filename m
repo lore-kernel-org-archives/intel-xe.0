@@ -4,55 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3099FD0E6E8
-	for <intel-xe@archiver.kernel.org>; Tue, 25 Nov 2025 13:54:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E0BE0D0E6E5
+	for <intel-xe@archiver.kernel.org>; Tue, 25 Nov 2025 14:01:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E6FEF10E3FF;
-	Tue, 25 Nov 2025 13:54:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8F89310E3FF;
+	Tue, 25 Nov 2025 14:01:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Gd3nDASj";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Os/a3hPO";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 41F7410E3FF
- for <intel-xe@lists.freedesktop.org>; Tue, 25 Nov 2025 13:54:45 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7098410E3FE;
+ Tue, 25 Nov 2025 14:01:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1764078886; x=1795614886;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=haTfyx6aX+QGeie49xm+RRW1CgYwbm7Wiahy5Jvw3z8=;
- b=Gd3nDASjoGs/bgwpMUpmF4E1iZjJXT9vIiRae3KCeLDeTczKlPgxgz59
- H9YF4DPH3y4M04GIualZCaYwJKeT+IG4hWU37yzjdDGh3DzKj1Mt9ZKYw
- 5g1yUhW54VJhIckUWBHYmiaRsxrIXFT0dYIZZRtF4pmL7fJcP383HeO9y
- LjzafABpiVOcjyINGmu4fPA9jisXpKtwHdEZ1hdiBq1unuryNzqYGGLdS
- 9O6Ey3lwH7bHsxH++FJRRRUs5mnZW31SKYssH6lxltszI2ynys00yp1cq
- hiBeNVl8ow5vSBa/t7Biu8CMhmp8+YoYQX565udqrtlBi1XKCDLXUwfEK w==;
-X-CSE-ConnectionGUID: 7C6O50kmTbmqffmr0PYZag==
-X-CSE-MsgGUID: XdDLteiwTk6yhzbSr+dLYg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11624"; a="65802564"
-X-IronPort-AV: E=Sophos;i="6.20,225,1758610800"; d="scan'208";a="65802564"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Nov 2025 05:54:45 -0800
-X-CSE-ConnectionGUID: qMshM4C4S9uhFg0nNm/yWw==
-X-CSE-MsgGUID: imI6JHsxT46q4NyyvKTsYQ==
+ t=1764079276; x=1795615276;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=GfjUfYEZvQmi23kNQSIcYMWuQXkq3P5ymJMeGYCfmYk=;
+ b=Os/a3hPOAHYMFpaDRxThfie6czPXdqRFEyTbYSb+0cct7UGkRwtrog9W
+ F7vThdha3X4GmBvGKv5mzhPEu3KafAKfvFRkg1EuEB58JOuyPogEPI2y8
+ FfhRbwvrIgjc0tUGzuEktr2Rah6UE7coQBvRaTHBXnJB5Jqiwg6XwjNeP
+ x8N1Xper+gBYlEAXy+ZeV63j03ubWLrGPVsjFFR4YSn4dUOY9wCERyGX5
+ s014BGADmjR6Fv318oJTGUNc6onS8ZBHjnSfWkcf8xKyQSUhwRTuJHFdR
+ zJeeU+7cUp1HKvl4oAVuQzO8buqlD9RNzGXwRrvIhUFaHheZp4iHyGCky Q==;
+X-CSE-ConnectionGUID: VXPeXp6QTwaLgaLDXi4/9w==
+X-CSE-MsgGUID: VDn551LnTTmcmG30qvE3cw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11624"; a="88748245"
+X-IronPort-AV: E=Sophos;i="6.20,225,1758610800"; d="scan'208";a="88748245"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Nov 2025 06:01:16 -0800
+X-CSE-ConnectionGUID: uy+fowE7SH+QXbguTZ3JFg==
+X-CSE-MsgGUID: 6Bujj5vNR0Wuya1nTMxQRQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,225,1758610800"; d="scan'208";a="196954022"
-Received: from llaguna-dev.igk.intel.com (HELO localhost) ([10.91.214.40])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Nov 2025 05:54:44 -0800
-From: Lukasz Laguna <lukasz.laguna@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: michal.wajdeczko@intel.com, rodrigo.vivi@intel.com, lukasz.laguna@intel.com
-Subject: [PATCH v10 4/4] drm/xe/pf: Allow upon-any-hang wedged mode only in
- debug config
-Date: Tue, 25 Nov 2025 14:54:22 +0100
-Message-Id: <20251125135422.11244-5-lukasz.laguna@intel.com>
-X-Mailer: git-send-email 2.40.0
-In-Reply-To: <20251125135422.11244-1-lukasz.laguna@intel.com>
-References: <20251125135422.11244-1-lukasz.laguna@intel.com>
+X-IronPort-AV: E=Sophos;i="6.20,225,1758610800"; d="scan'208";a="223322531"
+Received: from ettammin-desk.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.213])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Nov 2025 06:01:14 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>, Rodrigo Vivi
+ <rodrigo.vivi@intel.com>, Ville =?utf-8?B?U3lyasOkbMOk?=
+ <ville.syrjala@linux.intel.com>
+Subject: Re: [RFC] drm/i915: move i915 specific display adaptation files to
+ display-adapt
+In-Reply-To: <20251015160140.2296120-1-jani.nikula@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20251015160140.2296120-1-jani.nikula@intel.com>
+Date: Tue, 25 Nov 2025 16:01:11 +0200
+Message-ID: <929e694adba1e3942c685826906bd8123a1696d3@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,30 +71,66 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The GuC reset policy is global, so disabling it on PF can affect all
-running VFs. To avoid unintended side effects, restrict setting
-upon-any-hang (2) wedged mode on the PF to debug builds only.
+On Wed, 15 Oct 2025, Jani Nikula <jani.nikula@intel.com> wrote:
+> The display/ subdirectory currently contains files that are about i915
+> core driver adaptation to display rather than generic display
+> implementation. Move them to a new i915 subdirectory display-adapt/.
+>
+> In the xe driver, all of its display/ is basically xe core adaptation to
+> display. It's just that i915 display/ contains the actual display
+> implementation for both. Ideally, we'd have the shared display code
+> somewhere else, and the adaptation in i915 would be under display/, but
+> we're not quite ready for that kind of churn yet. So let's just call it
+> display-adapt for now.
+>
+> xe basically has equivalent files to the ones that are being moved,
+> apart from intel_dpt.c, for which the implementation is quite different.
+>
+> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> ---
+>  drivers/gpu/drm/i915/Makefile                 | 23 +++++++++++--------
+>  .../{display =3D> display-adapt}/intel_bo.c     |  3 ++-
+>  .../intel_display_rpm.c                       |  5 ++--
+>  .../{display =3D> display-adapt}/intel_dpt.c    | 11 +++++----
+>  .../intel_dsb_buffer.c                        |  5 ++--
+>  .../{display =3D> display-adapt}/intel_fb_bo.c  |  9 ++++----
+>  .../{display =3D> display-adapt}/intel_fb_pin.c | 14 +++++------
+>  .../intel_fbdev_fb.c                          |  5 +++-
+>  .../intel_hdcp_gsc.c                          |  2 +-
+>  .../{display =3D> display-adapt}/intel_panic.c  |  6 ++---
+>  .../intel_plane_initial.c                     | 17 +++++++-------
+>  11 files changed, 56 insertions(+), 44 deletions(-)
+>  rename drivers/gpu/drm/i915/{display =3D> display-adapt}/intel_bo.c (98%)
+>  rename drivers/gpu/drm/i915/{display =3D> display-adapt}/intel_display_r=
+pm.c (95%)
+>  rename drivers/gpu/drm/i915/{display =3D> display-adapt}/intel_dpt.c (97=
+%)
+>  rename drivers/gpu/drm/i915/{display =3D> display-adapt}/intel_dsb_buffe=
+r.c (96%)
+>  rename drivers/gpu/drm/i915/{display =3D> display-adapt}/intel_fb_bo.c (=
+94%)
+>  rename drivers/gpu/drm/i915/{display =3D> display-adapt}/intel_fb_pin.c =
+(97%)
+>  rename drivers/gpu/drm/i915/{display =3D> display-adapt}/intel_fbdev_fb.=
+c (94%)
+>  rename drivers/gpu/drm/i915/{display =3D> display-adapt}/intel_hdcp_gsc.=
+c (99%)
+>  rename drivers/gpu/drm/i915/{display =3D> display-adapt}/intel_panic.c (=
+84%)
+>  rename drivers/gpu/drm/i915/{display =3D> display-adapt}/intel_plane_ini=
+tial.c (97%)
 
-Signed-off-by: Lukasz Laguna <lukasz.laguna@intel.com>
-Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
----
- drivers/gpu/drm/xe/xe_device.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+I've been postponing the series pending other refactoring.
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index da12924f191c..d7c36b86bc7b 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -1302,7 +1302,8 @@ int xe_device_validate_wedged_mode(struct xe_device *xe, unsigned int mode)
- 	if (mode > XE_WEDGED_MODE_UPON_ANY_HANG) {
- 		drm_dbg(&xe->drm, "wedged_mode: invalid value (%u)\n", mode);
- 		return -EINVAL;
--	} else if (mode == XE_WEDGED_MODE_UPON_ANY_HANG && IS_SRIOV_VF(xe)) {
-+	} else if (mode == XE_WEDGED_MODE_UPON_ANY_HANG && (IS_SRIOV_VF(xe) ||
-+		   (IS_SRIOV_PF(xe) && !IS_ENABLED(CONFIG_DRM_XE_DEBUG)))) {
- 		drm_dbg(&xe->drm, "wedged_mode: (%u) %s mode is not supported for %s\n",
- 			mode, xe_wedged_mode_to_string(mode),
- 			xe_sriov_mode_to_string(xe_device_sriov_mode(xe)));
--- 
-2.40.0
+Anyway, Ville, are you okay with moving intel_dpt.c to i915? Doesn't
+that reflect the reality with i915 and xe implementations?
 
+BR,
+Jani.
+
+
+--=20
+Jani Nikula, Intel
