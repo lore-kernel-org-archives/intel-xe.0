@@ -4,27 +4,100 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5DB2BD10F34
-	for <intel-xe@archiver.kernel.org>; Wed, 26 Nov 2025 12:43:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 53815D10F34
+	for <intel-xe@archiver.kernel.org>; Wed, 26 Nov 2025 12:49:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0A5AA10E5BE;
-	Wed, 26 Nov 2025 12:43:03 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1EFDB10E5BE;
- Wed, 26 Nov 2025 12:43:01 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============9030872530539699167=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id A6665891D1;
+	Wed, 26 Nov 2025 12:49:56 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=shazbot.org header.i=@shazbot.org header.b="xWis5iHp";
+	dkim=pass (2048-bit key; unprotected) header.d=messagingengine.com header.i=@messagingengine.com header.b="1WgIpRu1";
+	dkim-atps=neutral
+Received: from fout-b4-smtp.messagingengine.com
+ (fout-b4-smtp.messagingengine.com [202.12.124.147])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 19F7610E459;
+ Tue, 25 Nov 2025 20:13:20 +0000 (UTC)
+Received: from phl-compute-02.internal (phl-compute-02.internal [10.202.2.42])
+ by mailfout.stl.internal (Postfix) with ESMTP id 2A1031D00189;
+ Tue, 25 Nov 2025 15:13:19 -0500 (EST)
+Received: from phl-mailfrontend-02 ([10.202.2.163])
+ by phl-compute-02.internal (MEProxy); Tue, 25 Nov 2025 15:13:19 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=shazbot.org; h=
+ cc:cc:content-transfer-encoding:content-type:content-type:date
+ :date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+ :references:reply-to:subject:subject:to:to; s=fm3; t=1764101599;
+ x=1764187999; bh=SxBzS6wxsA9DU/wrcG08wVM8JozAfkjt6DeecCIzneM=; b=
+ xWis5iHprTUKC6s7veQqbuYlIsiGvFjWVZ/ncVbfj/kEkDoww2qZjckaxKdbwpOS
+ fJRcWTDv/zBudS40kGTvSd7x2/gZ/xexrNsAkXxFdo+nsGjq4gTOKB0QXnasYV97
+ KQ3FiUxLCBHaVWzEsKDy5SX9O71Ripd+BRcZq+LSd/KyMRO1CVzlQMqh3ejJBI2j
+ kdFl1MVvdcsVY5bcVdv6FUQVuhjs57ua/i0HBNFKzKYVjSWcff34g03pk9xgo/Th
+ uxPY+4qrqoLputQtxu0IR86JR2wGtwVODJONsralwcG3OCC1gWZhKAt0PSXKKyJ+
+ pbu/60K6xj5Xnyft5SiFZg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:cc:content-transfer-encoding
+ :content-type:content-type:date:date:feedback-id:feedback-id
+ :from:from:in-reply-to:in-reply-to:message-id:mime-version
+ :references:reply-to:subject:subject:to:to:x-me-proxy
+ :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1764101599; x=
+ 1764187999; bh=SxBzS6wxsA9DU/wrcG08wVM8JozAfkjt6DeecCIzneM=; b=1
+ WgIpRu17/CGPtlIdUy5fftZ7tplpJ7JytkmZ0175np73ki83mNji1nkOmaVQP+i/
+ MtLu9DcVIQwD3WN0oH3l1OI4HEfpW2LkXXrIKw/SpdjTRAMgTksrLE4szPcl0SrQ
+ GfqVBLipASmJSoUf6MZP2B0H5KwZLfofSyqlQSknfeydOHo0D1aqi9DaN/g2mfx3
+ jlk9bSa9PVTYEn4QAtlZCcHWbbtcawYoe/VNnnTjFS5dbyEXaIe6VRw5akFBaLHZ
+ iaEkZ/DHhDZR23lYDwo4ff9PDRQrTnbvlOyixGydJghiWVBkRlagzS38UarJ7fst
+ zNlV9lelt5k8TfuJ6gzyw==
+X-ME-Sender: <xms:3g0maU4fw47TisN_W1o-i0kLbHCfFWmgWwZl119Xd_VUeRCgimeoSA>
+ <xme:3g0maWUvibJsF9iLcfpVi_kCe3pIqp6oBhVHaQPvHibCiwcmrI22GCDmMTJK43fT4
+ t7wDh7aHnVp-njdglEsjLMCttZ1_86gh8Bv7Q_zExRbSNSn4EClMw>
+X-ME-Received: <xmr:3g0maY4v2GCi9oMzl_tFJBzLqOX479SoH2_CMpqhpEpk7O_VckukHBsR>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdeggddvgedvgedtucetufdoteggodetrf
+ dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfurfetoffkrfgpnffqhgenuceu
+ rghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujf
+ gurhepfffhvfevuffkjghfgggtgfesthhqredttddtjeenucfhrhhomheptehlvgigucgh
+ ihhllhhirghmshhonhcuoegrlhgvgiesshhhrgiisghothdrohhrgheqnecuggftrfgrth
+ htvghrnhepgfffvdefjeejueevfeetudfhgeetfeeuheetfeekjedvuddvueehffdtgeej
+ keetnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprg
+ hlvgigsehshhgriigsohhtrdhorhhgpdhnsggprhgtphhtthhopedvuddpmhhouggvpehs
+ mhhtphhouhhtpdhrtghpthhtohepmhhitghhrghlrdifihhnihgrrhhskhhisehinhhtvg
+ hlrdgtohhmpdhrtghpthhtoheplhhutggrshdruggvmhgrrhgthhhisehinhhtvghlrdgt
+ ohhmpdhrtghpthhtohepthhhohhmrghsrdhhvghllhhsthhrohhmsehlihhnuhigrdhinh
+ htvghlrdgtohhmpdhrtghpthhtoheprhhoughrihhgohdrvhhivhhisehinhhtvghlrdgt
+ ohhmpdhrtghpthhtohepjhhgghesiihivghpvgdrtggrpdhrtghpthhtohephihishhhrg
+ hihhesnhhvihguihgrrdgtohhmpdhrtghpthhtohepkhgvvhhinhdrthhirghnsehinhht
+ vghlrdgtohhmpdhrtghpthhtohepshhkohhlohhthhhumhhthhhosehnvhhiughirgdrtg
+ homhdprhgtphhtthhopehinhhtvghlqdigvgeslhhishhtshdrfhhrvggvuggvshhkthho
+ phdrohhrgh
+X-ME-Proxy: <xmx:3g0maXEq5ofT8QQr-mpV7rNXW5VqYmxVP4fkg7679KM-n_JTajGtfA>
+ <xmx:3g0mab8QBb2EtiqGTSLfZwISvRnUQ02VfvHCwF-kAJ92_zKQPG8dNg>
+ <xmx:3g0maZXCEDDKqaKX8nE4kgcUnJsB-NLGwyLZhx7gF4F-iC0jL2V6UQ>
+ <xmx:3g0madGcEoSKfZhKbIyhL-h0o8oF61rz0tNxfGnca9R8VxPJt9BJEA>
+ <xmx:3w0maVfPtYIDUbwzNoblR8K0XZ7sAGHjEdm_at5Nr0TOmVOgjRGwo6za>
+Feedback-ID: i03f14258:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
+ 25 Nov 2025 15:13:16 -0500 (EST)
+Date: Tue, 25 Nov 2025 13:13:15 -0700
+From: Alex Williamson <alex@shazbot.org>
+To: =?UTF-8?B?TWljaGHFgg==?= Winiarski <michal.winiarski@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>, Thomas =?UTF-8?B?SGVsbHN0?=
+ =?UTF-8?B?csO2bQ==?= <thomas.hellstrom@linux.intel.com>, Rodrigo Vivi
+ <rodrigo.vivi@intel.com>, Jason Gunthorpe <jgg@ziepe.ca>, Yishai Hadas
+ <yishaih@nvidia.com>, Kevin Tian <kevin.tian@intel.com>, Shameer Kolothum
+ <skolothumtho@nvidia.com>, <intel-xe@lists.freedesktop.org>,
+ <linux-kernel@vger.kernel.org>, <kvm@vger.kernel.org>, Matthew Brost
+ <matthew.brost@intel.com>, "Michal Wajdeczko" <michal.wajdeczko@intel.com>,
+ <dri-devel@lists.freedesktop.org>, Jani Nikula
+ <jani.nikula@linux.intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, "Lukasz
+ Laguna" <lukasz.laguna@intel.com>, Christoph Hellwig <hch@infradead.org>
+Subject: Re: [PATCH v6 0/4] vfio/xe: Add driver variant for Xe VF migration
+Message-ID: <20251125131315.60aa0614.alex@shazbot.org>
+In-Reply-To: <20251124230841.613894-1-michal.winiarski@intel.com>
+References: <20251124230841.613894-1-michal.winiarski@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/=7Bi915=2Cxe=7D/dsb=3A_?=
- =?utf-8?q?refactor_DSB_buffer_allocation_=28rev3=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 26 Nov 2025 12:43:01 -0000
-Message-ID: <176416098112.30121.6373652486370990646@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <cover.1764155417.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1764155417.git.jani.nikula@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Wed, 26 Nov 2025 12:49:56 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +109,24 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============9030872530539699167==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Tue, 25 Nov 2025 00:08:37 +0100
+Micha=C5=82 Winiarski <michal.winiarski@intel.com> wrote:
 
-== Series Details ==
+> Hi,
+>=20
+> We're now at v6, thanks for all the review feedback.
+>=20
+> First 24 patches are now already merged through drm-tip tree, and I hope
+> we can get the remaining ones through the VFIO tree.
 
-Series: drm/{i915,xe}/dsb: refactor DSB buffer allocation (rev3)
-URL   : https://patchwork.freedesktop.org/series/154592/
-State : success
+Are all those dependencies in a topic branch somewhere?  Otherwise to
+go in through vfio would mean we need to rebase our next branch after
+drm is merged.  LPC is happening during this merge window, so we may
+not be able to achieve that leniency in ordering.  Is the better
+approach to get acks on the variant driver and funnel the whole thing
+through the drm tree?  Thanks,
 
-== Summary ==
-
-CI Bug Log - changes from xe-4150-a945aa869cd59483dfe3c15587758c9bc1e72b0d_BAT -> xe-pw-154592v3_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (11 -> 11)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-4150-a945aa869cd59483dfe3c15587758c9bc1e72b0d -> xe-pw-154592v3
-
-  IGT_8638: 72d5c74eb3cf46af2f46daba8109d84c3dd19363 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-4150-a945aa869cd59483dfe3c15587758c9bc1e72b0d: a945aa869cd59483dfe3c15587758c9bc1e72b0d
-  xe-pw-154592v3: 154592v3
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154592v3/index.html
-
---===============9030872530539699167==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/{i915,xe}/dsb: refactor DSB buffer allocation (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/154592/">https://patchwork.freedesktop.org/series/154592/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154592v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154592v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4150-a945aa869cd59483dfe3c15587758c9bc1e72b0d_BAT -&gt; xe-pw-154592v3_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (11 -&gt; 11)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4150-a945aa869cd59483dfe3c15587758c9bc1e72b0d -&gt; xe-pw-154592v3</li>
-</ul>
-<p>IGT_8638: 72d5c74eb3cf46af2f46daba8109d84c3dd19363 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-4150-a945aa869cd59483dfe3c15587758c9bc1e72b0d: a945aa869cd59483dfe3c15587758c9bc1e72b0d<br />
-  xe-pw-154592v3: 154592v3</p>
-
-</body>
-</html>
-
---===============9030872530539699167==--
+Alex
