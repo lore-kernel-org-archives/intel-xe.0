@@ -4,63 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8FE9BCFD315
-	for <intel-xe@archiver.kernel.org>; Tue, 25 Nov 2025 09:21:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3610BCFD379
+	for <intel-xe@archiver.kernel.org>; Tue, 25 Nov 2025 09:44:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4AA6F10E396;
-	Tue, 25 Nov 2025 09:21:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EACE310E39A;
+	Tue, 25 Nov 2025 09:44:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Q+tY7JN/";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Od7BUFwR";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9AD2810E392;
- Tue, 25 Nov 2025 09:21:17 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B7A7310E39A
+ for <intel-xe@lists.freedesktop.org>; Tue, 25 Nov 2025 09:44:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1764062478; x=1795598478;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=rXSULp4vfIoNnkqO/8ZTvxScvJMuAPn6XpwllKcdgyM=;
- b=Q+tY7JN/77nZwvZnrlGkPCP96ft+SF1xzTw5bKaUnKT5xDEajRA6fXmb
- 1Kgsfx2IrAkyyYjOkWwa2YL7cYMxw5Vd6bT/yIDju1Qh2iPhGGFTPaV1h
- 7tDAvzG3LLV1ujxWMItazMJEh9RPcL2RZX4D+YIssGIgw+yAvwnp39i5q
- mlubsOPR/uvGeCDPwJIvxSLspLpiEmu8Hh1w7Q+df+BaeNKDTCwMn00tG
- Xvfk6CLzIAoMM0+77pINB1Z+4t37RLz4D2ma/XV37VSLCD+1H6SC7b+5B
- Fp+PPIhhgE1+QyBLMZ2kM8yL/ABQxL/CYYJmzk3yXRSiqjAS4X1at/1yC w==;
-X-CSE-ConnectionGUID: 1haZ8lbHR8+mHisPa/vsXw==
-X-CSE-MsgGUID: 2OIcJz0MSr+aw/Hyyftr8w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11623"; a="68664444"
-X-IronPort-AV: E=Sophos;i="6.20,225,1758610800"; d="scan'208";a="68664444"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Nov 2025 01:21:18 -0800
-X-CSE-ConnectionGUID: Vf900OCkQKuA5pq0yVnxoA==
-X-CSE-MsgGUID: 3AHWtPaDSKq2oGQ9YFoO0A==
+ t=1764063842; x=1795599842;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=zzadOiyE+Tx5x4FECMe6Zh0+EJO+VxRF2ijqAXBIwQ4=;
+ b=Od7BUFwRd4Z+AY1VE2Hz2WZgkKUyjDoZUjRf64RTixqTos4NRkg6wfqU
+ yLBSrp34gE+R1lJSzM726zCrLxERMaRR1t3HGARitASFv+gFrNvAjiaQ1
+ RNmQpID0kJgjZjTaFhHKDaDtVlFiE7y3jEqybMHxWDt/IeV2DjHO4Z5Ij
+ pZNEvla0EJ+3b7T8OalBDstl2rhWFJALfgVzq7Tms/PJI86cPIC5bFbqv
+ 52G0LGAWpxZtacUlFFzPiSqKg/sAFqyOvXNqs7voq73gZ6Z5CFNvEA7i6
+ LbTLXPN9GOX3Qx46rdbvGf3JJ0HKg3Ps5mxm5ehpeMsnbRVGPFCxItmQi w==;
+X-CSE-ConnectionGUID: 6vuu31SsSTGBXtTrmUWYCg==
+X-CSE-MsgGUID: m5u37h6WSc6TqRz/s+Cg4A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11623"; a="69934128"
+X-IronPort-AV: E=Sophos;i="6.20,225,1758610800"; d="scan'208";a="69934128"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Nov 2025 01:44:01 -0800
+X-CSE-ConnectionGUID: 5g8G7f3RRxWO/VUrhFnFTA==
+X-CSE-MsgGUID: SEr9CeVPSj2y23xi+AbZFA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,225,1758610800"; d="scan'208";a="192224469"
-Received: from ettammin-desk.ger.corp.intel.com (HELO localhost)
- ([10.245.246.213])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Nov 2025 01:21:15 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: "Govindapillai, Vinod" <vinod.govindapillai@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Cc: "Sousa, Gustavo" <gustavo.sousa@intel.com>, "Roper, Matthew D"
- <matthew.d.roper@intel.com>, "Syrjala, Ville" <ville.syrjala@intel.com>
-Subject: Re: [PATCH v3 2/2] drm/i915/xe3p_lpd: Enable display use of system
- cache for FBC
-In-Reply-To: <7210f811ede22c67bb0e88f1f4580f899aa345b5.camel@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20251123160127.142599-1-vinod.govindapillai@intel.com>
- <20251123160127.142599-3-vinod.govindapillai@intel.com>
- <e397113073a89536b28e57f44313eff247bf1fb9@intel.com>
- <7210f811ede22c67bb0e88f1f4580f899aa345b5.camel@intel.com>
-Date: Tue, 25 Nov 2025 11:21:12 +0200
-Message-ID: <5a24e00828c84c753647e0039f491c3b14adfce9@intel.com>
+X-IronPort-AV: E=Sophos;i="6.20,225,1758610800"; d="scan'208";a="192405218"
+Received: from tejasupa-desk.iind.intel.com (HELO tejasupa-desk..)
+ ([10.190.239.37])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Nov 2025 01:44:00 -0800
+From: Tejas Upadhyay <tejas.upadhyay@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Tejas Upadhyay <tejas.upadhyay@intel.com>
+Subject: [PATCH 2/3] drm/xe/xe3p_lpg: Enable L2 flush optimization feature
+Date: Tue, 25 Nov 2025 15:13:34 +0530
+Message-Id: <20251125094335.12028-3-tejas.upadhyay@intel.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20251125094335.12028-1-tejas.upadhyay@intel.com>
+References: <20251125094335.12028-1-tejas.upadhyay@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,52 +67,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 25 Nov 2025, "Govindapillai, Vinod" <vinod.govindapillai@intel.com>=
- wrote:
-> On Mon, 2025-11-24 at 18:25 +0200, Jani Nikula wrote:
->> On Sun, 23 Nov 2025, Vinod Govindapillai
->> <vinod.govindapillai@intel.com> wrote:
->> > One of the FBC instances can utilize the reserved area of SoC
->> > level cache for the fbc transactions to benefit reduced memory
->> > system power especially in idle scenarios. Reserved area of the
->> > system cache can be assigned to an fbc instance by configuring
->> > the cacheability configuration register with offset of the
->> > compressed frame buffer in stolen memoty of that fbc. There is
->> > a limit to this reserved area which is programmable and for
->> > xe3p_lpd the limit is defined as 2MB.
->> >=20
->> > v2: - better to track fbc sys cache usage from intel_display level,
->> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 sanitize the cacheability config regist=
-er on probe (Matt)
->> > =C2=A0=C2=A0=C2=A0 - limit this for integrated graphics solutions, con=
-firmed that
->> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 no default value set for cache range by=
- hw (Gustavo)
->> >=20
->> > v3: - changes related to the use of fbc substruct in intel_display
->> > =C2=A0=C2=A0=C2=A0 - use intel_de_write() instead of intel_rmw() by ha=
-rdcoding the
->> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 default value fields
->>=20
->> Overall issue: The fbc mutexes are per fbc instance, but nothing
->> protects display->fbc.sys_cache_id.
->
-> The places where this sys_cache_id can be changed to a valid fbc
-> instance id + fbc cfb offset are protected by the fbc mutex as part of
-> intel_fbc_enable and intel_fbc_disable. That's is what I was mentioning
-> in my prev reply. And the places where this sys cache usage register
-> reset happens is outside the fbc context - where sanitize and remove
-> module gets called. I don't see a need to update the fbc.sys_cache_id
-> from anywhere else.
+When set, the L2 flush optimization feature will control
+whether L2 is in Persistent or Transient mode through
+monitoring of media activity.
 
-That's not the point. Each FBC instance has its own mutex. Two FBC
-instance mutexes could be held at the same time. I don't think this is
-the case during enable/disable, though. But the point remains, the
-instance mutex can't protect something that's not part of the instance.
+To enable L2 flush optimization include new feature flag
+GUC_CTL_ENABLE_L2FLUSH_OPT for Novalake platforms when
+media type is detected.
 
-BR,
-Jani.
+Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
+---
+ drivers/gpu/drm/xe/xe_guc.c      | 3 +++
+ drivers/gpu/drm/xe/xe_guc_fwif.h | 1 +
+ 2 files changed, 4 insertions(+)
 
+diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+index d6672cf30d3e..b3bf8d168f0a 100644
+--- a/drivers/gpu/drm/xe/xe_guc.c
++++ b/drivers/gpu/drm/xe/xe_guc.c
+@@ -96,6 +96,9 @@ static u32 guc_ctl_feature_flags(struct xe_guc *guc)
+ 	if (xe_guc_using_main_gamctrl_queues(guc))
+ 		flags |= GUC_CTL_MAIN_GAMCTRL_QUEUES;
+ 
++	if (GRAPHICS_VER(xe) >= 35 && !IS_DGFX(xe) && xe_gt_is_media_type(guc_to_gt(guc)))
++		flags |= GUC_CTL_ENABLE_L2FLUSH_OPT;
++
+ 	return flags;
+ }
+ 
+diff --git a/drivers/gpu/drm/xe/xe_guc_fwif.h b/drivers/gpu/drm/xe/xe_guc_fwif.h
+index 7d93c2749485..9aff0e454c7f 100644
+--- a/drivers/gpu/drm/xe/xe_guc_fwif.h
++++ b/drivers/gpu/drm/xe/xe_guc_fwif.h
+@@ -115,6 +115,7 @@ struct guc_update_exec_queue_policy {
+ #define   GUC_CTL_ENABLE_PSMI_LOGGING	BIT(7)
+ #define   GUC_CTL_MAIN_GAMCTRL_QUEUES	BIT(9)
+ #define   GUC_CTL_DISABLE_SCHEDULER	BIT(14)
++#define   GUC_CTL_ENABLE_L2FLUSH_OPT	BIT(15)
+ 
+ #define GUC_CTL_DEBUG			3
+ #define   GUC_LOG_VERBOSITY		REG_GENMASK(1, 0)
+-- 
+2.34.1
 
---=20
-Jani Nikula, Intel
