@@ -4,59 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 72E59D0E6F1
-	for <intel-xe@archiver.kernel.org>; Tue, 25 Nov 2025 14:40:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 10544D0E6C6
+	for <intel-xe@archiver.kernel.org>; Tue, 25 Nov 2025 14:47:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 34D4910E416;
-	Tue, 25 Nov 2025 14:40:59 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VR3ACGal";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 70CEE10E416;
- Tue, 25 Nov 2025 14:40:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1764081658; x=1795617658;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=/+KyaG8yPBOqTcTbzmWxPd7spvTDm3mnPRpQyAtIgsY=;
- b=VR3ACGalqzDCZcE/KHw76N5OPq/Dc3DdVyiLCFtgKug9mMUkxBMAJZdX
- 4OrW8u/UtV15NpK6Ko3NKXWRHo3i0V2XatHyo4FY6ekp9T3tVgC128rgy
- uW8870sDIkplErBeTsBOLgQjH0Xg5u3aJOGWCVikJ1LXCD2+t3xEbpHAy
- S/7YoLZrUPap9zBSWXKhmzWI8ms8PVfdTO0PA5IRZW7dRC94wzrrOU4b8
- MYp+T371He5nZbHIqW32pauTvB3l/7cuBUVafw/qSy+hVJ/QKAXxR7sa8
- ocmyryMVLQiZI4jpwxDKpRM0UHp/F9AO66r0DDNHMg2JJrvMJ6AK0hmp+ Q==;
-X-CSE-ConnectionGUID: Rw97dfAmRR+xa7lVQSE7RQ==
-X-CSE-MsgGUID: j9H5R0aNS7icQqRe2SseIA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11624"; a="91588093"
-X-IronPort-AV: E=Sophos;i="6.20,225,1758610800"; d="scan'208";a="91588093"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Nov 2025 06:40:58 -0800
-X-CSE-ConnectionGUID: WY8MRpwDSpCJUrPrZE4M2w==
-X-CSE-MsgGUID: kc1+knbvT5qpgfimERyVHw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,225,1758610800"; d="scan'208";a="193084860"
-Received: from ettammin-desk.ger.corp.intel.com (HELO localhost)
- ([10.245.246.213])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Nov 2025 06:40:56 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: "Kahola, Mika" <mika.kahola@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-Cc: "Coelho, Luciano" <luciano.coelho@intel.com>
-Subject: RE: [PATCH 2/2] drm/i915: use struct drm_device for clock gating funcs
-In-Reply-To: <DS4PPF69154114F9001C879C31796C0B8F4EFD1A@DS4PPF69154114F.namprd11.prod.outlook.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20251121112200.3435099-1-jani.nikula@intel.com>
- <20251121112200.3435099-2-jani.nikula@intel.com>
- <DS4PPF69154114F9001C879C31796C0B8F4EFD1A@DS4PPF69154114F.namprd11.prod.outlook.com>
-Date: Tue, 25 Nov 2025 16:40:53 +0200
-Message-ID: <adafc80872cc09bb5698fc6e28e5d7b7a9b0e9e7@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id CA85410E41D;
+	Tue, 25 Nov 2025 14:47:14 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C200810E41D;
+ Tue, 25 Nov 2025 14:47:12 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8169833805327317113=="
 MIME-Version: 1.0
-Content-Type: text/plain
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/xe3p=5Flpg=3A_L2_flu?=
+ =?utf-8?q?sh_optimization?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Upadhyay, Tejas" <tejas.upadhyay@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 25 Nov 2025 14:47:12 -0000
+Message-ID: <176408203278.26073.2685643865133644983@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20251125094335.12028-1-tejas.upadhyay@intel.com>
+In-Reply-To: <20251125094335.12028-1-tejas.upadhyay@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,30 +36,139 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 25 Nov 2025, "Kahola, Mika" <mika.kahola@intel.com> wrote:
->> -----Original Message-----
->> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Jani Nikula
->> Sent: Friday, 21 November 2025 13.22
->> To: intel-gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org
->> Cc: Nikula, Jani <jani.nikula@intel.com>; Coelho, Luciano <luciano.coelho@intel.com>
->> Subject: [PATCH 2/2] drm/i915: use struct drm_device for clock gating funcs
->> 
->> While we want to refactor intel_clock_gating.[ch] and likely move a lot of display related code to display, start off with a little
->> intermediate change to use struct drm_device in the interface instead of struct drm_i915_private, to allow us to drop another
->> dependency on i915_drv.h and struct drm_i915_private.
->> 
->> Cc: Luca Coelho <luciano.coelho@intel.com>
->
-> Reviewed-by: Mika Kahola <mika.kahola@intel.com>
+--===============8169833805327317113==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Thanks, series pushed to din.
+== Series Details ==
 
-BR,
-Jani.
+Series: drm/xe/xe3p_lpg: L2 flush optimization
+URL   : https://patchwork.freedesktop.org/series/158017/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from xe-4143-c9ffb8a8ab1294c1870e017e0502cb8089d3d8b8_BAT -> xe-pw-158017v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (12 -> 12)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-158017v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@xe_waitfence@engine:
+    - bat-dg2-oem2:       [FAIL][1] ([Intel XE#6519]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4143-c9ffb8a8ab1294c1870e017e0502cb8089d3d8b8/bat-dg2-oem2/igt@xe_waitfence@engine.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158017v1/bat-dg2-oem2/igt@xe_waitfence@engine.html
+
+  * igt@xe_waitfence@reltime:
+    - bat-dg2-oem2:       [FAIL][3] ([Intel XE#6520]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4143-c9ffb8a8ab1294c1870e017e0502cb8089d3d8b8/bat-dg2-oem2/igt@xe_waitfence@reltime.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158017v1/bat-dg2-oem2/igt@xe_waitfence@reltime.html
+
+  
+  [Intel XE#6519]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519
+  [Intel XE#6520]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520
 
 
--- 
-Jani Nikula, Intel
+Build changes
+-------------
+
+  * Linux: xe-4143-c9ffb8a8ab1294c1870e017e0502cb8089d3d8b8 -> xe-pw-158017v1
+
+  IGT_8637: 730ee3dfb26f8d7891fc240b0132a08c5bc7b949 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-4143-c9ffb8a8ab1294c1870e017e0502cb8089d3d8b8: c9ffb8a8ab1294c1870e017e0502cb8089d3d8b8
+  xe-pw-158017v1: 158017v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158017v1/index.html
+
+--===============8169833805327317113==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/xe3p_lpg: L2 flush optimization</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/158017/">https://patchwork.freedesktop.org/series/158017/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158017v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158017v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4143-c9ffb8a8ab1294c1870e017e0502cb8089d3d8b8_BAT -&gt; xe-pw-158017v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (12 -&gt; 12)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-158017v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@xe_waitfence@engine:</p>
+<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4143-c9ffb8a8ab1294c1870e017e0502cb8089d3d8b8/bat-dg2-oem2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519">Intel XE#6519</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158017v1/bat-dg2-oem2/igt@xe_waitfence@engine.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@xe_waitfence@reltime:</p>
+<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4143-c9ffb8a8ab1294c1870e017e0502cb8089d3d8b8/bat-dg2-oem2/igt@xe_waitfence@reltime.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520">Intel XE#6520</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158017v1/bat-dg2-oem2/igt@xe_waitfence@reltime.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4143-c9ffb8a8ab1294c1870e017e0502cb8089d3d8b8 -&gt; xe-pw-158017v1</li>
+</ul>
+<p>IGT_8637: 730ee3dfb26f8d7891fc240b0132a08c5bc7b949 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-4143-c9ffb8a8ab1294c1870e017e0502cb8089d3d8b8: c9ffb8a8ab1294c1870e017e0502cb8089d3d8b8<br />
+  xe-pw-158017v1: 158017v1</p>
+
+</body>
+</html>
+
+--===============8169833805327317113==--
