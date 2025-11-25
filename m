@@ -4,184 +4,184 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 62167D0EE13
-	for <intel-xe@archiver.kernel.org>; Tue, 25 Nov 2025 19:14:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B87E9D0EE13
+	for <intel-xe@archiver.kernel.org>; Tue, 25 Nov 2025 19:14:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 17FBC10E43B;
-	Tue, 25 Nov 2025 19:14:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 788C510E074;
+	Tue, 25 Nov 2025 19:14:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="c87zKpoi";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="knZ7gjdC";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7054E10E43B
- for <intel-xe@lists.freedesktop.org>; Tue, 25 Nov 2025 19:14:02 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6742810E074
+ for <intel-xe@lists.freedesktop.org>; Tue, 25 Nov 2025 19:14:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1764098043; x=1795634043;
- h=message-id:date:subject:to:references:from:in-reply-to:
- content-transfer-encoding:mime-version;
- bh=7NqDSggHdzUlw/m/sb9gJQgXkehp57If4gfD/SYpeYk=;
- b=c87zKpoiPEv4ugRUPSVf4Y+nauKtszfEDp/QXr9fTmg7bTY+IGmiNdq0
- 3DRtgfmNZo/gwP5AiIHK2ZeTT4CvzZCWL1DZuPEZ/A98et65FiVnIxRth
- /JyPGDGs1vjhlMXllhl60sL+5nUWqtpJfEYzlxJ3U7iVDuK3yq6eObibv
- tBOqGqcSobemIo2jbKQIehpEdl0hWBfF4xHMu7IoAA/JpCUYFK7UZTpoY
- N8PzIjWOOtHLBJxewy2PbuEA+sZFt+4s/Co3LiiWLouu6RYmRlS4nEIMm
- i8a2lZnqCWlZONMYWaPehat6NqhKB9IeM3JWzFTFUpHRca0ryLl9pcIam w==;
-X-CSE-ConnectionGUID: PpUVWB6kTQGB+QmIG0uG5A==
-X-CSE-MsgGUID: 2ZoOPyvfSgGrCGjNuFc2OA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11624"; a="77237871"
-X-IronPort-AV: E=Sophos;i="6.20,226,1758610800"; d="scan'208";a="77237871"
+ t=1764098088; x=1795634088;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=KzxxX6xtnlTwjBLMBhrS/ghTe6DbRUg5TErtMKruVVg=;
+ b=knZ7gjdChd9jwjR6FyFlT6RlLFzvfCuwbq5v6aoRYdn2xOaxIQY3iesv
+ s9C4S5SCpwqxPc9FbQk30MfRvvYgxz60NrvWoyoXzPn8Krr4y4++x+i3u
+ VIgIOcih2wmVnwQ00JripP66EKaAXm2NNfM9G+jqX8gNx9e5ZzG1XiSoM
+ ZVfUL2JXdYmNrelHdFXaXT+OUKdKzSVgVVGTMvfD8PbWe16meTe/47Poe
+ mrW8KTtcxE87V3WgOUw4FuvIbQAIsoEIVjPV17qChmkeM/Ug2gXMyyJ8k
+ kHYnMPLnTmFL4GrtUp3zT51SFpt+5WE/kYCzJLIDfPu58DR21fKAZNOXJ A==;
+X-CSE-ConnectionGUID: /rueqGX+SiaoiV1iJQSZjQ==
+X-CSE-MsgGUID: K3LzdtMQSOSKRIj9GzF4qw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11624"; a="77237962"
+X-IronPort-AV: E=Sophos;i="6.20,226,1758610800"; d="scan'208";a="77237962"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Nov 2025 11:14:02 -0800
-X-CSE-ConnectionGUID: /pqpqaC6Q7a7qcQ/L6NxmA==
-X-CSE-MsgGUID: ychTOMviRkefxympv8z/rg==
+ 25 Nov 2025 11:14:48 -0800
+X-CSE-ConnectionGUID: nKmEEp0HS16rHOL5biZOew==
+X-CSE-MsgGUID: VqtgH1dsSVeBljKdIhWgcA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,226,1758610800"; d="scan'208";a="193159338"
+X-IronPort-AV: E=Sophos;i="6.20,226,1758610800"; d="scan'208";a="193159453"
 Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
  by fmviesa009.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Nov 2025 11:14:02 -0800
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
+ 25 Nov 2025 11:14:47 -0800
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
  ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Tue, 25 Nov 2025 11:14:01 -0800
+ 15.2.2562.29; Tue, 25 Nov 2025 11:14:46 -0800
 Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29 via Frontend Transport; Tue, 25 Nov 2025 11:14:01 -0800
-Received: from SA9PR02CU001.outbound.protection.outlook.com (40.93.196.30) by
+ 15.2.2562.29 via Frontend Transport; Tue, 25 Nov 2025 11:14:46 -0800
+Received: from CH1PR05CU001.outbound.protection.outlook.com (52.101.193.49) by
  edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Tue, 25 Nov 2025 11:14:00 -0800
+ 15.2.2562.29; Tue, 25 Nov 2025 11:14:46 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=FUizSuBYRudOpD6Lx7Q3ZTwkMIlxA64RYsRZRAQ9KCQN9pvVW5ELBP6Red7A0IcWq9woJ4ktp/WcIdlJaaAekcAdtxdZfmRVdYpNkEicTZpKIl4uvDAoQsd0hOSZR43SFGtSPYDJenvJpyGkaXcG5q+B+u1SAnfW8MqhXPdHWRTU4LVjrgVXRvxuqw2Q9DNSUamsW6Eyo63xmgFk8e8jK1UrVT6OMw0BtdU9pB41T8GcLgDR994ycBjZ/k0wqVOWdpmbUAs51LmPwGHWOfD5RPtpEf15/Vg6c4upSaCWkb76KAtB+QLxuA+na2HR1kuqeaTMNe8Sz7saQI5lBHKXHQ==
+ b=WRNMlGqeBWYzM1LPw0XpUcWyIdlMDUPVAjnJazGDcQrJI3XjVmwA9JR9jyO5sKXjccy9lLAY23DeItoaxqvt3+XvtGKSEk2LbKeqBjCbiyajEx+0HFgg4RIfDzrJ/H5DDgi7px3F0N5H2NmdqvuJLb8torOwIULplVWkDZiuBjz/PMKHkn3Jb4fIALPEPXWMY4T11d/0cwwAZwo9sLu5Qvwzqqml6Hk0HAAt337dfpEu/CDthaIetMAoYFgFE5nVx/mC5xUfUcU44B176W5A6iSoEJoz7hw5eBgu+jTPsWfbMDXw2ccpokuxgvFHrky8AHDjgVIoCf1HfMUAgxWL8w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=tBH6FboqyedpGO+gmXLJVV8KlErcoEaXgd9EP3mq3ew=;
- b=rN0MSAdI/93+s3j5sWisBqWt2FgijhQ6UU/8utQLK6NDOzcOvb77igXZYRVmObAQtjiW3zdVKOWDgmb0f9chsDJdh2H29yYOtyTRV7lL6K25Am+mzzBoGL8bNRKkwwpdzBWBD0kqKAagm13p2Y/HUsF+L3wRw6jTmUvSdADVgSkHYSpSeBFwE7/gq58TwbdR6qIzqyH86X5xwaJYybmWVQJZRbr2lRIAAXjAlhS83sWPKmGYNnsho0Hgp5+DtPjMCRS+o56WRwW/p0F7FSZgtICy74eMDtyWBjYwe4UqparMIl9pGUqWraKiBAKYa+BKVgLYj27QZhyG1NoVWnfzNw==
+ bh=x1pWr4yxObAY4H/cGT48uIg2RGl4Lk1ErB75pop6YKE=;
+ b=wl3WSEb+G0CFh0xOSaFFXCViqECHlWcqB0wqL6JjzMQu94OBqq/ls8FUZ3G5YGFZ8fAJyNJlJY88D86HMH/VH7UESjBWLOs/rI1+JFcolm9C3oci7QaQo8vikrImVpO/c79rdWxLncELl/PRJnez1pR+PYW8p89MX1XhFz8lxMoTnD4LHulXUTzlL93up6niD+XacnWSjzN8rgr2TEgRssKEt7jmtORSgC7t4ohJbZJXmLl+jfEmJICklhzF99SR7na3O0twR5BKBPC3vOyd9N8TEo7CBe/l21dK7+bJsly58hel7gfTQJWLZcVbyD+3OCmCGjJglql+Es7/M78vAw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MN0PR11MB6011.namprd11.prod.outlook.com (2603:10b6:208:372::6)
- by MW3PR11MB4681.namprd11.prod.outlook.com (2603:10b6:303:57::14)
+Received: from BN9PR11MB5530.namprd11.prod.outlook.com (2603:10b6:408:103::8)
+ by PH3PPF10E309DEE.namprd11.prod.outlook.com (2603:10b6:518:1::d08)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9366.11; Tue, 25 Nov
- 2025 19:13:56 +0000
-Received: from MN0PR11MB6011.namprd11.prod.outlook.com
- ([fe80::bbbc:5368:4433:4267]) by MN0PR11MB6011.namprd11.prod.outlook.com
- ([fe80::bbbc:5368:4433:4267%5]) with mapi id 15.20.9366.009; Tue, 25 Nov 2025
- 19:13:56 +0000
-Message-ID: <d30cc881-706e-4c6d-9307-4cf927343504@intel.com>
-Date: Tue, 25 Nov 2025 20:13:52 +0100
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9366.12; Tue, 25 Nov
+ 2025 19:14:43 +0000
+Received: from BN9PR11MB5530.namprd11.prod.outlook.com
+ ([fe80::13bd:eb49:2046:32a9]) by BN9PR11MB5530.namprd11.prod.outlook.com
+ ([fe80::13bd:eb49:2046:32a9%4]) with mapi id 15.20.9366.009; Tue, 25 Nov 2025
+ 19:14:43 +0000
+Message-ID: <26c5d4da-8528-4c52-8871-f4aa76300e40@intel.com>
+Date: Wed, 26 Nov 2025 00:44:37 +0530
 User-Agent: Mozilla Thunderbird
-Subject: Re: [V7 PATCH] drm/xe/xe_gt_ccs_mode:Mutual Exclusivity b/w Multi CCS
- Mode & SRIOV VF Provisioning
-To: Nareshkumar Gollakoti <naresh.kumar.g@intel.com>,
+Subject: Re: [PATCH v2 1/4] drm/xe/soc_remapper: Initialize SoC remapper
+ during Xe probe
+To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>,
  <intel-xe@lists.freedesktop.org>
-References: <20251015142820.2519054-2-naresh.kumar.g@intel.com>
- <20251125165749.2616038-2-naresh.kumar.g@intel.com>
+CC: <lucas.demarchi@intel.com>, <ashutosh.dixit@intel.com>
+References: <20251117205315.1458477-6-umesh.nerlige.ramappa@intel.com>
+ <20251117205315.1458477-7-umesh.nerlige.ramappa@intel.com>
 Content-Language: en-US
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <20251125165749.2616038-2-naresh.kumar.g@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: DUZPR01CA0018.eurprd01.prod.exchangelabs.com
- (2603:10a6:10:46b::6) To MN0PR11MB6011.namprd11.prod.outlook.com
- (2603:10b6:208:372::6)
+From: "Nilawar, Badal" <badal.nilawar@intel.com>
+In-Reply-To: <20251117205315.1458477-7-umesh.nerlige.ramappa@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: MA5PR01CA0090.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:1a8::7) To BN9PR11MB5530.namprd11.prod.outlook.com
+ (2603:10b6:408:103::8)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6011:EE_|MW3PR11MB4681:EE_
-X-MS-Office365-Filtering-Correlation-Id: a7845e7d-12e3-4d80-94e8-08de2c56c794
+X-MS-TrafficTypeDiagnostic: BN9PR11MB5530:EE_|PH3PPF10E309DEE:EE_
+X-MS-Office365-Filtering-Correlation-Id: d303e49f-ab1c-43fc-a505-08de2c56e3a5
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?aXNUTVIxZ0FKWXI5NXdzT3k1Y2dIdTFHdWtwdHFjNUQ4QkRmL1BCRUIrNlJ4?=
- =?utf-8?B?Sm5tQWhTdkFtWHFKOTFLTTF5dlJDQ05ET3oycnFkeDFKN1pndTZEeXZEeFZU?=
- =?utf-8?B?MlplT0c0UU1pYUdMNHJ3OTJtRkFrU1U3MWNKaGJGVXg5QVdFWWlubVhmVzE5?=
- =?utf-8?B?aDdITElNM2w2NHUyaklGRUp4Q3duTDRBWCt4S28yZzh1MmJKTlRGR1M4azBG?=
- =?utf-8?B?MFVkU0NDNDZIODJRMGxxQkkxS3l5bHU3b3FLa2xiT0tTdVFKeXZEMDVIQSts?=
- =?utf-8?B?a1BuU0MzL0lyb1U5dDg0WGNzcVBEcEdZZXpSWUJGemcyclkyVFdLTmdOQ3M0?=
- =?utf-8?B?SUpaYUdlNHZoRTJra3l2Tm10WTdmQnFObjB1YnA4TmdNeCtsZmM0WWY5UG1o?=
- =?utf-8?B?N2NBRDZYT3JyWlhBRTdnYk5RV09ydktkemtyUFhZdVRJSG81ZkxzOEhUMGEy?=
- =?utf-8?B?T2pHb0E0SllwdFMzVVRBdXV5S3pZRFo4UmlPc0krVlplVWtiQVhjcXkxMlow?=
- =?utf-8?B?VENXcGJ6emNMei9NYVQwdzI1Wm4ycXhIV1laNW82cTJYUG42ZGw5Z2tTVzdo?=
- =?utf-8?B?Yk55aHgxN3lpVEdYbTExRXdFdGhyT3lucnMxSXEweW1nSjJ6Y1p6ejg1cWJH?=
- =?utf-8?B?RWxKYytjcEhsS0VnZmRKREQxSU5FczdYdmc2UGNRNkZpT2I3NHQrWGd0MExq?=
- =?utf-8?B?UitiZVVrRUdzc3EyVUxDMDVmUHoxdUNXVHMzaC9YdWdZTE5kZ2Fxait6SE9V?=
- =?utf-8?B?Z0xLZHgzbXFtelE5RTY4Y1g4TWJwb09CeUFFNzUxRGdwdUNtSnZTKzZwY3hs?=
- =?utf-8?B?VVZLSG5RdDhMZEYyc2hndnN2NThlRjRhOTJXb2JHWmpMbk1DUnVVSlJVZUh0?=
- =?utf-8?B?c0RiQmRTV2xScC9kbkFjdkNrSDlHVXhJRm45UjlKcE51NTg2K2lYOHRhSFdx?=
- =?utf-8?B?L3JTelhGZjdWekNvQkdKb0VyVTUrL0xHL0dVRVVxWlJTOUlQeVd1UUU2eC9o?=
- =?utf-8?B?Y2VvUi9OaWhuRjNiK1p0TWpwMDl2RTdNenZzS0FFeEV6SnhtdjJPb2xXNkFl?=
- =?utf-8?B?cHM1ekxWdko0MWFjRWw0NXhUQlVxUlg0Q05LbEZiZEd2SUo1WnJQZDkvKzRQ?=
- =?utf-8?B?MkJuSXlyaUJ5MzI1cmJZcUQwMkFyTDV6NzExVm1YRkVFdndzNHlNTHNDQkNL?=
- =?utf-8?B?Unp5NHphazhFL29YdnMzSjQ2dXJ3WVhYajNwV1o5SFlxSzhvUzRCYmp1VGcx?=
- =?utf-8?B?VHlyNFpLT1N2TEdMcTlsN1BZb3NrNi93SHFqSTRzenNteXU0S2QzOGVPTXcz?=
- =?utf-8?B?cDFXTnBucThyeEpkdFF6WjZZdjFad0JzdzRZcFBKY1RzY1hTanI3bktjaFBB?=
- =?utf-8?B?aWFYM3FzY3c1YkVMM2lmcXg2KytOOWlsZXJhM3JBYVVvc3NGRkJyd0VqanRl?=
- =?utf-8?B?cS81WWhTSXhHS2xDL3phNmQySDBxZUx1ZS8yRWRvcVFkUHZOOUZUcEdoVTdP?=
- =?utf-8?B?cGZQZ1RVSzFVQ0E1RUxuUElQa1pxVk1WQ2xndlVmWWxlK0xHUUo4TGo5ZCtJ?=
- =?utf-8?B?Z01NdExhRzBTRWJrN2hzTE1oMWh5NFBONytQdDJDbFJVV015NGppQWV1enBl?=
- =?utf-8?B?L1RDMFFiU1BRVFArbnJxeC9VNzJlODlOZjNMaEt4R1VVcU9MNDRMQUVDRGhk?=
- =?utf-8?B?RGpNQ29ZZlRBd2VaQ21uT252LzFYRnZkZGJWSng4c1ZPMzFLU1BkRHNmWExw?=
- =?utf-8?B?bitvcUMyK2R1WnErRHJ6L2UzNnMxMXFFMDBKTDM0bnVlbk1LbGpTNjNvVGhW?=
- =?utf-8?B?Q1V2NlIwWkRveisydG5VdWVpY0VOTXNVNWlXLzdRSFdWWjRMRmdoanBQY2Jx?=
- =?utf-8?B?RkRQS1dxVElIaFR5eENOUUs1dldFNXhVUXN0SHMraE4zN2kvcXkzemZTMk56?=
- =?utf-8?B?ZEp6ZGdTUEM3ajhXeWt0b3pKeDlqeTBlZVF0d1dUSmg1NTVta0d1aXoxUTFG?=
- =?utf-8?B?a0RwR0hOdTJRPT0=?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?WTVKSjVNekUvQUp6aWFUbkxLVVBzSVFVcllldzZkQnVHT2c5d0FnYUFDWkta?=
+ =?utf-8?B?K1I3Z1E1MmhNeVp3U3dKNVI1UmoreExoMGxRTnhyQ2tqN1BxOFcxUTYzTHNa?=
+ =?utf-8?B?a0dTdGtnbGJIaUZWTmpuSTVVWFdHNGU3QTQ1SVR2ejA4cVJucGxBcnZ1ekMv?=
+ =?utf-8?B?NWtxRGJjOEpiZjhyUGJ2N3hYSWFsYjZDMEVkdTdFN0Q5N2R5WGk1YkpRV1gy?=
+ =?utf-8?B?N3Roemo5SUhqc2JZYkRUU0p4cS8vOVBZMlZDYTFkWitVUGdIVW16VWZGQTlJ?=
+ =?utf-8?B?UFRTVkpDRTlhbEVUMFA3cSsrTG0xaW5ZZ1VvMFVzQ1p5M1k3TWppVks5bzVq?=
+ =?utf-8?B?QzMyMGpzSGFJZ3lSNGJUdjR6UTZGRWxvT2hJK1VDMU5GNzVoekFscnJsa0l3?=
+ =?utf-8?B?TlZlTE5JMHZqRHI3bThyOWNXWVpnK3k1Nk9VVUc3c0lzcVA2Q3JMNzRzaVJN?=
+ =?utf-8?B?dmRqclNTVlNXNjdqODB5SWpISGgzY2hqS0hvdzREenhQL1JWcnJWTURhdTVO?=
+ =?utf-8?B?TWM1Nk9Sa25yQ1RBamJiR2UvWVlBQzFoWE90L1h2aVE2ZjF3K0JCQkUzTmlD?=
+ =?utf-8?B?eEZOTC9QdFFWeEt4TTkweTNqVVJLY2I5aWJYRVM5RTd0Z3ZNT21SZ1hIQ09l?=
+ =?utf-8?B?WitVNUhKYnBxM0xMV25LeEhOaWgwVFo1ZlhQZ2R5WEYxMHpnQnhhUURCbG9k?=
+ =?utf-8?B?L3hxWEVHd0JCVjNhcHVVdHNOMzhaa0FwRnpDNXlvQVRDa29rV1ZJRWdoUUhD?=
+ =?utf-8?B?K1k4K1hEdEFxMHV3YkVyZmlxc2taRjVFRWFORnNuUThvbmEwbjUzZ1NiSmtN?=
+ =?utf-8?B?eTMwUUpFKzFkSmtoUkRQNDI5d2dHS0U5LzBXbTEwQ1pWR2xHdzhEWmpjRWRx?=
+ =?utf-8?B?UG55WDhyME50elpOd2xjeFBvRHhsUUV4L3U0ZjA1ZThwQ29XcDRUUDQrdlQz?=
+ =?utf-8?B?dU1LZWd5MHUxbUQ1dDZZc1o0TC9hbU1ySWdWYWRFZG1UZXk0ZW94R3I2MmVj?=
+ =?utf-8?B?MEpLc2xMdE05dXJGU2pvZm5BQzRaa3NOWTBEYVpWQVR2WjhrV3NGN0pLUWV1?=
+ =?utf-8?B?LzVmcFlpY3ozRWFqZDFPQVNWNVVOaHNwNXFBbzJzRGQzU25EME9qVWpsMm8r?=
+ =?utf-8?B?NDAzbWdjRXF2aWptOVpDQ1RWaGJlRUYwV2dremdUMU4xTnVDeXQ3cnI3KzRI?=
+ =?utf-8?B?NzdZY1FsTkhFbU11TE9qaXpiM1BBZWwzTUMwV2lMeVlaS05yTTNBU3A5bUlR?=
+ =?utf-8?B?TE05MkwxdFVqWFFmMmtQNGFqL1dwZnhXYW1NdTU2RHdhVTR2NXB6eHR0Q2tp?=
+ =?utf-8?B?QmlYU3N1dmdOSTBFUm8rdWRBcnlxV0pxUGhVNlBYUytjd1NGQzZKMjBVeFRF?=
+ =?utf-8?B?bTJJOE9GTXU2MTdMK3lBTG1YRUlMd3hlUkppSStrQzJtK1RFMVRoVDdwYVdC?=
+ =?utf-8?B?QmppM3pNdFByejkxM1VkbXllUWJoaWhPOXVFVlhBYjQ3UUVVdmxUYUtlNWta?=
+ =?utf-8?B?NjBQMUdJa1lSUEVlU08vekQ1Zjh5Q1k1RlBsdkNZYVlldnJDVTl1WDM4RDBw?=
+ =?utf-8?B?S0IyRkZmU1RHdGZ5dmZkdjVYd3VkaWpmZHFoWUNwb1llU1hsRmE3alVEdy9q?=
+ =?utf-8?B?ZVczRmZmNjZrUm1oTElzVnphWEIzbUdhUGdSM2o2TzZRZ3N5a08zY2x5TDll?=
+ =?utf-8?B?TklvY1hxQ3Fxdmo0eGxrNUQ0aVkzZXZrR2greE5GZjVVMVlFQ0JOTHQ2WDd6?=
+ =?utf-8?B?LzNMMHhKaHZFUzRRbm5kckZQZWlvbGVqSDZ5MzZPV3NQTzF0RHhWQ1oxUVdk?=
+ =?utf-8?B?aDNaamZrbUxhSWFmQlBoZDJSQTY0NHJIbVlQMVBxNUFDV3B5RzJvSHhIZ05E?=
+ =?utf-8?B?NDFEd3RZMXZkcFR1OVhZaXc5TGoxSWs5d0hGUkpRZ0xpMU1nVk5jd2JvRFZ6?=
+ =?utf-8?Q?7wFWe4RpWBZ3091xqjbn+leTnAk6Ds93?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN0PR11MB6011.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:BN9PR11MB5530.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?b1Ntc0p4VGJXM3VmMVduR3Bha2NuOFRaUTBDb1JzOVRXd084NzZrRGVLVEwx?=
- =?utf-8?B?ZlhxNzcwMDZOWStONm1QMXJCalQ4YTNMNkJ6M1JMYkJPU3hsL3hSamM5ZmEv?=
- =?utf-8?B?c0VQRStrSXVETVIreEdZM2NvaCtHYzNMdHdPQmpFSnhPR3diMFFLcytObm1M?=
- =?utf-8?B?QnVsQXo3ZWZOekc5NDVMWFovclpGcHNaQkR3Mk5aSThNa0hRSDVkTTA0eGZv?=
- =?utf-8?B?TE52enNrNTQ1NnV0N3pSelF2T24yaDZEdEo2bWNua05NUzBlZzJwZGIwQTJx?=
- =?utf-8?B?QlJzSGRrY0t5UDB2b05RMFpFN3NyOFo5eE0vRlZKRk91YXdRdXlsb052NUFG?=
- =?utf-8?B?WC9LWFlRTW1GS0ErRjlzMmJQczJHTFdQaXZGWEg1Q0NDVVpreGRiTG9tSkRv?=
- =?utf-8?B?czYwMlFURkRNcnhSVHRhYk41Ymg5Q0NzRVF2SEF5RkU5MlJpU014OXVrMGFR?=
- =?utf-8?B?SkY0QVRjOExja1ZiRFQ2WitLU3c4SG1wQWdHOGlKcFViaERHaUNhWG4xektK?=
- =?utf-8?B?V3lOanRyZjVlMjB4UlFvNHc1VnZOeGRJbE1TYTlDSHpLa2hDM2thdkFMY041?=
- =?utf-8?B?dFlxMXhDalVvbVJEMDFOblZSU2NyTFJNZUZTa0QrOVlLOStRaGI5SGpXVzky?=
- =?utf-8?B?ZTl5aGVRVUdOZzAwclBxckN3WHBINVoxWS9TK210MnpIV1luWTZPcThpOEhF?=
- =?utf-8?B?MEZBaVVnbEQ3aDRTRnNPckpTTTV2K1ZkdUpZWVZlemNhOFZhdndmUE93TGYz?=
- =?utf-8?B?Z3MyTmJibVUzeUcxZEFtK0ZTL2Rta2ZtNFc0UmJLcS9aanBoa0o0NmdtMjdW?=
- =?utf-8?B?QVUrY2VCOFhrVXV4OTNRRWtuVVFaNDQ1LzhUcEppSm9yUG9nalEvdGVML0pI?=
- =?utf-8?B?cCt0NWtXYk9PTmo4NzUwMSthL3F3bjl4ditCdnphQ1dpZEZVZ2hCZ0ZodWw3?=
- =?utf-8?B?ZnY5emFSLzl6WjQ1dXNqbFhkV2lsci8wVTlwZmVoNGFvZmw1OStDcnJLR3d3?=
- =?utf-8?B?aWxtWDAvOGZQTGZEUEIyeEJQSkU4UW9YZ2JLQXdydXU2TTNvOEJlM3RVL0ln?=
- =?utf-8?B?d2FKL2xMeFJQWkNjVlp3WjlWSmRQZkhHSU1lNlU0N2ovWnRiVTB0RDAxTG1I?=
- =?utf-8?B?STFrM2VMRTllVFIrWStOQ1UxL2NreEc1bDhnZ3RmbEZtWHl3RnJlalhiQkhr?=
- =?utf-8?B?Tit1RVBIbU0yc1FPckRnS21VMHc5dDcyR1BRaHprRzhhZDF1ZHVUVDJTUTlj?=
- =?utf-8?B?K241YnYyWUNTemdKOHVtUytHRW5lR3hUQmdieEtnN1RqLy9DNlR6VGl0aS9L?=
- =?utf-8?B?ZXgrdmVlWGJENTU1LzFialRrelJyRjVheUNMQW03RlJZVlY4dng3VG1rS3FY?=
- =?utf-8?B?N1RqVmZqZDRNMUdFMkhrRUhocUdNU1djN2FTTHNzOGE2cHZtRWRPS3NBTS9H?=
- =?utf-8?B?c0VZV0FpYlBlakhXQ0VvSVFob1NLYmNWMkZSMTh4OVhlOE4wd1BWcGp5VFlq?=
- =?utf-8?B?SitPSEpJU3hnUDBsblg4WVdyc2JGT1A0Y3dPZ3RYbnc1NW9JYlpPZmd6TGFp?=
- =?utf-8?B?dWg2aXRhNVBrVEI5ckErYURyUU9pclhGN0NMdE9iRDBvTWF6cXB6TGJLZ21C?=
- =?utf-8?B?ZExwM3ZDbFVtSTFrQVpraWZYQlEyb3A1cEtFTHdXTWxPOHdXSlFoMk85bFYz?=
- =?utf-8?B?ay9PeWtIRWc5T09TSlVJTjJUK0pwenhYN1BVbHpvK3hXZXhTdGhzcDFnM3Vx?=
- =?utf-8?B?SnlVallkSHJ5enRwR1VhL0pabmJPVHFtemtDYmJ6RjNEM3RlZmMzT2RtTk11?=
- =?utf-8?B?cFVjRUJIdUY0dHhpQlNzU3g4cTcxcWgzOG1iSVpFN2xJTzdyKy9NZDk2UW9i?=
- =?utf-8?B?UlFpczYyRTNVaktGZitkTlNQQkpyVFBheVYvM0NwWVRUYUhuNGQ4RzdSbzZL?=
- =?utf-8?B?UVdaVVZsOXY3REpnSmhpOExpK2Y1b3h6YmR5U1ZrcTBRQWNDeGRncEV3bVVC?=
- =?utf-8?B?NHAyRHEwWnVwNytycEN5OVZCd0xzMG5qbnREeUtaYjhaVDc2T0tGcFdHN1I0?=
- =?utf-8?B?TnRHNks0UVlBYzJiSmlPc0tJSnRURXBaaTExWG90aVhBa0JzcWxPRXNJN3I2?=
- =?utf-8?B?bU5mcVlIbU1pSVJUdmhxdG1BZnBoblM2MEllVnQ0QjhCTHorRS8xdFRQZzJ6?=
- =?utf-8?B?M1E9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: a7845e7d-12e3-4d80-94e8-08de2c56c794
-X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6011.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?R1U1Nnh6L2VNcHgrNU1RUmI0ZFE2SmRscUQrbHE5M3F2dzg4blduMy9kclpD?=
+ =?utf-8?B?QjlBdTRjMHdSdHBxN3R2NktIV3o5L29GUHZnMlc5bzNQVGJGeG85cXRHWFQ1?=
+ =?utf-8?B?TGZpYnFqY21XNEhBY3IxU2w5dHVRd0cyeS9uWERPYjZpS0VFNFFhMEpUekc1?=
+ =?utf-8?B?ZERDck9mbnZVOG1sbS93QXBtcVRkd1UxeWVpb2dGMENpcVFsa1NqaitsQXlP?=
+ =?utf-8?B?RXN5TkpQMkJZZHRGUUo5NDJQS2JMVDJWaC9UVG4rdGt4amtQN0lDMS84VVNV?=
+ =?utf-8?B?TnV4SkJpSGE5b0NNek5wNVlZSkUwTXpSbjNpd1NvMkZMeVd4RGVkT2hqOXpB?=
+ =?utf-8?B?c2lJa1RlZ0s3MHZJUEJ3WUVkRCtYNWw1cFJNOXl6N1lWMWpLOTI4SWtwdGtr?=
+ =?utf-8?B?R2tLMkhtNnd3T2VDQVR4d3dWcmZqSTBRdG1TSFhheGtwQUMwKzlETU9sSGtW?=
+ =?utf-8?B?TVNadkQ2UVZIOUNva21yRjdxQ3JEcFhaZnpWQ3h0WEMyZVY0Q0hkYTJyNWh3?=
+ =?utf-8?B?Wk14R2xWUzhmOUVEN05ZVGRIcmFjb2RvQVRSNnh1Z3JZblN5NUhTaEw3RTll?=
+ =?utf-8?B?d3VINTlwMW9vTko5ZXdOQU9NaU1WMXBwYWVVOHlkeEduRDBtb2NiMU5HWUpk?=
+ =?utf-8?B?MExGWGYreFVvVkdNZzB3bjhhTHdTckNoMUtoQlRWZFZFa04xUjAvbVZtS3RG?=
+ =?utf-8?B?UE4rRXhHZ3dNMUQ2aGtpZ0xtbWVzQmVvajZJZlpSalVsTFVTOUtjNm9OR2E1?=
+ =?utf-8?B?ekRZNHlqaEhmeTUyYkpCejVrN0lTUktOa2hQS3BXVU1HbEdQbi92R01ybUxo?=
+ =?utf-8?B?NUlna1dYSG10azE3a3RJVklQZEQ0RFVsTXBEaEo0Vis0b3RsNGRDcnFoUmp1?=
+ =?utf-8?B?WUxkRmVaZ3RuNnBaNC9OSEJVUzArUFVYL2RDSUxSckhzamo1WGZRTnlqMGI1?=
+ =?utf-8?B?eGxGS2ROTFJ1eVY4VG5wSThHelNodU9rZzFTRUthbVFtcjhES25HRXQzTkNp?=
+ =?utf-8?B?eXUvWnhqbUM0YlFrRVJYbHdQNi96aldTRmM5VkxDZHU1aC96RlZsYXJpb0hJ?=
+ =?utf-8?B?OWpXTzAxVnRqVk4xa2JRQWE4V05JL1pOenFLZGxoVlhjbU9iZjhSQzV0c0ZI?=
+ =?utf-8?B?Q2xxR2NVNDZlZ09ZOUFSblpRVFRtRE9lRmZJRU9EYlVkRjBnc3FQK3BLeXNi?=
+ =?utf-8?B?aEQ2L0J3WTJOVmhYcHhvTThHQTRJcTJTUmJiMEk0QVA3dTNTSldkM2U5NGM2?=
+ =?utf-8?B?VzZxazFLdzFkeUJPUGZFTld3MTMxMWxRRDN2dUhKdTdmVkRNNm56UmszdXlo?=
+ =?utf-8?B?UkVrQUhuQ2J3cmRsbU45am1DUDdGNnFnUGx0SG9HNGNSekc4Y3NSYkN1aVIw?=
+ =?utf-8?B?dmxnZEl4ZlhNcGlOa042TndzUDA1Qmg2b0o0UFJ1azZaS3F3VlhLNHBrT3Bz?=
+ =?utf-8?B?TVNXVGhBSm5MUWJMeGVJOWFuWFJ0cTFZcFpNK1ZUaHVnc28vTnpoWjZMTG84?=
+ =?utf-8?B?UEdTNWFhOEJRUEg1NXluYzRIcG5QUFZGSDBiVGMxM3Y4TUtWZDIrcEtoMlB3?=
+ =?utf-8?B?YXh3QnVFbk9qMjg3OW1SNG1sdTd4NlRkSDMydGxobDlGZXUzTlFSQ3NGRXRU?=
+ =?utf-8?B?QVNTYmFjUm1SNnZYeEViMU5GNTc1YUMxS2lGUldqVTlsd1RlTEc5dFYvZzVl?=
+ =?utf-8?B?eE4reGdHT2xtZEtyWUNPR056KzR4UjhwVElhZkNVdjRjayt0bjFVU0MyTmFI?=
+ =?utf-8?B?NURkNmw0WWF1Z1VwL1QvcFZEcmxVc0VxOTFZSkZWcW9ZSkdjazFaZzBFanVm?=
+ =?utf-8?B?N0VvelN5MzI0dWtFK0R0bVJORDFlT3Uyd1JnTjZWRFdVNlhNQWZmSkZ5QnZj?=
+ =?utf-8?B?dk1DalZ5VktzcHNkSDhuandYMzhGR004OTA3NXJ1S2ZrSHFxbFM3S3FDQTFM?=
+ =?utf-8?B?MXhLRzRYblFkZXJhQzI4WkRkMjNlUmJnbU0vSG1JbG45NHZzcGhwWnRGbk1B?=
+ =?utf-8?B?cnNMZmNvcGlCUzRmUW10YzFjeHYvWHUzZENhb1lvL0w5bnNDdHNPaDMxNUo5?=
+ =?utf-8?B?aUtsSWc1cmVIbXBpVnFqNEppOVZ5d09wWXdKd2pYRjRHc2pXTXprTUpvR3d0?=
+ =?utf-8?B?K01vcEdJUHhCM0kzdlBTZGsxMjIzQTgxaWpwZCt6V1YwS1RhYmpJNjdSTXVq?=
+ =?utf-8?B?K0E9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: d303e49f-ab1c-43fc-a505-08de2c56e3a5
+X-MS-Exchange-CrossTenant-AuthSource: BN9PR11MB5530.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Nov 2025 19:13:56.3832 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Nov 2025 19:14:43.4569 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: /8dgftL6GBYWe8ohjuBvrbpgJRpiwY6/jYzOcXY419osirp0hWx8uHOD3QH4T0yZ+JxzNsU3sW54K5uYcauBs15NFhLlz9lilDVoHnjDvpc=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR11MB4681
+X-MS-Exchange-CrossTenant-UserPrincipalName: Dphn51JNWHKoizGyzEQHJCEzfsSNioVmTG1m9bu4qf5lSTyIJU5qajEkU3pQEUW9PzL4zClyMaJ3hnEqOUvOFQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH3PPF10E309DEE
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -197,204 +197,130 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-subject is little too long, maybe:
 
-	"drm/xe: Mutual exclusivity between CCS-mode and PF"
-
-On 11/25/2025 5:57 PM, Nareshkumar Gollakoti wrote:
-> Use PF lockdown supported functions to enforce mutual exclusivity between
-> CCS Mode and SRIOV VF enabling/provisioning during CCS Mode enabling.
-
-please explain in commit message "why" we need this
-
-[1] https://docs.kernel.org/process/submitting-patches.html#describe-your-changes
-
-and also mention about a change for the VF case (no sysfs file in VF mode)
-
-> 
-
-and then you can move whole below change log under ---
-
-> v2:
-> - function xe_device_is_vf_enabled has been refactored to
->   xe_sriov_pf_has_vfs_enabled and moved to xe_sriov_pf_helper.h.
-> - The code now distinctly checks for SR-IOV VF mode and
->   SR-IOV PF with VFs enabled.
-> - Log messages have been updated to explicitly state the current mode.
-> - The function xe_multi_ccs_mode_enabled is moved to xe_device.h
-> 
-> v3: Described missed arg documentation for xe_sriov_pf_has_vfs_enabled
-> 
-> v4:
-> - sysfs interface for CCS mode is not initialized
->   when operating in SRIOV VF Mode.
-> - xe_sriov_pf_has_vfs_enabled() check is sufficient while CCS mode
->   enablement.
-> - remove unnecessary comments as flow is self explanatory.
-> 
-> v5:(review comments from Michal)
-> - Add xe device level CCS mode block with mutex lock and CCS mode state
-> - necessesary functions to manage ccs mode state to provide strict mutual
->   exclusive support b/w CCS mode & SRIOV VF enabling
-> 
-> v6:
-> - Re modeled implementation based on lockdown the PF using custom guard
->   supported functions by Michal
-> 
-> v7:
-> - Corrected patch style as message written as subject
-> - Used public PF lockdown functions instead internal funcions(Michal)
-> - Creating CCS Mode entries only on PF Mode
-> 
-> Signed-off-by: Nareshkumar Gollakoti <naresh.kumar.g@intel.com>
+On 18-11-2025 02:23, Umesh Nerlige Ramappa wrote:
+> SoC remapper is used to map different HW functions in the SoC to their
+> respective drivers. Initialize SoC remapper during driver load.
+>
+> Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 > ---
->  drivers/gpu/drm/xe/xe_gt_ccs_mode.c | 48 +++++++++++++++++++++++------
->  1 file changed, 39 insertions(+), 9 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_gt_ccs_mode.c b/drivers/gpu/drm/xe/xe_gt_ccs_mode.c
-> index 50fffc9ebf62..468c3a6790d0 100644
-> --- a/drivers/gpu/drm/xe/xe_gt_ccs_mode.c
-> +++ b/drivers/gpu/drm/xe/xe_gt_ccs_mode.c
-> @@ -13,6 +13,7 @@
->  #include "xe_gt_sysfs.h"
->  #include "xe_mmio.h"
->  #include "xe_sriov.h"
-> +#include "xe_sriov_pf.h"
->  
->  static void __xe_gt_apply_ccs_mode(struct xe_gt *gt, u32 num_engines)
->  {
-> @@ -108,6 +109,29 @@ ccs_mode_show(struct device *kdev,
->  	return sysfs_emit(buf, "%u\n", gt->ccs_mode);
->  }
->  
-> +static int xe_gt_prepare_ccs_mode_enabling(struct xe_device *xe,
-
-nit: usually we don't use xe_ prefix for static functions
-
-and there is no point in passing *xe since there is *gt
-
-> +					   struct xe_gt *gt)
+> v2: (Ashutosh/Lucas)
+> - s/remapper/soc_remapper/
+> - return status from init during probe
+> - reorder patches 1 and 2 from earlier series
+> - fix copyright year
+> ---
+>   drivers/gpu/drm/xe/Makefile          |  1 +
+>   drivers/gpu/drm/xe/xe_device.c       |  5 +++++
+>   drivers/gpu/drm/xe/xe_device_types.h |  6 ++++++
+>   drivers/gpu/drm/xe/xe_soc_remapper.c | 15 +++++++++++++++
+>   drivers/gpu/drm/xe/xe_soc_remapper.h | 15 +++++++++++++++
+>   5 files changed, 42 insertions(+)
+>   create mode 100644 drivers/gpu/drm/xe/xe_soc_remapper.c
+>   create mode 100644 drivers/gpu/drm/xe/xe_soc_remapper.h
+>
+> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+> index 8aa85c93b3d6..977b75336016 100644
+> --- a/drivers/gpu/drm/xe/Makefile
+> +++ b/drivers/gpu/drm/xe/Makefile
+> @@ -110,6 +110,7 @@ xe-y += xe_bb.o \
+>   	xe_range_fence.o \
+>   	xe_reg_sr.o \
+>   	xe_reg_whitelist.o \
+> +	xe_soc_remapper.o \
+Maintain alphabetical order.
+>   	xe_ring_ops.o \
+>   	xe_rtp.o \
+>   	xe_sa.o \
+> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+> index 9f2f19dc1fd3..0d51502af30e 100644
+> --- a/drivers/gpu/drm/xe/xe_device.c
+> +++ b/drivers/gpu/drm/xe/xe_device.c
+> @@ -60,6 +60,7 @@
+>   #include "xe_psmi.h"
+>   #include "xe_pxp.h"
+>   #include "xe_query.h"
+> +#include "xe_soc_remapper.h"
+Maintain alphabetical order.
+>   #include "xe_shrinker.h"
+>   #include "xe_survivability_mode.h"
+>   #include "xe_sriov.h"
+> @@ -911,6 +912,10 @@ int xe_device_probe(struct xe_device *xe)
+>   
+>   	xe_nvm_init(xe);
+>   
+> +	err = xe_soc_remapper_init(xe);
+> +	if (err)
+> +		return err;
+> +
+>   	err = xe_heci_gsc_init(xe);
+>   	if (err)
+>   		return err;
+> diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+> index a03cc83aa26f..de23fff3262c 100644
+> --- a/drivers/gpu/drm/xe/xe_device_types.h
+> +++ b/drivers/gpu/drm/xe/xe_device_types.h
+> @@ -547,6 +547,12 @@ struct xe_device {
+>   		struct mutex lock;
+>   	} pmt;
+>   
+> +	/* @soc_remapper: SoC remapper object */
+> +	struct {
+> +		/* Serialize access to SoC Remapper's index registers */
+> +		spinlock_t lock;
+> +	} soc_remapper;
+> +
+>   	/**
+>   	 * @pm_callback_task: Track the active task that is running in either
+>   	 * the runtime_suspend or runtime_resume callbacks.
+> diff --git a/drivers/gpu/drm/xe/xe_soc_remapper.c b/drivers/gpu/drm/xe/xe_soc_remapper.c
+> new file mode 100644
+> index 000000000000..f5a02abd6ab1
+> --- /dev/null
+> +++ b/drivers/gpu/drm/xe/xe_soc_remapper.c
+> @@ -0,0 +1,15 @@
+> +// SPDX-License-Identifier: MIT
+> +/*
+> + * Copyright © 2025 Intel Corporation
+> + */
+> +
+> +#include <linux/spinlock.h>
+> +
+> +#include "xe_soc_remapper.h"
+> +
+Please add doc here
+> +int xe_soc_remapper_init(struct xe_device *xe)
 > +{
-> +	/*
-> +	 * The arm guard is only activated during CCS mode enabling,
-> +	 * and this shuould happen when CCS mode is in default mode.
-> +	 * lockdown arm guard ensures there is no VFS enabling
-> +	 * as CCS mode enabling in progress/enabled.
+> +	
 
-this should rather say just something like:
+SoC remapper is DGPU specific entity, should there be DGPU check here, 
+may be add has_soc_remapper flag?
 
-	* We can't change CCS-mode when VFs are already enabled and we
-	* must prevent enabling VFs when alternate CCS-mode is active.
+Thanks,
+Badal
 
-> +	 */
-> +	if (!(gt->ccs_mode > 1))
-
-can we have helper which name would describe this magic condition?
-
-	bool xe_gt_ccs_mode_default(gt)
-
-> +		return xe_sriov_pf_lockdown(xe);
-
-note that all xe_sriov_pf_xxx() functions expect to be called only in the PF mode
-
-so before calling this xe_sriov_pf_lockdown() you must use IS_SRIOV_PF(xe)
-
+> spin_lock_init(&xe->soc_remapper.lock);
 > +
 > +	return 0;
 > +}
+> diff --git a/drivers/gpu/drm/xe/xe_soc_remapper.h b/drivers/gpu/drm/xe/xe_soc_remapper.h
+> new file mode 100644
+> index 000000000000..3cfd44f1fd74
+> --- /dev/null
+> +++ b/drivers/gpu/drm/xe/xe_soc_remapper.h
+> @@ -0,0 +1,15 @@
+> +/* SPDX-License-Identifier: MIT */
+> +/*
+> + * Copyright © 2025 Intel Corporation
+> + */
 > +
-> +static void xe_gt_finish_ccs_mode_enabling(struct xe_device *xe,
-> +					   struct xe_gt *gt)
-> +{
-> +	/* disarm the guard, if CCS mode is reverted to default */
-
-"guard" is just an implementation detail of the "PF lockdown" feature
-
-> +	if (!(gt->ccs_mode > 1))
-> +		xe_sriov_pf_end_lockdown(xe);
-> +}
+> +#ifndef _XE_SOC_REMAPPER_H_
+> +#define _XE_SOC_REMAPPER_H_
 > +
->  static ssize_t
->  ccs_mode_store(struct device *kdev, struct device_attribute *attr,
->  	       const char *buff, size_t count)
-> @@ -117,15 +141,13 @@ ccs_mode_store(struct device *kdev, struct device_attribute *attr,
->  	u32 num_engines, num_slices;
->  	int ret;
->  
-> -	if (IS_SRIOV(xe)) {
-> -		xe_gt_dbg(gt, "Can't change compute mode when running as %s\n",
-> -			  xe_sriov_mode_to_string(xe_device_sriov_mode(xe)));
-> -		return -EOPNOTSUPP;
-> -	}
-> +	ret = xe_gt_prepare_ccs_mode_enabling(xe, gt);
-
-shouldn't this be done under below mutex?
-
-> +	if (ret)
-> +		return ret;
->  
->  	ret = kstrtou32(buff, 0, &num_engines);
->  	if (ret)
-> -		return ret;
-> +		goto err;
->  
->  	/*
->  	 * Ensure numbers of engines specified is valid and there is an
-> @@ -135,7 +157,8 @@ ccs_mode_store(struct device *kdev, struct device_attribute *attr,
->  	if (!num_engines || num_engines > num_slices || num_slices % num_engines) {
->  		xe_gt_dbg(gt, "Invalid compute config, %d engines %d slices\n",
->  			  num_engines, num_slices);
-> -		return -EINVAL;
-> +		ret = -EINVAL;
-> +		goto err;
->  	}
->  
->  	/* CCS mode can only be updated when there are no drm clients */
-> @@ -143,7 +166,8 @@ ccs_mode_store(struct device *kdev, struct device_attribute *attr,
->  	if (!list_empty(&xe->drm.filelist)) {
->  		mutex_unlock(&xe->drm.filelist_mutex);
->  		xe_gt_dbg(gt, "Rejecting compute mode change as there are active drm clients\n");
-> -		return -EBUSY;
-> +		ret = -EBUSY;
-> +		goto err;
->  	}
->  
->  	if (gt->ccs_mode != num_engines) {
-> @@ -155,7 +179,13 @@ ccs_mode_store(struct device *kdev, struct device_attribute *attr,
->  
->  	mutex_unlock(&xe->drm.filelist_mutex);
-
-to avoid such manual unlocks, you may want to start using:
-
-	guard(mutex)(&xe->drm.filelist_mutex);
-
-but then make sure to do not use "goto"
-
->  
-> +	xe_gt_finish_ccs_mode_enabling(xe, gt);
+> +#include <linux/types.h>
 > +
->  	return count;
-
-	return ret ?: count;
-
-> +err:
-> +	xe_gt_finish_ccs_mode_enabling(xe, gt);
+> +#include "xe_device_types.h"
 > +
-> +	return ret;
->  }
->  
->  static DEVICE_ATTR_RW(ccs_mode);
-> @@ -191,7 +221,7 @@ int xe_gt_ccs_mode_sysfs_init(struct xe_gt *gt)
->  	struct xe_device *xe = gt_to_xe(gt);
->  	int err;
->  
-> -	if (!xe_gt_ccs_mode_enabled(gt))
-
-btw, the "xe_gt_ccs_mode_enabled" name is little misleading,
-IMO better name would be "xe_gt_ccs_mode_supported"
-
-> +	if (!xe_gt_ccs_mode_enabled(gt) || IS_SRIOV_VF(xe))
->  		return 0;
->  
->  	err = sysfs_create_files(gt->sysfs, gt_ccs_mode_attrs);
-
+> +int xe_soc_remapper_init(struct xe_device *xe);
+> +
+> +#endif
