@@ -4,50 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 64563D0E6E8
-	for <intel-xe@archiver.kernel.org>; Tue, 25 Nov 2025 13:54:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 13C95D0E6EA
+	for <intel-xe@archiver.kernel.org>; Tue, 25 Nov 2025 13:54:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 028A410E400;
-	Tue, 25 Nov 2025 13:54:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CE1B710E402;
+	Tue, 25 Nov 2025 13:54:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AvK9Yy94";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gbT1IujT";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D050010E400
- for <intel-xe@lists.freedesktop.org>; Tue, 25 Nov 2025 13:54:35 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1392F10E402
+ for <intel-xe@lists.freedesktop.org>; Tue, 25 Nov 2025 13:54:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1764078876; x=1795614876;
+ t=1764078879; x=1795614879;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=VFwfuLe6XY5mxkF/ShR8gqzRqc/AFwjULkGTaa4wsDw=;
- b=AvK9Yy949pXrJ6IeZy2yS3fCPWDCmU54NZHQhf3Ic/nN/cLTyv2ji7a8
- RX7FuLmLFZ1QOoCMEnUkV7IeMynTW/hJVy5E+5FPB+vbv8nZ0z8z24oQb
- eVari+17iZYX19JvIovlhNZgNDOOvuRsmYgQlQbYCWX9gF6KcijCW5MJV
- mzYbbqwb5lib4l+wh8egNj5Vc9gIqVL8TLMoPNgT98Vw8OH7DGurPmiC2
- Uq1FYR6PikKoQyUX8tpijxQ9ff6ENOjdDiwi2trt5RRY/rbdXBgzFm11Q
- bkskmPkIrtNQs85um2Z/AbbUveTgAzuVTwRTd5McOguQNgvi1dKKPQ1Rr w==;
-X-CSE-ConnectionGUID: IUOOqnzkRP21PFPHyGCjYQ==
-X-CSE-MsgGUID: c/zH4tBcTjOdUdbLTexmww==
-X-IronPort-AV: E=McAfee;i="6800,10657,11624"; a="65802556"
-X-IronPort-AV: E=Sophos;i="6.20,225,1758610800"; d="scan'208";a="65802556"
+ bh=4RuC8Ehm6wuEbxdquJ/FjkCpIT49G3LBlhhm3iB87Pg=;
+ b=gbT1IujTE4j0twFKPai1DlC0hhUJ+x2DL98A82lrD5jI42BBan8dTNfU
+ Ztv/R7tcn+Q+bR81KWoB1uGMWJmZQ18QzSzTyHNiOO4oRRvePkX26LY8N
+ 4v5qM1xHMfIq4rzLbSRnee2ea3R/jXxymH2OHdY+XiJXJx4Ivrk+Qqvom
+ fXVhtApVSWqIPUpW2crleo1fLE7P10DwI7OxxAP5CKlevECHp6S7DSpF3
+ 4p1UL9SdUe9HP0RaOhveRITe2n2BIC0oNb6o127+DoK+l9Ci2Fh7L7L3L
+ sZ77yV65XzbWAL3LU0VdQcnBME2J/HutmSz1CcVeSSW16svs7zSipMX3T w==;
+X-CSE-ConnectionGUID: ksfC2d7IR7eQ0VjyO2AdsA==
+X-CSE-MsgGUID: O7RfLiVGQHKIeWfWo2rD6Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11624"; a="65802560"
+X-IronPort-AV: E=Sophos;i="6.20,225,1758610800"; d="scan'208";a="65802560"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Nov 2025 05:54:36 -0800
-X-CSE-ConnectionGUID: NVdYBOSXS9W8PKxwBE8toQ==
-X-CSE-MsgGUID: hbkRJmdxQemFd4a+atOQ8Q==
+ 25 Nov 2025 05:54:39 -0800
+X-CSE-ConnectionGUID: cF19Ctv2T1qSJiC0dmzKMw==
+X-CSE-MsgGUID: gaQmGzURRM++TVBMckuwsA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,225,1758610800"; d="scan'208";a="196954001"
+X-IronPort-AV: E=Sophos;i="6.20,225,1758610800"; d="scan'208";a="196954009"
 Received: from llaguna-dev.igk.intel.com (HELO localhost) ([10.91.214.40])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Nov 2025 05:54:34 -0800
+ 25 Nov 2025 05:54:37 -0800
 From: Lukasz Laguna <lukasz.laguna@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: michal.wajdeczko@intel.com, rodrigo.vivi@intel.com, lukasz.laguna@intel.com
-Subject: [PATCH v10 1/4] drm/xe: Validate wedged_mode parameter and define
- enum for modes
-Date: Tue, 25 Nov 2025 14:54:19 +0100
-Message-Id: <20251125135422.11244-2-lukasz.laguna@intel.com>
+Subject: [PATCH v10 2/4] drm/xe: Don't update wedged mode in case of an error
+Date: Tue, 25 Nov 2025 14:54:20 +0100
+Message-Id: <20251125135422.11244-3-lukasz.laguna@intel.com>
 X-Mailer: git-send-email 2.40.0
 In-Reply-To: <20251125135422.11244-1-lukasz.laguna@intel.com>
 References: <20251125135422.11244-1-lukasz.laguna@intel.com>
@@ -67,277 +66,185 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Check correctness of the wedged_mode parameter input to ensure only
-supported values are accepted. Additionally, replace magic numbers with
-a clearly defined enum.
+Change driver's internal wedged.mode state only in case of a success and
+update GuC's reset policy only when it's necessary.
 
+Fixes: 6b8ef44cc0a9 ("drm/xe: Introduce the wedged_mode debugfs")
 Signed-off-by: Lukasz Laguna <lukasz.laguna@intel.com>
 ---
-v10:
- - define enum outside of the xe_device struct,
- - fix description of module parameter (Michal).
----
- drivers/gpu/drm/xe/xe_debugfs.c      |  5 +--
- drivers/gpu/drm/xe/xe_device.c       | 46 ++++++++++++++++++++++++++--
- drivers/gpu/drm/xe/xe_device.h       |  2 ++
- drivers/gpu/drm/xe/xe_device_types.h | 19 +++++++++++-
- drivers/gpu/drm/xe/xe_guc_ads.c      |  4 +--
- drivers/gpu/drm/xe/xe_guc_capture.c  |  9 +++++-
- drivers/gpu/drm/xe/xe_guc_submit.c   |  7 +++--
- drivers/gpu/drm/xe/xe_module.c       | 10 +++---
- drivers/gpu/drm/xe/xe_module.h       |  2 +-
- 9 files changed, 88 insertions(+), 16 deletions(-)
+ drivers/gpu/drm/xe/xe_debugfs.c      | 68 ++++++++++++++++++++++------
+ drivers/gpu/drm/xe/xe_device_types.h |  2 +
+ drivers/gpu/drm/xe/xe_guc_ads.c      | 12 ++---
+ drivers/gpu/drm/xe/xe_guc_ads.h      |  4 +-
+ 4 files changed, 66 insertions(+), 20 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_debugfs.c b/drivers/gpu/drm/xe/xe_debugfs.c
-index 1d5a2a43a9d7..e7cdfb1cda8c 100644
+index e7cdfb1cda8c..71d53099187c 100644
 --- a/drivers/gpu/drm/xe/xe_debugfs.c
 +++ b/drivers/gpu/drm/xe/xe_debugfs.c
-@@ -265,8 +265,9 @@ static ssize_t wedged_mode_set(struct file *f, const char __user *ubuf,
- 	if (ret)
- 		return ret;
- 
--	if (wedged_mode > 2)
--		return -EINVAL;
-+	ret = xe_device_validate_wedged_mode(xe, wedged_mode);
-+	if (ret)
-+		return ret;
- 
- 	if (xe->wedged.mode == wedged_mode)
- 		return size;
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 1197f914ef77..f6216c4f83f9 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -760,7 +760,10 @@ int xe_device_probe_early(struct xe_device *xe)
- 	if (err)
- 		return err;
- 
--	xe->wedged.mode = xe_modparam.wedged_mode;
-+	xe->wedged.mode = xe_device_validate_wedged_mode(xe, xe_modparam.wedged_mode) ?
-+			  XE_WEDGED_MODE_DEFAULT : xe_modparam.wedged_mode;
-+	drm_dbg(&xe->drm, "wedged_mode: setting mode (%u) %s\n",
-+		xe->wedged.mode, xe_wedged_mode_to_string(xe->wedged.mode));
- 
- 	err = xe_device_vram_alloc(xe);
- 	if (err)
-@@ -1250,7 +1253,7 @@ void xe_device_declare_wedged(struct xe_device *xe)
- 	struct xe_gt *gt;
- 	u8 id;
- 
--	if (xe->wedged.mode == 0) {
-+	if (xe->wedged.mode == XE_WEDGED_MODE_NEVER) {
- 		drm_dbg(&xe->drm, "Wedged mode is forcibly disabled\n");
- 		return;
- 	}
-@@ -1284,3 +1287,42 @@ void xe_device_declare_wedged(struct xe_device *xe)
- 		drm_dev_wedged_event(&xe->drm, xe->wedged.method, NULL);
- 	}
+@@ -252,14 +252,62 @@ static ssize_t wedged_mode_show(struct file *f, char __user *ubuf,
+ 	return simple_read_from_buffer(ubuf, size, pos, buf, len);
  }
-+
-+/**
-+ * xe_device_validate_wedged_mode - Check if given mode is supported
-+ * @xe: the &xe_device
-+ * @mode: requested mode to validate
-+ *
-+ * Check whether the provided wedged mode is supported.
-+ *
-+ * Return: 0 if mode is supported, error code otherwise.
-+ */
-+int xe_device_validate_wedged_mode(struct xe_device *xe, unsigned int mode)
+ 
++static int __set_reset_policy(struct xe_gt *gt, enum xe_wedged_mode mode)
 +{
-+	if (mode > XE_WEDGED_MODE_UPON_ANY_HANG) {
-+		drm_dbg(&xe->drm, "wedged_mode: invalid value (%u)\n", mode);
-+		return -EINVAL;
++	int ret;
++
++	ret = xe_guc_ads_scheduler_policy_toggle_reset(&gt->uc.guc.ads,
++						       mode != XE_WEDGED_MODE_UPON_ANY_HANG);
++	if (ret)
++		xe_gt_err(gt, "Failed to update GuC ADS scheduler policy (%pe)\n", ERR_PTR(ret));
++
++	return ret;
++}
++
++static int set_reset_policy(struct xe_device *xe, enum xe_wedged_mode mode)
++{
++	struct xe_gt *gt;
++	int ret;
++	u8 id;
++
++	guard(xe_pm_runtime)(xe);
++	for_each_gt(gt, xe, id) {
++		ret = __set_reset_policy(gt, mode);
++		if (ret) {
++			if (id > 0) {
++				xe->wedged.inconsistent_reset = true;
++				drm_err(&xe->drm, "Inconsistent reset policy state between GTs\n");
++			}
++			return ret;
++		}
 +	}
++
++	xe->wedged.inconsistent_reset = false;
 +
 +	return 0;
 +}
 +
-+/**
-+ * xe_wedged_mode_to_string - Convert enum value to string.
-+ * @mode: the &xe_wedged_mode to convert
-+ *
-+ * Returns: wedged mode as a user friendly string.
-+ */
-+const char *xe_wedged_mode_to_string(enum xe_wedged_mode mode)
++static bool needs_policy_update(struct xe_device *xe, enum xe_wedged_mode mode)
 +{
-+	switch (mode) {
-+	case XE_WEDGED_MODE_NEVER:
-+		return "never";
-+	case XE_WEDGED_MODE_UPON_CRITICAL_ERROR:
-+		return "upon-critical-error";
-+	case XE_WEDGED_MODE_UPON_ANY_HANG:
-+		return "upon-any-hang";
-+	default:
-+		return "<invalid>";
-+	}
++	if (xe->wedged.inconsistent_reset)
++		return true;
++
++	if (xe->wedged.mode == mode)
++		return false;
++
++	if (xe->wedged.mode == XE_WEDGED_MODE_UPON_ANY_HANG ||
++	    mode == XE_WEDGED_MODE_UPON_ANY_HANG)
++		return true;
++
++	return false;
 +}
-diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
-index 32cc6323b7f6..2fffa88f91b0 100644
---- a/drivers/gpu/drm/xe/xe_device.h
-+++ b/drivers/gpu/drm/xe/xe_device.h
-@@ -189,6 +189,8 @@ static inline bool xe_device_wedged(struct xe_device *xe)
++
+ static ssize_t wedged_mode_set(struct file *f, const char __user *ubuf,
+ 			       size_t size, loff_t *pos)
+ {
+ 	struct xe_device *xe = file_inode(f)->i_private;
+-	struct xe_gt *gt;
+ 	u32 wedged_mode;
+ 	ssize_t ret;
+-	u8 id;
  
- void xe_device_set_wedged_method(struct xe_device *xe, unsigned long method);
- void xe_device_declare_wedged(struct xe_device *xe);
-+int xe_device_validate_wedged_mode(struct xe_device *xe, unsigned int mode);
-+const char *xe_wedged_mode_to_string(enum xe_wedged_mode mode);
+ 	ret = kstrtouint_from_user(ubuf, size, 0, &wedged_mode);
+ 	if (ret)
+@@ -269,20 +317,14 @@ static ssize_t wedged_mode_set(struct file *f, const char __user *ubuf,
+ 	if (ret)
+ 		return ret;
  
- struct xe_file *xe_file_get(struct xe_file *xef);
- void xe_file_put(struct xe_file *xef);
+-	if (xe->wedged.mode == wedged_mode)
+-		return size;
++	if (needs_policy_update(xe, wedged_mode)) {
++		ret = set_reset_policy(xe, wedged_mode);
++		if (ret)
++			return ret;
++	}
+ 
+ 	xe->wedged.mode = wedged_mode;
+ 
+-	guard(xe_pm_runtime)(xe);
+-	for_each_gt(gt, xe, id) {
+-		ret = xe_guc_ads_scheduler_policy_toggle_reset(&gt->uc.guc.ads);
+-		if (ret) {
+-			xe_gt_err(gt, "Failed to update GuC ADS scheduler policy. GuC may still cause engine reset even with wedged_mode=2\n");
+-			return -EIO;
+-		}
+-	}
+-
+ 	return size;
+ }
+ 
 diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index 6ce3247d1bd8..81bf4a70b888 100644
+index 81bf4a70b888..4aa99bcfbcc7 100644
 --- a/drivers/gpu/drm/xe/xe_device_types.h
 +++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -43,6 +43,23 @@ struct xe_pat_ops;
- struct xe_pxp;
- struct xe_vram_region;
- 
-+/**
-+ * enum xe_wedged_mode - possible wedged modes
-+ * @XE_WEDGED_MODE_NEVER: Device will never be declared wedged.
-+ * @XE_WEDGED_MODE_UPON_CRITICAL_ERROR: Device will be declared wedged only in
-+ *	case of critical errors. This is the default mode.
-+ * @XE_WEDGED_MODE_UPON_ANY_HANG: Device will be declared wedged on any hang.
-+ *	In this mode, engine resets are disabled.
-+ */
-+enum xe_wedged_mode {
-+	XE_WEDGED_MODE_NEVER = 0,
-+	XE_WEDGED_MODE_UPON_CRITICAL_ERROR = 1,
-+	XE_WEDGED_MODE_UPON_ANY_HANG = 2,
-+};
-+
-+#define XE_WEDGED_MODE_DEFAULT		XE_WEDGED_MODE_UPON_CRITICAL_ERROR
-+#define XE_WEDGED_MODE_DEFAULT_STR	"upon-critical-error"
-+
- #define XE_BO_INVALID_OFFSET	LONG_MAX
- 
- #define GRAPHICS_VER(xe) ((xe)->info.graphics_verx100 / 100)
-@@ -583,7 +600,7 @@ struct xe_device {
- 		/** @wedged.flag: Xe device faced a critical error and is now blocked. */
- 		atomic_t flag;
- 		/** @wedged.mode: Mode controlled by kernel parameter and debugfs */
--		int mode;
-+		enum xe_wedged_mode mode;
+@@ -603,6 +603,8 @@ struct xe_device {
+ 		enum xe_wedged_mode mode;
  		/** @wedged.method: Recovery method to be sent in the drm device wedged uevent */
  		unsigned long method;
++		/** @wedged.inconsistent_reset: Inconsistent reset policy state between GTs */
++		bool inconsistent_reset;
  	} wedged;
+ 
+ 	/** @bo_device: Struct to control async free of BOs */
 diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c b/drivers/gpu/drm/xe/xe_guc_ads.c
-index bcb85a1bf26d..466f192b6054 100644
+index 466f192b6054..e5ca25b865a7 100644
 --- a/drivers/gpu/drm/xe/xe_guc_ads.c
 +++ b/drivers/gpu/drm/xe/xe_guc_ads.c
-@@ -451,7 +451,7 @@ static void guc_policies_init(struct xe_guc_ads *ads)
- 	ads_blob_write(ads, policies.max_num_work_items,
- 		       GLOBAL_POLICY_MAX_NUM_WI);
+@@ -983,16 +983,16 @@ static int guc_ads_action_update_policies(struct xe_guc_ads *ads, u32 policy_off
+ /**
+  * xe_guc_ads_scheduler_policy_toggle_reset - Toggle reset policy
+  * @ads: Additional data structures object
++ * @enable: true to enable engine resets, false otherwise
+  *
+- * This function update the GuC's engine reset policy based on wedged.mode.
++ * This function update the GuC's engine reset policy.
+  *
+  * Return: 0 on success, and negative error code otherwise.
+  */
+-int xe_guc_ads_scheduler_policy_toggle_reset(struct xe_guc_ads *ads)
++int xe_guc_ads_scheduler_policy_toggle_reset(struct xe_guc_ads *ads, bool enable)
+ {
+ 	struct guc_policies *policies;
+ 	struct xe_guc *guc = ads_to_guc(ads);
+-	struct xe_device *xe = ads_to_xe(ads);
+ 	CLASS(xe_guc_buf, buf)(&guc->buf, sizeof(*policies));
  
--	if (xe->wedged.mode == 2)
-+	if (xe->wedged.mode == XE_WEDGED_MODE_UPON_ANY_HANG)
- 		global_flags |= GLOBAL_POLICY_DISABLE_ENGINE_RESET;
- 
- 	ads_blob_write(ads, policies.global_flags, global_flags);
-@@ -1004,7 +1004,7 @@ int xe_guc_ads_scheduler_policy_toggle_reset(struct xe_guc_ads *ads)
+ 	if (!xe_guc_buf_is_valid(buf))
+@@ -1004,10 +1004,10 @@ int xe_guc_ads_scheduler_policy_toggle_reset(struct xe_guc_ads *ads)
  	policies->dpc_promote_time = ads_blob_read(ads, policies.dpc_promote_time);
  	policies->max_num_work_items = ads_blob_read(ads, policies.max_num_work_items);
  	policies->is_valid = 1;
--	if (xe->wedged.mode == 2)
-+	if (xe->wedged.mode == XE_WEDGED_MODE_UPON_ANY_HANG)
- 		policies->global_flags |= GLOBAL_POLICY_DISABLE_ENGINE_RESET;
- 	else
+-	if (xe->wedged.mode == XE_WEDGED_MODE_UPON_ANY_HANG)
+-		policies->global_flags |= GLOBAL_POLICY_DISABLE_ENGINE_RESET;
+-	else
++	if (enable)
  		policies->global_flags &= ~GLOBAL_POLICY_DISABLE_ENGINE_RESET;
-diff --git a/drivers/gpu/drm/xe/xe_guc_capture.c b/drivers/gpu/drm/xe/xe_guc_capture.c
-index 0c1fbe97b8bf..45ba0c5308ba 100644
---- a/drivers/gpu/drm/xe/xe_guc_capture.c
-+++ b/drivers/gpu/drm/xe/xe_guc_capture.c
-@@ -1889,7 +1889,14 @@ xe_guc_capture_get_matching_and_lock(struct xe_exec_queue *q)
- 		return NULL;
++	else
++		policies->global_flags |= GLOBAL_POLICY_DISABLE_ENGINE_RESET;
  
- 	xe = gt_to_xe(q->gt);
--	if (xe->wedged.mode >= 2 || !xe_device_uc_enabled(xe) || IS_SRIOV_VF(xe))
+ 	return guc_ads_action_update_policies(ads, xe_guc_buf_flush(buf));
+ }
+diff --git a/drivers/gpu/drm/xe/xe_guc_ads.h b/drivers/gpu/drm/xe/xe_guc_ads.h
+index 2e6674c760ff..9879aadd22d6 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ads.h
++++ b/drivers/gpu/drm/xe/xe_guc_ads.h
+@@ -6,6 +6,8 @@
+ #ifndef _XE_GUC_ADS_H_
+ #define _XE_GUC_ADS_H_
+ 
++#include <linux/types.h>
 +
-+	if (xe->wedged.mode == XE_WEDGED_MODE_UPON_ANY_HANG)
-+		return NULL;
-+
-+	if (!xe_device_uc_enabled(xe))
-+		return NULL;
-+
-+	if (IS_SRIOV_VF(xe))
- 		return NULL;
+ struct xe_guc_ads;
  
- 	ss = &xe->devcoredump.snapshot;
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index 7e0882074a99..4a93a2ff061f 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -998,8 +998,9 @@ void xe_guc_submit_wedge(struct xe_guc *guc)
- 	err = devm_add_action_or_reset(guc_to_xe(guc)->drm.dev,
- 				       guc_submit_wedged_fini, guc);
- 	if (err) {
--		xe_gt_err(gt, "Failed to register clean-up on wedged.mode=2; "
--			  "Although device is wedged.\n");
-+		xe_gt_err(gt, "Failed to register clean-up in wedged.mode=%s; "
-+			  "Although device is wedged.\n",
-+			  xe_wedged_mode_to_string(XE_WEDGED_MODE_UPON_ANY_HANG));
- 		return;
- 	}
+ int xe_guc_ads_init(struct xe_guc_ads *ads);
+@@ -13,6 +15,6 @@ int xe_guc_ads_init_post_hwconfig(struct xe_guc_ads *ads);
+ void xe_guc_ads_populate(struct xe_guc_ads *ads);
+ void xe_guc_ads_populate_minimal(struct xe_guc_ads *ads);
+ void xe_guc_ads_populate_post_load(struct xe_guc_ads *ads);
+-int xe_guc_ads_scheduler_policy_toggle_reset(struct xe_guc_ads *ads);
++int xe_guc_ads_scheduler_policy_toggle_reset(struct xe_guc_ads *ads, bool enable);
  
-@@ -1014,7 +1015,7 @@ static bool guc_submit_hint_wedged(struct xe_guc *guc)
- {
- 	struct xe_device *xe = guc_to_xe(guc);
- 
--	if (xe->wedged.mode != 2)
-+	if (xe->wedged.mode != XE_WEDGED_MODE_UPON_ANY_HANG)
- 		return false;
- 
- 	if (xe_device_wedged(xe))
-diff --git a/drivers/gpu/drm/xe/xe_module.c b/drivers/gpu/drm/xe/xe_module.c
-index d08338fc3bc1..cefd00eb7379 100644
---- a/drivers/gpu/drm/xe/xe_module.c
-+++ b/drivers/gpu/drm/xe/xe_module.c
-@@ -10,6 +10,7 @@
- 
- #include <drm/drm_module.h>
- 
-+#include "xe_device.h"
- #include "xe_drv.h"
- #include "xe_configfs.h"
- #include "xe_hw_fence.h"
-@@ -29,7 +30,8 @@
- #define DEFAULT_FORCE_PROBE		CONFIG_DRM_XE_FORCE_PROBE
- #define DEFAULT_MAX_VFS			~0
- #define DEFAULT_MAX_VFS_STR		"unlimited"
--#define DEFAULT_WEDGED_MODE		1
-+#define DEFAULT_WEDGED_MODE		XE_WEDGED_MODE_DEFAULT
-+#define DEFAULT_WEDGED_MODE_STR		XE_WEDGED_MODE_DEFAULT_STR
- #define DEFAULT_SVM_NOTIFIER_SIZE	512
- 
- struct xe_modparam xe_modparam = {
-@@ -88,10 +90,10 @@ MODULE_PARM_DESC(max_vfs,
- 		 "[default=" DEFAULT_MAX_VFS_STR "])");
  #endif
- 
--module_param_named_unsafe(wedged_mode, xe_modparam.wedged_mode, int, 0600);
-+module_param_named_unsafe(wedged_mode, xe_modparam.wedged_mode, uint, 0600);
- MODULE_PARM_DESC(wedged_mode,
--		 "Module's default policy for the wedged mode (0=never, 1=upon-critical-errors, 2=upon-any-hang "
--		 "[default=" __stringify(DEFAULT_WEDGED_MODE) "])");
-+		 "Module's default policy for the wedged mode (0=never, 1=upon-critical-error, 2=upon-any-hang "
-+		 "[default=" DEFAULT_WEDGED_MODE_STR "])");
- 
- static int xe_check_nomodeset(void)
- {
-diff --git a/drivers/gpu/drm/xe/xe_module.h b/drivers/gpu/drm/xe/xe_module.h
-index 5a3bfea8b7b4..1c75f38ca393 100644
---- a/drivers/gpu/drm/xe/xe_module.h
-+++ b/drivers/gpu/drm/xe/xe_module.h
-@@ -21,7 +21,7 @@ struct xe_modparam {
- #ifdef CONFIG_PCI_IOV
- 	unsigned int max_vfs;
- #endif
--	int wedged_mode;
-+	unsigned int wedged_mode;
- 	u32 svm_notifier_size;
- };
- 
 -- 
 2.40.0
 
