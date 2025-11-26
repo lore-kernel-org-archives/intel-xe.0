@@ -4,144 +4,170 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4E20DD1038A
-	for <intel-xe@archiver.kernel.org>; Wed, 26 Nov 2025 07:40:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4BA88D10389
+	for <intel-xe@archiver.kernel.org>; Wed, 26 Nov 2025 07:44:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4298C10E523;
-	Wed, 26 Nov 2025 07:40:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EF8C710E525;
+	Wed, 26 Nov 2025 07:44:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="nxsdbyPw";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="+VLEA8R0";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="nxsdbyPw";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="+VLEA8R0";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="BMbV1+tG";
 	dkim-atps=neutral
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 15F3710E524
- for <intel-xe@lists.freedesktop.org>; Wed, 26 Nov 2025 07:40:12 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
- [IPv6:2a07:de40:b281:104:10:150:64:97])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id 5C6CA22C7B;
- Wed, 26 Nov 2025 07:40:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1764142810; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=N/IKV4NTtJDFriBCvdPujoI7Ss0dmnp2XYDv3sBK7Do=;
- b=nxsdbyPwMPWjnG5L8rQDkkJKR+yuEw2QDk1AxcRidFERWys4o+v8VAgfQvHrM26PCj9Wyv
- Wnt1aYIPzuKMZ0jTkgOT4WQxIQkuGEz/laT1YlcwTWqRpIvuMC8IFT/HOkyuE2Fw4hheDM
- J2zRAnG9B9cfHlTTelwwpCOfrUZQQW0=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1764142810;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=N/IKV4NTtJDFriBCvdPujoI7Ss0dmnp2XYDv3sBK7Do=;
- b=+VLEA8R0mOGMJCFmnuWFparRdoUKNmXgpZ7YnSUkRUbCju5PQ8EpYFuuIW0TdhGD0Ajpz1
- EExCAwui7CyMDZCg==
-Authentication-Results: smtp-out1.suse.de;
- dkim=pass header.d=suse.de header.s=susede2_rsa header.b=nxsdbyPw;
- dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=+VLEA8R0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1764142810; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=N/IKV4NTtJDFriBCvdPujoI7Ss0dmnp2XYDv3sBK7Do=;
- b=nxsdbyPwMPWjnG5L8rQDkkJKR+yuEw2QDk1AxcRidFERWys4o+v8VAgfQvHrM26PCj9Wyv
- Wnt1aYIPzuKMZ0jTkgOT4WQxIQkuGEz/laT1YlcwTWqRpIvuMC8IFT/HOkyuE2Fw4hheDM
- J2zRAnG9B9cfHlTTelwwpCOfrUZQQW0=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1764142810;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=N/IKV4NTtJDFriBCvdPujoI7Ss0dmnp2XYDv3sBK7Do=;
- b=+VLEA8R0mOGMJCFmnuWFparRdoUKNmXgpZ7YnSUkRUbCju5PQ8EpYFuuIW0TdhGD0Ajpz1
- EExCAwui7CyMDZCg==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id C9E573EA63;
- Wed, 26 Nov 2025 07:40:09 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id pmTZL9muJmmfKgAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Wed, 26 Nov 2025 07:40:09 +0000
-Message-ID: <58b768ad-00fb-4fe5-924c-9cf6ec12f75c@suse.de>
-Date: Wed, 26 Nov 2025 08:40:09 +0100
+Received: from CH1PR05CU001.outbound.protection.outlook.com
+ (mail-northcentralusazon11010009.outbound.protection.outlook.com
+ [52.101.193.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BC6F210E525;
+ Wed, 26 Nov 2025 07:44:41 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=ypm7G48Cl4QsHoQN+SLlEYvpWgEc+VjPyUzk1t6rs53BUFiJRYgeqKN8jAsuG+zqkG2+m8jGIYHh/HlmnjLle8um1EKKwIqbaXsv7q+D1S7gUuOCmry8Fah17R4WdHWpf6X6kyZybuPsAvgj9//z5TD1DYBVQozrxebLKCJGx9ALeGVmdHQPfnetFH1+wGoYWQKj0LeO3YhGi8lRUorNr9vtUgeCjirZy4P7hahPA+7A93UeQA1EAhXFjGOlXvZcQ8DF3plgna2P0rM0DxIW3/Ehd4B4xCqRkMvzVkuh9ft4o4EiVYoofRkBLCvAyWLqZCzzxEg3r5/PvzukN1cVBw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=nXq6bhZ0Xid/rCnSLbRAL7kcagIT3OeYWWdNIk3An9Y=;
+ b=koKDMQgsMZ/Zx7YZmF/S0KIt5+e8qZLfPKgkzgTJDnredeIucPnVt74W4dGzfX28C4Oxr9x1lSyZ/k5N6xVsEkiQelE2S+HPka8DFhecIN2V1UWE1OwAYwDFc6DPztHSKtfc0AIaPC6pui0WSm+Mp/rfB3fybFCw8eTbsSuihYqEVEGZDjCAg+/pZtoTV90O3yj5CfziqnMUfkJRUpKIw0CX8BCSoWXhQrARDapITNIP9OWCN+HkvSMMfrZ7b2S00IEdXp7qNo7W7h9eDtIdAEZnNwLtdz+43di+tywBOuA0tYqDTs/OKbFiF/26pMWE1+lyyy2oDAoR4REcACtPVQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.118.232) smtp.rcpttodomain=gmail.com smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=nXq6bhZ0Xid/rCnSLbRAL7kcagIT3OeYWWdNIk3An9Y=;
+ b=BMbV1+tGWVgXis9uVWlTwu0JCiqpVx0D1LgzFFR1mdCrToi7iFc6+ekHbIND9SIMDtV3l3SJx/OBOesG/RHEWNM3w40l9Si5UTUB1wbF/6Nu2liiTHunPmdN84WWgfvZMaITEbhnIzKhyXM5WwQpuXLIfQxvkE7YPbePgqIvkffNDoYRO+dl/MEk9WiVT0hAnszc4/laXMEvIr96l2vEB0uNiF/vFAOHj18TEB92d4w/LFvi5OcYl9+0Ov5JDdXdbDNFSICZOIB6S1n1xskNRACDCoublSYnl52TIQYGU/SHTBaPEKhJLOG23D3lQ5VDzwxjaobniyIPzX5iPsPQmA==
+Received: from DS7PR06CA0003.namprd06.prod.outlook.com (2603:10b6:8:2a::27) by
+ DS5PPF7B9F1F8E0.namprd12.prod.outlook.com (2603:10b6:f:fc00::656)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9343.17; Wed, 26 Nov
+ 2025 07:44:35 +0000
+Received: from CY4PEPF0000E9CF.namprd03.prod.outlook.com
+ (2603:10b6:8:2a:cafe::ea) by DS7PR06CA0003.outlook.office365.com
+ (2603:10b6:8:2a::27) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9366.12 via Frontend Transport; Wed,
+ 26 Nov 2025 07:44:33 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.118.232)
+ smtp.mailfrom=nvidia.com;
+ dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.118.232 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.118.232; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.118.232) by
+ CY4PEPF0000E9CF.mail.protection.outlook.com (10.167.241.134) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9366.7 via Frontend Transport; Wed, 26 Nov 2025 07:44:35 +0000
+Received: from drhqmail201.nvidia.com (10.126.190.180) by mail.nvidia.com
+ (10.127.129.5) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Tue, 25 Nov
+ 2025 23:44:23 -0800
+Received: from drhqmail203.nvidia.com (10.126.190.182) by
+ drhqmail201.nvidia.com (10.126.190.180) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.20; Tue, 25 Nov 2025 23:44:23 -0800
+Received: from inno-thin-client (10.127.8.10) by mail.nvidia.com
+ (10.126.190.182) with Microsoft SMTP Server id 15.2.2562.20 via Frontend
+ Transport; Tue, 25 Nov 2025 23:44:13 -0800
+Date: Wed, 26 Nov 2025 09:44:12 +0200
+From: Zhi Wang <zhiw@nvidia.com>
+To: Dave Airlie <airlied@gmail.com>
+CC: Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>, John Hubbard
+ <jhubbard@nvidia.com>, Joel Fernandes <joelagnelf@nvidia.com>,
+ <linux-kernel@vger.kernel.org>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Simona Vetter <simona@ffwll.ch>,
+ Jonathan Corbet <corbet@lwn.net>, Alex Deucher <alexander.deucher@amd.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, Huang Rui <ray.huang@amd.com>,
+ "Matthew Auld" <matthew.auld@intel.com>, Matthew Brost
+ <matthew.brost@intel.com>, "Lucas De Marchi" <lucas.demarchi@intel.com>,
+ Thomas =?UTF-8?B?SGVsbHN0csO2bQ==?= <thomas.hellstrom@linux.intel.com>, Helge
+ Deller <deller@gmx.de>, "Danilo Krummrich" <dakr@kernel.org>, Alice Ryhl
+ <aliceryhl@google.com>, "Miguel Ojeda" <ojeda@kernel.org>, Alex Gaynor
+ <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, Gary Guo
+ <gary@garyguo.net>, "=?UTF-8?B?QmrDtnJu?= Roy Baron"
+ <bjorn3_gh@protonmail.com>, Benno Lossin <lossin@kernel.org>, "Andreas
+ Hindborg" <a.hindborg@kernel.org>, Trevor Gross <tmgross@umich.edu>,
+ "Alistair Popple" <apopple@nvidia.com>, Timur Tabi <ttabi@nvidia.com>, Edwin
+ Peer <epeer@nvidia.com>, Alexandre Courbot <acourbot@nvidia.com>,
+ <nouveau@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
+ <rust-for-linux@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+ <amd-gfx@lists.freedesktop.org>, <intel-gfx@lists.freedesktop.org>,
+ <intel-xe@lists.freedesktop.org>, <linux-fbdev@vger.kernel.org>
+Subject: Re: [PATCH] gpu: Move DRM buddy allocator one level up
+Message-ID: <20251126094412.23373c13.zhiw@nvidia.com>
+In-Reply-To: <CAPM=9tx5neQ=TbmK+2eAO=O-XW_67VhOGO-791kqyVDJEpTA+w@mail.gmail.com>
+References: <20251124234432.1988476-1-joelagnelf@nvidia.com>
+ <f73e4536-ec89-4625-96d4-6fa42018e4e4@amd.com>
+ <CAPM=9twe3xcVBgrNCT+1_pGECPL-ry_aA2dxBwbKVeai4+S7AQ@mail.gmail.com>
+ <24d4f02b-8ecd-4512-a1f0-ba41684ede1d@amd.com>
+ <dfc50417-66ce-44ce-b607-917d678c5631@nvidia.com>
+ <9f433dee-7ad9-4d0f-8ac1-e67deb409b70@amd.com>
+ <CAPM=9tyN_A3oEyQZCOWaLO1orO6oKX0ZukJHR7cFy12Go+7d=A@mail.gmail.com>
+ <cc0db376-6cff-45d7-b3a3-d13be664700f@amd.com>
+ <CAPM=9tx5neQ=TbmK+2eAO=O-XW_67VhOGO-791kqyVDJEpTA+w@mail.gmail.com>
+Organization: NVIDIA
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 03/25] drm/gem-dma: Compute dumb-buffer sizes with
- drm_mode_size_dumb()
-To: Ludovic.Desroches@microchip.com, simona@ffwll.ch, airlied@gmail.com,
- mripard@kernel.org, maarten.lankhorst@linux.intel.com, geert@linux-m68k.org,
- tomi.valkeinen@ideasonboard.com
-Cc: dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
- freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
- imx@lists.linux.dev, linux-samsung-soc@vger.kernel.org,
- nouveau@lists.freedesktop.org, virtualization@lists.linux.dev,
- spice-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
- linux-rockchip@lists.infradead.org, linux-tegra@vger.kernel.org,
- intel-xe@lists.freedesktop.org, xen-devel@lists.xenproject.org
-References: <20250821081918.79786-1-tzimmermann@suse.de>
- <20250821081918.79786-4-tzimmermann@suse.de>
- <52600bf4-2c1c-49a6-82c5-b31818141a43@microchip.com>
- <a11c195d-197c-45a4-962a-e2336c7360c2@suse.de>
- <2fbe0d43-67c5-4816-aff0-c23ac1507ec5@microchip.com>
-Content-Language: en-US
-From: Thomas Zimmermann <tzimmermann@suse.de>
-Autocrypt: addr=tzimmermann@suse.de; keydata=
- xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
- XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
- BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
- hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
- 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
- AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
- AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
- AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
- lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
- U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
- vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
- 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
- j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
- T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
- 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
- GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
- hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
- EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
- C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
- yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
- SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
- Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
- 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
-In-Reply-To: <2fbe0d43-67c5-4816-aff0-c23ac1507ec5@microchip.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: 5C6CA22C7B
-X-Rspamd-Server: rspamd2.dmz-prg2.suse.org
-X-Spamd-Result: default: False [-3.01 / 50.00]; BAYES_HAM(-3.00)[100.00%];
- SUSPICIOUS_RECIPS(1.50)[]; NEURAL_HAM_LONG(-1.00)[-1.000];
- R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
- MX_GOOD(-0.01)[]; FUZZY_RATELIMITED(0.00)[rspamd.com];
- RCVD_VIA_SMTP_AUTH(0.00)[];
- FREEMAIL_TO(0.00)[microchip.com,ffwll.ch,gmail.com,kernel.org,linux.intel.com,linux-m68k.org,ideasonboard.com];
- MIME_TRACE(0.00)[0:+]; ARC_NA(0.00)[];
- DBL_BLOCKED_OPENRESOLVER(0.00)[microchip.com:email,suse.com:url];
- FREEMAIL_ENVRCPT(0.00)[gmail.com]; RCPT_COUNT_TWELVE(0.00)[21];
- RCVD_TLS_ALL(0.00)[]; FROM_EQ_ENVFROM(0.00)[];
- FROM_HAS_DN(0.00)[]; MID_RHS_MATCH_FROM(0.00)[];
- TO_DN_NONE(0.00)[]; RCVD_COUNT_TWO(0.00)[2];
- TO_MATCH_ENVRCPT_ALL(0.00)[];
- DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- DKIM_TRACE(0.00)[suse.de:+]
-X-Rspamd-Action: no action
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-NV-OnPremToCloud: ExternallySecured
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY4PEPF0000E9CF:EE_|DS5PPF7B9F1F8E0:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2c6c02fc-8e2f-41b2-4121-08de2cbfa528
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|7416014|376014|1800799024|36860700013|82310400026|7053199007; 
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?OXh5STFveDNFUHR5YktkaktwRU1RRndTV2ZSQmZCbW1mTk13V2xDMW5rV241?=
+ =?utf-8?B?dzdnbEV6MXc3ekROQ2Uva2wwbEJnZ2xnemtPeFdHamdHOFQ0S3RzU2VvUncv?=
+ =?utf-8?B?RmtZb0dybE11VWR0TFQxQkhIcmxWZytUT2FiZHV5Y3BieVVwME9reTM2YVI1?=
+ =?utf-8?B?bTFLS3Ezd1FBYXNKOTU0enNieVkxS0p1VHZid29mZm9WaUs5MXlnRDNodDhF?=
+ =?utf-8?B?RDR6Z0ljZmY5eUNuc2dvQUg5M0c1N2w3blJ0cXFjb1BhcGFDM0V0V1h0TjRE?=
+ =?utf-8?B?SkNjT3VKbWhkeW9tL3hicm1jQysyUU1xQkFRRzhKckFtMUw4Q0hmU21hbkNw?=
+ =?utf-8?B?cEV5aHBPWTJmS0RJdEpicnVBM054T3dnNFlpM2JEYytKM1F0aE1qczNpQUxC?=
+ =?utf-8?B?eVlOdkkyM0J3Y2lmdVdtSUJRd1FjQmFFdzJtSDhqK0NYeklCYzhMR0pNQVJL?=
+ =?utf-8?B?cUZ5VWVoVXBDZHNVSVRoVU5HTHhmVFhpQlF0dVJ6bU5yQkVVeDcxdVNxbEpy?=
+ =?utf-8?B?ckJoaFdQMmJZV0hkWnBjbGE1VWduUk9KUXc0ZFY3LzVrcEtsa0hMOEVrZCtC?=
+ =?utf-8?B?UDR3TXlTTjQyNW5ZNnV6VXNnT0VnWHpUemYrNWNwVGZVNHcwUzlGbkhGak11?=
+ =?utf-8?B?bnM0TXpZdlA0cm1UMVB4Qjd1NWhQQW01MmlpRkNFdG9tUFNUQ0I5S0FjRkFE?=
+ =?utf-8?B?SGtVQWViZlVBQlhQVUM3WisyM3Y2WVNzNHlqS05nbks4RU9Ya1RNMnFOU1RD?=
+ =?utf-8?B?NGpnMFpoN1gybWVSUG0yMXZBVlcxdE9DSWZrZGJDWU5pck5sUlZnRDlZeWl5?=
+ =?utf-8?B?QzFyY2hiUUhSc3BsdFYvdSsweW04eW1leWt5L2Nod0Y4c2luR293YlFLdWpx?=
+ =?utf-8?B?MGF2dHNUU3dWQkxKM1BaT1UzZ1dvOXpBRUVPc3p5ZWlWZ3ZOK0dOalR2S1ZO?=
+ =?utf-8?B?V21WMmJVanNiTkFaNW9EVmNUYks0QnBISTZkSjN5V1VVamVkOHA3WUR0Q3NZ?=
+ =?utf-8?B?ODVrNUJyTzE3d0V1R1MzYVE1eFpZUWhJNFl6S0M1Ri9ubWZsZDVuZDNUaGFv?=
+ =?utf-8?B?TmZCN2lUQjNVa0tBNjN6Zk8wNGJIWDA4K25yMjRZV2VuMDRWdC9QRk5SZ2U2?=
+ =?utf-8?B?dENtRWNhSFNOUGQ0RzhHSE1wOG5udUVTbHA3YmZBNzBFMitOZEsvbW9JNnFw?=
+ =?utf-8?B?VzNjM1VTSDBBajJsZW9lWUlyN1lMaDBzRTFaVlhYelQwdGRPY1p3VjZvS0U4?=
+ =?utf-8?B?N2lUTk90bW51Wm9YeUFJaEtrak1ycmZWQ01XNU9LVGo2amFWZll0bDJMODhp?=
+ =?utf-8?B?bEorYmNxcFczRjhVd1REd204eXA0eWd4VFZzcHc5bm4xMVpOUUUzQlZPYTVk?=
+ =?utf-8?B?MmNKR0xKSDNScXVHWXVFdTZsbzhHRFZOVDE3QjFBdFpHeVpRODNJZUFXM0g2?=
+ =?utf-8?B?R0FReU9MQndUNGF0TllUWFFtMmdiazJwWCtTNHcvNWN5cm5SZDlGWkRwRHE0?=
+ =?utf-8?B?eGZmU3VISWJBc1YyNmtGd2dJYW5TUXdld3JsR1JkSEk4d3BkUWU1Y0lFRHlE?=
+ =?utf-8?B?QWpxU0dzeUtpWmlGcmd3WW9lbGtaTE1aL3lPU0Ivdmp6WGJ1MllIYlhxWmlm?=
+ =?utf-8?B?MExNQS9SdHNyQ0FYVXVFblZ1YWpzOXZaM3hVRDMrbWJxRDB6eUt3cS9kTmI4?=
+ =?utf-8?B?cjd6MldheFIxMW92VllRbGxZVUtQS2x1ZDAyN0FMcm1tNk9TUWdwTk4rT1dy?=
+ =?utf-8?B?cXBnbEpsSk1HY1psN3I0VEtmbzl2NGRlUmdUSHdPZEJYUHRYUFZrNzFpeFFH?=
+ =?utf-8?B?eWswVE04V2dZTTUvOHFKNjdhcXN6dmFweWRROUtYVEZNNFI1ZHpQNThxL3cr?=
+ =?utf-8?B?TkNJNVhKbXVYY1BIYlV2cThTenBmTjU4SURnYjZKbHdQTFViakRPNlJ5NW9B?=
+ =?utf-8?B?MmZUUlpYT2U1MHl1cXVxaktxbDFLMlN4OUZIanRHU0pkS0s5ejVmNFNqZTUv?=
+ =?utf-8?B?OE4veEc5NzlYcUZ3QWxOQWJiVnBUSGYvU0tqV1VrUVNEd2pCQXRQa1ZMTmNX?=
+ =?utf-8?B?b1Vvb0FWRzVQTS85anMxNVNWY1FJdlUzWmcvenBzTlZadEJ6Tk9pTTJyZnBq?=
+ =?utf-8?Q?19Jk=3D?=
+X-Forefront-Antispam-Report: CIP:216.228.118.232; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:mail.nvidia.com; PTR:dc7edge1.nvidia.com; CAT:NONE;
+ SFS:(13230040)(7416014)(376014)(1800799024)(36860700013)(82310400026)(7053199007);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Nov 2025 07:44:35.3778 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2c6c02fc-8e2f-41b2-4121-08de2cbfa528
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a; Ip=[216.228.118.232];
+ Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000E9CF.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS5PPF7B9F1F8E0
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -156,160 +182,29 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi
+On Wed, 26 Nov 2025 06:17:25 +1000
+Dave Airlie <airlied@gmail.com> wrote:
 
-Am 26.11.25 um 07:24 schrieb Ludovic.Desroches@microchip.com:
-> On 11/25/25 16:03, Thomas Zimmermann wrote:
->> EXTERNAL EMAIL: Do not click links or open attachments unless you know
->> the content is safe
->>
->> Hi
->>
->> Am 25.11.25 um 15:39 schrieb Ludovic.Desroches@microchip.com:
->>> On 8/21/25 10:17, Thomas Zimmermann wrote:
->>>> Call drm_mode_size_dumb() to compute dumb-buffer scanline pitch and
->>>> buffer size. Align the pitch to a multiple of 8.
->> I missed a chance to explain it here. :/
-> I was wondering if it was 8-bits or 8-bytes.
->
->>>> Push the current calculation into the only direct caller imx. Imx's
->>>> hardware requires the framebuffer width to be aligned to 8. The
->>>> driver's current approach is actually incorrect, as it only guarantees
->>>> this implicitly and requires bpp to be a multiple of 8 already. A
->>>> later commit will fix this problem by aligning the scanline pitch
->>>> such that an aligned width still fits into each scanline's memory.
->>>>
->>>> A number of other drivers are build on top of gem-dma helpers and
->>>> implement their own dumb-buffer allocation. These drivers invoke
->>>> drm_gem_dma_dumb_create_internal(), which is not affected by this
->>>> commit.
->>>>
->>>> v5:
->>>> - avoid reset of arguments (Tomi)
->>>>
->>>> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
->>>> Reviewed-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
->>>> ---
->>>>     drivers/gpu/drm/drm_gem_dma_helper.c     | 7 +++++--
->>>>     drivers/gpu/drm/imx/ipuv3/imx-drm-core.c | 4 +++-
->>>>     2 files changed, 8 insertions(+), 3 deletions(-)
->>>>
->>>> diff --git a/drivers/gpu/drm/drm_gem_dma_helper.c b/drivers/gpu/drm/
->>>> drm_gem_dma_helper.c
->>>> index 4f0320df858f..ab1a70b1d6f1 100644
->>>> --- a/drivers/gpu/drm/drm_gem_dma_helper.c
->>>> +++ b/drivers/gpu/drm/drm_gem_dma_helper.c
->>>> @@ -20,6 +20,7 @@
->>>>     #include <drm/drm.h>
->>>>     #include <drm/drm_device.h>
->>>>     #include <drm/drm_drv.h>
->>>> +#include <drm/drm_dumb_buffers.h>
->>>>     #include <drm/drm_gem_dma_helper.h>
->>>>     #include <drm/drm_vma_manager.h>
->>>>
->>>> @@ -304,9 +305,11 @@ int drm_gem_dma_dumb_create(struct drm_file
->>>> *file_priv,
->>>>                           struct drm_mode_create_dumb *args)
->>>>     {
->>>>       struct drm_gem_dma_object *dma_obj;
->>>> +    int ret;
->>>>
->>>> -    args->pitch = DIV_ROUND_UP(args->width * args->bpp, 8);
->>>> -    args->size = args->pitch * args->height;
->>>> +    ret = drm_mode_size_dumb(drm, args, SZ_8, 0);
->>>> +    if (ret)
->>>> +            return ret;
->>> Hi,
->>>
->>> Was it intentional for this change to alter the pitch?
->> Most hardware does not need the pitch to be of a certain alignment. But
->> these buffers are possibly shared with other hardware, which sometimes
->> needs alignment to certain values. Using SZ_8 improves compatible with
->> that hardware.
->>
->>> The alignment requirement has been updated—from 8-bit alignment to
->>> 64-bit alignment. Since the pitch is expressed in bytes, we should pass
->>> SZ_1 instead of SZ_8 for hw_patch_align.
->>>
->>> For example, for an 850×480 framebuffer at 16 bpp, the pitch should be
->>> 1700 bytes. With the new alignment, the pitch becomes 1704 bytes.
->> Many display modes have an 8-byte alignment in their width. 850 pixels
->> is somewhat of an exception.
-> Indeed, but overlay-type planes are often used to display windows that
-> are not the same size as the screen, and therefore potentially not on
-> 8-bytes aligned.
->
->>> Please let me know if you’d like me to submit a fix.
->> Do you see a bug with your hardware? Unless this creates a real problem,
->> I'd like to keep it as it is now.
-> Yes, that’s how I noticed this change. I have an application that
-> requests a framebuffer larger than my screen, in this case 850x480 in
-> RGB565 for an 800x480 display. So I have a pitch of 1700 bytes. Now it’s
-> using a pitch of 1704, which shifts my lines.
+> On Tue, 25 Nov 2025 at 19:15, Christian K=C3=B6nig <christian.koenig@amd.=
+com>
+> wrote:
+> >
+> > On 11/25/25 10:08, Dave Airlie wrote:
 
-Honestly, your application is broken. The ioctl returns the pitch value 
-to user space and that's what the program should use. Some hardware has 
-hard constraints on the pitch, so you will sooner or later run into the 
-same problem again.
+snip
 
-Anyway, feel free to submit a patch to call drm_mode_size_dumb() without 
-SZ_8. The best value would be 0, so that the function picks a default by 
-itself. Since you're at it, maybe also look at patches 4 and 5 of this 
-series. They have similar code for other memory managers.
+> So far I haven't heard anything about needing dma-buf interactions at
+> that level, and maybe Zhi has more insight into the future there.
+>=20
 
-Best regards
-Thomas
+For VFIO parts, the vendor VFIO driver relies on the core driver's support
+to export the VM's framebuffer to the userspace either as type a)
+VFIO_GFX_PLANE_TYPE_REGION, framebuffer as a region or b)
+VFIO_GFX_PLANE_TYPE_DMABUF, framebuffer as a dmabuf, which is usually
+backed by a GEM object.
 
->
-> Regards,
-> Ludovic
->
->> Best regards
->> Thomas
->>
->>> Regards,
->>> Ludovic
->>>
->>>
->>>>       dma_obj = drm_gem_dma_create_with_handle(file_priv, drm, args-
->>>>> size,
->>>>                                                &args->handle);
->>>> diff --git a/drivers/gpu/drm/imx/ipuv3/imx-drm-core.c b/drivers/gpu/
->>>> drm/imx/ipuv3/imx-drm-core.c
->>>> index ec5fd9a01f1e..af4a30311e18 100644
->>>> --- a/drivers/gpu/drm/imx/ipuv3/imx-drm-core.c
->>>> +++ b/drivers/gpu/drm/imx/ipuv3/imx-drm-core.c
->>>> @@ -145,8 +145,10 @@ static int imx_drm_dumb_create(struct drm_file
->>>> *file_priv,
->>>>       int ret;
->>>>
->>>>       args->width = ALIGN(width, 8);
->>>> +    args->pitch = DIV_ROUND_UP(args->width * args->bpp, 8);
->>>> +    args->size = args->pitch * args->height;
->>>>
->>>> -    ret = drm_gem_dma_dumb_create(file_priv, drm, args);
->>>> +    ret = drm_gem_dma_dumb_create_internal(file_priv, drm, args);
->>>>       if (ret)
->>>>               return ret;
->>>>
->> -- 
->> -- 
->> Thomas Zimmermann
->> Graphics Driver Developer
->> SUSE Software Solutions Germany GmbH
->> Frankenstr. 146, 90461 Nürnberg, Germany, www.suse.com
->> GF: Jochen Jaser, Andrew McDonald, Werner Knoblich, (HRB 36809, AG
->> Nürnberg)
->>
->>
->
+NVIDIA vGPU uses VFIO_GFX_PLANE_TYPE_REGION, so dma-buf interactions
+are not required.
 
--- 
---
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Frankenstr. 146, 90461 Nürnberg, Germany, www.suse.com
-GF: Jochen Jaser, Andrew McDonald, Werner Knoblich, (HRB 36809, AG Nürnberg)
-
+> Dave.
 
