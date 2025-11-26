@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F3CACD1037E
-	for <intel-xe@archiver.kernel.org>; Wed, 26 Nov 2025 05:30:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DAA8ED1037E
+	for <intel-xe@archiver.kernel.org>; Wed, 26 Nov 2025 05:35:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 986EE10E0DE;
-	Wed, 26 Nov 2025 05:30:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9F96510E0DE;
+	Wed, 26 Nov 2025 05:35:23 +0000 (UTC)
 Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8978710E0DE;
- Wed, 26 Nov 2025 05:30:22 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6061227421369682211=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B94AE10E0DE;
+ Wed, 26 Nov 2025 05:35:22 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Improve_VMA_merging_for_CPU?=
- =?utf-8?q?-address-mirrored_mappings_=28rev6=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_OA=3A_More_OA_and_registe?=
+ =?utf-8?q?r_whitelist_changes?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>
+To: "Ashutosh Dixit" <ashutosh.dixit@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 26 Nov 2025 05:30:22 -0000
-Message-ID: <176413502255.28896.8228697039288265784@a3b018990fe9>
+Date: Wed, 26 Nov 2025 05:35:22 -0000
+Message-ID: <176413532275.28896.16762485746310855448@a3b018990fe9>
 X-Patchwork-Hint: ignore
-References: <20251125075628.1182481-1-himal.prasad.ghimiray@intel.com>
-In-Reply-To: <20251125075628.1182481-1-himal.prasad.ghimiray@intel.com>
+References: <20251126035220.13089-1-ashutosh.dixit@intel.com>
+In-Reply-To: <20251126035220.13089-1-ashutosh.dixit@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,151 +40,96 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============6061227421369682211==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: Improve VMA merging for CPU-address-mirrored mappings (rev6)
-URL   : https://patchwork.freedesktop.org/series/154832/
-State : success
+Series: OA: More OA and register whitelist changes
+URL   : https://patchwork.freedesktop.org/series/158084/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-4149-8052b0ba2e97387477c22ba816fabca9a4728aae_BAT -> xe-pw-154832v6_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+2de9a3901bc28757c7906b454717b64e2a214021
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 8e90fca66ee05b3080d10a23f2cf7224c84ac422
+Author: Ashutosh Dixit <ashutosh.dixit@intel.com>
+Date:   Tue Nov 25 19:52:20 2025 -0800
 
-Summary
--------
+    drm/xe/rtp: Whitelist OAM MMIO trigger registers
+    
+    Whitelist OAM registers to enable userspace to execute MMIO triggers on OAM
+    units.
+    
+    Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
++ /mt/dim checkpatch 8052b0ba2e97387477c22ba816fabca9a4728aae drm-intel
+59cab9bf0590 drm/xe/oa: Use explicit struct initialization for struct xe_oa_regs
+38d96c7ad655 drm/xe/oa/uapi: Add gt_id to struct drm_xe_oa_unit
+fde6d8fe682a drm/xe/oa: Allow exec_queue's to be specified only for OAG OA unit
+3eca187d5d97 drm/xe/rtp: Refactor OAG MMIO trigger register whitelisting
+-:49: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#49: FILE: drivers/gpu/drm/xe/xe_reg_whitelist.c:78:
++#define WHITELIST_OA_MMIO_TRG(trg, status, head) \
++	WHITELIST(trg, RING_FORCE_TO_NONPRIV_ACCESS_RW), \
++	WHITELIST(status, RING_FORCE_TO_NONPRIV_ACCESS_RD), \
++	WHITELIST(head, RING_FORCE_TO_NONPRIV_ACCESS_RD | RING_FORCE_TO_NONPRIV_RANGE_4)
 
-  **SUCCESS**
+BUT SEE:
 
-  No regressions found.
+   do {} while (0) advice is over-stated in a few situations:
 
-  
+   The more obvious case is macros, like MODULE_PARM_DESC, invoked at
+   file-scope, where C disallows code (it must be in functions).  See
+   $exceptions if you have one to add by name.
 
-Participating hosts (12 -> 12)
-------------------------------
+   More troublesome is declarative macros used at top of new scope,
+   like DECLARE_PER_CPU.  These might just compile with a do-while-0
+   wrapper, but would be incorrect.  Most of these are handled by
+   detecting struct,union,etc declaration primitives in $exceptions.
 
-  No changes in participating hosts
+   Theres also macros called inside an if (block), which "return" an
+   expression.  These cannot do-while, and need a ({}) wrapper.
 
-Known issues
-------------
+   Enjoy this qualification while we work to improve our heuristics.
 
-  Here are the changes found in xe-pw-154832v6_BAT that come from known issues:
+total: 1 errors, 0 warnings, 0 checks, 53 lines checked
+8e90fca66ee0 drm/xe/rtp: Whitelist OAM MMIO trigger registers
+-:55: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#55: FILE: drivers/gpu/drm/xe/xe_reg_whitelist.c:86:
++#define WHITELIST_OAM_MMIO_TRG \
++	WHITELIST_OA_MMIO_TRG(OAM_MMIO_TRG(XE_OAM_SAG_BASE_ADJ), \
++			      OAM_STATUS(XE_OAM_SAG_BASE_ADJ), \
++			      OAM_HEAD_POINTER(XE_OAM_SAG_BASE_ADJ)), \
++	WHITELIST_OA_MMIO_TRG(OAM_MMIO_TRG(XE_OAM_SCMI_0_BASE_ADJ), \
++			      OAM_STATUS(XE_OAM_SCMI_0_BASE_ADJ), \
++			      OAM_HEAD_POINTER(XE_OAM_SCMI_0_BASE_ADJ)), \
++	WHITELIST_OA_MMIO_TRG(OAM_MMIO_TRG(XE_OAM_SCMI_1_BASE_ADJ), \
++			      OAM_STATUS(XE_OAM_SCMI_1_BASE_ADJ), \
++			      OAM_HEAD_POINTER(XE_OAM_SCMI_1_BASE_ADJ))
 
-### IGT changes ###
+BUT SEE:
 
-#### Issues hit ####
+   do {} while (0) advice is over-stated in a few situations:
 
-  * igt@xe_waitfence@reltime:
-    - bat-dg2-oem2:       [PASS][1] -> [FAIL][2] ([Intel XE#6520])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4149-8052b0ba2e97387477c22ba816fabca9a4728aae/bat-dg2-oem2/igt@xe_waitfence@reltime.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154832v6/bat-dg2-oem2/igt@xe_waitfence@reltime.html
+   The more obvious case is macros, like MODULE_PARM_DESC, invoked at
+   file-scope, where C disallows code (it must be in functions).  See
+   $exceptions if you have one to add by name.
 
-  
-#### Possible fixes ####
+   More troublesome is declarative macros used at top of new scope,
+   like DECLARE_PER_CPU.  These might just compile with a do-while-0
+   wrapper, but would be incorrect.  Most of these are handled by
+   detecting struct,union,etc declaration primitives in $exceptions.
 
-  * igt@kms_flip@basic-flip-vs-dpms:
-    - bat-adlp-7:         [DMESG-WARN][3] ([Intel XE#4543]) -> [PASS][4] +1 other test pass
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4149-8052b0ba2e97387477c22ba816fabca9a4728aae/bat-adlp-7/igt@kms_flip@basic-flip-vs-dpms.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154832v6/bat-adlp-7/igt@kms_flip@basic-flip-vs-dpms.html
+   Theres also macros called inside an if (block), which "return" an
+   expression.  These cannot do-while, and need a ({}) wrapper.
 
-  * igt@xe_waitfence@engine:
-    - bat-dg2-oem2:       [FAIL][5] ([Intel XE#6519]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4149-8052b0ba2e97387477c22ba816fabca9a4728aae/bat-dg2-oem2/igt@xe_waitfence@engine.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154832v6/bat-dg2-oem2/igt@xe_waitfence@engine.html
+   Enjoy this qualification while we work to improve our heuristics.
 
-  
-  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
-  [Intel XE#6519]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519
-  [Intel XE#6520]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520
-
-
-Build changes
--------------
-
-  * Linux: xe-4149-8052b0ba2e97387477c22ba816fabca9a4728aae -> xe-pw-154832v6
-
-  IGT_8638: 72d5c74eb3cf46af2f46daba8109d84c3dd19363 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-4149-8052b0ba2e97387477c22ba816fabca9a4728aae: 8052b0ba2e97387477c22ba816fabca9a4728aae
-  xe-pw-154832v6: 154832v6
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154832v6/index.html
-
---===============6061227421369682211==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Improve VMA merging for CPU-address-mirrored mappings (rev6)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/154832/">https://patchwork.freedesktop.org/series/154832/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154832v6/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154832v6/index.html</a></td></tr>
-
-</table>
+total: 1 errors, 0 warnings, 0 checks, 59 lines checked
 
 
-    <h1>CI Bug Log - changes from xe-4149-8052b0ba2e97387477c22ba816fabca9a4728aae_BAT -&gt; xe-pw-154832v6_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (12 -&gt; 12)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-154832v6_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@xe_waitfence@reltime:<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4149-8052b0ba2e97387477c22ba816fabca9a4728aae/bat-dg2-oem2/igt@xe_waitfence@reltime.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154832v6/bat-dg2-oem2/igt@xe_waitfence@reltime.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520">Intel XE#6520</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@kms_flip@basic-flip-vs-dpms:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4149-8052b0ba2e97387477c22ba816fabca9a4728aae/bat-adlp-7/igt@kms_flip@basic-flip-vs-dpms.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154832v6/bat-adlp-7/igt@kms_flip@basic-flip-vs-dpms.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_waitfence@engine:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4149-8052b0ba2e97387477c22ba816fabca9a4728aae/bat-dg2-oem2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519">Intel XE#6519</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154832v6/bat-dg2-oem2/igt@xe_waitfence@engine.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4149-8052b0ba2e97387477c22ba816fabca9a4728aae -&gt; xe-pw-154832v6</li>
-</ul>
-<p>IGT_8638: 72d5c74eb3cf46af2f46daba8109d84c3dd19363 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-4149-8052b0ba2e97387477c22ba816fabca9a4728aae: 8052b0ba2e97387477c22ba816fabca9a4728aae<br />
-  xe-pw-154832v6: 154832v6</p>
-
-</body>
-</html>
-
---===============6061227421369682211==--
