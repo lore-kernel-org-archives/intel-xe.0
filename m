@@ -4,74 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2914FD116F5
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 12281D116F1
 	for <intel-xe@archiver.kernel.org>; Mon,  1 Dec 2025 13:39:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 220BA10E407;
-	Mon,  1 Dec 2025 13:39:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 87B7410E406;
+	Mon,  1 Dec 2025 13:39:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="KfSnRlYu";
+	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="PE/GCtNF";
 	dkim-atps=neutral
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
- [136.143.188.112])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 47B5D10E93E;
- Fri, 28 Nov 2025 21:07:58 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; t=1764364068; cv=none; 
- d=zohomail.com; s=zohoarc; 
- b=cLAmXQZ/YBA5qtRRcdRTLlBw5F0nvZ612w5SvVGTlxQMvbZSy4KxdPgOgszqQDdcbUYskHdii7iLAX1CwFus3qvUHdjWOdRbNQkRFHJMdCwUr50Fd0P8FAO8uqZAkNU9BAT4U2icFSHC7Xi/asiZx7W2a4D5uv+jCey70FdCG1k=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
- s=zohoarc; t=1764364068;
- h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
- bh=dAgf2IJww/37J6IOPDUXcRyIzwaZRZdmNgUMRzYM//Q=; 
- b=MmYdFslnqdZZ/beM9gFlLFGctdN3164IRufzOe/hmW2Tkcf8oVTvR3yRwfylt7hGYWj58847MAP8D1z2i70uaUXdjzZZU4X0M96D+u2NVDmYEcYK95KTjzVFSk6/fPoKB9+8r5Xz+Sih+2k51GFvF280oNd0LPntWNszVeT6irU=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
- dkim=pass  header.i=collabora.com;
- spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
- dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1764364068; 
- s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
- h=From:From:Date:Date:Subject:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:Message-Id:References:In-Reply-To:To:To:Cc:Cc:Reply-To;
- bh=dAgf2IJww/37J6IOPDUXcRyIzwaZRZdmNgUMRzYM//Q=;
- b=KfSnRlYunBEDu96QVtg18o4Ya8eu87S4Cxd17HWPG0X1ZaBiiDiNx8qbrVxMJpZn
- SZ+kRnjawA7LdtXW4s2wqzSz19xBm7AzGcRBM6X9LwCVqwPkCEtym0WkQm/b60KmAh5
- S7pcPzhfBrj5NP50hjPMPqNipPknLX4M/IFyyYOY=
-Received: by mx.zohomail.com with SMTPS id 1764364067219305.4924690153981;
- Fri, 28 Nov 2025 13:07:47 -0800 (PST)
-From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Date: Fri, 28 Nov 2025 22:05:51 +0100
-Subject: [PATCH v5 15/17] drm/rockchip: dw_hdmi_qp: Set supported_formats
- platdata
+X-Greylist: delayed 492 seconds by postgrey-1.36 at gabe;
+ Wed, 26 Nov 2025 14:17:53 UTC
+Received: from mout-p-103.mailbox.org (mout-p-103.mailbox.org [80.241.56.161])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F2A3810E632;
+ Wed, 26 Nov 2025 14:17:53 +0000 (UTC)
+Received: from smtp2.mailbox.org (smtp2.mailbox.org
+ [IPv6:2001:67c:2050:b231:465::2])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mout-p-103.mailbox.org (Postfix) with ESMTPS id 4dGhJf3tP1z9tcd;
+ Wed, 26 Nov 2025 15:09:38 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
+ s=mail20150812; 
+ t=1764166178; h=from:from:reply-to:reply-to:subject:subject:date:date:
+ message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+ content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=DmRHcXHYF1BHpb8VfMZZq6dar989WGMZcrYiKm4u1P4=;
+ b=PE/GCtNFXUhbjzXJdWR/gD4m00NSINuH49EL55fKe7aGFUYC4Ge/PJf2Ma4cBbhjTKNffz
+ 2+z9XS0g/j0UO8gNWoHsABYoMxn+fw4dgv2jLNU0+IMV7GNFw0sMUVA0ts9KFjzP5/Ax58
+ +GOEkRpMlv5VeHhX6w+bpMlRzQyW74iUlKtsK55fUO/oBriC4hYyV6B2dHx8sBN7GynYxv
+ tRCctxkqNU0DvqURQ+i6raZDUFihHqWeJQd7mQLFA5VG4mqWgUaK9vo9gNqwrpzEYZL7QA
+ BI+K9rzzkLvUQbN8xFGbt4lovABNKLUakNT+E9q9ZNwqWxClbUY8RPelnfWfWw==
+Message-ID: <f74664fdf1cf0adba9a8b19b00db4823ee3f7f1b.camel@mailbox.org>
+Subject: Re: [PATCH 0/6] dma-fence: Remove return code of dma_fence_signal()
+ et al.
+From: Philipp Stanner <phasta@mailbox.org>
+To: Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, Philipp
+ Stanner <phasta@kernel.org>, Sumit Semwal <sumit.semwal@linaro.org>,
+ Gustavo Padovan <gustavo@padovan.org>, Felix Kuehling
+ <Felix.Kuehling@amd.com>, Alex Deucher <alexander.deucher@amd.com>, David
+ Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Jani Nikula
+ <jani.nikula@linux.intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Tvrtko Ursulin <tursulin@ursulin.net>, Huang Rui <ray.huang@amd.com>,
+ Matthew Auld <matthew.auld@intel.com>,  Matthew Brost
+ <matthew.brost@intel.com>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Lucas De Marchi
+ <lucas.demarchi@intel.com>, Thomas =?ISO-8859-1?Q?Hellstr=F6m?=
+ <thomas.hellstrom@linux.intel.com>
+Cc: linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+ linaro-mm-sig@lists.linaro.org, linux-kernel@vger.kernel.org, 
+ amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org, rust-for-linux@vger.kernel.org
+Date: Wed, 26 Nov 2025 15:09:26 +0100
+In-Reply-To: <48352d7e-5e43-4683-9f00-b77ae571d8f6@amd.com>
+References: <20251126131914.149445-2-phasta@kernel.org>
+ <48352d7e-5e43-4683-9f00-b77ae571d8f6@amd.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251128-color-format-v5-15-63e82f1db1e1@collabora.com>
-References: <20251128-color-format-v5-0-63e82f1db1e1@collabora.com>
-In-Reply-To: <20251128-color-format-v5-0-63e82f1db1e1@collabora.com>
-To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
- Rodrigo Siqueira <siqueira@igalia.com>, 
- Alex Deucher <alexander.deucher@amd.com>, 
- =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- Andrzej Hajda <andrzej.hajda@intel.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Sandy Huang <hjc@rock-chips.com>, 
- =?utf-8?q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, 
- Andy Yan <andy.yan@rock-chips.com>, 
- Jani Nikula <jani.nikula@linux.intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
- Tvrtko Ursulin <tursulin@ursulin.net>, Dmitry Baryshkov <lumag@kernel.org>, 
- Sascha Hauer <s.hauer@pengutronix.de>, Rob Herring <robh@kernel.org>
-Cc: kernel@collabora.com, amd-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
- Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-X-Mailer: b4 0.14.3
+X-MBO-RS-ID: 9184d60e51ec9d03be1
+X-MBO-RS-META: ppa4nssdwpc8dthds1b9du1r4cc734jt
 X-Mailman-Approved-At: Mon, 01 Dec 2025 13:38:52 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -84,40 +80,69 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: phasta@kernel.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-With the introduction of the supported_formats member in the
-dw-hdmi-qp platform data struct, drivers that have access to this
-information should now set it.
+On Wed, 2025-11-26 at 15:02 +0100, Christian K=C3=B6nig wrote:
+> On 11/26/25 14:19, Philipp Stanner wrote:
+> > Barely anyone uses dma_fence_signal()'s (and similar functions') return
+> > code. Checking it is pretty much useless anyways, because what are you
+> > going to do if a fence was already signal it? Unsignal it and signal it
+> > again? ;p
+>=20
+> Reviewed-by: Christian K=C3=B6nig <christian.koenig@amd.com> for the enti=
+re series.
+>=20
+> Please push to drm-misc-next or leave me a note when I should pick it up.
 
-Set it in the rockchip dw_hdmi_qp glue driver.
+Thx! I can push it. Let's wait a while to see if some of the other
+folks have sth to say.
 
-This allows this information to be passed down to the dw-hdmi-qp core,
-which sets it in the bridge it creates, and consequently will allow the
-common HDMI bridge code to act on it.
+>=20
+> > Removing the return code simplifies the API and makes it easier for me
+> > to sit on top with Rust DmaFence.
+>=20
+> BTW, I have an rb for embedding the lock and I'm now writing test cases.
+>=20
+> When that is done you should be able to base the Rust DmaFence abstractio=
+n on that as well.
 
-Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
----
- drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c | 4 ++++
- 1 file changed, 4 insertions(+)
+Yeah, thank you, that will actually help since I was in the process of
+solving the same life time issues in Rust.
 
-diff --git a/drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c b/drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c
-index c79ebd9e866c..5827ca2de0bd 100644
---- a/drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c
-+++ b/drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c
-@@ -576,6 +576,10 @@ static int dw_hdmi_qp_rockchip_bind(struct device *dev, struct device *master,
- 	plat_data.phy_data = hdmi;
- 	plat_data.max_bpc = 10;
- 
-+	plat_data.supported_formats = BIT(HDMI_COLORSPACE_RGB) |
-+				      BIT(HDMI_COLORSPACE_YUV444) |
-+				      BIT(HDMI_COLORSPACE_YUV422);
-+
- 	encoder = &hdmi->encoder.encoder;
- 	encoder->possible_crtcs = drm_of_find_possible_crtcs(drm, dev->of_node);
- 
+I will give your series a review ~tomorrow, too. Or should I wait for
+v4 with the tests?
 
--- 
-2.52.0
+P.
+
+>=20
+> Regards,
+> Christian.
+>=20
+> >=20
+> > Philipp Stanner (6):
+> > =C2=A0 dma-buf/dma-fence: Add dma_fence_test_signaled_flag()
+> > =C2=A0 amd/amdkfd: Ignore return code of dma_fence_signal()
+> > =C2=A0 drm/gpu/xe: Ignore dma_fenc_signal() return code
+> > =C2=A0 dma-buf: Don't misuse dma_fence_signal()
+> > =C2=A0 drm/ttm: Remove return check of dma_fence_signal()
+> > =C2=A0 dma-buf/dma-fence: Remove return code of signaling-functions
+> >=20
+> > =C2=A0drivers/dma-buf/dma-fence.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | =
+59 ++++++-------------
+> > =C2=A0drivers/dma-buf/st-dma-fence.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 7 +--
+> > =C2=A0drivers/gpu/drm/amd/amdkfd/kfd_process.c=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 |=C2=A0 5 +-
+> > =C2=A0.../gpu/drm/ttm/tests/ttm_bo_validate_test.c=C2=A0 |=C2=A0 3 +-
+> > =C2=A0drivers/gpu/drm/xe/xe_hw_fence.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 5 +-
+> > =C2=A0include/linux/dma-fence.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 | 33 ++++++++---
+> > =C2=A06 files changed, 53 insertions(+), 59 deletions(-)
+> >=20
+>=20
 
