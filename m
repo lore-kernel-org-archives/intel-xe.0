@@ -4,27 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 02948D1039A
-	for <intel-xe@archiver.kernel.org>; Wed, 26 Nov 2025 09:55:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4C8FBD10F21
+	for <intel-xe@archiver.kernel.org>; Wed, 26 Nov 2025 10:26:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B466B10E59A;
-	Wed, 26 Nov 2025 09:55:34 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A903A10E599;
- Wed, 26 Nov 2025 09:55:33 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7382163198689913221=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 032CB10E5A4;
+	Wed, 26 Nov 2025 10:26:36 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kiYuOSZ3";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 252B710E565
+ for <intel-xe@lists.freedesktop.org>; Wed, 26 Nov 2025 10:26:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1764152794; x=1795688794;
+ h=message-id:subject:from:to:date:in-reply-to:references:
+ content-transfer-encoding:mime-version;
+ bh=d64my1S+L4MIZKKGnj8r922bcBD5bHhBaZXrEZxv7PY=;
+ b=kiYuOSZ3F4U9Hxy5st2L2bV/Or5iT9LJonf6zMp57DIMBUfGh5UrODja
+ BOfmpOGwxbMxCmQkxsjVOQ/9yS1vIFEdEQ4j9NY3YvOxFVsvncytJ4wqs
+ mThgIbtFTUXnBdyiHjtXoXh8VN6kKksN1lv+UY7fbc2FSqg80Tn/ryvTI
+ FtO2IX/NzpCqZABMycEMmojuyrGfpNRgjsIWZpAMcS/XjkGZd86qtCpL8
+ Rle/TWUAL+PZ/ephCCEaVuASikiot7po8nDD7aXGLQ1Dp0LAAfw3ao6Q8
+ eoL23z4V8zPOZPtwFBbC4PAu/svxP49UBukYrAeIFj8Cp9yHzGtDWUA5l A==;
+X-CSE-ConnectionGUID: 7uG6GKTFQASSFOsGdVPgmg==
+X-CSE-MsgGUID: Bct0XYORSvKcr/FNVCnt7w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11624"; a="65374724"
+X-IronPort-AV: E=Sophos;i="6.20,228,1758610800"; d="scan'208";a="65374724"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Nov 2025 02:26:34 -0800
+X-CSE-ConnectionGUID: tflEgKOXRjCyH9d5YZTFgg==
+X-CSE-MsgGUID: gSQOoAGiTQO8Efx+gb7ZpQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.20,228,1758610800"; d="scan'208";a="198012961"
+Received: from abityuts-desk.ger.corp.intel.com (HELO [10.245.245.127])
+ ([10.245.245.127])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Nov 2025 02:26:32 -0800
+Message-ID: <9019924acd3218bf679a2f96fcc05c9e5c8a704c.camel@linux.intel.com>
+Subject: Re: [PATCH 1/3] drm/xe/xe3p_lpg: flush userptr/shrinker bo
+ cachelines manually
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: "Upadhyay, Tejas" <tejas.upadhyay@intel.com>, 
+ "intel-xe@lists.freedesktop.org"
+ <intel-xe@lists.freedesktop.org>, "Auld, Matthew" <matthew.auld@intel.com>
+Date: Wed, 26 Nov 2025 11:26:12 +0100
+In-Reply-To: <DS7PR11MB6197137365666F3474A80D0881D1A@DS7PR11MB6197.namprd11.prod.outlook.com>
+References: <20251125094335.12028-1-tejas.upadhyay@intel.com>
+ <20251125094335.12028-2-tejas.upadhyay@intel.com>
+ <e3b54213adab24d5620241ec9e701ced2c1f4f85.camel@linux.intel.com>
+ <DS7PR11MB6197137365666F3474A80D0881D1A@DS7PR11MB6197.namprd11.prod.outlook.com>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.54.3 (3.54.3-2.fc41) 
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_Check_n?=
- =?utf-8?q?umber_of_scalers_for_casf_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Nemesa Garg" <nemesa.garg@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 26 Nov 2025 09:55:33 -0000
-Message-ID: <176415093368.29053.9903586204540747555@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20251124084629.3322714-1-nemesa.garg@intel.com>
-In-Reply-To: <20251124084629.3322714-1-nemesa.garg@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,139 +71,177 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7382163198689913221==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Tue, 2025-11-25 at 15:31 +0000, Upadhyay, Tejas wrote:
+>=20
+>=20
+> > -----Original Message-----
+> > From: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+> > Sent: 25 November 2025 20:37
+> > To: Upadhyay, Tejas <tejas.upadhyay@intel.com>; intel-
+> > xe@lists.freedesktop.org
+> > Cc: Auld, Matthew <matthew.auld@intel.com>
+> > Subject: Re: [PATCH 1/3] drm/xe/xe3p_lpg: flush userptr/shrinker bo
+> > cachelines manually
+> >=20
+> > Hi.
+> >=20
+> >=20
+> > On Tue, 2025-11-25 at 15:13 +0530, Tejas Upadhyay wrote:
+> > > Starting NVL, HW will flush cachelines marked with XA only when
+> > > media
+> > > is off. We have few cases where kernel will have non-XA
+> > > cachelines
+> > > which needs manual flush as we postpone the invalidation. Flush
+> > > asap
+> > > from correctness POV to ensure non accelerated CPU copy to
+> > > swap/shmem
+> > > file will see coherent view of memory, but also from security POV
+> > > where later flush can't corrupt the next user of those pages.
+> > >=20
+> > > Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
+> >=20
+> > I had a number of concerns last time this patch was sent to the
+> > list, none of
+> > which seems to have been addressed?
+>=20
+> Sorry for missing to address your comments.
+>=20
+> >=20
+> > https://lore.kernel.org/intel-
+> > xe/d2517d66f571e11a760cb143981b7ca238f5cd58.camel@linux.intel.com/
+> >=20
+> > The main concern is that the code indicates that not all GPU caches
+> > are flushed
+> > when all fences are signalled (bo / userptr idle)?
+>=20
+> Xe3p is introducing feature that when media is off, only XA marked BO
+> will be flushed not whole cache. From UMD perspective we might have
+> non-XA buffers created which we would like to flush before
+> buffer/user goes away during media off.=20
 
-== Series Details ==
+So for non-XA buffers, how would coherency be maintained for
+gpu_write() -> cpu_read() from UMD's perspective? For dma-buf?
 
-Series: drm/i915/display: Check number of scalers for casf (rev2)
-URL   : https://patchwork.freedesktop.org/series/157956/
-State : success
+Also flushing in move_notify() can't be done unless the bo is idle
+first, and that would force us to unnecessarily synchronize.
 
-== Summary ==
-
-CI Bug Log - changes from xe-4149-8052b0ba2e97387477c22ba816fabca9a4728aae_BAT -> xe-pw-157956v2_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (12 -> 10)
-------------------------------
-
-  Missing    (2): bat-ptl-vm bat-bmg-3 
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-157956v2_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@kms_flip@basic-flip-vs-dpms:
-    - bat-adlp-7:         [DMESG-WARN][1] ([Intel XE#4543]) -> [PASS][2] +1 other test pass
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4149-8052b0ba2e97387477c22ba816fabca9a4728aae/bat-adlp-7/igt@kms_flip@basic-flip-vs-dpms.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157956v2/bat-adlp-7/igt@kms_flip@basic-flip-vs-dpms.html
-
-  * igt@xe_waitfence@engine:
-    - bat-dg2-oem2:       [FAIL][3] ([Intel XE#6519]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4149-8052b0ba2e97387477c22ba816fabca9a4728aae/bat-dg2-oem2/igt@xe_waitfence@engine.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157956v2/bat-dg2-oem2/igt@xe_waitfence@engine.html
-
-  
-  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
-  [Intel XE#6519]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519
-
-
-Build changes
--------------
-
-  * Linux: xe-4149-8052b0ba2e97387477c22ba816fabca9a4728aae -> xe-pw-157956v2
-
-  IGT_8638: 72d5c74eb3cf46af2f46daba8109d84c3dd19363 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-4149-8052b0ba2e97387477c22ba816fabca9a4728aae: 8052b0ba2e97387477c22ba816fabca9a4728aae
-  xe-pw-157956v2: 157956v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157956v2/index.html
-
---===============7382163198689913221==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+/Thomas
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+>=20
+> Tejas
+> =C2=A0
+> >=20
+> > Thanks,
+> > Thomas
+> >=20
+> >=20
+> >=20
+> > > ---
+> > > =C2=A0drivers/gpu/drm/xe/xe_bo.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=
+=A0 3 ++-
+> > > =C2=A0drivers/gpu/drm/xe/xe_device.c=C2=A0 | 20 ++++++++++++++++++++
+> > > =C2=A0drivers/gpu/drm/xe/xe_device.h=C2=A0 |=C2=A0 1 +
+> > > =C2=A0drivers/gpu/drm/xe/xe_userptr.c |=C2=A0 3 ++-
+> > > =C2=A04 files changed, 25 insertions(+), 2 deletions(-)
+> > >=20
+> > > diff --git a/drivers/gpu/drm/xe/xe_bo.c
+> > > b/drivers/gpu/drm/xe/xe_bo.c
+> > > index 465cf9fc7ce9..97e1e9d40e96 100644
+> > > --- a/drivers/gpu/drm/xe/xe_bo.c
+> > > +++ b/drivers/gpu/drm/xe/xe_bo.c
+> > > @@ -689,7 +689,8 @@ static int xe_bo_trigger_rebind(struct
+> > > xe_device
+> > > *xe, struct xe_bo *bo,
+> > >=20
+> > > =C2=A0		if (!xe_vm_in_fault_mode(vm)) {
+> > > =C2=A0			drm_gpuvm_bo_evict(vm_bo, true);
+> > > -			continue;
+> > > +			if (!xe_device_needs_cache_flush(xe))
+> > > +				continue;
+> > > =C2=A0		}
+> > >=20
+> > > =C2=A0		if (!idle) {
+> > > diff --git a/drivers/gpu/drm/xe/xe_device.c
+> > > b/drivers/gpu/drm/xe/xe_device.c index 92f883dd8877..6e8335b493e8
+> > > 100644
+> > > --- a/drivers/gpu/drm/xe/xe_device.c
+> > > +++ b/drivers/gpu/drm/xe/xe_device.c
+> > > @@ -1079,6 +1079,26 @@ void xe_device_l2_flush(struct xe_device
+> > > *xe)
+> > > =C2=A0	spin_unlock(&gt->global_invl_lock);
+> > > =C2=A0}
+> > >=20
+> > > +/**
+> > > + * xe_device_needs_cache_flush - Whether the cache needs to be
+> > > flushed
+> > > + * @xe: The device to check.
+> > > + *
+> > > + * Return: true if the device needs cache flush, false
+> > > otherwise.
+> > > + */
+> > > +bool xe_device_needs_cache_flush(struct xe_device *xe) {
+> > > +	/*
+> > > +	 * Starting NVL, HW will flush cachelines marked with XA
+> > > only when media is off. We have
+> > > +	 * few cases where kernel will have non-XA cachelines
+> > > which
+> > > needs manual flush and this is
+> > > +	 * one of them as we postpone the invalidation. Flush
+> > > asap
+> > > from correctness POV to ensure
+> > > +	 * non accelerated CPU copy to swap/shmem file will see
+> > > coherent view of memory, but also
+> > > +	 * from security POV where later flush can't corrupt the
+> > > next user of those pages.
+> > > +	 */
+> > > +	if (GRAPHICS_VER(xe) >=3D 35 && !IS_DGFX(xe))
+> > > +		return true;
+> > > +	return false;
+> > > +}
+> > > +
+> > > =C2=A0/**
+> > > =C2=A0 * xe_device_td_flush() - Flush transient L3 cache entries
+> > > =C2=A0 * @xe: The device
+> > > diff --git a/drivers/gpu/drm/xe/xe_device.h
+> > > b/drivers/gpu/drm/xe/xe_device.h index 32cc6323b7f6..15e67db44b56
+> > > 100644
+> > > --- a/drivers/gpu/drm/xe/xe_device.h
+> > > +++ b/drivers/gpu/drm/xe/xe_device.h
+> > > @@ -179,6 +179,7 @@ void xe_device_snapshot_print(struct
+> > > xe_device
+> > > *xe, struct drm_printer *p);
+> > > =C2=A0u64 xe_device_canonicalize_addr(struct xe_device *xe, u64
+> > > address);
+> > > =C2=A0u64 xe_device_uncanonicalize_addr(struct xe_device *xe, u64
+> > > address);
+> > >=20
+> > > +bool xe_device_needs_cache_flush(struct xe_device *xe);
+> > > =C2=A0void xe_device_td_flush(struct xe_device *xe);
+> > > =C2=A0void xe_device_l2_flush(struct xe_device *xe);
+> > >=20
+> > > diff --git a/drivers/gpu/drm/xe/xe_userptr.c
+> > > b/drivers/gpu/drm/xe/xe_userptr.c index
+> > > 0d9130b1958a..a93c7e887cca
+> > > 100644
+> > > --- a/drivers/gpu/drm/xe/xe_userptr.c
+> > > +++ b/drivers/gpu/drm/xe/xe_userptr.c
+> > > @@ -114,7 +114,8 @@ static void __vma_userptr_invalidate(struct
+> > > xe_vm
+> > > *vm, struct xe_userptr_vma *uv
+> > > =C2=A0				=C2=A0=C2=A0=C2=A0 false,
+> > > MAX_SCHEDULE_TIMEOUT);
+> > > =C2=A0	XE_WARN_ON(err <=3D 0);
+> > >=20
+> > > -	if (xe_vm_in_fault_mode(vm) && userptr->initial_bind) {
+> > > +	if ((xe_vm_in_fault_mode(vm) ||
+> > > xe_device_needs_cache_flush(vm->xe)) &&
+> > > +	=C2=A0=C2=A0=C2=A0 userptr->initial_bind) {
+> > > =C2=A0		err =3D xe_vm_invalidate_vma(vma);
+> > > =C2=A0		XE_WARN_ON(err);
+> > > =C2=A0	}
+>=20
 
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/display: Check number of scalers for casf (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/157956/">https://patchwork.freedesktop.org/series/157956/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157956v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157956v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4149-8052b0ba2e97387477c22ba816fabca9a4728aae_BAT -&gt; xe-pw-157956v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (12 -&gt; 10)</h2>
-<p>Missing    (2): bat-ptl-vm bat-bmg-3 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-157956v2_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@kms_flip@basic-flip-vs-dpms:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4149-8052b0ba2e97387477c22ba816fabca9a4728aae/bat-adlp-7/igt@kms_flip@basic-flip-vs-dpms.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157956v2/bat-adlp-7/igt@kms_flip@basic-flip-vs-dpms.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_waitfence@engine:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4149-8052b0ba2e97387477c22ba816fabca9a4728aae/bat-dg2-oem2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519">Intel XE#6519</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157956v2/bat-dg2-oem2/igt@xe_waitfence@engine.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4149-8052b0ba2e97387477c22ba816fabca9a4728aae -&gt; xe-pw-157956v2</li>
-</ul>
-<p>IGT_8638: 72d5c74eb3cf46af2f46daba8109d84c3dd19363 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-4149-8052b0ba2e97387477c22ba816fabca9a4728aae: 8052b0ba2e97387477c22ba816fabca9a4728aae<br />
-  xe-pw-157956v2: 157956v2</p>
-
-</body>
-</html>
-
---===============7382163198689913221==--
