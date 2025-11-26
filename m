@@ -4,49 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DF5D5D1119B
-	for <intel-xe@archiver.kernel.org>; Wed, 26 Nov 2025 21:47:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1D8F8D1119B
+	for <intel-xe@archiver.kernel.org>; Wed, 26 Nov 2025 21:47:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DC11010E6ED;
-	Wed, 26 Nov 2025 21:47:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3EDAE10E6F6;
+	Wed, 26 Nov 2025 21:47:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JFcwgpSn";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MalEq4Fb";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B87E310E6F4;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 96A2910E6F1;
  Wed, 26 Nov 2025 21:47:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1764193674; x=1795729674;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=EQGssfzCUYwNZK0I6rlvV9RXLC97b76HeBHLA9yVfUU=;
- b=JFcwgpSn46tVtSaRVXWrCkNyUqjufJg5KVvRFHn2PMykUsgVEmOMJ0FR
- 1uG6lIkuIi2gICgG0t0oAaawJR5OAYHl2WzBTxxCa7i1p+0v/QVry6uz2
- s6nzl2DJXW0Cl04p3GEzpaaiQafdFGvWCN5NSvVy4sGzkTTOZGZIkoe/B
- LkypeZ23Ud+NOh+2UUvnzEeGNev294vGc1iMxwxdy20MWjHXcLKocFZ9/
- dfFt6SXr7jM20OswhQvWPdKvSOTWkEqbczVM61Kv6+TmyWd7xc+1KiYm6
- tCM6+jtioLYgrswXmGvxRQrFKUsC8K9ZJFPyHGsfo1C5ZSRMoj66x0kWW A==;
-X-CSE-ConnectionGUID: c2f+H5OdSN64+PL3wJsuJA==
-X-CSE-MsgGUID: 6ljWizEtQmmf5a5LkJkeNg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11625"; a="91721898"
-X-IronPort-AV: E=Sophos;i="6.20,229,1758610800"; d="scan'208";a="91721898"
+ bh=zFZN+ojxe3SnHu5xRv7nITuXKofcxMGSjGBCv/sR7qQ=;
+ b=MalEq4FbQStT5M6byoURCW/TRrsEyfaG8HQU+OnXMW5C8lzzhuna/SoG
+ DK4qiMTan1w+KyQ8dgwwF7sFreBK+sHtmSrrT+lnBcqV9/sylYhQDSY9n
+ JvHfnh6QX6MsZ/9aDJUr4cqcNGuKm+m2tDAQaDyHi/GY3Uepji81eS9Tw
+ IkvjzlbSm150NyLGR3hOQ5FrMEUr05dmHLyeXlgn9qL7iaN+OvYSYViHf
+ ZrhLLFDtVxsetWy/Fas+HBs4ZOxf77ioAK/tfZGpJ4d9URh2gb5nwcugs
+ Su76L/LQLteVaj6lLLGE4QJ6TMWT9Agh4pkLn2huwaWKb5IHWvl1+3mZp Q==;
+X-CSE-ConnectionGUID: m0qzYIFQRMa5+vimDC/3JA==
+X-CSE-MsgGUID: pDxK7/nmQHekMxVfpaAIkw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11625"; a="91721896"
+X-IronPort-AV: E=Sophos;i="6.20,229,1758610800"; d="scan'208";a="91721896"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  26 Nov 2025 13:47:53 -0800
-X-CSE-ConnectionGUID: QOc9a+r5Rt6p/+Am8fH0ag==
-X-CSE-MsgGUID: ofQWdcnFTVamAcASB99W4w==
+X-CSE-ConnectionGUID: e7oQNd+FQnCcAdmfnupmFA==
+X-CSE-MsgGUID: hErWhGItS0eyV394sUDIyQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,229,1758610800"; d="scan'208";a="193281174"
+X-IronPort-AV: E=Sophos;i="6.20,229,1758610800"; d="scan'208";a="193281172"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  26 Nov 2025 13:47:52 -0800
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: dri-devel@lists.freedesktop.org
-Subject: [PATCH v6 3/8] drm/xe: Add dedicated message lock
-Date: Wed, 26 Nov 2025 13:47:43 -0800
-Message-Id: <20251126214748.650107-4-matthew.brost@intel.com>
+Subject: [PATCH v6 1/8] drm/sched: Add several job helpers to avoid drivers
+ touching scheduler state
+Date: Wed, 26 Nov 2025 13:47:41 -0800
+Message-Id: <20251126214748.650107-2-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251126214748.650107-1-matthew.brost@intel.com>
 References: <20251126214748.650107-1-matthew.brost@intel.com>
@@ -66,79 +67,83 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Stop abusing DRM scheduler job list lock for messages, add dedicated
-message lock.
+Add helpers to see if scheduler is stopped and a jobs signaled state.
+Expected to be used driver side on recovery and debug flows.
+
+v4:
+ - Reorder patch to first in series (Niranjana)
+ - Also check parent fence for signaling (Niranjana)
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 Reviewed-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gpu_scheduler.c       | 5 +++--
- drivers/gpu/drm/xe/xe_gpu_scheduler.h       | 4 ++--
- drivers/gpu/drm/xe/xe_gpu_scheduler_types.h | 2 ++
- 3 files changed, 7 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/scheduler/sched_main.c |  4 ++--
+ include/drm/gpu_scheduler.h            | 32 ++++++++++++++++++++++++++
+ 2 files changed, 34 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gpu_scheduler.c b/drivers/gpu/drm/xe/xe_gpu_scheduler.c
-index f91e06d03511..f4f23317191f 100644
---- a/drivers/gpu/drm/xe/xe_gpu_scheduler.c
-+++ b/drivers/gpu/drm/xe/xe_gpu_scheduler.c
-@@ -77,6 +77,7 @@ int xe_sched_init(struct xe_gpu_scheduler *sched,
- 	};
- 
- 	sched->ops = xe_ops;
-+	spin_lock_init(&sched->msg_lock);
- 	INIT_LIST_HEAD(&sched->msgs);
- 	INIT_WORK(&sched->work_process_msg, xe_sched_process_msg_work);
- 
-@@ -117,7 +118,7 @@ void xe_sched_add_msg(struct xe_gpu_scheduler *sched,
- void xe_sched_add_msg_locked(struct xe_gpu_scheduler *sched,
- 			     struct xe_sched_msg *msg)
+diff --git a/drivers/gpu/drm/scheduler/sched_main.c b/drivers/gpu/drm/scheduler/sched_main.c
+index 1d4f1b822e7b..cf40c18ab433 100644
+--- a/drivers/gpu/drm/scheduler/sched_main.c
++++ b/drivers/gpu/drm/scheduler/sched_main.c
+@@ -344,7 +344,7 @@ drm_sched_rq_select_entity_fifo(struct drm_gpu_scheduler *sched,
+  */
+ static void drm_sched_run_job_queue(struct drm_gpu_scheduler *sched)
  {
--	lockdep_assert_held(&sched->base.job_list_lock);
-+	lockdep_assert_held(&sched->msg_lock);
- 
- 	list_add_tail(&msg->link, &sched->msgs);
- 	xe_sched_process_msg_queue(sched);
-@@ -131,7 +132,7 @@ void xe_sched_add_msg_locked(struct xe_gpu_scheduler *sched,
- void xe_sched_add_msg_head(struct xe_gpu_scheduler *sched,
- 			   struct xe_sched_msg *msg)
- {
--	lockdep_assert_held(&sched->base.job_list_lock);
-+	lockdep_assert_held(&sched->msg_lock);
- 
- 	list_add(&msg->link, &sched->msgs);
- 	xe_sched_process_msg_queue(sched);
-diff --git a/drivers/gpu/drm/xe/xe_gpu_scheduler.h b/drivers/gpu/drm/xe/xe_gpu_scheduler.h
-index c7a77a3a9681..dceb2cd0ee5b 100644
---- a/drivers/gpu/drm/xe/xe_gpu_scheduler.h
-+++ b/drivers/gpu/drm/xe/xe_gpu_scheduler.h
-@@ -33,12 +33,12 @@ void xe_sched_add_msg_head(struct xe_gpu_scheduler *sched,
- 
- static inline void xe_sched_msg_lock(struct xe_gpu_scheduler *sched)
- {
--	spin_lock(&sched->base.job_list_lock);
-+	spin_lock(&sched->msg_lock);
+-	if (!READ_ONCE(sched->pause_submit))
++	if (!drm_sched_is_stopped(sched))
+ 		queue_work(sched->submit_wq, &sched->work_run_job);
  }
  
- static inline void xe_sched_msg_unlock(struct xe_gpu_scheduler *sched)
+@@ -354,7 +354,7 @@ static void drm_sched_run_job_queue(struct drm_gpu_scheduler *sched)
+  */
+ static void drm_sched_run_free_queue(struct drm_gpu_scheduler *sched)
  {
--	spin_unlock(&sched->base.job_list_lock);
-+	spin_unlock(&sched->msg_lock);
+-	if (!READ_ONCE(sched->pause_submit))
++	if (!drm_sched_is_stopped(sched))
+ 		queue_work(sched->submit_wq, &sched->work_free_job);
  }
  
- static inline void xe_sched_stop(struct xe_gpu_scheduler *sched)
-diff --git a/drivers/gpu/drm/xe/xe_gpu_scheduler_types.h b/drivers/gpu/drm/xe/xe_gpu_scheduler_types.h
-index 6731b13da8bb..63d9bf92583c 100644
---- a/drivers/gpu/drm/xe/xe_gpu_scheduler_types.h
-+++ b/drivers/gpu/drm/xe/xe_gpu_scheduler_types.h
-@@ -47,6 +47,8 @@ struct xe_gpu_scheduler {
- 	const struct xe_sched_backend_ops	*ops;
- 	/** @msgs: list of messages to be processed in @work_process_msg */
- 	struct list_head			msgs;
-+	/** @msg_lock: Message lock */
-+	spinlock_t				msg_lock;
- 	/** @work_process_msg: processes messages */
- 	struct work_struct		work_process_msg;
- };
+diff --git a/include/drm/gpu_scheduler.h b/include/drm/gpu_scheduler.h
+index fb88301b3c45..385bf34e76fe 100644
+--- a/include/drm/gpu_scheduler.h
++++ b/include/drm/gpu_scheduler.h
+@@ -698,4 +698,36 @@ void drm_sched_entity_modify_sched(struct drm_sched_entity *entity,
+ 				   struct drm_gpu_scheduler **sched_list,
+ 				   unsigned int num_sched_list);
+ 
++/* Inlines */
++
++/**
++ * drm_sched_is_stopped() - DRM is stopped
++ * @sched: DRM scheduler
++ *
++ * Return: True if sched is stopped, False otherwise
++ */
++static inline bool drm_sched_is_stopped(struct drm_gpu_scheduler *sched)
++{
++	return READ_ONCE(sched->pause_submit);
++}
++
++/**
++ * drm_sched_job_is_signaled() - DRM scheduler job is signaled
++ * @job: DRM scheduler job
++ *
++ * Determine if DRM scheduler job is signaled. DRM scheduler should be stopped
++ * to obtain a stable snapshot of state. Both parent fence (hardware fence) and
++ * finished fence (software fence) are check to determine signaling state.
++ *
++ * Return: True if job is signaled, False otherwise
++ */
++static inline bool drm_sched_job_is_signaled(struct drm_sched_job *job)
++{
++	struct drm_sched_fence *s_fence = job->s_fence;
++
++	WARN_ON(!drm_sched_is_stopped(job->sched));
++	return (s_fence->parent && dma_fence_is_signaled(s_fence->parent)) ||
++		dma_fence_is_signaled(&s_fence->finished);
++}
++
+ #endif
 -- 
 2.34.1
 
