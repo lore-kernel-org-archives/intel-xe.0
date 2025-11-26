@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C18E0D111A7
-	for <intel-xe@archiver.kernel.org>; Wed, 26 Nov 2025 23:02:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0E34BD111B6
+	for <intel-xe@archiver.kernel.org>; Wed, 26 Nov 2025 23:02:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 840AE10E727;
-	Wed, 26 Nov 2025 23:02:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C463710E72C;
+	Wed, 26 Nov 2025 23:02:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FYC54Jmf";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QNupV0AI";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9408E10E71A
- for <intel-xe@lists.freedesktop.org>; Wed, 26 Nov 2025 23:02:24 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8C9F910E71E
+ for <intel-xe@lists.freedesktop.org>; Wed, 26 Nov 2025 23:02:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1764198145; x=1795734145;
+ t=1764198138; x=1795734138;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=91/hkbovuIEpyBnv6XmtFwSQ/VRbF94aKHl/Cjrrb0I=;
- b=FYC54Jmf9U2+goD6dq2NhTEvXSDksBBhGq5kZcIoXGJkdtv9ux8xkG5m
- 7JpKkL7b/VqWH0iPckwKedz849dm+uUlRJzgyjDa/j1FQWDUQfz4KL8Ha
- 2XvTyvEtpcNez6cc8T6NmC6+ZAFqIBlMAVdq6RIYIbsKvHW7bs9aAm1D2
- D3WicRQwAANSX4amIUd3xWGQ4z04RpW5Spi09HYAwQY1VhXDv1O7oKFXu
- V/ZL8PieKOXp4V1qJhokeRytu6bPNltoiKM4l0XIGNgRvTCT8xSvYcvZ5
- Gw23wHwx7M2Dqvxtd2fRVwYCSCuBzffbVnL0YGteidatyXxOpbjOP+KqN g==;
-X-CSE-ConnectionGUID: z6yX5vfzSCu7fe9BEy/wiw==
-X-CSE-MsgGUID: FnFvwzG7Sia8exeBGWreKg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11625"; a="66284562"
-X-IronPort-AV: E=Sophos;i="6.20,229,1758610800"; d="scan'208";a="66284562"
+ bh=5GmLVYZOupJ6r5c+PSoBoPMv6CE4AzzqvA/w2iMACqg=;
+ b=QNupV0AIhyr4+g4XKyeNUOyCKriJowymK/jT+jNX23hd1ndsW4y+df5/
+ vxdc6U0AhQSS2yzn1LZSOIThaCUj0KQlR0Aa2hYzvIJlVoyPIsxwcmBLP
+ fUnqHb36p55CZ4RrxbXya2qi9Qvslw+nSI0LicKZdNhc4x2h6h2eWtXQS
+ diLinELlSFtqyt+6NflOJTpSgWywG3CrfR5SWmWh5JJM4y16FRmj2l8dA
+ jD+76G/F8NiAuU2lZjXBL4gf2bVH5Nz2e/VswM8fTGWO6VVn0BI48Xu1p
+ tvfewilJfe2iuA7eUYgtB2XGbJYLhLMt95nKLvrGhDFZE+Sn4AmUhXTjF g==;
+X-CSE-ConnectionGUID: XXnSyU/VSMyjZoWeTyTuDQ==
+X-CSE-MsgGUID: myPHe1qyQb600FNw0t+rcQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11625"; a="66284533"
+X-IronPort-AV: E=Sophos;i="6.20,229,1758610800"; d="scan'208";a="66284533"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Nov 2025 15:02:24 -0800
-X-CSE-ConnectionGUID: GMQK9eNaRs6vzZZC4+EAPQ==
-X-CSE-MsgGUID: MxiTY/muT1mKQken5+hB+g==
+ 26 Nov 2025 15:02:17 -0800
+X-CSE-ConnectionGUID: AmXIHZo3QPCz1lmyKtc7Zw==
+X-CSE-MsgGUID: e6c7MpHLTvyvUPB38ZbZJQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,229,1758610800"; d="scan'208";a="224028560"
+X-IronPort-AV: E=Sophos;i="6.20,229,1758610800"; d="scan'208";a="224028527"
 Received: from osgc-sh-dragon.sh.intel.com ([10.239.81.44])
- by fmviesa001.fm.intel.com with ESMTP; 26 Nov 2025 15:02:22 -0800
+ by fmviesa001.fm.intel.com with ESMTP; 26 Nov 2025 15:02:15 -0800
 From: Brian Nguyen <brian3.nguyen@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: tejas.upadhyay@intel.com, matthew.brost@intel.com, shuicheng.lin@intel.com,
- stuart.summers@intel.com, Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH v2 11/11] drm/xe: Add debugfs support for page reclamation
-Date: Thu, 27 Nov 2025 07:02:12 +0800
-Message-ID: <20251126230201.3782788-24-brian3.nguyen@intel.com>
+ stuart.summers@intel.com
+Subject: [PATCH v2 07/11] drm/xe: Suballocate BO for page reclaim
+Date: Thu, 27 Nov 2025 07:02:08 +0800
+Message-ID: <20251126230201.3782788-20-brian3.nguyen@intel.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20251126230201.3782788-13-brian3.nguyen@intel.com>
 References: <20251126230201.3782788-13-brian3.nguyen@intel.com>
@@ -66,83 +66,166 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Allow for runtime modification to page reclamation feature through
-debugfs configuration. This parameter will only take effect if the
-platform supports the page reclamation feature by default.
+Page reclamation feature needs the PRL to be suballocated into a
+GGTT-mapped BO. On allocation failure, fallback to default tlb
+invalidation with full PPC flush.
+
+PRL's BO allocation is managed in separate pool to ensure 4K alignment
+for proper GGTT address.
+
+With BO, pass into TLB invalidation backend and modify fence to
+accomadate accordingly.
 
 v2:
- - Minor comment tweaks. (Shuicheng)
- - Convert to kstrtobool_from_user. (Michal)
- - Only expose page reclaim file if page reclaim flag
-   initially supported and with that, remove
-   xe_match_desc usage. (Michal)
+ - Removed page reclaim related variables from TLB fence. (Matthew B)
+ - Allocate PRL bo size to num_entries. (Matthew B)
+ - Move PRL bo allocation to tlb_inval run_job. (Matthew B)
 
 Signed-off-by: Brian Nguyen <brian3.nguyen@intel.com>
-Cc: Shuicheng Lin <shuicheng.lin@intel.com>
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Suggested-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_debugfs.c | 41 +++++++++++++++++++++++++++++++++
- 1 file changed, 41 insertions(+)
+ drivers/gpu/drm/xe/xe_device_types.h  |  7 +++++
+ drivers/gpu/drm/xe/xe_page_reclaim.c  | 39 +++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_page_reclaim.h  |  6 +++++
+ drivers/gpu/drm/xe/xe_tile.c          |  5 ++++
+ drivers/gpu/drm/xe/xe_tlb_inval_job.c |  9 +++++++
+ 5 files changed, 66 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_debugfs.c b/drivers/gpu/drm/xe/xe_debugfs.c
-index 1d5a2a43a9d7..296b8136511b 100644
---- a/drivers/gpu/drm/xe/xe_debugfs.c
-+++ b/drivers/gpu/drm/xe/xe_debugfs.c
-@@ -291,6 +291,39 @@ static const struct file_operations wedged_mode_fops = {
- 	.write = wedged_mode_set,
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index 3836c5ed1c72..155ea0800f1b 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -184,6 +184,13 @@ struct xe_tile {
+ 		 * Media GT shares a pool with its primary GT.
+ 		 */
+ 		struct xe_sa_manager *kernel_bb_pool;
++
++		/**
++		 * @mem.reclaim_pool: Pool for PRLs allocated.
++		 *
++		 * Only main GT has page reclaim list allocations.
++		 */
++		struct xe_sa_manager *reclaim_pool;
+ 	} mem;
+ 
+ 	/** @sriov: tile level virtualization data */
+diff --git a/drivers/gpu/drm/xe/xe_page_reclaim.c b/drivers/gpu/drm/xe/xe_page_reclaim.c
+index 63facea28213..740563277872 100644
+--- a/drivers/gpu/drm/xe/xe_page_reclaim.c
++++ b/drivers/gpu/drm/xe/xe_page_reclaim.c
+@@ -13,6 +13,45 @@
+ #include "regs/xe_gt_regs.h"
+ #include "xe_assert.h"
+ #include "xe_macros.h"
++#include "xe_sa.h"
++#include "xe_tlb_inval_types.h"
++
++/**
++ * xe_page_reclaim_create_prl_bo() - Back a PRL with a suballocated GGTT BO
++ * @tlb_inval: TLB invalidation frontend associated with the request
++ * @prl: page reclaim list data that bo will copy from
++ * @ifence: tlb invalidation fence that page reclaim action is paired to
++ *
++ * Suballocates a 4K BO out of the tile reclaim pool, copies the PRL CPU
++ * copy into the BO and queues the buffer for release when @fence signals.
++ *
++ * Return: struct drm_suballoc pointer on success or ERR_PTR on failure.
++ */
++struct drm_suballoc *xe_page_reclaim_create_prl_bo(struct xe_tlb_inval *tlb_inval,
++						   struct xe_page_reclaim_list *prl,
++						   struct xe_tlb_inval_fence *fence)
++{
++	struct xe_gt *gt = container_of(tlb_inval, struct xe_gt, tlb_inval);
++	struct xe_tile *tile = gt_to_tile(gt);
++	/* (+1) for NULL page_reclaim_entry to indicate end of list */
++	int prl_size = min(prl->num_entries + 1, XE_PAGE_RECLAIM_MAX_ENTRIES) *
++		sizeof(struct xe_guc_page_reclaim_entry);
++	struct drm_suballoc *prl_sa;
++
++	/* Maximum size of PRL is 1 4K-page */
++	prl_sa = __xe_sa_bo_new(tile->mem.reclaim_pool,
++				prl_size, GFP_ATOMIC);
++	if (IS_ERR(prl_sa))
++		return prl_sa;
++
++	memcpy(xe_sa_bo_cpu_addr(prl_sa), prl->entries,
++	       prl_size);
++	xe_sa_bo_flush_write(prl_sa);
++	/* Queue up sa_bo_free on tlb invalidation fence signal */
++	xe_sa_bo_free(prl_sa, &fence->base);
++
++	return prl_sa;
++}
+ 
+ /**
+  * xe_page_reclaim_list_invalidate() - Mark a PRL as invalid
+diff --git a/drivers/gpu/drm/xe/xe_page_reclaim.h b/drivers/gpu/drm/xe/xe_page_reclaim.h
+index 5ccff46d1b4e..4ecea05b1f2e 100644
+--- a/drivers/gpu/drm/xe/xe_page_reclaim.h
++++ b/drivers/gpu/drm/xe/xe_page_reclaim.h
+@@ -16,6 +16,9 @@
+ #define XE_PAGE_RECLAIM_MAX_ENTRIES	512
+ #define XE_PAGE_RECLAIM_LIST_MAX_SIZE	SZ_4K
+ 
++struct xe_tlb_inval;
++struct xe_tlb_inval_fence;
++
+ struct xe_guc_page_reclaim_entry {
+ 	u32 dw0;
+ /* valid reclaim entry bit */
+@@ -42,6 +45,9 @@ struct xe_page_reclaim_list {
+ #define XE_PAGE_RECLAIM_INVALID_LIST	-1
  };
  
-+static ssize_t page_reclaim_hw_assist_show(struct file *f, char __user *ubuf,
-+					   size_t size, loff_t *pos)
-+{
-+	struct xe_device *xe = file_inode(f)->i_private;
-+	char buf[8];
-+	int len;
-+
-+	len = scnprintf(buf, sizeof(buf), "%d\n", xe->info.has_page_reclaim_hw_assist);
-+	return simple_read_from_buffer(ubuf, size, pos, buf, len);
-+}
-+
-+static ssize_t page_reclaim_hw_assist_set(struct file *f, const char __user *ubuf,
-+					  size_t size, loff_t *pos)
-+{
-+	struct xe_device *xe = file_inode(f)->i_private;
-+	bool val;
-+	ssize_t ret;
-+
-+	ret = kstrtobool_from_user(ubuf, size, &val);
-+	if (ret)
-+		return ret;
-+
-+	xe->info.has_page_reclaim_hw_assist = val;
-+
-+	return size;
-+}
-+
-+static const struct file_operations page_reclaim_hw_assist_fops = {
-+	.owner = THIS_MODULE,
-+	.read = page_reclaim_hw_assist_show,
-+	.write = page_reclaim_hw_assist_set,
-+};
-+
- static ssize_t atomic_svm_timeslice_ms_show(struct file *f, char __user *ubuf,
- 					    size_t size, loff_t *pos)
- {
-@@ -397,6 +430,14 @@ void xe_debugfs_register(struct xe_device *xe)
- 	debugfs_create_file("disable_late_binding", 0600, root, xe,
- 			    &disable_late_binding_fops);
++struct drm_suballoc *xe_page_reclaim_create_prl_bo(struct xe_tlb_inval *tlb_inval,
++						   struct xe_page_reclaim_list *prl,
++						   struct xe_tlb_inval_fence *fence);
+ void xe_page_reclaim_list_invalidate(struct xe_page_reclaim_list *prl);
+ void xe_page_reclaim_list_init(struct xe_page_reclaim_list *prl);
+ int xe_page_reclaim_list_alloc_entries(struct xe_page_reclaim_list *prl);
+diff --git a/drivers/gpu/drm/xe/xe_tile.c b/drivers/gpu/drm/xe/xe_tile.c
+index 4f4f9a5c43af..63c060c2ea5c 100644
+--- a/drivers/gpu/drm/xe/xe_tile.c
++++ b/drivers/gpu/drm/xe/xe_tile.c
+@@ -209,6 +209,11 @@ int xe_tile_init(struct xe_tile *tile)
+ 	if (IS_ERR(tile->mem.kernel_bb_pool))
+ 		return PTR_ERR(tile->mem.kernel_bb_pool);
  
-+	/*
-+	 * Don't expose page reclaim configuration file if not supported by the
-+	 * hardware initially.
-+	 */
-+	if (xe->info.has_page_reclaim_hw_assist)
-+		debugfs_create_file("page_reclaim_hw_assist", 0600, root, xe,
-+				    &page_reclaim_hw_assist_fops);
++	/* Optimistically anticipate at most 256 TLB fences with PRL */
++	tile->mem.reclaim_pool = xe_sa_bo_manager_init(tile, SZ_1M, XE_PAGE_RECLAIM_LIST_MAX_SIZE);
++	if (IS_ERR(tile->mem.reclaim_pool))
++		return PTR_ERR(tile->mem.reclaim_pool);
 +
- 	for (mem_type = XE_PL_VRAM0; mem_type <= XE_PL_VRAM1; ++mem_type) {
- 		man = ttm_manager_type(bdev, mem_type);
+ 	return 0;
+ }
+ void xe_tile_migrate_wait(struct xe_tile *tile)
+diff --git a/drivers/gpu/drm/xe/xe_tlb_inval_job.c b/drivers/gpu/drm/xe/xe_tlb_inval_job.c
+index 1ae0dec2cf31..dbd3171fff12 100644
+--- a/drivers/gpu/drm/xe/xe_tlb_inval_job.c
++++ b/drivers/gpu/drm/xe/xe_tlb_inval_job.c
+@@ -24,6 +24,8 @@ struct xe_tlb_inval_job {
+ 	struct xe_exec_queue *q;
+ 	/** @vm: VM which TLB invalidation is being issued for */
+ 	struct xe_vm *vm;
++	/** @prl: Embedded copy of page reclaim list */
++	struct xe_page_reclaim_list prl;
+ 	/** @refcount: ref count of this job */
+ 	struct kref refcount;
+ 	/**
+@@ -47,6 +49,13 @@ static struct dma_fence *xe_tlb_inval_job_run(struct xe_dep_job *dep_job)
+ 		container_of(dep_job, typeof(*job), dep);
+ 	struct xe_tlb_inval_fence *ifence =
+ 		container_of(job->fence, typeof(*ifence), base);
++	struct drm_suballoc *prl_sa = NULL;
++
++	if (job->prl.entries) {
++		prl_sa = xe_page_reclaim_create_prl_bo(job->tlb_inval, &job->prl, ifence);
++		if (IS_ERR(prl_sa))
++			prl_sa = NULL; /* Indicate fall back PPC flush with NULL */
++	}
  
+ 	xe_tlb_inval_range(job->tlb_inval, ifence, job->start,
+ 			   job->end, job->vm->usm.asid);
 -- 
 2.52.0
 
