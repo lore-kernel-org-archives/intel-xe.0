@@ -4,99 +4,41 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 53815D10F34
-	for <intel-xe@archiver.kernel.org>; Wed, 26 Nov 2025 12:49:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 73902D10F2D
+	for <intel-xe@archiver.kernel.org>; Wed, 26 Nov 2025 12:50:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A6665891D1;
-	Wed, 26 Nov 2025 12:49:56 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=shazbot.org header.i=@shazbot.org header.b="xWis5iHp";
-	dkim=pass (2048-bit key; unprotected) header.d=messagingengine.com header.i=@messagingengine.com header.b="1WgIpRu1";
-	dkim-atps=neutral
-Received: from fout-b4-smtp.messagingengine.com
- (fout-b4-smtp.messagingengine.com [202.12.124.147])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 19F7610E459;
- Tue, 25 Nov 2025 20:13:20 +0000 (UTC)
-Received: from phl-compute-02.internal (phl-compute-02.internal [10.202.2.42])
- by mailfout.stl.internal (Postfix) with ESMTP id 2A1031D00189;
- Tue, 25 Nov 2025 15:13:19 -0500 (EST)
-Received: from phl-mailfrontend-02 ([10.202.2.163])
- by phl-compute-02.internal (MEProxy); Tue, 25 Nov 2025 15:13:19 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=shazbot.org; h=
- cc:cc:content-transfer-encoding:content-type:content-type:date
- :date:from:from:in-reply-to:in-reply-to:message-id:mime-version
- :references:reply-to:subject:subject:to:to; s=fm3; t=1764101599;
- x=1764187999; bh=SxBzS6wxsA9DU/wrcG08wVM8JozAfkjt6DeecCIzneM=; b=
- xWis5iHprTUKC6s7veQqbuYlIsiGvFjWVZ/ncVbfj/kEkDoww2qZjckaxKdbwpOS
- fJRcWTDv/zBudS40kGTvSd7x2/gZ/xexrNsAkXxFdo+nsGjq4gTOKB0QXnasYV97
- KQ3FiUxLCBHaVWzEsKDy5SX9O71Ripd+BRcZq+LSd/KyMRO1CVzlQMqh3ejJBI2j
- kdFl1MVvdcsVY5bcVdv6FUQVuhjs57ua/i0HBNFKzKYVjSWcff34g03pk9xgo/Th
- uxPY+4qrqoLputQtxu0IR86JR2wGtwVODJONsralwcG3OCC1gWZhKAt0PSXKKyJ+
- pbu/60K6xj5Xnyft5SiFZg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:cc:content-transfer-encoding
- :content-type:content-type:date:date:feedback-id:feedback-id
- :from:from:in-reply-to:in-reply-to:message-id:mime-version
- :references:reply-to:subject:subject:to:to:x-me-proxy
- :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1764101599; x=
- 1764187999; bh=SxBzS6wxsA9DU/wrcG08wVM8JozAfkjt6DeecCIzneM=; b=1
- WgIpRu17/CGPtlIdUy5fftZ7tplpJ7JytkmZ0175np73ki83mNji1nkOmaVQP+i/
- MtLu9DcVIQwD3WN0oH3l1OI4HEfpW2LkXXrIKw/SpdjTRAMgTksrLE4szPcl0SrQ
- GfqVBLipASmJSoUf6MZP2B0H5KwZLfofSyqlQSknfeydOHo0D1aqi9DaN/g2mfx3
- jlk9bSa9PVTYEn4QAtlZCcHWbbtcawYoe/VNnnTjFS5dbyEXaIe6VRw5akFBaLHZ
- iaEkZ/DHhDZR23lYDwo4ff9PDRQrTnbvlOyixGydJghiWVBkRlagzS38UarJ7fst
- zNlV9lelt5k8TfuJ6gzyw==
-X-ME-Sender: <xms:3g0maU4fw47TisN_W1o-i0kLbHCfFWmgWwZl119Xd_VUeRCgimeoSA>
- <xme:3g0maWUvibJsF9iLcfpVi_kCe3pIqp6oBhVHaQPvHibCiwcmrI22GCDmMTJK43fT4
- t7wDh7aHnVp-njdglEsjLMCttZ1_86gh8Bv7Q_zExRbSNSn4EClMw>
-X-ME-Received: <xmr:3g0maY4v2GCi9oMzl_tFJBzLqOX479SoH2_CMpqhpEpk7O_VckukHBsR>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdeggddvgedvgedtucetufdoteggodetrf
- dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfurfetoffkrfgpnffqhgenuceu
- rghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujf
- gurhepfffhvfevuffkjghfgggtgfesthhqredttddtjeenucfhrhhomheptehlvgigucgh
- ihhllhhirghmshhonhcuoegrlhgvgiesshhhrgiisghothdrohhrgheqnecuggftrfgrth
- htvghrnhepgfffvdefjeejueevfeetudfhgeetfeeuheetfeekjedvuddvueehffdtgeej
- keetnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprg
- hlvgigsehshhgriigsohhtrdhorhhgpdhnsggprhgtphhtthhopedvuddpmhhouggvpehs
- mhhtphhouhhtpdhrtghpthhtohepmhhitghhrghlrdifihhnihgrrhhskhhisehinhhtvg
- hlrdgtohhmpdhrtghpthhtoheplhhutggrshdruggvmhgrrhgthhhisehinhhtvghlrdgt
- ohhmpdhrtghpthhtohepthhhohhmrghsrdhhvghllhhsthhrohhmsehlihhnuhigrdhinh
- htvghlrdgtohhmpdhrtghpthhtoheprhhoughrihhgohdrvhhivhhisehinhhtvghlrdgt
- ohhmpdhrtghpthhtohepjhhgghesiihivghpvgdrtggrpdhrtghpthhtohephihishhhrg
- hihhesnhhvihguihgrrdgtohhmpdhrtghpthhtohepkhgvvhhinhdrthhirghnsehinhht
- vghlrdgtohhmpdhrtghpthhtohepshhkohhlohhthhhumhhthhhosehnvhhiughirgdrtg
- homhdprhgtphhtthhopehinhhtvghlqdigvgeslhhishhtshdrfhhrvggvuggvshhkthho
- phdrohhrgh
-X-ME-Proxy: <xmx:3g0maXEq5ofT8QQr-mpV7rNXW5VqYmxVP4fkg7679KM-n_JTajGtfA>
- <xmx:3g0mab8QBb2EtiqGTSLfZwISvRnUQ02VfvHCwF-kAJ92_zKQPG8dNg>
- <xmx:3g0maZXCEDDKqaKX8nE4kgcUnJsB-NLGwyLZhx7gF4F-iC0jL2V6UQ>
- <xmx:3g0madGcEoSKfZhKbIyhL-h0o8oF61rz0tNxfGnca9R8VxPJt9BJEA>
- <xmx:3w0maVfPtYIDUbwzNoblR8K0XZ7sAGHjEdm_at5Nr0TOmVOgjRGwo6za>
-Feedback-ID: i03f14258:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
- 25 Nov 2025 15:13:16 -0500 (EST)
-Date: Tue, 25 Nov 2025 13:13:15 -0700
-From: Alex Williamson <alex@shazbot.org>
-To: =?UTF-8?B?TWljaGHFgg==?= Winiarski <michal.winiarski@intel.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>, Thomas =?UTF-8?B?SGVsbHN0?=
- =?UTF-8?B?csO2bQ==?= <thomas.hellstrom@linux.intel.com>, Rodrigo Vivi
- <rodrigo.vivi@intel.com>, Jason Gunthorpe <jgg@ziepe.ca>, Yishai Hadas
- <yishaih@nvidia.com>, Kevin Tian <kevin.tian@intel.com>, Shameer Kolothum
- <skolothumtho@nvidia.com>, <intel-xe@lists.freedesktop.org>,
- <linux-kernel@vger.kernel.org>, <kvm@vger.kernel.org>, Matthew Brost
- <matthew.brost@intel.com>, "Michal Wajdeczko" <michal.wajdeczko@intel.com>,
- <dri-devel@lists.freedesktop.org>, Jani Nikula
- <jani.nikula@linux.intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, "Lukasz
- Laguna" <lukasz.laguna@intel.com>, Christoph Hellwig <hch@infradead.org>
-Subject: Re: [PATCH v6 0/4] vfio/xe: Add driver variant for Xe VF migration
-Message-ID: <20251125131315.60aa0614.alex@shazbot.org>
-In-Reply-To: <20251124230841.613894-1-michal.winiarski@intel.com>
-References: <20251124230841.613894-1-michal.winiarski@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 390EC10E5F0;
+	Wed, 26 Nov 2025 12:50:00 +0000 (UTC)
+Received: from out28-50.mail.aliyun.com (out28-50.mail.aliyun.com
+ [115.124.28.50])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C6C6F10E070;
+ Wed, 26 Nov 2025 01:39:42 +0000 (UTC)
+Received: from 172.38.10.120(mailfrom:zhangzhijie@bosc.ac.cn
+ fp:SMTPD_---.fVyAjhI_1764121178 cluster:ay29) by smtp.aliyun-inc.com;
+ Wed, 26 Nov 2025 09:39:39 +0800
+Message-ID: <0d2e6a53-11f8-403c-a4e8-b9c367ed96a8@bosc.ac.cn>
+Date: Wed, 26 Nov 2025 09:39:37 +0800
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] i915: Support Intel GPU porting on any non-x86 system.
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>, jeff@jeffgeerling.com,
+ wangran@bosc.ac.cn, zhangjian@bosc.ac.cn, daniel@ffwll.ch,
+ rodrigo.vivi@intel.com, joonas.lahtinen@linux.intel.com,
+ tursulin@ursulin.net, airlied@gmail.com, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, guoyaxing@bosc.ac.cn
+References: <20251124065645.1920632-1-zhangzhijie@bosc.ac.cn>
+ <bac7a05b799309fe2c269232e70e82f86a8e2811@intel.com>
+ <1657dccb-3d03-420a-9ffa-5601ae212fd9@bosc.ac.cn>
+ <58728a8ae8f0a3e92be203a9296d120fd12da8d5@intel.com>
+ <14954d6d-67bc-49f4-b394-3da4e1f80af1@bosc.ac.cn>
+ <743pqjv2sefs3bhsyyoezv2nzf6tcbc6fo5nshczsc3s36j3qy@2xla3yxhbhpd>
+Content-Language: en-US
+From: ZhangZhiJie <zhangzhijie@bosc.ac.cn>
+In-Reply-To: <743pqjv2sefs3bhsyyoezv2nzf6tcbc6fo5nshczsc3s36j3qy@2xla3yxhbhpd>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Wed, 26 Nov 2025 12:49:56 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -112,21 +54,69 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 25 Nov 2025 00:08:37 +0100
-Micha=C5=82 Winiarski <michal.winiarski@intel.com> wrote:
 
-> Hi,
->=20
-> We're now at v6, thanks for all the review feedback.
->=20
-> First 24 patches are now already merged through drm-tip tree, and I hope
-> we can get the remaining ones through the VFIO tree.
 
-Are all those dependencies in a topic branch somewhere?  Otherwise to
-go in through vfio would mean we need to rebase our next branch after
-drm is merged.  LPC is happening during this merge window, so we may
-not be able to achieve that leniency in ordering.  Is the better
-approach to get acks on the variant driver and funnel the whole thing
-through the drm tree?  Thanks,
+On 2025/11/26 05:54, Lucas De Marchi wrote:
+> On Tue, Nov 25, 2025 at 06:20:00PM +0800, ZhangZhiJie wrote:
+>>
+>>
+>> On 2025/11/25 18:13, Jani Nikula wrote:
+>>> On Tue, 25 Nov 2025, ZhangZhiJie <zhangzhijie@bosc.ac.cn> wrote:
+>>>> On 2025/11/24 20:24, Jani Nikula wrote:
+>>>>> On Mon, 24 Nov 2025, zhangzhijie <zhangzhijie@bosc.ac.cn> wrote:
+>>>>>> inb/outb speccial wire not support on other ARCH.
+>>>>>> Should detect whether arch platform support or not.
+>>>>>
+>>>>> Seems to me it inb/outb depend on CONFIG_HAS_IOPORT. Which arch are 
+>>>>> you
+>>>>> talking about specifically?
+>>>>
+>>>> riscv , has CONFIG_HAS_IOPORT.  is using for serial, GPIO., etc.
+>>>
+>>> What is the actual failure mode you see?
+>>>
+>>> Does it build?
+>>>
+>>> BR,
+>>> Jani.
+>>>
+>> Yes, i compiled Xe driver, and it's occured load access fault when not 
+>> disable  VGA_SEQ_*.
+>>
+>> can found this link https://github.com/geerlingguy/raspberry-pi-pcie- 
+>> devices/issues/510#issuecomment-3383284831
+> 
+> and this is what I tested with rpi:
+> https://lore.kernel.org/intel-xe/20251119-ioport-v1-1- 
+> ec43f1e12c49@intel.com/
+> 
+Yep. agree like this patch.
 
-Alex
+In my mind. if machine not implement VGA_SEQ_* ioport.
+should avoid access ioports about VGA_SEQ_* .
+
+Can you give  log for bootting on non-x86 arch?
+
+> not sure why you are changing the intel_vga_disable() function: out of
+> reset that bit is disabled and the function does nothing:
+> 
+>      tmp = intel_de_read(display, vga_reg);
+>      if (tmp & VGA_DISP_DISABLE)
+>          return;
+> 
+> If there's no VGA, no bios, then there isn't anything enabling that and
+> we don't need to disable it.
+> 
+> I have a patch that moves the vga access to a separate function,
+> intel_vga_set_screen_off(), but that's mostly for clarity, not to fix
+> anything. If later we want to add an ifdef then we'd probably have to
+> implement the alternative.
+> 
+> Also note that not having CONFIG_HAS_IOPORT doesn't mean inb()/outb()
+> are not implemented. See arch/{arm,powerpc,sparc}/include/asm/io.h
+> for a few variants.
+> 
+> Lucas De Marchi
+
+BR.
+ZhiJie
