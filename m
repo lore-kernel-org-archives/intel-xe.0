@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8BE3ED11184
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C5DF3D111B6
 	for <intel-xe@archiver.kernel.org>; Wed, 26 Nov 2025 23:02:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4C7F210E72E;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 57BF610E72F;
 	Wed, 26 Nov 2025 23:02:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZS97riy0";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kdcjJVJO";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AD9F910E71E
- for <intel-xe@lists.freedesktop.org>; Wed, 26 Nov 2025 23:02:10 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7F3D710E71E
+ for <intel-xe@lists.freedesktop.org>; Wed, 26 Nov 2025 23:02:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1764198131; x=1795734131;
+ t=1764198129; x=1795734129;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=ufqAo5qZ2Jy/+fdqV2z1jkftiDAAydUcrsbyma/cTWU=;
- b=ZS97riy0VWhmCCUxeDHxyTJrsy7s9DdUItVqTj55IsQuMIRhSTkkKrz0
- +NkyuDB8ClyXr0Gumi3CrTUapbhMh0yuOF+Ah1CnREoXKdyPttQEhslm7
- WVpyzOPFcF1oO1yk2o6nzoHvRWmwG8dY5KV58nkoVpQCQdlk1ucwiJmVy
- fWmBNXpXS0UR+lbM7M4ooznTqiyYDSN3Y2F+9bWg1wW6EpsQ95w5cPMN4
- xjg3YGLGJV95R4qxgwTGaa+W0en1e0LZXgjhsnLfWvpOtJ5ueWHlg5R4/
- q20v4cMScNqihMDJOQ0pPnx8kovTGfK5KP3NtlS3gyOXbXLYTdkEbWvUD A==;
-X-CSE-ConnectionGUID: nbOIphsiSfu9GouOuEhMkA==
-X-CSE-MsgGUID: pmz0mGqWQkmGP8FmWZ9FBQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11625"; a="66284512"
-X-IronPort-AV: E=Sophos;i="6.20,229,1758610800"; d="scan'208";a="66284512"
+ bh=4em+Eq2QEsq0AO0qneS9NoZYv7bXOaPGAAc0VgkaECM=;
+ b=kdcjJVJOan69YZBXLmpt88fKVyZPeL6UW5ZCE0NhxgEd+aRTe+AsSdmO
+ Sj8JPRWGAzHxUHLlm1PnV/A999Yz9o0CZrTdT1vNsqzFuTWxQBWZXxHOo
+ Lh//c4Vxc1TMjA7KWSPj6fa+vPCqNcjz6NOZcr5H/AdBRxIbUe43m44fS
+ z4UtbQLyNIP1cgKCrC8oQZhNL08BxliBBfqSV3Lwi/ZTgOQmT1ijQvJK5
+ DRYHqEvf/MEm0QzhMmvXlNi1cVV6u3Yip1wd9MSoYiRGTtDG+Y+zCpp6R
+ qijf0g+HXKYEGmN0CDGHwjUyLTYDUyyfICi/19MFvgiLD7JYcmLnUCsOW A==;
+X-CSE-ConnectionGUID: WAtSqO2PSQms4AKEtDbwVQ==
+X-CSE-MsgGUID: 78L+MljbQmyPjDdfXyteVg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11625"; a="66284509"
+X-IronPort-AV: E=Sophos;i="6.20,229,1758610800"; d="scan'208";a="66284509"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Nov 2025 15:02:10 -0800
-X-CSE-ConnectionGUID: 4ucEDA9MSgq52eWQ2k4IPw==
-X-CSE-MsgGUID: QXZddSEaTCCLe9Vds95kTQ==
+ 26 Nov 2025 15:02:09 -0800
+X-CSE-ConnectionGUID: +S1Iv97kSh2JseApi8mSww==
+X-CSE-MsgGUID: /S2mXfrcQGeMAqyI6i227w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,229,1758610800"; d="scan'208";a="224028501"
+X-IronPort-AV: E=Sophos;i="6.20,229,1758610800"; d="scan'208";a="224028495"
 Received: from osgc-sh-dragon.sh.intel.com ([10.239.81.44])
- by fmviesa001.fm.intel.com with ESMTP; 26 Nov 2025 15:02:09 -0800
+ by fmviesa001.fm.intel.com with ESMTP; 26 Nov 2025 15:02:07 -0800
 From: Brian Nguyen <brian3.nguyen@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: tejas.upadhyay@intel.com, matthew.brost@intel.com, shuicheng.lin@intel.com,
  stuart.summers@intel.com
-Subject: [PATCH v2 03/11] drm/xe/xe_tlb_inval: Modify fence interface to
- support PPC flush
-Date: Thu, 27 Nov 2025 07:02:04 +0800
-Message-ID: <20251126230201.3782788-16-brian3.nguyen@intel.com>
+Subject: [PATCH v2 02/11] drm/xe: Reset tlb fence timeout on invalid seqno
+ received
+Date: Thu, 27 Nov 2025 07:02:03 +0800
+Message-ID: <20251126230201.3782788-15-brian3.nguyen@intel.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20251126230201.3782788-13-brian3.nguyen@intel.com>
 References: <20251126230201.3782788-13-brian3.nguyen@intel.com>
@@ -67,54 +67,71 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Allow tlb_invalidation to control when driver wants to flush the
-Private Physical Cache (PPC) as a process of the tlb invalidation
-process.
+TLB_INVALIDATION_SEQNO_INVALID are now used to indicate in progress
+multi-step TLB invalidations, so reset tdr to ensure that action
+won't prematurely trigger when G2H actions are still ongoing.
 
-Default behavior is still to always flush the PPC but driver now has the
-option to disable it.
-
-v2:
- - Revise commit/kernel doc descriptions. (Shuicheng)
- - Remove unused function. (Shuicheng)
- - Remove bool flush_cache parameter from fence,
-   and various function inputs. (Matthew B)
+v2: Remove lock from xe_tlb_inval_reset_timeout. (Matthew B)
 
 Signed-off-by: Brian Nguyen <brian3.nguyen@intel.com>
 Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Shuicheng Lin <shuicheng.lin@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc_tlb_inval.c | 9 ++++++---
- 1 file changed, 6 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/xe/xe_guc_tlb_inval.c |  3 +--
+ drivers/gpu/drm/xe/xe_tlb_inval.c     | 20 ++++++++++++++++++++
+ 2 files changed, 21 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_guc_tlb_inval.c b/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
-index 848d3493df10..37ac943cb10f 100644
+index f10ecfb49735..848d3493df10 100644
 --- a/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
 +++ b/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
-@@ -34,9 +34,12 @@ static int send_tlb_inval(struct xe_guc *guc, const u32 *action, int len)
- 			      G2H_LEN_DW_TLB_INVALIDATE, 1);
+@@ -234,8 +234,7 @@ int xe_guc_tlb_inval_done_handler(struct xe_guc *guc, u32 *msg, u32 len)
+ 	if (unlikely(len != 1))
+ 		return -EPROTO;
+ 
+-	if (msg[0] != TLB_INVALIDATION_SEQNO_INVALID)
+-		xe_tlb_inval_done_handler(&gt->tlb_inval, msg[0]);
++	xe_tlb_inval_done_handler(&gt->tlb_inval, msg[0]);
+ 
+ 	return 0;
+ }
+diff --git a/drivers/gpu/drm/xe/xe_tlb_inval.c b/drivers/gpu/drm/xe/xe_tlb_inval.c
+index 918a59e686ea..a122fbb9fc4a 100644
+--- a/drivers/gpu/drm/xe/xe_tlb_inval.c
++++ b/drivers/gpu/drm/xe/xe_tlb_inval.c
+@@ -199,6 +199,20 @@ void xe_tlb_inval_reset(struct xe_tlb_inval *tlb_inval)
+ 	mutex_unlock(&tlb_inval->seqno_lock);
  }
  
--#define MAKE_INVAL_OP(type)	((type << XE_GUC_TLB_INVAL_TYPE_SHIFT) | \
-+#define MAKE_INVAL_OP_FLUSH(type, flush_cache)	((type << XE_GUC_TLB_INVAL_TYPE_SHIFT) | \
- 		XE_GUC_TLB_INVAL_MODE_HEAVY << XE_GUC_TLB_INVAL_MODE_SHIFT | \
--		XE_GUC_TLB_INVAL_FLUSH_CACHE)
-+		(flush_cache ? \
-+		XE_GUC_TLB_INVAL_FLUSH_CACHE : 0))
++/**
++ * xe_tlb_inval_reset_timeout() - Reset TLB inval fence timeout
++ * @tlb_inval: TLB invalidation client
++ *
++ * Reset the TLB invalidation timeout timer.
++ */
++static void xe_tlb_inval_reset_timeout(struct xe_tlb_inval *tlb_inval)
++{
++	lockdep_assert_held(&tlb_inval->pending_lock);
 +
-+#define MAKE_INVAL_OP(type)	MAKE_INVAL_OP_FLUSH(type, true)
- 
- static int send_tlb_inval_all(struct xe_tlb_inval *tlb_inval, u32 seqno)
++	mod_delayed_work(system_wq, &tlb_inval->fence_tdr,
++			 tlb_inval->ops->timeout_delay(tlb_inval));
++}
++
+ static bool xe_tlb_inval_seqno_past(struct xe_tlb_inval *tlb_inval, int seqno)
  {
-@@ -152,7 +155,7 @@ static int send_tlb_inval_ppgtt(struct xe_tlb_inval *tlb_inval, u32 seqno,
- 						    ilog2(SZ_2M) + 1)));
- 		xe_gt_assert(gt, IS_ALIGNED(start, length));
- 
--		action[len++] = MAKE_INVAL_OP(XE_GUC_TLB_INVAL_PAGE_SELECTIVE);
-+		action[len++] = MAKE_INVAL_OP_FLUSH(XE_GUC_TLB_INVAL_PAGE_SELECTIVE, true);
- 		action[len++] = asid;
- 		action[len++] = lower_32_bits(start);
- 		action[len++] = upper_32_bits(start);
+ 	int seqno_recv = READ_ONCE(tlb_inval->seqno_recv);
+@@ -360,6 +374,12 @@ void xe_tlb_inval_done_handler(struct xe_tlb_inval *tlb_inval, int seqno)
+ 	 * process_g2h_msg().
+ 	 */
+ 	spin_lock_irqsave(&tlb_inval->pending_lock, flags);
++	if (seqno == TLB_INVALIDATION_SEQNO_INVALID) {
++		xe_tlb_inval_reset_timeout(tlb_inval);
++		spin_unlock_irqrestore(&tlb_inval->pending_lock, flags);
++		return;
++	}
++
+ 	if (xe_tlb_inval_seqno_past(tlb_inval, seqno)) {
+ 		spin_unlock_irqrestore(&tlb_inval->pending_lock, flags);
+ 		return;
 -- 
 2.52.0
 
