@@ -4,169 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D4346D1118E
-	for <intel-xe@archiver.kernel.org>; Wed, 26 Nov 2025 18:48:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1E5C8D11193
+	for <intel-xe@archiver.kernel.org>; Wed, 26 Nov 2025 18:52:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 984C310E6DB;
-	Wed, 26 Nov 2025 18:48:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B8A9810E6E2;
+	Wed, 26 Nov 2025 18:52:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZhC3gwsd";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="La1kK0Is";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7D2BF10E6DB;
- Wed, 26 Nov 2025 18:48:49 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9806E10E6E2;
+ Wed, 26 Nov 2025 18:52:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1764182930; x=1795718930;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=pqD3sd1sg9r5ZulNk8e1rQ3xyfFQjWKS4Aqu82bGsvo=;
- b=ZhC3gwsdoW/dA4OHyRDcG8vyn1+pRZEsSwzUVX2mtPD3Cd2dGaX0o6Oo
- Swk+U8AMbZa0yK9qt+CmOL92JAGD+RvjKvdX6Yow0mfPRET+lirJQywTM
- Rw9CKDc7NasomUBM+EPGF5A+93rI68en36KEACKZDjOclyCHMbznfEkzn
- UyqWIiip8JpIMDPemF16F8ildKPfdYpJ577m8pzOP4Ch+QM/rFMRPM4cP
- W0fiiHYHyFLYQgDosm9sjKvBOktjrNF14RyE6fxGc531HgqhXhvROiizu
- CkMgy0jYy4weNMv1bbkxc4om2VQz+8PKxysaahbpq1RWV0Z4j8ieDLSvr Q==;
-X-CSE-ConnectionGUID: etB6W1P1S3KsHK4Xc3ENYQ==
-X-CSE-MsgGUID: kVQyAMI7SumunWtOPKTJqg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11625"; a="76915815"
-X-IronPort-AV: E=Sophos;i="6.20,229,1758610800"; d="scan'208";a="76915815"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Nov 2025 10:48:49 -0800
-X-CSE-ConnectionGUID: JaY3nsDHQECVz40SB17IMQ==
-X-CSE-MsgGUID: 2k6H0wsVSRWjOMrEnE7y+g==
+ t=1764183141; x=1795719141;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=XV3oqdOYqKRbqPqEM/86rjIFgR+qIOQLYE2j0M7UCqo=;
+ b=La1kK0Is0LpFD2HAH7dKUE9q25famqNsF6vIBiUUqPovFGsUWBEpQoga
+ z37OuOch7Fz1rPd8rSrJ4TvSh+FtfS1TQk7YMgMlVSiXymvpmkGmRkIvH
+ uzBM2hZOXGmHbA2pwAgxNCvO6Rj1b3ptAE8BS+anPKbyOD+5lIaMOQ6pM
+ 3vYF3QiJssRdrrIHg4H5awZuRhOmIYci5Hk6NQp8j4uFJSewWXJq0x6dT
+ Xhc4lUMPgBp/BfN5yt95it9OKXJ1f1llkaGDZU54+P8YLpLHO23dSRt3A
+ EnGGg10/4E8gdcc0TooF9GNXN3PSguq92ERm2Y6rKPBpdRhXa9uoUR2q1 A==;
+X-CSE-ConnectionGUID: wuHsSzRNTGGAspxvXnPxeg==
+X-CSE-MsgGUID: 19HfTnMKScqGcQEqDtHGiQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11625"; a="77592207"
+X-IronPort-AV: E=Sophos;i="6.20,229,1758610800"; d="scan'208";a="77592207"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Nov 2025 10:52:20 -0800
+X-CSE-ConnectionGUID: zcPy4EBWQtO2IFENlHRctA==
+X-CSE-MsgGUID: lHfnNoRYSsq6y5/60Grmkg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,229,1758610800"; d="scan'208";a="223725561"
-Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
- by orviesa002.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Nov 2025 10:48:48 -0800
-Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
- fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Wed, 26 Nov 2025 10:48:47 -0800
-Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
- FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29 via Frontend Transport; Wed, 26 Nov 2025 10:48:47 -0800
-Received: from CY3PR05CU001.outbound.protection.outlook.com (40.93.201.18) by
- edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Wed, 26 Nov 2025 10:48:47 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=DlOnhEf3lwbpUaAyNInlVUvezNwxKtrooV0aErRR4WxXFr8B0+10PGKgbRRJk1AQvdnktJYdw0Al456AAexVztSatc7FNc4Q+1Lf5QWIGqzLQYZNcQ661iBsB4PMib+75tpR01mjDKGcYLF4YRu+RfKil9pt49ZxRSKDjcgbvsvwikx13yFtteOiEHRkQgY0NsHDao4YVk0JB7tLUzl3ERivGt/hILrZWcXg83oASQLWpH1FWjQh7ktDh4Zb9w1RbQAbeqsPslLEQTEgGWGpIdcnHPIVtN7SMTFLRVVXe7jZJSBwsHu6V1AK8E6UP033Dp+FAIx1d79hFrjexWSUPg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=kcrkOvf1n56QK8ICebbnS5MWb1XQ8icVeB3YIWNj1KM=;
- b=CVi/tkRBy/vqRMvBkWr1oxnlq+YwYgBc91XrXVFSOR6f3F4h6iQJnmtE9W4XmTzJhwbab4wEEc0MnN2J/oVXPKVrFmrn/gH2hx4hd1lYyLw/rwOlzQWHhazqNkCr6cd7cSvM8p+w1vN+rNy4WLOIl7G19cGSmWpemeJoQ5UXALPKAhY5JxAfPtdqxxwTnptbuLHU6GGJGHlOmb257SpI4xmaWmcvXt1akozbfr4R6SKp8bAGwwg8jExUHDWFU5BiyqJEX8s6llNASJga88wSyUaJBjl0qwNjToepHhzI/AW6qWIdKHUMFGVoQ2ztd3mayI327JkDrHwsyHBYKjuUMQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CYYPR11MB8430.namprd11.prod.outlook.com (2603:10b6:930:c6::19)
- by DS4PPFBA72E12AE.namprd11.prod.outlook.com (2603:10b6:f:fc02::48)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9366.12; Wed, 26 Nov
- 2025 18:48:45 +0000
-Received: from CYYPR11MB8430.namprd11.prod.outlook.com
- ([fe80::76d2:8036:2c6b:7563]) by CYYPR11MB8430.namprd11.prod.outlook.com
- ([fe80::76d2:8036:2c6b:7563%6]) with mapi id 15.20.9343.016; Wed, 26 Nov 2025
- 18:48:45 +0000
-Date: Wed, 26 Nov 2025 13:48:38 -0500
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Riana Tauro <riana.tauro@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
- <aravind.iddamsetty@linux.intel.com>, <anshuman.gupta@intel.com>,
- <joonas.lahtinen@linux.intel.com>, <lukas@wunner.de>,
- <simona.vetter@ffwll.ch>, <airlied@gmail.com>, <lucas.demarchi@intel.com>
-Subject: Re: [PATCH v2 2/4] drm/xe/xe_drm_ras: Add support for drm ras
-Message-ID: <aSdLhiET8uIMg1zg@intel.com>
-References: <20251126143652.2843242-6-riana.tauro@intel.com>
- <20251126143652.2843242-8-riana.tauro@intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20251126143652.2843242-8-riana.tauro@intel.com>
-X-ClientProxiedBy: BYAPR05CA0084.namprd05.prod.outlook.com
- (2603:10b6:a03:e0::25) To CYYPR11MB8430.namprd11.prod.outlook.com
- (2603:10b6:930:c6::19)
+X-IronPort-AV: E=Sophos;i="6.20,229,1758610800"; d="scan'208";a="193119256"
+Received: from abityuts-desk.ger.corp.intel.com (HELO [10.245.245.127])
+ ([10.245.245.127])
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Nov 2025 10:52:18 -0800
+Message-ID: <56dfaa41fc4d3b08def119f923e67b5798bcba1f.camel@linux.intel.com>
+Subject: Re: [PATCH v2 16/17] drm/pagemap, drm/xe: Support migration over
+ interconnect
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Matthew Brost <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+ himal.prasad.ghimiray@intel.com, apopple@nvidia.com, airlied@gmail.com,
+ Simona Vetter <simona.vetter@ffwll.ch>, felix.kuehling@amd.com, Christian
+ =?ISO-8859-1?Q?K=F6nig?=	 <christian.koenig@amd.com>, dakr@kernel.org,
+ "Mrozek, Michal"	 <michal.mrozek@intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>
+Date: Wed, 26 Nov 2025 19:52:14 +0100
+In-Reply-To: <aScriYMCR15BN6Jo@lstrano-desk.jf.intel.com>
+References: <20251111164408.113070-1-thomas.hellstrom@linux.intel.com>
+ <20251111164408.113070-17-thomas.hellstrom@linux.intel.com>
+ <aScriYMCR15BN6Jo@lstrano-desk.jf.intel.com>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.54.3 (3.54.3-2.fc41) 
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CYYPR11MB8430:EE_|DS4PPFBA72E12AE:EE_
-X-MS-Office365-Filtering-Correlation-Id: 9ebcc0be-3579-42a0-b131-08de2d1c6d5d
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
-X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?+L/0H58m934vbLNum95IdcliO9ghd9VcxUUiY/OUb7bYfdXi4p6LyH0Kbe?=
- =?iso-8859-1?Q?f/AT4i7NkAbdOb3W8kAnXGsyz6UxGjI0EHz+G6bbueWS0dU3vS59PqPv6b?=
- =?iso-8859-1?Q?g4+9C9U08n03o8ibsVFu0AGlSgWFLMaN9sE0xWaPoRexYalxDQdKvSnatY?=
- =?iso-8859-1?Q?Zwfe5o5X7PbwR6hUOtCxL9IeKsXTDayQtHbLBVT2RhPb4W0q/2d2YGvdGF?=
- =?iso-8859-1?Q?RIvwkiPpcggX9GiTSZjxbn8lT6baRPvOkbh9L0UdHSRjR/wcDaaigkgS8A?=
- =?iso-8859-1?Q?fMioBqhQ01rzZZ8mvNJCpUshSIFixB6GopBZ14D14TyvReZgFXz20Zt2CH?=
- =?iso-8859-1?Q?PpReDjKCrkIQ7eFUDRigb1QFGYmAGDX1wzFvReWVWGpv5LygnO3CMZAQw7?=
- =?iso-8859-1?Q?+I8jGPVd5srtsJdLjHKqoooW7Rc3mKOlCVlESXh6Y89hC2+FrXbHzOnTMm?=
- =?iso-8859-1?Q?wR0tUo2Cnl4uXYC61C2TR8EBTvKfimVNDxfPGlaTJSPh7ZcUB0J6MgaLwk?=
- =?iso-8859-1?Q?792LsZwlTwOPpvagzOtsaMssKcQBT3sXAJ9FjFhw4jsA3WmGmmKxtIk9C3?=
- =?iso-8859-1?Q?9iWCsDWGhjXzyqiZJtFpkx1rfGKohKR0M/0O3N3DfMZVK49wF2xkdcjdDW?=
- =?iso-8859-1?Q?ywgu6NPk9qCkEBVeHA6ACyaHsgUwscAf9PrrblT0AkRdgKnMquLgyneSwO?=
- =?iso-8859-1?Q?B0tgU0EtrJ70OXt80NllDpe9TIFdmmsHY05Hk6WTfSm6sBto7bK+HTm4cK?=
- =?iso-8859-1?Q?5oYzFqrqZpfLKbrran5LfniMIuA+E52hA+t6mKXPTzryg1ZYASUMn1/Dq+?=
- =?iso-8859-1?Q?1sXfm//NOUE5jaxUUgXYa8fInGVCiaV4mZGtBwQtjQ+pdtpqiJRKNrYLDR?=
- =?iso-8859-1?Q?BAcuV3kH3MRljwuvTa9057kwXO0SSgJFyKLw/KR5CcEX18u4WU7FXQl6V7?=
- =?iso-8859-1?Q?TK23c+pcppDEy7R7r2wimvqJ/63v6RUV0lv7yfzMKQ5B3Oi7iKAC9S798W?=
- =?iso-8859-1?Q?Ynq72FR31n4Td+rHdSB/OOL8pMMEuqNcE2wO+rbRUwt6DXXmEdZqcMWvbM?=
- =?iso-8859-1?Q?Bsz1xeGw1EN1TdxPFEZOwqi9KZ3/4Jti0uG/OigqWPMYLKwPQdBBeo8s7e?=
- =?iso-8859-1?Q?dSTLRgBHWsKZrUhJP3UABG0hDkm7TtZ7AgulXv4aEvnh9Sbd2LqSIcYFPQ?=
- =?iso-8859-1?Q?/e7ibmZEMcFKTMHfGeOUYJt203E1eA3f1FgY7+BsQ2iJck8sW5g/5tmqxP?=
- =?iso-8859-1?Q?axEgaw+DPaXLlV1dYbfP3bVWV+kLOLlAg86EzaFe+Q2MhWpViw6jl8nbkl?=
- =?iso-8859-1?Q?d22KQgd3vIvk88P1YT2zeM4lGsAaC/gXRNG47HzZKg5Zu2GFXPiscNesHR?=
- =?iso-8859-1?Q?PQyuA5LHSOYBAKlP/NpClAxdWJ3sHEvkn8Ykhf2ixNJZ8nOcmFmO9dXdff?=
- =?iso-8859-1?Q?j2oEGwLfhTjdCHuqSAtfzYQ2HxCR2cEVV26I68cvYg1hvisvr27by0xlfs?=
- =?iso-8859-1?Q?390Nz0nCWRqZkupgj+hKOp?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CYYPR11MB8430.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?vhzfguASwnw9hZcXnQ2HbWnZwnKhnKJx8YEH+aDFwCDmJe//dicxkxtWIk?=
- =?iso-8859-1?Q?WSAWeQEZk1VOihFopDAAn9OzIds2qSfqnYHT+eoIbcggpHQgmjtXJbpDtJ?=
- =?iso-8859-1?Q?d36JHk3VDsEB4mUPdIcV76/kZO+8qh4dq/wL12w4PMexZObt1Y6I/H9DE/?=
- =?iso-8859-1?Q?yfwszxO6SWLOLodJudkPemTliTHi/kzVnJskYwAlBB8LKeuZqVJ2AvJM4r?=
- =?iso-8859-1?Q?eWhK8J9N0RCPkdnFicvigCLDv6eVgwhi/IsqOp9zjifj722Rn8f85xRDsK?=
- =?iso-8859-1?Q?YCYHPOHQYLjrHZqBXfwIHxhT3Elxe/z2ADQ3UkN4GonTEU7aJTr9qsgj2r?=
- =?iso-8859-1?Q?4FU9hGshNJABP8RBk9ffswWTLuJ6B/RgRVAxPUcGnQH+Eg+6LAGRU+czXP?=
- =?iso-8859-1?Q?Auw/pil2TkmGdXnbPt2x+OxwEGyFG/pobTTt3YSn/Z7pMjbL92KZ1hmoB+?=
- =?iso-8859-1?Q?LUBhe8dYpjTxNhf4ascpmSLlcyuBY/oTeE/z3cCdVCMV0Oq920OoyNyRwz?=
- =?iso-8859-1?Q?AUVSCN159N6RIIwvoi3g6r5c+TN56PzFEl6B3TKlIjzcyHPBuyAfBPQfri?=
- =?iso-8859-1?Q?dstMwI/XqZzQRjdI9Zsf5bQLdVYxw6LkVEt4PmeZxmfToDN5AcXtWuPm5x?=
- =?iso-8859-1?Q?KhhAegfYItvHViRx8LVQVkKj6WnxELcFuDob7EVp+Mmfm3wwilIgeLdGy0?=
- =?iso-8859-1?Q?1tAWwpnxgS/rV2f5NXBa/mkSCH/B4ugINTPC1xUPPzn+pEk7jt6O0YfY7N?=
- =?iso-8859-1?Q?9Mryr3nlWD+iz36mKgY8IU2vDu6OpJ3C35PUvQL+Yme5M9TVKA6b/Rqc8A?=
- =?iso-8859-1?Q?GQVahUxF8E+SLZLdI6rXNmOvXvwW+xVQa/WflANgPnkqoZlTK58RUhXwds?=
- =?iso-8859-1?Q?/ECze/ElnAgRk8cUve37OH1Yyrlc08g2Q1XretSnLglQPVDc9HPWJQmfvW?=
- =?iso-8859-1?Q?3i6gPPvniwrir13RwgVP8n0ipGQWJxW5tBehW07BwUMb58rAHQjZCEOaWY?=
- =?iso-8859-1?Q?l3frLGQc7rlX9UG27CRpfHSimCopb8dGY7kAancOoASu5EKV2w3E0fA/lp?=
- =?iso-8859-1?Q?AukI9qEmwWseKWAXoEVyEA3FKQJOGM+D5pxJmzUsK40c1U94vK1Bw9+3e6?=
- =?iso-8859-1?Q?bEd/WkKcoT7S/UrVg8w3/1sfP+qlTTverYeLp4smTMb2Zt1d6mKy6TD78v?=
- =?iso-8859-1?Q?0LWx9zw7zLYKP6nbjLAWu0O6rWBI01Oux/IGj/1jNS4VSZzi58ABNWrM0h?=
- =?iso-8859-1?Q?I0D1/R9M9eHwcxCxhdzb6U3eoTSC6HBtduK3ovagegfpeOLl/ZWzLZt3A7?=
- =?iso-8859-1?Q?ME9mm0sAd0ArfPRXA+GVlWb5+Q5kwvBtVdWW+tuYa2yHz2lIopKwNK+sAm?=
- =?iso-8859-1?Q?RHEb68QpPPMGvAJ/1Na2x6zH+BA0OPdpWjjZayT7qMCPLC0iCr4umtKqZz?=
- =?iso-8859-1?Q?H7oD2pvfX02a1OHPSrvbmZ1YwXnOnyRur3PbWQBDrBUDgqj5HcwDnOoXjj?=
- =?iso-8859-1?Q?fQPewYCzgTJSZkDiZzg/2hBqAPNSzqkJWNYJojJDAAekoi+dNexthgaIU6?=
- =?iso-8859-1?Q?N16qq1hVCI7bgf+QIg/qazqRgVx1jfiskKd+sFRmiN+QSorNIB7S25zjCp?=
- =?iso-8859-1?Q?CJdC8mv3CRVC7OjiPpDzxTe/1tT+TjWcsV?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9ebcc0be-3579-42a0-b131-08de2d1c6d5d
-X-MS-Exchange-CrossTenant-AuthSource: CYYPR11MB8430.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Nov 2025 18:48:45.5043 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: P/s9Yp5mCijsG+r0LC3Gpx4kjtx2cs09d38ovRqIaZMC5pLN5eGBdqt3MMGxvZfo7mhp3H8qa4ADOwvuq+SAKg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS4PPFBA72E12AE
-X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -181,466 +77,600 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Nov 26, 2025 at 08:06:45PM +0530, Riana Tauro wrote:
-> Allocate correctable, nonfatal and fatal nodes per xe device.
-> Each node contains error classes, counters and respective
-> query counter functions.
-> 
-> Add basic functionality to create and register drm nodes.
-> 
-> Signed-off-by: Riana Tauro <riana.tauro@intel.com>
-> ---
->  drivers/gpu/drm/xe/Makefile           |   1 +
->  drivers/gpu/drm/xe/xe_device_types.h  |   4 +
->  drivers/gpu/drm/xe/xe_drm_ras.c       | 221 ++++++++++++++++++++++++++
->  drivers/gpu/drm/xe/xe_drm_ras.h       |  12 ++
->  drivers/gpu/drm/xe/xe_drm_ras_types.h |  54 +++++++
->  drivers/gpu/drm/xe/xe_hw_error.c      |  38 ++---
->  include/uapi/drm/xe_drm.h             |   5 +
->  7 files changed, 313 insertions(+), 22 deletions(-)
->  create mode 100644 drivers/gpu/drm/xe/xe_drm_ras.c
->  create mode 100644 drivers/gpu/drm/xe/xe_drm_ras.h
->  create mode 100644 drivers/gpu/drm/xe/xe_drm_ras_types.h
-> 
-> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-> index b848da79a4e1..7bc805b33e12 100644
-> --- a/drivers/gpu/drm/xe/Makefile
-> +++ b/drivers/gpu/drm/xe/Makefile
-> @@ -41,6 +41,7 @@ xe-y += xe_bb.o \
->  	xe_device_sysfs.o \
->  	xe_dma_buf.o \
->  	xe_drm_client.o \
-> +	xe_drm_ras.o \
->  	xe_eu_stall.o \
->  	xe_exec.o \
->  	xe_exec_queue.o \
-> diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-> index 6ce3247d1bd8..69097e3b3995 100644
-> --- a/drivers/gpu/drm/xe/xe_device_types.h
-> +++ b/drivers/gpu/drm/xe/xe_device_types.h
-> @@ -13,6 +13,7 @@
->  #include <drm/ttm/ttm_device.h>
->  
->  #include "xe_devcoredump_types.h"
-> +#include "xe_drm_ras_types.h"
->  #include "xe_heci_gsc.h"
->  #include "xe_late_bind_fw_types.h"
->  #include "xe_lmtt_types.h"
-> @@ -353,6 +354,9 @@ struct xe_device {
->  		bool oob_initialized;
->  	} wa_active;
->  
-> +	/** @ras: ras structure for device */
-> +	struct xe_drm_ras ras;
-> +
->  	/** @survivability: survivability information for device */
->  	struct xe_survivability survivability;
->  
-> diff --git a/drivers/gpu/drm/xe/xe_drm_ras.c b/drivers/gpu/drm/xe/xe_drm_ras.c
-> new file mode 100644
-> index 000000000000..5320e845e9d5
-> --- /dev/null
-> +++ b/drivers/gpu/drm/xe/xe_drm_ras.c
-> @@ -0,0 +1,221 @@
-> +// SPDX-License-Identifier: MIT
-> +/*
-> + * Copyright © 2025 Intel Corporation
-> + */
-> +
-> +#include <drm/drm_managed.h>
-> +#include <drm/drm_ras.h>
-> +#include <drm/xe_drm.h>
-> +
-> +#include "xe_device.h"
-> +#include "xe_drm_ras.h"
-> +
-> +#define ERR_INFO(index, _name) \
-> +	[index] = { .name = _name, .counter = 0 }
-> +
-> +static struct xe_drm_ras_counter error_info[] = {
-> +	ERR_INFO(DRM_XE_GENL_CORE_COMPUTE, "GT Error"),
-> +};
-> +
-> +static int hw_query_error_counter(struct xe_drm_ras_counter *info,
-> +				  u32 error_id, const char **name, u32 *val)
-> +{
-> +	*name = info[error_id].name;
-> +	*val =  info[error_id].counter;
-> +
-> +	return 0;
-> +}
-> +
-> +static int query_non_fatal_error_counters(struct drm_ras_node *ep,
-> +					  u32 error_id, const char **name,
-> +					  u32 *val)
-> +{
-> +	struct xe_device *xe = ep->priv;
-> +	struct xe_drm_ras *ras = &xe->ras;
-> +	struct xe_drm_ras_counter *info = ras->info[HARDWARE_ERROR_NONFATAL];
-> +
-> +	if (error_id >= ARRAY_SIZE(error_info))
-> +		return -EINVAL;
-> +
-> +	if (!error_info[error_id].name)
-> +		return -ENOENT;
-> +
-> +	return hw_query_error_counter(info, error_id, name, val);
-> +}
-> +
-> +static int query_fatal_error_counters(struct drm_ras_node *ep,
-> +				      u32 error_id, const char **name,
-> +				      u32 *val)
-> +{
-> +	struct xe_device *xe = ep->priv;
-> +	struct xe_drm_ras *ras = &xe->ras;
-> +	struct xe_drm_ras_counter *info = ras->info[HARDWARE_ERROR_FATAL];
-> +
-> +	if (error_id >= ARRAY_SIZE(error_info))
-> +		return -EINVAL;
-> +
-> +	if (!error_info[error_id].name)
-> +		return -ENOENT;
-> +
-> +	return hw_query_error_counter(info, error_id, name, val);
-> +}
-> +
-> +static int query_correctable_error_counters(struct drm_ras_node *ep,
-> +					    u32 error_id, const char **name,
-> +					    u32 *val)
-> +{
-> +	struct xe_device *xe = ep->priv;
-> +	struct xe_drm_ras *ras = &xe->ras;
-> +	struct xe_drm_ras_counter *info = ras->info[HARDWARE_ERROR_CORRECTABLE];
-> +
-> +	if (error_id >= ARRAY_SIZE(error_info))
-> +		return -EINVAL;
-> +
-> +	if (!error_info[error_id].name)
-> +		return -ENOENT;
-> +
-> +	return hw_query_error_counter(info, error_id, name, val);
-> +}
-> +
-> +static struct xe_drm_ras_counter *allocate_and_copy_counters(struct xe_device *xe,
-> +							     int count,
-> +							     struct xe_drm_ras_counter *src)
-> +{
-> +	struct xe_drm_ras_counter *counter;
-> +
-> +	counter = drmm_kzalloc(&xe->drm, count * sizeof(struct xe_drm_ras_counter), GFP_KERNEL);
-> +	if (!counter)
-> +		return ERR_PTR(-ENOMEM);
-> +
-> +	memcpy(counter, src, count * sizeof(struct xe_drm_ras_counter));
-> +
-> +	return counter;
-> +}
-> +
-> +static int assign_node_params(struct xe_device *xe, struct drm_ras_node *node,
-> +			      enum hardware_error hw_err)
-> +{
-> +	struct xe_drm_ras *ras = &xe->ras;
-> +	int count = 0, ret = 0;
-> +
-> +	count = ARRAY_SIZE(error_info);
-> +	node->error_counter_range.first = DRM_XE_GENL_CORE_COMPUTE;
-> +	node->error_counter_range.last = count - 1;
-> +
-> +	switch (hw_err) {
-> +	case HARDWARE_ERROR_CORRECTABLE:
-> +		ras->info[hw_err] = allocate_and_copy_counters(xe, count, error_info);
-> +		if (IS_ERR(ras->info[hw_err]))
-> +			return PTR_ERR(ras->info[hw_err]);
-> +		node->query_error_counter = query_correctable_error_counters;
-> +		break;
-> +	case HARDWARE_ERROR_NONFATAL:
-> +		ras->info[hw_err] = allocate_and_copy_counters(xe, count, error_info);
-> +		if (IS_ERR(ras->info[hw_err]))
-> +			return PTR_ERR(ras->info[hw_err]);
-> +		node->query_error_counter = query_non_fatal_error_counters;
-> +		break;
-> +	case HARDWARE_ERROR_FATAL:
-> +		ras->info[hw_err] = allocate_and_copy_counters(xe, count, error_info);
-> +		if (IS_ERR(ras->info[hw_err]))
-> +			return PTR_ERR(ras->info[hw_err]);
-> +		node->query_error_counter = query_fatal_error_counters;
-> +		break;
-> +	default:
-> +		break;
-> +	}
-> +
-> +	return ret;
-> +}
-> +
-> +static int register_nodes(struct xe_device *xe)
-> +{
-> +	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
-> +	struct xe_drm_ras *ras = &xe->ras;
-> +	const char *device_name;
-> +	int i = 0, ret;
-> +
-> +	device_name = kasprintf(GFP_KERNEL, "%04x:%02x:%02x.%d",
-> +				pci_domain_nr(pdev->bus), pdev->bus->number,
-> +				PCI_SLOT(pdev->devfn), PCI_FUNC(pdev->devfn));
-> +
-> +	for (i = 0; i < HARDWARE_ERROR_MAX; i++) {
-> +		struct drm_ras_node *node = &ras->node[i];
-> +		const char *hw_err_str = hw_error_to_str(i);
-> +		const char *node_name;
-> +
-> +		node_name = kasprintf(GFP_KERNEL, "%s-errors", hw_err_str);
-> +
-> +		node->device_name = device_name;
-> +		node->node_name = node_name;
-> +		node->type = DRM_RAS_NODE_TYPE_ERROR_COUNTER;
-> +
-> +		ret = assign_node_params(xe, node, i);
-> +		if (ret) {
-> +			kfree(node->node_name);
-> +			return ret;
-> +		}
-> +
-> +		node->priv = xe;
-> +
-> +		ret = drm_ras_node_register(node);
-> +		if (ret) {
-> +			drm_err(&xe->drm, "Failed to register drm ras tile node\n");
-> +			kfree(node->node_name);
-> +			return ret;
-> +		}
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static void xe_drm_ras_unregister_nodes(void *arg)
-> +{
-> +	struct xe_device *xe = arg;
-> +	struct xe_drm_ras *ras = &xe->ras;
-> +	int i = 0;
-> +
-> +	for (i = 0; i < HARDWARE_ERROR_MAX; i++) {
-> +		struct drm_ras_node *node = &ras->node[i];
-> +
-> +		drm_ras_node_unregister(node);
-> +
-> +		kfree(node->node_name);
-> +		if (i == 0)
-> +			kfree(node->device_name);
-> +	}
-> +}
-> +
-> +/**
-> + * xe_drm_ras_allocate_nodes - Allocate drm ras nodes
-> + * @xe: xe device instance
-> + *
-> + * Allocate xe drm ras nodes for all errors in a tile
-> + *
-> + * Return: 0 on success, error code on failure
-> + */
-> +int xe_drm_ras_allocate_nodes(struct xe_device *xe)
-> +{
-> +	struct drm_ras_node *node;
-> +	int err;
-> +
-> +	node = drmm_kzalloc(&xe->drm, HARDWARE_ERROR_MAX * sizeof(struct drm_ras_node), GFP_KERNEL);
-> +	if (!node)
-> +		return -ENOMEM;
-> +
-> +	xe->ras.node = node;
-> +
-> +	err = register_nodes(xe);
-> +	if (err) {
-> +		drm_err(&xe->drm, "Failed to register drm ras node\n");
-> +		return err;
-> +	}
-> +
-> +	err = devm_add_action_or_reset(xe->drm.dev, xe_drm_ras_unregister_nodes, xe);
-> +	if (err) {
-> +		drm_err(&xe->drm, "Failed to add action for xe drm_ras\n");
-> +		return err;
-> +	}
-> +
-> +	return 0;
-> +}
-> diff --git a/drivers/gpu/drm/xe/xe_drm_ras.h b/drivers/gpu/drm/xe/xe_drm_ras.h
-> new file mode 100644
-> index 000000000000..6272b5da4e6d
-> --- /dev/null
-> +++ b/drivers/gpu/drm/xe/xe_drm_ras.h
-> @@ -0,0 +1,12 @@
-> +/* SPDX-License-Identifier: MIT */
-> +/*
-> + * Copyright © 2025 Intel Corporation
-> + */
-> +#ifndef XE_DRM_RAS_H_
-> +#define XE_DRM_RAS_H_
-> +
-> +struct xe_device;
-> +
-> +int xe_drm_ras_allocate_nodes(struct xe_device *xe);
-> +
-> +#endif
-> diff --git a/drivers/gpu/drm/xe/xe_drm_ras_types.h b/drivers/gpu/drm/xe/xe_drm_ras_types.h
-> new file mode 100644
-> index 000000000000..452ff9a91510
-> --- /dev/null
-> +++ b/drivers/gpu/drm/xe/xe_drm_ras_types.h
-> @@ -0,0 +1,54 @@
-> +/* SPDX-License-Identifier: MIT */
-> +/*
-> + * Copyright © 2025 Intel Corporation
-> + */
-> +
-> +#ifndef _XE_DRM_RAS_TYPES_H_
-> +#define _XE_DRM_RAS_TYPES_H_
-> +
-> +#include <linux/limits.h>
-> +
-> +struct drm_ras_node;
-> +
-> +/* Error categories reported by hardware */
-> +enum hardware_error {
-> +	HARDWARE_ERROR_CORRECTABLE = 0,
-> +	HARDWARE_ERROR_NONFATAL = 1,
-> +	HARDWARE_ERROR_FATAL = 2,
-> +	HARDWARE_ERROR_MAX,
-> +};
-> +
-> +static inline const char *hw_error_to_str(const enum hardware_error hw_err)
-> +{
-> +	switch (hw_err) {
-> +	case HARDWARE_ERROR_CORRECTABLE:
-> +		return "correctable";
-> +	case HARDWARE_ERROR_NONFATAL:
-> +		return "nonfatal";
-> +	case HARDWARE_ERROR_FATAL:
-> +		return "fatal";
-> +	default:
-> +		return "UNKNOWN";
-> +	}
-> +}
-> +
-> +struct xe_drm_ras_counter {
-> +	const char *name;
-> +	int counter;
-> +};
-> +
-> +/**
-> + * struct xe_drm_ras - xe drm ras structure
-> + *
-> + * This structure has details of error counters
-> + */
-> +struct xe_drm_ras {
-> +	/** @node: DRM RAS node */
-> +	struct drm_ras_node *node;
-> +
-> +	/** @info: info array for all types of errors */
-> +	struct xe_drm_ras_counter *info[HARDWARE_ERROR_MAX];
-> +
-> +};
-> +
-> +#endif
-> diff --git a/drivers/gpu/drm/xe/xe_hw_error.c b/drivers/gpu/drm/xe/xe_hw_error.c
-> index 8c65291f36fc..2adc2e6540f6 100644
-> --- a/drivers/gpu/drm/xe/xe_hw_error.c
-> +++ b/drivers/gpu/drm/xe/xe_hw_error.c
-> @@ -10,6 +10,7 @@
->  #include "regs/xe_irq_regs.h"
->  
->  #include "xe_device.h"
-> +#include "xe_drm_ras.h"
->  #include "xe_hw_error.h"
->  #include "xe_mmio.h"
->  #include "xe_survivability_mode.h"
-> @@ -17,14 +18,6 @@
->  #define  HEC_UNCORR_FW_ERR_BITS 4
->  extern struct fault_attr inject_csc_hw_error;
->  
-> -/* Error categories reported by hardware */
-> -enum hardware_error {
-> -	HARDWARE_ERROR_CORRECTABLE = 0,
-> -	HARDWARE_ERROR_NONFATAL = 1,
-> -	HARDWARE_ERROR_FATAL = 2,
-> -	HARDWARE_ERROR_MAX,
-> -};
-> -
->  static const char * const hec_uncorrected_fw_errors[] = {
->  	"Fatal",
->  	"CSE Disabled",
-> @@ -32,20 +25,6 @@ static const char * const hec_uncorrected_fw_errors[] = {
->  	"Data Corruption"
->  };
->  
-> -static const char *hw_error_to_str(const enum hardware_error hw_err)
-> -{
-> -	switch (hw_err) {
-> -	case HARDWARE_ERROR_CORRECTABLE:
-> -		return "CORRECTABLE";
-> -	case HARDWARE_ERROR_NONFATAL:
-> -		return "NONFATAL";
-> -	case HARDWARE_ERROR_FATAL:
-> -		return "FATAL";
-> -	default:
-> -		return "UNKNOWN";
-> -	}
-> -}
-> -
->  static bool fault_inject_csc_hw_error(void)
->  {
->  	return IS_ENABLED(CONFIG_DEBUG_FS) && should_fail(&inject_csc_hw_error, 1);
-> @@ -146,6 +125,20 @@ void xe_hw_error_irq_handler(struct xe_tile *tile, const u32 master_ctl)
->  			hw_error_source_handler(tile, hw_err);
->  }
->  
-> +static int hw_error_info_init(struct xe_device *xe)
-> +{
-> +	int ret;
-> +
-> +	if (xe->info.platform != XE_PVC)
-> +		return 0;
-> +
-> +	ret = xe_drm_ras_allocate_nodes(xe);
-> +	if (ret)
-> +		return ret;
-> +
-> +	return 0;
-> +}
-> +
->  /*
->   * Process hardware errors during boot
->   */
-> @@ -178,5 +171,6 @@ void xe_hw_error_init(struct xe_device *xe)
->  
->  	INIT_WORK(&tile->csc_hw_error_work, csc_hw_error_work);
->  
-> +	hw_error_info_init(xe);
->  	process_hw_errors(xe);
->  }
-> diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-> index 47853659a705..053cbe1aafbb 100644
-> --- a/include/uapi/drm/xe_drm.h
-> +++ b/include/uapi/drm/xe_drm.h
-> @@ -2273,6 +2273,11 @@ struct drm_xe_vm_query_mem_range_attr {
->  
->  };
->  
-> +/**
-> + * RAS Counters
-> + */
-> +#define DRM_XE_GENL_CORE_COMPUTE	(1)
+On Wed, 2025-11-26 at 08:32 -0800, Matthew Brost wrote:
+> On Tue, Nov 11, 2025 at 05:44:06PM +0100, Thomas Hellstr=C3=B6m wrote:
+> > Support migration over interconnect when migrating from
+> > device-private pages with the same dev_pagemap owner.
+> >=20
+> > Since we now also collect device-private pages to migrate,
+> > also abort migration if the range to migrate is already
+> > fully populated with pages from the desired pagemap.
+> >=20
+> > Finally return -EBUSY from drm_pagemap_populate_mm()
+> > if the migration can't be completed without first migrating all
+> > pages in the range to system. It is expected that the caller
+> > will perform that before retrying the call to
+> > drm_pagemap_populate_mm().
+> >=20
+> > Assume for now that the drm_pagemap implementation is *not*
+> > capable of migrating data within the pagemap itself. This
+> > restriction will be configurable in upcoming patches.
+> >=20
+> > Signed-off-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+> > ---
+> > =C2=A0drivers/gpu/drm/drm_pagemap.c | 177 +++++++++++++++++++++++++----=
+-
+> > ----
+> > =C2=A0drivers/gpu/drm/xe/xe_svm.c=C2=A0=C2=A0 |=C2=A0 20 ++--
+> > =C2=A02 files changed, 143 insertions(+), 54 deletions(-)
+> >=20
+> > diff --git a/drivers/gpu/drm/drm_pagemap.c
+> > b/drivers/gpu/drm/drm_pagemap.c
+> > index 1477a2057a15..e87676313ff9 100644
+> > --- a/drivers/gpu/drm/drm_pagemap.c
+> > +++ b/drivers/gpu/drm/drm_pagemap.c
+> > @@ -210,6 +210,7 @@ static void drm_pagemap_get_devmem_page(struct
+> > page *page,
+> > =C2=A0/**
+> > =C2=A0 * drm_pagemap_migrate_map_pages() - Map migration pages for GPU
+> > SVM migration
+> > =C2=A0 * @dev: The device for which the pages are being mapped
+> > + * @local_dpagemap: The drm_pagemap pointer of the local
+> > drm_pagemap.
+> > =C2=A0 * @pagemap_addr: Array to store DMA information corresponding to
+> > mapped pages
+> > =C2=A0 * @migrate_pfn: Array of migrate page frame numbers to map
+> > =C2=A0 * @npages: Number of pages to map
+> > @@ -223,12 +224,14 @@ static void
+> > drm_pagemap_get_devmem_page(struct page *page,
+> > =C2=A0 * Returns: 0 on success, -EFAULT if an error occurs during
+> > mapping.
+> > =C2=A0 */
+> > =C2=A0static int drm_pagemap_migrate_map_pages(struct device *dev,
+> > +					 struct drm_pagemap
+> > *local_dpagemap,
+> > =C2=A0					 struct drm_pagemap_addr
+> > *pagemap_addr,
+> > =C2=A0					 unsigned long
+> > *migrate_pfn,
+> > =C2=A0					 unsigned long npages,
+> > =C2=A0					 enum dma_data_direction
+> > dir)
+> > =C2=A0{
+> > =C2=A0	unsigned long i;
+> > +	unsigned long num_peer_pages =3D 0;
+> > =C2=A0
+> > =C2=A0	for (i =3D 0; i < npages;) {
+> > =C2=A0		struct page *page =3D
+> > migrate_pfn_to_page(migrate_pfn[i]);
+> > @@ -239,31 +242,48 @@ static int
+> > drm_pagemap_migrate_map_pages(struct device *dev,
+> > =C2=A0		if (!page)
+> > =C2=A0			goto next;
+> > =C2=A0
+> > -		if (WARN_ON_ONCE(is_zone_device_page(page)))
+> > -			return -EFAULT;
+> > -
+> > =C2=A0		folio =3D page_folio(page);
+> > =C2=A0		order =3D folio_order(folio);
+> > =C2=A0
+> > -		dma_addr =3D dma_map_page(dev, page, 0,
+> > page_size(page), dir);
+> > -		if (dma_mapping_error(dev, dma_addr))
+> > -			return -EFAULT;
+> > +		if (is_zone_device_page(page)) {
+> > +			struct drm_pagemap_zdd *zdd =3D page-
+> > >zone_device_data;
+> > +			struct drm_pagemap *dpagemap =3D zdd-
+> > >dpagemap;
+> > +			struct drm_pagemap_addr addr;
+> > +
+> > +			if (dpagemap =3D=3D local_dpagemap)
+> > +				goto next;
+> > =C2=A0
+> > -		pagemap_addr[i] =3D
+> > -			drm_pagemap_addr_encode(dma_addr,
+> > -
+> > 						DRM_INTERCONNECT_SYSTEM,
+> > -						order, dir);
+> > +			num_peer_pages +=3D NR_PAGES(order);
+> > +			addr =3D dpagemap->ops->device_map(dpagemap,
+> > dev, page, order, dir);
+> > +			if (dma_mapping_error(dev, addr.addr))
+> > +				return -EFAULT;
+> > +		} else {
+> > +			dma_addr =3D dma_map_page(dev, page, 0,
+> > page_size(page), dir);
+> > +			if (dma_mapping_error(dev, dma_addr))
+> > +				return -EFAULT;
+> > +
+> > +			pagemap_addr[i] =3D
+> > +				drm_pagemap_addr_encode(dma_addr,
+> > +							DRM_INTERC
+> > ONNECT_SYSTEM,
+> > +							order,
+> > dir);
+> > +		}
+> > =C2=A0
+> > =C2=A0next:
+> > =C2=A0		i +=3D NR_PAGES(order);
+> > =C2=A0	}
+> > =C2=A0
+> > +	if (num_peer_pages)
+> > +		drm_dbg(local_dpagemap->drm, "Migrating %lu peer
+> > pages over interconnect.\n",
+> > +			num_peer_pages);
+> > +
+> > =C2=A0	return 0;
+> > =C2=A0}
+> > =C2=A0
+> > =C2=A0/**
+> > =C2=A0 * drm_pagemap_migrate_unmap_pages() - Unmap pages previously
+> > mapped for GPU SVM migration
+> > =C2=A0 * @dev: The device for which the pages were mapped
+> > + * @migrate_pfn: Array of migrate pfns set up for the mapped
+> > pages. Used to
+> > + * determine the drm_pagemap of a peer device private page.
+> > =C2=A0 * @pagemap_addr: Array of DMA information corresponding to mappe=
+d
+> > pages
+> > =C2=A0 * @npages: Number of pages to unmap
+> > =C2=A0 * @dir: Direction of data transfer (e.g., DMA_BIDIRECTIONAL)
+> > @@ -274,16 +294,27 @@ static int
+> > drm_pagemap_migrate_map_pages(struct device *dev,
+> > =C2=A0 */
+> > =C2=A0static void drm_pagemap_migrate_unmap_pages(struct device *dev,
+> > =C2=A0					=C2=A0=C2=A0=C2=A0 struct
+> > drm_pagemap_addr *pagemap_addr,
+> > +					=C2=A0=C2=A0=C2=A0 unsigned long
+> > *migrate_pfn,
+> > =C2=A0					=C2=A0=C2=A0=C2=A0 unsigned long npages,
+> > =C2=A0					=C2=A0=C2=A0=C2=A0 enum
+> > dma_data_direction dir)
+> > =C2=A0{
+> > =C2=A0	unsigned long i;
+> > =C2=A0
+> > =C2=A0	for (i =3D 0; i < npages;) {
+> > -		if (!pagemap_addr[i].addr ||
+> > dma_mapping_error(dev, pagemap_addr[i].addr))
+> > +		struct page *page =3D
+> > migrate_pfn_to_page(migrate_pfn[i]);
+> > +
+> > +		if (!page || !pagemap_addr[i].addr ||
+> > dma_mapping_error(dev, pagemap_addr[i].addr))
+> > =C2=A0			goto next;
+> > =C2=A0
+> > -		dma_unmap_page(dev, pagemap_addr[i].addr,
+> > PAGE_SIZE << pagemap_addr[i].order, dir);
+> > +		if (is_zone_device_page(page)) {
+> > +			struct drm_pagemap_zdd *zdd =3D page-
+> > >zone_device_data;
+> > +			struct drm_pagemap *dpagemap =3D zdd-
+> > >dpagemap;
+> > +
+> > +			dpagemap->ops->device_unmap(dpagemap, dev,
+> > pagemap_addr[i]);
+> > +		} else {
+> > +			dma_unmap_page(dev, pagemap_addr[i].addr,
+> > +				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 PAGE_SIZE <<
+> > pagemap_addr[i].order, dir);
+> > +		}
+> > =C2=A0
+> > =C2=A0next:
+> > =C2=A0		i +=3D NR_PAGES(pagemap_addr[i].order);
+> > @@ -308,6 +339,7 @@ npages_in_range(unsigned long start, unsigned
+> > long end)
+> > =C2=A0 * @timeslice_ms: The time requested for the migrated pagemap
+> > pages to
+> > =C2=A0 * be present in @mm before being allowed to be migrated back.
+> > =C2=A0 * @pgmap_owner: Not used currently, since only system memory is
+> > considered.
+> > + * @mflags: Flags governing the migration.
+> > =C2=A0 *
+> > =C2=A0 * This function migrates the specified virtual address range to
+> > device memory.
+> > =C2=A0 * It performs the necessary setup and invokes the driver-specifi=
+c
+> > operations for
+> > @@ -333,13 +365,18 @@ int drm_pagemap_migrate_to_devmem(struct
+> > drm_pagemap_devmem *devmem_allocation,
+> > =C2=A0		.start		=3D start,
+> > =C2=A0		.end		=3D end,
+> > =C2=A0		.pgmap_owner	=3D pgmap_owner,
+> > -		.flags		=3D MIGRATE_VMA_SELECT_SYSTEM,
+> > +		.flags		=3D MIGRATE_VMA_SELECT_SYSTEM |
+> > +		MIGRATE_VMA_SELECT_DEVICE_PRIVATE |
+> > +		MIGRATE_VMA_SELECT_DEVICE_COHERENT,
+> > =C2=A0	};
+> > =C2=A0	unsigned long i, npages =3D npages_in_range(start, end);
+> > +	unsigned long own_pages =3D 0, migrated_pages =3D 0;
+> > =C2=A0	struct vm_area_struct *vas;
+> > =C2=A0	struct drm_pagemap_zdd *zdd =3D NULL;
+> > =C2=A0	struct page **pages;
+> > =C2=A0	struct drm_pagemap_addr *pagemap_addr;
+> > +	struct drm_pagemap *dpagemap =3D devmem_allocation-
+> > >dpagemap;
+> > +	struct dev_pagemap *pagemap =3D dpagemap->pagemap;
+> > =C2=A0	void *buf;
+> > =C2=A0	int err;
+> > =C2=A0
+> > @@ -374,11 +411,13 @@ int drm_pagemap_migrate_to_devmem(struct
+> > drm_pagemap_devmem *devmem_allocation,
+> > =C2=A0	pagemap_addr =3D buf + (2 * sizeof(*migrate.src) * npages);
+> > =C2=A0	pages =3D buf + (2 * sizeof(*migrate.src) +
+> > sizeof(*pagemap_addr)) * npages;
+> > =C2=A0
+> > -	zdd =3D drm_pagemap_zdd_alloc(devmem_allocation->dpagemap,
+> > pgmap_owner);
+> > +	zdd =3D drm_pagemap_zdd_alloc(dpagemap, pgmap_owner);
+> > =C2=A0	if (!zdd) {
+> > =C2=A0		err =3D -ENOMEM;
+> > -		goto err_free;
+> > +		kvfree(buf);
+> > +		goto err_out;
+> > =C2=A0	}
+> > +	zdd->devmem_allocation =3D devmem_allocation;	/* Owns
+> > ref */
+> > =C2=A0
+> > =C2=A0	migrate.vma =3D vas;
+> > =C2=A0	migrate.src =3D buf;
+> > @@ -389,54 +428,108 @@ int drm_pagemap_migrate_to_devmem(struct
+> > drm_pagemap_devmem *devmem_allocation,
+> > =C2=A0		goto err_free;
+> > =C2=A0
+> > =C2=A0	if (!migrate.cpages) {
+> > -		err =3D -EFAULT;
+> > +		/* No pages to migrate. Raced or unknown device
+> > pages. */
+> > +		err =3D -EBUSY;
+> > =C2=A0		goto err_free;
+> > =C2=A0	}
+> > =C2=A0
+> > =C2=A0	if (migrate.cpages !=3D npages) {
+> > +		/*
+> > +		 * Some pages to migrate. But we want to migrate
+> > all or
+> > +		 * nothing. Raced or unknown device pages.
+> > +		 */
+> > =C2=A0		err =3D -EBUSY;
+> > -		goto err_finalize;
+> > +		goto err_aborted_migration;
+> > +	}
+> > +
+> > +	/* Count device-private pages to migrate */
+> > +	for (i =3D 0; i < npages; ++i) {
+> > +		struct page *src_page =3D
+> > migrate_pfn_to_page(migrate.src[i]);
+> > +
+> > +		if (src_page && is_zone_device_page(src_page)) {
+> > +			if (page_pgmap(src_page) =3D=3D pagemap)
+> > +				own_pages++;
+> > +		}
+> > +	}
+>=20
+> I understand what this is doing=E2=80=94aborting the migration if the pag=
+es
+> are
+> in the correct location. Conceptually, I believe this is correct, but
+> implementation-wise it is likely not. The pages collected here are
+> gathered via migrate_vma_setup. This step issues an MMU notifier and
+> installs migration PTEs, which are expensive operations. For example,
+> if
+> another GPU already has the correct mappings and the pages are in the
+> correct location, migrate_vma_setup will result in the range being
+> invalidated and the GPU<->GPU mapping being removed. Installing
+> migration PTEs is also CPU-intensive.
+>=20
+> I think the step to check own_pages should be built on top of
+> hmm_range_fault without HMM_PFN_REQ_FAULT set, which is fast and will
+> not issue an MMU notifier.
 
-The feedback we got from Joonas is that we should also make the string name
-an uAPI defined here in the header.
-I'm afraid this series is missing that part for all the patches here.
-Perhaps we should also mention this in the docs in the firs patch as well.
+I agree fully and what you say above is also what we outlined in a
+previous discussion. I was planning to do the hmm_range_fault() check
+in drm_gpusvm, as a follow-up, though, before calling into drm_pagemap
+to migrate.=20
 
-Other than that the series is great, thank you so much for picking that up!
+Reason is that in drm_pagemap, the current implementation doesn't
+register any mmu notifier callbacks.
 
-> +
->  #if defined(__cplusplus)
->  }
->  #endif
-> -- 
-> 2.47.1
-> 
+But I realize now that this is pretty much required for any efficiency
+with multiple gpus that would otherwise invalidate just checking that
+the pages are in place....
+
+/Thomas
+
+
+>=20
+> Matt
+>=20
+> > +
+> > +	drm_dbg(dpagemap->drm, "Total pages %lu; Own pages:
+> > %lu.\n",
+> > +		npages, own_pages);
+> > +	if (own_pages =3D=3D npages) {
+> > +		err =3D 0;
+> > +		drm_dbg(dpagemap->drm, "Migration wasn't
+> > necessary.\n");
+> > +		goto err_aborted_migration;
+> > +	} else if (own_pages) {
+> > +		err =3D -EBUSY;
+> > +		drm_dbg(dpagemap->drm, "Migration aborted due to
+> > fragmentation.\n");
+> > +		goto err_aborted_migration;
+> > =C2=A0	}
+> > =C2=A0
+> > =C2=A0	err =3D ops->populate_devmem_pfn(devmem_allocation, npages,
+> > migrate.dst);
+> > =C2=A0	if (err)
+> > =C2=A0		goto err_finalize;
+> > =C2=A0
+> > -	err =3D drm_pagemap_migrate_map_pages(devmem_allocation-
+> > >dev, pagemap_addr,
+> > +	err =3D drm_pagemap_migrate_map_pages(devmem_allocation-
+> > >dev,
+> > +					=C2=A0=C2=A0=C2=A0 devmem_allocation-
+> > >dpagemap, pagemap_addr,
+> > =C2=A0					=C2=A0=C2=A0=C2=A0 migrate.src, npages,
+> > DMA_TO_DEVICE);
+> > =C2=A0
+> > -	if (err)
+> > +	if (err) {
+> > +		drm_pagemap_migrate_unmap_pages(devmem_allocation-
+> > >dev, pagemap_addr,
+> > +						migrate.src,
+> > npages, DMA_TO_DEVICE);
+> > +
+> > =C2=A0		goto err_finalize;
+> > +	}
+> > =C2=A0
+> > +	own_pages =3D 0;
+> > =C2=A0	for (i =3D 0; i < npages; ++i) {
+> > =C2=A0		struct page *page =3D pfn_to_page(migrate.dst[i]);
+> > +		struct page *src_page =3D
+> > migrate_pfn_to_page(migrate.src[i]);
+> > =C2=A0
+> > +		if (unlikely(src_page &&
+> > is_zone_device_page(src_page) &&
+> > +			=C2=A0=C2=A0=C2=A0=C2=A0 page_pgmap(src_page) =3D=3D pagemap)) {
+> > +			migrate.dst[i] =3D 0;
+> > +			pages[i] =3D NULL;
+> > +			own_pages++;
+> > +			continue;
+> > +		}
+> > =C2=A0		pages[i] =3D page;
+> > =C2=A0		migrate.dst[i] =3D migrate_pfn(migrate.dst[i]);
+> > =C2=A0		drm_pagemap_get_devmem_page(page, zdd);
+> > =C2=A0	}
+> > +	drm_WARN_ON(dpagemap->drm, !!own_pages);
+> > =C2=A0
+> > =C2=A0	err =3D ops->copy_to_devmem(pages, pagemap_addr, npages);
+> > +	drm_pagemap_migrate_unmap_pages(devmem_allocation->dev,
+> > pagemap_addr,
+> > +					migrate.src, npages,
+> > DMA_TO_DEVICE);
+> > =C2=A0	if (err)
+> > =C2=A0		goto err_finalize;
+> > =C2=A0
+> > =C2=A0	/* Upon success bind devmem allocation to range and zdd */
+> > =C2=A0	devmem_allocation->timeslice_expiration =3D get_jiffies_64()
+> > +
+> > =C2=A0		msecs_to_jiffies(timeslice_ms);
+> > -	zdd->devmem_allocation =3D devmem_allocation;	/* Owns
+> > ref */
+> > =C2=A0
+> > =C2=A0err_finalize:
+> > =C2=A0	if (err)
+> > =C2=A0		drm_pagemap_migration_unlock_put_pages(npages,
+> > migrate.dst);
+> > +err_aborted_migration:
+> > =C2=A0	migrate_vma_pages(&migrate);
+> > +
+> > +	for (i =3D 0; i < npages; ++i)
+> > +		if (migrate.src[i] & MIGRATE_PFN_MIGRATE)
+> > +			migrated_pages++;
+> > +
+> > +	if (!err && migrated_pages < npages - own_pages) {
+> > +		drm_dbg(dpagemap->drm, "Raced while finalizing
+> > migration.\n");
+> > +		err =3D -EBUSY;
+> > +	}
+> > +
+> > =C2=A0	migrate_vma_finalize(&migrate);
+> > -	drm_pagemap_migrate_unmap_pages(devmem_allocation->dev,
+> > pagemap_addr, npages,
+> > -					DMA_TO_DEVICE);
+> > =C2=A0err_free:
+> > -	if (zdd)
+> > -		drm_pagemap_zdd_put(zdd);
+> > +	drm_pagemap_zdd_put(zdd);
+> > =C2=A0	kvfree(buf);
+> > +	return err;
+> > +
+> > =C2=A0err_out:
+> > +	devmem_allocation->ops->devmem_release(devmem_allocation);
+> > =C2=A0	return err;
+> > =C2=A0}
+> > =C2=A0EXPORT_SYMBOL_GPL(drm_pagemap_migrate_to_devmem);
+> > @@ -747,7 +840,8 @@ int drm_pagemap_evict_to_ram(struct
+> > drm_pagemap_devmem *devmem_allocation)
+> > =C2=A0	if (err || !mpages)
+> > =C2=A0		goto err_finalize;
+> > =C2=A0
+> > -	err =3D drm_pagemap_migrate_map_pages(devmem_allocation-
+> > >dev, pagemap_addr,
+> > +	err =3D drm_pagemap_migrate_map_pages(devmem_allocation-
+> > >dev,
+> > +					=C2=A0=C2=A0=C2=A0 devmem_allocation-
+> > >dpagemap, pagemap_addr,
+> > =C2=A0					=C2=A0=C2=A0=C2=A0 dst, npages,
+> > DMA_FROM_DEVICE);
+> > =C2=A0	if (err)
+> > =C2=A0		goto err_finalize;
+> > @@ -764,7 +858,7 @@ int drm_pagemap_evict_to_ram(struct
+> > drm_pagemap_devmem *devmem_allocation)
+> > =C2=A0		drm_pagemap_migration_unlock_put_pages(npages,
+> > dst);
+> > =C2=A0	migrate_device_pages(src, dst, npages);
+> > =C2=A0	migrate_device_finalize(src, dst, npages);
+> > -	drm_pagemap_migrate_unmap_pages(devmem_allocation->dev,
+> > pagemap_addr, npages,
+> > +	drm_pagemap_migrate_unmap_pages(devmem_allocation->dev,
+> > pagemap_addr, dst, npages,
+> > =C2=A0					DMA_FROM_DEVICE);
+> > =C2=A0err_free:
+> > =C2=A0	kvfree(buf);
+> > @@ -820,12 +914,10 @@ static int
+> > __drm_pagemap_migrate_to_ram(struct vm_area_struct *vas,
+> > =C2=A0	void *buf;
+> > =C2=A0	int i, err =3D 0;
+> > =C2=A0
+> > -	if (page) {
+> > -		zdd =3D page->zone_device_data;
+> > -		if (time_before64(get_jiffies_64(),
+> > -				=C2=A0 zdd->devmem_allocation-
+> > >timeslice_expiration))
+> > -			return 0;
+> > -	}
+> > +	zdd =3D page->zone_device_data;
+> > +	if (time_before64(get_jiffies_64(),
+> > +			=C2=A0 zdd->devmem_allocation-
+> > >timeslice_expiration))
+> > +		return 0;
+> > =C2=A0
+> > =C2=A0	start =3D ALIGN_DOWN(fault_addr, size);
+> > =C2=A0	end =3D ALIGN(fault_addr + 1, size);
+> > @@ -861,19 +953,6 @@ static int __drm_pagemap_migrate_to_ram(struct
+> > vm_area_struct *vas,
+> > =C2=A0	if (!migrate.cpages)
+> > =C2=A0		goto err_free;
+> > =C2=A0
+> > -	if (!page) {
+> > -		for (i =3D 0; i < npages; ++i) {
+> > -			if (!(migrate.src[i] &
+> > MIGRATE_PFN_MIGRATE))
+> > -				continue;
+> > -
+> > -			page =3D
+> > migrate_pfn_to_page(migrate.src[i]);
+> > -			break;
+> > -		}
+> > -
+> > -		if (!page)
+> > -			goto err_finalize;
+> > -	}
+> > -	zdd =3D page->zone_device_data;
+> > =C2=A0	ops =3D zdd->devmem_allocation->ops;
+> > =C2=A0	dev =3D zdd->devmem_allocation->dev;
+> > =C2=A0
+> > @@ -883,7 +962,7 @@ static int __drm_pagemap_migrate_to_ram(struct
+> > vm_area_struct *vas,
+> > =C2=A0	if (err)
+> > =C2=A0		goto err_finalize;
+> > =C2=A0
+> > -	err =3D drm_pagemap_migrate_map_pages(dev, pagemap_addr,
+> > migrate.dst, npages,
+> > +	err =3D drm_pagemap_migrate_map_pages(dev, zdd->dpagemap,
+> > pagemap_addr, migrate.dst, npages,
+> > =C2=A0					=C2=A0=C2=A0=C2=A0 DMA_FROM_DEVICE);
+> > =C2=A0	if (err)
+> > =C2=A0		goto err_finalize;
+> > @@ -901,8 +980,8 @@ static int __drm_pagemap_migrate_to_ram(struct
+> > vm_area_struct *vas,
+> > =C2=A0	migrate_vma_pages(&migrate);
+> > =C2=A0	migrate_vma_finalize(&migrate);
+> > =C2=A0	if (dev)
+> > -		drm_pagemap_migrate_unmap_pages(dev, pagemap_addr,
+> > npages,
+> > -						DMA_FROM_DEVICE);
+> > +		drm_pagemap_migrate_unmap_pages(dev, pagemap_addr,
+> > migrate.dst,
+> > +						npages,
+> > DMA_FROM_DEVICE);
+> > =C2=A0err_free:
+> > =C2=A0	kvfree(buf);
+> > =C2=A0err_out:
+> > @@ -938,10 +1017,12 @@ static vm_fault_t
+> > drm_pagemap_migrate_to_ram(struct vm_fault *vmf)
+> > =C2=A0	struct drm_pagemap_zdd *zdd =3D vmf->page->zone_device_data;
+> > =C2=A0	int err;
+> > =C2=A0
+> > +	drm_pagemap_zdd_get(zdd);
+> > =C2=A0	err =3D __drm_pagemap_migrate_to_ram(vmf->vma,
+> > =C2=A0					=C2=A0=C2=A0 zdd-
+> > >device_private_page_owner,
+> > =C2=A0					=C2=A0=C2=A0 vmf->page, vmf-
+> > >address,
+> > =C2=A0					=C2=A0=C2=A0 zdd->devmem_allocation-
+> > >size);
+> > +	drm_pagemap_zdd_put(zdd);
+> > =C2=A0
+> > =C2=A0	return err ? VM_FAULT_SIGBUS : 0;
+> > =C2=A0}
+> > diff --git a/drivers/gpu/drm/xe/xe_svm.c
+> > b/drivers/gpu/drm/xe/xe_svm.c
+> > index 0b39905c9312..56bb3896b89a 100644
+> > --- a/drivers/gpu/drm/xe/xe_svm.c
+> > +++ b/drivers/gpu/drm/xe/xe_svm.c
+> > @@ -1028,11 +1028,10 @@ static int
+> > xe_drm_pagemap_populate_mm(struct drm_pagemap *dpagemap,
+> > =C2=A0
+> > =C2=A0		/* Ensure the device has a pm ref while there are
+> > device pages active. */
+> > =C2=A0		xe_pm_runtime_get_noresume(xe);
+> > +		/* Consumes the devmem allocation. */
+> > =C2=A0		err =3D drm_pagemap_migrate_to_devmem(&bo-
+> > >devmem_allocation, mm,
+> > =C2=A0						=C2=A0=C2=A0=C2=A0 start, end,
+> > timeslice_ms,
+> > =C2=A0						=C2=A0=C2=A0=C2=A0 xpagemap-
+> > >pagemap.owner);
+> > -		if (err)
+> > -			xe_svm_devmem_release(&bo-
+> > >devmem_allocation);
+> > =C2=A0		xe_bo_unlock(bo);
+> > =C2=A0		xe_bo_put(bo);
+> > =C2=A0	}
+> > @@ -1546,6 +1545,7 @@ int xe_svm_alloc_vram(struct xe_svm_range
+> > *range, const struct drm_gpusvm_ctx *c
+> > =C2=A0		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct drm_pagemap *dpagemap)
+> > =C2=A0{
+> > =C2=A0	struct xe_device *xe =3D range_to_vm(&range->base)->xe;
+> > +	int err, retries =3D 1;
+> > =C2=A0
+> > =C2=A0	xe_assert(range_to_vm(&range->base)->xe, range-
+> > >base.pages.flags.migrate_devmem);
+> > =C2=A0	range_debug(range, "ALLOCATE VRAM");
+> > @@ -1554,10 +1554,18 @@ int xe_svm_alloc_vram(struct xe_svm_range
+> > *range, const struct drm_gpusvm_ctx *c
+> > =C2=A0		drm_dbg(&xe->drm, "Request migration to device
+> > memory on \"%s\".\n",
+> > =C2=A0			dpagemap->drm->unique);
+> > =C2=A0
+> > -	return drm_pagemap_populate_mm(dpagemap,
+> > xe_svm_range_start(range),
+> > -				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 xe_svm_range_end(range),
+> > -				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 range->base.gpusvm->mm,
+> > -				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ctx->timeslice_ms);
+> > +	do {
+> > +		err =3D drm_pagemap_populate_mm(dpagemap,
+> > xe_svm_range_start(range),
+> > +					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
+> > xe_svm_range_end(range),
+> > +					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 range->base.gpusvm-
+> > >mm,
+> > +					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ctx->timeslice_ms);
+> > +
+> > +		if (err =3D=3D -EBUSY && retries)
+> > +			drm_gpusvm_range_evict(range->base.gpusvm,
+> > &range->base);
+> > +
+> > +	} while (err =3D=3D -EBUSY && retries--);
+> > +
+> > +	return err;
+> > =C2=A0}
+> > =C2=A0
+> > =C2=A0static struct drm_pagemap_addr
+> > --=20
+> > 2.51.1
+> >=20
+
