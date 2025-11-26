@@ -4,63 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A98D7D111B3
-	for <intel-xe@archiver.kernel.org>; Wed, 26 Nov 2025 22:33:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7DE12D111A7
+	for <intel-xe@archiver.kernel.org>; Wed, 26 Nov 2025 22:45:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0C59110E6D6;
-	Wed, 26 Nov 2025 22:33:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 324FF10E703;
+	Wed, 26 Nov 2025 22:45:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="qWMB7gch";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mECPE+in";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6E84689CC1;
- Wed, 26 Nov 2025 22:33:03 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id 3880C42E51;
- Wed, 26 Nov 2025 22:33:03 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0C744C4CEF7;
- Wed, 26 Nov 2025 22:33:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1764196383;
- bh=7Ct7uOMrWpgwBo1dfjc42myZkFavQ4K32rkkdeRtH/Y=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=qWMB7gchRkVrfZlY3QMDFMcCwjsnsT5KZqFcH6rU2RBTslXL4YsP6k0UHAz5YQ+/6
- 0LoiU3bntvAzH+hoXy+lO+iAUIqRsd/rp/93MvHWOLyZrGtC1AEGal8TIDrembNF+g
- HXLb7rQEfaTJ9zLGYpAjo2FXf6Jno1jg/l2/EKixIuBf2psqyaq8iTcQJ6dpiZs8bh
- 8rryo1aRtjk75e9KLDvWfUikXnyyVsTNBaFmrj9GKvZfUXydwQosPOWjTVKrNJ8FSs
- QpNNQ2B2w2M3t96i1VIEUanvJacH1jHmX0kSlma0v3Ksjbb0wp4F/x0YnzNhEh1iLB
- d1trTdgooJbjQ==
-Date: Wed, 26 Nov 2025 23:32:58 +0100
-From: Andi Shyti <andi.shyti@kernel.org>
-To: Philipp Stanner <phasta@kernel.org>
-Cc: Sumit Semwal <sumit.semwal@linaro.org>, 
- Gustavo Padovan <gustavo@padovan.org>,
- Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>, 
- Felix Kuehling <Felix.Kuehling@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>, 
- Huang Rui <ray.huang@amd.com>, Matthew Auld <matthew.auld@intel.com>, 
- Matthew Brost <matthew.brost@intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- Lucas De Marchi <lucas.demarchi@intel.com>, 
- Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org, 
- linaro-mm-sig@lists.linaro.org, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, 
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- rust-for-linux@vger.kernel.org, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Subject: Re: [PATCH 1/6] dma-buf/dma-fence: Add dma_fence_test_signaled_flag()
-Message-ID: <3b7b26uc566c3j4elnnkii5wvxvgqgnjsvwxpihz2cifupfnwa@cokmciv5umcg>
-References: <20251126131914.149445-2-phasta@kernel.org>
- <20251126131914.149445-3-phasta@kernel.org>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B522010E6D6;
+ Wed, 26 Nov 2025 22:44:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1764197100; x=1795733100;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=6n8HiP6mBKSIsKBkai+0IV0XJgLqkSPvDK/ma3XwzSE=;
+ b=mECPE+in5ZAfw0pIybIlQLSU/ekfc23GqW5ISKWqKEylMnEFTvO3j8Cc
+ GRGi24rxQ5Lv/vvvoTQmDPfhOGbTPf38srWOCEwgiDFOnDXhd/v/iDkAC
+ KO/IE4rNJDMjK7Qozqwc1pDM6iCsm5TtjNFiDRM6TBn51OzhpYJj+g9ql
+ Hd/GaazF/uVifzJuERzFfa/uejHMNt0NNnagCoQ/gqIPT0akOhyadLJcK
+ et3prZ97OdlzPOSv1digE88omsRZwCM9SyBkPAHJ/kDy3IdwAMysIThjG
+ X4fk3pBGak+/gl2ZIfDwTeGw/gLj+ip2xHeYkb1JfpZN74k37o1Th+vVH A==;
+X-CSE-ConnectionGUID: wR2Ker55TXizKi63QGyEow==
+X-CSE-MsgGUID: fTulSvP2RWCLv3Cl+cBxrw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11625"; a="66190820"
+X-IronPort-AV: E=Sophos;i="6.20,229,1758610800"; d="scan'208";a="66190820"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Nov 2025 14:45:00 -0800
+X-CSE-ConnectionGUID: Xzmr19skQzmB6xX04UiXoA==
+X-CSE-MsgGUID: Nox7lstJTqSzF8eoSo+PIA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.20,229,1758610800"; d="scan'208";a="192318006"
+Received: from lucas-s2600cw.jf.intel.com ([10.54.55.69])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Nov 2025 14:44:59 -0800
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: dri-devel@lists.freedesktop.org,
+	<intel-xe@lists.freedesktop.org>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>,
+ Lucas De Marchi <lucas.demarchi@intel.com>
+Subject: [PATCH] MAINTAINERS: Remove myself from xe maintainers
+Date: Wed, 26 Nov 2025 14:43:58 -0800
+Message-ID: <20251126224357.2482051-2-lucas.demarchi@intel.com>
+X-Mailer: git-send-email 2.51.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251126131914.149445-3-phasta@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,21 +69,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Philipp,
+As I'm leaving Intel soon, drop myself from the list of Xe maintainers.
+Also update the mailmap to switch to my kernel.org address.
 
-> diff --git a/drivers/dma-buf/dma-fence.c b/drivers/dma-buf/dma-fence.c
-> index 39e6f93dc310..25117a906846 100644
-> --- a/drivers/dma-buf/dma-fence.c
-> +++ b/drivers/dma-buf/dma-fence.c
-> @@ -372,8 +372,7 @@ int dma_fence_signal_timestamp_locked(struct dma_fence *fence,
->  
->  	lockdep_assert_held(fence->lock);
->  
-> -	if (unlikely(test_and_set_bit(DMA_FENCE_FLAG_SIGNALED_BIT,
-> -				      &fence->flags)))
-> +	if (unlikely(dma_fence_test_signaled_flag(fence)))
->  		return -EINVAL;
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+---
+ .mailmap    | 1 +
+ MAINTAINERS | 1 -
+ 2 files changed, 1 insertion(+), 1 deletion(-)
 
-Please, drop this change.
+diff --git a/.mailmap b/.mailmap
+index af6e4fce9bfe1..716c0573db214 100644
+--- a/.mailmap
++++ b/.mailmap
+@@ -476,6 +476,7 @@ Lorenzo Pieralisi <lpieralisi@kernel.org> <lorenzo.pieralisi@arm.com>
+ Lorenzo Stoakes <lorenzo.stoakes@oracle.com> <lstoakes@gmail.com>
+ Luca Ceresoli <luca.ceresoli@bootlin.com> <luca@lucaceresoli.net>
+ Luca Weiss <luca@lucaweiss.eu> <luca@z3ntu.xyz>
++Lucas De Marchi <demarchi@kernel.org> <lucas.demarchi@intel.com>
+ Lukasz Luba <lukasz.luba@arm.com> <l.luba@partner.samsung.com>
+ Luo Jie <quic_luoj@quicinc.com> <luoj@codeaurora.org>
+ Lance Yang <lance.yang@linux.dev> <ioworker0@gmail.com>
+diff --git a/MAINTAINERS b/MAINTAINERS
+index acc951f122eaf..c3fe83ea713cf 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -12517,7 +12517,6 @@ F:	include/drm/intel/
+ F:	include/uapi/drm/i915_drm.h
+ 
+ INTEL DRM XE DRIVER (Lunar Lake and newer)
+-M:	Lucas De Marchi <lucas.demarchi@intel.com>
+ M:	Thomas Hellström <thomas.hellstrom@linux.intel.com>
+ M:	Rodrigo Vivi <rodrigo.vivi@intel.com>
+ L:	intel-xe@lists.freedesktop.org
+-- 
+2.51.2
 
-Andi
