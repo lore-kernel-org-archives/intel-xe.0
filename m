@@ -4,74 +4,69 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3B455D1170D
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EF892D116F6
 	for <intel-xe@archiver.kernel.org>; Mon,  1 Dec 2025 13:39:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C8BB610E416;
+	by gabe.freedesktop.org (Postfix) with ESMTP id D8BFD10E418;
 	Mon,  1 Dec 2025 13:39:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="YRUeWAHT";
+	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="oMA0l5GF";
 	dkim-atps=neutral
-Received: from sender3-pp-f112.zoho.com (sender3-pp-f112.zoho.com
- [136.143.184.112])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 81C1C10E92C;
- Fri, 28 Nov 2025 21:06:53 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; t=1764364003; cv=none; 
- d=zohomail.com; s=zohoarc; 
- b=ZRZKyGIAohl6AiHLz+Z1Jaie2XFzIkaBqcGOMMFNsP6MEzT/ERdfTjqU3RH9uyBI/53wpkh0xDj2SObm5ea8oS+8yLlWI8hUgIgmRc94FQg846UrsQgCh5TkOALkHNaAcGnnUlYSeC81J9ALd+WmgTNvM8c1+CuLepQe7CAjvFM=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
- s=zohoarc; t=1764364003;
- h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
- bh=HuuEqm/VM8Z9sKdKKwEgeX6ClWHBKU/5BuknVOHkhMU=; 
- b=LcLzeLuW0/vmYpS5B/sUkhJijZYajuislfZLc6Uz5836uLHf8jb5UQVrJiUEu5BUXNcn058E8iwdCfCS2Aewq1Z1G6x/8Xvq7Fv98/Yv6Uf+S5k8jpHjqVKqk2jM4RmXcd8cKwa91FugFqLkiPe2eXfrkNKkKLIL5Lb/TZyTU50=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
- dkim=pass  header.i=collabora.com;
- spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
- dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1764364003; 
- s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
- h=From:From:Date:Date:Subject:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:Message-Id:References:In-Reply-To:To:To:Cc:Cc:Reply-To;
- bh=HuuEqm/VM8Z9sKdKKwEgeX6ClWHBKU/5BuknVOHkhMU=;
- b=YRUeWAHTr0ytDCeq8Czhp2rruQDGKby5gl2vs3aCqSXmVIpfVDYjRr4YwHoILd8j
- 5oO6CL8EYGUDEQUO1pByPZn1BVjS1FJQdx/P5Fb25Q7KJDYPANmIPf0a3XfCMjtCt5V
- g6wnHeXZ9hahin9xCAnEXD2kznvIOfA3kFSNCDWA=
-Received: by mx.zohomail.com with SMTPS id 1764364001462814.7343165114526;
- Fri, 28 Nov 2025 13:06:41 -0800 (PST)
-From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Date: Fri, 28 Nov 2025 22:05:42 +0100
-Subject: [PATCH v5 06/17] drm/display: hdmi-state-helper: Try subsampling
- in mode_valid
+Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6980010E7D1;
+ Thu, 27 Nov 2025 09:16:16 +0000 (UTC)
+Received: from smtp202.mailbox.org (smtp202.mailbox.org
+ [IPv6:2001:67c:2050:b231:465::202])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4dH9ld1kxhz9tZ4;
+ Thu, 27 Nov 2025 10:16:13 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
+ s=mail20150812; 
+ t=1764234973; h=from:from:reply-to:reply-to:subject:subject:date:date:
+ message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+ content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=XFgdH560T3YiZGXpnSavHS2fNWjlZmWfX61HED3oDlY=;
+ b=oMA0l5GF20+89bOALj2AZEzZ3KIYCQ0sQV3nKIuCRZQwgA60GoBHIUvo5JRwMguBCc9aZn
+ F5inZjQemfWXADIy+1xs76rtlYJFo92RNRet6w4peIdc++GW6ttRGWxsCSXZqLLJ1K10VW
+ QLkDmrkejRTh1VxfNJZ4pklrXpAKF9HotuRSmTJqVuPBFkros9P2+ivH/W1otk+mQpr0t9
+ mnTm79fYRIiStVef/JAOqBwscFVop7s6hLDvpyU/Arc28NFYHaNpXsDjbYT9vMO0+bOAVO
+ gzwkxgjeZWdYc3mg70heVVNEMMx2BkFm+1Edzdqkw9Qv9hGCakXTyIbg4+8BCQ==
+Message-ID: <35189892c0cb774155e2012d41371b4d3f8e7d0f.camel@mailbox.org>
+Subject: Re: [PATCH 1/6] dma-buf/dma-fence: Add dma_fence_test_signaled_flag()
+From: Philipp Stanner <phasta@mailbox.org>
+To: Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, Matthew
+ Brost <matthew.brost@intel.com>, Philipp Stanner <phasta@kernel.org>
+Cc: Sumit Semwal <sumit.semwal@linaro.org>, Gustavo Padovan
+ <gustavo@padovan.org>, Felix Kuehling <Felix.Kuehling@amd.com>, Alex
+ Deucher <alexander.deucher@amd.com>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi
+ <rodrigo.vivi@intel.com>,  Tvrtko Ursulin <tursulin@ursulin.net>, Huang Rui
+ <ray.huang@amd.com>, Matthew Auld <matthew.auld@intel.com>,  Maarten
+ Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
+ <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Lucas De
+ Marchi <lucas.demarchi@intel.com>, Thomas =?ISO-8859-1?Q?Hellstr=F6m?=
+ <thomas.hellstrom@linux.intel.com>, linux-media@vger.kernel.org,
+ dri-devel@lists.freedesktop.org,  linaro-mm-sig@lists.linaro.org,
+ linux-kernel@vger.kernel.org,  amd-gfx@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org,  intel-xe@lists.freedesktop.org,
+ rust-for-linux@vger.kernel.org, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+Date: Thu, 27 Nov 2025 10:16:01 +0100
+In-Reply-To: <f1864f6d-8403-406d-81a0-00a71495cae8@amd.com>
+References: <20251126131914.149445-2-phasta@kernel.org>
+ <20251126131914.149445-3-phasta@kernel.org>
+ <aSctt3QFiEIB61Gr@lstrano-desk.jf.intel.com>
+ <aScxGDYeNeN1WYja@lstrano-desk.jf.intel.com>
+ <f1864f6d-8403-406d-81a0-00a71495cae8@amd.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251128-color-format-v5-6-63e82f1db1e1@collabora.com>
-References: <20251128-color-format-v5-0-63e82f1db1e1@collabora.com>
-In-Reply-To: <20251128-color-format-v5-0-63e82f1db1e1@collabora.com>
-To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
- Rodrigo Siqueira <siqueira@igalia.com>, 
- Alex Deucher <alexander.deucher@amd.com>, 
- =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- Andrzej Hajda <andrzej.hajda@intel.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Sandy Huang <hjc@rock-chips.com>, 
- =?utf-8?q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, 
- Andy Yan <andy.yan@rock-chips.com>, 
- Jani Nikula <jani.nikula@linux.intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
- Tvrtko Ursulin <tursulin@ursulin.net>, Dmitry Baryshkov <lumag@kernel.org>, 
- Sascha Hauer <s.hauer@pengutronix.de>, Rob Herring <robh@kernel.org>
-Cc: kernel@collabora.com, amd-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
- Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-X-Mailer: b4 0.14.3
+X-MBO-RS-META: bgpghhhhrg9u5u445qr6ka3upg67j9jx
+X-MBO-RS-ID: a7092e291bad71bbc06
 X-Mailman-Approved-At: Mon, 01 Dec 2025 13:38:52 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -84,53 +79,61 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: phasta@kernel.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-drm_hdmi_connector_mode_valid assumes modes are only valid if they work
-with RGB. The reality is more complex however: YCbCr 4:2:0
-chroma-subsampled modes only require half the pixel clock that the same
-mode would require in RGB.
+On Thu, 2025-11-27 at 09:11 +0100, Christian K=C3=B6nig wrote:
+> On 11/26/25 17:55, Matthew Brost wrote:
+> > On Wed, Nov 26, 2025 at 08:41:27AM -0800, Matthew Brost wrote:
+> > > On Wed, Nov 26, 2025 at 02:19:10PM +0100, Philipp Stanner wrote:
+> > > > The dma_fence framework checks at many places whether the signaled =
+flag
+> > > > of a fence is already set. The code can be simplified and made more
+> > > > readable by providing a helper function for that.
+> > > >=20
+> > > > Add dma_fence_test_signaled_flag(), which only checks whether a fen=
+ce is
+> > > > signaled. Use it internally.
+> > > >=20
+> > > > Suggested-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+> > > > Signed-off-by: Philipp Stanner <phasta@kernel.org>
+> > >=20
+> > > This is a nice cleanp:
+> > > Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+> > >=20
+> > > > ---
+> > > > =C2=A0drivers/dma-buf/dma-fence.c | 19 +++++++++----------
+> > > > =C2=A0include/linux/dma-fence.h=C2=A0=C2=A0 | 24 ++++++++++++++++++=
+++++--
+> > > > =C2=A02 files changed, 31 insertions(+), 12 deletions(-)
+> > > >=20
+> > > > diff --git a/drivers/dma-buf/dma-fence.c b/drivers/dma-buf/dma-fenc=
+e.c
+> > > > index 39e6f93dc310..25117a906846 100644
+> > > > --- a/drivers/dma-buf/dma-fence.c
+> > > > +++ b/drivers/dma-buf/dma-fence.c
+> > > > @@ -372,8 +372,7 @@ int dma_fence_signal_timestamp_locked(struct dm=
+a_fence *fence,
+> > > > =C2=A0
+> > > > =C2=A0	lockdep_assert_held(fence->lock);
+> > > > =C2=A0
+> > > > -	if (unlikely(test_and_set_bit(DMA_FENCE_FLAG_SIGNALED_BIT,
+> > > > -				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 &fence->flags)))
+> >=20
+> > I need to read a little better, I think this change isn't quite right.
+> > The original code is test and set, the updated code is test only (i.e.,
+> > you are missing the set step). So maybe just leave this line as is.
+>=20
+> Oh, good point! I've totally missed that as well.
 
-This leads to drm_hdmi_connector_mode_valid rejecting perfectly valid
-420-only modes.
+Oh dear; I also just saw it when opening the mail client ._.
 
-Fix this by checking whether the mode is 420-only first. If so, then
-proceed by checking it with HDMI_COLORSPACE_YUV420 so long as the
-connector has legalized 420, otherwise error out. If the mode is not
-420-only, check with RGB as was previously always the case.
+>=20
+> But that means that this patch set hasn't even been smoke tested.
 
-Fixes: 47368ab437fd ("drm/display: hdmi: add generic mode_valid helper")
-Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
----
- drivers/gpu/drm/display/drm_hdmi_state_helper.c | 12 +++++++++++-
- 1 file changed, 11 insertions(+), 1 deletion(-)
+I've built it and did some basic testing with my Nouveau system. Any
+suggestions? Do you have a CI that one can trigger?
 
-diff --git a/drivers/gpu/drm/display/drm_hdmi_state_helper.c b/drivers/gpu/drm/display/drm_hdmi_state_helper.c
-index 5da956bdd68c..1800e00b30c5 100644
---- a/drivers/gpu/drm/display/drm_hdmi_state_helper.c
-+++ b/drivers/gpu/drm/display/drm_hdmi_state_helper.c
-@@ -892,8 +892,18 @@ drm_hdmi_connector_mode_valid(struct drm_connector *connector,
- 			      const struct drm_display_mode *mode)
- {
- 	unsigned long long clock;
-+	enum hdmi_colorspace fmt;
-+
-+	if (drm_mode_is_420_only(&connector->display_info, mode)) {
-+		if (connector->ycbcr_420_allowed)
-+			fmt = HDMI_COLORSPACE_YUV420;
-+		else
-+			return MODE_NO_420;
-+	} else {
-+		fmt = HDMI_COLORSPACE_RGB;
-+	}
- 
--	clock = drm_hdmi_compute_mode_clock(mode, 8, HDMI_COLORSPACE_RGB);
-+	clock = drm_hdmi_compute_mode_clock(mode, 8, fmt);
- 	if (!clock)
- 		return MODE_ERROR;
- 
-
--- 
-2.52.0
-
+Thx
+P.
