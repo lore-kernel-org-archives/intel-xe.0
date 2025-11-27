@@ -4,48 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id ACA79D11708
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 59081D11702
 	for <intel-xe@archiver.kernel.org>; Mon,  1 Dec 2025 13:39:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 653F810E40E;
-	Mon,  1 Dec 2025 13:39:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 91C6110E409;
+	Mon,  1 Dec 2025 13:39:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="hYSjiIK+";
+	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="raC6aTam";
 	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 901DC10E7EA;
- Thu, 27 Nov 2025 09:28:01 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id AA3E760017;
- Thu, 27 Nov 2025 09:28:00 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A8A95C4CEF8;
- Thu, 27 Nov 2025 09:27:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1764235680;
- bh=XIUY6hkHE+X5GOQVLvRGEK6KrKGPW2wqdwJmTf8d1Rk=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=hYSjiIK+o3wpi9SAYfCExLsdlwiuQidpkAS/lGc6EIokkvkyaxmSuQXIo6KS9fbzF
- LcZtSKfXfWFlbP2rhMluoLlK7aQKdSi3CRegnJOGfN4y05S3kZ0Aicu/+hfPLekQU/
- RUdmorLs3A7QtSqJzgwpmL9PGMwwxGSA2DhFK7zJISqns8qEjkQS0wt41NM4KruAcj
- 722amKQyB67f64K7fWioj2s5Dy4wgdhx52cCXkCVIs5PrG153OlCRkuiEKQbIzAg8o
- ytMQ9Oy9WKxbhm6cbzBF1jI57Yp3lj6+ewe4i+d2FpUB1rt7GnB+8e9IwLIK4UUVeG
- ELttvBKKX9H6g==
-Date: Thu, 27 Nov 2025 10:27:55 +0100
-From: Christian Brauner <brauner@kernel.org>
-To: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, 
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, "Kurmi,
- Suresh Kumar" <suresh.kumar.kurmi@intel.com>, 
- "Saarinen, Jani" <jani.saarinen@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>, linux-fsdevel@vger.kernel.org
-Subject: Re: REGRESSION on linux-next (next-20251125)
-Message-ID: <20251127-agenda-befinden-61628473b16b@brauner>
-References: <a27eb5f4-c4c9-406c-9b53-93f7888db14a@intel.com>
+Received: from mout-p-103.mailbox.org (mout-p-103.mailbox.org [80.241.56.161])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E9EA910E7C3;
+ Thu, 27 Nov 2025 10:16:39 +0000 (UTC)
+Received: from smtp1.mailbox.org (smtp1.mailbox.org [10.196.197.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mout-p-103.mailbox.org (Postfix) with ESMTPS id 4dHC5J3Srfz9t5M;
+ Thu, 27 Nov 2025 11:16:36 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
+ s=mail20150812; 
+ t=1764238596; h=from:from:reply-to:reply-to:subject:subject:date:date:
+ message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+ content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=/LwMaXtJBDLXQXsCQXnsteb1mtiqvJkilJ+dHEkj54k=;
+ b=raC6aTamMxW3XjfgydWAdK4gvLHYOWYg89ZahO46b/L2hJ73UNWoB23IOUuy6deSE87H2x
+ gLKD+aF4bvPXisVcAZwug5eUHK/cGm2GfGUsFGsk212L3JVrzXrc4tdNBxR30B+P7OwYKd
+ 1HZU1boijNknhlg/InkP09RyDOiqqdhmza522BYaqiacCFTGGvUHVzmOiBcYEqtUilZoA9
+ 6owl1co+7Wkf5nGrOCEuG8ZResFMNoaECA2zEkWgZngSNfOO5UMCUbLDhWDijZ8kwMsFCY
+ qSNRytCNexkzAcgGNAuuIvkdIyXOrYvtLQoWA4CRnxVFQQEHBqdG3/17b1Gt3Q==
+Message-ID: <89c04c8b3ca0fadf73452ca20ffd61cb106d762a.camel@mailbox.org>
+Subject: Re: [PATCH 1/6] dma-buf/dma-fence: Add dma_fence_test_signaled_flag()
+From: Philipp Stanner <phasta@mailbox.org>
+To: Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, 
+ phasta@kernel.org, Matthew Brost <matthew.brost@intel.com>
+Cc: Sumit Semwal <sumit.semwal@linaro.org>, Gustavo Padovan
+ <gustavo@padovan.org>, Felix Kuehling <Felix.Kuehling@amd.com>, Alex
+ Deucher <alexander.deucher@amd.com>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi
+ <rodrigo.vivi@intel.com>,  Tvrtko Ursulin <tursulin@ursulin.net>, Huang Rui
+ <ray.huang@amd.com>, Matthew Auld <matthew.auld@intel.com>,  Maarten
+ Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
+ <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Lucas De
+ Marchi <lucas.demarchi@intel.com>, Thomas =?ISO-8859-1?Q?Hellstr=F6m?=
+ <thomas.hellstrom@linux.intel.com>, linux-media@vger.kernel.org,
+ dri-devel@lists.freedesktop.org,  linaro-mm-sig@lists.linaro.org,
+ linux-kernel@vger.kernel.org,  amd-gfx@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org,  intel-xe@lists.freedesktop.org,
+ rust-for-linux@vger.kernel.org, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+Date: Thu, 27 Nov 2025 11:16:26 +0100
+In-Reply-To: <adfd840e-fcc8-4cdb-8fd8-d0e48ee32247@amd.com>
+References: <20251126131914.149445-2-phasta@kernel.org>
+ <20251126131914.149445-3-phasta@kernel.org>
+ <aSctt3QFiEIB61Gr@lstrano-desk.jf.intel.com>
+ <aScxGDYeNeN1WYja@lstrano-desk.jf.intel.com>
+ <f1864f6d-8403-406d-81a0-00a71495cae8@amd.com>
+ <35189892c0cb774155e2012d41371b4d3f8e7d0f.camel@mailbox.org>
+ <adfd840e-fcc8-4cdb-8fd8-d0e48ee32247@amd.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <a27eb5f4-c4c9-406c-9b53-93f7888db14a@intel.com>
+X-MBO-RS-ID: bc88f92c2f8974133ff
+X-MBO-RS-META: yz6764qr1bhitjd3f1i7yofkkz7wzuth
 X-Mailman-Approved-At: Mon, 01 Dec 2025 13:38:52 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -58,75 +80,77 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: phasta@kernel.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Nov 27, 2025 at 11:35:32AM +0530, Borah, Chaitanya Kumar wrote:
-> Hello Christian,
-> 
-> Hope you are doing well. I am Chaitanya from the linux graphics team in
-> Intel.
-> 
-> This mail is regarding a regression we are seeing in our CI runs[1] on
-> linux-next repository.
-> 
-> Since the version next-20251125 [2], we are seeing the following regression
-> 
-> `````````````````````````````````````````````````````````````````````````````````
-> (kms_busy:5818) sw_sync-CRITICAL: Test assertion failure function
-> sw_sync_timeline_create_fence, file ../lib/sw_sync.c:117:
-> (kms_busy:5818) sw_sync-CRITICAL: Failed assertion:
-> sw_sync_fd_is_valid(fence)
-> (kms_busy:5818) sw_sync-CRITICAL: Last errno: 2, No such file or directory
-> (kms_busy:5818) sw_sync-CRITICAL: Created invalid fence
-> (kms_busy:5818) igt_core-INFO: Stack trace:
-> (kms_busy:5818) igt_core-INFO:   #0 ../lib/igt_core.c:2075
-> __igt_fail_assert()
-> (kms_busy:5818) igt_core-INFO:   #1 [sw_sync_timeline_create_fence+0x5f]
-> (kms_busy:5818) igt_core-INFO:   #2 ../tests/intel/kms_busy.c:122
-> flip_to_fb()
-> (kms_busy:5818) igt_core-INFO:   #3 ../tests/intel/kms_busy.c:220
-> test_flip()
-> (kms_busy:5818) igt_core-INFO:   #4 ../tests/intel/kms_busy.c:459
-> __igt_unique____real_main411()
-> (kms_busy:5818) igt_core-INFO:   #5 ../tests/intel/kms_busy.c:411 main()
-> (kms_busy:5818) igt_core-INFO:   #6 [__libc_init_first+0x8a]
-> (kms_busy:5818) igt_core-INFO:   #7 [__libc_start_main+0x8b]
-> (kms_busy:5818) igt_core-INFO:   #8 [_start+0x25]
-> `````````````````````````````````````````````````````````````````````````````````
-> Details log can be found in [3].
-> 
-> After bisecting the tree, the following patch [4] seems to be the first
-> "bad" commit
-> 
-> `````````````````````````````````````````````````````````````````````````````````````````````````````````
-> commit 8459303c886151b71e8de08b73e384fd2bb7499c
-> Author: Christian Brauner brauner@kernel.org
-> Date:   Sun Nov 23 17:33:55 2025 +0100
-> 
->     dma: port sw_sync_ioctl_create_fence() to FD_PREPARE()
-> `````````````````````````````````````````````````````````````````````````````````````````````````````````
-> 
-> We also verified that if we revert the patch the issue is not seen.
-> 
-> Could you please check why the patch causes this regression and provide a
-> fix if necessary?
+On Thu, 2025-11-27 at 11:01 +0100, Christian K=C3=B6nig wrote:
+> On 11/27/25 10:16, Philipp Stanner wrote:
+> > On Thu, 2025-11-27 at 09:11 +0100, Christian K=C3=B6nig wrote:
+> > > On 11/26/25 17:55, Matthew Brost wrote:
+> > > > On Wed, Nov 26, 2025 at 08:41:27AM -0800, Matthew Brost wrote:
+> > > > > On Wed, Nov 26, 2025 at 02:19:10PM +0100, Philipp Stanner wrote:
+> > > > > > The dma_fence framework checks at many places whether the signa=
+led flag
+> > > > > > of a fence is already set. The code can be simplified and made =
+more
+> > > > > > readable by providing a helper function for that.
+> > > > > >=20
+> > > > > > Add dma_fence_test_signaled_flag(), which only checks whether a=
+ fence is
+> > > > > > signaled. Use it internally.
+> > > > > >=20
+> > > > > > Suggested-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+> > > > > > Signed-off-by: Philipp Stanner <phasta@kernel.org>
+> > > > >=20
+> > > > > This is a nice cleanp:
+> > > > > Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+> > > > >=20
+> > > > > > ---
+> > > > > > =C2=A0drivers/dma-buf/dma-fence.c | 19 +++++++++----------
+> > > > > > =C2=A0include/linux/dma-fence.h=C2=A0=C2=A0 | 24 ++++++++++++++=
+++++++++--
+> > > > > > =C2=A02 files changed, 31 insertions(+), 12 deletions(-)
+> > > > > >=20
+> > > > > > diff --git a/drivers/dma-buf/dma-fence.c b/drivers/dma-buf/dma-=
+fence.c
+> > > > > > index 39e6f93dc310..25117a906846 100644
+> > > > > > --- a/drivers/dma-buf/dma-fence.c
+> > > > > > +++ b/drivers/dma-buf/dma-fence.c
+> > > > > > @@ -372,8 +372,7 @@ int dma_fence_signal_timestamp_locked(struc=
+t dma_fence *fence,
+> > > > > > =C2=A0
+> > > > > > =C2=A0	lockdep_assert_held(fence->lock);
+> > > > > > =C2=A0
+> > > > > > -	if (unlikely(test_and_set_bit(DMA_FENCE_FLAG_SIGNALED_BIT,
+> > > > > > -				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 &fence->flags)))
+> > > >=20
+> > > > I need to read a little better, I think this change isn't quite rig=
+ht.
+> > > > The original code is test and set, the updated code is test only (i=
+.e.,
+> > > > you are missing the set step). So maybe just leave this line as is.
+> > >=20
+> > > Oh, good point! I've totally missed that as well.
+> >=20
+> > Oh dear; I also just saw it when opening the mail client ._.
+> >=20
+> > >=20
+> > > But that means that this patch set hasn't even been smoke tested.
+> >=20
+> > I've built it and did some basic testing with my Nouveau system. Any
+> > suggestions? Do you have a CI that one can trigger?
+>=20
+> DMA-buf has CONFIG_DMABUF_SELFTESTS which should be able to catch things =
+like that.
+>=20
+> But even running Nouveau should have found this since basically no fence =
+at would signal any more.
 
-Gah, sorry about this:
+They will signal and execute their callbacks, but all is_signaled()
+checks are then broken.
 
-diff --git a/drivers/dma-buf/sync_file.c b/drivers/dma-buf/sync_file.c
-index dc2e79a1b196..8d827b03e84c 100644
---- a/drivers/dma-buf/sync_file.c
-+++ b/drivers/dma-buf/sync_file.c
-@@ -244,7 +244,8 @@ static long sync_file_ioctl_merge(struct sync_file *sync_file,
-        if (copy_to_user((void __user *)arg, &data, sizeof(data)))
-                return -EFAULT;
+Thx for the feedback, I'll be more careful with changes like those and
+test more extensively.
 
--       return fd_publish(fdf);
-+       fd_publish(fdf);
-+       return 0;
- }
-
- static int sync_fill_fence_info(struct dma_fence *fence,
-
-Pushing out the fix now. Can I trigger a new test myself somehow?
+P.
