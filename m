@@ -4,49 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C96EDCFD2F6
-	for <intel-xe@archiver.kernel.org>; Thu, 27 Nov 2025 09:16:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 123CDD116F3
+	for <intel-xe@archiver.kernel.org>; Thu, 27 Nov 2025 09:16:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9150810E7DD;
+	by gabe.freedesktop.org (Postfix) with ESMTP id C123910E7E0;
 	Thu, 27 Nov 2025 09:16:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DG14GEl4";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="E50BgeyA";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AA8E610E7D8;
- Thu, 27 Nov 2025 09:16:25 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 135E510E7D2;
+ Thu, 27 Nov 2025 09:16:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1764234985; x=1795770985;
+ t=1764234979; x=1795770979;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=YSaQwlv8n7SG1E4Jlyp/WkeA1YrT1puVjsbqu6QRfsM=;
- b=DG14GEl4y7dJHvulB/fzRjNtvzBFrz/5rTIp0y0ScgKckX1xIgxBrwh0
- qoqL0AOh1KEvl7LwlLEL5eZlyq/PyQ48o5hYxDq8JrONFQuvukAcnPDom
- gqf8bRsNkJdfk3lf6V65ZzxCoqoOKTvp/+shHD9FHXhgXAtp11VVWQ1U6
- 8DqfZBl1lm4WJAulDzZVey80MlNA9a2arNwi+ZrokQibnHeMm/Jo5f1qP
- RrZhsGIAtgPNTatj8stAZ/BSxNzTBIDCy7FCfBLtFtS5qBhktZ9GYS1Dk
- f6pEAi86AICApmFCexeGpaop684y4eMItU//ok83lld7z6YjDnb7cYm98 Q==;
-X-CSE-ConnectionGUID: kKFn87ryQHOErnS4tETrxQ==
-X-CSE-MsgGUID: 5wafJjNQQqqWVzzszMWmHA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11625"; a="77642372"
-X-IronPort-AV: E=Sophos;i="6.20,230,1758610800"; d="scan'208";a="77642372"
+ bh=VvSZW/a+qiT7/mfAvhDflzHxPutv0B8gcL+BCdPGICA=;
+ b=E50BgeyAl5meOL8ZaKoHsbyIjj81ntgojFFABOlzchnWBmis/b28zbxo
+ qC7V0Jdk0ytVyFHESv7QSwzRM+VsBVvNk21Yk/WxHUe3dG26L+4ZwkwpN
+ uiBaCTrI7zNliWtP/evCZGFCaPHeK0UWtFWpAg0VxwDHCbccPpK4MXQfD
+ R1lQUFjp9tcCcAEhn7r5xvub7H6SOIBjlSLFyEy8DuDCFTLCJRTmFEeVT
+ nC5+UqETKDNxg5chMf9x8uGr9NXt4m16ngfSR2TFRQEOts4y7Jc/yvm7q
+ jqtrt+0yitW5TKbMha8TUk3kPSug7c/umAPBmqwu+UDoKKjyH1S9vprtv Q==;
+X-CSE-ConnectionGUID: k6rNswPISkSnhyW5J+rsoA==
+X-CSE-MsgGUID: q25kjIs8SD68moctyk8URA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11625"; a="77642352"
+X-IronPort-AV: E=Sophos;i="6.20,230,1758610800"; d="scan'208";a="77642352"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Nov 2025 01:16:24 -0800
-X-CSE-ConnectionGUID: h5kgpEx/R/SfJ5noPcS+Ww==
-X-CSE-MsgGUID: ceGgFSm/Q/CxmLQXP24Etw==
+ 27 Nov 2025 01:16:19 -0800
+X-CSE-ConnectionGUID: QysPS8LjTDWfT8WYMyYzgQ==
+X-CSE-MsgGUID: lc2+4rEjTGCJR9dcdjTMog==
 X-ExtLoop1: 1
 Received: from mgolanimitul-x299-ud4-pro.iind.intel.com ([10.190.239.114])
- by fmviesa003.fm.intel.com with ESMTP; 27 Nov 2025 01:16:24 -0800
+ by fmviesa003.fm.intel.com with ESMTP; 27 Nov 2025 01:16:18 -0800
 From: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org, mitulkumar.ajitkumar.golani@intel.com,
  ankit.k.nautiyal@intel.com, ville.syrjala@linux.intel.com
-Subject: [PATCH v9 16/17] drm/i915/display: Add function to configure event
- for dc balance
-Date: Thu, 27 Nov 2025 14:46:13 +0530
-Message-ID: <20251127091614.648791-17-mitulkumar.ajitkumar.golani@intel.com>
+Subject: [PATCH v9 13/17] drm/i915/display: Wait for VRR PUSH status update
+Date: Thu, 27 Nov 2025 14:46:10 +0530
+Message-ID: <20251127091614.648791-14-mitulkumar.ajitkumar.golani@intel.com>
 X-Mailer: git-send-email 2.48.1
 In-Reply-To: <20251127091614.648791-1-mitulkumar.ajitkumar.golani@intel.com>
 References: <20251127091614.648791-1-mitulkumar.ajitkumar.golani@intel.com>
@@ -66,75 +65,51 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Configure pipe dmc event for dc balance enable/disable.
+After VRR Push is sent, need to wait till flipline decision boundary
+to get Push bit to get cleared.
+
+--v2:
+- Adjust delays to vrr vmin vblank delays. (Ankit)
+
+--v3:
+- Change intel_vrr_vmin_safe_window_end() so that
+intel_dsb_wait_for_delayed_vblank() uses correct delay. (Ankit)
 
 Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
-Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dmc.c | 15 +++++++++++++++
- drivers/gpu/drm/i915/display/intel_dmc.h |  2 ++
- drivers/gpu/drm/i915/display/intel_vrr.c |  2 ++
- 3 files changed, 19 insertions(+)
+ drivers/gpu/drm/i915/display/intel_vrr.c | 17 +++++++++++++++--
+ 1 file changed, 15 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
-index 147adcd18320..8de8e69780fa 100644
---- a/drivers/gpu/drm/i915/display/intel_dmc.c
-+++ b/drivers/gpu/drm/i915/display/intel_dmc.c
-@@ -859,6 +859,21 @@ static void dmc_configure_event(struct intel_display *display,
- 		      dmc_id, num_handlers, event_id);
- }
- 
-+/*
-+ * intel_dmc_configure_dc_balance_event() - Configure event
-+ * for dc balance enable/disable
-+ * @display: display instance
-+ * @pipe: pipe which register use to block
-+ * @enable: enable/disable
-+ */
-+void intel_dmc_configure_dc_balance_event(struct intel_display *display,
-+					  enum pipe pipe, bool enable)
-+{
-+	enum intel_dmc_id dmc_id = PIPE_TO_DMC_ID(pipe);
-+
-+	dmc_configure_event(display, dmc_id, PIPEDMC_EVENT_ADAPTIVE_DCB_TRIGGER, enable);
-+}
-+
- /**
-  * intel_dmc_block_pkgc() - block PKG C-state
-  * @display: display instance
-diff --git a/drivers/gpu/drm/i915/display/intel_dmc.h b/drivers/gpu/drm/i915/display/intel_dmc.h
-index 9c6a42fc820e..3d8a9a593319 100644
---- a/drivers/gpu/drm/i915/display/intel_dmc.h
-+++ b/drivers/gpu/drm/i915/display/intel_dmc.h
-@@ -25,6 +25,8 @@ void intel_dmc_enable_pipe(const struct intel_crtc_state *crtc_state);
- void intel_dmc_disable_pipe(const struct intel_crtc_state *crtc_state);
- void intel_dmc_block_pkgc(struct intel_display *display, enum pipe pipe,
- 			  bool block);
-+void intel_dmc_configure_dc_balance_event(struct intel_display *display,
-+					  enum pipe pipe, bool enable);
- void intel_dmc_start_pkgc_exit_at_start_of_undelayed_vblank(struct intel_display *display,
- 							    enum pipe pipe, bool enable);
- void intel_dmc_fini(struct intel_display *display);
 diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-index 286ffa35107b..ec2e5a94a99e 100644
+index 11f06a5b854a..e5cff3892cb1 100644
 --- a/drivers/gpu/drm/i915/display/intel_vrr.c
 +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-@@ -809,6 +809,7 @@ intel_vrr_enable_dc_balancing(const struct intel_crtc_state *crtc_state)
- 		       crtc_state->vrr.dc_balance.slope);
- 	intel_de_write(display, PIPEDMC_DCB_VBLANK(pipe),
- 		       crtc_state->vrr.dc_balance.vblank_target);
-+	intel_dmc_configure_dc_balance_event(display, pipe, true);
- 	intel_de_write(display, TRANS_ADAPTIVE_SYNC_DCB_CTL(cpu_transcoder),
- 		       ADAPTIVE_SYNC_COUNTER_EN);
- 	intel_pipedmc_dcb_enable(NULL, crtc);
-@@ -826,6 +827,7 @@ intel_vrr_disable_dc_balancing(const struct intel_crtc_state *old_crtc_state)
- 		return;
+@@ -1081,10 +1081,23 @@ int intel_vrr_safe_window_start(const struct intel_crtc_state *crtc_state)
+ 		return crtc_state->hw.adjusted_mode.crtc_vdisplay;
+ }
  
- 	intel_pipedmc_dcb_disable(NULL, crtc);
-+	intel_dmc_configure_dc_balance_event(display, pipe, false);
- 	intel_de_write(display, TRANS_ADAPTIVE_SYNC_DCB_CTL(cpu_transcoder), 0);
- 	intel_de_write(display, PIPEDMC_DCB_VMIN(pipe), 0);
- 	intel_de_write(display, PIPEDMC_DCB_VMAX(pipe), 0);
++static int
++intel_vrr_dcb_vmin_vblank_start(const struct intel_crtc_state *crtc_state)
++{
++	return (intel_vrr_dcb_vmin_vblank_start_next(crtc_state) < 0) ?
++		intel_vrr_dcb_vmin_vblank_start_final(crtc_state) :
++		intel_vrr_dcb_vmin_vblank_start_next(crtc_state);
++}
++
+ int intel_vrr_vmin_safe_window_end(const struct intel_crtc_state *crtc_state)
+ {
+-	return intel_vrr_vmin_vblank_start(crtc_state) -
+-	       crtc_state->set_context_latency;
++	if (crtc_state->vrr.dc_balance.enable) {
++		return intel_vrr_dcb_vmin_vblank_start(crtc_state) -
++			crtc_state->set_context_latency;
++	} else {
++		return intel_vrr_vmin_vblank_start(crtc_state) -
++			crtc_state->set_context_latency;
++	}
+ }
+ 
+ int intel_vrr_dcb_vmin_vblank_start_next(const struct intel_crtc_state *crtc_state)
 -- 
 2.48.1
 
