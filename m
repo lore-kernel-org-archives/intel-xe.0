@@ -4,56 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5AF60D116E4
-	for <intel-xe@archiver.kernel.org>; Thu, 27 Nov 2025 01:45:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 649BAD116E4
+	for <intel-xe@archiver.kernel.org>; Thu, 27 Nov 2025 01:45:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1D18010E0A5;
-	Thu, 27 Nov 2025 01:45:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 218D810E735;
+	Thu, 27 Nov 2025 01:45:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cKE03aXI";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Xuu8Mc4B";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7444610E0A5
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5447410E720
  for <intel-xe@lists.freedesktop.org>; Thu, 27 Nov 2025 01:45:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1764207930; x=1795743930;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=6sWMQfL84Jc84XnpTLeWgJ7P6l4gVakClClRCTnB+Ac=;
- b=cKE03aXIMAV9r6z1SYObQS+oTeaW1thCmQLM2GJqeu9WuGkBiCNO5q7b
- lQdEwpSi3+mADpATHuevLGDcl51j2atVG7IGJx5DQZ4Y4p1IMqVk8bJdy
- p0Kpo7DBRAeLyWhDrNSSv/e56RGcHEfUay16SlNozIHkQLo3btr28ftS6
- vLr4fGHJSoReCHo8hsQMt3OLSPAx3KUIQZDDybTh9AO8PKP2B7LZ0sQJ+
- seD+pnqkaRvFYO4Pm5rzlOf6rARmIhRiyMNmu8wd9gws9Lq4qPV1zupGI
- faaPbdQCmo8XrYJVIw1w0Eg8kvQBKKa+yRsTEXT+zjnDk46nRvb0qIl0V A==;
-X-CSE-ConnectionGUID: nfzvLEdqTqWrH0aP2qnD0A==
-X-CSE-MsgGUID: 11f7sYNiRDGgGqk2si05Hw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11625"; a="70114865"
-X-IronPort-AV: E=Sophos;i="6.20,229,1758610800"; d="scan'208";a="70114865"
+ bh=slFU2teo3NtmdMcWT7hdaZrEzrWV1KrMjuEvsh9OLcY=;
+ b=Xuu8Mc4BeM4/0E7nStOh95sVZqmP95vjCzerdJCWh/cYsQbf+bm8V7OZ
+ C88lScz2J2b3XhfCI5pn7g73dF7F2+eB2L3wZvzvK7XoeoHKGIyGkOS3J
+ d8fvMd7bjL/71zWNffKZ2DUHbNfyLzHRVW0HgJ34pL/gCQUvZ7fk+malB
+ +WQZFz/yCIegf/gwZ18NidmDTmUNVkU4aAbGzK6ZPDLxGOyATJQTuiymz
+ 4AwXNla/Eiknq7rXK0RfJBYKeEQoFLMMK7/VoLkO1SWPSbD48UEioQZV1
+ FXdhXwBa7ayfkKKNkbrTducwLvk/khRTOBH3N7krJykoh69sAf1vD02b5 A==;
+X-CSE-ConnectionGUID: G7YDrPsrTwu2ZOhhJRwN8Q==
+X-CSE-MsgGUID: miSDaLCSQdmqOi0KbKpLIQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11625"; a="70114860"
+X-IronPort-AV: E=Sophos;i="6.20,229,1758610800"; d="scan'208";a="70114860"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Nov 2025 17:45:28 -0800
-X-CSE-ConnectionGUID: RWjr47HTRP+e+CS5t55n5w==
-X-CSE-MsgGUID: bIdxResVSSCV0nGFIE9iRQ==
+ 26 Nov 2025 17:45:26 -0800
+X-CSE-ConnectionGUID: QYzWgpopS5W/CbVgD4854w==
+X-CSE-MsgGUID: vzNAycCGTgSbXaH5RJe1TA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,229,1758610800"; d="scan'208";a="192753433"
+X-IronPort-AV: E=Sophos;i="6.20,229,1758610800"; d="scan'208";a="192753413"
 Received: from valcore-skull-1.fm.intel.com ([10.1.39.17])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Nov 2025 17:45:28 -0800
+ 26 Nov 2025 17:45:26 -0800
 From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
  Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH 10/10] drm/xe/sriov: Add debugfs to set EQ and PT for
- scheduler groups
-Date: Wed, 26 Nov 2025 17:45:16 -0800
-Message-ID: <20251127014507.2323746-22-daniele.ceraolospurio@intel.com>
+Subject: [PATCH 08/10] drm/xe/sriov: Add functions to set exec quantums for
+ each group
+Date: Wed, 26 Nov 2025 17:45:14 -0800
+Message-ID: <20251127014507.2323746-20-daniele.ceraolospurio@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20251127014507.2323746-12-daniele.ceraolospurio@intel.com>
 References: <20251127014507.2323746-12-daniele.ceraolospurio@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -69,231 +68,448 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-A top-level debugfs file is added that allows a user to provide a
-comma-separated list of values to assign to each group. Per-group files
-are also added to allow individual tuning of a specific group.
+The GuC has a new dedicated KLV to set the EQs for the groups. The GuC
+always sets the EQs for all the groups (even the ones not enabled). If
+we provide fewer values than the max number of grops (8), the GuC will
+set the remaining ones to 0.
+
+Based on this, we offer 2 ways of setting the EQs:
+
+1) provide a list of EQs, which is passed straight to the GuC. This will
+   cause the GuC to use zero for any missing value as mentioned above
+2) provide a single EQ for a specific group. In this case we send all 8
+   EQs to the GuC, using the current values for the groups which are not
+   being updated.
+
+Note that the new KLV can be used even when groups are disabled (as the
+GuC always consider group0 to be active), so we can use it when encoding
+the SRIOV config.
 
 Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c | 173 +++++++++++++++++++-
- 1 file changed, 168 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/xe/abi/guc_klvs_abi.h      |  12 +
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c | 244 +++++++++++++++++++--
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h |   8 +
+ drivers/gpu/drm/xe/xe_sriov.c              |  18 ++
+ drivers/gpu/drm/xe/xe_sriov.h              |   1 +
+ 5 files changed, 266 insertions(+), 17 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
-index 947e2b92d58a..052510736017 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
-@@ -165,24 +165,169 @@ static void pf_add_policy_attrs(struct xe_gt *gt, struct dentry *parent)
-  *              :   ├── gt0
-  *                  :   ├── sched_groups_mode
-  *                      ├── sched_groups
-- *                      :   ├── group0
-- *                          :   └── engines
-+ *                      :   ├── exec_quantums_ms
-+ *                          ├── preempt_timeouts_us
-+ *                          ├── group0
-+ *                          :   ├── engines
-+ *                              ├── exec_quantum_ms
-+ *                              └── preempt_timeout_us
-  *                          :
-  *                          └── groupN
-- *          :                   └── engines
-+ *                              ├── engines
-+ *                              ├── exec_quantum_ms
-+ *          :                   └── preempt_timeout_us
-  *          ├── vf1
-  *          :   ├── tile0
-  *              :   ├── gt0
-  *                  :   ├── sched_groups
-- *                      :   ├── group0
-- *                          :   └── engines
-+ *                      :   ├── exec_quantums_ms
-+ *                          ├── preempt_timeouts_us
-+ *                          ├── group0
-+ *                          :   ├── engines
-+ *                              ├── exec_quantum_ms
-+ *                              └── preempt_timeout_us
+diff --git a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h b/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
+index 48f47e26132d..a0763cc15518 100644
+--- a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
++++ b/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
+@@ -383,6 +383,16 @@ enum  {
+  * _`GUC_KLV_VF_CFG_THRESHOLD_MULTI_LRC_COUNT` : 0x8A0D
+  *      This config sets the threshold for LRCA context registration when SRIOV
+  *      scheduler groups are enabled.
++ *
++ * _`GUC_KLV_VF_CFG_ENGINE_GROUP_EXEC_QUANTUM' : 0x8A0E
++ *      This config sets the VFs-execution-quantum for each scheduling group in
++ *      milliseconds. The driver must provide an array of values, with each of
++ *      them matching the respective group index (first value goes to group 0,
++ *      second to group 1, etc). The setting of group values follows the same
++ *      behavior and rules as setting via GUC_KLV_VF_CFG_EXEC_QUANTUM. Note that
++ *      the GuC always sets the EQ for all groups (even the non-enabled ones),
++ *      so if we provide fewer values than the max the GuC will use 0 for the
++ *      remaining groups.
   */
  
- struct sched_group_info {
- 	struct xe_gt *gt;
-+	unsigned int vfid;
-+	u8 group_id;
- 	u32 *masks;
- };
+ #define GUC_KLV_VF_CFG_GGTT_START_KEY		0x0001
+@@ -444,6 +454,8 @@ enum  {
+ #define GUC_KLV_VF_CFG_THRESHOLD_MULTI_LRC_COUNT_KEY	0x8a0d
+ #define GUC_KLV_VF_CFG_THRESHOLD_MULTI_LRC_COUNT_LEN	1u
  
-+static int sched_groups_config_show(struct seq_file *m, void *data,
-+				    void (*get)(struct xe_gt *, unsigned int, u32 *, u32))
++#define GUC_KLV_VF_CFG_ENGINE_GROUP_EXEC_QUANTUM_KEY	0x8a0e
++
+ /*
+  * Workaround keys:
+  */
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
+index eb547fedb6da..1bfb25bda432 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
+@@ -195,6 +195,22 @@ static int pf_push_vf_cfg_dbs(struct xe_gt *gt, unsigned int vfid, u32 begin, u3
+ 	return pf_push_vf_cfg_klvs(gt, vfid, 2, klvs, ARRAY_SIZE(klvs));
+ }
+ 
++static int pf_push_vf_grp_cfg_u32(struct xe_gt *gt, unsigned int vfid,
++				  u16 key, const u32 *values, u32 count)
 +{
-+	u32 values[GUC_KLV_VGT_POLICY_ENGINE_GROUP_MAX_COUNT];
-+	struct drm_printer p = drm_seq_file_printer(m);
-+	struct sched_group_info *groups = m->private;
-+	struct xe_gt *gt = groups[0].gt;
-+	unsigned int vfid = groups[0].vfid;
-+	bool first = true;
++	u32 klv[GUC_KLV_VGT_POLICY_ENGINE_GROUP_MAX_COUNT + 1];
++
++	if (!count)
++		return -ENODATA;
++	if (count > GUC_KLV_VGT_POLICY_ENGINE_GROUP_MAX_COUNT)
++		return -E2BIG;
++
++	klv[0] = FIELD_PREP(GUC_KLV_0_KEY, key) | FIELD_PREP(GUC_KLV_0_LEN, count);
++	memcpy(&klv[1], values, count * sizeof(u32));
++
++	return pf_push_vf_cfg_klvs(gt, vfid, 1, klv, count + 1);
++}
++
+ static int pf_push_vf_cfg_exec_quantum(struct xe_gt *gt, unsigned int vfid, u32 *exec_quantum)
+ {
+ 	/* GuC will silently clamp values exceeding max */
+@@ -269,9 +285,11 @@ static u32 encode_config_ggtt(u32 *cfg, const struct xe_gt_sriov_config *config,
+ }
+ 
+ /* Return: number of configuration dwords written */
+-static u32 encode_config(u32 *cfg, const struct xe_gt_sriov_config *config, bool details)
++static u32 encode_config(struct xe_gt *gt, u32 *cfg,
++			 const struct xe_gt_sriov_config *config, bool details)
+ {
+ 	u32 n = 0;
++	int i;
+ 
+ 	n += encode_config_ggtt(cfg, config, details);
+ 
+@@ -297,8 +315,15 @@ static u32 encode_config(u32 *cfg, const struct xe_gt_sriov_config *config, bool
+ 		cfg[n++] = upper_32_bits(xe_bo_size(config->lmem_obj));
+ 	}
+ 
+-	cfg[n++] = PREP_GUC_KLV_TAG(VF_CFG_EXEC_QUANTUM);
+-	cfg[n++] = config->exec_quantum[0];
++	if (xe_sriov_gt_pf_policy_has_valid_sched_group_modes(gt)) {
++		cfg[n++] = PREP_GUC_KLV_CONST(GUC_KLV_VF_CFG_ENGINE_GROUP_EXEC_QUANTUM_KEY,
++					      GUC_KLV_VGT_POLICY_ENGINE_GROUP_MAX_COUNT);
++		for (i = 0; i < GUC_KLV_VGT_POLICY_ENGINE_GROUP_MAX_COUNT; i++)
++			cfg[n++] = config->exec_quantum[i];
++	} else {
++		cfg[n++] = PREP_GUC_KLV_TAG(VF_CFG_EXEC_QUANTUM);
++		cfg[n++] = config->exec_quantum[0];
++	}
+ 
+ 	cfg[n++] = PREP_GUC_KLV_TAG(VF_CFG_PREEMPT_TIMEOUT);
+ 	cfg[n++] = config->preempt_timeout[0];
+@@ -328,7 +353,7 @@ static int pf_push_full_vf_config(struct xe_gt *gt, unsigned int vfid)
+ 		return -ENOBUFS;
+ 
+ 	cfg = xe_guc_buf_cpu_ptr(buf);
+-	num_dwords = encode_config(cfg, config, true);
++	num_dwords = encode_config(gt, cfg, config, true);
+ 	xe_gt_assert(gt, num_dwords <= max_cfg_dwords);
+ 
+ 	if (xe_gt_is_media_type(gt)) {
+@@ -952,6 +977,21 @@ static const char *spare_unit(u32 unused)
+ 	return " spare";
+ }
+ 
++static void __set_u32_done(struct xe_gt *gt, const char *name, u32 value, u32 actual,
++			   const char *what, const char *(*unit)(u32), int err)
++{
++	if (unlikely(err)) {
++		xe_gt_sriov_notice(gt, "Failed to provision %s with %u%s %s (%pe)\n",
++				   name, value, unit(value), what, ERR_PTR(err));
++		xe_gt_sriov_info(gt, "%s provisioning remains at %u%s %s\n",
++				 name, actual, unit(actual), what);
++	} else {
++		/* the actual value may have changed during provisioning */
++		xe_gt_sriov_info(gt, "%s provisioned with %u%s %s\n",
++				 name, actual, unit(actual), what);
++	}
++}
++
+ static int pf_config_set_u32_done(struct xe_gt *gt, unsigned int vfid, u32 value, u32 actual,
+ 				  const char *what, const char *(*unit)(u32), int err)
+ {
+@@ -959,18 +999,47 @@ static int pf_config_set_u32_done(struct xe_gt *gt, unsigned int vfid, u32 value
+ 
+ 	xe_sriov_function_name(vfid, name, sizeof(name));
+ 
+-	if (unlikely(err)) {
+-		xe_gt_sriov_notice(gt, "Failed to provision %s with %u%s %s (%pe)\n",
+-				   name, value, unit(value), what, ERR_PTR(err));
+-		xe_gt_sriov_info(gt, "%s provisioning remains at %u%s %s\n",
+-				 name, actual, unit(actual), what);
+-		return err;
++	__set_u32_done(gt, name, value, actual, what, unit, err);
++
++	return err;
++}
++
++static int pf_group_config_set_u32_done(struct xe_gt *gt, unsigned int vfid, u8 group,
++					u32 value, u32 actual, const char *what,
++					const char *(*unit)(u32), int err)
++{
++	char name[24];
++
++	xe_sriov_function_and_group_name(vfid, group, name, sizeof(name));
++
++	__set_u32_done(gt, name, value, actual, what, unit, err);
++
++	return err;
++}
++
++static int
++pf_groups_cfg_set_u32_array_done(struct xe_gt *gt, unsigned int vfid,
++				 u32 *values, u32 count,
++				 void (*get_actual)(struct xe_gt *, unsigned int, u32 *, u32),
++				 const char *what, const char *(*unit)(u32), int err)
++{
++	u32 actual[GUC_KLV_VGT_POLICY_ENGINE_GROUP_MAX_COUNT];
++	char name[24];
 +	u8 g;
 +
-+	get(gt, vfid, values, ARRAY_SIZE(values));
++	get_actual(gt, vfid, actual, count);
 +
-+	for (g = 0; g < ARRAY_SIZE(values); g++) {
-+		drm_printf(&p, "%s%u", first ? "" : ",", values[g]);
++	for (g = 0; g < count; g++) {
++		xe_sriov_function_and_group_name(vfid, g, name, sizeof(name));
 +
-+		first = false;
++		__set_u32_done(gt, name, values[g], actual[g], what, unit, err);
+ 	}
+ 
+-	/* the actual value may have changed during provisioning */
+-	xe_gt_sriov_info(gt, "%s provisioned with %u%s %s\n",
+-			 name, actual, unit(actual), what);
+-	return 0;
++	if (!err && count < GUC_KLV_VGT_POLICY_ENGINE_GROUP_MAX_COUNT)
++		xe_gt_sriov_info(gt, "All remaining groups provisioned with 0%s %s\n",
++				 unit(0), what);
++
++	return err;
+ }
+ 
+ /**
+@@ -1869,11 +1938,16 @@ static int pf_provision_exec_quantum(struct xe_gt *gt, unsigned int vfid,
+ 	return 0;
+ }
+ 
+-static u32 pf_get_exec_quantum(struct xe_gt *gt, unsigned int vfid)
++static u32 pf_get_group_exec_quantum(struct xe_gt *gt, unsigned int vfid, u8 group)
+ {
+ 	struct xe_gt_sriov_config *config = pf_pick_vf_config(gt, vfid);
+ 
+-	return config->exec_quantum[0];
++	return config->exec_quantum[group];
++}
++
++static u32 pf_get_exec_quantum(struct xe_gt *gt, unsigned int vfid)
++{
++	return pf_get_group_exec_quantum(gt, vfid, 0);
+ }
+ 
+ /**
+@@ -1980,6 +2054,137 @@ int xe_gt_sriov_pf_config_bulk_set_exec_quantum_locked(struct xe_gt *gt, u32 exe
+ 					   exec_quantum_unit, n, err);
+ }
+ 
++static int pf_provision_groups_exec_quantums(struct xe_gt *gt, unsigned int vfid,
++					     const u32 *exec_quantums, u32 count)
++{
++	struct xe_gt_sriov_config *config = pf_pick_vf_config(gt, vfid);
++	int err;
++	int i;
++
++	err = pf_push_vf_grp_cfg_u32(gt, vfid, GUC_KLV_VF_CFG_ENGINE_GROUP_EXEC_QUANTUM_KEY,
++				     exec_quantums, count);
++	if (unlikely(err))
++		return err;
++
++	/*
++	 * GuC silently clamps values exceeding the max and zeroes out the
++	 * quantum for groups not in the array
++	 */
++	for (i = 0; i < GUC_KLV_VGT_POLICY_ENGINE_GROUP_MAX_COUNT; i++) {
++		if (i < count)
++			config->exec_quantum[i] = min_t(u32, exec_quantums[i],
++							GUC_KLV_VF_CFG_EXEC_QUANTUM_MAX_VALUE);
++		else
++			config->exec_quantum[i] = 0;
 +	}
-+
-+	drm_printf(&p, "\n");
 +
 +	return 0;
 +}
 +
-+#define MAX_EGS_ARRAY_SIZE (GUC_KLV_VGT_POLICY_ENGINE_GROUP_MAX_COUNT * sizeof(u32))
-+static ssize_t sched_groups_config_write(struct file *file, const char __user *ubuf,
-+					 size_t size, loff_t *pos,
-+					 int (*set)(struct xe_gt *, unsigned int, u32 *, u32))
++static void pf_get_groups_exec_quantums(struct xe_gt *gt, unsigned int vfid,
++					u32 *exec_quantums, u32 max_count)
 +{
-+	struct sched_group_info *groups = file_inode(file)->i_private;
-+	u32 values[GUC_KLV_VGT_POLICY_ENGINE_GROUP_MAX_COUNT];
-+	struct xe_gt *gt = groups[0].gt;
-+	unsigned int vfid = groups[0].vfid;
-+	int *input;
-+	u32 count;
-+	int ret;
-+	int i;
++	struct xe_gt_sriov_config *config = pf_pick_vf_config(gt, vfid);
++	u32 count = min_t(u32, max_count, GUC_KLV_VGT_POLICY_ENGINE_GROUP_MAX_COUNT);
 +
-+	if (*pos)
-+		return -ESPIPE;
-+
-+	if (!size)
-+		return -ENODATA;
-+
-+	ret = parse_int_array_user(ubuf, min(size, MAX_EGS_ARRAY_SIZE), &input);
-+	if (ret)
-+		return ret;
-+
-+	count = input[0];
-+	for (i = 0; i < count; i++) {
-+		if (input[i + 1] < 0 || input[i + 1] > S32_MAX) {
-+			ret = -EINVAL;
-+			goto out;
-+		}
-+
-+		values[i] = input[i + 1];
-+	}
-+
-+	xe_pm_runtime_get(gt_to_xe(gt));
-+	ret = set(gt, vfid, values, count);
-+	xe_pm_runtime_put(gt_to_xe(gt));
-+
-+out:
-+	kfree(input);
-+	return (ret < 0) ? ret : size;
++	memcpy(exec_quantums, config->exec_quantum, sizeof(u32) * count);
 +}
 +
-+#define DEFINE_SRIOV_GT_GRP_CFG_DEBUGFS_ATTRIBUTE(CONFIG, TYPE, FORMAT)		\
-+static int sched_groups_##CONFIG##s_show(struct seq_file *m,			\
-+						  void *data)			\
-+{										\
-+	return sched_groups_config_show(m, data,				\
-+					xe_gt_sriov_pf_config_get_groups_##CONFIG##s); \
-+}										\
-+										\
-+static int sched_groups_##CONFIG##s_open(struct inode *inode, struct file *file)\
-+{										\
-+	return single_open(file, sched_groups_##CONFIG##s_show,			\
-+			   inode->i_private);					\
-+}										\
-+										\
-+static ssize_t sched_groups_##CONFIG##s_write(struct file *file,		\
-+					      const char __user *ubuf,		\
-+					      size_t size, loff_t *pos)		\
-+{										\
-+	return sched_groups_config_write(file, ubuf, size, pos,			\
-+					 xe_gt_sriov_pf_config_set_groups_##CONFIG##s); \
-+}										\
-+										\
-+static const struct file_operations sched_groups_##CONFIG##s_fops = {		\
-+	.owner = THIS_MODULE,							\
-+	.open = sched_groups_##CONFIG##s_open,					\
-+	.read = seq_read,							\
-+	.llseek = seq_lseek,							\
-+	.write = sched_groups_##CONFIG##s_write,				\
-+	.release = single_release,						\
-+};										\
-+										\
-+static int group_##CONFIG##_set(void *data, u64 val)				\
-+{										\
-+	struct sched_group_info *gi = data;					\
-+	struct xe_device *xe = gt_to_xe(gi->gt);				\
-+	int err;								\
-+										\
-+	if (val > (TYPE)~0ull)							\
-+		return -EOVERFLOW;						\
-+										\
-+	xe_pm_runtime_get(xe);							\
-+	err = xe_sriov_pf_wait_ready(xe) ?:					\
-+	      xe_gt_sriov_pf_config_set_group_##CONFIG(gi->gt, gi->vfid,	\
-+						       gi->group_id, val);	\
-+	if (!err)								\
-+		xe_sriov_pf_provision_set_custom_mode(xe);			\
-+	xe_pm_runtime_put(xe);							\
-+										\
-+	return err;								\
-+}										\
-+										\
-+static int group_##CONFIG##_get(void *data, u64 *val)				\
-+{										\
-+	struct sched_group_info *gi = data;					\
-+										\
-+	*val = xe_gt_sriov_pf_config_get_group_##CONFIG(gi->gt, gi->vfid,	\
-+							gi->group_id);		\
-+	return 0;								\
-+}										\
-+										\
-+DEFINE_DEBUGFS_ATTRIBUTE(group_##CONFIG##_fops, group_##CONFIG##_get,		\
-+			 group_##CONFIG##_set, FORMAT)
++/**
++ * xe_gt_sriov_pf_config_set_groups_exec_quantums() - Configure PF/VF EQs for sched groups.
++ * @gt: the &xe_gt
++ * @vfid: the PF or VF identifier
++ * @exec_quantums: array of requested EQs in milliseconds (0 is infinity)
++ * @count: number of entries in the array
++ *
++ * This function can only be called on PF.
++ * It will log the provisioned value or an error in case of the failure.
++ *
++ * Return: 0 on success or a negative error code on failure.
++ */
++int xe_gt_sriov_pf_config_set_groups_exec_quantums(struct xe_gt *gt, unsigned int vfid,
++						   u32 *exec_quantums, u32 count)
++{
++	int err;
 +
-+DEFINE_SRIOV_GT_GRP_CFG_DEBUGFS_ATTRIBUTE(exec_quantum, u32, "%llu\n");
-+DEFINE_SRIOV_GT_GRP_CFG_DEBUGFS_ATTRIBUTE(preempt_timeout, u32, "%llu\n");
++	guard(mutex)(xe_gt_sriov_pf_master_mutex(gt));
 +
- static int sched_group_engines_info(struct seq_file *m, void *data)
++	err = pf_provision_groups_exec_quantums(gt, vfid, exec_quantums, count);
++
++	return pf_groups_cfg_set_u32_array_done(gt, vfid, exec_quantums, count,
++						pf_get_groups_exec_quantums,
++						"execution quantum",
++						exec_quantum_unit, err);
++}
++
++/**
++ * xe_gt_sriov_pf_config_get_groups_exec_quantums - Get PF/VF sched groups EQs
++ * @gt: the &xe_gt
++ * @vfid: the PF or VF identifier
++ * @exec_quantums: array in which to store the execution quantums values
++ * @max_count: maximum number of entries to store
++ *
++ * This function can only be called on PF.
++ */
++void xe_gt_sriov_pf_config_get_groups_exec_quantums(struct xe_gt *gt, unsigned int vfid,
++						    u32 *exec_quantums, u32 max_count)
++{
++	guard(mutex)(xe_gt_sriov_pf_master_mutex(gt));
++
++	return pf_get_groups_exec_quantums(gt, vfid, exec_quantums, max_count);
++}
++
++/**
++ * xe_gt_sriov_pf_config_set_group_exec_quantum - Configure PF/VF EQs for a sched group.
++ * @gt: the &xe_gt
++ * @vfid: the PF or VF identifier
++ * @group: index of the group to configure
++ * @exec_quantum: requested EQs in milliseconds (0 is infinity)
++ *
++ * This function can only be called on PF.
++ * It will log the provisioned value or an error in case of the failure.
++ *
++ * Return: 0 on success or a negative error code on failure.
++ */
++int xe_gt_sriov_pf_config_set_group_exec_quantum(struct xe_gt *gt, unsigned int vfid,
++						 u8 group, u32 exec_quantum)
++{
++	u32 values[GUC_KLV_VGT_POLICY_ENGINE_GROUP_MAX_COUNT];
++	int err;
++
++	xe_gt_assert(gt, group < GUC_KLV_VGT_POLICY_ENGINE_GROUP_MAX_COUNT);
++
++	guard(mutex)(xe_gt_sriov_pf_master_mutex(gt));
++
++	pf_get_groups_exec_quantums(gt, vfid, values, ARRAY_SIZE(values));
++	values[group] = exec_quantum;
++
++	err = pf_provision_groups_exec_quantums(gt, vfid, values, ARRAY_SIZE(values));
++
++	return pf_group_config_set_u32_done(gt, vfid, group, exec_quantum,
++					    pf_get_group_exec_quantum(gt, vfid, group),
++					    "execution quantum", exec_quantum_unit, err);
++}
++
++/**
++ * xe_gt_sriov_pf_config_get_group_exec_quantum - Get PF/VF EQ for a sched groups
++ * @gt: the &xe_gt
++ * @vfid: the PF or VF identifier
++ * @group: index of the group for which to get the EQ
++ *
++ * This function can only be called on PF.
++ *
++ * Return: execution quantum in milliseconds (or 0 if infinity).
++ */
++u32 xe_gt_sriov_pf_config_get_group_exec_quantum(struct xe_gt *gt, unsigned int vfid, u8 group)
++{
++	xe_gt_assert(gt, group < GUC_KLV_VGT_POLICY_ENGINE_GROUP_MAX_COUNT);
++
++	guard(mutex)(xe_gt_sriov_pf_master_mutex(gt));
++
++	return pf_get_group_exec_quantum(gt, vfid, group);
++}
++
+ static const char *preempt_timeout_unit(u32 preempt_timeout)
  {
- 	struct drm_printer p = drm_seq_file_printer(m);
-@@ -261,6 +406,18 @@ static void sched_group_info_register(struct xe_gt *gt, unsigned int vfid)
- 		goto out_err;
- 	parent->d_inode->i_private = infos;
- 
-+	/*
-+	 * assign group 0 gt and VF id values early as they're used by the
-+	 * exec_quantums debugfs to set quantums for all groups
-+	 */
-+	infos[0].gt = gt;
-+	infos[0].vfid = vfid;
-+
-+	debugfs_create_file("exec_quantums_ms", 0644, parent, infos,
-+			    &sched_groups_exec_quantums_fops);
-+	debugfs_create_file("preempt_timeouts_us", 0644, parent, infos,
-+			    &sched_groups_preempt_timeouts_fops);
-+
- 	for (g = 0; g < num_groups; g++) {
- 		struct sched_group_info *info = &infos[g];
- 		u32 base = g * GUC_MAX_ENGINE_CLASSES;
-@@ -273,10 +430,16 @@ static void sched_group_info_register(struct xe_gt *gt, unsigned int vfid)
- 			goto out_err;
- 
- 		info->gt = gt;
-+		info->vfid = vfid;
-+		info->group_id = g;
- 		info->masks = &policy->guc.sched_groups.modes[mode].masks[base];
- 
- 		dent->d_inode->i_private = info;
- 		debugfs_create_file("engines", 0644, dent, info, &sched_group_engines_fops);
-+		debugfs_create_file("exec_quantum_ms", 0644, dent, info,
-+				    &group_exec_quantum_fops);
-+		debugfs_create_file("preempt_timeout_us", 0644, dent, info,
-+				    &group_preempt_timeout_fops);
+ 	return preempt_timeout ? "us" : "(infinity)";
+@@ -2527,7 +2732,7 @@ ssize_t xe_gt_sriov_pf_config_save(struct xe_gt *gt, unsigned int vfid, void *bu
+ 			ret = -ENOBUFS;
+ 		} else {
+ 			config = pf_pick_vf_config(gt, vfid);
+-			ret = encode_config(buf, config, false) * sizeof(u32);
++			ret = encode_config(gt, buf, config, false) * sizeof(u32);
+ 		}
  	}
+ 	mutex_unlock(xe_gt_sriov_pf_master_mutex(gt));
+@@ -2554,6 +2759,11 @@ static int pf_restore_vf_config_klv(struct xe_gt *gt, unsigned int vfid,
+ 			return -EBADMSG;
+ 		return pf_provision_exec_quantum(gt, vfid, value[0]);
  
- 	return;
++	case GUC_KLV_VF_CFG_ENGINE_GROUP_EXEC_QUANTUM_KEY:
++		if (len > GUC_KLV_VGT_POLICY_ENGINE_GROUP_MAX_COUNT)
++			return -EBADMSG;
++		return pf_provision_groups_exec_quantums(gt, vfid, value, len);
++
+ 	case GUC_KLV_VF_CFG_PREEMPT_TIMEOUT_KEY:
+ 		if (len != GUC_KLV_VF_CFG_PREEMPT_TIMEOUT_LEN)
+ 			return -EBADMSG;
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h
+index 4975730423d7..aaf6bb824bc9 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h
+@@ -46,6 +46,14 @@ int xe_gt_sriov_pf_config_set_exec_quantum_locked(struct xe_gt *gt, unsigned int
+ 						  u32 exec_quantum);
+ int xe_gt_sriov_pf_config_bulk_set_exec_quantum_locked(struct xe_gt *gt, u32 exec_quantum);
+ 
++void xe_gt_sriov_pf_config_get_groups_exec_quantums(struct xe_gt *gt, unsigned int vfid,
++						    u32 *exec_quantum, u32 max_count);
++int xe_gt_sriov_pf_config_set_groups_exec_quantums(struct xe_gt *gt, unsigned int vfid,
++						   u32 *exec_quantum, u32 count);
++u32 xe_gt_sriov_pf_config_get_group_exec_quantum(struct xe_gt *gt, unsigned int vfid, u8 group);
++int xe_gt_sriov_pf_config_set_group_exec_quantum(struct xe_gt *gt, unsigned int vfid,
++						 u8 group, u32 exec_quantum);
++
+ u32 xe_gt_sriov_pf_config_get_preempt_timeout(struct xe_gt *gt, unsigned int vfid);
+ int xe_gt_sriov_pf_config_set_preempt_timeout(struct xe_gt *gt, unsigned int vfid,
+ 					      u32 preempt_timeout);
+diff --git a/drivers/gpu/drm/xe/xe_sriov.c b/drivers/gpu/drm/xe/xe_sriov.c
+index ea411944609b..eecdd4aaf972 100644
+--- a/drivers/gpu/drm/xe/xe_sriov.c
++++ b/drivers/gpu/drm/xe/xe_sriov.c
+@@ -159,6 +159,24 @@ const char *xe_sriov_function_name(unsigned int n, char *buf, size_t size)
+ 	return buf;
+ }
+ 
++/**
++ * xe_sriov_function_and_group_name() - Get SR-IOV Function and group name.
++ * @n: the Function number (identifier) to get name of
++ * @n: the scheduling group to get name of
++ * @buf: the buffer to format to
++ * @size: size of the buffer (shall be at least 18 bytes)
++ *
++ * Return: formatted function name ("PF sched group%u" or "VF%u sched group%u").
++ */
++const char *xe_sriov_function_and_group_name(unsigned int n, u8 g, char *buf, size_t size)
++{
++	if (n)
++		snprintf(buf, size, "VF%u sched group%u", n, g);
++	else
++		snprintf(buf, size, "PF sched group%u", g);
++	return buf;
++}
++
+ /**
+  * xe_sriov_init_late() - SR-IOV late initialization functions.
+  * @xe: the &xe_device to initialize
+diff --git a/drivers/gpu/drm/xe/xe_sriov.h b/drivers/gpu/drm/xe/xe_sriov.h
+index 6db45df55615..df2b02cb97d0 100644
+--- a/drivers/gpu/drm/xe/xe_sriov.h
++++ b/drivers/gpu/drm/xe/xe_sriov.h
+@@ -14,6 +14,7 @@ struct drm_printer;
+ 
+ const char *xe_sriov_mode_to_string(enum xe_sriov_mode mode);
+ const char *xe_sriov_function_name(unsigned int n, char *buf, size_t len);
++const char *xe_sriov_function_and_group_name(unsigned int n, u8 g, char *buf, size_t size);
+ 
+ void xe_sriov_probe_early(struct xe_device *xe);
+ void xe_sriov_print_info(struct xe_device *xe, struct drm_printer *p);
 -- 
 2.43.0
 
