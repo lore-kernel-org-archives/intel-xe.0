@@ -4,27 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 231E6CFD2F6
-	for <intel-xe@archiver.kernel.org>; Thu, 27 Nov 2025 14:21:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B4820D116E2
+	for <intel-xe@archiver.kernel.org>; Thu, 27 Nov 2025 14:32:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D896910E09E;
-	Thu, 27 Nov 2025 14:21:50 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D88B210E09E;
- Thu, 27 Nov 2025 14:21:49 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6F32310E76A;
+	Thu, 27 Nov 2025 14:32:09 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dV+imn4a";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0F6D810E75C;
+ Thu, 27 Nov 2025 14:32:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1764253928; x=1795789928;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=MeqofkMO/FGbbwnByjSvkmN22VGurYbg+mFWzPJkLHE=;
+ b=dV+imn4aEqNuLPqrNxs6YgufyYjWrbfl7I1eHFcYt7efhVM0ktrh0Gw0
+ 5fON543o6F/UcK/kiRIVi4BnnJsk/ukuefcEwzYCrgKq472seFeji6mNX
+ rg/4rcXCzKhGawz8wgzmC22l8MiCq6+5eUfZevSJNNMR+gnFfKIJ6nL5Q
+ xwdB7DK7/1Tco2F49wgfvKgAuYeLchOBjA+uojXaie4IGKk0Y+a92r9SC
+ 5PUrVBYHyTkJZGqXV0mcaqTywKjSYYFUdVcHCUCdkkCsPTSn5mq5fqO0s
+ 15ZALhs/U0w61db1xxJbSBwU6HLedGXJmBEN5j16KqYkXnIjHBnfh+0Ze Q==;
+X-CSE-ConnectionGUID: 81/MlTj8RcKxJ+DtcuESkg==
+X-CSE-MsgGUID: 7JXT4BjVTLK24cLqHZoOEQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11625"; a="83911081"
+X-IronPort-AV: E=Sophos;i="6.20,231,1758610800"; d="scan'208";a="83911081"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Nov 2025 06:32:07 -0800
+X-CSE-ConnectionGUID: Qt+EYYhrSNG9TDBAjpHoMg==
+X-CSE-MsgGUID: /abgAvmqQiebHxtUzVcTew==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.20,231,1758610800"; d="scan'208";a="223942766"
+Received: from ettammin-desk.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.43])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Nov 2025 06:32:05 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>,
+ dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas =?utf-8?Q?Hellstr=C3=B6m?=
+ <thomas.hellstrom@linux.intel.com>, Dave Airlie <airlied@gmail.com>,
+ Simona Vetter <simona.vetter@ffwll.ch>, Lucas De Marchi
+ <lucas.demarchi@intel.com>
+Subject: Re: [PATCH] MAINTAINERS: Remove myself from xe maintainers
+In-Reply-To: <20251126224357.2482051-2-lucas.demarchi@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20251126224357.2482051-2-lucas.demarchi@intel.com>
+Date: Thu, 27 Nov 2025 16:32:01 +0200
+Message-ID: <f6119d24b52423a1b5c5e7fd3b673d3d3737d132@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_drm/i915/display=3A_Enab?=
- =?utf-8?q?le_system_cache_support_for_FBC_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Govindapillai, Vinod" <vinod.govindapillai@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 27 Nov 2025 14:21:49 -0000
-Message-ID: <176425330988.35615.12945805043934232788@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20251127115349.249120-1-vinod.govindapillai@intel.com>
-In-Reply-To: <20251127115349.249120-1-vinod.govindapillai@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,75 +69,47 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Wed, 26 Nov 2025, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
+> As I'm leaving Intel soon, drop myself from the list of Xe maintainers.
+> Also update the mailmap to switch to my kernel.org address.
+>
+> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 
-Series: drm/i915/display: Enable system cache support for FBC (rev2)
-URL   : https://patchwork.freedesktop.org/series/157944/
-State : warning
+Acked-by: Jani Nikula <jani.nikula@intel.com>
 
-== Summary ==
+> ---
+>  .mailmap    | 1 +
+>  MAINTAINERS | 1 -
+>  2 files changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/.mailmap b/.mailmap
+> index af6e4fce9bfe1..716c0573db214 100644
+> --- a/.mailmap
+> +++ b/.mailmap
+> @@ -476,6 +476,7 @@ Lorenzo Pieralisi <lpieralisi@kernel.org> <lorenzo.pi=
+eralisi@arm.com>
+>  Lorenzo Stoakes <lorenzo.stoakes@oracle.com> <lstoakes@gmail.com>
+>  Luca Ceresoli <luca.ceresoli@bootlin.com> <luca@lucaceresoli.net>
+>  Luca Weiss <luca@lucaweiss.eu> <luca@z3ntu.xyz>
+> +Lucas De Marchi <demarchi@kernel.org> <lucas.demarchi@intel.com>
+>  Lukasz Luba <lukasz.luba@arm.com> <l.luba@partner.samsung.com>
+>  Luo Jie <quic_luoj@quicinc.com> <luoj@codeaurora.org>
+>  Lance Yang <lance.yang@linux.dev> <ioworker0@gmail.com>
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index acc951f122eaf..c3fe83ea713cf 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -12517,7 +12517,6 @@ F:	include/drm/intel/
+>  F:	include/uapi/drm/i915_drm.h
+>=20=20
+>  INTEL DRM XE DRIVER (Lunar Lake and newer)
+> -M:	Lucas De Marchi <lucas.demarchi@intel.com>
+>  M:	Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+>  M:	Rodrigo Vivi <rodrigo.vivi@intel.com>
+>  L:	intel-xe@lists.freedesktop.org
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 943d0e69375e5a9030238a697f7d850af0549000
-Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
-Fast mode used, each commit won't be checked separately.
--
-+drivers/gpu/drm/i915/display/intel_alpm.c: note: in included file:
-+drivers/gpu/drm/i915/display/intel_casf.c:147:21: error: too long token expansion
-+drivers/gpu/drm/i915/display/intel_cdclk.c: note: in included file:
-+drivers/gpu/drm/i915/display/intel_ddi.c: note: in included file:
-+drivers/gpu/drm/i915/display/intel_display_types.h:2072:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:2072:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:2072:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:2072:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:2072:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:2072:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:2072:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:2072:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:2072:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:2072:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:2072:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:2072:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:2072:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:2072:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:2072:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:2072:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:2085:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:2085:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:2085:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_hdcp.c: note: in included file:
-+drivers/gpu/drm/i915/display/intel_hotplug.c: note: in included file:
-+drivers/gpu/drm/i915/display/intel_lt_phy.c:1935:35: warning: Using plain integer as NULL pointer
-+drivers/gpu/drm/i915/display/intel_pps.c: note: in included file:
-+drivers/gpu/drm/i915/display/intel_psr.c: note: in included file:
-+drivers/gpu/drm/i915/intel_uncore.c:1930:1: warning: context imbalance in 'fwtable_read8' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:1931:1: warning: context imbalance in 'fwtable_read16' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:1932:1: warning: context imbalance in 'fwtable_read32' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:1933:1: warning: context imbalance in 'fwtable_read64' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:1998:1: warning: context imbalance in 'gen6_write8' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:1999:1: warning: context imbalance in 'gen6_write16' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:2000:1: warning: context imbalance in 'gen6_write32' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:2020:1: warning: context imbalance in 'fwtable_write8' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:2021:1: warning: context imbalance in 'fwtable_write16' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:2022:1: warning: context imbalance in 'fwtable_write32' - unexpected unlock
-
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
-
+--=20
+Jani Nikula, Intel
