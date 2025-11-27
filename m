@@ -4,63 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C98ECCFD2F6
-	for <intel-xe@archiver.kernel.org>; Thu, 27 Nov 2025 05:28:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 03FBBCFD2F6
+	for <intel-xe@archiver.kernel.org>; Thu, 27 Nov 2025 05:53:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 77B7010E74C;
-	Thu, 27 Nov 2025 05:28:50 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VI5f66Ja";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 296C310E74C;
- Thu, 27 Nov 2025 05:28:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1764221329; x=1795757329;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=atXJCj6/py3h7ZAKpMvIUMy5JxUpLWKJU+BPTsKDbIs=;
- b=VI5f66Jatxv8OIZlcm2fepaC9gJ981XCx4fKHML1GYH3F0Q5/pd87oKU
- k19Jkd3+PlpItH04/bbmLdKHddEl2njYyEwjb4h0ILNHOJ5LktGV2uvMz
- vcBYnHbreeVjTEhMPRJEhFTlr0wCI5MiT6Km0n3cObpk+6Ll6wC0grJ8H
- pD7Df9S4EGwrPwAae7LoRU6WD3iK00ZrYRV4q+a5JUpzTv8ZODl87rku6
- 3+WlJ+gFXmZ3oZcspELF8ze01N/M4IRHZaks/SlSkPhtDLdlgadUeruqS
- aQboyB4fOhBWhHJyjtnhXISL4M2iSSX3uluK+g0gXvFKpC/gT2HFFB8zs Q==;
-X-CSE-ConnectionGUID: L7Om9gWDSMezNrQEdKqTxA==
-X-CSE-MsgGUID: Ktdv5IxXTZmhphaQns9waw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11625"; a="77628326"
-X-IronPort-AV: E=Sophos;i="6.20,230,1758610800"; d="scan'208";a="77628326"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Nov 2025 21:28:49 -0800
-X-CSE-ConnectionGUID: dasVMTU/RiWOTolc8XWOIQ==
-X-CSE-MsgGUID: jIyTH9k4QcO4/SgDIaMa5w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,230,1758610800"; d="scan'208";a="198088018"
-Received: from lkp-server01.sh.intel.com (HELO 4664bbef4914) ([10.239.97.150])
- by fmviesa004.fm.intel.com with ESMTP; 26 Nov 2025 21:28:45 -0800
-Received: from kbuild by 4664bbef4914 with local (Exim 4.98.2)
- (envelope-from <lkp@intel.com>) id 1vOUYd-000000003kd-1CSn;
- Thu, 27 Nov 2025 05:28:43 +0000
-Date: Thu, 27 Nov 2025 13:28:16 +0800
-From: kernel test robot <lkp@intel.com>
-To: Riana Tauro <riana.tauro@intel.com>, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Cc: oe-kbuild-all@lists.linux.dev, aravind.iddamsetty@linux.intel.com,
- anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
- joonas.lahtinen@linux.intel.com, lukas@wunner.de,
- simona.vetter@ffwll.ch, airlied@gmail.com, lucas.demarchi@intel.com,
- Riana Tauro <riana.tauro@intel.com>,
- Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Subject: Re: [PATCH v2 3/4] drm/xe/xe_hw_error: Add support for GT hardware
- errors
-Message-ID: <202511271357.7pA8zqx0-lkp@intel.com>
-References: <20251126143652.2843242-9-riana.tauro@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id A360F10E16C;
+	Thu, 27 Nov 2025 05:53:55 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D7D8210E16A;
+ Thu, 27 Nov 2025 05:53:54 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1889791676427185847=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251126143652.2843242-9-riana.tauro@intel.com>
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/dp=3A_Add_byte-by-?=
+ =?utf-8?q?byte_fallback_for_broken_USB-C_adapters?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chia-Lin Kao (AceLan)" <acelan.kao@canonical.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 27 Nov 2025 05:53:54 -0000
+Message-ID: <176422283487.32692.11669943959860729771@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20251127044406.618543-1-acelan.kao@canonical.com>
+In-Reply-To: <20251127044406.618543-1-acelan.kao@canonical.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,79 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Riana,
+--===============1889791676427185847==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-kernel test robot noticed the following build errors:
+== Series Details ==
 
-[auto build test ERROR on drm-xe/drm-xe-next]
-[also build test ERROR on drm/drm-next drm-intel/for-linux-next drm-intel/for-linux-next-fixes drm-misc/drm-misc-next drm-tip/drm-tip linus/master drm-exynos/exynos-drm-next v6.18-rc7 next-20251127]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Series: drm/i915/dp: Add byte-by-byte fallback for broken USB-C adapters
+URL   : https://patchwork.freedesktop.org/series/158145/
+State : success
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Riana-Tauro/drm-ras-Introduce-the-DRM-RAS-infrastructure-over-generic-netlink/20251126-220942
-base:   https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
-patch link:    https://lore.kernel.org/r/20251126143652.2843242-9-riana.tauro%40intel.com
-patch subject: [PATCH v2 3/4] drm/xe/xe_hw_error: Add support for GT hardware errors
-config: riscv-randconfig-r061-20251127 (https://download.01.org/0day-ci/archive/20251127/202511271357.7pA8zqx0-lkp@intel.com/config)
-compiler: riscv64-linux-gcc (GCC) 13.4.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251127/202511271357.7pA8zqx0-lkp@intel.com/reproduce)
+== Summary ==
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202511271357.7pA8zqx0-lkp@intel.com/
+CI Bug Log - changes from xe-4156-e7a767430515c3a6e8aee91c2a68cba8b06fe884_BAT -> xe-pw-158145v1_BAT
+====================================================
 
-All errors (new ones prefixed by >>):
+Summary
+-------
 
-   In file included from arch/riscv/include/asm/bitops.h:19,
-                    from include/linux/bitops.h:67,
-                    from include/linux/thread_info.h:27,
-                    from include/asm-generic/preempt.h:5,
-                    from ./arch/riscv/include/generated/asm/preempt.h:1,
-                    from include/linux/preempt.h:79,
-                    from include/linux/spinlock.h:56,
-                    from include/linux/kref.h:16,
-                    from include/linux/configfs.h:25,
-                    from include/linux/fault-inject.h:14,
-                    from drivers/gpu/drm/xe/xe_hw_error.c:6:
->> include/asm-generic/bitops/__ffs.h:45:21: error: nonconstant array index in initializer
-      45 | #define __ffs(word) generic___ffs(word)
-         |                     ^~~~~~~~~~~~~
-   drivers/gpu/drm/xe/xe_hw_error.c:31:10: note: in expansion of macro '__ffs'
-      31 |         [__ffs(_bit)] = index
-         |          ^~~~~
-   drivers/gpu/drm/xe/xe_hw_error.c:34:9: note: in expansion of macro 'ERR_INDEX'
-      34 |         ERR_INDEX(XE_GT_ERROR, DRM_XE_GENL_CORE_COMPUTE),
-         |         ^~~~~~~~~
-   include/asm-generic/bitops/__ffs.h:45:21: note: (near initialization for 'xe_hw_error_map')
-      45 | #define __ffs(word) generic___ffs(word)
-         |                     ^~~~~~~~~~~~~
-   drivers/gpu/drm/xe/xe_hw_error.c:31:10: note: in expansion of macro '__ffs'
-      31 |         [__ffs(_bit)] = index
-         |          ^~~~~
-   drivers/gpu/drm/xe/xe_hw_error.c:34:9: note: in expansion of macro 'ERR_INDEX'
-      34 |         ERR_INDEX(XE_GT_ERROR, DRM_XE_GENL_CORE_COMPUTE),
-         |         ^~~~~~~~~
+  **SUCCESS**
 
-Kconfig warnings: (for reference only)
-   WARNING: unmet direct dependencies detected for ARCH_HAS_ELF_CORE_EFLAGS
-   Depends on [n]: BINFMT_ELF [=y] && ELF_CORE [=n]
-   Selected by [y]:
-   - RISCV [=y]
+  No regressions found.
+
+  
+
+Participating hosts (12 -> 12)
+------------------------------
+
+  No changes in participating hosts
 
 
-vim +45 include/asm-generic/bitops/__ffs.h
+Changes
+-------
 
-c1226a005ec400 Akinobu Mita 2006-03-26  43  
-cb4ede926134a6 Xiao Wang    2023-11-12  44  #ifndef __HAVE_ARCH___FFS
-cb4ede926134a6 Xiao Wang    2023-11-12 @45  #define __ffs(word) generic___ffs(word)
-cb4ede926134a6 Xiao Wang    2023-11-12  46  #endif
-cb4ede926134a6 Xiao Wang    2023-11-12  47  
+  No changes found
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+
+Build changes
+-------------
+
+  * Linux: xe-4156-e7a767430515c3a6e8aee91c2a68cba8b06fe884 -> xe-pw-158145v1
+
+  IGT_8639: 2ce563031e6b2ec91479f6af8c326d25c15bdb26 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-4156-e7a767430515c3a6e8aee91c2a68cba8b06fe884: e7a767430515c3a6e8aee91c2a68cba8b06fe884
+  xe-pw-158145v1: 158145v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158145v1/index.html
+
+--===============1889791676427185847==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/dp: Add byte-by-byte fallback for broken USB-C adapters</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/158145/">https://patchwork.freedesktop.org/series/158145/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158145v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158145v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4156-e7a767430515c3a6e8aee91c2a68cba8b06fe884_BAT -&gt; xe-pw-158145v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (12 -&gt; 12)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4156-e7a767430515c3a6e8aee91c2a68cba8b06fe884 -&gt; xe-pw-158145v1</li>
+</ul>
+<p>IGT_8639: 2ce563031e6b2ec91479f6af8c326d25c15bdb26 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-4156-e7a767430515c3a6e8aee91c2a68cba8b06fe884: e7a767430515c3a6e8aee91c2a68cba8b06fe884<br />
+  xe-pw-158145v1: 158145v1</p>
+
+</body>
+</html>
+
+--===============1889791676427185847==--
