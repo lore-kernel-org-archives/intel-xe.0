@@ -4,54 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E6DF7CFD2F6
-	for <intel-xe@archiver.kernel.org>; Thu, 27 Nov 2025 09:16:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8C491D116F3
+	for <intel-xe@archiver.kernel.org>; Thu, 27 Nov 2025 09:16:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A33D910E7C0;
-	Thu, 27 Nov 2025 09:16:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 51B1610E7B8;
+	Thu, 27 Nov 2025 09:16:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GieoQH9i";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AReImELF";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8C68610E7B5;
- Thu, 27 Nov 2025 09:15:59 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4936A10E7C5;
+ Thu, 27 Nov 2025 09:16:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1764234958; x=1795770958;
+ t=1764234964; x=1795770964;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=yVrMESJFfKyAw6FLzoatL/DYGZ0EbJqTqozojG8PQjo=;
- b=GieoQH9ircMBcLs5vgYRXPUt3KveWPr0hddRmZfgv2xNjbxhJM8VbY4s
- nZFb6gqTk3KahHEvagVBWR8NrWaPF4oGsy/COhitWkg6EPOxTBEnbaICx
- vkbhcbQEJkCrwC8pa3QvFuvCG/JFgx1YnzBLjbVaKOGF7nvL/X03IsTDq
- LgSqY8Z1u0DbPljQ2lXlDKBWjD4eINDOjZE/ci/ZB0Fde4MOnpCn0blRC
- Q3a5OwJcNQ8f123l7ps6ETQAxxe+NRkpSl92+OYjjCqZxAQfDGlmw0pvw
- PLRAbLIn1pmHTBmB6BOn1r8qw5GYDpBvGqVbcZ4gBVUY63Hi8UJjrS5UH Q==;
-X-CSE-ConnectionGUID: mntvDZgbTMy7tPahj2p62w==
-X-CSE-MsgGUID: 7V0cs5H+QdOf77CXNjEN5Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11625"; a="77642324"
-X-IronPort-AV: E=Sophos;i="6.20,230,1758610800"; d="scan'208";a="77642324"
+ bh=aStx2vMXGVMQWU7tP/HVonYHejvYcT20QS+5pYoLCvY=;
+ b=AReImELF9WFExDWHmsTTJxDOLrfiK1U61Hyp8RQ37ujD8qwFPH5Am4SR
+ Zq1cGqfJRtdp4CvSb5W5XraOJ82I0blZkGsXlemGaIBlwzSpYCAcQtmvc
+ TxDnc0y9Zjgh/B9WSss0Xncit146SNFW0CEPc/gqCgnt1c5jlYDWaAXYk
+ jHJzUWCB2jVF4RqdUrQGzidrmH1Of6Vi6RVjqrFXXQ8BoOt5lLeyUx7p1
+ 2z4oiF0CPfoteBimBaZ9DZiXT0CsnXGjFvquIIptPexSJP+woQ4Qjw/KN
+ xj0SqN6mcauOonpqnwBTCT4KypsORiGuDltQ6ix2nU795qP4JR/HTnQK1 A==;
+X-CSE-ConnectionGUID: +QqYPZy8TlCvvU3QrpnDtw==
+X-CSE-MsgGUID: zoCCGyo5TY61Ph6TWzqwHA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11625"; a="77642329"
+X-IronPort-AV: E=Sophos;i="6.20,230,1758610800"; d="scan'208";a="77642329"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Nov 2025 01:15:58 -0800
-X-CSE-ConnectionGUID: Nr0S5EbGTYew29YcmZAWYg==
-X-CSE-MsgGUID: wzN2Ssm9S1WfXcIWYVr6JA==
+ 27 Nov 2025 01:16:04 -0800
+X-CSE-ConnectionGUID: oanyYh91TVuxxgwYiDSjFA==
+X-CSE-MsgGUID: ZWf4NRcfSNigsSg+EL5O/Q==
 X-ExtLoop1: 1
 Received: from mgolanimitul-x299-ud4-pro.iind.intel.com ([10.190.239.114])
- by fmviesa003.fm.intel.com with ESMTP; 27 Nov 2025 01:15:57 -0800
+ by fmviesa003.fm.intel.com with ESMTP; 27 Nov 2025 01:16:03 -0800
 From: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org, mitulkumar.ajitkumar.golani@intel.com,
  ankit.k.nautiyal@intel.com, ville.syrjala@linux.intel.com
-Subject: [PATCH v9 02/17] drm/i915/dmc: Add pipe dmc registers and bits for DC
- Balance
-Date: Thu, 27 Nov 2025 14:45:59 +0530
-Message-ID: <20251127091614.648791-3-mitulkumar.ajitkumar.golani@intel.com>
+Subject: [PATCH v9 05/17] drm/i915/vrr: Add DC Balance params to crtc_state
+Date: Thu, 27 Nov 2025 14:46:02 +0530
+Message-ID: <20251127091614.648791-6-mitulkumar.ajitkumar.golani@intel.com>
 X-Mailer: git-send-email 2.48.1
 In-Reply-To: <20251127091614.648791-1-mitulkumar.ajitkumar.golani@intel.com>
 References: <20251127091614.648791-1-mitulkumar.ajitkumar.golani@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -67,106 +65,124 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-
-Add pipe dmc registers and  access bits for DC Balance params
-configuration and enablement.
-
---v2:
-- Separate register definitions for transcoder and
-pipe dmc. (Ankit)
-- Use MMIO pipe macros instead of transcoder ones. (Ankit)
-- Remove dev_priv use. (Jani, Nikula)
+Add DC Balance params to crtc_state, also add state checker
+params for related properties.
 
 --v3:
-- Add all register address, from capital alphabet to small. (Ankit)
-- Add EVT CTL registers.
-- Add co-author tag.
-- Add event flag for Triggering DC Balance.
+- Seggregate crtc_state params with this patch. (Ankit)
 
 --v4:
-- Add DCB Flip count and balance reset registers.
+- Update commit message and header. (Ankit)
+- Add +1 to VMIN and VMAX only when it is non-zero. (Ankit)
 
 --v5:
-- Correct macro usage for flip count. (Ankit)
-- Use register offset in lower case.
+- Add headers in sorted order. (Jani Nikula)
 
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+--v6:
+- Add a separate function to get and check dc_balance params.
+- Avoid repeatative use of MMIO read. (Ankit)
+
 Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
 Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dmc_regs.h | 60 +++++++++++++++++++
- 1 file changed, 60 insertions(+)
+ drivers/gpu/drm/i915/display/intel_display.c  |  7 ++++
+ .../drm/i915/display/intel_display_types.h    |  7 ++++
+ drivers/gpu/drm/i915/display/intel_vrr.c      | 32 +++++++++++++++++++
+ 3 files changed, 46 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dmc_regs.h b/drivers/gpu/drm/i915/display/intel_dmc_regs.h
-index c5aa49921cb9..38e342b45af0 100644
---- a/drivers/gpu/drm/i915/display/intel_dmc_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_dmc_regs.h
-@@ -584,4 +584,64 @@ enum pipedmc_event_id {
- #define PTL_PIPEDMC_EXEC_TIME_LINES(start_mmioaddr) _MMIO((start_mmioaddr) + 0x6b8)
- #define PTL_PIPEDMC_END_OF_EXEC_GB(start_mmioaddr) _MMIO((start_mmioaddr) + 0x6c0)
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 04f5c488f399..db4f84cb8762 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -5467,6 +5467,13 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
+ 		PIPE_CONF_CHECK_LLI(cmrr.cmrr_m);
+ 		PIPE_CONF_CHECK_LLI(cmrr.cmrr_n);
+ 		PIPE_CONF_CHECK_BOOL(cmrr.enable);
++		PIPE_CONF_CHECK_I(vrr.dc_balance.vmin);
++		PIPE_CONF_CHECK_I(vrr.dc_balance.vmax);
++		PIPE_CONF_CHECK_I(vrr.dc_balance.guardband);
++		PIPE_CONF_CHECK_I(vrr.dc_balance.slope);
++		PIPE_CONF_CHECK_I(vrr.dc_balance.max_increase);
++		PIPE_CONF_CHECK_I(vrr.dc_balance.max_decrease);
++		PIPE_CONF_CHECK_I(vrr.dc_balance.vblank_target);
+ 	}
  
-+#define _PIPEDMC_DCB_CTL_A			0x5f1a0
-+#define _PIPEDMC_DCB_CTL_B			0x5f5a0
-+#define PIPEDMC_DCB_CTL(pipe)			_MMIO_PIPE((pipe), _PIPEDMC_DCB_CTL_A,\
-+							   _PIPEDMC_DCB_CTL_B)
-+#define  PIPEDMC_ADAPTIVE_DCB_ENABLE		REG_BIT(31)
+ 	if (!fastset || intel_vrr_always_use_vrr_tg(display)) {
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index 38702a9e0f50..8eb0ace7d918 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -1357,6 +1357,13 @@ struct intel_crtc_state {
+ 		u8 pipeline_full;
+ 		u16 flipline, vmin, vmax, guardband;
+ 		u32 vsync_end, vsync_start;
++		struct {
++			bool enable;
++			u16 vmin, vmax;
++			u16 guardband, slope;
++			u16 max_increase, max_decrease;
++			u16 vblank_target;
++		} dc_balance;
+ 	} vrr;
+ 
+ 	/* Content Match Refresh Rate state */
+diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
+index 7f0ead192777..650077eb280f 100644
+--- a/drivers/gpu/drm/i915/display/intel_vrr.c
++++ b/drivers/gpu/drm/i915/display/intel_vrr.c
+@@ -9,6 +9,7 @@
+ #include "intel_de.h"
+ #include "intel_display_regs.h"
+ #include "intel_display_types.h"
++#include "intel_dmc_regs.h"
+ #include "intel_dp.h"
+ #include "intel_psr.h"
+ #include "intel_vrr.h"
+@@ -785,6 +786,35 @@ bool intel_vrr_is_fixed_rr(const struct intel_crtc_state *crtc_state)
+ 	       crtc_state->vrr.flipline == crtc_state->vrr.vmin;
+ }
+ 
++static
++void intel_vrr_get_dc_balance_config(struct intel_crtc_state *crtc_state)
++{
++	u32 reg_val;
++	struct intel_display *display = to_intel_display(crtc_state);
++	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
++	enum pipe pipe = crtc->pipe;
 +
-+#define _PIPEDMC_DCB_VBLANK_A			0x5f1bc
-+#define _PIPEDMC_DCB_VBLANK_B			0x5f5bc
-+#define PIPEDMC_DCB_VBLANK(pipe)		_MMIO_PIPE((pipe), _PIPEDMC_DCB_VBLANK_A,\
-+							   _PIPEDMC_DCB_VBLANK_B)
++	if (!HAS_VRR_DC_BALANCE(display))
++		return;
 +
-+#define _PIPEDMC_DCB_SLOPE_A			0x5f1b8
-+#define _PIPEDMC_DCB_SLOPE_B			0x5f5b8
-+#define PIPEDMC_DCB_SLOPE(pipe)			_MMIO_PIPE((pipe), _PIPEDMC_DCB_SLOPE_A,\
-+							   _PIPEDMC_DCB_SLOPE_B)
++	reg_val = intel_de_read(display, PIPEDMC_DCB_VMIN(pipe));
++	crtc_state->vrr.dc_balance.vmin = reg_val ? reg_val + 1 : 0;
 +
-+#define _PIPEDMC_DCB_GUARDBAND_A		0x5f1b4
-+#define _PIPEDMC_DCB_GUARDBAND_B		0x5f5b4
-+#define PIPEDMC_DCB_GUARDBAND(pipe)		_MMIO_PIPE((pipe), _PIPEDMC_DCB_GUARDBAND_A,\
-+							   _PIPEDMC_DCB_GUARDBAND_B)
++	reg_val = intel_de_read(display, PIPEDMC_DCB_VMAX(pipe));
++	crtc_state->vrr.dc_balance.vmax = reg_val ? reg_val + 1 : 0;
 +
-+#define _PIPEDMC_DCB_MAX_INCREASE_A		0x5f1ac
-+#define _PIPEDMC_DCB_MAX_INCREASE_B		0x5f5ac
-+#define PIPEDMC_DCB_MAX_INCREASE(pipe)		_MMIO_PIPE((pipe), _PIPEDMC_DCB_MAX_INCREASE_A,\
-+							   _PIPEDMC_DCB_MAX_INCREASE_B)
++	crtc_state->vrr.dc_balance.guardband =
++		intel_de_read(display, PIPEDMC_DCB_GUARDBAND(pipe));
++	crtc_state->vrr.dc_balance.max_increase =
++		intel_de_read(display, PIPEDMC_DCB_MAX_INCREASE(pipe));
++	crtc_state->vrr.dc_balance.max_decrease =
++		intel_de_read(display, PIPEDMC_DCB_MAX_DECREASE(pipe));
++	crtc_state->vrr.dc_balance.slope =
++		intel_de_read(display, PIPEDMC_DCB_SLOPE(pipe));
++	crtc_state->vrr.dc_balance.vblank_target =
++		intel_de_read(display, PIPEDMC_DCB_VBLANK(pipe));
++}
 +
-+#define _PIPEDMC_DCB_MAX_DECREASE_A		0x5f1b0
-+#define _PIPEDMC_DCB_MAX_DECREASE_B		0x5f5b0
-+#define PIPEDMC_DCB_MAX_DECREASE(pipe)		_MMIO_PIPE((pipe), _PIPEDMC_DCB_MAX_DECREASE_A,\
-+							   _PIPEDMC_DCB_MAX_DECREASE_B)
+ void intel_vrr_get_config(struct intel_crtc_state *crtc_state)
+ {
+ 	struct intel_display *display = to_intel_display(crtc_state);
+@@ -866,6 +896,8 @@ void intel_vrr_get_config(struct intel_crtc_state *crtc_state)
+ 	else
+ 		crtc_state->vrr.enable = vrr_enable;
+ 
++	intel_vrr_get_dc_balance_config(crtc_state);
 +
-+#define _PIPEDMC_DCB_VMIN_A			0x5f1a4
-+#define _PIPEDMC_DCB_VMIN_B			0x5f5a4
-+#define PIPEDMC_DCB_VMIN(pipe)			_MMIO_PIPE((pipe), _PIPEDMC_DCB_VMIN_A,\
-+							   _PIPEDMC_DCB_VMIN_B)
-+
-+#define _PIPEDMC_DCB_VMAX_A			0x5f1a8
-+#define _PIPEDMC_DCB_VMAX_B			0x5f5a8
-+#define PIPEDMC_DCB_VMAX(pipe)			_MMIO_PIPE((pipe), _PIPEDMC_DCB_VMAX_A,\
-+							   _PIPEDMC_DCB_VMAX_B)
-+
-+#define _PIPEDMC_DCB_DEBUG_A			0x5f1c0
-+#define _PIPEDMC_DCB_DEBUG_B			0x5f5c0
-+#define PIPEDMC_DCB_DEBUG(pipe)			_MMIO_PIPE(pipe, _PIPEDMC_DCB_DEBUG_A,\
-+							   _PIPEDMC_DCB_DEBUG_B)
-+
-+#define _PIPEDMC_EVT_CTL_3_A			0x5f040
-+#define _PIPEDMC_EVT_CTL_3_B			0x5f440
-+#define PIPEDMC_EVT_CTL_3(pipe)			_MMIO_PIPE(pipe, _PIPEDMC_EVT_CTL_3_A,\
-+							   _PIPEDMC_EVT_CTL_3_B)
-+
-+#define _PIPEDMC_DCB_FLIP_COUNT_A		0x906a4
-+#define _PIPEDMC_DCB_FLIP_COUNT_B		0x986a4
-+#define PIPEDMC_DCB_FLIP_COUNT(pipe)		_MMIO_PIPE(pipe, _PIPEDMC_DCB_FLIP_COUNT_A,\
-+							   _PIPEDMC_DCB_FLIP_COUNT_B)
-+
-+#define _PIPEDMC_DCB_BALANCE_RESET_A		0x906a8
-+#define _PIPEDMC_DCB_BALANCE_RESET_B		0x986a8
-+#define PIPEDMC_DCB_BALANCE_RESET(pipe)		_MMIO_PIPE(pipe, _PIPEDMC_DCB_BALANCE_RESET_A,\
-+							   _PIPEDMC_DCB_BALANCE_RESET_B)
- #endif /* __INTEL_DMC_REGS_H__ */
+ 	/*
+ 	 * #TODO: For Both VRR and CMRR the flag I915_MODE_FLAG_VRR is set for mode_flags.
+ 	 * Since CMRR is currently disabled, set this flag for VRR for now.
 -- 
 2.48.1
 
