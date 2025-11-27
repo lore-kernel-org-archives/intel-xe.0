@@ -4,27 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A530DD11183
-	for <intel-xe@archiver.kernel.org>; Thu, 27 Nov 2025 08:54:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 19F8CCFD2F6
+	for <intel-xe@archiver.kernel.org>; Thu, 27 Nov 2025 09:15:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 69C6110E7B3;
-	Thu, 27 Nov 2025 08:54:18 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1963D10E7B3;
- Thu, 27 Nov 2025 08:54:17 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6798853767049595882=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id B956110E7B8;
+	Thu, 27 Nov 2025 09:15:57 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cJGLaslt";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1E30910E765;
+ Thu, 27 Nov 2025 09:15:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1764234955; x=1795770955;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=W8xv73zZB/MXY+De/w5RMNB2HfN3+LrDaSn3y6uUH8c=;
+ b=cJGLaslt1ku5nbpGIw8FWjxGZrWp3KSBWFzm2Mw3KajnVhqBVDSMFyj4
+ y62Z5ViUOAB8/HFhNvRKdURvqptlHRVBbdme5njE/WJIBPe3SHAr9pj5u
+ LOtvgZQbmqK/hhE6qZhTMD1YxPh8h/AkkfzI6yGtrdl9+MzuvPuWDnOp4
+ VlFvtmScFFXcO3PUzn1nhQitNVuXVF6KAmHQ8JO5qfkJGemhKAPw0yzTF
+ TB/G3dxDyYFXh+liXX4yxhCQvtZxwyuH1yTxWFa4cOCEwZ2Qkjb/PUNO1
+ ztSee9fIpNRMv3T96jswuwl0tdMR2/jo4dsU/sDVQFIwQITpgeFcc/B8l Q==;
+X-CSE-ConnectionGUID: kIEMLLPrQhCkvIKhGkI5HA==
+X-CSE-MsgGUID: QyWkHB/mQLibS86pgI8rGg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11625"; a="77642319"
+X-IronPort-AV: E=Sophos;i="6.20,230,1758610800"; d="scan'208";a="77642319"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Nov 2025 01:15:55 -0800
+X-CSE-ConnectionGUID: B+g+ueayT+CzcNFaCC9LBw==
+X-CSE-MsgGUID: wbDv+ylMRna9JGfI5V7OrQ==
+X-ExtLoop1: 1
+Received: from mgolanimitul-x299-ud4-pro.iind.intel.com ([10.190.239.114])
+ by fmviesa003.fm.intel.com with ESMTP; 27 Nov 2025 01:15:54 -0800
+From: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org, mitulkumar.ajitkumar.golani@intel.com,
+ ankit.k.nautiyal@intel.com, ville.syrjala@linux.intel.com
+Subject: [PATCH v9 00/17] Enable/Disable DC balance along with VRR DSB
+Date: Thu, 27 Nov 2025 14:45:57 +0530
+Message-ID: <20251127091614.648791-1-mitulkumar.ajitkumar.golani@intel.com>
+X-Mailer: git-send-email 2.48.1
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Move_VRAM_MM_debu?=
- =?utf-8?q?gfs_creation_to_tile_level_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Pi=C3=B3rkowski=2C_Piotr?= <piotr.piorkowski@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 27 Nov 2025 08:54:17 -0000
-Message-ID: <176423365709.33971.13939370040667325150@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20251127073643.144379-1-piotr.piorkowski@intel.com>
-In-Reply-To: <20251127073643.144379-1-piotr.piorkowski@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,146 +61,47 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============6798853767049595882==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Control DC Balance Adjustment bit to accomodate changes along
+with VRR DSB implementation.
 
-== Series Details ==
+Mitul Golani (11):
+  drm/i915/display: Add source param for dc balance
+  drm/i915/vrr: Add VRR DC balance registers
+  drm/i915/vrr: Add DC Balance params to crtc_state
+  drm/i915/vrr: Add state dump for DC Balance params
+  drm/i915/vrr: Add compute config for DC Balance params
+  drm/i915/vrr: Add function to reset DC balance accumulated params
+  drm/i915/display: Add DC Balance flip count operations
+  drm/i915/vrr: Write DC balance params to hw registers
+  drm/i915/display: Wait for VRR PUSH status update
+  drm/i915/display: Add function to configure event for dc balance
+  drm/i915/vrr: Enable DC Balance
 
-Series: drm/xe: Move VRAM MM debugfs creation to tile level (rev2)
-URL   : https://patchwork.freedesktop.org/series/157089/
-State : success
+Ville Syrjälä (6):
+  drm/i915/dmc: Add pipe dmc registers and bits for DC Balance
+  drm/i915/vrr: Add functions to read out vmin/vmax stuff
+  drm/i915/vblank: Extract vrr_vblank_start()
+  drm/i915/vrr: Implement vblank evasion with DC balancing
+  drm/i915/dsb: Add pipedmc dc balance enable/disable
+  drm/i915/vrr: Pause DC Balancing for DSB commits
 
-== Summary ==
+ .../drm/i915/display/intel_crtc_state_dump.c  |   8 +
+ drivers/gpu/drm/i915/display/intel_display.c  |  30 ++
+ .../drm/i915/display/intel_display_device.h   |   1 +
+ .../drm/i915/display/intel_display_types.h    |  11 +
+ drivers/gpu/drm/i915/display/intel_dmc.c      |  32 ++
+ drivers/gpu/drm/i915/display/intel_dmc.h      |   5 +
+ drivers/gpu/drm/i915/display/intel_dmc_regs.h |  60 ++++
+ drivers/gpu/drm/i915/display/intel_dsb.c      |  31 +-
+ drivers/gpu/drm/i915/display/intel_vblank.c   |  33 +-
+ drivers/gpu/drm/i915/display/intel_vrr.c      | 283 +++++++++++++++++-
+ drivers/gpu/drm/i915/display/intel_vrr.h      |  10 +
+ drivers/gpu/drm/i915/display/intel_vrr_regs.h |  68 +++++
+ 12 files changed, 565 insertions(+), 7 deletions(-)
 
-CI Bug Log - changes from xe-4156-e7a767430515c3a6e8aee91c2a68cba8b06fe884_BAT -> xe-pw-157089v2_BAT
-====================================================
+-- 
+2.48.1
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (12 -> 12)
-------------------------------
-
-  No changes in participating hosts
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-157089v2_BAT:
-
-### IGT changes ###
-
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * {igt@xe_debugfs@root-dir}:
-    - bat-bmg-2:          [PASS][1] -> [FAIL][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4156-e7a767430515c3a6e8aee91c2a68cba8b06fe884/bat-bmg-2/igt@xe_debugfs@root-dir.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157089v2/bat-bmg-2/igt@xe_debugfs@root-dir.html
-    - bat-bmg-1:          [PASS][3] -> [FAIL][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4156-e7a767430515c3a6e8aee91c2a68cba8b06fe884/bat-bmg-1/igt@xe_debugfs@root-dir.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157089v2/bat-bmg-1/igt@xe_debugfs@root-dir.html
-    - bat-dg2-oem2:       [PASS][5] -> [FAIL][6]
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4156-e7a767430515c3a6e8aee91c2a68cba8b06fe884/bat-dg2-oem2/igt@xe_debugfs@root-dir.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157089v2/bat-dg2-oem2/igt@xe_debugfs@root-dir.html
-    - bat-atsm-2:         [PASS][7] -> [FAIL][8]
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4156-e7a767430515c3a6e8aee91c2a68cba8b06fe884/bat-atsm-2/igt@xe_debugfs@root-dir.html
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157089v2/bat-atsm-2/igt@xe_debugfs@root-dir.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-
-
-Build changes
--------------
-
-  * Linux: xe-4156-e7a767430515c3a6e8aee91c2a68cba8b06fe884 -> xe-pw-157089v2
-
-  IGT_8639: 2ce563031e6b2ec91479f6af8c326d25c15bdb26 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-4156-e7a767430515c3a6e8aee91c2a68cba8b06fe884: e7a767430515c3a6e8aee91c2a68cba8b06fe884
-  xe-pw-157089v2: 157089v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157089v2/index.html
-
---===============6798853767049595882==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Move VRAM MM debugfs creation to tile level (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/157089/">https://patchwork.freedesktop.org/series/157089/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157089v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157089v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4156-e7a767430515c3a6e8aee91c2a68cba8b06fe884_BAT -&gt; xe-pw-157089v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (12 -&gt; 12)</h2>
-<p>No changes in participating hosts</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-157089v2_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Suppressed</h4>
-<p>The following results come from untrusted machines, tests, or statuses.<br />
-  They do not affect the overall result.</p>
-<ul>
-<li>{igt@xe_debugfs@root-dir}:<ul>
-<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4156-e7a767430515c3a6e8aee91c2a68cba8b06fe884/bat-bmg-2/igt@xe_debugfs@root-dir.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157089v2/bat-bmg-2/igt@xe_debugfs@root-dir.html">FAIL</a></li>
-<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4156-e7a767430515c3a6e8aee91c2a68cba8b06fe884/bat-bmg-1/igt@xe_debugfs@root-dir.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157089v2/bat-bmg-1/igt@xe_debugfs@root-dir.html">FAIL</a></li>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4156-e7a767430515c3a6e8aee91c2a68cba8b06fe884/bat-dg2-oem2/igt@xe_debugfs@root-dir.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157089v2/bat-dg2-oem2/igt@xe_debugfs@root-dir.html">FAIL</a></li>
-<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4156-e7a767430515c3a6e8aee91c2a68cba8b06fe884/bat-atsm-2/igt@xe_debugfs@root-dir.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157089v2/bat-atsm-2/igt@xe_debugfs@root-dir.html">FAIL</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4156-e7a767430515c3a6e8aee91c2a68cba8b06fe884 -&gt; xe-pw-157089v2</li>
-</ul>
-<p>IGT_8639: 2ce563031e6b2ec91479f6af8c326d25c15bdb26 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-4156-e7a767430515c3a6e8aee91c2a68cba8b06fe884: e7a767430515c3a6e8aee91c2a68cba8b06fe884<br />
-  xe-pw-157089v2: 157089v2</p>
-
-</body>
-</html>
-
---===============6798853767049595882==--
