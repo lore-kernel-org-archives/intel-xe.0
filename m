@@ -4,55 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 94084D116E8
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CF10DD116E6
 	for <intel-xe@archiver.kernel.org>; Thu, 27 Nov 2025 01:45:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EF91210E737;
-	Thu, 27 Nov 2025 01:45:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1CBD810E748;
+	Thu, 27 Nov 2025 01:45:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IbDZkzqB";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BAPc0qUQ";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A9A4110E0A5
- for <intel-xe@lists.freedesktop.org>; Thu, 27 Nov 2025 01:45:30 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0B36810E720
+ for <intel-xe@lists.freedesktop.org>; Thu, 27 Nov 2025 01:45:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1764207930; x=1795743930;
+ t=1764207931; x=1795743931;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=R22YtW6e7iES7mUMio8riPimYMPCNKhk6oKianKcQog=;
- b=IbDZkzqBN+jFfmU8KpfmQn89glU+9nQAuDeX7M4AEPKz1z6UUvbCurII
- fJtFfTxcdJtCXqyEEnvxRxrB1nPHXnzHjBpI10fuDVmPffmmOqa1uhEHe
- 43yTo0P8+AZOMb+rWYPA1sqC4lvM+xfgEMnTVrqaRlkc0FLZPCWf1Hv9y
- guFe6r6zbBxBzxBw1G+S0KG9Ha3b96euVpdskY6mpHNA2eVzfX8G7IOrM
- lcRMuAzhM3XyMN523Va1pMR3wY+kFHyAm+CB5FidlS2a5lJddTpIq08U2
- 5hsgT9gji3BYAYrfKPEXZt3HKDOSTzMJHY5Y8gNqQELn7W9v1wZMFbzba g==;
-X-CSE-ConnectionGUID: jY3ZRD7aR/+njQKv7ohAzQ==
-X-CSE-MsgGUID: sLY9aJawTcSOrA/Yyo/a2g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11625"; a="70114859"
-X-IronPort-AV: E=Sophos;i="6.20,229,1758610800"; d="scan'208";a="70114859"
+ bh=SpsmML2/mQngBR9pMnQ9XvT6QCnD5OYzjUAXdeB+4Lg=;
+ b=BAPc0qUQ1XvxB6tcGcxEZCN6SF3qagx1YzSNiqmiXMsapzPBXLwLWb3P
+ 3CpMiIj3dT3aUrArKVmzjkZZaFIyFNzEBRRzppozk3JCH6W4HkHD3jxya
+ BEFLAlZn0abRNV83I5hEvwS7zURykvFXnD3HleBc0TGFdxNf/BpZVXNqs
+ UzHYFGAK09KrDxttvX5naVVgRp89zMXx9qROyZ0uHoNj8ejT+4HCuz3ZI
+ ZEo+yPhu/6pVkMdaBMUavv4aL+qLyV81yrqAn/TzzB1eOWh0cWs13lOtp
+ 1q2Y88iwCR+4ICPJXXLSThE146LAmW51Ve0791jmc2cmW9WVzZQ8ZsgW0 Q==;
+X-CSE-ConnectionGUID: eB1Pt0CCTx2p1rkpPsS5tw==
+X-CSE-MsgGUID: GSXTG1XITZCvDlQeuBvoAw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11625"; a="70114857"
+X-IronPort-AV: E=Sophos;i="6.20,229,1758610800"; d="scan'208";a="70114857"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  26 Nov 2025 17:45:26 -0800
-X-CSE-ConnectionGUID: 821K74N2TNGh2JGZwUTdWQ==
-X-CSE-MsgGUID: wdm/nViiR2anZ+SVNfsSVQ==
+X-CSE-ConnectionGUID: g9MndIlPSNW9sjbtHxQ8QA==
+X-CSE-MsgGUID: 4yc7ynW/Rkub9AprUAjmuA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,229,1758610800"; d="scan'208";a="192753399"
+X-IronPort-AV: E=Sophos;i="6.20,229,1758610800"; d="scan'208";a="192753395"
 Received: from valcore-skull-1.fm.intel.com ([10.1.39.17])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Nov 2025 17:45:25 -0800
+ 26 Nov 2025 17:45:24 -0800
 From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
  Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH 07/10] drm/xe/sriov: Prep for multiple exec quantums and
- preemption timeouts
-Date: Wed, 26 Nov 2025 17:45:13 -0800
-Message-ID: <20251127014507.2323746-19-daniele.ceraolospurio@intel.com>
+Subject: [PATCH 06/10] drm/xe/sriov: Add debugfs with scheduler groups
+ information
+Date: Wed, 26 Nov 2025 17:45:12 -0800
+Message-ID: <20251127014507.2323746-18-daniele.ceraolospurio@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20251127014507.2323746-12-daniele.ceraolospurio@intel.com>
 References: <20251127014507.2323746-12-daniele.ceraolospurio@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,155 +69,242 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Each scheduler group can be independently configured with its own exec
-quantum and preemption timeouts. The existing KLVs to configure those
-parameter will apply the value to all groups (even if they're not
-enabled at the moment).
+When schedulers groups are enabled, we dynamically create new debugfs
+folders under the GT folder for the PF and each VF. The aim is to have
+all the info for each VF under the sched_groups folder, with individual
+folders per-group under it. Right now the only info is the engine list,
+but follow up patches will add execution quantum and preemption timeout
+as well (which are configurable per-group-per-VF).
 
-When scheduler groups are disable the GuC used the values from Group 0.
+Note that the engine lists are not configurable per-VF and therefore not
+strictly needed in the VF folders. However, it is still useful to have
+them there because an admin might want to check the engine list while
+configuring the EQ/PT values for a specific VF.
 
 Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
 ---
- drivers/gpu/drm/xe/abi/guc_klvs_abi.h         |  7 ++++--
- drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c    | 25 +++++++++++++------
- .../gpu/drm/xe/xe_gt_sriov_pf_config_types.h  |  5 ++--
- 3 files changed, 25 insertions(+), 12 deletions(-)
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c | 140 +++++++++++++++++++-
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_types.h   |   4 +
+ 2 files changed, 143 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h b/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
-index a6dce9da339f..48f47e26132d 100644
---- a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
-+++ b/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
-@@ -290,7 +290,9 @@ enum  {
-  *      infinitely long compute or shader kernel. In such a scenario, the
-  *      PF would need to trigger a VM PAUSE and then change the KLV to force
-  *      it to take effect. Such cases might typically happen on a 1PF+1VF
-- *      Virtualization config enabled for heavier workloads like AI/ML.
-+ *      Virtualization config enabled for heavier workloads like AI/ML. If
-+ *      scheduling groups are supported, the provided value is applied to all
-+ *      groups (even if they've not yet been enabled).
-  *
-  *      The max value for this KLV is 100 seconds, anything exceeding that
-  *      will be clamped to the max.
-@@ -312,7 +314,8 @@ enum  {
-  *      In this case, the PF would need to trigger a VM PAUSE and then change
-  *      the KLV to force it to take effect. Such cases might typically happen
-  *      on a 1PF+1VF Virtualization config enabled for heavier workloads like
-- *      AI/ML.
-+ *      AI/ML. If scheduling groups are supported, the provided value is applied
-+ *      to all groups (even if they've not yet been enabled).
-  *
-  *      The max value for this KLV is 100 seconds, anything exceeding that
-  *      will be clamped to the max.
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-index 59c5c6b4d994..eb547fedb6da 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-@@ -298,10 +298,10 @@ static u32 encode_config(u32 *cfg, const struct xe_gt_sriov_config *config, bool
- 	}
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
+index 2953ef21a5ad..947e2b92d58a 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
+@@ -5,6 +5,7 @@
  
- 	cfg[n++] = PREP_GUC_KLV_TAG(VF_CFG_EXEC_QUANTUM);
--	cfg[n++] = config->exec_quantum;
-+	cfg[n++] = config->exec_quantum[0];
+ #include <linux/debugfs.h>
  
- 	cfg[n++] = PREP_GUC_KLV_TAG(VF_CFG_PREEMPT_TIMEOUT);
--	cfg[n++] = config->preempt_timeout;
-+	cfg[n++] = config->preempt_timeout[0];
++#include <drm/drm_managed.h>
+ #include <drm/drm_print.h>
+ #include <drm/drm_debugfs.h>
  
- #define encode_threshold_config(TAG, ...) ({					\
- 	cfg[n++] = PREP_GUC_KLV_TAG(VF_CFG_THRESHOLD_##TAG);			\
-@@ -1857,12 +1857,15 @@ static int pf_provision_exec_quantum(struct xe_gt *gt, unsigned int vfid,
- {
- 	struct xe_gt_sriov_config *config = pf_pick_vf_config(gt, vfid);
- 	int err;
-+	int i;
+@@ -21,6 +22,7 @@
+ #include "xe_gt_sriov_pf_monitor.h"
+ #include "xe_gt_sriov_pf_policy.h"
+ #include "xe_gt_sriov_pf_service.h"
++#include "xe_guc.h"
+ #include "xe_pm.h"
+ #include "xe_sriov_pf.h"
+ #include "xe_sriov_pf_provision.h"
+@@ -162,8 +164,127 @@ static void pf_add_policy_attrs(struct xe_gt *gt, struct dentry *parent)
+  *          :   ├── tile0
+  *              :   ├── gt0
+  *                  :   ├── sched_groups_mode
++ *                      ├── sched_groups
++ *                      :   ├── group0
++ *                          :   └── engines
++ *                          :
++ *                          └── groupN
++ *          :                   └── engines
++ *          ├── vf1
++ *          :   ├── tile0
++ *              :   ├── gt0
++ *                  :   ├── sched_groups
++ *                      :   ├── group0
++ *                          :   └── engines
+  */
  
- 	err = pf_push_vf_cfg_exec_quantum(gt, vfid, &exec_quantum);
- 	if (unlikely(err))
- 		return err;
- 
--	config->exec_quantum = exec_quantum;
-+	for (i = 0; i < GUC_KLV_VGT_POLICY_ENGINE_GROUP_MAX_COUNT; i++)
-+		config->exec_quantum[i] = exec_quantum;
++struct sched_group_info {
++	struct xe_gt *gt;
++	u32 *masks;
++};
 +
- 	return 0;
- }
- 
-@@ -1870,7 +1873,7 @@ static u32 pf_get_exec_quantum(struct xe_gt *gt, unsigned int vfid)
- {
- 	struct xe_gt_sriov_config *config = pf_pick_vf_config(gt, vfid);
- 
--	return config->exec_quantum;
-+	return config->exec_quantum[0];
- }
- 
- /**
-@@ -1987,12 +1990,14 @@ static int pf_provision_preempt_timeout(struct xe_gt *gt, unsigned int vfid,
- {
- 	struct xe_gt_sriov_config *config = pf_pick_vf_config(gt, vfid);
- 	int err;
-+	int i;
- 
- 	err = pf_push_vf_cfg_preempt_timeout(gt, vfid, &preempt_timeout);
- 	if (unlikely(err))
- 		return err;
- 
--	config->preempt_timeout = preempt_timeout;
-+	for (i = 0; i < GUC_KLV_VGT_POLICY_ENGINE_GROUP_MAX_COUNT; i++)
-+		config->preempt_timeout[i] = preempt_timeout;
- 
- 	return 0;
- }
-@@ -2001,7 +2006,7 @@ static u32 pf_get_preempt_timeout(struct xe_gt *gt, unsigned int vfid)
- {
- 	struct xe_gt_sriov_config *config = pf_pick_vf_config(gt, vfid);
- 
--	return config->preempt_timeout;
-+	return config->preempt_timeout[0];
- }
- 
- /**
-@@ -2180,10 +2185,14 @@ u32 xe_gt_sriov_pf_config_get_sched_priority(struct xe_gt *gt, unsigned int vfid
- 
- static void pf_reset_config_sched(struct xe_gt *gt, struct xe_gt_sriov_config *config)
- {
-+	int i;
++static int sched_group_engines_info(struct seq_file *m, void *data)
++{
++	struct drm_printer p = drm_seq_file_printer(m);
++	struct sched_group_info *gi = m->private;
++	struct xe_gt *gt = gi->gt;
++	struct xe_hw_engine *hwe;
++	enum xe_hw_engine_id id;
++	bool first = true;
 +
- 	lockdep_assert_held(xe_gt_sriov_pf_master_mutex(gt));
- 
--	config->exec_quantum = 0;
--	config->preempt_timeout = 0;
-+	for (i = 0; i < GUC_KLV_VGT_POLICY_ENGINE_GROUP_MAX_COUNT; i++) {
-+		config->exec_quantum[i] = 0;
-+		config->preempt_timeout[i] = 0;
++	for_each_hw_engine(hwe, gt, id) {
++		u8 guc_class = xe_engine_class_to_guc_class(hwe->class);
++		u32 mask = gi->masks[guc_class];
++
++		if (mask & BIT(hwe->logical_instance)) {
++			drm_printf(&p, "%s%s", first ? "" : " ", hwe->name);
++
++			first = false;
++		}
 +	}
++
++	drm_printf(&p, "\n");
++
++	return 0;
++}
++
++static int sched_group_engines_open(struct inode *inode, struct file *file)
++{
++	return single_open(file, sched_group_engines_info, inode->i_private);
++}
++
++static const struct file_operations sched_group_engines_fops = {
++	.owner = THIS_MODULE,
++	.open = sched_group_engines_open,
++	.read = seq_read,
++	.llseek = seq_lseek,
++	.release = single_release,
++};
++
++static void __sched_group_info_cleanup(struct xe_gt *gt, struct dentry *dent)
++{
++	if (dent->d_inode->i_private)
++		drmm_kfree(&gt_to_xe(gt)->drm, dent->d_inode->i_private);
++
++	debugfs_remove_recursive(dent);
++}
++
++#define GROUP_INFO_ROOT "sched_groups"
++static void sched_group_info_register(struct xe_gt *gt, unsigned int vfid)
++{
++	struct xe_gt_sriov_pf_policy *policy = &gt->sriov.pf.policy;
++	u32 mode = policy->guc.sched_groups.current_mode;
++	u8 num_groups = policy->guc.sched_groups.modes[mode].num_masks / GUC_MAX_ENGINE_CLASSES;
++	struct sched_group_info *infos;
++	struct dentry *parent;
++	struct dentry *old;
++	u8 g;
++
++	if (!gt->sriov.pf.debugfs_roots)
++		return;
++
++	/* remove existing debugfs entries for old groups */
++	old = debugfs_lookup(GROUP_INFO_ROOT, gt->sriov.pf.debugfs_roots[vfid]);
++	if (old)
++		__sched_group_info_cleanup(gt, old);
++
++	/* re-create debugfs for new groups (if any)*/
++	if (!num_groups)
++		return;
++
++	parent = debugfs_create_dir(GROUP_INFO_ROOT, gt->sriov.pf.debugfs_roots[vfid]);
++	if (IS_ERR(parent))
++		return;
++
++	infos = drmm_kzalloc(&gt_to_xe(gt)->drm, sizeof(*infos) * num_groups, GFP_KERNEL);
++	if (!infos)
++		goto out_err;
++	parent->d_inode->i_private = infos;
++
++	for (g = 0; g < num_groups; g++) {
++		struct sched_group_info *info = &infos[g];
++		u32 base = g * GUC_MAX_ENGINE_CLASSES;
++		struct dentry *dent;
++		char name[10];
++
++		snprintf(name, sizeof(name), "group%u", g);
++		dent = debugfs_create_dir(name, parent);
++		if (IS_ERR(dent))
++			goto out_err;
++
++		info->gt = gt;
++		info->masks = &policy->guc.sched_groups.modes[mode].masks[base];
++
++		dent->d_inode->i_private = info;
++		debugfs_create_file("engines", 0644, dent, info, &sched_group_engines_fops);
++	}
++
++	return;
++
++out_err:
++	__sched_group_info_cleanup(gt, parent);
++}
++
+ static const char *sched_group_mode_to_string(enum xe_sriov_sched_group_modes mode)
+ {
+ 	switch (mode) {
+@@ -220,7 +341,7 @@ static ssize_t sched_groups_write(struct file *file, const char __user *ubuf,
+ 	struct xe_gt *gt = extract_gt(file_inode(file)->i_private);
+ 	char name[32];
+ 	int ret;
+-	int m;
++	int m, i;
+ 
+ 	if (*pos)
+ 		return -ESPIPE;
+@@ -250,6 +371,10 @@ static ssize_t sched_groups_write(struct file *file, const char __user *ubuf,
+ 	ret = xe_gt_sriov_pf_policy_set_sched_groups_mode(gt, m);
+ 	xe_pm_runtime_put(gt_to_xe(gt));
+ 
++	if (!ret)
++		for (i = 0; i <= xe_sriov_pf_get_totalvfs(gt_to_xe(gt)); i++)
++			sched_group_info_register(gt, i);
++
+ 	return (ret < 0) ? ret : size;
  }
  
- static int pf_provision_threshold(struct xe_gt *gt, unsigned int vfid,
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config_types.h b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config_types.h
-index 686c7b3b6d7a..abf003946242 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config_types.h
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config_types.h
-@@ -6,6 +6,7 @@
- #ifndef _XE_GT_SRIOV_PF_CONFIG_TYPES_H_
- #define _XE_GT_SRIOV_PF_CONFIG_TYPES_H_
+@@ -693,6 +818,19 @@ void xe_gt_sriov_pf_debugfs_populate(struct xe_gt *gt, struct dentry *parent, un
+ 		return;
+ 	dent->d_inode->i_private = gt;
  
-+#include "abi/guc_klvs_abi.h"
- #include "xe_ggtt_types.h"
- #include "xe_guc_klv_thresholds_set_types.h"
++	/*
++	 * we allocate an array to store the GT-level dentries for PF and all
++	 * VFs when creating the PF folder. Failing to create this allocation
++	 * is not fatal.
++	 */
++	if (vfid == 0)
++		gt->sriov.pf.debugfs_roots =
++			drmm_kcalloc(&gt_to_xe(gt)->drm,
++				     1 + xe_sriov_pf_get_totalvfs(gt_to_xe(gt)),
++				     sizeof(struct dentry *), GFP_KERNEL);
++	if (gt->sriov.pf.debugfs_roots)
++		gt->sriov.pf.debugfs_roots[vfid] = dent;
++
+ 	xe_gt_assert(gt, extract_gt(dent) == gt);
+ 	xe_gt_assert(gt, extract_vfid(dent) == vfid);
  
-@@ -30,9 +31,9 @@ struct xe_gt_sriov_config {
- 	/** @begin_db: start index of GuC doorbell ID range. */
- 	u16 begin_db;
- 	/** @exec_quantum: execution-quantum in milliseconds. */
--	u32 exec_quantum;
-+	u32 exec_quantum[GUC_KLV_VGT_POLICY_ENGINE_GROUP_MAX_COUNT];
- 	/** @preempt_timeout: preemption timeout in microseconds. */
--	u32 preempt_timeout;
-+	u32 preempt_timeout[GUC_KLV_VGT_POLICY_ENGINE_GROUP_MAX_COUNT];
- 	/** @sched_priority: scheduling priority. */
- 	u32 sched_priority;
- 	/** @thresholds: GuC thresholds for adverse events notifications. */
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_types.h b/drivers/gpu/drm/xe/xe_gt_sriov_pf_types.h
+index 667b8310478d..747ec5dae652 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_types.h
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_types.h
+@@ -15,6 +15,8 @@
+ #include "xe_gt_sriov_pf_policy_types.h"
+ #include "xe_gt_sriov_pf_service_types.h"
+ 
++struct dentry;
++
+ /**
+  * struct xe_gt_sriov_metadata - GT level per-VF metadata.
+  */
+@@ -52,6 +54,7 @@ struct xe_gt_sriov_pf_workers {
+  * @migration: migration data.
+  * @spare: PF-only provisioning configuration.
+  * @vfs: metadata for all VFs.
++ * @debugfs_root: GT debugfs root for all VFs.
+  */
+ struct xe_gt_sriov_pf {
+ 	struct xe_gt_sriov_pf_workers workers;
+@@ -60,6 +63,7 @@ struct xe_gt_sriov_pf {
+ 	struct xe_gt_sriov_pf_policy policy;
+ 	struct xe_gt_sriov_spare_config spare;
+ 	struct xe_gt_sriov_metadata *vfs;
++	struct dentry **debugfs_roots;
+ };
+ 
+ #endif
 -- 
 2.43.0
 
