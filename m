@@ -4,168 +4,194 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 92330D11183
-	for <intel-xe@archiver.kernel.org>; Thu, 27 Nov 2025 09:38:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2157ACFD2F6
+	for <intel-xe@archiver.kernel.org>; Thu, 27 Nov 2025 09:39:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5C20D10E7E2;
-	Thu, 27 Nov 2025 09:38:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D17A610E7F0;
+	Thu, 27 Nov 2025 09:39:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BhaCTkFl";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="n8CN1fLc";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DDF0C10E7DD
- for <intel-xe@lists.freedesktop.org>; Thu, 27 Nov 2025 09:38:49 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2AD4710E7AF;
+ Thu, 27 Nov 2025 09:39:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1764236330; x=1795772330;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:mime-version:content-transfer-encoding;
- bh=6zmARNtudMvh9guAwIRqhbsL2YHpe3oQfqCbk/cmP+0=;
- b=BhaCTkFlovmV4BTvoXoF1OKRqS0s3sNR+D8omfMDfLzv5j1yAj/NK9I8
- tLGZPrey05IjT8D/ayUIDS0gcZyWXIh8KVm9l2BQPz0jB4IFGF0jEj8ux
- +J1O9J19nkfrmJ38k6rj+uEB7+nzy6WfKLwPDwnLbXmHHzzOipxPemE1g
- 4KHX/YD9pFwy8/aj7rSWqxx+A6RwBgKlsvR2OGHoXgwEZrm2dLBsLPUX5
- qiz/7+PeNZCOf6QgIduzpBszxh1FHyy2cTWKxIMkj92MwdB4hWe/5TbS9
- zq2OT62AOpMEM3pcfraPLSDdcG84W5Dwn+woHjQNAUidzfpb1xZGx2pi+ w==;
-X-CSE-ConnectionGUID: 5cZdcsBNRZGxmDh7A3p4ew==
-X-CSE-MsgGUID: yhtCRz6DSQKVH7ZELoFzQg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11625"; a="91761443"
-X-IronPort-AV: E=Sophos;i="6.20,230,1758610800"; d="scan'208";a="91761443"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Nov 2025 01:38:49 -0800
-X-CSE-ConnectionGUID: Z/W7kXdiRvKlZ/fKa4QNMQ==
-X-CSE-MsgGUID: bgSoqit5QnKBSDEYNrxvMQ==
+ t=1764236392; x=1795772392;
+ h=from:to:cc:subject:date:message-id:
+ content-transfer-encoding:mime-version;
+ bh=Ld+BCAlhDUNisOmrNSLGIuNpZDz8pVTs5DdAFJLQwCs=;
+ b=n8CN1fLcx7+VI7GVzVikCnYASngHSbY9YpIqAN4MhXQO84FFRHUhFcGV
+ fYkfel62h132bEMbx8uj9Q4UPyCQ9Xj+h95oJvEjMf4zl8J8FzzV23Bu/
+ tCZus/2fyCp3NzNHjixJ398rwgVTd920sAFxhmzKGPKT96wf5MvE/iSY0
+ mc25xIiQg4s0qd/NhbpArDGE3UOy5N1599eCpHOJ/FoXII91Vwz66jcvm
+ vS4sUcU6uafGsurRZbtSuNrmpXzaZ/2q9ZOO6XdjXYY3vGY9R618lsUKg
+ GkpctkOx9LXWxMFwK6be0OEzCPl/N2CBW/NJDXYKeVCXCH579Ld9wt66E w==;
+X-CSE-ConnectionGUID: muiY/2l5TzOCsvZMj4Ec+Q==
+X-CSE-MsgGUID: umPYWPW4SzO/18Vp7VcBig==
+X-IronPort-AV: E=McAfee;i="6800,10657,11625"; a="76970925"
+X-IronPort-AV: E=Sophos;i="6.20,230,1758610800"; d="scan'208";a="76970925"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Nov 2025 01:39:52 -0800
+X-CSE-ConnectionGUID: B//fbV/sTbu8ZS0JEdTZ9g==
+X-CSE-MsgGUID: 0ijZCRYfR9OVRW9aM04p5g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,230,1758610800"; d="scan'208";a="193211201"
-Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
- by orviesa007.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Nov 2025 01:38:49 -0800
-Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
- fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.20,230,1758610800"; d="scan'208";a="197343742"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Nov 2025 01:39:52 -0800
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Thu, 27 Nov 2025 01:38:48 -0800
-Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
- FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ 15.2.2562.29; Thu, 27 Nov 2025 01:39:51 -0800
+Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29 via Frontend Transport; Thu, 27 Nov 2025 01:38:48 -0800
-Received: from MW6PR02CU001.outbound.protection.outlook.com (52.101.48.0) by
- edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
+ 15.2.2562.29 via Frontend Transport; Thu, 27 Nov 2025 01:39:51 -0800
+Received: from CH4PR04CU002.outbound.protection.outlook.com (40.107.201.58) by
+ edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Thu, 27 Nov 2025 01:38:47 -0800
+ 15.2.2562.29; Thu, 27 Nov 2025 01:39:50 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=sD80IjK/eLGbqZ8sx/57RbfT3Jy7jI3Ud7zrdn+B5gX6z3MN9UJ7UCvwHTIPjIXYZPej7ltNVkw3H6sUaQvqMLNlzF9iD4CYLvp/8oVB72OH0DEdRrrpK8rT7qJO12WUCDuGlh05E+MGhY2AwF9usTag5kT/bonG+pjGLe0esqJH3ED2rlkKhJHKnR5u6+ygALRr7+9ysv7yqx+kzH6cobKpshCEJflGXnhSNNotz7j71zqnmVu5XFnGvBpXMGwZSdsBf5+I+Go7GnQTK73pdzFrNLZhlyRHECd0uW15VgkTX/VLqFmbBzPT7gwptu4qhcyImBhcu1nSwJy9UqBAmg==
+ b=PV7UQGksjJdVwxiuWZ697+9gEySEUDrPWGeZgJx1ek+6a7KeaF/hubqIq7WFmE+8HGy6E082yTP5mfofAn0SYt4xT1yBd+a8js3iYMkjkeLcTKJWq/QTxkqsiMS50+PcCl83/4z4jXNFGqTItDLZ9RSN4hbfnHZwAq4OIUMpxNFNPxgfPTjyQSnIKZRMm4VYHfoqeN7aS02u/e8tq9U8re5VB0p3Ocx7RnQhCUKSjRDw2ck/5/hA64TXZC00Tqp4brPiujHTC93eDiqylvZPpVUWkSMKLHqSw/022MdIoLLFi9VT1DsoFYmPW4K+Br2lbGEovvF93IzAFAp6xGq5MQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=kCAG8acCj9+jsaFCI0Y6yzkv8fk4LcZvW8rIfGy3Sao=;
- b=WTj3PAgpqbCYtAmc/LMVUzbl29ZYOziO3orGzSjFKVnUl4NprHzJsRjF2H9/i9qtlqx7iDyx3QgzP1cir5JVoGq+TPu2uY79MLeRxTtQb1kgrvwLg1/6F7YnoSZELMMfnbIMQk/tfjp9B9Zvu5Qcwq4fDMyVZ4uqGnXdwYvfWN2B2nfEicUzG6RqkjJKzrZ0puzEKhH4PGkWqnRCo/wp+NnhNOCl/ePzLNaqRo3P79kxl7F9u/BbwgTx0kii0Fw1BeTnobq6Jgn56mwb+fjTstFQB9YxVTtzEWFYD1J9/XPPyLh5SFO+Trx5UqlHx6JUogxzbdWzBsTjW/ZWpFGOBw==
+ bh=v47eD1+LhShl78xbcEY+pODxIHY2U7TgELoOb457T68=;
+ b=Xzn7Fc8OwjV9HnqX3kpTuh5fFintWORVQXYHB2ffod5wI7QFpGMAn/I4qCI3WZTemYrmMwyKeQwtn9eAvshJTG+pfIeIlv9FaBYmFKDelrJMAzXtqBS9PUxfeQx64uBeOxuTKfP6rVuVdIQ9z/0POilMUki9dP5PQYUmkZ9vt4R99E9L3ekFnQNezUFXb6Brpjpsi8N2zS6SNx0oRhAV55FSiesAeuhcs+Y4rCKfPHN3nowmwA7AmEZaoB5IwjAb4mr4NRF++sNl9I386vO1OH66Yh7+b+3VzOkCcU2IfUM6VBjXBdurxZc+fO3C3qW9R9ErR/L2AgBboOVJ3nTiKg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Received: from DS7PR11MB9474.namprd11.prod.outlook.com (2603:10b6:8:265::13)
- by SA1PR11MB6895.namprd11.prod.outlook.com (2603:10b6:806:2b2::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9275.13; Thu, 27 Nov
- 2025 09:38:45 +0000
-Received: from DS7PR11MB9474.namprd11.prod.outlook.com
- ([fe80::2b8f:e81a:868c:c65e]) by DS7PR11MB9474.namprd11.prod.outlook.com
- ([fe80::2b8f:e81a:868c:c65e%4]) with mapi id 15.20.9343.016; Thu, 27 Nov 2025
- 09:38:45 +0000
-From: "Hoppe, Mateusz" <mateusz.hoppe@intel.com>
-To: "Vishwanathapura, Niranjana" <niranjana.vishwanathapura@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-CC: "Brost, Matthew" <matthew.brost@intel.com>
-Subject: RE: [PATCH v3 00/18] drm/xe: Multi Queue feature support
-Thread-Topic: [PATCH v3 00/18] drm/xe: Multi Queue feature support
-Thread-Index: AQEKDq6VxfX6ImeEEz7SnYIGHa9XKraq5XvA
-Date: Thu, 27 Nov 2025 09:38:45 +0000
-Message-ID: <DS7PR11MB9474363973A43C9F77489333E2DFA@DS7PR11MB9474.namprd11.prod.outlook.com>
-References: <20251121035147.766072-20-niranjana.vishwanathapura@intel.com>
-In-Reply-To: <20251121035147.766072-20-niranjana.vishwanathapura@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
+Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DS7PR11MB9474:EE_|SA1PR11MB6895:EE_
-x-ms-office365-filtering-correlation-id: 464df6e8-b97f-408d-40ad-08de2d98c2ae
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|376014|1800799024|366016|38070700021|7053199007; 
-x-microsoft-antispam-message-info: =?us-ascii?Q?A1JYO1uAHBwavtFdGXUGvXTINmo906h5g8FZSxoc4bJoauALDASUQCoSaD80?=
- =?us-ascii?Q?B3mNh9M4YKcgtbhBZmbRkBj/nTmDlX2qHO5sgiFM3YD1ivzOmcLVuTIaLhwt?=
- =?us-ascii?Q?9knJVj974Iz6fdJQVfnQIe76Fg4QGsbzO04PYXnjtbnNGAu4+vTcY2h4hluX?=
- =?us-ascii?Q?N4iYC8j5QU3daej7p4rkch7zoXj25RwMA4ZVeXGYwvgohsEfXrCsly08ea4h?=
- =?us-ascii?Q?p+BlRjEtV0DcLXVILV1W0NJ2ZLN3zOkxtqACb2ghYitXKwmZkfx/44BAgQ8G?=
- =?us-ascii?Q?5dglM8A5NdEncCQgvnZE9m6VsvnVmWF/wGRpISPmo0LiM9FXu5Wz92i5XQg6?=
- =?us-ascii?Q?bQ0hSybLDMdbr1Kk8UC0yYKI0fqZ7AIt/jmSq9VJ/QWnBjlOwUPtvxP53iQf?=
- =?us-ascii?Q?Fb+y7l2pv4J4l0apCoh9+Uk6LloPgROt4X4dZpCq27HQtOYnPnFAkefmz7oO?=
- =?us-ascii?Q?GI9pffAiZc6NKVHDGosL8pXTnxDNoBsXk/6tjbrL5C2mRhQb0RgbjVJNjI3a?=
- =?us-ascii?Q?Ebpfh38ZtYieGUGa3RH9I4mkaF0ryDfxaAK2ImciMjt0XZCzrzdrH5OHwTbW?=
- =?us-ascii?Q?/1Xx0OxB0vNP2gzlv/V8V4Z4ANRJQDklcMlrjZm/23IQFHiRqytrH3IP9Bf6?=
- =?us-ascii?Q?HgNw3aH+0k1NEn9eWesbzS5pfumppz4ilemGWMx+l537mGdR2pL8MDVD1TF3?=
- =?us-ascii?Q?0+EZTvzLpecnbThv+A4kPoxEOcSb6iPp9lJ2nXPijh0fnZ5kd+z3zxwQY8RN?=
- =?us-ascii?Q?msUp535m3MYFT7jRzjxibrWMLD4gNzPF+qqs3NTM4KAtvhw+dZUYB76mWqBj?=
- =?us-ascii?Q?ma8qwqwF5Thg/u905INAeOxzmVMFoEQBXJ6zuLW/jJ41tkfe76qd92vpp5O9?=
- =?us-ascii?Q?+a447lwdWQXWCly8Pfn/K51FWLgB/axeJBEfd28WC4D1L9cJ/6hMbbRvMk/A?=
- =?us-ascii?Q?2wZmAJEsrziwRSvWF+pMQKr3nPhxiGJ2UXfmu4LsDTATL/HzORuEIIZWOIE+?=
- =?us-ascii?Q?mN7nalwZNzpi774y7k/59gd/GSLUOcbmlHSRSFgayhnCKnm0SzLksDxeq7vZ?=
- =?us-ascii?Q?faTaCdJc7XWQnYH29LTJeOQGXRmPpj1qHfe5GqCIq8CLEdsafOFSeF2Z4onJ?=
- =?us-ascii?Q?lSoO1AbVZWkyrpVrdJJfk+20BUNQqO0+Flg91omYYFwSdPH2oUxj/2M24Ub/?=
- =?us-ascii?Q?unKmK0YptU/1/zX4dA8B2fKF2d5wMcUxCY8UmBCYvCVHSjL8+cri6wMTr+BV?=
- =?us-ascii?Q?iXfNSoa3aGoQDMlL0o5xGHw7Uca1cO8BwBzEgU+b0KnunlK5aqBM0Pfv3QsU?=
- =?us-ascii?Q?txWtoe5P9402+Dwn73+3dHjvCRyp6FhA8vVmjlEgb51mgAgrWf1Down3Bd1O?=
- =?us-ascii?Q?/ovYGlmVFHUBe5ArNg3cGq2aMnTGT/LM7207lmO0r7pFEyevZtaobRgYK7Pc?=
- =?us-ascii?Q?esnv8sk7j3fja5vlNFr5w2pEWa7NA0jZcZhdzD7czRvapn2/ODyoRQ=3D=3D?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS7PR11MB9474.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016)(38070700021)(7053199007); DIR:OUT;
- SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?giHzsVWklZXuq4V1eyvq6TivSA9P1XX7fk+f/RJxfDHpmNafkmbXZ7G46C3J?=
- =?us-ascii?Q?FGLY29o3lrB/yUrwdU/57Dfg3gJCDPkXzYAX1zgho0A8ExhbrXDn3e9Kxfmx?=
- =?us-ascii?Q?8TjKA96O+tKxQHHGBUwfM0lNzKc6SVrzzUlhizemU5BY4IAQ/CGDQkQWS/dd?=
- =?us-ascii?Q?lEYSnkcGwZU9eaHSel5A89r2xO706TF0ggPGHOmkhNWrLvQH+mhACacvTP4D?=
- =?us-ascii?Q?zkznPhjzyqaoCw+0U/wt4Dl+NRosjYRLlQPxFgK8PAdaRz+njkHkNbzVz94V?=
- =?us-ascii?Q?+njDZX34ChWChenLd1jU+blkmeLbPseuYclT/uAaamjCHE16Wkzf8bG8x40O?=
- =?us-ascii?Q?WCfNyo/x4UVfPzSKiNmxU4tBsEyqsYvP2eQa497YH5BRzmZsRmW4fpGa8jHZ?=
- =?us-ascii?Q?Ri6CjEwj84WYXsdo2c75NO04uMdR6xGCU02PcrS18JuGIptxFmMwgn294rsh?=
- =?us-ascii?Q?wMkYFDuTgvpMx3k7by2dzuk9+c2xckXt63Up07AEI5PK9bWcrrZEV38wmPP1?=
- =?us-ascii?Q?6ZLJONr7JQ4fc8tjIf5vEhvlfN+AcucsRyFg60LkXnoODjBiSA8/WZAKwgtW?=
- =?us-ascii?Q?i5ySVGb/Okj8gPqvqRJcN3SvoNoELCLo+fdxfVuJQUkO16DnlaxzaZzxAeAA?=
- =?us-ascii?Q?zaxX+nEHFn6jMD+XF4GvGadxGVWsL5+6HRLeVkPqy6v4Z+c07NuLqANCpAG5?=
- =?us-ascii?Q?aFBG25AljYXCQ0XYYXV8JPSaubFxnm+kW4WQZ5BylcUPrCwHkLSIZJniWx2z?=
- =?us-ascii?Q?TlSjuAMB2ZXJfTb5pdsUe/RUgVE8sjSJRBsdpp2+1tF/n3HfzUiYBVaVkaM3?=
- =?us-ascii?Q?tGr0+2NgGjQngIsRrywd+8yQnW1VWX4hZtvZFvgROUdTlewdId26/xp0d0Ba?=
- =?us-ascii?Q?04X0Sgq29nJWHMuhP6nV7kjtSUvO39U7m+AXVFj0mc1oDmOHNzT8GqK4R1pT?=
- =?us-ascii?Q?wxE/W72diDoZPkFMvYnsc7JkwwvMK+5bTyHaVivZjlLR8OA41vx68wnDkQTE?=
- =?us-ascii?Q?9lORk5XKzyI/+gLRu5/FOyVqJYC/5vJiEqs5gqZaNbCBh4+M6Ca+Xho0AfVV?=
- =?us-ascii?Q?x2T8Td3Sflbvr7cUXhJ8NJoJZlktQs/3x3EhgvoTqik3fhNZVt0DkVWVJKsJ?=
- =?us-ascii?Q?Q/i1pE8WDjT8Kzk4hDF2G0awPHybOtGd2JoLyMPsk9fGvPxltdLT/+TOritK?=
- =?us-ascii?Q?fqCpvZYTcSRtev8X01vSpW85oLOMHT7u49205f8+88IXC8OWbUc+yrQ29PpI?=
- =?us-ascii?Q?50uJPAt1uPW8pp1AH9r1zWNfSwHsByNMsJvTxs5G7ov+jUkL4/eW91o1x1R7?=
- =?us-ascii?Q?HlPisfDOG7j8qytgo0eU8mo3yKdfbzDUCGi+SH+j5xRg3c9EePq1o1CKUO1V?=
- =?us-ascii?Q?upIwhojGOIFR/9m4ktWGahmSw4g8UrWou2FA3pcuCRX6QOq07UVFJ45cJZWU?=
- =?us-ascii?Q?un56uo4nI3vDP8FqcQ0V7mnLXcHI/JUOTeHwrlPpw9ZE7UFJn6xvh52uDUfF?=
- =?us-ascii?Q?86gskAuTBv0QJ38ZAJiXySDN1XrZh0nCcvNq3xkJSiPvnC5EBxM0Zskf0Pzw?=
- =?us-ascii?Q?NJhFOo1Lspcwz9B+sV9bCXBSpUCU8B8PmDL14hDX?=
-Content-Type: text/plain; charset="us-ascii"
+Received: from DM4PR11MB5373.namprd11.prod.outlook.com (2603:10b6:5:394::7) by
+ BL1PR11MB5980.namprd11.prod.outlook.com (2603:10b6:208:387::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9366.11; Thu, 27 Nov
+ 2025 09:39:42 +0000
+Received: from DM4PR11MB5373.namprd11.prod.outlook.com
+ ([fe80::927a:9c08:26f7:5b39]) by DM4PR11MB5373.namprd11.prod.outlook.com
+ ([fe80::927a:9c08:26f7:5b39%5]) with mapi id 15.20.9366.012; Thu, 27 Nov 2025
+ 09:39:41 +0000
+From: =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>
+To: Alex Williamson <alex@shazbot.org>, Lucas De Marchi
+ <lucas.demarchi@intel.com>, =?UTF-8?q?Thomas=20Hellstr=C3=B6m?=
+ <thomas.hellstrom@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Jason Gunthorpe <jgg@ziepe.ca>, Yishai Hadas <yishaih@nvidia.com>, Kevin Tian
+ <kevin.tian@intel.com>, Shameer Kolothum <skolothumtho@nvidia.com>,
+ <intel-xe@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>,
+ <kvm@vger.kernel.org>, Matthew Brost <matthew.brost@intel.com>, "Michal
+ Wajdeczko" <michal.wajdeczko@intel.com>
+CC: <dri-devel@lists.freedesktop.org>, Jani Nikula
+ <jani.nikula@linux.intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, "Lukasz
+ Laguna" <lukasz.laguna@intel.com>, Christoph Hellwig <hch@infradead.org>,
+ =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>
+Subject: [PATCH v7 0/4] vfio/xe: Add driver variant for Xe VF migration
+Date: Thu, 27 Nov 2025 10:39:30 +0100
+Message-ID: <20251127093934.1462188-1-michal.winiarski@intel.com>
+X-Mailer: git-send-email 2.51.2
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: VI1PR09CA0175.eurprd09.prod.outlook.com
+ (2603:10a6:800:120::29) To DM4PR11MB5373.namprd11.prod.outlook.com
+ (2603:10b6:5:394::7)
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM4PR11MB5373:EE_|BL1PR11MB5980:EE_
+X-MS-Office365-Filtering-Correlation-Id: ba513e5f-56d8-40f9-7c9a-08de2d98e388
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|366016|1800799024|376014|7416014|921020; 
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?WlF0YzlxUzVqdjk4RFlLcXpKYzVYN201bEtTbGlzaUlBNW9OaDNlWnBVaFpL?=
+ =?utf-8?B?bWVkNzh6UXIweG9WNjM1NEF6U3gzNk9NNWE4dUl1YUl2Z2ZMQ3VNVS9TMTBo?=
+ =?utf-8?B?dFJhNGR3RVAwTnVyZFhMYlFiSkUvd1l2L29kNkpIV3QvZTZQSjB1bmpuYUpW?=
+ =?utf-8?B?dWdhd3F6YUVrc1pkWGZ2L084VU91NzBvZzR2UFBGVGV0WDZlczZWRm5MREZo?=
+ =?utf-8?B?ZzFKYzEwdnk2b29uUmNJbzhpR3lySmthUkVZbytpYXBSZUowMkQ2amt2L0pq?=
+ =?utf-8?B?N3IzL2lLMDBmQ09CK0VBTkxybGgrS1NudTR5K2xxcDRZeTliOVBINHFZVmFK?=
+ =?utf-8?B?UVRzM21FZllPemI1UW5hMi9LeVBRVGk4d1JYWXo3TTVWOXpTeGNpYnI3VThh?=
+ =?utf-8?B?ODRGYUhNalZwU1lMRjVvQnlGVE41NFd3NEJwMjI1MkMyZUtxTHNsSm83cEg2?=
+ =?utf-8?B?UVdkTE5DL3ZleGVYbDc5SjhySjV0bHpnS3FvOHdHeDZyR0JkSVZ3ZDN0YWpz?=
+ =?utf-8?B?a3ZOY2xkbEdxWURFNk5Id2xSdm9KYnBES05qZWRUMGZuVFZrVlBIbmlTYWdZ?=
+ =?utf-8?B?alFzOG82QWlLeEV3ZUZRcTBMUVJOQ0tHRHhjVm5oQW94MlhxbkFVMnpXb2dR?=
+ =?utf-8?B?RlRLVmJLYUw1TnpXV0VqemlmY1laVnBJMkI3OWUwUFZwM2V0MkZBbGlYS2lq?=
+ =?utf-8?B?TnRsOHI0TXFqVmVwQVdoY3UwTXNXZHh1Z3NJQ2xNK2ttaVh4T1YreWJScEor?=
+ =?utf-8?B?SHJCMXFjTm9mMTdvN3IrQUQ5eFRuUk5ueFBZZGFQY0dQaHdpdCtiK1daTG14?=
+ =?utf-8?B?eVNRQlUwNTl5WUYwRVFxZ3VibmZhNExTN2U5M1R3MTMwQVpRdjFLS2N6OHFh?=
+ =?utf-8?B?bmcvTGJvSXM0YWNRTmRvSlU4RzA4bnNVOUZ3d2tpMTlCWnAwREJBdm1MZ1kx?=
+ =?utf-8?B?Y3dxSlhlTlFzRTFyRTFka0NqaGVNN1RudGw0T0xxdlllbmtiSUZDVS9EcTJo?=
+ =?utf-8?B?b1FQNk5qMjVwcnl4SXZBNXpteDErTkp5U1c1dHpNL0N0L09EOGRuQUR0OTlh?=
+ =?utf-8?B?TlVwR0wrR29LaUxaWXdRQVpncHBtaGczMGNHbk0xOUN3YUJJTk1tc2RXMmts?=
+ =?utf-8?B?SVUvYmFwalg3dHFDSVlRZFVBTW1Nc0g5UmY2VzVSRWdFRzB5WG82ODFzYTZ4?=
+ =?utf-8?B?WXdHMHNrRnhUUVR6cWkrYTFFc0NBRVFMdEFkbHVtZUgwTkhSd01WaE91WDRk?=
+ =?utf-8?B?UlYzaDNvVlFCNGhWanZEUi95QVJENGIrNldqOW9IbHpCMVhwcmNhckpBNWZw?=
+ =?utf-8?B?RXZPeHp5VU16cy9XUHZvUE1aMXpPeWJzYXVxdUNyd2piaXR1N0lPVWNVYWZj?=
+ =?utf-8?B?a2trY0pCWG1FMXJvaE5qZ1R6b0MwMFNDcStJaGc3UUtIS3dBSDRyTytHYW5y?=
+ =?utf-8?B?dldEc2YrdHliTzF1a1FPWmVrVzhlTWE3VFVZMklVenVGMURRQWVLNGY4Q1hL?=
+ =?utf-8?B?T3JxbENtaVIrak0rMDAvdE96dXZVUGpHT1lLckZRVnYrWnM5WmQ0N2x4OVN6?=
+ =?utf-8?B?RVY1dU5NRi9RUjlYMlRYMzFkNnNjVkpyRlprT0pYdUUwSUhjc09LN1N2VUhO?=
+ =?utf-8?B?ZkEwS1A3aHdnUWV3aGdXQjkzVlFFYnNyMEtaUFlHbEhCblp2dy8vemV0Njgz?=
+ =?utf-8?B?bXdMb1ppcmlpNzlWYXBpd09VWW02VHFnSWhjZURlcjBNSVpKUzRmR0lVUWFh?=
+ =?utf-8?B?N0tPUUVGRnEzeWNmRngrOVJ6d2xBdmtCQXFRa2N0VUpBZkpmV1FMdU1kTTkr?=
+ =?utf-8?B?djZzdG1GbDVLdkRobHB5ODR6OXU1UWxweC9FMVZNSHRHaG1FTEZRNUlHNVUw?=
+ =?utf-8?B?NmZjSk15eld2YWszSFlLN09yNE5vYVgzWkRBNWhmYUpLTzdGVWdJQ2UrNFhu?=
+ =?utf-8?B?dzIrSmc0Z29nSW5iOTlXTlpsWW9MYUMxcldYK2kxbnd1RWx0elo0Q0xWaGNu?=
+ =?utf-8?B?eWhac1pKOTdhMm83eHBqSFdHN3I2RFZCdWIxb05hRGsvbjZzZnpsZnlESWhV?=
+ =?utf-8?Q?bCRQ1q?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB5373.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(376014)(7416014)(921020); DIR:OUT; SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?b3k1dWNTZ3U0SFNjWm9QdldMQnpkeTF3aEVNeHUrQlgyRmcweG0zWk9TbVZQ?=
+ =?utf-8?B?MEdaWmU4NzROd1hKK3F5bEJteE1OYWxORFRoWHlVYkREVVJOc0VNclB0VDNm?=
+ =?utf-8?B?RTFSRWpqcVpwM1JpVW1ZbWtrMXh1bDlHdWJCSUtJUUs0T0NLdG1YTzdlKzhL?=
+ =?utf-8?B?OFlESCtLdnFETVFyQnRrRWpqU0lka0dUZnZTNTY2MlN5NXRheWpvc2FSaTZs?=
+ =?utf-8?B?dHBnazhNaFhiWHovSVIxOGh0WVhmRzZzNU5jdThpL0htaURtaHZuWDJvYXV0?=
+ =?utf-8?B?aEFWOUg2L2RVeHZ6MnRydml3dHBMQkR6TVF5cEJFb1Jnc3ZGZzRwRzhEREFD?=
+ =?utf-8?B?Z0NXb2p2Ylk2bDlxcSthNkp3MDM5ZlAvMWNWNG81dUN2c0EyajdYK25qV0g1?=
+ =?utf-8?B?RmZWN05rdnY4dFd2SWo4L2RiRitzNlJtVXcvaXl1ajczWW1lOWZWdDNvWE5l?=
+ =?utf-8?B?Q2ZvNDhPUkhBUk16QlFWaE9tTHJoazh0ZlJEMG5JeEpra21VTERrclBCUWpa?=
+ =?utf-8?B?Qy95NktXTHFhcGt0MSs1WDhkMENoMHlsYzkwa1NqYWVQRDRhWU00NEE2a1dZ?=
+ =?utf-8?B?ajI4NGxtMVRGSlQ2dWNOd2xHNVUxQjdUVTFZVE5sMUZrZFlNMHF5SjIyeDBN?=
+ =?utf-8?B?MTNlUTlHNHJHR1VpV2x6VmZHalJEYnNrM1dMdTBLaWpwdkZDL3N3UkZWcFFN?=
+ =?utf-8?B?cnV2Y3VmSjk5THYwRW9md003aU5xQnk1aFU3UU85YmFubHVEaUcxL2xjd0E0?=
+ =?utf-8?B?Mys2YXNhMHhMTGdSVWRRQnVPQ00xVmdETjE0ZUxNOGRUcDIwUzhhT1lLSEY3?=
+ =?utf-8?B?aUtmNEpBbXN5UXVzZnVEcXdYTVZkQnVEdTFlc2wvMXg5MFlBMEN3ZjVTOGxr?=
+ =?utf-8?B?N01MMkYrSEFldGcyUms1V0tSRWd3KzhNT0NJTXRTWEdIeWlsbUJJREk2UHdT?=
+ =?utf-8?B?NkdhbjFzTTlEdk42ODlvQXZxY2V3TUNJaUp3YVZSSUl5UHJJNGNKcEZDczgw?=
+ =?utf-8?B?R3gxVFVkYnYzT3UvWllYZzBwSXBONm5LbzhLV2dTcFdhRXJwUkpvd1BOOWVB?=
+ =?utf-8?B?enQzZVUrUWJzU3ArUmNtQWh1cDlEcm1QR3dUL3VqNWpNTDl5YXJuVmw4ZEVv?=
+ =?utf-8?B?bEFlS1h1cGhucmtEMDFqVC9nTjhJc24vT2hVVVVWWGY3SVRleHAreno1OUxS?=
+ =?utf-8?B?ZVIwUXhVVXFmTmltamhndGh0c0FITXpYVHo4NXFOd1RoZzIwREp2R1RjeUxF?=
+ =?utf-8?B?QzdzR0NJWHJlOTViR1Z6anpqcndITXNLMjZDWjdTMHhiWjVVL21NRzRuZS83?=
+ =?utf-8?B?bzNpR0tjUXpQMHQwd1BjNDF0VXNhYTlKczVOVDhkUk1sampNL3RRcTA4eUZF?=
+ =?utf-8?B?Q25NZjRSblo0YmY3OU1CRW8vdGxHaTZkcndobU11L3ExaWR5WnpNb2JPNk1R?=
+ =?utf-8?B?Mm9iTzR2Z0hNNXNqY3VtNWxRTG5LNVFCUTlqTjJtcDhHU1A1bDhic2h1dHBL?=
+ =?utf-8?B?bkVEdkhIKy93SjJLWm9kaEVhRlIvd05kODRlSVBybVNEakF1SVZjR1hRTXRP?=
+ =?utf-8?B?TW5ZNXhjTlZNWE9ZZkdUT3RRaHd2ZmYwUVc0cXhyTWdKa3FOZnozVWJmT081?=
+ =?utf-8?B?RkhjajJxQUVodDExdkplckt4bXUrQ0FsQUVvNnY2SkpsQzBzQks4MlVMOE1o?=
+ =?utf-8?B?U2x3dG85VnVJRUF1SFJtTnRVQWdYaXRTYmpJU2NCZlE3V3JiSG9idUpPUmZL?=
+ =?utf-8?B?eElUcjVDR3lNRXNLNnlpU0hFUEI4YVdPaFl3enlZOGhEWFcvRXpFMWxFaitE?=
+ =?utf-8?B?Q2xvRUROSkV5NHNKb092ZzhhbEF2UVVpSXFyYkxDd2hFeUFwVEpnZThtbXNo?=
+ =?utf-8?B?TUwyUXcwYWRkekY3YjhvNmhiYXFKK2dMWmozT3lDWFgrTnNiTFo2ZGUrSUZB?=
+ =?utf-8?B?dUFmbEUxQzI5clVNWFlzcDdHMlE4M3hHZDdXK0RBbXQvRHU4WEhYaHc1WkJz?=
+ =?utf-8?B?UWpqZnMzYlZaNTZHaDMyQ2NmS28zYjNyVFFxNmZBSnlJZ0Vic3ZOK1JZMHRQ?=
+ =?utf-8?B?dEZJN05tMTZ6MnFzWnFJQmRpVS9vVDZFeHBSRHArczZGQ1BNaHF6U0hCTFB2?=
+ =?utf-8?B?OGtiKzdYYUd3elNWZ01NeGpVK1lHckgrQnNOQ2JtODdDdFJNdjdDQmFSSkRz?=
+ =?utf-8?B?Ymc9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: ba513e5f-56d8-40f9-7c9a-08de2d98e388
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5373.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DS7PR11MB9474.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 464df6e8-b97f-408d-40ad-08de2d98c2ae
-X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Nov 2025 09:38:45.7648 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: j3uhkPNV8hhy2Iy0o9fzl832Xckw4Sst841D3PXCDfEVFEyE1WEWrSjVH8AY4miIR0IqM7cjuvoaUe1V+MTfkg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB6895
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Nov 2025 09:39:41.8576 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: +IyCylEKIIJhJwiS0s2eEbRIO747OXHIroOh3LjYKklhR5+5K4YcbvzaQLdj8o1Wjwk70CetrvKPfamJ7T7RyLQ9TYaSsMzJ+XfbGQhgZCg=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR11MB5980
 X-OriginatorOrg: intel.com
-Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -180,117 +206,194 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The multi-queue uapi in this series looks good for the compute use case.
-Acked-by: Mateusz Hoppe <mateusz.hoppe@intel.com>
+Hi,
 
+This is the v7 of series introducing xe-vfio-pci driver variant
+supporting migration. Thanks for all the review feedback.
 
------Original Message-----
-From: Intel-xe <intel-xe-bounces@lists.freedesktop.org> On Behalf Of Niranj=
-ana Vishwanathapura
-Sent: Friday, November 21, 2025 4:52 AM
-To: intel-xe@lists.freedesktop.org
-Cc: matthew.brost@intel.com
-Subject: [PATCH v3 00/18] drm/xe: Multi Queue feature support
+It looks like all the r-b's are in place and we need a final ack from
+Alex.
+We also got a confirmation that DRM will be able to take the series once
+everything is ready.
 
-Multi Queue is a new mode of execution supported by the compute and blitter=
- copy command streamers (CCS and BCS, respectively). It is an enhancement o=
-f the existing hardware architecture and leverages the same submission mode=
-l. It enables support for efficient, parallel execution of multiple queues =
-within a single context.
+The biggest changes in this revision are:
+generating VFIO helpers using a macro, addition of XE_VFIO_PCI build
+dependency on PCI_IOV, and a bug fix for the issue where we would skip
+calling xe_sriov_vfio_wait_flr_done() if the VF doesn't support
+migration.
+Also, note that GuC v70.54.0 is now available in linux-firmware:
+https://gitlab.com/kernel-firmware/linux-firmware/-/commit/23568a4b942079631c9378011aa0a9b29de19370
 
-Add support for multi-queue feature and enable it on xe3p_xpc.
+Full changelog, including URLs to previous revisions can be found below.
 
-The associated IGT patch series is,
-https://patchwork.freedesktop.org/series/156866/
+Cover letter from the previous revision:
 
-The Compute UMD usecase is,
-https://github.com/intel/compute-runtime/pull/862
+Xe is a DRM driver supporting Intel GPUs and for SR-IOV capable
+devices, it enables the creation of SR-IOV VFs.
+This series adds xe-vfio-pci driver variant that interacts with Xe
+driver to control VF device state and read/write migration data,
+allowing it to extend regular vfio-pci functionality with VFIO migration
+capability.
+The driver doesn't expose PRE_COPY support, as currently supported
+hardware lacks the capability to track dirty pages.
 
-Changes in v2:
-- Rename multi_queue_enable_mask to multi_queue_engine_class_mask.
-- Remove group->lock, fix function semantics, add additional comments,
-  add asserts, update uapi kernel-doc, move group->list_lock to right
-  patch, add XE_BO_FLAG_GGTT_INVALIDATE for cgp bo.
-- Fix G2H_LEN_DW_MULTI_QUEUE_CONTEXT value.
-- Add fs_reclaim lock dependency, add bspec ref, other minor cleanups.
+While Xe driver already had the capability to manage VF device state,
+management of migration data was something that needed to be implemented
+and constitutes the majority of the series.
 
-Changes in v3:
-- Add patch "drm/xe/xe3p: Disable GuC Dynamic ICS for Xe3p"
-- Add patch "drm/xe/multi_queue: Reset GT upon CGP_SYNC failure"
-- Code refactoring and kernel-doc update
-- Assert CGP_SYNC message length is valid
-- For CGP bo use PINNED_LATE_RESTORE/USER_VRAM/GGTT_INVALIDATE flags
-- Properly handle cleanup of multi-queue group
+The migration data is processed asynchronously by the Xe driver, and is
+organized into multiple migration data packet types representing the
+hardware interfaces of the device (GGTT / MMIO / GuC FW / VRAM).
+Since the VRAM can potentially be larger than available system memory,
+it is copied in multiple chunks. The metadata needed for migration
+compatibility decisions is added as part of descriptor packet (currently
+limited to PCI device ID / revision).
+Xe driver abstracts away the internals of packet processing and takes
+care of tracking the position within individual packets.
+The API exported to VFIO is similar to API exported by VFIO to
+userspace, a simple .read()/.write().
 
-Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.c=
-om>
+Note that some of the VF resources are not virtualized (e.g. GGTT - the
+GFX device global virtual address space). This means that the VF driver
+needs to be aware that migration has occurred in order to properly
+relocate (patching or reemiting data that contains references to GGTT
+addresses) before resuming operation.
+The code to handle that is already present in upstream Linux and in
+production VF drivers for other OSes.
 
-Gustavo Sousa (1):
-  drm/xe/xe3p: Disable GuC Dynamic ICS for Xe3p
+Links to previous revisions for reference.
+v1:
+https://lore.kernel.org/lkml/20251011193847.1836454-1-michal.winiarski@intel.com/
+v2:
+https://lore.kernel.org/lkml/20251021224133.577765-1-michal.winiarski@intel.com/
+v3:
+https://lore.kernel.org/lkml/20251030203135.337696-1-michal.winiarski@intel.com/
+v4:
+https://lore.kernel.org/lkml/20251105151027.540712-1-michal.winiarski@intel.com/
+v5:
+https://lore.kernel.org/lkml/20251111010439.347045-1-michal.winiarski@intel.com/
+v6:
+https://lore.kernel.org/lkml/20251124230841.613894-1-michal.winiarski@intel.com/
 
-Niranjana Vishwanathapura (17):
-  drm/xe/multi_queue: Add multi_queue_enable_mask to gt information
-  drm/xe/multi_queue: Add user interface for multi queue support
-  drm/xe/multi_queue: Add GuC interface for multi queue support
-  drm/xe/multi_queue: Add multi queue priority property
-  drm/xe/multi_queue: Handle invalid exec queue property setting
-  drm/xe/multi_queue: Add exec_queue set_property ioctl support
-  drm/xe/multi_queue: Add support for multi queue dynamic priority
-    change
-  drm/xe/multi_queue: Add multi queue information to guc_info dump
-  drm/xe/multi_queue: Handle tearing down of a multi queue
-  drm/xe/multi_queue: Set QUEUE_DRAIN_MODE for Multi Queue batches
-  drm/xe/multi_queue: Handle CGP context error
-  drm/xe/multi_queue: Reset GT upon CGP_SYNC failure
-  drm/xe/multi_queue: Tracepoint support
-  drm/xe/multi_queue: Support active group after primary is destroyed
-  drm/xe/doc: Add documentation for Multi Queue Group
-  drm/xe/doc: Add documentation for Multi Queue Group GuC interface
-  drm/xe/multi_queue: Enable multi_queue on xe3p_xpc
+v6 -> v7:
+* Update commit msg with details on debug flag behavior (Michał)
+* Generate VFIO migration helpers with a macro (Alex)
+* Depend on PCI_IOV (Michał)
+* Reorder migration file struct members (Alex)
+* Fix xe_sriov_vfio_wait_flr_done() behavior (Alex)
+* Set state in .open_device() / .close_device() (Alex)
+* Remove redundant "disable_file" in release_file (Alex)
+* Use GFP_KERNEL_ACCOUNT alloc flag (Alex)
+* Use pci_iov_vf_id() directly in vdev->vfid assignment (Alex)
 
- Documentation/gpu/xe/xe_exec_queue.rst        |  14 +
- drivers/gpu/drm/xe/abi/guc_actions_abi.h      |   4 +
- .../gpu/drm/xe/instructions/xe_gpu_commands.h |   1 +
- drivers/gpu/drm/xe/xe_debugfs.c               |   2 +
- drivers/gpu/drm/xe/xe_device.c                |   9 +-
- drivers/gpu/drm/xe/xe_exec_queue.c            | 428 +++++++++++-
- drivers/gpu/drm/xe/xe_exec_queue.h            |  51 ++
- drivers/gpu/drm/xe/xe_exec_queue_types.h      |  57 ++
- drivers/gpu/drm/xe/xe_gt_types.h              |   5 +
- drivers/gpu/drm/xe/xe_guc.c                   |   7 +
- drivers/gpu/drm/xe/xe_guc_ct.c                |   8 +
- drivers/gpu/drm/xe/xe_guc_fwif.h              |   3 +
- drivers/gpu/drm/xe/xe_guc_submit.c            | 627 ++++++++++++++++--
- drivers/gpu/drm/xe/xe_guc_submit.h            |   3 +
- drivers/gpu/drm/xe/xe_guc_submit_types.h      |  13 +
- drivers/gpu/drm/xe/xe_lrc.c                   |  29 +
- drivers/gpu/drm/xe/xe_lrc.h                   |   3 +
- drivers/gpu/drm/xe/xe_pci.c                   |   3 +
- drivers/gpu/drm/xe/xe_pci_types.h             |   1 +
- drivers/gpu/drm/xe/xe_ring_ops.c              |  68 +-
- drivers/gpu/drm/xe/xe_trace.h                 |  46 ++
- include/uapi/drm/xe_drm.h                     |  44 ++
- 22 files changed, 1335 insertions(+), 91 deletions(-)
+v5 -> v6:
+* Exclude the patches already merged through drm-tip
+* Add logging when migration is enabled in debug mode (Michał)
+* Rename the xe_pf_get_pf helper (Michał)
+* Don't use "vendor specific" (yet again) (Michał)
+* Kerneldoc tweaks (Michał)
+* Use guard(xe_pm_runtime_noresume) instead of assert (Michał)
+* Check for num_vfs rather than total_vfs (Michał)
 
---
-2.43.0
+v4 -> v5:
+* Require GuC version >= 70.54.0
+* Fix VFIO migration migf disable
+* Fix null-ptr-deref on save_read error
+* Don't use "vendor specific" (again) (Kevin)
+* Introduce xe_sriov_packet_types.h (Michał)
+* Kernel-doc fixes (Michał)
+* Use tile_id / gt_id instead of tile / gt in packet header (Michał)
+* Don't use struct_group() in packet (Michał)
+* And other, more minor changes
 
+v3 -> v4:
+* Add error handling on data_read / data_write path
+* Don't match on PCI class, use PCI_DRIVER_OVERRIDE_DEVICE_VFIO helper
+  instead (Lucas De Marchi)
+* Use proper node VMA size inside GGTT save / restore helper (Michał)
+* Improve data tracking set_bit / clear_bit wrapper names (Michał)
+* Improve packet dump helper (Michał)
+* Use drmm for migration mutex init (Michał)
+* Rename the pf_device access helper (Michał)
+* Use non-interruptible sleep in VRAM copy (Matt)
+* Rename xe_sriov_migration_data to xe_sriov_packet along with relevant
+  functions (Michał)
+* Rename per-vf device-level data to xe_sriov_migration_state (Michał)
+* Use struct name that matches component name instead of anonymous
+  struct (Michał)
+* Don't add XE_GT_SRIOV_STATE_MAX to state enum, use a helper macro
+  instead (Michał)
+* Kernel-doc fixes (Michał)
 
----------------------------------------------------------------------
-Intel Technology Poland sp. z o.o.
-ul. Slowackiego 173 | 80-298 Gdansk | Sad Rejonowy Gdansk Polnoc | VII Wydz=
-ial Gospodarczy Krajowego Rejestru Sadowego - KRS 101882 | NIP 957-07-52-31=
-6 | Kapital zakladowy 200.000 PLN.
-Spolka oswiadcza, ze posiada status duzego przedsiebiorcy w rozumieniu usta=
-wy z dnia 8 marca 2013 r. o przeciwdzialaniu nadmiernym opoznieniom w trans=
-akcjach handlowych.
+v2 -> v3:
+* Bind xe-vfio-pci to specific devices instead of using vendor and
+  class (Christoph Hellwig / Jason Gunthorpe)
+* Don't refer to the driver as "vendor specific" (Christoph)
+* Use pci_iov_get_pf_drvdata and change the interface to take xe_device
+  (Jason)
+* Update the RUNNING_P2P comment (Jason / Kevin Tian)
+* Add state_mutex to protect device state transitions (Kevin)
+* Implement .error_detected (Kevin)
+* Drop redundant comments (Kevin)
+* Explain 1-based indexing and wait_flr_done (Kevin)
+* Add a missing get_file() (Kevin)
+* Drop redundant state transitions when p2p is supported (Kevin)
+* Update run/stop naming to match other drivers (Kevin)
+* Fix error state handling (Kevin)
+* Fix SAVE state diagram rendering (Michał Wajdeczko)
+* Control state machine flipping PROCESS / WAIT logic (Michał Wajdeczko)
+* Drop GUC / GGTT / MMIO / VRAM from SAVE control state machine
+* Use devm instead of drmm for migration-related allocations (Michał)
+* Use GGTT node for size calculations (Michał)
+* Use mutex guards consistently (Michał)
+* Fix build break on 32-bit (lkp)
+* Kernel-doc updates (Michał)
+* And other, more minor changes
 
-Ta wiadomosc wraz z zalacznikami jest przeznaczona dla okreslonego adresata=
- i moze zawierac informacje poufne. W razie przypadkowego otrzymania tej wi=
-adomosci, prosimy o powiadomienie nadawcy oraz trwale jej usuniecie; jakiek=
-olwiek przegladanie lub rozpowszechnianie jest zabronione.
-This e-mail and any attachments may contain confidential material for the s=
-ole use of the intended recipient(s). If you are not the intended recipient=
-, please contact the sender and delete all copies; any review or distributi=
-on by others is strictly prohibited.
+v1 -> v2:
+* Do not require debug flag to support migration on PTL/BMG
+* Fix PCI class match on VFIO side
+* Reorganized PF Control state machine (Michał Wajdeczko)
+* Kerneldoc tidying (Michał Wajdeczko)
+* Return NULL instead of -ENODATA for produce/consume (Michał Wajdeczko)
+* guc_buf s/sync/sync_read (Matt Brost)
+* Squash patch 03 (Matt Brost)
+* Assert on PM ref instead of taking it (Matt Brost)
+* Remove CCS completely (Matt Brost)
+* Return ptr on guc_buf_sync_read (Michał Wajdeczko)
+* Define default guc_buf size (Michał Wajdeczko)
+* Drop CONFIG_PCI_IOV=n stubs where not needed (Michał Wajdeczko)
+* And other, more minor changes
+
+Michał Winiarski (4):
+  drm/xe/pf: Enable SR-IOV VF migration
+  drm/xe/pci: Introduce a helper to allow VF access to PF xe_device
+  drm/xe/pf: Export helpers for VFIO
+  vfio/xe: Add device specific vfio_pci driver variant for Intel
+    graphics
+
+ MAINTAINERS                                   |   7 +
+ drivers/gpu/drm/xe/Makefile                   |   4 +
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_migration.c |   9 +
+ drivers/gpu/drm/xe/xe_pci.c                   |  17 +
+ drivers/gpu/drm/xe/xe_pci.h                   |   3 +
+ drivers/gpu/drm/xe/xe_sriov_pf_migration.c    |  35 +-
+ drivers/gpu/drm/xe/xe_sriov_pf_migration.h    |   1 +
+ .../gpu/drm/xe/xe_sriov_pf_migration_types.h  |   4 +-
+ drivers/gpu/drm/xe/xe_sriov_vfio.c            |  80 +++
+ drivers/vfio/pci/Kconfig                      |   2 +
+ drivers/vfio/pci/Makefile                     |   2 +
+ drivers/vfio/pci/xe/Kconfig                   |  12 +
+ drivers/vfio/pci/xe/Makefile                  |   3 +
+ drivers/vfio/pci/xe/main.c                    | 573 ++++++++++++++++++
+ include/drm/intel/xe_sriov_vfio.h             | 143 +++++
+ 15 files changed, 888 insertions(+), 7 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/xe_sriov_vfio.c
+ create mode 100644 drivers/vfio/pci/xe/Kconfig
+ create mode 100644 drivers/vfio/pci/xe/Makefile
+ create mode 100644 drivers/vfio/pci/xe/main.c
+ create mode 100644 include/drm/intel/xe_sriov_vfio.h
+
+-- 
+2.51.2
 
