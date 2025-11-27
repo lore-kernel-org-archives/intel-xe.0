@@ -4,54 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 72EC9D111A8
-	for <intel-xe@archiver.kernel.org>; Thu, 27 Nov 2025 17:08:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 26702D111A8
+	for <intel-xe@archiver.kernel.org>; Thu, 27 Nov 2025 17:19:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 34AC610E838;
-	Thu, 27 Nov 2025 17:08:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 81F7F10E839;
+	Thu, 27 Nov 2025 17:19:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eI2lZEp9";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="c0KfnE/y";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7F66510E838
- for <intel-xe@lists.freedesktop.org>; Thu, 27 Nov 2025 17:08:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1764263283; x=1795799283;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=ptRxsW/59eW6cfGe2DyHKLz74flEyDNblsjcj+FOW3c=;
- b=eI2lZEp9ZMEwaXrSAJQtvj30gtlZKoWnsHB7g3BmDWzR96yDXHXBU2z4
- wAt/7n97QxccKmO4CtnTul3N5s1HxCywcaKvQTtNOxdJ0BLFCztov3uKt
- J2ItbnznjGqLHozHh3VtP8mKMeZiQTs1IWzT2X3VNxgjFNiufxyBUtx+4
- RRnspJAeaVUMLYhFsJ72Oyj46tSZrZQ8bh/gwBOoy5zufceBvZ5RzSPh6
- k85FN+5KzbesDDaE/1eubQgIz+1Yr3FJuj+oXpQEqvXfGnG4h4/jN/hJr
- RonJ+FNNKldJlwFbOHFvTrih0WMV2Ru2S5c+W8d9aX13gpyliiMj+As7B Q==;
-X-CSE-ConnectionGUID: 1fZoP0/uTmacQmm94Npheg==
-X-CSE-MsgGUID: 1EqTFKAQQaO6liHNbTaBQg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11626"; a="66344056"
-X-IronPort-AV: E=Sophos;i="6.20,231,1758610800"; d="scan'208";a="66344056"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Nov 2025 09:08:02 -0800
-X-CSE-ConnectionGUID: cyGe55JRSYyHW4+yCsrBDA==
-X-CSE-MsgGUID: T+tCQQTPRuqIxDydpfTYRg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,231,1758610800"; d="scan'208";a="230554379"
-Received: from guc-pnp-dev-box-1.fm.intel.com ([10.1.39.24])
- by orviesa001.jf.intel.com with ESMTP; 27 Nov 2025 09:08:02 -0800
-From: Zhanjun Dong <zhanjun.dong@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Zhanjun Dong <zhanjun.dong@intel.com>,
- Julia Filipchuk <julia.filipchuk@intel.com>
-Subject: [PATCH v8 6/6] drm/xe/guc: Add new debugfs entry for lfd format output
-Date: Thu, 27 Nov 2025 12:07:59 -0500
-Message-Id: <20251127170759.2620994-7-zhanjun.dong@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20251127170759.2620994-1-zhanjun.dong@intel.com>
-References: <20251127170759.2620994-1-zhanjun.dong@intel.com>
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3E93510E16F;
+ Thu, 27 Nov 2025 17:19:31 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sea.source.kernel.org (Postfix) with ESMTP id E8C8840645;
+ Thu, 27 Nov 2025 17:19:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ECF0EC113D0;
+ Thu, 27 Nov 2025 17:19:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1764263970;
+ bh=+8mv6i8YDqflMNXf6rSyL0ngsI4DSuUXQc+IAsMcIoc=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=c0KfnE/yW9mBtNrtCv44gXHVw6SA0/m6sGRU7msy3eAgPWadTZyvHIkYKGNDUnM7W
+ 28ftgpbYM2BNqaIQH038Kl27gGXNVq7FV/E7oQRx3VLgZ6RFLtdff8s2iwtizMjgcg
+ xeQzJCXOCOTb0EatsXDdloTWKGrDRCysTipTKHEftdjOa1ssf4m16kgkv0UgbXYc+4
+ odbVSb8qMOxIkoimUTTcrsI13GEY0gYhIUAaRjZPomLyF0JlNFjl6w6aanfeYFQfA2
+ lkq/9R63TZDx3yK+SxPvcsaAr1pNoICpg/TmokPgvFqSNd8ZcRbmaDKmPvRKVOfZ9s
+ rAI1CjOpXsKAA==
+Date: Thu, 27 Nov 2025 18:19:27 +0100
+From: Andi Shyti <andi.shyti@kernel.org>
+To: phasta@kernel.org
+Cc: Matthew Brost <matthew.brost@intel.com>, 
+ Sumit Semwal <sumit.semwal@linaro.org>, Gustavo Padovan <gustavo@padovan.org>, 
+ Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
+ Felix Kuehling <Felix.Kuehling@amd.com>, 
+ Alex Deucher <alexander.deucher@amd.com>, David Airlie <airlied@gmail.com>, 
+ Simona Vetter <simona@ffwll.ch>, Jani Nikula <jani.nikula@linux.intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Tvrtko Ursulin <tursulin@ursulin.net>, Huang Rui <ray.huang@amd.com>, 
+ Matthew Auld <matthew.auld@intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ Lucas De Marchi <lucas.demarchi@intel.com>, 
+ Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+ linaro-mm-sig@lists.linaro.org, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, 
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ rust-for-linux@vger.kernel.org
+Subject: Re: [PATCH 3/6] drm/gpu/xe: Ignore dma_fenc_signal() return code
+Message-ID: <enlnwawk3qtcbgfm7dmuyefb4tx3hxsrmzozkabpeixxsi3y24@pukuuth2zlke>
+References: <20251126131914.149445-2-phasta@kernel.org>
+ <20251126131914.149445-5-phasta@kernel.org>
+ <nrrk4kug6a42fztx7ryuz5bk6uy7roiszjhiivlvtrw3uvunps@wn44moyetzff>
+ <aSeTsINKklqqJyIs@lstrano-desk.jf.intel.com>
+ <q2kvwmnxomqlcx7zgvlvyhupduytfubcu5vghuf6ztrdaq55pb@gq4tg7qughun>
+ <63274dd281ac94f2680a4aa91f541de82435fda5.camel@mailbox.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-15
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <63274dd281ac94f2680a4aa91f541de82435fda5.camel@mailbox.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,90 +79,48 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add new debugfs entry "guc_log_lfd", prepared for output guc log
-in LFD(Log Format Descriptors) format.
+On Thu, Nov 27, 2025 at 02:51:39PM +0100, Philipp Stanner wrote:
+> On Thu, 2025-11-27 at 14:37 +0100, Andi Shyti wrote:
+> > On Wed, Nov 26, 2025 at 03:56:32PM -0800, Matthew Brost wrote:
+> > > On Wed, Nov 26, 2025 at 11:56:57PM +0100, Andi Shyti wrote:
+> > > > > @@ -85,7 +85,6 @@ void xe_hw_fence_irq_finish(struct xe_hw_fence_irq *irq)
+> > > > > @@ -93,9 +92,9 @@ void xe_hw_fence_irq_finish(struct xe_hw_fence_irq *irq)
+> > > > >  		spin_lock_irqsave(&irq->lock, flags);
+> > > > >  		list_for_each_entry_safe(fence, next, &irq->pending, irq_link) {
+> > > > >  			list_del_init(&fence->irq_link);
+> > > > > -			err = dma_fence_signal_locked(&fence->dma);
+> > > > 
+> > > > why don't we do
+> > > > 
+> > > > XE_WARN_ON(dma_fence_signal_locked(..))
+> 
+> because it's impossible because the series is about removing the return
+> codes from the dma_fence_signal_* functions.
 
-Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
-Reviewed-by: Julia Filipchuk <julia.filipchuk@intel.com>
----
- drivers/gpu/drm/xe/xe_guc_debugfs.c |  7 +++++++
- drivers/gpu/drm/xe/xe_guc_log.c     | 18 +++++++++++++++---
- drivers/gpu/drm/xe/xe_guc_log.h     |  1 +
- 3 files changed, 23 insertions(+), 3 deletions(-)
+oh yes, the last patch. Sorry, I went on reviewing and lost the
+final target from sight.
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_debugfs.c b/drivers/gpu/drm/xe/xe_guc_debugfs.c
-index efaca259d3e8..23827e87450f 100644
---- a/drivers/gpu/drm/xe/xe_guc_debugfs.c
-+++ b/drivers/gpu/drm/xe/xe_guc_debugfs.c
-@@ -81,6 +81,12 @@ static int guc_log(struct xe_guc *guc, struct drm_printer *p)
- 	return 0;
- }
- 
-+static int guc_log_lfd(struct xe_guc *guc, struct drm_printer *p)
-+{
-+	xe_guc_log_print_lfd(&guc->log, p);
-+	return 0;
-+}
-+
- static int guc_log_dmesg(struct xe_guc *guc, struct drm_printer *p)
- {
- 	xe_guc_log_print_dmesg(&guc->log);
-@@ -117,6 +123,7 @@ static const struct drm_info_list slpc_debugfs_list[] = {
- /* everything else should be added here */
- static const struct drm_info_list pf_only_debugfs_list[] = {
- 	{ "guc_log", .show = guc_debugfs_show, .data = guc_log },
-+	{ "guc_log_lfd", .show = guc_debugfs_show, .data = guc_log_lfd },
- 	{ "guc_log_dmesg", .show = guc_debugfs_show, .data = guc_log_dmesg },
- };
- 
-diff --git a/drivers/gpu/drm/xe/xe_guc_log.c b/drivers/gpu/drm/xe/xe_guc_log.c
-index 40c9e812e9d5..d7473b9673bb 100644
---- a/drivers/gpu/drm/xe/xe_guc_log.c
-+++ b/drivers/gpu/drm/xe/xe_guc_log.c
-@@ -542,9 +542,7 @@ xe_guc_log_add_crash_dump(struct drm_printer *p, struct xe_guc_log_snapshot *sna
- 	return size;
- }
- 
--void
--xe_guc_log_snapshot_print_lfd(struct xe_guc_log_snapshot *snapshot, struct drm_printer *p);
--void
-+static void
- xe_guc_log_snapshot_print_lfd(struct xe_guc_log_snapshot *snapshot, struct drm_printer *p)
- {
- 	struct guc_lfd_file_header header;
-@@ -609,6 +607,20 @@ void xe_guc_log_print(struct xe_guc_log *log, struct drm_printer *p)
- 	xe_guc_log_snapshot_free(snapshot);
- }
- 
-+/**
-+ * xe_guc_log_print_lfd - dump a copy of the GuC log in LFD format
-+ * @log: GuC log structure
-+ * @p: the printer object to output to
-+ */
-+void xe_guc_log_print_lfd(struct xe_guc_log *log, struct drm_printer *p)
-+{
-+	struct xe_guc_log_snapshot *snapshot;
-+
-+	snapshot = xe_guc_log_snapshot_capture(log, false);
-+	xe_guc_log_snapshot_print_lfd(snapshot, p);
-+	xe_guc_log_snapshot_free(snapshot);
-+}
-+
- int xe_guc_log_init(struct xe_guc_log *log)
- {
- 	struct xe_device *xe = log_to_xe(log);
-diff --git a/drivers/gpu/drm/xe/xe_guc_log.h b/drivers/gpu/drm/xe/xe_guc_log.h
-index 0bd5e89d75e0..1b05bb60c1c7 100644
---- a/drivers/gpu/drm/xe/xe_guc_log.h
-+++ b/drivers/gpu/drm/xe/xe_guc_log.h
-@@ -52,6 +52,7 @@ struct xe_device;
- 
- int xe_guc_log_init(struct xe_guc_log *log);
- void xe_guc_log_print(struct xe_guc_log *log, struct drm_printer *p);
-+void xe_guc_log_print_lfd(struct xe_guc_log *log, struct drm_printer *p);
- void xe_guc_log_print_dmesg(struct xe_guc_log *log);
- struct xe_guc_log_snapshot *xe_guc_log_snapshot_capture(struct xe_guc_log *log, bool atomic);
- void xe_guc_log_snapshot_print(struct xe_guc_log_snapshot *snapshot, struct drm_printer *p);
--- 
-2.34.1
+> > > > 
+> > > 
+> > > IIRC the above statement can compile out. So the patch looks correct to me.
+> > 
+> > you have defined XE_WARN_ON as WARN_ON that should always
+> > evaluate the content and, depending on the configuration, it
+> > prints the logs or not.
+> > 
+> > What I don't like from this patch is that we end up checking
+> > twice for the DMA_FENCE_FLAG_SIGNALED_BIT bit.
+> 
+> Depends on what you mean by "we". The Xe code checks it only once, with
+> dma_fence_test_signaled_flag(). The dma_fence backend checks it yet
+> again, as it always does, to avoid signaling a signaled fence.
+> 
+> That's not racy here, however, because the fence lock is already being
+> held, as evidenced by the current usage of dma_fence_signal_locked().
 
+I haven't said it's racy, I just didn't like that we are testing
+for the DMA_FENCE_FLAG_SIGNALED_BIT twice. On the other hand,
+with dma_fence_signal_locked() being void, I wouldn't know how to
+do it better. So that I guess it's fine.
+
+Andi
