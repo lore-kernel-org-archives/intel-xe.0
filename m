@@ -4,51 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 01023D1170E
-	for <intel-xe@archiver.kernel.org>; Mon,  1 Dec 2025 13:39:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 19F48D116F1
+	for <intel-xe@archiver.kernel.org>; Mon,  1 Dec 2025 13:39:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1627610E419;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1FC1310E41B;
 	Mon,  1 Dec 2025 13:39:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="ea0Y1G0Z";
+	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="jLMIxK76";
 	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ABB2810E764;
- Thu, 27 Nov 2025 14:23:50 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id A3B8460141;
- Thu, 27 Nov 2025 14:23:49 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 92C07C4CEF8;
- Thu, 27 Nov 2025 14:23:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1764253429;
- bh=r07qtYGEb7AnC6anOUPmwTrLLsNrLYAVrCgqJnbbPKI=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=ea0Y1G0Z9/IYHDSbEJavEbqdCjuH+PodNnjxcOx1VYe8B9FNt1npwgiWl7/1n9u+z
- 4r+9W/9pCLq/pl9obQ9xEkONlBJx5UgCU0G3BrO+2pej+1luBmvtKE6VybD4ZK1/Oa
- vG0GZBHaoIB264JoVRe8F8tE0BFYqzOK0nksIan7ieNW+veVUML2UIZxMzexCAIQOZ
- A21J0ZFBNi3N77/h+QIK8xufyreIAkbAffPPmQWGMEiN6xEdcgyYrMuR/lOdGXXmQ8
- S0C98IQWCX3a6fDGRx9jkPawe9XTu/eQo1SobnfJbMlTJrGLzo5dhjtQjeU3jYPk3c
- MEQpa4/8DPZQQ==
-Date: Thu, 27 Nov 2025 15:23:44 +0100
-From: Christian Brauner <brauner@kernel.org>
-To: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, 
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, "Kurmi,
- Suresh Kumar" <suresh.kumar.kurmi@intel.com>, 
- "Saarinen, Jani" <jani.saarinen@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>, linux-fsdevel@vger.kernel.org
-Subject: Re: REGRESSION on linux-next (next-20251125)
-Message-ID: <20251127-entnehmen-fokussieren-3159ffb8e98b@brauner>
-References: <a27eb5f4-c4c9-406c-9b53-93f7888db14a@intel.com>
- <20251127-agenda-befinden-61628473b16b@brauner>
- <5ffeb0af-a3c9-4ccb-a752-ce7d48f475df@intel.com>
- <20251127-kaktus-gourmet-626cff3d8314@brauner>
- <78e1b97d-837f-48e9-882f-8320473ec9bb@intel.com>
+Received: from mout-p-103.mailbox.org (mout-p-103.mailbox.org [80.241.56.161])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 66BAE10E7F4;
+ Thu, 27 Nov 2025 09:48:12 +0000 (UTC)
+Received: from smtp1.mailbox.org (smtp1.mailbox.org [10.196.197.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mout-p-103.mailbox.org (Postfix) with ESMTPS id 4dHBSS6Tfrz9tlN;
+ Thu, 27 Nov 2025 10:48:08 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
+ s=mail20150812; 
+ t=1764236888; h=from:from:reply-to:reply-to:subject:subject:date:date:
+ message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+ content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=ZQYSvusihxhAEhdU9CYjb1IJ74ERkj/ScwDBukN3aU4=;
+ b=jLMIxK760nk1jr6W+dythNSXScSQUSIn0bfNZKLsnQsoUsP4h3ywir/eSZ27UsyXpnUHGt
+ HKR1ydCo5vb0KXtgiU6+xBvKyCoskn4oBuzTQs9zRcXr4JqHMSNdo9tohHXFRZPmyaLuPE
+ fotHp0J55AqD+/ghCBzme2ktHRL56A/js86yI4JIJmo+MHuOaH5QumXvHmc8mWASePQ8Ys
+ I9DkcZ+wxN5w0xPnu1wseU7+VBp/jfR6Z2ugni7+QL0aVcoKFRF9QYlIY8o9GfvPOCf5Gz
+ dg4RXwx8zURlAGa2kAFYPgo3xhFLy361bSBJz6mMLjboBiGUb7+PvOGVjcDFdA==
+Message-ID: <d46f753e660694ab46c65409a5e43f050b7eb2d9.camel@mailbox.org>
+Subject: Re: [PATCH 2/6] amd/amdkfd: Ignore return code of dma_fence_signal()
+From: Philipp Stanner <phasta@mailbox.org>
+To: "Kuehling, Felix" <felix.kuehling@amd.com>, Philipp Stanner
+ <phasta@kernel.org>, Sumit Semwal <sumit.semwal@linaro.org>, Gustavo
+ Padovan <gustavo@padovan.org>, Christian =?ISO-8859-1?Q?K=F6nig?=
+ <christian.koenig@amd.com>, Alex Deucher <alexander.deucher@amd.com>, David
+ Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Jani Nikula
+ <jani.nikula@linux.intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>,  Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, Huang Rui <ray.huang@amd.com>, 
+ Matthew Auld <matthew.auld@intel.com>, Matthew Brost
+ <matthew.brost@intel.com>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, Lucas De Marchi
+ <lucas.demarchi@intel.com>, Thomas =?ISO-8859-1?Q?Hellstr=F6m?=
+ <thomas.hellstrom@linux.intel.com>
+Cc: linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+ linaro-mm-sig@lists.linaro.org, linux-kernel@vger.kernel.org, 
+ amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org, rust-for-linux@vger.kernel.org
+Date: Thu, 27 Nov 2025 10:48:00 +0100
+In-Reply-To: <cef83fed-5994-4c77-962c-9c7aac9f7306@amd.com>
+References: <20251126131914.149445-2-phasta@kernel.org>
+ <20251126131914.149445-4-phasta@kernel.org>
+ <cef83fed-5994-4c77-962c-9c7aac9f7306@amd.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <78e1b97d-837f-48e9-882f-8320473ec9bb@intel.com>
+X-MBO-RS-ID: 0128008008b612f56f4
+X-MBO-RS-META: iynpcy9qgfczj4y13orf1zbr8bhxik1n
 X-Mailman-Approved-At: Mon, 01 Dec 2025 13:38:52 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -61,28 +77,88 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: phasta@kernel.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Nov 27, 2025 at 06:16:05PM +0530, Borah, Chaitanya Kumar wrote:
-> 
-> 
-> On 11/27/2025 4:13 PM, Christian Brauner wrote:
-> > I just pushed:
-> > 
-> > https://git.kernel.org/pub/scm/linux/kernel/git/vfs/vfs.git vfs-6.19.fd_prepare
-> > 
-> > If you want to test that, please.
-> 
-> aah! only the sync_file.c change you suggested was not fixing the issue. But
-> with [1] on top of linux-next, the issue is now resolved.
-> 
-> It also solves another issue[2] we bisected (before I could report it to
-> you, which is never a bad thing)
-> 
-> Thank you.
+On Wed, 2025-11-26 at 16:24 -0500, Kuehling, Felix wrote:
+>=20
+> On 2025-11-26 08:19, Philipp Stanner wrote:
+> > The return code of dma_fence_signal() is not really useful as there is
+> > nothing reasonable to do if a fence was already signaled. That return
+> > code shall be removed from the kernel.
+> >=20
+> > Ignore dma_fence_signal()'s return code.
+>=20
+> I think this is not correct. Looking at the comment in=20
+> evict_process_worker, we use the return value to decide a race=20
+> conditions where multiple threads are trying to signal the eviction=20
+> fence. Only one of them should schedule the restore work. And the other=
+=20
+> ones need to increment the reference count to keep evictions balanced.
 
-Yes, sorry, two pretty obvious mistakes on my side. Thanks for testing!
+Thank you for pointing that out. Seems then amdkfd is the only user who
+actually relies on the feature. See below
 
-> [1] https://git.kernel.org/pub/scm/linux/kernel/git/vfs/vfs.git/commit/?h=vfs-6.19.fd_prepare&id=bf44cb6382f90fbda2eeae67065dc9401a967485
-> [2] https://intel-gfx-ci.01.org/tree/linux-next/next-20251125/bat-mtlp-8/igt@core_hotunplug@unbind-rebind.html
+>=20
+> Regards,
+> =C2=A0=C2=A0 Felix
+>=20
+>=20
+> >=20
+> > Suggested-by: Christian K=C3=B6nig <christian.koenig@amd.com>
+> > Signed-off-by: Philipp Stanner <phasta@kernel.org>
+> > ---
+> > =C2=A0 drivers/gpu/drm/amd/amdkfd/kfd_process.c | 5 ++---
+> > =C2=A0 1 file changed, 2 insertions(+), 3 deletions(-)
+> >=20
+> > diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_process.c b/drivers/gpu/drm=
+/amd/amdkfd/kfd_process.c
+> > index ddfe30c13e9d..950fafa4b3c3 100644
+> > --- a/drivers/gpu/drm/amd/amdkfd/kfd_process.c
+> > +++ b/drivers/gpu/drm/amd/amdkfd/kfd_process.c
+> > @@ -1986,7 +1986,6 @@ kfd_process_gpuid_from_node(struct kfd_process *p=
+, struct kfd_node *node,
+> > =C2=A0 static int signal_eviction_fence(struct kfd_process *p)
+> > =C2=A0 {
+> > =C2=A0=C2=A0	struct dma_fence *ef;
+> > -	int ret;
+> > =C2=A0=20
+> > =C2=A0=C2=A0	rcu_read_lock();
+> > =C2=A0=C2=A0	ef =3D dma_fence_get_rcu_safe(&p->ef);
+> > @@ -1994,10 +1993,10 @@ static int signal_eviction_fence(struct kfd_pro=
+cess *p)
+> > =C2=A0=C2=A0	if (!ef)
+> > =C2=A0=C2=A0		return -EINVAL;
+> > =C2=A0=20
+> > -	ret =3D dma_fence_signal(ef);
+> > +	dma_fence_signal(ef);
+
+The issue now is that dma_fence_signal()'s return code is actually non-
+racy, because check + bit-set are protected by lock.
+
+Christian's new spinlock series would add a lock function for fences:
+https://lore.kernel.org/dri-devel/20251113145332.16805-5-christian.koenig@a=
+md.com/
+
+
+So I suppose this should work:
+
+dma_fence_lock_irqsave(ef, flags);
+if (dma_fence_test_signaled_flag(ef)) {
+	dma_fence_unlock_irqrestore(ef, flags);
+	return true;
+}
+dma_fence_signal_locked(ef);
+dma_fence_unlock_irqrestore(ef, flags);
+
+return false;
+
+
++ some cosmetic adjustments for the boolean of course.
+
+
+Would that fly and be reasonable? @Felix, Christian.
+
+
+P.
