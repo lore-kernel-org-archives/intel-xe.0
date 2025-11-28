@@ -4,70 +4,74 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D60CFD11711
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C9466D11712
 	for <intel-xe@archiver.kernel.org>; Mon,  1 Dec 2025 13:39:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8AE5C10E424;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 80EBA10E422;
 	Mon,  1 Dec 2025 13:39:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="AE7unJJ9";
+	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="iLKadd0W";
 	dkim-atps=neutral
-Received: from mout-p-103.mailbox.org (mout-p-103.mailbox.org [80.241.56.161])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6B96E10E721;
- Thu, 27 Nov 2025 13:51:52 +0000 (UTC)
-Received: from smtp2.mailbox.org (smtp2.mailbox.org
- [IPv6:2001:67c:2050:b231:465::2])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by mout-p-103.mailbox.org (Postfix) with ESMTPS id 4dHHsd1yj1z9tHd;
- Thu, 27 Nov 2025 14:51:49 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
- s=mail20150812; 
- t=1764251509; h=from:from:reply-to:reply-to:subject:subject:date:date:
- message-id:message-id:to:to:cc:cc:mime-version:mime-version:
- content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=aAh7JsuhDwTA6puzFjLHmry2BMuVgc6R6juTrQrgIDM=;
- b=AE7unJJ9EOQPnAi6TAazDIz1H8bRe3kpfr2AeFzAgESqZiwAEGdMEwcmGwd9lP9QIprYgh
- +PMh8zg92MzpeUgxSx28dQ927sQ6NE4O47T8ZF3lEEBHHwgmkPlI2p8kwblFme8QlvxLdI
- Iz8kanTYpfmMBM6qMw9no4nwu2B0knIA9nw2FbiExLcEylLQ5ehjP826FrDzY8tJWsfLyj
- LlDOWYm9sCS7rYd5IcfyPmlQjaVxaXhYJipYOYd1Zx97lZVEH+jb12tn+HBH2J7TWr1/n4
- fUYiUEHM8WA6v1LZOWZnMGPjFLvi/mg2i2OBErArYZulsdATYMJGDtjk8NFB1g==
-Message-ID: <63274dd281ac94f2680a4aa91f541de82435fda5.camel@mailbox.org>
-Subject: Re: [PATCH 3/6] drm/gpu/xe: Ignore dma_fenc_signal() return code
-From: Philipp Stanner <phasta@mailbox.org>
-To: Andi Shyti <andi.shyti@kernel.org>, Matthew Brost <matthew.brost@intel.com>
-Cc: Philipp Stanner <phasta@kernel.org>, Sumit Semwal
- <sumit.semwal@linaro.org>,  Gustavo Padovan <gustavo@padovan.org>,
- Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, Felix
- Kuehling <Felix.Kuehling@amd.com>, Alex Deucher
- <alexander.deucher@amd.com>, David Airlie <airlied@gmail.com>, Simona
- Vetter <simona@ffwll.ch>, Jani Nikula <jani.nikula@linux.intel.com>, Joonas
- Lahtinen <joonas.lahtinen@linux.intel.com>,  Rodrigo Vivi
- <rodrigo.vivi@intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>, Huang Rui
- <ray.huang@amd.com>,  Matthew Auld <matthew.auld@intel.com>, Maarten
- Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
- <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Lucas De
- Marchi <lucas.demarchi@intel.com>, Thomas =?ISO-8859-1?Q?Hellstr=F6m?=
- <thomas.hellstrom@linux.intel.com>, linux-media@vger.kernel.org, 
- dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org, 
- linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org, 
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
- rust-for-linux@vger.kernel.org
-Date: Thu, 27 Nov 2025 14:51:39 +0100
-In-Reply-To: <q2kvwmnxomqlcx7zgvlvyhupduytfubcu5vghuf6ztrdaq55pb@gq4tg7qughun>
-References: <20251126131914.149445-2-phasta@kernel.org>
- <20251126131914.149445-5-phasta@kernel.org>
- <nrrk4kug6a42fztx7ryuz5bk6uy7roiszjhiivlvtrw3uvunps@wn44moyetzff>
- <aSeTsINKklqqJyIs@lstrano-desk.jf.intel.com>
- <q2kvwmnxomqlcx7zgvlvyhupduytfubcu5vghuf6ztrdaq55pb@gq4tg7qughun>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Received: from sender3-pp-f112.zoho.com (sender3-pp-f112.zoho.com
+ [136.143.184.112])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7AEFE10E943;
+ Fri, 28 Nov 2025 21:08:05 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; t=1764364076; cv=none; 
+ d=zohomail.com; s=zohoarc; 
+ b=nyTRTxGsYjn7JDIYdQE6WLU3Kt/P4SfRL5acZvwnaq5ayXR76sOUhLMHOGrOdeYjd1VHPgzO8W3JZ+hn9aQUx0aVuGaCwFhQbcyjd3IaP+zaYn6I/RjfkpLNafomAbuXYMKap2fQsDmQCiaCPDtfQJ8hoBj2tX58PmbiWIrqR9o=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
+ s=zohoarc; t=1764364076;
+ h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
+ bh=9QuLWrENbkGYBCc3w7FgA13jgu4Hw3OC9FC2Cv0BZ3U=; 
+ b=AGtQr4gwIHbp9cvtjpcrH4mwn0wvxl13Is3SyAK/gVmt96UCtbfW9feSgyRC2lJU16fKHFN034/pbq3BROixANBBgH3pqhjQnjERiBKIWoVpBDtXyFTHVmL/dtubIcpGac2NpJfQJpb8djJfgbRszRCr73IHL1iZiihby5Ud6+E=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+ dkim=pass  header.i=collabora.com;
+ spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
+ dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1764364076; 
+ s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
+ h=From:From:Date:Date:Subject:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:Message-Id:References:In-Reply-To:To:To:Cc:Cc:Reply-To;
+ bh=9QuLWrENbkGYBCc3w7FgA13jgu4Hw3OC9FC2Cv0BZ3U=;
+ b=iLKadd0WNu3o+iKeaggTUViIUSuZuBGpVB5r7y8kehs6ztJLJwI3ooTgSkAGwRMw
+ 8iDkaCRU4weCQedAjSKKAZb1FxQH6nAD0o9hneaFSsJa/kcwKSRvn/QOWZUwcxDBkNC
+ 1ukJaoylZhYc3zUuRyurIqw9BzpuD+hMmN29Sp3A=
+Received: by mx.zohomail.com with SMTPS id 1764364074414719.0521648254899;
+ Fri, 28 Nov 2025 13:07:54 -0800 (PST)
+From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Date: Fri, 28 Nov 2025 22:05:52 +0100
+Subject: [PATCH v5 16/17] drm/connector: Register color format property on
+ HDMI connectors
 MIME-Version: 1.0
-X-MBO-RS-ID: 63157739c600c3e8b1c
-X-MBO-RS-META: 86chu8ma6etgk766suyxb85nfygh4osp
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20251128-color-format-v5-16-63e82f1db1e1@collabora.com>
+References: <20251128-color-format-v5-0-63e82f1db1e1@collabora.com>
+In-Reply-To: <20251128-color-format-v5-0-63e82f1db1e1@collabora.com>
+To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
+ Rodrigo Siqueira <siqueira@igalia.com>, 
+ Alex Deucher <alexander.deucher@amd.com>, 
+ =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ Andrzej Hajda <andrzej.hajda@intel.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Sandy Huang <hjc@rock-chips.com>, 
+ =?utf-8?q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, 
+ Andy Yan <andy.yan@rock-chips.com>, 
+ Jani Nikula <jani.nikula@linux.intel.com>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
+ Tvrtko Ursulin <tursulin@ursulin.net>, Dmitry Baryshkov <lumag@kernel.org>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, Rob Herring <robh@kernel.org>
+Cc: kernel@collabora.com, amd-gfx@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
+ Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+X-Mailer: b4 0.14.3
 X-Mailman-Approved-At: Mon, 01 Dec 2025 13:38:52 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -80,50 +84,52 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: phasta@kernel.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 2025-11-27 at 14:37 +0100, Andi Shyti wrote:
-> Hi Matt,
->=20
-> On Wed, Nov 26, 2025 at 03:56:32PM -0800, Matthew Brost wrote:
-> > On Wed, Nov 26, 2025 at 11:56:57PM +0100, Andi Shyti wrote:
-> > > > @@ -85,7 +85,6 @@ void xe_hw_fence_irq_finish(struct xe_hw_fence_ir=
-q *irq)
-> > > > @@ -93,9 +92,9 @@ void xe_hw_fence_irq_finish(struct xe_hw_fence_ir=
-q *irq)
-> > > > =C2=A0		spin_lock_irqsave(&irq->lock, flags);
-> > > > =C2=A0		list_for_each_entry_safe(fence, next, &irq->pending, irq_li=
-nk) {
-> > > > =C2=A0			list_del_init(&fence->irq_link);
-> > > > -			err =3D dma_fence_signal_locked(&fence->dma);
-> > >=20
-> > > why don't we do
-> > >=20
-> > > XE_WARN_ON(dma_fence_signal_locked(..))
+The drmm_connector_hdmi_init function can figure out what DRM color
+formats are supported by a particular connector based on the supported
+HDMI format bitmask that's passed in.
 
-because it's impossible because the series is about removing the return
-codes from the dma_fence_signal_* functions.
+Use it to register the drm color format property.
 
-> > >=20
-> >=20
-> > IIRC the above statement can compile out. So the patch looks correct to=
- me.
->=20
-> you have defined XE_WARN_ON as WARN_ON that should always
-> evaluate the content and, depending on the configuration, it
-> prints the logs or not.
->=20
-> What I don't like from this patch is that we end up checking
-> twice for the DMA_FENCE_FLAG_SIGNALED_BIT bit.
+Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+---
+ drivers/gpu/drm/drm_connector.c | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
 
-Depends on what you mean by "we". The Xe code checks it only once, with
-dma_fence_test_signaled_flag(). The dma_fence backend checks it yet
-again, as it always does, to avoid signaling a signaled fence.
+diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connector.c
+index 13151d9bfb82..7c38123f99cd 100644
+--- a/drivers/gpu/drm/drm_connector.c
++++ b/drivers/gpu/drm/drm_connector.c
+@@ -578,6 +578,7 @@ int drmm_connector_hdmi_init(struct drm_device *dev,
+ 			     unsigned long supported_formats,
+ 			     unsigned int max_bpc)
+ {
++	u32 supported_drm_formats = 0;
+ 	int ret;
+ 
+ 	if (!vendor || !product)
+@@ -621,6 +622,18 @@ int drmm_connector_hdmi_init(struct drm_device *dev,
+ 	if (max_bpc > 8)
+ 		drm_connector_attach_hdr_output_metadata_property(connector);
+ 
++	if (supported_formats & BIT(HDMI_COLORSPACE_RGB))
++		supported_drm_formats |= DRM_COLOR_FORMAT_RGB444;
++	if (supported_formats & BIT(HDMI_COLORSPACE_YUV444))
++		supported_drm_formats |= DRM_COLOR_FORMAT_YCBCR444;
++	if (supported_formats & BIT(HDMI_COLORSPACE_YUV422))
++		supported_drm_formats |= DRM_COLOR_FORMAT_YCBCR422;
++	if (supported_formats & BIT(HDMI_COLORSPACE_YUV420))
++		supported_drm_formats |= DRM_COLOR_FORMAT_YCBCR420;
++
++	if (!drm_mode_create_color_format_property(connector, supported_drm_formats))
++		drm_connector_attach_color_format_property(connector);
++
+ 	connector->hdmi.funcs = hdmi_funcs;
+ 
+ 	return 0;
 
-That's not racy here, however, because the fence lock is already being
-held, as evidenced by the current usage of dma_fence_signal_locked().
+-- 
+2.52.0
 
-
-P.
