@@ -4,49 +4,101 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2D8DDD11702
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 122FAD11701
 	for <intel-xe@archiver.kernel.org>; Mon,  1 Dec 2025 13:38:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BC8DB10E3ED;
+	by gabe.freedesktop.org (Postfix) with ESMTP id A44B510E3EA;
 	Mon,  1 Dec 2025 13:38:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="dK+/9oVV";
+	dkim=permerror (0-bit key) header.d=shazbot.org header.i=@shazbot.org header.b="tTlVitIK";
+	dkim=permerror (0-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="p8UTVkvq";
 	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5318810E7C7;
- Thu, 27 Nov 2025 10:43:25 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id 572D360141;
- Thu, 27 Nov 2025 10:43:24 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4A40EC4CEF8;
- Thu, 27 Nov 2025 10:43:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1764240204;
- bh=siBELSLEcBl/Tbnz3+2BJ0FDAgJoaLvrVZYY5RCxB3A=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=dK+/9oVVDnpDqT+HaqtgLELvZjgZuSoAoYfmD00Af8A1sMm3lasV3ALbUNstRiqBS
- PTCeIUXtY0sJFNDJnc1fZd4GQ51A4vFmRjs/GzoiNjmJDBb4/7otNngAwgBEj8pX2k
- QCJRLqASR8qO/ZSXgV3IBNuZaXtjnc2w0zMVWw0GCRH80H4b26BMRq8bcT0wigKq7D
- UwIgPx60aa0ZoFESq1+7MwF4kS+jPU1gXC47czXdccPDlsSuZH4zLUh1EItXXlIxc1
- JpbAOc/qPf5QqjI9zglXKUDNZT+6tylzoq7RrhyglQ4/9ATw6xufWMGqlAKwUcoLqv
- kyr8kgZyly+5w==
-Date: Thu, 27 Nov 2025 11:43:19 +0100
-From: Christian Brauner <brauner@kernel.org>
-To: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, 
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, "Kurmi,
- Suresh Kumar" <suresh.kumar.kurmi@intel.com>, 
- "Saarinen, Jani" <jani.saarinen@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>, linux-fsdevel@vger.kernel.org
-Subject: Re: REGRESSION on linux-next (next-20251125)
-Message-ID: <20251127-kaktus-gourmet-626cff3d8314@brauner>
-References: <a27eb5f4-c4c9-406c-9b53-93f7888db14a@intel.com>
- <20251127-agenda-befinden-61628473b16b@brauner>
- <5ffeb0af-a3c9-4ccb-a752-ce7d48f475df@intel.com>
+Received: from fhigh-b1-smtp.messagingengine.com
+ (fhigh-b1-smtp.messagingengine.com [202.12.124.152])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9312310E782;
+ Fri, 28 Nov 2025 19:53:27 +0000 (UTC)
+Received: from phl-compute-02.internal (phl-compute-02.internal [10.202.2.42])
+ by mailfhigh.stl.internal (Postfix) with ESMTP id 9B2937A0848;
+ Fri, 28 Nov 2025 14:53:26 -0500 (EST)
+Received: from phl-mailfrontend-01 ([10.202.2.162])
+ by phl-compute-02.internal (MEProxy); Fri, 28 Nov 2025 14:53:27 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=shazbot.org; h=
+ cc:cc:content-transfer-encoding:content-type:content-type:date
+ :date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+ :references:reply-to:subject:subject:to:to; s=fm3; t=1764359606;
+ x=1764446006; bh=E/M1A9g+tzfu51whtk6ETtuXS4dKP2Z9OkNprWYeCNY=; b=
+ tTlVitIKSELuFlIuIldmN/jM765oWmW/3YvZZKVeyvQMGDBt9V1fHU9TKPaA4Ad7
+ qsP8i1xlM73b88dpavbLZpjB3jfXeWYMPE2iykLm0pdytbmi4fIm5YKKJ2Zj0wF1
+ gmXvue8pczRsxySanqWNYs7/yVMMB+Qpg4o13P+i0+XYe3UprfG3eJNBonNxsjB0
+ q+MAmMQ+7DkTjDnv3ByZ11RoEyz++QzleKxdPAe0B+4gtZQV9ncNcwfe2RHiqdz1
+ O749eIZjml6RDJFEP2YJHjIzsmX1VLDvf+tY4VMhuMt07Q/rGj3xOCl6klkXkus+
+ MDV2gz08o+xq15T7hxEsuw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:cc:content-transfer-encoding
+ :content-type:content-type:date:date:feedback-id:feedback-id
+ :from:from:in-reply-to:in-reply-to:message-id:mime-version
+ :references:reply-to:subject:subject:to:to:x-me-proxy
+ :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1764359606; x=
+ 1764446006; bh=E/M1A9g+tzfu51whtk6ETtuXS4dKP2Z9OkNprWYeCNY=; b=p
+ 8UTVkvqc3s8yQa/I/qApMU/3+QEV07IFWmEogPBP8kUdHB45zW825ufQBnotw6WR
+ HumlJ5qtUM+In+bGOM+AEH7YK7+Drw/legqKiMtVOkWlHYj2RejBM6we32sz2Q7w
+ 4fK2DrluT/ICsARZudwAKkL/YcJYR0x0LHgeYPWW92vz1kh7d+9adCFmf07gQsEW
+ zCtkS7m3aycIAdRHC3X0nLf7kEos6mrqF7wLQ8U98UsVtS8wkwJHMKC0VWn89NZh
+ oszi0kMFeKinwNI++V7mb0flPlQ0L8n0/2SZTl91Kp5UlxWyUksO1WNo4eCu1erg
+ pIr5NalyzWckYqbJqe+Zg==
+X-ME-Sender: <xms:tP0paYqp8QJDiRMtBbEN7ItLhBsGKMz3Bad_YFeSvoMAb_UhF2k7eA>
+ <xme:tP0paU9vLSteN9eZB5YQg9Wemn7aEONJ2qjDkUZCgpjI5eFVw0DtZRI2Rcx9zYEhw
+ 4x00taHYFzJFwQ3RwB5xigZVQRl1qU9Ikaeip5hFI3CuKngZTXO8Xw>
+X-ME-Received: <xmr:tP0paZ61ZWm-vR4A2FBDLEZyT5IY2GeV_cAo5S9LeLwfDS3HUyOnBdfp>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdeggddvhedtjeeiucetufdoteggodetrf
+ dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfurfetoffkrfgpnffqhgenuceu
+ rghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujf
+ gurhepfffhvfevuffkjghfgggtgfesthhqredttddtjeenucfhrhhomheptehlvgigucgh
+ ihhllhhirghmshhonhcuoegrlhgvgiesshhhrgiisghothdrohhrgheqnecuggftrfgrth
+ htvghrnhepgfffvdefjeejueevfeetudfhgeetfeeuheetfeekjedvuddvueehffdtgeej
+ keetnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprg
+ hlvgigsehshhgriigsohhtrdhorhhgpdhnsggprhgtphhtthhopedvuddpmhhouggvpehs
+ mhhtphhouhhtpdhrtghpthhtohepmhhitghhrghlrdifihhnihgrrhhskhhisehinhhtvg
+ hlrdgtohhmpdhrtghpthhtoheplhhutggrshdruggvmhgrrhgthhhisehinhhtvghlrdgt
+ ohhmpdhrtghpthhtohepthhhohhmrghsrdhhvghllhhsthhrohhmsehlihhnuhigrdhinh
+ htvghlrdgtohhmpdhrtghpthhtoheprhhoughrihhgohdrvhhivhhisehinhhtvghlrdgt
+ ohhmpdhrtghpthhtohepjhhgghesiihivghpvgdrtggrpdhrtghpthhtohephihishhhrg
+ hihhesnhhvihguihgrrdgtohhmpdhrtghpthhtohepkhgvvhhinhdrthhirghnsehinhht
+ vghlrdgtohhmpdhrtghpthhtohepshhkohhlohhthhhumhhthhhosehnvhhiughirgdrtg
+ homhdprhgtphhtthhopehinhhtvghlqdigvgeslhhishhtshdrfhhrvggvuggvshhkthho
+ phdrohhrgh
+X-ME-Proxy: <xmx:tP0paejA2arawQL2tW7aJBMgRhoJ3cxaKnM_sMn6sVthAU3MrEh6VA>
+ <xmx:tP0paQqasH0lWNj-7AJAwoNtct6Nfyn81YdROwycgrBJIhFnUeTMpg>
+ <xmx:tP0paaJ3kEJJRAsl6kuyfx1dclLaa1Hvek7jfXLBFzrQrG9Za8Z-xA>
+ <xmx:tP0padsiaK5H7roIkIloK5l1KoqqQdAvSkDRazoByVqIf8fUp7jZuw>
+ <xmx:tv0paQmaOVeIca7ACmTx7-urEuW6tun3Ol_1ctTi4f5rnRAdXMHzNYdG>
+Feedback-ID: i03f14258:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
+ 28 Nov 2025 14:53:23 -0500 (EST)
+Date: Fri, 28 Nov 2025 12:53:22 -0700
+From: Alex Williamson <alex@shazbot.org>
+To: =?UTF-8?B?TWljaGHFgg==?= Winiarski <michal.winiarski@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>, Thomas =?UTF-8?B?SGVsbHN0?=
+ =?UTF-8?B?csO2bQ==?= <thomas.hellstrom@linux.intel.com>, Rodrigo Vivi
+ <rodrigo.vivi@intel.com>, Jason Gunthorpe <jgg@ziepe.ca>, Yishai Hadas
+ <yishaih@nvidia.com>, Kevin Tian <kevin.tian@intel.com>, Shameer Kolothum
+ <skolothumtho@nvidia.com>, <intel-xe@lists.freedesktop.org>,
+ <linux-kernel@vger.kernel.org>, <kvm@vger.kernel.org>, Matthew Brost
+ <matthew.brost@intel.com>, "Michal Wajdeczko" <michal.wajdeczko@intel.com>,
+ <dri-devel@lists.freedesktop.org>, Jani Nikula
+ <jani.nikula@linux.intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, "Lukasz
+ Laguna" <lukasz.laguna@intel.com>, Christoph Hellwig <hch@infradead.org>
+Subject: Re: [PATCH v7 4/4] vfio/xe: Add device specific vfio_pci driver
+ variant for Intel graphics
+Message-ID: <20251128125322.34edbeaf.alex@shazbot.org>
+In-Reply-To: <20251127093934.1462188-5-michal.winiarski@intel.com>
+References: <20251127093934.1462188-1-michal.winiarski@intel.com>
+ <20251127093934.1462188-5-michal.winiarski@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <5ffeb0af-a3c9-4ccb-a752-ce7d48f475df@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Mon, 01 Dec 2025 13:38:52 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -62,18 +114,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Nov 27, 2025 at 03:03:27PM +0530, Borah, Chaitanya Kumar wrote:
-> 
-> 
-> On 11/27/2025 2:57 PM, Christian Brauner wrote:
-> > Pushing out the fix now. Can I trigger a new test myself somehow?
-> 
-> Thank you Christian!
-> Not really. Once it makes it to linux-next, our CI will pick it up. Till
-> then let us validate locally.
+On Thu, 27 Nov 2025 10:39:34 +0100
+Micha=C5=82 Winiarski <michal.winiarski@intel.com> wrote:
 
-I just pushed:
+> In addition to generic VFIO PCI functionality, the driver implements
+> VFIO migration uAPI, allowing userspace to enable migration for Intel
+> Graphics SR-IOV Virtual Functions.
+> The driver binds to VF device and uses API exposed by Xe driver to
+> transfer the VF migration data under the control of PF device.
+>=20
+> Signed-off-by: Micha=C5=82 Winiarski <michal.winiarski@intel.com>
+> Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Reviewed-by: Kevin Tian <kevin.tian@intel.com>
+> ---
+>  MAINTAINERS                  |   7 +
+>  drivers/vfio/pci/Kconfig     |   2 +
+>  drivers/vfio/pci/Makefile    |   2 +
+>  drivers/vfio/pci/xe/Kconfig  |  12 +
+>  drivers/vfio/pci/xe/Makefile |   3 +
+>  drivers/vfio/pci/xe/main.c   | 573 +++++++++++++++++++++++++++++++++++
+>  6 files changed, 599 insertions(+)
+>  create mode 100644 drivers/vfio/pci/xe/Kconfig
+>  create mode 100644 drivers/vfio/pci/xe/Makefile
+>  create mode 100644 drivers/vfio/pci/xe/main.c
 
-https://git.kernel.org/pub/scm/linux/kernel/git/vfs/vfs.git vfs-6.19.fd_prepare
+Reviewed-by: Alex Williamson <alex@shazbot.org>
 
-If you want to test that, please.
+Hopefully this can still go in via the drm window this cycle.  Thanks,
+
+Alex
