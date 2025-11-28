@@ -4,51 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A91D4D116EA
-	for <intel-xe@archiver.kernel.org>; Fri, 28 Nov 2025 17:24:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ACC54D116EA
+	for <intel-xe@archiver.kernel.org>; Fri, 28 Nov 2025 17:24:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6A9798961D;
-	Fri, 28 Nov 2025 17:24:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7272D10E8FC;
+	Fri, 28 Nov 2025 17:24:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fY6tw04w";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iojg7od6";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3B04910E847
- for <intel-xe@lists.freedesktop.org>; Fri, 28 Nov 2025 17:24:28 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5C8B610E02C
+ for <intel-xe@lists.freedesktop.org>; Fri, 28 Nov 2025 17:24:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1764350668; x=1795886668;
+ t=1764350674; x=1795886674;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=H91/UoyTB8RJWQcrl/bdG6GSQPh4hZDz+4/49Drqxpg=;
- b=fY6tw04w5yqAKbfVI+kMrLgUD1g5OFfFvPm3NBmUtP5JnVUNV7uqCvcG
- uEGzi9oJgGtUq6VfpmaRTo78da6J+BDke93RPFQadLDYCDX8i0Tju//iQ
- 8ABwDUwKF8oCyVqiW4x+NamczqZ1KcmHA2lOiPAh9yb/xFQG4ITboJ83n
- rkgAi+dQ/+PqgMKhoH9J5IzSbhyyqCor+n8yJQXXXYGiPAU7thGWjE3EV
- d/6EMvAujljNdA219uPlrIp1vJgBoMQkCBOHClW/xEOEUUe/XAIA4pzcH
- qBwnUXn6vZyaKtzNVFhSbxXEXTHT+XL27mwMbw+pZ0EOyIdKfH76SZ7yK A==;
-X-CSE-ConnectionGUID: qMzEft2IRRudN3clTaF/CA==
-X-CSE-MsgGUID: 6p/jBfD4RSCQ7rIYm+JXIg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11626"; a="77489105"
-X-IronPort-AV: E=Sophos;i="6.20,234,1758610800"; d="scan'208";a="77489105"
+ bh=cEybpietGmNv6Iy9l9HB7QiD9kaAU9dnEtVYRGySBAk=;
+ b=iojg7od6I7wcNdzMKE58mBfcMBJxoO5muHFpMlW9q14TI7DMOUINtM55
+ IytzWxrk8SbE+aLhLfX0qchmrENsTvVysSeenbX3akwGgRr+dj98H3nR7
+ +jTKfiepYCQ0Xjrfw129FTppIStYti0dXQHlrTStphgAV4tnQchzdB2DN
+ m0vtx6LY3OU6tnorcK6B5a8Fhrm5LDKjQ2/M8fF2ign9/8ZkPtbIOa4SW
+ FsBm9t0lrP/ZYdidIMugJOMFuWv++UquJXYEu8VCGx0qovDsSDdkGpCB1
+ mbafltZqsyrGQNpBBf+568UpgIU8PSooyW9ROChyFrVStt8aVJnIT/ZbN Q==;
+X-CSE-ConnectionGUID: E7+vLI58SmSAMrIemdolAw==
+X-CSE-MsgGUID: yKCsl4fyTgS9uzUHkW8MVw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11626"; a="77489172"
+X-IronPort-AV: E=Sophos;i="6.20,234,1758610800"; d="scan'208";a="77489172"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Nov 2025 09:24:28 -0800
-X-CSE-ConnectionGUID: 52FqWBy1SG+Tk7mqTm7EVA==
-X-CSE-MsgGUID: j7nu0FuTSUqIAYsa7kBnhw==
+ 28 Nov 2025 09:24:33 -0800
+X-CSE-ConnectionGUID: h2mUmE1uRmO4AdltHdQrFA==
+X-CSE-MsgGUID: WoxjWR14SHmmU2zCL2ItIQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,234,1758610800"; d="scan'208";a="224453697"
+X-IronPort-AV: E=Sophos;i="6.20,234,1758610800"; d="scan'208";a="224453711"
 Received: from naresh-nuc8i7beh.iind.intel.com (HELO
  nkumarg-desk.iind.intel.com) ([10.190.216.171])
- by fmviesa001.fm.intel.com with ESMTP; 28 Nov 2025 09:24:26 -0800
+ by fmviesa001.fm.intel.com with ESMTP; 28 Nov 2025 09:24:31 -0800
 From: Nareshkumar Gollakoti <naresh.kumar.g@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: michal.wajdeczko@intel.com,
  Nareshkumar Gollakoti <naresh.kumar.g@intel.com>
-Subject: [PATCH v1 1/2] drm/xe: Fix Prevent VFs from exposing the CCS mode
- sysfs file
-Date: Fri, 28 Nov 2025 22:48:01 +0530
-Message-ID: <20251128171759.2775650-5-naresh.kumar.g@intel.com>
+Subject: [PATCH v1 2/2] drm/xe: Mutual exclusivity between CCS-mode and PF
+Date: Fri, 28 Nov 2025 22:48:02 +0530
+Message-ID: <20251128171759.2775650-6-naresh.kumar.g@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20251128171759.2775650-4-naresh.kumar.g@intel.com>
 References: <20251128171759.2775650-4-naresh.kumar.g@intel.com>
@@ -68,28 +67,137 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Skipping creation of sysfs file in VF Mode to ensure VFs do not expose
-CCS mode changes
+Due to SLA agreement between PF and VFs,the alternate CCS-mode
+cannot be changed when VFs are already enabled.
+Similarly, enabling VFs is not permitted when the alternate
+CCS-mode is active.
 
-Fixes: f3bc5bb4d53d2 ("drm/xe: Allow userspace to configure CCS mode")
 Signed-off-by: Nareshkumar Gollakoti <naresh.kumar.g@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_ccs_mode.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_gt_ccs_mode.c | 59 ++++++++++++++++++++++-------
+ drivers/gpu/drm/xe/xe_gt_ccs_mode.h | 12 ++++++
+ 2 files changed, 57 insertions(+), 14 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_gt_ccs_mode.c b/drivers/gpu/drm/xe/xe_gt_ccs_mode.c
-index 50fffc9ebf62..e146e00b0ca2 100644
+index e146e00b0ca2..6652c468e1be 100644
 --- a/drivers/gpu/drm/xe/xe_gt_ccs_mode.c
 +++ b/drivers/gpu/drm/xe/xe_gt_ccs_mode.c
-@@ -191,7 +191,7 @@ int xe_gt_ccs_mode_sysfs_init(struct xe_gt *gt)
- 	struct xe_device *xe = gt_to_xe(gt);
- 	int err;
+@@ -13,6 +13,7 @@
+ #include "xe_gt_sysfs.h"
+ #include "xe_mmio.h"
+ #include "xe_sriov.h"
++#include "xe_sriov_pf.h"
  
--	if (!xe_gt_ccs_mode_enabled(gt))
-+	if (!xe_gt_ccs_mode_enabled(gt) || IS_SRIOV_VF(xe))
- 		return 0;
+ static void __xe_gt_apply_ccs_mode(struct xe_gt *gt, u32 num_engines)
+ {
+@@ -108,6 +109,36 @@ ccs_mode_show(struct device *kdev,
+ 	return sysfs_emit(buf, "%u\n", gt->ccs_mode);
+ }
  
- 	err = sysfs_create_files(gt->sysfs, gt_ccs_mode_attrs);
++static int gt_prepare_ccs_mode_enabling(struct xe_gt *gt)
++{
++	struct xe_device *xe = gt_to_xe(gt);
++
++	if (!IS_SRIOV_PF(xe))
++		return 0;
++
++	/*
++	 * We can't change CCS-mode when VFs are already enabled
++	 * and we must prevent enabling VFs when alternate
++	 * CCS-mode is active
++	 */
++	if (xe_gt_ccs_mode_default(gt))
++		return xe_sriov_pf_lockdown(xe);
++
++	return 0;
++}
++
++static void gt_finish_ccs_mode_enabling(struct xe_gt *gt)
++{
++	struct xe_device *xe = gt_to_xe(gt);
++
++	if (!IS_SRIOV_PF(xe))
++		return;
++
++	/* Allow enabling VFs, if CCS-mode changed to default mode */
++	if (xe_gt_ccs_mode_default(gt))
++		xe_sriov_pf_end_lockdown(xe);
++}
++
+ static ssize_t
+ ccs_mode_store(struct device *kdev, struct device_attribute *attr,
+ 	       const char *buff, size_t count)
+@@ -117,12 +148,6 @@ ccs_mode_store(struct device *kdev, struct device_attribute *attr,
+ 	u32 num_engines, num_slices;
+ 	int ret;
+ 
+-	if (IS_SRIOV(xe)) {
+-		xe_gt_dbg(gt, "Can't change compute mode when running as %s\n",
+-			  xe_sriov_mode_to_string(xe_device_sriov_mode(xe)));
+-		return -EOPNOTSUPP;
+-	}
+-
+ 	ret = kstrtou32(buff, 0, &num_engines);
+ 	if (ret)
+ 		return ret;
+@@ -139,21 +164,27 @@ ccs_mode_store(struct device *kdev, struct device_attribute *attr,
+ 	}
+ 
+ 	/* CCS mode can only be updated when there are no drm clients */
+-	mutex_lock(&xe->drm.filelist_mutex);
++	guard(mutex)(&xe->drm.filelist_mutex);
+ 	if (!list_empty(&xe->drm.filelist)) {
+-		mutex_unlock(&xe->drm.filelist_mutex);
+ 		xe_gt_dbg(gt, "Rejecting compute mode change as there are active drm clients\n");
+ 		return -EBUSY;
+ 	}
+ 
+-	if (gt->ccs_mode != num_engines) {
+-		xe_gt_info(gt, "Setting compute mode to %d\n", num_engines);
+-		gt->ccs_mode = num_engines;
+-		xe_gt_record_user_engines(gt);
+-		xe_gt_reset(gt);
++	if (gt->ccs_mode == num_engines)
++		return count;
++
++	ret = gt_prepare_ccs_mode_enabling(gt);
++	if (ret) {
++		xe_gt_dbg(gt, "Rejecting compute mode change as VFs are enabled\n");
++		return ret;
+ 	}
+ 
+-	mutex_unlock(&xe->drm.filelist_mutex);
++	xe_gt_info(gt, "Setting compute mode to %d\n", num_engines);
++	gt->ccs_mode = num_engines;
++	xe_gt_record_user_engines(gt);
++	xe_gt_reset(gt);
++
++	gt_finish_ccs_mode_enabling(gt);
+ 
+ 	return count;
+ }
+diff --git a/drivers/gpu/drm/xe/xe_gt_ccs_mode.h b/drivers/gpu/drm/xe/xe_gt_ccs_mode.h
+index f8779852cf0d..53a595b0882c 100644
+--- a/drivers/gpu/drm/xe/xe_gt_ccs_mode.h
++++ b/drivers/gpu/drm/xe/xe_gt_ccs_mode.h
+@@ -20,5 +20,17 @@ static inline bool xe_gt_ccs_mode_enabled(const struct xe_gt *gt)
+ 	return hweight32(CCS_MASK(gt)) > 1;
+ }
+ 
++/**
++ * xe_gt_ccs_mode_default() - Check if CCS mode is default (single CCS mode)
++ * @gt: GT structure
++ *
++ * Return: %true if actual CCS mode is single mode, or
++ *         %false otherwise (CCS in alternate/multi mode)
++ */
++static inline bool xe_gt_ccs_mode_default(struct xe_gt *gt)
++{
++	return gt->ccs_mode == 1;
++}
++
+ #endif
+ 
 -- 
 2.43.0
 
