@@ -4,55 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 61B90D116F1
-	for <intel-xe@archiver.kernel.org>; Fri, 28 Nov 2025 13:13:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7102ECFD376
+	for <intel-xe@archiver.kernel.org>; Fri, 28 Nov 2025 13:13:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 21E3710E8F4;
-	Fri, 28 Nov 2025 13:13:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2EB4A10E8F5;
+	Fri, 28 Nov 2025 13:13:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Y2d1sV2D";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="l8CLVOvo";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F164B10E8D6
- for <intel-xe@lists.freedesktop.org>; Fri, 28 Nov 2025 13:13:33 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1937710E8D6
+ for <intel-xe@lists.freedesktop.org>; Fri, 28 Nov 2025 13:13:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1764335614; x=1795871614;
+ t=1764335616; x=1795871616;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=JdiUMeoswIoZ52N469Kx9Pu8vc/t1D47gM2RWkUevLY=;
- b=Y2d1sV2Doii1XconWeoLvKzg/Ju6rT2chEbjJYS6X+Iy57VIbJBSnI5M
- YlcbTvQH/jXvkwHS+199omZXewB1PGdIYn9xAFhrHGRMJQd4QisEJCHPI
- JTfri9T2kAw/TgzSRxqmFszr/BTFcQTNS1/8dTeXLKqh0oX3tbgordp+y
- YX9H7Ij7JYL0PjbH+Z8vQ0AnO7X9VCEX5jmsvAXeIwlsZWQwNzSkWvgmk
- fzHDRYbJZBkuaP8JoYP2GtAE/UCn1De4/Xq/RIu517n0GJOKkcM1jU7pH
- Nql56OlHXlBAk9in/AykSHdFKVp9SxxZZiCMSvQK7Xc2OB/v/NJ5VW9mF Q==;
-X-CSE-ConnectionGUID: YQTOFTmCSc+CGpjylEKTSQ==
-X-CSE-MsgGUID: KQOjm65IQVyAT4hztF15Yw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11626"; a="66084615"
-X-IronPort-AV: E=Sophos;i="6.20,232,1758610800"; d="scan'208";a="66084615"
+ bh=1CJKoK1gBb2sHSWQ0uviGyyfzPPu7o1rpy5dcH4yP9g=;
+ b=l8CLVOvoH9Gm9ag+SJcqRc9dYPEA0082ADDUiVfZtnRRUYh0AwyZKoI6
+ yvrsSlk33P1Aik7I06jYby1jkMWHPElUn9v93aQn1E3IJ0EoxXi5x3tCU
+ AwjW0XQ5kx5djTaq3kH5lpqoNx1JXm3oq0U3CjfxS25r9KDUCFTNVgGqR
+ PsrjswUhltGbRn8b7od43YzFsG2BARN9HsX0y2UGmkYJax3KvKed+EGCS
+ rBqucSPyJFJ7EMMB6Q16zU+MgWCXay/5xeME4FVoScX14bA0pNgUBTRmN
+ S0Sjo21Vk7YBQEK/5tyIpWzcDn4fchBZsKwUv2rJs42Nv90BZBoEiXmWP g==;
+X-CSE-ConnectionGUID: BsPrOhHhSxekhRsmztzNIg==
+X-CSE-MsgGUID: nupw7i7nTiqGPww0jTmtqA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11626"; a="66084618"
+X-IronPort-AV: E=Sophos;i="6.20,232,1758610800"; d="scan'208";a="66084618"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Nov 2025 05:13:33 -0800
-X-CSE-ConnectionGUID: 7B9SJxQfQIWjox0Xy4D8jg==
-X-CSE-MsgGUID: dvZEZGd7Rkub25ZlrN6YvA==
+ 28 Nov 2025 05:13:35 -0800
+X-CSE-ConnectionGUID: gDsQgQaPQ0a4tdKFx1WaIg==
+X-CSE-MsgGUID: xim6kM6UT5+tMPdFS2fqsw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,232,1758610800"; d="scan'208";a="193126626"
+X-IronPort-AV: E=Sophos;i="6.20,232,1758610800"; d="scan'208";a="193126638"
 Received: from labhost1.iind.intel.com ([10.190.230.69])
- by fmviesa007.fm.intel.com with ESMTP; 28 Nov 2025 05:13:32 -0800
+ by fmviesa007.fm.intel.com with ESMTP; 28 Nov 2025 05:13:34 -0800
 From: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>,
  Michal Wajdeczko <michal.wajdeczko@intel.com>,
  Matthew Brost <matthew.brost@intel.com>, Tomasz Lis <tomasz.lis@intel.com>
-Subject: [PATCH v7 3/4] drm/xe/vf: Requeue recovery on GuC MIGRATION error
- during VF post-migration
-Date: Fri, 28 Nov 2025 19:00:56 +0530
-Message-ID: <20251128133052.17120-9-satyanarayana.k.v.p@intel.com>
+Subject: [PATCH v7 4/4] drm/xe/vf: Add debugfs entries to test VF double
+ migration
+Date: Fri, 28 Nov 2025 19:00:57 +0530
+Message-ID: <20251128133052.17120-10-satyanarayana.k.v.p@intel.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20251128133052.17120-6-satyanarayana.k.v.p@intel.com>
 References: <20251128133052.17120-6-satyanarayana.k.v.p@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,14 +69,33 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Handle GuC response `XE_GUC_RESPONSE_VF_MIGRATED` as a special case in the
-VF post-migration recovery flow. When this error occurs, it indicates that
-a new migration was detected while the resource fixup process was still in
-progress. Instead of failing immediately, requeue the VF into the recovery
-path to allow proper handling of the new migration event.
+VF migration sends a marker to the GUC before resource fixups begin,
+and repeats the marker with the RESFIX_DONE notification. This prevents
+the GUC from submitting jobs during double migration events.
 
-This improves robustness of VF recovery in SR-IOV environments where
-migrations can overlap with resource fixup steps.
+To reliably test double migration, a second migration must be triggered
+while fixups from the first migration are still in progress. Since fixups
+complete quickly, reproducing this scenario is difficult. Introduce
+debugfs controls to add delays in the post-fixup phase, creating a
+deterministic window for subsequent migrations.
+
+New debugfs entries:
+	/sys/kernel/debug/dri/BDF/
+	├── tile0
+	│   ├─gt0
+	│   │ ├──vf
+	│   │ │  ├── resfix_stoppers
+
+resfix_stoppers: Predefined checkpoints that allow the migration process
+to pause at specific stages. The stages are given below.
+
+VF_MIGRATION_WAIT_RESFIX_START		- BIT(0)
+VF_MIGRATION_WAIT_FIXUPS		- BIT(1)
+VF_MIGRATION_WAIT_RESTART_JOBS		- BIT(2)
+VF_MIGRATION_WAIT_RESFIX_DONE		- BIT(3)
+
+Each state will pause with a 1-second delay per iteration, continuing until
+its corresponding bit is cleared.
 
 Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
@@ -84,55 +104,158 @@ Cc: Tomasz Lis <tomasz.lis@intel.com>
 
 ---
 V6 -> V7:
-- New commit.
+- Fixed review comments (Michal W).
+- Updated commit message.
+
+V5 -> V6:
+- Fixed review comments (Michal W).
+- Removed timeout and VF KMD waits infinately when resfix_stoppers bits are
+set.
+- Created helper macro for WAIT positions.
+
+V4 -> V5:
+- Updated debugfs entries (Michal W).
+
+V3 -> V4:
+- New commit
+
+V2 -> V3:
+- None.
+
+V1 -> V2:
+- None.
 ---
- drivers/gpu/drm/xe/xe_gt_sriov_vf.c | 9 +++++++--
- drivers/gpu/drm/xe/xe_guc.c         | 6 ++++++
- 2 files changed, 13 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_gt_sriov_vf.c         | 40 +++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_gt_sriov_vf_debugfs.c | 12 +++++++
+ drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h   |  8 +++++
+ 3 files changed, 60 insertions(+)
 
 diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-index fd7dd4a4739d..937554657440 100644
+index 937554657440..75c5c6ad0b75 100644
 --- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
 +++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-@@ -1256,14 +1256,19 @@ static void vf_post_migration_recovery(struct xe_gt *gt)
- 	}
+@@ -5,6 +5,7 @@
  
- 	err = vf_post_migration_fixups(gt);
--	if (err)
-+	if (unlikely(err))
- 		goto fail;
+ #include <linux/bitfield.h>
+ #include <linux/bsearch.h>
++#include <linux/delay.h>
  
- 	vf_post_migration_rearm(gt);
+ #include <drm/drm_managed.h>
+ #include <drm/drm_print.h>
+@@ -41,6 +42,37 @@
  
- 	err = vf_post_migration_resfix_done(gt, marker);
--	if (err)
-+	if (unlikely(err == -EREMCHG))
-+		goto queue;
-+	if (unlikely(err)) {
-+		xe_gt_sriov_err(gt, "Recovery failed at GuC RESFIX_DONE step (%pe)\n",
-+				ERR_PTR(err));
- 		goto fail;
-+	}
+ #define make_u64_from_u32(hi, lo) ((u64)((u64)(u32)(hi) << 32 | (u32)(lo)))
  
- 	vf_post_migration_kickstart(gt);
- 
-diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
-index 88376bc2a483..f0407bab9a0c 100644
---- a/drivers/gpu/drm/xe/xe_guc.c
-+++ b/drivers/gpu/drm/xe/xe_guc.c
-@@ -1484,6 +1484,12 @@ int xe_guc_mmio_send_recv(struct xe_guc *guc, const u32 *request,
- 		u32 hint = FIELD_GET(GUC_HXG_FAILURE_MSG_0_HINT, header);
- 		u32 error = FIELD_GET(GUC_HXG_FAILURE_MSG_0_ERROR, header);
- 
-+		if (unlikely(error == XE_GUC_RESPONSE_VF_MIGRATED)) {
-+			xe_gt_dbg(gt, "GuC mmio request %#x rejected due to MIGRATION (hint %#x)\n",
-+				  request[0], hint);
-+			return -EREMCHG;
-+		}
++#ifdef CONFIG_DRM_XE_DEBUG
++enum VF_MIGRATION_WAIT_POINTS {
++	VF_MIGRATION_WAIT_RESFIX_START	= BIT(0),
++	VF_MIGRATION_WAIT_FIXUPS	= BIT(1),
++	VF_MIGRATION_WAIT_RESTART_JOBS	= BIT(2),
++	VF_MIGRATION_WAIT_RESFIX_DONE	= BIT(3),
++};
 +
- 		xe_gt_err(gt, "GuC mmio request %#x: failure %#x hint %#x\n",
- 			  request[0], error, hint);
- 		return -ENXIO;
++#define VF_MIGRATION_WAIT_DELAY_IN_MS	1000
++static void vf_post_migration_inject_wait(struct xe_gt *gt,
++					  enum VF_MIGRATION_WAIT_POINTS wait)
++{
++	while (gt->sriov.vf.migration.debug.resfix_stoppers & wait) {
++		xe_gt_dbg(gt,
++			  "*TESTING* injecting %u ms delay due to resfix_stoppers=%#x, to continue clear %#x\n",
++			  VF_MIGRATION_WAIT_DELAY_IN_MS,
++			  gt->sriov.vf.migration.debug.resfix_stoppers, wait);
++
++		msleep(VF_MIGRATION_WAIT_DELAY_IN_MS);
++	}
++}
++
++#define VF_MIGRATION_INJECT_WAIT(gt, _POS) ({					\
++	struct xe_gt *__gt = (gt);						\
++	vf_post_migration_inject_wait(__gt, VF_MIGRATION_WAIT_##_POS);		\
++	})
++
++#else
++#define VF_MIGRATION_INJECT_WAIT(_gt, _POS)	typecheck(struct xe_gt *, (_gt))
++#endif
++
+ static int guc_action_vf_reset(struct xe_guc *guc)
+ {
+ 	u32 request[GUC_HXG_REQUEST_MSG_MIN_LEN] = {
+@@ -320,6 +352,8 @@ static int vf_resfix_start(struct xe_gt *gt, u16 marker)
+ 
+ 	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
+ 
++	VF_MIGRATION_INJECT_WAIT(gt, RESFIX_START);
++
+ 	xe_gt_sriov_dbg_verbose(gt, "Sending resfix start marker %u\n", marker);
+ 
+ 	return guc_action_vf_resfix_start(guc, marker);
+@@ -1158,6 +1192,8 @@ static int vf_post_migration_fixups(struct xe_gt *gt)
+ 	void *buf = gt->sriov.vf.migration.scratch;
+ 	int err;
+ 
++	VF_MIGRATION_INJECT_WAIT(gt, FIXUPS);
++
+ 	/* xe_gt_sriov_vf_query_config will fixup the GGTT addresses */
+ 	err = xe_gt_sriov_vf_query_config(gt);
+ 	if (err)
+@@ -1176,6 +1212,8 @@ static int vf_post_migration_fixups(struct xe_gt *gt)
+ 
+ static void vf_post_migration_rearm(struct xe_gt *gt)
+ {
++	VF_MIGRATION_INJECT_WAIT(gt, RESTART_JOBS);
++
+ 	xe_guc_ct_restart(&gt->uc.guc.ct);
+ 	xe_guc_submit_unpause_prepare_vf(&gt->uc.guc);
+ }
+@@ -1199,6 +1237,8 @@ static void vf_post_migration_abort(struct xe_gt *gt)
+ 
+ static int vf_post_migration_resfix_done(struct xe_gt *gt, u16 marker)
+ {
++	VF_MIGRATION_INJECT_WAIT(gt, RESFIX_DONE);
++
+ 	spin_lock_irq(&gt->sriov.vf.migration.lock);
+ 	if (gt->sriov.vf.migration.recovery_queued)
+ 		xe_gt_sriov_dbg(gt, "another recovery imminent\n");
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf_debugfs.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf_debugfs.c
+index 2ed5b6780d30..507718326e1f 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_vf_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf_debugfs.c
+@@ -69,4 +69,16 @@ void xe_gt_sriov_vf_debugfs_register(struct xe_gt *gt, struct dentry *root)
+ 	vfdentry->d_inode->i_private = gt;
+ 
+ 	drm_debugfs_create_files(vf_info, ARRAY_SIZE(vf_info), vfdentry, minor);
++
++	/*
++	 *      /sys/kernel/debug/dri/BDF/
++	 *      ├── tile0
++	 *          ├── gt0
++	 *              ├── vf
++	 *                  ├── resfix_stoppers
++	 */
++	if (IS_ENABLED(CONFIG_DRM_XE_DEBUG)) {
++		debugfs_create_x8("resfix_stoppers", 0600, vfdentry,
++				  &gt->sriov.vf.migration.debug.resfix_stoppers);
++	}
+ }
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h b/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
+index db2f8b3ed3e9..510c33116fbd 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
+@@ -52,6 +52,14 @@ struct xe_gt_sriov_vf_migration {
+ 	wait_queue_head_t wq;
+ 	/** @scratch: Scratch memory for VF recovery */
+ 	void *scratch;
++	/** @debug: Debug hooks for delaying migration */
++	struct {
++		/**
++		 * @debug.resfix_stoppers: Stop and wait at different stages
++		 * during post migration recovery
++		 */
++		u8 resfix_stoppers;
++	} debug;
+ 	/**
+ 	 * @resfix_marker: Marker sent on start and on end of post-migration
+ 	 * steps.
 -- 
 2.51.0
 
