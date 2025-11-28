@@ -4,59 +4,75 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CFB40D116F1
-	for <intel-xe@archiver.kernel.org>; Mon,  1 Dec 2025 13:38:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8D256D116F5
+	for <intel-xe@archiver.kernel.org>; Mon,  1 Dec 2025 13:38:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7615810E3E3;
-	Mon,  1 Dec 2025 13:38:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4F45C10E3E5;
+	Mon,  1 Dec 2025 13:38:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="D1lel26s";
+	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="fx7Q5EJ2";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6111210E3DC;
- Mon,  1 Dec 2025 13:38:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1764596303; x=1796132303;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version; bh=64kVHVsDv+jxixvJ3ivZLMZoZVKV1FpAcUocX8Lz8p4=;
- b=D1lel26s5pUDCxLu4/1zlE2eLbVK4TQyucApdd0rQQE1zoP9a/wTp8Ja
- 0KXebgLsTsABW4fICLtyxrbmG6IPVhW6IxJ8UpvvIc/hebGgOGfRfqc8H
- EVkvLbjLW6YrBW0FL/fpVZsBCMLjyUMBm13YLA2nBEAIbS+fxeoKeJyzf
- wst1gQKy163GzjnDUgujB9KnK2+oesXrVUkEbxsKzJB8FwFqF15K0UFrT
- WjWLUH8ZOXrM8VqnjqR4wT3bHWbX+q7sVx10CniU9UWBDbCpf2r6ggTVA
- TQNoWQt9oBKXcYO8hfdJUQBDskO7cBuTfHc+9oUEf8gV8mUrhmZMK5JJe w==;
-X-CSE-ConnectionGUID: VjiI39bOTcmQ9rzHagIWCw==
-X-CSE-MsgGUID: xIqF5H0LRoSNUDH4eqi74g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11629"; a="77222212"
-X-IronPort-AV: E=Sophos;i="6.20,240,1758610800"; d="scan'208";a="77222212"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Dec 2025 05:38:23 -0800
-X-CSE-ConnectionGUID: CHLMT0PATdKVORZRhgRopw==
-X-CSE-MsgGUID: qsv5y9ByRtqu3F/WaRibzw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,240,1758610800"; d="scan'208";a="193202397"
-Received: from ettammin-desk.ger.corp.intel.com (HELO localhost)
- ([10.245.246.132])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Dec 2025 05:38:21 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Luca Coelho <luca@coelho.fi>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH v2 4/5] drm/i915/power: convert intel_wakeref_t to
- struct ref_tracker *
-In-Reply-To: <cbddae082c6c67ee58cb9195709d28ece9d5aa4a.camel@coelho.fi>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1764076995.git.jani.nikula@intel.com>
- <f182bd26d5f9a00e843246d4aac8b25ff7531c51.1764076995.git.jani.nikula@intel.com>
- <20d6e9910f0a7faf3ed14e37db0ff0860a17e017.camel@coelho.fi>
- <df42724a6e39eec45cf126f175866e88b0b33f0d@intel.com>
- <cbddae082c6c67ee58cb9195709d28ece9d5aa4a.camel@coelho.fi>
-Date: Mon, 01 Dec 2025 15:38:18 +0200
-Message-ID: <17a0402aa684717d643b26f006c910ba0b150c75@intel.com>
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
+ [136.143.188.112])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 481E310E93C;
+ Fri, 28 Nov 2025 21:07:44 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; t=1764364054; cv=none; 
+ d=zohomail.com; s=zohoarc; 
+ b=UPWmRUTKbGui/i5e6sB805AxnGcH5CqgF+ej7cYhQX0k1JnqLWxYOjaNF8Blao2Otv9Bj3YyqYU0NI4u/1xjscc207xN4uMfIkiQtoRlWSyK0Y+GNm1W1h2ywKWx3bIT0AAlKrEw9g5f5wWShKcdpvFtcgVmEAgN88/SRO2Fe0A=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
+ s=zohoarc; t=1764364054;
+ h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
+ bh=MSkvAHcP/G4a6alQDdr5rtYAAoRHlQiW07L6MnzhG5c=; 
+ b=k4dMunZWoDfjtqEr+6rY/CekD00x/qD9DVlEtY8+h/GKOBXy9oQVvd4p1ZIgp6MyQOCxpk0EdfAldtrBhJVbNZDiZu2P/AaNFhcTPK02dclXy0PdfVJAk82pobo48/lsDbzJdCaZ7MUz9hAA/D8EXBlPeCrBXkUVFguhZlsroxE=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+ dkim=pass  header.i=collabora.com;
+ spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
+ dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1764364054; 
+ s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
+ h=From:From:Date:Date:Subject:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:Message-Id:References:In-Reply-To:To:To:Cc:Cc:Reply-To;
+ bh=MSkvAHcP/G4a6alQDdr5rtYAAoRHlQiW07L6MnzhG5c=;
+ b=fx7Q5EJ2kkDka7ehv/XNboSqkwzCv3eVBtdhurXogzwSL985bn9Rw5eo+7ROZigA
+ KX/hclhyz+kHjApR1nbf/05LRBJg8RZoh+028/OBXpbhhDulAgDGe7ebjXf/C7GB/Vh
+ m/br9ZI78b68hafj0EZkLsWtLemNW9X60TyFdXY0=
+Received: by mx.zohomail.com with SMTPS id 1764364052859213.44634754490573;
+ Fri, 28 Nov 2025 13:07:32 -0800 (PST)
+From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Date: Fri, 28 Nov 2025 22:05:49 +0100
+Subject: [PATCH v5 13/17] drm/rockchip: vop2: Set correct output format for
+ RK3576 YUV422
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20251128-color-format-v5-13-63e82f1db1e1@collabora.com>
+References: <20251128-color-format-v5-0-63e82f1db1e1@collabora.com>
+In-Reply-To: <20251128-color-format-v5-0-63e82f1db1e1@collabora.com>
+To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
+ Rodrigo Siqueira <siqueira@igalia.com>, 
+ Alex Deucher <alexander.deucher@amd.com>, 
+ =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ Andrzej Hajda <andrzej.hajda@intel.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Sandy Huang <hjc@rock-chips.com>, 
+ =?utf-8?q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, 
+ Andy Yan <andy.yan@rock-chips.com>, 
+ Jani Nikula <jani.nikula@linux.intel.com>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
+ Tvrtko Ursulin <tursulin@ursulin.net>, Dmitry Baryshkov <lumag@kernel.org>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, Rob Herring <robh@kernel.org>
+Cc: kernel@collabora.com, amd-gfx@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
+ Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+X-Mailer: b4 0.14.3
+X-Mailman-Approved-At: Mon, 01 Dec 2025 13:38:52 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,35 +87,48 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 01 Dec 2025, Luca Coelho <luca@coelho.fi> wrote:
-> On Mon, 2025-12-01 at 14:25 +0200, Jani Nikula wrote:
->> On Mon, 01 Dec 2025, Luca Coelho <luca@coelho.fi> wrote:
->> > On Tue, 2025-11-25 at 15:24 +0200, Jani Nikula wrote:
->> > > diff --git a/drivers/gpu/drm/xe/display/xe_display_rpm.c b/drivers/gpu/drm/xe/display/xe_display_rpm.c
->> > > index 340f65884812..9416ec784e39 100644
->> > > --- a/drivers/gpu/drm/xe/display/xe_display_rpm.c
->> > > +++ b/drivers/gpu/drm/xe/display/xe_display_rpm.c
->> > > @@ -5,6 +5,7 @@
->> > >  
->> > >  #include "intel_display_core.h"
->> > >  #include "intel_display_rpm.h"
->> > > +#include "intel_wakeref.h"
->> > 
->> > Just to be sure this is not a stray change, why did you add it here?
->> 
->> I was pretty sure it was required, maybe depending on some kconfig,
->> because the include is being removed in some other places, but I can't
->> reproduce the fail now.
->> 
->> I'd say not a huge problem because it's being removed in the next patch
->> no matter what.
->
-> Makes sense.  Thanks for the clarification. :)
+For RK3576 to be able to output YUV422 signals, it first needs to be
+able to pick the right output mode in the display controller to do so.
 
-Thanks for the review, pushed the series to din.
+The RK3576 hardware specifies different output formats depending on the
+used display protocol.
 
-BR,
-Jani.
+Adjust the written register value based on the SoC and connector, so
+other users of vcstate->output_mode don't have to care about this.
+
+Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+---
+ drivers/gpu/drm/rockchip/rockchip_drm_vop2.c | 16 ++++++++++++++++
+ 1 file changed, 16 insertions(+)
+
+diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
+index 21afcca1218c..cd18876955e4 100644
+--- a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
++++ b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
+@@ -1707,6 +1707,22 @@ static void vop2_crtc_atomic_enable(struct drm_crtc *crtc,
+ 	if (vcstate->output_mode == ROCKCHIP_OUT_MODE_AAAA &&
+ 	    !(vp_data->feature & VOP2_VP_FEATURE_OUTPUT_10BIT))
+ 		out_mode = ROCKCHIP_OUT_MODE_P888;
++	else if (vcstate->output_mode == ROCKCHIP_OUT_MODE_YUV422 &&
++		 vop2->version == VOP_VERSION_RK3576)
++		switch (vcstate->output_type) {
++		case DRM_MODE_CONNECTOR_DisplayPort:
++		case DRM_MODE_CONNECTOR_eDP:
++			out_mode = ROCKCHIP_OUT_MODE_YUV422_RK3576_DP;
++			break;
++		case DRM_MODE_CONNECTOR_HDMIA:
++			out_mode = ROCKCHIP_OUT_MODE_YUV422_RK3576_HDMI;
++			break;
++		default:
++			drm_err(vop2->drm, "Unknown DRM_MODE_CONNECTOR %d\n",
++				vcstate->output_type);
++			vop2_unlock(vop2);
++			return;
++		}
+ 	else
+ 		out_mode = vcstate->output_mode;
+ 
 
 -- 
-Jani Nikula, Intel
+2.52.0
+
