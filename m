@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 80C07CFD376
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 61B90D116F1
 	for <intel-xe@archiver.kernel.org>; Fri, 28 Nov 2025 13:13:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2187E10E8D6;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 21E3710E8F4;
 	Fri, 28 Nov 2025 13:13:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cqtt5AhE";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Y2d1sV2D";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CF26C10E172
- for <intel-xe@lists.freedesktop.org>; Fri, 28 Nov 2025 13:13:29 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F164B10E8D6
+ for <intel-xe@lists.freedesktop.org>; Fri, 28 Nov 2025 13:13:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1764335609; x=1795871609;
+ t=1764335614; x=1795871614;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=3NVDStiBR61zBMXvncVCfnpBxOEfPWv4m41whDg1v0M=;
- b=cqtt5AhEEDbsg0wlTlzT7x4jeR6H4sPaB7sX+pKjVa70UDIHYfhHLZzJ
- TisQuTV6yfXFxcjKoftabV2dTl0o/3FCLu5gSjM2vnTmenrFnn1sI56Jd
- yfVx11UHH2uxOoiCu6cfV9TW4NgoCCwVY8xVl21Td8tpIqIlVm7kbhVzi
- Bms4DoCHlPyDFcVH1qELIFrdSHxqtTCsy7lPQN2gtf5hkFNBGG57ERy2P
- EhlrRN0E5V1OBufytgUnzpk3XjL+UF4gGk1r3iOgGTREvz2WWL9dCCkRW
- osCiQBuuKgTURoeAgfwKVlV/oOD171gamGp21+LkVp418bvOx0I/nb5eb w==;
-X-CSE-ConnectionGUID: OIQjs48DQQ2Kx8/ZFytGsw==
-X-CSE-MsgGUID: oqrxU5i0SyWxA+rho0lksg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11626"; a="66084609"
-X-IronPort-AV: E=Sophos;i="6.20,232,1758610800"; d="scan'208";a="66084609"
+ bh=JdiUMeoswIoZ52N469Kx9Pu8vc/t1D47gM2RWkUevLY=;
+ b=Y2d1sV2Doii1XconWeoLvKzg/Ju6rT2chEbjJYS6X+Iy57VIbJBSnI5M
+ YlcbTvQH/jXvkwHS+199omZXewB1PGdIYn9xAFhrHGRMJQd4QisEJCHPI
+ JTfri9T2kAw/TgzSRxqmFszr/BTFcQTNS1/8dTeXLKqh0oX3tbgordp+y
+ YX9H7Ij7JYL0PjbH+Z8vQ0AnO7X9VCEX5jmsvAXeIwlsZWQwNzSkWvgmk
+ fzHDRYbJZBkuaP8JoYP2GtAE/UCn1De4/Xq/RIu517n0GJOKkcM1jU7pH
+ Nql56OlHXlBAk9in/AykSHdFKVp9SxxZZiCMSvQK7Xc2OB/v/NJ5VW9mF Q==;
+X-CSE-ConnectionGUID: YQTOFTmCSc+CGpjylEKTSQ==
+X-CSE-MsgGUID: KQOjm65IQVyAT4hztF15Yw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11626"; a="66084615"
+X-IronPort-AV: E=Sophos;i="6.20,232,1758610800"; d="scan'208";a="66084615"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Nov 2025 05:13:29 -0800
-X-CSE-ConnectionGUID: 8ntr2gH1T9CfUNNkm9+arQ==
-X-CSE-MsgGUID: eInEC5e1R3WCAWwQFWOt/Q==
+ 28 Nov 2025 05:13:33 -0800
+X-CSE-ConnectionGUID: 7B9SJxQfQIWjox0Xy4D8jg==
+X-CSE-MsgGUID: dvZEZGd7Rkub25ZlrN6YvA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,232,1758610800"; d="scan'208";a="193126586"
+X-IronPort-AV: E=Sophos;i="6.20,232,1758610800"; d="scan'208";a="193126626"
 Received: from labhost1.iind.intel.com ([10.190.230.69])
- by fmviesa007.fm.intel.com with ESMTP; 28 Nov 2025 05:13:28 -0800
+ by fmviesa007.fm.intel.com with ESMTP; 28 Nov 2025 05:13:32 -0800
 From: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>,
  Michal Wajdeczko <michal.wajdeczko@intel.com>,
  Matthew Brost <matthew.brost@intel.com>, Tomasz Lis <tomasz.lis@intel.com>
-Subject: [PATCH v7 1/4] drm/xe/vf: Enable VF migration only on supported GuC
- versions
-Date: Fri, 28 Nov 2025 19:00:54 +0530
-Message-ID: <20251128133052.17120-7-satyanarayana.k.v.p@intel.com>
+Subject: [PATCH v7 3/4] drm/xe/vf: Requeue recovery on GuC MIGRATION error
+ during VF post-migration
+Date: Fri, 28 Nov 2025 19:00:56 +0530
+Message-ID: <20251128133052.17120-9-satyanarayana.k.v.p@intel.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20251128133052.17120-6-satyanarayana.k.v.p@intel.com>
 References: <20251128133052.17120-6-satyanarayana.k.v.p@intel.com>
@@ -68,9 +68,14 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Enable VF migration starting with GuC 70.54.0 (compatibility version
-1.27.0) which supports additional VF2GUC_RESFIX_START message required
-to handle migration recovery in a more robust way.
+Handle GuC response `XE_GUC_RESPONSE_VF_MIGRATED` as a special case in the
+VF post-migration recovery flow. When this error occurs, it indicates that
+a new migration was detected while the resource fixup process was still in
+progress. Instead of failing immediately, requeue the VF into the recovery
+path to allow proper handling of the new migration event.
+
+This improves robustness of VF recovery in SR-IOV environments where
+migrations can overlap with resource fixup steps.
 
 Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
@@ -79,69 +84,55 @@ Cc: Tomasz Lis <tomasz.lis@intel.com>
 
 ---
 V6 -> V7:
-- Fixed review comments (Michal W).
-- vf_migration_init_late() checks whether migration is supported or not.
-
-V5 -> V6:
-- Fixed review comments (Michal W).
-- Updated commit message.
-- return xe_sriov_vf_migration_supported() from vf_migration_init_late().
-
-V4 -> V5:
-- Created new function vf_migration_init_late() (Michal W).
-
-V3 -> V4:
-- New commit
-
-V2 -> V3:
-- None.
-
-V1 -> V2:
-- None.
+- New commit.
 ---
- drivers/gpu/drm/xe/xe_sriov_vf.c | 22 +++++++++++++++++++++-
- 1 file changed, 21 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_gt_sriov_vf.c | 9 +++++++--
+ drivers/gpu/drm/xe/xe_guc.c         | 6 ++++++
+ 2 files changed, 13 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_sriov_vf.c b/drivers/gpu/drm/xe/xe_sriov_vf.c
-index 284ce37ca92d..d56b8cfea50b 100644
---- a/drivers/gpu/drm/xe/xe_sriov_vf.c
-+++ b/drivers/gpu/drm/xe/xe_sriov_vf.c
-@@ -170,6 +170,26 @@ void xe_sriov_vf_init_early(struct xe_device *xe)
- 	vf_migration_init_early(xe);
- }
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+index fd7dd4a4739d..937554657440 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+@@ -1256,14 +1256,19 @@ static void vf_post_migration_recovery(struct xe_gt *gt)
+ 	}
  
-+static bool vf_migration_init_late(struct xe_device *xe)
-+{
-+	struct xe_gt *gt = xe_root_mmio_gt(xe);
-+	struct xe_uc_fw_version guc_version;
-+
-+	if (!xe_sriov_vf_migration_supported(xe))
-+		return 0;
-+
-+	xe_gt_sriov_vf_guc_versions(gt, NULL, &guc_version);
-+	if (MAKE_GUC_VER_STRUCT(guc_version) < MAKE_GUC_VER(1, 27, 0)) {
-+		xe_sriov_vf_migration_disable(xe,
-+					      "requires GuC ABI >= 1.27.0, but only %u.%u.%u found",
-+					      guc_version.major, guc_version.minor,
-+					      guc_version.patch);
-+		return 0;
+ 	err = vf_post_migration_fixups(gt);
+-	if (err)
++	if (unlikely(err))
+ 		goto fail;
+ 
+ 	vf_post_migration_rearm(gt);
+ 
+ 	err = vf_post_migration_resfix_done(gt, marker);
+-	if (err)
++	if (unlikely(err == -EREMCHG))
++		goto queue;
++	if (unlikely(err)) {
++		xe_gt_sriov_err(gt, "Recovery failed at GuC RESFIX_DONE step (%pe)\n",
++				ERR_PTR(err));
+ 		goto fail;
 +	}
-+
-+	return xe_sriov_vf_ccs_init(xe);
-+}
-+
- /**
-  * xe_sriov_vf_init_late() - SR-IOV VF late initialization functions.
-  * @xe: the &xe_device to initialize
-@@ -180,7 +200,7 @@ void xe_sriov_vf_init_early(struct xe_device *xe)
-  */
- int xe_sriov_vf_init_late(struct xe_device *xe)
- {
--	return xe_sriov_vf_ccs_init(xe);
-+	return vf_migration_init_late(xe);
- }
  
- static int sa_info_vf_ccs(struct seq_file *m, void *data)
+ 	vf_post_migration_kickstart(gt);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+index 88376bc2a483..f0407bab9a0c 100644
+--- a/drivers/gpu/drm/xe/xe_guc.c
++++ b/drivers/gpu/drm/xe/xe_guc.c
+@@ -1484,6 +1484,12 @@ int xe_guc_mmio_send_recv(struct xe_guc *guc, const u32 *request,
+ 		u32 hint = FIELD_GET(GUC_HXG_FAILURE_MSG_0_HINT, header);
+ 		u32 error = FIELD_GET(GUC_HXG_FAILURE_MSG_0_ERROR, header);
+ 
++		if (unlikely(error == XE_GUC_RESPONSE_VF_MIGRATED)) {
++			xe_gt_dbg(gt, "GuC mmio request %#x rejected due to MIGRATION (hint %#x)\n",
++				  request[0], hint);
++			return -EREMCHG;
++		}
++
+ 		xe_gt_err(gt, "GuC mmio request %#x: failure %#x hint %#x\n",
+ 			  request[0], error, hint);
+ 		return -ENXIO;
 -- 
 2.51.0
 
