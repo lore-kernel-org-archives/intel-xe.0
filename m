@@ -4,47 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7E305D116F3
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 96313D116F1
 	for <intel-xe@archiver.kernel.org>; Mon,  1 Dec 2025 13:38:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 152C610E3E3;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 53D9110E3E6;
 	Mon,  1 Dec 2025 13:38:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="cbQh+aWa";
+	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="Piw408kE";
 	dkim-atps=neutral
 Received: from sender3-pp-f112.zoho.com (sender3-pp-f112.zoho.com
  [136.143.184.112])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6328910E922;
- Fri, 28 Nov 2025 21:06:18 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; t=1764363967; cv=none; 
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F22CC10E92C;
+ Fri, 28 Nov 2025 21:06:45 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; t=1764363995; cv=none; 
  d=zohomail.com; s=zohoarc; 
- b=RpS9rnGExoFB+0vB67u9j9ggnFuNCQx2UVVTWAT64kP6NnU2wyytctV77Gegjr7AysOLGaWAMntnDPINpM2ZrS5WdpmLqkKVsyqCSBluIyFY8rFVWelIeDErL/IwJpXfu7gmxUsiHUtiJcWniSDXhmg/vI/i6JgoTS9WSlmYPn8=
+ b=KYgE9XHb8ZO0/7TtjzpVxbEyr+y8G+3hKzn/c1YDuqWp2Ap6yBnJlHz9Sy0ghKnczqVyi9tNjEcSKnubeDgMwG/evdlDPNHal7VHBkFh8GZ6DjTjl9+JD2IlYexNd8doVYc1ixcWlK54XrQLShZ10P115/ACxSfUyVxe1m0uE3g=
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
- s=zohoarc; t=1764363967;
+ s=zohoarc; t=1764363995;
  h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
- bh=BtaaxO1e7m0aR9ynlBXtH+b1A1iSo4+WilL52QbHmd4=; 
- b=EpmlfIhTjW1ngPb9iNycGB2pksoIp2SUpKlgcDEbYokAT/IT2R4RafyZeBRToCk/BKCtLjTFucUiLIlR5SZcVsH5L9wke2wYC0izwNwYg73/rTzEzcscf4nJ2PFsWKCUnK3sHwnDcOniepMG0bxBh5HFUcWgPsGYYYrt6f7CwsU=
+ bh=1xbtabJZMloMjUyfQimimdWwjltWbAs98RHy7pqsfj0=; 
+ b=Tw9V5fLovKVxjWyYYQOBqNWpGyMClGskgAvy2tdMuJk2Ts+DLceOsNd8oKppatxacTr80zN2DwGrr6+oYPOC0aC0gEWML8JV2pVWmmgR38cFcXm03tW5KnIHNX8tBlS6H0ZwAMQUIrxRdDv634M2AYCl3XiBiuBS43ltF1IS6c0=
 ARC-Authentication-Results: i=1; mx.zohomail.com;
  dkim=pass  header.i=collabora.com;
  spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
  dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1764363967; 
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1764363995; 
  s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
  h=From:From:Date:Date:Subject:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:Message-Id:References:In-Reply-To:To:To:Cc:Cc:Reply-To;
- bh=BtaaxO1e7m0aR9ynlBXtH+b1A1iSo4+WilL52QbHmd4=;
- b=cbQh+aWaE2CGXpsQpgljbzMGbHY2fCfT45wbyajQeheP0VZCk23o/PL3Pn+AW4ye
- mzRPRpdNPfcmo5hlv+NqSw5ZFH2If1M7tCggLduD62OoFC6calPXkXo1qFME3Za8dxA
- rh1lIJeezRu1EZc2w5qraI4pRfp8YEKgZVcP+EuM=
-Received: by mx.zohomail.com with SMTPS id 1764363964727749.3717042138871;
- Fri, 28 Nov 2025 13:06:04 -0800 (PST)
+ bh=1xbtabJZMloMjUyfQimimdWwjltWbAs98RHy7pqsfj0=;
+ b=Piw408kENqjfYhur3CUwoDADLfBuVO/QxisHKiSZu7q/0JLVkeqKS5Da1fZZ4DZ4
+ Xs3hBri7B2aFiJAoE8qNLl1zfzsOMdZOqcj/VTagf1GnAgBbOxK2yBQio79TxaK1o9I
+ Im3CN1CVAnJAH3o8G6nxy0fxn0+L1QHC79jrGLVc=
+Received: by mx.zohomail.com with SMTPS id 1764363994308958.9729081381457;
+ Fri, 28 Nov 2025 13:06:34 -0800 (PST)
 From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Date: Fri, 28 Nov 2025 22:05:37 +0100
-Subject: [PATCH v5 01/17] drm/amd/display: Remove unnecessary
- SIGNAL_TYPE_HDMI_TYPE_A check
+Date: Fri, 28 Nov 2025 22:05:41 +0100
+Subject: [PATCH v5 05/17] drm/display: hdmi-state-helper: Act on color
+ format DRM property
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20251128-color-format-v5-1-63e82f1db1e1@collabora.com>
+Message-Id: <20251128-color-format-v5-5-63e82f1db1e1@collabora.com>
 References: <20251128-color-format-v5-0-63e82f1db1e1@collabora.com>
 In-Reply-To: <20251128-color-format-v5-0-63e82f1db1e1@collabora.com>
 To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
@@ -70,9 +70,7 @@ Cc: kernel@collabora.com, amd-gfx@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
  linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
- Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, 
- Werner Sembach <wse@tuxedocomputers.com>, 
- Andri Yngvason <andri@yngvason.is>
+ Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
 X-Mailer: b4 0.14.3
 X-Mailman-Approved-At: Mon, 01 Dec 2025 13:38:52 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -89,46 +87,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Werner Sembach <wse@tuxedocomputers.com>
+With the introduction of the "color format" DRM property, which allows
+userspace to request a specific color format, the HDMI state helper
+should implement this.
 
-Remove unnecessary SIGNAL_TYPE_HDMI_TYPE_A check that was performed in the
-drm_mode_is_420_only() case, but not in the drm_mode_is_420_also() &&
-force_yuv420_output case.
+Implement it by checking whether the property is set and set to
+something other than auto. If so, pass the requested color format, and
+otherwise set RGB.
 
-Without further knowledge if YCbCr 4:2:0 is supported outside of HDMI,
-there is no reason to use RGB when the display
-reports drm_mode_is_420_only() even on a non HDMI connection.
-
-This patch also moves both checks in the same if-case. This  eliminates an
-extra else-if-case.
-
-Signed-off-by: Werner Sembach <wse@tuxedocomputers.com>
-Signed-off-by: Andri Yngvason <andri@yngvason.is>
-Tested-by: Andri Yngvason <andri@yngvason.is>
 Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
 ---
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 8 ++------
- 1 file changed, 2 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/display/drm_hdmi_state_helper.c | 12 +++++++++++-
+ 1 file changed, 11 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index f02bcd108685..0b44bfe9e7e5 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -6668,12 +6668,8 @@ static void fill_stream_properties_from_drm_display_mode(
- 	timing_out->v_border_top = 0;
- 	timing_out->v_border_bottom = 0;
- 	/* TODO: un-hardcode */
--	if (drm_mode_is_420_only(info, mode_in)
--			&& stream->signal == SIGNAL_TYPE_HDMI_TYPE_A)
--		timing_out->pixel_encoding = PIXEL_ENCODING_YCBCR420;
--	else if (drm_mode_is_420_also(info, mode_in)
--			&& aconnector
--			&& aconnector->force_yuv420_output)
-+	if (drm_mode_is_420_only(info, mode_in) || (drm_mode_is_420_also(info, mode_in) &&
-+	    aconnector && aconnector->force_yuv420_output))
- 		timing_out->pixel_encoding = PIXEL_ENCODING_YCBCR420;
- 	else if ((connector->display_info.color_formats & DRM_COLOR_FORMAT_YCBCR422)
- 			&& aconnector
+diff --git a/drivers/gpu/drm/display/drm_hdmi_state_helper.c b/drivers/gpu/drm/display/drm_hdmi_state_helper.c
+index a561f124be99..5da956bdd68c 100644
+--- a/drivers/gpu/drm/display/drm_hdmi_state_helper.c
++++ b/drivers/gpu/drm/display/drm_hdmi_state_helper.c
+@@ -649,11 +649,21 @@ hdmi_compute_config(const struct drm_connector *connector,
+ 	unsigned int max_bpc = clamp_t(unsigned int,
+ 				       conn_state->max_bpc,
+ 				       8, connector->max_bpc);
++	enum hdmi_colorspace hdmi_colorspace =
++		drm_color_format_to_hdmi_colorspace(conn_state->color_format);
+ 	int ret;
+ 
+ 	ret = hdmi_compute_format_bpc(connector, conn_state, mode, max_bpc,
+-				      HDMI_COLORSPACE_RGB);
++				      hdmi_colorspace);
+ 	if (ret) {
++		/* If a color format was explicitly requested, don't fall back */
++		if (conn_state->color_format) {
++			drm_dbg_kms(connector->dev,
++				    "Explicitly set color format '%s' doesn't work.\n",
++				    drm_get_color_format_name(conn_state->color_format));
++			return ret;
++		}
++
+ 		if (connector->ycbcr_420_allowed) {
+ 			ret = hdmi_compute_format_bpc(connector, conn_state,
+ 						      mode, max_bpc,
 
 -- 
 2.52.0
