@@ -4,61 +4,77 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1530ACFD2F6
-	for <intel-xe@archiver.kernel.org>; Sat, 29 Nov 2025 16:18:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 31528D116EA
+	for <intel-xe@archiver.kernel.org>; Sat, 29 Nov 2025 16:54:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AB6E610E159;
-	Sat, 29 Nov 2025 16:18:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C91BE10E20A;
+	Sat, 29 Nov 2025 16:54:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Rl0bvh2w";
+	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="ARMJq38y";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9513510E159
- for <intel-xe@lists.freedesktop.org>; Sat, 29 Nov 2025 16:18:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1764433087; x=1795969087;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=mDd9AX2zcXlfDPPhVTua36ruqPOErn1z2/gs6JtO1MY=;
- b=Rl0bvh2waW7NeUD32+RfAbGzOOGZkAnxghXAbwTIIn0jt7GBgGX+DnFw
- qIDWXANoMHcSJ3SRyzIiT42dzxCuEStNXLgUVbVEfBlxO79G68Rwe+0hI
- Czk7a5qKz3PyNm/vC69Z2alc9KOP8jHlqlS5Efb9D0YFVUCPP5Xm69YaE
- 01aPMQ1N8TnCK7kIIZAvuVJStH+0MR6DsuTx9lBtznlGsPIHrLb2BoEw8
- MAhHg2wa0HPKiFkBnZLqjDDkyxOgJwKEdUFGp4J9Ctx4VtjJJD1CVqt5B
- CvVhB4G+99sbiME/Iju1xIbGNeobVGma/epKeBEieen+E2sACbrhZiJAI Q==;
-X-CSE-ConnectionGUID: 549ViTxpQoW3fIQfualg1A==
-X-CSE-MsgGUID: +Ve0eMqwR8aJ6VELIW5Vhw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11627"; a="66379746"
-X-IronPort-AV: E=Sophos;i="6.20,236,1758610800"; d="scan'208";a="66379746"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Nov 2025 08:18:06 -0800
-X-CSE-ConnectionGUID: JOp2LFcTTLy//6gq8Y2msA==
-X-CSE-MsgGUID: X5pfPZknQJeqEnZcfZjDAg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,236,1758610800"; d="scan'208";a="217040817"
-Received: from smoticic-mobl1.ger.corp.intel.com (HELO [10.245.245.63])
- ([10.245.245.63])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Nov 2025 08:18:05 -0800
-Message-ID: <bd74224684f03a0d1fea8354f406a9ea03e0d288.camel@linux.intel.com>
-Subject: Re: [RFC PATCH] drm/xe/bo: Honor madvise(2) advices
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: Matthew Auld <matthew.auld@intel.com>, intel-xe@lists.freedesktop.org
-Date: Sat, 29 Nov 2025 17:18:02 +0100
-In-Reply-To: <aSsXWDSOVnI4V2jG@lstrano-desk.jf.intel.com>
-References: <20251128104623.32742-1-thomas.hellstrom@linux.intel.com>
- <dd0ef25a-1fc1-4f7e-8363-74d4c660f71d@intel.com>
- <aSoNkE3dldrSbbF9@lstrano-desk.jf.intel.com>
- <b7c3969245a5db71ced0c3aadc52c9531e68141d.camel@linux.intel.com>
- <aSsXWDSOVnI4V2jG@lstrano-desk.jf.intel.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.3 (3.54.3-2.fc41) 
+Received: from mail-vk1-f178.google.com (mail-vk1-f178.google.com
+ [209.85.221.178])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1808F10E03E
+ for <intel-xe@lists.freedesktop.org>; Sat, 29 Nov 2025 16:54:07 +0000 (UTC)
+Received: by mail-vk1-f178.google.com with SMTP id
+ 71dfb90a1353d-5599688d574so773614e0c.2
+ for <intel-xe@lists.freedesktop.org>; Sat, 29 Nov 2025 08:54:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linaro.org; s=google; t=1764435246; x=1765040046; darn=lists.freedesktop.org;
+ h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
+ :to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=SUdMDrZomFUZbbZgdh9LwkvsujEbVnk82m9l5aFdt8o=;
+ b=ARMJq38yiJdBdisA62+a+4w73VEbp0P07apHAsT4kGRdVfjSf+yHiYAcmOkqvV96zv
+ osV3fNBbnMK7STJqGYd6DZo80RR8gUjr/7CL0TNkns3bZj6I87rlkS2ror96bODxvWWL
+ jycEqnMybq8AzOF7upyFYBsMLEnS/x8vzn/gkE7jTyXydKZXcAGysoovzCBvqigI8lv8
+ BiBziyUY3m3V916Wxqt/89Co64a0pJpk2DHzUzgRdndC03hBS0H/M5GCnYcXXPL0nub7
+ bDcR2iA6dP+u8QBff1z0QcPvIi6jvlJlVLk6V2nsHvxEBEssbBgdsnmgyzOB5722KuWw
+ 0RAw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1764435246; x=1765040046;
+ h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
+ :to:from:date:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=SUdMDrZomFUZbbZgdh9LwkvsujEbVnk82m9l5aFdt8o=;
+ b=r+Kldrb7poRo0Lt0FjhbJ1I4+nyTMoSZ5dTxCRRRvZz9COcwsC9JJs6vV/plqAjIKy
+ ayBLSugeYtgibPBjNChwLwRNOt36Pa70RmZ/fhUatRBV7VbWJSj/ox4kEbjQuu/yHMvM
+ /U9HDiPksYltufSiatHlXxWOmFjNmw3a7S/ognlKVh0CQBNw2qJJ83EYykEGIc1KO110
+ qN8ayhEggmezY2zm1+kWadDjuVtr/O0DOm7NGQFRUx6sNX01EEW955Ub6tCwI/vQGcIZ
+ QJ1Yx9sik5fiSdCDnyeaR+Y4aODxSiv3ybzrzFGmnoUVGVPKOY8i9eeetCaPfv47aYgr
+ rJqw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCV5Afp59DvTqOtynveGg1og8kV3rpEEymcN9UtfkA1q6mKjXc9GkUsMMKgFgFCcP4LhjRzJmYqahw==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxLPLSi1yJppLUszrGmU8hj5Maa6d7tKkzPTwfZ+w/iDUsXdM0X
+ 6N7B0Lnxqwg9nqYdPf5UTvbssprDuV+OT5M2skpQ8UAvnBmN0mvU35QNh1lyEeiLqXA=
+X-Gm-Gg: ASbGncszBK883txfMZQkURKwL2SLYnEjKXhX8RnxN07TQZTJiYi3l4ey2c2+GxwLzMP
+ VtNIlAnVsktPBBol5bHWL69GoE+xRiS9R4t9SppZ9/LRWpFgS/Eurm/xNuxCO7wTjqOYLRZLEtd
+ jfBSVcSFzJ962QxyspD/qc0Ad//kSL6CsrwLOwN21znS0Wijr4AfW0V7Db99eDL3F0Cn+2bObnM
+ tEz1q1mjtGJJK0G4naXfL3+qJHoy2fFyjVgfb/u6vGYtyRbuSD+TcVCmJnYkYI+/Y/6exeFlym8
+ HQKfYml/FDapzpZZpIRVvMil9TNXZtJynSjT9sSgosS/+wYPD5Heo2l6udtudG1M2EXnFk/F1Sn
+ Gt41DZLRlx3jlZ6yxleLe5WEKHVwb9ruORkcAFW6v40bW7xj7bCjalsSUROnljSnLsZBvqHqhJ6
+ cvw1FX2QMm0IdGbaPf
+X-Google-Smtp-Source: AGHT+IG5tajmTfYoc3lFMiwar57/U6inDiuyMwTKKDkv9l56SNQgQ4HUSlYelexgYFZ7UMzNqqfw7Q==
+X-Received: by 2002:a05:6122:202a:b0:55b:305b:4e3c with SMTP id
+ 71dfb90a1353d-55b8f00fd2cmr10936851e0c.18.1764435245594; 
+ Sat, 29 Nov 2025 08:54:05 -0800 (PST)
+Received: from localhost ([196.207.164.177])
+ by smtp.gmail.com with UTF8SMTPSA id
+ 71dfb90a1353d-55cf516c50dsm3256156e0c.19.2025.11.29.08.54.02
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sat, 29 Nov 2025 08:54:04 -0800 (PST)
+Date: Sat, 29 Nov 2025 19:53:59 +0300
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: oe-kbuild@lists.linux.dev, Matthew Brost <matthew.brost@intel.com>,
+ intel-xe@lists.freedesktop.org
+Cc: lkp@intel.com, oe-kbuild-all@lists.linux.dev,
+ dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH v6 8/8] drm/xe: Avoid toggling schedule state to check
+ LRC timestamp in TDR
+Message-ID: <202511291102.jnnKP6IB-lkp@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251126214748.650107-9-matthew.brost@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,186 +89,72 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Sat, 2025-11-29 at 07:55 -0800, Matthew Brost wrote:
-> On Sat, Nov 29, 2025 at 01:51:38PM +0100, Thomas Hellstr=C3=B6m wrote:
-> > On Fri, 2025-11-28 at 13:01 -0800, Matthew Brost wrote:
-> > > On Fri, Nov 28, 2025 at 12:57:15PM +0000, Matthew Auld wrote:
-> > > > On 28/11/2025 10:46, Thomas Hellstr=C3=B6m wrote:
-> > > > > The user can give advices as to how the CPU will access an
-> > > > > address range. Use those advices to determine the number of
-> > > > > bo pages to prefault on a page-fault.
-> > > > >=20
-> > > > > Do this regardless of whether we can find a way to avoid the
-> > > > > fairly slow vm_insert_pfn_prot() to populate buffer
-> > > > > object maps.
-> > > > >=20
-> > > > > Initially, fault up to 512 pages on sequential access and
-> > > > > a single page on random access.
-> > > > >=20
-> > > > > Cc: Matthew Brost <matthew.brost@intel.com>
-> > > > > Cc: Matthew Auld <matthew.auld@intel.com>
-> > > > > Signed-off-by: Thomas Hellstr=C3=B6m
-> > > > > <thomas.hellstrom@linux.intel.com>
-> > > > > ---
-> > > > > =C2=A0 drivers/gpu/drm/xe/xe_bo.c | 18 +++++++++++++++++-
-> > > > > =C2=A0 1 file changed, 17 insertions(+), 1 deletion(-)
-> > > > >=20
-> > > > > diff --git a/drivers/gpu/drm/xe/xe_bo.c
-> > > > > b/drivers/gpu/drm/xe/xe_bo.c
-> > > > > index 6fd6ce6c6586..07d0d954f826 100644
-> > > > > --- a/drivers/gpu/drm/xe/xe_bo.c
-> > > > > +++ b/drivers/gpu/drm/xe/xe_bo.c
-> > > > > @@ -1821,15 +1821,31 @@ static int xe_bo_fault_migrate(struct
-> > > > > xe_bo *bo, struct ttm_operation_ctx *ctx,
-> > > > > =C2=A0=C2=A0	return err;
-> > > > > =C2=A0 }
-> > > > > +/*
-> > > > > + * Number of prefaulted pages for the MADV_SEQUENTIAL and
-> > > > > + * MADV_RANDOM madvise() advices.
-> > > > > + */
-> > > > > +#define XE_BO_VM_NUM_PREFAULT_SEQ=C2=A0 512
-> > > > > +#define XE_BO_VM_NUM_PREFAULT_RAND 1
-> > > > > +
-> > > > > =C2=A0 /* Call into TTM to populate PTEs, and register bo for PTE
-> > > > > removal on runtime suspend. */
-> > > > > =C2=A0 static vm_fault_t __xe_bo_cpu_fault(struct vm_fault *vmf,
-> > > > > struct xe_device *xe, struct xe_bo *bo)
-> > > > > =C2=A0 {
-> > > > > +	const struct vm_area_struct *vma =3D vmf->vma;
-> > > > > +	pgoff_t num_prefault;
-> > > > > =C2=A0=C2=A0	vm_fault_t ret;
-> > > > > =C2=A0=C2=A0	trace_xe_bo_cpu_fault(bo);
-> > > > > +	if (vma->vm_flags & VM_SEQ_READ)
-> > > > > +		num_prefault =3D XE_BO_VM_NUM_PREFAULT_SEQ;
-> > > > > +	else if (vma->vm_flags & VM_RAND_READ)
-> > > > > +		num_prefault =3D XE_BO_VM_NUM_PREFAULT_RAND;
-> > > > > +	else
-> > > > > +		num_prefault =3D TTM_BO_VM_NUM_PREFAULT;
-> > > >=20
-> > > > Ah, interesting. Do we know if any UMD is making use of these
-> > > > special flags
-> > > > today? Just wondering if this might be a visible change or not?
-> > > > Also would
-> > > > it make sense to document/advertise this somewhere for UMD
-> > > > folks,
-> > > > in case
-> > > > this has an immediate benefit for them?
-> > > >=20
-> > >=20
-> > > I also have a question here - does Xe / TTM support faulting in
-> > > THP
-> > > on
-> > > the CPU side? Is that something we should also look at doing
-> > > based on
-> > > madvise / global THP settings? Would that help mitigate the slow
-> > > vm_insert_pfn_prot too?
-> >=20
-> > It would probably help a lot, as long as we actually get 2MiB pages
-> > from TTM.=20
-> >=20
->=20
-> Hmm, yes this seems like a pretty big win too considering Mesa now
-> always allocates 2M BOs and then suballocates smaller allocations in
-> user space. So we should pretty much always should be getting 2M
-> pages /
-> faults.
->=20
-> > I had that implemented in TTM once with vmwgfx the only user, and
-> > it
-> > was working fine except one very important detail: I had
-> > implemented it
-> > based on vma information rather than PTE-based information, so
-> > get_user_pages_fast() didn't recognize these pages and was terribly
-> > confused. So it had to be ripped out.
-> >=20
-> > If we're going to try that again, we need to talk to x86 arch to
-> > get a
-> > PMD_PUD_SPECIAL pmd/pud flag that behaves just like PTE_SPECIAL, so
-> > that things like get_user_pages_fast() ignore these huge PTEs.
-> > Auditing
-> > all page-walks in core-mm for this is non-trivial.
-> >=20
->=20
-> Agree, core-mm page walks are non-trivial to audit. Recently looked
-> at
-> 2M device pages series and it really wasn't all that bad though.
->=20
-> Out of technical depth on the PTE_SPECIAL comment, but can dig in a
-> bit
-> here. We do have a maintainer of x86 at Intel (Dave Hansen) which we
-> can
-> float any ideas wrt to this topic though.
+Hi Matthew,
 
-Yeah, I was talking to those people back then and they suggested using
-a flag at least initially separate from PTE_SPECIAL. (There are some
-available flags in the huge PMDs). But at the time x86_32 was a thing
-and using one of the suggested flags would make updating the 64-bit
-PTEs with x86_32 the way it was implemented become racy, on top of all
-other complications. So while I made significant progress back then, I
-decided there were more important things to do, and stopped.
+kernel test robot noticed the following build warnings:
 
->=20
-> > But if that is done, we could bring in that stuff again, although
-> > Christian wasn't very fond of having it in TTM.
-> >=20
->=20
-> We can perhaps bring this up as an option to Christian - from my
-> limited
-> knowledge on this topic, this seems like something worth while to do
-> regardless of the PAT issue as just seems like a pretty big win. This
-> however is very unlikely to make it into customer kernels which are
-> complaining about this perf issue, so I think ww need to explore
-> other
-> options too.
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Maybe for the issue at hand (I completely understand the NAK of using
-apply_to_page_range() from within drivers) maybe we could get a go-
-ahead for exporting some useful interfaces from core mm: Like perhaps
-vmf_insert_pfns_prot() that takes an array of pfns and inserts them,
-and perhaps vmf_insert_pages_as_pfns_prot() which would do the same for
-struct page pointer arrays These could do the slow PAT adjustments once
-and then insert all pages/pfns using a single page-walk. Either using
-apply_to_page_range() or the more generic pagewalk. Could perhaps look
-at the i915 implementation, particularly for the iomap stuff and see if
-there's something reusable.
+url:    https://github.com/intel-lab-lkp/linux/commits/Matthew-Brost/drm-sched-Add-several-job-helpers-to-avoid-drivers-touching-scheduler-state/20251127-054955
+base:   https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
+patch link:    https://lore.kernel.org/r/20251126214748.650107-9-matthew.brost%40intel.com
+patch subject: [PATCH v6 8/8] drm/xe: Avoid toggling schedule state to check LRC timestamp in TDR
+config: x86_64-randconfig-161-20251128 (https://download.01.org/0day-ci/archive/20251129/202511291102.jnnKP6IB-lkp@intel.com/config)
+compiler: gcc-14 (Debian 14.2.0-19) 14.2.0
 
-/Thomas
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Reported-by: Dan Carpenter <dan.carpenter@linaro.org>
+| Closes: https://lore.kernel.org/r/202511291102.jnnKP6IB-lkp@intel.com/
 
+smatch warnings:
+drivers/gpu/drm/xe/xe_lrc.c:2392 xe_lrc_timestamp() error: uninitialized symbol 'new_ts'.
 
->=20
-> Matt
->=20
-> > But I think it would also be very beneficial for things like
-> > ioremap()
-> > and friends.
-> >=20
-> > /Thomas
-> >=20
-> >=20
-> > >=20
-> > > Matt
-> > >=20
-> > > > I guess would be good to add an IGT which uses both flags, if
-> > > > we
-> > > > don't
-> > > > already?
-> > > >=20
-> > > > Anyway, I think change makes sense,
-> > > > Reviewed-by: Matthew Auld <matthew.auld@intel.com>
-> > > >=20
-> > > > > +
-> > > > > =C2=A0=C2=A0	ret =3D ttm_bo_vm_fault_reserved(vmf, vmf->vma-
-> > > > > > vm_page_prot,
-> > > > > -				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
-> > > > > TTM_BO_VM_NUM_PREFAULT);
-> > > > > +				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 num_prefault);
-> > > > > =C2=A0=C2=A0	/*
-> > > > > =C2=A0=C2=A0	 * When TTM is actually called to insert PTEs,
-> > > > > ensure no
-> > > > > blocking conditions
-> > > > > =C2=A0=C2=A0	 * remain, in which case TTM may drop locks and
-> > > > > return
-> > > > > VM_FAULT_RETRY.
-> > > >=20
-> >=20
+vim +/new_ts +2392 drivers/gpu/drm/xe/xe_lrc.c
+
+94c0c481e1bd20 Matthew Brost         2025-11-26  2363  u64 xe_lrc_timestamp(struct xe_lrc *lrc)
+9b090d57746d96 Umesh Nerlige Ramappa 2024-05-17  2364  {
+94c0c481e1bd20 Matthew Brost         2025-11-26  2365  	u64 lrc_ts, reg_ts, new_ts;
+82b98cadb01f63 Umesh Nerlige Ramappa 2025-05-09  2366  	u32 engine_id;
+82b98cadb01f63 Umesh Nerlige Ramappa 2025-05-09  2367  
+82b98cadb01f63 Umesh Nerlige Ramappa 2025-05-09  2368  	lrc_ts = xe_lrc_ctx_timestamp(lrc);
+82b98cadb01f63 Umesh Nerlige Ramappa 2025-05-09  2369  	/* CTX_TIMESTAMP mmio read is invalid on VF, so return the LRC value */
+82b98cadb01f63 Umesh Nerlige Ramappa 2025-05-09  2370  	if (IS_SRIOV_VF(lrc_to_xe(lrc))) {
+94c0c481e1bd20 Matthew Brost         2025-11-26  2371  		new_ts = lrc_ts;
+82b98cadb01f63 Umesh Nerlige Ramappa 2025-05-09  2372  		goto done;
+82b98cadb01f63 Umesh Nerlige Ramappa 2025-05-09  2373  	}
+82b98cadb01f63 Umesh Nerlige Ramappa 2025-05-09  2374  
+82b98cadb01f63 Umesh Nerlige Ramappa 2025-05-09  2375  	if (lrc_ts == CONTEXT_ACTIVE) {
+82b98cadb01f63 Umesh Nerlige Ramappa 2025-05-09  2376  		engine_id = xe_lrc_engine_id(lrc);
+82b98cadb01f63 Umesh Nerlige Ramappa 2025-05-09  2377  		if (!get_ctx_timestamp(lrc, engine_id, &reg_ts))
+94c0c481e1bd20 Matthew Brost         2025-11-26  2378  			new_ts = reg_ts;
+
+uninitialized on else path.
+
+82b98cadb01f63 Umesh Nerlige Ramappa 2025-05-09  2379  
+82b98cadb01f63 Umesh Nerlige Ramappa 2025-05-09  2380  		/* read lrc again to ensure context is still active */
+82b98cadb01f63 Umesh Nerlige Ramappa 2025-05-09  2381  		lrc_ts = xe_lrc_ctx_timestamp(lrc);
+
+lrc_ts is re-assigned here.
+
+82b98cadb01f63 Umesh Nerlige Ramappa 2025-05-09  2382  	}
+82b98cadb01f63 Umesh Nerlige Ramappa 2025-05-09  2383  
+82b98cadb01f63 Umesh Nerlige Ramappa 2025-05-09  2384  	/*
+82b98cadb01f63 Umesh Nerlige Ramappa 2025-05-09  2385  	 * If context switched out, just use the lrc_ts. Note that this needs to
+82b98cadb01f63 Umesh Nerlige Ramappa 2025-05-09  2386  	 * be a separate if condition.
+82b98cadb01f63 Umesh Nerlige Ramappa 2025-05-09  2387  	 */
+82b98cadb01f63 Umesh Nerlige Ramappa 2025-05-09  2388  	if (lrc_ts != CONTEXT_ACTIVE)
+94c0c481e1bd20 Matthew Brost         2025-11-26  2389  		new_ts = lrc_ts;
+
+uninitialized on else path.
+
+9b090d57746d96 Umesh Nerlige Ramappa 2024-05-17  2390  
+82b98cadb01f63 Umesh Nerlige Ramappa 2025-05-09  2391  done:
+94c0c481e1bd20 Matthew Brost         2025-11-26 @2392  	return new_ts;
+94c0c481e1bd20 Matthew Brost         2025-11-26  2393  }
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
