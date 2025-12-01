@@ -4,60 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6CD33D116E2
-	for <intel-xe@archiver.kernel.org>; Mon,  1 Dec 2025 06:05:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 41E39D116E2
+	for <intel-xe@archiver.kernel.org>; Mon,  1 Dec 2025 06:35:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EB6B910E112;
-	Mon,  1 Dec 2025 06:05:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 01BED10E0FE;
+	Mon,  1 Dec 2025 06:35:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IG9dZUMG";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fC4cc7bf";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F13DC10E112
- for <intel-xe@lists.freedesktop.org>; Mon,  1 Dec 2025 06:05:06 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 146FD10E0FE;
+ Mon,  1 Dec 2025 06:35:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1764569107; x=1796105107;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=vBZfdRxog1x6nfY0NHgbvg6dt3vWEAAwTVR95naK6LE=;
- b=IG9dZUMG7YWCdOZJPZnmzsKiQ20fnUyDULCKZjzM+EekNq+YJlQdvHdp
- 6ul91lN1BDjCZKi0An9ZHp9OePAgzP9DSvWsY74zM7OogbmRGPtN9StHQ
- nmqrG98foaN5qvHyeLTmzKonyrKjGTIyx9HM1bJiHZFTVmOy8XCSrkDTk
- c33F2WJV7j9kXbg6k98TUq/rmEe8mXj3/NOEbcjFXKoV6Kuk7RxQeZjnm
- KP34oEIAJqjcVJb4Yp08Eaqj6t5svKCV4N7ECrBOyqJI043NN5KXvyoEy
- is4ZntwbgsWFA8J2meYZ8IEAK0R2b/os0VPiM16LP3kY+0mldXZS+bRcM g==;
-X-CSE-ConnectionGUID: vS7D0zqwRneNu5JaWb8w1Q==
-X-CSE-MsgGUID: 7gNyc+vnT06FjX5AaNITdw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11629"; a="66532474"
-X-IronPort-AV: E=Sophos;i="6.20,240,1758610800"; d="scan'208";a="66532474"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Nov 2025 22:05:07 -0800
-X-CSE-ConnectionGUID: MG5s+GHERVCKMBNm+FBtcQ==
-X-CSE-MsgGUID: x52e4ZSAQwWbkIHMdpiAYg==
+ t=1764570951; x=1796106951;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=VYP0Elv2ZIOROHX/iKjc/+z0N573FL9GQDv5aufWjgg=;
+ b=fC4cc7bfydCzXn+pbubl7Bna8ongSBeEkQwHy15ogYmw5xW74IAp0TdO
+ mv9dMxy0qPlazpDBbfnn2Z9xonSGlrx7btskVgiS3EMhBmCZtD0P6lSx9
+ vflh/WyMdUr6x0CtyfHSjV4fzLC+bY4aHbCdYx7UirvAJsPfGz3yfZ+DK
+ BetxTJJgW+bgEi+EDQebb/xicDMK4vG2i0isrDRx6ErPr3BtFoZG0sW95
+ IVNlAy9EzU7VK92IV4ZRwOtCYa75gQ1JaasV70CBdpMpWCFbfLZ4oPJlo
+ K2XFChz9c0NgFitMeWW4QJEmrW2lgzNQpllf5O03IBFCnUB0vyG+nnLUQ A==;
+X-CSE-ConnectionGUID: GiCQUfQ9ShSkscnoyNcP/Q==
+X-CSE-MsgGUID: fYLhqZ60SkuQd8p1bRL+0A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11629"; a="66663156"
+X-IronPort-AV: E=Sophos;i="6.20,240,1758610800"; d="scan'208";a="66663156"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Nov 2025 22:35:50 -0800
+X-CSE-ConnectionGUID: Dq9Pi6/KRf+UphAmabWKCA==
+X-CSE-MsgGUID: fPzA+dXtQUuGeDNpKyHR8A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,240,1758610800"; d="scan'208";a="193235931"
-Received: from amiszcza-mobl.ger.corp.intel.com (HELO [10.246.21.85])
- ([10.246.21.85])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Nov 2025 22:05:05 -0800
-Message-ID: <5fe9573b-3de7-4605-b4f5-6ab9dc3ed0bb@linux.intel.com>
-Date: Mon, 1 Dec 2025 07:04:57 +0100
+X-IronPort-AV: E=Sophos;i="6.20,240,1758610800"; d="scan'208";a="193806053"
+Received: from cfl-desktop.iind.intel.com ([10.190.239.20])
+ by orviesa009.jf.intel.com with ESMTP; 30 Nov 2025 22:34:58 -0800
+From: Uma Shankar <uma.shankar@intel.com>
+To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Cc: chaitanya.kumar.borah@intel.com, ville.syrjala@linux.intel.com,
+ pekka.paalanen@collabora.com, contact@emersion.fr, harry.wentland@amd.com,
+ mwen@igalia.com, jadahl@redhat.com, sebastian.wick@redhat.com,
+ swati2.sharma@intel.com, alex.hung@amd.com, jani.nikula@intel.com,
+ suraj.kandpal@intel.com, Uma Shankar <uma.shankar@intel.com>,
+ Joshua Ashton <joshua@froggi.es>,
+ =?UTF-8?q?Michel=20D=C3=A4nzer?= <mdaenzer@redhat.com>,
+ Xaver Hugl <xaver.hugl@gmail.com>,
+ Victoria Brekenfeld <victoria@system76.com>, Sima <daniel@ffwll.ch>,
+ Liviu Dudau <Liviu.Dudau@arm.com>
+Subject: [v7 00/15] Plane Color Pipeline support for Intel platforms
+Date: Mon,  1 Dec 2025 12:16:40 +0530
+Message-ID: <20251201064655.3579280-1-uma.shankar@intel.com>
+X-Mailer: git-send-email 2.50.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 4/4] drm/xe/vf: Add debugfs entries to test VF double
- migration
-To: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>,
- intel-xe@lists.freedesktop.org
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- Matthew Brost <matthew.brost@intel.com>, Tomasz Lis <tomasz.lis@intel.com>
-References: <20251128133052.17120-6-satyanarayana.k.v.p@intel.com>
- <20251128133052.17120-10-satyanarayana.k.v.p@intel.com>
-Content-Language: en-US
-From: Adam Miszczak <adam.miszczak@linux.intel.com>
-In-Reply-To: <20251128133052.17120-10-satyanarayana.k.v.p@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -73,193 +74,124 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 11/28/2025 2:30 PM, Satyanarayana K V P wrote:
-> VF migration sends a marker to the GUC before resource fixups begin,
-> and repeats the marker with the RESFIX_DONE notification. This prevents
-> the GUC from submitting jobs during double migration events.
->
-> To reliably test double migration, a second migration must be triggered
-> while fixups from the first migration are still in progress. Since fixups
-> complete quickly, reproducing this scenario is difficult. Introduce
-> debugfs controls to add delays in the post-fixup phase, creating a
-> deterministic window for subsequent migrations.
->
-> New debugfs entries:
-> 	/sys/kernel/debug/dri/BDF/
-> 	├── tile0
-> 	│   ├─gt0
-> 	│   │ ├──vf
-> 	│   │ │  ├── resfix_stoppers
->
-> resfix_stoppers: Predefined checkpoints that allow the migration process
-> to pause at specific stages. The stages are given below.
->
-> VF_MIGRATION_WAIT_RESFIX_START		- BIT(0)
-> VF_MIGRATION_WAIT_FIXUPS		- BIT(1)
-> VF_MIGRATION_WAIT_RESTART_JOBS		- BIT(2)
-> VF_MIGRATION_WAIT_RESFIX_DONE		- BIT(3)
->
-> Each state will pause with a 1-second delay per iteration, continuing until
-> its corresponding bit is cleared.
->
-> Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
-> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-> Cc: Matthew Brost <matthew.brost@intel.com>
-> Cc: Tomasz Lis <tomasz.lis@intel.com>
->
-> ---
-> V6 -> V7:
-> - Fixed review comments (Michal W).
-> - Updated commit message.
->
-> V5 -> V6:
-> - Fixed review comments (Michal W).
-> - Removed timeout and VF KMD waits infinately when resfix_stoppers bits are
-> set.
-> - Created helper macro for WAIT positions.
->
-> V4 -> V5:
-> - Updated debugfs entries (Michal W).
->
-> V3 -> V4:
-> - New commit
->
-> V2 -> V3:
-> - None.
->
-> V1 -> V2:
-> - None.
-> ---
->   drivers/gpu/drm/xe/xe_gt_sriov_vf.c         | 40 +++++++++++++++++++++
->   drivers/gpu/drm/xe/xe_gt_sriov_vf_debugfs.c | 12 +++++++
->   drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h   |  8 +++++
->   3 files changed, 60 insertions(+)
->
-> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-> index 937554657440..75c5c6ad0b75 100644
-> --- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-> @@ -5,6 +5,7 @@
->   
->   #include <linux/bitfield.h>
->   #include <linux/bsearch.h>
-> +#include <linux/delay.h>
->   
->   #include <drm/drm_managed.h>
->   #include <drm/drm_print.h>
-> @@ -41,6 +42,37 @@
->   
->   #define make_u64_from_u32(hi, lo) ((u64)((u64)(u32)(hi) << 32 | (u32)(lo)))
->   
-> +#ifdef CONFIG_DRM_XE_DEBUG
-> +enum VF_MIGRATION_WAIT_POINTS {
-> +	VF_MIGRATION_WAIT_RESFIX_START	= BIT(0),
-> +	VF_MIGRATION_WAIT_FIXUPS	= BIT(1),
-> +	VF_MIGRATION_WAIT_RESTART_JOBS	= BIT(2),
-> +	VF_MIGRATION_WAIT_RESFIX_DONE	= BIT(3),
-> +};
-> +
-> +#define VF_MIGRATION_WAIT_DELAY_IN_MS	1000
-> +static void vf_post_migration_inject_wait(struct xe_gt *gt,
-> +					  enum VF_MIGRATION_WAIT_POINTS wait)
-> +{
-> +	while (gt->sriov.vf.migration.debug.resfix_stoppers & wait) {
-> +		xe_gt_dbg(gt,
-> +			  "*TESTING* injecting %u ms delay due to resfix_stoppers=%#x, to continue clear %#x\n",
-> +			  VF_MIGRATION_WAIT_DELAY_IN_MS,
-> +			  gt->sriov.vf.migration.debug.resfix_stoppers, wait);
-> +
-> +		msleep(VF_MIGRATION_WAIT_DELAY_IN_MS);
-> +	}
-> +}
-> +
-> +#define VF_MIGRATION_INJECT_WAIT(gt, _POS) ({					\
-> +	struct xe_gt *__gt = (gt);						\
-> +	vf_post_migration_inject_wait(__gt, VF_MIGRATION_WAIT_##_POS);		\
-> +	})
-> +
-> +#else
-> +#define VF_MIGRATION_INJECT_WAIT(_gt, _POS)	typecheck(struct xe_gt *, (_gt))
-> +#endif
-> +
->   static int guc_action_vf_reset(struct xe_guc *guc)
->   {
->   	u32 request[GUC_HXG_REQUEST_MSG_MIN_LEN] = {
-> @@ -320,6 +352,8 @@ static int vf_resfix_start(struct xe_gt *gt, u16 marker)
->   
->   	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
->   
-> +	VF_MIGRATION_INJECT_WAIT(gt, RESFIX_START);
-> +
->   	xe_gt_sriov_dbg_verbose(gt, "Sending resfix start marker %u\n", marker);
->   
->   	return guc_action_vf_resfix_start(guc, marker);
-> @@ -1158,6 +1192,8 @@ static int vf_post_migration_fixups(struct xe_gt *gt)
->   	void *buf = gt->sriov.vf.migration.scratch;
->   	int err;
->   
-> +	VF_MIGRATION_INJECT_WAIT(gt, FIXUPS);
-> +
->   	/* xe_gt_sriov_vf_query_config will fixup the GGTT addresses */
->   	err = xe_gt_sriov_vf_query_config(gt);
->   	if (err)
-> @@ -1176,6 +1212,8 @@ static int vf_post_migration_fixups(struct xe_gt *gt)
->   
->   static void vf_post_migration_rearm(struct xe_gt *gt)
->   {
-> +	VF_MIGRATION_INJECT_WAIT(gt, RESTART_JOBS);
-> +
->   	xe_guc_ct_restart(&gt->uc.guc.ct);
->   	xe_guc_submit_unpause_prepare_vf(&gt->uc.guc);
->   }
-> @@ -1199,6 +1237,8 @@ static void vf_post_migration_abort(struct xe_gt *gt)
->   
->   static int vf_post_migration_resfix_done(struct xe_gt *gt, u16 marker)
->   {
-> +	VF_MIGRATION_INJECT_WAIT(gt, RESFIX_DONE);
-> +
->   	spin_lock_irq(&gt->sriov.vf.migration.lock);
->   	if (gt->sriov.vf.migration.recovery_queued)
->   		xe_gt_sriov_dbg(gt, "another recovery imminent\n");
-> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf_debugfs.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf_debugfs.c
-> index 2ed5b6780d30..507718326e1f 100644
-> --- a/drivers/gpu/drm/xe/xe_gt_sriov_vf_debugfs.c
-> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf_debugfs.c
-> @@ -69,4 +69,16 @@ void xe_gt_sriov_vf_debugfs_register(struct xe_gt *gt, struct dentry *root)
->   	vfdentry->d_inode->i_private = gt;
->   
->   	drm_debugfs_create_files(vf_info, ARRAY_SIZE(vf_info), vfdentry, minor);
-> +
-> +	/*
-> +	 *      /sys/kernel/debug/dri/BDF/
-> +	 *      ├── tile0
-> +	 *          ├── gt0
-> +	 *              ├── vf
-> +	 *                  ├── resfix_stoppers
-> +	 */
-> +	if (IS_ENABLED(CONFIG_DRM_XE_DEBUG)) {
-> +		debugfs_create_x8("resfix_stoppers", 0600, vfdentry,
-> +				  &gt->sriov.vf.migration.debug.resfix_stoppers);
-> +	}
->   }
-> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h b/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
-> index db2f8b3ed3e9..510c33116fbd 100644
-> --- a/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
-> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
-> @@ -52,6 +52,14 @@ struct xe_gt_sriov_vf_migration {
->   	wait_queue_head_t wq;
->   	/** @scratch: Scratch memory for VF recovery */
->   	void *scratch;
-> +	/** @debug: Debug hooks for delaying migration */
-> +	struct {
-> +		/**
-> +		 * @debug.resfix_stoppers: Stop and wait at different stages
-> +		 * during post migration recovery
-> +		 */
-> +		u8 resfix_stoppers;
-> +	} debug;
->   	/**
->   	 * @resfix_marker: Marker sent on start and on end of post-migration
->   	 * steps.
-Solution preliminarily tested, this approach to debug hooks works for me.
-Acked-by: Adam Miszczak <adam.miszczak@linux.intel.com>
+This series intends to add support for Plane Color Management for
+Intel platforms. This is based on the design which has been agreed
+upon by the community. Series implementing the design for generic
+DRM core has been sent out by Alex Hung and Harry Wentland and is
+merged to upstream tree:
+https://patchwork.freedesktop.org/series/152970/
+
+IGT Changes to validate the same have been implemented and can be found
+below:
+https://patchwork.freedesktop.org/series/150455/
+
+Follow On work:
+Changes for Multi Segmented/PWL LUT's will be taken up in a separate
+series to align with implementation of basic color pipeline first in
+upstream. This is as per agreement and alignment in Hackfest discussion.
+
+Changes in v7:
+   - Review comments addressed (Jani, Suraj)
+   - Rebased on AMD series for core API's
+   - Some fixes
+
+Changes in v6:
+   - Remove Multi Segmented LUT implementations. This will be taken up
+     as a separate series.
+   - Code Refactoring and review comments addressed (Jani, Suraj, Simon)
+   - Propogate Plane Color changes to crtc state
+   - Fix DSB programming for Luts
+   - Add 3D Lut support
+   - Plane color callbacks updated to TGL+
+   - Rebase on AMD's Color series v12 version
+
+Changes in v5:
+   - Exposing CTM as 3x4 instead of 3x3 using post offsets.
+   - Exposing single segmented 1D LUT color op along with multi
+     segmented lut in 2 different color pipelines
+   - Add helper to extract LUT data from 32 bit samples
+   - Enable uapi to hardware state copy in driver
+   - Add DSB support to program color Luts 
+   - Fix some miscellaneous issues
+
+Changes in v4:
+  - Rebase
+
+Changes in v3:
+   - Rebase on latest plane color pipeline series (v7) from AMD
+   - Update documentation for 3x3 CTM colorop (Dmitry)
+   - Fix documentation for multi segmented 1D lut (Dmitry)
+   - Squash changes for 1d LUT helpers (Dmitry)
+
+Changes in v2:
+   - Add documentation for hardware capability detection for segmented luts
+   - Add documentation for lut computation in userspace based on
+     hardware caps
+   - Update drm_color_lut_range data structure and handling
+   - Enhance the structure to avoid ambiguity and cater to varying
+     hardware implementations of 1D Lut blocks
+   - Replace drm_color_lut_ext with drm_color_lut32
+   - Change namespace for drm_color_lut_range flags (Sebastien)
+   - Program super fine post csc gamma lut segment for Intel hardware
+
+Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
+Cc: Pekka Paalanen <pekka.paalanen@collabora.com>
+Cc: Simon Ser <contact@emersion.fr>
+Cc: Harry Wentland <harry.wentland@amd.com>
+Cc: Melissa Wen <mwen@igalia.com>
+Cc: Jonas Ådahl <jadahl@redhat.com>
+Cc: Sebastian Wick <sebastian.wick@redhat.com>
+Cc: Joshua Ashton <joshua@froggi.es>
+Cc: Michel Dänzer <mdaenzer@redhat.com>
+Cc: Xaver Hugl <xaver.hugl@gmail.com>
+Cc: Victoria Brekenfeld <victoria@system76.com>
+Cc: Sima <daniel@ffwll.ch>
+Cc: Liviu Dudau <Liviu.Dudau@arm.com>
+Cc: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+Cc: Swati Sharma <swati2.sharma@intel.com>
+Cc: Jani Nikula <jani.nikula@intel.com>
+Cc: Suraj Kandpal <suraj.kandpal@intel.com>
+
+Chaitanya Kumar Borah (8):
+  drm/i915/display: Add identifiers for driver specific blocks
+  drm/i915: Add intel_color_op
+  drm/i915/color: Add helper to create intel colorop
+  drm/i915/color: Create a transfer function color pipeline
+  drm/i915/color: Add framework to program CSC
+  drm/i915/color: Preserve sign bit when int_bits is Zero
+  drm/i915/display: Add registers for 3D LUT
+  drm/i915/color: Add 3D LUT to color pipeline
+
+Uma Shankar (7):
+  drm/i915/color: Add plane CTM callback for D12 and beyond
+  drm/i915: Add register definitions for Plane Degamma
+  drm/i915: Add register definitions for Plane Post CSC
+  drm/i915/color: Add framework to program PRE/POST CSC LUT
+  drm/i915/color: Program Pre-CSC registers
+  drm/i915/xelpd: Program Plane Post CSC Registers
+  drm/i915/color: Enable Plane Color Pipelines
+
+ drivers/gpu/drm/i915/Makefile                 |   2 +
+ drivers/gpu/drm/i915/display/intel_color.c    | 336 ++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_color.h    |   8 +-
+ .../drm/i915/display/intel_color_pipeline.c   | 116 ++++++
+ .../drm/i915/display/intel_color_pipeline.h   |  14 +
+ .../gpu/drm/i915/display/intel_color_regs.h   |  29 ++
+ drivers/gpu/drm/i915/display/intel_colorop.c  |  35 ++
+ drivers/gpu/drm/i915/display/intel_colorop.h  |  15 +
+ drivers/gpu/drm/i915/display/intel_display.c  |   5 +-
+ .../drm/i915/display/intel_display_limits.h   |   9 +
+ .../drm/i915/display/intel_display_types.h    |   9 +
+ drivers/gpu/drm/i915/display/intel_plane.c    |  55 +++
+ .../drm/i915/display/skl_universal_plane.c    |  21 ++
+ .../i915/display/skl_universal_plane_regs.h   | 115 ++++++
+ drivers/gpu/drm/xe/Makefile                   |   2 +
+ 15 files changed, 769 insertions(+), 2 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/display/intel_color_pipeline.c
+ create mode 100644 drivers/gpu/drm/i915/display/intel_color_pipeline.h
+ create mode 100644 drivers/gpu/drm/i915/display/intel_colorop.c
+ create mode 100644 drivers/gpu/drm/i915/display/intel_colorop.h
+
+-- 
+2.50.1
+
