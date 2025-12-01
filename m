@@ -4,27 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 39667D116F3
-	for <intel-xe@archiver.kernel.org>; Mon,  1 Dec 2025 13:52:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 79F7DD116F1
+	for <intel-xe@archiver.kernel.org>; Mon,  1 Dec 2025 13:55:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EE4F210E04B;
-	Mon,  1 Dec 2025 13:52:57 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 56B5F10E04B;
- Mon,  1 Dec 2025 13:52:56 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3EDC210E239;
+	Mon,  1 Dec 2025 13:55:30 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="B7nl+79z";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 831AE10E239
+ for <intel-xe@lists.freedesktop.org>; Mon,  1 Dec 2025 13:55:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1764597328; x=1796133328;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=LLFoqn1UM8Er15W9EeaexxaEQuTxCONzqaFj7O1+SqQ=;
+ b=B7nl+79zz2N2OBPl/lpfzKJHqNzjhMvpDicwIwxgm+x/GUp7KciutFQK
+ zVVGfdrNmq29leg09qT3D6lnzANO5dlLfnwQsJUebsQzdpmnn8LXKBIlH
+ xcky0GKpQqB0ijoxcYmOclSgs4UBEuNNFzIKGc2NMuof7ioC9Y/QrG5sj
+ inscI1I/4FYh1k3rk+bMYu0nmQm3xmO7U+ceT8YszgOoWN0yUPtM2T7b5
+ UkVlihdChu7mDbb5aWV3cT89kcDFX7iEiCyvEbbkYmGW0dfojaBhxJzUr
+ lqfuPtsC8A+0VUy9mQ+kRGmQYF3MqKMlde7D0zNSrlhgFJ10rmIj6fq68 A==;
+X-CSE-ConnectionGUID: P/XXLFUwQJquHssh/QH/0w==
+X-CSE-MsgGUID: 0Yj9mji1RWOW509EwmEGBw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11629"; a="77167776"
+X-IronPort-AV: E=Sophos;i="6.20,240,1758610800"; d="scan'208";a="77167776"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Dec 2025 05:55:28 -0800
+X-CSE-ConnectionGUID: qbEsfWxsQkGPNqK5gLP2vg==
+X-CSE-MsgGUID: MeUqf/MbT6edDWkxRFbjHA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.20,240,1758610800"; d="scan'208";a="198548377"
+Received: from ettammin-desk.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.132])
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Dec 2025 05:55:26 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: "Upadhyay, Tejas" <tejas.upadhyay@intel.com>, "Gote, Nitin R"
+ <nitin.r.gote@intel.com>, "intel-xe@lists.freedesktop.org"
+ <intel-xe@lists.freedesktop.org>
+Cc: "Piorkowski, Piotr" <piotr.piorkowski@intel.com>, "Gote, Nitin R"
+ <nitin.r.gote@intel.com>
+Subject: RE: [PATCH] drm/xe: Use IS_ENABLED() for config checks instead of
+ defined()
+In-Reply-To: <SJ1PR11MB620465985EABAEF33646A24581DBA@SJ1PR11MB6204.namprd11.prod.outlook.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20251127170651.3798-2-nitin.r.gote@intel.com>
+ <SJ1PR11MB620465985EABAEF33646A24581DBA@SJ1PR11MB6204.namprd11.prod.outlook.com>
+Date: Mon, 01 Dec 2025 15:55:22 +0200
+Message-ID: <170172a4dd8a4262611287ca2e189258845a5d23@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_Switch_to_use_kernel_sta?=
- =?utf-8?q?ndard_fault_injection_in_i915_=28rev5=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Juha-Pekka Heikkila" <juhapekka.heikkila@gmail.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 01 Dec 2025 13:52:56 -0000
-Message-ID: <176459717634.44391.14677577838377996942@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20251201130559.731361-1-juhapekka.heikkila@gmail.com>
-In-Reply-To: <20251201130559.731361-1-juhapekka.heikkila@gmail.com>
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,85 +69,56 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Mon, 01 Dec 2025, "Upadhyay, Tejas" <tejas.upadhyay@intel.com> wrote:
+>> -----Original Message-----
+>> From: Intel-xe <intel-xe-bounces@lists.freedesktop.org> On Behalf Of Nitin
+>> Gote
+>> Sent: 27 November 2025 22:37
+>> To: intel-xe@lists.freedesktop.org
+>> Cc: Piorkowski, Piotr <piotr.piorkowski@intel.com>; Gote, Nitin R
+>> <nitin.r.gote@intel.com>
+>> Subject: [PATCH] drm/xe: Use IS_ENABLED() for config checks instead of
+>> defined()
+>> 
+>> Prefer IS_ENABLED() instead of defined() for checking whether a kconfig
+>> option is enabled.
+>
+> Add little info why
 
-Series: Switch to use kernel standard fault injection in i915 (rev5)
-URL   : https://patchwork.freedesktop.org/series/155986/
-State : warning
+That's just what you're supposed to do. ;)
 
-== Summary ==
-
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 7f7b6cfa09ab1155b3e92ccfb7ae4bbfd41fec0c
-Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
-Fast mode used, each commit won't be checked separately.
--
-+drivers/gpu/drm/i915/gt/intel_reset.c:1569:12: warning: context imbalance in '_intel_gt_reset_lock' - different lock contexts for basic block
-+drivers/gpu/drm/i915/gt/intel_sseu.c:600:17: error: too long token expansion
-+drivers/gpu/drm/i915/i915_active.c:1062:16: warning: context imbalance in '__i915_active_fence_set' - different lock contexts for basic block
-+drivers/gpu/drm/i915/i915_drm_client.c:92:9: error: incompatible types in comparison expression (different address spaces):
-+drivers/gpu/drm/i915/i915_drm_client.c:92:9: error: incompatible types in comparison expression (different address spaces):
-+drivers/gpu/drm/i915/i915_drm_client.c:92:9:    expected struct list_head const *list
-+drivers/gpu/drm/i915/i915_drm_client.c:92:9:    got struct list_head [noderef] __rcu *pos
-+drivers/gpu/drm/i915/i915_drm_client.c:92:9:    struct list_head *
-+drivers/gpu/drm/i915/i915_drm_client.c:92:9:    struct list_head *
-+drivers/gpu/drm/i915/i915_drm_client.c:92:9:    struct list_head [noderef] __rcu *
-+drivers/gpu/drm/i915/i915_drm_client.c:92:9:    struct list_head [noderef] __rcu *
-+drivers/gpu/drm/i915/i915_drm_client.c:92:9: warning: incorrect type in argument 1 (different address spaces)
-+drivers/gpu/drm/i915/i915_gpu_error.c:692:3: warning: symbol 'guc_hw_reg_state' was not declared. Should it be static?
-+drivers/gpu/drm/i915/i915_irq.c:467:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:467:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:475:16: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:475:16: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:480:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:480:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:480:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:518:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:518:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:526:16: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:526:16: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:531:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:531:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:531:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:575:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:575:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:578:15: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:578:15: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:582:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:582:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:589:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:589:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:589:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:589:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/intel_uncore.c:1930:1: warning: context imbalance in 'fwtable_read8' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:1931:1: warning: context imbalance in 'fwtable_read16' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:1932:1: warning: context imbalance in 'fwtable_read32' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:1933:1: warning: context imbalance in 'fwtable_read64' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:1998:1: warning: context imbalance in 'gen6_write8' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:1999:1: warning: context imbalance in 'gen6_write16' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:2000:1: warning: context imbalance in 'gen6_write32' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:2020:1: warning: context imbalance in 'fwtable_write8' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:2021:1: warning: context imbalance in 'fwtable_write16' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:2022:1: warning: context imbalance in 'fwtable_write32' - unexpected unlock
-+drivers/gpu/drm/i915/intel_wakeref.c:148:19: warning: context imbalance in 'wakeref_auto_timeout' - unexpected unlock
-
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+BR,
+Jani.
 
 
+
+>
+> Tejas
+>> 
+>> Signed-off-by: Nitin Gote <nitin.r.gote@intel.com>
+>> ---
+>>  drivers/gpu/drm/xe/xe_vram.c | 2 +-
+>>  1 file changed, 1 insertion(+), 1 deletion(-)
+>> 
+>> diff --git a/drivers/gpu/drm/xe/xe_vram.c b/drivers/gpu/drm/xe/xe_vram.c
+>> index 0a645e76e5fa..8fac1cc08dc9 100644
+>> --- a/drivers/gpu/drm/xe/xe_vram.c
+>> +++ b/drivers/gpu/drm/xe/xe_vram.c
+>> @@ -325,7 +325,7 @@ struct xe_vram_region *xe_vram_region_alloc(struct
+>> xe_device *xe, u8 id, u32 pla
+>>  	vram->xe = xe;
+>>  	vram->id = id;
+>>  	vram->placement = placement;
+>> -#if defined(CONFIG_DRM_XE_PAGEMAP)
+>> +#if IS_ENABLED(CONFIG_DRM_XE_PAGEMAP)
+>>  	vram->migrate = xe->tiles[id].migrate;  #endif
+>>  	return vram;
+>> --
+>> 2.50.1
+>
+
+-- 
+Jani Nikula, Intel
