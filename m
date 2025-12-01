@@ -4,67 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3567AD11700
-	for <intel-xe@archiver.kernel.org>; Tue,  2 Dec 2025 14:23:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CEDBAD116F6
+	for <intel-xe@archiver.kernel.org>; Tue,  2 Dec 2025 14:23:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E677010E674;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5DA2710E678;
 	Tue,  2 Dec 2025 14:23:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="rtiE3GB6";
+	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="RJMoTVd0";
 	dkim-atps=neutral
-Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [80.241.56.171])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 51D9C10E5B1;
- Tue,  2 Dec 2025 08:29:23 +0000 (UTC)
+Received: from mout-p-103.mailbox.org (mout-p-103.mailbox.org [80.241.56.161])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 76CAD10E010;
+ Mon,  1 Dec 2025 15:34:43 +0000 (UTC)
 Received: from smtp2.mailbox.org (smtp2.mailbox.org
  [IPv6:2001:67c:2050:b231:465::2])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4dLDTD0jlmz9t0n;
- Tue,  2 Dec 2025 09:29:20 +0100 (CET)
+ by mout-p-103.mailbox.org (Postfix) with ESMTPS id 4dKnyS2nxQz9t7d;
+ Mon,  1 Dec 2025 16:34:40 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
  s=mail20150812; 
- t=1764664160; h=from:from:reply-to:reply-to:subject:subject:date:date:
+ t=1764603280; h=from:from:reply-to:reply-to:subject:subject:date:date:
  message-id:message-id:to:to:cc:cc:mime-version:mime-version:
  content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=F3V+T3Om8mfxHZjoquX2SFCTJRc6COI8uBe9tXVns1o=;
- b=rtiE3GB6OQymRRXq6bWEORf0EfuPDtxS3sekTtzO4T8XZ5MLvkGt1Ac63OSi8pz4kbswXr
- yX/iz/4acIgH6RUpliPeKrVGPQnrMs4ZXxhU13MkAgCIPxHBH+/pm8Z/Cf3nSH4HQ8B/Bz
- ayg2P2whnMkKeJLXUzff2SV/iVSLS8+8FonRXw6WpYcXZ4ISMy2FqDLagUV/ezUoERrhXv
- zWyTuYkstLxtsa7rlL59fvFOO+uPnh2qr28MZUrbY+2Xl2t37pRdVa0fxXfdwI5/F/sg1r
- 5Flw/byOkjwd8AVdjG0gHpG5fTsS2diT8CrO3d6uWKB+oAPFIHn+SRu5ItC5+w==
-Message-ID: <1aaaa2fe56fc7598b653a5e45fc26aa0b8703ad5.camel@mailbox.org>
-Subject: Re: [PATCH v2 8/8] drm/xe: Use dma_fence_test_signaled_flag()
+ bh=jgphQImo2CsCBeaCQs8YEn7VRVszdQcY1N+6nFeVvP0=;
+ b=RJMoTVd0KT3Am/i7RHmcUdZ67k5CBi+kZl9EEsPD2iE2f9yWC00VfQQQO2/mLq4ICSbzFl
+ WAgy6uiwm5pAQ/ojek1ecv4MOkfHekA8bbcJEUryGB6pq2RPO4M1OsPyMEueel5O26+hmQ
+ 1/Llt1MOxBbvN1T+1THDoJ3uMwBzjAdVCGqsJRpQqWGidV9YTkEODLrJG3lF2NQaTChQFM
+ 8EQx/2yicrNHVndvn8SZOZt8pBkFq0PkJMIje+VIJbUQIwj/DVsVjuF0sPdR/z03JastDN
+ 27Bj6re/HOL2ghT0W3FwWx28bTsxjfM09+AT6/QUN2rkgn2aZ5cf+RJcK0oSug==
+Message-ID: <8eaab4c04fad84bde279ee2cd228fac4f84c5184.camel@mailbox.org>
+Subject: Re: [PATCH v2 2/8] dma-buf/dma-fence: Add dma_fence_check_and_signal()
 From: Philipp Stanner <phasta@mailbox.org>
-To: Matthew Brost <matthew.brost@intel.com>, Philipp Stanner
- <phasta@kernel.org>
-Cc: Sumit Semwal <sumit.semwal@linaro.org>, Gustavo Padovan
- <gustavo@padovan.org>, Christian =?ISO-8859-1?Q?K=F6nig?=
- <christian.koenig@amd.com>, Felix Kuehling <Felix.Kuehling@amd.com>, Alex
+To: Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, 
+ phasta@kernel.org, Sumit Semwal <sumit.semwal@linaro.org>, Gustavo Padovan
+ <gustavo@padovan.org>, Felix Kuehling <Felix.Kuehling@amd.com>, Alex
  Deucher <alexander.deucher@amd.com>, David Airlie <airlied@gmail.com>,
  Simona Vetter <simona@ffwll.ch>, Jani Nikula <jani.nikula@linux.intel.com>,
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi
  <rodrigo.vivi@intel.com>,  Tvrtko Ursulin <tursulin@ursulin.net>, Huang Rui
- <ray.huang@amd.com>, Matthew Auld <matthew.auld@intel.com>,  Maarten
- Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
- <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Lucas De
- Marchi <lucas.demarchi@intel.com>, Thomas =?ISO-8859-1?Q?Hellstr=F6m?=
- <thomas.hellstrom@linux.intel.com>, linux-media@vger.kernel.org,
- dri-devel@lists.freedesktop.org,  linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org,  intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-Date: Tue, 02 Dec 2025 09:29:09 +0100
-In-Reply-To: <aS3touSB1ZyR2hfM@lstrano-desk.jf.intel.com>
+ <ray.huang@amd.com>, Matthew Auld <matthew.auld@intel.com>,  Matthew Brost
+ <matthew.brost@intel.com>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Lucas De Marchi
+ <lucas.demarchi@intel.com>, Thomas =?ISO-8859-1?Q?Hellstr=F6m?=
+ <thomas.hellstrom@linux.intel.com>
+Cc: linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+ linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org, 
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Date: Mon, 01 Dec 2025 16:34:32 +0100
+In-Reply-To: <93a4f4e4-af7a-4c84-a7a2-5db785f2a5a8@amd.com>
 References: <20251201105011.19386-2-phasta@kernel.org>
- <20251201105011.19386-10-phasta@kernel.org>
- <aS3touSB1ZyR2hfM@lstrano-desk.jf.intel.com>
+ <20251201105011.19386-4-phasta@kernel.org>
+ <80554ed2-4454-489b-873f-533d68c8d2ae@amd.com>
+ <2a9c83b4a428bb3cc993499c39d0da01f9563278.camel@mailbox.org>
+ <93a4f4e4-af7a-4c84-a7a2-5db785f2a5a8@amd.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-X-MBO-RS-ID: 76ac2ab24f1c8917547
-X-MBO-RS-META: 6eppcxqxqw1xf4rtz518s3ggqzj8e6aa
+X-MBO-RS-ID: b98572e8d9faed18a8e
+X-MBO-RS-META: 51juwjpfinahneyw9wwu3nc86zzu6ucz
 X-Mailman-Approved-At: Tue, 02 Dec 2025 14:23:25 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -81,101 +82,190 @@ Reply-To: phasta@kernel.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 2025-12-01 at 11:33 -0800, Matthew Brost wrote:
-> On Mon, Dec 01, 2025 at 11:50:12AM +0100, Philipp Stanner wrote:
-> > There is a new dma_fence helper which simplifies testing for a fence's
-> > signaled_flag. Use it in xe.
+On Mon, 2025-12-01 at 16:20 +0100, Christian K=C3=B6nig wrote:
+> On 12/1/25 14:55, Philipp Stanner wrote:
+> > On Mon, 2025-12-01 at 14:23 +0100, Christian K=C3=B6nig wrote:
+> > > On 12/1/25 11:50, Philipp Stanner wrote:
+> > > > The overwhelming majority of users of dma_fence signaling functions
+> > > > don't care about whether the fence had already been signaled by som=
+eone
+> > > > else. Therefore, the return code shall be removed from those functi=
+ons.
+> > > >=20
+> > > > For the few users who rely on the check, a new, specialized functio=
+n
+> > > > shall be provided.
+> > > >=20
+> > > > Add dma_fence_check_and_signal(), which signals a fence if it had n=
+ot
+> > > > yet been signaled, and informs the user about that.
+> > > >=20
+> > > > Add a counter part, dma_fence_check_and_signal_locked(), which does=
+n't
+> > > > take the spinlock.
+> > > >=20
+> > > > Signed-off-by: Philipp Stanner <phasta@kernel.org>
+> > > > ---
+> > > > =C2=A0drivers/dma-buf/dma-fence.c | 44 ++++++++++++++++++++++++++++=
++++++++++
+> > > > =C2=A0include/linux/dma-fence.h=C2=A0=C2=A0 |=C2=A0 2 ++
+> > > > =C2=A02 files changed, 46 insertions(+)
+> > > >=20
+> > > > diff --git a/drivers/dma-buf/dma-fence.c b/drivers/dma-buf/dma-fenc=
+e.c
+> > > > index 96d72ffc0750..146de62887cf 100644
+> > > > --- a/drivers/dma-buf/dma-fence.c
+> > > > +++ b/drivers/dma-buf/dma-fence.c
+> > > > @@ -445,6 +445,50 @@ int dma_fence_signal_locked(struct dma_fence *=
+fence)
+> > > > =C2=A0}
+> > > > =C2=A0EXPORT_SYMBOL(dma_fence_signal_locked);
+> > > > =C2=A0
+> > > > +/**
+> > > > + * dma_fence_check_and_signal_locked - signal the fence if it's no=
+t yet signaled
+> > > > + * @fence: the fence to check and signal
+> > > > + *
+> > > > + * Checks whether a fence was signaled and signals it if it was no=
+t yet signaled.
+> > > > + *
+> > > > + * Unlike dma_fence_check_and_signal(), this function must be call=
+ed with
+> > > > + * &struct dma_fence.lock being held.
+> > > > + *
+> > > > + * Return: true if fence has been signaled already, false otherwis=
+e.
+> > > > + */
+> > > > +bool dma_fence_check_and_signal_locked(struct dma_fence *fence)
+> > >=20
+> > > I'm seriously considering to nuke all the unlocked variants of dma_fe=
+nce functions and just make it mandatory for callers to grab the lock manua=
+lly.
+> > >=20
 > >=20
-> > Signed-off-by: Philipp Stanner <phasta@kernel.org>
+> > You mean "nuke the *locked* variants.
 >=20
-> Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+> Sorry, that wasn't specific enough.
+>=20
+> What I meant was making the locked variants the default instead of the un=
+locked ones.
 
-Doesn't apply on drm-misc-next. Suggestions about what to do about
-that?
+Well, no :D
+
+What you want to do is:
+- Delete / deprecate the *locked* variants
+- Force all users to take the fence lock manually, then use the (now
+all unlocked) dma fence functions.
+
+ACK?
+
+>=20
+> >=20
+> > Why, though? Aren't they enough for most users?
+> > I suppose you have all those subtle races in mind..
+>=20
+> Yeah, exactly that.
+>=20
+> >=20
+> > > > +{
+> > > > +	bool ret;
+> > > > +
+> > > > +	ret =3D dma_fence_test_signaled_flag(fence);
+> > > > +	dma_fence_signal_locked(fence);
+> > > > +
+> > > > +	return ret;
+> > > > +}
+> > > > +EXPORT_SYMBOL(dma_fence_check_and_signal_locked);
+> > > > +
+> > > > +/**
+> > > > + * dma_fence_check_and_signal - signal the fence if it's not yet s=
+ignaled
+> > > > + * @fence: the fence to check and signal
+> > > > + *
+> > > > + * Checks whether a fence was signaled and signals it if it was no=
+t yet signaled.
+> > > > + * All this is done in a race-free manner.
+> > > > + *
+> > > > + * Return: true if fence has been signaled already, false otherwis=
+e.
+> > > > + */
+> > > > +bool dma_fence_check_and_signal(struct dma_fence *fence)
+> > >=20
+> > > So I think we should name this one here dma_fence_check_and_signal_un=
+locked() and drop the postfix from the locked variant.
+> >=20
+> > postfix?
+> >=20
+> > Well, now, IDK. Can't we, for this series, keep the _locked() variant
+> > so that it's congruent with all the other dma_fence code?
+>=20
+> Good point. That thought was not really related to this series here.
+
+OK, then let's progress with this here for now.
 
 
 P.
 
-
 >=20
-> > ---
-> > =C2=A0drivers/gpu/drm/xe/xe_exec_queue.c | 9 +++------
-> > =C2=A0drivers/gpu/drm/xe/xe_pt.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 | 3 +--
-> > =C2=A0drivers/gpu/drm/xe/xe_sched_job.c=C2=A0 | 2 +-
-> > =C2=A03 files changed, 5 insertions(+), 9 deletions(-)
 > >=20
-> > diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe=
-_exec_queue.c
-> > index cb5f204c08ed..06736f52fbaa 100644
-> > --- a/drivers/gpu/drm/xe/xe_exec_queue.c
-> > +++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-> > @@ -1037,8 +1037,7 @@ struct dma_fence *xe_exec_queue_last_fence_get(st=
-ruct xe_exec_queue *q,
-> > =C2=A0
-> > =C2=A0	xe_exec_queue_last_fence_lockdep_assert(q, vm);
-> > =C2=A0
-> > -	if (q->last_fence &&
-> > -	=C2=A0=C2=A0=C2=A0 test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &q->last_fen=
-ce->flags))
-> > +	if (q->last_fence && dma_fence_test_signaled_flag(q->last_fence))
-> > =C2=A0		xe_exec_queue_last_fence_put(q, vm);
-> > =C2=A0
-> > =C2=A0	fence =3D q->last_fence ? q->last_fence : dma_fence_get_stub();
-> > @@ -1064,8 +1063,7 @@ struct dma_fence *xe_exec_queue_last_fence_get_fo=
-r_resume(struct xe_exec_queue *
-> > =C2=A0
-> > =C2=A0	lockdep_assert_held_write(&q->hwe->hw_engine_group->mode_sem);
-> > =C2=A0
-> > -	if (q->last_fence &&
-> > -	=C2=A0=C2=A0=C2=A0 test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &q->last_fen=
-ce->flags))
-> > +	if (q->last_fence && dma_fence_test_signaled_flag(q->last_fence))
-> > =C2=A0		xe_exec_queue_last_fence_put_unlocked(q);
-> > =C2=A0
-> > =C2=A0	fence =3D q->last_fence ? q->last_fence : dma_fence_get_stub();
-> > @@ -1106,8 +1104,7 @@ int xe_exec_queue_last_fence_test_dep(struct xe_e=
-xec_queue *q, struct xe_vm *vm)
-> > =C2=A0
-> > =C2=A0	fence =3D xe_exec_queue_last_fence_get(q, vm);
-> > =C2=A0	if (fence) {
-> > -		err =3D test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &fence->flags) ?
-> > -			0 : -ETIME;
-> > +		err =3D dma_fence_test_signaled_flag(fence) ? 0 : -ETIME;
-> > =C2=A0		dma_fence_put(fence);
-> > =C2=A0	}
-> > =C2=A0
-> > diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-> > index 07f96bda638a..1ca2dec18e51 100644
-> > --- a/drivers/gpu/drm/xe/xe_pt.c
-> > +++ b/drivers/gpu/drm/xe/xe_pt.c
-> > @@ -1208,8 +1208,7 @@ static bool no_in_syncs(struct xe_sync_entry *syn=
-cs, u32 num_syncs)
-> > =C2=A0	for (i =3D 0; i < num_syncs; i++) {
-> > =C2=A0		struct dma_fence *fence =3D syncs[i].fence;
-> > =C2=A0
-> > -		if (fence && !test_bit(DMA_FENCE_FLAG_SIGNALED_BIT,
-> > -				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 &fence->flags))
-> > +		if (fence && !dma_fence_test_signaled_flag(fence))
-> > =C2=A0			return false;
-> > =C2=A0	}
-> > =C2=A0
-> > diff --git a/drivers/gpu/drm/xe/xe_sched_job.c b/drivers/gpu/drm/xe/xe_=
-sched_job.c
-> > index d21bf8f26964..1c9ba49a325b 100644
-> > --- a/drivers/gpu/drm/xe/xe_sched_job.c
-> > +++ b/drivers/gpu/drm/xe/xe_sched_job.c
-> > @@ -188,7 +188,7 @@ static bool xe_fence_set_error(struct dma_fence *fe=
-nce, int error)
-> > =C2=A0	bool signaled;
-> > =C2=A0
-> > =C2=A0	spin_lock_irqsave(fence->lock, irq_flags);
-> > -	signaled =3D test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &fence->flags);
-> > +	signaled =3D dma_fence_test_signaled_flag(fence);
-> > =C2=A0	if (!signaled)
-> > =C2=A0		dma_fence_set_error(fence, error);
-> > =C2=A0	spin_unlock_irqrestore(fence->lock, irq_flags);
-> > --=20
-> > 2.49.0
+> > And then later if you want to force manual locking you can add that
+> > kernel-wide in a separate series, since it'll be a discussion-worthy,
+> > bigger chunk of work.
 > >=20
+> > That's cleaner, and my series here won't prevent that once merged.
+> >=20
+> > >=20
+> > > > +{
+> > > > +	unsigned long flags;
+> > > > +	bool ret;
+> > > > +
+> > > > +	spin_lock_irqsave(fence->lock, flags);
+> > > > +	ret =3D dma_fence_check_and_signal_locked(fence);
+> > > > +	spin_unlock_irqrestore(fence->lock, flags);
+> > >=20
+> > > Could this use guard(fence->lock, flags) ?
+> >=20
+> > guard? You mean a lockdep guard? Do you have a pointer to someplace in
+> > dma_fence who does what you mean / want?
+>=20
+> E.g. like guard(spinlock_irqsave)(&fence->lock);
+>=20
+> Regards,
+> Christian.
+>=20
+> >=20
+> >=20
+> > P.
+> >=20
+> > >=20
+> > > Regards,
+> > > Christian.
+> > >=20
+> > > > +
+> > > > +	return ret;
+> > > > +}
+> > > > +EXPORT_SYMBOL(dma_fence_check_and_signal);
+> > > > +
+> > > > =C2=A0/**
+> > > > =C2=A0 * dma_fence_signal - signal completion of a fence
+> > > > =C2=A0 * @fence: the fence to signal
+> > > > diff --git a/include/linux/dma-fence.h b/include/linux/dma-fence.h
+> > > > index 19972f5d176f..0504afe52c2a 100644
+> > > > --- a/include/linux/dma-fence.h
+> > > > +++ b/include/linux/dma-fence.h
+> > > > @@ -365,6 +365,8 @@ static inline void __dma_fence_might_wait(void)=
+ {}
+> > > > =C2=A0#endif
+> > > > =C2=A0
+> > > > =C2=A0int dma_fence_signal(struct dma_fence *fence);
+> > > > +bool dma_fence_check_and_signal(struct dma_fence *fence);
+> > > > +bool dma_fence_check_and_signal_locked(struct dma_fence *fence);
+> > > > =C2=A0int dma_fence_signal_locked(struct dma_fence *fence);
+> > > > =C2=A0int dma_fence_signal_timestamp(struct dma_fence *fence, ktime=
+_t timestamp);
+> > > > =C2=A0int dma_fence_signal_timestamp_locked(struct dma_fence *fence=
+,
+> > >=20
+> >=20
+>=20
 
