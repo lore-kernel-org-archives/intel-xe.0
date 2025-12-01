@@ -4,50 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0DA7DD116F3
-	for <intel-xe@archiver.kernel.org>; Mon,  1 Dec 2025 18:40:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DFC96D116F6
+	for <intel-xe@archiver.kernel.org>; Mon,  1 Dec 2025 18:40:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0757410E45C;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 231AD10E45D;
 	Mon,  1 Dec 2025 18:40:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Aq4l8lEw";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HyBC6Scl";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2756D10E457;
- Mon,  1 Dec 2025 18:39:59 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 15F9610E45A;
+ Mon,  1 Dec 2025 18:40:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1764614399; x=1796150399;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=TTJ63CD72ecPmQy/qVjJCSw2q7IHBX5hktT4tU8SKdk=;
- b=Aq4l8lEwdiD+JGOiIscNEEZ4QCNNDbBWvR825D15Npqol5G4X+FYMpX8
- CAMTmQ8GDrLSh15TrI8iFlhe/Ye7K96K/DH/t2V7MO/6S5+gybwCj/v4o
- l4jFPWHcWjlEbpJ9CrY/zJFXaa2Ku+uVON9qz+z8OmrHvY1XZWuwbJEO/
- 1eWaFvWbygWQiE8kFrlJDLoJohzWCRodbMbLnk/H/JLZHN/Lvyiz48ybU
- Ap66sue6g6x1x3jy/X75MfoX3pQ+mWdaVZcRwWm71R8KHMl+j4JOeZTee
- b9CIvybMear9nJ0vKB1ih4lO1LzvqivdMlOh1cBIwa8zE1F4sqC4zNF8n w==;
-X-CSE-ConnectionGUID: 6FeN2Z4tRFqYNW2uyqmkdQ==
-X-CSE-MsgGUID: GQBJX61yRjiGOULoT+E6zw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11630"; a="78031141"
-X-IronPort-AV: E=Sophos;i="6.20,241,1758610800"; d="scan'208";a="78031141"
+ t=1764614400; x=1796150400;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=rHm8+BUVmS7Po2BxweXgqHIDsRbAfira/0O5HefqORI=;
+ b=HyBC6SclbCsV4RKtO+x2df6v/hCPQZzdfI0ezBtNC+9InnkW5LKrCe5E
+ n/ZtuDuTa7n3GNEiJ4dPEDDUpOJMWLZFJTNOIUiliUJeW/L2zTSHzsVgq
+ 3W7S5MDdLOTLEIJUvXKW0G1tjapMpnMTD7QHvDs9W8PnwZ8wovxzNkPXj
+ DpqTGKEsLvxWLwaAnmvYrsJ8F3kAIy4+rriHzzK5k4G23UxeaWgUYBHQU
+ KjC7Kl4Qk2R3JSnqCH1VgZBP6UNoD66gF2YxbQgGcZsDwRolPw+sG1m2R
+ ZRiFbyc9N0YHO8UlxmRSdPTnDQUkaOBwBWjZWbDK56OGn1jZy4L+StWiv g==;
+X-CSE-ConnectionGUID: ioB8A3QPSC+6qw9NsQdxdg==
+X-CSE-MsgGUID: n73aHQ9RS4O3UpNrDSmS0A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11630"; a="78031145"
+X-IronPort-AV: E=Sophos;i="6.20,241,1758610800"; d="scan'208";a="78031145"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Dec 2025 10:39:58 -0800
-X-CSE-ConnectionGUID: qcDuS/PoSiSVGJbmeyg0tg==
-X-CSE-MsgGUID: wX8MZamrQsaPR+RU1zswsQ==
+ 01 Dec 2025 10:39:59 -0800
+X-CSE-ConnectionGUID: uNt9bx5iS3CBu/NDBi0eJg==
+X-CSE-MsgGUID: uRm3lwBQShqsVQS/395iNw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,241,1758610800"; d="scan'208";a="194359099"
+X-IronPort-AV: E=Sophos;i="6.20,241,1758610800"; d="scan'208";a="194359103"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Dec 2025 10:39:58 -0800
+ 01 Dec 2025 10:39:59 -0800
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: dri-devel@lists.freedesktop.org
-Subject: [PATCH v7 0/9] Fix DRM scheduler layering violations in Xe
-Date: Mon,  1 Dec 2025 10:39:45 -0800
-Message-Id: <20251201183954.852637-1-matthew.brost@intel.com>
+Subject: [PATCH v7 4/9] drm/xe: Stop abusing DRM scheduler internals
+Date: Mon,  1 Dec 2025 10:39:49 -0800
+Message-Id: <20251201183954.852637-5-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20251201183954.852637-1-matthew.brost@intel.com>
+References: <20251201183954.852637-1-matthew.brost@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -64,63 +66,347 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-At XDC, we discussed that drivers should avoid accessing DRM scheduler
-internals, misusing DRM scheduler locks, and adopt a well-defined
-pending job list iterator. This series proposes the necessary changes to
-the DRM scheduler to bring Xe in line with that agreement and updates Xe
-to use the new DRM scheduler API.
+Use new pending job list iterator and new helper functions in Xe to
+avoid reaching into DRM scheduler internals.
 
-While here, cleanup LR queue handling and simplify GuC state machine in
-Xe too. Also rework LRC timestamp sampling to avoid scheduling toggle.
+Part of this change involves removing pending jobs debug information
+from debugfs and devcoredump. As agreed, the pending job list should
+only be accessed when the scheduler is stopped. However, it's not
+straightforward to determine whether the scheduler is stopped from the
+shared debugfs/devcoredump code path. Additionally, the pending job list
+provides little useful information, as pending jobs can be inferred from
+seqnos and ring head/tail positions. Therefore, this debug information
+is being removed.
 
-v2:
- - Fix checkpatch / naming issues
-v3:
- - Only allow pending job list iterator to be called on stopped schedulers
- - Cleanup LR queue handling / fix a few misselanous Xe scheduler issues
 v4:
- - Address Niranjana's feedback
- - Add patch to avoid toggling scheduler state in the TDR
-v5:
- - Rebase
- - Fixup LRC timeout check (Umesh)
-v6:
- - Fix VF bugs (Testing)
-v7:
- - Disable timestamp WA on VF
+ - Add comment around DRM_GPU_SCHED_STAT_NO_HANG (Niranjana)
 
-Matt
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+Reviewed-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+---
+ drivers/gpu/drm/xe/xe_gpu_scheduler.c    |  4 +-
+ drivers/gpu/drm/xe/xe_gpu_scheduler.h    | 33 ++--------
+ drivers/gpu/drm/xe/xe_guc_submit.c       | 81 ++++++------------------
+ drivers/gpu/drm/xe/xe_guc_submit_types.h | 11 ----
+ drivers/gpu/drm/xe/xe_hw_fence.c         | 16 -----
+ drivers/gpu/drm/xe/xe_hw_fence.h         |  2 -
+ 6 files changed, 27 insertions(+), 120 deletions(-)
 
-Matthew Brost (9):
-  drm/sched: Add several job helpers to avoid drivers touching scheduler
-    state
-  drm/sched: Add pending job list iterator
-  drm/xe: Add dedicated message lock
-  drm/xe: Stop abusing DRM scheduler internals
-  drm/xe: Only toggle scheduling in TDR if GuC is running
-  drm/xe: Do not deregister queues in TDR
-  drm/xe: Remove special casing for LR queues in submission
-  drm/xe: Disable timestamp WA on VFs
-  drm/xe: Avoid toggling schedule state to check LRC timestamp in TDR
-
- drivers/gpu/drm/scheduler/sched_main.c       |   4 +-
- drivers/gpu/drm/xe/xe_gpu_scheduler.c        |   9 +-
- drivers/gpu/drm/xe/xe_gpu_scheduler.h        |  37 +-
- drivers/gpu/drm/xe/xe_gpu_scheduler_types.h  |   2 +
- drivers/gpu/drm/xe/xe_guc_exec_queue_types.h |   2 -
- drivers/gpu/drm/xe/xe_guc_submit.c           | 362 +++----------------
- drivers/gpu/drm/xe/xe_guc_submit_types.h     |  11 -
- drivers/gpu/drm/xe/xe_hw_fence.c             |  16 -
- drivers/gpu/drm/xe/xe_hw_fence.h             |   2 -
- drivers/gpu/drm/xe/xe_lrc.c                  |  45 ++-
- drivers/gpu/drm/xe/xe_lrc.h                  |   3 +-
- drivers/gpu/drm/xe/xe_ring_ops.c             |  25 +-
- drivers/gpu/drm/xe/xe_sched_job.c            |   1 +
- drivers/gpu/drm/xe/xe_sched_job_types.h      |   2 +
- drivers/gpu/drm/xe/xe_trace.h                |   5 -
- include/drm/gpu_scheduler.h                  |  82 +++++
- 16 files changed, 211 insertions(+), 397 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/xe_gpu_scheduler.c b/drivers/gpu/drm/xe/xe_gpu_scheduler.c
+index f4f23317191f..9c8004d5dd91 100644
+--- a/drivers/gpu/drm/xe/xe_gpu_scheduler.c
++++ b/drivers/gpu/drm/xe/xe_gpu_scheduler.c
+@@ -7,7 +7,7 @@
+ 
+ static void xe_sched_process_msg_queue(struct xe_gpu_scheduler *sched)
+ {
+-	if (!READ_ONCE(sched->base.pause_submit))
++	if (!drm_sched_is_stopped(&sched->base))
+ 		queue_work(sched->base.submit_wq, &sched->work_process_msg);
+ }
+ 
+@@ -43,7 +43,7 @@ static void xe_sched_process_msg_work(struct work_struct *w)
+ 		container_of(w, struct xe_gpu_scheduler, work_process_msg);
+ 	struct xe_sched_msg *msg;
+ 
+-	if (READ_ONCE(sched->base.pause_submit))
++	if (drm_sched_is_stopped(&sched->base))
+ 		return;
+ 
+ 	msg = xe_sched_get_msg(sched);
+diff --git a/drivers/gpu/drm/xe/xe_gpu_scheduler.h b/drivers/gpu/drm/xe/xe_gpu_scheduler.h
+index dceb2cd0ee5b..664c2db56af3 100644
+--- a/drivers/gpu/drm/xe/xe_gpu_scheduler.h
++++ b/drivers/gpu/drm/xe/xe_gpu_scheduler.h
+@@ -56,12 +56,9 @@ static inline void xe_sched_resubmit_jobs(struct xe_gpu_scheduler *sched)
+ 	struct drm_sched_job *s_job;
+ 	bool restore_replay = false;
+ 
+-	list_for_each_entry(s_job, &sched->base.pending_list, list) {
+-		struct drm_sched_fence *s_fence = s_job->s_fence;
+-		struct dma_fence *hw_fence = s_fence->parent;
+-
++	drm_sched_for_each_pending_job(s_job, &sched->base, NULL) {
+ 		restore_replay |= to_xe_sched_job(s_job)->restore_replay;
+-		if (restore_replay || (hw_fence && !dma_fence_is_signaled(hw_fence)))
++		if (restore_replay || !drm_sched_job_is_signaled(s_job))
+ 			sched->base.ops->run_job(s_job);
+ 	}
+ }
+@@ -72,14 +69,6 @@ xe_sched_invalidate_job(struct xe_sched_job *job, int threshold)
+ 	return drm_sched_invalidate_job(&job->drm, threshold);
+ }
+ 
+-static inline void xe_sched_add_pending_job(struct xe_gpu_scheduler *sched,
+-					    struct xe_sched_job *job)
+-{
+-	spin_lock(&sched->base.job_list_lock);
+-	list_add(&job->drm.list, &sched->base.pending_list);
+-	spin_unlock(&sched->base.job_list_lock);
+-}
+-
+ /**
+  * xe_sched_first_pending_job() - Find first pending job which is unsignaled
+  * @sched: Xe GPU scheduler
+@@ -89,21 +78,13 @@ static inline void xe_sched_add_pending_job(struct xe_gpu_scheduler *sched,
+ static inline
+ struct xe_sched_job *xe_sched_first_pending_job(struct xe_gpu_scheduler *sched)
+ {
+-	struct xe_sched_job *job, *r_job = NULL;
+-
+-	spin_lock(&sched->base.job_list_lock);
+-	list_for_each_entry(job, &sched->base.pending_list, drm.list) {
+-		struct drm_sched_fence *s_fence = job->drm.s_fence;
+-		struct dma_fence *hw_fence = s_fence->parent;
++	struct drm_sched_job *job;
+ 
+-		if (hw_fence && !dma_fence_is_signaled(hw_fence)) {
+-			r_job = job;
+-			break;
+-		}
+-	}
+-	spin_unlock(&sched->base.job_list_lock);
++	drm_sched_for_each_pending_job(job, &sched->base, NULL)
++		if (!drm_sched_job_is_signaled(job))
++			return to_xe_sched_job(job);
+ 
+-	return r_job;
++	return NULL;
+ }
+ 
+ static inline int
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index 3ca2558c8c96..c8027ccaec81 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -1032,7 +1032,7 @@ static void xe_guc_exec_queue_lr_cleanup(struct work_struct *w)
+ 	struct xe_exec_queue *q = ge->q;
+ 	struct xe_guc *guc = exec_queue_to_guc(q);
+ 	struct xe_gpu_scheduler *sched = &ge->sched;
+-	struct xe_sched_job *job;
++	struct drm_sched_job *job;
+ 	bool wedged = false;
+ 
+ 	xe_gt_assert(guc_to_gt(guc), xe_exec_queue_is_lr(q));
+@@ -1091,16 +1091,10 @@ static void xe_guc_exec_queue_lr_cleanup(struct work_struct *w)
+ 	if (!exec_queue_killed(q) && !xe_lrc_ring_is_idle(q->lrc[0]))
+ 		xe_devcoredump(q, NULL, "LR job cleanup, guc_id=%d", q->guc->id);
+ 
+-	xe_hw_fence_irq_stop(q->fence_irq);
++	drm_sched_for_each_pending_job(job, &sched->base, NULL)
++		xe_sched_job_set_error(to_xe_sched_job(job), -ECANCELED);
+ 
+ 	xe_sched_submission_start(sched);
+-
+-	spin_lock(&sched->base.job_list_lock);
+-	list_for_each_entry(job, &sched->base.pending_list, drm.list)
+-		xe_sched_job_set_error(job, -ECANCELED);
+-	spin_unlock(&sched->base.job_list_lock);
+-
+-	xe_hw_fence_irq_start(q->fence_irq);
+ }
+ 
+ #define ADJUST_FIVE_PERCENT(__t)	mul_u64_u32_div(__t, 105, 100)
+@@ -1219,7 +1213,7 @@ static enum drm_gpu_sched_stat
+ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
+ {
+ 	struct xe_sched_job *job = to_xe_sched_job(drm_job);
+-	struct xe_sched_job *tmp_job;
++	struct drm_sched_job *tmp_job;
+ 	struct xe_exec_queue *q = job->q;
+ 	struct xe_gpu_scheduler *sched = &q->guc->sched;
+ 	struct xe_guc *guc = exec_queue_to_guc(q);
+@@ -1227,7 +1221,6 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
+ 	struct xe_device *xe = guc_to_xe(guc);
+ 	int err = -ETIME;
+ 	pid_t pid = -1;
+-	int i = 0;
+ 	bool wedged = false, skip_timeout_check;
+ 
+ 	xe_gt_assert(guc_to_gt(guc), !xe_exec_queue_is_lr(q));
+@@ -1392,28 +1385,19 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
+ 		__deregister_exec_queue(guc, q);
+ 	}
+ 
+-	/* Stop fence signaling */
+-	xe_hw_fence_irq_stop(q->fence_irq);
++	/* Mark all outstanding jobs as bad, thus completing them */
++	xe_sched_job_set_error(job, err);
++	drm_sched_for_each_pending_job(tmp_job, &sched->base, NULL)
++		xe_sched_job_set_error(to_xe_sched_job(tmp_job), -ECANCELED);
+ 
+-	/*
+-	 * Fence state now stable, stop / start scheduler which cleans up any
+-	 * fences that are complete
+-	 */
+-	xe_sched_add_pending_job(sched, job);
+ 	xe_sched_submission_start(sched);
+-
+ 	xe_guc_exec_queue_trigger_cleanup(q);
+ 
+-	/* Mark all outstanding jobs as bad, thus completing them */
+-	spin_lock(&sched->base.job_list_lock);
+-	list_for_each_entry(tmp_job, &sched->base.pending_list, drm.list)
+-		xe_sched_job_set_error(tmp_job, !i++ ? err : -ECANCELED);
+-	spin_unlock(&sched->base.job_list_lock);
+-
+-	/* Start fence signaling */
+-	xe_hw_fence_irq_start(q->fence_irq);
+-
+-	return DRM_GPU_SCHED_STAT_RESET;
++	/*
++	 * We want the job added back to the pending list so it gets freed; this
++	 * is what DRM_GPU_SCHED_STAT_NO_HANG does.
++	 */
++	return DRM_GPU_SCHED_STAT_NO_HANG;
+ 
+ sched_enable:
+ 	set_exec_queue_pending_tdr_exit(q);
+@@ -2265,9 +2249,12 @@ static void guc_exec_queue_unpause_prepare(struct xe_guc *guc,
+ {
+ 	struct xe_gpu_scheduler *sched = &q->guc->sched;
+ 	struct xe_sched_job *job = NULL;
++	struct drm_sched_job *s_job;
+ 	bool restore_replay = false;
+ 
+-	list_for_each_entry(job, &sched->base.pending_list, drm.list) {
++	drm_sched_for_each_pending_job(s_job, &sched->base, NULL) {
++		job = to_xe_sched_job(s_job);
++
+ 		restore_replay |= job->restore_replay;
+ 		if (restore_replay) {
+ 			xe_gt_dbg(guc_to_gt(guc), "Replay JOB - guc_id=%d, seqno=%d",
+@@ -2391,7 +2378,7 @@ void xe_guc_submit_unpause_vf(struct xe_guc *guc)
+ 		 * created after resfix done.
+ 		 */
+ 		if (q->guc->id != index ||
+-		    !READ_ONCE(q->guc->sched.base.pause_submit))
++		    !drm_sched_is_stopped(&q->guc->sched.base))
+ 			continue;
+ 
+ 		guc_exec_queue_unpause(guc, q);
+@@ -2813,30 +2800,6 @@ xe_guc_exec_queue_snapshot_capture(struct xe_exec_queue *q)
+ 	if (snapshot->parallel_execution)
+ 		guc_exec_queue_wq_snapshot_capture(q, snapshot);
+ 
+-	spin_lock(&sched->base.job_list_lock);
+-	snapshot->pending_list_size = list_count_nodes(&sched->base.pending_list);
+-	snapshot->pending_list = kmalloc_array(snapshot->pending_list_size,
+-					       sizeof(struct pending_list_snapshot),
+-					       GFP_ATOMIC);
+-
+-	if (snapshot->pending_list) {
+-		struct xe_sched_job *job_iter;
+-
+-		i = 0;
+-		list_for_each_entry(job_iter, &sched->base.pending_list, drm.list) {
+-			snapshot->pending_list[i].seqno =
+-				xe_sched_job_seqno(job_iter);
+-			snapshot->pending_list[i].fence =
+-				dma_fence_is_signaled(job_iter->fence) ? 1 : 0;
+-			snapshot->pending_list[i].finished =
+-				dma_fence_is_signaled(&job_iter->drm.s_fence->finished)
+-				? 1 : 0;
+-			i++;
+-		}
+-	}
+-
+-	spin_unlock(&sched->base.job_list_lock);
+-
+ 	return snapshot;
+ }
+ 
+@@ -2894,13 +2857,6 @@ xe_guc_exec_queue_snapshot_print(struct xe_guc_submit_exec_queue_snapshot *snaps
+ 
+ 	if (snapshot->parallel_execution)
+ 		guc_exec_queue_wq_snapshot_print(snapshot, p);
+-
+-	for (i = 0; snapshot->pending_list && i < snapshot->pending_list_size;
+-	     i++)
+-		drm_printf(p, "\tJob: seqno=%d, fence=%d, finished=%d\n",
+-			   snapshot->pending_list[i].seqno,
+-			   snapshot->pending_list[i].fence,
+-			   snapshot->pending_list[i].finished);
+ }
+ 
+ /**
+@@ -2923,7 +2879,6 @@ void xe_guc_exec_queue_snapshot_free(struct xe_guc_submit_exec_queue_snapshot *s
+ 			xe_lrc_snapshot_free(snapshot->lrc[i]);
+ 		kfree(snapshot->lrc);
+ 	}
+-	kfree(snapshot->pending_list);
+ 	kfree(snapshot);
+ }
+ 
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit_types.h b/drivers/gpu/drm/xe/xe_guc_submit_types.h
+index dc7456c34583..0b08c79cf3b9 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit_types.h
++++ b/drivers/gpu/drm/xe/xe_guc_submit_types.h
+@@ -61,12 +61,6 @@ struct guc_submit_parallel_scratch {
+ 	u32 wq[WQ_SIZE / sizeof(u32)];
+ };
+ 
+-struct pending_list_snapshot {
+-	u32 seqno;
+-	bool fence;
+-	bool finished;
+-};
+-
+ /**
+  * struct xe_guc_submit_exec_queue_snapshot - Snapshot for devcoredump
+  */
+@@ -134,11 +128,6 @@ struct xe_guc_submit_exec_queue_snapshot {
+ 		/** @wq: Workqueue Items */
+ 		u32 wq[WQ_SIZE / sizeof(u32)];
+ 	} parallel;
+-
+-	/** @pending_list_size: Size of the pending list snapshot array */
+-	int pending_list_size;
+-	/** @pending_list: snapshot of the pending list info */
+-	struct pending_list_snapshot *pending_list;
+ };
+ 
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_hw_fence.c b/drivers/gpu/drm/xe/xe_hw_fence.c
+index b2a0c46dfcd4..e65dfcdfdbc5 100644
+--- a/drivers/gpu/drm/xe/xe_hw_fence.c
++++ b/drivers/gpu/drm/xe/xe_hw_fence.c
+@@ -110,22 +110,6 @@ void xe_hw_fence_irq_run(struct xe_hw_fence_irq *irq)
+ 	irq_work_queue(&irq->work);
+ }
+ 
+-void xe_hw_fence_irq_stop(struct xe_hw_fence_irq *irq)
+-{
+-	spin_lock_irq(&irq->lock);
+-	irq->enabled = false;
+-	spin_unlock_irq(&irq->lock);
+-}
+-
+-void xe_hw_fence_irq_start(struct xe_hw_fence_irq *irq)
+-{
+-	spin_lock_irq(&irq->lock);
+-	irq->enabled = true;
+-	spin_unlock_irq(&irq->lock);
+-
+-	irq_work_queue(&irq->work);
+-}
+-
+ void xe_hw_fence_ctx_init(struct xe_hw_fence_ctx *ctx, struct xe_gt *gt,
+ 			  struct xe_hw_fence_irq *irq, const char *name)
+ {
+diff --git a/drivers/gpu/drm/xe/xe_hw_fence.h b/drivers/gpu/drm/xe/xe_hw_fence.h
+index f13a1c4982c7..599492c13f80 100644
+--- a/drivers/gpu/drm/xe/xe_hw_fence.h
++++ b/drivers/gpu/drm/xe/xe_hw_fence.h
+@@ -17,8 +17,6 @@ void xe_hw_fence_module_exit(void);
+ void xe_hw_fence_irq_init(struct xe_hw_fence_irq *irq);
+ void xe_hw_fence_irq_finish(struct xe_hw_fence_irq *irq);
+ void xe_hw_fence_irq_run(struct xe_hw_fence_irq *irq);
+-void xe_hw_fence_irq_stop(struct xe_hw_fence_irq *irq);
+-void xe_hw_fence_irq_start(struct xe_hw_fence_irq *irq);
+ 
+ void xe_hw_fence_ctx_init(struct xe_hw_fence_ctx *ctx, struct xe_gt *gt,
+ 			  struct xe_hw_fence_irq *irq, const char *name);
 -- 
 2.34.1
 
