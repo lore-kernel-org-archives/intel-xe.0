@@ -4,62 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C7CBBD116F1
-	for <intel-xe@archiver.kernel.org>; Mon,  1 Dec 2025 15:45:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3601FD116F3
+	for <intel-xe@archiver.kernel.org>; Mon,  1 Dec 2025 15:54:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 77FB210E409;
-	Mon,  1 Dec 2025 15:45:15 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="g0yH6fU/";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 74E7810E409;
- Mon,  1 Dec 2025 15:45:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1764603915; x=1796139915;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=ihd+OynkBI3LvrViK4UW6HYIHLMlvRpHhZbmAdKbktE=;
- b=g0yH6fU/wsv3ye73sEcX5cWW0bmFJ41uuAAvL2RrZy3V0MtUn3kxdw85
- 1c89BYMpZBoBwmGvMoIcEbgAQkgHkjtr8prbOalgXb+qYXHBJJ/lQwJWo
- rcZQVpWt/Gs9sXAMfnfANgSuoFT4974S3e6JZCoHzEtKiGHR1y4i4OIqS
- IyomeRPtZXla/AtFEDJZ98Nd7ivz+8UDHg0WRIOYatKPtTNxM0sQ11Ig6
- UOCfW5+d130pfASlwlQl+u83K7z/1aQAnWMhiKkQIQW73LTu4cLdIlL1o
- smhL+FvIFIsKrkoBBHSbM1bFP7prXhy1xYDtYvk4x+VVjnNfOrDhosrPh g==;
-X-CSE-ConnectionGUID: C3rBnLdvSLyPq5fS+lWwkA==
-X-CSE-MsgGUID: MbVUQyKZQ4SVAoppWOclpg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11629"; a="66709461"
-X-IronPort-AV: E=Sophos;i="6.20,241,1758610800"; d="scan'208";a="66709461"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Dec 2025 07:45:15 -0800
-X-CSE-ConnectionGUID: KL2GTH2XQcGFh5jbS6aywQ==
-X-CSE-MsgGUID: l9FOx2pNThORGj2iPEE/Pg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,241,1758610800"; d="scan'208";a="194096174"
-Received: from lkp-server01.sh.intel.com (HELO 4664bbef4914) ([10.239.97.150])
- by orviesa007.jf.intel.com with ESMTP; 01 Dec 2025 07:45:09 -0800
-Received: from kbuild by 4664bbef4914 with local (Exim 4.98.2)
- (envelope-from <lkp@intel.com>) id 1vQ65L-000000008sv-0xtH;
- Mon, 01 Dec 2025 15:45:07 +0000
-Date: Mon, 1 Dec 2025 23:45:05 +0800
-From: kernel test robot <lkp@intel.com>
-To: Uma Shankar <uma.shankar@intel.com>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Cc: oe-kbuild-all@lists.linux.dev, chaitanya.kumar.borah@intel.com,
- ville.syrjala@linux.intel.com, pekka.paalanen@collabora.com,
- contact@emersion.fr, harry.wentland@amd.com, mwen@igalia.com,
- jadahl@redhat.com, sebastian.wick@redhat.com,
- swati2.sharma@intel.com, alex.hung@amd.com, jani.nikula@intel.com,
- suraj.kandpal@intel.com, Uma Shankar <uma.shankar@intel.com>
-Subject: Re: [v7 05/15] drm/i915/color: Add framework to program CSC
-Message-ID: <202512012301.V42g2qYb-lkp@intel.com>
-References: <20251201064655.3579280-6-uma.shankar@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id EE3F910E41E;
+	Mon,  1 Dec 2025 15:54:07 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6923A10E412;
+ Mon,  1 Dec 2025 15:54:07 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251201064655.3579280-6-uma.shankar@intel.com>
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Add_new_general_DRM_prope?=
+ =?utf-8?q?rty_=22color_format=22_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Nicolas Frattaroli" <nicolas.frattaroli@collabora.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 01 Dec 2025 15:54:07 -0000
+Message-ID: <176460444742.44391.7561839573895065415@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20251128-color-format-v5-0-63e82f1db1e1@collabora.com>
+In-Reply-To: <20251128-color-format-v5-0-63e82f1db1e1@collabora.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,114 +36,137 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Uma,
+== Series Details ==
 
-kernel test robot noticed the following build errors:
+Series: Add new general DRM property "color format" (rev2)
+URL   : https://patchwork.freedesktop.org/series/157911/
+State : warning
 
-[auto build test ERROR on next-20251201]
-[cannot apply to drm-xe/drm-xe-next drm-intel/for-linux-next drm-intel/for-linux-next-fixes drm-tip/drm-tip v6.18 v6.18-rc7 v6.18-rc6 linus/master v6.18]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+== Summary ==
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Uma-Shankar/drm-i915-display-Add-identifiers-for-driver-specific-blocks/20251201-150245
-base:   next-20251201
-patch link:    https://lore.kernel.org/r/20251201064655.3579280-6-uma.shankar%40intel.com
-patch subject: [v7 05/15] drm/i915/color: Add framework to program CSC
-config: x86_64-randconfig-012-20251201 (https://download.01.org/0day-ci/archive/20251201/202512012301.V42g2qYb-lkp@intel.com/config)
-compiler: gcc-14 (Debian 14.2.0-19) 14.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251201/202512012301.V42g2qYb-lkp@intel.com/reproduce)
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+2de9a3901bc28757c7906b454717b64e2a214021
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 112150954be848015eac91bebd09c0f15c6d6476
+Author: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Date:   Fri Nov 28 22:05:53 2025 +0100
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202512012301.V42g2qYb-lkp@intel.com/
+    drm/tests: hdmi: Add tests for the color_format property
+    
+    Add some KUnit tests to check the color_format property is working as
+    expected with the HDMI state helper.
+    
+    The added tests check that AUTO results in RGB, and the YCBCR modes
+    result in the corresponding YUV modes. An additional test ensures that
+    only DRM_COLOR_FORMAT_AUTO falls back to YUV420 with a YUV420-only mode,
+    and RGB errors out instead, while explicitly asking for YUV420 still
+    works.
+    
+    This requires exporting hdmi_compute_config, so that it is accessible
+    from the tests.
+    
+    Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
++ /mt/dim checkpatch 4ee45005b5548f7cf1ab059413eaaa41dbd2ecf6 drm-intel
+9bc441454413 drm/amd/display: Remove unnecessary SIGNAL_TYPE_HDMI_TYPE_A check
+-:38: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#38: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c:6672:
++	if (drm_mode_is_420_only(info, mode_in) || (drm_mode_is_420_also(info, mode_in) &&
++	    aconnector && aconnector->force_yuv420_output))
 
-All errors (new ones prefixed by >>):
+total: 0 errors, 0 warnings, 1 checks, 14 lines checked
+9ca651a68680 drm: Add new general DRM property "color format"
+-:207: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#207: FILE: drivers/gpu/drm/drm_connector.c:2745:
++		drm_property_create_enum(dev, DRM_MODE_PROP_ENUM, "color format",
++					enum_list, len);
 
-   In file included from drivers/gpu/drm/i915/display/intel_colorop.h:9,
-                    from drivers/gpu/drm/i915/display/intel_plane.c:52:
-   drivers/gpu/drm/i915/display/intel_display_types.h:1993:28: error: field 'base' has incomplete type
-    1993 |         struct drm_colorop base;
-         |                            ^~~~
-   drivers/gpu/drm/i915/display/intel_plane.c: In function 'intel_plane_color_copy_uapi_to_hw_state':
-   drivers/gpu/drm/i915/display/intel_plane.c:367:41: error: 'struct drm_plane_state' has no member named 'color_pipeline'
-     367 |         iter_colorop = plane_state->uapi.color_pipeline;
-         |                                         ^
-   drivers/gpu/drm/i915/display/intel_plane.c:370:17: error: implicit declaration of function 'for_each_new_colorop_in_state'; did you mean 'for_each_new_crtc_in_state'? [-Wimplicit-function-declaration]
-     370 |                 for_each_new_colorop_in_state(state, colorop, new_colorop_state, i) {
-         |                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-         |                 for_each_new_crtc_in_state
-   drivers/gpu/drm/i915/display/intel_plane.c:370:84: error: expected ';' before '{' token
-     370 |                 for_each_new_colorop_in_state(state, colorop, new_colorop_state, i) {
-         |                                                                                    ^~
-         |                                                                                    ;
->> drivers/gpu/drm/i915/display/intel_plane.c:360:35: error: unused variable 'blob' [-Werror=unused-variable]
-     360 |         struct drm_property_blob *blob;
-         |                                   ^~~~
->> drivers/gpu/drm/i915/display/intel_plane.c:359:31: error: unused variable 'intel_colorop' [-Werror=unused-variable]
-     359 |         struct intel_colorop *intel_colorop;
-         |                               ^~~~~~~~~~~~~
-   drivers/gpu/drm/i915/display/intel_plane.c: At top level:
->> drivers/gpu/drm/i915/display/intel_plane.c:341:1: error: 'intel_plane_colorop_replace_blob' defined but not used [-Werror=unused-function]
-     341 | intel_plane_colorop_replace_blob(struct intel_plane_state *plane_state,
-         | ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   cc1: all warnings being treated as errors
+-:242: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#242: FILE: drivers/gpu/drm/drm_connector.c:2990:
++
++
+
+total: 0 errors, 0 warnings, 2 checks, 272 lines checked
+44d228d39630 drm: Add enum conversion from DRM_COLOR_FORMAT to HDMI_COLORSPACE
+dc43e3242caf drm/bridge: Act on the DRM color format property
+-:73: WARNING:ENOTSUPP: ENOTSUPP is not a SUSV4 error code, prefer EOPNOTSUPP
+#73: FILE: drivers/gpu/drm/drm_bridge.c:1182:
++			ret = -ENOTSUPP;
+
+total: 0 errors, 1 warnings, 0 checks, 57 lines checked
+70dc8308cf51 drm/display: hdmi-state-helper: Act on color format DRM property
+d57270f1b8df drm/display: hdmi-state-helper: Try subsampling in mode_valid
+c64aa68d2d58 drm/i915: Implement the "color format" DRM property
+-:235: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#235: FILE: drivers/gpu/drm/i915/display/intel_dp_mst.c:689:
++		drm_dbg_kms(display->drm,
++			"YCbCr 4:2:0 mode requested but unsupported by connector.\n");
+
+-:295: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#295: FILE: drivers/gpu/drm/i915/display/intel_hdmi.c:2286:
++		crtc_state->sink_format = intel_hdmi_sink_format(crtc_state, connector,
++			req_fmt == DRM_COLOR_FORMAT_YCBCR420);
+
+total: 0 errors, 0 warnings, 2 checks, 285 lines checked
+5a6141e7f0d6 drm/amdgpu: Implement "color format" DRM property
+-:54: CHECK:BRACES: braces {} should be used on all arms of this statement
+#54: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c:6679:
++	if (drm_mode_is_420_only(info, mode_in) && (want_420 || !connector_state->color_format))
+[...]
+-	else if ((connector->display_info.color_formats & DRM_COLOR_FORMAT_YCBCR422)
+[...]
+-			&& aconnector->force_yuv422_output)
+[...]
++		timing_out->pixel_encoding = PIXEL_ENCODING_YCBCR420;
+[...]
+-	else if ((connector->display_info.color_formats & DRM_COLOR_FORMAT_YCBCR444)
+[...]
++		 (info->color_formats & DRM_COLOR_FORMAT_YCBCR444) && is_dp_or_hdmi)
+[...]
+
+-:72: CHECK:BRACES: Unbalanced braces around else statement
+#72: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c:6691:
++	else {
+
+total: 0 errors, 0 warnings, 2 checks, 155 lines checked
+09d032183fff drm/rockchip: Add YUV422 output mode constants for VOP2
+b204f0ef6595 drm/rockchip: vop2: Fix YUV444 output
+4aa14849c6db drm/rockchip: vop2: Add RK3576 to the RG swap special case
+c40fd8f29a95 drm/rockchip: vop2: Recognise 10/12-bit YUV422 as YUV formats
+a5659a6f69c8 drm/rockchip: vop2: Set correct output format for RK3576 YUV422
+dfedc225b0eb drm/rockchip: dw_hdmi_qp: Implement "color format" DRM property
+530bcd81a674 drm/rockchip: dw_hdmi_qp: Set supported_formats platdata
+f344f233e03a drm/connector: Register color format property on HDMI connectors
+112150954be8 drm/tests: hdmi: Add tests for the color_format property
+-:90: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#90: FILE: drivers/gpu/drm/tests/drm_hdmi_state_helper_test.c:2036:
++	priv = drm_kunit_helper_connector_hdmi_init_with_edid_funcs(test,
++				BIT(HDMI_COLORSPACE_RGB) |
+
+-:121: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#121: FILE: drivers/gpu/drm/tests/drm_hdmi_state_helper_test.c:2067:
++KUNIT_ARRAY_PARAM_DESC(check_hdmi_color_format,
++		  hdmi_color_format_params, desc);
+
+-:123: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#123: FILE: drivers/gpu/drm/tests/drm_hdmi_state_helper_test.c:2069:
++
++
+
+-:133: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#133: FILE: drivers/gpu/drm/tests/drm_hdmi_state_helper_test.c:2079:
++	priv = drm_kunit_helper_connector_hdmi_init_with_edid_funcs(test,
++				BIT(HDMI_COLORSPACE_RGB) |
+
+total: 0 errors, 0 warnings, 4 checks, 150 lines checked
 
 
-vim +/blob +360 drivers/gpu/drm/i915/display/intel_plane.c
-
-   339	
-   340	static bool
- > 341	intel_plane_colorop_replace_blob(struct intel_plane_state *plane_state,
-   342					 struct intel_colorop *intel_colorop,
-   343					 struct drm_property_blob *blob)
-   344	{
-   345		if (intel_colorop->id == INTEL_PLANE_CB_CSC)
-   346			return drm_property_replace_blob(&plane_state->hw.ctm, blob);
-   347	
-   348		return false;
-   349	}
-   350	
-   351	static void
-   352	intel_plane_color_copy_uapi_to_hw_state(struct intel_plane_state *plane_state,
-   353						const struct intel_plane_state *from_plane_state,
-   354						struct intel_crtc *crtc)
-   355	{
-   356		struct drm_colorop *iter_colorop, *colorop;
-   357		struct drm_colorop_state *new_colorop_state;
-   358		struct drm_atomic_state *state = plane_state->uapi.state;
- > 359		struct intel_colorop *intel_colorop;
- > 360		struct drm_property_blob *blob;
-   361		int i = 0;
-   362		struct intel_atomic_state *intel_atomic_state = to_intel_atomic_state(state);
-   363		struct intel_crtc_state *new_crtc_state = intel_atomic_state ?
-   364			intel_atomic_get_new_crtc_state(intel_atomic_state, crtc) : NULL;
-   365		bool changed = false;
-   366	
-   367		iter_colorop = plane_state->uapi.color_pipeline;
-   368	
-   369		while (iter_colorop) {
- > 370			for_each_new_colorop_in_state(state, colorop, new_colorop_state, i) {
-   371				if (new_colorop_state->colorop == iter_colorop) {
-   372					blob = new_colorop_state->bypass ? NULL : new_colorop_state->data;
-   373					intel_colorop = to_intel_colorop(colorop);
-   374					changed |= intel_plane_colorop_replace_blob(plane_state,
-   375										    intel_colorop,
-   376										    blob);
-   377				}
-   378			}
-   379			iter_colorop = iter_colorop->next;
-   380		}
-   381	
-   382		if (new_crtc_state && changed)
-   383			new_crtc_state->plane_color_changed = true;
-   384	}
-   385	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
