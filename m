@@ -4,27 +4,33 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0687DD116E2
-	for <intel-xe@archiver.kernel.org>; Mon,  1 Dec 2025 07:50:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9B7B4D116F5
+	for <intel-xe@archiver.kernel.org>; Mon,  1 Dec 2025 08:06:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AFA3110E2CB;
-	Mon,  1 Dec 2025 07:50:16 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 49CCE10E2CB;
- Mon,  1 Dec 2025 07:50:15 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3536494114293141011=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5C01F10E2CC;
+	Mon,  1 Dec 2025 08:06:22 +0000 (UTC)
+Received: from coelho.fi (coelho.fi [88.99.146.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 16ADB10E2F5;
+ Mon,  1 Dec 2025 08:06:21 +0000 (UTC)
+Received: from mobile-access-d98cd5-49.dhcp.inet.fi ([217.140.213.49]
+ helo=[192.168.8.139])
+ by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.98.2) (envelope-from <luca@coelho.fi>)
+ id 1vPyvJ-00000000V5c-0id3; Mon, 01 Dec 2025 10:06:18 +0200
+Message-ID: <5023c3918fbc4e21984c4d35c059ef80792c4413.camel@coelho.fi>
+From: Luca Coelho <luca@coelho.fi>
+To: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org
+Date: Mon, 01 Dec 2025 10:06:16 +0200
+In-Reply-To: <f45a77708108dc4b606d732c1b011aa08fab72b5.1764076995.git.jani.nikula@intel.com>
+References: <cover.1764076995.git.jani.nikula@intel.com>
+ <f45a77708108dc4b606d732c1b011aa08fab72b5.1764076995.git.jani.nikula@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2-7 
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Plane_Color_Pipeline_suppor?=
- =?utf-8?q?t_for_Intel_platforms_=28rev6=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Uma Shankar" <uma.shankar@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 01 Dec 2025 07:50:15 -0000
-Message-ID: <176457541529.41555.17644229316478627166@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20251201064655.3579280-1-uma.shankar@intel.com>
-In-Reply-To: <20251201064655.3579280-1-uma.shankar@intel.com>
+Subject: Re: [PATCH v2 1/5] drm/i915/pps: drop wakeref parameter from
+ with_intel_pps_lock()
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,141 +42,311 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============3536494114293141011==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Tue, 2025-11-25 at 15:24 +0200, Jani Nikula wrote:
+> Add another level of macro abstraction, and declare the wakeref within
+> the for loop using __UNIQUE_ID. This allows us to drop a bunch of
+> boilerplate declarations and parameter passing.
+>=20
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/g4x_dp.c    |  3 +-
+>  drivers/gpu/drm/i915/display/intel_pps.c | 56 +++++++-----------------
+>  drivers/gpu/drm/i915/display/intel_pps.h |  7 ++-
+>  3 files changed, 22 insertions(+), 44 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/i915/display/g4x_dp.c b/drivers/gpu/drm/i915=
+/display/g4x_dp.c
+> index a3ff21b2f69f..27f4c55d7484 100644
+> --- a/drivers/gpu/drm/i915/display/g4x_dp.c
+> +++ b/drivers/gpu/drm/i915/display/g4x_dp.c
+> @@ -684,12 +684,11 @@ static void intel_enable_dp(struct intel_atomic_sta=
+te *state,
+>  	struct intel_display *display =3D to_intel_display(state);
+>  	struct intel_dp *intel_dp =3D enc_to_intel_dp(encoder);
+>  	u32 dp_reg =3D intel_de_read(display, intel_dp->output_reg);
+> -	intel_wakeref_t wakeref;
+> =20
+>  	if (drm_WARN_ON(display->drm, dp_reg & DP_PORT_EN))
+>  		return;
+> =20
+> -	with_intel_pps_lock(intel_dp, wakeref) {
+> +	with_intel_pps_lock(intel_dp) {
+>  		if (display->platform.valleyview || display->platform.cherryview)
+>  			vlv_pps_port_enable_unlocked(encoder, pipe_config);
+> =20
+> diff --git a/drivers/gpu/drm/i915/display/intel_pps.c b/drivers/gpu/drm/i=
+915/display/intel_pps.c
+> index 25692a547764..34376255b85c 100644
+> --- a/drivers/gpu/drm/i915/display/intel_pps.c
+> +++ b/drivers/gpu/drm/i915/display/intel_pps.c
+> @@ -697,12 +697,10 @@ static void wait_panel_power_cycle(struct intel_dp =
+*intel_dp)
+> =20
+>  void intel_pps_wait_power_cycle(struct intel_dp *intel_dp)
+>  {
+> -	intel_wakeref_t wakeref;
+> -
+>  	if (!intel_dp_is_edp(intel_dp))
+>  		return;
+> =20
+> -	with_intel_pps_lock(intel_dp, wakeref)
+> +	with_intel_pps_lock(intel_dp)
+>  		wait_panel_power_cycle(intel_dp);
+>  }
+> =20
+> @@ -811,14 +809,13 @@ bool intel_pps_vdd_on_unlocked(struct intel_dp *int=
+el_dp)
+>  void intel_pps_vdd_on(struct intel_dp *intel_dp)
+>  {
+>  	struct intel_display *display =3D to_intel_display(intel_dp);
+> -	intel_wakeref_t wakeref;
+>  	bool vdd;
+> =20
+>  	if (!intel_dp_is_edp(intel_dp))
+>  		return;
+> =20
+>  	vdd =3D false;
+> -	with_intel_pps_lock(intel_dp, wakeref)
+> +	with_intel_pps_lock(intel_dp)
+>  		vdd =3D intel_pps_vdd_on_unlocked(intel_dp);
+>  	INTEL_DISPLAY_STATE_WARN(display, !vdd, "[ENCODER:%d:%s] %s VDD already=
+ requested on\n",
+>  				 dp_to_dig_port(intel_dp)->base.base.base.id,
+> @@ -873,8 +870,6 @@ static void intel_pps_vdd_off_sync_unlocked(struct in=
+tel_dp *intel_dp)
+> =20
+>  void intel_pps_vdd_off_sync(struct intel_dp *intel_dp)
+>  {
+> -	intel_wakeref_t wakeref;
+> -
+>  	if (!intel_dp_is_edp(intel_dp))
+>  		return;
+> =20
+> @@ -883,7 +878,7 @@ void intel_pps_vdd_off_sync(struct intel_dp *intel_dp=
+)
+>  	 * vdd might still be enabled due to the delayed vdd off.
+>  	 * Make sure vdd is actually turned off here.
+>  	 */
+> -	with_intel_pps_lock(intel_dp, wakeref)
+> +	with_intel_pps_lock(intel_dp)
+>  		intel_pps_vdd_off_sync_unlocked(intel_dp);
+>  }
+> =20
+> @@ -892,9 +887,8 @@ static void edp_panel_vdd_work(struct work_struct *__=
+work)
+>  	struct intel_pps *pps =3D container_of(to_delayed_work(__work),
+>  					     struct intel_pps, panel_vdd_work);
+>  	struct intel_dp *intel_dp =3D container_of(pps, struct intel_dp, pps);
+> -	intel_wakeref_t wakeref;
+> =20
+> -	with_intel_pps_lock(intel_dp, wakeref) {
+> +	with_intel_pps_lock(intel_dp) {
+>  		if (!intel_dp->pps.want_panel_vdd)
+>  			intel_pps_vdd_off_sync_unlocked(intel_dp);
+>  	}
+> @@ -952,12 +946,10 @@ void intel_pps_vdd_off_unlocked(struct intel_dp *in=
+tel_dp, bool sync)
+> =20
+>  void intel_pps_vdd_off(struct intel_dp *intel_dp)
+>  {
+> -	intel_wakeref_t wakeref;
+> -
+>  	if (!intel_dp_is_edp(intel_dp))
+>  		return;
+> =20
+> -	with_intel_pps_lock(intel_dp, wakeref)
+> +	with_intel_pps_lock(intel_dp)
+>  		intel_pps_vdd_off_unlocked(intel_dp, false);
+>  }
+> =20
+> @@ -1026,12 +1018,10 @@ void intel_pps_on_unlocked(struct intel_dp *intel=
+_dp)
+> =20
+>  void intel_pps_on(struct intel_dp *intel_dp)
+>  {
+> -	intel_wakeref_t wakeref;
+> -
+>  	if (!intel_dp_is_edp(intel_dp))
+>  		return;
+> =20
+> -	with_intel_pps_lock(intel_dp, wakeref)
+> +	with_intel_pps_lock(intel_dp)
+>  		intel_pps_on_unlocked(intel_dp);
+>  }
+> =20
+> @@ -1082,12 +1072,10 @@ void intel_pps_off_unlocked(struct intel_dp *inte=
+l_dp)
+> =20
+>  void intel_pps_off(struct intel_dp *intel_dp)
+>  {
+> -	intel_wakeref_t wakeref;
+> -
+>  	if (!intel_dp_is_edp(intel_dp))
+>  		return;
+> =20
+> -	with_intel_pps_lock(intel_dp, wakeref)
+> +	with_intel_pps_lock(intel_dp)
+>  		intel_pps_off_unlocked(intel_dp);
+>  }
+> =20
+> @@ -1095,7 +1083,6 @@ void intel_pps_off(struct intel_dp *intel_dp)
+>  void intel_pps_backlight_on(struct intel_dp *intel_dp)
+>  {
+>  	struct intel_display *display =3D to_intel_display(intel_dp);
+> -	intel_wakeref_t wakeref;
+> =20
+>  	/*
+>  	 * If we enable the backlight right away following a panel power
+> @@ -1105,7 +1092,7 @@ void intel_pps_backlight_on(struct intel_dp *intel_=
+dp)
+>  	 */
+>  	wait_backlight_on(intel_dp);
+> =20
+> -	with_intel_pps_lock(intel_dp, wakeref) {
+> +	with_intel_pps_lock(intel_dp) {
+>  		i915_reg_t pp_ctrl_reg =3D _pp_ctrl_reg(intel_dp);
+>  		u32 pp;
+> =20
+> @@ -1121,12 +1108,11 @@ void intel_pps_backlight_on(struct intel_dp *inte=
+l_dp)
+>  void intel_pps_backlight_off(struct intel_dp *intel_dp)
+>  {
+>  	struct intel_display *display =3D to_intel_display(intel_dp);
+> -	intel_wakeref_t wakeref;
+> =20
+>  	if (!intel_dp_is_edp(intel_dp))
+>  		return;
+> =20
+> -	with_intel_pps_lock(intel_dp, wakeref) {
+> +	with_intel_pps_lock(intel_dp) {
+>  		i915_reg_t pp_ctrl_reg =3D _pp_ctrl_reg(intel_dp);
+>  		u32 pp;
+> =20
+> @@ -1149,11 +1135,10 @@ void intel_pps_backlight_power(struct intel_conne=
+ctor *connector, bool enable)
+>  {
+>  	struct intel_display *display =3D to_intel_display(connector);
+>  	struct intel_dp *intel_dp =3D intel_attached_dp(connector);
+> -	intel_wakeref_t wakeref;
+>  	bool is_enabled;
+> =20
+>  	is_enabled =3D false;
+> -	with_intel_pps_lock(intel_dp, wakeref)
+> +	with_intel_pps_lock(intel_dp)
+>  		is_enabled =3D ilk_get_pp_control(intel_dp) & EDP_BLC_ENABLE;
+>  	if (is_enabled =3D=3D enable)
+>  		return;
+> @@ -1251,9 +1236,7 @@ void vlv_pps_pipe_init(struct intel_dp *intel_dp)
+>  /* Call on all DP, not just eDP */
+>  void vlv_pps_pipe_reset(struct intel_dp *intel_dp)
+>  {
+> -	intel_wakeref_t wakeref;
+> -
+> -	with_intel_pps_lock(intel_dp, wakeref)
+> +	with_intel_pps_lock(intel_dp)
+>  		intel_dp->pps.vlv_active_pipe =3D vlv_active_pipe(intel_dp);
+>  }
+> =20
+> @@ -1329,9 +1312,7 @@ void vlv_pps_port_disable(struct intel_encoder *enc=
+oder,
+>  {
+>  	struct intel_dp *intel_dp =3D enc_to_intel_dp(encoder);
+> =20
+> -	intel_wakeref_t wakeref;
+> -
+> -	with_intel_pps_lock(intel_dp, wakeref)
+> +	with_intel_pps_lock(intel_dp)
+>  		intel_dp->pps.vlv_active_pipe =3D INVALID_PIPE;
+>  }
+> =20
+> @@ -1362,10 +1343,9 @@ static void pps_vdd_init(struct intel_dp *intel_dp=
+)
+> =20
+>  bool intel_pps_have_panel_power_or_vdd(struct intel_dp *intel_dp)
+>  {
+> -	intel_wakeref_t wakeref;
+>  	bool have_power =3D false;
+> =20
+> -	with_intel_pps_lock(intel_dp, wakeref) {
+> +	with_intel_pps_lock(intel_dp) {
+>  		have_power =3D edp_have_panel_power(intel_dp) ||
+>  			     edp_have_panel_vdd(intel_dp);
+>  	}
+> @@ -1692,12 +1672,11 @@ static void pps_init_registers(struct intel_dp *i=
+ntel_dp, bool force_disable_vdd
+>  void intel_pps_encoder_reset(struct intel_dp *intel_dp)
+>  {
+>  	struct intel_display *display =3D to_intel_display(intel_dp);
+> -	intel_wakeref_t wakeref;
+> =20
+>  	if (!intel_dp_is_edp(intel_dp))
+>  		return;
+> =20
+> -	with_intel_pps_lock(intel_dp, wakeref) {
+> +	with_intel_pps_lock(intel_dp) {
+>  		/*
+>  		 * Reinit the power sequencer also on the resume path, in case
+>  		 * BIOS did something nasty with it.
+> @@ -1716,7 +1695,6 @@ void intel_pps_encoder_reset(struct intel_dp *intel=
+_dp)
+> =20
+>  bool intel_pps_init(struct intel_dp *intel_dp)
+>  {
+> -	intel_wakeref_t wakeref;
+>  	bool ret;
+> =20
+>  	intel_dp->pps.initializing =3D true;
+> @@ -1724,7 +1702,7 @@ bool intel_pps_init(struct intel_dp *intel_dp)
+> =20
+>  	pps_init_timestamps(intel_dp);
+> =20
+> -	with_intel_pps_lock(intel_dp, wakeref) {
+> +	with_intel_pps_lock(intel_dp) {
+>  		ret =3D pps_initial_setup(intel_dp);
+> =20
+>  		pps_init_delays(intel_dp);
+> @@ -1760,9 +1738,7 @@ static void pps_init_late(struct intel_dp *intel_dp=
+)
+> =20
+>  void intel_pps_init_late(struct intel_dp *intel_dp)
+>  {
+> -	intel_wakeref_t wakeref;
+> -
+> -	with_intel_pps_lock(intel_dp, wakeref) {
+> +	with_intel_pps_lock(intel_dp) {
+>  		/* Reinit delays after per-panel info has been parsed from VBT */
+>  		pps_init_late(intel_dp);
+> =20
+> diff --git a/drivers/gpu/drm/i915/display/intel_pps.h b/drivers/gpu/drm/i=
+915/display/intel_pps.h
+> index c83007152f07..ad5c458ccdaf 100644
+> --- a/drivers/gpu/drm/i915/display/intel_pps.h
+> +++ b/drivers/gpu/drm/i915/display/intel_pps.h
+> @@ -20,8 +20,11 @@ struct intel_encoder;
+>  intel_wakeref_t intel_pps_lock(struct intel_dp *intel_dp);
+>  intel_wakeref_t intel_pps_unlock(struct intel_dp *intel_dp, intel_wakere=
+f_t wakeref);
+> =20
+> -#define with_intel_pps_lock(dp, wf)						\
+> -	for ((wf) =3D intel_pps_lock(dp); (wf); (wf) =3D intel_pps_unlock((dp),=
+ (wf)))
+> +#define __with_intel_pps_lock(dp, wf) \
+> +	for (intel_wakeref_t (wf) =3D intel_pps_lock(dp); (wf); (wf) =3D intel_=
+pps_unlock((dp), (wf)))
+> +
+> +#define with_intel_pps_lock(dp) \
+> +	__with_intel_pps_lock((dp), __UNIQUE_ID(wakeref))
+> =20
+>  void intel_pps_backlight_on(struct intel_dp *intel_dp);
+>  void intel_pps_backlight_off(struct intel_dp *intel_dp);
 
-== Series Details ==
+Nice!
 
-Series: Plane Color Pipeline support for Intel platforms (rev6)
-URL   : https://patchwork.freedesktop.org/series/141788/
-State : success
+Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
 
-== Summary ==
-
-CI Bug Log - changes from xe-4170-9fcf9189976d387cb9199155c35dd6c826268c52_BAT -> xe-pw-141788v6_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (12 -> 12)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-141788v6_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_waitfence@abstime:
-    - bat-dg2-oem2:       [PASS][1] -> [TIMEOUT][2] ([Intel XE#6506])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4170-9fcf9189976d387cb9199155c35dd6c826268c52/bat-dg2-oem2/igt@xe_waitfence@abstime.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141788v6/bat-dg2-oem2/igt@xe_waitfence@abstime.html
-
-  
-#### Possible fixes ####
-
-  * igt@xe_waitfence@engine:
-    - bat-dg2-oem2:       [FAIL][3] ([Intel XE#6519]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4170-9fcf9189976d387cb9199155c35dd6c826268c52/bat-dg2-oem2/igt@xe_waitfence@engine.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141788v6/bat-dg2-oem2/igt@xe_waitfence@engine.html
-
-  
-  [Intel XE#6506]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506
-  [Intel XE#6519]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519
-
-
-Build changes
--------------
-
-  * Linux: xe-4170-9fcf9189976d387cb9199155c35dd6c826268c52 -> xe-pw-141788v6
-
-  IGT_8645: 8645
-  xe-4170-9fcf9189976d387cb9199155c35dd6c826268c52: 9fcf9189976d387cb9199155c35dd6c826268c52
-  xe-pw-141788v6: 141788v6
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141788v6/index.html
-
---===============3536494114293141011==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Plane Color Pipeline support for Intel platforms (rev6)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/141788/">https://patchwork.freedesktop.org/series/141788/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141788v6/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141788v6/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4170-9fcf9189976d387cb9199155c35dd6c826268c52_BAT -&gt; xe-pw-141788v6_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (12 -&gt; 12)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-141788v6_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@xe_waitfence@abstime:<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4170-9fcf9189976d387cb9199155c35dd6c826268c52/bat-dg2-oem2/igt@xe_waitfence@abstime.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141788v6/bat-dg2-oem2/igt@xe_waitfence@abstime.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506">Intel XE#6506</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_waitfence@engine:<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4170-9fcf9189976d387cb9199155c35dd6c826268c52/bat-dg2-oem2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519">Intel XE#6519</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141788v6/bat-dg2-oem2/igt@xe_waitfence@engine.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4170-9fcf9189976d387cb9199155c35dd6c826268c52 -&gt; xe-pw-141788v6</li>
-</ul>
-<p>IGT_8645: 8645<br />
-  xe-4170-9fcf9189976d387cb9199155c35dd6c826268c52: 9fcf9189976d387cb9199155c35dd6c826268c52<br />
-  xe-pw-141788v6: 141788v6</p>
-
-</body>
-</html>
-
---===============3536494114293141011==--
+--
+Cheers,
+Luca.
