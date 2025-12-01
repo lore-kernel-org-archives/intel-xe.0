@@ -4,64 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2BA76D116E2
-	for <intel-xe@archiver.kernel.org>; Mon,  1 Dec 2025 05:07:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8FD20D116E2
+	for <intel-xe@archiver.kernel.org>; Mon,  1 Dec 2025 05:53:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C4CB010E29F;
-	Mon,  1 Dec 2025 05:06:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 11E0010E116;
+	Mon,  1 Dec 2025 05:53:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FtnzIVJp";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XMa/oq5r";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DA7E510E29F
- for <intel-xe@lists.freedesktop.org>; Mon,  1 Dec 2025 05:06:57 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 74D2910E116
+ for <intel-xe@lists.freedesktop.org>; Mon,  1 Dec 2025 05:53:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1764565618; x=1796101618;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=32UWqtRjlUJAoRJpIwqUoDSDmVVJ8SOnPz47p5HKBrY=;
- b=FtnzIVJp7zfs3+lBDwcJrp72osdmR084SlVPpMBZ299dkov/PU75AWoq
- zvJkYJUSLLgyZchKIAuaKdZR4d/4Q10VNolqssjyrcai9XTrMHPZZDlgq
- DuNlUIkP8sqnsIAvcm5Hdr6JGmA+AxUhWqaaMr69NvjR9lqw903C8lFWc
- +zO3PwXDsrdm5RG1gDHnuvZERnGUDZkR7DVmKbl/i+N/0HJSOv5XLHX9J
- ICvOq3sV9vbYw9aE4lmD5rBfUb1ejb+pZqc03Pk0ujdGo0ADR8R4RlrzC
- 0EAY+6FJRkgACkUv6F0yJzA67v1OHNUewNTqAjGS9RPEVDre6+nHEy3tn w==;
-X-CSE-ConnectionGUID: SdwAQymrQpCVIgCr7jc9dQ==
-X-CSE-MsgGUID: PmNKShpJRCenNuLOgFcRkg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11629"; a="77962380"
-X-IronPort-AV: E=Sophos;i="6.20,240,1758610800"; d="scan'208";a="77962380"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Nov 2025 21:06:58 -0800
-X-CSE-ConnectionGUID: hWiHACtxTrSJK5PDOvyzbg==
-X-CSE-MsgGUID: Kot4b4yeSIuqmGyzrPnOEw==
+ t=1764568426; x=1796104426;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=O6DbZ95TGWw6M+Zwv47AuuiPuHILIwLi7BHVKFe12S8=;
+ b=XMa/oq5r5luDn89q3WjVUXfLBkk1OZ/B4jsfQEQ5jfvvk5FRrUQSFHD4
+ 7aW3Hyxd7u8331XllV5PM6nU5ntdCROVt7ouD7bAKVCBRkXCUhTQqqsKa
+ /TUKITG6ynjnczbF5xRZDM3rxUq91KX4mymyn+jhFgjgtfmvUE057FCdC
+ erAenrCYedDnTi6xg9DR2Kq7mdbpq4ykt/7Sh+7NRj5knQDQynCEFBxP+
+ aD5nCGydmxUkRy81BeBQByfQRuLHfdvfMnuRUDkbmV6AJ+C3oqrV7CP4P
+ yDAAw/yKWCwVr2Gov25R05vC7ndLBSPRKhNygr0TlM/YpO+b0wnBV5shk A==;
+X-CSE-ConnectionGUID: rMA7rhxnRCmj2UErvaRCBQ==
+X-CSE-MsgGUID: HH+sVfSbSCOL793r4+ikjw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11629"; a="66457377"
+X-IronPort-AV: E=Sophos;i="6.20,240,1758610800"; d="scan'208";a="66457377"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Nov 2025 21:53:45 -0800
+X-CSE-ConnectionGUID: 9ii+9hO8TlCihuNIvz6HOA==
+X-CSE-MsgGUID: OCFmlpn6SbCFc0cWciJjvA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,240,1758610800"; d="scan'208";a="193966029"
-Received: from black.igk.intel.com ([10.91.253.5])
- by orviesa007.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Nov 2025 21:06:55 -0800
-Date: Mon, 1 Dec 2025 06:06:52 +0100
-From: Raag Jadav <raag.jadav@intel.com>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>, jani.nikula@intel.com,
- intel-xe@lists.freedesktop.org, riana.tauro@intel.com,
- matthew.brost@intel.com, michal.wajdeczko@intel.com,
- badal.nilawar@intel.com, ville.syrjala@linux.intel.com,
- karthik.poosa@intel.com, anshuman.gupta@intel.com
-Subject: Re: [PATCH v1 1/4] drm/xe/pcode: Introduce xe_pcode_read_probe()
-Message-ID: <aS0ibEIQ1-FB-OHH@black.igk.intel.com>
-References: <20251118090012.608250-1-raag.jadav@intel.com>
- <20251118090012.608250-2-raag.jadav@intel.com>
- <aRx3u9LuWvhGvMZj@intel.com> <aRyTBkBgFK3OO_wT@black.igk.intel.com>
- <wcfsfjjncwfb5mwjkdixeqvmjvtfnr6vzx7bpwwu6jrbhoal24@orkpmm6x6nbh>
- <aSAj4aAKMH_isOvJ@black.igk.intel.com>
- <aSU4-yEwEMlJEhjA@black.igk.intel.com> <aSXqY7Yhz3qlMYtN@intel.com>
- <aSfYzJdEkOwgays3@black.igk.intel.com>
+X-IronPort-AV: E=Sophos;i="6.20,240,1758610800"; d="scan'208";a="224950814"
+Received: from varungup-desk.iind.intel.com ([10.190.238.71])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Nov 2025 21:53:43 -0800
+From: Arvind Yadav <arvind.yadav@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: matthew.brost@intel.com, himal.prasad.ghimiray@intel.com,
+ thomas.hellstrom@linux.intel.com, pallavi.mishra@intel.com
+Subject: [RFC v2 0/9] drm/xe/madvise: Add support for purgeable buffer objects
+Date: Mon,  1 Dec 2025 11:20:10 +0530
+Message-ID: <20251201055309.854074-1-arvind.yadav@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aSfYzJdEkOwgays3@black.igk.intel.com>
+Content-Type: text/plain; charset=yes
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,73 +66,79 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Nov 27, 2025 at 05:51:29AM +0100, Raag Jadav wrote:
-> On Tue, Nov 25, 2025 at 12:41:55PM -0500, Rodrigo Vivi wrote:
-> > On Tue, Nov 25, 2025 at 06:04:59AM +0100, Raag Jadav wrote:
-> > > On Fri, Nov 21, 2025 at 09:33:42AM +0100, Raag Jadav wrote:
-> > > > On Thu, Nov 20, 2025 at 09:02:29AM -0600, Lucas De Marchi wrote:
-> > > > > On Tue, Nov 18, 2025 at 04:38:46PM +0100, Raag Jadav wrote:
-> > > 
-> > > ...
-> > > 
-> > > > > > > xe_pcode_read_if_supported
-> > > > > > > (Explicit about conditional support.)
-> > > > > > 
-> > > > > > I don't even begin to qualify here so it's upto you all.
-> > > > > 
-> > > > > xe_pcode_read_if_supported() would be ok IMO, documenting it to mask
-> > > > > not-supported errors.
-> > > > > 
-> > > > > But the the way this is implemented with the extra flag seems weird.
-> > > > > By "having the caller check" I think it's about handling
-> > > > > the return code from this function and treating it as a fatal or normal
-> > > > > case depending on the command being sent, if there's a fallback etc.
-> > > > > This patch seems to add a function and not used it, but I may be missing
-> > > > > something.
-> > > > 
-> > > > Forgot to doc. I had an impression that -ENXIO could be used for the
-> > > > fallback since we already have it here but ...
-> > > > 
-> > > > > I'd rather have this:
-> > > > > 
-> > > > > 1) Caller should handle errors and treat it as fatal or normal,
-> > > > >    depending on having a fallback or not. Emit an err there if
-> > > > >    appropriate rather than here. It seems we are already emitting
-> > > > >    additional dbgs in the caller for when pcode_read fails
-> > > > > 
-> > > > > 2) What is the command/subcommand triggering this error? We could have a
-> > > > >    helper like xe_pcode_strerr() that users could call if needed (but
-> > > > >    then we'd need to return the undecoded error), or we could change
-> > > > >    this specific return code to -ENOTSUPP.
-> > > > 
-> > > > ... converting to -ENOTSUPP makes much more sense, considering the undecoded
-> > > > return will be inconsistent with other pcode helpers.
-> > > 
-> > > On second thought, looking at it from caller standpoint, I'm wondering why
-> > > this shouldn't be the expectation with xe_pcode_read() itself?
-> > > 
-> > > I'm okay with the new helper but if we're claiming that something happens
-> > > *only* if supported, I'd expect it to be the default behaviour instead of
-> > > having extra bells and whistles. The only difference here is how the caller
-> > > chooses to treat it (-ENOTSUPP) anyway.
-> > > 
-> > > Thoughts?
-> > 
-> > It makes sense to me. I'd just peak into the history to see if there was any
-> > documented reason for the current code or just some bad decision/judgement
-> > from my side when adding that... if so, I'm sorry in advance...
-> 
-> Don't get me wrong, I still fully believe that we should not let this be
-> an excuse for callers to attempt random commands and abuse the mailbox.
-> So for now we facilitate the fallback for xe_pcode_read() only and let
-> other helpers operate as they are.
-> 
-> With that we'll also have the flexibility to change the behaviour per
-> helper in the future.
-> 
-> Sound okay?
+This patch series introduces comprehensive support for purgeable buffer objects
+in the Xe driver, enabling userspace to provide memory usage hints for better
+memory management under system pressure.
 
-I was thinking through this over the weekend and came up with another
-hack. Hold on for v2.
+Overview:
 
-Raag
+Purgeable memory allows applications to mark buffer objects as "not currently
+needed" (DONTNEED), making them eligible for kernel reclamation during memory
+pressure. This helps prevent OOM conditions and enables more efficient GPU
+memory utilization for workloads with temporary or regeneratable data (caches,
+intermediate results, decoded frames, etc.).
+
+Purgeable BO Lifecycle:
+1. WILLNEED (default): BO actively needed, kernel preserves backing store
+2. DONTNEED (user hint): BO contents discardable, eligible for purging
+3. PURGED (kernel action): Backing store reclaimed during memory pressure
+
+Key Design Principles:
+  - i915 compatibility: "Once purged, always purged" semantics - purged BOs
+     remain permanently invalid and must be destroyed/recreated
+  - Safety first: Only non-shared BOs can be marked DONTNEED to prevent
+    multi-process data corruption
+  - Multiple protection layers: Validation in madvise, VM bind, mmap, and
+    fault handlers
+  - Async TLB invalidation: Uses xe_bo_trigger_rebind() for non-blocking
+    GPU mapping invalidation
+  - Scratch PTE support: Fault-mode VMs use scratch pages for safe zero reads
+    on purged BO access
+
+Error Handling:
+  - CPU access (mmap): Returns VM_FAULT_SIGBUS (SIGBUS signal to process)
+  - GPU access (non-scratch VM): Page fault fails with -EACCES, GPU context reset
+  - GPU access (scratch VM): Page fault succeeds, rebinds with scratch PTEs
+  - VM_BIND operations: MAP/PREFETCH rejected with -EINVAL
+  - Mmap offset ioctl: Rejected with -EINVAL for early error detection
+
+v2 Changes:
+  - Reordered patches: Moved shared BO helper before main implementation for
+    proper dependency order
+  - Fixed reference counting in mmap offset validation (use drm_gem_object_put)
+  - Removed incorrect claims about madvise(WILLNEED) restoring purged BOs
+  - Fixed error code documentation inconsistencies
+  - Initialize purge_state_val fields to prevent kernel memory leaks
+  - Use xe_bo_trigger_rebind() for async TLB invalidation (Thomas Hellström)
+  - Add NULL rebind with scratch PTEs for fault mode (Thomas Hellström)
+  - Implement i915-compatible retained field logic (Thomas Hellström)
+  - Skip BO validation for purged BOs in page fault handler (crash fix)
+  - Add scratch VM check in page fault path (non-scratch VMs fail fault) 
+ 
+
+Arvind Yadav (7):
+  drm/xe/bo: Add purgeable bo state tracking and field madv to xe_bo
+  drm/xe/bo: Prevent purging of shared buffer objects
+  drm/xe/madvise: Implement purgeable buffer object support
+  drm/xe/bo: Handle CPU faults on purged buffer objects
+  drm/xe/bo: Prevent mmap of purged buffer objects
+  drm/xe/vm: Prevent binding of purged buffer objects
+  drm/xe: Add support for querying purgeable BO states
+
+Himal Prasad Ghimiray (2):
+  drm/xe/uapi: Add UAPI support for purgeable buffer objects
+  drm/xe/uapi: Add UAPI for purgeable bo state to madvise query response
+
+ drivers/gpu/drm/xe/xe_bo.c           | 92 ++++++++++++++++++++++++----
+ drivers/gpu/drm/xe/xe_bo.h           | 57 +++++++++++++++++
+ drivers/gpu/drm/xe/xe_bo_types.h     |  3 +
+ drivers/gpu/drm/xe/xe_gt_pagefault.c | 19 ++++++
+ drivers/gpu/drm/xe/xe_pt.c           | 13 +++-
+ drivers/gpu/drm/xe/xe_vm.c           | 12 ++++
+ drivers/gpu/drm/xe/xe_vm_madvise.c   | 76 +++++++++++++++++++++++
+ include/uapi/drm/xe_drm.h            | 50 ++++++++++++++-
+ 8 files changed, 308 insertions(+), 14 deletions(-)
+
+-- 
+2.43.0
+
