@@ -4,42 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 47641D116F7
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 059C8D116F9
 	for <intel-xe@archiver.kernel.org>; Mon,  1 Dec 2025 06:36:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BE3B810E2CD;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 89ACA10E2CB;
 	Mon,  1 Dec 2025 06:35:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GGlaBBKQ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RfI6VXlu";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E421910E0FE;
- Mon,  1 Dec 2025 06:35:50 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 73C0810E0FE;
+ Mon,  1 Dec 2025 06:35:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1764570951; x=1796106951;
+ t=1764570952; x=1796106952;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=OGZF8QRIDv7gtV/OIWqN/wMyrT8dGXUgLjGWkCMtVHU=;
- b=GGlaBBKQN8zg09OLl9jdawBf1MA1O5J1THPVj3R2pu+RKpPlnShTbMG/
- yLrmfHdLotqLoWt5ZJ3CddH/sbgN4i32OoJqD7THcY4wtakpbFbTZP6yX
- 3YiM+u6L9WQ2ofBFooNEwvccDUJ746rAL3tcis485cGIuFyt/9wWoDvwz
- E5pSRS7f4Mlm15BQqGew5XuPaKjFBKu4S5OwoPsbCpQkwKiD9jm175TwQ
- 35f21MsoDYZZZ8242Uorax5XEioe+K6XBALGYNNzXXe8dF2Eg8hPbVUsJ
- 5zYffZaK1Tz9VmPeW8HfrXWmGk4D0zkZGJMUwSWDycFuBcM9py5Fu2ssr Q==;
-X-CSE-ConnectionGUID: On7+yzv8QGycVgIO7ZbTnA==
-X-CSE-MsgGUID: T4tnDMelRvWq1AgGIeqh8Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11629"; a="66663181"
-X-IronPort-AV: E=Sophos;i="6.20,240,1758610800"; d="scan'208";a="66663181"
+ bh=OUTdsmcWH9SUMAIl1srrZz9ziKWRPpDdI06sB9PAJDk=;
+ b=RfI6VXluMJeEZ5z2ouehgLckHirmA78xnsmoDdxiyR2LnoQgqxifps6w
+ nM+x3YggXsvoKIcXnWQNnxAwhydKnhix8LOycpWpDUPjLEhkxhc6BMmnq
+ ttdDMbjJC9sMymMLKvAzbZbNMXMu2OA/lDdsk5pNaMqEfaKlQmcHrk0Gk
+ SHQ3N+lEWIBAHa1WvnMSmI9Ut6+D1If5J9GCZHu2Dz5aYBB0JNbWLsHO+
+ qFRdAyNLYZfwKViY6IIo9RQkroSKzJWfo8a+LSa6gpbgEC33uXLey7I2c
+ 6KjpgfOx0bLwC7y+dIARmpM/jw+wAgRO9Mo4oTA0NMc+eXeDEWloW9L4J Q==;
+X-CSE-ConnectionGUID: sYoFRLn1RzCAxM6QWEvntA==
+X-CSE-MsgGUID: W8LagyAzQjqLfYqKni6Zaw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11629"; a="66663198"
+X-IronPort-AV: E=Sophos;i="6.20,240,1758610800"; d="scan'208";a="66663198"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Nov 2025 22:35:50 -0800
-X-CSE-ConnectionGUID: RBujNW4eRUKMKXhMESikLQ==
-X-CSE-MsgGUID: Aeka7MqZS2eFPhjvemSA0w==
+ 30 Nov 2025 22:35:51 -0800
+X-CSE-ConnectionGUID: LIVsdadDTAmpWSjPtvs2Hw==
+X-CSE-MsgGUID: /kiPVWAySzi/bQcMWuMk7A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,240,1758610800"; d="scan'208";a="193806060"
+X-IronPort-AV: E=Sophos;i="6.20,240,1758610800"; d="scan'208";a="193806067"
 Received: from cfl-desktop.iind.intel.com ([10.190.239.20])
- by orviesa009.jf.intel.com with ESMTP; 30 Nov 2025 22:35:15 -0800
+ by orviesa009.jf.intel.com with ESMTP; 30 Nov 2025 22:35:31 -0800
 From: Uma Shankar <uma.shankar@intel.com>
 To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org
@@ -48,9 +48,9 @@ Cc: chaitanya.kumar.borah@intel.com, ville.syrjala@linux.intel.com,
  mwen@igalia.com, jadahl@redhat.com, sebastian.wick@redhat.com,
  swati2.sharma@intel.com, alex.hung@amd.com, jani.nikula@intel.com,
  suraj.kandpal@intel.com, Uma Shankar <uma.shankar@intel.com>
-Subject: [v7 03/15] drm/i915/color: Add helper to create intel colorop
-Date: Mon,  1 Dec 2025 12:16:43 +0530
-Message-ID: <20251201064655.3579280-4-uma.shankar@intel.com>
+Subject: [v7 06/15] drm/i915/color: Preserve sign bit when int_bits is Zero
+Date: Mon,  1 Dec 2025 12:16:46 +0530
+Message-ID: <20251201064655.3579280-7-uma.shankar@intel.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20251201064655.3579280-1-uma.shankar@intel.com>
 References: <20251201064655.3579280-1-uma.shankar@intel.com>
@@ -72,66 +72,32 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
 
-Add intel colorop create helper
+When int_bits == 0, we lose the sign bit when we do the range check
+and apply the mask.
 
-v2:
- - Make function names consistent (Jani)
- - Remove redundant code related to colorop state
- - Refactor code to separate files
+Fix this by ensuring a minimum of one integer bit, which guarantees space
+for the sign bit in fully fractional representations (e.g. S0.12)
 
 Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
 Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
 Signed-off-by: Uma Shankar <uma.shankar@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_colorop.c | 25 ++++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_colorop.h |  2 ++
- 2 files changed, 27 insertions(+)
+ drivers/gpu/drm/i915/display/intel_color.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_colorop.c b/drivers/gpu/drm/i915/display/intel_colorop.c
-index eaab50d2d126..f2fc0d8780ce 100644
---- a/drivers/gpu/drm/i915/display/intel_colorop.c
-+++ b/drivers/gpu/drm/i915/display/intel_colorop.c
-@@ -8,3 +8,28 @@ struct intel_colorop *to_intel_colorop(struct drm_colorop *colorop)
- {
- 	return container_of(colorop, struct intel_colorop, base);
- }
-+
-+struct intel_colorop *intel_colorop_alloc(void)
-+{
-+	struct intel_colorop *colorop;
-+
-+	colorop = kzalloc(sizeof(*colorop), GFP_KERNEL);
-+	if (!colorop)
-+		return ERR_PTR(-ENOMEM);
-+
-+	return colorop;
-+}
-+
-+struct intel_colorop *intel_colorop_create(enum intel_color_block id)
-+{
-+	struct intel_colorop *colorop;
-+
-+	colorop = intel_colorop_alloc();
-+
-+	if (IS_ERR(colorop))
-+		return colorop;
-+
-+	colorop->id = id;
-+
-+	return colorop;
-+}
-diff --git a/drivers/gpu/drm/i915/display/intel_colorop.h b/drivers/gpu/drm/i915/display/intel_colorop.h
-index 23a29a565949..21d58eb9f3d0 100644
---- a/drivers/gpu/drm/i915/display/intel_colorop.h
-+++ b/drivers/gpu/drm/i915/display/intel_colorop.h
-@@ -9,5 +9,7 @@
- #include "intel_display_types.h"
+diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm/i915/display/intel_color.c
+index 33fe5c9b4663..81b87fed8878 100644
+--- a/drivers/gpu/drm/i915/display/intel_color.c
++++ b/drivers/gpu/drm/i915/display/intel_color.c
+@@ -613,6 +613,8 @@ static u16 ctm_to_twos_complement(u64 coeff, int int_bits, int frac_bits)
+ 	if (CTM_COEFF_NEGATIVE(coeff))
+ 		c = -c;
  
- struct intel_colorop *to_intel_colorop(struct drm_colorop *colorop);
-+struct intel_colorop *intel_colorop_alloc(void);
-+struct intel_colorop *intel_colorop_create(enum intel_color_block id);
++	int_bits = max(int_bits, 1);
++
+ 	c = clamp(c, -(s64)BIT(int_bits + frac_bits - 1),
+ 		  (s64)(BIT(int_bits + frac_bits - 1) - 1));
  
- #endif /* __INTEL_COLOROP_H__ */
 -- 
 2.50.1
 
