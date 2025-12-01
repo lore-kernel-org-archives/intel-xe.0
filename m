@@ -4,50 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 69332D111A8
-	for <intel-xe@archiver.kernel.org>; Mon,  1 Dec 2025 05:54:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 721F6D116E2
+	for <intel-xe@archiver.kernel.org>; Mon,  1 Dec 2025 05:54:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2EA6D10E2A3;
-	Mon,  1 Dec 2025 05:54:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3392D10E2A4;
+	Mon,  1 Dec 2025 05:54:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UJqAfmDz";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EOrkCXGB";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 58F1110E2AA
- for <intel-xe@lists.freedesktop.org>; Mon,  1 Dec 2025 05:53:59 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5643C10E2AA
+ for <intel-xe@lists.freedesktop.org>; Mon,  1 Dec 2025 05:54:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1764568439; x=1796104439;
+ t=1764568441; x=1796104441;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=8UYsixHJCDbFPvZEb0rXTzIvgu77AOyO3EKbuVMn57U=;
- b=UJqAfmDzV+fXNBDmgRqq1EUoOsK49QSsm5tUJ1aR8b+ul+YWIluv2N4d
- 1QQibjQLQjuGD+8fcFhUkoGf8AoHEjxF+OaXDZcogrW/0HywrH/e0a/PM
- R1nkQKUtFbYUYkXPvhjlHwrEF66Bplx9f8icsDHO+wENwr4Fb22TG1awD
- Nvofuz5akigpftOkRRasOLJY917qQmQ3dbWUoNXxJlqs7QN240OSoVAXm
- rGTtrwMmIdi+euW7Jyc8QlmIKgKhtzQiOE1Z6Bi9yIUCp66Z1KhjY4NOj
- Q73ek1bRXjqGe9NAJrGg3YcgnWj9bpqNKnmzDVs5Qv7erG8cbRKdicrbJ w==;
-X-CSE-ConnectionGUID: HR3a+uVUQBO3/3DmRShiSg==
-X-CSE-MsgGUID: 6K/BNBTVTO6BSjAwd9QPAQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11629"; a="66457392"
-X-IronPort-AV: E=Sophos;i="6.20,240,1758610800"; d="scan'208";a="66457392"
+ bh=2eKCd9XLJtFSgkDuAqxUh1SIzkMSWfootqFGJjkDv3o=;
+ b=EOrkCXGBuFPsEj57pAdgPg5qN9t2ntYKCsNP38lxLdtKHGJKXRoRmj/g
+ yD0lMNpz0NHMzC+fvU5fcW2rWCuTE3KzydCypqBtQtUhWIAGJRCtW36o0
+ qs4cxS0sMG9mozlFuW903Jo0JyiJs6BSzLUaM2b1Q6PRI94aL5phHXsRl
+ kbi5XhWWTksiiic/2LoKihgHph4BQy1t8Z6dfHxlpKVujxTAf8+OTsuP7
+ 0avFhm8nQoi8NSN/e3h1ft5QObMnwceOWOsL8ooDqQAO/nO8ghBr6f8/j
+ Fxnmo5LQaSoc/oD/bWX1bLJwOt0nF4gAbObMY5eaVnSf4cc96ZY61AaeD w==;
+X-CSE-ConnectionGUID: 4Zp5YyNuRVGqHVsUgCMpig==
+X-CSE-MsgGUID: sBwSb0PZR0uu5gqK2I6bxw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11629"; a="66457395"
+X-IronPort-AV: E=Sophos;i="6.20,240,1758610800"; d="scan'208";a="66457395"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Nov 2025 21:53:59 -0800
-X-CSE-ConnectionGUID: eIzKx8TvSCGr2PnUz16ByQ==
-X-CSE-MsgGUID: B79HEVNWTUCY/Us9QGNUMg==
+ 30 Nov 2025 21:54:01 -0800
+X-CSE-ConnectionGUID: q7cUpTNtToezb33vcqeQaw==
+X-CSE-MsgGUID: ODv6qk5oSlW7TPTKCt4OXQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,240,1758610800"; d="scan'208";a="224950839"
+X-IronPort-AV: E=Sophos;i="6.20,240,1758610800"; d="scan'208";a="224950843"
 Received: from varungup-desk.iind.intel.com ([10.190.238.71])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Nov 2025 21:53:57 -0800
+ 30 Nov 2025 21:53:59 -0800
 From: Arvind Yadav <arvind.yadav@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.brost@intel.com, himal.prasad.ghimiray@intel.com,
  thomas.hellstrom@linux.intel.com, pallavi.mishra@intel.com
-Subject: [RFC v2 7/9] drm/xe/vm: Prevent binding of purged buffer objects
-Date: Mon,  1 Dec 2025 11:20:17 +0530
-Message-ID: <20251201055309.854074-8-arvind.yadav@intel.com>
+Subject: [RFC v2 8/9] drm/xe/uapi: Add UAPI for purgeable bo state to madvise
+ query response
+Date: Mon,  1 Dec 2025 11:20:18 +0530
+Message-ID: <20251201055309.854074-9-arvind.yadav@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20251201055309.854074-1-arvind.yadav@intel.com>
 References: <20251201055309.854074-1-arvind.yadav@intel.com>
@@ -68,59 +69,60 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add validation in xe_vm_bind_ioctl_validate_bo() to reject MAP and
-PREFETCH operations on purged buffer objects with -EINVAL.
+From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 
-Problem:
-When a BO is purged (XE_MADV_PURGEABLE_PURGED state), its backing pages
-have been freed by the kernel. Without this check, VM_BIND operations
-would proceed:
+Complete the purgeable buffer object UAPI by adding the response
+structure to drm_xe_mem_range_attr for querying current purgeable
+state of buffer objects within a memory range.
 
- 1. DRM_XE_VM_BIND_OP_MAP: Attempts to create GPU mappings to freed memory
-    - xe_vma_ops_alloc() creates VMA pointing to invalid BO
-    - Page tables populated with stale/invalid addresses
-    - GPU access leads to undefined behavior or hangs
-
- 2. DRM_XE_VM_BIND_OP_PREFETCH: Attempts to migrate non-existent pages
-    - Triggers BO validation in TTM
-    - ttm_bo_validate() fails or crashes (no backing store)
-    - Wasted work for permanently invalid BO
-
-With this check:
-  - MAP/PREFETCH immediately fail with -EINVAL at ioctl boundary
-  - Clear error message at syscall (better UX than deferred GPU hang)
-  - Prevents creation of invalid GPU page table entries
-
-v2:
-  - Clarify that purged BOs are permanently invalid (i915 semantics)
-  - Remove incorrect claim about madvise(WILLNEED) restoring purged BOs
+This allows userspace to determine the current state of BOs:
+- DRM_XE_VMA_PURGEABLE_STATE_WILLNEED (0): BO actively needed, has backing store
+- DRM_XE_VMA_PURGEABLE_STATE_DONTNEED (1): BO eligible for purging, still has backing
+- DRM_XE_VMA_PURGEABLE_STATE_PURGED (2): BO purged, backing store freed (read-only)
 
 Cc: Matthew Brost <matthew.brost@intel.com>
 Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 Signed-off-by: Arvind Yadav <arvind.yadav@intel.com>
 ---
- drivers/gpu/drm/xe/xe_vm.c | 7 +++++++
- 1 file changed, 7 insertions(+)
+ include/uapi/drm/xe_drm.h | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index d03e69524369..cc946bff9607 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -3482,6 +3482,13 @@ static int xe_vm_bind_ioctl_validate_bo(struct xe_device *xe, struct xe_bo *bo,
- 		return -EINVAL;
- 	}
+diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+index 02d63938d16f..8f289a2849ff 100644
+--- a/include/uapi/drm/xe_drm.h
++++ b/include/uapi/drm/xe_drm.h
+@@ -2147,10 +2147,14 @@ struct drm_xe_madvise {
+ 		 *  - DRM_XE_VMA_PURGEABLE_STATE_DONTNEED (1): Hints that BO is not
+ 		 *    currently needed. Kernel may purge it under memory pressure.
+ 		 *    Only applies to non-shared BOs. Returns retained=1 if not purged.
++		 *
++		 *  - DRM_XE_VMA_PURGEABLE_STATE_PURGED: Read-only state indicating
++		 *    the BO purge state.
+ 		 */
+ 		struct {
+ #define DRM_XE_VMA_PURGEABLE_STATE_WILLNEED	0
+ #define DRM_XE_VMA_PURGEABLE_STATE_DONTNEED	1
++#define DRM_XE_VMA_PURGEABLE_STATE_PURGED	2
+ 			/** @purge_state_val.val: value for DRM_XE_VMA_ATTR_PURGEABLE_STATE */
+ 			__u32 val;
+ 			/**
+@@ -2224,6 +2228,15 @@ struct drm_xe_mem_range_attr {
+ 		__u32 reserved;
+ 	} pat_index;
  
-+	/* Purged BOs are permanently invalid; reject new MAP/PREFETCH. */
-+	if (XE_IOCTL_DBG(xe,
-+			 xe_bo_is_purged(bo) &&
-+			 (op == DRM_XE_VM_BIND_OP_MAP ||
-+			  op == DRM_XE_VM_BIND_OP_PREFETCH)))
-+		return -EINVAL;
++	/** @purge_state_val: Purgeable state configuration */
++	struct {
++		/** @purge_state_val.val: value for DRM_XE_VMA_ATTR_PURGEABLE_STATE */
++		__u32 val;
 +
- 	/*
- 	 * Some platforms require 64k VM_BIND alignment,
- 	 * specifically those with XE_VRAM_FLAGS_NEED64K.
++		/** @purge_state_val.reserved: Reserved */
++		__u32 reserved;
++	} purge_state_val;
++
+ 	/** @reserved: Reserved */
+ 	__u64 reserved[2];
+ };
 -- 
 2.43.0
 
