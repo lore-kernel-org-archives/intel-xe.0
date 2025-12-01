@@ -4,56 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3DD02D116F3
-	for <intel-xe@archiver.kernel.org>; Mon,  1 Dec 2025 14:05:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C6FDBD116F5
+	for <intel-xe@archiver.kernel.org>; Mon,  1 Dec 2025 14:13:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F21B410E3E2;
-	Mon,  1 Dec 2025 14:05:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 591C410E409;
+	Mon,  1 Dec 2025 14:13:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GL6Yr3y8";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="gPPNTZZp";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8207D10E3E2
- for <intel-xe@lists.freedesktop.org>; Mon,  1 Dec 2025 14:05:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1764597934; x=1796133934;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=fBVa+yc0Y5VCgjrNyheER0A/ixMQzJVQHTgnvfFZObo=;
- b=GL6Yr3y8hRVQrp2eBdu4uKokUOGYiu6aQq0dIQ7h0WLsZHUmN4Y61LvM
- MMc2W6SMTHxUtrjEboiV38Dhju6v9TmkFThEBQpqgC/yTMoonVfpLAPpw
- pLvcZPqtDg8w0oU0jTyisAx16pL0eYzM43avApdneSXMhBz+SjDJFJWDB
- gXamKY/4i9BRJ4dVWKZUoWaxiGVzSgtuw5+nYctiBQwrJ9yBmwBhT7U6z
- mdhZHKy0ehFr1Ycv84IzRHP9CJTSDbzshdO3HYfnJqgFd0wtdbqbSma/G
- NPeGw7WjmXEOhfkTBnfvmjF9vz9ELdE+HdlVcoEcwgqh+VtydctHX/oiF Q==;
-X-CSE-ConnectionGUID: D5fkC2E0RD2ScocjyUOrZg==
-X-CSE-MsgGUID: kuE1oR8aQv+BACN1f1QbPA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11629"; a="92013656"
-X-IronPort-AV: E=Sophos;i="6.20,240,1758610800"; d="scan'208";a="92013656"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Dec 2025 06:05:33 -0800
-X-CSE-ConnectionGUID: +27hNzCCRuO0b19z6cyDJg==
-X-CSE-MsgGUID: ffzzXSjRQ+iW8ByDVwwtmA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,240,1758610800"; d="scan'208";a="194187223"
-Received: from rtauro-desk.iind.intel.com ([10.190.238.50])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Dec 2025 06:05:31 -0800
-From: Riana Tauro <riana.tauro@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: riana.tauro@intel.com, anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
- badal.nilawar@intel.com
-Subject: [PATCH v2 2/2] drm/xe/xe_survivability: Add support for survivability
- mode v2
-Date: Mon,  1 Dec 2025 20:04:23 +0530
-Message-ID: <20251201143420.3158372-6-riana.tauro@intel.com>
-X-Mailer: git-send-email 2.47.1
-In-Reply-To: <20251201143420.3158372-4-riana.tauro@intel.com>
-References: <20251201143420.3158372-4-riana.tauro@intel.com>
+Received: from lankhorst.se (lankhorst.se [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 07BCE10E3FC;
+ Mon,  1 Dec 2025 14:13:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
+ s=default; t=1764598396;
+ bh=1nkqSC0wNwR0rPdu30G4UPJ4xAY8what6wXy8xY49Fk=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=gPPNTZZpHgNFam1wKG6o6d3bF4N1JY457es94STH1sv3zD3wZJNKMGHMw4jPYKPRV
+ Uoi82Y8paAtR2M005wcBnNHP09keEtM3vrmE3/pr3bnzwVFoz7w1Ulp9QRNWMETBpi
+ +hoKnIQwuyFC5ARmmZXPXJvzbh7Y28MzjZ7K3B9lFWjDOGzZu34pYun++BhNMPCS5m
+ zCBNdGZGZ+dB/ox8McewaWS5j78x1x4it4u+S8VD1mEv7j8laIDK+NV5hO7TqsozKz
+ DkqdDCpxDnFY6H12Z0vJ3fd1ZT03Xq7jDPV/s/ZqKoucjRjFVoH9OnbDyXAZwNMsH/
+ Tr0onoRf+UDCQ==
+Message-ID: <c47fc4e3-79b9-4a57-95cc-aaeb608b3435@lankhorst.se>
+Date: Mon, 1 Dec 2025 15:13:15 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 4/7] drm/i915/display: Remove locking from
+ intel_vblank_evade critical section
+To: "Shankar, Uma" <uma.shankar@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+Cc: "linux-rt-devel@lists.linux.dev" <linux-rt-devel@lists.linux.dev>,
+ Mario Kleiner <mario.kleiner.de@gmail.com>,
+ Mike Galbraith <umgwanakikbuti@gmail.com>,
+ Thomas Gleixner <tglx@linutronix.de>,
+ Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
+ Clark Williams <clrkwllms@kernel.org>, Steven Rostedt <rostedt@goodmis.org>
+References: <20251104083634.670753-1-dev@lankhorst.se>
+ <20251104083634.670753-5-dev@lankhorst.se>
+ <DM4PR11MB63604FC52C88FCDE1176FA25F4DEA@DM4PR11MB6360.namprd11.prod.outlook.com>
+Content-Language: en-US
+From: Maarten Lankhorst <dev@lankhorst.se>
+In-Reply-To: <DM4PR11MB63604FC52C88FCDE1176FA25F4DEA@DM4PR11MB6360.namprd11.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,200 +62,99 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-v2 survivability breadcrumbs introduces a new mode called
-SPI Flash Descriptor Override mode (FDO). This is enabled by
-PCODE when MEI itself fails and firmware cannot be updated via
-MEI using igsc. This mode provides the ability to update
-the firmware directly via SPI driver.
+Hey Uma,
 
-Xe KMD initializes the nvm aux driver if FDO mode is enabled.
+Den 2025-11-26 kl. 21:03, skrev Shankar, Uma:
+> 
+> 
+>> -----Original Message-----
+>> From: Intel-xe <intel-xe-bounces@lists.freedesktop.org> On Behalf Of Maarten
+>> Lankhorst
+>> Sent: Tuesday, November 4, 2025 2:06 PM
+>> To: intel-gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org
+>> Cc: linux-rt-devel@lists.linux.dev; Maarten Lankhorst <dev@lankhorst.se>; Mario
+>> Kleiner <mario.kleiner.de@gmail.com>; Mike Galbraith
+>> <umgwanakikbuti@gmail.com>; Thomas Gleixner <tglx@linutronix.de>; Sebastian
+>> Andrzej Siewior <bigeasy@linutronix.de>; Clark Williams
+>> <clrkwllms@kernel.org>; Steven Rostedt <rostedt@goodmis.org>
+>> Subject: [PATCH v2 4/7] drm/i915/display: Remove locking from
+>> intel_vblank_evade critical section
+>>
+>> finish_wait() may take a lock, which means that it can take any amount of time.
+>> On PREEMPT-RT we should not be taking any lock after disabling preemption, so
+>> ensure that the completion is done before disabling interrupts.
+>>
+>> This also has the benefit of making vblank evasion more deterministic, by
+>> performing the final vblank check after all locking is done.
+>>
+>> Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
+>> ---
+>>  drivers/gpu/drm/i915/display/intel_vblank.c | 35 ++++++++++-----------
+>>  1 file changed, 17 insertions(+), 18 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/display/intel_vblank.c
+>> b/drivers/gpu/drm/i915/display/intel_vblank.c
+>> index 2b106ffa3f5f5..3628d2a1b8f38 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_vblank.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_vblank.c
+>> @@ -708,6 +708,13 @@ void intel_vblank_evade_init(const struct
+>> intel_crtc_state *old_crtc_state,
+>>  		evade->min -= vblank_delay;
+>>  }
+>>
+>> +static inline int vblank_evadable(struct intel_vblank_evade_ctx *evade,
+>> +int *scanline) {
+>> +	*scanline = intel_get_crtc_scanline(evade->crtc);
+>> +
+>> +	return *scanline < evade->min || *scanline > evade->max; }
+>> +
+>>  /* must be called with vblank interrupt already enabled! */  int
+>> intel_vblank_evade(struct intel_vblank_evade_ctx *evade)  { @@ -715,23 +722,22
+>> @@ int intel_vblank_evade(struct intel_vblank_evade_ctx *evade)
+>>  	struct intel_display *display = to_intel_display(crtc);
+>>  	long timeout = msecs_to_jiffies_timeout(1);
+>>  	wait_queue_head_t *wq = drm_crtc_vblank_waitqueue(&crtc->base);
+>> -	DEFINE_WAIT(wait);
+>>  	int scanline;
+>>
+>>  	if (evade->min <= 0 || evade->max <= 0)
+>>  		return 0;
+>>
+>> -	for (;;) {
+>> -		/*
+>> -		 * prepare_to_wait() has a memory barrier, which guarantees
+>> -		 * other CPUs can see the task state update by the time we
+>> -		 * read the scanline.
+>> -		 */
+>> -		prepare_to_wait(wq, &wait, TASK_UNINTERRUPTIBLE);
+>> +	while (!vblank_evadable(evade, &scanline)) {
+>> +		local_irq_enable();
+>>
+>> -		scanline = intel_get_crtc_scanline(crtc);
+>> -		if (scanline < evade->min || scanline > evade->max)
+>> -			break;
+>> +		DEFINE_WAIT(wait);
+>> +		while (!vblank_evadable(evade, &scanline) && timeout > 0) {
+> 
+> Not sure if doing the scanline check with interrupts on is ok. The scanlines can move
+> if we get interrupted or what happens if we get a vblank interrupt. Looks vulnerable to race.
+> 
+> I will try to check this further and get back.
 
-Userspace should check FDO mode entry in survivability info sysfs before
-using the SPI driver to update firmware.
+There is a double check here to make it safe:
 
-	/sys/bus/pci/devices/<device>/survivability_info/fdo_mode
+while (!vblank_evade()) {
+	drop locks();
 
-v2 also supports survivability mode for critical boot errors.
+	while (!vblank_evadable())
+		wait();
 
-Signed-off-by: Riana Tauro <riana.tauro@intel.com>
----
-v2: do not exit survivability mode in case of mei init failure (Rodrigo)
----
- drivers/gpu/drm/xe/xe_pcode_api.h             |  2 +
- drivers/gpu/drm/xe/xe_survivability_mode.c    | 44 ++++++++++++++++---
- .../gpu/drm/xe/xe_survivability_mode_types.h  |  6 +++
- 3 files changed, 46 insertions(+), 6 deletions(-)
+	re-acquire locks();
+}
 
-diff --git a/drivers/gpu/drm/xe/xe_pcode_api.h b/drivers/gpu/drm/xe/xe_pcode_api.h
-index 70dcd6625680..975892d6b230 100644
---- a/drivers/gpu/drm/xe/xe_pcode_api.h
-+++ b/drivers/gpu/drm/xe/xe_pcode_api.h
-@@ -77,11 +77,13 @@
- 
- #define PCODE_SCRATCH(x)		XE_REG(0x138320 + ((x) * 4))
- /* PCODE_SCRATCH0 */
-+#define   BREADCRUMB_VERSION		REG_GENMASK(31, 29)
- #define   AUXINFO_REG_OFFSET		REG_GENMASK(17, 15)
- #define   OVERFLOW_REG_OFFSET		REG_GENMASK(14, 12)
- #define   HISTORY_TRACKING		REG_BIT(11)
- #define   OVERFLOW_SUPPORT		REG_BIT(10)
- #define   AUXINFO_SUPPORT		REG_BIT(9)
-+#define   FDO_MODE			REG_BIT(4)
- #define   BOOT_STATUS			REG_GENMASK(3, 1)
- #define      CRITICAL_FAILURE		4
- #define      NON_CRITICAL_FAILURE	7
-diff --git a/drivers/gpu/drm/xe/xe_survivability_mode.c b/drivers/gpu/drm/xe/xe_survivability_mode.c
-index b5b582442637..8d409bc9c14b 100644
---- a/drivers/gpu/drm/xe/xe_survivability_mode.c
-+++ b/drivers/gpu/drm/xe/xe_survivability_mode.c
-@@ -16,6 +16,7 @@
- #include "xe_heci_gsc.h"
- #include "xe_i2c.h"
- #include "xe_mmio.h"
-+#include "xe_nvm.h"
- #include "xe_pcode_api.h"
- #include "xe_vsec.h"
- 
-@@ -66,6 +67,11 @@
-  *
-  * - ``aux_info<n>`` : Some failures have additional debug information
-  *
-+ * - ``fdo_mode`` : To allow recovery in scenarios where MEI itself fails, a new SPI Flash
-+ *   Descriptor Override (FDO) mode is added in v2 survivability breadcrumbs. This mode is enabled
-+ *   by PCODE and provides the ability to directly update the firmware via SPI Driver without
-+ *   any dependency on MEI. Xe KMD initializes the nvm aux driver if FDO mode is enabled.
-+ *
-  * Runtime Survivability
-  * =====================
-  *
-@@ -94,6 +100,8 @@ static const char * const reg_map[] = {
- 	[AUX_INFO4]               = "Auxiliary Info 4",
- };
- 
-+#define FDO_INFO	(MAX_SCRATCH_REG + 1)
-+
- struct xe_survivability_attribute {
- 	struct device_attribute attr;
- 	u8 index;
-@@ -127,6 +135,11 @@ static void populate_survivability_info(struct xe_device *xe)
- 	set_survivability_info(mmio, info, CAPABILITY_INFO);
- 	reg_value = info[CAPABILITY_INFO];
- 
-+	survivability->version = REG_FIELD_GET(BREADCRUMB_VERSION, reg_value);
-+	/* FDO mode is exposed only from version 2 */
-+	if (survivability->version >= 2)
-+		survivability->fdo_mode = REG_FIELD_GET(FDO_MODE, reg_value);
-+
- 	if (reg_value & HISTORY_TRACKING) {
- 		set_survivability_info(mmio, info, POSTCODE_TRACE);
- 
-@@ -188,6 +201,9 @@ static ssize_t survivability_info_show(struct device *dev,
- 	struct xe_survivability *survivability = &xe->survivability;
- 	u32 *info = survivability->info;
- 
-+	if (sa->index == FDO_INFO)
-+		return sysfs_emit(buff, "%s\n", str_enabled_disabled(survivability->fdo_mode));
-+
- 	return sysfs_emit(buff, "0x%x\n", info[sa->index]);
- }
- 
-@@ -205,13 +221,18 @@ SURVIVABILITY_ATTR_RO(aux_info1, AUX_INFO1);
- SURVIVABILITY_ATTR_RO(aux_info2, AUX_INFO2);
- SURVIVABILITY_ATTR_RO(aux_info3, AUX_INFO3);
- SURVIVABILITY_ATTR_RO(aux_info4, AUX_INFO4);
-+SURVIVABILITY_ATTR_RO(fdo_mode, FDO_INFO);
- 
- static void xe_survivability_mode_fini(void *arg)
- {
- 	struct xe_device *xe = arg;
-+	struct xe_survivability *survivability = &xe->survivability;
- 	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
- 	struct device *dev = &pdev->dev;
- 
-+	if (survivability->fdo_mode)
-+		xe_nvm_fini(xe);
-+
- 	device_remove_file(dev, &dev_attr_survivability_mode);
- }
- 
-@@ -222,7 +243,10 @@ static umode_t survivability_info_attrs_visible(struct kobject *kobj, struct att
- 	struct xe_survivability *survivability = &xe->survivability;
- 	u32 *info = survivability->info;
- 
--	if (info[idx])
-+	/* FDO mode is visible only when supported */
-+	if (idx >= MAX_SCRATCH_REG && survivability->version >= 2)
-+		return 0400;
-+	else if (info[idx])
- 		return 0400;
- 
- 	return 0;
-@@ -238,6 +262,7 @@ static struct attribute *survivability_info_attrs[] = {
- 	&attr_aux_info2.attr.attr,
- 	&attr_aux_info3.attr.attr,
- 	&attr_aux_info4.attr.attr,
-+	&attr_fdo_mode.attr.attr,
- 	NULL,
- };
- 
-@@ -287,12 +312,16 @@ static int enable_boot_survivability_mode(struct pci_dev *pdev)
- 	/* Make sure xe_heci_gsc_init() knows about survivability mode */
- 	survivability->mode = true;
- 
--	ret = xe_heci_gsc_init(xe);
--	if (ret)
--		goto err;
-+	xe_heci_gsc_init(xe);
- 
- 	xe_vsec_init(xe);
- 
-+	if (survivability->fdo_mode) {
-+		ret = xe_nvm_init(xe);
-+		if (ret)
-+			goto err;
-+	}
-+
- 	ret = xe_i2c_probe(xe);
- 	if (ret)
- 		goto err;
-@@ -302,6 +331,7 @@ static int enable_boot_survivability_mode(struct pci_dev *pdev)
- 	return 0;
- 
- err:
-+	dev_err(dev, "Failed to enable Survivability Mode\n");
- 	survivability->mode = false;
- 	return ret;
- }
-@@ -408,8 +438,10 @@ int xe_survivability_mode_boot_enable(struct xe_device *xe)
- 
- 	populate_survivability_info(xe);
- 
--	/* Log breadcrumbs but do not enter survivability mode for Critical boot errors */
--	if (survivability->boot_status == CRITICAL_FAILURE) {
-+	/*
-+	 * v2 supports survivability mode for critical errors
-+	 */
-+	if (survivability->version < 2  && survivability->boot_status == CRITICAL_FAILURE) {
- 		log_survivability_info(pdev);
- 		return -ENXIO;
- 	}
-diff --git a/drivers/gpu/drm/xe/xe_survivability_mode_types.h b/drivers/gpu/drm/xe/xe_survivability_mode_types.h
-index f31b3907d933..bd5dc1c955ff 100644
---- a/drivers/gpu/drm/xe/xe_survivability_mode_types.h
-+++ b/drivers/gpu/drm/xe/xe_survivability_mode_types.h
-@@ -44,6 +44,12 @@ struct xe_survivability {
- 
- 	/** @type: survivability type */
- 	enum xe_survivability_type type;
-+
-+	/** @fdo_mode: indicates if FDO mode is enabled */
-+	bool fdo_mode;
-+
-+	/** @version: breadcrumb version of survivability mode  */
-+	u8 version;
- };
- 
- #endif /* _XE_SURVIVABILITY_MODE_TYPES_H_ */
--- 
-2.47.1
+Even if the middle vblank evadable is unsafe, and it has to be to be able to wait, we re-check after acquiring locks.
+We must do so there anyway since the locking acquire can add any amount of latency as well.
+
+Kind regards,
+Maarten Lankhorst
 
