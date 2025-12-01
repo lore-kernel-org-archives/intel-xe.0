@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4A38DD111A8
-	for <intel-xe@archiver.kernel.org>; Mon,  1 Dec 2025 05:53:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6050BD116F3
+	for <intel-xe@archiver.kernel.org>; Mon,  1 Dec 2025 05:53:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0D89A10E2A3;
-	Mon,  1 Dec 2025 05:53:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1ADA810E2A4;
+	Mon,  1 Dec 2025 05:53:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="M1M/Ts7o";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FirrSvy7";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6DBB610E116
- for <intel-xe@lists.freedesktop.org>; Mon,  1 Dec 2025 05:53:47 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 821CB10E2A4
+ for <intel-xe@lists.freedesktop.org>; Mon,  1 Dec 2025 05:53:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1764568427; x=1796104427;
+ t=1764568429; x=1796104429;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=TZ2CPBYfmQti/SmOFLeDEUZJpJ3gnaETLlX/6lz+2Is=;
- b=M1M/Ts7ourWqZfCEbB8HCMJO6eP+g7wNwKDMgtCEspKsnAXfXbQEoVwH
- tUvpUTxvuM/jI3jXwmdOC412J0iVJBHLU1iwQ+zvqbqECft4NDxCiJCuy
- BcI+7r1WN9mcfY0ZysdD2gjKK9Vq5KmmdqneFt1cHyreWrzxablBKDNpa
- asdSgm2IYTywNnJUuU/NJA381MhkOUA+6g2WetjwajI6cz+w9MLw9Rnms
- qBZcuTaTH+eKA6srg93Fs77LS3t0TkB0zvs4QCkSdmS+dQLBnp7y2DTPf
- Hfmxzcen8RR3sp7wzQkrNrWd/RTgVr+C4b716YP1X4qiLRUtcAczC812G g==;
-X-CSE-ConnectionGUID: cu2Dvk8ZQOilc4NHNcBxew==
-X-CSE-MsgGUID: 0eyFsXocSK+vT1T3wYbyvw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11629"; a="66457379"
-X-IronPort-AV: E=Sophos;i="6.20,240,1758610800"; d="scan'208";a="66457379"
+ bh=3jkTZP+YdN4BR/aYxl3fMUxQlsAw0+BLHAZSJSS+6Kg=;
+ b=FirrSvy7I5KjYFgJk5YAK9870k5d0H1mzM52bbLrQgkwDtNRh8QwTo0n
+ cRnm2V5PFz05wNqml1kMax6oBMRBMEfbi72w3/8JsTjatZ/aMIwIkzFVm
+ ve1upQ3F6Y+5Qw4Hm520Ou8xuFvCq25wZ7O24LEmVOf4a9eWAUYGQGiWe
+ fH7Bcr6lhK6xHhHFeA9E9b8l6D5rJVIvXRVgx8NmV/tw/+o3e5u0MkbdQ
+ EPXlOP+GX4pR8LBACOVPgz8kxD4/wYQkXGY/kUGsyL/6efjs+vUgSdH8H
+ caDS16p20qzZmj0bx2g+Wx9ZUmHCyZHKxBYpv8qHGzqR1i8opghmV2kp8 A==;
+X-CSE-ConnectionGUID: iTWK3jZlSbKlvHFTz1mBRg==
+X-CSE-MsgGUID: 3AjRTtYPT02Ost+dFmmI7Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11629"; a="66457380"
+X-IronPort-AV: E=Sophos;i="6.20,240,1758610800"; d="scan'208";a="66457380"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Nov 2025 21:53:47 -0800
-X-CSE-ConnectionGUID: +lBd7nF4SZ6zDDrGky6oZw==
-X-CSE-MsgGUID: vMVDI1VmR0OKtE8qVCvCDA==
+ 30 Nov 2025 21:53:49 -0800
+X-CSE-ConnectionGUID: XWjARXEHSr2Zh8cKNZaUAA==
+X-CSE-MsgGUID: 5FNK/NjwRu2u3mbxPKOIeQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,240,1758610800"; d="scan'208";a="224950817"
+X-IronPort-AV: E=Sophos;i="6.20,240,1758610800"; d="scan'208";a="224950821"
 Received: from varungup-desk.iind.intel.com ([10.190.238.71])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Nov 2025 21:53:45 -0800
+ 30 Nov 2025 21:53:47 -0800
 From: Arvind Yadav <arvind.yadav@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.brost@intel.com, himal.prasad.ghimiray@intel.com,
  thomas.hellstrom@linux.intel.com, pallavi.mishra@intel.com
-Subject: [RFC v2 1/9] drm/xe/uapi: Add UAPI support for purgeable buffer
- objects
-Date: Mon,  1 Dec 2025 11:20:11 +0530
-Message-ID: <20251201055309.854074-2-arvind.yadav@intel.com>
+Subject: [RFC v2 2/9] drm/xe/bo: Add purgeable bo state tracking and field
+ madv to xe_bo
+Date: Mon,  1 Dec 2025 11:20:12 +0530
+Message-ID: <20251201055309.854074-3-arvind.yadav@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20251201055309.854074-1-arvind.yadav@intel.com>
 References: <20251201055309.854074-1-arvind.yadav@intel.com>
@@ -69,102 +69,95 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Add infrastructure for tracking purgeable state of buffer objects.
+This includes:
 
-Extend the DRM_XE_MADVISE ioctl to support purgeable buffer object
-management by adding DRM_XE_VMA_ATTR_PURGEABLE_STATE attribute type.
+Introduce enum xe_madv_purgeable_state with three states:
+   - XE_MADV_PURGEABLE_WILLNEED (0): BO is needed and should not be
+     purged. This is the default state for all BOs.
 
-This allows userspace applications to provide memory usage hints to
-the kernel for better memory management under pressure:
+   - XE_MADV_PURGEABLE_DONTNEED (1): BO is not currently needed and
+     can be purged by the kernel under memory pressure to reclaim
+     resources. Only non-shared BOs can be marked as DONTNEED.
 
-This allows userspace applications to provide memory usage hints to
-the kernel for better memory management under pressure:
+   - XE_MADV_PURGEABLE_PURGED (2): BO has been purged by the kernel.
+     Accessing a purged BO results in error. Follows i915 semantics
+     where once purged, the BO remains permanently invalid ("once
+     purged, always purged").
 
-- WILLNEED: Buffer is needed and should not be purged. If the BO was
-  previously purged, retained field returns 0 indicating backing store
-  was lost (once purged, always purged semantics matching i915).
+Add atomic_t madv field to struct xe_bo for state tracking
+  of purgeable state across concurrent access paths
 
-- DONTNEED: Buffer is not currently needed and may be purged by the
-  kernel under memory pressure to free resources. Only applies to
-  non-shared BOs.
-
-The implementation includes a 'retained' output field (matching i915's
-drm_i915_gem_madvise.retained) that indicates whether the BO's backing
-store still exists (1) or has been purged (0).
-
-v2: Add PURGED state for read-only status, change ioctl to DRM_IOWR,
-    add retained field for i915 compatibility
+v2: Add xe_bo_is_purged() helper, improve state documentation
 
 Cc: Matthew Brost <matthew.brost@intel.com>
 Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 Signed-off-by: Arvind Yadav <arvind.yadav@intel.com>
 ---
- include/uapi/drm/xe_drm.h | 37 ++++++++++++++++++++++++++++++++++++-
- 1 file changed, 36 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_bo.h       | 27 +++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_bo_types.h |  3 +++
+ 2 files changed, 30 insertions(+)
 
-diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index 47853659a705..02d63938d16f 100644
---- a/include/uapi/drm/xe_drm.h
-+++ b/include/uapi/drm/xe_drm.h
-@@ -121,7 +121,7 @@ extern "C" {
- #define DRM_IOCTL_XE_EXEC			DRM_IOW(DRM_COMMAND_BASE + DRM_XE_EXEC, struct drm_xe_exec)
- #define DRM_IOCTL_XE_WAIT_USER_FENCE		DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_WAIT_USER_FENCE, struct drm_xe_wait_user_fence)
- #define DRM_IOCTL_XE_OBSERVATION		DRM_IOW(DRM_COMMAND_BASE + DRM_XE_OBSERVATION, struct drm_xe_observation_param)
--#define DRM_IOCTL_XE_MADVISE			DRM_IOW(DRM_COMMAND_BASE + DRM_XE_MADVISE, struct drm_xe_madvise)
-+#define DRM_IOCTL_XE_MADVISE			DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_MADVISE, struct drm_xe_madvise)
- #define DRM_IOCTL_XE_VM_QUERY_MEM_RANGE_ATTRS	DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_VM_QUERY_MEM_RANGE_ATTRS, struct drm_xe_vm_query_mem_range_attr)
+diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
+index 911d5b90461a..b0a31c77e612 100644
+--- a/drivers/gpu/drm/xe/xe_bo.h
++++ b/drivers/gpu/drm/xe/xe_bo.h
+@@ -85,6 +85,28 @@
  
- /**
-@@ -2051,6 +2051,7 @@ struct drm_xe_madvise {
- #define DRM_XE_MEM_RANGE_ATTR_PREFERRED_LOC	0
- #define DRM_XE_MEM_RANGE_ATTR_ATOMIC		1
- #define DRM_XE_MEM_RANGE_ATTR_PAT		2
-+#define DRM_XE_VMA_ATTR_PURGEABLE_STATE		3
- 	/** @type: type of attribute */
- 	__u32 type;
+ #define XE_PCI_BARRIER_MMAP_OFFSET	(0x50 << XE_PTE_SHIFT)
  
-@@ -2129,6 +2130,40 @@ struct drm_xe_madvise {
- 			/** @pat_index.reserved: Reserved */
- 			__u64 reserved;
- 		} pat_index;
++/**
++ * enum xe_madv_purgeable_state - Buffer object purgeable state enumeration
++ *
++ * This enum defines the possible purgeable states for a buffer object,
++ * allowing userspace to provide memory usage hints to the kernel for
++ * better memory management under pressure.
++ *
++ * @XE_MADV_PURGEABLE_WILLNEED: The buffer object is needed and should not be purged.
++ * This is the default state.
++ * @XE_MADV_PURGEABLE_DONTNEED: The buffer object is not currently needed and can be
++ * purged by the kernel under memory pressure.
++ * @XE_MADV_PURGEABLE_PURGED: The buffer object has been purged by the kernel.
++ *
++ * Accessing a purged buffer will result in an error. Per i915 semantics,
++ * once purged, a BO remains permanently invalid and must be destroyed and recreated.
++ */
++enum xe_madv_purgeable_state {
++	XE_MADV_PURGEABLE_WILLNEED,
++	XE_MADV_PURGEABLE_DONTNEED,
++	XE_MADV_PURGEABLE_PURGED,
++};
 +
-+		/**
-+		 * @purge_state_val: Purgeable state configuration
-+		 *
-+		 * Used when @type == DRM_XE_VMA_ATTR_PURGEABLE_STATE.
-+		 *
-+		 * Configures the purgeable state of buffer objects in the specified
-+		 * virtual address range. This allows applications to hint to the kernel
-+		 * about bo's usage patterns for better memory management.
-+		 *
-+		 * Supported values for @purge_state_val.val:
-+		 *  - DRM_XE_VMA_PURGEABLE_STATE_WILLNEED (0): Marks BO as needed.
-+		 *    If BO was purged, returns retained=0 (backing store lost).
-+		 *
-+		 *  - DRM_XE_VMA_PURGEABLE_STATE_DONTNEED (1): Hints that BO is not
-+		 *    currently needed. Kernel may purge it under memory pressure.
-+		 *    Only applies to non-shared BOs. Returns retained=1 if not purged.
-+		 */
-+		struct {
-+#define DRM_XE_VMA_PURGEABLE_STATE_WILLNEED	0
-+#define DRM_XE_VMA_PURGEABLE_STATE_DONTNEED	1
-+			/** @purge_state_val.val: value for DRM_XE_VMA_ATTR_PURGEABLE_STATE */
-+			__u32 val;
-+			/**
-+			 * @purge_state_val.retained: Whether the backing store still exists.
-+			 *
-+			 * Output field indicating if the BO's backing store is retained.
-+			 * Set to 1 if backing store exists, 0 if it has been purged.
-+			 * Similar to i915's drm_i915_gem_madvise.retained field.
-+			 */
-+			__u32 retained;
-+			/** @purge_state_val.reserved: Reserved */
-+			__u64 reserved;
-+		} purge_state_val;
- 	};
+ struct sg_table;
  
- 	/** @reserved: Reserved */
+ struct xe_bo *xe_bo_alloc(void);
+@@ -213,6 +235,11 @@ static inline bool xe_bo_is_protected(const struct xe_bo *bo)
+ 	return bo->pxp_key_instance;
+ }
+ 
++static inline bool xe_bo_is_purged(struct xe_bo *bo)
++{
++	return atomic_read(&bo->madv_purgeable) == XE_MADV_PURGEABLE_PURGED;
++}
++
+ static inline void xe_bo_unpin_map_no_vm(struct xe_bo *bo)
+ {
+ 	if (likely(bo)) {
+diff --git a/drivers/gpu/drm/xe/xe_bo_types.h b/drivers/gpu/drm/xe/xe_bo_types.h
+index d4fe3c8dca5b..57b4dc7012e2 100644
+--- a/drivers/gpu/drm/xe/xe_bo_types.h
++++ b/drivers/gpu/drm/xe/xe_bo_types.h
+@@ -108,6 +108,9 @@ struct xe_bo {
+ 	 * from default
+ 	 */
+ 	u64 min_align;
++
++	/** @madv_purgeable: user space advise on BO purgeability */
++	atomic_t madv_purgeable;
+ };
+ 
+ #endif
 -- 
 2.43.0
 
