@@ -4,27 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6FA83D116F1
-	for <intel-xe@archiver.kernel.org>; Mon,  1 Dec 2025 15:27:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C7CBBD116F1
+	for <intel-xe@archiver.kernel.org>; Mon,  1 Dec 2025 15:45:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 22E0E10E406;
-	Mon,  1 Dec 2025 15:27:37 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3F81410E3FA;
- Mon,  1 Dec 2025 15:27:35 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4592978732725267335=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 77FB210E409;
+	Mon,  1 Dec 2025 15:45:15 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="g0yH6fU/";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 74E7810E409;
+ Mon,  1 Dec 2025 15:45:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1764603915; x=1796139915;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=ihd+OynkBI3LvrViK4UW6HYIHLMlvRpHhZbmAdKbktE=;
+ b=g0yH6fU/wsv3ye73sEcX5cWW0bmFJ41uuAAvL2RrZy3V0MtUn3kxdw85
+ 1c89BYMpZBoBwmGvMoIcEbgAQkgHkjtr8prbOalgXb+qYXHBJJ/lQwJWo
+ rcZQVpWt/Gs9sXAMfnfANgSuoFT4974S3e6JZCoHzEtKiGHR1y4i4OIqS
+ IyomeRPtZXla/AtFEDJZ98Nd7ivz+8UDHg0WRIOYatKPtTNxM0sQ11Ig6
+ UOCfW5+d130pfASlwlQl+u83K7z/1aQAnWMhiKkQIQW73LTu4cLdIlL1o
+ smhL+FvIFIsKrkoBBHSbM1bFP7prXhy1xYDtYvk4x+VVjnNfOrDhosrPh g==;
+X-CSE-ConnectionGUID: C3rBnLdvSLyPq5fS+lWwkA==
+X-CSE-MsgGUID: MbVUQyKZQ4SVAoppWOclpg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11629"; a="66709461"
+X-IronPort-AV: E=Sophos;i="6.20,241,1758610800"; d="scan'208";a="66709461"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Dec 2025 07:45:15 -0800
+X-CSE-ConnectionGUID: KL2GTH2XQcGFh5jbS6aywQ==
+X-CSE-MsgGUID: l9FOx2pNThORGj2iPEE/Pg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.20,241,1758610800"; d="scan'208";a="194096174"
+Received: from lkp-server01.sh.intel.com (HELO 4664bbef4914) ([10.239.97.150])
+ by orviesa007.jf.intel.com with ESMTP; 01 Dec 2025 07:45:09 -0800
+Received: from kbuild by 4664bbef4914 with local (Exim 4.98.2)
+ (envelope-from <lkp@intel.com>) id 1vQ65L-000000008sv-0xtH;
+ Mon, 01 Dec 2025 15:45:07 +0000
+Date: Mon, 1 Dec 2025 23:45:05 +0800
+From: kernel test robot <lkp@intel.com>
+To: Uma Shankar <uma.shankar@intel.com>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: oe-kbuild-all@lists.linux.dev, chaitanya.kumar.borah@intel.com,
+ ville.syrjala@linux.intel.com, pekka.paalanen@collabora.com,
+ contact@emersion.fr, harry.wentland@amd.com, mwen@igalia.com,
+ jadahl@redhat.com, sebastian.wick@redhat.com,
+ swati2.sharma@intel.com, alex.hung@amd.com, jani.nikula@intel.com,
+ suraj.kandpal@intel.com, Uma Shankar <uma.shankar@intel.com>
+Subject: Re: [v7 05/15] drm/i915/color: Add framework to program CSC
+Message-ID: <202512012301.V42g2qYb-lkp@intel.com>
+References: <20251201064655.3579280-6-uma.shankar@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Selective_Fetch_and_async_f?=
- =?utf-8?q?lip_=28rev3=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 01 Dec 2025 15:27:35 -0000
-Message-ID: <176460285525.44343.14222718303953575111@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20251201132457.624358-1-jouni.hogander@intel.com>
-In-Reply-To: <20251201132457.624358-1-jouni.hogander@intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251201064655.3579280-6-uma.shankar@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,141 +71,114 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============4592978732725267335==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hi Uma,
 
-== Series Details ==
+kernel test robot noticed the following build errors:
 
-Series: Selective Fetch and async flip (rev3)
-URL   : https://patchwork.freedesktop.org/series/158002/
-State : success
+[auto build test ERROR on next-20251201]
+[cannot apply to drm-xe/drm-xe-next drm-intel/for-linux-next drm-intel/for-linux-next-fixes drm-tip/drm-tip v6.18 v6.18-rc7 v6.18-rc6 linus/master v6.18]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-== Summary ==
+url:    https://github.com/intel-lab-lkp/linux/commits/Uma-Shankar/drm-i915-display-Add-identifiers-for-driver-specific-blocks/20251201-150245
+base:   next-20251201
+patch link:    https://lore.kernel.org/r/20251201064655.3579280-6-uma.shankar%40intel.com
+patch subject: [v7 05/15] drm/i915/color: Add framework to program CSC
+config: x86_64-randconfig-012-20251201 (https://download.01.org/0day-ci/archive/20251201/202512012301.V42g2qYb-lkp@intel.com/config)
+compiler: gcc-14 (Debian 14.2.0-19) 14.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251201/202512012301.V42g2qYb-lkp@intel.com/reproduce)
 
-CI Bug Log - changes from xe-4173-7f7b6cfa09ab1155b3e92ccfb7ae4bbfd41fec0c_BAT -> xe-pw-158002v3_BAT
-====================================================
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202512012301.V42g2qYb-lkp@intel.com/
 
-Summary
--------
+All errors (new ones prefixed by >>):
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (12 -> 12)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-158002v3_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_waitfence@engine:
-    - bat-dg2-oem2:       [PASS][1] -> [FAIL][2] ([Intel XE#6519])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4173-7f7b6cfa09ab1155b3e92ccfb7ae4bbfd41fec0c/bat-dg2-oem2/igt@xe_waitfence@engine.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158002v3/bat-dg2-oem2/igt@xe_waitfence@engine.html
-
-  
-#### Possible fixes ####
-
-  * igt@xe_waitfence@abstime:
-    - bat-dg2-oem2:       [TIMEOUT][3] ([Intel XE#6506]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4173-7f7b6cfa09ab1155b3e92ccfb7ae4bbfd41fec0c/bat-dg2-oem2/igt@xe_waitfence@abstime.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158002v3/bat-dg2-oem2/igt@xe_waitfence@abstime.html
-
-  
-  [Intel XE#6506]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506
-  [Intel XE#6519]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519
+   In file included from drivers/gpu/drm/i915/display/intel_colorop.h:9,
+                    from drivers/gpu/drm/i915/display/intel_plane.c:52:
+   drivers/gpu/drm/i915/display/intel_display_types.h:1993:28: error: field 'base' has incomplete type
+    1993 |         struct drm_colorop base;
+         |                            ^~~~
+   drivers/gpu/drm/i915/display/intel_plane.c: In function 'intel_plane_color_copy_uapi_to_hw_state':
+   drivers/gpu/drm/i915/display/intel_plane.c:367:41: error: 'struct drm_plane_state' has no member named 'color_pipeline'
+     367 |         iter_colorop = plane_state->uapi.color_pipeline;
+         |                                         ^
+   drivers/gpu/drm/i915/display/intel_plane.c:370:17: error: implicit declaration of function 'for_each_new_colorop_in_state'; did you mean 'for_each_new_crtc_in_state'? [-Wimplicit-function-declaration]
+     370 |                 for_each_new_colorop_in_state(state, colorop, new_colorop_state, i) {
+         |                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+         |                 for_each_new_crtc_in_state
+   drivers/gpu/drm/i915/display/intel_plane.c:370:84: error: expected ';' before '{' token
+     370 |                 for_each_new_colorop_in_state(state, colorop, new_colorop_state, i) {
+         |                                                                                    ^~
+         |                                                                                    ;
+>> drivers/gpu/drm/i915/display/intel_plane.c:360:35: error: unused variable 'blob' [-Werror=unused-variable]
+     360 |         struct drm_property_blob *blob;
+         |                                   ^~~~
+>> drivers/gpu/drm/i915/display/intel_plane.c:359:31: error: unused variable 'intel_colorop' [-Werror=unused-variable]
+     359 |         struct intel_colorop *intel_colorop;
+         |                               ^~~~~~~~~~~~~
+   drivers/gpu/drm/i915/display/intel_plane.c: At top level:
+>> drivers/gpu/drm/i915/display/intel_plane.c:341:1: error: 'intel_plane_colorop_replace_blob' defined but not used [-Werror=unused-function]
+     341 | intel_plane_colorop_replace_blob(struct intel_plane_state *plane_state,
+         | ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   cc1: all warnings being treated as errors
 
 
-Build changes
--------------
+vim +/blob +360 drivers/gpu/drm/i915/display/intel_plane.c
 
-  * Linux: xe-4173-7f7b6cfa09ab1155b3e92ccfb7ae4bbfd41fec0c -> xe-pw-158002v3
+   339	
+   340	static bool
+ > 341	intel_plane_colorop_replace_blob(struct intel_plane_state *plane_state,
+   342					 struct intel_colorop *intel_colorop,
+   343					 struct drm_property_blob *blob)
+   344	{
+   345		if (intel_colorop->id == INTEL_PLANE_CB_CSC)
+   346			return drm_property_replace_blob(&plane_state->hw.ctm, blob);
+   347	
+   348		return false;
+   349	}
+   350	
+   351	static void
+   352	intel_plane_color_copy_uapi_to_hw_state(struct intel_plane_state *plane_state,
+   353						const struct intel_plane_state *from_plane_state,
+   354						struct intel_crtc *crtc)
+   355	{
+   356		struct drm_colorop *iter_colorop, *colorop;
+   357		struct drm_colorop_state *new_colorop_state;
+   358		struct drm_atomic_state *state = plane_state->uapi.state;
+ > 359		struct intel_colorop *intel_colorop;
+ > 360		struct drm_property_blob *blob;
+   361		int i = 0;
+   362		struct intel_atomic_state *intel_atomic_state = to_intel_atomic_state(state);
+   363		struct intel_crtc_state *new_crtc_state = intel_atomic_state ?
+   364			intel_atomic_get_new_crtc_state(intel_atomic_state, crtc) : NULL;
+   365		bool changed = false;
+   366	
+   367		iter_colorop = plane_state->uapi.color_pipeline;
+   368	
+   369		while (iter_colorop) {
+ > 370			for_each_new_colorop_in_state(state, colorop, new_colorop_state, i) {
+   371				if (new_colorop_state->colorop == iter_colorop) {
+   372					blob = new_colorop_state->bypass ? NULL : new_colorop_state->data;
+   373					intel_colorop = to_intel_colorop(colorop);
+   374					changed |= intel_plane_colorop_replace_blob(plane_state,
+   375										    intel_colorop,
+   376										    blob);
+   377				}
+   378			}
+   379			iter_colorop = iter_colorop->next;
+   380		}
+   381	
+   382		if (new_crtc_state && changed)
+   383			new_crtc_state->plane_color_changed = true;
+   384	}
+   385	
 
-  IGT_8646: 8646
-  xe-4173-7f7b6cfa09ab1155b3e92ccfb7ae4bbfd41fec0c: 7f7b6cfa09ab1155b3e92ccfb7ae4bbfd41fec0c
-  xe-pw-158002v3: 158002v3
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158002v3/index.html
-
---===============4592978732725267335==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Selective Fetch and async flip (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/158002/">https://patchwork.freedesktop.org/series/158002/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158002v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158002v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4173-7f7b6cfa09ab1155b3e92ccfb7ae4bbfd41fec0c_BAT -&gt; xe-pw-158002v3_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (12 -&gt; 12)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-158002v3_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@xe_waitfence@engine:<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4173-7f7b6cfa09ab1155b3e92ccfb7ae4bbfd41fec0c/bat-dg2-oem2/igt@xe_waitfence@engine.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158002v3/bat-dg2-oem2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519">Intel XE#6519</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_waitfence@abstime:<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4173-7f7b6cfa09ab1155b3e92ccfb7ae4bbfd41fec0c/bat-dg2-oem2/igt@xe_waitfence@abstime.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506">Intel XE#6506</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158002v3/bat-dg2-oem2/igt@xe_waitfence@abstime.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4173-7f7b6cfa09ab1155b3e92ccfb7ae4bbfd41fec0c -&gt; xe-pw-158002v3</li>
-</ul>
-<p>IGT_8646: 8646<br />
-  xe-4173-7f7b6cfa09ab1155b3e92ccfb7ae4bbfd41fec0c: 7f7b6cfa09ab1155b3e92ccfb7ae4bbfd41fec0c<br />
-  xe-pw-158002v3: 158002v3</p>
-
-</body>
-</html>
-
---===============4592978732725267335==--
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
