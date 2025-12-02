@@ -4,184 +4,187 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DF784D12663
-	for <intel-xe@archiver.kernel.org>; Tue,  2 Dec 2025 18:20:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E7944D1171E
+	for <intel-xe@archiver.kernel.org>; Tue,  2 Dec 2025 18:22:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A21FA10E64A;
-	Tue,  2 Dec 2025 18:20:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A5BBD10E6A1;
+	Tue,  2 Dec 2025 18:22:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WEARJZd0";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="l0OACTju";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 32E9A10E64A
- for <intel-xe@lists.freedesktop.org>; Tue,  2 Dec 2025 18:20:34 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 34FA910E64A
+ for <intel-xe@lists.freedesktop.org>; Tue,  2 Dec 2025 18:22:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1764699634; x=1796235634;
- h=message-id:date:subject:to:references:from:in-reply-to:
- content-transfer-encoding:mime-version;
- bh=BTecsjcqIJ1i2VTUT6MO3I2xy3uWYihs7qMjaAGKRVA=;
- b=WEARJZd0jTWupwKDhXQUIFQWjA7g8o47H6rEpns+NUt7BxiM9U59x6OP
- 1ef5jr4Q3uqnoxEZq0unqqwF7BBSUxI8Cv2rGHn4KAruvwcnCngFevhT2
- cEmnhbAsgSn3V80qhvvHTVcr6aCZ5ZEywE1Yd+ofoKSFg4Kvn54eZZUHZ
- IomIvVARMhSNlCo/NXL1TqcDCzNhW5pbFj8BE88ZpeVzWfM2cOmd1cwfY
- DBfkFMb6ZW/YJUFYdJTKEmYsgyd2zg4ID3BsPuqeNMnACRiQSfKyCL1tW
- 7MMaghPuK+3QlsOPRG0WTQss9Vq5Yng7bObTmd1beVesnP/r+Duuk9iFN w==;
-X-CSE-ConnectionGUID: 5ZmlvzBMSUSALmsgNYrPNQ==
-X-CSE-MsgGUID: qNXzGsj3SySasKd+QhRWJQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11630"; a="66753849"
-X-IronPort-AV: E=Sophos;i="6.20,243,1758610800"; d="scan'208";a="66753849"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ t=1764699745; x=1796235745;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=6EK40Y7zAWUyelYqp7XCVAfEjeiNiUIsXpmhw3aKj+o=;
+ b=l0OACTju0SYWqLykUQ9QTrXitTiW28t97RrxJfVFjPTGqlImCjr1BPLZ
+ OWeYiCzP6lNHcYvgvB+h5pU+LhqcTFoZW6VjI5O3fGfY4VbJAvllEU3lA
+ cY+qZWLj5WAJUbXz/F6lr4y2ogubAT5Y4ltiKogXCD9np4bHjb/a6uDAQ
+ yhOdsfj22FqSSbLJqHQj78ObGFP20N9yFLhmWRndckxY0cRccNbvMl6K+
+ fByPPFCbP3ZRooyzYfnPTt2horVM/h2ivd+tvkFR03M1w29+BSBvacb+7
+ RhYbRwvdbEddRF6vbKajI2V1sotPXbiS+Pd5ZBLX2mQkM1ozEPrSlvi8C Q==;
+X-CSE-ConnectionGUID: xqatnsKBSgOwODQ+7vdjyQ==
+X-CSE-MsgGUID: gc8MOXlIQwiOf33aRYNi4w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11630"; a="66754031"
+X-IronPort-AV: E=Sophos;i="6.20,243,1758610800"; d="scan'208";a="66754031"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Dec 2025 10:20:33 -0800
-X-CSE-ConnectionGUID: 20+dhn9LTKKHJgaFmbtPTw==
-X-CSE-MsgGUID: +F7nBYtJSyS6hJfldfK3oQ==
+ 02 Dec 2025 10:22:24 -0800
+X-CSE-ConnectionGUID: hs9dpY+AToSgD6wSkXbmCQ==
+X-CSE-MsgGUID: q4jtyrMKRl6ZE041MqH4Ag==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,243,1758610800"; d="scan'208";a="231787461"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by orviesa001.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Dec 2025 10:20:33 -0800
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.20,243,1758610800"; d="scan'208";a="194439879"
+Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
+ by orviesa007.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Dec 2025 10:22:25 -0800
+Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Tue, 2 Dec 2025 10:20:33 -0800
-Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ 15.2.2562.29; Tue, 2 Dec 2025 10:22:23 -0800
+Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
+ FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29 via Frontend Transport; Tue, 2 Dec 2025 10:20:33 -0800
-Received: from CH1PR05CU001.outbound.protection.outlook.com (52.101.193.13) by
- edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
+ 15.2.2562.29 via Frontend Transport; Tue, 2 Dec 2025 10:22:23 -0800
+Received: from DM1PR04CU001.outbound.protection.outlook.com (52.101.61.3) by
+ edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Tue, 2 Dec 2025 10:20:33 -0800
+ 15.2.2562.29; Tue, 2 Dec 2025 10:22:23 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=o8IxvAD7ahRT1YSOqZo5yrdlmHQPR0LTYoVsAWWMy33UGyTk2Y6hphtVNJjRNv9euXH+7aUGsSkEQTrBqrZRbWJt0fjNLjvlSjIIthSY4OPhGRvkJ1tViDyIMN/JGz/OeFdToSmykQOqzvT4P+M0pqHDJJbH6Jp51IYwyD3Rn1ul61/4Si8mQvndT1KP+Cyn1rvrOkkNeTCgL4aovvKUs/sSokdbwba70FYKwcRiYtme7sUWtnOrfCjK5ysTf22sZn/BQwxHL7/TPmNuTRymtIoH1gja+V5oxIgHxCwgjyUuAWlpmmiJeQ2Rm+DNtJWAfDqlmjZr8fcDXfdHbeZR+w==
+ b=OYk6PlLYd5A3CWTughMrGAkJ1rYVOKtXzlkKUUz8BKSxpn8oq180/1M90JY8otsHk9esogCODuUmY+Nd0qGuRLn4PG4I8kOB0xfeoZcWYMS6RjKbaJrt221eNCX6lxbnrKtJhW0ZBXBdkL+7JlikcFnBzenkLTlR3nw0dIMn4gO31u8n5e5jICAfS5rfKNeQrlXLfKpWIH8ZN+0qdRC+rqsU7jKKAQdYZFGSPJmuWE60+Z+zZ4IoehjHEb9Rp0ohGJGBl1xPXrJTFVEqyTAQcUDjRwSSLl5z29qS5TAcy9vyW6wdHvtOuVdMG74wU5dArU9NnJ8pwL7WoB68i8L6uA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=tNo6fbBjRYTBagF9ShaOfXXvXUo8U4GIA6jfPf+4U8I=;
- b=TfjLDAAQNZtr6Gc93YxmkCX1zdAy0UjIqQhYtu9ESxb2nt+8F7MWjgKNhLZGmekIlCHa6QYv8aUEYmybWFYHXFvO1hkfD+8mhPXs6PRR12VlF7K8yeekyM0oVxealzRe9CBXOsGoshgv2AeID7xBXhCq2zD1sgwHqYwn/ou250AvYXSFw52N84loYMXYutR4L2syEV92pUB+Y07YHR4whTes1/oavVfEQIlCFZVahXrGqL6oOmNpAdmeuhzZMovGTEAyqhNfZiOsVKefKkR6Wn9rBO4ZUlg3Qq3QJ8SV0Fa3WvXJ/KqEu3AR5c1HZASOGjIbHytiHhsnDBOv6lVN8A==
+ bh=W70QaNEeeN3+CExD7M+4N2Mx/38lHNaiX0UsNuWKvB0=;
+ b=HsWkgzh3SXwgpHc174fLuZQBP+e/HzqUHdVLp1OkkmJfvqTA5PNRYZGdei/5r6KGaj7tvjzrfcaFMhRHKEbckT+Aj9yG0t/MHv/VnQyMnL1rhYW+1IUlpzbCOhqjWk6OxlUc2E3cMOZWKYOQTLgfq+X0mEWKSuENd3t64Uw0+HgPAUYpU1Zux6x0eVSEuu6eK8Gq9cauV/h+QfFQ4mz15S5PzZkXmqJepK0NVXmdlxeeVgaQdor8I0A/QaQ5aASwnhPBL+cxz4bnliyzXTIlKmA/kLvNb9OQ3yDCO/htJNaPt+rpYVfpR774WDu4scisu/rjTjjCLk6y6zCxXI4Nyg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB7605.namprd11.prod.outlook.com (2603:10b6:510:277::5)
- by IA3PR11MB9085.namprd11.prod.outlook.com (2603:10b6:208:574::6)
+Received: from BL0PR11MB3041.namprd11.prod.outlook.com (2603:10b6:208:32::17)
+ by MW3PR11MB4684.namprd11.prod.outlook.com (2603:10b6:303:5d::14)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9366.17; Tue, 2 Dec
- 2025 18:20:26 +0000
-Received: from PH7PR11MB7605.namprd11.prod.outlook.com
- ([fe80::48d7:f2a6:b18:1b87]) by PH7PR11MB7605.namprd11.prod.outlook.com
- ([fe80::48d7:f2a6:b18:1b87%5]) with mapi id 15.20.9366.012; Tue, 2 Dec 2025
- 18:20:25 +0000
-Message-ID: <9993fbe8-fd20-48cf-b82d-b0c070c1d5a0@intel.com>
-Date: Tue, 2 Dec 2025 10:20:24 -0800
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9388.9; Tue, 2 Dec
+ 2025 18:22:20 +0000
+Received: from BL0PR11MB3041.namprd11.prod.outlook.com
+ ([fe80::8f61:c439:8828:cbb3]) by BL0PR11MB3041.namprd11.prod.outlook.com
+ ([fe80::8f61:c439:8828:cbb3%4]) with mapi id 15.20.9366.012; Tue, 2 Dec 2025
+ 18:22:19 +0000
+Message-ID: <bc69e7ef-a8de-4aed-b271-c97e3f39b323@intel.com>
+Date: Tue, 2 Dec 2025 23:52:13 +0530
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 06/10] drm/xe/sriov: Add debugfs with scheduler groups
- information
-To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- <intel-xe@lists.freedesktop.org>
-References: <20251127014507.2323746-12-daniele.ceraolospurio@intel.com>
- <20251127014507.2323746-18-daniele.ceraolospurio@intel.com>
- <f702edc8-b8b0-4c8e-abd9-5ff017b6c896@intel.com>
+Subject: Re: [RFC v2 3/9] drm/xe/bo: Prevent purging of shared buffer objects
+To: Matthew Brost <matthew.brost@intel.com>, =?UTF-8?Q?Thomas_Hellstr=C3=B6m?=
+ <thomas.hellstrom@linux.intel.com>
+CC: <intel-xe@lists.freedesktop.org>, <himal.prasad.ghimiray@intel.com>,
+ <pallavi.mishra@intel.com>
+References: <20251201055309.854074-1-arvind.yadav@intel.com>
+ <20251201055309.854074-4-arvind.yadav@intel.com>
+ <aS4geyZDuwlcyc9R@lstrano-desk.jf.intel.com>
+ <6c3ed737-3dd5-49ca-a78e-593d8e187220@intel.com>
+ <d5fd4f75e084f4e8d0e3eb7e542d8988fab87449.camel@linux.intel.com>
+ <aS8C/lCla/NdL43q@lstrano-desk.jf.intel.com>
 Content-Language: en-US
-From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-In-Reply-To: <f702edc8-b8b0-4c8e-abd9-5ff017b6c896@intel.com>
+From: "Yadav, Arvind" <arvind.yadav@intel.com>
+In-Reply-To: <aS8C/lCla/NdL43q@lstrano-desk.jf.intel.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: SJ0PR13CA0090.namprd13.prod.outlook.com
- (2603:10b6:a03:2c4::35) To PH7PR11MB7605.namprd11.prod.outlook.com
- (2603:10b6:510:277::5)
+X-ClientProxiedBy: MA5P287CA0038.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:175::7) To BL0PR11MB3041.namprd11.prod.outlook.com
+ (2603:10b6:208:32::17)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB7605:EE_|IA3PR11MB9085:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4bba2435-98cd-48c1-1866-08de31cf76f4
+X-MS-TrafficTypeDiagnostic: BL0PR11MB3041:EE_|MW3PR11MB4684:EE_
+X-MS-Office365-Filtering-Correlation-Id: c13a50d9-c589-4a0e-94ca-08de31cfbae8
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?MHlxcERSbnpJR1d3cDgvbCs0bCtBQzRSUGVPM3NWU0V6dlJvZUoyRlp2NHVD?=
- =?utf-8?B?WXpIY0x3ZjFPeUR1dDBSQnduQU1vRm9TR0E5UkdLVWZPKzRxazJHZVFCREpX?=
- =?utf-8?B?c1Eydk0zYTlkTUZ2cXF2eTlnRStSbm00YmxVVU1MYUlBakQzNzhrZlFhQ0dt?=
- =?utf-8?B?US9pRHF0NzJMYnpmeDhtaVpYYlJqRGcvL09zQXdvZFZCV3pTdjBIMzRRTkNP?=
- =?utf-8?B?aEtaYU82YTJZQ1RLWHlOTnE1eTNvUXRYaC90cTV6VGNGR0JQMDV3ZGN6R1h0?=
- =?utf-8?B?OU9ac2duNmpRblRFTEY1ZXl2Rmo5U3pkTGI0NU5CNnVMQ2RFMUtnOFVIQlh3?=
- =?utf-8?B?NXJCd1dMbFBQOXljQ2R5STVvSDErRm9hcFl5cHlIbzUrdG1uQUxaR2JJc2p5?=
- =?utf-8?B?ZjlCYlRTOCtoN2FQckZFdzBJWkJiYXU0OEwzM0RlYjF3YjdtcW1aMkcwU3FM?=
- =?utf-8?B?Y2pOZWFFNEprU0dNbk1YZTBaQmVYbjR5SEF2MC9SMmNDRUxETG5KRFlJZHZw?=
- =?utf-8?B?T29RVG9DUU41YkRPS2hsNkhHMDZ4WXR6d1M5Tk5uSHdheTlmYXo0R3BNck1U?=
- =?utf-8?B?YkxRWHlLTlJIUU5vTnJTa2NZUEFxY0VUaUtmNnRCdXVyWkNkVExyYVZOQ2ll?=
- =?utf-8?B?NGtPRmY5YUxneXRqRXJ3THFoaUtGVTBRam5GRzRWb1BmTys0eTZZUGhMeXYv?=
- =?utf-8?B?MTNCRGhhMU5UNGtORXJmVHUzM3dzN2hFTmZDVWpHNmc5N2hXYUN3S2hoZEhI?=
- =?utf-8?B?aW5JTEdPRC9pT1F3NEhqWDFJQVk3M3ZBdjFTQnV5TXdPcFFmYlpHUVovM2gy?=
- =?utf-8?B?ck16ZU1wQXNnUGFPZ0VuV2ZlZW9OZWlOWXFURE5Jc0tFbjRpemlNb2kwSHp1?=
- =?utf-8?B?bm5uVDRaRzJ5WUJtUy8zcG9YRk81ditlOEZ3S1lpQnFCZ2FwM0E2TVpVZzdj?=
- =?utf-8?B?Y0p2bGZkdVc0QmhDdkxDck5pbTNnSmF2cHhDMnhCMCtWa1NoWWJvSGgzMmtW?=
- =?utf-8?B?NzQ3aHl2ZVQyUmpkOXNMcUV6VU5Cei92VlVwNUp3dG5VY1lMZGZIZnViKzJj?=
- =?utf-8?B?Z3h6dkJxeXdOdytoN1JVdFVucGF3aEQxMWhiRVROdnlJQmE1R0xDeFhDb2Ra?=
- =?utf-8?B?OW1ldkFwc252elRUSUlFKzBJQkNRT1pHNFFoOXBJaExkS3JoZGFJeWYrZjhu?=
- =?utf-8?B?YmJIcDVhSU5VeDh2YjFYZm1mS0kzTVd1YU1HVHJjSXRoMEg5QnUrbm5MT3pv?=
- =?utf-8?B?VythcVNNNFAxemtacGV5VEVSQ3kzY0xXM0hwcUlPVTY1N1FJcXhFb005ZkE4?=
- =?utf-8?B?c05ndGJabS93UzZveGo2dGlsMFhVa3RpcmdDdUMza3MyekdYWTcwYUxvT1lW?=
- =?utf-8?B?ZUgvTURKU3B1YnM2MVd1UUF4YnAwcnJ2Uk9ZWWJlR0VYUnJJc0c0dEV4N3Ft?=
- =?utf-8?B?YnI3UFVkdDFoRmNzR2Vhb0UxV3lYMnRXdVRTc0R1MVRCenlTa00xV3c2WGlq?=
- =?utf-8?B?MnRiMzRpRnR1TEZBOWplR3cwTHFYdUozc1N0dERvUllVM2hCUFdnemxsMUFU?=
- =?utf-8?B?SCtoVE9vOWxZbHNWeHRWM3dUVzZJU1MyV1FFdkE5UjVxeGdSUmtJVzYrYXVi?=
- =?utf-8?B?WUhDSWZEaGltZDJCZEFCWDJQLzBQN0Y4MkFCUE5qWmk0R0tNT0RxcVAzNHk1?=
- =?utf-8?B?dWZ5V1MzdFoxS3R6NkdhcjNUTjI1WEVQNzVnNG9uMSsxSTZ2OVprbzVFZm9F?=
- =?utf-8?B?TndoRVNxS25EdXVQOHhDTWtGNXNTb0hpQmlXTW5UbjdOMmcwdno4R0RlRXFX?=
- =?utf-8?B?ODU0OFh2b1FSamF1UXErdDhHUzFHNVFuMEc2OWl0QlQxRGttMGpuellKRTVY?=
- =?utf-8?B?Tm13T1RuamNRZTRmVVdLSXNXVWpHQkRFUTI3M2lrZEUzMFp3dXQrai9zd2FD?=
- =?utf-8?Q?PjfJgbvfgQm0ntGzlDHtZyak2/Q+IXWp?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016|7053199007;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?WTFqelFoVEZIVlpsYkdtUXVaNjNXd2M3R3laTmRIVHc2RDRXdnJQcEEwMzN4?=
+ =?utf-8?B?eXB2MXIzU1ViZFBFaU9MeTRBNGtOUHJmZ1hjSUwxeldCY2Z1YUdzWkxOUDhV?=
+ =?utf-8?B?SDAxOXBLdkdWNCs2VzJRNVpjbjhOYmZibk5XU29qVU9VOWg2azB0QXduVEJK?=
+ =?utf-8?B?ckRValFTY3NkeVA5bEJHcFA0ck9TNTdHTy9OeWpPZHk2Ykd1ZEVKZHlRTlFN?=
+ =?utf-8?B?SEtodmtzQWRZTFkvbncvR0dPL3YxY3hSQ1VENzFVenVaQXN5RjZ6cWpTTkgz?=
+ =?utf-8?B?U1o1enpwRE5Hb0lsRks0dkpUcHpLRCs5d2pNMGJqZWFFTnFVdThKajM4c1E4?=
+ =?utf-8?B?cE9teW5KNHZORU9kajNvZlBiQkNKMmp6VG1vcDFuQjBKcHZEeGRTYm5OSXVj?=
+ =?utf-8?B?M2pydXp6bmhCdWpYT1BuN2NLZDVrMFdQMFZ5OFJvczcxUkVDSEtzVU0vOHpF?=
+ =?utf-8?B?ZnpuWEJmOEhMdEdEMkZ1aGZwdll0SmVNcWIwNFlweGQ2QllramVueWJIa0tL?=
+ =?utf-8?B?NC9yRGh5b3VZTDkxVWp1RXhydGR6a3U1enRFYkFUWW5YcjFjeUZmaWVKYlFT?=
+ =?utf-8?B?cHQwWm5UbnVrMmcrYlhTdFhRV0xPdHlMbkpHV1p0MW1LUTZwMWs2aHh0RjVN?=
+ =?utf-8?B?ZDI1R2t4bWRWRmhDdXVKVWY5QjhtcHBlN1lBcnh1aU1jVVJ2RVlTNUU0QldL?=
+ =?utf-8?B?T2M2QXJKNkV2K3Z4Z3hTNzBDeGhhNncyemNPcy9oRUhzL0k2MXRtTlArL3B0?=
+ =?utf-8?B?SE1GRXJFSEd3bzhRVU05eU5pSmhrcFA5RURzNUhrckZHbFdRL3o1bnBUMGt1?=
+ =?utf-8?B?Rk1xSVFIU1JiOCtoNXlSVGR5MXFxV0ROa1gyc1hKM1JqNmhvbGRObU9lbHhY?=
+ =?utf-8?B?a0IzamVPV2NSMUxFRkkydlZmQ0ZzcnVsVVg0VDhqb2c3SWtvU0hjRzh4RjZ3?=
+ =?utf-8?B?ajZzUDlnRnpFMTJEdzR6N05KNTdpZDZISGt5K2ZrUDhnclRLeGZ4V3NkdnNq?=
+ =?utf-8?B?VjZHNkJuZVdEMUFxWTdLSmhVeUJQd0J1cHo2SFBmK3FWK0tEQ2dCWlhDNVp4?=
+ =?utf-8?B?L2xvc1I3c3RZVWVCRXVJMUhuUXFWalZPMGxpUWZzb01oaHZGMEl1NjhGeHFW?=
+ =?utf-8?B?VSt5L3RWVGNTRWhIWlVzVnpQVTIrVE9jWHRyNlJ0Zk41b2ovT1VOVEhFdkdl?=
+ =?utf-8?B?aDloZmZabVpkbW55aFg3OCsxdHFLeVNDQnhnbDVDZkNBRnNXeVE2SXpUdWpL?=
+ =?utf-8?B?Sk1XalNtRjlJMnlieWVLWjFocXlPMS91KzFERkU5WXJLanN6UHdmME9xb3Va?=
+ =?utf-8?B?WWxYU211TE5obmNoSEdVanFTR2xEV1lLUzJRK1BraFNaVmp0WWIxR3NaTFQr?=
+ =?utf-8?B?TnpLbUU3blMxY2xqWnNwOGdJV3JvUkxsdDBnT2xPeDBFekdwcXk0L3Q4Mk9y?=
+ =?utf-8?B?clFhaTdvTXo1c0RRd04zcmtpbE5HelNMSzN3VGhKd2tFdzhPSFpuVzdST3hP?=
+ =?utf-8?B?UHNmN1lZWWNOZVArd1RteXBNd1liaXJibmlSTm1GZzh2cS9YWGwwT0dwK1Yr?=
+ =?utf-8?B?NTFnTmxmclNVaFdXK1JKcmQxUzhVQzBsVldzblMrSHRYK3hra2NGOFRxM1Q1?=
+ =?utf-8?B?cEt3UURqNHpzM000YWdacWR4WUFhcldPQjBtZGRxaXFRa2pwK0pubXRiU1JH?=
+ =?utf-8?B?RFFMd0QrcG1lMElaV21yWWFuVTlITzVDS3kwZG1RQ2VCZE1DUEdUOTMwSzAz?=
+ =?utf-8?B?T0lMQXJ3SEg3R0swQzczY3ozVWpHTGI1K1JlSWdEUFZKMHFNQXJTS0hhblpD?=
+ =?utf-8?B?L0V4YmxGNDFNdmo2eWd1V0s4S3dJckRzQ0hMaDhUMll1MFhnd2xxbGdybFA2?=
+ =?utf-8?B?dkg4S3Qza0VsZnhva2V4bGZtVUZRV2xtNHFXc2RjelNKTlZGakFyclVQd3Zq?=
+ =?utf-8?Q?Apu66JcGAmO3HUmZ1CXaei2Lf/N/eTWr?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB7605.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:BL0PR11MB3041.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(366016)(7053199007); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MmpEcDJzTFByMTRQL0NsbVRvZ3g5RUlacVVzMXBsV3h5U3ZsbjJ0RURCVldo?=
- =?utf-8?B?OUhkU1NaWHV1SmQ0R1lrclRpSTdtVUNhZHZKSGFzK3NIOHdxK3l6QUE2b0w1?=
- =?utf-8?B?ZTAxZFhCZncrVklYY1RzS002b2ZYNjRtalRuUkZrMTR4V3hWWG9yZGxLdWxi?=
- =?utf-8?B?N2kwME9TY2htMk9BQW4xOGt4NnhnWlNzNDAzbE5BNnNxSmhBWFZWWTdEUjZj?=
- =?utf-8?B?Y09VQ3JEbkYvVERjeU02UDNtbHViRnYza1F6OFZoVGVFaWFMQ2x0OC9HQkph?=
- =?utf-8?B?QzE0NUFPL0hwMktZcjF4WkpySlhJTlpLTTJNaFQ1QjFkb21senlSRWpzVmJm?=
- =?utf-8?B?WW1yeHAxVlZqczNmYlgydkk3TFdHanl5ZXo3RHNua1VHOFROSERmNkFOVU1y?=
- =?utf-8?B?Q0tONC9GcHlFRHZJbWF2ZUVzTUxHUXFuOHZaRXRSSkp5Q2ZRZFB3RDE5U0ZX?=
- =?utf-8?B?WkxWWlZkclZJcVY4M3UxRnZ2ekNKdlIzbUxTbVNaTlI0WmcwcE9NUmRNbldV?=
- =?utf-8?B?MjJ0WUJLaUNwQ0haWm40dnVyRFN1UHhhaTlrbFFxa1IzVHAvMUhKTGhlLzAw?=
- =?utf-8?B?bS9BRXBMNHlvbWFGdDQzcnR2bjM3allIQmFLZGJ2RXU3L1dadzUrM2VhZFNl?=
- =?utf-8?B?TG1NNm5sYmsrVzd3b2V2WDhGSjJKM2ZjUENHVE1DUXpIWEtHMDB0Mlc2VFk4?=
- =?utf-8?B?YUpFSDgrRExwbzU2VllCQ0lHWnV5YzJrTEFHZDc0d0pBNk5DRSs2TFIrTHZj?=
- =?utf-8?B?U2RaVDBCQ25SOHdSakJYc0lFTml5bWxueDhjYlczeEZlT0VaV1I4S2J2eTVB?=
- =?utf-8?B?U25iTEliSkM3b3RBUk54bVZoc2lKdWZ4QTFCSGRPT0x2alNycUJnaU0yNDdB?=
- =?utf-8?B?SWtNY0NIVVQyNTlka3lkZ0x2UzBsTFFFaEJWV3BXYkZJVmxaNDZRbnhTRWZU?=
- =?utf-8?B?T3pjeEJnK0FDZUdSdk8zU1o1T2dNVzlOYWd6VWZ5c3VPZ28vai8vNkNjWkNh?=
- =?utf-8?B?dTVpLzNWcEluWFRrSi8zTmhDYWRENUkzVFYxRFltd3JyWGN1WnpEQ00xdkdX?=
- =?utf-8?B?RFAwMEs0OFNmeUh4bVR5YzYvbWdkZ3pYN2tzQUFPenZkd1FoL1V1dldDSW1K?=
- =?utf-8?B?R09RTmdYMk5PWjRMSWNWRkVHY0xxMEFoNjNIRHp3SUgwQkZZS1lXTGdxRExi?=
- =?utf-8?B?MGc0UmUzNW44Q2xCY00wbUdJdE9JcVlSV1BMMjVLd2hNemZROVJEVitDcUFi?=
- =?utf-8?B?U050Rm83SnlIRy9aeVdWZTVZd05CSExyZWRva3FEUmZ5OGpZWnZiczlEZ00z?=
- =?utf-8?B?c0lhVHFUcHNSSE5vVnE4emZvRS9QMU5aeWkwSHF2cCs1MjJxNlNYaS8wRyt1?=
- =?utf-8?B?MTZlak1qa0dldjNnZ0l6SHU5MDdmNWxmYk4xUDN1U05BSEIya1UzK0xrcW9F?=
- =?utf-8?B?QU1zR0QxaXIxaEF0ajZNRFB3ZWp0R3RrSk44OVlKSlhJSTJWWFZoWTg3SjlJ?=
- =?utf-8?B?dFF4ZndFRk92VGpTUmNlUFZybUtrYi9icHo1R25qM05oNlVlYzRpV1ZCc1hV?=
- =?utf-8?B?dGgyU0xlMmtLdjRlSjF6MERST202U29KTzdnV0ZsM2JaTnlHc05Fa2M2eEQ1?=
- =?utf-8?B?V1hrc0J0UmROLzFhY2IrTWRMWk1JeW9QNmNUamxEN3BqSU9VWDJSRW1SaEpn?=
- =?utf-8?B?eTJvTGduSE9MMm82dEM1bGFwbkl6WHFXRjBmRlBRK1BPZzJ6Sks1WlcxblZK?=
- =?utf-8?B?N2FFMHZXRW1MdXFkTGhxUE5KeE9HMjc1SGpDTFNJL0NHV01HNmQrb2szTUFG?=
- =?utf-8?B?SWhjK0h3MnBJS0ZMZXcrY0xLcFd3RXYrdFpjMzhTYU1lWUtITHQ3Vm05Qktn?=
- =?utf-8?B?ZWVIU0hDQUJXN1l1R3BZWFA5UDdncUhDY1NHVTExZUZBNWxlMVlKeGNjSG0r?=
- =?utf-8?B?L3dhZmI2cFlHdFlpTEd2M2ovVzBVejlzK0ZSQmJLZ2lpeVFBREI5S3NBMTdv?=
- =?utf-8?B?TVNVaDJYaVNaOUtKWmhqNEUvN2VUNXNuNVRUbjVFUFg0U2VnY0IvUnVIdjJK?=
- =?utf-8?B?OXVBQzNWd3YvSk8xeDE4TDRDbEcrODA3N214eFdoYkhReTlldm1yVHJlajhH?=
- =?utf-8?B?VFd6TGthQllNQ01yWlFuRDF0VG4zeW9idTRHTU1uajM0Qk02TmgycnhrTGo1?=
- =?utf-8?Q?dOpLt6jeVUTnrMOJHVZYTaQ=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4bba2435-98cd-48c1-1866-08de31cf76f4
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB7605.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?dFZ5RmNQR1FhdVBESUJqQ3huQXI4S3VISGV2L1laTTVmdld5SENvRmdaZms4?=
+ =?utf-8?B?R1Y5TVJHN2hFazhJa2t4SW5MVzdNVG1TQnRFOXBTU0s5NnpTN2g3V2xqbkVu?=
+ =?utf-8?B?ME55MjdzbnR6ZTUyeXB0WEY1REJjeFVzMHcwc244V0JMQlN6aThUTXgzWWJn?=
+ =?utf-8?B?cFhEOUtHYUNXR3R6Q0U4V0doYXpWc0NodndaeGxId2xlTFRlVjQyWWVVOUVx?=
+ =?utf-8?B?Y1dxbWZOZFNIWWRpZ1ltSHNCMDUyYW05aHp4QmpoN1Uza0E0RHJuR3ozUVY5?=
+ =?utf-8?B?YnQ4bFlYLzNVUFBoWENEeU1CaVRzbFZVSTVsUlNaSmlqcXZNVCtNV2tHZzVx?=
+ =?utf-8?B?UkxGNEgwQ29WVUd1a08yU0VES0QyU1NIZjVHRjUyU0kyY0RZSEFXSmxLQ1lZ?=
+ =?utf-8?B?K3R0MHNiYlQvOWFMdFFKcEc3ajQyYzcvNkFjYUxpTUhmcGZXZCtPNC9EelMy?=
+ =?utf-8?B?c25yYWhvTWw4STloM1cyeStNb2xZcEsyeHhkQlh2VllBT1E4K2JBS2tVYzdF?=
+ =?utf-8?B?U0RxRDZHcFdqMkFqdnRrb2NTYUUxMVlqbTlnRVU2SFJpMmVQTUY1b1htMElu?=
+ =?utf-8?B?VEFCT1RkMzBac1RTSi9ydVZSWVYxdmx4U2V1QjM1bkxnZFo0YWZSekFocW00?=
+ =?utf-8?B?VXAxYnJlRGRjZ3FhNkt1ek1GVDYxck5oMlppV3pxMHc2Ukt4eDVnWUprcVF1?=
+ =?utf-8?B?MFpXbHpIRkd2Rm1BRmNla0JXK0x3QUZ0YytsSGtZZHFhOHE2QmxDWVBNV1JX?=
+ =?utf-8?B?bnBrOWZzekZ2VVpBMlpmWE5WR3ZDTGdKS29mTnBZa2hxSzRKLysxdkEwckgy?=
+ =?utf-8?B?RURWT0VZaVRhYXNvMURHT05QZnFjeWxlNHUwc0pORzVXQzNXdnF1dno5M3Y2?=
+ =?utf-8?B?b1VRSUZhSVpzcXlxZWJjNHpPb2lCU2VOKzduOStVcDFobkdFdGt3NDdhMG5Y?=
+ =?utf-8?B?SGZUVWtvaGNXUFAwcFcraEtDRE1oT2xmZmozNGFhN0V3N3FOUEVia2U2cFFU?=
+ =?utf-8?B?bDVsbHgrd2dXQ1VPQjlCY1BFNlZ6bUpzNnlFMDg0bitCUFNiL2ViUlJxYTBm?=
+ =?utf-8?B?N25KVWdrYmtmVTNhWG9MamtmMUJTU08xQ1ZNOE1kRUNQUWs2UThJZEUxakdS?=
+ =?utf-8?B?T09BRTlzVWNXQXorM1F0YVk5cW81YlNtdGV4eWZMV3Y4Uk15bU1PYVlCL0lj?=
+ =?utf-8?B?Nm5PQ2MvVGp0TitFckZwME1JK1lUaktvQk9ZeFAzYm00UysxRjgzemhnRTY0?=
+ =?utf-8?B?UE1RSktLcmVaQjF6WEhNa0VBUkYxcHFsVDViVG9vWHdiY3BETU50cmgzQzQ5?=
+ =?utf-8?B?eXExQWk5UGZLTU5ReklmL01NSkE1SUNoSFE5S2FlZGFXTXNCK1VZZG51Vnox?=
+ =?utf-8?B?TkQrYlZqODFXbk5KcXhXOXZwLyswK0tXSHhpMk55cXJmYWcwc0VNRjcwM2kx?=
+ =?utf-8?B?dnRBVWtWcFlHYlJNckRLaHZhWFBLRnZJTzZYdmhSemdiYzFLbW4xaUMzZ0JK?=
+ =?utf-8?B?ZnA2ZDl4NnYzcUhGTlpEZUR5VVdPSG9UV1EzSkpnU2tsaTlITThsOHpGSVVY?=
+ =?utf-8?B?c0xRL1VDM1lTbTdRNEl4ZEVsSHF6YndaK1Vrcy9ZeTE5UXlGcUMrRFVZMHFp?=
+ =?utf-8?B?U09lWWVuUStFT1dGVi94RXhldlEzZWY5Mzc3Q1FPU0dYeGE0aWhZMHAvc3NS?=
+ =?utf-8?B?dGtCYVhXbXJMSDdDZWtKeTh2ck5pVjRqZUhSMThYb0hWWVhXVnBQZE5oWUZm?=
+ =?utf-8?B?Q0hDaUZTTHh4NkQyRzlSZCszOGNpMzZNckdGQXBSZWVIT3FraXcxMEdxMmIx?=
+ =?utf-8?B?QVhPUWdmNEk2Um0vWlU2R1ZMQi9SOFk3dDhIakxUR0xWalBNQ2tMQ0ZOR0lN?=
+ =?utf-8?B?K0g4OVFqSG5wc0o1N3hBNnZmWlBXSlVCN3A2cGpVbkdEOUVxVFF4OVNYOGZl?=
+ =?utf-8?B?OUZSZ2NPOGE2UnVmWFlFS01Qb2RsTTdQazBXbDdFSFRnRWRFTSs4MjhCb1k3?=
+ =?utf-8?B?SW1iL2I0cVJvUUVRKyttL1B5UThUbXRBZ2NvM2d3TDBQRDR2VnptRDg5aXNv?=
+ =?utf-8?B?eWt0NGxLWS9rL3lsNHRGeFpQelpiVk12TXpVbE9kRWZ0cGd2aXdUdUQzbU5a?=
+ =?utf-8?Q?eiGeUpmWIeZWIYy+KrVY17zLr?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: c13a50d9-c589-4a0e-94ca-08de31cfbae8
+X-MS-Exchange-CrossTenant-AuthSource: BL0PR11MB3041.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Dec 2025 18:20:25.8166 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Dec 2025 18:22:19.8092 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: rS4PXdtLS4uio/ctzM9PpYhyDdU09WB8X6c/5sXkmISw7m9F06VGKMR1ZrwqIlJoMOJv01NzfL+BzJHqdFqLoX449De3dWAkxyr8TGS0DZg=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA3PR11MB9085
+X-MS-Exchange-CrossTenant-UserPrincipalName: WCRMFwfLsgGYpqbshfWFuWJZeLacUB4AsS/RTnTB4srTWIv+rXpkh4mHogSHidBwKLJRUWi9qiReI9ZvMiWdKQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR11MB4684
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -198,336 +201,153 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
-
-On 12/2/2025 8:24 AM, Michal Wajdeczko wrote:
->
-> On 11/27/2025 2:45 AM, Daniele Ceraolo Spurio wrote:
->> When schedulers groups are enabled, we dynamically create new debugfs
->> folders under the GT folder for the PF and each VF. The aim is to have
-> hmm, but since this is debugfs and groups (even uninitialized) still exist
-> then maybe it is easier (and safer) to create static list of groups (8 or 2)
-> and just print their configurations: either empty (if uninitialized) or with
-> engine names (after selecting predefined EGS mode)
-
-ok
-
->
-> then debugfs files (not directories) will reflect currently used configuration
-
-See below about the directories
-
->
->> all the info for each VF under the sched_groups folder, with individual
->> folders per-group under it. Right now the only info is the engine list,
->> but follow up patches will add execution quantum and preemption timeout
->> as well (which are configurable per-group-per-VF).
-> but groups EQ/PT configuration is not per-group, but only per-GT (GuC)
-> so it should be OK to have them level up
-
-ok
-
->
->> Note that the engine lists are not configurable per-VF and therefore not
->> strictly needed in the VF folders. However, it is still useful to have
->> them there because an admin might want to check the engine list while
->> configuring the EQ/PT values for a specific VF.
-> duplicating RO entries per-VF seems odd, maybe it's better to use symlinks:
->
->
-> /sys/kernel/debug/dri/BDF/
-> ├── sriov
-> :   ├── pf
->      :   ├── tile0
->          :   ├── gt0
->              :   ├── sched_groups_mode			# disabled [media_slices]
->                  ├── sched_groups_exec_quantums_ms	# 20 20
->                  ├── sched_groups_preempt_timeouts_us	# 2000 2000
->                  ├── sched_groups
->                  :   ├── group0				# vcs0 vcs1 vecs0
->                  :   ├── group1				# vcs2 vcs3 vecs1
->                  :   ├── group2				#
->                      :
->                      └── group7
->      ├── vf1
->      :   ├── tile0
->          :   ├── gt0
->                  ├── sched_groups_exec_quantums_ms	# 30 30
->                  ├── sched_groups_preempt_timeouts_us	# 3000 3000
->                  ├── sched_groups --> ../../../pf/tile0/gt0/sched_groups
->
->      ├── vf2
->      :   ├── tile0
->          :   ├── gt0
->                  ├── sched_groups_exec_quantums_ms	# 40 40
->                  ├── sched_groups_preempt_timeouts_us	# 4000 4000
->                  ├── sched_groups --> ../../../pf/tile0/gt0/sched_groups
-
-My idea here was to have exec quantum and preempt timeout configurable 
-for a single group, so the end result would be something like this for 
-PF and each VF:
-
-	    :   ├── gt1
-		:   ├── sched_groups
-		    :   ├── group0
-			:   ├── engines
-			    ├── exec_quantum_ms
-			    └── preempt_timeout_us
-			:
-			└── groupN
-			    ├── engines
-			    ├── exec_quantum_ms
-			    └── preempt_timeout_us
-
-
-Which only works if groups are folders (which is also why I can't 
-symlink the whole sched_groups folder). If you think that's overkill and 
-that we should just keep the option to set all the groups at once then I 
-can do that and not have folders. I can also just drop the engine lists 
-from VF debufs, my idea here was that if an admin is setting the EQ/PT 
-e.g. for VF1 group 1 from within the VF debugfs folder it might be 
-useful to have a way to check which engines are in the group without 
-having to go back to the PF folder, but it's not really an essential thing.
-
-
->
->> Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
->> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
->> ---
->>   drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c | 140 +++++++++++++++++++-
->>   drivers/gpu/drm/xe/xe_gt_sriov_pf_types.h   |   4 +
->>   2 files changed, 143 insertions(+), 1 deletion(-)
+On 02-12-2025 20:47, Matthew Brost wrote:
+> On Tue, Dec 02, 2025 at 10:42:07AM +0100, Thomas Hellström wrote:
+>> On Tue, 2025-12-02 at 09:12 +0530, Yadav, Arvind wrote:
+>>> On 02-12-2025 04:40, Matthew Brost wrote:
+>>>> On Mon, Dec 01, 2025 at 11:20:13AM +0530, Arvind Yadav wrote:
+>>>>> Introduce the `xe_bo_is_shared_locked()` inline helper to
+>>>>> determine if a
+>>>>> buffer object is shared across multiple clients or drivers. A
+>>>>> buffer is
+>>>>> considered shared if it is exported via dma-buf, imported, or has
+>>>>> a
+>>>>> handle count greater than one.
+>>>>>
+>>>>> This check is critical for safely implementing purgeable memory.
+>>>>> Purging
+>>>>> a buffer that is shared would lead to data corruption for other
+>>>>> clients
+>>>>> that still hold a reference to it.
+>>>>>
+>>>>> The kernel cannot safely determine when all clients are done with
+>>>>> a
+>>>>> shared buffer, so shared BOs must never be marked DONTNEED or
+>>>>> purged.
+>>>>>
+>>>>> The new helper is used in two key locations:
+>>>>> 1.  In `xe_vm_madvise_purgeable_bo()`, to prevent userspace from
+>>>>>       successfully marking a shared buffer as `DONTNEED`. This is
+>>>>> the
+>>>>>       primary safeguard against incorrect usage.
+>>>>>
+>>>>> 2.  In `xe_bo_move()`, as a final safety check before the kernel
+>>>>>       initiates a purge during eviction. This ensures that even if
+>>>>> a
+>>>>>       shared buffer were somehow marked `DONTNEED`, it would not
+>>>>> be
+>>>>>       purged.
+>>>>>
+>>>>> Cc: Matthew Brost <matthew.brost@intel.com>
+>>>>> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+>>>>> Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+>>>>> Signed-off-by: Arvind Yadav <arvind.yadav@intel.com>
+>>>>> ---
+>>>>>    drivers/gpu/drm/xe/xe_bo.h | 30 ++++++++++++++++++++++++++++++
+>>>>>    1 file changed, 30 insertions(+)
+>>>>>
+>>>>> diff --git a/drivers/gpu/drm/xe/xe_bo.h
+>>>>> b/drivers/gpu/drm/xe/xe_bo.h
+>>>>> index b0a31c77e612..97edb38bf1ed 100644
+>>>>> --- a/drivers/gpu/drm/xe/xe_bo.h
+>>>>> +++ b/drivers/gpu/drm/xe/xe_bo.h
+>>>>> @@ -478,4 +478,34 @@ static inline bool xe_bo_is_mem_type(struct
+>>>>> xe_bo *bo, u32 mem_type)
+>>>>>    	xe_bo_assert_held(bo);
+>>>>>    	return bo->ttm.resource->mem_type == mem_type;
+>>>>>    }
+>>>>> +
+>>>>> +/**
+>>>>> + * xe_bo_is_shared_locked - Check if a buffer object is shared
+>>>>> + * @bo: The buffer object to check
+>>>>> + *
+>>>>> + * Determines if a buffer object is considered shared, which
+>>>>> includes:
+>>>>> + * - Exported via dma-buf (obj->dma_buf is set)
+>>>>> + * - Imported from another driver (obj->import_attach is set)
+>>>>> + * - Referenced by multiple clients (handle_count > 1)
+>>>>> + *
+>>>>> + * This check is used to prevent data loss on shared content by
+>>>>> avoiding
+>>>>> + * certain operations like purging on buffers that other
+>>>>> processes or
+>>>>> + * drivers might still be using.
+>>>>> + *
+>>>>> + * Return: true if the buffer object is shared, false otherwise.
+>>>>> + */
+>>>>> +static inline bool xe_bo_is_shared_locked(const struct xe_bo
+>>>>> *bo)
+>>>>> +{
+>>>>> +	const struct drm_gem_object *obj = &bo->ttm.base;
+>>>>> +
+>>>> It seems like everything below here should be a new drm gem helper.
+>>> There is a DRM helper 'drm_gem_object_is_shared_for_memory_stats()',
+>>> but
+>>> it's
+>>> specifically scoped for fdinfo memory accounting and doesn't check
+>>> import_attach.
+>>>>> +	dma_resv_assert_held(obj->resv);
+>>>>> +
+>>>>> +	if (obj->dma_buf || obj->import_attach)
+>>>>> +		return true;
+>>>>> +
+>>>>> +	if (obj->handle_count > 1)
+>>>> So this covers the case when we prime fd to handle but we resolve
+>>>> to a
+>>>> BO (i.e., we don't do a dma-buf attach, rather just take reference
+>>>> on BO
+>>>> as the BO is from the same device)? I just want to make sure I'm
+>>>> understanding this part correctly. If so, maybe throw a comment in
+>>>> here
+>>>> or update the functions kernel doc a bit with a better
+>>>> explaination.
+>>> Yes, that's correct! The handle_count > 1 check covers exactly that
+>>> scenario:
+>>> When we do prime fd-to-handle but both processes are using the same
+>>> xe
+>>> device,
+>>> we don't do a dma-buf attach. Instead, we just increment the
+>>> reference
+>>> count
+>>> and handle_count on the same xe_bo.
+>>> I will add and update the function with comments.
+>> Arvind, Matt
 >>
->> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
->> index 2953ef21a5ad..947e2b92d58a 100644
->> --- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
->> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
->> @@ -5,6 +5,7 @@
->>   
->>   #include <linux/debugfs.h>
->>   
->> +#include <drm/drm_managed.h>
->>   #include <drm/drm_print.h>
->>   #include <drm/drm_debugfs.h>
->>   
->> @@ -21,6 +22,7 @@
->>   #include "xe_gt_sriov_pf_monitor.h"
->>   #include "xe_gt_sriov_pf_policy.h"
->>   #include "xe_gt_sriov_pf_service.h"
->> +#include "xe_guc.h"
->>   #include "xe_pm.h"
->>   #include "xe_sriov_pf.h"
->>   #include "xe_sriov_pf_provision.h"
->> @@ -162,8 +164,127 @@ static void pf_add_policy_attrs(struct xe_gt *gt, struct dentry *parent)
->>    *          :   ├── tile0
->>    *              :   ├── gt0
->>    *                  :   ├── sched_groups_mode
->> + *                      ├── sched_groups
->> + *                      :   ├── group0
->> + *                          :   └── engines
->> + *                          :
->> + *                          └── groupN
->> + *          :                   └── engines
->> + *          ├── vf1
->> + *          :   ├── tile0
->> + *              :   ├── gt0
->> + *                  :   ├── sched_groups
->> + *                      :   ├── group0
->> + *                          :   └── engines
->>    */
->>   
->> +struct sched_group_info {
->> +	struct xe_gt *gt;
-> we should be able to get gt and vfid from parents d_inode->i_private
+>> I think the correct way to check purgability support for shared buffers
+>> is to loop over all vmas attached to the bo and check that they all say
+>> WONTNEED? If they don't, the bo is not purgeable. This will also need a
+>> check at VMA unbinding.
+>>
+> I think this makes sense. I haven't fully gotten through this series
+> yet, but will consider this during the code reviews. I probably should
+> apply this series in full before providing feedback.
 
-In this implementation the parent of the engines folder is groupX, and 
-that one doesn't have that info in d_inode->i_private. Might change if 
-we drop the subfolders.
+Thomas, Matt
 
-Daniele
+Agreed. I will reworked the purgeability logic exactly as you suggested.
+Instead of relying on a “shared BO” helper, the driver now keeps a 
+per-VMA purgeable_state,
+and a BO becomes DONTNEED only when all VMAs attached to it report DONTNEED.
 
->
->> +	u32 *masks;
->> +};
->> +
->> +static int sched_group_engines_info(struct seq_file *m, void *data)
->> +{
->> +	struct drm_printer p = drm_seq_file_printer(m);
->> +	struct sched_group_info *gi = m->private;
->> +	struct xe_gt *gt = gi->gt;
->> +	struct xe_hw_engine *hwe;
->> +	enum xe_hw_engine_id id;
->> +	bool first = true;
->> +
->> +	for_each_hw_engine(hwe, gt, id) {
->> +		u8 guc_class = xe_engine_class_to_guc_class(hwe->class);
->> +		u32 mask = gi->masks[guc_class];
->> +
->> +		if (mask & BIT(hwe->logical_instance)) {
->> +			drm_printf(&p, "%s%s", first ? "" : " ", hwe->name);
->> +
->> +			first = false;
->> +		}
->> +	}
->> +
->> +	drm_printf(&p, "\n");
->> +
->> +	return 0;
->> +}
->> +
->> +static int sched_group_engines_open(struct inode *inode, struct file *file)
->> +{
->> +	return single_open(file, sched_group_engines_info, inode->i_private);
->> +}
->> +
->> +static const struct file_operations sched_group_engines_fops = {
->> +	.owner = THIS_MODULE,
->> +	.open = sched_group_engines_open,
->> +	.read = seq_read,
->> +	.llseek = seq_lseek,
->> +	.release = single_release,
->> +};
->> +
->> +static void __sched_group_info_cleanup(struct xe_gt *gt, struct dentry *dent)
->> +{
->> +	if (dent->d_inode->i_private)
->> +		drmm_kfree(&gt_to_xe(gt)->drm, dent->d_inode->i_private);
->> +
->> +	debugfs_remove_recursive(dent);
->> +}
->> +
->> +#define GROUP_INFO_ROOT "sched_groups"
->> +static void sched_group_info_register(struct xe_gt *gt, unsigned int vfid)
->> +{
->> +	struct xe_gt_sriov_pf_policy *policy = &gt->sriov.pf.policy;
->> +	u32 mode = policy->guc.sched_groups.current_mode;
->> +	u8 num_groups = policy->guc.sched_groups.modes[mode].num_masks / GUC_MAX_ENGINE_CLASSES;
->> +	struct sched_group_info *infos;
->> +	struct dentry *parent;
->> +	struct dentry *old;
->> +	u8 g;
->> +
->> +	if (!gt->sriov.pf.debugfs_roots)
->> +		return;
->> +
->> +	/* remove existing debugfs entries for old groups */
->> +	old = debugfs_lookup(GROUP_INFO_ROOT, gt->sriov.pf.debugfs_roots[vfid]);
->> +	if (old)
->> +		__sched_group_info_cleanup(gt, old);
->> +
->> +	/* re-create debugfs for new groups (if any)*/
->> +	if (!num_groups)
->> +		return;
->> +
->> +	parent = debugfs_create_dir(GROUP_INFO_ROOT, gt->sriov.pf.debugfs_roots[vfid]);
->> +	if (IS_ERR(parent))
->> +		return;
->> +
->> +	infos = drmm_kzalloc(&gt_to_xe(gt)->drm, sizeof(*infos) * num_groups, GFP_KERNEL);
->> +	if (!infos)
->> +		goto out_err;
->> +	parent->d_inode->i_private = infos;
->> +
->> +	for (g = 0; g < num_groups; g++) {
->> +		struct sched_group_info *info = &infos[g];
->> +		u32 base = g * GUC_MAX_ENGINE_CLASSES;
->> +		struct dentry *dent;
->> +		char name[10];
->> +
->> +		snprintf(name, sizeof(name), "group%u", g);
->> +		dent = debugfs_create_dir(name, parent);
->> +		if (IS_ERR(dent))
->> +			goto out_err;
->> +
->> +		info->gt = gt;
->> +		info->masks = &policy->guc.sched_groups.modes[mode].masks[base];
->> +
->> +		dent->d_inode->i_private = info;
->> +		debugfs_create_file("engines", 0644, dent, info, &sched_group_engines_fops);
->> +	}
->> +
->> +	return;
->> +
->> +out_err:
->> +	__sched_group_info_cleanup(gt, parent);
->> +}
->> +
->>   static const char *sched_group_mode_to_string(enum xe_sriov_sched_group_modes mode)
->>   {
->>   	switch (mode) {
->> @@ -220,7 +341,7 @@ static ssize_t sched_groups_write(struct file *file, const char __user *ubuf,
->>   	struct xe_gt *gt = extract_gt(file_inode(file)->i_private);
->>   	char name[32];
->>   	int ret;
->> -	int m;
->> +	int m, i;
->>   
->>   	if (*pos)
->>   		return -ESPIPE;
->> @@ -250,6 +371,10 @@ static ssize_t sched_groups_write(struct file *file, const char __user *ubuf,
->>   	ret = xe_gt_sriov_pf_policy_set_sched_groups_mode(gt, m);
->>   	xe_pm_runtime_put(gt_to_xe(gt));
->>   
->> +	if (!ret)
->> +		for (i = 0; i <= xe_sriov_pf_get_totalvfs(gt_to_xe(gt)); i++)
->> +			sched_group_info_register(gt, i);
->> +
->>   	return (ret < 0) ? ret : size;
->>   }
->>   
->> @@ -693,6 +818,19 @@ void xe_gt_sriov_pf_debugfs_populate(struct xe_gt *gt, struct dentry *parent, un
->>   		return;
->>   	dent->d_inode->i_private = gt;
->>   
->> +	/*
->> +	 * we allocate an array to store the GT-level dentries for PF and all
->> +	 * VFs when creating the PF folder. Failing to create this allocation
->> +	 * is not fatal.
->> +	 */
->> +	if (vfid == 0)
->> +		gt->sriov.pf.debugfs_roots =
->> +			drmm_kcalloc(&gt_to_xe(gt)->drm,
->> +				     1 + xe_sriov_pf_get_totalvfs(gt_to_xe(gt)),
->> +				     sizeof(struct dentry *), GFP_KERNEL);
->> +	if (gt->sriov.pf.debugfs_roots)
->> +		gt->sriov.pf.debugfs_roots[vfid] = dent;
-> for per-VF data we have struct xe_gt_sriov_metadata that can be accessed from
-> struct xe_gt_sriov_pf
->
-> but maybe it shouldn't be needed at all if we create static egs files as
-> suggested above
->
->
->> +
->>   	xe_gt_assert(gt, extract_gt(dent) == gt);
->>   	xe_gt_assert(gt, extract_vfid(dent) == vfid);
->>   
->> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_types.h b/drivers/gpu/drm/xe/xe_gt_sriov_pf_types.h
->> index 667b8310478d..747ec5dae652 100644
->> --- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_types.h
->> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_types.h
->> @@ -15,6 +15,8 @@
->>   #include "xe_gt_sriov_pf_policy_types.h"
->>   #include "xe_gt_sriov_pf_service_types.h"
->>   
->> +struct dentry;
->> +
->>   /**
->>    * struct xe_gt_sriov_metadata - GT level per-VF metadata.
->>    */
->> @@ -52,6 +54,7 @@ struct xe_gt_sriov_pf_workers {
->>    * @migration: migration data.
->>    * @spare: PF-only provisioning configuration.
->>    * @vfs: metadata for all VFs.
->> + * @debugfs_root: GT debugfs root for all VFs.
->>    */
->>   struct xe_gt_sriov_pf {
->>   	struct xe_gt_sriov_pf_workers workers;
->> @@ -60,6 +63,7 @@ struct xe_gt_sriov_pf {
->>   	struct xe_gt_sriov_pf_policy policy;
->>   	struct xe_gt_sriov_spare_config spare;
->>   	struct xe_gt_sriov_metadata *vfs;
->> +	struct dentry **debugfs_roots;
->>   };
->>   
->>   #endif
+~Arvind
 
+> Matt
+>
+>> /Thomas
+>>
+>>
+>>
+>>
+>>
+>>
+>>> ~Arvind
+>>>> Matt
+>>>>
+>>>>> +		return true;
+>>>>> +
+>>>>> +	return false;
+>>>>> +}
+>>>>>    #endif
+>>>>> -- 
+>>>>> 2.43.0
+>>>>>
