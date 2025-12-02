@@ -4,165 +4,187 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1FB71D12673
-	for <intel-xe@archiver.kernel.org>; Tue,  2 Dec 2025 21:35:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 99FCAD12674
+	for <intel-xe@archiver.kernel.org>; Tue,  2 Dec 2025 21:37:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 29D5410E6E0;
-	Tue,  2 Dec 2025 21:35:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5609110E6E0;
+	Tue,  2 Dec 2025 21:37:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LvxX8IJE";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BKUDf7eA";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0B9B410E6DF;
- Tue,  2 Dec 2025 21:35:19 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8254B10E6E0
+ for <intel-xe@lists.freedesktop.org>; Tue,  2 Dec 2025 21:37:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1764711319; x=1796247319;
- h=date:from:to:subject:message-id:reply-to:references:
- in-reply-to:mime-version;
- bh=Wo2y4y+levO41UEmmgSbcfzLMuoWeSbWPQqFRBRLTAs=;
- b=LvxX8IJErVa6HKe4G+RH32TQThJbhbWuJAIFOCLGKqbFQkC6Q0vuRhMQ
- sMgME+Qmc2tmSufxoHiBLGSFpN1FFaq7JN2pN+lk/ksGohoAy4wjDk2Gc
- X0v+4RcPo0zM63aSkjmVh79Nrzvf0Zw0u9tVUOGgRUI9PT6eNbrqEfXbP
- 92Oeisb79H42JoTb1Yw1nEWxS4bP02YEL0ZndEAn4ZlXX/ZcN87GSz51n
- siZx4j/3EjsxqaJMQk1S6+thQjK+Bri+vgOLZLDjMnDc7JsJVAQUbzkGJ
- Fnf8ZQp/ewy0x4z+o9U+rzCQ4MhWZaST5hxuaNid8AbWkGo4wM23/5iuS A==;
-X-CSE-ConnectionGUID: Y2QxzJgNSkWKNi5MN9wnsQ==
-X-CSE-MsgGUID: lxPm0uUVQlei5nAFoRvZVA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11631"; a="70547311"
-X-IronPort-AV: E=Sophos;i="6.20,244,1758610800"; d="scan'208";a="70547311"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Dec 2025 13:35:19 -0800
-X-CSE-ConnectionGUID: pnzsI74zR9ixG7c6X3ecLg==
-X-CSE-MsgGUID: 6m24ZgwQRYG1BqAxuu76IQ==
+ t=1764711439; x=1796247439;
+ h=message-id:date:subject:to:references:from:in-reply-to:
+ content-transfer-encoding:mime-version;
+ bh=udtdv5abgYxqErgNE9M876MQZCYCAHzOehw9NngUF+c=;
+ b=BKUDf7eA9+vgTNzACtBgiR+ua55/BIrry57tXIDUeGiNYJzh+KWAnViP
+ iI4RGgnzpu4ZCh0DimNpoHo9DIKjKyHVq+zizrkjBVBv5cEAt9k7xXLBU
+ uEtLBE22r+Lvz1/bLrH5ooEgvl/9eMLKV/KX+cDS6LxJJ5LRYPlUF74nm
+ URXFE9qQCrIzVHWiPoJAMxXQckS43hVTAxqstWHCl0Jupq8yPayjRrxAY
+ xOQi3f6PbT9DdEUL5oc4/V54nPVDcfsgrRuou5eyASrtKbrY36zpyfsd9
+ c6RR9ErtICdK/p1+YSWAgmC0R7Uqc4jnT8BBYFLxR3V+X/2+41IV6G2JW g==;
+X-CSE-ConnectionGUID: OaMHuVMbSaim0idF0Jtt3A==
+X-CSE-MsgGUID: ld113nBgS4i8mZGivcFJtw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11631"; a="66637226"
+X-IronPort-AV: E=Sophos;i="6.20,244,1758610800"; d="scan'208";a="66637226"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Dec 2025 13:37:19 -0800
+X-CSE-ConnectionGUID: tqHsx9RySXWvtAewi9LVyg==
+X-CSE-MsgGUID: LXZnDW0sQ8qKff3UcEiqTQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,244,1758610800"; d="scan'208";a="217839097"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Dec 2025 13:35:18 -0800
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.20,244,1758610800"; d="scan'208";a="198669516"
+Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
+ by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Dec 2025 13:37:18 -0800
+Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Tue, 2 Dec 2025 13:35:17 -0800
-Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ 15.2.2562.29; Tue, 2 Dec 2025 13:37:17 -0800
+Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
+ FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29 via Frontend Transport; Tue, 2 Dec 2025 13:35:17 -0800
-Received: from DM1PR04CU001.outbound.protection.outlook.com (52.101.61.53) by
- edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
+ 15.2.2562.29 via Frontend Transport; Tue, 2 Dec 2025 13:37:17 -0800
+Received: from PH0PR06CU001.outbound.protection.outlook.com (40.107.208.22) by
+ edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Tue, 2 Dec 2025 13:35:17 -0800
+ 15.2.2562.29; Tue, 2 Dec 2025 13:37:17 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=INNeeeoojhLxZA+Tbrz72IIYrzm1YAXsH/w5+GfX8a67Y6luuMF0pgzEhKti6UxSC1cQnT/jQQioc5L/0QoKlOE+BeMtsBupWWKdQVvP2i70HYe3kjFMuTKqBNBryHPX9OZSSNNFMzTBq/OhejlCOfYekRAzxpeyxl7vUKZone55/bAa7+Zqwo6VM/Mf3hOr/nD+0SOa6NN0Aq3QRwvTG3xUPkzjgHBZaiUCwI8BUF9ipwkt9RUX5DZiwK02Fb3wPDSDcKwoHg3qC/z2oUgnvQoKhDmF0Th4APu9fQzVxwKY/kC2yEGr3RrlOx1oiZFWhKD9FXQac9ancW6aOQjxPQ==
+ b=YN12Cp6nIrOnk0P/jb0DTdjbSRd8hYO8TeAIX7sixLvWpKLUlXEJJeh9r5ldkqWpp84R+vA14HM/2rfTOotJqKGT8N56TX4ot1NP561LJkEiTV2oKVMe2AcwfW9eyAOePTx68PkdEDDsVf5FfwxVwCk7T6wneENnLdg2AWZev2Te9Y2ANeEf9fTzQZHbo9/goy9G+9e5JkOi09+UhvnKwmQeEGnGrvg+3+OZRGxdGmwfRJE4opvXgK/iLhmxWe0JlR3mD0t2FDS4Po+LmmI9wTQTaQ66kDIzuAXZ7Y272u/P3ZBCbafUdosXxviKuyuNNJ8rH0xPnO2TYyD16xQ2tQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=o7YzIQvbeG3vxFBH3Apq7k1+0yOqL6+bri9z/CqhPB8=;
- b=RarN4qB7MJU6l0hP3insu0djlGmX1TU6Bx4h04bnO1GB+vjdJI8pOuHcduQ7qptK74Ckj6/0VezTTdFEJHxvoy/xOQ4UKOIfp6p2Z6it6NJz0iJxa5MmI6g3FempKlUdFpMMcmyD0w4CED731LsTUrgEm1sFuKfXTVMqpXwEeLBGY05fMMZTIROfKrqmpRruCLl3pAJ8kmYSg4p29K2BCdN3SE9c3rzbh70otFih8AhqGMl3Rjetp4efcJOFu6J3DONygVUKf/uRt8YS7HMgGxbYltZ2AYOsW5bfgCKszln1oNfe2/Egq47C+SmHkL6tvQ2nTM2TcaZo1eOn4v51Fw==
+ bh=4p5i1+ffV24avzlDDITPvMjfsldUsh+iYbL5JiL6aOs=;
+ b=E38g+uzpumfY6cD+lfbP7yxv4cnQ4V8ftav9jVXmQV30qS8WC4WGy91F6qaV81hszq+oZCwu8eyc5IcKL6HH8BG5sxcXAKZdYKO9LEKD4D/Zck9DQi468L+C0Fml3MhKtCjV+Go35O3CZgxuDnfO8Y3M+tvD/T//iBkTsTE3QHB3a+g1MMepdwqOqgNSidUQRaQdFHwFGhJ8/F8plMd5Rhy+OFfZJYiKphXxYBF+QJr0H9wiwlPIb8BKhR5QV66kwSbGJUzq2cyD9ujvpEDi1BxwLiAyEhmcXFyCY59GfsO7T4p4azS42wkj01RzJvgWX3SQtn50/HKXP+1lmazmGQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from SJ0PR11MB4845.namprd11.prod.outlook.com (2603:10b6:a03:2d1::10)
- by DS0PR11MB7312.namprd11.prod.outlook.com (2603:10b6:8:11f::18) with
+Received: from MN0PR11MB6011.namprd11.prod.outlook.com (2603:10b6:208:372::6)
+ by DM4PR11MB6480.namprd11.prod.outlook.com (2603:10b6:8:8d::17) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9366.17; Tue, 2 Dec
- 2025 21:35:16 +0000
-Received: from SJ0PR11MB4845.namprd11.prod.outlook.com
- ([fe80::8900:d137:e757:ac9f]) by SJ0PR11MB4845.namprd11.prod.outlook.com
- ([fe80::8900:d137:e757:ac9f%3]) with mapi id 15.20.9366.012; Tue, 2 Dec 2025
- 21:35:16 +0000
-Date: Tue, 2 Dec 2025 23:35:11 +0200
-From: Imre Deak <imre.deak@intel.com>
-To: Jani Nikula <jani.nikula@intel.com>, <intel-gfx@lists.freedesktop.org>,
- <intel-xe@lists.freedesktop.org>, Mohammed Thasleem
- <mohammed.thasleem@intel.com>, <stable@vger.kernel.org>
-Subject: Re: [PATCH] drm/i915/dmc: fix an unlikely NULL pointer deference at
- probe
-Message-ID: <aS9bj8RRYYc01Rzs@ideak-desk>
-References: <20251202183950.2450315-1-jani.nikula@intel.com>
- <aS9ZGmXG_n0IXv-N@ideak-desk>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <aS9ZGmXG_n0IXv-N@ideak-desk>
-X-ClientProxiedBy: LO4P123CA0075.GBRP123.PROD.OUTLOOK.COM
- (2603:10a6:600:190::8) To SJ0PR11MB4845.namprd11.prod.outlook.com
- (2603:10b6:a03:2d1::10)
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9388.9; Tue, 2 Dec
+ 2025 21:37:09 +0000
+Received: from MN0PR11MB6011.namprd11.prod.outlook.com
+ ([fe80::bbbc:5368:4433:4267]) by MN0PR11MB6011.namprd11.prod.outlook.com
+ ([fe80::bbbc:5368:4433:4267%5]) with mapi id 15.20.9366.012; Tue, 2 Dec 2025
+ 21:37:09 +0000
+Message-ID: <2376b865-4e4c-49a8-82bc-dea2da9c706e@intel.com>
+Date: Tue, 2 Dec 2025 22:37:05 +0100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 04/10] drm/xe/sriov: Scheduler groups are incompatible
+ with multi-lrc
+To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
+ <intel-xe@lists.freedesktop.org>
+References: <20251127014507.2323746-12-daniele.ceraolospurio@intel.com>
+ <20251127014507.2323746-16-daniele.ceraolospurio@intel.com>
+ <f9690fe0-a3b0-4ecd-a488-72457440a8c8@intel.com>
+ <f14a6c48-fe8b-46d7-974b-0fa475b3b521@intel.com>
+ <3a5dba85-44b1-453b-921d-420ce26d55b0@intel.com>
+ <25b260ed-d7e0-497b-8b88-7a376402633c@intel.com>
+Content-Language: en-US
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+In-Reply-To: <25b260ed-d7e0-497b-8b88-7a376402633c@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: VI1PR04CA0129.eurprd04.prod.outlook.com
+ (2603:10a6:803:f0::27) To MN0PR11MB6011.namprd11.prod.outlook.com
+ (2603:10b6:208:372::6)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ0PR11MB4845:EE_|DS0PR11MB7312:EE_
-X-MS-Office365-Filtering-Correlation-Id: e385e41f-8c42-4ebb-5e13-08de31eaaefa
+X-MS-TrafficTypeDiagnostic: MN0PR11MB6011:EE_|DM4PR11MB6480:EE_
+X-MS-Office365-Filtering-Correlation-Id: f04f5d3e-e30c-4f75-d1a3-08de31eaf2ac
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0; ARA:13230040|1800799024|10070799003|376014|366016;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?AYrwZM73XWUtskeohf/EeDrhAguOvdhMc9RfnA3HaEzenyZyAwQi0S3PqSEE?=
- =?us-ascii?Q?/9ZqFYLCth9NSfH4X64QcidrEX8k+enc4JZ7hOjKVCNM3JjBigjL4V1q9P9a?=
- =?us-ascii?Q?RJPUOAh2Z1rsQzyfjZ1IlO3sJUp/wheV9CdjCEUhUUndzv3igZ/iTxYppEKm?=
- =?us-ascii?Q?AIKXH28jok2HsYb9i8K/vJBlhIO7Avr/og+BwPlTS/1xC/j3w0bM12SOlbL1?=
- =?us-ascii?Q?+4RxVexzqC9WKWBxy8TQFlVbEqzoLZZjavlDJz34TpezW2nYEsJ5LRyd6OS0?=
- =?us-ascii?Q?/JUnIaQlJC0/ne4TuqjkUhVfe20fOXQCng/zbfSZHudGr6YnN+9ExkDTgGBm?=
- =?us-ascii?Q?gLod4M5RADGPzxvpMxVcoF5IHdSHlYR81yFDttf2Q1w6XC8qmigM9Js6WlLz?=
- =?us-ascii?Q?geJD9MiqEAlAu9Ir+d1NCmoPlFUYKGpv9/PcD/BM1HSVmu36nDpc+RafDqpQ?=
- =?us-ascii?Q?pXLnyHL1XwPcMQavWPKkriGYIWSqQU0Dx14387xvz1kOYeX/CIisuiq0Yjwt?=
- =?us-ascii?Q?GGp40tHwlu+3djf22C8YikjAAbmHvZEhA8KUP7p5zPglIL7nPcTMbuBku25w?=
- =?us-ascii?Q?2n4yIKW5Tt7g3EKpu+k8UyZzy3mUyWrUogPPUnliJNUr5TONFsimHfXFGKsY?=
- =?us-ascii?Q?VYSOV1f2o2kBQ7t8fJROVV1QxZxCvBxEROoXOrH1eT3/xLi6+Mqw66kLaoDC?=
- =?us-ascii?Q?OUVBWd+hTTpUDcquNPgfoKRvqEhrL/mCF0HQol/n8t7XSmdKxJcHvVVXNczH?=
- =?us-ascii?Q?EQRvG4+GZxEPSs55s/CDGfc+HbUHoSmRoJRoFMYwmm4ukm0ifeSyuInS84My?=
- =?us-ascii?Q?ZWGgu/jQ2enQFD+6Yr5Co5QFCFKwyRwptruV5JRiym8Ytt17QaMUSwAFduNf?=
- =?us-ascii?Q?AWSUYq0RJ0EjvrnKAX0XOGYjqExBatCWhMt/1FkX3tJZQJiVuVd/awqmgffz?=
- =?us-ascii?Q?seD89QKd12CuW1o8fQSPVJp/InAAQI/N4/AOSSaaZ8GT7c6cqi3QkagMaA/J?=
- =?us-ascii?Q?ifgkU3xWh0TYaandsoZg3FsqzKvFFUN0tqTwKrdHaF+/0Zg83pay5E6d3x1n?=
- =?us-ascii?Q?2wJWwzsvuzXUzCilcUH2MptqA0RHfDXOpLJu9m7c6PYmj1WUMbBBkfada9Aj?=
- =?us-ascii?Q?sHv6Ef01ddvE4441wxokNlKCmR7mA7zG5p2NLabiELR+HbTKNPB2bklpPipV?=
- =?us-ascii?Q?uy8jqy4fFt0EE08iUiQ8iEqZv5MRD/d+iOMi3smJkgli20ssbwrhMbczZrdo?=
- =?us-ascii?Q?gx1f2ZmGNs+xiLN7aZt/b2N4O3R5nUWAolrewNCVlvaNFGcxVHV1CsOrr1Ax?=
- =?us-ascii?Q?BTY+IbvuamUTwr8Z556P2bMrvCjpyCdTBCgJOsORT4eJXel0/UrCRtGgtQa5?=
- =?us-ascii?Q?J1v2Z+g1LL08T3G2wpFYlSFzum9lj9vnMbCJu0C0/z8Z/yKSdlCmEsaZ3973?=
- =?us-ascii?Q?w+vtVPN0FtAfkUvQtkye/Nhn2xl7GV1m?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?T3gyVlBaNmx0T2l4ZVk4TTF2cE95aVNlaFNCVTBodktvSVNOZXoyS204OGNY?=
+ =?utf-8?B?WHB3UEpsZW9JYmtPQ2U3NVVabExsWUdLRGlBa1BKVnNyNEJueDhTYnYxcUVq?=
+ =?utf-8?B?b3BtODhlUDJVb2ZwR2NqaGxndE5Rdmo3RWtBTzZnSk44N3pGRjVHaC9CV2ZW?=
+ =?utf-8?B?aWc0OE5XNHYxb3lHNEw3Y2lEV2V4RjdYNVFraWY1MGd0U1NaTWJBckQwbi9I?=
+ =?utf-8?B?Z3AyOTVKMGF2RWNoMWRQdCtHNlNLMTFScExabk43eUNqYTRkdmhFOVdUVjBj?=
+ =?utf-8?B?YWhYTkpxZEhZMkFHWm9VUUVRdXlDSkp3bzFaa2hXRzZlLzllczZVTEQ5MnVY?=
+ =?utf-8?B?c3JMd1hTaEVkYnJPY09tWUlJdmhxQUlwMWt3SUlVTWdxcVUrMTBXNnZweHFl?=
+ =?utf-8?B?ZTE5a3ZzQlNNSXpPcWJ0Um5xRnJUektVVXhYSkQ4YnBzQVF3RVplbGR2Rlds?=
+ =?utf-8?B?d2dVdVZ3amdLS1lHL0RYYlpSS1I5bUEwSXhoUHdUQ3ZoOHc3blozcVdVZXFk?=
+ =?utf-8?B?cHdBRXhQY3dJNjFiRG12RWRmaXZobEQ5SWJkbEFwSmxlUjRvRUhBTUlEckd5?=
+ =?utf-8?B?Zm5iai90djlNdEN4dERUdGJpNTl0dXJmVVFKSlNoQVRidURKY08zNzRuMFkw?=
+ =?utf-8?B?OFFrTE9heWNuajJjcmJoSFFCNkhvSE9ZQnlibW9GYXloT3pUYlpTSTROeXFo?=
+ =?utf-8?B?emxUY0ZNSm1xTmgxYmtaWHByR2lNNUhoV3Q0bWwzU3hocHNSOWUvbEJCK2xq?=
+ =?utf-8?B?Mzc1djI1ZjFNR1RPYkh4NTM1d0E4b2oxU2pxL09TUmVmTDFpRlZRaHRqc29a?=
+ =?utf-8?B?clloRCtVUFpZVjFUcktaTE5nYWQxazlhTHBjNlRDTGdCVHNrT1NMMVo1WTBv?=
+ =?utf-8?B?Q0JzK3ZkckxhVTNGcHlpSHZ2Q3k3ci9qTDhvS2tUOFM1Z25hb3FHZ1NITW1D?=
+ =?utf-8?B?aWpwRDhzcFU4bWhUM1dVaUlUdm1kSDl5RDJsUXMrQ2x6d1pOQzB0Vkc0cWI5?=
+ =?utf-8?B?bTBRa3pPRXF2UHcrSWJaM1ZTMjMvQTlaV0huT0ZsMDB4eEJiUUtweHpVOGJt?=
+ =?utf-8?B?TFNEQnJXUWNHYnhKSVVqTHM2NjQxUVU2RCswUmdTbFo0L3BHcjJHdTVrUWl2?=
+ =?utf-8?B?Y0Y4dzVJSFNLSllBTGpFQWdxK25yZ09lN2FYT1JtTjZXZjJDdmJDc1A5VTN3?=
+ =?utf-8?B?VzllcTNyUFIrUVNLWmJGMkxBbm5WZXRhZCtVcTQ4UTRNQk43anNxdTVlS2Va?=
+ =?utf-8?B?QkFMMkpRZUE5WVRwbDJZUUVDRHR5cy82OTMxTU5CQVFMTXk5bXFqR2s5NERN?=
+ =?utf-8?B?ZWJFRXdSc0hpVGdBemRmQzBBNElxUHBjUDdwWnVYK1dnVFBPN0plbEhPSkxk?=
+ =?utf-8?B?VXhiWXNRRFhFRTZvL1NHWmhkalZEN2dMTGxJWE1kbXl6QWoxM1RHdnlRREV5?=
+ =?utf-8?B?Rm4wOEJwakgrMkdnRWdKbHhJOGtUSE1idUNlT2g1L2dDN0xOY3JBY0NMMkZJ?=
+ =?utf-8?B?WVVOdEFKRXRXUStNM2tVZ28yQmJCMGtsS1Z5dFNQOGFtS3I0NGdwbU1BZ3dO?=
+ =?utf-8?B?RE1kL3JLTmNrZUhna1FqYnpLUHJDYzBCdW9lZlBtYmxOSVR0ZGhuRzBQNTBK?=
+ =?utf-8?B?Q0hVRjlBUUlCaVM4cnhIN3EwbWw5d05ET2FKL3lEOW8yRDdQWW5seHdmdjI4?=
+ =?utf-8?B?dys3OHNwdVNRVGtneEthMjZqNTVzajdDR2VxOGJiTHVFKzUwTlY5SDE2TlJB?=
+ =?utf-8?B?YWFNUE5rNjg2b0ttKzJybjQycUpVUUNVQ0s4U1lDKzAyU1J3VXpvRUQyRW95?=
+ =?utf-8?B?QVUrcDgrQXdudUxwQStMZ1A5SFNIbFJpOVFCRXNRUERtZ3d2WUgyOEswLzVr?=
+ =?utf-8?B?d2NxVGJnR2ZZTUN3ZHFLNmFDL2pzNHZmMnIwckJ6ZjRuYWxGTS9TdGttZEJh?=
+ =?utf-8?Q?VOMAMMGcteGFxjgp41s2cslKQmfrNDvC?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SJ0PR11MB4845.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(10070799003)(376014)(366016); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:MN0PR11MB6011.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(376014); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?jPOrYte6gEm7aOoDysHeFI57Zxoy11EFqruoGhTqBhLVpqXRJmEqIkng6qoD?=
- =?us-ascii?Q?dQAjBaCMgjDvzHoqu1j9Wz4IqTFe9MHw82r2TYFsTQ+InmwF+kZB8cBf4/ou?=
- =?us-ascii?Q?haKRZQAPd7cItfzv0m1EVIzrC3KmMJx4xTHzUvK/5TPim0+nYWiQI7QYLeFX?=
- =?us-ascii?Q?ReTeyoGIZBu0Js/rD+7UFc3/7h4BmpP1UU1sLH1UPrE/Bk8T6hoX6tkmyusS?=
- =?us-ascii?Q?HldJE5R2hTiIoDWhtxgm8wO17qWPpkvt0Tx/+srCur3QFbL+uh/SQIcjUM5k?=
- =?us-ascii?Q?yghW3JMqLlno8UG1f1BeoRCnQTVfcjoVVIwNLgQgOOUyFIHrT3Kf/YunOXc9?=
- =?us-ascii?Q?ffIj8XET5FQSGObmRK34YBF4JN7CwHaV9NiEYr19TxkSDmCFKzRwwyfFqtAN?=
- =?us-ascii?Q?D/pcdWxLJ+nzCO63Zcw9dy7PNnjZlVolyZkIFTSg7NwUXpqOhhCiKHBPNUR6?=
- =?us-ascii?Q?o8ssTs7WxQtu9/qUBncThcn2+1wsipNb5KtetUwaZjctRhOnIw3ygN1b0i0W?=
- =?us-ascii?Q?+ZxOA5LqfGZ1hqQl5i5lEwgBUKV51cU1U6LJYkY0Pq+TNEiI3w6yfHzlnWI0?=
- =?us-ascii?Q?gk0bD1SLS4jd4erR2vs56evr090zqnmSpiqF6zeznMeO9sdQ9tLzanGrczMG?=
- =?us-ascii?Q?/St9nxs/CdWHYr8IYL1Bh11gqdAGkWNGTt/YjMl3+uhzprxLVvwcKI+yPa9d?=
- =?us-ascii?Q?r/aX7LamZ8EfFJnrk7/WWpyTmxigDQ0z+5F59aw3YWqZaRm2tuVrmbZ6SaOH?=
- =?us-ascii?Q?wHem2NUvWK9wLtZc7kQD/+/PCKUjo8FxLzpfDadx8YJVUJRXdRQd+NKq4kXN?=
- =?us-ascii?Q?lH15Cj6od9r4xyKjIIeJjXQs17ZfGQj1fQ4IRRpsg4S9ds6m3pUie9ibboTS?=
- =?us-ascii?Q?q2vu9h5XlComOAKSCnVZRzRfAQzUrxc28QV/4uPI7s8/NUOFzNO8x5uTV1yB?=
- =?us-ascii?Q?zicfsTqqYzi8YUtFC8Dxj5r2ea5NWsBIjiaabw3J+xnwlyCbyh3kMe07OYHM?=
- =?us-ascii?Q?zFN7LmBg0uJ32KZeWEjVO4WXxxSNDeU8sd+vJzZYOMSNrfSmh0Ij5S3UiPF6?=
- =?us-ascii?Q?Fx1Gagz1VuCSjfvkcZthI4LgKthy+qaHM4qo0Eo5gvbscw0llC7ir5ZOJSxm?=
- =?us-ascii?Q?E5MRgIqSgs9Pd9+nfZ0YATY/pi25P3bjW6bmEV5U63ztdg4Ty6NsbIa/J7RC?=
- =?us-ascii?Q?pk9M+r+5tnLALV2vpPKeurTumT3k6NDOT7vPuLeodUNgTYsHQ2CF7jXEnHAS?=
- =?us-ascii?Q?YogRSl/tis90GlDLN+vH4o6GNdwO4ylRuP9q5uaZCY9F4KWvZFNWuVK1Ljxx?=
- =?us-ascii?Q?89rNCbMw6MziJBF/RobsIx2kF198sYvh9nU6Tm9nCflpEno6ToyeThVcn2Cn?=
- =?us-ascii?Q?FYrRpy+bH7ItjfL2g4LXCCahPnLIGK9hD02E1E0RtsB5irMI9KJ9Cr2T0Py2?=
- =?us-ascii?Q?N9tE0NB7IcDJy98Vmox9zDsjX+3FBLC4IiB/FZGWTySfWr1A5DyRCRMBEPiK?=
- =?us-ascii?Q?+9mrXC2A0xCRwwWewAJRsu9ZEX4NUQ3jFSSFptfuAkxRw8imyLTG+myKL0oM?=
- =?us-ascii?Q?HObz5p1sceqtDWIJXK/ppz2Y1tjWJf8c0v9M8EeJR2gZYeKfuGIKaQk/SGUv?=
- =?us-ascii?Q?u5rci32kRsKpaTBPIakJeTF1NvUz8zb+X/cFRqqGTCSN?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: e385e41f-8c42-4ebb-5e13-08de31eaaefa
-X-MS-Exchange-CrossTenant-AuthSource: SJ0PR11MB4845.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?K0F6TmhSSFJNRHNTUy9LcVdSTEdBMzRsWkkvYi8xZFJlSWUxb29PZ0dqNEhT?=
+ =?utf-8?B?S0hZRmhXQmZNLzFxU0Q4VWNzVDR5RkJmRDd3Rld2UkM0WHJJZ2xubEV5dzk1?=
+ =?utf-8?B?S0VUeUQxUlZobUFoeTErY2JIeEIyaHNhU1NsZlpCamZCbm4rdlpkWmhNNXlx?=
+ =?utf-8?B?ZmNTaDFjNU9rd2ZVeElERFZia2kyc2Z5QVFJekZ3eEdsQWJYdlRFSXRmcDU5?=
+ =?utf-8?B?bVU4TWRSdGV6ZEMzMUxmMjVwN3FOZDAwNGdOYVJkbTJQQlNoR3c0WVZmY3BV?=
+ =?utf-8?B?eVFaUzdzY1djVFJmRDdLN1ZZckZUck1NZnJoMkVoaTBpemdRTlkyNUVyZ21Z?=
+ =?utf-8?B?Qm1CZ1VDUjZxTDcrRENIQmJQc1hhc3FEelZ1dVhDTGQzQ0xkdm5taUJQZGNC?=
+ =?utf-8?B?OERPVnJZMFpWTFlIUWF6UWlPQXlobVpSVTFidFoxMXJxZWJQM0FTR3lUR3o2?=
+ =?utf-8?B?Y3pmMFhhSGYxelcyL3JnZi80dlJsbEZBWDRQVXZ5YUdwc2FLbE44dWhkaktD?=
+ =?utf-8?B?bCtqbHVVaFNzd2pRaEcxVlVzcnZ4eGxuWW42cG13eHpHOStZVW51WFBmc1VE?=
+ =?utf-8?B?TUQyenRBZTJycU9tcUxEMjBVaDZSMEJRQnZTNkF2VTVoakxNZkdzS0tvQ1VG?=
+ =?utf-8?B?YzZaR2tNcFZDbVgxR2o0VFdlWTdjalNtcHBuL2tRWHZOZ1l5L1JYWm1sZnE2?=
+ =?utf-8?B?SU1WUFlVVGovR1A4aWRFWkRGM0tRbTZzNEhLRXdCbmRuVkl6SmczQnlkeXFp?=
+ =?utf-8?B?cEFHUWRzUFAxL295Q1FFa0MwZ0lxWStUQmN0QzBOSmcxTW9UR0dpOUhmd095?=
+ =?utf-8?B?RVhRWldHbjViUVhCL1pPdHhLRTdLbmE0M3lyQnpuc3pkTU14ellKanNseVNp?=
+ =?utf-8?B?a2JqVU1scjZwbjlrV0pxMFJZL2JGWjNyQy9ya1V2dXpMOTJOc0VSaS84RHRE?=
+ =?utf-8?B?TjdTb3VQODlJTnpLemc1RUxIUW5lci9EMWlwOG93bHpZRDFsd3p5UzhMNzdu?=
+ =?utf-8?B?WGk1OG5wMGxwYmRNLzRZQi8vTmN0TVJqVUYyakhOSWNBQytOaklEcDZOdVp2?=
+ =?utf-8?B?c1NiQk81MisvRUN6WE1FbzZmbW9zbkErR01rNHpDd2NCWlI4SEt5VmFJcE01?=
+ =?utf-8?B?Rm9id2x5azhUYjgvNC81WSszc0hHVnV5YjVFdkpnQ0dTcmNUc2VBUjFEcmNp?=
+ =?utf-8?B?TENNRkV1a1VhOWdCNnJLcXMzYUhOc0lFWkh6cXVocFNZZnZDZEY5OGh5Vm9x?=
+ =?utf-8?B?azU4UDl4SUNEZlRrQkpPbDlhL0NTTGJtdWdYL0NVN0Foc2Z2UisyK1JmTlZ3?=
+ =?utf-8?B?d2Y2bXhXVWZRK0U0VEV6TnNZdEkxcHdHOTZScHpiOXhXU1VqdVNEa3dSZVFm?=
+ =?utf-8?B?ZE00c2RUdkUrUkd0VTBwVyt0L25JRzdKbGhYa25WYU5NcHRicjBTRFdEdXBW?=
+ =?utf-8?B?V2RTam5ORi9Bdm5HUlEvckFqZi9rUlpUQjlTb1FuRUF0bUwzU094bkxYdWYx?=
+ =?utf-8?B?R3hVRzhtaFFnVUY2VDQ1d0lzQ1VOWFpCTERUbEVJS0hETm5xMnlaYUtEb3Ri?=
+ =?utf-8?B?MUw5NkhmdDErSEUwQzJLcDRrQTB0RmN0L3NURThjRVpycVpGTjVwWlNQTEhZ?=
+ =?utf-8?B?ZzdReVhIb00vYUZmS3M1Z3pzRjd3U2drZWpCclNNZkhLeEZpbTJJYmlVRXE1?=
+ =?utf-8?B?UHRCQ1Z5akxyK1pKcFNIalFzbm4yMVR3TXZ2dDhNZXUwa2R0dkV0MFlia05H?=
+ =?utf-8?B?elBkaFd1TUdPdEZ2Yk1SNElzMXNoUVM5c3lvWkF1SU5RdGxzQ0lBNjVhQk5Z?=
+ =?utf-8?B?c1EyWUhRT1RRNU9NcVJZTzBqTUEzZkwzclRmNU5iMXMwbDQybDZPUXNrR1Mv?=
+ =?utf-8?B?ZW5XNkxOeDcreDg3anh6eURHb2NkcmVUajBDUVc5MWZ2eGloZ1JUZjJOQjRW?=
+ =?utf-8?B?UEVPVHZqTHQ2TjJkTGZGbmNVeC9ZM1FOMXRFdWg0TXM3NFNxbGE0UExJblJL?=
+ =?utf-8?B?OHorUEJ0LzYvTjM0dHorNFNIWE1pdXlQTGJpa3EvTWFTRlhTMlZkQkM3dm0r?=
+ =?utf-8?B?OEtPTmQ2RGZyQTVQd01OdXZFK1pyb1Bpclh4UU5xa3hmR3AvcllFNXVDWDht?=
+ =?utf-8?B?cy9jUENET2Y3VGFMRmppcFRmKzFQQU1HQk8vKzljTFQzc0d2QW1Na0lpVG44?=
+ =?utf-8?B?K0E9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: f04f5d3e-e30c-4f75-d1a3-08de31eaf2ac
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6011.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Dec 2025 21:35:16.1725 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Dec 2025 21:37:09.7946 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: beGh9YGHqgJD/OPEJxeocUE7bvMK1mI00V8vwtISvqhZIiPXrmfPfnBZ+x9z0IuBjAhwE7iRDnpGujwy82/3pA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB7312
+X-MS-Exchange-CrossTenant-UserPrincipalName: cuVznB+R+UGkm82cqKcB68THNjQtmG0KZlZPedIwACMQsvjCcK302o1qmaE7dJJwoGXNHCViQQdjGu/r//9HY7DXEtZb8Ep0ujVO49ab51A=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB6480
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -175,105 +197,430 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Dec 02, 2025 at 11:24:42PM +0200, Imre Deak wrote:
-> On Tue, Dec 02, 2025 at 08:39:50PM +0200, Jani Nikula wrote:
-> > intel_dmc_update_dc6_allowed_count() oopses when DMC hasn't been
-> > initialized, and dmc is thus NULL.
-> > 
-> > That would be the case when the call path is
-> > intel_power_domains_init_hw() -> {skl,bxt,icl}_display_core_init() ->
-> > gen9_set_dc_state() -> intel_dmc_update_dc6_allowed_count(), as
-> > intel_power_domains_init_hw() is called *before* intel_dmc_init().
-> > 
-> > However, gen9_set_dc_state() calls intel_dmc_update_dc6_allowed_count()
-> > conditionally, depending on the current and target DC states. At probe,
-> > the target is disabled, but if DC6 is enabled, the function is called,
-> > and an oops follows. Apparently it's quite unlikely that DC6 is enabled
-> > at probe, as we haven't seen this failure mode before.
-> > 
-> > Add NULL checks and switch the dmc->display references to just display.
-> > 
-> > Fixes: 88c1f9a4d36d ("drm/i915/dmc: Create debugfs entry for dc6 counter")
-> > Cc: Mohammed Thasleem <mohammed.thasleem@intel.com>
-> > Cc: Imre Deak <imre.deak@intel.com>
-> > Cc: <stable@vger.kernel.org> # v6.16+
-> > Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> > 
-> > ---
-> > 
-> > Rare case, but this may also throw off the rc6 counting in debugfs when
-> > it does happen.
-> 
-> Yes, I missed the case where the driver is being loaded while DC6 is
-> enabled, this is what happens for the reporter:
-> 
-> i915 0000:00:04.0: [drm] *ERROR* DC state mismatch (0x0 -> 0x2)
-> 
-> That's odd, as DC6 requires the DMC firmware, which - if it's indeed
-> loaded by BIOS for instance - will be overwritten by the driver, not a
-> well specified sequence (even though the driver is trying to handle it
-> correctly by disabling any active firmware handler).
-> 
-> But as you pointed out this would also throw off the cooked-up DC6
-> counter tracking,
 
-Actually the patch would keep the counter working, as the counter
-wouldn't be updated in the dmc==NULL case. However I still think the
-correct fix would be to check the correct DC state, which from the POV
-of the counter tracking is the driver's version of the state, not the HW
-state.
 
-> so could instead the counter update depend on the
-> driver's DC state instead of the HW state? I.e. set
-> gen9_set_dc_state()/dc6_was_enabled,
-> intel_dmc_get_dc6_allowed_count()/dc6_enable if power_domains->dc_state
-> says that DC6 was indeed enabled by the driver (instead of checking the
-> HW state).
+On 12/2/2025 10:25 PM, Daniele Ceraolo Spurio wrote:
 > 
-> That would fix the reporter's oops when calling
-> intel_dmc_update_dc6_allowed_count(start_tracking=false), by not calling
-> it if the driver hasn't actually enabled DC6 and it would also keep the
-> DC6 counter tracking correct.
 > 
-> intel_dmc_update_dc6_allowed_count(start_tracking=true) would be also
-> guaranteed to be called only once the firmware is loaded, as until that
-> point enabling DC6 is blocked (by holding a reference on the DC_off
-> power well).
+> On 12/2/2025 1:17 PM, Michal Wajdeczko wrote:
+>>
+>> On 12/2/2025 6:57 PM, Daniele Ceraolo Spurio wrote:
+>>>
+>>> On 12/2/2025 5:32 AM, Michal Wajdeczko wrote:
+>>>> On 11/27/2025 2:45 AM, Daniele Ceraolo Spurio wrote:
+>>>>> Since engines in the same class can be divided across multiple groups,
+>>>>> the GuC does not allow scheduler groups to be active if there are
+>>>>> multi-lrc contexts. This means that:
+>>>>>
+>>>>> 1) if a mlrc context is registered when we enable scheduler groups, the
+>>>>>      GuC will silently ignore the configuration
+>>>>> 2) if a mlrc context is registered after scheduler groups are enabled,
+>>>>>      the GuC will disable the groups and generate an adverse event.
+>>>>>
+>>>>> We therefore need to block mlrc context creation when scheduler groups
+>>>>> are enabled.
+>>>> s/mlrc/MLRC
+>>>>
+>>>>> An adverse event threshold is available for the new adverse event.
+>>>> changes related to introduction of new threshold deserves separate patch
+>>>> (as we need to handle GuC FW version checks)
+>>> ok
+>>>
+>>>>> Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+>>>>> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+>>>>> ---
+>>>>>    drivers/gpu/drm/xe/abi/guc_klvs_abi.h         | 14 +++++
+>>>>>    drivers/gpu/drm/xe/xe_exec_queue.c            | 19 ++++++
+>>>>>    drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.c    | 30 ++++++++++
+>>>>>    drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.h    |  1 +
+>>>>>    drivers/gpu/drm/xe/xe_gt_sriov_vf.c           | 59 +++++++++++++++++++
+>>>>>    drivers/gpu/drm/xe/xe_gt_sriov_vf.h           |  3 +
+>>>>>    drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h     |  2 +
+>>>>>    .../drm/xe/xe_guc_klv_thresholds_set_types.h  |  1 +
+>>>>>    8 files changed, 129 insertions(+)
+>>>>>
+>>>>> diff --git a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h b/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
+>>>>> index 274f1b1ec37f..a6dce9da339f 100644
+>>>>> --- a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
+>>>>> +++ b/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
+>>>>> @@ -46,11 +46,18 @@
+>>>>>     *      Refers to 32 bit architecture version as reported by the HW IP.
+>>>>>     *      This key is supported on MTL+ platforms only.
+>>>>>     *      Requires GuC ABI 1.2+.
+>>>>> + *
+>>>>> + * _`GUC_KLV_GLOBAL_CFG_GROUP_SCHEDULING_AVAILABLE` : 0x3001
+>>>>> + *      Tells the driver whether scheduler groups are enabled or not.
+>>>>> + *      Requres GuC ABI 1.26+
+>>>> typo: Requires
+>>>>
+>>>> and don't forget to update xe_guc_klv_key_to_string() with new KEY
+>>> ok
+>>>
+>>>>>     */
+>>>>>      #define GUC_KLV_GLOBAL_CFG_GMD_ID_KEY            0x3000u
+>>>>>    #define GUC_KLV_GLOBAL_CFG_GMD_ID_LEN            1u
+>>>>>    +#define GUC_KLV_GLOBAL_CFG_GROUP_SCHEDULING_AVAILABLE_KEY    0x3001u
+>>>>> +#define GUC_KLV_GLOBAL_CFG_GROUP_SCHEDULING_AVAILABLE_LEN    1u
+>>>>> +
+>>>>>    /**
+>>>>>     * DOC: GuC Self Config KLVs
+>>>>>     *
+>>>>> @@ -369,6 +376,10 @@ enum  {
+>>>>>     *      :1: NORMAL = schedule VF always, irrespective of whether it has work or not
+>>>>>     *      :2: HIGH = schedule VF in the next time-slice after current active
+>>>>>     *          time-slice completes if it has active work
+>>>>> + *
+>>>>> + * _`GUC_KLV_VF_CFG_THRESHOLD_MULTI_LRC_COUNT` : 0x8A0D
+>>>>> + *      This config sets the threshold for LRCA context registration when SRIOV
+>>>> ... threshold for _Multi_ LRCA context registrations ...
+>>> ooops :)
+>>>
+>>>>> + *      scheduler groups are enabled.
+>>>> "This is allows PF to monitor VFs' behavior when EGS is enabled."
+>>>>
+>>>>>     */
+>>>>>      #define GUC_KLV_VF_CFG_GGTT_START_KEY        0x0001
+>>>>> @@ -427,6 +438,9 @@ enum  {
+>>>>>    #define   GUC_SCHED_PRIORITY_NORMAL        1u
+>>>>>    #define   GUC_SCHED_PRIORITY_HIGH        2u
+>>>>>    +#define GUC_KLV_VF_CFG_THRESHOLD_MULTI_LRC_COUNT_KEY    0x8a0d
+>>>>> +#define GUC_KLV_VF_CFG_THRESHOLD_MULTI_LRC_COUNT_LEN    1u
+>>>>> +
+>>>>>    /*
+>>>>>     * Workaround keys:
+>>>>>     */
+>>>>> diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
+>>>>> index 8724f8de67e2..e59c41c913b4 100644
+>>>>> --- a/drivers/gpu/drm/xe/xe_exec_queue.c
+>>>>> +++ b/drivers/gpu/drm/xe/xe_exec_queue.c
+>>>>> @@ -16,6 +16,7 @@
+>>>>>    #include "xe_dep_scheduler.h"
+>>>>>    #include "xe_device.h"
+>>>>>    #include "xe_gt.h"
+>>>>> +#include "xe_gt_sriov_pf_policy.h"
+>>>>>    #include "xe_gt_sriov_vf.h"
+>>>>>    #include "xe_hw_engine_class_sysfs.h"
+>>>>>    #include "xe_hw_engine_group.h"
+>>>>> @@ -698,6 +699,17 @@ static u32 calc_validate_logical_mask(struct xe_device *xe,
+>>>>>        return return_mask;
+>>>>>    }
+>>>>>    +static bool has_sched_groups(struct xe_gt *gt)
+>>>>> +{
+>>>>> +    if (IS_SRIOV_PF(gt_to_xe(gt)) && xe_gt_sriov_pf_policy_sched_groups_enabled(gt))
+>>>> hmm, usually we don't want core code to look so deeply into PF subcomponent
+>>> I thought about that, but I didn't know which sriov file would be the right one, since almost all of them are either pf-only or vf-only. should I just move it to xe_sriov.c?
+>> hmm, but xe_sriov.c is device level function
+>>
+>> we might add helper to xe_gt_sriov_pf.h where we can also provide stub there:
+>>
+>> #ifdef CONFIG_PCI_IOV
+>> bool xe_gt_sriov_pf_sched_groups_enabled(gt);
+>> #else
+>> static inline bool xe_gt_sriov_pf_sched_groups_enabled(gt) { return false; }
+>> #endif
 > 
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_dmc.c | 6 +++---
-> >  1 file changed, 3 insertions(+), 3 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
-> > index 2fb6fec6dc99..169bbbc91f6d 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dmc.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_dmc.c
-> > @@ -1570,10 +1570,10 @@ void intel_dmc_update_dc6_allowed_count(struct intel_display *display,
-> >  	struct intel_dmc *dmc = display_to_dmc(display);
-> >  	u32 dc5_cur_count;
-> >  
-> > -	if (DISPLAY_VER(dmc->display) < 14)
-> > +	if (!dmc || DISPLAY_VER(display) < 14)
-> >  		return;
-> >  
-> > -	dc5_cur_count = intel_de_read(dmc->display, DG1_DMC_DEBUG_DC5_COUNT);
-> > +	dc5_cur_count = intel_de_read(display, DG1_DMC_DEBUG_DC5_COUNT);
-> >  
-> >  	if (!start_tracking)
-> >  		dmc->dc6_allowed.count += dc5_cur_count - dmc->dc6_allowed.dc5_start;
-> > @@ -1587,7 +1587,7 @@ static bool intel_dmc_get_dc6_allowed_count(struct intel_display *display, u32 *
-> >  	struct intel_dmc *dmc = display_to_dmc(display);
-> >  	bool dc6_enabled;
-> >  
-> > -	if (DISPLAY_VER(display) < 14)
-> > +	if (!dmc || DISPLAY_VER(display) < 14)
-> >  		return false;
-> >  
-> >  	mutex_lock(&power_domains->lock);
-> > -- 
-> > 2.47.3
-> > 
+> Do you mean to check for both PF and VF from that function, and just have it in the PF file for convenience?
+
+this is PF file and only PF functions might require stubs (when PCI_IOV=n)
+so it is just to hide PF internals
+
+VF function is already exposed at GT level
+
+> I could also just create a new xe_gt_sriov.h file and place it there, making the function an inline.
+
+maybe later ;) we already have many files
+
+> 
+>>
+>>>> also, do we want to work in hybrid mode where one GT is using MLRC and other is not?
+>>> The GuCs allow it. I didn't want to block it in case we do get a scenario later where this is needed (e.g. we might get a split primary GT but still want to do mlrc on media)
+>>>
+>>>>> +        return true;
+>>>>> +> +    if (IS_SRIOV_VF(gt_to_xe(gt)) && xe_gt_sriov_vf_sched_groups_enabled(gt))
+>>>>> +        return true;
+>>>>> +
+>>>>> +    return false;
+>>>>> +}
+>>>>> +
+>>>>>    int xe_exec_queue_create_ioctl(struct drm_device *dev, void *data,
+>>>>>                       struct drm_file *file)
+>>>>>    {
+>>>>> @@ -790,6 +802,13 @@ int xe_exec_queue_create_ioctl(struct drm_device *dev, void *data,
+>>>>>                return -ENOENT;
+>>>>>            }
+>>>>>    +        /* SRIOV sched groups are not compatible with multi-lrc */
+>>>>> +        if (XE_IOCTL_DBG(xe, args->width > 1 && has_sched_groups(hwe->gt))) {
+>>>>> +            up_read(&vm->lock);
+>>>>> +            xe_vm_put(vm);
+>>>>> +            return -EINVAL;
+>>>>> +        }
+>>>>> +
+>>>>>            q = xe_exec_queue_create(xe, vm, logical_mask,
+>>>>>                         args->width, hwe, flags,
+>>>>>                         args->extensions);
+>>>>> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.c
+>>>>> index 48f250ae0d0d..c7f1ea8eb9c5 100644
+>>>>> --- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.c
+>>>>> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.c
+>>>>> @@ -8,6 +8,7 @@
+>>>>>    #include <drm/drm_managed.h>
+>>>>>      #include "xe_bo.h"
+>>>>> +#include "xe_exec_queue_types.h"
+>>>>>    #include "xe_gt.h"
+>>>>>    #include "xe_gt_sriov_pf_helpers.h"
+>>>>>    #include "xe_gt_sriov_pf_policy.h"
+>>>>> @@ -527,6 +528,24 @@ static int __pf_provision_sched_groups(struct xe_gt *gt, u32 mode)
+>>>>>                          masks, num_masks);
+>>>>>    }
+>>>>>    +static bool guc_has_mlrc_queue(struct xe_guc *guc)
+>>>> this is all GuC stuff, so export it from xe_guc_submission.c
+>>> ok
+>>>
+>>>>> +{
+>>>>> +    struct xe_exec_queue *q;
+>>>>> +    unsigned long index;
+>>>>> +    bool found = false;
+>>>>> +
+>>>>> +    mutex_lock(&guc->submission_state.lock);
+>>>> guard(mutex) ?
+>>>>
+>>>>> +    xa_for_each(&guc->submission_state.exec_queue_lookup, index, q) {
+>>>>> +        if (q->width > 1) {
+>>>>> +            found = true;
+>>>>> +            break;
+>>>>> +        }
+>>>>> +    }
+>>>>> +    mutex_unlock(&guc->submission_state.lock);
+>>>>> +
+>>>>> +    return found;
+>>>> what if new MLRC is created right now?
+>>>>
+>>>> maybe we should use xe_guard to lockdown one feature or the other?
+>>> The idea is that the admin is responsible for enabling EGS when the system is in the correct state, which is why the GuC doesn't return an error and just ignore the KLV if the system is not in the correct state. This check is there to catch the case where the admin has closed all apps in preparation to enabling EGS but the driver still hasn't processed all the context de-registrations. Therefore, I don't really want to over-complicate it with extra locking. I'll add a comment to better explain.
+>> so it doesn't have to be bullet-proof ?
+> 
+> Yup. If we had stricter requirements then the GuC would enforce them.
+> 
+> Daniele
+> 
+>>
+>>>>> +}
+>>>>> +
+>>>>>    static int pf_provision_sched_groups(struct xe_gt *gt, u32 mode)
+>>>>>    {
+>>>>>        int err;
+>>>>> @@ -548,6 +567,12 @@ static int pf_provision_sched_groups(struct xe_gt *gt, u32 mode)
+>>>>>        if (xe_sriov_pf_num_vfs(gt_to_xe(gt)))
+>>>>>            return -EPERM;
+>>>>>    +    /* The GuC silently ignores the setting if any mlrc contexts are registered */
+>>>>> +    if ((mode != XE_SRIOV_SCHED_GROUPS_NONE) && guc_has_mlrc_queue(&gt->uc.guc)) {
+>>>>> +        xe_gt_sriov_notice(gt, "can't enable sched groups with active mlrc queues\n");
+>>>>> +        return -EPERM;
+>>>>> +    }
+>>>>> +
+>>>>>        err = __pf_provision_sched_groups(gt, mode);
+>>>>>        if (err)
+>>>>>            return err;
+>>>>> @@ -600,6 +625,11 @@ int xe_gt_sriov_pf_policy_set_sched_groups_mode(struct xe_gt *gt, u32 value)
+>>>>>        return err;
+>>>>>    }
+>>>>>    
+>>>> every public function needs to have kernel-doc
+>>> ok
+>>>
+>>>>> +bool xe_gt_sriov_pf_policy_sched_groups_enabled(struct xe_gt *gt)
+>>>>> +{
+>>>>> +    return gt->sriov.pf.policy.guc.sched_groups.current_mode != XE_SRIOV_SCHED_GROUPS_NONE;
+>>>>> +}
+>>>>> +
+>>>>>    static void pf_sanitize_guc_policies(struct xe_gt *gt)
+>>>>>    {
+>>>>>        pf_sanitize_sched_if_idle(gt);
+>>>>> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.h b/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.h
+>>>>> index 36680996f2bd..89aa3af6cc7d 100644
+>>>>> --- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.h
+>>>>> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.h
+>>>>> @@ -18,6 +18,7 @@ bool xe_gt_sriov_pf_policy_get_reset_engine(struct xe_gt *gt);
+>>>>>    int xe_gt_sriov_pf_policy_set_sample_period(struct xe_gt *gt, u32 value);
+>>>>>    u32 xe_gt_sriov_pf_policy_get_sample_period(struct xe_gt *gt);
+>>>>>    int xe_gt_sriov_pf_policy_set_sched_groups_mode(struct xe_gt *gt, u32 value);
+>>>>> +bool xe_gt_sriov_pf_policy_sched_groups_enabled(struct xe_gt *gt);
+>>>>>      int xe_gt_sriov_pf_policy_init(struct xe_gt *gt);
+>>>>>    void xe_gt_sriov_pf_policy_sanitize(struct xe_gt *gt);
+>>>>> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+>>>>> index 4c73a077d314..7a180c947032 100644
+>>>>> --- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+>>>>> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+>>>>> @@ -438,6 +438,30 @@ u32 xe_gt_sriov_vf_gmdid(struct xe_gt *gt)
+>>>>>        return value;
+>>>>>    }
+>>>>>    +static int query_vf_sched_groups(struct xe_gt *gt)
+>>>>> +{
+>>>>> +    struct xe_guc *guc = &gt->uc.guc;
+>>>>> +    u32 value = 0;
+>>>>> +    int err;
+>>>>> +
+>>>>> +    xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
+>>>>> +
+>>>>> +    if (MAKE_GUC_VER_STRUCT(gt->sriov.vf.guc_version) < MAKE_GUC_VER(1, 26, 0))
+>>>>> +        return 0;
+>>>>> +
+>>>>> +    err = guc_action_query_single_klv32(guc,
+>>>>> +                        GUC_KLV_GLOBAL_CFG_GROUP_SCHEDULING_AVAILABLE_KEY,
+>>>>> +                        &value);
+>>>>> +    if (unlikely(err)) {
+>>>>> +        xe_gt_sriov_err(gt, "Failed to obtain sched groups status (%pe)\n",
+>>>>> +                ERR_PTR(err));
+>>>>> +        return err;
+>>>>> +    }
+>>>>> +
+>>>>> +    xe_gt_sriov_dbg(gt, "sched groups %s\n", value ? "enabled" : "disabled");
+>>>> str_enabled_disabled(value)
+>>>>
+>>>>> +    return value;
+>>>>> +}
+>>>>> +
+>>>>>    static int vf_get_ggtt_info(struct xe_gt *gt)
+>>>>>    {
+>>>>>        struct xe_tile *tile = gt_to_tile(gt);
+>>>>> @@ -564,6 +588,21 @@ static void vf_cache_gmdid(struct xe_gt *gt)
+>>>>>        gt->sriov.vf.runtime.gmdid = xe_gt_sriov_vf_gmdid(gt);
+>>>>>    }
+>>>>>    +static int vf_cache_sched_groups_status(struct xe_gt *gt)
+>>>>> +{
+>>>>> +    int ret;
+>>>>> +
+>>>>> +    xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
+>>>>> +
+>>>>> +    ret = query_vf_sched_groups(gt);
+>>>>> +    if (ret < 0)
+>>>>> +        return ret;
+>>>>> +
+>>>>> +    gt->sriov.vf.runtime.uses_sched_groups = ret;
+>>>>> +
+>>>>> +    return 0;
+>>>>> +}
+>>>>> +
+>>>>>    /**
+>>>>>     * xe_gt_sriov_vf_query_config - Query SR-IOV config data over MMIO.
+>>>>>     * @gt: the &xe_gt
+>>>>> @@ -593,12 +632,32 @@ int xe_gt_sriov_vf_query_config(struct xe_gt *gt)
+>>>>>        if (unlikely(err))
+>>>>>            return err;
+>>>>>    +    err = vf_cache_sched_groups_status(gt);
+>>>>> +    if (unlikely(err))
+>>>>> +        return err;
+>>>>> +
+>>>>>        if (has_gmdid(xe))
+>>>>>            vf_cache_gmdid(gt);
+>>>>>          return 0;
+>>>>>    }
+>>>>>    +/**
+>>>>> + * xe_gt_sriov_vf_sched_groups_enabled - Check if PF has enabled sched groups
+>>>>       * xe_gt_sriov_vf_sched_groups_enabled() - Check ...
+>>>>
+>>>>
+>>>>> + * @gt: the &xe_gt
+>>>>> + *
+>>>>> + * This function is for VF use only.
+>>>>> + *
+>>>>> + * Return: true if shed groups were enabled, false otherwise.
+>>>> typo: s/shed/scheduler
+>>>>
+>>>>> + */
+>>>>> +bool xe_gt_sriov_vf_sched_groups_enabled(struct xe_gt *gt)
+>>>>> +{
+>>>>> +    xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
+>>>>> +    xe_gt_assert(gt, gt->sriov.vf.guc_version.major);
+>>>>> +
+>>>>> +    return gt->sriov.vf.runtime.uses_sched_groups;
+>>>>> +}
+>>>>> +
+>>>>>    /**
+>>>>>     * xe_gt_sriov_vf_guc_ids - VF GuC context IDs configuration.
+>>>>>     * @gt: the &xe_gt
+>>>>> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.h b/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
+>>>>> index af40276790fa..2e1d34c0397f 100644
+>>>>> --- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
+>>>>> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
+>>>>> @@ -23,11 +23,14 @@ int xe_gt_sriov_vf_connect(struct xe_gt *gt);
+>>>>>    int xe_gt_sriov_vf_query_runtime(struct xe_gt *gt);
+>>>>>    void xe_gt_sriov_vf_migrated_event_handler(struct xe_gt *gt);
+>>>>>    +bool xe_gt_sriov_vf_sched_groups_enabled(struct xe_gt *gt);
+>>>> move it there [1]
+>>>>
+>>>>> +
+>>>>>    int xe_gt_sriov_vf_init_early(struct xe_gt *gt);
+>>>>>    int xe_gt_sriov_vf_init(struct xe_gt *gt);
+>>>>>    bool xe_gt_sriov_vf_recovery_pending(struct xe_gt *gt);
+>>>>>      u32 xe_gt_sriov_vf_gmdid(struct xe_gt *gt);
+>>>>> +u32 xe_gt_sriov_vf_sched_groups(struct xe_gt *gt);
+>>>> unused ?
+>>> oops, old function name that I forgot to remove.
+>>>
+>>>>>    u16 xe_gt_sriov_vf_guc_ids(struct xe_gt *gt);
+>>>>>    u64 xe_gt_sriov_vf_lmem(struct xe_gt *gt);
+>>>> [1] here
+>>>>
+>>>>>    diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h b/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
+>>>>> index 420b0e6089de..5267c097ecd0 100644
+>>>>> --- a/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
+>>>>> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
+>>>>> @@ -27,6 +27,8 @@ struct xe_gt_sriov_vf_selfconfig {
+>>>>>    struct xe_gt_sriov_vf_runtime {
+>>>>>        /** @gmdid: cached value of the GDMID register. */
+>>>>>        u32 gmdid;
+>>>>> +    /** @uses_sched_groups: whether PF enabled sched groups or not. */
+>>>>> +    bool uses_sched_groups;
+>>>>>        /** @regs_size: size of runtime register array. */
+>>>>>        u32 regs_size;
+>>>>>        /** @num_regs: number of runtime registers in the array. */
+>>>>> diff --git a/drivers/gpu/drm/xe/xe_guc_klv_thresholds_set_types.h b/drivers/gpu/drm/xe/xe_guc_klv_thresholds_set_types.h
+>>>>> index 0a028c94756d..3e55d9302855 100644
+>>>>> --- a/drivers/gpu/drm/xe/xe_guc_klv_thresholds_set_types.h
+>>>>> +++ b/drivers/gpu/drm/xe/xe_guc_klv_thresholds_set_types.h
+>>>>> @@ -32,6 +32,7 @@
+>>>>>        define(H2G_STORM, guc_time_us)            \
+>>>>>        define(IRQ_STORM, irq_time_us)            \
+>>>>>        define(DOORBELL_STORM, doorbell_time_us)    \
+>>>>> +    define(MULTI_LRC_COUNT, multi_lrc_count)    \
+>>>> this needs to be defined with some version info, maybe:
+>>>>
+>>>>      define(MULTI_LRC_COUNT, multi_lrc_count, (70, 53, 0))    \
+>>>>
+>>>> and then in encode_config() have two variants of code generators:
+>>>>
+>>>> #define encode_threshold_config2(TAG, ...) ({                    \
+>>>>      cfg[n++] = PREP_GUC_KLV_TAG(VF_CFG_THRESHOLD_##TAG);            \
+>>>>      cfg[n++] = config->thresholds[MAKE_XE_GUC_KLV_THRESHOLD_INDEX(TAG)];    \
+>>>> });
+>>>> #define encode_threshold_config3(TAG, NAME, VERSION) ({                \
+>>>>      if (GUC_FIRMWARE_VER(&gt->uc.guc) >= MAKE_GUC_VER VERSION) {        \
+>>>>          encode_threshold_config2(TAG, NAME);                \
+>>>>      }                                    \
+>>>> });
+>>>> #define encode_threshold_config(ARGS...) \
+>>>>      CALL_ARGS(CONCATENATE(encode_threshold_config, COUNT_ARGS(ARGS)), ARGS)
+>>>>
+>>>> this should fix the issues already spotted by the CI on ADLP:
+>>>>
+>>>> <6> [133.603624] xe 0000:00:02.0: [drm] Tile0: GT0: { key 0x8a0d : 32b value 0 } # multi_lrc_count
+>>>> <6> [133.603625] xe 0000:00:02.0: [drm] Tile0: GT0: { key 0x0001 : 64b value 0x200000 } # ggtt_start
+>>>> <6> [133.603626] xe 0000:00:02.0: [drm] Tile0: GT0: { key 0x0002 : 64b value 0xfec00000 } # ggtt_size
+>>>> <3> [133.603653] xe 0000:00:02.0: [drm] *ERROR* PF: Tile0: GT0: Failed to push self configuration (-ENOKEY)
+>>> I think it works better if we add the version for all thresholds, so we don't have to define multiple macros every time we need to check the GuC version (which I believe needs to also be done at least in register_threshold_attribute() and define_threshold_key_to_provision_case().
+>>> I can just use 70.29.2 (which is the minimum supported version for the Xe driver) for all the older defines.
+>> but then the code for version check will be generated for all thresholds, even those that we are sure are supported
+>>
+>> I will try to find something simpler, or more reusable, but no promise
+>>
+>>> Daniele
+>>>
+>>>>
+>>>>>        /* end */
+>>>>>      /**
+> 
+
