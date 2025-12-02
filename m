@@ -4,166 +4,184 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 53B66D116FE
-	for <intel-xe@archiver.kernel.org>; Tue,  2 Dec 2025 20:31:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EE463D116FE
+	for <intel-xe@archiver.kernel.org>; Tue,  2 Dec 2025 20:35:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0E13210E2B7;
-	Tue,  2 Dec 2025 20:31:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 94A8610E6B8;
+	Tue,  2 Dec 2025 20:35:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bP2ViMWx";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VNtkFA2H";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0D4D410E2B7
- for <intel-xe@lists.freedesktop.org>; Tue,  2 Dec 2025 20:31:51 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8876410E6B8
+ for <intel-xe@lists.freedesktop.org>; Tue,  2 Dec 2025 20:35:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1764707512; x=1796243512;
+ t=1764707712; x=1796243712;
  h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=IbRdjVEmFclcvA5HK7uDvZbe4ufK490CGHl0eo5hpVU=;
- b=bP2ViMWx4Cr3EB7pP5dJ7uTjWlHrkG/VWCBfysW81sxLgILkCLPwFf1C
- J/D5TkYOn+7i85Cg4gsRnl/XxAUTs4iLg27MU7ng+Dlc6YBAw1MZwjwz1
- aD3auSk9J0P/tq6N49IHTuy1OBvzz+RxkIQ+z14/39w+/ICO3WDccwrfb
- QgLlYBar/svOhx1dbmQsD422rbYhiodiBDNlbTKS2XdZVBgaTHB7g8OIh
- 5LbOisuIBPSDn8hMil/gQEOjeZ66ewNnmHEeFzwYKKuISgT1J4T6N4Kvf
- mIfBysarsrPRWZmE2MGebTSsFWe6pfCv99CvzYo+6ePsZarD+/mXfkKiD g==;
-X-CSE-ConnectionGUID: CMaPHkwRTKC+G55WHvtYAQ==
-X-CSE-MsgGUID: zGbBOR0DRNOsJKMlhFsEFQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11631"; a="70548995"
-X-IronPort-AV: E=Sophos;i="6.20,243,1758610800"; d="scan'208";a="70548995"
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=vLg+RYfR8LjZQ2+LF6ev1F3nF/JmT4CeVxK8QAr4Ix0=;
+ b=VNtkFA2HWEtn6CpqB6y8+WR6pVQkzIgypq4VUlrTuzWT8RyGe8oonvai
+ gwBdU0yaCVHhXKaGSfp1IyPHAiT1IvYXJga3aeevmHYPxHFTAXYn6peaC
+ W8uGRVkELyri6q4rgmvR5ZXNBMIAH1Juw5IlRhT4T6uy5wW08OPqj4nKg
+ f4CHkWFhIMXa7CiFW0ILSCEsGYwlKFMAtyVc/w5Lm/SzTcmEox9hlhCom
+ OI9KDLlG94b6PWNdG/nns2EkSj0oZgEPUoH8BXDYKCeMGM3dB5S0xXNPW
+ C/XKsja3mQAlLHlIsv8ErafI7qgRM0xgVFFDfXLI8BISGYL22DXWOXf0u g==;
+X-CSE-ConnectionGUID: o+RH32OHTiirvVaBYlHyzA==
+X-CSE-MsgGUID: TOM3XBvcTNCob+mIiDMYaA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11631"; a="66579613"
+X-IronPort-AV: E=Sophos;i="6.20,243,1758610800"; d="scan'208";a="66579613"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Dec 2025 12:31:51 -0800
-X-CSE-ConnectionGUID: i9MaH+D9QJ2kjhevhZXaBA==
-X-CSE-MsgGUID: kFsljz6RSaySgLYabTf1cg==
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Dec 2025 12:35:12 -0800
+X-CSE-ConnectionGUID: xcovRE/bSPaBTnHSA5yTrw==
+X-CSE-MsgGUID: m2aoOTddQwW2LpRrFFt2hQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,243,1758610800"; d="scan'208";a="194358600"
+X-IronPort-AV: E=Sophos;i="6.20,243,1758610800"; d="scan'208";a="194359188"
 Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
  by fmviesa006.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Dec 2025 12:31:50 -0800
+ 02 Dec 2025 12:35:13 -0800
 Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
  fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Tue, 2 Dec 2025 12:31:49 -0800
-Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
+ 15.2.2562.29; Tue, 2 Dec 2025 12:35:12 -0800
+Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
  FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29 via Frontend Transport; Tue, 2 Dec 2025 12:31:49 -0800
-Received: from BYAPR05CU005.outbound.protection.outlook.com (52.101.85.53) by
- edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
+ 15.2.2562.29 via Frontend Transport; Tue, 2 Dec 2025 12:35:12 -0800
+Received: from PH8PR06CU001.outbound.protection.outlook.com (40.107.209.2) by
+ edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Tue, 2 Dec 2025 12:31:49 -0800
+ 15.2.2562.29; Tue, 2 Dec 2025 12:35:12 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=COzR5RJt1e9Tg0T8fI99MiwRCRVqM2XqwSQdLf009zoJrZnXoQy4UCBlgjRDyjM/marGZt+uDqgeswVN/mnYivPjah69WYEpD2wcDdBFgBULVktmcAcmeJaFRKFVNF6gq28k3zg/IB5ryQskm9uINRySUfDPx6Nurn32rocPQk6PDlmUdK5RsPP4Eg3DsaN24jrk+RomD/KCEBgz9VPRzefigquymtzg2mR5kF6t8ZMSF0kA2SGUmvGkEzfchksClv6vUPHiBHkE6DwGJq4Kw2vYo5m6/ZxbPBTwa5Ugy0f2RViFwr40jRnyfB6OepVRW8Qg62NYraErzcU9he624w==
+ b=vZ5xbqsF3vw419rfpIFHXDak2jwL+HEauj0U7fMrPJG1uo5jS88UrKD504CvqQQCCaCh0OT6IqjLJ9971nKv3QFqTx0AcQEtrS2DJ7nkSsxbKf8Hpukds9QO8z08lvI4nP9A8LQXBlX+TNspcBKNyXFtpRtO4pWqZ2pFJ8BMMz//ZtGjfeuGxtDOhSNNfPeJ+ciTGr9v9xBWAf+joVhnj70ZtHie1hghERd/Szhx84ig/acniDPQwSekTPjZCMTRHQx2xvmvhBCgEVFodvntAXEice7GPYLrkLqvZGyLcBaUdXEr2Eh5ZWPpl8+YVSyRZHgSjNfRPyFzILZdx1eESA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=I2ybGzllt5NRDrPwv4oXm4W/Kl13irW7bvjY2qJCz9A=;
- b=reXpe/o3+gYgFc/Q8FT69fH8J1Ua8QPRz8YluM8CPUb3D8lMFy6oJq6zPLmCIWfuC5ySb1cjiQ7w3B4BtRdW2KBvPYOBz72gE9ktneDZL6WX2kPAhcx/vgn3aGkqrzylS5u7fAMNKZRma/73u6tUsh1+6Xqc29+fjbF6HvPRYda/MJDcf7SkayzlMbcRIrgcjbMRhgansk81oRfMxAKnG1E/0WAqJT3vYT1NNQGe12hYuPu8zsIh9FoXzYyFEjrV2blAEVX09kUlAacbcJzahQiDxUNW91nsDVq1LNr1ct1YuSxDFAfw2FeXqxT/abgqA3HxY7Uyai2//c8ucWarLw==
+ bh=/ENPOu30YOL3nTmerhDwe6w0D28YzlgnMKkV9k/3PYU=;
+ b=AWUgBikJf0EEd1vMgq6VZhY3/U24FJGgu/Aq9e1xrhhlBp+vJ916pfswWb8p+Yig9Jsw4AWqpENjLukc8LOF++0aNhnUUUj4x8q72Cldy15oy9ZC1nzhLYU5ujPod0lz1c66TjGVcbfAOFmN8B03azFXO7/tEjXuDE/o0McFk5w5vdtkhQja2i9FUyKxgyaqxl/0N5WXCMy5DVF8DAu4pN0j2N7HZ0bkT/dFdRA6hGjY0shnLWtx8DYwskwdgTO8cbzOswcc5/NyEr/3jAjCqbPkDdud3+q+CToWFSZ5lmlmkKCUX4+b8C6mbGqjWSWNUOlNQmk30tNYTwyQec7vEg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CYYPR11MB8430.namprd11.prod.outlook.com (2603:10b6:930:c6::19)
- by PH0PR11MB4840.namprd11.prod.outlook.com (2603:10b6:510:43::16)
- with Microsoft SMTP Server (version=TLS1_2,
+Received: from DS0PR11MB7408.namprd11.prod.outlook.com (2603:10b6:8:136::15)
+ by LV8PR11MB8582.namprd11.prod.outlook.com (2603:10b6:408:1f7::8) with
+ Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9388.9; Tue, 2 Dec
- 2025 20:31:42 +0000
-Received: from CYYPR11MB8430.namprd11.prod.outlook.com
- ([fe80::76d2:8036:2c6b:7563]) by CYYPR11MB8430.namprd11.prod.outlook.com
- ([fe80::76d2:8036:2c6b:7563%6]) with mapi id 15.20.9388.003; Tue, 2 Dec 2025
- 20:31:42 +0000
-Date: Tue, 2 Dec 2025 15:31:38 -0500
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Riana Tauro <riana.tauro@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, <anshuman.gupta@intel.com>,
- <badal.nilawar@intel.com>
-Subject: Re: [PATCH v2 2/2] drm/xe/xe_survivability: Add support for
- survivability mode v2
-Message-ID: <aS9Mqm_36Tfs3C_x@intel.com>
-References: <20251201143420.3158372-4-riana.tauro@intel.com>
- <20251201143420.3158372-6-riana.tauro@intel.com>
- <aS3T2crA95cvORV0@intel.com>
- <93501016-0e5c-4ef2-8d15-9d437c492260@intel.com>
-Content-Type: text/plain; charset="us-ascii"
+ 2025 20:35:10 +0000
+Received: from DS0PR11MB7408.namprd11.prod.outlook.com
+ ([fe80::6387:4b73:8906:7543]) by DS0PR11MB7408.namprd11.prod.outlook.com
+ ([fe80::6387:4b73:8906:7543%7]) with mapi id 15.20.9388.003; Tue, 2 Dec 2025
+ 20:35:10 +0000
+Date: Tue, 2 Dec 2025 12:35:04 -0800
+From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+To: "Nilawar, Badal" <badal.nilawar@intel.com>
+CC: <intel-xe@lists.freedesktop.org>, <lucas.demarchi@intel.com>,
+ <ashutosh.dixit@intel.com>
+Subject: Re: [PATCH v2 2/4] drm/xe/soc_remapper: Use SoC remapper herlper
+ from VSEC code
+Message-ID: <aS9NeKJ6Xqp6scG2@soc-5CG1426VCC.clients.intel.com>
+References: <20251117205315.1458477-6-umesh.nerlige.ramappa@intel.com>
+ <20251117205315.1458477-8-umesh.nerlige.ramappa@intel.com>
+ <b4ac66ba-850d-4140-bfef-f91399e0540f@intel.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Disposition: inline
-In-Reply-To: <93501016-0e5c-4ef2-8d15-9d437c492260@intel.com>
-X-ClientProxiedBy: BY5PR20CA0036.namprd20.prod.outlook.com
- (2603:10b6:a03:1f4::49) To CYYPR11MB8430.namprd11.prod.outlook.com
- (2603:10b6:930:c6::19)
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <b4ac66ba-850d-4140-bfef-f91399e0540f@intel.com>
+X-ClientProxiedBy: MW3PR05CA0023.namprd05.prod.outlook.com
+ (2603:10b6:303:2b::28) To DS0PR11MB7408.namprd11.prod.outlook.com
+ (2603:10b6:8:136::15)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CYYPR11MB8430:EE_|PH0PR11MB4840:EE_
-X-MS-Office365-Filtering-Correlation-Id: 57b3d6b1-ceed-40ce-8062-08de31e1cd7b
+X-MS-TrafficTypeDiagnostic: DS0PR11MB7408:EE_|LV8PR11MB8582:EE_
+X-MS-Office365-Filtering-Correlation-Id: 243e0f7d-95ca-4251-8ba9-08de31e249d7
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?4x/5AbyBXHMeFbzWpL9to7XCL3cahCety1Y0rS+9Mb0bYu45J5mAiLdj0gyh?=
- =?us-ascii?Q?BBFK3b96Dxfgig8RVqaSvxLuEo9hDtcWZwDfcmGy2XUPc+tSj1RC2gIHwLLJ?=
- =?us-ascii?Q?Ch5Ijd7FbtqKlTR3pI5/OCOn8SFjkYJXJhoLM76T5xi2lRA71hALAoqcwZ9p?=
- =?us-ascii?Q?Kp215gLVkRC1yHp/fkf306QlN0DJEmpaVRCUleKj+ZRRWN7mwkGtA6zlrew+?=
- =?us-ascii?Q?GVxTACJan0bF0Iy5VVWN7vJMdpcVnNWY01M4aEbteQDx5JrWyt6vlaSpy30x?=
- =?us-ascii?Q?g4wShvjXqKslrCAM3eW87F7HW7v7eAtyNqRk4wlGNB/T+XZQd15LjvVmVPYn?=
- =?us-ascii?Q?v1ZdF1GH481v4U7CeEMHrt1tkD5KQIlPRFvCx9r+qwXmG0C+6F7BD7HMbjiu?=
- =?us-ascii?Q?1vZ4ir4yAFebkLVjDElZJdALFVJKpHAn2yI5QWD+hg1M/72yU/IBFE+qooVs?=
- =?us-ascii?Q?eAR+1chsKU56lEKqYqYjbtR6JWEiMgmP/IFF8+c+pBGqJVk/FYxXY7mKmWeR?=
- =?us-ascii?Q?kSD0PwzdU3oXdE3RxI1U56F9R5EXOTPhcK9lRWIdLqTrdiNyXvXilMVMtn4o?=
- =?us-ascii?Q?jixpcqAur8QbY+RRUoJMD7h0nELaFaFOE+sEUqMQhhvyhVnHzczjFX9kRR0O?=
- =?us-ascii?Q?8hk71VGReBoHnqiVcMKq2u+2TL3xnZEvA3h9U0y3rKyUjX1AjAQJfbW1wun/?=
- =?us-ascii?Q?OPAyan3Hcxjj66KYZaoXUHW5oEmX0MOomVYvKBOWeei87n8C1XDPi1tzlbUM?=
- =?us-ascii?Q?Wr/2vWY4lsw5oUT24EfuHyR3jL7AHmSC1kySq8GMXKade0T0vM9KxTWrOWGf?=
- =?us-ascii?Q?imZcmA4GUD4F13ddyFiaXv5VP16fD2Wbq8ioUNVCyVLbY5vjmA4XVpuVLL+M?=
- =?us-ascii?Q?fi9pIsu5N9hcT1c+kUrryssfauXdOKlm46iCP7Lik32taLG2IDyDr2il+CdC?=
- =?us-ascii?Q?3OWtwyunrZp8DeYIZusb+DTxmOOBxxruIQKGR5vyAH2ryd1WoXz/o+OS/W2Y?=
- =?us-ascii?Q?1W45DIaUFq3dmdX6KxDqZBze68HoRlNQEW9NoIK4kFlaVD9yKbUPSj6BhMKq?=
- =?us-ascii?Q?h4ShiBOMeRV+mVEHfcEOQszhMU/d8AuxLJW5U1yqX+YZepKbwa7F7PsyLFc9?=
- =?us-ascii?Q?Utq63a+2ArpdMbTie7IOW9GFIIf4E4T2uNngo94+Mz4FrBaEAVUKJsa9nFDU?=
- =?us-ascii?Q?ynwOLcruwW2rcvP1kM/6MizLAwOOcfT+C8Nk+sen01A62vsKPHcs2JX8f+Yu?=
- =?us-ascii?Q?LJhiVYZEovtIGIa8ma4YqlASUm2WtLzSS0ETg135dfHbP8SAB9d3CD9cUbV7?=
- =?us-ascii?Q?Xt2Qjw+aAy6XT8/UC3H4PP6nDWTTPwDFleT+ygsyVO2wxN0O1pEjtMiRgnwQ?=
- =?us-ascii?Q?6KB0vPl76SkI7pkpyz0knmbYzug+y/g8a52x+udatNWuBvnvkHWbT3ho46Av?=
- =?us-ascii?Q?fbgwKkmNtMpaPWLNTrHFkHlHZgoFoBv4?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?WU9NS1ZSUlNERUNEeUpKQVJhUjlxK1N5M0VoZzNUb0RJL1hDbzd1SjdHTWw5?=
+ =?utf-8?B?TVNJb2tiUUN5Y2VSTlNEK01oNFNabkpxNnhxZ0ErL1hWaEZXenRvekQrN3p5?=
+ =?utf-8?B?QmpnUlNaM1A2ajVaNEdqY1N0bE1mdFdTTThKelZ5U01nVE90MFVnRERSK1Rq?=
+ =?utf-8?B?N21ienorNlg5VUlBOXZTTVhqY2xkVDdKelc2cGhmQkQvN2E2TGlOV1ltTW8z?=
+ =?utf-8?B?bUQ3NnNsYTJSRmxNdEk2VnVBMkJBRmJRL1R4SGNheEdielhPYXA5R25sSjMv?=
+ =?utf-8?B?b0lONGU0ckExZHVPblZhK2lkd3I5cVpwTDlwdHBzMDZMMHpndnd5N3VURVRR?=
+ =?utf-8?B?M2VRYkhFblBpQVo0SHRyanpxYnZUWEVGcHI3d1B0TUFZVmlnMHIvaVJsR0RY?=
+ =?utf-8?B?ZFFvT1BNcWhTeU9uZ2FJRytqd3FCVmFYeUZWeWJITStrUWVYanp3WUtTZ2Uy?=
+ =?utf-8?B?bDY5dEhTa3BuK0VJZ0UrRWF0S3JkQzVKbW4rc1NjTTBoVHJsd1c1Qm1NT1B2?=
+ =?utf-8?B?OFZtZ21IUGZTdkFSZDFlb1BVVTVzdi83OFlwUWtnelJzY2pmM1N6cFVJc2pw?=
+ =?utf-8?B?aXkyaXQ1b1kwSHNRNGxseG9yalFFL0pCcldlSENUdEFqS01UVllsV1Z3eUh4?=
+ =?utf-8?B?azNOSVVNVGVqNnp4d2J6cTh0dVVUM1ZGVngxeVVPTjJ0YW1NSkY2NFFiWU1C?=
+ =?utf-8?B?TE5NNFRSNnJZOUxVbWg5bGpKb1B5NWRqVmR3bHhqRVFodzcvS0t2cE5KZXM0?=
+ =?utf-8?B?Z20xWnlqVVU1YTNieXhtVmxmc09NMDBYQWYwN0VhcGcxUTR1enJvQzloRDU0?=
+ =?utf-8?B?QlZWMjNTMlFlNFlob1pPSjZkYzN5UTZUVmRhYkROUVNic0FIS2wvMTdXL1NM?=
+ =?utf-8?B?T0E3aWlXQU05V2ZKcDFzZCtjckRwL2JSYVhVWEtkQS9ESC9wVzFNeTRieUVj?=
+ =?utf-8?B?TUJzajN5R3h1OUdBTXVnbzlNaFVyZFNUbGk4eTFFd2dUR2c0MUkyUC9halcv?=
+ =?utf-8?B?WVgvZnd2UjAvQit3eFZLZDdsZ0dtcFliUytGS0FVM3g4M0UyRmNpU2lRZTNF?=
+ =?utf-8?B?SWh1blNiVC9sMFlvNzYzVi9xUk9kSVhYVjVZK1dEYVl5aVRKZzdZbnhxamtj?=
+ =?utf-8?B?SXd5TmUrRGhHczBFL05XK0NaWFRUKzNvU3dHRzFLdERzYWtpTmswc1BXcWNz?=
+ =?utf-8?B?TzdaUjFqcjFwdWJtOENDKzhnMHh5OVhjbzEvU3RsWmNKdHRaL2F1Vmdhb2ZP?=
+ =?utf-8?B?aGR0aEJaSTNWN21zUTNWM0s0RjhyWWFTQ25STHNuUWJEVGpvM1k5c28vYkVE?=
+ =?utf-8?B?VmgxVkluOFNMMkNZRDRmaThWUE9sZnBKUnR5K0N4ZVdtYVYwdnhwTnROL2dC?=
+ =?utf-8?B?TWhTQjIrR0lPYmJaMCtFQnV2MlE5RmR2ZGZKU1QrV3A2VVFQYzhFS1dSblRk?=
+ =?utf-8?B?Y1h0WDBTcHhsVU9SK0RrY3dqWUlyV2g5Yk1HTkJVazMxbEFLSVNvMUpKcFFj?=
+ =?utf-8?B?eVkwSmdicHZpMDVRUlBNUFp4Y21Vbmo0Tyt6YVJxR0hGZVMxVUZJMFBvSC9O?=
+ =?utf-8?B?cUtZTmcrSGJCTUZLWVFkZmN6YjZpSGlHbnQ3YkVacTFzcnNvSFRNRzY5OGJV?=
+ =?utf-8?B?RE9CVklaS3h5TWxXZmV4UkFrZjc5UWVOLzZLS254QmNOMTFwTlJ3RUhJSXho?=
+ =?utf-8?B?WnpoS2phUHUvenhxS3pEY3BWMjNObm0xcHl4VHlvMFBCTncxeHpMNWdmUnVV?=
+ =?utf-8?B?NFg0d1FqTnFaUHFNWTZyM2JkK1lxL1ZsOWsxcmVTaFptNlpHUjFVaEliMlln?=
+ =?utf-8?B?aDVFNnVqUDhPdlB1RlFrcUxKYWp0L0NvUnViRXl0Wkg2ZU5BS2hkMGpEVjNl?=
+ =?utf-8?B?RFVjbEVpOXAvMzdKUGtSU0NGUFkyNmJxVkw0cTlTZEN4R0RYRWJJNU1YQnp3?=
+ =?utf-8?Q?YTFNxg2SuCm1JSUftb7G9btRoTQwQbu1?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CYYPR11MB8430.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:DS0PR11MB7408.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?dgtAMSBywQ6e2wPzDjUy/tkUe1fCFYNb00VsLeOranl5RboCPUAE4R3HZPV5?=
- =?us-ascii?Q?bUbkbRJPYiGqIsYdZmmAUkDsp3dgqKFfj/xE9UHPJ9BVn+sxEKUJDy6INEG4?=
- =?us-ascii?Q?LalI/hIQvfCdr1/GzTT64/zcf09V4sS9uFbpl5KsfgpMFD5H1HVBEFbHjUDR?=
- =?us-ascii?Q?T6XEugnZHyTZXo631wnxKGqnmURorl5uDvroBrNg2yWCihB/s4thAjuswu0Z?=
- =?us-ascii?Q?Zjcuk4mlsxgOJHFHjqKacp6HcdPmmeqxOuvu5NPd3t7B2xsm37SwT5c5sAYQ?=
- =?us-ascii?Q?pAQTAvZMUpHH3fw5hZyuL9pIVomCGuuUif4Mi5qQNwEGMwDHyUrPgdVsdqEg?=
- =?us-ascii?Q?0qky4HZCnL7acALmwioz+7iBXLPdolKmUB+UD5UIsp3g4JgLFEA6EffrZvl2?=
- =?us-ascii?Q?4pHAa9wiYnv/Kdh+/DBRJtp4VwpoMl6QlBkkT+jYU3mZTm44mFGyvRiCMa7C?=
- =?us-ascii?Q?6tDABjD/etbxxRGSXQymigwiCxw4hV89uyrWuKQc9ldhpXSpVVVJ7rLH/LT/?=
- =?us-ascii?Q?gjlz8rnPEOjkBUvKDdclw5nlOZwXPPYoV6oxyjNXs5SuwiWOUDPxyoqSmPtp?=
- =?us-ascii?Q?UhKQ+/0UWhCKMfahNnuco7CP8e+xjdyCcLWBdmdcACh91iDgNyU4uN0rbS3t?=
- =?us-ascii?Q?6BqT/UCaVWBmtWEe6yZXGh/q2H0lWkkKwwPzHEHL7hiwaqUTiPXNi3BZNUEx?=
- =?us-ascii?Q?v1MxbR8/nUByLke65lL/y2UURhKtvkGRKojCjlIubEOviYQJWSKLXL2hiha1?=
- =?us-ascii?Q?iVpesYY/r5fblJcr31OWHzNJnsW+CkjJUKU2Pc8XSxuV5ZiyNoBdhXAMi6bB?=
- =?us-ascii?Q?paixr7uCklLGwzjbYS9hYN/d+jKV5qr65Q/E0NsweAsdooxyz+Wx76ImvRir?=
- =?us-ascii?Q?h4fQaL+fCsxeTOCpCBi9ueGQ8Ox8VD547ssmOJe24iqN2nh5mM+M2Yc33zWe?=
- =?us-ascii?Q?XKhEPlZp8e9uonJ1NlISCmSZjVIyGX7q/yUQ3sVPN2GzxRzpW49CEhyYwI+w?=
- =?us-ascii?Q?T7ORPusaoFQTip7PQAaDhBM9J1mOWS3lZ9fsUUdaKb62NhJHVCx+75AI5UXi?=
- =?us-ascii?Q?mc+kKYEfokahaSTMDTtV6/xB6+WvfWsWZRrTF3E4+DQqJpdyldczwoMt6jy1?=
- =?us-ascii?Q?JbmG15PfzmPd+MxZMSw84OUCxiOpKyttzlV5UZhh6AsBQbS52q9laYGnW2iL?=
- =?us-ascii?Q?f0qEynph42MW2411YVhBIv+U4bk+vJ6zIDgdHm/RCqYZ7hAjQ0ctZLUvYZ+Y?=
- =?us-ascii?Q?auU+vR49sEJOGapSbx0hleoQGZu5noGKx86f3WTp6o+lyYWmruaxlvNOH3wz?=
- =?us-ascii?Q?jKlWRKfTexBXYwFHs9hxmE+F5J320ouKlx1RBBLE0vo0jSB9lYDstfvVcMhE?=
- =?us-ascii?Q?pvPrOybc1dPHhwHtrxzXDHc7yVN+q1eHf9VIa80Fqy2ytm9C1A85ZArnG1gx?=
- =?us-ascii?Q?ibdBKsr9P0W7dbcPYoOb3cwf3XcrC0daRFHZ6I0SCXqFIDr6dCnaQ6BTRYLD?=
- =?us-ascii?Q?uyi2rOlKUHW9+0Mzw3U6ktdfFTERWbzPgUWJn+YKwIKVqURpl41Yzxe5A4jl?=
- =?us-ascii?Q?EB8DS5D93yBaNkM0XBBBMFWP4R3LvDclo0pcuR0Z?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 57b3d6b1-ceed-40ce-8062-08de31e1cd7b
-X-MS-Exchange-CrossTenant-AuthSource: CYYPR11MB8430.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UEMyWkVzbVVtTmtuN1RMMzV2QmpzUVFhNlg0aFRvU3dzTnpxS0JYY25JVEdW?=
+ =?utf-8?B?MFNDcE05QTEwNWwxeXFOSVNTL3ExOE5GOXlvem40U0pJMHZiUTJHdVJIZHBB?=
+ =?utf-8?B?SlhEN0d6V1dpdVU0bGE5Z2FZOTJFZGltWEk2Q0k5S0Jnb3NmTGVMUEJOZFE5?=
+ =?utf-8?B?RUhmUHV0UHhsQUVZajkzczlYWUtvZmw5b044ZGVYSE9lME1scTdGYzRwQ3lD?=
+ =?utf-8?B?ajN6UWFaOU5UQThlLzk2VExJK0t4QkpoVjMrVlJFVlhSMzRHYi81alU5dU9R?=
+ =?utf-8?B?NTNmbFlpMlJtYXBpYjlRblBVT0FQT0E2ZU5HSk5NaGtZTm80NFJwYlZDR08z?=
+ =?utf-8?B?R2djZThubWFWRURweWpIa21iSWl1NGxwZEZhQlM1NVhJQk42VmJvYzQ0WUtv?=
+ =?utf-8?B?MGpTWWFjamJjMURZZVMxUHU5YnNoS2kvdG9kdG9LTzZ4VmgyT3Fqc2hKaEFn?=
+ =?utf-8?B?TFZTejVxWEgvSkE5UXRnYmdxSExSTjRFdHdxN01VSVE4NWh6NXZEQzZ3Kzdv?=
+ =?utf-8?B?SWozaDI2cklZZzFoKzVrQWd2ZjVrcTUwNHdVZmdOMzZKb3NCdVZ6Z1o3RzZE?=
+ =?utf-8?B?elRwanVYdFhsQllmY2haZlY3akpwTGsxK2RvVzVGczRLd1cvcW0rNXJEemFT?=
+ =?utf-8?B?amU0cEQ0Z1o4LzFrdFU1azY4YjRGSllZdTVhcHdGeWEycTQ5QTJoWWs0MVNF?=
+ =?utf-8?B?WHY4NTFMYVNlTnYxZWlVUDl0OGIrQ0g3N0dOOXFIQW1IMzJYdVVXTjEvczBs?=
+ =?utf-8?B?V2VVRGh6M2RzeEF0VDY2L3dPbjl4QjgvTDhOM1l6RS9pd3lyNTJpbGxjVVNx?=
+ =?utf-8?B?cjlyMmV5cC9Md3VudW1wWnhRR2dMRDlZM08za3ovc0p2eS9iZnZYWEttQ2xl?=
+ =?utf-8?B?SzdGY0JISEQ4RkJ4dWhWRWRtdW5wK21lQURxTlZnK25NOVR1Vm8yb3RxeW5u?=
+ =?utf-8?B?R3MxMjZobXdCL1pyQytlSWc3bi9EblBrdGN3bkVxcHU5NkQ3MmRqdEZseWJM?=
+ =?utf-8?B?Nk11TWpYbjVxOUF6STlETkN2QkQwMkJsNFA5WkVab2kyVjRzM0ZOV3ZWN3FO?=
+ =?utf-8?B?b2Nia2pNaEw5UlRUcm50SlUzWkRrM2RqSVQ2NWZWVHNpei9WRkNDWnE2cUJl?=
+ =?utf-8?B?WjEyY2xaWllIbUtMOG5jWXZpc2Q0N2daeng5aXJGd3JFb09FSnpDK2UxMERn?=
+ =?utf-8?B?OVRXT1JnbENub2ZNNTk3UEhHb0UvVms5NUJRaW9TVUZiQ0lteEE0bEFoMWhv?=
+ =?utf-8?B?Qk5BcUcycXcvWHozb3NOVUVjRXdzV0JmWDJJeXhZaksvMmR6Sy9PYWVKM2Rt?=
+ =?utf-8?B?YWRvRUQ2OTlLU0tiNVNhUTJDUFRHOEdqT1U4K29ZMTFFekNWM25HNFZXY3h6?=
+ =?utf-8?B?MURjT3Y4OWNvbVBrSWRTZGtEREhYK0lYaUdiN0NKTHVEdkJDd1RyM2JPZElw?=
+ =?utf-8?B?TGhscXoveUlURXQ4ZmpreGtmdTFwRG8wM1JaUEZSYXJxTk8rU25UQUtiUHdV?=
+ =?utf-8?B?bWVIdzYwSGpsQ0c2a2xiRmVQUVhCM2tLMlk2azh4L2U4M1Z2ZGFhMy9vZWo5?=
+ =?utf-8?B?ME9rN0s0UTFNZ3ZkdWd3d2dQVk5hTGd1dGdCWVk2VXNLMjFGWVAvSDZrdXVm?=
+ =?utf-8?B?eWJoRlFlZ0R5SS9Eek12M2lXWS9nbWtWZXlDeUlyWlFWTWxLMEFRcE1Udi83?=
+ =?utf-8?B?TXJhb0JaK0tDaHFERFlqM2xoMFVBR3BYSmVya01TN1gwamNqYTlObkg5VW9V?=
+ =?utf-8?B?MmoyQXZ3dysrNm1SRWVRZ2pUM0hiRG8wRVNyakRhRGk5RGZ6R0J2R3VBRHQ5?=
+ =?utf-8?B?RGpPTS81UFk4aDJYUDBBUTl0L0RFZVNpQlBxa0NzUTk5bTduWVQwUzBzZXBi?=
+ =?utf-8?B?L1p5RXY1QXBITlNod0FYNlZhMnRwWG1IM0JZa1ZVdGNncEFGODRVMjltMGI2?=
+ =?utf-8?B?a0J4MEZsb1k4elBqcWtEL3UxYXhHQ1J5NWNkZTJ1Z0lwUFNRSldmcW9OOWtK?=
+ =?utf-8?B?OWtCeld1dmg1bVc0S290am54bjVwSmtsekRCaWJQak5oUlp3VVZWRmUvbElW?=
+ =?utf-8?B?a1hWVTl5b0lqYzl2RGloengwYXVLUzBsdW1oZU9UMitsTnZSSU5tMFJlZkJk?=
+ =?utf-8?B?dUN1RlVnZXRTZnFtdzRyQjkxUjNEa3NnVTBDVGx5M1RaeVord1E1TnI1K2g2?=
+ =?utf-8?Q?FS+bv1e3u0BaTrc0z3PkbhI=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 243e0f7d-95ca-4251-8ba9-08de31e249d7
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7408.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Dec 2025 20:31:42.2003 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Dec 2025 20:35:10.5886 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: fZolc/AZp765jZRMbsFhR6HbqA2dUFMzIdGllIKnhGL+Dj0KeftpPE9/2kEwx4uYqv5C1JM8QxZAj6npCHMsRQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB4840
+X-MS-Exchange-CrossTenant-UserPrincipalName: ntMfEawXZIUp3UUsQhBY1ByTCNUdtG3+Eu87/QmN9SzRTz66IN97lb5DZ3nYl9AK6XAWkd6nClg3KLJSEq8Mg0iA2ktTRS1pVMf4sj5bg7o=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV8PR11MB8582
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -179,210 +197,170 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Dec 02, 2025 at 08:37:09AM +0530, Riana Tauro wrote:
-> 
-> 
-> On 12/1/2025 11:13 PM, Rodrigo Vivi wrote:
-> > On Mon, Dec 01, 2025 at 08:04:23PM +0530, Riana Tauro wrote:
-> > > v2 survivability breadcrumbs introduces a new mode called
-> > > SPI Flash Descriptor Override mode (FDO). This is enabled by
-> > > PCODE when MEI itself fails and firmware cannot be updated via
-> > > MEI using igsc. This mode provides the ability to update
-> > > the firmware directly via SPI driver.
-> > > 
-> > > Xe KMD initializes the nvm aux driver if FDO mode is enabled.
-> > > 
-> > > Userspace should check FDO mode entry in survivability info sysfs before
-> > > using the SPI driver to update firmware.
-> > > 
-> > > 	/sys/bus/pci/devices/<device>/survivability_info/fdo_mode
-> > > 
-> > > v2 also supports survivability mode for critical boot errors.
-> > > 
-> > > Signed-off-by: Riana Tauro <riana.tauro@intel.com>
-> > > ---
-> > > v2: do not exit survivability mode in case of mei init failure (Rodrigo)
-> > 
-> > I still see the goto err there, what am I missing?
-> > I mean, no strong feeling about what is right or wrong to do here,
-> > I just want to make sure the code matches the doc and expectations...
-> 
-> PCODE enables FDO mode when mei has some failure and firmware flashing
-> cannot be done using igsc. In FDO mode, XE KMD initializes the SPI driver.
-> 
-> If initialization of SPI driver fails, then user cannot update through igsc
-> or using spi driver. In this case, there wouldn't be any reason to
-> stay in survivability mode. The goto err is to fail probe.
-> 
-> I have mentioned in documentation that 'FDO is enabled only when MEI fails'.
-> Is there something else i am missing?
+On Tue, Dec 02, 2025 at 10:33:28AM +0530, Nilawar, Badal wrote:
+>
+>On 18-11-2025 02:23, Umesh Nerlige Ramappa wrote:
+>>Since different drivers can use SoC remapper, modify VSEC code to
+>>access SoC remapper via a helper that would synchronize such accesses.
+>>
+>>Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+>>---
+>>v2: (Lucas)
+>>- retain comment
+>>- s/BITS/MASK/
+>>---
+>>  drivers/gpu/drm/xe/regs/xe_pmt.h               |  3 ---
+>>  drivers/gpu/drm/xe/regs/xe_soc_remapper_regs.h | 13 +++++++++++++
+>>  drivers/gpu/drm/xe/xe_soc_remapper.c           | 18 ++++++++++++++++++
+>>  drivers/gpu/drm/xe/xe_soc_remapper.h           |  1 +
+>>  drivers/gpu/drm/xe/xe_vsec.c                   |  4 ++--
+>>  5 files changed, 34 insertions(+), 5 deletions(-)
+>>  create mode 100644 drivers/gpu/drm/xe/regs/xe_soc_remapper_regs.h
+>>
+>>diff --git a/drivers/gpu/drm/xe/regs/xe_pmt.h b/drivers/gpu/drm/xe/regs/xe_pmt.h
+>>index 0f79c0714454..240d57993ea6 100644
+>>--- a/drivers/gpu/drm/xe/regs/xe_pmt.h
+>>+++ b/drivers/gpu/drm/xe/regs/xe_pmt.h
+>>@@ -18,9 +18,6 @@
+>>  #define BMG_TELEMETRY_BASE_OFFSET	0xE0000
+>>  #define BMG_TELEMETRY_OFFSET		(SOC_BASE + BMG_TELEMETRY_BASE_OFFSET)
+>>-#define SG_REMAP_INDEX1			XE_REG(SOC_BASE + 0x08)
+>>-#define   SG_REMAP_BITS			REG_GENMASK(31, 24)
+>>-
+>>  #define BMG_MODS_RESIDENCY_OFFSET		(0x4D0)
+>>  #define BMG_G2_RESIDENCY_OFFSET		(0x530)
+>>  #define BMG_G6_RESIDENCY_OFFSET		(0x538)
+>>diff --git a/drivers/gpu/drm/xe/regs/xe_soc_remapper_regs.h b/drivers/gpu/drm/xe/regs/xe_soc_remapper_regs.h
+>>new file mode 100644
+>>index 000000000000..9edf234227a9
+>>--- /dev/null
+>>+++ b/drivers/gpu/drm/xe/regs/xe_soc_remapper_regs.h
+>>@@ -0,0 +1,13 @@
+>>+/* SPDX-License-Identifier: MIT */
+>>+/*
+>>+ * Copyright © 2025 Intel Corporation
+>>+ */
+>>+#ifndef _XE_SOC_REMAPPER_REGS_H_
+>>+#define _XE_SOC_REMAPPER_REGS_H_
+>>+
+>>+#include "xe_regs.h"
+>>+
+>>+#define SG_REMAP_INDEX1			XE_REG(SOC_BASE + 0x08)
+>>+#define   SG_REMAP_TELEM_MASK		REG_GENMASK(31, 24)
+>>+
+>>+#endif
+>>diff --git a/drivers/gpu/drm/xe/xe_soc_remapper.c b/drivers/gpu/drm/xe/xe_soc_remapper.c
+>>index f5a02abd6ab1..85d37a86117a 100644
+>>--- a/drivers/gpu/drm/xe/xe_soc_remapper.c
+>>+++ b/drivers/gpu/drm/xe/xe_soc_remapper.c
+>>@@ -5,8 +5,26 @@
+>>  #include <linux/spinlock.h>
+>>+#include "regs/xe_soc_remapper_regs.h"
+>>+#include "xe_mmio.h"
+>>  #include "xe_soc_remapper.h"
+>>+static void xe_soc_remapper_set_region(struct xe_device *xe, struct xe_reg reg,
+>>+				       u32 mask, u32 val)
+>>+{
+>>+	unsigned long flags;
+>>+
+>>+	spin_lock_irqsave(&xe->soc_remapper.lock, flags);
+>>+	xe_mmio_rmw32(xe_root_tile_mmio(xe), reg, mask, val);
+>>+	spin_unlock_irqrestore(&xe->soc_remapper.lock, flags);
+>>+}
+>>+
+>>+void xe_soc_remapper_set_telem_region(struct xe_device *xe, u32 index)
+>>+{
+>>+	
+>I think need to check index is valid or not.
 
-Nevermind. I have mixed things up.
-Thanks for the explanation.
+Checking valid index at this level in the call chain would be 
+inefficient. Note that we would need to add code to check valid indices 
+for each IP. If a new platform has other IPs added, then the checks will 
+increase. Also, other IPs may use a different INDEX register for config, 
+so that would increase the function footprint for all callers.
 
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+I think it's best left to the IP-specific caller to do the checks for 
+valid indices for that IP. If the usage of this code grows, we can 
+consider refactoring in future.
 
-> 
-> Thanks
-> Riana
-> 
-> > 
-> > > ---
-> > >   drivers/gpu/drm/xe/xe_pcode_api.h             |  2 +
-> > >   drivers/gpu/drm/xe/xe_survivability_mode.c    | 44 ++++++++++++++++---
-> > >   .../gpu/drm/xe/xe_survivability_mode_types.h  |  6 +++
-> > >   3 files changed, 46 insertions(+), 6 deletions(-)
-> > > 
-> > > diff --git a/drivers/gpu/drm/xe/xe_pcode_api.h b/drivers/gpu/drm/xe/xe_pcode_api.h
-> > > index 70dcd6625680..975892d6b230 100644
-> > > --- a/drivers/gpu/drm/xe/xe_pcode_api.h
-> > > +++ b/drivers/gpu/drm/xe/xe_pcode_api.h
-> > > @@ -77,11 +77,13 @@
-> > >   #define PCODE_SCRATCH(x)		XE_REG(0x138320 + ((x) * 4))
-> > >   /* PCODE_SCRATCH0 */
-> > > +#define   BREADCRUMB_VERSION		REG_GENMASK(31, 29)
-> > >   #define   AUXINFO_REG_OFFSET		REG_GENMASK(17, 15)
-> > >   #define   OVERFLOW_REG_OFFSET		REG_GENMASK(14, 12)
-> > >   #define   HISTORY_TRACKING		REG_BIT(11)
-> > >   #define   OVERFLOW_SUPPORT		REG_BIT(10)
-> > >   #define   AUXINFO_SUPPORT		REG_BIT(9)
-> > > +#define   FDO_MODE			REG_BIT(4)
-> > >   #define   BOOT_STATUS			REG_GENMASK(3, 1)
-> > >   #define      CRITICAL_FAILURE		4
-> > >   #define      NON_CRITICAL_FAILURE	7
-> > > diff --git a/drivers/gpu/drm/xe/xe_survivability_mode.c b/drivers/gpu/drm/xe/xe_survivability_mode.c
-> > > index b5b582442637..8d409bc9c14b 100644
-> > > --- a/drivers/gpu/drm/xe/xe_survivability_mode.c
-> > > +++ b/drivers/gpu/drm/xe/xe_survivability_mode.c
-> > > @@ -16,6 +16,7 @@
-> > >   #include "xe_heci_gsc.h"
-> > >   #include "xe_i2c.h"
-> > >   #include "xe_mmio.h"
-> > > +#include "xe_nvm.h"
-> > >   #include "xe_pcode_api.h"
-> > >   #include "xe_vsec.h"
-> > > @@ -66,6 +67,11 @@
-> > >    *
-> > >    * - ``aux_info<n>`` : Some failures have additional debug information
-> > >    *
-> > > + * - ``fdo_mode`` : To allow recovery in scenarios where MEI itself fails, a new SPI Flash
-> > > + *   Descriptor Override (FDO) mode is added in v2 survivability breadcrumbs. This mode is enabled
-> > > + *   by PCODE and provides the ability to directly update the firmware via SPI Driver without
-> > > + *   any dependency on MEI. Xe KMD initializes the nvm aux driver if FDO mode is enabled.
-> > > + *
-> > >    * Runtime Survivability
-> > >    * =====================
-> > >    *
-> > > @@ -94,6 +100,8 @@ static const char * const reg_map[] = {
-> > >   	[AUX_INFO4]               = "Auxiliary Info 4",
-> > >   };
-> > > +#define FDO_INFO	(MAX_SCRATCH_REG + 1)
-> > > +
-> > >   struct xe_survivability_attribute {
-> > >   	struct device_attribute attr;
-> > >   	u8 index;
-> > > @@ -127,6 +135,11 @@ static void populate_survivability_info(struct xe_device *xe)
-> > >   	set_survivability_info(mmio, info, CAPABILITY_INFO);
-> > >   	reg_value = info[CAPABILITY_INFO];
-> > > +	survivability->version = REG_FIELD_GET(BREADCRUMB_VERSION, reg_value);
-> > > +	/* FDO mode is exposed only from version 2 */
-> > > +	if (survivability->version >= 2)
-> > > +		survivability->fdo_mode = REG_FIELD_GET(FDO_MODE, reg_value);
-> > > +
-> > >   	if (reg_value & HISTORY_TRACKING) {
-> > >   		set_survivability_info(mmio, info, POSTCODE_TRACE);
-> > > @@ -188,6 +201,9 @@ static ssize_t survivability_info_show(struct device *dev,
-> > >   	struct xe_survivability *survivability = &xe->survivability;
-> > >   	u32 *info = survivability->info;
-> > > +	if (sa->index == FDO_INFO)
-> > > +		return sysfs_emit(buff, "%s\n", str_enabled_disabled(survivability->fdo_mode));
-> > > +
-> > >   	return sysfs_emit(buff, "0x%x\n", info[sa->index]);
-> > >   }
-> > > @@ -205,13 +221,18 @@ SURVIVABILITY_ATTR_RO(aux_info1, AUX_INFO1);
-> > >   SURVIVABILITY_ATTR_RO(aux_info2, AUX_INFO2);
-> > >   SURVIVABILITY_ATTR_RO(aux_info3, AUX_INFO3);
-> > >   SURVIVABILITY_ATTR_RO(aux_info4, AUX_INFO4);
-> > > +SURVIVABILITY_ATTR_RO(fdo_mode, FDO_INFO);
-> > >   static void xe_survivability_mode_fini(void *arg)
-> > >   {
-> > >   	struct xe_device *xe = arg;
-> > > +	struct xe_survivability *survivability = &xe->survivability;
-> > >   	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
-> > >   	struct device *dev = &pdev->dev;
-> > > +	if (survivability->fdo_mode)
-> > > +		xe_nvm_fini(xe);
-> > > +
-> > >   	device_remove_file(dev, &dev_attr_survivability_mode);
-> > >   }
-> > > @@ -222,7 +243,10 @@ static umode_t survivability_info_attrs_visible(struct kobject *kobj, struct att
-> > >   	struct xe_survivability *survivability = &xe->survivability;
-> > >   	u32 *info = survivability->info;
-> > > -	if (info[idx])
-> > > +	/* FDO mode is visible only when supported */
-> > > +	if (idx >= MAX_SCRATCH_REG && survivability->version >= 2)
-> > > +		return 0400;
-> > > +	else if (info[idx])
-> > >   		return 0400;
-> > >   	return 0;
-> > > @@ -238,6 +262,7 @@ static struct attribute *survivability_info_attrs[] = {
-> > >   	&attr_aux_info2.attr.attr,
-> > >   	&attr_aux_info3.attr.attr,
-> > >   	&attr_aux_info4.attr.attr,
-> > > +	&attr_fdo_mode.attr.attr,
-> > >   	NULL,
-> > >   };
-> > > @@ -287,12 +312,16 @@ static int enable_boot_survivability_mode(struct pci_dev *pdev)
-> > >   	/* Make sure xe_heci_gsc_init() knows about survivability mode */
-> > >   	survivability->mode = true;
-> > > -	ret = xe_heci_gsc_init(xe);
-> > > -	if (ret)
-> > > -		goto err;
-> > > +	xe_heci_gsc_init(xe);
-> > >   	xe_vsec_init(xe);
-> > > +	if (survivability->fdo_mode) {
-> > > +		ret = xe_nvm_init(xe);
-> > > +		if (ret)
-> > > +			goto err;
-> > > +	}
-> > > +
-> > >   	ret = xe_i2c_probe(xe);
-> > >   	if (ret)
-> > >   		goto err;
-> > > @@ -302,6 +331,7 @@ static int enable_boot_survivability_mode(struct pci_dev *pdev)
-> > >   	return 0;
-> > >   err:
-> > > +	dev_err(dev, "Failed to enable Survivability Mode\n");
-> > >   	survivability->mode = false;
-> > >   	return ret;
-> > >   }
-> > > @@ -408,8 +438,10 @@ int xe_survivability_mode_boot_enable(struct xe_device *xe)
-> > >   	populate_survivability_info(xe);
-> > > -	/* Log breadcrumbs but do not enter survivability mode for Critical boot errors */
-> > > -	if (survivability->boot_status == CRITICAL_FAILURE) {
-> > > +	/*
-> > > +	 * v2 supports survivability mode for critical errors
-> > > +	 */
-> > > +	if (survivability->version < 2  && survivability->boot_status == CRITICAL_FAILURE) {
-> > >   		log_survivability_info(pdev);
-> > >   		return -ENXIO;
-> > >   	}
-> > > diff --git a/drivers/gpu/drm/xe/xe_survivability_mode_types.h b/drivers/gpu/drm/xe/xe_survivability_mode_types.h
-> > > index f31b3907d933..bd5dc1c955ff 100644
-> > > --- a/drivers/gpu/drm/xe/xe_survivability_mode_types.h
-> > > +++ b/drivers/gpu/drm/xe/xe_survivability_mode_types.h
-> > > @@ -44,6 +44,12 @@ struct xe_survivability {
-> > >   	/** @type: survivability type */
-> > >   	enum xe_survivability_type type;
-> > > +
-> > > +	/** @fdo_mode: indicates if FDO mode is enabled */
-> > > +	bool fdo_mode;
-> > > +
-> > > +	/** @version: breadcrumb version of survivability mode  */
-> > > +	u8 version;
-> > >   };
-> > >   #endif /* _XE_SURVIVABILITY_MODE_TYPES_H_ */
-> > > -- 
-> > > 2.47.1
-> > > 
-> 
+>>xe_soc_remapper_set_region(xe, SG_REMAP_INDEX1, SG_REMAP_TELEM_MASK,
+>>+				   REG_FIELD_PREP(SG_REMAP_TELEM_MASK, index));
+>>+}
+
+>
+>In next patch  we have created wrapper for SC.  Instead of introducing 
+>separate wrappers for each SoC remapper, could we maintain a single 
+>function, such as:
+>
+>int xe_soc_remapper_set_region(struct xe_device *xe, enum 
+>soc_remapper_id id, u32 index)
+>{
+>    switch (id) {
+>        case TELEM:
+>                 if (xe->info.has_soc_remapper_telem)
+>                        return -ENOTSUPP;
+>            // Validate index
+>            reg = SG_REMAP_INDEX1;
+>            // Calculate mask, val
+>            break;
+>
+>        case SC:
+>             if (xe->info.has_soc_remapper_sc)
+>                return -ENOTSUPP;
+>            // Validate index
+>            reg = SG_REMAP_INDEX1;
+>            // Calculate mask, val
+>            break;
+>
+>        default:
+>            return -EINVAL;
+>    }
+>
+>    spin_lock_irqsave(&xe->soc_remapper.lock, flags);
+>    xe_mmio_rmw32(xe_root_tile_mmio(xe), reg, mask, val);
+>    spin_unlock_irqrestore(&xe->soc_remapper.lock, flags);
+>    return 0;
+>}
+
+Same logic as above. We should avoid conditional checks at the lowest 
+layers and rather have those checks at the topmost layers of callers.
+
+Thanks,
+Umesh
+
+>
+>Thanks,
+>Badal
+>
+>>+
+>>  int xe_soc_remapper_init(struct xe_device *xe)
+>>  {
+>>  	spin_lock_init(&xe->soc_remapper.lock);
+>>diff --git a/drivers/gpu/drm/xe/xe_soc_remapper.h b/drivers/gpu/drm/xe/xe_soc_remapper.h
+>>index 3cfd44f1fd74..75431b94e66a 100644
+>>--- a/drivers/gpu/drm/xe/xe_soc_remapper.h
+>>+++ b/drivers/gpu/drm/xe/xe_soc_remapper.h
+>>@@ -11,5 +11,6 @@
+>>  #include "xe_device_types.h"
+>>  int xe_soc_remapper_init(struct xe_device *xe);
+>>+void xe_soc_remapper_set_telem_region(struct xe_device *xe, u32 index);
+>>  #endif
+>>diff --git a/drivers/gpu/drm/xe/xe_vsec.c b/drivers/gpu/drm/xe/xe_vsec.c
+>>index 8f23a27871b6..3e217fb75394 100644
+>>--- a/drivers/gpu/drm/xe/xe_vsec.c
+>>+++ b/drivers/gpu/drm/xe/xe_vsec.c
+>>@@ -16,6 +16,7 @@
+>>  #include "xe_mmio.h"
+>>  #include "xe_platform_types.h"
+>>  #include "xe_pm.h"
+>>+#include "xe_soc_remapper.h"
+>>  #include "xe_vsec.h"
+>>  #include "regs/xe_pmt.h"
+>>@@ -163,8 +164,7 @@ int xe_pmt_telem_read(struct pci_dev *pdev, u32 guid, u64 *data, loff_t user_off
+>>  		return -ENODATA;
+>>  	/* set SoC re-mapper index register based on GUID memory region */
+>>-	xe_mmio_rmw32(xe_root_tile_mmio(xe), SG_REMAP_INDEX1, SG_REMAP_BITS,
+>>-		      REG_FIELD_PREP(SG_REMAP_BITS, mem_region));
+>>+	xe_soc_remapper_set_telem_region(xe, mem_region);
+>>  	memcpy_fromio(data, telem_addr, count);
+>>  	xe_pm_runtime_put(xe);
