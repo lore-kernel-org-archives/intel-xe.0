@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 65A07D116F3
-	for <intel-xe@archiver.kernel.org>; Tue,  2 Dec 2025 00:48:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 825CCD116F1
+	for <intel-xe@archiver.kernel.org>; Tue,  2 Dec 2025 00:53:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EE8F110E4F5;
-	Tue,  2 Dec 2025 00:48:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 31C0910E4FB;
+	Tue,  2 Dec 2025 00:53:44 +0000 (UTC)
 Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5974F10E4F5;
- Tue,  2 Dec 2025 00:48:28 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5738339979887845070=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 208ED10E4F5;
+ Tue,  2 Dec 2025 00:53:43 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/xe=5Fvm=3A_Implement?=
- =?utf-8?q?_xe=5Fvm=5Fget=5Fproperty=5Fioctl?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Fix_DRM_scheduler_layerin?=
+ =?utf-8?q?g_violations_in_Xe_=28rev8=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jonathan Cavitt" <jonathan.cavitt@intel.com>
+To: "Matthew Brost" <matthew.brost@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 02 Dec 2025 00:48:28 -0000
-Message-ID: <176463650835.46619.12196941331455073279@a3b018990fe9>
+Date: Tue, 02 Dec 2025 00:53:43 -0000
+Message-ID: <176463682312.46619.13868924535041386076@a3b018990fe9>
 X-Patchwork-Hint: ignore
-References: <20251201174443.139151-6-jonathan.cavitt@intel.com>
-In-Reply-To: <20251201174443.139151-6-jonathan.cavitt@intel.com>
+References: <20251201183954.852637-1-matthew.brost@intel.com>
+In-Reply-To: <20251201183954.852637-1-matthew.brost@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,121 +40,107 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5738339979887845070==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe/xe_vm: Implement xe_vm_get_property_ioctl
-URL   : https://patchwork.freedesktop.org/series/158316/
-State : success
+Series: Fix DRM scheduler layering violations in Xe (rev8)
+URL   : https://patchwork.freedesktop.org/series/155314/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-4178-639f325d8cbdc690de963db2fe5840444ac7ea65_BAT -> xe-pw-158316v1_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+2de9a3901bc28757c7906b454717b64e2a214021
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 41b39105ae1e7d76fa56826b12ebc1ed35a09419
+Author: Matthew Brost <matthew.brost@intel.com>
+Date:   Mon Dec 1 10:39:54 2025 -0800
 
-Summary
--------
+    drm/xe: Avoid toggling schedule state to check LRC timestamp in TDR
+    
+    We now have proper infrastructure to accurately check the LRC timestamp
+    without toggling the scheduling state for non-VFs. For VFs, it is still
+    possible to get an inaccurate view if the context is on hardware. We
+    guard against free-running contexts on VFs by banning jobs whose
+    timestamps are not moving. In addition, VFs have a timeslice quantum
+    that naturally triggers context switches when more than one VF is
+    running, thus updating the LRC timestamp.
+    
+    For multi-queue, it is desirable to avoid scheduling toggling in the TDR
+    because this scheduling state is shared among many queues. Furthermore,
+    this change simplifies the GuC state machine. The trade-off for VF cases
+    seems worthwhile.
+    
+    v5:
+     - Add xe_lrc_timestamp helper (Umesh)
+    v6:
+     - Reduce number of tries on stuck timestamp (VF testing)
+     - Convert job timestamp save to a memory copy (VF testing)
+    v7:
+     - Save ctx timestamp to LRC when start VF job (VF testing)
+    
+    Signed-off-by: Matthew Brost <matthew.brost@intel.com>
++ /mt/dim checkpatch 639f325d8cbdc690de963db2fe5840444ac7ea65 drm-intel
+9a0a091575cd drm/sched: Add several job helpers to avoid drivers touching scheduler state
+a8edba9328cf drm/sched: Add pending job list iterator
+-:73: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#73: FILE: include/drm/gpu_scheduler.h:778:
++#define drm_sched_for_each_pending_job(__job, __sched, __entity)		\
++	scoped_guard(drm_sched_pending_job_iter, (__sched))			\
++		list_for_each_entry((__job), &(__sched)->pending_list, list)	\
++			for_each_if(!(__entity) || (__job)->entity == (__entity))
 
-  **SUCCESS**
+BUT SEE:
 
-  No regressions found.
+   do {} while (0) advice is over-stated in a few situations:
 
-  
+   The more obvious case is macros, like MODULE_PARM_DESC, invoked at
+   file-scope, where C disallows code (it must be in functions).  See
+   $exceptions if you have one to add by name.
 
-Participating hosts (12 -> 12)
-------------------------------
+   More troublesome is declarative macros used at top of new scope,
+   like DECLARE_PER_CPU.  These might just compile with a do-while-0
+   wrapper, but would be incorrect.  Most of these are handled by
+   detecting struct,union,etc declaration primitives in $exceptions.
 
-  No changes in participating hosts
+   Theres also macros called inside an if (block), which "return" an
+   expression.  These cannot do-while, and need a ({}) wrapper.
 
-Known issues
-------------
+   Enjoy this qualification while we work to improve our heuristics.
 
-  Here are the changes found in xe-pw-158316v1_BAT that come from known issues:
+-:73: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__job' - possible side-effects?
+#73: FILE: include/drm/gpu_scheduler.h:778:
++#define drm_sched_for_each_pending_job(__job, __sched, __entity)		\
++	scoped_guard(drm_sched_pending_job_iter, (__sched))			\
++		list_for_each_entry((__job), &(__sched)->pending_list, list)	\
++			for_each_if(!(__entity) || (__job)->entity == (__entity))
 
-### IGT changes ###
+-:73: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__sched' - possible side-effects?
+#73: FILE: include/drm/gpu_scheduler.h:778:
++#define drm_sched_for_each_pending_job(__job, __sched, __entity)		\
++	scoped_guard(drm_sched_pending_job_iter, (__sched))			\
++		list_for_each_entry((__job), &(__sched)->pending_list, list)	\
++			for_each_if(!(__entity) || (__job)->entity == (__entity))
 
-#### Issues hit ####
+-:73: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__entity' - possible side-effects?
+#73: FILE: include/drm/gpu_scheduler.h:778:
++#define drm_sched_for_each_pending_job(__job, __sched, __entity)		\
++	scoped_guard(drm_sched_pending_job_iter, (__sched))			\
++		list_for_each_entry((__job), &(__sched)->pending_list, list)	\
++			for_each_if(!(__entity) || (__job)->entity == (__entity))
 
-  * igt@xe_waitfence@reltime:
-    - bat-dg2-oem2:       [PASS][1] -> [FAIL][2] ([Intel XE#6520])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4178-639f325d8cbdc690de963db2fe5840444ac7ea65/bat-dg2-oem2/igt@xe_waitfence@reltime.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158316v1/bat-dg2-oem2/igt@xe_waitfence@reltime.html
-
-  
-  [Intel XE#6520]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520
-
-
-Build changes
--------------
-
-  * Linux: xe-4178-639f325d8cbdc690de963db2fe5840444ac7ea65 -> xe-pw-158316v1
-
-  IGT_8647: 8647
-  xe-4178-639f325d8cbdc690de963db2fe5840444ac7ea65: 639f325d8cbdc690de963db2fe5840444ac7ea65
-  xe-pw-158316v1: 158316v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158316v1/index.html
-
---===============5738339979887845070==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+total: 1 errors, 0 warnings, 3 checks, 54 lines checked
+ba24d3ac008e drm/xe: Add dedicated message lock
+628b33612410 drm/xe: Stop abusing DRM scheduler internals
+7aac3fbb7683 drm/xe: Only toggle scheduling in TDR if GuC is running
+7183fe3bbdd1 drm/xe: Do not deregister queues in TDR
+acfab21aaaf9 drm/xe: Remove special casing for LR queues in submission
+e170c9ec71a7 drm/xe: Disable timestamp WA on VFs
+41b39105ae1e drm/xe: Avoid toggling schedule state to check LRC timestamp in TDR
 
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/xe_vm: Implement xe_vm_get_property_ioctl</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/158316/">https://patchwork.freedesktop.org/series/158316/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158316v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158316v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4178-639f325d8cbdc690de963db2fe5840444ac7ea65_BAT -&gt; xe-pw-158316v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (12 -&gt; 12)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-158316v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@xe_waitfence@reltime:<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4178-639f325d8cbdc690de963db2fe5840444ac7ea65/bat-dg2-oem2/igt@xe_waitfence@reltime.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158316v1/bat-dg2-oem2/igt@xe_waitfence@reltime.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520">Intel XE#6520</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4178-639f325d8cbdc690de963db2fe5840444ac7ea65 -&gt; xe-pw-158316v1</li>
-</ul>
-<p>IGT_8647: 8647<br />
-  xe-4178-639f325d8cbdc690de963db2fe5840444ac7ea65: 639f325d8cbdc690de963db2fe5840444ac7ea65<br />
-  xe-pw-158316v1: 158316v1</p>
-
-</body>
-</html>
-
---===============5738339979887845070==--
