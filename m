@@ -4,55 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2991CCFD2F6
-	for <intel-xe@archiver.kernel.org>; Tue,  2 Dec 2025 06:32:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0A302CFD2F6
+	for <intel-xe@archiver.kernel.org>; Tue,  2 Dec 2025 06:33:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DFA9010E58C;
-	Tue,  2 Dec 2025 06:32:05 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hc6IDmpq";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8628410E58C
- for <intel-xe@lists.freedesktop.org>; Tue,  2 Dec 2025 06:32:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1764657125; x=1796193125;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=HU9xMYUSvS18Ws0hozQIeg+w60fpHnFkTJri8sXymVQ=;
- b=hc6IDmpqD3vvQidARwBo7mjX06MeylJPoR4UnQJCUm0cP0z+yqK4qJRs
- WLz7+jm/i3ENZMJfuv6fo5RPvS5K7c78EKXrWKAdvAJ8JJy43MOD1lAtT
- XDyLVYn2LrV8SDZD+ferm5hI+rOsFx/wPEHjCUjRlarYP+n+zLxYBizws
- vqxm6/pKWwaP330SnqaLb3G1U5b9w/iKlB7/ad4KGPiBcDl+IGC1/fp9/
- 31KPEHy2ZVUrCroPvJ2GH9Md66/MfWW7xAlpJQxwpC/wofJoTiMw8jnlP
- 6dw9ULAwT1ahM9nqDuyUJjTBERyMyDAh8wK/U2BFBa/J9yZBL6YnhwskR g==;
-X-CSE-ConnectionGUID: +weVWCdVTlmwKdOo5EbLKA==
-X-CSE-MsgGUID: M/NNkKmySNCr4N3GdODANQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11630"; a="84008380"
-X-IronPort-AV: E=Sophos;i="6.20,242,1758610800"; d="scan'208";a="84008380"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Dec 2025 22:32:04 -0800
-X-CSE-ConnectionGUID: pifLC/9wQcCxrYbidUdeSQ==
-X-CSE-MsgGUID: 73U2FIOITwC4vMYvv8quww==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,242,1758610800"; d="scan'208";a="194725406"
-Received: from nitin-super-server.iind.intel.com ([10.190.238.72])
- by fmviesa009.fm.intel.com with ESMTP; 01 Dec 2025 22:32:02 -0800
-From: Nitin Gote <nitin.r.gote@intel.com>
-To: tejas.upadhyay@intel.com, intel-xe@lists.freedesktop.org,
- jani.nikula@linux.intel.com
-Cc: piotr.piorkowski@intel.com,
-	Nitin Gote <nitin.r.gote@intel.com>
-Subject: [PATCH] drm/xe: Use IS_ENABLED() for config checks instead of
- defined()
-Date: Tue,  2 Dec 2025 12:32:32 +0530
-Message-ID: <20251202070231.187562-2-nitin.r.gote@intel.com>
-X-Mailer: git-send-email 2.50.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id B593210E58E;
+	Tue,  2 Dec 2025 06:32:59 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5266910E58E;
+ Tue,  2 Dec 2025 06:32:58 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_v9_19/20=5D_drm/i915/hist?=
+ =?utf-8?q?ogram=3A_Histogram_changes_for_Display_20+?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Arun R Murthy" <arun.r.murthy@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 02 Dec 2025 06:32:58 -0000
+Message-ID: <176465717833.48213.10233314791011152552@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20251202-dpst-v9-0-f2abb2ca2465@intel.com>
+In-Reply-To: <20251202-dpst-v9-0-f2abb2ca2465@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,36 +36,68 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Prefer IS_ENABLED() instead of defined() for checking whether
-a kconfig option is enabled. IS_ENABLED() evaluates both built-in (=y)
-and modular (=m) configurations at compile time, while defined() only
-tests symbol presence at preprocessing and can’t distinguish between
-built-in, module, or unset states.
+== Series Details ==
 
-This is purely cosmetic – no functional changes.
+Series: v9 19/20] drm/i915/histogram: Histogram changes for Display 20+
+URL   : https://patchwork.freedesktop.org/series/158355/
+State : warning
 
-CC: Piotr Piórkowski <piotr.piorkowski@intel.com>
-Signed-off-by: Nitin Gote <nitin.r.gote@intel.com>
----
- drivers/gpu/drm/xe/xe_vram.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/xe/xe_vram.c b/drivers/gpu/drm/xe/xe_vram.c
-index 0a645e76e5fa..8fac1cc08dc9 100644
---- a/drivers/gpu/drm/xe/xe_vram.c
-+++ b/drivers/gpu/drm/xe/xe_vram.c
-@@ -325,7 +325,7 @@ struct xe_vram_region *xe_vram_region_alloc(struct xe_device *xe, u8 id, u32 pla
- 	vram->xe = xe;
- 	vram->id = id;
- 	vram->placement = placement;
--#if defined(CONFIG_DRM_XE_PAGEMAP)
-+#if IS_ENABLED(CONFIG_DRM_XE_PAGEMAP)
- 	vram->migrate = xe->tiles[id].migrate;
- #endif
- 	return vram;
--- 
-2.50.1
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+2de9a3901bc28757c7906b454717b64e2a214021
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit f299c0b99d827a632141d6651bc8f9c3d777a699
+Author: Arun R Murthy <arun.r.murthy@intel.com>
+Date:   Tue Dec 2 11:56:55 2025 +0530
+
+    v9 01/20] DO_NOT_REVIEW: plane/crtc color pipeline
+    
+    Squashed patch for plane and crtc pipeline implementation in drm.
+    https://patchwork.freedesktop.org/series/152970/
+    https://patchwork.freedesktop.org/patch/675255
+    
+    Note: Entire series is not taken
+           AMD changes not take!
+    
+    Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
++ /mt/dim checkpatch 639f325d8cbdc690de963db2fe5840444ac7ea65 drm-intel
+f299c0b99d82 v9 01/20] DO_NOT_REVIEW: plane/crtc color pipeline
+-:133: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#133: FILE: drivers/gpu/drm/drm_atomic_uapi.c:428:
++			drm_dbg_atomic(dev,
++				"Setting DEGAMMA_LUT CRTC property not permitted with DRM_CLIENT_CAP_POST_BLEND_COLOR_PIPELINE client cap\n");
+
+-:145: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#145: FILE: drivers/gpu/drm/drm_atomic_uapi.c:449:
++			drm_dbg_atomic(dev,
++				"Setting GAMMA_LUT CRTC property not permitted with DRM_CLIENT_CAP_POST_BLEND_COLOR_PIPELINE client cap\n");
+
+-:174: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#174: FILE: drivers/gpu/drm/drm_atomic_uapi.c:757:
++drm_atomic_set_colorop_for_crtc(struct drm_crtc_state *crtc_state,
++				 struct drm_colorop *colorop)
+
+-:204: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#204: FILE: drivers/gpu/drm/drm_atomic_uapi.c:1107:
++		ret = drm_atomic_colorop_get_property(colorop,
++				colorop->state, property, val);
+
+-:604: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#604: FILE: include/drm/drm_crtc.h:1368:
++int drm_crtc_create_color_pipeline_property(struct drm_crtc *crtc,
++					     const struct drm_prop_enum_list *pipelines,
+
+total: 0 errors, 0 warnings, 5 checks, 598 lines checked
+
 
