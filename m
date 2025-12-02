@@ -4,71 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 48AB8CFD2F6
-	for <intel-xe@archiver.kernel.org>; Tue,  2 Dec 2025 06:28:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2991CCFD2F6
+	for <intel-xe@archiver.kernel.org>; Tue,  2 Dec 2025 06:32:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ECE9C10E588;
-	Tue,  2 Dec 2025 06:28:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DFA9010E58C;
+	Tue,  2 Dec 2025 06:32:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="J6CWnTzO";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hc6IDmpq";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 06A1A10E584;
- Tue,  2 Dec 2025 06:28:42 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8628410E58C
+ for <intel-xe@lists.freedesktop.org>; Tue,  2 Dec 2025 06:32:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1764656922; x=1796192922;
- h=from:date:subject:mime-version:content-transfer-encoding:
- message-id:references:in-reply-to:to:cc;
- bh=WABM3F0AqUFD/h+5NMeN8BFUPMukx54rDKevxqs39oc=;
- b=J6CWnTzO/inWKYghx9EI1g0O5Es50DMDrkIW0JQxXq6dAdGfvq3Lr8kL
- PQNrPmXv6bElW4T2D64zFYg5Q0A+lPo13ejuG9GiPBhT2J2/TViWQ9Y19
- IsE5+sPgdObXxvyUGkRmm1Wg8P9K7pdCDby7VLBhg5fi/K0zYWURNYt+K
- QWyeAU3BLKj9lV5ghPKNWhw66d5pPJRv0Z7EOQZUc5CvsNsR69+5sLZA/
- ZYBy5LUba1RSAptXs7f+a7pUcXiTxWpgaujSBg45rIUDmWs5pHaJzvRRM
- gaDP9JF5orCO/0MI2vN1Mo0tPSIUpwIwPCgzzG8Nk1jJoj5Dl4DAy/MVN A==;
-X-CSE-ConnectionGUID: vbytNz7WQD6E2YlWGwSdAQ==
-X-CSE-MsgGUID: zeiS7tfTSLyNYeJBNG/t/Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11630"; a="66500056"
-X-IronPort-AV: E=Sophos;i="6.20,242,1758610800"; d="scan'208";a="66500056"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Dec 2025 22:28:42 -0800
-X-CSE-ConnectionGUID: vpnLwRcIQYyQlzzyzgRtTw==
-X-CSE-MsgGUID: xDs8DXeSQRqtJ7Qa5GiuBQ==
+ t=1764657125; x=1796193125;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=HU9xMYUSvS18Ws0hozQIeg+w60fpHnFkTJri8sXymVQ=;
+ b=hc6IDmpqD3vvQidARwBo7mjX06MeylJPoR4UnQJCUm0cP0z+yqK4qJRs
+ WLz7+jm/i3ENZMJfuv6fo5RPvS5K7c78EKXrWKAdvAJ8JJy43MOD1lAtT
+ XDyLVYn2LrV8SDZD+ferm5hI+rOsFx/wPEHjCUjRlarYP+n+zLxYBizws
+ vqxm6/pKWwaP330SnqaLb3G1U5b9w/iKlB7/ad4KGPiBcDl+IGC1/fp9/
+ 31KPEHy2ZVUrCroPvJ2GH9Md66/MfWW7xAlpJQxwpC/wofJoTiMw8jnlP
+ 6dw9ULAwT1ahM9nqDuyUJjTBERyMyDAh8wK/U2BFBa/J9yZBL6YnhwskR g==;
+X-CSE-ConnectionGUID: +weVWCdVTlmwKdOo5EbLKA==
+X-CSE-MsgGUID: M/NNkKmySNCr4N3GdODANQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11630"; a="84008380"
+X-IronPort-AV: E=Sophos;i="6.20,242,1758610800"; d="scan'208";a="84008380"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Dec 2025 22:32:04 -0800
+X-CSE-ConnectionGUID: pifLC/9wQcCxrYbidUdeSQ==
+X-CSE-MsgGUID: 73U2FIOITwC4vMYvv8quww==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,242,1758610800"; d="scan'208";a="193961529"
-Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
- by fmviesa007.fm.intel.com with ESMTP; 01 Dec 2025 22:28:36 -0800
-From: Arun R Murthy <arun.r.murthy@intel.com>
-Date: Tue, 02 Dec 2025 11:57:14 +0530
-Subject: [PATCH [RESEND] v9 20/20] drm/i915/histogram: Enable pipe
- dithering
+X-IronPort-AV: E=Sophos;i="6.20,242,1758610800"; d="scan'208";a="194725406"
+Received: from nitin-super-server.iind.intel.com ([10.190.238.72])
+ by fmviesa009.fm.intel.com with ESMTP; 01 Dec 2025 22:32:02 -0800
+From: Nitin Gote <nitin.r.gote@intel.com>
+To: tejas.upadhyay@intel.com, intel-xe@lists.freedesktop.org,
+ jani.nikula@linux.intel.com
+Cc: piotr.piorkowski@intel.com,
+	Nitin Gote <nitin.r.gote@intel.com>
+Subject: [PATCH] drm/xe: Use IS_ENABLED() for config checks instead of
+ defined()
+Date: Tue,  2 Dec 2025 12:32:32 +0530
+Message-ID: <20251202070231.187562-2-nitin.r.gote@intel.com>
+X-Mailer: git-send-email 2.50.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251202-dpst-v9-20-f2abb2ca2465@intel.com>
-References: <20251202-dpst-v9-0-f2abb2ca2465@intel.com>
-In-Reply-To: <20251202-dpst-v9-0-f2abb2ca2465@intel.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
- Rodrigo Siqueira <siqueira@igalia.com>, 
- Alex Deucher <alexander.deucher@amd.com>, 
- =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- Jani Nikula <jani.nikula@linux.intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
- Tvrtko Ursulin <tursulin@ursulin.net>, 
- Lucas De Marchi <lucas.demarchi@intel.com>, 
- =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
- uma.shankar@intel.com, chaitanya.kumar.borah@intel.com, 
- suraj.kandpal@intel.com
-Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, 
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
- Arun R Murthy <arun.r.murthy@intel.com>
-X-Mailer: b4 0.15-dev
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -83,56 +67,33 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Enable pipe dithering while enabling histogram to overcome some
-atrifacts seen on the screen.
+Prefer IS_ENABLED() instead of defined() for checking whether
+a kconfig option is enabled. IS_ENABLED() evaluates both built-in (=y)
+and modular (=m) configurations at compile time, while defined() only
+tests symbol presence at preprocessing and can’t distinguish between
+built-in, module, or unset states.
 
-Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+This is purely cosmetic – no functional changes.
+
+CC: Piotr Piórkowski <piotr.piorkowski@intel.com>
+Signed-off-by: Nitin Gote <nitin.r.gote@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_histogram.c | 13 ++++++++++++-
- 1 file changed, 12 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_vram.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_histogram.c b/drivers/gpu/drm/i915/display/intel_histogram.c
-index 1d02f4fdf8549a0fd7a46dbd8fdc218798c2de1b..152ae1d0393e9b2b331612494e0cf918edc6f999 100644
---- a/drivers/gpu/drm/i915/display/intel_histogram.c
-+++ b/drivers/gpu/drm/i915/display/intel_histogram.c
-@@ -9,10 +9,10 @@
- #include <drm/drm_vblank.h>
- #include <drm/drm_print.h>
- 
--#include "i915_reg.h"
- #include "i915_drv.h"
- #include "intel_de.h"
- #include "intel_display.h"
-+#include "intel_display_regs.h"
- #include "intel_display_types.h"
- #include "intel_histogram.h"
- #include "intel_histogram_regs.h"
-@@ -24,6 +24,13 @@
- #define HISTOGRAM_BIN_READ_RETRY_COUNT 5
- #define IET_SAMPLE_FORMAT_1_INT_9_FRACT 0x1000009
- 
-+static void intel_histogram_enable_dithering(struct intel_display *display,
-+					     enum pipe pipe)
-+{
-+	intel_de_rmw(display, PIPE_MISC(pipe), PIPE_MISC_DITHER_ENABLE,
-+		     PIPE_MISC_DITHER_ENABLE);
-+}
-+
- static void set_bin_index_0(struct intel_display *display, enum pipe pipe)
- {
- 	if (DISPLAY_VER(display) >= 20)
-@@ -204,6 +211,10 @@ static int intel_histogram_enable(struct intel_crtc *intel_crtc, u8 mode)
- 
- 	if (histogram->enable)
- 		return 0;
-+
-+	/* Pipe Dithering should be enabled with histogram */
-+	intel_histogram_enable_dithering(display, pipe);
-+
- 	 /* enable histogram, clear DPST_BIN reg and select TC function */
- 	if (DISPLAY_VER(display) >= 20)
- 		intel_de_rmw(display, DPST_CTL(pipe),
-
+diff --git a/drivers/gpu/drm/xe/xe_vram.c b/drivers/gpu/drm/xe/xe_vram.c
+index 0a645e76e5fa..8fac1cc08dc9 100644
+--- a/drivers/gpu/drm/xe/xe_vram.c
++++ b/drivers/gpu/drm/xe/xe_vram.c
+@@ -325,7 +325,7 @@ struct xe_vram_region *xe_vram_region_alloc(struct xe_device *xe, u8 id, u32 pla
+ 	vram->xe = xe;
+ 	vram->id = id;
+ 	vram->placement = placement;
+-#if defined(CONFIG_DRM_XE_PAGEMAP)
++#if IS_ENABLED(CONFIG_DRM_XE_PAGEMAP)
+ 	vram->migrate = xe->tiles[id].migrate;
+ #endif
+ 	return vram;
 -- 
-2.25.1
+2.50.1
 
