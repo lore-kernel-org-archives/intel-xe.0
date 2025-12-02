@@ -4,184 +4,85 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 69C8CCFD2F6
-	for <intel-xe@archiver.kernel.org>; Tue,  2 Dec 2025 13:32:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B3AB4D116FE
+	for <intel-xe@archiver.kernel.org>; Tue,  2 Dec 2025 13:42:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2259410E07B;
-	Tue,  2 Dec 2025 13:32:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4F76610E657;
+	Tue,  2 Dec 2025 13:42:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="G01w052H";
+	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=daniel.almeida@collabora.com header.b="Ur0QWbxy";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3267810E07B
- for <intel-xe@lists.freedesktop.org>; Tue,  2 Dec 2025 13:32:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1764682351; x=1796218351;
- h=message-id:date:subject:to:references:from:in-reply-to:
- content-transfer-encoding:mime-version;
- bh=0GS2Wt9X9FUgwKP4T8N4JqxE4RyKh3pZaqeZealc1mA=;
- b=G01w052HViDHDgBwTxWaYsaAH9oknMOpOINK6JiDgEEZ/D3ABfz0sJPt
- QX6mVPRPlFoJHqtyA+H0KYVDlkJMz7a1qgO0kasvPJWyf2C2+mNBDIGuS
- XyoFKlGxZbwvreUh3IhzqvE86yB2ShtsUPyhIpCVcZLzPlVg9oegU4ETV
- a4ktWGcEqP4wusDegf27FRYZnDwZiFSIJ2sS4M2vr6fxEr+6IXqmCrZIN
- axieTKy9kXlv9XW56vumdGnvbA4UpYx16Re/broqmkDPfzVBIHRiOHB7x
- 7508AvvFFPMZtJtJrrlb+nFVMK/umEOQmKL6fzXFm4PuJyf66fEkBeeSg A==;
-X-CSE-ConnectionGUID: yE35Q6obT4W3rgYz+OK3TA==
-X-CSE-MsgGUID: vj0xg2cXRJq1GH48OucRLg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11630"; a="66592033"
-X-IronPort-AV: E=Sophos;i="6.20,243,1758610800"; d="scan'208";a="66592033"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Dec 2025 05:32:30 -0800
-X-CSE-ConnectionGUID: GS95schjTW+jegbFDM6vEQ==
-X-CSE-MsgGUID: 3iQJr14YSMyxiD8vFslI7Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,243,1758610800"; d="scan'208";a="193671119"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by orviesa010.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Dec 2025 05:32:30 -0800
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Tue, 2 Dec 2025 05:32:28 -0800
-Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29 via Frontend Transport; Tue, 2 Dec 2025 05:32:28 -0800
-Received: from SJ2PR03CU001.outbound.protection.outlook.com (52.101.43.70) by
- edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Tue, 2 Dec 2025 05:32:28 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=HM1vz2r8cyMAdvgKd1EBHxD2wqOJRT7fIi1zaU7D/SPmfXT+Kxe+v1Y9qdIbD0guR3k2QiQafgy/8lArTqVG+Ck2NKVeCmQaYLKXcy+mBRmiDhEiZ7xFq+G45T4FPWF+q5J41brw+yrXTJVcw1eZS7tqwj8R5HWSeF0GZF7GyZ/d+ybi8Ot9/zAHSRUBjbMmb2kg8dqnBH0NGEgLo6UTUZ3/N09PSKQ9z/4MROr2kEyIlZP37UmjJvLRYbHmiPpkiePAek29BR5Zix2IRhGRXNxih7B2fWysqzgyq86xF5FXrg99H9w1gaG7dKFHohsGQbPZ/z0ujgbaN/asqJGoqg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=0boWoJh47Rk7LqBgPeLnudg7mIIJOggkEhW2Of3Kdos=;
- b=UFC5Tb4Cc/TmGeVOeCDJzGWUFgRydRBndNVpebwrg4gKc+2zhsIY2UtVegtGSdMtL+AxzUlVgkBKeN1pNMUItmv4OQpLNI06VwZmIGbpIbV9xACS8+Y0cMD+xXT/dvsPb+DWvCkKuCm1rRozEHvgiHT3lOHF06RCACO4FZ2CwtmxxNMVS8JONFq/F3ih9Oodk3KvrTzZmfdk8bPfTOUMtoUb2xwqNZ4uU6B3+J6i3I6ePqe1CMUuQTQ9gbcUwNBRBenT5BE/sTRZmksXEziwa3HDF5WO3GO/0Oc6e2j7N0G2tcJFnk/z7cd57FbPwjKibrROu4SMwHV3YcdNxk61EQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MN0PR11MB6011.namprd11.prod.outlook.com (2603:10b6:208:372::6)
- by BY1PR11MB8030.namprd11.prod.outlook.com (2603:10b6:a03:522::21)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9388.9; Tue, 2 Dec
- 2025 13:32:26 +0000
-Received: from MN0PR11MB6011.namprd11.prod.outlook.com
- ([fe80::bbbc:5368:4433:4267]) by MN0PR11MB6011.namprd11.prod.outlook.com
- ([fe80::bbbc:5368:4433:4267%5]) with mapi id 15.20.9366.012; Tue, 2 Dec 2025
- 13:32:26 +0000
-Message-ID: <f9690fe0-a3b0-4ecd-a488-72457440a8c8@intel.com>
-Date: Tue, 2 Dec 2025 14:32:22 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 04/10] drm/xe/sriov: Scheduler groups are incompatible
- with multi-lrc
-To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
- <intel-xe@lists.freedesktop.org>
-References: <20251127014507.2323746-12-daniele.ceraolospurio@intel.com>
- <20251127014507.2323746-16-daniele.ceraolospurio@intel.com>
-Content-Language: en-US
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <20251127014507.2323746-16-daniele.ceraolospurio@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: VIXP296CA0011.AUTP296.PROD.OUTLOOK.COM
- (2603:10a6:800:2a9::10) To MN0PR11MB6011.namprd11.prod.outlook.com
- (2603:10b6:208:372::6)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6011:EE_|BY1PR11MB8030:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7aef1a7d-6ea0-4d5b-c24f-08de31a73b84
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?Y3FOTDBNZ05UcVNIZkFKTUlhb0xxZjdsWGdOMkdnUXVYOTVOWlVFdERyNDlD?=
- =?utf-8?B?YWNNTyswVGtNdFBwZVdoVFRieTFkSjRvMFhTVTdxMHBWNWh4bnRUQnpkY21i?=
- =?utf-8?B?RzVoQU1xaW1CT2lKTTM2U2o1bHpJdnp4K0haRDFZZUxmUjVrdTJXS3JGMU5L?=
- =?utf-8?B?dVh6cGhJekZOV3J5MTRlNjlNQkx3L1ZYQ2JLVHZiRlRpc3hxbjRSckIzQ0Jj?=
- =?utf-8?B?UllxNFNHTndaMlRPWXJaQjRKWmY0MWlhS0xQZzZoR1FCYlhDVHdtYjl1TVZ0?=
- =?utf-8?B?T1JITnVlZ1VhcWZtOW9nMWIzOXQ3MVpacXJMUk1Gc3dpckVScEUrVWlnb1Rh?=
- =?utf-8?B?THYrRFVta3RuZWcwSFIvZ2pSRFBvd0NweUJNQmFFOEljM0dSUXpqQjlySG12?=
- =?utf-8?B?TW5iaTFrNStNbnh2RWNEQVFPV0RBaWtYcm01OGx3cDBHNitJSDNlZDB3Y3kx?=
- =?utf-8?B?VEtVODl3SThuTlZMY0Z3ZE9jcVVocXBvbmlHSTdzeWs2WTZya3NVSVFPdFdl?=
- =?utf-8?B?MldWeUJqK2ZleXkxbU53d1R2NGVpSFZjVFQvWkhlaFBBeFZva1RVMWc3dVZN?=
- =?utf-8?B?WUZPcldVTi92SzRCWkNlSUZKOFRFOE03blA2VFVGb01zL0VNUTRsT1Vjc1VC?=
- =?utf-8?B?R0RtcjhlS3VLamdqWXl2eUpNUlJFRTNaSFVibGp5V2xxNXN5V0F2RVpsTG9F?=
- =?utf-8?B?bHZhZ1cvUEFyUUNnb2pYdjJqVGEwRzZFV3ZjbmlUNWkwc2IwSnZWa1d4dklZ?=
- =?utf-8?B?SHhhMG13bTNvUFRDc2c3Y3FZUTRyaWFYN0t5a243NHVjaElHQlcxYXhOcTZi?=
- =?utf-8?B?cEJCbVNGS05Qb3lVd3RlRHhuUG5lMEhoeTk4azB0aHMvWWdKTHQrWE0xc3g5?=
- =?utf-8?B?VGtkcUo2aUFPbTB6dnZ4bldwTmZ1alpRSTFrOVVZQUtyUkJDZ2dRU3lpa1h3?=
- =?utf-8?B?ekU5dHhjV09GOTYwT3hkd2pYZjhyWExhT3BxZjAycytZT2o2dmR0TVJpYXBy?=
- =?utf-8?B?SWVWcEVzUWtoWDdwOVJ5Y2VTdWF1UWZNSmlBM2R0TXRPZkNucDB1STB6QlJo?=
- =?utf-8?B?K21wek1nRUdzTXpQQXN5TVlUOHBsRzFmWXBFaG5ib2hJR3F3QVAwL251ci9U?=
- =?utf-8?B?bXJ0YkNxalcxalNDRmszdFFuTDRaSGljd3JWcjB1cDF4cHM0L0FmWmFqZzhj?=
- =?utf-8?B?a1pRT0duMk51NEptR2FZYVl0cjlGNTJZQmhvS2ltSUg2SzhGZklacnRnOEc3?=
- =?utf-8?B?MHpKaWRIY0g5aXhRRVBiTzhoTG5GTzRoUXFNWlZJWXV2alV3bE9ocS9SMWNR?=
- =?utf-8?B?OHJVcEkyUFNHS0hta1ZFU0Rxam1tN3R5b3JpcW0rL3I1Tk9oV0RIbG1WRzJV?=
- =?utf-8?B?K1AvOStVdFVzcHdWbGk2VFFmeUJLU3VvTVNtMVIvTVdYT09XazNDYkpkcXlu?=
- =?utf-8?B?NGNXQkxiQzNaT1JGSEdRZlo0N2J3a2ZvSWMxS09DWFozdW1JZStWSkRmNStS?=
- =?utf-8?B?bHNkUnRlNXJtWGNUaUQ3d3JxTlBidkt6QVBxRldlZTg4THdOUFg2ZmM1bUpV?=
- =?utf-8?B?MVhDZndQaUpwSmV2YkZhekk3djdUVlpUU3RFUUJRRERhUHhmWFExSFZsKzZI?=
- =?utf-8?B?dnBaUmN4RGJGZC9BQ0JHeXFzQSt1M1dzQWNlQjNuRmRTT0RSZFM2d1lyUTdu?=
- =?utf-8?B?OCtlNFhPcSsvZlVZK2ZDMmhPVHVvREp5TGp1U09wMVhDK2hNM2hGWDBsZlZl?=
- =?utf-8?B?YzdGMjEwMjlrZmFkbC9vM003aitjWktOUUFmTjdJdnQ5QWl1MWxJYWlzcnhD?=
- =?utf-8?B?b3hxQldRUG92V3JkVWFvb1M3TEh5UkV2anU0NXRJMmZxSzkwYW5neE12WGRn?=
- =?utf-8?B?UXYwdFZhS2ZLTThYdlF0bklSak1CUUVlbGhlcHhLUjk1NnFzbEJUMjJVU3lX?=
- =?utf-8?Q?9k3YsUQg7aExMgiYViG6Sl5qaO+WUgo2?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN0PR11MB6011.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?K2tqTTl6d0ZXa0FTVHBtMVBtUkhna2hxTGFpaUFhVms4Vms4T0ZjT2hvR3Qw?=
- =?utf-8?B?bkJLc04xZTdKYTQ4OWhmckZvZ3BoWE8vTUV6dXhFOE5LRVAxNXZHcUFmMkE0?=
- =?utf-8?B?eDNkTW0wRm9EMlRKaWRpakxZdys0L2F0dC9nTmpNNEZ6M201RktncjRqelJP?=
- =?utf-8?B?Vkd5ZWd5MHY5TFZOR1VoREE3eVRLaDFiQU9pREUvYWlITjA3Z05KODhsTDVE?=
- =?utf-8?B?K2NvSEUwZGl5VG16R1I0MU50QnVsdGNjT0RaOHJnRitNdE43N3Bndm14cnJF?=
- =?utf-8?B?dFdZcHM0QVp6RCtuMmt5ZzcvT1dPM2R4N2Fsajl5YlNFa0toVWMwQ3poUWE5?=
- =?utf-8?B?WGxXZFRpRC9vZmxGZVEzdmt1QU80cUJQa0JMRjFicUF5SlY4dWo2NGtVQjdH?=
- =?utf-8?B?b05zRVJzQUx3MWl5eHZncUlYZXR2TEsxZnJUbWplbFVLdDZWOFFlRjZqejdw?=
- =?utf-8?B?d3BOSG5VbzI5cGpQNzJSemJaMDBpU2NWMUM5ZlF2MDhTMUYvMmxWYXJoOEts?=
- =?utf-8?B?YjVGbVFtWmV2L01McFM3eExsR3BsaHZ2OWRORTJHQmx6dG9EUDRpWFB0M3NW?=
- =?utf-8?B?M3VzZ0RxLzhNSkRJc0VQMmJXQUI5cVBzdUc1b01TZTl3TnE4NFVXcWFKYm1V?=
- =?utf-8?B?MEVVbDFtRFkrTk9wVVdSaGZpdFM4a3BNWmlYTi9VN2U3RitZSlV1SjV6VGNn?=
- =?utf-8?B?TThlMmpQM0RvL3VwQ3BhT2NhZTRZMjdlS1JkeG5EMHcvanBTOHJKdXhaeHpM?=
- =?utf-8?B?VUNYMTJjOUt4dEk1R1V2cjhHbFdVaVNiWVZFMDAxN2dvZlU3NysxUDBJZEVC?=
- =?utf-8?B?MVliU1Z1YjVUelJCMWdJUkUxYzN4Umw0K285N1g0NUJGZ3p3ZTEwV3R6Mkpj?=
- =?utf-8?B?Uy85aDRoZEc1M3piTVlrTm85WlpkN1Z2R0wxV1RnZFhMMnR1eEttV2JqN3VV?=
- =?utf-8?B?RDRjd1FGREdHVG1zVDQrRzE3VlVMNjhNRUMzZ1htT1kyUFUzbUlGZUJrcDd5?=
- =?utf-8?B?WWR3NmhVOUkwS0tyMVlUNlh3bG9jT3BwUk56eUZUTGNhU01oK0pjY3RQdFZ1?=
- =?utf-8?B?WkxlQ1FKWmQzVTY4TFJBR2pMTWc0d0c0SWwxM2Y2SUlGSnQvVXY0R3R5S2dw?=
- =?utf-8?B?K0pwMkxQSTlMSkdxdGN5RC9RTE1OZ1BkcDFpMjNxbG4wdXNVU1dyeGpkUHVE?=
- =?utf-8?B?WlJqZWRhMVROUmx5OXB3UDlUMHF2ejdFdVBOZzByUGpYSEQ4R2FiS2M3NXRt?=
- =?utf-8?B?N1hmY3pkeExRVlNGL2loOWhXbEwvd1FZM1B0WjBMcmJheFJrc2xJWTVHRkJZ?=
- =?utf-8?B?bHd4MStUSXpLRkJ1M3l0S2lFaVZxRHNaV0o0MWxScGVJZmhnVjhNU1VLY1l6?=
- =?utf-8?B?c2lmb1RWSFFaNEF5VUI4R29wazdtanRaMGpPeWVOSjkxb0xSenFlUEp2ZDlj?=
- =?utf-8?B?RVk5WFo1NmEvUklLUE5STExmTEZubmFmbjRIaUF2NDRnalpxMDhNOG43V25S?=
- =?utf-8?B?OThubWQyL3lQM3NDakVuRFh0OEl0ZE8vUDNWMk1VMXhwUmRuWTBETHdOcHBn?=
- =?utf-8?B?OGM5aitnUVVnNUxZc3RLaGVMeWtuQnJwbDdkR1VQMnh0QVRKY1ByRmwyTjV1?=
- =?utf-8?B?WmwrZ3BDOHZxQnRmUkJSU0ZlSUFQY3NyaXZoUno0MHliaWZ0L1RTRThuV0V2?=
- =?utf-8?B?YXFWUE1zVWZEcVVUTW5Xa3dWUWxNcE1acXN1citIcVJvN2lUdTNLK1IrTHJJ?=
- =?utf-8?B?SksyTjZPYUFuR1hUTHE3em1VUkVFcFVGQkxVQW53TU1TaithZHhraVhXUTk2?=
- =?utf-8?B?YzdjNDdWV1FqVkFocDlWVXZhZCtDcjlkMEZ4U0xmakUwWmZET0E3azhoMmRI?=
- =?utf-8?B?Um1DQlNkRmF4VWU2ZE1KTmlzeDA3ZjFrd0x1TksyVllnbnNUOFdDU3RwYUk3?=
- =?utf-8?B?TXYwb0dLS1g1MjlUQlNQK0N2bzF1TG8zT2dSU3pZeU5CTGF5V2J2NFBtSDZV?=
- =?utf-8?B?K01VcEE2NjJxSTVpbEVWUzFXNGRUc2RjQ2UyeEdoV2lLS05kRTNhOWhaSEh5?=
- =?utf-8?B?cXhtak1CQXJ3dzhxS2RaNjhId2lzcjZldG9DZmdkOTViMEdsTWgvV0RJaXF0?=
- =?utf-8?B?d3l3VHNuZ2FPMTZaVm5Pc1g1djJTcWE1MUZZSUh2bFM3N3hOdStGUHBpeHRU?=
- =?utf-8?B?L1E9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7aef1a7d-6ea0-4d5b-c24f-08de31a73b84
-X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6011.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Dec 2025 13:32:26.2303 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: kqakLdV2uaj5N/jKNTdAtiWHwaijdYrXz8pKDFbo9PEeMZd9E+VUxoAfbeSp17TfoAma4VsFkCABDGVc5BiZSv100b09MjmkTaX2wqjAvlc=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY1PR11MB8030
-X-OriginatorOrg: intel.com
+Received: from sender3-pp-f112.zoho.com (sender3-pp-f112.zoho.com
+ [136.143.184.112])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9D76410E07B;
+ Tue,  2 Dec 2025 13:42:49 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; t=1764682964; cv=none; 
+ d=zohomail.com; s=zohoarc; 
+ b=J5deUpTOyfLgWnRYXLaCiZ03EGaxwW0kt/0yekjjDNostrWcaRdy0yOgBdL0doJiqIssx/0yAKflWnrl6Ac9TDoiAAm5Brhm6sYegPEyHEioe3JYe8zvrc9LvUW4DYAcwuq0z9oMcJgl8xM+qsk1oD+ik2JlvZBYvVN8B+sGSSQ=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
+ s=zohoarc; t=1764682964;
+ h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
+ bh=yxkYvGGrptWLGrGGwE3MPFxIX3T7694Py55+2kGg0W4=; 
+ b=Fi1N2V9tGzzIMAYbDcKDXVs+e40qBPSTDoN5Bw3/gp1tgCQhaC0O6NROEl65Ufb4jdQvMjhqULM1I4WLL04BafQaD6wzlZM3/Wbyirwxroz/JKi1JmVcreSw5p+RbECfSnOtsXsi6nVaGTmoGyIBHmJRU0wJ7bj7/3ahvJxs4wQ=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+ dkim=pass  header.i=collabora.com;
+ spf=pass  smtp.mailfrom=daniel.almeida@collabora.com;
+ dmarc=pass header.from=<daniel.almeida@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1764682964; 
+ s=zohomail; d=collabora.com; i=daniel.almeida@collabora.com;
+ h=Content-Type:Mime-Version:Subject:Subject:From:From:In-Reply-To:Date:Date:Cc:Cc:Content-Transfer-Encoding:Message-Id:Message-Id:References:To:To:Reply-To;
+ bh=yxkYvGGrptWLGrGGwE3MPFxIX3T7694Py55+2kGg0W4=;
+ b=Ur0QWbxyte3VimXITPe7fKzCdcPj497RtWW093nZ3y4JuyzsjvgKxHLIozCWfwqw
+ HiIxPXzSjkRcWbsxjlFsvANrzaXFKHiPinFznThI/GPIIZ8hZKCwjjn6YmlSv4OYC5t
+ W14f3yELfaok3Y5GRLhmUgX6jkmWXogjPnoj0Obc=
+Received: by mx.zohomail.com with SMTPS id 1764682962561352.7419515680556;
+ Tue, 2 Dec 2025 05:42:42 -0800 (PST)
+Content-Type: text/plain;
+	charset=utf-8
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3826.700.81\))
+Subject: Re: [PATCH 4/4] rust: drm: add GPUVM immediate mode abstraction
+From: Daniel Almeida <daniel.almeida@collabora.com>
+In-Reply-To: <aS6lz12BIysBVHSV@google.com>
+Date: Tue, 2 Dec 2025 10:42:23 -0300
+Cc: Danilo Krummrich <dakr@kernel.org>,
+ Matthew Brost <matthew.brost@intel.com>,
+ =?utf-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>,
+ Boris Brezillon <boris.brezillon@collabora.com>,
+ Steven Price <steven.price@arm.com>, Liviu Dudau <liviu.dudau@arm.com>,
+ Miguel Ojeda <ojeda@kernel.org>, Boqun Feng <boqun.feng@gmail.com>,
+ Gary Guo <gary@garyguo.net>,
+ =?utf-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>,
+ Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
+ Trevor Gross <tmgross@umich.edu>, Frank Binns <frank.binns@imgtec.com>,
+ Matt Coster <matt.coster@imgtec.com>,
+ Rob Clark <robin.clark@oss.qualcomm.com>,
+ Dmitry Baryshkov <lumag@kernel.org>,
+ Abhinav Kumar <abhinav.kumar@linux.dev>,
+ Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
+ Sean Paul <sean@poorly.run>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ Lyude Paul <lyude@redhat.com>, Lucas De Marchi <lucas.demarchi@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Sumit Semwal <sumit.semwal@linaro.org>,
+ =?utf-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ rust-for-linux@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ freedreno@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, linux-media@vger.kernel.org,
+ linaro-mm-sig@lists.linaro.org, Asahi Lina <lina+kernel@asahilina.net>
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <A15F2FAB-3D7C-4DF6-9399-DCFCF34C4D8F@collabora.com>
+References: <20251128-gpuvm-rust-v1-0-ebf66bf234e0@google.com>
+ <20251128-gpuvm-rust-v1-4-ebf66bf234e0@google.com>
+ <3727982A-91A4-447C-B53C-B6037DA02FF9@collabora.com>
+ <aS6lz12BIysBVHSV@google.com>
+To: Alice Ryhl <aliceryhl@google.com>
+X-Mailer: Apple Mail (2.3826.700.81)
+X-ZohoMailClient: External
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -198,409 +99,322 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
 
-On 11/27/2025 2:45 AM, Daniele Ceraolo Spurio wrote:
-> Since engines in the same class can be divided across multiple groups,
-> the GuC does not allow scheduler groups to be active if there are
-> multi-lrc contexts. This means that:
-> 
-> 1) if a mlrc context is registered when we enable scheduler groups, the
->    GuC will silently ignore the configuration
-> 2) if a mlrc context is registered after scheduler groups are enabled,
->    the GuC will disable the groups and generate an adverse event.
-> 
-> We therefore need to block mlrc context creation when scheduler groups
-> are enabled.
+> On 2 Dec 2025, at 05:39, Alice Ryhl <aliceryhl@google.com> wrote:
+>=20
+> On Mon, Dec 01, 2025 at 12:16:09PM -0300, Daniel Almeida wrote:
+>> Hi Alice,
+>>=20
+>> I find it a bit weird that we reverted to v1, given that the previous =
+gpuvm
+>> attempt was v3. No big deal though.
+>>=20
+>>=20
+>>> On 28 Nov 2025, at 11:14, Alice Ryhl <aliceryhl@google.com> wrote:
+>>>=20
+>>> Add a GPUVM abstraction to be used by Rust GPU drivers.
+>>>=20
+>>> GPUVM keeps track of a GPU's virtual address (VA) space and manages =
+the
+>>> corresponding virtual mappings represented by "GPU VA" objects. It =
+also
+>>> keeps track of the gem::Object<T> used to back the mappings through
+>>> GpuVmBo<T>.
+>>>=20
+>>> This abstraction is only usable by drivers that wish to use GPUVM in
+>>> immediate mode. This allows us to build the locking scheme into the =
+API
+>>> design. It means that the GEM mutex is used for the GEM gpuva list, =
+and
+>>> that the resv lock is used for the extobj list. The evicted list is =
+not
+>>> yet used in this version.
+>>>=20
+>>> This abstraction provides a special handle called the GpuVmCore, =
+which
+>>> is a wrapper around ARef<GpuVm> that provides access to the interval
+>>> tree. Generally, all changes to the address space requires mutable
+>>> access to this unique handle.
+>>>=20
+>>> Some of the safety comments are still somewhat WIP, but I think the =
+API
+>>> should be sound as-is.
+>>>=20
+>>> Co-developed-by: Asahi Lina <lina+kernel@asahilina.net>
+>>> Signed-off-by: Asahi Lina <lina+kernel@asahilina.net>
+>>> Co-developed-by: Daniel Almeida <daniel.almeida@collabora.com>
+>>> Signed-off-by: Daniel Almeida <daniel.almeida@collabora.com>
+>>> Signed-off-by: Alice Ryhl <aliceryhl@google.com>
+>=20
+>>> +//! DRM GPUVM in immediate mode
+>>> +//!
+>>> +//! Rust abstractions for using GPUVM in immediate mode. This is =
+when the GPUVM state is updated
+>>> +//! during `run_job()`, i.e., in the DMA fence signalling critical =
+path, to ensure that the GPUVM
+>>=20
+>> IMHO: We should initially target synchronous VM_BINDS, which are the =
+opposite
+>> of what you described above.
+>=20
+> Immediate mode is a locking scheme. We have to pick one of them
+> regardless of whether we do async VM_BIND yet.
+>=20
+> (Well ok immediate mode is not just a locking scheme: it also =
+determines
+> whether vm_bo cleanup is postponed or not.)
+>=20
+>>> +/// A DRM GPU VA manager.
+>>> +///
+>>> +/// This object is refcounted, but the "core" is only accessible =
+using a special unique handle. The
+>>=20
+>> I wonder if `Owned<T>` is a good fit here? IIUC, Owned<T> can be =
+refcounted,
+>> but there is only ever one handle on the Rust side? If so, this seems =
+to be
+>> what we want here?
+>=20
+> Yes, Owned<T> is probably a good fit.
+>=20
+>>> +/// core consists of the `core` field and the GPUVM's interval =
+tree.
+>>> +#[repr(C)]
+>>> +#[pin_data]
+>>> +pub struct GpuVm<T: DriverGpuVm> {
+>>> +    #[pin]
+>>> +    vm: Opaque<bindings::drm_gpuvm>,
+>>> +    /// Accessed only through the [`GpuVmCore`] reference.
+>>> +    core: UnsafeCell<T>,
+>>=20
+>> This UnsafeCell has been here since Lina=E2=80=99s version. I must =
+say I never
+>> understood why, and perhaps now is a good time to clarify it given =
+the changes
+>> we=E2=80=99re making w.r.t to the =E2=80=9Cunique handle=E2=80=9D =
+thing.
+>>=20
+>> This is just some driver private data. It=E2=80=99s never shared with =
+C. I am not
+>> sure why we need this wrapper.
+>=20
+> The sm_step_* methods receive a `&mut T`. This is UB if other code has
+> an `&GpuVm<T>` and the `T` is not wrapped in an `UnsafeCell` because
+> `&GpuVm<T>` implies that the data is not modified.
+>=20
+>>> +    /// Shared data not protected by any lock.
+>>> +    #[pin]
+>>> +    shared_data: T::SharedData,
+>>=20
+>> Should we deref to this?
+>=20
+> We can do that.
+>=20
+>>> +    /// Creates a GPUVM instance.
+>>> +    #[expect(clippy::new_ret_no_self)]
+>>> +    pub fn new<E>(
+>>> +        name: &'static CStr,
+>>> +        dev: &drm::Device<T::Driver>,
+>>> +        r_obj: &T::Object,
+>>=20
+>> Can we call this =E2=80=9Creservation_object=E2=80=9D, or similar?
+>>=20
+>> We should probably briefly explain what it does, perhaps linking to =
+the C docs.
+>=20
+> Yeah agreed, more docs are probably warranted here.
+>=20
+>> I wonder if we should expose the methods below at this moment. We =
+will not need
+>> them in Tyr until we start submitting jobs. This is still a bit in =
+the future.
+>>=20
+>> I say this for a few reasons:
+>>=20
+>> a) Philipp is still working on the fence abstractions,
+>>=20
+>> b) As a result from the above, we are taking raw fence pointers,
+>>=20
+>> c) Onur is working on a WW Mutex abstraction [0] that includes a Rust
+>> implementation of drm_exec (under another name, and useful in other =
+contexts
+>> outside of DRM). Should we use them here?
+>>=20
+>> I think your current design with the ExecToken is also ok and perhaps =
+we should
+>> stick to it, but it's good to at least discuss this with the others.
+>=20
+> I don't think we can postpone adding the "obtain" method. It's =
+required
+> to call sm_map, which is needed for VM_BIND.
+>=20
+>>> +    /// Returns a [`GpuVmBoObtain`] for the provided GEM object.
+>>> +    #[inline]
+>>> +    pub fn obtain(
+>>> +        &self,
+>>> +        obj: &T::Object,
+>>> +        data: impl PinInit<T::VmBoData>,
+>>> +    ) -> Result<GpuVmBoObtain<T>, AllocError> {
+>>=20
+>> Perhaps this should be called GpuVmBo? That=E2=80=99s what you want =
+to =E2=80=9Cobtain=E2=80=9D in the first place.
+>>=20
+>> This is indeed a question, by the way.
+>=20
+> One could possibly use Owned<_> here.
+>=20
+>>> +/// A lock guard for the GPUVM's resv lock.
+>>> +///
+>>> +/// This guard provides access to the extobj and evicted lists.
+>>=20
+>> Should we bother with evicted objects at this stage?
+>=20
+> The abstractions don't actually support them right now. The resv lock =
+is
+> currently only here because it's used internally in these =
+abstractions.
+> It won't be useful to drivers until we add evicted objects.
+>=20
+>>> +///
+>>> +/// # Invariants
+>>> +///
+>>> +/// Holds the GPUVM resv lock.
+>>> +pub struct GpuvmResvLockGuard<'a, T: DriverGpuVm>(&'a GpuVm<T>);
+>>> +
+>>> +impl<T: DriverGpuVm> GpuVm<T> {
+>>> +    /// Lock the VM's resv lock.
+>>=20
+>> More docs here would be nice.
+>>=20
+>>> +    #[inline]
+>>> +    pub fn resv_lock(&self) -> GpuvmResvLockGuard<'_, T> {
+>>> +        // SAFETY: It's always ok to lock the resv lock.
+>>> +        unsafe { bindings::dma_resv_lock(self.raw_resv_lock(), =
+ptr::null_mut()) };
+>>> +        // INVARIANTS: We took the lock.
+>>> +        GpuvmResvLockGuard(self)
+>>> +    }
+>>=20
+>> You can call this more than once and deadlock. Perhaps we should warn =
+about this, or forbid it?
+>=20
+> Same as any other lock. I don't think we need to do anything special.
+>=20
+>>> +    /// Use the pre-allocated VA to carry out this map operation.
+>>> +    pub fn insert(self, va: GpuVaAlloc<T>, va_data: impl =
+PinInit<T::VaData>) -> OpMapped<'op, T> {
+>>> +        let va =3D va.prepare(va_data);
+>>> +        // SAFETY: By the type invariants we may access the =
+interval tree.
+>>> +        unsafe { =
+bindings::drm_gpuva_map(self.vm_bo.gpuvm().as_raw(), va, self.op) };
+>>> +        // SAFETY: The GEM object is valid, so the mutex is =
+properly initialized.
+>>=20
+>>> +        unsafe { bindings::mutex_lock(&raw mut =
+(*self.op.gem.obj).gpuva.lock) };
+>>=20
+>> Should we use Fujita=E2=80=99s might_sleep() support here?
+>=20
+> Could make sense yeah.
+>=20
+>>> +/// ```
+>>> +/// struct drm_gpuva_op_unmap {
+>>> +/// /**
+>>> +/// * @va: the &drm_gpuva to unmap
+>>> +/// */
+>>> +/// struct drm_gpuva *va;
+>>> +///
+>>> +/// /**
+>>> +/// * @keep:
+>>> +/// *
+>>> +/// * Indicates whether this &drm_gpuva is physically contiguous =
+with the
+>>> +/// * original mapping request.
+>>> +/// *
+>>> +/// * Optionally, if &keep is set, drivers may keep the actual page =
+table
+>>> +/// * mappings for this &drm_gpuva, adding the missing page table =
+entries
+>>> +/// * only and update the &drm_gpuvm accordingly.
+>>> +/// */
+>>> +/// bool keep;
+>>> +/// };
+>>> +/// ```
+>>=20
+>> I think the docs could improve here ^
+>=20
+> Yeah I can look at it.
+>=20
+>>> +impl<T: DriverGpuVm> GpuVmCore<T> {
+>>> +    /// Create a mapping, removing or remapping anything that =
+overlaps.
+>>> +    #[inline]
+>>> +    pub fn sm_map(&mut self, req: OpMapRequest<'_, T>) -> Result {
+>>=20
+>> I wonder if we should keep this =E2=80=9Csm=E2=80=9D prefix. Perhaps
+>> =E2=80=9Cmap_region=E2=80=9D or =E2=80=9Cmap_range=E2=80=9D would be =
+better names IMHO.
+>=20
+> I'll wait for Danilo to weigh in on this. I'm not sure where "sm"
+> actually comes from.
 
-s/mlrc/MLRC
+sm probably is a reference to =E2=80=9Csplit/merge=E2=80=9D.
 
-> An adverse event threshold is available for the new adverse event.
+>=20
+>>> +/// Represents that a given GEM object has at least one mapping on =
+this [`GpuVm`] instance.
+>>> +///
+>>> +/// Does not assume that GEM lock is held.
+>>> +#[repr(C)]
+>>> +#[pin_data]
+>>> +pub struct GpuVmBo<T: DriverGpuVm> {
+>>=20
+>> Oh, we already have GpuVmBo, and GpuVmBoObtain. I see.
+>=20
+> Yeah, GpuVmBoObtain and GpuVmBoAlloc are pointers to GpuVmBo.
+>=20
+>>> +    #[pin]
+>>> +    inner: Opaque<bindings::drm_gpuvm_bo>,
+>>> +    #[pin]
+>>> +    data: T::VmBoData,
+>>> +}
+>>> +
+>>> +impl<T: DriverGpuVm> GpuVmBo<T> {
+>>> +    pub(super) const ALLOC_FN: Option<unsafe extern "C" fn() -> =
+*mut bindings::drm_gpuvm_bo> =3D {
+>>> +        use core::alloc::Layout;
+>>> +        let base =3D Layout::new::<bindings::drm_gpuvm_bo>();
+>>> +        let rust =3D Layout::new::<Self>();
+>>> +        assert!(base.size() <=3D rust.size());
+>>=20
+>> We should default to something else instead of panicking IMHO.
+>=20
+> This is const context, which makes it a build assertion.
+>=20
+>> My overall opinion is that we=E2=80=99re adding a lot of things that =
+will only be
+>> relevant when we=E2=80=99re more advanced on the job submission =
+front. This
+>> includes the things that Phillip is working on (i.e.: Fences + =
+JobQueue).
+>>=20
+>> Perhaps we should keep this iteration downstream (so we=E2=80=99re =
+sure it works
+>> when the time comes) and focus on synchronous VM_BINDS upstream.
+>> The Tyr demo that you=E2=80=99ve tested this on is very helpful for =
+this purpose.
+>=20
+> Yeah let's split out the prepare, GpuVmExec, and resv_add_fence stuff =
+to
+> a separate patch.
 
-changes related to introduction of new threshold deserves separate patch
-(as we need to handle GuC FW version checks)
+Ack
 
-> 
-> Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-> ---
->  drivers/gpu/drm/xe/abi/guc_klvs_abi.h         | 14 +++++
->  drivers/gpu/drm/xe/xe_exec_queue.c            | 19 ++++++
->  drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.c    | 30 ++++++++++
->  drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.h    |  1 +
->  drivers/gpu/drm/xe/xe_gt_sriov_vf.c           | 59 +++++++++++++++++++
->  drivers/gpu/drm/xe/xe_gt_sriov_vf.h           |  3 +
->  drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h     |  2 +
->  .../drm/xe/xe_guc_klv_thresholds_set_types.h  |  1 +
->  8 files changed, 129 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h b/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
-> index 274f1b1ec37f..a6dce9da339f 100644
-> --- a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
-> +++ b/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
-> @@ -46,11 +46,18 @@
->   *      Refers to 32 bit architecture version as reported by the HW IP.
->   *      This key is supported on MTL+ platforms only.
->   *      Requires GuC ABI 1.2+.
-> + *
-> + * _`GUC_KLV_GLOBAL_CFG_GROUP_SCHEDULING_AVAILABLE` : 0x3001
-> + *      Tells the driver whether scheduler groups are enabled or not.
-> + *      Requres GuC ABI 1.26+
+>=20
+> I don't think sync vs async VM_BIND changes much in which methods or
+> structs are required here. Only difference is whether you call the
+> methods from a workqueue or not.
+>=20
+> Alice
 
-typo: Requires
-
-and don't forget to update xe_guc_klv_key_to_string() with new KEY
-
->   */
->  
->  #define GUC_KLV_GLOBAL_CFG_GMD_ID_KEY			0x3000u
->  #define GUC_KLV_GLOBAL_CFG_GMD_ID_LEN			1u
->  
-> +#define GUC_KLV_GLOBAL_CFG_GROUP_SCHEDULING_AVAILABLE_KEY	0x3001u
-> +#define GUC_KLV_GLOBAL_CFG_GROUP_SCHEDULING_AVAILABLE_LEN	1u
-> +
->  /**
->   * DOC: GuC Self Config KLVs
->   *
-> @@ -369,6 +376,10 @@ enum  {
->   *      :1: NORMAL = schedule VF always, irrespective of whether it has work or not
->   *      :2: HIGH = schedule VF in the next time-slice after current active
->   *          time-slice completes if it has active work
-> + *
-> + * _`GUC_KLV_VF_CFG_THRESHOLD_MULTI_LRC_COUNT` : 0x8A0D
-> + *      This config sets the threshold for LRCA context registration when SRIOV
-
-... threshold for _Multi_ LRCA context registrations ...
-
-> + *      scheduler groups are enabled.
-
-"This is allows PF to monitor VFs' behavior when EGS is enabled."
-
->   */
->  
->  #define GUC_KLV_VF_CFG_GGTT_START_KEY		0x0001
-> @@ -427,6 +438,9 @@ enum  {
->  #define   GUC_SCHED_PRIORITY_NORMAL		1u
->  #define   GUC_SCHED_PRIORITY_HIGH		2u
->  
-> +#define GUC_KLV_VF_CFG_THRESHOLD_MULTI_LRC_COUNT_KEY	0x8a0d
-> +#define GUC_KLV_VF_CFG_THRESHOLD_MULTI_LRC_COUNT_LEN	1u
-> +
->  /*
->   * Workaround keys:
->   */
-> diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-> index 8724f8de67e2..e59c41c913b4 100644
-> --- a/drivers/gpu/drm/xe/xe_exec_queue.c
-> +++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-> @@ -16,6 +16,7 @@
->  #include "xe_dep_scheduler.h"
->  #include "xe_device.h"
->  #include "xe_gt.h"
-> +#include "xe_gt_sriov_pf_policy.h"
->  #include "xe_gt_sriov_vf.h"
->  #include "xe_hw_engine_class_sysfs.h"
->  #include "xe_hw_engine_group.h"
-> @@ -698,6 +699,17 @@ static u32 calc_validate_logical_mask(struct xe_device *xe,
->  	return return_mask;
->  }
->  
-> +static bool has_sched_groups(struct xe_gt *gt)
-> +{
-> +	if (IS_SRIOV_PF(gt_to_xe(gt)) && xe_gt_sriov_pf_policy_sched_groups_enabled(gt))
-
-hmm, usually we don't want core code to look so deeply into PF subcomponent
-
-also, do we want to work in hybrid mode where one GT is using MLRC and other is not?
-
-> +		return true;
-> +> +	if (IS_SRIOV_VF(gt_to_xe(gt)) && xe_gt_sriov_vf_sched_groups_enabled(gt))
-> +		return true;
-> +
-> +	return false;
-> +}
-> +
->  int xe_exec_queue_create_ioctl(struct drm_device *dev, void *data,
->  			       struct drm_file *file)
->  {
-> @@ -790,6 +802,13 @@ int xe_exec_queue_create_ioctl(struct drm_device *dev, void *data,
->  			return -ENOENT;
->  		}
->  
-> +		/* SRIOV sched groups are not compatible with multi-lrc */
-> +		if (XE_IOCTL_DBG(xe, args->width > 1 && has_sched_groups(hwe->gt))) {
-> +			up_read(&vm->lock);
-> +			xe_vm_put(vm);
-> +			return -EINVAL;
-> +		}
-> +
->  		q = xe_exec_queue_create(xe, vm, logical_mask,
->  					 args->width, hwe, flags,
->  					 args->extensions);
-> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.c
-> index 48f250ae0d0d..c7f1ea8eb9c5 100644
-> --- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.c
-> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.c
-> @@ -8,6 +8,7 @@
->  #include <drm/drm_managed.h>
->  
->  #include "xe_bo.h"
-> +#include "xe_exec_queue_types.h"
->  #include "xe_gt.h"
->  #include "xe_gt_sriov_pf_helpers.h"
->  #include "xe_gt_sriov_pf_policy.h"
-> @@ -527,6 +528,24 @@ static int __pf_provision_sched_groups(struct xe_gt *gt, u32 mode)
->  				      masks, num_masks);
->  }
->  
-> +static bool guc_has_mlrc_queue(struct xe_guc *guc)
-
-this is all GuC stuff, so export it from xe_guc_submission.c
-
-> +{
-> +	struct xe_exec_queue *q;
-> +	unsigned long index;
-> +	bool found = false;
-> +
-> +	mutex_lock(&guc->submission_state.lock);
-
-guard(mutex) ?
-
-> +	xa_for_each(&guc->submission_state.exec_queue_lookup, index, q) {
-> +		if (q->width > 1) {
-> +			found = true;
-> +			break;
-> +		}
-> +	}
-> +	mutex_unlock(&guc->submission_state.lock);
-> +
-> +	return found;
-
-what if new MLRC is created right now?
-
-maybe we should use xe_guard to lockdown one feature or the other?
-
-> +}
-> +
->  static int pf_provision_sched_groups(struct xe_gt *gt, u32 mode)
->  {
->  	int err;
-> @@ -548,6 +567,12 @@ static int pf_provision_sched_groups(struct xe_gt *gt, u32 mode)
->  	if (xe_sriov_pf_num_vfs(gt_to_xe(gt)))
->  		return -EPERM;
->  
-> +	/* The GuC silently ignores the setting if any mlrc contexts are registered */
-> +	if ((mode != XE_SRIOV_SCHED_GROUPS_NONE) && guc_has_mlrc_queue(&gt->uc.guc)) {
-> +		xe_gt_sriov_notice(gt, "can't enable sched groups with active mlrc queues\n");
-> +		return -EPERM;
-> +	}
-> +
->  	err = __pf_provision_sched_groups(gt, mode);
->  	if (err)
->  		return err;
-> @@ -600,6 +625,11 @@ int xe_gt_sriov_pf_policy_set_sched_groups_mode(struct xe_gt *gt, u32 value)
->  	return err;
->  }
->  
-
-every public function needs to have kernel-doc
-
-> +bool xe_gt_sriov_pf_policy_sched_groups_enabled(struct xe_gt *gt)
-> +{
-> +	return gt->sriov.pf.policy.guc.sched_groups.current_mode != XE_SRIOV_SCHED_GROUPS_NONE;
-> +}
-> +
->  static void pf_sanitize_guc_policies(struct xe_gt *gt)
->  {
->  	pf_sanitize_sched_if_idle(gt);
-> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.h b/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.h
-> index 36680996f2bd..89aa3af6cc7d 100644
-> --- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.h
-> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.h
-> @@ -18,6 +18,7 @@ bool xe_gt_sriov_pf_policy_get_reset_engine(struct xe_gt *gt);
->  int xe_gt_sriov_pf_policy_set_sample_period(struct xe_gt *gt, u32 value);
->  u32 xe_gt_sriov_pf_policy_get_sample_period(struct xe_gt *gt);
->  int xe_gt_sriov_pf_policy_set_sched_groups_mode(struct xe_gt *gt, u32 value);
-> +bool xe_gt_sriov_pf_policy_sched_groups_enabled(struct xe_gt *gt);
->  
->  int xe_gt_sriov_pf_policy_init(struct xe_gt *gt);
->  void xe_gt_sriov_pf_policy_sanitize(struct xe_gt *gt);
-> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-> index 4c73a077d314..7a180c947032 100644
-> --- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-> @@ -438,6 +438,30 @@ u32 xe_gt_sriov_vf_gmdid(struct xe_gt *gt)
->  	return value;
->  }
->  
-> +static int query_vf_sched_groups(struct xe_gt *gt)
-> +{
-> +	struct xe_guc *guc = &gt->uc.guc;
-> +	u32 value = 0;
-> +	int err;
-> +
-> +	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
-> +
-> +	if (MAKE_GUC_VER_STRUCT(gt->sriov.vf.guc_version) < MAKE_GUC_VER(1, 26, 0))
-> +		return 0;
-> +
-> +	err = guc_action_query_single_klv32(guc,
-> +					    GUC_KLV_GLOBAL_CFG_GROUP_SCHEDULING_AVAILABLE_KEY,
-> +					    &value);
-> +	if (unlikely(err)) {
-> +		xe_gt_sriov_err(gt, "Failed to obtain sched groups status (%pe)\n",
-> +				ERR_PTR(err));
-> +		return err;
-> +	}
-> +
-> +	xe_gt_sriov_dbg(gt, "sched groups %s\n", value ? "enabled" : "disabled");
-
-str_enabled_disabled(value)
-
-> +	return value;
-> +}
-> +
->  static int vf_get_ggtt_info(struct xe_gt *gt)
->  {
->  	struct xe_tile *tile = gt_to_tile(gt);
-> @@ -564,6 +588,21 @@ static void vf_cache_gmdid(struct xe_gt *gt)
->  	gt->sriov.vf.runtime.gmdid = xe_gt_sriov_vf_gmdid(gt);
->  }
->  
-> +static int vf_cache_sched_groups_status(struct xe_gt *gt)
-> +{
-> +	int ret;
-> +
-> +	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
-> +
-> +	ret = query_vf_sched_groups(gt);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	gt->sriov.vf.runtime.uses_sched_groups = ret;
-> +
-> +	return 0;
-> +}
-> +
->  /**
->   * xe_gt_sriov_vf_query_config - Query SR-IOV config data over MMIO.
->   * @gt: the &xe_gt
-> @@ -593,12 +632,32 @@ int xe_gt_sriov_vf_query_config(struct xe_gt *gt)
->  	if (unlikely(err))
->  		return err;
->  
-> +	err = vf_cache_sched_groups_status(gt);
-> +	if (unlikely(err))
-> +		return err;
-> +
->  	if (has_gmdid(xe))
->  		vf_cache_gmdid(gt);
->  
->  	return 0;
->  }
->  
-> +/**
-> + * xe_gt_sriov_vf_sched_groups_enabled - Check if PF has enabled sched groups
-
-    * xe_gt_sriov_vf_sched_groups_enabled() - Check ...
-
-
-> + * @gt: the &xe_gt
-> + *
-> + * This function is for VF use only.
-> + *
-> + * Return: true if shed groups were enabled, false otherwise.
-
-typo: s/shed/scheduler
-
-> + */
-> +bool xe_gt_sriov_vf_sched_groups_enabled(struct xe_gt *gt)
-> +{
-> +	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
-> +	xe_gt_assert(gt, gt->sriov.vf.guc_version.major);
-> +
-> +	return gt->sriov.vf.runtime.uses_sched_groups;
-> +}
-> +
->  /**
->   * xe_gt_sriov_vf_guc_ids - VF GuC context IDs configuration.
->   * @gt: the &xe_gt
-> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.h b/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
-> index af40276790fa..2e1d34c0397f 100644
-> --- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
-> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
-> @@ -23,11 +23,14 @@ int xe_gt_sriov_vf_connect(struct xe_gt *gt);
->  int xe_gt_sriov_vf_query_runtime(struct xe_gt *gt);
->  void xe_gt_sriov_vf_migrated_event_handler(struct xe_gt *gt);
->  
-> +bool xe_gt_sriov_vf_sched_groups_enabled(struct xe_gt *gt);
-
-move it there [1]
-
-> +
->  int xe_gt_sriov_vf_init_early(struct xe_gt *gt);
->  int xe_gt_sriov_vf_init(struct xe_gt *gt);
->  bool xe_gt_sriov_vf_recovery_pending(struct xe_gt *gt);
->  
->  u32 xe_gt_sriov_vf_gmdid(struct xe_gt *gt);
-> +u32 xe_gt_sriov_vf_sched_groups(struct xe_gt *gt);
-
-unused ?
-
->  u16 xe_gt_sriov_vf_guc_ids(struct xe_gt *gt);
->  u64 xe_gt_sriov_vf_lmem(struct xe_gt *gt);
-
-[1] here
-
->  
-> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h b/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
-> index 420b0e6089de..5267c097ecd0 100644
-> --- a/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
-> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
-> @@ -27,6 +27,8 @@ struct xe_gt_sriov_vf_selfconfig {
->  struct xe_gt_sriov_vf_runtime {
->  	/** @gmdid: cached value of the GDMID register. */
->  	u32 gmdid;
-> +	/** @uses_sched_groups: whether PF enabled sched groups or not. */
-> +	bool uses_sched_groups;
->  	/** @regs_size: size of runtime register array. */
->  	u32 regs_size;
->  	/** @num_regs: number of runtime registers in the array. */
-> diff --git a/drivers/gpu/drm/xe/xe_guc_klv_thresholds_set_types.h b/drivers/gpu/drm/xe/xe_guc_klv_thresholds_set_types.h
-> index 0a028c94756d..3e55d9302855 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_klv_thresholds_set_types.h
-> +++ b/drivers/gpu/drm/xe/xe_guc_klv_thresholds_set_types.h
-> @@ -32,6 +32,7 @@
->  	define(H2G_STORM, guc_time_us)			\
->  	define(IRQ_STORM, irq_time_us)			\
->  	define(DOORBELL_STORM, doorbell_time_us)	\
-> +	define(MULTI_LRC_COUNT, multi_lrc_count)	\
-
-this needs to be defined with some version info, maybe:
-
-	define(MULTI_LRC_COUNT, multi_lrc_count, (70, 53, 0))	\
-
-and then in encode_config() have two variants of code generators:
-
-#define encode_threshold_config2(TAG, ...) ({					\
-	cfg[n++] = PREP_GUC_KLV_TAG(VF_CFG_THRESHOLD_##TAG);			\
-	cfg[n++] = config->thresholds[MAKE_XE_GUC_KLV_THRESHOLD_INDEX(TAG)];	\
-});
-#define encode_threshold_config3(TAG, NAME, VERSION) ({				\
-	if (GUC_FIRMWARE_VER(&gt->uc.guc) >= MAKE_GUC_VER VERSION) {		\
-		encode_threshold_config2(TAG, NAME);				\
-	}									\
-});
-#define encode_threshold_config(ARGS...) \
-	CALL_ARGS(CONCATENATE(encode_threshold_config, COUNT_ARGS(ARGS)), ARGS)
-
-this should fix the issues already spotted by the CI on ADLP:
-
-<6> [133.603624] xe 0000:00:02.0: [drm] Tile0: GT0: { key 0x8a0d : 32b value 0 } # multi_lrc_count
-<6> [133.603625] xe 0000:00:02.0: [drm] Tile0: GT0: { key 0x0001 : 64b value 0x200000 } # ggtt_start
-<6> [133.603626] xe 0000:00:02.0: [drm] Tile0: GT0: { key 0x0002 : 64b value 0xfec00000 } # ggtt_size
-<3> [133.603653] xe 0000:00:02.0: [drm] *ERROR* PF: Tile0: GT0: Failed to push self configuration (-ENOKEY)
-
-
->  	/* end */
->  
->  /**
 
