@@ -4,168 +4,167 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 25AE3D12663
-	for <intel-xe@archiver.kernel.org>; Tue,  2 Dec 2025 18:52:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 778ABD12669
+	for <intel-xe@archiver.kernel.org>; Tue,  2 Dec 2025 18:54:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D352310E6B4;
-	Tue,  2 Dec 2025 18:52:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3782A10E679;
+	Tue,  2 Dec 2025 18:54:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IMO2NWdO";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VGkJcQBi";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4FE1110E6C8
- for <intel-xe@lists.freedesktop.org>; Tue,  2 Dec 2025 18:52:21 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 29D0510E679
+ for <intel-xe@lists.freedesktop.org>; Tue,  2 Dec 2025 18:54:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1764701541; x=1796237541;
+ t=1764701678; x=1796237678;
  h=date:from:to:cc:subject:message-id:references:
  content-transfer-encoding:in-reply-to:mime-version;
- bh=2t6KExZ4glV98HWZvaJDh+NYHRqPSCYHdVv+95GV/PQ=;
- b=IMO2NWdO3bXtrm/nkev4II+1qZ8bBgi0cL0oYsxULCDY7HSwy9QDRxV2
- eVur/Zom8la9VrWpp0HlS5UB9dfY5fcPVzMr6h1n3I6NzUBHQDaNIto24
- /x8VBS8XggmG1W/BjEiib6CVCwMXa+6Vbp0/ZQqSCcUmwHu5Lir5Es/sT
- AMGgvXOO3LfPKjE3CqZKpuWtXBjHFATYxHepX8B8d6g3sIop97Y69XLOl
- p4HyOrRcq4nydpONDW0kP9COtsCCOoLvxswS98eOffuUuluaiJGB/nqdg
- qxFv41gZkzGmBGbp9l7yrrZLbcRlHFsTeFMMl0lZ6hKvBaUyd0PhU4fkL g==;
-X-CSE-ConnectionGUID: P+528TLRSr2xL0WE+51hWQ==
-X-CSE-MsgGUID: 8zSFum9sTxGFrNrjlL0wKQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11631"; a="66757143"
-X-IronPort-AV: E=Sophos;i="6.20,243,1758610800"; d="scan'208";a="66757143"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Dec 2025 10:52:21 -0800
-X-CSE-ConnectionGUID: y7X+EfyQQSOeWD2i1LqG0w==
-X-CSE-MsgGUID: J6CV9ruGQzi/Ehuv3hLUWA==
+ bh=QkR1xLjr6P72QwCCMZG4Q3MENNvKUQAB8x5Vlir4qO0=;
+ b=VGkJcQBiE/zeJfzIH2URR8F/3o1b6ZnVCsctnNNIBZyJoDcY/6tuwFFO
+ wKsxKPWsW6TXNL8igGhwyy/bktkue3EYZU1DKebRM+rJfocRSEUNivSMr
+ flrC0qkgstEgxdz9gY3G8dPQbftXtOImpNrpU2kB24rS8b3S1FQMemFl1
+ RFIFjruRej7KGX5LvVUJmFy+CvAu/Aj6QoNACQPJv7rymJOCuMEFNVJPD
+ sY33tjPqjHNrF3/MiL+T3zhePjCOi0LIqwcqvTehsHe68HISB9JzJ254b
+ Ouc/rn+tqbq74MI2CNuYoZ6IYdq99FLDPiWvjvH/SMxB0Okau4WwLP3xa g==;
+X-CSE-ConnectionGUID: N8fOmoP0SBG2tIqEzlw2qA==
+X-CSE-MsgGUID: d4dcz5ZPSgOWOeKGM5LxJQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11631"; a="65686485"
+X-IronPort-AV: E=Sophos;i="6.20,243,1758610800"; d="scan'208";a="65686485"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Dec 2025 10:54:38 -0800
+X-CSE-ConnectionGUID: +ThNNOecS2yRHMukNFZWVQ==
+X-CSE-MsgGUID: /gCAh6bYShKftIsMIATGvA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,243,1758610800"; d="scan'208";a="225409954"
-Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
- by fmviesa001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Dec 2025 10:52:21 -0800
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.20,243,1758610800"; d="scan'208";a="193752209"
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+ by orviesa010.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Dec 2025 10:54:38 -0800
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Tue, 2 Dec 2025 10:52:20 -0800
-Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ 15.2.2562.29; Tue, 2 Dec 2025 10:54:37 -0800
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29 via Frontend Transport; Tue, 2 Dec 2025 10:52:20 -0800
-Received: from CO1PR03CU002.outbound.protection.outlook.com (52.101.46.49) by
- edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
+ 15.2.2562.29 via Frontend Transport; Tue, 2 Dec 2025 10:54:37 -0800
+Received: from SA9PR02CU001.outbound.protection.outlook.com (40.93.196.25) by
+ edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Tue, 2 Dec 2025 10:52:20 -0800
+ 15.2.2562.29; Tue, 2 Dec 2025 10:54:36 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=lL4H0+0EPIDhzIzfhe5GIpb2I4zDkdJSjHYmOIJeQLpzpicLANewgkxyx2n1qL+BfDpTkKMaxl6CIW/uDopENrsEcDccbvqolJSpqKcfDHuzNZvOT6GxeR+0eWkRcMa7na6YDFxZZ0QhNNEBc3PGHemBsgMw3Czbpw2U7/DwSll/QaaXhGOZ2Canhc6wHRMKlHwc1h05OcH0poWTZYZ5yZZsGtYNV278UNQDGOHCE/idmQGCbuIFxPxPE6uUIDYWKChkax0vdPSS+s2zvBKpMQbuteLXhZTIegXMfGyF6BNbWP8cfANhE80F72jUo7e8xsDTN4/2vj1JIce+WhLH8g==
+ b=jL0AiJRfdsKbHamyRJYvk5rgvtQzN11jdm+1Vu4SgT6Y/lAxtIuWi8iOVP+OOp8EmeWb8Rfr6C/oxXg+vbTfOHe4X4N4mFvW5Yb/XWWRcdl+UQYZKq90eRPmNgtESc6Fq6pMEVQNEj5qRece8yRZYuqegFshoVcZAI0NjNQwC5l/yDmGiNRdcvCQrZv+PkVateNxI3Rn7duigga0MUCrVaANAmjWK5MW4Sqze1fpiJ9OtkFgB+HrWkF8TGjguDVMxeUgXx5xAhkf9N12xIONTAPg+JqsYHgy/d0Pv2O6lRYog2ctcrIG2Cq9+7QnWBrYTJmEIOaYayQ3c4ArdiFWVQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=KIxw7GUpSbLOiwraxo/2elbLeEjrtW2Y9qEamimTcB0=;
- b=Ys/s1tzA9q1qwDh4eqe4iEotjSJulUZsVHrXJ51YCT1lgVTFUbg4b7wz88cMmKqpmFTUfhSvFcmCssph4u4vd9ztKUd2qqDUocd3q2dkc158IhvmKLWQqUuY93JWj7QJVT09KZk3LO/VgTyau/wFm0V641prH9pLSo5FWXngTjzStQq54SQVt1yr9ikVKaOsAJJ2GD3L1ZkXThtzXWPO0+VwfUAqUZA6jsiyLUwOVpEl9ppalnkiqpWW9v8yvbytcSEwiDl4HQljbNwPMnpg6pnp2F34apSbHh/ivUd5NlC2UvbnowVhVX05Hcru126n6cqxPxB1jfgRjfuek5DBuw==
+ bh=6SDKi9MLq21+ciHZCkOebjOlPlk7qJF47XTJJGBwgq4=;
+ b=QwkzelD0KSe0MA56bJKe5ZYnsrI7eshMpfX8yK067OdDVnnNRpL8zhnPAoTA7d3QeQ3LBePFN8i+5v3oyaXNot1YUquBbpj7DgcGHq/ETCgUf78AyIlGrGzMOuELYcbrOwk0lCx1HagjOkdrQ/3oAQb7n1DbMx3QLC51ET3mFi2wrLQbIgLo/edrNnnUZmrDxqWWHPsbLsU+4L+i3r0RRiy6IUQINq9NYH4RtfewnNFuQflUiK8PBS8O+0YDjNTUvMC5q+Hu7NjiGAMBIGv3D3ovsmuqDiEE03baBK1kaFvobQ+ieJTCDeXZKlu+ms79ZRXAB67vJHi2V0zefVWENQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by SN7PR11MB6852.namprd11.prod.outlook.com (2603:10b6:806:2a4::11)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9388.9; Tue, 2 Dec
- 2025 18:52:18 +0000
+ by SA0PR11MB4733.namprd11.prod.outlook.com (2603:10b6:806:9a::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9366.17; Tue, 2 Dec
+ 2025 18:54:35 +0000
 Received: from PH7PR11MB6522.namprd11.prod.outlook.com
  ([fe80::9e94:e21f:e11a:332]) by PH7PR11MB6522.namprd11.prod.outlook.com
  ([fe80::9e94:e21f:e11a:332%7]) with mapi id 15.20.9388.003; Tue, 2 Dec 2025
- 18:52:18 +0000
-Date: Tue, 2 Dec 2025 10:52:15 -0800
+ 18:54:35 +0000
+Date: Tue, 2 Dec 2025 10:54:32 -0800
 From: Matthew Brost <matthew.brost@intel.com>
 To: Arvind Yadav <arvind.yadav@intel.com>
 CC: <intel-xe@lists.freedesktop.org>, <himal.prasad.ghimiray@intel.com>,
  <thomas.hellstrom@linux.intel.com>, <pallavi.mishra@intel.com>
-Subject: Re: [RFC v2 2/9] drm/xe/bo: Add purgeable bo state tracking and
- field madv to xe_bo
-Message-ID: <aS81X3YyZTKunvmL@lstrano-desk.jf.intel.com>
+Subject: Re: [RFC v2 6/9] drm/xe/bo: Prevent mmap of purged buffer objects
+Message-ID: <aS816PhP1pXYe0kc@lstrano-desk.jf.intel.com>
 References: <20251201055309.854074-1-arvind.yadav@intel.com>
- <20251201055309.854074-3-arvind.yadav@intel.com>
+ <20251201055309.854074-7-arvind.yadav@intel.com>
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20251201055309.854074-3-arvind.yadav@intel.com>
-X-ClientProxiedBy: MW4PR04CA0296.namprd04.prod.outlook.com
- (2603:10b6:303:89::31) To PH7PR11MB6522.namprd11.prod.outlook.com
+In-Reply-To: <20251201055309.854074-7-arvind.yadav@intel.com>
+X-ClientProxiedBy: MW4PR04CA0288.namprd04.prod.outlook.com
+ (2603:10b6:303:89::23) To PH7PR11MB6522.namprd11.prod.outlook.com
  (2603:10b6:510:212::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|SN7PR11MB6852:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7e2c5bf3-d8f9-45c8-0eb5-08de31d3eaf6
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|SA0PR11MB4733:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0c57a42d-ccff-4970-e473-08de31d43c90
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?vOqtFdOWrcIDG7Bd4H7A3VgM9Emx+UqSromuwKvUeLVzv37iPNiwJJQREu?=
- =?iso-8859-1?Q?o2VwYmaNzKUJqA5l3AW4MHNy2mlFTbLhRoOUI0PJrCiykdRm9Oq6F9XPvz?=
- =?iso-8859-1?Q?SnnhDutxEcYRUwA0LijfE7rXImEYpri0/MfhoVGpDuoHS/mEu8MuRQghZv?=
- =?iso-8859-1?Q?plRkqasZQ3Be2GDlT9D/R7bYfYHlzZy1eBt47moUCw1hCk2ZGQh91lfBpO?=
- =?iso-8859-1?Q?/3/Pc0oZsIfjO7AvQx6rW4K1BEkwosnwfi/1VFO/ZPrFKP2kBDNE2BGv+L?=
- =?iso-8859-1?Q?xKJjC/xj5Jt3rQJuKYHGcH1660fKQsshQHE0XU5HIm0V98+snlrvYbjdVm?=
- =?iso-8859-1?Q?/pL0La4w1Wuri1N84sXkIjw7Gq2zgUCjvWcAhn2TtQVu/qxZgIchdRWkRI?=
- =?iso-8859-1?Q?bSQSqHJGqNs9ILgT5qKCTbDFMLBvrOSsSmi3AZ//n6Zol7MIDxBBwTcC0m?=
- =?iso-8859-1?Q?ZjCw4x7k68rfXUM9vDgnriuGtNQFMBz8L+T3wsLP006KKMpLcmgXW8yMOf?=
- =?iso-8859-1?Q?TwSdwLPDo6zgzMAPMvFJUrhiLWEwmlraNKbFFomP3uv54TcmIlnN7TEr+8?=
- =?iso-8859-1?Q?2jrcXMuwxt9B8baPA0mRoayiAjnFR00L/qdJcoF5x7Lo3qf+OGNq3m2HB9?=
- =?iso-8859-1?Q?IoTgvUttQKnsbK+cZQyBqbrijWyAhO3/SdJb+UZtFUcILyztjls6fuqrQX?=
- =?iso-8859-1?Q?KPdRy0LYLrd8pJeQca2dQHE09oOm3MmyFoYidiCxWxmzlkiedyT8LT6JGH?=
- =?iso-8859-1?Q?JY4J9dzGCs44iW4fVBYMxM28FOeeBrPXxWBz39pcQI9kG8PpWwU01rKnkP?=
- =?iso-8859-1?Q?Sn3A3imSp7FFAhKzu0xdSq7BqqI/LgFJgA1ZlA2bFEvkfN0LuQyTvGEnEo?=
- =?iso-8859-1?Q?3m3AvyQt0OlCiNWZqzd9L/0gxl4K/dbbhRfuMeNp/O9AzsmgRHdd4uqoZK?=
- =?iso-8859-1?Q?fR9Fb4XsSd1HogrFhjfpg2rQcutrXrU1JlI7xh1HIplBCDMK8xz1ZXS0EW?=
- =?iso-8859-1?Q?pikEl2YHyk5gGVx2H2vlYIl5iJlN+lviKXyCT2Q5PU3Em35WYBgnzIavhR?=
- =?iso-8859-1?Q?thdvSZVw9D0Jb5j53aLUArqVc28Bc1ydcutne0km8YrD5D6S/HYjsvOjxC?=
- =?iso-8859-1?Q?t/plWxR2air5AlWslNy7MWWHbBTSzNSlgFGqvhVFIPbM4RLEYuz1rh3R2W?=
- =?iso-8859-1?Q?5SVDD8DC85tivLKbZH3gu5CN1XjTMdtKj5AAdEM4vCTmmKTns13TO2rr3I?=
- =?iso-8859-1?Q?T7lCkMulpOURjGP4nkS8mknRAIyHiIyHIzHWaJPJqG15W61KIZfLamPtbo?=
- =?iso-8859-1?Q?oYdjN1qRAclvxQCLoKuy1+8qWLyaRTttkwMDMEA3/fWO7ldOm85M6/rpx1?=
- =?iso-8859-1?Q?Fog9zGaIv7WqmFJZ3C16j/Rj7J4JpRRGvcO3r2Y9BaWZ4r+y5EN+87nuQV?=
- =?iso-8859-1?Q?PlzQdp7oU45v0wm+CBXDqUeHJ6+w9JuJxywWOhdZ6q6t7KxfYnOJq1EjJw?=
- =?iso-8859-1?Q?BxWuKgazHOnKt8EeEfyx2K?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
+X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?gMXrnXkNuBG0zNPKrsP7NbN7LdCefNxjiF/Z6yo897/kqiKSPg1FhsS4v0?=
+ =?iso-8859-1?Q?C93ykcIVcVle9gcehChupnXUaGsxfyggT8DKKYStShvQXL/H2J6HufMx2B?=
+ =?iso-8859-1?Q?B+fjgMnJlEmjGXLGuq9Xauw3zoYvBVfqENemuXLLEC7vwxgyBshR17Xchw?=
+ =?iso-8859-1?Q?Tn2YxaubTUXiXg7MYXODLeKfX0Ha7BQSktdt0irQAAml6J2XbcwX39VCH2?=
+ =?iso-8859-1?Q?4IkazSvd+c63qrPapa7qVJI/SVgFLdBs02i6dBp8CvuLS643GgrmZ5D9m4?=
+ =?iso-8859-1?Q?PLoMniMbmorQbwxBaeyXm7XYCzOCigzSKBbQ3QhZoAtRXNeMZXdODZ3HjL?=
+ =?iso-8859-1?Q?7sjTGS7ux0hB7nrq4AxF/rDfmBtYoNwKdqKVNDfSv9b5yPL4q9rhWNUvvY?=
+ =?iso-8859-1?Q?K2JsQuojOp76RKdgjNA/Ng3SDL3uBiU6HyVvdmuPVsoaU0DCTNGZ00WdMQ?=
+ =?iso-8859-1?Q?8ysKUh0jKGONTCSr7DPNgzmKwYt54wXFHvZMuEYXOtnSl+Lqry261abXwK?=
+ =?iso-8859-1?Q?pBVKCjKfMftFpj1w1eDI2iywxkEk4L4OcX75klZ0/ULzE5KllfavLsq67c?=
+ =?iso-8859-1?Q?mCN87KbeDk1CiWbeuzlnpGOcFapWRDWkp5N7+o1CBROiNS/miJpZ/6Johd?=
+ =?iso-8859-1?Q?h2SFF/qQTVSmL/GQAxIWo77/qKebTJL8t/xwGnkJQKlrCsw/nW23D/g+8B?=
+ =?iso-8859-1?Q?GlSlN9SubksroPu521r9H7dPgY2P5xV5GgTAyTTDq1xjauThqxFlNQJxVi?=
+ =?iso-8859-1?Q?SN3ZVtt3uN8ON+5C+qYa7bKXww1x4P1PrznodS7bhsfIJOHj+P4YqxbqA7?=
+ =?iso-8859-1?Q?7CT3y/3MsNch4c8dcnasPxKDdPg7l+IHtNfFw3D+h4qF439hsHWfkjRUC/?=
+ =?iso-8859-1?Q?s0qlQJExzPj+K2RwfYvZVPW12U6TzC9x3BRp8Y94Ew6pZidrsghipbLY2U?=
+ =?iso-8859-1?Q?/r8R75/dZCYJappU9mB+gMkjsihInst3zxLvaPe3XyXzvaa0tOQwMl0YE4?=
+ =?iso-8859-1?Q?y6P7xhWbtMPXQHcRYc4D8IIxMULZ6eQlxkmDOxUMaZt61nxKipdiAYAxgF?=
+ =?iso-8859-1?Q?Th2nDcog3s4NXV6O0N2YgJGmc5LOB//ku6MJcd/9gn6A/2Zfo3WKFhTHbF?=
+ =?iso-8859-1?Q?NemnF/btg+lljgAeOw7JE7SFcQyepnJhX37XsZB5JGYTFhLj1VN+omp5Rr?=
+ =?iso-8859-1?Q?RA9jE891SWprAUa0pzTJeyH66dU+iWbAxAyPJ8oO0z79M97Jzw5OtrlDUf?=
+ =?iso-8859-1?Q?09yRfMyxIZBnMnoz0JmGtM8otUUPVcwZCFPNsJLhhDnoytLgZ9qQdsa6NN?=
+ =?iso-8859-1?Q?i5WTmU+i365/cvMw7NrydtGyEmZIu7XGw0Ogo1q6iXDXaQVJDCCItYdnT+?=
+ =?iso-8859-1?Q?ByU8lSD1RngLfduWsEqHCdQioclH08SN3fJB2Eg68XNDBdlkGH5g1pSbPJ?=
+ =?iso-8859-1?Q?sXGu5xuMHxrldTIW4bo4BSqFNtqv6q7F0xAikvoOetpUAh7YZXpBTAAgs4?=
+ =?iso-8859-1?Q?6WTBlLFFiUNipw3hF+cjZ6?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
+ SFS:(13230040)(376014)(366016)(1800799024); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?1dfMEyZxlnDZPNIoRrPcjy9guJWde/1TgOmPH/9V63F5aE4OoUqAQ/glXS?=
- =?iso-8859-1?Q?UaxBrDeWGIBjGWIm1+ladhPZHH0V7gvs1IWQNoXmEfK9SYUGqOHp5dje1X?=
- =?iso-8859-1?Q?wEuK/FHqbQHNBefhSPyZX6jb1pmBG0GlAlX0N7Kb0OZAXVeHbA5lO6q5wd?=
- =?iso-8859-1?Q?rQeTBWLdOWGbYF0cR1cVcI3lvtu7Zo2vT3o741w5xD4VDSaNugi6eRO4Vf?=
- =?iso-8859-1?Q?OmVX5pLKE3dbfG58/bFZ5k3N23SYznwAVCkZL0AldWkYmGxXvX4pgqeSyU?=
- =?iso-8859-1?Q?A44o6L2y554C8FmCyhzT17QMm6AleFWJuBhv1afBtl9x4jt3DGnQ9RQt0O?=
- =?iso-8859-1?Q?XREZBnkLmcxUycj76kHgGUoPypLPHdwMdokWQWAdOksgN1Zq2yEze51MQy?=
- =?iso-8859-1?Q?idJMBUKJsIhWCatr8T2KLS4xc2ccRL8iDMt/Ft98gtsLpGUF4RhfHPX9lC?=
- =?iso-8859-1?Q?5fNbTLg1JmJ8AnWNGozSPxB9vBHVphvMc53Ltzejzc65L/iyFlhRxlE2b6?=
- =?iso-8859-1?Q?zMH/BjS/p07Ro6JQzgyUfeWppittKZHlSk60532tmNVMmzI5AUZ2dymLH9?=
- =?iso-8859-1?Q?ImC9wJrKgrRaDkBeAM8MBnru/2W7tvOi2DSF4Kk89M1EZZEzyY1r9x296U?=
- =?iso-8859-1?Q?LZS9ICJCR76vrKJZir+XuhqsykG9R2JrCK5YO1/YGjtZkWGXMPksEDvIj/?=
- =?iso-8859-1?Q?EIdjG0msHyxyjhuB6juP3qwbToQZjPakT4JPx16Fv7Bxj46uiRgwqQnNfH?=
- =?iso-8859-1?Q?+1sAz6o6ebWhMuICEZgtflpyDUrErpNW27yNxmaSXlqvr/Y0LxM6kNHd/Y?=
- =?iso-8859-1?Q?lYm4D0eP0qEbCTRCFktnfDOffTE4dV3c1PO+nqbI2HdXXC/YOYToohlhfz?=
- =?iso-8859-1?Q?eJwNBAwYJfzjJX1W5pYWHfCb0UIUcDBUr4RN7lzLxHY2FKgkIrkAK/rlaN?=
- =?iso-8859-1?Q?AEdnLS2cDDVq9NPBXgCWxcYp+i/hOysRUeUXsBNpevUyCuZ5YG/AoPMrzP?=
- =?iso-8859-1?Q?wZCUGimxfHOyZ6s0LHGv57AzxVW6xz/aE3TdtrOA7iEHRKlNojSBnyHiie?=
- =?iso-8859-1?Q?L/8c6e7HbdRBHkIjcOxlKfpNN7w+Li51P0Vn2cRosblZM3V2q9+f+smJDT?=
- =?iso-8859-1?Q?NiYr80iLuXcqV7EdKRrISgIWVdXmol4Fm4fBhZj7qnV7eYjMMhEuhum5Re?=
- =?iso-8859-1?Q?bVgb5c2FGNNZYcn/o/EEjFaZbYDdsPA3e0QZlvAFTjvTl8Pn/SnqA8XTfs?=
- =?iso-8859-1?Q?4Zw3KfkrG34uUeTrRZZ+1St/GZSUnCNKUAzE1jos+83G+q9XyRg+zqs4ZV?=
- =?iso-8859-1?Q?RibybE7HnGT4JO4eR8KQkdeSk0LgwwCKC6b4lq9BSKKBj8UhAZrMazzfXR?=
- =?iso-8859-1?Q?E6iMd/A8WvPufCByPr2PrBxAXPveVb8rYA/CS40fybVj0gs84kLEuB/ce7?=
- =?iso-8859-1?Q?ZrnFyWCSnyXaQYn8MZ9wmTl0YyvH4/ySUQ+twxgMvDlIGu9xTXNT5V6Qj2?=
- =?iso-8859-1?Q?DcagM7++UMTgd0g/JgJMnh66/NBT76oxi6psHQxRBAqVA/NZOccVy1GPIP?=
- =?iso-8859-1?Q?RTijG9sgFE3KfoXPxHTERJbAn82kJ0mfvrqAkYI01f1gCS9/FL4KpeqvT+?=
- =?iso-8859-1?Q?9ApYKhwE3lsQn1mUSCG8Bol/tLWGMxy13kF9iqsHJrtNL6cbeCzu00wg?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?hxRYrl0LSvvohGe96c7yqarOXQlerjBsAv8AYm71ZYLOZYagS6oc9XVach?=
+ =?iso-8859-1?Q?phOe7YAEwj+0hyOeeY7qT6LFWeaT3YtTGlYJCVkFUJIjQD6IEy39O3hve7?=
+ =?iso-8859-1?Q?vdI4KEE/ErA6nNFP4FFbS0azwix7bCE009b7UTgZwt+san9n3TKYE7e66A?=
+ =?iso-8859-1?Q?urbpH0O+3irPFxRPZSVgStcm0ztaW1Onp5MYpJIGuKTqiW8bybQjcKrEnk?=
+ =?iso-8859-1?Q?wqoeQpRrkhqWiXsS5jir6BEqKfwUj5vqAMd0cyVD11Lc0c6yVe+wurTq19?=
+ =?iso-8859-1?Q?3voaADf0Ab3b+VOTzS8ZtVSV3qNlLE4+Yv8qaLR6fa9MBvNiDFg9PDgYNJ?=
+ =?iso-8859-1?Q?HDRunC2x1p4bELTP+1axxWHIPMXAFEgHw5XYo0fZ2jG3ovXPv2vVok6OsH?=
+ =?iso-8859-1?Q?yMsUFTX9+/HbYX2O0L1SDdSqyYdhH8VbI6nZQLWHWChY2dRyTrkM9u45SH?=
+ =?iso-8859-1?Q?y1KfWHruJKZ+D+KqMK+qv44NWCl3MWp/KCt/gFdm/N+z731a/ijpUKyQdf?=
+ =?iso-8859-1?Q?4vmo11W/+STre1fe3rTJcOCcIk4CLxvvWF5RgJT81ruOxoYc8nOVbMs+Ol?=
+ =?iso-8859-1?Q?CNGqlf8b5Ql3lnmXzyZXQSkHB2qsiqBgwraVqKobcy1SpL29F/nhO+rWbD?=
+ =?iso-8859-1?Q?pEedjNIEOawSNk2wZHsP/U7mm4XGUa3c82lgFhT01CLKQX4bAFZo6ADbMe?=
+ =?iso-8859-1?Q?lGsezs6/oHzpitxQZsWj0NXZ/LCmxOpq4Jvt0LJEigUGJ1cfOvDOfDP1Pf?=
+ =?iso-8859-1?Q?SaoG99p2FsQtz6Xv9R9Xwy8uEAgBzt1OylkWl2bPoA/7h/IFN6iGyzAzqZ?=
+ =?iso-8859-1?Q?s6hvT1F9dFI8lpOGtbch+PSdaG+CPZwus3H+MyT1utKjL8mPWKY/g0WG5J?=
+ =?iso-8859-1?Q?mkyJTb8kBvoGj5unKxOvES9zZtMc5p29lHGGK0LVSyOQxeoyufH0BCT4RN?=
+ =?iso-8859-1?Q?lGNjOzl4haXlYIV8Qj7UTy6mJJZD1t55iW6Bh+HUUIkncHPR9w6+e41Kpn?=
+ =?iso-8859-1?Q?4H8weDerxrBaMpun6xAi/2eZy8bZiHj0hYEE2FdFPqWWZMPt3I52TFU2vF?=
+ =?iso-8859-1?Q?94VyH+yh7SoMhKaC/GmnvzsL0o3exaOeXurup8YRA7ePaUzkAtgf0nf/0V?=
+ =?iso-8859-1?Q?YT40xc7SGnwvni7sD+PYL6ccWP7727rWNdBsFWiX7mq3BsjOKN5qAt3L1X?=
+ =?iso-8859-1?Q?j4yeCaxWl95tgCnZjBPEqR+fvvjVfI6X683NAqQ9wCxIOSeVu+KB3GcR62?=
+ =?iso-8859-1?Q?ywxYv3Ch4fsycGx41+y9SD/bp6Gio0qcnikOH6Lz3g3n6w8U2DpQE88TDi?=
+ =?iso-8859-1?Q?esGHkiwDnwZ00I+83VmuG2ul/tsinWBJlljTuAg03Nh4NcmHzHlkP3wXxV?=
+ =?iso-8859-1?Q?BgYpFdy3N5Txha1ti3ZjkEe5wrR27c/QkUCUy6wvf9HQzy1xuqQXeJNQBG?=
+ =?iso-8859-1?Q?sk3187HjLPdnYXIz5MZt1o7ircWWLTGr1ufNwEDvMWYqrLVvExyzeE2iqM?=
+ =?iso-8859-1?Q?2yeyNW9VzzyG6Hz98fOv1hwIN6+CWZq8sxZzLOUHZb/wbhFgLFzRzaBxiI?=
+ =?iso-8859-1?Q?hGkhFfu9Agy18X9ZiJjxaOibnTz6TGOclS1YAPUVY++kq5gbWE9XJh8jqc?=
+ =?iso-8859-1?Q?l1pCTX8bp9NbIJAUQ1V9dexTZ9QoALDGTLYjIU82clR/RTt6IfDJubJQ?=
  =?iso-8859-1?Q?=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7e2c5bf3-d8f9-45c8-0eb5-08de31d3eaf6
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0c57a42d-ccff-4970-e473-08de31d43c90
 X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Dec 2025 18:52:18.4115 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Dec 2025 18:54:35.3349 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 6ZccUmz9sbMMNRF6bwDXRAPtyUi+3m9sZT7mOQNqyJyf7AtoNFXUrwZqMYAvh3VORHZWRijcXz+24Ym8/wqi6g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB6852
+X-MS-Exchange-CrossTenant-UserPrincipalName: vTZJSMYJdFkxDn8XkOSDUA0WS+5jOyU9b/JD16EUmhcZHS6sC3857Az3j0xC+icp6lVql5ZFaWGTE+vE6EKJTw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR11MB4733
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -181,114 +180,71 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Dec 01, 2025 at 11:20:12AM +0530, Arvind Yadav wrote:
-> Add infrastructure for tracking purgeable state of buffer objects.
-> This includes:
+On Mon, Dec 01, 2025 at 11:20:16AM +0530, Arvind Yadav wrote:
+> Fail DRM_IOCTL_XE_GEM_MMAP_OFFSET with -EINVAL when called on purged
+> buffer objects to provide early error detection instead of allowing
+> deferred SIGBUS on memory access.
 > 
-> Introduce enum xe_madv_purgeable_state with three states:
->    - XE_MADV_PURGEABLE_WILLNEED (0): BO is needed and should not be
->      purged. This is the default state for all BOs.
+> Problem:
+>   The mmap offset ioctl (DRM_IOCTL_XE_GEM_MMAP_OFFSET) returns a file
+>   offset that userspace can pass to mmap() to map GPU memory into its
+>   address space. For purged BOs, the backing store has been freed, but
+>   the VMA node offset remains valid. Without this check:
 > 
->    - XE_MADV_PURGEABLE_DONTNEED (1): BO is not currently needed and
->      can be purged by the kernel under memory pressure to reclaim
->      resources. Only non-shared BOs can be marked as DONTNEED.
+>   1. Userspace successfully gets mmap offset for purged BO
+>   2. mmap() succeeds (VMA is created but has no backing pages)
+>   3. Any memory access triggers CPU page fault
+>   4. xe_bo_cpu_fault() detects purged state and returns VM_FAULT_SIGBUS
 > 
->    - XE_MADV_PURGEABLE_PURGED (2): BO has been purged by the kernel.
->      Accessing a purged BO results in error. Follows i915 semantics
->      where once purged, the BO remains permanently invalid ("once
->      purged, always purged").
-> 
-> Add atomic_t madv field to struct xe_bo for state tracking
->   of purgeable state across concurrent access paths
-> 
-> v2: Add xe_bo_is_purged() helper, improve state documentation
+> v2:
+>   - Fix reference counting: use drm_gem_object_put() instead of xe_bo_put()
+>     to properly balance drm_gem_object_lookup() (review feedback).
+>   - Added xe_bo_is_purged(bo) instead of atomic_read.
 > 
 > Cc: Matthew Brost <matthew.brost@intel.com>
 > Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 > Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 > Signed-off-by: Arvind Yadav <arvind.yadav@intel.com>
 > ---
->  drivers/gpu/drm/xe/xe_bo.h       | 27 +++++++++++++++++++++++++++
->  drivers/gpu/drm/xe/xe_bo_types.h |  3 +++
->  2 files changed, 30 insertions(+)
+>  drivers/gpu/drm/xe/xe_bo.c | 11 +++++++++++
+>  1 file changed, 11 insertions(+)
 > 
-> diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
-> index 911d5b90461a..b0a31c77e612 100644
-> --- a/drivers/gpu/drm/xe/xe_bo.h
-> +++ b/drivers/gpu/drm/xe/xe_bo.h
-> @@ -85,6 +85,28 @@
+> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+> index 7f5bcf114ed4..dbbfb58ac657 100644
+> --- a/drivers/gpu/drm/xe/xe_bo.c
+> +++ b/drivers/gpu/drm/xe/xe_bo.c
+> @@ -3346,6 +3346,7 @@ int xe_gem_mmap_offset_ioctl(struct drm_device *dev, void *data,
+>  	struct xe_device *xe = to_xe_device(dev);
+>  	struct drm_xe_gem_mmap_offset *args = data;
+>  	struct drm_gem_object *gem_obj;
+> +	struct xe_bo *bo;
 >  
->  #define XE_PCI_BARRIER_MMAP_OFFSET	(0x50 << XE_PTE_SHIFT)
+>  	if (XE_IOCTL_DBG(xe, args->extensions) ||
+>  	    XE_IOCTL_DBG(xe, args->reserved[0] || args->reserved[1]))
+> @@ -3375,6 +3376,16 @@ int xe_gem_mmap_offset_ioctl(struct drm_device *dev, void *data,
+>  	if (XE_IOCTL_DBG(xe, !gem_obj))
+>  		return -ENOENT;
 >  
-> +/**
-> + * enum xe_madv_purgeable_state - Buffer object purgeable state enumeration
-> + *
-> + * This enum defines the possible purgeable states for a buffer object,
-> + * allowing userspace to provide memory usage hints to the kernel for
-> + * better memory management under pressure.
-> + *
-> + * @XE_MADV_PURGEABLE_WILLNEED: The buffer object is needed and should not be purged.
-> + * This is the default state.
-> + * @XE_MADV_PURGEABLE_DONTNEED: The buffer object is not currently needed and can be
-> + * purged by the kernel under memory pressure.
-> + * @XE_MADV_PURGEABLE_PURGED: The buffer object has been purged by the kernel.
-> + *
-> + * Accessing a purged buffer will result in an error. Per i915 semantics,
-> + * once purged, a BO remains permanently invalid and must be destroyed and recreated.
-> + */
-> +enum xe_madv_purgeable_state {
-> +	XE_MADV_PURGEABLE_WILLNEED,
-> +	XE_MADV_PURGEABLE_DONTNEED,
-> +	XE_MADV_PURGEABLE_PURGED,
-> +};
+> +	bo = gem_to_xe_bo(gem_obj);
 > +
->  struct sg_table;
->  
->  struct xe_bo *xe_bo_alloc(void);
-> @@ -213,6 +235,11 @@ static inline bool xe_bo_is_protected(const struct xe_bo *bo)
->  	return bo->pxp_key_instance;
->  }
->  
-> +static inline bool xe_bo_is_purged(struct xe_bo *bo)
-> +{
+> +	/*
+> +	 * Reject mmap offset requests for purged BOs.
+> +	 */
+> +	if (xe_bo_is_purged(bo)) {
 
-I think you want to assert the BO's dma-resv lock is held here. I
-suggest this in patch #5.
-
-> +	return atomic_read(&bo->madv_purgeable) == XE_MADV_PURGEABLE_PURGED;
-> +}
-> +
->  static inline void xe_bo_unpin_map_no_vm(struct xe_bo *bo)
->  {
->  	if (likely(bo)) {
-> diff --git a/drivers/gpu/drm/xe/xe_bo_types.h b/drivers/gpu/drm/xe/xe_bo_types.h
-> index d4fe3c8dca5b..57b4dc7012e2 100644
-> --- a/drivers/gpu/drm/xe/xe_bo_types.h
-> +++ b/drivers/gpu/drm/xe/xe_bo_types.h
-> @@ -108,6 +108,9 @@ struct xe_bo {
->  	 * from default
->  	 */
->  	u64 min_align;
-> +
-> +	/** @madv_purgeable: user space advise on BO purgeability */
-> +	atomic_t madv_purgeable;
-
-Does this really need to be atomic? From a grep on the final result, all
-critical accesses (ones where functionality would break) are done under
-(or should be done under) the BO's dma-resv lock, right? The madvise
-reading the attribute is likely the expection where it is ok to just
-read this value without the dma-resv lock.
-
-So with that, I'd suggest drop the atomic and also add a helper to set
-this value that also asserts the BO's dma-resv lock is held. Use a
-WRITE_ONCE which would pair with a READ_ONCE in the madvise attribute
-query.
+I don't think this is needed. A subsequent CPU page fault would just
+fail with SIGBUS. As discussed in patch 2/5 we'd have the BO's dma-resv
+lock there too making this check race free.
 
 Matt
 
->  };
+> +		drm_gem_object_put(gem_obj);
+> +		return -EINVAL;
+> +	}
+> +
+>  	/* The mmap offset was set up at BO allocation time. */
+>  	args->offset = drm_vma_node_offset_addr(&gem_obj->vma_node);
 >  
->  #endif
 > -- 
 > 2.43.0
 > 
