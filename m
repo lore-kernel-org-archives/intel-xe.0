@@ -4,95 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 91DF4D2A536
-	for <intel-xe@archiver.kernel.org>; Thu,  4 Dec 2025 20:29:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 89D1CD2A532
+	for <intel-xe@archiver.kernel.org>; Thu,  4 Dec 2025 20:29:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 46D9810E217;
-	Thu,  4 Dec 2025 20:29:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 50AE310E21A;
+	Thu,  4 Dec 2025 20:29:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="IulQGxFN";
+	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="HWvzvG/b";
 	dkim-atps=neutral
-Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com
- [209.85.214.179])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2F46F10E19C
- for <intel-xe@lists.freedesktop.org>; Thu,  4 Dec 2025 01:33:31 +0000 (UTC)
-Received: by mail-pl1-f179.google.com with SMTP id
- d9443c01a7336-298456bb53aso5153045ad.0
- for <intel-xe@lists.freedesktop.org>; Wed, 03 Dec 2025 17:33:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1764812011; x=1765416811; darn=lists.freedesktop.org;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=1OLjEC1FU02v8o2+aL765z3ax4u9Wn8i4cyPIqv2NWg=;
- b=IulQGxFNLewIZPNUCIJOqYRCUPt6HxFkmsC+QAULX8ynicPfB7BvHWy1eSJtjzKJpa
- cQbE1pwCr5eYroGzUO2Sj8HpSgCOTu01QzR8kXevsXes5+evAgLiYIhTIeFe2DdtEm9g
- 4zfS9nyzozf0cD0n1Tu+/MfEO1xFCG9A7SRA4SEfmGGoo/9wbarly8p6JU8S7FOK423h
- UFpqlrtTx1CC5h5MIlzWyu0jQcNIHbdalkoo6TU5siOwbWQmUxTmEJAvFyAw8ulwUlOA
- jeIgmvUsTAFWqHGj6Zm/jKR6AVB8Ki8QDSz+2HspV9Vruao00PSJjsgBRMc4SnrUf422
- BBAg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1764812011; x=1765416811;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=1OLjEC1FU02v8o2+aL765z3ax4u9Wn8i4cyPIqv2NWg=;
- b=HgbzR7Qd6sN8e2ZjA1IN7lQNviuiLi8eN90zJHcDQXzW5vDOzKHlHCeV7YDPRHxy7o
- j/xeG5qTTaV2Y/Ci9OcaYl87nVTXKKVGaXvudW8Kw29d/CdGGrNBTggxa2F5kMI1xEQ/
- vMIHNTviMCGERsxjzJi7zQG5omgLPCJmgsEM6VjWr35Rv743hf5KBP+0xZ8pDdxqXiQ8
- p64UGw78pUMZ0SDBzg/ErD3g0IYnw/uALhsnliY5lELCdlGRKWAxrVVmXRDsStCOzBdu
- KA3bMo49RnRQQrSvORV6E6Z/jGtEmGIWh8XgAueFYdR7nCUkU0fPXI6gOD663qp/UKkW
- N1ug==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVNBmTzGOl/WFVUSE6l7+8XFXIVTzqVKVPefoe2CAxcCD54fZ/LJw6gaYcey7vVwUJNgpGOLRBing==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzT28wHK5yCAWvSAfkV2DU2ugtQTQHS1hKPwSJZVe5klblWJc2F
- EXB1MWbJLNkES5muTl1AhrJePSOxrfq40E9f8Q3q37wx4b8tGU7O6g2F
-X-Gm-Gg: ASbGncuRCWXP3Vd01+GUjs7RwpHQe61pPWlKnfFmXrUIlmZLFBszAVsvNZ6aCTXhaaP
- lOUyP3SCcwuJBuVk9W6F2D9+cWlBvm1RA3dGYAXIJAYMQq4w/+YL2XkI5KKqQPyQe5O7Hy6A9Gr
- A6xC/hKuu6Tqqk4hOJwiv67p7GY+zca8JmmffMJGAm5MxARVNHDbTJxPXy30u6EgyEwyxx/Oe8g
- cHRvoQ+ntzNSCziQCGAoineVRAOfCMkwHMq0XlFOqABKuHScySJ8C+0CzmG52ben4i1OyVqgBgq
- lBWybzHy7u5a63GJ/4wx4itZc3Qn8ZV/Oug9O1746XNkT/uR6aeQmBv8gr9Z4BAV+Dxo6NiNyKK
- Oc1t+TdWlrXBPNtaknuPnHgO6GhJqWtoSXAOddRxHG2xZTMijxssdt0qFUV9VDGgG1UeauXo37E
- 0j5EfU8OhEwrBBSrdE1xsaxktVV1oHEK9eMWCERf1AV8qpjw==
-X-Google-Smtp-Source: AGHT+IE8Rvg94sCmcdZ3rOlKWQaPxgdUe5bYjXp+akgFFnSeqWM9ehkwCxofj9csZW166RntHbw50g==
-X-Received: by 2002:a17:903:19e4:b0:295:8c80:fb94 with SMTP id
- d9443c01a7336-29d683e1cacmr50148045ad.59.1764812010639; 
- Wed, 03 Dec 2025 17:33:30 -0800 (PST)
-Received: from ?IPV6:2601:1c0:5102:8330:1273:9a5a:e6fa:1903?
- ([2601:1c0:5102:8330:1273:9a5a:e6fa:1903])
- by smtp.gmail.com with ESMTPSA id
- d9443c01a7336-29dae4cf98bsm1860585ad.36.2025.12.03.17.33.28
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 03 Dec 2025 17:33:30 -0800 (PST)
-Message-ID: <d37d6ca4-9b95-44ab-9147-5c0dff4bedc9@gmail.com>
-Date: Wed, 3 Dec 2025 17:33:26 -0800
+Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8DF9F10E050;
+ Wed,  3 Dec 2025 15:18:21 +0000 (UTC)
+Received: from smtp202.mailbox.org (smtp202.mailbox.org
+ [IPv6:2001:67c:2050:b231:465::202])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4dM1Vf2198z9sjZ;
+ Wed,  3 Dec 2025 16:18:18 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
+ s=mail20150812; 
+ t=1764775098; h=from:from:reply-to:reply-to:subject:subject:date:date:
+ message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+ content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=2aZUkHtkSK0oCrh4KpajSb66h7yNzcpGmeYAya58G6Y=;
+ b=HWvzvG/bIkZHelt1pMkEtQNl8S6CqFby2URUKUUB07VYVfokbK9e15c3hxNjrr2apm3gGU
+ YzAzMoDBLbpqjeJn90QGuW5OEM8jI+eXSoxAx0au7bP21OFfTtjYCnZEKJwkIbxeLYBzYR
+ 6MaxFz8QiEe42Y36Ebyj9spKVnNl76pzgSyFrCfM0XCOolUvjsPkrSCKh9oGnmMsvtZUiT
+ PDREL5YP68E4h0sr5phE6b8dzbAUDaBM+MrmvfsvSn47mOuJF17yaV9mdFydPwPMsK0dy3
+ 5PW54Z9r1eqMoINlPTuwQLazqXFxAlJH8p/UjnW8L0Hv0sf1nAnLJbljJUVaMA==
+Message-ID: <a4655788feddd883f70aa374e4315cfaee59a88c.camel@mailbox.org>
+Subject: Re: [PATCH v2 8/8] drm/xe: Use dma_fence_test_signaled_flag()
+From: Philipp Stanner <phasta@mailbox.org>
+To: Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, Philipp
+ Stanner <phasta@kernel.org>, Sumit Semwal <sumit.semwal@linaro.org>,
+ Gustavo Padovan <gustavo@padovan.org>, Felix Kuehling
+ <Felix.Kuehling@amd.com>, Alex Deucher <alexander.deucher@amd.com>, David
+ Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Jani Nikula
+ <jani.nikula@linux.intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Tvrtko Ursulin <tursulin@ursulin.net>, Huang Rui <ray.huang@amd.com>,
+ Matthew Auld <matthew.auld@intel.com>,  Matthew Brost
+ <matthew.brost@intel.com>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Lucas De Marchi
+ <lucas.demarchi@intel.com>, Thomas =?ISO-8859-1?Q?Hellstr=F6m?=
+ <thomas.hellstrom@linux.intel.com>
+Cc: linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+ linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org, 
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Date: Wed, 03 Dec 2025 16:18:06 +0100
+In-Reply-To: <e67b12d1-111f-484a-8374-4152d3b9f328@amd.com>
+References: <20251201105011.19386-2-phasta@kernel.org>
+ <20251201105011.19386-10-phasta@kernel.org>
+ <e67b12d1-111f-484a-8374-4152d3b9f328@amd.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 4/4] vfio/xe: Add device specific vfio_pci driver
- variant for Intel graphics
-To: =?UTF-8?Q?Micha=C5=82_Winiarski?= <michal.winiarski@intel.com>,
- Alex Williamson <alex@shazbot.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Jason Gunthorpe <jgg@ziepe.ca>,
- Yishai Hadas <yishaih@nvidia.com>, Kevin Tian <kevin.tian@intel.com>,
- Shameer Kolothum <skolothumtho@nvidia.com>, intel-xe@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, kvm@vger.kernel.org,
- Matthew Brost <matthew.brost@intel.com>,
- Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: dri-devel@lists.freedesktop.org, Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Lukasz Laguna <lukasz.laguna@intel.com>,
- Christoph Hellwig <hch@infradead.org>
-References: <20251127093934.1462188-1-michal.winiarski@intel.com>
- <20251127093934.1462188-5-michal.winiarski@intel.com>
-Content-Language: en-US
-From: Angela <angelagbtt1@gmail.com>
-In-Reply-To: <20251127093934.1462188-5-michal.winiarski@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+X-MBO-RS-ID: 2d25109a1dd7c0ac011
+X-MBO-RS-META: u6d8mbjai1kb5wbkyqh941df6oh6is5g
 X-Mailman-Approved-At: Thu, 04 Dec 2025 20:29:17 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -105,58 +77,105 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: phasta@kernel.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 11/27/25 01:39, Michał Winiarski wrote:
-[snip]
-> +static void xe_vfio_pci_reset_done(struct pci_dev *pdev)
-> +{
-> +	struct xe_vfio_pci_core_device *xe_vdev = pci_get_drvdata(pdev);
-> +	int ret;
-> +
-> +	if (!pdev->is_virtfn)
-> +		return;
-> +
-> +	/*
-> +	 * VF FLR requires additional processing done by PF driver.
-> +	 * The processing is done after FLR is already finished from PCIe
-> +	 * perspective.
-> +	 * In order to avoid a scenario where VF is used while PF processing
-> +	 * is still in progress, additional synchronization point is needed.
-> +	 */
-> +	ret = xe_sriov_vfio_wait_flr_done(xe_vdev->xe, xe_vdev->vfid);
-> +	if (ret)
-> +		dev_err(&pdev->dev, "Failed to wait for FLR: %d\n", ret);
-> +
-> +	if (!xe_vdev->vfid)
-> +		return;
-> +
-> +	/*
-> +	 * As the higher VFIO layers are holding locks across reset and using
-> +	 * those same locks with the mm_lock we need to prevent ABBA deadlock
-> +	 * with the state_mutex and mm_lock.
-> +	 * In case the state_mutex was taken already we defer the cleanup work
-> +	 * to the unlock flow of the other running context.
-> +	 */
-> +	spin_lock(&xe_vdev->reset_lock);
-> +	xe_vdev->deferred_reset = true;
-> +	if (!mutex_trylock(&xe_vdev->state_mutex)) {
-> +		spin_unlock(&xe_vdev->reset_lock);
-> +		return;
-> +	}
-> +	spin_unlock(&xe_vdev->reset_lock);
-> +	xe_vfio_pci_state_mutex_unlock(xe_vdev);
-> +
-> +	xe_vfio_pci_reset(xe_vdev);
-> +}
-[snip]
+On Wed, 2025-12-03 at 14:15 +0100, Christian K=C3=B6nig wrote:
+> On 12/1/25 11:50, Philipp Stanner wrote:
+> > There is a new dma_fence helper which simplifies testing for a fence's
+> > signaled_flag. Use it in xe.
+> >=20
+> > Signed-off-by: Philipp Stanner <phasta@kernel.org>
+>=20
+> Acked-by: Christian K=C3=B6nig <christian.koenig@amd.com>
 
-My first KVM review :)
+This series would then be completely reviewed, it seems. So one could
+push it. Question is just who and where, and what to do about the merge
+conflict with intel.
 
-I think xe_vfio_pci_reset(xe_vdev) need be protected by state_mutex. So,
-we should move xe_vfio_pci_state_mutex_unlock(xe_vdev) after
-xe_vfio_pci_reset(xe_vdev). Thoughts?
+Matthew?
 
-Thanks,
-Angela
+
+P.
+
+>=20
+> > ---
+> > =C2=A0drivers/gpu/drm/xe/xe_exec_queue.c | 9 +++------
+> > =C2=A0drivers/gpu/drm/xe/xe_pt.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 | 3 +--
+> > =C2=A0drivers/gpu/drm/xe/xe_sched_job.c=C2=A0 | 2 +-
+> > =C2=A03 files changed, 5 insertions(+), 9 deletions(-)
+> >=20
+> > diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe=
+_exec_queue.c
+> > index cb5f204c08ed..06736f52fbaa 100644
+> > --- a/drivers/gpu/drm/xe/xe_exec_queue.c
+> > +++ b/drivers/gpu/drm/xe/xe_exec_queue.c
+> > @@ -1037,8 +1037,7 @@ struct dma_fence *xe_exec_queue_last_fence_get(st=
+ruct xe_exec_queue *q,
+> > =C2=A0
+> > =C2=A0	xe_exec_queue_last_fence_lockdep_assert(q, vm);
+> > =C2=A0
+> > -	if (q->last_fence &&
+> > -	=C2=A0=C2=A0=C2=A0 test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &q->last_fen=
+ce->flags))
+> > +	if (q->last_fence && dma_fence_test_signaled_flag(q->last_fence))
+> > =C2=A0		xe_exec_queue_last_fence_put(q, vm);
+> > =C2=A0
+> > =C2=A0	fence =3D q->last_fence ? q->last_fence : dma_fence_get_stub();
+> > @@ -1064,8 +1063,7 @@ struct dma_fence *xe_exec_queue_last_fence_get_fo=
+r_resume(struct xe_exec_queue *
+> > =C2=A0
+> > =C2=A0	lockdep_assert_held_write(&q->hwe->hw_engine_group->mode_sem);
+> > =C2=A0
+> > -	if (q->last_fence &&
+> > -	=C2=A0=C2=A0=C2=A0 test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &q->last_fen=
+ce->flags))
+> > +	if (q->last_fence && dma_fence_test_signaled_flag(q->last_fence))
+> > =C2=A0		xe_exec_queue_last_fence_put_unlocked(q);
+> > =C2=A0
+> > =C2=A0	fence =3D q->last_fence ? q->last_fence : dma_fence_get_stub();
+> > @@ -1106,8 +1104,7 @@ int xe_exec_queue_last_fence_test_dep(struct xe_e=
+xec_queue *q, struct xe_vm *vm)
+> > =C2=A0
+> > =C2=A0	fence =3D xe_exec_queue_last_fence_get(q, vm);
+> > =C2=A0	if (fence) {
+> > -		err =3D test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &fence->flags) ?
+> > -			0 : -ETIME;
+> > +		err =3D dma_fence_test_signaled_flag(fence) ? 0 : -ETIME;
+> > =C2=A0		dma_fence_put(fence);
+> > =C2=A0	}
+> > =C2=A0
+> > diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+> > index 07f96bda638a..1ca2dec18e51 100644
+> > --- a/drivers/gpu/drm/xe/xe_pt.c
+> > +++ b/drivers/gpu/drm/xe/xe_pt.c
+> > @@ -1208,8 +1208,7 @@ static bool no_in_syncs(struct xe_sync_entry *syn=
+cs, u32 num_syncs)
+> > =C2=A0	for (i =3D 0; i < num_syncs; i++) {
+> > =C2=A0		struct dma_fence *fence =3D syncs[i].fence;
+> > =C2=A0
+> > -		if (fence && !test_bit(DMA_FENCE_FLAG_SIGNALED_BIT,
+> > -				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 &fence->flags))
+> > +		if (fence && !dma_fence_test_signaled_flag(fence))
+> > =C2=A0			return false;
+> > =C2=A0	}
+> > =C2=A0
+> > diff --git a/drivers/gpu/drm/xe/xe_sched_job.c b/drivers/gpu/drm/xe/xe_=
+sched_job.c
+> > index d21bf8f26964..1c9ba49a325b 100644
+> > --- a/drivers/gpu/drm/xe/xe_sched_job.c
+> > +++ b/drivers/gpu/drm/xe/xe_sched_job.c
+> > @@ -188,7 +188,7 @@ static bool xe_fence_set_error(struct dma_fence *fe=
+nce, int error)
+> > =C2=A0	bool signaled;
+> > =C2=A0
+> > =C2=A0	spin_lock_irqsave(fence->lock, irq_flags);
+> > -	signaled =3D test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &fence->flags);
+> > +	signaled =3D dma_fence_test_signaled_flag(fence);
+> > =C2=A0	if (!signaled)
+> > =C2=A0		dma_fence_set_error(fence, error);
+> > =C2=A0	spin_unlock_irqrestore(fence->lock, irq_flags);
+>=20
+
