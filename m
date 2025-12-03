@@ -4,67 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 89D1CD2A532
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BC344D2A537
 	for <intel-xe@archiver.kernel.org>; Thu,  4 Dec 2025 20:29:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 50AE310E21A;
-	Thu,  4 Dec 2025 20:29:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5315E10E8F3;
+	Thu,  4 Dec 2025 20:29:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="HWvzvG/b";
+	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="XF2eNXUa";
 	dkim-atps=neutral
-Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8DF9F10E050;
- Wed,  3 Dec 2025 15:18:21 +0000 (UTC)
-Received: from smtp202.mailbox.org (smtp202.mailbox.org
- [IPv6:2001:67c:2050:b231:465::202])
+Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7DE5510E737;
+ Wed,  3 Dec 2025 08:33:16 +0000 (UTC)
+Received: from smtp1.mailbox.org (smtp1.mailbox.org
+ [IPv6:2001:67c:2050:b231:465::1])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4dM1Vf2198z9sjZ;
- Wed,  3 Dec 2025 16:18:18 +0100 (CET)
+ by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4dLrWF28kWz9tYh;
+ Wed,  3 Dec 2025 09:33:13 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
  s=mail20150812; 
- t=1764775098; h=from:from:reply-to:reply-to:subject:subject:date:date:
+ t=1764750793; h=from:from:reply-to:reply-to:subject:subject:date:date:
  message-id:message-id:to:to:cc:cc:mime-version:mime-version:
  content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=2aZUkHtkSK0oCrh4KpajSb66h7yNzcpGmeYAya58G6Y=;
- b=HWvzvG/bIkZHelt1pMkEtQNl8S6CqFby2URUKUUB07VYVfokbK9e15c3hxNjrr2apm3gGU
- YzAzMoDBLbpqjeJn90QGuW5OEM8jI+eXSoxAx0au7bP21OFfTtjYCnZEKJwkIbxeLYBzYR
- 6MaxFz8QiEe42Y36Ebyj9spKVnNl76pzgSyFrCfM0XCOolUvjsPkrSCKh9oGnmMsvtZUiT
- PDREL5YP68E4h0sr5phE6b8dzbAUDaBM+MrmvfsvSn47mOuJF17yaV9mdFydPwPMsK0dy3
- 5PW54Z9r1eqMoINlPTuwQLazqXFxAlJH8p/UjnW8L0Hv0sf1nAnLJbljJUVaMA==
-Message-ID: <a4655788feddd883f70aa374e4315cfaee59a88c.camel@mailbox.org>
-Subject: Re: [PATCH v2 8/8] drm/xe: Use dma_fence_test_signaled_flag()
+ bh=XCkaH4RkyOCE68iBUM9HTYufTJgIeQQADoO1GMbHwZs=;
+ b=XF2eNXUaWFr1NH1jVo2fD8pVFgkYHxq/kXdwQ39uATx1gpZTpY3h/RLmx8UqR5mVFWcvad
+ FZWkzxc0nkQhODaMyCARhKQUBZOlv8uP3xz+vXGHPyZwlZXZJy34aTDNdqTfrkuGqYtDJs
+ JofdVvVVdEeecHOOsqoP/rDedke4/aE12+8z1s8V2N6xmao+sA/e3LJWCxoTRH6eRygC4W
+ MSefBL/F3yjS4armWDd7RzKygN8HJukJuqylo7rXE7m7fgE/iVHcRRgmuwKCDNK/GsHPDB
+ fzUXbDQVF2MU1k1GFov9NHq2wgU9SQVW+y9ow9o1Mi651MU/KgI6ix0t0ixyXg==
+Message-ID: <591842211d77122faec79530c3d4d805cf09fe02.camel@mailbox.org>
+Subject: Re: [PATCH v7 0/9] Fix DRM scheduler layering violations in Xe
 From: Philipp Stanner <phasta@mailbox.org>
-To: Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, Philipp
- Stanner <phasta@kernel.org>, Sumit Semwal <sumit.semwal@linaro.org>,
- Gustavo Padovan <gustavo@padovan.org>, Felix Kuehling
- <Felix.Kuehling@amd.com>, Alex Deucher <alexander.deucher@amd.com>, David
- Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Jani Nikula
- <jani.nikula@linux.intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Tvrtko Ursulin <tursulin@ursulin.net>, Huang Rui <ray.huang@amd.com>,
- Matthew Auld <matthew.auld@intel.com>,  Matthew Brost
- <matthew.brost@intel.com>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, Lucas De Marchi
- <lucas.demarchi@intel.com>, Thomas =?ISO-8859-1?Q?Hellstr=F6m?=
- <thomas.hellstrom@linux.intel.com>
-Cc: linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org, 
- linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org, 
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Date: Wed, 03 Dec 2025 16:18:06 +0100
-In-Reply-To: <e67b12d1-111f-484a-8374-4152d3b9f328@amd.com>
-References: <20251201105011.19386-2-phasta@kernel.org>
- <20251201105011.19386-10-phasta@kernel.org>
- <e67b12d1-111f-484a-8374-4152d3b9f328@amd.com>
+To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org, phasta@kernel.org, 
+ christian.koenig@amd.com, dakr@kernel.org
+Date: Wed, 03 Dec 2025 09:33:09 +0100
+In-Reply-To: <aS+RIfD3mb7dAHRV@lstrano-desk.jf.intel.com>
+References: <20251201183954.852637-1-matthew.brost@intel.com>
+ <aS+RIfD3mb7dAHRV@lstrano-desk.jf.intel.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-X-MBO-RS-ID: 2d25109a1dd7c0ac011
-X-MBO-RS-META: u6d8mbjai1kb5wbkyqh941df6oh6is5g
+X-MBO-RS-ID: c5da3f4f369238331ba
+X-MBO-RS-META: azaubu513z5mudz1yjfz1q85j1kubzwh
 X-Mailman-Approved-At: Thu, 04 Dec 2025 20:29:17 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -81,101 +66,107 @@ Reply-To: phasta@kernel.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 2025-12-03 at 14:15 +0100, Christian K=C3=B6nig wrote:
-> On 12/1/25 11:50, Philipp Stanner wrote:
-> > There is a new dma_fence helper which simplifies testing for a fence's
-> > signaled_flag. Use it in xe.
-> >=20
-> > Signed-off-by: Philipp Stanner <phasta@kernel.org>
+On Tue, 2025-12-02 at 17:23 -0800, Matthew Brost wrote:
+> On Mon, Dec 01, 2025 at 10:39:45AM -0800, Matthew Brost wrote:
 >=20
-> Acked-by: Christian K=C3=B6nig <christian.koenig@amd.com>
+> Fellow DRM sched maintainers - going to merge the first two patches in
+> this series to drm-misc-next two days from now unless I hear an
+> objection.
 
-This series would then be completely reviewed, it seems. So one could
-push it. Question is just who and where, and what to do about the merge
-conflict with intel.
+Fellow maintainer Matt, it seems that none of us has ever been on Cc
+for this series or patch? I can't find it in my inbox. Did you forget
+to add us for 7 revisions, or did you omit us on purpose?
 
-Matthew?
-
+I look occasionally at dri-devel, but you know how huge the list is.
 
 P.
 
+
 >=20
-> > ---
-> > =C2=A0drivers/gpu/drm/xe/xe_exec_queue.c | 9 +++------
-> > =C2=A0drivers/gpu/drm/xe/xe_pt.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 | 3 +--
-> > =C2=A0drivers/gpu/drm/xe/xe_sched_job.c=C2=A0 | 2 +-
-> > =C2=A03 files changed, 5 insertions(+), 9 deletions(-)
+> Matt=20
+>=20
+> > At XDC, we discussed that drivers should avoid accessing DRM scheduler
+> > internals, misusing DRM scheduler locks, and adopt a well-defined
+> > pending job list iterator. This series proposes the necessary changes t=
+o
+> > the DRM scheduler to bring Xe in line with that agreement and updates X=
+e
+> > to use the new DRM scheduler API.
 > >=20
-> > diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe=
-_exec_queue.c
-> > index cb5f204c08ed..06736f52fbaa 100644
-> > --- a/drivers/gpu/drm/xe/xe_exec_queue.c
-> > +++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-> > @@ -1037,8 +1037,7 @@ struct dma_fence *xe_exec_queue_last_fence_get(st=
-ruct xe_exec_queue *q,
-> > =C2=A0
-> > =C2=A0	xe_exec_queue_last_fence_lockdep_assert(q, vm);
-> > =C2=A0
-> > -	if (q->last_fence &&
-> > -	=C2=A0=C2=A0=C2=A0 test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &q->last_fen=
-ce->flags))
-> > +	if (q->last_fence && dma_fence_test_signaled_flag(q->last_fence))
-> > =C2=A0		xe_exec_queue_last_fence_put(q, vm);
-> > =C2=A0
-> > =C2=A0	fence =3D q->last_fence ? q->last_fence : dma_fence_get_stub();
-> > @@ -1064,8 +1063,7 @@ struct dma_fence *xe_exec_queue_last_fence_get_fo=
-r_resume(struct xe_exec_queue *
-> > =C2=A0
-> > =C2=A0	lockdep_assert_held_write(&q->hwe->hw_engine_group->mode_sem);
-> > =C2=A0
-> > -	if (q->last_fence &&
-> > -	=C2=A0=C2=A0=C2=A0 test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &q->last_fen=
-ce->flags))
-> > +	if (q->last_fence && dma_fence_test_signaled_flag(q->last_fence))
-> > =C2=A0		xe_exec_queue_last_fence_put_unlocked(q);
-> > =C2=A0
-> > =C2=A0	fence =3D q->last_fence ? q->last_fence : dma_fence_get_stub();
-> > @@ -1106,8 +1104,7 @@ int xe_exec_queue_last_fence_test_dep(struct xe_e=
-xec_queue *q, struct xe_vm *vm)
-> > =C2=A0
-> > =C2=A0	fence =3D xe_exec_queue_last_fence_get(q, vm);
-> > =C2=A0	if (fence) {
-> > -		err =3D test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &fence->flags) ?
-> > -			0 : -ETIME;
-> > +		err =3D dma_fence_test_signaled_flag(fence) ? 0 : -ETIME;
-> > =C2=A0		dma_fence_put(fence);
-> > =C2=A0	}
-> > =C2=A0
-> > diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-> > index 07f96bda638a..1ca2dec18e51 100644
-> > --- a/drivers/gpu/drm/xe/xe_pt.c
-> > +++ b/drivers/gpu/drm/xe/xe_pt.c
-> > @@ -1208,8 +1208,7 @@ static bool no_in_syncs(struct xe_sync_entry *syn=
-cs, u32 num_syncs)
-> > =C2=A0	for (i =3D 0; i < num_syncs; i++) {
-> > =C2=A0		struct dma_fence *fence =3D syncs[i].fence;
-> > =C2=A0
-> > -		if (fence && !test_bit(DMA_FENCE_FLAG_SIGNALED_BIT,
-> > -				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 &fence->flags))
-> > +		if (fence && !dma_fence_test_signaled_flag(fence))
-> > =C2=A0			return false;
-> > =C2=A0	}
-> > =C2=A0
-> > diff --git a/drivers/gpu/drm/xe/xe_sched_job.c b/drivers/gpu/drm/xe/xe_=
-sched_job.c
-> > index d21bf8f26964..1c9ba49a325b 100644
-> > --- a/drivers/gpu/drm/xe/xe_sched_job.c
-> > +++ b/drivers/gpu/drm/xe/xe_sched_job.c
-> > @@ -188,7 +188,7 @@ static bool xe_fence_set_error(struct dma_fence *fe=
-nce, int error)
-> > =C2=A0	bool signaled;
-> > =C2=A0
-> > =C2=A0	spin_lock_irqsave(fence->lock, irq_flags);
-> > -	signaled =3D test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &fence->flags);
-> > +	signaled =3D dma_fence_test_signaled_flag(fence);
-> > =C2=A0	if (!signaled)
-> > =C2=A0		dma_fence_set_error(fence, error);
-> > =C2=A0	spin_unlock_irqrestore(fence->lock, irq_flags);
->=20
+> > While here, cleanup LR queue handling and simplify GuC state machine in
+> > Xe too. Also rework LRC timestamp sampling to avoid scheduling toggle.
+> >=20
+> > v2:
+> > =C2=A0- Fix checkpatch / naming issues
+> > v3:
+> > =C2=A0- Only allow pending job list iterator to be called on stopped sc=
+hedulers
+> > =C2=A0- Cleanup LR queue handling / fix a few misselanous Xe scheduler =
+issues
+> > v4:
+> > =C2=A0- Address Niranjana's feedback
+> > =C2=A0- Add patch to avoid toggling scheduler state in the TDR
+> > v5:
+> > =C2=A0- Rebase
+> > =C2=A0- Fixup LRC timeout check (Umesh)
+> > v6:
+> > =C2=A0- Fix VF bugs (Testing)
+> > v7:
+> > =C2=A0- Disable timestamp WA on VF
+> >=20
+> > Matt
+> >=20
+> > Matthew Brost (9):
+> > =C2=A0 drm/sched: Add several job helpers to avoid drivers touching sch=
+eduler
+> > =C2=A0=C2=A0=C2=A0 state
+> > =C2=A0 drm/sched: Add pending job list iterator
+> > =C2=A0 drm/xe: Add dedicated message lock
+> > =C2=A0 drm/xe: Stop abusing DRM scheduler internals
+> > =C2=A0 drm/xe: Only toggle scheduling in TDR if GuC is running
+> > =C2=A0 drm/xe: Do not deregister queues in TDR
+> > =C2=A0 drm/xe: Remove special casing for LR queues in submission
+> > =C2=A0 drm/xe: Disable timestamp WA on VFs
+> > =C2=A0 drm/xe: Avoid toggling schedule state to check LRC timestamp in =
+TDR
+> >=20
+> > =C2=A0drivers/gpu/drm/scheduler/sched_main.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 |=C2=A0=C2=A0 4 +-
+> > =C2=A0drivers/gpu/drm/xe/xe_gpu_scheduler.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 9 +-
+> > =C2=A0drivers/gpu/drm/xe/xe_gpu_scheduler.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 |=C2=A0 37 +-
+> > =C2=A0drivers/gpu/drm/xe/xe_gpu_scheduler_types.h=C2=A0 |=C2=A0=C2=A0 2=
+ +
+> > =C2=A0drivers/gpu/drm/xe/xe_guc_exec_queue_types.h |=C2=A0=C2=A0 2 -
+> > =C2=A0drivers/gpu/drm/xe/xe_guc_submit.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 362 +++----------------
+> > =C2=A0drivers/gpu/drm/xe/xe_guc_submit_types.h=C2=A0=C2=A0=C2=A0=C2=A0 =
+|=C2=A0 11 -
+> > =C2=A0drivers/gpu/drm/xe/xe_hw_fence.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 16 -
+> > =C2=A0drivers/gpu/drm/xe/xe_hw_fence.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 2 -
+> > =C2=A0drivers/gpu/drm/xe/xe_lrc.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 =
+45 ++-
+> > =C2=A0drivers/gpu/drm/xe/xe_lrc.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=
+=C2=A0 3 +-
+> > =C2=A0drivers/gpu/drm/xe/xe_ring_ops.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 25 +-
+> > =C2=A0drivers/gpu/drm/xe/xe_sched_job.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 1 +
+> > =C2=A0drivers/gpu/drm/xe/xe_sched_job_types.h=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 2 +
+> > =C2=A0drivers/gpu/drm/xe/xe_trace.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 5 -
+> > =C2=A0include/drm/gpu_scheduler.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 =
+82 +++++
+> > =C2=A016 files changed, 211 insertions(+), 397 deletions(-)
+> >=20
+> > --=20
+> > 2.34.1
+> >=20
 
