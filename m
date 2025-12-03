@@ -4,90 +4,185 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D2A99D1266D
-	for <intel-xe@archiver.kernel.org>; Wed,  3 Dec 2025 09:07:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D6267D116F3
+	for <intel-xe@archiver.kernel.org>; Wed,  3 Dec 2025 09:11:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 92D3610E7CF;
-	Wed,  3 Dec 2025 09:07:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9385A10E75C;
+	Wed,  3 Dec 2025 09:11:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="XhRGrNWx";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YZlk9oiv";
 	dkim-atps=neutral
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6828A10E7CF
- for <intel-xe@lists.freedesktop.org>; Wed,  3 Dec 2025 09:07:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1764752871;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=m7n5aJ6gFTsDe7JLqVjWq0Y+bv/8CPCgIBrAWTCTxxE=;
- b=XhRGrNWxGfgz23mYQHlsbyrYuiGqnZdirOBiHOISrAPiYrBIQHhAV7guzWPu0cVfjiCRtd
- CNhwcuMPeb1/PBN9miP/PpBVm+TDtphoSRHmfE9JfhBa3/vRMCwYrb+PLHleJTy75E3PE7
- UW3t1gLTxS3/4vjNnojpI4qAhYjfW1c=
-Received: from mail-pf1-f198.google.com (mail-pf1-f198.google.com
- [209.85.210.198]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-137-Btsbdpq0Mm-h6lLA6T7H7g-1; Wed, 03 Dec 2025 04:07:50 -0500
-X-MC-Unique: Btsbdpq0Mm-h6lLA6T7H7g-1
-X-Mimecast-MFC-AGG-ID: Btsbdpq0Mm-h6lLA6T7H7g_1764752869
-Received: by mail-pf1-f198.google.com with SMTP id
- d2e1a72fcca58-7dd05696910so2624943b3a.2
- for <intel-xe@lists.freedesktop.org>; Wed, 03 Dec 2025 01:07:50 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1764752869; x=1765357669;
- h=mime-version:user-agent:content-transfer-encoding:references
- :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=D249A3i69j3/yHAUiWy/B92/l7tH87pW4RORGY2Xp10=;
- b=Wwe0JCdfF5fbYZ8iJx2klEZwuZQPLt+IxgCULA2F3bI1+9YJlEG4ndF4STBtIp5R5b
- 8CFvI3FWym/2PmoVT/TxMzJgYioAeMZ8K7FcAIwy79hQyRyJeF/l97KwGHjv6cycV/fH
- Cl2BofHtzBVWBjwv6dXRHMACbIKFHrxCgBUIWL7DQ3Mk6G7myNMoh+vXk+pgrvy7ViiX
- q8gbPENgmUWa5BJ3NDBu8r4fzv3o8aJHDPxnOrZfWiSwuF2V4S7lXu6mPlOL4T1felz5
- m7XsxsTbMfZHJeNzO3UoIZAwU4NAjT+ueAFL9WxAjWKcppKPUNdlN0zhbpmNY+2wQEEC
- rdmA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWX/KhMgB/pGNDwKKvvco+6l0eR9jhFRTdO8i6fE6eW9/+Q/KAOSFVdPNb+T1xRPfUcdkvsb7NsdQ==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzCiDBMFPKs3rkowyEH5cF6vr35/GOH6u6Uk75xTKT3OZC5zoct
- eb6r4m8KQvzLUbp/EUXFXwNVupGrU1jicvWxKWzkQHASysLOxyoInk2/SBZlfXBqB5y8ZTfNqq5
- eYzdMX2xPz6PBWqtonQS/O9NwEi/0ic05nMv8+sRvBQA3fe2fJualhJSdS6dXaig+AK3B
-X-Gm-Gg: ASbGnctyzmOtKyYntIh6ySD2xkUOwaQ9KIq5OomNrtOJJzM1p+xj4uSQ6WHq56mkxbv
- GDLElmasRaFjEjVZ/aCmkLtPV+rBoqgQ/Q5YSBW+aXifc9AMLc33zmuvYhS8TgK7CooEMyDursN
- TCLGcpQMQZUR3D7IErls2HrfDD1wgm21iyKbVui8DnIvoCflTvHtDxmaW4qKQ7f3pJxaZJpaiER
- uKBvEglgh3ETvXEqSNMFN8c26jvMpiDEbpvXv5tPVzsbZEHw1MGdTplf7nVTig4se5KOI32XSqr
- 40TCZzNIPGMN/lcAsoPixW+u/Rf5ufrzJkAxxoc9Je5SlPC6A0ylhM8gQn/J1Q2mu3do9IR1o3u
- tzXG7vBB2hPOvYKJIl1L6EAlUkaZ70iPl1lh/
-X-Received: by 2002:a05:6a00:c89:b0:770:fd32:f365 with SMTP id
- d2e1a72fcca58-7e00fbcf100mr1809566b3a.25.1764752869227; 
- Wed, 03 Dec 2025 01:07:49 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IFREZMGminTy30KjTzK+tFQWLS255BWIN1fM3zIPkEwJBk7R36MZ0BaLKjqnEfeX+U64LNB/w==
-X-Received: by 2002:a05:6a00:c89:b0:770:fd32:f365 with SMTP id
- d2e1a72fcca58-7e00fbcf100mr1809546b3a.25.1764752868846; 
- Wed, 03 Dec 2025 01:07:48 -0800 (PST)
-Received: from [10.200.68.138] (nat-pool-muc-u.redhat.com. [149.14.88.27])
- by smtp.gmail.com with ESMTPSA id
- d2e1a72fcca58-7d15f176096sm19456998b3a.57.2025.12.03.01.07.44
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 03 Dec 2025 01:07:48 -0800 (PST)
-Message-ID: <0088fe0dd0d62b876d77b0f9e3a1c7586bdc5557.camel@redhat.com>
-Subject: Re: [PATCH v7 2/9] drm/sched: Add pending job list iterator
-From: Philipp Stanner <pstanner@redhat.com>
-To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org, Alex Deucher
- <alexander.deucher@amd.com>,  Christian =?ISO-8859-1?Q?K=F6nig?=
- <christian.koenig@amd.com>, dakr@kernel.org
-Date: Wed, 03 Dec 2025 10:07:37 +0100
-In-Reply-To: <20251201183954.852637-3-matthew.brost@intel.com>
-References: <20251201183954.852637-1-matthew.brost@intel.com>
- <20251201183954.852637-3-matthew.brost@intel.com>
-User-Agent: Evolution 3.52.4 (3.52.4-2.fc40)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4B24A10E465;
+ Wed,  3 Dec 2025 09:11:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1764753065; x=1796289065;
+ h=message-id:date:from:subject:to:cc:
+ content-transfer-encoding:mime-version;
+ bh=6HmI/pjBmSSx8RxcOlrexEgmKXUx+cuwJy+TvCFTL70=;
+ b=YZlk9oivTc5zIS4N7nTTGQeRMmpMPni/UQHwAwfwrCKTAsBzX/8WBKop
+ N0X5xxIw9jvmlMOOc02296+xL9lOkbt4QyMVRHMdNtVNIYW8OGgt93QIx
+ OAofvmnI62wX9Xlxky7/EZx3a8JiBbyqcsxJ6Owvp5Aqb3I8SdlYzCPfp
+ Bij1ZIOGCdonOHJ69lnQn5Jvk07XDV1O64KXxoSAo5YwJmsvDlzHnm5ZM
+ Jl5FTsVV2FXZ9STMu/IVAsACGlyeV0vFg8h8PqzJBTFINnJp/2tLL8qDt
+ ck2tzBQOlaVEMBe9f/XlpwCuWafWVsPH5NjDMPlWI2UhdHRNNr32XxIC9 Q==;
+X-CSE-ConnectionGUID: OJyio83pReCGWJuuMGowjA==
+X-CSE-MsgGUID: fU/HCp7ISdCFDF5+6r0wLQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11631"; a="66631718"
+X-IronPort-AV: E=Sophos;i="6.20,245,1758610800"; d="scan'208";a="66631718"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Dec 2025 01:11:05 -0800
+X-CSE-ConnectionGUID: HihOWu08QBqthS7qp7E+xA==
+X-CSE-MsgGUID: zIcMi2wtTYiIoM2qqXbHJg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.20,245,1758610800"; d="scan'208";a="193709625"
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+ by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Dec 2025 01:11:04 -0800
+Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.29; Wed, 3 Dec 2025 01:11:04 -0800
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.29 via Frontend Transport; Wed, 3 Dec 2025 01:11:04 -0800
+Received: from BYAPR05CU005.outbound.protection.outlook.com (52.101.85.62) by
+ edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.29; Wed, 3 Dec 2025 01:11:03 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=PHMFHuCbWWPao6ftox4S2YLzQ2SQVmpj08oFTRf7JoXs78YpjN4pXzKrITBQy2MKGKucriW8tTJgYrhUjZmqwlc5u10yULqLroS+cjbnFKNjKzuThLZuwVZ5/zN+aGckJ/MIY0Qmh64IM+Qr/n/eMYReZjx1QyD2s7nlovc3QfBIHHndStoyvih1QCkCzj0Jz0Z+lUCONrxOS0P+ZxSNkmFaJJt2N4XdbOjpHJcD+vE3KOAEbddaLiRpr5Qk410ZmLON2hK0JdvKn4FPNiDBP9Z4LD2WOvCHNy86PsxHCcBPnKyn71z6HKkw0rUK6MJBWyqpTOnQDlsqO1vcM4QcUQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=MvBXKfjyCFAf5qUj9QOKR/7ZiPgGMoM/KjnEfndDK3I=;
+ b=Hl+DuMNhtNFsFaTlaYqAf47if+l6VjF1dsNBIhE6lIgl8ATLmp+RZTNmBbhvkC1Ufhhcv2QEUfwop/cmsAYroljPt2OUZcH9D/wcZ3KWhFki0L6caZiaVFgd03rEhYEURvZiwRszaasg24lPvNyFsCnDySt3jl1vkGI/b3kptTpGbazztNwGXj0dAcJIQOPMHfLk1XXSoxIEr0GhfN6qHkVSNbDVe/ktDw3Lxg5feS5U4B4dbkVf/u2j7YBYJZAtvqTZP6rPjTPKnwYo01aP1JIa1RHKXCMWiAL/G4Qzln3EImDh6ZvEVP8ZvWf9o5f20l4RlHcwCFCrpp2pW2B4Sg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from SJ1PR11MB6129.namprd11.prod.outlook.com (2603:10b6:a03:488::12)
+ by CO1PR11MB5204.namprd11.prod.outlook.com (2603:10b6:303:6e::10)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9366.17; Wed, 3 Dec
+ 2025 09:11:01 +0000
+Received: from SJ1PR11MB6129.namprd11.prod.outlook.com
+ ([fe80::21c3:4b36:8cc5:b525]) by SJ1PR11MB6129.namprd11.prod.outlook.com
+ ([fe80::21c3:4b36:8cc5:b525%5]) with mapi id 15.20.9388.003; Wed, 3 Dec 2025
+ 09:11:01 +0000
+Message-ID: <a22915de-fa1b-40bb-9950-8a8552466225@intel.com>
+Date: Wed, 3 Dec 2025 14:40:54 +0530
+User-Agent: Mozilla Thunderbird
+From: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
+Subject: REGRESSION on linux-next (next-20251201)
+Content-Language: en-GB
+To: <dev@aaront.org>
+CC: "Kurmi, Suresh Kumar" <suresh.kumar.kurmi@intel.com>, "Saarinen, Jani"
+ <jani.saarinen@intel.com>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>, "intel-xe@lists.freedesktop.org"
+ <intel-xe@lists.freedesktop.org>, <linux-doc@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: MA5P287CA0241.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:1ae::6) To SJ1PR11MB6129.namprd11.prod.outlook.com
+ (2603:10b6:a03:488::12)
 MIME-Version: 1.0
-X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: XQz6EoUCMI_KY0Aj4j57Hgng3r0pwxk5Sd_iqLDU_ko_1764752869
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ1PR11MB6129:EE_|CO1PR11MB5204:EE_
+X-MS-Office365-Filtering-Correlation-Id: 61908140-d1db-4436-bff7-08de324be0cf
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?Vlh2VGxUdkZDbzRWTUtRcE9WZGhPU2FyRW10QkxwckVvSTBPQ1Jzdm0rTGpw?=
+ =?utf-8?B?ZXNpMnY3MFFnb1pjN1ZIdWp5eWcvTVNkL0duUzdsd3hIU1VGN1lFZ0NUVnpI?=
+ =?utf-8?B?d1Vlc3dqRDRtN0pOd2FOUllVQjRORHdSSFVEQjlLcDhrZEROYU5DZlZoZ25v?=
+ =?utf-8?B?WkNFc2RqajBzOXM3cW5QaUVqcnRHODczcHVPTjRDV1pxM1J4b25wdForZCsv?=
+ =?utf-8?B?cTdBM1B6RW9Vd3RhNlBiNTNTL3VRKzUzcUhoNHJhOUtmdXhsOTNSUGFCUTFt?=
+ =?utf-8?B?MmhRdHNNVEgvT0swMUE2MXFJeDVXTlR0ekdZc0d1MjJ6N1J1Q2dnOWRRMll3?=
+ =?utf-8?B?REd0cStvYmZNZEFqbFZLMEMxeFJMRFQyYU9zdkdFdWgySFBCMkxJaENoYzhJ?=
+ =?utf-8?B?ek5aTmR6K0hEam9Uc1orYTBaOTd1NHF5L2RYNnZLL1lkaEoraXE2MkUrS1V5?=
+ =?utf-8?B?QndtQWUyeTNMcmZBTkRLK1RwbUhIOThTbHozbldhT1dJSTNTVVkxV3h4VE43?=
+ =?utf-8?B?MUU1cXRBajBoMmxGQWNoMUhBSk0waWoyc3NrRkpUbVUvSzIvcEtrVTZ5SWJX?=
+ =?utf-8?B?bHc5ZGd3dXg4SkNVcFVJTDN4OVMxQ0hHR2QxV3hZU29HR28vb3N0ZTh5dWY1?=
+ =?utf-8?B?eEZJeWh6aUozeVVxd3pvSHZpcEFDMUthTTZpVzFkZFl1Q29SWUJtcForTVYy?=
+ =?utf-8?B?bE52ajltNExoUHc3NTc4UHp0TElDcHY4SWR4QzJpUTFVN3JSeFZsZk1rMVFT?=
+ =?utf-8?B?VUUyb1grc3MvVGlVSHlHZHJVeHRVQVYzclRYMzA2bXovQzZUM1R0R3hIRFY5?=
+ =?utf-8?B?c3B0UHlLQlJUdFBPSjlPZk1yNXpMajJ2eVU3Ykc0MDU2eUxESjVxeEh2KzZC?=
+ =?utf-8?B?S3JsRGVWZ0M2UWxFdmhXbVNDYXN2RXdZbmt3eFFNQkhwT1UrQ21PNFZCTzFt?=
+ =?utf-8?B?dzA1SWQyUzVHWnpSdmJ3VXlCYitlUnJLWGxnUWJxWEdDNHhocTJlNldXdjhN?=
+ =?utf-8?B?cU8vaGRSTGV1cFZvc2ZJRE9sL2dZbFhrbjZMa28xT3RNYnhQWFYrWis5UTBz?=
+ =?utf-8?B?azBnL2ZsMGZLV21ZTElWdDE3ZUtPNGtjUFQySVFMRjFUQ0pibkZRMi9DWENr?=
+ =?utf-8?B?NkI1eXFMNCtaM1MzQ1BBWVk4TW8waGlBelcxVTFMRVNwaE1sczBScU5pTUwv?=
+ =?utf-8?B?bkQxcHQwbTFXUnhuNjJCd2VwRGZ0RFFnNEVtcWJJNjBQWHc5NmIvWU9yM0xL?=
+ =?utf-8?B?QlFIN3Z0OGZUQi95QjJVN1VxNzQySEtjSHJsM0g3cUxobS84U0RHZldnTFFX?=
+ =?utf-8?B?VCt0WnFsdHYvd2lsZ1EyV1lwZC9xN0dJTDB2QThJNEVwdkZzaUhXRXpBQnVM?=
+ =?utf-8?B?NzQ2YzhWc1BLdnNHL1Z4NUJoU2lMWk5HTS8wSExxWHFaWDNSa3VUd0VyWmMr?=
+ =?utf-8?B?RWxGVW02bWVGdmdFNWtpMGRCcDlyeTVlVnZCZFRLc01WSTUzVTZ1NTRpb1Qz?=
+ =?utf-8?B?aFhmU0tIWlVvNlkyVkhWSjlIbWsydjFRa1pjaE5wSWMzZzRMdGZTOExvWDRX?=
+ =?utf-8?B?YnBpRUVFSXkzY0dOdkZ6bmQ1RVkxd2p6MjI3eEFnOTJsemlsaVNGM2Z4S2Zm?=
+ =?utf-8?B?U2syM0ZocTFCZVFlL3Q5Vk9aYTBPd2FCTlRDc0RTei81ZnR1OFZuYWNuWHBJ?=
+ =?utf-8?B?a0o4dkRvRktQN0VXY2c4dmt6M3ZuYzhLVVovS1cxRjRGV09MaXQ1T1A2RlNE?=
+ =?utf-8?B?aWtHR1E3SzZhWFNTd1A5Qmo2dU5NYkJOVW9WYkxPWGNCdXlmQUduRUd0RXgz?=
+ =?utf-8?B?VXZPcG9xOThDdUs1TXBZMDVtYTl4ZWQzTTNBTHhjcHJ5aVVRNlhGcEhLOXlW?=
+ =?utf-8?B?U01td0VKWHZ6WEpiT1RCc0NkS0lzZWFYNjNuTVBwMWFVSmx3Zm9sSWRpZGIx?=
+ =?utf-8?B?dDBBRXg2RUJrQ20ySlM0ZG5HRndNVEtCeHZKTW1jNmdDZWQzZVZyOFBvNDdo?=
+ =?utf-8?B?OEtNa2xKZENBPT0=?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SJ1PR11MB6129.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UzNiZERlSS9uSzkzRzNEY1QvTFprYlV2OE4yU3M4ZUsyOHlXdU5kdUN3SzQr?=
+ =?utf-8?B?MURYTlQrM3Q3MGxEekRQRk9zZVhkY25oMHBkN29BOFpQT3NkTzA2K1FNbFJP?=
+ =?utf-8?B?MU1UeThBMS9NNVY4VExnUEtvbm5DdmJEejVjN0FOYTFXejhidEpzekUrQW9o?=
+ =?utf-8?B?V0VVcjZYNUZVbjR0QzlIL0RJMEFXaG01a1U2Mk1ieER0WUhQd3lzOVdONUtQ?=
+ =?utf-8?B?WkVJTkZ0cmo1K3d0Y3VDc2VRUGNRSmplc1pKckJyRVBNeUZUQTNJcXJBc0R0?=
+ =?utf-8?B?QlVXVStVZjQ5ZW82QVY2UFI3UzdpQVphUXYwQmk5N3g5RkVkQ0NhMHFEQldx?=
+ =?utf-8?B?RFVBS1Mvd2lFczlEOXFTZWwrTkthVFUySzJITmJTbnVHYmROYkRTY0VoUTE5?=
+ =?utf-8?B?TXlyUGU3Y1Y0ckpOQUwwcFlnM2VvcDBmcngySXFBTERxdzZManJxV2dCUENs?=
+ =?utf-8?B?eitLWFdhb2wyd0x6ZUhBNHpBd0FXOEtUMDBaWXZud2dBUTRtUzYxR09Pd1R3?=
+ =?utf-8?B?dlU2YzhXenFLMkhIcDUzRFVQL1RpU0JqWmxMUEg4MENDbEdrWlRYSmFnWjVT?=
+ =?utf-8?B?V0JYRXpacXRlck1OS0N0UVEvNVA5M3FpaWtSMzd2K3ZVaWFzalJmc2cySWxT?=
+ =?utf-8?B?ZUFYVytxT1FnOE9laTBHT3hsTnZpSjFVSE1ncXBLS1VrYWlhOW41bVdGUWFz?=
+ =?utf-8?B?Z1NjanhZUEF2VDRTRkh3eGtnbFNYS21XdSt5c2RRcEl6c20reDg1cW1RcVhS?=
+ =?utf-8?B?T1BleXJGeDV5M2FDZWQ4YUdEQjlkdDhselZ2QnZrdk9FYXVGNTJMYVJZajhm?=
+ =?utf-8?B?NHFlc1BDRndSNFBhbkdUVE1aaUR5cXduU1V3YWN6TEcyMUc5T2JSMUQ4UHVn?=
+ =?utf-8?B?bWZWUUJMSjVNaHNraUFlZ3VjWE9oOHEyMGh5TjdQWHByZko4U2pCdFhKOGFT?=
+ =?utf-8?B?M3loM1R0NmQrVzVURGhQL2J5ZFlzV2NxQUNpOXBkQkFSTjlMSTlYNkJoNWdr?=
+ =?utf-8?B?U2gvUFNrNEFWWHZWVGhNZUh0ajV4QUVJRmFnN3VNNHgzd1dGWnVaQ1JkMWto?=
+ =?utf-8?B?TmZGODlNZlVTL21MR3lhUmNnV2ZiWEh5Uk12aGtnalVwV1MzYVJrdHhFdk91?=
+ =?utf-8?B?dGYzVWpTT1BocGc5Vm9wbHN2Yk1NSHI1YXhGcnkxWnp0d2VOajM4aG1CaFdP?=
+ =?utf-8?B?MmlSMTExcEttOWtMenZGNGcyalB6dlhWMDlKOXA2NzdoV1NiZFAzemlBcGdm?=
+ =?utf-8?B?cHhuZk9LSTh1Zy85SUc5ajE1MXRoK2pCMnFodmRDbVMvZXhveHEzeHU2Vno1?=
+ =?utf-8?B?YllSSzV5U2ZnS2MzdjMySUkwaGcrc0pvU2JscXpLcDlqMFpreFI4aE5PWmF5?=
+ =?utf-8?B?SGJZZE43dEY2ZVk4N3ZIbmRjc1pEQ0U4aXZjRlA3amp2ODYwYUVMMTZUOEpQ?=
+ =?utf-8?B?OUY2MExhZXlQdkwyYWtZdEdGcXpYRzR1Mlg3azhGRkRHRmZzSXFPSkxHMWI0?=
+ =?utf-8?B?UGFDcDZ5N2ZqYlFDa2VIOEhKL2lKbGd3SlY2SEtNNEc5Qm9LZ1dMRzZPSkQz?=
+ =?utf-8?B?MTRpdlZkclpXT0tBTW4rai9wYWFRS0U2TktXM2J4WmZIdTJleGJ1U01lWUpy?=
+ =?utf-8?B?dTQxdWJ2RzFDbmRyeVFjZFFydlZNSmFEMy9WeUNFVC82V1EveEI0TFVwNEdW?=
+ =?utf-8?B?WnJ2ZmRFWUNOTjBBOXBLR212emRxM2t2V3dDTVhRaUJwakpYeHdLTDVPSEFP?=
+ =?utf-8?B?K3d2Y2M2aUpEczJpS0I2b0FzZk14Q3hxVnd6ZVR1Q0FMaGJzSmdBVmNKRmZh?=
+ =?utf-8?B?bjZPaVBldDJQM3JpT1RwVW9qNFFTS091QkwzMitWd081MFlGU0RJekhydzdq?=
+ =?utf-8?B?TkoxaEd0QjdOR1kzc1BNMEQxcFMwMXlmd1RranFwd2pJRExuUUhPN25rZUZJ?=
+ =?utf-8?B?aUJ6ZEZrdTNxZzB2bVVsOHZSS1Z2a0FaYkkxSUNkUUZvaHJXeFdCSlJvaURt?=
+ =?utf-8?B?dUlNSDA5Y0lyRXUzMlFPS3diSXBtQmVzcitGWnNLcEpWQTFCK2Y2MjlPSkVO?=
+ =?utf-8?B?VnkzZjFnTEtmLzZTMlVvL09qUWFtVFV0MWtvb3FLdnRHQWZXM3NmMFRoQXdv?=
+ =?utf-8?B?ZDhPNTRLWURkQlNyWUF1dFZUQlRLNmpiQlhzakFUUDFidVp2a2Zrcit5ZTJt?=
+ =?utf-8?Q?S8hdyxJuu7ArBE70hQHIPP4=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 61908140-d1db-4436-bff7-08de324be0cf
+X-MS-Exchange-CrossTenant-AuthSource: SJ1PR11MB6129.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Dec 2025 09:11:01.2191 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 9iRzdNz1bHls9/5+CB7ssTqdP2YhbQFuCXUH2z+4NgfowPsZeR15u9Aag0+rfkjURx+PvmGXBo/J+VD5fc6VxnUIRlO3UsQ2mrUP29qZ5xI=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR11MB5204
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -102,132 +197,71 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-+Cc Alex, Christian, Danilo
+Hello Aaron,
 
+Hope you are doing well. I am Chaitanya from the linux graphics team in 
+Intel.
 
-On Mon, 2025-12-01 at 10:39 -0800, Matthew Brost wrote:
-> Stop open coding pending job list in drivers. Add pending job list
-> iterator which safely walks DRM scheduler list asserting DRM scheduler
-> is stopped.
->=20
-> v2:
-> =C2=A0- Fix checkpatch (CI)
-> v3:
-> =C2=A0- Drop locked version (Christian)
-> v4:
-> =C2=A0- Reorder patch (Niranjana)
+This mail is regarding a regression we are seeing in our CI runs[1] on
+linux-next repository.
 
-Same with the changelog.
+Since the version next-20251201 [2], we are seeing the following regression
 
->=20
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> Reviewed-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.c=
-om>
-> ---
-> =C2=A0include/drm/gpu_scheduler.h | 50 ++++++++++++++++++++++++++++++++++=
-+++
-> =C2=A01 file changed, 50 insertions(+)
->=20
-> diff --git a/include/drm/gpu_scheduler.h b/include/drm/gpu_scheduler.h
-> index 385bf34e76fe..9d228513d06c 100644
-> --- a/include/drm/gpu_scheduler.h
-> +++ b/include/drm/gpu_scheduler.h
-> @@ -730,4 +730,54 @@ static inline bool drm_sched_job_is_signaled(struct =
-drm_sched_job *job)
-> =C2=A0=09=09dma_fence_is_signaled(&s_fence->finished);
-> =C2=A0}
-> =C2=A0
-> +/**
-> + * struct drm_sched_pending_job_iter - DRM scheduler pending job iterato=
-r state
-> + * @sched: DRM scheduler associated with pending job iterator
-> + */
-> +struct drm_sched_pending_job_iter {
-> +=09struct drm_gpu_scheduler *sched;
-> +};
-> +
-> +/* Drivers should never call this directly */
-> +static inline struct drm_sched_pending_job_iter
-> +__drm_sched_pending_job_iter_begin(struct drm_gpu_scheduler *sched)
-> +{
-> +=09struct drm_sched_pending_job_iter iter =3D {
-> +=09=09.sched =3D sched,
-> +=09};
-> +
-> +=09WARN_ON(!drm_sched_is_stopped(sched));
-> +=09return iter;
-> +}
-> +
-> +/* Drivers should never call this directly */
-> +static inline void
-> +__drm_sched_pending_job_iter_end(const struct drm_sched_pending_job_iter=
- iter)
-> +{
-> +=09WARN_ON(!drm_sched_is_stopped(iter.sched));
-> +}
-> +
-> +DEFINE_CLASS(drm_sched_pending_job_iter, struct drm_sched_pending_job_it=
-er,
-> +=09=C2=A0=C2=A0=C2=A0=C2=A0 __drm_sched_pending_job_iter_end(_T),
-> +=09=C2=A0=C2=A0=C2=A0=C2=A0 __drm_sched_pending_job_iter_begin(__sched),
-> +=09=C2=A0=C2=A0=C2=A0=C2=A0 struct drm_gpu_scheduler *__sched);
-> +static inline void *
-> +class_drm_sched_pending_job_iter_lock_ptr(class_drm_sched_pending_job_it=
-er_t *_T)
-> +{ return _T; }
-> +#define class_drm_sched_pending_job_iter_is_conditional false
-> +
-> +/**
-> + * drm_sched_for_each_pending_job() - Iterator for each pending job in s=
-cheduler
-> + * @__job: Current pending job being iterated over
-> + * @__sched: DRM scheduler to iterate over pending jobs
-> + * @__entity: DRM scheduler entity to filter jobs, NULL indicates no fil=
-ter
-> + *
-> + * Iterator for each pending job in scheduler, filtering on an entity, a=
-nd
-> + * enforcing scheduler is fully stopped
-> + */
-> +#define drm_sched_for_each_pending_job(__job, __sched, __entity)=09=09\
-> +=09scoped_guard(drm_sched_pending_job_iter, (__sched))=09=09=09\
-> +=09=09list_for_each_entry((__job), &(__sched)->pending_list, list)=09\
-> +=09=09=09for_each_if(!(__entity) || (__job)->entity =3D=3D (__entity))
-> +
-> =C2=A0#endif
+`````````````````````````````````````````````````````````````````````````````````
+Starting subtest: load
+(i915_module_load:1280) igt_debugfs-CRITICAL: Test assertion failure 
+function igt_debugfs_path, file ../lib/igt_debugfs.c:121:
+(i915_module_load:1280) igt_debugfs-CRITICAL: Failed assertion: debugfs_root
+(i915_module_load:1280) igt_debugfs-CRITICAL: Last errno: 2, No such 
+file or directory
+Subtest load failed.
+`````````````````````````````````````````````````````````````````````````````````
 
+I see some other drivers also failing to create their debugfs entries.
 
-See my comments in the first patch. The docu doesn't mention at all why
-this new functionality exists and when and why users would be expected
-to use it.
+`````````````````````````````````````````````````````````````````````````````````
+[    0.134437] pinctrl core: failed to create debugfs directory
+[    3.488263] intel-lpss 0000:00:15.0: Failed to create debugfs entries
+[    3.563494] intel-lpss 0000:00:15.1: Failed to create debugfs entries
+[    3.631076] intel-lpss 0000:00:15.2: Failed to create debugfs entries
+[    3.697366] intel-lpss 0000:00:15.3: Failed to create debugfs entries
+[    3.764351] intel-lpss 0000:00:19.0: Failed to create debugfs entries
+[    3.841824] intel-lpss 0000:00:19.1: Failed to create debugfs entries
+[    3.909492] nvme0: failed to create debugfs directory
+[    3.937845] nvme0n1: failed to create debugfs directory
+[    5.636042] pinctrl core: failed to create debugfs directory for 
+INTC105E:00
+[  177.973628] cec: Failed to create debugfs cec dir
+`````````````````````````````````````````````````````````````````````````````````
+Detailed log can be found in [3].
 
-As far as I remember from XDC, both AMD and Intel overwrite a timed out
-jobs buffer data in the rings on GPU reset. To do so, the driver needs
-the timedout job (passed through timedout_job() callback) and then
-needs all the pending non-broken jobs.
+After bisecting the tree, the following patch [4] seems to be the first 
+"bad" commit
 
-AFAICS your patch provides a generic iterator over the entire
-pending_list. How is a driver then supposed to determine which are the
-non-broken jobs (just asking, but that needs to be documented)?
+`````````````````````````````````````````````````````````````````````````````````````````````````````````
+commit f278809475f6835b56de78b28dc2cc0c7e2c20a4
+Author: Aaron Thompson dev@aaront.org
+Date:   Thu Nov 20 10:26:33 2025 +0000
 
-Could it make sense to use a different iterator which only returns jobs
-of not belonging to the same context as the timedout-one?
+     debugfs: Remove broken no-mount mode
+`````````````````````````````````````````````````````````````````````````````````````````````````````````
 
-Those are important questions that need to be addressed before merging
-that.
+We also verified that if we revert the patch the issue is not seen.
 
-And if this works canonically (i.e., for basically everyone), it needs
-to be documented in drm_sched_resubmit_jobs() that this iterator is now
-the canonical way of handling timeouts.
+Could you please check why the patch causes this regression and provide 
+a fix if necessary?
 
-Moreover, btw, just yesterday I added an entry to the DRM todo list
-which addresses drm_sched_resubmit_jobs(). If we merge this, that entry
-would have to be removed, too.
+Thank you.
 
+Regards
 
-@AMD: Would the code Matthew provides work for you? Please give your
-input. This is very important common infrastructure.
+Chaitanya
 
-
-Philipp
-
+[1]
+https://intel-gfx-ci.01.org/tree/linux-next/combined-alt.html?
+[2] 
+https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?h=next-20251201
+[3]
+https://intel-gfx-ci.01.org/tree/linux-next/next-20251201/bat-arlh-2/igt@i915_module_load@load.html
+[4] 
+https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?h=next-20251201&id=f278809475f6835b56de78b28dc2cc0c7e2c20a4
