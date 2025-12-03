@@ -4,85 +4,88 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7367CD12695
-	for <intel-xe@archiver.kernel.org>; Wed,  3 Dec 2025 09:38:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 26282D1269D
+	for <intel-xe@archiver.kernel.org>; Wed,  3 Dec 2025 10:29:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1598510E353;
-	Wed,  3 Dec 2025 09:38:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D957A10E104;
+	Wed,  3 Dec 2025 10:29:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="F2oVBxDp";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="TrME8E5T";
 	dkim-atps=neutral
 Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E8C2910E766
- for <intel-xe@lists.freedesktop.org>; Wed,  3 Dec 2025 09:38:16 +0000 (UTC)
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4642810E104
+ for <intel-xe@lists.freedesktop.org>; Wed,  3 Dec 2025 10:29:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1764754696;
+ s=mimecast20190719; t=1764757746;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=R4WB+cAbLCsrxxvJDzmHK/1YvGIBQKCurE6fvvi7iEk=;
- b=F2oVBxDpN14PJVVggQ4pKLeE3GxOYi/vOxqb6HAyO4pCJw/S43Iqk63vxLhJMy9gQm1Y+P
- U5YeQoAtgTykC5AcnYNdcOZR1OOgbWbzrrFSiHwoYteIsRLmNT91afRibt7ZAAKU6h3L7k
- 2Lwh3o1OA8M6KnXFvHXCd1LCgkXzHPk=
-Received: from mail-pj1-f70.google.com (mail-pj1-f70.google.com
- [209.85.216.70]) by relay.mimecast.com with ESMTP with STARTTLS
+ bh=qblXqn/QMpqYaXbwXzu9x9sZsuNG8VFo90RKrBLW2Kc=;
+ b=TrME8E5TSXHtbu2w+Rl7nMDtZI2og1lS3njbwZMlCh/ALg8w5zFCulicezHar6ZOlvMGgp
+ glsVzMFl+B7+lPjU3wyFdYCpKEZnUY28mqGnpraePKgB7MGAgw6SZeUVB3w8QPCkJY9V56
+ l655N8JF2QaFo4cX/BnS6oBaJhWs5U8=
+Received: from mail-pf1-f197.google.com (mail-pf1-f197.google.com
+ [209.85.210.197]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-627-BjbQkaPeMFaXrdyLOSfMwA-1; Wed, 03 Dec 2025 04:38:14 -0500
-X-MC-Unique: BjbQkaPeMFaXrdyLOSfMwA-1
-X-Mimecast-MFC-AGG-ID: BjbQkaPeMFaXrdyLOSfMwA_1764754694
-Received: by mail-pj1-f70.google.com with SMTP id
- 98e67ed59e1d1-3437f0760daso11443533a91.1
- for <intel-xe@lists.freedesktop.org>; Wed, 03 Dec 2025 01:38:14 -0800 (PST)
+ us-mta-686-1o4t21WuM-CjF27sdGmoyQ-1; Wed, 03 Dec 2025 05:29:05 -0500
+X-MC-Unique: 1o4t21WuM-CjF27sdGmoyQ-1
+X-Mimecast-MFC-AGG-ID: 1o4t21WuM-CjF27sdGmoyQ_1764757744
+Received: by mail-pf1-f197.google.com with SMTP id
+ d2e1a72fcca58-7b89c1ce9cfso5851463b3a.2
+ for <intel-xe@lists.freedesktop.org>; Wed, 03 Dec 2025 02:29:05 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1764754694; x=1765359494;
+ d=1e100.net; s=20230601; t=1764757744; x=1765362544;
  h=mime-version:user-agent:content-transfer-encoding:references
  :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
  :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=a+w77Ildsos73JSHLYo9V/bsCaJRDr9Kx8VA915aHZs=;
- b=IQzv1+xKlm+ZoZHNBuSD9HxCxtyejUnmyxJlqRXk3pxXnNU8Cx+rn/ECFcpcTpYz0S
- jxDeiyJX71SItvKnBZWHmocLbRy/bGESIwoTR3Z6DiIHY6L6ooa0c5k2z9ZTDYNGO03g
- cx/3A0HEPE+6/2V1H3vjNGLA7DHEU6DvI+QBUGtlc+pqAnsbcd7MQssFni56QqMJSMDn
- R93x7hd+UhSeN+LrwcHjRx1KBnu4LpxbJ431Er4Noro72U6mTThpJbsrkPPIyLe3eilN
- EQ7LuD5q3rCqweHJ5nVjkVMCmmVUMu8g67mubRvGQMK2jeijf62o0hEAdsMIoTbBoKuY
- +BJw==
+ bh=XGS+mHYG4PrWbToZur3MeIRA7pWGjQeZAp+77QWSays=;
+ b=pcqgGgL29jDWvowH9EgT5da8BErg/q+GFedvM1u0lMxBg8CtxmXGKk3SCEOmCughMF
+ hxijkqV3DjLCk55mx22NNGX9ApIkaUeaO9fXR8haB/Wdlyy4TeEnhIDHbpaH0XT0n+CR
+ Spg2LzLFHc/GtIJwy4bMadE69Y4tGsrKAQksFNCk01+sAKfUkBrNmht1nDBgwb8lSy8y
+ bZNW1bdawDg2htPiup6AtO5EEFBMExrg48u04RBQ1mLrwpRx0BfTI7EmgSeO0vh8dqwZ
+ 5WWUlY6Me4wgdi6FGyfMhjgq4nm0/eMk28uGXVZ2gOmOl46L+0cIOA7I4KkfJyYSgISt
+ B8UA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCWl7xTKxfdPHH5Q4XcYFZ8hvu6zbymWEt3/YgG+dUg6LQgVq9h1QtLV6V1++AuI3Eae8ZJvw8Z8Aw==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzKvuoSpeAKQsGR8qBhSkd9hFrmaof+gW021Bw9ERCevN+fhQ8j
- 8bV3TyFk7BW5ckSLfdP/frFGyCp+tPLrEaSK3ClnN6flhg0u1fTgdx+GTKRcn2y1T29+n5Te/rk
- YRsEVmreDbKwECd+udG3Cuqh9ksKQhhY1ex6DAqrKOIAqQEOYtTSoZquXXjkBZm9X7HIo
-X-Gm-Gg: ASbGnctp8PYHz4JqX8USj2492/+buuqgNZuML1gT/MjQUffClb7nC3E8BORdVPxsjTH
- Lo8Wuvaylo0pLLh6OFB1Y4/Nv4cboE9wN5D6+VXBylyjgrBh3rxRMHPAXvJRnbTD5S7gVHlDIW7
- 1oiTEo2wLjwPlaw8BKekpBSKj+ofNCfjl5VJA+shR2FSrCFbrj3s4yb52GfNkpfmaMDK0EfC7fz
- fLBwlTOBDwQzE4nWq7b+kr1zrz24V0vjIYLctOE41Tq0Irjt9sb4JEnBeVPmlMl5wtb1WhAEGEw
- 6ywhccKDTR8+Y2USk0YmZdpTCvOJ4qb5xK/mH77t+wyDIDklJBCfhlkOmTUsT4VpMg1thY9ddXF
- QYUprnzM9x8XIpwJRQmGp5sYJ/VK2aA1FSiZF
-X-Received: by 2002:a17:90b:4a8b:b0:341:194:5e7a with SMTP id
- 98e67ed59e1d1-349127fdfd5mr2148215a91.29.1764754693701; 
- Wed, 03 Dec 2025 01:38:13 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IHHK2wts2kzWvZhl+wPxT708qRW8MfdhjlnGZTOFggSt5IwPppZAmySo7CXREn6+h8XD58J+w==
-X-Received: by 2002:a17:90b:4a8b:b0:341:194:5e7a with SMTP id
- 98e67ed59e1d1-349127fdfd5mr2148186a91.29.1764754693306; 
- Wed, 03 Dec 2025 01:38:13 -0800 (PST)
+ AJvYcCWjaak2HrTtVHII0CWpdrA2vsu9iHkIepMiJGnUMVql8tz4x/9fcUaxlQRKkOsT3pc6OZGaGFCRMA==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxfKIfjTWSr4fnmps3tpIrBMkddstlM85MPGpHoQBi3Hd5MNZMG
+ sCpTdAFZW657snPUiGI5RBn/yaGhkNztq8NFzhNPbNmtoaSreFotyVlllJuoNNBTnAQ/k3sginA
+ +YOseza8vj97ZUjV34NyFAdkEeKxPwo8JvP0HIrpGpJek6enLnZorCTfByhGnr2j8wXB3
+X-Gm-Gg: ASbGncvEW7p2g853a/AoepncHW2N/4vdsl58kUvG8F4WtSABiNIz1mhXqXcKkE9NQVi
+ yz1bME0M4K33avxBmBGiwnnC7uZpn51firh5ErupjnuVH/39VT4ioQDnuEA3siA7l7ihQo+zIqQ
+ eJeNAbZAL+AWhSJPRj1nF6aQvFF68xnTgSA3b7tDIupG2VWOaXxpJDWVLhgh0Sf0jAtYiZMg+43
+ kwYAyKrBJUBeTiJhvYZp2XZJ12sCsMndZmMuQnFRNUuou103VNcClgRCsCqjlQdvdODFfXMFpBk
+ zS3msqN/M4FwihUE1nMUq+q9r2Akf0q1QTC5cnQ7W3fbqh2w7eOmSPYUq736nJKzjj68hVZGkeL
+ bR3+4AUtEKiteyQDPeA5SJKkoJRPL3KMaskc0
+X-Received: by 2002:a05:6a21:999e:b0:35f:5fc4:d88c with SMTP id
+ adf61e73a8af0-363f5d46ea5mr2380380637.13.1764757744196; 
+ Wed, 03 Dec 2025 02:29:04 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHjYpGTg+jJjhnKyQfPKG1ZG8GVqu/g7JqGfLsAio9vExnMALrh9T3CC5TQzWgOgAIPAFC6Eg==
+X-Received: by 2002:a05:6a21:999e:b0:35f:5fc4:d88c with SMTP id
+ adf61e73a8af0-363f5d46ea5mr2380357637.13.1764757743831; 
+ Wed, 03 Dec 2025 02:29:03 -0800 (PST)
 Received: from [10.200.68.138] (nat-pool-muc-u.redhat.com. [149.14.88.27])
  by smtp.gmail.com with ESMTPSA id
- 41be03b00d2f7-be5095a0e65sm17123269a12.27.2025.12.03.01.38.10
+ d2e1a72fcca58-7d15e7db416sm19564819b3a.41.2025.12.03.02.28.59
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 03 Dec 2025 01:38:12 -0800 (PST)
-Message-ID: <ef4e65dbf13d4de1805ebc791773b597535d525d.camel@redhat.com>
-Subject: Re: [PATCH v7 3/9] drm/xe: Add dedicated message lock
+ Wed, 03 Dec 2025 02:29:03 -0800 (PST)
+Message-ID: <56239a0c6f9a295d0124423c2701afb0de0da0a7.camel@redhat.com>
+Subject: Re: [PATCH v7 2/9] drm/sched: Add pending job list iterator
 From: Philipp Stanner <pstanner@redhat.com>
 To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org
-Date: Wed, 03 Dec 2025 10:38:05 +0100
-In-Reply-To: <20251201183954.852637-4-matthew.brost@intel.com>
+Cc: dri-devel@lists.freedesktop.org, Alex Deucher
+ <alexander.deucher@amd.com>,  Christian =?ISO-8859-1?Q?K=F6nig?=
+ <christian.koenig@amd.com>, dakr@kernel.org
+Date: Wed, 03 Dec 2025 11:28:54 +0100
+In-Reply-To: <0088fe0dd0d62b876d77b0f9e3a1c7586bdc5557.camel@redhat.com>
 References: <20251201183954.852637-1-matthew.brost@intel.com>
- <20251201183954.852637-4-matthew.brost@intel.com>
+ <20251201183954.852637-3-matthew.brost@intel.com>
+ <0088fe0dd0d62b876d77b0f9e3a1c7586bdc5557.camel@redhat.com>
 User-Agent: Evolution 3.52.4 (3.52.4-2.fc40)
 MIME-Version: 1.0
 X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: NX0U7-fmAt4hKzVIBRlmcy0Dz90HHLvtp4EdKN-inLY_1764754694
+X-Mimecast-MFC-PROC-ID: renKRIOHQmCPn6cXpvlzIDadeKSbgJMwvPUkR8Y0C50_1764757744
 X-Mimecast-Originator: redhat.com
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -100,95 +103,55 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 2025-12-01 at 10:39 -0800, Matthew Brost wrote:
-> Stop abusing DRM scheduler job list lock for messages, add dedicated
-> message lock.
+On Wed, 2025-12-03 at 10:07 +0100, Philipp Stanner wrote:
+> +Cc Alex, Christian, Danilo
 >=20
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> Reviewed-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.c=
-om>
-
-Nice! Me gusta.
-
-
-Acked-by: Philipp Stanner <phasta@kernel.org>
-
-> ---
-> =C2=A0drivers/gpu/drm/xe/xe_gpu_scheduler.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 | 5 +++--
-> =C2=A0drivers/gpu/drm/xe/xe_gpu_scheduler.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 | 4 ++--
-> =C2=A0drivers/gpu/drm/xe/xe_gpu_scheduler_types.h | 2 ++
-> =C2=A03 files changed, 7 insertions(+), 4 deletions(-)
 >=20
-> diff --git a/drivers/gpu/drm/xe/xe_gpu_scheduler.c b/drivers/gpu/drm/xe/x=
-e_gpu_scheduler.c
-> index f91e06d03511..f4f23317191f 100644
-> --- a/drivers/gpu/drm/xe/xe_gpu_scheduler.c
-> +++ b/drivers/gpu/drm/xe/xe_gpu_scheduler.c
-> @@ -77,6 +77,7 @@ int xe_sched_init(struct xe_gpu_scheduler *sched,
-> =C2=A0=09};
-> =C2=A0
-> =C2=A0=09sched->ops =3D xe_ops;
-> +=09spin_lock_init(&sched->msg_lock);
-> =C2=A0=09INIT_LIST_HEAD(&sched->msgs);
-> =C2=A0=09INIT_WORK(&sched->work_process_msg, xe_sched_process_msg_work);
-> =C2=A0
-> @@ -117,7 +118,7 @@ void xe_sched_add_msg(struct xe_gpu_scheduler *sched,
-> =C2=A0void xe_sched_add_msg_locked(struct xe_gpu_scheduler *sched,
-> =C2=A0=09=09=09=C2=A0=C2=A0=C2=A0=C2=A0 struct xe_sched_msg *msg)
-> =C2=A0{
-> -=09lockdep_assert_held(&sched->base.job_list_lock);
-> +=09lockdep_assert_held(&sched->msg_lock);
-> =C2=A0
-> =C2=A0=09list_add_tail(&msg->link, &sched->msgs);
-> =C2=A0=09xe_sched_process_msg_queue(sched);
-> @@ -131,7 +132,7 @@ void xe_sched_add_msg_locked(struct xe_gpu_scheduler =
-*sched,
-> =C2=A0void xe_sched_add_msg_head(struct xe_gpu_scheduler *sched,
-> =C2=A0=09=09=09=C2=A0=C2=A0 struct xe_sched_msg *msg)
-> =C2=A0{
-> -=09lockdep_assert_held(&sched->base.job_list_lock);
-> +=09lockdep_assert_held(&sched->msg_lock);
-> =C2=A0
-> =C2=A0=09list_add(&msg->link, &sched->msgs);
-> =C2=A0=09xe_sched_process_msg_queue(sched);
-> diff --git a/drivers/gpu/drm/xe/xe_gpu_scheduler.h b/drivers/gpu/drm/xe/x=
-e_gpu_scheduler.h
-> index c7a77a3a9681..dceb2cd0ee5b 100644
-> --- a/drivers/gpu/drm/xe/xe_gpu_scheduler.h
-> +++ b/drivers/gpu/drm/xe/xe_gpu_scheduler.h
-> @@ -33,12 +33,12 @@ void xe_sched_add_msg_head(struct xe_gpu_scheduler *s=
-ched,
-> =C2=A0
-> =C2=A0static inline void xe_sched_msg_lock(struct xe_gpu_scheduler *sched=
-)
-> =C2=A0{
-> -=09spin_lock(&sched->base.job_list_lock);
-> +=09spin_lock(&sched->msg_lock);
-> =C2=A0}
-> =C2=A0
-> =C2=A0static inline void xe_sched_msg_unlock(struct xe_gpu_scheduler *sch=
-ed)
-> =C2=A0{
-> -=09spin_unlock(&sched->base.job_list_lock);
-> +=09spin_unlock(&sched->msg_lock);
-> =C2=A0}
-> =C2=A0
-> =C2=A0static inline void xe_sched_stop(struct xe_gpu_scheduler *sched)
-> diff --git a/drivers/gpu/drm/xe/xe_gpu_scheduler_types.h b/drivers/gpu/dr=
-m/xe/xe_gpu_scheduler_types.h
-> index 6731b13da8bb..63d9bf92583c 100644
-> --- a/drivers/gpu/drm/xe/xe_gpu_scheduler_types.h
-> +++ b/drivers/gpu/drm/xe/xe_gpu_scheduler_types.h
-> @@ -47,6 +47,8 @@ struct xe_gpu_scheduler {
-> =C2=A0=09const struct xe_sched_backend_ops=09*ops;
-> =C2=A0=09/** @msgs: list of messages to be processed in @work_process_msg=
- */
-> =C2=A0=09struct list_head=09=09=09msgs;
-> +=09/** @msg_lock: Message lock */
-> +=09spinlock_t=09=09=09=09msg_lock;
-> =C2=A0=09/** @work_process_msg: processes messages */
-> =C2=A0=09struct work_struct=09=09work_process_msg;
-> =C2=A0};
+> On Mon, 2025-12-01 at 10:39 -0800, Matthew Brost wrote:
+> >=20
+
+[=E2=80=A6]
+
+> > +
+> > +/**
+> > + * drm_sched_for_each_pending_job() - Iterator for each pending job in=
+ scheduler
+> > + * @__job: Current pending job being iterated over
+> > + * @__sched: DRM scheduler to iterate over pending jobs
+> > + * @__entity: DRM scheduler entity to filter jobs, NULL indicates no f=
+ilter
+> > + *
+> > + * Iterator for each pending job in scheduler, filtering on an entity,=
+ and
+> > + * enforcing scheduler is fully stopped
+> > + */
+> > +#define drm_sched_for_each_pending_job(__job, __sched, __entity)=09=09=
+\
+> > +=09scoped_guard(drm_sched_pending_job_iter, (__sched))=09=09=09\
+> > +=09=09list_for_each_entry((__job), &(__sched)->pending_list, list)=09\
+> > +=09=09=09for_each_if(!(__entity) || (__job)->entity =3D=3D (__entity))
+> > +
+> > =C2=A0#endif
+>=20
+>=20
+> See my comments in the first patch. The docu doesn't mention at all why
+> this new functionality exists and when and why users would be expected
+> to use it.
+>=20
+> As far as I remember from XDC, both AMD and Intel overwrite a timed out
+> jobs buffer data in the rings on GPU reset. To do so, the driver needs
+> the timedout job (passed through timedout_job() callback) and then
+> needs all the pending non-broken jobs.
+>=20
+> AFAICS your patch provides a generic iterator over the entire
+> pending_list. How is a driver then supposed to determine which are the
+> non-broken jobs (just asking, but that needs to be documented)?
+>=20
+> Could it make sense to use a different iterator which only returns jobs
+> of not belonging to the same context as the timedout-one?
+
+(forget about that comment, you do that with the entity-filter
+obviously)
+
+P.
 
