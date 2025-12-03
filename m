@@ -4,52 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CBA15D12D60
-	for <intel-xe@archiver.kernel.org>; Wed,  3 Dec 2025 14:12:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4DE0FD12D60
+	for <intel-xe@archiver.kernel.org>; Wed,  3 Dec 2025 14:18:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8FB5010E7FA;
-	Wed,  3 Dec 2025 14:12:40 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ioHfSRYY";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8F4B010E77A;
- Wed,  3 Dec 2025 14:12:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1764771160; x=1796307160;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=68FSMuAFVC826nYzlI0PjNhV7hq+UK0FBnwFlLnrqeQ=;
- b=ioHfSRYYf4MUUSHO1knBclOs9AybjwwmjnEUQOkaSkdJ4zUlicV9nDay
- JIebBG1gfAoaULmE21GpFSsmbI7z5F9EuRctnlVygyND6IqMdUePAbFWe
- W93QQzFIyW6XW7NAQJSMRXRZu1l2iSB/gigXQep9OUmnjUo91Pfq0pCrz
- bRPHzyUGInQUx4Z7zH+kVqr9HwUnkxrTUxuPogsciilFhcv9pSzrjrQ1i
- rnyO1SS3MUpMtGujYBwleQsWxrnzqGK7WAyffeHALztfTA56wLZxvy7oF
- 6rXA8F+YELv+Twwk5QYcrBmRZt8+0GEF2jNHho11Nl3nkPPXK9V41InD0 A==;
-X-CSE-ConnectionGUID: gWOmCQq6R1+u1A6MdDSkAA==
-X-CSE-MsgGUID: mpB3qweCQLqa7/W6AKdWeQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11631"; a="66654784"
-X-IronPort-AV: E=Sophos;i="6.20,246,1758610800"; d="scan'208";a="66654784"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Dec 2025 06:12:39 -0800
-X-CSE-ConnectionGUID: 3iMQXKmVQe2478201iqQ8A==
-X-CSE-MsgGUID: rqq+X0VoTt2lf7iQSxZEww==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,246,1758610800"; d="scan'208";a="194351416"
-Received: from dut-2a59.iind.intel.com ([10.190.239.113])
- by fmviesa007.fm.intel.com with ESMTP; 03 Dec 2025 06:12:38 -0800
-From: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Subject: [Core-for-CI] fs: PM: Fix reverse check in
- filesystems_freeze_callback()
-Date: Wed,  3 Dec 2025 19:25:51 +0530
-Message-Id: <20251203135551.2629298-1-chaitanya.kumar.borah@intel.com>
-X-Mailer: git-send-email 2.25.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id 00F3210E77A;
+	Wed,  3 Dec 2025 14:18:08 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1FDEA10E77A;
+ Wed,  3 Dec 2025 14:18:07 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_fs=3A_PM=3A_Fix_reverse_c?=
+ =?utf-8?q?heck_in_filesystems=5Ffreeze=5Fcallback=28=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chaitanya Kumar Borah" <chaitanya.kumar.borah@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 03 Dec 2025 14:18:07 -0000
+Message-ID: <176477148712.53828.11014531337871002363@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20251203135551.2629298-1-chaitanya.kumar.borah@intel.com>
+In-Reply-To: <20251203135551.2629298-1-chaitanya.kumar.borah@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,47 +36,62 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>
+== Series Details ==
 
-The freeze_all_ptr check in filesystems_freeze_callback() introduced by
-commit a3f8f8662771 ("power: always freeze efivarfs") is reverse which
-quite confusingly causes all file systems to be frozen when
-filesystem_freeze_enabled is false.
+Series: fs: PM: Fix reverse check in filesystems_freeze_callback()
+URL   : https://patchwork.freedesktop.org/series/158444/
+State : warning
 
-On my systems it causes the WARN_ON_ONCE() in __set_task_frozen() to
-trigger, most likely due to an attempt to freeze a file system that is
-not ready for that.
+== Summary ==
 
-Add a logical negation to the check in question to reverse it as
-appropriate.
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+2de9a3901bc28757c7906b454717b64e2a214021
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 48cf4bf5955cbb28c974cecec447384e91c59a90
+Author: Rafael J. Wysocki <rafael.j.wysocki@intel.com>
+Date:   Wed Dec 3 19:25:51 2025 +0530
 
-Fixes: a3f8f8662771 ("power: always freeze efivarfs")
+    fs: PM: Fix reverse check in filesystems_freeze_callback()
+    
+    The freeze_all_ptr check in filesystems_freeze_callback() introduced by
+    commit a3f8f8662771 ("power: always freeze efivarfs") is reverse which
+    quite confusingly causes all file systems to be frozen when
+    filesystem_freeze_enabled is false.
+    
+    On my systems it causes the WARN_ON_ONCE() in __set_task_frozen() to
+    trigger, most likely due to an attempt to freeze a file system that is
+    not ready for that.
+    
+    Add a logical negation to the check in question to reverse it as
+    appropriate.
+    
+    Fixes: a3f8f8662771 ("power: always freeze efivarfs")
+    Cc: 6.18+ <stable@vger.kernel.org> # 6.18+
+    Link: https://lore.kernel.org/linux-pm/12788397.O9o76ZdvQC@rafael.j.wysocki/
+    References: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15341
+    Signed-off-by: Rafael J. Wysocki <rafael.j.wysocki@intel.com>
+    Reviewed-by: Jan Kara <jack@suse.cz>
+    Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
++ /mt/dim checkpatch 6ef847703ac6da2deaaf735ce95369ba25c2c432 drm-intel
+48cf4bf5955c fs: PM: Fix reverse check in filesystems_freeze_callback()
+-:19: WARNING:BAD_STABLE_ADDRESS_STYLE: Invalid email format for stable: '6.18+ <stable@vger.kernel.org> # 6.18+', prefer 'stable@vger.kernel.org # 6.18+'
+#19: 
 Cc: 6.18+ <stable@vger.kernel.org> # 6.18+
-Link: https://lore.kernel.org/linux-pm/12788397.O9o76ZdvQC@rafael.j.wysocki/
-References: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15341
-Signed-off-by: Rafael J. Wysocki <rafael.j.wysocki@intel.com>
-Reviewed-by: Jan Kara <jack@suse.cz>
-Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
----
- fs/super.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/fs/super.c b/fs/super.c
-index 277b84e5c279..4c79f170ac0d 100644
---- a/fs/super.c
-+++ b/fs/super.c
-@@ -1188,7 +1188,7 @@ static void filesystems_freeze_callback(struct super_block *sb, void *freeze_all
- 	if (!sb->s_op->freeze_fs && !sb->s_op->freeze_super)
- 		return;
- 
--	if (freeze_all_ptr && !(sb->s_type->fs_flags & FS_POWER_FREEZE))
-+	if (!freeze_all_ptr && !(sb->s_type->fs_flags & FS_POWER_FREEZE))
- 		return;
- 
- 	if (!get_active_super(sb))
--- 
-2.25.1
+-:21: WARNING:COMMIT_LOG_USE_LINK: Unknown link reference 'References:', use 'Link:' or 'Closes:' instead
+#21: 
+References: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15341
+
+total: 0 errors, 2 warnings, 0 checks, 8 lines checked
+
 
