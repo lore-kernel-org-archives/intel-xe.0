@@ -4,27 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 92AB8D12689
-	for <intel-xe@archiver.kernel.org>; Wed,  3 Dec 2025 00:18:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 249A7D12688
+	for <intel-xe@archiver.kernel.org>; Wed,  3 Dec 2025 00:48:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5533C10E002;
-	Wed,  3 Dec 2025 00:18:34 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 89BEE10E002;
- Wed,  3 Dec 2025 00:18:33 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6675168443661346392=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id DCA2B10E700;
+	Wed,  3 Dec 2025 00:48:05 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FVbpRwJ8";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8C25C10E6F7
+ for <intel-xe@lists.freedesktop.org>; Wed,  3 Dec 2025 00:48:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1764722886; x=1796258886;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=szduZLgCkzV/05ceFkMWyRe8oZH/ovOfI/kQfXdHbJs=;
+ b=FVbpRwJ8bHH2UzXyp8AVLQK+WrPNyIBYFsqAFtLg04RkxwbvBNy6oo9b
+ FcNPxGW6dCfARrkiFgZDhlLt/CBx2A2+dghZWxT6GLFkuNXGQWvzp9iPH
+ OU92AMe2Uw2spTqzGPFIJ7QGjpRLQ6k7hcXgScr/hgjs7d4WGkqXADU9u
+ FMytDuV9OUIV8NTB4P6JUIJc/Tc2CiZf5BcQO9ur05F7cN4w6dxTEPR2S
+ P8pnZRZSiFzRBx9oaFjfyIIFuIAPDRRnMnc8FcGaNmu8wKZweQgN6Uzph
+ XoBUAW3M8MJXQ+rnKU1otoihu9WHwR0YkCox29ZR4vDlz+w9TMp9HVkqS A==;
+X-CSE-ConnectionGUID: /QBHoqXHQjWd90afdkUZNw==
+X-CSE-MsgGUID: a84x7B+mT2u9rwUlLeB0yg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11631"; a="65895338"
+X-IronPort-AV: E=Sophos;i="6.20,244,1758610800"; d="scan'208";a="65895338"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Dec 2025 16:48:05 -0800
+X-CSE-ConnectionGUID: hWrHBnT9QQe4fehRoDZJ1w==
+X-CSE-MsgGUID: jE4vUwCLTB61d/5WnLJVNw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.20,244,1758610800"; d="scan'208";a="194340513"
+Received: from unerlige-desk1.jf.intel.com ([10.88.27.165])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Dec 2025 16:48:05 -0800
+From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: badal.nilawar@intel.com, ashutosh.dixit@intel.com, anoop.c.vijay@intel.com
+Subject: [PATCH v3 0/3] Add SoC remapper support for system controller
+Date: Tue,  2 Dec 2025 16:48:01 -0800
+Message-ID: <20251203004800.1993258-5-umesh.nerlige.ramappa@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/sync=3A_Use_for=5Fea?=
- =?utf-8?q?ch=5Ftlb=5Finval=28=29_to_calculate_invalidation_fences?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matt Roper" <matthew.d.roper@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 03 Dec 2025 00:18:33 -0000
-Message-ID: <176472111355.52097.11816891492407639686@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20251202222551.1858930-2-matthew.d.roper@intel.com>
-In-Reply-To: <20251202222551.1858930-2-matthew.d.roper@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,125 +61,41 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============6675168443661346392==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Add system controller configuration using SoC remapper for Xe3p
 
-== Series Details ==
+v2:
+- s/remapper/soc_remapper/
+- return status from init during probe
+- reorder patches 1 and 2 from earlier series
+- fix copyright year
+- retain comment
+- s/BITS/MASK/
 
-Series: drm/xe/sync: Use for_each_tlb_inval() to calculate invalidation fences
-URL   : https://patchwork.freedesktop.org/series/158409/
-State : success
+Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 
-== Summary ==
+Umesh Nerlige Ramappa (3):
+  drm/xe/soc_remapper: Initialize SoC remapper during Xe probe
+  drm/xe/soc_remapper: Use SoC remapper herlper from VSEC code
+  drm/xe/soc_remapper: Add system controller config for SoC remapper
 
-CI Bug Log - changes from xe-4181-d0b9c57f3b8531d4ea5f9b1ca93756c8c7d55ea3_BAT -> xe-pw-158409v1_BAT
-====================================================
+ drivers/gpu/drm/xe/Makefile                   |  1 +
+ drivers/gpu/drm/xe/regs/xe_pmt.h              |  3 -
+ .../gpu/drm/xe/regs/xe_soc_remapper_regs.h    | 14 +++++
+ drivers/gpu/drm/xe/xe_device.c                |  5 ++
+ drivers/gpu/drm/xe/xe_device_types.h          |  8 +++
+ drivers/gpu/drm/xe/xe_pci.c                   |  2 +
+ drivers/gpu/drm/xe/xe_pci_types.h             |  2 +
+ drivers/gpu/drm/xe/xe_soc_remapper.c          | 59 +++++++++++++++++++
+ drivers/gpu/drm/xe/xe_soc_remapper.h          | 15 +++++
+ drivers/gpu/drm/xe/xe_vsec.c                  |  4 +-
+ 10 files changed, 108 insertions(+), 5 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/regs/xe_soc_remapper_regs.h
+ create mode 100644 drivers/gpu/drm/xe/xe_soc_remapper.c
+ create mode 100644 drivers/gpu/drm/xe/xe_soc_remapper.h
 
-Summary
--------
+-- 
+2.43.0
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (11 -> 11)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-158409v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@xe_waitfence@reltime:
-    - bat-dg2-oem2:       [FAIL][1] ([Intel XE#6520]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4181-d0b9c57f3b8531d4ea5f9b1ca93756c8c7d55ea3/bat-dg2-oem2/igt@xe_waitfence@reltime.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158409v1/bat-dg2-oem2/igt@xe_waitfence@reltime.html
-
-  
-  [Intel XE#6520]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520
-
-
-Build changes
--------------
-
-  * Linux: xe-4181-d0b9c57f3b8531d4ea5f9b1ca93756c8c7d55ea3 -> xe-pw-158409v1
-
-  IGT_8649: f76e05461c8d5938856ed75ac8668640946f9ecd @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-4181-d0b9c57f3b8531d4ea5f9b1ca93756c8c7d55ea3: d0b9c57f3b8531d4ea5f9b1ca93756c8c7d55ea3
-  xe-pw-158409v1: 158409v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158409v1/index.html
-
---===============6675168443661346392==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/sync: Use for_each_tlb_inval() to calculate invalidation fences</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/158409/">https://patchwork.freedesktop.org/series/158409/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158409v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158409v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4181-d0b9c57f3b8531d4ea5f9b1ca93756c8c7d55ea3_BAT -&gt; xe-pw-158409v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (11 -&gt; 11)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-158409v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_waitfence@reltime:<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4181-d0b9c57f3b8531d4ea5f9b1ca93756c8c7d55ea3/bat-dg2-oem2/igt@xe_waitfence@reltime.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520">Intel XE#6520</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158409v1/bat-dg2-oem2/igt@xe_waitfence@reltime.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4181-d0b9c57f3b8531d4ea5f9b1ca93756c8c7d55ea3 -&gt; xe-pw-158409v1</li>
-</ul>
-<p>IGT_8649: f76e05461c8d5938856ed75ac8668640946f9ecd @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-4181-d0b9c57f3b8531d4ea5f9b1ca93756c8c7d55ea3: d0b9c57f3b8531d4ea5f9b1ca93756c8c7d55ea3<br />
-  xe-pw-158409v1: 158409v1</p>
-
-</body>
-</html>
-
---===============6675168443661346392==--
