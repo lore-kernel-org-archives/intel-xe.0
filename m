@@ -4,58 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8C255D1266D
-	for <intel-xe@archiver.kernel.org>; Wed,  3 Dec 2025 08:41:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 41233D1266D
+	for <intel-xe@archiver.kernel.org>; Wed,  3 Dec 2025 08:47:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2ADD410E76F;
-	Wed,  3 Dec 2025 08:41:35 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TFjQo6zx";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A4EAF10E76F;
- Wed,  3 Dec 2025 08:41:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1764751294; x=1796287294;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=QKj7fd1JCjbONApODtT3ieyaipo3/rEpvFxB/uWNszY=;
- b=TFjQo6zx1EREFznVahDP6X45kbE7YYnYVsbU8r2vFPoIHfHmOGC6Sbsz
- 1mwO9LuaBAgBLOdpJodVdp2AKRPAyPNaManUCLUYPnfLl1uVkGaSGPjHS
- fphGMhDAM4s3VbbQIDx4R2ElwECRPulYE3vHVU/cgpmwexW8SWN1aZIY6
- XwJd2MYTF1ey0iYB9Tqu5ZXb1L4ltF/4iWLg2n+UMEJSizPl9IPA1neqb
- z4QkUiA+8rzqSuGzXzTSVPLmJQgRAl8akOL9/9QuoR0tV0oNPwKlFwCiC
- S98k1PY9mFGYvLVf73bd1LgdF08FZsFs7eos6/kGj7pfhUfXK14qMCBme w==;
-X-CSE-ConnectionGUID: U9fcSzaLQbuVlOiTCfxM9A==
-X-CSE-MsgGUID: cPBf6qdESiS3twzmNSTUsQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11631"; a="66458248"
-X-IronPort-AV: E=Sophos;i="6.20,245,1758610800"; d="scan'208";a="66458248"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Dec 2025 00:41:33 -0800
-X-CSE-ConnectionGUID: 4Ukjq77yR3uNGeALGP/uIA==
-X-CSE-MsgGUID: MSnARRFpQxKeBElFzEWoFA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,245,1758610800"; d="scan'208";a="217945649"
-Received: from cfl-desktop.iind.intel.com ([10.190.239.20])
- by fmviesa002.fm.intel.com with ESMTP; 03 Dec 2025 00:41:27 -0800
-From: Uma Shankar <uma.shankar@intel.com>
-To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Cc: chaitanya.kumar.borah@intel.com, ville.syrjala@linux.intel.com,
- pekka.paalanen@collabora.com, contact@emersion.fr, harry.wentland@amd.com,
- mwen@igalia.com, jadahl@redhat.com, sebastian.wick@redhat.com,
- swati2.sharma@intel.com, alex.hung@amd.com, jani.nikula@intel.com,
- suraj.kandpal@intel.com, Uma Shankar <uma.shankar@intel.com>
-Subject: [v8 15/15] drm/i915/color: Enable Plane Color Pipelines
-Date: Wed,  3 Dec 2025 14:22:11 +0530
-Message-ID: <20251203085211.3663374-16-uma.shankar@intel.com>
-X-Mailer: git-send-email 2.50.1
-In-Reply-To: <20251203085211.3663374-1-uma.shankar@intel.com>
-References: <20251203085211.3663374-1-uma.shankar@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id EB5A210E771;
+	Wed,  3 Dec 2025 08:47:14 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6C58B10E0F3;
+ Wed,  3 Dec 2025 08:47:13 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Plane_Color_Pipeline_supp?=
+ =?utf-8?q?ort_for_Intel_platforms_=28rev7=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Uma Shankar" <uma.shankar@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 03 Dec 2025 08:47:13 -0000
+Message-ID: <176475163343.53051.7900465842299330565@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20251203085211.3663374-1-uma.shankar@intel.com>
+In-Reply-To: <20251203085211.3663374-1-uma.shankar@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,112 +36,274 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Expose color pipeline and add ability to program it.
+== Series Details ==
 
-v2: Set bit to enable multisegmented lut
-v3: s/drm_color_lut_32/drm_color_lut32 (Simon)
-v4: - Fix dsb programming
-    - Remove multi-segment LUT, they will be added in later patches
-    - Add pipeline only to TGL+
-    - Code Refactor
+Series: Plane Color Pipeline support for Intel platforms (rev7)
+URL   : https://patchwork.freedesktop.org/series/141788/
+State : warning
 
-Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
-Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
-Signed-off-by: Uma Shankar <uma.shankar@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display.c  |  5 ++++-
- .../drm/i915/display/skl_universal_plane.c    | 21 +++++++++++++++++++
- 2 files changed, 25 insertions(+), 1 deletion(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index de8ae14e06cd..9c6d3ecdb589 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -7298,6 +7298,7 @@ static void intel_atomic_dsb_finish(struct intel_atomic_state *state,
- 	struct intel_display *display = to_intel_display(state);
- 	struct intel_crtc_state *new_crtc_state =
- 		intel_atomic_get_new_crtc_state(state, crtc);
-+	unsigned int size = new_crtc_state->plane_color_changed ? 8192 : 1024;
- 
- 	if (!new_crtc_state->use_flipq &&
- 	    !new_crtc_state->use_dsb &&
-@@ -7308,10 +7309,12 @@ static void intel_atomic_dsb_finish(struct intel_atomic_state *state,
- 	 * Rough estimate:
- 	 * ~64 registers per each plane * 8 planes = 512
- 	 * Double that for pipe stuff and other overhead.
-+	 * ~4913 registers for 3DLUT
-+	 * ~200 color registers * 3 HDR planes
- 	 */
- 	new_crtc_state->dsb_commit = intel_dsb_prepare(state, crtc, INTEL_DSB_0,
- 						       new_crtc_state->use_dsb ||
--						       new_crtc_state->use_flipq ? 1024 : 16);
-+						       new_crtc_state->use_flipq ? size : 16);
- 	if (!new_crtc_state->dsb_commit) {
- 		new_crtc_state->use_flipq = false;
- 		new_crtc_state->use_dsb = false;
-diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-index d38582af6b39..4db350203999 100644
---- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-+++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-@@ -10,6 +10,8 @@
- #include <drm/drm_print.h>
- 
- #include "intel_bo.h"
-+#include "intel_color.h"
-+#include "intel_color_pipeline.h"
- #include "intel_de.h"
- #include "intel_display_irq.h"
- #include "intel_display_regs.h"
-@@ -1274,6 +1276,18 @@ static u32 glk_plane_color_ctl(const struct intel_plane_state *plane_state)
- 	if (plane_state->force_black)
- 		plane_color_ctl |= PLANE_COLOR_PLANE_CSC_ENABLE;
- 
-+	if (plane_state->hw.degamma_lut)
-+		plane_color_ctl |= PLANE_COLOR_PRE_CSC_GAMMA_ENABLE;
-+
-+	if (plane_state->hw.ctm)
-+		plane_color_ctl |= PLANE_COLOR_PLANE_CSC_ENABLE;
-+
-+	if (plane_state->hw.gamma_lut) {
-+		plane_color_ctl &= ~PLANE_COLOR_PLANE_GAMMA_DISABLE;
-+		if (drm_color_lut32_size(plane_state->hw.gamma_lut) != 32)
-+			plane_color_ctl |= PLANE_COLOR_POST_CSC_GAMMA_MULTSEG_ENABLE;
-+	}
-+
- 	return plane_color_ctl;
- }
- 
-@@ -1555,6 +1569,8 @@ icl_plane_update_noarm(struct intel_dsb *dsb,
- 	plane_color_ctl = plane_state->color_ctl |
- 		glk_plane_color_ctl_crtc(crtc_state);
- 
-+	intel_color_plane_program_pipeline(dsb, plane_state);
-+
- 	/* The scaler will handle the output position */
- 	if (plane_state->scaler_id >= 0) {
- 		crtc_x = 0;
-@@ -1656,6 +1672,8 @@ icl_plane_update_arm(struct intel_dsb *dsb,
- 
- 	icl_plane_update_sel_fetch_arm(dsb, plane, crtc_state, plane_state);
- 
-+	intel_color_plane_commit_arm(dsb, plane_state);
-+
- 	/*
- 	 * In order to have FBC for fp16 formats pixel normalizer block must be
- 	 * active. Check if pixel normalizer block need to be enabled for FBC.
-@@ -3000,6 +3018,9 @@ skl_universal_plane_create(struct intel_display *display,
- 					  DRM_COLOR_YCBCR_BT709,
- 					  DRM_COLOR_YCBCR_LIMITED_RANGE);
- 
-+	if (DISPLAY_VER(display) >= 12)
-+		intel_color_pipeline_plane_init(&plane->base, pipe);
-+
- 	drm_plane_create_alpha_property(&plane->base);
- 	drm_plane_create_blend_mode_property(&plane->base,
- 					     BIT(DRM_MODE_BLEND_PIXEL_NONE) |
--- 
-2.50.1
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+2de9a3901bc28757c7906b454717b64e2a214021
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 4517659f8a22a104a59fea48b387ccbb7728f747
+Author: Uma Shankar <uma.shankar@intel.com>
+Date:   Wed Dec 3 14:22:11 2025 +0530
+
+    drm/i915/color: Enable Plane Color Pipelines
+    
+    Expose color pipeline and add ability to program it.
+    
+    v2: Set bit to enable multisegmented lut
+    v3: s/drm_color_lut_32/drm_color_lut32 (Simon)
+    v4: - Fix dsb programming
+        - Remove multi-segment LUT, they will be added in later patches
+        - Add pipeline only to TGL+
+        - Code Refactor
+    
+    Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
+    Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+    Signed-off-by: Uma Shankar <uma.shankar@intel.com>
++ /mt/dim checkpatch 6a00c52137a5a8eb36cb762d4649abe16cc0ca33 drm-intel
+02a328eb8dea drm/i915/display: Add identifiers for driver specific blocks
+a03bffefe7ef drm/i915: Add intel_color_op
+-:31: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#31: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 48 lines checked
+07493f2083e2 drm/i915/color: Add helper to create intel colorop
+24bbf2706833 drm/i915/color: Create a transfer function color pipeline
+-:45: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#45: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 107 lines checked
+f7c16851a9e8 drm/i915/color: Add framework to program CSC
+ad401335ee52 drm/i915/color: Preserve sign bit when int_bits is Zero
+72445df0785e drm/i915/color: Add plane CTM callback for D12 and beyond
+6e419b73912c drm/i915: Add register definitions for Plane Degamma
+-:41: WARNING:LONG_LINE: line length of 104 exceeds 100 columns
+#41: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:300:
++#define _PLANE_PRE_CSC_GAMC_INDEX_ENH_1(pipe)		_PIPE(pipe, _PLANE_PRE_CSC_GAMC_INDEX_ENH_1_A, \
+
+-:43: WARNING:LONG_LINE: line length of 104 exceeds 100 columns
+#43: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:302:
++#define _PLANE_PRE_CSC_GAMC_INDEX_ENH_2(pipe)		_PIPE(pipe, _PLANE_PRE_CSC_GAMC_INDEX_ENH_2_A, \
+
+-:45: WARNING:LONG_LINE: line length of 123 exceeds 100 columns
+#45: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:304:
++#define PLANE_PRE_CSC_GAMC_INDEX_ENH(pipe, plane, i)	_MMIO_PLANE_GAMC(plane, i, _PLANE_PRE_CSC_GAMC_INDEX_ENH_1(pipe), \
+
+-:45: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pipe' - possible side-effects?
+#45: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:304:
++#define PLANE_PRE_CSC_GAMC_INDEX_ENH(pipe, plane, i)	_MMIO_PLANE_GAMC(plane, i, _PLANE_PRE_CSC_GAMC_INDEX_ENH_1(pipe), \
++									 _PLANE_PRE_CSC_GAMC_INDEX_ENH_2(pipe))
+
+-:46: WARNING:LONG_LINE: line length of 111 exceeds 100 columns
+#46: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:305:
++									 _PLANE_PRE_CSC_GAMC_INDEX_ENH_2(pipe))
+
+-:53: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
+#53: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:312:
++#define _PLANE_PRE_CSC_GAMC_DATA_ENH_1(pipe)		_PIPE(pipe, _PLANE_PRE_CSC_GAMC_DATA_ENH_1_A, \
+
+-:55: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
+#55: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:314:
++#define _PLANE_PRE_CSC_GAMC_DATA_ENH_2(pipe)		_PIPE(pipe, _PLANE_PRE_CSC_GAMC_DATA_ENH_2_A, \
+
+-:57: WARNING:LONG_LINE: line length of 122 exceeds 100 columns
+#57: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:316:
++#define PLANE_PRE_CSC_GAMC_DATA_ENH(pipe, plane, i)	_MMIO_PLANE_GAMC(plane, i, _PLANE_PRE_CSC_GAMC_DATA_ENH_1(pipe), \
+
+-:57: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pipe' - possible side-effects?
+#57: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:316:
++#define PLANE_PRE_CSC_GAMC_DATA_ENH(pipe, plane, i)	_MMIO_PLANE_GAMC(plane, i, _PLANE_PRE_CSC_GAMC_DATA_ENH_1(pipe), \
++									 _PLANE_PRE_CSC_GAMC_DATA_ENH_2(pipe))
+
+-:58: WARNING:LONG_LINE: line length of 110 exceeds 100 columns
+#58: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:317:
++									 _PLANE_PRE_CSC_GAMC_DATA_ENH_2(pipe))
+
+-:68: WARNING:LONG_LINE: line length of 119 exceeds 100 columns
+#68: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:327:
++#define PLANE_PRE_CSC_GAMC_INDEX(pipe, plane, i)	_MMIO_PLANE_GAMC(plane, i, _PLANE_PRE_CSC_GAMC_INDEX_1(pipe), \
+
+-:68: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pipe' - possible side-effects?
+#68: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:327:
++#define PLANE_PRE_CSC_GAMC_INDEX(pipe, plane, i)	_MMIO_PLANE_GAMC(plane, i, _PLANE_PRE_CSC_GAMC_INDEX_1(pipe), \
++									 _PLANE_PRE_CSC_GAMC_INDEX_2(pipe))
+
+-:69: WARNING:LONG_LINE: line length of 107 exceeds 100 columns
+#69: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:328:
++									 _PLANE_PRE_CSC_GAMC_INDEX_2(pipe))
+
+-:79: WARNING:LONG_LINE: line length of 118 exceeds 100 columns
+#79: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:338:
++#define PLANE_PRE_CSC_GAMC_DATA(pipe, plane, i)		_MMIO_PLANE_GAMC(plane, i, _PLANE_PRE_CSC_GAMC_DATA_1(pipe), \
+
+-:79: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pipe' - possible side-effects?
+#79: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:338:
++#define PLANE_PRE_CSC_GAMC_DATA(pipe, plane, i)		_MMIO_PLANE_GAMC(plane, i, _PLANE_PRE_CSC_GAMC_DATA_1(pipe), \
++									 _PLANE_PRE_CSC_GAMC_DATA_2(pipe))
+
+-:80: WARNING:LONG_LINE: line length of 106 exceeds 100 columns
+#80: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:339:
++									 _PLANE_PRE_CSC_GAMC_DATA_2(pipe))
+
+total: 0 errors, 12 warnings, 4 checks, 60 lines checked
+f2ea0dd78975 drm/i915: Add register definitions for Plane Post CSC
+-:39: WARNING:LONG_LINE: line length of 118 exceeds 100 columns
+#39: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:301:
++#define _PLANE_POST_CSC_GAMC_SEG0_INDEX_ENH_1(pipe)		_PIPE(pipe, _PLANE_POST_CSC_GAMC_SEG0_INDEX_ENH_1_A, \
+
+-:40: WARNING:LONG_LINE: line length of 110 exceeds 100 columns
+#40: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:302:
++								      _PLANE_POST_CSC_GAMC_SEG0_INDEX_ENH_1_B)
+
+-:41: WARNING:LONG_LINE: line length of 118 exceeds 100 columns
+#41: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:303:
++#define _PLANE_POST_CSC_GAMC_SEG0_INDEX_ENH_2(pipe)		_PIPE(pipe, _PLANE_POST_CSC_GAMC_SEG0_INDEX_ENH_2_A, \
+
+-:42: WARNING:LONG_LINE: line length of 110 exceeds 100 columns
+#42: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:304:
++								      _PLANE_POST_CSC_GAMC_SEG0_INDEX_ENH_2_B)
+
+-:43: WARNING:LONG_LINE: line length of 137 exceeds 100 columns
+#43: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:305:
++#define PLANE_POST_CSC_GAMC_SEG0_INDEX_ENH(pipe, plane, i)	_MMIO_PLANE_GAMC(plane, i, _PLANE_POST_CSC_GAMC_SEG0_INDEX_ENH_1(pipe), \
+
+-:43: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pipe' - possible side-effects?
+#43: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:305:
++#define PLANE_POST_CSC_GAMC_SEG0_INDEX_ENH(pipe, plane, i)	_MMIO_PLANE_GAMC(plane, i, _PLANE_POST_CSC_GAMC_SEG0_INDEX_ENH_1(pipe), \
++										 _PLANE_POST_CSC_GAMC_SEG0_INDEX_ENH_2(pipe))
+
+-:44: WARNING:LONG_LINE: line length of 125 exceeds 100 columns
+#44: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:306:
++										 _PLANE_POST_CSC_GAMC_SEG0_INDEX_ENH_2(pipe))
+
+-:50: WARNING:LONG_LINE: line length of 109 exceeds 100 columns
+#50: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:312:
++#define _PLANE_POST_CSC_GAMC_SEG0_DATA_ENH_1(pipe)	_PIPE(pipe, _PLANE_POST_CSC_GAMC_SEG0_DATA_ENH_1_A, \
+
+-:51: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#51: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:313:
++							      _PLANE_POST_CSC_GAMC_SEG0_DATA_ENH_1_B)
+
+-:52: WARNING:LONG_LINE: line length of 109 exceeds 100 columns
+#52: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:314:
++#define _PLANE_POST_CSC_GAMC_SEG0_DATA_ENH_2(pipe)	_PIPE(pipe, _PLANE_POST_CSC_GAMC_SEG0_DATA_ENH_2_A, \
+
+-:53: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#53: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:315:
++							      _PLANE_POST_CSC_GAMC_SEG0_DATA_ENH_2_B)
+
+-:54: WARNING:LONG_LINE: line length of 136 exceeds 100 columns
+#54: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:316:
++#define PLANE_POST_CSC_GAMC_SEG0_DATA_ENH(pipe, plane, i)	_MMIO_PLANE_GAMC(plane, i, _PLANE_POST_CSC_GAMC_SEG0_DATA_ENH_1(pipe), \
+
+-:54: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pipe' - possible side-effects?
+#54: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:316:
++#define PLANE_POST_CSC_GAMC_SEG0_DATA_ENH(pipe, plane, i)	_MMIO_PLANE_GAMC(plane, i, _PLANE_POST_CSC_GAMC_SEG0_DATA_ENH_1(pipe), \
++										 _PLANE_POST_CSC_GAMC_SEG0_DATA_ENH_2(pipe))
+
+-:55: WARNING:LONG_LINE: line length of 124 exceeds 100 columns
+#55: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:317:
++										 _PLANE_POST_CSC_GAMC_SEG0_DATA_ENH_2(pipe))
+
+-:61: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
+#61: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:323:
++#define _PLANE_POST_CSC_GAMC_INDEX_ENH_1(pipe)		_PIPE(pipe, _PLANE_POST_CSC_GAMC_INDEX_ENH_1_A, \
+
+-:63: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
+#63: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:325:
++#define _PLANE_POST_CSC_GAMC_INDEX_ENH_2(pipe)		_PIPE(pipe, _PLANE_POST_CSC_GAMC_INDEX_ENH_2_A, \
+
+-:65: WARNING:LONG_LINE: line length of 124 exceeds 100 columns
+#65: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:327:
++#define PLANE_POST_CSC_GAMC_INDEX_ENH(pipe, plane, i)	_MMIO_PLANE_GAMC(plane, i, _PLANE_POST_CSC_GAMC_INDEX_ENH_1(pipe), \
+
+-:65: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pipe' - possible side-effects?
+#65: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:327:
++#define PLANE_POST_CSC_GAMC_INDEX_ENH(pipe, plane, i)	_MMIO_PLANE_GAMC(plane, i, _PLANE_POST_CSC_GAMC_INDEX_ENH_1(pipe), \
++									 _PLANE_POST_CSC_GAMC_INDEX_ENH_2(pipe))
+
+-:66: WARNING:LONG_LINE: line length of 112 exceeds 100 columns
+#66: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:328:
++									 _PLANE_POST_CSC_GAMC_INDEX_ENH_2(pipe))
+
+-:72: WARNING:LONG_LINE: line length of 104 exceeds 100 columns
+#72: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:334:
++#define _PLANE_POST_CSC_GAMC_DATA_ENH_1(pipe)		_PIPE(pipe, _PLANE_POST_CSC_GAMC_DATA_ENH_1_A, \
+
+-:74: WARNING:LONG_LINE: line length of 104 exceeds 100 columns
+#74: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:336:
++#define _PLANE_POST_CSC_GAMC_DATA_ENH_2(pipe)		_PIPE(pipe, _PLANE_POST_CSC_GAMC_DATA_ENH_2_A, \
+
+-:76: WARNING:LONG_LINE: line length of 123 exceeds 100 columns
+#76: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:338:
++#define PLANE_POST_CSC_GAMC_DATA_ENH(pipe, plane, i)	_MMIO_PLANE_GAMC(plane, i, _PLANE_POST_CSC_GAMC_DATA_ENH_1(pipe), \
+
+-:76: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pipe' - possible side-effects?
+#76: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:338:
++#define PLANE_POST_CSC_GAMC_DATA_ENH(pipe, plane, i)	_MMIO_PLANE_GAMC(plane, i, _PLANE_POST_CSC_GAMC_DATA_ENH_1(pipe), \
++									 _PLANE_POST_CSC_GAMC_DATA_ENH_2(pipe))
+
+-:77: WARNING:LONG_LINE: line length of 111 exceeds 100 columns
+#77: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:339:
++									 _PLANE_POST_CSC_GAMC_DATA_ENH_2(pipe))
+
+-:83: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#83: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:345:
++#define _PLANE_POST_CSC_GAMC_INDEX_1(pipe)		_PIPE(pipe, _PLANE_POST_CSC_GAMC_INDEX_1_A, \
+
+-:85: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#85: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:347:
++#define _PLANE_POST_CSC_GAMC_INDEX_2(pipe)		_PIPE(pipe, _PLANE_POST_CSC_GAMC_INDEX_2_A, \
+
+-:87: WARNING:LONG_LINE: line length of 120 exceeds 100 columns
+#87: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:349:
++#define PLANE_POST_CSC_GAMC_INDEX(pipe, plane, i)	_MMIO_PLANE_GAMC(plane, i, _PLANE_POST_CSC_GAMC_INDEX_1(pipe), \
+
+-:87: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pipe' - possible side-effects?
+#87: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:349:
++#define PLANE_POST_CSC_GAMC_INDEX(pipe, plane, i)	_MMIO_PLANE_GAMC(plane, i, _PLANE_POST_CSC_GAMC_INDEX_1(pipe), \
++									 _PLANE_POST_CSC_GAMC_INDEX_2(pipe))
+
+-:88: WARNING:LONG_LINE: line length of 108 exceeds 100 columns
+#88: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:350:
++									 _PLANE_POST_CSC_GAMC_INDEX_2(pipe))
+
+-:98: WARNING:LONG_LINE: line length of 119 exceeds 100 columns
+#98: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:360:
++#define PLANE_POST_CSC_GAMC_DATA(pipe, plane, i)	_MMIO_PLANE_GAMC(plane, i, _PLANE_POST_CSC_GAMC_DATA_1(pipe), \
+
+-:98: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pipe' - possible side-effects?
+#98: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:360:
++#define PLANE_POST_CSC_GAMC_DATA(pipe, plane, i)	_MMIO_PLANE_GAMC(plane, i, _PLANE_POST_CSC_GAMC_DATA_1(pipe), \
++									 _PLANE_POST_CSC_GAMC_DATA_2(pipe))
+
+-:99: WARNING:LONG_LINE: line length of 107 exceeds 100 columns
+#99: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:361:
++									 _PLANE_POST_CSC_GAMC_DATA_2(pipe))
+
+total: 0 errors, 26 warnings, 6 checks, 79 lines checked
+13222154fb85 drm/i915/color: Add framework to program PRE/POST CSC LUT
+79127e0c2f32 drm/i915/color: Program Pre-CSC registers
+65fb856bff86 drm/i915/color: Program Plane Post CSC Registers
+93a5f3c5bf47 drm/i915/color: Add registers for 3D LUT
+4472fd22b525 drm/i915/color: Add 3D LUT to color pipeline
+4517659f8a22 drm/i915/color: Enable Plane Color Pipelines
+
 
