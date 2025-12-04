@@ -4,58 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3988CD2A532
-	for <intel-xe@archiver.kernel.org>; Thu,  4 Dec 2025 20:29:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 55069D2A532
+	for <intel-xe@archiver.kernel.org>; Thu,  4 Dec 2025 20:41:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 83A3410E9BD;
-	Thu,  4 Dec 2025 20:29:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0B91110E9CC;
+	Thu,  4 Dec 2025 20:41:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=aaront.org header.i=@aaront.org header.b="gV+u0FGC";
-	dkim=pass (1024-bit key; unprotected) header.d=amazonses.com header.i=@amazonses.com header.b="W8kydWPc";
+	dkim=pass (1024-bit key; unprotected) header.d=linux-foundation.org header.i=@linux-foundation.org header.b="Q09GJ1kU";
 	dkim-atps=neutral
-X-Greylist: delayed 796 seconds by postgrey-1.36 at gabe;
- Wed, 03 Dec 2025 19:44:58 UTC
-Received: from a8-22.smtp-out.amazonses.com (a8-22.smtp-out.amazonses.com
- [54.240.8.22])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A49FD10E197;
- Wed,  3 Dec 2025 19:44:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
- s=zp2ap7btoiiow65hultmctjebh3tse7g; d=aaront.org; t=1764790301;
- h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:In-Reply-To:Content-Type:Content-Transfer-Encoding;
- bh=bgsZJdi5ylSbVlwh4WmpdyyjmV4T9AWsNENCPRx3zuQ=;
- b=gV+u0FGCsrTgSUPmyG3lYCIXANvyaXrVgfcS1Wx0Ymo5GZ3guZ+zYAhGgiIVOjoM
- 11YlLzOjboEtSBIywfIhzObk3Eixrk6DWhFocLiak+hXkUoUUphiIt2IS94jY+n/lBH
- D8MC6GmQCsBzusl7gGH0goSXd6OhITsFaYYAiP0EK6WNHvf8xn3BpDv8HDPCgwbmkjZ
- WQS5SRQAW53fnSAYGEzz19yvEdga0xI1xBPEFdvWGhsgxaJP8HNp6SJjY3DPFR9pYFF
- 7uPxpW6z7voFeXDI4Aiy1s2qSyOzuBE4z/emOsLeX84yWXkEr78O/chJqi6hDzOfFbs
- ytKjXN72Wg==
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
- s=6gbrjpgwjskckoa6a5zn6fwqkn67xbtw; d=amazonses.com; t=1764790301;
- h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Feedback-ID;
- bh=bgsZJdi5ylSbVlwh4WmpdyyjmV4T9AWsNENCPRx3zuQ=;
- b=W8kydWPc827KUEi4eLsnEF4rWVzPceQDDYy0R9FzVEank2e8wbfk4kaAJgYGSuxe
- ClYZSo0ZuGx4r7ilqatdx+OlX+NLsZQYZWYUrWYR5zGmzqS/aVpmtMSt2Is2alb6CW1
- 5vUNc+RNq89E5PzpNgkTNfDqPRl40N/mRQDKiauM=
-Message-ID: <0100019ae5b2f1b5-f3c0c4aa-9978-4076-9e6c-f7b276594d6e-000000@email.amazonses.com>
-Date: Wed, 3 Dec 2025 19:31:41 +0000
+Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com
+ [209.85.218.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 23B7710E9C2
+ for <intel-xe@lists.freedesktop.org>; Thu,  4 Dec 2025 20:41:41 +0000 (UTC)
+Received: by mail-ej1-f52.google.com with SMTP id
+ a640c23a62f3a-b770f4accc0so182345066b.1
+ for <intel-xe@lists.freedesktop.org>; Thu, 04 Dec 2025 12:41:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linux-foundation.org; s=google; t=1764880900; x=1765485700;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=8vRT4yUYSE3WGP0484rye1MMCnwhxSgmVhOyhfsSMpY=;
+ b=Q09GJ1kUwJPpjsIVZqT3xPMBg4VUGZvV35N4vqVUuLPk00Gl5AkT4+OkgyWmNcVVqO
+ HhTI/9XDJnL8Zo/bDoHbLqDyI1XN6s0Vh1k3AJb5oe1ptHpCLC3Aa25xsshl9rf/0CQ+
+ w6w6bLH5dfFGEHQR0CBsMfqZOc1eF3yM/qtB8=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1764880900; x=1765485700;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=8vRT4yUYSE3WGP0484rye1MMCnwhxSgmVhOyhfsSMpY=;
+ b=VQwzBUu0oKvGiIxjMNLlVLEZjkVsuLUHYv4/0qyXKxi1g9kqxWfThdoHSZgJUMOV6c
+ lR24Xc7fnTwOgg+dcnxntHgTYwEN+0joA1S0A0IrQc/aHiiBlJGiHPQ/ot27dMgT627X
+ yf8UwlG2sdq4E5AHlTiGh+zCtn4MvfcyMs36ZttWbYd9AT5Z9aNS40Atup4bPolYCU1w
+ SbWis+9xEvjbjfqr5SVR4YEIihLg6TTNYsz5zTYYlpkc47qgdGd6Q1Qw1U2Yvq+7f3SH
+ Fx0Ijza4nzBBBhQLp0lSonCVFpLKJIMaeLyjmA1CLGdp5nyLc+dUmaGupRm78IvAl8gS
+ +gkg==
+X-Gm-Message-State: AOJu0YzLz6CZhSZN3lna+j4qqzsxjQH5xs/PfWnW+m7nD8ZpKR74F235
+ b7mTFjD4zwNpLCazq3MBR7G5d6wrY+aUJ9tYv0ZRNDmPazWLekaeDuZDPyHR1TxmbWWv10rMUMl
+ aZXDf88Q=
+X-Gm-Gg: ASbGncsgCi6fLROhbGRbDSZQO5NQvHzDm/eQEj7qBpqzx8q1LgUh0vCOtUM3RvsJI5J
+ bFe9EGTRJx3XJLjGZg3nbrQBjfplmMORb4U2TtuZugGvZ+az3KGQFZus5QsUdTxt+4FP6hC5MFj
+ PPggtyclD7p+lUGXBcgiOVFsTyMbknSMXSQ17IoKCvC4pSv5Eu5ExreSWa6NqobO7OPtRXosH1F
+ kV78j1RCGoKuTVnRTG54sDkVfrlKJvprvImJiAz3GpYx9QTn/D08CnR1Au8XwsPtw4aDzCbQ21y
+ hAZmx1eKd+OLJgk4/YiAenhH9LoFhg2Uvnn+i7wepzb7vLLVv770FGaVH89Yox7zjufy9A+4R+3
+ XJnCy33WV2591aUojZin4RawPft6HTMPQyb3N0OYO/2Po7AKA345VB7A1H+iXf/6FPd76nQDAgl
+ FIB5GNtIMfa8o2yxjQi/wlW8QxDoDyJOZ4Bs4YxU4N3KqpMDMgCu004fyOwZ2l
+X-Google-Smtp-Source: AGHT+IGAdZH+wGpLQXdCmYLSjFnGrD5KlEjdsS2BoWj0UgCMkKmvTzjSlZmEsMxhyDuwJH/Os5g+JQ==
+X-Received: by 2002:a17:906:4fc9:b0:b73:2a77:3128 with SMTP id
+ a640c23a62f3a-b79ec4882e0mr427909566b.27.1764880900219; 
+ Thu, 04 Dec 2025 12:41:40 -0800 (PST)
+Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com.
+ [209.85.208.54]) by smtp.gmail.com with ESMTPSA id
+ 4fb4d7f45d1cf-647b4121f07sm2010232a12.28.2025.12.04.12.41.39
+ for <intel-xe@lists.freedesktop.org>
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 04 Dec 2025 12:41:39 -0800 (PST)
+Received: by mail-ed1-f54.google.com with SMTP id
+ 4fb4d7f45d1cf-64312565c10so2234769a12.2
+ for <intel-xe@lists.freedesktop.org>; Thu, 04 Dec 2025 12:41:39 -0800 (PST)
+X-Received: by 2002:a05:6402:4403:b0:647:7a35:a7d5 with SMTP id
+ 4fb4d7f45d1cf-647abddda6fmr3395006a12.25.1764880898829; Thu, 04 Dec 2025
+ 12:41:38 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: REGRESSION on linux-next (next-20251201)
-To: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
-Cc: "Kurmi, Suresh Kumar" <suresh.kumar.kurmi@intel.com>, 
- "Saarinen, Jani" <jani.saarinen@intel.com>, 
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, 
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, 
- linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <a22915de-fa1b-40bb-9950-8a8552466225@intel.com>
-Content-Language: en-US
-From: Aaron Thompson <dev@aaront.org>
-In-Reply-To: <a22915de-fa1b-40bb-9950-8a8552466225@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Feedback-ID: ::1.us-east-1.8/56jQl+KfkRukJqWjlnf+MtEL0x/NchId1fC0q616g=:AmazonSES
-X-SES-Outgoing: 2025.12.03-54.240.8.22
-X-Mailman-Approved-At: Thu, 04 Dec 2025 20:29:17 +0000
+References: <20251204202059.326605-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20251204202059.326605-1-thomas.hellstrom@linux.intel.com>
+From: Linus Torvalds <torvalds@linux-foundation.org>
+Date: Thu, 4 Dec 2025 12:41:22 -0800
+X-Gmail-Original-Message-ID: <CAHk-=wja02iemw40Sn4Vio6b1-rr3idFBcUrOV+=vodhOmZZ=Q@mail.gmail.com>
+X-Gm-Features: AWmQ_bmsz5TwQKSOV0Tls4iAlodXezQEqhtGPAxjbhq22DkUz4OOpxtAMlQ8eLg
+Message-ID: <CAHk-=wja02iemw40Sn4Vio6b1-rr3idFBcUrOV+=vodhOmZZ=Q@mail.gmail.com>
+Subject: Re: [PATCH] drm/xe: Fix duplicated put due to merge resolution
+To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+ Dave Airlie <airlied@redhat.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,85 +95,15 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 12/3/25 01:10, Borah, Chaitanya Kumar wrote:
-> Hello Aaron,
-> 
-> Hope you are doing well. I am Chaitanya from the linux graphics team in 
-> Intel.
-> 
-> This mail is regarding a regression we are seeing in our CI runs[1] on
-> linux-next repository.
-> 
-> Since the version next-20251201 [2], we are seeing the following regression
-> 
-> `````````````````````````````````````````````````````````````````````````````````
-> Starting subtest: load
-> (i915_module_load:1280) igt_debugfs-CRITICAL: Test assertion failure 
-> function igt_debugfs_path, file ../lib/igt_debugfs.c:121:
-> (i915_module_load:1280) igt_debugfs-CRITICAL: Failed assertion: 
-> debugfs_root
-> (i915_module_load:1280) igt_debugfs-CRITICAL: Last errno: 2, No such 
-> file or directory
-> Subtest load failed.
-> `````````````````````````````````````````````````````````````````````````````````
-> 
-> I see some other drivers also failing to create their debugfs entries.
-> 
-> `````````````````````````````````````````````````````````````````````````````````
-> [    0.134437] pinctrl core: failed to create debugfs directory
-> [    3.488263] intel-lpss 0000:00:15.0: Failed to create debugfs entries
-> [    3.563494] intel-lpss 0000:00:15.1: Failed to create debugfs entries
-> [    3.631076] intel-lpss 0000:00:15.2: Failed to create debugfs entries
-> [    3.697366] intel-lpss 0000:00:15.3: Failed to create debugfs entries
-> [    3.764351] intel-lpss 0000:00:19.0: Failed to create debugfs entries
-> [    3.841824] intel-lpss 0000:00:19.1: Failed to create debugfs entries
-> [    3.909492] nvme0: failed to create debugfs directory
-> [    3.937845] nvme0n1: failed to create debugfs directory
-> [    5.636042] pinctrl core: failed to create debugfs directory for 
-> INTC105E:00
-> [  177.973628] cec: Failed to create debugfs cec dir
-> `````````````````````````````````````````````````````````````````````````````````
-> Detailed log can be found in [3].
-> 
-> After bisecting the tree, the following patch [4] seems to be the first 
-> "bad" commit
-> 
-> `````````````````````````````````````````````````````````````````````````````````````````````````````````
-> commit f278809475f6835b56de78b28dc2cc0c7e2c20a4
-> Author: Aaron Thompson dev@aaront.org
-> Date:   Thu Nov 20 10:26:33 2025 +0000
-> 
->      debugfs: Remove broken no-mount mode
-> `````````````````````````````````````````````````````````````````````````````````````````````````````````
-> 
-> We also verified that if we revert the patch the issue is not seen.
-> 
-> Could you please check why the patch causes this regression and provide 
-> a fix if necessary?
-> 
-> Thank you.
-> 
-> Regards
-> 
-> Chaitanya
-> 
-> [1]
-> https://intel-gfx-ci.01.org/tree/linux-next/combined-alt.html?
-> [2] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/ 
-> commit/?h=next-20251201
-> [3]
-> https://intel-gfx-ci.01.org/tree/linux-next/next-20251201/bat-arlh-2/ 
-> igt@i915_module_load@load.html
-> [4] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/ 
-> commit/?h=next-20251201&id=f278809475f6835b56de78b28dc2cc0c7e2c20a4
+On Thu, 4 Dec 2025 at 12:21, Thomas Hellstr=C3=B6m
+<thomas.hellstrom@linux.intel.com> wrote:
+>
+> An incorrect backmerge resolution resulted in an
+> incorrect duplicate put. Fix.
 
-Hi Chaitanya,
+Ack. I can confirm that this seems to fix the issue for me. Thanks for
+the quick response.
 
-This is fixed in next-20251203 (commit d3666c1f8a31). For next-20251201 
-and next-20251202, you can also work around the bug by specifying the 
-kernel parameter "debugfs=on". Sorry for the inconvenience.
+Should I just apply it directly?
 
-https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/fs/debugfs?h=next-20251203&id=d3666c1f8a31b7ff6805effcfedfac22454c6517
-
--- Aaron
-
+           Linus
