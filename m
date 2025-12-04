@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DC7C2D1D865
-	for <intel-xe@archiver.kernel.org>; Thu,  4 Dec 2025 04:56:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CCD3ED1D862
+	for <intel-xe@archiver.kernel.org>; Thu,  4 Dec 2025 05:01:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2CCE810E00D;
-	Thu,  4 Dec 2025 04:56:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6FCB510E00D;
+	Thu,  4 Dec 2025 05:01:58 +0000 (UTC)
 Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 23D5E10E00D;
- Thu,  4 Dec 2025 04:56:43 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7621319771097838009=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AD13E10E00D;
+ Thu,  4 Dec 2025 05:01:56 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/uapi=3A_Add_NO=5FCOM?=
- =?utf-8?q?PRESSION_BO_flag_and_query_capability_=28rev5=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_OA=3A_More_OA_and_registe?=
+ =?utf-8?q?r_whitelist_changes_=28rev4=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Sanjay Yadav" <sanjay.kumar.yadav@intel.com>
+To: "Ashutosh Dixit" <ashutosh.dixit@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 04 Dec 2025 04:56:43 -0000
-Message-ID: <176482420314.56073.453798857372233364@a3b018990fe9>
+Date: Thu, 04 Dec 2025 05:01:56 -0000
+Message-ID: <176482451670.56073.759142213472272886@a3b018990fe9>
 X-Patchwork-Hint: ignore
-References: <20251204040402.2692921-2-sanjay.kumar.yadav@intel.com>
-In-Reply-To: <20251204040402.2692921-2-sanjay.kumar.yadav@intel.com>
+References: <20251202025115.373546-1-ashutosh.dixit@intel.com>
+In-Reply-To: <20251202025115.373546-1-ashutosh.dixit@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,125 +40,97 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7621319771097838009==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe/uapi: Add NO_COMPRESSION BO flag and query capability (rev5)
-URL   : https://patchwork.freedesktop.org/series/157499/
-State : success
+Series: OA: More OA and register whitelist changes (rev4)
+URL   : https://patchwork.freedesktop.org/series/158084/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-4193-2d16d4e1aef3cb501fcd37c8558dafeb579be813_BAT -> xe-pw-157499v5_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+2de9a3901bc28757c7906b454717b64e2a214021
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 369e43f2fbe388e7240402884d5396e703e78ee9
+Author: Ashutosh Dixit <ashutosh.dixit@intel.com>
+Date:   Mon Dec 1 18:51:15 2025 -0800
 
-Summary
--------
+    drm/xe/rtp: Whitelist OAM MMIO trigger registers
+    
+    Whitelist OAM registers to enable userspace to execute MMIO triggers on OAM
+    units.
+    
+    Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+    Reviewed-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
++ /mt/dim checkpatch 2d16d4e1aef3cb501fcd37c8558dafeb579be813 drm-intel
+df0ae51ea029 drm/xe/oa: Use explicit struct initialization for struct xe_oa_regs
+5f59b7a1124c drm/xe/oa/uapi: Add gt_id to struct drm_xe_oa_unit
+ce8857699d9e drm/xe/oa: Allow exec_queue's to be specified only for OAG OA unit
+6040ed70da6f drm/xe/rtp: Refactor OAG MMIO trigger register whitelisting
+-:50: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#50: FILE: drivers/gpu/drm/xe/xe_reg_whitelist.c:78:
++#define WHITELIST_OA_MMIO_TRG(trg, status, head) \
++	WHITELIST(trg, RING_FORCE_TO_NONPRIV_ACCESS_RW), \
++	WHITELIST(status, RING_FORCE_TO_NONPRIV_ACCESS_RD), \
++	WHITELIST(head, RING_FORCE_TO_NONPRIV_ACCESS_RD | RING_FORCE_TO_NONPRIV_RANGE_4)
 
-  **SUCCESS**
+BUT SEE:
 
-  No regressions found.
+   do {} while (0) advice is over-stated in a few situations:
 
-  
+   The more obvious case is macros, like MODULE_PARM_DESC, invoked at
+   file-scope, where C disallows code (it must be in functions).  See
+   $exceptions if you have one to add by name.
 
-Participating hosts (12 -> 12)
-------------------------------
+   More troublesome is declarative macros used at top of new scope,
+   like DECLARE_PER_CPU.  These might just compile with a do-while-0
+   wrapper, but would be incorrect.  Most of these are handled by
+   detecting struct,union,etc declaration primitives in $exceptions.
 
-  No changes in participating hosts
+   Theres also macros called inside an if (block), which "return" an
+   expression.  These cannot do-while, and need a ({}) wrapper.
 
-Known issues
-------------
+   Enjoy this qualification while we work to improve our heuristics.
 
-  Here are the changes found in xe-pw-157499v5_BAT that come from known issues:
+total: 1 errors, 0 warnings, 0 checks, 53 lines checked
+369e43f2fbe3 drm/xe/rtp: Whitelist OAM MMIO trigger registers
+-:56: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#56: FILE: drivers/gpu/drm/xe/xe_reg_whitelist.c:86:
++#define WHITELIST_OAM_MMIO_TRG \
++	WHITELIST_OA_MMIO_TRG(OAM_MMIO_TRG(XE_OAM_SAG_BASE_ADJ), \
++			      OAM_STATUS(XE_OAM_SAG_BASE_ADJ), \
++			      OAM_HEAD_POINTER(XE_OAM_SAG_BASE_ADJ)), \
++	WHITELIST_OA_MMIO_TRG(OAM_MMIO_TRG(XE_OAM_SCMI_0_BASE_ADJ), \
++			      OAM_STATUS(XE_OAM_SCMI_0_BASE_ADJ), \
++			      OAM_HEAD_POINTER(XE_OAM_SCMI_0_BASE_ADJ)), \
++	WHITELIST_OA_MMIO_TRG(OAM_MMIO_TRG(XE_OAM_SCMI_1_BASE_ADJ), \
++			      OAM_STATUS(XE_OAM_SCMI_1_BASE_ADJ), \
++			      OAM_HEAD_POINTER(XE_OAM_SCMI_1_BASE_ADJ))
 
-### IGT changes ###
+BUT SEE:
 
-#### Issues hit ####
+   do {} while (0) advice is over-stated in a few situations:
 
-  * igt@xe_waitfence@reltime:
-    - bat-dg2-oem2:       [PASS][1] -> [FAIL][2] ([Intel XE#6520])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4193-2d16d4e1aef3cb501fcd37c8558dafeb579be813/bat-dg2-oem2/igt@xe_waitfence@reltime.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157499v5/bat-dg2-oem2/igt@xe_waitfence@reltime.html
+   The more obvious case is macros, like MODULE_PARM_DESC, invoked at
+   file-scope, where C disallows code (it must be in functions).  See
+   $exceptions if you have one to add by name.
 
-  
-  [Intel XE#6520]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520
+   More troublesome is declarative macros used at top of new scope,
+   like DECLARE_PER_CPU.  These might just compile with a do-while-0
+   wrapper, but would be incorrect.  Most of these are handled by
+   detecting struct,union,etc declaration primitives in $exceptions.
 
+   Theres also macros called inside an if (block), which "return" an
+   expression.  These cannot do-while, and need a ({}) wrapper.
 
-Build changes
--------------
+   Enjoy this qualification while we work to improve our heuristics.
 
-  * IGT: IGT_8653 -> IGT_8654
-  * Linux: xe-4193-2d16d4e1aef3cb501fcd37c8558dafeb579be813 -> xe-pw-157499v5
-
-  IGT_8653: c13e142a52b1654cbfb42b80985d6da656033ff4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_8654: 38d9fde0432aa6f2bf6add062f1d4334ad467fbc @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-4193-2d16d4e1aef3cb501fcd37c8558dafeb579be813: 2d16d4e1aef3cb501fcd37c8558dafeb579be813
-  xe-pw-157499v5: 157499v5
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157499v5/index.html
-
---===============7621319771097838009==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/uapi: Add NO_COMPRESSION BO flag and query capability (rev5)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/157499/">https://patchwork.freedesktop.org/series/157499/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157499v5/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157499v5/index.html</a></td></tr>
-
-</table>
+total: 1 errors, 0 warnings, 0 checks, 59 lines checked
 
 
-    <h1>CI Bug Log - changes from xe-4193-2d16d4e1aef3cb501fcd37c8558dafeb579be813_BAT -&gt; xe-pw-157499v5_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (12 -&gt; 12)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-157499v5_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@xe_waitfence@reltime:<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4193-2d16d4e1aef3cb501fcd37c8558dafeb579be813/bat-dg2-oem2/igt@xe_waitfence@reltime.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157499v5/bat-dg2-oem2/igt@xe_waitfence@reltime.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520">Intel XE#6520</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8653 -&gt; IGT_8654</li>
-<li>Linux: xe-4193-2d16d4e1aef3cb501fcd37c8558dafeb579be813 -&gt; xe-pw-157499v5</li>
-</ul>
-<p>IGT_8653: c13e142a52b1654cbfb42b80985d6da656033ff4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_8654: 38d9fde0432aa6f2bf6add062f1d4334ad467fbc @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-4193-2d16d4e1aef3cb501fcd37c8558dafeb579be813: 2d16d4e1aef3cb501fcd37c8558dafeb579be813<br />
-  xe-pw-157499v5: 157499v5</p>
-
-</body>
-</html>
-
---===============7621319771097838009==--
