@@ -4,59 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D7192D1F9B1
-	for <intel-xe@archiver.kernel.org>; Thu,  4 Dec 2025 11:00:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E88F7D1F9BC
+	for <intel-xe@archiver.kernel.org>; Thu,  4 Dec 2025 11:08:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9CF6310E963;
-	Thu,  4 Dec 2025 11:00:15 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="P1QEiq9y";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1201110E968;
- Thu,  4 Dec 2025 11:00:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1764846014; x=1796382014;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=XdVy47vNvAd0nur66iz+qNcBi0cppkHGrnqYbDg4uYQ=;
- b=P1QEiq9ywXXyo/nFexNcUKk1/zMVjUaEoqD6vEepLbNXibU427LPCE37
- TFvojfSoptYgmuN1eKVcGR8C1YGWOio310+TLfRlxoISPuPE+XdNmsAC3
- xLji9u+agroSyoVAXQU+1+XpVAEbJfsQvXJGc9KeJg3mLBxo/gGt0u36l
- YEhk4mEJvwQbSWra+yS7KF65em5Gl/TVDsEHwmUpoxelQVdzS5hQ470WA
- wBusvml0Khfd/fh45rx587SWTMTGw95vzYfmNX5Nsey1VnLO9fEE6daNq
- vvv+evdSafn7owydydXE3xG0lcRwCuodMbD0PbqMJZDJkwkWY9E69fdj1 Q==;
-X-CSE-ConnectionGUID: G7By616YQHSm2qtQHepUBA==
-X-CSE-MsgGUID: meI3Ji5ORMuTsIjxIO7YRQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11631"; a="84255749"
-X-IronPort-AV: E=Sophos;i="6.20,248,1758610800"; d="scan'208";a="84255749"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Dec 2025 03:00:13 -0800
-X-CSE-ConnectionGUID: IOCmJk+1TGO/Irnw4G6l3A==
-X-CSE-MsgGUID: esQyPMRiSNWGu5RecNb9WQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,248,1758610800"; d="scan'208";a="195763010"
-Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.11])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Dec 2025 03:00:12 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: tzimmermann@suse.de, ville.syrjala@linux.intel.com,
- Jani Nikula <jani.nikula@intel.com>
-Subject: [PATCH v2 25/25] drm/vblank: clean up debug logging
-Date: Thu,  4 Dec 2025 12:57:53 +0200
-Message-ID: <cbe3f07d5d95ad0aaa38e6423f9aea8cc6923a5c.1764845757.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <cover.1764845757.git.jani.nikula@intel.com>
-References: <cover.1764845757.git.jani.nikula@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9EAF410E91B;
+	Thu,  4 Dec 2025 11:08:41 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1830410E1D0;
+ Thu,  4 Dec 2025 11:08:41 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8042630321044755851=="
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/pf=3A_fix_VFIO_link_?=
+ =?utf-8?q?error?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Arnd Bergmann" <arnd@kernel.org>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 04 Dec 2025 11:08:41 -0000
+Message-ID: <176484652109.56855.12553696934819325487@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20251204094154.1029357-1-arnd@kernel.org>
+In-Reply-To: <20251204094154.1029357-1-arnd@kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,335 +36,143 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Use the usual [CRTC:%d:%s] when crtc is available. Start using a new
-uniform [VBLANK:%u] prefix with the pipe when crtc is not
-available. Remove extra line breaks. Use string choice helpers here and
-there. Use %pe to decode error returns.
+--===============8042630321044755851==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/drm_vblank.c | 109 ++++++++++++++++-------------------
- 1 file changed, 50 insertions(+), 59 deletions(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/drm_vblank.c b/drivers/gpu/drm/drm_vblank.c
-index ba16981a5b1e..653ee422e697 100644
---- a/drivers/gpu/drm/drm_vblank.c
-+++ b/drivers/gpu/drm/drm_vblank.c
-@@ -27,6 +27,7 @@
- #include <linux/export.h>
- #include <linux/kthread.h>
- #include <linux/moduleparam.h>
-+#include <linux/string_choices.h>
- 
- #include <drm/drm_crtc.h>
- #include <drm/drm_drv.h>
-@@ -347,14 +348,13 @@ static void drm_vblank_crtc_update_count(struct drm_vblank_crtc *vblank,
- 		 * frame/field duration.
- 		 */
- 
--		drm_dbg_vbl(dev, "crtc %u: Calculating number of vblanks."
--			    " diff_ns = %lld, framedur_ns = %d)\n",
-+		drm_dbg_vbl(dev, "[VBLANK:%u] Calculating number of vblanks. diff_ns = %lld, framedur_ns = %d)\n",
- 			    pipe, (long long)diff_ns, framedur_ns);
- 
- 		diff = DIV_ROUND_CLOSEST_ULL(diff_ns, framedur_ns);
- 
- 		if (diff == 0 && in_vblank_irq)
--			drm_dbg_vbl(dev, "crtc %u: Redundant vblirq ignored\n",
-+			drm_dbg_vbl(dev, "[VBLANK:%u] Redundant vblirq ignored\n",
- 				    pipe);
- 	} else {
- 		/* some kind of default for drivers w/o accurate vbl timestamping */
-@@ -372,13 +372,12 @@ static void drm_vblank_crtc_update_count(struct drm_vblank_crtc *vblank,
- 	 */
- 	if (diff > 1 && (vblank->inmodeset & 0x2)) {
- 		drm_dbg_vbl(dev,
--			    "clamping vblank bump to 1 on crtc %u: diffr=%u"
--			    " due to pre-modeset.\n", pipe, diff);
-+			    "[VBLANK:%u] clamping vblank bump to 1: diffr=%u due to pre-modeset.\n",
-+			    pipe, diff);
- 		diff = 1;
- 	}
- 
--	drm_dbg_vbl(dev, "updating vblank count on crtc %u:"
--		    " current=%llu, diff=%u, hw=%u hw_last=%u\n",
-+	drm_dbg_vbl(dev, "[VBLANK:%u] updating vblank count: current=%llu, diff=%u, hw=%u hw_last=%u\n",
- 		    pipe, (unsigned long long)atomic64_read(&vblank->count),
- 		    diff, cur_vblank, vblank->last);
- 
-@@ -517,7 +516,7 @@ static void vblank_disable_fn(struct timer_list *t)
- 
- 	spin_lock_irqsave(&dev->vbl_lock, irqflags);
- 	if (atomic_read(&vblank->refcount) == 0 && vblank->enabled) {
--		drm_dbg_core(dev, "disabling vblank on crtc %u\n", pipe);
-+		drm_dbg_core(dev, "[VBLANK:%u] disabling vblank\n", pipe);
- 		drm_vblank_crtc_disable_and_save(vblank);
- 	}
- 	spin_unlock_irqrestore(&dev->vbl_lock, irqflags);
-@@ -665,8 +664,8 @@ void drm_calc_timestamping_constants(struct drm_crtc *crtc,
- 		if (mode->flags & DRM_MODE_FLAG_INTERLACE)
- 			framedur_ns /= 2;
- 	} else {
--		drm_err(dev, "crtc %u: Can't calculate constants, dotclock = 0!\n",
--			crtc->base.id);
-+		drm_err(dev, "[CRTC:%d:%s] Can't calculate constants, dotclock = 0!\n",
-+			crtc->base.id, crtc->name);
- 	}
- 
- 	vblank->linedur_ns  = linedur_ns;
-@@ -674,11 +673,11 @@ void drm_calc_timestamping_constants(struct drm_crtc *crtc,
- 	drm_mode_copy(&vblank->hwmode, mode);
- 
- 	drm_dbg_core(dev,
--		     "crtc %u: hwmode: htotal %d, vtotal %d, vdisplay %d\n",
--		     crtc->base.id, mode->crtc_htotal,
-+		     "[CRTC:%d:%s] hwmode: htotal %d, vtotal %d, vdisplay %d\n",
-+		     crtc->base.id, crtc->name, mode->crtc_htotal,
- 		     mode->crtc_vtotal, mode->crtc_vdisplay);
--	drm_dbg_core(dev, "crtc %u: clock %d kHz framedur %d linedur %d\n",
--		     crtc->base.id, dotclock, framedur_ns, linedur_ns);
-+	drm_dbg_core(dev, "[CRTC:%d:%s] clock %d kHz framedur %d linedur %d\n",
-+		     crtc->base.id, crtc->name, dotclock, framedur_ns, linedur_ns);
- }
- EXPORT_SYMBOL(drm_calc_timestamping_constants);
- 
-@@ -730,7 +729,8 @@ drm_crtc_vblank_helper_get_vblank_timestamp_internal(
- 
- 	/* Scanout position query not supported? Should not happen. */
- 	if (!get_scanout_position) {
--		drm_err(dev, "Called from CRTC w/o get_scanout_position()!?\n");
-+		drm_err(dev, "[CRTC:%d:%s] Called from CRTC w/o get_scanout_position()!?\n",
-+			crtc->base.id, crtc->name);
- 		return false;
- 	}
- 
-@@ -746,7 +746,7 @@ drm_crtc_vblank_helper_get_vblank_timestamp_internal(
- 	 * Happens during initial modesetting of a crtc.
- 	 */
- 	if (mode->crtc_clock == 0) {
--		drm_dbg_core(dev, "crtc %u: Noop due to uninitialized mode.\n",
-+		drm_dbg_core(dev, "[VBLANK:%u] Noop due to uninitialized mode.\n",
- 			     pipe);
- 		drm_WARN_ON_ONCE(dev, drm_drv_uses_atomic_modeset(dev));
- 		return false;
-@@ -771,9 +771,8 @@ drm_crtc_vblank_helper_get_vblank_timestamp_internal(
- 
- 		/* Return as no-op if scanout query unsupported or failed. */
- 		if (!vbl_status) {
--			drm_dbg_core(dev,
--				     "crtc %u : scanoutpos query failed.\n",
--				     pipe);
-+			drm_dbg_core(dev, "[CRTC:%d:%s] scanoutpos query failed.\n",
-+				     crtc->base.id, crtc->name);
- 			return false;
- 		}
- 
-@@ -787,9 +786,8 @@ drm_crtc_vblank_helper_get_vblank_timestamp_internal(
- 
- 	/* Noisy system timing? */
- 	if (i == DRM_TIMESTAMP_MAXRETRIES) {
--		drm_dbg_core(dev,
--			     "crtc %u: Noisy timestamp %d us > %d us [%d reps].\n",
--			     pipe, duration_ns / 1000, *max_error / 1000, i);
-+		drm_dbg_core(dev, "[CRTC:%d:%s] Noisy timestamp %d us > %d us [%d reps].\n",
-+			     crtc->base.id, crtc->name, duration_ns / 1000, *max_error / 1000, i);
- 	}
- 
- 	/* Return upper bound of timestamp precision error. */
-@@ -813,9 +811,8 @@ drm_crtc_vblank_helper_get_vblank_timestamp_internal(
- 	ts_etime = ktime_to_timespec64(etime);
- 	ts_vblank_time = ktime_to_timespec64(*vblank_time);
- 
--	drm_dbg_vbl(dev,
--		    "crtc %u : v p(%d,%d)@ %lld.%06ld -> %lld.%06ld [e %d us, %d rep]\n",
--		    pipe, hpos, vpos,
-+	drm_dbg_vbl(dev, "[CRTC:%d:%s] v p(%d,%d)@ %lld.%06ld -> %lld.%06ld [e %d us, %d rep]\n",
-+		    crtc->base.id, crtc->name, hpos, vpos,
- 		    (u64)ts_etime.tv_sec, ts_etime.tv_nsec / 1000,
- 		    (u64)ts_vblank_time.tv_sec, ts_vblank_time.tv_nsec / 1000,
- 		    duration_ns / 1000, i);
-@@ -1190,7 +1187,7 @@ static int drm_vblank_enable(struct drm_vblank_crtc *vblank)
- 		 * prevent double-accounting of same vblank interval.
- 		 */
- 		ret = __enable_vblank(vblank);
--		drm_dbg_core(dev, "enabling vblank on crtc %u, ret: %d\n",
-+		drm_dbg_core(dev, "[VBLANK:%u] enabling vblank, ret: %d\n",
- 			     pipe, ret);
- 		if (ret) {
- 			atomic_dec(&vblank->refcount);
-@@ -1349,8 +1346,9 @@ void drm_crtc_vblank_off(struct drm_crtc *crtc)
- 	spin_lock_irq(&dev->event_lock);
- 
- 	spin_lock(&dev->vbl_lock);
--	drm_dbg_vbl(dev, "crtc %d, vblank enabled %d, inmodeset %d\n",
--		    pipe, vblank->enabled, vblank->inmodeset);
-+	drm_dbg_vbl(dev, "[CRTC:%d:%s] vblank %s, inmodeset: %s\n",
-+		    crtc->base.id, crtc->name, str_enabled_disabled(vblank->enabled),
-+		    str_yes_no(vblank->inmodeset));
- 
- 	/* Avoid redundant vblank disables without previous
- 	 * drm_crtc_vblank_on(). */
-@@ -1375,9 +1373,8 @@ void drm_crtc_vblank_off(struct drm_crtc *crtc)
- 	list_for_each_entry_safe(e, t, &dev->vblank_event_list, base.link) {
- 		if (e->pipe != pipe)
- 			continue;
--		drm_dbg_core(dev, "Sending premature vblank event on disable: "
--			     "wanted %llu, current %llu\n",
--			     e->sequence, seq);
-+		drm_dbg_core(dev, "[CRTC:%d:%s] Sending premature vblank event on disable: wanted %llu, current %llu\n",
-+			     crtc->base.id, crtc->name, e->sequence, seq);
- 		list_del(&e->base.link);
- 		drm_vblank_crtc_put(vblank);
- 		send_vblank_event(dev, e, seq, now);
-@@ -1477,12 +1474,12 @@ void drm_crtc_vblank_on_config(struct drm_crtc *crtc,
- 			       const struct drm_vblank_crtc_config *config)
- {
- 	struct drm_device *dev = crtc->dev;
--	unsigned int pipe = drm_crtc_index(crtc);
- 	struct drm_vblank_crtc *vblank = drm_crtc_vblank_crtc(crtc);
- 
- 	spin_lock_irq(&dev->vbl_lock);
--	drm_dbg_vbl(dev, "crtc %d, vblank enabled %d, inmodeset %d\n",
--		    pipe, vblank->enabled, vblank->inmodeset);
-+	drm_dbg_vbl(dev, "[CRTC:%d:%s] vblank %s, inmodeset: %s\n",
-+		    crtc->base.id, crtc->name, str_enabled_disabled(vblank->enabled),
-+		    str_yes_no(vblank->inmodeset));
- 
- 	vblank->config = *config;
- 
-@@ -1576,8 +1573,8 @@ void drm_crtc_vblank_restore(struct drm_crtc *crtc)
- 		diff = DIV_ROUND_CLOSEST_ULL(diff_ns, framedur_ns);
- 
- 
--	drm_dbg_vbl(dev,
--		    "missed %d vblanks in %lld ns, frame duration=%d ns, hw_diff=%d\n",
-+	drm_dbg_vbl(dev, "[CRTC:%d:%s] missed %d vblanks in %lld ns, frame duration=%d ns, hw_diff=%d\n",
-+		    crtc->base.id, crtc->name,
- 		    diff, diff_ns, framedur_ns, cur_vblank - vblank->last);
- 	vblank->last = (cur_vblank - diff) & max_vblank_count;
- }
-@@ -1634,8 +1631,8 @@ static int drm_vblank_crtc_queue_event(struct drm_vblank_crtc *vblank,
- 
- 	seq = drm_vblank_crtc_count_and_time(vblank, &now);
- 
--	drm_dbg_core(dev, "event on vblank count %llu, current %llu, crtc %u\n",
--		     req_seq, seq, pipe);
-+	drm_dbg_core(dev, "[VBLANK:%u] event on vblank count %llu, current %llu\n",
-+		     pipe, req_seq, seq);
- 
- 	trace_drm_vblank_event_queued(file_priv, pipe, req_seq);
- 
-@@ -1731,8 +1728,7 @@ int drm_wait_vblank_ioctl(struct drm_device *dev, void *data,
- 	if (vblwait->request.type &
- 	    ~(_DRM_VBLANK_TYPES_MASK | _DRM_VBLANK_FLAGS_MASK |
- 	      _DRM_VBLANK_HIGH_CRTC_MASK)) {
--		drm_dbg_core(dev,
--			     "Unsupported type value 0x%x, supported mask 0x%x\n",
-+		drm_dbg_core(dev, "Unsupported type value 0x%x, supported mask 0x%x\n",
- 			     vblwait->request.type,
- 			     (_DRM_VBLANK_TYPES_MASK | _DRM_VBLANK_FLAGS_MASK |
- 			      _DRM_VBLANK_HIGH_CRTC_MASK));
-@@ -1777,9 +1773,8 @@ int drm_wait_vblank_ioctl(struct drm_device *dev, void *data,
- 
- 	ret = drm_vblank_crtc_get(vblank);
- 	if (ret) {
--		drm_dbg_core(dev,
--			     "crtc %d failed to acquire vblank counter, %d\n",
--			     pipe, ret);
-+		drm_dbg_core(dev, "[VBLANK:%u] failed to acquire vblank counter %pe\n",
-+			     pipe, ERR_PTR(ret));
- 		return ret;
- 	}
- 	seq = drm_vblank_crtc_count(vblank);
-@@ -1815,8 +1810,8 @@ int drm_wait_vblank_ioctl(struct drm_device *dev, void *data,
- 	if (req_seq != seq) {
- 		int wait;
- 
--		drm_dbg_core(dev, "waiting on vblank count %llu, crtc %u\n",
--			     req_seq, pipe);
-+		drm_dbg_core(dev, "[VBLANK:%d] waiting on vblank count %llu\n",
-+			     pipe, req_seq);
- 		wait = wait_event_interruptible_timeout(vblank->queue,
- 			drm_vblank_passed(drm_vblank_crtc_count(vblank), req_seq) ||
- 				      !READ_ONCE(vblank->enabled),
-@@ -1840,10 +1835,10 @@ int drm_wait_vblank_ioctl(struct drm_device *dev, void *data,
- 	if (ret != -EINTR) {
- 		drm_vblank_crtc_wait_reply(vblank, &vblwait->reply);
- 
--		drm_dbg_core(dev, "crtc %d returning %u to client\n",
-+		drm_dbg_core(dev, "[VBLANK:%u] returning %u to client\n",
- 			     pipe, vblwait->reply.sequence);
- 	} else {
--		drm_dbg_core(dev, "crtc %d vblank wait interrupted by signal\n",
-+		drm_dbg_core(dev, "[VBLANK:%u] vblank wait interrupted by signal\n",
- 			     pipe);
- 	}
- 
-@@ -1872,8 +1867,8 @@ static void drm_vblank_crtc_handle_events(struct drm_vblank_crtc *vblank)
- 		if (!drm_vblank_passed(seq, e->sequence))
- 			continue;
- 
--		drm_dbg_core(dev, "vblank event on %llu, current %llu\n",
--			     e->sequence, seq);
-+		drm_dbg_core(dev, "[VBLANK:%u] vblank event on %llu, current %llu\n",
-+			     pipe, e->sequence, seq);
- 
- 		list_del(&e->base.link);
- 		drm_vblank_crtc_put(vblank);
-@@ -1990,7 +1985,6 @@ int drm_crtc_get_sequence_ioctl(struct drm_device *dev, void *data,
- {
- 	struct drm_crtc *crtc;
- 	struct drm_vblank_crtc *vblank;
--	int pipe;
- 	struct drm_crtc_get_sequence *get_seq = data;
- 	ktime_t now;
- 	bool vblank_enabled;
-@@ -2006,8 +2000,6 @@ int drm_crtc_get_sequence_ioctl(struct drm_device *dev, void *data,
- 	if (!crtc)
- 		return -ENOENT;
- 
--	pipe = drm_crtc_index(crtc);
--
- 	vblank = drm_crtc_vblank_crtc(crtc);
- 	vblank_enabled = READ_ONCE(vblank->config.disable_immediate) &&
- 		READ_ONCE(vblank->enabled);
-@@ -2015,9 +2007,8 @@ int drm_crtc_get_sequence_ioctl(struct drm_device *dev, void *data,
- 	if (!vblank_enabled) {
- 		ret = drm_crtc_vblank_get(crtc);
- 		if (ret) {
--			drm_dbg_core(dev,
--				     "crtc %d failed to acquire vblank counter, %d\n",
--				     pipe, ret);
-+			drm_dbg_core(dev, "[CRTC:%d:%s] failed to acquire vblank counter %pe\n",
-+				     crtc->base.id, crtc->name, ERR_PTR(ret));
- 			return ret;
- 		}
- 	}
-@@ -2082,9 +2073,8 @@ int drm_crtc_queue_sequence_ioctl(struct drm_device *dev, void *data,
- 
- 	ret = drm_crtc_vblank_get(crtc);
- 	if (ret) {
--		drm_dbg_core(dev,
--			     "crtc %d failed to acquire vblank counter, %d\n",
--			     pipe, ret);
-+		drm_dbg_core(dev, "[CRTC:%d:%s] failed to acquire vblank counter %pe\n",
-+			     crtc->base.id, crtc->name, ERR_PTR(ret));
- 		goto err_free;
- 	}
- 
-@@ -2169,7 +2159,8 @@ static enum hrtimer_restart drm_vblank_timer_function(struct hrtimer *timer)
- 
- 	ret_overrun = hrtimer_forward_now(&vtimer->timer, interval);
- 	if (ret_overrun != 1)
--		drm_dbg_vbl(dev, "vblank timer overrun\n");
-+		drm_dbg_vbl(dev, "[CRTC:%d:%s] vblank timer overrun\n",
-+			    crtc->base.id, crtc->name);
- 
- 	if (crtc_funcs->handle_vblank_timeout)
- 		succ = crtc_funcs->handle_vblank_timeout(crtc);
--- 
-2.47.3
+Series: drm/xe/pf: fix VFIO link error
+URL   : https://patchwork.freedesktop.org/series/158478/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from xe-4193-2d16d4e1aef3cb501fcd37c8558dafeb579be813_BAT -> xe-pw-158478v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (12 -> 12)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-158478v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_waitfence@abstime:
+    - bat-dg2-oem2:       [PASS][1] -> [TIMEOUT][2] ([Intel XE#6506])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4193-2d16d4e1aef3cb501fcd37c8558dafeb579be813/bat-dg2-oem2/igt@xe_waitfence@abstime.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158478v1/bat-dg2-oem2/igt@xe_waitfence@abstime.html
+
+  * igt@xe_waitfence@reltime:
+    - bat-dg2-oem2:       [PASS][3] -> [FAIL][4] ([Intel XE#6520])
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4193-2d16d4e1aef3cb501fcd37c8558dafeb579be813/bat-dg2-oem2/igt@xe_waitfence@reltime.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158478v1/bat-dg2-oem2/igt@xe_waitfence@reltime.html
+
+  
+  [Intel XE#6506]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506
+  [Intel XE#6520]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8653 -> IGT_8654
+  * Linux: xe-4193-2d16d4e1aef3cb501fcd37c8558dafeb579be813 -> xe-pw-158478v1
+
+  IGT_8653: c13e142a52b1654cbfb42b80985d6da656033ff4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_8654: 38d9fde0432aa6f2bf6add062f1d4334ad467fbc @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-4193-2d16d4e1aef3cb501fcd37c8558dafeb579be813: 2d16d4e1aef3cb501fcd37c8558dafeb579be813
+  xe-pw-158478v1: 158478v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158478v1/index.html
+
+--===============8042630321044755851==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/pf: fix VFIO link error</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/158478/">https://patchwork.freedesktop.org/series/158478/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158478v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158478v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4193-2d16d4e1aef3cb501fcd37c8558dafeb579be813_BAT -&gt; xe-pw-158478v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (12 -&gt; 12)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-158478v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@xe_waitfence@abstime:</p>
+<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4193-2d16d4e1aef3cb501fcd37c8558dafeb579be813/bat-dg2-oem2/igt@xe_waitfence@abstime.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158478v1/bat-dg2-oem2/igt@xe_waitfence@abstime.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506">Intel XE#6506</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_waitfence@reltime:</p>
+<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4193-2d16d4e1aef3cb501fcd37c8558dafeb579be813/bat-dg2-oem2/igt@xe_waitfence@reltime.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158478v1/bat-dg2-oem2/igt@xe_waitfence@reltime.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520">Intel XE#6520</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8653 -&gt; IGT_8654</li>
+<li>Linux: xe-4193-2d16d4e1aef3cb501fcd37c8558dafeb579be813 -&gt; xe-pw-158478v1</li>
+</ul>
+<p>IGT_8653: c13e142a52b1654cbfb42b80985d6da656033ff4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_8654: 38d9fde0432aa6f2bf6add062f1d4334ad467fbc @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-4193-2d16d4e1aef3cb501fcd37c8558dafeb579be813: 2d16d4e1aef3cb501fcd37c8558dafeb579be813<br />
+  xe-pw-158478v1: 158478v1</p>
+
+</body>
+</html>
+
+--===============8042630321044755851==--
