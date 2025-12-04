@@ -4,170 +4,186 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B6F13D1CDAB
-	for <intel-xe@archiver.kernel.org>; Thu,  4 Dec 2025 00:22:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B8073D1CDAC
+	for <intel-xe@archiver.kernel.org>; Thu,  4 Dec 2025 00:34:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6FE2510E19C;
-	Thu,  4 Dec 2025 00:22:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 65ACB10E19C;
+	Thu,  4 Dec 2025 00:34:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MQ8kQTn/";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XUTFQ6Xz";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3D1D010E19C
- for <intel-xe@lists.freedesktop.org>; Thu,  4 Dec 2025 00:22:19 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 914E610E19C
+ for <intel-xe@lists.freedesktop.org>; Thu,  4 Dec 2025 00:34:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1764807739; x=1796343739;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=3HJeqZ8wg2Exf0CuKFk95DkqRQT62O27mQxE5uis6f4=;
- b=MQ8kQTn/ALiMuPxZs+CmfvVP7oUMtNtLfsAY5vDHj+z3AvRqczt3MKdw
- Nlo3GJvy6E0ZciwHMalbjjjwSFwNFUx1IY2Q/x4gdra9SoGHgiuYZaHWv
- yKFjurqn1y99TT7ih6H8fHwQWpVeWJ9gSWGsRwKPhvbZpdOCChoGk+SjP
- hug698/wk3MuxC1J74U49buebrYue+VGLDSJVYiUO81z2XjlYm8x6E1AY
- R9orqzIXGzXxFtV070BJNx7WPb2ibDes49nIjWQabKt+IKItQg3oqPXoq
- OGMQTILq3wTdpeD4k+g9lmtIcWwPiyB7sqENpwk3YErn+i0eCd19ctdQ4 g==;
-X-CSE-ConnectionGUID: Hqdk0jwDStuBgSPTW3A/6w==
-X-CSE-MsgGUID: 6ZT6ivFkTAeCZTmrvYx0Dw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11631"; a="84419754"
-X-IronPort-AV: E=Sophos;i="6.20,247,1758610800"; d="scan'208";a="84419754"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Dec 2025 16:22:18 -0800
-X-CSE-ConnectionGUID: yksVv1a5QlWWbk8Gjvmbww==
-X-CSE-MsgGUID: XkUyBAj7RkKTete+57DHnA==
+ t=1764808485; x=1796344485;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=Ur6SKvSanRD5k+CNvxyiITCDqj+lKEOIlcTiJTJJ9FU=;
+ b=XUTFQ6Xz2/SHsvOS3y0XSQvXbpZ8xW+UBf9GbzykBJGa7wJzMRlf6IHL
+ jVxJ2IiL1wRfd4xNAqq2s20eDxRQjwvFzMIkYIOKJb3++N4zexDq6FXmJ
+ 6/tRM0BfRkO4xElc5+CL68ZHyL/9GQEF/0DBTMGIcVp+E3iKoxRJ+4MJj
+ qiARDmNI2Zs86hPovRvXzV4ovtsHctwKosqUU6toEeoi7bE6HcVoQjLUI
+ PgJfwuSW2F0AVyD8NfdUmy3pGyeDUBlLXzUf/S10P8abVaEyIhxjQvSAE
+ rSkCK2qqotYkyZMCEOas3X/CvjSbo6i1E4qcPBpdYRRgcQpftwl4V+V8c Q==;
+X-CSE-ConnectionGUID: T01nOpy9SaitSj/H1mC8Mw==
+X-CSE-MsgGUID: VNnBrWIMStKGs1fjGVAcTw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11631"; a="77926233"
+X-IronPort-AV: E=Sophos;i="6.20,247,1758610800"; d="scan'208";a="77926233"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Dec 2025 16:34:44 -0800
+X-CSE-ConnectionGUID: PE+cRQBeTWucoZmb26U0qQ==
+X-CSE-MsgGUID: YIJz3AUaSU2ajrf+ua5Hkg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,247,1758610800"; d="scan'208";a="194931301"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by orviesa008.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Dec 2025 16:22:18 -0800
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.20,247,1758610800"; d="scan'208";a="195632549"
+Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
+ by fmviesa010.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Dec 2025 16:34:43 -0800
+Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Wed, 3 Dec 2025 16:22:18 -0800
-Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ 15.2.2562.29; Wed, 3 Dec 2025 16:34:43 -0800
+Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
+ FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29 via Frontend Transport; Wed, 3 Dec 2025 16:22:18 -0800
-Received: from CY7PR03CU001.outbound.protection.outlook.com (40.93.198.39) by
- edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
+ 15.2.2562.29 via Frontend Transport; Wed, 3 Dec 2025 16:34:43 -0800
+Received: from BN1PR04CU002.outbound.protection.outlook.com (52.101.56.31) by
+ edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Wed, 3 Dec 2025 16:22:17 -0800
+ 15.2.2562.29; Wed, 3 Dec 2025 16:34:43 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=IiyuyNudl2Rby7pgtAEsFPz09YUdQclAqotkSS5we0kv6VqbQHKPHu/8GG3PdKoxjZKF4G6zBJP4BoEKUyhza5s/7I7NOq+e18Oay+qAH/CoDLwnY3VOZndTL/g1MWxWsvthoJEP/qCakwEO26+/7WxOdtxAmc9fZFjOFghxfSrvOYPYopn5eN5GhB494HGMtjJCwE4n5U1LLBkWpQ+XPujRUnc/cM0uQmIQA1+sBB7cPKBKP0IGb0OiMXSyPRYwTNH7lIBP9BACROnuSyJgIQA8s53rUDf+mGveLA4Y/ymyIh99M4Woc5AHTZeFH+LNTGhjKMAKRh4QMhay7ExgVQ==
+ b=q8aU/GH8DmjIERr+U6Rebk4bjdnb/skqYEC6MMQGGOnsS+b1HSao3Cgrlkf2kMpxvePeeUY6dLnrg3Ov1y+eJ8czgXJ50paudalx8bdM6cgmtqExvMJtXY5ndHtXKJm6uypaJ0h+YZhboYU1zoEnOd2WG1fIZi9EeOBgMhchgIa0Fg8weTlKEplrjMPoXrmbbwMYXWOkw4rkznauOCoh9YfpXhBXUJVgveJFNiysuPfh9a5rCxkFbGC9LjYWnRVJkXoXTYk2/EVxB1Wz/xmIILgJboufnhuIRNPY/bdeWvkt0Po57LxWR9tPI4GHy6svx8fW/GMgIZI7xMofcvOv/A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=f3K5Ooh7h4q0Yzy/RwlnxYTLQg59um7AUqFcx1ttAHo=;
- b=txW9cIwojpAV15FyJmj5+AVfyTdyV8wuvF9+JI9iEU0Y5uYuV1/myTLZdhovfEsl/eeeYi42vjfu86FkM237kFvSGT+9AUNbEpkELxFIp3L7fZ5o9KlKJAL32rpPtXLF5kuBerzgp8LyovJz8aJc1mdjPdXxUVvoiTg1OaLTJl4uuLDuEgywuVeYGENpl7CSNjMwmkirreHjpGCZ/MytYZJDQKBscqQYqq/mo1EfVgtGiK50c9hyoeMZVCYVuS9ETtkalq93Brg0UGbM21DbrDdUXKE5uVQd7cqELQ920HNlt6vJ2GXosnXC2ijkZ7zXAF1Bmqh3qNC9lXHC6yY1+A==
+ bh=E7oDDaDW7H2eXeZ46I09NJYE7TFUgM/3bsve77NxgOU=;
+ b=mzMArtnvaZBzWHmk2tAmHPfBwcZy4oHnNZFAsNgZPrtai74Uy1dR+psHDSsKnXvq5pjK0zVJTOQIoFdRBFHxUG/S3Z57Tm31C2b+tYOohjRiqP/vMhjHa4Xqx1e6U/y6+YRpawiiXSXMurLAWhd1ft5I2MORZFNNEwnO30G4Vet/U6+3FycWgQmAWM1nT10lLMEpX/Y6QLA0UZ4TZ2NNiA5SmdgoDEI0spHg3FljPvURK8p7N3YbT84Gbs5BnzJIbjCiPm7NLTpKBWSaN8vlXLWhXRuO3DmDRsdkkWp090NEchLpO5lOWhPRSeboXeNTcOVRdH0zKvP2Um9upEG8qQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Received: from SA1PR11MB8839.namprd11.prod.outlook.com (2603:10b6:806:467::17)
- by SN7PR11MB7068.namprd11.prod.outlook.com (2603:10b6:806:29b::10)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9366.17; Thu, 4 Dec
- 2025 00:22:11 +0000
-Received: from SA1PR11MB8839.namprd11.prod.outlook.com
- ([fe80::ce6c:3c7f:92ef:1394]) by SA1PR11MB8839.namprd11.prod.outlook.com
- ([fe80::ce6c:3c7f:92ef:1394%5]) with mapi id 15.20.9366.012; Thu, 4 Dec 2025
- 00:22:11 +0000
-From: "Nguyen, Brian3" <brian3.nguyen@intel.com>
-To: "Brost, Matthew" <matthew.brost@intel.com>
-CC: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "Upadhyay, Tejas" <tejas.upadhyay@intel.com>, "Lin, Shuicheng"
- <shuicheng.lin@intel.com>, "Summers, Stuart" <stuart.summers@intel.com>,
- "Wajdeczko, Michal" <Michal.Wajdeczko@intel.com>
-Subject: RE: [PATCH v2 08/11] drm/xe: Prep page reclaim in tlb inval job
-Thread-Topic: [PATCH v2 08/11] drm/xe: Prep page reclaim in tlb inval job
-Thread-Index: AQHcXyjJG7EwvMuSJ062FpUI1FjWxLUQlpUAgAACXKA=
-Date: Thu, 4 Dec 2025 00:22:10 +0000
-Message-ID: <SA1PR11MB8839E3FBDEFCCF05D27F757BAAA6A@SA1PR11MB8839.namprd11.prod.outlook.com>
-References: <20251126230201.3782788-13-brian3.nguyen@intel.com>
- <20251126230201.3782788-21-brian3.nguyen@intel.com>
- <aTDEIK/L+Qc4faWw@lstrano-desk.jf.intel.com>
-In-Reply-To: <aTDEIK/L+Qc4faWw@lstrano-desk.jf.intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
+Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SA1PR11MB8839:EE_|SN7PR11MB7068:EE_
-x-ms-office365-filtering-correlation-id: 0ff629b7-3cba-42f9-3eb4-08de32cb2aba
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0; ARA:13230040|366016|376014|1800799024|38070700021;
-x-microsoft-antispam-message-info: =?us-ascii?Q?UEMU1Gt6a39+VnHlD17YvHCLIHZB++/x39aHoURAXK2G1fw2Jykv6kNMBKTx?=
- =?us-ascii?Q?oGxOyyZqPaIC+fnjQoHvKb2WIAyPjJKYgwTXBWrbvqB+zuXk7I3Uwr2czte1?=
- =?us-ascii?Q?xeRWUI7KcFfjYfPINoRKB0rWobslZwLVPXoQ3jpVOD4Ly4gI29SLe+MgoPci?=
- =?us-ascii?Q?dTNcdoFDxa3JboVjfO3nFny1g0E88TsH8lMYJpOpK+bHPUPIsww2UhuOHz6L?=
- =?us-ascii?Q?jdQEAyeYeGSbrJ0BFVKy2MvgjIwqSBI/lq39Z+MDhAKbaD4dUrbglXNYv1SZ?=
- =?us-ascii?Q?sA9vOx6kjwEUnBV8D5f2qqZSbRvgmAxhrdPdEvhXr7yeSGTUfkecuHxabfEY?=
- =?us-ascii?Q?3FSiMshX4szTSJwYNtxiUKrPlx6J9F2zp+dj/M0ONvo1LZqvfl+Aq2zm/UgX?=
- =?us-ascii?Q?unMmmPROjrxTlSDwHPxgIlN3AAEsjfkSqWjAOZOgw8o/uHROxS/EIfx0UhH8?=
- =?us-ascii?Q?QeFhMerKJPk2eDtQCMUaj+4HnchjTTcHCvIV4Fh4dgfQkbIVXISVnCVZyhao?=
- =?us-ascii?Q?KMgguBhyDI57cXJfHvtYmhdWxkDi3vNzFQuXScoZRGozN2L05yxgOhv2Ppw1?=
- =?us-ascii?Q?t6BleCDIa92mr/0hgVmOyUufbrqfxUxZ3IU7Jyy6nrLqSsuvhf96Cq5mP8kD?=
- =?us-ascii?Q?sj5/l2PozBSczUTeC/dA/BhwlGnlTceylX/azPHYLfIDDQ2oI7JfUZylk6L+?=
- =?us-ascii?Q?+NwUezo/ZVh68d/b1CJYvYPaPTuuwguSfGXgBevXpSJZRyYXb+7ghlBrNdpw?=
- =?us-ascii?Q?kQrBcgpgWOXbF1KjBRUDgN2c7XORU+lP6lKLz6OFyQJvl3iCQ3GhI/RBiSE7?=
- =?us-ascii?Q?Y3ilLjwnq0ro11gES/XrA9rkhmylxDjtRZa9g/EMzt9HVGKiIRlFDLgGNEb8?=
- =?us-ascii?Q?6LVNvOy1oM5Tuj84S0jW8B0GrnGr609R9YQGcObBxV+M8vezGvRTuW0Y2UMD?=
- =?us-ascii?Q?HZTO+5gvmjWzuKGIILAaYRgq97V/Y+/lRTixHjgZfBabDFkkahT6bTwmPIvb?=
- =?us-ascii?Q?9lLjnjJjLjGnC5YtHUPR6eXKSRI4Cqc29lkXTjiI/I7cTYoSQa32nRfPI2BP?=
- =?us-ascii?Q?31BFzwfn4pB5/dngtssNoVUAWKlD3l5sT9WjA79URHhbmARmyBFg2+DXUurp?=
- =?us-ascii?Q?vKpRoSplVdSMgPB+c6zMDg4lIk3/x+Kvl7iH3G9BMe70gDPapL1JsSEtCGHB?=
- =?us-ascii?Q?LXfkmT6S9RV3xXI/hYlLDMo0KumuBwtPhqYF5ISViQ+wb/HxuYXWrovU6wXD?=
- =?us-ascii?Q?j16BAaCzs9n/OSCreUaSghk7O0fvo7OI+F3G39kKnqoii9N8jo7P6jgiNUGg?=
- =?us-ascii?Q?x52le7CMTXZSe2N/8HOI/vQTPSaBCmp5jDcxOrhYVAyao+AO8x3+XTaUGVsn?=
- =?us-ascii?Q?ZR0yrjVgvyykrTxQFe32SKgUoih45NDySmqAOXFBYtIWow++zMRP/XTf6BVN?=
- =?us-ascii?Q?zCM7HqbjE10DV6R3LbxM3FhN47AKco/r9b+MaG49EJPdVOqNw96JVa09pbjA?=
- =?us-ascii?Q?R3NXTC7jcV5OlTzdEEBBVHvVUn6E6uFKAPvp?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SA1PR11MB8839.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(1800799024)(38070700021); DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?ceMtSqZkdJ8f5qOlRCdlvQLhP4L8Hjoc4SkNRzPxV6aBdup/keHj0A2/I7JC?=
- =?us-ascii?Q?LrKIrCNzKmesUm5vLll+jpCsqM7Kcc6nTmvfB/WYscgE7RcN+beNXp5E0Pkb?=
- =?us-ascii?Q?xG1HtGsxBsqRRlaTTsRAP5LbVSgoXnIkG8vdlUS8Z8CvaAJORSAiyae7+BTc?=
- =?us-ascii?Q?eThuuRPck4ETWU4y/7lXc3+LjZVPQ586/rGzN9KaUU2yZqm+JXmaBnni/P8U?=
- =?us-ascii?Q?stzUVTkmxuuoDJfsLmb58DTazfytHss2JxIUYBroEznumaoKPxylBzZrJe1C?=
- =?us-ascii?Q?BM4geQBMq4v7NyqitBGUgQNmwrJjhaJ0IUaegw+bVp8BkdIK7u/9WOsgYzZQ?=
- =?us-ascii?Q?9Fjpfyc6CF1XhOBEKg9Bd7C2KEGeknMG5cre9r3GHjXKI6c281lPGkteFuHC?=
- =?us-ascii?Q?v/piMqbARUR+OoyNSYit6+XnUfstfU32IE2qNl8WjFZrYH3aWZJhtf6pMPZt?=
- =?us-ascii?Q?TA1wU9jKKudcWBBenVyhiqdNrqllRxPQhYjtzKNl99xXwYpYG1FiMG+5r6T6?=
- =?us-ascii?Q?uz3m49R9PV2prmXOSC2sGsYJMISeQ5sPPCsg605fxVU1QWStE0ul3UF0nGAV?=
- =?us-ascii?Q?i75jHxwB+fLJy2FuEC5R/UyFlAtEgEe3qCZ/HcHu3a81e3iXtT+D6TEItF+o?=
- =?us-ascii?Q?7+dpI3ZbE72FCF017lmDGbLsNrsZO+WvR5tP283fR7oysVy4rZFODyyiKlqh?=
- =?us-ascii?Q?Fd449f9IgthoWGvGvXkaKhn30UzsSA7XfzfM8ShP40o68CexLIsQHLOnAMQ4?=
- =?us-ascii?Q?lglwyT9HuI3/6c23gjCDvxkt3PwUTVL1zMLV3v4vVnr7zLhDExMh98yTmmby?=
- =?us-ascii?Q?zUsfA5KtOz5WTsvZxwuO62FkUbU+uO5MDKr8KNCF1K6Z77kTrztFi/j2RRIm?=
- =?us-ascii?Q?VhLS7mA8Ed9UGjkl3nLotXm9OOsNdw0YJY0UjSUBNhUYVJ7VrJjYilG5pXYv?=
- =?us-ascii?Q?VBGjNkBPf6CiMfsDOj/ANstbTS5v9VsmhpVcgY2YMbbKCrUYTMQAO05etEUQ?=
- =?us-ascii?Q?BeT4HrRRaLwc6HN4il1GWYxUFLw5dlz6ev8ISbdelQ6fZfN0iGlE/wtffy73?=
- =?us-ascii?Q?/N7N1UpIkNjIM9kvYwe2ttwi2qMtpx+/alzg5mWht5ykhvlzesIyoNO6/j5+?=
- =?us-ascii?Q?3XIsjFauDTi6CZIKA35UsVLrgWzNswNOVTVw84uoSNWRmRDxDeD7ig3PAbaq?=
- =?us-ascii?Q?VFvqS+Y1evsoKi05qbxH8MesttJ7EO4ArIY+f+ccvp9zL8ZVGMYlQjSNmwwW?=
- =?us-ascii?Q?MwnKklwPia9uRyG3Xa6V2us8F6hJbbzLRDmVWj+MzARNn7i46r5msDA61zq+?=
- =?us-ascii?Q?Uw3fZTiNhDTKxxechilxy7TdTq+Ek0XJY3KcgPbJaCE3xkpO/CpvFNcdi6S6?=
- =?us-ascii?Q?vp+9iN7RBsBhTVEoS8EXRx4mSVoaRYmxsnjfVyuxW7DaChGocG3u2p4h5M90?=
- =?us-ascii?Q?Kzl8hvmsgMZL6MC0Q1WzpUCGFcoEYXEc0w3B6qTPDVDO66qYORjXd18IbEQg?=
- =?us-ascii?Q?ra5WXXUqhF4Cjxi0iIznuBLNCOi5sLG7oi/l4a97GkJ3t2J1MECMCTe7VFE/?=
- =?us-ascii?Q?PAbVNJmJ5zkxW5lZTIKf0zIqFtJ2Zk9d/Bo93XBf?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from DS0PR11MB7408.namprd11.prod.outlook.com (2603:10b6:8:136::15)
+ by SJ0PR11MB5102.namprd11.prod.outlook.com (2603:10b6:a03:2ac::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9388.11; Thu, 4 Dec
+ 2025 00:34:39 +0000
+Received: from DS0PR11MB7408.namprd11.prod.outlook.com
+ ([fe80::6387:4b73:8906:7543]) by DS0PR11MB7408.namprd11.prod.outlook.com
+ ([fe80::6387:4b73:8906:7543%7]) with mapi id 15.20.9388.003; Thu, 4 Dec 2025
+ 00:34:39 +0000
+Date: Wed, 3 Dec 2025 16:34:32 -0800
+From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+To: "Anoop, Vijay" <anoop.c.vijay@intel.com>
+CC: <intel-xe@lists.freedesktop.org>, <rodrigo.vivi@intel.com>,
+ <aravind.iddamsetty@intel.com>, <riana.tauro@intel.com>,
+ <badal.nilawar@intel.com>, <anshuman.gupta@intel.com>,
+ <matthew.d.roper@intel.com>, <michael.j.ruhl@intel.com>,
+ <mohamed.mansoor.v@intel.com>, <kam.nasim@intel.com>
+Subject: Re: [RFC 5/5] drm/xe/sc: Add system controller component for Xe3p
+ dGPU platforms
+Message-ID: <aTDXGBuN+fXdWu+V@soc-5CG1426VCC.clients.intel.com>
+References: <20251122045803.3616201-7-anoop.c.vijay@intel.com>
+ <20251122045803.3616201-12-anoop.c.vijay@intel.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20251122045803.3616201-12-anoop.c.vijay@intel.com>
+X-ClientProxiedBy: MW4PR04CA0382.namprd04.prod.outlook.com
+ (2603:10b6:303:81::27) To DS0PR11MB7408.namprd11.prod.outlook.com
+ (2603:10b6:8:136::15)
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS0PR11MB7408:EE_|SJ0PR11MB5102:EE_
+X-MS-Office365-Filtering-Correlation-Id: 17aa0af1-643f-4b7c-289d-08de32cce872
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?Z1ZEQjlKZW9veDNKREtVUXFSRlUzODBmYWYva09mVzJrVXBVVmhwUFlBRUU4?=
+ =?utf-8?B?Tm16OXduUVFSK0xGRkZWc0FQbTlDYTA0clVNU2xwTUtsLzU4R2pFUFhmdUV2?=
+ =?utf-8?B?RFJjVGpINW9VWTFNcUliRzNZWFl2S2kzdmlnUjFhcUpHbEVtM2h0VkNwK1hI?=
+ =?utf-8?B?VjdteDRPNENIN01ZUTBuWVlIMzFFZHNpaDJUblF6Yk9Ud2pZb28wY0RQN1c0?=
+ =?utf-8?B?KzRBemRXMWpOSnZRWTNkVlVVckhLM3llYWRtUFp4bDJiRmo1WktSQktucDdZ?=
+ =?utf-8?B?alNWNDQxV3hFT3FxSWdpUnd1ejExV3pWdmFjdGpWbjdXbkFvMm9tT2wxUzBN?=
+ =?utf-8?B?aDlhOUJRQ3pwdnp1MkUveWpkd1FpRml4d0Q3dG9xYnNYZk5FelhiNzF6a2gr?=
+ =?utf-8?B?RE9rckJadGZYYk1sZHRPQTlVV3hWNDNYNTl5K01nem5mendlc2dGM0d4dDha?=
+ =?utf-8?B?STNzQ3VUckNtZUdiVzNwZjdkYW1MczluVnFnV3dTOWc5Nk1rWXF5bGFyZDNF?=
+ =?utf-8?B?QzlielNibkl6bi8zcTVDdTdGemN6K0F0eS9XSVZPN1RBaVRLV0NHY1BsM1Rs?=
+ =?utf-8?B?TmpJTjdYTDlvdW5jY3EzZS80MnlPUEtwK2x2Z0FER2RhUjRNK2pJMUtqV1d1?=
+ =?utf-8?B?b0c0VVU2eHdlcDVXbGJYR3d6WEZObDVkK3pVeTcrcTA2N0I0eHVPZ2NKT3VS?=
+ =?utf-8?B?OE9UZlZqY1hnSFJ4V0QwRzNoazQzU0tDUWNjL2I5aE1CS2pnR0xhVFBBZE55?=
+ =?utf-8?B?RWZWUjllOS9NUDZKTExlcE5kWXN4TWN5aiswZThtbkhRS1pSbXNIbEt6Skp4?=
+ =?utf-8?B?bzgrbGVxKzhmTU8rZm5SRkxlYnAwakJsM2tPN2ZrVG8xNzRmS0JxZmlERXhE?=
+ =?utf-8?B?ZFRzOTQ5QWFSUnhqOCtscTZsUXBsbG4wWlBmQmZPK0M4TjJ0TXNRdmVGVWk0?=
+ =?utf-8?B?eUlyVFNRKzNpZCtPSGZYbGYvUHRXK3BKeVJ0S3drWW5vc01nb3RTWDZBMWh6?=
+ =?utf-8?B?b1lXaktjaFpEd0xZMkxRRm43S0lJRXpiR2ZVUlRxYXVZTmxMNzVITlR0SHY0?=
+ =?utf-8?B?SVc0a2dLL09kVElqWHJRcVloUHp0ZVF0NWs5R3A5SFdkV1NSM3VYS1BpU2JF?=
+ =?utf-8?B?ZFBLMzlDUVdjUTl0bEFaYXpmTDdZRXphbGQxWFAxM0xLVXN4Y3lnVE94OG9E?=
+ =?utf-8?B?QTRUN1NjMTBJOUIwUE45WFlIZlRHd2N3eXkwNE5lcGtrM0tEalJNZlBIaWJF?=
+ =?utf-8?B?OENRYk9HV1ZmUmFheG40cTUyU2t4WU8waXc1dmZTdnRBcko0cngwZ2M5SU56?=
+ =?utf-8?B?YmtEc21LczRCL3FFL1c0MUMwWEt3czIwbHNjU1dDSDhKdHc4NVpqc091Y1B3?=
+ =?utf-8?B?ajRRSXl6b0x4WkFsSGxSVGtrdS9kOElIUy8vK05wZVJzU2pCSVdwelJteFgr?=
+ =?utf-8?B?MXhrTWltWEVocHZ6TXFmbXRSSXh6UEFNaXRla1hEdXpEQ2pMRVpicWN2SERB?=
+ =?utf-8?B?YmVZcEQ2SURLNFFRVmtweFR1OHk0ZGhXNi94ejV2U0pQcWpNbHdGNmxhZmVB?=
+ =?utf-8?B?YkVaRXN6aEJHakxOWUxwUHVMRzFSZUdBOFVpdGZEbTMydjNYaGg0V1l6RHh5?=
+ =?utf-8?B?ZFgrSXB2eURSdWxuaDE1MjhUZEZaeFFZNU0xOXdHYVlSVVU3MVN5OGFVeHlU?=
+ =?utf-8?B?NWdDaXBMQzJRaXJ2UGEwdUt5cXR4R0hjeVV6Y1FLeXIvQW9qdXRsbDBNZlVu?=
+ =?utf-8?B?b0tZcEVRYTdVdXlzWWQzVXl2WmREV2xrdE0xb3FEc05UdDFaZWU0RWh1VWRL?=
+ =?utf-8?B?UUJQOWd6QWJJaktXZUtrZTQzRFFQSldHbk5rM25MTXM4aG9YVnZJU2hGVkhV?=
+ =?utf-8?B?ZGVNdjFtSzl4SERWR1M0UWl5QU1tMk14a3JIclBqTjR1MEp0UU5yZDZKcXI4?=
+ =?utf-8?Q?aaHP5G9cdrfH2uCYzOadQZKuwuJ3eGja?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS0PR11MB7408.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(366016)(1800799024); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?M29xdFYvYit1YitOOEVRNnR2a1BhVVo0bFNOVTFkb3BYZmFZWU9DNFB1UnF6?=
+ =?utf-8?B?VThZdFNrZWtxeVpDdEx1eVFTMXVnREV5cURzK0VuekFoKytzS3BtYlloQ0VC?=
+ =?utf-8?B?NVRuZ24waWFaN2ZHUG1zKy9lbFp2OU5IVllzZHVhYkFFWHduYlplTFdZWEhY?=
+ =?utf-8?B?S1YvWnZ5bURJZkY5cHJKZ3RtUDdkRVB4dmh2WHN3dUFMU3crMDd5emhHZmNo?=
+ =?utf-8?B?NmVkblI5UG9nNjkvNVBWL2Y3aUt2d3MzWEVXay9HWUJ0SWxIN1F2bmFTTGFG?=
+ =?utf-8?B?MlVkcStNT2JLUjRUZXZzRmFzWEgrakpWbG5IWmVpNit3SktDcW1HRFBuaC9i?=
+ =?utf-8?B?OFFZeGZuUnNaaDRUUzNmV3lQQ1RVTzQzaVg4Tnp6T2U0MzQ5ekUyVk5XakFo?=
+ =?utf-8?B?cTJRRkVWZXE4dFgvSk11SStEYlFpaTdnNjBJLytTWnVFUEhBUitMSkczeFRJ?=
+ =?utf-8?B?UUUvNEwvMExPeG1JazhWWDl6M1kybE80N3psU1ZobUtBL0MxZWFZNkVDTE8x?=
+ =?utf-8?B?WmpOOG1SOXZjcjU4akJVRXJjQmVHMUVRdjllbjB0VUlhMDloUGZpbml6ekgy?=
+ =?utf-8?B?bk4raWVUbmhPaFVkL0YxZ3kzWVhIb2dFUTRkRXZIbGNNbXErZHVOdWpIZU1m?=
+ =?utf-8?B?aUphTW9FcEpYNGtlbGQzUlQ5dFlNTUJHT2RSQlhTWTkzQjZSOHlCTWFndFlx?=
+ =?utf-8?B?dUZULzR5OGEyUURTUnlCaVFlRjQ2RTFXRE9NTUVuQUR3K1V0bDVucTgyRXE5?=
+ =?utf-8?B?VnA4eU9YYnpiTzJidWNjV3NzMnl5WE1VMnYrTnBDbnJ2cVZrMlE2a0s5aUxu?=
+ =?utf-8?B?aVhheFJ3SW96Ry9MK29YTmgydVIvWDJrRXVhRE1VSm5DSW9FSWdZSjBacjBr?=
+ =?utf-8?B?V3h5ZWNNSS8xaVFyUU5vSjlMTzlZSWJnTnVtZnd3cG8zZWo2UWlPdWQ1RTJI?=
+ =?utf-8?B?S0VpSldUMDJYTklRMVpQR09VV2QxdkVFWlVhT3huUmJ2UjgzaDR3ZVgraDl5?=
+ =?utf-8?B?d3RROFo0L1grL0l1S0p0Z3JwRklzZnJOMFV0aHQrZlh4THBCM2hycnBBOUpV?=
+ =?utf-8?B?TU9qVTF0ZGV4QXBUQm4wUTU3SktSZE01TWQ3QU5TVmEvVC90dDhZRU9yYzR4?=
+ =?utf-8?B?ZG9SVjBzRXBYdkovVjVadXRBYnVnNWVwOEkwb1FEVGRINitDTGhWYXVrN29Y?=
+ =?utf-8?B?NEE2WnJ6b0hUZVB5c0IyTGVhaTIrYmpIcDRwZUhhazV6NnROY0xZWE5JVzFT?=
+ =?utf-8?B?aFpMTEVtb0JtTTdXb2xzQmRLcVdFR0VSM2xXZW1kYURPRVhZZ0pjZ0k5YVBL?=
+ =?utf-8?B?K1A3a2ljcGVVd3QyNWNwaWpWZDNmM3dMNFVWTUp0THdvZlcrSXZQOWZMRzJV?=
+ =?utf-8?B?WlRtOW9PMVJEbUw2dnk0SFVId0czSFIxWGhCTG1RMW9wWFRrRXFIbTh3UHpk?=
+ =?utf-8?B?dnJwa3dJZmcrMGdnMWJVNWZyYy81MHU2M2JZNjdmUkdCbEk2WFh4ckxXTWxa?=
+ =?utf-8?B?QjB0SmVwbmdiOU8vSFNIelBYaXZ5U1o4UEM0SnBhZCs2N1FuOHJvMzNGR1Jp?=
+ =?utf-8?B?SVkvdTFRVlFNdmhZK2gxYVJhdXhCaFFMNDlrNnZVOGxJaGdNZTlxVEx4RW5F?=
+ =?utf-8?B?R2JCb0lKcDBtakg4cTFEcEVrUjlweXM3N0RyVU9lNzVnV1hEYlJTSGRTY1Bm?=
+ =?utf-8?B?bXZHQWovSnNWTFppS0RaVUJIUFk4a21GWmFlbHpNaVRtb2xjdEdZRlJhZmI1?=
+ =?utf-8?B?MDVpalBJd0JRNWxOSDVkRVorS2p2S3ZFTDdKYWFrNWRpb2Z0UGZpOGIyK0ZJ?=
+ =?utf-8?B?aVhoNStOQmRmS0JtVXYxdDRYcTZRL29qcHRZNlhtR0lVd2ZLS0RRY1JOSHlM?=
+ =?utf-8?B?T2hYUUQwWm9reE9CV3BVNzRaTG9VUWpKVWJkS0NHZnp0NzBBYkMxNDlKUG9q?=
+ =?utf-8?B?cE1hWm9Vd3g1U2xqTHRWY2pXSXFsOGZDSGlUVkdQTnlEWkMrUEFzZVpyZm9z?=
+ =?utf-8?B?S0E3Tlo1Wkp6azFERlYxZDQyR2VSZVZHbVpDMTh5eW1Kd2gzNHhVelk1SVlk?=
+ =?utf-8?B?UGVHaVp1MzJCclRGKy9nSDh0cWJuQjZEZnVTcFg5RlFwU1ZHbnZJejRsMyto?=
+ =?utf-8?B?SXNzaEU4ZjkvWml6c2JSRjBxMGhsY2JNVFFSbjVmcWxsQjlqaGg5aE92dDdZ?=
+ =?utf-8?Q?QXFu9kuN0+SgfMhx8btoPKs=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 17aa0af1-643f-4b7c-289d-08de32cce872
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7408.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SA1PR11MB8839.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0ff629b7-3cba-42f9-3eb4-08de32cb2aba
-X-MS-Exchange-CrossTenant-originalarrivaltime: 04 Dec 2025 00:22:10.9301 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: n+kAODIVrh4x4gIh7Hf7BgbQw96erltsPTyryWE9HexAZHWMsTUAt9fPeZvkZlTWzNSuVBwnFdzEy2oX2GwZUg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB7068
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Dec 2025 00:34:39.1456 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: rjZqtpZCByGvTiBe3U/BB14UM9+91OKMvBPl8o2456pAvIyCPoHyRYV1mjgEsr1C4xivekHiEH2L46pZ/Ac7fwQl1Zm0f0Z68SEwZHUaaEk=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB5102
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -183,152 +199,515 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wednesday, December 3, 2025 3:14 PM, Matthew Brost wrote:
-> On Thu, Nov 27, 2025 at 07:02:09AM +0800, Brian Nguyen wrote:
-> > Use page reclaim list as indicator if page reclaim action is desired
-> > and pass it to tlb inval fence to handle.
-> >
-> > Job will need to maintain its own embedded copy to ensure lifetime of
-> > PRL exist until job has run.
-> >
-> > v2:
-> >  - Use xe variant of WARN_ON (Michal)
-> >
-> > Signed-off-by: Brian Nguyen <brian3.nguyen@intel.com>
-> > Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-> > ---
-> >  drivers/gpu/drm/xe/xe_pt.c            |  6 ++++++
-> >  drivers/gpu/drm/xe/xe_tlb_inval_job.c | 26 ++++++++++++++++++++++++++
-> > drivers/gpu/drm/xe/xe_tlb_inval_job.h |  4 ++++
-> >  3 files changed, 36 insertions(+)
-> >
-> > diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-> > index 347b111dc097..833d6762dd8d 100644
-> > --- a/drivers/gpu/drm/xe/xe_pt.c
-> > +++ b/drivers/gpu/drm/xe/xe_pt.c
-> > @@ -2498,6 +2498,12 @@ xe_pt_update_ops_run(struct xe_tile *tile, struc=
-t xe_vma_ops *vops)
-> >  			goto kill_vm_tile1;
-> >  		}
-> >  		update.ijob =3D ijob;
-> > +		if (pt_update_ops->prl.num_entries !=3D XE_PAGE_RECLAIM_INVALID_LIST=
-) {
-> > +			xe_tlb_inval_job_add_page_reclaim(ijob, &pt_update_ops->prl);
-> > +			/* Release ref from alloc, job will now handle it */
-> > +			xe_page_reclaim_entries_put(pt_update_ops->prl.entries);
-> > +			pt_update_ops->prl.entries =3D NULL;
-> > +		}
->=20
-> Do we not need to do this on the media-GT? Or is issuing PRL a single GuC=
- sufficient?
->=20
-> Everything else looks good.
->=20
+On Fri, Nov 21, 2025 at 08:58:07PM -0800, Anoop, Vijay wrote:
+>From: Anoop Vijay <anoop.c.vijay@intel.com>
+>
+>Add a new system controller (SC) component for Intel Xe3p dGPU platforms.
+>
+>This component provides the foundational infrastructure for communication
+>with the SC firmware using the MKHI protocol over a mailbox interface.
+>
+>Key features introduced:
+>- Detection and initialization of the SC interface on Xe3p dGPU platforms
+>- Mailbox communication with SC firmware
+>- Fragmented message transfer for large command payloads
+>
+>This implementation establishes the base for future SC feature
+>enablement and firmware command handling.
+>
+>Signed-off-by: Anoop Vijay <anoop.c.vijay@intel.com>
+>---
+> drivers/gpu/drm/xe/Makefile          |   2 +
+> drivers/gpu/drm/xe/regs/xe_sc_regs.h |  49 ++++
+> drivers/gpu/drm/xe/xe_device.c       |   5 +
+> drivers/gpu/drm/xe/xe_device_types.h |   5 +
+> drivers/gpu/drm/xe/xe_sc.c           |  89 +++++++
+> drivers/gpu/drm/xe/xe_sc.h           |  15 ++
+> drivers/gpu/drm/xe/xe_sc_mailbox.c   | 374 +++++++++++++++++++++++++++
+> drivers/gpu/drm/xe/xe_sc_mailbox.h   |  61 +++++
+> drivers/gpu/drm/xe/xe_sc_types.h     |  35 +++
+> 9 files changed, 635 insertions(+)
+> create mode 100644 drivers/gpu/drm/xe/regs/xe_sc_regs.h
+> create mode 100644 drivers/gpu/drm/xe/xe_sc.c
+> create mode 100644 drivers/gpu/drm/xe/xe_sc.h
+> create mode 100644 drivers/gpu/drm/xe/xe_sc_mailbox.c
+> create mode 100644 drivers/gpu/drm/xe/xe_sc_mailbox.h
+> create mode 100644 drivers/gpu/drm/xe/xe_sc_types.h
+>
 
-It should be sufficient per tile. KMD will request GuC FW per tile and afte=
-rwards GuC FW will
-issue Page Reclamation to all the primary XeTLBs, for GT and media within t=
-he tile.
+[snip]
 
-However, I realize that this means we should be disabling PPC flush for med=
-ia TLB invalidation
-otherwise, it will conflict and do a PPC flush anyway. Will have to rework =
-some of the logic
-to handle this if so... Taking another look at this.
+>+static void sc_mb_clear_response(struct xe_sc *sc)
+>+{
+>+	xe_mmio_write32(&sc->mmio, SC_MB_CTRL, SC_MB_CTRL_RUN_BUSY_OUT);
+>+}
+>+
 
-Brian
+... continued from previous review
 
-> Matt
->=20
-> >
-> >  		if (tile->media_gt) {
-> >  			dep_scheduler =3D to_dep_scheduler(q, tile->media_gt); diff --git
-> > a/drivers/gpu/drm/xe/xe_tlb_inval_job.c
-> > b/drivers/gpu/drm/xe/xe_tlb_inval_job.c
-> > index dbd3171fff12..2185f42b9644 100644
-> > --- a/drivers/gpu/drm/xe/xe_tlb_inval_job.c
-> > +++ b/drivers/gpu/drm/xe/xe_tlb_inval_job.c
-> > @@ -7,7 +7,9 @@
-> >  #include "xe_dep_job_types.h"
-> >  #include "xe_dep_scheduler.h"
-> >  #include "xe_exec_queue.h"
-> > +#include "xe_gt_printk.h"
-> >  #include "xe_gt_types.h"
-> > +#include "xe_page_reclaim.h"
-> >  #include "xe_tlb_inval.h"
-> >  #include "xe_tlb_inval_job.h"
-> >  #include "xe_migrate.h"
-> > @@ -116,6 +118,7 @@ xe_tlb_inval_job_create(struct xe_exec_queue *q, st=
-ruct xe_tlb_inval *tlb_inval,
-> >  	job->start =3D start;
-> >  	job->end =3D end;
-> >  	job->fence_armed =3D false;
-> > +	xe_page_reclaim_list_init(&job->prl);
-> >  	job->dep.ops =3D &dep_job_ops;
-> >  	job->type =3D type;
-> >  	kref_init(&job->refcount);
-> > @@ -149,6 +152,25 @@ xe_tlb_inval_job_create(struct xe_exec_queue *q, s=
-truct xe_tlb_inval *tlb_inval,
-> >  	return ERR_PTR(err);
-> >  }
-> >
-> > +/**
-> > + * xe_tlb_inval_job_add_page_reclaim() - Embed PRL into a TLB job
-> > + * @job: TLB invalidation job that may trigger reclamation
-> > + * @prl: Page reclaim list populated during unbind
-> > + *
-> > + * Copies @prl into the job and takes an extra reference to the entry
-> > +page so
-> > + * ownership can transfer to the TLB fence when the job is pushed.
-> > + */
-> > +void xe_tlb_inval_job_add_page_reclaim(struct xe_tlb_inval_job *job,
-> > +				       struct xe_page_reclaim_list *prl) {
-> > +	struct xe_device *xe =3D gt_to_xe(job->q->gt);
-> > +
-> > +	xe_gt_WARN_ON(job->q->gt, !xe->info.has_page_reclaim_hw_assist);
-> > +	job->prl =3D *prl;
-> > +	/* Pair with put after bo creation */
-> > +	xe_page_reclaim_entries_get(job->prl.entries);
-> > +}
-> > +
-> >  static void xe_tlb_inval_job_destroy(struct kref *ref)  {
-> >  	struct xe_tlb_inval_job *job =3D container_of(ref, typeof(*job), @@
-> > -159,6 +181,10 @@ static void xe_tlb_inval_job_destroy(struct kref *ref=
-)
-> >  	struct xe_device *xe =3D gt_to_xe(q->gt);
-> >  	struct xe_vm *vm =3D job->vm;
-> >
-> > +	/* BO creation retains a copy (if used), so no longer needed */
-> > +	if (job->prl.entries)
-> > +		xe_page_reclaim_entries_put(job->prl.entries);
-> > +
-> >  	if (!job->fence_armed)
-> >  		kfree(ifence);
-> >  	else
-> > diff --git a/drivers/gpu/drm/xe/xe_tlb_inval_job.h
-> > b/drivers/gpu/drm/xe/xe_tlb_inval_job.h
-> > index 4d6df1a6c6ca..03d6e21cd611 100644
-> > --- a/drivers/gpu/drm/xe/xe_tlb_inval_job.h
-> > +++ b/drivers/gpu/drm/xe/xe_tlb_inval_job.h
-> > @@ -12,6 +12,7 @@ struct dma_fence;
-> >  struct xe_dep_scheduler;
-> >  struct xe_exec_queue;
-> >  struct xe_migrate;
-> > +struct xe_page_reclaim_list;
-> >  struct xe_tlb_inval;
-> >  struct xe_tlb_inval_job;
-> >  struct xe_vm;
-> > @@ -21,6 +22,9 @@ xe_tlb_inval_job_create(struct xe_exec_queue *q, stru=
-ct xe_tlb_inval *tlb_inval,
-> >  			struct xe_dep_scheduler *dep_scheduler,
-> >  			struct xe_vm *vm, u64 start, u64 end, int type);
-> >
-> > +void xe_tlb_inval_job_add_page_reclaim(struct xe_tlb_inval_job *job,
-> > +				       struct xe_page_reclaim_list *prl);
-> > +
-> >  int xe_tlb_inval_job_alloc_dep(struct xe_tlb_inval_job *job);
-> >
-> >  struct dma_fence *xe_tlb_inval_job_push(struct xe_tlb_inval_job *job,
-> > --
-> > 2.52.0
-> >
+>+static int sc_mb_prepare_command(struct xe_sc *sc,
+>+				 const struct xe_sc_mailbox_app_msg_hdr *msg_hdr,
+>+				 const void *data_in, size_t data_in_len,
+>+				 u8 **cmd_buffer, size_t *cmd_size)
+>+{
+>+	struct xe_sc_mailbox_mkhi_msg_hdr mkhi_hdr = {0};
+>+
+>+	mkhi_hdr.group_id = msg_hdr->group_id;
+>+	mkhi_hdr.command = msg_hdr->command & 0x7F;
+>+	mkhi_hdr.is_response = 0;
+>+	mkhi_hdr.reserved = 0;
+>+	mkhi_hdr.result = 0;
+>+
+>+	*cmd_size = sizeof(struct xe_sc_mailbox_mkhi_msg_hdr) + data_in_len;
+
+I recommend using local variables for command size and command buffer 
+and update the pointers passed (cmd_size and cmd_buffer) just before 
+returning success from this function. That way, when you return an 
+error, cmd_size and cmd_buffer are untouched.
+
+>+	if (*cmd_size > SC_MB_MAX_MESSAGE_SIZE) {
+>+		drm_err(&sc->xe->drm, "SC: Message too large: %zu bytes (max %u)\n",
+>+			*cmd_size, SC_MB_MAX_MESSAGE_SIZE);
+>+		return -EINVAL;
+>+	}
+>+
+>+	*cmd_buffer = kmalloc(*cmd_size, GFP_KERNEL);
+>+	if (!*cmd_buffer)
+>+		return -ENOMEM;
+>+
+>+	memcpy(*cmd_buffer, &mkhi_hdr, sizeof(struct xe_sc_mailbox_mkhi_msg_hdr));
+
+why not just use a pointer for mkhi_hdr and allocate cmd_size bytes for 
+it? Then you can just fill that with the mkhi header values and then 
+memcpy the data_in. Finally you can assign that pointer to cmd_buffer.  
+That way only one memcpy is required (for data_in). Something like:
+
+struct xe_sc_mailbox_mkhi_msg_hdr *mkhi_hdr;
+size_t size = sizeof(*mkhi_hdr) + data_in_len;
+
+mkhi_hdr = kmalloc(size, GFP_KERNEL);
+if (!mkhi_hdr)
+	return -ENOMEM;
+
+mkhi_hdr->group_id = msg_hdr->group_id;
+mkhi_hdr->command = msg_hdr->command & 0x7F;
+mkhi_hdr->is_response = 0;
+mkhi_hdr->reserved = 0;
+mkhi_hdr->result = 0;
+
+if (data_in && data_in_len)
+	memcpy(mkhi_hdr + 1, data_in, data_in_len);
+
+*cmd_size = size;
+*cmd_buffer = (u8 *)mkhi_hdr;
+
+>+	if (data_in && data_in_len)
+>+		memcpy(*cmd_buffer + sizeof(struct xe_sc_mailbox_mkhi_msg_hdr),
+>+		       data_in, data_in_len);
+>+
+>+	drm_dbg(&sc->xe->drm, "SC: request: group=0x%02x cmd=0x%02x payload=%zu bytes\n",
+>+		mkhi_hdr.group_id, mkhi_hdr.command, data_in_len);
+>+
+>+	return 0;
+>+}
+>+
+>+static int sc_mb_send_frames(struct xe_sc *sc, const u8 *cmd_buffer,
+>+			     size_t cmd_size, unsigned int timeout_ms)
+>+{
+>+	u32 ctrl_reg, total_frames, current_frame;
+>+	size_t bytes_sent, bytes_to_send;
+>+
+>+	total_frames = DIV_ROUND_UP(cmd_size, SC_MB_FRAME_SIZE);
+>+	if (total_frames > SC_MB_MAX_FRAMES) {
+>+		drm_err(&sc->xe->drm, "SC: Message too large: %zu bytes (%u frames, max %u)\n",
+>+			cmd_size, total_frames, SC_MB_MAX_FRAMES);
+>+		return -EINVAL;
+>+	}
+>+
+>+	if (!sc_mb_wait_bit_clear(sc, SC_MB_CTRL_RUN_BUSY, timeout_ms)) {
+>+		drm_err(&sc->xe->drm, "SC: Mailbox busy (RUN_BUSY timeout)\n");
+>+		return -EBUSY;
+>+	}
+>+
+>+	sc->phase_bit ^= 1;
+>+
+>+	drm_dbg(&sc->xe->drm, "SC: Sending message: %zu bytes, %u frames, phase=%u\n",
+>+		cmd_size, total_frames, sc->phase_bit);
+>+
+>+	bytes_sent = 0;
+>+	for (current_frame = 0; current_frame < total_frames; current_frame++) {
+>+		bytes_to_send = min(cmd_size - bytes_sent, (size_t)SC_MB_FRAME_SIZE);
+>+
+>+		sc_mb_write_frame(sc, cmd_buffer, bytes_sent);
+
+if bytes_to_send is less than 16, you are still writing 16 bytes in
+sc_mb_write_frame. Wouldn't that go beyond the command buffer? Maybe you should
+pass bytes_to_send to sc_mb_write_frame?
+
+>+
+>+		ctrl_reg = SC_MB_CTRL_RUN_BUSY |
+>+			   FIELD_PREP(MKHI_FRAME_CURRENT, current_frame) |
+>+			   FIELD_PREP(MKHI_FRAME_TOTAL, total_frames - 1) |
+>+			   FIELD_PREP(MKHI_FRAME_COMMAND, SC_MKHI_COMMAND);
+>+		if (sc->phase_bit)
+>+			ctrl_reg |= FIELD_PREP(MKHI_FRAME_PHASE, 1);
+>+
+>+		xe_mmio_write32(&sc->mmio, SC_MB_CTRL, ctrl_reg);
+>+
+>+		drm_dbg(&sc->xe->drm, "SC: Sent frame %u/%u\n",
+>+			current_frame, total_frames - 1);
+>+
+>+		if (!sc_mb_wait_bit_clear(sc, SC_MB_CTRL_RUN_BUSY, timeout_ms)) {
+>+			drm_err(&sc->xe->drm, "SC: Frame %u acknowledgment timeout\n",
+>+				current_frame);
+>+			return -ETIMEDOUT;
+>+		}
+>+
+>+		bytes_sent += bytes_to_send;
+>+	}
+>+
+>+	drm_dbg(&sc->xe->drm, "SC: All frames sent successfully (%zu bytes)\n", bytes_sent);
+>+	return 0;
+>+}
+>+
+>+static int sc_mb_validate_response_header(struct xe_sc *sc,
+>+					  const struct xe_sc_mailbox_app_msg_hdr *msg_hdr,
+>+					  const struct xe_sc_mailbox_mkhi_msg_hdr *resp_hdr)
+>+{
+>+	if (!resp_hdr->is_response ||
+>+	    resp_hdr->group_id != msg_hdr->group_id ||
+>+	    resp_hdr->command != (msg_hdr->command & 0x7F)) {
+>+		drm_err(&sc->xe->drm, "SC: Invalid response header\n");
+>+		return -EPROTO;
+>+	}
+>+
+>+	if (resp_hdr->result != 0) {
+>+		drm_err(&sc->xe->drm, "SC: Firmware error: result=0x%02x\n",
+>+			resp_hdr->result);
+>+		return -EIO;
+>+	}
+>+
+>+	drm_dbg(&sc->xe->drm, "SC: response: group=0x%02x cmd=0x%02x\n",
+>+		resp_hdr->group_id, resp_hdr->command);
+>+
+>+	return 0;
+>+}
+>+
+>+static int sc_mb_receive_frames(struct xe_sc *sc,
+>+				const struct xe_sc_mailbox_app_msg_hdr *msg_hdr,
+>+				void *data_out, size_t data_out_len,
+>+				size_t *bytes_received, unsigned int timeout_ms)
+>+{
+>+	u32 ctrl_reg, total_frames, current_frame;
+>+	size_t payload_size;
+>+	int ret;
+>+
+>+	*bytes_received = 0;
+
+This function could use some refactoring. Maybe something like:
+
+do {
+	ctrl_reg = xe_mmio_read32(&sc->mmio, SC_MB_CTRL);
+	current_frame = FIELD_GET(MKHI_FRAME_CURRENT, ctrl_reg);
+	total_frames = FIELD_GET(MKHI_FRAME_TOTAL, ctrl_reg) + 1;
+
+	if (frame0)
+		process_first_frame(ctrl_reg, current_frame, total_frames);
+	else
+		process_other_frame(ctrl_reg, current_frame, total_frames);
+} while (current_frame + 1 < total_frames);
+
+
+>+
+>+	do {
+>+		ctrl_reg = xe_mmio_read32(&sc->mmio, SC_MB_CTRL);
+>+		current_frame = FIELD_GET(MKHI_FRAME_CURRENT, ctrl_reg);
+>+		total_frames = FIELD_GET(MKHI_FRAME_TOTAL, ctrl_reg) + 1;
+>+
+>+		drm_dbg(&sc->xe->drm, "SC: Receiving frame %u/%u\n",
+>+			current_frame, total_frames - 1);
+>+
+>+		if (current_frame == 0) {
+>+			u32 temp_frame[4];
+>+			struct xe_sc_mailbox_mkhi_msg_hdr *resp_hdr;
+>+
+>+			sc_mb_read_frame(sc, temp_frame, 0);
+>+			resp_hdr = (struct xe_sc_mailbox_mkhi_msg_hdr *)temp_frame;
+>+
+>+			ret = sc_mb_validate_response_header(sc, msg_hdr, resp_hdr);
+>+			if (ret)
+>+				return ret;
+>+
+>+			payload_size = SC_MB_FRAME_SIZE - sizeof(struct xe_sc_mailbox_mkhi_msg_hdr);
+
+sizeof(*resp_hdr) should do. If payload size is always a constant (16 - 4), then
+#define it as a constant.
+
+>+			if (payload_size > data_out_len) {
+>+				drm_err(&sc->xe->drm, "SC: Response buffer too small\n");
+>+				return -ENOSPC;
+>+			}
+>+
+>+			memcpy(data_out,
+>+			       (u8 *)temp_frame + sizeof(struct xe_sc_mailbox_mkhi_msg_hdr),
+
+same here sizeof(*resp_hdr);
+
+>+			       payload_size);
+>+			*bytes_received = payload_size;
+>+		} else {
+>+			size_t frame_size = SC_MB_FRAME_SIZE;
+>+
+>+			if (current_frame == total_frames - 1) {
+>+				size_t total_response = (total_frames - 1) *
+>+							SC_MB_FRAME_SIZE +
+>+							sizeof(struct xe_sc_mailbox_mkhi_msg_hdr);
+>+				size_t remaining = total_response -
+>+						   *bytes_received -
+>+						   sizeof(struct xe_sc_mailbox_mkhi_msg_hdr);
+>+				frame_size = min(frame_size, remaining);
+>+			}
+>+
+>+			if (*bytes_received + frame_size > data_out_len) {
+>+				drm_err(&sc->xe->drm, "SC: Response buffer too small\n");
+>+				return -ENOSPC;
+>+			}
+>+
+>+			sc_mb_read_frame(sc, data_out, *bytes_received);
+>+			*bytes_received += frame_size;
+>+		}
+>+
+>+		sc_mb_clear_response(sc);
+>+
+>+		if (current_frame + 1 < total_frames &&
+>+		    !sc_mb_wait_bit_set(sc, SC_MB_CTRL_RUN_BUSY_OUT, timeout_ms)) {
+>+			drm_err(&sc->xe->drm, "SC: Response frame %u timeout\n",
+>+				current_frame + 1);
+>+			return -ETIMEDOUT;
+>+		}
+
+Assuming that the FW is not setting SC_MB_CTRL_RUN_BUSY_OUT on the last frame.
+OR Are you intentionally skipping waiting for it? 
+
+Umesh
+
+>+
+>+	} while (current_frame + 1 < total_frames);
+>+
+>+	return 0;
+>+}
+>+
+>+static int sc_mb_send_command(struct xe_sc *sc,
+>+			      const struct xe_sc_mailbox_app_msg_hdr *msg_hdr,
+>+			      const u8 *cmd_buffer, size_t cmd_size,
+>+			      void *data_out, size_t data_out_len,
+>+			      size_t *rdata_len, unsigned int timeout_ms)
+>+{
+>+	size_t bytes_received;
+>+	int ret;
+>+
+>+	if (rdata_len)
+>+		*rdata_len = 0;
+>+
+>+	ret = sc_mb_send_frames(sc, cmd_buffer, cmd_size, timeout_ms);
+>+	if (ret)
+>+		return ret;
+>+
+>+	if (!data_out) {
+>+		drm_dbg(&sc->xe->drm, "SC: Command completed (no response expected)\n");
+>+		return 0;
+>+	}
+>+
+>+	if (!sc_mb_wait_bit_set(sc, SC_MB_CTRL_RUN_BUSY_OUT, timeout_ms)) {
+>+		drm_err(&sc->xe->drm, "SC: Response timeout (RUN_BUSY_OUT not set)\n");
+>+		return -ETIMEDOUT;
+>+	}
+>+
+>+	ret = sc_mb_receive_frames(sc, msg_hdr, data_out, data_out_len,
+>+				   &bytes_received, timeout_ms);
+>+	if (ret) {
+>+		sc_mb_clear_response(sc);
+>+		return ret;
+>+	}
+>+
+>+	if (rdata_len)
+>+		*rdata_len = bytes_received;
+>+
+>+	drm_dbg(&sc->xe->drm, "SC: MKHI message completed: %zu bytes payload received\n",
+>+		bytes_received);
+>+
+>+	return 0;
+>+}
+>+
+>+/**
+>+ * xe_sc_mailbox_send_command - Send command to System Controller via mailbox
+>+ * @handle: XE device handle containing the system controller
+>+ * @cmd_buffer: Pointer to xe_sc_mailbox_command structure
+>+ * @rdata_len: Pointer to store actual response data size (can be NULL)
+>+ *
+>+ * Send a command to the System Controller using MKHI protocol. Handles
+>+ * command preparation, fragmentation, transmission, and response reception.
+>+ * Optimized to move memory allocation outside the critical section.
+>+ *
+>+ * Return: 0 on success, negative error code on failure
+>+ */
+>+int xe_sc_mailbox_send_command(void *handle, void *cmd_buffer, size_t *rdata_len)
+>+{
+>+	struct xe_device *xe = handle;
+>+	struct xe_sc *sc;
+>+	struct xe_sc_mailbox_command *cmd = cmd_buffer;
+>+	u8 *command_buffer = NULL;
+>+	size_t command_size;
+>+	int ret;
+>+
+>+	if (!xe || !cmd)
+>+		return -EINVAL;
+>+
+>+	sc = xe->sc;
+>+	if (!sc)
+>+		return -ENODEV;
+>+
+>+	if (!cmd->data_in && cmd->data_in_len)
+>+		return -EINVAL;
+>+
+>+	if (!cmd->data_out && cmd->data_out_len)
+>+		return -EINVAL;
+>+
+>+	might_sleep();
+>+
+>+	ret = sc_mb_prepare_command(sc, &cmd->header, cmd->data_in, cmd->data_in_len,
+>+				    &command_buffer, &command_size);
+>+	if (ret) {
+>+		drm_err(&sc->xe->drm, "SC: Failed to prepare command: %d\n", ret);
+>+		return ret;
+>+	}
+>+
+>+	mutex_lock(&sc->cmd_lock);
+>+
+>+	xe_pm_runtime_get(xe);
+>+
+>+	ret = sc_mb_send_command(sc, &cmd->header, command_buffer, command_size,
+>+				 cmd->data_out, cmd->data_out_len, rdata_len,
+>+				 SC_MB_DEFAULT_TIMEOUT_MS);
+>+	if (ret)
+>+		drm_err(&sc->xe->drm, "SC: Mailbox command failed: %d\n", ret);
+>+
+>+	xe_pm_runtime_put(xe);
+>+
+>+	mutex_unlock(&sc->cmd_lock);
+>+
+>+	kfree(command_buffer);
+>+
+>+	return ret;
+>+}
+>diff --git a/drivers/gpu/drm/xe/xe_sc_mailbox.h b/drivers/gpu/drm/xe/xe_sc_mailbox.h
+>new file mode 100644
+>index 000000000000..d5ca43c40f1a
+>--- /dev/null
+>+++ b/drivers/gpu/drm/xe/xe_sc_mailbox.h
+>@@ -0,0 +1,61 @@
+>+/* SPDX-License-Identifier: MIT */
+>+/*
+>+ * Copyright © 2025 Intel Corporation
+>+ */
+>+
+>+#ifndef __XE_SC_MAILBOX_H__
+>+#define __XE_SC_MAILBOX_H__
+>+
+>+#include <linux/types.h>
+>+
+>+struct xe_sc;
+>+
+>+/**
+>+ * struct xe_sc_mailbox_mkhi_msg_hdr - MKHI protocol message header
+>+ */
+>+struct xe_sc_mailbox_mkhi_msg_hdr {
+>+	/** @group_id: Message group identifier */
+>+	u32 group_id    : 8;
+>+	/** @command: Command identifier within the group */
+>+	u32 command     : 7;
+>+	/** @is_response: Response flag - 0 for request, 1 for response */
+>+	u32 is_response : 1;
+>+	/** @reserved: Reserved field, must be zero */
+>+	u32 reserved    : 8;
+>+	/** @result: Result code from firmware */
+>+	u32 result      : 8;
+>+} __packed;
+>+
+>+/**
+>+ * struct xe_sc_mailbox_app_msg_hdr - Application message header
+>+ */
+>+struct xe_sc_mailbox_app_msg_hdr {
+>+	/** @group_id: Application group identifier */
+>+	u32 group_id  : 8;
+>+	/** @command: Specific command within the application group */
+>+	u32 command   : 8;
+>+	/** @version: Protocol version */
+>+	u32 version   : 8;
+>+	/** @reserved: Reserved field, must be zero */
+>+	u32 reserved  : 8;
+>+} __packed;
+>+
+>+/**
+>+ * struct xe_sc_mailbox_command - System Controller mailbox command structure
+>+ */
+>+struct xe_sc_mailbox_command {
+>+	/** @header: Application message header containing command information */
+>+	struct xe_sc_mailbox_app_msg_hdr header;
+>+	/** @data_in: Pointer to input payload data (can be NULL if no input data) */
+>+	void *data_in;
+>+	/** @data_in_len: Size of input payload in bytes (0 if no input data) */
+>+	size_t data_in_len;
+>+	/** @data_out: Pointer to output buffer for response data (can be NULL if no response) */
+>+	void *data_out;
+>+	/** @data_out_len: Size of output buffer in bytes (0 if no response expected) */
+>+	size_t data_out_len;
+>+};
+>+
+>+int xe_sc_mailbox_send_command(void *handle, void *cmd_buffer, size_t *rdata_len);
+>+
+>+#endif /* __XE_SC_MAILBOX_H__ */
+>diff --git a/drivers/gpu/drm/xe/xe_sc_types.h b/drivers/gpu/drm/xe/xe_sc_types.h
+>new file mode 100644
+>index 000000000000..5ec2126cebe4
+>--- /dev/null
+>+++ b/drivers/gpu/drm/xe/xe_sc_types.h
+>@@ -0,0 +1,35 @@
+>+/* SPDX-License-Identifier: MIT */
+>+/*
+>+ * Copyright © 2025 Intel Corporation
+>+ */
+>+
+>+#ifndef _XE_SC_TYPES_H_
+>+#define _XE_SC_TYPES_H_
+>+
+>+#include <linux/completion.h>
+>+#include <linux/mutex.h>
+>+#include <linux/types.h>
+>+#include <linux/workqueue.h>
+>+
+>+#include "xe_device_types.h"
+>+#include "xe_sc_mailbox.h"
+>+
+>+struct xe_device;
+>+
+>+/**
+>+ * struct xe_sc - System Controller driver context
+>+ */
+>+struct xe_sc {
+>+	/** @xe: Back pointer to xe_device */
+>+	struct xe_device *xe;
+>+	/** @mmio: MMIO region for SC registers */
+>+	struct xe_mmio mmio;
+>+
+>+	/** @cmd_lock: Mutex protecting mailbox command operations */
+>+	struct mutex cmd_lock;
+>+
+>+	/** @phase_bit: MKHI message boundary phase toggle bit */
+>+	u32 phase_bit;
+>+};
+>+
+>+#endif /* _XE_SC_TYPES_H_ */
+>-- 
+>2.43.0
+>
