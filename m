@@ -4,27 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BD084D1D89D
-	for <intel-xe@archiver.kernel.org>; Thu,  4 Dec 2025 09:00:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 57FACD1D89F
+	for <intel-xe@archiver.kernel.org>; Thu,  4 Dec 2025 09:42:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 67FC810E1C4;
-	Thu,  4 Dec 2025 09:00:10 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E76B510E1C4;
- Thu,  4 Dec 2025 09:00:09 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3900299961293503265=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id F023F10E8F4;
+	Thu,  4 Dec 2025 09:42:01 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="giklFLO4";
+	dkim-atps=neutral
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A906710E1CC;
+ Thu,  4 Dec 2025 09:42:00 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sea.source.kernel.org (Postfix) with ESMTP id 68A8D43FAB;
+ Thu,  4 Dec 2025 09:42:00 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 72E91C113D0;
+ Thu,  4 Dec 2025 09:41:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1764841320;
+ bh=kD+qJAqVxFMhhe2jPl9GIafOGfGtCPN4iVsdl++V/HY=;
+ h=From:To:Cc:Subject:Date:From;
+ b=giklFLO4ISSaFeZIx89BIbiPz18a7qKOiaSW+RYLdgFIk6Y/BtMm6WBqGmgh2t4Km
+ 6/b+Or1bMPWvagS72zeN/ydWN4FLq7SqZddkbOb/PH8oXdnSNLY8TK+8DQLi9Qz6Z6
+ wQkVIrPR31r3pM10NMLYDH8eNDUMLvmEACEsLO7uK9deh/5bl9OyNMLE3KqSs8f3Oa
+ aawLySIb7CbddEBQS/NFEvnFuvKKufVsJ+I/FQ5l0nNKBpfwighCVRyaclA/5ZmybK
+ jcmewIxgxMtfOoGZ7VcI53dH6L19m0Qwor2LkZDnaSnFxGycYGdUdFmwfTFkvTuCe6
+ rKbRnwVed68uQ==
+From: Arnd Bergmann <arnd@kernel.org>
+To: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>,
+ =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
+ Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: Arnd Bergmann <arnd@arndb.de>, Matthew Brost <matthew.brost@intel.com>,
+ Lucas De Marchi <demarchi@kernel.org>, Jani Nikula <jani.nikula@intel.com>,
+ Riana Tauro <riana.tauro@intel.com>, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] drm/xe/pf: fix VFIO link error
+Date: Thu,  4 Dec 2025 10:41:36 +0100
+Message-Id: <20251204094154.1029357-1-arnd@kernel.org>
+X-Mailer: git-send-email 2.39.5
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Selective_Fetch_and_async_f?=
- =?utf-8?q?lip_=28rev4=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Hogander, Jouni" <jouni.hogander@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 04 Dec 2025 09:00:09 -0000
-Message-ID: <176483880993.56829.8199131674676074663@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20251204070718.1090778-1-jouni.hogander@intel.com>
-In-Reply-To: <20251204070718.1090778-1-jouni.hogander@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,155 +57,51 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============3900299961293503265==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+From: Arnd Bergmann <arnd@arndb.de>
 
-== Series Details ==
+The Makefile logic for building xe_sriov_vfio.o was added incorrectly,
+as setting CONFIG_XE_VFIO_PCI=m means it doesn't get included into a
+built-in xe driver:
 
-Series: Selective Fetch and async flip (rev4)
-URL   : https://patchwork.freedesktop.org/series/158002/
-State : success
+ERROR: modpost: "xe_sriov_vfio_stop_copy_enter" [drivers/vfio/pci/xe/xe-vfio-pci.ko] undefined!
+ERROR: modpost: "xe_sriov_vfio_stop_copy_exit" [drivers/vfio/pci/xe/xe-vfio-pci.ko] undefined!
+ERROR: modpost: "xe_sriov_vfio_suspend_device" [drivers/vfio/pci/xe/xe-vfio-pci.ko] undefined!
+ERROR: modpost: "xe_sriov_vfio_wait_flr_done" [drivers/vfio/pci/xe/xe-vfio-pci.ko] undefined!
+ERROR: modpost: "xe_sriov_vfio_error" [drivers/vfio/pci/xe/xe-vfio-pci.ko] undefined!
+ERROR: modpost: "xe_sriov_vfio_resume_data_enter" [drivers/vfio/pci/xe/xe-vfio-pci.ko] undefined!
+ERROR: modpost: "xe_sriov_vfio_resume_device" [drivers/vfio/pci/xe/xe-vfio-pci.ko] undefined!
+ERROR: modpost: "xe_sriov_vfio_resume_data_exit" [drivers/vfio/pci/xe/xe-vfio-pci.ko] undefined!
+ERROR: modpost: "xe_sriov_vfio_data_write" [drivers/vfio/pci/xe/xe-vfio-pci.ko] undefined!
+ERROR: modpost: "xe_sriov_vfio_migration_supported" [drivers/vfio/pci/xe/xe-vfio-pci.ko] undefined!
+WARNING: modpost: suppressed 3 unresolved symbol warnings because there were too many)
 
-== Summary ==
+Check for CONFIG_XE_VFIO_PCI being enabled in the Makefile to decide whether to
+include the the object instead.
 
-CI Bug Log - changes from xe-4193-2d16d4e1aef3cb501fcd37c8558dafeb579be813_BAT -> xe-pw-158002v4_BAT
-====================================================
+Fixes: 17f22465c5a5 ("drm/xe/pf: Export helpers for VFIO")
+Signed-off-by: Arnd Bergmann <arnd@arndb.de>
+---
+ drivers/gpu/drm/xe/Makefile | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-Summary
--------
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index dfc2ded01455..e5f3c2ec9e9a 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -185,8 +185,8 @@ xe-$(CONFIG_PCI_IOV) += \
+ 	xe_sriov_pf_sysfs.o \
+ 	xe_tile_sriov_pf_debugfs.o
+ 
+-ifeq ($(CONFIG_PCI_IOV),y)
+-	xe-$(CONFIG_XE_VFIO_PCI) += xe_sriov_vfio.o
++ifdef CONFIG_XE_VFIO_PCI
++	xe-$(CONFIG_PCI_IOV) += xe_sriov_vfio.o
+ endif
+ 
+ # include helpers for tests even when XE is built-in
+-- 
+2.39.5
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (12 -> 12)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-158002v4_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_waitfence@abstime:
-    - bat-dg2-oem2:       [PASS][1] -> [TIMEOUT][2] ([Intel XE#6506])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4193-2d16d4e1aef3cb501fcd37c8558dafeb579be813/bat-dg2-oem2/igt@xe_waitfence@abstime.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158002v4/bat-dg2-oem2/igt@xe_waitfence@abstime.html
-
-  * igt@xe_waitfence@engine:
-    - bat-dg2-oem2:       [PASS][3] -> [FAIL][4] ([Intel XE#6519])
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4193-2d16d4e1aef3cb501fcd37c8558dafeb579be813/bat-dg2-oem2/igt@xe_waitfence@engine.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158002v4/bat-dg2-oem2/igt@xe_waitfence@engine.html
-
-  * igt@xe_waitfence@reltime:
-    - bat-dg2-oem2:       [PASS][5] -> [FAIL][6] ([Intel XE#6520])
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4193-2d16d4e1aef3cb501fcd37c8558dafeb579be813/bat-dg2-oem2/igt@xe_waitfence@reltime.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158002v4/bat-dg2-oem2/igt@xe_waitfence@reltime.html
-
-  
-  [Intel XE#6506]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506
-  [Intel XE#6519]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519
-  [Intel XE#6520]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520
-
-
-Build changes
--------------
-
-  * IGT: IGT_8653 -> IGT_8654
-  * Linux: xe-4193-2d16d4e1aef3cb501fcd37c8558dafeb579be813 -> xe-pw-158002v4
-
-  IGT_8653: c13e142a52b1654cbfb42b80985d6da656033ff4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_8654: 38d9fde0432aa6f2bf6add062f1d4334ad467fbc @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-4193-2d16d4e1aef3cb501fcd37c8558dafeb579be813: 2d16d4e1aef3cb501fcd37c8558dafeb579be813
-  xe-pw-158002v4: 158002v4
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158002v4/index.html
-
---===============3900299961293503265==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Selective Fetch and async flip (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/158002/">https://patchwork.freedesktop.org/series/158002/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158002v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158002v4/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4193-2d16d4e1aef3cb501fcd37c8558dafeb579be813_BAT -&gt; xe-pw-158002v4_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (12 -&gt; 12)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-158002v4_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@xe_waitfence@abstime:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4193-2d16d4e1aef3cb501fcd37c8558dafeb579be813/bat-dg2-oem2/igt@xe_waitfence@abstime.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158002v4/bat-dg2-oem2/igt@xe_waitfence@abstime.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506">Intel XE#6506</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_waitfence@engine:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4193-2d16d4e1aef3cb501fcd37c8558dafeb579be813/bat-dg2-oem2/igt@xe_waitfence@engine.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158002v4/bat-dg2-oem2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519">Intel XE#6519</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_waitfence@reltime:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4193-2d16d4e1aef3cb501fcd37c8558dafeb579be813/bat-dg2-oem2/igt@xe_waitfence@reltime.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158002v4/bat-dg2-oem2/igt@xe_waitfence@reltime.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520">Intel XE#6520</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8653 -&gt; IGT_8654</li>
-<li>Linux: xe-4193-2d16d4e1aef3cb501fcd37c8558dafeb579be813 -&gt; xe-pw-158002v4</li>
-</ul>
-<p>IGT_8653: c13e142a52b1654cbfb42b80985d6da656033ff4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_8654: 38d9fde0432aa6f2bf6add062f1d4334ad467fbc @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-4193-2d16d4e1aef3cb501fcd37c8558dafeb579be813: 2d16d4e1aef3cb501fcd37c8558dafeb579be813<br />
-  xe-pw-158002v4: 158002v4</p>
-
-</body>
-</html>
-
---===============3900299961293503265==--
