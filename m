@@ -4,27 +4,99 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E7609D20694
-	for <intel-xe@archiver.kernel.org>; Thu,  4 Dec 2025 13:48:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 279D2D20694
+	for <intel-xe@archiver.kernel.org>; Thu,  4 Dec 2025 13:51:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 96AFA10E98C;
-	Thu,  4 Dec 2025 13:48:43 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C239510E98C;
- Thu,  4 Dec 2025 13:48:42 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0255661686126167711=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id E377910E8DA;
+	Thu,  4 Dec 2025 13:51:08 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=arndb.de header.i=@arndb.de header.b="LQos2MMm";
+	dkim=pass (2048-bit key; unprotected) header.d=messagingengine.com header.i=@messagingengine.com header.b="ALmT0/5z";
+	dkim-atps=neutral
+X-Greylist: delayed 464 seconds by postgrey-1.36 at gabe;
+ Thu, 04 Dec 2025 13:51:07 UTC
+Received: from fout-b6-smtp.messagingengine.com
+ (fout-b6-smtp.messagingengine.com [202.12.124.149])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8771410E8DA
+ for <intel-xe@lists.freedesktop.org>; Thu,  4 Dec 2025 13:51:07 +0000 (UTC)
+Received: from phl-compute-04.internal (phl-compute-04.internal [10.202.2.44])
+ by mailfout.stl.internal (Postfix) with ESMTP id 1EAA11D00247;
+ Thu,  4 Dec 2025 08:43:22 -0500 (EST)
+Received: from phl-imap-17 ([10.202.2.105])
+ by phl-compute-04.internal (MEProxy); Thu, 04 Dec 2025 08:43:22 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+ :cc:content-transfer-encoding:content-type:content-type:date
+ :date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+ :references:reply-to:subject:subject:to:to; s=fm3; t=1764855801;
+ x=1764942201; bh=iEOK4GHJFzlsjBYVSzufLC/KxEyKi30dEY4Fl9sf1EA=; b=
+ LQos2MMmMkOzrO0mM5OBINHgXBMQc+s4XMiJGwcl/fNr+2qr62bc/uPAObcgiDbd
+ KMdpR54mY7xFme2LlwhLH8JrKnJEPjsg7BXuyFMDKt8haSTfEbnn5HmshnDo9l0v
+ jeWZ69UgSsQwxFhqZw+uyg3sqRmwndJ/qX5ZlFgpcvgZbp7+dZDK7ZyzJGxsllaY
+ ZhCqkEfW+jnXbI4M96vjDcgOXVstWyI2KLKGLt8V5scUQo9y5rN9cD/OVAOOlp8w
+ LKQc6KVzDe0QfZhXTp/CUwujN5eDx7Hgesd661oURCTIffDPoyZeGT4YWtHdNH88
+ hz/O7efn7mDC42lccRdgPA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:cc:content-transfer-encoding
+ :content-type:content-type:date:date:feedback-id:feedback-id
+ :from:from:in-reply-to:in-reply-to:message-id:mime-version
+ :references:reply-to:subject:subject:to:to:x-me-proxy
+ :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1764855801; x=
+ 1764942201; bh=iEOK4GHJFzlsjBYVSzufLC/KxEyKi30dEY4Fl9sf1EA=; b=A
+ LmT0/5zt5v9F3G70Htc3NnJtJIJUGJU3HijTb2kD8Ql1Lx8HtQFGuaU3sgrbRKq2
+ h6UT/kWDlP5AYKcx5NN7yfeovI/utU+YVJMoIAXpuP0FA8mEWi+/PlnWqeJaIsYl
+ 1mhHOeacpms6WsYlwgYZqCDYHVsKfdkiPM/RKTnwIXOHX2Q/OGjAo5rbPMyNGvYc
+ 5wrwfOBVtUjStDi3mDcF6l6h0DUN5Xla6pcJS/6v4QkS4LBa0BB9oI9VZP/tgDX5
+ 5ka9+dzXqLR8eWPszAwBS8JcgZGFNLc/QNVO8MH1qOjxm+qswD4hrg1ynnt/r7hY
+ rs9wpZnXfRN/Bbtxe3SnA==
+X-ME-Sender: <xms:-Y8xaUQpfXES8MNjfXCsM5H5resGVls5nqkbBBAupUqOv-nZbsaOSg>
+ <xme:-Y8xacl9nKPs_kVhu2RzxAbEilljHv1Yuyz6ye_5CKNEECdOwrQRZhrv9hM5e_psz
+ y-NaFZEMZs3HTA7X0xhlB6Chn63_R1djek6LD2PZePN-UUJGPSLQg>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefgedrtddtgdehjedvucetufdoteggodetrfdotf
+ fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfurfetoffkrfgpnffqhgenuceurghi
+ lhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurh
+ epofggfffhvfevkfgjfhfutgfgsehtqhertdertdejnecuhfhrohhmpedftehrnhguuceu
+ vghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrdguvgeqnecuggftrfgrthhtvghrnh
+ epvdfhvdekueduveffffetgfdvveefvdelhedvvdegjedvfeehtdeggeevheefleejnecu
+ vehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprghrnhguse
+ grrhhnuggsrdguvgdpnhgspghrtghpthhtohepudegpdhmohguvgepshhmthhpohhuthdp
+ rhgtphhtthhopehsihhmohhnrgesfhhffihllhdrtghhpdhrtghpthhtoheprghirhhlih
+ gvugesghhmrghilhdrtghomhdprhgtphhtthhopehjrghnihdrnhhikhhulhgrsehinhht
+ vghlrdgtohhmpdhrtghpthhtohepmhgrthhthhgvfidrsghrohhsthesihhnthgvlhdrtg
+ homhdprhgtphhtthhopehmihgthhgrlhdrfigrjhguvggtiihkohesihhnthgvlhdrtgho
+ mhdprhgtphhtthhopehmihgthhgrlhdrfihinhhirghrshhkihesihhnthgvlhdrtghomh
+ dprhgtphhtthhopehrihgrnhgrrdhtrghurhhosehinhhtvghlrdgtohhmpdhrtghpthht
+ oheprhhoughrihhgohdrvhhivhhisehinhhtvghlrdgtohhmpdhrtghpthhtoheprghrnh
+ gusehkvghrnhgvlhdrohhrgh
+X-ME-Proxy: <xmx:-Y8xaSja_cSVvNkGa49d9Z8qvBrVfGn9KRwhppR2bwW7CngTGS6GAg>
+ <xmx:-Y8xadbnKkaK5ST9ZuBBnuu1cI9lHQGoGnOJqgrV4Cj5ZVaM86eGFw>
+ <xmx:-Y8xaQOanWaeukQSqoFrZJPyX183Ehr-1g1a2-hcFuF1ZtiaXaYuBQ>
+ <xmx:-Y8xaWZppPmjB3iwGaLUr46_oAU2WFLBbLlmCx723HJbVlXHn5nJDQ>
+ <xmx:-Y8xaay8TzrSNzt9eIQKkIf6R9RkvyUU7ux4A5FMdcSxBBJAWbFiaJ5h>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.phl.internal (Postfix, from userid 501)
+ id B1297C40054; Thu,  4 Dec 2025 08:43:21 -0500 (EST)
+X-Mailer: MessagingEngine.com Webmail Interface
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Move_PSR/Panel_Replay_sink_?=
- =?utf-8?q?data_into_intel=5Fconnector_=28rev4=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 04 Dec 2025 13:48:42 -0000
-Message-ID: <176485612277.56921.11725858502900601905@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20251204104733.1106145-1-jouni.hogander@intel.com>
-In-Reply-To: <20251204104733.1106145-1-jouni.hogander@intel.com>
+X-ThreadId: AYn5IVckS1wN
+Date: Thu, 04 Dec 2025 14:43:00 +0100
+From: "Arnd Bergmann" <arnd@arndb.de>
+To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ "Arnd Bergmann" <arnd@kernel.org>, "Rodrigo Vivi" <rodrigo.vivi@intel.com>,
+ "Dave Airlie" <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>,
+ =?UTF-8?Q?Micha=C5=82_Winiarski?= <michal.winiarski@intel.com>,
+ "Michal Wajdeczko" <michal.wajdeczko@intel.com>
+Cc: "Matthew Brost" <matthew.brost@intel.com>,
+ "Lucas De Marchi" <demarchi@kernel.org>,
+ "Jani Nikula" <jani.nikula@intel.com>, "Riana Tauro" <riana.tauro@intel.com>, 
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+Message-Id: <079b5829-1ebd-4df8-873c-b75625a52fac@app.fastmail.com>
+In-Reply-To: <c174c12d9748e2e9b2e497c1e479100c323e79c2.camel@linux.intel.com>
+References: <20251204094154.1029357-1-arnd@kernel.org>
+ <c174c12d9748e2e9b2e497c1e479100c323e79c2.camel@linux.intel.com>
+Subject: Re: [PATCH] drm/xe/pf: fix VFIO link error
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,129 +108,21 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0255661686126167711==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Thu, Dec 4, 2025, at 13:19, Thomas Hellstr=C3=B6m wrote:
+> On Thu, 2025-12-04 at 10:41 +0100, Arnd Bergmann wrote:
+>>=20
+>> Check for CONFIG_XE_VFIO_PCI being enabled in the Makefile to decide
+>> whether to
+>> include the the object instead.
+>
+> s/the the/the/ found by CI.
+> Same question here, Do you want to resent or should I fix up when
+> commiting?
+>
 
-== Series Details ==
+I'd prefer if you can fix up both so I don't have to send it again.
 
-Series: Move PSR/Panel Replay sink data into intel_connector (rev4)
-URL   : https://patchwork.freedesktop.org/series/157898/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from xe-4194-4eb27c4b4b45606c79769918ab8736249f94035a_BAT -> xe-pw-157898v4_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (12 -> 12)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-157898v4_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@xe_waitfence@abstime:
-    - bat-dg2-oem2:       [TIMEOUT][1] ([Intel XE#6506]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4194-4eb27c4b4b45606c79769918ab8736249f94035a/bat-dg2-oem2/igt@xe_waitfence@abstime.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157898v4/bat-dg2-oem2/igt@xe_waitfence@abstime.html
-
-  
-  [Intel XE#6506]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506
-
-
-Build changes
--------------
-
-  * IGT: IGT_8654 -> IGT_8655
-  * Linux: xe-4194-4eb27c4b4b45606c79769918ab8736249f94035a -> xe-pw-157898v4
-
-  IGT_8654: 38d9fde0432aa6f2bf6add062f1d4334ad467fbc @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_8655: 8655
-  xe-4194-4eb27c4b4b45606c79769918ab8736249f94035a: 4eb27c4b4b45606c79769918ab8736249f94035a
-  xe-pw-157898v4: 157898v4
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157898v4/index.html
-
---===============0255661686126167711==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Move PSR/Panel Replay sink data into intel_connector (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/157898/">https://patchwork.freedesktop.org/series/157898/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157898v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157898v4/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4194-4eb27c4b4b45606c79769918ab8736249f94035a_BAT -&gt; xe-pw-157898v4_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (12 -&gt; 12)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-157898v4_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_waitfence@abstime:<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4194-4eb27c4b4b45606c79769918ab8736249f94035a/bat-dg2-oem2/igt@xe_waitfence@abstime.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506">Intel XE#6506</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157898v4/bat-dg2-oem2/igt@xe_waitfence@abstime.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8654 -&gt; IGT_8655</li>
-<li>Linux: xe-4194-4eb27c4b4b45606c79769918ab8736249f94035a -&gt; xe-pw-157898v4</li>
-</ul>
-<p>IGT_8654: 38d9fde0432aa6f2bf6add062f1d4334ad467fbc @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_8655: 8655<br />
-  xe-4194-4eb27c4b4b45606c79769918ab8736249f94035a: 4eb27c4b4b45606c79769918ab8736249f94035a<br />
-  xe-pw-157898v4: 157898v4</p>
-
-</body>
-</html>
-
---===============0255661686126167711==--
+     Arnd
