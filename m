@@ -4,55 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0DA8AD29FB2
-	for <intel-xe@archiver.kernel.org>; Thu,  4 Dec 2025 20:05:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 320D1D2A529
+	for <intel-xe@archiver.kernel.org>; Thu,  4 Dec 2025 20:21:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9DFD310E20D;
-	Thu,  4 Dec 2025 20:05:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CE16210E214;
+	Thu,  4 Dec 2025 20:21:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ex45jenW";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Fmdezwe/";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 93E2F10E20D
- for <intel-xe@lists.freedesktop.org>; Thu,  4 Dec 2025 20:05:47 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9FBFB10E214;
+ Thu,  4 Dec 2025 20:21:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1764878748; x=1796414748;
+ t=1764879686; x=1796415686;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=0jaJBLu3qxJzpD4306Z6J4AGoAl2hwBAF8qfSlx3ELE=;
- b=ex45jenWj7fagEZ3GjyAtM2As1omFArn7bHXS1VxWTGk5S0S5pD9kWZp
- kc34nU1uEG6QSo2lrwnZZrCN2melwJcPOuK4NeQD8hR1nOCr15TrcRnUr
- c1l32vpbc0DTJ3skvrZEmzSyUqAXm5tAWg8VOJ1zFJC5yBQaCoxCQq8Yu
- 5F4JnAAwUQbK6IVwbWn7VLIW+7pwaHyKce3sVnTGXkHR49Xvvv9vuCJFl
- BsxdSDyrwiY5/wRPjqJ6pfBStGzDiyC75jxJIG6Xn6fkG/c60PdBTo60u
- i8o7IELlk+0DoPLtMwaxSCIa5yAm1+Q+g2UQSvFwFIXZomlVccc5mimux Q==;
-X-CSE-ConnectionGUID: TDL8XRMnSgmDVbdLZ6bT8w==
-X-CSE-MsgGUID: VuFp7+KWSryP6yJJLWcllw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11632"; a="54459593"
-X-IronPort-AV: E=Sophos;i="6.20,249,1758610800"; d="scan'208";a="54459593"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Dec 2025 12:05:47 -0800
-X-CSE-ConnectionGUID: L3gjGxlRSC+yRx3z8qG6Yg==
-X-CSE-MsgGUID: U07HeUfJSEWRtJ9i1XyhNQ==
+ bh=1TwGGNxOhuDagudoK9YoqLq05Zqas9Yl2A0kSW+yZ/s=;
+ b=Fmdezwe/FJkMmq+W0Bm1V/QFoSzvpFf9FZww+D+tHntCcNM0FqqPArBM
+ /BtBeHZppuld1VGqptOM5zwcEEiMezwlvQVVyttT0vr01waTA8SJqkXmr
+ cEv3SylPu84vOLkeNzRPRVmI5c+kEdYMMwPUrsWgl4ull/51NQ5DSPXcf
+ CsXw9P+uibWMH3mSHuKJMyS4O7nvsNZbA4ytv2T//Hh8nJmKio7C6u22U
+ h8kTl6+X/3A6Cyan6f9C1qVPvpRDq8OWztm+t/TlMiKiAeOUjJDoeRnUH
+ /hvO2fkQbc5NyVdm0O96wxOaI/l4PnN5YFacG6GlZlzSXJUMitoVNNV/J g==;
+X-CSE-ConnectionGUID: vhnxYfEcSTC8EDqp9dkcsg==
+X-CSE-MsgGUID: HJMycCtqREygT7hXHvyoOQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11632"; a="66101034"
+X-IronPort-AV: E=Sophos;i="6.20,249,1758610800"; d="scan'208";a="66101034"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Dec 2025 12:21:25 -0800
+X-CSE-ConnectionGUID: fNhY/HTvT92+R0yhp/kUKw==
+X-CSE-MsgGUID: S4nCBptSTwmW/aE92FHKMA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,249,1758610800"; d="scan'208";a="195880285"
-Received: from gkczarna.igk.intel.com ([10.211.131.163])
- by fmviesa010.fm.intel.com with ESMTP; 04 Dec 2025 12:05:46 -0800
-From: Tomasz Lis <tomasz.lis@intel.com>
+X-IronPort-AV: E=Sophos;i="6.20,249,1758610800"; d="scan'208";a="194738904"
+Received: from hrotuna-mobl2.ger.corp.intel.com (HELO fedora)
+ ([10.245.245.167])
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Dec 2025 12:21:24 -0800
+From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Matthew Brost <matthew.brost@intel.com>,
- =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
- =?UTF-8?q?Micha=C5=82=20Wajdeczko?= <michal.wajdeczko@intel.com>,
- =?UTF-8?q?Piotr=20Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>,
- Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
-Subject: [PATCH v1] drm/xe/vf: Stop waiting for ring space on VF post
- migration recovery
-Date: Thu,  4 Dec 2025 21:08:20 +0100
-Message-Id: <20251204200820.2206168-1-tomasz.lis@intel.com>
-X-Mailer: git-send-email 2.25.1
+Cc: dri-devel@lists.freedesktop.org,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Dave Airlie <airlied@redhat.com>,
+ Linus Torvalds <torvalds@linux-foundation.org>
+Subject: [PATCH] drm/xe: Fix duplicated put due to merge resolution
+Date: Thu,  4 Dec 2025 21:20:59 +0100
+Message-ID: <20251204202059.326605-1-thomas.hellstrom@linux.intel.com>
+X-Mailer: git-send-email 2.51.1
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,72 +69,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-If wait for ring space started just before migration, it can delay
-the recovery process, by waiting without bailout path for up to 2
-seconds.
+An incorrect backmerge resolution resulted in an
+incorrect duplicate put. Fix.
 
-Two second wait for recovery is not acceptable, and if the ring was
-completely filled even without the migration temporarily stopping
-execution, then such a wait will result in up to a thousand new jobs
-(assuming constant flow) being added while the wait is happening.
-
-While this will not cause data corruption, it will lead to warning
-messages getting logged due to reset being scheduled on a GT under
-recovery. Also several seconds of unresponsiveness, as the backlog
-of jobs gets progressively executed.
-
-Add a bailout condition, to make sure the recovery starts without
-much delay. The recovery is expected to finish in about 100 ms when
-under moderate stress, so the condition verification period needs to be
-below that - settling at 64 ms.
-
-The theoretical max time which the recovery can take depends on how
-many requests can be emitted to engine rings and be pending execution.
-While stress testing, it was possible to reach 10k pending requests
-on rings when a platform with two GTs was used. This resulted in max
-recovery time of 5 seconds. But in real life situations, it is very
-unlikely that the amount of pending requests will ever exceed 100,
-and for that the recovery time will be around 50 ms - well within our
-claimed limit of 100ms.
-
-Fixes: a4dae94aad6a ("drm/xe/vf: Wakeup in GuC backend on VF post migration recovery")
-Signed-off-by: Tomasz Lis <tomasz.lis@intel.com>
+Cc: Dave Airlie <airlied@redhat.com>
+Reported-by: Linus Torvalds <torvalds@linux-foundation.org>
+Closes: https://lore.kernel.org/dri-devel/CAHk-=whaiMayMx=LrL7P119MLBX6exM_mEu4S2uBRT+xWQ-mbA@mail.gmail.com/
+Fixes: Fixes: ce0478b02ed2 ("Merge tag 'v6.18-rc6' into drm-next")
+Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc_submit.c | 10 ++++++----
- 1 file changed, 6 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/xe/xe_exec_queue.c | 3 ---
+ 1 file changed, 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index f3f2c8556a66..ff6fda84bf0f 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -722,21 +722,23 @@ static int wq_wait_for_space(struct xe_exec_queue *q, u32 wqi_size)
- 	struct xe_guc *guc = exec_queue_to_guc(q);
- 	struct xe_device *xe = guc_to_xe(guc);
- 	struct iosys_map map = xe_lrc_parallel_map(q->lrc[0]);
--	unsigned int sleep_period_ms = 1;
-+	unsigned int sleep_period_ms = 1, sleep_total_ms = 0;
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
+index 02b75652d497..226d07a3d852 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue.c
++++ b/drivers/gpu/drm/xe/xe_exec_queue.c
+@@ -392,9 +392,6 @@ void xe_exec_queue_destroy(struct kref *ref)
  
- #define AVAILABLE_SPACE \
- 	CIRC_SPACE(q->guc->wqi_tail, q->guc->wqi_head, WQ_SIZE)
- 	if (wqi_size > AVAILABLE_SPACE && !vf_recovery(guc)) {
- try_again:
- 		q->guc->wqi_head = parallel_read(xe, map, wq_desc.head);
--		if (wqi_size > AVAILABLE_SPACE) {
--			if (sleep_period_ms == 1024) {
-+		if (wqi_size > AVAILABLE_SPACE && !vf_recovery(guc)) {
-+			if (sleep_total_ms > 2000) {
- 				xe_gt_reset_async(q->gt);
- 				return -ENODEV;
- 			}
+ 	xe_assert(gt_to_xe(q->gt), atomic_read(&q->job_cnt) == 0);
  
- 			msleep(sleep_period_ms);
--			sleep_period_ms <<= 1;
-+			sleep_total_ms += sleep_period_ms;
-+			if (sleep_period_ms < 64)
-+				sleep_period_ms <<= 1;
- 			goto try_again;
- 		}
- 	}
+-	if (q->ufence_syncobj)
+-		drm_syncobj_put(q->ufence_syncobj);
+-
+ 	if (q->ufence_syncobj)
+ 		drm_syncobj_put(q->ufence_syncobj);
+ 
+
+base-commit: 29bce9c8b41d5c378263a927acb9a9074d0e7a0e
 -- 
-2.25.1
+2.51.1
 
