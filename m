@@ -4,52 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BC344D2A537
-	for <intel-xe@archiver.kernel.org>; Thu,  4 Dec 2025 20:29:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0B5F7D2A536
+	for <intel-xe@archiver.kernel.org>; Thu,  4 Dec 2025 20:29:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5315E10E8F3;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 581E310E9BC;
 	Thu,  4 Dec 2025 20:29:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="XF2eNXUa";
+	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="B8+o1niV";
 	dkim-atps=neutral
 Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7DE5510E737;
- Wed,  3 Dec 2025 08:33:16 +0000 (UTC)
-Received: from smtp1.mailbox.org (smtp1.mailbox.org
- [IPv6:2001:67c:2050:b231:465::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C206E10E029;
+ Thu,  4 Dec 2025 14:10:36 +0000 (UTC)
+Received: from smtp2.mailbox.org (smtp2.mailbox.org [10.196.197.2])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4dLrWF28kWz9tYh;
- Wed,  3 Dec 2025 09:33:13 +0100 (CET)
+ by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4dMby10gV1z9tV8;
+ Thu,  4 Dec 2025 15:10:33 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
  s=mail20150812; 
- t=1764750793; h=from:from:reply-to:reply-to:subject:subject:date:date:
+ t=1764857433; h=from:from:reply-to:reply-to:subject:subject:date:date:
  message-id:message-id:to:to:cc:cc:mime-version:mime-version:
  content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=XCkaH4RkyOCE68iBUM9HTYufTJgIeQQADoO1GMbHwZs=;
- b=XF2eNXUaWFr1NH1jVo2fD8pVFgkYHxq/kXdwQ39uATx1gpZTpY3h/RLmx8UqR5mVFWcvad
- FZWkzxc0nkQhODaMyCARhKQUBZOlv8uP3xz+vXGHPyZwlZXZJy34aTDNdqTfrkuGqYtDJs
- JofdVvVVdEeecHOOsqoP/rDedke4/aE12+8z1s8V2N6xmao+sA/e3LJWCxoTRH6eRygC4W
- MSefBL/F3yjS4armWDd7RzKygN8HJukJuqylo7rXE7m7fgE/iVHcRRgmuwKCDNK/GsHPDB
- fzUXbDQVF2MU1k1GFov9NHq2wgU9SQVW+y9ow9o1Mi651MU/KgI6ix0t0ixyXg==
-Message-ID: <591842211d77122faec79530c3d4d805cf09fe02.camel@mailbox.org>
-Subject: Re: [PATCH v7 0/9] Fix DRM scheduler layering violations in Xe
+ bh=ETFPcwGc/J2gqxbT5eNzy5JQ7vh5rybLlhQczEy0HVs=;
+ b=B8+o1niVzxQD7p2rFN3T9F93gW94B6fyBYvTVWNbzRp9/C8r5mhaT1J1aETTXwAwnh7tzE
+ zmpFQQ/DeaZ5t6zd9AmJk5Mhar5qihcJqpcqZk1qFLr6WImByk/iA39iQoyXLtBTxQT5TY
+ iYfiggT/0Zi9qF/iYFKoTBHGv18jC83gNUUXz79P5Vz6p8NY8DWX7Eb4NkBb26haaNgNRk
+ BKI8JM/cc0X/flp4oSoFnR0NAktiaBUZRQBUsXPf/CGQkcOObo0/v3DGftTe6PTX2l8eBV
+ RB6zemkjeNOAAi7TgMACkk42o2kDGraRnxK5hMUj9ORbOkPQ2sgbLJFadbZ21A==
+Message-ID: <53354e12b55d7c558b4418d876598641d862737f.camel@mailbox.org>
+Subject: Re: [PATCH 0/6] dma-fence: Remove return code of dma_fence_signal()
+ et al.
 From: Philipp Stanner <phasta@mailbox.org>
-To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org, phasta@kernel.org, 
- christian.koenig@amd.com, dakr@kernel.org
-Date: Wed, 03 Dec 2025 09:33:09 +0100
-In-Reply-To: <aS+RIfD3mb7dAHRV@lstrano-desk.jf.intel.com>
-References: <20251201183954.852637-1-matthew.brost@intel.com>
- <aS+RIfD3mb7dAHRV@lstrano-desk.jf.intel.com>
+To: Philipp Stanner <phasta@kernel.org>, Sumit Semwal
+ <sumit.semwal@linaro.org>,  Gustavo Padovan <gustavo@padovan.org>,
+ Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, Felix
+ Kuehling <Felix.Kuehling@amd.com>, Alex Deucher
+ <alexander.deucher@amd.com>, David Airlie <airlied@gmail.com>, Simona
+ Vetter <simona@ffwll.ch>, Jani Nikula <jani.nikula@linux.intel.com>, Joonas
+ Lahtinen <joonas.lahtinen@linux.intel.com>,  Rodrigo Vivi
+ <rodrigo.vivi@intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>, Huang Rui
+ <ray.huang@amd.com>,  Matthew Auld <matthew.auld@intel.com>, Matthew Brost
+ <matthew.brost@intel.com>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, Lucas De Marchi
+ <lucas.demarchi@intel.com>, Thomas =?ISO-8859-1?Q?Hellstr=F6m?=
+ <thomas.hellstrom@linux.intel.com>
+Cc: linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+ linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org, 
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Date: Thu, 04 Dec 2025 15:10:11 +0100
+In-Reply-To: <20251201105011.19386-2-phasta@kernel.org>
+References: <20251201105011.19386-2-phasta@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-X-MBO-RS-ID: c5da3f4f369238331ba
-X-MBO-RS-META: azaubu513z5mudz1yjfz1q85j1kubzwh
+X-MBO-RS-ID: b1b04ac58f4f528a2cf
+X-MBO-RS-META: xix6kpmj83m8hwiqzjwsu31pur87u4tw
 X-Mailman-Approved-At: Thu, 04 Dec 2025 20:29:17 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -66,107 +79,70 @@ Reply-To: phasta@kernel.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 2025-12-02 at 17:23 -0800, Matthew Brost wrote:
-> On Mon, Dec 01, 2025 at 10:39:45AM -0800, Matthew Brost wrote:
+On Mon, 2025-12-01 at 11:50 +0100, Philipp Stanner wrote:
+> Tested this with dma_buf selftests and drm_sched tests.
 >=20
-> Fellow DRM sched maintainers - going to merge the first two patches in
-> this series to drm-misc-next two days from now unless I hear an
-> objection.
+> Changes in v2:
+> =C2=A0 - Fix bug and don't turn the kernel into a smoking pile of ashes b=
+y
+> =C2=A0=C2=A0=C2=A0 not setting the signaled-bit=E2=80=A6
+> =C2=A0 - Add functions (dma_fence_check_and_signal()) preserving the old
+> =C2=A0=C2=A0=C2=A0 behavior of dma_fence_signal() & Co. (Felix)
+> =C2=A0 - Use those new functions in amdkfd, xe, ttm and st-dma-fence.
+> =C2=A0 - Be a bit less aggressive and keep the git-diff smaller.
+> =C2=A0 - Add a patch using the flag-helper in Xe. (Matthew)
+>=20
+> Barely anyone uses dma_fence_signal()'s (and similar functions') return
+> code. Checking it is pretty much useless anyways, because what are you
+> going to do if a fence was already signal it? Unsignal it and signal it
+> again? ;p
+>=20
+> Removing the return code simplifies the API and makes it easier for me
+> to sit on top with Rust DmaFence.
+>=20
+> Philipp Stanner (8):
+> =C2=A0 dma-buf/dma-fence: Add dma_fence_test_signaled_flag()
+> =C2=A0 dma-buf/dma-fence: Add dma_fence_check_and_signal()
+> =C2=A0 amd/amdkfd: Use dma_fence_check_and_signal()
+> =C2=A0 drm/xe: Use dma_fence_check_and_signal_locked()
+> =C2=A0 dma-buf: Don't misuse dma_fence_signal()
+> =C2=A0 drm/ttm: Use dma_fence_check_and_signal()
+> =C2=A0 dma-buf/dma-fence: Remove return code of signaling-functions
 
-Fellow maintainer Matt, it seems that none of us has ever been on Cc
-for this series or patch? I can't find it in my inbox. Did you forget
-to add us for 7 revisions, or did you omit us on purpose?
+Applied those 7 patches to drm-misc-next. Had to do a tiny rebase
+because 033559473dd3b55558b535aa37b8848c207b5cbb is not yet in drm-
+misc-next (dma-fence series was based on master at first, which
+contains that commit).
 
-I look occasionally at dri-devel, but you know how huge the list is.
+> =C2=A0 drm/xe: Use dma_fence_test_signaled_flag()
+
+Left for Matthow to pick up whenever he wishes.
+
 
 P.
 
-
 >=20
-> Matt=20
+> =C2=A0drivers/dma-buf/dma-fence.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 100=
+ +++++++++++-------
+> =C2=A0drivers/dma-buf/st-dma-fence.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 4 +-
+> =C2=A0drivers/gpu/drm/amd/amdkfd/kfd_process.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 |=C2=A0=C2=A0 6 +-
+> =C2=A0.../gpu/drm/ttm/tests/ttm_bo_validate_test.c=C2=A0 |=C2=A0=C2=A0 2 =
++-
+> =C2=A0drivers/gpu/drm/xe/xe_exec_queue.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 9 +-
+> =C2=A0drivers/gpu/drm/xe/xe_hw_fence.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 4 +-
+> =C2=A0drivers/gpu/drm/xe/xe_pt.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ |=C2=A0=C2=A0 3 +-
+> =C2=A0drivers/gpu/drm/xe/xe_sched_job.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 2 +-
+> =C2=A0include/linux/dma-fence.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 |=C2=A0 35 ++++--
+> =C2=A09 files changed, 102 insertions(+), 63 deletions(-)
 >=20
-> > At XDC, we discussed that drivers should avoid accessing DRM scheduler
-> > internals, misusing DRM scheduler locks, and adopt a well-defined
-> > pending job list iterator. This series proposes the necessary changes t=
-o
-> > the DRM scheduler to bring Xe in line with that agreement and updates X=
-e
-> > to use the new DRM scheduler API.
-> >=20
-> > While here, cleanup LR queue handling and simplify GuC state machine in
-> > Xe too. Also rework LRC timestamp sampling to avoid scheduling toggle.
-> >=20
-> > v2:
-> > =C2=A0- Fix checkpatch / naming issues
-> > v3:
-> > =C2=A0- Only allow pending job list iterator to be called on stopped sc=
-hedulers
-> > =C2=A0- Cleanup LR queue handling / fix a few misselanous Xe scheduler =
-issues
-> > v4:
-> > =C2=A0- Address Niranjana's feedback
-> > =C2=A0- Add patch to avoid toggling scheduler state in the TDR
-> > v5:
-> > =C2=A0- Rebase
-> > =C2=A0- Fixup LRC timeout check (Umesh)
-> > v6:
-> > =C2=A0- Fix VF bugs (Testing)
-> > v7:
-> > =C2=A0- Disable timestamp WA on VF
-> >=20
-> > Matt
-> >=20
-> > Matthew Brost (9):
-> > =C2=A0 drm/sched: Add several job helpers to avoid drivers touching sch=
-eduler
-> > =C2=A0=C2=A0=C2=A0 state
-> > =C2=A0 drm/sched: Add pending job list iterator
-> > =C2=A0 drm/xe: Add dedicated message lock
-> > =C2=A0 drm/xe: Stop abusing DRM scheduler internals
-> > =C2=A0 drm/xe: Only toggle scheduling in TDR if GuC is running
-> > =C2=A0 drm/xe: Do not deregister queues in TDR
-> > =C2=A0 drm/xe: Remove special casing for LR queues in submission
-> > =C2=A0 drm/xe: Disable timestamp WA on VFs
-> > =C2=A0 drm/xe: Avoid toggling schedule state to check LRC timestamp in =
-TDR
-> >=20
-> > =C2=A0drivers/gpu/drm/scheduler/sched_main.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 |=C2=A0=C2=A0 4 +-
-> > =C2=A0drivers/gpu/drm/xe/xe_gpu_scheduler.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 9 +-
-> > =C2=A0drivers/gpu/drm/xe/xe_gpu_scheduler.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 |=C2=A0 37 +-
-> > =C2=A0drivers/gpu/drm/xe/xe_gpu_scheduler_types.h=C2=A0 |=C2=A0=C2=A0 2=
- +
-> > =C2=A0drivers/gpu/drm/xe/xe_guc_exec_queue_types.h |=C2=A0=C2=A0 2 -
-> > =C2=A0drivers/gpu/drm/xe/xe_guc_submit.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 362 +++----------------
-> > =C2=A0drivers/gpu/drm/xe/xe_guc_submit_types.h=C2=A0=C2=A0=C2=A0=C2=A0 =
-|=C2=A0 11 -
-> > =C2=A0drivers/gpu/drm/xe/xe_hw_fence.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 16 -
-> > =C2=A0drivers/gpu/drm/xe/xe_hw_fence.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 2 -
-> > =C2=A0drivers/gpu/drm/xe/xe_lrc.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 =
-45 ++-
-> > =C2=A0drivers/gpu/drm/xe/xe_lrc.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=
-=C2=A0 3 +-
-> > =C2=A0drivers/gpu/drm/xe/xe_ring_ops.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 25 +-
-> > =C2=A0drivers/gpu/drm/xe/xe_sched_job.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 1 +
-> > =C2=A0drivers/gpu/drm/xe/xe_sched_job_types.h=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 |=C2=A0=C2=A0 2 +
-> > =C2=A0drivers/gpu/drm/xe/xe_trace.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 5 -
-> > =C2=A0include/drm/gpu_scheduler.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 =
-82 +++++
-> > =C2=A016 files changed, 211 insertions(+), 397 deletions(-)
-> >=20
-> > --=20
-> > 2.34.1
-> >=20
 
