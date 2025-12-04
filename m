@@ -4,95 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5D90CD1CDB9
-	for <intel-xe@archiver.kernel.org>; Thu,  4 Dec 2025 02:29:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 452B2D1CDCE
+	for <intel-xe@archiver.kernel.org>; Thu,  4 Dec 2025 04:06:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1C63110E1AB;
-	Thu,  4 Dec 2025 02:29:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D60F210E83B;
+	Thu,  4 Dec 2025 04:06:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="hPMDm4W3";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LXh4GuNT";
 	dkim-atps=neutral
-Received: from mail-pf1-f177.google.com (mail-pf1-f177.google.com
- [209.85.210.177])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 599B310E832
- for <intel-xe@lists.freedesktop.org>; Thu,  4 Dec 2025 02:29:42 +0000 (UTC)
-Received: by mail-pf1-f177.google.com with SMTP id
- d2e1a72fcca58-7b8eff36e3bso649840b3a.2
- for <intel-xe@lists.freedesktop.org>; Wed, 03 Dec 2025 18:29:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1764815382; x=1765420182; darn=lists.freedesktop.org;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:mail-followup-to:message-id:subject:cc:to
- :from:date:sender:from:to:cc:subject:date:message-id:reply-to;
- bh=nbfVTq9KBWsmp1ChHIp5kh8RBkVe/heJoRGFGHla1nE=;
- b=hPMDm4W3E7BId8Vt0lOcF3xi6I+TfEvw3T/JpsmV4UZRufpOghmxlUEOhW+yLWiCHn
- +T+AQw4V3yQY4MaD/w1pVKANREPWw1du41crTaHKC0Fqrp96vO9lxAzHqO2bj5pH7rJn
- bu70KOhn44Jh1YuPMpiP/hM7MjhdfsWfB5Y0HYt+2sGuawlBvGWv76E6rxsdx3PMDk1q
- /mzSHtXgCz53RGG3eTegQ3+Jpf9aYfi4CU4wrnatu1ojdFUk7VUbRcQBu/xUgjL1LEDy
- SnNpWNhAykHWLrMRUB5VXqMhEkRtcFEJNCTRY4t47gH79hMl4H8tEzzTi41KBk6SlzqC
- nTUA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1764815382; x=1765420182;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:mail-followup-to:message-id:subject:cc:to
- :from:date:sender:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=nbfVTq9KBWsmp1ChHIp5kh8RBkVe/heJoRGFGHla1nE=;
- b=grR3VOHKCk9bvqg2/49yCeyTK3PZqk5anbMazby96lh5vpXs+L/HgO7cWgEr2Bc7bP
- gZRiptsZyzHUtbEMkn7aB7dfl9tJ9QJ15PlbmwZT7PPPYOTTu7amOtSYPah0zARd12RH
- EhN33l2hozom3/t9uWm1pa0oVgDch2YK4Z6CIoWgf40WBhj7l/U3RxrPghY5Z/5VHkYa
- RTWKIRMwa74alrDEQkA2/s3QizwF2Zr1z9VQNV5dMI4iBNEX6A7TxMEMgUg2YK1HNcyv
- GhT2G9eLo9zQOZFNQh7u0OQdIrMtteVIVp67WZQNL0zYhm6hHGUJsLayLomxyQRo12LN
- tqCw==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUVCbct5Qc+2skcIi8Wipl49a0HFXFMHTIec4rbN3gfV8i+wuhxjH4ugOHy/xdWO0UcP/30pDl4Ww==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yy1eT6tL1FveAbYdI4E6EW4YunbOXYcERZqth6Y5aVWS/meWhFi
- aKkGvuaYb9bcPd5bfqqXC4nplrFjKacQZDX1jU+hgcT7MBfnqHxYdKGl
-X-Gm-Gg: ASbGncs7JF5UUeYvMr7qv0tYESVjZder799W1XGOUvLh+wdZwDPdcIjoZJTcntopqxd
- iI6lZXjiureKg9cTEwONJpJTONT6Ln/rapxNaHqfK5JhNnLVLnwmeno+FkF22zalOfKQbRSOvOt
- yGNSiJG8qXtIm0yw/SSsGoyK+faM56mBD5oN18Axg2/D0BIZqtjVxt4ll1sBmQFZPxAnF4v2OFc
- S3+mcSO62YRGVoZkc7GqOzg1ldfdhd3RV958IOPNLkocdiW1VD5uAquGn89hxF+3THu4Xs859RJ
- yRB1JqgJt/VEZRhwFa3iz1iH6rjH3+qB29R7jDnhl+HWfyIxLZvMQPD3ajFHPLgN0tuhRI9wC3C
- ykuwsmj0qDVtwRU6NDuaX3AtMylts3g8Hdagf29QuEt/SuO+OaQAXbJb+o5HEn3iYG8hP2R1cUc
- w9EJP4z6yflw8w1RRc56R6yNQpFaVxm9dUZmvU6vLPRQZMtQDrXNs=
-X-Google-Smtp-Source: AGHT+IFCeBy2y/CfEswHeFQ8PNewc7BH40l5HKVg8Zae9UGj70Zf3r7S53EITpLfFSzUJLeHLUcr5A==
-X-Received: by 2002:a05:6a20:244d:b0:35d:8881:e6bb with SMTP id
- adf61e73a8af0-36403797f3cmr1771400637.22.1764815381665; 
- Wed, 03 Dec 2025 18:29:41 -0800 (PST)
-Received: from localhost (211-75-139-220.hinet-ip.hinet.net. [211.75.139.220])
- by smtp.gmail.com with ESMTPSA id
- d2e1a72fcca58-7e2adc5bf17sm314210b3a.38.2025.12.03.18.29.40
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 03 Dec 2025 18:29:40 -0800 (PST)
-Date: Thu, 4 Dec 2025 10:29:37 +0800
-From: "Chia-Lin Kao (AceLan)" <acelan.kao@canonical.com>
-To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
- Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>, 
- Simona Vetter <simona@ffwll.ch>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] drm/i915/dp: Add byte-by-byte fallback for broken USB-C
- adapters
-Message-ID: <7klzod4x5e2mpz4bwdfoyvien4whsp7r2mvykvbuhfczczp3f4@iuszbs4p7yag>
-Mail-Followup-To: "Chia-Lin Kao (AceLan)" <acelan.kao@canonical.com>, 
- Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
- Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>, 
- Simona Vetter <simona@ffwll.ch>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-References: <20251127044406.618543-1-acelan.kao@canonical.com>
- <aSjFZhZQLVb7czsh@intel.com>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 744D210E832
+ for <intel-xe@lists.freedesktop.org>; Thu,  4 Dec 2025 04:06:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1764821173; x=1796357173;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=uqceLYeKrp6ONzohPMrFTnnezR0MV1pCwtjGHnTpew8=;
+ b=LXh4GuNTXgF7MTdsgjP8k0zJewTPBFk6E5hRyjllLh70mJtf+LahcQ0M
+ +N2zjMqjWAI/+aDuw9eQ4QQpDhoAcaal5wdCLBPVDO75+et0ye7hDZGJ0
+ X0VjWs4ThBt/BUam5v0+Y0zDAK5+Lo1UYjWRP3lPkLaxJdu9ec6ke+GJD
+ sqrYHKig6wR0FoKBTlbZwBK9bArLMSXxhv9NqiFbr3S8aEoGoWrFUbUK2
+ zSzt7uwuWJI5edlH6p2CaK+n4Pg6EHmljJJyVCEir8uGY4HkjzK48F7mz
+ 8nBY1Xl+th46dRfzwMb0aWfuiH9hWM/K/nCjJQERqPnl4QxvHbwJTH3pv g==;
+X-CSE-ConnectionGUID: MFs0S/InRKmNdjRt7D8lsg==
+X-CSE-MsgGUID: 9V7HTBheRhS/5vlWyP1zNQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11631"; a="66905597"
+X-IronPort-AV: E=Sophos;i="6.20,247,1758610800"; d="scan'208";a="66905597"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Dec 2025 20:06:12 -0800
+X-CSE-ConnectionGUID: GGuZ/TBeS/yK8I+oN/lMPA==
+X-CSE-MsgGUID: CXzkwXqWT3ikTlGl3tFidg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.20,247,1758610800"; d="scan'208";a="194776545"
+Received: from yadavs-z690i-a-ultra-plus.iind.intel.com ([10.190.216.90])
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Dec 2025 20:06:11 -0800
+From: Sanjay Yadav <sanjay.kumar.yadav@intel.com>
+To: intel-xe@lists.freedesktop.org
+Subject: [CI] drm/xe/uapi: Add NO_COMPRESSION BO flag and query capability
+Date: Thu,  4 Dec 2025 09:34:03 +0530
+Message-ID: <20251204040402.2692921-2-sanjay.kumar.yadav@intel.com>
+X-Mailer: git-send-email 2.52.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <aSjFZhZQLVb7czsh@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -107,102 +64,184 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Nov 27, 2025 at 11:40:54PM +0200, Ville Syrj‰l‰ wrote:
-> On Thu, Nov 27, 2025 at 12:44:06PM +0800, Chia-Lin Kao (AceLan) wrote:
-> > Some USB-C hubs and adapters have buggy firmware where multi-byte AUX
-> > reads from DPCD address 0x00000 consistently timeout, while single-byte
-> > reads from the same address work correctly.
-> > 
-> > Known affected devices that exhibit this issue:
-> > - Lenovo USB-C to VGA adapter (VIA VL817 chipset)
-> >   idVendor=17ef, idProduct=7217
-> > - Dell DA310 USB-C mobile adapter hub
-> >   idVendor=413c, idProduct=c010
-> > 
-> > Analysis of the failure pattern shows:
-> > - Single-byte probes to 0xf0000 (LTTPR) succeed
-> > - Single-byte probes to 0x00102 (TRAINING_AUX_RD_INTERVAL) succeed
-> > - 15-byte reads from 0x00000 (DPCD capabilities) timeout with -ETIMEDOUT
-> > - Retrying does not help - the failure is consistent across all attempts
-> 
-> I thought we changed that to the more sensible 16 bytes.
-> Anyone know what happened to that patch?
-> 
-> Anyways, does 16 bytes work better than 15 bytes?
-Change DP_RECEIVER_CAP_SIZE from 15 to 16 and it doesn't help.
-I can see it tried to read 16 bytes but it still timed out.
+Introduce DRM_XE_GEM_CREATE_FLAG_NO_COMPRESSION to let userspace
+opt out of CCS compression on a per-BO basis. When set, the driver
+maps this to XE_BO_FLAG_NO_COMPRESSION, skips CCS metadata
+allocation/clearing, and rejects compressed PAT indices at vm_bind.
+This avoids extra memory ops and manual CCS state handling for buffers.
 
-> 
-> > 
-> > The issue appears to be a firmware bug in the AUX transaction handling
-> > that specifically affects multi-byte reads from the base DPCD address.
-> > 
-> > Add a fallback mechanism that attempts byte-by-byte reading when the
-> > normal multi-byte drm_dp_read_dpcd_caps() fails. This workaround only
-> > activates for adapters that fail the standard read path, ensuring no
-> > impact on correctly functioning hardware.
-> > 
-> > The byte-by-byte read uses drm_dp_dpcd_readb() to read each of the 15
-> > DPCD capability bytes individually, working around the firmware bug
-> > while maintaining compatibility with all other adapters.
-> > 
-> > Tested with:
-> > - Lenovo USB-C to VGA adapter (VIA VL817) - now works with fallback
-> > - Dell DA310 USB-C hub - now works with fallback
-> > - Dell/Analogix Slimport adapter - continues to work with normal path
-> > 
-> > Signed-off-by: Chia-Lin Kao (AceLan) <acelan.kao@canonical.com>
-> > ---
-> >  .../drm/i915/display/intel_dp_link_training.c | 21 ++++++++++++++++++-
-> >  1 file changed, 20 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> > index aad5fe14962f..738a5bb4adb3 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> > @@ -213,6 +213,7 @@ static int intel_dp_init_lttpr(struct intel_dp *intel_dp, const u8 dpcd[DP_RECEI
-> >  int intel_dp_read_dprx_caps(struct intel_dp *intel_dp, u8 dpcd[DP_RECEIVER_CAP_SIZE])
-> >  {
-> >  	struct intel_display *display = to_intel_display(intel_dp);
-> > +	int ret, i;
-> >  
-> >  	if (intel_dp_is_edp(intel_dp))
-> >  		return 0;
-> > @@ -226,7 +227,25 @@ int intel_dp_read_dprx_caps(struct intel_dp *intel_dp, u8 dpcd[DP_RECEIVER_CAP_S
-> >  				      DP_LT_TUNABLE_PHY_REPEATER_FIELD_DATA_STRUCTURE_REV))
-> >  			return -EIO;
-> >  
-> > -	if (drm_dp_read_dpcd_caps(&intel_dp->aux, dpcd))
-> > +	ret = drm_dp_read_dpcd_caps(&intel_dp->aux, dpcd);
-> > +	if (ret == 0)
-> > +		return 0;
-> > +
-> > +	/*
-> > +	 * Workaround for USB-C hubs/adapters with buggy firmware that fail
-> > +	 * multi-byte AUX reads from DPCD address 0x00000 but work with
-> > +	 * single-byte reads. Known affected devices:
-> > +	 * - Lenovo USB-C to VGA adapter (VIA VL817, idVendor=17ef, idProduct=7217)
-> > +	 * - Dell DA310 USB-C hub (idVendor=413c, idProduct=c010)
-> > +	 * Read the DPCD capabilities byte-by-byte as a fallback.
-> > +	 */
-> > +	for (i = 0; i < DP_RECEIVER_CAP_SIZE; i++) {
-> > +		ret = drm_dp_dpcd_readb(&intel_dp->aux, DP_DPCD_REV + i, &dpcd[i]);
-> > +		if (ret < 0)
-> > +			return -EIO;
-> > +	}
-> 
-> Doing this in i915 specific code doesn't make sense.
-Right, I'll move the workaround to the drm driver, and submit v2.
+To allow userspace to detect at runtime whether the kernel supports this
+feature, add DRM_XE_QUERY_CONFIG_FLAG_HAS_NO_COMPRESSION_HINT and expose
+it via query_config() on Xe2+ platforms.
 
-> 
-> > +
-> > +	if (dpcd[DP_DPCD_REV] == 0)
-> >  		return -EIO;
-> >  
-> >  	return 0;
-> > -- 
-> > 2.43.0
-> 
-> -- 
-> Ville Syrj‰l‰
-> Intel
+Mesa PR: https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/38425
+IGT PR: https://patchwork.freedesktop.org/patch/685180/
+
+v2
+- Changed error code from -EINVAL to -EOPNOTSUPP for unsupported flag
+  usage on pre-Xe2 platforms
+- Fixed checkpatch warning in xe_vm.c
+- Fixed kernel-doc formatting in xe_drm.h
+
+v3
+- Rebase
+- Updated commit title and description
+- Added UAPI for DRM_XE_QUERY_CONFIG_FLAG_HAS_NO_COMPRESSION_HINT and
+  exposed it via query_config()
+
+v4
+- Rebase
+
+v5
+- Included Mesa PR and IGT PR in the commit description
+- Used xe_pat_index_get_comp_en() to extract the compression
+
+v6
+- Added XE_IOCTL_DBG() checks for argument validation
+
+Suggested-by: Matthew Auld <matthew.auld@intel.com>
+Suggested-by: Jos√© Roberto de Souza <jose.souza@intel.com>
+Acked-by: Jos√© Roberto de Souza <jose.souza@intel.com>
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+Signed-off-by: Sanjay Yadav <sanjay.kumar.yadav@intel.com>
+---
+ drivers/gpu/drm/xe/xe_bo.c    | 15 +++++++++++++--
+ drivers/gpu/drm/xe/xe_bo.h    |  1 +
+ drivers/gpu/drm/xe/xe_query.c |  3 +++
+ drivers/gpu/drm/xe/xe_vm.c    |  4 ++++
+ include/uapi/drm/xe_drm.h     | 16 ++++++++++++++++
+ 5 files changed, 37 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index b0bd31d14bb9..a800e86ba3d3 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -3183,7 +3183,8 @@ int xe_gem_create_ioctl(struct drm_device *dev, void *data,
+ 	if (XE_IOCTL_DBG(xe, args->flags &
+ 			 ~(DRM_XE_GEM_CREATE_FLAG_DEFER_BACKING |
+ 			   DRM_XE_GEM_CREATE_FLAG_SCANOUT |
+-			   DRM_XE_GEM_CREATE_FLAG_NEEDS_VISIBLE_VRAM)))
++			   DRM_XE_GEM_CREATE_FLAG_NEEDS_VISIBLE_VRAM |
++			   DRM_XE_GEM_CREATE_FLAG_NO_COMPRESSION)))
+ 		return -EINVAL;
+ 
+ 	if (XE_IOCTL_DBG(xe, args->handle))
+@@ -3205,6 +3206,12 @@ int xe_gem_create_ioctl(struct drm_device *dev, void *data,
+ 	if (args->flags & DRM_XE_GEM_CREATE_FLAG_SCANOUT)
+ 		bo_flags |= XE_BO_FLAG_SCANOUT;
+ 
++	if (args->flags & DRM_XE_GEM_CREATE_FLAG_NO_COMPRESSION) {
++		if (XE_IOCTL_DBG(xe, GRAPHICS_VER(xe) < 20))
++			return -EOPNOTSUPP;
++		bo_flags |= XE_BO_FLAG_NO_COMPRESSION;
++	}
++
+ 	bo_flags |= args->placement << (ffs(XE_BO_FLAG_SYSTEM) - 1);
+ 
+ 	/* CCS formats need physical placement at a 64K alignment in VRAM. */
+@@ -3526,8 +3533,12 @@ bool xe_bo_needs_ccs_pages(struct xe_bo *bo)
+ 	 * Compression implies coh_none, therefore we know for sure that WB
+ 	 * memory can't currently use compression, which is likely one of the
+ 	 * common cases.
++	 * Additionally, userspace may explicitly request no compression via the
++	 * DRM_XE_GEM_CREATE_FLAG_NO_COMPRESSION flag, which should also disable
++	 * CCS usage.
+ 	 */
+-	if (bo->cpu_caching == DRM_XE_GEM_CPU_CACHING_WB)
++	if (bo->cpu_caching == DRM_XE_GEM_CPU_CACHING_WB ||
++	    bo->flags & XE_BO_FLAG_NO_COMPRESSION)
+ 		return false;
+ 
+ 	return true;
+diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
+index 911d5b90461a..8ab4474129c3 100644
+--- a/drivers/gpu/drm/xe/xe_bo.h
++++ b/drivers/gpu/drm/xe/xe_bo.h
+@@ -50,6 +50,7 @@
+ #define XE_BO_FLAG_GGTT3		BIT(23)
+ #define XE_BO_FLAG_CPU_ADDR_MIRROR	BIT(24)
+ #define XE_BO_FLAG_FORCE_USER_VRAM	BIT(25)
++#define XE_BO_FLAG_NO_COMPRESSION	BIT(26)
+ 
+ /* this one is trigger internally only */
+ #define XE_BO_FLAG_INTERNAL_TEST	BIT(30)
+diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
+index 1c0915e2cc16..b392c9b3f0c9 100644
+--- a/drivers/gpu/drm/xe/xe_query.c
++++ b/drivers/gpu/drm/xe/xe_query.c
+@@ -342,6 +342,9 @@ static int query_config(struct xe_device *xe, struct drm_xe_device_query *query)
+ 	if (xe->info.has_usm && IS_ENABLED(CONFIG_DRM_XE_GPUSVM))
+ 		config->info[DRM_XE_QUERY_CONFIG_FLAGS] |=
+ 			DRM_XE_QUERY_CONFIG_FLAG_HAS_CPU_ADDR_MIRROR;
++	if (GRAPHICS_VER(xe) >= 20)
++		config->info[DRM_XE_QUERY_CONFIG_FLAGS] |=
++			DRM_XE_QUERY_CONFIG_FLAG_HAS_NO_COMPRESSION_HINT;
+ 	config->info[DRM_XE_QUERY_CONFIG_FLAGS] |=
+ 			DRM_XE_QUERY_CONFIG_FLAG_HAS_LOW_LATENCY;
+ 	config->info[DRM_XE_QUERY_CONFIG_MIN_ALIGNMENT] =
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 7cac646bdf1c..f5681f0c9288 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -3484,6 +3484,10 @@ static int xe_vm_bind_ioctl_validate_bo(struct xe_device *xe, struct xe_bo *bo,
+ {
+ 	u16 coh_mode;
+ 
++	if (XE_IOCTL_DBG(xe, (bo->flags & XE_BO_FLAG_NO_COMPRESSION) &&
++			 xe_pat_index_get_comp_en(xe, pat_index)))
++		return -EINVAL;
++
+ 	if (XE_IOCTL_DBG(xe, range > xe_bo_size(bo)) ||
+ 	    XE_IOCTL_DBG(xe, obj_offset >
+ 			 xe_bo_size(bo) - range)) {
+diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+index 47853659a705..b9840cb77360 100644
+--- a/include/uapi/drm/xe_drm.h
++++ b/include/uapi/drm/xe_drm.h
+@@ -403,6 +403,9 @@ struct drm_xe_query_mem_regions {
+  *      has low latency hint support
+  *    - %DRM_XE_QUERY_CONFIG_FLAG_HAS_CPU_ADDR_MIRROR - Flag is set if the
+  *      device has CPU address mirroring support
++ *    - %DRM_XE_QUERY_CONFIG_FLAG_HAS_NO_COMPRESSION_HINT - Flag is set if the
++ *      device supports the userspace hint %DRM_XE_GEM_CREATE_FLAG_NO_COMPRESSION.
++ *      This is exposed only on Xe2+.
+  *  - %DRM_XE_QUERY_CONFIG_MIN_ALIGNMENT - Minimal memory alignment
+  *    required by this device, typically SZ_4K or SZ_64K
+  *  - %DRM_XE_QUERY_CONFIG_VA_BITS - Maximum bits of a virtual address
+@@ -421,6 +424,7 @@ struct drm_xe_query_config {
+ 	#define DRM_XE_QUERY_CONFIG_FLAG_HAS_VRAM	(1 << 0)
+ 	#define DRM_XE_QUERY_CONFIG_FLAG_HAS_LOW_LATENCY	(1 << 1)
+ 	#define DRM_XE_QUERY_CONFIG_FLAG_HAS_CPU_ADDR_MIRROR	(1 << 2)
++	#define DRM_XE_QUERY_CONFIG_FLAG_HAS_NO_COMPRESSION_HINT (1 << 3)
+ #define DRM_XE_QUERY_CONFIG_MIN_ALIGNMENT		2
+ #define DRM_XE_QUERY_CONFIG_VA_BITS			3
+ #define DRM_XE_QUERY_CONFIG_MAX_EXEC_QUEUE_PRIORITY	4
+@@ -791,6 +795,17 @@ struct drm_xe_device_query {
+  *    need to use VRAM for display surfaces, therefore the kernel requires
+  *    setting this flag for such objects, otherwise an error is thrown on
+  *    small-bar systems.
++ *  - %DRM_XE_GEM_CREATE_FLAG_NO_COMPRESSION - Allows userspace to
++ *    hint that compression (CCS) should be disabled for the buffer being
++ *    created. This can avoid unnecessary memory operations and CCS state
++ *    management.
++ *    On pre-Xe2 platforms, this flag is currently rejected as compression
++ *    control is not supported via PAT index. On Xe2+ platforms, compression
++ *    is controlled via PAT entries. If this flag is set, the driver will reject
++ *    any VM bind that requests a PAT index enabling compression for this BO.
++ *    Note: On dGPU platforms, there is currently no change in behavior with
++ *    this flag, but future improvements may leverage it. The current benefit is
++ *    primarily applicable to iGPU platforms.
+  *
+  * @cpu_caching supports the following values:
+  *  - %DRM_XE_GEM_CPU_CACHING_WB - Allocate the pages with write-back
+@@ -837,6 +852,7 @@ struct drm_xe_gem_create {
+ #define DRM_XE_GEM_CREATE_FLAG_DEFER_BACKING		(1 << 0)
+ #define DRM_XE_GEM_CREATE_FLAG_SCANOUT			(1 << 1)
+ #define DRM_XE_GEM_CREATE_FLAG_NEEDS_VISIBLE_VRAM	(1 << 2)
++#define DRM_XE_GEM_CREATE_FLAG_NO_COMPRESSION		(1 << 3)
+ 	/**
+ 	 * @flags: Flags, currently a mask of memory instances of where BO can
+ 	 * be placed
+-- 
+2.52.0
+
