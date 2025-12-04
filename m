@@ -4,27 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E894AD24449
-	for <intel-xe@archiver.kernel.org>; Thu,  4 Dec 2025 17:22:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B9C97D2444B
+	for <intel-xe@archiver.kernel.org>; Thu,  4 Dec 2025 17:24:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 812C310E159;
-	Thu,  4 Dec 2025 17:22:37 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6D32E10E159;
- Thu,  4 Dec 2025 17:22:36 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5170869908020102369=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7554110E994;
+	Thu,  4 Dec 2025 17:24:24 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ftsp19pM";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EAA4110E208;
+ Thu,  4 Dec 2025 17:24:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1764869063; x=1796405063;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=N9/x6xQv9ySAsXJ50V662BvQ0w9uQyWVD1mK8lRq3WY=;
+ b=Ftsp19pMRRM9b5vvKCFd3scStK3kgNqWp7o8Aa9W7idRkTYAN5a61jV5
+ NtR5CJwoRFcY4zpxJSLjLTyEvoT2ukZnYe1eEiJPoP3UKx72lXhbCSUlU
+ 08mZlgIM68uLtUVUMkhKzOlJmWoWA3VCpcqWPbyUZvu+BscnQfFM5E2cq
+ ipCCjiWkbVKZOx6U27umtQ+d5gsMP6NSirsJfjycCTIKKjNDVbYkn/Jko
+ kK7f8dKGcxWB3fWPXb9nE/VXvVCOe6aa+iFhpurVO9s4XNH2jENVvHl9X
+ lyZRTJps0MOCs4rif4SWmJPwGRt4ldRbGV6cN9ddEBm0jxw0zdBndNTcQ Q==;
+X-CSE-ConnectionGUID: sfvOgBbTTzCRe9OJCvuP9Q==
+X-CSE-MsgGUID: 8r8GSQaeQwa9yO17fJShrQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11632"; a="67060872"
+X-IronPort-AV: E=Sophos;i="6.20,249,1758610800"; d="scan'208";a="67060872"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Dec 2025 09:24:21 -0800
+X-CSE-ConnectionGUID: JZW+bPC9S1KVgEfJ5RXjWA==
+X-CSE-MsgGUID: BBsXZsiNRA2O/xVjPTHC1A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.20,249,1758610800"; d="scan'208";a="200169504"
+Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.11])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Dec 2025 09:24:12 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Cc: jani.nikula@intel.com
+Subject: [PATCH 0/4] drm/{i915,
+ xe}: migrate stolen interface to parent interface, cleanups
+Date: Thu,  4 Dec 2025 19:24:03 +0200
+Message-ID: <cover.1764868989.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.47.3
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/crtc=3A_move_crtc_?=
- =?utf-8?q?initialization_loop_to_intel=5Fcrtc=2Ec?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 04 Dec 2025 17:22:36 -0000
-Message-ID: <176486895644.58753.7164356433336223209@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20251204143235.3138973-1-jani.nikula@intel.com>
-In-Reply-To: <20251204143235.3138973-1-jani.nikula@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +66,34 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5170869908020102369==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Migrate the stolen memory interface to the parent interface.
 
-== Series Details ==
+Jani Nikula (4):
+  drm/i915/fbc: let to_intel_display() do its generic magic
+  drm/xe/stolen: unify interface with i915
+  drm/{i915,xe}/stolen: move stolen memory handling to display parent
+    interface
+  drm/{i915,xe}/stolen: make insert_node, area_address, area_size
+    optional
 
-Series: drm/i915/crtc: move crtc initialization loop to intel_crtc.c
-URL   : https://patchwork.freedesktop.org/series/158502/
-State : success
+ drivers/gpu/drm/i915/display/intel_fbc.c      | 103 +++++++++---------
+ drivers/gpu/drm/i915/display/intel_parent.c   |  76 +++++++++++++
+ drivers/gpu/drm/i915/display/intel_parent.h   |  19 ++++
+ drivers/gpu/drm/i915/gem/i915_gem_stolen.c    |  52 ++++++---
+ drivers/gpu/drm/i915/gem/i915_gem_stolen.h    |  23 +---
+ drivers/gpu/drm/i915/i915_driver.c            |   1 +
+ .../compat-i915-headers/gem/i915_gem_stolen.h |  40 -------
+ drivers/gpu/drm/xe/display/xe_display.c       |   4 +-
+ drivers/gpu/drm/xe/display/xe_stolen.c        |  62 +++++------
+ drivers/gpu/drm/xe/display/xe_stolen.h        |   9 ++
+ include/drm/intel/display_parent_interface.h  |  20 ++++
+ 11 files changed, 242 insertions(+), 167 deletions(-)
+ delete mode 100644 drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_stolen.h
+ create mode 100644 drivers/gpu/drm/xe/display/xe_stolen.h
 
-== Summary ==
+-- 
+2.47.3
 
-CI Bug Log - changes from xe-4195-b91a982bdeb8b2c13917d3726c86cfa57ff3202d_BAT -> xe-pw-158502v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (12 -> 12)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-4195-b91a982bdeb8b2c13917d3726c86cfa57ff3202d -> xe-pw-158502v1
-
-  IGT_8655: 8655
-  xe-4195-b91a982bdeb8b2c13917d3726c86cfa57ff3202d: b91a982bdeb8b2c13917d3726c86cfa57ff3202d
-  xe-pw-158502v1: 158502v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158502v1/index.html
-
---===============5170869908020102369==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/crtc: move crtc initialization loop to intel_crtc.c</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/158502/">https://patchwork.freedesktop.org/series/158502/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158502v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158502v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4195-b91a982bdeb8b2c13917d3726c86cfa57ff3202d_BAT -&gt; xe-pw-158502v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (12 -&gt; 12)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4195-b91a982bdeb8b2c13917d3726c86cfa57ff3202d -&gt; xe-pw-158502v1</li>
-</ul>
-<p>IGT_8655: 8655<br />
-  xe-4195-b91a982bdeb8b2c13917d3726c86cfa57ff3202d: b91a982bdeb8b2c13917d3726c86cfa57ff3202d<br />
-  xe-pw-158502v1: 158502v1</p>
-
-</body>
-</html>
-
---===============5170869908020102369==--
