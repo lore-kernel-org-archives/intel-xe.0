@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E88F7D1F9BC
-	for <intel-xe@archiver.kernel.org>; Thu,  4 Dec 2025 11:08:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B4EA0D1F9BE
+	for <intel-xe@archiver.kernel.org>; Thu,  4 Dec 2025 11:17:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9EAF410E91B;
-	Thu,  4 Dec 2025 11:08:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 69FFE10E8FF;
+	Thu,  4 Dec 2025 11:17:48 +0000 (UTC)
 Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1830410E1D0;
- Thu,  4 Dec 2025 11:08:41 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8042630321044755851=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CDA7710E1D0;
+ Thu,  4 Dec 2025 11:17:47 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/pf=3A_fix_VFIO_link_?=
- =?utf-8?q?error?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_xe=3A_fix_drm=5Fgpusvm=5F?=
+ =?utf-8?q?init=28=29_arguments?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Arnd Bergmann" <arnd@kernel.org>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 04 Dec 2025 11:08:41 -0000
-Message-ID: <176484652109.56855.12553696934819325487@a3b018990fe9>
+Date: Thu, 04 Dec 2025 11:17:47 -0000
+Message-ID: <176484706783.56855.13025272003417784049@a3b018990fe9>
 X-Patchwork-Hint: ignore
-References: <20251204094154.1029357-1-arnd@kernel.org>
-In-Reply-To: <20251204094154.1029357-1-arnd@kernel.org>
+References: <20251204094704.1030933-1-arnd@kernel.org>
+In-Reply-To: <20251204094704.1030933-1-arnd@kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,139 +40,64 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8042630321044755851==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe/pf: fix VFIO link error
-URL   : https://patchwork.freedesktop.org/series/158478/
-State : success
+Series: xe: fix drm_gpusvm_init() arguments
+URL   : https://patchwork.freedesktop.org/series/158484/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-4193-2d16d4e1aef3cb501fcd37c8558dafeb579be813_BAT -> xe-pw-158478v1_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+2de9a3901bc28757c7906b454717b64e2a214021
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 0b5b120138bdf3fb11d3d105aaed1ec706c35da5
+Author: Arnd Bergmann <arnd@arndb.de>
+Date:   Thu Dec 4 10:46:58 2025 +0100
 
-Summary
--------
+    xe: fix drm_gpusvm_init() arguments
+    
+    The Xe driver fails to build when CONFIG_DRM_XE_GPUSVM is disabled
+    but CONFIG_DRM_GPUSVM is turned on, jdue to the clash of two commits:
+    
+    In file included from drivers/gpu/drm/xe/xe_vm_madvise.c:8:
+    drivers/gpu/drm/xe/xe_svm.h: In function 'xe_svm_init':
+    include/linux/stddef.h:8:14: error: passing argument 5 of 'drm_gpusvm_init' makes integer from pointer without a cast [-Wint-conversion]
+    drivers/gpu/drm/xe/xe_svm.h:217:38: note: in expansion of macro 'NULL'
+      217 |                                NULL, NULL, 0, 0, 0, NULL, NULL, 0);
+          |                                      ^~~~
+    In file included from drivers/gpu/drm/xe/xe_bo_types.h:11,
+                     from drivers/gpu/drm/xe/xe_bo.h:11,
+                     from drivers/gpu/drm/xe/xe_vm_madvise.c:11:
+    include/drm/drm_gpusvm.h:254:35: note: expected 'long unsigned int' but argument is of type 'void *'
+      254 |                     unsigned long mm_start, unsigned long mm_range,
+          |                     ~~~~~~~~~~~~~~^~~~~~~~
+    In file included from drivers/gpu/drm/xe/xe_vm_madvise.c:14:
+    drivers/gpu/drm/xe/xe_svm.h:216:16: error: too many arguments to function 'drm_gpusvm_init'; expected 10, have 11
+      216 |         return drm_gpusvm_init(&vm->svm.gpusvm, "Xe SVM (simple)", &vm->xe->drm,
+          |                ^~~~~~~~~~~~~~~
+      217 |                                NULL, NULL, 0, 0, 0, NULL, NULL, 0);
+          |                                                                 ~
+    include/drm/drm_gpusvm.h:251:5: note: declared here
+    
+    Adapt the caller to the new argument list by removing the extraneous
+    NULL argument.
+    
+    Fixes: 9e9787414882 ("drm/xe/userptr: replace xe_hmm with gpusvm")
+    Fixes: 10aa5c806030 ("drm/gpusvm, drm/xe: Fix userptr to not allow device private pages")
+    Signed-off-by: Arnd Bergmann <arnd@arndb.de>
++ /mt/dim checkpatch 4eb27c4b4b45606c79769918ab8736249f94035a drm-intel
+0b5b120138bd xe: fix drm_gpusvm_init() arguments
+-:23: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#23: 
+  216 |         return drm_gpusvm_init(&vm->svm.gpusvm, "Xe SVM (simple)", &vm->xe->drm,
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (12 -> 12)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-158478v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_waitfence@abstime:
-    - bat-dg2-oem2:       [PASS][1] -> [TIMEOUT][2] ([Intel XE#6506])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4193-2d16d4e1aef3cb501fcd37c8558dafeb579be813/bat-dg2-oem2/igt@xe_waitfence@abstime.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158478v1/bat-dg2-oem2/igt@xe_waitfence@abstime.html
-
-  * igt@xe_waitfence@reltime:
-    - bat-dg2-oem2:       [PASS][3] -> [FAIL][4] ([Intel XE#6520])
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4193-2d16d4e1aef3cb501fcd37c8558dafeb579be813/bat-dg2-oem2/igt@xe_waitfence@reltime.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158478v1/bat-dg2-oem2/igt@xe_waitfence@reltime.html
-
-  
-  [Intel XE#6506]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506
-  [Intel XE#6520]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520
-
-
-Build changes
--------------
-
-  * IGT: IGT_8653 -> IGT_8654
-  * Linux: xe-4193-2d16d4e1aef3cb501fcd37c8558dafeb579be813 -> xe-pw-158478v1
-
-  IGT_8653: c13e142a52b1654cbfb42b80985d6da656033ff4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_8654: 38d9fde0432aa6f2bf6add062f1d4334ad467fbc @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-4193-2d16d4e1aef3cb501fcd37c8558dafeb579be813: 2d16d4e1aef3cb501fcd37c8558dafeb579be813
-  xe-pw-158478v1: 158478v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158478v1/index.html
-
---===============8042630321044755851==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+total: 0 errors, 1 warnings, 0 checks, 8 lines checked
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/pf: fix VFIO link error</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/158478/">https://patchwork.freedesktop.org/series/158478/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158478v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158478v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4193-2d16d4e1aef3cb501fcd37c8558dafeb579be813_BAT -&gt; xe-pw-158478v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (12 -&gt; 12)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-158478v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@xe_waitfence@abstime:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4193-2d16d4e1aef3cb501fcd37c8558dafeb579be813/bat-dg2-oem2/igt@xe_waitfence@abstime.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158478v1/bat-dg2-oem2/igt@xe_waitfence@abstime.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506">Intel XE#6506</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_waitfence@reltime:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4193-2d16d4e1aef3cb501fcd37c8558dafeb579be813/bat-dg2-oem2/igt@xe_waitfence@reltime.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158478v1/bat-dg2-oem2/igt@xe_waitfence@reltime.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520">Intel XE#6520</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8653 -&gt; IGT_8654</li>
-<li>Linux: xe-4193-2d16d4e1aef3cb501fcd37c8558dafeb579be813 -&gt; xe-pw-158478v1</li>
-</ul>
-<p>IGT_8653: c13e142a52b1654cbfb42b80985d6da656033ff4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_8654: 38d9fde0432aa6f2bf6add062f1d4334ad467fbc @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-4193-2d16d4e1aef3cb501fcd37c8558dafeb579be813: 2d16d4e1aef3cb501fcd37c8558dafeb579be813<br />
-  xe-pw-158478v1: 158478v1</p>
-
-</body>
-</html>
-
---===============8042630321044755851==--
