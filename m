@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 754CDD1F9D3
-	for <intel-xe@archiver.kernel.org>; Thu,  4 Dec 2025 12:27:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3C2FBD1F9D3
+	for <intel-xe@archiver.kernel.org>; Thu,  4 Dec 2025 12:32:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2A62710E938;
-	Thu,  4 Dec 2025 12:27:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EF27E10E8E5;
+	Thu,  4 Dec 2025 12:32:06 +0000 (UTC)
 Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EAA9710E938;
- Thu,  4 Dec 2025 12:27:23 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2287697921606587903=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4622D10E8E5;
+ Thu,  4 Dec 2025 12:32:06 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_xe=3A_fix_drm=5Fgpusvm=5Fin?=
- =?utf-8?q?it=28=29_arguments?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Move_PSR/Panel_Replay_sin?=
+ =?utf-8?q?k_data_into_intel=5Fconnector_=28rev4=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Arnd Bergmann" <arnd@kernel.org>
+To: =?utf-8?q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 04 Dec 2025 12:27:23 -0000
-Message-ID: <176485124395.56921.16317202433621217063@a3b018990fe9>
+Date: Thu, 04 Dec 2025 12:32:06 -0000
+Message-ID: <176485152628.56921.3903170495684372431@a3b018990fe9>
 X-Patchwork-Hint: ignore
-References: <20251204094704.1030933-1-arnd@kernel.org>
-In-Reply-To: <20251204094704.1030933-1-arnd@kernel.org>
+References: <20251204104733.1106145-1-jouni.hogander@intel.com>
+In-Reply-To: <20251204104733.1106145-1-jouni.hogander@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,102 +40,101 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============2287697921606587903==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: xe: fix drm_gpusvm_init() arguments
-URL   : https://patchwork.freedesktop.org/series/158484/
-State : success
+Series: Move PSR/Panel Replay sink data into intel_connector (rev4)
+URL   : https://patchwork.freedesktop.org/series/157898/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-4194-4eb27c4b4b45606c79769918ab8736249f94035a_BAT -> xe-pw-158484v1_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+2de9a3901bc28757c7906b454717b64e2a214021
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit ddde147a6615c106cac7d943f2fc21cb84a62e10
+Author: Jouni Högander <jouni.hogander@intel.com>
+Date:   Thu Dec 4 12:47:33 2025 +0200
 
-Summary
--------
+    drm/i915/psr: Move sink_sync_latency to intel_connector
+    
+    As everything else related to PSR and Panel Replay capabilities are moved
+    into intel_connector move sink_sync_latency as well.
+    
+    Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
+    Reviewed-by: Imre Deak <imre.deak@intel.com>
++ /mt/dim checkpatch 4eb27c4b4b45606c79769918ab8736249f94035a drm-intel
+af899fa82f74 drm/i915/psr: Add panel granularity information into intel_connector
+40d44dbee17c drm/i915/psr: Use SU granularity information available in intel_connector
+-:182: WARNING:LONG_LINE: line length of 117 exceeds 100 columns
+#182: FILE: drivers/gpu/drm/i915/display/intel_psr.c:596:
++	w = le16_to_cpu(*(__le16 *)&intel_dp->pr_dpcd[INTEL_PR_DPCD_INDEX(DP_PANEL_REPLAY_CAP_X_GRANULARITY)]) ? : 4;
 
-  **SUCCESS**
+total: 0 errors, 1 warnings, 0 checks, 284 lines checked
+8f41a20eb30b drm/i915/psr: Compute Panel Replay/Adaptive Sync coexistence behavior
+-:94: WARNING:LONG_LINE: line length of 114 exceeds 100 columns
+#94: FILE: drivers/gpu/drm/i915/display/intel_psr.c:1754:
++	crtc_state->link_off_after_as_sdp_when_pr_active = compute_link_off_after_as_sdp_when_pr_active(intel_dp);
 
-  No regressions found.
+total: 0 errors, 1 warnings, 0 checks, 69 lines checked
+9c40553055bf drm/i915/psr: Move pr_dpcd and psr_dpcd to intel_connector
+-:77: WARNING:LONG_LINE: line length of 104 exceeds 100 columns
+#77: FILE: drivers/gpu/drm/i915/display/intel_psr.c:547:
++	val = connector->dp.panel_replay_caps.dpcd[INTEL_PR_DPCD_INDEX(DP_PANEL_REPLAY_CAP_CAPABILITY)];
 
-  
+-:93: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
+#93: FILE: drivers/gpu/drm/i915/display/intel_psr.c:584:
++	if (!(connector->dp.panel_replay_caps.dpcd[INTEL_PR_DPCD_INDEX(DP_PANEL_REPLAY_CAP_CAPABILITY)] &
 
-Participating hosts (12 -> 12)
-------------------------------
+-:103: WARNING:LONG_LINE: line length of 136 exceeds 100 columns
+#103: FILE: drivers/gpu/drm/i915/display/intel_psr.c:595:
++	w = le16_to_cpu(*(__le16 *)&connector->dp.panel_replay_caps.dpcd[INTEL_PR_DPCD_INDEX(DP_PANEL_REPLAY_CAP_X_GRANULARITY)]) ? : 4;
 
-  No changes in participating hosts
+-:104: WARNING:LONG_LINE: line length of 111 exceeds 100 columns
+#104: FILE: drivers/gpu/drm/i915/display/intel_psr.c:596:
++	y = connector->dp.panel_replay_caps.dpcd[INTEL_PR_DPCD_INDEX(DP_PANEL_REPLAY_CAP_Y_GRANULARITY)] ? : 1;
 
+-:119: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
+#119: FILE: drivers/gpu/drm/i915/display/intel_psr.c:618:
++	if (!(connector->dp.panel_replay_caps.dpcd[INTEL_PR_DPCD_INDEX(DP_PANEL_REPLAY_CAP_SUPPORT)] &
 
-Changes
--------
+-:128: WARNING:LONG_LINE: line length of 110 exceeds 100 columns
+#128: FILE: drivers/gpu/drm/i915/display/intel_psr.c:629:
++		if (!(connector->dp.panel_replay_caps.dpcd[INTEL_PR_DPCD_INDEX(DP_PANEL_REPLAY_CAP_SUPPORT)] &
 
-  No changes found
+-:198: WARNING:LONG_LINE: line length of 104 exceeds 100 columns
+#198: FILE: drivers/gpu/drm/i915/display/intel_psr.c:767:
++		connector->dp.panel_replay_caps.dpcd[INTEL_PR_DPCD_INDEX(DP_PANEL_REPLAY_CAP_SUPPORT)] &
 
+-:233: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#233: FILE: drivers/gpu/drm/i915/display/intel_psr.c:1675:
++								       crtc_state->has_panel_replay);
 
-Build changes
--------------
+-:264: WARNING:LONG_LINE: line length of 107 exceeds 100 columns
+#264: FILE: drivers/gpu/drm/i915/display/intel_psr.c:1717:
++	return (connector->dp.panel_replay_caps.dpcd[INTEL_PR_DPCD_INDEX(DP_PANEL_REPLAY_CAP_CAPABILITY)] &
 
-  * Linux: xe-4194-4eb27c4b4b45606c79769918ab8736249f94035a -> xe-pw-158484v1
+-:272: WARNING:LONG_LINE: line length of 108 exceeds 100 columns
+#272: FILE: drivers/gpu/drm/i915/display/intel_psr.c:1723:
++	return !(connector->dp.panel_replay_caps.dpcd[INTEL_PR_DPCD_INDEX(DP_PANEL_REPLAY_CAP_CAPABILITY)] &
 
-  IGT_8654: 38d9fde0432aa6f2bf6add062f1d4334ad467fbc @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-4194-4eb27c4b4b45606c79769918ab8736249f94035a: 4eb27c4b4b45606c79769918ab8736249f94035a
-  xe-pw-158484v1: 158484v1
+-:282: WARNING:LONG_LINE: line length of 115 exceeds 100 columns
+#282: FILE: drivers/gpu/drm/i915/display/intel_psr.c:1758:
++	crtc_state->link_off_after_as_sdp_when_pr_active = compute_link_off_after_as_sdp_when_pr_active(connector);
 
-== Logs ==
+-:283: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#283: FILE: drivers/gpu/drm/i915/display/intel_psr.c:1759:
++	crtc_state->disable_as_sdp_when_pr_active = compute_disable_as_sdp_when_pr_active(connector);
 
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158484v1/index.html
-
---===============2287697921606587903==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>xe: fix drm_gpusvm_init() arguments</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/158484/">https://patchwork.freedesktop.org/series/158484/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158484v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158484v1/index.html</a></td></tr>
-
-</table>
+total: 0 errors, 12 warnings, 0 checks, 304 lines checked
+c01e42f75568 drm/i915/psr: Clear pr_dpcd as well on disconnect
+0e2f994a4eb5 drm/i915/psr: Move Panel Replay DSC sink support data to intel_connector
+c9548e0ba90e drm/i915/psr: Move sink PSR and Panel Replay booleans to intel_connector
+ddde147a6615 drm/i915/psr: Move sink_sync_latency to intel_connector
 
 
-    <h1>CI Bug Log - changes from xe-4194-4eb27c4b4b45606c79769918ab8736249f94035a_BAT -&gt; xe-pw-158484v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (12 -&gt; 12)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4194-4eb27c4b4b45606c79769918ab8736249f94035a -&gt; xe-pw-158484v1</li>
-</ul>
-<p>IGT_8654: 38d9fde0432aa6f2bf6add062f1d4334ad467fbc @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-4194-4eb27c4b4b45606c79769918ab8736249f94035a: 4eb27c4b4b45606c79769918ab8736249f94035a<br />
-  xe-pw-158484v1: 158484v1</p>
-
-</body>
-</html>
-
---===============2287697921606587903==--
