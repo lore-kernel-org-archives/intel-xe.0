@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2DA8CD374A9
-	for <intel-xe@archiver.kernel.org>; Fri,  5 Dec 2025 21:26:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EA951D374A8
+	for <intel-xe@archiver.kernel.org>; Fri,  5 Dec 2025 21:26:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A748310EBBC;
+	by gabe.freedesktop.org (Postfix) with ESMTP id A74E210EBBD;
 	Fri,  5 Dec 2025 21:26:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ilbcfrTf";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AAS4/gAe";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F25B410EA83
- for <intel-xe@lists.freedesktop.org>; Fri,  5 Dec 2025 21:26:20 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1B99610EBBA
+ for <intel-xe@lists.freedesktop.org>; Fri,  5 Dec 2025 21:26:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1764969981; x=1796505981;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=fNipj87XqvsfgEqMYn1Y2YASFsKMDhFhXvdWJFCCVQ0=;
- b=ilbcfrTfm6P1CzWDXs5/mECR4hnlEFma42Ay5jRBsamhHe/ykMP5yQso
- yEwrpRZ9SGYCrsCqq8I4e6qzu3/Ni21B2p4lH3swm+Hmzl/WkgyvaqnDl
- jeWt5/T/C2RWhbMxRTr7riTvgCfrvNWpxEOWJLadrl5YQG1U2n5lmA2hq
- FlDOvs4IpjuqwxYnqvAp9etuunhESL+UKYHT689GGSMrNcKm4LqgKCZP1
- UL14j+1uAM+6gvvCfEmkEjpfLGs1YLaU9Df5J6eV5ynC8nrBgSwcoW9Yz
- PQ6Te9S4q1UrEgrLlSkoTukN3ON9b89J8Run5NsAL1/zqI/eu/gJ4zEFr w==;
-X-CSE-ConnectionGUID: P1Xjac2CS/+pVkXYiy27EA==
-X-CSE-MsgGUID: ynp/lpQvS5uQ9xGZCysEmA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11633"; a="66893794"
-X-IronPort-AV: E=Sophos;i="6.20,252,1758610800"; d="scan'208";a="66893794"
+ bh=seiT2IP5eWoqvsa3xh874Y9NMPf6cmrJlU7pbU1OOgI=;
+ b=AAS4/gAerhUg7V0Y67ujTJVoPXwDDnGlmWty1z7qpebcYKnxlb+QLWn2
+ oPBa6rsel1hGcFGLQYL6ypo4soEpv4EPNgeMAM8aEukOzJOCTyZ7CkK6T
+ z1TUlCfPXMWtQi7VMbRFOhNQnqwH/M0J2N+l0LXtqoJ3x8h2H8Y33aiiR
+ NAM8Zp+n+IaG2dosTVrmWX7L+8gwN3TkYOhYIqOvf1QYfTXDWRZy8wiXj
+ E+zJ7n5NJHN1igazSP/SbLw00gaZtJ8gkA90JFqU6LvCL3ne913tOCBXx
+ h/AUh9WIhTz7pQA9lfiqqfmrLubsNDMJjT1m8pnfy0EvJUy1CrxiasCEC g==;
+X-CSE-ConnectionGUID: 1L4SR/t1TR+J/bYzfyn/Bg==
+X-CSE-MsgGUID: zy6KaYm9RPmDPfhibOHrWg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11633"; a="66893795"
+X-IronPort-AV: E=Sophos;i="6.20,252,1758610800"; d="scan'208";a="66893795"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  05 Dec 2025 13:26:20 -0800
-X-CSE-ConnectionGUID: 0xNrJuCbSrS0Fm2cYRAtKA==
-X-CSE-MsgGUID: MDXYf2lnRa+B9OcwU/hAqg==
+X-CSE-ConnectionGUID: 7MTY+GF+TqurLL1nXX+jWg==
+X-CSE-MsgGUID: kvG147nvTW67q2qjqFXK2g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,252,1758610800"; d="scan'208";a="195202140"
+X-IronPort-AV: E=Sophos;i="6.20,252,1758610800"; d="scan'208";a="195202143"
 Received: from orsosgc001.jf.intel.com ([10.88.27.185])
  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  05 Dec 2025 13:26:20 -0800
 From: Ashutosh Dixit <ashutosh.dixit@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-Subject: [PATCH 2/3] drm/xe/rtp: Whitelist OAMERT MMIO trigger registers
-Date: Fri,  5 Dec 2025 13:26:12 -0800
-Message-ID: <20251205212613.826224-3-ashutosh.dixit@intel.com>
+Subject: [PATCH 3/3] drm/xe/oa: Always set OAG_OAGLBCTXCTRL_COUNTER_RESUME
+Date: Fri,  5 Dec 2025 13:26:13 -0800
+Message-ID: <20251205212613.826224-4-ashutosh.dixit@intel.com>
 X-Mailer: git-send-email 2.48.1
 In-Reply-To: <20251205212613.826224-1-ashutosh.dixit@intel.com>
 References: <20251205212613.826224-1-ashutosh.dixit@intel.com>
@@ -66,65 +66,37 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Whitelist OAMERT registers to enable userspace to execute MMIO triggers on
-OAMERT units. Registers are whitelisted for compute and copy class engines.
+Reports can be written out to the OA buffer using ways other than periodic
+sampling. These include mmio trigger and context switches. To support these
+use cases, when periodic sampling is not enabled,
+OAG_OAGLBCTXCTRL_COUNTER_RESUME must be set.
 
+Fixes: 1db9a9dc90ae ("drm/xe/oa: OA stream initialization (OAG)")
 Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
 ---
- drivers/gpu/drm/xe/xe_reg_whitelist.c | 19 +++++++++++++++++++
- 1 file changed, 19 insertions(+)
+ drivers/gpu/drm/xe/xe_oa.c | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_reg_whitelist.c b/drivers/gpu/drm/xe/xe_reg_whitelist.c
-index da49c69076a47..1391cb6ec9c62 100644
---- a/drivers/gpu/drm/xe/xe_reg_whitelist.c
-+++ b/drivers/gpu/drm/xe/xe_reg_whitelist.c
-@@ -9,6 +9,7 @@
- #include "regs/xe_gt_regs.h"
- #include "regs/xe_oa_regs.h"
- #include "regs/xe_regs.h"
-+#include "xe_device.h"
- #include "xe_gt_types.h"
- #include "xe_gt_printk.h"
- #include "xe_platform_types.h"
-@@ -26,6 +27,13 @@ static bool match_not_render(const struct xe_device *xe,
- 	return hwe->class != XE_ENGINE_CLASS_RENDER;
- }
+diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
+index 7846dbc32542e..44140722febef 100644
+--- a/drivers/gpu/drm/xe/xe_oa.c
++++ b/drivers/gpu/drm/xe/xe_oa.c
+@@ -1105,11 +1105,12 @@ static int xe_oa_enable_metric_set(struct xe_oa_stream *stream)
+ 			oag_buf_size_select(stream) |
+ 			oag_configure_mmio_trigger(stream, true));
  
-+static bool match_has_mert(const struct xe_device *xe,
-+			   const struct xe_gt *gt,
-+			   const struct xe_hw_engine *hwe)
-+{
-+	return xe_device_has_mert((struct xe_device *)xe);
-+}
-+
- static const struct xe_rtp_entry_sr register_whitelist[] = {
- 	{ XE_RTP_NAME("WaAllowPMDepthAndInvocationCountAccessFromUMD, 1408556865"),
- 	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(1200, 1210), ENGINE_CLASS(RENDER)),
-@@ -94,6 +102,9 @@ static const struct xe_rtp_entry_sr register_whitelist[] = {
- 			      OAM_STATUS(XE_OAM_SCMI_1_BASE_ADJ), \
- 			      OAM_HEAD_POINTER(XE_OAM_SCMI_1_BASE_ADJ))
+-	xe_mmio_write32(mmio, __oa_regs(stream)->oa_ctx_ctrl, stream->periodic ?
+-			(OAG_OAGLBCTXCTRL_COUNTER_RESUME |
++	xe_mmio_write32(mmio, __oa_regs(stream)->oa_ctx_ctrl,
++			OAG_OAGLBCTXCTRL_COUNTER_RESUME |
++			(stream->periodic ?
+ 			 OAG_OAGLBCTXCTRL_TIMER_ENABLE |
+ 			 REG_FIELD_PREP(OAG_OAGLBCTXCTRL_TIMER_PERIOD_MASK,
+-					stream->period_exponent)) : 0);
++					 stream->period_exponent) : 0));
  
-+#define WHITELIST_OA_MERT_MMIO_TRG \
-+	WHITELIST_OA_MMIO_TRG(OAMERT_MMIO_TRG, OAMERT_STATUS, OAMERT_HEAD_POINTER)
-+
- 	{ XE_RTP_NAME("oag_mmio_trg_rcs"),
- 	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(1200, XE_RTP_END_VERSION_UNDEFINED),
- 		       ENGINE_CLASS(RENDER)),
-@@ -114,6 +125,14 @@ static const struct xe_rtp_entry_sr register_whitelist[] = {
- 		       ENGINE_CLASS(VIDEO_ENHANCE)),
- 	  XE_RTP_ACTIONS(WHITELIST_OAM_MMIO_TRG)
- 	},
-+	{ XE_RTP_NAME("oa_mert_mmio_trg_ccs"),
-+	  XE_RTP_RULES(FUNC(match_has_mert), ENGINE_CLASS(COMPUTE)),
-+	  XE_RTP_ACTIONS(WHITELIST_OA_MERT_MMIO_TRG)
-+	},
-+	{ XE_RTP_NAME("oa_mert_mmio_trg_bcs"),
-+	  XE_RTP_RULES(FUNC(match_has_mert), ENGINE_CLASS(COPY)),
-+	  XE_RTP_ACTIONS(WHITELIST_OA_MERT_MMIO_TRG)
-+	},
- };
- 
- static void whitelist_apply_to_hwe(struct xe_hw_engine *hwe)
+ 	/*
+ 	 * Initialize Super Queue Internal Cnt Register
 -- 
 2.48.1
 
