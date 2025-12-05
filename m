@@ -4,56 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 56C2BD2E039
-	for <intel-xe@archiver.kernel.org>; Fri,  5 Dec 2025 08:26:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A71ACD2E038
+	for <intel-xe@archiver.kernel.org>; Fri,  5 Dec 2025 08:27:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1FDDF10E259;
-	Fri,  5 Dec 2025 08:26:32 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eFmX+ngc";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3E9BE10E259
- for <intel-xe@lists.freedesktop.org>; Fri,  5 Dec 2025 08:26:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1764923189; x=1796459189;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=1IfWiW5UqmQmAs2iEzzxozXrpIepYePWuNUb8/OpqHg=;
- b=eFmX+ngc0JQaYPx4PwLCWQBS4jrcY77zNW6eG3U6OrJSjWX9MKnwzAim
- SMllpkyhkNT55fLrUAvocNiyQU705HCv5UeurJjkQZA0f3E4Nc2lHJC3b
- 7eKWzNOEC5CImpzc8AYexUBhMOsxdD9WYRyoFV2agWNxt2binhZYBtCRQ
- 2opLnHXvm8P96UusduXSn6lqUykOk1PoMAr6MLXy+Wb7PNsXONJckgeam
- qFZamFqhg6aVwn1vc+0uC9BW+fi18gIITKBI1fiFEnQCE9/R1/yXCWBlg
- vtgFYUFRPrXduwztgIhCuVuCXgL8n2CPGn4R0lngHqGtK2+n+harqAqJo A==;
-X-CSE-ConnectionGUID: 7ZjmJ0tEQJ+2dqTfHb3Mtw==
-X-CSE-MsgGUID: lBdMSA83TnmCZvfJFWBxVg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11632"; a="66144669"
-X-IronPort-AV: E=Sophos;i="6.20,251,1758610800"; d="scan'208";a="66144669"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Dec 2025 00:26:29 -0800
-X-CSE-ConnectionGUID: rs26K5pORbeOZey6VHyHKg==
-X-CSE-MsgGUID: ACZLjnCDSjWfphDvoTNJ4w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,251,1758610800"; d="scan'208";a="200191038"
-Received: from ksatya-dev.iind.intel.com ([10.190.228.51])
- by fmviesa004.fm.intel.com with ESMTP; 05 Dec 2025 00:26:27 -0800
-From: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>,
- Michal Wajdeczko <michal.wajdeczko@intel.com>,
- Matthew Brost <matthew.brost@intel.com>, Tomasz Lis <tomasz.lis@intel.com>
-Subject: [PATCH 1/1] drm/xe/vf: Reset recovery_queued after issuing
- RESFIX_START
-Date: Fri,  5 Dec 2025 08:26:17 +0000
-Message-ID: <20251205082615.154649-4-satyanarayana.k.v.p@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20251205082615.154649-3-satyanarayana.k.v.p@intel.com>
-References: <20251205082615.154649-3-satyanarayana.k.v.p@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6F02C10E259;
+	Fri,  5 Dec 2025 08:27:15 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D185110E259;
+ Fri,  5 Dec 2025 08:27:13 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4165463477084641748=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_expose_PAT_softwa?=
+ =?utf-8?q?re_table_via_debugfs_=28rev7=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Xin Wang" <x.wang@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 05 Dec 2025 08:27:13 -0000
+Message-ID: <176492323385.60202.13502046017541656635@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20251117230156.366860-1-x.wang@intel.com>
+In-Reply-To: <20251117230156.366860-1-x.wang@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,72 +36,125 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-During VF_RESTORE or VF_RESUME, the GuC sends a migration interrupt and
-clears the RESFIX_START marker. If migration or resume occurs before the
-VF issues its own RESFIX_START, VF KMD may receive two back-to-back
-migration interrupts. VF then sends RESFIX_START to indicate the beginning
-of fixups and RESFIX_DONE to mark completion. However, the second
-RESFIX_START fails because the GuC is already in the RUNNING state.
+--===============4165463477084641748==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-To prevent VF KMD from queuing additional recovery work items when extra
-interrupts arrive, move the clearing of recovery_queued from
-vf_post_migration_shutdown() to vf_post_migration_resfix_start().
-This ensures the state is reset only after the fixup process begins,
-avoiding redundant work item queuing.
+== Series Details ==
 
-Fixes: b5fbb94341a2 ("drm/xe/vf: Introduce RESFIX start marker support")
-Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Tomasz Lis <tomasz.lis@intel.com>
----
- drivers/gpu/drm/xe/xe_gt_sriov_vf.c | 16 ++++++++++------
- 1 file changed, 10 insertions(+), 6 deletions(-)
+Series: drm/xe: expose PAT software table via debugfs (rev7)
+URL   : https://patchwork.freedesktop.org/series/157558/
+State : success
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-index 3c806c8e5f3e..90f2ef1772f2 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-@@ -781,7 +781,7 @@ static void vf_start_migration_recovery(struct xe_gt *gt)
- 
- 	spin_lock(&gt->sriov.vf.migration.lock);
- 
--	if (!gt->sriov.vf.migration.recovery_queued ||
-+	if (!gt->sriov.vf.migration.recovery_queued &&
- 	    !gt->sriov.vf.migration.recovery_teardown) {
- 		gt->sriov.vf.migration.recovery_queued = true;
- 		WRITE_ONCE(gt->sriov.vf.migration.recovery_inprogress, true);
-@@ -1171,10 +1171,6 @@ static bool vf_post_migration_shutdown(struct xe_gt *gt)
- 			return true;
- 	}
- 
--	spin_lock_irq(&gt->sriov.vf.migration.lock);
--	gt->sriov.vf.migration.recovery_queued = false;
--	spin_unlock_irq(&gt->sriov.vf.migration.lock);
--
- 	xe_guc_ct_flush_and_stop(&gt->uc.guc.ct);
- 	xe_guc_submit_pause_vf(&gt->uc.guc);
- 	xe_tlb_inval_reset(&gt->tlb_inval);
-@@ -1258,7 +1254,15 @@ static int vf_post_migration_resfix_done(struct xe_gt *gt, u16 marker)
- 
- static int vf_post_migration_resfix_start(struct xe_gt *gt, u16 marker)
- {
--	return vf_resfix_start(gt, marker);
-+	int err;
-+
-+	err = vf_resfix_start(gt, marker);
-+
-+	spin_lock_irq(&gt->sriov.vf.migration.lock);
-+	gt->sriov.vf.migration.recovery_queued = false;
-+	spin_unlock_irq(&gt->sriov.vf.migration.lock);
-+
-+	return err;
- }
- 
- static u16 vf_post_migration_next_resfix_marker(struct xe_gt *gt)
--- 
-2.43.0
+== Summary ==
 
+CI Bug Log - changes from xe-4195-b91a982bdeb8b2c13917d3726c86cfa57ff3202d_BAT -> xe-pw-157558v7_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (12 -> 12)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-157558v7_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_waitfence@abstime:
+    - bat-dg2-oem2:       [PASS][1] -> [TIMEOUT][2] ([Intel XE#6506])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4195-b91a982bdeb8b2c13917d3726c86cfa57ff3202d/bat-dg2-oem2/igt@xe_waitfence@abstime.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157558v7/bat-dg2-oem2/igt@xe_waitfence@abstime.html
+
+  
+  [Intel XE#6506]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506
+
+
+Build changes
+-------------
+
+  * Linux: xe-4195-b91a982bdeb8b2c13917d3726c86cfa57ff3202d -> xe-pw-157558v7
+
+  IGT_8655: 8655
+  xe-4195-b91a982bdeb8b2c13917d3726c86cfa57ff3202d: b91a982bdeb8b2c13917d3726c86cfa57ff3202d
+  xe-pw-157558v7: 157558v7
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157558v7/index.html
+
+--===============4165463477084641748==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: expose PAT software table via debugfs (rev7)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/157558/">https://patchwork.freedesktop.org/series/157558/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157558v7/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157558v7/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4195-b91a982bdeb8b2c13917d3726c86cfa57ff3202d_BAT -&gt; xe-pw-157558v7_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (12 -&gt; 12)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-157558v7_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@xe_waitfence@abstime:<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4195-b91a982bdeb8b2c13917d3726c86cfa57ff3202d/bat-dg2-oem2/igt@xe_waitfence@abstime.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157558v7/bat-dg2-oem2/igt@xe_waitfence@abstime.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506">Intel XE#6506</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4195-b91a982bdeb8b2c13917d3726c86cfa57ff3202d -&gt; xe-pw-157558v7</li>
+</ul>
+<p>IGT_8655: 8655<br />
+  xe-4195-b91a982bdeb8b2c13917d3726c86cfa57ff3202d: b91a982bdeb8b2c13917d3726c86cfa57ff3202d<br />
+  xe-pw-157558v7: 157558v7</p>
+
+</body>
+</html>
+
+--===============4165463477084641748==--
