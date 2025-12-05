@@ -4,75 +4,77 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7F978D2F7E4
-	for <intel-xe@archiver.kernel.org>; Fri,  5 Dec 2025 11:39:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CD048D2F7E3
+	for <intel-xe@archiver.kernel.org>; Fri,  5 Dec 2025 11:39:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4A53E10EAE5;
-	Fri,  5 Dec 2025 11:39:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 94B1E10EAE9;
+	Fri,  5 Dec 2025 11:39:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="kHkDd8iF";
+	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="Hg/DzCUJ";
 	dkim-atps=neutral
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com
- [209.85.128.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A52A310EAE5
- for <intel-xe@lists.freedesktop.org>; Fri,  5 Dec 2025 11:39:17 +0000 (UTC)
-Received: by mail-wm1-f43.google.com with SMTP id
- 5b1f17b1804b1-4779d47be12so18445455e9.2
- for <intel-xe@lists.freedesktop.org>; Fri, 05 Dec 2025 03:39:17 -0800 (PST)
+Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com
+ [209.85.221.46])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B44A910EB0E
+ for <intel-xe@lists.freedesktop.org>; Fri,  5 Dec 2025 11:39:25 +0000 (UTC)
+Received: by mail-wr1-f46.google.com with SMTP id
+ ffacd0b85a97d-42b3669ca3dso1025771f8f.0
+ for <intel-xe@lists.freedesktop.org>; Fri, 05 Dec 2025 03:39:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1764934756; x=1765539556; darn=lists.freedesktop.org;
+ d=linaro.org; s=google; t=1764934764; x=1765539564; darn=lists.freedesktop.org;
  h=content-disposition:mime-version:message-id:subject:cc:to:from:date
  :from:to:cc:subject:date:message-id:reply-to;
- bh=ydvHPuR/TEWjlqHSyc+IuhV3845FKKl2OTvoX5xFzHs=;
- b=kHkDd8iFSlYrUZhrRj8myuMErkcKSkuoSie/BtlrVX04BB5h0VjvPH94r1+qXDxgSv
- 89xtJSc3Q5/Fq414tAgtMf5pr2PYmw5365p06Ybkd3uo0g2inN65RcZFj6qJ+k0Ezc9h
- Co6R+mbpWYmOshlbex7jBDEKbVoXF3wiAntcWUxf3d71uUczNNqEy7WPya/WQYuF24Q2
- aW0v/EXL34zE7Kk7XUEiW3Ci49WIHkvvk5RLMUf9H3os/4p6c2y3rPsxgqKZR5S30O8w
- sQfiePRYtgO7wNzrsUqssRBe10PYcq25C3am0sRKi65qJAjl+93sHVEpKhp+ZA1PWjLl
- xK8g==
+ bh=dIKUJhPtyy099q/7pEHPgqG0DHnRRHLJr8Bo5eZ+wuQ=;
+ b=Hg/DzCUJ8YeF9XjkkSKk9V4qA9SrxeNHzQpQehlyNH59RzU8JoH+DihGu9WIX9gwyq
+ xbRUAeG8vevcdkqkoCPDz+ZO8HceWyYl6wcbZQxPWgbuNf95E4U8GWKhmpV3Q/SB3Lq6
+ UqSn8oKRIGzT/NuE2UeKQ6CrZhWW6wEJsngNCDStqbB0xWCBaj1bRBYrKVXHVuLN+N1e
+ dI3QDggDyco9u8UuAA/Egc9rsOkUci4VedT2tiXTQH9ycityf+rpfOY9/Wtv3j7miZyd
+ i9ql7ojiYUEGwXXKBwO0gNhn/ItdNYKdn9DW9i+/VVOZ7CZb9sDcMljwtIW7DYCJjtMx
+ tUeg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1764934756; x=1765539556;
+ d=1e100.net; s=20230601; t=1764934764; x=1765539564;
  h=content-disposition:mime-version:message-id:subject:cc:to:from:date
  :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
  :reply-to;
- bh=ydvHPuR/TEWjlqHSyc+IuhV3845FKKl2OTvoX5xFzHs=;
- b=MToeS/D9cFaI6sZ7lcW4ehh2lRdTRkIv1cmzdTUGrK0gNY0LQQ7FNvAM8aVBBe5tdn
- Yg7HunSj3x2IaZ8eQWRO4AXOVY5zvUsKXbx8pZfIopew8IaUL1Fg3oYrrGAL+HGwdNVM
- S4BLYO4o/T26NJMddvazser61z6XCFRL6MYBWrlwI8NiCJrxJrX0K1JG5at2rJAvK76i
- og8Na4hCr7pp71tFHYRSg/ujD5K5oTbm/FCp19aO6HYJgWv2Jt1nLMOiew9He2xOLvw4
- B0e0/w+Ia94pKTUDF9uC50ZbnWR42ahYtbpGRFEqqjbg4JUZxZhbFWh1TRKpw2ECd8Qa
- 1eGw==
+ bh=dIKUJhPtyy099q/7pEHPgqG0DHnRRHLJr8Bo5eZ+wuQ=;
+ b=Yg4AD/6hWxX2wfe4Zl93ezxTfSuHgnxgGgI3MTOEa56wAZlIaahKDaoNY/RnjF3rsr
+ E9uqQrxyiiD9FDng4fgZvGji6cJL2iyDDDl0WXZN8IWk+jefNPEMRq0oJuTJvhkLc/ZK
+ 6trV4m8zGFHxt1jXR/DKKmlfUuHCdijd8xFNPw+kcWIEb0xMMGPqcpiw1FTNWjZmtXlY
+ /nLKV3H6cR8wGX/AwHBkbcuyjS8oX1pD/TC82q2h66hw+VteszgCPSSg4zmsyD629+DY
+ avGb9Y4vu4so5kldSKuZ/YFYagazWtCClcc3CI13UI0ccsLKdJvPG0dmOwSMgDnmfpKL
+ BcWw==
 X-Forwarded-Encrypted: i=1;
- AJvYcCXwBM8YAKY7uc/gFJ2d4MksXj9zUg1bR8HawVGhNWt4nerutAQjqpwGjTGnxbVPbhK62fXbBVKUPw==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyZ01YdeiwwGbAE9Z7oswN5kOJoDkxnOE0aPB94WcXS/AIgzFNa
- Nc/95jR2M4U3Jsd6R6rZp/FD3Z/Ho/WUXOtwIf1S5eeD4K4Hfcu8zKoFOxazL7euQak=
-X-Gm-Gg: ASbGncv6KM5E+H4Qz/LZoKhe/fX8MP8j6CObpXq60xPAxEB1YXDxc+W9L5ri5GZOVQs
- EKwyMOuUGo+NR2SRG5Nr6hPRmaLSVul0Vb7lrErzmFXk/PI1O6fLuejojOQZJNq3WPH2vGvRa24
- oCvCva4poyZvxzFTexuxe0mTsEBc4751K1mUufPnNM9YIt6tDLtjyfp3XNG4Qkn8EdZbrdcx7Ll
- dTmynJphKaKE39v55V4kh4M7/ech2k5+PzM5Amc3pw5X1lLKbnZVASvGZIs/F48IfpoHbtXuxUg
- sVHlReylVN+rpBHseG0p4fu6h9O8E33swpbgYMkxzCvXRz4vYIAeogBD5CQ5trTUG91cqV5xa79
- isH2g2RTAcAFP3Vl7XWs8ISd7VMWz3U+/rpWwzJrparBPqxsn6pXpMQD1JsLkaxw1keVATwr5hB
- vFSl5aNbmcJDv1AuT551udjk+ZNb4=
-X-Google-Smtp-Source: AGHT+IF/vwM9KOmX570wAov4Xy6x0tD+87+iHCXLimHTetQ/1oLM41jUaLHyTjztyr8/nNeI54dvbg==
-X-Received: by 2002:a05:600c:c8c:b0:477:7bca:8b2b with SMTP id
- 5b1f17b1804b1-4792aef7050mr121690165e9.15.1764934755224; 
- Fri, 05 Dec 2025 03:39:15 -0800 (PST)
+ AJvYcCWcX2PsI+4eQTEliFgIq16QFAbrjkYn4Nefs1CsPUWEjuSRvPDTFRikiWMiKQ0VP5Y3gYNQbisnHQ==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyssWKfp/mQF9bnh5NYL+BY5mI7P7pP+o9l+Z0GluBoHoGYV8fz
+ pVpHgTMJbjR7sG7Pf+AAniT5K/Msfp/Eir0F3vCUjRvI+RyPVaWPRWDyHxuTNmaQSNU=
+X-Gm-Gg: ASbGnct425ZV5pVicUX/CWIr0kkhxg4bc+xK/7EdghqSqCJyfato3mIRK4sOKMkdP8E
+ JgiFpcR4s2oHJbREgUjWqnNF+tWrwW7vURo7DTLx0K5mNeLENUd7FNyXOpavY2VsP74MB2eno0W
+ p8PHcu54UfTur7zL8xcv34+dVE2il5WdrIWQlN7o1E4zcW5UHKPVDUqal2c3l+94h2zdPphDNsX
+ iq/qQAoOh5R8LnakCWAXo30QzKLOHZ2jVX42Pom23Tj9BnNi/2fjvuOZNl49rk0Gi7BAuH6+QgY
+ 0k6MBz6QZn24EBhlf1mgGlCeDYIM/6uUEXI9gL34j1b+0qsI62uBIaUo4d5ZNmKV7oXnw8B8SIg
+ nTTVaE4wKoEvIbPWy1U9Om7KJE/CV7Ta8eMvPTsh/FHIUJNJ/ykpFWWaEpB2unC732w/WSmspYp
+ BY+gnjwRXKDg/arstG
+X-Google-Smtp-Source: AGHT+IF7EWPLDwvBvMYYg19nIBOlQAnWMyTfDzDj21hkC8CsbxS4hgVB39BlXGxYOuNd95H6B+H2Lg==
+X-Received: by 2002:a05:6000:1acc:b0:3eb:d906:e553 with SMTP id
+ ffacd0b85a97d-42f731cbf01mr9856490f8f.55.1764934764129; 
+ Fri, 05 Dec 2025 03:39:24 -0800 (PST)
 Received: from localhost ([196.207.164.177])
  by smtp.gmail.com with UTF8SMTPSA id
- ffacd0b85a97d-42f7d353f8bsm8501158f8f.43.2025.12.05.03.39.13
+ ffacd0b85a97d-42f7cbff352sm8357272f8f.17.2025.12.05.03.39.22
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 05 Dec 2025 03:39:14 -0800 (PST)
-Date: Fri, 5 Dec 2025 14:39:10 +0300
+ Fri, 05 Dec 2025 03:39:23 -0800 (PST)
+Date: Fri, 5 Dec 2025 14:39:19 +0300
 From: Dan Carpenter <dan.carpenter@linaro.org>
 To: =?utf-8?Q?Micha=C5=82?= Winiarski <michal.winiarski@intel.com>
-Cc: Jason Gunthorpe <jgg@ziepe.ca>, Yishai Hadas <yishaih@nvidia.com>,
- Shameer Kolothum <skolothumtho@nvidia.com>,
- Kevin Tian <kevin.tian@intel.com>, Alex Williamson <alex@shazbot.org>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, kvm@vger.kernel.org,
- intel-xe@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- kernel-janitors@vger.kernel.org
-Subject: [PATCH next] vfio/xe: Fix use after free in xe_vfio_pci_alloc_file()
-Message-ID: <aTLEXt_h5bWRWC0Z@stanley.mountain>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, kernel-janitors@vger.kernel.org
+Subject: [PATCH next] drm/xe/xe_sriov_vfio: Fix return value in
+ xe_sriov_vfio_migration_supported()
+Message-ID: <aTLEZ4g-FD-iMQ2V@stanley.mountain>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
@@ -91,38 +93,28 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This code frees "migf" and then dereferences it on the next line to get
-the error code.  Preserve the error code before freeing the pointer.
+The xe_sriov_vfio_migration_supported() function is type bool so
+returning -EPERM means returning true.  Return false instead.
 
-Fixes: 2e38c50ae492 ("vfio/xe: Add device specific vfio_pci driver variant for Intel graphics")
+Fixes: 17f22465c5a5 ("drm/xe/pf: Export helpers for VFIO")
 Signed-off-by: Dan Carpenter <dan.carpenter@linaro.org>
 ---
- drivers/vfio/pci/xe/main.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_sriov_vfio.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/vfio/pci/xe/main.c b/drivers/vfio/pci/xe/main.c
-index 0156b53c678b..8e1595e00e18 100644
---- a/drivers/vfio/pci/xe/main.c
-+++ b/drivers/vfio/pci/xe/main.c
-@@ -250,6 +250,7 @@ xe_vfio_pci_alloc_file(struct xe_vfio_pci_core_device *xe_vdev,
- 	struct xe_vfio_pci_migration_file *migf;
- 	const struct file_operations *fops;
- 	int flags;
-+	int ret;
+diff --git a/drivers/gpu/drm/xe/xe_sriov_vfio.c b/drivers/gpu/drm/xe/xe_sriov_vfio.c
+index e9a7615bb5c5..3da81af97b8b 100644
+--- a/drivers/gpu/drm/xe/xe_sriov_vfio.c
++++ b/drivers/gpu/drm/xe/xe_sriov_vfio.c
+@@ -21,7 +21,7 @@ EXPORT_SYMBOL_FOR_MODULES(xe_sriov_vfio_get_pf, "xe-vfio-pci");
+ bool xe_sriov_vfio_migration_supported(struct xe_device *xe)
+ {
+ 	if (!IS_SRIOV_PF(xe))
+-		return -EPERM;
++		return false;
  
- 	migf = kzalloc(sizeof(*migf), GFP_KERNEL_ACCOUNT);
- 	if (!migf)
-@@ -259,8 +260,9 @@ xe_vfio_pci_alloc_file(struct xe_vfio_pci_core_device *xe_vdev,
- 	flags = type == XE_VFIO_FILE_SAVE ? O_RDONLY : O_WRONLY;
- 	migf->filp = anon_inode_getfile("xe_vfio_mig", fops, migf, flags);
- 	if (IS_ERR(migf->filp)) {
-+		ret = PTR_ERR(migf->filp);
- 		kfree(migf);
--		return ERR_CAST(migf->filp);
-+		return ERR_PTR(ret);
- 	}
- 
- 	mutex_init(&migf->lock);
+ 	return xe_sriov_pf_migration_supported(xe);
+ }
 -- 
 2.51.0
 
