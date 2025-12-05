@@ -4,61 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 08E08D37485
-	for <intel-xe@archiver.kernel.org>; Fri,  5 Dec 2025 19:08:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0B24DD37485
+	for <intel-xe@archiver.kernel.org>; Fri,  5 Dec 2025 19:08:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BA83B10EBA0;
-	Fri,  5 Dec 2025 19:08:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BEBD610EBAC;
+	Fri,  5 Dec 2025 19:08:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LcK3E/X5";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kdZVoruC";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F18F310EB9F
- for <intel-xe@lists.freedesktop.org>; Fri,  5 Dec 2025 19:08:29 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 333CE10EBAB
+ for <intel-xe@lists.freedesktop.org>; Fri,  5 Dec 2025 19:08:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1764961710; x=1796497710;
+ t=1764961716; x=1796497716;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=u42wK1az0gCoHe9aH0PjWo1sXXSoVFANde/vGryaKEM=;
- b=LcK3E/X5n25XxASOLlDZES+/mGiKmUbZi5YUXNgIVSNTatQCLy1m6b8n
- 9hxnLOScFz5rqdzLwIumCNsq3yPgvXa1EExzg74ctymlh6jMi8ZD44p9q
- EcqR/G04uCjdXDeK4hU2YhaZaXBwLoSWQmR659T9Wym5vyORSFzFvS+wn
- /sOR1e9nAWZAkv1VRDFgIOEgbFfk06iqi/FxZ1FwBJTppmp0vzICDQHrD
- 13tHkvcNL6y+QJvsjH85tTIP3sYQiPx3YRZyxwBjW64JDeFRcAfD1e3et
- C2IPQlIbe8pz6Q3ZByBW5vImb/MUIp3s7kU6dy0Anu6TCHY6XKRkBMP/z A==;
-X-CSE-ConnectionGUID: q40yXTkPRtOrTir7D+1FJQ==
-X-CSE-MsgGUID: Pk/rdUQ2SCicaNcVbbiWyA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11633"; a="66188652"
-X-IronPort-AV: E=Sophos;i="6.20,252,1758610800"; d="scan'208";a="66188652"
+ bh=uucETvw7Z7ITi87oF9D7c7f/RlanIgc35fneVQsQlSM=;
+ b=kdZVoruCOTPWyZ6S34MNuTzR3x8r6AUFSai7Hd3+scvj9B42cRPBiuhE
+ e778NkAW7WZ6v8mH0XAv6vPeYXAbrClIKTNWqULIgbI8RsOTO0q1YofX3
+ 6UaWgOWx+gPzILExlOLa2cRF9kUgpXyX91ORP/j98oq2W0awkbwD6dCKl
+ kdgw6hnIT9Fh4n6mh6WJycXstTNEiJ6VfVAo5I6KrKkL9SlR74nh/S3bk
+ irN3mtX2lEd+Po5KWDyL9+e9cV+kuGShsBM9v3R9S0yMEy5dU/IBJAuZ+
+ cLLToSRFKrulPUIL3KCWxRm+gAWnA0pJ8OXX3HYJGL/l+8woR8YoWxvUN w==;
+X-CSE-ConnectionGUID: g7h5oZKWQuyIVO0a/bJ2sQ==
+X-CSE-MsgGUID: jo0Rywc1TSu2qCG2n5tczQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11633"; a="66188658"
+X-IronPort-AV: E=Sophos;i="6.20,252,1758610800"; d="scan'208";a="66188658"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Dec 2025 11:08:29 -0800
-X-CSE-ConnectionGUID: YNjFN725SJKQj4nBXfYSNQ==
-X-CSE-MsgGUID: su5TX8CYTVyFduF5/gD/tw==
+ 05 Dec 2025 11:08:36 -0800
+X-CSE-ConnectionGUID: cqEIfA2zSuOusnd8NUkb1g==
+X-CSE-MsgGUID: quv8BYyjTEOJHt9WM35sMg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,252,1758610800"; d="scan'208";a="226013764"
+X-IronPort-AV: E=Sophos;i="6.20,252,1758610800"; d="scan'208";a="226013775"
 Received: from osgc-linux-buildserver.sh.intel.com ([10.112.232.103])
- by orviesa002.jf.intel.com with ESMTP; 05 Dec 2025 11:08:27 -0800
+ by orviesa002.jf.intel.com with ESMTP; 05 Dec 2025 11:08:35 -0800
 From: Shuicheng Lin <shuicheng.lin@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Shuicheng Lin <shuicheng.lin@intel.com>, stable@vger.kernel.org,
+Cc: Shuicheng Lin <shuicheng.lin@intel.com>,
  Matthew Brost <matthew.brost@intel.com>,
- Michal Mrozek <michal.mrozek@intel.com>, Carl Zhang <carl.zhang@intel.com>,
- =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>,
- Lionel Landwerlin <lionel.g.landwerlin@intel.com>,
- Ivan Briano <ivan.briano@intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
  Ashutosh Dixit <ashutosh.dixit@intel.com>
-Subject: [PATCH 2/3] drm/xe/vm: Limit num_syncs to prevent oversized
+Subject: [PATCH 3/3] drm/xe/oa: Limit num_syncs to prevent oversized
  allocations
-Date: Fri,  5 Dec 2025 19:05:09 +0000
-Message-ID: <20251205190506.2426471-7-shuicheng.lin@intel.com>
+Date: Fri,  5 Dec 2025 19:05:10 +0000
+Message-ID: <20251205190506.2426471-8-shuicheng.lin@intel.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20251205190506.2426471-5-shuicheng.lin@intel.com>
 References: <20251205190506.2426471-5-shuicheng.lin@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -74,42 +68,50 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The VM_BIND ioctl did not validate args->num_syncs, allowing userspace
-to pass excessively large values that could lead to oversized allocations
-or other unexpected behavior.
+The OA open parameters did not validate num_syncs, allowing
+userspace to pass arbitrarily large values, potentially
+leading to excessive allocations.
 
-Add a check to ensure num_syncs does not exceed XE_MAX_SYNCS,
+Add checks to ensure that num_syncs does not exceed XE_MAX_SYNCS,
 returning -EINVAL when the limit is violated.
 
-Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
-Cc: <stable@vger.kernel.org> # v6.12+
+Fixes: c8507a25cebd ("drm/xe/oa/uapi: Define and parse OA sync properties")
 Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Michal Mrozek <michal.mrozek@intel.com>
-Cc: Carl Zhang <carl.zhang@intel.com>
-Cc: José Roberto de Souza <jose.souza@intel.com>
-Cc: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
-Cc: Ivan Briano <ivan.briano@intel.com>
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 Cc: Ashutosh Dixit <ashutosh.dixit@intel.com>
 Signed-off-by: Shuicheng Lin <shuicheng.lin@intel.com>
 ---
- drivers/gpu/drm/xe/xe_vm.c | 3 +++
- 1 file changed, 3 insertions(+)
+ drivers/gpu/drm/xe/xe_oa.c | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index c2012d20faa6..2ada14ed1f3c 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -3341,6 +3341,9 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe, struct xe_vm *vm,
- 	if (XE_IOCTL_DBG(xe, args->extensions))
- 		return -EINVAL;
- 
-+	if (XE_IOCTL_DBG(xe, args->num_syncs > XE_MAX_SYNCS))
+diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
+index cc48663c2b48..7477c27a4ba2 100644
+--- a/drivers/gpu/drm/xe/xe_oa.c
++++ b/drivers/gpu/drm/xe/xe_oa.c
+@@ -1254,6 +1254,11 @@ static int xe_oa_set_no_preempt(struct xe_oa *oa, u64 value,
+ static int xe_oa_set_prop_num_syncs(struct xe_oa *oa, u64 value,
+ 				    struct xe_oa_open_param *param)
+ {
++	if (value > XE_MAX_SYNCS) {
++		drm_dbg(&oa->xe->drm, "num_syncs %llu must be <= %u\n",
++			value, XE_MAX_SYNCS);
 +		return -EINVAL;
-+
- 	if (args->num_binds > 1) {
- 		u64 __user *bind_user =
- 			u64_to_user_ptr(args->vector_of_binds);
++	}
+ 	param->num_syncs = value;
+ 	return 0;
+ }
+@@ -1404,6 +1409,12 @@ static int xe_oa_parse_syncs(struct xe_oa *oa,
+ 	}
+ 
+ 	if (param->num_syncs) {
++		if (param->num_syncs > XE_MAX_SYNCS) {
++			drm_dbg(&oa->xe->drm, "num_syncs %d must be <= %u\n",
++				param->num_syncs, XE_MAX_SYNCS);
++			ret = -EINVAL;
++			goto exit;
++		}
+ 		param->syncs = kcalloc(param->num_syncs, sizeof(*param->syncs), GFP_KERNEL);
+ 		if (!param->syncs) {
+ 			ret = -ENOMEM;
 -- 
 2.50.1
 
