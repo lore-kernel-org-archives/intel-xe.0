@@ -4,51 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 89895D2E008
-	for <intel-xe@archiver.kernel.org>; Fri,  5 Dec 2025 07:02:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2244AD2E00E
+	for <intel-xe@archiver.kernel.org>; Fri,  5 Dec 2025 07:06:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4E06510EA22;
-	Fri,  5 Dec 2025 07:02:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DAB1610EA22;
+	Fri,  5 Dec 2025 07:06:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IMe0iIqT";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="InVdwr+Z";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 39A2910EA22
- for <intel-xe@lists.freedesktop.org>; Fri,  5 Dec 2025 07:02:24 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F109110EA22
+ for <intel-xe@lists.freedesktop.org>; Fri,  5 Dec 2025 07:06:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1764918144; x=1796454144;
+ t=1764918396; x=1796454396;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=M90WY0CKrLtIXVDyMkLPxScG7SUXs7UR/tGBX0my+3M=;
- b=IMe0iIqTEz8L18mNG+AldHvGfmvon6mzhIUG9Qxryl4/crbwyLQI//Z2
- j5TLbfBHiJLj8YoRmSidtvj6FnzvJkRtgAdGQnbWabIA0NawT/RtXu8ZV
- bv6hSLhzRXnmRwG6mJc2AnRcRyiXK4gN8kgDmHF8uwaFp+3J/+NtYVeYa
- IjQ4VPqiQV+cSKGkM9GZronSN1wgFKz6GCtexACAn+XkJo3NrzkBC0kIa
- UipCsI5Xgj0qKmqU4sRa5ejZu4V0h7mgf0SdaoU5+1dlGSr0jNbSLLuEx
- 9Qx4bc91g1PMON6lrnFWtsOlYJlcRn70ijePi2dxaXp0hQCI2Kaa22W9j w==;
-X-CSE-ConnectionGUID: yjZoNkVFSEq5EH6oFx6CWA==
-X-CSE-MsgGUID: 0KKdmWLORRa5tfspAkBZdg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11632"; a="66139729"
-X-IronPort-AV: E=Sophos;i="6.20,251,1758610800"; d="scan'208";a="66139729"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Dec 2025 23:02:23 -0800
-X-CSE-ConnectionGUID: Y7ubSkoIRYaqph9gGuxggQ==
-X-CSE-MsgGUID: yAbDHFJ3TcaxWPbJeVPglQ==
+ bh=JgZuBoZ/X4ub8OXg1yB0UBNhXBoKkFIryGh085+3Isw=;
+ b=InVdwr+ZvBIl4CTcSoQHF6kQV6yNN0wFes9/SsWXjs/rNnuIoQPA9A3A
+ 0ZDovjMJgNwb3/Ya5V/0E2My0G5Mx+RdlfKRLfIhowukUKotPROmcC7oI
+ Z3iFQaRuhTky2dgA51GDw/UgMhPofo1K5z4laxS9deFPfIHiFUeLztZKb
+ oRctTn/NOTY8z8OHevwydiQybJ7Wnr3eXp6yfHnvrpBwwbUCyN6JsTXpF
+ Pz4x7nb0bKDVfnLS3WBIBv8OUurU6xk1K+mjwJ58GIyD8HVsf1Z27M+Zp
+ L0gDqu/+aQ0pfH+zWij6tExf3WsK+b/qkIDQ3fvrs46Xaz6XL3UPhrUym w==;
+X-CSE-ConnectionGUID: IwWCUoK2RS+cBlLbngs6NA==
+X-CSE-MsgGUID: RwFG0KsMSJ2aheVwpysBPw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11632"; a="89600728"
+X-IronPort-AV: E=Sophos;i="6.20,251,1758610800"; d="scan'208";a="89600728"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Dec 2025 23:06:36 -0800
+X-CSE-ConnectionGUID: lOtTMWK1SmybqUkak+KmjQ==
+X-CSE-MsgGUID: J05hvDjlT0yni183VQRkkg==
 X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.20,251,1758610800"; d="scan'208";a="195045356"
 Received: from dut6304bmgfrd.fm.intel.com ([10.36.21.69])
- by fmviesa003.fm.intel.com with ESMTP; 04 Dec 2025 23:02:23 -0800
+ by orviesa009.jf.intel.com with ESMTP; 04 Dec 2025 23:06:36 -0800
 From: Xin Wang <x.wang@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: shuicheng.lin@intel.com, alex.zuo@intel.com, Xin Wang <x.wang@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>
-Subject: [PATCH v6 1/2] drm/xe: Refactor PAT dump to use shared helpers
-Date: Fri,  5 Dec 2025 07:02:19 +0000
-Message-ID: <20251205070220.27859-1-x.wang@intel.com>
+ Jani Nikula <jani.nikula@intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>,
+ Jonathan Cavitt <jonathan.cavitt@intel.com>
+Subject: [PATCH v6 2/2] drm/xe: expose PAT software config to debugfs
+Date: Fri,  5 Dec 2025 07:06:33 +0000
+Message-ID: <20251205070633.28072-1-x.wang@intel.com>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20251203225355.24972-1-x.wang@intel.com>
-References: <20251203225355.24972-1-x.wang@intel.com>
+In-Reply-To: <20251203225355.24972-2-x.wang@intel.com>
+References: <20251203225355.24972-2-x.wang@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -66,222 +69,141 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Move the PAT entry formatting into shared helper functions to ensure
-consistency and enable code reuse.
+The existing "pat" debugfs node dumps the live PAT registers. Under
+SR-IOV the VF cannot touch those registers, so the file vanishes and
+users lose all PAT visibility. Add a VF-safe "pat_sw_config" entry to
+the VF-safe debugfs list. It prints the cached PAT table the driver
+programmed, rather than poking HW, so PF and VF instances present the
+same view.
 
-This preparation is necessary for a follow-up patch that introduces a
-software-based PAT dump, which is required for debugging on VFs where
-hardware access is limited.
+This lets IGT and other tools query the PAT configuration without
+carrying platform-specific tables or mirroring kernel logic.
 
-V2: (Matt)
-- Xe3p XPC doesn’t define COMP_EN; omit it to match bspec and avoid
-confusion.
+v2: (Jonathan)
+- Only append "(* = reserved entry)" to the PAT table header on Xe2+
+  platforms where it actually applies.
+- Deduplicate the PTA/ATS mode printing by introducing the small
+  drm_printf_pat_mode() helper macro.
 
+v3: (Matt)
+- Print IDX[XE_CACHE_NONE_COMPRESSION] on every Xe2+ platform so the
+  dump always reflects the value the driver might use (even if it defaults
+  to 0) and future IP revisions don’t need extra condition tweaks.
+
+v4:
+- Drop the drm_printf_pat_mode macro and introduce a real helper
+  xe2_pat_entry_dump(). (Jani)
+- Reuse the helper across all PTA/ATS/PAT dumps for xe2+ entries to keep
+  output format identical.
+
+v5: (Matt)
+- Split the original patch into two: one for refactoring helpers, one for
+  the new debugfs entry.
+
+CC: Jani Nikula <jani.nikula@intel.com>
 Suggested-by: Matt Roper <matthew.d.roper@intel.com>
 Signed-off-by: Xin Wang <x.wang@intel.com>
-Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+Reviewed-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
 ---
- drivers/gpu/drm/xe/xe_pat.c | 108 +++++++++++++++++++++---------------
- 1 file changed, 64 insertions(+), 44 deletions(-)
+ drivers/gpu/drm/xe/xe_gt_debugfs.c |  1 +
+ drivers/gpu/drm/xe/xe_pat.c        | 62 ++++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_pat.h        |  1 +
+ 3 files changed, 64 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_pat.c b/drivers/gpu/drm/xe/xe_pat.c
-index 717425dd0475..beff250c7fa0 100644
---- a/drivers/gpu/drm/xe/xe_pat.c
-+++ b/drivers/gpu/drm/xe/xe_pat.c
-@@ -50,8 +50,37 @@
- #define XELP_PAT_WC				REG_FIELD_PREP(XELP_MEM_TYPE_MASK, 1)
- #define XELP_PAT_UC				REG_FIELD_PREP(XELP_MEM_TYPE_MASK, 0)
- 
-+#define PAT_LABEL_LEN 20
-+
- static const char *XELP_MEM_TYPE_STR_MAP[] = { "UC", "WC", "WT", "WB" };
- 
-+static void xe_pat_index_label(char *label, size_t len, int index)
-+{
-+	snprintf(label, len, "PAT[%2d] ", index);
-+}
-+
-+static void xelp_pat_entry_dump(struct drm_printer *p, int index, u32 pat)
-+{
-+	u8 mem_type = REG_FIELD_GET(XELP_MEM_TYPE_MASK, pat);
-+
-+	drm_printf(p, "PAT[%2d] = %s (%#8x)\n", index,
-+		   XELP_MEM_TYPE_STR_MAP[mem_type], pat);
-+}
-+
-+static void xehpc_pat_entry_dump(struct drm_printer *p, int index, u32 pat)
-+{
-+	drm_printf(p, "PAT[%2d] = [ %u, %u ] (%#8x)\n", index,
-+		   REG_FIELD_GET(XELP_MEM_TYPE_MASK, pat),
-+		   REG_FIELD_GET(XEHPC_CLOS_LEVEL_MASK, pat), pat);
-+}
-+
-+static void xelpg_pat_entry_dump(struct drm_printer *p, int index, u32 pat)
-+{
-+	drm_printf(p, "PAT[%2d] = [ %u, %u ] (%#8x)\n", index,
-+		   REG_FIELD_GET(XELPG_L4_POLICY_MASK, pat),
-+		   REG_FIELD_GET(XELPG_INDEX_COH_MODE_MASK, pat), pat);
-+}
-+
- struct xe_pat_ops {
- 	void (*program_graphics)(struct xe_gt *gt, const struct xe_pat_table_entry table[],
- 				 int n_entries);
-@@ -249,10 +278,8 @@ static int xelp_dump(struct xe_gt *gt, struct drm_printer *p)
- 
- 	for (i = 0; i < xe->pat.n_entries; i++) {
- 		u32 pat = xe_mmio_read32(&gt->mmio, XE_REG(_PAT_INDEX(i)));
--		u8 mem_type = REG_FIELD_GET(XELP_MEM_TYPE_MASK, pat);
- 
--		drm_printf(p, "PAT[%2d] = %s (%#8x)\n", i,
--			   XELP_MEM_TYPE_STR_MAP[mem_type], pat);
-+		xelp_pat_entry_dump(p, i, pat);
- 	}
- 
- 	return 0;
-@@ -276,12 +303,8 @@ static int xehp_dump(struct xe_gt *gt, struct drm_printer *p)
- 
- 	for (i = 0; i < xe->pat.n_entries; i++) {
- 		u32 pat = xe_gt_mcr_unicast_read_any(gt, XE_REG_MCR(_PAT_INDEX(i)));
--		u8 mem_type;
- 
--		mem_type = REG_FIELD_GET(XELP_MEM_TYPE_MASK, pat);
--
--		drm_printf(p, "PAT[%2d] = %s (%#8x)\n", i,
--			   XELP_MEM_TYPE_STR_MAP[mem_type], pat);
-+		xelp_pat_entry_dump(p, i, pat);
- 	}
- 
- 	return 0;
-@@ -306,9 +329,7 @@ static int xehpc_dump(struct xe_gt *gt, struct drm_printer *p)
- 	for (i = 0; i < xe->pat.n_entries; i++) {
- 		u32 pat = xe_gt_mcr_unicast_read_any(gt, XE_REG_MCR(_PAT_INDEX(i)));
- 
--		drm_printf(p, "PAT[%2d] = [ %u, %u ] (%#8x)\n", i,
--			   REG_FIELD_GET(XELP_MEM_TYPE_MASK, pat),
--			   REG_FIELD_GET(XEHPC_CLOS_LEVEL_MASK, pat), pat);
-+		xehpc_pat_entry_dump(p, i, pat);
- 	}
- 
- 	return 0;
-@@ -338,9 +359,7 @@ static int xelpg_dump(struct xe_gt *gt, struct drm_printer *p)
- 		else
- 			pat = xe_gt_mcr_unicast_read_any(gt, XE_REG_MCR(_PAT_INDEX(i)));
- 
--		drm_printf(p, "PAT[%2d] = [ %u, %u ] (%#8x)\n", i,
--			   REG_FIELD_GET(XELPG_L4_POLICY_MASK, pat),
--			   REG_FIELD_GET(XELPG_INDEX_COH_MODE_MASK, pat), pat);
-+		xelpg_pat_entry_dump(p, i, pat);
- 	}
- 
- 	return 0;
-@@ -356,11 +375,35 @@ static const struct xe_pat_ops xelpg_pat_ops = {
- 	.dump = xelpg_dump,
+diff --git a/drivers/gpu/drm/xe/xe_gt_debugfs.c b/drivers/gpu/drm/xe/xe_gt_debugfs.c
+index 7c3de6539044..e4f38b5150fc 100644
+--- a/drivers/gpu/drm/xe/xe_gt_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_gt_debugfs.c
+@@ -209,6 +209,7 @@ static const struct drm_info_list vf_safe_debugfs_list[] = {
+ 	{ "default_lrc_vcs", .show = xe_gt_debugfs_show_with_rpm, .data = vcs_default_lrc },
+ 	{ "default_lrc_vecs", .show = xe_gt_debugfs_show_with_rpm, .data = vecs_default_lrc },
+ 	{ "hwconfig", .show = xe_gt_debugfs_show_with_rpm, .data = hwconfig },
++	{ "pat_sw_config", .show = xe_gt_debugfs_simple_show, .data = xe_pat_dump_sw_config },
  };
  
-+static void xe2_pat_entry_dump(struct drm_printer *p, const char *label, u32 pat, bool rsvd)
-+{
-+	drm_printf(p, "%s= [ %u, %u, %u, %u, %u, %u ]  (%#8x)%s\n", label,
-+		   !!(pat & XE2_NO_PROMOTE),
-+		   !!(pat & XE2_COMP_EN),
-+		   REG_FIELD_GET(XE2_L3_CLOS, pat),
-+		   REG_FIELD_GET(XE2_L3_POLICY, pat),
-+		   REG_FIELD_GET(XE2_L4_POLICY, pat),
-+		   REG_FIELD_GET(XE2_COH_MODE, pat),
-+		   pat, rsvd ? " *" : "");
-+}
-+
-+static void xe3p_xpc_pat_entry_dump(struct drm_printer *p, const char *label, u32 pat, bool rsvd)
-+{
-+	drm_printf(p, "%s= [ %u, %u, %u, %u, %u ]  (%#8x)%s\n", label,
-+		   !!(pat & XE2_NO_PROMOTE),
-+		   REG_FIELD_GET(XE2_L3_CLOS, pat),
-+		   REG_FIELD_GET(XE2_L3_POLICY, pat),
-+		   REG_FIELD_GET(XE2_L4_POLICY, pat),
-+		   REG_FIELD_GET(XE2_COH_MODE, pat),
-+		   pat, rsvd ? " *" : "");
-+}
-+
- static int xe2_dump(struct xe_gt *gt, struct drm_printer *p)
- {
- 	struct xe_device *xe = gt_to_xe(gt);
- 	u32 pat;
- 	int i;
-+	char label[PAT_LABEL_LEN];
+ /* everything else should be added here */
+diff --git a/drivers/gpu/drm/xe/xe_pat.c b/drivers/gpu/drm/xe/xe_pat.c
+index beff250c7fa0..6f48d34711a6 100644
+--- a/drivers/gpu/drm/xe/xe_pat.c
++++ b/drivers/gpu/drm/xe/xe_pat.c
+@@ -592,3 +592,65 @@ int xe_pat_dump(struct xe_gt *gt, struct drm_printer *p)
  
- 	CLASS(xe_force_wake, fw_ref)(gt_to_fw(gt), XE_FW_GT);
- 	if (!fw_ref.domains)
-@@ -374,14 +417,8 @@ static int xe2_dump(struct xe_gt *gt, struct drm_printer *p)
- 		else
- 			pat = xe_gt_mcr_unicast_read_any(gt, XE_REG_MCR(_PAT_INDEX(i)));
- 
--		drm_printf(p, "PAT[%2d] = [ %u, %u, %u, %u, %u, %u ]  (%#8x)%s\n", i,
--			   !!(pat & XE2_NO_PROMOTE),
--			   !!(pat & XE2_COMP_EN),
--			   REG_FIELD_GET(XE2_L3_CLOS, pat),
--			   REG_FIELD_GET(XE2_L3_POLICY, pat),
--			   REG_FIELD_GET(XE2_L4_POLICY, pat),
--			   REG_FIELD_GET(XE2_COH_MODE, pat),
--			   pat, xe->pat.table[i].valid ? "" : " *");
-+		xe_pat_index_label(label, sizeof(label), i);
-+		xe2_pat_entry_dump(p, label, pat, !xe->pat.table[i].valid);
- 	}
- 
- 	/*
-@@ -394,14 +431,7 @@ static int xe2_dump(struct xe_gt *gt, struct drm_printer *p)
- 		pat = xe_gt_mcr_unicast_read_any(gt, XE_REG_MCR(_PAT_PTA));
- 
- 	drm_printf(p, "Page Table Access:\n");
--	drm_printf(p, "PTA_MODE= [ %u, %u, %u, %u, %u, %u ]  (%#8x)\n",
--		   !!(pat & XE2_NO_PROMOTE),
--		   !!(pat & XE2_COMP_EN),
--		   REG_FIELD_GET(XE2_L3_CLOS, pat),
--		   REG_FIELD_GET(XE2_L3_POLICY, pat),
--		   REG_FIELD_GET(XE2_L4_POLICY, pat),
--		   REG_FIELD_GET(XE2_COH_MODE, pat),
--		   pat);
-+	xe2_pat_entry_dump(p, "PTA_MODE", pat, false);
- 
- 	return 0;
+ 	return xe->pat.ops->dump(gt, p);
  }
-@@ -417,6 +447,7 @@ static int xe3p_xpc_dump(struct xe_gt *gt, struct drm_printer *p)
- 	struct xe_device *xe = gt_to_xe(gt);
- 	u32 pat;
- 	int i;
++
++/**
++ * xe_pat_dump_sw_config() - Dump the software-configured GT PAT table into a drm printer.
++ * @gt: the &xe_gt
++ * @p: the &drm_printer
++ *
++ * Return: 0 on success or a negative error code on failure.
++ */
++int xe_pat_dump_sw_config(struct xe_gt *gt, struct drm_printer *p)
++{
++	struct xe_device *xe = gt_to_xe(gt);
 +	char label[PAT_LABEL_LEN];
++
++	if (!xe->pat.table || !xe->pat.n_entries)
++		return -EOPNOTSUPP;
++
++	drm_printf(p, "PAT table:%s\n", GRAPHICS_VER(xe) >= 20 ? " (* = reserved entry)" : "");
++	for (u32 i = 0; i < xe->pat.n_entries; i++) {
++		u32 pat = xe->pat.table[i].value;
++
++		if (GRAPHICS_VERx100(xe) == 3511) {
++			xe_pat_index_label(label, sizeof(label), i);
++			xe3p_xpc_pat_entry_dump(p, label, pat, !xe->pat.table[i].valid);
++		} else if (GRAPHICS_VER(xe) == 30 || GRAPHICS_VER(xe) == 20) {
++			xe_pat_index_label(label, sizeof(label), i);
++			xe2_pat_entry_dump(p, label, pat, !xe->pat.table[i].valid);
++		} else if (xe->info.platform == XE_METEORLAKE) {
++			xelpg_pat_entry_dump(p, i, pat);
++		} else if (xe->info.platform == XE_PVC) {
++			xehpc_pat_entry_dump(p, i, pat);
++		} else if (xe->info.platform == XE_DG2 || GRAPHICS_VERx100(xe) <= 1210) {
++			xelp_pat_entry_dump(p, i, pat);
++		} else {
++			return -EOPNOTSUPP;
++		}
++	}
++
++	if (xe->pat.pat_pta) {
++		u32 pat = xe->pat.pat_pta->value;
++
++		drm_printf(p, "Page Table Access:\n");
++		xe2_pat_entry_dump(p, "PTA_MODE", pat, false);
++	}
++
++	if (xe->pat.pat_ats) {
++		u32 pat = xe->pat.pat_ats->value;
++
++		drm_printf(p, "PCIe ATS/PASID:\n");
++		xe2_pat_entry_dump(p, "PAT_ATS ", pat, false);
++	}
++
++	drm_printf(p, "Cache Level:\n");
++	drm_printf(p, "IDX[XE_CACHE_NONE] = %d\n", xe->pat.idx[XE_CACHE_NONE]);
++	drm_printf(p, "IDX[XE_CACHE_WT] = %d\n", xe->pat.idx[XE_CACHE_WT]);
++	drm_printf(p, "IDX[XE_CACHE_WB] = %d\n", xe->pat.idx[XE_CACHE_WB]);
++	if (GRAPHICS_VER(xe) >= 20) {
++		drm_printf(p, "IDX[XE_CACHE_NONE_COMPRESSION] = %d\n",
++			   xe->pat.idx[XE_CACHE_NONE_COMPRESSION]);
++	}
++
++	return 0;
++}
+diff --git a/drivers/gpu/drm/xe/xe_pat.h b/drivers/gpu/drm/xe/xe_pat.h
+index b8559120989e..5749a488d9a9 100644
+--- a/drivers/gpu/drm/xe/xe_pat.h
++++ b/drivers/gpu/drm/xe/xe_pat.h
+@@ -49,6 +49,7 @@ void xe_pat_init_early(struct xe_device *xe);
+ void xe_pat_init(struct xe_gt *gt);
  
- 	CLASS(xe_force_wake, fw_ref)(gt_to_fw(gt), XE_FW_GT);
- 	if (!fw_ref.domains)
-@@ -427,13 +458,8 @@ static int xe3p_xpc_dump(struct xe_gt *gt, struct drm_printer *p)
- 	for (i = 0; i < xe->pat.n_entries; i++) {
- 		pat = xe_gt_mcr_unicast_read_any(gt, XE_REG_MCR(_PAT_INDEX(i)));
+ int xe_pat_dump(struct xe_gt *gt, struct drm_printer *p);
++int xe_pat_dump_sw_config(struct xe_gt *gt, struct drm_printer *p);
  
--		drm_printf(p, "PAT[%2d] = [ %u, %u, %u, %u, %u ]  (%#8x)%s\n", i,
--			   !!(pat & XE2_NO_PROMOTE),
--			   REG_FIELD_GET(XE2_L3_CLOS, pat),
--			   REG_FIELD_GET(XE2_L3_POLICY, pat),
--			   REG_FIELD_GET(XE2_L4_POLICY, pat),
--			   REG_FIELD_GET(XE2_COH_MODE, pat),
--			   pat, xe->pat.table[i].valid ? "" : " *");
-+		xe_pat_index_label(label, sizeof(label), i);
-+		xe3p_xpc_pat_entry_dump(p, label, pat, !xe->pat.table[i].valid);
- 	}
- 
- 	/*
-@@ -443,13 +469,7 @@ static int xe3p_xpc_dump(struct xe_gt *gt, struct drm_printer *p)
- 	pat = xe_gt_mcr_unicast_read_any(gt, XE_REG_MCR(_PAT_PTA));
- 
- 	drm_printf(p, "Page Table Access:\n");
--	drm_printf(p, "PTA_MODE= [ %u, %u, %u, %u, %u ]  (%#8x)\n",
--		   !!(pat & XE2_NO_PROMOTE),
--		   REG_FIELD_GET(XE2_L3_CLOS, pat),
--		   REG_FIELD_GET(XE2_L3_POLICY, pat),
--		   REG_FIELD_GET(XE2_L4_POLICY, pat),
--		   REG_FIELD_GET(XE2_COH_MODE, pat),
--		   pat);
-+	xe3p_xpc_pat_entry_dump(p, "PTA_MODE", pat, false);
- 
- 	return 0;
- }
+ /**
+  * xe_pat_index_get_coh_mode - Extract the coherency mode for the given
 -- 
 2.43.0
 
