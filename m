@@ -4,27 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 34E89D2F7CE
-	for <intel-xe@archiver.kernel.org>; Fri,  5 Dec 2025 09:56:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D8BA0D2F7D4
+	for <intel-xe@archiver.kernel.org>; Fri,  5 Dec 2025 10:14:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E39DE10EAA4;
-	Fri,  5 Dec 2025 09:56:41 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D10AF10EAA5;
- Fri,  5 Dec 2025 09:56:40 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 92DB610EAA2;
+	Fri,  5 Dec 2025 10:14:11 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="c6aukXFr";
+	dkim-atps=neutral
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F185910EAA2;
+ Fri,  5 Dec 2025 10:14:10 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sea.source.kernel.org (Postfix) with ESMTP id AF4F54094C;
+ Fri,  5 Dec 2025 10:14:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 07BCFC4CEF1;
+ Fri,  5 Dec 2025 10:14:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1764929650;
+ bh=uqmaKn2YAoPCEwU3lt/DOzGMJaeICdMag9HeB0Eqa/s=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=c6aukXFrjWMtkH7Zz8bsPVi1AqO5Q2iTCcSeCUST0OnCjsIAkni3Kxt8iG5+ezTsl
+ /P5EmRhFiyD2LHvJ66rAEvJuZxxDv2to5edbMOFsgEJdX2YtjxFwG0j4uZVmL/WN2d
+ Eg9zUxSRe6htJ61mpiNyeAg5FfjisKBod55xsFaGuy4l4cGCOLasV1gdniAOUPQZtK
+ QpqW7eYflOdkFQ+S47Tk5iGAccy0GRnQ3aTaUkPxKdz9A3pNEpkKi9YirrrU/r2bJP
+ +BAOwoRFxJ5QGQI2f+kMTnZ9rOrGEUohoq4r+ILrF5qf7PhRHEs3fDPGMHmYmm4tku
+ i/5nItSqvQgZw==
+Date: Fri, 5 Dec 2025 11:14:06 +0100
+From: Christian Brauner <brauner@kernel.org>
+To: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, 
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, "Saarinen,
+ Jani" <jani.saarinen@intel.com>, 
+ "Kurmi, Suresh Kumar" <suresh.kumar.kurmi@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>
+Subject: Re: REGRESSION on drm-tip
+Message-ID: <20251205-unachtsam-eilzug-78faa5949861@brauner>
+References: <03c013c0-be12-42ab-91d1-f87395c890e3@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_Introduce_DRM=5FRAS_usin?=
- =?utf-8?q?g_generic_netlink_for_RAS_=28rev3=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Rodrigo Vivi" <rodrigo.vivi@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 05 Dec 2025 09:56:40 -0000
-Message-ID: <176492860085.60929.13273187884409561308@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20251205083934.3602030-6-riana.tauro@intel.com>
-In-Reply-To: <20251205083934.3602030-6-riana.tauro@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <03c013c0-be12-42ab-91d1-f87395c890e3@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,40 +56,82 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Thu, Nov 27, 2025 at 11:55:54AM +0530, Borah, Chaitanya Kumar wrote:
+> Hello Christian,
+> 
+> This is Chaitanya (again!).
+> 
+> This mail is regarding another regression we are seeing in our CI runs[1] on
+> drm-tip (with both xe and i915).
+> 
+> `````````````````````````````````````````````````````````````````````````````````
+> <4> [157.687644] ------------[ cut here ]------------
+> <4> [157.687768] WARNING: CPU: 5 PID: 2277 at kernel/freezer.c:139
+> __set_task_frozen+0x7f/0xb0
+> ...
+> <4> [157.687923] PKRU: 55555554
+> <4> [157.687924] Call Trace:
+> <4> [157.687925]  <TASK>
+> <4> [157.687926]  ? __pfx___set_task_frozen+0x10/0x10
+> <4> [157.687929]  task_call_func+0x6d/0x120
+> <4> [157.687932]  ? cgroup_freezing+0x89/0x200
+> <4> [157.687937]  freeze_task+0x98/0x100
+> <4> [157.687940]  try_to_freeze_tasks+0xd2/0x440
+> <4> [157.687946]  freeze_processes+0x56/0xd0
+> <4> [157.687948]  hibernate+0x129/0x4a0
+> <4> [157.687951]  state_store+0xd3/0xe0
+> <4> [157.687954]  kobj_attr_store+0x12/0x40
+> <4> [157.687959]  sysfs_kf_write+0x4d/0x80
+> <4> [157.687963]  kernfs_fop_write_iter+0x188/0x240
+> <4> [157.687967]  vfs_write+0x283/0x540
+> <4> [157.687969]  ? free_to_partial_list+0x46d/0x640
+> <4> [157.687976]  ksys_write+0x6f/0xf0
+> <4> [157.687980]  __x64_sys_write+0x19/0x30
+> <4> [157.687982]  x64_sys_call+0x79/0x26a0
+> <4> [157.687984]  do_syscall_64+0x93/0xd60
+> <4> [157.687987]  ? putname+0x65/0x90
+> <4> [157.687990]  ? kmem_cache_free+0x553/0x680
+> <4> [157.687995]  ? putname+0x65/0x90
+> <4> [157.687997]  ? putname+0x65/0x90
+> <4> [157.687999]  ? do_sys_openat2+0x8b/0xd0
+> <4> [157.688003]  ? __x64_sys_openat+0x54/0xa0
+> <4> [157.688007]  ? do_syscall_64+0x1b7/0xd60
+> <4> [157.688009]  ? __fput+0x1bf/0x2f0
+> <4> [157.688012]  ? fput_close_sync+0x3d/0xa0
+> <4> [157.688015]  ? __x64_sys_close+0x3e/0x90
+> <4> [157.688017]  ? do_syscall_64+0x1b7/0xd60
+> <4> [157.688019]  ? putname+0x65/0x90
+> <4> [157.688021]  ? putname+0x65/0x90
+> <4> [157.688023]  ? do_sys_openat2+0x8b/0xd0
+> <4> [157.688024]  ? __fput+0x1bf/0x2f0
+> <4> [157.688028]  ? __x64_sys_openat+0x54/0xa0
+> <4> [157.688032]  ? do_syscall_64+0x1b7/0xd60
+> <4> [157.688034]  ? do_syscall_64+0x1b7/0xd60
+> <4> [157.688036]  ? irqentry_exit+0x77/0xb0
+> <4> [157.688038]  ? exc_page_fault+0xbd/0x2c0
+> <4> [157.688042]  entry_SYSCALL_64_after_hwframe+0x76/0x7e
+> <4> [157.688044] RIP: 0033:0x72523c91c574
+> `````````````````````````````````````````````````````````````````````````````````
+> Details log can be found in [2].
+> 
+> After bisecting the tree, the following patch [3] seems to be the first
+> "bad" commit
+> 
+> `````````````````````````````````````````````````````````````````````````````````````````````````````````
+> commit a3f8f8662771285511ae26c4c8d3ba1cd22159b9
+> Author: Christian Brauner <brauner@kernel.org>
+> Date:   Wed Nov 5 14:39:45 2025 +0100
+> 
+>     power: always freeze efivarfs
+> `````````````````````````````````````````````````````````````````````````````````````````````````````````
+> 
+> We also verified that if we revert the patch the issue is not seen.
+> 
+> Could you please check why the patch causes this regression and provide a
+> fix if necessary?
 
-Series: Introduce DRM_RAS using generic netlink for RAS (rev3)
-URL   : https://patchwork.freedesktop.org/series/155188/
-State : warning
-
-== Summary ==
-
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 0949b969da10a9fc389d255f398653eb9bc4ffaf
-Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
-Fast mode used, each commit won't be checked separately.
--
-+drivers/gpu/drm/drm_drv.c:450:6: warning: context imbalance in 'drm_dev_enter' - different lock contexts for basic block
-+drivers/gpu/drm/drm_drv.c: note: in included file (through include/linux/notifier.h, arch/x86/include/asm/uprobes.h, include/linux/uprobes.h, include/linux/mm_types.h, include/linux/mmzone.h, include/linux/gfp.h, ...):
-+./include/linux/srcu.h:389:9: warning: context imbalance in 'drm_dev_exit' - unexpected unlock
-
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
-
+I'm going to send a fix for this to Linus today. Thanks!
+Rafael has sent me fix earlier this week.
