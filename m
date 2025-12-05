@@ -4,54 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EA951D374A8
-	for <intel-xe@archiver.kernel.org>; Fri,  5 Dec 2025 21:26:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 66B5DD374AF
+	for <intel-xe@archiver.kernel.org>; Fri,  5 Dec 2025 21:59:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A74E210EBBD;
-	Fri,  5 Dec 2025 21:26:22 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AAS4/gAe";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1B99610EBBA
- for <intel-xe@lists.freedesktop.org>; Fri,  5 Dec 2025 21:26:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1764969981; x=1796505981;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=seiT2IP5eWoqvsa3xh874Y9NMPf6cmrJlU7pbU1OOgI=;
- b=AAS4/gAerhUg7V0Y67ujTJVoPXwDDnGlmWty1z7qpebcYKnxlb+QLWn2
- oPBa6rsel1hGcFGLQYL6ypo4soEpv4EPNgeMAM8aEukOzJOCTyZ7CkK6T
- z1TUlCfPXMWtQi7VMbRFOhNQnqwH/M0J2N+l0LXtqoJ3x8h2H8Y33aiiR
- NAM8Zp+n+IaG2dosTVrmWX7L+8gwN3TkYOhYIqOvf1QYfTXDWRZy8wiXj
- E+zJ7n5NJHN1igazSP/SbLw00gaZtJ8gkA90JFqU6LvCL3ne913tOCBXx
- h/AUh9WIhTz7pQA9lfiqqfmrLubsNDMJjT1m8pnfy0EvJUy1CrxiasCEC g==;
-X-CSE-ConnectionGUID: 1L4SR/t1TR+J/bYzfyn/Bg==
-X-CSE-MsgGUID: zy6KaYm9RPmDPfhibOHrWg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11633"; a="66893795"
-X-IronPort-AV: E=Sophos;i="6.20,252,1758610800"; d="scan'208";a="66893795"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Dec 2025 13:26:20 -0800
-X-CSE-ConnectionGUID: 7MTY+GF+TqurLL1nXX+jWg==
-X-CSE-MsgGUID: kvG147nvTW67q2qjqFXK2g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,252,1758610800"; d="scan'208";a="195202143"
-Received: from orsosgc001.jf.intel.com ([10.88.27.185])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Dec 2025 13:26:20 -0800
-From: Ashutosh Dixit <ashutosh.dixit@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-Subject: [PATCH 3/3] drm/xe/oa: Always set OAG_OAGLBCTXCTRL_COUNTER_RESUME
-Date: Fri,  5 Dec 2025 13:26:13 -0800
-Message-ID: <20251205212613.826224-4-ashutosh.dixit@intel.com>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20251205212613.826224-1-ashutosh.dixit@intel.com>
-References: <20251205212613.826224-1-ashutosh.dixit@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2775710EBD0;
+	Fri,  5 Dec 2025 21:59:15 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 37DBE10EBD0;
+ Fri,  5 Dec 2025 21:59:13 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5882067478571382122=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/uc=3A_Add_stop_on_ha?=
+ =?utf-8?q?rdware_initialization_error_=28rev10=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Dong, Zhanjun" <zhanjun.dong@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 05 Dec 2025 21:59:13 -0000
+Message-ID: <176497195321.62145.6213449232471347773@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20251205180642.4005099-1-zhanjun.dong@intel.com>
+In-Reply-To: <20251205180642.4005099-1-zhanjun.dong@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,40 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Reports can be written out to the OA buffer using ways other than periodic
-sampling. These include mmio trigger and context switches. To support these
-use cases, when periodic sampling is not enabled,
-OAG_OAGLBCTXCTRL_COUNTER_RESUME must be set.
+--===============5882067478571382122==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Fixes: 1db9a9dc90ae ("drm/xe/oa: OA stream initialization (OAG)")
-Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
----
- drivers/gpu/drm/xe/xe_oa.c | 7 ++++---
- 1 file changed, 4 insertions(+), 3 deletions(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
-index 7846dbc32542e..44140722febef 100644
---- a/drivers/gpu/drm/xe/xe_oa.c
-+++ b/drivers/gpu/drm/xe/xe_oa.c
-@@ -1105,11 +1105,12 @@ static int xe_oa_enable_metric_set(struct xe_oa_stream *stream)
- 			oag_buf_size_select(stream) |
- 			oag_configure_mmio_trigger(stream, true));
- 
--	xe_mmio_write32(mmio, __oa_regs(stream)->oa_ctx_ctrl, stream->periodic ?
--			(OAG_OAGLBCTXCTRL_COUNTER_RESUME |
-+	xe_mmio_write32(mmio, __oa_regs(stream)->oa_ctx_ctrl,
-+			OAG_OAGLBCTXCTRL_COUNTER_RESUME |
-+			(stream->periodic ?
- 			 OAG_OAGLBCTXCTRL_TIMER_ENABLE |
- 			 REG_FIELD_PREP(OAG_OAGLBCTXCTRL_TIMER_PERIOD_MASK,
--					stream->period_exponent)) : 0);
-+					 stream->period_exponent) : 0));
- 
- 	/*
- 	 * Initialize Super Queue Internal Cnt Register
--- 
-2.48.1
+Series: drm/xe/uc: Add stop on hardware initialization error (rev10)
+URL   : https://patchwork.freedesktop.org/series/152100/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from xe-4203-db6505187efb9c255df1dd6e78c00d95fadfef79_BAT -> xe-pw-152100v10_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (12 -> 12)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-4203-db6505187efb9c255df1dd6e78c00d95fadfef79 -> xe-pw-152100v10
+
+  IGT_8658: 5d645d459768a0e5c8e5e95b9fce16bb17319825 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-4203-db6505187efb9c255df1dd6e78c00d95fadfef79: db6505187efb9c255df1dd6e78c00d95fadfef79
+  xe-pw-152100v10: 152100v10
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152100v10/index.html
+
+--===============5882067478571382122==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/uc: Add stop on hardware initialization error (rev10)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/152100/">https://patchwork.freedesktop.org/series/152100/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152100v10/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152100v10/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4203-db6505187efb9c255df1dd6e78c00d95fadfef79_BAT -&gt; xe-pw-152100v10_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (12 -&gt; 12)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4203-db6505187efb9c255df1dd6e78c00d95fadfef79 -&gt; xe-pw-152100v10</li>
+</ul>
+<p>IGT_8658: 5d645d459768a0e5c8e5e95b9fce16bb17319825 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-4203-db6505187efb9c255df1dd6e78c00d95fadfef79: db6505187efb9c255df1dd6e78c00d95fadfef79<br />
+  xe-pw-152100v10: 152100v10</p>
+
+</body>
+</html>
+
+--===============5882067478571382122==--
