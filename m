@@ -4,54 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 74BD7D2F7D1
-	for <intel-xe@archiver.kernel.org>; Fri,  5 Dec 2025 10:30:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D55A5D2F7DD
+	for <intel-xe@archiver.kernel.org>; Fri,  5 Dec 2025 10:30:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 24ED210EAAF;
-	Fri,  5 Dec 2025 10:30:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9AE1410EAAD;
+	Fri,  5 Dec 2025 10:30:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="d2TjGgPd";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="f45N6HGo";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F266B10EAA7;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9D94D10E98C;
  Fri,  5 Dec 2025 10:30:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1764930651; x=1796466651;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=hTD3aA7QJCIfIRjDce+AYYPSts788z4y3U8HDGwuXVk=;
- b=d2TjGgPdjYm8BQ1Bs4slJNpk9hL2r2DKgBpDMCRq1HmuIPKApu70bkXM
- s+O7qxBTmNjr2qj9fXbbPHs97bi/ohwRrFSXRZ1jxNng1jLtrxMvDIQjg
- 0PjsLatEwU5zHsJle0chNgB/Gqm6bIMWiHgiYdv+7tDoqrIK3WHnwb+hF
- D308EexREGm5kUFkbebR/5H/4ZPMzWpTKyjHb76PAhLIL90aeeFqeAzEU
- 36rPpENCIMwkRQYliiM2l1HNZYwG/qCQEskYnozg8f7Ifl7/YTb/z8Nra
- gI9HX5jaciDT7D5yhJ7PWcVsdSmtH9VImVQJa7Q5CpZZNpOPWSE39Qt3L w==;
-X-CSE-ConnectionGUID: Vb1e4DiQRt+/RmpZgamdbA==
-X-CSE-MsgGUID: H7vseSixTBWu73C+WtEjZQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11632"; a="67001166"
-X-IronPort-AV: E=Sophos;i="6.20,251,1758610800"; d="scan'208";a="67001166"
+ t=1764930650; x=1796466650;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=QhRYnDCEYUKSkARTxqUdT+Lq9rupR6nM90JRSylsTxY=;
+ b=f45N6HGoFSrDWtOeKJXXoWgBnplgbYMn0ohcxgAR5az/PC9+ysJuo2TY
+ EXtv9fty023mk3ibd9Eqq/u/lY4uwoYAnUv/ze8Xl76fuSDH8nIb0Kyq3
+ yDr0FsIICU7Q967ylhMtJEM8AM4MZyUTclJhywf1Jfj9ZDfk6KNW20uuE
+ q7gCPQ4thjtsHe4NjsfXXNx8qOsT4Ts80L32bP/knqHtie4/RcU+q7tlf
+ /hjmeWaMdGPPTtBkhjV+E8vMnGhSWJzk/XC0G55pNN+cozTN7Ys4KIX7U
+ ioIWdMn3Xtlaam46i3f/ukhY4/RvtppJ6EVT0Fx5agXn77cux5PkWPfnb A==;
+X-CSE-ConnectionGUID: R1jZj1JBSDSbGauNc7QB8g==
+X-CSE-MsgGUID: uYat/kSCRfOFrkWZqHpzFQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11632"; a="67001162"
+X-IronPort-AV: E=Sophos;i="6.20,251,1758610800"; d="scan'208";a="67001162"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Dec 2025 02:30:48 -0800
-X-CSE-ConnectionGUID: AN6CJ5UJS+C21jPDWqTiew==
-X-CSE-MsgGUID: ccI6JgxqT0GJDXjn4Qi4Dw==
+ 05 Dec 2025 02:30:39 -0800
+X-CSE-ConnectionGUID: LMaujSziQ6yA0OpGBHQ3tQ==
+X-CSE-MsgGUID: WGgOATVfStueNSKruMbGtA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,251,1758610800"; d="scan'208";a="194562926"
+X-IronPort-AV: E=Sophos;i="6.20,251,1758610800"; d="scan'208";a="194562859"
 Received: from ettammin-desk.ger.corp.intel.com (HELO localhost)
  ([10.245.246.65])
  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Dec 2025 02:30:44 -0800
+ 05 Dec 2025 02:30:34 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH v2 2/4] drm/xe/stolen: unify interface with i915
-Date: Fri,  5 Dec 2025 12:30:28 +0200
-Message-ID: <e1ae0c5d3cc6f59d6e4f4ce810a6e9b3870109f8.1764930576.git.jani.nikula@intel.com>
+Subject: [PATCH v2 0/4] drm/{i915,
+ xe}: migrate stolen interface to parent interface, cleanups
+Date: Fri,  5 Dec 2025 12:30:26 +0200
+Message-ID: <cover.1764930576.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.47.3
-In-Reply-To: <cover.1764930576.git.jani.nikula@intel.com>
-References: <cover.1764930576.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
  6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
@@ -70,57 +69,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Have i915_gem_stolen_node_offset() return u64, and pass const pointer to
-them.
+v2 of [1], converting one more call that had appeared in the mean time.
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_stolen.h | 4 ++--
- drivers/gpu/drm/xe/display/xe_stolen.c                       | 4 ++--
- 2 files changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_stolen.h b/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_stolen.h
-index 48e3256ba37e..368045a470d1 100644
---- a/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_stolen.h
-+++ b/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_stolen.h
-@@ -23,13 +23,13 @@ bool i915_gem_stolen_initialized(struct drm_device *drm);
- 
- bool i915_gem_stolen_node_allocated(const struct intel_stolen_node *node);
- 
--u32 i915_gem_stolen_node_offset(struct intel_stolen_node *node);
-+u64 i915_gem_stolen_node_offset(const struct intel_stolen_node *node);
- 
- u64 i915_gem_stolen_area_address(struct drm_device *drm);
- 
- u64 i915_gem_stolen_area_size(struct drm_device *drm);
- 
--u64 i915_gem_stolen_node_address(struct intel_stolen_node *node);
-+u64 i915_gem_stolen_node_address(const struct intel_stolen_node *node);
- 
- u64 i915_gem_stolen_node_size(const struct intel_stolen_node *node);
- 
-diff --git a/drivers/gpu/drm/xe/display/xe_stolen.c b/drivers/gpu/drm/xe/display/xe_stolen.c
-index 9f04ba36e930..387506586288 100644
---- a/drivers/gpu/drm/xe/display/xe_stolen.c
-+++ b/drivers/gpu/drm/xe/display/xe_stolen.c
-@@ -67,7 +67,7 @@ bool i915_gem_stolen_node_allocated(const struct intel_stolen_node *node)
- 	return node->bo;
- }
- 
--u32 i915_gem_stolen_node_offset(struct intel_stolen_node *node)
-+u64 i915_gem_stolen_node_offset(const struct intel_stolen_node *node)
- {
- 	struct xe_res_cursor res;
- 
-@@ -91,7 +91,7 @@ u64 i915_gem_stolen_area_size(struct drm_device *drm)
- 	return 0;
- }
- 
--u64 i915_gem_stolen_node_address(struct intel_stolen_node *node)
-+u64 i915_gem_stolen_node_address(const struct intel_stolen_node *node)
- {
- 	struct xe_device *xe = node->xe;
- 
+[1] https://lore.kernel.org/r/cover.1764868989.git.jani.nikula@intel.com
+
+Jani Nikula (4):
+  drm/i915/fbc: let to_intel_display() do its generic magic
+  drm/xe/stolen: unify interface with i915
+  drm/{i915,xe}/stolen: move stolen memory handling to display parent
+    interface
+  drm/{i915,xe}/stolen: make insert_node, area_address, area_size
+    optional
+
+ drivers/gpu/drm/i915/display/intel_fbc.c      | 105 +++++++++---------
+ drivers/gpu/drm/i915/display/intel_parent.c   |  76 +++++++++++++
+ drivers/gpu/drm/i915/display/intel_parent.h   |  19 ++++
+ drivers/gpu/drm/i915/gem/i915_gem_stolen.c    |  52 ++++++---
+ drivers/gpu/drm/i915/gem/i915_gem_stolen.h    |  23 +---
+ drivers/gpu/drm/i915/i915_driver.c            |   1 +
+ .../compat-i915-headers/gem/i915_gem_stolen.h |  40 -------
+ drivers/gpu/drm/xe/display/xe_display.c       |   4 +-
+ drivers/gpu/drm/xe/display/xe_stolen.c        |  62 +++++------
+ drivers/gpu/drm/xe/display/xe_stolen.h        |   9 ++
+ include/drm/intel/display_parent_interface.h  |  20 ++++
+ 11 files changed, 243 insertions(+), 168 deletions(-)
+ delete mode 100644 drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_stolen.h
+ create mode 100644 drivers/gpu/drm/xe/display/xe_stolen.h
+
 -- 
 2.47.3
 
