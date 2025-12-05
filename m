@@ -4,79 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D05E7D2F7D1
-	for <intel-xe@archiver.kernel.org>; Fri,  5 Dec 2025 11:10:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 35BB4D2F7DA
+	for <intel-xe@archiver.kernel.org>; Fri,  5 Dec 2025 11:27:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 950E510E049;
-	Fri,  5 Dec 2025 11:10:38 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="heSebT0Y";
-	dkim-atps=neutral
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com
- [209.85.221.50])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8CDD610E049
- for <intel-xe@lists.freedesktop.org>; Fri,  5 Dec 2025 11:10:37 +0000 (UTC)
-Received: by mail-wr1-f50.google.com with SMTP id
- ffacd0b85a97d-42e2e2eccd2so1304619f8f.1
- for <intel-xe@lists.freedesktop.org>; Fri, 05 Dec 2025 03:10:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1764933036; x=1765537836; darn=lists.freedesktop.org;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :from:to:cc:subject:date:message-id:reply-to;
- bh=zh3HlpbXaEbsFU72svAbecwrRCi03W2DYbr0+25RALI=;
- b=heSebT0YwLGcFfctAD/6K7k3zouyyHKgVuoH6CbMYmHdoISCxMc4FOkZ5K62PPedxM
- 8e9BOEjhBKkycD/dplmKWz+y2VGBm8H+YDFAaBHMZcX1jZLrnDX4PJ2N2BT4SqoUE3ko
- xH8kJUOv0cFKS7RukqAmNGyLexCpE7Kia1Ptdxwzi895w5rpepqMrQhCw5GsEqwpvsgY
- pRas8J+iBzVdes2IjI5c8vHM1YIkppBLOknHkbt2yldTr0USOaEl8wAV4J9ETISZw+vE
- Pt9Jeq9bCazVAWs8ohLPaMC+OLEQDNj4CDZ4lwf0oEvX38n12l+pgIbMDSDvkQ3VhMam
- sN/A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1764933036; x=1765537836;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=zh3HlpbXaEbsFU72svAbecwrRCi03W2DYbr0+25RALI=;
- b=Bp/p3vfpzmsBRyX0gSH6bi6u3Ap0N1UJkFus+kVSpifa9fUlb8tt7c18Prb1CDxxA2
- 754TZW1k+DJ6d+iqb+kaIb+Oo47/dVsBxCc7xqmwQe6iRKkQpOoC4urjn06I9GcIcdOA
- VOr0mXfQv8qC/h1UIOkMQa+kI5Blmh0jPTvXUcuIr3NYMCozmh6XnqmQ/c49tlx9nF5j
- CXXALwZN1fG0BXOCeQc3yLiNM16S8kh/cCk/ncHObYwlkM64mBMXl8MPfpgAfpguzvg4
- 7xnya0Tt7UnZt6ekmzzvBdw0gi56wLVe1ECsOHKnIu/9ACAl6CxRhCFTqv5MQL2+fkvj
- y0bw==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWci4RiWWKwlZZ/q7kJvK7WNYz2pRLySs1+LgTJxKlSHOviXFBU75WYUVKKmh4RRBfkGfM/jy59lA==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzC7z5zCEMpovK9saHHzE9+vfRmstCZ/eHiRGxUVUzon3NNXLwi
- D2dD6s6dTGkddE6rSl918IsrpE4jdkktcpMqQfgjzSwYojgfv3RwEfKZUC1J5/0JCo8=
-X-Gm-Gg: ASbGncsqRtLcYdjX5sBYJyBzO5GcfmAsGCbbmP/ODA5efBNvsrrVfofelvQfujk1nid
- r82WUSHCf0mZrNOdbBGDSwvxTtA/gjDZtTRyItob+xBJgdIkepbdbg2L4aAzZUVyAtd1LTK5tG/
- zSZc+4e4o7xDq6IVyGk1odjRpNmwZ+cbpEGE3mSK2I1xX4mPzQLbV4KNhs6nQOy0yz5TSKA9BgL
- bSY1ZzCNKPFzrekovRuxRUNJcAomd+hMiQrYQXyEEFmnSC/P7CLfoYzzu0kvgsx8Q5GClZ8szRn
- 7W/CPq8XHmWUzfWpQ782xTRcPqacS7mpKvbmJcMp/wlQcyYqi2/X5GhZ0z7GrKws7hFaW7WiGCY
- u2wKsq26JotI2tGqhvNbpofDJuf+czfhBB2aS21UzOcRjFqIs2Ws4T6E6vLeW/P7PU8jKKRrARh
- R1h9XTZiOLt0lp3yOjk4HrFcFuHTk=
-X-Google-Smtp-Source: AGHT+IFBPmoLYadSLlgUwTUBgvI/LNUXNDFZy6frbQ03ZessPie4IT5h/pfwlVJys+MolOQK0aUa6w==
-X-Received: by 2002:a05:6000:22c2:b0:42b:3c25:cd06 with SMTP id
- ffacd0b85a97d-42f731729b0mr10031252f8f.22.1764933035867; 
- Fri, 05 Dec 2025 03:10:35 -0800 (PST)
-Received: from localhost ([196.207.164.177])
- by smtp.gmail.com with UTF8SMTPSA id
- ffacd0b85a97d-42f7d2231dfsm8337840f8f.26.2025.12.05.03.10.35
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 05 Dec 2025 03:10:35 -0800 (PST)
-Date: Fri, 5 Dec 2025 14:10:31 +0300
-From: Dan Carpenter <dan.carpenter@linaro.org>
-To: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
-Cc: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Michal Wajdeczko <michal.wajdeczko@intel.com>,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, kernel-janitors@vger.kernel.org
-Subject: [PATCH next] drm/xe/vf: fix return type in vf_migration_init_late()
-Message-ID: <aTK9pwJ_roc8vpDi@stanley.mountain>
+	by gabe.freedesktop.org (Postfix) with ESMTP id E5D7410E1F8;
+	Fri,  5 Dec 2025 11:27:33 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3687810E1F8;
+ Fri,  5 Dec 2025 11:27:33 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0576770168407609820=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-X-Mailer: git-send-email haha only kidding
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EFull=3A_failure_for_Introduce_DRM=5FRAS_using_?=
+ =?utf-8?q?generic_netlink_for_RAS_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Rodrigo Vivi" <rodrigo.vivi@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 05 Dec 2025 11:27:33 -0000
+Message-ID: <176493405321.61003.11169524355391661753@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20251205083934.3602030-6-riana.tauro@intel.com>
+In-Reply-To: <20251205083934.3602030-6-riana.tauro@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -88,34 +36,61 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The vf_migration_init_late() function is supposed to return zero on
-success and negative error codes on failure.  The error code
-eventually gets propagated back to the probe() function and returned.
-The problem is it's declared as type bool so it returns true on
-error.  Change it to type int instead.
+--===============0576770168407609820==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Fixes: 2e2dab20dd66 ("drm/xe/vf: Enable VF migration only on supported GuC versions")
-Signed-off-by: Dan Carpenter <dan.carpenter@linaro.org>
----
- drivers/gpu/drm/xe/xe_sriov_vf.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/xe/xe_sriov_vf.c b/drivers/gpu/drm/xe/xe_sriov_vf.c
-index 86423a799d57..1b75405b8d02 100644
---- a/drivers/gpu/drm/xe/xe_sriov_vf.c
-+++ b/drivers/gpu/drm/xe/xe_sriov_vf.c
-@@ -226,7 +226,7 @@ void xe_sriov_vf_init_early(struct xe_device *xe)
- 	vf_migration_init_early(xe);
- }
- 
--static bool vf_migration_init_late(struct xe_device *xe)
-+static int vf_migration_init_late(struct xe_device *xe)
- {
- 	struct xe_gt *gt = xe_root_mmio_gt(xe);
- 	struct xe_uc_fw_version guc_version;
--- 
-2.51.0
+Series: Introduce DRM_RAS using generic netlink for RAS (rev3)
+URL   : https://patchwork.freedesktop.org/series/155188/
+State : failure
 
+== Summary ==
+
+ERROR: The runconfig 'xe-4197-7954eb633a41ad5f2012477cdc245ec0cf07e7a2_FULL' does not exist in the database
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155188v3/index.html
+
+--===============0576770168407609820==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Introduce DRM_RAS using generic netlink for RAS (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/155188/">https://patchwork.freedesktop.org/series/155188/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155188v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155188v3/index.html</a></td></tr>
+
+</table>
+
+
+    <p>ERROR: The runconfig 'xe-4197-7954eb633a41ad5f2012477cdc245ec0cf07e7a2_FULL' does not exist in the database</p>
+
+</body>
+</html>
+
+--===============0576770168407609820==--
