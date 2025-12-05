@@ -4,44 +4,28 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C19BED32D9C
-	for <intel-xe@archiver.kernel.org>; Fri,  5 Dec 2025 15:09:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AABE9D33981
+	for <intel-xe@archiver.kernel.org>; Fri,  5 Dec 2025 15:30:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 834E610EB4D;
-	Fri,  5 Dec 2025 15:09:15 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="GDDLANxJ";
-	dkim-atps=neutral
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7E8CD10EB4B;
- Fri,  5 Dec 2025 15:09:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:
- Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:
- Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
- In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=woKichvvwZb8tJmvhR8ixLwMeCdQ0P4FXTNQnnEDL4I=; b=GDDLANxJ10K3FkPzFiERzQYtIy
- r98b8QpsHOsvtXxAHAN1DabbVL3Z0XVtr+cSLy5UAEaEttb7Eko0zpjHn0FLR1C8W4wXkzeS4Jnc3
- pZl0PY5tzP3mZXGmitpGXuAESjwDbVtPEe09QMY/DC7otkdg3Tb3CQr3iw9viCxbgQX+/4h6LiMIH
- lmFTXildd1+/r4fSyDRcUng5d6iPYsRvAZcKzW6s2dklqeHgxw0LtaUnhttsfD5CicaAzNA0i8IyF
- NWEZmtbmsY0Zz0YBCJ1HgzWJaq9RnpkGkbVqEH0rMtk9Gr+b8QOB6aj1eDM2hjlvTvvGEmm3NYoPe
- S2mhViWQ==;
-Received: from [90.240.106.137] (helo=localhost)
- by fanzine2.igalia.com with utf8esmtpsa 
- (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1vRXQm-0097XR-QC; Fri, 05 Dec 2025 16:09:12 +0100
-From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-To: dri-devel@lists.freedesktop.org
-Cc: kernel-dev@igalia.com, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
- intel-xe@lists.freedesktop.org
-Subject: [PATCH] drm/syncobj: Convert syncobj idr to xarray
-Date: Fri,  5 Dec 2025 15:09:10 +0000
-Message-ID: <20251205150910.92913-1-tvrtko.ursulin@igalia.com>
-X-Mailer: git-send-email 2.51.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6E04110EB5B;
+	Fri,  5 Dec 2025 15:30:26 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6FAE810EB62;
+ Fri,  5 Dec 2025 15:30:25 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6614855249786700853=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/xe=5Fsriov=5Fvfio=3A?=
+ =?utf-8?q?_Fix_return_value_in_xe=5Fsriov=5Fvfio=5Fmigration=5Fsupported=28?=
+ =?utf-8?q?=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Dan Carpenter" <dan.carpenter@linaro.org>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 05 Dec 2025 15:30:25 -0000
+Message-ID: <176494862544.62145.18030095129555061274@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <aTLEZ4g-FD-iMQ2V@stanley.mountain>
+In-Reply-To: <aTLEZ4g-FD-iMQ2V@stanley.mountain>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,167 +37,125 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-IDR is deprecated and syncobj looks pretty trivial to convert so lets
-just do it.
+--===============6614855249786700853==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Cc: intel-xe@lists.freedesktop.org
----
- drivers/gpu/drm/drm_syncobj.c | 65 +++++++++++------------------------
- include/drm/drm_file.h        |  7 ++--
- 2 files changed, 23 insertions(+), 49 deletions(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/drm_syncobj.c b/drivers/gpu/drm/drm_syncobj.c
-index 0de70c8fbb99..06bb5c6c3f60 100644
---- a/drivers/gpu/drm/drm_syncobj.c
-+++ b/drivers/gpu/drm/drm_syncobj.c
-@@ -258,14 +258,14 @@ struct drm_syncobj *drm_syncobj_find(struct drm_file *file_private,
- {
- 	struct drm_syncobj *syncobj;
- 
--	spin_lock(&file_private->syncobj_table_lock);
-+	xa_lock(&file_private->syncobj_xa);
- 
- 	/* Check if we currently have a reference on the object */
--	syncobj = idr_find(&file_private->syncobj_idr, handle);
-+	syncobj = xa_load(&file_private->syncobj_xa, handle);
- 	if (syncobj)
- 		drm_syncobj_get(syncobj);
- 
--	spin_unlock(&file_private->syncobj_table_lock);
-+	xa_unlock(&file_private->syncobj_xa);
- 
- 	return syncobj;
- }
-@@ -606,23 +606,15 @@ int drm_syncobj_get_handle(struct drm_file *file_private,
- {
- 	int ret;
- 
--	/* take a reference to put in the idr */
-+	/* take a reference to put in the xarray */
- 	drm_syncobj_get(syncobj);
- 
--	idr_preload(GFP_KERNEL);
--	spin_lock(&file_private->syncobj_table_lock);
--	ret = idr_alloc(&file_private->syncobj_idr, syncobj, 1, 0, GFP_NOWAIT);
--	spin_unlock(&file_private->syncobj_table_lock);
--
--	idr_preload_end();
--
--	if (ret < 0) {
-+	ret = xa_alloc(&file_private->syncobj_xa, handle, syncobj, xa_limit_32b,
-+		       GFP_NOWAIT);
-+	if (ret)
- 		drm_syncobj_put(syncobj);
--		return ret;
--	}
- 
--	*handle = ret;
--	return 0;
-+	return ret;
- }
- EXPORT_SYMBOL(drm_syncobj_get_handle);
- 
-@@ -646,10 +638,7 @@ static int drm_syncobj_destroy(struct drm_file *file_private,
- {
- 	struct drm_syncobj *syncobj;
- 
--	spin_lock(&file_private->syncobj_table_lock);
--	syncobj = idr_remove(&file_private->syncobj_idr, handle);
--	spin_unlock(&file_private->syncobj_table_lock);
--
-+	syncobj = xa_erase(&file_private->syncobj_xa, handle);
- 	if (!syncobj)
- 		return -EINVAL;
- 
-@@ -730,20 +719,13 @@ static int drm_syncobj_fd_to_handle(struct drm_file *file_private,
- 	if (fd_file(f)->f_op != &drm_syncobj_file_fops)
- 		return -EINVAL;
- 
--	/* take a reference to put in the idr */
-+	/* take a reference to put in the xarray */
- 	syncobj = fd_file(f)->private_data;
- 	drm_syncobj_get(syncobj);
- 
--	idr_preload(GFP_KERNEL);
--	spin_lock(&file_private->syncobj_table_lock);
--	ret = idr_alloc(&file_private->syncobj_idr, syncobj, 1, 0, GFP_NOWAIT);
--	spin_unlock(&file_private->syncobj_table_lock);
--	idr_preload_end();
--
--	if (ret > 0) {
--		*handle = ret;
--		ret = 0;
--	} else
-+	ret = xa_alloc(&file_private->syncobj_xa, handle, syncobj, xa_limit_32b,
-+		       GFP_NOWAIT);
-+	if (ret)
- 		drm_syncobj_put(syncobj);
- 
- 	return ret;
-@@ -822,17 +804,7 @@ static int drm_syncobj_export_sync_file(struct drm_file *file_private,
- void
- drm_syncobj_open(struct drm_file *file_private)
- {
--	idr_init_base(&file_private->syncobj_idr, 1);
--	spin_lock_init(&file_private->syncobj_table_lock);
--}
--
--static int
--drm_syncobj_release_handle(int id, void *ptr, void *data)
--{
--	struct drm_syncobj *syncobj = ptr;
--
--	drm_syncobj_put(syncobj);
--	return 0;
-+	xa_init_flags(&file_private->syncobj_xa, XA_FLAGS_ALLOC1);
- }
- 
- /**
-@@ -846,9 +818,12 @@ drm_syncobj_release_handle(int id, void *ptr, void *data)
- void
- drm_syncobj_release(struct drm_file *file_private)
- {
--	idr_for_each(&file_private->syncobj_idr,
--		     &drm_syncobj_release_handle, file_private);
--	idr_destroy(&file_private->syncobj_idr);
-+	struct drm_syncobj *syncobj;
-+	unsigned long handle;
-+
-+	xa_for_each(&file_private->syncobj_xa, handle, syncobj)
-+		drm_syncobj_put(syncobj);
-+	xa_destroy(&file_private->syncobj_xa);
- }
- 
- int
-diff --git a/include/drm/drm_file.h b/include/drm/drm_file.h
-index 04cad0c61513..99c71ec3ad44 100644
---- a/include/drm/drm_file.h
-+++ b/include/drm/drm_file.h
-@@ -34,6 +34,7 @@
- #include <linux/types.h>
- #include <linux/completion.h>
- #include <linux/idr.h>
-+#include <linux/xarray.h>
- 
- #include <uapi/drm/drm.h>
- 
-@@ -320,10 +321,8 @@ struct drm_file {
- 	/** @table_lock: Protects @object_idr. */
- 	spinlock_t table_lock;
- 
--	/** @syncobj_idr: Mapping of sync object handles to object pointers. */
--	struct idr syncobj_idr;
--	/** @syncobj_table_lock: Protects @syncobj_idr. */
--	spinlock_t syncobj_table_lock;
-+	/** @syncobj_xa: Mapping of sync object handles to object pointers. */
-+	struct xarray syncobj_xa;
- 
- 	/** @filp: Pointer to the core file structure. */
- 	struct file *filp;
--- 
-2.51.1
+Series: drm/xe/xe_sriov_vfio: Fix return value in xe_sriov_vfio_migration_supported()
+URL   : https://patchwork.freedesktop.org/series/158564/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from xe-4200-ed8ce44996043699e633e2f9868e185193d04182_BAT -> xe-pw-158564v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (12 -> 12)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-158564v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_waitfence@abstime:
+    - bat-dg2-oem2:       [PASS][1] -> [TIMEOUT][2] ([Intel XE#6506])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4200-ed8ce44996043699e633e2f9868e185193d04182/bat-dg2-oem2/igt@xe_waitfence@abstime.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158564v1/bat-dg2-oem2/igt@xe_waitfence@abstime.html
+
+  
+  [Intel XE#6506]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506
+
+
+Build changes
+-------------
+
+  * Linux: xe-4200-ed8ce44996043699e633e2f9868e185193d04182 -> xe-pw-158564v1
+
+  IGT_8655: 8655
+  xe-4200-ed8ce44996043699e633e2f9868e185193d04182: ed8ce44996043699e633e2f9868e185193d04182
+  xe-pw-158564v1: 158564v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158564v1/index.html
+
+--===============6614855249786700853==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/xe_sriov_vfio: Fix return value in xe_sriov_vfio_migration_supported()</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/158564/">https://patchwork.freedesktop.org/series/158564/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158564v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158564v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4200-ed8ce44996043699e633e2f9868e185193d04182_BAT -&gt; xe-pw-158564v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (12 -&gt; 12)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-158564v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@xe_waitfence@abstime:<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4200-ed8ce44996043699e633e2f9868e185193d04182/bat-dg2-oem2/igt@xe_waitfence@abstime.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158564v1/bat-dg2-oem2/igt@xe_waitfence@abstime.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506">Intel XE#6506</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4200-ed8ce44996043699e633e2f9868e185193d04182 -&gt; xe-pw-158564v1</li>
+</ul>
+<p>IGT_8655: 8655<br />
+  xe-4200-ed8ce44996043699e633e2f9868e185193d04182: ed8ce44996043699e633e2f9868e185193d04182<br />
+  xe-pw-158564v1: 158564v1</p>
+
+</body>
+</html>
+
+--===============6614855249786700853==--
