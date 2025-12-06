@@ -4,77 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A7496D3B7D2
-	for <intel-xe@archiver.kernel.org>; Sat,  6 Dec 2025 13:41:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6E6B6D3B7DB
+	for <intel-xe@archiver.kernel.org>; Sat,  6 Dec 2025 17:58:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 685D210E2E9;
-	Sat,  6 Dec 2025 13:41:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0F28310E0BD;
+	Sat,  6 Dec 2025 17:58:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Dvi5/QyT";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bf+5Zv0Q";
 	dkim-atps=neutral
-Received: from mail-pj1-f41.google.com (mail-pj1-f41.google.com
- [209.85.216.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6159910E2EA
- for <intel-xe@lists.freedesktop.org>; Sat,  6 Dec 2025 13:41:36 +0000 (UTC)
-Received: by mail-pj1-f41.google.com with SMTP id
- 98e67ed59e1d1-34381ec9197so2675294a91.1
- for <intel-xe@lists.freedesktop.org>; Sat, 06 Dec 2025 05:41:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1765028496; x=1765633296; darn=lists.freedesktop.org;
- h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
- :from:from:to:cc:subject:date:message-id:reply-to;
- bh=TBWAxs4hzXpjItbB1la4XtkYffK5EZFUezT5SwEA1u4=;
- b=Dvi5/QyThM9ciz980vR67ZsxFA57wdSiw2sdYahMB3W0bNLCrNHPZhTjhjkUWoxA1g
- DxunPxCMrUdRzDZGYtOdV4MSvlXZSRo8jPJnPJwTadeAhYEXsIT244xRzrWw87NEiAol
- 0stBrDnq6/S5w7rXmbdd8xAZZwm1UZURS9WYan+DlZIoktKYpn0UxmHkdHsJeV8x7Al1
- 1Gvvsd4d6k2XDLIrZeG1ochKToDvdqpSi7C8L5UxU9Ig26yP5gWGjvcd6pjZHE+auRRG
- yJUAgnZgipui7EyxSS9Cz5CGSzjbRgxUr93BuBSX4sPgFnLjSJNzwSVAfQZ7vDdL8JYW
- v5Dg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1765028496; x=1765633296;
- h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
- :from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=TBWAxs4hzXpjItbB1la4XtkYffK5EZFUezT5SwEA1u4=;
- b=P5aHimA6zbZSAV9gNaUQu/0MzaZ95GmKXOrA4LTg7ayGXM0BobQkH95KIQMRhVd2S3
- M3BuOLh7g+tgVaqv1xF8y8qtsKu5g6kyOLKsAfSJSHrW9/R9EkYPsmC+jyhDs/AZCzRw
- lVX/fB3HnlVoTaI37/yZWOsu9Lt9TNruao/ZTOsKRZV31lrNyUykb9RHfqy36AZXWGLj
- XNXRunPbFCFfwDL/Am75D8+jGFqOAeblVy7UE+9fXJd+gvByJlto6ohQlmDhIxn6gOVU
- tN3P9IXJ3kwkEwJvlNmEW639uNGsBis+Dc8VVAzwgN7Sd1Qqsgc8KUFpVnD4eyqLgWvC
- W1wQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVH9/qM7VCW49U4IevxV/+5e4OP5Lb0MAGyvk7Uo3r0Q/OsDQPfNojWhwYPeQSbuK2FJRLb5tR+uw==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwltQjotPPtahXO4tLu94OvR7mrUWCuY+3Mfce2fqBR7OP+kCmP
- mox6rc+SV3eGiKMdNxSEgwuEElbTSB5TPystEAT6GZ68F4jK03S/If2Z
-X-Gm-Gg: ASbGncsWLI1CQxLEOlWd/hRwKyG1pPvCXjvrMVAyfd08T7vxnbdXYGAkmuG714SdQFE
- 7ONHQzoYzmFvjlqn1MUFOSle9veVht+2cK54Sdi9QMH9yZpVtfgFdveshU8cJLJ5rhPC+VkLN1V
- YTu587pTzeykegyhsOVjwRl+5C8/ZjZVDTbcoNU3wOSaHl3aq0zf6WWyicGppkDLBYg0shP5Rh7
- YvgARcUZpfLOoz8A/NBZmUvgKp9E28fLXs7gXOPvY5qzMoRxSB7+CAOAaZUjy0+wA+qzjgLlzIf
- ke8enmKOBN02wPhyLB841oyhPAc2Ol4swArGaw6YzCosYwTZZkgSIAdGbu/L7RSMras/QJcOH6o
- oCd2n38noF/nQLKtdZ+LKzomhT0/ytJiVvZOFqzzKc9WBuXBVA4Aksa08TKazV7DdTJJ9hK/hPS
- 9OEpARViFMAAJinpBf
-X-Google-Smtp-Source: AGHT+IH4n/ip3SEhWyBW2BYwU6MgshsOQpBGQGdoULfIKl0gC6Q6dJhtMtW9mPo1IySW/qns8ah87g==
-X-Received: by 2002:a17:90b:1c86:b0:33b:b020:5968 with SMTP id
- 98e67ed59e1d1-349a25fb832mr2039751a91.21.1765028495754; 
- Sat, 06 Dec 2025 05:41:35 -0800 (PST)
-Received: from localhost ([2400:2650:24e0:bf00:6647:e402:ac7:7283])
- by smtp.gmail.com with ESMTPSA id
- 98e67ed59e1d1-3494ea63e87sm7331327a91.12.2025.12.06.05.41.34
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 06 Dec 2025 05:41:35 -0800 (PST)
-From: Zhenyu Wang <zhenyuw.linux@gmail.com>
-To: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-Subject: Re: [PATCH 2/2] drm/i915: Add intel_gvt_driver_remove() onto error
- cleanup path
-In-Reply-To: <20251201161013.735943-3-juhapekka.heikkila@gmail.com>
-References: <20251201161013.735943-1-juhapekka.heikkila@gmail.com>
- <20251201161013.735943-3-juhapekka.heikkila@gmail.com>
-Date: Sat, 06 Dec 2025 22:41:33 +0900
-Message-ID: <87y0nfiv76.fsf@dell-wzy>
-MIME-Version: 1.0
-Content-Type: text/plain
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D7F9410E0BD
+ for <intel-xe@lists.freedesktop.org>; Sat,  6 Dec 2025 17:58:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1765043936; x=1796579936;
+ h=date:from:to:cc:subject:message-id;
+ bh=dDWFvXoZIsepW5j8LpoTXfC6TlfhZ4djiNrlcD0brco=;
+ b=bf+5Zv0Q24ZdzaL1Lgg2hlm2U9Tvvm2YjvffEghRgTgZDk/hGd9JfOfq
+ pt1T3OJYSAupEr2PMAMdOmSC8zu8s6pH+EgerOpPYDsAm+3wGa+35l59x
+ iJJzvCmdSKW4APgXB/hgBwP/b63Vbldyv8wJHnvgQ0hPjr70faKhMSKv7
+ 79zfB/WjKgueUeTqi60kea8G6UJJFnmSRjWSoo6k+Zjiw6NcWxwPoX4ft
+ LNOQAJASGjj8HG7DxTW82q5CzwU6W8n8i4l42fZMYSu8z7EQ8/E56nAZK
+ bSL3kLIPGjmGHXjobGEryTX7/Qi1Uyd6lYuXxivn8NMEaKM/ZqE1zkGN2 Q==;
+X-CSE-ConnectionGUID: jIjPA8N2RPCWEIPyn+xNOg==
+X-CSE-MsgGUID: 6lS24YIiRPulpgcbxFY2Pw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11634"; a="66937224"
+X-IronPort-AV: E=Sophos;i="6.20,255,1758610800"; d="scan'208";a="66937224"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Dec 2025 09:58:56 -0800
+X-CSE-ConnectionGUID: dfTlMAz+QTqQJg2eD8UuYg==
+X-CSE-MsgGUID: VRr/ujWAQF2PNySnC/E+lg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.20,255,1758610800"; d="scan'208";a="195636238"
+Received: from lkp-server01.sh.intel.com (HELO 4664bbef4914) ([10.239.97.150])
+ by orviesa008.jf.intel.com with ESMTP; 06 Dec 2025 09:58:54 -0800
+Received: from kbuild by 4664bbef4914 with local (Exim 4.98.2)
+ (envelope-from <lkp@intel.com>) id 1vRwYV-00000000IeH-3Qxp;
+ Sat, 06 Dec 2025 17:58:51 +0000
+Date: Sun, 07 Dec 2025 01:58:17 +0800
+From: kernel test robot <lkp@intel.com>
+To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Subject: [drm-xe:drm-xe-next] BUILD SUCCESS
+ da33e457f6803dc48b2b74f8ade75c14624d85ca
+Message-ID: <202512070106.7PaMbhcS-lkp@intel.com>
+User-Agent: s-nail v14.9.25
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -89,33 +64,123 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com> writes:
+tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
+branch HEAD: da33e457f6803dc48b2b74f8ade75c14624d85ca  drm/xe/guc_ct: Assert on credits mismatch during runtime suspend
 
-> Add intel_gvt_driver_remove() onto error cleanup path.
->
-> Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-> ---
->  drivers/gpu/drm/i915/i915_driver.c | 1 +
->  1 file changed, 1 insertion(+)
->
-> diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-> index 0128faf2e483..f8c01d52aba8 100644
-> --- a/drivers/gpu/drm/i915/i915_driver.c
-> +++ b/drivers/gpu/drm/i915/i915_driver.c
-> @@ -908,6 +908,7 @@ int i915_driver_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
->  	i915_gem_drain_freed_objects(i915);
->  	i915_ggtt_driver_late_release(i915);
->  out_cleanup_mmio:
-> +	intel_gvt_driver_remove(i915);
->  	i915_driver_mmio_release(i915);
->  out_runtime_pm_put:
->  	enable_rpm_wakeref_asserts(&i915->runtime_pm);
-> -- 
+elapsed time: 1480m
 
-It might be the simplest way to fix, or even better to clean up it by
-moving intel_gvt_driver_remove() into i915_driver_hw_remove(), so
-they're more paired with i915_driver_hw_probe() and move this fix into
-hw_probe() as well, anyway...
+configs tested: 104
+configs skipped: 1
 
-Reviewed-by: Zhenyu Wang <zhenyuw.linux@gmail.com>
+The following configs have been built successfully.
+More configs may be tested in the coming days.
 
+tested configs:
+alpha                               defconfig    gcc-15.1.0
+arc                                 defconfig    gcc-15.1.0
+arc                   randconfig-001-20251206    gcc-8.5.0
+arc                   randconfig-002-20251206    gcc-14.3.0
+arm                                 defconfig    clang-22
+arm                           h3600_defconfig    gcc-15.1.0
+arm                            qcom_defconfig    clang-22
+arm                   randconfig-001-20251206    clang-22
+arm                   randconfig-002-20251206    clang-22
+arm                   randconfig-003-20251206    clang-16
+arm                   randconfig-004-20251206    clang-20
+arm64                               defconfig    gcc-15.1.0
+arm64                 randconfig-001-20251206    gcc-8.5.0
+arm64                 randconfig-002-20251206    clang-22
+arm64                 randconfig-003-20251206    clang-22
+arm64                 randconfig-004-20251206    gcc-8.5.0
+csky                                defconfig    gcc-15.1.0
+csky                  randconfig-001-20251206    gcc-15.1.0
+csky                  randconfig-002-20251206    gcc-15.1.0
+hexagon                             defconfig    clang-22
+hexagon               randconfig-001-20251206    clang-16
+hexagon               randconfig-002-20251206    clang-22
+i386                             allmodconfig    gcc-14
+i386                             allyesconfig    gcc-14
+i386        buildonly-randconfig-001-20251206    gcc-14
+i386        buildonly-randconfig-002-20251206    gcc-14
+i386        buildonly-randconfig-003-20251206    clang-20
+i386        buildonly-randconfig-004-20251206    clang-20
+i386        buildonly-randconfig-005-20251206    clang-20
+i386        buildonly-randconfig-006-20251206    clang-20
+i386                                defconfig    clang-20
+i386                  randconfig-001-20251206    clang-20
+i386                  randconfig-003-20251206    gcc-14
+i386                  randconfig-004-20251206    gcc-14
+i386                  randconfig-005-20251206    clang-20
+i386                  randconfig-007-20251206    gcc-14
+i386                  randconfig-012-20251206    gcc-14
+i386                  randconfig-013-20251206    gcc-14
+i386                  randconfig-015-20251206    clang-20
+i386                  randconfig-016-20251206    gcc-14
+loongarch                           defconfig    clang-19
+loongarch             randconfig-001-20251206    gcc-15.1.0
+loongarch             randconfig-002-20251206    gcc-12.5.0
+m68k                                defconfig    gcc-15.1.0
+m68k                        stmark2_defconfig    gcc-15.1.0
+microblaze                          defconfig    gcc-15.1.0
+mips                   sb1250_swarm_defconfig    gcc-15.1.0
+nios2                               defconfig    gcc-11.5.0
+nios2                 randconfig-001-20251206    gcc-8.5.0
+nios2                 randconfig-002-20251206    gcc-8.5.0
+openrisc                            defconfig    gcc-15.1.0
+parisc                           alldefconfig    gcc-15.1.0
+parisc                              defconfig    gcc-15.1.0
+parisc                randconfig-001-20251206    gcc-11.5.0
+parisc                randconfig-002-20251206    gcc-15.1.0
+parisc64                            defconfig    gcc-15.1.0
+powerpc                      pasemi_defconfig    clang-22
+powerpc               randconfig-001-20251206    gcc-11.5.0
+powerpc               randconfig-002-20251206    clang-22
+powerpc64             randconfig-001-20251206    gcc-15.1.0
+powerpc64             randconfig-002-20251206    clang-22
+riscv                               defconfig    clang-22
+riscv                 randconfig-001-20251206    clang-22
+riscv                 randconfig-002-20251206    clang-19
+s390                  randconfig-001-20251206    clang-22
+s390                  randconfig-002-20251206    gcc-8.5.0
+sh                                  defconfig    gcc-15.1.0
+sh                    randconfig-001-20251206    gcc-15.1.0
+sh                    randconfig-002-20251206    gcc-15.1.0
+sparc                               defconfig    gcc-15.1.0
+sparc                 randconfig-001-20251206    gcc-12.5.0
+sparc                 randconfig-002-20251206    gcc-8.5.0
+sparc64                             defconfig    clang-20
+sparc64               randconfig-001-20251206    clang-22
+sparc64               randconfig-002-20251206    gcc-8.5.0
+um                                  defconfig    clang-22
+um                             i386_defconfig    gcc-14
+um                    randconfig-001-20251206    gcc-14
+um                    randconfig-002-20251206    gcc-14
+um                           x86_64_defconfig    clang-22
+x86_64                           allmodconfig    clang-20
+x86_64                           allyesconfig    clang-20
+x86_64      buildonly-randconfig-001-20251206    clang-20
+x86_64      buildonly-randconfig-002-20251206    gcc-14
+x86_64      buildonly-randconfig-003-20251206    clang-20
+x86_64      buildonly-randconfig-004-20251206    clang-20
+x86_64      buildonly-randconfig-005-20251206    gcc-13
+x86_64      buildonly-randconfig-006-20251206    clang-20
+x86_64                              defconfig    gcc-14
+x86_64                randconfig-001-20251206    clang-20
+x86_64                randconfig-002-20251206    gcc-14
+x86_64                randconfig-003-20251206    gcc-14
+x86_64                randconfig-004-20251206    gcc-14
+x86_64                randconfig-005-20251206    gcc-14
+x86_64                randconfig-006-20251206    gcc-14
+x86_64                randconfig-071-20251206    clang-20
+x86_64                randconfig-072-20251206    clang-20
+x86_64                randconfig-073-20251206    gcc-14
+x86_64                randconfig-074-20251206    gcc-14
+x86_64                randconfig-075-20251206    gcc-14
+x86_64                randconfig-076-20251206    gcc-14
+x86_64                          rhel-9.4-rust    clang-20
+xtensa                randconfig-001-20251206    gcc-8.5.0
+xtensa                randconfig-002-20251206    gcc-8.5.0
+
+--
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
