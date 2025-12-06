@@ -4,62 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D926AD3ABD6
-	for <intel-xe@archiver.kernel.org>; Sat,  6 Dec 2025 01:54:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B5FE6D3ABD6
+	for <intel-xe@archiver.kernel.org>; Sat,  6 Dec 2025 01:55:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9F8B910E0A8;
-	Sat,  6 Dec 2025 01:54:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 74AE410E0A8;
+	Sat,  6 Dec 2025 01:55:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IliRAIlv";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="H5ub55tM";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A379710E0A8
- for <intel-xe@lists.freedesktop.org>; Sat,  6 Dec 2025 01:53:59 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 21CB710E0A8
+ for <intel-xe@lists.freedesktop.org>; Sat,  6 Dec 2025 01:55:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1764986039; x=1796522039;
+ t=1764986124; x=1796522124;
  h=message-id:date:subject:to:references:from:in-reply-to:
  content-transfer-encoding:mime-version;
- bh=KXTjC5SF0OeUA9mYkQcHEwLAfEGBdYpfMmydpQ0qh4k=;
- b=IliRAIlvIgQfLjgfHx2p0fWfd8xm9b0GT0ezn9IBe3mWF+bneskao8u+
- jsYudgx325WeKXKaq7Flqq5k+5dBcKgBmp9ivWIKgqxD2p+Lb/FyDo0tD
- h5Sd7Jw2mecIrIkvyry9AHzKI2Noib4Wurrm6PWpKWLroZZ2jiONESKkj
- I1tzoop4WaUnka4NbzIQKiaEUGoy9fezJVfghLs77oKzXP4Ajs1c5PmOK
- GvmIBVAy+ffAnNE8w2feNg0hRqs19syPY4n/HJ7MiYWLdAXJkkBU7XpQJ
- c6gIkFYebcuqlxsft9OCTSJY/LrcQnxtBBA9+3ty1GK2bQM5kZj2zpF5s w==;
-X-CSE-ConnectionGUID: QlPzO08kTL+BLk0o5K5qzg==
-X-CSE-MsgGUID: 97w/jFIiR7yEXfOWbKltdQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11633"; a="84429138"
-X-IronPort-AV: E=Sophos;i="6.20,253,1758610800"; d="scan'208";a="84429138"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Dec 2025 17:53:59 -0800
-X-CSE-ConnectionGUID: rlhUjBvFScSnOVR9DaYKzg==
-X-CSE-MsgGUID: KiBt1fqlRdqWrXwu0ogkPw==
+ bh=ndDAXgJB/0F9A+s8d7fr2tuCY1f/naoie6PtRXG1nXo=;
+ b=H5ub55tMcaG2BdgttLj0BNwezGm+8WOdzy9WwZDNlmnCJQs6AXoc1daH
+ kIHUMa5pTT0asW3IpCOjYdBd3IE1Oy+3lhTPNYg892iBAbAVHHBZ3Ggzn
+ KEU4F1BpS+Nk/EnNYq/ch8Nrfj7q/c1gpD3IM6WxxQuo54jR1wqid4tWw
+ troTLDl3uwwlOAwKPV201khdHqCIHgEfcHtzY4G9uP0Mcydln5/7x4tIQ
+ uqobA0u7au4IpBc78cxoZ/KPC/2fleSup0AA/JWnQkzE8NlxSGaj27O9p
+ qQzynKYsDjJOde2VdwtJMATvCRHPZPjEFkHVIIJbhTuE2OP4XhlJHpK5G A==;
+X-CSE-ConnectionGUID: +9jS6p9gQsG0lXZqSS6RwA==
+X-CSE-MsgGUID: m2B7NCIgQXS5by1THK37gw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11633"; a="69617021"
+X-IronPort-AV: E=Sophos;i="6.20,253,1758610800"; d="scan'208";a="69617021"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Dec 2025 17:55:24 -0800
+X-CSE-ConnectionGUID: 9CFsYTV6SrCqbqrkP989lQ==
+X-CSE-MsgGUID: gOEdwsfnShCsbhbmpSmC1Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,253,1758610800"; d="scan'208";a="195068519"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Dec 2025 17:53:58 -0800
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
+ by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Dec 2025 17:55:23 -0800
+Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Fri, 5 Dec 2025 17:53:58 -0800
-Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ 15.2.2562.29; Fri, 5 Dec 2025 17:55:23 -0800
+Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
+ FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29 via Frontend Transport; Fri, 5 Dec 2025 17:53:58 -0800
-Received: from BYAPR05CU005.outbound.protection.outlook.com (52.101.85.19) by
- edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
+ 15.2.2562.29 via Frontend Transport; Fri, 5 Dec 2025 17:55:23 -0800
+Received: from SJ2PR03CU001.outbound.protection.outlook.com (52.101.43.52) by
+ edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Fri, 5 Dec 2025 17:53:58 -0800
+ 15.2.2562.29; Fri, 5 Dec 2025 17:55:23 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=KaMj8lrA+93Auk7ctp39ixZXindi4syEblv+WMP74YKmBuLqd8GnAQGIsOfNGjkfeYannJ9S2F+OXWJuPxEQYWwkqMtqaoNWymAa7gyVFGmD5VIn3jsnxXP3XE/yQark8SAdw3PV4ZwPkk642Qn+jujbuzzr1+lq0pcte3uULnvppavD2nATCniCf3fJ16hzZ5MOkp0/JOYgvPGqbpoLzsTjslNMzcpOJGSew7akOAC/ucA+HFIryxHHTiytXLdxWIUO4wDAtvcwWcLwDzrSq+ThJBYI+nlur5hI7ZzBc0pRxN0KcgtpSoGaheCHO/1ONruwzxwkaHeYGJ0/Hn+VEQ==
+ b=hANNdNiy+63vKoHjpuOSXUDMYQQ2hG1DrvipykkoZ2y7t7W+aTZJAyFY7zAq3dJt8eAyOkLh5Az44MsehgPCUJCdd/nb0dK88iZPA09GveiRcSQqtTh5wOlMP5a1RLcehiwEdRIZSZs4BhfNy43r/MnrpwSvbsDMHQJ6df9+CjwmQK2DzfQOJEFcJJGq49OYWjLBdqW4d8FxcV4AMe/nlmXWAmKNzWB7qDUeVg1fhPxt6oG3hpNABmrqjZMuNhIdI1Bw2FGJoKxIEPV54G9ZpW03vNtAblVdPR5LTjL4vJ5qsw1OY1yve9I2H2jZISQZgdFl/JTNt7C8Ih8aB9zSeA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=1ZUHl/dUYEbf2TVGsdNxjU8v+Ro9sBoBUzJzwyeap2U=;
- b=kp725WQGwhzDuxSivv64jPFKrF2M6UzSeeaNJX292eYaFgR/AQPagLgW/vy/xcFqqznxTGSDI4u+toLgtr6gkFxa+u+gHcxZGjz1wJ1PsKzSVIA58SpD6/uju21PpFJpe2OIsGPdV2e8XV+3lm3zQ48YlRIaic19PJD6R9NXMX7wlKa6aADl+quXpw6mMHA0ABGpEMkpGPfmQJ3TIacZwv8eBEJL+ORn7PUBggrHaJ3cXwm+9vMeYVa9Gv9xU3Apzh0sWeY4QmHPc2phPx4uTSIs678hnQLOONjbdjVawYekcxEADNSOts4jUD+RtiJ+EplFy8zUs+Wu1Rmuj9AiDg==
+ bh=LaZad66HsgLLa5ki2yO1xILQohXHjC130r5ouQvP3HI=;
+ b=kJ0E6V1pLqycJLcbIVtOCh5sbiz2O7fUotRGVE2vmtgLGi+oTwnnYK3E9fS0Y4tvUUobxI57q1dB4S6sTOCURHBUOd9NVNfc3xbo3T1eh4nycVdb49NK6MULSGXNxsyDFvSXJELKmYM/4ztKqv7YiSL/u4qddoEQ/QJ/jAe2/ikzf/YMfc1MWcJU8dnwk4NjJejWNijm/z0Q41wt4Q0wHmuf6dYCpxCRBVTWXjvr9Khx7tb5DTm0xPGGvrBOK1bG/B62sSGkkPt/2LHspEbaKEPHQdniZwK2ahv0eIOgEUVTByM4F+dV/9LoehDfmuQsFtPArKFX0ZAhJkHhZWoU+w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -69,118 +68,118 @@ Received: from PH7PR11MB7605.namprd11.prod.outlook.com (2603:10b6:510:277::5)
  by CY8PR11MB7244.namprd11.prod.outlook.com (2603:10b6:930:97::18)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9388.12; Sat, 6 Dec
- 2025 01:53:49 +0000
+ 2025 01:55:21 +0000
 Received: from PH7PR11MB7605.namprd11.prod.outlook.com
  ([fe80::48d7:f2a6:b18:1b87]) by PH7PR11MB7605.namprd11.prod.outlook.com
  ([fe80::48d7:f2a6:b18:1b87%5]) with mapi id 15.20.9388.003; Sat, 6 Dec 2025
- 01:53:49 +0000
-Message-ID: <ef39473a-b428-4009-83f6-d16fb33d9d5c@intel.com>
-Date: Fri, 5 Dec 2025 17:53:48 -0800
+ 01:55:21 +0000
+Message-ID: <92fa5ba5-ed77-4906-b7a9-a4a56a866bb1@intel.com>
+Date: Fri, 5 Dec 2025 17:55:20 -0800
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 10/10] drm/xe/sriov: Add debugfs to set EQ and PT for
- scheduler groups
+Subject: Re: [PATCH 07/10] drm/xe/sriov: Prep for multiple exec quantums and
+ preemption timeouts
 To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
  <intel-xe@lists.freedesktop.org>
 References: <20251127014507.2323746-12-daniele.ceraolospurio@intel.com>
- <20251127014507.2323746-22-daniele.ceraolospurio@intel.com>
- <454e2e50-6fb8-4577-bc0b-4519b6beaf01@intel.com>
+ <20251127014507.2323746-19-daniele.ceraolospurio@intel.com>
+ <bd74d348-a8bc-4723-8148-31641be1b012@intel.com>
 Content-Language: en-US
 From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-In-Reply-To: <454e2e50-6fb8-4577-bc0b-4519b6beaf01@intel.com>
+In-Reply-To: <bd74d348-a8bc-4723-8148-31641be1b012@intel.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: BYAPR05CA0047.namprd05.prod.outlook.com
- (2603:10b6:a03:74::24) To PH7PR11MB7605.namprd11.prod.outlook.com
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: BYAPR05CA0046.namprd05.prod.outlook.com
+ (2603:10b6:a03:74::23) To PH7PR11MB7605.namprd11.prod.outlook.com
  (2603:10b6:510:277::5)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: PH7PR11MB7605:EE_|CY8PR11MB7244:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7d209f55-bae3-4194-6a08-08de346a4ce1
+X-MS-Office365-Filtering-Correlation-Id: 5191ad44-3702-45f4-74f0-08de346a83a5
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?M1NOSk1mZWZVbU02Y01UcDBoMkZRVzBQbmxEc0gvalEwdWlBaTdRTXlQQUZG?=
- =?utf-8?B?aUFyYWhyeHVualhYV2JnREJvQ2hPeFZoUStlK1RFc3FUK1VOZzdyUkhIZWpE?=
- =?utf-8?B?TVkzVjZXV1E0dk94R3FMS2xRbDFpWENqWVpna1djU1g1d0U4ZXlzaERld2ZR?=
- =?utf-8?B?NUs1T3FERjgyRDh1WU8vUS9zdDBEejZsdU1YK1FqRWxQWnk5c0xNdGxFNzFa?=
- =?utf-8?B?cjRLdXpmZVVwZ21zVTZ0OFg5UmZIYlRlNnEzL3V4akpqekplYzBPeDM3cmN3?=
- =?utf-8?B?V1FPQkh5enM4amdxSDVndEJBLzNRTHNaRUdBZ2V3Tng5UmNzTE0yVGhiUGw5?=
- =?utf-8?B?eCtHZmpiK0t6SVlkNGpFYWsvK1hmOVFZamFSWTMrdTFDUjFldUl2Z0I2U2tt?=
- =?utf-8?B?dmc2T2p3MXBkWWhnb2xXRkZXR3lVYWhkVTlnR3ZBR0JrdUIvQ2FBTDhVck5T?=
- =?utf-8?B?Y29Hc1N6UHgxWjE3cjQvWmV4ZWZjTXp3V2tpUTZhcUd1VVJRL3FlTFplWGZE?=
- =?utf-8?B?OXpkRTF3cm1WeVJnL0hDN1dQdC93WE94Y1hvN09kY1Z5SWdWMW8zQmlObUZC?=
- =?utf-8?B?S2ZNYytXM0RrOWlFc2IyUEJacjlpdTZRVll2cDhscy85VkY3dkV0cUtHdmRx?=
- =?utf-8?B?REVkcW15VEpIZE4zc0E5L0Jpb05EZWxhZkRVelU5VjFpQ0w5TzdWOFV5cWdZ?=
- =?utf-8?B?NTlXcGtuSURHUFpHeGFCOXdYMTUzbEFaQUoyNFZaYW5xeWRkSUhjbHlabW45?=
- =?utf-8?B?ZEJuZW1yQ0dncVZrbVRXQlVzM29OQmtMc242UFErV2tpeDBkZkZ3YkhZKzBY?=
- =?utf-8?B?UTBaUGJhT04wek1GRUxvaGtWU015cnZHZnlMN3VXdHkzczNEemZsOWxiblNj?=
- =?utf-8?B?ekJNeFNjZm5CREtlY3RaZU05UDMvbjZKbTZFYU9OcDIrSnpuejdKRjJHMmIr?=
- =?utf-8?B?SnN6dGR5QnBwYStVRTREWXpEVjZwUkZOV0o3aTk3cnlMRmIrNWx4b2lheW0v?=
- =?utf-8?B?Z3VzZjhjMFo5MkFDN0RyelE2cTZob3l6ZUtpQ2JLNmVXNURreTI5a1loZDl3?=
- =?utf-8?B?Rkk0dmFPckRnekprZzExK0RIcXdXcTJNUklJdkgzditFNkkrSTZpWlNGSEx5?=
- =?utf-8?B?bGF5MkN0ZzA4cS9ueFJCcHdQQ3JIZHdKUlByU3E0ZUxRSjIzSDlvL0pacW5y?=
- =?utf-8?B?bGJ4bDd2REkzcityNnNPVVdEN0s0ZUFlaXNFaWRqLzZYaWdLZ2puTlR4aUcr?=
- =?utf-8?B?UXBIVlRKM0ZKcHVQRGFsTHN5ci9kQUh1cjhkVG1aa0MwS281UTVocjZUV3lU?=
- =?utf-8?B?Y0xnVTg5TUVrSWJCM25iZHhtRm1weWpmVmRmazhXSVUraU9pc2pEYzhPUEI4?=
- =?utf-8?B?N0p4ZEZiS0VvTFBjODhmWDNVbDFnS0VYd3JOWUtzWWlFejBtYnh2VFFkV1Jv?=
- =?utf-8?B?YmZTRndoLzVYa0lvSkt1MU1KTlRkYUVjNXFJWUtDdmFPdytiVWZQSlc2OTdo?=
- =?utf-8?B?MEd0cHh2VnBnK1ZZdWZ3WThmZDdtNEJUUUdHUTZoN2JlSWMzNjdsVGYzMnov?=
- =?utf-8?B?dVdrNFE0L2REL3V0djRLb0NsSlFYNDZMSUJ5RFhRSkxPVFBTWDlGRktGckFV?=
- =?utf-8?B?ZGd3ZFp5bG9VRFMxVU5kRjU2YWFaRGhUOUFVbGh0bzd2QWt2dGVsM0oyUVZM?=
- =?utf-8?B?WlFNeGM5akJkUDgzNVdRV3VESllneVhlcS9zVk5ROGxaVFJoUFZINXZjRy9x?=
- =?utf-8?B?TVpJZFoxZi9DY0tpYWI2blVMS3E3SzY5ckxZWE5Uc2ZlRWZLdjQyaDFVL2hi?=
- =?utf-8?B?RlhhUWVnMW1DdHRPN3EycDgwdFEvbjZXc2trMlRNMkZIK1NOZGRRYllPVVhR?=
- =?utf-8?B?aFlZTHNrRFZ2S1N1RmFEV0puS2FJQmx5SXRTMVZoemNGRkxVdVZRUzNSUEFK?=
- =?utf-8?Q?ObYNDsvOuHEv+6Da7Kb5U3eMjdBTASGA?=
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?VnNaNXMraUsvUllwMTdLWjFQNURIZWhOdVkwcHFaZ1ZGUHVtMUQwcmhZbm1V?=
+ =?utf-8?B?Z2g4dStoZkVwd25HQmNHMnJ1dU56NlUwb0h5ZmZIT1BydHVrT3haRjkxS09q?=
+ =?utf-8?B?c0dNR1NLeGNsTUYwb05xdVlscUlXNXJ6dXdRRk12cUNaK0QwUXVSdW9OZ2VL?=
+ =?utf-8?B?OVVIKzZhamFoclhOcFd6YXFXRFFuYlVkZ1F3ZTkyZkdCaWdnM3htekNsKzhC?=
+ =?utf-8?B?UDIrbDNBUzZEeC9OT1RDLzRHVi9IRjQ2dldYcUt0TkpnQzFFQnAzenFvOXBz?=
+ =?utf-8?B?WlhwcnZ5Si9CSHkxNnhhRFFuTXcxN0MrbDJxa0tFbGFPLzhiUHAyUVFkUHJC?=
+ =?utf-8?B?UXEvUFpQUFlMeGhoZTZtNVQxa3hCUW1TdmpTM1V1QnlIZkFmcFY3UnptemUw?=
+ =?utf-8?B?c1QrKzloVUU2aHVSMWZRZWZOQTUrTmRISmlmRitRMzRoRmM2ZmQzSHpnQnpS?=
+ =?utf-8?B?TmhWd1lOR0Yrai9lQ21kcWVvSlA2OTUwZlVLdXUxazV6alFPNUU0NnZXY3VG?=
+ =?utf-8?B?Y3RUVTRNeVFBay9STGxOa2c1NVJlMnQ1S0lFNlFWQUZYYXJEcStFcjQweTBU?=
+ =?utf-8?B?cnVzOGk1MnBGUXIzYURUMk45M3JYR25NUVdaZm53Mi9jTXBOV2RHOWUyRW0v?=
+ =?utf-8?B?akcvMmxUOVFzT1B3Nlh4WmhOK3oxUmltckpZN0haZ0YrMkgyNWtCYU1XOEIy?=
+ =?utf-8?B?dlpoUTJXM3dVdTdsSWM2M3lkd0xjKzNFMTJudGs2VjR4dG1YWERSYXpZdlB0?=
+ =?utf-8?B?YTJsaUdzVDdVcUhyZTBIQjdURTdyWUxac0ZkMjBheklHRkJmRGVvQ2xFa2p4?=
+ =?utf-8?B?SDdnK3hvME5QQzdMYktnMjh1OW95cHdvVkMxYTdtTk9YVHlTQXFvZ1NoK0Nl?=
+ =?utf-8?B?TithMUdYSG9pM2hqeDk2THFkcjhyYnhkblM2R3Z0b3IwS1pKTmhOUDhKQlFE?=
+ =?utf-8?B?N2ZqY1VRYmkvRWplTk1ueEFQR085azZ5L1YxM0xuSytOdmpObVNsWlNuQUFW?=
+ =?utf-8?B?cXJqUjJYZEl4QjV0ZWhHV0pkNkpCaTVKeDE3V3lTMWxudWsvZnYydlBYSWZN?=
+ =?utf-8?B?RmlVNHg2LzhuYVM0U2dBUFV5VFQ3R2VkSUcwa3dqeW5hS1RUMFlMN0pYQWRE?=
+ =?utf-8?B?ZHQ1dXFKNHVoY2Z6R0JEMVZKbS9tamY2UDVhSDlzQUlKcXJsbE1XTGlRci95?=
+ =?utf-8?B?ZVRlak9qbUIyb3FkMkxxemQ3VmMzRjBUS0ZJd3o5aElKQno1U1JjYUxCLytO?=
+ =?utf-8?B?cEQ4V3pza01sR2cxOEU1UXpRMjE2V2Nyd2pwdmh3Y1Rtc3ZxYy82Tm5kWi91?=
+ =?utf-8?B?MEZSOUpnbDNMS3BiWHRUa2luSnBlWitlVWQxYlJHS0pXMWhyTmZlbENFaWhW?=
+ =?utf-8?B?UjUrdFcyRE5aN0l3cC8zMzk2T2lRdUJXQWdZR2d2MEVhY0hkMUtSL1dZNlR6?=
+ =?utf-8?B?YmpjUE5ndGF5S082L1BKY0xGemQzRTlQdFRUN01yTVZpYmIrdDNScit1bFZj?=
+ =?utf-8?B?VFZzWEgrM3RPeWZ2Ym5IT1lpWk1oYnNnUGJqdlo1bERmeXZvdmVXYVYrZlFl?=
+ =?utf-8?B?NTZSQkZFSW1oRDM2K0NPemUzWGM1WmNFTmlZL211cWgrbGR0eUpzckdoS1Vp?=
+ =?utf-8?B?SVhjUzl5cTRDM1ZpNGRDRUhSc21oZzJEYS93a1VuUzJVY1lUdHQ0bHloU0RV?=
+ =?utf-8?B?dGJkNUgvL2FmU2h6M01DdUxPalNKRWN5d1BhSGtTQWJiTDhMZ2JKMzZqaWJt?=
+ =?utf-8?B?UThuaDU0ZGE2Tnk2aS9xN2pMZ1c1RWFlOVpWRHlPQUU5dHVpU2x2ZnRsSVhy?=
+ =?utf-8?B?T3FrU2NkR2pWbFZtODR4bHlQd1ZVb0k5emFPUDNkZGFkd3F5Vk9wQmpDQU9y?=
+ =?utf-8?B?M1JPT1pkbXpnQnE4K2w0NXRDcHZwRTJreWlNcTRKQ1VpemppOUJESGRRVXg5?=
+ =?utf-8?Q?jg5QBTxmsT+eENLRmD3raxM9Sc7tMdoa?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:PH7PR11MB7605.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?QytPYWJ5cGNzQ1Q0RmdtNktaRnE5QmZDZ29JdCtaQUlkYUFIcjluOVM4bVRv?=
- =?utf-8?B?eXZHL0d3WkhKd1hrRXE3cGdlSjhBOEk3VTdtZS9hdUxWM0s2eVNQbFRUZmMz?=
- =?utf-8?B?bVMyQm9NV3VMaEpZUjg3YlRaRzh3cVF4WlhDVDdUNlZxOGM2cTl0QzVVOEJJ?=
- =?utf-8?B?cWh4Z2RjemFOVndoeklPWkJEWnBkajVhakkvcDBPbGs1R05LRXlrYStaZ1Jv?=
- =?utf-8?B?dkFCZ2c1ejh5NDhZS3BYdVRHUjM2UlgwRW9qOU5GclIvdnJZbVNRRHIxa1hM?=
- =?utf-8?B?VU1va3Q5d0ZhREltVSt5M0pRM3R4Y0dIZXc5SzY2Qlg0SFA2aGhSZzU2SFA3?=
- =?utf-8?B?MjRsaXRReGp3SVFCMVZwM1FzSUw2NzgwaGdyVnhzK01YRnFMMTIwOURiOUcw?=
- =?utf-8?B?L0RNcHdTWFVTSEpxTC9nUW90bEFyTmFNbzB0cm9mR2Zqc3VDNmFobVRhbWEy?=
- =?utf-8?B?ZEE3THMrNmwzdWdpUzE4dkp5Smx3ZlN3SVBlV2FHZVlzYjRiSWNpZnI1VFZq?=
- =?utf-8?B?WlJzdVZNa3NXMmlJZ0Y1MkpkMUwxWE5oMEdBMDA2czFpMUNWdkY1VFRkdzBD?=
- =?utf-8?B?TnRWSzQ3TUJzZEs5UFVicm9LOWJ3amZ4UGkvL3dud3RWc3BQZnJ0eVVEZWUv?=
- =?utf-8?B?N0IyeXRWVWhOUmlpeVhYaUpVeXlieXYvOU5jY0YvcUxBNDVxNExyOHp1YnIy?=
- =?utf-8?B?TVhPRHF5R2pldUR1YW5OMFJvcmpQWFR0UFlUYWJncEE3NTlGQ0RkenJSajV5?=
- =?utf-8?B?SzhCK1U3M0xxMEY1Qmk5c1l0dENkTG9sNWh5UDlEQkZyd3NVUVhBZTNGOGU4?=
- =?utf-8?B?dkVnTHozMGYvMXBjcGN1MHUvSVMxUlRyTHF1S3FmRU56WVlrdXE1aTVTTFpz?=
- =?utf-8?B?L21EbXN3OVhsY01GWUs3R0NyUDlpVzRKQmpsTHo2YWV3RlFZZFVWZXJSY3cy?=
- =?utf-8?B?aXIzZ1g1SGJ5dVVXZlhHZWxUSkE1cCsrMUJqN2dBWjdXN1lDaWJsWnhPbDhY?=
- =?utf-8?B?UjVqSXdWemJKOGpQYWR1eGxnVEpadUl3WnNUaEp3RUtDOElJVjc2UE9HNWhi?=
- =?utf-8?B?RnA0ejdBTnFZZkRvUUY1ZndUSzVDNVZxYTBSd0M3QkhEN2ZLam5LR3Y1dnF2?=
- =?utf-8?B?R1MwMWlBTG1HUU1CSEp5TUZ5TTJFalovTzJpMUFRdi9rMzJyWi9kT2NjaGlh?=
- =?utf-8?B?b2JIeHdIZXVOUUxsQXVaYU9yY055RHJOekw5UlhMSmQ4cmxXOWFvOFFFV1dU?=
- =?utf-8?B?NzR5WVlBdXQ2bnZmTWhibkd6aWJWbEt2dFdOdDRPbytCNlp3Y2tXakJ3dU9G?=
- =?utf-8?B?ZmRnVzd0MlFtSUNEdzZKRUJVaWc3Ym1LVC9HQ0xHclg2VGVOMFZ6WTBNZDUz?=
- =?utf-8?B?VDZOSDR2MTdWaTlOWmMwRHZFSjN0aVgwenBOUThUNCtOM1I1ckFDbGI4MVJK?=
- =?utf-8?B?SXdDSjlzYXkyeUtyWHpUZHdZRHlaZlIwRVhkcS9FdXU0ZGtraUl1ekdDWnJE?=
- =?utf-8?B?bWk2OWtjckhnZnhHYVVZdHA2Z0FMQkNlSDZwajVadEw1dktpYXFJVlFhc3pY?=
- =?utf-8?B?SmZsZTRIRzlSZmxIZW1LcTNxbWZlR3ZvV1VvdmRnNFUrZXIvSUFxMm4vMzJH?=
- =?utf-8?B?RW8vTDNHVENoOHhrSiswcGVhQXg0R1Y2NE1taGlPeGNETGtoNUtMWlMzSE1V?=
- =?utf-8?B?VzVpQzBJSlhIQyszVFNsVWIyZmNKczJYaCtVS25XRER4eEFxMkFReUdMamhD?=
- =?utf-8?B?OXNPbFNtNzNhcjM4Rkl5NEwrQkZLNFNTbVVCV3M5OThJYjVHTkw2dUtYekxv?=
- =?utf-8?B?eEpobHRDaHJaZTRwSTZvMWtxNEJpdUtzalZwb3dHZDVsQ0xtQng5QStMMEls?=
- =?utf-8?B?RXFIT2lnRjVwaHQrN1A0aFVYeVk2VllGdTh0bkd5REJoL0lvTTVUUzFKdSs0?=
- =?utf-8?B?YW5ZVXQ0eEludWpJVktKMVZWcFJPZTFCZzRPRDR1L214eUJTYXZUa0p6S2Fw?=
- =?utf-8?B?YU1QOHlLK2taSTE3a3JUZ3IzbFhEbSt0MHc4bXlKNEtmWHdGNmV2S2R2Z0ZU?=
- =?utf-8?B?Slk0VlY0VVJESVJGNnZDUENiVFVlbERXZWErV21xamI3UE9qbmRzdDdTR0Mz?=
- =?utf-8?B?ZVkrT1lOMm9BOGFmUVJNQSt5ZE42TUpIb2NKcUNFLzVlTDJQZ0FQVmhIK2RX?=
- =?utf-8?Q?xFwKgBgyHjQT+QHOKbwWFA4=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7d209f55-bae3-4194-6a08-08de346a4ce1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?cG9vRVlwVW1ZZDFGQVY0UFBIRVRwUlpaY1FQQWJQWVVuMzNwdlR2cW9oQUVO?=
+ =?utf-8?B?bTJhdG8wR0haQ3BkZ1o0WVgvcm9pWVZUM1BzYUsrVnhiSnVWUEZ4V3NCSlZF?=
+ =?utf-8?B?SW1LRHVrM2xvNUZpMi91N2FFWXFmOEIxM3Y3YmZzaHJhSFJEenZlWGFESHNa?=
+ =?utf-8?B?TnFsWDJ4UEdDMWRLNUdHK2ZwUGhPQVBuTGpaYkJ5bmFmSEdHVmMyaklOUnVF?=
+ =?utf-8?B?bjBvVjBGOXVrNk9HQi83OWdPeDkzQk84UGljZ1BJY3IrVXdQWkZWaTVqdDR2?=
+ =?utf-8?B?ZzhiemU1eGZZZ3g0V2VQUUpLZGxFOHEvRk5qQmV0WU56RUlEWGtOOUlFUTBv?=
+ =?utf-8?B?NUR6UDRMM0tJZnhtcVFCUFF1dXhBNjlxY3pPVGdzZGNhK2lsY1lEaXRWRVk3?=
+ =?utf-8?B?VnB4QTJqdzUwUnlKcUFYVi9RZ3JJcHp0KzZTc290a05VRjVPVXlZbjkyeTNW?=
+ =?utf-8?B?Z1gxelduaHNLamVvcExmYjlNMUg5cmUxWkJkSGV6WGRmWnlpNHY4VTNleTA4?=
+ =?utf-8?B?ZmFUNWpnS0VwemVLV2o4dHRYWjFHMExWWHNvUWJBZ2s1V29DUEl2cFJFd25h?=
+ =?utf-8?B?WVIxdWg1d0pvZUJralhtazJvS1hZWHY2Si82Si9oeElpbEM5WlNKU3BiZE9G?=
+ =?utf-8?B?bGNyZnVQT1RLUkhHNU0xcCs2YktlK2VEMjFwaHI0MGgvWlJ6UEI5eXorN0ZZ?=
+ =?utf-8?B?Q3FDRExjaFFnYU9wVmdkVzE2RjZab2l5V1dtR0FrN29LVXJQQU9OTW1pS1Ra?=
+ =?utf-8?B?clUyVXV5SFlXRWxBYXRRbWNkUkVHOHFKemMySDNPN2RhZEh3VmhUbWYvdkln?=
+ =?utf-8?B?cThjK1E5cGR6UjlKNE5QZnk5N0FTbHZEZGxtMXNYRVE4clJmNndOY2d4WkJ0?=
+ =?utf-8?B?S3BCZCtSS0xUNGNTbU1DZnVqeE9tczlOaDUzZ2VZVEVIRmtWc3RtVGUrSkNZ?=
+ =?utf-8?B?M3BwTGRCaEx5UWtGTXRrYSsvbUdWalhPaU9zSDB0SVl0MFhKMXg2MmNZOHNV?=
+ =?utf-8?B?VUl3VXZUWDUwVitTYk9jZXhlbFBjSkVNQXg4OGV2aGRHTWZaeTZpU1cvd2hW?=
+ =?utf-8?B?WjdRU0VNSGZsbUIrQ3I0bE0zSHRVTGt0OSs1eVdnQmFiK3huVWw4eHpobE1a?=
+ =?utf-8?B?RXRCZHhRY3hzeTVvK241RUR3ck55MnJTWk45WlhjSUxlNDd6VUZyZEZuUFNt?=
+ =?utf-8?B?dVRYLzlaTWlVV3A0Q2RUR1NtTXR4dTMzL0JraVBwb1g4OUZVWWNDRWdBYkFO?=
+ =?utf-8?B?bnNQSEVqTnhZaVVJLzBqckFBRGJ6b0VnUGZ2ZUpmSDQyai9VcUIrbFg0ODV2?=
+ =?utf-8?B?SVVjWHVJZmRjb25MS2tESlJlLzlDVEU3N1lRVU5vckxQWCtienN6UFJ1SjFa?=
+ =?utf-8?B?NmFQRjZGU1JnQUUwWTB5bElvT29qeTNFS1pBVUh5SWV5UEZrZHgvSXEwTWtw?=
+ =?utf-8?B?WmJTQ3Jjd2dyRGc5bkFPTHIrR2tKVkNTVTd5UFdrWDR1akdvV2QwMlpGZ3gw?=
+ =?utf-8?B?TnRRejBQT0FyZUYvNnU0bmNNc0VUTU5DRXRZMHFFbEd1c1dxU0tiS3NLNWln?=
+ =?utf-8?B?andlZHhpQUtWOXh6aHNaQnMzRnRDbWFnUVgzMlFCSWFYc0tFR0h4eWVlbzBI?=
+ =?utf-8?B?M3ZoMDdObnRlNWFCM2FMRlBhVEpJamxaSi9HUy9ld3doMUlLdDByS0hVd09Z?=
+ =?utf-8?B?ZVZtZ3FBanV4QTRweE94SWRzQ0FLeTAvQisvVC9oZVd6cmI2TnRza2V5Y3JZ?=
+ =?utf-8?B?Ymw2bC9WTTJHWHJmeHNUaDV6ZEZVemhGczhiVnBQeSthQnpOb2xid1Q5ZkFj?=
+ =?utf-8?B?eWRWdW1tVDVGaS9SdzFGOEZVaG9lcjVLNmM5TzBiZlp0RGJIbFBCZGFQa1d5?=
+ =?utf-8?B?QXpBcHBCK0FGeW1NRVpYUi8zVldjNVErWTUvUzVJUUNMbWdQcC9sWEZrNjhs?=
+ =?utf-8?B?WUVHOHV1K2JFblIrTUpYdG1ZdnhaWDlabmYreFl1bU4wSUZuQzJodmlKYzVD?=
+ =?utf-8?B?Z3FBdVV5SHE3QTlDV1NXNm9QZ0RKNkdCaFFkaXhtekh5aWFPd0NPNmpUMG02?=
+ =?utf-8?B?Wms1YVJjQ2UvblVxMy9CSklDMm1JWlU1TWpkaU5rTjltTFM0dkk3R2ZPdytQ?=
+ =?utf-8?B?UDdGR3hDc1ZDK2FaNUhaaDZIZG9sbUkvZXdsS0MrL0xQc1dUdFgyRmZYRFBP?=
+ =?utf-8?Q?KoNO/t19bMh+kFctPMgCm3E=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5191ad44-3702-45f4-74f0-08de346a83a5
 X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB7605.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Dec 2025 01:53:49.5836 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Dec 2025 01:55:21.4208 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: nSzLp0wsUvMyg68o6dUaDz/hzSROr2aqSYJc5g3Buh1YFeJhje4ocqNRWMKTPWf5p8g8yLcbO1pvcNuOJkL+2H0sd1EWyUcZjZSQdL3RjA0=
+X-MS-Exchange-CrossTenant-UserPrincipalName: IgIU7hct7dY4yG4HLJLM9xTugO9lcF2mmoNihoSqG626JToKULCPAxvGbu+lgafum+0G3Zt9FxNaV70gSKLWwPNSKyg5Ip46Y4EQ99TZymg=
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB7244
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -199,268 +198,193 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
 
-On 12/2/2025 12:17 PM, Michal Wajdeczko wrote:
+On 12/2/2025 8:42 AM, Michal Wajdeczko wrote:
 >
 > On 11/27/2025 2:45 AM, Daniele Ceraolo Spurio wrote:
->> A top-level debugfs file is added that allows a user to provide a
->> comma-separated list of values to assign to each group. Per-group files
-> it doesn't need to be comma-separated list, just array of integers
-
-parse_int_array_user() requires a comma-separated list. IMO better to 
-re-use that one that to re-implement our own logic.
-
->> are also added to allow individual tuning of a specific group.
+>> Each scheduler group can be independently configured with its own exec
+>> quantum and preemption timeouts. The existing KLVs to configure those
+>> parameter will apply the value to all groups (even if they're not
+> typo: parameters
+>
+>> enabled at the moment).
 >>
+>> When scheduler groups are disable the GuC used the values from Group 0.
+> typo: ... disabled then GuC uses ... ?
+>
 >> Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 >> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
 >> ---
->>   drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c | 173 +++++++++++++++++++-
->>   1 file changed, 168 insertions(+), 5 deletions(-)
+>>   drivers/gpu/drm/xe/abi/guc_klvs_abi.h         |  7 ++++--
+>>   drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c    | 25 +++++++++++++------
+>>   .../gpu/drm/xe/xe_gt_sriov_pf_config_types.h  |  5 ++--
+>>   3 files changed, 25 insertions(+), 12 deletions(-)
 >>
->> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
->> index 947e2b92d58a..052510736017 100644
->> --- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
->> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
->> @@ -165,24 +165,169 @@ static void pf_add_policy_attrs(struct xe_gt *gt, struct dentry *parent)
->>    *              :   ├── gt0
->>    *                  :   ├── sched_groups_mode
->>    *                      ├── sched_groups
->> - *                      :   ├── group0
->> - *                          :   └── engines
->> + *                      :   ├── exec_quantums_ms
->> + *                          ├── preempt_timeouts_us
->> + *                          ├── group0
->> + *                          :   ├── engines
->> + *                              ├── exec_quantum_ms
->> + *                              └── preempt_timeout_us
-> as already commented, per-group EQ/PT are overkill
+>> diff --git a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h b/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
+>> index a6dce9da339f..48f47e26132d 100644
+>> --- a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
+>> +++ b/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
+>> @@ -290,7 +290,9 @@ enum  {
+>>    *      infinitely long compute or shader kernel. In such a scenario, the
+>>    *      PF would need to trigger a VM PAUSE and then change the KLV to force
+>>    *      it to take effect. Such cases might typically happen on a 1PF+1VF
+>> - *      Virtualization config enabled for heavier workloads like AI/ML.
+>> + *      Virtualization config enabled for heavier workloads like AI/ML. If
+> start with new empty line so it will rendered as separate paragraph
 >
-> let just keep array-variants
->
->      *                      ├── sched_groups_exec_quantums_ms
->      *                      ├── sched_groups_preempt_timeouts_us
->
-> and regular files for groups to show configured engines (if any)
->
->      *                      ├── sched_groups/
->      *                          ├── group0
->      *                          ├── group1
+>> + *      scheduling groups are supported, the provided value is applied to all
+>> + *      groups (even if they've not yet been enabled).
+> should we document also here that "The scheduling groups are available starting from GuC 70.53" ?
 
 ok
 
->>    *                          :
->>    *                          └── groupN
->> - *          :                   └── engines
->> + *                              ├── engines
->> + *                              ├── exec_quantum_ms
->> + *          :                   └── preempt_timeout_us
->>    *          ├── vf1
->>    *          :   ├── tile0
->>    *              :   ├── gt0
->>    *                  :   ├── sched_groups
->> - *                      :   ├── group0
->> - *                          :   └── engines
->> + *                      :   ├── exec_quantums_ms
->> + *                          ├── preempt_timeouts_us
->> + *                          ├── group0
->> + *                          :   ├── engines
->> + *                              ├── exec_quantum_ms
->> + *                              └── preempt_timeout_us
->>    */
+>
+>>    *
+>>    *      The max value for this KLV is 100 seconds, anything exceeding that
+>>    *      will be clamped to the max.
+>> @@ -312,7 +314,8 @@ enum  {
+>>    *      In this case, the PF would need to trigger a VM PAUSE and then change
+>>    *      the KLV to force it to take effect. Such cases might typically happen
+>>    *      on a 1PF+1VF Virtualization config enabled for heavier workloads like
+>> - *      AI/ML.
+>> + *      AI/ML. If scheduling groups are supported, the provided value is applied
+>> + *      to all groups (even if they've not yet been enabled).
+> ditto
+>
+>>    *
+>>    *      The max value for this KLV is 100 seconds, anything exceeding that
+>>    *      will be clamped to the max.
+>> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
+>> index 59c5c6b4d994..eb547fedb6da 100644
+>> --- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
+>> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
+>> @@ -298,10 +298,10 @@ static u32 encode_config(u32 *cfg, const struct xe_gt_sriov_config *config, bool
+>>   	}
 >>   
->>   struct sched_group_info {
->>   	struct xe_gt *gt;
->> +	unsigned int vfid;
->> +	u8 group_id;
->>   	u32 *masks;
->>   };
+>>   	cfg[n++] = PREP_GUC_KLV_TAG(VF_CFG_EXEC_QUANTUM);
+>> -	cfg[n++] = config->exec_quantum;
+>> +	cfg[n++] = config->exec_quantum[0];
 >>   
->> +static int sched_groups_config_show(struct seq_file *m, void *data,
->> +				    void (*get)(struct xe_gt *, unsigned int, u32 *, u32))
->> +{
->> +	u32 values[GUC_KLV_VGT_POLICY_ENGINE_GROUP_MAX_COUNT];
->> +	struct drm_printer p = drm_seq_file_printer(m);
->> +	struct sched_group_info *groups = m->private;
->> +	struct xe_gt *gt = groups[0].gt;
->> +	unsigned int vfid = groups[0].vfid;
->> +	bool first = true;
->> +	u8 g;
->> +
->> +	get(gt, vfid, values, ARRAY_SIZE(values));
->> +
->> +	for (g = 0; g < ARRAY_SIZE(values); g++) {
->> +		drm_printf(&p, "%s%u", first ? "" : ",", values[g]);
-> maybe we should print values without commas ?
+>>   	cfg[n++] = PREP_GUC_KLV_TAG(VF_CFG_PREEMPT_TIMEOUT);
+>> -	cfg[n++] = config->preempt_timeout;
+>> +	cfg[n++] = config->preempt_timeout[0];
+>>   
+>>   #define encode_threshold_config(TAG, ...) ({					\
+>>   	cfg[n++] = PREP_GUC_KLV_TAG(VF_CFG_THRESHOLD_##TAG);			\
+>> @@ -1857,12 +1857,15 @@ static int pf_provision_exec_quantum(struct xe_gt *gt, unsigned int vfid,
+>>   {
+>>   	struct xe_gt_sriov_config *config = pf_pick_vf_config(gt, vfid);
+>>   	int err;
+>> +	int i;
+>>   
+>>   	err = pf_push_vf_cfg_exec_quantum(gt, vfid, &exec_quantum);
+>>   	if (unlikely(err))
+>>   		return err;
+>>   
+>> -	config->exec_quantum = exec_quantum;
+>> +	for (i = 0; i < GUC_KLV_VGT_POLICY_ENGINE_GROUP_MAX_COUNT; i++)
+> maybe:
 >
-> 	20 20 30
->
-> it's more likely to be accepted when we promote that to sysfs
+> 	for (i = 0; i < ARRAY_SIZE(config->exec_quantum); i++)
 
-I left the commas to match with what we expect for the input.
+ok
 
 >
+>> +		config->exec_quantum[i] = exec_quantum;
 >> +
->> +		first = false;
->> +	}
->> +
->> +	drm_printf(&p, "\n");
->> +
->> +	return 0;
->> +}
->> +
->> +#define MAX_EGS_ARRAY_SIZE (GUC_KLV_VGT_POLICY_ENGINE_GROUP_MAX_COUNT * sizeof(u32))
->> +static ssize_t sched_groups_config_write(struct file *file, const char __user *ubuf,
->> +					 size_t size, loff_t *pos,
->> +					 int (*set)(struct xe_gt *, unsigned int, u32 *, u32))
->> +{
->> +	struct sched_group_info *groups = file_inode(file)->i_private;
->> +	u32 values[GUC_KLV_VGT_POLICY_ENGINE_GROUP_MAX_COUNT];
->> +	struct xe_gt *gt = groups[0].gt;
->> +	unsigned int vfid = groups[0].vfid;
->> +	int *input;
->> +	u32 count;
->> +	int ret;
+>>   	return 0;
+>>   }
+>>   
+>> @@ -1870,7 +1873,7 @@ static u32 pf_get_exec_quantum(struct xe_gt *gt, unsigned int vfid)
+>>   {
+>>   	struct xe_gt_sriov_config *config = pf_pick_vf_config(gt, vfid);
+>>   
+>> -	return config->exec_quantum;
+>> +	return config->exec_quantum[0];
+>>   }
+>>   
+>>   /**
+>> @@ -1987,12 +1990,14 @@ static int pf_provision_preempt_timeout(struct xe_gt *gt, unsigned int vfid,
+>>   {
+>>   	struct xe_gt_sriov_config *config = pf_pick_vf_config(gt, vfid);
+>>   	int err;
+>> +	int i;
+>>   
+>>   	err = pf_push_vf_cfg_preempt_timeout(gt, vfid, &preempt_timeout);
+>>   	if (unlikely(err))
+>>   		return err;
+>>   
+>> -	config->preempt_timeout = preempt_timeout;
+>> +	for (i = 0; i < GUC_KLV_VGT_POLICY_ENGINE_GROUP_MAX_COUNT; i++)
+> ditto
+>
+>> +		config->preempt_timeout[i] = preempt_timeout;
+>>   
+>>   	return 0;
+>>   }
+>> @@ -2001,7 +2006,7 @@ static u32 pf_get_preempt_timeout(struct xe_gt *gt, unsigned int vfid)
+>>   {
+>>   	struct xe_gt_sriov_config *config = pf_pick_vf_config(gt, vfid);
+>>   
+>> -	return config->preempt_timeout;
+>> +	return config->preempt_timeout[0];
+>>   }
+>>   
+>>   /**
+>> @@ -2180,10 +2185,14 @@ u32 xe_gt_sriov_pf_config_get_sched_priority(struct xe_gt *gt, unsigned int vfid
+>>   
+>>   static void pf_reset_config_sched(struct xe_gt *gt, struct xe_gt_sriov_config *config)
+>>   {
 >> +	int i;
 >> +
->> +	if (*pos)
->> +		return -ESPIPE;
->> +
->> +	if (!size)
->> +		return -ENODATA;
->> +
->> +	ret = parse_int_array_user(ubuf, min(size, MAX_EGS_ARRAY_SIZE), &input);
->> +	if (ret)
->> +		return ret;
->> +
->> +	count = input[0];
-> need to check against GUC_MAX_GROUPS
+>>   	lockdep_assert_held(xe_gt_sriov_pf_master_mutex(gt));
+>>   
+>> -	config->exec_quantum = 0;
+>> -	config->preempt_timeout = 0;
+>> +	for (i = 0; i < GUC_KLV_VGT_POLICY_ENGINE_GROUP_MAX_COUNT; i++) {
+>> +		config->exec_quantum[i] = 0;
+>> +		config->preempt_timeout[i] = 0;
+>> +	}
+>>   }
+>>   
+>>   static int pf_provision_threshold(struct xe_gt *gt, unsigned int vfid,
+>> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config_types.h b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config_types.h
+>> index 686c7b3b6d7a..abf003946242 100644
+>> --- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config_types.h
+>> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config_types.h
+>> @@ -6,6 +6,7 @@
+>>   #ifndef _XE_GT_SRIOV_PF_CONFIG_TYPES_H_
+>>   #define _XE_GT_SRIOV_PF_CONFIG_TYPES_H_
+>>   
+>> +#include "abi/guc_klvs_abi.h"
+>>   #include "xe_ggtt_types.h"
+>>   #include "xe_guc_klv_thresholds_set_types.h"
+>>   
+>> @@ -30,9 +31,9 @@ struct xe_gt_sriov_config {
+>>   	/** @begin_db: start index of GuC doorbell ID range. */
+>>   	u16 begin_db;
+>>   	/** @exec_quantum: execution-quantum in milliseconds. */
+>> -	u32 exec_quantum;
+>> +	u32 exec_quantum[GUC_KLV_VGT_POLICY_ENGINE_GROUP_MAX_COUNT];
+>>   	/** @preempt_timeout: preemption timeout in microseconds. */
+>> -	u32 preempt_timeout;
+>> +	u32 preempt_timeout[GUC_KLV_VGT_POLICY_ENGINE_GROUP_MAX_COUNT];
+> maybe we should rename
+>
+> 	GUC_KLV_VGT_POLICY_ENGINE_GROUP_MAX_COUNT
+> to
+> 	GUC_MAX_ENGINE_GROUPS
+>
+> and make it independent from KLVs and define like we have
+>
+> 	GUC_MAX_ENGINE_CLASSES
 
-ok
+ok, I'll do it in an earlier patch.
 
 Daniele
 
 >
->> +	for (i = 0; i < count; i++) {
->> +		if (input[i + 1] < 0 || input[i + 1] > S32_MAX) {
->> +			ret = -EINVAL;
->> +			goto out;
->> +		}
->> +
->> +		values[i] = input[i + 1];
->> +	}
->> +
->> +	xe_pm_runtime_get(gt_to_xe(gt));
->> +	ret = set(gt, vfid, values, count);
->> +	xe_pm_runtime_put(gt_to_xe(gt));
->> +
->> +out:
->> +	kfree(input);
->> +	return (ret < 0) ? ret : size;
->> +}
->> +
->> +#define DEFINE_SRIOV_GT_GRP_CFG_DEBUGFS_ATTRIBUTE(CONFIG, TYPE, FORMAT)		\
->> +static int sched_groups_##CONFIG##s_show(struct seq_file *m,			\
->> +						  void *data)			\
->> +{										\
->> +	return sched_groups_config_show(m, data,				\
->> +					xe_gt_sriov_pf_config_get_groups_##CONFIG##s); \
->> +}										\
->> +										\
->> +static int sched_groups_##CONFIG##s_open(struct inode *inode, struct file *file)\
->> +{										\
->> +	return single_open(file, sched_groups_##CONFIG##s_show,			\
->> +			   inode->i_private);					\
->> +}										\
->> +										\
->> +static ssize_t sched_groups_##CONFIG##s_write(struct file *file,		\
->> +					      const char __user *ubuf,		\
->> +					      size_t size, loff_t *pos)		\
->> +{										\
->> +	return sched_groups_config_write(file, ubuf, size, pos,			\
->> +					 xe_gt_sriov_pf_config_set_groups_##CONFIG##s); \
->> +}										\
->> +										\
->> +static const struct file_operations sched_groups_##CONFIG##s_fops = {		\
->> +	.owner = THIS_MODULE,							\
->> +	.open = sched_groups_##CONFIG##s_open,					\
->> +	.read = seq_read,							\
->> +	.llseek = seq_lseek,							\
->> +	.write = sched_groups_##CONFIG##s_write,				\
->> +	.release = single_release,						\
->> +};										\
->> +										\
->> +static int group_##CONFIG##_set(void *data, u64 val)				\
->> +{										\
->> +	struct sched_group_info *gi = data;					\
->> +	struct xe_device *xe = gt_to_xe(gi->gt);				\
->> +	int err;								\
->> +										\
->> +	if (val > (TYPE)~0ull)							\
->> +		return -EOVERFLOW;						\
->> +										\
->> +	xe_pm_runtime_get(xe);							\
->> +	err = xe_sriov_pf_wait_ready(xe) ?:					\
->> +	      xe_gt_sriov_pf_config_set_group_##CONFIG(gi->gt, gi->vfid,	\
->> +						       gi->group_id, val);	\
->> +	if (!err)								\
->> +		xe_sriov_pf_provision_set_custom_mode(xe);			\
->> +	xe_pm_runtime_put(xe);							\
->> +										\
->> +	return err;								\
->> +}										\
->> +										\
->> +static int group_##CONFIG##_get(void *data, u64 *val)				\
->> +{										\
->> +	struct sched_group_info *gi = data;					\
->> +										\
->> +	*val = xe_gt_sriov_pf_config_get_group_##CONFIG(gi->gt, gi->vfid,	\
->> +							gi->group_id);		\
->> +	return 0;								\
->> +}										\
->> +										\
->> +DEFINE_DEBUGFS_ATTRIBUTE(group_##CONFIG##_fops, group_##CONFIG##_get,		\
->> +			 group_##CONFIG##_set, FORMAT)
->> +
->> +DEFINE_SRIOV_GT_GRP_CFG_DEBUGFS_ATTRIBUTE(exec_quantum, u32, "%llu\n");
->> +DEFINE_SRIOV_GT_GRP_CFG_DEBUGFS_ATTRIBUTE(preempt_timeout, u32, "%llu\n");
->> +
->>   static int sched_group_engines_info(struct seq_file *m, void *data)
->>   {
->>   	struct drm_printer p = drm_seq_file_printer(m);
->> @@ -261,6 +406,18 @@ static void sched_group_info_register(struct xe_gt *gt, unsigned int vfid)
->>   		goto out_err;
->>   	parent->d_inode->i_private = infos;
->>   
->> +	/*
->> +	 * assign group 0 gt and VF id values early as they're used by the
->> +	 * exec_quantums debugfs to set quantums for all groups
->> +	 */
->> +	infos[0].gt = gt;
->> +	infos[0].vfid = vfid;
->> +
->> +	debugfs_create_file("exec_quantums_ms", 0644, parent, infos,
->> +			    &sched_groups_exec_quantums_fops);
->> +	debugfs_create_file("preempt_timeouts_us", 0644, parent, infos,
->> +			    &sched_groups_preempt_timeouts_fops);
->> +
->>   	for (g = 0; g < num_groups; g++) {
->>   		struct sched_group_info *info = &infos[g];
->>   		u32 base = g * GUC_MAX_ENGINE_CLASSES;
->> @@ -273,10 +430,16 @@ static void sched_group_info_register(struct xe_gt *gt, unsigned int vfid)
->>   			goto out_err;
->>   
->>   		info->gt = gt;
->> +		info->vfid = vfid;
->> +		info->group_id = g;
->>   		info->masks = &policy->guc.sched_groups.modes[mode].masks[base];
->>   
->>   		dent->d_inode->i_private = info;
->>   		debugfs_create_file("engines", 0644, dent, info, &sched_group_engines_fops);
->> +		debugfs_create_file("exec_quantum_ms", 0644, dent, info,
->> +				    &group_exec_quantum_fops);
->> +		debugfs_create_file("preempt_timeout_us", 0644, dent, info,
->> +				    &group_preempt_timeout_fops);
->>   	}
->>   
->>   	return;
+>
+>>   	/** @sched_priority: scheduling priority. */
+>>   	u32 sched_priority;
+>>   	/** @thresholds: GuC thresholds for adverse events notifications. */
 
