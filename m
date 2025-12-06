@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9FD54D3B7EB
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D6BA3D3B7EA
 	for <intel-xe@archiver.kernel.org>; Sat,  6 Dec 2025 23:04:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E1E3610E317;
-	Sat,  6 Dec 2025 23:04:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0300D10E318;
+	Sat,  6 Dec 2025 23:04:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hbY3XxB1";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Xetuljvu";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E634610E313
- for <intel-xe@lists.freedesktop.org>; Sat,  6 Dec 2025 23:04:14 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4987910E313
+ for <intel-xe@lists.freedesktop.org>; Sat,  6 Dec 2025 23:04:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765062255; x=1796598255;
+ t=1765062258; x=1796598258;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=m7aCWwH4/cBwpUdShBRuUMhnokgQghlQkaqxJ+FIQi4=;
- b=hbY3XxB14vXzuQI9UK0A1q5K2ZLtkaCHQql+ryW2PWIkacq1pZ0pJGZW
- eQ5BIihSH9qgukclQF8Igpts76fellLcXvBVFfK8VFJVTukv2RHcjURPe
- IV4Bc+R1PdoMHvbtGFfqD77c/iqAluLQvK2Y4oYKvw9V7mVZVcCEFCxvp
- 74eSncj13l3+btezbx4M1cNR49fIoltjutq38l1asxaTc25c3wZSAZxFz
- wAtWLNg8unlkm7Zevr2QEtxba/nlUVZ7XZFjUrJ/NdfBn77jAKujzceF3
- Jd2h83pYMsvnOTEoorinoYvijevvumi3PV4G7K864uSZTySvMwDMa+CEE g==;
-X-CSE-ConnectionGUID: niYoCB4WSyqD3LZxyBzzuA==
-X-CSE-MsgGUID: SqT3dwL7QpiS/HSfkaGbsQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11634"; a="78411685"
-X-IronPort-AV: E=Sophos;i="6.20,255,1758610800"; d="scan'208";a="78411685"
+ bh=H+eYwX1cLh0FdGZwZY6npSz5Nv60wX2uUFcxAnXNBxg=;
+ b=XetuljvuqtsawomlZK1TiWpxf+SfpJbJjcQXXmCn2vOPu5U/jibLJUb2
+ hBABobxR2QZw79WNGoZgNuCU42GFwRZqFTLGuKyRMpP9Rn9xv6teOW//a
+ x+XktQgLsyaFDtee7NLN0fWIE55vLoJGAarJ81HzEb3Zi4nuBh9XDJAkb
+ /Ho011esGezU8kEliR7dZY3RetIbRLcaoIRqVlaB002rbzjoLV6XihLmP
+ K1EOnqtV3yxdUsLAvUOT5gvztSwVK8dpCRczzWXQ5XeJcNpI9Un/4AT0X
+ 1Cjs1f8mpn/tLWH6A9JtBnRdnxRzVePn5oXczbZjf6Lfq9OZ6PgcbQvb1 A==;
+X-CSE-ConnectionGUID: m+7fFszjRbO6vGcYw5muBA==
+X-CSE-MsgGUID: iHXF7hU0QOq937vUg6UzhQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11634"; a="78411695"
+X-IronPort-AV: E=Sophos;i="6.20,255,1758610800"; d="scan'208";a="78411695"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Dec 2025 15:04:15 -0800
-X-CSE-ConnectionGUID: usZmD85MTU64ADsiBw15BQ==
-X-CSE-MsgGUID: YiNuUE6oRyqok7am5qzBaQ==
+ 06 Dec 2025 15:04:18 -0800
+X-CSE-ConnectionGUID: S3kHuxbeQI6T2/YJ3VahEw==
+X-CSE-MsgGUID: nrHSO9uDTwubecnUh/k7TA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,255,1758610800"; d="scan'208";a="200045508"
+X-IronPort-AV: E=Sophos;i="6.20,255,1758610800"; d="scan'208";a="200045552"
 Received: from valcore-skull-1.fm.intel.com ([10.1.39.17])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Dec 2025 15:04:13 -0800
+ 06 Dec 2025 15:04:18 -0800
 From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
  Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH v2 04/11] drm/xe/sriov: Scheduler groups are incompatible with
- multi-lrc
-Date: Sat,  6 Dec 2025 15:04:00 -0800
-Message-ID: <20251206230356.3600292-17-daniele.ceraolospurio@intel.com>
+Subject: [PATCH v2 10/11] drm/xe/sriov: Add functions to set preempt timeouts
+ for each group
+Date: Sat,  6 Dec 2025 15:04:06 -0800
+Message-ID: <20251206230356.3600292-23-daniele.ceraolospurio@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20251206230356.3600292-13-daniele.ceraolospurio@intel.com>
 References: <20251206230356.3600292-13-daniele.ceraolospurio@intel.com>
@@ -68,408 +68,206 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Since engines in the same class can be divided across multiple groups,
-the GuC does not allow scheduler groups to be active if there are
-multi-lrc contexts. This means that:
+The KLV to set the preemption timeout for each groups works the exact
+same way as the one for the exec quantums, so we add similar functions.
 
-1) if a MLRC context is registered when we enable scheduler groups, the
-   GuC will silently ignore the configuration
-2) if a MLRC context is registered after scheduler groups are enabled,
-   the GuC will disable the groups and generate an adverse event.
-
-The expectation is that the admin will ensure that all apps that use
-MLRC on PF have been terminated before scheduler groups are created. A
-check on PF is added anyway to make sure we don't still have contexts
-waiting to be cleaned up laying around.
-On both PF and VF we block creation of new MLRC queues once scheduler
-groups have been enabled.
-
-v2: move threshold handling to its own patch, move MLRC check to
-    guc_submit.c, hide SRIOV interals from exec_queue creation code,
-    better comments/docs (Michal)
+v2: drop the option of setting a single group, minor updates (Michal)
 
 Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
 ---
- drivers/gpu/drm/xe/abi/guc_klvs_abi.h      |  7 +++
- drivers/gpu/drm/xe/xe_exec_queue.c         | 19 +++++++
- drivers/gpu/drm/xe/xe_gt_sriov_pf.c        | 17 ++++++
- drivers/gpu/drm/xe/xe_gt_sriov_pf.h        |  8 +++
- drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.c | 28 ++++++++++
- drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.h |  1 +
- drivers/gpu/drm/xe/xe_gt_sriov_vf.c        | 60 ++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_gt_sriov_vf.h        |  1 +
- drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h  |  2 +
- drivers/gpu/drm/xe/xe_guc_klv_helpers.c    |  3 ++
- drivers/gpu/drm/xe/xe_guc_submit.c         | 21 ++++++++
- drivers/gpu/drm/xe/xe_guc_submit.h         |  2 +
- 12 files changed, 169 insertions(+)
+ drivers/gpu/drm/xe/abi/guc_klvs_abi.h      | 13 +++
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c | 95 +++++++++++++++++++++-
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h |  5 ++
+ drivers/gpu/drm/xe/xe_guc_klv_helpers.c    |  2 +
+ 4 files changed, 114 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h b/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
-index 45733a87183a..edb0546fb163 100644
+index f8c7bc4d110a..d605c31aae6c 100644
 --- a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
 +++ b/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
-@@ -46,11 +46,18 @@
-  *      Refers to 32 bit architecture version as reported by the HW IP.
-  *      This key is supported on MTL+ platforms only.
-  *      Requires GuC ABI 1.2+.
+@@ -400,6 +400,16 @@ enum  {
+  *      the GuC always sets the EQ for all groups (even the non-enabled ones),
+  *      so if we provide fewer values than the max the GuC will use 0 for the
+  *      remaining groups.
 + *
-+ * _`GUC_KLV_GLOBAL_CFG_GROUP_SCHEDULING_AVAILABLE` : 0x3001
-+ *      Tells the driver whether scheduler groups are enabled or not.
-+ *      Requires GuC ABI 1.26+
++ * _`GUC_KLV_VF_CFG_ENGINE_GROUP_PREEMPT_TIMEOUT' : 0x8A0F
++ *      This config sets the VFs-preemption-timeout for each scheduling group in
++ *      microseconds. The driver must provide an array of values, with each of
++ *      them matching the respective group index (first value goes to group 0,
++ *      second to group 1, etc). The setting of group values follows the same
++ *      behavior and rules as setting via GUC_KLV_VF_CFG_PREEMPT_TIMEOUT. Note
++ *      that the GuC always sets the EQ for all groups (even the non-enabled
++ *      ones), so if we provide fewer values than the max the GuC will use 0 for
++ *      the remaining groups.
   */
  
- #define GUC_KLV_GLOBAL_CFG_GMD_ID_KEY			0x3000u
- #define GUC_KLV_GLOBAL_CFG_GMD_ID_LEN			1u
+ #define GUC_KLV_VF_CFG_GGTT_START_KEY		0x0001
+@@ -465,6 +475,9 @@ enum  {
+ #define GUC_KLV_VF_CFG_ENGINE_GROUP_EXEC_QUANTUM_MIN_LEN	1u
+ #define GUC_KLV_VF_CFG_ENGINE_GROUP_EXEC_QUANTUM_MAX_LEN	8u
  
-+#define GUC_KLV_GLOBAL_CFG_GROUP_SCHEDULING_AVAILABLE_KEY	0x3001u
-+#define GUC_KLV_GLOBAL_CFG_GROUP_SCHEDULING_AVAILABLE_LEN	1u
-+
- /**
-  * DOC: GuC Self Config KLVs
-  *
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-index 226d07a3d852..df01c0664965 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue.c
-+++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-@@ -16,6 +16,7 @@
- #include "xe_dep_scheduler.h"
- #include "xe_device.h"
- #include "xe_gt.h"
-+#include "xe_gt_sriov_pf.h"
- #include "xe_gt_sriov_vf.h"
- #include "xe_hw_engine_class_sysfs.h"
- #include "xe_hw_engine_group.h"
-@@ -718,6 +719,17 @@ static u32 calc_validate_logical_mask(struct xe_device *xe,
- 	return return_mask;
- }
- 
-+static bool has_sched_groups(struct xe_gt *gt)
-+{
-+	if (IS_SRIOV_PF(gt_to_xe(gt)) && xe_gt_sriov_pf_sched_groups_enabled(gt))
-+		return true;
-+
-+	if (IS_SRIOV_VF(gt_to_xe(gt)) && xe_gt_sriov_vf_sched_groups_enabled(gt))
-+		return true;
-+
-+	return false;
-+}
-+
- int xe_exec_queue_create_ioctl(struct drm_device *dev, void *data,
- 			       struct drm_file *file)
- {
-@@ -810,6 +822,13 @@ int xe_exec_queue_create_ioctl(struct drm_device *dev, void *data,
- 			return -ENOENT;
- 		}
- 
-+		/* SRIOV sched groups are not compatible with multi-lrc */
-+		if (XE_IOCTL_DBG(xe, args->width > 1 && has_sched_groups(hwe->gt))) {
-+			up_read(&vm->lock);
-+			xe_vm_put(vm);
-+			return -EINVAL;
-+		}
-+
- 		q = xe_exec_queue_create(xe, vm, logical_mask,
- 					 args->width, hwe, flags,
- 					 args->extensions);
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf.c
-index 0d97a823e702..fb5c9101e275 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_pf.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf.c
-@@ -284,3 +284,20 @@ int xe_gt_sriov_pf_wait_ready(struct xe_gt *gt)
- 	pf_flush_restart(gt);
- 	return 0;
- }
-+
-+/**
-+ * xe_gt_sriov_pf_sched_groups_enabled - Check if multiple scheduler groups are
-+ * enabled
-+ * @gt: the &xe_gt
-+ *
-+ * This function is for PF use only.
-+ *
-+ * Return: true if shed groups were enabled, false otherwise.
-+ */
-+bool xe_gt_sriov_pf_sched_groups_enabled(struct xe_gt *gt)
-+{
-+	xe_gt_assert(gt, IS_SRIOV_PF(gt_to_xe(gt)));
-+
-+	return xe_gt_sriov_pf_policy_sched_groups_enabled(gt);
-+}
-+
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf.h b/drivers/gpu/drm/xe/xe_gt_sriov_pf.h
-index e7fde3f9937a..1ccfc7137b98 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_pf.h
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf.h
-@@ -6,6 +6,8 @@
- #ifndef _XE_GT_SRIOV_PF_H_
- #define _XE_GT_SRIOV_PF_H_
- 
-+#include <linux/types.h>
-+
- struct xe_gt;
- 
- #ifdef CONFIG_PCI_IOV
-@@ -16,6 +18,7 @@ void xe_gt_sriov_pf_init_hw(struct xe_gt *gt);
- void xe_gt_sriov_pf_sanitize_hw(struct xe_gt *gt, unsigned int vfid);
- void xe_gt_sriov_pf_stop_prepare(struct xe_gt *gt);
- void xe_gt_sriov_pf_restart(struct xe_gt *gt);
-+bool xe_gt_sriov_pf_sched_groups_enabled(struct xe_gt *gt);
- #else
- static inline int xe_gt_sriov_pf_init_early(struct xe_gt *gt)
- {
-@@ -38,6 +41,11 @@ static inline void xe_gt_sriov_pf_stop_prepare(struct xe_gt *gt)
- static inline void xe_gt_sriov_pf_restart(struct xe_gt *gt)
- {
- }
-+
-+static inline bool xe_gt_sriov_pf_sched_groups_enabled(struct xe_gt *gt)
-+{
-+	return false;
-+}
- #endif
- 
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.c
-index 1109fec99fc3..6a682d788b02 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.c
-@@ -16,6 +16,7 @@
- #include "xe_guc_buf.h"
- #include "xe_guc_ct.h"
- #include "xe_guc_klv_helpers.h"
-+#include "xe_guc_submit.h"
- #include "xe_pm.h"
- 
++#define GUC_KLV_VF_CFG_ENGINE_GROUP_PREEMPT_TIMEOUT_KEY		0x8a0f
++#define GUC_KLV_VF_CFG_ENGINE_GROUP_PREEMPT_TIMEOUT_MIN_LEN	1u
++#define GUC_KLV_VF_CFG_ENGINE_GROUP_PREEMPT_TIMEOUT_MAX_LEN	8u
  /*
-@@ -567,6 +568,19 @@ static int pf_provision_sched_groups(struct xe_gt *gt, u32 mode)
- 	if (xe_sriov_pf_num_vfs(gt_to_xe(gt)))
- 		return -EBUSY;
+  * Workaround keys:
+  */
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
+index ac3583594603..57f32b6c7814 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
+@@ -295,13 +295,18 @@ static u32 encode_config_sched(struct xe_gt *gt, u32 *cfg, u32 n,
+ 	if (xe_sriov_gt_pf_policy_has_multi_group_modes(gt)) {
+ 		BUILD_BUG_ON(ARRAY_SIZE(config->exec_quantum) >
+ 			     GUC_KLV_VF_CFG_ENGINE_GROUP_EXEC_QUANTUM_MAX_LEN);
++		BUILD_BUG_ON(ARRAY_SIZE(config->preempt_timeout) >
++			     GUC_KLV_VF_CFG_ENGINE_GROUP_PREEMPT_TIMEOUT_MAX_LEN);
  
-+	/*
-+	 * The GuC silently ignores the setting if any MLRC contexts are
-+	 * registered. We expect the admin to make sure that all apps that use
-+	 * MLRC are terminated before scheduler groups are enabled, so this
-+	 * check is just to make sure that the exec_queue destruction has been
-+	 * completed.
-+	 */
-+	if (mode != XE_SRIOV_SCHED_GROUPS_NONE &&
-+	    xe_guc_has_registered_mlrc_queues(&gt->uc.guc)) {
-+		xe_gt_sriov_notice(gt, "can't enable sched groups with active mlrc queues\n");
-+		return -EPERM;
-+	}
-+
- 	err = __pf_provision_sched_groups(gt, mode);
- 	if (err)
- 		return err;
-@@ -615,6 +629,20 @@ int xe_gt_sriov_pf_policy_set_sched_groups_mode(struct xe_gt *gt,
- 	return pf_provision_sched_groups(gt, value);
+ 		cfg[n++] = PREP_GUC_KLV_CONST(GUC_KLV_VF_CFG_ENGINE_GROUP_EXEC_QUANTUM_KEY,
+ 					      ARRAY_SIZE(config->exec_quantum));
+ 		for (i = 0; i < ARRAY_SIZE(config->exec_quantum); i++)
+ 			cfg[n++] = config->exec_quantum[i];
+ 
+-		/* TODO: add group preempt timeout setting */
++		cfg[n++] = PREP_GUC_KLV_CONST(GUC_KLV_VF_CFG_ENGINE_GROUP_PREEMPT_TIMEOUT_KEY,
++					      ARRAY_SIZE(config->preempt_timeout));
++		for (i = 0; i < ARRAY_SIZE(config->preempt_timeout); i++)
++			cfg[n++] = config->preempt_timeout[i];
+ 	} else {
+ 		cfg[n++] = PREP_GUC_KLV_TAG(VF_CFG_EXEC_QUANTUM);
+ 		cfg[n++] = config->exec_quantum[0];
+@@ -2265,6 +2270,89 @@ int xe_gt_sriov_pf_config_bulk_set_preempt_timeout_locked(struct xe_gt *gt, u32
+ 					   preempt_timeout_unit, n, err);
  }
  
-+/**
-+ * xe_gt_sriov_pf_policy_sched_groups_enabled() - check whether the GT has
-+ * multiple scheduler groups enabled
-+ * @gt: the &xe_gt to check
-+ *
-+ * This function can only be called on PF.
-+ *
-+ * Return: true if the GT has multiple groups enabled, false otherwise.
-+ */
-+bool xe_gt_sriov_pf_policy_sched_groups_enabled(struct xe_gt *gt)
++static int pf_provision_groups_preempt_timeouts(struct xe_gt *gt, unsigned int vfid,
++						const u32 *preempt_timeouts, u32 count)
 +{
-+	return gt->sriov.pf.policy.guc.sched_groups.current_mode != XE_SRIOV_SCHED_GROUPS_NONE;
-+}
-+
- static void pf_sanitize_guc_policies(struct xe_gt *gt)
- {
- 	pf_sanitize_sched_if_idle(gt);
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.h b/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.h
-index 6b3e294bc934..ceaf797ca21b 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.h
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.h
-@@ -20,6 +20,7 @@ u32 xe_gt_sriov_pf_policy_get_sample_period(struct xe_gt *gt);
- bool xe_sriov_gt_pf_policy_has_multi_group_modes(struct xe_gt *gt);
- bool xe_sriov_gt_pf_policy_has_sched_group_mode(struct xe_gt *gt, u32 mode);
- int xe_gt_sriov_pf_policy_set_sched_groups_mode(struct xe_gt *gt, u32 value);
-+bool xe_gt_sriov_pf_policy_sched_groups_enabled(struct xe_gt *gt);
- 
- void xe_gt_sriov_pf_policy_init(struct xe_gt *gt);
- void xe_gt_sriov_pf_policy_sanitize(struct xe_gt *gt);
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-index 97c29c55f885..48e11c1a2d08 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-@@ -438,6 +438,30 @@ u32 xe_gt_sriov_vf_gmdid(struct xe_gt *gt)
- 	return value;
- }
- 
-+static int query_vf_sched_groups(struct xe_gt *gt)
-+{
-+	struct xe_guc *guc = &gt->uc.guc;
-+	u32 value = 0;
++	struct xe_gt_sriov_config *config = pf_pick_vf_config(gt, vfid);
 +	int err;
++	int i;
 +
-+	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
-+
-+	if (MAKE_GUC_VER_STRUCT(gt->sriov.vf.guc_version) < MAKE_GUC_VER(1, 26, 0))
-+		return 0;
-+
-+	err = guc_action_query_single_klv32(guc,
-+					    GUC_KLV_GLOBAL_CFG_GROUP_SCHEDULING_AVAILABLE_KEY,
-+					    &value);
-+	if (unlikely(err)) {
-+		xe_gt_sriov_err(gt, "Failed to obtain sched groups status (%pe)\n",
-+				ERR_PTR(err));
++	err = pf_push_vf_grp_cfg_u32(gt, vfid, GUC_KLV_VF_CFG_ENGINE_GROUP_PREEMPT_TIMEOUT_KEY,
++				     preempt_timeouts, count);
++	if (unlikely(err))
 +		return err;
++
++	/*
++	 * GuC silently clamps values exceeding the max and zeroes out the
++	 * quantum for groups not in the klv payload
++	 */
++	for (i = 0; i < ARRAY_SIZE(config->preempt_timeout); i++) {
++		if (i < count)
++			config->preempt_timeout[i] =
++				min_t(u32, preempt_timeouts[i],
++				      GUC_KLV_VF_CFG_PREEMPT_TIMEOUT_MAX_VALUE);
++		else
++			config->preempt_timeout[i] = 0;
 +	}
-+
-+	xe_gt_sriov_dbg(gt, "sched groups %s\n", str_enabled_disabled(value));
-+	return value;
-+}
-+
- static int vf_get_ggtt_info(struct xe_gt *gt)
- {
- 	struct xe_tile *tile = gt_to_tile(gt);
-@@ -564,6 +588,21 @@ static void vf_cache_gmdid(struct xe_gt *gt)
- 	gt->sriov.vf.runtime.gmdid = xe_gt_sriov_vf_gmdid(gt);
- }
- 
-+static int vf_cache_sched_groups_status(struct xe_gt *gt)
-+{
-+	int ret;
-+
-+	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
-+
-+	ret = query_vf_sched_groups(gt);
-+	if (ret < 0)
-+		return ret;
-+
-+	gt->sriov.vf.runtime.uses_sched_groups = ret;
 +
 +	return 0;
 +}
 +
- /**
-  * xe_gt_sriov_vf_query_config - Query SR-IOV config data over MMIO.
-  * @gt: the &xe_gt
-@@ -593,12 +632,33 @@ int xe_gt_sriov_vf_query_config(struct xe_gt *gt)
- 	if (unlikely(err))
- 		return err;
- 
-+	err = vf_cache_sched_groups_status(gt);
-+	if (unlikely(err))
-+		return err;
-+
- 	if (has_gmdid(xe))
- 		vf_cache_gmdid(gt);
- 
- 	return 0;
- }
- 
-+/**
-+ * xe_gt_sriov_vf_sched_groups_enabled() - Check if PF has enabled multiple
-+ * scheduler groups
-+ * @gt: the &xe_gt
-+ *
-+ * This function is for VF use only.
-+ *
-+ * Return: true if shed groups were enabled, false otherwise.
-+ */
-+bool xe_gt_sriov_vf_sched_groups_enabled(struct xe_gt *gt)
++static void pf_get_groups_preempt_timeouts(struct xe_gt *gt, unsigned int vfid,
++					   u32 *preempt_timeouts, u32 max_count)
 +{
-+	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
-+	xe_gt_assert(gt, gt->sriov.vf.guc_version.major);
++	struct xe_gt_sriov_config *config = pf_pick_vf_config(gt, vfid);
++	u32 count = min_t(u32, max_count, ARRAY_SIZE(config->preempt_timeout));
 +
-+	return gt->sriov.vf.runtime.uses_sched_groups;
++	memcpy(preempt_timeouts, config->preempt_timeout, sizeof(u32) * count);
 +}
 +
- /**
-  * xe_gt_sriov_vf_guc_ids - VF GuC context IDs configuration.
-  * @gt: the &xe_gt
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.h b/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
-index af40276790fa..7d97189c2d3d 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
-@@ -30,6 +30,7 @@ bool xe_gt_sriov_vf_recovery_pending(struct xe_gt *gt);
- u32 xe_gt_sriov_vf_gmdid(struct xe_gt *gt);
- u16 xe_gt_sriov_vf_guc_ids(struct xe_gt *gt);
- u64 xe_gt_sriov_vf_lmem(struct xe_gt *gt);
-+bool xe_gt_sriov_vf_sched_groups_enabled(struct xe_gt *gt);
++/**
++ * xe_gt_sriov_pf_config_set_groups_preempt_timeouts() - Configure PF/VF PTs for sched groups.
++ * @gt: the &xe_gt
++ * @vfid: the PF or VF identifier
++ * @preempt_timeouts: array of requested PTs in microseconds (0 is infinity)
++ * @count: number of entries in the array
++ *
++ * This function can only be called on PF.
++ * It will log the provisioned value or an error in case of the failure.
++ *
++ * Return: 0 on success or a negative error code on failure.
++ */
++int xe_gt_sriov_pf_config_set_groups_preempt_timeouts(struct xe_gt *gt, unsigned int vfid,
++						      u32 *preempt_timeouts, u32 count)
++{
++	int err;
++
++	guard(mutex)(xe_gt_sriov_pf_master_mutex(gt));
++
++	err = pf_provision_groups_preempt_timeouts(gt, vfid, preempt_timeouts, count);
++
++	return pf_groups_cfg_set_u32_done(gt, vfid, preempt_timeouts, count,
++					  pf_get_groups_preempt_timeouts,
++					  "preempt_timeout",
++					  preempt_timeout_unit, err);
++}
++
++/**
++ * xe_gt_sriov_pf_config_get_groups_preempt_timeouts - Get PF/VF sched groups PTs
++ * @gt: the &xe_gt
++ * @vfid: the PF or VF identifier
++ * @preempt_timeouts: array in which to store the preemption timeouts values
++ * @count: maximum number of entries to store
++ *
++ * This function can only be called on PF.
++ */
++void xe_gt_sriov_pf_config_get_groups_preempt_timeouts(struct xe_gt *gt, unsigned int vfid,
++						       u32 *preempt_timeouts, u32 count)
++{
++	guard(mutex)(xe_gt_sriov_pf_master_mutex(gt));
++
++	xe_gt_assert(gt, count <= GUC_MAX_SCHED_GROUPS);
++
++	pf_get_groups_preempt_timeouts(gt, vfid, preempt_timeouts, count);
++}
++
+ static const char *sched_priority_unit(u32 priority)
+ {
+ 	return priority == GUC_SCHED_PRIORITY_LOW ? "(low)" :
+@@ -2712,6 +2800,11 @@ static int pf_restore_vf_config_klv(struct xe_gt *gt, unsigned int vfid,
+ 			return -EBADMSG;
+ 		return pf_provision_groups_exec_quantums(gt, vfid, value, len);
  
- u32 xe_gt_sriov_vf_read32(struct xe_gt *gt, struct xe_reg reg);
- void xe_gt_sriov_vf_write32(struct xe_gt *gt, struct xe_reg reg, u32 val);
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h b/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
-index 420b0e6089de..5267c097ecd0 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
-@@ -27,6 +27,8 @@ struct xe_gt_sriov_vf_selfconfig {
- struct xe_gt_sriov_vf_runtime {
- 	/** @gmdid: cached value of the GDMID register. */
- 	u32 gmdid;
-+	/** @uses_sched_groups: whether PF enabled sched groups or not. */
-+	bool uses_sched_groups;
- 	/** @regs_size: size of runtime register array. */
- 	u32 regs_size;
- 	/** @num_regs: number of runtime registers in the array. */
++	case GUC_KLV_VF_CFG_ENGINE_GROUP_PREEMPT_TIMEOUT_KEY:
++		if (len > GUC_KLV_VF_CFG_ENGINE_GROUP_PREEMPT_TIMEOUT_MAX_LEN)
++			return -EBADMSG;
++		return pf_provision_groups_preempt_timeouts(gt, vfid, value, len);
++
+ 	case GUC_KLV_VF_CFG_PREEMPT_TIMEOUT_KEY:
+ 		if (len != GUC_KLV_VF_CFG_PREEMPT_TIMEOUT_LEN)
+ 			return -EBADMSG;
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h
+index aaed1f490da8..3c6c8b6655af 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h
+@@ -60,6 +60,11 @@ int xe_gt_sriov_pf_config_set_preempt_timeout_locked(struct xe_gt *gt, unsigned
+ 						     u32 preempt_timeout);
+ int xe_gt_sriov_pf_config_bulk_set_preempt_timeout_locked(struct xe_gt *gt, u32 preempt_timeout);
+ 
++void xe_gt_sriov_pf_config_get_groups_preempt_timeouts(struct xe_gt *gt, unsigned int vfid,
++						       u32 *preempt_timeout, u32 max_count);
++int xe_gt_sriov_pf_config_set_groups_preempt_timeouts(struct xe_gt *gt, unsigned int vfid,
++						      u32 *preempt_timeout, u32 count);
++
+ u32 xe_gt_sriov_pf_config_get_sched_priority(struct xe_gt *gt, unsigned int vfid);
+ int xe_gt_sriov_pf_config_set_sched_priority(struct xe_gt *gt, unsigned int vfid, u32 priority);
+ 
 diff --git a/drivers/gpu/drm/xe/xe_guc_klv_helpers.c b/drivers/gpu/drm/xe/xe_guc_klv_helpers.c
-index 1b08b443606e..dd504b77cb17 100644
+index b696a21f87e8..97600edda837 100644
 --- a/drivers/gpu/drm/xe/xe_guc_klv_helpers.c
 +++ b/drivers/gpu/drm/xe/xe_guc_klv_helpers.c
-@@ -21,6 +21,9 @@
- const char *xe_guc_klv_key_to_string(u16 key)
- {
- 	switch (key) {
-+	/* GuC Global Config KLVs */
-+	case GUC_KLV_GLOBAL_CFG_GROUP_SCHEDULING_AVAILABLE_KEY:
-+		return "group_scheduling_available";
- 	/* VGT POLICY keys */
- 	case GUC_KLV_VGT_POLICY_SCHED_IF_IDLE_KEY:
- 		return "sched_if_idle";
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index af43acf7baae..e8921219ac4e 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -2985,6 +2985,27 @@ void xe_guc_submit_print(struct xe_guc *guc, struct drm_printer *p)
- 	mutex_unlock(&guc->submission_state.lock);
- }
+@@ -58,6 +58,8 @@ const char *xe_guc_klv_key_to_string(u16 key)
+ 		return "sched_priority";
+ 	case GUC_KLV_VF_CFG_ENGINE_GROUP_EXEC_QUANTUM_KEY:
+ 		return "sched_groups_exec_quantum";
++	case GUC_KLV_VF_CFG_ENGINE_GROUP_PREEMPT_TIMEOUT_KEY:
++		return "sched_groups_preempt_timeout";
  
-+/**
-+ * xe_guc_has_registered_mlrc_queues - check whether there are any MLRC queues
-+ * registered with the GuC
-+ * @guc: GuC.
-+ *
-+ * Return: true if any MLRC queue is registered with the GuC, false otherwise.
-+ */
-+bool xe_guc_has_registered_mlrc_queues(struct xe_guc *guc)
-+{
-+	struct xe_exec_queue *q;
-+	unsigned long index;
-+
-+	guard(mutex)(&guc->submission_state.lock);
-+
-+	xa_for_each(&guc->submission_state.exec_queue_lookup, index, q)
-+		if (q->width > 1)
-+			return true;
-+
-+	return false;
-+}
-+
- /**
-  * xe_guc_contexts_hwsp_rebase - Re-compute GGTT references within all
-  * exec queues registered to given GuC.
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.h b/drivers/gpu/drm/xe/xe_guc_submit.h
-index 100a7891b918..49e608500a4e 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.h
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.h
-@@ -49,6 +49,8 @@ xe_guc_exec_queue_snapshot_free(struct xe_guc_submit_exec_queue_snapshot *snapsh
- void xe_guc_submit_print(struct xe_guc *guc, struct drm_printer *p);
- void xe_guc_register_vf_exec_queue(struct xe_exec_queue *q, int ctx_type);
- 
-+bool xe_guc_has_registered_mlrc_queues(struct xe_guc *guc);
-+
- int xe_guc_contexts_hwsp_rebase(struct xe_guc *guc, void *scratch);
- 
- #endif
+ 	/* VF CFG threshold keys */
+ #define define_threshold_key_to_string_case(TAG, NAME, ...)	\
 -- 
 2.43.0
 
