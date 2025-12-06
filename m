@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5F8B8D3ABC9
-	for <intel-xe@archiver.kernel.org>; Sat,  6 Dec 2025 00:27:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9B884D3ABCC
+	for <intel-xe@archiver.kernel.org>; Sat,  6 Dec 2025 00:33:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 03DD210E28E;
-	Sat,  6 Dec 2025 00:27:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5C35B10E28E;
+	Sat,  6 Dec 2025 00:33:02 +0000 (UTC)
 Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E772A10E28E;
- Sat,  6 Dec 2025 00:27:55 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0018235796778628809=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F2F9E10E28E;
+ Sat,  6 Dec 2025 00:33:00 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/oa=3A_Expose_MERT_OA?=
- =?utf-8?q?_unit?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Limit_num=5Fsyncs_to_prev?=
+ =?utf-8?q?ent_oversized_allocations_=28rev3=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+To: "Shuicheng Lin" <shuicheng.lin@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Sat, 06 Dec 2025 00:27:55 -0000
-Message-ID: <176498087592.62152.6640280213284903801@a3b018990fe9>
+Date: Sat, 06 Dec 2025 00:33:00 -0000
+Message-ID: <176498118098.62152.13360169656888693729@a3b018990fe9>
 X-Patchwork-Hint: ignore
-References: <20251205212613.826224-1-ashutosh.dixit@intel.com>
-In-Reply-To: <20251205212613.826224-1-ashutosh.dixit@intel.com>
+References: <20251205234715.2476561-4-shuicheng.lin@intel.com>
+In-Reply-To: <20251205234715.2476561-4-shuicheng.lin@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,121 +40,51 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0018235796778628809==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe/oa: Expose MERT OA unit
-URL   : https://patchwork.freedesktop.org/series/158598/
-State : success
+Series: Limit num_syncs to prevent oversized allocations (rev3)
+URL   : https://patchwork.freedesktop.org/series/158594/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-4203-db6505187efb9c255df1dd6e78c00d95fadfef79_BAT -> xe-pw-158598v1_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+2de9a3901bc28757c7906b454717b64e2a214021
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 07501f9b9234db0dce0d0b8d62f875922caba5fc
+Author: Shuicheng Lin <shuicheng.lin@intel.com>
+Date:   Fri Dec 5 23:47:18 2025 +0000
 
-Summary
--------
+    drm/xe/oa: Limit num_syncs to prevent oversized allocations
+    
+    The OA open parameters did not validate num_syncs, allowing
+    userspace to pass arbitrarily large values, potentially
+    leading to excessive allocations.
+    
+    Add check to ensure that num_syncs does not exceed DRM_XE_MAX_SYNCS,
+    returning -EINVAL when the limit is violated.
+    
+    v2: use XE_IOCTL_DBG() and drop duplicated check. (Ashutosh)
+    
+    Fixes: c8507a25cebd ("drm/xe/oa/uapi: Define and parse OA sync properties")
+    Cc: Matthew Brost <matthew.brost@intel.com>
+    Cc: Ashutosh Dixit <ashutosh.dixit@intel.com>
+    Signed-off-by: Shuicheng Lin <shuicheng.lin@intel.com>
+    Reviewed-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
++ /mt/dim checkpatch db6505187efb9c255df1dd6e78c00d95fadfef79 drm-intel
+fb8037fa3bee drm/xe: Limit num_syncs to prevent oversized allocations
+-:50: WARNING:BAD_REPORTED_BY_LINK: Reported-by: should be immediately followed by Closes: with a URL to the report
+#50: 
+Reported-by: Koen Koning <koen.koning@intel.com>
+Reported-by: Peter Senna Tschudin <peter.senna@linux.intel.com>
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (12 -> 12)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-158598v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_waitfence@engine:
-    - bat-dg2-oem2:       [PASS][1] -> [FAIL][2] ([Intel XE#6519])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4203-db6505187efb9c255df1dd6e78c00d95fadfef79/bat-dg2-oem2/igt@xe_waitfence@engine.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158598v1/bat-dg2-oem2/igt@xe_waitfence@engine.html
-
-  
-  [Intel XE#6519]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519
-
-
-Build changes
--------------
-
-  * Linux: xe-4203-db6505187efb9c255df1dd6e78c00d95fadfef79 -> xe-pw-158598v1
-
-  IGT_8658: 5d645d459768a0e5c8e5e95b9fce16bb17319825 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-4203-db6505187efb9c255df1dd6e78c00d95fadfef79: db6505187efb9c255df1dd6e78c00d95fadfef79
-  xe-pw-158598v1: 158598v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158598v1/index.html
-
---===============0018235796778628809==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+total: 0 errors, 1 warnings, 0 checks, 25 lines checked
+07501f9b9234 drm/xe/oa: Limit num_syncs to prevent oversized allocations
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/oa: Expose MERT OA unit</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/158598/">https://patchwork.freedesktop.org/series/158598/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158598v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158598v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4203-db6505187efb9c255df1dd6e78c00d95fadfef79_BAT -&gt; xe-pw-158598v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (12 -&gt; 12)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-158598v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@xe_waitfence@engine:<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4203-db6505187efb9c255df1dd6e78c00d95fadfef79/bat-dg2-oem2/igt@xe_waitfence@engine.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158598v1/bat-dg2-oem2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519">Intel XE#6519</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4203-db6505187efb9c255df1dd6e78c00d95fadfef79 -&gt; xe-pw-158598v1</li>
-</ul>
-<p>IGT_8658: 5d645d459768a0e5c8e5e95b9fce16bb17319825 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-4203-db6505187efb9c255df1dd6e78c00d95fadfef79: db6505187efb9c255df1dd6e78c00d95fadfef79<br />
-  xe-pw-158598v1: 158598v1</p>
-
-</body>
-</html>
-
---===============0018235796778628809==--
