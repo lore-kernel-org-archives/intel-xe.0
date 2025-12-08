@@ -4,33 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D49E7D3B7E2
-	for <intel-xe@archiver.kernel.org>; Mon,  8 Dec 2025 11:25:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 358D9D3B7E2
+	for <intel-xe@archiver.kernel.org>; Mon,  8 Dec 2025 12:03:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D725C10E428;
-	Mon,  8 Dec 2025 11:25:00 +0000 (UTC)
-Received: from coelho.fi (coelho.fi [88.99.146.29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E764A10E128;
- Mon,  8 Dec 2025 11:24:59 +0000 (UTC)
-Received: from mobile-access-5d6aa7-235.dhcp.inet.fi ([93.106.167.235]
- helo=[192.168.8.139])
- by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.98.2) (envelope-from <luca@coelho.fi>)
- id 1vSZMO-00000000eyv-0R7x; Mon, 08 Dec 2025 13:24:57 +0200
-Message-ID: <8825c1865ec0b5c588b1b037288a47f23adb618a.camel@coelho.fi>
-From: Luca Coelho <luca@coelho.fi>
-To: Imre Deak <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org, 
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5D90910E428;
+	Mon,  8 Dec 2025 12:03:22 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KBgeogGg";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4F32510E427;
+ Mon,  8 Dec 2025 12:03:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1765195401; x=1796731401;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=lOAX5jTWJzOjNQIch0BI8kndk+ZSza1KZNDbWUSyX9M=;
+ b=KBgeogGgB248WacbVAvTU7sgAtWYrlNqEH863waUnYWYr0lfqK+890u2
+ zADKyUQ8HFzcLHbdm0JC0x7XEls0rJNHskp7xFSygO2nRQ0V3PbhD0fnR
+ pdwZkQOzvf5IBNbflHIpfWba2f7DtqytUyhryWrbovpUajhY0tQ0Q7fUb
+ Q+uuQgHzuwd//fYNsxhcLGTu1K8qY7zHwcVgjV0xaE+Netu1T2PKMyqmE
+ uiNDUux5MZS1xWc+H1CfSPWBynXJvtExjBul9EKEmyK7YWiBP8loFj2LE
+ bvUm4qdjIg7dY+dhJsqi0XlWGyKfp97O+11FmJVXI8W2+OIwdU4EKwqPs g==;
+X-CSE-ConnectionGUID: uEIhmR0eTAmJJo05t9Ozww==
+X-CSE-MsgGUID: w/ZYFazCTg2QpK8dOR9PUw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11635"; a="77456151"
+X-IronPort-AV: E=Sophos;i="6.20,258,1758610800"; d="scan'208";a="77456151"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Dec 2025 04:03:20 -0800
+X-CSE-ConnectionGUID: 00a69WouTL+JpkTH+RQYtg==
+X-CSE-MsgGUID: FBhMem3RSQyF87xodKdAUQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.20,258,1758610800"; d="scan'208";a="200389699"
+Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.125])
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Dec 2025 04:03:18 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Imre Deak <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org,
  intel-xe@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org
-Date: Mon, 08 Dec 2025 13:24:54 +0200
-In-Reply-To: <20251127175023.1522538-2-imre.deak@intel.com>
-References: <20251127175023.1522538-1-imre.deak@intel.com>
- <20251127175023.1522538-2-imre.deak@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2-7 
+Cc: Mika Kahola <mika.kahola@intel.com>
+Subject: Re: [PATCH] drm/i915/cx0: Convert C10 PHY PLL SSC state mismatch
+ WARN to a debug message
+In-Reply-To: <20251205122902.1724498-1-imre.deak@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20251205122902.1724498-1-imre.deak@intel.com>
+Date: Mon, 08 Dec 2025 14:03:15 +0200
+Message-ID: <1365d3888c719e7bf8455164910be9a6d33d6be9@intel.com>
 MIME-Version: 1.0
-Subject: Re: [PATCH 01/50] drm/dp: Parse all DSC slice count caps for eDP 1.5
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,90 +69,76 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 2025-11-27 at 19:49 +0200, Imre Deak wrote:
-> eDP 1.5 supports all the slice counts reported via DP_DSC_SLICE_CAP_1,
-> so adjust drm_dp_dsc_sink_max_slice_count() accordingly.
->=20
-> Cc: dri-devel@lists.freedesktop.org
+On Fri, 05 Dec 2025, Imre Deak <imre.deak@intel.com> wrote:
+> On C10 PHY PLLs the SSC is enabled by programming the
+> XELPDP_PORT_CLOCK_CTL / XELPDP_SSC_ENABLE_PLLB flag and the
+> PHY_C10_VDR_PLL 4..8 registers:
+>
+> - If SSC is enabled XELPDP_SSC_ENABLE_PLLB is set and the
+>   PHY_C10_VDR_PLL registers are programmed to non-zero values.
+> - If SSC is disabled XELPDP_SSC_ENABLE_PLLB is cleared and the
+>   PHY_C10_VDR_PLL registers are programmed to zeroed-out values.
+>
+> The driver's state checker verifies if the above settings are consistent,
+> i.e. if XELPDP_SSC_ENABLE_PLLB being set corresponds to the
+> PHY_C10_VDR_PLL registers being zeroed-out or not.
+>
+> On WCL the BIOS programs non-zero values to the PHY_C10_VDR_PLL 4..8
+> registers, but does not set the XELPDP_SSC_ENABLE_PLLB flag. This will
+> trigger the following PLL state check warning during driver loading:
+>
+> <4>[   44.457809] xe 0000:00:02.0: [drm] PHY B: SSC enabled state (no), doesn't match PLL configuration (SSC-enabled)
+
+BTW I also think the message is really confusing.
+
+"SSC enabled state (no)" vs. "PLL configuration (SSC-enabled)".
+
+*BOTH* need to say SSC with str_enabled_disabled() and ditch the clumsy
+"SSC enabled state yes/no" and "SSC-enabled/SSC-disabled".
+
+BR,
+Jani.
+
+
+> <4>[   44.457833] WARNING: CPU: 4 PID: 298 at drivers/gpu/drm/i915/display/intel_cx0_phy.c:2281 intel_cx0pll_readout_hw_state+0x221/0x620 [xe]
+>
+> It's not clear whether the HW uses the PHY_C10_VDR_PLL 4..8 register
+> values if the XELPDP_SSC_ENABLE_PLLB flag is cleared, or just ignores
+> them in this case. Since the driver always programs the register values
+> according to the above, it still makes sense to verify that the
+> programming happened correctly.
+>
+> To avoid the state check WARN during driver loading due to the way BIOS
+> programs the registers, convert the WARN to a debug message.
+>
+> Cc: Mika Kahola <mika.kahola@intel.com>
 > Signed-off-by: Imre Deak <imre.deak@intel.com>
 > ---
->  drivers/gpu/drm/display/drm_dp_helper.c | 41 +++++++++++--------------
->  1 file changed, 18 insertions(+), 23 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/display/drm_dp_helper.c b/drivers/gpu/drm/di=
-splay/drm_dp_helper.c
-> index f9fdf19de74a9..19564c1afba6c 100644
-> --- a/drivers/gpu/drm/display/drm_dp_helper.c
-> +++ b/drivers/gpu/drm/display/drm_dp_helper.c
-> @@ -2725,15 +2725,7 @@ u8 drm_dp_dsc_sink_max_slice_count(const u8 dsc_dp=
-cd[DP_DSC_RECEIVER_CAP_SIZE],
->  {
->  	u8 slice_cap1 =3D dsc_dpcd[DP_DSC_SLICE_CAP_1 - DP_DSC_SUPPORT];
-> =20
-> -	if (is_edp) {
-> -		/* For eDP, register DSC_SLICE_CAPABILITIES_1 gives slice count */
-> -		if (slice_cap1 & DP_DSC_4_PER_DP_DSC_SINK)
-> -			return 4;
-> -		if (slice_cap1 & DP_DSC_2_PER_DP_DSC_SINK)
-> -			return 2;
-> -		if (slice_cap1 & DP_DSC_1_PER_DP_DSC_SINK)
-> -			return 1;
-> -	} else {
-> +	if (!is_edp) {
->  		/* For DP, use values from DSC_SLICE_CAP_1 and DSC_SLICE_CAP2 */
->  		u8 slice_cap2 =3D dsc_dpcd[DP_DSC_SLICE_CAP_2 - DP_DSC_SUPPORT];
-> =20
-> @@ -2743,22 +2735,25 @@ u8 drm_dp_dsc_sink_max_slice_count(const u8 dsc_d=
-pcd[DP_DSC_RECEIVER_CAP_SIZE],
->  			return 20;
->  		if (slice_cap2 & DP_DSC_16_PER_DP_DSC_SINK)
->  			return 16;
-> -		if (slice_cap1 & DP_DSC_12_PER_DP_DSC_SINK)
-> -			return 12;
-> -		if (slice_cap1 & DP_DSC_10_PER_DP_DSC_SINK)
-> -			return 10;
-> -		if (slice_cap1 & DP_DSC_8_PER_DP_DSC_SINK)
-> -			return 8;
-> -		if (slice_cap1 & DP_DSC_6_PER_DP_DSC_SINK)
-> -			return 6;
-> -		if (slice_cap1 & DP_DSC_4_PER_DP_DSC_SINK)
-> -			return 4;
-> -		if (slice_cap1 & DP_DSC_2_PER_DP_DSC_SINK)
-> -			return 2;
-> -		if (slice_cap1 & DP_DSC_1_PER_DP_DSC_SINK)
-> -			return 1;
->  	}
-> =20
-> +	/* DP, eDP v1.5+ */
-> +	if (slice_cap1 & DP_DSC_12_PER_DP_DSC_SINK)
-> +		return 12;
-> +	if (slice_cap1 & DP_DSC_10_PER_DP_DSC_SINK)
-> +		return 10;
-> +	if (slice_cap1 & DP_DSC_8_PER_DP_DSC_SINK)
-> +		return 8;
-> +	if (slice_cap1 & DP_DSC_6_PER_DP_DSC_SINK)
-> +		return 6;
-> +	/* DP, eDP v1.4+ */
-> +	if (slice_cap1 & DP_DSC_4_PER_DP_DSC_SINK)
-> +		return 4;
-> +	if (slice_cap1 & DP_DSC_2_PER_DP_DSC_SINK)
-> +		return 2;
-> +	if (slice_cap1 & DP_DSC_1_PER_DP_DSC_SINK)
-> +		return 1;
+>  drivers/gpu/drm/i915/display/intel_cx0_phy.c | 11 ++++++-----
+>  1 file changed, 6 insertions(+), 5 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+> index 7bd17723e7abb..b973a9201edda 100644
+> --- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+> +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+> @@ -2278,11 +2278,12 @@ static void intel_c10pll_readout_hw_state(struct intel_encoder *encoder,
+>  	pll_state->clock = intel_c10pll_calc_port_clock(encoder, pll_state);
+>  
+>  	cx0pll_state->ssc_enabled = readout_ssc_state(encoder, true);
+> -	drm_WARN(display->drm,
+> -		 cx0pll_state->ssc_enabled != intel_c10pll_ssc_enabled(pll_state),
+> -		 "PHY %c: SSC enabled state (%s), doesn't match PLL configuration (%s)\n",
+> -		 phy_name(phy), str_yes_no(cx0pll_state->ssc_enabled),
+> -		 intel_c10pll_ssc_enabled(pll_state) ? "SSC-enabled" : "SSC-disabled");
 > +
->  	return 0;
+> +	if (cx0pll_state->ssc_enabled != intel_c10pll_ssc_enabled(pll_state))
+> +		drm_dbg_kms(display->drm,
+> +			    "PHY %c: SSC enabled state (%s), doesn't match PLL configuration (%s)\n",
+> +			    phy_name(phy), str_yes_no(cx0pll_state->ssc_enabled),
+> +			    intel_c10pll_ssc_enabled(pll_state) ? "SSC-enabled" : "SSC-disabled");
 >  }
->  EXPORT_SYMBOL(drm_dp_dsc_sink_max_slice_count);
+>  
+>  static void intel_c10_pll_program(struct intel_display *display,
 
-I'm assuming you decided to ignore cases where, for instance,
-DP_DSC_12_PER_DP_DSC_SINK would be set even though we're using eDP <
-1.5, right?
-
-The change looks good to me, I'm just wondering what would happen in
-this case.
-
-Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
-
---
-Cheers,
-Luca.
+-- 
+Jani Nikula, Intel
