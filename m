@@ -4,91 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1C076D3B7E2
-	for <intel-xe@archiver.kernel.org>; Mon,  8 Dec 2025 13:44:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E9BE6D3B7E7
+	for <intel-xe@archiver.kernel.org>; Mon,  8 Dec 2025 13:50:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C83FA10E406;
-	Mon,  8 Dec 2025 13:44:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AE5DC10E158;
+	Mon,  8 Dec 2025 13:50:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="hR3HVuEV";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WP3eXela";
 	dkim-atps=neutral
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8DFCF10E406
- for <intel-xe@lists.freedesktop.org>; Mon,  8 Dec 2025 13:44:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1765201480;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=9liAUxTZcYAvrXRnAoojNcLHa78VR2fm4Rt4/fDPnGw=;
- b=hR3HVuEVNMaq7bLszMXTRQwJO6FHHi+O31JYjtBvpeJvQlgZwi833DhcmzQ40P3mTHsrbG
- 0Vc+k8BdR+b3Crb6rX/y90z3Vi16fx4BRh2KiCCHY/fDCzmM9/dpGIQSRW1uY5eCj9ekZS
- NXMkM6RNuijo8yTn/ytzhkDZD61ZjVM=
-Received: from mail-wr1-f72.google.com (mail-wr1-f72.google.com
- [209.85.221.72]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-94-7Vmo5FfCMGWM_MimNVAtZg-1; Mon, 08 Dec 2025 08:44:39 -0500
-X-MC-Unique: 7Vmo5FfCMGWM_MimNVAtZg-1
-X-Mimecast-MFC-AGG-ID: 7Vmo5FfCMGWM_MimNVAtZg_1765201478
-Received: by mail-wr1-f72.google.com with SMTP id
- ffacd0b85a97d-42b5556d80bso3659399f8f.2
- for <intel-xe@lists.freedesktop.org>; Mon, 08 Dec 2025 05:44:39 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1765201478; x=1765806278;
- h=mime-version:user-agent:content-transfer-encoding:references
- :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=5UTdihlCxrJ/v+55wome2ohhqUb+LoZs5AAOQUD/qKo=;
- b=ofcjAOJyfrHurmcDtreg6y/8KKVHlKvAYWBINNw74BsG9Z6hKFgtp2IowoiGHXoDYp
- CBdGVECxzDKvUPdn+fZlc49ddg4mh6YW/3BjB32Wa1Yfy0GnUUiUCAaDdLQsjFN48jFH
- 4VDRePusMxCL472oiy14oxGNpioRQ/KB8zUQBgaOLb6mwvsUOEBAkN8J6eMknFdvjYHz
- g/ASi6rU8DVQhCFSBUJ/9s61O37LhY/Jd5u+65p5B+ObfMdtHAOcErh6mT4XeMSVFVxN
- pA6tNzOklY3wCL1L5YcPKaxeuJW0zVILwij+hJZk79vVuHQSg17QWPm/E+RY1b/8cnLB
- lWkw==
-X-Gm-Message-State: AOJu0YypEZ30kD8XezOaeAHt/9jsNK4RVhdUkdblN12FlIan5yZW0/HV
- SPqLt1hKU0o9OlqnjHCq1MZQ34k8NFsghMud1/i+MtVg6Qurb2ftsfdAkpuct6R11ucwYUDtN4Y
- zY8OT0+/ApwG1DmBY5YZ37bbQ9146n2bCO7Bd4gGRSX3MtFbjp10HZbx+w3iEXz+2Vse7
-X-Gm-Gg: ASbGncs0f6bXZzPWbWwTePVp+GHJH/YuuVBcA54tg5ZBs47syK11eBHYVQmGudxc33B
- 24/7PwRh3kL5Tqv4jAzsQDUB9w9qNQO6bBaDq28cvP4tHL+EieNFzvoT5hjbO4BCjYTDu8OZMeH
- vti+kr76KC5VjAeYlFp9iQtlkzBxpa93c48JiCRMOVkMH63DuBXn2mg3pNp6FSSdRlzd6klblcN
- zv2+RriSMkaFtXYOPmdCwR4Wo2sCtZPphfl+gy2oFqQNWm6IKDnQ4XL+bY0RLqvBE81KBI6wySI
- /w9wi8uB05My8AgjUQUZQapO0pj62wzuCJJGTZ7D9iEQuPjt4j8n7DtLJy3VEoYkbvIuF/OsGNL
- kqTx8SOYo0Zx7Z1hINxkcakiGoatJQix+i6JW5lqJdmC+7phTw/uP47Od
-X-Received: by 2002:a05:6000:2884:b0:42f:8816:9507 with SMTP id
- ffacd0b85a97d-42f89f58eafmr7378613f8f.63.1765201478017; 
- Mon, 08 Dec 2025 05:44:38 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IHNzXbr4QNksX/vYqCU437IdQLPh06CcRiT/YI/X+e97BT+9Vv2o5JanLDz3A0M6c0SEnZZ1A==
-X-Received: by 2002:a05:6000:2884:b0:42f:8816:9507 with SMTP id
- ffacd0b85a97d-42f89f58eafmr7378590f8f.63.1765201477560; 
- Mon, 08 Dec 2025 05:44:37 -0800 (PST)
-Received: from ?IPv6:2001:16b8:3d03:eb00:dc87:649d:b5b:d46f?
- ([2001:16b8:3d03:eb00:dc87:649d:b5b:d46f])
- by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-42f7d353c9esm24868688f8f.40.2025.12.08.05.44.36
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 08 Dec 2025 05:44:37 -0800 (PST)
-Message-ID: <f3f4306f6dd0286505bada7746c78e14f716f7c1.camel@redhat.com>
-Subject: Re: [PATCH v7 4/9] drm/xe: Stop abusing DRM scheduler internals
-From: Philipp Stanner <pstanner@redhat.com>
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- dakr@kernel.org, Alex Deucher <alexander.deucher@amd.com>, Christian
- =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
-Date: Mon, 08 Dec 2025 14:44:36 +0100
-In-Reply-To: <aTChOcJb1dTaD+e2@lstrano-desk.jf.intel.com>
-References: <20251201183954.852637-1-matthew.brost@intel.com>
- <20251201183954.852637-5-matthew.brost@intel.com>
- <9bd6778fc3d22bad2b2f8adc6bb165134ef919e5.camel@redhat.com>
- <aTChOcJb1dTaD+e2@lstrano-desk.jf.intel.com>
-User-Agent: Evolution 3.52.4 (3.52.4-2.fc40)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5E93C10E158
+ for <intel-xe@lists.freedesktop.org>; Mon,  8 Dec 2025 13:50:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1765201859; x=1796737859;
+ h=mime-version:content-transfer-encoding:in-reply-to:
+ references:subject:from:cc:to:date:message-id;
+ bh=8TdT7TX1Zj6zwUYtLsQVV6qWDARK3d/SOUXsADP59hs=;
+ b=WP3eXela5Ty+9g81d8TZYeZYdi8DkdaJwBEfH11mlZhZRohVf/gTzhnM
+ d50TMOB+VcH6alQCEsFpwxp9Ya8ECcF1Yx6//DwN28HxGPD5xyh0pf+35
+ zV7zJB1SDZO8s2JpKqG5pZrET9KtfjWGZd6oaJqQdgtRXijx+rjcLZemB
+ FMqbuC8M3Cs2h2gxOOKz1wTJ95qu3qClcziG21qUd56BAGc1RS7bkqA5C
+ tMrd8/EGDJgIGstur5E6tyDy9vBlK9vQJpacd2QIFe1uWoLhQw0RAWBhL
+ a4LofdepC/nPQf7WZjFzXRYMlCqITUn+aj3fJyaE1XG50AZCKjKcQj+P/ A==;
+X-CSE-ConnectionGUID: f7PigOqORD+bVvGYG1CpUg==
+X-CSE-MsgGUID: EcKaXpOVSiiM3AzdBhZg+A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11635"; a="67188913"
+X-IronPort-AV: E=Sophos;i="6.20,258,1758610800"; d="scan'208";a="67188913"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Dec 2025 05:50:58 -0800
+X-CSE-ConnectionGUID: z9BzcbQCQB2Desng0JFjIA==
+X-CSE-MsgGUID: 5THaYNmZQEK1drwE/rkl8A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.20,258,1758610800"; d="scan'208";a="200857140"
+Received: from vpanait-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.6])
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Dec 2025 05:50:54 -0800
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: XLN_RDnhM1My7UEd58fXWwW0ipBOfp35_uYm0hV8ZwI_1765201478
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <656acfd8-fef7-483d-999b-78182c43070d@amd.com>
+References: <20250808104356.3294210-1-mika.kuoppala@linux.intel.com>
+ <49a1024b-a318-446f-8c97-4076fc647fdd@amd.com> <874iq7gbyi.fsf@mkuoppal-desk>
+ <176518351640.16441.6158110220097232872@jlahtine-mobl>
+ <656acfd8-fef7-483d-999b-78182c43070d@amd.com>
+Subject: Re: [PATCH 00/15] Intel Xe GPU Debug Support (eudebug) v4
+From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Cc: simona.vetter@ffwll.ch, matthew.brost@intel.com,
+ thomas.hellstrom@linux.intel.com, christoph.manszewski@intel.com,
+ rodrigo.vivi@intel.com, lucas.demarchi@intel.com, andrzej.hajda@intel.com,
+ matthew.auld@intel.com, maciej.patelczyk@intel.com, gwan-gyeong.mun@intel.com,
+ Mika Kuoppala <mika.kuoppala@linux.intel.com>, intel-xe@lists.freedesktop.org
+To: Christian =?utf-8?q?K=C3=B6nig?= <christian.koenig@amd.com>
+Date: Mon, 08 Dec 2025 15:50:51 +0200
+Message-ID: <176520185138.24350.8954844301177099832@jlahtine-mobl>
+User-Agent: alot/0.12.dev7+g16b50e5f
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -103,161 +75,92 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 2025-12-03 at 12:44 -0800, Matthew Brost wrote:
-> On Wed, Dec 03, 2025 at 11:56:01AM +0100, Philipp Stanner wrote:
-> > On Mon, 2025-12-01 at 10:39 -0800, Matthew Brost wrote:
-> > > Use new pending job list iterator and new helper functions in Xe to
-> > > avoid reaching into DRM scheduler internals.
-> > >=20
-
-[=E2=80=A6]
-
-> > > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> > > Reviewed-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@int=
-el.com>
-> > > ---
-> > > =C2=A0drivers/gpu/drm/xe/xe_gpu_scheduler.c=C2=A0=C2=A0=C2=A0 |=C2=A0=
- 4 +-
-> > > =C2=A0drivers/gpu/drm/xe/xe_gpu_scheduler.h=C2=A0=C2=A0=C2=A0 | 33 ++=
---------
-> > > =C2=A0drivers/gpu/drm/xe/xe_guc_submit.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 | 81 ++++++------------------
-> > > =C2=A0drivers/gpu/drm/xe/xe_guc_submit_types.h | 11 ----
-> > > =C2=A0drivers/gpu/drm/xe/xe_hw_fence.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 | 16 -----
-> > > =C2=A0drivers/gpu/drm/xe/xe_hw_fence.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 |=C2=A0 2 -
-> > > =C2=A06 files changed, 27 insertions(+), 120 deletions(-)
-> > >=20
-> > > diff --git a/drivers/gpu/drm/xe/xe_gpu_scheduler.c b/drivers/gpu/drm/=
-xe/xe_gpu_scheduler.c
-> > > index f4f23317191f..9c8004d5dd91 100644
-> > > --- a/drivers/gpu/drm/xe/xe_gpu_scheduler.c
-> > > +++ b/drivers/gpu/drm/xe/xe_gpu_scheduler.c
-> > > @@ -7,7 +7,7 @@
-> > > =C2=A0
-> > > =C2=A0static void xe_sched_process_msg_queue(struct xe_gpu_scheduler =
-*sched)
-> > > =C2=A0{
-> > > -=09if (!READ_ONCE(sched->base.pause_submit))
-> > > +=09if (!drm_sched_is_stopped(&sched->base))
-> > > =C2=A0=09=09queue_work(sched->base.submit_wq, &sched->work_process_ms=
-g);
+Quoting Christian K=C3=B6nig (2025-12-08 10:49:37)
+> On 12/8/25 09:45, Joonas Lahtinen wrote:
+> > Quoting Mika Kuoppala (2025-12-03 11:18:45)
+> >> Christian K=C3=B6nig <christian.koenig@amd.com> writes:
+> >>> On 08.08.25 12:43, Mika Kuoppala wrote:
 > >=20
-> > Sharing the submit_wq is legal. But next-level cleanness would be if
-> > struct drm_gpu_scheduler's internal components wouldn't be touched.
-> > That's kind of a luxury request, though.
+> > <SNIP>
 > >=20
->=20
-> Yes, perhaps a helper to extract the submit_wq too.
-
-Could work; but best would be if driver's store their own pointer.
-That's not always possible (Boris recently tried to do it for Panthor),
-but often it is.
-
->=20
-> > > =C2=A0}
-> > > =C2=A0
-> > > @@ -43,7 +43,7 @@ static void xe_sched_process_msg_work(struct work_s=
-truct *w)
-> > > =C2=A0=09=09container_of(w, struct xe_gpu_scheduler, work_process_msg=
-);
-> > > =C2=A0=09struct xe_sched_msg *msg;
-> > > =C2=A0
-> > > -=09if (READ_ONCE(sched->base.pause_submit))
-> > > +=09if (drm_sched_is_stopped(&sched->base))
-> > > =C2=A0=09=09return;
-> > > =C2=A0
-> > > =C2=A0=09msg =3D xe_sched_get_msg(sched);
-> > > diff --git a/drivers/gpu/drm/xe/xe_gpu_scheduler.h b/drivers/gpu/drm/=
-xe/xe_gpu_scheduler.h
-> > > index dceb2cd0ee5b..664c2db56af3 100644
-> > > --- a/drivers/gpu/drm/xe/xe_gpu_scheduler.h
-> > > +++ b/drivers/gpu/drm/xe/xe_gpu_scheduler.h
-> > > @@ -56,12 +56,9 @@ static inline void xe_sched_resubmit_jobs(struct x=
-e_gpu_scheduler *sched)
-> > > =C2=A0=09struct drm_sched_job *s_job;
-> > > =C2=A0=09bool restore_replay =3D false;
-> > > =C2=A0
-> > > -=09list_for_each_entry(s_job, &sched->base.pending_list, list) {
-> > > -=09=09struct drm_sched_fence *s_fence =3D s_job->s_fence;
-> > > -=09=09struct dma_fence *hw_fence =3D s_fence->parent;
-> > > -
-> > > +=09drm_sched_for_each_pending_job(s_job, &sched->base, NULL) {
-> > > =C2=A0=09=09restore_replay |=3D to_xe_sched_job(s_job)->restore_repla=
-y;
-> > > -=09=09if (restore_replay || (hw_fence && !dma_fence_is_signaled(hw_f=
-ence)))
-> > > +=09=09if (restore_replay || !drm_sched_job_is_signaled(s_job))
+> >>>> #### 2. ELF binaries not held in kernel memory
+> >>>>
+> >>>> In v4, debug data is delivered as a VM bind 'OP_ADD_DEBUG_DATA' exte=
+nsion.
+> >>>> The ELF binaries are no longer stored within the Xe KMD but are inst=
+ead
+> >>>> kept in a file. The file path is passed as part of an extension in
+> >>>> the newly introduced 'OP_ADD_DEBUG_DATA' VM bind operation. Alternat=
+ively
+> >>>> pseudo-paths can be used to annotate special address ranges similar =
+to
+> >>>> /proc/<pid>/maps.
+> >>>>
+> >>>> #### 3. Debug metadata not carried in VMA struct
+> >>>>
+> >>>> Instead of attaching debug data to vma created by 'OP_MAP',
+> >>>> we introduce separate ops for managing the metadata.
+> >>>> Debug data is no longer held in the VMA struct. xe_vm contains a
+> >>>> list of all associated debug data.
+> >>>
+> >>> I need to take a closer look but that sounds like it takes a big step=
+ into the right direction.
+> >>
+> >> Encouraged by this positive feedback, we iterated the series further. =
+VM
+> >> binds state handling has reworked on top of vm_ops, metada and ufence
+> >> handling improved and we added pagefaults on top.
+> >>
+> >> v6 series can be found here:
+> >> https://lists.freedesktop.org/archives/intel-xe/2025-December/106405.h=
+tml
 > >=20
-> > So that's where this function is needed. You check whether that job in
-> > the pending_list is signaled.=20
+> > Christian, would it be possible for you to take a quick look before the
+> > holiday season? Would be very much appreciated.
+>=20
+> I'm just back from a week of sick leave today (stupid flu season) and dro=
+wning in work.
+>=20
+> But from a ten mile high view it looks sane to me now.
+
+Understandable and thanks for the high level check, we'll continue with the
+current direction then.
+
+> > That way we could start polishing the documentation etc. assuming we
+> > still agree on the direction. At least from our viewpoint, we're running
+> > short of ideas where to simplify or improve on the implementation.
 > >=20
+> > The page-faults are the freshest piece of the code, however it is rather
+> > well separated patches, so would be great if as a minimum the foundatio=
+nal
+> > patches before them could be agreed upon initially.
 >=20
-> Yes, during GT reset flows (think a device level reset) it is possible
-> we stop the scheduler between the window of a job signaling but before
-> free_job is called. We want avoid resubmission of jobs which have
-> signaled.
-
-I'm not so convinced then that the function should be called
-drm_sched_job_is_signaled(). A job is also associated with
-s_fence.finished.
-
-Why is it that that can race here, btw. =E2=80=93 isn't it your driver whic=
-h
-signals the hardware fences? How and where? Interrupts?
-
+> The only requirement I have is that you don't mix page faults, single ste=
+p debugging and dma_fences for graphics contexts, but you already knew that.
 >=20
-> > > =C2=A0=09=09=09sched->base.ops->run_job(s_job);
+> In other words as long as you make sure that you can't attach a debugger =
+to a process which does graphics rendering and uses dma_fences for that eve=
+rything should be fine from my side.
+
+Yeah, it's all already completely detached from dma_fences for now, being
+stuck in a breakpoint would otherwise already be problematic given we
+currently can't switch a stalled context off the hardware.
+
+Page-faults during debug make no difference in that sense, they just got
+freshly reworked on top of the xe refactoring of page-fault infra. This mea=
+ns
+its more likely something will appear in review of those patches compared to
+the rest of the series which have been pretty logically unchanged for a whi=
+le.
+
+Regards, Joonas
+
+> Regards,
+> Christian.
+>=20
 > >=20
-> > Aaaaaahm. So you invoke your own callback. But basically just to access
-> > the function pointer I suppose?
+> > Best Regards, Joonas
 > >=20
-> > Since this is effectively your drm_sched_resubmit_jobs(), it is
-> > definitely desirable to provide a text book example of how to do resets
-> > so that others can follow your usage.
-> >=20
->=20
-> Yes, but drm_sched_resubmit_jobs() does some nonsense with dma-fence
-> that I don=E2=80=99t need here. Honestly, I=E2=80=99m a little unsure wha=
-t that is
-> actually doing.
->=20
-
-Resubmit jobs shouldn't be used anymore, it's depercated. What I mean
-is that your code here effectively is the resubmission code. So if you
-think that it's the right way of doing resets, in harmony with
-drm_sched, then it would be good if this code is as tidy as possible
-and preferably even commented, so that we can point other driver
-programmers to this as an example of idiomatic usage.
-
-
->  We also use this function during VF restore after
-> migration. This is a multi-step process that needs to operate on the
-> same set of jobs at each step of the restore. That=E2=80=99s what the
-> restore_replay variable represents=E2=80=94it marks a job at the very beg=
-inning
-> of the restore process, and each step along the way ensures execution
-> starts at that job. Techincally once we here in a VF restore jobs can
-> start signaling as the hardware is live. So some of this really is
-> vendor-specific.
->=20
-> > Can't you replace ops->run_job() with a call to your functions where
-> > you push the jobs to the ring, directly?
-> >=20
->=20
-> Yes, we could, but that function isn=E2=80=99t currently exported. Also, =
-in
-> future products, we may assign a different run_job vfunc based on
-> hardware generation or queue type. So using a vfunc here makes sense as
-> a bit of future-proofing. Of course, we could also have a DRM
-> scheduler-level helper that invokes run_job for us.
-
-OK.
-
-But same comment as above applies, having distinct pointers would be the cl=
-eanest thing.
-
-
-P.
-
+> >> Thanks,
+> >> -Mika
+>
