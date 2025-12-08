@@ -4,50 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A6144D3B7E2
-	for <intel-xe@archiver.kernel.org>; Mon,  8 Dec 2025 19:17:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 886D8D3B7F3
+	for <intel-xe@archiver.kernel.org>; Mon,  8 Dec 2025 19:17:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6B09810E482;
-	Mon,  8 Dec 2025 19:17:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4CD6C10E495;
+	Mon,  8 Dec 2025 19:17:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="CRv6iCRA";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="KsWCas01";
 	dkim-atps=neutral
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D8C7F10E47F
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 37FFE10E47F
  for <intel-xe@lists.freedesktop.org>; Mon,  8 Dec 2025 19:17:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
- In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
+ h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
+ Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=OuXkgHQYNz+SjcSGTg5sxr+r695n1r5SyY6ZQtKauww=; b=CRv6iCRAYjqcwzQtMdkQatsHV1
- CJRvNpzkyZ8NpX5bkl1mXJ/pWhe8p7GOt4LsOH3VRnME4hm7/Hvkw6t9tav2lX7eU0GACOP9q2Jy2
- 4tLXIuVUzTnXCbU/AUjjN8D0vYjdVnCA1mIZzVOK32VI7rryFv4R4fgChG7nGO2nb/RHZrVkHIsVN
- Lfy59hk07DdUwfPBcWA8BHqYEcyCehncrqtm77u9nL5n8R45kNZMhpR2AD181HXmXYnHZ0ul+gsQ4
- 5k7rzb2G19fB9etwfnGErVigSCHNbGvTBkV+oyxMdlan3UbCMChYshdQteKQmwisrAL0QEoTmmviG
- EjzB1vBw==;
+ bh=x9s3LddXL4gS1fbHs12PTUV/eYF/mibtoey601E+V2I=; b=KsWCas01B5BD4N8nwv3M+jrvJB
+ NCvQDtUqEiPsmnUho8DrsEEUQ7PatCP7cVbt3/4yu1JNuNiFZg5f+4iB1rSfKnaK7Kr+UVbpQux3C
+ wUUJTcDmDETcUez+aqPvCrv51e8zrKN19Uj9O9fi4KRR8/9mHxJb90EWXruoL3zhGEde/ZorfJ+fx
+ TeN5c97HbGHB7IW0I1HSNWed7rVV4LE3TyBK1FmK/CZoEppITfd4pbGU4DT4AusIgdunBIC4vWg0C
+ xy3rDLnkMpNVsDuq6HRJB+lWzKhcWVPT9rnkN30EK4dH0X/4Enlnk+EGeTQpAZRG616DmlJMjQylc
+ 8CXp5/bg==;
 Received: from [86.33.28.86] (helo=localhost)
  by fanzine2.igalia.com with utf8esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1vSgjo-00AC86-37; Mon, 08 Dec 2025 20:17:36 +0100
+ id 1vSgjn-00AC7y-1j; Mon, 08 Dec 2025 20:17:35 +0100
 From: Tvrtko Ursulin <tursulin@igalia.com>
 To: intel-xe@lists.freedesktop.org
 Cc: kernel-dev@igalia.com, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
- Jani Nikula <jani.nikula@intel.com>,
- =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>,
  Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>,
+ "Michael J. Ruhl" <michael.j.ruhl@intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [PATCH v15 09/10] drm/i915/display: Detect AuxCCS support via display
- parent interface
-Date: Mon,  8 Dec 2025 20:17:20 +0100
-Message-ID: <20251208191722.7194-10-tursulin@igalia.com>
+Subject: [PATCH v15 08/10] drm/xe/display: Add support for AuxCCS
+Date: Mon,  8 Dec 2025 20:17:19 +0100
+Message-ID: <20251208191722.7194-9-tursulin@igalia.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20251208191722.7194-1-tursulin@igalia.com>
 References: <20251208191722.7194-1-tursulin@igalia.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -65,169 +62,161 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 
-Whether AuxCCS can be properly supported depends on the support both from
-the display side and non-display side of the driver.
+Add support for mapping the auxiliary CCS buffer into the DPT page tables.
 
-Let us therefore allow for the non-display part to be queried via the
-display parent interface.
+This will allow for better power efficiency by enabling the render
+compression frame buffer modifiers such as
+I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS in a following patch.
 
-The new interface replaces the HAS_AUX_CCS macro and we also remove the
-FIXME from skl_universal_plane_create since now the xe will not advertise
-the AuxCCS caps to start with so they do not need to be removed after
-enumeration.
-
-Also, by removing this build specific FIXME we come a step closer to fully
-de-coupling display and non-display.
+We do this by refactoring the code a bit so handling for the linear
+auxiliary frame buffer can be added in a tidy way. Also replace some
+hardcoded constants.
 
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-References: cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if built for Xe")
-Cc: Jani Nikula <jani.nikula@intel.com>
-Cc: José Roberto de Souza <jose.souza@intel.com>
 Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+Cc: Michael J. Ruhl <michael.j.ruhl@intel.com>
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_device.h |  1 -
- drivers/gpu/drm/i915/display/intel_fb.c             |  3 ++-
- drivers/gpu/drm/i915/display/intel_parent.c         |  5 +++++
- drivers/gpu/drm/i915/display/intel_parent.h         |  2 ++
- drivers/gpu/drm/i915/display/skl_universal_plane.c  |  9 ++-------
- drivers/gpu/drm/i915/i915_driver.c                  | 10 ++++++++++
- include/drm/intel/display_parent_interface.h        |  3 +++
- 7 files changed, 24 insertions(+), 9 deletions(-)
+ drivers/gpu/drm/xe/display/xe_fb_pin.c | 111 ++++++++++++++++++-------
+ 1 file changed, 81 insertions(+), 30 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
-index 11c2b2883f35..dc61c6560015 100644
---- a/drivers/gpu/drm/i915/display/intel_display_device.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_device.h
-@@ -149,7 +149,6 @@ struct intel_display_platforms {
- #define HAS_4TILE(__display)		((__display)->platform.dg2 || DISPLAY_VER(__display) >= 14)
- #define HAS_ASYNC_FLIPS(__display)	(DISPLAY_VER(__display) >= 5)
- #define HAS_AS_SDP(__display)		(DISPLAY_VER(__display) >= 13)
--#define HAS_AUX_CCS(__display)		(IS_DISPLAY_VER(__display, 9, 12) || (__display)->platform.alderlake_p || (__display)->platform.meteorlake)
- #define HAS_BIGJOINER(__display)	(DISPLAY_VER(__display) >= 11 && HAS_DSC(__display))
- #define HAS_CASF(__display)		(DISPLAY_VER(__display) >= 20)
- #define HAS_CDCLK_CRAWL(__display)	(DISPLAY_INFO(__display)->has_cdclk_crawl)
-diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
-index b34b4961fe1c..5b8e02ca2faf 100644
---- a/drivers/gpu/drm/i915/display/intel_fb.c
-+++ b/drivers/gpu/drm/i915/display/intel_fb.c
-@@ -21,6 +21,7 @@
- #include "intel_fb_bo.h"
- #include "intel_frontbuffer.h"
- #include "intel_panic.h"
-+#include "intel_parent.h"
- #include "intel_plane.h"
- 
- #define check_array_bounds(display, a, i) drm_WARN_ON((display)->drm, (i) >= ARRAY_SIZE(a))
-@@ -558,7 +559,7 @@ static bool plane_has_modifier(struct intel_display *display,
- 	 * where supported.
- 	 */
- 	if (intel_fb_is_ccs_modifier(md->modifier) &&
--	    HAS_AUX_CCS(display) != !!md->ccs.packed_aux_planes)
-+	    intel_parent_has_auxccs(display) != !!md->ccs.packed_aux_planes)
- 		return false;
- 
- 	if (md->modifier == I915_FORMAT_MOD_4_TILED_BMG_CCS &&
-diff --git a/drivers/gpu/drm/i915/display/intel_parent.c b/drivers/gpu/drm/i915/display/intel_parent.c
-index 2ea310cc3509..7a55def19836 100644
---- a/drivers/gpu/drm/i915/display/intel_parent.c
-+++ b/drivers/gpu/drm/i915/display/intel_parent.c
-@@ -94,3 +94,8 @@ void intel_parent_fence_priority_display(struct intel_display *display, struct d
- 	if (display->parent->fence_priority_display)
- 		display->parent->fence_priority_display(fence);
+diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+index ce9750da57e7..e9f77b22862c 100644
+--- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
++++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+@@ -51,33 +51,94 @@ write_dpt_rotated(struct xe_bo *bo, struct iosys_map *map, u32 *dpt_ofs, u32 bo_
+ 	*dpt_ofs = ALIGN(*dpt_ofs, 4096);
  }
-+
-+bool intel_parent_has_auxccs(struct intel_display *display)
+ 
++static unsigned int
++write_dpt_padding(struct iosys_map *map, unsigned int dest, unsigned int pad)
 +{
-+	return display->parent->has_auxccs && display->parent->has_auxccs(display->drm);
++	/* The DE ignores the PTEs for the padding tiles */
++	return dest + pad * sizeof(u64);
 +}
-diff --git a/drivers/gpu/drm/i915/display/intel_parent.h b/drivers/gpu/drm/i915/display/intel_parent.h
-index 8f91a6f75c53..f34ee81ed7a1 100644
---- a/drivers/gpu/drm/i915/display/intel_parent.h
-+++ b/drivers/gpu/drm/i915/display/intel_parent.h
-@@ -33,4 +33,6 @@ bool intel_parent_has_fenced_regions(struct intel_display *display);
- 
- void intel_parent_fence_priority_display(struct intel_display *display, struct dma_fence *fence);
- 
-+bool intel_parent_has_auxccs(struct intel_display *display);
 +
- #endif /* __INTEL_PARENT_H__ */
-diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-index 6cd94f400e3f..7e5dce8cfec0 100644
---- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-+++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-@@ -22,6 +22,7 @@
- #include "intel_fbc.h"
- #include "intel_frontbuffer.h"
- #include "intel_panic.h"
-+#include "intel_parent.h"
- #include "intel_plane.h"
- #include "intel_psr.h"
- #include "intel_psr_regs.h"
-@@ -1602,7 +1603,7 @@ icl_plane_update_noarm(struct intel_dsb *dsb,
++static unsigned int
++write_dpt_remapped_linear(struct xe_bo *bo, struct iosys_map *map,
++			  unsigned int dest,
++			  const struct intel_remapped_plane_info *plane)
++{
++	struct xe_device *xe = xe_bo_device(bo);
++	struct xe_ggtt *ggtt = xe_device_get_root_tile(xe)->mem.ggtt;
++	const u64 pte = xe_ggtt_encode_pte_flags(ggtt, bo,
++						 xe->pat.idx[XE_CACHE_NONE]);
++	unsigned int offset = plane->offset * XE_PAGE_SIZE;
++	unsigned int size = plane->size;
++
++	while (size--) {
++		u64 addr = xe_bo_addr(bo, offset, XE_PAGE_SIZE);
++
++		iosys_map_wr(map, dest, u64, addr | pte);
++		dest += sizeof(u64);
++		offset += XE_PAGE_SIZE;
++	}
++
++	return dest;
++}
++
++static unsigned int
++write_dpt_remapped_tiled(struct xe_bo *bo, struct iosys_map *map,
++			 unsigned int dest,
++			 const struct intel_remapped_plane_info *plane)
++{
++	struct xe_device *xe = xe_bo_device(bo);
++	struct xe_ggtt *ggtt = xe_device_get_root_tile(xe)->mem.ggtt;
++	const u64 pte = xe_ggtt_encode_pte_flags(ggtt, bo,
++						 xe->pat.idx[XE_CACHE_NONE]);
++	unsigned int offset, column, row;
++
++	for (row = 0; row < plane->height; row++) {
++		offset = (plane->offset + plane->src_stride * row) *
++			 XE_PAGE_SIZE;
++
++		for (column = 0; column < plane->width; column++) {
++			u64 addr = xe_bo_addr(bo, offset, XE_PAGE_SIZE);
++
++			iosys_map_wr(map, dest, u64, addr | pte);
++			dest += sizeof(u64);
++			offset += XE_PAGE_SIZE;
++		}
++
++		dest = write_dpt_padding(map, dest,
++					 plane->dst_stride - plane->width);
++	}
++
++	return dest;
++}
++
+ static void
+-write_dpt_remapped(struct xe_bo *bo, struct iosys_map *map, u32 *dpt_ofs,
+-		   u32 bo_ofs, u32 width, u32 height, u32 src_stride,
+-		   u32 dst_stride)
++write_dpt_remapped(struct xe_bo *bo,
++		   const struct intel_remapped_info *remap_info,
++		   struct iosys_map *map)
+ {
+-	struct xe_device *xe = xe_bo_device(bo);
+-	struct xe_ggtt *ggtt = xe_device_get_root_tile(xe)->mem.ggtt;
+-	u32 column, row;
+-	u64 pte = xe_ggtt_encode_pte_flags(ggtt, bo, xe->pat.idx[XE_CACHE_NONE]);
++	unsigned int i, dest = 0;
+ 
+-	for (row = 0; row < height; row++) {
+-		u32 src_idx = src_stride * row + bo_ofs;
++	for (i = 0; i < ARRAY_SIZE(remap_info->plane); i++) {
++		const struct intel_remapped_plane_info *plane =
++						&remap_info->plane[i];
+ 
+-		for (column = 0; column < width; column++) {
+-			u64 addr = xe_bo_addr(bo, src_idx * XE_PAGE_SIZE, XE_PAGE_SIZE);
+-			iosys_map_wr(map, *dpt_ofs, u64, pte | addr);
++		if (!plane->width && !plane->height && !plane->linear)
++			continue;
+ 
+-			*dpt_ofs += 8;
+-			src_idx++;
++		if (remap_info->plane_alignment) {
++			const unsigned int index = dest / sizeof(u64);
++			const unsigned int pad =
++				ALIGN(index, remap_info->plane_alignment) -
++				index;
++
++			dest = write_dpt_padding(map, dest, pad);
+ 		}
+ 
+-		/* The DE ignores the PTEs for the padding tiles */
+-		*dpt_ofs += (dst_stride - width) * 8;
++		if (plane->linear)
++			dest = write_dpt_remapped_linear(bo, map, dest, plane);
++		else
++			dest = write_dpt_remapped_tiled(bo, map, dest, plane);
  	}
- 
- 	/* FLAT CCS doesn't need to program AUX_DIST */
--	if (HAS_AUX_CCS(display))
-+	if (intel_parent_has_auxccs(display))
- 		intel_de_write_dsb(display, dsb, PLANE_AUX_DIST(pipe, plane_id),
- 				   skl_plane_aux_dist(plane_state, color_plane));
- 
-@@ -2972,12 +2973,6 @@ skl_universal_plane_create(struct intel_display *display,
- 	else
- 		caps = skl_plane_caps(display, pipe, plane_id);
- 
--	/* FIXME: xe has problems with AUX */
--	if (!IS_ENABLED(I915) && HAS_AUX_CCS(display))
--		caps &= ~(INTEL_PLANE_CAP_CCS_RC |
--			  INTEL_PLANE_CAP_CCS_RC_CC |
--			  INTEL_PLANE_CAP_CCS_MC);
 -
- 	modifiers = intel_fb_plane_get_modifiers(display, caps);
- 
- 	ret = drm_universal_plane_init(display->drm, &plane->base,
-diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-index d98839427ef9..59e396a74ca4 100644
---- a/drivers/gpu/drm/i915/i915_driver.c
-+++ b/drivers/gpu/drm/i915/i915_driver.c
-@@ -757,6 +757,15 @@ static void fence_priority_display(struct dma_fence *fence)
- 		i915_gem_fence_wait_priority_display(fence);
+-	/* Align to next page */
+-	*dpt_ofs = ALIGN(*dpt_ofs, 4096);
  }
  
-+static bool has_auxccs(struct drm_device *drm)
-+{
-+	struct drm_i915_private *i915 = to_i915(drm);
-+
-+	return IS_GRAPHICS_VER(i915, 9, 12) ||
-+	       IS_ALDERLAKE_P(i915) ||
-+	       IS_METEORLAKE(i915);
-+}
-+
- static const struct intel_display_parent_interface parent = {
- 	.hdcp = &i915_display_hdcp_interface,
- 	.rpm = &i915_display_rpm_interface,
-@@ -765,6 +774,7 @@ static const struct intel_display_parent_interface parent = {
- 	.vgpu_active = vgpu_active,
- 	.has_fenced_regions = has_fenced_regions,
- 	.fence_priority_display = fence_priority_display,
-+	.has_auxccs = has_auxccs,
- };
- 
- const struct intel_display_parent_interface *i915_driver_parent_interface(void)
-diff --git a/include/drm/intel/display_parent_interface.h b/include/drm/intel/display_parent_interface.h
-index 61d1b22adc83..0d79f3c189c3 100644
---- a/include/drm/intel/display_parent_interface.h
-+++ b/include/drm/intel/display_parent_interface.h
-@@ -80,6 +80,9 @@ struct intel_display_parent_interface {
- 
- 	/** @fence_priority_display: Set display priority. Optional. */
- 	void (*fence_priority_display)(struct dma_fence *fence);
-+
-+	/** @has_auxcss: Are AuxCCS formats supported by the parent. Optional. */
-+	bool (*has_auxccs)(struct drm_device *drm);
- };
- 
- #endif
+ static bool try_dpt_stolen(const struct intel_framebuffer *fb, struct xe_bo *bo)
+@@ -153,17 +214,7 @@ static int __xe_pin_fb_vma_dpt(const struct intel_framebuffer *fb,
+ 			iosys_map_wr(&dpt->vmap, x * 8, u64, pte | addr);
+ 		}
+ 	} else if (view->type == I915_GTT_VIEW_REMAPPED) {
+-		const struct intel_remapped_info *remap_info = &view->remapped;
+-		u32 i, dpt_ofs = 0;
+-
+-		for (i = 0; i < ARRAY_SIZE(remap_info->plane); i++)
+-			write_dpt_remapped(bo, &dpt->vmap, &dpt_ofs,
+-					   remap_info->plane[i].offset,
+-					   remap_info->plane[i].width,
+-					   remap_info->plane[i].height,
+-					   remap_info->plane[i].src_stride,
+-					   remap_info->plane[i].dst_stride);
+-
++		write_dpt_remapped(bo, &view->remapped, &dpt->vmap);
+ 	} else {
+ 		const struct intel_rotation_info *rot_info = &view->rotated;
+ 		u32 i, dpt_ofs = 0;
 -- 
 2.52.0
 
