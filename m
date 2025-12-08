@@ -4,54 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CA55BCEBF88
-	for <intel-xe@archiver.kernel.org>; Mon,  8 Dec 2025 05:29:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A9964D3ABEF
+	for <intel-xe@archiver.kernel.org>; Mon,  8 Dec 2025 05:47:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 748A010E091;
-	Mon,  8 Dec 2025 05:29:53 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nDDhs7GT";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2AE9510E091
- for <intel-xe@lists.freedesktop.org>; Mon,  8 Dec 2025 05:29:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765171791; x=1796707791;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=2bmZ43wQL/Xi/yFtd6BoLzKE86Cc32EBKWkUgCnf/Mk=;
- b=nDDhs7GTOFGz2L8U5WwFh6aDUVjlHgzrTjju6k5+lsNo9ph/P4zwwPWJ
- LcI0lTuX3qj4LCjAKdcWzBc3AeCTnBPu7LlZFujak4ySaeJ0I0iUbDaMn
- WG8KAhgXGHO6oEZhFIYecKmOxaWP69MW2iew6HRuM9hgmfsrudKhEF74x
- TLnA+H4iOoUYyuBQtixKoocOitLbl9dItxdmodCuR0asEQi45kLjoepDe
- NnL9U3ZL9ImARQ31zfRRDQNTnl7a/m2xcQoStaliidBQZVErAu1bgz+eT
- 95E+7/HT5/4V1s6cgnd0Sv5BGnUMc5xEMUxbOkomm6agKDYBt9PERmekQ g==;
-X-CSE-ConnectionGUID: uro0f0C0TNm7yOdaymOrug==
-X-CSE-MsgGUID: KIvstazDTS6PaPjMDd7Yeg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11635"; a="77431864"
-X-IronPort-AV: E=Sophos;i="6.20,258,1758610800"; d="scan'208";a="77431864"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Dec 2025 21:29:51 -0800
-X-CSE-ConnectionGUID: UVGtW7frRBSjR9+r38Ha0A==
-X-CSE-MsgGUID: D3xT3kAWS2OA1CbVCjLA8A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,258,1758610800"; d="scan'208";a="233216567"
-Received: from sinjan-super-server.iind.intel.com ([10.190.239.39])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Dec 2025 21:29:49 -0800
-From: Karthik Poosa <karthik.poosa@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: anshuman.gupta@intel.com, badal.nilawar@intel.com, rodrigo.vivi@intel.com,
- raag.jadav@intel.com, riana.tauro@intel.com,
- Karthik Poosa <karthik.poosa@intel.com>
-Subject: [PATCH] drm/xe/pcode: Add support to get pcode version
-Date: Mon,  8 Dec 2025 10:59:41 +0530
-Message-Id: <20251208052941.3635041-1-karthik.poosa@intel.com>
-X-Mailer: git-send-email 2.25.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id 195D310E034;
+	Mon,  8 Dec 2025 05:47:08 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1EC3510E034;
+ Mon,  8 Dec 2025 05:47:07 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5275846851822889359=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/throttle=3A_Skip_rea?=
+ =?utf-8?q?son_prefix_while_emitting_array_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Raag Jadav" <raag.jadav@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 08 Dec 2025 05:47:07 -0000
+Message-ID: <176517282711.65108.16271079858489517853@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20251203123355.571606-1-raag.jadav@intel.com>
+In-Reply-To: <20251203123355.571606-1-raag.jadav@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,90 +36,125 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add api get_pcode_version() to read pcode version
-from PMT telemetry.
+--===============5275846851822889359==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Karthik Poosa <karthik.poosa@intel.com>
----
- drivers/gpu/drm/xe/regs/xe_pmt.h |  2 ++
- drivers/gpu/drm/xe/xe_pcode.c    | 17 +++++++++++++++++
- drivers/gpu/drm/xe/xe_pcode.h    |  7 +++++++
- 3 files changed, 26 insertions(+)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/xe/regs/xe_pmt.h b/drivers/gpu/drm/xe/regs/xe_pmt.h
-index 0f79c0714454..8cbf51834457 100644
---- a/drivers/gpu/drm/xe/regs/xe_pmt.h
-+++ b/drivers/gpu/drm/xe/regs/xe_pmt.h
-@@ -15,6 +15,8 @@
- #define	ENERGY_PKG			REG_GENMASK64(31, 0)
- #define	ENERGY_CARD			REG_GENMASK64(63, 32)
- 
-+#define PUNIT_VERSION_OFFSET		(0xA0)
-+
- #define BMG_TELEMETRY_BASE_OFFSET	0xE0000
- #define BMG_TELEMETRY_OFFSET		(SOC_BASE + BMG_TELEMETRY_BASE_OFFSET)
- 
-diff --git a/drivers/gpu/drm/xe/xe_pcode.c b/drivers/gpu/drm/xe/xe_pcode.c
-index 0d33c14ea0cf..85d54147c636 100644
---- a/drivers/gpu/drm/xe/xe_pcode.c
-+++ b/drivers/gpu/drm/xe/xe_pcode.c
-@@ -15,6 +15,8 @@
- #include "xe_device.h"
- #include "xe_mmio.h"
- #include "xe_pcode_api.h"
-+#include "xe_vsec.h"
-+#include "regs/xe_pmt.h"
- 
- /**
-  * DOC: PCODE
-@@ -377,4 +379,19 @@ int intel_pcode_request(struct drm_device *drm, u32 mbox, u32 request,
- 	return xe_pcode_request(tile, mbox, request, reply_mask, reply, timeout_base_ms);
- }
- 
-+int get_pcode_version(struct xe_device *xe, struct pcode_version *version)
-+{
-+	int ret = 0;
-+
-+	ret = xe_pmt_telem_read(to_pci_dev(xe->drm.dev),
-+				xe_mmio_read32(xe_root_tile_mmio(xe), PUNIT_TELEMETRY_GUID),
-+				(u64 *)version, PUNIT_VERSION_OFFSET,	sizeof(u64));
-+	if (ret != sizeof(u64)) {
-+		drm_warn(&xe->drm, "couldn't get pcode version from pmt, ret %d\n", ret);
-+		return ret;
-+	}
-+	drm_dbg(&xe->drm, "pcode version major %d minor %d engg %d\n", version->major,
-+		version->minor, version->engg);
-+	return 0;
-+}
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_pcode.h b/drivers/gpu/drm/xe/xe_pcode.h
-index a5584c1c75f9..87a4f490508e 100644
---- a/drivers/gpu/drm/xe/xe_pcode.h
-+++ b/drivers/gpu/drm/xe/xe_pcode.h
-@@ -12,6 +12,12 @@ struct drm_device;
- struct xe_device;
- struct xe_tile;
- 
-+struct pcode_version {
-+	u16 minor;
-+	u16 major;
-+	u32 engg;
-+};
-+
- void xe_pcode_init(struct xe_tile *tile);
- int xe_pcode_probe_early(struct xe_device *xe);
- int xe_pcode_ready(struct xe_device *xe, bool locked);
-@@ -22,6 +28,7 @@ int xe_pcode_write_timeout(struct xe_tile *tile, u32 mbox, u32 val,
- 			   int timeout_ms);
- int xe_pcode_write64_timeout(struct xe_tile *tile, u32 mbox, u32 data0,
- 			     u32 data1, int timeout);
-+int get_pcode_version(struct xe_device *xe, struct pcode_version *version);
- 
- #define xe_pcode_write(tile, mbox, val) \
- 	xe_pcode_write_timeout(tile, mbox, val, 1)
--- 
-2.25.1
+Series: drm/xe/throttle: Skip reason prefix while emitting array (rev2)
+URL   : https://patchwork.freedesktop.org/series/158440/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from xe-4203-db6505187efb9c255df1dd6e78c00d95fadfef79_BAT -> xe-pw-158440v2_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (12 -> 12)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-158440v2_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_waitfence@engine:
+    - bat-dg2-oem2:       [PASS][1] -> [FAIL][2] ([Intel XE#6519])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4203-db6505187efb9c255df1dd6e78c00d95fadfef79/bat-dg2-oem2/igt@xe_waitfence@engine.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158440v2/bat-dg2-oem2/igt@xe_waitfence@engine.html
+
+  
+  [Intel XE#6519]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519
+
+
+Build changes
+-------------
+
+  * Linux: xe-4203-db6505187efb9c255df1dd6e78c00d95fadfef79 -> xe-pw-158440v2
+
+  IGT_8658: 5d645d459768a0e5c8e5e95b9fce16bb17319825 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-4203-db6505187efb9c255df1dd6e78c00d95fadfef79: db6505187efb9c255df1dd6e78c00d95fadfef79
+  xe-pw-158440v2: 158440v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158440v2/index.html
+
+--===============5275846851822889359==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/throttle: Skip reason prefix while emitting array (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/158440/">https://patchwork.freedesktop.org/series/158440/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158440v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158440v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4203-db6505187efb9c255df1dd6e78c00d95fadfef79_BAT -&gt; xe-pw-158440v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (12 -&gt; 12)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-158440v2_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@xe_waitfence@engine:<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4203-db6505187efb9c255df1dd6e78c00d95fadfef79/bat-dg2-oem2/igt@xe_waitfence@engine.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158440v2/bat-dg2-oem2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519">Intel XE#6519</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4203-db6505187efb9c255df1dd6e78c00d95fadfef79 -&gt; xe-pw-158440v2</li>
+</ul>
+<p>IGT_8658: 5d645d459768a0e5c8e5e95b9fce16bb17319825 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-4203-db6505187efb9c255df1dd6e78c00d95fadfef79: db6505187efb9c255df1dd6e78c00d95fadfef79<br />
+  xe-pw-158440v2: 158440v2</p>
+
+</body>
+</html>
+
+--===============5275846851822889359==--
