@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C8243D3B7DD
-	for <intel-xe@archiver.kernel.org>; Mon,  8 Dec 2025 07:27:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AC69ED3ABEF
+	for <intel-xe@archiver.kernel.org>; Mon,  8 Dec 2025 07:27:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 86DAB10E3A3;
-	Mon,  8 Dec 2025 07:27:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 692C910E3A5;
+	Mon,  8 Dec 2025 07:27:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nkTTZQ+V";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IJSnfpdU";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BAE8D10E3A3
- for <intel-xe@lists.freedesktop.org>; Mon,  8 Dec 2025 07:27:45 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 90A6B10E3A3
+ for <intel-xe@lists.freedesktop.org>; Mon,  8 Dec 2025 07:27:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765178865; x=1796714865;
+ t=1765178867; x=1796714867;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=kpiG3cdmBmbMzhoI8ZcTMtAPYDcVjGtRoJoVH4ykb/8=;
- b=nkTTZQ+Vkw4FvYCLNGjSTL3ko3tWivkJ6q8Zy8UinZVXZ6IyNlHaoIBq
- Z4Umcf/3BegcxzAW5B6IKkO4Ntg77yJYEFESn1trkRsx7RX5OpAoUvA8Y
- OO2P7fLzJ6xUjOCEaEzEil70EMPp6Yn3l7OtSMv+LQIpPZBM6IGIJ8AFH
- es1IjtHF7oU7AP8mCDcwPEVvAksXORx8ks0yiYmY7bX1NrnHrI/h4ojcp
- LkchkZmPk0FGk3ZdVNJLQ/NaVQ9WkFL1ufYMV5XPfK6tNt27Q3XxqJRoi
- jKo1nSBQJU+8GiFWprr/OJ9kOKoyTO/s1BruO0QIeOxox8coGTiuDxbPx g==;
-X-CSE-ConnectionGUID: X3RiZwK7RlqgFYZrrTuUTg==
-X-CSE-MsgGUID: vwPddvyPSVCe2/dNOX+4zA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11635"; a="54658500"
-X-IronPort-AV: E=Sophos;i="6.20,258,1758610800"; d="scan'208";a="54658500"
+ bh=R6QyfWJ5Eq7rLD8QBQu6id2cTynHqnHwf6FUaRax5PI=;
+ b=IJSnfpdUySitfr09socKNqBQKlNpV0H2YMXA6PS49Wn5KOQr+cT6xk1K
+ 2nyYEgBBTYq95oLYuBq8ZHIUW6X3WaWW6ylWLj7tRfix+oweIojD/yHJf
+ 5PVbut6EqEIRQCCxMBbA3piUPTSKTitVHEiPqDAIstCTTM9bsgfdynWcM
+ zVm6lYvvjNs2TO0iJQntQOkk+RjwFV9aih+ALyGLlP1DCOaraH/mZn+Rk
+ 2Dm7BqWRrXnORlLSL5jNC+kjb9v81AiGLlSqC8wp5j2GIAQSex+3oXJm+
+ JzPyKLM62TGeDtrt38bC5nQnzKv2BHkx1kpw7C2a6H5bV+RhdYvK2uc7R A==;
+X-CSE-ConnectionGUID: /Znv2xFSRniQAQ7esK7tXQ==
+X-CSE-MsgGUID: gM2/X0WDQMWJUVL5Jpqh6g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11635"; a="54658501"
+X-IronPort-AV: E=Sophos;i="6.20,258,1758610800"; d="scan'208";a="54658501"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Dec 2025 23:27:45 -0800
-X-CSE-ConnectionGUID: osCvCZaeTziW3tC7oXWRSg==
-X-CSE-MsgGUID: pVcO2sGoRHKmA/ZYJOcAHg==
+ 07 Dec 2025 23:27:47 -0800
+X-CSE-ConnectionGUID: spdrXNSgShqpiSXdoxoX9w==
+X-CSE-MsgGUID: ZfoXLUmMR42MkGX0yoFA0w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,258,1758610800"; d="scan'208";a="195769573"
+X-IronPort-AV: E=Sophos;i="6.20,258,1758610800"; d="scan'208";a="195769585"
 Received: from ksatya-dev.iind.intel.com ([10.190.228.51])
- by fmviesa006.fm.intel.com with ESMTP; 07 Dec 2025 23:27:44 -0800
+ by fmviesa006.fm.intel.com with ESMTP; 07 Dec 2025 23:27:46 -0800
 From: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>,
  Michal Wajdeczko <michal.wajdeczko@intel.com>,
  Matthew Brost <matthew.brost@intel.com>, Tomasz Lis <tomasz.lis@intel.com>
-Subject: [PATCH v2 1/2] drm/xe/vf: Avoid queuing migration recovery if queued
- or teardown is active
-Date: Mon,  8 Dec 2025 07:27:41 +0000
-Message-ID: <20251208072739.336647-5-satyanarayana.k.v.p@intel.com>
+Subject: [PATCH v2 2/2] drm/xe/vf: Reset recovery_queued after issuing
+ RESFIX_START
+Date: Mon,  8 Dec 2025 07:27:42 +0000
+Message-ID: <20251208072739.336647-6-satyanarayana.k.v.p@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20251208072739.336647-4-satyanarayana.k.v.p@intel.com>
 References: <20251208072739.336647-4-satyanarayana.k.v.p@intel.com>
@@ -68,10 +68,20 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Ensure VF migration recovery work is only queued when no recovery is
-already queued and teardown is not in progress.
+During VF_RESTORE or VF_RESUME, the GuC sends a migration interrupt and
+clears the RESFIX_START marker. If migration or resume occurs before the
+VF issues its own RESFIX_START, VF KMD may receive two back-to-back
+migration interrupts. VF then sends RESFIX_START to indicate the beginning
+of fixups and RESFIX_DONE to mark completion. However, the second
+RESFIX_START fails because the GuC is already in the RUNNING state.
 
-Fixes: b47c0c07c350 ("drm/xe/vf: Teardown VF post migration worker on driver unload")
+Clear the recovery_queued flag after sending a RESFIX_START message to
+ignore duplicated IRQs seen before we start actual recovery.
+
+This ensures the state is reset only after the fixup process begins,
+avoiding redundant work item queuing.
+
+Fixes: b5fbb94341a2 ("drm/xe/vf: Introduce RESFIX start marker support")
 Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
 Cc: Matthew Brost <matthew.brost@intel.com>
@@ -79,24 +89,44 @@ Cc: Tomasz Lis <tomasz.lis@intel.com>
 
 ---
 V1 -> V2:
-- New commit (Machal W & Matt B)
+- Fixed review comments (Michal W).
+- Updated commit message.
+- Used scoped_guard for spin_lock/unlock_irq.
 ---
- drivers/gpu/drm/xe/xe_gt_sriov_vf.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_gt_sriov_vf.c | 13 ++++++++-----
+ 1 file changed, 8 insertions(+), 5 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-index 3c806c8e5f3e..47612e67d462 100644
+index 47612e67d462..23ab25e407dc 100644
 --- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
 +++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-@@ -781,7 +781,7 @@ static void vf_start_migration_recovery(struct xe_gt *gt)
+@@ -1171,10 +1171,6 @@ static bool vf_post_migration_shutdown(struct xe_gt *gt)
+ 			return true;
+ 	}
  
- 	spin_lock(&gt->sriov.vf.migration.lock);
+-	spin_lock_irq(&gt->sriov.vf.migration.lock);
+-	gt->sriov.vf.migration.recovery_queued = false;
+-	spin_unlock_irq(&gt->sriov.vf.migration.lock);
+-
+ 	xe_guc_ct_flush_and_stop(&gt->uc.guc.ct);
+ 	xe_guc_submit_pause_vf(&gt->uc.guc);
+ 	xe_tlb_inval_reset(&gt->tlb_inval);
+@@ -1258,7 +1254,14 @@ static int vf_post_migration_resfix_done(struct xe_gt *gt, u16 marker)
  
--	if (!gt->sriov.vf.migration.recovery_queued ||
-+	if (!gt->sriov.vf.migration.recovery_queued &&
- 	    !gt->sriov.vf.migration.recovery_teardown) {
- 		gt->sriov.vf.migration.recovery_queued = true;
- 		WRITE_ONCE(gt->sriov.vf.migration.recovery_inprogress, true);
+ static int vf_post_migration_resfix_start(struct xe_gt *gt, u16 marker)
+ {
+-	return vf_resfix_start(gt, marker);
++	int err;
++
++	err = vf_resfix_start(gt, marker);
++
++	scoped_guard(spinlock_irq, &gt->sriov.vf.migration.lock)
++		gt->sriov.vf.migration.recovery_queued = false;
++
++	return  err;
+ }
+ 
+ static u16 vf_post_migration_next_resfix_marker(struct xe_gt *gt)
 -- 
 2.43.0
 
