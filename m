@@ -4,55 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 07C49CEBF88
-	for <intel-xe@archiver.kernel.org>; Mon,  8 Dec 2025 06:16:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 87FA2CEBF88
+	for <intel-xe@archiver.kernel.org>; Mon,  8 Dec 2025 06:26:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ADEE810E110;
-	Mon,  8 Dec 2025 06:16:18 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="oC0mqo1a";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1F89610E110
- for <intel-xe@lists.freedesktop.org>; Mon,  8 Dec 2025 06:16:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765174577; x=1796710577;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=EWKLymRMJ5OjGwNibvHEkj1CTAHFe++aiuxOTYgwJIk=;
- b=oC0mqo1a8AU73qIxRcmfEjj1qVyeugQN2s9FXg7z9sNA++GiTf0fuCHw
- kyP6QlpYxj1/3pRCaEFqq/qF708fx+61+H+NDK/Lj15geFiLSSszE1AV6
- HWg7KRQJrB0ivVrolNIhdDEd44lAg8ZoQ75LH1AAHXbeHuZWX+gIT/Xwa
- +g/3ZfiBYXwKcnstY19+0I3NxIFp4z18wzhRBiR6JMMuxzOQNCdP/3oDe
- OraQDKfPpEkB8WaT4Vwp+JsHWD5tssyR/ERgY1CUoBC2uI1ry22WmiJNR
- YI5Nkm8GwP2hq8YIWs5ugn0tt51qPc4JrphtrkTYGtN4D2MdhmspGo8tc A==;
-X-CSE-ConnectionGUID: LMn3ok1JQrmVvLxKKGbADA==
-X-CSE-MsgGUID: 6POSWVWdRT6A5YPgpE5FnA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11635"; a="67277435"
-X-IronPort-AV: E=Sophos;i="6.20,258,1758610800"; d="scan'208";a="67277435"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Dec 2025 22:16:17 -0800
-X-CSE-ConnectionGUID: Yf2dc7bGRhqxLQ14wZi5tA==
-X-CSE-MsgGUID: ygA6vA1NRpic5xOcDwTruw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,258,1758610800"; d="scan'208";a="200769129"
-Received: from hchegond-desk.jf.intel.com ([10.88.27.198])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Dec 2025 22:16:16 -0800
-From: Harish Chegondi <harish.chegondi@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Harish Chegondi <harish.chegondi@intel.com>,
- Ashutosh Dixit <ashutosh.dixit@intel.com>,
- Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-Subject: [PATCH 1/1] drm/xe/eustall: Return EBADFD from read if EU stall
- registers get reset
-Date: Sun,  7 Dec 2025 22:16:11 -0800
-Message-ID: <6d78578c015b12e7ae243727ca7ed4b93551075d.1765174462.git.harish.chegondi@intel.com>
-X-Mailer: git-send-email 2.43.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 29BC910E0BB;
+	Mon,  8 Dec 2025 06:26:41 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 79A7810E0BB;
+ Mon,  8 Dec 2025 06:26:39 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0734472596016265232=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/pcode=3A_Add_support?=
+ =?utf-8?q?_to_get_pcode_version?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Karthik Poosa" <karthik.poosa@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 08 Dec 2025 06:26:39 -0000
+Message-ID: <176517519949.65108.1490194921151457814@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20251208052941.3635041-1-karthik.poosa@intel.com>
+In-Reply-To: <20251208052941.3635041-1-karthik.poosa@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,55 +36,125 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-If a reset (GT or engine) happens during EU stall data sampling, all the
-EU stall registers can get reset to 0. This will result in EU stall data
-buffers' read and write pointer register values to be out of sync with
-the cached values. This can result in read() returning invalid data. To
-prevent this, check the value of a EU stall base register. If it is zero,
-it indicates a reset may have happened that wiped the register to zero.
-If this happens, return EBADFD from read() upon which the user space
-should close the fd and open a new fd for a new EU stall data
-collection session.
+--===============0734472596016265232==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Cc: Ashutosh Dixit <ashutosh.dixit@intel.com>
-Cc: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-Signed-off-by: Harish Chegondi <harish.chegondi@intel.com>
----
- drivers/gpu/drm/xe/xe_eu_stall.c | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/xe/xe_eu_stall.c b/drivers/gpu/drm/xe/xe_eu_stall.c
-index 97dfb7945b7a..02c0beb4559f 100644
---- a/drivers/gpu/drm/xe/xe_eu_stall.c
-+++ b/drivers/gpu/drm/xe/xe_eu_stall.c
-@@ -541,9 +541,24 @@ static ssize_t xe_eu_stall_stream_read_locked(struct xe_eu_stall_data_stream *st
- 	size_t total_size = 0;
- 	u16 group, instance;
- 	unsigned int xecore;
-+	u32 base_reg_value;
- 	int ret = 0;
- 
- 	mutex_lock(&stream->xecore_buf_lock);
-+	/* If a GT or engine reset happens during EU stall data sampling,
-+	 * all EU stall registers get reset to 0 and the cached values of
-+	 * EU stall data buffers' read and write pointers are out of sync
-+	 * with the register values. This can cause invalid data to be
-+	 * returned from read(). To prevent this, check the value of a
-+	 * EU stall base register. If it is zero, return -EBADFD. The
-+	 * user is expected to close the fd and open a new fd.
-+	 */
-+	base_reg_value = xe_gt_mcr_unicast_read_any(gt, XEHPC_EUSTALL_BASE);
-+	if (unlikely(!base_reg_value)) {
-+		xe_gt_dbg(gt, "EU stall base register has been reset to 0\n");
-+		mutex_unlock(&stream->xecore_buf_lock);
-+		return -EBADFD;
-+	}
- 	if (bitmap_weight(stream->data_drop.mask, XE_MAX_DSS_FUSE_BITS)) {
- 		if (!stream->data_drop.reported_to_user) {
- 			stream->data_drop.reported_to_user = true;
--- 
-2.43.0
+Series: drm/xe/pcode: Add support to get pcode version
+URL   : https://patchwork.freedesktop.org/series/158621/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from xe-4203-db6505187efb9c255df1dd6e78c00d95fadfef79_BAT -> xe-pw-158621v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (12 -> 12)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-158621v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_waitfence@reltime:
+    - bat-dg2-oem2:       [PASS][1] -> [FAIL][2] ([Intel XE#6520])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4203-db6505187efb9c255df1dd6e78c00d95fadfef79/bat-dg2-oem2/igt@xe_waitfence@reltime.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158621v1/bat-dg2-oem2/igt@xe_waitfence@reltime.html
+
+  
+  [Intel XE#6520]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520
+
+
+Build changes
+-------------
+
+  * Linux: xe-4203-db6505187efb9c255df1dd6e78c00d95fadfef79 -> xe-pw-158621v1
+
+  IGT_8658: 5d645d459768a0e5c8e5e95b9fce16bb17319825 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-4203-db6505187efb9c255df1dd6e78c00d95fadfef79: db6505187efb9c255df1dd6e78c00d95fadfef79
+  xe-pw-158621v1: 158621v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158621v1/index.html
+
+--===============0734472596016265232==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/pcode: Add support to get pcode version</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/158621/">https://patchwork.freedesktop.org/series/158621/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158621v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158621v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4203-db6505187efb9c255df1dd6e78c00d95fadfef79_BAT -&gt; xe-pw-158621v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (12 -&gt; 12)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-158621v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@xe_waitfence@reltime:<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4203-db6505187efb9c255df1dd6e78c00d95fadfef79/bat-dg2-oem2/igt@xe_waitfence@reltime.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158621v1/bat-dg2-oem2/igt@xe_waitfence@reltime.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520">Intel XE#6520</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4203-db6505187efb9c255df1dd6e78c00d95fadfef79 -&gt; xe-pw-158621v1</li>
+</ul>
+<p>IGT_8658: 5d645d459768a0e5c8e5e95b9fce16bb17319825 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-4203-db6505187efb9c255df1dd6e78c00d95fadfef79: db6505187efb9c255df1dd6e78c00d95fadfef79<br />
+  xe-pw-158621v1: 158621v1</p>
+
+</body>
+</html>
+
+--===============0734472596016265232==--
