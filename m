@@ -4,17 +4,17 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D35BED3B7EA
-	for <intel-xe@archiver.kernel.org>; Mon,  8 Dec 2025 19:17:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A93F6D3B7F3
+	for <intel-xe@archiver.kernel.org>; Mon,  8 Dec 2025 19:17:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 92E3410E46B;
-	Mon,  8 Dec 2025 19:17:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 669A110E47F;
+	Mon,  8 Dec 2025 19:17:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="co1VRS15";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="bba6Ni2h";
 	dkim-atps=neutral
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A018710E43E
- for <intel-xe@lists.freedesktop.org>; Mon,  8 Dec 2025 19:17:33 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BFC2410E45B
+ for <intel-xe@lists.freedesktop.org>; Mon,  8 Dec 2025 19:17:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
@@ -22,24 +22,24 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=NCDZfR+mm4+2qxTMK3wR6nS0kFXFB/WroFIIAhTgbUU=; b=co1VRS15UAGIZa4rJ7P66shqRC
- 8KZyAeQjA2juRVubnpNkLkROrXh+CsydAvBZnLVFU+BoTtXLq+2NJPO/eAEPBDCNQyN701pMoiBuq
- vaGlbsKYDU07r6hAn2mZsWCzRd764UuXJ3n68W7n41rOzCHNFhE7HUd661H/yyAmrdK9xuK/VrkWT
- raudvSpygiALz1xACn5J2e6hn/9/93/B0PbegQbvJecWfLWrP3TLbiJ6NPByq9wPL4kmwWgJbYAFz
- ZhLQVMqZQO8ZEtGOOQ7ESBA2ZQWRcGZ51IZrIEh1qNLn7Dl16IpsOkGex3dDkCOLOg09yTsHGd8zi
- M5fbT9Tg==;
+ bh=+zo8xszJjoGMB7Mo+TfixxS1ddhXt3KpKpDzT5eLCLc=; b=bba6Ni2hp4hXKAEsxyAOYwgB3r
+ vFbpHtogR6rShceWOyFWu27aUwlaUflC9nQHqs2iJnwmQMUhjDpLlZy1CCzLCvWVdhYRlVD43NyZr
+ CmC242BA4fk08or6VzuiFMy+ePbDINNUt56r11KjuSqwYq5Wn+AyWhtQG00c2sQOD9UW05wumzeG3
+ 5TQ0uEXtDpZCh8csgsNuYKTB30VX+D5malyihEoKv6G2Zcp30zTXMKeA4e2ysesadYs+EFbWk0ViA
+ pkSAYxfjPoqXUFB/P096vXISmxIULyesITPsteCGRTWg8+ZviMctlyUZOsRUON4QhNWLTOV0FBXpx
+ gWF8PMyA==;
 Received: from [86.33.28.86] (helo=localhost)
  by fanzine2.igalia.com with utf8esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1vSgjj-00AC7W-T3; Mon, 08 Dec 2025 20:17:32 +0100
+ id 1vSgjm-00AC7m-0R; Mon, 08 Dec 2025 20:17:34 +0100
 From: Tvrtko Ursulin <tursulin@igalia.com>
 To: intel-xe@lists.freedesktop.org
 Cc: kernel-dev@igalia.com, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [PATCH v15 05/10] drm/xe/xelp: Add AuxCCS invalidation to the
- indirect context workarounds
-Date: Mon,  8 Dec 2025 20:17:16 +0100
-Message-ID: <20251208191722.7194-6-tursulin@igalia.com>
+Subject: [PATCH v15 07/10] drm/xe: Do not use stolen memory for DPT on IGFX
+ and AuxCCS
+Date: Mon,  8 Dec 2025 20:17:18 +0100
+Message-ID: <20251208191722.7194-8-tursulin@igalia.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20251208191722.7194-1-tursulin@igalia.com>
 References: <20251208191722.7194-1-tursulin@igalia.com>
@@ -61,166 +61,59 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 
-Following from the i915 reference implementation, we add the AuxCCS
-invalidation to the indirect context workarounds page.
+With DPT in stolen memory there are occasional pipe crc IGT failures in
+tests such as kms_flip_tiling. Allocate a normal system memory object
+instead.
 
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_hw_engine.h | 24 ++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_lrc.c       | 27 +++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_ring_ops.c  | 18 ++----------------
- 3 files changed, 53 insertions(+), 16 deletions(-)
+ drivers/gpu/drm/xe/display/xe_fb_pin.c | 18 ++++++++++++++++--
+ 1 file changed, 16 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_hw_engine.h b/drivers/gpu/drm/xe/xe_hw_engine.h
-index 6b5f9fa2a594..725467b5877c 100644
---- a/drivers/gpu/drm/xe/xe_hw_engine.h
-+++ b/drivers/gpu/drm/xe/xe_hw_engine.h
-@@ -6,6 +6,7 @@
- #ifndef _XE_HW_ENGINE_H_
- #define _XE_HW_ENGINE_H_
+diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+index 89ee68c40329..ce9750da57e7 100644
+--- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
++++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+@@ -80,6 +80,20 @@ write_dpt_remapped(struct xe_bo *bo, struct iosys_map *map, u32 *dpt_ofs,
+ 	*dpt_ofs = ALIGN(*dpt_ofs, 4096);
+ }
  
-+#include "xe_device_types.h"
- #include "xe_hw_engine_types.h"
- 
- struct drm_printer;
-@@ -79,4 +80,27 @@ enum xe_force_wake_domains xe_hw_engine_to_fw_domain(struct xe_hw_engine *hwe);
- void xe_hw_engine_mmio_write32(struct xe_hw_engine *hwe, struct xe_reg reg, u32 val);
- u32 xe_hw_engine_mmio_read32(struct xe_hw_engine *hwe, struct xe_reg reg);
- 
-+static inline bool
-+xe_engine_class_has_auxccs(struct xe_device *xe, enum xe_engine_class class)
++static bool try_dpt_stolen(const struct intel_framebuffer *fb, struct xe_bo *bo)
 +{
 +	/*
-+	 * PVC is a special case that has no compression of either type
-+	 * (FlatCCS or AuxCCS).  Also, AuxCCS is no longer used from Xe2
-+	 * onward, so any future platforms with no FlatCCS will not have
-+	 * AuxCCS, and we explicity do not want to support it on MTL.
++	 * XXX: DPT in stolen memory on IGFX platforms (at least Alderlake)
++	 * suffers from occasional pipe crc IGT failures in tests such as
++	 * kms_flip_tiling.
 +	 */
-+	if (GRAPHICS_VERx100(xe) >= 1270 ||
-+	    xe->info.platform == XE_PVC ||
-+	    xe->info.has_flat_ccs)
++	if (intel_fb_is_ccs_modifier(fb->base.modifier) &&
++	    !xe_bo_is_vram(bo) && !xe_bo_is_stolen(bo))
 +		return false;
 +
-+	if (class == XE_ENGINE_CLASS_RENDER ||
-+	    class == XE_ENGINE_CLASS_COMPUTE ||
-+	    class == XE_ENGINE_CLASS_VIDEO_DECODE ||
-+	    class == XE_ENGINE_CLASS_VIDEO_ENHANCE)
-+		return true;
-+
-+	return false;
++	return true;
 +}
 +
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-index a05060f75e7e..27b3834208ab 100644
---- a/drivers/gpu/drm/xe/xe_lrc.c
-+++ b/drivers/gpu/drm/xe/xe_lrc.c
-@@ -23,10 +23,12 @@
- #include "xe_exec_queue_types.h"
- #include "xe_gt.h"
- #include "xe_gt_printk.h"
-+#include "xe_hw_engine.h"
- #include "xe_hw_fence.h"
- #include "xe_map.h"
- #include "xe_memirq.h"
- #include "xe_mmio.h"
-+#include "xe_ring_ops.h"
- #include "xe_sriov.h"
- #include "xe_trace_lrc.h"
- #include "xe_vm.h"
-@@ -88,6 +90,10 @@ gt_engine_needs_indirect_ctx(struct xe_gt *gt, enum xe_engine_class class)
- 					       class, NULL))
- 		return true;
+ static int __xe_pin_fb_vma_dpt(const struct intel_framebuffer *fb,
+ 			       const struct i915_gtt_view *view,
+ 			       struct i915_vma *vma,
+@@ -89,7 +103,7 @@ static int __xe_pin_fb_vma_dpt(const struct intel_framebuffer *fb,
+ 	struct xe_tile *tile0 = xe_device_get_root_tile(xe);
+ 	struct xe_ggtt *ggtt = tile0->mem.ggtt;
+ 	struct drm_gem_object *obj = intel_fb_bo(&fb->base);
+-	struct xe_bo *bo = gem_to_xe_bo(obj), *dpt;
++	struct xe_bo *bo = gem_to_xe_bo(obj), *dpt = ERR_PTR(-EINVAL);
+ 	u32 dpt_size, size = bo->ttm.base.size;
  
-+	/* For AuxCCS invalidation */
-+	if (xe_engine_class_has_auxccs(xe, class))
-+		return true;
-+
- 	return false;
- }
- 
-@@ -1201,6 +1207,25 @@ static ssize_t setup_invalidate_state_cache_wa(struct xe_lrc *lrc,
- 	return cmd - batch;
- }
- 
-+static ssize_t setup_invalidate_auxccs_wa(struct xe_lrc *lrc,
-+					  struct xe_hw_engine *hwe,
-+					  u32 *batch, size_t max_len)
-+{
-+	struct xe_gt *gt = lrc->gt;
-+	struct xe_device *xe = gt_to_xe(gt);
-+	u32 *cmd;
-+
-+	if (!xe_engine_class_has_auxccs(xe, hwe->class))
-+		return 0;
-+
-+	if (xe_gt_WARN_ON(gt, max_len < 8))
-+		return -ENOSPC;
-+
-+	cmd = xe_emit_aux_table_inv(hwe, batch);
-+
-+	return cmd - batch;
-+}
-+
- struct bo_setup {
- 	ssize_t (*setup)(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
- 			 u32 *batch, size_t max_size);
-@@ -1333,9 +1358,11 @@ setup_indirect_ctx(struct xe_lrc *lrc, struct xe_hw_engine *hwe)
- {
- 	static const struct bo_setup rcs_funcs[] = {
- 		{ .setup = setup_timestamp_wa },
-+		{ .setup = setup_invalidate_auxccs_wa },
- 		{ .setup = setup_configfs_mid_ctx_restore_bb },
- 	};
- 	static const struct bo_setup xcs_funcs[] = {
-+		{ .setup = setup_invalidate_auxccs_wa },
- 		{ .setup = setup_configfs_mid_ctx_restore_bb },
- 	};
- 	struct bo_setup_state state = {
-diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
-index 953723eaa237..004cc5c44128 100644
---- a/drivers/gpu/drm/xe/xe_ring_ops.c
-+++ b/drivers/gpu/drm/xe/xe_ring_ops.c
-@@ -318,20 +318,6 @@ static void __emit_job_gen12_simple(struct xe_sched_job *job, struct xe_lrc *lrc
- 	xe_lrc_write_ring(lrc, dw, i * sizeof(*dw));
- }
- 
--static bool has_aux_ccs(struct xe_device *xe)
--{
--	/*
--	 * PVC is a special case that has no compression of either type
--	 * (FlatCCS or AuxCCS).  Also, AuxCCS is no longer used from Xe2
--	 * onward, so any future platforms with no FlatCCS will not have
--	 * AuxCCS, and we explicity do not want to support it on MTL.
--	 */
--	if (GRAPHICS_VERx100(xe) >= 1270 || xe->info.platform == XE_PVC)
--		return false;
--
--	return !xe->info.has_flat_ccs;
--}
--
- static void __emit_job_gen12_video(struct xe_sched_job *job, struct xe_lrc *lrc,
- 				   u64 batch_addr, u32 *head, u32 seqno)
- {
-@@ -347,7 +333,7 @@ static void __emit_job_gen12_video(struct xe_sched_job *job, struct xe_lrc *lrc,
- 	dw[i++] = preparser_disable(true);
- 
- 	/* hsdes: 1809175790 */
--	if (has_aux_ccs(xe))
-+	if (xe_engine_class_has_auxccs(xe, job->q->class))
- 		i = emit_aux_table_inv(job->q->hwe, dw, i);
- 
- 	if (job->ring_ops_flush_tlb)
-@@ -388,7 +374,7 @@ static void __emit_job_gen12_render_compute(struct xe_sched_job *job,
- 	struct xe_gt *gt = job->q->gt;
- 	struct xe_device *xe = gt_to_xe(gt);
- 	bool lacks_render = !(gt->info.engine_mask & XE_HW_ENGINE_RCS_MASK);
--	const bool aux_ccs = has_aux_ccs(xe);
-+	const bool aux_ccs = xe_engine_class_has_auxccs(xe, job->q->class);
- 	u32 mask_flags = 0;
- 
- 	*head = lrc->ring.tail;
+ 	if (view->type == I915_GTT_VIEW_NORMAL)
+@@ -110,7 +124,7 @@ static int __xe_pin_fb_vma_dpt(const struct intel_framebuffer *fb,
+ 						   XE_BO_FLAG_GGTT |
+ 						   XE_BO_FLAG_PAGETABLE,
+ 						   alignment, false);
+-	else
++	else if (try_dpt_stolen(fb, bo))
+ 		dpt = xe_bo_create_pin_map_at_novm(xe, tile0,
+ 						   dpt_size,  ~0ull,
+ 						   ttm_bo_type_kernel,
 -- 
 2.52.0
 
