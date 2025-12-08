@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 631FAD3B7EA
-	for <intel-xe@archiver.kernel.org>; Mon,  8 Dec 2025 20:19:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CAF61D3B7E2
+	for <intel-xe@archiver.kernel.org>; Mon,  8 Dec 2025 20:27:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2107910E121;
-	Mon,  8 Dec 2025 20:19:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8785110E156;
+	Mon,  8 Dec 2025 20:27:02 +0000 (UTC)
 Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DACDB10E121;
- Mon,  8 Dec 2025 20:19:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 69E5910E121;
+ Mon,  8 Dec 2025 20:27:01 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_drm/i915/vga=3A_Try_to_sort_ou?=
- =?utf-8?q?t_the_VGA_decode_mess?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_AuxCCS_handling_and_rende?=
+ =?utf-8?q?r_compression_modifiers?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+To: "Tvrtko Ursulin" <tursulin@igalia.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 08 Dec 2025 20:19:38 -0000
-Message-ID: <176522517889.67190.12715888312928400605@a3b018990fe9>
+Date: Mon, 08 Dec 2025 20:27:01 -0000
+Message-ID: <176522562142.67459.1873463104386964671@a3b018990fe9>
 X-Patchwork-Hint: ignore
-References: <20251208182637.334-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20251208182637.334-1-ville.syrjala@linux.intel.com>
+References: <20251208191722.7194-1-tursulin@igalia.com>
+In-Reply-To: <20251208191722.7194-1-tursulin@igalia.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,39 +42,83 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/i915/vga: Try to sort out the VGA decode mess
-URL   : https://patchwork.freedesktop.org/series/158650/
-State : failure
+Series: AuxCCS handling and render compression modifiers
+URL   : https://patchwork.freedesktop.org/series/158654/
+State : warning
 
 == Summary ==
 
-+ trap cleanup EXIT
-+ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
-[20:19:05] Configuring KUnit Kernel ...
-Generating .config ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-[20:19:09] Building KUnit Kernel ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-Building with:
-$ make all compile_commands.json scripts_gdb ARCH=um O=.kunit --jobs=48
-ERROR:root:In file included from ../include/linux/vgaarb.h:15,
-                 from ../drivers/pci/pci-sysfs.c:28:
-../include/video/vga.h:489:1: error: expected identifier or ‘(’ before ‘?’ token
-  489 | ?
-      | ^
-make[5]: *** [../scripts/Makefile.build:287: drivers/pci/pci-sysfs.o] Error 1
-make[5]: *** Waiting for unfinished jobs....
-make[4]: *** [../scripts/Makefile.build:556: drivers/pci] Error 2
-make[4]: *** Waiting for unfinished jobs....
-make[3]: *** [../scripts/Makefile.build:556: drivers] Error 2
-make[2]: *** [/kernel/Makefile:2010: .] Error 2
-make[1]: *** [/kernel/Makefile:248: __sub-make] Error 2
-make: *** [Makefile:248: __sub-make] Error 2
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+8f50e69d0ce3656564bbdf8b3e213d61470d463f
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 12c4f5d2f534d2bcaf2f666d45e91c0c774dc60e
+Author: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+Date:   Mon Dec 8 20:17:21 2025 +0100
 
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+    drm/xe/xelp: Expose AuxCCS frame buffer modifiers on Alderlake-P
+    
+    Now that we have implemented all the related missing bits we can enable
+    the AuxCCS compressed modifiers which were disabled in
+    cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if built for Xe").
+    
+    Tested with KDE Wayland, on Lenovo Carbon X1 ADL-P:
+    
+            [PLANE:32:plane 1A]: type=PRI
+                    uapi: [FB:242] AR30 little-endian (0x30335241),0x100000000000008,2880x1800, visible=visible, src=28
+                    hw: [FB:242] AR30 little-endian (0x30335241),0x100000000000008,2880x1800, visible=yes, src=2880.000
+    
+    Display is working fine - no artefacts, no DMAR/PIPE faults.
+    
+    v2:
+     * Adjust patch title. (Rodrigo)
+    
+    v3:
+     * Complete rewrite based on the display parent interface.
+    
+    Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+    References: cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if built for Xe")
+    Cc: Jani Nikula <jani.nikula@intel.com>
+    Cc: José Roberto de Souza <jose.souza@intel.com>
+    Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+    Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+    Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com> # v2
++ /mt/dim checkpatch ae947e88cadd48481a08b630fc9bbb9ddcbe1340 drm-intel
+7bd53b198f72 drm/xe/xelpg: Limit AuxCCS ring buffer programming to Alderlake
+-:25: WARNING:TYPO_SPELLING: 'explicity' may be misspelled - perhaps 'explicitly'?
+#25: FILE: drivers/gpu/drm/xe/xe_ring_ops.c:292:
++	 * AuxCCS, and we explicity do not want to support it on MTL.
+ 	                  ^^^^^^^^^
+
+total: 0 errors, 1 warnings, 0 checks, 11 lines checked
+3a2bf6444c11 drm/xe/xelp: Quiesce memory traffic before invalidating AuxCCS
+7f4148103291 drm/xe/xelp: Wait for AuxCCS invalidation to complete
+49ce5ab510be drm/xe: Export xe_emit_aux_table_inv
+ed9544b6e1a8 drm/xe/xelp: Add AuxCCS invalidation to the indirect context workarounds
+-:36: WARNING:TYPO_SPELLING: 'explicity' may be misspelled - perhaps 'explicitly'?
+#36: FILE: drivers/gpu/drm/xe/xe_hw_engine.h:90:
++	 * AuxCCS, and we explicity do not want to support it on MTL.
+ 	                  ^^^^^^^^^
+
+total: 0 errors, 1 warnings, 0 checks, 128 lines checked
+befd9d29a50f drm/xe: Handle DPT in system memory
+a2709d9ba138 drm/xe: Do not use stolen memory for DPT on IGFX and AuxCCS
+cce54e63c871 drm/xe/display: Add support for AuxCCS
+f4809b604b80 drm/i915/display: Detect AuxCCS support via display parent interface
+12c4f5d2f534 drm/xe/xelp: Expose AuxCCS frame buffer modifiers on Alderlake-P
+-:12: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#12: 
+cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if built for Xe").
+
+-:12: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if built for Xe")'
+#12: 
+cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if built for Xe").
+
+total: 1 errors, 1 warnings, 0 checks, 18 lines checked
 
 
