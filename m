@@ -4,51 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8304CD3B7EA
-	for <intel-xe@archiver.kernel.org>; Mon,  8 Dec 2025 19:17:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2AE2DD3B7E2
+	for <intel-xe@archiver.kernel.org>; Mon,  8 Dec 2025 19:20:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4143D10E48B;
-	Mon,  8 Dec 2025 19:17:42 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="XyhFpcA0";
-	dkim-atps=neutral
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E2C9C10E47F
- for <intel-xe@lists.freedesktop.org>; Mon,  8 Dec 2025 19:17:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
- In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=7VhkGzrhpM41v8SBUv9DSDe4He5nG8Y8GaA4mdojTz4=; b=XyhFpcA0Ih/GBWxeQFqSn/diw6
- VltNdploSgS0AEfYgqByChg9zPJrfnRyFOBYS0+IQxqeL1CmSmYzvWNPuCBkbuAi73YTzKPkIXk4l
- 1pW8cm/6f8h57phiKq1GVwrJc3ckRNnv1+duNMTvoPLHVtAtm/mWbdkroTtUfMIBRwQ/wqKWma7Bn
- IBEe7ow2U5B3uWeyw1bGkODhjrNk5n4MTFF1ZSn6Dh9eBFiVs0NRactOZ6/D6sI2AGED62+nnlYNz
- JESd619ybyDXZRucXGDoef76wB+JOq2D9crCtnEGhNpenxbuCuohQkvTkR4FzupJAQSPbptx7ywKU
- FdUL4tMA==;
-Received: from [86.33.28.86] (helo=localhost)
- by fanzine2.igalia.com with utf8esmtpsa 
- (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1vSgjp-00AC8F-4z; Mon, 08 Dec 2025 20:17:37 +0100
-From: Tvrtko Ursulin <tursulin@igalia.com>
-To: intel-xe@lists.freedesktop.org
-Cc: kernel-dev@igalia.com, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
- Jani Nikula <jani.nikula@intel.com>,
- =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>,
- Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [PATCH v15 10/10] drm/xe/xelp: Expose AuxCCS frame buffer modifiers
- on Alderlake-P
-Date: Mon,  8 Dec 2025 20:17:21 +0100
-Message-ID: <20251208191722.7194-11-tursulin@igalia.com>
-X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20251208191722.7194-1-tursulin@igalia.com>
-References: <20251208191722.7194-1-tursulin@igalia.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id D872D10E123;
+	Mon,  8 Dec 2025 19:20:25 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EAB9210E0E6;
+ Mon,  8 Dec 2025 19:20:24 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1199028816011864258=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Fix_ggtt_fb_align?=
+ =?utf-8?q?ment?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Tvrtko Ursulin" <tursulin@igalia.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 08 Dec 2025 19:20:24 -0000
+Message-ID: <176522162495.67164.11100971103620664935@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20251208181550.6618-1-tursulin@igalia.com>
+In-Reply-To: <20251208181550.6618-1-tursulin@igalia.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,63 +36,129 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+--===============1199028816011864258==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Now that we have implemented all the related missing bits we can enable
-the AuxCCS compressed modifiers which were disabled in
-cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if built for Xe").
+== Series Details ==
 
-Tested with KDE Wayland, on Lenovo Carbon X1 ADL-P:
+Series: drm/xe: Fix ggtt fb alignment
+URL   : https://patchwork.freedesktop.org/series/158649/
+State : success
 
-        [PLANE:32:plane 1A]: type=PRI
-                uapi: [FB:242] AR30 little-endian (0x30335241),0x100000000000008,2880x1800, visible=visible, src=28
-                hw: [FB:242] AR30 little-endian (0x30335241),0x100000000000008,2880x1800, visible=yes, src=2880.000
+== Summary ==
 
-Display is working fine - no artefacts, no DMAR/PIPE faults.
+CI Bug Log - changes from xe-4205-20a0f6f7ed00cc169a15fe7fca330da8b2806732_BAT -> xe-pw-158649v1_BAT
+====================================================
 
-v2:
- * Adjust patch title. (Rodrigo)
+Summary
+-------
 
-v3:
- * Complete rewrite based on the display parent interface.
+  **SUCCESS**
 
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-References: cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if built for Xe")
-Cc: Jani Nikula <jani.nikula@intel.com>
-Cc: José Roberto de Souza <jose.souza@intel.com>
-Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com> # v2
----
- drivers/gpu/drm/xe/display/xe_display.c | 8 ++++++++
- 1 file changed, 8 insertions(+)
+  No regressions found.
 
-diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
-index 9d2aa69ea428..807fc93fb6ae 100644
---- a/drivers/gpu/drm/xe/display/xe_display.c
-+++ b/drivers/gpu/drm/xe/display/xe_display.c
-@@ -534,10 +534,18 @@ static const struct intel_display_irq_interface xe_display_irq_interface = {
- 	.synchronize = irq_synchronize,
- };
- 
-+static bool has_auxccs(struct drm_device *drm)
-+{
-+	struct xe_device *xe = to_xe_device(drm);
-+
-+	return xe->info.platform == XE_ALDERLAKE_P;
-+}
-+
- static const struct intel_display_parent_interface parent = {
- 	.hdcp = &xe_display_hdcp_interface,
- 	.rpm = &xe_display_rpm_interface,
- 	.irq = &xe_display_irq_interface,
-+	.has_auxccs = has_auxccs,
- };
- 
- /**
--- 
-2.52.0
+  
 
+Participating hosts (12 -> 12)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-158649v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_module_load@load:
+    - bat-dg2-oem2:       [PASS][1] -> [ABORT][2] ([Intel XE#6610])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4205-20a0f6f7ed00cc169a15fe7fca330da8b2806732/bat-dg2-oem2/igt@xe_module_load@load.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158649v1/bat-dg2-oem2/igt@xe_module_load@load.html
+
+  
+  [Intel XE#6610]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6610
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8658 -> IGT_8659
+  * Linux: xe-4205-20a0f6f7ed00cc169a15fe7fca330da8b2806732 -> xe-pw-158649v1
+
+  IGT_8658: 5d645d459768a0e5c8e5e95b9fce16bb17319825 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_8659: 8659
+  xe-4205-20a0f6f7ed00cc169a15fe7fca330da8b2806732: 20a0f6f7ed00cc169a15fe7fca330da8b2806732
+  xe-pw-158649v1: 158649v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158649v1/index.html
+
+--===============1199028816011864258==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Fix ggtt fb alignment</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/158649/">https://patchwork.freedesktop.org/series/158649/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158649v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158649v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4205-20a0f6f7ed00cc169a15fe7fca330da8b2806732_BAT -&gt; xe-pw-158649v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (12 -&gt; 12)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-158649v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@xe_module_load@load:<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4205-20a0f6f7ed00cc169a15fe7fca330da8b2806732/bat-dg2-oem2/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158649v1/bat-dg2-oem2/igt@xe_module_load@load.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6610">Intel XE#6610</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8658 -&gt; IGT_8659</li>
+<li>Linux: xe-4205-20a0f6f7ed00cc169a15fe7fca330da8b2806732 -&gt; xe-pw-158649v1</li>
+</ul>
+<p>IGT_8658: 5d645d459768a0e5c8e5e95b9fce16bb17319825 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_8659: 8659<br />
+  xe-4205-20a0f6f7ed00cc169a15fe7fca330da8b2806732: 20a0f6f7ed00cc169a15fe7fca330da8b2806732<br />
+  xe-pw-158649v1: 158649v1</p>
+
+</body>
+</html>
+
+--===============1199028816011864258==--
