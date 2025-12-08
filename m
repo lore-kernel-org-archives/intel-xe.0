@@ -4,27 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5B954D3B7F3
-	for <intel-xe@archiver.kernel.org>; Mon,  8 Dec 2025 15:18:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8D5DED3B7F3
+	for <intel-xe@archiver.kernel.org>; Mon,  8 Dec 2025 15:18:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0859E10E485;
-	Mon,  8 Dec 2025 15:18:29 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EB6E410E48E;
- Mon,  8 Dec 2025 15:18:27 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3019510E0F8;
+	Mon,  8 Dec 2025 15:18:46 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iSvy8L2d";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B965A10E0F8;
+ Mon,  8 Dec 2025 15:18:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1765207125; x=1796743125;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=vtbCP0So9dg8wp3/8nIemhY3agwH5kWIiXFupDiqAjU=;
+ b=iSvy8L2drBiQLNYTTQdZAcu+yw203TMm/E+AzazckvTqPXvnca/VlAuZ
+ SYYrpoxUOPUwlT7bMacCQ4mRzDK8TGl03ABCPWRaDyKMIroM/YtsykDJH
+ 5MIoqZTmg3diWGxlKKR1luPPw/SlMyMhp9QZ42WIB2uawLdQ7hlGorY5s
+ V9Ds0QqJx4QN/JmC1cIQe5lfZa3uhT8+ZJ2XuyYODrMAU+OVFKgrBF2sN
+ Uf9Bz8zkw3DAvA6eBd93mdmyzdgy6qn0cagOCgXNjVyGGItsKcomeBhsH
+ wff4JGtZxNTZJ7dM4Q9CKSC9V7W4VKIZVG8ELvV2B8lPhNPbKavNdPnpc Q==;
+X-CSE-ConnectionGUID: KPE/8VDtTQeRMZ+K2aY98g==
+X-CSE-MsgGUID: j47PwWcRQJiHhbQ8d2BAxA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11636"; a="77832357"
+X-IronPort-AV: E=Sophos;i="6.20,259,1758610800"; d="scan'208";a="77832357"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Dec 2025 07:18:44 -0800
+X-CSE-ConnectionGUID: KhUq0OVaQQGbIq9kw3pIRA==
+X-CSE-MsgGUID: VRPcS6l6QxW+Bg745+YVeA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.20,259,1758610800"; d="scan'208";a="233327070"
+Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.125])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Dec 2025 07:18:43 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: dri-devel@lists.freedesktop.org
+Cc: tzimmermann@suse.de, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH v3 00/25] drm/vblank: refactoring and cleanups
+In-Reply-To: <cover.1764933891.git.jani.nikula@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <cover.1764933891.git.jani.nikula@intel.com>
+Date: Mon, 08 Dec 2025 17:18:39 +0200
+Message-ID: <8fc6032b934906a4bb0858de0d4b50105bc0f77f@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_LGCI=2EVerificationFailed=3A_failure_for_drm=3A_xe=3A_Re?=
- =?utf-8?q?place_sprintf=28=29_with_sysfs=5Femit=28=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Madhur Kumar" <madhurkumar004@gmail.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 08 Dec 2025 15:18:27 -0000
-Message-ID: <176520710795.66540.3501701746199671693@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20251205095100.355503-1-madhurkumar004@gmail.com>
-In-Reply-To: <20251205095100.355503-1-madhurkumar004@gmail.com>
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,20 +65,26 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Fri, 05 Dec 2025, Jani Nikula <jani.nikula@intel.com> wrote:
+> v3 of [1], just a resend to dri-devel, which I forgot to add, and
+> Thomas' R-b's, which I also forgot to add, in v2.
+>
+> Fingers crossed I don't fumble it this time.
 
-Series: drm: xe: Replace sprintf() with sysfs_emit()
-URL   : https://patchwork.freedesktop.org/series/158644/
-State : failure
+Yeah well, didn't fumble as such, but kunit breaks all over the place
+with this. There are so many places that subtly call the interfaces when
+there are no vblanks.
 
-== Summary ==
+I tried to fix it, but looks like the only sane way is to add
+drm_dev_has_vblank(dev) checks at the highest level functions and return
+early. Back to the drawing board a bit. Maybe I'll send some of the
+early patches separately.
 
-Address 'madhurkumar004@gmail.com' is not on the allowlist, which prevents CI from being triggered for this patch.
-If you want Intel GFX CI to accept this address, please contact the script maintainers at i915-ci-infra@lists.freedesktop.org.
-Exception occurred during validation, bailing out!
+BR,
+Jani.
 
-
+-- 
+Jani Nikula, Intel
