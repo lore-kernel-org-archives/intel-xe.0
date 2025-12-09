@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 30FDED3B7EA
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4BABFD3B7E2
 	for <intel-xe@archiver.kernel.org>; Tue,  9 Dec 2025 03:21:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DEB9D10E485;
-	Tue,  9 Dec 2025 03:21:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 12B6D10E48B;
+	Tue,  9 Dec 2025 03:21:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RczpLvma";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="C0FXQ8xZ";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A414310E1AC
- for <intel-xe@lists.freedesktop.org>; Tue,  9 Dec 2025 03:21:05 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CB1DE10E48B
+ for <intel-xe@lists.freedesktop.org>; Tue,  9 Dec 2025 03:21:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765250465; x=1796786465;
+ t=1765250468; x=1796786468;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=i2MR+kYn5BVCgzXzGfskD7C8C1xzWfHq6uG/PQB9FMo=;
- b=RczpLvmarEYwlTppBHEnYz2fDXhF17HcV6UPeVoaYwYomiqFbl7LNCWt
- yvbQoX7vjRpwV1+PgkU4PAEN7eG6gYHjZB4LqbvufatRQG6pg8JNKXWjb
- Q6JxNQjcC8DWoMe/FUTtGnWlVOFrnRq3OLnYV+F7QIZ3YbMvy3AgDHBdb
- Nfz8uAKFZEgMKqmJ0L/Xz2hBLjw27gCDaDqJoM2ExjrzHJuwJOEXqysOy
- 3dhlBYheX1PT79PZseXv6sUZjs5BKGqmliZLcklZr2MWKZ9jl9FISyf4K
- Xit+ZoKusNigyagj47zITqVdxxksHHkuNJLPK0iBM59dyOhfhzTaMCWOx g==;
-X-CSE-ConnectionGUID: NlmRmYJjR8mjk731DEoWlg==
-X-CSE-MsgGUID: 0lJgtgzJS9mvxGW/xtaPTQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11636"; a="67254143"
-X-IronPort-AV: E=Sophos;i="6.20,260,1758610800"; d="scan'208";a="67254143"
+ bh=R9Syw8fldzEqncMbiEGWcKYHbIZEOVB774K2noYXio0=;
+ b=C0FXQ8xZYMOyH86XY/y7tN1Df6VTrg4kQa0bnqOuDy391sRuBQH/IwQs
+ z5RdLQekSKXr1iTgwDD+/mh1kzSGbNqvb1Dywcn8QDOQEo6UhPDy0TbjJ
+ MwU1l9UVfi6novhIUWoKQ3EeekwEJx0SpLpUt4AFxdAk/cqpQNMAxBR3c
+ BwPX/kLph0/Jkp4Vc60OcyVDHkIgEsmRxtNdT+UNAL/9C08IhXaGI3ykr
+ vlQybafG/jf0aQGjsQnLfZTk0/nfzDjKhyreOAzeqxXhQBQbaB0+h77mu
+ ob1BwYUqhgOdmVihcKhLrD/97BomtQWX4H4uVQ8rvfu4NgFutFWy6j9c/ g==;
+X-CSE-ConnectionGUID: cIhH+ZEdQZmxVoqt27jm9A==
+X-CSE-MsgGUID: BHpaqLgTSWuh+6APQNCSiA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11636"; a="67254157"
+X-IronPort-AV: E=Sophos;i="6.20,260,1758610800"; d="scan'208";a="67254157"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Dec 2025 19:21:05 -0800
-X-CSE-ConnectionGUID: OHiXZAxPQPOOToinivOl/Q==
-X-CSE-MsgGUID: ih+T4/uyTK299lLQj4lfjg==
+ 08 Dec 2025 19:21:07 -0800
+X-CSE-ConnectionGUID: 1HRvlbY2QSqLDbhA5qbNQQ==
+X-CSE-MsgGUID: gj7swrSrSJiqKz4s9MOn/w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,260,1758610800"; d="scan'208";a="200289629"
+X-IronPort-AV: E=Sophos;i="6.20,260,1758610800"; d="scan'208";a="200289664"
 Received: from nvishwa1-desk.sc.intel.com ([172.25.29.139])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Dec 2025 19:21:04 -0800
+ 08 Dec 2025 19:21:06 -0800
 From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.brost@intel.com,
 	matthew.d.roper@intel.com
-Subject: [PATCH v4 06/18] drm/xe/multi_queue: Add exec_queue set_property
- ioctl support
-Date: Mon,  8 Dec 2025 19:20:56 -0800
-Message-ID: <20251209032055.1539229-26-niranjana.vishwanathapura@intel.com>
+Subject: [PATCH v4 17/18] drm/xe/doc: Add documentation for Multi Queue Group
+ GuC interface
+Date: Mon,  8 Dec 2025 19:21:07 -0800
+Message-ID: <20251209032055.1539229-37-niranjana.vishwanathapura@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20251209032055.1539229-20-niranjana.vishwanathapura@intel.com>
 References: <20251209032055.1539229-20-niranjana.vishwanathapura@intel.com>
@@ -68,150 +68,117 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This patch adds support for exec_queue set_property ioctl.
-It is derived from the original work which is part of
-https://patchwork.freedesktop.org/series/112188/
+Add kernel documentation for Multi Queue group GuC interface.
 
-Currently only DRM_XE_EXEC_QUEUE_SET_PROPERTY_MULTI_QUEUE_PRIORITY
-property can be dynamically set.
-
-v2: Check for and update kernel-doc which property this ioctl
-    supports (Matt Brost)
-
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Signed-off-by: Pallavi Mishra <pallavi.mishra@intel.com>
 Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device.c     |  2 ++
- drivers/gpu/drm/xe/xe_exec_queue.c | 35 ++++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_exec_queue.h |  2 ++
- include/uapi/drm/xe_drm.h          | 26 ++++++++++++++++++++++
- 4 files changed, 65 insertions(+)
+ Documentation/gpu/xe/xe_exec_queue.rst |  8 ++++
+ drivers/gpu/drm/xe/xe_exec_queue.c     |  3 ++
+ drivers/gpu/drm/xe/xe_guc_submit.c     | 57 ++++++++++++++++++++++++++
+ 3 files changed, 68 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 1197f914ef77..7a498c8db7b1 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -207,6 +207,8 @@ static const struct drm_ioctl_desc xe_ioctls[] = {
- 	DRM_IOCTL_DEF_DRV(XE_MADVISE, xe_vm_madvise_ioctl, DRM_RENDER_ALLOW),
- 	DRM_IOCTL_DEF_DRV(XE_VM_QUERY_MEM_RANGE_ATTRS, xe_vm_query_vmas_attrs_ioctl,
- 			  DRM_RENDER_ALLOW),
-+	DRM_IOCTL_DEF_DRV(XE_EXEC_QUEUE_SET_PROPERTY, xe_exec_queue_set_property_ioctl,
-+			  DRM_RENDER_ALLOW),
- };
+diff --git a/Documentation/gpu/xe/xe_exec_queue.rst b/Documentation/gpu/xe/xe_exec_queue.rst
+index 732af4741df4..8707806211c9 100644
+--- a/Documentation/gpu/xe/xe_exec_queue.rst
++++ b/Documentation/gpu/xe/xe_exec_queue.rst
+@@ -13,6 +13,14 @@ Multi Queue Group
+ .. kernel-doc:: drivers/gpu/drm/xe/xe_exec_queue.c
+    :doc: Multi Queue Group
  
- static long xe_drm_ioctl(struct file *file, unsigned int cmd, unsigned long arg)
++.. _multi-queue-group-guc-interface:
++
++Multi Queue Group GuC interface
++===============================
++
++.. kernel-doc:: drivers/gpu/drm/xe/xe_guc_submit.c
++   :doc: Multi Queue Group GuC interface
++
+ Internal API
+ ============
+ 
 diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-index d0082eb45a4a..d738a9fea1e1 100644
+index e16e4d2d4053..cb45962be14c 100644
 --- a/drivers/gpu/drm/xe/xe_exec_queue.c
 +++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-@@ -790,6 +790,41 @@ static const xe_exec_queue_set_property_fn exec_queue_set_property_funcs[] = {
- 							exec_queue_set_multi_queue_priority,
- };
+@@ -97,6 +97,9 @@
+  * When GuC reports an error on any of the queues of a multi queue group,
+  * the queue cleanup mechanism is invoked for all the queues of the group
+  * as hardware cannot make progress on the multi queue context.
++ *
++ * Refer :ref:`multi-queue-group-guc-interface` for multi queue group GuC
++ * interface.
+  */
  
-+int xe_exec_queue_set_property_ioctl(struct drm_device *dev, void *data,
-+				     struct drm_file *file)
-+{
-+	struct xe_device *xe = to_xe_device(dev);
-+	struct xe_file *xef = to_xe_file(file);
-+	struct drm_xe_exec_queue_set_property *args = data;
-+	struct xe_exec_queue *q;
-+	int ret;
-+	u32 idx;
-+
-+	if (XE_IOCTL_DBG(xe, args->reserved[0] || args->reserved[1]))
-+		return -EINVAL;
-+
-+	if (XE_IOCTL_DBG(xe, args->property !=
-+			 DRM_XE_EXEC_QUEUE_SET_PROPERTY_MULTI_QUEUE_PRIORITY))
-+		return -EINVAL;
-+
-+	q = xe_exec_queue_lookup(xef, args->exec_queue_id);
-+	if (XE_IOCTL_DBG(xe, !q))
-+		return -ENOENT;
-+
-+	idx = array_index_nospec(args->property,
-+				 ARRAY_SIZE(exec_queue_set_property_funcs));
-+	ret = exec_queue_set_property_funcs[idx](xe, q, args->value);
-+	if (XE_IOCTL_DBG(xe, ret))
-+		goto err_post_lookup;
-+
-+	xe_exec_queue_put(q);
-+	return 0;
-+
-+ err_post_lookup:
-+	xe_exec_queue_put(q);
-+	return ret;
-+}
-+
- static int exec_queue_user_ext_check(struct xe_exec_queue *q, u64 properties)
- {
- 	u64 secondary_queue_valid_props = BIT_ULL(DRM_XE_EXEC_QUEUE_SET_PROPERTY_MULTI_GROUP) |
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue.h b/drivers/gpu/drm/xe/xe_exec_queue.h
-index e6daa40003f2..ffcc1feb879e 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue.h
-+++ b/drivers/gpu/drm/xe/xe_exec_queue.h
-@@ -125,6 +125,8 @@ int xe_exec_queue_destroy_ioctl(struct drm_device *dev, void *data,
- 				struct drm_file *file);
- int xe_exec_queue_get_property_ioctl(struct drm_device *dev, void *data,
- 				     struct drm_file *file);
-+int xe_exec_queue_set_property_ioctl(struct drm_device *dev, void *data,
-+				     struct drm_file *file);
- enum xe_exec_queue_priority xe_exec_queue_device_get_max_priority(struct xe_device *xe);
- 
- void xe_exec_queue_last_fence_put(struct xe_exec_queue *e, struct xe_vm *vm);
-diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index fd79d78de2e9..705081bf0d81 100644
---- a/include/uapi/drm/xe_drm.h
-+++ b/include/uapi/drm/xe_drm.h
-@@ -106,6 +106,7 @@ extern "C" {
- #define DRM_XE_OBSERVATION		0x0b
- #define DRM_XE_MADVISE			0x0c
- #define DRM_XE_VM_QUERY_MEM_RANGE_ATTRS	0x0d
-+#define DRM_XE_EXEC_QUEUE_SET_PROPERTY	0x0e
- 
- /* Must be kept compact -- no holes */
- 
-@@ -123,6 +124,7 @@ extern "C" {
- #define DRM_IOCTL_XE_OBSERVATION		DRM_IOW(DRM_COMMAND_BASE + DRM_XE_OBSERVATION, struct drm_xe_observation_param)
- #define DRM_IOCTL_XE_MADVISE			DRM_IOW(DRM_COMMAND_BASE + DRM_XE_MADVISE, struct drm_xe_madvise)
- #define DRM_IOCTL_XE_VM_QUERY_MEM_RANGE_ATTRS	DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_VM_QUERY_MEM_RANGE_ATTRS, struct drm_xe_vm_query_mem_range_attr)
-+#define DRM_IOCTL_XE_EXEC_QUEUE_SET_PROPERTY	DRM_IOW(DRM_COMMAND_BASE + DRM_XE_EXEC_QUEUE_SET_PROPERTY, struct drm_xe_exec_queue_set_property)
- 
- /**
-  * DOC: Xe IOCTL Extensions
-@@ -2315,6 +2317,30 @@ struct drm_xe_vm_query_mem_range_attr {
- 
- };
+ enum xe_exec_queue_sched_prop {
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index 82a5ef270c28..0442e7e71caa 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -661,6 +661,63 @@ static void set_exec_queue_group_banned(struct xe_exec_queue *q)
+ 	xe_map_wr_field(xe_, &map_, 0, struct guc_submit_parallel_scratch, \
+ 			field_, val_)
  
 +/**
-+ * struct drm_xe_exec_queue_set_property - exec queue set property
++ * DOC: Multi Queue Group GuC interface
 + *
-+ * Sets execution queue properties dynamically.
-+ * Currently only %DRM_XE_EXEC_QUEUE_SET_PROPERTY_MULTI_QUEUE_PRIORITY
-+ * property can be dynamically set.
++ * The multi queue group coordination between KMD and GuC is through a software
++ * construct called Context Group Page (CGP). The CGP is a KMD managed 4KB page
++ * allocated in the global GTT.
++ *
++ * CGP format:
++ *
++ * +-----------+---------------------------+---------------------------------------------+
++ * | DWORD     | Name                      | Description                                 |
++ * +-----------+---------------------------+---------------------------------------------+
++ * | 0         | Version                   | Bits [15:8]=Major ver, [7:0]=Minor ver      |
++ * +-----------+---------------------------+---------------------------------------------+
++ * | 1..15     | RESERVED                  | MBZ                                         |
++ * +-----------+---------------------------+---------------------------------------------+
++ * | 16        | KMD_QUEUE_UPDATE_MASK_DW0 | KMD queue mask for queues 31..0             |
++ * +-----------+---------------------------+---------------------------------------------+
++ * | 17        | KMD_QUEUE_UPDATE_MASK_DW1 | KMD queue mask for queues 63..32            |
++ * +-----------+---------------------------+---------------------------------------------+
++ * | 18..31    | RESERVED                  | MBZ                                         |
++ * +-----------+---------------------------+---------------------------------------------+
++ * | 32        | Q0CD_DW0                  | Queue 0 context LRC descriptor lower DWORD  |
++ * +-----------+---------------------------+---------------------------------------------+
++ * | 33        | Q0ContextIndex            | Context ID for Queue 0                      |
++ * +-----------+---------------------------+---------------------------------------------+
++ * | 34        | Q1CD_DW0                  | Queue 1 context LRC descriptor lower DWORD  |
++ * +-----------+---------------------------+---------------------------------------------+
++ * | 35        | Q1ContextIndex            | Context ID for Queue 1                      |
++ * +-----------+---------------------------+---------------------------------------------+
++ * | ...       |...                        | ...                                         |
++ * +-----------+---------------------------+---------------------------------------------+
++ * | 158       | Q63CD_DW0                 | Queue 63 context LRC descriptor lower DWORD |
++ * +-----------+---------------------------+---------------------------------------------+
++ * | 159       | Q63ContextIndex           | Context ID for Queue 63                     |
++ * +-----------+---------------------------+---------------------------------------------+
++ * | 160..1024 | RESERVED                  | MBZ                                         |
++ * +-----------+---------------------------+---------------------------------------------+
++ *
++ * While registering Q0 with GuC, CGP is updated with Q0 entry and GuC is notified
++ * through XE_GUC_ACTION_REGISTER_CONTEXT_MULTI_QUEUE H2G message which specifies
++ * the CGP address. When the secondary queues are added to the group, the CGP is
++ * updated with entry for that queue and GuC is notified through the H2G interface
++ * XE_GUC_ACTION_MULTI_QUEUE_CONTEXT_CGP_SYNC. GuC responds to these H2G messages
++ * with a XE_GUC_ACTION_NOTIFY_MULTIQ_CONTEXT_CGP_SYNC_DONE G2H message. GuC also
++ * sends a XE_GUC_ACTION_NOTIFY_MULTI_QUEUE_CGP_CONTEXT_ERROR notification for any
++ * error in the CGP. Only one of these CGP update messages can be outstanding
++ * (waiting for GuC response) at any time. The bits in KMD_QUEUE_UPDATE_MASK_DW*
++ * fields indicate which queue entry is being updated in the CGP.
++ *
++ * The primary queue (Q0) represents the multi queue group context in GuC and
++ * submission on any queue of the group must be through Q0 GuC interface only.
++ *
++ * As it is not required to register secondary queues with GuC, the secondary queue
++ * context ids in the CGP are populated with Q0 context id.
 + */
-+struct drm_xe_exec_queue_set_property {
-+	/** @extensions: Pointer to the first extension struct, if any */
-+	__u64 extensions;
 +
-+	/** @exec_queue_id: Exec queue ID */
-+	__u32 exec_queue_id;
-+
-+	/** @property: property to set */
-+	__u32 property;
-+
-+	/** @value: property value */
-+	__u64 value;
-+
-+	/** @reserved: Reserved */
-+	__u64 reserved[2];
-+};
-+
- #if defined(__cplusplus)
- }
- #endif
+ #define CGP_VERSION_MAJOR_SHIFT	8
+ 
+ static void xe_guc_exec_queue_group_cgp_update(struct xe_device *xe,
 -- 
 2.43.0
 
