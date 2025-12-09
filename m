@@ -4,26 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3CB54D41D4D
-	for <intel-xe@archiver.kernel.org>; Thu, 11 Dec 2025 15:01:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 179D4D41D55
+	for <intel-xe@archiver.kernel.org>; Thu, 11 Dec 2025 15:12:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ED7F710E834;
-	Thu, 11 Dec 2025 15:01:13 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0075B10E6CB;
- Thu, 11 Dec 2025 15:01:12 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1428237847265430422=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id BCEAA10E6CB;
+	Thu, 11 Dec 2025 15:12:52 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Nd6JIE83";
+	dkim-atps=neutral
+Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com
+ [209.85.210.173])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 553AE10E1AE
+ for <intel-xe@lists.freedesktop.org>; Tue,  9 Dec 2025 04:19:16 +0000 (UTC)
+Received: by mail-pf1-f173.google.com with SMTP id
+ d2e1a72fcca58-7bb710d1d1dso8211673b3a.1
+ for <intel-xe@lists.freedesktop.org>; Mon, 08 Dec 2025 20:19:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1765253956; x=1765858756; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=uL3PBPq7RkNTAScaowDd6fA2ENpQo9+KapbIhKmLuW4=;
+ b=Nd6JIE83xMsCywYPvRflpavZHzBsKfhtv4/0uP4T9u0UM/+lIuITKS39FLPtyN5x/t
+ Ey9pzdvRLRAvfZMqRydCBPCxue9UR3D7L84JK5ubIHkP9b5256MZiJXMPcA2VG0J197e
+ /m0l+Z1BffUqMTR3Nh/YzjRMMnbaIBPAWqkUErr7Uff4QU7BKqKMfg2sJ6o4H6euwPKW
+ 9btUDqaYlsMAfw2jq/sZotdcDcjj2VmudAgvQxinPRoGITNTEAU3Oq7HIWxFvU7GCLlt
+ M+xKIxuibQm5A8U1dvukaUYiOkhPbAPbAVoDkVxJNf4yZAUvGdekV41fwQlAtUBGQ2gC
+ k4Mw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1765253956; x=1765858756;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=uL3PBPq7RkNTAScaowDd6fA2ENpQo9+KapbIhKmLuW4=;
+ b=nKCoAusQUNFHYs6jhjmLNrzgYu5/qbqiTa+yr8OghouJuzYor/uzRzl/8dMdPGTkEi
+ OM5W+JMv75O4V87YLlWdoJ77opQWTdM/2oL0WCIIZ76aJL11heuCLQT2sQnewNS9d7O1
+ +J5FCKnqJf232AisXUbjWvNHtyQ/eBCRIeBlZIGrkOT5JQYgXoUBFZ4H8ovNy6Wwx/r6
+ fyCdQFJZ3nMTKniyjDPn3GU94ch87oQtRZwSAy4VkPyYzhuxIxzCc11e6wtMHMqSJTOJ
+ NIxF798bqPW3KljtEavvOptTPs3yZHUC9pimZGYo5l2Ca9qeIG72tM5MoKektTQE1wOD
+ 9zJQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVOREU3ngKAiSm9TTg4PxfyPSz9F/JbPq/a7Dglz+TGKH7gg7WU9xLtXTf8a7H1J5M18pddInUbRg==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxJcuEx21qLAUYY0JgYXgoNLLFqTU+UqiS9S8qB5SDAkTXtcKBW
+ 2FYN8Pmz4za7rLzfFbSVI1TADRWdTSWpfFXhQ6hUjTuAddNOuByMfSqf
+X-Gm-Gg: ASbGncu4FBSN0p/duYCbbQD5ffhwvdeb+lx9E0bKbk+/TpDqymop5Nf0LvjUgCdI1AB
+ jd1iHOJCs1s1OU3SbDkF5DvK1o8wDKERQp7tf35xPL0h14Hi7y09OB0ZAbdAkOosxELOVUw3ab1
+ NCZSroqdAhwVY8+u+VxLLcsmUxKxrRcUao4Mxx6vZiZWKY0n1dAHYOCCK2AZ6btmC4csO1JBGIv
+ a9cMlSaoGVkmDmoHVVj5ol5iKiQRpVY8KFlcIoYmdUQwDE6uDFAi/3C5KePeVRYKeohWLyFMfDG
+ xePycuYaa9mEwjytdYyB/mVW5d3VyLT1UHNqVRhQn6O50q4c4VXdxOAqJ851yzFMH+sbgLuceBX
+ kmqWbQlrVKaTUx7IEfSJWtC3iV8Jbb74yxZrzjwRJc2R/8X/DVj2CGDxbnlc6H9WGD0FRMzOGzS
+ v+bFE1KA2T5BymCjgV3Fs=
+X-Google-Smtp-Source: AGHT+IFA6g7T48LQbI3hczCmaUs0oEUcK8BRWG8fK0e1FDdILvB3K+H1Zd36jdCvFsWkAUtViDHF7Q==
+X-Received: by 2002:a05:6a00:3d4f:b0:7e8:450c:618e with SMTP id
+ d2e1a72fcca58-7e8c6da9f94mr8854188b3a.37.1765253955703; 
+ Mon, 08 Dec 2025 20:19:15 -0800 (PST)
+Received: from LilGuy ([2409:40c2:1049:337c:5ab7:d5cc:37be:2a0d])
+ by smtp.googlemail.com with ESMTPSA id
+ d2e1a72fcca58-7e2af09446asm14491276b3a.58.2025.12.08.20.19.10
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 08 Dec 2025 20:19:15 -0800 (PST)
+From: Swaraj Gaikwad <swarajgaikwad1925@gmail.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>,
+ intel-xe@lists.freedesktop.org (open list:INTEL DRM XE DRIVER (Lunar Lake and
+ newer)), dri-devel@lists.freedesktop.org (open list:DRM DRIVERS),
+ linux-kernel@vger.kernel.org (open list)
+Cc: skhan@linuxfoundation.org, david.hunter.linux@gmail.com,
+ Swaraj Gaikwad <swarajgaikwad1925@gmail.com>
+Subject: [PATCH] drm/xe: Fix documentation heading levels in xe_guc_pc.c
+Date: Tue,  9 Dec 2025 09:48:36 +0000
+Message-ID: <20251209094836.18589-1-swarajgaikwad1925@gmail.com>
+X-Mailer: git-send-email 2.52.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_auxccs_wc_dpt_=28rev4=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Tvrtko Ursulin" <tursulin@igalia.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 11 Dec 2025 15:01:12 -0000
-Message-ID: <176546527299.77465.15429663357815146772@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20251211091530.19031-1-tvrtko.ursulin@igalia.com>
-In-Reply-To: <20251211091530.19031-1-tvrtko.ursulin@igalia.com>
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Thu, 11 Dec 2025 15:12:50 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -35,125 +90,52 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1428237847265430422==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Sphinx reports htmldocs warnings:
 
-== Series Details ==
+  Documentation/gpu/xe/xe_firmware:31: ./drivers/gpu/drm/xe/xe_guc_pc.c:76: ERROR: A level 2 section cannot be used here.
+  Documentation/gpu/xe/xe_firmware:31: ./drivers/gpu/drm/xe/xe_guc_pc.c:87: ERROR: A level 2 section cannot be used here.
 
-Series: auxccs wc dpt (rev4)
-URL   : https://patchwork.freedesktop.org/series/158763/
-State : success
+The xe_guc_pc.c documentation is included inside xe_firmware.rst.
+The headers in the C file currently use '=' underlines, which conflict with
+the parent document's section levels.
 
-== Summary ==
+Fix this by demoting "Frequency management" and "Render-C States" headers
+from '=' to '-' to correctly nest them as subsections.
 
-CI Bug Log - changes from xe-4222-c6ed6720baf0914824cb33b5f003ea3a0b0786da_BAT -> xe-pw-158763v4_BAT
-====================================================
+Build environment: Python 3.13.7 Sphinx 8.2.3 docutils 0.22.3
 
-Summary
--------
+Signed-off-by: Swaraj Gaikwad <swarajgaikwad1925@gmail.com>
+---
+ drivers/gpu/drm/xe/xe_guc_pc.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-  **SUCCESS**
+diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_pc.c
+index 951a49fb1d3e..a114f0d8592c 100644
+--- a/drivers/gpu/drm/xe/xe_guc_pc.c
++++ b/drivers/gpu/drm/xe/xe_guc_pc.c
+@@ -76,7 +76,7 @@
+  * exposes a programming interface to the host for the control of SLPC.
+  *
+  * Frequency management:
+- * =====================
++ * ---------------------
+  *
+  * Xe driver enables SLPC with all of its defaults features and frequency
+  * selection, which varies per platform.
+@@ -87,7 +87,7 @@
+  * for any workload.
+  *
+  * Render-C States:
+- * ================
++ * ----------------
+  *
+  * Render-C states is also a GuC PC feature that is now enabled in Xe for
+  * all platforms.
 
-  No regressions found.
+base-commit: cfd4039213e7b5a828c5b78e1b5235cac91af53d
+-- 
+2.52.0
 
-  
-
-Participating hosts (12 -> 12)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-158763v4_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@xe_waitfence@abstime:
-    - bat-dg2-oem2:       [TIMEOUT][1] ([Intel XE#6506]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4222-c6ed6720baf0914824cb33b5f003ea3a0b0786da/bat-dg2-oem2/igt@xe_waitfence@abstime.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158763v4/bat-dg2-oem2/igt@xe_waitfence@abstime.html
-
-  
-  [Intel XE#6506]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506
-
-
-Build changes
--------------
-
-  * Linux: xe-4222-c6ed6720baf0914824cb33b5f003ea3a0b0786da -> xe-pw-158763v4
-
-  IGT_8664: 28cc709ad89c0ef569569f19f4772d4cca354963 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-4222-c6ed6720baf0914824cb33b5f003ea3a0b0786da: c6ed6720baf0914824cb33b5f003ea3a0b0786da
-  xe-pw-158763v4: 158763v4
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158763v4/index.html
-
---===============1428237847265430422==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>auxccs wc dpt (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/158763/">https://patchwork.freedesktop.org/series/158763/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158763v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158763v4/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4222-c6ed6720baf0914824cb33b5f003ea3a0b0786da_BAT -&gt; xe-pw-158763v4_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (12 -&gt; 12)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-158763v4_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_waitfence@abstime:<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4222-c6ed6720baf0914824cb33b5f003ea3a0b0786da/bat-dg2-oem2/igt@xe_waitfence@abstime.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506">Intel XE#6506</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158763v4/bat-dg2-oem2/igt@xe_waitfence@abstime.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4222-c6ed6720baf0914824cb33b5f003ea3a0b0786da -&gt; xe-pw-158763v4</li>
-</ul>
-<p>IGT_8664: 28cc709ad89c0ef569569f19f4772d4cca354963 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-4222-c6ed6720baf0914824cb33b5f003ea3a0b0786da: c6ed6720baf0914824cb33b5f003ea3a0b0786da<br />
-  xe-pw-158763v4: 158763v4</p>
-
-</body>
-</html>
-
---===============1428237847265430422==--
