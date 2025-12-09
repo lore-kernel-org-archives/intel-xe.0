@@ -4,57 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 682D8D3B996
-	for <intel-xe@archiver.kernel.org>; Tue,  9 Dec 2025 20:00:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 219B8D3B996
+	for <intel-xe@archiver.kernel.org>; Tue,  9 Dec 2025 20:08:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3006810E62B;
-	Tue,  9 Dec 2025 20:00:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BE9E810E636;
+	Tue,  9 Dec 2025 20:08:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BAdCFCYX";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ivQVf9mC";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B945F10E5E9;
- Tue,  9 Dec 2025 20:00:46 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F422810E625
+ for <intel-xe@lists.freedesktop.org>; Tue,  9 Dec 2025 20:08:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765310446; x=1796846446;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=xAEamYzlIjSgYI/xOoOc44VcPwPPoprMhSDBRrXFuRc=;
- b=BAdCFCYXS4YmSliV5GhfOW3w+kLFzwrrnbJ5l7fnWBXUpUkGCtN8kmdc
- 3oi2+QXYtHPNIj4i95cgVqnLCSuQq9F+Pv2+7hFdhkbu7kssJNrxknbXL
- g+YKVHYMYK/6YqM2EyTYSym5OlOyfHMIlcI2L7Ys9Q4eFBe+MZ9A/gz0s
- nfa6v7rha5GK+ui2OMeH3cXgcnSwUOWx4CQnacUlEDNSQ3/mdG6kvweM6
- Q3Kmxz+gWmQXN2PILH9Af4y0w2VSsSiUeGOtjCoHfx3cJuGRf2E8z31yn
- ZKmr3Tcrw8a46k83KGe1f8BZqXQWNkNmTxhnKobwNpAB5oEYc/HckRn8t A==;
-X-CSE-ConnectionGUID: +5bE1ggqQw6ZmigJBWFr8A==
-X-CSE-MsgGUID: ejWt7n0OTkS1TSATaBVF3A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11637"; a="70897454"
-X-IronPort-AV: E=Sophos;i="6.20,262,1758610800"; d="scan'208";a="70897454"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2025 12:00:45 -0800
-X-CSE-ConnectionGUID: lnd5GxAERlOcZglNYDYzew==
-X-CSE-MsgGUID: s5iXyQMyTByl5hBKuyvoLQ==
+ t=1765310902; x=1796846902;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=TajujKIfggfAa/z6ZfwrD3pQrXEjxZXWx8CKjQyttDE=;
+ b=ivQVf9mC4KrS4YL2RAHjJiLmTr1Yx0V7m0ZEgWee4nnDXQeUHm4vzGlP
+ LnGPvFqLVy/IryMDDGblxxttOETmbL1uUYVO3Co6x/UPcOChZQGuHMlyW
+ 0YfjT0X42CU8+falIFNiqDdZMY1iBZE2qP2MCz5vFRofbu5dF9bnqyU6a
+ jLse7XJDoENXxxvnaiJKSuvq1CEK2sCeOxFv70lKwTfOZDR2mHTJBzSlw
+ xyrn6I/ZSiWbw6PRclEhQ03luRTzxvn/xb9aLL623sB+YPGplQ8ieccoz
+ FHtK7Wl3viJyNUUg8Z4Wr+A9uXKEpOOoMDpRpCLRGK8n9rjdWrscWx9b3 w==;
+X-CSE-ConnectionGUID: N2zAOY6tR2aWJSu14vr5yQ==
+X-CSE-MsgGUID: D8e8DJF2TCaw2kj1jJVWlQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11637"; a="67328700"
+X-IronPort-AV: E=Sophos;i="6.20,262,1758610800"; d="scan'208";a="67328700"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Dec 2025 12:08:21 -0800
+X-CSE-ConnectionGUID: JH4OYCZ/St2StJ1eLhdHdA==
+X-CSE-MsgGUID: wIVoVs+XTo+AVCZb0OiFig==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,262,1758610800"; d="scan'208";a="201243126"
-Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2025 12:00:45 -0800
-From: Matthew Brost <matthew.brost@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Cc: niranjana.vishwanathapura@intel.com, christian.koenig@amd.com,
- pstanner@redhat.com, dakr@kernel.org
-Subject: [PATCH v9 1/2] drm/sched: Add several job helpers to avoid drivers
- touching scheduler state
-Date: Tue,  9 Dec 2025 12:00:38 -0800
-Message-Id: <20251209200039.1366764-2-matthew.brost@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20251209200039.1366764-1-matthew.brost@intel.com>
-References: <20251209200039.1366764-1-matthew.brost@intel.com>
+X-IronPort-AV: E=Sophos;i="6.20,262,1758610800"; d="scan'208";a="195563874"
+Received: from osgc-sh-dragon.sh.intel.com ([10.239.81.44])
+ by orviesa010.jf.intel.com with ESMTP; 09 Dec 2025 12:08:19 -0800
+From: Brian Nguyen <brian3.nguyen@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: tejas.upadhyay@intel.com, matthew.brost@intel.com, shuicheng.lin@intel.com,
+ stuart.summers@intel.com
+Subject: [PATCH v4 00/10] Page Reclamation Support for Xe3p Platforms
+Date: Wed, 10 Dec 2025 04:08:16 +0800
+Message-ID: <20251209200815.2570770-12-brian3.nguyen@intel.com>
+X-Mailer: git-send-email 2.52.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -70,109 +65,110 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-In the past, drivers used to reach into scheduler internals—this must
-end because it makes it difficult to change scheduler internals, as
-driver-side code must also be updated.
+  This series introduces a hardware-assisted page reclamation support on Xe3p
+platforms, integrating with the KMD's existing TLB invalidation workflow and
+adding the ability to perform selective Private Physical Cache (PPC) flushing
+rather than always forcing the default full PPC flush.
 
-Add helpers to check if the scheduler is stopped and to query a job’s
-signaled state to avoid reaching into scheduler internals. These are
-expected to be used driver-side in recovery and debug flows.
+Currently as of Xe2, Xe TLB invalidations trigger a full Private Physical Cache
+flush to guarantee non-coherent memory correctness. New HW (Xe3p and beyond)
+supports a page reclamation feature, which we selectively enable on platforms
+with a flag in device info.
 
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
----
+The driver can provide a “Page Reclaim List” (PRL), tracking the physical pages
+used that correspond to an unmap/unbind operation and let hardware perform selective
+cache line eviction. If reclamation succeeds, we skip the full PPC flush entirely
+otherwise we fall back to our current process of full PPC flush with the TLB
+invalidation.
+
+Thanks,
+Brian
+
+v2:
+ - General refactor to remove additional variables from
+   tlb fences (flush_cache and PRL ptr). (Matthew B)
+ - Removed lock from xe_tlb_inval_reset_timeout and moved 
+   into xe_tlb_inval_done_handler. (Matthew B)
+ - Removed page reclaim variables out of tlb fences (Matthew B)
+ - Add FW check for page reclaim support. (Shuicheng, Matthew B)
+ - Moved PRL max entries overflow handling out from
+   generate_reclaim_entry to caller. (Shuicheng)
+ - Fix one off error with NULL terminated PRL.
+ - Add xe_page_reclaim_list_init for clarity. (Matthew B)
+ - Invalidate PRL on early abort page walks.
+ - Allocate PRL bo size to num_entries. (Matthew B)
+ - Move PRL bo allocation to tlb_inval run_job. (Matthew B)
+ - Modify debugfs to expose file only if page reclaim supported by
+   default instead of previous behavior to return an ENODEV
+   and thus no need to move xe_match_desc from configfs (Michal)
+ - Compacted warning checking, update commit message,
+   spelling, moved variables, etc. (Shuicheng, Matthew B, Michal)
+ - Remove unused function. (Shuicheng)
+ - Fix various missing kernel doc input.
+
+v3:
+ - Removed MEDIA_IS_ON due to racy condition. (Matthew A)
+ - Move l3 policy access to xe_pat. (Matthew A)
+ - Add vm_dbg prints for PRL generation and invalidation. (Matthew B)
+ - Add comments for PRL tile handling and flush behavior with medai. (Matthew B)
+ - Modify reclaim_entry to QW and adjust bitfields accordingly. (Matthew B)
+ - Add missing shift of PTE for page address in reclaim entry. (Matthew B)
+ - Fix NULL pointer dereference check.
+ - s/ifence/fence for kernel doc.
+ - Squashed dependent patch.
+ - Update erroneous comments
 
 v4:
- - Reorder patch to first in series (Niranjana)
- - Also check parent fence for signaling (Niranjana)
-v8:
- - Fixup kernel doc (Philipp)
- - Move chnage log (Philipp)
- - Better commit (Philipp)
- - Drop inlines (Philipp)
----
- drivers/gpu/drm/scheduler/sched_main.c | 36 ++++++++++++++++++++++++--
- include/drm/gpu_scheduler.h            |  2 ++
- 2 files changed, 36 insertions(+), 2 deletions(-)
+ - s/GEN_MASK/GEN_MASK_ULL, s/BIT/BIT_ULL for xe_guc_reclaim_entry (CI)
+ - Revised comments to current changes (Tejas)
+ - Moved PAT macros back to original place.
 
-diff --git a/drivers/gpu/drm/scheduler/sched_main.c b/drivers/gpu/drm/scheduler/sched_main.c
-index 1d4f1b822e7b..5f08719a35f5 100644
---- a/drivers/gpu/drm/scheduler/sched_main.c
-+++ b/drivers/gpu/drm/scheduler/sched_main.c
-@@ -344,7 +344,7 @@ drm_sched_rq_select_entity_fifo(struct drm_gpu_scheduler *sched,
-  */
- static void drm_sched_run_job_queue(struct drm_gpu_scheduler *sched)
- {
--	if (!READ_ONCE(sched->pause_submit))
-+	if (!drm_sched_is_stopped(sched))
- 		queue_work(sched->submit_wq, &sched->work_run_job);
- }
- 
-@@ -354,7 +354,7 @@ static void drm_sched_run_job_queue(struct drm_gpu_scheduler *sched)
-  */
- static void drm_sched_run_free_queue(struct drm_gpu_scheduler *sched)
- {
--	if (!READ_ONCE(sched->pause_submit))
-+	if (!drm_sched_is_stopped(sched))
- 		queue_work(sched->submit_wq, &sched->work_free_job);
- }
- 
-@@ -1567,3 +1567,35 @@ void drm_sched_wqueue_start(struct drm_gpu_scheduler *sched)
- 	queue_work(sched->submit_wq, &sched->work_free_job);
- }
- EXPORT_SYMBOL(drm_sched_wqueue_start);
-+
-+/**
-+ * drm_sched_is_stopped() - Checks whether drm_sched is stopped
-+ * @sched: DRM scheduler
-+ *
-+ * Return: true if sched is stopped, false otherwise
-+ */
-+bool drm_sched_is_stopped(struct drm_gpu_scheduler *sched)
-+{
-+	return READ_ONCE(sched->pause_submit);
-+}
-+EXPORT_SYMBOL(drm_sched_is_stopped);
-+
-+/**
-+ * drm_sched_job_is_signaled() - DRM scheduler job is signaled
-+ * @job: DRM scheduler job
-+ *
-+ * Determine if DRM scheduler job is signaled. DRM scheduler should be stopped
-+ * to obtain a stable snapshot of state. Both parent fence (hardware fence) and
-+ * finished fence (software fence) are checked to determine signaling state.
-+ *
-+ * Return: true if job is signaled, false otherwise
-+ */
-+bool drm_sched_job_is_signaled(struct drm_sched_job *job)
-+{
-+	struct drm_sched_fence *s_fence = job->s_fence;
-+
-+	WARN_ON(!drm_sched_is_stopped(job->sched));
-+	return (s_fence->parent && dma_fence_is_signaled(s_fence->parent)) ||
-+		dma_fence_is_signaled(&s_fence->finished);
-+}
-+EXPORT_SYMBOL(drm_sched_job_is_signaled);
-diff --git a/include/drm/gpu_scheduler.h b/include/drm/gpu_scheduler.h
-index fb88301b3c45..86b6075ce799 100644
---- a/include/drm/gpu_scheduler.h
-+++ b/include/drm/gpu_scheduler.h
-@@ -645,6 +645,7 @@ void drm_sched_stop(struct drm_gpu_scheduler *sched, struct drm_sched_job *bad);
- void drm_sched_start(struct drm_gpu_scheduler *sched, int errno);
- void drm_sched_resubmit_jobs(struct drm_gpu_scheduler *sched);
- void drm_sched_fault(struct drm_gpu_scheduler *sched);
-+bool drm_sched_is_stopped(struct drm_gpu_scheduler *sched);
- 
- struct drm_gpu_scheduler *
- drm_sched_pick_best(struct drm_gpu_scheduler **sched_list,
-@@ -674,6 +675,7 @@ bool drm_sched_job_has_dependency(struct drm_sched_job *job,
- 				  struct dma_fence *fence);
- void drm_sched_job_cleanup(struct drm_sched_job *job);
- void drm_sched_increase_karma(struct drm_sched_job *bad);
-+bool drm_sched_job_is_signaled(struct drm_sched_job *job);
- 
- static inline bool drm_sched_invalidate_job(struct drm_sched_job *s_job,
- 					    int threshold)
+Suggested-by: Matthew Brost <matthew.brost@intel.com>
+
+Brian Nguyen (8):
+  drm/xe/xe_tlb_inval: Modify fence interface to support PPC flush
+  drm/xe/guc: Add page reclamation interface to GuC
+  drm/xe: Create page reclaim list on unbind
+  drm/xe: Suballocate BO for page reclaim
+  drm/xe: Prep page reclaim in tlb inval job
+  drm/xe: Append page reclamation action to tlb inval
+  drm/xe: Optimize flushing of L2$ by skipping unnecessary page reclaim
+  drm/xe: Add debugfs support for page reclamation
+
+Matthew Brost (1):
+  drm/xe: Do not forward invalid TLB invalidation seqnos to upper layers
+
+Oak Zeng (1):
+  drm/xe: Add page reclamation info to device info
+
+ drivers/gpu/drm/xe/Makefile              |   1 +
+ drivers/gpu/drm/xe/abi/guc_actions_abi.h |   2 +
+ drivers/gpu/drm/xe/regs/xe_gtt_defs.h    |   1 +
+ drivers/gpu/drm/xe/xe_debugfs.c          |  41 +++++++
+ drivers/gpu/drm/xe/xe_device_types.h     |   9 ++
+ drivers/gpu/drm/xe/xe_guc.c              |   4 +
+ drivers/gpu/drm/xe/xe_guc_ct.c           |  17 +++
+ drivers/gpu/drm/xe/xe_guc_fwif.h         |   1 +
+ drivers/gpu/drm/xe/xe_guc_tlb_inval.c    |  37 ++++--
+ drivers/gpu/drm/xe/xe_page_reclaim.c     | 133 ++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_page_reclaim.h     |  81 ++++++++++++++
+ drivers/gpu/drm/xe/xe_pat.c              |   8 ++
+ drivers/gpu/drm/xe/xe_pat.h              |  10 ++
+ drivers/gpu/drm/xe/xe_pci.c              |   1 +
+ drivers/gpu/drm/xe/xe_pci_types.h        |   1 +
+ drivers/gpu/drm/xe/xe_pt.c               | 137 ++++++++++++++++++++++-
+ drivers/gpu/drm/xe/xe_pt_types.h         |   5 +
+ drivers/gpu/drm/xe/xe_tile.c             |   5 +
+ drivers/gpu/drm/xe/xe_tlb_inval.c        |  27 ++++-
+ drivers/gpu/drm/xe/xe_tlb_inval.h        |   2 +-
+ drivers/gpu/drm/xe/xe_tlb_inval_job.c    |  37 +++++-
+ drivers/gpu/drm/xe/xe_tlb_inval_job.h    |   4 +
+ drivers/gpu/drm/xe/xe_tlb_inval_types.h  |   5 +-
+ drivers/gpu/drm/xe/xe_vm.c               |   4 +-
+ 24 files changed, 557 insertions(+), 16 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/xe_page_reclaim.c
+ create mode 100644 drivers/gpu/drm/xe/xe_page_reclaim.h
+
 -- 
-2.34.1
+2.52.0
 
