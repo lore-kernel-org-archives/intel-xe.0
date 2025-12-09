@@ -4,54 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2B1A8D3B994
-	for <intel-xe@archiver.kernel.org>; Tue,  9 Dec 2025 21:25:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4A1D0D3B7F6
+	for <intel-xe@archiver.kernel.org>; Tue,  9 Dec 2025 21:31:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D23F210E4E1;
-	Tue,  9 Dec 2025 21:25:37 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fxmy+gMZ";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D589110E4E1
- for <intel-xe@lists.freedesktop.org>; Tue,  9 Dec 2025 21:25:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765315537; x=1796851537;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=2kK4KclX5NyhQWMpQLdYTPq0TG/CE7TcD1cBktTcWBE=;
- b=fxmy+gMZytGZ3+rU3veM9oYU3r4PBu2Vyq84h4fNezxaXcOXORt3QE6y
- lMMdGr2MXxBoTCg05nq5iucuTpkYxYuWz2AeLtS0KG7YbkAHdWi9RklLs
- kBUalDeV5+yGznd9gXkbkn/43d1XuU2Fp+KCzz7MX0agmPfHI8GJTnhlI
- LjLtyZBKK23FL542k5mcPbMn3Ol+S6wniHjan0jtpsrERCwYQ7Hqu0dht
- KddatuNzZly8Q92luxg06f2WQdR/kCu8OZPqsRUb74KRiCHMXEmV1MUOC
- HYWw9/NT/RP+dPX+rFNwPTbSeKC9zJ4UbrsPq83APu8QrzFD/6lnhwd6F w==;
-X-CSE-ConnectionGUID: gWAwzlEPRe6w80eo7tNFpQ==
-X-CSE-MsgGUID: e/uo83oqS0mHTaWy/Z/Y9w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11637"; a="67241135"
-X-IronPort-AV: E=Sophos;i="6.20,262,1758610800"; d="scan'208";a="67241135"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2025 13:25:37 -0800
-X-CSE-ConnectionGUID: B6XFqn7jTSCxHW8Wu8HsVQ==
-X-CSE-MsgGUID: fNPw8qMDTYql7ioXZObq0w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,262,1758610800"; d="scan'208";a="195932263"
-Received: from dut4419lnl.fm.intel.com ([10.105.10.210])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2025 13:25:36 -0800
-From: Jonathan Cavitt <jonathan.cavitt@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: saurabhg.gupta@intel.com, alex.zuo@intel.com, jonathan.cavitt@intel.com,
- matthew.brost@intel.com
-Subject: [PATCH] drm/xe/xe_guc_ct: Prevent compiler read/write optimization
- breaks
-Date: Tue,  9 Dec 2025 21:25:36 +0000
-Message-ID: <20251209212535.159493-2-jonathan.cavitt@intel.com>
-X-Mailer: git-send-email 2.43.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0A82910E214;
+	Tue,  9 Dec 2025 21:31:24 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2B21410E214;
+ Tue,  9 Dec 2025 21:31:22 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/i915/cx0=3A_Convert_C?=
+ =?utf-8?q?10_PHY_PLL_SSC_state_mismatch_WARN_to_a_debug_message_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Imre Deak" <imre.deak@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 09 Dec 2025 21:31:22 -0000
+Message-ID: <176531588217.71614.18070929046556343538@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20251205122902.1724498-1-imre.deak@intel.com>
+In-Reply-To: <20251205122902.1724498-1-imre.deak@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,70 +36,76 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Use READ_ONCE and WRITE_ONCE when operating on ct->state and the
-g2h_fence->done values to prevent the compiler from ignoring these
-necessary operations.
+== Series Details ==
 
-Suggested-by: Matthew Brost <matthew.brost@intel.com>
-Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
----
- drivers/gpu/drm/xe/xe_guc_ct.c | 6 +++---
- drivers/gpu/drm/xe/xe_guc_ct.h | 4 ++--
- 2 files changed, 5 insertions(+), 5 deletions(-)
+Series: drm/i915/cx0: Convert C10 PHY PLL SSC state mismatch WARN to a debug message (rev2)
+URL   : https://patchwork.freedesktop.org/series/158574/
+State : warning
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
-index 648f0f523abb..9129c50f5370 100644
---- a/drivers/gpu/drm/xe/xe_guc_ct.c
-+++ b/drivers/gpu/drm/xe/xe_guc_ct.c
-@@ -206,7 +206,7 @@ static void g2h_fence_cancel(struct g2h_fence *g2h_fence)
- {
- 	g2h_fence->cancel = true;
- 	g2h_fence->fail = true;
--	g2h_fence->done = true;
-+	WRITE_ONCE(g2h_fence->done, true);
- }
- 
- static bool g2h_fence_needs_alloc(struct g2h_fence *g2h_fence)
-@@ -527,7 +527,7 @@ static void guc_ct_change_state(struct xe_guc_ct *ct,
- 	if (ct->g2h_outstanding)
- 		xe_pm_runtime_put(ct_to_xe(ct));
- 	ct->g2h_outstanding = 0;
--	ct->state = state;
-+	WRITE_ONCE(ct->state, state);
- 
- 	xe_gt_dbg(gt, "GuC CT communication channel %s\n",
- 		  state == XE_GUC_CT_STATE_STOPPED ? "stopped" :
-@@ -1496,7 +1496,7 @@ static int parse_g2h_response(struct xe_guc_ct *ct, u32 *msg, u32 len)
- 
- 	g2h_release_space(ct, GUC_CTB_HXG_MSG_MAX_LEN);
- 
--	g2h_fence->done = true;
-+	WRITE_ONCE(g2h_fence->done, true);
- 	smp_mb();
- 
- 	wake_up_all(&ct->g2h_fence_wq);
-diff --git a/drivers/gpu/drm/xe/xe_guc_ct.h b/drivers/gpu/drm/xe/xe_guc_ct.h
-index 5599939f8fe1..cb1335f1d66f 100644
---- a/drivers/gpu/drm/xe/xe_guc_ct.h
-+++ b/drivers/gpu/drm/xe/xe_guc_ct.h
-@@ -30,12 +30,12 @@ void xe_guc_ct_print(struct xe_guc_ct *ct, struct drm_printer *p, bool want_ctb)
- 
- static inline bool xe_guc_ct_initialized(struct xe_guc_ct *ct)
- {
--	return ct->state != XE_GUC_CT_STATE_NOT_INITIALIZED;
-+	return READ_ONCE(ct->state) != XE_GUC_CT_STATE_NOT_INITIALIZED;
- }
- 
- static inline bool xe_guc_ct_enabled(struct xe_guc_ct *ct)
- {
--	return ct->state == XE_GUC_CT_STATE_ENABLED;
-+	return READ_ONCE(ct->state) == XE_GUC_CT_STATE_ENABLED;
- }
- 
- static inline void xe_guc_ct_irq_handler(struct xe_guc_ct *ct)
--- 
-2.43.0
+== Summary ==
+
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+8f50e69d0ce3656564bbdf8b3e213d61470d463f
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit b987e62cdf109b1d71be1903b876565c47149676
+Author: Imre Deak <imre.deak@intel.com>
+Date:   Tue Dec 9 17:34:07 2025 +0200
+
+    drm/i915/cx0: Convert C10 PHY PLL SSC state mismatch WARN to a debug message
+    
+    On C10 PHY PLLs the SSC is enabled by programming the
+    XELPDP_PORT_CLOCK_CTL / XELPDP_SSC_ENABLE_PLLB flag and the
+    PHY_C10_VDR_PLL 4..8 registers:
+    
+    - If SSC is enabled XELPDP_SSC_ENABLE_PLLB is set and the
+      PHY_C10_VDR_PLL registers are programmed to non-zero values.
+    - If SSC is disabled XELPDP_SSC_ENABLE_PLLB is cleared and the
+      PHY_C10_VDR_PLL registers are programmed to zeroed-out values.
+    
+    The driver's state checker verifies if the above settings are consistent,
+    i.e. if XELPDP_SSC_ENABLE_PLLB being set corresponds to the
+    PHY_C10_VDR_PLL registers being zeroed-out or not.
+    
+    On WCL the BIOS programs non-zero values to the PHY_C10_VDR_PLL 4..8
+    registers, but does not set the XELPDP_SSC_ENABLE_PLLB flag. This will
+    trigger the following PLL state check warning during driver loading:
+    
+    <4>[   44.457809] xe 0000:00:02.0: [drm] PHY B: SSC enabled state (no), doesn't match PLL configuration (SSC-enabled)
+    <4>[   44.457833] WARNING: CPU: 4 PID: 298 at drivers/gpu/drm/i915/display/intel_cx0_phy.c:2281 intel_cx0pll_readout_hw_state+0x221/0x620 [xe]
+    
+    It's not clear whether the HW uses the PHY_C10_VDR_PLL 4..8 register
+    values if the XELPDP_SSC_ENABLE_PLLB flag is cleared, or just ignores
+    them in this case. Since the driver always programs the register values
+    according to the above, it still makes sense to verify that the
+    programming happened correctly.
+    
+    To avoid the state check WARN during driver loading due to the way BIOS
+    programs the registers, convert the WARN to a debug message.
+    
+    While at it clarify the debug message.
+    
+    v2: Clarify the debug message. (Jani)
+    
+    Cc: Jani Nikula <jani.nikula@intel.com>
+    Cc: Mika Kahola <mika.kahola@intel.com>
+    Reviewed-by: Mika Kahola <mika.kahola@intel.com>
+    Signed-off-by: Imre Deak <imre.deak@intel.com>
++ /mt/dim checkpatch 12271f632915efe0c5d4171b9c0e90f57ecdfe01 drm-intel
+b987e62cdf10 drm/i915/cx0: Convert C10 PHY PLL SSC state mismatch WARN to a debug message
+-:24: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#24: 
+<4>[   44.457809] xe 0000:00:02.0: [drm] PHY B: SSC enabled state (no), doesn't match PLL configuration (SSC-enabled)
+
+total: 0 errors, 1 warnings, 0 checks, 18 lines checked
+
 
