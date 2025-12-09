@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 568F1D3B7FC
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 12F65D3B7FB
 	for <intel-xe@archiver.kernel.org>; Tue,  9 Dec 2025 03:21:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0200C10E47F;
-	Tue,  9 Dec 2025 03:21:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D97DE10E47D;
+	Tue,  9 Dec 2025 03:21:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hXrFrvVv";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hhAevr6R";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C1E8F10E37F
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8EF6A10E37F
  for <intel-xe@lists.freedesktop.org>; Tue,  9 Dec 2025 03:21:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1765250465; x=1796786465;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=g++0e1ZMZWH6LvcRM0/3zzRxHmq3NeCaygZYCdJz8ok=;
- b=hXrFrvVv9ecE+UzMVWDt7UpxPHSIfNJ+CPD3lhs/6A49kd2ezoV6yKOH
- HPJQe9qYQgt3E8ALh1C+mePQHWDsXHOB7ZetSQzXO9vAg+GV+k5P9FJTH
- QCANtqFZEDUvZ8tdDoOJ4BJv9H/RCwS5QQhCGQ7a7pMLT93fZZGv91q/K
- NgB6AgEda9E8lDppjQDRUZZ+erZq4GQweQULgw3l9QSixQohfiFYKH/Tb
- 71mFnJ8p4omWhq5IwARlexAENs6k/ffE/MN0Mm1hpA8jnNcji36g4a4Qd
- Jj1hSzCshgMcll85Q5dN9RS42bahDOizevpd6FEa9BZwd7cqU1GafYK87 w==;
-X-CSE-ConnectionGUID: XytP5iF4QqmHxnYa9jjn+w==
-X-CSE-MsgGUID: O6u0kyCiSOCbTphIW+wiDA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11636"; a="67254145"
-X-IronPort-AV: E=Sophos;i="6.20,260,1758610800"; d="scan'208";a="67254145"
+ bh=ER5vMbIiHkpA9uitgQCFiVywEi824f+t2EasdVM5dX8=;
+ b=hhAevr6RsKkMwAbFP3+2Jul/5hcAMCarmj5zJ7O5i5/+vrbWG0z3Bdht
+ AUwZkM+UfdPJ5IqomnnFP9ey37cEjcend2x7GQ5k9IeEWRVsrJ3ZvM1PQ
+ KdRuQz+ZPr1GSK/N20EHalL2ddZfyfbcYA2c9zU9Kr1R/O4D+Q7XdirvT
+ 6aZBP3GyWH4vhGQ8DuTpbj8r8vKpZhRtdbsvTpmcq5s1ybr8WyMK80w5C
+ RUVCbi0x1TiTylOJAEWuOasXlObbBATygdT14P6pHer00U1Gds14iSewP
+ cX2oShuBL0SA6uF63dZ9AxZRmex6+4MyUy39JVg6dWwXNimc6Ver7NWmw Q==;
+X-CSE-ConnectionGUID: 8oXE3ICXT6axSSad7jFYtA==
+X-CSE-MsgGUID: ObMgJWnwS0C5QWCCaGRn3w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11636"; a="67254142"
+X-IronPort-AV: E=Sophos;i="6.20,260,1758610800"; d="scan'208";a="67254142"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Dec 2025 19:21:05 -0800
-X-CSE-ConnectionGUID: XD+B4+k4T72RAJnK++OZbw==
-X-CSE-MsgGUID: IxDs/AmNTSyZ/Wa638T5YA==
+ 08 Dec 2025 19:21:04 -0800
+X-CSE-ConnectionGUID: g5E2+xR4STa8t8RROWgPKA==
+X-CSE-MsgGUID: 97EuQvENSPOuuXNo670LZA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,260,1758610800"; d="scan'208";a="200289635"
+X-IronPort-AV: E=Sophos;i="6.20,260,1758610800"; d="scan'208";a="200289624"
 Received: from nvishwa1-desk.sc.intel.com ([172.25.29.139])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Dec 2025 19:21:05 -0800
+ 08 Dec 2025 19:21:04 -0800
 From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.brost@intel.com,
 	matthew.d.roper@intel.com
-Subject: [PATCH v4 08/18] drm/xe/multi_queue: Add multi queue information to
- guc_info dump
-Date: Mon,  8 Dec 2025 19:20:58 -0800
-Message-ID: <20251209032055.1539229-28-niranjana.vishwanathapura@intel.com>
+Subject: [PATCH v4 05/18] drm/xe/multi_queue: Handle invalid exec queue
+ property setting
+Date: Mon,  8 Dec 2025 19:20:55 -0800
+Message-ID: <20251209032055.1539229-25-niranjana.vishwanathapura@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20251209032055.1539229-20-niranjana.vishwanathapura@intel.com>
 References: <20251209032055.1539229-20-niranjana.vishwanathapura@intel.com>
@@ -68,71 +68,138 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Dump multi queue specific information in the guc exec queue
-dump.
-
-v2: Move multi queue related fields inside the multi_queue
-    sub-structure (Matt Brost)
+Only MULTI_QUEUE_PRIORITY property is valid for secondary queues of a
+multi queue group. MULTI_QUEUE_PRIORITY only applies to multi queue group
+queues. Detect invalid user queue property setting and return error.
 
 Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc_submit.c       | 10 ++++++++++
- drivers/gpu/drm/xe/xe_guc_submit_types.h | 13 +++++++++++++
- 2 files changed, 23 insertions(+)
+ drivers/gpu/drm/xe/xe_exec_queue.c | 66 ++++++++++++++++++++++++++----
+ 1 file changed, 57 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index ce00e51a79aa..0282c8642a13 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -3098,6 +3098,11 @@ xe_guc_exec_queue_snapshot_capture(struct xe_exec_queue *q)
- 	if (snapshot->parallel_execution)
- 		guc_exec_queue_wq_snapshot_capture(q, snapshot);
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
+index aa46d154d04a..d0082eb45a4a 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue.c
++++ b/drivers/gpu/drm/xe/xe_exec_queue.c
+@@ -62,7 +62,7 @@ enum xe_exec_queue_sched_prop {
+ };
  
-+	if (xe_exec_queue_is_multi_queue(q)) {
-+		snapshot->multi_queue.valid = true;
-+		snapshot->multi_queue.primary = xe_exec_queue_multi_queue_primary(q)->guc->id;
-+		snapshot->multi_queue.pos = q->multi_queue.pos;
-+	}
- 	spin_lock(&sched->base.job_list_lock);
- 	snapshot->pending_list_size = list_count_nodes(&sched->base.pending_list);
- 	snapshot->pending_list = kmalloc_array(snapshot->pending_list_size,
-@@ -3180,6 +3185,11 @@ xe_guc_exec_queue_snapshot_print(struct xe_guc_submit_exec_queue_snapshot *snaps
- 	if (snapshot->parallel_execution)
- 		guc_exec_queue_wq_snapshot_print(snapshot, p);
+ static int exec_queue_user_extensions(struct xe_device *xe, struct xe_exec_queue *q,
+-				      u64 extensions, int ext_number);
++				      u64 extensions);
  
-+	if (snapshot->multi_queue.valid) {
-+		drm_printf(p, "\tMulti queue primary GuC ID: %d\n", snapshot->multi_queue.primary);
-+		drm_printf(p, "\tMulti queue position: %d\n", snapshot->multi_queue.pos);
-+	}
+ static void xe_exec_queue_group_cleanup(struct xe_exec_queue *q)
+ {
+@@ -209,7 +209,7 @@ static struct xe_exec_queue *__xe_exec_queue_alloc(struct xe_device *xe,
+ 		 * may set q->usm, must come before xe_lrc_create(),
+ 		 * may overwrite q->sched_props, must come before q->ops->init()
+ 		 */
+-		err = exec_queue_user_extensions(xe, q, extensions, 0);
++		err = exec_queue_user_extensions(xe, q, extensions);
+ 		if (err) {
+ 			__xe_exec_queue_free(q);
+ 			return ERR_PTR(err);
+@@ -790,9 +790,35 @@ static const xe_exec_queue_set_property_fn exec_queue_set_property_funcs[] = {
+ 							exec_queue_set_multi_queue_priority,
+ };
+ 
++static int exec_queue_user_ext_check(struct xe_exec_queue *q, u64 properties)
++{
++	u64 secondary_queue_valid_props = BIT_ULL(DRM_XE_EXEC_QUEUE_SET_PROPERTY_MULTI_GROUP) |
++				  BIT_ULL(DRM_XE_EXEC_QUEUE_SET_PROPERTY_MULTI_QUEUE_PRIORITY);
 +
- 	for (i = 0; snapshot->pending_list && i < snapshot->pending_list_size;
- 	     i++)
- 		drm_printf(p, "\tJob: seqno=%d, fence=%d, finished=%d\n",
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit_types.h b/drivers/gpu/drm/xe/xe_guc_submit_types.h
-index dc7456c34583..25e29e85502c 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit_types.h
-+++ b/drivers/gpu/drm/xe/xe_guc_submit_types.h
-@@ -135,6 +135,19 @@ struct xe_guc_submit_exec_queue_snapshot {
- 		u32 wq[WQ_SIZE / sizeof(u32)];
- 	} parallel;
- 
-+	/** @multi_queue: snapshot of the multi queue information */
-+	struct {
-+		/**
-+		 * @multi_queue.primary: GuC id of the primary exec queue
-+		 * of the multi queue group.
-+		 */
-+		u32 primary;
-+		/** @multi_queue.pos: Position of the exec queue within the multi queue group */
-+		u8 pos;
-+		/** @valid: The exec queue is part of a multi queue group */
-+		bool valid;
-+	} multi_queue;
++	/*
++	 * Only MULTI_QUEUE_PRIORITY property is valid for secondary queues of a
++	 * multi-queue group.
++	 */
++	if (xe_exec_queue_is_multi_queue_secondary(q) &&
++	    properties & ~secondary_queue_valid_props)
++		return -EINVAL;
 +
- 	/** @pending_list_size: Size of the pending list snapshot array */
- 	int pending_list_size;
- 	/** @pending_list: snapshot of the pending list info */
++	return 0;
++}
++
++static int exec_queue_user_ext_check_final(struct xe_exec_queue *q, u64 properties)
++{
++	/* MULTI_QUEUE_PRIORITY only applies to multi-queue group queues */
++	if ((properties & BIT_ULL(DRM_XE_EXEC_QUEUE_SET_PROPERTY_MULTI_QUEUE_PRIORITY)) &&
++	    !(properties & BIT_ULL(DRM_XE_EXEC_QUEUE_SET_PROPERTY_MULTI_GROUP)))
++		return -EINVAL;
++
++	return 0;
++}
++
+ static int exec_queue_user_ext_set_property(struct xe_device *xe,
+ 					    struct xe_exec_queue *q,
+-					    u64 extension)
++					    u64 extension, u64 *properties)
+ {
+ 	u64 __user *address = u64_to_user_ptr(extension);
+ 	struct drm_xe_ext_set_property ext;
+@@ -818,20 +844,25 @@ static int exec_queue_user_ext_set_property(struct xe_device *xe,
+ 	if (!exec_queue_set_property_funcs[idx])
+ 		return -EINVAL;
+ 
++	*properties |= BIT_ULL(idx);
++	err = exec_queue_user_ext_check(q, *properties);
++	if (XE_IOCTL_DBG(xe, err))
++		return err;
++
+ 	return exec_queue_set_property_funcs[idx](xe, q, ext.value);
+ }
+ 
+ typedef int (*xe_exec_queue_user_extension_fn)(struct xe_device *xe,
+ 					       struct xe_exec_queue *q,
+-					       u64 extension);
++					       u64 extension, u64 *properties);
+ 
+ static const xe_exec_queue_user_extension_fn exec_queue_user_extension_funcs[] = {
+ 	[DRM_XE_EXEC_QUEUE_EXTENSION_SET_PROPERTY] = exec_queue_user_ext_set_property,
+ };
+ 
+ #define MAX_USER_EXTENSIONS	16
+-static int exec_queue_user_extensions(struct xe_device *xe, struct xe_exec_queue *q,
+-				      u64 extensions, int ext_number)
++static int __exec_queue_user_extensions(struct xe_device *xe, struct xe_exec_queue *q,
++					u64 extensions, int ext_number, u64 *properties)
+ {
+ 	u64 __user *address = u64_to_user_ptr(extensions);
+ 	struct drm_xe_user_extension ext;
+@@ -852,13 +883,30 @@ static int exec_queue_user_extensions(struct xe_device *xe, struct xe_exec_queue
+ 
+ 	idx = array_index_nospec(ext.name,
+ 				 ARRAY_SIZE(exec_queue_user_extension_funcs));
+-	err = exec_queue_user_extension_funcs[idx](xe, q, extensions);
++	err = exec_queue_user_extension_funcs[idx](xe, q, extensions, properties);
+ 	if (XE_IOCTL_DBG(xe, err))
+ 		return err;
+ 
+ 	if (ext.next_extension)
+-		return exec_queue_user_extensions(xe, q, ext.next_extension,
+-						  ++ext_number);
++		return __exec_queue_user_extensions(xe, q, ext.next_extension,
++						    ++ext_number, properties);
++
++	return 0;
++}
++
++static int exec_queue_user_extensions(struct xe_device *xe, struct xe_exec_queue *q,
++				      u64 extensions)
++{
++	u64 properties = 0;
++	int err;
++
++	err = __exec_queue_user_extensions(xe, q, extensions, 0, &properties);
++	if (XE_IOCTL_DBG(xe, err))
++		return err;
++
++	err = exec_queue_user_ext_check_final(q, properties);
++	if (XE_IOCTL_DBG(xe, err))
++		return err;
+ 
+ 	if (xe_exec_queue_is_multi_queue_primary(q)) {
+ 		err = xe_exec_queue_group_init(xe, q);
 -- 
 2.43.0
 
