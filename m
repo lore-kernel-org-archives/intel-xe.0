@@ -4,50 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 16CC9D3B996
-	for <intel-xe@archiver.kernel.org>; Tue,  9 Dec 2025 20:08:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4E166D3B7F3
+	for <intel-xe@archiver.kernel.org>; Tue,  9 Dec 2025 20:08:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BF55110E625;
-	Tue,  9 Dec 2025 20:08:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 13DA710E62B;
+	Tue,  9 Dec 2025 20:08:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YB2MLB6Y";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="evzq6QFR";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A7CFF10E625
- for <intel-xe@lists.freedesktop.org>; Tue,  9 Dec 2025 20:08:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8599110E62B
+ for <intel-xe@lists.freedesktop.org>; Tue,  9 Dec 2025 20:08:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765310903; x=1796846903;
+ t=1765310907; x=1796846907;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=an7wbbdwjrC642b0+1VURTgkkvhnFv03Bd3HG0zG3bw=;
- b=YB2MLB6Y5rtVoj56a/TFrZLw3ZeTUBBKQClfZ3fMWl5ZPS1oVlA32JEq
- XFQZJOd5zZ1wLjgvSkcjLZD4OnOV+xh+27BNP7eUbI6btqVVkVAzyq2RU
- 720BMK7mAc7el28cYeXOAcUyt0M4ty4NvE//AgGXUZDdBn86vMc7PwnZv
- 9jkdDG/2bpZWS067WNKl31Eo6Q3vRWYvlmqEaMGM+hbvVR6BRGaJKZfpH
- vR7uzTTSsB8/uEGGtRKHI3N/UWBlMm+rEjrcyh6EZk9JoaT9txHb2V7b7
- S9unwVbzKMoGBS0moAaCKM5OITK6mhsdClSpCquRHegWhU5B/t8xw7+sw w==;
-X-CSE-ConnectionGUID: Pn6EeREdRwCFAqCLJJkBcQ==
-X-CSE-MsgGUID: xk+e4O2gT/Ka6mE9q9C5XQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11637"; a="67328702"
-X-IronPort-AV: E=Sophos;i="6.20,262,1758610800"; d="scan'208";a="67328702"
+ bh=0J9lYfbtarHFbFENkR1K0GxrzUPZMD7pviLp2bsojkI=;
+ b=evzq6QFRuoLGmkGlA6M1YRDRyjewy8R5VZ6bTVrka4WJ4H+GletMoYsw
+ r76QPLs9geg/+MOolgV0z/HorD6Q3eCs7QRfjwBleOXZtFJwac+DSQkd/
+ C75bby/iddlxh3okEWpXGwVsCXfWkFHHhzKnuwTsKsUudTiJeppA8zLKB
+ bXVw7rNybQzpjUxrx8103lwAjPE2lbOVkcWc3c6HmbXjxVgo1XXPrbR+w
+ rT5OISIZlAEdc7BoX6YgdBBqysb/9BH8GYVQ4dTplZjF/6Jc2GA6iBcfn
+ a/KdchoLNVqDhNF1idLRqKMRacO6jPfhiR+wqDBWBqFPj2Y8swx9tc/dq Q==;
+X-CSE-ConnectionGUID: zN7BcuAvTgKivdWfmTshgA==
+X-CSE-MsgGUID: CSjobm5JSpm/Sn5GMHqvow==
+X-IronPort-AV: E=McAfee;i="6800,10657,11637"; a="67328707"
+X-IronPort-AV: E=Sophos;i="6.20,262,1758610800"; d="scan'208";a="67328707"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2025 12:08:23 -0800
-X-CSE-ConnectionGUID: Y7MWlf33S+u5kmfDewUE0Q==
-X-CSE-MsgGUID: gSZoOOvpQS+W9QbAuNQ24w==
+ 09 Dec 2025 12:08:27 -0800
+X-CSE-ConnectionGUID: N3T1eGQfR8e0+lcGZphm/A==
+X-CSE-MsgGUID: 7uJuCH8DQsqI3OZHeWsFbQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,262,1758610800"; d="scan'208";a="195563880"
+X-IronPort-AV: E=Sophos;i="6.20,262,1758610800"; d="scan'208";a="195563887"
 Received: from osgc-sh-dragon.sh.intel.com ([10.239.81.44])
- by orviesa010.jf.intel.com with ESMTP; 09 Dec 2025 12:08:21 -0800
+ by orviesa010.jf.intel.com with ESMTP; 09 Dec 2025 12:08:25 -0800
 From: Brian Nguyen <brian3.nguyen@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: tejas.upadhyay@intel.com, matthew.brost@intel.com, shuicheng.lin@intel.com,
- stuart.summers@intel.com
-Subject: [PATCH v4 01/10] drm/xe: Do not forward invalid TLB invalidation
- seqnos to upper layers
-Date: Wed, 10 Dec 2025 04:08:17 +0800
-Message-ID: <20251209200815.2570770-13-brian3.nguyen@intel.com>
+ stuart.summers@intel.com, Oak Zeng <oak.zeng@intel.com>
+Subject: [PATCH v4 03/10] drm/xe: Add page reclamation info to device info
+Date: Wed, 10 Dec 2025 04:08:19 +0800
+Message-ID: <20251209200815.2570770-15-brian3.nguyen@intel.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20251209200815.2570770-12-brian3.nguyen@intel.com>
 References: <20251209200815.2570770-12-brian3.nguyen@intel.com>
@@ -67,79 +66,59 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Matthew Brost <matthew.brost@intel.com>
+From: Oak Zeng <oak.zeng@intel.com>
 
-Certain TLB invalidation operations send multiple H2G messages per seqno
-with only the final H2G containing the valid seqno - the others carry an
-invalid seqno. The G2H handler drops these invalid seqno to aovid
-prematurely signaling a TLB invalidation fence.
+Starting from Xe3p, HW adds a feature assisting range based page
+reclamation. Introduce a bit in device info to indicate whether
+device has such capability.
 
-With TLB_INVALIDATION_SEQNO_INVALID used to indicate in progress
-multi-step TLB invalidations, reset tdr to ensure that timeout
-won't prematurely trigger when G2H actions are still ongoing.
-
-v2: Remove lock from xe_tlb_inval_reset_timeout. (Matthew B)
-
-v3: Squash with dependent patch from Matthew Brost' series.
-
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+Signed-off-by: Oak Zeng <oak.zeng@intel.com>
 Signed-off-by: Brian Nguyen <brian3.nguyen@intel.com>
+Reviewed-by: Shuicheng Lin <shuicheng.lin@intel.com>
 Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_tlb_inval.c       | 20 ++++++++++++++++++++
- drivers/gpu/drm/xe/xe_tlb_inval_types.h |  1 +
- 2 files changed, 21 insertions(+)
+ drivers/gpu/drm/xe/xe_device_types.h | 2 ++
+ drivers/gpu/drm/xe/xe_pci.c          | 1 +
+ drivers/gpu/drm/xe/xe_pci_types.h    | 1 +
+ 3 files changed, 4 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_tlb_inval.c b/drivers/gpu/drm/xe/xe_tlb_inval.c
-index 918a59e686ea..a122fbb9fc4a 100644
---- a/drivers/gpu/drm/xe/xe_tlb_inval.c
-+++ b/drivers/gpu/drm/xe/xe_tlb_inval.c
-@@ -199,6 +199,20 @@ void xe_tlb_inval_reset(struct xe_tlb_inval *tlb_inval)
- 	mutex_unlock(&tlb_inval->seqno_lock);
- }
- 
-+/**
-+ * xe_tlb_inval_reset_timeout() - Reset TLB inval fence timeout
-+ * @tlb_inval: TLB invalidation client
-+ *
-+ * Reset the TLB invalidation timeout timer.
-+ */
-+static void xe_tlb_inval_reset_timeout(struct xe_tlb_inval *tlb_inval)
-+{
-+	lockdep_assert_held(&tlb_inval->pending_lock);
-+
-+	mod_delayed_work(system_wq, &tlb_inval->fence_tdr,
-+			 tlb_inval->ops->timeout_delay(tlb_inval));
-+}
-+
- static bool xe_tlb_inval_seqno_past(struct xe_tlb_inval *tlb_inval, int seqno)
- {
- 	int seqno_recv = READ_ONCE(tlb_inval->seqno_recv);
-@@ -360,6 +374,12 @@ void xe_tlb_inval_done_handler(struct xe_tlb_inval *tlb_inval, int seqno)
- 	 * process_g2h_msg().
- 	 */
- 	spin_lock_irqsave(&tlb_inval->pending_lock, flags);
-+	if (seqno == TLB_INVALIDATION_SEQNO_INVALID) {
-+		xe_tlb_inval_reset_timeout(tlb_inval);
-+		spin_unlock_irqrestore(&tlb_inval->pending_lock, flags);
-+		return;
-+	}
-+
- 	if (xe_tlb_inval_seqno_past(tlb_inval, seqno)) {
- 		spin_unlock_irqrestore(&tlb_inval->pending_lock, flags);
- 		return;
-diff --git a/drivers/gpu/drm/xe/xe_tlb_inval_types.h b/drivers/gpu/drm/xe/xe_tlb_inval_types.h
-index 8f8b060e9005..7a6967ce3b76 100644
---- a/drivers/gpu/drm/xe/xe_tlb_inval_types.h
-+++ b/drivers/gpu/drm/xe/xe_tlb_inval_types.h
-@@ -80,6 +80,7 @@ struct xe_tlb_inval {
- 	const struct xe_tlb_inval_ops *ops;
- 	/** @tlb_inval.seqno: TLB invalidation seqno, protected by CT lock */
- #define TLB_INVALIDATION_SEQNO_MAX	0x100000
-+#define TLB_INVALIDATION_SEQNO_INVALID	TLB_INVALIDATION_SEQNO_MAX
- 	int seqno;
- 	/** @tlb_invalidation.seqno_lock: protects @tlb_invalidation.seqno */
- 	struct mutex seqno_lock;
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index 9de73353223f..3836c5ed1c72 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -315,6 +315,8 @@ struct xe_device {
+ 		u8 has_mem_copy_instr:1;
+ 		/** @info.has_mert: Device has standalone MERT */
+ 		u8 has_mert:1;
++		/** @info.has_page_reclaim_hw_assist: Device supports page reclamation feature */
++		u8 has_page_reclaim_hw_assist:1;
+ 		/** @info.has_pxp: Device has PXP support */
+ 		u8 has_pxp:1;
+ 		/** @info.has_range_tlb_inval: Has range based TLB invalidations */
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index 04fcbacda12a..0e9d23c20f20 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -681,6 +681,7 @@ static int xe_info_init_early(struct xe_device *xe,
+ 	xe->info.has_late_bind = desc->has_late_bind;
+ 	xe->info.has_llc = desc->has_llc;
+ 	xe->info.has_mert = desc->has_mert;
++	xe->info.has_page_reclaim_hw_assist = desc->has_page_reclaim_hw_assist;
+ 	xe->info.has_pxp = desc->has_pxp;
+ 	xe->info.has_sriov = xe_configfs_primary_gt_allowed(to_pci_dev(xe->drm.dev)) &&
+ 		desc->has_sriov;
+diff --git a/drivers/gpu/drm/xe/xe_pci_types.h b/drivers/gpu/drm/xe/xe_pci_types.h
+index f19f35359696..96feae80b705 100644
+--- a/drivers/gpu/drm/xe/xe_pci_types.h
++++ b/drivers/gpu/drm/xe/xe_pci_types.h
+@@ -49,6 +49,7 @@ struct xe_device_desc {
+ 	u8 has_mbx_power_limits:1;
+ 	u8 has_mem_copy_instr:1;
+ 	u8 has_mert:1;
++	u8 has_page_reclaim_hw_assist:1;
+ 	u8 has_pxp:1;
+ 	u8 has_sriov:1;
+ 	u8 needs_scratch:1;
 -- 
 2.52.0
 
