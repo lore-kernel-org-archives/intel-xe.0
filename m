@@ -4,63 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 37E9BD1CDC6
-	for <intel-xe@archiver.kernel.org>; Tue,  9 Dec 2025 14:25:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D1726D1CDC6
+	for <intel-xe@archiver.kernel.org>; Tue,  9 Dec 2025 14:27:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F391A10E628;
-	Tue,  9 Dec 2025 14:25:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 77D5C10E638;
+	Tue,  9 Dec 2025 14:27:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DX4hvApu";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="SRtov+Un";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3F2B710E622
- for <intel-xe@lists.freedesktop.org>; Tue,  9 Dec 2025 14:25:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765290348; x=1796826348;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=ucVSoSN4I6+YLTRqxl2VishqQasCdMKvCI9cS/ndCzU=;
- b=DX4hvApuuqB8MybX542s7xykg8bd/VUcnOZ40GPILg71RZsPMhbLr68y
- i/FL5AXJ28oyiP0iYmb2HCqph44jMfRp6642l4MRtgBe28YXxaN42pFFq
- eUoN+EZx9++sQpTLRy31HzxQGSso8awqIUB2vpCgYbp6nBnaduJUrp0I+
- 8bw+9iX64tpBWp0li1l9Cc+9ednct0PKwATozg+E9L4y1tLoFMcRNagpn
- vx+L0oLAtRxaENpCpnB/j/X9eUdh7aT4NOaVcQ3bPlsh1jPPqb9dPMFKH
- bD6ZLFXoo4pre8qN1WKLrrJVvA9ODUXGQ6s8QEoIZhM3R7AdeaC979G/Q A==;
-X-CSE-ConnectionGUID: gpRcNUihRguB6y/F1e4IRQ==
-X-CSE-MsgGUID: rPKg5U8kRuSbhMbaw2PaTQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11637"; a="71105810"
-X-IronPort-AV: E=Sophos;i="6.20,261,1758610800"; d="scan'208";a="71105810"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2025 06:25:47 -0800
-X-CSE-ConnectionGUID: R4Zm+GHwRX+G6n98tApEOA==
-X-CSE-MsgGUID: t14pBJa/QeqMCYEHxZji0w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,261,1758610800"; d="scan'208";a="196243307"
-Received: from vpanait-mobl.ger.corp.intel.com (HELO localhost)
- ([10.245.245.194])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2025 06:25:45 -0800
-Date: Tue, 9 Dec 2025 16:25:41 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Tvrtko Ursulin <tursulin@igalia.com>
-Cc: intel-xe@lists.freedesktop.org, kernel-dev@igalia.com,
- Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: Re: [PATCH v15 06/10] drm/xe: Handle DPT in system memory
-Message-ID: <aTgxZTjU398-jnf3@intel.com>
-References: <20251208191722.7194-1-tursulin@igalia.com>
- <20251208191722.7194-7-tursulin@igalia.com>
- <aTfxySrZ-O1Bplcm@intel.com>
- <2b912c41-a03a-40cc-8bf0-f70558ffdafc@igalia.com>
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9E73E10E616;
+ Tue,  9 Dec 2025 14:27:31 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sea.source.kernel.org (Postfix) with ESMTP id 7476843A63;
+ Tue,  9 Dec 2025 14:27:31 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D0555C4CEF5;
+ Tue,  9 Dec 2025 14:27:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1765290451;
+ bh=+lPRgnywG6DZojNgtg/w1EUgAWRizPCecjzEhDomM3s=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=SRtov+UnCMmffLoCrIS4i3rDRT4jcz+QLcw3NrHCLRnXPGNf1byxWeiSl2eogVxma
+ r+raXHakZJMJsgoqW9kr6R9waCWB6qY/4XMqZcOj4R6RjgNeuWG+f2Lm9aEZlBfUCw
+ KLHcoeYAyfv8VBvC9vYuxQvaoIWXIALfwKGFIp9wbP+aZFbbiHk/6IPUm6K/i5QmoX
+ kKf3umBTwAhvT4a0ULSXFhXNQgEkVkbKlGKh2mWA+megTCQe8ul02RMn63lBaCpYrr
+ He+mCx0tE1uAYY/8j8ydJaUSmAqRiF+FASTPOsNDzACALIBR0q/Gpm7h9RqDKk1dFh
+ ZKfL+LRCT6e9A==
+Date: Tue, 9 Dec 2025 15:27:28 +0100
+From: Maxime Ripard <mripard@kernel.org>
+To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Cc: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
+ Rodrigo Siqueira <siqueira@igalia.com>,
+ Alex Deucher <alexander.deucher@amd.com>, 
+ Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Andrzej Hajda <andrzej.hajda@intel.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, 
+ Jernej Skrabec <jernej.skrabec@gmail.com>, Sandy Huang <hjc@rock-chips.com>, 
+ Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>,
+ Andy Yan <andy.yan@rock-chips.com>, 
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, 
+ Dmitry Baryshkov <lumag@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+ Rob Herring <robh@kernel.org>, kernel@collabora.com,
+ amd-gfx@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH v5 04/17] drm/bridge: Act on the DRM color format property
+Message-ID: <20251209-smart-oarfish-of-wind-0c1c8b@houat>
+References: <20251128-color-format-v5-0-63e82f1db1e1@collabora.com>
+ <20251128-color-format-v5-4-63e82f1db1e1@collabora.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: multipart/signed; micalg=pgp-sha384;
+ protocol="application/pgp-signature"; boundary="6swa32l4wvcewsqj"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <2b912c41-a03a-40cc-8bf0-f70558ffdafc@igalia.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+In-Reply-To: <20251128-color-format-v5-4-63e82f1db1e1@collabora.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,62 +80,113 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Dec 09, 2025 at 03:10:03PM +0100, Tvrtko Ursulin wrote:
-> 
-> On 09/12/2025 10:54, Ville Syrjälä wrote:
-> > On Mon, Dec 08, 2025 at 08:17:17PM +0100, Tvrtko Ursulin wrote:
-> >> From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-> >>
-> >> If DPT is allocated from system memory it will be created in the default
-> >> write-back cached mode. This means we need to flush it after populating
-> >> otherwise nothing works.
-> >>
-> >> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-> >> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> >> ---
-> >>   drivers/gpu/drm/xe/display/xe_fb_pin.c | 4 ++++
-> >>   1 file changed, 4 insertions(+)
-> >>
-> >> diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-> >> index a22a9182dadb..89ee68c40329 100644
-> >> --- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
-> >> +++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-> >> @@ -3,6 +3,7 @@
-> >>    * Copyright © 2021 Intel Corporation
-> >>    */
-> >>   
-> >> +#include <drm/drm_cache.h>
-> >>   #include <drm/ttm/ttm_bo.h>
-> >>   
-> >>   #include "i915_vma.h"
-> >> @@ -162,6 +163,9 @@ static int __xe_pin_fb_vma_dpt(const struct intel_framebuffer *fb,
-> >>   					  rot_info->plane[i].dst_stride);
-> >>   	}
-> >>   
-> >> +	if (!xe_bo_is_vram(dpt) && !xe_bo_is_stolen(dpt))
-> >> +		drm_clflush_virt_range(dpt->vmap.vaddr, dpt_size);
-> > How is anything working currently if the DPT is being
-> > created with the wrong caching mode?
-> 
-> I suspect the stolen allocation never fails in practice (or almost 
-> never, or at least not in CI).
-> > Sounds like someone should fix the DPT creation to correctly
-> > ask for UC/WC. But I suppose someone should measure if WB+flush
-> > is actually faster...
-> 
-> I am not sure what is desired here. System memory buffers defaulting to 
-> cached is the xe default, so should DPT be an exception I do not know.
 
-Anything meant for the display engine is supposed to be uncached.
+--6swa32l4wvcewsqj
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v5 04/17] drm/bridge: Act on the DRM color format property
+MIME-Version: 1.0
 
-> 
-> In any case AuxCCS seems to only work with DPT in system memory and this 
-> clflush. DPT in stolen with GTT access and GTT flushing (as i915 does 
-> it) does not seem to work for xe. I guess the entity doing the DPT reads 
-> is somehow special coherency wise.
+Hi,
 
-Sounds like there is still something broken in xe.
+On Fri, Nov 28, 2025 at 10:05:40PM +0100, Nicolas Frattaroli wrote:
+> The new DRM color format property allows userspace to request a specific
+> color format on a connector. In turn, this fills the connector state's
+> color_format member to switch color formats.
+>=20
+> Make drm_bridges consider the color_format set in the connector state
+> during the atomic bridge check. Specifically, reject any output bus
+> formats that do not correspond to the requested color format.
+>=20
+> Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+> ---
+>  drivers/gpu/drm/drm_bridge.c | 45 ++++++++++++++++++++++++++++++++++++++=
+++++++
+>  1 file changed, 45 insertions(+)
+>=20
+> diff --git a/drivers/gpu/drm/drm_bridge.c b/drivers/gpu/drm/drm_bridge.c
+> index 8f355df883d8..8aac9747f35e 100644
+> --- a/drivers/gpu/drm/drm_bridge.c
+> +++ b/drivers/gpu/drm/drm_bridge.c
+> @@ -1052,6 +1052,47 @@ static int select_bus_fmt_recursive(struct drm_bri=
+dge *first_bridge,
+>  	return ret;
+>  }
+> =20
+> +static bool __pure bus_format_is_color_fmt(u32 bus_fmt, enum drm_color_f=
+ormat fmt)
+> +{
+> +	if (fmt =3D=3D DRM_COLOR_FORMAT_AUTO)
+> +		return true;
+> +
+> +	switch (bus_fmt) {
+> +	case MEDIA_BUS_FMT_FIXED:
+> +		return true;
+> +	case MEDIA_BUS_FMT_RGB888_1X24:
+> +	case MEDIA_BUS_FMT_RGB101010_1X30:
+> +	case MEDIA_BUS_FMT_RGB121212_1X36:
+> +	case MEDIA_BUS_FMT_RGB161616_1X48:
+> +		return fmt =3D=3D DRM_COLOR_FORMAT_RGB444;
+> +	case MEDIA_BUS_FMT_YUV8_1X24:
+> +	case MEDIA_BUS_FMT_YUV10_1X30:
+> +	case MEDIA_BUS_FMT_YUV12_1X36:
+> +	case MEDIA_BUS_FMT_YUV16_1X48:
+> +		return fmt =3D=3D DRM_COLOR_FORMAT_YCBCR444;
+> +	case MEDIA_BUS_FMT_UYVY8_1X16:
+> +	case MEDIA_BUS_FMT_VYUY8_1X16:
+> +	case MEDIA_BUS_FMT_YUYV8_1X16:
+> +	case MEDIA_BUS_FMT_YVYU8_1X16:
+> +	case MEDIA_BUS_FMT_UYVY10_1X20:
+> +	case MEDIA_BUS_FMT_YUYV10_1X20:
+> +	case MEDIA_BUS_FMT_VYUY10_1X20:
+> +	case MEDIA_BUS_FMT_YVYU10_1X20:
+> +	case MEDIA_BUS_FMT_UYVY12_1X24:
+> +	case MEDIA_BUS_FMT_VYUY12_1X24:
+> +	case MEDIA_BUS_FMT_YUYV12_1X24:
+> +	case MEDIA_BUS_FMT_YVYU12_1X24:
+> +		return fmt =3D=3D DRM_COLOR_FORMAT_YCBCR422;
+> +	case MEDIA_BUS_FMT_UYYVYY8_0_5X24:
+> +	case MEDIA_BUS_FMT_UYYVYY10_0_5X30:
+> +	case MEDIA_BUS_FMT_UYYVYY12_0_5X36:
+> +	case MEDIA_BUS_FMT_UYYVYY16_0_5X48:
+> +		return fmt =3D=3D DRM_COLOR_FORMAT_YCBCR420;
+> +	default:
+> +		return false;
+> +	}
+> +}
+> +
+>  /*
+>   * This function is called by &drm_atomic_bridge_chain_check() just befo=
+re
+>   * calling &drm_bridge_funcs.atomic_check() on all elements of the chain.
+> @@ -1137,6 +1178,10 @@ drm_atomic_bridge_chain_select_bus_fmts(struct drm=
+_bridge *bridge,
+>  	}
+> =20
+>  	for (i =3D 0; i < num_out_bus_fmts; i++) {
+> +		if (!bus_format_is_color_fmt(out_bus_fmts[i], conn_state->color_format=
+)) {
+> +			ret =3D -ENOTSUPP;
+> +			continue;
+> +		}
 
--- 
-Ville Syrjälä
-Intel
+Sorry, I'm struggling a bit to understand how this would work if a bridge b=
+oth supports the bus
+format selection and HDMI state helpers? Can you expand on it?
+
+Maxime
+
+--6swa32l4wvcewsqj
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCaTgx0AAKCRAnX84Zoj2+
+dn+pAXoCEBIzb4PrpgMd2asQag4DZBJm2omA/DY2ArLCM7xiNnTD+fG+t5BxdhGx
+GQRfoUIBfAgis2VsEMDW4zY+ZyEGiWuYG8gnFhPFvpM4lZ57Re+WJ6smQKDAUbwk
+gtuqKr0cjA==
+=HGyp
+-----END PGP SIGNATURE-----
+
+--6swa32l4wvcewsqj--
