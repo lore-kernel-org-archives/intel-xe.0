@@ -4,50 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C8AB8D3B997
-	for <intel-xe@archiver.kernel.org>; Tue,  9 Dec 2025 20:08:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 41EA2D3B996
+	for <intel-xe@archiver.kernel.org>; Tue,  9 Dec 2025 20:08:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8AC8E10E63B;
-	Tue,  9 Dec 2025 20:08:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F211610E641;
+	Tue,  9 Dec 2025 20:08:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="janoznuK";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LP8OZSzc";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5F18910E625
- for <intel-xe@lists.freedesktop.org>; Tue,  9 Dec 2025 20:08:24 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7192810E641
+ for <intel-xe@lists.freedesktop.org>; Tue,  9 Dec 2025 20:08:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765310905; x=1796846905;
+ t=1765310909; x=1796846909;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=6ebhthKVespwUrW/sPlZwpM6hDW95KYHKTRd8Tn0vzk=;
- b=janoznuKwbvSFrONYOjapgEvnaqUevjth+FKZpBSNoiSURxwiHVREQv5
- 1RmP1W/gaHe8j6vEg/8E6FOIu3lFwfNq17HV2BahiY0kV6dguLzvcT3vv
- 92sGZTadGZx08+uTYornHvgn5ejAAKmIZJxyeAQIqyrHQr7PrqgNDZgsd
- gipCL5/FpeGkg39bQw0s9b+I8PP0yGqiLw3EGdjEPCzEIwsdjnvmjLoCr
- o5FCcVJzbVgTMcunpnq/jOAhDGE1ac3tffp50lcZCz/lcz/hdgsQb0N/v
- 8FQ+dGr6Lybfq6tZVe5DguWJCnALacP4OLO11dW0QH4ZIAC270wlcDtMY A==;
-X-CSE-ConnectionGUID: HOpv04VKQbyOqKxjK85JtA==
-X-CSE-MsgGUID: fAnp2vSDRhSubN1qT1g+6w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11637"; a="67328704"
-X-IronPort-AV: E=Sophos;i="6.20,262,1758610800"; d="scan'208";a="67328704"
+ bh=NltCWjn9MKzwgUM7NQrjB1U3o7qUFFe0QJSYhd9+hc8=;
+ b=LP8OZSzcEtIhtR7Lo7cd15x95XVieAJO8rih0486r58+PyxSsBKudQ/p
+ uu5UaktlRrQQTUUl+eGs/HysxFVQExTqTdWumOTr7AtR2uSl0JdKOxqce
+ OsLuTBQX25JpfBpYN5e/av0ZVZB8htO1dBsi7lh7+osOGnIyu4yR3md4c
+ eqG43wICHFDukPrrQeoIls+RCmXRsCgCdWMZVlOlibfrCak4QE6Nha04G
+ GPLxrT28z4rMlGhCOLvuPs7hyi9dkkb1h/zIFW/AGHAK/zx8Xwyj7PV5/
+ kdy12/Rl08DVv7XHl+X5ms6u2nGrIfWeWS0/ol2vgqzdSjQMreFQcGZES w==;
+X-CSE-ConnectionGUID: Vx4AjQVaSiuWerAM+Xc8wg==
+X-CSE-MsgGUID: kflnL2RFRPW5Lxk5kL12RA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11637"; a="67328708"
+X-IronPort-AV: E=Sophos;i="6.20,262,1758610800"; d="scan'208";a="67328708"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2025 12:08:25 -0800
-X-CSE-ConnectionGUID: HytWf46HTIypAPZGWyy4GA==
-X-CSE-MsgGUID: ULr9vWtwQja2+/zdSmMiJA==
+ 09 Dec 2025 12:08:29 -0800
+X-CSE-ConnectionGUID: 4WBwJIMGQWuQ3LmRZlE5Vg==
+X-CSE-MsgGUID: O+KiXGAcSBOViGOB+FIYEQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,262,1758610800"; d="scan'208";a="195563884"
+X-IronPort-AV: E=Sophos;i="6.20,262,1758610800"; d="scan'208";a="195563893"
 Received: from osgc-sh-dragon.sh.intel.com ([10.239.81.44])
- by orviesa010.jf.intel.com with ESMTP; 09 Dec 2025 12:08:23 -0800
+ by orviesa010.jf.intel.com with ESMTP; 09 Dec 2025 12:08:27 -0800
 From: Brian Nguyen <brian3.nguyen@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: tejas.upadhyay@intel.com, matthew.brost@intel.com, shuicheng.lin@intel.com,
  stuart.summers@intel.com
-Subject: [PATCH v4 02/10] drm/xe/xe_tlb_inval: Modify fence interface to
- support PPC flush
-Date: Wed, 10 Dec 2025 04:08:18 +0800
-Message-ID: <20251209200815.2570770-14-brian3.nguyen@intel.com>
+Subject: [PATCH v4 04/10] drm/xe/guc: Add page reclamation interface to GuC
+Date: Wed, 10 Dec 2025 04:08:20 +0800
+Message-ID: <20251209200815.2570770-16-brian3.nguyen@intel.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20251209200815.2570770-12-brian3.nguyen@intel.com>
 References: <20251209200815.2570770-12-brian3.nguyen@intel.com>
@@ -67,54 +66,123 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Allow tlb_invalidation to control when driver wants to flush the
-Private Physical Cache (PPC) as a process of the tlb invalidation
-process.
+Add page reclamation related changes to GuC interface, handlers, and
+senders to support page reclamation.
 
-Default behavior is still to always flush the PPC but driver now has the
-option to disable it.
+Currently TLB invalidations will perform an entire PPC flush in order to
+prevent stale memory access for noncoherent system memory. Page
+reclamation is an extension of the typical TLB invalidation
+workflow, allowing disabling of full PPC flush and enable selective PPC
+flushing. Selective flushing will be decided by a list of pages whom's
+address is passed to GuC at time of action.
+
+Page reclamation interfaces require at least GuC FW ver 70.31.0.
 
 v2:
- - Revise commit/kernel doc descriptions. (Shuicheng)
- - Remove unused function. (Shuicheng)
- - Remove bool flush_cache parameter from fence,
-   and various function inputs. (Matthew B)
+ - Moved send_page_reclaim to first patch usage.
+ - Add comments explaining shared done handler. (Matthew B)
+ - Add FW version fallback to disable page reclaim
+   on older versions. (Matthew B, Shuicheng)
 
 Signed-off-by: Brian Nguyen <brian3.nguyen@intel.com>
 Reviewed-by: Matthew Brost <matthew.brost@intel.com>
-Cc: Shuicheng Lin <shuicheng.lin@intel.com>
+Reviewed-by: Shuicheng Lin <shuicheng.lin@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc_tlb_inval.c | 9 ++++++---
- 1 file changed, 6 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/xe/abi/guc_actions_abi.h |  2 ++
+ drivers/gpu/drm/xe/xe_guc.c              |  4 ++++
+ drivers/gpu/drm/xe/xe_guc_ct.c           | 17 +++++++++++++++++
+ drivers/gpu/drm/xe/xe_guc_fwif.h         |  1 +
+ 4 files changed, 24 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_tlb_inval.c b/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
-index 848d3493df10..37ac943cb10f 100644
---- a/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
-+++ b/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
-@@ -34,9 +34,12 @@ static int send_tlb_inval(struct xe_guc *guc, const u32 *action, int len)
- 			      G2H_LEN_DW_TLB_INVALIDATE, 1);
- }
+diff --git a/drivers/gpu/drm/xe/abi/guc_actions_abi.h b/drivers/gpu/drm/xe/abi/guc_actions_abi.h
+index 47756e4674a1..11de3bdf69b5 100644
+--- a/drivers/gpu/drm/xe/abi/guc_actions_abi.h
++++ b/drivers/gpu/drm/xe/abi/guc_actions_abi.h
+@@ -151,6 +151,8 @@ enum xe_guc_action {
+ 	XE_GUC_ACTION_TLB_INVALIDATION = 0x7000,
+ 	XE_GUC_ACTION_TLB_INVALIDATION_DONE = 0x7001,
+ 	XE_GUC_ACTION_TLB_INVALIDATION_ALL = 0x7002,
++	XE_GUC_ACTION_PAGE_RECLAMATION = 0x7003,
++	XE_GUC_ACTION_PAGE_RECLAMATION_DONE = 0x7004,
+ 	XE_GUC_ACTION_STATE_CAPTURE_NOTIFICATION = 0x8002,
+ 	XE_GUC_ACTION_NOTIFY_FLUSH_LOG_BUFFER_TO_FILE = 0x8003,
+ 	XE_GUC_ACTION_NOTIFY_CRASH_DUMP_POSTED = 0x8004,
+diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+index f0407bab9a0c..7daae3294665 100644
+--- a/drivers/gpu/drm/xe/xe_guc.c
++++ b/drivers/gpu/drm/xe/xe_guc.c
+@@ -767,6 +767,10 @@ int xe_guc_init(struct xe_guc *guc)
+ 	if (!xe_uc_fw_is_enabled(&guc->fw))
+ 		return 0;
  
--#define MAKE_INVAL_OP(type)	((type << XE_GUC_TLB_INVAL_TYPE_SHIFT) | \
-+#define MAKE_INVAL_OP_FLUSH(type, flush_cache)	((type << XE_GUC_TLB_INVAL_TYPE_SHIFT) | \
- 		XE_GUC_TLB_INVAL_MODE_HEAVY << XE_GUC_TLB_INVAL_MODE_SHIFT | \
--		XE_GUC_TLB_INVAL_FLUSH_CACHE)
-+		(flush_cache ? \
-+		XE_GUC_TLB_INVAL_FLUSH_CACHE : 0))
++	/* Disable page reclaim if GuC FW does not support */
++	if (GUC_FIRMWARE_VER(guc) < MAKE_GUC_VER(70, 31, 0))
++		xe->info.has_page_reclaim_hw_assist = false;
 +
-+#define MAKE_INVAL_OP(type)	MAKE_INVAL_OP_FLUSH(type, true)
+ 	if (IS_SRIOV_VF(xe)) {
+ 		ret = xe_guc_ct_init(&guc->ct);
+ 		if (ret)
+diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
+index 648f0f523abb..1c2acdec151a 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ct.c
++++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+@@ -1405,6 +1405,7 @@ static int parse_g2h_event(struct xe_guc_ct *ct, u32 *msg, u32 len)
+ 	case XE_GUC_ACTION_DEREGISTER_CONTEXT_DONE:
+ 	case XE_GUC_ACTION_SCHED_ENGINE_MODE_DONE:
+ 	case XE_GUC_ACTION_TLB_INVALIDATION_DONE:
++	case XE_GUC_ACTION_PAGE_RECLAMATION_DONE:
+ 		g2h_release_space(ct, len);
+ 	}
  
- static int send_tlb_inval_all(struct xe_tlb_inval *tlb_inval, u32 seqno)
- {
-@@ -152,7 +155,7 @@ static int send_tlb_inval_ppgtt(struct xe_tlb_inval *tlb_inval, u32 seqno,
- 						    ilog2(SZ_2M) + 1)));
- 		xe_gt_assert(gt, IS_ALIGNED(start, length));
+@@ -1591,6 +1592,15 @@ static int process_g2h_msg(struct xe_guc_ct *ct, u32 *msg, u32 len)
+ 		ret = xe_guc_pagefault_handler(guc, payload, adj_len);
+ 		break;
+ 	case XE_GUC_ACTION_TLB_INVALIDATION_DONE:
++	case XE_GUC_ACTION_PAGE_RECLAMATION_DONE:
++		/*
++		 * Page reclamation is an extension of TLB invalidation. Both
++		 * operations share the same seqno and fence. When either
++		 * action completes, we need to signal the corresponding
++		 * fence. Since the handling logic (lookup fence by seqno,
++		 * fence signalling) is identical, we use the same handler
++		 * for both G2H events.
++		 */
+ 		ret = xe_guc_tlb_inval_done_handler(guc, payload, adj_len);
+ 		break;
+ 	case XE_GUC_ACTION_GUC2PF_RELAY_FROM_VF:
+@@ -1756,6 +1766,7 @@ static int g2h_read(struct xe_guc_ct *ct, u32 *msg, bool fast_path)
+ 		switch (action) {
+ 		case XE_GUC_ACTION_REPORT_PAGE_FAULT_REQ_DESC:
+ 		case XE_GUC_ACTION_TLB_INVALIDATION_DONE:
++		case XE_GUC_ACTION_PAGE_RECLAMATION_DONE:
+ 			break;	/* Process these in fast-path */
+ 		default:
+ 			return 0;
+@@ -1792,6 +1803,12 @@ static void g2h_fast_path(struct xe_guc_ct *ct, u32 *msg, u32 len)
+ 		ret = xe_guc_pagefault_handler(guc, payload, adj_len);
+ 		break;
+ 	case XE_GUC_ACTION_TLB_INVALIDATION_DONE:
++	case XE_GUC_ACTION_PAGE_RECLAMATION_DONE:
++		/*
++		 * Seqno and fence handling of page reclamation and TLB
++		 * invalidation is identical, so we can use the same handler
++		 * for both actions.
++		 */
+ 		__g2h_release_space(ct, len);
+ 		ret = xe_guc_tlb_inval_done_handler(guc, payload, adj_len);
+ 		break;
+diff --git a/drivers/gpu/drm/xe/xe_guc_fwif.h b/drivers/gpu/drm/xe/xe_guc_fwif.h
+index 7d93c2749485..5aa6fb249be9 100644
+--- a/drivers/gpu/drm/xe/xe_guc_fwif.h
++++ b/drivers/gpu/drm/xe/xe_guc_fwif.h
+@@ -16,6 +16,7 @@
+ #define G2H_LEN_DW_DEREGISTER_CONTEXT		3
+ #define G2H_LEN_DW_TLB_INVALIDATE		3
+ #define G2H_LEN_DW_G2G_NOTIFY_MIN		3
++#define G2H_LEN_DW_PAGE_RECLAMATION		3
  
--		action[len++] = MAKE_INVAL_OP(XE_GUC_TLB_INVAL_PAGE_SELECTIVE);
-+		action[len++] = MAKE_INVAL_OP_FLUSH(XE_GUC_TLB_INVAL_PAGE_SELECTIVE, true);
- 		action[len++] = asid;
- 		action[len++] = lower_32_bits(start);
- 		action[len++] = upper_32_bits(start);
+ #define GUC_ID_MAX			65535
+ #define GUC_ID_UNKNOWN			0xffffffff
 -- 
 2.52.0
 
