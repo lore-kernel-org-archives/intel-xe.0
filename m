@@ -4,52 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 219B8D3B996
-	for <intel-xe@archiver.kernel.org>; Tue,  9 Dec 2025 20:08:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 16CC9D3B996
+	for <intel-xe@archiver.kernel.org>; Tue,  9 Dec 2025 20:08:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BE9E810E636;
-	Tue,  9 Dec 2025 20:08:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BF55110E625;
+	Tue,  9 Dec 2025 20:08:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ivQVf9mC";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YB2MLB6Y";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F422810E625
- for <intel-xe@lists.freedesktop.org>; Tue,  9 Dec 2025 20:08:20 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A7CFF10E625
+ for <intel-xe@lists.freedesktop.org>; Tue,  9 Dec 2025 20:08:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765310902; x=1796846902;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=TajujKIfggfAa/z6ZfwrD3pQrXEjxZXWx8CKjQyttDE=;
- b=ivQVf9mC4KrS4YL2RAHjJiLmTr1Yx0V7m0ZEgWee4nnDXQeUHm4vzGlP
- LnGPvFqLVy/IryMDDGblxxttOETmbL1uUYVO3Co6x/UPcOChZQGuHMlyW
- 0YfjT0X42CU8+falIFNiqDdZMY1iBZE2qP2MCz5vFRofbu5dF9bnqyU6a
- jLse7XJDoENXxxvnaiJKSuvq1CEK2sCeOxFv70lKwTfOZDR2mHTJBzSlw
- xyrn6I/ZSiWbw6PRclEhQ03luRTzxvn/xb9aLL623sB+YPGplQ8ieccoz
- FHtK7Wl3viJyNUUg8Z4Wr+A9uXKEpOOoMDpRpCLRGK8n9rjdWrscWx9b3 w==;
-X-CSE-ConnectionGUID: N2zAOY6tR2aWJSu14vr5yQ==
-X-CSE-MsgGUID: D8e8DJF2TCaw2kj1jJVWlQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11637"; a="67328700"
-X-IronPort-AV: E=Sophos;i="6.20,262,1758610800"; d="scan'208";a="67328700"
+ t=1765310903; x=1796846903;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=an7wbbdwjrC642b0+1VURTgkkvhnFv03Bd3HG0zG3bw=;
+ b=YB2MLB6Y5rtVoj56a/TFrZLw3ZeTUBBKQClfZ3fMWl5ZPS1oVlA32JEq
+ XFQZJOd5zZ1wLjgvSkcjLZD4OnOV+xh+27BNP7eUbI6btqVVkVAzyq2RU
+ 720BMK7mAc7el28cYeXOAcUyt0M4ty4NvE//AgGXUZDdBn86vMc7PwnZv
+ 9jkdDG/2bpZWS067WNKl31Eo6Q3vRWYvlmqEaMGM+hbvVR6BRGaJKZfpH
+ vR7uzTTSsB8/uEGGtRKHI3N/UWBlMm+rEjrcyh6EZk9JoaT9txHb2V7b7
+ S9unwVbzKMoGBS0moAaCKM5OITK6mhsdClSpCquRHegWhU5B/t8xw7+sw w==;
+X-CSE-ConnectionGUID: Pn6EeREdRwCFAqCLJJkBcQ==
+X-CSE-MsgGUID: xk+e4O2gT/Ka6mE9q9C5XQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11637"; a="67328702"
+X-IronPort-AV: E=Sophos;i="6.20,262,1758610800"; d="scan'208";a="67328702"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2025 12:08:21 -0800
-X-CSE-ConnectionGUID: JH4OYCZ/St2StJ1eLhdHdA==
-X-CSE-MsgGUID: wIVoVs+XTo+AVCZb0OiFig==
+ 09 Dec 2025 12:08:23 -0800
+X-CSE-ConnectionGUID: Y7MWlf33S+u5kmfDewUE0Q==
+X-CSE-MsgGUID: gSZoOOvpQS+W9QbAuNQ24w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,262,1758610800"; d="scan'208";a="195563874"
+X-IronPort-AV: E=Sophos;i="6.20,262,1758610800"; d="scan'208";a="195563880"
 Received: from osgc-sh-dragon.sh.intel.com ([10.239.81.44])
- by orviesa010.jf.intel.com with ESMTP; 09 Dec 2025 12:08:19 -0800
+ by orviesa010.jf.intel.com with ESMTP; 09 Dec 2025 12:08:21 -0800
 From: Brian Nguyen <brian3.nguyen@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: tejas.upadhyay@intel.com, matthew.brost@intel.com, shuicheng.lin@intel.com,
  stuart.summers@intel.com
-Subject: [PATCH v4 00/10] Page Reclamation Support for Xe3p Platforms
-Date: Wed, 10 Dec 2025 04:08:16 +0800
-Message-ID: <20251209200815.2570770-12-brian3.nguyen@intel.com>
+Subject: [PATCH v4 01/10] drm/xe: Do not forward invalid TLB invalidation
+ seqnos to upper layers
+Date: Wed, 10 Dec 2025 04:08:17 +0800
+Message-ID: <20251209200815.2570770-13-brian3.nguyen@intel.com>
 X-Mailer: git-send-email 2.52.0
+In-Reply-To: <20251209200815.2570770-12-brian3.nguyen@intel.com>
+References: <20251209200815.2570770-12-brian3.nguyen@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -65,110 +67,79 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-  This series introduces a hardware-assisted page reclamation support on Xe3p
-platforms, integrating with the KMD's existing TLB invalidation workflow and
-adding the ability to perform selective Private Physical Cache (PPC) flushing
-rather than always forcing the default full PPC flush.
+From: Matthew Brost <matthew.brost@intel.com>
 
-Currently as of Xe2, Xe TLB invalidations trigger a full Private Physical Cache
-flush to guarantee non-coherent memory correctness. New HW (Xe3p and beyond)
-supports a page reclamation feature, which we selectively enable on platforms
-with a flag in device info.
+Certain TLB invalidation operations send multiple H2G messages per seqno
+with only the final H2G containing the valid seqno - the others carry an
+invalid seqno. The G2H handler drops these invalid seqno to aovid
+prematurely signaling a TLB invalidation fence.
 
-The driver can provide a “Page Reclaim List” (PRL), tracking the physical pages
-used that correspond to an unmap/unbind operation and let hardware perform selective
-cache line eviction. If reclamation succeeds, we skip the full PPC flush entirely
-otherwise we fall back to our current process of full PPC flush with the TLB
-invalidation.
+With TLB_INVALIDATION_SEQNO_INVALID used to indicate in progress
+multi-step TLB invalidations, reset tdr to ensure that timeout
+won't prematurely trigger when G2H actions are still ongoing.
 
-Thanks,
-Brian
+v2: Remove lock from xe_tlb_inval_reset_timeout. (Matthew B)
 
-v2:
- - General refactor to remove additional variables from
-   tlb fences (flush_cache and PRL ptr). (Matthew B)
- - Removed lock from xe_tlb_inval_reset_timeout and moved 
-   into xe_tlb_inval_done_handler. (Matthew B)
- - Removed page reclaim variables out of tlb fences (Matthew B)
- - Add FW check for page reclaim support. (Shuicheng, Matthew B)
- - Moved PRL max entries overflow handling out from
-   generate_reclaim_entry to caller. (Shuicheng)
- - Fix one off error with NULL terminated PRL.
- - Add xe_page_reclaim_list_init for clarity. (Matthew B)
- - Invalidate PRL on early abort page walks.
- - Allocate PRL bo size to num_entries. (Matthew B)
- - Move PRL bo allocation to tlb_inval run_job. (Matthew B)
- - Modify debugfs to expose file only if page reclaim supported by
-   default instead of previous behavior to return an ENODEV
-   and thus no need to move xe_match_desc from configfs (Michal)
- - Compacted warning checking, update commit message,
-   spelling, moved variables, etc. (Shuicheng, Matthew B, Michal)
- - Remove unused function. (Shuicheng)
- - Fix various missing kernel doc input.
+v3: Squash with dependent patch from Matthew Brost' series.
 
-v3:
- - Removed MEDIA_IS_ON due to racy condition. (Matthew A)
- - Move l3 policy access to xe_pat. (Matthew A)
- - Add vm_dbg prints for PRL generation and invalidation. (Matthew B)
- - Add comments for PRL tile handling and flush behavior with medai. (Matthew B)
- - Modify reclaim_entry to QW and adjust bitfields accordingly. (Matthew B)
- - Add missing shift of PTE for page address in reclaim entry. (Matthew B)
- - Fix NULL pointer dereference check.
- - s/ifence/fence for kernel doc.
- - Squashed dependent patch.
- - Update erroneous comments
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+Signed-off-by: Brian Nguyen <brian3.nguyen@intel.com>
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+---
+ drivers/gpu/drm/xe/xe_tlb_inval.c       | 20 ++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_tlb_inval_types.h |  1 +
+ 2 files changed, 21 insertions(+)
 
-v4:
- - s/GEN_MASK/GEN_MASK_ULL, s/BIT/BIT_ULL for xe_guc_reclaim_entry (CI)
- - Revised comments to current changes (Tejas)
- - Moved PAT macros back to original place.
-
-Suggested-by: Matthew Brost <matthew.brost@intel.com>
-
-Brian Nguyen (8):
-  drm/xe/xe_tlb_inval: Modify fence interface to support PPC flush
-  drm/xe/guc: Add page reclamation interface to GuC
-  drm/xe: Create page reclaim list on unbind
-  drm/xe: Suballocate BO for page reclaim
-  drm/xe: Prep page reclaim in tlb inval job
-  drm/xe: Append page reclamation action to tlb inval
-  drm/xe: Optimize flushing of L2$ by skipping unnecessary page reclaim
-  drm/xe: Add debugfs support for page reclamation
-
-Matthew Brost (1):
-  drm/xe: Do not forward invalid TLB invalidation seqnos to upper layers
-
-Oak Zeng (1):
-  drm/xe: Add page reclamation info to device info
-
- drivers/gpu/drm/xe/Makefile              |   1 +
- drivers/gpu/drm/xe/abi/guc_actions_abi.h |   2 +
- drivers/gpu/drm/xe/regs/xe_gtt_defs.h    |   1 +
- drivers/gpu/drm/xe/xe_debugfs.c          |  41 +++++++
- drivers/gpu/drm/xe/xe_device_types.h     |   9 ++
- drivers/gpu/drm/xe/xe_guc.c              |   4 +
- drivers/gpu/drm/xe/xe_guc_ct.c           |  17 +++
- drivers/gpu/drm/xe/xe_guc_fwif.h         |   1 +
- drivers/gpu/drm/xe/xe_guc_tlb_inval.c    |  37 ++++--
- drivers/gpu/drm/xe/xe_page_reclaim.c     | 133 ++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_page_reclaim.h     |  81 ++++++++++++++
- drivers/gpu/drm/xe/xe_pat.c              |   8 ++
- drivers/gpu/drm/xe/xe_pat.h              |  10 ++
- drivers/gpu/drm/xe/xe_pci.c              |   1 +
- drivers/gpu/drm/xe/xe_pci_types.h        |   1 +
- drivers/gpu/drm/xe/xe_pt.c               | 137 ++++++++++++++++++++++-
- drivers/gpu/drm/xe/xe_pt_types.h         |   5 +
- drivers/gpu/drm/xe/xe_tile.c             |   5 +
- drivers/gpu/drm/xe/xe_tlb_inval.c        |  27 ++++-
- drivers/gpu/drm/xe/xe_tlb_inval.h        |   2 +-
- drivers/gpu/drm/xe/xe_tlb_inval_job.c    |  37 +++++-
- drivers/gpu/drm/xe/xe_tlb_inval_job.h    |   4 +
- drivers/gpu/drm/xe/xe_tlb_inval_types.h  |   5 +-
- drivers/gpu/drm/xe/xe_vm.c               |   4 +-
- 24 files changed, 557 insertions(+), 16 deletions(-)
- create mode 100644 drivers/gpu/drm/xe/xe_page_reclaim.c
- create mode 100644 drivers/gpu/drm/xe/xe_page_reclaim.h
-
+diff --git a/drivers/gpu/drm/xe/xe_tlb_inval.c b/drivers/gpu/drm/xe/xe_tlb_inval.c
+index 918a59e686ea..a122fbb9fc4a 100644
+--- a/drivers/gpu/drm/xe/xe_tlb_inval.c
++++ b/drivers/gpu/drm/xe/xe_tlb_inval.c
+@@ -199,6 +199,20 @@ void xe_tlb_inval_reset(struct xe_tlb_inval *tlb_inval)
+ 	mutex_unlock(&tlb_inval->seqno_lock);
+ }
+ 
++/**
++ * xe_tlb_inval_reset_timeout() - Reset TLB inval fence timeout
++ * @tlb_inval: TLB invalidation client
++ *
++ * Reset the TLB invalidation timeout timer.
++ */
++static void xe_tlb_inval_reset_timeout(struct xe_tlb_inval *tlb_inval)
++{
++	lockdep_assert_held(&tlb_inval->pending_lock);
++
++	mod_delayed_work(system_wq, &tlb_inval->fence_tdr,
++			 tlb_inval->ops->timeout_delay(tlb_inval));
++}
++
+ static bool xe_tlb_inval_seqno_past(struct xe_tlb_inval *tlb_inval, int seqno)
+ {
+ 	int seqno_recv = READ_ONCE(tlb_inval->seqno_recv);
+@@ -360,6 +374,12 @@ void xe_tlb_inval_done_handler(struct xe_tlb_inval *tlb_inval, int seqno)
+ 	 * process_g2h_msg().
+ 	 */
+ 	spin_lock_irqsave(&tlb_inval->pending_lock, flags);
++	if (seqno == TLB_INVALIDATION_SEQNO_INVALID) {
++		xe_tlb_inval_reset_timeout(tlb_inval);
++		spin_unlock_irqrestore(&tlb_inval->pending_lock, flags);
++		return;
++	}
++
+ 	if (xe_tlb_inval_seqno_past(tlb_inval, seqno)) {
+ 		spin_unlock_irqrestore(&tlb_inval->pending_lock, flags);
+ 		return;
+diff --git a/drivers/gpu/drm/xe/xe_tlb_inval_types.h b/drivers/gpu/drm/xe/xe_tlb_inval_types.h
+index 8f8b060e9005..7a6967ce3b76 100644
+--- a/drivers/gpu/drm/xe/xe_tlb_inval_types.h
++++ b/drivers/gpu/drm/xe/xe_tlb_inval_types.h
+@@ -80,6 +80,7 @@ struct xe_tlb_inval {
+ 	const struct xe_tlb_inval_ops *ops;
+ 	/** @tlb_inval.seqno: TLB invalidation seqno, protected by CT lock */
+ #define TLB_INVALIDATION_SEQNO_MAX	0x100000
++#define TLB_INVALIDATION_SEQNO_INVALID	TLB_INVALIDATION_SEQNO_MAX
+ 	int seqno;
+ 	/** @tlb_invalidation.seqno_lock: protects @tlb_invalidation.seqno */
+ 	struct mutex seqno_lock;
 -- 
 2.52.0
 
