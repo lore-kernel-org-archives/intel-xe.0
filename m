@@ -4,27 +4,33 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EED08D3B7EA
-	for <intel-xe@archiver.kernel.org>; Tue,  9 Dec 2025 12:46:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9A70AD1CDC6
+	for <intel-xe@archiver.kernel.org>; Tue,  9 Dec 2025 12:51:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B79A510E537;
-	Tue,  9 Dec 2025 12:46:11 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 20FD710E53E;
- Tue,  9 Dec 2025 12:46:10 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5696D10E53E;
+	Tue,  9 Dec 2025 12:51:40 +0000 (UTC)
+Received: from coelho.fi (coelho.fi [88.99.146.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 33DFC10E17C;
+ Tue,  9 Dec 2025 12:51:39 +0000 (UTC)
+Received: from mobile-access-5d6aa7-235.dhcp.inet.fi ([93.106.167.235]
+ helo=[192.168.8.139])
+ by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.98.2) (envelope-from <luca@coelho.fi>)
+ id 1vSxBn-00000000gqi-21ru; Tue, 09 Dec 2025 14:51:36 +0200
+Message-ID: <b967463275a13f0d13eca704851856bab6b563a5.camel@coelho.fi>
+From: Luca Coelho <luca@coelho.fi>
+To: Imre Deak <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org
+Date: Tue, 09 Dec 2025 14:51:34 +0200
+In-Reply-To: <20251127175023.1522538-6-imre.deak@intel.com>
+References: <20251127175023.1522538-1-imre.deak@intel.com>
+ <20251127175023.1522538-6-imre.deak@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2-7 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_drm/i915/display=3A_DC3C?=
- =?utf-8?q?O_support?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Dibin Moolakadan Subrahmanian" <dibin.moolakadan.subrahmanian@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 09 Dec 2025 12:46:10 -0000
-Message-ID: <176528437013.69077.3999390267303247116@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20251209113332.2770263-1-dibin.moolakadan.subrahmanian@intel.com>
-In-Reply-To: <20251209113332.2770263-1-dibin.moolakadan.subrahmanian@intel.com>
+Subject: Re: [PATCH 05/50] drm/i915/dp: Use a mode's crtc_clock vs. clock
+ during state computation
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,48 +42,55 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Thu, 2025-11-27 at 19:49 +0200, Imre Deak wrote:
+> The encoder state computation should use the
+> drm_display_mode::crtc_clock member, instead of the clock member, the
+> former one possibly having a necessary adjustment wrt. to the latter
+> due to driver specific constraints. In practice the two values should
+> not differ at spots changed in this patch, since only MSO and 3D modes
+> would make them different, neither MSO or 3D relevant here, but still
+> use the expected crtc_clock version for consistency.
+>=20
+> Signed-off-by: Imre Deak <imre.deak@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp.c | 5 +++--
+>  1 file changed, 3 insertions(+), 2 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i9=
+15/display/intel_dp.c
+> index beda340d05923..d70cb35cf68bc 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -2050,7 +2050,8 @@ static int dsc_compute_link_config(struct intel_dp =
+*intel_dp,
+>  					continue;
+>  			} else {
+>  				if (!is_bw_sufficient_for_dsc_config(dsc_bpp_x16, link_rate,
+> -								     lane_count, adjusted_mode->clock,
+> +								     lane_count,
+> +								     adjusted_mode->crtc_clock,
+>  								     pipe_config->output_format,
+>  								     timeslots))
+>  					continue;
+> @@ -2211,7 +2212,7 @@ static int dsc_compute_compressed_bpp(struct intel_=
+dp *intel_dp,
+>  	int bpp_x16;
+>  	int ret;
+> =20
+> -	dsc_joiner_max_bpp =3D get_max_compressed_bpp_with_joiner(display, adju=
+sted_mode->clock,
+> +	dsc_joiner_max_bpp =3D get_max_compressed_bpp_with_joiner(display, adju=
+sted_mode->crtc_clock,
+>  								adjusted_mode->hdisplay,
+>  								num_joined_pipes);
+>  	max_bpp_x16 =3D min(fxp_q4_from_int(dsc_joiner_max_bpp), limits->link.m=
+ax_bpp_x16);
 
-Series: drm/i915/display: DC3CO support
-URL   : https://patchwork.freedesktop.org/series/158688/
-State : warning
+Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
 
-== Summary ==
-
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast b47b04d41eda468db50bea8957bea3fa941a51d7
-Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
-Fast mode used, each commit won't be checked separately.
-+drivers/gpu/drm/i915/display/intel_display.c: note: in included file:
-+drivers/gpu/drm/i915/display/intel_display_types.h:2101:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/intel_uncore.c:1930:1: warning: context imbalance in 'fwtable_read8' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:1931:1: warning: context imbalance in 'fwtable_read16' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:1932:1: warning: context imbalance in 'fwtable_read32' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:1933:1: warning: context imbalance in 'fwtable_read64' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:1998:1: warning: context imbalance in 'gen6_write8' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:1999:1: warning: context imbalance in 'gen6_write16' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:2000:1: warning: context imbalance in 'gen6_write32' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:2020:1: warning: context imbalance in 'fwtable_write8' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:2021:1: warning: context imbalance in 'fwtable_write16' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:2022:1: warning: context imbalance in 'fwtable_write32' - unexpected unlock
-
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
-
+--
+Cheers,
+Luca.
