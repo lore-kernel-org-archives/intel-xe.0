@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 825E8D3B997
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8172BD3B996
 	for <intel-xe@archiver.kernel.org>; Tue,  9 Dec 2025 19:45:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 292C710E5E9;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 11D9D10E5C9;
 	Tue,  9 Dec 2025 19:45:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bTRGgWv5";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iImTJPRs";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B02AA10E5A8;
- Tue,  9 Dec 2025 19:45:35 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6EABE10E5AD;
+ Tue,  9 Dec 2025 19:45:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1765309536; x=1796845536;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=WEeBHlKpjvvYZqrkHXq8/e6dFzmUizzdtlknyOkcuAU=;
- b=bTRGgWv5rZumKXD/mAp7lE7qbcLuxojwuRQphx6xA6QR6vb883R33Xro
- VFDloiE4WUXwbAULogmJ4++zIYK3LMif5+N05r0QpYfe87SmlEblIp56X
- 6ZkvrTmmiTirogBpskcd23yOVoB3NhRytWHu6YJfZcvZKgPo1qT3z0Fvb
- ivSHUeKOV5DFjH7Vk0EcKpUc0EteHGNQWJNrqQLo2gjoy2eNe9iOIj0Kh
- gx7jRXoiM/3phMUru9n47OfbiKc70fLOFkp7yTgjfQ5UQ72uRkj64qUfo
- Ui61T2sqfSbuwd7BdCaBASjM8qsPGLSX8RuqeDJdQxYeqJfYkF1Y3CngU Q==;
-X-CSE-ConnectionGUID: +Dq5j9S1Rp2Rd0UBoEKeBQ==
-X-CSE-MsgGUID: EuYUjMoRQ2+Nmx3J05zD3w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11637"; a="67350721"
-X-IronPort-AV: E=Sophos;i="6.20,262,1758610800"; d="scan'208";a="67350721"
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=GOfoq0YPJnPFvcquPG8OZvA5ci4TW8raNInBbeEbVhg=;
+ b=iImTJPRs8abNMkmg81ZmzSG2ecykKkxy4zEO0hDLdQ6jEOziERRNj+WW
+ cP9MJnuuTaTEgxm75Kx8TLOJZKw2vZ8vcPLwUVCSQu/hJzzZ5dEGInLzu
+ zLMwdvOIZ3jfjsW7h/mFxjzduDwU9t1yMcy6dsX6FK8WG5qYHiToCXY0E
+ u9jgGvgyo5iwoHv7afT/2cfSe8Cor0vQT4gkG318yw/OMRlvfULzXICzF
+ HjesbLlgIEXPHIUJiBtyLX4HuQa0pzGoHaM9sZncIK8vD2RRafPcVbAnr
+ hElHM0IJfC3LuYBXirBzNTBGYaQkCPOMgRJEU7IKeM07iwO15UzLuCb5X w==;
+X-CSE-ConnectionGUID: vG3o76sMR3SQV4fkLs2KIA==
+X-CSE-MsgGUID: R5uYFQ86TEqhu4mFDugTuw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11637"; a="67350726"
+X-IronPort-AV: E=Sophos;i="6.20,262,1758610800"; d="scan'208";a="67350726"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  09 Dec 2025 11:45:35 -0800
-X-CSE-ConnectionGUID: SMyeaR55Rs2mgmSqhFdCtA==
-X-CSE-MsgGUID: rqP8DdJySCyyao0vI9jgTQ==
+X-CSE-ConnectionGUID: v4abaXlITsmfgM2Wykb+hA==
+X-CSE-MsgGUID: Wz465NMlRV21QVfAgqGixw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,262,1758610800"; d="scan'208";a="196317415"
+X-IronPort-AV: E=Sophos;i="6.20,262,1758610800"; d="scan'208";a="196317421"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  09 Dec 2025 11:45:35 -0800
@@ -46,13 +46,13 @@ To: intel-xe@lists.freedesktop.org,
 	dri-devel@lists.freedesktop.org
 Cc: niranjana.vishwanathapura@intel.com, christian.koenig@amd.com,
  pstanner@redhat.com, dakr@kernel.org
-Subject: [PATCH v8 0/2] Add DRM sched support functions to avoid driver side
- layering violations 
-Date: Tue,  9 Dec 2025 11:45:29 -0800
-Message-Id: <20251209194531.1366098-1-matthew.brost@intel.com>
+Subject: [PATCH v8 2/2] drm/sched: Add pending job list iterator
+Date: Tue,  9 Dec 2025 11:45:31 -0800
+Message-Id: <20251209194531.1366098-3-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20251209194531.1366098-1-matthew.brost@intel.com>
+References: <20251209194531.1366098-1-matthew.brost@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,23 +68,84 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Subset of [1], believe we are in agreement these can go into the DRM
-scheduler. Will post the Xe in a follow once patches make it from
-drm-misc-next to drm-xe-next.
+Stop open coding pending job list in drivers. Add pending job list
+iterator which safely walks DRM scheduler list asserting DRM scheduler
+is stopped.
 
-Matt
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+Reviewed-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 
-[1] https://patchwork.freedesktop.org/series/155314/
+---
 
-Matthew Brost (2):
-  drm/sched: Add several job helpers to avoid drivers touching scheduler
-    state
-  drm/sched: Add pending job list iterator
+v2:
+ - Fix checkpatch (CI)
+v3:
+ - Drop locked version (Christian)
+v4:
+ - Reorder patch (Niranjana)
+---
+ include/drm/gpu_scheduler.h | 50 +++++++++++++++++++++++++++++++++++++
+ 1 file changed, 50 insertions(+)
 
- drivers/gpu/drm/scheduler/sched_main.c | 36 +++++++++++++++++-
- include/drm/gpu_scheduler.h            | 52 ++++++++++++++++++++++++++
- 2 files changed, 86 insertions(+), 2 deletions(-)
-
+diff --git a/include/drm/gpu_scheduler.h b/include/drm/gpu_scheduler.h
+index 86b6075ce799..78e07c2507c7 100644
+--- a/include/drm/gpu_scheduler.h
++++ b/include/drm/gpu_scheduler.h
+@@ -700,4 +700,54 @@ void drm_sched_entity_modify_sched(struct drm_sched_entity *entity,
+ 				   struct drm_gpu_scheduler **sched_list,
+ 				   unsigned int num_sched_list);
+ 
++/**
++ * struct drm_sched_pending_job_iter - DRM scheduler pending job iterator state
++ * @sched: DRM scheduler associated with pending job iterator
++ */
++struct drm_sched_pending_job_iter {
++	struct drm_gpu_scheduler *sched;
++};
++
++/* Drivers should never call this directly */
++static inline struct drm_sched_pending_job_iter
++__drm_sched_pending_job_iter_begin(struct drm_gpu_scheduler *sched)
++{
++	struct drm_sched_pending_job_iter iter = {
++		.sched = sched,
++	};
++
++	WARN_ON(!drm_sched_is_stopped(sched));
++	return iter;
++}
++
++/* Drivers should never call this directly */
++static inline void
++__drm_sched_pending_job_iter_end(const struct drm_sched_pending_job_iter iter)
++{
++	WARN_ON(!drm_sched_is_stopped(iter.sched));
++}
++
++DEFINE_CLASS(drm_sched_pending_job_iter, struct drm_sched_pending_job_iter,
++	     __drm_sched_pending_job_iter_end(_T),
++	     __drm_sched_pending_job_iter_begin(__sched),
++	     struct drm_gpu_scheduler *__sched);
++static inline void *
++class_drm_sched_pending_job_iter_lock_ptr(class_drm_sched_pending_job_iter_t *_T)
++{ return _T; }
++#define class_drm_sched_pending_job_iter_is_conditional false
++
++/**
++ * drm_sched_for_each_pending_job() - Iterator for each pending job in scheduler
++ * @__job: Current pending job being iterated over
++ * @__sched: DRM scheduler to iterate over pending jobs
++ * @__entity: DRM scheduler entity to filter jobs, NULL indicates no filter
++ *
++ * Iterator for each pending job in scheduler, filtering on an entity, and
++ * enforcing scheduler is fully stopped
++ */
++#define drm_sched_for_each_pending_job(__job, __sched, __entity)		\
++	scoped_guard(drm_sched_pending_job_iter, (__sched))			\
++		list_for_each_entry((__job), &(__sched)->pending_list, list)	\
++			for_each_if(!(__entity) || (__job)->entity == (__entity))
++
+ #endif
 -- 
 2.34.1
 
