@@ -4,51 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DE02ED3B9AD
-	for <intel-xe@archiver.kernel.org>; Tue,  9 Dec 2025 23:31:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E0A5FD3B9AA
+	for <intel-xe@archiver.kernel.org>; Tue,  9 Dec 2025 23:38:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7080410E22A;
-	Tue,  9 Dec 2025 23:31:49 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jVlguT8V";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 37F2B10E22A
- for <intel-xe@lists.freedesktop.org>; Tue,  9 Dec 2025 23:31:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765323107; x=1796859107;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=zv968s8uNwnlhARONAbZnbry78gb/JMwYqRX8RZ0Ld8=;
- b=jVlguT8VXr182GIqPMUStncH2ao+2t4WdMjW4uj6yB4xzaHljz14QFDH
- Q6YiI24WdJtHTpAgj5ilno340id7YwaT8AsK6tdVwuqMAi4ZJnT3yT8jW
- ehmlEH9qG3GZcLdttvCRLwC8SDnnHVZS9GHUUUbpDk+JPFYztSOeusxM9
- iX9GfA75Hm6RPu/eZHMXzwOK8O8edxadmS8LUK0PhBoHMLx7DE8z7EE+I
- h562f2FbhwAyUujM5zZD83y7XVP6xIwKNqRqVyWTqUb8aJFtF1IO5oBTr
- XJt+GDB7q/WR6BAptbvE7F8rJhpVwQ65zUHg02vsoj/3aUYs2RyDXc5Ee g==;
-X-CSE-ConnectionGUID: ewyqJiH7TQiY9QbTZ/4yRw==
-X-CSE-MsgGUID: Uj3tMKx1SV6mkeAPbzoN/Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11637"; a="67341813"
-X-IronPort-AV: E=Sophos;i="6.20,262,1758610800"; d="scan'208";a="67341813"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2025 15:31:47 -0800
-X-CSE-ConnectionGUID: uMPwctMdTGCDSgOUlNyF8A==
-X-CSE-MsgGUID: 9ufKdx7hQWydIicvNA9BJQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,262,1758610800"; d="scan'208";a="200522857"
-Received: from orsosgc001.jf.intel.com ([10.88.27.185])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2025 15:31:47 -0800
-From: Ashutosh Dixit <ashutosh.dixit@intel.com>
-To: intel-xe@lists.freedesktop.org
-Subject: [PATCH] drm/xe/oa: Always set OAG_OAGLBCTXCTRL_COUNTER_RESUME
-Date: Tue,  9 Dec 2025 15:31:34 -0800
-Message-ID: <20251209233134.1076181-1-ashutosh.dixit@intel.com>
-X-Mailer: git-send-email 2.48.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6357410E22A;
+	Tue,  9 Dec 2025 23:38:15 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5192210E22A;
+ Tue,  9 Dec 2025 23:38:14 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0990927880851040861=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_drm/i915/cx0=3A_Convert_C10?=
+ =?utf-8?q?_PHY_PLL_SSC_state_mismatch_WARN_to_a_debug_message_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Imre Deak" <imre.deak@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 09 Dec 2025 23:38:14 -0000
+Message-ID: <176532349432.71878.7398414763435836386@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20251205122902.1724498-1-imre.deak@intel.com>
+In-Reply-To: <20251205122902.1724498-1-imre.deak@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,41 +36,137 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Reports can be written out to the OA buffer using ways other than periodic
-sampling. These include mmio trigger and context switches. To support these
-use cases, when periodic sampling is not enabled,
-OAG_OAGLBCTXCTRL_COUNTER_RESUME must be set.
+--===============0990927880851040861==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Fixes: 1db9a9dc90ae ("drm/xe/oa: OA stream initialization (OAG)")
-Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
-Reviewed-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
----
- drivers/gpu/drm/xe/xe_oa.c | 7 ++++---
- 1 file changed, 4 insertions(+), 3 deletions(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
-index cc48663c2b48f..896c8f066fdd6 100644
---- a/drivers/gpu/drm/xe/xe_oa.c
-+++ b/drivers/gpu/drm/xe/xe_oa.c
-@@ -1105,11 +1105,12 @@ static int xe_oa_enable_metric_set(struct xe_oa_stream *stream)
- 			oag_buf_size_select(stream) |
- 			oag_configure_mmio_trigger(stream, true));
- 
--	xe_mmio_write32(mmio, __oa_regs(stream)->oa_ctx_ctrl, stream->periodic ?
--			(OAG_OAGLBCTXCTRL_COUNTER_RESUME |
-+	xe_mmio_write32(mmio, __oa_regs(stream)->oa_ctx_ctrl,
-+			OAG_OAGLBCTXCTRL_COUNTER_RESUME |
-+			(stream->periodic ?
- 			 OAG_OAGLBCTXCTRL_TIMER_ENABLE |
- 			 REG_FIELD_PREP(OAG_OAGLBCTXCTRL_TIMER_PERIOD_MASK,
--					stream->period_exponent)) : 0);
-+					 stream->period_exponent) : 0));
- 
- 	/*
- 	 * Initialize Super Queue Internal Cnt Register
--- 
-2.48.1
+Series: drm/i915/cx0: Convert C10 PHY PLL SSC state mismatch WARN to a debug message (rev2)
+URL   : https://patchwork.freedesktop.org/series/158574/
+State : failure
 
+== Summary ==
+
+CI Bug Log - changes from xe-4210-55b19373186bc09befbc0068ee82a67ed9cfbc66_BAT -> xe-pw-158574v2_BAT
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with xe-pw-158574v2_BAT absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-158574v2_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  
+
+Participating hosts (12 -> 12)
+------------------------------
+
+  No changes in participating hosts
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in xe-pw-158574v2_BAT:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@xe_waitfence@engine:
+    - bat-bmg-2:          [PASS][1] -> [FAIL][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4210-55b19373186bc09befbc0068ee82a67ed9cfbc66/bat-bmg-2/igt@xe_waitfence@engine.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158574v2/bat-bmg-2/igt@xe_waitfence@engine.html
+
+  
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8659 -> IGT_8662
+  * Linux: xe-4210-55b19373186bc09befbc0068ee82a67ed9cfbc66 -> xe-pw-158574v2
+
+  IGT_8659: 8659
+  IGT_8662: 9410b6926f317e8bf824502394e09ee8753ff65e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-4210-55b19373186bc09befbc0068ee82a67ed9cfbc66: 55b19373186bc09befbc0068ee82a67ed9cfbc66
+  xe-pw-158574v2: 158574v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158574v2/index.html
+
+--===============0990927880851040861==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/cx0: Convert C10 PHY PLL SSC state mismatch WARN to a debug message (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/158574/">https://patchwork.freedesktop.org/series/158574/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158574v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158574v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4210-55b19373186bc09befbc0068ee82a67ed9cfbc66_BAT -&gt; xe-pw-158574v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-158574v2_BAT absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-158574v2_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (12 -&gt; 12)</h2>
+<p>No changes in participating hosts</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-158574v2_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@xe_waitfence@engine:<ul>
+<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4210-55b19373186bc09befbc0068ee82a67ed9cfbc66/bat-bmg-2/igt@xe_waitfence@engine.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158574v2/bat-bmg-2/igt@xe_waitfence@engine.html">FAIL</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8659 -&gt; IGT_8662</li>
+<li>Linux: xe-4210-55b19373186bc09befbc0068ee82a67ed9cfbc66 -&gt; xe-pw-158574v2</li>
+</ul>
+<p>IGT_8659: 8659<br />
+  IGT_8662: 9410b6926f317e8bf824502394e09ee8753ff65e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-4210-55b19373186bc09befbc0068ee82a67ed9cfbc66: 55b19373186bc09befbc0068ee82a67ed9cfbc66<br />
+  xe-pw-158574v2: 158574v2</p>
+
+</body>
+</html>
+
+--===============0990927880851040861==--
