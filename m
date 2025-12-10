@@ -4,45 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 599E4D3C92C
-	for <intel-xe@archiver.kernel.org>; Wed, 10 Dec 2025 16:18:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2C317D3C928
+	for <intel-xe@archiver.kernel.org>; Wed, 10 Dec 2025 16:33:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1F2E610E77B;
-	Wed, 10 Dec 2025 16:18:21 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="JrB9dOqS";
-	dkim-atps=neutral
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 66C2510E777
- for <intel-xe@lists.freedesktop.org>; Wed, 10 Dec 2025 16:18:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
- Message-ID:Date:Subject:To:From:Sender:Reply-To:Cc:Content-Type:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=g6d17A/sNeVHSMLtOYZbrr2D6AFeEwLklNJcO17gA+A=; b=JrB9dOqSlYhDjg+m96Z7ZtsEov
- 92v5gagaB8X/NKlSlG3GwZJWgW0H2I9bzWm8EbdGLfdtEIJG2VHUjySw9UUpjfeQdKnlfdmhnwYR0
- 8YIjnLIW+MXw/+tZBd2O4787/KUsTz2pUKigynELtBU6YfTEB740Kma2tPeHYLaKRm78h72v1+QD4
- KkTwmyAj7f5vZ4gp+mebO9jD9D9wCAiE3XyWZxWFJnS+rYT9kG0vH2wFs4HAxwBsVskUHmkSfgNzV
- LSlxsxh6rC3sGLWWq0UrdJb04VdwvuGnyL+C+n7OH1QiEa5xpftqvANDnSnWqQ8uQPf5sWHuzWQMV
- e2yljOmA==;
-Received: from [86.33.28.86] (helo=localhost)
- by fanzine2.igalia.com with utf8esmtpsa 
- (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1vTMtG-00B2md-Hx
- for <intel-xe@lists.freedesktop.org>; Wed, 10 Dec 2025 17:18:10 +0100
-From: Tvrtko Ursulin <tursulin@igalia.com>
-To: intel-xe@lists.freedesktop.org
-Subject: [CI 08/10] drm/xe/display: Add support for AuxCCS
-Date: Wed, 10 Dec 2025 17:17:59 +0100
-Message-ID: <20251210161801.14471-9-tursulin@igalia.com>
-X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20251210161801.14471-1-tursulin@igalia.com>
-References: <20251210161801.14471-1-tursulin@igalia.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id CBB0C10E276;
+	Wed, 10 Dec 2025 16:33:39 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EF91710E276;
+ Wed, 10 Dec 2025 16:33:38 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8415053141583982510=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EFull=3A_failure_for_Add_DRM_sched_support_func?=
+ =?utf-8?q?tions_to_avoid_driver_side_layering_violations_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Brost" <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 10 Dec 2025 16:33:38 -0000
+Message-ID: <176538441897.74583.2012670758554915771@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20251209200039.1366764-1-matthew.brost@intel.com>
+In-Reply-To: <20251209200039.1366764-1-matthew.brost@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,166 +36,61 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+--===============8415053141583982510==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Add support for mapping the auxiliary CCS buffer into the DPT page tables.
+== Series Details ==
 
-This will allow for better power efficiency by enabling the render
-compression frame buffer modifiers such as
-I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS in a following patch.
+Series: Add DRM sched support functions to avoid driver side layering violations (rev2)
+URL   : https://patchwork.freedesktop.org/series/158714/
+State : failure
 
-We do this by refactoring the code a bit so handling for the linear
-auxiliary frame buffer can be added in a tidy way. Also replace some
-hardcoded constants.
+== Summary ==
 
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-Cc: Michael J. Ruhl <michael.j.ruhl@intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
----
- drivers/gpu/drm/xe/display/xe_fb_pin.c | 111 ++++++++++++++++++-------
- 1 file changed, 81 insertions(+), 30 deletions(-)
+ERROR: The runconfig 'xe-4213-26f86acfb480a2bb8e74fc9a4f29789b9a3392c5_FULL' does not exist in the database
 
-diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-index a22a9182dadb..f0017cb1d7cb 100644
---- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
-+++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-@@ -50,33 +50,94 @@ write_dpt_rotated(struct xe_bo *bo, struct iosys_map *map, u32 *dpt_ofs, u32 bo_
- 	*dpt_ofs = ALIGN(*dpt_ofs, 4096);
- }
- 
-+static unsigned int
-+write_dpt_padding(struct iosys_map *map, unsigned int dest, unsigned int pad)
-+{
-+	/* The DE ignores the PTEs for the padding tiles */
-+	return dest + pad * sizeof(u64);
-+}
-+
-+static unsigned int
-+write_dpt_remapped_linear(struct xe_bo *bo, struct iosys_map *map,
-+			  unsigned int dest,
-+			  const struct intel_remapped_plane_info *plane)
-+{
-+	struct xe_device *xe = xe_bo_device(bo);
-+	struct xe_ggtt *ggtt = xe_device_get_root_tile(xe)->mem.ggtt;
-+	const u64 pte = xe_ggtt_encode_pte_flags(ggtt, bo,
-+						 xe->pat.idx[XE_CACHE_NONE]);
-+	unsigned int offset = plane->offset * XE_PAGE_SIZE;
-+	unsigned int size = plane->size;
-+
-+	while (size--) {
-+		u64 addr = xe_bo_addr(bo, offset, XE_PAGE_SIZE);
-+
-+		iosys_map_wr(map, dest, u64, addr | pte);
-+		dest += sizeof(u64);
-+		offset += XE_PAGE_SIZE;
-+	}
-+
-+	return dest;
-+}
-+
-+static unsigned int
-+write_dpt_remapped_tiled(struct xe_bo *bo, struct iosys_map *map,
-+			 unsigned int dest,
-+			 const struct intel_remapped_plane_info *plane)
-+{
-+	struct xe_device *xe = xe_bo_device(bo);
-+	struct xe_ggtt *ggtt = xe_device_get_root_tile(xe)->mem.ggtt;
-+	const u64 pte = xe_ggtt_encode_pte_flags(ggtt, bo,
-+						 xe->pat.idx[XE_CACHE_NONE]);
-+	unsigned int offset, column, row;
-+
-+	for (row = 0; row < plane->height; row++) {
-+		offset = (plane->offset + plane->src_stride * row) *
-+			 XE_PAGE_SIZE;
-+
-+		for (column = 0; column < plane->width; column++) {
-+			u64 addr = xe_bo_addr(bo, offset, XE_PAGE_SIZE);
-+
-+			iosys_map_wr(map, dest, u64, addr | pte);
-+			dest += sizeof(u64);
-+			offset += XE_PAGE_SIZE;
-+		}
-+
-+		dest = write_dpt_padding(map, dest,
-+					 plane->dst_stride - plane->width);
-+	}
-+
-+	return dest;
-+}
-+
- static void
--write_dpt_remapped(struct xe_bo *bo, struct iosys_map *map, u32 *dpt_ofs,
--		   u32 bo_ofs, u32 width, u32 height, u32 src_stride,
--		   u32 dst_stride)
-+write_dpt_remapped(struct xe_bo *bo,
-+		   const struct intel_remapped_info *remap_info,
-+		   struct iosys_map *map)
- {
--	struct xe_device *xe = xe_bo_device(bo);
--	struct xe_ggtt *ggtt = xe_device_get_root_tile(xe)->mem.ggtt;
--	u32 column, row;
--	u64 pte = xe_ggtt_encode_pte_flags(ggtt, bo, xe->pat.idx[XE_CACHE_NONE]);
-+	unsigned int i, dest = 0;
- 
--	for (row = 0; row < height; row++) {
--		u32 src_idx = src_stride * row + bo_ofs;
-+	for (i = 0; i < ARRAY_SIZE(remap_info->plane); i++) {
-+		const struct intel_remapped_plane_info *plane =
-+						&remap_info->plane[i];
- 
--		for (column = 0; column < width; column++) {
--			u64 addr = xe_bo_addr(bo, src_idx * XE_PAGE_SIZE, XE_PAGE_SIZE);
--			iosys_map_wr(map, *dpt_ofs, u64, pte | addr);
-+		if (!plane->width && !plane->height && !plane->linear)
-+			continue;
- 
--			*dpt_ofs += 8;
--			src_idx++;
-+		if (remap_info->plane_alignment) {
-+			const unsigned int index = dest / sizeof(u64);
-+			const unsigned int pad =
-+				ALIGN(index, remap_info->plane_alignment) -
-+				index;
-+
-+			dest = write_dpt_padding(map, dest, pad);
- 		}
- 
--		/* The DE ignores the PTEs for the padding tiles */
--		*dpt_ofs += (dst_stride - width) * 8;
-+		if (plane->linear)
-+			dest = write_dpt_remapped_linear(bo, map, dest, plane);
-+		else
-+			dest = write_dpt_remapped_tiled(bo, map, dest, plane);
- 	}
--
--	/* Align to next page */
--	*dpt_ofs = ALIGN(*dpt_ofs, 4096);
- }
- 
- static int __xe_pin_fb_vma_dpt(const struct intel_framebuffer *fb,
-@@ -138,17 +199,7 @@ static int __xe_pin_fb_vma_dpt(const struct intel_framebuffer *fb,
- 			iosys_map_wr(&dpt->vmap, x * 8, u64, pte | addr);
- 		}
- 	} else if (view->type == I915_GTT_VIEW_REMAPPED) {
--		const struct intel_remapped_info *remap_info = &view->remapped;
--		u32 i, dpt_ofs = 0;
--
--		for (i = 0; i < ARRAY_SIZE(remap_info->plane); i++)
--			write_dpt_remapped(bo, &dpt->vmap, &dpt_ofs,
--					   remap_info->plane[i].offset,
--					   remap_info->plane[i].width,
--					   remap_info->plane[i].height,
--					   remap_info->plane[i].src_stride,
--					   remap_info->plane[i].dst_stride);
--
-+		write_dpt_remapped(bo, &view->remapped, &dpt->vmap);
- 	} else {
- 		const struct intel_rotation_info *rot_info = &view->rotated;
- 		u32 i, dpt_ofs = 0;
--- 
-2.52.0
+== Logs ==
 
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158714v2/index.html
+
+--===============8415053141583982510==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Add DRM sched support functions to avoid driver side layering violations (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/158714/">https://patchwork.freedesktop.org/series/158714/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158714v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158714v2/index.html</a></td></tr>
+
+</table>
+
+
+    <p>ERROR: The runconfig 'xe-4213-26f86acfb480a2bb8e74fc9a4f29789b9a3392c5_FULL' does not exist in the database</p>
+
+</body>
+</html>
+
+--===============8415053141583982510==--
