@@ -4,51 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 639D0D3B9B5
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9235DD3B9B7
 	for <intel-xe@archiver.kernel.org>; Wed, 10 Dec 2025 00:39:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 207D810E5FC;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 49F3810E63E;
 	Wed, 10 Dec 2025 00:39:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BayM8Oww";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MZ5QHkXB";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 08F5810E5D1
- for <intel-xe@lists.freedesktop.org>; Wed, 10 Dec 2025 00:39:21 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6252910E5D1
+ for <intel-xe@lists.freedesktop.org>; Wed, 10 Dec 2025 00:39:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765327162; x=1796863162;
+ t=1765327164; x=1796863164;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=+Q5ZU4jHeoZcRVVDUpRHyc8h1ascrLsvbJGp7kmFWv0=;
- b=BayM8OwwVuzE2OG+WISSTfN2UrzeFnDUqWWEDBbkyGCZVWZ64GapN3tR
- LVJqfOM710v7M5yKyOyBE0xXro1mzcHPAwpvCkeBTwY/aeqcI2iXfql0y
- iaX7YOkynxwvkjJKGCq1P+OHrQ+xljYLz+J2r4CdItbBP3vOReDHYARkQ
- xQ1jOBjudR3ecV2EyVlo2+YTn4nYkYXdfN6sRGVFCU7Ynqf6yTZJlcAdV
- vGnto73A7sTYcnYiu3JcY7hbefxtnqE1sUFrCpvds8nAjvB1WG4TLbdF2
- x6F3xPCX3LnpX8Pr11AxVPMGlDEOetHn5enYDXCCQOiRDDYJY/oGDTSRg g==;
-X-CSE-ConnectionGUID: llTfFixuSyW/vrxlz1Ly1g==
-X-CSE-MsgGUID: 8n7DbuDnQbeqt70pTLgDOw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11637"; a="67180373"
-X-IronPort-AV: E=Sophos;i="6.20,262,1758610800"; d="scan'208";a="67180373"
+ bh=h0dsYRfpQ+TnOW695Lk1Xl82J5Pw9whlz02D3/X8efU=;
+ b=MZ5QHkXBJdVLYJKCsjzA7hCDzTVbxBOkBHZBBMvApbbSIohHIN+4IHSi
+ 1y8Y5ZXlVwjSk2nHeIfUQkjRhxDMUWdHFG+zxovTjXTxYKAWu9+Y10JDY
+ ayI99BR58t1kI7KnRo/qrTVK0/P2M+fqu4mNuirTYbNEGbaQrkBlYBwh4
+ JjTt/4bFfU84BmF+nqNYAN2GtHUbyS8JGMBm4LhUUWmnHCQOxbIwcMPCv
+ ef9kn/3W5rjMQO2QepHsDZQFDEagg2yFS2SkuHCv2d8wQoxPTFYONsp1Y
+ lLBKjL+8gr1zgxNbqw9lNXlVKTcr4UknjimC8KunFo6VVEASc87XV1LTN A==;
+X-CSE-ConnectionGUID: MoodylzYRRCcIl4nyP8Swg==
+X-CSE-MsgGUID: jN69LmB2TDqOQWvxP5haTQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11637"; a="67180380"
+X-IronPort-AV: E=Sophos;i="6.20,262,1758610800"; d="scan'208";a="67180380"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2025 16:39:22 -0800
-X-CSE-ConnectionGUID: iEF+Q5bbS8S6GkLFovDcdg==
-X-CSE-MsgGUID: 2YKqG6e2R0yFdFaRQ5j4vA==
+ 09 Dec 2025 16:39:23 -0800
+X-CSE-ConnectionGUID: 9dAYCj0AQcqKccNmmCv0+w==
+X-CSE-MsgGUID: /MKMcAsfQJqnSftuaizVBg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,262,1758610800"; d="scan'208";a="196421519"
+X-IronPort-AV: E=Sophos;i="6.20,262,1758610800"; d="scan'208";a="196421540"
 Received: from nvishwa1-desk.sc.intel.com ([172.25.29.139])
  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2025 16:39:22 -0800
+ 09 Dec 2025 16:39:23 -0800
 From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.brost@intel.com,
 	matthew.d.roper@intel.com
-Subject: [PATCH v5 07/17] drm/xe/multi_queue: Add support for multi queue
- dynamic priority change
-Date: Tue,  9 Dec 2025 16:39:18 -0800
-Message-ID: <20251210003913.1612141-26-niranjana.vishwanathapura@intel.com>
+Subject: [PATCH v5 13/17] drm/xe/multi_queue: Teardown group upon job timeout
+Date: Tue,  9 Dec 2025 16:39:24 -0800
+Message-ID: <20251210003913.1612141-32-niranjana.vishwanathapura@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20251210003913.1612141-19-niranjana.vishwanathapura@intel.com>
 References: <20251210003913.1612141-19-niranjana.vishwanathapura@intel.com>
@@ -68,149 +67,87 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Support dynamic priority change for multi queue group queues via
-exec queue set_property ioctl. Issue CGP_SYNC command to GuC through
-the drm scheduler message interface for priority to take effect.
+Upon a job timeout, teardown the multi-queue group by
+triggering TDR on all queues of the multi-queue group
+and by skipping timeout checks in them.
 
-v2: Move is_multi_queue check to exec_queue layer and assert
-    is_multi_queue being set in guc submission layer (Matt Brost)
-v3: Assert CGP_SYNC message length is valid (Matt Brost)
+v5: Ban the group while trigerring TDR for the guc
+    reported errors
+    Add FIXME in TDR to take multi-queue group off HW
+    (Matt Brost)
 
-Signed-off-by: Pallavi Mishra <pallavi.mishra@intel.com>
 Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_exec_queue.c       | 11 ++++-
- drivers/gpu/drm/xe/xe_exec_queue_types.h |  3 ++
- drivers/gpu/drm/xe/xe_guc_submit.c       | 57 ++++++++++++++++++++++--
- 3 files changed, 65 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/xe/xe_exec_queue_types.h |  2 ++
+ drivers/gpu/drm/xe/xe_guc_submit.c       | 20 +++++++++++++++++++-
+ 2 files changed, 21 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-index d738a9fea1e1..256e2ce1fe69 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue.c
-+++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-@@ -771,9 +771,16 @@ static int exec_queue_set_multi_queue_priority(struct xe_device *xe, struct xe_e
- 	if (XE_IOCTL_DBG(xe, value > XE_MULTI_QUEUE_PRIORITY_HIGH))
- 		return -EINVAL;
- 
--	q->multi_queue.priority = value;
-+	/* For queue creation time (!q->xef) setting, just store the priority value */
-+	if (!q->xef) {
-+		q->multi_queue.priority = value;
-+		return 0;
-+	}
- 
--	return 0;
-+	if (!xe_exec_queue_is_multi_queue(q))
-+		return -EINVAL;
-+
-+	return q->ops->set_multi_queue_priority(q, value);
- }
- 
- typedef int (*xe_exec_queue_set_property_fn)(struct xe_device *xe,
 diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-index 46e5f4715a0d..1c285ac12868 100644
+index 8a954ee62505..5fc516b0bb77 100644
 --- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
 +++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-@@ -260,6 +260,9 @@ struct xe_exec_queue_ops {
- 	int (*set_timeslice)(struct xe_exec_queue *q, u32 timeslice_us);
- 	/** @set_preempt_timeout: Set preemption timeout for exec queue */
- 	int (*set_preempt_timeout)(struct xe_exec_queue *q, u32 preempt_timeout_us);
-+	/** @set_multi_queue_priority: Set multi queue priority */
-+	int (*set_multi_queue_priority)(struct xe_exec_queue *q,
-+					enum xe_multi_queue_priority priority);
- 	/**
- 	 * @suspend: Suspend exec queue from executing, allowed to be called
- 	 * multiple times in a row before resume with the caveat that
+@@ -64,6 +64,8 @@ struct xe_exec_queue_group {
+ 	struct mutex list_lock;
+ 	/** @sync_pending: CGP_SYNC_DONE g2h response pending */
+ 	bool sync_pending;
++	/** @banned: Group banned */
++	bool banned;
+ };
+ 
+ /**
 diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index 7cca03d4296c..2f467cc1929f 100644
+index e8bde976e4c8..64cc2b285714 100644
 --- a/drivers/gpu/drm/xe/xe_guc_submit.c
 +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -1779,10 +1779,34 @@ static void __guc_exec_queue_process_msg_resume(struct xe_sched_msg *msg)
- 	}
- }
+@@ -602,6 +602,8 @@ static void xe_guc_exec_queue_group_trigger_cleanup(struct xe_exec_queue *q)
+ 	xe_gt_assert(guc_to_gt(exec_queue_to_guc(q)),
+ 		     xe_exec_queue_is_multi_queue(q));
  
--#define CLEANUP		1	/* Non-zero values to catch uninitialized msg */
--#define SET_SCHED_PROPS	2
--#define SUSPEND		3
--#define RESUME		4
-+static void __guc_exec_queue_process_msg_set_multi_queue_priority(struct xe_sched_msg *msg)
-+{
-+	struct xe_exec_queue *q = msg->private_data;
-+
-+	if (guc_exec_queue_allowed_to_change_state(q)) {
-+#define MAX_MULTI_QUEUE_CGP_SYNC_SIZE        (2)
-+		struct xe_guc *guc = exec_queue_to_guc(q);
-+		struct xe_exec_queue_group *group = q->multi_queue.group;
-+		u32 action[MAX_MULTI_QUEUE_CGP_SYNC_SIZE];
-+		int len = 0;
-+
-+		action[len++] = XE_GUC_ACTION_MULTI_QUEUE_CONTEXT_CGP_SYNC;
-+		action[len++] = group->primary->guc->id;
-+
-+		xe_gt_assert(guc_to_gt(guc), len <= MAX_MULTI_QUEUE_CGP_SYNC_SIZE);
-+#undef MAX_MULTI_QUEUE_CGP_SYNC_SIZE
-+
-+		xe_guc_exec_queue_group_cgp_sync(guc, q, action, len);
-+	}
-+
-+	kfree(msg);
-+}
-+
-+#define CLEANUP				1	/* Non-zero values to catch uninitialized msg */
-+#define SET_SCHED_PROPS			2
-+#define SUSPEND				3
-+#define RESUME				4
-+#define SET_MULTI_QUEUE_PRIORITY	5
- #define OPCODE_MASK	0xf
- #define MSG_LOCKED	BIT(8)
- #define MSG_HEAD	BIT(9)
-@@ -1806,6 +1830,9 @@ static void guc_exec_queue_process_msg(struct xe_sched_msg *msg)
- 	case RESUME:
- 		__guc_exec_queue_process_msg_resume(msg);
- 		break;
-+	case SET_MULTI_QUEUE_PRIORITY:
-+		__guc_exec_queue_process_msg_set_multi_queue_priority(msg);
-+		break;
- 	default:
- 		XE_WARN_ON("Unknown message type");
- 	}
-@@ -2022,6 +2049,27 @@ static int guc_exec_queue_set_preempt_timeout(struct xe_exec_queue *q,
- 	return 0;
- }
++	/* Group banned, skip timeout check in TDR */
++	WRITE_ONCE(group->banned, true);
+ 	xe_guc_exec_queue_trigger_cleanup(primary);
  
-+static int guc_exec_queue_set_multi_queue_priority(struct xe_exec_queue *q,
-+						   enum xe_multi_queue_priority priority)
-+{
-+	struct xe_sched_msg *msg;
+ 	mutex_lock(&group->list_lock);
+@@ -617,6 +619,9 @@ static void xe_guc_exec_queue_reset_trigger_cleanup(struct xe_exec_queue *q)
+ 		struct xe_exec_queue_group *group = q->multi_queue.group;
+ 		struct xe_exec_queue *eq;
+ 
++		/* Group banned, skip timeout check in TDR */
++		WRITE_ONCE(group->banned, true);
 +
-+	xe_gt_assert(guc_to_gt(exec_queue_to_guc(q)), xe_exec_queue_is_multi_queue(q));
+ 		set_exec_queue_reset(primary);
+ 		if (!exec_queue_banned(primary) && !exec_queue_check_timeout(primary))
+ 			xe_guc_exec_queue_trigger_cleanup(primary);
+@@ -1487,6 +1492,19 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
+ 		exec_queue_killed_or_banned_or_wedged(q) ||
+ 		exec_queue_destroyed(q);
+ 
++	/* Skip timeout check if multi-queue group is banned */
++	if (xe_exec_queue_is_multi_queue(q) &&
++	    READ_ONCE(q->multi_queue.group->banned))
++		skip_timeout_check = true;
 +
-+	if (q->multi_queue.priority == priority ||
-+	    exec_queue_killed_or_banned_or_wedged(q))
-+		return 0;
++	/*
++	 * FIXME: In multi-queue scenario, the TDR must ensure that the whole
++	 * multi-queue group is off the HW before signaling the fences to avoid
++	 * possible memory corruptions. This means disabling scheduling on the
++	 * primary queue before or during the secondary queue's TDR. Need to
++	 * implement this in least obtrusive way.
++	 */
 +
-+	msg = kmalloc(sizeof(*msg), GFP_KERNEL);
-+	if (!msg)
-+		return -ENOMEM;
-+
-+	q->multi_queue.priority = priority;
-+	guc_exec_queue_add_msg(q, msg, SET_MULTI_QUEUE_PRIORITY);
-+
-+	return 0;
-+}
-+
- static int guc_exec_queue_suspend(struct xe_exec_queue *q)
- {
- 	struct xe_gpu_scheduler *sched = &q->guc->sched;
-@@ -2113,6 +2161,7 @@ static const struct xe_exec_queue_ops guc_exec_queue_ops = {
- 	.set_priority = guc_exec_queue_set_priority,
- 	.set_timeslice = guc_exec_queue_set_timeslice,
- 	.set_preempt_timeout = guc_exec_queue_set_preempt_timeout,
-+	.set_multi_queue_priority = guc_exec_queue_set_multi_queue_priority,
- 	.suspend = guc_exec_queue_suspend,
- 	.suspend_wait = guc_exec_queue_suspend_wait,
- 	.resume = guc_exec_queue_resume,
+ 	/*
+ 	 * If devcoredump not captured and GuC capture for the job is not ready
+ 	 * do manual capture first and decide later if we need to use it
+@@ -1639,7 +1657,7 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
+ 	xe_sched_add_pending_job(sched, job);
+ 	xe_sched_submission_start(sched);
+ 
+-	xe_guc_exec_queue_trigger_cleanup(q);
++	xe_guc_exec_queue_group_trigger_cleanup(q);
+ 
+ 	/* Mark all outstanding jobs as bad, thus completing them */
+ 	spin_lock(&sched->base.job_list_lock);
 -- 
 2.43.0
 
