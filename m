@@ -4,44 +4,41 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A7763D3C928
-	for <intel-xe@archiver.kernel.org>; Wed, 10 Dec 2025 16:14:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 105C4D3C92B
+	for <intel-xe@archiver.kernel.org>; Wed, 10 Dec 2025 16:15:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6C75210E1E7;
-	Wed, 10 Dec 2025 16:14:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BC9BA10E70E;
+	Wed, 10 Dec 2025 16:15:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="llyUB18q";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="NqAVcTtC";
 	dkim-atps=neutral
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A768010E723
- for <intel-xe@lists.freedesktop.org>; Wed, 10 Dec 2025 16:14:42 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 71DF710E70E
+ for <intel-xe@lists.freedesktop.org>; Wed, 10 Dec 2025 16:15:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
- In-Reply-To:Message-ID:Date:Subject:To:From:Sender:Reply-To:Cc:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:
+ Date:Subject:To:From:Sender:Reply-To:Cc:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=7VhkGzrhpM41v8SBUv9DSDe4He5nG8Y8GaA4mdojTz4=; b=llyUB18qCHfyeghjlILtLUNIQG
- RPTGRWVFRQjnY2ePzqTgloyCqLeNwOe6PXf1DHJtGqOT6nYb7Hj5Al3jZTqcjgkqwTLIUrBz8C/xn
- hGDqEgCtuJzK0JszgnLKl8fpRnYkeWsXGTyF1QhrF2buO+huaOrb9dhJyNCrys8CRNBUF51SHwBOn
- JC4dokrKt/+eRaTePmaqIEJn/7JnZ2GTMX0TF4fQwaQ3v2CjZ4n4uGTmcC/QcIUHq/THmprQA68yd
- Zcw7TjeMWL5AbPbBpyVuIOQpsXAWqoPvMi01V6/n379itU5npcaa13HmmZxfsveptAsovNUyLVpVH
- t5gTzngg==;
+ bh=r5xjwiypPH8zsmOkacEQ4wDz5Qx0tgS7sM+7CIticXQ=; b=NqAVcTtCljl2iUeqrgLGUQghHw
+ 4kIdwllKCWWIZzwsDvQp+FHAk/fRwg+sM6wfpuvPbQ+qsldAYJjs3wnQ8IK2Mcx+oubUVrKOr5q+q
+ hCijfF4kd+wLBmwVzw+ul+J7ZARqSBaZUSHdXhzd3nJ/Ca+v7/xVNWPaEvaDXBdm3URAAEUsINPfJ
+ qR/+fG4x/aYP2DEySNETQifluMFBM64rx1sDsFEWzY/8FttJa9vu1budiHuzt4Nxb2EnMGBv8usCG
+ 2BO5WaovLTSkCo2FfIH681jdghrLZDwH8pQwvIlZDPY0unkCnElSm2EMOrshiBtIObU+ZLe89S8Ct
+ xpzlKMDg==;
 Received: from [86.33.28.86] (helo=localhost)
  by fanzine2.igalia.com with utf8esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1vTMps-00B2e6-SX
- for <intel-xe@lists.freedesktop.org>; Wed, 10 Dec 2025 17:14:41 +0100
+ id 1vTMqA-00B2f8-Je
+ for <intel-xe@lists.freedesktop.org>; Wed, 10 Dec 2025 17:14:58 +0100
 From: Tvrtko Ursulin <tursulin@igalia.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI 09/10] drm/xe/xelp: Expose AuxCCS frame buffer modifiers on
- Alderlake-P
-Date: Wed, 10 Dec 2025 17:14:30 +0100
-Message-ID: <20251210161430.14336-10-tursulin@igalia.com>
+Subject: [CI 00/11] auxccs dpt wc no stolen
+Date: Wed, 10 Dec 2025 17:14:46 +0100
+Message-ID: <20251210161457.14394-1-tursulin@igalia.com>
 X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20251210161430.14336-1-tursulin@igalia.com>
-References: <20251210161430.14336-1-tursulin@igalia.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -61,58 +58,39 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 
-Now that we have implemented all the related missing bits we can enable
-the AuxCCS compressed modifiers which were disabled in
-cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if built for Xe").
+test run
 
-Tested with KDE Wayland, on Lenovo Carbon X1 ADL-P:
+Tvrtko Ursulin (11):
+  drm/xe: Fix ggtt fb alignment
+  drm/i915/display: Detect AuxCCS support via display parent interface
+  drm/xe/xelpg: Limit AuxCCS ring buffer programming to Alderlake
+  drm/xe/xelp: Quiesce memory traffic before invalidating AuxCCS
+  drm/xe/xelp: Wait for AuxCCS invalidation to complete
+  drm/xe: Export xe_emit_aux_table_inv
+  drm/xe/xelp: Add AuxCCS invalidation to the indirect context
+    workarounds
+  drm/xe/display: Add support for AuxCCS
+  drm/xe/xelp: Expose AuxCCS frame buffer modifiers on Alderlake-P
+  use wc for dpt
+  drm/xe: Do not use stolen memory for DPT on IGFX and AuxCCS
 
-        [PLANE:32:plane 1A]: type=PRI
-                uapi: [FB:242] AR30 little-endian (0x30335241),0x100000000000008,2880x1800, visible=visible, src=28
-                hw: [FB:242] AR30 little-endian (0x30335241),0x100000000000008,2880x1800, visible=yes, src=2880.000
+ .../drm/i915/display/intel_display_device.h   |   2 +-
+ drivers/gpu/drm/i915/display/intel_fb.c       |   3 +-
+ drivers/gpu/drm/i915/display/intel_parent.c   |   5 +
+ drivers/gpu/drm/i915/display/intel_parent.h   |   2 +
+ .../drm/i915/display/skl_universal_plane.c    |   9 +-
+ drivers/gpu/drm/i915/i915_driver.c            |  10 ++
+ drivers/gpu/drm/xe/display/xe_display.c       |   8 ++
+ drivers/gpu/drm/xe/display/xe_fb_pin.c        | 135 +++++++++++++-----
+ .../gpu/drm/xe/instructions/xe_mi_commands.h  |   6 +
+ drivers/gpu/drm/xe/xe_hw_engine.h             |  24 ++++
+ drivers/gpu/drm/xe/xe_lrc.c                   |  27 ++++
+ drivers/gpu/drm/xe/xe_ring_ops.c              |  84 +++++++----
+ drivers/gpu/drm/xe/xe_ring_ops.h              |   3 +
+ drivers/gpu/drm/xe/xe_ring_ops_types.h        |   2 +-
+ include/drm/intel/display_parent_interface.h  |   3 +
+ 15 files changed, 249 insertions(+), 74 deletions(-)
 
-Display is working fine - no artefacts, no DMAR/PIPE faults.
-
-v2:
- * Adjust patch title. (Rodrigo)
-
-v3:
- * Complete rewrite based on the display parent interface.
-
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-References: cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if built for Xe")
-Cc: Jani Nikula <jani.nikula@intel.com>
-Cc: José Roberto de Souza <jose.souza@intel.com>
-Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com> # v2
----
- drivers/gpu/drm/xe/display/xe_display.c | 8 ++++++++
- 1 file changed, 8 insertions(+)
-
-diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
-index 9d2aa69ea428..807fc93fb6ae 100644
---- a/drivers/gpu/drm/xe/display/xe_display.c
-+++ b/drivers/gpu/drm/xe/display/xe_display.c
-@@ -534,10 +534,18 @@ static const struct intel_display_irq_interface xe_display_irq_interface = {
- 	.synchronize = irq_synchronize,
- };
- 
-+static bool has_auxccs(struct drm_device *drm)
-+{
-+	struct xe_device *xe = to_xe_device(drm);
-+
-+	return xe->info.platform == XE_ALDERLAKE_P;
-+}
-+
- static const struct intel_display_parent_interface parent = {
- 	.hdcp = &xe_display_hdcp_interface,
- 	.rpm = &xe_display_rpm_interface,
- 	.irq = &xe_display_irq_interface,
-+	.has_auxccs = has_auxccs,
- };
- 
- /**
 -- 
 2.52.0
 
