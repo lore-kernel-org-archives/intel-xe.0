@@ -4,49 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C2F55D3B9AD
-	for <intel-xe@archiver.kernel.org>; Wed, 10 Dec 2025 01:45:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A4CAAD3B9B7
+	for <intel-xe@archiver.kernel.org>; Wed, 10 Dec 2025 01:45:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6B56E10E644;
-	Wed, 10 Dec 2025 01:45:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 69B8210E648;
+	Wed, 10 Dec 2025 01:45:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="D7i4VDyE";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KSyG+zzt";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EB77B10E644
- for <intel-xe@lists.freedesktop.org>; Wed, 10 Dec 2025 01:45:24 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9E48510E648
+ for <intel-xe@lists.freedesktop.org>; Wed, 10 Dec 2025 01:45:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765331125; x=1796867125;
+ t=1765331127; x=1796867127;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=6ebhthKVespwUrW/sPlZwpM6hDW95KYHKTRd8Tn0vzk=;
- b=D7i4VDyEkuQA4XnxGgGbHG1OUswn1JzdSfawFLwDdlZ1gZsT30JtObXU
- hgJqG7QGWLdIqelr+xLCwr5P35zVwlI+o2Ngiv9V45G9/qk5SJP6tS9YP
- Nf8W1Z2zzWAlDiDsHwluR2sPGHo2mzxel1vnpao2IvElGhR+0y/fJ7nXq
- 1ISAugUJH95eLRXP1Fv9m85nzHjW+uf64/F+yxiDI1u9NZKz/oaOr4e/1
- mDq9TsgyeqZn4860+Lg/3zXqQeyTGhinUtdCxBOputcNf7eZUKvBnH3rk
- XXOEBKI5vewSRmy+Ay98tpzvzpQ3R/EHMUGdl98sX+JEUFfBSPjozfTZF Q==;
-X-CSE-ConnectionGUID: 6pEc87ZYT2S35XMn+7LPew==
-X-CSE-MsgGUID: 8E5A4gaeROaRg2Ejk11lTw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11637"; a="66302104"
-X-IronPort-AV: E=Sophos;i="6.20,262,1758610800"; d="scan'208";a="66302104"
+ bh=bJ1olBsYzeikmFMKVm4Pbtn5mlHkA4OE4B3OfIDs9Bg=;
+ b=KSyG+zztuCFYtsNh+Iy1Ojw9qaJSv2E6eGm1JxXw0BLd8jkHHBdsOvLB
+ 0bo5kV580fBKVYBCQSFpqvpR2AHIcXirTpyE7tFqIYjIxwQ9M98UcUvPV
+ eWWyB18WtINilZJyvQf1aeiKPAt7IIDbPd2tSqSuxp6c3vuo/OMEvZNrQ
+ wtt/4Lr8scZ3J8fadsZQJhJl9P6S4CfwWXrWljXHAx10HadbGhEfRASv+
+ XZo12gzIkLzAQ9H0Lou48TANW7zG4RyO9Qc8HxVgtX/BG1h3PzcmOoV6O
+ GEfbrkeCls9oC69wFZEdW9Ch1EWOIfbOolta5DoQ34RWhEUb2+fPiGzj6 Q==;
+X-CSE-ConnectionGUID: JL4Im1K1Tj24dYlihqrasA==
+X-CSE-MsgGUID: iuTIpKB4S4qP3gVkn/4FFw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11637"; a="66302105"
+X-IronPort-AV: E=Sophos;i="6.20,262,1758610800"; d="scan'208";a="66302105"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2025 17:45:25 -0800
-X-CSE-ConnectionGUID: kKBS61R6R+KXTN/L2rDo2g==
-X-CSE-MsgGUID: 3/1iu6Q3RGm0eZ/a/1fgtw==
+ 09 Dec 2025 17:45:26 -0800
+X-CSE-ConnectionGUID: 5ixLq70DTdmq1yqW98RgmQ==
+X-CSE-MsgGUID: acOGTq80SQy6xPkRuW77HA==
 X-ExtLoop1: 1
 Received: from osgc-sh-dragon.sh.intel.com ([10.239.81.44])
- by fmviesa003.fm.intel.com with ESMTP; 09 Dec 2025 17:45:24 -0800
+ by fmviesa003.fm.intel.com with ESMTP; 09 Dec 2025 17:45:25 -0800
 From: Brian Nguyen <brian3.nguyen@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: tejas.upadhyay@intel.com, matthew.brost@intel.com, shuicheng.lin@intel.com,
- stuart.summers@intel.com
-Subject: [PATCH v5 02/10] drm/xe/xe_tlb_inval: Modify fence interface to
- support PPC flush
-Date: Wed, 10 Dec 2025 09:45:20 +0800
-Message-ID: <20251210014517.3184135-14-brian3.nguyen@intel.com>
+ stuart.summers@intel.com, Oak Zeng <oak.zeng@intel.com>
+Subject: [PATCH v5 03/10] drm/xe: Add page reclamation info to device info
+Date: Wed, 10 Dec 2025 09:45:21 +0800
+Message-ID: <20251210014517.3184135-15-brian3.nguyen@intel.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20251210014517.3184135-12-brian3.nguyen@intel.com>
 References: <20251210014517.3184135-12-brian3.nguyen@intel.com>
@@ -66,54 +65,59 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Allow tlb_invalidation to control when driver wants to flush the
-Private Physical Cache (PPC) as a process of the tlb invalidation
-process.
+From: Oak Zeng <oak.zeng@intel.com>
 
-Default behavior is still to always flush the PPC but driver now has the
-option to disable it.
+Starting from Xe3p, HW adds a feature assisting range based page
+reclamation. Introduce a bit in device info to indicate whether
+device has such capability.
 
-v2:
- - Revise commit/kernel doc descriptions. (Shuicheng)
- - Remove unused function. (Shuicheng)
- - Remove bool flush_cache parameter from fence,
-   and various function inputs. (Matthew B)
-
+Signed-off-by: Oak Zeng <oak.zeng@intel.com>
 Signed-off-by: Brian Nguyen <brian3.nguyen@intel.com>
+Reviewed-by: Shuicheng Lin <shuicheng.lin@intel.com>
 Reviewed-by: Matthew Brost <matthew.brost@intel.com>
-Cc: Shuicheng Lin <shuicheng.lin@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc_tlb_inval.c | 9 ++++++---
- 1 file changed, 6 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/xe/xe_device_types.h | 2 ++
+ drivers/gpu/drm/xe/xe_pci.c          | 1 +
+ drivers/gpu/drm/xe/xe_pci_types.h    | 1 +
+ 3 files changed, 4 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_tlb_inval.c b/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
-index 848d3493df10..37ac943cb10f 100644
---- a/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
-+++ b/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
-@@ -34,9 +34,12 @@ static int send_tlb_inval(struct xe_guc *guc, const u32 *action, int len)
- 			      G2H_LEN_DW_TLB_INVALIDATE, 1);
- }
- 
--#define MAKE_INVAL_OP(type)	((type << XE_GUC_TLB_INVAL_TYPE_SHIFT) | \
-+#define MAKE_INVAL_OP_FLUSH(type, flush_cache)	((type << XE_GUC_TLB_INVAL_TYPE_SHIFT) | \
- 		XE_GUC_TLB_INVAL_MODE_HEAVY << XE_GUC_TLB_INVAL_MODE_SHIFT | \
--		XE_GUC_TLB_INVAL_FLUSH_CACHE)
-+		(flush_cache ? \
-+		XE_GUC_TLB_INVAL_FLUSH_CACHE : 0))
-+
-+#define MAKE_INVAL_OP(type)	MAKE_INVAL_OP_FLUSH(type, true)
- 
- static int send_tlb_inval_all(struct xe_tlb_inval *tlb_inval, u32 seqno)
- {
-@@ -152,7 +155,7 @@ static int send_tlb_inval_ppgtt(struct xe_tlb_inval *tlb_inval, u32 seqno,
- 						    ilog2(SZ_2M) + 1)));
- 		xe_gt_assert(gt, IS_ALIGNED(start, length));
- 
--		action[len++] = MAKE_INVAL_OP(XE_GUC_TLB_INVAL_PAGE_SELECTIVE);
-+		action[len++] = MAKE_INVAL_OP_FLUSH(XE_GUC_TLB_INVAL_PAGE_SELECTIVE, true);
- 		action[len++] = asid;
- 		action[len++] = lower_32_bits(start);
- 		action[len++] = upper_32_bits(start);
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index 9de73353223f..3836c5ed1c72 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -315,6 +315,8 @@ struct xe_device {
+ 		u8 has_mem_copy_instr:1;
+ 		/** @info.has_mert: Device has standalone MERT */
+ 		u8 has_mert:1;
++		/** @info.has_page_reclaim_hw_assist: Device supports page reclamation feature */
++		u8 has_page_reclaim_hw_assist:1;
+ 		/** @info.has_pxp: Device has PXP support */
+ 		u8 has_pxp:1;
+ 		/** @info.has_range_tlb_inval: Has range based TLB invalidations */
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index aaea2044c86e..4de52b0a3db5 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -682,6 +682,7 @@ static int xe_info_init_early(struct xe_device *xe,
+ 	xe->info.has_late_bind = desc->has_late_bind;
+ 	xe->info.has_llc = desc->has_llc;
+ 	xe->info.has_mert = desc->has_mert;
++	xe->info.has_page_reclaim_hw_assist = desc->has_page_reclaim_hw_assist;
+ 	xe->info.has_pxp = desc->has_pxp;
+ 	xe->info.has_sriov = xe_configfs_primary_gt_allowed(to_pci_dev(xe->drm.dev)) &&
+ 		desc->has_sriov;
+diff --git a/drivers/gpu/drm/xe/xe_pci_types.h b/drivers/gpu/drm/xe/xe_pci_types.h
+index f19f35359696..96feae80b705 100644
+--- a/drivers/gpu/drm/xe/xe_pci_types.h
++++ b/drivers/gpu/drm/xe/xe_pci_types.h
+@@ -49,6 +49,7 @@ struct xe_device_desc {
+ 	u8 has_mbx_power_limits:1;
+ 	u8 has_mem_copy_instr:1;
+ 	u8 has_mert:1;
++	u8 has_page_reclaim_hw_assist:1;
+ 	u8 has_pxp:1;
+ 	u8 has_sriov:1;
+ 	u8 needs_scratch:1;
 -- 
 2.52.0
 
