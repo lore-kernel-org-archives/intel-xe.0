@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 62E49D3B9B6
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 46E15D3B9B5
 	for <intel-xe@archiver.kernel.org>; Wed, 10 Dec 2025 00:39:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EB4D110E5D1;
+	by gabe.freedesktop.org (Postfix) with ESMTP id EBFAE10E641;
 	Wed, 10 Dec 2025 00:39:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NTCOxgG1";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LpyFd+1f";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BDA1A10E21F
- for <intel-xe@lists.freedesktop.org>; Wed, 10 Dec 2025 00:39:21 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B37F510E5D1
+ for <intel-xe@lists.freedesktop.org>; Wed, 10 Dec 2025 00:39:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765327162; x=1796863162;
+ t=1765327163; x=1796863163;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=i2MR+kYn5BVCgzXzGfskD7C8C1xzWfHq6uG/PQB9FMo=;
- b=NTCOxgG1wkoeiy6A8oe01K5AWZD+ZGHQr4E2BWsYH7z2B/VrYXKnw+vD
- SQL/wqrG9IcgTE9/CmQUEJF+xJNZ/LGe1ayMIDenjfGNs8/f2ovFF9DLs
- LuCEr8YmAKW1xHBb7mXOQj09cZPMhW7tvLZBHsRSGuJuNIgVxozfgK5G+
- JV6k3Q6h76asSMsUQfvyihNxTfr2K2ZAQHCFAutL7NB4JdIv+jMEaZ469
- +NZuR9vzskZTy3jxV4qrKFQjET9Q7jKSdh83qM7H61fiJIEMne+6o+aHu
- x4YCBkaqg+eEKKOCbjyq2Y+DnTG447OjJm/cDN0U6mtg52EWCqUX54LuP Q==;
-X-CSE-ConnectionGUID: ISTdOIo0SeWH/lePlrvrQw==
-X-CSE-MsgGUID: ZuBcSIfIR5C8ebBnOJqsYg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11637"; a="67180371"
-X-IronPort-AV: E=Sophos;i="6.20,262,1758610800"; d="scan'208";a="67180371"
+ bh=vcXNYITMGnYqWWUPZ35kFoa2mtCOXd/W+cChlLuw6bM=;
+ b=LpyFd+1f3Ygqb71Cf4OfhsDApJEYLsC2ovWRK3OHd3lOjE+gDveuYr8F
+ mfEm4tWbOySrzYOJ3NHInD0O6rGPnxhl8QH+ztxicLySQPZys4Tf5DFQY
+ tgz8CQC4o8XcvdmuZhpPzmYzunt5bdfc+2SmlmJkfDogRUJocm5iXueMS
+ HZNGtvfe8oMJ5sWVXsR5nUth3Rc8nP9xsjN75thNvZJW1ReYAyf/sqh+C
+ DA5K2lV2XVeGIp4XF91JZXIo4Lkuixhjb4ySSnPr2RUzco+smiC5txer4
+ Gt7qQsn9HPGi0QI9pyDfFVoXQQdYYQjW0n0a2HIgz7fK83+gO7pfwg1ze g==;
+X-CSE-ConnectionGUID: eNrwfKRwRW+UUh0PTxwi6w==
+X-CSE-MsgGUID: +N7K3TgtTqG3t5KfcTk25g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11637"; a="67180376"
+X-IronPort-AV: E=Sophos;i="6.20,262,1758610800"; d="scan'208";a="67180376"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2025 16:39:22 -0800
-X-CSE-ConnectionGUID: dy9EexA2SomJrUu68/ALHQ==
-X-CSE-MsgGUID: 1uqeI5Q6QMuRTKw1KqjvTw==
+ 09 Dec 2025 16:39:23 -0800
+X-CSE-ConnectionGUID: 9fE3MYgXROG3XuIBNPdpSg==
+X-CSE-MsgGUID: K3j14gwrSVG5Z1YRqIQv3g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,262,1758610800"; d="scan'208";a="196421516"
+X-IronPort-AV: E=Sophos;i="6.20,262,1758610800"; d="scan'208";a="196421529"
 Received: from nvishwa1-desk.sc.intel.com ([172.25.29.139])
  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2025 16:39:22 -0800
+ 09 Dec 2025 16:39:23 -0800
 From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.brost@intel.com,
 	matthew.d.roper@intel.com
-Subject: [PATCH v5 06/17] drm/xe/multi_queue: Add exec_queue set_property
- ioctl support
-Date: Tue,  9 Dec 2025 16:39:17 -0800
-Message-ID: <20251210003913.1612141-25-niranjana.vishwanathapura@intel.com>
+Subject: [PATCH v5 10/17] drm/xe/multi_queue: Set QUEUE_DRAIN_MODE for Multi
+ Queue batches
+Date: Tue,  9 Dec 2025 16:39:21 -0800
+Message-ID: <20251210003913.1612141-29-niranjana.vishwanathapura@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20251210003913.1612141-19-niranjana.vishwanathapura@intel.com>
 References: <20251210003913.1612141-19-niranjana.vishwanathapura@intel.com>
@@ -68,150 +68,189 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This patch adds support for exec_queue set_property ioctl.
-It is derived from the original work which is part of
-https://patchwork.freedesktop.org/series/112188/
+To properly support soft light restore between batches
+being arbitrated at the CFEG, PIPE_CONTROL instructions
+have a new bit in the first DW, QUEUE_DRAIN_MODE. When
+set, this indicates to the CFEG that it should only
+drain the current queue.
 
-Currently only DRM_XE_EXEC_QUEUE_SET_PROPERTY_MULTI_QUEUE_PRIORITY
-property can be dynamically set.
+Additionally we no longer want to set the CS_STALL bit
+for these multi queue queues as this causes the entire
+pipeline to stall waiting for completion of the prior
+batch, preventing this soft light restore from occurring
+between queues in a queue group.
 
-v2: Check for and update kernel-doc which property this ioctl
-    supports (Matt Brost)
+v4: Assert !multi_queue where applicable (Matt Roper)
 
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Signed-off-by: Pallavi Mishra <pallavi.mishra@intel.com>
+Bspec: 56551
+Signed-off-by: Stuart Summers <stuart.summers@intel.com>
 Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device.c     |  2 ++
- drivers/gpu/drm/xe/xe_exec_queue.c | 35 ++++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_exec_queue.h |  2 ++
- include/uapi/drm/xe_drm.h          | 26 ++++++++++++++++++++++
- 4 files changed, 65 insertions(+)
+ .../gpu/drm/xe/instructions/xe_gpu_commands.h |  1 +
+ drivers/gpu/drm/xe/xe_ring_ops.c              | 64 ++++++++++++-------
+ 2 files changed, 42 insertions(+), 23 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 1197f914ef77..7a498c8db7b1 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -207,6 +207,8 @@ static const struct drm_ioctl_desc xe_ioctls[] = {
- 	DRM_IOCTL_DEF_DRV(XE_MADVISE, xe_vm_madvise_ioctl, DRM_RENDER_ALLOW),
- 	DRM_IOCTL_DEF_DRV(XE_VM_QUERY_MEM_RANGE_ATTRS, xe_vm_query_vmas_attrs_ioctl,
- 			  DRM_RENDER_ALLOW),
-+	DRM_IOCTL_DEF_DRV(XE_EXEC_QUEUE_SET_PROPERTY, xe_exec_queue_set_property_ioctl,
-+			  DRM_RENDER_ALLOW),
- };
+diff --git a/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h b/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h
+index 5d41ca297447..885fcf211e6d 100644
+--- a/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h
++++ b/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h
+@@ -47,6 +47,7 @@
  
- static long xe_drm_ioctl(struct file *file, unsigned int cmd, unsigned long arg)
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-index d0082eb45a4a..d738a9fea1e1 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue.c
-+++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-@@ -790,6 +790,41 @@ static const xe_exec_queue_set_property_fn exec_queue_set_property_funcs[] = {
- 							exec_queue_set_multi_queue_priority,
- };
+ #define GFX_OP_PIPE_CONTROL(len)	((0x3<<29)|(0x3<<27)|(0x2<<24)|((len)-2))
  
-+int xe_exec_queue_set_property_ioctl(struct drm_device *dev, void *data,
-+				     struct drm_file *file)
-+{
-+	struct xe_device *xe = to_xe_device(dev);
-+	struct xe_file *xef = to_xe_file(file);
-+	struct drm_xe_exec_queue_set_property *args = data;
-+	struct xe_exec_queue *q;
-+	int ret;
-+	u32 idx;
-+
-+	if (XE_IOCTL_DBG(xe, args->reserved[0] || args->reserved[1]))
-+		return -EINVAL;
-+
-+	if (XE_IOCTL_DBG(xe, args->property !=
-+			 DRM_XE_EXEC_QUEUE_SET_PROPERTY_MULTI_QUEUE_PRIORITY))
-+		return -EINVAL;
-+
-+	q = xe_exec_queue_lookup(xef, args->exec_queue_id);
-+	if (XE_IOCTL_DBG(xe, !q))
-+		return -ENOENT;
-+
-+	idx = array_index_nospec(args->property,
-+				 ARRAY_SIZE(exec_queue_set_property_funcs));
-+	ret = exec_queue_set_property_funcs[idx](xe, q, args->value);
-+	if (XE_IOCTL_DBG(xe, ret))
-+		goto err_post_lookup;
-+
-+	xe_exec_queue_put(q);
-+	return 0;
-+
-+ err_post_lookup:
-+	xe_exec_queue_put(q);
-+	return ret;
-+}
-+
- static int exec_queue_user_ext_check(struct xe_exec_queue *q, u64 properties)
- {
- 	u64 secondary_queue_valid_props = BIT_ULL(DRM_XE_EXEC_QUEUE_SET_PROPERTY_MULTI_GROUP) |
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue.h b/drivers/gpu/drm/xe/xe_exec_queue.h
-index e6daa40003f2..ffcc1feb879e 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue.h
-+++ b/drivers/gpu/drm/xe/xe_exec_queue.h
-@@ -125,6 +125,8 @@ int xe_exec_queue_destroy_ioctl(struct drm_device *dev, void *data,
- 				struct drm_file *file);
- int xe_exec_queue_get_property_ioctl(struct drm_device *dev, void *data,
- 				     struct drm_file *file);
-+int xe_exec_queue_set_property_ioctl(struct drm_device *dev, void *data,
-+				     struct drm_file *file);
- enum xe_exec_queue_priority xe_exec_queue_device_get_max_priority(struct xe_device *xe);
++#define   PIPE_CONTROL0_QUEUE_DRAIN_MODE		BIT(12)
+ #define	  PIPE_CONTROL0_L3_READ_ONLY_CACHE_INVALIDATE	BIT(10)	/* gen12 */
+ #define	  PIPE_CONTROL0_HDC_PIPELINE_FLUSH		BIT(9)	/* gen12 */
  
- void xe_exec_queue_last_fence_put(struct xe_exec_queue *e, struct xe_vm *vm);
-diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index fd79d78de2e9..705081bf0d81 100644
---- a/include/uapi/drm/xe_drm.h
-+++ b/include/uapi/drm/xe_drm.h
-@@ -106,6 +106,7 @@ extern "C" {
- #define DRM_XE_OBSERVATION		0x0b
- #define DRM_XE_MADVISE			0x0c
- #define DRM_XE_VM_QUERY_MEM_RANGE_ATTRS	0x0d
-+#define DRM_XE_EXEC_QUEUE_SET_PROPERTY	0x0e
- 
- /* Must be kept compact -- no holes */
- 
-@@ -123,6 +124,7 @@ extern "C" {
- #define DRM_IOCTL_XE_OBSERVATION		DRM_IOW(DRM_COMMAND_BASE + DRM_XE_OBSERVATION, struct drm_xe_observation_param)
- #define DRM_IOCTL_XE_MADVISE			DRM_IOW(DRM_COMMAND_BASE + DRM_XE_MADVISE, struct drm_xe_madvise)
- #define DRM_IOCTL_XE_VM_QUERY_MEM_RANGE_ATTRS	DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_VM_QUERY_MEM_RANGE_ATTRS, struct drm_xe_vm_query_mem_range_attr)
-+#define DRM_IOCTL_XE_EXEC_QUEUE_SET_PROPERTY	DRM_IOW(DRM_COMMAND_BASE + DRM_XE_EXEC_QUEUE_SET_PROPERTY, struct drm_xe_exec_queue_set_property)
- 
- /**
-  * DOC: Xe IOCTL Extensions
-@@ -2315,6 +2317,30 @@ struct drm_xe_vm_query_mem_range_attr {
- 
- };
- 
-+/**
-+ * struct drm_xe_exec_queue_set_property - exec queue set property
-+ *
-+ * Sets execution queue properties dynamically.
-+ * Currently only %DRM_XE_EXEC_QUEUE_SET_PROPERTY_MULTI_QUEUE_PRIORITY
-+ * property can be dynamically set.
-+ */
-+struct drm_xe_exec_queue_set_property {
-+	/** @extensions: Pointer to the first extension struct, if any */
-+	__u64 extensions;
-+
-+	/** @exec_queue_id: Exec queue ID */
-+	__u32 exec_queue_id;
-+
-+	/** @property: property to set */
-+	__u32 property;
-+
-+	/** @value: property value */
-+	__u64 value;
-+
-+	/** @reserved: Reserved */
-+	__u64 reserved[2];
-+};
-+
- #if defined(__cplusplus)
+diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
+index ac0c6dcffe15..96a14fb74507 100644
+--- a/drivers/gpu/drm/xe/xe_ring_ops.c
++++ b/drivers/gpu/drm/xe/xe_ring_ops.c
+@@ -12,7 +12,7 @@
+ #include "regs/xe_engine_regs.h"
+ #include "regs/xe_gt_regs.h"
+ #include "regs/xe_lrc_layout.h"
+-#include "xe_exec_queue_types.h"
++#include "xe_exec_queue.h"
+ #include "xe_gt.h"
+ #include "xe_lrc.h"
+ #include "xe_macros.h"
+@@ -135,12 +135,11 @@ emit_pipe_control(u32 *dw, int i, u32 bit_group_0, u32 bit_group_1, u32 offset,
+ 	return i;
  }
- #endif
+ 
+-static int emit_pipe_invalidate(u32 mask_flags, bool invalidate_tlb, u32 *dw,
+-				int i)
++static int emit_pipe_invalidate(struct xe_exec_queue *q, u32 mask_flags,
++				bool invalidate_tlb, u32 *dw, int i)
+ {
+ 	u32 flags0 = 0;
+-	u32 flags1 = PIPE_CONTROL_CS_STALL |
+-		PIPE_CONTROL_COMMAND_CACHE_INVALIDATE |
++	u32 flags1 = PIPE_CONTROL_COMMAND_CACHE_INVALIDATE |
+ 		PIPE_CONTROL_INSTRUCTION_CACHE_INVALIDATE |
+ 		PIPE_CONTROL_TEXTURE_CACHE_INVALIDATE |
+ 		PIPE_CONTROL_VF_CACHE_INVALIDATE |
+@@ -152,6 +151,11 @@ static int emit_pipe_invalidate(u32 mask_flags, bool invalidate_tlb, u32 *dw,
+ 	if (invalidate_tlb)
+ 		flags1 |= PIPE_CONTROL_TLB_INVALIDATE;
+ 
++	if (xe_exec_queue_is_multi_queue(q))
++		flags0 |= PIPE_CONTROL0_QUEUE_DRAIN_MODE;
++	else
++		flags1 |= PIPE_CONTROL_CS_STALL;
++
+ 	flags1 &= ~mask_flags;
+ 
+ 	if (flags1 & PIPE_CONTROL_VF_CACHE_INVALIDATE)
+@@ -175,37 +179,47 @@ static int emit_store_imm_ppgtt_posted(u64 addr, u64 value,
+ 
+ static int emit_render_cache_flush(struct xe_sched_job *job, u32 *dw, int i)
+ {
+-	struct xe_gt *gt = job->q->gt;
++	struct xe_exec_queue *q = job->q;
++	struct xe_gt *gt = q->gt;
+ 	bool lacks_render = !(gt->info.engine_mask & XE_HW_ENGINE_RCS_MASK);
+-	u32 flags;
++	u32 flags0, flags1;
+ 
+ 	if (XE_GT_WA(gt, 14016712196))
+ 		i = emit_pipe_control(dw, i, 0, PIPE_CONTROL_DEPTH_CACHE_FLUSH,
+ 				      LRC_PPHWSP_FLUSH_INVAL_SCRATCH_ADDR, 0);
+ 
+-	flags = (PIPE_CONTROL_CS_STALL |
+-		 PIPE_CONTROL_TILE_CACHE_FLUSH |
++	flags0 = PIPE_CONTROL0_HDC_PIPELINE_FLUSH;
++	flags1 = (PIPE_CONTROL_TILE_CACHE_FLUSH |
+ 		 PIPE_CONTROL_RENDER_TARGET_CACHE_FLUSH |
+ 		 PIPE_CONTROL_DEPTH_CACHE_FLUSH |
+ 		 PIPE_CONTROL_DC_FLUSH_ENABLE |
+ 		 PIPE_CONTROL_FLUSH_ENABLE);
+ 
+ 	if (XE_GT_WA(gt, 1409600907))
+-		flags |= PIPE_CONTROL_DEPTH_STALL;
++		flags1 |= PIPE_CONTROL_DEPTH_STALL;
+ 
+ 	if (lacks_render)
+-		flags &= ~PIPE_CONTROL_3D_ARCH_FLAGS;
++		flags1 &= ~PIPE_CONTROL_3D_ARCH_FLAGS;
+ 	else if (job->q->class == XE_ENGINE_CLASS_COMPUTE)
+-		flags &= ~PIPE_CONTROL_3D_ENGINE_FLAGS;
++		flags1 &= ~PIPE_CONTROL_3D_ENGINE_FLAGS;
++
++	if (xe_exec_queue_is_multi_queue(q))
++		flags0 |= PIPE_CONTROL0_QUEUE_DRAIN_MODE;
++	else
++		flags1 |= PIPE_CONTROL_CS_STALL;
+ 
+-	return emit_pipe_control(dw, i, PIPE_CONTROL0_HDC_PIPELINE_FLUSH, flags, 0, 0);
++	return emit_pipe_control(dw, i, flags0, flags1, 0, 0);
+ }
+ 
+-static int emit_pipe_control_to_ring_end(struct xe_hw_engine *hwe, u32 *dw, int i)
++static int emit_pipe_control_to_ring_end(struct xe_exec_queue *q, u32 *dw, int i)
+ {
++	struct xe_hw_engine *hwe = q->hwe;
++
+ 	if (hwe->class != XE_ENGINE_CLASS_RENDER)
+ 		return i;
+ 
++	xe_gt_assert(q->gt, !xe_exec_queue_is_multi_queue(q));
++
+ 	if (XE_GT_WA(hwe->gt, 16020292621))
+ 		i = emit_pipe_control(dw, i, 0, PIPE_CONTROL_LRI_POST_SYNC,
+ 				      RING_NOPID(hwe->mmio_base).addr, 0);
+@@ -213,16 +227,20 @@ static int emit_pipe_control_to_ring_end(struct xe_hw_engine *hwe, u32 *dw, int
+ 	return i;
+ }
+ 
+-static int emit_pipe_imm_ggtt(u32 addr, u32 value, bool stall_only, u32 *dw,
+-			      int i)
++static int emit_pipe_imm_ggtt(struct xe_exec_queue *q, u32 addr, u32 value,
++			      bool stall_only, u32 *dw, int i)
+ {
+-	u32 flags = PIPE_CONTROL_CS_STALL | PIPE_CONTROL_GLOBAL_GTT_IVB |
+-		    PIPE_CONTROL_QW_WRITE;
++	u32 flags0 = 0, flags1 = PIPE_CONTROL_GLOBAL_GTT_IVB | PIPE_CONTROL_QW_WRITE;
+ 
+ 	if (!stall_only)
+-		flags |= PIPE_CONTROL_FLUSH_ENABLE;
++		flags1 |= PIPE_CONTROL_FLUSH_ENABLE;
++
++	if (xe_exec_queue_is_multi_queue(q))
++		flags0 |= PIPE_CONTROL0_QUEUE_DRAIN_MODE;
++	else
++		flags1 |= PIPE_CONTROL_CS_STALL;
+ 
+-	return emit_pipe_control(dw, i, 0, flags, addr, value);
++	return emit_pipe_control(dw, i, flags0, flags1, addr, value);
+ }
+ 
+ static u32 get_ppgtt_flag(struct xe_sched_job *job)
+@@ -371,7 +389,7 @@ static void __emit_job_gen12_render_compute(struct xe_sched_job *job,
+ 		mask_flags = PIPE_CONTROL_3D_ENGINE_FLAGS;
+ 
+ 	/* See __xe_pt_bind_vma() for a discussion on TLB invalidations. */
+-	i = emit_pipe_invalidate(mask_flags, job->ring_ops_flush_tlb, dw, i);
++	i = emit_pipe_invalidate(job->q, mask_flags, job->ring_ops_flush_tlb, dw, i);
+ 
+ 	/* hsdes: 1809175790 */
+ 	if (has_aux_ccs(xe))
+@@ -391,11 +409,11 @@ static void __emit_job_gen12_render_compute(struct xe_sched_job *job,
+ 						job->user_fence.value,
+ 						dw, i);
+ 
+-	i = emit_pipe_imm_ggtt(xe_lrc_seqno_ggtt_addr(lrc), seqno, lacks_render, dw, i);
++	i = emit_pipe_imm_ggtt(job->q, xe_lrc_seqno_ggtt_addr(lrc), seqno, lacks_render, dw, i);
+ 
+ 	i = emit_user_interrupt(dw, i);
+ 
+-	i = emit_pipe_control_to_ring_end(job->q->hwe, dw, i);
++	i = emit_pipe_control_to_ring_end(job->q, dw, i);
+ 
+ 	xe_gt_assert(gt, i <= MAX_JOB_SIZE_DW);
+ 
 -- 
 2.43.0
 
