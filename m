@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 69ED1D3C522
-	for <intel-xe@archiver.kernel.org>; Wed, 10 Dec 2025 00:39:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 85CCED3B9B7
+	for <intel-xe@archiver.kernel.org>; Wed, 10 Dec 2025 00:39:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 592D110E64F;
-	Wed, 10 Dec 2025 00:39:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 45BE110E21F;
+	Wed, 10 Dec 2025 00:39:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aP7waOJW";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GovjH0rd";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 77CAF10E5D1
- for <intel-xe@lists.freedesktop.org>; Wed, 10 Dec 2025 00:39:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 51DFE10E5D1
+ for <intel-xe@lists.freedesktop.org>; Wed, 10 Dec 2025 00:39:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765327163; x=1796863163;
+ t=1765327164; x=1796863164;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=pUUXBJ7lip8XeVzEMJMpfchUn+idKI9pF+N3+900AYo=;
- b=aP7waOJW6DwONCpZEG7Eg6wjPOZDHwCM7rMe7DVGj3bvCcdNQ92EWpla
- t5dXh105mAqFQnHdIOzVDaUlVP4LhVdHZ/kEWNoJhm0RyxqnEacGZVi+8
- FZKmZTPjxvcSzj2/KGmx0JUM5+UOEqgta4J2Vw/cROaBv42KKVmpZgWGq
- nvN8q1yX6W26eYKZKIF07cE217Nxfr1Xwg/FWO56FXwn4/YLpWuz8l5al
- B5HYHdW/11ow7kIknx8Hz0gbj5OU+ERAwzA+CAyvsYrZJ9+Srf4u9lSx2
- D8z0xdxVRaKxkt0FJYudlAiPnRNTB0OeS5eTz3aFjyh49StgupyKj0RGF Q==;
-X-CSE-ConnectionGUID: wr73nNQaSnKXITv+Zh+nUA==
-X-CSE-MsgGUID: Cnp69mmzRaO3fRz4cuCNow==
-X-IronPort-AV: E=McAfee;i="6800,10657,11637"; a="67180375"
-X-IronPort-AV: E=Sophos;i="6.20,262,1758610800"; d="scan'208";a="67180375"
+ bh=ZhPt6LPWezkyQij91Pu/IdOwWp34WfrFBPiYKrU7ZZA=;
+ b=GovjH0rdsNT559wqRUT26wpUBPejn1PhFTEbY/kgd1HG82Kz6TX6w7VM
+ hf3CdCtyuX0o0c27zAHz5Ok4n9qKe3cJQw7vGipdrj/mEpuq3VF4hzYZc
+ DUiMPlxFv9owRJotujo6+QGQJujCBG4vTa9AgKKD0qNj/nSj6JomYQRWS
+ jrdFwIThZcuXOl6hLrPkQUoz4JkEa9LIFRK90TD8Zuo2erTjhxPjpjhEV
+ M1BevlFYPsv3SVJ9/coD2VD4JY1Ai+jwZHpxgOyIqkYcGHnccnAjJAPwZ
+ Gw6QAfBNAVX/VtqdY5qfdh2SUL9+du3UsBrYQRrXCddxYsEl7zaDdQa77 A==;
+X-CSE-ConnectionGUID: vdt7fe8USdWm4rxRNPPGrQ==
+X-CSE-MsgGUID: Ov9BgXWCSlGCKGbN5xAphw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11637"; a="67180385"
+X-IronPort-AV: E=Sophos;i="6.20,262,1758610800"; d="scan'208";a="67180385"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2025 16:39:22 -0800
-X-CSE-ConnectionGUID: 7u91EskyQ+CEJmdtJPrkeA==
-X-CSE-MsgGUID: rC75+ZFgS96AKgPfQ3SLJA==
+ 09 Dec 2025 16:39:24 -0800
+X-CSE-ConnectionGUID: NqslKGX4TWKOZh9v7eGZAg==
+X-CSE-MsgGUID: a31H54QoTfq1fZK8NkmJTA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,262,1758610800"; d="scan'208";a="196421526"
+X-IronPort-AV: E=Sophos;i="6.20,262,1758610800"; d="scan'208";a="196421554"
 Received: from nvishwa1-desk.sc.intel.com ([172.25.29.139])
  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2025 16:39:22 -0800
+ 09 Dec 2025 16:39:24 -0800
 From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.brost@intel.com,
 	matthew.d.roper@intel.com
-Subject: [PATCH v5 09/17] drm/xe/multi_queue: Handle tearing down of a multi
- queue
-Date: Tue,  9 Dec 2025 16:39:20 -0800
-Message-ID: <20251210003913.1612141-28-niranjana.vishwanathapura@intel.com>
+Subject: [PATCH v5 17/17] drm/xe/doc: Add documentation for Multi Queue Group
+ GuC interface
+Date: Tue,  9 Dec 2025 16:39:28 -0800
+Message-ID: <20251210003913.1612141-36-niranjana.vishwanathapura@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20251210003913.1612141-19-niranjana.vishwanathapura@intel.com>
 References: <20251210003913.1612141-19-niranjana.vishwanathapura@intel.com>
@@ -68,222 +68,117 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-As all queues of a multi queue group use the primary queue of the group
-to interface with GuC. Hence there is a dependency between the queues of
-the group. So, when primary queue of a multi queue group is cleaned up,
-also trigger a cleanup of the secondary queues also. During cleanup, stop
-and re-start submission for all queues of a multi queue group to avoid
-any submission happening in parallel when a queue is being cleaned up.
-
-v2: Initialize group->list_lock, add fs_reclaim dependency, remove
-    unwanted secondary queues cleanup (Matt Brost)
-v3: Properly handle cleanup of multi-queue group (Matt Brost)
-v4: Fix IS_ENABLED(CONFIG_LOCKDEP) check (Matt Brost)
-    Revert stopping/restarting of submissions on queues of the
-    group in TDR as it is not needed.
+Add kernel documentation for Multi Queue group GuC interface.
 
 Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_exec_queue.c       | 10 +++
- drivers/gpu/drm/xe/xe_exec_queue_types.h |  6 ++
- drivers/gpu/drm/xe/xe_guc_submit.c       | 86 ++++++++++++++++++------
- 3 files changed, 82 insertions(+), 20 deletions(-)
+ Documentation/gpu/xe/xe_exec_queue.rst |  8 ++++
+ drivers/gpu/drm/xe/xe_exec_queue.c     |  3 ++
+ drivers/gpu/drm/xe/xe_guc_submit.c     | 57 ++++++++++++++++++++++++++
+ 3 files changed, 68 insertions(+)
 
+diff --git a/Documentation/gpu/xe/xe_exec_queue.rst b/Documentation/gpu/xe/xe_exec_queue.rst
+index 732af4741df4..8707806211c9 100644
+--- a/Documentation/gpu/xe/xe_exec_queue.rst
++++ b/Documentation/gpu/xe/xe_exec_queue.rst
+@@ -13,6 +13,14 @@ Multi Queue Group
+ .. kernel-doc:: drivers/gpu/drm/xe/xe_exec_queue.c
+    :doc: Multi Queue Group
+ 
++.. _multi-queue-group-guc-interface:
++
++Multi Queue Group GuC interface
++===============================
++
++.. kernel-doc:: drivers/gpu/drm/xe/xe_guc_submit.c
++   :doc: Multi Queue Group GuC interface
++
+ Internal API
+ ============
+ 
 diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-index 256e2ce1fe69..d337b7bc2b80 100644
+index e16e4d2d4053..cb45962be14c 100644
 --- a/drivers/gpu/drm/xe/xe_exec_queue.c
 +++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-@@ -87,6 +87,7 @@ static void xe_exec_queue_group_cleanup(struct xe_exec_queue *q)
- 		xe_lrc_put(lrc);
+@@ -97,6 +97,9 @@
+  * When GuC reports an error on any of the queues of a multi queue group,
+  * the queue cleanup mechanism is invoked for all the queues of the group
+  * as hardware cannot make progress on the multi queue context.
++ *
++ * Refer :ref:`multi-queue-group-guc-interface` for multi queue group GuC
++ * interface.
+  */
  
- 	xa_destroy(&group->xa);
-+	mutex_destroy(&group->list_lock);
- 	xe_bo_unpin_map_no_vm(group->cgp_bo);
- 	kfree(group);
- }
-@@ -648,9 +649,18 @@ static int xe_exec_queue_group_init(struct xe_device *xe, struct xe_exec_queue *
- 
- 	group->primary = q;
- 	group->cgp_bo = bo;
-+	INIT_LIST_HEAD(&group->list);
- 	xa_init_flags(&group->xa, XA_FLAGS_ALLOC1);
-+	mutex_init(&group->list_lock);
- 	q->multi_queue.group = group;
- 
-+	/* group->list_lock is used in submission backend */
-+	if (IS_ENABLED(CONFIG_LOCKDEP)) {
-+		fs_reclaim_acquire(GFP_KERNEL);
-+		might_lock(&group->list_lock);
-+		fs_reclaim_release(GFP_KERNEL);
-+	}
-+
- 	return 0;
- }
- 
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-index 1c285ac12868..8a954ee62505 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
-+++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-@@ -58,6 +58,10 @@ struct xe_exec_queue_group {
- 	struct xe_bo *cgp_bo;
- 	/** @xa: xarray to store LRCs */
- 	struct xarray xa;
-+	/** @list: List of all secondary queues in the group */
-+	struct list_head list;
-+	/** @list_lock: Secondary queue list lock */
-+	struct mutex list_lock;
- 	/** @sync_pending: CGP_SYNC_DONE g2h response pending */
- 	bool sync_pending;
- };
-@@ -145,6 +149,8 @@ struct xe_exec_queue {
- 	struct {
- 		/** @multi_queue.group: Queue group information */
- 		struct xe_exec_queue_group *group;
-+		/** @multi_queue.link: Link into group's secondary queues list */
-+		struct list_head link;
- 		/** @multi_queue.priority: Queue priority within the multi-queue group */
- 		enum xe_multi_queue_priority priority;
- 		/** @multi_queue.pos: Position of queue within the multi-queue group */
+ enum xe_exec_queue_sched_prop {
 diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index d52b7b9bcedf..d38f5aab0a99 100644
+index e870bd165708..87ebb8d0ba97 100644
 --- a/drivers/gpu/drm/xe/xe_guc_submit.c
 +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -577,6 +577,45 @@ static bool vf_recovery(struct xe_guc *guc)
- 	return xe_gt_recovery_pending(guc_to_gt(guc));
- }
+@@ -664,6 +664,63 @@ static void set_exec_queue_group_banned(struct xe_exec_queue *q)
+ 	xe_map_wr_field(xe_, &map_, 0, struct guc_submit_parallel_scratch, \
+ 			field_, val_)
  
-+static void xe_guc_exec_queue_trigger_cleanup(struct xe_exec_queue *q)
-+{
-+	struct xe_guc *guc = exec_queue_to_guc(q);
-+	struct xe_device *xe = guc_to_xe(guc);
++/**
++ * DOC: Multi Queue Group GuC interface
++ *
++ * The multi queue group coordination between KMD and GuC is through a software
++ * construct called Context Group Page (CGP). The CGP is a KMD managed 4KB page
++ * allocated in the global GTT.
++ *
++ * CGP format:
++ *
++ * +-----------+---------------------------+---------------------------------------------+
++ * | DWORD     | Name                      | Description                                 |
++ * +-----------+---------------------------+---------------------------------------------+
++ * | 0         | Version                   | Bits [15:8]=Major ver, [7:0]=Minor ver      |
++ * +-----------+---------------------------+---------------------------------------------+
++ * | 1..15     | RESERVED                  | MBZ                                         |
++ * +-----------+---------------------------+---------------------------------------------+
++ * | 16        | KMD_QUEUE_UPDATE_MASK_DW0 | KMD queue mask for queues 31..0             |
++ * +-----------+---------------------------+---------------------------------------------+
++ * | 17        | KMD_QUEUE_UPDATE_MASK_DW1 | KMD queue mask for queues 63..32            |
++ * +-----------+---------------------------+---------------------------------------------+
++ * | 18..31    | RESERVED                  | MBZ                                         |
++ * +-----------+---------------------------+---------------------------------------------+
++ * | 32        | Q0CD_DW0                  | Queue 0 context LRC descriptor lower DWORD  |
++ * +-----------+---------------------------+---------------------------------------------+
++ * | 33        | Q0ContextIndex            | Context ID for Queue 0                      |
++ * +-----------+---------------------------+---------------------------------------------+
++ * | 34        | Q1CD_DW0                  | Queue 1 context LRC descriptor lower DWORD  |
++ * +-----------+---------------------------+---------------------------------------------+
++ * | 35        | Q1ContextIndex            | Context ID for Queue 1                      |
++ * +-----------+---------------------------+---------------------------------------------+
++ * | ...       |...                        | ...                                         |
++ * +-----------+---------------------------+---------------------------------------------+
++ * | 158       | Q63CD_DW0                 | Queue 63 context LRC descriptor lower DWORD |
++ * +-----------+---------------------------+---------------------------------------------+
++ * | 159       | Q63ContextIndex           | Context ID for Queue 63                     |
++ * +-----------+---------------------------+---------------------------------------------+
++ * | 160..1024 | RESERVED                  | MBZ                                         |
++ * +-----------+---------------------------+---------------------------------------------+
++ *
++ * While registering Q0 with GuC, CGP is updated with Q0 entry and GuC is notified
++ * through XE_GUC_ACTION_REGISTER_CONTEXT_MULTI_QUEUE H2G message which specifies
++ * the CGP address. When the secondary queues are added to the group, the CGP is
++ * updated with entry for that queue and GuC is notified through the H2G interface
++ * XE_GUC_ACTION_MULTI_QUEUE_CONTEXT_CGP_SYNC. GuC responds to these H2G messages
++ * with a XE_GUC_ACTION_NOTIFY_MULTIQ_CONTEXT_CGP_SYNC_DONE G2H message. GuC also
++ * sends a XE_GUC_ACTION_NOTIFY_MULTI_QUEUE_CGP_CONTEXT_ERROR notification for any
++ * error in the CGP. Only one of these CGP update messages can be outstanding
++ * (waiting for GuC response) at any time. The bits in KMD_QUEUE_UPDATE_MASK_DW*
++ * fields indicate which queue entry is being updated in the CGP.
++ *
++ * The primary queue (Q0) represents the multi queue group context in GuC and
++ * submission on any queue of the group must be through Q0 GuC interface only.
++ *
++ * As it is not required to register secondary queues with GuC, the secondary queue
++ * context ids in the CGP are populated with Q0 context id.
++ */
 +
-+	/** to wakeup xe_wait_user_fence ioctl if exec queue is reset */
-+	wake_up_all(&xe->ufence_wq);
-+
-+	if (xe_exec_queue_is_lr(q))
-+		queue_work(guc_to_gt(guc)->ordered_wq, &q->guc->lr_tdr);
-+	else
-+		xe_sched_tdr_queue_imm(&q->guc->sched);
-+}
-+
-+static void xe_guc_exec_queue_reset_trigger_cleanup(struct xe_exec_queue *q)
-+{
-+	if (xe_exec_queue_is_multi_queue(q)) {
-+		struct xe_exec_queue *primary = xe_exec_queue_multi_queue_primary(q);
-+		struct xe_exec_queue_group *group = q->multi_queue.group;
-+		struct xe_exec_queue *eq;
-+
-+		set_exec_queue_reset(primary);
-+		if (!exec_queue_banned(primary) && !exec_queue_check_timeout(primary))
-+			xe_guc_exec_queue_trigger_cleanup(primary);
-+
-+		mutex_lock(&group->list_lock);
-+		list_for_each_entry(eq, &group->list, multi_queue.link) {
-+			set_exec_queue_reset(eq);
-+			if (!exec_queue_banned(eq) && !exec_queue_check_timeout(eq))
-+				xe_guc_exec_queue_trigger_cleanup(eq);
-+		}
-+		mutex_unlock(&group->list_lock);
-+	} else {
-+		set_exec_queue_reset(q);
-+		if (!exec_queue_banned(q) && !exec_queue_check_timeout(q))
-+			xe_guc_exec_queue_trigger_cleanup(q);
-+	}
-+}
-+
- #define parallel_read(xe_, map_, field_) \
- 	xe_map_rd_field(xe_, &map_, 0, struct guc_submit_parallel_scratch, \
- 			field_)
-@@ -1121,20 +1160,6 @@ static void disable_scheduling_deregister(struct xe_guc *guc,
- 			       G2H_LEN_DW_DEREGISTER_CONTEXT, 2);
- }
+ #define CGP_VERSION_MAJOR_SHIFT	8
  
--static void xe_guc_exec_queue_trigger_cleanup(struct xe_exec_queue *q)
--{
--	struct xe_guc *guc = exec_queue_to_guc(q);
--	struct xe_device *xe = guc_to_xe(guc);
--
--	/** to wakeup xe_wait_user_fence ioctl if exec queue is reset */
--	wake_up_all(&xe->ufence_wq);
--
--	if (xe_exec_queue_is_lr(q))
--		queue_work(guc_to_gt(guc)->ordered_wq, &q->guc->lr_tdr);
--	else
--		xe_sched_tdr_queue_imm(&q->guc->sched);
--}
--
- /**
-  * xe_guc_submit_wedge() - Wedge GuC submission
-  * @guc: the GuC object
-@@ -1627,6 +1652,14 @@ static void __guc_exec_queue_destroy_async(struct work_struct *w)
- 	guard(xe_pm_runtime)(guc_to_xe(guc));
- 	trace_xe_exec_queue_destroy(q);
- 
-+	if (xe_exec_queue_is_multi_queue_secondary(q)) {
-+		struct xe_exec_queue_group *group = q->multi_queue.group;
-+
-+		mutex_lock(&group->list_lock);
-+		list_del(&q->multi_queue.link);
-+		mutex_unlock(&group->list_lock);
-+	}
-+
- 	if (xe_exec_queue_is_lr(q))
- 		cancel_work_sync(&ge->lr_tdr);
- 	/* Confirm no work left behind accessing device structures */
-@@ -1917,6 +1950,19 @@ static int guc_exec_queue_init(struct xe_exec_queue *q)
- 
- 	xe_exec_queue_assign_name(q, q->guc->id);
- 
-+	/*
-+	 * Maintain secondary queues of the multi queue group in a list
-+	 * for handling dependencies across the queues in the group.
-+	 */
-+	if (xe_exec_queue_is_multi_queue_secondary(q)) {
-+		struct xe_exec_queue_group *group = q->multi_queue.group;
-+
-+		INIT_LIST_HEAD(&q->multi_queue.link);
-+		mutex_lock(&group->list_lock);
-+		list_add_tail(&q->multi_queue.link, &group->list);
-+		mutex_unlock(&group->list_lock);
-+	}
-+
- 	trace_xe_exec_queue_create(q);
- 
- 	return 0;
-@@ -2144,6 +2190,10 @@ static void guc_exec_queue_resume(struct xe_exec_queue *q)
- 
- static bool guc_exec_queue_reset_status(struct xe_exec_queue *q)
- {
-+	if (xe_exec_queue_is_multi_queue_secondary(q) &&
-+	    guc_exec_queue_reset_status(xe_exec_queue_multi_queue_primary(q)))
-+		return true;
-+
- 	return exec_queue_reset(q) || exec_queue_killed_or_banned_or_wedged(q);
- }
- 
-@@ -2853,9 +2903,7 @@ int xe_guc_exec_queue_reset_handler(struct xe_guc *guc, u32 *msg, u32 len)
- 	 * jobs by setting timeout of the job to the minimum value kicking
- 	 * guc_exec_queue_timedout_job.
- 	 */
--	set_exec_queue_reset(q);
--	if (!exec_queue_banned(q) && !exec_queue_check_timeout(q))
--		xe_guc_exec_queue_trigger_cleanup(q);
-+	xe_guc_exec_queue_reset_trigger_cleanup(q);
- 
- 	return 0;
- }
-@@ -2934,9 +2982,7 @@ int xe_guc_exec_queue_memory_cat_error_handler(struct xe_guc *guc, u32 *msg,
- 	trace_xe_exec_queue_memory_cat_error(q);
- 
- 	/* Treat the same as engine reset */
--	set_exec_queue_reset(q);
--	if (!exec_queue_banned(q) && !exec_queue_check_timeout(q))
--		xe_guc_exec_queue_trigger_cleanup(q);
-+	xe_guc_exec_queue_reset_trigger_cleanup(q);
- 
- 	return 0;
- }
+ static void xe_guc_exec_queue_group_cgp_update(struct xe_device *xe,
 -- 
 2.43.0
 
