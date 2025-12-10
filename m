@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 36BA0D3B9BE
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 55C45D3C521
 	for <intel-xe@archiver.kernel.org>; Wed, 10 Dec 2025 00:39:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3C63F10E64D;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4E2D210E64E;
 	Wed, 10 Dec 2025 00:39:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CiPWiZMY";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="T/Y7uCAD";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9CB2610E5D1
- for <intel-xe@lists.freedesktop.org>; Wed, 10 Dec 2025 00:39:23 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EA0D610E5D1
+ for <intel-xe@lists.freedesktop.org>; Wed, 10 Dec 2025 00:39:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765327164; x=1796863164;
+ t=1765327163; x=1796863163;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=NkjQTTf2mqsu9kgpkmaBUcHqSHIgmJkzxjAg2wli3Bw=;
- b=CiPWiZMYevgtIFjmeDhzm53s0x3AxnVbPigI7H86NOlkLuBKzU9SxzMo
- IhLt+5vV+8FxH2sP+DPFDFgDC1KKehPEihSZaMz3spFrBGHdoEqcQePBI
- Oa6emgvREAavWKVF87YxIchnGzuWsDr/7gpk5R6XdphNzOnKP8FHVfBy5
- EQi9po54unCbMJlyW4R+A9vVOeDxFKU6kOnpHuCaqMMngD78nmie05ii0
- /ZODlOskiyNrU005P5V1ypEVtRDEq7Hb3vK+zZrq6iRTnmW3frk8NnBkC
- photLJkATjPXlJWUYFWyEswr2AiQU7s36OaHPbD03TRXCsWrvXmGUAI58 g==;
-X-CSE-ConnectionGUID: NxaaCzrJRs2Zb0BOXRDQiw==
-X-CSE-MsgGUID: upvKmCLWRVuH+ZXDeyiY1A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11637"; a="67180381"
-X-IronPort-AV: E=Sophos;i="6.20,262,1758610800"; d="scan'208";a="67180381"
+ bh=hGB8wyASR7ustxLluJJlookH/jAWdnR4b0wHLcgvp58=;
+ b=T/Y7uCADE9x2cSg6TGCDJrpYiAEDWF8hrpCvRxt/NdIbPAnDZ2SEwAUl
+ egJo2XvqgXqnUs/iwTZ9jeUCiNNp2FxvQdtL9iY5gMp4o7aNTb9Ml/a6d
+ q5HTnEMqvNSnBKYBjD6ov4VLI7uDz0SJik1RbiBKKO37+ryIfI0G1OKYx
+ QqEDAA0uSjRtD6MuOltioLv36c422Dz+s2u3OHv4UnauedYF78Pi0FJEZ
+ rKY+BXh2oIFl3sHuwepggotXCeu0szym7z8IXuWlpdoB52sHgPk2X6NYE
+ kQq7X7Hvk9rlyzwLu79LoT8NQc10vaMFioW+HUONq6UeKlH5N3xJ5L9A9 Q==;
+X-CSE-ConnectionGUID: fJ4wER7yQgaQ4YqJ2kqjjg==
+X-CSE-MsgGUID: 3RWN2CkFTQWYP0aetndtFQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11637"; a="67180377"
+X-IronPort-AV: E=Sophos;i="6.20,262,1758610800"; d="scan'208";a="67180377"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2025 16:39:24 -0800
-X-CSE-ConnectionGUID: I5DdJeC+T3yQJunjH722tg==
-X-CSE-MsgGUID: i0p8OO+WQIWHkC2DmBdUeA==
+ 09 Dec 2025 16:39:23 -0800
+X-CSE-ConnectionGUID: 8/LdiG7hSyyJGa+vgWnACw==
+X-CSE-MsgGUID: CXArMGBcSz+neaXFJPp+zQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,262,1758610800"; d="scan'208";a="196421544"
+X-IronPort-AV: E=Sophos;i="6.20,262,1758610800"; d="scan'208";a="196421532"
 Received: from nvishwa1-desk.sc.intel.com ([172.25.29.139])
  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2025 16:39:24 -0800
+ 09 Dec 2025 16:39:23 -0800
 From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.brost@intel.com,
 	matthew.d.roper@intel.com
-Subject: [PATCH v5 14/17] drm/xe/multi_queue: Tracepoint support
-Date: Tue,  9 Dec 2025 16:39:25 -0800
-Message-ID: <20251210003913.1612141-33-niranjana.vishwanathapura@intel.com>
+Subject: [PATCH v5 11/17] drm/xe/multi_queue: Handle CGP context error
+Date: Tue,  9 Dec 2025 16:39:22 -0800
+Message-ID: <20251210003913.1612141-30-niranjana.vishwanathapura@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20251210003913.1612141-19-niranjana.vishwanathapura@intel.com>
 References: <20251210003913.1612141-19-niranjana.vishwanathapura@intel.com>
@@ -67,94 +67,124 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add xe_exec_queue_create_multi_queue event with
-multi-queue information.
+Trigger multi-queue context cleanup upon CGP context error
+notification from GuC.
+
+v4: Fix error message
 
 Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc_submit.c |  5 +++-
- drivers/gpu/drm/xe/xe_trace.h      | 41 ++++++++++++++++++++++++++++++
- 2 files changed, 45 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/abi/guc_actions_abi.h |  1 +
+ drivers/gpu/drm/xe/xe_guc_ct.c           |  4 +++
+ drivers/gpu/drm/xe/xe_guc_submit.c       | 31 ++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_guc_submit.h       |  2 ++
+ drivers/gpu/drm/xe/xe_trace.h            |  5 ++++
+ 5 files changed, 43 insertions(+)
 
+diff --git a/drivers/gpu/drm/xe/abi/guc_actions_abi.h b/drivers/gpu/drm/xe/abi/guc_actions_abi.h
+index 3e9fbed9cda6..8af3691626bf 100644
+--- a/drivers/gpu/drm/xe/abi/guc_actions_abi.h
++++ b/drivers/gpu/drm/xe/abi/guc_actions_abi.h
+@@ -142,6 +142,7 @@ enum xe_guc_action {
+ 	XE_GUC_ACTION_REGISTER_CONTEXT_MULTI_QUEUE = 0x4602,
+ 	XE_GUC_ACTION_MULTI_QUEUE_CONTEXT_CGP_SYNC = 0x4603,
+ 	XE_GUC_ACTION_NOTIFY_MULTI_QUEUE_CONTEXT_CGP_SYNC_DONE = 0x4604,
++	XE_GUC_ACTION_NOTIFY_MULTI_QUEUE_CGP_CONTEXT_ERROR = 0x4605,
+ 	XE_GUC_ACTION_CLIENT_SOFT_RESET = 0x5507,
+ 	XE_GUC_ACTION_SET_ENG_UTIL_BUFF = 0x550A,
+ 	XE_GUC_ACTION_SET_DEVICE_ENGINE_ACTIVITY_BUFFER = 0x550C,
+diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
+index 4d5b4ed357cc..3e49e7fd0031 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ct.c
++++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+@@ -1618,6 +1618,10 @@ static int process_g2h_msg(struct xe_guc_ct *ct, u32 *msg, u32 len)
+ 	case XE_GUC_ACTION_NOTIFY_MULTI_QUEUE_CONTEXT_CGP_SYNC_DONE:
+ 		ret = xe_guc_exec_queue_cgp_sync_done_handler(guc, payload, adj_len);
+ 		break;
++	case XE_GUC_ACTION_NOTIFY_MULTI_QUEUE_CGP_CONTEXT_ERROR:
++		ret = xe_guc_exec_queue_cgp_context_error_handler(guc, payload,
++								  adj_len);
++		break;
+ 	default:
+ 		xe_gt_err(gt, "unexpected G2H action 0x%04x\n", action);
+ 	}
 diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index 64cc2b285714..e870bd165708 100644
+index d38f5aab0a99..3be5e78485c7 100644
 --- a/drivers/gpu/drm/xe/xe_guc_submit.c
 +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -2021,7 +2021,10 @@ static int guc_exec_queue_init(struct xe_exec_queue *q)
- 		mutex_unlock(&group->list_lock);
- 	}
+@@ -48,6 +48,8 @@
+ #include "xe_uc_fw.h"
+ #include "xe_vm.h"
  
--	trace_xe_exec_queue_create(q);
-+	if (xe_exec_queue_is_multi_queue(q))
-+		trace_xe_exec_queue_create_multi_queue(q);
-+	else
-+		trace_xe_exec_queue_create(q);
- 
++#define XE_GUC_EXEC_QUEUE_CGP_CONTEXT_ERROR_LEN		6
++
+ static struct xe_guc *
+ exec_queue_to_guc(struct xe_exec_queue *q)
+ {
+@@ -3009,6 +3011,35 @@ int xe_guc_exec_queue_reset_failure_handler(struct xe_guc *guc, u32 *msg, u32 le
  	return 0;
+ }
  
++int xe_guc_exec_queue_cgp_context_error_handler(struct xe_guc *guc, u32 *msg,
++						u32 len)
++{
++	struct xe_gt *gt = guc_to_gt(guc);
++	struct xe_device *xe = guc_to_xe(guc);
++	struct xe_exec_queue *q;
++	u32 guc_id = msg[2];
++
++	if (unlikely(len != XE_GUC_EXEC_QUEUE_CGP_CONTEXT_ERROR_LEN)) {
++		drm_err(&xe->drm, "Invalid length %u", len);
++		return -EPROTO;
++	}
++
++	q = g2h_exec_queue_lookup(guc, guc_id);
++	if (unlikely(!q))
++		return -EPROTO;
++
++	xe_gt_dbg(gt,
++		  "CGP context error: [%s] err=0x%x, q0_id=0x%x LRCA=0x%x guc_id=0x%x",
++		  msg[0] & 1 ? "uc" : "kmd", msg[1], msg[2], msg[3], msg[4]);
++
++	trace_xe_exec_queue_cgp_context_error(q);
++
++	/* Treat the same as engine reset */
++	xe_guc_exec_queue_reset_trigger_cleanup(q);
++
++	return 0;
++}
++
+ /**
+  * xe_guc_exec_queue_cgp_sync_done_handler - CGP synchronization done handler
+  * @guc: guc
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.h b/drivers/gpu/drm/xe/xe_guc_submit.h
+index ad8c0e8e0415..4d89b2975fe9 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.h
++++ b/drivers/gpu/drm/xe/xe_guc_submit.h
+@@ -37,6 +37,8 @@ int xe_guc_exec_queue_memory_cat_error_handler(struct xe_guc *guc, u32 *msg,
+ int xe_guc_exec_queue_reset_failure_handler(struct xe_guc *guc, u32 *msg, u32 len);
+ int xe_guc_error_capture_handler(struct xe_guc *guc, u32 *msg, u32 len);
+ int xe_guc_exec_queue_cgp_sync_done_handler(struct xe_guc *guc, u32 *msg, u32 len);
++int xe_guc_exec_queue_cgp_context_error_handler(struct xe_guc *guc, u32 *msg,
++						u32 len);
+ 
+ struct xe_guc_submit_exec_queue_snapshot *
+ xe_guc_exec_queue_snapshot_capture(struct xe_exec_queue *q);
 diff --git a/drivers/gpu/drm/xe/xe_trace.h b/drivers/gpu/drm/xe/xe_trace.h
-index c9d0748dae9d..6d12fcc13f43 100644
+index 79a97b086cb2..c9d0748dae9d 100644
 --- a/drivers/gpu/drm/xe/xe_trace.h
 +++ b/drivers/gpu/drm/xe/xe_trace.h
-@@ -13,6 +13,7 @@
- #include <linux/types.h>
- 
- #include "xe_exec_queue_types.h"
-+#include "xe_exec_queue.h"
- #include "xe_gpu_scheduler_types.h"
- #include "xe_gt_types.h"
- #include "xe_guc_exec_queue_types.h"
-@@ -97,11 +98,51 @@ DECLARE_EVENT_CLASS(xe_exec_queue,
- 			      __entry->guc_state, __entry->flags)
- );
- 
-+DECLARE_EVENT_CLASS(xe_exec_queue_multi_queue,
-+		    TP_PROTO(struct xe_exec_queue *q),
-+		    TP_ARGS(q),
-+
-+		    TP_STRUCT__entry(
-+			     __string(dev, __dev_name_eq(q))
-+			     __field(enum xe_engine_class, class)
-+			     __field(u32, logical_mask)
-+			     __field(u8, gt_id)
-+			     __field(u16, width)
-+			     __field(u32, guc_id)
-+			     __field(u32, guc_state)
-+			     __field(u32, flags)
-+			     __field(u32, primary)
-+			     ),
-+
-+		    TP_fast_assign(
-+			   __assign_str(dev);
-+			   __entry->class = q->class;
-+			   __entry->logical_mask = q->logical_mask;
-+			   __entry->gt_id = q->gt->info.id;
-+			   __entry->width = q->width;
-+			   __entry->guc_id = q->guc->id;
-+			   __entry->guc_state = atomic_read(&q->guc->state);
-+			   __entry->flags = q->flags;
-+			   __entry->primary = xe_exec_queue_multi_queue_primary(q)->guc->id;
-+			   ),
-+
-+		    TP_printk("dev=%s, %d:0x%x, gt=%d, width=%d guc_id=%d, guc_state=0x%x, flags=0x%x, primary=%d",
-+			      __get_str(dev), __entry->class, __entry->logical_mask,
-+			      __entry->gt_id, __entry->width, __entry->guc_id,
-+			      __entry->guc_state, __entry->flags,
-+			      __entry->primary)
-+);
-+
- DEFINE_EVENT(xe_exec_queue, xe_exec_queue_create,
- 	     TP_PROTO(struct xe_exec_queue *q),
+@@ -172,6 +172,11 @@ DEFINE_EVENT(xe_exec_queue, xe_exec_queue_memory_cat_error,
  	     TP_ARGS(q)
  );
  
-+DEFINE_EVENT(xe_exec_queue_multi_queue, xe_exec_queue_create_multi_queue,
++DEFINE_EVENT(xe_exec_queue, xe_exec_queue_cgp_context_error,
 +	     TP_PROTO(struct xe_exec_queue *q),
 +	     TP_ARGS(q)
 +);
 +
- DEFINE_EVENT(xe_exec_queue, xe_exec_queue_supress_resume,
+ DEFINE_EVENT(xe_exec_queue, xe_exec_queue_stop,
  	     TP_PROTO(struct xe_exec_queue *q),
  	     TP_ARGS(q)
 -- 
