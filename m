@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 836A3D3C52A
-	for <intel-xe@archiver.kernel.org>; Wed, 10 Dec 2025 11:50:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A2F95D3C52C
+	for <intel-xe@archiver.kernel.org>; Wed, 10 Dec 2025 11:55:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 411DD10E6F9;
-	Wed, 10 Dec 2025 11:50:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6750110E25A;
+	Wed, 10 Dec 2025 11:55:21 +0000 (UTC)
 Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 62CC910E25A;
- Wed, 10 Dec 2025 11:50:21 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============9034864679960467197=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2FD3510E25A;
+ Wed, 10 Dec 2025 11:55:20 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Add_DRM_sched_support_funct?=
- =?utf-8?q?ions_to_avoid_driver_side_layering_violations_=28rev2=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/xe=5Fguc=5Fct=3A_E?=
+ =?utf-8?q?xit_CT_submission_fence_wait_on_GT_reset?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Brost" <matthew.brost@intel.com>
+To: "Jonathan Cavitt" <jonathan.cavitt@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 10 Dec 2025 11:50:21 -0000
-Message-ID: <176536742139.73489.8966467892211212088@a3b018990fe9>
+Date: Wed, 10 Dec 2025 11:55:20 -0000
+Message-ID: <176536772019.73489.4708698034934705625@a3b018990fe9>
 X-Patchwork-Hint: ignore
-References: <20251209200039.1366764-1-matthew.brost@intel.com>
-In-Reply-To: <20251209200039.1366764-1-matthew.brost@intel.com>
+References: <20251209203516.155703-2-jonathan.cavitt@intel.com>
+In-Reply-To: <20251209203516.155703-2-jonathan.cavitt@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,135 +40,43 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============9034864679960467197==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: Add DRM sched support functions to avoid driver side layering violations (rev2)
-URL   : https://patchwork.freedesktop.org/series/158714/
-State : success
+Series: drm/xe/xe_guc_ct: Exit CT submission fence wait on GT reset
+URL   : https://patchwork.freedesktop.org/series/158719/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-4213-26f86acfb480a2bb8e74fc9a4f29789b9a3392c5_BAT -> xe-pw-158714v2_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+8f50e69d0ce3656564bbdf8b3e213d61470d463f
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit def533ea95537d45901e849069e9b494b4aca031
+Author: Jonathan Cavitt <jonathan.cavitt@intel.com>
+Date:   Tue Dec 9 20:35:17 2025 +0000
 
-Summary
--------
+    drm/xe/xe_guc_ct: Exit CT submission fence wait on GT reset
+    
+    It's possible if unlikely that the GuC could be reset in the time
+    between performing a guc_ct_send and the G2H fence completing in
+    guc_ct_send_recv.  Exit early if this is occurs.
+    
+    Suggested-by: Stuart Summers <stuart.summers@intel.com>
+    Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
++ /mt/dim checkpatch 2a9deeb5c3fd4dddbed361f10b26ce567072a985 drm-intel
+def533ea9553 drm/xe/xe_guc_ct: Exit CT submission fence wait on GT reset
+-:21: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'ct' - possible side-effects?
+#21: FILE: drivers/gpu/drm/xe/xe_guc_ct.c:1234:
++#define ct_alive(ct)    \
++	(xe_guc_ct_enabled(ct) && !ct->ctbs.h2g.info.broken && \
++	 !ct->ctbs.g2h.info.broken)
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (12 -> 12)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-158714v2_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_waitfence@abstime:
-    - bat-dg2-oem2:       [PASS][1] -> [TIMEOUT][2] ([Intel XE#6506])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4213-26f86acfb480a2bb8e74fc9a4f29789b9a3392c5/bat-dg2-oem2/igt@xe_waitfence@abstime.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158714v2/bat-dg2-oem2/igt@xe_waitfence@abstime.html
-
-  * igt@xe_waitfence@reltime:
-    - bat-dg2-oem2:       [PASS][3] -> [FAIL][4] ([Intel XE#6520])
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4213-26f86acfb480a2bb8e74fc9a4f29789b9a3392c5/bat-dg2-oem2/igt@xe_waitfence@reltime.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158714v2/bat-dg2-oem2/igt@xe_waitfence@reltime.html
-
-  
-  [Intel XE#6506]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506
-  [Intel XE#6520]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520
+total: 0 errors, 0 warnings, 1 checks, 30 lines checked
 
 
-Build changes
--------------
-
-  * Linux: xe-4213-26f86acfb480a2bb8e74fc9a4f29789b9a3392c5 -> xe-pw-158714v2
-
-  IGT_8662: 9410b6926f317e8bf824502394e09ee8753ff65e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-4213-26f86acfb480a2bb8e74fc9a4f29789b9a3392c5: 26f86acfb480a2bb8e74fc9a4f29789b9a3392c5
-  xe-pw-158714v2: 158714v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158714v2/index.html
-
---===============9034864679960467197==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Add DRM sched support functions to avoid driver side layering violations (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/158714/">https://patchwork.freedesktop.org/series/158714/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158714v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158714v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4213-26f86acfb480a2bb8e74fc9a4f29789b9a3392c5_BAT -&gt; xe-pw-158714v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (12 -&gt; 12)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-158714v2_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@xe_waitfence@abstime:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4213-26f86acfb480a2bb8e74fc9a4f29789b9a3392c5/bat-dg2-oem2/igt@xe_waitfence@abstime.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158714v2/bat-dg2-oem2/igt@xe_waitfence@abstime.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506">Intel XE#6506</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_waitfence@reltime:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4213-26f86acfb480a2bb8e74fc9a4f29789b9a3392c5/bat-dg2-oem2/igt@xe_waitfence@reltime.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158714v2/bat-dg2-oem2/igt@xe_waitfence@reltime.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520">Intel XE#6520</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4213-26f86acfb480a2bb8e74fc9a4f29789b9a3392c5 -&gt; xe-pw-158714v2</li>
-</ul>
-<p>IGT_8662: 9410b6926f317e8bf824502394e09ee8753ff65e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-4213-26f86acfb480a2bb8e74fc9a4f29789b9a3392c5: 26f86acfb480a2bb8e74fc9a4f29789b9a3392c5<br />
-  xe-pw-158714v2: 158714v2</p>
-
-</body>
-</html>
-
---===============9034864679960467197==--
