@@ -4,58 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id ADA2BD3C52D
-	for <intel-xe@archiver.kernel.org>; Wed, 10 Dec 2025 11:08:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D1783D3C52B
+	for <intel-xe@archiver.kernel.org>; Wed, 10 Dec 2025 11:08:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6AFEB10E6EB;
-	Wed, 10 Dec 2025 11:08:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 85D8310E6E3;
+	Wed, 10 Dec 2025 11:08:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PRtpOxlv";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cmRuK6xh";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C905010E202;
- Wed, 10 Dec 2025 11:08:34 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9558E10E6EB;
+ Wed, 10 Dec 2025 11:08:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765364915; x=1796900915;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version; bh=lUrcF/xd2GSNNiW3EGYGHDNCOWZyVniJvUJ3nZrUoS0=;
- b=PRtpOxlvC6f2BEjCdTLykVXCqQb1wPnqQHqcb1Xp6i5yv6elwl2GT8La
- iDM3E2p1Os7pKbSSAfdF1vdVd9BtARJDItbZseBsu9+Vd4bYLw2sHcd7b
- VsXEiZ96JSIMBJE2gyJMTF2VkJS6UhQuPSd1Bw2btzmVeRBub1kUePmJV
- unGP6mNBfSZ3mVgr1l+Nh4rC5o0o148qAA2wMj3R6ya90d+wYVgdtX5aG
- 5PljfYlN6nRBs1TSuzR2BY3UvK6GJep+I52hmByc/0xldD3rOf/6qrvJR
- pNP9OXvJHINmU1lXQ51np5wzvnDB+RzMHyEu9yBfNwGiy/8Jo36AhZn9x g==;
-X-CSE-ConnectionGUID: +TQXlCbgR2KOMGKqfrqWAg==
-X-CSE-MsgGUID: /9Y8+xOBSz+XLi1YsxiNGQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11637"; a="66511733"
-X-IronPort-AV: E=Sophos;i="6.20,263,1758610800"; d="scan'208";a="66511733"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Dec 2025 03:08:34 -0800
-X-CSE-ConnectionGUID: p7VOZYcOT7O/a7vsgNCAMA==
-X-CSE-MsgGUID: uUpP0mKmRTWQkeXeZi6lTw==
+ t=1765364917; x=1796900917;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=DSWkUPNzZRS3T+qHP7zFWEybY4jdKhMPzDtIujrPuG0=;
+ b=cmRuK6xh8OVgKUNTxz4py7kZft6+mWT2cZa2bXfuqIcdH0X0fmQVCGbL
+ G0U1mDt4QiBz/IBl9Ns3z5R5oSA+6G55mo+XdHmX2casHltVGi6/p8sus
+ 79kzb5t7t40Osz8FZB2ik5cYEKAmhLMhjdODLOZ9GOQbzOiSpRWuab7MC
+ IoXWu0M/cl7Kj+wD51tq0DjaoB74OPFBX3W3IkKLcZUwsi8WsVkh4vlbi
+ fyQnMbZ2OgjJFmLQaZKf4Z5M2oxj/qDNYPhjHSmqvYxVE3kf77LoWQqGW
+ HBoRYuJZPKpG4mpYKlG5xb/vE4DSs/0aTElhdqVHrmicp7aFPLpJwYSV6 A==;
+X-CSE-ConnectionGUID: 9U3YVmYwQhGPd35QZgqVzA==
+X-CSE-MsgGUID: P0ysNw3MSBGBLwJJT4S0uQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11637"; a="67221774"
+X-IronPort-AV: E=Sophos;i="6.20,263,1758610800"; d="scan'208";a="67221774"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Dec 2025 03:08:37 -0800
+X-CSE-ConnectionGUID: IlxRv65HRDOl3u4j1nbf4g==
+X-CSE-MsgGUID: eUQJ7Ta5QPimf4pOdUuTmA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,263,1758610800"; d="scan'208";a="196239833"
-Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.207])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Dec 2025 03:08:33 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: "Manna, Animesh" <animesh.manna@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-Subject: RE: [PATCH] drm/i915/display: Panel Replay BW optimization for
- DP2.0 tunneling
-In-Reply-To: <DS0PR11MB8049E5428BA761F99FB5A7B0F9A0A@DS0PR11MB8049.namprd11.prod.outlook.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20251210052128.1857581-1-animesh.manna@intel.com>
- <b6cd982649633cef5f878054e35cd8315b04ca05@intel.com>
- <DS0PR11MB8049E5428BA761F99FB5A7B0F9A0A@DS0PR11MB8049.namprd11.prod.outlook.com>
-Date: Wed, 10 Dec 2025 13:08:29 +0200
-Message-ID: <75e3a87a24ff92c02cb62236a821a91e9e5ea81f@intel.com>
+X-IronPort-AV: E=Sophos;i="6.20,263,1758610800"; d="scan'208";a="196487022"
+Received: from rvuia-mobl.ger.corp.intel.com (HELO fedora) ([10.245.244.44])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Dec 2025 03:08:34 -0800
+From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Matthew Brost <matthew.brost@intel.com>, dri-devel@lists.freedesktop.org,
+ himal.prasad.ghimiray@intel.com, apopple@nvidia.com, airlied@gmail.com,
+ Simona Vetter <simona.vetter@ffwll.ch>, felix.kuehling@amd.com,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ dakr@kernel.org, "Mrozek, Michal" <michal.mrozek@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Subject: [PATCH v3 06/22] drm/pagemap: Add a drm_pagemap cache and shrinker
+Date: Wed, 10 Dec 2025 12:07:26 +0100
+Message-ID: <20251210110742.107575-7-thomas.hellstrom@linux.intel.com>
+X-Mailer: git-send-email 2.51.1
+In-Reply-To: <20251210110742.107575-1-thomas.hellstrom@linux.intel.com>
+References: <20251210110742.107575-1-thomas.hellstrom@linux.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,109 +73,798 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 10 Dec 2025, "Manna, Animesh" <animesh.manna@intel.com> wrote:
->> -----Original Message-----
->> From: Jani Nikula <jani.nikula@linux.intel.com>
->> Sent: Wednesday, December 10, 2025 2:25 PM
->> To: Manna, Animesh <animesh.manna@intel.com>; intel-
->> gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org
->> Cc: Manna, Animesh <animesh.manna@intel.com>
->> Subject: Re: [PATCH] drm/i915/display: Panel Replay BW optimization for
->> DP2.0 tunneling
->> 
->> On Wed, 10 Dec 2025, Animesh Manna <animesh.manna@intel.com> wrote:
->> > Unused bandwidth can be used by external display agents for Panel
->> > Replay enabled DP panel during idleness with link on. Enable source to
->> > replace dummy data from the display with data from another agent by
->> > programming TRANS_DP2_CTL [Panel Replay Tunneling Enable].
->> >
->> > Bspec: 68920
->> > Signed-off-by: Animesh Manna <animesh.manna@intel.com>
->> > ---
->> >  .../gpu/drm/i915/display/intel_display_regs.h |  1 +
->> >  drivers/gpu/drm/i915/display/intel_psr.c      | 23 +++++++++++++++++++
->> >  2 files changed, 24 insertions(+)
->> >
->> > diff --git a/drivers/gpu/drm/i915/display/intel_display_regs.h
->> > b/drivers/gpu/drm/i915/display/intel_display_regs.h
->> > index 9e0d853f4b61..b6fc249a9f09 100644
->> > --- a/drivers/gpu/drm/i915/display/intel_display_regs.h
->> > +++ b/drivers/gpu/drm/i915/display/intel_display_regs.h
->> > @@ -2051,6 +2051,7 @@
->> >  #define TRANS_DP2_CTL(trans)			_MMIO_TRANS(trans,
->> _TRANS_DP2_CTL_A, _TRANS_DP2_CTL_B)
->> >  #define  TRANS_DP2_128B132B_CHANNEL_CODING	REG_BIT(31)
->> >  #define  TRANS_DP2_PANEL_REPLAY_ENABLE		REG_BIT(30)
->> > +#define  TRANS_DP2_PR_TUNNELING_ENABLE		REG_BIT(26)
->> >  #define  TRANS_DP2_DEBUG_ENABLE			REG_BIT(23)
->> >
->> >  #define _TRANS_DP2_VFREQHIGH_A			0x600a4
->> > diff --git a/drivers/gpu/drm/i915/display/intel_psr.c
->> > b/drivers/gpu/drm/i915/display/intel_psr.c
->> > index 2a378a5adc59..d0a01a08299e 100644
->> > --- a/drivers/gpu/drm/i915/display/intel_psr.c
->> > +++ b/drivers/gpu/drm/i915/display/intel_psr.c
->> > @@ -44,6 +44,7 @@
->> >  #include "intel_dmc.h"
->> >  #include "intel_dp.h"
->> >  #include "intel_dp_aux.h"
->> > +#include "intel_dp_tunnel.h"
->> >  #include "intel_dsb.h"
->> >  #include "intel_frontbuffer.h"
->> >  #include "intel_hdmi.h"
->> > @@ -2152,6 +2153,25 @@ static bool psr_interrupt_error_check(struct
->> intel_dp *intel_dp)
->> >  	return true;
->> >  }
->> >
->> > +static void intel_psr_set_pr_bw_optimization(struct intel_dp
->> > +*intel_dp) {
->> > +	struct intel_display *display = to_intel_display(intel_dp);
->> > +	u8 val;
->> > +
->> > +	if (DISPLAY_VER(display) < 35)
->> > +		return;
->> > +
->> > +	if (!intel_dp_tunnel_bw_alloc_is_enabled(intel_dp))
->> > +		return;
->> > +
->> > +	drm_dp_dpcd_readb(&intel_dp->aux, DP_TUNNELING_CAPABILITIES,
->> &val);
->> > +	if (!(val & DP_PANEL_REPLAY_OPTIMIZATION_SUPPORT))
->> > +		return;
->> > +
->> > +	intel_de_rmw(display, TRANS_DP2_CTL(intel_dp->psr.transcoder), 0,
->> > +		     TRANS_DP2_PR_TUNNELING_ENABLE); }
->> 
->> Why is this so separated from dg2_activate_panel_replay()?
->
-> I felt this feature more leaning towards DP tunneling, so kept outside of dg2_activate_panel_replay().
-> But this is just after intel_psr_activate().
+Pagemaps are costly to set up and tear down, and they consume a lot
+of system memory for the struct pages. Ideally they should be
+created only when needed.
 
-On *one* path calling intel_psr_activate(). Why not others?
+Add a caching mechanism to allow doing just that: Create the drm_pagemaps
+when needed for migration. Keep them around to avoid destruction and
+re-creation latencies and destroy inactive/unused drm_pagemaps on memory
+pressure using a shrinker.
 
->
-> Regards,
-> Animesh
->> 
->> > +
->> >  static void intel_psr_enable_locked(struct intel_dp *intel_dp,
->> >  				    const struct intel_crtc_state *crtc_state)  {
->> @@ -2221,6
->> > +2241,9 @@ static void intel_psr_enable_locked(struct intel_dp *intel_dp,
->> >  	intel_dp->psr.link_ok = true;
->> >
->> >  	intel_psr_activate(intel_dp);
->> > +
->> > +	if (!intel_dp_is_edp(intel_dp) && intel_dp-
->> >psr.panel_replay_enabled)
->> > +		intel_psr_set_pr_bw_optimization(intel_dp);
->> >  }
->> >
->> >  static void intel_psr_exit(struct intel_dp *intel_dp)
->> 
->> --
->> Jani Nikula, Intel
+Only add the helper functions. They will be hooked up to the xe driver
+in the upcoming patch.
 
+v2:
+- Add lockdep checking for drm_pagemap_put(). (Matt Brost)
+- Add a copyright notice. (Matt Brost)
+
+Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+---
+ drivers/gpu/drm/Makefile           |   3 +-
+ drivers/gpu/drm/drm_pagemap.c      |  83 +++++-
+ drivers/gpu/drm/drm_pagemap_util.c | 450 +++++++++++++++++++++++++++++
+ include/drm/drm_pagemap.h          |  53 +++-
+ include/drm/drm_pagemap_util.h     |  42 +++
+ 5 files changed, 613 insertions(+), 18 deletions(-)
+ create mode 100644 drivers/gpu/drm/drm_pagemap_util.c
+ create mode 100644 include/drm/drm_pagemap_util.h
+
+diff --git a/drivers/gpu/drm/Makefile b/drivers/gpu/drm/Makefile
+index 4b3f3ad5058a..44f2fb1fbf0b 100644
+--- a/drivers/gpu/drm/Makefile
++++ b/drivers/gpu/drm/Makefile
+@@ -109,7 +109,8 @@ obj-$(CONFIG_DRM_GPUVM) += drm_gpuvm.o
+ 
+ drm_gpusvm_helper-y := \
+ 	drm_gpusvm.o\
+-	drm_pagemap.o
++	drm_pagemap.o\
++	drm_pagemap_util.o
+ obj-$(CONFIG_DRM_GPUSVM) += drm_gpusvm_helper.o
+ 
+ obj-$(CONFIG_DRM_BUDDY) += drm_buddy.o
+diff --git a/drivers/gpu/drm/drm_pagemap.c b/drivers/gpu/drm/drm_pagemap.c
+index ebf160f594ed..8aa024b1c809 100644
+--- a/drivers/gpu/drm/drm_pagemap.c
++++ b/drivers/gpu/drm/drm_pagemap.c
+@@ -8,6 +8,7 @@
+ #include <linux/pagemap.h>
+ #include <drm/drm_drv.h>
+ #include <drm/drm_pagemap.h>
++#include <drm/drm_pagemap_util.h>
+ #include <drm/drm_print.h>
+ 
+ /**
+@@ -579,7 +580,7 @@ static void drm_pagemap_release(struct kref *ref)
+ 	 * pagemap provider drm_device and its module.
+ 	 */
+ 	dpagemap->dev_hold = NULL;
+-	kfree(dpagemap);
++	drm_pagemap_shrinker_add(dpagemap);
+ 	llist_add(&dev_hold->link, &drm_pagemap_unhold_list);
+ 	schedule_work(&drm_pagemap_work);
+ 	/*
+@@ -629,6 +630,58 @@ drm_pagemap_dev_hold(struct drm_pagemap *dpagemap)
+ 	return dev_hold;
+ }
+ 
++/**
++ * drm_pagemap_reinit() - Reinitialize a drm_pagemap
++ * @dpagemap: The drm_pagemap to reinitialize
++ *
++ * Reinitialize a drm_pagemap, for which drm_pagemap_release
++ * has already been called. This interface is intended for the
++ * situation where the driver caches a destroyed drm_pagemap.
++ *
++ * Return: 0 on success, negative error code on failure.
++ */
++int drm_pagemap_reinit(struct drm_pagemap *dpagemap)
++{
++	dpagemap->dev_hold = drm_pagemap_dev_hold(dpagemap);
++	if (IS_ERR(dpagemap->dev_hold))
++		return PTR_ERR(dpagemap->dev_hold);
++
++	kref_init(&dpagemap->ref);
++	return 0;
++}
++EXPORT_SYMBOL(drm_pagemap_reinit);
++
++/**
++ * drm_pagemap_init() - Initialize a pre-allocated drm_pagemap
++ * @dpagemap: The drm_pagemap to initialize.
++ * @pagemap: The associated dev_pagemap providing the device
++ * private pages.
++ * @drm: The drm device. The drm_pagemap holds a reference on the
++ * drm_device and the module owning the drm_device until
++ * drm_pagemap_release(). This facilitates drm_pagemap exporting.
++ * @ops: The drm_pagemap ops.
++ *
++ * Initialize and take an initial reference on a drm_pagemap.
++ * After successful return, use drm_pagemap_put() to destroy.
++ *
++ ** Return: 0 on success, negative error code on error.
++ */
++int drm_pagemap_init(struct drm_pagemap *dpagemap,
++		     struct dev_pagemap *pagemap,
++		     struct drm_device *drm,
++		     const struct drm_pagemap_ops *ops)
++{
++	kref_init(&dpagemap->ref);
++	dpagemap->ops = ops;
++	dpagemap->pagemap = pagemap;
++	dpagemap->drm = drm;
++	dpagemap->cache = NULL;
++	INIT_LIST_HEAD(&dpagemap->shrink_link);
++
++	return drm_pagemap_reinit(dpagemap);
++}
++EXPORT_SYMBOL(drm_pagemap_init);
++
+ /**
+  * drm_pagemap_create() - Create a struct drm_pagemap.
+  * @drm: Pointer to a struct drm_device providing the device-private memory.
+@@ -646,22 +699,14 @@ drm_pagemap_create(struct drm_device *drm,
+ 		   const struct drm_pagemap_ops *ops)
+ {
+ 	struct drm_pagemap *dpagemap = kzalloc(sizeof(*dpagemap), GFP_KERNEL);
+-	struct drm_pagemap_dev_hold *dev_hold;
++	int err;
+ 
+ 	if (!dpagemap)
+ 		return ERR_PTR(-ENOMEM);
+ 
+-	kref_init(&dpagemap->ref);
+-	dpagemap->drm = drm;
+-	dpagemap->ops = ops;
+-	dpagemap->pagemap = pagemap;
+-
+-	dev_hold = drm_pagemap_dev_hold(dpagemap);
+-	if (IS_ERR(dev_hold)) {
+-		kfree(dpagemap);
+-		return ERR_CAST(dev_hold);
+-	}
+-	dpagemap->dev_hold = dev_hold;
++	err = drm_pagemap_init(dpagemap, pagemap, drm, ops);
++	if (err)
++		return ERR_PTR(err);
+ 
+ 	return dpagemap;
+ }
+@@ -676,8 +721,10 @@ EXPORT_SYMBOL(drm_pagemap_create);
+  */
+ void drm_pagemap_put(struct drm_pagemap *dpagemap)
+ {
+-	if (likely(dpagemap))
++	if (likely(dpagemap)) {
++		drm_pagemap_shrinker_might_lock(dpagemap);
+ 		kref_put(&dpagemap->ref, drm_pagemap_release);
++	}
+ }
+ EXPORT_SYMBOL(drm_pagemap_put);
+ 
+@@ -1028,6 +1075,14 @@ int drm_pagemap_populate_mm(struct drm_pagemap *dpagemap,
+ }
+ EXPORT_SYMBOL(drm_pagemap_populate_mm);
+ 
++void drm_pagemap_destroy(struct drm_pagemap *dpagemap, bool is_atomic_or_reclaim)
++{
++	if (dpagemap->ops->destroy)
++		dpagemap->ops->destroy(dpagemap, is_atomic_or_reclaim);
++	else
++		kfree(dpagemap);
++}
++
+ static void drm_pagemap_exit(void)
+ {
+ 	flush_work(&drm_pagemap_work);
+diff --git a/drivers/gpu/drm/drm_pagemap_util.c b/drivers/gpu/drm/drm_pagemap_util.c
+new file mode 100644
+index 000000000000..84a7a4807bef
+--- /dev/null
++++ b/drivers/gpu/drm/drm_pagemap_util.c
+@@ -0,0 +1,450 @@
++// SPDX-License-Identifier: GPL-2.0-only OR MIT
++/*
++ * Copyright © 2025 Intel Corporation
++ */
++
++#include <drm/drm_drv.h>
++#include <drm/drm_managed.h>
++#include <drm/drm_pagemap.h>
++#include <drm/drm_pagemap_util.h>
++#include <drm/drm_print.h>
++
++/**
++ * struct drm_pagemap_cache - Lookup structure for pagemaps
++ *
++ * Structure to keep track of active (refcount > 1) and inactive
++ * (refcount == 0) pagemaps. Inactive pagemaps can be made active
++ * again by waiting for the @queued completion (indicating that the
++ * pagemap has been put on the @shrinker's list of shrinkable
++ * pagemaps, and then successfully removing it from @shrinker's
++ * list. The latter may fail if the shrinker is already in the
++ * process of freeing the pagemap. A struct drm_pagemap_cache can
++ * hold a single struct drm_pagemap.
++ */
++struct drm_pagemap_cache {
++	/** @lookup_mutex: Mutex making the lookup process atomic */
++	struct mutex lookup_mutex;
++	/** @lock: Lock protecting the @dpagemap pointer */
++	spinlock_t lock;
++	/** @shrinker: Pointer to the shrinker used for this cache. Immutable. */
++	struct drm_pagemap_shrinker *shrinker;
++	/** @dpagemap: Non-refcounted pointer to the drm_pagemap */
++	struct drm_pagemap *dpagemap;
++	/**
++	 * @queued: Signals when an inactive drm_pagemap has been put on
++	 * @shrinker's list.
++	 */
++	struct completion queued;
++};
++
++/**
++ * struct drm_pagemap_shrinker - Shrinker to remove unused pagemaps
++ */
++struct drm_pagemap_shrinker {
++	/** @drm: Pointer to the drm device. */
++	struct drm_device *drm;
++	/** @lock: Spinlock to protect the @dpagemaps list. */
++	spinlock_t lock;
++	/** @dpagemaps: List of unused dpagemaps. */
++	struct list_head dpagemaps;
++	/** @num_dpagemaps: Number of unused dpagemaps in @dpagemaps. */
++	atomic_t num_dpagemaps;
++	/** @shrink: Pointer to the struct shrinker. */
++	struct shrinker *shrink;
++};
++
++static bool drm_pagemap_shrinker_cancel(struct drm_pagemap *dpagemap);
++
++static void drm_pagemap_cache_fini(void *arg)
++{
++	struct drm_pagemap_cache *cache = arg;
++	struct drm_pagemap *dpagemap;
++
++	drm_dbg(cache->shrinker->drm, "Destroying dpagemap cache.\n");
++	spin_lock(&cache->lock);
++	dpagemap = cache->dpagemap;
++	if (!dpagemap) {
++		spin_unlock(&cache->lock);
++		goto out;
++	}
++
++	if (drm_pagemap_shrinker_cancel(dpagemap)) {
++		cache->dpagemap = NULL;
++		spin_unlock(&cache->lock);
++		drm_pagemap_destroy(dpagemap, false);
++	}
++
++out:
++	mutex_destroy(&cache->lookup_mutex);
++	kfree(cache);
++}
++
++/**
++ * drm_pagemap_cache_create_devm() - Create a drm_pagemap_cache
++ * @shrinker: Pointer to a struct drm_pagemap_shrinker.
++ *
++ * Create a device-managed drm_pagemap cache. The cache is automatically
++ * destroyed on struct device removal, at which point any *inactive*
++ * drm_pagemap's are destroyed.
++ *
++ * Return: Pointer to a struct drm_pagemap_cache on success. Error pointer
++ * on failure.
++ */
++struct drm_pagemap_cache *drm_pagemap_cache_create_devm(struct drm_pagemap_shrinker *shrinker)
++{
++	struct drm_pagemap_cache *cache = kzalloc(sizeof(*cache), GFP_KERNEL);
++	int err;
++
++	if (!cache)
++		return ERR_PTR(-ENOMEM);
++
++	mutex_init(&cache->lookup_mutex);
++	spin_lock_init(&cache->lock);
++	cache->shrinker = shrinker;
++	init_completion(&cache->queued);
++	err = devm_add_action_or_reset(shrinker->drm->dev, drm_pagemap_cache_fini, cache);
++	if (err)
++		return ERR_PTR(err);
++
++	return cache;
++}
++EXPORT_SYMBOL(drm_pagemap_cache_create_devm);
++
++/**
++ * DOC: Cache lookup
++ *
++ * Cache lookup should be done under a locked mutex, so that a
++ * failed drm_pagemap_get_from_cache() and a following
++ * drm_pagemap_cache_setpagemap() are carried out as an atomic
++ * operation WRT other lookups. Otherwise, racing lookups may
++ * unnecessarily concurrently create pagemaps to fulfill a
++ * failed lookup. The API provides two functions to perform this lock,
++ * drm_pagemap_lock_lookup() and drm_pagemap_unlock_lookup() and they
++ * should be used in the following way:
++ *
++ * .. code-block:: c
++ *
++ *		drm_pagemap_lock_lookup(cache);
++ *		dpagemap = drm_pagemap_get_from_cache(cache);
++ *		if (dpagemap)
++ *			goto out_unlock;
++ *
++ *		dpagemap = driver_create_new_dpagemap();
++ *		if (!IS_ERR(dpagemap))
++ *			drm_pagemap_cache_set_pagemap(cache, dpagemap);
++ *
++ *     out_unlock:
++ *		drm_pagemap_unlock_lookup(cache);
++ */
++
++/**
++ * drm_pagemap_cache_lock_lookup() Lock a drm_pagemap_cache for lookup
++ * @cache: The drm_pagemap_cache to lock.
++ *
++ * Return: %-EINTR if interrupted while blocking. %0 otherwise.
++ */
++int drm_pagemap_cache_lock_lookup(struct drm_pagemap_cache *cache)
++{
++	return mutex_lock_interruptible(&cache->lookup_mutex);
++}
++EXPORT_SYMBOL(drm_pagemap_cache_lock_lookup);
++
++/**
++ * drm_pagemap_cache_unlock_lookup() Unlock a drm_pagemap_cache after lookup
++ * @cache: The drm_pagemap_cache to unlock.
++ */
++void drm_pagemap_cache_unlock_lookup(struct drm_pagemap_cache *cache)
++{
++	mutex_unlock(&cache->lookup_mutex);
++}
++EXPORT_SYMBOL(drm_pagemap_cache_unlock_lookup);
++
++/**
++ * drm_pagemap_get_from_cache() -  Lookup of drm_pagemaps.
++ * @cache: The cache used for lookup.
++ *
++ * If an active pagemap is present in the cache, it is immediately returned.
++ * If an inactive pagemap is present, it's removed from the shrinker list and
++ * an attempt is made to make it active.
++ * If no pagemap present or the attempt to make it active failed, %NULL is returned
++ * to indicate to the caller to create a new drm_pagemap and insert it into
++ * the cache.
++ *
++ * Return: A reference-counted pointer to a drm_pagemap if successful. An error
++ * pointer if an error occurred, or %NULL if no drm_pagemap was found and
++ * the caller should insert a new one.
++ */
++struct drm_pagemap *drm_pagemap_get_from_cache(struct drm_pagemap_cache *cache)
++{
++	struct drm_pagemap *dpagemap;
++	int err;
++
++	lockdep_assert_held(&cache->lookup_mutex);
++retry:
++	spin_lock(&cache->lock);
++	dpagemap = cache->dpagemap;
++	if (drm_pagemap_get_unless_zero(dpagemap)) {
++		spin_unlock(&cache->lock);
++		return dpagemap;
++	}
++
++	if (!dpagemap) {
++		spin_unlock(&cache->lock);
++		return NULL;
++	}
++
++	if (!try_wait_for_completion(&cache->queued)) {
++		spin_unlock(&cache->lock);
++		err = wait_for_completion_interruptible(&cache->queued);
++		if (err)
++			return ERR_PTR(err);
++		goto retry;
++	}
++
++	if (drm_pagemap_shrinker_cancel(dpagemap)) {
++		cache->dpagemap = NULL;
++		spin_unlock(&cache->lock);
++		err = drm_pagemap_reinit(dpagemap);
++		if (err) {
++			drm_pagemap_destroy(dpagemap, false);
++			return ERR_PTR(err);
++		}
++		drm_pagemap_cache_set_pagemap(cache, dpagemap);
++	} else {
++		cache->dpagemap = NULL;
++		spin_unlock(&cache->lock);
++		dpagemap = NULL;
++	}
++
++	return dpagemap;
++}
++EXPORT_SYMBOL(drm_pagemap_get_from_cache);
++
++/**
++ * drm_pagemap_cache_set_pagemap() - Assign a drm_pagemap to a drm_pagemap_cache
++ * @cache: The cache to assign the drm_pagemap to.
++ * @dpagemap: The drm_pagemap to assign.
++ *
++ * The function must be called to populate a drm_pagemap_cache only
++ * after a call to drm_pagemap_get_from_cache() returns NULL.
++ */
++void drm_pagemap_cache_set_pagemap(struct drm_pagemap_cache *cache, struct drm_pagemap *dpagemap)
++{
++	struct drm_device *drm = dpagemap->drm;
++
++	lockdep_assert_held(&cache->lookup_mutex);
++	spin_lock(&cache->lock);
++	dpagemap->cache = cache;
++	swap(cache->dpagemap, dpagemap);
++	reinit_completion(&cache->queued);
++	spin_unlock(&cache->lock);
++	drm_WARN_ON(drm, !!dpagemap);
++}
++EXPORT_SYMBOL(drm_pagemap_cache_set_pagemap);
++
++/**
++ * drm_pagemap_get_from_cache_if_active() - Quick lookup of active drm_pagemaps
++ * @cache: The cache to lookup from.
++ *
++ * Function that should be used to lookup a drm_pagemap that is already active.
++ * (refcount > 0).
++ *
++ * Return: A pointer to the cache's drm_pagemap if it's active; %NULL otherwise.
++ */
++struct drm_pagemap *drm_pagemap_get_from_cache_if_active(struct drm_pagemap_cache *cache)
++{
++	struct drm_pagemap *dpagemap;
++
++	spin_lock(&cache->lock);
++	dpagemap = drm_pagemap_get_unless_zero(cache->dpagemap);
++	spin_unlock(&cache->lock);
++
++	return dpagemap;
++}
++EXPORT_SYMBOL(drm_pagemap_get_from_cache_if_active);
++
++static bool drm_pagemap_shrinker_cancel(struct drm_pagemap *dpagemap)
++{
++	struct drm_pagemap_cache *cache = dpagemap->cache;
++	struct drm_pagemap_shrinker *shrinker = cache->shrinker;
++
++	spin_lock(&shrinker->lock);
++	if (list_empty(&dpagemap->shrink_link)) {
++		spin_unlock(&shrinker->lock);
++		return false;
++	}
++
++	list_del_init(&dpagemap->shrink_link);
++	atomic_dec(&shrinker->num_dpagemaps);
++	spin_unlock(&shrinker->lock);
++	return true;
++}
++
++#ifdef CONFIG_PROVE_LOCKING
++/**
++ * drm_pagemap_shrinker_might_lock() - lockdep test for drm_pagemap_shrinker_add()
++ * @dpagemap: The drm pagemap.
++ *
++ * The drm_pagemap_shrinker_add() function performs some locking.
++ * This function can be called in code-paths that might
++ * call drm_pagemap_shrinker_add() to detect any lockdep problems early.
++ */
++void drm_pagemap_shrinker_might_lock(struct drm_pagemap *dpagemap)
++{
++	int idx;
++
++	if (drm_dev_enter(dpagemap->drm, &idx)) {
++		struct drm_pagemap_cache *cache = dpagemap->cache;
++
++		if (cache)
++			might_lock(&cache->shrinker->lock);
++
++		drm_dev_exit(idx);
++	}
++}
++#endif
++
++/**
++ * drm_pagemap_shrinker_add() - Add a drm_pagemap to the shrinker list or destroy
++ * @dpagemap: The drm_pagemap.
++ *
++ * If @dpagemap is associated with a &struct drm_pagemap_cache AND the
++ * struct device backing the drm device is still alive, add @dpagemap to
++ * the &struct drm_pagemap_shrinker list of shrinkable drm_pagemaps.
++ *
++ * Otherwise destroy the pagemap directly using drm_pagemap_destroy().
++ *
++ * This is an internal function which is not intended to be exposed to drivers.
++ */
++void drm_pagemap_shrinker_add(struct drm_pagemap *dpagemap)
++{
++	struct drm_pagemap_cache *cache;
++	struct drm_pagemap_shrinker *shrinker;
++	int idx;
++
++	/*
++	 * The pagemap cache and shrinker are disabled at
++	 * pci device remove time. After that, dpagemaps
++	 * are freed directly.
++	 */
++	if (!drm_dev_enter(dpagemap->drm, &idx))
++		goto out_no_cache;
++
++	cache = dpagemap->cache;
++	if (!cache) {
++		drm_dev_exit(idx);
++		goto out_no_cache;
++	}
++
++	shrinker = cache->shrinker;
++	spin_lock(&shrinker->lock);
++	list_add_tail(&dpagemap->shrink_link, &shrinker->dpagemaps);
++	atomic_inc(&shrinker->num_dpagemaps);
++	spin_unlock(&shrinker->lock);
++	complete_all(&cache->queued);
++	drm_dev_exit(idx);
++	return;
++
++out_no_cache:
++	drm_pagemap_destroy(dpagemap, true);
++}
++
++static unsigned long
++drm_pagemap_shrinker_count(struct shrinker *shrink, struct shrink_control *sc)
++{
++	struct drm_pagemap_shrinker *shrinker = shrink->private_data;
++	unsigned long count = atomic_read(&shrinker->num_dpagemaps);
++
++	return count ? : SHRINK_EMPTY;
++}
++
++static unsigned long
++drm_pagemap_shrinker_scan(struct shrinker *shrink, struct shrink_control *sc)
++{
++	struct drm_pagemap_shrinker *shrinker = shrink->private_data;
++	struct drm_pagemap *dpagemap;
++	struct drm_pagemap_cache *cache;
++	unsigned long nr_freed = 0;
++
++	sc->nr_scanned = 0;
++	spin_lock(&shrinker->lock);
++	do {
++		dpagemap = list_first_entry_or_null(&shrinker->dpagemaps, typeof(*dpagemap),
++						    shrink_link);
++		if (!dpagemap)
++			break;
++
++		atomic_dec(&shrinker->num_dpagemaps);
++		list_del_init(&dpagemap->shrink_link);
++		spin_unlock(&shrinker->lock);
++
++		sc->nr_scanned++;
++		nr_freed++;
++
++		cache = dpagemap->cache;
++		spin_lock(&cache->lock);
++		cache->dpagemap = NULL;
++		spin_unlock(&cache->lock);
++
++		drm_dbg(dpagemap->drm, "Shrinking dpagemap %p.\n", dpagemap);
++		drm_pagemap_destroy(dpagemap, true);
++		spin_lock(&shrinker->lock);
++	} while (sc->nr_scanned < sc->nr_to_scan);
++	spin_unlock(&shrinker->lock);
++
++	return sc->nr_scanned ? nr_freed : SHRINK_STOP;
++}
++
++static void drm_pagemap_shrinker_fini(void *arg)
++{
++	struct drm_pagemap_shrinker *shrinker = arg;
++
++	drm_dbg(shrinker->drm, "Destroying dpagemap shrinker.\n");
++	drm_WARN_ON(shrinker->drm, !!atomic_read(&shrinker->num_dpagemaps));
++	shrinker_free(shrinker->shrink);
++	kfree(shrinker);
++}
++
++/**
++ * drm_pagemap_shrinker_create_devm() - Create and register a pagemap shrinker
++ * @drm: The drm device
++ *
++ * Create and register a pagemap shrinker that shrinks unused pagemaps
++ * and thereby reduces memory footprint.
++ * The shrinker is drm_device managed and unregisters itself when
++ * the drm device is removed.
++ *
++ * Return: %0 on success, negative error code on failure.
++ */
++struct drm_pagemap_shrinker *drm_pagemap_shrinker_create_devm(struct drm_device *drm)
++{
++	struct drm_pagemap_shrinker *shrinker;
++	struct shrinker *shrink;
++	int err;
++
++	shrinker = kzalloc(sizeof(*shrinker), GFP_KERNEL);
++	if (!shrinker)
++		return ERR_PTR(-ENOMEM);
++
++	shrink = shrinker_alloc(0, "drm-drm_pagemap:%s", drm->unique);
++	if (!shrink) {
++		kfree(shrinker);
++		return ERR_PTR(-ENOMEM);
++	}
++
++	spin_lock_init(&shrinker->lock);
++	INIT_LIST_HEAD(&shrinker->dpagemaps);
++	shrinker->drm = drm;
++	shrinker->shrink = shrink;
++	shrink->count_objects = drm_pagemap_shrinker_count;
++	shrink->scan_objects = drm_pagemap_shrinker_scan;
++	shrink->private_data = shrinker;
++	shrinker_register(shrink);
++
++	err = devm_add_action_or_reset(drm->dev, drm_pagemap_shrinker_fini, shrinker);
++	if (err)
++		return ERR_PTR(err);
++
++	return shrinker;
++}
++EXPORT_SYMBOL(drm_pagemap_shrinker_create_devm);
+diff --git a/include/drm/drm_pagemap.h b/include/drm/drm_pagemap.h
+index b3edcdde4454..78cc9011829f 100644
+--- a/include/drm/drm_pagemap.h
++++ b/include/drm/drm_pagemap.h
+@@ -10,6 +10,7 @@
+ 
+ struct dma_fence;
+ struct drm_pagemap;
++struct drm_pagemap_cache;
+ struct drm_pagemap_dev_hold;
+ struct drm_pagemap_zdd;
+ struct device;
+@@ -125,6 +126,25 @@ struct drm_pagemap_ops {
+ 			   unsigned long start, unsigned long end,
+ 			   struct mm_struct *mm,
+ 			   unsigned long timeslice_ms);
++	/**
++	 * @destroy: Destroy the drm_pagemap and associated resources.
++	 * @dpagemap: The drm_pagemap to destroy.
++	 * @is_atomic_or_reclaim: The function may be called from
++	 * atomic- or reclaim context.
++	 *
++	 * The implementation should take care not to attempt to
++	 * destroy resources that may already have been destroyed
++	 * using devm_ callbacks, since this function may be called
++	 * after the underlying struct device has been unbound.
++	 * If the implementation defers the execution to a work item
++	 * to avoid locking issues, then it must make sure the work
++	 * items are flushed before module exit. If the destroy call
++	 * happens after the provider's pci_remove() callback has
++	 * been executed, a module reference and drm device reference is
++	 * held across the destroy callback.
++	 */
++	void (*destroy)(struct drm_pagemap *dpagemap,
++			bool is_atomic_or_reclaim);
+ };
+ 
+ /**
+@@ -136,6 +156,10 @@ struct drm_pagemap_ops {
+  * @pagemap: Pointer to the underlying dev_pagemap.
+  * @dev_hold: Pointer to a struct drm_pagemap_dev_hold for
+  * device referencing.
++ * @cache: Back-pointer to the &struct drm_pagemap_cache used for this
++ * &struct drm_pagemap. May be NULL if no cache is used.
++ * @shrink_link: Link into the shrinker's list of drm_pagemaps. Only
++ * used if also using a pagemap cache.
+  */
+ struct drm_pagemap {
+ 	const struct drm_pagemap_ops *ops;
+@@ -143,6 +167,8 @@ struct drm_pagemap {
+ 	struct drm_device *drm;
+ 	struct dev_pagemap *pagemap;
+ 	struct drm_pagemap_dev_hold *dev_hold;
++	struct drm_pagemap_cache *cache;
++	struct list_head shrink_link;
+ };
+ 
+ struct drm_pagemap_devmem;
+@@ -217,6 +243,11 @@ struct drm_pagemap_devmem_ops {
+ 			   struct dma_fence *pre_migrate_fence);
+ };
+ 
++int drm_pagemap_init(struct drm_pagemap *dpagemap,
++		     struct dev_pagemap *pagemap,
++		     struct drm_device *drm,
++		     const struct drm_pagemap_ops *ops);
++
+ struct drm_pagemap *drm_pagemap_create(struct drm_device *drm,
+ 				       struct dev_pagemap *pagemap,
+ 				       const struct drm_pagemap_ops *ops);
+@@ -235,9 +266,9 @@ static inline void drm_pagemap_put(struct drm_pagemap *dpagemap)
+ 
+ /**
+  * drm_pagemap_get() - Obtain a reference on a struct drm_pagemap
+- * @dpagemap: Pointer to the struct drm_pagemap.
++ * @dpagemap: Pointer to the struct drm_pagemap, or NULL.
+  *
+- * Return: Pointer to the struct drm_pagemap.
++ * Return: Pointer to the struct drm_pagemap, or NULL.
+  */
+ static inline struct drm_pagemap *
+ drm_pagemap_get(struct drm_pagemap *dpagemap)
+@@ -248,6 +279,20 @@ drm_pagemap_get(struct drm_pagemap *dpagemap)
+ 	return dpagemap;
+ }
+ 
++/**
++ * drm_pagemap_get_unless_zero() - Obtain a reference on a struct drm_pagemap
++ * unless the current reference count is zero.
++ * @dpagemap: Pointer to the drm_pagemap or NULL.
++ *
++ * Return: A pointer to @dpagemap if the reference count was successfully
++ * incremented. NULL if @dpagemap was NULL, or its refcount was 0.
++ */
++static inline struct drm_pagemap * __must_check
++drm_pagemap_get_unless_zero(struct drm_pagemap *dpagemap)
++{
++	return (dpagemap && kref_get_unless_zero(&dpagemap->ref)) ? dpagemap : NULL;
++}
++
+ /**
+  * struct drm_pagemap_devmem - Structure representing a GPU SVM device memory allocation
+  *
+@@ -295,5 +340,7 @@ int drm_pagemap_populate_mm(struct drm_pagemap *dpagemap,
+ 			    struct mm_struct *mm,
+ 			    unsigned long timeslice_ms);
+ 
+-#endif
++void drm_pagemap_destroy(struct drm_pagemap *dpagemap, bool is_atomic_or_reclaim);
+ 
++int drm_pagemap_reinit(struct drm_pagemap *dpagemap);
++#endif
+diff --git a/include/drm/drm_pagemap_util.h b/include/drm/drm_pagemap_util.h
+new file mode 100644
+index 000000000000..924244d5b899
+--- /dev/null
++++ b/include/drm/drm_pagemap_util.h
+@@ -0,0 +1,42 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2025 Intel Corporation
++ */
++
++#ifndef _DRM_PAGEMAP_UTIL_H_
++#define _DRM_PAGEMAP_UTIL_H_
++
++struct drm_device;
++struct drm_pagemap;
++struct drm_pagemap_cache;
++struct drm_pagemap_shrinker;
++
++void drm_pagemap_shrinker_add(struct drm_pagemap *dpagemap);
++
++int drm_pagemap_cache_lock_lookup(struct drm_pagemap_cache *cache);
++
++void drm_pagemap_cache_unlock_lookup(struct drm_pagemap_cache *cache);
++
++struct drm_pagemap_shrinker *drm_pagemap_shrinker_create_devm(struct drm_device *drm);
++
++struct drm_pagemap_cache *drm_pagemap_cache_create_devm(struct drm_pagemap_shrinker *shrinker);
++
++struct drm_pagemap *drm_pagemap_get_from_cache(struct drm_pagemap_cache *cache);
++
++void drm_pagemap_cache_set_pagemap(struct drm_pagemap_cache *cache, struct drm_pagemap *dpagemap);
++
++struct drm_pagemap *drm_pagemap_get_from_cache_if_active(struct drm_pagemap_cache *cache);
++
++#ifdef CONFIG_PROVE_LOCKING
++
++void drm_pagemap_shrinker_might_lock(struct drm_pagemap *dpagemap);
++
++#else
++
++static inline void drm_pagemap_shrinker_might_lock(struct drm_pagemap *dpagemap)
++{
++}
++
++#endif /* CONFIG_PROVE_LOCKING */
++
++#endif
 -- 
-Jani Nikula, Intel
+2.51.1
+
