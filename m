@@ -4,43 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B030FD3B9BE
-	for <intel-xe@archiver.kernel.org>; Wed, 10 Dec 2025 17:00:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 57B3CD3C92B
+	for <intel-xe@archiver.kernel.org>; Wed, 10 Dec 2025 17:01:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6BD7210E76A;
-	Wed, 10 Dec 2025 17:00:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 109CE10E772;
+	Wed, 10 Dec 2025 17:01:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="chRaOShM";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="IIusPlBD";
 	dkim-atps=neutral
-Received: from lankhorst.se (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CD33510E6EF;
- Wed, 10 Dec 2025 17:00:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1765386054;
- bh=1e0EVK7hYcYs7Nr4d/xn0GCORy8rUE6yruIkrZp+0GQ=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=chRaOShMrhlf5SdfPoiCGKMvIolxAxNE6G3E4FjEbsVJWSK9f+yu1G2vWBXTijvD2
- 6Kyo6KaLZ9WMzcCHj7XzWSYZBGFTrkg31/AaL9kaxltRvPB9MvpXqw3Sdo3K9Gm2I2
- pCWQ02QkLIPlL1sd21jFA5WmuKmAfgMHNO/xvgyARANZH8NYC9k291M1UVq5hu8Ft1
- AD0iPgrHJ/5r/hIbNryd4kZuzTq2khTvYHokc844YglCZlFKgQ6XZSs5Wuyp2jTrK9
- JiUof68h/1hU8l3p8bqPwUDvUk2CPsQXrd/C1UuXnJRbSxsR90UhUHdci1nnqw37LG
- UNOYiSdWpBuKg==
-Message-ID: <cb0c9201-74f9-43c5-8177-5b5b77851973@lankhorst.se>
-Date: Wed, 10 Dec 2025 18:00:53 +0100
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DD34B10E76A
+ for <intel-xe@lists.freedesktop.org>; Wed, 10 Dec 2025 17:01:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:
+ Date:Subject:To:From:Sender:Reply-To:Cc:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=r5xjwiypPH8zsmOkacEQ4wDz5Qx0tgS7sM+7CIticXQ=; b=IIusPlBD5stlx6oMuMdt/Uy/CM
+ Rd2Z7ffqmDXFQNzNY2mz+058MN+EQiv3yyhO0X9kpywVzBK7+2E5rNxo7oIcnSODjsYwiFJX0bKzh
+ jneDqWSHp1HhNSgvMFPwaQyA/k89yzwaTOb8eFWQXzp7+Bu1xhkOEqR4E2GhaAr0Fha4fz38RpFZ4
+ ZdNPU31GnXzakmD0WNfeaJTqpKNe+rgh2nqUk6wp4tY1mdVTgccOMeIfMpOa7/7YRGLuFVe32IR51
+ y71016T7oh7R/e0EODt+H4R69Wg2ebmCcT1/Q6Q5qmde01nWqY63amdFO/BAbrlTTe0qOfDouLsW2
+ WmbIxWUw==;
+Received: from [86.33.28.86] (helo=localhost)
+ by fanzine2.igalia.com with utf8esmtpsa 
+ (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1vTNZZ-00B3pr-3V
+ for <intel-xe@lists.freedesktop.org>; Wed, 10 Dec 2025 18:01:53 +0100
+From: Tvrtko Ursulin <tursulin@igalia.com>
+To: intel-xe@lists.freedesktop.org
+Subject: [CI 00/11] auxccs dpt wc no stolen
+Date: Wed, 10 Dec 2025 18:01:41 +0100
+Message-ID: <20251210170152.15028-1-tursulin@igalia.com>
+X-Mailer: git-send-email 2.52.0
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] drm/i915/display: Fix intel_lpe_audio_irq_handler for
- PREEMPT-RT
-To: Jani Nikula <jani.nikula@linux.intel.com>, intel-xe@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-References: <20251209151319.494640-3-dev@lankhorst.se>
- <20251209151319.494640-4-dev@lankhorst.se>
- <f9641fa9298cf52efbde5d41014470f2355e3551@intel.com>
-Content-Language: en-US
-From: Maarten Lankhorst <dev@lankhorst.se>
-In-Reply-To: <f9641fa9298cf52efbde5d41014470f2355e3551@intel.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,38 +56,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hey,
+From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 
-Just needs a typo fixed, Matthew Brost also commented that the second I915 here should be PREEMPT-RT instead.
+test run
 
-Den 2025-12-10 kl. 09:56, skrev Jani Nikula:
-> On Tue, 09 Dec 2025, Maarten Lankhorst <dev@lankhorst.se> wrote:
->> No need for backporting, this is only useful for i915,
->> and it doesn't compile with I915 enabled.
-> 
-> Please elaborate. There's just riddles here.
-> 
-> BR,
-> Jani.
-> 
->>
->> Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
->> ---
->>  drivers/gpu/drm/i915/display/intel_lpe_audio.c | 2 +-
->>  1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git a/drivers/gpu/drm/i915/display/intel_lpe_audio.c b/drivers/gpu/drm/i915/display/intel_lpe_audio.c
->> index 5b41abe1c64d5..172c0062237eb 100644
->> --- a/drivers/gpu/drm/i915/display/intel_lpe_audio.c
->> +++ b/drivers/gpu/drm/i915/display/intel_lpe_audio.c
->> @@ -262,7 +262,7 @@ void intel_lpe_audio_irq_handler(struct intel_display *display)
->>  	if (!HAS_LPE_AUDIO(display))
->>  		return;
->>  
->> -	ret = generic_handle_irq(display->audio.lpe.irq);
->> +	ret = generic_handle_irq_safe(display->audio.lpe.irq);
->>  	if (ret)
->>  		drm_err_ratelimited(display->drm,
->>  				    "error handling LPE audio irq: %d\n", ret);
-> 
+Tvrtko Ursulin (11):
+  drm/xe: Fix ggtt fb alignment
+  drm/i915/display: Detect AuxCCS support via display parent interface
+  drm/xe/xelpg: Limit AuxCCS ring buffer programming to Alderlake
+  drm/xe/xelp: Quiesce memory traffic before invalidating AuxCCS
+  drm/xe/xelp: Wait for AuxCCS invalidation to complete
+  drm/xe: Export xe_emit_aux_table_inv
+  drm/xe/xelp: Add AuxCCS invalidation to the indirect context
+    workarounds
+  drm/xe/display: Add support for AuxCCS
+  drm/xe/xelp: Expose AuxCCS frame buffer modifiers on Alderlake-P
+  use wc for dpt
+  drm/xe: Do not use stolen memory for DPT on IGFX and AuxCCS
+
+ .../drm/i915/display/intel_display_device.h   |   2 +-
+ drivers/gpu/drm/i915/display/intel_fb.c       |   3 +-
+ drivers/gpu/drm/i915/display/intel_parent.c   |   5 +
+ drivers/gpu/drm/i915/display/intel_parent.h   |   2 +
+ .../drm/i915/display/skl_universal_plane.c    |   9 +-
+ drivers/gpu/drm/i915/i915_driver.c            |  10 ++
+ drivers/gpu/drm/xe/display/xe_display.c       |   8 ++
+ drivers/gpu/drm/xe/display/xe_fb_pin.c        | 135 +++++++++++++-----
+ .../gpu/drm/xe/instructions/xe_mi_commands.h  |   6 +
+ drivers/gpu/drm/xe/xe_hw_engine.h             |  24 ++++
+ drivers/gpu/drm/xe/xe_lrc.c                   |  27 ++++
+ drivers/gpu/drm/xe/xe_ring_ops.c              |  84 +++++++----
+ drivers/gpu/drm/xe/xe_ring_ops.h              |   3 +
+ drivers/gpu/drm/xe/xe_ring_ops_types.h        |   2 +-
+ include/drm/intel/display_parent_interface.h  |   3 +
+ 15 files changed, 249 insertions(+), 74 deletions(-)
+
+-- 
+2.52.0
 
