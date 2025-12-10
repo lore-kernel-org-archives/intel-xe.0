@@ -4,62 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 71BBED3C52B
-	for <intel-xe@archiver.kernel.org>; Wed, 10 Dec 2025 11:08:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ADA2BD3C52D
+	for <intel-xe@archiver.kernel.org>; Wed, 10 Dec 2025 11:08:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 322A210E202;
-	Wed, 10 Dec 2025 11:08:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6AFEB10E6EB;
+	Wed, 10 Dec 2025 11:08:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ewHfBipK";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PRtpOxlv";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0256410E6ED;
- Wed, 10 Dec 2025 11:08:33 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C905010E202;
+ Wed, 10 Dec 2025 11:08:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765364914; x=1796900914;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=aCxyBidnX3U+nNdXsPd7e8MIrvC++0tgh6d3wOnbkr0=;
- b=ewHfBipKJ87OziWyvwz3bZdFhGUbCNtJmyMcJuUVqg68ywgmcSwkdEAY
- 5xb83c4EWSz0nr3b93UVeMr79Mbu5Bo09YE6pKleX3+w0UUAw+nkia/65
- VPx0Dhq5z7tfa4dUGcWJcedlBAy7kmEpkSi2W4g0WI0uIe2wg+CAL+L7l
- y3WGoYXTvTNbbpu4lHkr3+XiXRdUZms80T0Sazn4IfRgSRDHzZ8O1nH3t
- Lq9cTs+/b/Q3ZFn7r96tJ0dpofC6a9d+PEji+xfmE+tdmpJlXU2TJgilG
- ot4Dtd7TWnACFPhasxdWZxgRhZ/NdEsv8w9cVbQnhp19r1ESkudqzNeHw g==;
-X-CSE-ConnectionGUID: uQaopJblRqqP7hNkrh8RVg==
-X-CSE-MsgGUID: rs7Yix9oSNueKeVfNonbpA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11637"; a="67221767"
-X-IronPort-AV: E=Sophos;i="6.20,263,1758610800"; d="scan'208";a="67221767"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Dec 2025 03:08:33 -0800
-X-CSE-ConnectionGUID: jcRnNhRbShOfVW1yli7m0w==
-X-CSE-MsgGUID: /QJyl2DUT3y56IIVQKOwjQ==
+ t=1765364915; x=1796900915;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version; bh=lUrcF/xd2GSNNiW3EGYGHDNCOWZyVniJvUJ3nZrUoS0=;
+ b=PRtpOxlvC6f2BEjCdTLykVXCqQb1wPnqQHqcb1Xp6i5yv6elwl2GT8La
+ iDM3E2p1Os7pKbSSAfdF1vdVd9BtARJDItbZseBsu9+Vd4bYLw2sHcd7b
+ VsXEiZ96JSIMBJE2gyJMTF2VkJS6UhQuPSd1Bw2btzmVeRBub1kUePmJV
+ unGP6mNBfSZ3mVgr1l+Nh4rC5o0o148qAA2wMj3R6ya90d+wYVgdtX5aG
+ 5PljfYlN6nRBs1TSuzR2BY3UvK6GJep+I52hmByc/0xldD3rOf/6qrvJR
+ pNP9OXvJHINmU1lXQ51np5wzvnDB+RzMHyEu9yBfNwGiy/8Jo36AhZn9x g==;
+X-CSE-ConnectionGUID: +TQXlCbgR2KOMGKqfrqWAg==
+X-CSE-MsgGUID: /9Y8+xOBSz+XLi1YsxiNGQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11637"; a="66511733"
+X-IronPort-AV: E=Sophos;i="6.20,263,1758610800"; d="scan'208";a="66511733"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Dec 2025 03:08:34 -0800
+X-CSE-ConnectionGUID: p7VOZYcOT7O/a7vsgNCAMA==
+X-CSE-MsgGUID: uUpP0mKmRTWQkeXeZi6lTw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,263,1758610800"; d="scan'208";a="196486997"
-Received: from rvuia-mobl.ger.corp.intel.com (HELO fedora) ([10.245.244.44])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Dec 2025 03:08:31 -0800
-From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Matthew Brost <matthew.brost@intel.com>, dri-devel@lists.freedesktop.org,
- himal.prasad.ghimiray@intel.com, apopple@nvidia.com, airlied@gmail.com,
- Simona Vetter <simona.vetter@ffwll.ch>, felix.kuehling@amd.com,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- dakr@kernel.org, "Mrozek, Michal" <michal.mrozek@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Subject: [PATCH v3 05/22] drm/pagemap,
- drm/xe: Manage drm_pagemap provider lifetimes
-Date: Wed, 10 Dec 2025 12:07:25 +0100
-Message-ID: <20251210110742.107575-6-thomas.hellstrom@linux.intel.com>
-X-Mailer: git-send-email 2.51.1
-In-Reply-To: <20251210110742.107575-1-thomas.hellstrom@linux.intel.com>
-References: <20251210110742.107575-1-thomas.hellstrom@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="6.20,263,1758610800"; d="scan'208";a="196239833"
+Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.207])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Dec 2025 03:08:33 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: "Manna, Animesh" <animesh.manna@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+Subject: RE: [PATCH] drm/i915/display: Panel Replay BW optimization for
+ DP2.0 tunneling
+In-Reply-To: <DS0PR11MB8049E5428BA761F99FB5A7B0F9A0A@DS0PR11MB8049.namprd11.prod.outlook.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20251210052128.1857581-1-animesh.manna@intel.com>
+ <b6cd982649633cef5f878054e35cd8315b04ca05@intel.com>
+ <DS0PR11MB8049E5428BA761F99FB5A7B0F9A0A@DS0PR11MB8049.namprd11.prod.outlook.com>
+Date: Wed, 10 Dec 2025 13:08:29 +0200
+Message-ID: <75e3a87a24ff92c02cb62236a821a91e9e5ea81f@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,272 +70,109 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-If a device holds a reference on a foregin device's drm_pagemap,
-and a device unbind is executed on the foreign device,
-Typically that foreign device would evict its device-private
-pages and then continue its device-managed cleanup eventually
-releasing its drm device and possibly allow for module unload.
-However, since we're still holding a reference on a drm_pagemap,
-when that reference is released and the provider module is
-unloaded we'd execute out of undefined memory.
+On Wed, 10 Dec 2025, "Manna, Animesh" <animesh.manna@intel.com> wrote:
+>> -----Original Message-----
+>> From: Jani Nikula <jani.nikula@linux.intel.com>
+>> Sent: Wednesday, December 10, 2025 2:25 PM
+>> To: Manna, Animesh <animesh.manna@intel.com>; intel-
+>> gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org
+>> Cc: Manna, Animesh <animesh.manna@intel.com>
+>> Subject: Re: [PATCH] drm/i915/display: Panel Replay BW optimization for
+>> DP2.0 tunneling
+>> 
+>> On Wed, 10 Dec 2025, Animesh Manna <animesh.manna@intel.com> wrote:
+>> > Unused bandwidth can be used by external display agents for Panel
+>> > Replay enabled DP panel during idleness with link on. Enable source to
+>> > replace dummy data from the display with data from another agent by
+>> > programming TRANS_DP2_CTL [Panel Replay Tunneling Enable].
+>> >
+>> > Bspec: 68920
+>> > Signed-off-by: Animesh Manna <animesh.manna@intel.com>
+>> > ---
+>> >  .../gpu/drm/i915/display/intel_display_regs.h |  1 +
+>> >  drivers/gpu/drm/i915/display/intel_psr.c      | 23 +++++++++++++++++++
+>> >  2 files changed, 24 insertions(+)
+>> >
+>> > diff --git a/drivers/gpu/drm/i915/display/intel_display_regs.h
+>> > b/drivers/gpu/drm/i915/display/intel_display_regs.h
+>> > index 9e0d853f4b61..b6fc249a9f09 100644
+>> > --- a/drivers/gpu/drm/i915/display/intel_display_regs.h
+>> > +++ b/drivers/gpu/drm/i915/display/intel_display_regs.h
+>> > @@ -2051,6 +2051,7 @@
+>> >  #define TRANS_DP2_CTL(trans)			_MMIO_TRANS(trans,
+>> _TRANS_DP2_CTL_A, _TRANS_DP2_CTL_B)
+>> >  #define  TRANS_DP2_128B132B_CHANNEL_CODING	REG_BIT(31)
+>> >  #define  TRANS_DP2_PANEL_REPLAY_ENABLE		REG_BIT(30)
+>> > +#define  TRANS_DP2_PR_TUNNELING_ENABLE		REG_BIT(26)
+>> >  #define  TRANS_DP2_DEBUG_ENABLE			REG_BIT(23)
+>> >
+>> >  #define _TRANS_DP2_VFREQHIGH_A			0x600a4
+>> > diff --git a/drivers/gpu/drm/i915/display/intel_psr.c
+>> > b/drivers/gpu/drm/i915/display/intel_psr.c
+>> > index 2a378a5adc59..d0a01a08299e 100644
+>> > --- a/drivers/gpu/drm/i915/display/intel_psr.c
+>> > +++ b/drivers/gpu/drm/i915/display/intel_psr.c
+>> > @@ -44,6 +44,7 @@
+>> >  #include "intel_dmc.h"
+>> >  #include "intel_dp.h"
+>> >  #include "intel_dp_aux.h"
+>> > +#include "intel_dp_tunnel.h"
+>> >  #include "intel_dsb.h"
+>> >  #include "intel_frontbuffer.h"
+>> >  #include "intel_hdmi.h"
+>> > @@ -2152,6 +2153,25 @@ static bool psr_interrupt_error_check(struct
+>> intel_dp *intel_dp)
+>> >  	return true;
+>> >  }
+>> >
+>> > +static void intel_psr_set_pr_bw_optimization(struct intel_dp
+>> > +*intel_dp) {
+>> > +	struct intel_display *display = to_intel_display(intel_dp);
+>> > +	u8 val;
+>> > +
+>> > +	if (DISPLAY_VER(display) < 35)
+>> > +		return;
+>> > +
+>> > +	if (!intel_dp_tunnel_bw_alloc_is_enabled(intel_dp))
+>> > +		return;
+>> > +
+>> > +	drm_dp_dpcd_readb(&intel_dp->aux, DP_TUNNELING_CAPABILITIES,
+>> &val);
+>> > +	if (!(val & DP_PANEL_REPLAY_OPTIMIZATION_SUPPORT))
+>> > +		return;
+>> > +
+>> > +	intel_de_rmw(display, TRANS_DP2_CTL(intel_dp->psr.transcoder), 0,
+>> > +		     TRANS_DP2_PR_TUNNELING_ENABLE); }
+>> 
+>> Why is this so separated from dg2_activate_panel_replay()?
+>
+> I felt this feature more leaning towards DP tunneling, so kept outside of dg2_activate_panel_replay().
+> But this is just after intel_psr_activate().
 
-Therefore keep a reference on the provider device and module until
-the last drm_pagemap reference is gone.
+On *one* path calling intel_psr_activate(). Why not others?
 
-Note that in theory, the drm_gpusvm_helper module may be unloaded
-as soon as the final module_put() of the provider driver module is
-executed, so we need to add a module_exit() function that waits
-for the work item executing the module_put() has completed.
+>
+> Regards,
+> Animesh
+>> 
+>> > +
+>> >  static void intel_psr_enable_locked(struct intel_dp *intel_dp,
+>> >  				    const struct intel_crtc_state *crtc_state)  {
+>> @@ -2221,6
+>> > +2241,9 @@ static void intel_psr_enable_locked(struct intel_dp *intel_dp,
+>> >  	intel_dp->psr.link_ok = true;
+>> >
+>> >  	intel_psr_activate(intel_dp);
+>> > +
+>> > +	if (!intel_dp_is_edp(intel_dp) && intel_dp-
+>> >psr.panel_replay_enabled)
+>> > +		intel_psr_set_pr_bw_optimization(intel_dp);
+>> >  }
+>> >
+>> >  static void intel_psr_exit(struct intel_dp *intel_dp)
+>> 
+>> --
+>> Jani Nikula, Intel
 
-v2:
-- Better commit message (Matt Brost)
-
-Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/drm_pagemap.c | 101 ++++++++++++++++++++++++++++++++--
- drivers/gpu/drm/xe/xe_svm.c   |  15 ++++-
- include/drm/drm_pagemap.h     |  10 +++-
- 3 files changed, 117 insertions(+), 9 deletions(-)
-
-diff --git a/drivers/gpu/drm/drm_pagemap.c b/drivers/gpu/drm/drm_pagemap.c
-index 21b9d3225160..ebf160f594ed 100644
---- a/drivers/gpu/drm/drm_pagemap.c
-+++ b/drivers/gpu/drm/drm_pagemap.c
-@@ -8,6 +8,7 @@
- #include <linux/pagemap.h>
- #include <drm/drm_drv.h>
- #include <drm/drm_pagemap.h>
-+#include <drm/drm_print.h>
- 
- /**
-  * DOC: Overview
-@@ -545,16 +546,92 @@ static int drm_pagemap_migrate_populate_ram_pfn(struct vm_area_struct *vas,
- 	return -ENOMEM;
- }
- 
-+static void drm_pagemap_dev_unhold_work(struct work_struct *work);
-+static LLIST_HEAD(drm_pagemap_unhold_list);
-+static DECLARE_WORK(drm_pagemap_work, drm_pagemap_dev_unhold_work);
-+
-+/**
-+ * struct drm_pagemap_dev_hold - Struct to aid in drm_device release.
-+ * @link: Link into drm_pagemap_unhold_list for deferred reference releases.
-+ * @drm: drm device to put.
-+ *
-+ * When a struct drm_pagemap is released, we also need to release the
-+ * reference it holds on the drm device. However, typically that needs
-+ * to be done separately from a system-wide workqueue.
-+ * Each time a struct drm_pagemap is initialized
-+ * (or re-initialized if cached) therefore allocate a separate
-+ * drm_pagemap_dev_hold item, from which we put the drm device and
-+ * associated module.
-+ */
-+struct drm_pagemap_dev_hold {
-+	struct llist_node link;
-+	struct drm_device *drm;
-+};
-+
- static void drm_pagemap_release(struct kref *ref)
- {
- 	struct drm_pagemap *dpagemap = container_of(ref, typeof(*dpagemap), ref);
--
-+	struct drm_pagemap_dev_hold *dev_hold = dpagemap->dev_hold;
-+
-+	/*
-+	 * We know the pagemap provider is alive at this point, since
-+	 * the struct drm_pagemap_dev_hold holds a reference to the
-+	 * pagemap provider drm_device and its module.
-+	 */
-+	dpagemap->dev_hold = NULL;
- 	kfree(dpagemap);
-+	llist_add(&dev_hold->link, &drm_pagemap_unhold_list);
-+	schedule_work(&drm_pagemap_work);
-+	/*
-+	 * Here, either the provider device is still alive, since if called from
-+	 * page_free(), the caller is holding a reference on the dev_pagemap,
-+	 * or if called from drm_pagemap_put(), the direct caller is still alive.
-+	 * This ensures we can't race with THIS module unload.
-+	 */
-+}
-+
-+static void drm_pagemap_dev_unhold_work(struct work_struct *work)
-+{
-+	struct llist_node *node = llist_del_all(&drm_pagemap_unhold_list);
-+	struct drm_pagemap_dev_hold *dev_hold, *next;
-+
-+	/*
-+	 * Deferred release of drm_pagemap provider device and module.
-+	 * THIS module is kept alive during the release by the
-+	 * flush_work() in the drm_pagemap_exit() function.
-+	 */
-+	llist_for_each_entry_safe(dev_hold, next, node, link) {
-+		struct drm_device *drm = dev_hold->drm;
-+		struct module *module = drm->driver->fops->owner;
-+
-+		drm_dbg(drm, "Releasing reference on provider device and module.\n");
-+		drm_dev_put(drm);
-+		module_put(module);
-+		kfree(dev_hold);
-+	}
-+}
-+
-+static struct drm_pagemap_dev_hold *
-+drm_pagemap_dev_hold(struct drm_pagemap *dpagemap)
-+{
-+	struct drm_pagemap_dev_hold *dev_hold;
-+	struct drm_device *drm = dpagemap->drm;
-+
-+	dev_hold = kzalloc(sizeof(*dev_hold), GFP_KERNEL);
-+	if (!dev_hold)
-+		return ERR_PTR(-ENOMEM);
-+
-+	init_llist_node(&dev_hold->link);
-+	dev_hold->drm = drm;
-+	(void)try_module_get(drm->driver->fops->owner);
-+	drm_dev_get(drm);
-+
-+	return dev_hold;
- }
- 
- /**
-  * drm_pagemap_create() - Create a struct drm_pagemap.
-- * @dev: Pointer to a struct device providing the device-private memory.
-+ * @drm: Pointer to a struct drm_device providing the device-private memory.
-  * @pagemap: Pointer to a pre-setup struct dev_pagemap providing the struct pages.
-  * @ops: Pointer to the struct drm_pagemap_ops.
-  *
-@@ -564,20 +641,28 @@ static void drm_pagemap_release(struct kref *ref)
-  * Error pointer on error.
-  */
- struct drm_pagemap *
--drm_pagemap_create(struct device *dev,
-+drm_pagemap_create(struct drm_device *drm,
- 		   struct dev_pagemap *pagemap,
- 		   const struct drm_pagemap_ops *ops)
- {
- 	struct drm_pagemap *dpagemap = kzalloc(sizeof(*dpagemap), GFP_KERNEL);
-+	struct drm_pagemap_dev_hold *dev_hold;
- 
- 	if (!dpagemap)
- 		return ERR_PTR(-ENOMEM);
- 
- 	kref_init(&dpagemap->ref);
--	dpagemap->dev = dev;
-+	dpagemap->drm = drm;
- 	dpagemap->ops = ops;
- 	dpagemap->pagemap = pagemap;
- 
-+	dev_hold = drm_pagemap_dev_hold(dpagemap);
-+	if (IS_ERR(dev_hold)) {
-+		kfree(dpagemap);
-+		return ERR_CAST(dev_hold);
-+	}
-+	dpagemap->dev_hold = dev_hold;
-+
- 	return dpagemap;
- }
- EXPORT_SYMBOL(drm_pagemap_create);
-@@ -942,3 +1027,11 @@ int drm_pagemap_populate_mm(struct drm_pagemap *dpagemap,
- 	return err;
- }
- EXPORT_SYMBOL(drm_pagemap_populate_mm);
-+
-+static void drm_pagemap_exit(void)
-+{
-+	flush_work(&drm_pagemap_work);
-+	if (WARN_ON(!llist_empty(&drm_pagemap_unhold_list)))
-+		disable_work_sync(&drm_pagemap_work);
-+}
-+module_exit(drm_pagemap_exit);
-diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
-index b4b508b09ab5..ed0527198f45 100644
---- a/drivers/gpu/drm/xe/xe_svm.c
-+++ b/drivers/gpu/drm/xe/xe_svm.c
-@@ -1490,7 +1490,7 @@ xe_drm_pagemap_device_map(struct drm_pagemap *dpagemap,
- 			  unsigned int order,
- 			  enum dma_data_direction dir)
- {
--	struct device *pgmap_dev = dpagemap->dev;
-+	struct device *pgmap_dev = dpagemap->drm->dev;
- 	enum drm_interconnect_protocol prot;
- 	dma_addr_t addr;
- 
-@@ -1510,6 +1510,14 @@ static const struct drm_pagemap_ops xe_drm_pagemap_ops = {
- 	.populate_mm = xe_drm_pagemap_populate_mm,
- };
- 
-+static void xe_devm_release(void *data)
-+{
-+	struct xe_vram_region *vr = data;
-+
-+	drm_pagemap_put(vr->dpagemap);
-+	vr->dpagemap = NULL;
-+}
-+
- /**
-  * xe_devm_add: Remap and provide memmap backing for device memory
-  * @tile: tile that the memory region belongs to
-@@ -1535,7 +1543,7 @@ int xe_devm_add(struct xe_tile *tile, struct xe_vram_region *vr)
- 		return ret;
- 	}
- 
--	vr->dpagemap = drm_pagemap_create(dev, &vr->pagemap,
-+	vr->dpagemap = drm_pagemap_create(&xe->drm, &vr->pagemap,
- 					  &xe_drm_pagemap_ops);
- 	if (IS_ERR(vr->dpagemap)) {
- 		drm_err(&xe->drm, "Failed to create drm_pagemap tile %d memory: %pe\n",
-@@ -1543,6 +1551,9 @@ int xe_devm_add(struct xe_tile *tile, struct xe_vram_region *vr)
- 		ret = PTR_ERR(vr->dpagemap);
- 		goto out_no_dpagemap;
- 	}
-+	ret = devm_add_action_or_reset(dev, xe_devm_release, vr);
-+	if (ret)
-+		goto out_no_dpagemap;
- 
- 	vr->pagemap.type = MEMORY_DEVICE_PRIVATE;
- 	vr->pagemap.range.start = res->start;
-diff --git a/include/drm/drm_pagemap.h b/include/drm/drm_pagemap.h
-index 093e7199c44b..b3edcdde4454 100644
---- a/include/drm/drm_pagemap.h
-+++ b/include/drm/drm_pagemap.h
-@@ -10,6 +10,7 @@
- 
- struct dma_fence;
- struct drm_pagemap;
-+struct drm_pagemap_dev_hold;
- struct drm_pagemap_zdd;
- struct device;
- 
-@@ -131,14 +132,17 @@ struct drm_pagemap_ops {
-  * used for device p2p handshaking.
-  * @ops: The struct drm_pagemap_ops.
-  * @ref: Reference count.
-- * @dev: The struct drevice owning the device-private memory.
-+ * @drm: The struct drm device owning the device-private memory.
-  * @pagemap: Pointer to the underlying dev_pagemap.
-+ * @dev_hold: Pointer to a struct drm_pagemap_dev_hold for
-+ * device referencing.
-  */
- struct drm_pagemap {
- 	const struct drm_pagemap_ops *ops;
- 	struct kref ref;
--	struct device *dev;
-+	struct drm_device *drm;
- 	struct dev_pagemap *pagemap;
-+	struct drm_pagemap_dev_hold *dev_hold;
- };
- 
- struct drm_pagemap_devmem;
-@@ -213,7 +217,7 @@ struct drm_pagemap_devmem_ops {
- 			   struct dma_fence *pre_migrate_fence);
- };
- 
--struct drm_pagemap *drm_pagemap_create(struct device *dev,
-+struct drm_pagemap *drm_pagemap_create(struct drm_device *drm,
- 				       struct dev_pagemap *pagemap,
- 				       const struct drm_pagemap_ops *ops);
- 
 -- 
-2.51.1
-
+Jani Nikula, Intel
