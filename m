@@ -4,191 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 59030D3C90B
-	for <intel-xe@archiver.kernel.org>; Wed, 10 Dec 2025 14:06:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CB0EAD3C90D
+	for <intel-xe@archiver.kernel.org>; Wed, 10 Dec 2025 14:14:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 15B2210E739;
-	Wed, 10 Dec 2025 14:06:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 83D0E10E748;
+	Wed, 10 Dec 2025 14:14:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="A7khJ15X";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="k8LYSOhn";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 786A810E261;
- Wed, 10 Dec 2025 14:06:44 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EADE610E744;
+ Wed, 10 Dec 2025 14:14:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765375605; x=1796911605;
- h=from:to:subject:date:message-id:references:in-reply-to:
- content-id:content-transfer-encoding:mime-version;
- bh=sswCKSXwk/77rlxtR4HVkxPMTUnLDrxJm6AE4E18wws=;
- b=A7khJ15XlDGDMrh5HL4VN/OMoEkcLYkveyH6a5CK/fkxQUP+6DaElQ97
- +cheDgJE7GGKzfKAtZx8UshhsvaCDjzGkus1STrtO5hRHAy8OGRk/yBNX
- 2stiXZ79oc1NU7V2ljwOWOs9L30mPuk4X8xK/PN5+4aWRgq7zWC+Iidwf
- +hy4zD/dy+x0gW3DZSqNBZMT827hxsoP/OBX60ChRGF52+FFKzmMXgnZM
- vkEfZfbLTCQW17T1UnBdthp1hdBqs2JQdpjkiJwnIVfz+JOaXs+pkfqJZ
- TH2gozDejSHGZXoxyjLBPZW5bbTsjmISw07Z2MOBIhY2ZX3pws3AslHA9 w==;
-X-CSE-ConnectionGUID: 57FpZXioR0yxp+2M7riakw==
-X-CSE-MsgGUID: +YC9JL0ZRRKhHppXLfr+mQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11638"; a="54891535"
-X-IronPort-AV: E=Sophos;i="6.20,264,1758610800"; d="scan'208";a="54891535"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Dec 2025 06:06:44 -0800
-X-CSE-ConnectionGUID: 6soq2TsgTU6h+gE228d5/w==
-X-CSE-MsgGUID: Ah4UgnI3THendYXNVx4zLA==
+ t=1765376061; x=1796912061;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=KJ7kD7PXxYe8tjWHtWajJDK3fbizOA8VB40bkjZ2BfI=;
+ b=k8LYSOhneMINQXgAJVPIgFJ0yxkXeOc2eAmmvj49k4kyCScii8u6PmWi
+ 6HqbeScwueveiuhtYXBq8YzKWzkc5/R1hlaVs0E6P0YG90qyrzRrgilrd
+ KReD9AOkMn5gavxRO7osiA6vKK76ysW3QLXn6wDyqdQOcoqBXNCRuzM/U
+ QOflIYIh/yaQlkBHUtwg0kDgB30/qQwbhumkEbV0nqIlwNyfKAvBFMjaV
+ L1d4zdZGBnNJKnysMfKzRgVoKw+7EFzdv8Zh84eHGatpBu1fLMHmb4NrZ
+ Wc6xvMAYrJTZyG+Jn6aHssvWFkFQVZuhaa5zll99fFEJV/ftWPFL9YRL5 A==;
+X-CSE-ConnectionGUID: W2oRGlNGRoOMU2Ii5+rmCA==
+X-CSE-MsgGUID: iGKqp6jRTJ2NObe3mACUtw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11638"; a="67235010"
+X-IronPort-AV: E=Sophos;i="6.20,264,1758610800"; d="scan'208";a="67235010"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Dec 2025 06:14:21 -0800
+X-CSE-ConnectionGUID: 3yL4uNdZQVOnO912V8BTRw==
+X-CSE-MsgGUID: m+acr95gR5SjdzeqdJSzqg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,264,1758610800"; d="scan'208";a="219859989"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Dec 2025 06:06:44 -0800
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Wed, 10 Dec 2025 06:06:43 -0800
-Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29 via Frontend Transport; Wed, 10 Dec 2025 06:06:43 -0800
-Received: from BYAPR05CU005.outbound.protection.outlook.com (52.101.85.56) by
- edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Wed, 10 Dec 2025 06:06:43 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=obweN8qBNeERsEPEq6ROdmp6EHreFGdPVfbDRPRLKmyvq/0JyMFBYlm9P0Xsw+dJCjAH+JhCa0efswFLUy3w8b8lvi+KFNUKEtydnuloKf773qWhf6cuyQq7jFtjkgCorWDoHmFwY3SKhOV7Lb+mx9KzvNZ/KSbjOVZL3HXtVjlb9nFtuRFwOcCdw6+MeWg2KUlMidFZ4JnBr1m9cK43zoD+btv3ucbXJckZTeEqAga9TwUjlHnx64CGb6JqNENkZ6A2o3vtmn43S4Q3JRHB3BQ/MlRHQpShK3TVt2KKcu/pvD25Ab+4o9B9GF3+d1lrpo+disBgYMvnP1tx3tQGiQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=sswCKSXwk/77rlxtR4HVkxPMTUnLDrxJm6AE4E18wws=;
- b=CgVJsIwF5goxFx+Beb7J37CeQ4ZjpbjwleVDvBxiUUOxmR8Oz2BrEraoD9iipEWbTxBG6dg2+aEXXPhyPekzp74W8Huc7zW5Gd2GzRnqU8owZ5T+Y/FXNU8YAFEWeVtfNZXlCltaURPmV+fMiO5WaPq+5AsGLo9p2mwn/DGBlDOBn4S9h/mNZY570GohAa0dH5JQV/XFBinybpHYslFWEfuIzgBYCqGd+QtV3bda9RbPLSi8IysAlb1qGsXGswmKJGbv34vU3XCsUC3EupfN6cK8cXkrvb/AgtfY1xoBQK6szU7tStGZWkxuyMIYAWTpgJ1oMPJzyrRolF4Xalh3xw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DM4PR11MB6019.namprd11.prod.outlook.com (2603:10b6:8:60::5) by
- LV3PR11MB8744.namprd11.prod.outlook.com (2603:10b6:408:215::7) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9412.7; Wed, 10 Dec 2025 14:06:38 +0000
-Received: from DM4PR11MB6019.namprd11.prod.outlook.com
- ([fe80::fc1:e80f:134c:5ed2]) by DM4PR11MB6019.namprd11.prod.outlook.com
- ([fe80::fc1:e80f:134c:5ed2%5]) with mapi id 15.20.9412.005; Wed, 10 Dec 2025
- 14:06:38 +0000
-From: "Hogander, Jouni" <jouni.hogander@intel.com>
-To: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, "Deak,
- Imre" <imre.deak@intel.com>
-Subject: Re: [PATCH 46/50] drm/i915/dsc: Add intel_dsc_get_slice_config()
-Thread-Topic: [PATCH 46/50] drm/i915/dsc: Add intel_dsc_get_slice_config()
-Thread-Index: AQHcX8kJfKUI00pD7kmNdb8qVxM/gbUa/NIA
-Date: Wed, 10 Dec 2025 14:06:38 +0000
-Message-ID: <b4d8ed0f1c6d2010ecbd1fd04010655254e5bc7a.camel@intel.com>
-References: <20251127175023.1522538-1-imre.deak@intel.com>
- <20251127175023.1522538-47-imre.deak@intel.com>
-In-Reply-To: <20251127175023.1522538-47-imre.deak@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM4PR11MB6019:EE_|LV3PR11MB8744:EE_
-x-ms-office365-filtering-correlation-id: 534d9f44-da4c-4f83-06ae-08de37f555ee
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|376014|1800799024|10070799003|366016|38070700021; 
-x-microsoft-antispam-message-info: =?utf-8?B?d2Y3V3R4OUpSWHBtVEZGbXl1OUtXWGdFSitXR1ZtSE5TNUhhWHdETXFYVUoy?=
- =?utf-8?B?UVR0eDhiR3pubHlKc0FXYTdzZ2x4VnB6aUxCM3dsNmhyektNaVJsaUEwQ0Uw?=
- =?utf-8?B?c1U5NXZYVlYxMmNFRmE2eFRrY3lOK1hFV0JYbHhldENCVFpqUTd6OGMyV0Rh?=
- =?utf-8?B?VWtOOEtXdnVnOU1idnl0WnlPRzJMT0hqcWNsbHhkZjU1bFlJNDdwUTJ3cUZE?=
- =?utf-8?B?VW0rMXRtT2pZNHhkdEF6Ykl2bTdpSEMwWFZSUXdWK0F4SlIwS2YwU09XSThj?=
- =?utf-8?B?WVhmM3kyakViTXROdHJUYmRaa0pROForeTYyeFUwTGQwb05UdEdMSU56NnFp?=
- =?utf-8?B?YndaNGhpbllSQWQ1ZVU1cmxOZjJJVjJ5emNjWmZ4V1V1VExJdEVDazhWdEpF?=
- =?utf-8?B?dHI3ekZ4dHRsQWY0dnlpRVJpRTg1RFNPazJxaWF6NDNzaEpmNXJkVGUzd0Zk?=
- =?utf-8?B?OWRNWVVsSEI4QmRQc09wZXd0SCt4a2w1TGJFeHlRb0Z6Q0JrMUNHM1ZBT1ZG?=
- =?utf-8?B?cWdjaFQzUFlwVE9Bc3dPNktackJCOXJmLyt5ZzlqNkM2M0p6KzRWQ0pVYnF3?=
- =?utf-8?B?SkhsbzVhYzU5aEZxeDBOOFF0L3R2UGQ0RGtmbkFHb0trTGJCaE10TGc5elJR?=
- =?utf-8?B?QVVXYVUvSDBHSUlkWDN0QzBxZzA3MXZLdEt6ZTMvekF1Z1B3VEtiSzg3SE04?=
- =?utf-8?B?cFJMOFUvZTVvYlJzYUdGYTV0N0w1WEd4TlRoWmtVTzNCMzZlWDl3UUxnelRM?=
- =?utf-8?B?SnVuU0tycDFXalVwSTQ0R3FYR2RXZ09XR3REbUdkeGc3YTdaQ0x3cWh1QUZQ?=
- =?utf-8?B?cWwzNU5RdGZjYkJjTjVSWjlLNVpGUElGMWk2MFRJRVFwWlp2VGs5dEpJZ09x?=
- =?utf-8?B?OUN0TTR3KzdCUUJwNm50blV3Mmx3ZTdOTHJpckZKVGFWdVBKVVFrY0wrWkF0?=
- =?utf-8?B?WTMxaXd6cjcwMWVHWjByNVFkZFYvVGo0bno2V05ncHRtVEh0eGZrbUxSY09i?=
- =?utf-8?B?aURxYTBSV090OHhzZkkydFBPa2NHS2J6SE1KK1BYTDEyZVduZFp2cWUzaTFB?=
- =?utf-8?B?NkYyTUxRWWpMenY5YXArY1J4ZFJWUlQyZ05jVDJDeXJxeWFOem1YV2VHWCti?=
- =?utf-8?B?cTBBTVlDSjdXSnI0MEw0c01pU0kzOVVmdVZ5SmlERkovb1QwaUwyMTQwYURZ?=
- =?utf-8?B?ckp5alpJMXVIcUpEOVBjQjFzUDNYZTU5NWlibTJtWkhwSDFERWZrbGg3NWMw?=
- =?utf-8?B?ZmVDbXlQcmtvNnlzWE1hYjZBUlI0ZzZEa1dRL3ovb2t0YXk1N0x5WlJCQjV3?=
- =?utf-8?B?WVByS2UxYWRqYWp4MHNFZ1ZqbnV1ekxZZTVUbkpCc3Jibm1KdGpRUlRYdktp?=
- =?utf-8?B?N09YejlmM1JyK1NBWTdQOXk2ZUdxTVhsZWtBcUY1OS8xcGoxUTJnZmF2ZE5B?=
- =?utf-8?B?ZVlBNHYrSnl0TXpCcG9oRGo4K09lbTlLcm9nSUtRcUdtVUJLMkRMMDJhM2wr?=
- =?utf-8?B?MlgyV3NnTVBkNXpraFR1RW9ibnVBc09TbVZpRFpQaWNRSHl6ZmFHYk9rbTNl?=
- =?utf-8?B?THBTbFB2Zzl4NGtJaEt6cXJmZTZEZ2xtU0tBTmlQSW0rT0ZrQVArWStjYllU?=
- =?utf-8?B?NVA3V2dLOGE0akxSOTNWN3BETE9PVGUzclBlbU9KNjRETW9hQkFqbXlja1lR?=
- =?utf-8?B?UWw3eEMvbXREb1FtWEZiMFA1SE1UZ25MeFplOXBOS1ViWnV2VktRcGdSaWRi?=
- =?utf-8?B?RnZITkVtNVRyL3p1TjcxY0Z2MFJpOWR0OFBhcXdCWGxtZHF4b3BDbGh3U1Mw?=
- =?utf-8?B?UE1rbGpTOVFsbWEydjZjTDE0dllLSHpwcDlsdHBJRjMyN0ZIQXA4SC9IUFVh?=
- =?utf-8?B?V2pRTUtpMytiNFFkdVFlYWZRTE01MkVoOTZiSjdCNHdDcTh2cmlXaE1qY0pn?=
- =?utf-8?B?eGFEL2V6UDd5ZzJBRis3NEZGaWhOdXdoUWRDKzJZb25mMzRmWjRMK0ovM0NG?=
- =?utf-8?B?WDNXNm1KQTR0M1dyWkpvelpaTVFzVVc0aCsvN1hxYmF2bUhXcCtleDFROW90?=
- =?utf-8?Q?IQqcw7?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB6019.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(10070799003)(366016)(38070700021); DIR:OUT;
- SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?b3VadDQvK3ZaaSs2Zis1Vjd2VkdtUzhPWmdqU0tpdTBGNERUL2NaVmIzSURZ?=
- =?utf-8?B?MnlMRFlqUGl5bUlCYjYyYndUNlhRWnJ1bjJ5OHZhY2h5Q2lKUFlEYWlDcmZS?=
- =?utf-8?B?VVlJZzNPN1N1aTdpQ0VPUUpxdmNSSUxXYmRMZkxIdUx3MHpVL2JxdzBQcHRD?=
- =?utf-8?B?KzhESnVvcTE1KzhZWG9nNmo2T051cml1b2JVWGUxQWdObjk3VTdwcXUxbGFw?=
- =?utf-8?B?UkFUNzFSd201eGM0djFxbmk2ZEUwczNXWWZKbG5yNENuWWlzZyt3RjJGNFk2?=
- =?utf-8?B?dmZyUUF5NnFobWRpZE9WSzdscjRKNktLWXJhSURjWm1vVkRpVWpGaEdUeHh2?=
- =?utf-8?B?aXB2TjhNc0FvQ0F3UmVYbUJzTXJXb2JFUHF6M2Y2ME5TTmtNaTFjVERDMFZq?=
- =?utf-8?B?T2lEQVk0MTAzZitzQjQ2cUJydjVVZzJnOXBXMWE3b1cvbUR1MENnU3FYWDQw?=
- =?utf-8?B?RUVzbk45UzFhUlZEcVNUaHloUS93azFPb0N0d2hQVFZoL3NDdGJxUW5DRzZR?=
- =?utf-8?B?Q0ZacnFDQ3VIcnVhR3ZRY3pkcXpKWjdqaTdPR1Z5Zk4zTGNKKytXZ2swZkRo?=
- =?utf-8?B?UTNlcjJ0VGUyMzlnTEIzZ3NlMVFWcjZPbG5SQjJZMjBqR085MnFnbmlsVTQ2?=
- =?utf-8?B?Q0M1Vk9CbnhHL09MNGYrSFkvTnltT1RoTjZ4azU4L1NEbGd2cm1qU1pHMGgy?=
- =?utf-8?B?T2FMM3VjZHRibHdLREFoSTR5dndjNkVUVUY3allTc1dXSDBtUE5xN00zeHhY?=
- =?utf-8?B?RDcrQmY1UFNMQm0xVmJETk14Mmd5MU4wL3BMK0VUVUxSdHM3TFdxb2ticDFX?=
- =?utf-8?B?VmxnMkp4eGtLc3dubEVQMk5GQWRYSDVKdy9EYjU4SU41K0RiZ2ttT2U0NmRH?=
- =?utf-8?B?WVNLWjJzZHNDYWxINUZZd291NTBycHh6NldYK04wN0NwanBoQzkyV3lucFc5?=
- =?utf-8?B?TEkycldzODF0WWs1aTJ0MVFIWno1b2ZWT2YrdS8xTFRhZzNWUHVkdVNibFVr?=
- =?utf-8?B?OUY3NUMyNlEvVGVldTJHaGozVnA3MXVlUDJMS2RMeVloMzlwaEFETDFQZ3pz?=
- =?utf-8?B?WU0yUWR2SzZwUVlXVnNzQ3JwUGNXdXVuU2RKenJsSzNkaDJ5TW0xbzlJc1J2?=
- =?utf-8?B?RDRkc3k1WUJIMVJ4Z0tUUHFYUmtLU2FPb3lMd1REb251VEs0a09mTlJwVGpU?=
- =?utf-8?B?TFIyM2ZnUTVub1BYc0lZM2RYMFd3SlhieVFhTEw2RFFJaE5DVzQ3OVFLWGZJ?=
- =?utf-8?B?NlVsbDVsVEh1dFJJQ2hYVHlaRUhTQnowcjBRdzJrS1B4UytjVTFEVXVTMVh3?=
- =?utf-8?B?MXZ6Unl6L3JZME5RUTVaQzI0b2FhK2FzOG8xRTdYai9HSmtaalJnTW1Za3ly?=
- =?utf-8?B?S2tZU3h3Y09yb25oMHhhUDZnc0YrZ21HbjJjRnhWS0RUMTc3ajhHdGdvVTdX?=
- =?utf-8?B?akh1TnRPL0ZjVzc0L3NXRXMwMVpQYkpFYVMzRVBheWJiT1dxRGlLR29KWEt4?=
- =?utf-8?B?N1pHTU0vclZ2bC9KS05pYlAreFVEbGVqR1FKeVdZQzlTdWFoQ3VrUW43UExG?=
- =?utf-8?B?RWZhUkpOUVF1c281MEtXdHl0cnoxZ3lpZmc0OEtwYi9xTW1pRUFOY3FOSVNk?=
- =?utf-8?B?OVh1OGFXSjM0Uzh2bkI4VndzWWszbW4rSUU0WjJpNGhBM2szWHl1NmZjNTRY?=
- =?utf-8?B?cGlYaEwxNm91MWIwOFJVNWxOTFdibStWMkZzK0VnaUFFUGFnM05WZ3VHOWhC?=
- =?utf-8?B?U1FNcU9VbDZJVkpGSFlubW9ZTXU0VkZicGhZaldXZU90R2g0Zm9Hc0RZZDZX?=
- =?utf-8?B?dit4UWpFUllWS3d4dkxtNTUzZzVKb2xRQ2VXb3A0L2xudlVVOXVKQTNudUNy?=
- =?utf-8?B?TXRDN0psaUNZMSs3UUZqUlFWcTJZTGQ5RXYyQ29DWWI2Z2RyWEtRR096Z1Ns?=
- =?utf-8?B?aU1mNFBnbGV2UXJKSEZVeFlLQUkweHBQS1FKK09SWW9RMEZRN2lSR1R0WmM5?=
- =?utf-8?B?ZnM4MStBWGhsYTg4QlM3bWlwYitNNEgrZS9iaVZZVldvWStBR0RneEJUbEsy?=
- =?utf-8?B?RG45bE8vSmd4RGRCdjZKZmhBWFZZQ0pVc3FFak1qZ2JqWHlKZ0RrVXRkallI?=
- =?utf-8?B?SXpZT1pJTmcxeTU4UkpPUlZrNlZZdjZpc04wOFJkMzNQRnNNUzNRTjYxZjZw?=
- =?utf-8?B?Rms5L0ROS0pUc2RnTVZLaFBnRE80aGhTVWJUQXVyUVFJV284SWVwM3NXU2VI?=
- =?utf-8?B?TlpWbm1HNTlveWdnanR1REk2NE5nPT0=?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <D35C3D7EAA725D4091B790771331E8F8@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+X-IronPort-AV: E=Sophos;i="6.20,264,1758610800"; d="scan'208";a="200691829"
+Received: from lkp-server01.sh.intel.com (HELO d335e3c6db51) ([10.239.97.150])
+ by orviesa003.jf.intel.com with ESMTP; 10 Dec 2025 06:14:18 -0800
+Received: from kbuild by d335e3c6db51 with local (Exim 4.98.2)
+ (envelope-from <lkp@intel.com>) id 1vTKxL-000000003G5-2Afg;
+ Wed, 10 Dec 2025 14:14:15 +0000
+Date: Wed, 10 Dec 2025 22:13:55 +0800
+From: kernel test robot <lkp@intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+Cc: oe-kbuild-all@lists.linux.dev, intel-xe@lists.freedesktop.org,
+ Helge Deller <deller@gmx.de>, linux-fbdev@vger.kernel.org,
+ dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH 14/19] video/vga: Add VGA_IS0_R
+Message-ID: <202512102159.xsvvXCXy-lkp@intel.com>
+References: <20251208182637.334-15-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB6019.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 534d9f44-da4c-4f83-06ae-08de37f555ee
-X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Dec 2025 14:06:38.0865 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 6AcpUzyPpwEQSr2EZARwaF3+f+71Tx4FswDoq4daWumb6KYetZxq3nVjdPzRDakl7iDwvx1p8KKnDJc0NXKGz0MIREi2slKQZo7S60Fwd5A=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV3PR11MB8744
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251208182637.334-15-ville.syrjala@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -203,97 +71,426 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-T24gVGh1LCAyMDI1LTExLTI3IGF0IDE5OjUwICswMjAwLCBJbXJlIERlYWsgd3JvdGU6DQo+IEFk
-ZCBpbnRlbF9kc2NfZ2V0X3NsaWNlX2NvbmZpZygpIGFuZCBtb3ZlIHRoZSBsb2dpYyB0byBzZWxl
-Y3QgYSBnaXZlbg0KPiBzbGljZSBjb25maWd1cmF0aW9uIHRvIHRoYXQgZnVuY3Rpb24gZnJvbSB0
-aGUgY29uZmlndXJhdGlvbiBsb29wIGluDQo+IGludGVsX2RwX2RzY19nZXRfc2xpY2VfY291bnQo
-KS4gVGhlIHNhbWUgZnVuY3Rpb25hbGl0eSBjYW4gYmUgdXNlZCBieQ0KPiBvdGhlciBvdXRwdXRz
-IGxpa2UgRFNJIGFzIHdlbGwsIGRvbmUgYXMgYSBmb2xsb3ctdXAuDQo+IA0KPiBTaWduZWQtb2Zm
-LWJ5OiBJbXJlIERlYWsgPGltcmUuZGVha0BpbnRlbC5jb20+DQoNClJldmlld2VkLWJ5OiBKb3Vu
-aSBIw7ZnYW5kZXIgPGpvdW5pLmhvZ2FuZGVyQGludGVsLmNvbT4NCg0KPiAtLS0NCj4gwqBkcml2
-ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwLmPCoMKgIHwgMjIgKysrKy0tLS0tLS0N
-Cj4gwqBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Zkc2MuYyB8IDQ4DQo+ICsr
-KysrKysrKysrKysrKysrKysrKysrDQo+IMKgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9p
-bnRlbF92ZHNjLmggfMKgIDQgKysNCj4gwqAzIGZpbGVzIGNoYW5nZWQsIDU5IGluc2VydGlvbnMo
-KyksIDE1IGRlbGV0aW9ucygtKQ0KPiANCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9p
-OTE1L2Rpc3BsYXkvaW50ZWxfZHAuYw0KPiBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkv
-aW50ZWxfZHAuYw0KPiBpbmRleCBhNGZmMWZmYzhmN2Q0Li40NjFmODBiZDU0Y2JmIDEwMDY0NA0K
-PiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwLmMNCj4gKysrIGIv
-ZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcC5jDQo+IEBAIC0xMDI5LDI4ICsx
-MDI5LDIwIEBAIHU4IGludGVsX2RwX2RzY19nZXRfc2xpY2VfY291bnQoY29uc3Qgc3RydWN0DQo+
-IGludGVsX2Nvbm5lY3RvciAqY29ubmVjdG9yLA0KPiDCoAkgKiBUR0wrOiAyeDQgKFRPRE86IEFk
-ZCBzdXBwb3J0IGZvciB0aGlzKQ0KPiDCoAkgKi8NCj4gwqAJZm9yIChzbGljZXNfcGVyX3BpcGUg
-PSAxOyBzbGljZXNfcGVyX3BpcGUgPD0gNDsNCj4gc2xpY2VzX3Blcl9waXBlKyspIHsNCj4gLQkJ
-aW50IHNsaWNlc19wZXJfbGluZSA9IHNsaWNlc19wZXJfcGlwZSAqDQo+IG51bV9qb2luZWRfcGlw
-ZXM7DQo+ICsJCXN0cnVjdCBpbnRlbF9kc2Nfc2xpY2VfY29uZmlnIGNvbmZpZzsNCj4gKwkJaW50
-IHNsaWNlc19wZXJfbGluZTsNCj4gwqANCj4gLQkJLyoNCj4gLQkJICogMyBEU0MgU2xpY2VzIHBl
-ciBwaXBlIG5lZWQgMyBEU0MgZW5naW5lcywgd2hpY2gNCj4gaXMgc3VwcG9ydGVkIG9ubHkNCj4g
-LQkJICogd2l0aCBVbHRyYWpvaW5lciBvbmx5IGZvciBzb21lIHBsYXRmb3Jtcy4NCj4gLQkJICov
-DQo+IC0JCWlmIChzbGljZXNfcGVyX3BpcGUgPT0gMyAmJg0KPiAtCQnCoMKgwqAgKCFIQVNfRFND
-XzNFTkdJTkVTKGRpc3BsYXkpIHx8IG51bV9qb2luZWRfcGlwZXMNCj4gIT0gNCkpDQo+ICsJCWlm
-ICghaW50ZWxfZHNjX2dldF9zbGljZV9jb25maWcoZGlzcGxheSwNCj4gKwkJCQkJCW51bV9qb2lu
-ZWRfcGlwZXMsDQo+IHNsaWNlc19wZXJfcGlwZSwNCj4gKwkJCQkJCSZjb25maWcpKQ0KPiDCoAkJ
-CWNvbnRpbnVlOw0KPiDCoA0KPiArCQlzbGljZXNfcGVyX2xpbmUgPQ0KPiBpbnRlbF9kc2NfbGlu
-ZV9zbGljZV9jb3VudCgmY29uZmlnKTsNCj4gKw0KPiDCoAkJaWYNCj4gKCEoZHJtX2RwX2RzY19z
-bGljZV9jb3VudF90b19tYXNrKHNsaWNlc19wZXJfbGluZSkgJg0KPiDCoAkJwqDCoMKgwqDCoCBz
-aW5rX3NsaWNlX2NvdW50X21hc2spKQ0KPiDCoAkJCWNvbnRpbnVlOw0KPiDCoA0KPiAtCQkgLyoN
-Cj4gLQkJwqAgKiBCaWdqb2luZXIgbmVlZHMgc21hbGwgam9pbmVyIHRvIGJlIGVuYWJsZWQuDQo+
-IC0JCcKgICogU28gdGhlcmUgc2hvdWxkIGJlIGF0IGxlYXN0IDIgZHNjIHNsaWNlcyBwZXINCj4g
-cGlwZSwNCj4gLQkJwqAgKiB3aGVuZXZlciBiaWdqb2luZXIgaXMgZW5hYmxlZC4NCj4gLQkJwqAg
-Ki8NCj4gLQkJaWYgKG51bV9qb2luZWRfcGlwZXMgPiAxICYmIHNsaWNlc19wZXJfcGlwZSA8IDIp
-DQo+IC0JCQljb250aW51ZTsNCj4gLQ0KPiDCoAkJaWYgKG1vZGVfaGRpc3BsYXkgJSBzbGljZXNf
-cGVyX2xpbmUpDQo+IMKgCQkJY29udGludWU7DQo+IMKgDQo+IGRpZmYgLS1naXQgYS9kcml2ZXJz
-L2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Zkc2MuYw0KPiBiL2RyaXZlcnMvZ3B1L2RybS9p
-OTE1L2Rpc3BsYXkvaW50ZWxfdmRzYy5jDQo+IGluZGV4IDE5MGNlNTY3YmM3ZmEuLjk5MTAxMzRk
-NTI2NTMgMTAwNjQ0DQo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxf
-dmRzYy5jDQo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfdmRzYy5j
-DQo+IEBAIC00MCw2ICs0MCw1NCBAQCBpbnQgaW50ZWxfZHNjX2xpbmVfc2xpY2VfY291bnQoY29u
-c3Qgc3RydWN0DQo+IGludGVsX2RzY19zbGljZV9jb25maWcgKmNvbmZpZykNCj4gwqAJcmV0dXJu
-IGNvbmZpZy0+cGlwZXNfcGVyX2xpbmUgKiBjb25maWctPnN0cmVhbXNfcGVyX3BpcGUgKg0KPiBj
-b25maWctPnNsaWNlc19wZXJfc3RyZWFtOw0KPiDCoH0NCj4gwqANCj4gK2Jvb2wgaW50ZWxfZHNj
-X2dldF9zbGljZV9jb25maWcoc3RydWN0IGludGVsX2Rpc3BsYXkgKmRpc3BsYXksDQo+ICsJCQkJ
-aW50IHBpcGVzX3Blcl9saW5lLCBpbnQNCj4gc2xpY2VzX3Blcl9waXBlLA0KPiArCQkJCXN0cnVj
-dCBpbnRlbF9kc2Nfc2xpY2VfY29uZmlnDQo+ICpjb25maWcpDQo+ICt7DQo+ICsJaW50IHN0cmVh
-bXNfcGVyX3BpcGU7DQo+ICsNCj4gKwkvKiBUT0RPOiBBZGQgc3VwcG9ydCBmb3IgOCBzbGljZXMg
-cGVyIHBpcGUgb24gVEdMKy4gKi8NCj4gKwlzd2l0Y2ggKHNsaWNlc19wZXJfcGlwZSkgew0KPiAr
-CWNhc2UgMzoNCj4gKwkJLyoNCj4gKwkJICogMyBEU0MgU2xpY2VzIHBlciBwaXBlIG5lZWQgMyBE
-U0MgZW5naW5lcywgd2hpY2gNCj4gaXMgc3VwcG9ydGVkIG9ubHkNCj4gKwkJICogd2l0aCBVbHRy
-YWpvaW5lciBvbmx5IGZvciBzb21lIHBsYXRmb3Jtcy4NCj4gKwkJICovDQo+ICsJCWlmICghSEFT
-X0RTQ18zRU5HSU5FUyhkaXNwbGF5KSB8fCBwaXBlc19wZXJfbGluZSAhPQ0KPiA0KQ0KPiArCQkJ
-cmV0dXJuIGZhbHNlOw0KPiArDQo+ICsJCXN0cmVhbXNfcGVyX3BpcGUgPSAzOw0KPiArCQlicmVh
-azsNCj4gKwljYXNlIDQ6DQo+ICsJCS8qIFRPRE86IENvbnNpZGVyIHVzaW5nIDEgRFNDIGVuZ2lu
-ZSBzdHJlYW0geCA0DQo+IHNsaWNlcyBpbnN0ZWFkLiAqLw0KPiArCWNhc2UgMjoNCj4gKwkJLyog
-VE9ETzogQ29uc2lkZXIgdXNpbmcgMSBEU0MgZW5naW5lIHN0cmVhbSB4IDINCj4gc2xpY2VzIGlu
-c3RlYWQuICovDQo+ICsJCXN0cmVhbXNfcGVyX3BpcGUgPSAyOw0KPiArCQlicmVhazsNCj4gKwlj
-YXNlIDE6DQo+ICsJCSAvKg0KPiArCQnCoCAqIEJpZ2pvaW5lciBuZWVkcyBzbWFsbCBqb2luZXIg
-dG8gYmUgZW5hYmxlZC4NCj4gKwkJwqAgKiBTbyB0aGVyZSBzaG91bGQgYmUgYXQgbGVhc3QgMiBk
-c2Mgc2xpY2VzIHBlcg0KPiBwaXBlLA0KPiArCQnCoCAqIHdoZW5ldmVyIGJpZ2pvaW5lciBpcyBl
-bmFibGVkLg0KPiArCQnCoCAqLw0KPiArCQlpZiAocGlwZXNfcGVyX2xpbmUgPiAxKQ0KPiArCQkJ
-cmV0dXJuIGZhbHNlOw0KPiArDQo+ICsJCXN0cmVhbXNfcGVyX3BpcGUgPSAxOw0KPiArCQlicmVh
-azsNCj4gKwlkZWZhdWx0Og0KPiArCQlNSVNTSU5HX0NBU0Uoc2xpY2VzX3Blcl9waXBlKTsNCj4g
-KwkJcmV0dXJuIGZhbHNlOw0KPiArCX0NCj4gKw0KPiArCWNvbmZpZy0+cGlwZXNfcGVyX2xpbmUg
-PSBwaXBlc19wZXJfbGluZTsNCj4gKwljb25maWctPnN0cmVhbXNfcGVyX3BpcGUgPSBzdHJlYW1z
-X3Blcl9waXBlOw0KPiArCWNvbmZpZy0+c2xpY2VzX3Blcl9zdHJlYW0gPSBzbGljZXNfcGVyX3Bp
-cGUgLw0KPiBzdHJlYW1zX3Blcl9waXBlOw0KPiArDQo+ICsJcmV0dXJuIHRydWU7DQo+ICt9DQo+
-ICsNCj4gKw0KPiDCoHN0YXRpYyBib29sIGlzX3BpcGVfZHNjKHN0cnVjdCBpbnRlbF9jcnRjICpj
-cnRjLCBlbnVtIHRyYW5zY29kZXINCj4gY3B1X3RyYW5zY29kZXIpDQo+IMKgew0KPiDCoAlzdHJ1
-Y3QgaW50ZWxfZGlzcGxheSAqZGlzcGxheSA9IHRvX2ludGVsX2Rpc3BsYXkoY3J0Yyk7DQo+IGRp
-ZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Zkc2MuaA0KPiBi
-L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfdmRzYy5oDQo+IGluZGV4IGU2MTEx
-NmQ1Mjk3YzguLmFlYjE3NjcwMzA3YjEgMTAwNjQ0DQo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9p
-OTE1L2Rpc3BsYXkvaW50ZWxfdmRzYy5oDQo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rp
-c3BsYXkvaW50ZWxfdmRzYy5oDQo+IEBAIC0xMywxMSArMTMsMTUgQEAgc3RydWN0IGRybV9wcmlu
-dGVyOw0KPiDCoGVudW0gdHJhbnNjb2RlcjsNCj4gwqBzdHJ1Y3QgaW50ZWxfY3J0YzsNCj4gwqBz
-dHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZTsNCj4gK3N0cnVjdCBpbnRlbF9kaXNwbGF5Ow0KPiDCoHN0
-cnVjdCBpbnRlbF9kc2Nfc2xpY2VfY29uZmlnOw0KPiDCoHN0cnVjdCBpbnRlbF9lbmNvZGVyOw0K
-PiDCoA0KPiDCoGJvb2wgaW50ZWxfZHNjX3NvdXJjZV9zdXBwb3J0KGNvbnN0IHN0cnVjdCBpbnRl
-bF9jcnRjX3N0YXRlDQo+ICpjcnRjX3N0YXRlKTsNCj4gwqBpbnQgaW50ZWxfZHNjX2xpbmVfc2xp
-Y2VfY291bnQoY29uc3Qgc3RydWN0IGludGVsX2RzY19zbGljZV9jb25maWcNCj4gKmNvbmZpZyk7
-DQo+ICtib29sIGludGVsX2RzY19nZXRfc2xpY2VfY29uZmlnKHN0cnVjdCBpbnRlbF9kaXNwbGF5
-ICpkaXNwbGF5LA0KPiArCQkJCWludCBudW1fam9pbmVkX3BpcGVzLCBpbnQNCj4gc2xpY2VfcGVy
-X3BpcGUsDQo+ICsJCQkJc3RydWN0IGludGVsX2RzY19zbGljZV9jb25maWcNCj4gKmNvbmZpZyk7
-DQo+IMKgdm9pZCBpbnRlbF91bmNvbXByZXNzZWRfam9pbmVyX2VuYWJsZShjb25zdCBzdHJ1Y3Qg
-aW50ZWxfY3J0Y19zdGF0ZQ0KPiAqY3J0Y19zdGF0ZSk7DQo+IMKgdm9pZCBpbnRlbF9kc2NfZW5h
-YmxlKGNvbnN0IHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpjcnRjX3N0YXRlKTsNCj4gwqB2b2lk
-IGludGVsX2RzY19kaXNhYmxlKGNvbnN0IHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpjcnRjX3N0
-YXRlKTsNCg0K
+Hi Ville,
+
+kernel test robot noticed the following build errors:
+
+[auto build test ERROR on drm-tip/drm-tip]
+[cannot apply to drm-i915/for-linux-next drm-i915/for-linux-next-fixes drm-xe/drm-xe-next linus/master v6.18 next-20251210]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Ville-Syrjala/drm-i915-vga-Register-vgaarb-client-later/20251209-195929
+base:   https://gitlab.freedesktop.org/drm/tip.git drm-tip
+patch link:    https://lore.kernel.org/r/20251208182637.334-15-ville.syrjala%40linux.intel.com
+patch subject: [PATCH 14/19] video/vga: Add VGA_IS0_R
+config: parisc-randconfig-002-20251210 (https://download.01.org/0day-ci/archive/20251210/202512102159.xsvvXCXy-lkp@intel.com/config)
+compiler: hppa-linux-gcc (GCC) 8.5.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251210/202512102159.xsvvXCXy-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202512102159.xsvvXCXy-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   In file included from include/linux/svga.h:6,
+                    from drivers/video/fbdev/arkfb.c:24:
+   include/video/vga.h:489:1: error: expected identifier or '(' before '?' token
+    ?
+    ^
+   In file included from drivers/video/fbdev/arkfb.c:28:
+   include/video/vga.h:489:1: error: expected identifier or '(' before '?' token
+    ?
+    ^
+   drivers/video/fbdev/arkfb.c:68:32: error: array type has incomplete element type 'struct vga_regset'
+    static const struct vga_regset ark_h_total_regs[]        = {{0x00, 0, 7}, {0x41, 7, 7}, VGA_REGSET_END};
+                                   ^~~~~~~~~~~~~~~~
+   drivers/video/fbdev/arkfb.c:69:32: error: array type has incomplete element type 'struct vga_regset'
+    static const struct vga_regset ark_h_display_regs[]      = {{0x01, 0, 7}, {0x41, 6, 6}, VGA_REGSET_END};
+                                   ^~~~~~~~~~~~~~~~~~
+   drivers/video/fbdev/arkfb.c:70:32: error: array type has incomplete element type 'struct vga_regset'
+    static const struct vga_regset ark_h_blank_start_regs[]  = {{0x02, 0, 7}, {0x41, 5, 5}, VGA_REGSET_END};
+                                   ^~~~~~~~~~~~~~~~~~~~~~
+   drivers/video/fbdev/arkfb.c:71:32: error: array type has incomplete element type 'struct vga_regset'
+    static const struct vga_regset ark_h_blank_end_regs[]    = {{0x03, 0, 4}, {0x05, 7, 7 }, VGA_REGSET_END};
+                                   ^~~~~~~~~~~~~~~~~~~~
+   drivers/video/fbdev/arkfb.c:72:32: error: array type has incomplete element type 'struct vga_regset'
+    static const struct vga_regset ark_h_sync_start_regs[]   = {{0x04, 0, 7}, {0x41, 4, 4}, VGA_REGSET_END};
+                                   ^~~~~~~~~~~~~~~~~~~~~
+   drivers/video/fbdev/arkfb.c:73:32: error: array type has incomplete element type 'struct vga_regset'
+    static const struct vga_regset ark_h_sync_end_regs[]     = {{0x05, 0, 4}, VGA_REGSET_END};
+                                   ^~~~~~~~~~~~~~~~~~~
+   drivers/video/fbdev/arkfb.c:75:32: error: array type has incomplete element type 'struct vga_regset'
+    static const struct vga_regset ark_v_total_regs[]        = {{0x06, 0, 7}, {0x07, 0, 0}, {0x07, 5, 5}, {0x40, 7, 7}, VGA_REGSET_END};
+                                   ^~~~~~~~~~~~~~~~
+   drivers/video/fbdev/arkfb.c:76:32: error: array type has incomplete element type 'struct vga_regset'
+    static const struct vga_regset ark_v_display_regs[]      = {{0x12, 0, 7}, {0x07, 1, 1}, {0x07, 6, 6}, {0x40, 6, 6}, VGA_REGSET_END};
+                                   ^~~~~~~~~~~~~~~~~~
+   drivers/video/fbdev/arkfb.c:77:32: error: array type has incomplete element type 'struct vga_regset'
+    static const struct vga_regset ark_v_blank_start_regs[]  = {{0x15, 0, 7}, {0x07, 3, 3}, {0x09, 5, 5}, {0x40, 5, 5}, VGA_REGSET_END};
+                                   ^~~~~~~~~~~~~~~~~~~~~~
+   drivers/video/fbdev/arkfb.c:79:32: error: array type has incomplete element type 'struct vga_regset'
+    static const struct vga_regset ark_v_blank_end_regs[]    = {{0x16, 0, 7}, VGA_REGSET_END};
+                                   ^~~~~~~~~~~~~~~~~~~~
+   drivers/video/fbdev/arkfb.c:80:32: error: array type has incomplete element type 'struct vga_regset'
+    static const struct vga_regset ark_v_sync_start_regs[]   = {{0x10, 0, 7}, {0x07, 2, 2}, {0x07, 7, 7}, {0x40, 4, 4}, VGA_REGSET_END};
+                                   ^~~~~~~~~~~~~~~~~~~~~
+   drivers/video/fbdev/arkfb.c:81:32: error: array type has incomplete element type 'struct vga_regset'
+    static const struct vga_regset ark_v_sync_end_regs[]     = {{0x11, 0, 3}, VGA_REGSET_END};
+                                   ^~~~~~~~~~~~~~~~~~~
+   drivers/video/fbdev/arkfb.c:83:32: error: array type has incomplete element type 'struct vga_regset'
+    static const struct vga_regset ark_line_compare_regs[]   = {{0x18, 0, 7}, {0x07, 4, 4}, {0x09, 6, 6}, VGA_REGSET_END};
+                                   ^~~~~~~~~~~~~~~~~~~~~
+   drivers/video/fbdev/arkfb.c:84:32: error: array type has incomplete element type 'struct vga_regset'
+    static const struct vga_regset ark_start_address_regs[]  = {{0x0d, 0, 7}, {0x0c, 0, 7}, {0x40, 0, 2}, VGA_REGSET_END};
+                                   ^~~~~~~~~~~~~~~~~~~~~~
+   drivers/video/fbdev/arkfb.c:85:32: error: array type has incomplete element type 'struct vga_regset'
+    static const struct vga_regset ark_offset_regs[]         = {{0x13, 0, 7}, {0x41, 3, 3}, VGA_REGSET_END};
+                                   ^~~~~~~~~~~~~~~
+   drivers/video/fbdev/arkfb.c: In function 'arkfb_tilecursor':
+>> drivers/video/fbdev/arkfb.c:152:21: error: dereferencing pointer to incomplete type 'struct arkfb_info'
+     svga_tilecursor(par->state.vgabase, info, cursor);
+                        ^~
+   drivers/video/fbdev/arkfb.c: At top level:
+   drivers/video/fbdev/arkfb.c:303:29: warning: 'struct dac_info' declared inside parameter list will not be visible outside of this definition or declaration
+     int (*dac_get_mode)(struct dac_info *info);
+                                ^~~~~~~~
+   drivers/video/fbdev/arkfb.c:304:29: warning: 'struct dac_info' declared inside parameter list will not be visible outside of this definition or declaration
+     int (*dac_set_mode)(struct dac_info *info, int mode);
+                                ^~~~~~~~
+   drivers/video/fbdev/arkfb.c:305:29: warning: 'struct dac_info' declared inside parameter list will not be visible outside of this definition or declaration
+     int (*dac_get_freq)(struct dac_info *info, int channel);
+                                ^~~~~~~~
+   drivers/video/fbdev/arkfb.c:306:29: warning: 'struct dac_info' declared inside parameter list will not be visible outside of this definition or declaration
+     int (*dac_set_freq)(struct dac_info *info, int channel, u32 freq);
+                                ^~~~~~~~
+   drivers/video/fbdev/arkfb.c:307:29: warning: 'struct dac_info' declared inside parameter list will not be visible outside of this definition or declaration
+     void (*dac_release)(struct dac_info *info);
+                                ^~~~~~~~
+   drivers/video/fbdev/arkfb.c: In function 'dac_set_mode':
+   drivers/video/fbdev/arkfb.c:339:36: error: passing argument 1 of 'info->dacops->dac_set_mode' from incompatible pointer type [-Werror=incompatible-pointer-types]
+     return info->dacops->dac_set_mode(info, mode);
+                                       ^~~~
+   drivers/video/fbdev/arkfb.c:339:36: note: expected 'struct dac_info *' but argument is of type 'struct dac_info *'
+   drivers/video/fbdev/arkfb.c: In function 'dac_set_freq':
+   drivers/video/fbdev/arkfb.c:344:36: error: passing argument 1 of 'info->dacops->dac_set_freq' from incompatible pointer type [-Werror=incompatible-pointer-types]
+     return info->dacops->dac_set_freq(info, channel, freq);
+                                       ^~~~
+   drivers/video/fbdev/arkfb.c:344:36: note: expected 'struct dac_info *' but argument is of type 'struct dac_info *'
+   drivers/video/fbdev/arkfb.c: In function 'dac_release':
+   drivers/video/fbdev/arkfb.c:349:28: error: passing argument 1 of 'info->dacops->dac_release' from incompatible pointer type [-Werror=incompatible-pointer-types]
+     info->dacops->dac_release(info);
+                               ^~~~
+   drivers/video/fbdev/arkfb.c:349:28: note: expected 'struct dac_info *' but argument is of type 'struct dac_info *'
+   drivers/video/fbdev/arkfb.c: At top level:
+   drivers/video/fbdev/arkfb.c:426:18: error: initialization of 'int (*)(struct dac_info *, int)' from incompatible pointer type 'int (*)(struct dac_info *, int)' [-Werror=incompatible-pointer-types]
+     .dac_set_mode = ics5342_set_mode,
+                     ^~~~~~~~~~~~~~~~
+   drivers/video/fbdev/arkfb.c:426:18: note: (near initialization for 'ics5342_ops.dac_set_mode')
+   drivers/video/fbdev/arkfb.c:427:18: error: initialization of 'int (*)(struct dac_info *, int,  u32)' {aka 'int (*)(struct dac_info *, int,  unsigned int)'} from incompatible pointer type 'int (*)(struct dac_info *, int,  u32)' {aka 'int (*)(struct dac_info *, int,  unsigned int)'} [-Werror=incompatible-pointer-types]
+     .dac_set_freq = ics5342_set_freq,
+                     ^~~~~~~~~~~~~~~~
+   drivers/video/fbdev/arkfb.c:427:18: note: (near initialization for 'ics5342_ops.dac_set_freq')
+   drivers/video/fbdev/arkfb.c:428:17: error: initialization of 'void (*)(struct dac_info *)' from incompatible pointer type 'void (*)(struct dac_info *)' [-Werror=incompatible-pointer-types]
+     .dac_release = ics5342_release
+                    ^~~~~~~~~~~~~~~
+   drivers/video/fbdev/arkfb.c:428:17: note: (near initialization for 'ics5342_ops.dac_release')
+   drivers/video/fbdev/arkfb.c: In function 'ark_dac_read_regs':
+   drivers/video/fbdev/arkfb.c:461:23: error: dereferencing pointer to incomplete type 'struct arkfb_info'
+     regval = vga_rseq(par->state.vgabase, 0x1C);
+                          ^~
+   drivers/video/fbdev/arkfb.c: In function 'ark_dac_write_regs':
+   drivers/video/fbdev/arkfb.c:480:23: error: dereferencing pointer to incomplete type 'struct arkfb_info'
+     regval = vga_rseq(par->state.vgabase, 0x1C);
+                          ^~
+   drivers/video/fbdev/arkfb.c: In function 'ark_set_pixclock':
+   drivers/video/fbdev/arkfb.c:498:27: error: dereferencing pointer to incomplete type 'struct arkfb_info'
+     int rv = dac_set_freq(par->dac, 0, 1000000000 / pixclock);
+                              ^~
+   In file included from include/linux/seqlock.h:19,
+                    from include/linux/mmzone.h:17,
+                    from include/linux/gfp.h:7,
+                    from include/linux/umh.h:4,
+                    from include/linux/kmod.h:9,
+                    from include/linux/module.h:18,
+                    from drivers/video/fbdev/arkfb.c:15:
+   drivers/video/fbdev/arkfb.c: In function 'arkfb_open':
+   drivers/video/fbdev/arkfb.c:516:18: error: dereferencing pointer to incomplete type 'struct arkfb_info'
+     mutex_lock(&(par->open_lock));
+                     ^~
+   include/linux/mutex.h:168:44: note: in definition of macro 'mutex_lock'
+    #define mutex_lock(lock) mutex_lock_nested(lock, 0)
+                                               ^~~~
+   drivers/video/fbdev/arkfb.c: In function 'arkfb_release':
+   drivers/video/fbdev/arkfb.c:540:18: error: dereferencing pointer to incomplete type 'struct arkfb_info'
+     mutex_lock(&(par->open_lock));
+                     ^~
+   include/linux/mutex.h:168:44: note: in definition of macro 'mutex_lock'
+    #define mutex_lock(lock) mutex_lock_nested(lock, 0)
+                                               ^~~~
+   drivers/video/fbdev/arkfb.c: In function 'arkfb_set_par':
+   drivers/video/fbdev/arkfb.c:658:20: error: dereferencing pointer to incomplete type 'struct arkfb_info'
+     svga_wcrt_mask(par->state.vgabase, 0x11, 0x00, 0x80);
+                       ^~
+   drivers/video/fbdev/arkfb.c: In function 'arkfb_blank':
+   drivers/video/fbdev/arkfb.c:881:21: error: dereferencing pointer to incomplete type 'struct arkfb_info'
+      svga_wseq_mask(par->state.vgabase, 0x01, 0x00, 0x20);
+                        ^~
+   drivers/video/fbdev/arkfb.c: In function 'arkfb_pan_display':
+   drivers/video/fbdev/arkfb.c:920:21: error: dereferencing pointer to incomplete type 'struct arkfb_info'
+     svga_wcrt_multi(par->state.vgabase, ark_start_address_regs, offset);
+                        ^~
+   drivers/video/fbdev/arkfb.c: In function 'ark_pci_probe':
+   drivers/video/fbdev/arkfb.c:973:34: error: invalid application of 'sizeof' to incomplete type 'struct arkfb_info'
+     info = framebuffer_alloc(sizeof(struct arkfb_info), &(dev->dev));
+                                     ^~~~~~
+   In file included from include/linux/seqlock.h:19,
+                    from include/linux/mmzone.h:17,
+                    from include/linux/gfp.h:7,
+                    from include/linux/umh.h:4,
+                    from include/linux/kmod.h:9,
+--
+   In file included from include/linux/svga.h:6,
+                    from drivers/video/fbdev/vt8623fb.c:24:
+   include/video/vga.h:489:1: error: expected identifier or '(' before '?' token
+    ?
+    ^
+   In file included from drivers/video/fbdev/vt8623fb.c:28:
+   include/video/vga.h:489:1: error: expected identifier or '(' before '?' token
+    ?
+    ^
+   drivers/video/fbdev/vt8623fb.c:66:32: error: array type has incomplete element type 'struct vga_regset'
+    static const struct vga_regset vt8623_h_total_regs[]       = {{0x00, 0, 7}, {0x36, 3, 3}, VGA_REGSET_END};
+                                   ^~~~~~~~~~~~~~~~~~~
+   drivers/video/fbdev/vt8623fb.c:67:32: error: array type has incomplete element type 'struct vga_regset'
+    static const struct vga_regset vt8623_h_display_regs[]     = {{0x01, 0, 7}, VGA_REGSET_END};
+                                   ^~~~~~~~~~~~~~~~~~~~~
+   drivers/video/fbdev/vt8623fb.c:68:32: error: array type has incomplete element type 'struct vga_regset'
+    static const struct vga_regset vt8623_h_blank_start_regs[] = {{0x02, 0, 7}, VGA_REGSET_END};
+                                   ^~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/video/fbdev/vt8623fb.c:69:32: error: array type has incomplete element type 'struct vga_regset'
+    static const struct vga_regset vt8623_h_blank_end_regs[]   = {{0x03, 0, 4}, {0x05, 7, 7}, {0x33, 5, 5}, VGA_REGSET_END};
+                                   ^~~~~~~~~~~~~~~~~~~~~~~
+   drivers/video/fbdev/vt8623fb.c:70:32: error: array type has incomplete element type 'struct vga_regset'
+    static const struct vga_regset vt8623_h_sync_start_regs[]  = {{0x04, 0, 7}, {0x33, 4, 4}, VGA_REGSET_END};
+                                   ^~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/video/fbdev/vt8623fb.c:71:32: error: array type has incomplete element type 'struct vga_regset'
+    static const struct vga_regset vt8623_h_sync_end_regs[]    = {{0x05, 0, 4}, VGA_REGSET_END};
+                                   ^~~~~~~~~~~~~~~~~~~~~~
+   drivers/video/fbdev/vt8623fb.c:73:32: error: array type has incomplete element type 'struct vga_regset'
+    static const struct vga_regset vt8623_v_total_regs[]       = {{0x06, 0, 7}, {0x07, 0, 0}, {0x07, 5, 5}, {0x35, 0, 0}, VGA_REGSET_END};
+                                   ^~~~~~~~~~~~~~~~~~~
+   drivers/video/fbdev/vt8623fb.c:74:32: error: array type has incomplete element type 'struct vga_regset'
+    static const struct vga_regset vt8623_v_display_regs[]     = {{0x12, 0, 7}, {0x07, 1, 1}, {0x07, 6, 6}, {0x35, 2, 2}, VGA_REGSET_END};
+                                   ^~~~~~~~~~~~~~~~~~~~~
+   drivers/video/fbdev/vt8623fb.c:75:32: error: array type has incomplete element type 'struct vga_regset'
+    static const struct vga_regset vt8623_v_blank_start_regs[] = {{0x15, 0, 7}, {0x07, 3, 3}, {0x09, 5, 5}, {0x35, 3, 3}, VGA_REGSET_END};
+                                   ^~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/video/fbdev/vt8623fb.c:76:32: error: array type has incomplete element type 'struct vga_regset'
+    static const struct vga_regset vt8623_v_blank_end_regs[]   = {{0x16, 0, 7}, VGA_REGSET_END};
+                                   ^~~~~~~~~~~~~~~~~~~~~~~
+   drivers/video/fbdev/vt8623fb.c:77:32: error: array type has incomplete element type 'struct vga_regset'
+    static const struct vga_regset vt8623_v_sync_start_regs[]  = {{0x10, 0, 7}, {0x07, 2, 2}, {0x07, 7, 7}, {0x35, 1, 1}, VGA_REGSET_END};
+                                   ^~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/video/fbdev/vt8623fb.c:78:32: error: array type has incomplete element type 'struct vga_regset'
+    static const struct vga_regset vt8623_v_sync_end_regs[]    = {{0x11, 0, 3}, VGA_REGSET_END};
+                                   ^~~~~~~~~~~~~~~~~~~~~~
+   drivers/video/fbdev/vt8623fb.c:80:32: error: array type has incomplete element type 'struct vga_regset'
+    static const struct vga_regset vt8623_offset_regs[]        = {{0x13, 0, 7}, {0x35, 5, 7}, VGA_REGSET_END};
+                                   ^~~~~~~~~~~~~~~~~~
+   drivers/video/fbdev/vt8623fb.c:81:32: error: array type has incomplete element type 'struct vga_regset'
+    static const struct vga_regset vt8623_line_compare_regs[]  = {{0x18, 0, 7}, {0x07, 4, 4}, {0x09, 6, 6}, {0x33, 0, 2}, {0x35, 4, 4}, VGA_REGSET_END};
+                                   ^~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/video/fbdev/vt8623fb.c:82:32: error: array type has incomplete element type 'struct vga_regset'
+    static const struct vga_regset vt8623_fetch_count_regs[]   = {{0x1C, 0, 7}, {0x1D, 0, 1}, VGA_REGSET_END};
+                                   ^~~~~~~~~~~~~~~~~~~~~~~
+   drivers/video/fbdev/vt8623fb.c:83:32: error: array type has incomplete element type 'struct vga_regset'
+    static const struct vga_regset vt8623_start_address_regs[] = {{0x0d, 0, 7}, {0x0c, 0, 7}, {0x34, 0, 7}, {0x48, 0, 1}, VGA_REGSET_END};
+                                   ^~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/video/fbdev/vt8623fb.c: In function 'vt8623fb_tilecursor':
+>> drivers/video/fbdev/vt8623fb.c:119:21: error: dereferencing pointer to incomplete type 'struct vt8623fb_info'
+     svga_tilecursor(par->state.vgabase, info, cursor);
+                        ^~
+   drivers/video/fbdev/vt8623fb.c: In function 'vt8623_set_pixclock':
+   drivers/video/fbdev/vt8623fb.c:265:20: error: dereferencing pointer to incomplete type 'struct vt8623fb_info'
+     regval = vga_r(par->state.vgabase, VGA_MIS_R);
+                       ^~
+   In file included from include/linux/seqlock.h:19,
+                    from include/linux/mmzone.h:17,
+                    from include/linux/gfp.h:7,
+                    from include/linux/umh.h:4,
+                    from include/linux/kmod.h:9,
+                    from include/linux/module.h:18,
+                    from drivers/video/fbdev/vt8623fb.c:16:
+   drivers/video/fbdev/vt8623fb.c: In function 'vt8623fb_open':
+   drivers/video/fbdev/vt8623fb.c:284:18: error: dereferencing pointer to incomplete type 'struct vt8623fb_info'
+     mutex_lock(&(par->open_lock));
+                     ^~
+   include/linux/mutex.h:168:44: note: in definition of macro 'mutex_lock'
+    #define mutex_lock(lock) mutex_lock_nested(lock, 0)
+                                               ^~~~
+   drivers/video/fbdev/vt8623fb.c: In function 'vt8623fb_release':
+   drivers/video/fbdev/vt8623fb.c:306:18: error: dereferencing pointer to incomplete type 'struct vt8623fb_info'
+     mutex_lock(&(par->open_lock));
+                     ^~
+   include/linux/mutex.h:168:44: note: in definition of macro 'mutex_lock'
+    #define mutex_lock(lock) mutex_lock_nested(lock, 0)
+                                               ^~~~
+   drivers/video/fbdev/vt8623fb.c: In function 'vt8623fb_set_par':
+   drivers/video/fbdev/vt8623fb.c:431:20: error: dereferencing pointer to incomplete type 'struct vt8623fb_info'
+     svga_wseq_mask(par->state.vgabase, 0x10, 0x01, 0x01);
+                       ^~
+   drivers/video/fbdev/vt8623fb.c: In function 'vt8623fb_blank':
+   drivers/video/fbdev/vt8623fb.c:593:21: error: dereferencing pointer to incomplete type 'struct vt8623fb_info'
+      svga_wcrt_mask(par->state.vgabase, 0x36, 0x00, 0x30);
+                        ^~
+   drivers/video/fbdev/vt8623fb.c: In function 'vt8623fb_pan_display':
+   drivers/video/fbdev/vt8623fb.c:639:21: error: dereferencing pointer to incomplete type 'struct vt8623fb_info'
+     svga_wcrt_multi(par->state.vgabase, vt8623_start_address_regs, offset);
+                        ^~
+   drivers/video/fbdev/vt8623fb.c: In function 'vt8623_pci_probe':
+   drivers/video/fbdev/vt8623fb.c:690:34: error: invalid application of 'sizeof' to incomplete type 'struct vt8623fb_info'
+     info = framebuffer_alloc(sizeof(struct vt8623fb_info), &(dev->dev));
+                                     ^~~~~~
+   In file included from include/linux/seqlock.h:19,
+                    from include/linux/mmzone.h:17,
+                    from include/linux/gfp.h:7,
+                    from include/linux/umh.h:4,
+                    from include/linux/kmod.h:9,
+                    from include/linux/module.h:18,
+                    from drivers/video/fbdev/vt8623fb.c:16:
+   drivers/video/fbdev/vt8623fb.c:695:17: error: dereferencing pointer to incomplete type 'struct vt8623fb_info'
+     mutex_init(&par->open_lock);
+                    ^~
+   include/linux/mutex.h:64:16: note: in definition of macro 'mutex_init'
+     __mutex_init((mutex), #mutex, &__key);    \
+                   ^~~~~
+   drivers/video/fbdev/vt8623fb.c: In function 'vt8623_pci_remove':
+   drivers/video/fbdev/vt8623fb.c:823:23: error: dereferencing pointer to incomplete type 'struct vt8623fb_info'
+      arch_phys_wc_del(par->wc_cookie);
+                          ^~
+   In file included from include/linux/seqlock.h:19,
+                    from include/linux/mmzone.h:17,
+                    from include/linux/gfp.h:7,
+                    from include/linux/umh.h:4,
+                    from include/linux/kmod.h:9,
+                    from include/linux/module.h:18,
+                    from drivers/video/fbdev/vt8623fb.c:16:
+   drivers/video/fbdev/vt8623fb.c: In function 'vt8623_pci_suspend':
+   drivers/video/fbdev/vt8623fb.c:847:18: error: dereferencing pointer to incomplete type 'struct vt8623fb_info'
+     mutex_lock(&(par->open_lock));
+                     ^~
+   include/linux/mutex.h:168:44: note: in definition of macro 'mutex_lock'
+    #define mutex_lock(lock) mutex_lock_nested(lock, 0)
+                                               ^~~~
+   drivers/video/fbdev/vt8623fb.c: In function 'vt8623_pci_resume':
+   drivers/video/fbdev/vt8623fb.c:874:18: error: dereferencing pointer to incomplete type 'struct vt8623fb_info'
+     mutex_lock(&(par->open_lock));
+                     ^~
+   include/linux/mutex.h:168:44: note: in definition of macro 'mutex_lock'
+    #define mutex_lock(lock) mutex_lock_nested(lock, 0)
+                                               ^~~~
+   At top level:
+   drivers/video/fbdev/vt8623fb.c:83:32: warning: 'vt8623_start_address_regs' defined but not used [-Wunused-variable]
+    static const struct vga_regset vt8623_start_address_regs[] = {{0x0d, 0, 7}, {0x0c, 0, 7}, {0x34, 0, 7}, {0x48, 0, 1}, VGA_REGSET_END};
+                                   ^~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/video/fbdev/vt8623fb.c:82:32: warning: 'vt8623_fetch_count_regs' defined but not used [-Wunused-variable]
+    static const struct vga_regset vt8623_fetch_count_regs[]   = {{0x1C, 0, 7}, {0x1D, 0, 1}, VGA_REGSET_END};
+                                   ^~~~~~~~~~~~~~~~~~~~~~~
+   drivers/video/fbdev/vt8623fb.c:81:32: warning: 'vt8623_line_compare_regs' defined but not used [-Wunused-variable]
+    static const struct vga_regset vt8623_line_compare_regs[]  = {{0x18, 0, 7}, {0x07, 4, 4}, {0x09, 6, 6}, {0x33, 0, 2}, {0x35, 4, 4}, VGA_REGSET_END};
+                                   ^~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/video/fbdev/vt8623fb.c:80:32: warning: 'vt8623_offset_regs' defined but not used [-Wunused-variable]
+    static const struct vga_regset vt8623_offset_regs[]        = {{0x13, 0, 7}, {0x35, 5, 7}, VGA_REGSET_END};
+                                   ^~~~~~~~~~~~~~~~~~
+   drivers/video/fbdev/vt8623fb.c:78:32: warning: 'vt8623_v_sync_end_regs' defined but not used [-Wunused-variable]
+    static const struct vga_regset vt8623_v_sync_end_regs[]    = {{0x11, 0, 3}, VGA_REGSET_END};
+                                   ^~~~~~~~~~~~~~~~~~~~~~
+   drivers/video/fbdev/vt8623fb.c:77:32: warning: 'vt8623_v_sync_start_regs' defined but not used [-Wunused-variable]
+    static const struct vga_regset vt8623_v_sync_start_regs[]  = {{0x10, 0, 7}, {0x07, 2, 2}, {0x07, 7, 7}, {0x35, 1, 1}, VGA_REGSET_END};
+                                   ^~~~~~~~~~~~~~~~~~~~~~~~
+..
+
+
+vim +152 drivers/video/fbdev/arkfb.c
+
+681e14730c73cc drivers/video/arkfb.c Ondrej Zajicek     2007-05-09   82  
+681e14730c73cc drivers/video/arkfb.c Ondrej Zajicek     2007-05-09   83  static const struct vga_regset ark_line_compare_regs[]   = {{0x18, 0, 7}, {0x07, 4, 4}, {0x09, 6, 6}, VGA_REGSET_END};
+681e14730c73cc drivers/video/arkfb.c Ondrej Zajicek     2007-05-09  @84  static const struct vga_regset ark_start_address_regs[]  = {{0x0d, 0, 7}, {0x0c, 0, 7}, {0x40, 0, 2}, VGA_REGSET_END};
+681e14730c73cc drivers/video/arkfb.c Ondrej Zajicek     2007-05-09   85  static const struct vga_regset ark_offset_regs[]         = {{0x13, 0, 7}, {0x41, 3, 3}, VGA_REGSET_END};
+681e14730c73cc drivers/video/arkfb.c Ondrej Zajicek     2007-05-09   86  
+681e14730c73cc drivers/video/arkfb.c Ondrej Zajicek     2007-05-09   87  static const struct svga_timing_regs ark_timing_regs     = {
+681e14730c73cc drivers/video/arkfb.c Ondrej Zajicek     2007-05-09   88  	ark_h_total_regs, ark_h_display_regs, ark_h_blank_start_regs,
+681e14730c73cc drivers/video/arkfb.c Ondrej Zajicek     2007-05-09   89  	ark_h_blank_end_regs, ark_h_sync_start_regs, ark_h_sync_end_regs,
+681e14730c73cc drivers/video/arkfb.c Ondrej Zajicek     2007-05-09   90  	ark_v_total_regs, ark_v_display_regs, ark_v_blank_start_regs,
+681e14730c73cc drivers/video/arkfb.c Ondrej Zajicek     2007-05-09   91  	ark_v_blank_end_regs, ark_v_sync_start_regs, ark_v_sync_end_regs,
+681e14730c73cc drivers/video/arkfb.c Ondrej Zajicek     2007-05-09   92  };
+681e14730c73cc drivers/video/arkfb.c Ondrej Zajicek     2007-05-09   93  
+681e14730c73cc drivers/video/arkfb.c Ondrej Zajicek     2007-05-09   94  
+681e14730c73cc drivers/video/arkfb.c Ondrej Zajicek     2007-05-09   95  /* ------------------------------------------------------------------------- */
+681e14730c73cc drivers/video/arkfb.c Ondrej Zajicek     2007-05-09   96  
+681e14730c73cc drivers/video/arkfb.c Ondrej Zajicek     2007-05-09   97  
+681e14730c73cc drivers/video/arkfb.c Ondrej Zajicek     2007-05-09   98  /* Module parameters */
+681e14730c73cc drivers/video/arkfb.c Ondrej Zajicek     2007-05-09   99  
+48c68c4f1b5424 drivers/video/arkfb.c Greg Kroah-Hartman 2012-12-21  100  static char *mode_option = "640x480-8@60";
+681e14730c73cc drivers/video/arkfb.c Ondrej Zajicek     2007-05-09  101  
+681e14730c73cc drivers/video/arkfb.c Ondrej Zajicek     2007-05-09  102  MODULE_AUTHOR("(c) 2007 Ondrej Zajicek <santiago@crfreenet.org>");
+681e14730c73cc drivers/video/arkfb.c Ondrej Zajicek     2007-05-09  103  MODULE_LICENSE("GPL");
+681e14730c73cc drivers/video/arkfb.c Ondrej Zajicek     2007-05-09  104  MODULE_DESCRIPTION("fbdev driver for ARK 2000PV");
+681e14730c73cc drivers/video/arkfb.c Ondrej Zajicek     2007-05-09  105  
+1abf91729faf2f drivers/video/arkfb.c Krzysztof Helt     2008-04-28  106  module_param(mode_option, charp, 0444);
+1abf91729faf2f drivers/video/arkfb.c Krzysztof Helt     2008-04-28  107  MODULE_PARM_DESC(mode_option, "Default video mode ('640x480-8@60', etc)");
+1abf91729faf2f drivers/video/arkfb.c Krzysztof Helt     2008-04-28  108  module_param_named(mode, mode_option, charp, 0444);
+1abf91729faf2f drivers/video/arkfb.c Krzysztof Helt     2008-04-28  109  MODULE_PARM_DESC(mode, "Default video mode ('640x480-8@60', etc) (deprecated)");
+681e14730c73cc drivers/video/arkfb.c Ondrej Zajicek     2007-05-09  110  
+681e14730c73cc drivers/video/arkfb.c Ondrej Zajicek     2007-05-09  111  static int threshold = 4;
+681e14730c73cc drivers/video/arkfb.c Ondrej Zajicek     2007-05-09  112  
+681e14730c73cc drivers/video/arkfb.c Ondrej Zajicek     2007-05-09  113  module_param(threshold, int, 0644);
+681e14730c73cc drivers/video/arkfb.c Ondrej Zajicek     2007-05-09  114  MODULE_PARM_DESC(threshold, "FIFO threshold");
+681e14730c73cc drivers/video/arkfb.c Ondrej Zajicek     2007-05-09  115  
+681e14730c73cc drivers/video/arkfb.c Ondrej Zajicek     2007-05-09  116  
+681e14730c73cc drivers/video/arkfb.c Ondrej Zajicek     2007-05-09  117  /* ------------------------------------------------------------------------- */
+681e14730c73cc drivers/video/arkfb.c Ondrej Zajicek     2007-05-09  118  
+681e14730c73cc drivers/video/arkfb.c Ondrej Zajicek     2007-05-09  119  
+681e14730c73cc drivers/video/arkfb.c Ondrej Zajicek     2007-05-09  120  static void arkfb_settile(struct fb_info *info, struct fb_tilemap *map)
+681e14730c73cc drivers/video/arkfb.c Ondrej Zajicek     2007-05-09  121  {
+681e14730c73cc drivers/video/arkfb.c Ondrej Zajicek     2007-05-09  122  	const u8 *font = map->data;
+681e14730c73cc drivers/video/arkfb.c Ondrej Zajicek     2007-05-09  123  	u8 __iomem *fb = (u8 __iomem *)info->screen_base;
+681e14730c73cc drivers/video/arkfb.c Ondrej Zajicek     2007-05-09  124  	int i, c;
+681e14730c73cc drivers/video/arkfb.c Ondrej Zajicek     2007-05-09  125  
+681e14730c73cc drivers/video/arkfb.c Ondrej Zajicek     2007-05-09  126  	if ((map->width != 8) || (map->height != 16) ||
+681e14730c73cc drivers/video/arkfb.c Ondrej Zajicek     2007-05-09  127  	    (map->depth != 1) || (map->length != 256)) {
+31b6780c15a4e3 drivers/video/arkfb.c Joe Perches        2013-09-19  128  		fb_err(info, "unsupported font parameters: width %d, height %d, depth %d, length %d\n",
+681e14730c73cc drivers/video/arkfb.c Ondrej Zajicek     2007-05-09  129  		       map->width, map->height, map->depth, map->length);
+681e14730c73cc drivers/video/arkfb.c Ondrej Zajicek     2007-05-09  130  		return;
+681e14730c73cc drivers/video/arkfb.c Ondrej Zajicek     2007-05-09  131  	}
+681e14730c73cc drivers/video/arkfb.c Ondrej Zajicek     2007-05-09  132  
+681e14730c73cc drivers/video/arkfb.c Ondrej Zajicek     2007-05-09  133  	fb += 2;
+681e14730c73cc drivers/video/arkfb.c Ondrej Zajicek     2007-05-09  134  	for (c = 0; c < map->length; c++) {
+681e14730c73cc drivers/video/arkfb.c Ondrej Zajicek     2007-05-09  135  		for (i = 0; i < map->height; i++) {
+681e14730c73cc drivers/video/arkfb.c Ondrej Zajicek     2007-05-09  136  			fb_writeb(font[i], &fb[i * 4]);
+681e14730c73cc drivers/video/arkfb.c Ondrej Zajicek     2007-05-09  137  			fb_writeb(font[i], &fb[i * 4 + (128 * 8)]);
+681e14730c73cc drivers/video/arkfb.c Ondrej Zajicek     2007-05-09  138  		}
+681e14730c73cc drivers/video/arkfb.c Ondrej Zajicek     2007-05-09  139  		fb += 128;
+681e14730c73cc drivers/video/arkfb.c Ondrej Zajicek     2007-05-09  140  
+681e14730c73cc drivers/video/arkfb.c Ondrej Zajicek     2007-05-09  141  		if ((c % 8) == 7)
+681e14730c73cc drivers/video/arkfb.c Ondrej Zajicek     2007-05-09  142  			fb += 128*8;
+681e14730c73cc drivers/video/arkfb.c Ondrej Zajicek     2007-05-09  143  
+681e14730c73cc drivers/video/arkfb.c Ondrej Zajicek     2007-05-09  144  		font += map->height;
+681e14730c73cc drivers/video/arkfb.c Ondrej Zajicek     2007-05-09  145  	}
+681e14730c73cc drivers/video/arkfb.c Ondrej Zajicek     2007-05-09  146  }
+681e14730c73cc drivers/video/arkfb.c Ondrej Zajicek     2007-05-09  147  
+55db0923884554 drivers/video/arkfb.c David Miller       2011-01-11  148  static void arkfb_tilecursor(struct fb_info *info, struct fb_tilecursor *cursor)
+55db0923884554 drivers/video/arkfb.c David Miller       2011-01-11  149  {
+55db0923884554 drivers/video/arkfb.c David Miller       2011-01-11  150  	struct arkfb_info *par = info->par;
+55db0923884554 drivers/video/arkfb.c David Miller       2011-01-11  151  
+55db0923884554 drivers/video/arkfb.c David Miller       2011-01-11 @152  	svga_tilecursor(par->state.vgabase, info, cursor);
+55db0923884554 drivers/video/arkfb.c David Miller       2011-01-11  153  }
+55db0923884554 drivers/video/arkfb.c David Miller       2011-01-11  154  
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
