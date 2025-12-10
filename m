@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 45F4AD3B9A9
-	for <intel-xe@archiver.kernel.org>; Wed, 10 Dec 2025 04:32:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 24C08D3C526
+	for <intel-xe@archiver.kernel.org>; Wed, 10 Dec 2025 04:32:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D9F2410E65D;
-	Wed, 10 Dec 2025 04:32:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D2C6B10E65E;
+	Wed, 10 Dec 2025 04:32:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FN0fFbRd";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="L0cPlmjD";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 563B410E65C
- for <intel-xe@lists.freedesktop.org>; Wed, 10 Dec 2025 04:32:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6590310E65E
+ for <intel-xe@lists.freedesktop.org>; Wed, 10 Dec 2025 04:32:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765341142; x=1796877142;
+ t=1765341144; x=1796877144;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=51bznLstXSeTDtQtSJk3zK1yzNxRaTuuWy5nu6XWbBk=;
- b=FN0fFbRdUxJquj1wNLljjzpUt1OjdtWE/Wcc1e7vLzr3MlckxgxYNgYY
- EJsnjpnsKC3TYSj7ZDuT/11wUrxsDFEccY3L1E9nrQyhimQl4mBd57WEF
- 2GK/Ht+/TnJ2oBQG4pX+bPu1ck/+skOI5jmBYl+K1PD82wt+nq0pPfvdp
- dNmoTeTjnDKkydZhd1tzTi7u3OeOaIVc6C7ybR0XSvLy6o3/Ft6BxCx3n
- vc5Y3Q6fWU0/kqKJU/lBSf4mjwhfJgRA1S138DNDg72X6i3wlS+7uWm0y
- M8O1Ui1R5F34/scPcXqzgmSokwT5c4l+/AlpC7WdTurtq+48Z0OUH2Yrg Q==;
-X-CSE-ConnectionGUID: gC9QFc+4Smeaywp74aJL9g==
-X-CSE-MsgGUID: fO705KRYQJucwtzZ5I5c5g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11637"; a="78000062"
-X-IronPort-AV: E=Sophos;i="6.20,263,1758610800"; d="scan'208";a="78000062"
+ bh=tt31Nqsz7bDhAu+i7xvuvN77FTPq4QqpABbGzoFA5yo=;
+ b=L0cPlmjDC/h6zrUEdnckWoZIBNIyiSDFEFGNAttLp3iM1nLPeRkb0X1h
+ HMmEmI+ub2Qt5englFYFkPenmVjnt7kclH6ayTg5ftk9FtHUNeFrmhgHJ
+ ID8ACnTPaN2KHvWsiB6I1q2igEtauk84zypFuZw8yIU0YeRab+G5uiLO3
+ 0uyfn2xMdJgvK0NjmZM3LwPlrSOCHdN1k0pTTuezAwf0zYT1zlzc2TXZE
+ qMAMvHXSJ3pY1/v0/j9NaJdYkVNKp2dQ/qYFjCc7rdjcCZiEJ8prlIXPc
+ h+GsoFhsCFQSXySRihNwMKnF5b/3GQC9QRSLzA32MTy5N/9qZDFLwEBiA A==;
+X-CSE-ConnectionGUID: YrBr6yh1TZmDbJhjUy5M8A==
+X-CSE-MsgGUID: UCmvvA9BThuefPa7X39QfA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11637"; a="78000065"
+X-IronPort-AV: E=Sophos;i="6.20,263,1758610800"; d="scan'208";a="78000065"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2025 20:32:22 -0800
-X-CSE-ConnectionGUID: 7mIYVoZfTmqFFn1Xtdx3bA==
-X-CSE-MsgGUID: BPq3WN4PQJKA2xayFWMBow==
+ 09 Dec 2025 20:32:24 -0800
+X-CSE-ConnectionGUID: aTFt7M+JTbCqqpEHhv8H2A==
+X-CSE-MsgGUID: TLOYrMKVSJWmt2ec9Am0og==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,263,1758610800"; d="scan'208";a="196466663"
+X-IronPort-AV: E=Sophos;i="6.20,263,1758610800"; d="scan'208";a="196466685"
 Received: from varungup-desk.iind.intel.com ([10.190.238.71])
  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2025 20:32:21 -0800
+ 09 Dec 2025 20:32:23 -0800
 From: Arvind Yadav <arvind.yadav@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.brost@intel.com, himal.prasad.ghimiray@intel.com,
  thomas.hellstrom@linux.intel.com, pallavi.mishra@intel.com
-Subject: [RFC v3 4/8] drm/xe/bo: Handle CPU faults on purged buffer objects
-Date: Wed, 10 Dec 2025 10:00:48 +0530
-Message-ID: <20251210043112.3267620-5-arvind.yadav@intel.com>
+Subject: [RFC v3 5/8] drm/xe/vm: Prevent binding of purged buffer objects
+Date: Wed, 10 Dec 2025 10:00:49 +0530
+Message-ID: <20251210043112.3267620-6-arvind.yadav@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20251210043112.3267620-1-arvind.yadav@intel.com>
 References: <20251210043112.3267620-1-arvind.yadav@intel.com>
@@ -68,47 +68,111 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Return -EFAULT when CPU attempts to access a purged buffer object.
-Purged BOs have their backing store reclaimed by the kernel, making
-CPU access invalid. For mmap() users, this is reported as SIGBUS via
-the usual VM_FAULT_SIGBUS conversion, matching i915 semantics.
+Add check_purged parameter to vma_lock_and_validate() to block
+new mapping operations on purged BOs while allowing cleanup
+operations to proceed.
 
-Check xe_bo_is_purged() under dma-resv lock in the page fault
-handler to prevent races. The fault handler returns VM_FAULT_SIGBUS
-to signal the error to userspace.
+Purged BOs have their backing pages freed by the kernel. New
+mapping operations (MAP, PREFETCH, REMAP) must be rejected with
+-EINVAL to prevent GPU access to invalid memory. Cleanup
+operations (UNMAP) must be allowed so applications can release
+resources after detecting purge via the retained field.
+
+REMAP operations require mixed handling - reject new prev/next
+VMAs if the BO is purged, but allow the unmap portion to proceed
+for cleanup.
+
+The check_purged parameter distinguishes between these cases:
+true for new mappings (must reject), false for cleanup (allow).
 
 v2:
-  - Added xe_bo_is_purged(bo) instead of atomic_read.
-  - Avoids leaks and keeps drm_dev_exit() while returning.
+  - Clarify that purged BOs are permanently invalid (i915 semantics)
+  - Remove incorrect claim about madvise(WILLNEED) restoring purged BOs
 
 v3:
-  - Move xe_bo_is_purged check under a dma-resv lock (Matthew Brost)
+  - Move xe_bo_is_purged check under vma_lock_and_validate (Matthew Brost)
+  - Add check_purged parameter to distinguish new mappings from cleanup
+  - Allow UNMAP operations to prevent resource leaks
+  - Handle REMAP operation's dual nature (cleanup + new mappings)
 
 Cc: Matthew Brost <matthew.brost@intel.com>
 Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 Signed-off-by: Arvind Yadav <arvind.yadav@intel.com>
 ---
- drivers/gpu/drm/xe/xe_bo.c | 6 ++++++
- 1 file changed, 6 insertions(+)
+ drivers/gpu/drm/xe/xe_vm.c | 20 +++++++++++++-------
+ 1 file changed, 13 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index c161ac6420db..31b2fa490440 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -2033,6 +2033,12 @@ static vm_fault_t xe_bo_cpu_fault(struct vm_fault *vmf)
- 		if (err)
- 			break;
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 762098d368a6..9a6c9a26c6da 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -2864,7 +2864,7 @@ static void vm_bind_ioctl_ops_unwind(struct xe_vm *vm,
+ }
  
-+		/* Purged BOs have no backing store - fault to userspace */
-+		if (xe_bo_is_purged(bo)) {
-+			err = -EFAULT;
-+			break;
-+		}
+ static int vma_lock_and_validate(struct drm_exec *exec, struct xe_vma *vma,
+-				 bool res_evict, bool validate)
++				 bool res_evict, bool validate, bool check_purged)
+ {
+ 	struct xe_bo *bo = xe_vma_bo(vma);
+ 	struct xe_vm *vm = xe_vma_vm(vma);
+@@ -2873,6 +2873,11 @@ static int vma_lock_and_validate(struct drm_exec *exec, struct xe_vma *vma,
+ 	if (bo) {
+ 		if (!bo->vm)
+ 			err = drm_exec_lock_obj(exec, &bo->ttm.base);
 +
- 		if (xe_ttm_bo_is_imported(tbo)) {
- 			err = -EFAULT;
- 			drm_dbg(&xe->drm, "CPU trying to access an imported buffer object.\n");
++		/* Reject new mappings to purged BOs; allow cleanup operations */
++		if (!err && check_purged && xe_bo_is_purged(bo))
++			err = -EINVAL;
++
+ 		if (!err && validate)
+ 			err = xe_bo_validate(bo, vm,
+ 					     !xe_vm_in_preempt_fence_mode(vm) &&
+@@ -2964,7 +2969,8 @@ static int op_lock_and_prep(struct drm_exec *exec, struct xe_vm *vm,
+ 			err = vma_lock_and_validate(exec, op->map.vma,
+ 						    res_evict,
+ 						    !xe_vm_in_fault_mode(vm) ||
+-						    op->map.immediate);
++						    op->map.immediate,
++						    true);
+ 		break;
+ 	case DRM_GPUVA_OP_REMAP:
+ 		err = check_ufence(gpuva_to_vma(op->base.remap.unmap->va));
+@@ -2973,13 +2979,13 @@ static int op_lock_and_prep(struct drm_exec *exec, struct xe_vm *vm,
+ 
+ 		err = vma_lock_and_validate(exec,
+ 					    gpuva_to_vma(op->base.remap.unmap->va),
+-					    res_evict, false);
++					    res_evict, false, false);
+ 		if (!err && op->remap.prev)
+ 			err = vma_lock_and_validate(exec, op->remap.prev,
+-						    res_evict, true);
++						    res_evict, true, true);
+ 		if (!err && op->remap.next)
+ 			err = vma_lock_and_validate(exec, op->remap.next,
+-						    res_evict, true);
++						    res_evict, true, true);
+ 		break;
+ 	case DRM_GPUVA_OP_UNMAP:
+ 		err = check_ufence(gpuva_to_vma(op->base.unmap.va));
+@@ -2988,7 +2994,7 @@ static int op_lock_and_prep(struct drm_exec *exec, struct xe_vm *vm,
+ 
+ 		err = vma_lock_and_validate(exec,
+ 					    gpuva_to_vma(op->base.unmap.va),
+-					    res_evict, false);
++					    res_evict, false, false);
+ 		break;
+ 	case DRM_GPUVA_OP_PREFETCH:
+ 	{
+@@ -3003,7 +3009,7 @@ static int op_lock_and_prep(struct drm_exec *exec, struct xe_vm *vm,
+ 
+ 		err = vma_lock_and_validate(exec,
+ 					    gpuva_to_vma(op->base.prefetch.va),
+-					    res_evict, false);
++					    res_evict, false, true);
+ 		if (!err && !xe_vma_has_no_bo(vma))
+ 			err = xe_bo_migrate(xe_vma_bo(vma),
+ 					    region_to_mem_type[region],
 -- 
 2.43.0
 
