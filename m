@@ -4,27 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BF697D2CE17
-	for <intel-xe@archiver.kernel.org>; Wed, 10 Dec 2025 04:49:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 02B94D2CE17
+	for <intel-xe@archiver.kernel.org>; Wed, 10 Dec 2025 05:25:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5E6EA10E65C;
-	Wed, 10 Dec 2025 04:49:19 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1F47610E65C;
- Wed, 10 Dec 2025 04:49:18 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0009877035592080247=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id BCE7310E09D;
+	Wed, 10 Dec 2025 05:25:51 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="M0sdbcsL";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EEBCB10E09D
+ for <intel-xe@lists.freedesktop.org>; Wed, 10 Dec 2025 05:25:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1765344351; x=1796880351;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=/XsGy48bXo8wao0go6L/O/wRjhggYZX2wJCVNrGvYDQ=;
+ b=M0sdbcsLUD7YwnCPUMsmkj9LCjejeJ2bMnkXswT3mQjl8SyWVmw35BbW
+ wjhcgipV6mCxed0hS6Id8Foj1S9Stx5XnjR5c1hXbvE0o7LfYhuDb7MoT
+ tzmYN7N/iz5geywrQZybIe6NK1YSo+MncjSiOxsrpdzueib9oyaAVby/3
+ W67+qA3OSZE4uZrIWJIK83afbopdo1jUiGG9BwZFIXvOhFcOM9kfvfTan
+ KjBCVMAKG20TVQW6JVJFpR3a5Y0iSkfJ3J1CXtB3mR8/CuYQMzAmIxBou
+ kFKlRa+Ad34HZXbRdyqvAbelTf5WhImzBGHtp+vH4g3zTi92p1kQ7Q+wL g==;
+X-CSE-ConnectionGUID: tWlWA+tpSUa7pzEpFWctHQ==
+X-CSE-MsgGUID: lRLejjS8QzqOP2+RJnCV9A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11637"; a="84723065"
+X-IronPort-AV: E=Sophos;i="6.20,263,1758610800"; d="scan'208";a="84723065"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Dec 2025 21:25:50 -0800
+X-CSE-ConnectionGUID: oDRQcJMqQWCBj+ZoToXLBA==
+X-CSE-MsgGUID: 6o5MP+EYRhSnRFbGQx4O+g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.20,263,1758610800"; d="scan'208";a="196419990"
+Received: from ksatya-dev.iind.intel.com ([10.190.228.51])
+ by orviesa007.jf.intel.com with ESMTP; 09 Dec 2025 21:25:50 -0800
+From: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+Subject: [PATCH v3 0/2] Reset recovery_queued after issuing RESFIX_START
+Date: Wed, 10 Dec 2025 05:25:47 +0000
+Message-ID: <20251210052546.622809-4-satyanarayana.k.v.p@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/hw=5Fengine=5Fgroup?=
- =?utf-8?q?=3A_Add_stats_for_mode_switching?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Francois Dugast" <francois.dugast@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 10 Dec 2025 04:49:18 -0000
-Message-ID: <176534215811.72532.16512475502095916627@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20251209164625.228826-1-francois.dugast@intel.com>
-In-Reply-To: <20251209164625.228826-1-francois.dugast@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,125 +60,38 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0009877035592080247==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+During VF_RESTORE or VF_RESUME, the GuC sends a migration interrupt and
+clears the RESFIX_START marker. If migration or resume occurs before the
+VF issues its own RESFIX_START, VF KMD may receive two back-to-back
+migration interrupts. VF then sends RESFIX_START to indicate the beginning
+of fixups and RESFIX_DONE to mark completion. However, the second
+RESFIX_START fails because the GuC is already in the RUNNING state.
 
-== Series Details ==
+Clear the recovery_queued flag after sending a RESFIX_START message to
+ignore duplicated IRQs seen before we start actual recovery.
 
-Series: drm/xe/hw_engine_group: Add stats for mode switching
-URL   : https://patchwork.freedesktop.org/series/158708/
-State : success
+---
+V2 -> V3:
+- Fixed review comments (Matt B)
+- Updated commit message (Michal W).
 
-== Summary ==
+V1 -> V2:
+- Fixed review comments (Michal W).
+- Updated commit message.
+- Used scoped_guard for spin_lock/unlock_irq.
+- Created a new commit ("drm/xe/vf: Avoid queuing migration recovery if
+queued or teardown is active").
 
-CI Bug Log - changes from xe-4211-12271f632915efe0c5d4171b9c0e90f57ecdfe01_BAT -> xe-pw-158708v1_BAT
-====================================================
+Satyanarayana K V P (2):
+  drm/xe/vf: Fix queuing of recovery work
+  drm/xe/vf: Reset recovery_queued after issuing RESFIX_START
 
-Summary
--------
+ drivers/gpu/drm/xe/xe_gt_sriov_vf.c | 15 +++++++++------
+ 1 file changed, 9 insertions(+), 6 deletions(-)
 
-  **SUCCESS**
+-- 
+2.43.0
 
-  No regressions found.
-
-  
-
-Participating hosts (12 -> 12)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-158708v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@xe_waitfence@engine:
-    - bat-dg2-oem2:       [FAIL][1] ([Intel XE#6519]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4211-12271f632915efe0c5d4171b9c0e90f57ecdfe01/bat-dg2-oem2/igt@xe_waitfence@engine.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158708v1/bat-dg2-oem2/igt@xe_waitfence@engine.html
-
-  
-  [Intel XE#6519]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519
-
-
-Build changes
--------------
-
-  * Linux: xe-4211-12271f632915efe0c5d4171b9c0e90f57ecdfe01 -> xe-pw-158708v1
-
-  IGT_8662: 9410b6926f317e8bf824502394e09ee8753ff65e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-4211-12271f632915efe0c5d4171b9c0e90f57ecdfe01: 12271f632915efe0c5d4171b9c0e90f57ecdfe01
-  xe-pw-158708v1: 158708v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158708v1/index.html
-
---===============0009877035592080247==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/hw_engine_group: Add stats for mode switching</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/158708/">https://patchwork.freedesktop.org/series/158708/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158708v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158708v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4211-12271f632915efe0c5d4171b9c0e90f57ecdfe01_BAT -&gt; xe-pw-158708v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (12 -&gt; 12)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-158708v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_waitfence@engine:<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4211-12271f632915efe0c5d4171b9c0e90f57ecdfe01/bat-dg2-oem2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519">Intel XE#6519</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158708v1/bat-dg2-oem2/igt@xe_waitfence@engine.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4211-12271f632915efe0c5d4171b9c0e90f57ecdfe01 -&gt; xe-pw-158708v1</li>
-</ul>
-<p>IGT_8662: 9410b6926f317e8bf824502394e09ee8753ff65e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-4211-12271f632915efe0c5d4171b9c0e90f57ecdfe01: 12271f632915efe0c5d4171b9c0e90f57ecdfe01<br />
-  xe-pw-158708v1: 158708v1</p>
-
-</body>
-</html>
-
---===============0009877035592080247==--
