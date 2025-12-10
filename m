@@ -4,57 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D239ED3B9A9
-	for <intel-xe@archiver.kernel.org>; Wed, 10 Dec 2025 08:56:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7CE5BD3B9A9
+	for <intel-xe@archiver.kernel.org>; Wed, 10 Dec 2025 09:16:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6AD6B10E251;
-	Wed, 10 Dec 2025 08:56:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3BF3710E253;
+	Wed, 10 Dec 2025 09:16:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AR1kwe3/";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CfYi01Kt";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EC2DD10E251;
- Wed, 10 Dec 2025 08:56:52 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D16BE10E232
+ for <intel-xe@lists.freedesktop.org>; Wed, 10 Dec 2025 09:16:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765357013; x=1796893013;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=V92MC9DyB2bQFS5RAWBRegLesK4X1P62l+UlMR1cI8I=;
- b=AR1kwe3/AV2hjkPqZ5hGS6X6RbmLdwXPAeO/kTz79Ggktto8l0ks2xbF
- 0rZbskiaM8PlRe+i4H2W1KnMe/zMABOjOxD3/ZemwkY9CPiHmTxqk4xGz
- CDY5URgQsdv3qNfOOwZj19gHHzZXi8DLZbgwbfD6Dyr8C95CQO714DAvz
- BtPiS8xZPiLfLKJ424ADfUT8bCKeRFJb4aemgao8Xyrg6hab/9fFmksSD
- hrQY99sTOTrhGxk/FUU01UP8sw0NVTLuFiGXbMosKI9WT1R2foEBX3MfY
- HqkbiJUf00jjAyjJ05EdGo7SJOggMuotJ1CXrlQcqpvTIrdM+sMbgnqEy w==;
-X-CSE-ConnectionGUID: JQEVjxNkQA65iWaKCKs0TA==
-X-CSE-MsgGUID: R5bl0SVHQfKO/tOSFjLp5g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11637"; a="89974902"
-X-IronPort-AV: E=Sophos;i="6.20,263,1758610800"; d="scan'208";a="89974902"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Dec 2025 00:56:53 -0800
-X-CSE-ConnectionGUID: NpLKL/90TQCDr6Vi32YASw==
-X-CSE-MsgGUID: wQKW7M8SRPSnjpwP+f93qg==
+ t=1765358197; x=1796894197;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=VDY4U8F63J2NPwqdtQB6bVl86jPB9Pbu/bg8g4qtCKo=;
+ b=CfYi01Kt73Nz6gGsJUMEyK2+9NOAkXqNfHHFKhrKjqSp80AudAW01Zyc
+ DLTeheZBiykfCnfuwAtQ8jGgTOui1GogmL7JTwRzsqkViZktkbO0YrjBu
+ T3eV9A8F07l8uEgygD/mSdWDICOfrO43sXo5EZWjSxiresolPCqnZPacN
+ wDERALYFoFz5I/pMVdRCO2lDpWch1nSbuSYGjMVD9cbsOiGRk/ALuaD1c
+ yXXTQjTxSb+90D/HjyX3agw8cvAamPKjQmPZTo1GtP8VYWdjjNsQO9/Yk
+ DHjb3cRWYYQylrlCArCuzK3cdgin83FMVlCgQ6TSMo1y+lTBcjFNHEPUy Q==;
+X-CSE-ConnectionGUID: zctmpOUmRpWqHpiIoIefgQ==
+X-CSE-MsgGUID: vuU/Q6tSRZWe9QN6rDIP7w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11637"; a="71173553"
+X-IronPort-AV: E=Sophos;i="6.20,263,1758610800"; d="scan'208";a="71173553"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Dec 2025 01:16:37 -0800
+X-CSE-ConnectionGUID: GP5SwBbWTFOQ8MOPoINDbQ==
+X-CSE-MsgGUID: au5j3sN7TE6yCnyjgKc9vA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,263,1758610800"; d="scan'208";a="200954196"
-Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.207])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Dec 2025 00:56:50 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Maarten Lankhorst <dev@lankhorst.se>, intel-xe@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org, Maarten Lankhorst <dev@lankhorst.se>
-Subject: Re: [PATCH 2/2] drm/i915/display: Fix intel_lpe_audio_irq_handler
- for PREEMPT-RT
-In-Reply-To: <20251209151319.494640-4-dev@lankhorst.se>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20251209151319.494640-3-dev@lankhorst.se>
- <20251209151319.494640-4-dev@lankhorst.se>
-Date: Wed, 10 Dec 2025 10:56:47 +0200
-Message-ID: <f9641fa9298cf52efbde5d41014470f2355e3551@intel.com>
+X-IronPort-AV: E=Sophos;i="6.20,263,1758610800"; d="scan'208";a="195533229"
+Received: from unknown (HELO [10.102.88.36]) ([10.102.88.36])
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Dec 2025 01:16:35 -0800
+Message-ID: <4983e4d2-7c07-4c55-92c8-c4441af4b2f2@linux.intel.com>
+Date: Wed, 10 Dec 2025 10:16:32 +0100
 MIME-Version: 1.0
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: drm/xe/bo: Don't include the CCS metadata in the dma-buf sg-table
+To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ intel-xe@lists.freedesktop.org
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, stable@vger.kernel.org
+References: <20251209204920.224374-1-thomas.hellstrom@linux.intel.com>
+Content-Language: en-US
+From: Karol Wachowski <karol.wachowski@linux.intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
+ Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <20251209204920.224374-1-thomas.hellstrom@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,34 +73,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 09 Dec 2025, Maarten Lankhorst <dev@lankhorst.se> wrote:
-> No need for backporting, this is only useful for i915,
-> and it doesn't compile with I915 enabled.
-
-Please elaborate. There's just riddles here.
-
-BR,
-Jani.
-
->
-> Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
+On 12/9/2025 9:49 PM, Thomas Hellström wrote:
+> Some Xe bos are allocated with extra backing-store for the CCS
+> metadata. It's never been the intention to share the CCS metadata
+> when exporting such bos as dma-buf. Don't include it in the
+> dma-buf sg-table.
+> 
+> Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
+> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Cc: Matthew Brost <matthew.brost@intel.com>
+> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> Cc: <stable@vger.kernel.org> # v6.8+
+> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_lpe_audio.c | 2 +-
+>  drivers/gpu/drm/xe/xe_dma_buf.c | 2 +-
 >  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_lpe_audio.c b/drivers/gpu/drm/i915/display/intel_lpe_audio.c
-> index 5b41abe1c64d5..172c0062237eb 100644
-> --- a/drivers/gpu/drm/i915/display/intel_lpe_audio.c
-> +++ b/drivers/gpu/drm/i915/display/intel_lpe_audio.c
-> @@ -262,7 +262,7 @@ void intel_lpe_audio_irq_handler(struct intel_display *display)
->  	if (!HAS_LPE_AUDIO(display))
->  		return;
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_dma_buf.c b/drivers/gpu/drm/xe/xe_dma_buf.c
+> index 54e42960daad..7c74a31d4486 100644
+> --- a/drivers/gpu/drm/xe/xe_dma_buf.c
+> +++ b/drivers/gpu/drm/xe/xe_dma_buf.c
+> @@ -124,7 +124,7 @@ static struct sg_table *xe_dma_buf_map(struct dma_buf_attachment *attach,
+>  	case XE_PL_TT:
+>  		sgt = drm_prime_pages_to_sg(obj->dev,
+>  					    bo->ttm.ttm->pages,
+> -					    bo->ttm.ttm->num_pages);
+> +					    obj->size >> PAGE_SHIFT);
+>  		if (IS_ERR(sgt))
+>  			return sgt;
 >  
-> -	ret = generic_handle_irq(display->audio.lpe.irq);
-> +	ret = generic_handle_irq_safe(display->audio.lpe.irq);
->  	if (ret)
->  		drm_err_ratelimited(display->drm,
->  				    "error handling LPE audio irq: %d\n", ret);
-
--- 
-Jani Nikula, Intel
+Reviewed-by: Karol Wachowski <karol.wachowski@linux.intel.com>
