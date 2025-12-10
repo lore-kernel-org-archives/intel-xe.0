@@ -4,58 +4,167 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A1E24D3C933
-	for <intel-xe@archiver.kernel.org>; Wed, 10 Dec 2025 17:26:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F12D2D3C928
+	for <intel-xe@archiver.kernel.org>; Wed, 10 Dec 2025 17:31:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5A8A110E788;
-	Wed, 10 Dec 2025 17:26:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9370D10E70B;
+	Wed, 10 Dec 2025 17:31:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="T3p2E1fw";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MQ5CAUwY";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C513010E789;
- Wed, 10 Dec 2025 17:26:19 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7BD9D10E70B
+ for <intel-xe@lists.freedesktop.org>; Wed, 10 Dec 2025 17:31:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765387580; x=1796923580;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=L9q2lzRpODfR32TU66zYiEVAm3DH5DfMU8o7zM7qmxE=;
- b=T3p2E1fwBvvm2H262AT8ylPhKD2uZlnzUytNWBo1yas8x/647dTXxQqM
- pc2+22Gf/EelkKJ0FHKzOJWq9/HLbjrpKfEabJawFC/M6jsaROPTt/h4C
- iaFomrWJzh4SdOv2byOfR1tCESYBG4ZFGoZ+CWGMwSPMA/tSEiET68BQk
- nw78XJ0YX7Ik5L2gWYkBOEhv8pTDBLFc0KaHVAbE41vd/3F9WbUseHI0Q
- QwUBeXzPN540KTwMcq4N27IaEHuklKQvVN+k2UqPMXGVGTJ9t97DftLl7
- hfWMBd2JzwGXankExuVCaEFEBQW9v4OXpOICGYuYSk3CHgU0aPGG0gIam g==;
-X-CSE-ConnectionGUID: W8cGWXXJR6q7OAQkJuAWUA==
-X-CSE-MsgGUID: kpcQIpd0RkWTkFSM8CUAuA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11638"; a="67412003"
-X-IronPort-AV: E=Sophos;i="6.20,264,1758610800"; d="scan'208";a="67412003"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Dec 2025 09:26:12 -0800
-X-CSE-ConnectionGUID: q2gtvvsPQhisK1c3aLvC/Q==
-X-CSE-MsgGUID: ZqTAC+bfSmuPuUt2P8pvvw==
+ t=1765387889; x=1796923889;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=VZQAuAr3nf8y66I4VRSqS/oj8sAE6Y/zd8nRJFvL/GY=;
+ b=MQ5CAUwYud23tCgUZiczCBVjdGIpd+FwKuFsP5POqgNIN8t1IIZi3OI8
+ tLqYGlDyJEGiDWgoQewzcyHJBdD3+ZfylEXnyaxbGwerdDlo/KfnOQY4o
+ aiY+skRFFJp1GwNZWUkAOtuCoJhe3LAjuQsNbfeiHdUGI/6mLde9t0kcU
+ 37FjQP0tS+EophvQr1RzqK+rQKe0gGhNGMiIIgt+mnnH73wSYVWuz487D
+ aquY8E5c1ym0f9n7Szj0+wqaF1qgUPFMosuOhRdfBD96tp7UEDQoUbYfx
+ HlJiygd4T28l+rihhNx4APOZYpPiAKVGZi0uYCUeEEcT1I+UspvGJJrA6 w==;
+X-CSE-ConnectionGUID: gxM6RubGTn+2j9JA1PIjBg==
+X-CSE-MsgGUID: oxXCO1otTvCfJwwZIzqimA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11638"; a="70988484"
+X-IronPort-AV: E=Sophos;i="6.20,264,1758610800"; d="scan'208";a="70988484"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Dec 2025 09:31:27 -0800
+X-CSE-ConnectionGUID: BP37+EhxTvWSWp2f98vklQ==
+X-CSE-MsgGUID: R8f3xZTBRqa5X6axjJKWqg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,264,1758610800"; d="scan'208";a="196470259"
-Received: from dalessan-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.244.21])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Dec 2025 09:26:09 -0800
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org,
-	Jani Nikula <jani.nikula@intel.com>
-Subject: [PATCH v2] drm/i915/pc8: Add parent interface for PC8 forcewake tricks
-Date: Wed, 10 Dec 2025 19:26:06 +0200
-Message-ID: <20251210172606.29729-1-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.51.2
-In-Reply-To: <20251209111150.16853-1-ville.syrjala@linux.intel.com>
-References: <20251209111150.16853-1-ville.syrjala@linux.intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-IronPort-AV: E=Sophos;i="6.20,264,1758610800"; d="scan'208";a="196171896"
+Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
+ by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Dec 2025 09:31:27 -0800
+Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.29; Wed, 10 Dec 2025 09:31:26 -0800
+Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
+ FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.29 via Frontend Transport; Wed, 10 Dec 2025 09:31:26 -0800
+Received: from BL0PR03CU003.outbound.protection.outlook.com (52.101.53.37) by
+ edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.29; Wed, 10 Dec 2025 09:31:26 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=hgEGKsWQg4BnMZl4Nh7VnbsphMk9X8+wR2EsNHzsTCV4VLZO1b/Iwn+v9tJNlrXNxu5NOGhoAyqeCB+oAcc9Q8KmoGqOQWIwvLf8iIhQRCSdftTJYmOh6hRB+KPnC0aWFCuBQXMM3jHFq65C7KhcZcPhrYMHaWPzeSrjonKRgtjvlxkEqJQjRfEGANFv4r81Gs5gxFStKl9MRhCV57y2ef04VhqCLdt9i9svLR8PkfqZpFZEpD8e9aa42vSE7Zd8CH6mPCHKBodO03N2seA+vBDjUjoMILZShuT1wZu61w+KEZffTAPmubWP67DvPjkl3E82R07wWw2nLk0P0p6lRg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=zbVS96Xh9hre3050yJ/+3/aF52HxLdQbH3KXPfGDZJo=;
+ b=GFxzi3NjYvG/Bof3ljDKoD9BqU1LRX1B/GPAufY3BaTeGvOQaT44lnDG+BRni4bL5mx6yyjipKL37ues7qJtbqaJhFy+V97HLNC52pcanEj0cKuW/L3o9FRyK5YaTHZmdIZoBfqgyy3B4FzL5dby7JwmIwJC9+klEFscuSTPYNMW30/Z2Hm7ARlm7NtUW0b5n5eVRfMikwKnUZHUnt81SjiX71mtN3L1TqoayUA2/m9jRfBAHxIO4ZlBTkKRQMFgbyKs8LU05FzGxZGUTSxBfrJURMn8DKtPw3nbowJXyveB5aETsh8ZGYCVs3uqCVhLxL/ndqE/BB5il4x0FEsIOQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
+ by CYYPR11MB8387.namprd11.prod.outlook.com (2603:10b6:930:c8::10)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9412.6; Wed, 10 Dec
+ 2025 17:31:20 +0000
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::9e94:e21f:e11a:332]) by PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::9e94:e21f:e11a:332%7]) with mapi id 15.20.9412.005; Wed, 10 Dec 2025
+ 17:31:20 +0000
+Date: Wed, 10 Dec 2025 09:31:17 -0800
+From: Matthew Brost <matthew.brost@intel.com>
+To: Francois Dugast <francois.dugast@intel.com>
+CC: <intel-xe@lists.freedesktop.org>, Thomas =?iso-8859-1?Q?Hellstr=F6m?=
+ <thomas.hellstrom@linux.intel.com>
+Subject: Re: [PATCH v2] drm/xe/hw_engine_group: Add stats for mode switching
+Message-ID: <aTmuZTR5lAsfQMd7@lstrano-desk.jf.intel.com>
+References: <20251210165000.60789-1-francois.dugast@intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20251210165000.60789-1-francois.dugast@intel.com>
+X-ClientProxiedBy: MW4PR04CA0163.namprd04.prod.outlook.com
+ (2603:10b6:303:85::18) To PH7PR11MB6522.namprd11.prod.outlook.com
+ (2603:10b6:510:212::12)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|CYYPR11MB8387:EE_
+X-MS-Office365-Filtering-Correlation-Id: 460075eb-44a5-4fe8-593b-08de3811ee84
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
+X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?YqqcM+xhY6Ws/zAKT8sQBnXsv/nbSTs8YqSycoj7wwJ4Xuj3D7AbI/WjMc?=
+ =?iso-8859-1?Q?q5ePDJx0L5uIPhdhbaFzugET1FDSpRkjTuuyFaKJzNWi8VzbZn+NNt5Wgd?=
+ =?iso-8859-1?Q?UKp85pSdyziA08wCUNeibiwO1XpLxVZSlo7PiNmFDoLEEUqqbD3t2PipXc?=
+ =?iso-8859-1?Q?MiymEfliDiV4jEl8L1TcuPArSnl00F7ktDCUpJtBuT/LU4gPZ6sgotDb0c?=
+ =?iso-8859-1?Q?IPI4oir8JudV4WXY+OR9+NtNwyYX0CylperelQORjDdiFr7VWu+oHxJPOn?=
+ =?iso-8859-1?Q?uYOXwzJir4A+KuDklpgDS91pCQ/9pDfUSkTe7tB5FlLzRnLvGmu05OQ0X1?=
+ =?iso-8859-1?Q?w64jUlOCYaXHUtT7lB3Ahs0kCVr6D9MZAFhX3Ytwk39SmFQLQ51iQXYVue?=
+ =?iso-8859-1?Q?9T5cA+Phts+/LwgbOp8fOUkaVWFhage1iZtzKK3qjJEJs0hjfQ6AM0VKBo?=
+ =?iso-8859-1?Q?SQWcO4quCRsbfQnoDwVrd0GPeWSURWJDuPnPQQNymeI21eoT/mPyr2cZvb?=
+ =?iso-8859-1?Q?lL+NkBp21q0hiMF5ca2XiAQ4eEdWZSqDyJTqRWNPeUg+46hJxvBVqjJkXa?=
+ =?iso-8859-1?Q?ASdEHJ/nNXqkgxtWvroiM0p0G7C5vB/ncfy1LWznAfE4w/9o2RH7HGy+TR?=
+ =?iso-8859-1?Q?sCac8Yvy3i4u14/qLqp2uXIJjraGCGbtyIBgcac29Mo9aBgA7J3R3AZXpB?=
+ =?iso-8859-1?Q?7mN2JuVEmerq2xNZUDHFqp+5oHmH7IZahxH6kaP1jGM4GbLyZhvwNcG5ps?=
+ =?iso-8859-1?Q?U9j/k8t93zKhpDznjdkqc4mi+5hjdlaPiDZklTexh0SO6YL7IKbOsJ7ol4?=
+ =?iso-8859-1?Q?yalRBlyXq/LAgCwt8+fJ4nZdAUXosxscSBsRQ1JmtSOtWeQ3p5BsCP6382?=
+ =?iso-8859-1?Q?b4wk0Vu03k7GpUb54poaBQISungc3+PzZS4CVQxKfwDZJ/+ZLf4JDOEcsE?=
+ =?iso-8859-1?Q?0KGqsKcdWSTogtOjW9YDdOkSKMH4EUNZmcP1qU53QHtcq7L+NC35wJC5bV?=
+ =?iso-8859-1?Q?Z9oZaWcd9mp1ubD2A1n+Abj4kThdQcwkD31GV/6FK47kJrqVsFEs9/YwYW?=
+ =?iso-8859-1?Q?FT92ay45UA07p2+I3gWbRyBvItmKkZ1iJwzBrNa4+skHau7O//XWskuP38?=
+ =?iso-8859-1?Q?IEqTUjPyCsFHZpdzSvahtDL2b38axZ1zn/OjubrDcflcPKfkJ+7h4yKO0r?=
+ =?iso-8859-1?Q?uu5ctbRVX374n6vnUoArX7olHyZc9dweK2MNbsu8Ndy3LbJ2MftVKHY+sT?=
+ =?iso-8859-1?Q?XVDG1ClWQB3EpBGKH4RA3XiHGlkg37SLHD17XbpnUMpLpXqgUMkmWuHY2X?=
+ =?iso-8859-1?Q?/FzoSJA7VCuG6e0pk4acYlSKwOTjb7Eja9xOQDWDxic29vE0uh9bUUCpa3?=
+ =?iso-8859-1?Q?PefF547oaQ2c2kdZg0J7oyopbiib0xdLgjwO2b5UKl/vp+10k9PV0hUlsr?=
+ =?iso-8859-1?Q?x24y9uS+avhi2ZPc+6Qxv2fKTnPIrtZPiQcDyQkg4WvrxN9jpaQaF1KB23?=
+ =?iso-8859-1?Q?ifaijPpUDh4kiMYG2AyunI?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?bCEVcEMV45GyrmOG46svXUpFoAYsZ4r1seEp/5t3yp+jgnPytnAlbAp7iH?=
+ =?iso-8859-1?Q?sJODKIFldsYgj7gPKpccGCOaBvQx+S5dvUCAFlluxadfb4xzxoxsrnN3qB?=
+ =?iso-8859-1?Q?Pt3apvSY4Hnq+hGmD5vwWy9H3vvBvjXXKQQWuayIubhDqb6PxmqGIlM2YC?=
+ =?iso-8859-1?Q?YHi5gN2Gm2FRQhIghK9u5fjL2qd5+L35AIl1Q46zqCJp2uicWDBHb/HnOx?=
+ =?iso-8859-1?Q?LzPNfAu4+y2d08rRTlNb0Glv18W5VQ7lgADAC6V+TeWoz005TfhP5+eFZ0?=
+ =?iso-8859-1?Q?mE6aHBGufzUwtsclMFI3h8ZtCFLmGRDgQCi65o031NP6cMlbczg11Nklf4?=
+ =?iso-8859-1?Q?CizGEktBoSUc2IUumrJ/0cynJBIK5ObLWXOkjMNcw17ANQieUpBroBJc83?=
+ =?iso-8859-1?Q?wYRmwwOP6B/sSGkZKEBpMpLLqW3AQkEgoT5K6080Llbd/15mRTkm2C0fDX?=
+ =?iso-8859-1?Q?vcgWzeF1corhiEqwN84HQ0j2XOeFiO9GXEBKUMSjuBLgwnM+nX1U7VwbOC?=
+ =?iso-8859-1?Q?BXgPMNdQjkpC/CjMlHo25Cc/h7DtE/N9smn1CWjzEeBlnAJSYBVIMPPMdy?=
+ =?iso-8859-1?Q?5RIU8+yGTEk7zQARK3lzuuzxDvdoNqLQOs8tkp8YM4Z76KvtCbBCwe78yh?=
+ =?iso-8859-1?Q?DVV6N2eKnOLV13zmMLjknMw3KzdEwDbbgJK7ltRzMRhCjxUTRa/QOc0nwA?=
+ =?iso-8859-1?Q?BG4DgRgwXh1TZYOhIIg1j7mIrI6ylFiB8PRIiAkhR16Y8Rgl5fsXXlEHyM?=
+ =?iso-8859-1?Q?khpUpqQZJaqntdTSd32HArRPGqipmejNFy6hp6J1LBKHZXlzDCvRx2bv17?=
+ =?iso-8859-1?Q?ZTlBa3mpA8s6/tVxJ9aE73MgHw1oMVfq1VaxzcyUplAscks7/Z+Cg489NZ?=
+ =?iso-8859-1?Q?8BRWdhuuoJlairovg3eHV3pKqiXEbQNPLCowHxBHJoSeNWiVYVKfZ0jLLt?=
+ =?iso-8859-1?Q?DUxDeZXKZkpB57mCI7nnehE0LfJFUOLazztQ4KAgKDg1BpCSo8FrCgLUMs?=
+ =?iso-8859-1?Q?sxIkxIwZbmp9MJWSI04Nib5qdzpGCj5+b92VaUZYWn1rVyU6GnNYwbhzRa?=
+ =?iso-8859-1?Q?2pc3BEwYYXg4fnPvZPObGqDU/pAbMLS60/btXyFDTFiTwz+ph07mv0aDSH?=
+ =?iso-8859-1?Q?5SWjD/UQHdKxuoiU150cqzVOAR9O1L68e7zm5+KJ9deMyl/jOeb4PmdXAl?=
+ =?iso-8859-1?Q?E961aC23SpWGmvhFPlDmqRVJUJ79HCriaRnsTIlqZI6oE3MZ9Ix0D3MB3C?=
+ =?iso-8859-1?Q?sou9SgyYJXg61JGIywWo11X/nRYtymZA6SG0uOqARG88LWknSCHqC1N1Lv?=
+ =?iso-8859-1?Q?2MdmhSwycwYyUYG8RoCfFoO3NQO4BJ6SRkeyKbH/33RE8qE6r9wz090RUq?=
+ =?iso-8859-1?Q?tyWYOWxNKnDiriLMNhQkxnLft/NHFy/fj7fJMJnhIABQ2fRRFUJtnicU36?=
+ =?iso-8859-1?Q?ILWM+C8CJ/66100W/7jgA+WMrM4/3cgYkMIfCmhPfXhOQoeJvfL1UxtEMw?=
+ =?iso-8859-1?Q?99EPb3vLzjwUP+B+Ew5lc61gcjndA6DALQwzicfpt7u7/GrSiyADW1u4ME?=
+ =?iso-8859-1?Q?L1vbjAxBxw6Z3hd5ErmxWOeDC82PGQyh6ZnTDc9dSNJCTbply4nk51j/4H?=
+ =?iso-8859-1?Q?9Sb46QdpUhnWOkYreMEXC8trv9qVMd7a0h9ogrzYdnHT4Slvwp4mw4JA?=
+ =?iso-8859-1?Q?=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 460075eb-44a5-4fe8-593b-08de3811ee84
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Dec 2025 17:31:20.1786 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: PI8uqv/A+uPfYTLYI51RPozaU0IztGvpeTlXYId7iB/Me14TqFBsHj+7eo4d9Wh4jgPBmdUVkYmh6jkE37g3+A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CYYPR11MB8387
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,219 +179,81 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+On Wed, Dec 10, 2025 at 05:50:00PM +0100, Francois Dugast wrote:
+> The GT stats interface is extended to include counters of how many
+> queues are either interrupted or waited on in the hardware engine
+> groups. This can help application debugging.
+> 
+> v2: Rename to queue as those operations are queue-based (Matthew Brost)
+> 
+> Cc: Matthew Brost <matthew.brost@intel.com>
 
-We use forcewake to prevent the SoC from actually entering
-PC8 while performing the PC8 disable sequence. Hide that
-behind a new parent interface to eliminate the naked
-forcewake/uncore usage from the display power code.
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 
-v2: Mark the interface optional and warn if
-    someone calls it when not provided (Jani)
-    Include the header to make sure the extern
-    declaration matches the definition (Jani)
-
-Cc: Jani Nikula <jani.nikula@intel.com>
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/Makefile                 |  1 +
- .../drm/i915/display/intel_display_power.c    |  8 ++---
- drivers/gpu/drm/i915/display/intel_parent.c   | 17 ++++++++++
- drivers/gpu/drm/i915/display/intel_parent.h   |  3 ++
- drivers/gpu/drm/i915/i915_display_pc8.c       | 31 +++++++++++++++++++
- drivers/gpu/drm/i915/i915_display_pc8.h       |  9 ++++++
- drivers/gpu/drm/i915/i915_driver.c            |  2 ++
- include/drm/intel/display_parent_interface.h  |  8 +++++
- 8 files changed, 75 insertions(+), 4 deletions(-)
- create mode 100644 drivers/gpu/drm/i915/i915_display_pc8.c
- create mode 100644 drivers/gpu/drm/i915/i915_display_pc8.h
-
-diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
-index 175bd99e1d0d..b57e51d626b1 100644
---- a/drivers/gpu/drm/i915/Makefile
-+++ b/drivers/gpu/drm/i915/Makefile
-@@ -76,6 +76,7 @@ i915-$(CONFIG_PERF_EVENTS) += \
- 
- # core display adaptation
- i915-y += \
-+	i915_display_pc8.o \
- 	i915_hdcp_gsc.o
- 
- # "Graphics Technology" (aka we talk to the gpu)
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
-index 9f323c39d798..47042a4c3a30 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-@@ -1339,10 +1339,10 @@ static void hsw_restore_lcpll(struct intel_display *display)
- 		return;
- 
- 	/*
--	 * Make sure we're not on PC8 state before disabling PC8, otherwise
--	 * we'll hang the machine. To prevent PC8 state, just enable force_wake.
-+	 * Make sure we're not on PC8 state before disabling
-+	 * PC8, otherwise we'll hang the machine.
- 	 */
--	intel_uncore_forcewake_get(&dev_priv->uncore, FORCEWAKE_ALL);
-+	intel_parent_pc8_block(display);
- 
- 	if (val & LCPLL_POWER_DOWN_ALLOW) {
- 		val &= ~LCPLL_POWER_DOWN_ALLOW;
-@@ -1372,7 +1372,7 @@ static void hsw_restore_lcpll(struct intel_display *display)
- 				"Switching back to LCPLL failed\n");
- 	}
- 
--	intel_uncore_forcewake_put(&dev_priv->uncore, FORCEWAKE_ALL);
-+	intel_parent_pc8_unblock(display);
- 
- 	intel_update_cdclk(display);
- 	intel_cdclk_dump_config(display, &display->cdclk.hw, "Current CDCLK");
-diff --git a/drivers/gpu/drm/i915/display/intel_parent.c b/drivers/gpu/drm/i915/display/intel_parent.c
-index 2ea310cc3509..ceb8ceea4ba4 100644
---- a/drivers/gpu/drm/i915/display/intel_parent.c
-+++ b/drivers/gpu/drm/i915/display/intel_parent.c
-@@ -17,6 +17,7 @@
-  * function pointer interface.
-  */
- 
-+#include <drm/drm_print.h>
- #include <drm/intel/display_parent_interface.h>
- 
- #include "intel_display_core.h"
-@@ -56,6 +57,22 @@ void intel_parent_irq_synchronize(struct intel_display *display)
- 	display->parent->irq->synchronize(display->drm);
- }
- 
-+void intel_parent_pc8_block(struct intel_display *display)
-+{
-+	if (drm_WARN_ON_ONCE(display->drm, !display->parent->pc8))
-+		return;
-+
-+	display->parent->pc8->block(display->drm);
-+}
-+
-+void intel_parent_pc8_unblock(struct intel_display *display)
-+{
-+	if (drm_WARN_ON_ONCE(display->drm, !display->parent->pc8))
-+		return;
-+
-+	display->parent->pc8->unblock(display->drm);
-+}
-+
- bool intel_parent_rps_available(struct intel_display *display)
- {
- 	return display->parent->rps;
-diff --git a/drivers/gpu/drm/i915/display/intel_parent.h b/drivers/gpu/drm/i915/display/intel_parent.h
-index 8f91a6f75c53..974a016ab3be 100644
---- a/drivers/gpu/drm/i915/display/intel_parent.h
-+++ b/drivers/gpu/drm/i915/display/intel_parent.h
-@@ -22,6 +22,9 @@ void intel_parent_hdcp_gsc_context_free(struct intel_display *display,
- bool intel_parent_irq_enabled(struct intel_display *display);
- void intel_parent_irq_synchronize(struct intel_display *display);
- 
-+void intel_parent_pc8_block(struct intel_display *display);
-+void intel_parent_pc8_unblock(struct intel_display *display);
-+
- bool intel_parent_rps_available(struct intel_display *display);
- void intel_parent_rps_boost_if_not_started(struct intel_display *display, struct dma_fence *fence);
- void intel_parent_rps_mark_interactive(struct intel_display *display, bool interactive);
-diff --git a/drivers/gpu/drm/i915/i915_display_pc8.c b/drivers/gpu/drm/i915/i915_display_pc8.c
-new file mode 100644
-index 000000000000..2af5dbab20ef
---- /dev/null
-+++ b/drivers/gpu/drm/i915/i915_display_pc8.c
-@@ -0,0 +1,31 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright 2025, Intel Corporation.
-+ */
-+
-+#include <drm/drm_print.h>
-+#include <drm/intel/display_parent_interface.h>
-+
-+#include "i915_display_pc8.h"
-+#include "i915_drv.h"
-+#include "intel_uncore.h"
-+
-+static void i915_display_pc8_block(struct drm_device *drm)
-+{
-+	struct intel_uncore *uncore = &to_i915(drm)->uncore;
-+
-+	/* to prevent PC8 state, just enable force_wake */
-+	intel_uncore_forcewake_get(uncore, FORCEWAKE_ALL);
-+}
-+
-+static void i915_display_pc8_unblock(struct drm_device *drm)
-+{
-+	struct intel_uncore *uncore = &to_i915(drm)->uncore;
-+
-+	intel_uncore_forcewake_put(uncore, FORCEWAKE_ALL);
-+}
-+
-+const struct intel_display_pc8_interface i915_display_pc8_interface = {
-+	.block = i915_display_pc8_block,
-+	.unblock = i915_display_pc8_unblock,
-+};
-diff --git a/drivers/gpu/drm/i915/i915_display_pc8.h b/drivers/gpu/drm/i915/i915_display_pc8.h
-new file mode 100644
-index 000000000000..717f313d2a21
---- /dev/null
-+++ b/drivers/gpu/drm/i915/i915_display_pc8.h
-@@ -0,0 +1,9 @@
-+/* SPDX-License-Identifier: MIT */
-+/* Copyright © 2025 Intel Corporation */
-+
-+#ifndef __I915_DISPLAY_PC8_H__
-+#define __I915_DISPLAY_PC8_H__
-+
-+extern const struct intel_display_pc8_interface i915_display_pc8_interface;
-+
-+#endif /* __I915_DISPLAY_PC8_H__ */
-diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-index d98839427ef9..723cb424b2ba 100644
---- a/drivers/gpu/drm/i915/i915_driver.c
-+++ b/drivers/gpu/drm/i915/i915_driver.c
-@@ -89,6 +89,7 @@
- #include "pxp/intel_pxp_pm.h"
- 
- #include "i915_debugfs.h"
-+#include "i915_display_pc8.h"
- #include "i915_driver.h"
- #include "i915_drm_client.h"
- #include "i915_drv.h"
-@@ -761,6 +762,7 @@ static const struct intel_display_parent_interface parent = {
- 	.hdcp = &i915_display_hdcp_interface,
- 	.rpm = &i915_display_rpm_interface,
- 	.irq = &i915_display_irq_interface,
-+	.pc8 = &i915_display_pc8_interface,
- 	.rps = &i915_display_rps_interface,
- 	.vgpu_active = vgpu_active,
- 	.has_fenced_regions = has_fenced_regions,
-diff --git a/include/drm/intel/display_parent_interface.h b/include/drm/intel/display_parent_interface.h
-index 61d1b22adc83..f07d265e90e5 100644
---- a/include/drm/intel/display_parent_interface.h
-+++ b/include/drm/intel/display_parent_interface.h
-@@ -41,6 +41,11 @@ struct intel_display_irq_interface {
- 	void (*synchronize)(struct drm_device *drm);
- };
- 
-+struct intel_display_pc8_interface {
-+	void (*block)(struct drm_device *drm);
-+	void (*unblock)(struct drm_device *drm);
-+};
-+
- struct intel_display_rps_interface {
- 	void (*boost_if_not_started)(struct dma_fence *fence);
- 	void (*mark_interactive)(struct drm_device *drm, bool interactive);
-@@ -69,6 +74,9 @@ struct intel_display_parent_interface {
- 	/** @irq: IRQ interface */
- 	const struct intel_display_irq_interface *irq;
- 
-+	/** @pc8: PC8 interface. Optional. */
-+	const struct intel_display_pc8_interface *pc8;
-+
- 	/** @rpm: RPS interface. Optional. */
- 	const struct intel_display_rps_interface *rps;
- 
--- 
-2.51.2
-
+> Cc: Thomas Hellstr�m <thomas.hellstrom@linux.intel.com>
+> Signed-off-by: Francois Dugast <francois.dugast@intel.com>
+> ---
+>  drivers/gpu/drm/xe/xe_gt_stats.c        | 4 ++++
+>  drivers/gpu/drm/xe/xe_gt_stats_types.h  | 2 ++
+>  drivers/gpu/drm/xe/xe_hw_engine_group.c | 3 +++
+>  3 files changed, 9 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_gt_stats.c b/drivers/gpu/drm/xe/xe_gt_stats.c
+> index 5f74706bab81..714045ad9354 100644
+> --- a/drivers/gpu/drm/xe/xe_gt_stats.c
+> +++ b/drivers/gpu/drm/xe/xe_gt_stats.c
+> @@ -66,6 +66,10 @@ static const char *const stat_description[__XE_GT_STATS_NUM_IDS] = {
+>  	DEF_STAT_STR(SVM_4K_BIND_US, "svm_4K_bind_us"),
+>  	DEF_STAT_STR(SVM_64K_BIND_US, "svm_64K_bind_us"),
+>  	DEF_STAT_STR(SVM_2M_BIND_US, "svm_2M_bind_us"),
+> +	DEF_STAT_STR(HW_ENGINE_GROUP_SUSPEND_LR_QUEUE_COUNT,
+> +		     "hw_engine_group_suspend_lr_queue_count"),
+> +	DEF_STAT_STR(HW_ENGINE_GROUP_WAIT_DMA_QUEUE_COUNT,
+> +		     "hw_engine_group_wait_dma_queue_count"),
+>  };
+>  
+>  /**
+> diff --git a/drivers/gpu/drm/xe/xe_gt_stats_types.h b/drivers/gpu/drm/xe/xe_gt_stats_types.h
+> index d8348a8de2e1..aada5df421e5 100644
+> --- a/drivers/gpu/drm/xe/xe_gt_stats_types.h
+> +++ b/drivers/gpu/drm/xe/xe_gt_stats_types.h
+> @@ -44,6 +44,8 @@ enum xe_gt_stats_id {
+>  	XE_GT_STATS_ID_SVM_4K_BIND_US,
+>  	XE_GT_STATS_ID_SVM_64K_BIND_US,
+>  	XE_GT_STATS_ID_SVM_2M_BIND_US,
+> +	XE_GT_STATS_ID_HW_ENGINE_GROUP_SUSPEND_LR_QUEUE_COUNT,
+> +	XE_GT_STATS_ID_HW_ENGINE_GROUP_WAIT_DMA_QUEUE_COUNT,
+>  	/* must be the last entry */
+>  	__XE_GT_STATS_NUM_IDS,
+>  };
+> diff --git a/drivers/gpu/drm/xe/xe_hw_engine_group.c b/drivers/gpu/drm/xe/xe_hw_engine_group.c
+> index fa4db5f23342..290205a266b8 100644
+> --- a/drivers/gpu/drm/xe/xe_hw_engine_group.c
+> +++ b/drivers/gpu/drm/xe/xe_hw_engine_group.c
+> @@ -9,6 +9,7 @@
+>  #include "xe_device.h"
+>  #include "xe_exec_queue.h"
+>  #include "xe_gt.h"
+> +#include "xe_gt_stats.h"
+>  #include "xe_hw_engine_group.h"
+>  #include "xe_vm.h"
+>  
+> @@ -203,6 +204,7 @@ static int xe_hw_engine_group_suspend_faulting_lr_jobs(struct xe_hw_engine_group
+>  		if (!xe_vm_in_fault_mode(q->vm))
+>  			continue;
+>  
+> +		xe_gt_stats_incr(q->gt, XE_GT_STATS_ID_HW_ENGINE_GROUP_SUSPEND_LR_QUEUE_COUNT, 1);
+>  		need_resume = true;
+>  		q->ops->suspend(q);
+>  	}
+> @@ -244,6 +246,7 @@ static int xe_hw_engine_group_wait_for_dma_fence_jobs(struct xe_hw_engine_group
+>  		if (xe_vm_in_lr_mode(q->vm))
+>  			continue;
+>  
+> +		xe_gt_stats_incr(q->gt, XE_GT_STATS_ID_HW_ENGINE_GROUP_WAIT_DMA_QUEUE_COUNT, 1);
+>  		fence = xe_exec_queue_last_fence_get_for_resume(q, q->vm);
+>  		timeout = dma_fence_wait(fence, false);
+>  		dma_fence_put(fence);
+> -- 
+> 2.43.0
+> 
