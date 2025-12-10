@@ -4,17 +4,17 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 58CEAD3C92B
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 91530D3C933
 	for <intel-xe@archiver.kernel.org>; Wed, 10 Dec 2025 17:02:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 151B310E785;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 488B510E78B;
 	Wed, 10 Dec 2025 17:02:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="msfGhtns";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="V0o8bKIK";
 	dkim-atps=neutral
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 74F7A10E785
- for <intel-xe@lists.freedesktop.org>; Wed, 10 Dec 2025 17:02:06 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4ACA210E78B
+ for <intel-xe@lists.freedesktop.org>; Wed, 10 Dec 2025 17:02:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
@@ -22,22 +22,22 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=phJplfU2pw+mnuG8d65j7rxQ0hijjoLKGL5rIZoYheE=; b=msfGhtnsY8kw+l/parYBoKZuEC
- cN3iTgG0R1tcGfHQmGLE9efkHCh2O0mYHIcq/TicZfvWAwI2cQs979GNikgMkIYp4IPj/pMz5sJvv
- b7CSBRkRF4F9H6XuZkAddw4Hnw6TuZY4k9vttx6AkATLukb8Ako1T2XJBgfoNgygRVSNZ9HY1BctW
- R7VgfMpIPmOVsSFGXvmEv9LFjIjheNEholeMESXLbcSNMIcwiDSaPkuauAUgcp+mfhU6Th5dOlrXc
- Hd4KUbnBvs2GlmBbDFk5FP45Qypu2k27ZYC2iozZrDj8XNgDt5xPHZ2wDtr0O0gRL/eghIOgxJU8k
- HlXWC3gQ==;
+ bh=g6d17A/sNeVHSMLtOYZbrr2D6AFeEwLklNJcO17gA+A=; b=V0o8bKIKNMA4302Sdo1WtLpPI9
+ bT3xbmar/J8IeqDwa3s47cLR3/EGoX3nI3koupUTGwj3zgHRcBPJsUSJqtS6LPAqrhh4jAUxjvY2c
+ iZTcyK/sVqBXWKGMojhLoMKSy9xlUR4LRKzAMYMbPZNFtBhAjcmRtKltWOXics0DkH2lTzhHmvjOd
+ sHMhARIvaum08cZTPwlJu+MNu6KD7F3nWEDGOqxGT6kQGTdEpZ97ILY70GLANPPgNkI6QLHUNyVOq
+ abI0YfmTrljI2e2CpIFw/SNrpFTmw4O7G74sX0ylrD3IjCl1WblCONxDcJTlSCMxZcU/ISJhXz+IV
+ gkwMeFAg==;
 Received: from [86.33.28.86] (helo=localhost)
  by fanzine2.igalia.com with utf8esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1vTNZk-00B3qf-Mh
- for <intel-xe@lists.freedesktop.org>; Wed, 10 Dec 2025 18:02:04 +0100
+ id 1vTNZh-00B3qS-I9
+ for <intel-xe@lists.freedesktop.org>; Wed, 10 Dec 2025 18:02:01 +0100
 From: Tvrtko Ursulin <tursulin@igalia.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI 11/11] drm/xe: Do not use stolen memory for DPT on IGFX and AuxCCS
-Date: Wed, 10 Dec 2025 18:01:52 +0100
-Message-ID: <20251210170152.15028-12-tursulin@igalia.com>
+Subject: [CI 08/11] drm/xe/display: Add support for AuxCCS
+Date: Wed, 10 Dec 2025 18:01:49 +0100
+Message-ID: <20251210170152.15028-9-tursulin@igalia.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20251210170152.15028-1-tursulin@igalia.com>
 References: <20251210170152.15028-1-tursulin@igalia.com>
@@ -59,59 +59,161 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 
-With DPT in stolen memory there are occasional pipe crc IGT failures in
-tests such as kms_flip_tiling. Allocate a normal system memory object
-instead.
+Add support for mapping the auxiliary CCS buffer into the DPT page tables.
+
+This will allow for better power efficiency by enabling the render
+compression frame buffer modifiers such as
+I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS in a following patch.
+
+We do this by refactoring the code a bit so handling for the linear
+auxiliary frame buffer can be added in a tidy way. Also replace some
+hardcoded constants.
 
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+Cc: Michael J. Ruhl <michael.j.ruhl@intel.com>
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- drivers/gpu/drm/xe/display/xe_fb_pin.c | 18 ++++++++++++++++--
- 1 file changed, 16 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/display/xe_fb_pin.c | 111 ++++++++++++++++++-------
+ 1 file changed, 81 insertions(+), 30 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-index a849bdd14d36..de7c14a44a82 100644
+index a22a9182dadb..f0017cb1d7cb 100644
 --- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
 +++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-@@ -140,6 +140,20 @@ write_dpt_remapped(struct xe_bo *bo,
- 	}
+@@ -50,33 +50,94 @@ write_dpt_rotated(struct xe_bo *bo, struct iosys_map *map, u32 *dpt_ofs, u32 bo_
+ 	*dpt_ofs = ALIGN(*dpt_ofs, 4096);
  }
  
-+static bool try_dpt_stolen(const struct intel_framebuffer *fb, struct xe_bo *bo)
++static unsigned int
++write_dpt_padding(struct iosys_map *map, unsigned int dest, unsigned int pad)
 +{
-+	/*
-+	 * XXX: DPT in stolen memory on IGFX platforms (at least Alderlake)
-+	 * suffers from occasional pipe crc IGT failures in tests such as
-+	 * kms_flip_tiling.
-+	 */
-+	if (intel_fb_is_ccs_modifier(fb->base.modifier) &&
-+	    !xe_bo_is_vram(bo) && !xe_bo_is_stolen(bo))
-+		return false;
-+
-+	return true;
++	/* The DE ignores the PTEs for the padding tiles */
++	return dest + pad * sizeof(u64);
 +}
 +
- static int __xe_pin_fb_vma_dpt(const struct intel_framebuffer *fb,
- 			       const struct i915_gtt_view *view,
- 			       struct i915_vma *vma,
-@@ -149,7 +163,7 @@ static int __xe_pin_fb_vma_dpt(const struct intel_framebuffer *fb,
- 	struct xe_tile *tile0 = xe_device_get_root_tile(xe);
- 	struct xe_ggtt *ggtt = tile0->mem.ggtt;
- 	struct drm_gem_object *obj = intel_fb_bo(&fb->base);
--	struct xe_bo *bo = gem_to_xe_bo(obj), *dpt;
-+	struct xe_bo *bo = gem_to_xe_bo(obj), *dpt = ERR_PTR(-EINVAL);
- 	u32 dpt_size, size = bo->ttm.base.size;
++static unsigned int
++write_dpt_remapped_linear(struct xe_bo *bo, struct iosys_map *map,
++			  unsigned int dest,
++			  const struct intel_remapped_plane_info *plane)
++{
++	struct xe_device *xe = xe_bo_device(bo);
++	struct xe_ggtt *ggtt = xe_device_get_root_tile(xe)->mem.ggtt;
++	const u64 pte = xe_ggtt_encode_pte_flags(ggtt, bo,
++						 xe->pat.idx[XE_CACHE_NONE]);
++	unsigned int offset = plane->offset * XE_PAGE_SIZE;
++	unsigned int size = plane->size;
++
++	while (size--) {
++		u64 addr = xe_bo_addr(bo, offset, XE_PAGE_SIZE);
++
++		iosys_map_wr(map, dest, u64, addr | pte);
++		dest += sizeof(u64);
++		offset += XE_PAGE_SIZE;
++	}
++
++	return dest;
++}
++
++static unsigned int
++write_dpt_remapped_tiled(struct xe_bo *bo, struct iosys_map *map,
++			 unsigned int dest,
++			 const struct intel_remapped_plane_info *plane)
++{
++	struct xe_device *xe = xe_bo_device(bo);
++	struct xe_ggtt *ggtt = xe_device_get_root_tile(xe)->mem.ggtt;
++	const u64 pte = xe_ggtt_encode_pte_flags(ggtt, bo,
++						 xe->pat.idx[XE_CACHE_NONE]);
++	unsigned int offset, column, row;
++
++	for (row = 0; row < plane->height; row++) {
++		offset = (plane->offset + plane->src_stride * row) *
++			 XE_PAGE_SIZE;
++
++		for (column = 0; column < plane->width; column++) {
++			u64 addr = xe_bo_addr(bo, offset, XE_PAGE_SIZE);
++
++			iosys_map_wr(map, dest, u64, addr | pte);
++			dest += sizeof(u64);
++			offset += XE_PAGE_SIZE;
++		}
++
++		dest = write_dpt_padding(map, dest,
++					 plane->dst_stride - plane->width);
++	}
++
++	return dest;
++}
++
+ static void
+-write_dpt_remapped(struct xe_bo *bo, struct iosys_map *map, u32 *dpt_ofs,
+-		   u32 bo_ofs, u32 width, u32 height, u32 src_stride,
+-		   u32 dst_stride)
++write_dpt_remapped(struct xe_bo *bo,
++		   const struct intel_remapped_info *remap_info,
++		   struct iosys_map *map)
+ {
+-	struct xe_device *xe = xe_bo_device(bo);
+-	struct xe_ggtt *ggtt = xe_device_get_root_tile(xe)->mem.ggtt;
+-	u32 column, row;
+-	u64 pte = xe_ggtt_encode_pte_flags(ggtt, bo, xe->pat.idx[XE_CACHE_NONE]);
++	unsigned int i, dest = 0;
  
- 	if (view->type == I915_GTT_VIEW_NORMAL)
-@@ -170,7 +184,7 @@ static int __xe_pin_fb_vma_dpt(const struct intel_framebuffer *fb,
- 						   XE_BO_FLAG_GGTT |
- 						   XE_BO_FLAG_PAGETABLE,
- 						   alignment, false);
--	else
-+	else if (try_dpt_stolen(fb, bo))
- 		dpt = xe_bo_create_pin_map_at_novm(xe, tile0,
- 						   dpt_size,  ~0ull,
- 						   ttm_bo_type_kernel,
+-	for (row = 0; row < height; row++) {
+-		u32 src_idx = src_stride * row + bo_ofs;
++	for (i = 0; i < ARRAY_SIZE(remap_info->plane); i++) {
++		const struct intel_remapped_plane_info *plane =
++						&remap_info->plane[i];
+ 
+-		for (column = 0; column < width; column++) {
+-			u64 addr = xe_bo_addr(bo, src_idx * XE_PAGE_SIZE, XE_PAGE_SIZE);
+-			iosys_map_wr(map, *dpt_ofs, u64, pte | addr);
++		if (!plane->width && !plane->height && !plane->linear)
++			continue;
+ 
+-			*dpt_ofs += 8;
+-			src_idx++;
++		if (remap_info->plane_alignment) {
++			const unsigned int index = dest / sizeof(u64);
++			const unsigned int pad =
++				ALIGN(index, remap_info->plane_alignment) -
++				index;
++
++			dest = write_dpt_padding(map, dest, pad);
+ 		}
+ 
+-		/* The DE ignores the PTEs for the padding tiles */
+-		*dpt_ofs += (dst_stride - width) * 8;
++		if (plane->linear)
++			dest = write_dpt_remapped_linear(bo, map, dest, plane);
++		else
++			dest = write_dpt_remapped_tiled(bo, map, dest, plane);
+ 	}
+-
+-	/* Align to next page */
+-	*dpt_ofs = ALIGN(*dpt_ofs, 4096);
+ }
+ 
+ static int __xe_pin_fb_vma_dpt(const struct intel_framebuffer *fb,
+@@ -138,17 +199,7 @@ static int __xe_pin_fb_vma_dpt(const struct intel_framebuffer *fb,
+ 			iosys_map_wr(&dpt->vmap, x * 8, u64, pte | addr);
+ 		}
+ 	} else if (view->type == I915_GTT_VIEW_REMAPPED) {
+-		const struct intel_remapped_info *remap_info = &view->remapped;
+-		u32 i, dpt_ofs = 0;
+-
+-		for (i = 0; i < ARRAY_SIZE(remap_info->plane); i++)
+-			write_dpt_remapped(bo, &dpt->vmap, &dpt_ofs,
+-					   remap_info->plane[i].offset,
+-					   remap_info->plane[i].width,
+-					   remap_info->plane[i].height,
+-					   remap_info->plane[i].src_stride,
+-					   remap_info->plane[i].dst_stride);
+-
++		write_dpt_remapped(bo, &view->remapped, &dpt->vmap);
+ 	} else {
+ 		const struct intel_rotation_info *rot_info = &view->rotated;
+ 		u32 i, dpt_ofs = 0;
 -- 
 2.52.0
 
