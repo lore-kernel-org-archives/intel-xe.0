@@ -4,55 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 806BAD3B9AB
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B4DD0D3E783
 	for <intel-xe@archiver.kernel.org>; Thu, 11 Dec 2025 01:57:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4414710E08A;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7614C10E6D4;
 	Thu, 11 Dec 2025 01:57:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CN4sLrV0";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XMUov8az";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 645EE10E6D4
- for <intel-xe@lists.freedesktop.org>; Thu, 11 Dec 2025 01:57:25 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4CD4710E6D3
+ for <intel-xe@lists.freedesktop.org>; Thu, 11 Dec 2025 01:57:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765418246; x=1796954246;
+ t=1765418244; x=1796954244;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=PuJtEVust7bkUf/vTzGm5GTjABrs0gP8s/IUDYtHuXc=;
- b=CN4sLrV0UljjWey+VGckwcrXa1j74zD7BA8+VomWi+Ubqi/a4wfO6T3x
- sbLorDpWke/1YIzUvmA96Z18Qvbxv9qppNth/8XzypK08Dv1sz4bmbPjD
- t3HuPAwMaxxM4Afpg4qz4XceR0muMSaDgT0z7gUCpG623TjE3fLaBrt6S
- lRBbN4CwuK1fq63gGdSR/WAaqvww4O41IbYWQghgdEUKhI+WPngEycK/w
- otWjhJL8g5glO8Xw9R+I33XGynMHxo6lr2WgU6OWiyRi8hs5O/sA9qLIa
- wHmIQAVRUmaGzbQ1TgvPNr7VGNV+F3mgOA5Nv8m4HILQc1RcKVfeUtpuC A==;
-X-CSE-ConnectionGUID: bGktGJeFTb2FONFZpzHZnA==
-X-CSE-MsgGUID: 4wF9vLVkRVWUEg3D4V17Fg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11638"; a="71244490"
-X-IronPort-AV: E=Sophos;i="6.20,265,1758610800"; d="scan'208";a="71244490"
+ bh=1Jc4gqg0iMp9Wu0U6T+qvoUWfsUCJj25peqyvSkHjTs=;
+ b=XMUov8azhcwGIg0U5uJIAMAdGgLeu/tZsjUIn1qpGaVYZWVvWeFUF5v5
+ U4C9s3+AbExZKtzcxmNOtYvU8A1T5VPD9LIu0SYFh5YEi8YCL11z3F4uS
+ 83X2BePoBKkz7Wca03uL7PmnWFkW/ReldJksH+75NTSJ+oW+LW9pfKGHv
+ nHxKRFhU/UdCEH+q7bBfxmh4dg4nirXoF0xLpKE119llCu2xK2+0YOL7b
+ DD0h5Td4CiV6aufJugzBSyPzzAxAMWgCqM+LxlZCRGTn+4z3m21S0amCU
+ 9RXerC8hZDRGVypxCId8siedQKWCkWtmagmc0m9+BQQgqSb8fZk8yryAB A==;
+X-CSE-ConnectionGUID: c47kj1yORQiaRvxgMCG4Xg==
+X-CSE-MsgGUID: HWn+GA2QSqqYtaKq8VyFug==
+X-IronPort-AV: E=McAfee;i="6800,10657,11638"; a="71244488"
+X-IronPort-AV: E=Sophos;i="6.20,265,1758610800"; d="scan'208";a="71244488"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Dec 2025 17:57:25 -0800
-X-CSE-ConnectionGUID: 953hxIDQT6u846PfH/Ai1A==
-X-CSE-MsgGUID: 9KS5nmsMQRqcH7dmdFhOgw==
+ 10 Dec 2025 17:57:24 -0800
+X-CSE-ConnectionGUID: ht45VOkPSIavd5yt+qGO+Q==
+X-CSE-MsgGUID: ZcDJvc69RGqQ51mPXyeasg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,265,1758610800"; d="scan'208";a="196676783"
+X-IronPort-AV: E=Sophos;i="6.20,265,1758610800"; d="scan'208";a="196676776"
 Received: from valcore-skull-1.fm.intel.com ([10.1.39.17])
  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Dec 2025 17:57:25 -0800
+ 10 Dec 2025 17:57:24 -0800
 From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
  Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH v3 07/12] drm/xe/sriov: Add debugfs to enable scheduler groups
-Date: Wed, 10 Dec 2025 17:57:06 -0800
-Message-ID: <20251211015700.34266-21-daniele.ceraolospurio@intel.com>
+Subject: [PATCH v3 06/12] drm/xe/sriov: Add handling for MLRC adverse event
+ threshold
+Date: Wed, 10 Dec 2025 17:57:05 -0800
+Message-ID: <20251211015700.34266-20-daniele.ceraolospurio@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20251211015700.34266-14-daniele.ceraolospurio@intel.com>
 References: <20251211015700.34266-14-daniele.ceraolospurio@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,159 +68,172 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Reading the debugfs file lists the available configurations by name.
-Writing the name of a configuration to the file will enable it.
+Since it is illegal to register a MLRC context when scheduler groups are
+enabled, the GuC consider the VF doing so as an adverse event. Like for
+other adverse event, there is a threshold for how many times the event
+can happen before the GuC throws an error, which we need to add support
+for.
+
+Since this is the first threshold that we have that has a minimum GuC
+version requirement, support for checking that has been added to the
+generic threshold handling.
 
 Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
 ---
-v2: don't print anything if the feature is unsupported (Michal), add
-    TODO for reworking init order to know if there are valid groups
-    when we register debugfs, check for basic feature support.
-v3: use drm_puts, list modes even if we only support the disabled
-    one (Michal)
+v2: split from previous patch, add GuC version checking
+v3: don't move version code to its own file, call MAKE_GUC_VER from the
+caller instead.
 ---
- drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c | 120 ++++++++++++++++++++
- 1 file changed, 120 insertions(+)
+ drivers/gpu/drm/xe/abi/guc_klvs_abi.h         |  9 +++++++++
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c    | 19 ++++++++++++-------
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c   |  9 ++++++---
+ .../drm/xe/xe_guc_klv_thresholds_set_types.h  | 17 +++++++++--------
+ 4 files changed, 36 insertions(+), 18 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
-index 7833a7118039..8ac5e0e01e36 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
-@@ -156,6 +156,125 @@ static void pf_add_policy_attrs(struct xe_gt *gt, struct dentry *parent)
- 	debugfs_create_file_unsafe("sample_period_ms", 0644, parent, parent, &sample_period_fops);
- }
+diff --git a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h b/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
+index 5f791237d0ab..186d4fa162c9 100644
+--- a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
++++ b/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
+@@ -378,6 +378,12 @@ enum  {
+  *      :1: NORMAL = schedule VF always, irrespective of whether it has work or not
+  *      :2: HIGH = schedule VF in the next time-slice after current active
+  *          time-slice completes if it has active work
++ *
++ * _`GUC_KLV_VF_CFG_THRESHOLD_MULTI_LRC_COUNT` : 0x8A0D
++ *      Given that multi-LRC contexts are incompatible with SRIOV scheduler
++ *      groups and cause the latter to be turned off when registered with the
++ *      GuC, this config allows the PF to set a threshold for multi-LRC context
++ *      registrations by VFs to monitor their behavior.
+  */
  
-+/*
-+ *      /sys/kernel/debug/dri/BDF/
-+ *      ├── sriov
-+ *      :   ├── pf
-+ *          :   ├── tile0
-+ *              :   ├── gt0
-+ *                  :   ├── sched_groups_mode
-+ */
-+
-+static const char *sched_group_mode_to_string(enum xe_sriov_sched_group_modes mode)
-+{
-+	switch (mode) {
-+	case XE_SRIOV_SCHED_GROUPS_DISABLED:
-+		return "disabled";
-+	case XE_SRIOV_SCHED_GROUPS_MEDIA_SLICES:
-+		return "media_slices";
-+	default:
-+		return "unknown";
-+	}
-+}
-+
-+static int sched_groups_info(struct seq_file *m, void *data)
-+{
-+	struct drm_printer p = drm_seq_file_printer(m);
-+	struct xe_gt *gt = extract_gt(m->private);
-+	u32 current_mode = gt->sriov.pf.policy.guc.sched_groups.current_mode;
-+	int mode = 0;
-+
-+	for (mode = 0; mode < XE_SRIOV_SCHED_GROUPS_MODES_COUNT; mode++) {
-+		if (!xe_sriov_gt_pf_policy_has_sched_group_mode(gt, mode))
-+			continue;
-+
-+		if (mode)
-+			drm_puts(&p, " ");
-+
-+		if (mode == current_mode)
-+			drm_puts(&p, "[");
-+
-+		drm_printf(&p, "%s", sched_group_mode_to_string(mode));
-+
-+		if (mode == current_mode)
-+			drm_puts(&p, "]");
-+	}
-+
-+	drm_puts(&p, "\n");
-+
-+	return 0;
-+}
-+
-+static int sched_groups_open(struct inode *inode, struct file *file)
-+{
-+	return single_open(file, sched_groups_info, inode->i_private);
-+}
-+
-+static ssize_t sched_groups_write(struct file *file, const char __user *ubuf,
-+				  size_t size, loff_t *pos)
-+{
-+	struct xe_gt *gt = extract_gt(file_inode(file)->i_private);
-+	char name[32];
-+	int ret;
-+	int m;
-+
-+	if (*pos)
-+		return -ESPIPE;
-+
-+	if (!size)
-+		return -ENODATA;
-+
-+	if (size > sizeof(name) - 1)
-+		return -EINVAL;
-+
-+	ret = simple_write_to_buffer(name, sizeof(name) - 1, pos, ubuf, size);
-+	if (ret < 0)
-+		return ret;
-+	name[ret] = '\0';
-+
-+	for (m = 0; m < XE_SRIOV_SCHED_GROUPS_MODES_COUNT; m++)
-+		if (sysfs_streq(name, sched_group_mode_to_string(m)))
-+			break;
-+
-+	if (m == XE_SRIOV_SCHED_GROUPS_MODES_COUNT)
-+		return -EINVAL;
-+
-+	guard(xe_pm_runtime)(gt_to_xe(gt));
-+	ret = xe_gt_sriov_pf_policy_set_sched_groups_mode(gt, m);
-+
-+	return ret < 0 ? ret : size;
-+}
-+
-+static const struct file_operations sched_groups_fops = {
-+	.owner = THIS_MODULE,
-+	.open = sched_groups_open,
-+	.read = seq_read,
-+	.write = sched_groups_write,
-+	.llseek = seq_lseek,
-+	.release = single_release,
-+};
-+
-+static void pf_add_sched_groups(struct xe_gt *gt, struct dentry *parent)
-+{
-+	xe_gt_assert(gt, gt == extract_gt(parent));
-+	xe_gt_assert(gt, PFID == extract_vfid(parent));
-+
-+	/*
-+	 * TODO: we currently call this function before we initialize scheduler
-+	 * groups, so at this point in time we don't know if there are any
-+	 * valid groups on the GT and we can't selectively register the debugfs
-+	 * only if there are any. Therefore, we always register the debugfs
-+	 * files if we're on a platform that has support for groups.
-+	 * We should rework the flow so that debugfs is registered after the
-+	 * policy init, so that we check if there are valid groups before
-+	 * adding the debugfs files.
-+	 */
-+	if (!xe_sriov_gt_pf_policy_has_sched_groups_support(gt))
-+		return;
-+
-+	debugfs_create_file("sched_groups_mode", 0644, parent, parent, &sched_groups_fops);
-+}
+ #define GUC_KLV_VF_CFG_GGTT_START_KEY		0x0001
+@@ -436,6 +442,9 @@ enum  {
+ #define   GUC_SCHED_PRIORITY_NORMAL		1u
+ #define   GUC_SCHED_PRIORITY_HIGH		2u
+ 
++#define GUC_KLV_VF_CFG_THRESHOLD_MULTI_LRC_COUNT_KEY	0x8a0d
++#define GUC_KLV_VF_CFG_THRESHOLD_MULTI_LRC_COUNT_LEN	1u
 +
  /*
-  *      /sys/kernel/debug/dri/BDF/
-  *      ├── sriov
-@@ -531,6 +650,7 @@ static void pf_populate_gt(struct xe_gt *gt, struct dentry *dent, unsigned int v
- 	} else {
- 		pf_add_config_attrs(gt, dent, PFID);
- 		pf_add_policy_attrs(gt, dent);
-+		pf_add_sched_groups(gt, dent);
+  * Workaround keys:
+  */
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
+index 59c5c6b4d994..3d9bfdd305c9 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
+@@ -269,7 +269,8 @@ static u32 encode_config_ggtt(u32 *cfg, const struct xe_gt_sriov_config *config,
+ }
  
- 		drm_debugfs_create_files(pf_info, ARRAY_SIZE(pf_info), dent, minor);
+ /* Return: number of configuration dwords written */
+-static u32 encode_config(u32 *cfg, const struct xe_gt_sriov_config *config, bool details)
++static u32 encode_config(struct xe_gt *gt, u32 *cfg,
++			 const struct xe_gt_sriov_config *config, bool details)
+ {
+ 	u32 n = 0;
+ 
+@@ -303,9 +304,11 @@ static u32 encode_config(u32 *cfg, const struct xe_gt_sriov_config *config, bool
+ 	cfg[n++] = PREP_GUC_KLV_TAG(VF_CFG_PREEMPT_TIMEOUT);
+ 	cfg[n++] = config->preempt_timeout;
+ 
+-#define encode_threshold_config(TAG, ...) ({					\
+-	cfg[n++] = PREP_GUC_KLV_TAG(VF_CFG_THRESHOLD_##TAG);			\
+-	cfg[n++] = config->thresholds[MAKE_XE_GUC_KLV_THRESHOLD_INDEX(TAG)];	\
++#define encode_threshold_config(TAG, NAME, MAJ, MIN) ({					\
++	if (!MAJ || GUC_FIRMWARE_VER(&gt->uc.guc) >= MAKE_GUC_VER(MAJ, MIN, 0)) {	\
++		cfg[n++] = PREP_GUC_KLV_TAG(VF_CFG_THRESHOLD_##TAG);			\
++		cfg[n++] = config->thresholds[MAKE_XE_GUC_KLV_THRESHOLD_INDEX(TAG)];	\
++	}										\
+ });
+ 
+ 	MAKE_XE_GUC_KLV_THRESHOLDS_SET(encode_threshold_config);
+@@ -328,7 +331,7 @@ static int pf_push_full_vf_config(struct xe_gt *gt, unsigned int vfid)
+ 		return -ENOBUFS;
+ 
+ 	cfg = xe_guc_buf_cpu_ptr(buf);
+-	num_dwords = encode_config(cfg, config, true);
++	num_dwords = encode_config(gt, cfg, config, true);
+ 	xe_gt_assert(gt, num_dwords <= max_cfg_dwords);
+ 
+ 	if (xe_gt_is_media_type(gt)) {
+@@ -2518,7 +2521,7 @@ ssize_t xe_gt_sriov_pf_config_save(struct xe_gt *gt, unsigned int vfid, void *bu
+ 			ret = -ENOBUFS;
+ 		} else {
+ 			config = pf_pick_vf_config(gt, vfid);
+-			ret = encode_config(buf, config, false) * sizeof(u32);
++			ret = encode_config(gt, buf, config, false) * sizeof(u32);
+ 		}
  	}
+ 	mutex_unlock(xe_gt_sriov_pf_master_mutex(gt));
+@@ -2551,9 +2554,11 @@ static int pf_restore_vf_config_klv(struct xe_gt *gt, unsigned int vfid,
+ 		return pf_provision_preempt_timeout(gt, vfid, value[0]);
+ 
+ 	/* auto-generate case statements */
+-#define define_threshold_key_to_provision_case(TAG, ...)				\
++#define define_threshold_key_to_provision_case(TAG, NAME, MAJ, MIN)			\
+ 	case MAKE_GUC_KLV_VF_CFG_THRESHOLD_KEY(TAG):					\
+ 		BUILD_BUG_ON(MAKE_GUC_KLV_VF_CFG_THRESHOLD_LEN(TAG) != 1u);		\
++		if (MAJ && GUC_FIRMWARE_VER(&gt->uc.guc) < MAKE_GUC_VER(MAJ, MIN, 0))	\
++			return -ENOKEY;							\
+ 		if (len != MAKE_GUC_KLV_VF_CFG_THRESHOLD_LEN(TAG))			\
+ 			return -EBADMSG;						\
+ 		return pf_provision_threshold(gt, vfid,					\
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
+index 0fd863609848..7833a7118039 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
+@@ -21,6 +21,7 @@
+ #include "xe_gt_sriov_pf_monitor.h"
+ #include "xe_gt_sriov_pf_policy.h"
+ #include "xe_gt_sriov_pf_service.h"
++#include "xe_guc.h"
+ #include "xe_pm.h"
+ #include "xe_sriov_pf.h"
+ #include "xe_sriov_pf_provision.h"
+@@ -301,9 +302,11 @@ static void pf_add_config_attrs(struct xe_gt *gt, struct dentry *parent, unsigne
+ 				   &sched_priority_fops);
+ 
+ 	/* register all threshold attributes */
+-#define register_threshold_attribute(TAG, NAME, ...) \
+-	debugfs_create_file_unsafe("threshold_" #NAME, 0644, parent, parent, \
+-				   &NAME##_fops);
++#define register_threshold_attribute(TAG, NAME, MAJ, MIN) ({				\
++	if (!MAJ || GUC_FIRMWARE_VER(&gt->uc.guc) >= MAKE_GUC_VER(MAJ, MIN, 0))		\
++		debugfs_create_file_unsafe("threshold_" #NAME, 0644, parent, parent,	\
++					   &NAME##_fops);				\
++});
+ 	MAKE_XE_GUC_KLV_THRESHOLDS_SET(register_threshold_attribute)
+ #undef register_threshold_attribute
+ }
+diff --git a/drivers/gpu/drm/xe/xe_guc_klv_thresholds_set_types.h b/drivers/gpu/drm/xe/xe_guc_klv_thresholds_set_types.h
+index 0a028c94756d..611a99224888 100644
+--- a/drivers/gpu/drm/xe/xe_guc_klv_thresholds_set_types.h
++++ b/drivers/gpu/drm/xe/xe_guc_klv_thresholds_set_types.h
+@@ -23,15 +23,16 @@
+  * with the &TAG, that corresponds to the GuC threshold KLV key name defined by
+  * ABI and the associated &NAME, that may be used in code or debugfs/sysfs::
+  *
+- *	define(TAG, NAME)
++ *	define(TAG, NAME, MIN_GUC_VER_MAJ, MIN_GUC_VER_MIN)
+  */
+-#define MAKE_XE_GUC_KLV_THRESHOLDS_SET(define)		\
+-	define(CAT_ERR, cat_error_count)		\
+-	define(ENGINE_RESET, engine_reset_count)	\
+-	define(PAGE_FAULT, page_fault_count)		\
+-	define(H2G_STORM, guc_time_us)			\
+-	define(IRQ_STORM, irq_time_us)			\
+-	define(DOORBELL_STORM, doorbell_time_us)	\
++#define MAKE_XE_GUC_KLV_THRESHOLDS_SET(define)					\
++	define(CAT_ERR, cat_error_count, 0, 0)					\
++	define(ENGINE_RESET, engine_reset_count, 0, 0)				\
++	define(PAGE_FAULT, page_fault_count, 0, 0)				\
++	define(H2G_STORM, guc_time_us, 0, 0)					\
++	define(IRQ_STORM, irq_time_us, 0, 0)					\
++	define(DOORBELL_STORM, doorbell_time_us, 0, 0)				\
++	define(MULTI_LRC_COUNT, multi_lrc_count, 70, 53)			\
+ 	/* end */
+ 
+ /**
 -- 
 2.43.0
 
