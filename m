@@ -4,17 +4,17 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 77E41D41C09
-	for <intel-xe@archiver.kernel.org>; Thu, 11 Dec 2025 09:17:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0D21BD41C15
+	for <intel-xe@archiver.kernel.org>; Thu, 11 Dec 2025 09:17:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 398E510E7C0;
-	Thu, 11 Dec 2025 09:17:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C17E710E7C2;
+	Thu, 11 Dec 2025 09:17:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="RREFK/Ib";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="bwSmoj2K";
 	dkim-atps=neutral
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ED34110E7C0
- for <intel-xe@lists.freedesktop.org>; Thu, 11 Dec 2025 09:17:24 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 08F2810E7C0
+ for <intel-xe@lists.freedesktop.org>; Thu, 11 Dec 2025 09:17:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
@@ -22,22 +22,22 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=bbHQt4l+tJ+OIn4A/nsmdWxZmOG2p8dqO79v95JKloI=; b=RREFK/IblXV8EfGz/zNTvb43Z8
- 4c2Jw1bRQRWaMnjagwalY8XqW+9JPtaKFuwELSiAVCwl4KPP9Uc/DAJuoHs96ok8mjkbvSjSp0dye
- XhOZ8jwR2z5+PvVV0mUpD/PFoK4KNqX9CbgXEWrgxYWn2HFqzxg7+p2fEWpyfju14if2sq8wXJvC/
- lV+I0m7e75Hryw9muVJ4UdZA+kFubH+9ETancIPde3F+mEAzR1k9HkS50/7bdd4HCw8no3DcNxz6M
- lpwsOSsUr2NfEGWTPFLNP3WUc5FyUpw+w7c9Tpdj8mryrojn8iLxSQHvqGWfq8S8LHM1pxZzmBGO6
- e8Uf8W3g==;
+ bh=eqOGUH1p3QO74GRir+/GgbXPu+Zt08n/ubjOVI5mu0o=; b=bwSmoj2KI3WaOgMBnyevHr4kYT
+ 7uhAODSqMAfWTGbz7TQSOa4zsyU+CFW7kJ4Cvzgr4LQhD9DDLfx2LQaWbMO3vG/6bvE/bluKYmKEc
+ jqc2qe0EeOoD0CHt1P26YvSuXKQIba/bxhM61jkZPzNMur5U0m1qyKld/e5x+ZRRokHnOFjB+xWpI
+ QJ6yuaYyKeLigwyjxEjixCg5xXIQFtOrGXWJlGbXfQXevly5J/2K6Ri8x0FVjFLpj39DQw9u4tTnw
+ xXTAGY/cmVJXYRunjhqdWyvAGMnOC0R37T8xyUYVOXusYM8tcDDm4qloaR3BiNbsDyLvZ0BcOdKNa
+ fjXNN+Dw==;
 Received: from [86.33.28.86] (helo=localhost)
  by fanzine2.igalia.com with utf8esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1vTcnb-00BQVI-81
- for <intel-xe@lists.freedesktop.org>; Thu, 11 Dec 2025 10:17:23 +0100
+ id 1vTcnc-00BQVP-9e
+ for <intel-xe@lists.freedesktop.org>; Thu, 11 Dec 2025 10:17:24 +0100
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI 09/10] use wc for dpt
-Date: Thu, 11 Dec 2025 10:17:11 +0100
-Message-ID: <20251211091712.19151-10-tvrtko.ursulin@igalia.com>
+Subject: [CI 10/10] drm/xe: Do not use stolen memory for DPT on IGFX and AuxCCS
+Date: Thu, 11 Dec 2025 10:17:12 +0100
+Message-ID: <20251211091712.19151-11-tvrtko.ursulin@igalia.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20251211091712.19151-1-tvrtko.ursulin@igalia.com>
 References: <20251211091712.19151-1-tvrtko.ursulin@igalia.com>
@@ -57,35 +57,59 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+With DPT in stolen memory there are occasional pipe crc IGT failures in
+tests such as kms_flip_tiling. Allocate a normal system memory object
+instead.
+
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- drivers/gpu/drm/xe/display/xe_fb_pin.c | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/display/xe_fb_pin.c | 18 ++++++++++++++++--
+ 1 file changed, 16 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-index f0017cb1d7cb..a849bdd14d36 100644
+index a849bdd14d36..de7c14a44a82 100644
 --- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
 +++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-@@ -176,7 +176,8 @@ static int __xe_pin_fb_vma_dpt(const struct intel_framebuffer *fb,
- 						   ttm_bo_type_kernel,
- 						   XE_BO_FLAG_STOLEN |
+@@ -140,6 +140,20 @@ write_dpt_remapped(struct xe_bo *bo,
+ 	}
+ }
+ 
++static bool try_dpt_stolen(const struct intel_framebuffer *fb, struct xe_bo *bo)
++{
++	/*
++	 * XXX: DPT in stolen memory on IGFX platforms (at least Alderlake)
++	 * suffers from occasional pipe crc IGT failures in tests such as
++	 * kms_flip_tiling.
++	 */
++	if (intel_fb_is_ccs_modifier(fb->base.modifier) &&
++	    !xe_bo_is_vram(bo) && !xe_bo_is_stolen(bo))
++		return false;
++
++	return true;
++}
++
+ static int __xe_pin_fb_vma_dpt(const struct intel_framebuffer *fb,
+ 			       const struct i915_gtt_view *view,
+ 			       struct i915_vma *vma,
+@@ -149,7 +163,7 @@ static int __xe_pin_fb_vma_dpt(const struct intel_framebuffer *fb,
+ 	struct xe_tile *tile0 = xe_device_get_root_tile(xe);
+ 	struct xe_ggtt *ggtt = tile0->mem.ggtt;
+ 	struct drm_gem_object *obj = intel_fb_bo(&fb->base);
+-	struct xe_bo *bo = gem_to_xe_bo(obj), *dpt;
++	struct xe_bo *bo = gem_to_xe_bo(obj), *dpt = ERR_PTR(-EINVAL);
+ 	u32 dpt_size, size = bo->ttm.base.size;
+ 
+ 	if (view->type == I915_GTT_VIEW_NORMAL)
+@@ -170,7 +184,7 @@ static int __xe_pin_fb_vma_dpt(const struct intel_framebuffer *fb,
  						   XE_BO_FLAG_GGTT |
--						   XE_BO_FLAG_PAGETABLE,
-+						   XE_BO_FLAG_PAGETABLE |
-+						   XE_BO_FLAG_SCANOUT,
+ 						   XE_BO_FLAG_PAGETABLE,
  						   alignment, false);
- 	if (IS_ERR(dpt))
+-	else
++	else if (try_dpt_stolen(fb, bo))
  		dpt = xe_bo_create_pin_map_at_novm(xe, tile0,
-@@ -184,7 +185,8 @@ static int __xe_pin_fb_vma_dpt(const struct intel_framebuffer *fb,
+ 						   dpt_size,  ~0ull,
  						   ttm_bo_type_kernel,
- 						   XE_BO_FLAG_SYSTEM |
- 						   XE_BO_FLAG_GGTT |
--						   XE_BO_FLAG_PAGETABLE,
-+						   XE_BO_FLAG_PAGETABLE |
-+						   XE_BO_FLAG_SCANOUT,
- 						   alignment, false);
- 	if (IS_ERR(dpt))
- 		return PTR_ERR(dpt);
 -- 
 2.52.0
 
