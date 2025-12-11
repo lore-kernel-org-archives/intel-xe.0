@@ -4,17 +4,17 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 12460D41C12
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7B94BD41C17
 	for <intel-xe@archiver.kernel.org>; Thu, 11 Dec 2025 09:17:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C142710E7BE;
-	Thu, 11 Dec 2025 09:17:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3A08710E7BF;
+	Thu, 11 Dec 2025 09:17:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="Ql4+edsk";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="ghXNl4E4";
 	dkim-atps=neutral
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BD4F510E7B8
- for <intel-xe@lists.freedesktop.org>; Thu, 11 Dec 2025 09:17:21 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9A07010E7B8
+ for <intel-xe@lists.freedesktop.org>; Thu, 11 Dec 2025 09:17:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
@@ -22,23 +22,22 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=YXHrYBetXYBON5XKeHHJ1ObxTWGg5cWMB8p5jVt4TF4=; b=Ql4+edskravM/2iopjWXVuAoSb
- Xggi8oUskgGG3gyruutb8iCyWaOudS/8W8Eu4ykqOHywuooB1RKlCCqioBG2JUHOQk/LkxgISY3ff
- XcCgz/bLI8bS1PpLOs+B15yf2KIhJzbN5WYVWI5EOduzlZzPE5xw56O/T3R7q3gf1sSpUbebIRW/6
- EYyCbv0I1qEM3yfMt1i0YvP66nw/dcizJpUgp/1toLxmc6ey5q5kRQiQchmy95FBRF1pXoDYPIM6/
- RNquaU2we525zbQbc0uRh4eQtHjs44QJPTkf6tRBXvaA6t6b+349EixnlMESMA0xtfQi7raqUhXgf
- nOCLtJnQ==;
+ bh=OF2a3FHnm+icRZ27eUfXHP6agRXWutV7pfOywIDLz3o=; b=ghXNl4E46ZyXXs1K5RLCO6As0y
+ CpnQTuEo7JcdEgt8ioifxrre455/HsSoEZ+TDMS11GTjfc2CWCNlynjpQuOFEq8BmuRx83WnkfDtm
+ Qf/8uYexltZnXIjxSQ7bwDS6qbKvhqNnc9m0NkdPiZ09gOMVQ8xQt3fuA3SBrIDs+wP4ZznmhdsDA
+ PbiyUT5TKPMaMbVSZB3iMUn95lIrBMkh5J1bPdxwNO6p8S58I8K9PYxT47N+V1fxcVRk8yfnsG0JT
+ BUKEFIPwDS5VHV2Mv8A0M1XU3+YymhuVjem1xHl4PRbXtIA3UjMg22XjjdFHpTe6ZyI4re19cDXtG
+ 8vYaih5w==;
 Received: from [86.33.28.86] (helo=localhost)
  by fanzine2.igalia.com with utf8esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1vTcnY-00BQV5-0f
- for <intel-xe@lists.freedesktop.org>; Thu, 11 Dec 2025 10:17:20 +0100
+ id 1vTcnV-00BQUw-S3
+ for <intel-xe@lists.freedesktop.org>; Thu, 11 Dec 2025 10:17:18 +0100
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI 06/10] drm/xe/xelp: Add AuxCCS invalidation to the indirect
- context workarounds
-Date: Thu, 11 Dec 2025 10:17:08 +0100
-Message-ID: <20251211091712.19151-7-tvrtko.ursulin@igalia.com>
+Subject: [CI 04/10] drm/xe/xelp: Wait for AuxCCS invalidation to complete
+Date: Thu, 11 Dec 2025 10:17:06 +0100
+Message-ID: <20251211091712.19151-5-tvrtko.ursulin@igalia.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20251211091712.19151-1-tvrtko.ursulin@igalia.com>
 References: <20251211091712.19151-1-tvrtko.ursulin@igalia.com>
@@ -58,166 +57,64 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Following from the i915 reference implementation, we add the AuxCCS
-invalidation to the indirect context workarounds page.
+On AuxCCS platforms we need to wait for AuxCCS invalidations to complete.
 
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_hw_engine.h | 24 ++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_lrc.c       | 27 +++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_ring_ops.c  | 18 ++----------------
- 3 files changed, 53 insertions(+), 16 deletions(-)
+ drivers/gpu/drm/xe/instructions/xe_mi_commands.h | 6 ++++++
+ drivers/gpu/drm/xe/xe_ring_ops.c                 | 9 ++++++++-
+ drivers/gpu/drm/xe/xe_ring_ops_types.h           | 2 +-
+ 3 files changed, 15 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_hw_engine.h b/drivers/gpu/drm/xe/xe_hw_engine.h
-index 6b5f9fa2a594..725467b5877c 100644
---- a/drivers/gpu/drm/xe/xe_hw_engine.h
-+++ b/drivers/gpu/drm/xe/xe_hw_engine.h
-@@ -6,6 +6,7 @@
- #ifndef _XE_HW_ENGINE_H_
- #define _XE_HW_ENGINE_H_
+diff --git a/drivers/gpu/drm/xe/instructions/xe_mi_commands.h b/drivers/gpu/drm/xe/instructions/xe_mi_commands.h
+index c47b290e0e9f..49d8ffd026d5 100644
+--- a/drivers/gpu/drm/xe/instructions/xe_mi_commands.h
++++ b/drivers/gpu/drm/xe/instructions/xe_mi_commands.h
+@@ -81,4 +81,10 @@
+ #define MI_SET_APPID_SESSION_ID_MASK	REG_GENMASK(6, 0)
+ #define MI_SET_APPID_SESSION_ID(x)	REG_FIELD_PREP(MI_SET_APPID_SESSION_ID_MASK, x)
  
-+#include "xe_device_types.h"
- #include "xe_hw_engine_types.h"
- 
- struct drm_printer;
-@@ -79,4 +80,27 @@ enum xe_force_wake_domains xe_hw_engine_to_fw_domain(struct xe_hw_engine *hwe);
- void xe_hw_engine_mmio_write32(struct xe_hw_engine *hwe, struct xe_reg reg, u32 val);
- u32 xe_hw_engine_mmio_read32(struct xe_hw_engine *hwe, struct xe_reg reg);
- 
-+static inline bool
-+xe_engine_class_has_auxccs(struct xe_device *xe, enum xe_engine_class class)
-+{
-+	/*
-+	 * PVC is a special case that has no compression of either type
-+	 * (FlatCCS or AuxCCS).  Also, AuxCCS is no longer used from Xe2
-+	 * onward, so any future platforms with no FlatCCS will not have
-+	 * AuxCCS, and we explicity do not want to support it on MTL.
-+	 */
-+	if (GRAPHICS_VERx100(xe) >= 1270 ||
-+	    xe->info.platform == XE_PVC ||
-+	    xe->info.has_flat_ccs)
-+		return false;
-+
-+	if (class == XE_ENGINE_CLASS_RENDER ||
-+	    class == XE_ENGINE_CLASS_COMPUTE ||
-+	    class == XE_ENGINE_CLASS_VIDEO_DECODE ||
-+	    class == XE_ENGINE_CLASS_VIDEO_ENHANCE)
-+		return true;
-+
-+	return false;
-+}
++#define MI_SEMAPHORE_WAIT_TOKEN		(__MI_INSTR(0x1c) | XE_INSTR_NUM_DW(5)) /* XeLP+ */
++#define   MI_SEMAPHORE_REGISTER_POLL	REG_BIT(16)
++#define   MI_SEMAPHORE_POLL		REG_BIT(15)
++#define   MI_SEMAPHORE_CMP_OP_MASK	REG_GENMASK(14, 12)
++#define   MI_SEMAPHORE_SAD_EQ_SDD	REG_FIELD_PREP(MI_SEMAPHORE_CMP_OP_MASK, 4)
 +
  #endif
-diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-index a05060f75e7e..27b3834208ab 100644
---- a/drivers/gpu/drm/xe/xe_lrc.c
-+++ b/drivers/gpu/drm/xe/xe_lrc.c
-@@ -23,10 +23,12 @@
- #include "xe_exec_queue_types.h"
- #include "xe_gt.h"
- #include "xe_gt_printk.h"
-+#include "xe_hw_engine.h"
- #include "xe_hw_fence.h"
- #include "xe_map.h"
- #include "xe_memirq.h"
- #include "xe_mmio.h"
-+#include "xe_ring_ops.h"
- #include "xe_sriov.h"
- #include "xe_trace_lrc.h"
- #include "xe_vm.h"
-@@ -88,6 +90,10 @@ gt_engine_needs_indirect_ctx(struct xe_gt *gt, enum xe_engine_class class)
- 					       class, NULL))
- 		return true;
- 
-+	/* For AuxCCS invalidation */
-+	if (xe_engine_class_has_auxccs(xe, class))
-+		return true;
-+
- 	return false;
- }
- 
-@@ -1201,6 +1207,25 @@ static ssize_t setup_invalidate_state_cache_wa(struct xe_lrc *lrc,
- 	return cmd - batch;
- }
- 
-+static ssize_t setup_invalidate_auxccs_wa(struct xe_lrc *lrc,
-+					  struct xe_hw_engine *hwe,
-+					  u32 *batch, size_t max_len)
-+{
-+	struct xe_gt *gt = lrc->gt;
-+	struct xe_device *xe = gt_to_xe(gt);
-+	u32 *cmd;
-+
-+	if (!xe_engine_class_has_auxccs(xe, hwe->class))
-+		return 0;
-+
-+	if (xe_gt_WARN_ON(gt, max_len < 8))
-+		return -ENOSPC;
-+
-+	cmd = xe_emit_aux_table_inv(hwe, batch);
-+
-+	return cmd - batch;
-+}
-+
- struct bo_setup {
- 	ssize_t (*setup)(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
- 			 u32 *batch, size_t max_size);
-@@ -1333,9 +1358,11 @@ setup_indirect_ctx(struct xe_lrc *lrc, struct xe_hw_engine *hwe)
- {
- 	static const struct bo_setup rcs_funcs[] = {
- 		{ .setup = setup_timestamp_wa },
-+		{ .setup = setup_invalidate_auxccs_wa },
- 		{ .setup = setup_configfs_mid_ctx_restore_bb },
- 	};
- 	static const struct bo_setup xcs_funcs[] = {
-+		{ .setup = setup_invalidate_auxccs_wa },
- 		{ .setup = setup_configfs_mid_ctx_restore_bb },
- 	};
- 	struct bo_setup_state state = {
 diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
-index 953723eaa237..004cc5c44128 100644
+index bc806cabb5c3..a8d1854dd8e9 100644
 --- a/drivers/gpu/drm/xe/xe_ring_ops.c
 +++ b/drivers/gpu/drm/xe/xe_ring_ops.c
-@@ -318,20 +318,6 @@ static void __emit_job_gen12_simple(struct xe_sched_job *job, struct xe_lrc *lrc
- 	xe_lrc_write_ring(lrc, dw, i * sizeof(*dw));
+@@ -56,7 +56,14 @@ static int emit_aux_table_inv(struct xe_gt *gt, struct xe_reg reg,
+ 	dw[i++] = MI_LOAD_REGISTER_IMM | MI_LRI_NUM_REGS(1) | MI_LRI_MMIO_REMAP_EN;
+ 	dw[i++] = reg.addr + gt->mmio.adj_offset;
+ 	dw[i++] = AUX_INV;
+-	dw[i++] = MI_NOOP;
++	dw[i++] = MI_SEMAPHORE_WAIT_TOKEN |
++		  MI_SEMAPHORE_REGISTER_POLL |
++		  MI_SEMAPHORE_POLL |
++		  MI_SEMAPHORE_SAD_EQ_SDD;
++	dw[i++] = 0;
++	dw[i++] = reg.addr + gt->mmio.adj_offset;
++	dw[i++] = 0;
++	dw[i++] = 0;
+ 
+ 	return i;
  }
+diff --git a/drivers/gpu/drm/xe/xe_ring_ops_types.h b/drivers/gpu/drm/xe/xe_ring_ops_types.h
+index 477dc7defd72..1197fc0bf2af 100644
+--- a/drivers/gpu/drm/xe/xe_ring_ops_types.h
++++ b/drivers/gpu/drm/xe/xe_ring_ops_types.h
+@@ -8,7 +8,7 @@
  
--static bool has_aux_ccs(struct xe_device *xe)
--{
--	/*
--	 * PVC is a special case that has no compression of either type
--	 * (FlatCCS or AuxCCS).  Also, AuxCCS is no longer used from Xe2
--	 * onward, so any future platforms with no FlatCCS will not have
--	 * AuxCCS, and we explicity do not want to support it on MTL.
--	 */
--	if (GRAPHICS_VERx100(xe) >= 1270 || xe->info.platform == XE_PVC)
--		return false;
--
--	return !xe->info.has_flat_ccs;
--}
--
- static void __emit_job_gen12_video(struct xe_sched_job *job, struct xe_lrc *lrc,
- 				   u64 batch_addr, u32 *head, u32 seqno)
- {
-@@ -347,7 +333,7 @@ static void __emit_job_gen12_video(struct xe_sched_job *job, struct xe_lrc *lrc,
- 	dw[i++] = preparser_disable(true);
+ struct xe_sched_job;
  
- 	/* hsdes: 1809175790 */
--	if (has_aux_ccs(xe))
-+	if (xe_engine_class_has_auxccs(xe, job->q->class))
- 		i = emit_aux_table_inv(job->q->hwe, dw, i);
+-#define MAX_JOB_SIZE_DW 70
++#define MAX_JOB_SIZE_DW 74
+ #define MAX_JOB_SIZE_BYTES (MAX_JOB_SIZE_DW * 4)
  
- 	if (job->ring_ops_flush_tlb)
-@@ -388,7 +374,7 @@ static void __emit_job_gen12_render_compute(struct xe_sched_job *job,
- 	struct xe_gt *gt = job->q->gt;
- 	struct xe_device *xe = gt_to_xe(gt);
- 	bool lacks_render = !(gt->info.engine_mask & XE_HW_ENGINE_RCS_MASK);
--	const bool aux_ccs = has_aux_ccs(xe);
-+	const bool aux_ccs = xe_engine_class_has_auxccs(xe, job->q->class);
- 	u32 mask_flags = 0;
- 
- 	*head = lrc->ring.tail;
+ /**
 -- 
 2.52.0
 
