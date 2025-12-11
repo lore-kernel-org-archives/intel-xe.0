@@ -4,75 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 260BED43344
-	for <intel-xe@archiver.kernel.org>; Thu, 11 Dec 2025 19:59:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 56B45D41D7E
+	for <intel-xe@archiver.kernel.org>; Thu, 11 Dec 2025 20:05:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CEF2810E83C;
-	Thu, 11 Dec 2025 19:59:38 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="U5toQvtR";
-	dkim-atps=neutral
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
- [136.143.188.112])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8FD3B10E625;
- Thu, 11 Dec 2025 19:59:36 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; t=1765483166; cv=none; 
- d=zohomail.com; s=zohoarc; 
- b=PapCYrGOA0DdMdEGqYe8wSbVIMgmWtTx9Ajd3S+/lPqhJQ/Tpj8uBEwf+hBtuyHSFC/706YpOtQ6gsr8LHXYsIb1Yb9TlGNzvX4TItjetl7m/Y14QiE77f5CcqVB9hnnQbYK/SqjO4gxHLNKl3eEoMSr40w2cXD7hIERrS5pKRU=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
- s=zohoarc; t=1765483166;
- h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
- bh=1Dh7aECitOB9k9I8NTgAp9Wi9RahEZHruitjqRy2ayc=; 
- b=BKn84KfImSg64WEv/gHkaFqxl2XbwOYSVlJj6kC7tLzf4FfvHc0KAXPiaQWvFG22irZUtesPQHpS6atOwKkKwVimS5tFUrVDABB1JJJbs94pGfkSJSItfFaDs0VRCQ0URWX9aHNinF7QbpqAkZRhIpdt6xDuiFjgD2itpWr4Q6Y=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
- dkim=pass  header.i=collabora.com;
- spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
- dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1765483166; 
- s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
- h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
- bh=1Dh7aECitOB9k9I8NTgAp9Wi9RahEZHruitjqRy2ayc=;
- b=U5toQvtRKHWzGyOiOOT0n9f8hMBVqtET17wX+Ha5qp60DmHE0JxiLQ+B05LilYa5
- /cVsZJEEwURhPFX+3AF4ZuqBtma4nmBCO9IHA1HSsKx6CBuEcNlNXlJvkB7GL0rHiRI
- G4GFL8yY4SMgQHfu9hAz/6+OC2BxiK+5FRPy94O4=
-Received: by mx.zohomail.com with SMTPS id 1765483163864458.18267084626757;
- Thu, 11 Dec 2025 11:59:23 -0800 (PST)
-From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-To: Maxime Ripard <mripard@kernel.org>
-Cc: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Rodrigo Siqueira <siqueira@igalia.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Sandy Huang <hjc@rock-chips.com>,
- Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>,
- Andy Yan <andy.yan@rock-chips.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, Dmitry Baryshkov <lumag@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>, Rob Herring <robh@kernel.org>,
- kernel@collabora.com, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH v5 06/17] drm/display: hdmi-state-helper: Try subsampling
- in mode_valid
-Date: Thu, 11 Dec 2025 20:59:14 +0100
-Message-ID: <9409315.NyiUUSuA9g@workhorse>
-In-Reply-To: <20251209-dramatic-caiman-of-luck-db9d0f@houat>
-References: <20251128-color-format-v5-0-63e82f1db1e1@collabora.com>
- <20251128-color-format-v5-6-63e82f1db1e1@collabora.com>
- <20251209-dramatic-caiman-of-luck-db9d0f@houat>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 10A8010E89B;
+	Thu, 11 Dec 2025 20:05:07 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C765810E895;
+ Thu, 11 Dec 2025 20:05:05 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8898680273074291166=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="utf-8"
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/=7Bi915=2C_xe=7D/panic?=
+ =?utf-8?q?=3A_move_panic_handling_to_parent_interface?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 11 Dec 2025 20:05:05 -0000
+Message-ID: <176548350579.78542.16027861339012324722@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <cover.1765474612.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1765474612.git.jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,82 +36,125 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tuesday, 9 December 2025 15:18:25 Central European Standard Time Maxime Ripard wrote:
-> On Fri, Nov 28, 2025 at 10:05:42PM +0100, Nicolas Frattaroli wrote:
-> > drm_hdmi_connector_mode_valid assumes modes are only valid if they work
-> > with RGB. The reality is more complex however: YCbCr 4:2:0
-> > chroma-subsampled modes only require half the pixel clock that the same
-> > mode would require in RGB.
-> > 
-> > This leads to drm_hdmi_connector_mode_valid rejecting perfectly valid
-> > 420-only modes.
-> > 
-> > Fix this by checking whether the mode is 420-only first. If so, then
-> > proceed by checking it with HDMI_COLORSPACE_YUV420 so long as the
-> > connector has legalized 420, otherwise error out. If the mode is not
-> > 420-only, check with RGB as was previously always the case.
-> > 
-> > Fixes: 47368ab437fd ("drm/display: hdmi: add generic mode_valid helper")
-> > Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-> > ---
-> >  drivers/gpu/drm/display/drm_hdmi_state_helper.c | 12 +++++++++++-
-> >  1 file changed, 11 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/drivers/gpu/drm/display/drm_hdmi_state_helper.c b/drivers/gpu/drm/display/drm_hdmi_state_helper.c
-> > index 5da956bdd68c..1800e00b30c5 100644
-> > --- a/drivers/gpu/drm/display/drm_hdmi_state_helper.c
-> > +++ b/drivers/gpu/drm/display/drm_hdmi_state_helper.c
-> > @@ -892,8 +892,18 @@ drm_hdmi_connector_mode_valid(struct drm_connector *connector,
-> >  			      const struct drm_display_mode *mode)
-> >  {
-> >  	unsigned long long clock;
-> > +	enum hdmi_colorspace fmt;
-> > +
-> > +	if (drm_mode_is_420_only(&connector->display_info, mode)) {
-> > +		if (connector->ycbcr_420_allowed)
-> > +			fmt = HDMI_COLORSPACE_YUV420;
-> > +		else
-> > +			return MODE_NO_420;
-> > +	} else {
-> > +		fmt = HDMI_COLORSPACE_RGB;
-> > +	}
-> >  
-> > -	clock = drm_hdmi_compute_mode_clock(mode, 8, HDMI_COLORSPACE_RGB);
-> > +	clock = drm_hdmi_compute_mode_clock(mode, 8, fmt);
-> 
-> I agree on principle, but we need to have a test for this.
+--===============8898680273074291166==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-I'd like to change `drm_mode_is_420_only` to `drm_mode_is_420` in
-the next revision, and modify the control flow to work correctly
-in this case, because rejecting 420-also modes on the basis that
-we can't do them in RGB isn't correct either.
+== Series Details ==
 
-But my concern with adding yet more tests is that I found this bug
-in a function unrelated to the series while adding tests you asked
-for, because the tests relied on this function to not be broken as
-part of the test setup. Yes, I was not be able to get any 4:2:0
-modes on the test connector in the kunit tests because
-drm_hdmi_connector_mode_valid helpfully discarded all of them.
+Series: drm/{i915, xe}/panic: move panic handling to parent interface
+URL   : https://patchwork.freedesktop.org/series/158820/
+State : success
 
-So now I am wondering whether adding yet more tests will uncover
-more bugs in functions unrelated to implementing the "color format"
-property, that were only called because the new test required them
-to set up some test fixture. And then I have to add another fix and
-another test to this series, rinse and repeat.
+== Summary ==
 
-Can we just agree that I am not going to expand the scope of this
-series any further? If you want me to send a follow-up series that
-adds tests to some of the hdmi state helper functions, then I can
-do that, but I don't want to do it as a precondition for the 17
-other patches in this series to get merged.
+CI Bug Log - changes from xe-4226-d8f645c04dad21f981669f0b65191cac664735f9_BAT -> xe-pw-158820v1_BAT
+====================================================
 
-> 
-> Maxime
-> 
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (12 -> 12)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-158820v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@xe_waitfence@reltime:
+    - bat-dg2-oem2:       [FAIL][1] ([Intel XE#6520]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4226-d8f645c04dad21f981669f0b65191cac664735f9/bat-dg2-oem2/igt@xe_waitfence@reltime.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158820v1/bat-dg2-oem2/igt@xe_waitfence@reltime.html
+
+  
+  [Intel XE#6520]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520
 
 
+Build changes
+-------------
+
+  * Linux: xe-4226-d8f645c04dad21f981669f0b65191cac664735f9 -> xe-pw-158820v1
+
+  IGT_8664: 28cc709ad89c0ef569569f19f4772d4cca354963 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-4226-d8f645c04dad21f981669f0b65191cac664735f9: d8f645c04dad21f981669f0b65191cac664735f9
+  xe-pw-158820v1: 158820v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158820v1/index.html
+
+--===============8898680273074291166==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
 
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/{i915, xe}/panic: move panic handling to parent interface</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/158820/">https://patchwork.freedesktop.org/series/158820/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158820v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158820v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4226-d8f645c04dad21f981669f0b65191cac664735f9_BAT -&gt; xe-pw-158820v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (12 -&gt; 12)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-158820v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_waitfence@reltime:<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4226-d8f645c04dad21f981669f0b65191cac664735f9/bat-dg2-oem2/igt@xe_waitfence@reltime.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520">Intel XE#6520</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158820v1/bat-dg2-oem2/igt@xe_waitfence@reltime.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4226-d8f645c04dad21f981669f0b65191cac664735f9 -&gt; xe-pw-158820v1</li>
+</ul>
+<p>IGT_8664: 28cc709ad89c0ef569569f19f4772d4cca354963 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-4226-d8f645c04dad21f981669f0b65191cac664735f9: d8f645c04dad21f981669f0b65191cac664735f9<br />
+  xe-pw-158820v1: 158820v1</p>
+
+</body>
+</html>
+
+--===============8898680273074291166==--
