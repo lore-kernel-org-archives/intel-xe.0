@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D3E81D3B9AB
-	for <intel-xe@archiver.kernel.org>; Thu, 11 Dec 2025 01:03:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 16D0AD3E784
+	for <intel-xe@archiver.kernel.org>; Thu, 11 Dec 2025 01:03:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8214810E6D2;
+	by gabe.freedesktop.org (Postfix) with ESMTP id AC11410E6D3;
 	Thu, 11 Dec 2025 01:03:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="M6UIgfnR";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KQS0z8sw";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4CA5510E6B5
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7ABC810E6C2
  for <intel-xe@lists.freedesktop.org>; Thu, 11 Dec 2025 01:02:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1765414979; x=1796950979;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=/EQFFe+czeNh6hGmsAD3nz85qd9j8ybaLpAWoTPnuRU=;
- b=M6UIgfnRaULEn3sig5MD3UGj4uk35xmv9LOf6mUtj9k5+/3iGl0UG05x
- 2OouZgWS8BIbnW/v/PseTIzdUpxBW/ZuPQYYW1Do8YK3QcYmfy2iiXGf3
- zpZA+/Rava+H+Z4kQxGG+Z7a66zpOPSdC4NctAYK9UsomaYn9ZbCuxeem
- htF0pf97Enq3/LMDbUBqb8R4iXDL11Cc71gxapPDiCHXICP4LBXz4RVhr
- mQtikhUVJX3wUBUcPjDmeyKs5kOTTLThg5KOkMjNHgrPxuMLwsT23ChmW
- UsbynRKcSgn+2fb2L/m3UjtcPvqxxylauYJ7PFnT9Qjw1fOZuXWAls1UZ g==;
-X-CSE-ConnectionGUID: 9BtL2AQSRXih9rb5xKh5pA==
-X-CSE-MsgGUID: nJvkzK/QSkq8SJCe2YaRYA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11638"; a="67442875"
-X-IronPort-AV: E=Sophos;i="6.20,265,1758610800"; d="scan'208";a="67442875"
+ bh=RsfetDdr+odh6Nm78Jg6TUEys1WgxnNLm9qZeftzjcw=;
+ b=KQS0z8swVbkCIwylwS4fr9NrcRA+uTbnn1NC9aM0T2rZAlf5a79oQQe2
+ o/vjR8Jmq4jlVTCSY+XZCLDuIgb7EquGNcEDyNsumlhEaBf1ziHs7Lokt
+ V8zdPhay8lvK1yENSrPsoBD1UpCMzKFaEk6Kjss8g3s1H3A+Rozbl3EcH
+ 8FqzpOBCq10ezT4sB+8khIi5WlBy7YgvGvRmCsCX0qawZa/TkhCDIyHKW
+ Hgo4SiLWPXcbK8hF9IPC6ho7gXqvC9Zo0D4ISFYnvCxvJqamABdytCynK
+ y55kC4XLmSIZsr3zdozvfyejKZuBnGNW4qYwkrGfGTT0/RKUTwfCz3kB8 Q==;
+X-CSE-ConnectionGUID: wsUFUhBJSieIncRn8Aja6Q==
+X-CSE-MsgGUID: BJgYlxwyRVOBB0ibt27DDA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11638"; a="67442877"
+X-IronPort-AV: E=Sophos;i="6.20,265,1758610800"; d="scan'208";a="67442877"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  10 Dec 2025 17:02:59 -0800
-X-CSE-ConnectionGUID: Fjhz8BumQaqAEx3F4nVT5A==
-X-CSE-MsgGUID: EXUSanDZTJy+YVpNcp6asg==
+X-CSE-ConnectionGUID: hgNwm5lORHy11OjnXD2L+w==
+X-CSE-MsgGUID: ItJz5jZeRzqezTLgE3SzdA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,265,1758610800"; d="scan'208";a="196664134"
+X-IronPort-AV: E=Sophos;i="6.20,265,1758610800"; d="scan'208";a="196664143"
 Received: from nvishwa1-desk.sc.intel.com ([172.25.29.139])
  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  10 Dec 2025 17:02:58 -0800
@@ -45,9 +45,9 @@ From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.brost@intel.com,
 	matthew.d.roper@intel.com
-Subject: [PATCH v6 14/17] drm/xe/multi_queue: Tracepoint support
-Date: Wed, 10 Dec 2025 17:03:02 -0800
-Message-ID: <20251211010249.1647839-33-niranjana.vishwanathapura@intel.com>
+Subject: [PATCH v6 16/17] drm/xe/doc: Add documentation for Multi Queue Group
+Date: Wed, 10 Dec 2025 17:03:04 -0800
+Message-ID: <20251211010249.1647839-35-niranjana.vishwanathapura@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20251211010249.1647839-19-niranjana.vishwanathapura@intel.com>
 References: <20251211010249.1647839-19-niranjana.vishwanathapura@intel.com>
@@ -67,96 +67,89 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add xe_exec_queue_create_multi_queue event with
-multi-queue information.
+Add kernel documentation for Multi Queue group and update
+the corresponding rst.
 
 Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc_submit.c |  5 +++-
- drivers/gpu/drm/xe/xe_trace.h      | 41 ++++++++++++++++++++++++++++++
- 2 files changed, 45 insertions(+), 1 deletion(-)
+ Documentation/gpu/xe/xe_exec_queue.rst |  6 ++++
+ drivers/gpu/drm/xe/xe_exec_queue.c     | 45 ++++++++++++++++++++++++++
+ 2 files changed, 51 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index f678b806acaa..778cab377f84 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -2024,7 +2024,10 @@ static int guc_exec_queue_init(struct xe_exec_queue *q)
- 		mutex_unlock(&group->list_lock);
- 	}
+diff --git a/Documentation/gpu/xe/xe_exec_queue.rst b/Documentation/gpu/xe/xe_exec_queue.rst
+index 6076569e311c..732af4741df4 100644
+--- a/Documentation/gpu/xe/xe_exec_queue.rst
++++ b/Documentation/gpu/xe/xe_exec_queue.rst
+@@ -7,6 +7,12 @@ Execution Queue
+ .. kernel-doc:: drivers/gpu/drm/xe/xe_exec_queue.c
+    :doc: Execution Queue
  
--	trace_xe_exec_queue_create(q);
-+	if (xe_exec_queue_is_multi_queue(q))
-+		trace_xe_exec_queue_create_multi_queue(q);
-+	else
-+		trace_xe_exec_queue_create(q);
- 
- 	return 0;
- 
-diff --git a/drivers/gpu/drm/xe/xe_trace.h b/drivers/gpu/drm/xe/xe_trace.h
-index c9d0748dae9d..6d12fcc13f43 100644
---- a/drivers/gpu/drm/xe/xe_trace.h
-+++ b/drivers/gpu/drm/xe/xe_trace.h
-@@ -13,6 +13,7 @@
- #include <linux/types.h>
- 
- #include "xe_exec_queue_types.h"
-+#include "xe_exec_queue.h"
- #include "xe_gpu_scheduler_types.h"
- #include "xe_gt_types.h"
- #include "xe_guc_exec_queue_types.h"
-@@ -97,11 +98,51 @@ DECLARE_EVENT_CLASS(xe_exec_queue,
- 			      __entry->guc_state, __entry->flags)
- );
- 
-+DECLARE_EVENT_CLASS(xe_exec_queue_multi_queue,
-+		    TP_PROTO(struct xe_exec_queue *q),
-+		    TP_ARGS(q),
++Multi Queue Group
++=================
 +
-+		    TP_STRUCT__entry(
-+			     __string(dev, __dev_name_eq(q))
-+			     __field(enum xe_engine_class, class)
-+			     __field(u32, logical_mask)
-+			     __field(u8, gt_id)
-+			     __field(u16, width)
-+			     __field(u32, guc_id)
-+			     __field(u32, guc_state)
-+			     __field(u32, flags)
-+			     __field(u32, primary)
-+			     ),
++.. kernel-doc:: drivers/gpu/drm/xe/xe_exec_queue.c
++   :doc: Multi Queue Group
 +
-+		    TP_fast_assign(
-+			   __assign_str(dev);
-+			   __entry->class = q->class;
-+			   __entry->logical_mask = q->logical_mask;
-+			   __entry->gt_id = q->gt->info.id;
-+			   __entry->width = q->width;
-+			   __entry->guc_id = q->guc->id;
-+			   __entry->guc_state = atomic_read(&q->guc->state);
-+			   __entry->flags = q->flags;
-+			   __entry->primary = xe_exec_queue_multi_queue_primary(q)->guc->id;
-+			   ),
-+
-+		    TP_printk("dev=%s, %d:0x%x, gt=%d, width=%d guc_id=%d, guc_state=0x%x, flags=0x%x, primary=%d",
-+			      __get_str(dev), __entry->class, __entry->logical_mask,
-+			      __entry->gt_id, __entry->width, __entry->guc_id,
-+			      __entry->guc_state, __entry->flags,
-+			      __entry->primary)
-+);
-+
- DEFINE_EVENT(xe_exec_queue, xe_exec_queue_create,
- 	     TP_PROTO(struct xe_exec_queue *q),
- 	     TP_ARGS(q)
- );
+ Internal API
+ ============
  
-+DEFINE_EVENT(xe_exec_queue_multi_queue, xe_exec_queue_create_multi_queue,
-+	     TP_PROTO(struct xe_exec_queue *q),
-+	     TP_ARGS(q)
-+);
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
+index 3f4840d135a0..e16e4d2d4053 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue.c
++++ b/drivers/gpu/drm/xe/xe_exec_queue.c
+@@ -54,6 +54,51 @@
+  * the ring operations the different engine classes support.
+  */
+ 
++/**
++ * DOC: Multi Queue Group
++ *
++ * Multi Queue Group is another mode of execution supported by the compute
++ * and blitter copy command streamers (CCS and BCS, respectively). It is
++ * an enhancement of the existing hardware architecture and leverages the
++ * same submission model. It enables support for efficient, parallel
++ * execution of multiple queues within a single shared context. The multi
++ * queue group functionality is only supported with GuC submission backend.
++ * All the queues of a group must use the same address space (VM).
++ *
++ * The DRM_XE_EXEC_QUEUE_SET_PROPERTY_MULTI_QUEUE execution queue property
++ * supports creating a multi queue group and adding queues to a queue group.
++ *
++ * The XE_EXEC_QUEUE_CREATE ioctl call with above property with value field
++ * set to DRM_XE_MULTI_GROUP_CREATE, will create a new multi queue group with
++ * the queue being created as the primary queue (aka q0) of the group. To add
++ * secondary queues to the group, they need to be created with the above
++ * property with id of the primary queue as the value. The properties of
++ * the primary queue (like priority, time slice) applies to the whole group.
++ * So, these properties can't be set for secondary queues of a group.
++ *
++ * The hardware does not support removing a queue from a multi-queue group.
++ * However, queues can be dynamically added to the group. A group can have
++ * up to 64 queues. To support this, XeKMD holds references to LRCs of the
++ * queues even after the queues are destroyed by the user until the whole
++ * group is destroyed. The secondary queues hold a reference to the primary
++ * queue thus preventing the group from being destroyed when user destroys
++ * the primary queue. Once the primary queue is destroyed, secondary queues
++ * can't be added to the queue group, but they can continue to submit the
++ * jobs if the DRM_XE_MULTI_GROUP_KEEP_ACTIVE flag is set during the multi
++ * queue group creation.
++ *
++ * The queues of a multi queue group can set their priority within the group
++ * through the DRM_XE_EXEC_QUEUE_SET_PROPERTY_MULTI_QUEUE_PRIORITY property.
++ * This multi queue priority can also be set dynamically through the
++ * XE_EXEC_QUEUE_SET_PROPERTY ioctl. This is the only other property
++ * supported by the secondary queues of a multi queue group, other than
++ * DRM_XE_EXEC_QUEUE_SET_PROPERTY_MULTI_QUEUE.
++ *
++ * When GuC reports an error on any of the queues of a multi queue group,
++ * the queue cleanup mechanism is invoked for all the queues of the group
++ * as hardware cannot make progress on the multi queue context.
++ */
 +
- DEFINE_EVENT(xe_exec_queue, xe_exec_queue_supress_resume,
- 	     TP_PROTO(struct xe_exec_queue *q),
- 	     TP_ARGS(q)
+ enum xe_exec_queue_sched_prop {
+ 	XE_EXEC_QUEUE_JOB_TIMEOUT = 0,
+ 	XE_EXEC_QUEUE_TIMESLICE = 1,
 -- 
 2.43.0
 
