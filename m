@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 433A6D41C14
-	for <intel-xe@archiver.kernel.org>; Thu, 11 Dec 2025 10:17:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 36FBFD41C14
+	for <intel-xe@archiver.kernel.org>; Thu, 11 Dec 2025 10:23:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 004A810E7DB;
-	Thu, 11 Dec 2025 10:17:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CB2DF10E7D0;
+	Thu, 11 Dec 2025 10:23:19 +0000 (UTC)
 Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BA7A310E7DA;
- Thu, 11 Dec 2025 10:17:49 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1283611748291434037=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5D70E10E7D0;
+ Thu, 11 Dec 2025 10:23:18 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/hwmon=3A_Expose_new_?=
- =?utf-8?q?temperature_attributes_=28rev3=29?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Dynamic_drm=5Fpagemaps_an?=
+ =?utf-8?q?d_Initial_multi-device_SVM_=28rev4=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Karthik Poosa" <karthik.poosa@intel.com>
+To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 11 Dec 2025 10:17:49 -0000
-Message-ID: <176544826975.76770.12029123260950877053@a3b018990fe9>
+Date: Thu, 11 Dec 2025 10:23:18 -0000
+Message-ID: <176544859837.76770.14251390345069285856@a3b018990fe9>
 X-Patchwork-Hint: ignore
-References: <20251210062301.4080549-1-karthik.poosa@intel.com>
-In-Reply-To: <20251210062301.4080549-1-karthik.poosa@intel.com>
+References: <20251210110742.107575-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20251210110742.107575-1-thomas.hellstrom@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,125 +40,78 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1283611748291434037==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe/hwmon: Expose new temperature attributes (rev3)
-URL   : https://patchwork.freedesktop.org/series/158384/
-State : success
+Series: Dynamic drm_pagemaps and Initial multi-device SVM (rev4)
+URL   : https://patchwork.freedesktop.org/series/156525/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-4220-3adb3f4aa5a8563ee9c1f6e137827b740e3ab40b_BAT -> xe-pw-158384v3_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+8f50e69d0ce3656564bbdf8b3e213d61470d463f
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 3b571a0377270956ebb7a3b52a3df435d6bb416b
+Author: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Date:   Wed Dec 10 12:07:42 2025 +0100
 
-Summary
--------
+    drm/pagemap: Support source migration over interconnect
+    
+    Support source interconnect migration by using the copy_to_ram() op
+    of the source device private pages.
+    
+    Source interconnect migration is required to flush the L2 cache of
+    the source device, which among other things is a requirement for
+    correct global atomic operation. It also enables the source GPU to
+    potentially decompress any compressed content which is not
+    understood by peers, and finally for the PCIe case, it's expected
+    that writes over PCIe will be faster than reads.
+    
+    The implementation can probably be improved by coalescing subregions
+    with the same source.
+    
+    Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
++ /mt/dim checkpatch fa2134b77403f66c13791a12274ab54fe17e1798 drm-intel
+966f597ab87e drm/xe/svm: Fix a debug printout
+f92954fb5111 drm/pagemap, drm/xe: Ensure that the devmem allocation is idle before use
+d9c9992b1152 drm/pagemap, drm/xe: Add refcounting to struct drm_pagemap
+2ba975fdd9d3 drm/pagemap: Add a refcounted drm_pagemap backpointer to struct drm_pagemap_zdd
+d41032b79b08 drm/pagemap, drm/xe: Manage drm_pagemap provider lifetimes
+35e33781d0a6 drm/pagemap: Add a drm_pagemap cache and shrinker
+-:177: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#177: 
+new file mode 100644
 
-  **SUCCESS**
+total: 0 errors, 1 warnings, 0 checks, 725 lines checked
+58d0250199bd drm/xe: Use the drm_pagemap cache and shrinker
+eca1cf83ac2a drm/pagemap: Remove the drm_pagemap_create() interface
+4e1ff879fe2c drm/pagemap_util: Add a utility to assign an owner to a set of interconnected gpus
+-:213: CHECK:MACRO_ARG_REUSE: Macro argument reuse '_name' - possible side-effects?
+#213: FILE: include/drm/drm_pagemap_util.h:53:
++#define DRM_PAGEMAP_OWNER_LIST_DEFINE(_name)	\
++	struct drm_pagemap_owner_list _name = {	\
++	  .lock = __MUTEX_INITIALIZER((_name).lock),	\
++	  .peers = LIST_HEAD_INIT((_name).peers) }
 
-  No regressions found.
-
-  
-
-Participating hosts (12 -> 12)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-158384v3_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_waitfence@engine:
-    - bat-dg2-oem2:       [PASS][1] -> [FAIL][2] ([Intel XE#6519])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4220-3adb3f4aa5a8563ee9c1f6e137827b740e3ab40b/bat-dg2-oem2/igt@xe_waitfence@engine.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158384v3/bat-dg2-oem2/igt@xe_waitfence@engine.html
-
-  
-  [Intel XE#6519]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519
-
-
-Build changes
--------------
-
-  * IGT: IGT_8663 -> IGT_8664
-  * Linux: xe-4220-3adb3f4aa5a8563ee9c1f6e137827b740e3ab40b -> xe-pw-158384v3
-
-  IGT_8663: aca02d1cc9804e5f1868b0ebfba6426e2d1244fc @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_8664: 28cc709ad89c0ef569569f19f4772d4cca354963 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-4220-3adb3f4aa5a8563ee9c1f6e137827b740e3ab40b: 3adb3f4aa5a8563ee9c1f6e137827b740e3ab40b
-  xe-pw-158384v3: 158384v3
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158384v3/index.html
-
---===============1283611748291434037==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/hwmon: Expose new temperature attributes (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/158384/">https://patchwork.freedesktop.org/series/158384/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158384v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158384v3/index.html</a></td></tr>
-
-</table>
+total: 0 errors, 0 warnings, 1 checks, 192 lines checked
+0a84c0dec977 drm/xe: Use the drm_pagemap_util helper to get a svm pagemap owner
+d3245367e6b7 drm/xe: Pass a drm_pagemap pointer around with the memory advise attributes
+f103541de787 drm/xe: Use the vma attibute drm_pagemap to select where to migrate
+6985f8b24fe3 drm/xe: Simplify madvise_preferred_mem_loc()
+f4c6f9facb1b drm/xe/uapi: Extend the madvise functionality to support foreign pagemap placement for svm
+065f4080f873 drm/xe: Support pcie p2p dma as a fast interconnect
+b094fe70e4d2 drm/xe/vm: Add a couple of VM debug printouts
+2475e8c2528d drm/xe/svm: Document how xe keeps drm_pagemap references
+69f970d028ff drm/pagemap, drm/xe: Clean up the use of the device-private page owner
+d5362035d699 drm/gpusvm: Introduce a function to scan the current migration state
+2b6ae0711d93 drm/xe: Use drm_gpusvm_scan_mm()
+3e7d17b60dda drm/pagemap, drm/xe: Support destination migration over interconnect
+3b571a037727 drm/pagemap: Support source migration over interconnect
 
 
-    <h1>CI Bug Log - changes from xe-4220-3adb3f4aa5a8563ee9c1f6e137827b740e3ab40b_BAT -&gt; xe-pw-158384v3_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (12 -&gt; 12)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-158384v3_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@xe_waitfence@engine:<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4220-3adb3f4aa5a8563ee9c1f6e137827b740e3ab40b/bat-dg2-oem2/igt@xe_waitfence@engine.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158384v3/bat-dg2-oem2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519">Intel XE#6519</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8663 -&gt; IGT_8664</li>
-<li>Linux: xe-4220-3adb3f4aa5a8563ee9c1f6e137827b740e3ab40b -&gt; xe-pw-158384v3</li>
-</ul>
-<p>IGT_8663: aca02d1cc9804e5f1868b0ebfba6426e2d1244fc @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_8664: 28cc709ad89c0ef569569f19f4772d4cca354963 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-4220-3adb3f4aa5a8563ee9c1f6e137827b740e3ab40b: 3adb3f4aa5a8563ee9c1f6e137827b740e3ab40b<br />
-  xe-pw-158384v3: 158384v3</p>
-
-</body>
-</html>
-
---===============1283611748291434037==--
