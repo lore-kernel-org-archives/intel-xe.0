@@ -4,47 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id ACA91D41C15
-	for <intel-xe@archiver.kernel.org>; Thu, 11 Dec 2025 09:17:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D6E85D41C12
+	for <intel-xe@archiver.kernel.org>; Thu, 11 Dec 2025 09:42:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6884110E7C3;
-	Thu, 11 Dec 2025 09:17:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8287110E2A6;
+	Thu, 11 Dec 2025 09:42:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="ULag3vUo";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="HvulFSoM";
 	dkim-atps=neutral
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E392E10E7C0
- for <intel-xe@lists.freedesktop.org>; Thu, 11 Dec 2025 09:17:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
- In-Reply-To:Message-ID:Date:Subject:To:From:Sender:Reply-To:Cc:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=nm4GavooZkmiKn2POWwWr48YleG8jdkaMeA89HDwqi8=; b=ULag3vUo8OFLwz/EUf9fD3e+la
- +xVONUuxefhyqyttSoZExJKWzCNCZfJfpLMebk3orPT93TUll8NHuDWGAcmoLn6ojdoYRZWUXP0xH
- H/+4tlJG0HNS4Ms/XJ/+PB/h3gd/msXaqHYQY5mIEDExeIy1ibhIZSyQVVP5MACZJd1ugH0qtSjfU
- FcHJm6I4XPQt0cEscLs5O7xeJ7neIjLbBiEIMJSYEnOryhE4IZ8nH+umri70nSw+OB4JJIE14qGT1
- Xt6iGwkDT9KV+TlKXDkUInvTY83PmOqmtZNzjXEltyT0DDxc11WLy34544Fk/cpaHPlo2rO5CdcIy
- 1WJ8HoZQ==;
-Received: from [86.33.28.86] (helo=localhost)
- by fanzine2.igalia.com with utf8esmtpsa 
- (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1vTcna-00BQVD-5t
- for <intel-xe@lists.freedesktop.org>; Thu, 11 Dec 2025 10:17:22 +0100
-From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-To: intel-xe@lists.freedesktop.org
-Subject: [CI 08/10] drm/xe/xelp: Expose AuxCCS frame buffer modifiers on
- Alderlake-P
-Date: Thu, 11 Dec 2025 10:17:10 +0100
-Message-ID: <20251211091712.19151-9-tvrtko.ursulin@igalia.com>
-X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20251211091712.19151-1-tvrtko.ursulin@igalia.com>
-References: <20251211091712.19151-1-tvrtko.ursulin@igalia.com>
+Received: from lankhorst.se (lankhorst.se [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9BEEC10E2A6;
+ Thu, 11 Dec 2025 09:42:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
+ s=default; t=1765446124;
+ bh=dMpqiFCJMHAu/S8QPIMqKAclh6zs9Butm4v+vxWTzu0=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=HvulFSoM3N2nKQW39FmjmTaowyywmfU5JBjzT47ZA1TdF9xJa/sYNTd8/k4wEBW+s
+ Y5k9JFF+AkTArJmWMsIGlAZYLPyxLhtFv3HkauF5ILghphcSZXbqQGnIl9nwmZmApe
+ TtfZgPkviZyqSIIfc3rWzf00YlV7P00YE19SvE2B6xgoxa8JLbDk5OR0g1oX07U2TP
+ KnpW4WBIswLLCI4IyJ+o9kpDk7FND8jjEWdmCQ0nbZ2dJacHnp30oXx7bIfI8FbT14
+ mVT1IRa+jLbfGqLJ1lz1LYu6ZoziprrDv4E0sRca4oE2xU4coh2XspEFDwZKMRseEq
+ Vbr0zd3GwNvsw==
+Message-ID: <d6c4af43-0b79-4d4e-980b-0135b05da74a@lankhorst.se>
+Date: Thu, 11 Dec 2025 10:42:02 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/me/gsc: mei interrupt top half should be in irq
+ disabled context
+To: Junxiao Chang <junxiao.chang@intel.com>, lucas.demarchi@intel.com,
+ thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com, airlied@gmail.com,
+ simona@ffwll.ch, bigeasy@linutronix.de, clrkwllms@kernel.org,
+ rostedt@goodmis.org, daniele.ceraolospurio@intel.com,
+ alexander.usyskin@intel.com, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ linux-rt-devel@lists.linux.dev, Matthew Brost <matthew.brost@intel.com>
+Cc: baoli.zhang@intel.com
+References: <20251107033152.834960-1-junxiao.chang@intel.com>
+Content-Language: en-US
+From: Maarten Lankhorst <dev@lankhorst.se>
+In-Reply-To: <20251107033152.834960-1-junxiao.chang@intel.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,59 +59,53 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Now that we have implemented all the related missing bits we can enable
-the AuxCCS compressed modifiers which were disabled in
-cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if built for Xe").
+Thanks for the patch, I pushed it.
 
-Tested with KDE Wayland, on Lenovo Carbon X1 ADL-P:
+I also added Matthew Brost's r-b, as I submitted this patch separately, and b4-am recognised it as the same patch.
 
-        [PLANE:32:plane 1A]: type=PRI
-                uapi: [FB:242] AR30 little-endian (0x30335241),0x100000000000008,2880x1800, visible=visible, src=28
-                hw: [FB:242] AR30 little-endian (0x30335241),0x100000000000008,2880x1800, visible=yes, src=2880.000
+Kind regards,
+~Maarten Lankhorst
 
-Display is working fine - no artefacts, no DMAR/PIPE faults.
-
-v2:
- * Adjust patch title. (Rodrigo)
-
-v3:
- * Complete rewrite based on the display parent interface.
-
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-References: cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if built for Xe")
-Cc: Jani Nikula <jani.nikula@intel.com>
-Cc: José Roberto de Souza <jose.souza@intel.com>
-Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com> # v2
----
- drivers/gpu/drm/xe/display/xe_display.c | 8 ++++++++
- 1 file changed, 8 insertions(+)
-
-diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
-index 9fb5c2f3ddd8..1b17a75ea874 100644
---- a/drivers/gpu/drm/xe/display/xe_display.c
-+++ b/drivers/gpu/drm/xe/display/xe_display.c
-@@ -535,11 +535,19 @@ static const struct intel_display_irq_interface xe_display_irq_interface = {
- 	.synchronize = irq_synchronize,
- };
- 
-+static bool has_auxccs(struct drm_device *drm)
-+{
-+	struct xe_device *xe = to_xe_device(drm);
-+
-+	return xe->info.platform == XE_ALDERLAKE_P;
-+}
-+
- static const struct intel_display_parent_interface parent = {
- 	.hdcp = &xe_display_hdcp_interface,
- 	.rpm = &xe_display_rpm_interface,
- 	.irq = &xe_display_irq_interface,
- 	.stolen = &xe_display_stolen_interface,
-+	.has_auxccs = has_auxccs,
- };
- 
- /**
--- 
-2.52.0
+Den 2025-11-07 kl. 04:31, skrev Junxiao Chang:
+> MEI GSC interrupt comes from i915 or xe driver. It has top half and
+> bottom half. Top half is called from i915/xe interrupt handler. It
+> should be in irq disabled context.
+> 
+> With RT kernel(PREEMPT_RT enabled), by default IRQ handler is in
+> threaded IRQ. MEI GSC top half might be in threaded IRQ context.
+> generic_handle_irq_safe API could be called from either IRQ or
+> process context, it disables local IRQ then calls MEI GSC interrupt
+> top half.
+> 
+> This change fixes B580 GPU boot issue with RT enabled.
+> 
+> Fixes: e02cea83d32d ("drm/xe/gsc: add Battlemage support")
+> Tested-by: Baoli Zhang <baoli.zhang@intel.com>
+> Signed-off-by: Junxiao Chang <junxiao.chang@intel.com>
+> ---
+>  drivers/gpu/drm/xe/xe_heci_gsc.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_heci_gsc.c b/drivers/gpu/drm/xe/xe_heci_gsc.c
+> index a415ca4887914..32d509b113915 100644
+> --- a/drivers/gpu/drm/xe/xe_heci_gsc.c
+> +++ b/drivers/gpu/drm/xe/xe_heci_gsc.c
+> @@ -221,7 +221,7 @@ void xe_heci_gsc_irq_handler(struct xe_device *xe, u32 iir)
+>  	if (xe->heci_gsc.irq < 0)
+>  		return;
+>  
+> -	ret = generic_handle_irq(xe->heci_gsc.irq);
+> +	ret = generic_handle_irq_safe(xe->heci_gsc.irq);
+>  	if (ret)
+>  		drm_err_ratelimited(&xe->drm, "error handling GSC irq: %d\n", ret);
+>  }
+> @@ -241,7 +241,7 @@ void xe_heci_csc_irq_handler(struct xe_device *xe, u32 iir)
+>  	if (xe->heci_gsc.irq < 0)
+>  		return;
+>  
+> -	ret = generic_handle_irq(xe->heci_gsc.irq);
+> +	ret = generic_handle_irq_safe(xe->heci_gsc.irq);
+>  	if (ret)
+>  		drm_err_ratelimited(&xe->drm, "error handling GSC irq: %d\n", ret);
+>  }
 
