@@ -4,52 +4,34 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 65752D41D4B
-	for <intel-xe@archiver.kernel.org>; Thu, 11 Dec 2025 14:36:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B7CB1D41D4C
+	for <intel-xe@archiver.kernel.org>; Thu, 11 Dec 2025 14:43:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2734F10E2ED;
-	Thu, 11 Dec 2025 14:36:02 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="ckx07Zxv";
-	dkim-atps=neutral
-Received: from lankhorst.se (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1C08D10E82A;
- Thu, 11 Dec 2025 14:36:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1765463758;
- bh=KjJyYZXS5w/90m6sboJIUnxN21swsqeAlbXxq94pxBg=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=ckx07ZxvTz3aEHHw7Yj/3EICiyAglE+mehmQwxKF3T37UNXU3iIM5UGArJjFex+qa
- RvYFx5geBXNtPR+My928gYobNO5LpIoIMBg5qXRKgmwTrEK79S8/ArzIVe6tE+isYS
- iYCJH1nXSfxzv8rUNhXmkCFJJ5UiVOL+IEs3EtGw9Je8+vKseQuVdZPKdVEd16tI6B
- FoHaL82XXNRbvSWq+XnkqbE6alOPxASjgF5JX6cGIBUWFpRacptvkJmN9I0HG/NC/d
- 6CyQevzXdZ469Ov9uqpZ7YjMXspAp4SwDnWyFVVHpD04RAUYf2l1LAc9LiJZue+I3g
- qvsKg56xBMzOA==
-Message-ID: <e3fcf1ce-e194-42b5-865d-0b9d6669cfe6@lankhorst.se>
-Date: Thu, 11 Dec 2025 15:35:57 +0100
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7082A10E2E7;
+	Thu, 11 Dec 2025 14:43:30 +0000 (UTC)
+Received: from psionic.psi5.com (psionic.psi5.com [185.187.169.70])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8284A10E2E7;
+ Thu, 11 Dec 2025 14:43:29 +0000 (UTC)
+Received: from [IPV6:2400:2410:b120:f200:9e5c:8eff:fec0:ee40] (unknown
+ [IPv6:2400:2410:b120:f200:9e5c:8eff:fec0:ee40])
+ (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+ key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+ (Client did not present a certificate)
+ by psionic.psi5.com (Postfix) with ESMTPSA id 328013F11B;
+ Thu, 11 Dec 2025 15:43:23 +0100 (CET)
+Message-ID: <f5069152-3cb7-459e-9727-f5a25256fd9c@hogyros.de>
+Date: Thu, 11 Dec 2025 23:43:13 +0900
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/7] drm/i915/display: Use intel_de_write_fw in
- intel_pipe_fastset
-To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
- "Shankar, Uma" <uma.shankar@intel.com>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "linux-rt-devel@lists.linux.dev" <linux-rt-devel@lists.linux.dev>,
- Mario Kleiner <mario.kleiner.de@gmail.com>,
- Mike Galbraith <umgwanakikbuti@gmail.com>,
- Thomas Gleixner <tglx@linutronix.de>,
- Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
- Clark Williams <clrkwllms@kernel.org>, Steven Rostedt <rostedt@goodmis.org>
-References: <20251104083634.670753-1-dev@lankhorst.se>
- <20251104083634.670753-3-dev@lankhorst.se>
- <DM4PR11MB63609A43C9B11091A5FB41EFF4DEA@DM4PR11MB6360.namprd11.prod.outlook.com>
- <aSdYPKUJgbe84G1M@intel.com>
 Content-Language: en-US
-From: Maarten Lankhorst <dev@lankhorst.se>
-In-Reply-To: <aSdYPKUJgbe84G1M@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+To: dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ Steve Wahl <steve.wahl@hpe.com>,
+ Ville Syrjala <ville.syrjala@linux.intel.com>
+From: Simon Richter <Simon.Richter@hogyros.de>
+Subject: vgaarb, and bridges not capable of VGA forwarding
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="------------o5Fy5EUoifW1u4dHEei6kEE6"
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,59 +46,87 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hey,
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--------------o5Fy5EUoifW1u4dHEei6kEE6
+Content-Type: multipart/mixed; boundary="------------6caOq3Yb3NvWMEQmILt6x6wK";
+ protected-headers="v1"
+From: Simon Richter <Simon.Richter@hogyros.de>
+To: dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ Steve Wahl <steve.wahl@hpe.com>,
+ Ville Syrjala <ville.syrjala@linux.intel.com>
+Message-ID: <f5069152-3cb7-459e-9727-f5a25256fd9c@hogyros.de>
+Subject: vgaarb, and bridges not capable of VGA forwarding
 
-Den 2025-11-26 kl. 20:42, skrev Ville Syrjälä:
-> On Wed, Nov 26, 2025 at 07:19:47PM +0000, Shankar, Uma wrote:
->>
->>
->>> -----Original Message-----
->>> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Maarten
->>> Lankhorst
->>> Sent: Tuesday, November 4, 2025 2:06 PM
->>> To: intel-gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org
->>> Cc: linux-rt-devel@lists.linux.dev; Maarten Lankhorst <dev@lankhorst.se>; Mario
->>> Kleiner <mario.kleiner.de@gmail.com>; Mike Galbraith
->>> <umgwanakikbuti@gmail.com>; Thomas Gleixner <tglx@linutronix.de>; Sebastian
->>> Andrzej Siewior <bigeasy@linutronix.de>; Clark Williams
->>> <clrkwllms@kernel.org>; Steven Rostedt <rostedt@goodmis.org>
->>> Subject: [PATCH v2 2/7] drm/i915/display: Use intel_de_write_fw in
->>> intel_pipe_fastset
->>>
->>> intel_set_pipe_src_size(), hsw_set_linetime_wm(),
->>> intel_cpu_transcoder_set_m1_n1() and intel_set_transcoder_timings_lrr()
->>> are called from an atomic context on PREEMPT_RT, and should be using the _fw
->>> functions.
->>
->> This could be ok but we need to be sure that all are called with power domains up.
->> I think would be safe to keep this under RT check so that we don't end up breaking any
->> generic non RT usecase.
-> 
-> When removing the locks from register accesses one needs to consider
-> what platforms the code runs on, what other register are on the same
-> cacheline, and whether they can be accessed in parallel. If there is
-> something there then we may not be able to remove the locks.
-> 
-> That's assuming the "system hangs when same cacheline is accessed from
-> multiple cpus" issue is real for display registers, and I'm actually
-> not 100% it is. But we'd need to run some tests on the affected systems
-> (~ivb/hsw) to get any kind of confidence here. IIRC some old
-> intel_gpu_top thhat directly poked the registers was very good at
-> hitting it on hsw at least, so that would be a decent starting point.
-> 
-> Anyways, I'm going to be replacing the uncore lock with a display
-> specific lock soonish, and I suppose I can just make that a raw
-> spinlock to appease RT.
+--------------6caOq3Yb3NvWMEQmILt6x6wK
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: base64
 
+SGksDQoNCihjYyBTdGV2ZSBXYWhsIGJlY2F1c2UgVVYgQklPUyBpcyB0YW5nZW50aWFsbHkg
+aW52b2x2ZWQpDQooY2MgVmlsbGUgU3lyamFsYSBiZWNhdXNlIG9mIHRoZSByZWNlbnQgdGhy
+ZWFkIGFib3V0IFZHQSBhcmJpdGVyKQ0KDQpJJ20gbG9va2luZyBpbnRvDQoNCiAgICAgaHR0
+cHM6Ly9naXRsYWIuZnJlZWRlc2t0b3Aub3JnL2RybS94ZS9rZXJuZWwvLS9pc3N1ZXMvMTgy
+NA0KDQphZ2FpbiBiZWNhdXNlIEkgaGF2ZSBhIHNpbWlsYXIgcHJvYmxlbS4NCg0KSW4gcGNp
+X3NldF92Z2Ffc3RhdGUsIHdlIHRyYXZlcnNlIHRoZSBQQ0kgYnJpZGdlcyB1cHdhcmRzLCBh
+bmQgc2V0IHRoZSANClZHQSBmb3J3YXJkaW5nIGJpdCBvbiBhbGwgb2YgdGhlbSB1cCB0byB0
+aGUgcm9vdC4gTm93IEkgaGFwcGVuIHRvIGhhdmUgYSANCnJvb3QgYnJpZGdlIHRoYXQgcmVm
+dXNlcyB0byBzZXQgdGhpcyBiaXQsIHNvIGlmIEkgcmVhZCBpdCBiYWNrIGFmdGVyIA0Kc2V0
+dGluZyBpdCwgaXQgaXMgc3RpbGwgdW5zZXQuDQoNClRUQk9NSywgdGhhdCBpcyBhbGxvd2Vk
+IGluIHRoZSBQQ0kgc3BlY2lmaWNhdGlvbiwgYW5kIHRoZSBjb3JyZWN0IHdheSB0byANCmlu
+ZGljYXRlIHRoYXQgYSBicmlkZ2UgY2Fubm90IGZvcndhcmQgVkdBIGFjY2Vzc2VzLg0KDQpU
+aGUgc21hbGxlc3QgcG9zc2libGUgY2hhbmdlIGlzIHRvIHJlYWQgYmFjayB0aGUgYnJpZGdl
+IGNvbnRyb2wgDQpyZWdpc3RlciwgYW5kIGlmIHRoZSBiaXQgaXMgc3RpbGwgdW5zZXQsIHRl
+cm1pbmF0ZSB0aGUgbG9vcCBhbmQgcmV0dXJuIA0KYW4gZXJyb3IuDQoNCkknbSB0cnlpbmcg
+dG8gZmluZCBvdXQgbm93IGlmIHRoaXMgaXMgYSBnb29kIGlkZWEsIGFuZCBhbSBhIGJpdCBw
+dXp6bGVkOg0KDQpJdCBhcHBlYXJzIHRoZSBvbmx5IHBsYWNlIHRoYXQgY2FuIGdlbmVyYXRl
+IGVycm9ycyBpcyANCnBjaV9zZXRfdmdhX3N0YXRlX2FyY2gsIHdoaWNoIGlzIGEgZGlzcGF0
+Y2ggbWVjaGFuaXNtIHdpdGggYSBzaW5nbGUgDQp1c2VyLCB1dl9iaW9zX3NldF9sZWdhY3lf
+dmdhX3RhcmdldC4NCg0KQWNjb3JkaW5nIHRvIHRoZSBjb21tZW50LCB0aGUgZXJyb3JzIGdl
+bmVyYXRlZCBoZXJlIGFyZSAtRUlOVkFMLCAtRU5PU1lTIA0KYW5kIC1FQlVTWS4gVGhlIGlt
+cGxlbWVudGF0aW9uIHJldHVybnMgdGhlIHJldHVybiB2YWx1ZSBmcm9tIGFuIEVGSSANCmNh
+bGwsIHdoaWNoIGFwcGVhcnMgdG8gYmUgZGVmaW5lZCB0byBiZSBhIG5lZ2F0ZWQgUE9TSVgg
+ZXJybm8gbnVtYmVyLCBzbyANCnRoaXMgaGFzIGEgaGlnaCBjaGFuY2Ugb2YgYmVpbmcgY29y
+cmVjdC4NCg0KSWYgcGNpX3NldF92Z2Ffc3RhdGVfYXJjaCBkb2VzIG5vdCByZXR1cm4gYW4g
+ZXJyb3IsIHRoZSBub3JtYWwgDQpwY2lfc2V0X3ZnYV9zdGF0ZSBmdW5jdGlvbiBydW5zLCBh
+bmQgdGhlcmUgaXMgbm8gd2F5IGZvciB0aGUgYXJjaCANCnNwZWNpZmljIGZ1bmN0aW9uIHRv
+IGluZGljYXRlIHRoYXQgdGhlIHJlc3Qgb2YgdGhlIGZ1bmN0aW9uIHNob3VsZCBub3QgDQpy
+dW4uIElzIHRoYXQgaW50ZW50aW9uYWwsIG9yIHNob3VsZCB0aGUgQklPUyBjYWxsIHJlcGxh
+Y2UgdGhlIG5vcm1hbCANCmltcGxlbWVudGF0aW9uPw0KDQpJdCBhbHNvIHNlZW1zIHRoYXQg
+dmdhYXJiIGlzIHRoZSBvbmx5IGNhbGxlciwgYW5kIGl0IGRvZXMgbm90IGxvb2sgYXQgDQp0
+aGUgcmV0dXJuIHZhbHVlIGZyb20gdGhpcyBmdW5jdGlvbi4gU28gaWYgSSBmaXggdGhhdCwg
+YW5kIHByb3BhZ2F0ZSB0aGUgDQplcnJvciB1cHdhcmRzLCBJIGZpcnN0IG5lZWQgYSB3YXkg
+dG8gaW5kaWNhdGUgdGhhdCBfX3RyeV92Z2FfZ2V0IGZhaWxlZCANCndpdGhvdXQgdGhlcmUg
+YmVpbmcgYSBjb25mbGljdCwgYW5kIHRoZW4gSSBuZWVkIGFsbCB2Z2FfZ2V0IGNhbGxlcnMg
+dG8gDQpoYXZlIGVycm9yIGhhbmRsaW5nLiBUaGUgbGF0dGVyIHNvdW5kcyBkb2FibGUuDQoN
+CldoYXQgSSdtIHVuc3VyZSBhYm91dDoNCg0KMS4gRG9lcyB0aGlzIHNlZW0gbGlrZSBhIHZp
+YWJsZSBhcHByb2FjaD8NCg0KMi4gV2hhdCBpbnRlcmZhY2UgbWFrZXMgc2Vuc2UgZm9yIHJl
+dHVybmluZyBhbiBlcnJvciBoZXJlPyBUaGlzIGZ1bmN0aW9uIA0KaXMgc3VwcG9zZWQgdG8g
+cmV0dXJuIHRoZSBjb25mbGljdGluZyBkZXZpY2UgLS0gc2hvdWxkIEkganVzdCBtYWtlIHRo
+aXMgDQphIFBUUl9FUlI/DQoNCjMuIFdoYXQgZXJyb3Igd291bGQgYmUgYXBwcm9wcmlhdGUg
+Zm9yIGEgYnJpZGdlIHJlZnVzaW5nIHRvIGFjdGl2YXRlIHRoZSANClZHQSBiaXQ/IEl0J3Mg
+bm90IEVJTywgaXQncyBub3QgRUFDQ0VTLCBpdCdzIG5vdCBFSU5WQUwsIHRoZSBjbG9zZXN0
+IGlzIA0KcHJvYmFibHkgRU5PU1lTLCBidXQgZXZlbiB0aGF0IGZlZWxzIHdyb25nLg0KDQo0
+LiBIb3cgbGlrZWx5IGlzIGl0IGZvciB0aGlzIHRvIGJyZWFrIHNvbWV0aGluZyBlbHNlPyBB
+cmUgdGhlcmUgUENJIA0KYnJpZGdlcyB0aGF0IGZvcndhcmQgVkdBIGJ1dCBpbXBsZW1lbnQg
+dGhlIGJyaWRnZSBjb250cm9sIHJlZ2lzdGVyIA0KaW5jb3JyZWN0bHk/DQoNCiAgICBTaW1v
+bg0K
 
-You're correct about the cacheline problem!
+--------------6caOq3Yb3NvWMEQmILt6x6wK--
 
-We shouldn't be having a race in those specific registers though. On the current
-kernel they would likely hang the system if the _fw variants are not taken, as it
-means the uncore lock would be taken twice.
+--------------o5Fy5EUoifW1u4dHEei6kEE6
+Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="OpenPGP_signature.asc"
 
-This means the fastset path is already broken on systems requiring uncore lock, and
-this simply fixes it instead.
+-----BEGIN PGP SIGNATURE-----
 
-Kind regards,
-~Maarten Lankhorst
+iQEzBAEBCgAdFiEEtjuqOJSXmNjSiX3Tfr04e7CZCBEFAmk62IEACgkQfr04e7CZ
+CBF2cAgAgoMfGcMJ9c/lxh6/H3eBu/m0zgIXOIv8KcsxqRcHLdrVfiWmNb5DYHWZ
+ybKLuVY858ZyS+JCd43myovZTAEH3ZAwBA1bGo2QIcplfh8cOtix7K8BAjGWMtOq
+O2YbQGf6CBM1phCqjOS0mC95F5aHyEDWYEPtY6htZGWPR80zrZLx4lvjnArGAiEn
+XJQSHsazROVba33V7Lad12eeW+32HK8X00Xsxh6avjU2w8UZT6RVqbfZEuGvjeb0
+377cmH0pwNRk4MaXffU2bY5jc2A7yFNkpYhIj50ha4+nnsgTdVoAwaUCdJlBmzY7
+0rjEl2bie6K7b/TabEc0FmYbs6XdAg==
+=s33K
+-----END PGP SIGNATURE-----
+
+--------------o5Fy5EUoifW1u4dHEei6kEE6--
