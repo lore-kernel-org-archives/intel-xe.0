@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 32E12D43359
-	for <intel-xe@archiver.kernel.org>; Thu, 11 Dec 2025 21:00:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DCE1CD43358
+	for <intel-xe@archiver.kernel.org>; Thu, 11 Dec 2025 21:00:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5C1C910E812;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 56E8710E6D0;
 	Thu, 11 Dec 2025 21:00:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="byPoIFit";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TzgtDOET";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DFCC510E274
- for <intel-xe@lists.freedesktop.org>; Thu, 11 Dec 2025 21:00:37 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 453C310E274
+ for <intel-xe@lists.freedesktop.org>; Thu, 11 Dec 2025 21:00:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1765486838; x=1797022838;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=2lMo9b1C/wb9LWMD0tYIjsj5AnwWxN3WWwziTSdheR0=;
- b=byPoIFitx1KsVCLoKrqTOZimUCt6x+Roib7FYHVn/tH94lLguHKGSih/
- 3bBxI6dJ1fRhsWyRehfIL5+p5pveutZOOj/di30xS9jD0YgfVJGcy4eYj
- AqFS5GCSPKQdaACf/7XsbbA5ypDkD48lrmM1MwubqeS/utRiPeAB6oJom
- GlNK3FVMx7HjMXJwGpDGBPb83Xa8lg6DkHUMCH60ps6B9OsR61S/65Hz6
- TyPpv+BX2hlJ01YNOR4Ng69PeVnDnt9+G1IMEPMR+DU5IJyyxPXZQnfO9
- GfKTJvwSpQR+CRAvW3/E70860VCBmQ34OFlb9+JSEFg/+wmLra02b/lJP w==;
-X-CSE-ConnectionGUID: 5Y2N/eZASfCYhJx3fPq7EA==
-X-CSE-MsgGUID: 8sbWt0abQ6CyFOnhnNOKTA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11639"; a="67649718"
-X-IronPort-AV: E=Sophos;i="6.21,141,1763452800"; d="scan'208";a="67649718"
+ bh=PIrMMjFtt+eRIqq5kXE3BtqmpMV/V0C2yDdH2zsn+B4=;
+ b=TzgtDOETFBCtU2vviCggddiF9XzPLdyw8uOX8gQxnDY+zeHm/ziakit/
+ XgBWVOCNtI2EuSW4DvwdI5D6ur7Hh+GmgzxYfP9gTidgCfU8PClKFtjRo
+ jOlSSFxKPUZWbAOep66Qx8MdZX1AOiKsT2UjkGpLcvyZaibR3ID5EE50c
+ 2cb3UV1MfZK1r9MuKjUBiqSLPgANLp9eUTC9g2qvaf6kKhZveNKzuDNZX
+ I/Edkui2GXDibum4Y4/037RYYK0mb5wWXNXx/R6UVcbT8A13YcSpwEAqB
+ bJCywPqv+1GlWbdxJIBot9Z6SE/cW/74ZcpKhWEtnUnp2AiYfhjBc7CHF w==;
+X-CSE-ConnectionGUID: Q2sxyFZTTUqtn/KE6eZ8tA==
+X-CSE-MsgGUID: 1kmlSHBlQjK4Yr7zglZvuA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11639"; a="67649723"
+X-IronPort-AV: E=Sophos;i="6.21,141,1763452800"; d="scan'208";a="67649723"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  11 Dec 2025 13:00:37 -0800
-X-CSE-ConnectionGUID: 7uxt5eFdSlmLKXVySMCi0w==
-X-CSE-MsgGUID: hGbWXPgqRf2gsNFI5pP3iw==
+X-CSE-ConnectionGUID: dwQRYLC0TJ6X1KJ9m4o1ZQ==
+X-CSE-MsgGUID: hwjYeulnTdaoToq2tYK79g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,141,1763452800"; d="scan'208";a="234297944"
+X-IronPort-AV: E=Sophos;i="6.21,141,1763452800"; d="scan'208";a="234297959"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  11 Dec 2025 13:00:37 -0800
@@ -45,10 +45,10 @@ From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: francois.dugast@intel.com, thomas.hellstrom@linux.intel.com,
  michal.mrozek@intel.com
-Subject: [PATCH 1/6] drm/xe: Adjust long-running workload timeslices to
- reasonable values
-Date: Thu, 11 Dec 2025 13:00:27 -0800
-Message-Id: <20251211210032.1520113-2-matthew.brost@intel.com>
+Subject: [PATCH 6/6] drm/xe: Add more GT stats around pagefault mode switch
+ flows
+Date: Thu, 11 Dec 2025 13:00:32 -0800
+Message-Id: <20251211210032.1520113-7-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251211210032.1520113-1-matthew.brost@intel.com>
 References: <20251211210032.1520113-1-matthew.brost@intel.com>
@@ -68,49 +68,144 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-A 10ms timeslice for long-running workloads is far too long and causes
-significant jitter in benchmarks when the system is shared. Adjust the
-value to 5ms for preempt-fencing VMs, as the resume step there is quite
-costly as memory is moved around, and set it to zero for pagefault VMs,
-since switching back to pagefault mode after dma-fence mode is
-relatively fast.
+Add GT stats to measure the time spent switching between pagefault mode
+and dma-fence mode. Also add a GT stat to indicate when pagefault
+suspend is skipped because the system is idle. These metrics will help
+profile pagefault workloads while 3D and display are enabled.
 
-Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_vm.c       | 5 ++++-
- drivers/gpu/drm/xe/xe_vm_types.h | 2 +-
- 2 files changed, 5 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_gt_stats.c        |  6 +++++
+ drivers/gpu/drm/xe/xe_gt_stats_types.h  |  3 +++
+ drivers/gpu/drm/xe/xe_hw_engine_group.c | 32 +++++++++++++++++++++++++
+ 3 files changed, 41 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index c2012d20faa6..4648f8a458cf 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -1508,7 +1508,10 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags, struct xe_file *xef)
- 	INIT_WORK(&vm->destroy_work, vm_destroy_work_func);
+diff --git a/drivers/gpu/drm/xe/xe_gt_stats.c b/drivers/gpu/drm/xe/xe_gt_stats.c
+index 714045ad9354..fb2904bd0abd 100644
+--- a/drivers/gpu/drm/xe/xe_gt_stats.c
++++ b/drivers/gpu/drm/xe/xe_gt_stats.c
+@@ -68,8 +68,14 @@ static const char *const stat_description[__XE_GT_STATS_NUM_IDS] = {
+ 	DEF_STAT_STR(SVM_2M_BIND_US, "svm_2M_bind_us"),
+ 	DEF_STAT_STR(HW_ENGINE_GROUP_SUSPEND_LR_QUEUE_COUNT,
+ 		     "hw_engine_group_suspend_lr_queue_count"),
++	DEF_STAT_STR(HW_ENGINE_GROUP_SKIP_LR_QUEUE_COUNT,
++		     "hw_engine_group_skip_lr_queue_count"),
+ 	DEF_STAT_STR(HW_ENGINE_GROUP_WAIT_DMA_QUEUE_COUNT,
+ 		     "hw_engine_group_wait_dma_queue_count"),
++	DEF_STAT_STR(HW_ENGINE_GROUP_SUSPEND_LR_QUEUE_US,
++		     "hw_engine_group_suspend_lr_queue_us"),
++	DEF_STAT_STR(HW_ENGINE_GROUP_WAIT_DMA_QUEUE_US,
++		     "hw_engine_group_wait_dma_queue_us"),
+ };
  
- 	INIT_LIST_HEAD(&vm->preempt.exec_queues);
--	vm->preempt.min_run_period_ms = 10;	/* FIXME: Wire up to uAPI */
-+	if (flags & XE_VM_FLAG_FAULT_MODE)
-+		vm->preempt.min_run_period_ms = 0;
-+	else
-+		vm->preempt.min_run_period_ms = 5;
+ /**
+diff --git a/drivers/gpu/drm/xe/xe_gt_stats_types.h b/drivers/gpu/drm/xe/xe_gt_stats_types.h
+index aada5df421e5..b92d013091d5 100644
+--- a/drivers/gpu/drm/xe/xe_gt_stats_types.h
++++ b/drivers/gpu/drm/xe/xe_gt_stats_types.h
+@@ -45,7 +45,10 @@ enum xe_gt_stats_id {
+ 	XE_GT_STATS_ID_SVM_64K_BIND_US,
+ 	XE_GT_STATS_ID_SVM_2M_BIND_US,
+ 	XE_GT_STATS_ID_HW_ENGINE_GROUP_SUSPEND_LR_QUEUE_COUNT,
++	XE_GT_STATS_ID_HW_ENGINE_GROUP_SKIP_LR_QUEUE_COUNT,
+ 	XE_GT_STATS_ID_HW_ENGINE_GROUP_WAIT_DMA_QUEUE_COUNT,
++	XE_GT_STATS_ID_HW_ENGINE_GROUP_SUSPEND_LR_QUEUE_US,
++	XE_GT_STATS_ID_HW_ENGINE_GROUP_WAIT_DMA_QUEUE_US,
+ 	/* must be the last entry */
+ 	__XE_GT_STATS_NUM_IDS,
+ };
+diff --git a/drivers/gpu/drm/xe/xe_hw_engine_group.c b/drivers/gpu/drm/xe/xe_hw_engine_group.c
+index 35966889c776..8236fdee0901 100644
+--- a/drivers/gpu/drm/xe/xe_hw_engine_group.c
++++ b/drivers/gpu/drm/xe/xe_hw_engine_group.c
+@@ -14,6 +14,17 @@
+ #include "xe_sync.h"
+ #include "xe_vm.h"
  
- 	for_each_tile(tile, xe, id)
- 		xe_range_fence_tree_init(&vm->rftree[id]);
-diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
-index 3bf912bfbdcc..18bad1dd08e6 100644
---- a/drivers/gpu/drm/xe/xe_vm_types.h
-+++ b/drivers/gpu/drm/xe/xe_vm_types.h
-@@ -263,7 +263,7 @@ struct xe_vm {
- 		 * @min_run_period_ms: The minimum run period before preempting
- 		 * an engine again
- 		 */
--		s64 min_run_period_ms;
-+		unsigned int min_run_period_ms;
- 		/** @exec_queues: list of exec queues attached to this VM */
- 		struct list_head exec_queues;
- 		/** @num_exec_queues: number exec queues attached to this VM */
++static s64 xe_hw_engine_group_stats_ktime_us_delta(ktime_t start)
++{
++	return IS_ENABLED(CONFIG_DEBUG_FS) ?
++		ktime_us_delta(ktime_get(), start) : 0;
++}
++
++static ktime_t xe_hw_engine_group_stats_ktime_get(void)
++{
++	return IS_ENABLED(CONFIG_DEBUG_FS) ? ktime_get() : 0;
++}
++
+ static void
+ hw_engine_group_resume_lr_jobs_func(struct work_struct *w)
+ {
+@@ -200,7 +211,9 @@ static int xe_hw_engine_group_suspend_faulting_lr_jobs(struct xe_hw_engine_group
+ {
+ 	int err, i;
+ 	struct xe_exec_queue *q;
++	struct xe_gt *gt = NULL;
+ 	bool need_resume = false;
++	ktime_t start = xe_hw_engine_group_stats_ktime_get();
+ 
+ 	lockdep_assert_held_write(&group->mode_sem);
+ 
+@@ -213,6 +226,9 @@ static int xe_hw_engine_group_suspend_faulting_lr_jobs(struct xe_hw_engine_group
+ 		xe_gt_stats_incr(q->gt, XE_GT_STATS_ID_HW_ENGINE_GROUP_SUSPEND_LR_QUEUE_COUNT, 1);
+ 
+ 		idle_skip_suspend = xe_exec_queue_idle_skip_suspend(q);
++		if (idle_skip_suspend)
++			xe_gt_stats_incr(q->gt,
++					 XE_GT_STATS_ID_HW_ENGINE_GROUP_SKIP_LR_QUEUE_COUNT, 1);
+ 
+ 		if (!need_resume && !idle_skip_suspend && num_syncs) {
+ 			for (i = 0; i < num_syncs; ++i)
+@@ -221,6 +237,7 @@ static int xe_hw_engine_group_suspend_faulting_lr_jobs(struct xe_hw_engine_group
+ 
+ 		need_resume |= !idle_skip_suspend;
+ 		q->ops->suspend(q);
++		gt = q->gt;
+ 	}
+ 
+ 	list_for_each_entry(q, &group->exec_queue_list, hw_engine_group_link) {
+@@ -232,6 +249,12 @@ static int xe_hw_engine_group_suspend_faulting_lr_jobs(struct xe_hw_engine_group
+ 			return err;
+ 	}
+ 
++	if (gt) {
++		xe_gt_stats_incr(gt,
++				 XE_GT_STATS_ID_HW_ENGINE_GROUP_SUSPEND_LR_QUEUE_US,
++				 xe_hw_engine_group_stats_ktime_us_delta(start));
++	}
++
+ 	if (need_resume)
+ 		xe_hw_engine_group_resume_faulting_lr_jobs(group);
+ 
+@@ -252,7 +275,9 @@ static int xe_hw_engine_group_wait_for_dma_fence_jobs(struct xe_hw_engine_group
+ {
+ 	long timeout;
+ 	struct xe_exec_queue *q;
++	struct xe_gt *gt = NULL;
+ 	struct dma_fence *fence;
++	ktime_t start = xe_hw_engine_group_stats_ktime_get();
+ 
+ 	lockdep_assert_held_write(&group->mode_sem);
+ 
+@@ -264,11 +289,18 @@ static int xe_hw_engine_group_wait_for_dma_fence_jobs(struct xe_hw_engine_group
+ 		fence = xe_exec_queue_last_fence_get_for_resume(q, q->vm);
+ 		timeout = dma_fence_wait(fence, false);
+ 		dma_fence_put(fence);
++		gt = q->gt;
+ 
+ 		if (timeout < 0)
+ 			return -ETIME;
+ 	}
+ 
++	if (gt) {
++		xe_gt_stats_incr(gt,
++				 XE_GT_STATS_ID_HW_ENGINE_GROUP_WAIT_DMA_QUEUE_US,
++				 xe_hw_engine_group_stats_ktime_us_delta(start));
++	}
++
+ 	return 0;
+ }
+ 
 -- 
 2.34.1
 
