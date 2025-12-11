@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D60FED3E783
-	for <intel-xe@archiver.kernel.org>; Thu, 11 Dec 2025 02:25:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9F1A8D3E77C
+	for <intel-xe@archiver.kernel.org>; Thu, 11 Dec 2025 02:31:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 82A3110E299;
-	Thu, 11 Dec 2025 02:25:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4425D10E299;
+	Thu, 11 Dec 2025 02:31:25 +0000 (UTC)
 Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D568110E299;
- Thu, 11 Dec 2025 02:25:02 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============9082994276985547539=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5025910E299;
+ Thu, 11 Dec 2025 02:31:24 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Multi_Queue_featu?=
- =?utf-8?q?re_support_=28rev6=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Introduce_SRIOV_scheduler?=
+ =?utf-8?q?_groups_=28rev3=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Niranjana Vishwanathapura" <niranjana.vishwanathapura@intel.com>
+To: "Daniele Ceraolo Spurio" <daniele.ceraolospurio@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 11 Dec 2025 02:25:02 -0000
-Message-ID: <176541990286.75793.4223941083722674073@a3b018990fe9>
+Date: Thu, 11 Dec 2025 02:31:24 -0000
+Message-ID: <176542028431.75793.7730546701062046000@a3b018990fe9>
 X-Patchwork-Hint: ignore
-References: <20251211010249.1647839-19-niranjana.vishwanathapura@intel.com>
-In-Reply-To: <20251211010249.1647839-19-niranjana.vishwanathapura@intel.com>
+References: <20251211015700.34266-14-daniele.ceraolospurio@intel.com>
+In-Reply-To: <20251211015700.34266-14-daniele.ceraolospurio@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,121 +40,217 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============9082994276985547539==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe: Multi Queue feature support (rev6)
-URL   : https://patchwork.freedesktop.org/series/156865/
-State : success
+Series: Introduce SRIOV scheduler groups (rev3)
+URL   : https://patchwork.freedesktop.org/series/158142/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-4220-3adb3f4aa5a8563ee9c1f6e137827b740e3ab40b_BAT -> xe-pw-156865v6_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+8f50e69d0ce3656564bbdf8b3e213d61470d463f
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 2c98ca2da843f77cf021903220dde1c11422948f
+Author: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Date:   Wed Dec 10 17:57:11 2025 -0800
 
-Summary
--------
+    drm/xe/sriov: Add debugfs to set EQ and PT for scheduler groups
+    
+    Debugfs files are added to allow a user to provide a comma-separated list
+    of values to assign to each group for each VF.
+    
+    Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+    Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
++ /mt/dim checkpatch 3adb3f4aa5a8563ee9c1f6e137827b740e3ab40b drm-intel
+826441cbf735 drm/xe/gt: Add engine masks for each class
+78d7b46d0034 drm/gt/guc: extract scheduler-related defines from guc_fwif.h
+-:23: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#23: 
+new file mode 100644
 
-  **SUCCESS**
+total: 0 errors, 1 warnings, 0 checks, 142 lines checked
+04904f0d5691 drm/xe/sriov: Initialize scheduler groups
+2093ec55d568 drm/xe/sriov: Add support for enabling scheduler groups
+99bde56586e6 drm/xe/sriov: Scheduler groups are incompatible with multi-lrc
+f3677f40a6b5 drm/xe/sriov: Add handling for MLRC adverse event threshold
+-:67: WARNING:MACRO_ARG_UNUSED: Argument 'NAME' is not used in function-like macro
+#67: FILE: drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c:307:
++#define encode_threshold_config(TAG, NAME, MAJ, MIN) ({					\
++	if (!MAJ || GUC_FIRMWARE_VER(&gt->uc.guc) >= MAKE_GUC_VER(MAJ, MIN, 0)) {	\
++		cfg[n++] = PREP_GUC_KLV_TAG(VF_CFG_THRESHOLD_##TAG);			\
++		cfg[n++] = config->thresholds[MAKE_XE_GUC_KLV_THRESHOLD_INDEX(TAG)];	\
++	}										\
+ });
 
-  No regressions found.
+-:67: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'MAJ' - possible side-effects?
+#67: FILE: drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c:307:
++#define encode_threshold_config(TAG, NAME, MAJ, MIN) ({					\
++	if (!MAJ || GUC_FIRMWARE_VER(&gt->uc.guc) >= MAKE_GUC_VER(MAJ, MIN, 0)) {	\
++		cfg[n++] = PREP_GUC_KLV_TAG(VF_CFG_THRESHOLD_##TAG);			\
++		cfg[n++] = config->thresholds[MAKE_XE_GUC_KLV_THRESHOLD_INDEX(TAG)];	\
++	}										\
+ });
 
-  
+-:67: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'MAJ' may be better as '(MAJ)' to avoid precedence issues
+#67: FILE: drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c:307:
++#define encode_threshold_config(TAG, NAME, MAJ, MIN) ({					\
++	if (!MAJ || GUC_FIRMWARE_VER(&gt->uc.guc) >= MAKE_GUC_VER(MAJ, MIN, 0)) {	\
++		cfg[n++] = PREP_GUC_KLV_TAG(VF_CFG_THRESHOLD_##TAG);			\
++		cfg[n++] = config->thresholds[MAKE_XE_GUC_KLV_THRESHOLD_INDEX(TAG)];	\
++	}										\
+ });
 
-Participating hosts (12 -> 12)
-------------------------------
+-:67: WARNING:TRAILING_SEMICOLON: macros should not use a trailing semicolon
+#67: FILE: drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c:307:
++#define encode_threshold_config(TAG, NAME, MAJ, MIN) ({					\
++	if (!MAJ || GUC_FIRMWARE_VER(&gt->uc.guc) >= MAKE_GUC_VER(MAJ, MIN, 0)) {	\
++		cfg[n++] = PREP_GUC_KLV_TAG(VF_CFG_THRESHOLD_##TAG);			\
++		cfg[n++] = config->thresholds[MAKE_XE_GUC_KLV_THRESHOLD_INDEX(TAG)];	\
++	}										\
+ });
 
-  No changes in participating hosts
+-:98: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'TAG' - possible side-effects?
+#98: FILE: drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c:2557:
++#define define_threshold_key_to_provision_case(TAG, NAME, MAJ, MIN)			\
+ 	case MAKE_GUC_KLV_VF_CFG_THRESHOLD_KEY(TAG):					\
+ 		BUILD_BUG_ON(MAKE_GUC_KLV_VF_CFG_THRESHOLD_LEN(TAG) != 1u);		\
++		if (MAJ && GUC_FIRMWARE_VER(&gt->uc.guc) < MAKE_GUC_VER(MAJ, MIN, 0))	\
++			return -ENOKEY;							\
+ 		if (len != MAKE_GUC_KLV_VF_CFG_THRESHOLD_LEN(TAG))			\
+ 			return -EBADMSG;						\
+ 		return pf_provision_threshold(gt, vfid,					\
 
-Known issues
-------------
+-:98: WARNING:MACRO_ARG_UNUSED: Argument 'NAME' is not used in function-like macro
+#98: FILE: drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c:2557:
++#define define_threshold_key_to_provision_case(TAG, NAME, MAJ, MIN)			\
+ 	case MAKE_GUC_KLV_VF_CFG_THRESHOLD_KEY(TAG):					\
+ 		BUILD_BUG_ON(MAKE_GUC_KLV_VF_CFG_THRESHOLD_LEN(TAG) != 1u);		\
++		if (MAJ && GUC_FIRMWARE_VER(&gt->uc.guc) < MAKE_GUC_VER(MAJ, MIN, 0))	\
++			return -ENOKEY;							\
+ 		if (len != MAKE_GUC_KLV_VF_CFG_THRESHOLD_LEN(TAG))			\
+ 			return -EBADMSG;						\
+ 		return pf_provision_threshold(gt, vfid,					\
 
-  Here are the changes found in xe-pw-156865v6_BAT that come from known issues:
+-:98: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'MAJ' - possible side-effects?
+#98: FILE: drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c:2557:
++#define define_threshold_key_to_provision_case(TAG, NAME, MAJ, MIN)			\
+ 	case MAKE_GUC_KLV_VF_CFG_THRESHOLD_KEY(TAG):					\
+ 		BUILD_BUG_ON(MAKE_GUC_KLV_VF_CFG_THRESHOLD_LEN(TAG) != 1u);		\
++		if (MAJ && GUC_FIRMWARE_VER(&gt->uc.guc) < MAKE_GUC_VER(MAJ, MIN, 0))	\
++			return -ENOKEY;							\
+ 		if (len != MAKE_GUC_KLV_VF_CFG_THRESHOLD_LEN(TAG))			\
+ 			return -EBADMSG;						\
+ 		return pf_provision_threshold(gt, vfid,					\
 
-### IGT changes ###
+-:98: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'MAJ' may be better as '(MAJ)' to avoid precedence issues
+#98: FILE: drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c:2557:
++#define define_threshold_key_to_provision_case(TAG, NAME, MAJ, MIN)			\
+ 	case MAKE_GUC_KLV_VF_CFG_THRESHOLD_KEY(TAG):					\
+ 		BUILD_BUG_ON(MAKE_GUC_KLV_VF_CFG_THRESHOLD_LEN(TAG) != 1u);		\
++		if (MAJ && GUC_FIRMWARE_VER(&gt->uc.guc) < MAKE_GUC_VER(MAJ, MIN, 0))	\
++			return -ENOKEY;							\
+ 		if (len != MAKE_GUC_KLV_VF_CFG_THRESHOLD_LEN(TAG))			\
+ 			return -EBADMSG;						\
+ 		return pf_provision_threshold(gt, vfid,					\
 
-#### Issues hit ####
+-:98: WARNING:MACRO_WITH_FLOW_CONTROL: Macros with flow control statements should be avoided
+#98: FILE: drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c:2557:
++#define define_threshold_key_to_provision_case(TAG, NAME, MAJ, MIN)			\
+ 	case MAKE_GUC_KLV_VF_CFG_THRESHOLD_KEY(TAG):					\
+ 		BUILD_BUG_ON(MAKE_GUC_KLV_VF_CFG_THRESHOLD_LEN(TAG) != 1u);		\
++		if (MAJ && GUC_FIRMWARE_VER(&gt->uc.guc) < MAKE_GUC_VER(MAJ, MIN, 0))	\
++			return -ENOKEY;							\
+ 		if (len != MAKE_GUC_KLV_VF_CFG_THRESHOLD_LEN(TAG))			\
+ 			return -EBADMSG;						\
+ 		return pf_provision_threshold(gt, vfid,					\
 
-  * igt@xe_waitfence@reltime:
-    - bat-dg2-oem2:       [PASS][1] -> [FAIL][2] ([Intel XE#6520])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4220-3adb3f4aa5a8563ee9c1f6e137827b740e3ab40b/bat-dg2-oem2/igt@xe_waitfence@reltime.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156865v6/bat-dg2-oem2/igt@xe_waitfence@reltime.html
+-:125: WARNING:MACRO_ARG_UNUSED: Argument 'TAG' is not used in function-like macro
+#125: FILE: drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c:305:
++#define register_threshold_attribute(TAG, NAME, MAJ, MIN) ({				\
++	if (!MAJ || GUC_FIRMWARE_VER(&gt->uc.guc) >= MAKE_GUC_VER(MAJ, MIN, 0))		\
++		debugfs_create_file_unsafe("threshold_" #NAME, 0644, parent, parent,	\
++					   &NAME##_fops);				\
++});
 
-  
-  [Intel XE#6520]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520
+-:125: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'MAJ' - possible side-effects?
+#125: FILE: drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c:305:
++#define register_threshold_attribute(TAG, NAME, MAJ, MIN) ({				\
++	if (!MAJ || GUC_FIRMWARE_VER(&gt->uc.guc) >= MAKE_GUC_VER(MAJ, MIN, 0))		\
++		debugfs_create_file_unsafe("threshold_" #NAME, 0644, parent, parent,	\
++					   &NAME##_fops);				\
++});
+
+-:125: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'MAJ' may be better as '(MAJ)' to avoid precedence issues
+#125: FILE: drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c:305:
++#define register_threshold_attribute(TAG, NAME, MAJ, MIN) ({				\
++	if (!MAJ || GUC_FIRMWARE_VER(&gt->uc.guc) >= MAKE_GUC_VER(MAJ, MIN, 0))		\
++		debugfs_create_file_unsafe("threshold_" #NAME, 0644, parent, parent,	\
++					   &NAME##_fops);				\
++});
+
+-:125: WARNING:TRAILING_SEMICOLON: macros should not use a trailing semicolon
+#125: FILE: drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c:305:
++#define register_threshold_attribute(TAG, NAME, MAJ, MIN) ({				\
++	if (!MAJ || GUC_FIRMWARE_VER(&gt->uc.guc) >= MAKE_GUC_VER(MAJ, MIN, 0))		\
++		debugfs_create_file_unsafe("threshold_" #NAME, 0644, parent, parent,	\
++					   &NAME##_fops);				\
++});
+
+-:151: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#151: FILE: drivers/gpu/drm/xe/xe_guc_klv_thresholds_set_types.h:28:
++#define MAKE_XE_GUC_KLV_THRESHOLDS_SET(define)					\
++	define(CAT_ERR, cat_error_count, 0, 0)					\
++	define(ENGINE_RESET, engine_reset_count, 0, 0)				\
++	define(PAGE_FAULT, page_fault_count, 0, 0)				\
++	define(H2G_STORM, guc_time_us, 0, 0)					\
++	define(IRQ_STORM, irq_time_us, 0, 0)					\
++	define(DOORBELL_STORM, doorbell_time_us, 0, 0)				\
++	define(MULTI_LRC_COUNT, multi_lrc_count, 70, 53)			\
+ 	/* end */
+
+BUT SEE:
+
+   do {} while (0) advice is over-stated in a few situations:
+
+   The more obvious case is macros, like MODULE_PARM_DESC, invoked at
+   file-scope, where C disallows code (it must be in functions).  See
+   $exceptions if you have one to add by name.
+
+   More troublesome is declarative macros used at top of new scope,
+   like DECLARE_PER_CPU.  These might just compile with a do-while-0
+   wrapper, but would be incorrect.  Most of these are handled by
+   detecting struct,union,etc declaration primitives in $exceptions.
+
+   Theres also macros called inside an if (block), which "return" an
+   expression.  These cannot do-while, and need a ({}) wrapper.
+
+   Enjoy this qualification while we work to improve our heuristics.
+
+-:151: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'define' - possible side-effects?
+#151: FILE: drivers/gpu/drm/xe/xe_guc_klv_thresholds_set_types.h:28:
++#define MAKE_XE_GUC_KLV_THRESHOLDS_SET(define)					\
++	define(CAT_ERR, cat_error_count, 0, 0)					\
++	define(ENGINE_RESET, engine_reset_count, 0, 0)				\
++	define(PAGE_FAULT, page_fault_count, 0, 0)				\
++	define(H2G_STORM, guc_time_us, 0, 0)					\
++	define(IRQ_STORM, irq_time_us, 0, 0)					\
++	define(DOORBELL_STORM, doorbell_time_us, 0, 0)				\
++	define(MULTI_LRC_COUNT, multi_lrc_count, 70, 53)			\
+ 	/* end */
+
+total: 1 errors, 6 warnings, 8 checks, 117 lines checked
+fe55f729c721 drm/xe/sriov: Add debugfs to enable scheduler groups
+7feb8001d98f drm/xe/sriov: Add debugfs with scheduler groups information
+11ef6da318fe drm/xe/sriov: Prep for multiple exec quantums and preemption timeouts
+738511e1e18f drm/xe/sriov: Add functions to set exec quantums for each group
+02c3bc8fc24b drm/xe/sriov: Add functions to set preempt timeouts for each group
+2c98ca2da843 drm/xe/sriov: Add debugfs to set EQ and PT for scheduler groups
 
 
-Build changes
--------------
-
-  * Linux: xe-4220-3adb3f4aa5a8563ee9c1f6e137827b740e3ab40b -> xe-pw-156865v6
-
-  IGT_8663: aca02d1cc9804e5f1868b0ebfba6426e2d1244fc @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-4220-3adb3f4aa5a8563ee9c1f6e137827b740e3ab40b: 3adb3f4aa5a8563ee9c1f6e137827b740e3ab40b
-  xe-pw-156865v6: 156865v6
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156865v6/index.html
-
---===============9082994276985547539==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Multi Queue feature support (rev6)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/156865/">https://patchwork.freedesktop.org/series/156865/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156865v6/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156865v6/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4220-3adb3f4aa5a8563ee9c1f6e137827b740e3ab40b_BAT -&gt; xe-pw-156865v6_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (12 -&gt; 12)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-156865v6_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@xe_waitfence@reltime:<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4220-3adb3f4aa5a8563ee9c1f6e137827b740e3ab40b/bat-dg2-oem2/igt@xe_waitfence@reltime.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156865v6/bat-dg2-oem2/igt@xe_waitfence@reltime.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520">Intel XE#6520</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4220-3adb3f4aa5a8563ee9c1f6e137827b740e3ab40b -&gt; xe-pw-156865v6</li>
-</ul>
-<p>IGT_8663: aca02d1cc9804e5f1868b0ebfba6426e2d1244fc @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-4220-3adb3f4aa5a8563ee9c1f6e137827b740e3ab40b: 3adb3f4aa5a8563ee9c1f6e137827b740e3ab40b<br />
-  xe-pw-156865v6: 156865v6</p>
-
-</body>
-</html>
-
---===============9082994276985547539==--
