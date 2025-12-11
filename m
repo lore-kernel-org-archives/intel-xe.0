@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9F251D43357
-	for <intel-xe@archiver.kernel.org>; Thu, 11 Dec 2025 21:00:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D996ED41D43
+	for <intel-xe@archiver.kernel.org>; Thu, 11 Dec 2025 21:00:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 518C110E35B;
-	Thu, 11 Dec 2025 21:00:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9758710E2BE;
+	Thu, 11 Dec 2025 21:00:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MBLA2xP/";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UrBvO3rB";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 27C6510E2BE
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 35FAD10E06C
  for <intel-xe@lists.freedesktop.org>; Thu, 11 Dec 2025 21:00:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1765486838; x=1797022838;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=QSXLFeEMisRoud0lhIH/091B+rq/8SWVGyQPzZIbb+k=;
- b=MBLA2xP/HP2NsT3wqrBlJeQE3p9hzk2eX9v8PidJAykLVLOmcxmvRJ5O
- wqPnnW4Q1+4fmlfKELunhVWshb3SaXIvY+3mrUVEupLiuVP6fKo+FDoU2
- rs7PBsCuyCZikgFP3CRr+AkQT6+mMuqWFHYer43Nev7U8pyaALUSMvsRt
- wR+uy0nRSJeRv9AGutRBWErq4OowjNC2FrTBIgZjvcQ5Wb+dkdFxvyJk5
- MlY+AgzSOnERyEwYAhX14Za2TrXmvIl4YI70J4UEsSFJeySiK0dGW5KvM
- V7LA+zKsyWPgRRqPT2QDz0MW6SIZgKdmM7OcHCU7zfEoIfhBpPwzz8Nom Q==;
-X-CSE-ConnectionGUID: CRNOoJ6HSsuCuq5DKNLZ8g==
-X-CSE-MsgGUID: f1qWmwUJR8ahQnkn1sxMzA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11639"; a="67649721"
-X-IronPort-AV: E=Sophos;i="6.21,141,1763452800"; d="scan'208";a="67649721"
+ bh=+7gPB/RvaFpcwC+POBev9oB+z7SniYeBD4I1PKrOg/c=;
+ b=UrBvO3rBZzLNHwXzLGc9oXERdV8Ce/xVs2kfJr4mHyXNhfwQE64dcscD
+ cEdubVXYgAkywG2uRRhsCRkP7ko7liAiIVZb9TbEU0z5Fo0Bxq92XwdfB
+ ZOzL69amJfdROS8IWzgkhl3FQf79kg8kQUsBnGEOr825YZzMuYyreDM4/
+ +pQDZYfiPOMJQK/MJvhv7eRraqSlNoYbzS0Na6Zu0NLzvmImm3NbPxgIb
+ sQC1bwdvR19e8/c9uwRDjM9pzkDKeDMzj82hGXS9FVeJOWIv1rx9Lk01p
+ qfDWIzkUaAQUfExO0dSmw8aoaUp6X1owKTVwN6Vu8FmASWieR9GdPqH0G A==;
+X-CSE-ConnectionGUID: od/pH/iTSZymFb7NesASiw==
+X-CSE-MsgGUID: gKKIwsleQvikC/aJ73quQw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11639"; a="67649722"
+X-IronPort-AV: E=Sophos;i="6.21,141,1763452800"; d="scan'208";a="67649722"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  11 Dec 2025 13:00:37 -0800
-X-CSE-ConnectionGUID: ZunbaW5CRn6sg+gRmllZNQ==
-X-CSE-MsgGUID: yETZxfwmT3m2O+TqHpzUrQ==
+X-CSE-ConnectionGUID: fcvbNxmKTKqIUNTeafI9MA==
+X-CSE-MsgGUID: 1XQJgV/jRaWACy6DZ2JmaQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,141,1763452800"; d="scan'208";a="234297953"
+X-IronPort-AV: E=Sophos;i="6.21,141,1763452800"; d="scan'208";a="234297956"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  11 Dec 2025 13:00:37 -0800
@@ -45,10 +45,9 @@ From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: francois.dugast@intel.com, thomas.hellstrom@linux.intel.com,
  michal.mrozek@intel.com
-Subject: [PATCH 4/6] drm/xe: Skip exec queue schedule toggle if queue is idle
- during suspend
-Date: Thu, 11 Dec 2025 13:00:30 -0800
-Message-Id: <20251211210032.1520113-5-matthew.brost@intel.com>
+Subject: [PATCH 5/6] drm/xe: Wait on in-syncs when swicthing to dma-fence mode
+Date: Thu, 11 Dec 2025 13:00:31 -0800
+Message-Id: <20251211210032.1520113-6-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251211210032.1520113-1-matthew.brost@intel.com>
 References: <20251211210032.1520113-1-matthew.brost@intel.com>
@@ -69,129 +68,193 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-If an exec queue is idle, there is no need to issue a schedule disable
-to the GuC when suspending the queue’s execution. Opportunistically skip
-this step if the queue is idle and not a parallel queue. Parallel queues
-must have their scheduling state flipped in the GuC due to limitations
-in how submission is implemented in run_job().
+If a dma-fence submission has in-fences and pagefault queues are running
+work, there is little incentive to kick the pagefault queues off the
+hardware until the dma-fence submission is ready to run. Therefore, wait
+on the in-fences of the dma-fence submission before removing the
+pagefault queues from the hardware.
 
-Also if all pagefault queues can skip the schedule disable during a
-switch to dma-fence mode, do not schedule a resume for the pagefault
-queues after the next submission.
-
+Suggested-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_exec_queue.h      | 17 ++++++++++++++++
- drivers/gpu/drm/xe/xe_guc_submit.c      | 26 ++++++++++++++++++++++---
- drivers/gpu/drm/xe/xe_hw_engine_group.c |  2 +-
- 3 files changed, 41 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/xe/xe_exec.c            |  3 ++-
+ drivers/gpu/drm/xe/xe_hw_engine_group.c | 34 +++++++++++++++++++------
+ drivers/gpu/drm/xe/xe_hw_engine_group.h |  4 ++-
+ drivers/gpu/drm/xe/xe_sync.c            | 14 ++++++++++
+ drivers/gpu/drm/xe/xe_sync.h            |  1 +
+ 5 files changed, 46 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue.h b/drivers/gpu/drm/xe/xe_exec_queue.h
-index fda4d4f9bda8..ae16b9b39ced 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue.h
-+++ b/drivers/gpu/drm/xe/xe_exec_queue.h
-@@ -111,4 +111,21 @@ int xe_exec_queue_contexts_hwsp_rebase(struct xe_exec_queue *q, void *scratch);
+diff --git a/drivers/gpu/drm/xe/xe_exec.c b/drivers/gpu/drm/xe/xe_exec.c
+index 4d81210e41f5..5bc598ba6afa 100644
+--- a/drivers/gpu/drm/xe/xe_exec.c
++++ b/drivers/gpu/drm/xe/xe_exec.c
+@@ -202,7 +202,8 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 	mode = xe_hw_engine_group_find_exec_mode(q);
  
- struct xe_lrc *xe_exec_queue_lrc(struct xe_exec_queue *q);
- 
-+/**
-+ * xe_exec_queue_idle_skip_suspend() - Can exec queue skip suspend
-+ * @q: The exec_queue
-+ *
-+ * If an exec queue is not parallel and is idle, the suspend steps can be
-+ * skipped in the submission backend immediatley signaling the suspend fence.
-+ * Parallel queues cannot skip this step due to limitations in the submission
-+ * backend.
-+ *
-+ * Return: True if exec queue is idle and can skip suspend steps, False
-+ * otherwise
-+ */
-+static inline bool xe_exec_queue_idle_skip_suspend(struct xe_exec_queue *q)
-+{
-+	return !xe_exec_queue_is_parallel(q) && xe_exec_queue_is_idle(q);
-+}
-+
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index 92c703888cff..c4eb845628c4 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -72,6 +72,7 @@ exec_queue_to_guc(struct xe_exec_queue *q)
- #define EXEC_QUEUE_STATE_EXTRA_REF		(1 << 11)
- #define EXEC_QUEUE_STATE_PENDING_RESUME		(1 << 12)
- #define EXEC_QUEUE_STATE_PENDING_TDR_EXIT	(1 << 13)
-+#define EXEC_QUEUE_STATE_IDLE_SKIP_SUSPEND	(1 << 14)
- 
- static bool exec_queue_registered(struct xe_exec_queue *q)
- {
-@@ -263,6 +264,21 @@ static void clear_exec_queue_pending_tdr_exit(struct xe_exec_queue *q)
- 	atomic_and(~EXEC_QUEUE_STATE_PENDING_TDR_EXIT, &q->guc->state);
- }
- 
-+static bool exec_queue_idle_skip_suspend(struct xe_exec_queue *q)
-+{
-+	return atomic_read(&q->guc->state) & EXEC_QUEUE_STATE_IDLE_SKIP_SUSPEND;
-+}
-+
-+static void set_exec_queue_idle_skip_suspend(struct xe_exec_queue *q)
-+{
-+	atomic_or(EXEC_QUEUE_STATE_IDLE_SKIP_SUSPEND, &q->guc->state);
-+}
-+
-+static void clear_exec_queue_idle_skip_suspend(struct xe_exec_queue *q)
-+{
-+	atomic_and(~EXEC_QUEUE_STATE_IDLE_SKIP_SUSPEND, &q->guc->state);
-+}
-+
- static bool exec_queue_killed_or_banned_or_wedged(struct xe_exec_queue *q)
- {
- 	return (atomic_read(&q->guc->state) &
-@@ -1585,9 +1601,10 @@ static void __guc_exec_queue_process_msg_suspend(struct xe_sched_msg *msg)
- {
- 	struct xe_exec_queue *q = msg->private_data;
- 	struct xe_guc *guc = exec_queue_to_guc(q);
-+	bool idle_skip_suspend = xe_exec_queue_idle_skip_suspend(q);
- 
--	if (guc_exec_queue_allowed_to_change_state(q) && !exec_queue_suspended(q) &&
--	    exec_queue_enabled(q)) {
-+	if (!idle_skip_suspend && guc_exec_queue_allowed_to_change_state(q) &&
-+	    !exec_queue_suspended(q) && exec_queue_enabled(q)) {
- 		wait_event(guc->ct.wq, vf_recovery(guc) ||
- 			   ((q->guc->resume_time != RESUME_PENDING ||
- 			   xe_guc_read_stopped(guc)) && !exec_queue_pending_disable(q)));
-@@ -1606,6 +1623,8 @@ static void __guc_exec_queue_process_msg_suspend(struct xe_sched_msg *msg)
- 			disable_scheduling(q, false);
- 		}
- 	} else if (q->guc->suspend_pending) {
-+		if (idle_skip_suspend)
-+			set_exec_queue_idle_skip_suspend(q);
- 		set_exec_queue_suspended(q);
- 		suspend_fence_signal(q);
+ 	if (mode == EXEC_MODE_DMA_FENCE) {
+-		err = xe_hw_engine_group_get_mode(group, mode, &previous_mode);
++		err = xe_hw_engine_group_get_mode(group, mode, &previous_mode,
++						  syncs, num_syncs);
+ 		if (err)
+ 			goto err_syncs;
  	}
-@@ -1617,8 +1636,9 @@ static void __guc_exec_queue_process_msg_resume(struct xe_sched_msg *msg)
- 
- 	if (guc_exec_queue_allowed_to_change_state(q)) {
- 		clear_exec_queue_suspended(q);
--		if (!exec_queue_enabled(q)) {
-+		if (!exec_queue_enabled(q) || exec_queue_idle_skip_suspend(q)) {
- 			q->guc->resume_time = RESUME_PENDING;
-+			clear_exec_queue_idle_skip_suspend(q);
- 			set_exec_queue_pending_resume(q);
- 			enable_scheduling(q);
- 		}
 diff --git a/drivers/gpu/drm/xe/xe_hw_engine_group.c b/drivers/gpu/drm/xe/xe_hw_engine_group.c
-index 290205a266b8..4d9263a1a208 100644
+index 4d9263a1a208..35966889c776 100644
 --- a/drivers/gpu/drm/xe/xe_hw_engine_group.c
 +++ b/drivers/gpu/drm/xe/xe_hw_engine_group.c
-@@ -205,7 +205,7 @@ static int xe_hw_engine_group_suspend_faulting_lr_jobs(struct xe_hw_engine_group
+@@ -11,6 +11,7 @@
+ #include "xe_gt.h"
+ #include "xe_gt_stats.h"
+ #include "xe_hw_engine_group.h"
++#include "xe_sync.h"
+ #include "xe_vm.h"
+ 
+ static void
+@@ -21,7 +22,8 @@ hw_engine_group_resume_lr_jobs_func(struct work_struct *w)
+ 	int err;
+ 	enum xe_hw_engine_group_execution_mode previous_mode;
+ 
+-	err = xe_hw_engine_group_get_mode(group, EXEC_MODE_LR, &previous_mode);
++	err = xe_hw_engine_group_get_mode(group, EXEC_MODE_LR, &previous_mode,
++					  NULL, 0);
+ 	if (err)
+ 		return;
+ 
+@@ -192,20 +194,32 @@ void xe_hw_engine_group_resume_faulting_lr_jobs(struct xe_hw_engine_group *group
+  *
+  * Return: 0 on success, negative error code on error.
+  */
+-static int xe_hw_engine_group_suspend_faulting_lr_jobs(struct xe_hw_engine_group *group)
++static int xe_hw_engine_group_suspend_faulting_lr_jobs(struct xe_hw_engine_group *group,
++						       struct xe_sync_entry *syncs,
++						       int num_syncs)
+ {
+-	int err;
++	int err, i;
+ 	struct xe_exec_queue *q;
+ 	bool need_resume = false;
+ 
+ 	lockdep_assert_held_write(&group->mode_sem);
+ 
+ 	list_for_each_entry(q, &group->exec_queue_list, hw_engine_group_link) {
++		bool idle_skip_suspend;
++
+ 		if (!xe_vm_in_fault_mode(q->vm))
  			continue;
  
  		xe_gt_stats_incr(q->gt, XE_GT_STATS_ID_HW_ENGINE_GROUP_SUSPEND_LR_QUEUE_COUNT, 1);
--		need_resume = true;
-+		need_resume |= !xe_exec_queue_idle_skip_suspend(q);
+-		need_resume |= !xe_exec_queue_idle_skip_suspend(q);
++
++		idle_skip_suspend = xe_exec_queue_idle_skip_suspend(q);
++
++		if (!need_resume && !idle_skip_suspend && num_syncs) {
++			for (i = 0; i < num_syncs; ++i)
++				xe_sync_entry_wait(syncs + i);
++		}
++
++		need_resume |= !idle_skip_suspend;
  		q->ops->suspend(q);
  	}
  
+@@ -258,7 +272,8 @@ static int xe_hw_engine_group_wait_for_dma_fence_jobs(struct xe_hw_engine_group
+ 	return 0;
+ }
+ 
+-static int switch_mode(struct xe_hw_engine_group *group)
++static int switch_mode(struct xe_hw_engine_group *group,
++		       struct xe_sync_entry *syncs, int num_syncs)
+ {
+ 	int err = 0;
+ 	enum xe_hw_engine_group_execution_mode new_mode;
+@@ -268,7 +283,9 @@ static int switch_mode(struct xe_hw_engine_group *group)
+ 	switch (group->cur_mode) {
+ 	case EXEC_MODE_LR:
+ 		new_mode = EXEC_MODE_DMA_FENCE;
+-		err = xe_hw_engine_group_suspend_faulting_lr_jobs(group);
++		err = xe_hw_engine_group_suspend_faulting_lr_jobs(group,
++								  syncs,
++								  num_syncs);
+ 		break;
+ 	case EXEC_MODE_DMA_FENCE:
+ 		new_mode = EXEC_MODE_LR;
+@@ -294,7 +311,8 @@ static int switch_mode(struct xe_hw_engine_group *group)
+  */
+ int xe_hw_engine_group_get_mode(struct xe_hw_engine_group *group,
+ 				enum xe_hw_engine_group_execution_mode new_mode,
+-				enum xe_hw_engine_group_execution_mode *previous_mode)
++				enum xe_hw_engine_group_execution_mode *previous_mode,
++				struct xe_sync_entry *syncs, int num_syncs)
+ __acquires(&group->mode_sem)
+ {
+ 	int err = down_read_interruptible(&group->mode_sem);
+@@ -311,7 +329,7 @@ __acquires(&group->mode_sem)
+ 			return err;
+ 
+ 		if (new_mode != group->cur_mode) {
+-			err = switch_mode(group);
++			err = switch_mode(group, syncs, num_syncs);
+ 			if (err) {
+ 				up_write(&group->mode_sem);
+ 				return err;
+diff --git a/drivers/gpu/drm/xe/xe_hw_engine_group.h b/drivers/gpu/drm/xe/xe_hw_engine_group.h
+index 797ee81acbf2..8b17ccd30b70 100644
+--- a/drivers/gpu/drm/xe/xe_hw_engine_group.h
++++ b/drivers/gpu/drm/xe/xe_hw_engine_group.h
+@@ -11,6 +11,7 @@
+ struct drm_device;
+ struct xe_exec_queue;
+ struct xe_gt;
++struct xe_sync_entry;
+ 
+ int xe_hw_engine_setup_groups(struct xe_gt *gt);
+ 
+@@ -19,7 +20,8 @@ void xe_hw_engine_group_del_exec_queue(struct xe_hw_engine_group *group, struct
+ 
+ int xe_hw_engine_group_get_mode(struct xe_hw_engine_group *group,
+ 				enum xe_hw_engine_group_execution_mode new_mode,
+-				enum xe_hw_engine_group_execution_mode *previous_mode);
++				enum xe_hw_engine_group_execution_mode *previous_mode,
++				struct xe_sync_entry *syncs, int num_syncs);
+ void xe_hw_engine_group_put(struct xe_hw_engine_group *group);
+ 
+ enum xe_hw_engine_group_execution_mode
+diff --git a/drivers/gpu/drm/xe/xe_sync.c b/drivers/gpu/drm/xe/xe_sync.c
+index 1fc4fa278b78..127e26129933 100644
+--- a/drivers/gpu/drm/xe/xe_sync.c
++++ b/drivers/gpu/drm/xe/xe_sync.c
+@@ -228,6 +228,20 @@ int xe_sync_entry_add_deps(struct xe_sync_entry *sync, struct xe_sched_job *job)
+ 	return 0;
+ }
+ 
++/**
++ * xe_sync_entry_wait() - Wait on in-sync
++ * @sync: Sync object
++ *
++ * If the sync is in an in-sync, wait on the sync to signal.
++ */
++void xe_sync_entry_wait(struct xe_sync_entry *sync)
++{
++	if (sync->flags & DRM_XE_SYNC_FLAG_SIGNAL)
++		return;
++
++	dma_fence_wait(sync->fence, false);
++}
++
+ void xe_sync_entry_signal(struct xe_sync_entry *sync, struct dma_fence *fence)
+ {
+ 	if (!(sync->flags & DRM_XE_SYNC_FLAG_SIGNAL))
+diff --git a/drivers/gpu/drm/xe/xe_sync.h b/drivers/gpu/drm/xe/xe_sync.h
+index 51f2d803e977..1c08f9ed9001 100644
+--- a/drivers/gpu/drm/xe/xe_sync.h
++++ b/drivers/gpu/drm/xe/xe_sync.h
+@@ -29,6 +29,7 @@ int xe_sync_entry_add_deps(struct xe_sync_entry *sync,
+ 			   struct xe_sched_job *job);
+ void xe_sync_entry_signal(struct xe_sync_entry *sync,
+ 			  struct dma_fence *fence);
++void xe_sync_entry_wait(struct xe_sync_entry *sync);
+ void xe_sync_entry_cleanup(struct xe_sync_entry *sync);
+ struct dma_fence *
+ xe_sync_in_fence_get(struct xe_sync_entry *sync, int num_sync,
 -- 
 2.34.1
 
