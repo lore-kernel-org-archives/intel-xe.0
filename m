@@ -4,190 +4,191 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D7492D44162
-	for <intel-xe@archiver.kernel.org>; Fri, 12 Dec 2025 09:50:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5A26ED4415D
+	for <intel-xe@archiver.kernel.org>; Fri, 12 Dec 2025 09:51:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 399F510E5A9;
-	Fri, 12 Dec 2025 09:50:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0375710E337;
+	Fri, 12 Dec 2025 09:51:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Sh6YpgDW";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="O5vJE+V/";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 61EBC10E5B7;
- Fri, 12 Dec 2025 09:50:32 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 863D110E337;
+ Fri, 12 Dec 2025 09:51:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765533032; x=1797069032;
- h=from:to:subject:date:message-id:references:in-reply-to:
- content-id:content-transfer-encoding:mime-version;
- bh=Bg462Vx3wG5Yucces8ZPmHCM49+t+ybGPWJf3j+aj8Y=;
- b=Sh6YpgDWbXry3syytR7LkjxKxcPh7efpAQOFe1fP4xxyxl5itb3+bt5Q
- 74t6YDkRhoKWJ4fybU2BaV5Efeohhc5MOxIJXTEgqHIMYdHMov/1h9vkt
- O1xHgjHH2kchwQ5HcdEF/KWG3NH7BU4Q/IGIMFmc4RkaKu/EIeymVZ7BC
- 8LI26IPOhQI2V9torObkvT4XJnXClz/BYTVLxNUkV64QFsRylezWZNFzh
- 6+ykzCmk5XOYwcVMaMVXUTp84Dp+3zURrE/gU03i/q9NX8aN8PbqRBjlJ
- s9KLFgMv4CSDZpEm1uq4y9hBXMpInMuUw6cZL7wtgEy5qiHmwBV/B0Ad5 A==;
-X-CSE-ConnectionGUID: JQL5C6VjT3aH28ULb1OQRQ==
-X-CSE-MsgGUID: Mx5Zp5+eQtOUTPCJpOGS1g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11639"; a="67479760"
-X-IronPort-AV: E=Sophos;i="6.21,143,1763452800"; d="scan'208";a="67479760"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Dec 2025 01:50:32 -0800
-X-CSE-ConnectionGUID: JmMGrt8ORqqUEfLfhezQhQ==
-X-CSE-MsgGUID: X9zvyo+eToWiHkJPowLz9g==
+ t=1765533112; x=1797069112;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=+CLIn4R6UghvmvGZXHDjCw+5hwtKiENGrekuaHyCXAE=;
+ b=O5vJE+V/2CU8Mu07bO2yA5qSek/vZxQpZmVOtZ+LXbQSWpuxWbL29d61
+ xFK2vyGe36LbfkzbKnhLOUpjWTFuLhe8T/sXyfOoX4h+QPZYuo0WkdoLn
+ 2vsTEi1ioYzK2ee1RuLsGpuAgCr0l4HSf5ohhrv4qwLGG2X6xxRDmeJCN
+ v4q6phhoKgyAnyRavsUNIVux5tCqsZH3iRTsHQM2J6NhCdjwtu/2iuqKX
+ uNRkWSMC1H7HwcNYWPESTQF0H3HWk/3PSKGMnfhmvNgPoHVb5dWsYSB9q
+ pGlUrYk23RM4H1Fkrs/wNNItljTGR0Agd9N0gdXx/9oPM0vHS/Z1Gyvzu w==;
+X-CSE-ConnectionGUID: oPAm5WTUTjKApFtj5WqAog==
+X-CSE-MsgGUID: 2rFZvtyKQ8GTBikTB08EwQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11639"; a="67571043"
+X-IronPort-AV: E=Sophos;i="6.21,143,1763452800"; d="scan'208";a="67571043"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Dec 2025 01:51:51 -0800
+X-CSE-ConnectionGUID: m8OYTc+aTJWR4/d05+Nnyg==
+X-CSE-MsgGUID: PbzCtd3kRwWpFttccqv4jQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,143,1763452800"; d="scan'208";a="196647469"
-Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
- by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Dec 2025 01:50:31 -0800
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.21,143,1763452800"; d="scan'208";a="197031137"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by orviesa007.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Dec 2025 01:51:51 -0800
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Fri, 12 Dec 2025 01:50:31 -0800
-Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ 15.2.2562.29; Fri, 12 Dec 2025 01:51:50 -0800
+Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29 via Frontend Transport; Fri, 12 Dec 2025 01:50:31 -0800
-Received: from CY7PR03CU001.outbound.protection.outlook.com (40.93.198.57) by
- edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
+ 15.2.2562.29 via Frontend Transport; Fri, 12 Dec 2025 01:51:50 -0800
+Received: from SN4PR2101CU001.outbound.protection.outlook.com (40.93.195.66)
+ by edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Fri, 12 Dec 2025 01:50:31 -0800
+ 15.2.2562.29; Fri, 12 Dec 2025 01:51:50 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=PGbf5qe2+gKM782sR1DNS02dgc2bTekEFKMVU09Rgnxrp556YyoAIk0k6skEI5+bhhdqZCBOxn7Tw6M7/QhMHL13p/C2R3OS/kU3mRn9mattaDC0s6R7WJdBZZi8PW2b2G/yOpvOvOiZrY+5FHH5Ahzw6lhKUpknzr3WfHS20CXESd6KEi0izRkWMUnNONaapEmRw8rfkRm935OPFt8E8y71gvfHvoK/y8gsGITgccnWWCGnJ46/TqjOrcDS5ZmTqk3oP22UV+FOBhrGwMarekIbbkAvX2Jg/KVnDL342G7fpq9iNcwcEkRZiNd9huduwqa6xWUEmFHrZd9iDOjaAQ==
+ b=LRuTcel4WGpXcXra56wGYV7I+2RzpT9pMppSHUBxs+RUmmHk/9VsUb393EcYv5EC8TKzZ6sdjSEAmAt12JPn6YwPNqPxcksO0CKunC4/nsBqWHp2OWvPVgYJqiBW2Zg2t/a3FLZw/i+9uDWsetRJ7nvBXXOzX2nAx9KDbNvlFVK3DPzwOkKUIouTQT21NhNBdC5rBt4Qx+mce4AEcoFzdKwqnImq4yKWXG4LOJgPQQRvPGi0GabZyG6QzRRrZzxd+hfPh3uFnwv5woKpOAjeqQ041tFeJsZ9IPBJ6GQBu/stDtGJrqtLWhRFdofXOn2misg32jFL7gwSiCAiSU/8NA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Bg462Vx3wG5Yucces8ZPmHCM49+t+ybGPWJf3j+aj8Y=;
- b=J74lgUE7p93uSEqOZNKnMiltVISVZVdpG8kN/FtyiMyEyl2H4Lvik2TSLfL7KEWXAWnmNKIAXmV6irB+1rhNGCwj8ByV+jyP3ZWFdpwNGkB8QfC+PK+rYEWZY9H2UjPIcjd0cefjRsSdzCgeEDzg8VaO9tguV12e9Mxw0Jos2BwWnJ70d0mDrpR2JUGuwsB6hBZ12CgjYkB5RGnYtp/l+o7paU3kI5QE/Ax+KPOj9RgbwgKqXgyTTao0t7xMnnlqe5ORitbHgUpTijqcyybcIN6+ooJJbdB9DrfvRjp4ziv9JbHncJFt14iVomLU8ZYcwFKF6k6lPZDsQggAGB4cWQ==
+ bh=Cy+Ic3YnRuYcOOciKR3+95GISsYge8TXImvE8gLS+hE=;
+ b=yOHxK0IqtV+4zlOOWxseRjs/es6oZTw+48sFCb5WH+JnctzxtHbhpEsmLzE79K6D1vObl1zuR9S6nFqSrE2VPrgQVnFx1uB09zVKm8TSA37o/o/z68A3EWcv+tpOob0Bz4GF10qILGR8SWDN3eyy7Q6oHfbYKEqQbJLAPAAH5cY4DJ7UeNE+ByzMcreNrqnhwgVZYXjoXqgEB9spJAJz+hw2424uiV7qxxXyYSAZkKRFn11L1Ka2z1h9aR2bv/ZNH+CdKIk0pVZA1argw9alhhkOmfseM04vzZQiEtLN9lRpFwGB7B/b9FWrFTLOvtSl2N5uw+iTkx47Vj3vRnAdcQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Received: from CY8PR11MB7777.namprd11.prod.outlook.com (2603:10b6:930:71::14)
- by DS0PR11MB8114.namprd11.prod.outlook.com (2603:10b6:8:129::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9412.10; Fri, 12 Dec
- 2025 09:50:24 +0000
-Received: from CY8PR11MB7777.namprd11.prod.outlook.com
- ([fe80::60a1:eab8:65ee:6bb8]) by CY8PR11MB7777.namprd11.prod.outlook.com
- ([fe80::60a1:eab8:65ee:6bb8%6]) with mapi id 15.20.9412.005; Fri, 12 Dec 2025
- 09:50:24 +0000
-From: "Govindapillai, Vinod" <vinod.govindapillai@intel.com>
-To: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, "Deak,
- Imre" <imre.deak@intel.com>
-Subject: Re: [PATCH 26/50] drm/i915/dp: Factor out
- compute_max_compressed_bpp_x16()
-Thread-Topic: [PATCH 26/50] drm/i915/dp: Factor out
- compute_max_compressed_bpp_x16()
-Thread-Index: AQHcX9szYZZ0p7K7VU+CWVoEU1uLCLUd2cAA
-Date: Fri, 12 Dec 2025 09:50:24 +0000
-Message-ID: <9abd97662ce187ae0260a32639aae5a64b42c52e.camel@intel.com>
-References: <20251127175023.1522538-1-imre.deak@intel.com>
- <20251127175023.1522538-27-imre.deak@intel.com>
-In-Reply-To: <20251127175023.1522538-27-imre.deak@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Evolution 3.52.3-0ubuntu1.1 
-authentication-results: dkim=none (message not signed)
+Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: CY8PR11MB7777:EE_|DS0PR11MB8114:EE_
-x-ms-office365-filtering-correlation-id: ab9790dd-555e-4eb5-d19b-08de3963df55
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0; ARA:13230040|376014|366016|1800799024|38070700021;
-x-microsoft-antispam-message-info: =?utf-8?B?Q0JQR2ZUdC9CSXBHMHdCZU5Pamo3a3lqMmpKQXVXVnN2K1NFWWRQc2RNclM0?=
- =?utf-8?B?L2VtUXJGY3ZuMG9tS2drcFZqQnBtcWlyTHBzZUlRQ2J3ZnRsMWxFZ20wRzlK?=
- =?utf-8?B?aS9jRVBpaDJoeSt6c3BYUWZTbkJlRWlGYmJvVnpBZjdTL2xvbFVKamdXYWdo?=
- =?utf-8?B?Z0haMUNyK0pFak5nMGNwUlM0SktJOHlnMWdvV0xHZ1BkcWRSdHdkNWpMcVdR?=
- =?utf-8?B?M3loNEt0a1VZcjl2RTVNTE9XVmsyS1B5VGVZNmVNeUtFT3N1UUp6ZkZNOTFD?=
- =?utf-8?B?NlExbVMxeU4vVVgwb2l5bk5lUjFaNktKV0dUSE4wdmZTcGdyY05ybjJIbDlQ?=
- =?utf-8?B?MVduc0VjTUZLN2dYcWhoZ0JPc1dtdGdPNmhnUHpLSGh5QnQ2RUQrc0t1aUh2?=
- =?utf-8?B?TStuVnJBeE5DdXBkL1RtN1JGVEY4eEtQR2k1bTI1RHJBb3BSd2g0VFZDSlh5?=
- =?utf-8?B?Yi9IUTlXaUtvSHNINGgwQnFaQVZiWVRmdVRiYTN4MjNqSmN3NTBUWjFrVDUv?=
- =?utf-8?B?N3drajlWZ1BrUjVDVE94c0hBcjVkK3B2bHF4VndpOXBwc3ZIRWp1OVZmV3Yw?=
- =?utf-8?B?Z3FoamR3eEZBZ0l0OXUvcXRTY1E1eTBpVklVbjBRVFRmSnV4d3l5NnhaeFda?=
- =?utf-8?B?VzVhYURkTTR3eFJmRGF4NjRQOGR4Q05BNlhOY2xtTXpqWDIwRlBLN096R00x?=
- =?utf-8?B?cEdPYnhzMis1T1VPdUErbmlLM2ltZUt1VnB0SEcwRDZWRmRuYU9oQ0tMY0JM?=
- =?utf-8?B?VjFZeWd5MEtVNVRYdmZzdndtcVlsN2t5eVcwRm5OL3BHc3NuMTViSFhHeXdP?=
- =?utf-8?B?RTBLMXNKY0pMRE15aThpZ3YvWmhJaDZLZ3NMbEFpd1BRMm51RGw0ZmgreFZu?=
- =?utf-8?B?UzVIOE5TMTRZcCtzcmdQT2tiSzhoVFpneU9QSzJpNEp3SVpBZ3RPT2lSZjVx?=
- =?utf-8?B?M0ttMEgrRFdGZ2J0WllxK0ZjUVJYN2FiUFYwL0pDaU1oTGhqaURoK3BSa3RV?=
- =?utf-8?B?R2wwTzBhYUFYREN6b2hHYzNrNDl1ZXFDUXhZVDRVMmdrR1pWYkc1SnNxRExm?=
- =?utf-8?B?SGp1WnR5SytkbjRHVU9aNEJ2QlVBZnFkQzNZK25SeGoxOGhQd2tHamVHTml3?=
- =?utf-8?B?MmtCUkh4SW9GQkhaRWszYjJmSEhyUW5JYnkxYTZJTTlJTHpPYlVBYzh1aFAw?=
- =?utf-8?B?MXlxRmo0L01HajA3VThNcFRZMVM1aEsrMzJQR1RiWno3ODZUWTR0ZHRWYzZU?=
- =?utf-8?B?dXJGbVZWVVZzY1Jha1ZLQmpSMTFHT1duN0xYdU1kalZLa3pOWlBUR25KSnU0?=
- =?utf-8?B?dVVtVzNzVDZpczJ6SGQrU3BRYi9KcTU1andTNk1neS9vYmlaS2tCaUlSZkZk?=
- =?utf-8?B?WStGZGl2WUlGazhaUURXc0J3dlV0RnplUG11ZkwzWkZrdHhNK09rc3JVOHJY?=
- =?utf-8?B?Wjh0alF1N3NGRjlSMXo1dUx5WDdaaUswc1R4eU9DdERDVSsxTWZ1RTEyckIw?=
- =?utf-8?B?U2syQUxuMzZ2ZzZRMWp6M0RTZ3EzdGdseklCdHNVOUJRQ0M4b0xxbzFsN0pj?=
- =?utf-8?B?OG9VR1lLQjI3ak9CMFNEM2FhR1lYNWR6cW13MUVsaUYvSktDVmxpaVk5amc4?=
- =?utf-8?B?b3htdCthV3lUdVBvVnFOYVFCeDB0UUtBOS9kb0ozaFRPU3dmcVNDV0R3TEQ0?=
- =?utf-8?B?emxnRkhvNXZLM0t3TnBZaG9GOEU5SnFRWENYZjFiNjZtaldYK2huMUg0M0Vn?=
- =?utf-8?B?MVZYeWNja0pvY2JjeEliZC9RMW1yTHpiUTd0ZW0zM3psM0J2RkhOYmlhMWJn?=
- =?utf-8?B?c0hmT2lna2krSksvVGM4Q1FERWdJbXdCb2J2S0krRmdLU2o1Sm5jdzNzbGNw?=
- =?utf-8?B?LzlreGhJa0hPQW1TKy9LTFAyeTBDd3VVbEM4cGY5VEw3UDhxMWNVWGRldzB5?=
- =?utf-8?B?cUI5d1c3d3Z6SHlJb3BIQnloa0Nnd3kxemd4dnNSa2VrT00zK2xMaHh4NWU5?=
- =?utf-8?B?QnRWK3hGODZ5UTRlbW9sbk1sOGVlaGNnOFNXcDkrelNGdXVtQ1UwK1lTRjkv?=
- =?utf-8?Q?YKrkgx?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY8PR11MB7777.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024)(38070700021); DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?Wk1CWlZadGVybXVNc2MwUlJ6ZzVIam5CdElKaEY3ZldDK3MwOXNvTFZQSDFC?=
- =?utf-8?B?ODNzekF1K3V0dDJHaEZrV1ZFamtoRmM2TDlKcmJPWmhycXExZ21HVXc3T0g1?=
- =?utf-8?B?NHh4amV3WHEweVZncmZrbDVyS1k1blJuMGJjSVZuR0pKSUpDNjhBbHdhS2l6?=
- =?utf-8?B?RGVvYnJIbW9GOGRKaTEyQ0NHU0JJOEFNSjFmaVJkMjhWUlEzZjBlcVN0clJo?=
- =?utf-8?B?RzJ2RDd1WGsyMVVPSDBDTHR5dzNFblUySjFIZlQzTUYranp1NnBCbndidkhC?=
- =?utf-8?B?UStoUUlzVXBJMXgxamxaRzkrdTRzWFZHQjBvcytpSUFUa0JyYUl2SVVwaExV?=
- =?utf-8?B?aVVFakNnK0V6b1dzREc3eWFCQzUvSENYVlZ4dDNFclpDTDF3ayt3eDEyeFMy?=
- =?utf-8?B?eVloRmQ1emRnZHVrd0QrdjlLVFk4Z0Z1aG55cXU3YzdsazkzQVBCZytJSkNa?=
- =?utf-8?B?TEY5eE9DN3MyeFBuWk9NcUFyTG92aHNIOGlaSmMvVjM3VFR0NUZuSjVtU1kv?=
- =?utf-8?B?WHo2M3BEdVFhYmRBTVZpbDVmWE1tRnRwQWl5eUlNZG5JYlNNYnRocjhUNG5M?=
- =?utf-8?B?YWxKUmlhTkNhb2ExNHozdmVCeHIyTHEyWkNPOXdjMitsNXNQb05WdWtGbkxj?=
- =?utf-8?B?UTZCb1lPb1JxcmV1MFJLMjl4UW1kNkFXVEZXbTUrTkFKcHcwc21PbVlWQjBR?=
- =?utf-8?B?RkRnK09DWlZYVE1jVzZmekljY1QvNEtBbXd3ck5jV1BRZHRnVUVkaEtzZlRZ?=
- =?utf-8?B?RFFzN3RLZE1KZ2k5RmZ2Uy9kM0lrR0pxUTRHano0YXR6KzIwMmV6RDZEWnph?=
- =?utf-8?B?T1VEZ3pQZXRtOTdtOWtkZUFEL0VtbkVzbE83YU5wMFJmUVlsYk5UUnNVZnFw?=
- =?utf-8?B?Z3VJSGZaREJHcjJONUxGb0p4VHhWSnpYZTRRMmxGejdwTXo3Vk5iTFNxTS9l?=
- =?utf-8?B?OUkxRDJHbSs1SUZ5dU1FenorWUNtVVREc0Rsc1VwclVhZHB4Yi9oUEUxYjQ1?=
- =?utf-8?B?MG1kbjB5WjdjVjBTd3F0UThmcjVsNzhyczF3ZHRma0hlVU5COHRtNEc2QXhH?=
- =?utf-8?B?YVRCL3FJeVE2UURZd0tKVEtqVyt5M3hKTUI1ZGNqTk0vV2FzYS90WFJhbzVJ?=
- =?utf-8?B?UVZ4ZmJvVTR3Rlp1Z0VLVjR6WGhGNVBRUHA3RnVYNk5BUWNNMFJGc3V5dFJk?=
- =?utf-8?B?emRTTmlUSlkzdXRtdjdQWGMxR1BDRmlqdFFmaHA0Sm1jVlB1L0U5a2pkY1FT?=
- =?utf-8?B?Tyt1V2NPb0hhWXk1VCs1ZVlybXpLaUZQbEdrYWR2RkppbW5idExCOXpjLzR2?=
- =?utf-8?B?K2dwQUpaOUt4RnMweDc5cnBMSW1mK3BBbWJiVnVKQVpKR2NzUHpDeFdZTkcr?=
- =?utf-8?B?NjVoY245cVhsRnA3N1hpYUc0VXRXMGcxeGR3TG42TWd4UEN1S081Zzl0eTNV?=
- =?utf-8?B?SURvK3FIcjhlYlNmQVBaWGQvL2lWclhJRjdHN1B0QjdJMGZpZTlTNDcyYzk1?=
- =?utf-8?B?QVIyd1hYNERpRHVHMFNBcktLUVZ4Ui9iSHVXR1Mzb0NTdHYrd0QzTkQ5UGlp?=
- =?utf-8?B?dFMrMmEwdzZwL240by9FR1lsWjNRNkVFbU0yM1dNaGp2ZFdyOHJkT2JnVWY5?=
- =?utf-8?B?M1hCdHFFaUg1Y3I0QXJCRzREbFJvNWw1UlgwOTFQYmcvVVZKajF0dmxlbTJU?=
- =?utf-8?B?aTVGaWE2K0ErRlBlS1lSNUhVWEQyanJSQ2FwZzFFQ2hjeHZveFRtVElEcEdU?=
- =?utf-8?B?cURXbnBRazhRZ2J1QjBoYVNXdFhMcE9mQ1NCcGpIQ0FoU2dWSVYyWVNIcS92?=
- =?utf-8?B?MWh2RjVNeG5lL1FMcGs4elVQYSsxeFY5S1JKZDJmNS83ditpcTJaZmRiQVV1?=
- =?utf-8?B?N1VWVXdDam5GdXJVdnhuU2NWZzNsMWxrM1FFSFVOSGxCRjBRSlhOdmpXTnZC?=
- =?utf-8?B?N3FpdFdUb1ZkTFgvdTJndzIvemJma0xKZDNQNTZaSUhCaVFTVEN6alVoWjFY?=
- =?utf-8?B?VjlOV0p5bGpvM01YaHBZNjhRb1pLYkd0bklMWUNYVnljakNQQ2k2RE9hN2dh?=
- =?utf-8?B?aVYxUnl2azQ1MmFjeTNrQ2V2VHo0OTFGM05WTDQxQzZLY0dMTXdqeENUT0Yr?=
- =?utf-8?B?eUgyeHFpWi9NQUVPOXU0TkpDSTYwKzBLK2prc21ERi80a1ExeFhwdEVsQTdu?=
- =?utf-8?Q?SgMl6tGMnGG4Je5LzlJknMA=3D?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <E22C55A81806354F811C12BAC420DD42@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+Received: from DS4PPF691668CDD.namprd11.prod.outlook.com
+ (2603:10b6:f:fc02::2a) by PH0PR11MB5015.namprd11.prod.outlook.com
+ (2603:10b6:510:39::5) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9412.9; Fri, 12 Dec
+ 2025 09:51:48 +0000
+Received: from DS4PPF691668CDD.namprd11.prod.outlook.com
+ ([fe80::803d:39cb:d276:4ee5]) by DS4PPF691668CDD.namprd11.prod.outlook.com
+ ([fe80::803d:39cb:d276:4ee5%8]) with mapi id 15.20.9412.005; Fri, 12 Dec 2025
+ 09:51:48 +0000
+Message-ID: <105630a3-a5f4-46cc-86a8-6fa37a15a8d3@intel.com>
+Date: Fri, 12 Dec 2025 15:21:39 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 12/22] drm/xe: Use the vma attibute drm_pagemap to
+ select where to migrate
+To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ <intel-xe@lists.freedesktop.org>
+CC: <dri-devel@lists.freedesktop.org>, <apopple@nvidia.com>,
+ <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>,
+ <felix.kuehling@amd.com>, Matthew Brost <matthew.brost@intel.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ <dakr@kernel.org>, "Mrozek, Michal" <michal.mrozek@intel.com>, "Joonas
+ Lahtinen" <joonas.lahtinen@linux.intel.com>
+References: <20251211165909.219710-1-thomas.hellstrom@linux.intel.com>
+ <20251211165909.219710-13-thomas.hellstrom@linux.intel.com>
+Content-Language: en-US
+From: "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>
+In-Reply-To: <20251211165909.219710-13-thomas.hellstrom@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: MA0PR01CA0087.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:ae::17) To DS4PPF691668CDD.namprd11.prod.outlook.com
+ (2603:10b6:f:fc02::2a)
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS4PPF691668CDD:EE_|PH0PR11MB5015:EE_
+X-MS-Office365-Filtering-Correlation-Id: 21a14b41-bae9-4d44-9db7-08de39641118
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|1800799024|7416014|376014|366016|7053199007; 
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?aXZzcFJJQms5OE0rdGhHMnRuUU1VTGJBelB0Rk90ODdIL2FHT1dQVHVZMjJD?=
+ =?utf-8?B?cWtSaHBWbXZ4R05za3hob241eEJxdm55OTZ0WWJCZzJQc25ZN0V5TDdHUHB2?=
+ =?utf-8?B?SFp5SFFOVXRzb1JxZlhSSWd3RVQzSC9nR1VkOEQ0VDFkbzZUbVNYTVR1YjV2?=
+ =?utf-8?B?Z3hrV3R0Q1BSMXhrMWlpV1QwVmZQV3dyZndWY1FGcktTT3lvcVBualFYbDdZ?=
+ =?utf-8?B?NXNwUFYrWFFBV01YbUc5K0pleG1uNU9zdkM3RG90c3d6TERQOGt6ZXRxVmZY?=
+ =?utf-8?B?aXZQQUduMnZ0cmtyR1pBd05DSjRJcFdjSENUcVg1TnFKcmovb2tRaGg5Rm1r?=
+ =?utf-8?B?dFkwUVBqS2R2N2dsazdYVWFDTGw2L1NHOVFQREk0QmpjU3RGZWdmRnh5Tk9W?=
+ =?utf-8?B?SWxyd0M0b3h2UnNwRUdDWDhuT0FPVmZ6a0pwT1MzNzFFelh1eTUwQ21ZQzdK?=
+ =?utf-8?B?MzRDTTBuZFhZbVJjTmtEcDUwK2xockhNV0ljd2piMmV5bHJ3RVdZSFBxQVRI?=
+ =?utf-8?B?aWhqQTRxMW41T082SHNUREpHVUc4eXdvazM3T1AyYzF1SWpvUEdjcUFGeDM0?=
+ =?utf-8?B?RFZrZGhVZThXZGdUenlXelM1V0xnd0RqWUx3b0Jsb01ScW43RVNHMWFPanRG?=
+ =?utf-8?B?aUgyTXRFS2hpeGRVcTZCcUhrcHd0SnVjT05wLzRLajBDQ1BNK29xZTFUSzhM?=
+ =?utf-8?B?aWpGWUQ3dTRHNDRSUEdma3N4Zmd4VnM1OWJwVDlISlh5WGJWMDFhcEsybmNs?=
+ =?utf-8?B?Y2YyR0JrRW5iMTg5NDlabWtvVmg0WVhleUxuRjFCTVFlWEdWRnZkTm95RDg4?=
+ =?utf-8?B?L2lvU0ljL2hSZ3ZWbXVTWDkvb0xucmNxRUsvZ1h6ZzF4Kzl3Z1RkT2lTd09E?=
+ =?utf-8?B?N05vZFY0cGt5S1EwZUZQQTljQ01iZXp3QkJTNEZ1SGJpRXNIK0ZSaVdWZzc4?=
+ =?utf-8?B?elpLUVk4MVF6S0RmdytpbHYvL2Y2dE5EWjE4aFE5aEU5YXZyOUpTWjM1ZVFs?=
+ =?utf-8?B?bXFlM2R5QkN5dVlZR2w0bVp2U3VidHYxUk9NR2g0bTV0S3Y1YmVhNVJRMEFv?=
+ =?utf-8?B?VVNMR2RlYXhxYzhTVnF4a0NBNzZENEVlK3llc09Tbk0rWUpLL3RsTlpwTnYz?=
+ =?utf-8?B?NUUyTENQMERyVUppbTQ0enJENGRXcnZ5NGVBY3MzSUx0UnQzZHJSL0MvSDBa?=
+ =?utf-8?B?RTI3dncvUkl1SVNoRGlPc0tKWDZpUVc0dEpLMHFHQVVYTVcxMHpiQUI4TitT?=
+ =?utf-8?B?MkFFekQ0ditnSlJSOXVmY0FZYWNNUWExZzVhK2NVNVNTRmZJQUY5VG55Yzg2?=
+ =?utf-8?B?ZXlsSERINFRMTjUwN1N6TzgxckxpbUxscmdHdnF2dWFGb3M3MTIvRkl4UlJ6?=
+ =?utf-8?B?MjVqMEZ4UXpyY3BvaTd1b2tLeWtaemVTNEZ5MnRxVTd5WlBrS08yNzQ5b1Ix?=
+ =?utf-8?B?dUFYbEdWZnFEQjNRa2treFJzKzE3RUpNUU9GaXJxOEpmMnI2dHFpaXU3eC9N?=
+ =?utf-8?B?OTV1Znl1dkZKeGlZNlNTTGl2Q1pDRXJLZFVuY0l2cU9wNnhhRkljRzQ4MlNM?=
+ =?utf-8?B?a3lnZWJlaU03RTdXb1RnbW1xM3AvTHBRS1lCak56WXo4dy9pdktIaW92RlVH?=
+ =?utf-8?B?Q3hmM09QR2diN0lNSVUzdE51NHhHcytDVHBoRGJtVlJ6amltelg5cHQ0Nzlv?=
+ =?utf-8?B?ZUdRaWlVcjB2a1ZZZFFKMzhseXdLc0w4RzFTMEd6aWpOUGtyZzBRdTUyZSsy?=
+ =?utf-8?B?b3RVR3lYeVYraDd6SU9zOUQzSm9LbWIrZWlxT1F6VFRxZGFxbHd5QjlKSlVv?=
+ =?utf-8?B?cFQrTSswNzhaR3plQkJpRUxvQllQQmtxc252cGVwRVNnKzFxYkQxVHhiNWVi?=
+ =?utf-8?B?Y1UwTGtXdDZjNXUwNjFUQnp3MGozdnh6TkRiV21FaVJrY3RIT05saTlqaDhX?=
+ =?utf-8?Q?QMKuGiWKNB41ejsbByQRb20/SjBIdrN1?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS4PPF691668CDD.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(7416014)(376014)(366016)(7053199007); DIR:OUT;
+ SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?eTNraklpelhqSkNXVWxhTWtVM2RMVDhZRDQzZnhmNDFMcFZsTUdEUGJMbGlZ?=
+ =?utf-8?B?aUpPaGMyTlhDZS8rNWdMQzNXYmEwRXJKYjFBeWExYWxoKzJSd01FMjZ0a3Jh?=
+ =?utf-8?B?SWMrYm5CZTFqa0lPWFVmQ3B0TTdpUGNWaW0rakdNeVRyY3lOWWlsOXNISHBU?=
+ =?utf-8?B?b1NCdGtZeldQM3VSTVZHc3FCc20xanUybzV6VWZOMCszK2s4RG1lbVlKd0tO?=
+ =?utf-8?B?d1NNUWc2bmtFaVh3eWRPU3ZyS0lETitEcnk0aHlGRTdGVFU3dkdxL2x4a25r?=
+ =?utf-8?B?Zk1ScHR6Q3FXMHdudDhXaTlXQWR6ZWtZV1RZekpvbFVYWVZRb25lM1Y3LzZx?=
+ =?utf-8?B?RVVCQVVHbGI5RERUMUNMUU5VVytaSWRqZzB6TWpObEs5STltRUs3SDROc0tB?=
+ =?utf-8?B?WGx5REtpbTNtUHpIbk9VanJlaGIzYzVUa0tRcEVkODZrWnVDVVEzclRoTFVH?=
+ =?utf-8?B?YjgraUFGU2dnbVNHNzk5M3BYTzNTUjYyeFhPOVpSUFhNUml6ZVNtOStydmFu?=
+ =?utf-8?B?NEF4bDY0c3BnMzZ2YTAzOGpZcVNFeWJlMy93ZXpKUUdFNXpWQklmcGtCVUV2?=
+ =?utf-8?B?aktiV0pYSnNra2RRSDRVVUt4eEZ5dDlhS3d5a1ppL1pCL05Ic3BrcUhKeU9r?=
+ =?utf-8?B?eE4wN1FYcDgyL0JZaCtzM1gwbjJZZU01ZzdaWEc4UGZpcXJocEJTRHkzMU0y?=
+ =?utf-8?B?ZktwU3FZcW00Zkl1bk4yVjNaYm5JUWhBYnkvT20vcGVVQXNEL1BnOW1SZVls?=
+ =?utf-8?B?U3k5MTZtNjVuRGFYUGgrUUU3L0pKVEhlRy9mQjJ0MkYzampZVDgwSGtjZ1dZ?=
+ =?utf-8?B?RUtTWGMxU0xNUE5vbkJGc1lmeVFrdVlONHJadDg2azM1cUYyRWFPb3J4djBx?=
+ =?utf-8?B?cjNQQWllVVlKRVdLKzdUUlVuNTJhQ0NOcGZpSWprN3M4cmV0RklZM2pjbnVJ?=
+ =?utf-8?B?SzJaR0g2TXFxeXVZdkRVN01mUFdRbnlGNnBYeTZkQXpvL1o1RkEvazgwNHpt?=
+ =?utf-8?B?WWxzRWJJNUJmL0MwQmdwYmVnMkhCc0VRTzkvZ1RBVENFTVRZVXN2UjBITE9B?=
+ =?utf-8?B?eitLRUdYUysvWUlIVmJ3QU1hcmlVUmw1cFVGZnlkOEdLTHZZMSsvRXIzOVVr?=
+ =?utf-8?B?K0c2aDN1Z3JnMkFmNytJQUZBeFF5YUxlYTcrbDBCTng0SGhKZjR6ZTVOYW1k?=
+ =?utf-8?B?Z2JwSlFwdGRNVjRFckxQdmM5bHJhQzJwSGExZUlxR0I5V1MzNXpTelRvN1M2?=
+ =?utf-8?B?WEdXU0Q4TTVhTDFBbk81bGJMSnhrWnFubVZRQkRESHppMlNEU3ZzZm1INFhG?=
+ =?utf-8?B?RkRkTDBVN0tyK2VTRmhTTG5MN3EwMGx0MHpXQnJ4REF1akNUWWsxb1hCVzh0?=
+ =?utf-8?B?SXFLb1VxVVJhQkVOL2VZSGZVVW9CU0ljWDBuNG5ZaWY5ZFBJeUtiVXVEZk03?=
+ =?utf-8?B?TVAwVGNEU2JhYWdXQ1BYclowYzA4UnlDWi9kUDNsY2E1UG83Rk9PTEozVDZl?=
+ =?utf-8?B?TVVFOHVuN3dsRlVLWFp2WUZlOW81MDN4VGhib1FVdVhBR2UwUnV0UnpCVk4z?=
+ =?utf-8?B?K09EU084L0JHRzQ3ZkhZMHJZcnQwbDFhTmt4ajJkeXNIWEhuemlwekx6U25z?=
+ =?utf-8?B?aWJDMmpHZ2hjSWlmTC9wY0VrVlhwTVZUVDdIem1BT1JDSWhXdkkrYTVYemJn?=
+ =?utf-8?B?TVVWWEJJVCthOEpCRm5lMTRrb0tDb01iSUhTNGcwVnhaRENGczlHQ05SWmhS?=
+ =?utf-8?B?YjNCTUdoKzN5TkdYczB3RVd3TFQveWdHVHBPc3VFZnRWTHp2L1Q0a2lQZGRL?=
+ =?utf-8?B?VURQL1FtWWs3S0plOGwzUnF6T3BjQ0d5elYxUDFXQkZMRjQyaWFRZTMxRTlF?=
+ =?utf-8?B?U3UyTWZMakQyMDExQm04TTBIS3Vlam9PcEdpa05MbVVKdGpFMUFEVHlwVFRB?=
+ =?utf-8?B?c1dWMXk5bkxWVkU3SDhIdFV1TDl3VEtFaXIyYmhwQWhKRGwyYnFtbVA5a3F0?=
+ =?utf-8?B?L00zRzloV0Zhbmw5ZTFjbDR3SVl0TWY3N3J6YjRRSTl4bE92VG9qaFJwMkJx?=
+ =?utf-8?B?QjlTMkllSURyZ3VCMy9JakxQL01IQzFJdjE1SFpuQnpiVU5wMlBRdUtmdmdK?=
+ =?utf-8?B?OUFxcHhHQXhvZmZpUW5LR0VGSDdvNUcwcDloSkJMeGVRQVgrVWlGcE05NUR3?=
+ =?utf-8?B?alE9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 21a14b41-bae9-4d44-9db7-08de39641118
+X-MS-Exchange-CrossTenant-AuthSource: DS4PPF691668CDD.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CY8PR11MB7777.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ab9790dd-555e-4eb5-d19b-08de3963df55
-X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Dec 2025 09:50:24.4641 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: E8LnWoE/3h615VPTBed0ssZWFbUIje/yTKoEmhzsg4RKTMK4naG/jX7Ie7RgRNfnzHM81+kpCLge9+M/nsF7vFVdXTGx1Z4h7+LuDoREfX4=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB8114
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Dec 2025 09:51:48.5690 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: NDoWS9ARy4trqraCprfAGDsfgZu58zq++th//o7pecAl3Anle36nREGp67L2h2Istu/4vE8ZSygGjMfqu5V7wPtVF/QW9phdxvE+EsbUpoA=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB5015
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -203,92 +204,380 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-T24gVGh1LCAyMDI1LTExLTI3IGF0IDE5OjQ5ICswMjAwLCBJbXJlIERlYWsgd3JvdGU6DQo+IEZh
-Y3RvciBvdXQgY29tcHV0ZV9tYXhfY29tcHJlc3NlZF9icHBfeDE2KCkgYWxzbyB1c2VkIGR1cmlu
-ZyBtb2RlDQo+IHZhbGlkYXRpb24gaW4gYSBmb2xsb3ctdXAgY2hhbmdlLg0KPiANCj4gU2lnbmVk
-LW9mZi1ieTogSW1yZSBEZWFrIDxpbXJlLmRlYWtAaW50ZWwuY29tPg0KPiAtLS0NCj4gwqBkcml2
-ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwLmMgfCA4MiArKysrKysrKysrKysrKyst
-LS0tLS0tLQ0KPiAtLQ0KPiDCoDEgZmlsZSBjaGFuZ2VkLCA0OSBpbnNlcnRpb25zKCspLCAzMyBk
-ZWxldGlvbnMoLSkNCj4gDQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNw
-bGF5L2ludGVsX2RwLmMNCj4gYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rw
-LmMNCj4gaW5kZXggMmE1ZjVmMWI0YjEyOC4uOWRlYjk5ZWRhODgxMyAxMDA2NDQNCj4gLS0tIGEv
-ZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcC5jDQo+ICsrKyBiL2RyaXZlcnMv
-Z3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHAuYw0KPiBAQCAtMjY2Miw2ICsyNjYyLDQ4IEBA
-IHN0YXRpYyBpbnQNCj4gY29tcHV0ZV9taW5fY29tcHJlc3NlZF9icHBfeDE2KHN0cnVjdCBpbnRl
-bF9jb25uZWN0b3IgKmNvbm5lY3RvciwNCj4gwqAJcmV0dXJuIG1pbl9icHBfeDE2Ow0KPiDCoH0N
-Cj4gwqANCj4gK3N0YXRpYyBpbnQgY29tcHV0ZV9tYXhfY29tcHJlc3NlZF9icHBfeDE2KHN0cnVj
-dCBpbnRlbF9jb25uZWN0b3INCj4gKmNvbm5lY3RvciwNCg0KY29uc3QgPw0KDQpSZXZpZXdlZC1i
-eTogVmlub2QgR292aW5kYXBpbGxhaSA8dmlub2QuZ292aW5kYXBpbGxhaUBpbnRlbC5jb20+DQoN
-Cj4gKwkJCQkJwqAgaW50IG1vZGVfY2xvY2ssIGludA0KPiBtb2RlX2hkaXNwbGF5LA0KPiArCQkJ
-CQnCoCBpbnQgbnVtX2pvaW5lZF9waXBlcywNCj4gKwkJCQkJwqAgZW51bSBpbnRlbF9vdXRwdXRf
-Zm9ybWF0DQo+IG91dHB1dF9mb3JtYXQsDQo+ICsJCQkJCcKgIGludCBwaXBlX21heF9icHAsIGlu
-dA0KPiBtYXhfbGlua19icHBfeDE2KQ0KPiArew0KPiArCXN0cnVjdCBpbnRlbF9kaXNwbGF5ICpk
-aXNwbGF5ID0gdG9faW50ZWxfZGlzcGxheShjb25uZWN0b3IpOw0KPiArCXN0cnVjdCBpbnRlbF9k
-cCAqaW50ZWxfZHAgPSBpbnRlbF9hdHRhY2hlZF9kcChjb25uZWN0b3IpOw0KPiArCWludCBkc2Nf
-c3JjX21heF9icHAsIGRzY19zaW5rX21heF9icHAsIGRzY19tYXhfYnBwOw0KPiArCWludCB0aHJv
-dWdocHV0X21heF9icHBfeDE2Ow0KPiArCWludCBqb2luZXJfbWF4X2JwcDsNCj4gKw0KPiArCWRz
-Y19zcmNfbWF4X2JwcCA9IGRzY19zcmNfbWF4X2NvbXByZXNzZWRfYnBwKGludGVsX2RwKTsNCj4g
-Kwlqb2luZXJfbWF4X2JwcCA9IGdldF9tYXhfY29tcHJlc3NlZF9icHBfd2l0aF9qb2luZXIoZGlz
-cGxheSwNCj4gKwkJCQkJCQnCoMKgwqANCj4gbW9kZV9jbG9jaywNCj4gKwkJCQkJCQnCoMKgwqAN
-Cj4gbW9kZV9oZGlzcGxheSwNCj4gKwkJCQkJCQnCoMKgwqANCj4gbnVtX2pvaW5lZF9waXBlcyk7
-DQo+ICsJZHNjX3NpbmtfbWF4X2JwcCA9DQo+IGludGVsX2RwX2RzY19zaW5rX21heF9jb21wcmVz
-c2VkX2JwcChjb25uZWN0b3IsDQo+ICsJCQkJCQkJCW91dHANCj4gdXRfZm9ybWF0LA0KPiArCQkJ
-CQkJCQlwaXBlDQo+IF9tYXhfYnBwIC8gMyk7DQo+ICsJZHNjX21heF9icHAgPSBtaW4oZHNjX3Np
-bmtfbWF4X2JwcCwgZHNjX3NyY19tYXhfYnBwKTsNCj4gKwlkc2NfbWF4X2JwcCA9IG1pbihkc2Nf
-bWF4X2JwcCwgam9pbmVyX21heF9icHApOw0KPiArDQo+ICsJbWF4X2xpbmtfYnBwX3gxNiA9IG1p
-bihtYXhfbGlua19icHBfeDE2LA0KPiBmeHBfcTRfZnJvbV9pbnQoZHNjX21heF9icHApKTsNCj4g
-Kw0KPiArCXRocm91Z2hwdXRfbWF4X2JwcF94MTYgPQ0KPiBkc2NfdGhyb3VnaHB1dF9xdWlya19t
-YXhfYnBwX3gxNihjb25uZWN0b3IsDQo+ICsJCQkJCQkJCcKgDQo+IG1vZGVfY2xvY2spOw0KPiAr
-CWlmICh0aHJvdWdocHV0X21heF9icHBfeDE2IDwgbWF4X2xpbmtfYnBwX3gxNikgew0KPiArCQlt
-YXhfbGlua19icHBfeDE2ID0gdGhyb3VnaHB1dF9tYXhfYnBwX3gxNjsNCj4gKw0KPiArCQlkcm1f
-ZGJnX2ttcyhkaXNwbGF5LT5kcm0sDQo+ICsJCQnCoMKgwqAgIltDT05ORUNUT1I6JWQ6JXNdIERl
-Y3JlYXNpbmcgbGluayBtYXgNCj4gYnBwIHRvICIgRlhQX1E0X0ZNVCAiIGR1ZSB0byBEU0MgdGhy
-b3VnaHB1dCBxdWlya1xuIiwNCj4gKwkJCcKgwqDCoCBjb25uZWN0b3ItPmJhc2UuYmFzZS5pZCwg
-Y29ubmVjdG9yLQ0KPiA+YmFzZS5uYW1lLA0KPiArCQkJwqDCoMKgIEZYUF9RNF9BUkdTKG1heF9s
-aW5rX2JwcF94MTYpKTsNCj4gKwl9DQo+ICsNCj4gKwltYXhfbGlua19icHBfeDE2ID0gYWxpZ25f
-bWF4X2NvbXByZXNzZWRfYnBwX3gxNihjb25uZWN0b3IsDQo+IG91dHB1dF9mb3JtYXQsDQo+ICsJ
-CQkJCQkJcGlwZV9tYXhfYnBwDQo+ICwgbWF4X2xpbmtfYnBwX3gxNik7DQo+ICsNCj4gKwlyZXR1
-cm4gbWF4X2xpbmtfYnBwX3gxNjsNCj4gK30NCj4gKw0KPiDCoC8qDQo+IMKgICogQ2FsY3VsYXRl
-IHRoZSBvdXRwdXQgbGluayBtaW4sIG1heCBicHAgdmFsdWVzIGluIGxpbWl0cyBiYXNlZCBvbg0K
-PiB0aGUgcGlwZSBicHANCj4gwqAgKiByYW5nZSwgY3J0Y19zdGF0ZSBhbmQgZHNjIG1vZGUuIFJl
-dHVybiB0cnVlIG9uIHN1Y2Nlc3MuDQo+IEBAIC0yNjkxLDQzICsyNzMzLDE3IEBADQo+IGludGVs
-X2RwX2NvbXB1dGVfY29uZmlnX2xpbmtfYnBwX2xpbWl0cyhzdHJ1Y3QgaW50ZWxfY29ubmVjdG9y
-DQo+ICpjb25uZWN0b3IsDQo+IMKgDQo+IMKgCQlsaW1pdHMtPmxpbmsubWluX2JwcF94MTYgPSBm
-eHBfcTRfZnJvbV9pbnQobGltaXRzLQ0KPiA+cGlwZS5taW5fYnBwKTsNCj4gwqAJfSBlbHNlIHsN
-Cj4gLQkJaW50IGRzY19zcmNfbWF4X2JwcCwgZHNjX3NpbmtfbWF4X2JwcCwgZHNjX21heF9icHA7
-DQo+IC0JCWludCB0aHJvdWdocHV0X21heF9icHBfeDE2Ow0KPiAtCQlpbnQgam9pbmVyX21heF9i
-cHA7DQo+IMKgCQlsaW1pdHMtPmxpbmsubWluX2JwcF94MTYgPQ0KPiDCoAkJCWNvbXB1dGVfbWlu
-X2NvbXByZXNzZWRfYnBwX3gxNihjb25uZWN0b3IsDQo+IGNydGNfc3RhdGUtPm91dHB1dF9mb3Jt
-YXQpOw0KPiDCoA0KPiAtCQlkc2Nfc3JjX21heF9icHAgPQ0KPiBkc2Nfc3JjX21heF9jb21wcmVz
-c2VkX2JwcChpbnRlbF9kcCk7DQo+IC0JCWpvaW5lcl9tYXhfYnBwID0NCj4gLQkJCWdldF9tYXhf
-Y29tcHJlc3NlZF9icHBfd2l0aF9qb2luZXIoZGlzcGxheSwNCj4gLQkJCQkJCQnCoMKgDQo+IGFk
-anVzdGVkX21vZGUtPmNydGNfY2xvY2ssDQo+IC0JCQkJCQkJwqDCoA0KPiBhZGp1c3RlZF9tb2Rl
-LT5oZGlzcGxheSwNCj4gLQkJCQkJCQnCoMKgDQo+IGludGVsX2NydGNfbnVtX2pvaW5lZF9waXBl
-cyhjcnRjX3N0YXRlKSk7DQo+IC0JCWRzY19zaW5rX21heF9icHAgPQ0KPiBpbnRlbF9kcF9kc2Nf
-c2lua19tYXhfY29tcHJlc3NlZF9icHAoY29ubmVjdG9yLA0KPiAtDQo+IAkJCQkJCQkJCWNydGNf
-c3RhdGUtPm91dHB1dF9mb3JtYXQsDQo+IC0NCj4gCQkJCQkJCQkJbGltaXRzLT5waXBlLm1heF9i
-cHAgLyAzKTsNCj4gLQkJZHNjX21heF9icHAgPSBtaW4oZHNjX3NpbmtfbWF4X2JwcCwNCj4gZHNj
-X3NyY19tYXhfYnBwKTsNCj4gLQkJZHNjX21heF9icHAgPSBtaW4oZHNjX21heF9icHAsIGpvaW5l
-cl9tYXhfYnBwKTsNCj4gLQ0KPiAtCQltYXhfbGlua19icHBfeDE2ID0gbWluKG1heF9saW5rX2Jw
-cF94MTYsDQo+IGZ4cF9xNF9mcm9tX2ludChkc2NfbWF4X2JwcCkpOw0KPiAtDQo+IC0JCXRocm91
-Z2hwdXRfbWF4X2JwcF94MTYgPQ0KPiAtCQkJZHNjX3Rocm91Z2hwdXRfcXVpcmtfbWF4X2JwcF94
-MTYoY29ubmVjdG9yLA0KPiBhZGp1c3RlZF9tb2RlLT5jcnRjX2Nsb2NrKTsNCj4gLQkJaWYgKHRo
-cm91Z2hwdXRfbWF4X2JwcF94MTYgPCBtYXhfbGlua19icHBfeDE2KSB7DQo+IC0JCQltYXhfbGlu
-a19icHBfeDE2ID0gdGhyb3VnaHB1dF9tYXhfYnBwX3gxNjsNCj4gLQ0KPiAtCQkJZHJtX2RiZ19r
-bXMoZGlzcGxheS0+ZHJtLA0KPiAtCQkJCcKgwqDCoCAiW0NSVEM6JWQ6JXNdW0NPTk5FQ1RPUjol
-ZDolc10NCj4gRGVjcmVhc2luZyBsaW5rIG1heCBicHAgdG8gIiBGWFBfUTRfRk1UICIgZHVlIHRv
-IERTQyB0aHJvdWdocHV0DQo+IHF1aXJrXG4iLA0KPiAtCQkJCcKgwqDCoCBjcnRjLT5iYXNlLmJh
-c2UuaWQsIGNydGMtDQo+ID5iYXNlLm5hbWUsDQo+IC0JCQkJwqDCoMKgIGNvbm5lY3Rvci0+YmFz
-ZS5iYXNlLmlkLA0KPiBjb25uZWN0b3ItPmJhc2UubmFtZSwNCj4gLQkJCQnCoMKgwqAgRlhQX1E0
-X0FSR1MobWF4X2xpbmtfYnBwX3gxNikpOw0KPiAtCQl9DQo+IC0NCj4gwqAJCW1heF9saW5rX2Jw
-cF94MTYgPQ0KPiAtCQkJYWxpZ25fbWF4X2NvbXByZXNzZWRfYnBwX3gxNihjb25uZWN0b3IsDQo+
-IC0JCQkJCQnCoMKgwqDCoCBjcnRjX3N0YXRlLQ0KPiA+b3V0cHV0X2Zvcm1hdCwNCj4gLQkJCQkJ
-CcKgwqDCoMKgIGxpbWl0cy0NCj4gPnBpcGUubWF4X2JwcCwNCj4gLQkJCQkJCcKgwqDCoMKgDQo+
-IG1heF9saW5rX2JwcF94MTYpOw0KPiArCQkJY29tcHV0ZV9tYXhfY29tcHJlc3NlZF9icHBfeDE2
-KGNvbm5lY3RvciwNCj4gKwkJCQkJCcKgwqDCoMKgwqDCoA0KPiBhZGp1c3RlZF9tb2RlLT5jcnRj
-X2Nsb2NrLA0KPiArCQkJCQkJwqDCoMKgwqDCoMKgDQo+IGFkanVzdGVkX21vZGUtPmhkaXNwbGF5
-LA0KPiArCQkJCQkJwqDCoMKgwqDCoMKgDQo+IGludGVsX2NydGNfbnVtX2pvaW5lZF9waXBlcyhj
-cnRjX3N0YXRlKSwNCj4gKwkJCQkJCcKgwqDCoMKgwqDCoCBjcnRjX3N0YXRlLQ0KPiA+b3V0cHV0
-X2Zvcm1hdCwNCj4gKwkJCQkJCcKgwqDCoMKgwqDCoCBsaW1pdHMtDQo+ID5waXBlLm1heF9icHAs
-DQo+ICsJCQkJCQnCoMKgwqDCoMKgwqANCj4gbWF4X2xpbmtfYnBwX3gxNik7DQo+IMKgCX0NCj4g
-wqANCj4gwqAJbGltaXRzLT5saW5rLm1heF9icHBfeDE2ID0gbWF4X2xpbmtfYnBwX3gxNjsNCg0K
+
+
+On 11-12-2025 22:28, Thomas Hellström wrote:
+> Honor the drm_pagemap vma attribute when migrating SVM pages.
+> Ensure that when the desired placement is validated as device
+> memory, that we also check that the requested drm_pagemap is
+> consistent with the current.
+> 
+> v2:
+> - Initialize a struct drm_pagemap pointer to NULL that could
+>    otherwise be dereferenced uninitialized. (CI)
+> - Remove a redundant assignment (Matt Brost)
+> - Slightly improved commit message (Matt Brost)
+> - Extended drm_pagemap validation.
+> 
+> v3:
+> - Fix a compilation error if CONFIG_DRM_GPUSVM is not enabled.
+>    (kernel test robot <lkp@intel.com>)
+> 
+
+LGTM
+Reviewed-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+
+> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> ---
+>   drivers/gpu/drm/xe/xe_svm.c      | 86 ++++++++++++++++++++------------
+>   drivers/gpu/drm/xe/xe_svm.h      | 14 +++---
+>   drivers/gpu/drm/xe/xe_vm.c       | 24 ++++-----
+>   drivers/gpu/drm/xe/xe_vm_types.h |  6 +--
+>   4 files changed, 72 insertions(+), 58 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
+> index 3b41ea1e1e73..0c82ef0f34aa 100644
+> --- a/drivers/gpu/drm/xe/xe_svm.c
+> +++ b/drivers/gpu/drm/xe/xe_svm.c
+> @@ -922,13 +922,34 @@ void xe_svm_fini(struct xe_vm *vm)
+>   	drm_gpusvm_fini(&vm->svm.gpusvm);
+>   }
+>   
+> +static bool xe_svm_range_has_pagemap_locked(const struct xe_svm_range *range,
+> +					    const struct drm_pagemap *dpagemap)
+> +{
+> +	return range->base.pages.dpagemap == dpagemap;
+> +}
+> +
+> +static bool xe_svm_range_has_pagemap(struct xe_svm_range *range,
+> +				     const struct drm_pagemap *dpagemap)
+> +{
+> +	struct xe_vm *vm = range_to_vm(&range->base);
+> +	bool ret;
+> +
+> +	xe_svm_notifier_lock(vm);
+> +	ret = xe_svm_range_has_pagemap_locked(range, dpagemap);
+> +	xe_svm_notifier_unlock(vm);
+> +
+> +	return ret;
+> +}
+> +
+>   static bool xe_svm_range_is_valid(struct xe_svm_range *range,
+>   				  struct xe_tile *tile,
+> -				  bool devmem_only)
+> +				  bool devmem_only,
+> +				  const struct drm_pagemap *dpagemap)
+> +
+>   {
+>   	return (xe_vm_has_valid_gpu_mapping(tile, range->tile_present,
+>   					    range->tile_invalidated) &&
+> -		(!devmem_only || xe_svm_range_in_vram(range)));
+> +		(!devmem_only || xe_svm_range_has_pagemap(range, dpagemap)));
+>   }
+>   
+>   /** xe_svm_range_migrate_to_smem() - Move range pages from VRAM to SMEM
+> @@ -949,7 +970,8 @@ void xe_svm_range_migrate_to_smem(struct xe_vm *vm, struct xe_svm_range *range)
+>    * @vm: xe_vm pointer
+>    * @range: Pointer to the SVM range structure
+>    * @tile_mask: Mask representing the tiles to be checked
+> - * @devmem_preferred : if true range needs to be in devmem
+> + * @dpagemap: if !%NULL, the range is expected to be present
+> + * in device memory identified by this parameter.
+>    *
+>    * The xe_svm_range_validate() function checks if a range is
+>    * valid and located in the desired memory region.
+> @@ -958,14 +980,15 @@ void xe_svm_range_migrate_to_smem(struct xe_vm *vm, struct xe_svm_range *range)
+>    */
+>   bool xe_svm_range_validate(struct xe_vm *vm,
+>   			   struct xe_svm_range *range,
+> -			   u8 tile_mask, bool devmem_preferred)
+> +			   u8 tile_mask, const struct drm_pagemap *dpagemap)
+>   {
+>   	bool ret;
+>   
+>   	xe_svm_notifier_lock(vm);
+>   
+> -	ret = (range->tile_present & ~range->tile_invalidated & tile_mask) == tile_mask &&
+> -	       (devmem_preferred == range->base.pages.flags.has_devmem_pages);
+> +	ret = (range->tile_present & ~range->tile_invalidated & tile_mask) == tile_mask;
+> +	if (dpagemap)
+> +		ret = ret && xe_svm_range_has_pagemap_locked(range, dpagemap);
+>   
+>   	xe_svm_notifier_unlock(vm);
+>   
+> @@ -1079,22 +1102,22 @@ static bool supports_4K_migration(struct xe_device *xe)
+>    * xe_svm_range_needs_migrate_to_vram() - SVM range needs migrate to VRAM or not
+>    * @range: SVM range for which migration needs to be decided
+>    * @vma: vma which has range
+> - * @preferred_region_is_vram: preferred region for range is vram
+> + * @dpagemap: The preferred struct drm_pagemap to migrate to.
+>    *
+>    * Return: True for range needing migration and migration is supported else false
+>    */
+>   bool xe_svm_range_needs_migrate_to_vram(struct xe_svm_range *range, struct xe_vma *vma,
+> -					bool preferred_region_is_vram)
+> +					const struct drm_pagemap *dpagemap)
+>   {
+>   	struct xe_vm *vm = range_to_vm(&range->base);
+>   	u64 range_size = xe_svm_range_size(range);
+>   
+> -	if (!range->base.pages.flags.migrate_devmem || !preferred_region_is_vram)
+> +	if (!range->base.pages.flags.migrate_devmem || !dpagemap)
+>   		return false;
+>   
+>   	xe_assert(vm->xe, IS_DGFX(vm->xe));
+>   
+> -	if (xe_svm_range_in_vram(range)) {
+> +	if (xe_svm_range_has_pagemap(range, dpagemap)) {
+>   		drm_dbg(&vm->xe->drm, "Range is already in VRAM\n");
+>   		return false;
+>   	}
+> @@ -1191,9 +1214,9 @@ static int __xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
+>   	if (err)
+>   		return err;
+>   
+> -	dpagemap = xe_vma_resolve_pagemap(vma, tile);
+> -	ctx.device_private_page_owner =
+> -		xe_svm_private_page_owner(vm, !dpagemap && !ctx.devmem_only);
+> +	dpagemap = ctx.devmem_only ? xe_tile_local_pagemap(tile) :
+> +		xe_vma_resolve_pagemap(vma, tile);
+> +	ctx.device_private_page_owner = xe_svm_private_page_owner(vm, !dpagemap);
+>   	range = xe_svm_range_find_or_insert(vm, fault_addr, vma, &ctx);
+>   
+>   	if (IS_ERR(range))
+> @@ -1206,7 +1229,7 @@ static int __xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
+>   		goto out;
+>   	}
+>   
+> -	if (xe_svm_range_is_valid(range, tile, ctx.devmem_only)) {
+> +	if (xe_svm_range_is_valid(range, tile, ctx.devmem_only, dpagemap)) {
+>   		xe_svm_range_valid_fault_count_stats_incr(gt, range);
+>   		range_debug(range, "PAGE FAULT - VALID");
+>   		goto out;
+> @@ -1215,16 +1238,11 @@ static int __xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
+>   	range_debug(range, "PAGE FAULT");
+>   
+>   	if (--migrate_try_count >= 0 &&
+> -	    xe_svm_range_needs_migrate_to_vram(range, vma, !!dpagemap || ctx.devmem_only)) {
+> +	    xe_svm_range_needs_migrate_to_vram(range, vma, dpagemap)) {
+>   		ktime_t migrate_start = xe_svm_stats_ktime_get();
+>   
+> -		/* TODO : For multi-device dpagemap will be used to find the
+> -		 * remote tile and remote device. Will need to modify
+> -		 * xe_svm_alloc_vram to use dpagemap for future multi-device
+> -		 * support.
+> -		 */
+>   		xe_svm_range_migrate_count_stats_incr(gt, range);
+> -		err = xe_svm_alloc_vram(tile, range, &ctx);
+> +		err = xe_svm_alloc_vram(range, &ctx, dpagemap);
+>   		xe_svm_range_migrate_us_stats_incr(gt, range, migrate_start);
+>   		ctx.timeslice_ms <<= 1;	/* Double timeslice if we have to retry */
+>   		if (err) {
+> @@ -1541,7 +1559,13 @@ u8 xe_svm_ranges_zap_ptes_in_range(struct xe_vm *vm, u64 start, u64 end)
+>    */
+>   struct drm_pagemap *xe_vma_resolve_pagemap(struct xe_vma *vma, struct xe_tile *tile)
+>   {
+> -	s32 fd = (s32)vma->attr.preferred_loc.devmem_fd;
+> +	struct drm_pagemap *dpagemap = vma->attr.preferred_loc.dpagemap;
+> +	s32 fd;
+> +
+> +	if (dpagemap)
+> +		return dpagemap;
+> +
+> +	fd = (s32)vma->attr.preferred_loc.devmem_fd;
+>   
+>   	if (fd == DRM_XE_PREFERRED_LOC_DEFAULT_SYSTEM)
+>   		return NULL;
+> @@ -1549,28 +1573,24 @@ struct drm_pagemap *xe_vma_resolve_pagemap(struct xe_vma *vma, struct xe_tile *t
+>   	if (fd == DRM_XE_PREFERRED_LOC_DEFAULT_DEVICE)
+>   		return IS_DGFX(tile_to_xe(tile)) ? xe_tile_local_pagemap(tile) : NULL;
+>   
+> -	/* TODO: Support multi-device with drm_pagemap_from_fd(fd) */
+>   	return NULL;
+>   }
+>   
+>   /**
+>    * xe_svm_alloc_vram()- Allocate device memory pages for range,
+>    * migrating existing data.
+> - * @tile: tile to allocate vram from
+>    * @range: SVM range
+>    * @ctx: DRM GPU SVM context
+> + * @dpagemap: The struct drm_pagemap representing the memory to allocate.
+>    *
+>    * Return: 0 on success, error code on failure.
+>    */
+> -int xe_svm_alloc_vram(struct xe_tile *tile, struct xe_svm_range *range,
+> -		      const struct drm_gpusvm_ctx *ctx)
+> +int xe_svm_alloc_vram(struct xe_svm_range *range, const struct drm_gpusvm_ctx *ctx,
+> +		      struct drm_pagemap *dpagemap)
+>   {
+> -	struct drm_pagemap *dpagemap;
+> -
+> -	xe_assert(tile_to_xe(tile), range->base.pages.flags.migrate_devmem);
+> +	xe_assert(range_to_vm(&range->base)->xe, range->base.pages.flags.migrate_devmem);
+>   	range_debug(range, "ALLOCATE VRAM");
+>   
+> -	dpagemap = xe_tile_local_pagemap(tile);
+>   	return drm_pagemap_populate_mm(dpagemap, xe_svm_range_start(range),
+>   				       xe_svm_range_end(range),
+>   				       range->base.gpusvm->mm,
+> @@ -1840,9 +1860,9 @@ int xe_pagemap_cache_create(struct xe_tile *tile)
+>   	return 0;
+>   }
+>   
+> -int xe_svm_alloc_vram(struct xe_tile *tile,
+> -		      struct xe_svm_range *range,
+> -		      const struct drm_gpusvm_ctx *ctx)
+> +int xe_svm_alloc_vram(struct xe_svm_range *range,
+> +		      const struct drm_gpusvm_ctx *ctx,
+> +		      struct drm_pagemap *dpagemap)
+>   {
+>   	return -EOPNOTSUPP;
+>   }
+> diff --git a/drivers/gpu/drm/xe/xe_svm.h b/drivers/gpu/drm/xe/xe_svm.h
+> index 5adce108f7eb..a003f571c82a 100644
+> --- a/drivers/gpu/drm/xe/xe_svm.h
+> +++ b/drivers/gpu/drm/xe/xe_svm.h
+> @@ -94,8 +94,8 @@ int xe_svm_bo_evict(struct xe_bo *bo);
+>   
+>   void xe_svm_range_debug(struct xe_svm_range *range, const char *operation);
+>   
+> -int xe_svm_alloc_vram(struct xe_tile *tile, struct xe_svm_range *range,
+> -		      const struct drm_gpusvm_ctx *ctx);
+> +int xe_svm_alloc_vram(struct xe_svm_range *range, const struct drm_gpusvm_ctx *ctx,
+> +		      struct drm_pagemap *dpagemap);
+>   
+>   struct xe_svm_range *xe_svm_range_find_or_insert(struct xe_vm *vm, u64 addr,
+>   						 struct xe_vma *vma, struct drm_gpusvm_ctx *ctx);
+> @@ -104,13 +104,13 @@ int xe_svm_range_get_pages(struct xe_vm *vm, struct xe_svm_range *range,
+>   			   struct drm_gpusvm_ctx *ctx);
+>   
+>   bool xe_svm_range_needs_migrate_to_vram(struct xe_svm_range *range, struct xe_vma *vma,
+> -					bool preferred_region_is_vram);
+> +					const struct drm_pagemap *dpagemap);
+>   
+>   void xe_svm_range_migrate_to_smem(struct xe_vm *vm, struct xe_svm_range *range);
+>   
+>   bool xe_svm_range_validate(struct xe_vm *vm,
+>   			   struct xe_svm_range *range,
+> -			   u8 tile_mask, bool devmem_preferred);
+> +			   u8 tile_mask, const struct drm_pagemap *dpagemap);
+>   
+>   u64 xe_svm_find_vma_start(struct xe_vm *vm, u64 addr, u64 end,  struct xe_vma *vma);
+>   
+> @@ -276,8 +276,8 @@ void xe_svm_range_debug(struct xe_svm_range *range, const char *operation)
+>   }
+>   
+>   static inline int
+> -xe_svm_alloc_vram(struct xe_tile *tile, struct xe_svm_range *range,
+> -		  const struct drm_gpusvm_ctx *ctx)
+> +xe_svm_alloc_vram(struct xe_svm_range *range, const struct drm_gpusvm_ctx *ctx,
+> +		  struct drm_pagemap *dpagemap)
+>   {
+>   	return -EOPNOTSUPP;
+>   }
+> @@ -318,7 +318,7 @@ static inline unsigned long xe_svm_range_size(struct xe_svm_range *range)
+>   
+>   static inline
+>   bool xe_svm_range_needs_migrate_to_vram(struct xe_svm_range *range, struct xe_vma *vma,
+> -					u32 region)
+> +					const struct drm_pagemap *dpagemap)
+>   {
+>   	return false;
+>   }
+> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+> index b1e708a1b236..ae2c1d500d54 100644
+> --- a/drivers/gpu/drm/xe/xe_vm.c
+> +++ b/drivers/gpu/drm/xe/xe_vm.c
+> @@ -2339,7 +2339,7 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_vma_ops *vops,
+>   			struct xe_tile *tile;
+>   			struct xe_svm_range *svm_range;
+>   			struct drm_gpusvm_ctx ctx = {};
+> -			struct drm_pagemap *dpagemap;
+> +			struct drm_pagemap *dpagemap = NULL;
+>   			u8 id, tile_mask = 0;
+>   			u32 i;
+>   
+> @@ -2357,23 +2357,17 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_vma_ops *vops,
+>   
+>   			xa_init_flags(&op->prefetch_range.range, XA_FLAGS_ALLOC);
+>   			op->prefetch_range.ranges_count = 0;
+> -			tile = NULL;
+>   
+>   			if (prefetch_region == DRM_XE_CONSULT_MEM_ADVISE_PREF_LOC) {
+>   				dpagemap = xe_vma_resolve_pagemap(vma,
+>   								  xe_device_get_root_tile(vm->xe));
+> -				/*
+> -				 * TODO: Once multigpu support is enabled will need
+> -				 * something to dereference tile from dpagemap.
+> -				 */
+> -				if (dpagemap)
+> -					tile = xe_device_get_root_tile(vm->xe);
+>   			} else if (prefetch_region) {
+>   				tile = &vm->xe->tiles[region_to_mem_type[prefetch_region] -
+>   						      XE_PL_VRAM0];
+> +				dpagemap = xe_tile_local_pagemap(tile);
+>   			}
+>   
+> -			op->prefetch_range.tile = tile;
+> +			op->prefetch_range.dpagemap = dpagemap;
+>   alloc_next_range:
+>   			svm_range = xe_svm_range_find_or_insert(vm, addr, vma, &ctx);
+>   
+> @@ -2392,7 +2386,7 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_vma_ops *vops,
+>   				goto unwind_prefetch_ops;
+>   			}
+>   
+> -			if (xe_svm_range_validate(vm, svm_range, tile_mask, !!tile)) {
+> +			if (xe_svm_range_validate(vm, svm_range, tile_mask, dpagemap)) {
+>   				xe_svm_range_debug(svm_range, "PREFETCH - RANGE IS VALID");
+>   				goto check_next_range;
+>   			}
+> @@ -2914,7 +2908,7 @@ static int prefetch_ranges(struct xe_vm *vm, struct xe_vma_op *op)
+>   {
+>   	bool devmem_possible = IS_DGFX(vm->xe) && IS_ENABLED(CONFIG_DRM_XE_PAGEMAP);
+>   	struct xe_vma *vma = gpuva_to_vma(op->base.prefetch.va);
+> -	struct xe_tile *tile = op->prefetch_range.tile;
+> +	struct drm_pagemap *dpagemap = op->prefetch_range.dpagemap;
+>   	int err = 0;
+>   
+>   	struct xe_svm_range *svm_range;
+> @@ -2927,15 +2921,15 @@ static int prefetch_ranges(struct xe_vm *vm, struct xe_vma_op *op)
+>   	ctx.read_only = xe_vma_read_only(vma);
+>   	ctx.devmem_possible = devmem_possible;
+>   	ctx.check_pages_threshold = devmem_possible ? SZ_64K : 0;
+> -	ctx.device_private_page_owner = xe_svm_private_page_owner(vm, !tile);
+> +	ctx.device_private_page_owner = xe_svm_private_page_owner(vm, !dpagemap);
+>   
+>   	/* TODO: Threading the migration */
+>   	xa_for_each(&op->prefetch_range.range, i, svm_range) {
+> -		if (!tile)
+> +		if (!dpagemap)
+>   			xe_svm_range_migrate_to_smem(vm, svm_range);
+>   
+> -		if (xe_svm_range_needs_migrate_to_vram(svm_range, vma, !!tile)) {
+> -			err = xe_svm_alloc_vram(tile, svm_range, &ctx);
+> +		if (xe_svm_range_needs_migrate_to_vram(svm_range, vma, dpagemap)) {
+> +			err = xe_svm_alloc_vram(svm_range, &ctx, dpagemap);
+>   			if (err) {
+>   				drm_dbg(&vm->xe->drm, "VRAM allocation failed, retry from userspace, asid=%u, gpusvm=%p, errno=%pe\n",
+>   					vm->usm.asid, &vm->svm.gpusvm, ERR_PTR(err));
+> diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
+> index 0eaaebb42d9a..84976c793506 100644
+> --- a/drivers/gpu/drm/xe/xe_vm_types.h
+> +++ b/drivers/gpu/drm/xe/xe_vm_types.h
+> @@ -408,10 +408,10 @@ struct xe_vma_op_prefetch_range {
+>   	/** @ranges_count: number of svm ranges to map */
+>   	u32 ranges_count;
+>   	/**
+> -	 * @tile: Pointer to the tile structure containing memory to prefetch.
+> -	 *        NULL if prefetch requested region is smem
+> +	 * @dpagemap: Pointer to the dpagemap structure containing memory to prefetch.
+> +	 * NULL if prefetch requested region is smem
+>   	 */
+> -	struct xe_tile *tile;
+> +	struct drm_pagemap *dpagemap;
+>   };
+>   
+>   /** enum xe_vma_op_flags - flags for VMA operation */
+
