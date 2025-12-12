@@ -4,62 +4,169 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 98711D59D82
-	for <intel-xe@archiver.kernel.org>; Fri, 12 Dec 2025 18:41:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 21342D59D82
+	for <intel-xe@archiver.kernel.org>; Fri, 12 Dec 2025 18:42:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 56D6210E14D;
-	Fri, 12 Dec 2025 18:41:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CE05310E92F;
+	Fri, 12 Dec 2025 18:42:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NRT6y3ei";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Rp8zJCi1";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2770210E14D
- for <intel-xe@lists.freedesktop.org>; Fri, 12 Dec 2025 18:41:42 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1350310E07C;
+ Fri, 12 Dec 2025 18:41:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765564902; x=1797100902;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=TfR+Kyge+ZB4QO48m/SaOn4ozhtQ+hCiscZGiWiD3Oc=;
- b=NRT6y3eiAslU9tMowth3YrJWtVoE5a+QxQ9+nZeLOHu2G5vFT4HgBlsa
- I02jo3nJ68Q4B+I47N3fu0TV7vHnTcdct1HVOE0ci+LXnl7FSyrZAwHIS
- Wj23MbPXiT0wbjsz4KQ6aTrLxWUM8Rdqtk1vf7fhqCFI+FHQpIDGdM3TC
- c0Aqa0e7qwxYF91E5GOAXA2ESX2uNBtGRNcDIjY3Pm0VAzZBZuCS1d1pp
- WAzGYJsE2w1YMPEFmZJpmg7EpHPs3m4P74RcS13xUTk7VpdiADHNqBc+u
- ajtK5L+cEyOwtEnGp61X5/pVKcOXH7ov0aJc7upU9q0DlIF4a2oGZyYwA g==;
-X-CSE-ConnectionGUID: mQY5uT6LQkS0bvVBtvGnHw==
-X-CSE-MsgGUID: 9HZYYPqtSqW881K5rhNXpg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11640"; a="67456321"
-X-IronPort-AV: E=Sophos;i="6.21,144,1763452800"; d="scan'208";a="67456321"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Dec 2025 10:41:40 -0800
-X-CSE-ConnectionGUID: NGAHCTlQQb6VjHUgCjM8+g==
-X-CSE-MsgGUID: KKKKDKiUTF+xxbZbEh/alw==
+ t=1765564920; x=1797100920;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=NyM9Z5EcUDNVX1MTx5tI0jxTSaBWG4M2iEKKTE2BmtM=;
+ b=Rp8zJCi1G0uJ3vwOt14eqCEsYZQBmQTccYKZkJ/bK2ZaRVowoniBAtpI
+ Yf8w6wOXCNDaMq9Lke1aVc87b1CUyBi5spbiPyYw17jOVau55BN+BItyY
+ 7+15u73gNkKeyRiML0b79mAtC0ra3LLBX2Vx6ohSJKhoVr7izicOR6lwl
+ 4VCcdK+rzlqMsIWAUsRCQmtYDOK8fjctrHXCWsNuts/HeReqV7BOEVc+F
+ AxFkUIQcGtUfKFnk1Qj4DkB066DH7AkyVgF0jfKZqQB4Sz3hEcssOkDfO
+ LXYBP+0Wg+XvCqn5FiPE3sJzjt08yKOcUu/yye7XdjhRVBGXd2CUf7QmH Q==;
+X-CSE-ConnectionGUID: xfxH2fvMRoqAGcj9iPVzQQ==
+X-CSE-MsgGUID: dDnGNL1IQ6qMIAZVK0Gplg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11640"; a="70156878"
+X-IronPort-AV: E=Sophos;i="6.21,144,1763452800"; d="scan'208";a="70156878"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Dec 2025 10:41:44 -0800
+X-CSE-ConnectionGUID: h4yG7kbFSlSA63pFid1oPQ==
+X-CSE-MsgGUID: xRTSXzuDQ9+Ai/ADos3/Kg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,144,1763452800"; d="scan'208";a="197218733"
-Received: from egrumbac-mobl6.ger.corp.intel.com (HELO [10.245.245.106])
- ([10.245.245.106])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Dec 2025 10:41:39 -0800
-Message-ID: <94cda006-0fc4-40e9-a34c-5c16ea7b1c58@linux.intel.com>
-Date: Fri, 12 Dec 2025 19:41:35 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 5/6] drm/xe: Wait on in-syncs when swicthing to dma-fence
- mode
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org, francois.dugast@intel.com,
- michal.mrozek@intel.com
-References: <20251211210032.1520113-1-matthew.brost@intel.com>
- <20251211210032.1520113-6-matthew.brost@intel.com>
- <97f524d334045e0819cee861e6e7d21598509424.camel@linux.intel.com>
- <aTxDwLgkmycUKk+S@lstrano-desk.jf.intel.com>
-Content-Language: en-US
-From: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-In-Reply-To: <aTxDwLgkmycUKk+S@lstrano-desk.jf.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+X-IronPort-AV: E=Sophos;i="6.21,144,1763452800"; d="scan'208";a="197649869"
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by fmviesa009.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Dec 2025 10:41:44 -0800
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.29; Fri, 12 Dec 2025 10:41:43 -0800
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.29 via Frontend Transport; Fri, 12 Dec 2025 10:41:43 -0800
+Received: from CY7PR03CU001.outbound.protection.outlook.com (40.93.198.65) by
+ edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.29; Fri, 12 Dec 2025 10:41:43 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=qX2+ftj1J2VKGh3wwhZA6JIrgpT3rz3zDq8OFeuLfo6GTSK+AkCYS4ufaIS1WAD1LRwYnjI3TcREfUpK5+4PnPJ/Dq4QhVJeTDio56iTDgzWR+7WiLGa02Ebe4ch3ToaiD3sRcACw/MzDFl6EWsTBW3zx/gWmkExL1yFOeYJxWAGKT7Y9jeJW07/OMYz+8Ee92afkiJWLJRrEpL0cEXYzdO2QXXB4T2D71Kf2njnwQhQCImEKjVj8viqefm39dMXkrqCu2YLGI5FsWD5wbQYAY6jSAgtl4etIlOHHigra22vBgdpkURHPUlpcWXJf1W1XcxPlncSIBVO0DeZnjwX+Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=IzBzJXd/AmYYoyl9OQHkt9mPV+U9OlApB4D9EkHP2v8=;
+ b=IfpOndYz44Ru7IhllUBRkyTVrTkPkilVB1U1u8p5Giemwv7CQHqBUt7liH0CRNto0drgmhYGy2FGJ1k23W+wlWp/saZ+JX/O0iyNuoDQRNWjYSGkaZdyHZs3056PVWRedNwxl/zFDg/Bl7r9qaD1NDDPaA4NUna/wAmVOfyH9IKx3wEI4U0sjIBa6+Qsl0wbin2B6QWUzOB4yEIxpKDABPP0zlkvwTpyOB0hwg8EJFXhzOq/5PT7AGXgx/+NYRVRqhVmhlk5Ft7RlbzHF15nfvgXHvzCul3rCqHirMyfQIX+h/wXMM7fMBG2CdRO5YVNxbTJj9I5KFJGxA1XCX2UKw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from PH0PR11MB4840.namprd11.prod.outlook.com (2603:10b6:510:43::16)
+ by SA0PR11MB4623.namprd11.prod.outlook.com (2603:10b6:806:95::18)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9412.12; Fri, 12 Dec
+ 2025 18:41:41 +0000
+Received: from PH0PR11MB4840.namprd11.prod.outlook.com
+ ([fe80::7044:24a0:758a:4bfd]) by PH0PR11MB4840.namprd11.prod.outlook.com
+ ([fe80::7044:24a0:758a:4bfd%2]) with mapi id 15.20.9412.011; Fri, 12 Dec 2025
+ 18:41:41 +0000
+Date: Fri, 12 Dec 2025 20:41:08 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: Vinod Govindapillai <vinod.govindapillai@intel.com>
+CC: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Subject: Re: [PATCH 31/50] drm/i915/dp: Simplify computing DSC BPPs for DP-SST
+Message-ID: <aTxhxNxQHAEiA5cq@ideak-desk>
+References: <20251127175023.1522538-1-imre.deak@intel.com>
+ <20251127175023.1522538-32-imre.deak@intel.com>
+ <3637b184eaaa74fff1eea2f19ddd91565c63c154.camel@intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <3637b184eaaa74fff1eea2f19ddd91565c63c154.camel@intel.com>
+X-ClientProxiedBy: LO4P265CA0046.GBRP265.PROD.OUTLOOK.COM
+ (2603:10a6:600:2ac::20) To PH0PR11MB4840.namprd11.prod.outlook.com
+ (2603:10b6:510:43::16)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH0PR11MB4840:EE_|SA0PR11MB4623:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4f0da6ac-6990-41c1-f84e-08de39ae1783
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0; ARA:13230040|1800799024|366016|10070799003|376014;
+X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?3sP7zkE8mIjgpKNgMiusb9Kmc3R72QO5a2DHHTk1huyA+A44XytbMpe/Bj?=
+ =?iso-8859-1?Q?sKRgeQQag02Fpzb8gli3BErN5YkqSNDDm7mywxWVeNkKlIvoGr3THYTeh5?=
+ =?iso-8859-1?Q?81fI2dddpPpNTEFtwpCiB1D9tBskIeZgzgsuXLJkvJ28JhzVvv0jT9eMMV?=
+ =?iso-8859-1?Q?YcdyMsgbzeDoawa4LkofkkKHxZIBhm4AlFpXxY0iUGmk6FqsDTcDtdSmGQ?=
+ =?iso-8859-1?Q?IL5CV7YWkxAuDFZDe5Z4yH3nJdF/fjkY59cVnibaLFBI/JaP3GXynC80ox?=
+ =?iso-8859-1?Q?pcfVloeYdjqo3+hAS+qrwnR4eW3vBNbd/VFWJ33a5yCbaCsn+PPRm1yO1s?=
+ =?iso-8859-1?Q?/7t+wgDH7WmA6PdArGN+UCmgfKd23DWpOtQc3R+behSfq3LEDERT00+V3b?=
+ =?iso-8859-1?Q?SK5kKVsROFptIaD+oZZ8z9wnTxL88tnPoZqaEIsfsgC5q+gb/eD7bX6jI7?=
+ =?iso-8859-1?Q?vCM3cAGDNda5IZDxh4iLKg/O2abRA2fL6HmOkGZdti87L5e/p7FGVyVqCX?=
+ =?iso-8859-1?Q?eUonx5XS2iNl3qEwqrqolJehFJVWNpfWKN3wjJORyOMZw1mClkkEzLcNX5?=
+ =?iso-8859-1?Q?cFVxfX//u1R2tTxShb+5frxa0RGBmwJvKhEu7AWL+qF7XxzwyCNJckKyVc?=
+ =?iso-8859-1?Q?bMGgOwrLCHRimmBP8mldv54vEz2i/OvF1T3/WwjgvgFLxDO7ld6xwhV5tb?=
+ =?iso-8859-1?Q?22gE+9WJjH/39TRqg7ZdVcGAmk9KsemtfixkdTYxxX03PIOHR2HhDsttsC?=
+ =?iso-8859-1?Q?+AasEWRPL2SVOkGrX3yCY1mzIHXRebASV6JqGbwhIJa0Ba2hA5+8/xTZoH?=
+ =?iso-8859-1?Q?W04uCGlqXJhqWf0DG57Bqae+esQnGtudqg1nQE+L6qEqmmtZSyOaXsW9v6?=
+ =?iso-8859-1?Q?KU5/qmB5jR/Wvp4fccjOqz9HPDNgkZUMu9ur02uSNbW+xqKwAwDXfRZExP?=
+ =?iso-8859-1?Q?XwoHwoT7Hi+pgxx8XBuZcuK9kbYj4DEnO6YHbBO3wvkUY5LOTiTesputYx?=
+ =?iso-8859-1?Q?e0B2EFxgYVpFSdRFM+JmedkNDyrlI5YkiVLUG8Do24Ny3aea3RRp6IYaWC?=
+ =?iso-8859-1?Q?1josF2nrwVJS5eLEVjQmAowqkF/8eRuRptw7MpnLIhdeVGBhdn4YyYS5c/?=
+ =?iso-8859-1?Q?jNyLpTx4opKZ+JqIy6qmO+xCWPnKastLGnrHK8xOXduNNENNXySt0z1rUK?=
+ =?iso-8859-1?Q?29H5gE3YYbmFKGgyY3fG9elV1gSj5X37XFpRU3LEzCH0eDLabtzMWRG0TP?=
+ =?iso-8859-1?Q?N2F9emE+vd3KCfmv5TnjDvntj+0jtIks82JlI+Jggu2togQln/g4g7uDTi?=
+ =?iso-8859-1?Q?CmXccRe9vhqI+wiceKubU9/SuB//Ak78whKROlP1h5/VJpu1lH/iVXR7TZ?=
+ =?iso-8859-1?Q?/mZhM1to32UKCl3HjJAK+IxLepbEoftnOPawu7wYDuPm8ZVrcDW/7FHZsY?=
+ =?iso-8859-1?Q?Dg1uTx2ouj5ySahRcibpstOO3zEyddAGzdLx98diLsUOT2bHPl0/h3Z7an?=
+ =?iso-8859-1?Q?WU2qOMYZfpvIW+/XGBkudf?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH0PR11MB4840.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(10070799003)(376014); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?bqa3domWkaDHaesdZGX6kAI97Bxy7zHEdPm3fyiNibiudhZke+wER5J77u?=
+ =?iso-8859-1?Q?HGLJ7ArlTWP8NOJBictiTwCi65JZt1Wg1SCfLc0jxXCtZGQ8f+FJSYTEJk?=
+ =?iso-8859-1?Q?ButIvcz/AKnzZ4ojfks3MhuFs6gdfqkCGaA3PAVYq4OpJZxPedC9GCVt8h?=
+ =?iso-8859-1?Q?Wy47ZuqNbqRvfdE8MxNN5cCB/QBJk1f8Vz1072wjQK2I7Or72vjgJdNcc4?=
+ =?iso-8859-1?Q?LvvYOAAfS3ynZ8m8FI7iw1IwX7bLek5cz0wXxMcploasQwwSAFHqG1cdsm?=
+ =?iso-8859-1?Q?O11dDtnQw6m9wLa8rEmyMjTRWUT25qTx49+N5sI/6ASsxIV04OG7MHvUu4?=
+ =?iso-8859-1?Q?sTygA+0ArE2fAO0FhpQHBopBH1ob8inBthPe2JJRWgYwMAGYe4qJGG3zeP?=
+ =?iso-8859-1?Q?80URo86Hp8E5gEhAF6A0/6E3aTPnlHy794VYftuaqixbsZwWXvRN8ACx//?=
+ =?iso-8859-1?Q?EE55fpl4IPVP80n3qc+cJixcc/Lx8u12hSAoEeq515IVXjSA63tXLN31JS?=
+ =?iso-8859-1?Q?0hHSm1nYwzxRgXaMM/dgsuYQF/uNy9VLecxoWLiNRce8w9zmZbKr/SRnBQ?=
+ =?iso-8859-1?Q?qln1o41sJFHZtLoLDVD+zId6d6VgbHlntNJAVhZFglxeMuYRPvriTTqAf9?=
+ =?iso-8859-1?Q?pNSpTjMWDAsMBQuvYfeMI5POIbt19tbKI7G1nCtjqkommaYNpQUPZ79PYD?=
+ =?iso-8859-1?Q?spkwfyVH4mLRcFMVhNNPv3DEu5vnHiUBlAYZ1e01IYq9Tx1hpXjzaJRF3E?=
+ =?iso-8859-1?Q?FxvFShca3Mpu900oCGSVK8Ffll7A04HI4Q5ktZO+DCDrMeaqJMKfP6cnJj?=
+ =?iso-8859-1?Q?ihJLpilZj31li/CJGNycLEEtxx3uoiQOcUPNMyW3jtS0IKtwl+P/9bkS+H?=
+ =?iso-8859-1?Q?7YpKK9ayM1kGjCGbkaVyKLjqf8VJEcBgFTIsqe+sHgazKre+2Bl1xoddro?=
+ =?iso-8859-1?Q?mHxFw1/01liLZeBh2rBznp96+0BcMabwAdcSJ6TKq6lDXg2QfiESvgGUNK?=
+ =?iso-8859-1?Q?riapIj2gFkQAlgxt7wvapCM9ApP09xleYsjCSIFlmPmybngAWv5Blkymf9?=
+ =?iso-8859-1?Q?QMPpvI4ofR9swRU2ZW34Pw7Ce83wivxcRZK1Yh3dGbuSUrMZJPHpktdr8d?=
+ =?iso-8859-1?Q?rDZ57RI1gKRyW9qvyr57u/DjZgoeM1BGY5FyLj2dcu0FW6bEdE9I2Q5ohS?=
+ =?iso-8859-1?Q?ua+5TYIRD7O+NwhADfuDvGaDknm1WGzyDb0abkUqYQkefTgFHHMtYHM7vn?=
+ =?iso-8859-1?Q?F9+tc70ZwoYnf4tDwkgsWQa6Cx/OpHQzwQudckpumvf5T8QyYllhCUT0cS?=
+ =?iso-8859-1?Q?PRsdo4wcIczbHBQlw185LdhpQZ5C4jDtS21LH+eOYqwoLG4vLJ4yVlSPvT?=
+ =?iso-8859-1?Q?vJ6srdD6n1mf5wuuHphKiH35EkM8rgRC+Cvb19UgsEYTKdqZplEj65pyvK?=
+ =?iso-8859-1?Q?8qyQczpRmMEyGnbEc/hitdWwsUs/jt1TJTpVvpMDG9c0pt3s3PFl+5IzpJ?=
+ =?iso-8859-1?Q?EvPLMaYMVl9lWHmm57NKuStu7MuL7eLLYAU91gIhG+ZC2NyDt6RAvxGcO1?=
+ =?iso-8859-1?Q?rDFozEiELxGsEwMfeIR7zvIzuwGLWAXb6AMEDTakuBYZCWnMWh9pkir+7z?=
+ =?iso-8859-1?Q?/UgmA+JzPVK+yPaXTnF1n+LcvakXpnWmg0CyK3v07MSwt8/QJapVlK46+3?=
+ =?iso-8859-1?Q?XVwyiGCovZ4UJ3dFJhuBbPQ4wo91MzXrNrddGS1U?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4f0da6ac-6990-41c1-f84e-08de39ae1783
+X-MS-Exchange-CrossTenant-AuthSource: PH0PR11MB4840.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Dec 2025 18:41:41.7385 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: oF3DVuVqKl0HYmDa7FjAtibAxdyOk1TtcnrM26s1wtoIKDyfsylw+ufTk8Xu1JeKTuy7vwZI1jA4zr4/hY+4kw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR11MB4623
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,290 +178,98 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: imre.deak@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On Fri, Dec 12, 2025 at 04:59:31PM +0200, Vinod Govindapillai wrote:
+> On Thu, 2025-11-27 at 19:50 +0200, Imre Deak wrote:
 
-On 12/12/25 17:33, Matthew Brost wrote:
-> On Fri, Dec 12, 2025 at 10:22:54AM +0100, Thomas Hellström wrote:
->> On Thu, 2025-12-11 at 13:00 -0800, Matthew Brost wrote:
->>> If a dma-fence submission has in-fences and pagefault queues are
->>> running
->>> work, there is little incentive to kick the pagefault queues off the
->>> hardware until the dma-fence submission is ready to run. Therefore,
->>> wait
->>> on the in-fences of the dma-fence submission before removing the
->>> pagefault queues from the hardware.
->>>
->>> Suggested-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
->>> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
->>> ---
->>>   drivers/gpu/drm/xe/xe_exec.c            |  3 ++-
->>>   drivers/gpu/drm/xe/xe_hw_engine_group.c | 34 +++++++++++++++++++----
->>> --
->>>   drivers/gpu/drm/xe/xe_hw_engine_group.h |  4 ++-
->>>   drivers/gpu/drm/xe/xe_sync.c            | 14 ++++++++++
->>>   drivers/gpu/drm/xe/xe_sync.h            |  1 +
->>>   5 files changed, 46 insertions(+), 10 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/xe/xe_exec.c
->>> b/drivers/gpu/drm/xe/xe_exec.c
->>> index 4d81210e41f5..5bc598ba6afa 100644
->>> --- a/drivers/gpu/drm/xe/xe_exec.c
->>> +++ b/drivers/gpu/drm/xe/xe_exec.c
->>> @@ -202,7 +202,8 @@ int xe_exec_ioctl(struct drm_device *dev, void
->>> *data, struct drm_file *file)
->>>   	mode = xe_hw_engine_group_find_exec_mode(q);
->>>   
->>>   	if (mode == EXEC_MODE_DMA_FENCE) {
->>> -		err = xe_hw_engine_group_get_mode(group, mode,
->>> &previous_mode);
->>> +		err = xe_hw_engine_group_get_mode(group, mode,
->>> &previous_mode,
->>> +						  syncs, num_syncs);
->>>   		if (err)
->>>   			goto err_syncs;
->>>   	}
->>> diff --git a/drivers/gpu/drm/xe/xe_hw_engine_group.c
->>> b/drivers/gpu/drm/xe/xe_hw_engine_group.c
->>> index 4d9263a1a208..35966889c776 100644
->>> --- a/drivers/gpu/drm/xe/xe_hw_engine_group.c
->>> +++ b/drivers/gpu/drm/xe/xe_hw_engine_group.c
->>> @@ -11,6 +11,7 @@
->>>   #include "xe_gt.h"
->>>   #include "xe_gt_stats.h"
->>>   #include "xe_hw_engine_group.h"
->>> +#include "xe_sync.h"
->>>   #include "xe_vm.h"
->>>   
->>>   static void
->>> @@ -21,7 +22,8 @@ hw_engine_group_resume_lr_jobs_func(struct
->>> work_struct *w)
->>>   	int err;
->>>   	enum xe_hw_engine_group_execution_mode previous_mode;
->>>   
->>> -	err = xe_hw_engine_group_get_mode(group, EXEC_MODE_LR,
->>> &previous_mode);
->>> +	err = xe_hw_engine_group_get_mode(group, EXEC_MODE_LR,
->>> &previous_mode,
->>> +					  NULL, 0);
->>>   	if (err)
->>>   		return;
->>>   
->>> @@ -192,20 +194,32 @@ void
->>> xe_hw_engine_group_resume_faulting_lr_jobs(struct xe_hw_engine_group
->>> *group
->>>    *
->>>    * Return: 0 on success, negative error code on error.
->>>    */
->>> -static int xe_hw_engine_group_suspend_faulting_lr_jobs(struct
->>> xe_hw_engine_group *group)
->>> +static int xe_hw_engine_group_suspend_faulting_lr_jobs(struct
->>> xe_hw_engine_group *group,
->>> +						       struct
->>> xe_sync_entry *syncs,
->>> +						       int
->>> num_syncs)
->>>   {
->>> -	int err;
->>> +	int err, i;
->>>   	struct xe_exec_queue *q;
->>>   	bool need_resume = false;
->>>   
->>>   	lockdep_assert_held_write(&group->mode_sem);
->>>   
->>>   	list_for_each_entry(q, &group->exec_queue_list,
->>> hw_engine_group_link) {
->>> +		bool idle_skip_suspend;
->>> +
->>>   		if (!xe_vm_in_fault_mode(q->vm))
->>>   			continue;
->>>   
->>>   		xe_gt_stats_incr(q->gt,
->>> XE_GT_STATS_ID_HW_ENGINE_GROUP_SUSPEND_LR_QUEUE_COUNT, 1);
->>> -		need_resume |= !xe_exec_queue_idle_skip_suspend(q);
->>> +
->>> +		idle_skip_suspend =
->>> xe_exec_queue_idle_skip_suspend(q);
->>> +
->>> +		if (!need_resume && !idle_skip_suspend && num_syncs)
->>> {
->>> +			for (i = 0; i < num_syncs; ++i)
->>> +				xe_sync_entry_wait(syncs + i);
->> Here we're in the write-locked mode, right? Ideally I think we should
->> just check for idle here and return a retry if not idle, and wait
->> outside of the locks. Perhaps also always wait if there are pf jobs
-> I think waiting outside the lock would be okay. Let me try that. I also
-> forgot that xe_sync_entry_wait needs to be interruptible too.
->
->> running on the engine group. Also we might want to include the other
->> implicit dependencies as well, like kernel fences.
->>
->> Although perhaps this is good enough for now, and this would be easier
->> implemented with a scheduler?
->>
-This is pretty much exactly what I had in mind as well. I started to 
-doubt, though, if the drm scheduler would be a good fit since the 
-dma-fence jobs wouldn't necessarily be ordered, since they wouldn't have 
-published their out-fences when in this "pre-scheduler". Also Joonas has 
-mentioned at one point that pre-scheduling (like we already do, but this 
-would be a more sophisticated version of) was disapproved by some arch 
-or perhaps upstream decision at some historical point. We should find 
-out exactly what that was all about before proceeding with this.
+> > The maximum pipe BPP value (used as the DSC input BPP) has been
+> > aligned already to the corresponding source/sink input BPP
+> > capabilities in intel_dp_compute_config_limits(). So it isn't needed
+> > to perform the same alignment again in
+> > intel_dp_dsc_compute_pipe_bpp() called later, this function can
+> > simply use the already aligned maximum pipe BPP value, do that.
+> > 
+> > Also, there is no point in trying pipe BPP values lower than the
+> > maximum: this would only make dsc_compute_compressed_bpp() start
+> > with a lower _compressed_ BPP value, but this lower compressed BPP
+> > value has been tried already when dsc_compute_compressed_bpp() was
+> > called with the higher pipe BPP value (i.e. the first
+> > dsc_compute_compressed_bpp() call tries already all the possible
+> > compressed BPP values which are all below the pipe BPP value passed
+> > to it). Simplify the function accordingly trying only the maximum
+> > pipe BPP value.
+> > 
+> > Signed-off-by: Imre Deak <imre.deak@intel.com>
+> > ---
+> > �drivers/gpu/drm/i915/display/intel_dp.c | 29 +++++++----------------
+> > --
+> > �1 file changed, 8 insertions(+), 21 deletions(-)
+> > 
+> 
+> I guess, typically this is a two patch solution. But considering the
+> code changes it make sense to have it as one patch.
 
-> This is a fairly large rework, and the likelihood of me personally
-> having the bandwidth to implement this in the near future is low. Of
-> course, if you want to take this on, I can provide guidance on the
-> refactor.
+Yes, the current code before this patch combines the alignment and
+fallback logic, so I found it clearer to remove both in one patch,
+instead of tweaking the code in one patch to do only one of these and
+then remove the tweak in a separate patch.
 
-My bandwidth for this is also zero ATM and up to end of January at least.
-
-> So for now, let’s tweak things to something we can live with and perhaps
-> write down plans for a long-term refactor.
-
-Fully agree.
-
-I think our backlog of nice cleanups and improvements like this is 
-starting to grow so it would be good to have them documented in jiras 
-and perhaps at a list which we can prioritze and have someone pick up 
-when there is bandwidth.
-
-Thanks,
-
-Thomas
-
-
-
->
-> Matt
->
->> /Thomas
->>
->>
->>> +		}
->>> +
->>> +		need_resume |= !idle_skip_suspend;
->>>   		q->ops->suspend(q);
->>>   	}
->>>   
->>> @@ -258,7 +272,8 @@ static int
->>> xe_hw_engine_group_wait_for_dma_fence_jobs(struct xe_hw_engine_group
->>>   	return 0;
->>>   }
->>>   
->>> -static int switch_mode(struct xe_hw_engine_group *group)
->>> +static int switch_mode(struct xe_hw_engine_group *group,
->>> +		       struct xe_sync_entry *syncs, int num_syncs)
->>>   {
->>>   	int err = 0;
->>>   	enum xe_hw_engine_group_execution_mode new_mode;
->>> @@ -268,7 +283,9 @@ static int switch_mode(struct xe_hw_engine_group
->>> *group)
->>>   	switch (group->cur_mode) {
->>>   	case EXEC_MODE_LR:
->>>   		new_mode = EXEC_MODE_DMA_FENCE;
->>> -		err =
->>> xe_hw_engine_group_suspend_faulting_lr_jobs(group);
->>> +		err =
->>> xe_hw_engine_group_suspend_faulting_lr_jobs(group,
->>> +								
->>> syncs,
->>> +								
->>> num_syncs);
->>>   		break;
->>>   	case EXEC_MODE_DMA_FENCE:
->>>   		new_mode = EXEC_MODE_LR;
->>> @@ -294,7 +311,8 @@ static int switch_mode(struct xe_hw_engine_group
->>> *group)
->>>    */
->>>   int xe_hw_engine_group_get_mode(struct xe_hw_engine_group *group,
->>>   				enum
->>> xe_hw_engine_group_execution_mode new_mode,
->>> -				enum
->>> xe_hw_engine_group_execution_mode *previous_mode)
->>> +				enum
->>> xe_hw_engine_group_execution_mode *previous_mode,
->>> +				struct xe_sync_entry *syncs, int
->>> num_syncs)
->>>   __acquires(&group->mode_sem)
->>>   {
->>>   	int err = down_read_interruptible(&group->mode_sem);
->>> @@ -311,7 +329,7 @@ __acquires(&group->mode_sem)
->>>   			return err;
->>>   
->>>   		if (new_mode != group->cur_mode) {
->>> -			err = switch_mode(group);
->>> +			err = switch_mode(group, syncs, num_syncs);
->>>   			if (err) {
->>>   				up_write(&group->mode_sem);
->>>   				return err;
->>> diff --git a/drivers/gpu/drm/xe/xe_hw_engine_group.h
->>> b/drivers/gpu/drm/xe/xe_hw_engine_group.h
->>> index 797ee81acbf2..8b17ccd30b70 100644
->>> --- a/drivers/gpu/drm/xe/xe_hw_engine_group.h
->>> +++ b/drivers/gpu/drm/xe/xe_hw_engine_group.h
->>> @@ -11,6 +11,7 @@
->>>   struct drm_device;
->>>   struct xe_exec_queue;
->>>   struct xe_gt;
->>> +struct xe_sync_entry;
->>>   
->>>   int xe_hw_engine_setup_groups(struct xe_gt *gt);
->>>   
->>> @@ -19,7 +20,8 @@ void xe_hw_engine_group_del_exec_queue(struct
->>> xe_hw_engine_group *group, struct
->>>   
->>>   int xe_hw_engine_group_get_mode(struct xe_hw_engine_group *group,
->>>   				enum
->>> xe_hw_engine_group_execution_mode new_mode,
->>> -				enum
->>> xe_hw_engine_group_execution_mode *previous_mode);
->>> +				enum
->>> xe_hw_engine_group_execution_mode *previous_mode,
->>> +				struct xe_sync_entry *syncs, int
->>> num_syncs);
->>>   void xe_hw_engine_group_put(struct xe_hw_engine_group *group);
->>>   
->>>   enum xe_hw_engine_group_execution_mode
->>> diff --git a/drivers/gpu/drm/xe/xe_sync.c
->>> b/drivers/gpu/drm/xe/xe_sync.c
->>> index 1fc4fa278b78..127e26129933 100644
->>> --- a/drivers/gpu/drm/xe/xe_sync.c
->>> +++ b/drivers/gpu/drm/xe/xe_sync.c
->>> @@ -228,6 +228,20 @@ int xe_sync_entry_add_deps(struct xe_sync_entry
->>> *sync, struct xe_sched_job *job)
->>>   	return 0;
->>>   }
->>>   
->>> +/**
->>> + * xe_sync_entry_wait() - Wait on in-sync
->>> + * @sync: Sync object
->>> + *
->>> + * If the sync is in an in-sync, wait on the sync to signal.
->>> + */
->>> +void xe_sync_entry_wait(struct xe_sync_entry *sync)
->>> +{
->>> +	if (sync->flags & DRM_XE_SYNC_FLAG_SIGNAL)
->>> +		return;
->>> +
->>> +	dma_fence_wait(sync->fence, false);
->>> +}
->>> +
->>>   void xe_sync_entry_signal(struct xe_sync_entry *sync, struct
->>> dma_fence *fence)
->>>   {
->>>   	if (!(sync->flags & DRM_XE_SYNC_FLAG_SIGNAL))
->>> diff --git a/drivers/gpu/drm/xe/xe_sync.h
->>> b/drivers/gpu/drm/xe/xe_sync.h
->>> index 51f2d803e977..1c08f9ed9001 100644
->>> --- a/drivers/gpu/drm/xe/xe_sync.h
->>> +++ b/drivers/gpu/drm/xe/xe_sync.h
->>> @@ -29,6 +29,7 @@ int xe_sync_entry_add_deps(struct xe_sync_entry
->>> *sync,
->>>   			   struct xe_sched_job *job);
->>>   void xe_sync_entry_signal(struct xe_sync_entry *sync,
->>>   			  struct dma_fence *fence);
->>> +void xe_sync_entry_wait(struct xe_sync_entry *sync);
->>>   void xe_sync_entry_cleanup(struct xe_sync_entry *sync);
->>>   struct dma_fence *
->>>   xe_sync_in_fence_get(struct xe_sync_entry *sync, int num_sync,
+> 
+> Reviewed-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
+> 
+> > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c
+> > b/drivers/gpu/drm/i915/display/intel_dp.c
+> > index ee33759a2f5d7..902f3a054a971 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> > @@ -2294,11 +2294,8 @@ static int
+> > intel_dp_dsc_compute_pipe_bpp(struct intel_dp *intel_dp,
+> > �					 struct drm_connector_state *conn_state,
+> > �					 const struct link_config_limits *limits)
+> > �{
+> > -	const struct intel_connector *connector =
+> > -		to_intel_connector(conn_state->connector);
+> > -	u8 dsc_bpc[3] = {};
+> > �	int forced_bpp, pipe_bpp;
+> > -	int num_bpc, i, ret;
+> > +	int ret;
+> > �
+> > �	forced_bpp = intel_dp_force_dsc_pipe_bpp(intel_dp, limits);
+> > �
+> > @@ -2311,25 +2308,15 @@ static int
+> > intel_dp_dsc_compute_pipe_bpp(struct intel_dp *intel_dp,
+> > �		}
+> > �	}
+> > �
+> > -	/*
+> > -	 * Get the maximum DSC bpc that will be supported by any valid
+> > -	 * link configuration and compressed bpp.
+> > -	 */
+> > -	num_bpc = drm_dp_dsc_sink_supported_input_bpcs(connector->dp.dsc_dpcd, dsc_bpc);
+> > -	for (i = 0; i < num_bpc; i++) {
+> > -		pipe_bpp = dsc_bpc[i] * 3;
+> > -		if (pipe_bpp < limits->pipe.min_bpp || pipe_bpp > limits->pipe.max_bpp)
+> > -			continue;
+> > +	pipe_bpp = limits->pipe.max_bpp;
+> > +	ret = dsc_compute_compressed_bpp(intel_dp, pipe_config, conn_state,
+> > +					 limits, pipe_bpp);
+> > +	if (ret)
+> > +		return -EINVAL;
+> > �
+> > -		ret = dsc_compute_compressed_bpp(intel_dp, pipe_config, conn_state,
+> > -						 limits, pipe_bpp);
+> > -		if (ret == 0) {
+> > -			pipe_config->pipe_bpp = pipe_bpp;
+> > -			return 0;
+> > -		}
+> > -	}
+> > +	pipe_config->pipe_bpp = pipe_bpp;
+> > �
+> > -	return -EINVAL;
+> > +	return 0;
+> > �}
+> > �
+> > �static int intel_edp_dsc_compute_pipe_bpp(struct intel_dp *intel_dp,
