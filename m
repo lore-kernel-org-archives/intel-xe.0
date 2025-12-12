@@ -4,182 +4,182 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 15040D59D8C
-	for <intel-xe@archiver.kernel.org>; Fri, 12 Dec 2025 19:47:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B444DD59D8C
+	for <intel-xe@archiver.kernel.org>; Fri, 12 Dec 2025 20:12:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE9C810E796;
-	Fri, 12 Dec 2025 19:47:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 76F6510E958;
+	Fri, 12 Dec 2025 20:12:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eZ96HHWf";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="R4GyyhX/";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B294810E796
- for <intel-xe@lists.freedesktop.org>; Fri, 12 Dec 2025 19:47:10 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4B13E10E958
+ for <intel-xe@lists.freedesktop.org>; Fri, 12 Dec 2025 20:12:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765568830; x=1797104830;
+ t=1765570375; x=1797106375;
  h=message-id:date:subject:to:references:from:in-reply-to:
- content-transfer-encoding:mime-version;
- bh=2LnqdkJottlLw2QZBFr3My4hKbvNB6pDmDeYAfXyAAo=;
- b=eZ96HHWfOe3r46Zz+K2yoEe5UgiONhGza9EDOr30w2fppMiLaP5spmEf
- loYrb/IT0eyJJv1J09pQhsAmzfNNVtx5Dj91IVu4tt3lqHOEEoXNIDB/b
- 5gfhrcZqfCWJKPH/FD3TwthF2TW3wtCxTJfFjKBEGphCbR8AHzIgoDNi3
- UII0CZLA6UcpTRljlfNlD38+2Jsd85PpUsNZ7DuU80XH/q1dbohLx0HWc
- lgMmWzIATgABubI3JN2OrVQKmU5RzxYfjFe50q3cdBzsuZ0FLX/3OLO8u
- yrznwwRiWm9ewh86a1QQY5QDtuz4kLRUcwjOnEGX4udmjpNEt2wd1zhSa g==;
-X-CSE-ConnectionGUID: U+vedVbVTuazGMOSxL887w==
-X-CSE-MsgGUID: 67XeKwn4QGuqrfEQu8NgyQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11640"; a="71437812"
-X-IronPort-AV: E=Sophos;i="6.21,144,1763452800"; d="scan'208";a="71437812"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Dec 2025 11:47:06 -0800
-X-CSE-ConnectionGUID: OhbOT4phQ8Cp7/tarfW+gA==
-X-CSE-MsgGUID: ELROoF/iQ9uaG9v/W4LSAg==
+ mime-version; bh=0iI8Nx8MVAyZJ87I77Jo3LQ05sm9EEg15Q2EUFr1j9E=;
+ b=R4GyyhX/j2EKnvyu1y9VZ9I5rCBt1JYVwUx2GkKwxvC1bvwQpS+lwpaZ
+ KwJfznrL6NO68VSFVbsHqQbu8u1bkNwqcoC762Rg1ot6+ipTLMd2Vk93J
+ Mib5NIBloqDpQsFyI2izAwowPgW/14eztGdtYdU8XBVe1f3hFXesijOW3
+ gUV/vqkKwa9hVOdT70UA0p8mXNsPSC+4SW/8PLRxCS16G0FOQl16QSK6N
+ BRnKXAIm3E4gAwH/b8ZzEA2r4MbJaZ6BmpQcZm/sunyr5EPkyEKlEYxsN
+ 7OvNWRZPZFEsi5uKwEroLWs+21UPyYSOojiOG69Ub5POvz35pVOSxaqTU A==;
+X-CSE-ConnectionGUID: 2v7SSt36RmeCnzdP4pVW8Q==
+X-CSE-MsgGUID: XtWiUasrTCWtPZxituxuOA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11640"; a="71425621"
+X-IronPort-AV: E=Sophos;i="6.21,144,1763452800"; d="scan'208,217";a="71425621"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Dec 2025 12:12:54 -0800
+X-CSE-ConnectionGUID: TWxjxQHGQ0ajgDTvDNSgSw==
+X-CSE-MsgGUID: P3a81m2hRb+/5YBlZexdqA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,144,1763452800"; d="scan'208";a="197662701"
-Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
- by fmviesa009.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Dec 2025 11:47:06 -0800
+X-IronPort-AV: E=Sophos;i="6.21,144,1763452800"; 
+ d="scan'208,217";a="197237110"
+Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
+ by orviesa008.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Dec 2025 12:12:54 -0800
 Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Fri, 12 Dec 2025 11:47:05 -0800
+ 15.2.2562.29; Fri, 12 Dec 2025 12:12:54 -0800
 Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
  FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29 via Frontend Transport; Fri, 12 Dec 2025 11:47:05 -0800
-Received: from CH1PR05CU001.outbound.protection.outlook.com (52.101.193.20) by
+ 15.2.2562.29 via Frontend Transport; Fri, 12 Dec 2025 12:12:54 -0800
+Received: from SJ2PR03CU001.outbound.protection.outlook.com (52.101.43.15) by
  edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Fri, 12 Dec 2025 11:47:05 -0800
+ 15.2.2562.29; Fri, 12 Dec 2025 12:12:54 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=EKg1kD2rMkxqXwU4Ir0vGa8/ft1HaVL8OxY7YIfk1X61sd3D0Nz7soaI9sqVRQ8Xb4vTBZFJj+TYdDQDBIyVx3lRlYjzweBmEC8Vxgum4WNFSZwzQQqHmBtCGJMD6u0T4o1VFg3WVJmBzB82xkVzetdaKFCoh+IncfLOh8Nydr5joURE6hMmy/675BUqpKGDaxEXWSnGXTnwnOrg9hwR/D/4D5NwvAPH0XYwWjKQxglGi9mzRbjJRIgx0Ka/iIPluwvBHww9janDjH1C970koozjjrjl8W9MArG929dRnbN5nPwpkussdh7z9Hlrv3LsW8uyGCgInHngZeHRwc5Sjw==
+ b=rR0EZt71GI++NXNTdaB/NY/ce26U7PCmts6mQg8Eut8rLwgfbfJcl0OEP7pI6cABo6LQIxn5wys1OH0WkOmRn48X4e79iOSmLcJS8VZBfRZxdMF4yeaSKXsR/FS6Cr88nnuIK9OnHaE0qtA4riABEmg5f77f5tEHwH4EYL3l2SWawxFCCRygvcDaE0BOnlJXpZoZUP5reqvuNICxOHKknrZSsZtRZA/GjolVv4lDGJcOgJ3nvv3pkt9dJ0dPI+TqL3tMqEix7P+0OkCulbcbIWiqi55T+zGS9vweAx+GrSsvbqPg0mKdENAhtIEF08weLh1ilUdObU91xtTIgw6zRw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Qj+0O9B/5RMubMcZ4NHIPajEsIft1dN8RpHTbdnefdU=;
- b=FbJRl8PuaVMss1nlWJon8XXY7C00wCy8D8I6kdn+W/mhBVRYwFodYr4OWDnb4qD5Y/LV16OStjUeypq+f1wyDfSh33H8V+MXypuILjTR6U80zU7RuBz9+1ALq9kdkMo82SbO/ZlLLBnJVdaIHH2oAlNCnwBPHcKLMYS2nylOQmjjmAH0YbHFxt2q4hDNduWpgzsccn+QFEsGBsBJmxiUh3A2rtXW5lK4wcjlPcblxeUigN164jKWp2+MhY8PRQ9cHwMoG9gNfVoQUxpgl8bZuj5FHys8HvvuyVGhHY8LGAhF05+4JAlA6UbmM5WnjadQBkjTT1v43V8kfOajWgjj0g==
+ bh=dUGLjN76Gmwe+s3LtZlIbLUI7nHRGaQGiUVdniIp3O0=;
+ b=uvonEru6RRpjTUTXxQ+11UeaS5Tm9EhVLSdirS4nvj5lbANXLqCCPMn4QlG2s26xRqa6LeVCcJfYpLolNL64WzQaSGxLGZNoG0UjVay7Ie+5M9bBDBZrPfHFLC+/QVeLzpFF6TDUeWOqjw+SvEg4HQAXShGYE49C38hyzbOHHNblgRrS1qZ0BK9gfUHADXg2afBO2HAk7MCt61b2cZe/Jdgq7Zvnoi6y+eHRCMRNkCxqmaEvBz3fDn0GKVLa1KrjZ63wve7XrLjKPSsLuNRzu5qssenVnE1QG6rMxGe9KIrsA/HugWEax2KdTWRuWRKGd9/XabrZ5S+riggiTcPCIw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from PH7PR11MB7605.namprd11.prod.outlook.com (2603:10b6:510:277::5)
- by SA2PR11MB4905.namprd11.prod.outlook.com (2603:10b6:806:117::7)
+ by PH0PR11MB5781.namprd11.prod.outlook.com (2603:10b6:510:14a::14)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9412.11; Fri, 12 Dec
- 2025 19:47:03 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9412.7; Fri, 12 Dec
+ 2025 20:12:51 +0000
 Received: from PH7PR11MB7605.namprd11.prod.outlook.com
  ([fe80::48d7:f2a6:b18:1b87]) by PH7PR11MB7605.namprd11.prod.outlook.com
  ([fe80::48d7:f2a6:b18:1b87%5]) with mapi id 15.20.9412.005; Fri, 12 Dec 2025
- 19:47:03 +0000
-Message-ID: <b46aa249-d5d1-410f-ab15-59fababf964f@intel.com>
-Date: Fri, 12 Dec 2025 11:47:03 -0800
+ 20:12:51 +0000
+Content-Type: multipart/alternative;
+ boundary="------------uqTzcIo7940D920wQM7SvbZC"
+Message-ID: <e35a5469-15b4-499b-9a03-7427ebb319be@intel.com>
+Date: Fri, 12 Dec 2025 12:12:51 -0800
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] drm/xe: Introduce IF_ARGS macro utility
+Subject: Re: [PATCH 2/3] drm/xe/pf: Prepare for new threshold KLVs
 To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
  <intel-xe@lists.freedesktop.org>
 References: <20251212173449.192639-1-michal.wajdeczko@intel.com>
- <20251212173449.192639-2-michal.wajdeczko@intel.com>
+ <20251212173449.192639-3-michal.wajdeczko@intel.com>
 Content-Language: en-US
 From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-In-Reply-To: <20251212173449.192639-2-michal.wajdeczko@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SJ0PR03CA0055.namprd03.prod.outlook.com
- (2603:10b6:a03:33e::30) To PH7PR11MB7605.namprd11.prod.outlook.com
+In-Reply-To: <20251212173449.192639-3-michal.wajdeczko@intel.com>
+X-ClientProxiedBy: BY3PR05CA0013.namprd05.prod.outlook.com
+ (2603:10b6:a03:254::18) To PH7PR11MB7605.namprd11.prod.outlook.com
  (2603:10b6:510:277::5)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB7605:EE_|SA2PR11MB4905:EE_
-X-MS-Office365-Filtering-Correlation-Id: 22e9fc89-feb9-4743-1276-08de39b738f3
+X-MS-TrafficTypeDiagnostic: PH7PR11MB7605:EE_|PH0PR11MB5781:EE_
+X-MS-Office365-Filtering-Correlation-Id: a6498d4e-f27c-4248-43f9-08de39bad3ce
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?c1ZGSkVDQUNSbVJSazdPUVFaWmQvN1cxYmhrWWtaT2cyY0VzUlpCVTMyeTY1?=
- =?utf-8?B?bXBxVUhHM0lBdlR5RWZzWVF0MXg3UWZVODhMdGd4S1JzYVU4TStqaTZQVFlU?=
- =?utf-8?B?SVJJSng2d29kcVRqamRDQldjTDhTTXRFOVNhZmNjK3E0dk1wNlUzY28vTXRX?=
- =?utf-8?B?WTluWmFYeDJmblBUTHYvY0ZWQzJqYjMvbjM0c3RUeWJZTDk3RTQvYTRCZWtY?=
- =?utf-8?B?TVo5ZGJqRFZKa2VjTEFqVFFXb0FHN2NwUTkvR3BMYmhtNWprbko3NStuMnlO?=
- =?utf-8?B?Sk9tRzhSa2pINUpnS3duYTFuZnFqc2VablMrQVBsbmdwcGJ6UUhMSENIdVNV?=
- =?utf-8?B?bFhBZGR2OGVsbzJYeU1BajZ0UWNlbDVJMExFMThLSXg2Z1ZBbzg4allzUlVO?=
- =?utf-8?B?cWJFR0VYWUJZRE15SldHbWZuUHkydXBTWXVFajhyTGJkZ0ZsVUFIcFplcXNa?=
- =?utf-8?B?Z3JvKzZDZE9NbTBxRHR6cU1VemhSVWpDTkFpVTQ0RjA5eDFqN3BGZmNsWDht?=
- =?utf-8?B?S1J6c1ZMZ2UyYjViUGs3NkFXbHRMNWZudmt4a3g0N2oxRUpqNm96NWhqTkgr?=
- =?utf-8?B?U09heXV6S3owZjVEVU9hbjRCTWxhZmhYQWJRQTRCb1llMjlmU0pUdEVpZmw1?=
- =?utf-8?B?bmIwLzF5Sk5MZHVpV1dqMWo5S1ZDZVBDRk5nNzdpKzREL1BQbXdoWFcvNUtZ?=
- =?utf-8?B?RmpWRndoOTU2UTdDTHdQWEdwall2SkM1UDZBU2tVMWlFMDFJZHAwMXpPNzRQ?=
- =?utf-8?B?Z2h6UHNhOFRMV3JLQVUwRm4vcXNLbXh4UHpmNXk4OWZjcVc2Wk1MaDlPb09Q?=
- =?utf-8?B?eDhQNHlOdVJqY3diMVJQZ0F5amVGVHZHUUlRTGk1ODNkYnU0dkNHYy9GdVpE?=
- =?utf-8?B?T3oxOXBERUluOHpiZXBzeStsS0JNa2V5TURWK3hUU0x3cjZTR0c5Y3pHM0dE?=
- =?utf-8?B?Ty8vYTYyYzVaSVlWUGRWUGFGaFRpYU1hQlEvOVE5d21sVGhBR0pFSjh5T3Zh?=
- =?utf-8?B?RktxVUN4M25wZGpSb05nSEVoMzhjbjlEMVl1QUY3UUlzeTdzSzdJRHlkZXdX?=
- =?utf-8?B?ZUJ5YnUzRkNVd0NpVGszazM0R0N1a1hpcm45YTR0QSs2T3VIS1hzQnBneGdy?=
- =?utf-8?B?ek8vUWt2SSt2MnNzNlBJRTFKMGVZNlYyQ01ieFdabUprL1ZwTmFNZUNuRkZk?=
- =?utf-8?B?bHJ0aTlUdmVIa0pFbDJsRlZZZXJvdkRjbWRzWVNtUlNLclhYalJQbCtIQ0Ry?=
- =?utf-8?B?WlVmbkl4UFBwUUI4ZG5VR1RlN1N2bGFIVEVCUGpVZlZrZ1hCeWQvdkJaL1Nq?=
- =?utf-8?B?Z1RESlk0UFhXcTdMOWFJRld4MWRDRjNqVVNmQWVEZkY0TDFtWXBhZm13UlFC?=
- =?utf-8?B?NEZCRytBYVBtdmdJK08vc0tJcDc3MXRYaUVneWNyb2tmU1cxbEpsKy9OWk45?=
- =?utf-8?B?bnZtUElDcE5ZNnZyaFZ5YXEvYXRmM3F1ZFJ5c21NK0pSN0pHK0JMQjZyZm5K?=
- =?utf-8?B?di9RZmZLWTlsQ3VqeURPZk03QldGNkxLYThWWFFCZVNIZDNsWXNVTnMyMWtW?=
- =?utf-8?B?RmtuRkhMZDFLREMzYzdqMzVMWklWMWNSNGRXVjQyRTZMQzl1Sm5hYWtTS01T?=
- =?utf-8?B?dTM3MnZpNklXQkUzdVBGaHFPTGVYMUhVbnNEbllYTXpjclBmck15VExXZnBz?=
- =?utf-8?B?enJDb0V2MXpwWjA3S2hUQmpYOXZpcWJHSmo5Y1dwWURWb1FhcGVxVDRtYWlD?=
- =?utf-8?B?VzIxRlNWTGpQYzVrRGUySjNieE1pNlhybnUwTG5TbUJyRDhqYU1pVVJVa3dy?=
- =?utf-8?B?ZlNENWsxQ0dNYXd5akFCSjMrT0dwbE9oaHNINmxsVzZtYlVHS0lHOHdUTXRo?=
- =?utf-8?B?V0Q1SzE1UDNqMXg3RDBRb0ZRTFdVRjAyeExHWC94Q1E5dEJvUndIYlV1QmxQ?=
- =?utf-8?Q?thsdQMpiNKiHAVCgNitbDbugEcyyfvha?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024|8096899003;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?VzNVYXQvVWlRVGZLY0l0Y1FGYnVOUy9oM25lWlQ0TW1XNzhhZEpJYzVHOGNa?=
+ =?utf-8?B?QW5yeEhkTVpZZWEvNENNNlF6Y1ZER1o3MkNHSU5pMEUxVk1tRXQwNExhRXJa?=
+ =?utf-8?B?L2U1dGdXY0pHeEhDMFg0U0IxZlNPWjFvQmJwRENuRkF2V2x0QTJDOGYwVWVp?=
+ =?utf-8?B?WWVQSmpNc1k1THhXYlRZcDJBeWdXdDQxRWk4ZlpmRzBvZG9DWXBYL2dXdThE?=
+ =?utf-8?B?K0kzbUZtQkpVb0hsak8wUXEvV0xJUkRMR2liYnNkaHVPQ2VBQ2pFUHZuY0F5?=
+ =?utf-8?B?ZExZZ1hBbmNvUFRMNzhkNUFwSnRiZjV3UzQ1RWgyakw1L2wrRzl2RHN4U05y?=
+ =?utf-8?B?V0ZIVUgyUnYzQktEbFBISmE1d3pSV2YzSVBPQnVGNHo5QXZTMlQ2OHNqckc2?=
+ =?utf-8?B?Tm1ZOHpiU205NVZ1SWNSY0Y2elo2VnAvWktpU3lyZzJsZHo3emFmWGFOa2s4?=
+ =?utf-8?B?cWpjc1o1bHJrUDdkRXNvYTJmZzYwMmk4TWhsYkFIS2V2SklRajhXRVEvM25n?=
+ =?utf-8?B?SEsycFkzVldwcXdlQnQvM3ZoQzJVV1VXby9MQWF2djBlUUMyMy93SW1tdXRq?=
+ =?utf-8?B?ZG9EelZsQ2J5TUlVU2ZwN1FEQzg5eTAzako3cmhIUjZmQjJSUExzNmMrQ2hZ?=
+ =?utf-8?B?bVdpMEphb0tWUHFoUGJnclJPenF4bjVSL3ZxdDltMm1MWnp6dUJzOGI0U09s?=
+ =?utf-8?B?U1pYUmxOSG5Gd3JqZ2xhUElXU29tY0c5bHkwcktIeUF3TnJReWN1enVyZElX?=
+ =?utf-8?B?dzVmRlZUK2pkVzAxcjlMYWNsRC9PUTVJbzhvOHdaOCsxZEdOR1RyOHpVMm9y?=
+ =?utf-8?B?c2lKVW5ud0xzYVBZaUducmQ5c29NUjY3QkhrRUtnMisxd3RQbGNsQlFHc09H?=
+ =?utf-8?B?Skg3VFhGb3FITFMyMG02WGkxRlBwU29lMjRNc3RlREFvWEwwN1ZCU28yb0tF?=
+ =?utf-8?B?eE51WWcvTWFITk1aaVpuNlhOTW9MNDdWbFk4MkJzNGZXVGpVVUZURTZueVdK?=
+ =?utf-8?B?a1N5NDJyVUpPa0kvSEkvRzJidFlDNWlQak9oVWdCZjRvemc1SDN6bzlqREJq?=
+ =?utf-8?B?VzRueHpOM3ZtaW1BOHc0elpNK1dHV0Z6SjlPOFdWbzdyOTJBQ3JnVkRCd2Fp?=
+ =?utf-8?B?NHhsdFRxamNxSzNUWUd0SHlvLzVjZ1lxcjhmaHhkNzdkdWIzQTZZWnQ3ZVhp?=
+ =?utf-8?B?RHM1UjVTUFViOGFjMHZGQXpWY1kveVplWU9CMkluZmNHSnFvQnRLaEtlVzJP?=
+ =?utf-8?B?QkdZMUV4T3k2VFlQbmFYQjV5ZG0wZTA0d3BMei96a29OeFZ6N0NVRS8xNkRh?=
+ =?utf-8?B?Yit2NGIyVE5tWEZkdDZtZ3NsOEVRVmJ2ZUwrekQwWHQ4Y1ZpZGZKMnRyNGJM?=
+ =?utf-8?B?ZHl2eDZPTmhUWHpDMlZBbjJlVEdDQ1dKNUxyeXhGSkJWZlVFR2hGcG1mT3hR?=
+ =?utf-8?B?N3RyU0NFT3dZdTFNSlYwb1VlbnpRT2RxeHBsNG1mL2VTN2drZVpDOVpsWjMw?=
+ =?utf-8?B?VjNJaWhJSkc5ZVg2MzU0YU10a2szWWxCY0VJMzFxWXB5aFFCSEplb3NlL1Q1?=
+ =?utf-8?B?RFF2YXRreFJNQWRBN3NBYzh4d01mQTVJdUZnZ3pyNFhvaDVQSVA3ckllQWZS?=
+ =?utf-8?B?TWFXbVFVQnRQV2s4MGFiSFNManlCV3ZwOEttaTdVZngyYUdlb1A2SEZiNjQz?=
+ =?utf-8?B?VDZHL1ErNFFCa21mbFEzbUU0UVE0UTdtVTdxUmdqQXlSZkpubnN0UXg4U2M5?=
+ =?utf-8?B?Tkh6b21tTWNyYTJIaExQOE4xWU5uc0dCQzI4cDdnYURaTkIxazNTaXA3NGQw?=
+ =?utf-8?B?OVgzSVoxYjYrTkNzcmFHYi9jVGhrUHpZdnNaRDhVcHZaMXBWM01vSUtKbW9Q?=
+ =?utf-8?B?Zzh0YThMV1VaNWhsUGFNamF0MWZRRmxNRWRjT28vQWIxNGxoQVFEMm9hNkpZ?=
+ =?utf-8?Q?ur9RUf91qlD3ffdB7eTb7OsxCUfvZ6sr?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:PH7PR11MB7605.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
+ SFS:(13230040)(366016)(376014)(1800799024)(8096899003); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Q0EyM3VzSEtYNE0vMkszZGtCenhraGpzV1pYbDFUZ2ZYa1V4V0ROTm9jRk55?=
- =?utf-8?B?aDhxcFcvb1RlWGRQeFo0TDcyV1o4L3NiZ003Nm5UK0F6YVYxdzAzUlZBTDI2?=
- =?utf-8?B?c09OeEw1MG80UGNFQkppbXBSNGNXVWV4enVsU2J0cThhM2NLemREN0RQVEdi?=
- =?utf-8?B?cWJybVdHTzJyTVp4TXI0M01kVDlpTjdJdzdzL1hRSVgvQTAyKzZlTkxEVGpY?=
- =?utf-8?B?eVd5ZDBRUzFnUVBodU1CMWlJcFRWSUQ5SndsRkwxWkNpQTVqSkxTYktSbU5T?=
- =?utf-8?B?NEdDSmJXdEVSSHRtOVR6UDY3MUFLY3FaQlBLTkVTbXU4MzczTU9zTDBBTmJX?=
- =?utf-8?B?YjVrdEh0OHhxRXRJWGI0VHlDbGVYNnRWQm9BcGdjYUVKQllqSlJ4UGVYTE82?=
- =?utf-8?B?MFpRczhsTk14bHZFNW16QzVncXUydlJlazhNL2FEeFNHLzc4MkRjNDBJbDJJ?=
- =?utf-8?B?Ri82aXF1SnQxVy9xUkFIOXhURnIxYXo1bFBobjRQdWhGa3c4T1ZodXBqNlJC?=
- =?utf-8?B?TEtPYjNIM2dCd05mUkRNak1HWlE5Vm9QR0pvLzFXM2Z6NUZUU2lLTUhDWS9v?=
- =?utf-8?B?YmpvYkZ5T1ZkSi9JMVRHRXlzTzB1TTVQbzVvNlRMV1N0RVJqRC9NaGY0dlcz?=
- =?utf-8?B?VDVyczM5Z2xiUlRUQ2I5KyszL05PKysxRDVDcGlUa2ZXU3lWa0M4SlBmVkl0?=
- =?utf-8?B?OWNCbXpZY25EYVVqOXNFU2FrRmN1dWUxam9qeTZkZVFZanM3UGl1S29oUkhy?=
- =?utf-8?B?VU1KY2lyWjYvMFFZcVRKbFVTUjFqNXczOU5OV0JxKzlydW1QTU5TZVBxMWFt?=
- =?utf-8?B?bUEwcDhBcjZxdHRNdDBJOVdJY29jQmtNT1JYdzRXNlVPbFhZV3VvcGtja1FL?=
- =?utf-8?B?TWJKZWVUNnV6MDk0YktBcFdqSGNsY1VvcE5PTHc5bU9wRkFJN3BUQU9aOFJB?=
- =?utf-8?B?TjJzb05Kd3NWTUtBWG1leHZkcGF3WFZSL01Kc2MwZ0NYZ0luVlB0VVRTWXRC?=
- =?utf-8?B?ZHV0KzZ0YzEzNy9adFc2QnNkSC9pWTlhWkl0YWlwYU1oMHhKck1XbjNiVnlY?=
- =?utf-8?B?WThsNi9IYzlRR01Cak42bC9DL3Z5Y3FnR3BMR1JBa3Urd2dZbzRxb0Vpak5n?=
- =?utf-8?B?K0toSjBXakRRRXRXbVhVWHh6YkovYk9kOCtTRkErOWlvQ3J1TEJWN2QrZkhP?=
- =?utf-8?B?bktiMHBKUWVPK3krSmtOdDluWGFtSk1UcEMvQm92T2djU3NzZnNWOThINnB4?=
- =?utf-8?B?clZybzVYeVdaVFBnS1E0bGJGWHdtTnhLeEhJelBjR2VtRVJRRFJMaGtONWp1?=
- =?utf-8?B?L2pibzRQRXJuWStqQ0djTE9mYTdFSmFmZUZlT21BS2dEWHVxMUJFbTZPRXRZ?=
- =?utf-8?B?WjZubjVpYXhKOGdwN2Jyam5jYzdZYlFqNnNNOTJtcHpSMGRjM1hKc2xZQ2Zv?=
- =?utf-8?B?Tm11WWN0WllwTjJ5V1dDY1Nwc0JQQnFXV0c5WEtaYitldkthQmJYR2NseE1L?=
- =?utf-8?B?Z0F0aXRSbmYwTERQVzJoNDRwWkkxNnFuZHJQTFNTbTBxR01zOVVCRmRCUDZQ?=
- =?utf-8?B?UjlyOWRBQnNISmJ5TEdoNERtdjRGSTJ6SnpoU2hvaTNjNnNGRjIvV1gxZ3hX?=
- =?utf-8?B?QXVGN2JVcnFRL2toZFJKNGJsK2dWaDQ2ME53c3BPZ28xemRKdVNjYjhnbnZ5?=
- =?utf-8?B?dkhMRjZOc1R1UlZIakhXVDdDRkFrRHRHcGNiaFNWMlRTSVVQTVp2UlAyL3JJ?=
- =?utf-8?B?dDVpejJqZTZ3c1F2bkxDL3ZRTHlvbU1xZDRNZmxQZTJlTjRwMDczVlpjMVRx?=
- =?utf-8?B?RzRXRExHVGQxRklDWktMcDRsSjJ2RXdHczhOcFdqaDc5QU1mMXNJNVMyUnZl?=
- =?utf-8?B?c3NFWlFZT0pNZ2VmaWg3NU5GeDQ1c1ZSc1NRczhXeWNZaHpsb3RBMC9EM2hJ?=
- =?utf-8?B?cXdldmRKY3JQRGgvZmdpSEFKVFVvMzhIb0UrU1ZaNkxkdUdSQTZDZldXcURZ?=
- =?utf-8?B?c1JhbUZ5NmIrb3BPclNVZm5zNEtKM3d1M1lZSk5CcHJQODhDc2FpYmZzRjBM?=
- =?utf-8?B?dnNLMlg1bnJnN213ZnRHNjB4c1RwTU0xdXVtMmlvKzlmSE03VEI3TGU0RE1Z?=
- =?utf-8?B?NUNTNWc3K3psdW1uSlErUllWMWd2SE83NEZlaXBIY2VWTDNVSkJiei9NdlUw?=
- =?utf-8?B?TGc9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 22e9fc89-feb9-4743-1276-08de39b738f3
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?eUhKaVdQUko4c3ZQaGtMcytZUjE5SXhoeFZ1L0tWcjdENmVXdHZxdDVQSzY2?=
+ =?utf-8?B?dFBnb2lJSEtzT2RpeXFadm5DbVNxdm1qRzBuMXd4em4yelI3ZTh5b3hmeFFs?=
+ =?utf-8?B?bldQZElzWEZCaWcyaDJBd2FBcnhPaFdtY2RPZk91MGFOTDFuMThZcmdiMkxp?=
+ =?utf-8?B?VUJDaE1MS1J4bklpWjRWcER5TnV3U0txQXZyRmNJaEpKTGtYZVUweG9IZWVD?=
+ =?utf-8?B?aitIY01Idyt0cHE4NEtiZmFBNzRNcTFFZWhPNjNHUXJpcjFWdjkzeW9JalFB?=
+ =?utf-8?B?cTBiR28rRUFWbGhHbStZYnJZb20yZHZxODV0eVV1S2pjajZMQUNmazc0WnNS?=
+ =?utf-8?B?V096QzdHMys2VktHK3dSUjk5cnJsM2ZXYlA3bVU4cFNyOFFUbFZYem9XMnp3?=
+ =?utf-8?B?Y0V1S01ZbVVrMmFiSmJGTXN3VVA2cTFSTS93RjMrazZkU05jOVBkZXo2TElZ?=
+ =?utf-8?B?N0pGYnFiK0tvYkdkSTV3eTcxRVhaTktrdU1qb01BVG94dm05TE9Td0lWOFdX?=
+ =?utf-8?B?bTYxRHBrSE8yZ1doeVJKMjlLckR6NWJ6Vld5dVNsb295emUxNUhJM2dVd0lu?=
+ =?utf-8?B?MExHamY3WmlNTWVMQkhLbG5GY3lTRy9jS3VabnlVSGp2SHgzMy9HcVpUU2VD?=
+ =?utf-8?B?MjgyNElqTHdteHVhTGVZVzE0REZlWmF6N0VZeEZBSTBtb0dpVWJFbEZER0ZV?=
+ =?utf-8?B?ajJUeUlBbTJPN3FsOEFoa0ZzNWNJemJWc0hYUU9XdW1wM1ZKYUVaSXFXMFg3?=
+ =?utf-8?B?bHpOcmg2dlZWVUIzbHEvREh3RHF5RVVQNnFQOUF3QVd4aEpqbDIrUmFnSkJI?=
+ =?utf-8?B?YTVQTTM3ZEkrZjB1ckRyTll5enVBb2ZUR3hzclByNTBYY0JFZG9DT2dVMjc0?=
+ =?utf-8?B?QVJMZE1OM1dLNVJabG1qMldubExQU1BGSjY3RlM1WGZaYm1hT3dWazVPajhm?=
+ =?utf-8?B?Z3RGMW9Tem1zVDJEcmo0ZEpFdHJKQ0RnUE93Nno2ZGxielNDWXkzKzFaN1Yw?=
+ =?utf-8?B?dFVHRkMyNFYwcytwZFZBTzVPcXlhSU9MTjVoOGNzUzZVWEl3Q04wTTIwMlRx?=
+ =?utf-8?B?Zm5GWTRMcHJTVTFyamUxWDIrYlpJMGlHdXBhWkxVdk1KT0p2cnhJdm8vVi9S?=
+ =?utf-8?B?YndiYUY3U3FISWVVTzZnYXcyU25KZ0VSUEc2SmEvQ3NkOUdnazQzNHBkVEFK?=
+ =?utf-8?B?VEgxREM4L0Jac1RWbDl0S1VvVkZoekJSbmdPcnNtcUVtSkQ2c0k0TFhXV20z?=
+ =?utf-8?B?bXFTcnE0VWFJcWk0bnZMSjBLUjBNSDRFWnRway9oZ0M3M2JxbC9kZWg3QVRK?=
+ =?utf-8?B?NGJDVzRYY2RyUGIzS1JWUzBFWU5oWUFBbkMrcXpxYTBUVVZPSmRlaUZ0aFdr?=
+ =?utf-8?B?VXNGajRpdEZqbTdxbk5HazhseWxKTzBvUFdBSmxMdFNwRCtOTVFaWmJSdFZN?=
+ =?utf-8?B?ckZzb2wxT2xXWXpQSkh4d1ZPWlZHNjdCakFOdEpSbGVyenA0eGhSV1M4Unk0?=
+ =?utf-8?B?ZStyREg1MEZReWlqRjhsQjBxZE5xZENieEkyeHBYNFgrSWs0dnhWRkZueUQ5?=
+ =?utf-8?B?eUN3ejFBRGlZVU1PU3dqZ3gxdjh5WHkyZVYrS0lLWFErdkI1bTJmM0NkZE9J?=
+ =?utf-8?B?R1p4NjBhQUU5dEI3eEV4bnZPTm5Ld1d1WjNNbFE4dC9EN0l2NXo4a3g5VFE5?=
+ =?utf-8?B?SEorbTBjK3lNN3FJRGtyc05WeSt5RHd6OWVoUkRvcG5aQmt1TWR5NHlyR2Vs?=
+ =?utf-8?B?SUw4L2k0aTF0Nm91WnNiYmZHU3ZibndLMW0rWDI0QnpybnJnZFlxTk1sTEI1?=
+ =?utf-8?B?T2pKWHM0Ujh2WE9pMytTU0FJczV2MkxzbEdJa0JEVUhwSllMcXFMUlNxNy8w?=
+ =?utf-8?B?a3JiYmIwaWJNUUcrZFlVMEtFUlUrQ2h6TVpuOUl0SXUweGxUWG1nN3ZJTkpt?=
+ =?utf-8?B?KzlmSytDUkxVdTZTUkRnd2JpaXRiaktBQVZ5bDdBZ3BjTW1SRUIrSi8ycFpJ?=
+ =?utf-8?B?ZFdwV0VrQ2o1WFdLaFBYOXR3YXYwdU5sYXZtclhXSUVCendIb0VKN0Q0OXda?=
+ =?utf-8?B?dWk1czQ5ZisrWDZzUGhoUkxZbGlVdys1aTlPUmFWSzN3TkZ1T3FVV2Z5em94?=
+ =?utf-8?B?bW0xSHY1RjNCUkNMUng2Q29qbGg1T2dSc3dyRmdvbnU0QkZKc2I2T3cvMEU4?=
+ =?utf-8?Q?tHqnMFNfrnh0CGIUml+dCq0=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: a6498d4e-f27c-4248-43f9-08de39bad3ce
 X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB7605.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Dec 2025 19:47:03.2089 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Dec 2025 20:12:51.4387 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: nml0rbMMFOQpiv+UfnvA4AhdKtFcdkVyvY1NkVG4XqvElOaWs0IW8SoJNKwtNnVea7EIhDutqRHcZN9dfAm5V/HbjJiSCFEM/6Vf+d006bE=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR11MB4905
+X-MS-Exchange-CrossTenant-UserPrincipalName: bqDE6+a1TE8s3jbTjJe3wPUQXcT9GlpbRHmmmyvMj88zYqYX2V1LX4A/UWpz/lCN/NHkxZIox0QKA1tGS6lo86suwedZfv9LpTwyZHmrZ7Q=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB5781
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -195,141 +195,387 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--------------uqTzcIo7940D920wQM7SvbZC
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+
 
 
 On 12/12/2025 9:34 AM, Michal Wajdeczko wrote:
 > We want to extend our macro-based KLV list definitions with new
 > information about the version from which given KLV is supported.
-> Add utility IF_ARGS macro that can be used in code generators to
-> emit different code based on the presence of additional arguments.
+> Prepare our code generators to emit dedicated version check if
+> a KLV was defined with the version information.
 >
-> Introduce macro itself and extend our kunit tests to cover it.
-> We will use this macro in next patch.
->
-> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+> Signed-off-by: Michal Wajdeczko<michal.wajdeczko@intel.com>
+> Cc: Daniele Ceraolo Spurio<daniele.ceraolospurio@intel.com>
 > ---
->   drivers/gpu/drm/xe/tests/xe_args_test.c | 53 +++++++++++++++++++++++++
->   drivers/gpu/drm/xe/xe_args.h            | 18 +++++++++
->   2 files changed, 71 insertions(+)
+>   drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c    | 20 ++++++++++++-------
+>   drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c   |  9 ++++++---
+>   drivers/gpu/drm/xe/xe_guc.h                   | 18 +++++++++++++++++
+>   .../drm/xe/xe_guc_klv_thresholds_set_types.h  |  5 +++++
+>   4 files changed, 42 insertions(+), 10 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/xe/tests/xe_args_test.c b/drivers/gpu/drm/xe/tests/xe_args_test.c
-> index f3fb23aa5d2e..d11ea610f67a 100644
-> --- a/drivers/gpu/drm/xe/tests/xe_args_test.c
-> +++ b/drivers/gpu/drm/xe/tests/xe_args_test.c
-> @@ -78,6 +78,24 @@ static void pick_arg_example(struct kunit *test)
->   #undef buz
+> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
+> index 59c5c6b4d994..2d039f67c99d 100644
+> --- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
+> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
+> @@ -269,7 +269,8 @@ static u32 encode_config_ggtt(u32 *cfg, const struct xe_gt_sriov_config *config,
 >   }
 >   
-> +static void if_args_example(struct kunit *test)
-> +{
-> +	enum { Z = 1, Q };
-> +
-> +#define foo	X, Y
-> +#define bar	IF_ARGS(Z, Q, foo)
-> +#define buz	IF_ARGS(Z, Q, DROP_FIRST_ARG(FIRST_ARG(foo)))
-> +
-> +	KUNIT_EXPECT_EQ(test, bar, Z);
-> +	KUNIT_EXPECT_EQ(test, buz, Q);
-> +	KUNIT_EXPECT_STREQ(test, __stringify(bar), "Z");
-> +	KUNIT_EXPECT_STREQ(test, __stringify(buz), "Q");
-> +
-> +#undef foo
-> +#undef bar
-> +#undef buz
-> +}
-> +
->   static void sep_comma_example(struct kunit *test)
+>   /* Return: number of configuration dwords written */
+> -static u32 encode_config(u32 *cfg, const struct xe_gt_sriov_config *config, bool details)
+> +static u32 encode_config(struct xe_gt *gt, u32 *cfg, const struct xe_gt_sriov_config *config,
+> +			 bool details)
 >   {
->   #define foo(f)	f(X) f(Y) f(Z) f(Q)
-> @@ -198,6 +216,39 @@ static void last_arg_test(struct kunit *test)
->   	KUNIT_EXPECT_STREQ(test, __stringify(LAST_ARG(MAX_ARGS)), "-12");
->   }
+>   	u32 n = 0;
 >   
-> +static void if_args_test(struct kunit *test)
-> +{
-> +	bool with_args = true;
-> +	bool no_args = false;
-> +	enum { X = 100 };
+> @@ -303,9 +304,11 @@ static u32 encode_config(u32 *cfg, const struct xe_gt_sriov_config *config, bool
+>   	cfg[n++] = PREP_GUC_KLV_TAG(VF_CFG_PREEMPT_TIMEOUT);
+>   	cfg[n++] = config->preempt_timeout;
+>   
+> -#define encode_threshold_config(TAG, ...) ({					\
+> -	cfg[n++] = PREP_GUC_KLV_TAG(VF_CFG_THRESHOLD_##TAG);			\
+> -	cfg[n++] = config->thresholds[MAKE_XE_GUC_KLV_THRESHOLD_INDEX(TAG)];	\
+> +#define encode_threshold_config(TAG, NAME, VER...) ({						\
+> +	if (IF_ARGS(xe_guc_supports_fw_version(&gt->uc.guc, MAKE_GUC_VER_ARGS(VER)), true, VER)) { \
+> +		cfg[n++] = PREP_GUC_KLV_TAG(VF_CFG_THRESHOLD_##TAG);				\
+> +		cfg[n++] = config->thresholds[MAKE_XE_GUC_KLV_THRESHOLD_INDEX(TAG)];		\
+> +	}											\
+>   });
+>   
+>   	MAKE_XE_GUC_KLV_THRESHOLDS_SET(encode_threshold_config);
+> @@ -328,7 +331,7 @@ static int pf_push_full_vf_config(struct xe_gt *gt, unsigned int vfid)
+>   		return -ENOBUFS;
+>   
+>   	cfg = xe_guc_buf_cpu_ptr(buf);
+> -	num_dwords = encode_config(cfg, config, true);
+> +	num_dwords = encode_config(gt, cfg, config, true);
+>   	xe_gt_assert(gt, num_dwords<= max_cfg_dwords); if (xe_gt_is_media_type(gt)) { @@ -2518,7 +2521,7 
+> @@ ssize_t xe_gt_sriov_pf_config_save(struct xe_gt *gt, unsigned int 
+> vfid, void *bu ret = -ENOBUFS; } else { config = pf_pick_vf_config(gt, 
+> vfid); - ret = encode_config(buf, config, false) * sizeof(u32); + ret 
+> = encode_config(gt, buf, config, false) * sizeof(u32); } } 
+> mutex_unlock(xe_gt_sriov_pf_master_mutex(gt)); @@ -2551,11 +2554,14 @@ 
+> static int pf_restore_vf_config_klv(struct xe_gt *gt, unsigned int 
+> vfid, return pf_provision_preempt_timeout(gt, vfid, value[0]); /* 
+> auto-generate case statements */ -#define 
+> define_threshold_key_to_provision_case(TAG, ...) \ +#define 
+> define_threshold_key_to_provision_case(TAG, NAME, VER...) \ case 
+> MAKE_GUC_KLV_VF_CFG_THRESHOLD_KEY(TAG): \ 
+> BUILD_BUG_ON(MAKE_GUC_KLV_VF_CFG_THRESHOLD_LEN(TAG) != 1u); \ if (len 
+> != MAKE_GUC_KLV_VF_CFG_THRESHOLD_LEN(TAG)) \ return -EBADMSG; \ + if 
+> (IF_ARGS(!xe_guc_supports_fw_version(&gt->uc.guc, MAKE_GUC_VER_ARGS(VER)), \
+> +			    false, VER))						\
+> +			return -EKEYREJECTED;						\
+>   		return pf_provision_threshold(gt, vfid,					\
+>   					      MAKE_XE_GUC_KLV_THRESHOLD_INDEX(TAG),	\
+>   					      value[0]);
+> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
+> index 0fd863609848..5362c791a698 100644
+> --- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
+> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
+> @@ -21,6 +21,7 @@
+>   #include "xe_gt_sriov_pf_monitor.h"
+>   #include "xe_gt_sriov_pf_policy.h"
+>   #include "xe_gt_sriov_pf_service.h"
+> +#include "xe_guc.h"
+>   #include "xe_pm.h"
+>   #include "xe_sriov_pf.h"
+>   #include "xe_sriov_pf_provision.h" @@ -301,9 +302,11 @@ static void pf_add_config_attrs(struct xe_gt 
+> *gt, struct dentry *parent, unsigne &sched_priority_fops); /* register 
+> all threshold attributes */ -#define register_threshold_attribute(TAG, 
+> NAME, ...) \ - debugfs_create_file_unsafe("threshold_" #NAME, 0644, parent, parent, \
+> -				   &NAME##_fops);
+> +#define register_threshold_attribute(TAG, NAME, VER...) ({					\
+> +	if (IF_ARGS(xe_guc_supports_fw_version(&gt->uc.guc, MAKE_GUC_VER_ARGS(VER)), true, VER))\
+> +		debugfs_create_file_unsafe("threshold_" #NAME, 0644, parent, parent,		\
+> +					   &NAME##_fops);					\
+> +});
+>   	MAKE_XE_GUC_KLV_THRESHOLDS_SET(register_threshold_attribute)
+>   #undef register_threshold_attribute
+>   }
+> diff --git a/drivers/gpu/drm/xe/xe_guc.h b/drivers/gpu/drm/xe/xe_guc.h
+> index fdb08658d05a..2a083d5c5865 100644
+> --- a/drivers/gpu/drm/xe/xe_guc.h
+> +++ b/drivers/gpu/drm/xe/xe_guc.h
+> @@ -18,6 +18,9 @@
+>    */
+>   #define MAKE_GUC_VER(maj, min, pat)	(((maj) << 16) | ((min) << 8) | (pat))
+>   #define MAKE_GUC_VER_STRUCT(ver)	MAKE_GUC_VER((ver).major, (ver).minor, (ver).patch)
+> +#define MAKE_GUC_VER_ARGS(ver...) \
+> +	MAKE_GUC_VER(PICK_ARG1(ver), PICK_ARG2(ver), IF_ARGS(PICK_ARG3(ver), 0, PICK_ARG3(ver)))
 > +
-> +	KUNIT_EXPECT_TRUE(test, IF_ARGS(true, false, FOO_ARGS));
-> +	KUNIT_EXPECT_FALSE(test, IF_ARGS(true, false, NO_ARGS));
-> +
-> +	KUNIT_EXPECT_TRUE(test, CONCATENATE(IF_ARGS(with, no, FOO_ARGS), _args));
-> +	KUNIT_EXPECT_FALSE(test, CONCATENATE(IF_ARGS(with, no, NO_ARGS), _args));
-> +
-> +	KUNIT_EXPECT_STREQ(test, __stringify(IF_ARGS(yes, no, FOO_ARGS)), "yes");
-> +	KUNIT_EXPECT_STREQ(test, __stringify(IF_ARGS(no, no, NO_ARGS)), "no");
-> +
-> +	KUNIT_EXPECT_EQ(test, IF_ARGS(CALL_ARGS(COUNT_ARGS, FOO_ARGS), -1, FOO_ARGS), 4);
-> +	KUNIT_EXPECT_EQ(test, IF_ARGS(CALL_ARGS(COUNT_ARGS, FOO_ARGS), -1, NO_ARGS), -1);
-> +	KUNIT_EXPECT_EQ(test, IF_ARGS(CALL_ARGS(COUNT_ARGS, NO_ARGS), -1, FOO_ARGS), 0);
-> +	KUNIT_EXPECT_EQ(test, IF_ARGS(CALL_ARGS(COUNT_ARGS, NO_ARGS), -1, NO_ARGS), -1);
-> +
-> +	KUNIT_EXPECT_EQ(test,
-> +			FIRST_ARG(CONCATENATE(CALL_ARGS(IF_ARGS, FOO, MAX, FOO_ARGS), _ARGS)), X);
-> +	KUNIT_EXPECT_EQ(test,
-> +			FIRST_ARG(CONCATENATE(CALL_ARGS(IF_ARGS, FOO, MAX, NO_ARGS), _ARGS)), -1);
-> +
-> +	KUNIT_EXPECT_EQ(test,
-> +			CALL_ARGS(COUNT_ARGS,
-> +				  CONCATENATE(CALL_ARGS(IF_ARGS, FOO, MAX, FOO_ARGS), _ARGS)), 4);
-> +	KUNIT_EXPECT_EQ(test,
-> +			CALL_ARGS(COUNT_ARGS,
-> +				  CONCATENATE(CALL_ARGS(IF_ARGS, FOO, MAX, NO_ARGS), _ARGS)), 12);
-> +}
-> +
->   static struct kunit_case args_tests[] = {
->   	KUNIT_CASE(count_args_test),
->   	KUNIT_CASE(call_args_example),
-> @@ -209,6 +260,8 @@ static struct kunit_case args_tests[] = {
->   	KUNIT_CASE(last_arg_example),
->   	KUNIT_CASE(last_arg_test),
->   	KUNIT_CASE(pick_arg_example),
-> +	KUNIT_CASE(if_args_example),
-> +	KUNIT_CASE(if_args_test),
->   	KUNIT_CASE(sep_comma_example),
->   	{}
->   };
-> diff --git a/drivers/gpu/drm/xe/xe_args.h b/drivers/gpu/drm/xe/xe_args.h
-> index 4dbc7e53c624..b24e6d3349bb 100644
-> --- a/drivers/gpu/drm/xe/xe_args.h
-> +++ b/drivers/gpu/drm/xe/xe_args.h
-> @@ -121,6 +121,24 @@
->   #define PICK_ARG11(args...)		PICK_ARG10(DROP_FIRST_ARG(args))
->   #define PICK_ARG12(args...)		PICK_ARG11(DROP_FIRST_ARG(args))
+>   #define GUC_SUBMIT_VER(guc) \
+>   	MAKE_GUC_VER_STRUCT((guc)->fw.versions.found[XE_UC_FW_VER_COMPATIBILITY])
+>   #define GUC_FIRMWARE_VER(guc) \
+> @@ -96,4 +99,19 @@ static inline struct drm_device *guc_to_drm(struct xe_guc *guc)
+>   	return &guc_to_xe(guc)->drm;
+>   }
 >   
 > +/**
-> + * IF_ARGS() - Make selection based on optional argument list.
-> + * @then: token to return if arguments are present
-> + * @else: token to return if arguments are empty
-> + * @...: arguments to check (optional)
-> + *
-> + * This macro allows to select a token based on the presence of the argumen list.
-> + *
-> + * Example:
-> + *
-> + *	#define foo	X, Y
-> + *	#define bar	IF_ARGS(Z, Q, foo)
-> + *	#define buz	IF_ARGS(Z, Q, DROP_FIRST_ARG(FIRST_ARG(foo)))
-> + *
-> + *	With above definitions bar expands to Z while buz expands to Q.
-> + */
-> +#define IF_ARGS(then, else, ...)	FIRST_ARG(__VA_OPT__(then,) else)
+> + * xe_guc_supports_fw_version() - Check if GuC supports given version.
 
-A bit confused about the __VA_OPT__ support since it is officially a C23 
-extension and the kernel build uses gnu11, but it looks like it is 
-supported as part of GNU C since GCC 8 (the minimum GCC version for 
-kernel builds is currently 8.1), so we're probably ok.
-It is already used in a couple of places in the kernel (with only one of 
-them having a GCC version check AFAICS), so I won't block on this, but 
-please get a second pair of eyes to confirm this is ok.
+I don't think "supports_fw_version" is the correct name here, because 
+the GuC has a given version, not support for multiple of them. Maybe use 
+xe_guc_fw_version_at_least or something like that?
+
+> + * @guc: the &xe_guc
+> + * @ver: the version to check
+> + *
+> + * The @ver should be prepared using MAKE_GUC_VER(major, minor, patch).
+> + *
+> + * Return: true if loaded GuC firmware is at least of given version,
+> + *         false otherwise.
+> + */
+> +static inline bool xe_guc_supports_fw_version(struct xe_guc *guc, u32 ver)
+> +{
+> +	return GUC_FIRMWARE_VER(guc) >= ver;
+> +}
+
+I wonder if it is worth macroing this up to avoid the MAKE_GUC_VER in 
+the caller? something like:
+
+GUC_VER_AT_LEAST(guc_, ver_...) \
+     (GUC_FIRMWARE_VER(guc_) >= MAKE_GUC_VER_ARGS(ver_))
+
+or even further:
+
+GUC_VER_AT_LEAST(guc_, ver_...) \
+IF_ARGS(GUC_FIRMWARE_VER(guc_) >= MAKE_GUC_VER_ARGS(ver_), true, ver_))
+
+Just a thought, not a blocker.
+
+With the rename:
 
 Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 
 Daniele
 
 > +
->   /**
->    * ARGS_SEP_COMMA - Definition of a comma character.
+>   #endif
+> diff --git a/drivers/gpu/drm/xe/xe_guc_klv_thresholds_set_types.h b/drivers/gpu/drm/xe/xe_guc_klv_thresholds_set_types.h
+> index 0a028c94756d..5f84da3d10d3 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_klv_thresholds_set_types.h
+> +++ b/drivers/gpu/drm/xe/xe_guc_klv_thresholds_set_types.h
+> @@ -24,6 +24,11 @@
+>    * ABI and the associated &NAME, that may be used in code or debugfs/sysfs::
 >    *
+>    *	define(TAG, NAME)
+> + *
+> + * If required, KLVs can be labeled with GuC firmware version that added them::
+> + *
+> + *	define(TAG, NAME, MAJOR, MINOR)
+> + *	define(TAG, NAME, MAJOR, MINOR, PATCH)
+>    */
+>   #define MAKE_XE_GUC_KLV_THRESHOLDS_SET(define)		\
+>   	define(CAT_ERR, cat_error_count)		\
 
+--------------uqTzcIo7940D920wQM7SvbZC
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  </head>
+  <body>
+    <br>
+    <br>
+    <div class="moz-cite-prefix">On 12/12/2025 9:34 AM, Michal Wajdeczko
+      wrote:<br>
+    </div>
+    <blockquote type="cite" cite="mid:20251212173449.192639-3-michal.wajdeczko@intel.com">
+      <pre wrap="" class="moz-quote-pre">We want to extend our macro-based KLV list definitions with new
+information about the version from which given KLV is supported.
+Prepare our code generators to emit dedicated version check if
+a KLV was defined with the version information.
+
+Signed-off-by: Michal Wajdeczko <a class="moz-txt-link-rfc2396E" href="mailto:michal.wajdeczko@intel.com">&lt;michal.wajdeczko@intel.com&gt;</a>
+Cc: Daniele Ceraolo Spurio <a class="moz-txt-link-rfc2396E" href="mailto:daniele.ceraolospurio@intel.com">&lt;daniele.ceraolospurio@intel.com&gt;</a>
+---
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c    | 20 ++++++++++++-------
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c   |  9 ++++++---
+ drivers/gpu/drm/xe/xe_guc.h                   | 18 +++++++++++++++++
+ .../drm/xe/xe_guc_klv_thresholds_set_types.h  |  5 +++++
+ 4 files changed, 42 insertions(+), 10 deletions(-)
+
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
+index 59c5c6b4d994..2d039f67c99d 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
+@@ -269,7 +269,8 @@ static u32 encode_config_ggtt(u32 *cfg, const struct xe_gt_sriov_config *config,
+ }
+ 
+ /* Return: number of configuration dwords written */
+-static u32 encode_config(u32 *cfg, const struct xe_gt_sriov_config *config, bool details)
++static u32 encode_config(struct xe_gt *gt, u32 *cfg, const struct xe_gt_sriov_config *config,
++			 bool details)
+ {
+ 	u32 n = 0;
+ 
+@@ -303,9 +304,11 @@ static u32 encode_config(u32 *cfg, const struct xe_gt_sriov_config *config, bool
+ 	cfg[n++] = PREP_GUC_KLV_TAG(VF_CFG_PREEMPT_TIMEOUT);
+ 	cfg[n++] = config-&gt;preempt_timeout;
+ 
+-#define encode_threshold_config(TAG, ...) ({					\
+-	cfg[n++] = PREP_GUC_KLV_TAG(VF_CFG_THRESHOLD_##TAG);			\
+-	cfg[n++] = config-&gt;thresholds[MAKE_XE_GUC_KLV_THRESHOLD_INDEX(TAG)];	\
++#define encode_threshold_config(TAG, NAME, VER...) ({						\
++	if (IF_ARGS(xe_guc_supports_fw_version(&amp;gt-&gt;uc.guc, MAKE_GUC_VER_ARGS(VER)), true, VER)) { \
++		cfg[n++] = PREP_GUC_KLV_TAG(VF_CFG_THRESHOLD_##TAG);				\
++		cfg[n++] = config-&gt;thresholds[MAKE_XE_GUC_KLV_THRESHOLD_INDEX(TAG)];		\
++	}											\
+ });
+ 
+ 	MAKE_XE_GUC_KLV_THRESHOLDS_SET(encode_threshold_config);
+@@ -328,7 +331,7 @@ static int pf_push_full_vf_config(struct xe_gt *gt, unsigned int vfid)
+ 		return -ENOBUFS;
+ 
+ 	cfg = xe_guc_buf_cpu_ptr(buf);
+-	num_dwords = encode_config(cfg, config, true);
++	num_dwords = encode_config(gt, cfg, config, true);
+ 	xe_gt_assert(gt, num_dwords <a class="moz-txt-link-rfc2396E" href="mailto:=max_cfg_dwords);if(xe_gt_is_media_type(gt)){@@-2518,7+2521,7@@ssize_txe_gt_sriov_pf_config_save(structxe_gt*gt,unsignedintvfid,void*buret=-ENOBUFS;}else{config=pf_pick_vf_config(gt,vfid);-ret=encode_config(buf,config,false)*sizeof(u32);+ret=encode_config(gt,buf,config,false)*sizeof(u32);}}mutex_unlock(xe_gt_sriov_pf_master_mutex(gt));@@-2551,11+2554,14@@staticintpf_restore_vf_config_klv(structxe_gt*gt,unsignedintvfid,returnpf_provision_preempt_timeout(gt,vfid,value[0]);/*auto-generatecasestatements*/-#definedefine_threshold_key_to_provision_case(TAG,...)\+#definedefine_threshold_key_to_provision_case(TAG,NAME,VER...)\caseMAKE_GUC_KLV_VF_CFG_THRESHOLD_KEY(TAG):\BUILD_BUG_ON(MAKE_GUC_KLV_VF_CFG_THRESHOLD_LEN(TAG)!=1u);\if(len!=MAKE_GUC_KLV_VF_CFG_THRESHOLD_LEN(TAG))\return-EBADMSG;\+if(IF_ARGS(!xe_guc_supports_fw_version(&amp;gt-">&lt;= max_cfg_dwords);
+ 
+ 	if (xe_gt_is_media_type(gt)) {
+@@ -2518,7 +2521,7 @@ ssize_t xe_gt_sriov_pf_config_save(struct xe_gt *gt, unsigned int vfid, void *bu
+ 			ret = -ENOBUFS;
+ 		} else {
+ 			config = pf_pick_vf_config(gt, vfid);
+-			ret = encode_config(buf, config, false) * sizeof(u32);
++			ret = encode_config(gt, buf, config, false) * sizeof(u32);
+ 		}
+ 	}
+ 	mutex_unlock(xe_gt_sriov_pf_master_mutex(gt));
+@@ -2551,11 +2554,14 @@ static int pf_restore_vf_config_klv(struct xe_gt *gt, unsigned int vfid,
+ 		return pf_provision_preempt_timeout(gt, vfid, value[0]);
+ 
+ 	/* auto-generate case statements */
+-#define define_threshold_key_to_provision_case(TAG, ...)				\
++#define define_threshold_key_to_provision_case(TAG, NAME, VER...)			\
+ 	case MAKE_GUC_KLV_VF_CFG_THRESHOLD_KEY(TAG):					\
+ 		BUILD_BUG_ON(MAKE_GUC_KLV_VF_CFG_THRESHOLD_LEN(TAG) != 1u);		\
+ 		if (len != MAKE_GUC_KLV_VF_CFG_THRESHOLD_LEN(TAG))			\
+ 			return -EBADMSG;						\
++		if (IF_ARGS(!xe_guc_supports_fw_version(&amp;gt-&gt;</a>uc.guc, MAKE_GUC_VER_ARGS(VER)), \
++			    false, VER))						\
++			return -EKEYREJECTED;						\
+ 		return pf_provision_threshold(gt, vfid,					\
+ 					      MAKE_XE_GUC_KLV_THRESHOLD_INDEX(TAG),	\
+ 					      value[0]);
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
+index 0fd863609848..5362c791a698 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
+@@ -21,6 +21,7 @@
+ #include &quot;xe_gt_sriov_pf_monitor.h&quot;
+ #include &quot;xe_gt_sriov_pf_policy.h&quot;
+ #include &quot;xe_gt_sriov_pf_service.h&quot;
++#include &quot;xe_guc.h&quot;
+ #include &quot;xe_pm.h&quot;
+ #include &quot;xe_sriov_pf.h&quot;
+ #include &quot;xe_sriov_pf_provision.h<a class="moz-txt-link-rfc2396E" href="mailto:@@-301,9+302,11@@staticvoidpf_add_config_attrs(structxe_gt*gt,structdentry*parent,unsigne&amp;sched_priority_fops);/*registerallthresholdattributes*/-#defineregister_threshold_attribute(TAG,NAME,...)\-debugfs_create_file_unsafe(">&quot;
+@@ -301,9 +302,11 @@ static void pf_add_config_attrs(struct xe_gt *gt, struct dentry *parent, unsigne
+ 				   &amp;sched_priority_fops);
+ 
+ 	/* register all threshold attributes */
+-#define register_threshold_attribute(TAG, NAME, ...) \
+-	debugfs_create_file_unsafe(&quot;</a>threshold_&quot; #NAME, 0644, parent, parent, \
+-				   &amp;NAME##_fops);
++#define register_threshold_attribute(TAG, NAME, VER...) ({					\
++	if (IF_ARGS(xe_guc_supports_fw_version(&amp;gt-&gt;uc.guc, MAKE_GUC_VER_ARGS(VER)), true, VER))\
++		debugfs_create_file_unsafe(&quot;threshold_&quot; #NAME, 0644, parent, parent,		\
++					   &amp;NAME##_fops);					\
++});
+ 	MAKE_XE_GUC_KLV_THRESHOLDS_SET(register_threshold_attribute)
+ #undef register_threshold_attribute
+ }
+diff --git a/drivers/gpu/drm/xe/xe_guc.h b/drivers/gpu/drm/xe/xe_guc.h
+index fdb08658d05a..2a083d5c5865 100644
+--- a/drivers/gpu/drm/xe/xe_guc.h
++++ b/drivers/gpu/drm/xe/xe_guc.h
+@@ -18,6 +18,9 @@
+  */
+ #define MAKE_GUC_VER(maj, min, pat)	(((maj) &lt;&lt; 16) | ((min) &lt;&lt; 8) | (pat))
+ #define MAKE_GUC_VER_STRUCT(ver)	MAKE_GUC_VER((ver).major, (ver).minor, (ver).patch)
++#define MAKE_GUC_VER_ARGS(ver...) \
++	MAKE_GUC_VER(PICK_ARG1(ver), PICK_ARG2(ver), IF_ARGS(PICK_ARG3(ver), 0, PICK_ARG3(ver)))
++
+ #define GUC_SUBMIT_VER(guc) \
+ 	MAKE_GUC_VER_STRUCT((guc)-&gt;fw.versions.found[XE_UC_FW_VER_COMPATIBILITY])
+ #define GUC_FIRMWARE_VER(guc) \
+@@ -96,4 +99,19 @@ static inline struct drm_device *guc_to_drm(struct xe_guc *guc)
+ 	return &amp;guc_to_xe(guc)-&gt;drm;
+ }
+ 
++/**
++ * xe_guc_supports_fw_version() - Check if GuC supports given version.</pre>
+    </blockquote>
+    <br>
+    I don't think &quot;supports_fw_version&quot; is the correct name here,
+    because the GuC has a given version, not support for multiple of
+    them. Maybe use xe_guc_fw_version_at_least or something like that?<br>
+    <br>
+    <blockquote type="cite" cite="mid:20251212173449.192639-3-michal.wajdeczko@intel.com">
+      <pre wrap="" class="moz-quote-pre">
++ * @guc: the &amp;xe_guc
++ * @ver: the version to check
++ *
++ * The @ver should be prepared using MAKE_GUC_VER(major, minor, patch).
++ *
++ * Return: true if loaded GuC firmware is at least of given version,
++ *         false otherwise.
++ */
++static inline bool xe_guc_supports_fw_version(struct xe_guc *guc, u32 ver)
++{
++	return GUC_FIRMWARE_VER(guc) &gt;= ver;
++}</pre>
+    </blockquote>
+    <br>
+    I wonder if it is worth macroing this up to avoid the&nbsp;<span style="white-space: pre-wrap">MAKE_GUC_VER</span>&nbsp;in the caller?
+    something like:<br>
+    <br>
+    GUC_VER_AT_LEAST(guc_, ver_...) \<br>
+    &nbsp; &nbsp; (GUC_FIRMWARE_VER(guc_) &gt;= MAKE_GUC_VER_ARGS(ver_))<br>
+    <br>
+    or even further:<br>
+    <br>
+    GUC_VER_AT_LEAST(guc_, ver_...) \<br>
+    IF_ARGS(GUC_FIRMWARE_VER(guc_) &gt;= MAKE_GUC_VER_ARGS(ver_), true,
+    ver_))<br>
+    <br>
+    Just a thought, not a blocker.<br>
+    <br>
+    With the rename:<br>
+    <br>
+    Reviewed-by: Daniele Ceraolo Spurio
+    <a class="moz-txt-link-rfc2396E" href="mailto:daniele.ceraolospurio@intel.com">&lt;daniele.ceraolospurio@intel.com&gt;</a><br>
+    <br>
+    Daniele<br>
+    <br>
+    <blockquote type="cite" cite="mid:20251212173449.192639-3-michal.wajdeczko@intel.com">
+      <pre wrap="" class="moz-quote-pre">
++
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_guc_klv_thresholds_set_types.h b/drivers/gpu/drm/xe/xe_guc_klv_thresholds_set_types.h
+index 0a028c94756d..5f84da3d10d3 100644
+--- a/drivers/gpu/drm/xe/xe_guc_klv_thresholds_set_types.h
++++ b/drivers/gpu/drm/xe/xe_guc_klv_thresholds_set_types.h
+@@ -24,6 +24,11 @@
+  * ABI and the associated &amp;NAME, that may be used in code or debugfs/sysfs::
+  *
+  *	define(TAG, NAME)
++ *
++ * If required, KLVs can be labeled with GuC firmware version that added them::
++ *
++ *	define(TAG, NAME, MAJOR, MINOR)
++ *	define(TAG, NAME, MAJOR, MINOR, PATCH)
+  */
+ #define MAKE_XE_GUC_KLV_THRESHOLDS_SET(define)		\
+ 	define(CAT_ERR, cat_error_count)		\
+</pre>
+    </blockquote>
+    <br>
+  </body>
+</html>
+
+--------------uqTzcIo7940D920wQM7SvbZC--
