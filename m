@@ -4,53 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 36FE8D59F53
-	for <intel-xe@archiver.kernel.org>; Fri, 12 Dec 2025 23:34:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E3D16D59F5C
+	for <intel-xe@archiver.kernel.org>; Fri, 12 Dec 2025 23:38:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EA9D510E986;
-	Fri, 12 Dec 2025 23:34:56 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RIExnJBV";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 129A810E979
- for <intel-xe@lists.freedesktop.org>; Fri, 12 Dec 2025 23:34:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765582490; x=1797118490;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=TryNx0SqfekLOphEH1xGPiBqDAE3XwhFEqHghb1HkmQ=;
- b=RIExnJBVX58rf9YxWAE0tjcAtJ4X2+fZZ6n1YNMPFadMUigC2byGlV3x
- voB9NCn6oITlLoE3umITlLT+Za7OB8hsDaOo7mEBLdQ2ePAHhvyIsnM0N
- uInc1KaK/Skwy1xAXMAqZff0AiypH6wecDUHV0Xk/yEw+KhaVzBoOIsVF
- PeCW6gNC6GqaACEJgoVcKVew7/lzjN4rZH/3NOy04blFodonvYqfU8QXq
- APiUddSjGww9GMGpjhXJDlnPgiRSqh+4QZHvUytBzqk7C8JINDsQbY7IG
- BR6Vwk8+8D3Qf80css8i0DoMCk8nti0OS5NmEkwCY3ODd4LYLWQxwTnOo g==;
-X-CSE-ConnectionGUID: GUCHwEGCQfaVIEru5qmcrA==
-X-CSE-MsgGUID: QMEx3kFjQ7SXYBlp5hsHnw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11640"; a="71216671"
-X-IronPort-AV: E=Sophos;i="6.21,144,1763452800"; d="scan'208";a="71216671"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Dec 2025 15:34:49 -0800
-X-CSE-ConnectionGUID: Mi72ji+jTtebp9I6fDl5Ig==
-X-CSE-MsgGUID: dHEoDgQQRO+gK1gs8zEh2w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,144,1763452800"; d="scan'208";a="201696880"
-Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Dec 2025 15:34:49 -0800
-From: Matthew Brost <matthew.brost@intel.com>
-To: intel-xe@lists.freedesktop.org
-Subject: [RFC PATCH 3/3] drm/xe: Trigger queue cleanup if not in wedged mode 2
-Date: Fri, 12 Dec 2025 15:34:44 -0800
-Message-Id: <20251212233444.1717326-4-matthew.brost@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20251212233444.1717326-1-matthew.brost@intel.com>
-References: <20251212233444.1717326-1-matthew.brost@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id A634B10E979;
+	Fri, 12 Dec 2025 23:38:00 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 185C510E132;
+ Fri, 12 Dec 2025 23:38:00 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Page_Reclamation_Support_?=
+ =?utf-8?q?for_Xe3p_Platforms_=28rev7=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Brian Nguyen" <brian3.nguyen@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 12 Dec 2025 23:38:00 -0000
+Message-ID: <176558268007.82816.3424486560374855848@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20251212213225.3564537-12-brian3.nguyen@intel.com>
+In-Reply-To: <20251212213225.3564537-12-brian3.nguyen@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,71 +36,63 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The intent of wedging a device is to allow queues to continue running
-only in wedged mode 2. In other modes, queues should initiate cleanup
-and signal all remaining fences. Fix xe_guc_submit_wedge to correctly
-clean up queues when wedge mode != 2.
+== Series Details ==
 
-Fixes: 7dbe8af13c18 ("drm/xe: Wedge the entire device")
-Cc: stable@vger.kernel.org
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/xe/xe_guc_submit.c | 31 ++++++++++++++++++------------
- 1 file changed, 19 insertions(+), 12 deletions(-)
+Series: Page Reclamation Support for Xe3p Platforms (rev7)
+URL   : https://patchwork.freedesktop.org/series/157698/
+State : warning
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index 857375be9a84..1eef93d474f0 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -1277,6 +1277,7 @@ static void disable_scheduling_deregister(struct xe_guc *guc,
-  */
- void xe_guc_submit_wedge(struct xe_guc *guc)
- {
-+	struct xe_device *xe = guc_to_xe(guc);
- 	struct xe_gt *gt = guc_to_gt(guc);
- 	struct xe_exec_queue *q;
- 	unsigned long index;
-@@ -1291,19 +1292,25 @@ void xe_guc_submit_wedge(struct xe_guc *guc)
- 	if (!guc->submission_state.initialized)
- 		return;
- 
--	err = devm_add_action_or_reset(guc_to_xe(guc)->drm.dev,
--				       guc_submit_wedged_fini, guc);
--	if (err) {
--		xe_gt_err(gt, "Failed to register clean-up on wedged.mode=2; "
--			  "Although device is wedged.\n");
--		return;
--	}
-+	if (xe->wedged.mode == 2) {
-+		err = devm_add_action_or_reset(guc_to_xe(guc)->drm.dev,
-+					       guc_submit_wedged_fini, guc);
-+		if (err) {
-+			xe_gt_err(gt, "Failed to register clean-up on wedged.mode=2; "
-+				  "Although device is wedged.\n");
-+			return;
-+		}
- 
--	mutex_lock(&guc->submission_state.lock);
--	xa_for_each(&guc->submission_state.exec_queue_lookup, index, q)
--		if (xe_exec_queue_get_unless_zero(q))
--			set_exec_queue_wedged(q);
--	mutex_unlock(&guc->submission_state.lock);
-+		mutex_lock(&guc->submission_state.lock);
-+		xa_for_each(&guc->submission_state.exec_queue_lookup, index, q)
-+			if (xe_exec_queue_get_unless_zero(q))
-+				set_exec_queue_wedged(q);
-+		mutex_unlock(&guc->submission_state.lock);
-+	} else {
-+		/* Forcefully kill any remaining exec queues, signal fences */
-+		xe_guc_submit_stop(guc);
-+		xe_guc_submit_pause_abort(guc);
-+	}
- }
- 
- static bool guc_submit_hint_wedged(struct xe_guc *guc)
--- 
-2.34.1
+== Summary ==
+
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+8f50e69d0ce3656564bbdf8b3e213d61470d463f
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit c35c31ddd604e0f59282c121ad0d09bc248f25da
+Author: Brian Nguyen <brian3.nguyen@intel.com>
+Date:   Sat Dec 13 05:32:36 2025 +0800
+
+    drm/xe: Add debugfs support for page reclamation
+    
+    Allow for runtime modification to page reclamation feature through
+    debugfs configuration. This parameter will only take effect if the
+    platform supports the page reclamation feature by default.
+    
+    v2:
+     - Minor comment tweaks. (Shuicheng)
+     - Convert to kstrtobool_from_user. (Michal)
+     - Only expose page reclaim file if page reclaim flag
+       initially supported and with that, remove
+       xe_match_desc usage. (Michal)
+    
+    Signed-off-by: Brian Nguyen <brian3.nguyen@intel.com>
+    Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+    Reviewed-by: Shuicheng Lin <shuicheng.lin@intel.com>
+    Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
++ /mt/dim checkpatch 54801dbae9da83dcad253f7fbe0e09864bfc028f drm-intel
+4cb3478f6a0a drm/xe: Do not forward invalid TLB invalidation seqnos to upper layers
+4d31bf0aa58b drm/xe/xe_tlb_inval: Modify fence interface to support PPC flush
+b8e55a12612a drm/xe: Add page reclamation info to device info
+d4dc8ada60db drm/xe/guc: Add page reclamation interface to GuC
+a77f3062b28c drm/xe: Create page reclaim list on unbind
+-:74: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#74: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 391 lines checked
+3847fd6c19ae drm/xe: Suballocate BO for page reclaim
+75b2086c4b19 drm/xe: Prep page reclaim in tlb inval job
+06e7d618619c drm/xe: Append page reclamation action to tlb inval
+e3ae3d542de5 drm/xe: Optimize flushing of L2$ by skipping unnecessary page reclaim
+c35c31ddd604 drm/xe: Add debugfs support for page reclamation
+
 
