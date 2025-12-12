@@ -4,60 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 417C4D4922B
-	for <intel-xe@archiver.kernel.org>; Fri, 12 Dec 2025 14:15:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CC75BD4922B
+	for <intel-xe@archiver.kernel.org>; Fri, 12 Dec 2025 14:23:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F044C10E8BA;
-	Fri, 12 Dec 2025 14:15:17 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nI7eRUCM";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C0FED10E7FD;
- Fri, 12 Dec 2025 14:15:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765548917; x=1797084917;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=Ai6YlABT7Yv+fS08b+rzNFpT/htpvredoG9eUjcTviA=;
- b=nI7eRUCMMUylNk3fICu03wzn2yQUNsYgAliGjRNXXRJwp9t2s6bqhbSB
- jivbb+D78RuKyagpV0UCD3u06jm2hW+01QsIqIXrAGev+1cIdm7YHYVHS
- +S0FkwXN/y+fv19AN4rxuZPwnGNxrp9QNDrq+HC8uEV2+kNyq7vJKrP+h
- jMFA6S5w/7Ai1HmEZBKsZW8Wu83oCYLxaIQbt3QUkVQclB7kZ9G9Ir+fG
- MChXhY7h5uaMsEcDeWtLPADiqhBJuDLtBNUtY1JSIKEspOzibGvTs58UJ
- /OODx/r5ISpdvBUQUhB/chEJ7fkwwICIaC13p4LjISUQjNZ3ITanuTZlx Q==;
-X-CSE-ConnectionGUID: +f5mL5GpSTqw/3riipbVsQ==
-X-CSE-MsgGUID: 2ozoxz0USbuUDS0XImoRVw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11640"; a="66722111"
-X-IronPort-AV: E=Sophos;i="6.21,143,1763452800"; d="scan'208";a="66722111"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Dec 2025 06:15:16 -0800
-X-CSE-ConnectionGUID: oroJoUP4TZSsFYnrY/nXXQ==
-X-CSE-MsgGUID: PxDqxiKzRjSg6FM6yx/xiw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,143,1763452800"; d="scan'208";a="196850631"
-Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.39])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Dec 2025 06:15:13 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: ville.syrjala@linux.intel.com,
-	jani.nikula@intel.com
-Subject: [PATCH 6/6] drm/i915/display: group and sort the parent interface
- wrappers better
-Date: Fri, 12 Dec 2025 16:14:09 +0200
-Message-ID: <b61af1d33d0448cd904cccccb2714f0d07d85b07.1765548786.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <cover.1765548786.git.jani.nikula@intel.com>
-References: <cover.1765548786.git.jani.nikula@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8F29B10E835;
+	Fri, 12 Dec 2025 14:23:04 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 16F0510E835;
+ Fri, 12 Dec 2025 14:23:03 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/=7Bi915=2Cxe=7D=3A_cl?=
+ =?utf-8?q?ean_up_parent_interface_definitions?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 12 Dec 2025 14:23:03 -0000
+Message-ID: <176554938308.81112.15109710991102471274@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <cover.1765548786.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1765548786.git.jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,170 +36,53 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Aligning with the parent interface struct definitions, also group and
-sort the parent interface wrappers to improve clarity on where to add
-new stuff.
+== Series Details ==
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_parent.c | 45 ++++++++++++---------
- drivers/gpu/drm/i915/display/intel_parent.h | 13 +++---
- 2 files changed, 33 insertions(+), 25 deletions(-)
+Series: drm/{i915,xe}: clean up parent interface definitions
+URL   : https://patchwork.freedesktop.org/series/158862/
+State : warning
 
-diff --git a/drivers/gpu/drm/i915/display/intel_parent.c b/drivers/gpu/drm/i915/display/intel_parent.c
-index d1c2194767e7..9b1a84a439e9 100644
---- a/drivers/gpu/drm/i915/display/intel_parent.c
-+++ b/drivers/gpu/drm/i915/display/intel_parent.c
-@@ -23,6 +23,7 @@
- #include "intel_display_core.h"
- #include "intel_parent.h"
- 
-+/* hdcp */
- ssize_t intel_parent_hdcp_gsc_msg_send(struct intel_display *display,
- 				       struct intel_hdcp_gsc_context *gsc_context,
- 				       void *msg_in, size_t msg_in_len,
-@@ -47,31 +48,34 @@ void intel_parent_hdcp_gsc_context_free(struct intel_display *display,
- 	display->parent->hdcp->gsc_context_free(gsc_context);
- }
- 
--struct intel_panic *intel_parent_panic_alloc(struct intel_display *display)
-+/* irq */
-+bool intel_parent_irq_enabled(struct intel_display *display)
- {
--	return display->parent->panic->alloc();
-+	return display->parent->irq->enabled(display->drm);
- }
- 
--int intel_parent_panic_setup(struct intel_display *display, struct intel_panic *panic, struct drm_scanout_buffer *sb)
-+void intel_parent_irq_synchronize(struct intel_display *display)
- {
--	return display->parent->panic->setup(panic, sb);
-+	display->parent->irq->synchronize(display->drm);
- }
- 
--void intel_parent_panic_finish(struct intel_display *display, struct intel_panic *panic)
-+/* panic */
-+struct intel_panic *intel_parent_panic_alloc(struct intel_display *display)
- {
--	display->parent->panic->finish(panic);
-+	return display->parent->panic->alloc();
- }
- 
--bool intel_parent_irq_enabled(struct intel_display *display)
+== Summary ==
+
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+8f50e69d0ce3656564bbdf8b3e213d61470d463f
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 17666960df2eb4ae441025caae08561dc0397350
+Author: Jani Nikula <jani.nikula@intel.com>
+Date:   Fri Dec 12 16:14:09 2025 +0200
+
+    drm/i915/display: group and sort the parent interface wrappers better
+    
+    Aligning with the parent interface struct definitions, also group and
+    sort the parent interface wrappers to improve clarity on where to add
+    new stuff.
+    
+    Signed-off-by: Jani Nikula <jani.nikula@intel.com>
++ /mt/dim checkpatch 39f65c105d5b1af093f9df6f3dc688a642f96456 drm-intel
+c59db7662605 drm/intel: fix parent interface kernel-doc
+2e9bb09fdd37 drm/intel: group individual funcs in parent interface
+2f90b70842dd drm/intel: sort parent interface struct definitions and members
+322f75b240f9 drm/i915: sort parent interface initialization
+22582831961c drm/xe: sort parent interface initialization
+17666960df2e drm/i915/display: group and sort the parent interface wrappers better
+-:53: WARNING:LONG_LINE: line length of 117 exceeds 100 columns
+#53: FILE: drivers/gpu/drm/i915/display/intel_parent.c:68:
 +int intel_parent_panic_setup(struct intel_display *display, struct intel_panic *panic, struct drm_scanout_buffer *sb)
- {
--	return display->parent->irq->enabled(display->drm);
-+	return display->parent->panic->setup(panic, sb);
- }
- 
--void intel_parent_irq_synchronize(struct intel_display *display)
-+void intel_parent_panic_finish(struct intel_display *display, struct intel_panic *panic)
- {
--	display->parent->irq->synchronize(display->drm);
-+	display->parent->panic->finish(panic);
- }
- 
-+/* rps */
- bool intel_parent_rps_available(struct intel_display *display)
- {
- 	return display->parent->rps;
-@@ -95,6 +99,7 @@ void intel_parent_rps_ilk_irq_handler(struct intel_display *display)
- 		display->parent->rps->ilk_irq_handler(display->drm);
- }
- 
-+/* stolen */
- int intel_parent_stolen_insert_node_in_range(struct intel_display *display,
- 					     struct intel_stolen_node *node, u64 size,
- 					     unsigned int align, u64 start, u64 end)
-@@ -169,24 +174,24 @@ void intel_parent_stolen_node_free(struct intel_display *display, const struct i
- 	display->parent->stolen->node_free(node);
- }
- 
--
--bool intel_parent_vgpu_active(struct intel_display *display)
-+/* generic */
-+void intel_parent_fence_priority_display(struct intel_display *display, struct dma_fence *fence)
- {
--	return display->parent->vgpu_active && display->parent->vgpu_active(display->drm);
-+	if (display->parent->fence_priority_display)
-+		display->parent->fence_priority_display(fence);
- }
- 
--bool intel_parent_has_fenced_regions(struct intel_display *display)
-+bool intel_parent_has_auxccs(struct intel_display *display)
- {
--	return display->parent->has_fenced_regions && display->parent->has_fenced_regions(display->drm);
-+	return display->parent->has_auxccs && display->parent->has_auxccs(display->drm);
- }
- 
--void intel_parent_fence_priority_display(struct intel_display *display, struct dma_fence *fence)
-+bool intel_parent_has_fenced_regions(struct intel_display *display)
- {
--	if (display->parent->fence_priority_display)
--		display->parent->fence_priority_display(fence);
+
+-:104: WARNING:LONG_LINE: line length of 104 exceeds 100 columns
+#104: FILE: drivers/gpu/drm/i915/display/intel_parent.c:191:
 +	return display->parent->has_fenced_regions && display->parent->has_fenced_regions(display->drm);
- }
- 
--bool intel_parent_has_auxccs(struct intel_display *display)
-+bool intel_parent_vgpu_active(struct intel_display *display)
- {
--	return display->parent->has_auxccs && display->parent->has_auxccs(display->drm);
-+	return display->parent->vgpu_active && display->parent->vgpu_active(display->drm);
- }
-diff --git a/drivers/gpu/drm/i915/display/intel_parent.h b/drivers/gpu/drm/i915/display/intel_parent.h
-index 8cd811d14fb1..a2a631fba118 100644
---- a/drivers/gpu/drm/i915/display/intel_parent.h
-+++ b/drivers/gpu/drm/i915/display/intel_parent.h
-@@ -13,6 +13,7 @@ struct intel_hdcp_gsc_context;
- struct intel_panic;
- struct intel_stolen_node;
- 
-+/* hdcp */
- ssize_t intel_parent_hdcp_gsc_msg_send(struct intel_display *display,
- 				       struct intel_hdcp_gsc_context *gsc_context,
- 				       void *msg_in, size_t msg_in_len,
-@@ -22,18 +23,22 @@ struct intel_hdcp_gsc_context *intel_parent_hdcp_gsc_context_alloc(struct intel_
- void intel_parent_hdcp_gsc_context_free(struct intel_display *display,
- 					struct intel_hdcp_gsc_context *gsc_context);
- 
-+/* irq */
- bool intel_parent_irq_enabled(struct intel_display *display);
- void intel_parent_irq_synchronize(struct intel_display *display);
- 
-+/* panic */
- struct intel_panic *intel_parent_panic_alloc(struct intel_display *display);
- int intel_parent_panic_setup(struct intel_display *display, struct intel_panic *panic, struct drm_scanout_buffer *sb);
- void intel_parent_panic_finish(struct intel_display *display, struct intel_panic *panic);
- 
-+/* rps */
- bool intel_parent_rps_available(struct intel_display *display);
- void intel_parent_rps_boost_if_not_started(struct intel_display *display, struct dma_fence *fence);
- void intel_parent_rps_mark_interactive(struct intel_display *display, bool interactive);
- void intel_parent_rps_ilk_irq_handler(struct intel_display *display);
- 
-+/* stolen */
- int intel_parent_stolen_insert_node_in_range(struct intel_display *display,
- 					     struct intel_stolen_node *node, u64 size,
- 					     unsigned int align, u64 start, u64 end);
-@@ -52,12 +57,10 @@ u64 intel_parent_stolen_node_size(struct intel_display *display, const struct in
- struct intel_stolen_node *intel_parent_stolen_node_alloc(struct intel_display *display);
- void intel_parent_stolen_node_free(struct intel_display *display, const struct intel_stolen_node *node);
- 
--bool intel_parent_vgpu_active(struct intel_display *display);
--
-+/* generic */
-+bool intel_parent_has_auxccs(struct intel_display *display);
- bool intel_parent_has_fenced_regions(struct intel_display *display);
--
-+bool intel_parent_vgpu_active(struct intel_display *display);
- void intel_parent_fence_priority_display(struct intel_display *display, struct dma_fence *fence);
- 
--bool intel_parent_has_auxccs(struct intel_display *display);
--
- #endif /* __INTEL_PARENT_H__ */
--- 
-2.47.3
+
+total: 0 errors, 2 warnings, 0 checks, 136 lines checked
+
 
