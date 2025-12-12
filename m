@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A80B2D4336E
-	for <intel-xe@archiver.kernel.org>; Fri, 12 Dec 2025 06:18:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3AC43D43369
+	for <intel-xe@archiver.kernel.org>; Fri, 12 Dec 2025 06:22:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D47D610E42B;
-	Fri, 12 Dec 2025 06:18:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E334010E286;
+	Fri, 12 Dec 2025 06:22:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fndDlXUj";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kYRKZh/m";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5644810E422
- for <intel-xe@lists.freedesktop.org>; Fri, 12 Dec 2025 06:18:57 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 394FF10E16F;
+ Fri, 12 Dec 2025 06:22:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765520337; x=1797056337;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=PoHfjX0tmm3bGlkbC84MSJH3KYlLUH8R3NLCPcJkz3c=;
- b=fndDlXUjVBFI+KKqowQVu5lw2oI6zw7IapfQuaeh/AFErxOlhZ9NjsSi
- QyUWbRLBzAxGRkjuXfNFFg22v1FjQjHb8X2pI/+COeuwV4fxJywDfBGPf
- cvrc0nlhww238FP4CoIcgnopVZVitDN3yNUeKD0w+q6tsLOj0f6dbGdec
- SJt3KelTABnyeHdu9vC/I3ritBdr41uKcG6pDaitlzShhbR5MnUESPZVQ
- 7LGvIbfI+WpkTJNddRVmH5vx/kRETsfK7fVvnJ5RCPYNs/zbIeweOPVOb
- 1NM27ezmNhniBlQXd7xTic9NRqQZhfBBC+ZA8QUnWuOQxKYkzk9+LnwTf g==;
-X-CSE-ConnectionGUID: PEI8CWyBRYalltO0YhbRBQ==
-X-CSE-MsgGUID: mX3p1csHRRWXWUJ8qF9uRA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11639"; a="67557156"
-X-IronPort-AV: E=Sophos;i="6.21,141,1763452800"; d="scan'208";a="67557156"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Dec 2025 22:18:56 -0800
-X-CSE-ConnectionGUID: 4ExH2p7ASb6Y9JyseUSV6A==
-X-CSE-MsgGUID: NG6YBP7USBClBcJdcAznqw==
+ t=1765520541; x=1797056541;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=RLrpLmoKajOcdQgRmlYzYLqvtZONFXLc9WwOyAswMxU=;
+ b=kYRKZh/mcyTqkBGqfrTn5SGsVQB4VKTBC3LO47/b3xukjUCq4dWHMARW
+ VoBrcG+Zb83picKJzNl4wJUjMjUsroJ1TGvfbKf9n35PWFAP+U06kSajp
+ 6GD/U9cZ8C07feJczkBdzyPhajvHRrndwt+F1aRSYix+JNDKECMzgopIg
+ Lm0MIPhHQihDUsW12+YswJx23u0UJgW6uVkWNi/0apYQraWig2p17NO+m
+ dTio1qtvEyt76EXQvG/D9HQqjvS/xM43q7tEQyJ2nD2y8gKV6yNNqCIJK
+ uOkXJpt5qhx8R5YaZV7fpSkzHKiHd0beK9aQdfdb7HsRcAiGaFm0lnztw A==;
+X-CSE-ConnectionGUID: wyvRUsANTYysIFIten//5Q==
+X-CSE-MsgGUID: c7mcYWPuSveH8InO+zYe1g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11639"; a="85116252"
+X-IronPort-AV: E=Sophos;i="6.21,141,1763452800"; d="scan'208";a="85116252"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Dec 2025 22:22:21 -0800
+X-CSE-ConnectionGUID: eh/j+17wTNi63ntd8N0WJw==
+X-CSE-MsgGUID: /ehVCISjTtGJmchhlX6gtw==
 X-ExtLoop1: 1
-Received: from orsosgc001.jf.intel.com ([10.88.27.185])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Dec 2025 22:18:56 -0800
-From: Ashutosh Dixit <ashutosh.dixit@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>,
- Harish Chegondi <harish.chegondi@intel.com>, peter.senna@intel.com
-Subject: [PATCH 3/3] drm/xe/eustall: Disallow 0 EU stall property values
-Date: Thu, 11 Dec 2025 22:18:50 -0800
-Message-ID: <20251212061850.1565459-4-ashutosh.dixit@intel.com>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20251212061850.1565459-1-ashutosh.dixit@intel.com>
-References: <20251212061850.1565459-1-ashutosh.dixit@intel.com>
+X-IronPort-AV: E=Sophos;i="6.21,141,1763452800"; d="scan'208";a="201168445"
+Received: from srr4-3-linux-101-amanna.iind.intel.com ([10.223.74.76])
+ by orviesa003.jf.intel.com with ESMTP; 11 Dec 2025 22:22:19 -0800
+From: Animesh Manna <animesh.manna@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@intel.com,
+	Animesh Manna <animesh.manna@intel.com>
+Subject: [PATCH v2] drm/i915/display: Panel Replay BW optimization for DP2.0
+ tunneling
+Date: Fri, 12 Dec 2025 11:24:23 +0530
+Message-Id: <20251212055423.1925044-1-animesh.manna@intel.com>
+X-Mailer: git-send-email 2.29.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -66,29 +66,78 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-An EU stall property value of 0 is invalid and will cause a NPD.
+Unused bandwidth can be used by external display agents for Panel Replay
+enabled DP panel during idleness with link on. Enable source to replace
+dummy data from the display with data from another agent by programming
+TRANS_DP2_CTL [Panel Replay Tunneling Enable].
 
-Reported-by: Peter Senna Tschudin <peter.senna@linux.intel.com>
-Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/6453
-Fixes: 1537ec85ebd7 ("drm/xe/uapi: Introduce API for EU stall sampling")
-Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+Bspec: 68920
+Signed-off-by: Animesh Manna <animesh.manna@intel.com>
 ---
- drivers/gpu/drm/xe/xe_eu_stall.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../gpu/drm/i915/display/intel_display_regs.h |  1 +
+ drivers/gpu/drm/i915/display/intel_psr.c      | 23 +++++++++++++++++++
+ 2 files changed, 24 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_eu_stall.c b/drivers/gpu/drm/xe/xe_eu_stall.c
-index 97dfb7945b7ac..a5c36a317a707 100644
---- a/drivers/gpu/drm/xe/xe_eu_stall.c
-+++ b/drivers/gpu/drm/xe/xe_eu_stall.c
-@@ -315,7 +315,7 @@ static int xe_eu_stall_user_ext_set_property(struct xe_device *xe, u64 extension
- 		return -EFAULT;
+diff --git a/drivers/gpu/drm/i915/display/intel_display_regs.h b/drivers/gpu/drm/i915/display/intel_display_regs.h
+index 9e0d853f4b61..b6fc249a9f09 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_regs.h
++++ b/drivers/gpu/drm/i915/display/intel_display_regs.h
+@@ -2051,6 +2051,7 @@
+ #define TRANS_DP2_CTL(trans)			_MMIO_TRANS(trans, _TRANS_DP2_CTL_A, _TRANS_DP2_CTL_B)
+ #define  TRANS_DP2_128B132B_CHANNEL_CODING	REG_BIT(31)
+ #define  TRANS_DP2_PANEL_REPLAY_ENABLE		REG_BIT(30)
++#define  TRANS_DP2_PR_TUNNELING_ENABLE		REG_BIT(26)
+ #define  TRANS_DP2_DEBUG_ENABLE			REG_BIT(23)
  
- 	if (XE_IOCTL_DBG(xe, ext.property >= ARRAY_SIZE(xe_set_eu_stall_property_funcs)) ||
--	    XE_IOCTL_DBG(xe, ext.pad))
-+	    XE_IOCTL_DBG(xe, !ext.property) || XE_IOCTL_DBG(xe, ext.pad))
- 		return -EINVAL;
+ #define _TRANS_DP2_VFREQHIGH_A			0x600a4
+diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+index 2a378a5adc59..0d4cac30e40e 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr.c
++++ b/drivers/gpu/drm/i915/display/intel_psr.c
+@@ -44,6 +44,7 @@
+ #include "intel_dmc.h"
+ #include "intel_dp.h"
+ #include "intel_dp_aux.h"
++#include "intel_dp_tunnel.h"
+ #include "intel_dsb.h"
+ #include "intel_frontbuffer.h"
+ #include "intel_hdmi.h"
+@@ -1018,6 +1019,25 @@ static u8 frames_before_su_entry(struct intel_dp *intel_dp)
+ 	return frames_before_su_entry;
+ }
  
- 	idx = array_index_nospec(ext.property, ARRAY_SIZE(xe_set_eu_stall_property_funcs));
++static void intel_psr_set_pr_bw_optimization(struct intel_dp *intel_dp)
++{
++	struct intel_display *display = to_intel_display(intel_dp);
++	u8 val;
++
++	if (DISPLAY_VER(display) < 35)
++		return;
++
++	if (!intel_dp_tunnel_bw_alloc_is_enabled(intel_dp))
++		return;
++
++	drm_dp_dpcd_readb(&intel_dp->aux, DP_TUNNELING_CAPABILITIES, &val);
++	if (!(val & DP_PANEL_REPLAY_OPTIMIZATION_SUPPORT))
++		return;
++
++	intel_de_rmw(display, TRANS_DP2_CTL(intel_dp->psr.transcoder), 0,
++		     TRANS_DP2_PR_TUNNELING_ENABLE);
++}
++
+ static void dg2_activate_panel_replay(struct intel_dp *intel_dp)
+ {
+ 	struct intel_display *display = to_intel_display(intel_dp);
+@@ -1041,6 +1061,9 @@ static void dg2_activate_panel_replay(struct intel_dp *intel_dp)
+ 
+ 	intel_de_rmw(display, TRANS_DP2_CTL(intel_dp->psr.transcoder), 0,
+ 		     TRANS_DP2_PANEL_REPLAY_ENABLE);
++
++	if (!intel_dp_is_edp(intel_dp))
++		intel_psr_set_pr_bw_optimization(intel_dp);
+ }
+ 
+ static void hsw_activate_psr2(struct intel_dp *intel_dp)
 -- 
-2.48.1
+2.29.0
 
