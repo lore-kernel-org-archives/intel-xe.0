@@ -4,27 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9751DD59D78
-	for <intel-xe@archiver.kernel.org>; Fri, 12 Dec 2025 16:34:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B6B9AD59D77
+	for <intel-xe@archiver.kernel.org>; Fri, 12 Dec 2025 16:35:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 47EC410E08F;
-	Fri, 12 Dec 2025 16:34:20 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9BDB910E08F;
- Fri, 12 Dec 2025 16:34:18 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5F7C710E0F1;
+	Fri, 12 Dec 2025 16:35:04 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NJKfLb6R";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6A74210E0F1;
+ Fri, 12 Dec 2025 16:35:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1765557304; x=1797093304;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=NLBNBvErIkHNDnYIu3L7nEdibSrReAzreZapo0Y/pWQ=;
+ b=NJKfLb6REsQzekUphjE59qM0eJm4CEW6rmli+z6ORJTyzb2L34Ua/cGp
+ 9wP4GkK2n4Z8cmWqFYvKoInDgBQ/CT9lbKqYT2Db8Ko7u3yTD+WwGbacH
+ gW58fRFB5Rmh0HZnBmfa9kk0yGxGbqpWztat3fsd9kkGrIPgjDO2u8/Bq
+ BHPxzBWvE9PhtvnjXbUIhvJjv32SvSBzDvlRztpCfL1a+wsvOXuLhS4GF
+ FV4HZH7tvtHtotopQFMp5dHOB2+fCJZm+eIk3YQE+khuHxM10PoqiJwKG
+ RP7X0ql/pJniASQK4RP9oLb8wz8nAcFNcpd9BS9Eg8LeUxqX0qb9IV7Se w==;
+X-CSE-ConnectionGUID: PoF7cXnHQZmcZx+WQVMYvg==
+X-CSE-MsgGUID: nxf9+wppQrqsqcSj5anPBQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11640"; a="71189273"
+X-IronPort-AV: E=Sophos;i="6.21,144,1763452800"; d="scan'208";a="71189273"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Dec 2025 08:35:03 -0800
+X-CSE-ConnectionGUID: tkKdnQSwRES/xGHkrfoFWw==
+X-CSE-MsgGUID: jv1OiSqDQwm10MLFX9xxAQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,144,1763452800"; d="scan'208";a="197028603"
+Received: from egrumbac-mobl6.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.152])
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Dec 2025 08:35:01 -0800
+Date: Fri, 12 Dec 2025 18:34:58 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Nemesa Garg <nemesa.garg@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ ville.syrjala@intel.com, uma.shankar@intel.com
+Subject: Re: [PATCH 3/5] drm/i915/display: Pass dsb_commit to CASF helpers
+Message-ID: <aTxEMraPc0HmKBff@intel.com>
+References: <20251209062527.620382-1-nemesa.garg@intel.com>
+ <20251209062527.620382-4-nemesa.garg@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/i915=3A_Some_DSB/flip?=
- =?utf-8?q?q_stuff?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 12 Dec 2025 16:34:18 -0000
-Message-ID: <176555725861.81112.16642551020912612319@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20251212152847.13679-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20251212152847.13679-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20251209062527.620382-4-nemesa.garg@intel.com>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,90 +69,56 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Tue, Dec 09, 2025 at 11:55:25AM +0530, Nemesa Garg wrote:
+> Incase of non-modeset enable the casf, update the
+> strength or disable the casf through dsb.
+> 
+> Signed-off-by: Nemesa Garg <nemesa.garg@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_display.c | 12 ++++++++++++
+>  1 file changed, 12 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index 256103d55409..7edfc8c2ae21 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -7300,6 +7300,8 @@ static void intel_atomic_dsb_finish(struct intel_atomic_state *state,
+>  	struct intel_display *display = to_intel_display(state);
+>  	struct intel_crtc_state *new_crtc_state =
+>  		intel_atomic_get_new_crtc_state(state, crtc);
+> +	struct intel_crtc_state *old_crtc_state =
+> +		intel_atomic_get_old_crtc_state(state, crtc);
+>  	unsigned int size = new_crtc_state->plane_color_changed ? 8192 : 1024;
+>  
+>  	if (!new_crtc_state->use_flipq &&
+> @@ -7332,6 +7334,16 @@ static void intel_atomic_dsb_finish(struct intel_atomic_state *state,
+>  		if (intel_crtc_needs_color_update(new_crtc_state))
+>  			intel_color_commit_noarm(new_crtc_state->dsb_commit,
+>  						 new_crtc_state);
+> +		if (intel_casf_enabling(new_crtc_state, old_crtc_state))
+> +			intel_casf_enable(new_crtc_state->dsb_commit,
+> +					  new_crtc_state);
+> +		else if (new_crtc_state->hw.casf_params.strength !=
+> +				old_crtc_state->hw.casf_params.strength)
+> +			intel_casf_update_strength(new_crtc_state->dsb_commit,
+> +						   new_crtc_state);
+> +		if (intel_casf_disabling(old_crtc_state, new_crtc_state))
+> +			intel_casf_disable(new_crtc_state->dsb_commit,
+> +					   new_crtc_state);
 
-Series: drm/i915: Some DSB/flipq stuff
-URL   : https://patchwork.freedesktop.org/series/158869/
-State : warning
+I don't want to see this casf stuff becoming even more special. It
+needs to be made less special. So I think it should get completely
+buried inside the existing pipe scaler/pfit codepaths.
 
-== Summary ==
+>  		intel_crtc_planes_update_noarm(new_crtc_state->dsb_commit,
+>  					       state, crtc);
+>  
+> -- 
+> 2.25.1
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-8f50e69d0ce3656564bbdf8b3e213d61470d463f
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit 84c002548c892c27656be97c036bf921c42c05cb
-Author: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Date:   Fri Dec 12 17:28:47 2025 +0200
-
-    drm/i915/dsb: Add tracepoints for flip queue
-    
-    Currently flip queue based commits don't leave any breadcrumbs
-    via tracepoints. Add new intel_flipq_add and intel_flipq_done
-    tracepoints that at least indicates when we something happens
-    via the flip queeu.
-    
-    We might want to improve this later somehow to have a slightly
-    better idea what the flip queue might end up doing. But at least
-    this now shows that *something* is going on.
-    
-    Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-+ /mt/dim checkpatch 39f65c105d5b1af093f9df6f3dc688a642f96456 drm-intel
-e3bfb6896d5a drm/i915/flipq: Don't initialize flip queue on pre-LNL
-a8ab3bc7331c drm/i915: Give up on DSB/flip queue if we fail to allocate the color DSB buffer
-eaf35805e56f drm/i915: Clear crtc_state->use_flipq initially
-2913fd792e5b drm/i915: Warn about use_flip==true in MMIO commit codepaths
-a54681e81a7b drm/i915: Refine vblank evasion DSB check
-1e752caf26ff drm/i915: Make intel_crtc_needs_vblank_work() easier on the eye
-81505e23f951 drm/i915: Extract intel_dsb_supported()
-d2d8c0ca5705 drm/i915: Use intel_dsb_supported() to determine 'use_dsb'
-7864509480d5 drm/i915: Extract commit_dsb_max_cmds()
-96283d7e4660 drm/i915: Introduce enum intel_commit_type
-f96cdfb4fc6a drm/i915: Carve intel_atomic_commit_type() up a bit
-454562694bf7 drm/i915/dsb: Add tracepoints for DSB commit
--:39: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
-#39: FILE: drivers/gpu/drm/i915/display/intel_display_trace.h:689:
-+	    TP_STRUCT__entry(
-
--:47: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
-#47: FILE: drivers/gpu/drm/i915/display/intel_display_trace.h:697:
-+	    TP_fast_assign(
-
--:64: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
-#64: FILE: drivers/gpu/drm/i915/display/intel_display_trace.h:714:
-+	    TP_STRUCT__entry(
-
--:72: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
-#72: FILE: drivers/gpu/drm/i915/display/intel_display_trace.h:722:
-+	    TP_fast_assign(
-
-total: 0 errors, 0 warnings, 4 checks, 86 lines checked
-84c002548c89 drm/i915/dsb: Add tracepoints for flip queue
--:43: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
-#43: FILE: drivers/gpu/drm/i915/display/intel_display_trace.h:743:
-+	    TP_STRUCT__entry(
-
--:54: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
-#54: FILE: drivers/gpu/drm/i915/display/intel_display_trace.h:754:
-+	    TP_fast_assign(
-
--:76: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
-#76: FILE: drivers/gpu/drm/i915/display/intel_display_trace.h:776:
-+	    TP_STRUCT__entry(
-
--:83: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
-#83: FILE: drivers/gpu/drm/i915/display/intel_display_trace.h:783:
-+	    TP_fast_assign(
-
-total: 0 errors, 0 warnings, 4 checks, 116 lines checked
-
-
+-- 
+Ville Syrj�l�
+Intel
