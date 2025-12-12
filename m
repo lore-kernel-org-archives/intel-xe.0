@@ -4,65 +4,101 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 78A9CD44149
-	for <intel-xe@archiver.kernel.org>; Fri, 12 Dec 2025 08:56:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BFFBDD44145
+	for <intel-xe@archiver.kernel.org>; Fri, 12 Dec 2025 08:58:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 29BC310E334;
-	Fri, 12 Dec 2025 08:56:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6F19810E5AC;
+	Fri, 12 Dec 2025 08:58:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ARdSvpnM";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="CoiAr4vV";
+	dkim=pass (2048-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="lRQnuVe4";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 837F010E226;
- Fri, 12 Dec 2025 08:56:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765529794; x=1797065794;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=8t/LkegwreyubdEnr0YC6cFjQmJG5vHw2FWlsxeL9LA=;
- b=ARdSvpnMGCb22TFLj75ZIp9jEGc5OLzCNvB/jI5zCEs1+EvwKrMwhT1H
- E2WusZsDoPwbhsOHogwUY49H9mH1rSqbJD1KjSciM3VRNvnhU43joz9eh
- 4eiulem0fLQ+hlWaip/uJT13Od4yjLwjrvf40rVfBotshz7eOP2YckpBQ
- rGJZUbHSpIj/7cXIX0zl2EZdGAll9F6wlBdik+QiZJy8/1/2mvgeTahBm
- wbhT7jb7qRjk7LQWcs91CaYuDbb5DUhu28k/t/XBKhUr3oi3BM6dZnlYc
- RFhwFPDnHQom1TZM1FDnI4E0Bs+pOZMoT63oETBjxQt/TgkWH6WCdODQ7 A==;
-X-CSE-ConnectionGUID: sbP4Fl2DThqtI0IyIJ7dcA==
-X-CSE-MsgGUID: q5WYfS+4R+6pewHQg6ub0g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11639"; a="92995394"
-X-IronPort-AV: E=Sophos;i="6.21,143,1763452800"; d="scan'208";a="92995394"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Dec 2025 00:56:30 -0800
-X-CSE-ConnectionGUID: xF6Z7c3xS/msLAafrAY/MA==
-X-CSE-MsgGUID: f8bMgmrmTh2KzqDuKeOmLA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,143,1763452800"; d="scan'208";a="201940861"
-Received: from egrumbac-mobl6.ger.corp.intel.com (HELO [10.245.245.106])
- ([10.245.245.106])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Dec 2025 00:56:27 -0800
-Message-ID: <108f8133-dbb9-4446-9483-0560f7599a35@linux.intel.com>
-Date: Fri, 12 Dec 2025 09:56:06 +0100
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 76DDB10E5AC
+ for <intel-xe@lists.freedesktop.org>; Fri, 12 Dec 2025 08:58:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1765529922;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type;
+ bh=3OOl1KO64zmLiW61+N6ESdQ47YbE4y382fLZJzrbSBQ=;
+ b=CoiAr4vVwIQxUGfNOBPVmMA/sw3cpSa5q2e6bsSk9y3S5hx6fgdxhBCwU3AwVYNOaUxA/W
+ eXRdWw+y4hEnhMsAF6oekVIJSoiOgd4Fvo/10eyLN5cuQuacGnPdQDzr4pVWW7GT/Cx/Mp
+ w8OIA41GhWWOwsj2Y2Y4/ZfN2PZUPq0=
+Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com
+ [209.85.128.72]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-332-yjd5WuUnMRSl8O-Rda8pZQ-1; Fri, 12 Dec 2025 03:58:39 -0500
+X-MC-Unique: yjd5WuUnMRSl8O-Rda8pZQ-1
+X-Mimecast-MFC-AGG-ID: yjd5WuUnMRSl8O-Rda8pZQ_1765529918
+Received: by mail-wm1-f72.google.com with SMTP id
+ 5b1f17b1804b1-477c49f273fso7438265e9.3
+ for <intel-xe@lists.freedesktop.org>; Fri, 12 Dec 2025 00:58:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=redhat.com; s=google; t=1765529918; x=1766134718; darn=lists.freedesktop.org;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=3OOl1KO64zmLiW61+N6ESdQ47YbE4y382fLZJzrbSBQ=;
+ b=lRQnuVe4/x0fMslbIOIM1dbgvdlVfwogc9+xBgnM0RinICKCyldGjG1PPPFuZRgvZ3
+ iHI3V0jJZGgz40AX22BcIJiEqZWV9cWirDRML6be65n9VmHM72Qk8ZLAqQ4JQvJUiX70
+ /dJJhNsxTK97Qnno5xVx31B4kOM/UYyzotLFCWzvI4arGwRkxcOsYe4s+3FahiqSLLy3
+ Yx2NOzDQ/l7S8zXyNssvVxemo4VeFTUduzszKkCbiIxZiYcy/6LNh/oz5JJxaYe9rOJN
+ TmnudSR/z2Z0LXRJA/Xk4ncJru6ccKmAI6dj+/jsA2Geal0eVkZIu0ihBHCAqU9hDzlf
+ eQMg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1765529918; x=1766134718;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=3OOl1KO64zmLiW61+N6ESdQ47YbE4y382fLZJzrbSBQ=;
+ b=v0+2Fe3bhHjMJNLWhMZOPKbeZCOTIKdYLTEnBCLLlWdrQNY9tbiAFEPdurcV1/2HRc
+ EwAli3+Xd5Xq50RAUoKcf7hrms3FgxUyUh04U+lCvA4Top2ap+6KNVYATFi91ircoNVH
+ dlfmX2rpsMbwwvs6nxFuuS5RMSwuzvf3fehp/Ib/wzUFtdybWYrzaAHvPT0o5WpSvLUy
+ 0DQl8C28aOBC7d7PGbGkTyteS6ybE1dxmYsa2aQ6L6JAjzgybOg43mr9dn5j8pYxHImu
+ gYz9Izv3pLYzD8uiztvAsudBrOy5L0ADvcvIQp3wjDiDFHO5zAb95LCJ/spv5yaJLBXR
+ gicg==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCXhWjpHCPrgGr0NATDLYAiERB0VGPzF0URN7mPW0JXJGlenVD/uJMWT5M6bP5zvi+xOhXDQEZXwIg==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzfFnuXMfUXPNVB+Sao0EQ3xEMjMU9J9gs17m+P2NL9Niuw2BkN
+ U0zXxfinOxFYqT6aSqVEzoiCwXNs2Fl+goV471eO1CZf0WiD8aBT2lE1YdWuEXrKVwYYt+OOHjC
+ G/HvUIutR5Hm69ZABQg5/YhtN0mZXnUqv0I/E9F7lHQ706zcxD8Bjosok7lFoVm2EOm/y
+X-Gm-Gg: AY/fxX5rWhHn9osg84ip4LJ9nw/OzPj58R+ANyaVRB3TCLaRqdp6A7vMvxdlJ0eQhOc
+ Qil2Zpujm4D48rg53MZ3GrZYAK3eVOihdBpFQGYW1Qgg9f5L658rWNFzrlOWWVWSQdtEQGV5c2b
+ Iakg7E/VOJZk6vfzlaEo2bZ7H8/FAcL1RoQShWQYwhWx0e4GPj+6MYCBZWHt20WEZITjCupxqtK
+ 8KD1Wlrl1jE91TrsbhoopAFyn/E/FaZIGLMrqhkhf7lVAV/+rKi3aF4i/+a0OcZYsYotxkvnnDv
+ hjJubEu2wQ/9do4rZtF/TM5PhRsGidUPLr9ag20MPnpB3c+J8nkXWpSzF6I9ee+envZqPnG4zeO
+ yMlaf
+X-Received: by 2002:a05:600c:a40e:b0:477:b734:8c52 with SMTP id
+ 5b1f17b1804b1-47a900bd6cfmr7723045e9.14.1765529917682; 
+ Fri, 12 Dec 2025 00:58:37 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IH3JXRc3h+O8u1zjrMyTE89J5hyP/hmb4XogIOQ7L6CxCbB2I3JXsuZeZwCc2dBBAQ9gkXx2g==
+X-Received: by 2002:a05:600c:a40e:b0:477:b734:8c52 with SMTP id
+ 5b1f17b1804b1-47a900bd6cfmr7722815e9.14.1765529917191; 
+ Fri, 12 Dec 2025 00:58:37 -0800 (PST)
+Received: from localhost ([82.66.159.240]) by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-47a8f32f7easm8364805e9.0.2025.12.12.00.58.36
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 12 Dec 2025 00:58:36 -0800 (PST)
+Date: Fri, 12 Dec 2025 09:58:35 +0100
+From: Maxime Ripard <mripard@redhat.com>
+To: Dave Airlie <airlied@gmail.com>, 
+	Simona Vetter <simona.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>, 
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-misc-next
+Message-ID: <20251212-spectacular-agama-of-abracadabra-aaef32@penduick>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 02/22] drm/pagemap, drm/xe: Ensure that the devmem
- allocation is idle before use
-To: intel-xe@lists.freedesktop.org
-Cc: Matthew Brost <matthew.brost@intel.com>, stable@vger.kernel.org,
- dri-devel@lists.freedesktop.org, himal.prasad.ghimiray@intel.com,
- apopple@nvidia.com, airlied@gmail.com, Simona Vetter
- <simona.vetter@ffwll.ch>, felix.kuehling@amd.com,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- dakr@kernel.org, "Mrozek, Michal" <michal.mrozek@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-References: <20251211165909.219710-1-thomas.hellstrom@linux.intel.com>
- <20251211165909.219710-3-thomas.hellstrom@linux.intel.com>
-Content-Language: en-US
-From: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20251211165909.219710-3-thomas.hellstrom@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha384;
+ protocol="application/pgp-signature"; boundary="sces6ytv4ypvenxt"
+Content-Disposition: inline
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,303 +114,375 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
-On 12/11/25 17:58, Thomas Hellström wrote:
-> In situations where no system memory is migrated to devmem, and in
-> upcoming patches where another GPU is performing the migration to
-> the newly allocated devmem buffer, there is nothing to ensure any
-> ongoing clear to the devmem allocation or async eviction from the
-> devmem allocation is complete.
->
-> Address that by passing a struct dma_fence down to the copy
-> functions, and ensure it is waited for before migration is marked
-> complete.
->
-> v3:
-> - New patch.
-> v4:
-> - Update the logic used for determining when to wait for the
->    pre_migrate_fence.
-> - Update the logic used for determining when to warn for the
->    pre_migrate_fence since the scheduler fences apparently
->    can signal out-of-order.
->
-> Fixes: c5b3eb5a906c ("drm/xe: Add GPUSVM device memory copy vfunc functions")
-> Cc: Matthew Brost <matthew.brost@intel.com>
-> Cc: <stable@vger.kernel.org> # v6.15+
-> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> ---
->   drivers/gpu/drm/drm_pagemap.c | 13 ++++---
->   drivers/gpu/drm/xe/xe_svm.c   | 67 ++++++++++++++++++++++++++++++-----
->   include/drm/drm_pagemap.h     | 17 +++++++--
->   3 files changed, 81 insertions(+), 16 deletions(-)
->
-> diff --git a/drivers/gpu/drm/drm_pagemap.c b/drivers/gpu/drm/drm_pagemap.c
-> index 22c44807e3fe..864a73d019ed 100644
-> --- a/drivers/gpu/drm/drm_pagemap.c
-> +++ b/drivers/gpu/drm/drm_pagemap.c
-> @@ -408,7 +408,8 @@ int drm_pagemap_migrate_to_devmem(struct drm_pagemap_devmem *devmem_allocation,
->   		drm_pagemap_get_devmem_page(page, zdd);
->   	}
->   
-> -	err = ops->copy_to_devmem(pages, pagemap_addr, npages);
-> +	err = ops->copy_to_devmem(pages, pagemap_addr, npages,
-> +				  devmem_allocation->pre_migrate_fence);
->   	if (err)
->   		goto err_finalize;
->   
-> @@ -596,7 +597,7 @@ int drm_pagemap_evict_to_ram(struct drm_pagemap_devmem *devmem_allocation)
->   	for (i = 0; i < npages; ++i)
->   		pages[i] = migrate_pfn_to_page(src[i]);
->   
-> -	err = ops->copy_to_ram(pages, pagemap_addr, npages);
-> +	err = ops->copy_to_ram(pages, pagemap_addr, npages, NULL);
->   	if (err)
->   		goto err_finalize;
->   
-> @@ -732,7 +733,7 @@ static int __drm_pagemap_migrate_to_ram(struct vm_area_struct *vas,
->   	for (i = 0; i < npages; ++i)
->   		pages[i] = migrate_pfn_to_page(migrate.src[i]);
->   
-> -	err = ops->copy_to_ram(pages, pagemap_addr, npages);
-> +	err = ops->copy_to_ram(pages, pagemap_addr, npages, NULL);
->   	if (err)
->   		goto err_finalize;
->   
-> @@ -813,11 +814,14 @@ EXPORT_SYMBOL_GPL(drm_pagemap_pagemap_ops_get);
->    * @ops: Pointer to the operations structure for GPU SVM device memory
->    * @dpagemap: The struct drm_pagemap we're allocating from.
->    * @size: Size of device memory allocation
-> + * @pre_migrate_fence: Fence to wait for or pipeline behind before migration starts.
-> + * (May be NULL).
->    */
->   void drm_pagemap_devmem_init(struct drm_pagemap_devmem *devmem_allocation,
->   			     struct device *dev, struct mm_struct *mm,
->   			     const struct drm_pagemap_devmem_ops *ops,
-> -			     struct drm_pagemap *dpagemap, size_t size)
-> +			     struct drm_pagemap *dpagemap, size_t size,
-> +			     struct dma_fence *pre_migrate_fence)
->   {
->   	init_completion(&devmem_allocation->detached);
->   	devmem_allocation->dev = dev;
-> @@ -825,6 +829,7 @@ void drm_pagemap_devmem_init(struct drm_pagemap_devmem *devmem_allocation,
->   	devmem_allocation->ops = ops;
->   	devmem_allocation->dpagemap = dpagemap;
->   	devmem_allocation->size = size;
-> +	devmem_allocation->pre_migrate_fence = pre_migrate_fence;
->   }
->   EXPORT_SYMBOL_GPL(drm_pagemap_devmem_init);
->   
-> diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
-> index 36634c84d148..2152d20049e4 100644
-> --- a/drivers/gpu/drm/xe/xe_svm.c
-> +++ b/drivers/gpu/drm/xe/xe_svm.c
-> @@ -483,11 +483,12 @@ static void xe_svm_copy_us_stats_incr(struct xe_gt *gt,
->   
->   static int xe_svm_copy(struct page **pages,
->   		       struct drm_pagemap_addr *pagemap_addr,
-> -		       unsigned long npages, const enum xe_svm_copy_dir dir)
-> +		       unsigned long npages, const enum xe_svm_copy_dir dir,
-> +		       struct dma_fence *pre_migrate_fence)
->   {
->   	struct xe_vram_region *vr = NULL;
->   	struct xe_gt *gt = NULL;
-> -	struct xe_device *xe;
-> +	struct xe_device *xe = NULL;
->   	struct dma_fence *fence = NULL;
->   	unsigned long i;
->   #define XE_VRAM_ADDR_INVALID	~0x0ull
-> @@ -496,6 +497,18 @@ static int xe_svm_copy(struct page **pages,
->   	bool sram = dir == XE_SVM_COPY_TO_SRAM;
->   	ktime_t start = xe_svm_stats_ktime_get();
->   
-> +	if (pre_migrate_fence && (sram || dma_fence_is_container(pre_migrate_fence))) {
-> +		/*
-> +		 * This would typically be a p2p migration from source, or
-> +		 * a composite fence operation on the destination memory.
-> +		 * Ensure that any other GPU operation on the destination
-> +		 * is complete.
-> +		 */
-> +		err = dma_fence_wait(pre_migrate_fence, true);
-> +		if (err)
-> +			return err;
-> +	}
-> +
->   	/*
->   	 * This flow is complex: it locates physically contiguous device pages,
->   	 * derives the starting physical address, and performs a single GPU copy
-> @@ -632,10 +645,28 @@ static int xe_svm_copy(struct page **pages,
->   
->   err_out:
->   	/* Wait for all copies to complete */
-> -	if (fence) {
-> +	if (fence)
->   		dma_fence_wait(fence, false);
-> -		dma_fence_put(fence);
-> +
-> +	/*
-> +	 * If migrating to devmem, we should have pipelined the migration behind
-> +	 * the pre_migrate_fence. Verify that this is indeed likely. If we
-> +	 * didn't perform any copying, just wait for the pre_migrate_fence.
-> +	 */
-> +	if (!sram && pre_migrate_fence && !dma_fence_is_signaled(pre_migrate_fence)) {
-> +		if (xe && fence &&
-> +		    (pre_migrate_fence->context != fence->context ||
-> +		     dma_fence_is_later(pre_migrate_fence, fence))) {
-> +			drm_WARN(&xe->drm, true, "Unsignaled pre-migrate fence");
-> +			drm_warn(&xe->drm, "fence contexts: %llu %llu. container %d\n",
-> +				 (unsigned long long)fence->context,
-> +				 (unsigned long long)pre_migrate_fence->context,
-> +				 dma_fence_is_container(pre_migrate_fence));
-> +		}
-> +
-> +		dma_fence_wait(pre_migrate_fence, false);
->   	}
-> +	dma_fence_put(fence);
->   
->   	/*
->   	 * XXX: We can't derive the GT here (or anywhere in this functions, but
-> @@ -652,16 +683,20 @@ static int xe_svm_copy(struct page **pages,
->   
->   static int xe_svm_copy_to_devmem(struct page **pages,
->   				 struct drm_pagemap_addr *pagemap_addr,
-> -				 unsigned long npages)
-> +				 unsigned long npages,
-> +				 struct dma_fence *pre_migrate_fence)
->   {
-> -	return xe_svm_copy(pages, pagemap_addr, npages, XE_SVM_COPY_TO_VRAM);
-> +	return xe_svm_copy(pages, pagemap_addr, npages, XE_SVM_COPY_TO_VRAM,
-> +			   pre_migrate_fence);
->   }
->   
->   static int xe_svm_copy_to_ram(struct page **pages,
->   			      struct drm_pagemap_addr *pagemap_addr,
-> -			      unsigned long npages)
-> +			      unsigned long npages,
-> +			      struct dma_fence *pre_migrate_fence)
->   {
-> -	return xe_svm_copy(pages, pagemap_addr, npages, XE_SVM_COPY_TO_SRAM);
-> +	return xe_svm_copy(pages, pagemap_addr, npages, XE_SVM_COPY_TO_SRAM,
-> +			   pre_migrate_fence);
->   }
->   
->   static struct xe_bo *to_xe_bo(struct drm_pagemap_devmem *devmem_allocation)
-> @@ -676,6 +711,7 @@ static void xe_svm_devmem_release(struct drm_pagemap_devmem *devmem_allocation)
->   
->   	xe_bo_put_async(bo);
->   	xe_pm_runtime_put(xe);
-> +	dma_fence_put(devmem_allocation->pre_migrate_fence);
+--sces6ytv4ypvenxt
+Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: [PULL] drm-misc-next
+MIME-Version: 1.0
 
-Needs to be moved to the start of the function before the bo put. Will 
-otherwise dereference freed memory.
+Hi Dave, Sima,
 
-Will update in next revision.
+Here's the first drm-misc-next PR, a bit ahead of time to make next week
+easier.
 
->   }
->   
->   static u64 block_offset_to_pfn(struct xe_vram_region *vr, u64 offset)
-> @@ -868,6 +904,7 @@ static int xe_drm_pagemap_populate_mm(struct drm_pagemap *dpagemap,
->   				      unsigned long timeslice_ms)
->   {
->   	struct xe_vram_region *vr = container_of(dpagemap, typeof(*vr), dpagemap);
-> +	struct dma_fence *pre_migrate_fence = NULL;
->   	struct xe_device *xe = vr->xe;
->   	struct device *dev = xe->drm.dev;
->   	struct drm_buddy_block *block;
-> @@ -894,8 +931,20 @@ static int xe_drm_pagemap_populate_mm(struct drm_pagemap *dpagemap,
->   			break;
->   		}
->   
-> +		/* Ensure that any clearing or async eviction will complete before migration. */
-> +		if (!dma_resv_test_signaled(bo->ttm.base.resv, DMA_RESV_USAGE_KERNEL)) {
-> +			err = dma_resv_get_singleton(bo->ttm.base.resv, DMA_RESV_USAGE_KERNEL,
-> +						     &pre_migrate_fence);
-> +			if (err)
-> +				dma_resv_wait_timeout(bo->ttm.base.resv, DMA_RESV_USAGE_KERNEL,
-> +						      false, MAX_SCHEDULE_TIMEOUT);
-> +			else if (pre_migrate_fence)
-> +				dma_fence_enable_sw_signaling(pre_migrate_fence);
-> +		}
-> +
->   		drm_pagemap_devmem_init(&bo->devmem_allocation, dev, mm,
-> -					&dpagemap_devmem_ops, dpagemap, end - start);
-> +					&dpagemap_devmem_ops, dpagemap, end - start,
-> +					pre_migrate_fence);
->   
->   		blocks = &to_xe_ttm_vram_mgr_resource(bo->ttm.resource)->blocks;
->   		list_for_each_entry(block, blocks, link)
-> diff --git a/include/drm/drm_pagemap.h b/include/drm/drm_pagemap.h
-> index f6e7e234c089..70a7991f784f 100644
-> --- a/include/drm/drm_pagemap.h
-> +++ b/include/drm/drm_pagemap.h
-> @@ -8,6 +8,7 @@
->   
->   #define NR_PAGES(order) (1U << (order))
->   
-> +struct dma_fence;
->   struct drm_pagemap;
->   struct drm_pagemap_zdd;
->   struct device;
-> @@ -174,6 +175,8 @@ struct drm_pagemap_devmem_ops {
->   	 * @pages: Pointer to array of device memory pages (destination)
->   	 * @pagemap_addr: Pointer to array of DMA information (source)
->   	 * @npages: Number of pages to copy
-> +	 * @pre_migrate_fence: dma-fence to wait for before migration start.
-> +	 * May be NULL.
->   	 *
->   	 * Copy pages to device memory. If the order of a @pagemap_addr entry
->   	 * is greater than 0, the entry is populated but subsequent entries
-> @@ -183,13 +186,16 @@ struct drm_pagemap_devmem_ops {
->   	 */
->   	int (*copy_to_devmem)(struct page **pages,
->   			      struct drm_pagemap_addr *pagemap_addr,
-> -			      unsigned long npages);
-> +			      unsigned long npages,
-> +			      struct dma_fence *pre_migrate_fence);
->   
->   	/**
->   	 * @copy_to_ram: Copy to system RAM (required for migration)
->   	 * @pages: Pointer to array of device memory pages (source)
->   	 * @pagemap_addr: Pointer to array of DMA information (destination)
->   	 * @npages: Number of pages to copy
-> +	 * @pre_migrate_fence: dma-fence to wait for before migration start.
-> +	 * May be NULL.
->   	 *
->   	 * Copy pages to system RAM. If the order of a @pagemap_addr entry
->   	 * is greater than 0, the entry is populated but subsequent entries
-> @@ -199,7 +205,8 @@ struct drm_pagemap_devmem_ops {
->   	 */
->   	int (*copy_to_ram)(struct page **pages,
->   			   struct drm_pagemap_addr *pagemap_addr,
-> -			   unsigned long npages);
-> +			   unsigned long npages,
-> +			   struct dma_fence *pre_migrate_fence);
->   };
->   
->   /**
-> @@ -212,6 +219,8 @@ struct drm_pagemap_devmem_ops {
->    * @dpagemap: The struct drm_pagemap of the pages this allocation belongs to.
->    * @size: Size of device memory allocation
->    * @timeslice_expiration: Timeslice expiration in jiffies
-> + * @pre_migrate_fence: Fence to wait for or pipeline behind before migration starts.
-> + * (May be NULL).
->    */
->   struct drm_pagemap_devmem {
->   	struct device *dev;
-> @@ -221,6 +230,7 @@ struct drm_pagemap_devmem {
->   	struct drm_pagemap *dpagemap;
->   	size_t size;
->   	u64 timeslice_expiration;
-> +	struct dma_fence *pre_migrate_fence;
->   };
->   
->   int drm_pagemap_migrate_to_devmem(struct drm_pagemap_devmem *devmem_allocation,
-> @@ -238,7 +248,8 @@ struct drm_pagemap *drm_pagemap_page_to_dpagemap(struct page *page);
->   void drm_pagemap_devmem_init(struct drm_pagemap_devmem *devmem_allocation,
->   			     struct device *dev, struct mm_struct *mm,
->   			     const struct drm_pagemap_devmem_ops *ops,
-> -			     struct drm_pagemap *dpagemap, size_t size);
-> +			     struct drm_pagemap *dpagemap, size_t size,
-> +			     struct dma_fence *pre_migrate_fence);
->   
->   int drm_pagemap_populate_mm(struct drm_pagemap *dpagemap,
->   			    unsigned long start, unsigned long end,
+Thanks!
+Maxime
+
+drm-misc-next-2025-12-12:
+drm-misc-next for 6.19:
+
+UAPI Changes:
+
+  - panfrost: Add PANFROST_BO_SYNC ioctl
+  - panthor: Add PANTHOR_BO_SYNC ioctl
+
+Core Changes:
+
+  - atomic: Add drm_device pointer to drm_private_obj
+  - bridge: Introduce drm_bridge_unplug, drm_bridge_enter, and
+    drm_bridge_exit
+  - dma-buf: Improve sg_table debugging
+  - dma-fence: Add new helpers, and use them when needed
+  - dp_mst: Avoid out-of-bounds access with VCPI=3D=3D0
+  - gem: Reduce page table overhead with transparent huge pages
+  - panic: Report invalid panic modes
+  - sched: Add TODO entries
+  - ttm: Various cleanups
+  - vblank: Various refactoring and cleanups
+
+  - Kconfig cleanups
+  - Removed support for kdb
+
+Driver Changes:
+
+  - amdxdna: Fix race conditions at suspend, Improve handling of zero
+    tail pointers, Fix cu_idx being overwritten during command setup
+  - ast: Support imported cursor buffers
+  -
+  - panthor: Enable timestamp propagation, Multiple improvements and
+    fixes to improve the overall robustness, notably of the scheduler.
+
+  - panels:
+    - panel-edp: Support for CSW MNE007QB3-1, AUO B140HAN06.4, AUO B140QAX0=
+1.H
+The following changes since commit db2bad93fe206c95808b7a164a29424791728752:
+
+  drm/amd/display: Enable support for Gamma 2.2 (2025-11-26 23:09:44 +0100)
+
+are available in the Git repository at:
+
+  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-next-202=
+5-12-12
+
+for you to fetch changes up to 470cb09a2936d3c1ff8aeff46e3c14dcc4314e9b:
+
+  drm/plane: Fix IS_ERR() vs NULL bug drm_plane_create_color_pipeline_prope=
+rty() (2025-12-11 17:39:15 +0100)
+
+----------------------------------------------------------------
+drm-misc-next for 6.19:
+
+UAPI Changes:
+
+  - panfrost: Add PANFROST_BO_SYNC ioctl
+  - panthor: Add PANTHOR_BO_SYNC ioctl
+
+Core Changes:
+
+  - atomic: Add drm_device pointer to drm_private_obj
+  - bridge: Introduce drm_bridge_unplug, drm_bridge_enter, and
+    drm_bridge_exit
+  - dma-buf: Improve sg_table debugging
+  - dma-fence: Add new helpers, and use them when needed
+  - dp_mst: Avoid out-of-bounds access with VCPI=3D=3D0
+  - gem: Reduce page table overhead with transparent huge pages
+  - panic: Report invalid panic modes
+  - sched: Add TODO entries
+  - ttm: Various cleanups
+  - vblank: Various refactoring and cleanups
+
+  - Kconfig cleanups
+  - Removed support for kdb
+
+Driver Changes:
+
+  - amdxdna: Fix race conditions at suspend, Improve handling of zero
+    tail pointers, Fix cu_idx being overwritten during command setup
+  - ast: Support imported cursor buffers
+  -
+  - panthor: Enable timestamp propagation, Multiple improvements and
+    fixes to improve the overall robustness, notably of the scheduler.
+
+  - panels:
+    - panel-edp: Support for CSW MNE007QB3-1, AUO B140HAN06.4, AUO B140QAX0=
+1.H
+
+----------------------------------------------------------------
+Akash Goel (1):
+      drm/panthor: Remove redundant call to disable the MCU
+
+Alexey Klimov (1):
+      gpu/panel-edp: add AUO panel entry for B140HAN06.4
+
+Ashley Smith (1):
+      drm/panthor: Enable timestamp propagation
+
+Boris Brezillon (26):
+      drm/panthor: Always wait after sending a command to an AS
+      drm/panthor: Kill lock_region()
+      drm/panthor: Recover from panthor_gpu_flush_caches() failures
+      drm/panthor: Add support for atomic page table updates
+      drm/panthor: Make panthor_vm_[un]map_pages() more robust
+      drm/panthor: Relax a check in panthor_sched_pre_reset()
+      drm/panthor: Simplify group idleness tracking
+      drm/panthor: Don't try to enable extract events
+      drm/panthor: Fix the full_tick check
+      drm/panthor: Fix the group priority rotation logic
+      drm/panthor: Fix immediate ticking on a disabled tick
+      drm/panthor: Fix the logic that decides when to stop ticking
+      drm/panthor: Make sure we resume the tick when new jobs are submitted
+      drm/panthor: Kill panthor_sched_immediate_tick()
+      drm/panthor: Drop a WARN_ON() in group_free_queue()
+      drm/panthor: Make sure caches are flushed/invalidated when an AS is r=
+ecycled
+      drm/panthor: Unlock the locked region before disabling an AS
+      drm/panthor: Provide a custom dma_buf implementation
+      drm/panthor: Fix panthor_gpu_coherency_set()
+      drm/panthor: Expose the selected coherency protocol to the UMD
+      drm/panthor: Add a PANTHOR_BO_SYNC ioctl
+      drm/panthor: Add an ioctl to query BO flags
+      drm/panfrost: Provide a custom dma_buf implementation
+      drm/panfrost: Expose the selected coherency protocol to the UMD
+      drm/panfrost: Add an ioctl to query BO flags
+      drm/gem: Fix builds with CONFIG_MMU=3Dn
+
+Chia-I Wu (1):
+      drm/panthor: fix queue_reset_timeout_locked
+
+Christian K=F6nig (3):
+      dma-buf: replace "#if" with just "if"
+      dma-buf: improve sg_table debugging hack v4
+      dma-buf: enable DMABUF_DEBUG by default on DEBUG kernels
+
+Dan Carpenter (1):
+      drm/plane: Fix IS_ERR() vs NULL bug drm_plane_create_color_pipeline_p=
+roperty()
+
+Eslam Khafagy (1):
+      drm: pl111: replace dev_* print functions with drm_* variants
+
+Faith Ekstrand (4):
+      drm/panthor: Bump the driver version to 1.7
+      drm/panfrost: Add a PANFROST_SYNC_BO ioctl
+      drm/panfrost: Add flag to map GEM object Write-Back Cacheable
+      drm/panfrost: Bump the driver version to 1.6
+
+Jani Nikula (10):
+      drm/hyperv: move Kconfig under driver directory
+      drm/vgem: move Kconfig under driver directory
+      drm/Kconfig: move generic Kconfig options above drivers
+      drm/Kconfig: sort driver Kconfig source list
+      drm/vblank: remove drm_wait_one_vblank() completely
+      drm/vblank: remove superfluous pipe check
+      drm/vblank: add return value to drm_crtc_wait_one_vblank()
+      drm/vblank: limit vblank variable scope to atomic
+      drm/vblank: use the drm_vblank_crtc() and drm_crtc_vblank_crtc() help=
+ers more
+      drm/vblank: prefer drm_crtc_vblank_crtc() over drm_vblank_crtc()
+
+Langyan Ye (1):
+      drm/panel-edp: Add CSW MNE007QB3-1
+
+Lizhi Hou (4):
+      accel/amdxdna: Poll MPNPU_PWAITMODE after requesting firmware suspend
+      accel/amdxdna: Fix tail-pointer polling in mailbox_get_msg()
+      accel/amdxdna: Fix race condition when checking rpm_on
+      accel/amdxdna: Fix cu_idx being cleared by memset() during command se=
+tup
+
+Lo=EFc Molinari (12):
+      drm/shmem-helper: Simplify page offset calculation in fault handler
+      drm/shmem-helper: Map huge pages in fault handler
+      drm/gem: Introduce drm_gem_get_unmapped_area() fop
+      drm/gem: Add huge tmpfs mountpoint helpers
+      drm/i915: Use huge tmpfs mountpoint helpers
+      drm/v3d: Use huge tmpfs mountpoint helpers
+      drm/gem: Get rid of *_with_mnt helpers
+      drm/panthor: Introduce huge tmpfs mountpoint option
+      drm/panfrost: Introduce huge tmpfs mountpoint option
+      Documentation/gpu/drm-mm: Add THP paragraph to GEM mapping section
+      drm/panthor: Add flag to map GEM object Write-Back Cacheable
+      drm/i915: Fix BO alloc flags
+
+Luca Ceresoli (2):
+      drm/bridge: add drm_bridge_unplug() and drm_bridge_enter/exit()
+      drm/bridge: ti-sn65dsi83: protect device resources on unplug
+
+Maxime Ripard (1):
+      drm/atomic: Add dev pointer to drm_private_obj
+
+Philipp Stanner (9):
+      drm/todo: Add section with task for GPU scheduler
+      drm/todo: Add entry for unlocked drm/sched rq readers
+      dma-buf/dma-fence: Add dma_fence_test_signaled_flag()
+      dma-buf/dma-fence: Add dma_fence_check_and_signal()
+      amd/amdkfd: Use dma_fence_check_and_signal()
+      drm/xe: Use dma_fence_check_and_signal_locked()
+      dma-buf: Don't misuse dma_fence_signal()
+      drm/ttm: Use dma_fence_check_and_signal()
+      dma-buf/dma-fence: Remove return code of signaling-functions
+
+Suraj Kandpal (1):
+      drm/display/dp_mst: Add protection against 0 vcpi
+
+Thomas Zimmermann (9):
+      drm/ast: Move cursor format conversion into helper function
+      drm/ast: Support cursor buffers objects in I/O memory
+      drm/ast: Wrap cursor framebuffer access in drm_gem_fb_begin/end_cpu_a=
+ccess()
+      drm/amdgpu: Do not implement mode_set_base_atomic callback
+      drm/nouveau: Do not implement mode_set_base_atomic callback
+      drm/radeon: Do not implement mode_set_base_atomic callback
+      drm/fbdev-helper: Remove drm_fb_helper_debug_enter/_leave()
+      fbcon: Remove fb_debug_enter/_leave from struct fb_ops
+      drm/vblank: Unexport drm_wait_one_vblank()
+
+Tvrtko Ursulin (5):
+      drm/panic: Report invalid or unsupported panic modes
+      drm/ttm: Make ttm_bo_init_validate safe against ttm_operation_ctx re-=
+ordering
+      drm/ttm: Resource cannot be NULL in ttm_resource_intersects
+      drm/ttm: Tidy ttm_operation_ctx initialization
+      drm/ttm: Tidy usage of local variables a little bit
+
+Val Packett (1):
+      drm/panel-edp: Add AUO B140QAX01.H panel
+
+ Documentation/gpu/drm-mm.rst                     |  29 ++-
+ Documentation/gpu/todo.rst                       |  45 ++++
+ Documentation/process/debugging/kgdb.rst         |  28 --
+ drivers/accel/amdxdna/aie2_message.c             |  18 +-
+ drivers/accel/amdxdna/aie2_pci.c                 |   2 +-
+ drivers/accel/amdxdna/aie2_pci.h                 |   3 +
+ drivers/accel/amdxdna/aie2_pm.c                  |  17 +-
+ drivers/accel/amdxdna/aie2_psp.c                 |  15 ++
+ drivers/accel/amdxdna/aie2_smu.c                 |  27 +-
+ drivers/accel/amdxdna/amdxdna_mailbox.c          |  19 +-
+ drivers/accel/amdxdna/amdxdna_pci_drv.h          |   1 -
+ drivers/accel/amdxdna/amdxdna_pm.c               |  22 +-
+ drivers/accel/amdxdna/npu1_regs.c                |   2 +
+ drivers/accel/amdxdna/npu2_regs.c                |   2 +
+ drivers/accel/amdxdna/npu4_regs.c                |   2 +
+ drivers/accel/amdxdna/npu5_regs.c                |   2 +
+ drivers/accel/amdxdna/npu6_regs.c                |   2 +
+ drivers/dma-buf/Kconfig                          |   2 +-
+ drivers/dma-buf/dma-buf.c                        |  77 ++++--
+ drivers/dma-buf/dma-fence.c                      | 100 +++++---
+ drivers/dma-buf/st-dma-fence.c                   |   4 +-
+ drivers/gpu/drm/Kconfig                          | 213 +++++----------
+ drivers/gpu/drm/amd/amdgpu/dce_v10_0.c           |  35 +--
+ drivers/gpu/drm/amd/amdgpu/dce_v6_0.c            |  35 +--
+ drivers/gpu/drm/amd/amdgpu/dce_v8_0.c            |  35 +--
+ drivers/gpu/drm/amd/amdkfd/kfd_process.c         |   6 +-
+ drivers/gpu/drm/ast/ast_cursor.c                 |  83 ++++--
+ drivers/gpu/drm/bridge/ti-sn65dsi83.c            |  86 +++++--
+ drivers/gpu/drm/display/drm_dp_mst_topology.c    |   3 +-
+ drivers/gpu/drm/drm_atomic.c                     |   1 +
+ drivers/gpu/drm/drm_bridge.c                     |  62 +++++
+ drivers/gpu/drm/drm_fb_helper.c                  | 108 --------
+ drivers/gpu/drm/drm_gem.c                        | 204 +++++++++++----
+ drivers/gpu/drm/drm_gem_shmem_helper.c           |  79 +++---
+ drivers/gpu/drm/drm_panic.c                      |  77 +++++-
+ drivers/gpu/drm/drm_plane.c                      |   4 +-
+ drivers/gpu/drm/drm_vblank.c                     |  52 ++--
+ drivers/gpu/drm/hyperv/Kconfig                   |  14 +
+ drivers/gpu/drm/i915/Makefile                    |   3 +-
+ drivers/gpu/drm/i915/gem/i915_gem_object_types.h |  10 +-
+ drivers/gpu/drm/i915/gem/i915_gem_shmem.c        |  58 +++--
+ drivers/gpu/drm/i915/gem/i915_gemfs.c            |  71 -----
+ drivers/gpu/drm/i915/gem/i915_gemfs.h            |  14 -
+ drivers/gpu/drm/i915/gem/selftests/huge_pages.c  |  15 +-
+ drivers/gpu/drm/i915/i915_drv.h                  |   5 -
+ drivers/gpu/drm/nouveau/dispnv04/crtc.c          |  24 +-
+ drivers/gpu/drm/panel/panel-edp.c                |   3 +
+ drivers/gpu/drm/panfrost/panfrost_device.c       |   3 +
+ drivers/gpu/drm/panfrost/panfrost_device.h       |   1 +
+ drivers/gpu/drm/panfrost/panfrost_drv.c          | 107 +++++++-
+ drivers/gpu/drm/panfrost/panfrost_drv.h          |   9 +
+ drivers/gpu/drm/panfrost/panfrost_gem.c          | 257 +++++++++++++++++++
+ drivers/gpu/drm/panfrost/panfrost_gem.h          |  12 +
+ drivers/gpu/drm/panfrost/panfrost_gpu.c          |  26 +-
+ drivers/gpu/drm/panfrost/panfrost_regs.h         |  10 +-
+ drivers/gpu/drm/panthor/panthor_device.c         |  13 +-
+ drivers/gpu/drm/panthor/panthor_drv.c            |  87 ++++++-
+ drivers/gpu/drm/panthor/panthor_drv.h            |   9 +
+ drivers/gpu/drm/panthor/panthor_fw.c             |   4 +-
+ drivers/gpu/drm/panthor/panthor_gem.c            | 258 ++++++++++++++++++-
+ drivers/gpu/drm/panthor/panthor_gem.h            |   8 +
+ drivers/gpu/drm/panthor/panthor_gpu.c            |  21 +-
+ drivers/gpu/drm/panthor/panthor_mmu.c            | 314 +++++++++++++------=
+----
+ drivers/gpu/drm/panthor/panthor_sched.c          | 252 +++++++++---------
+ drivers/gpu/drm/pl111/pl111_display.c            |   4 +-
+ drivers/gpu/drm/pl111/pl111_drv.c                |  29 ++-
+ drivers/gpu/drm/pl111/pl111_nomadik.c            |   4 +-
+ drivers/gpu/drm/pl111/pl111_nomadik.h            |   4 +-
+ drivers/gpu/drm/pl111/pl111_versatile.c          |  53 ++--
+ drivers/gpu/drm/pl111/pl111_versatile.h          |   2 +-
+ drivers/gpu/drm/radeon/atombios_crtc.c           |  74 ++----
+ drivers/gpu/drm/radeon/radeon_legacy_crtc.c      |  23 +-
+ drivers/gpu/drm/radeon/radeon_mode.h             |  10 +-
+ drivers/gpu/drm/ttm/tests/ttm_bo_validate_test.c |   2 +-
+ drivers/gpu/drm/ttm/ttm_bo.c                     |  64 ++---
+ drivers/gpu/drm/ttm/ttm_bo_util.c                |  57 ++--
+ drivers/gpu/drm/ttm/ttm_bo_vm.c                  |  12 +-
+ drivers/gpu/drm/ttm/ttm_device.c                 |   5 +-
+ drivers/gpu/drm/ttm/ttm_pool.c                   |  26 +-
+ drivers/gpu/drm/ttm/ttm_resource.c               |  14 +-
+ drivers/gpu/drm/ttm/ttm_tt.c                     |   2 +-
+ drivers/gpu/drm/v3d/Makefile                     |   3 +-
+ drivers/gpu/drm/v3d/v3d_bo.c                     |   6 +-
+ drivers/gpu/drm/v3d/v3d_drv.c                    |   2 +-
+ drivers/gpu/drm/v3d/v3d_drv.h                    |  11 +-
+ drivers/gpu/drm/v3d/v3d_gem.c                    |  21 +-
+ drivers/gpu/drm/v3d/v3d_gemfs.c                  |  62 -----
+ drivers/gpu/drm/vgem/Kconfig                     |   9 +
+ drivers/gpu/drm/xe/xe_hw_fence.c                 |   4 +-
+ drivers/video/fbdev/core/fbcon.c                 |  24 --
+ drivers/video/fbdev/core/fbcon.h                 |   1 -
+ include/drm/drm_atomic.h                         |   5 +
+ include/drm/drm_bridge.h                         |  12 +
+ include/drm/drm_device.h                         |  15 ++
+ include/drm/drm_fb_helper.h                      |  21 --
+ include/drm/drm_gem.h                            |  45 +++-
+ include/drm/drm_gem_shmem_helper.h               |   3 -
+ include/drm/drm_modeset_helper_vtables.h         |  23 --
+ include/drm/drm_vblank.h                         |   3 +-
+ include/linux/dma-fence.h                        |  35 ++-
+ include/linux/fb.h                               |   4 -
+ include/uapi/drm/panfrost_drm.h                  |  76 +++++-
+ include/uapi/drm/panthor_drm.h                   | 157 +++++++++++-
+ 103 files changed, 2546 insertions(+), 1491 deletions(-)
+ create mode 100644 drivers/gpu/drm/hyperv/Kconfig
+ delete mode 100644 drivers/gpu/drm/i915/gem/i915_gemfs.c
+ delete mode 100644 drivers/gpu/drm/i915/gem/i915_gemfs.h
+ create mode 100644 drivers/gpu/drm/panfrost/panfrost_drv.h
+ create mode 100644 drivers/gpu/drm/panthor/panthor_drv.h
+ delete mode 100644 drivers/gpu/drm/v3d/v3d_gemfs.c
+ create mode 100644 drivers/gpu/drm/vgem/Kconfig
+
+--sces6ytv4ypvenxt
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCaTvZOwAKCRAnX84Zoj2+
+dlexAYCcSc/B9LtsrZtZD3dDtHqbQwYji+tAfPy14jms6zlvziKkjBfltZPQqBEh
+kkwyQJwBfAm6KEdsuuPGhjJ8C6NW+Lx4QOzgLNMp9nKHVzcyoPM5IT16AoSzMVsA
+zp+9oGSqyQ==
+=KAYi
+-----END PGP SIGNATURE-----
+
+--sces6ytv4ypvenxt--
+
