@@ -4,191 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4B918D59D69
-	for <intel-xe@archiver.kernel.org>; Fri, 12 Dec 2025 15:39:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E6C67D59D6F
+	for <intel-xe@archiver.kernel.org>; Fri, 12 Dec 2025 15:40:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0186810E8D9;
-	Fri, 12 Dec 2025 15:39:43 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IoxkiaKx";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7993610E315;
- Fri, 12 Dec 2025 15:39:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765553981; x=1797089981;
- h=from:to:subject:date:message-id:references:in-reply-to:
- content-id:content-transfer-encoding:mime-version;
- bh=RyUW2Wb01+CmidtN75XePz1Y+Mbqro9doJPwhrTqwMM=;
- b=IoxkiaKxzM0LfImHuerVy3wPKPfQ2wlpI40C0CN9bJCwpPH5O17tGCQL
- UuzSbT725apZTonPrOHmEL0lZQ6uuASmI6rokJ++Dbzub6ErhassnUnqQ
- mTQhgByfB8YSgmV61rfCCp7B3wCyxVQK99qfi8qp0pGJliPGcz3KQZ/6M
- QAJZjA5+9bncjl0mj5MKQ9AVsH/S9E3aB7cPX1HZUXBISY7o1lpcffmMT
- II1WOjc/jySUbNUoHZjDCT4pJPQIkgWs85+ExB3z5RUsOAWYUJBK600sq
- ei7j7Jw3+lNPOm5aHPlPTYcXFvNCiFOGE55hrzWp1TZkJwHNd9oYTy8+e Q==;
-X-CSE-ConnectionGUID: z3RRDY4BSm6Abjdj79O2DA==
-X-CSE-MsgGUID: gl2zCfFNTNOI/a+m1PKWtQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11640"; a="71403539"
-X-IronPort-AV: E=Sophos;i="6.21,144,1763452800"; d="scan'208";a="71403539"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Dec 2025 07:39:41 -0800
-X-CSE-ConnectionGUID: EL6O7ddpRAOrjHVPYFvdsw==
-X-CSE-MsgGUID: nmqBgyX1SdWbN004+MLutw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,144,1763452800"; d="scan'208";a="196402691"
-Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
- by orviesa010.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Dec 2025 07:39:40 -0800
-Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
- fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Fri, 12 Dec 2025 07:39:40 -0800
-Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
- FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29 via Frontend Transport; Fri, 12 Dec 2025 07:39:40 -0800
-Received: from CO1PR03CU002.outbound.protection.outlook.com (52.101.46.7) by
- edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Fri, 12 Dec 2025 07:39:39 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=fZK3LU+AkjTswQoDciPtfQ+ic7tCHkwJlmb2Q9KSgXUiRfEIn7OEah7T29OB2lr1zU7PkGylW8O/G8pgW0pLmiTA2EEvI4EL48MyQgvQ2is5Ci0uwZXXI5lf4Op2DUVQ1aouwa9gEelMLGASMlBjXZirTpDESXN6ciaDv5IUN1CAZyJuw+xU237LYW6KN0CAbTR6UgfBdZMVX8EVqF7Yecvs5qVRW+/Ym8lYkj+3W+loYQzXV9p/L+r3iPZsnx95b+qG954zlv49zkiJgmByUipOcrv1fnbW1qv8QDacKzDX5Z8Ov6jEBoNv+kxCeZP+lA1ASEdkEeybyVat5L42RQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=RyUW2Wb01+CmidtN75XePz1Y+Mbqro9doJPwhrTqwMM=;
- b=p3iHrIFRkhjU+T2bRm0yS6HZ0fTRsX8XpQYgQRo3+25jljIAQe49NMO4jqD1bd/gzWW0EI7mu/H/5EwBi1Q1HFK7dv144PhkMCKq9dHL+bL/v8uv60WA8p8EzH+8pZw3oGdj76Gub+uLjJj0YGp47axd8mZ+GRFrWxtI/uO8SNEJGPHdVCIXpb56+SeCA6TZgqBl/tn2es9Lzlxhw1WWBxDd4N0yjGAz2l7g4e8tpsSFEQrTaaFNdH/d997m3zJjzspHnVq4rpPuPn+jdwz0sytsdSpXCpEyj10yuIbGU91etOC+bU7dmPAKoPlXNrDSAQ3T0+tAl4YsD+S9U8z0/A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from CY8PR11MB7777.namprd11.prod.outlook.com (2603:10b6:930:71::14)
- by CY5PR11MB6138.namprd11.prod.outlook.com (2603:10b6:930:2a::11)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9412.10; Fri, 12 Dec
- 2025 15:39:37 +0000
-Received: from CY8PR11MB7777.namprd11.prod.outlook.com
- ([fe80::60a1:eab8:65ee:6bb8]) by CY8PR11MB7777.namprd11.prod.outlook.com
- ([fe80::60a1:eab8:65ee:6bb8%6]) with mapi id 15.20.9412.005; Fri, 12 Dec 2025
- 15:39:36 +0000
-From: "Govindapillai, Vinod" <vinod.govindapillai@intel.com>
-To: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, "Deak,
- Imre" <imre.deak@intel.com>
-Subject: Re: [PATCH 34/50] drm/i915/dp: Simplify eDP vs. DP compressed BPP
- computation
-Thread-Topic: [PATCH 34/50] drm/i915/dp: Simplify eDP vs. DP compressed BPP
- computation
-Thread-Index: AQHcX8eyU+Drpql/vUijvsqG1Bj8iLUeO3gA
-Date: Fri, 12 Dec 2025 15:39:36 +0000
-Message-ID: <1922779cbbc63598e266f0fd875347af788ec3ef.camel@intel.com>
-References: <20251127175023.1522538-1-imre.deak@intel.com>
- <20251127175023.1522538-35-imre.deak@intel.com>
-In-Reply-To: <20251127175023.1522538-35-imre.deak@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Evolution 3.52.3-0ubuntu1.1 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: CY8PR11MB7777:EE_|CY5PR11MB6138:EE_
-x-ms-office365-filtering-correlation-id: bbca30b2-054f-4555-9282-08de3994a7a8
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0; ARA:13230040|366016|376014|1800799024|38070700021;
-x-microsoft-antispam-message-info: =?utf-8?B?KytoQlQrUWJLT3hhOXlpT29HZTJPYUFIOG9pWlBpWmptQnB4alNqckt3Rm85?=
- =?utf-8?B?U2xXdmdndmc2R29mMHdsTkpRT250V245M2VNNnAxWWY5QklNZ0hiM2NiVnlv?=
- =?utf-8?B?YjM2VmhGNGt1Vzg5ZzVXZDhUN0doS0ZkaU5DbmpubFkxUTgvOWdkWmNpcndu?=
- =?utf-8?B?UE5ybHRuRWNnRWJwQ3BXWlFJTjVNS2IrR0RpdjNKTGYvWmExbXEzcVB2bDJL?=
- =?utf-8?B?d0l3dW9rU1BuK0pYaW5KQmVYeEN2aGcyaG95bTlpc0hhYjI5WTJZRUIxbExq?=
- =?utf-8?B?Ky9MQWtITkNoa0tzYStKdVlpTzczRHhQSXlqeGJ4UThrbDduaG9uNmNaY3Z0?=
- =?utf-8?B?MzlTbTlRd0xkdm56YlJGTnVsVTlDYzB0emhEUThCYVQ1Y2NjQTFmV1o2L1hy?=
- =?utf-8?B?V3IrWjJSTCtkcnhpbHZ0dW1Ha1hwanljc3Y5d25UUnlhdm1BNVo4b0pRQnBX?=
- =?utf-8?B?WktncDFJV0ZkU29uN0FzRlYvcmZxOXo3dlI4MHpzdFE2UFlWTm9mS1hGUSt3?=
- =?utf-8?B?UlpaRHdNNlJmc2ZoWUlMS3h4QXFlQktRanZWNTFWWk9kT2FQMnhWU3hwTzhz?=
- =?utf-8?B?c3ZTSHFqblJPVGs3c21RRmdTZW5TMUNqVEJ3Rm1jcUdtV2Fab3U4WDRjNHYw?=
- =?utf-8?B?eWtLQUxtSlpTRnZmc2E2ZGxqLzNDNWFKNW5ZRE5WaXc0aFZPakU5MUVjYm5h?=
- =?utf-8?B?aDNkMHJqbHNLNXZNWEw3Ukw3dXJYbFVHdFVsdVJEclg4b2VIbWZiUW5jcmJU?=
- =?utf-8?B?Y1FXQTJRbm5ZM0pFVU80bHB4K3pBL0lNNFR4aWJteHRGMmQ0TFlDanZMQnhs?=
- =?utf-8?B?NFB1SkUwU3ZDbUlMQjBhMU1Ic203eTBoY0dUa0xLdGt2Yng1UjdGOGltZm52?=
- =?utf-8?B?SUU0VWVrb3J2dHVUKzVIOGQxc1crREs3Z2QzWW1LSTVuMDFVZ0I3Yzl0cWlP?=
- =?utf-8?B?c0J2bm5leVBpU25Yb1JSaE9lanB2SFJTTjRxVkRoQ2VwRkFxUGljTG1lWVZu?=
- =?utf-8?B?V2JmNFNJRGxOTjhrUkU1S0s0aU9QTWRjRnp5a3RXdnV0R0tUTThERGdpVHVs?=
- =?utf-8?B?MlczN0d2QzhPNHEyNWM3ZGxRSGRndW9DSTFVZmdmQmNWejEybXF1dTVWYkN3?=
- =?utf-8?B?RXdKOXZCNnpoa2E2NVp0K2oyajh2WXovb1FSeUhTSnpNcGhiblhqR2ZjaVg1?=
- =?utf-8?B?cnAxM1ZRU2VjVWZYUzBtb1h2RTRPdHZ6bE5qbHJMS2R0anJ0enhGRC9XWEJx?=
- =?utf-8?B?N2xVZ1cxVzFHTnUxVnNKN25zbXBHald4TGZCWU1VYUFweDcwS1N0SmRscGNk?=
- =?utf-8?B?bi92d3F6UVFEbCt5MzJ6WVlmc2pFT2ZBYmRDaTlWQWVCaUR6ZkpqaW15NWFY?=
- =?utf-8?B?V2FNWWVIeFFJdGsyMVZoWDhCKzJuSjI0cDNaOEVOL2FNWWd1OWpBUGROWmRN?=
- =?utf-8?B?VnJ1K0JuQUhKM2NUWFJUVEFCNnRCcUhSbWRXeWVoeDJEYXU0MEdGalZHTGM3?=
- =?utf-8?B?S0FTb1R0M3ZPbklpK0FPa2oyNVMxdldnV2ltN1RXcUo4WmtidmtHSE1sWFow?=
- =?utf-8?B?UzZxeWt0RkZ3ZHZDRUNHV0RKbFp4cTFYV3RlZDd6MXhsWGJDRlBsT3h0Skhu?=
- =?utf-8?B?WitQclNFVWJIZ2Zqb2xpcXNBTGMxK2ZobDJnTHhWUnlqRGxzZkVlb2U1L0xX?=
- =?utf-8?B?MVdYZjhCUWI2bXhlblhGZjRPN3dMUkUzVVJKdndoeWZQWC9xc1A5eFZsTXJo?=
- =?utf-8?B?OW5wSldjeEhyYjlTNDlXRkdGT0pyb3ZqNEhXbGx3Zy81MU5NTmVSWG02MGV1?=
- =?utf-8?B?eXRmeXhPWGhMeTljZUpmUlg0L3JVVGE2bkdDVjJoY0praHhyRFlwUjRSa0FR?=
- =?utf-8?B?STQ4dHZBQWZ4b3YvQU96SHMvakU2Yk1HV0ExY3cwK2xCT3prR0MzclpQNitN?=
- =?utf-8?B?eldKbmMxWjlXeGFndTVFY2NQaFNqQW5ramRBRGFjYnFKekFaSk80MTl3YS9T?=
- =?utf-8?B?SHIyTkVxKzRrMVl2Y3BXWTNJMzk0NndnTDlOaDdrdXMwbC9pemhjVmNDNXZP?=
- =?utf-8?Q?Lghmxj?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY8PR11MB7777.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(1800799024)(38070700021); DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?Mkc1amR2dDNEM3hPcnBKeWxra2RaZ3FLQjJFdVZ0TFNqZzFVZHNvUkk1OFpB?=
- =?utf-8?B?MXpLd3QxdFpRTXN2VlZVWVFsYW12OHoxUlJodGZQeGh0TlpIdk9nSjJkSWU3?=
- =?utf-8?B?N0dsYncvZzU2N2tqWmZsZnFEMVlqbVRYblBDWjUyZ1NjZmsxRk1Ndk1wNXB3?=
- =?utf-8?B?UTY4Z3pnOFJmTXUxakNRWkRuMXhHblRxWFNsWlNRMG5vUXg1Z29oV1Y4RTJZ?=
- =?utf-8?B?eXBrODM5ak9ocXRicEtaZllvckhuOGhwbndzYnJSTGl3bEU0cFRIK0hBTGlU?=
- =?utf-8?B?bGNodzNQNW14N0JzS2JCbngrNy8wM0RwV25YcXFTcFEwZjFlS0Rxa0MrclV0?=
- =?utf-8?B?YldLcTRDL0prTGZPRk9WSnlVbDl0ZjdIU1pZbUZvRUlqNUJnSnphWVB5NmNk?=
- =?utf-8?B?MFE4dmhiZDZvWmc1aEZPOGdVMjFFbHpFazlqczZ5L25NS0ZMODh4VC95Vlhr?=
- =?utf-8?B?OCt2M09vV2JtR0hKRjBReWxydlpXU3hzWDA4Q3VoTS9YTzRvYW1DK04rZGli?=
- =?utf-8?B?d3VJUFJrMU5NSHJlekltWXNYL1FvcVJPUTNhTExHTEFCMGZGUVdkUkp2NnAw?=
- =?utf-8?B?MllmRkE0YlY4Z1NVSHBoWG9XcWY0c212RUJFbFdkNHpUU3p6OVJUVkg3S0x0?=
- =?utf-8?B?blZLUndDZS9yV2lELzM5Si9MREw3QmZWa00ydTN3Q3JYcS9TZ3BNdkhKMVB5?=
- =?utf-8?B?VGdNdDNoQUMvMnRKamlwOWI4aStRanc0L0MxdVlTL2x6STFxQkJGTit5V25w?=
- =?utf-8?B?Tkd0MVExWTRJVjgxUGsvaUxpdThTSG5XODZqTUo1ZDBiY09tcGRqTVNyMHJa?=
- =?utf-8?B?ajBpR1ErWnVnaWE2YVlIbHZxbnVoOXk1YVY2ek9tNFVtaFBKb2lsbTR5WnEw?=
- =?utf-8?B?OHpWSXhpWGRBT2ZWZHRwUkY3SDd0UVNpTWlMdDZCQUcwYnF3aForeHo5TG0v?=
- =?utf-8?B?eDc4T0VreFVHUDdTNEdUSmgrYjJWTXhOYklrNTRCYWNkV3hDdVp2QjR5WWtT?=
- =?utf-8?B?SWVlbW13M1FDSWdJTUxlLzhoV2dGYmxxQ0laUk0yZ2plTjZ5b3JoOFI0c3d5?=
- =?utf-8?B?TCtuY0YzcUxtY0h4VFN4am80bThVOEhwKzg4Rlp0VjJqVjdHQW10MjNxRFps?=
- =?utf-8?B?WEozSTBzOVFLTXkxdVpyZHpQemQ0TGFtempGSUFVclY3Y3gyMHZDSFFCWEhS?=
- =?utf-8?B?MGgzb1RPcGJOWjlGVHZKY3hRTjJGMkZ3TW1yS3NzR2U2aTdMVVJnMTdPTDN5?=
- =?utf-8?B?N1YxamhVUTRpR095bmcvQXBpdjlleUIva042eW90UDE0cG1XbExHYlR5K0lE?=
- =?utf-8?B?dWg2d1dUQ2hnUU1KR3dWV1FQdTRZejRwbVFPdFhRcUVxN3Nwem1sbCtRV1Bk?=
- =?utf-8?B?d3ByemtCR3FiZWk4RzJsOVIvN0xuTXJHQlF5eUd6V1lNZGlFTzJhY2xQYjIx?=
- =?utf-8?B?NzYrYkR6NkNoU25SLzZ5UWQ0YUMydjgxaHo2aTkyWVBSb3NzUGZYb0UrN1Zz?=
- =?utf-8?B?L2JPZ1FQVGRlaXZOOUhBNDZyUDVjenNKL0FxbkY5OVdhSHJmNkNNajE1WGJG?=
- =?utf-8?B?Y21PcXN5aHhKdUkycko3ZFUzNFpSc2s2TVVRSHdJVlkyTDhnRThLb0ZKTGxK?=
- =?utf-8?B?akhxYUJPUllWVU5UQ1E0bGZHTVJ0SS9acW5DdmlkTG9mUStCVWUyVEZCRU8r?=
- =?utf-8?B?QklzUmY4OE5LTnpVYWRocC9wM3RYQXJ4WDNZMU5lMDMzUUJPTjllVjY1ek95?=
- =?utf-8?B?MXRMMFpXaGZqak1RVVdTRnZGR3dUb3BacUN1bEpKSEhlOEpxR2hKOTlxM2lJ?=
- =?utf-8?B?aE1mSWdPbmYzWE8yTUpnVHJrdmVYaVpIMmFBbGJoWkZWMC9nTEp0S254MWdw?=
- =?utf-8?B?RG1PWkVWYW0xY0Z3a3pna3VXYUZZcXp3SkMvVnNPWXAvUTVPU1ZGTGFpWHNS?=
- =?utf-8?B?OU5WZkJlNzhrRnlWUVVHZWhheVRGVkY4WTVaa21UYkNjSXlYMUN0R0hWdStk?=
- =?utf-8?B?M29OSk1ndzVWL2JRa3l1OXk2ZnczeDJvbEZERVRyU3pleTRiZXhDUVQ1L0p5?=
- =?utf-8?B?Sk52bUlsdS81eWtlTkRYQmd1Wlo5VlNyTk10aGRwVlIvemdhKzVrVTVxK3Nm?=
- =?utf-8?B?N2lCZ1lMTkhWcVp1VFA4WDQ2dnZvUGRJMkd0cXpGeXdxSkNGczJGTnlXZU8w?=
- =?utf-8?Q?iU0MSxcBQoqL0tuP1s7Jqyk=3D?=
+	by gabe.freedesktop.org (Postfix) with ESMTP id 963B510E8D5;
+	Fri, 12 Dec 2025 15:40:34 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 422FA10E8CF;
+ Fri, 12 Dec 2025 15:40:33 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
-Content-ID: <C31B00863C38DF4FB5BA39BD7C5E5BDC@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CY8PR11MB7777.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: bbca30b2-054f-4555-9282-08de3994a7a8
-X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Dec 2025 15:39:36.3950 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: DdfILsvNE5421s1sfbp2n4RwAfcgjJ3nXpj5ib0RW5oy3UQtvNmy2eNw/QLNy5yk/r3SPsVjoU3rKr2xWk20sziGpLurJ/zDd6P8/oFNMWc=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR11MB6138
-X-OriginatorOrg: intel.com
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/i915/display=3A_All_p?=
+ =?utf-8?q?atches_to_make_PREEMPT=5FRT_work_on_xe=2E_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Maarten Lankhorst" <dev@lankhorst.se>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 12 Dec 2025 15:40:33 -0000
+Message-ID: <176555403325.81112.1463289123035520708@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20251212143504.973839-14-dev@lankhorst.se>
+In-Reply-To: <20251212143504.973839-14-dev@lankhorst.se>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -200,47 +36,151 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-T24gVGh1LCAyMDI1LTExLTI3IGF0IDE5OjUwICswMjAwLCBJbXJlIERlYWsgd3JvdGU6DQo+IGlu
-dGVsX2VkcF9kc2NfY29tcHV0ZV9waXBlX2JwcCgpIG1hdGNoZXMgbm93DQo+IGludGVsX2RwX2Rz
-Y19jb21wdXRlX3BpcGVfYnBwKCksIHJlbW92ZSB0aGUgZm9ybWVyIGZ1bmN0aW9uLg0KPiANCj4g
-U2lnbmVkLW9mZi1ieTogSW1yZSBEZWFrIDxpbXJlLmRlYWtAaW50ZWwuY29tPg0KPiAtLS0NCj4g
-wqBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwLmMgfCAzMiArKy0tLS0tLS0t
-LS0tLS0tLS0tLS0tLQ0KPiAtLQ0KPiDCoDEgZmlsZSBjaGFuZ2VkLCAyIGluc2VydGlvbnMoKyks
-IDMwIGRlbGV0aW9ucygtKQ0KPiANCg0KUmV2aWV3ZWQtYnk6IFZpbm9kIEdvdmluZGFwaWxsYWkg
-PHZpbm9kLmdvdmluZGFwaWxsYWlAaW50ZWwuY29tPg0KDQo+IGRpZmYgLS1naXQgYS9kcml2ZXJz
-L2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwLmMNCj4gYi9kcml2ZXJzL2dwdS9kcm0vaTkx
-NS9kaXNwbGF5L2ludGVsX2RwLmMNCj4gaW5kZXggODEyNDA1MjkzMzdiYy4uZGU1OWI5MzM4OGY0
-MSAxMDA2NDQNCj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcC5j
-DQo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHAuYw0KPiBAQCAt
-MjMyMSwzMCArMjMyMSw2IEBAIHN0YXRpYyBpbnQNCj4gaW50ZWxfZHBfZHNjX2NvbXB1dGVfcGlw
-ZV9icHAoc3RydWN0IGludGVsX2RwICppbnRlbF9kcCwNCj4gwqAJcmV0dXJuIDA7DQo+IMKgfQ0K
-PiDCoA0KPiAtc3RhdGljIGludCBpbnRlbF9lZHBfZHNjX2NvbXB1dGVfcGlwZV9icHAoc3RydWN0
-IGludGVsX2RwICppbnRlbF9kcCwNCj4gLQkJCQkJwqAgc3RydWN0IGludGVsX2NydGNfc3RhdGUN
-Cj4gKnBpcGVfY29uZmlnLA0KPiAtCQkJCQnCoCBzdHJ1Y3QgZHJtX2Nvbm5lY3Rvcl9zdGF0ZQ0K
-PiAqY29ubl9zdGF0ZSwNCj4gLQkJCQkJwqAgY29uc3Qgc3RydWN0DQo+IGxpbmtfY29uZmlnX2xp
-bWl0cyAqbGltaXRzKQ0KPiAtew0KPiAtCWludCBwaXBlX2JwcCwgZm9yY2VkX2JwcDsNCj4gLQlp
-bnQgcmV0Ow0KPiAtDQo+IC0JZm9yY2VkX2JwcCA9IGludGVsX2RwX2ZvcmNlX2RzY19waXBlX2Jw
-cChpbnRlbF9kcCwgbGltaXRzKTsNCj4gLQlpZiAoZm9yY2VkX2JwcCkNCj4gLQkJcGlwZV9icHAg
-PSBmb3JjZWRfYnBwOw0KPiAtCWVsc2UNCj4gLQkJcGlwZV9icHAgPSBsaW1pdHMtPnBpcGUubWF4
-X2JwcDsNCj4gLQ0KPiAtCXJldCA9IGRzY19jb21wdXRlX2NvbXByZXNzZWRfYnBwKGludGVsX2Rw
-LCBwaXBlX2NvbmZpZywNCj4gY29ubl9zdGF0ZSwNCj4gLQkJCQkJIGxpbWl0cywgcGlwZV9icHAp
-Ow0KPiAtCWlmIChyZXQpDQo+IC0JCXJldHVybiAtRUlOVkFMOw0KPiAtDQo+IC0JcGlwZV9jb25m
-aWctPnBpcGVfYnBwID0gcGlwZV9icHA7DQo+IC0NCj4gLQlyZXR1cm4gMDsNCj4gLX0NCj4gLQ0K
-PiDCoC8qDQo+IMKgICogUmV0dXJuIHdoZXRoZXIgRkVDIG11c3QgYmUgZW5hYmxlZCBmb3IgOGIx
-MGIgU1NUIG9yIE1TVCBsaW5rcy4gT24NCj4gMTI4YjEzMmINCj4gwqAgKiBsaW5rcyBGRUMgaXMg
-YWx3YXlzIGVuYWJsZWQgaW1wbGljaXRseSBieSB0aGUgSFcsIHNvIHRoaXMNCj4gZnVuY3Rpb24g
-cmV0dXJucw0KPiBAQCAtMjM5NiwxMiArMjM3Miw4IEBAIGludCBpbnRlbF9kcF9kc2NfY29tcHV0
-ZV9jb25maWcoc3RydWN0DQo+IGludGVsX2RwICppbnRlbF9kcCwNCj4gwqAJICogZmlndXJlZCBv
-dXQgZm9yIERQIE1TVCBEU0MuDQo+IMKgCSAqLw0KPiDCoAlpZiAoIWlzX21zdCkgew0KPiAtCQlp
-ZiAoaW50ZWxfZHBfaXNfZWRwKGludGVsX2RwKSkNCj4gLQkJCXJldCA9DQo+IGludGVsX2VkcF9k
-c2NfY29tcHV0ZV9waXBlX2JwcChpbnRlbF9kcCwgcGlwZV9jb25maWcsDQo+IC0JCQkJCQkJwqDC
-oMKgwqANCj4gY29ubl9zdGF0ZSwgbGltaXRzKTsNCj4gLQkJZWxzZQ0KPiAtCQkJcmV0ID0NCj4g
-aW50ZWxfZHBfZHNjX2NvbXB1dGVfcGlwZV9icHAoaW50ZWxfZHAsIHBpcGVfY29uZmlnLA0KPiAt
-CQkJCQkJCcKgwqDCoA0KPiBjb25uX3N0YXRlLCBsaW1pdHMpOw0KPiArCQlyZXQgPSBpbnRlbF9k
-cF9kc2NfY29tcHV0ZV9waXBlX2JwcChpbnRlbF9kcCwNCj4gcGlwZV9jb25maWcsDQo+ICsJCQkJ
-CQnCoMKgwqAgY29ubl9zdGF0ZSwNCj4gbGltaXRzKTsNCj4gwqAJCWlmIChyZXQpIHsNCj4gwqAJ
-CQlkcm1fZGJnX2ttcyhkaXNwbGF5LT5kcm0sDQo+IMKgCQkJCcKgwqDCoCAiTm8gVmFsaWQgcGlw
-ZSBicHAgZm9yIGdpdmVuDQo+IG1vZGUgcmV0ID0gJWRcbiIsIHJldCk7DQoNCg==
+== Series Details ==
+
+Series: drm/i915/display: All patches to make PREEMPT_RT work on xe. (rev2)
+URL   : https://patchwork.freedesktop.org/series/158855/
+State : warning
+
+== Summary ==
+
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+8f50e69d0ce3656564bbdf8b3e213d61470d463f
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 6f23d82fc548cacd6b8bd153d23f32b8168be334
+Author: Maarten Lankhorst <dev@lankhorst.se>
+Date:   Fri Dec 12 15:35:16 2025 +0100
+
+    drm/i915/display: Use intel_de_read_fw in colorops
+    
+    This fixes a module load error on PTL:
+    
+    BUG: sleeping function called from invalid context at kernel/locking/spinlock_rt.c:48
+    in_atomic(): 0, irqs_disabled(): 1, non_block: 0, pid: 1335, name: xe_module_load
+    preempt_count: 0, expected: 0
+    RCU nest depth: 0, expected: 0
+    11 locks held by xe_module_load/1335:
+     #0: ffff888107e0c1a0 (&dev->mutex){....}-{3:3}, at: __driver_attach+0x104/0x220
+     #1: ffff888115388280 (&dev->clientlist_mutex){+.+.}-{3:3}, at: drm_client_register+0x32/0xe0
+     #2: ffffffff837f89d8 (registration_lock){+.+.}-{3:3}, at: register_framebuffer+0x1b/0x50
+     #3: ffffffff83598620 (console_lock){+.+.}-{0:0}, at: fbcon_fb_registered+0x6f/0x90
+     #4: ffff888122775aa0 (&helper->lock){+.+.}-{3:3}, at: __drm_fb_helper_restore_fbdev_mode_unlocked+0x7b/0x110
+     #5: ffff888115388158 (&dev->master_mutex){+.+.}-{3:3}, at: drm_master_internal_acquire+0x20/0x50
+     #6: ffff888122775888 (&client->modeset_mutex){+.+.}-{3:3}, at: drm_client_modeset_commit_locked+0x2a/0x1b0
+     #7: ffffc90003d46e88 (crtc_ww_class_acquire){+.+.}-{0:0}, at: drm_client_modeset_commit_atomic+0x4c/0x2b0
+     #8: ffffc90003d46eb0 (crtc_ww_class_mutex){+.+.}-{3:3}, at: drm_client_modeset_commit_atomic+0x4c/0x2b0
+     #9: ffff888139a0b8b8 (&intel_dp->psr.lock){+.+.}-{3:3}, at: intel_psr_lock+0xc5/0xf0 [xe]
+     #10: ffff888127123d30 (&wl->lock){+.+.}-{2:2}, at: intel_dmc_wl_get+0x3c/0x140 [xe]
+    irq event stamp: 1240122
+    hardirqs last  enabled at (1240121): [<ffffffff828a2d11>] _raw_spin_unlock_irqrestore+0x51/0x80
+    hardirqs last disabled at (1240122): [<ffffffffa0d7de9b>] intel_pipe_update_start+0x34b/0x440 [xe]
+    softirqs last  enabled at (0): [<ffffffff813c291c>] copy_process+0xabc/0x23d0
+    softirqs last disabled at (0): [<0000000000000000>] 0x0
+    CPU: 5 UID: 0 PID: 1335 Comm: xe_module_load Tainted: G     U              6.18.0-lgci-xe-xe-pw-158855v1+ #1 PREEMPT_{RT,(lazy)}
+    Tainted: [U]=USER
+    Hardware name: Intel Corporation Panther Lake Client Platform/PTL-UH LP5 T3 RVP1, BIOS PTLPFWI1.R00.3383.D10.2510222219 10/22/2025
+    Call Trace:
+     <TASK>
+     dump_stack_lvl+0x91/0xf0
+     dump_stack+0x10/0x20
+     __might_resched+0x174/0x260
+     rt_spin_lock+0x63/0x200
+     ? intel_dmc_wl_get+0x3c/0x140 [xe]
+     ? __lock_acquire+0x1195/0x2860
+     intel_dmc_wl_get+0x3c/0x140 [xe]
+     intel_color_plane_commit_arm+0xbc/0x140 [xe]
+     icl_plane_update_arm+0x23f/0x280 [xe]
+     intel_plane_update_arm+0x74/0x170 [xe]
+     intel_crtc_planes_update_arm+0x3cb/0x4c0 [xe]
+     intel_update_crtc+0x1c3/0x840 [xe]
+     ? intel_pre_update_crtc+0x2ce/0x470 [xe]
+     ? intel_enable_crtc+0x123/0x150 [xe]
+     skl_commit_modeset_enables+0x4c4/0x720 [xe]
+     intel_atomic_commit_tail+0xd9d/0x1b30 [xe]
+     intel_atomic_commit+0x2e8/0x330 [xe]
+     ? intel_atomic_commit+0x2e8/0x330 [xe]
+     drm_atomic_commit+0xaf/0xf0
+     ? __pfx___drm_printfn_info+0x10/0x10
+     drm_client_modeset_commit_atomic+0x25c/0x2b0
+    
+    Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
++ /mt/dim checkpatch 39f65c105d5b1af093f9df6f3dc688a642f96456 drm-intel
+a37bcbc8627e drm/i915/display: Fix intel_lpe_audio_irq_handler for PREEMPT-RT
+-:11: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#11: 
+Because intel_lpe_audio_irq_handler() may be called in threaded IRQ context,
+
+total: 0 errors, 1 warnings, 0 checks, 8 lines checked
+e1da0756e838 drm/i915/display: Make get_vblank_counter use intel_de_read_fw()
+-:8: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#8: 
+<3> BUG: sleeping function called from invalid context at kernel/locking/spinlock_rt.c:48
+
+total: 0 errors, 1 warnings, 0 checks, 8 lines checked
+29c4c86f7797 drm/i915/display: Use intel_de_write_fw in intel_pipe_fastset
+-:14: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#14: 
+<3> BUG: sleeping function called from invalid context at kernel/locking/spinlock_rt.c:48
+
+-:201: WARNING:MISSING_FIXES_TAG: The commit message has 'Call Trace:', perhaps it also needs a 'Fixes:' tag?
+
+total: 0 errors, 2 warnings, 0 checks, 110 lines checked
+d376b9f757a4 drm/i915/display: Make set_pipeconf use the fw variants
+-:11: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#11: 
+| BUG: sleeping function called from invalid context at kernel/locking/spinlock_rt.c:48
+
+-:46: WARNING:BAD_REPORTED_BY_LINK: Reported-by: should be immediately followed by Closes: with a URL to the report
+#46: 
+Reported-by: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
+
+-:76: WARNING:MISSING_FIXES_TAG: The commit message has 'Call Trace:', perhaps it also needs a 'Fixes:' tag?
+
+total: 0 errors, 3 warnings, 0 checks, 22 lines checked
+84e6c40813e9 drm/i915/display: Move vblank put until after critical section
+1bc8e8b6ce0a drm/i915/display: Remove locking from intel_vblank_evade critical section
+-:66: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#66: FILE: drivers/gpu/drm/i915/display/intel_vblank.c:740:
++		timeout = wait_event_timeout(*wq, scanline_in_safe_range(evade, &scanline), timeout);
+
+total: 0 errors, 1 warnings, 0 checks, 52 lines checked
+84ce63e289e9 drm/i915/display: Handle vlv dsi workaround in scanline_in_safe_range too
+feb9abff8f44 drm/i915/display: Make icl_dsi_frame_update use _fw too
+448dcf10d582 drm/i915/display: Enable interrupts earlier on PREEMPT_RT
+7e25e4403f5c drm/i915: Use preempt_disable/enable_rt() where recommended
+-:7: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#7: 
+  ad3543ede630f ("drm/intel: Push get_scanout_position() timestamping into kms driver.")
+
+-:45: WARNING:LINE_SPACING: Missing a blank line after declarations
+#45: FILE: drivers/gpu/drm/i915/display/intel_vblank.c:325:
++	struct drm_i915_private *i915 = to_i915(display->drm);
++	spin_lock_irqsave(&i915->uncore.lock, *flags);
+
+-:52: WARNING:LINE_SPACING: Missing a blank line after declarations
+#52: FILE: drivers/gpu/drm/i915/display/intel_vblank.c:332:
++	struct drm_i915_private *i915 = to_i915(display->drm);
++	spin_unlock_irqrestore(&i915->uncore.lock, flags);
+
+total: 0 errors, 3 warnings, 0 checks, 78 lines checked
+93a4bf4cf673 PREEMPT_RT injection
+-:7: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
+
+total: 0 errors, 1 warnings, 0 checks, 43 lines checked
+6f23d82fc548 drm/i915/display: Use intel_de_read_fw in colorops
+-:79: WARNING:MISSING_FIXES_TAG: The commit message has 'Call Trace:', perhaps it also needs a 'Fixes:' tag?
+
+total: 0 errors, 1 warnings, 0 checks, 16 lines checked
+
+
