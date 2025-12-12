@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C6A5AD59D86
-	for <intel-xe@archiver.kernel.org>; Fri, 12 Dec 2025 18:28:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2058DD59D84
+	for <intel-xe@archiver.kernel.org>; Fri, 12 Dec 2025 18:28:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8581810E92D;
+	by gabe.freedesktop.org (Postfix) with ESMTP id CFD4A10E92E;
 	Fri, 12 Dec 2025 18:28:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="i1ggRHhW";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Fphiebl2";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0627210E92D
- for <intel-xe@lists.freedesktop.org>; Fri, 12 Dec 2025 18:28:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4BB0E10E92D
+ for <intel-xe@lists.freedesktop.org>; Fri, 12 Dec 2025 18:28:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765564134; x=1797100134;
+ t=1765564135; x=1797100135;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=PwtkIDBRYin7RZLQt3v+B8JLLVfklPfbaymY8XIUON4=;
- b=i1ggRHhWRNQFb1vjG8otqElIDIkDwRW8zK3qyy151I1vROjKMc96xw5X
- UkRfkT+CNTS8mwU+/TzflGoDkzYydMjbl4FFQp3V9yxk/u/oL5qq4hIn4
- pS2t+hpzcRZalUuTRpZxaUTPpyvIJon/JowfKs3WEg76UmU/cXM/O7qZI
- F/GPkBBlChUB85FNtrb/2bxdDtC5hZw74XzBU8Bqe21ChwyY5JIaihejP
- zuITqeq3Ne0VulRDvLNPkFW9QnUQozn4NLAqXxsoGeDld4mraRWOrcox8
- o+WR4uposPWbrIB7L7ULG/MsLDEAQo8jspyfy20AwDvavUkU+BnPw4Mu0 A==;
-X-CSE-ConnectionGUID: iqhs7VpKT6CpS0MV0gNI+A==
-X-CSE-MsgGUID: feT4uY1JStKEGj7EQnbJEA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11640"; a="71432798"
-X-IronPort-AV: E=Sophos;i="6.21,144,1763452800"; d="scan'208";a="71432798"
+ bh=JVM9Tvx71WZz20zuANbMqqCcNUN6d93n0hf3/jYRx3A=;
+ b=Fphiebl2JkRnfTH9GoTKdjJbRmAz/0orHsCfaTJoUBZAPEfDvOZWzWBe
+ 26fO4vkMWYN6SPQ8cCXJF4SJTXASfPzGyf6NYbThZwdpHuRrgWYFdPlJI
+ zXgm4CrM7n7ZxOJTyKc4PJK5nEOb/qhrBy1yKCZ/OD/nUXVYWJrmSpNY/
+ l919nX/LFqmvh8blQRKmkNcAv8ermOFF5LsrPRy92OSBGKzMzfgSEzCVq
+ NVQS0SdZFgcglhGeKHK8rb2nvPGJy/w1A1H8KD04XGB/1vKUGOdCiYbBY
+ J7srm4F4OOpi1JARnG70ImuoQxXpcZp9cyNv7w8BtzGaEKCnNRSqI4+9I w==;
+X-CSE-ConnectionGUID: F4WgzU9oTHq4WtVhxoOfRQ==
+X-CSE-MsgGUID: QwPoLTSiQeyWVujK5kxjOA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11640"; a="71432800"
+X-IronPort-AV: E=Sophos;i="6.21,144,1763452800"; d="scan'208";a="71432800"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  12 Dec 2025 10:28:54 -0800
-X-CSE-ConnectionGUID: CTZ/y1ZgTgaBYwEoWGSq7A==
-X-CSE-MsgGUID: NX5tpOVHSOemsqaPWkexyg==
+X-CSE-ConnectionGUID: ZBLKUb5RQse4xjbRZ/6TKQ==
+X-CSE-MsgGUID: cauRkglgR8aM9iwxY7SZfA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,144,1763452800"; d="scan'208";a="201633946"
+X-IronPort-AV: E=Sophos;i="6.21,144,1763452800"; d="scan'208";a="201633952"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  12 Dec 2025 10:28:53 -0800
@@ -45,14 +45,15 @@ From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: francois.dugast@intel.com, thomas.hellstrom@linux.intel.com,
  michal.mrozek@intel.com
-Subject: [PATCH v2 3/7] drm/xe: Add debugfs knobs to control long running
- workload timeslicing
-Date: Fri, 12 Dec 2025 10:28:43 -0800
-Message-Id: <20251212182847.1683222-4-matthew.brost@intel.com>
+Subject: [PATCH v2 5/7] drm/xe: Wait on in-syncs when swicthing to dma-fence
+ mode
+Date: Fri, 12 Dec 2025 10:28:45 -0800
+Message-Id: <20251212182847.1683222-6-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251212182847.1683222-1-matthew.brost@intel.com>
 References: <20251212182847.1683222-1-matthew.brost@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,154 +69,261 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add debugfs knobs to control timeslicing for long-running workloads,
-allowing quick tuning of values when running benchmarks.
+If a dma-fence submission has in-fences and pagefault queues are running
+work, there is little incentive to kick the pagefault queues off the
+hardware until the dma-fence submission is ready to run. Therefore, wait
+on the in-fences of the dma-fence submission before removing the
+pagefault queues from the hardware.
 
+v2:
+ - Fix kernel doc (CI)
+ - Don't wait under lock (Thomas)
+ - Make wait interruptable
+
+Suggested-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_debugfs.c      | 74 ++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_device.c       |  1 +
- drivers/gpu/drm/xe/xe_device_types.h |  6 +++
- drivers/gpu/drm/xe/xe_vm.c           |  4 +-
- 4 files changed, 83 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_exec.c            |  9 +++--
+ drivers/gpu/drm/xe/xe_hw_engine_group.c | 44 +++++++++++++++++++++----
+ drivers/gpu/drm/xe/xe_hw_engine_group.h |  4 ++-
+ drivers/gpu/drm/xe/xe_sync.c            | 29 ++++++++++++++++
+ drivers/gpu/drm/xe/xe_sync.h            |  2 ++
+ 5 files changed, 78 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_debugfs.c b/drivers/gpu/drm/xe/xe_debugfs.c
-index 4fa423a82bea..38433c9af59f 100644
---- a/drivers/gpu/drm/xe/xe_debugfs.c
-+++ b/drivers/gpu/drm/xe/xe_debugfs.c
-@@ -328,6 +328,74 @@ static const struct file_operations atomic_svm_timeslice_ms_fops = {
- 	.write = atomic_svm_timeslice_ms_set,
- };
+diff --git a/drivers/gpu/drm/xe/xe_exec.c b/drivers/gpu/drm/xe/xe_exec.c
+index 4d81210e41f5..d462add2d005 100644
+--- a/drivers/gpu/drm/xe/xe_exec.c
++++ b/drivers/gpu/drm/xe/xe_exec.c
+@@ -121,7 +121,7 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 	u64 addresses[XE_HW_ENGINE_MAX_INSTANCE];
+ 	struct drm_gpuvm_exec vm_exec = {.extra.fn = xe_exec_fn};
+ 	struct drm_exec *exec = &vm_exec.exec;
+-	u32 i, num_syncs, num_ufence = 0;
++	u32 i, num_syncs, num_in_sync = 0, num_ufence = 0;
+ 	struct xe_validation_ctx ctx;
+ 	struct xe_sched_job *job;
+ 	struct xe_vm *vm;
+@@ -182,6 +182,9 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
  
-+static ssize_t min_run_period_lr_ms_show(struct file *f, char __user *ubuf,
-+					 size_t size, loff_t *pos)
-+{
-+	struct xe_device *xe = file_inode(f)->i_private;
-+	char buf[32];
-+	int len = 0;
+ 		if (xe_sync_is_ufence(&syncs[num_syncs]))
+ 			num_ufence++;
 +
-+	len = scnprintf(buf, sizeof(buf), "%d\n", xe->min_run_period_lr_ms);
-+
-+	return simple_read_from_buffer(ubuf, size, pos, buf, len);
-+}
-+
-+static ssize_t min_run_period_lr_ms_set(struct file *f, const char __user *ubuf,
-+					size_t size, loff_t *pos)
-+{
-+	struct xe_device *xe = file_inode(f)->i_private;
-+	u32 min_run_period_lr_ms;
-+	ssize_t ret;
-+
-+	ret = kstrtouint_from_user(ubuf, size, 0, &min_run_period_lr_ms);
-+	if (ret)
-+		return ret;
-+
-+	xe->min_run_period_lr_ms = min_run_period_lr_ms;
-+
-+	return size;
-+}
-+
-+static const struct file_operations min_run_period_lr_ms_fops = {
-+	.owner = THIS_MODULE,
-+	.read = min_run_period_lr_ms_show,
-+	.write = min_run_period_lr_ms_set,
-+};
-+
-+static ssize_t min_run_period_pf_ms_show(struct file *f, char __user *ubuf,
-+					 size_t size, loff_t *pos)
-+{
-+	struct xe_device *xe = file_inode(f)->i_private;
-+	char buf[32];
-+	int len = 0;
-+
-+	len = scnprintf(buf, sizeof(buf), "%d\n", xe->min_run_period_pf_ms);
-+
-+	return simple_read_from_buffer(ubuf, size, pos, buf, len);
-+}
-+
-+static ssize_t min_run_period_pf_ms_set(struct file *f, const char __user *ubuf,
-+					size_t size, loff_t *pos)
-+{
-+	struct xe_device *xe = file_inode(f)->i_private;
-+	u32 min_run_period_pf_ms;
-+	ssize_t ret;
-+
-+	ret = kstrtouint_from_user(ubuf, size, 0, &min_run_period_pf_ms);
-+	if (ret)
-+		return ret;
-+
-+	xe->min_run_period_pf_ms = min_run_period_pf_ms;
-+
-+	return size;
-+}
-+
-+static const struct file_operations min_run_period_pf_ms_fops = {
-+	.owner = THIS_MODULE,
-+	.read = min_run_period_pf_ms_show,
-+	.write = min_run_period_pf_ms_set,
-+};
-+
- static ssize_t disable_late_binding_show(struct file *f, char __user *ubuf,
- 					 size_t size, loff_t *pos)
- {
-@@ -395,6 +463,12 @@ void xe_debugfs_register(struct xe_device *xe)
- 	debugfs_create_file("atomic_svm_timeslice_ms", 0600, root, xe,
- 			    &atomic_svm_timeslice_ms_fops);
++		if (!num_in_sync && xe_sync_needs_wait(&syncs[num_syncs]))
++			num_in_sync++;
+ 	}
  
-+	debugfs_create_file("min_run_period_lr_ms", 0600, root, xe,
-+			    &min_run_period_lr_ms_fops);
-+
-+	debugfs_create_file("min_run_period_pf_ms", 0600, root, xe,
-+			    &min_run_period_pf_ms_fops);
-+
- 	debugfs_create_file("disable_late_binding", 0600, root, xe,
- 			    &disable_late_binding_fops);
+ 	if (XE_IOCTL_DBG(xe, num_ufence > 1)) {
+@@ -202,7 +205,9 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 	mode = xe_hw_engine_group_find_exec_mode(q);
  
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 339b9aef9499..9f84ce3db1f6 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -460,6 +460,7 @@ struct xe_device *xe_device_create(struct pci_dev *pdev,
- 	xe->info.revid = pdev->revision;
- 	xe->info.force_execlist = xe_modparam.force_execlist;
- 	xe->atomic_svm_timeslice_ms = 5;
-+	xe->min_run_period_lr_ms = 5;
+ 	if (mode == EXEC_MODE_DMA_FENCE) {
+-		err = xe_hw_engine_group_get_mode(group, mode, &previous_mode);
++		err = xe_hw_engine_group_get_mode(group, mode, &previous_mode,
++						  syncs, num_in_sync ?
++						  num_syncs : 0);
+ 		if (err)
+ 			goto err_syncs;
+ 	}
+diff --git a/drivers/gpu/drm/xe/xe_hw_engine_group.c b/drivers/gpu/drm/xe/xe_hw_engine_group.c
+index 4d9263a1a208..022fc0c30d38 100644
+--- a/drivers/gpu/drm/xe/xe_hw_engine_group.c
++++ b/drivers/gpu/drm/xe/xe_hw_engine_group.c
+@@ -11,6 +11,7 @@
+ #include "xe_gt.h"
+ #include "xe_gt_stats.h"
+ #include "xe_hw_engine_group.h"
++#include "xe_sync.h"
+ #include "xe_vm.h"
  
- 	err = xe_irq_init(xe);
+ static void
+@@ -21,7 +22,8 @@ hw_engine_group_resume_lr_jobs_func(struct work_struct *w)
+ 	int err;
+ 	enum xe_hw_engine_group_execution_mode previous_mode;
+ 
+-	err = xe_hw_engine_group_get_mode(group, EXEC_MODE_LR, &previous_mode);
++	err = xe_hw_engine_group_get_mode(group, EXEC_MODE_LR, &previous_mode,
++					  NULL, 0);
  	if (err)
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index b35ba29d4d35..7df0da592b50 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -615,6 +615,12 @@ struct xe_device {
- 	/** @atomic_svm_timeslice_ms: Atomic SVM fault timeslice MS */
- 	u32 atomic_svm_timeslice_ms;
+ 		return;
  
-+	/** @min_run_period_lr_ms: LR VM (preempt fence mode) timeslice */
-+	u32 min_run_period_lr_ms;
+@@ -189,10 +191,12 @@ void xe_hw_engine_group_resume_faulting_lr_jobs(struct xe_hw_engine_group *group
+ /**
+  * xe_hw_engine_group_suspend_faulting_lr_jobs() - Suspend the faulting LR jobs of this group
+  * @group: The hw engine group
++ * @has_deps: dma-fence job triggering suspend has dependencies
+  *
+  * Return: 0 on success, negative error code on error.
+  */
+-static int xe_hw_engine_group_suspend_faulting_lr_jobs(struct xe_hw_engine_group *group)
++static int xe_hw_engine_group_suspend_faulting_lr_jobs(struct xe_hw_engine_group *group,
++						       bool has_deps)
+ {
+ 	int err;
+ 	struct xe_exec_queue *q;
+@@ -201,11 +205,19 @@ static int xe_hw_engine_group_suspend_faulting_lr_jobs(struct xe_hw_engine_group
+ 	lockdep_assert_held_write(&group->mode_sem);
+ 
+ 	list_for_each_entry(q, &group->exec_queue_list, hw_engine_group_link) {
++		bool idle_skip_suspend;
 +
-+	/** @min_run_period_pf_ms: LR VM (page fault mode) timeslice */
-+	u32 min_run_period_pf_ms;
+ 		if (!xe_vm_in_fault_mode(q->vm))
+ 			continue;
+ 
++		idle_skip_suspend = xe_exec_queue_idle_skip_suspend(q);
++		if (!idle_skip_suspend && has_deps)
++			return -EAGAIN;
 +
- #ifdef TEST_VM_OPS_ERROR
- 	/**
- 	 * @vm_inject_error_position: inject errors at different places in VM
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 4648f8a458cf..a1363f675b51 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -1509,9 +1509,9 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags, struct xe_file *xef)
+ 		xe_gt_stats_incr(q->gt, XE_GT_STATS_ID_HW_ENGINE_GROUP_SUSPEND_LR_QUEUE_COUNT, 1);
+-		need_resume |= !xe_exec_queue_idle_skip_suspend(q);
++
++
++		need_resume |= !idle_skip_suspend;
+ 		q->ops->suspend(q);
+ 	}
  
- 	INIT_LIST_HEAD(&vm->preempt.exec_queues);
- 	if (flags & XE_VM_FLAG_FAULT_MODE)
--		vm->preempt.min_run_period_ms = 0;
-+		vm->preempt.min_run_period_ms = xe->min_run_period_pf_ms;
- 	else
--		vm->preempt.min_run_period_ms = 5;
-+		vm->preempt.min_run_period_ms = xe->min_run_period_lr_ms;
+@@ -258,7 +270,7 @@ static int xe_hw_engine_group_wait_for_dma_fence_jobs(struct xe_hw_engine_group
+ 	return 0;
+ }
  
- 	for_each_tile(tile, xe, id)
- 		xe_range_fence_tree_init(&vm->rftree[id]);
+-static int switch_mode(struct xe_hw_engine_group *group)
++static int switch_mode(struct xe_hw_engine_group *group, bool has_deps)
+ {
+ 	int err = 0;
+ 	enum xe_hw_engine_group_execution_mode new_mode;
+@@ -268,7 +280,8 @@ static int switch_mode(struct xe_hw_engine_group *group)
+ 	switch (group->cur_mode) {
+ 	case EXEC_MODE_LR:
+ 		new_mode = EXEC_MODE_DMA_FENCE;
+-		err = xe_hw_engine_group_suspend_faulting_lr_jobs(group);
++		err = xe_hw_engine_group_suspend_faulting_lr_jobs(group,
++								  has_deps);
+ 		break;
+ 	case EXEC_MODE_DMA_FENCE:
+ 		new_mode = EXEC_MODE_LR;
+@@ -289,14 +302,18 @@ static int switch_mode(struct xe_hw_engine_group *group)
+  * @group: The hw engine group
+  * @new_mode: The new execution mode
+  * @previous_mode: Pointer to the previous mode provided for use by caller
++ * @syncs: Syncs from exec IOCTL
++ * @num_syncs: Number of syncs from exec IOCTL
+  *
+  * Return: 0 if successful, -EINTR if locking failed.
+  */
+ int xe_hw_engine_group_get_mode(struct xe_hw_engine_group *group,
+ 				enum xe_hw_engine_group_execution_mode new_mode,
+-				enum xe_hw_engine_group_execution_mode *previous_mode)
++				enum xe_hw_engine_group_execution_mode *previous_mode,
++				struct xe_sync_entry *syncs, int num_syncs)
+ __acquires(&group->mode_sem)
+ {
++	bool has_deps = !!num_syncs;
+ 	int err = down_read_interruptible(&group->mode_sem);
+ 
+ 	if (err)
+@@ -306,14 +323,27 @@ __acquires(&group->mode_sem)
+ 
+ 	if (new_mode != group->cur_mode) {
+ 		up_read(&group->mode_sem);
++retry:
+ 		err = down_write_killable(&group->mode_sem);
+ 		if (err)
+ 			return err;
+ 
+ 		if (new_mode != group->cur_mode) {
+-			err = switch_mode(group);
++			err = switch_mode(group, has_deps);
+ 			if (err) {
+ 				up_write(&group->mode_sem);
++				if (err == -EAGAIN) {
++					int i;
++
++					for (i = 0; i < num_syncs; ++i) {
++						err = xe_sync_entry_wait(syncs + i);
++						if (err)
++							return err;
++					}
++
++					has_deps = false;
++					goto retry;
++				}
+ 				return err;
+ 			}
+ 		}
+diff --git a/drivers/gpu/drm/xe/xe_hw_engine_group.h b/drivers/gpu/drm/xe/xe_hw_engine_group.h
+index 797ee81acbf2..8b17ccd30b70 100644
+--- a/drivers/gpu/drm/xe/xe_hw_engine_group.h
++++ b/drivers/gpu/drm/xe/xe_hw_engine_group.h
+@@ -11,6 +11,7 @@
+ struct drm_device;
+ struct xe_exec_queue;
+ struct xe_gt;
++struct xe_sync_entry;
+ 
+ int xe_hw_engine_setup_groups(struct xe_gt *gt);
+ 
+@@ -19,7 +20,8 @@ void xe_hw_engine_group_del_exec_queue(struct xe_hw_engine_group *group, struct
+ 
+ int xe_hw_engine_group_get_mode(struct xe_hw_engine_group *group,
+ 				enum xe_hw_engine_group_execution_mode new_mode,
+-				enum xe_hw_engine_group_execution_mode *previous_mode);
++				enum xe_hw_engine_group_execution_mode *previous_mode,
++				struct xe_sync_entry *syncs, int num_syncs);
+ void xe_hw_engine_group_put(struct xe_hw_engine_group *group);
+ 
+ enum xe_hw_engine_group_execution_mode
+diff --git a/drivers/gpu/drm/xe/xe_sync.c b/drivers/gpu/drm/xe/xe_sync.c
+index 1fc4fa278b78..d970e11962ff 100644
+--- a/drivers/gpu/drm/xe/xe_sync.c
++++ b/drivers/gpu/drm/xe/xe_sync.c
+@@ -228,6 +228,35 @@ int xe_sync_entry_add_deps(struct xe_sync_entry *sync, struct xe_sched_job *job)
+ 	return 0;
+ }
+ 
++/**
++ * xe_sync_entry_wait() - Wait on in-sync
++ * @sync: Sync object
++ *
++ * If the sync is in an in-sync, wait on the sync to signal.
++ *
++ * Return: 0 on success, -ERESTARTSYS on failure (interruption)
++ */
++int xe_sync_entry_wait(struct xe_sync_entry *sync)
++{
++	if (sync->flags & DRM_XE_SYNC_FLAG_SIGNAL)
++		return 0;
++
++	return dma_fence_wait(sync->fence, true);
++}
++
++/**
++ * xe_sync_needs_wait() - Sync needs a wait (input dma-fence not signaled)
++ * @sync: Sync object
++ *
++ * Return: True if sync needs a wait, False otherwise
++ */
++bool xe_sync_needs_wait(struct xe_sync_entry *sync)
++{
++
++	return !(sync->flags & DRM_XE_SYNC_FLAG_SIGNAL) &&
++		!test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &sync->fence->flags);
++}
++
+ void xe_sync_entry_signal(struct xe_sync_entry *sync, struct dma_fence *fence)
+ {
+ 	if (!(sync->flags & DRM_XE_SYNC_FLAG_SIGNAL))
+diff --git a/drivers/gpu/drm/xe/xe_sync.h b/drivers/gpu/drm/xe/xe_sync.h
+index 51f2d803e977..6b949194acff 100644
+--- a/drivers/gpu/drm/xe/xe_sync.h
++++ b/drivers/gpu/drm/xe/xe_sync.h
+@@ -29,6 +29,8 @@ int xe_sync_entry_add_deps(struct xe_sync_entry *sync,
+ 			   struct xe_sched_job *job);
+ void xe_sync_entry_signal(struct xe_sync_entry *sync,
+ 			  struct dma_fence *fence);
++int xe_sync_entry_wait(struct xe_sync_entry *sync);
++bool xe_sync_needs_wait(struct xe_sync_entry *sync);
+ void xe_sync_entry_cleanup(struct xe_sync_entry *sync);
+ struct dma_fence *
+ xe_sync_in_fence_get(struct xe_sync_entry *sync, int num_sync,
 -- 
 2.34.1
 
