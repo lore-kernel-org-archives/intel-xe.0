@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C2D01D5B16C
-	for <intel-xe@archiver.kernel.org>; Mon, 15 Dec 2025 16:03:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 509F9D5B84D
+	for <intel-xe@archiver.kernel.org>; Mon, 15 Dec 2025 16:13:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8574C10E667;
-	Mon, 15 Dec 2025 16:03:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1644610E080;
+	Mon, 15 Dec 2025 16:13:04 +0000 (UTC)
 Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2186110E808;
- Mon, 15 Dec 2025 16:03:31 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2677392923884783410=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A669D10E067;
+ Mon, 15 Dec 2025 16:13:02 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_PF=3A_Add_handling_for_new_?=
- =?utf-8?q?adverse_event_thresholds_=28rev2=29?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Fair=28er=29_DRM_schedule?=
+ =?utf-8?q?r?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
+To: "Tvrtko Ursulin" <tvrtko.ursulin@igalia.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 15 Dec 2025 16:03:31 -0000
-Message-ID: <176581461101.90193.302641506332993789@a3b018990fe9>
+Date: Mon, 15 Dec 2025 16:13:02 -0000
+Message-ID: <176581518256.89561.13037688343080401739@a3b018990fe9>
 X-Patchwork-Hint: ignore
-References: <20251215143739.196336-1-michal.wajdeczko@intel.com>
-In-Reply-To: <20251215143739.196336-1-michal.wajdeczko@intel.com>
+References: <20251215150807.58819-1-tvrtko.ursulin@igalia.com>
+In-Reply-To: <20251215150807.58819-1-tvrtko.ursulin@igalia.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,135 +40,129 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============2677392923884783410==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: PF: Add handling for new adverse event thresholds (rev2)
-URL   : https://patchwork.freedesktop.org/series/158874/
-State : success
+Series: Fair(er) DRM scheduler
+URL   : https://patchwork.freedesktop.org/series/159024/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-4243-9ed47bca620f1ec976ca0e4a7f467e07c47c0061_BAT -> xe-pw-158874v2_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+8f50e69d0ce3656564bbdf8b3e213d61470d463f
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 9f5e7a782b0b7d84bc0344ab9db5ed0be8657474
+Author: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+Date:   Mon Dec 15 15:08:07 2025 +0000
 
-Summary
--------
+    drm/sched: Remove drm_sched_init_args->num_rqs
+    
+    Remove member no longer used by the scheduler core and the drivers.
+    
+    Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+    Cc: Christian König <christian.koenig@amd.com>
+    Cc: Danilo Krummrich <dakr@kernel.org>
+    Cc: Matthew Brost <matthew.brost@intel.com>
+    Cc: Philipp Stanner <phasta@kernel.org>
++ /mt/dim checkpatch cf9048712d2211b945ead6f47b6b94a93246dd16 drm-intel
+9fe9dece3d76 drm/sched: Consolidate entity run queue management
+c40635e8cdb1 drm/sched: Move run queue related code into a separate file
+-:344: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#344: 
+new file mode 100644
 
-  **SUCCESS**
+-:349: WARNING:SPDX_LICENSE_TAG: Missing or malformed SPDX-License-Identifier tag in line 1
+#349: FILE: drivers/gpu/drm/scheduler/sched_rq.c:1:
++#include <linux/rbtree.h>
 
-  No regressions found.
+total: 0 errors, 2 warnings, 0 checks, 569 lines checked
+d3e7d3cfa54d drm/sched: Add some scheduling quality unit tests
+-:41: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#41: 
+    0: prio=normal sync=0 elapsed_ms=1015ms (ideal_ms=1000ms) cycle_time(min,avg,max)=134,222,978 us latency_time(min,avg,max)=134,222,978
 
-  
+-:124: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#124: 
+new file mode 100644
 
-Participating hosts (12 -> 12)
-------------------------------
+-:140: WARNING:REPEATED_WORD: Possible repeated word: 'scheduler'
+#140: FILE: drivers/gpu/drm/scheduler/tests/tests_scheduler.c:12:
++ * DRM scheduler scheduler tests exercise load balancing decisions ie. entity
 
-  No changes in participating hosts
+-:561: WARNING:UNSPECIFIED_INT: Prefer 'unsigned int' to bare use of 'unsigned'
+#561: FILE: drivers/gpu/drm/scheduler/tests/tests_scheduler.c:433:
++	unsigned	cycles;
 
-Known issues
-------------
+-:729: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#729: FILE: drivers/gpu/drm/scheduler/tests/tests_scheduler.c:601:
++	pr_info(
 
-  Here are the changes found in xe-pw-158874v2_BAT that come from known issues:
+total: 0 errors, 4 warnings, 1 checks, 704 lines checked
+d58a18a6f3be drm/sched: Add some more scheduling quality unit tests
+-:25: WARNING:REPEATED_WORD: Possible repeated word: 'test'
+#25: 
+Every 100ms for the duration of the test test logs how many jobs each
 
-### IGT changes ###
+-:54: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#54: FILE: drivers/gpu/drm/scheduler/tests/tests_scheduler.c:695:
+ 
++
 
-#### Issues hit ####
+total: 0 errors, 1 warnings, 1 checks, 201 lines checked
+12293e17d1e7 drm/sched: Implement RR via FIFO
+0aa1c10765d3 drm/sched: Free all finished jobs at once
+8701fd8303e0 drm/sched: Account entity GPU time
+-:36: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#36: FILE: drivers/gpu/drm/scheduler/sched_entity.c:35:
+ 
++
 
-  * igt@xe_waitfence@engine:
-    - bat-dg2-oem2:       [PASS][1] -> [FAIL][2] ([Intel XE#6519])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4243-9ed47bca620f1ec976ca0e4a7f467e07c47c0061/bat-dg2-oem2/igt@xe_waitfence@engine.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158874v2/bat-dg2-oem2/igt@xe_waitfence@engine.html
+-:116: CHECK:UNCOMMENTED_DEFINITION: spinlock_t definition without comment
+#116: FILE: drivers/gpu/drm/scheduler/sched_internal.h:23:
++	spinlock_t	lock;
 
-  * igt@xe_waitfence@reltime:
-    - bat-dg2-oem2:       [PASS][3] -> [FAIL][4] ([Intel XE#6520])
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4243-9ed47bca620f1ec976ca0e4a7f467e07c47c0061/bat-dg2-oem2/igt@xe_waitfence@reltime.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158874v2/bat-dg2-oem2/igt@xe_waitfence@reltime.html
+total: 0 errors, 0 warnings, 2 checks, 188 lines checked
+6d9216ccd8e7 drm/sched: Remove idle entity from tree
+2fdec3faf96b drm/sched: Add fair scheduling policy
+-:70: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#70: FILE: drivers/gpu/drm/scheduler/sched_entity.c:141:
++			p = max_t(s32,
++				 (s32)sched_list[0]->num_user_rqs - 1,
 
-  
-  [Intel XE#6519]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519
-  [Intel XE#6520]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520
+-:127: WARNING:LONG_LINE: line length of 249 exceeds 100 columns
+#127: FILE: drivers/gpu/drm/scheduler/sched_main.c:93:
++MODULE_PARM_DESC(sched_policy, "Specify the scheduling policy for entities on a run-queue, " __stringify(DRM_SCHED_POLICY_RR) " = Round Robin, " __stringify(DRM_SCHED_POLICY_FIFO) " = FIFO (default), " __stringify(DRM_SCHED_POLICY_FAIR) " = Fair.");
 
+total: 0 errors, 1 warnings, 1 checks, 384 lines checked
+185e72b8f364 drm/sched: Favour interactive clients slightly
+cbb16ec3654f drm/sched: Switch default policy to fair
+-:37: WARNING:LONG_LINE: line length of 249 exceeds 100 columns
+#37: FILE: drivers/gpu/drm/scheduler/sched_main.c:93:
++MODULE_PARM_DESC(sched_policy, "Specify the scheduling policy for entities on a run-queue, " __stringify(DRM_SCHED_POLICY_RR) " = Round Robin, " __stringify(DRM_SCHED_POLICY_FIFO) " = FIFO, " __stringify(DRM_SCHED_POLICY_FAIR) " = Fair (default).");
 
-Build changes
--------------
-
-  * Linux: xe-4243-9ed47bca620f1ec976ca0e4a7f467e07c47c0061 -> xe-pw-158874v2
-
-  IGT_8666: 8666
-  xe-4243-9ed47bca620f1ec976ca0e4a7f467e07c47c0061: 9ed47bca620f1ec976ca0e4a7f467e07c47c0061
-  xe-pw-158874v2: 158874v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158874v2/index.html
-
---===============2677392923884783410==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>PF: Add handling for new adverse event thresholds (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/158874/">https://patchwork.freedesktop.org/series/158874/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158874v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158874v2/index.html</a></td></tr>
-
-</table>
+total: 0 errors, 1 warnings, 0 checks, 15 lines checked
+530689ca4328 drm/sched: Remove FIFO and RR and simplify to a single run queue
+1de04c5fd524 drm/sched: Embed run queue singleton into the scheduler
+961ac01504cc accel/amdxdna: Remove drm_sched_init_args->num_rqs usage
+bfc40b6df26b accel/rocket: Remove drm_sched_init_args->num_rqs usage
+6c34c79ce77f accel/ethosu: Remove drm_sched_init_args->num_rqs usage
+1c7220abe333 drm/amdgpu: Remove drm_sched_init_args->num_rqs usage
+a88d0783c432 drm/etnaviv: Remove drm_sched_init_args->num_rqs usage
+605f1f21f3a4 drm/imagination: Remove drm_sched_init_args->num_rqs usage
+056b702407eb drm/lima: Remove drm_sched_init_args->num_rqs usage
+0ab1f053b77a drm/msm: Remove drm_sched_init_args->num_rqs usage
+1d060a979c9b drm/nouveau: Remove drm_sched_init_args->num_rqs usage
+9391ed348604 drm/panfrost: Remove drm_sched_init_args->num_rqs usage
+b6873864d6e1 drm/panthor: Remove drm_sched_init_args->num_rqs usage
+b7173535c178 drm/sched: Remove drm_sched_init_args->num_rqs usage
+9c67fd2f1c0b drm/v3d: Remove drm_sched_init_args->num_rqs usage
+9e8e6d1f6909 drm/xe: Remove drm_sched_init_args->num_rqs usage
+9f5e7a782b0b drm/sched: Remove drm_sched_init_args->num_rqs
 
 
-    <h1>CI Bug Log - changes from xe-4243-9ed47bca620f1ec976ca0e4a7f467e07c47c0061_BAT -&gt; xe-pw-158874v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (12 -&gt; 12)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-158874v2_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@xe_waitfence@engine:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4243-9ed47bca620f1ec976ca0e4a7f467e07c47c0061/bat-dg2-oem2/igt@xe_waitfence@engine.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158874v2/bat-dg2-oem2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519">Intel XE#6519</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_waitfence@reltime:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4243-9ed47bca620f1ec976ca0e4a7f467e07c47c0061/bat-dg2-oem2/igt@xe_waitfence@reltime.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158874v2/bat-dg2-oem2/igt@xe_waitfence@reltime.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520">Intel XE#6520</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4243-9ed47bca620f1ec976ca0e4a7f467e07c47c0061 -&gt; xe-pw-158874v2</li>
-</ul>
-<p>IGT_8666: 8666<br />
-  xe-4243-9ed47bca620f1ec976ca0e4a7f467e07c47c0061: 9ed47bca620f1ec976ca0e4a7f467e07c47c0061<br />
-  xe-pw-158874v2: 158874v2</p>
-
-</body>
-</html>
-
---===============2677392923884783410==--
