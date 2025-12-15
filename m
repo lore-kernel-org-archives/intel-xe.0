@@ -4,27 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 613C5D5B874
-	for <intel-xe@archiver.kernel.org>; Mon, 15 Dec 2025 23:31:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EFF88D5B87A
+	for <intel-xe@archiver.kernel.org>; Mon, 15 Dec 2025 23:54:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0457F10E0F7;
-	Mon, 15 Dec 2025 23:31:44 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 05A4310E5DA;
- Mon, 15 Dec 2025 23:31:42 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5769561102122608907=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9289410E04E;
+	Mon, 15 Dec 2025 23:54:43 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="RZYdSMIZ";
+	dkim-atps=neutral
+Received: from mail-yx1-f45.google.com (mail-yx1-f45.google.com
+ [74.125.224.45])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0920C10E198
+ for <intel-xe@lists.freedesktop.org>; Mon, 15 Dec 2025 23:54:41 +0000 (UTC)
+Received: by mail-yx1-f45.google.com with SMTP id
+ 956f58d0204a3-6446704997cso3529797d50.2
+ for <intel-xe@lists.freedesktop.org>; Mon, 15 Dec 2025 15:54:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1765842881; x=1766447681; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=qi1iA3gThMzNW0vwvQOq+i42JuDGcJBaX7DYkycH1V4=;
+ b=RZYdSMIZ6+7e1g57wd9PorWB+4X/Q7vWwbKBAkc1NW8JghjrBGDdqUmrCMAAcOIMHe
+ gEAPUCa1c+XYwpEPy0OK9JbZsWtZZ8cv7uLF3TDnZpPGZlqKfWfCD/x+a7d6/HYTUXGj
+ Wxkf0VCozEXU9oajQDLxBleweZYOE20pFwZ/og+eGT7wK4nge6VsHIjhA1eWA5FI9c0b
+ 5lZYCSpYbwhQxf5gF5JRXCYtdGKOWfuLJzaeUCtp4r7w7khB15TZ55i5e6SMzLUY0hlr
+ JpVte0AY1MJm0a9PxuxeqHB82kg+BqzxZ5w6xhO6mpyBOLOUNjYdKP8IwSsHLWDagaJG
+ BpZQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1765842881; x=1766447681;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=qi1iA3gThMzNW0vwvQOq+i42JuDGcJBaX7DYkycH1V4=;
+ b=OatAa8u60oAOFkrfi77rfxui2s1t2Cm8tXXFv78k8VoP+3JDVtwyKLoS77/kJrfRVa
+ y3XNCzc7ks/Md3/uJ3dIMmsbyLFd7/XNciVwGXeKtKAci5YG0V6FQZu+j54LRCDdOYr8
+ V2cbOn7mWWvKjgl03LbcgYNuv6s4Yum/jgidgSQoueD2JqbM23JpjKPoUTKlFMOPqK8o
+ bgqE7fv0jW9m34D+sAEKxUwPaxD9zQyAvsF096FuQbL5SAAInrh10LXqB82ua6AKINm1
+ 5E1CqaZTltd4l4G3t85n0M84CSZIvsegkoCGt1tyJt2BFxYG9jWaBpsz6PjF3BT5lxeH
+ pxKg==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCU1rYUDjPq/3JVW2DMrksW/1LPdjFsnhzK8bfVeMVhtc1WqmNTUm5RhzzfaYvMOmvOO5iz8icZKbg==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyVDBDyd/dNvY0HqNHlmHeI7W3GIkwbkOkinf0wHwhUM2fQTckl
+ Zc+LRGbixHgnH1B5LvS/O2ZHurhooL22Ae13aPeTHq2C6nSKkYk7XETG
+X-Gm-Gg: AY/fxX5pTlVCJHfjiGby1hKXvuVHIdWqQE6DZA3idTptOS3Qe7/+eeMNT0vQJeeGc13
+ JXQAmQlSG+dIngPxTC6LGfXmgpU4zDDFrPQ2OjWuP/hgV8ELrcBMXtvFfBMxG5eCjDmrWwWg65G
+ FiqKN7OkOADhmD+DMPHb37I42SJDSosyGkIY0GUHp5jkP/QcNrGymsACJDZuhP6aizdwPGefq4H
+ rCpTcIscUCkUw26yKbhCcTCsI0HFiuj2z+v/gfdKjgCixb+DMQC3iBsMeJrm+bQi7fQk5dJy5X+
+ PysIy9UFlQNQ+T4O+YRmL9C9XC3Mh4R8+Hh0xFWUqOS8C30X7VnED9x40dGUPpGVfbss2bGCvyr
+ idPht5zO5bWAXtlZ/eEDkl9Zx1A99qfSJp8aaJTyX+bzwouQKc0ESYwsDLLN3eNfV3U0qwJgaSh
+ NpayRBdJ1eB4PMJQTz
+X-Google-Smtp-Source: AGHT+IGRC8RK5GGvwd89lteOSW/cKBszESs470jpMcci5izqE12F53ZF9gQk4OUHdFNNGNhLh3aShg==
+X-Received: by 2002:a05:690e:4093:b0:644:28bb:fb53 with SMTP id
+ 956f58d0204a3-64555664cb0mr9353405d50.66.1765842880827; 
+ Mon, 15 Dec 2025 15:54:40 -0800 (PST)
+Received: from localhost ([2601:346:0:79bd:6b0:1f10:bc87:9bd7])
+ by smtp.gmail.com with ESMTPSA id
+ 956f58d0204a3-64477dc673asm6997136d50.25.2025.12.15.15.54.40
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 15 Dec 2025 15:54:40 -0800 (PST)
+From: "Yury Norov (NVIDIA)" <yury.norov@gmail.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>,
+ Harish Chegondi <harish.chegondi@intel.com>,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+Cc: "Yury Norov (NVIDIA)" <yury.norov@gmail.com>
+Subject: [PATCH] drm/xe/eustall: use bitmap_empty() in
+ xe_eu_stall_stream_read_locked()
+Date: Mon, 15 Dec 2025 18:54:38 -0500
+Message-ID: <20251215235439.330124-1-yury.norov@gmail.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/dp=3A_Clean_up_lin?=
- =?utf-8?q?k_BW/DSC_slice_config_computation_=28fixes=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Imre Deak" <imre.deak@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 15 Dec 2025 23:31:41 -0000
-Message-ID: <176584150189.91286.11667459536423889567@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20251215192357.172201-1-imre.deak@intel.com>
-In-Reply-To: <20251215192357.172201-1-imre.deak@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,125 +89,30 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5769561102122608907==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+bitmap_empty() is more verbose and efficient, as it stops traversing
+data_drop mask as soon as the 1st set bit found.
 
-== Series Details ==
+Signed-off-by: Yury Norov (NVIDIA) <yury.norov@gmail.com>
+---
+ drivers/gpu/drm/xe/xe_eu_stall.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Series: drm/i915/dp: Clean up link BW/DSC slice config computation (fixes)
-URL   : https://patchwork.freedesktop.org/series/159045/
-State : success
+diff --git a/drivers/gpu/drm/xe/xe_eu_stall.c b/drivers/gpu/drm/xe/xe_eu_stall.c
+index 97dfb7945b7a..b896b7ff5900 100644
+--- a/drivers/gpu/drm/xe/xe_eu_stall.c
++++ b/drivers/gpu/drm/xe/xe_eu_stall.c
+@@ -544,7 +544,7 @@ static ssize_t xe_eu_stall_stream_read_locked(struct xe_eu_stall_data_stream *st
+ 	int ret = 0;
+ 
+ 	mutex_lock(&stream->xecore_buf_lock);
+-	if (bitmap_weight(stream->data_drop.mask, XE_MAX_DSS_FUSE_BITS)) {
++	if (!bitmap_empty(stream->data_drop.mask, XE_MAX_DSS_FUSE_BITS)) {
+ 		if (!stream->data_drop.reported_to_user) {
+ 			stream->data_drop.reported_to_user = true;
+ 			xe_gt_dbg(gt, "EU stall data dropped in XeCores: %*pb\n",
+-- 
+2.43.0
 
-== Summary ==
-
-CI Bug Log - changes from xe-4248-89b7f1ac50d51d9c2334e119fe40de41b366333f_BAT -> xe-pw-159045v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (12 -> 12)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-159045v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_waitfence@reltime:
-    - bat-dg2-oem2:       [PASS][1] -> [FAIL][2] ([Intel XE#6520])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4248-89b7f1ac50d51d9c2334e119fe40de41b366333f/bat-dg2-oem2/igt@xe_waitfence@reltime.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159045v1/bat-dg2-oem2/igt@xe_waitfence@reltime.html
-
-  
-  [Intel XE#6520]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520
-
-
-Build changes
--------------
-
-  * Linux: xe-4248-89b7f1ac50d51d9c2334e119fe40de41b366333f -> xe-pw-159045v1
-
-  IGT_8666: 8666
-  xe-4248-89b7f1ac50d51d9c2334e119fe40de41b366333f: 89b7f1ac50d51d9c2334e119fe40de41b366333f
-  xe-pw-159045v1: 159045v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159045v1/index.html
-
---===============5769561102122608907==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/dp: Clean up link BW/DSC slice config computation (fixes)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/159045/">https://patchwork.freedesktop.org/series/159045/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159045v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159045v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4248-89b7f1ac50d51d9c2334e119fe40de41b366333f_BAT -&gt; xe-pw-159045v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (12 -&gt; 12)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-159045v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@xe_waitfence@reltime:<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4248-89b7f1ac50d51d9c2334e119fe40de41b366333f/bat-dg2-oem2/igt@xe_waitfence@reltime.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159045v1/bat-dg2-oem2/igt@xe_waitfence@reltime.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520">Intel XE#6520</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4248-89b7f1ac50d51d9c2334e119fe40de41b366333f -&gt; xe-pw-159045v1</li>
-</ul>
-<p>IGT_8666: 8666<br />
-  xe-4248-89b7f1ac50d51d9c2334e119fe40de41b366333f: 89b7f1ac50d51d9c2334e119fe40de41b366333f<br />
-  xe-pw-159045v1: 159045v1</p>
-
-</body>
-</html>
-
---===============5769561102122608907==--
