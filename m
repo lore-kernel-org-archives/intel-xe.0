@@ -4,56 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8FB14D5B86A
-	for <intel-xe@archiver.kernel.org>; Mon, 15 Dec 2025 19:34:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7A386D5B868
+	for <intel-xe@archiver.kernel.org>; Mon, 15 Dec 2025 19:37:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4E17910E25A;
-	Mon, 15 Dec 2025 19:34:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3486510E497;
+	Mon, 15 Dec 2025 19:37:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aByhGr4B";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gfTFJqcX";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 97C1210E25A
- for <intel-xe@lists.freedesktop.org>; Mon, 15 Dec 2025 19:34:29 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B30D910E497
+ for <intel-xe@lists.freedesktop.org>; Mon, 15 Dec 2025 19:37:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765827270; x=1797363270;
+ t=1765827427; x=1797363427;
  h=date:message-id:from:to:cc:subject:in-reply-to:
  references:mime-version;
- bh=ovF5UTM8QO7zYX7nwyskGkYS1/J0m5TBH86wRLxGQ6U=;
- b=aByhGr4B0yhTICj6lR9Due8uh7l87aI6toHcZe9z1hc8pudGnB96Ap+y
- TZkiZUyErLUnGPbg5xk+hNDZbUD4N1LMNR0nip4EUovVsob2PywFsCIFc
- 7SggEL5q2hiCb1tJ4lYLckO9EJbzs34v5TG5IhlnP+dBQhdSVGAdwBScI
- 5lB14P9VBfUDrt6yVexgQ56WZnmz1WnNr4Y1gCMNQn+izDw3enkoCzCcN
- ofQzGcEWWbp+3fLuj7mNks5oK7+Ks1uIAfpbNIajiJrg2j0PDbb/C0p+O
- 4lJul82uzv3xZAWL6RtJK3lZ2aRT5ezi+CCT8JctqRtMAealTiQySeymw A==;
-X-CSE-ConnectionGUID: YqbKVkbWTm2KX3n8gnulXQ==
-X-CSE-MsgGUID: TFg02c4QRCmSm1WIQAE44Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11643"; a="71372622"
-X-IronPort-AV: E=Sophos;i="6.21,151,1763452800"; d="scan'208";a="71372622"
+ bh=LBbLatnLdR4+Byq0Og22nMvb/AtATu/C7usAXnripQA=;
+ b=gfTFJqcXX/U/4WQuxdmqb+jLSi3MKUYbqzYiW4fR3k6BqleqD5u/WmQ8
+ q8JjHgHKNBnV68SFAbDTg8iCaERW5H6Cq8d7x3cXdt0OWBzWAa8r8pMYU
+ yy3yHDKvPulE2Qw0EaVLzWgvYe2ppCNVa6Xw1Ov5nj6KHjcwOKCB64kCc
+ JzG/Cu7uRWyz0HYN1oE7fTxl7LoNATvuEUQqSLsGxF9yEwd6AOG3IB8SU
+ kxBJPZN0whbjiK/vpweIj8FaHAlcpLbi+j0mdPdj1OWjG3qf+fRZtJgQn
+ yiMFp/p+Vl9d0S4mI3ctu0b5Ry3vnx00ijB/OGPIIQ5K8pIbJHod8zxfb w==;
+X-CSE-ConnectionGUID: fqsjFHJ5Tsq1vmGKfz83WA==
+X-CSE-MsgGUID: nqyXsgs1QrS7b7CfsYTuAA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11643"; a="71372924"
+X-IronPort-AV: E=Sophos;i="6.21,151,1763452800"; d="scan'208";a="71372924"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Dec 2025 11:34:30 -0800
-X-CSE-ConnectionGUID: Qu8Gpg5MTmqiJeFUYapEzw==
-X-CSE-MsgGUID: 3/n/A2PlTBiD6pi69xczNQ==
+ 15 Dec 2025 11:37:07 -0800
+X-CSE-ConnectionGUID: hx/vcBJGQv+dNFpSIJjE5g==
+X-CSE-MsgGUID: cC4UQFj1SpmI0sNvY+WKvg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,151,1763452800"; d="scan'208";a="228463056"
+X-IronPort-AV: E=Sophos;i="6.21,151,1763452800"; d="scan'208";a="228464045"
 Received: from unknown (HELO adixit-MOBL3.intel.com) ([10.241.242.187])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Dec 2025 11:34:30 -0800
-Date: Mon, 15 Dec 2025 11:34:28 -0800
-Message-ID: <87tsxr8rp7.wl-ashutosh.dixit@intel.com>
+ 15 Dec 2025 11:37:06 -0800
+Date: Mon, 15 Dec 2025 11:37:06 -0800
+Message-ID: <87sedb8rkt.wl-ashutosh.dixit@intel.com>
 From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: <intel-xe@lists.freedesktop.org>, Umesh Nerlige Ramappa
- <umesh.nerlige.ramappa@intel.com>
-Subject: Re: [PATCH 1/3] drm/xe/oa/uapi: Expose MERT OA unit
-In-Reply-To: <aTcstlSxNvhYcY6w@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+Subject: Re: [PATCH 0/3] drm/xe/oa: Expose MERT OA unit
+In-Reply-To: <20251205212613.826224-1-ashutosh.dixit@intel.com>
 References: <20251205212613.826224-1-ashutosh.dixit@intel.com>
- <20251205212613.826224-2-ashutosh.dixit@intel.com>
- <aTbJDZhEMqU8Rg62@intel.com>
- <87345k6b8q.wl-ashutosh.dixit@intel.com>
- <aTcstlSxNvhYcY6w@intel.com>
 User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
  FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
  Emacs/30.2 (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
@@ -73,82 +68,23 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 08 Dec 2025 11:53:26 -0800, Rodrigo Vivi wrote:
+On Fri, 05 Dec 2025 13:26:10 -0800, Ashutosh Dixit wrote:
 >
+> Ashutosh Dixit (3):
+>   drm/xe/oa/uapi: Expose MERT OA unit
+>   drm/xe/rtp: Whitelist OAMERT MMIO trigger registers
+>   drm/xe/oa: Always set OAG_OAGLBCTXCTRL_COUNTER_RESUME
 
-Hi Rodrigo,
-
-> On Mon, Dec 08, 2025 at 11:10:13AM -0800, Dixit, Ashutosh wrote:
-> > On Mon, 08 Dec 2025 04:48:13 -0800, Rodrigo Vivi wrote:
-> > >
-> >
-> > Hi Rodrigo,
-> >
-> > > On Fri, Dec 05, 2025 at 01:26:11PM -0800, Ashutosh Dixit wrote:
-> > > > A MERT OA unit is available in the SoC on some platforms. Add support
-> > > > for this OA unit and expose it to userspace. The MERT OA unit does not
-> > > > have any HW engines attached, but is otherwise similar to an OAM unit.
-> > > >
-> > > > Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-> > > > Reviewed-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-> > > > Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
-> > > > diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-> > > > index 876a076fa6c0c..f520462c28643 100644
-> > > > --- a/include/uapi/drm/xe_drm.h
-> > > > +++ b/include/uapi/drm/xe_drm.h
-> > > > @@ -1675,6 +1675,9 @@ enum drm_xe_oa_unit_type {
-> > > >
-> > > >	/** @DRM_XE_OA_UNIT_TYPE_OAM_SAG: OAM_SAG OA unit */
-> > > >	DRM_XE_OA_UNIT_TYPE_OAM_SAG,
-> > > > +
-> > > > +	/** @DRM_XE_OA_UNIT_TYPE_MERT: MERT OA unit */
-> > > > +	DRM_XE_OA_UNIT_TYPE_MERT,
-> > >
-> > > And who&where is the usage here?
-> >
-> > Sorry I just merged this.
->
-> No worries, I just force pushed it out.
->
-> > I will provide the MDAPI UMD pull request for
-> > this when it is available. Hope this is ok.
->
-> Let's re-merge when we see the usage out there.
-
-We now have a MDAPI PR for this feature:
+MDAPI UMD PR which consumes this series is this one:
 
 	https://github.com/intel/metrics-discovery/pull/37
 
-I am still waiting for the PR to be reviewed, it is expected to be reviewed
-by EOW, at which point I am planning to re-merge this series (after
-updating this email thread). MDAPI will merge their PR after the holidays.
-
-Hope this plan is ok.
-
-Thanks.
---
-Ashutosh
-
+>  drivers/gpu/drm/xe/regs/xe_oa_regs.h  |  9 ++++++
+>  drivers/gpu/drm/xe/xe_oa.c            | 44 +++++++++++++++++++++++----
+>  drivers/gpu/drm/xe/xe_reg_whitelist.c | 19 ++++++++++++
+>  include/uapi/drm/xe_drm.h             |  3 ++
+>  4 files changed, 69 insertions(+), 6 deletions(-)
 >
-> >
-> > This functionality (memory access counters) was part of OAG OA unit but is
-> > now separated out into a separate OA unit on some platforms.
+> --
+> 2.48.1
 >
-> Yeap, but any flag or anything that changes the uapi we do in the defined
-> order:
->
-> 1. both kernel and user space patches are sent out together and reviewed
->    in paralell.
-> 2. kernel code is acked by user-space developers (apparently not relevant
->    in this case)
-> 3. kernel patch lands first. (Here we have the user-space review already
->    finished and ready to get merged)
-> 4. user space patch lands right after.
->
-> Thanks,
-> Rodrigo.
->
-> >
-> > Thanks.
-> > --
-> > Ashutosh
