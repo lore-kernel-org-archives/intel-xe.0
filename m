@@ -4,56 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CB75CD5B172
-	for <intel-xe@archiver.kernel.org>; Mon, 15 Dec 2025 11:31:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 31A1BD41D74
+	for <intel-xe@archiver.kernel.org>; Mon, 15 Dec 2025 11:31:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 60C3410E43C;
-	Mon, 15 Dec 2025 11:31:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AFBAC10E444;
+	Mon, 15 Dec 2025 11:31:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="R8J+l0x0";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gccieck0";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 256C710E425;
- Mon, 15 Dec 2025 11:31:07 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4C94710E437;
+ Mon, 15 Dec 2025 11:31:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765798267; x=1797334267;
+ t=1765798271; x=1797334271;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=NhcTatZAhC8Q2u0okKzNj3rtRoHVylLJRwRraiXyXsk=;
- b=R8J+l0x0XDRejy34luyGBJd9DgRjjhN4TCS8pDfKtMRCb+5iFFE56dpq
- 1s88YsfyKKpc6DY4vUb+jTs4iITaTpmnAQNStqQFnkXoSGD7fe8tD+YK1
- Fj1/kOeIw8+FNae4wNJV1yNFqDAn0Cy7WDMjQfybTs1t68kkA3uvsCa4j
- a876BzQbmwVpX/Fnvd+8vuMKx3ZdEZggaT9pPJBwC4lR9LkcPyJJuy93G
- aS5QMV/G1Aq73aWseLrr2TmaT8kgl1yAmVyDZXjQThl16IElIw1VZ+ZTk
- RSG1WfJYM73/Wsz0EqPnwx4AVUaIFU4giQzBldW2i7m0W+C80ReKdNraR g==;
-X-CSE-ConnectionGUID: zmW5je79Qdms/4zB4oMmHQ==
-X-CSE-MsgGUID: wCeKOV5kTj+afqAxjm5eBQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11642"; a="67732760"
-X-IronPort-AV: E=Sophos;i="6.21,150,1763452800"; d="scan'208";a="67732760"
+ bh=nR90zbl/6JvncfjDuz/GagEZqFJBgF2cpFoQs6n60wA=;
+ b=gccieck0DcbxcI95gr6X3pt+kWYI7D0Cwouxf5YdEW4Z/uGPeHV1QAoa
+ mFQcABXcPTDsKCXOdbzc21zOwOQ6T/h1BUgeL+YMLRiKOR78Mytg6j3x6
+ Wuy05nfqdjho7CN9Mehte25ymH/xbKPwHMuGOXOP724TXCICjSlbb3ZN1
+ vzvz3gxcXKGB3V9su8NWmizx9XrvPR+sIIO2ONaL15lNXunrvYwf1Up9D
+ jxFaqutwc46PIME/QC0vktvGk2LhQ09tXg6uzUFTWQFbkFVfc0ZdbbuGF
+ 2JF+xUS88BM1CePMdu/ECG3hNA84CMkqd8LJYxACi1snrMuixs+E4bmSc A==;
+X-CSE-ConnectionGUID: Of2Ycsh5SKexhw8+gtIOSg==
+X-CSE-MsgGUID: DuFmp6cYTuGvys3kvmTnEg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11642"; a="67732770"
+X-IronPort-AV: E=Sophos;i="6.21,150,1763452800"; d="scan'208";a="67732770"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Dec 2025 03:31:06 -0800
-X-CSE-ConnectionGUID: 8UypnijqSIeEyszKCPSWkg==
-X-CSE-MsgGUID: 0n+YbyfaQSSyGe0kBkczdQ==
+ 15 Dec 2025 03:31:10 -0800
+X-CSE-ConnectionGUID: WgBhSCEwTJ6PY5AFCP0xIw==
+X-CSE-MsgGUID: u/dHkqXISl6lzALu1j6dng==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,150,1763452800"; d="scan'208";a="235090401"
+X-IronPort-AV: E=Sophos;i="6.21,150,1763452800"; d="scan'208";a="235090418"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Dec 2025 03:31:05 -0800
+ 15 Dec 2025 03:31:10 -0800
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gvt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
  intel-xe@lists.freedesktop.org
-Cc: jani.nikula@linux.intel.com, Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
- Jani Nikula <jani.nikula@intel.com>
-Subject: [PATCH 1/5] drm/i915/display: Abstract pipe/trans/cursor offset
- calculation
-Date: Mon, 15 Dec 2025 16:48:37 +0530
-Message-ID: <20251215111842.2099789-2-ankit.k.nautiyal@intel.com>
+Cc: jani.nikula@linux.intel.com,
+	Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Subject: [PATCH 3/5] drm/i915/gvt: Add header to use display offset functions
+ in macros
+Date: Mon, 15 Dec 2025 16:48:39 +0530
+Message-ID: <20251215111842.2099789-4-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20251215111842.2099789-1-ankit.k.nautiyal@intel.com>
 References: <20251215111842.2099789-1-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -69,83 +70,122 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Introduce INTEL_DISPLAY_DEVICE_*_OFFSET() macros to compute absolute
-MMIO offsets for pipe, transcoder, and cursor registers.
+Introduce gvt/display_helpers.h to make DISPLAY_MMIO_BASE and
+INTEL_DISPLAY_DEVICE_*_OFFSET macros call exported display functions.
+This lets GVT keep using existing register macros (e.g.,
+TRANSCONF(display, pipe)) while ensuring offset calculations happen
+through functions instead of accessing display internals.
 
-Update _MMIO_PIPE2/_MMIO_TRANS2/_MMIO_CURSOR2 to use these macros
-for cleaner abstraction and to prepare for external API usage (e.g. GVT).
+Include gvt/display_helpers.h after display headers to avoid
+conflicts.
 
-Also move DISPLAY_MMIO_BASE() to intel_display_device.h so it can be
-abstracted in GVT, allowing register macros to resolve via
-exported helpers rather than peeking into struct intel_display.
-
-Suggested-by: Jani Nikula <jani.nikula@intel.com>
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- .../gpu/drm/i915/display/intel_display_device.h | 17 +++++++++++++++++
- .../drm/i915/display/intel_display_reg_defs.h   | 15 ++++-----------
- 2 files changed, 21 insertions(+), 11 deletions(-)
+ drivers/gpu/drm/i915/gvt/cmd_parser.c      |  2 ++
+ drivers/gpu/drm/i915/gvt/display.c         |  2 ++
+ drivers/gpu/drm/i915/gvt/display_helpers.h | 39 ++++++++++++++++++++++
+ drivers/gpu/drm/i915/gvt/fb_decoder.c      |  2 ++
+ drivers/gpu/drm/i915/gvt/handlers.c        |  2 ++
+ 5 files changed, 47 insertions(+)
+ create mode 100644 drivers/gpu/drm/i915/gvt/display_helpers.h
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
-index 50b2e9ae2c18..05bba7a9899a 100644
---- a/drivers/gpu/drm/i915/display/intel_display_device.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_device.h
-@@ -260,6 +260,23 @@ struct intel_display_platforms {
- 	 ((id) == ARLS_HOST_BRIDGE_PCI_ID3) || \
- 	 ((id) == ARLS_HOST_BRIDGE_PCI_ID4))
+diff --git a/drivers/gpu/drm/i915/gvt/cmd_parser.c b/drivers/gpu/drm/i915/gvt/cmd_parser.c
+index df04e4ead8ea..6b5e18fca403 100644
+--- a/drivers/gpu/drm/i915/gvt/cmd_parser.c
++++ b/drivers/gpu/drm/i915/gvt/cmd_parser.c
+@@ -59,6 +59,8 @@
+ #include "gem/i915_gem_pm.h"
+ #include "gt/intel_context.h"
  
++#include "gvt/display_helpers.h"
++
+ #define INVALID_OP    (~0U)
+ 
+ #define OP_LEN_MI           9
+diff --git a/drivers/gpu/drm/i915/gvt/display.c b/drivers/gpu/drm/i915/gvt/display.c
+index 06517d1f07a2..7a51c13b9b58 100644
+--- a/drivers/gpu/drm/i915/gvt/display.c
++++ b/drivers/gpu/drm/i915/gvt/display.c
+@@ -49,6 +49,8 @@
+ #include "display/intel_dpio_phy.h"
+ #include "display/intel_sprite_regs.h"
+ 
++#include "gvt/display_helpers.h"
++
+ static int get_edp_pipe(struct intel_vgpu *vgpu)
+ {
+ 	u32 data = vgpu_vreg(vgpu, _TRANS_DDI_FUNC_CTL_EDP);
+diff --git a/drivers/gpu/drm/i915/gvt/display_helpers.h b/drivers/gpu/drm/i915/gvt/display_helpers.h
+new file mode 100644
+index 000000000000..6f68a1e8751a
+--- /dev/null
++++ b/drivers/gpu/drm/i915/gvt/display_helpers.h
+@@ -0,0 +1,39 @@
++// SPDX-License-Identifier: MIT
++/*
++ * Copyright © 2025 Intel Corporation
++ */
++
++#ifndef __DISPLAY_HELPERS_H__
++#define __DISPLAY_HELPERS_H__
++
++#include "display/intel_gvt_api.h"
++
++enum pipe;
++enum trans;
++struct display;
++
++#ifdef DISPLAY_MMIO_BASE
++#undef DISPLAY_MMIO_BASE
++#endif
++#define DISPLAY_MMIO_BASE(display) \
++	intel_display_device_mmio_base((display))
++
++#ifdef INTEL_DISPLAY_DEVICE_PIPE_OFFSET
++#undef INTEL_DISPLAY_DEVICE_PIPE_OFFSET
++#endif
 +#define INTEL_DISPLAY_DEVICE_PIPE_OFFSET(display, pipe) \
-+	(DISPLAY_INFO(display)->pipe_offsets[(pipe)] - \
-+	 DISPLAY_INFO(display)->pipe_offsets[PIPE_A] + \
-+	 DISPLAY_MMIO_BASE(display))
++	intel_display_device_pipe_offset((display), (pipe))
 +
++#ifdef INTEL_DISPLAY_DEVICE_TRANS_OFFSET
++#undef INTEL_DISPLAY_DEVICE_TRANS_OFFSET
++#endif
 +#define INTEL_DISPLAY_DEVICE_TRANS_OFFSET(display, trans) \
-+	(DISPLAY_INFO(display)->trans_offsets[(trans)] - \
-+	 DISPLAY_INFO(display)->trans_offsets[TRANSCODER_A] + \
-+	 DISPLAY_MMIO_BASE(display))
++	intel_display_device_trans_offset((display), (trans))
 +
++#ifdef INTEL_DISPLAY_DEVICE_CURSOR_OFFSET
++#undef INTEL_DISPLAY_DEVICE_CURSOR_OFFSET
++#endif
 +#define INTEL_DISPLAY_DEVICE_CURSOR_OFFSET(display, pipe) \
-+	(DISPLAY_INFO(display)->cursor_offsets[(pipe)] - \
-+	 DISPLAY_INFO(display)->cursor_offsets[PIPE_A] + \
-+	 DISPLAY_MMIO_BASE(display))
++	intel_display_device_cursor_offset((display), (pipe))
 +
-+#define DISPLAY_MMIO_BASE(dev_priv)	(DISPLAY_INFO(dev_priv)->mmio_offset)
++#endif /* __DISPLAY_HELPERS_H__ */
+diff --git a/drivers/gpu/drm/i915/gvt/fb_decoder.c b/drivers/gpu/drm/i915/gvt/fb_decoder.c
+index a8079cfa8e1d..ee4213fa2cda 100644
+--- a/drivers/gpu/drm/i915/gvt/fb_decoder.c
++++ b/drivers/gpu/drm/i915/gvt/fb_decoder.c
+@@ -47,6 +47,8 @@
+ #include "display/intel_sprite_regs.h"
+ #include "display/skl_universal_plane_regs.h"
+ 
++#include "gvt/display_helpers.h"
 +
- struct intel_display_runtime_info {
- 	struct intel_display_ip_ver {
- 		u16 ver;
-diff --git a/drivers/gpu/drm/i915/display/intel_display_reg_defs.h b/drivers/gpu/drm/i915/display/intel_display_reg_defs.h
-index b83ad06f2ea7..74f572d3a202 100644
---- a/drivers/gpu/drm/i915/display/intel_display_reg_defs.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_reg_defs.h
-@@ -8,8 +8,6 @@
+ #define PRIMARY_FORMAT_NUM	16
+ struct pixel_format {
+ 	int drm_format;	/* Pixel format in DRM definition */
+diff --git a/drivers/gpu/drm/i915/gvt/handlers.c b/drivers/gpu/drm/i915/gvt/handlers.c
+index 36ea12ade849..3e58e35ea2b9 100644
+--- a/drivers/gpu/drm/i915/gvt/handlers.c
++++ b/drivers/gpu/drm/i915/gvt/handlers.c
+@@ -67,6 +67,8 @@
+ #include "gt/intel_gt_regs.h"
+ #include <linux/vmalloc.h>
  
- #include "i915_reg_defs.h"
- 
--#define DISPLAY_MMIO_BASE(dev_priv)	(DISPLAY_INFO(dev_priv)->mmio_offset)
--
- #define VLV_DISPLAY_BASE		0x180000
- 
- /*
-@@ -36,14 +34,9 @@
-  * Device info offset array based helpers for groups of registers with unevenly
-  * spaced base offsets.
-  */
--#define _MMIO_PIPE2(display, pipe, reg)		_MMIO(DISPLAY_INFO(display)->pipe_offsets[(pipe)] - \
--						      DISPLAY_INFO(display)->pipe_offsets[PIPE_A] + \
--						      DISPLAY_MMIO_BASE(display) + (reg))
--#define _MMIO_TRANS2(display, tran, reg)	_MMIO(DISPLAY_INFO(display)->trans_offsets[(tran)] - \
--						      DISPLAY_INFO(display)->trans_offsets[TRANSCODER_A] + \
--						      DISPLAY_MMIO_BASE(display) + (reg))
--#define _MMIO_CURSOR2(display, pipe, reg)	_MMIO(DISPLAY_INFO(display)->cursor_offsets[(pipe)] - \
--						      DISPLAY_INFO(display)->cursor_offsets[PIPE_A] + \
--						      DISPLAY_MMIO_BASE(display) + (reg))
++#include "gvt/display_helpers.h"
 +
-+#define _MMIO_PIPE2(display, pipe, reg)		_MMIO(INTEL_DISPLAY_DEVICE_PIPE_OFFSET(display, pipe) + (reg))
-+#define _MMIO_TRANS2(display, trans, reg)	_MMIO(INTEL_DISPLAY_DEVICE_TRANS_OFFSET(display, trans) + (reg))
-+#define _MMIO_CURSOR2(display, pipe, reg)	_MMIO(INTEL_DISPLAY_DEVICE_CURSOR_OFFSET(display, pipe) + (reg))
- 
- #endif /* __INTEL_DISPLAY_REG_DEFS_H__ */
+ /* XXX FIXME i915 has changed PP_XXX definition */
+ #define PCH_PP_STATUS  _MMIO(0xc7200)
+ #define PCH_PP_CONTROL _MMIO(0xc7204)
 -- 
 2.45.2
 
