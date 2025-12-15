@@ -4,55 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 478C0D5B85B
-	for <intel-xe@archiver.kernel.org>; Mon, 15 Dec 2025 17:46:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 38D46D5B85E
+	for <intel-xe@archiver.kernel.org>; Mon, 15 Dec 2025 17:48:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 089DB10E346;
-	Mon, 15 Dec 2025 17:46:34 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="F4QIePOi";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4F12110E4E0
- for <intel-xe@lists.freedesktop.org>; Mon, 15 Dec 2025 17:46:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765820792; x=1797356792;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=AN/BlTAU4u9VX2msjIv1fiiCLhUEvgNgawbjbOEKIdc=;
- b=F4QIePOikZsvG4qtnL7t7jnqoL/wjq6VNKGFwb4R5xTMxuKvo/aB+Weq
- rS1M7/8N2vGII3C5lB/6d+jN9gBY0fmEvGN91XAkIntSGglMJKabKPzwA
- KeOi2s28BjObTuSxPmlzYAcIF5X73OwCkmew3pUP/uhbJX7U0+o0Wko1Q
- wxudANXk2oZah43sl/P+rI923yO+AqbS6FyhkmCUemfVbt2L3VAWMv31w
- tVEfVzZRNY/YJysUKEzIUEcKzL+QEMnzeN9Rr9r+sbnp1VNBQ88VlQTcR
- H7auMxsgZGrkw3NuDuNWwtzD7vKkHXgPpCm6O887CbXT5iRSSRTJ3c57N Q==;
-X-CSE-ConnectionGUID: kugqbVZXRkCWRfA6XV4xnA==
-X-CSE-MsgGUID: tm/iSqctR0i3GZzOsHdOZQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11643"; a="67612368"
-X-IronPort-AV: E=Sophos;i="6.21,151,1763452800"; d="scan'208";a="67612368"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Dec 2025 09:46:32 -0800
-X-CSE-ConnectionGUID: lK7TKeueRSGA8OXTJz6TdQ==
-X-CSE-MsgGUID: ufnWXbvxS3WcvgrpZaiH5w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,151,1763452800"; d="scan'208";a="198610964"
-Received: from llaguna-dev.igk.intel.com (HELO localhost) ([10.91.214.40])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Dec 2025 09:46:31 -0800
-From: Lukasz Laguna <lukasz.laguna@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: michal.wajdeczko@intel.com, rodrigo.vivi@intel.com, lukasz.laguna@intel.com
-Subject: [PATCH v11 4/4] drm/xe/pf: Allow upon-any-hang wedged mode only in
- debug config
-Date: Mon, 15 Dec 2025 18:46:13 +0100
-Message-Id: <20251215174613.3701-5-lukasz.laguna@intel.com>
-X-Mailer: git-send-email 2.40.0
-In-Reply-To: <20251215174613.3701-1-lukasz.laguna@intel.com>
-References: <20251215174613.3701-1-lukasz.laguna@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id EEBA010E52A;
+	Mon, 15 Dec 2025 17:48:11 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 870E410E4D3;
+ Mon, 15 Dec 2025 17:48:10 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_drm/=7Bi915=2C_xe=7D=3A_?=
+ =?utf-8?q?clean_up_and_deduplicate_initial_plane_handling?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 15 Dec 2025 17:48:10 -0000
+Message-ID: <176582089043.90193.448240436486740204@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <cover.1765812266.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1765812266.git.jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,33 +36,71 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The GuC reset policy is global, so disabling it on PF can affect all
-running VFs. To avoid unintended side effects, restrict setting
-upon-any-hang (2) wedged mode on the PF to debug builds only.
+== Series Details ==
 
-Signed-off-by: Lukasz Laguna <lukasz.laguna@intel.com>
-Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
----
- drivers/gpu/drm/xe/xe_device.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+Series: drm/{i915, xe}: clean up and deduplicate initial plane handling
+URL   : https://patchwork.freedesktop.org/series/159031/
+State : warning
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 15470e0558cb..cbe9e47f1ca6 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -1366,7 +1366,8 @@ int xe_device_validate_wedged_mode(struct xe_device *xe, unsigned int mode)
- 	if (mode > XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET) {
- 		drm_dbg(&xe->drm, "wedged_mode: invalid value (%u)\n", mode);
- 		return -EINVAL;
--	} else if (mode == XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET && IS_SRIOV_VF(xe)) {
-+	} else if (mode == XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET && (IS_SRIOV_VF(xe) ||
-+		   (IS_SRIOV_PF(xe) && !IS_ENABLED(CONFIG_DRM_XE_DEBUG)))) {
- 		drm_dbg(&xe->drm, "wedged_mode: (%u) %s mode is not supported for %s\n",
- 			mode, xe_wedged_mode_to_string(mode),
- 			xe_sriov_mode_to_string(xe_device_sriov_mode(xe)));
--- 
-2.40.0
+== Summary ==
+
++ trap cleanup EXIT
++ KERNEL=/kernel
++ MT=/root/linux/maintainer-tools
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
+Cloning into '/root/linux/maintainer-tools'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ make -C /root/linux/maintainer-tools
+make: Entering directory '/root/linux/maintainer-tools'
+cc -O2 -g -Wextra -o remap-log remap-log.c
+make: Leaving directory '/root/linux/maintainer-tools'
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ /root/linux/maintainer-tools/dim sparse --fast 342b565445c93d6fb5221aa9c23be20d65fa16f2
+Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
+Fast mode used, each commit won't be checked separately.
+-
++drivers/gpu/drm/i915/display/intel_display.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_display_driver.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_initial_plane.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/i915_initial_plane.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/i915_irq.c:467:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:467:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:475:16: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:475:16: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:480:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:480:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:480:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:518:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:518:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:526:16: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:526:16: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:531:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:531:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:531:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:575:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:575:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:578:15: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:578:15: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:582:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:582:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:589:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:589:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:589:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:589:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_panic.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
+
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
+
 
