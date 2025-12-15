@@ -4,34 +4,34 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 32AD2D5B84B
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1286AD5B84A
 	for <intel-xe@archiver.kernel.org>; Mon, 15 Dec 2025 15:47:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0BD4910E61D;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0236710E619;
 	Mon, 15 Dec 2025 15:47:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="REUPsJ8X";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="D871E9sS";
 	dkim-atps=neutral
 Received: from lankhorst.se (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3705610E616;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 295F610E613;
  Mon, 15 Dec 2025 15:47:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1765813672;
- bh=ljdH+hDI0eSDgcq0NlQSCPKmrCPd8ts57wYujzpvmhw=;
+ s=default; t=1765813671;
+ bh=F1/r4POtbPI3PDZ5d3UC7Fr/KLdbqrB4+YCWrkoKfsk=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=REUPsJ8Xs+ql3t3v+gQ1cpOjVeoIjOWcSFkZiPzFmVnUAk27Vjv9J75iWBJlzTerS
- vpPUezoBqGNzDCp+7u2gG+gF/YgGHM3b4tlcL3O7sdB9FqlZclV1RKYPtrz+DbFUJV
- Cs8BSjTGisgAVEAibqBME6O3CFP2BGc102tdUfLbJeWmRKUn1xAd7432PqhG0AT6MX
- U7sPPoHyf7mu+gH+ymaJMTg9PmuWH5p1hhNSun6rXbxSWkRlvTsgSelx+L3/2unHsU
- MiR0JxpDahuzWrs1r3CC/iQHKvks5yMY4oZp16MM6OekiVOfhr3oVu4N0vahxNnuT6
- AkXzBRImQjfQw==
+ b=D871E9sSzxYyhJbr0xcMGSN2ZWLvfsVGvwWJFCFpk74ZYyr+5POJ/hleQLJJUyHaW
+ GAz41rWjl5iRYrm+p++Tem5u6FK81dLwRLxzrdnPdJq2t891XM5EojcLQHWvnGfSIz
+ bqClo1F4GR0bnwXKbYevCqF2ydhrZW11tisQUeePncvAlAiyXLcKcfi9ndhE5TbK1t
+ iVrzTOpWLJus/Ilc6i7NKuFo8B5qY7dMN3Otxne8lifRvPtnJpDJHPOjMClg0kQi+k
+ ETaasibR8dnO1HfDEIkFhY7IVCWKWxJdpBzlb6qP5XMnXQ2mc9ZQ1lvilq6jkx8lo+
+ 2/nlk6/wdOt2g==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-xe@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Subject: [i915-rt 07/16] drm/i915/display: Handle vlv dsi workaround in
- scanline_in_safe_range too
-Date: Mon, 15 Dec 2025 16:47:47 +0100
-Message-ID: <20251215154740.1738648-25-dev@lankhorst.se>
+Subject: [i915-rt 06/16] drm/i915/display: Remove locking from
+ intel_vblank_evade critical section
+Date: Mon, 15 Dec 2025 16:47:46 +0100
+Message-ID: <20251215154740.1738648-24-dev@lankhorst.se>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20251215154740.1738648-18-dev@lankhorst.se>
 References: <20251215154740.1738648-18-dev@lankhorst.se>
@@ -51,71 +51,78 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Now that we have a macro, might as well handle the VLV dsi workaround
-too.
+finish_wait() may take a lock, which means that it can take any amount
+of time. On PREEMPT-RT we should not be taking any lock after disabling
+preemption, so ensure that the completion is done before disabling
+interrupts.
 
-This makes the vblank evasion code slightly more deterministic, by not
-looping with interrupts disabled.
+This also has the benefit of making vblank evasion more deterministic,
+by performing the final vblank check after all locking is done.
 
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/i915/display/intel_vblank.c | 36 ++++++++++-----------
- 1 file changed, 18 insertions(+), 18 deletions(-)
+ drivers/gpu/drm/i915/display/intel_vblank.c | 25 ++++++++-------------
+ 1 file changed, 9 insertions(+), 16 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_vblank.c b/drivers/gpu/drm/i915/display/intel_vblank.c
-index f72da4099119c..0261baed14615 100644
+index 2b106ffa3f5f5..f72da4099119c 100644
 --- a/drivers/gpu/drm/i915/display/intel_vblank.c
 +++ b/drivers/gpu/drm/i915/display/intel_vblank.c
-@@ -712,6 +712,24 @@ static bool scanline_in_safe_range(struct intel_vblank_evade_ctx *evade, int *sc
- {
- 	*scanline = intel_get_crtc_scanline(evade->crtc);
- 
-+	/*
-+	 * On VLV/CHV DSI the scanline counter would appear to
-+	 * increment approx. 1/3 of a scanline before start of vblank.
-+	 * The registers still get latched at start of vblank however.
-+	 * This means we must not write any registers on the first
-+	 * line of vblank (since not the whole line is actually in
-+	 * vblank). And unfortunately we can't use the interrupt to
-+	 * wait here since it will fire too soon. We could use the
-+	 * frame start interrupt instead since it will fire after the
-+	 * critical scanline, but that would require more changes
-+	 * in the interrupt code. So for now we'll just do the nasty
-+	 * thing and poll for the bad scanline to pass us by.
-+	 *
-+	 * FIXME figure out if BXT+ DSI suffers from this as well
-+	 */
-+	if (evade->need_vlv_dsi_wa && *scanline == evade->vblank_start)
-+		return false;
-+
- 	return *scanline < evade->min || *scanline > evade->max;
+@@ -708,6 +708,13 @@ void intel_vblank_evade_init(const struct intel_crtc_state *old_crtc_state,
+ 		evade->min -= vblank_delay;
  }
  
-@@ -742,24 +760,6 @@ int intel_vblank_evade(struct intel_vblank_evade_ctx *evade)
++static bool scanline_in_safe_range(struct intel_vblank_evade_ctx *evade, int *scanline)
++{
++	*scanline = intel_get_crtc_scanline(evade->crtc);
++
++	return *scanline < evade->min || *scanline > evade->max;
++}
++
+ /* must be called with vblank interrupt already enabled! */
+ int intel_vblank_evade(struct intel_vblank_evade_ctx *evade)
+ {
+@@ -715,24 +722,12 @@ int intel_vblank_evade(struct intel_vblank_evade_ctx *evade)
+ 	struct intel_display *display = to_intel_display(crtc);
+ 	long timeout = msecs_to_jiffies_timeout(1);
+ 	wait_queue_head_t *wq = drm_crtc_vblank_waitqueue(&crtc->base);
+-	DEFINE_WAIT(wait);
+ 	int scanline;
+ 
+ 	if (evade->min <= 0 || evade->max <= 0)
+ 		return 0;
+ 
+-	for (;;) {
+-		/*
+-		 * prepare_to_wait() has a memory barrier, which guarantees
+-		 * other CPUs can see the task state update by the time we
+-		 * read the scanline.
+-		 */
+-		prepare_to_wait(wq, &wait, TASK_UNINTERRUPTIBLE);
+-
+-		scanline = intel_get_crtc_scanline(crtc);
+-		if (scanline < evade->min || scanline > evade->max)
+-			break;
+-
++	while (!scanline_in_safe_range(evade, &scanline)) {
+ 		if (!timeout) {
+ 			drm_dbg_kms(display->drm,
+ 				    "Potential atomic update failure on pipe %c\n",
+@@ -742,13 +737,11 @@ int intel_vblank_evade(struct intel_vblank_evade_ctx *evade)
+ 
+ 		local_irq_enable();
+ 
+-		timeout = schedule_timeout(timeout);
++		timeout = wait_event_timeout(*wq, scanline_in_safe_range(evade, &scanline), timeout);
+ 
  		local_irq_disable();
  	}
  
--	/*
--	 * On VLV/CHV DSI the scanline counter would appear to
--	 * increment approx. 1/3 of a scanline before start of vblank.
--	 * The registers still get latched at start of vblank however.
--	 * This means we must not write any registers on the first
--	 * line of vblank (since not the whole line is actually in
--	 * vblank). And unfortunately we can't use the interrupt to
--	 * wait here since it will fire too soon. We could use the
--	 * frame start interrupt instead since it will fire after the
--	 * critical scanline, but that would require more changes
--	 * in the interrupt code. So for now we'll just do the nasty
--	 * thing and poll for the bad scanline to pass us by.
--	 *
--	 * FIXME figure out if BXT+ DSI suffers from this as well
--	 */
--	while (evade->need_vlv_dsi_wa && scanline == evade->vblank_start)
--		scanline = intel_get_crtc_scanline(crtc);
+-	finish_wait(wq, &wait);
 -
- 	return scanline;
- }
- 
+ 	/*
+ 	 * On VLV/CHV DSI the scanline counter would appear to
+ 	 * increment approx. 1/3 of a scanline before start of vblank.
 -- 
 2.51.0
 
