@@ -4,34 +4,34 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2074CD5B84B
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A5B7BD5B848
 	for <intel-xe@archiver.kernel.org>; Mon, 15 Dec 2025 15:48:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C7FD110E634;
-	Mon, 15 Dec 2025 15:48:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5AD3210E637;
+	Mon, 15 Dec 2025 15:48:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="n9Jvvlz/";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="DKqNhZ57";
 	dkim-atps=neutral
 Received: from lankhorst.se (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8D2CE10E623;
- Mon, 15 Dec 2025 15:47:58 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 767A210E623;
+ Mon, 15 Dec 2025 15:47:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1765813676;
- bh=cHQWFaMTZ+4Ec8rHtOWI5xSmSpbsCLQi64flg47Nvrs=;
+ s=default; t=1765813678;
+ bh=xlhLY5tDMB4bEJBi0YfRt81NNL1GKZQF5SQn3VuvCVI=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=n9Jvvlz/yDp/2+skI+UDBj5opf0uwpNNnYHu7weuzdopngf7qaa2pmt4tBxsLKanj
- MjdWKNldgNsb7SpvFle6DW/XU66Jw7ZSdAwIJcwXC84D1xEqjgLmNM6LhY1DRzkiqF
- qFbSSKPwNeTnaHlrTEZuUmq8ntskcAMleOTd6VaQp2epfqf2oFhmM+7yWTh9DMWIqf
- pPcKom3v8OVJfB+h5Dnad3FYMwVwwFhyiO4uuGByfeVqPWQwqMOpIE/r6rc+Yq07iG
- BFWcLYhi5tvVox0cPRdlHTaVp6mWHCXEbCi/jkU4AtJqYm2WGEKH/ZeunLVajqaR+e
- TZWtVDR5PjI4A==
+ b=DKqNhZ57hcmCyFFEZWSu/mRZ3WKP+3U3fctkPCUi19CQarRjtGPcodtRnrnGtHAZw
+ 2ZoFhYy4UOhLMe6INaNAIW598ZP9e+6Z+1khmhjbWqB0xn71VET/1vEHHkdiGRKLCR
+ +kIjO130bbN1oSFYLQn4rIl9BG+ZhJ0TrReBVOOknahaHFGAsZeIL/8TYYQrdCi/NL
+ /amrIBkZQZRqmBIT0GRqIq7VTSUb1ZUnNefxzuZSmjhCKNi97R0HiC6WaYumpc3J6H
+ xHk9G+mQWaQ+bqgeXQ7CgqVqWvtmCR0kCaR+9hU7HUpGFhdxucO0PWOgjnUCWdl09g
+ oTeBAIsZVYLyg==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-xe@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Subject: [i915-rt 10/16] drm/i915: Use preempt_disable/enable_rt() where
- recommended
-Date: Mon, 15 Dec 2025 16:47:50 +0100
-Message-ID: <20251215154740.1738648-28-dev@lankhorst.se>
+Subject: [i915-rt 13/16] drm/i915/gt: Use spin_lock_irq() instead of
+ local_irq_disable() + spin_lock()
+Date: Mon, 15 Dec 2025 16:47:53 +0100
+Message-ID: <20251215154740.1738648-31-dev@lankhorst.se>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20251215154740.1738648-18-dev@lankhorst.se>
 References: <20251215154740.1738648-18-dev@lankhorst.se>
@@ -51,124 +51,94 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Mike Galbraith <umgwanakikbuti@gmail.com>
+From: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
 
-Mario Kleiner suggest in commit
-  ad3543ede630f ("drm/intel: Push get_scanout_position() timestamping into kms driver.")
+execlists_dequeue() is invoked from a function which uses
+local_irq_disable() to disable interrupts so the spin_lock() behaves
+like spin_lock_irq().
+This breaks PREEMPT_RT because local_irq_disable() + spin_lock() is not
+the same as spin_lock_irq().
 
-a spots where preemption should be disabled on PREEMPT_RT. The
-difference is that on PREEMPT_RT the intel_uncore::lock disables neither
-preemption nor interrupts and so region remains preemptible.
+execlists_dequeue_irq() and execlists_dequeue() has each one caller
+only. If intel_engine_cs::active::lock is acquired and released with the
+_irq suffix then it behaves almost as if execlists_dequeue() would be
+invoked with disabled interrupts. The difference is the last part of the
+function which is then invoked with enabled interrupts.
+I can't tell if this makes a difference. From looking at it, it might
+work to move the last unlock at the end of the function as I didn't find
+anything that would acquire the lock again.
 
-The area covers only register reads and writes. The part that worries me
-is:
-- __intel_get_crtc_scanline() the worst case is 100us if no match is
-  found.
-
-- intel_crtc_scanlines_since_frame_timestamp() not sure how long this
-  may take in the worst case.
-
-It was in the RT queue for a while and nobody complained.
-Disable preemption on PREEPMPT_RT during timestamping.
-
-[bigeasy: patch description.]
-
-Cc: Mario Kleiner <mario.kleiner.de@gmail.com>
-Signed-off-by: Mike Galbraith <umgwanakikbuti@gmail.com>
-Signed-off-by: Thomas Gleixner <tglx@linutronix.de>
+Reported-by: Clark Williams <williams@redhat.com>
 Signed-off-by: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+Reviewed-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/i915/display/intel_vblank.c | 43 ++++++++++++++++-----
- 1 file changed, 33 insertions(+), 10 deletions(-)
+ .../drm/i915/gt/intel_execlists_submission.c    | 17 +++++------------
+ 1 file changed, 5 insertions(+), 12 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_vblank.c b/drivers/gpu/drm/i915/display/intel_vblank.c
-index 0261baed14615..4d71cfa9d97f1 100644
---- a/drivers/gpu/drm/i915/display/intel_vblank.c
-+++ b/drivers/gpu/drm/i915/display/intel_vblank.c
-@@ -317,6 +317,20 @@ static void intel_vblank_section_exit(struct intel_display *display)
- 	struct drm_i915_private *i915 = to_i915(display->drm);
- 	spin_unlock(&i915->uncore.lock);
- }
-+
-+static void intel_vblank_section_enter_irqf(struct intel_display *display, unsigned long *flags)
-+	__acquires(i915->uncore.lock)
-+{
-+	struct drm_i915_private *i915 = to_i915(display->drm);
-+	spin_lock_irqsave(&i915->uncore.lock, *flags);
-+}
-+
-+static void intel_vblank_section_exit_irqf(struct intel_display *display, unsigned long flags)
-+	__releases(i915->uncore.lock)
-+{
-+	struct drm_i915_private *i915 = to_i915(display->drm);
-+	spin_unlock_irqrestore(&i915->uncore.lock, flags);
-+}
- #else
- static void intel_vblank_section_enter(struct intel_display *display)
- {
-@@ -325,6 +339,17 @@ static void intel_vblank_section_enter(struct intel_display *display)
- static void intel_vblank_section_exit(struct intel_display *display)
- {
- }
-+
-+static void intel_vblank_section_enter_irqf(struct intel_display *display, unsigned long *flags)
-+{
-+	*flags = 0;
-+}
-+
-+static void intel_vblank_section_exit_irqf(struct intel_display *display, unsigned long flags)
-+{
-+	if (flags)
-+		return;
-+}
- #endif
- 
- static bool i915_get_crtc_scanoutpos(struct drm_crtc *_crtc,
-@@ -361,10 +386,10 @@ static bool i915_get_crtc_scanoutpos(struct drm_crtc *_crtc,
- 	 * timing critical raw register reads, potentially with
- 	 * preemption disabled, so the following code must not block.
+diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+index 3df683b0402ad..948975e72d295 100644
+--- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
++++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+@@ -1300,7 +1300,7 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
+ 	 * and context switches) submission.
  	 */
--	local_irq_save(irqflags);
--	intel_vblank_section_enter(display);
-+	intel_vblank_section_enter_irqf(display, &irqflags);
  
--	/* preempt_disable_rt() should go right here in PREEMPT_RT patchset. */
-+	if (IS_ENABLED(CONFIG_PREEMPT_RT))
-+		preempt_disable();
- 
- 	/* Get optional system timestamp before query. */
- 	if (stime)
-@@ -428,10 +453,10 @@ static bool i915_get_crtc_scanoutpos(struct drm_crtc *_crtc,
- 	if (etime)
- 		*etime = ktime_get();
- 
--	/* preempt_enable_rt() should go right here in PREEMPT_RT patchset. */
-+	if (IS_ENABLED(CONFIG_PREEMPT_RT))
-+		preempt_enable();
- 
--	intel_vblank_section_exit(display);
--	local_irq_restore(irqflags);
-+	intel_vblank_section_exit_irqf(display, irqflags);
+-	spin_lock(&sched_engine->lock);
++	spin_lock_irq(&sched_engine->lock);
  
  	/*
- 	 * While in vblank, position will be negative
-@@ -469,13 +494,11 @@ int intel_get_crtc_scanline(struct intel_crtc *crtc)
- 	unsigned long irqflags;
- 	int position;
+ 	 * If the queue is higher priority than the last
+@@ -1400,7 +1400,7 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
+ 				 * Even if ELSP[1] is occupied and not worthy
+ 				 * of timeslices, our queue might be.
+ 				 */
+-				spin_unlock(&sched_engine->lock);
++				spin_unlock_irq(&sched_engine->lock);
+ 				return;
+ 			}
+ 		}
+@@ -1426,7 +1426,7 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
  
--	local_irq_save(irqflags);
--	intel_vblank_section_enter(display);
-+	intel_vblank_section_enter_irqf(display, &irqflags);
+ 		if (last && !can_merge_rq(last, rq)) {
+ 			spin_unlock(&ve->base.sched_engine->lock);
+-			spin_unlock(&engine->sched_engine->lock);
++			spin_unlock_irq(&engine->sched_engine->lock);
+ 			return; /* leave this for another sibling */
+ 		}
  
- 	position = __intel_get_crtc_scanline(crtc);
+@@ -1588,7 +1588,7 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
+ 	 */
+ 	sched_engine->queue_priority_hint = queue_prio(sched_engine);
+ 	i915_sched_engine_reset_on_empty(sched_engine);
+-	spin_unlock(&sched_engine->lock);
++	spin_unlock_irq(&sched_engine->lock);
  
--	intel_vblank_section_exit(display);
--	local_irq_restore(irqflags);
-+	intel_vblank_section_exit_irqf(display, irqflags);
- 
- 	return position;
+ 	/*
+ 	 * We can skip poking the HW if we ended up with exactly the same set
+@@ -1614,13 +1614,6 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
+ 	}
  }
+ 
+-static void execlists_dequeue_irq(struct intel_engine_cs *engine)
+-{
+-	local_irq_disable(); /* Suspend interrupts across request submission */
+-	execlists_dequeue(engine);
+-	local_irq_enable(); /* flush irq_work (e.g. breadcrumb enabling) */
+-}
+-
+ static void clear_ports(struct i915_request **ports, int count)
+ {
+ 	memset_p((void **)ports, NULL, count);
+@@ -2475,7 +2468,7 @@ static void execlists_submission_tasklet(struct tasklet_struct *t)
+ 	}
+ 
+ 	if (!engine->execlists.pending[0]) {
+-		execlists_dequeue_irq(engine);
++		execlists_dequeue(engine);
+ 		start_timeslice(engine);
+ 	}
+ 
 -- 
 2.51.0
 
