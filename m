@@ -4,56 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 077CCD5C0C0
-	for <intel-xe@archiver.kernel.org>; Tue, 16 Dec 2025 07:42:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9BDEDD5B161
+	for <intel-xe@archiver.kernel.org>; Tue, 16 Dec 2025 07:48:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BFF8810E6E5;
-	Tue, 16 Dec 2025 07:42:10 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="J3FHUXTM";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E43E810E3BD
- for <intel-xe@lists.freedesktop.org>; Tue, 16 Dec 2025 07:42:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765870926; x=1797406926;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=QHAjQEJA+YcmqBvJ4TFT7oKfmVFquaOnCGesdc6ksdw=;
- b=J3FHUXTMUQTUcA7SmWRidvcpPxWtzXrcpN30T/+fmYqHd3ArWM0f2UNX
- 6tWiQ5K0BdlkQzYNueZxZa48hTjPNCuWfxYfRzGUyuruCDGxCHHpa1xV3
- fXfMET7gnIpZsMPa27phCAL4fcjJrBxE8SeWqJdTYS2c71q0Pt4GyyHFl
- vSdCIBcJrwRPh89ZVRa73brwGkIn8BowCRXzede1wJslnBbUUVMBVaF3+
- 4g9TB/RotWadCExLERoRgEKZu6M3zhpkRLaLe7fk9f5tNP8qk403Ti9vl
- Emc/6P+jJHWiH/kXWS90Tkn9NadLnsBf3qWAUd7jlwf3PvB66MX3EuIxo w==;
-X-CSE-ConnectionGUID: aOx08tEuSAmAG0681BgAlw==
-X-CSE-MsgGUID: AO/U0n32T6iqqEeUCFb+/A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11643"; a="78420941"
-X-IronPort-AV: E=Sophos;i="6.21,152,1763452800"; d="scan'208";a="78420941"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Dec 2025 23:42:05 -0800
-X-CSE-ConnectionGUID: DYHzkOCjS8muNZk++Lfdbw==
-X-CSE-MsgGUID: WcjXdasuQlqUL43jJ4ODlQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,152,1763452800"; d="scan'208";a="203050819"
-Received: from unerlige-desk1.jf.intel.com ([10.88.27.165])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Dec 2025 23:42:04 -0800
-From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: badal.nilawar@intel.com,
-	anoop.c.vijay@intel.com
-Subject: [PATCH v5 3/3] drm/xe/soc_remapper: Add system controller config for
- SoC remapper
-Date: Mon, 15 Dec 2025 23:42:03 -0800
-Message-ID: <20251216074159.2788534-8-umesh.nerlige.ramappa@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20251216074159.2788534-5-umesh.nerlige.ramappa@intel.com>
-References: <20251216074159.2788534-5-umesh.nerlige.ramappa@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4AD7B10E71D;
+	Tue, 16 Dec 2025 07:48:33 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A39E210E711;
+ Tue, 16 Dec 2025 07:48:32 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Add_SoC_remapper_support_?=
+ =?utf-8?q?for_system_controller_=28rev5=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Umesh Nerlige Ramappa" <umesh.nerlige.ramappa@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 16 Dec 2025 07:48:32 -0000
+Message-ID: <176587131267.92022.17686441817231238786@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20251216074159.2788534-5-umesh.nerlige.ramappa@intel.com>
+In-Reply-To: <20251216074159.2788534-5-umesh.nerlige.ramappa@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,129 +36,49 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Define system controller config bits and helpers for SoC remapper.
+== Series Details ==
 
-Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+Series: Add SoC remapper support for system controller (rev5)
+URL   : https://patchwork.freedesktop.org/series/157103/
+State : warning
 
----
-v2: (Badal)
-- Add kernel doc for function
+== Summary ==
 
-v3: (Badal)
-- Prevent bad access to SoC remapper
----
- drivers/gpu/drm/xe/regs/xe_soc_remapper_regs.h |  1 +
- drivers/gpu/drm/xe/xe_device_types.h           |  5 +++++
- drivers/gpu/drm/xe/xe_pci.c                    |  2 ++
- drivers/gpu/drm/xe/xe_pci_types.h              |  1 +
- drivers/gpu/drm/xe/xe_soc_remapper.c           | 12 +++++++++++-
- 5 files changed, 20 insertions(+), 1 deletion(-)
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+8f50e69d0ce3656564bbdf8b3e213d61470d463f
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 352e5d4a7f94a441bdaf27f6cc4fdb8e00f2092a
+Author: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+Date:   Mon Dec 15 23:42:03 2025 -0800
 
-diff --git a/drivers/gpu/drm/xe/regs/xe_soc_remapper_regs.h b/drivers/gpu/drm/xe/regs/xe_soc_remapper_regs.h
-index 9edf234227a9..be0eb37e73ad 100644
---- a/drivers/gpu/drm/xe/regs/xe_soc_remapper_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_soc_remapper_regs.h
-@@ -9,5 +9,6 @@
- 
- #define SG_REMAP_INDEX1			XE_REG(SOC_BASE + 0x08)
- #define   SG_REMAP_TELEM_MASK		REG_GENMASK(31, 24)
-+#define   SG_REMAP_SYSCTRL_MASK		REG_GENMASK(23, 16)
- 
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index fc121b236dd9..3b6a46a4e239 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -335,6 +335,8 @@ struct xe_device {
- 		u8 has_range_tlb_inval:1;
- 		/** @info.has_soc_remapper_telem: Has SoC remapper telemetry support */
- 		u8 has_soc_remapper_telem:1;
-+		/** @info.has_soc_remapper_sysctrl: Has SoC remapper system controller */
-+		u8 has_soc_remapper_sysctrl:1;
- 		/** @info.has_sriov: Supports SR-IOV */
- 		u8 has_sriov:1;
- 		/** @info.has_usm: Device has unified shared memory support */
-@@ -582,6 +584,9 @@ struct xe_device {
- 
- 		/** @soc_remapper.set_telem_region: Set telemetry index */
- 		void (*set_telem_region)(struct xe_device *xe, u32 index);
-+
-+		/** @soc_remapper.set_sysctrl_region: Set system controller index */
-+		void (*set_sysctrl_region)(struct xe_device *xe, u32 index);
- 	} soc_remapper;
- 
- 	/**
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index 555a1c3b3841..b073f264d6b7 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -421,6 +421,7 @@ static const struct xe_device_desc cri_desc = {
- 	.has_mbx_power_limits = true,
- 	.has_mert = true,
- 	.has_pre_prod_wa = 1,
-+	.has_soc_remapper_sysctrl = true,
- 	.has_soc_remapper_telem = true,
- 	.has_sriov = true,
- 	.max_gt_per_tile = 2,
-@@ -693,6 +694,7 @@ static int xe_info_init_early(struct xe_device *xe,
- 	xe->info.has_page_reclaim_hw_assist = desc->has_page_reclaim_hw_assist;
- 	xe->info.has_pre_prod_wa = desc->has_pre_prod_wa;
- 	xe->info.has_pxp = desc->has_pxp;
-+	xe->info.has_soc_remapper_sysctrl = desc->has_soc_remapper_sysctrl;
- 	xe->info.has_soc_remapper_telem = desc->has_soc_remapper_telem;
- 	xe->info.has_sriov = xe_configfs_primary_gt_allowed(to_pci_dev(xe->drm.dev)) &&
- 		desc->has_sriov;
-diff --git a/drivers/gpu/drm/xe/xe_pci_types.h b/drivers/gpu/drm/xe/xe_pci_types.h
-index e2bd4c81b2a7..5f20f56571d1 100644
---- a/drivers/gpu/drm/xe/xe_pci_types.h
-+++ b/drivers/gpu/drm/xe/xe_pci_types.h
-@@ -53,6 +53,7 @@ struct xe_device_desc {
- 	u8 has_pre_prod_wa:1;
- 	u8 has_page_reclaim_hw_assist:1;
- 	u8 has_pxp:1;
-+	u8 has_soc_remapper_sysctrl:1;
- 	u8 has_soc_remapper_telem:1;
- 	u8 has_sriov:1;
- 	u8 needs_scratch:1;
-diff --git a/drivers/gpu/drm/xe/xe_soc_remapper.c b/drivers/gpu/drm/xe/xe_soc_remapper.c
-index 1baf5d38e4cd..f894f4899cf3 100644
---- a/drivers/gpu/drm/xe/xe_soc_remapper.c
-+++ b/drivers/gpu/drm/xe/xe_soc_remapper.c
-@@ -20,6 +20,12 @@ static void xe_soc_remapper_set_telem_region(struct xe_device *xe, u32 index)
- 				   REG_FIELD_PREP(SG_REMAP_TELEM_MASK, index));
- }
- 
-+static void xe_soc_remapper_set_sysctrl_region(struct xe_device *xe, u32 index)
-+{
-+	xe_soc_remapper_set_region(xe, SG_REMAP_INDEX1, SG_REMAP_SYSCTRL_MASK,
-+				   REG_FIELD_PREP(SG_REMAP_SYSCTRL_MASK, index));
-+}
-+
- /**
-  * xe_soc_remapper_init() - Initialize SoC remapper
-  * @xe: Pointer to xe device.
-@@ -30,7 +36,8 @@ static void xe_soc_remapper_set_telem_region(struct xe_device *xe, u32 index)
-  */
- int xe_soc_remapper_init(struct xe_device *xe)
- {
--	bool has_soc_remapper = xe->info.has_soc_remapper_telem;
-+	bool has_soc_remapper = xe->info.has_soc_remapper_telem ||
-+				xe->info.has_soc_remapper_sysctrl;
- 
- 	if (has_soc_remapper)
- 		spin_lock_init(&xe->soc_remapper.lock);
-@@ -38,5 +45,8 @@ int xe_soc_remapper_init(struct xe_device *xe)
- 	if (xe->info.has_soc_remapper_telem)
- 		xe->soc_remapper.set_telem_region = xe_soc_remapper_set_telem_region;
- 
-+	if (xe->info.has_soc_remapper_sysctrl)
-+		xe->soc_remapper.set_sysctrl_region = xe_soc_remapper_set_sysctrl_region;
-+
- 	return 0;
- }
--- 
-2.43.0
+    drm/xe/soc_remapper: Add system controller config for SoC remapper
+    
+    Define system controller config bits and helpers for SoC remapper.
+    
+    Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
++ /mt/dim checkpatch 301c90aee06999676070d16b9f508541f7d5bf5c drm-intel
+adb487c0bb9e drm/xe/soc_remapper: Initialize SoC remapper during Xe probe
+-:64: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#64: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 70 lines checked
+07872a892702 drm/xe/soc_remapper: Use SoC remapper herlper from VSEC code
+-:26: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#26: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 117 lines checked
+352e5d4a7f94 drm/xe/soc_remapper: Add system controller config for SoC remapper
+
 
