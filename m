@@ -4,51 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2CCBDD5CC97
-	for <intel-xe@archiver.kernel.org>; Tue, 16 Dec 2025 09:42:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5A391D5CC9D
+	for <intel-xe@archiver.kernel.org>; Tue, 16 Dec 2025 09:42:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E39D910E474;
-	Tue, 16 Dec 2025 09:42:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1C2F010E74C;
+	Tue, 16 Dec 2025 09:42:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="L6glIHVm";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KxdcASdR";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3CAE610E893
- for <intel-xe@lists.freedesktop.org>; Tue, 16 Dec 2025 09:42:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CE41F10E76C
+ for <intel-xe@lists.freedesktop.org>; Tue, 16 Dec 2025 09:42:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765878167; x=1797414167;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=GNkmor0BvqRaW77mHr/UKxyH52weemzvyscSbeoW0II=;
- b=L6glIHVm0GHHA5vN1fUFyvmsBC7U00uHE7H54IeAAsb3fh6REqBbViWA
- TVEjE3eXP/7TOOLKUIZpsUrEApLTlNEUxb2XFzsRXfqZFqDzdWE9KTESq
- c2t1F23sj8Ktyhg1KlV2CC+TulMWp7z6xyU/Ydz6ctL/WsR8D1FCevg/d
- HwBdQv3ZX7HhDvDvLpm77ej+CsdDuPKxhZXmTyGjPGX2ik7PX5QAJPXRL
- 1N98ZF2rYF9U9G3bvYB/g7ipC2v456UWygNxUZI0Dwg3sS5/ctJ+pv0yu
- 6voHH3AH/7MxskCB+6riZ32kRyj70arOjR6O3fIaJag2nZxZkY23EBV37 A==;
-X-CSE-ConnectionGUID: /PZtdEb8Qs6TDr9M9rvSWw==
-X-CSE-MsgGUID: Kd2+1P23Q8SG4uNkvQeEKQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11643"; a="67946625"
-X-IronPort-AV: E=Sophos;i="6.21,152,1763452800"; d="scan'208";a="67946625"
+ t=1765878168; x=1797414168;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=fZO3XvMcbTGFujxXhoiKMiRuWM1mC1q5q71ttK425GE=;
+ b=KxdcASdR32CtiEfDx1MIgq/0wqoR98Js8GDduYPOlxApgtkBI8uUWCE5
+ b8oaFQH/XG9qZGpbHtZHMz9DQnlJm264mGLl7pz+PRKJ+eE3plezo+Iy2
+ 1KxjIQnSrBFrpyKeFnXP1n0GgLBVTJsU2JiuR1p3YTST5Haxm/536gTGQ
+ N6XjPvUTkm4U7rmzlMBqIiQdPuZzM0+PeDW8YgPqG7abFNur8FQrUMhe3
+ eWJNmjkZWNBLHCBJY0buBdXPG7+xyZNkZjx2ZhL0xHV+WDVumEc04xKdB
+ W7ZYT6BVDzrkQ8z0h4ww96YX85jmpNuKyLf+K5TEkVmA48+Ii11nn1NtL A==;
+X-CSE-ConnectionGUID: ZgF64+vTRMe+efETBSqKcw==
+X-CSE-MsgGUID: qr3mR5y3Q+C5bXKuskJTmw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11643"; a="67946627"
+X-IronPort-AV: E=Sophos;i="6.21,152,1763452800"; d="scan'208";a="67946627"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2025 01:42:46 -0800
-X-CSE-ConnectionGUID: N6FtOXJQSWmICKo5Er4yCw==
-X-CSE-MsgGUID: vJcAOPmGQUC8gGtICVLGSQ==
+ 16 Dec 2025 01:42:48 -0800
+X-CSE-ConnectionGUID: Eeaqh7OORByezbdPJnzuuQ==
+X-CSE-MsgGUID: O/XGISFcSZy0rrzL74T0AQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,152,1763452800"; d="scan'208";a="197868091"
+X-IronPort-AV: E=Sophos;i="6.21,152,1763452800"; d="scan'208";a="197868100"
 Received: from rtauro-desk.iind.intel.com ([10.190.238.50])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2025 01:42:44 -0800
+ 16 Dec 2025 01:42:46 -0800
 From: Riana Tauro <riana.tauro@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: riana.tauro@intel.com, anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
  badal.nilawar@intel.com, raag.jadav@intel.com
-Subject: [PATCH 0/2] Survivability mode fixes
-Date: Tue, 16 Dec 2025 15:42:00 +0530
-Message-ID: <20251216101159.332558-4-riana.tauro@intel.com>
+Subject: [PATCH 1/2] drm/xe/xe_survivability: remove unused index
+Date: Tue, 16 Dec 2025 15:42:01 +0530
+Message-ID: <20251216101159.332558-5-riana.tauro@intel.com>
 X-Mailer: git-send-email 2.47.1
+In-Reply-To: <20251216101159.332558-4-riana.tauro@intel.com>
+References: <20251216101159.332558-4-riana.tauro@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -65,15 +67,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Fix unused index and static analysis tool reported errors.
+remove unused index variable and fix for loop
 
-Riana Tauro (2):
-  drm/xe/xe_survivability: remove unused index
-  drm/xe/xe_survivability: Fix static analysis issues
+Fixes: f4e9fc967afd ("drm/xe/xe_survivability: Redesign survivability mode")
+Reported-by: Nathan Chancellor <nathan@kernel.org>
+Closes: https://lore.kernel.org/intel-xe/20251210075757.GA1206705@ax162/
+Signed-off-by: Riana Tauro <riana.tauro@intel.com>
+---
+ drivers/gpu/drm/xe/xe_survivability_mode.c | 8 +++-----
+ 1 file changed, 3 insertions(+), 5 deletions(-)
 
- drivers/gpu/drm/xe/xe_survivability_mode.c | 31 +++++++++++-----------
- 1 file changed, 15 insertions(+), 16 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/xe_survivability_mode.c b/drivers/gpu/drm/xe/xe_survivability_mode.c
+index 7520d7b7f9b8..7ca3e2851a5a 100644
+--- a/drivers/gpu/drm/xe/xe_survivability_mode.c
++++ b/drivers/gpu/drm/xe/xe_survivability_mode.c
+@@ -144,7 +144,6 @@ static void populate_survivability_info(struct xe_device *xe)
+ 	u32 *info = survivability->info;
+ 	struct xe_mmio *mmio;
+ 	u32 id = 0, reg_value;
+-	int index;
+ 
+ 	mmio = xe_root_tile_mmio(xe);
+ 	set_survivability_info(mmio, info, CAPABILITY_INFO);
+@@ -163,11 +162,10 @@ static void populate_survivability_info(struct xe_device *xe)
+ 	}
+ 
+ 	if (reg_value & AUXINFO_SUPPORT) {
+-		id = REG_FIELD_GET(AUXINFO_REG_OFFSET, reg_value);
+-
+-		for (index = 0; id >= AUX_INFO0 && id < MAX_SCRATCH_REG; index++) {
++		for (id = REG_FIELD_GET(AUXINFO_REG_OFFSET, reg_value);
++		     id >= AUX_INFO0 && id < MAX_SCRATCH_REG;
++		     id = aux_history_offset(info[id])) {
+ 			set_survivability_info(mmio, info, id);
+-			id = aux_history_offset(info[id]);
+ 		}
+ 	}
+ }
 -- 
 2.47.1
 
