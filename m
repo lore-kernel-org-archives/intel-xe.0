@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 55C08D637B3
-	for <intel-xe@archiver.kernel.org>; Tue, 16 Dec 2025 22:23:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 93D18D637B3
+	for <intel-xe@archiver.kernel.org>; Tue, 16 Dec 2025 22:28:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EA4CC10E306;
-	Tue, 16 Dec 2025 22:23:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5025D10E306;
+	Tue, 16 Dec 2025 22:28:43 +0000 (UTC)
 Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E55BF10E306;
- Tue, 16 Dec 2025 22:23:04 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5894988250083840300=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 27DBF10E12C;
+ Tue, 16 Dec 2025 22:28:42 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_update_?=
- =?utf-8?q?the_wa=5F22014263786?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_AuxCCS_handling_and_rende?=
+ =?utf-8?q?r_compression_modifiers?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Vinod Govindapillai" <vinod.govindapillai@intel.com>
+To: "Tvrtko Ursulin" <tvrtko.ursulin@igalia.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 16 Dec 2025 22:23:04 -0000
-Message-ID: <176592378495.95623.8473767546703796153@a3b018990fe9>
+Date: Tue, 16 Dec 2025 22:28:42 -0000
+Message-ID: <176592412216.95861.6331713405874690307@a3b018990fe9>
 X-Patchwork-Hint: ignore
-References: <20251216140508.975258-1-vinod.govindapillai@intel.com>
-In-Reply-To: <20251216140508.975258-1-vinod.govindapillai@intel.com>
+References: <20251216153805.96056-1-tvrtko.ursulin@igalia.com>
+In-Reply-To: <20251216153805.96056-1-tvrtko.ursulin@igalia.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,137 +40,83 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5894988250083840300==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/i915/display: update the wa_22014263786
-URL   : https://patchwork.freedesktop.org/series/159108/
-State : success
+Series: AuxCCS handling and render compression modifiers
+URL   : https://patchwork.freedesktop.org/series/159112/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-4254-72428bdb20b6c86beaeddb9d69bf698d0697aa41_BAT -> xe-pw-159108v1_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+8f50e69d0ce3656564bbdf8b3e213d61470d463f
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 80748e9099414b56817fec6c8774a3096d84c540
+Author: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+Date:   Tue Dec 16 15:38:05 2025 +0000
 
-Summary
--------
+    drm/xe/xelp: Expose AuxCCS frame buffer modifiers on Alderlake-P
+    
+    Now that we have implemented all the related missing bits we can enable
+    the AuxCCS compressed modifiers which were disabled in
+    cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if built for Xe").
+    
+    Tested with KDE Wayland, on Lenovo Carbon X1 ADL-P:
+    
+            [PLANE:32:plane 1A]: type=PRI
+                    uapi: [FB:242] AR30 little-endian (0x30335241),0x100000000000008,2880x1800, visible=visible, src=28
+                    hw: [FB:242] AR30 little-endian (0x30335241),0x100000000000008,2880x1800, visible=yes, src=2880.000
+    
+    Display is working fine - no artefacts, no DMAR/PIPE faults.
+    
+    v2:
+     * Adjust patch title. (Rodrigo)
+    
+    v3:
+     * Complete rewrite based on the display parent interface.
+    
+    Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+    References: cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if built for Xe")
+    Cc: Jani Nikula <jani.nikula@intel.com>
+    Cc: José Roberto de Souza <jose.souza@intel.com>
+    Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+    Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+    Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com> # v2
++ /mt/dim checkpatch 72428bdb20b6c86beaeddb9d69bf698d0697aa41 drm-intel
+860edca517ff drm/xe: Use write-combine mapping when populating DPT
+42012b3f29a0 drm/xe/xelpg: Limit AuxCCS ring buffer programming to Alderlake
+-:25: WARNING:TYPO_SPELLING: 'explicity' may be misspelled - perhaps 'explicitly'?
+#25: FILE: drivers/gpu/drm/xe/xe_ring_ops.c:294:
++	 * AuxCCS, and we explicity do not want to support it on MTL.
+ 	                  ^^^^^^^^^
 
-  **SUCCESS**
+total: 0 errors, 1 warnings, 0 checks, 11 lines checked
+7744a51c61b1 drm/xe/xelp: Quiesce memory traffic before invalidating AuxCCS
+9e6c562e614f drm/xe/xelp: Wait for AuxCCS invalidation to complete
+daf5227dced5 drm/xe: Export xe_emit_aux_table_inv
+6c1c8eeb35f2 drm/xe/xelp: Add AuxCCS invalidation to the indirect context workarounds
+-:36: WARNING:TYPO_SPELLING: 'explicity' may be misspelled - perhaps 'explicitly'?
+#36: FILE: drivers/gpu/drm/xe/xe_hw_engine.h:90:
++	 * AuxCCS, and we explicity do not want to support it on MTL.
+ 	                  ^^^^^^^^^
 
-  No regressions found.
+total: 0 errors, 1 warnings, 0 checks, 128 lines checked
+f5e28a9c1bd4 drm/xe/display: Add support for AuxCCS
+80748e909941 drm/xe/xelp: Expose AuxCCS frame buffer modifiers on Alderlake-P
+-:12: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#12: 
+cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if built for Xe").
 
-  
+-:12: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if built for Xe")'
+#12: 
+cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if built for Xe").
 
-Participating hosts (12 -> 12)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-159108v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_waitfence@reltime:
-    - bat-dg2-oem2:       [PASS][1] -> [FAIL][2] ([Intel XE#6520])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4254-72428bdb20b6c86beaeddb9d69bf698d0697aa41/bat-dg2-oem2/igt@xe_waitfence@reltime.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159108v1/bat-dg2-oem2/igt@xe_waitfence@reltime.html
-
-  
-#### Possible fixes ####
-
-  * igt@xe_waitfence@abstime:
-    - bat-dg2-oem2:       [TIMEOUT][3] ([Intel XE#6506]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4254-72428bdb20b6c86beaeddb9d69bf698d0697aa41/bat-dg2-oem2/igt@xe_waitfence@abstime.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159108v1/bat-dg2-oem2/igt@xe_waitfence@abstime.html
-
-  
-  [Intel XE#6506]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506
-  [Intel XE#6520]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520
-
-
-Build changes
--------------
-
-  * Linux: xe-4254-72428bdb20b6c86beaeddb9d69bf698d0697aa41 -> xe-pw-159108v1
-
-  IGT_8668: 906681747a312ef11ef9af8ab1fa6eff28b4cbd0 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-4254-72428bdb20b6c86beaeddb9d69bf698d0697aa41: 72428bdb20b6c86beaeddb9d69bf698d0697aa41
-  xe-pw-159108v1: 159108v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159108v1/index.html
-
---===============5894988250083840300==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+total: 1 errors, 1 warnings, 0 checks, 20 lines checked
 
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/display: update the wa_22014263786</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/159108/">https://patchwork.freedesktop.org/series/159108/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159108v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159108v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4254-72428bdb20b6c86beaeddb9d69bf698d0697aa41_BAT -&gt; xe-pw-159108v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (12 -&gt; 12)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-159108v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@xe_waitfence@reltime:<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4254-72428bdb20b6c86beaeddb9d69bf698d0697aa41/bat-dg2-oem2/igt@xe_waitfence@reltime.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159108v1/bat-dg2-oem2/igt@xe_waitfence@reltime.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520">Intel XE#6520</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_waitfence@abstime:<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4254-72428bdb20b6c86beaeddb9d69bf698d0697aa41/bat-dg2-oem2/igt@xe_waitfence@abstime.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506">Intel XE#6506</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159108v1/bat-dg2-oem2/igt@xe_waitfence@abstime.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4254-72428bdb20b6c86beaeddb9d69bf698d0697aa41 -&gt; xe-pw-159108v1</li>
-</ul>
-<p>IGT_8668: 906681747a312ef11ef9af8ab1fa6eff28b4cbd0 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-4254-72428bdb20b6c86beaeddb9d69bf698d0697aa41: 72428bdb20b6c86beaeddb9d69bf698d0697aa41<br />
-  xe-pw-159108v1: 159108v1</p>
-
-</body>
-</html>
-
---===============5894988250083840300==--
