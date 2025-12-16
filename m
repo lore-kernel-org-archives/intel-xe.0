@@ -4,33 +4,33 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E4998D5CC89
-	for <intel-xe@archiver.kernel.org>; Tue, 16 Dec 2025 09:22:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5C4BDD5CC8F
+	for <intel-xe@archiver.kernel.org>; Tue, 16 Dec 2025 09:22:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A7B0A10E7C4;
-	Tue, 16 Dec 2025 09:22:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 117F710E753;
+	Tue, 16 Dec 2025 09:22:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="dkv85c6D";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="Z9TA4kLt";
 	dkim-atps=neutral
 Received: from lankhorst.se (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D2F7F10E8A8;
- Tue, 16 Dec 2025 09:22:41 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9920410E810;
+ Tue, 16 Dec 2025 09:22:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1765876960;
- bh=BBVJJ7NOdSu0nB43nL7jgsO0CLlF8iIuNy9Wks62HGU=;
+ s=default; t=1765876957;
+ bh=VBco7zVB9VTaGgt3tIx7GWoTZdb6hMaqwzco395EbzY=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=dkv85c6DezkoI+/BJu95VAraKfDKlxUUfytfLzz10oRyRViOPRlspsYkEeYjlDMgi
- /PrAC/ltNPcgRrE3Va5wYO8769xpJ1qdS4RF3WoFztlagShpQ+ywxKvdtq4/XHbHid
- liLkmjUiGx48khu7+yYnSguR56T67K2BhYOUKumTJj6IJa50AR4PuHa7xNLcNYyEVm
- xm1GYCi8f/cF5cn5IL4ioGYTJEWJMH+DoSzoNGOM/day4gAdP9VSQvoVy4vfBooLam
- b3TYdLU2r4/xRphf8AtiOrmlwnuVr8iR5uNQHXGINfHudqUVhfUNO4FTa025Ics0LI
- Bh+PYwxOOe6pA==
+ b=Z9TA4kLtPk5r+VkTXTqnaNeqHzOSo2qhFUnqAPRFrwsMa23XrlUq7IXNcjkQczUou
+ laVJkDbxvEs8FZSZjNCVT6DrkXVaffbqsHGHWCITReCqbq4hD0+PSNostEXbCt2bsp
+ if5+6V7o5l2WwREtP5gyhd4gLl/0yrt2IWopvHNt7s9lZl4nUa+Uk+xJDOZR+omKGR
+ vgOPxdzo7oviGbPS+7lajm1iH+j3T6c/yPjrIZl9bMbPNczyNPR+/V3lbkYAUsFzWB
+ 1tKMJy/YFT0A6Mhdld0jVArv5qJp2CDAjnd/wqQEreSBArJZkvD7kwp/lqMGwF0U8U
+ wZC8FSjehNm/w==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-xe@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Subject: [i915-rt v2 14/16] drm/i915: Drop the irqs_disabled() check
-Date: Tue, 16 Dec 2025 10:22:41 +0100
-Message-ID: <20251216092226.1777909-32-dev@lankhorst.se>
+Subject: [i915-rt v2 11/16] PREEMPT_RT injection
+Date: Tue, 16 Dec 2025 10:22:38 +0100
+Message-ID: <20251216092226.1777909-29-dev@lankhorst.se>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20251216092226.1777909-18-dev@lankhorst.se>
 References: <20251216092226.1777909-18-dev@lankhorst.se>
@@ -50,46 +50,71 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-
-The !irqs_disabled() check triggers on PREEMPT_RT even with
-i915_sched_engine::lock acquired. The reason is the lock is transformed
-into a sleeping lock on PREEMPT_RT and does not disable interrupts.
-
-There is no need to check for disabled interrupts. The lockdep
-annotation below already check if the lock has been acquired by the
-caller and will yell if the interrupts are not disabled.
-
-Remove the !irqs_disabled() check.
-
-Reported-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Acked-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Signed-off-by: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/i915/i915_request.c | 2 --
- 1 file changed, 2 deletions(-)
+ drivers/gpu/drm/i915/Kconfig.debug | 15 ---------------
+ drivers/gpu/drm/xe/Kconfig.debug   |  5 +++++
+ kernel/Kconfig.preempt             |  4 ++--
+ 3 files changed, 7 insertions(+), 17 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
-index 4399941236cbf..d82105408bd8f 100644
---- a/drivers/gpu/drm/i915/i915_request.c
-+++ b/drivers/gpu/drm/i915/i915_request.c
-@@ -610,7 +610,6 @@ bool __i915_request_submit(struct i915_request *request)
+diff --git a/drivers/gpu/drm/i915/Kconfig.debug b/drivers/gpu/drm/i915/Kconfig.debug
+index 3562a02ef7adc..0ab10ff41e38d 100644
+--- a/drivers/gpu/drm/i915/Kconfig.debug
++++ b/drivers/gpu/drm/i915/Kconfig.debug
+@@ -233,21 +233,6 @@ config DRM_I915_LOW_LEVEL_TRACEPOINTS
  
- 	RQ_TRACE(request, "\n");
+ 	  If in doubt, say "N".
  
--	GEM_BUG_ON(!irqs_disabled());
- 	lockdep_assert_held(&engine->sched_engine->lock);
+-config DRM_I915_DEBUG_VBLANK_EVADE
+-	bool "Enable extra debug warnings for vblank evasion"
+-	depends on DRM_I915
+-	default n
+-	help
+-	  Choose this option to turn on extra debug warnings for the
+-	  vblank evade mechanism. This gives a warning every time the
+-	  the deadline allotted for the vblank evade critical section
+-	  is exceeded, even if there isn't an actual risk of missing
+-	  the vblank.
+-
+-	  Recommended for driver developers only.
+-
+-	  If in doubt, say "N".
+-
+ config DRM_I915_DEBUG_RUNTIME_PM
+ 	bool "Enable extra state checking for runtime PM"
+ 	depends on DRM_I915
+diff --git a/drivers/gpu/drm/xe/Kconfig.debug b/drivers/gpu/drm/xe/Kconfig.debug
+index 01227c77f6d70..1d5f11c6e88f3 100644
+--- a/drivers/gpu/drm/xe/Kconfig.debug
++++ b/drivers/gpu/drm/xe/Kconfig.debug
+@@ -30,6 +30,11 @@ config DRM_XE_DEBUG
  
- 	/*
-@@ -719,7 +718,6 @@ void __i915_request_unsubmit(struct i915_request *request)
- 	 */
- 	RQ_TRACE(request, "\n");
+ 	  If in doubt, say "N".
  
--	GEM_BUG_ON(!irqs_disabled());
- 	lockdep_assert_held(&engine->sched_engine->lock);
++config DRM_I915_DEBUG_VBLANK_EVADE
++        def_bool y
++        depends on DRM_XE
++
++
+ config DRM_XE_DEBUG_VM
+ 	bool "Enable extra VM debugging info"
+ 	default n
+diff --git a/kernel/Kconfig.preempt b/kernel/Kconfig.preempt
+index da326800c1c9b..68a6d42c55abe 100644
+--- a/kernel/Kconfig.preempt
++++ b/kernel/Kconfig.preempt
+@@ -87,9 +87,9 @@ config PREEMPT_LAZY
+ endchoice
  
- 	/*
+ config PREEMPT_RT
+-	bool "Fully Preemptible Kernel (Real-Time)"
+-	depends on EXPERT && ARCH_SUPPORTS_RT && !COMPILE_TEST
++	def_bool y
+ 	select PREEMPTION
++	depends on ARCH_SUPPORTS_RT
+ 	help
+ 	  This option turns the kernel into a real-time kernel by replacing
+ 	  various locking primitives (spinlocks, rwlocks, etc.) with
 -- 
 2.51.0
 
