@@ -4,56 +4,163 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0194ED5C0C1
-	for <intel-xe@archiver.kernel.org>; Tue, 16 Dec 2025 01:19:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B3715D5B87E
+	for <intel-xe@archiver.kernel.org>; Tue, 16 Dec 2025 01:19:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 33AE010E634;
-	Tue, 16 Dec 2025 01:19:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 75E2510E627;
+	Tue, 16 Dec 2025 01:19:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SBjPleiu";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ejhsCZc6";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DF3FE10E62A
- for <intel-xe@lists.freedesktop.org>; Tue, 16 Dec 2025 01:19:11 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0B9CF10E627
+ for <intel-xe@lists.freedesktop.org>; Tue, 16 Dec 2025 01:19:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765847952; x=1797383952;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=DqkalYbSqiGBBujOZoS0/2+MB7Xa6GjalkyhZMEixCw=;
- b=SBjPleiuCQFz82IT1QXULMkdhpYNt8w2hieuYlTQ+lgPq3NvQWMCMcON
- 7TXGm2poRYZFMnaIINt+BqSR6qvS8LmH2qydejpsMqTzLpWIffdsYIJk9
- cWbTJuovLTWuhGdyGGygo8iYKjWspldZ/a56arwtsfQkxOjIuidJh0EtG
- Ig9KnXCySbA/rM700feZM8W1TAbwb6sJfqLmv2uExsmC2xTSQavaeQ9f8
- zGtvpsXbPwHBdgKufofasosCFrzpNNgGhkqWF5oCIqBAaQTpqj/uF+obI
- tXojX7VuqVtJMiBditexBVTRZez/m8yVlzYyMMMVR+Q1R3GvTfxWbjlJi A==;
-X-CSE-ConnectionGUID: jpD2C79lRzu76zQ+/qRBxw==
-X-CSE-MsgGUID: S81mS79HTf6zuz1Bdx8vQQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11643"; a="85172142"
-X-IronPort-AV: E=Sophos;i="6.21,152,1763452800"; d="scan'208";a="85172142"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Dec 2025 17:19:11 -0800
-X-CSE-ConnectionGUID: n6pnFnIjStaLC89ODgquhw==
-X-CSE-MsgGUID: y3fjlTrqRGazlxwUugI1iQ==
+ t=1765847953; x=1797383953;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=cxo/ZqMZfVyB/kiFPlGjlQFGU1NxM6ZKPruBNgbt7cY=;
+ b=ejhsCZc6eqbTDz/DDNBikbJgM97qCCcTor+jrVejRBk1lQ5jf7pkEAa2
+ 0RI6DuH43LDvhrjGU5rdxEM9ufmdy9iO1kY/P75VxtE5j4cdfKoobxsKQ
+ 5Bo2CB4ruZoTY9Qiu/mnw9JKpVxsyA3uqxn6IaRAVsf6H3zumFVsq0C2e
+ ++ft+mUrIiz1u5vrjmNnLAqTE2dh++UWZfd45vGJpcHW//KB+tmn4epiH
+ dTDRf5cNpjIT84K6emE6Z6qyM6uk7DfOxxtH/oRytBhqkcoAHK3jqV4lE
+ DR/Qbua0pwqfRVmg+BTwYOTzeh+lN82lKB+A60WDWvOrDWxF4+5qqTKkz Q==;
+X-CSE-ConnectionGUID: JvUzl+7sRtquTSL3i3XO9w==
+X-CSE-MsgGUID: UD1hEY9vTDuzKKaTAl6C9w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11643"; a="71615385"
+X-IronPort-AV: E=Sophos;i="6.21,152,1763452800"; d="scan'208";a="71615385"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Dec 2025 17:19:12 -0800
+X-CSE-ConnectionGUID: 32ltNe0jRr2LqApasc1sUA==
+X-CSE-MsgGUID: kdHfWmq/S/2scCTVNIrkUg==
 X-ExtLoop1: 1
-Received: from unerlige-desk1.jf.intel.com ([10.88.27.165])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Dec 2025 17:19:11 -0800
-From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: badal.nilawar@intel.com,
-	anoop.c.vijay@intel.com
-Subject: [PATCH v4 2/3] drm/xe/soc_remapper: Use SoC remapper herlper from
- VSEC code
+X-IronPort-AV: E=Sophos;i="6.21,152,1763452800"; d="scan'208";a="202373609"
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Dec 2025 17:19:12 -0800
+Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.29; Mon, 15 Dec 2025 17:19:12 -0800
+Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.29 via Frontend Transport; Mon, 15 Dec 2025 17:19:12 -0800
+Received: from PH7PR06CU001.outbound.protection.outlook.com (52.101.201.44) by
+ edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.29; Mon, 15 Dec 2025 17:19:12 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=rYWDN4lwee7E8vC4nqdEfU1x67qr1kAnwZWpNx47IwfbcO7zn1m4IMv8C2L9JA2QhcXOaahl8yNNl8/tj8Po2iC5IH3Nc1c+cTwMbDga+HaCEqouHrkSV/yWJxTA4MFtcnOZJ/Di23WBhXW770l6oX97LlnuD+Kdso/NHD62ue/G39Z6XZbE5YDv2cUtSJeMXOBv2IVqeuZg0aAdHh1145Hp8d/t8SncL2gSd1DrrZY6/jYg19oIptBaQLjFXf4P96xAr/rF155+jANm0RjTT2NAu/JteAhmUUgKmkIPHttcnWHZqccunxOVqtFIZn3emk+U2yttk3ArUIdDDnOXWg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=VIO13YEaRaoyg8tKnw7gGN/bVm8gDPChk4NWSWQarqM=;
+ b=xIOuBSLINLQY2daAr7P74xRiaONY04GB3Uzfy2rSFqY7v5iFWQYGBtUpivYvlwPYA6dsG9MD0on/acl+Ue/sND7QMSkQbQWcNNKVJremKswQ3bSKqb0VAFZlN54iP+zssLr0krmdzqjUmG8YgEt78KEa0bE9/Hb7ZKk3qIsh2LmY5qO61YJtrpIfgapBL5Doh4F3cdR6x+Hr6Ui/erDqfUOyZg/EfYfUMchx40n2KdxIYyRJzrlLZVY0Bcc6rA8CX+qJSc3k2X0zMkXVkGsLlcLRUBF/JWfj6FjVqzYhuoDc6SxVhKfRQk4qWMuxV0kgbRwtWUG/aFjKHB3FVlgsbQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
+ by DM4PR11MB7301.namprd11.prod.outlook.com (2603:10b6:8:10a::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9412.13; Tue, 16 Dec
+ 2025 01:19:10 +0000
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::9e94:e21f:e11a:332]) by PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::9e94:e21f:e11a:332%7]) with mapi id 15.20.9412.011; Tue, 16 Dec 2025
+ 01:19:10 +0000
 Date: Mon, 15 Dec 2025 17:19:07 -0800
-Message-ID: <20251216011904.2771875-7-umesh.nerlige.ramappa@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20251216011904.2771875-5-umesh.nerlige.ramappa@intel.com>
-References: <20251216011904.2771875-5-umesh.nerlige.ramappa@intel.com>
+From: Matthew Brost <matthew.brost@intel.com>
+To: Michal Wajdeczko <michal.wajdeczko@intel.com>
+CC: <intel-xe@lists.freedesktop.org>, Daniele Ceraolo Spurio
+ <daniele.ceraolospurio@intel.com>
+Subject: Re: [PATCH v2 0/4] PF: Add handling for new adverse event thresholds
+Message-ID: <aUCzixblT//8+U3j@lstrano-desk.jf.intel.com>
+References: <20251215143739.196336-1-michal.wajdeczko@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20251215143739.196336-1-michal.wajdeczko@intel.com>
+X-ClientProxiedBy: MW4PR03CA0088.namprd03.prod.outlook.com
+ (2603:10b6:303:b6::33) To PH7PR11MB6522.namprd11.prod.outlook.com
+ (2603:10b6:510:212::12)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|DM4PR11MB7301:EE_
+X-MS-Office365-Filtering-Correlation-Id: 49fe0e84-3da1-43ff-c10b-08de3c411dac
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?knytPD5Awgu6B7gE1V1q2bODCH5/dLKJTP5N+8E0Z4KBLluNAsXs1aefRwSB?=
+ =?us-ascii?Q?rgjmFg0pFzpCLzL2XoBTYGPabajeYRmQSvp521gHY3/QGIIr3sr5sB9rPK0x?=
+ =?us-ascii?Q?R+7bNpkdUXzNHJ2m6ri5m9Vh1RXg8ZWVnAEzItZwQETbQNqx355RUVA58pxT?=
+ =?us-ascii?Q?k9ZrK/vjCZaPFwQwWqd1qwCEQ0eRbQ/18M1UcXjDO54VV8ITJBl6+nywsoz2?=
+ =?us-ascii?Q?s1hbekZzFhYV+6IdbPcCDcbrC3zh8b6uZfF8HBFlrWP9erBY+9/5BXLaNL41?=
+ =?us-ascii?Q?K3MVb468IQuMVUAYqoQ7MgD1XaIyhel3/jBpwHLJKz9CkXsoLcHu3awtWhVI?=
+ =?us-ascii?Q?/4YwebEXCSm2x3h8HX0yVFHNcRLkyGQQMVrv3CRhdL6v6DHQas5NdI5rh+LX?=
+ =?us-ascii?Q?VdXIoFLG4sGQkhX5DlDk/6Ht0KBqkIjaYvfV4aEGeTYtggLZVKi7MDs4JOE5?=
+ =?us-ascii?Q?E72FnS2wlvYrDsZ31VG77iWL1O+8WPzo/40TNR7SXlFjM8SbsnFlZSk0ElvE?=
+ =?us-ascii?Q?wbMoLevab8jKyMWdc3v48CMJeLfLru0eutydXB1b0RpjMS0P32h3QgQT25Dg?=
+ =?us-ascii?Q?ZUl/CQMHJr9tYqEMileihdw5L4/pAZKfJ8I5gd9HRASL179UD5mH5DU7o9zi?=
+ =?us-ascii?Q?ddrWpyh5QmepgRgq28FLBPQzCUBsV1C90SvhSY9uHuAJi64b/V5tbXXXdIZO?=
+ =?us-ascii?Q?tQrr+ttmwFqxONwT6uFwQNzv5rrhwyCFU3gXnA7JA4R/cbTqxwU696qGJueX?=
+ =?us-ascii?Q?i6hMBNXk5o1iRc8Z5C6vRC5WM77unzjI/GAW3c4navn/HX6hvH38tWdmxy+x?=
+ =?us-ascii?Q?covNBLGwppVpQ2gpAx7SuWJASr5hixeoXExWd3i193Tb74Z/zqfRheA7Efxv?=
+ =?us-ascii?Q?uv6mCdu3gd/73uz29cznrpBmGeloM0dnES4Gxxxe+z8nE7qfTsQ92ogVpxWt?=
+ =?us-ascii?Q?pNSBJmG6lH4mcXKfuxGB+9vXzPPRdN8fQHwkD++e3wHE/AImrp+7tg5pXke9?=
+ =?us-ascii?Q?ZcmoZHd/D3r5r1YTua1/mzouaUNKYyDNNDKH8DQQoDCVzascEE2qmdbwh/m+?=
+ =?us-ascii?Q?a7XoCsA/M8YVUo8Xfxa065ugKMwGiRCDkK3+cj8idMdbzWWoGhnQoBU+p4Vs?=
+ =?us-ascii?Q?Pg9wXWz2FfAReA1cv3yWdVsF5MPczETsbAwlqrrIyW0zrSBllceYYflm9b09?=
+ =?us-ascii?Q?qLyS6ddIGhsNg3binVZbjxBkCn2ec2HbhkFVBe8nmdbIwBslcy/lPbKZUEWy?=
+ =?us-ascii?Q?8wykWJ1W+hrvLpJ3Mflf31+2MSCQOvn5CHB3/6T6EqAQhh1Q1W8Fnn54lOKu?=
+ =?us-ascii?Q?GXl1tmPuHj/mtTqgwMIxqqnH8j/h5kjrtOyBcJjmEtdzLNHzF4ozPldlUu3a?=
+ =?us-ascii?Q?1Gs2DLU1huXPquZ5ym/zR/U8ZlC9N1Wk93CKf7XJj7vw0Kjn8A=3D=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?zVIcR2lKv2wIwsTLnyM9i6F4/jJLIHkXnkqPpYEflMWVa4OBR7K/+hHlF1Oh?=
+ =?us-ascii?Q?Vr7+so+ZpNbLIVvo9V/E2i+9bPOd6LgkikGQf+w968TDn4sXjLY/1JptzTTZ?=
+ =?us-ascii?Q?XSqdbE+GJEX1nUQ9LrGKp5hm95WxYNAbUy6y/WiSUhl6UEn0ePpZj3i/rYeD?=
+ =?us-ascii?Q?0Em/sKrkcTCIgj3ll6Ht+nQqyvA4wu48fR0seRm4zGx51AOQv8DO2tcb5vxT?=
+ =?us-ascii?Q?u8beuIBFM2hDuxKjtFwmc8lreFd9XvkosUBa7JNDxeS3VWvoHSCOEZmZht2s?=
+ =?us-ascii?Q?8KzCMyPAjQhsB3KNPuFTZ/KSGrYRTV6/l/FAywUK2Vg3+fDcnY8EJWlHxg10?=
+ =?us-ascii?Q?XMrYl2p6DOtFTDPMADVJGBXYjlTCgnltkUM5Ebp6ttEzAmpXIFHBxYovUP0q?=
+ =?us-ascii?Q?jkhxlcet46FlvID3EgQ2/ztv9qUqE/FoKctNbrOMmP3gDas3/OugiQgKu60i?=
+ =?us-ascii?Q?/uxtPao2+iFQxYFo5354WU0JDR+IToClFcdptEBJojasmI5Ad+t6A964+obG?=
+ =?us-ascii?Q?oDNr6H8xMBENyLt7mOdK+copF7riy+dP52BsHe5n/QkhSIktncXgzEg2XL+I?=
+ =?us-ascii?Q?rke1TzAL1DReqInqV1+GNMgkiTEj2UIMIVPPmcwk9IIEyUeYtlobh9A0Au7r?=
+ =?us-ascii?Q?yi1Obksm10PcGv7CK1Z1QroyELFuL7hCcu7P2NAss6linh0GpZ6xz1tGIw34?=
+ =?us-ascii?Q?Lcbbd28XYEDauVVhIB3JPwL8GIsZN2EUJJx9Pjc1/w3B/p8a4Wl5iLK+AGMt?=
+ =?us-ascii?Q?Gajn0jVCFUvOI77lIV7AhWII77URszBkQAqWShvBOQKhGi5Le2qgz3hGVhtX?=
+ =?us-ascii?Q?SYwOmFUJm3CmzU5LNkC6f+/Gs1u1/6wwxLD/D9Pi3exJe0uVGe2Soe0X2wL+?=
+ =?us-ascii?Q?jqa+dPQN2piSiOQf0AvPjfN48Zq6+Ly62Lz9DXP1pfvWlCLWGQLqmzddUmhC?=
+ =?us-ascii?Q?paHGCBS8eygtKDXTf8V3hHUhQHThEPB313CkncURXr4gBNzokR0TqBcfePaN?=
+ =?us-ascii?Q?CQWIdHfLnY6z6Bw0Icp8Kiux+J7EH8FUifipSJ6v/hX7Lw9AYWNc7GFdSfzv?=
+ =?us-ascii?Q?ysL4Fk0Aq6aciz6c01G2ApG/tJloFHBBE40NRIdD3CF1FyNn4GxoYc9FxUE/?=
+ =?us-ascii?Q?Aubyyfuqauy+vKwg2GwyIzud08LpjKXJtxLaNGo+M5i5OD5yMCUjpz2y6FKS?=
+ =?us-ascii?Q?U64jHtnGPg/xHqRv55kIX7jRifFUQNR6dRhdxo/RlvBLLu0RIYVFsYHR4XJZ?=
+ =?us-ascii?Q?/uYmTcf0RAUFSjuIF0UFbB5FmyiQwPIVRkqrbsCl865IlY0hqjMNB5tOts0C?=
+ =?us-ascii?Q?CcK93esIMp1IINEmqtDL6JsOHwcEONcNnQiW5O01UK0WtsY5sEUl6jGnc4DR?=
+ =?us-ascii?Q?44nbjguHX+JPfuespYHXvPdsYNHkPURQ4JW04YMgyk2Pe3w4YvLVgXUdeNFg?=
+ =?us-ascii?Q?HJNNQbGL3BxyF7VDg1rhrWWpmrutlpGJeUleiTgkyV1LceA5afoRtcPEYRsM?=
+ =?us-ascii?Q?vSV+k0ss1Cu6MEGL/UQz7/7tEo8dVad4df2PkG9upIlB4bHFPHtwOmZn8f0R?=
+ =?us-ascii?Q?1pedo/QXyxfKmgKjSIar/+YjPBruh6QTQhrj8CITSwu3mjWwlCviVzAzTWlz?=
+ =?us-ascii?Q?lA=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 49fe0e84-3da1-43ff-c10b-08de3c411dac
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Dec 2025 01:19:10.3048 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: RlnnVD1CIT/2NNiYaOWDFUTLgB3c+ouUhAPnlOPxIM4fR8itrGs8PY9mXJVdLmKOJ09IpupQ7WAmDm+uGAaIKA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB7301
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,191 +175,47 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Since different drivers can use SoC remapper, modify VSEC code to
-access SoC remapper via a helper that would synchronize such accesses.
+On Mon, Dec 15, 2025 at 03:37:35PM +0100, Michal Wajdeczko wrote:
+> We want to extend our macro-based KLV list definitions with new
+> information about the version from which given KLV is supported.
+> 
+> Instead of using magic version like 0.0.0 for legacy KLVs, add
+> utility IF_ARGS macro that can be used in code generators to emit
+> different code based on the presence of any additional arguments.
+> 
+> This series cherry-picks one patch from the EGS series [1] and
+> can be merged separately.
+> 
+> v1: https://patchwork.freedesktop.org/series/158874/#rev1
+> v2: new patch with GUC_FIRMWARE_VER_AT_LEAST macro
+> 
+> Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+> 
+> [1] https://patchwork.freedesktop.org/series/158142/#rev3
+> 
+> Daniele Ceraolo Spurio (1):
+>   drm/xe/pf: Add handling for MLRC adverse event threshold
+> 
 
-Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+For the series:
+Acked-by: Matthew Brost <matthew.brost@intel.com>
 
----
-v2: (Lucas)
-- retain comment
-- s/BITS/MASK/
-
-v3: (Michal)
-- Use scope based locks
-- Add kernel doc for functions
-
-v4: (Badal)
-- Prevent bad accesses to SoC remapper
-- Enable soc remapper for BMG
----
- drivers/gpu/drm/xe/regs/xe_pmt.h              |  3 ---
- .../gpu/drm/xe/regs/xe_soc_remapper_regs.h    | 13 +++++++++++
- drivers/gpu/drm/xe/xe_device_types.h          |  5 ++++
- drivers/gpu/drm/xe/xe_pci.c                   |  3 +++
- drivers/gpu/drm/xe/xe_pci_types.h             |  1 +
- drivers/gpu/drm/xe/xe_soc_remapper.c          | 23 ++++++++++++++++++-
- drivers/gpu/drm/xe/xe_vsec.c                  |  6 +++--
- 7 files changed, 48 insertions(+), 6 deletions(-)
- create mode 100644 drivers/gpu/drm/xe/regs/xe_soc_remapper_regs.h
-
-diff --git a/drivers/gpu/drm/xe/regs/xe_pmt.h b/drivers/gpu/drm/xe/regs/xe_pmt.h
-index 0f79c0714454..240d57993ea6 100644
---- a/drivers/gpu/drm/xe/regs/xe_pmt.h
-+++ b/drivers/gpu/drm/xe/regs/xe_pmt.h
-@@ -18,9 +18,6 @@
- #define BMG_TELEMETRY_BASE_OFFSET	0xE0000
- #define BMG_TELEMETRY_OFFSET		(SOC_BASE + BMG_TELEMETRY_BASE_OFFSET)
- 
--#define SG_REMAP_INDEX1			XE_REG(SOC_BASE + 0x08)
--#define   SG_REMAP_BITS			REG_GENMASK(31, 24)
--
- #define BMG_MODS_RESIDENCY_OFFSET		(0x4D0)
- #define BMG_G2_RESIDENCY_OFFSET		(0x530)
- #define BMG_G6_RESIDENCY_OFFSET		(0x538)
-diff --git a/drivers/gpu/drm/xe/regs/xe_soc_remapper_regs.h b/drivers/gpu/drm/xe/regs/xe_soc_remapper_regs.h
-new file mode 100644
-index 000000000000..9edf234227a9
---- /dev/null
-+++ b/drivers/gpu/drm/xe/regs/xe_soc_remapper_regs.h
-@@ -0,0 +1,13 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2025 Intel Corporation
-+ */
-+#ifndef _XE_SOC_REMAPPER_REGS_H_
-+#define _XE_SOC_REMAPPER_REGS_H_
-+
-+#include "xe_regs.h"
-+
-+#define SG_REMAP_INDEX1			XE_REG(SOC_BASE + 0x08)
-+#define   SG_REMAP_TELEM_MASK		REG_GENMASK(31, 24)
-+
-+#endif
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index 598a302a288a..f2ad91815c64 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -320,6 +320,8 @@ struct xe_device {
- 		u8 has_pxp:1;
- 		/** @info.has_range_tlb_inval: Has range based TLB invalidations */
- 		u8 has_range_tlb_inval:1;
-+		/** @info.has_soc_remapper_telem: Has SoC remapper telemetry support */
-+		u8 has_soc_remapper_telem:1;
- 		/** @info.has_sriov: Supports SR-IOV */
- 		u8 has_sriov:1;
- 		/** @info.has_usm: Device has unified shared memory support */
-@@ -564,6 +566,9 @@ struct xe_device {
- 	struct {
- 		/** @soc_remapper.lock: Serialize access to SoC Remapper's index registers */
- 		spinlock_t lock;
-+
-+		/** @soc_remapper.set_telem_region: Set telemetry index */
-+		void (*set_telem_region)(struct xe_device *xe, u32 index);
- 	} soc_remapper;
- 
- 	/**
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index 8dd0ea9d1d56..d08375f7bae8 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -367,6 +367,7 @@ static const struct xe_device_desc bmg_desc = {
- 	.has_gsc_nvm = 1,
- 	.has_heci_cscfi = 1,
- 	.has_late_bind = true,
-+	.has_soc_remapper_telem = true,
- 	.has_sriov = true,
- 	.has_mem_copy_instr = true,
- 	.max_gt_per_tile = 2,
-@@ -413,6 +414,7 @@ static const struct xe_device_desc cri_desc = {
- 	.has_flat_ccs = false,
- 	.has_mbx_power_limits = true,
- 	.has_mert = true,
-+	.has_soc_remapper_telem = true,
- 	.has_sriov = true,
- 	.max_gt_per_tile = 2,
- 	.require_force_probe = true,
-@@ -681,6 +683,7 @@ static int xe_info_init_early(struct xe_device *xe,
- 	xe->info.has_llc = desc->has_llc;
- 	xe->info.has_mert = desc->has_mert;
- 	xe->info.has_pxp = desc->has_pxp;
-+	xe->info.has_soc_remapper_telem = desc->has_soc_remapper_telem;
- 	xe->info.has_sriov = xe_configfs_primary_gt_allowed(to_pci_dev(xe->drm.dev)) &&
- 		desc->has_sriov;
- 	xe->info.has_mem_copy_instr = desc->has_mem_copy_instr;
-diff --git a/drivers/gpu/drm/xe/xe_pci_types.h b/drivers/gpu/drm/xe/xe_pci_types.h
-index f19f35359696..41175fb5dc9d 100644
---- a/drivers/gpu/drm/xe/xe_pci_types.h
-+++ b/drivers/gpu/drm/xe/xe_pci_types.h
-@@ -50,6 +50,7 @@ struct xe_device_desc {
- 	u8 has_mem_copy_instr:1;
- 	u8 has_mert:1;
- 	u8 has_pxp:1;
-+	u8 has_soc_remapper_telem:1;
- 	u8 has_sriov:1;
- 	u8 needs_scratch:1;
- 	u8 skip_guc_pc:1;
-diff --git a/drivers/gpu/drm/xe/xe_soc_remapper.c b/drivers/gpu/drm/xe/xe_soc_remapper.c
-index 8a6749918436..1baf5d38e4cd 100644
---- a/drivers/gpu/drm/xe/xe_soc_remapper.c
-+++ b/drivers/gpu/drm/xe/xe_soc_remapper.c
-@@ -3,8 +3,23 @@
-  * Copyright © 2025 Intel Corporation
-  */
- 
-+#include "regs/xe_soc_remapper_regs.h"
-+#include "xe_mmio.h"
- #include "xe_soc_remapper.h"
- 
-+static void xe_soc_remapper_set_region(struct xe_device *xe, struct xe_reg reg,
-+				       u32 mask, u32 val)
-+{
-+	guard(spinlock_irqsave)(&xe->soc_remapper.lock);
-+	xe_mmio_rmw32(xe_root_tile_mmio(xe), reg, mask, val);
-+}
-+
-+static void xe_soc_remapper_set_telem_region(struct xe_device *xe, u32 index)
-+{
-+	xe_soc_remapper_set_region(xe, SG_REMAP_INDEX1, SG_REMAP_TELEM_MASK,
-+				   REG_FIELD_PREP(SG_REMAP_TELEM_MASK, index));
-+}
-+
- /**
-  * xe_soc_remapper_init() - Initialize SoC remapper
-  * @xe: Pointer to xe device.
-@@ -15,7 +30,13 @@
-  */
- int xe_soc_remapper_init(struct xe_device *xe)
- {
--	spin_lock_init(&xe->soc_remapper.lock);
-+	bool has_soc_remapper = xe->info.has_soc_remapper_telem;
-+
-+	if (has_soc_remapper)
-+		spin_lock_init(&xe->soc_remapper.lock);
-+
-+	if (xe->info.has_soc_remapper_telem)
-+		xe->soc_remapper.set_telem_region = xe_soc_remapper_set_telem_region;
- 
- 	return 0;
- }
-diff --git a/drivers/gpu/drm/xe/xe_vsec.c b/drivers/gpu/drm/xe/xe_vsec.c
-index 8f23a27871b6..eded4330584c 100644
---- a/drivers/gpu/drm/xe/xe_vsec.c
-+++ b/drivers/gpu/drm/xe/xe_vsec.c
-@@ -162,9 +162,11 @@ int xe_pmt_telem_read(struct pci_dev *pdev, u32 guid, u64 *data, loff_t user_off
- 	if (!xe_pm_runtime_get_if_active(xe))
- 		return -ENODATA;
- 
-+	if (!xe->soc_remapper.set_telem_region)
-+		return -ENODEV;
-+
- 	/* set SoC re-mapper index register based on GUID memory region */
--	xe_mmio_rmw32(xe_root_tile_mmio(xe), SG_REMAP_INDEX1, SG_REMAP_BITS,
--		      REG_FIELD_PREP(SG_REMAP_BITS, mem_region));
-+	xe->soc_remapper.set_telem_region(xe, mem_region);
- 
- 	memcpy_fromio(data, telem_addr, count);
- 	xe_pm_runtime_put(xe);
--- 
-2.43.0
-
+> Michal Wajdeczko (3):
+>   drm/xe: Introduce IF_ARGS macro utility
+>   drm/xe/guc: Introduce GUC_FIRMWARE_VER_AT_LEAST helper
+>   drm/xe/pf: Prepare for new threshold KLVs
+> 
+>  drivers/gpu/drm/xe/abi/guc_klvs_abi.h         |  9 ++++
+>  drivers/gpu/drm/xe/tests/xe_args_test.c       | 53 +++++++++++++++++++
+>  drivers/gpu/drm/xe/xe_args.h                  | 18 +++++++
+>  drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c    | 19 ++++---
+>  drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c   |  9 ++--
+>  drivers/gpu/drm/xe/xe_gt_sriov_pf_migration.c |  2 +-
+>  drivers/gpu/drm/xe/xe_guc.h                   | 21 ++++++++
+>  drivers/gpu/drm/xe/xe_guc_ads.c               |  4 +-
+>  .../drm/xe/xe_guc_klv_thresholds_set_types.h  |  6 +++
+>  9 files changed, 128 insertions(+), 13 deletions(-)
+> 
+> -- 
+> 2.47.1
+> 
