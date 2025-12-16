@@ -4,34 +4,33 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 27FA0D5CC99
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B1388D5CCA0
 	for <intel-xe@archiver.kernel.org>; Tue, 16 Dec 2025 09:22:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C3F4E10E231;
-	Tue, 16 Dec 2025 09:22:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 66C7410E8D1;
+	Tue, 16 Dec 2025 09:22:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="BvEyCfeY";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="Ba6fBdfU";
 	dkim-atps=neutral
 Received: from lankhorst.se (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 78E8E10E77B;
- Tue, 16 Dec 2025 09:22:37 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 56E0710E77B;
+ Tue, 16 Dec 2025 09:22:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1765876956;
- bh=ohJAyXokG1DXJlCLrQJRh/QxThVSMLY/wxocRwSmqYU=;
+ s=default; t=1765876963;
+ bh=Qyjkrg23NvqAtrZ6SXaT7ACN9JWfiY1iU+ZEiaE5bX4=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=BvEyCfeYryA/9FPTI4yvcFDZhkejCKGCtvEEXLnorDixZxXSnmQLpbnQ8FY0Pz5aw
- Bn1++K5SaNYZKt1tYq0NDHtCvanfbFgLFWPXFtxuXK4wOJf4UP67+QIwCt8Wyb+UbA
- iZCW+AkMB6GoqmNHMBv4FLGjonCW1wSAG7UipSKQjJcErXQRK5v1shNS5mmDFGiflp
- +a2Rd3TDIWKLC7fdy5pkEwvqAymdqW00zOyl6lDjwjn6VrDH3CFxRPEoz+HznWfslF
- sg/Wt9LX1Jzd0HB+OLi9NKoUFS83J0uquHCrn58eWzGysM1S1Bro97kn1efk/sA1iT
- HuOixUoBq/pzQ==
+ b=Ba6fBdfUrpFW11SE9npqyrOnhhFlkhLW7oe+ERI1gAkzZe1d0LFcPg7JkT2zOZgGp
+ ofJ6yAKWMQzqrKP+scuuQg80WlHdAj0lw466zhNYuX4nTt/1WGUw8PcTnHhNBsZ2lY
+ gN+GGj/0BFDqpGItfhhjqJGYoCmlpX7YcIUJD3dms08XWf631ciPyofK3gzjCjdrja
+ EUgCJcEwoSiA/iDcOwXhzc77QKKd9PWnm9VUcrQh1JJU+8gtgcVEdw0ipH4CcLTDdc
+ cHjjckVdAAL0IAs/fTAL+a1UhxrESeN39LJsblOFDuqncsp/AeXnYk5tCf8yIYX+L9
+ EUccSCNkdf2Rg==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-xe@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Subject: [i915-rt v2 09/16] drm/i915/display: Enable interrupts earlier on
- PREEMPT_RT
-Date: Tue, 16 Dec 2025 10:22:36 +0100
-Message-ID: <20251216092226.1777909-27-dev@lankhorst.se>
+Subject: [i915-rt v2 16/16] Revert "drm/i915: Depend on !PREEMPT_RT."
+Date: Tue, 16 Dec 2025 10:22:43 +0100
+Message-ID: <20251216092226.1777909-34-dev@lankhorst.se>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20251216092226.1777909-18-dev@lankhorst.se>
 References: <20251216092226.1777909-18-dev@lankhorst.se>
@@ -51,51 +50,30 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The last part of the vblank evasion is about updating bookkeeping,
-not programming hardware registers.
+From: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
 
-The interrupts cannot stay disabled here on PREEMPT_RT since the
-spinlocks get converted to mutexes.
+Once the known issues are addressed, it should be safe to enable the
+driver.
 
-There's still a small race in VRR that needs to be addressed, and
-in the other worst case there is a delay of a vblank completion if
-the vblank is fired and we schedule on the next vblank, this needs
-to be addressed separately.
-
+Acked-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+Signed-off-by: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/i915/display/intel_crtc.c | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+ drivers/gpu/drm/i915/Kconfig | 1 -
+ 1 file changed, 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
-index cb31c9c1c2525..84ab737c50918 100644
---- a/drivers/gpu/drm/i915/display/intel_crtc.c
-+++ b/drivers/gpu/drm/i915/display/intel_crtc.c
-@@ -703,6 +703,14 @@ void intel_pipe_update_end(struct intel_atomic_state *state,
- 	    intel_crtc_has_type(new_crtc_state, INTEL_OUTPUT_DSI))
- 		icl_dsi_frame_update(new_crtc_state);
- 
-+#if IS_ENABLED(CONFIG_PREEMPT_RT)
-+	/*
-+	 * Timing sensitive register writing completed, non-deterministic
-+	 * locking from here on out.
-+	 */
-+	local_irq_enable();
-+#endif
-+
- 	/* We're still in the vblank-evade critical section, this can't race.
- 	 * Would be slightly nice to just grab the vblank count and arm the
- 	 * event outside of the critical section - the spinlock might spin for a
-@@ -750,7 +758,9 @@ void intel_pipe_update_end(struct intel_atomic_state *state,
- 	if (!state->base.legacy_cursor_update)
- 		intel_vrr_send_push(NULL, new_crtc_state);
- 
-+#if !IS_ENABLED(CONFIG_PREEMPT_RT)
- 	local_irq_enable();
-+#endif
- 
- 	if (intel_parent_vgpu_active(display))
- 		goto out;
+diff --git a/drivers/gpu/drm/i915/Kconfig b/drivers/gpu/drm/i915/Kconfig
+index 5e939004b6463..40a9234e6e5dc 100644
+--- a/drivers/gpu/drm/i915/Kconfig
++++ b/drivers/gpu/drm/i915/Kconfig
+@@ -3,7 +3,6 @@ config DRM_I915
+ 	tristate "Intel 8xx/9xx/G3x/G4x/HD Graphics"
+ 	depends on DRM
+ 	depends on X86 && PCI
+-	depends on !PREEMPT_RT
+ 	select INTEL_GTT if X86
+ 	select INTERVAL_TREE
+ 	# we need shmfs for the swappable backing store, and in particular
 -- 
 2.51.0
 
