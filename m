@@ -4,52 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C1186D5E138
-	for <intel-xe@archiver.kernel.org>; Tue, 16 Dec 2025 11:40:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C5279D5E136
+	for <intel-xe@archiver.kernel.org>; Tue, 16 Dec 2025 11:40:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7EDD410E6E9;
-	Tue, 16 Dec 2025 11:40:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 87B1310E8A4;
+	Tue, 16 Dec 2025 11:40:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OeYK7cst";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MHX2tbIJ";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5553310E6E9
- for <intel-xe@lists.freedesktop.org>; Tue, 16 Dec 2025 11:40:42 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 919EE10E8A4
+ for <intel-xe@lists.freedesktop.org>; Tue, 16 Dec 2025 11:40:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765885242; x=1797421242;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=/ZIzmpzeG352Z0s6jl23tEsABGtx09DZQPIDe/AVWGY=;
- b=OeYK7cstZAhpStE+7TBMwQTen9jBZWOBtq10eBuzKI2UF6hYNnU2xbF3
- FtvGbHQOPrSF3WO5NplXxHTBmUdAdGkQbfajNZTmyPk9z77BH23AcbfpH
- jA4HYqi3XWfcW1r/UG01JAcyErP5AxXt6w+GhnOS8jBBqAqbKhEYx2+wH
- pNj3IgaWveZ8W2oy9k/h55T5j2Be2Qb/FljsGZSOAbO62OAQR2Dy8Oycc
- YU0dmegkDo6opTkbsO/4emOnsGxz3avTsqDttKlOgti41UD8JIjrCOFxt
- O1iYrwWOu37fGNNOsLKUx2M7F43va8ffQItg3V58Qkal8loZKpUevHA3b w==;
-X-CSE-ConnectionGUID: Zx20AHIhSfKcEkh0Y8CiAw==
-X-CSE-MsgGUID: MkEkSYhPSfq26vWHwHrLdQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11643"; a="70376736"
-X-IronPort-AV: E=Sophos;i="6.21,153,1763452800"; d="scan'208";a="70376736"
+ t=1765885246; x=1797421246;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=Rppt4W3wHe1DB457/kAUUIr0Dwi5WnVHQbIpUO1199Q=;
+ b=MHX2tbIJnLntZKuoSIfVqnFfBIUBVwziWE1kqZvM4CTgurKWNMCTevFW
+ WDn+OLi2kt1z+UeWJWulK6Vdx/ixuyS+zgIN2GmSUWqTvVYa1uU75ddW2
+ 4XSORVvhgcnXVdEPzewUneKqwkRCF8dQls/a1Qyhmnzr0J845xJY0HxD2
+ 0PmfX1EDiv/tkU8m/V/YbvGLOyuHR5hF1ejJGrLO0aX/69TFp6M0Xzvzx
+ V4xPfh/lXda/ciWCRTDHVFtvtRYGPKB/JQUiqU5aVDI7CsOwTeP8qLeH0
+ y9EyBbgtcwZ+ExzgBQ+JNr2dk0oaUxh6ucHyYjKHigZX67VsFK6b2FhuN Q==;
+X-CSE-ConnectionGUID: SR3I3dLOTEusSoo3PIlspA==
+X-CSE-MsgGUID: CjCV87U3TAy4nM+p1Jnu9g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11643"; a="70376740"
+X-IronPort-AV: E=Sophos;i="6.21,153,1763452800"; d="scan'208";a="70376740"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2025 03:40:42 -0800
-X-CSE-ConnectionGUID: EHAecS58QteUr3VmOoW0LQ==
-X-CSE-MsgGUID: FoRFh92tQku/5m8wsnj3Jg==
+ 16 Dec 2025 03:40:46 -0800
+X-CSE-ConnectionGUID: IiAUJ23vTsO5EVz3cw0Jaw==
+X-CSE-MsgGUID: lw5LuXgoSOSZQthf9bk02w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,153,1763452800"; d="scan'208";a="197977845"
+X-IronPort-AV: E=Sophos;i="6.21,153,1763452800"; d="scan'208";a="197977851"
 Received: from sinjan-super-server.iind.intel.com ([10.190.239.39])
  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2025 03:40:39 -0800
+ 16 Dec 2025 03:40:43 -0800
 From: Karthik Poosa <karthik.poosa@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: anshuman.gupta@intel.com, badal.nilawar@intel.com, rodrigo.vivi@intel.com,
  raag.jadav@intel.com, riana.tauro@intel.com,
  Karthik Poosa <karthik.poosa@intel.com>
-Subject: [PATCH v3 0/4] drm/xe/hwmon: Expose new temperature attributes
-Date: Tue, 16 Dec 2025 17:10:26 +0530
-Message-Id: <20251216114030.226399-1-karthik.poosa@intel.com>
+Subject: [PATCH v3 1/4] drm/xe/hwmon: Expose temperature limits
+Date: Tue, 16 Dec 2025 17:10:27 +0530
+Message-Id: <20251216114030.226399-2-karthik.poosa@intel.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20251216114030.226399-1-karthik.poosa@intel.com>
+References: <20251216114030.226399-1-karthik.poosa@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -66,38 +68,334 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Expose tempX_emergency and tempX_crit for package and vram,
-representing shutdown and critical temperature thresholds.
-These values are read via pcode thermal mailbox commands.
+Read temperature limits using pcode mailbox and
+expose shutdown temperature limit as tempX_emergency,
+critical temperature limit of as tempX_crit and
+GPU average temperature limit as tempX_max.
 
-These are read using pcode thermal mailbox commands
+Update Xe hwmon documentation for these entries.
 
-v2: 
- - Expose memory controller, pcie and individual vram
-   temperatures also.
- - Addressed some of review comments of v1 from KVP.
-
-v3:
- - Combine patches 1,2,3 into patch 1.
- - Combine patches 4,5 to patch 2.
- - Addressed review comments from v2.
- - Update kernel version in Xe hwmon documentation.
-
-Karthik Poosa (4):
-  drm/xe/hwmon: Expose temperature limits
-  drm/xe/hwmon: Expose memory controller temperature
-  drm/xe/hwmon: Expose GPU pcie temperature
-  drm/xe/hwmon: Expose individual vram temperature
-
- .../ABI/testing/sysfs-driver-intel-xe-hwmon   | 112 +++++++
- drivers/gpu/drm/xe/regs/xe_pcode_regs.h       |   2 +
+Signed-off-by: Karthik Poosa <karthik.poosa@intel.com>
+---
+ .../ABI/testing/sysfs-driver-intel-xe-hwmon   |  40 ++++++
  drivers/gpu/drm/xe/xe_device_types.h          |   3 +
- drivers/gpu/drm/xe/xe_hwmon.c                 | 295 +++++++++++++++++-
+ drivers/gpu/drm/xe/xe_hwmon.c                 | 116 +++++++++++++++++-
  drivers/gpu/drm/xe/xe_pci.c                   |   5 +
  drivers/gpu/drm/xe/xe_pci_types.h             |   1 +
- drivers/gpu/drm/xe/xe_pcode_api.h             |   7 +
- 7 files changed, 415 insertions(+), 10 deletions(-)
+ drivers/gpu/drm/xe/xe_pcode_api.h             |   3 +
+ 6 files changed, 164 insertions(+), 4 deletions(-)
 
+diff --git a/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon b/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
+index d9e2b17c6872..c8f211c336be 100644
+--- a/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
++++ b/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
+@@ -196,3 +196,43 @@ Description:	RW. Package burst power limit interval (Tau in PL2/Tau) in
+ 		milliseconds over which sustained power is averaged.
+ 
+ 		Only supported for particular Intel Xe graphics platforms.
++
++What:		/sys/bus/pci/drivers/xe/.../hwmon/hwmon<i>/temp2_emergency
++Date:		December 2025
++KernelVersion:	6.19
++Contact:	intel-xe@lists.freedesktop.org
++Description:	RO. Package shutdown temperature in millidegree Celsius.
++
++		Only supported for particular Intel Xe graphics platforms.
++
++What:		/sys/bus/pci/drivers/xe/.../hwmon/hwmon<i>/temp2_crit
++Date:		December 2025
++KernelVersion:	6.19
++Contact:	intel-xe@lists.freedesktop.org
++Description:	RO. Package critical temperature in millidegree Celsius.
++
++		Only supported for particular Intel Xe graphics platforms.
++
++What:		/sys/bus/pci/drivers/xe/.../hwmon/hwmon<i>/temp2_max
++Date:		December 2025
++KernelVersion:	6.19
++Contact:	intel-xe@lists.freedesktop.org
++Description:	RO. Package average temperature limit in millidegree Celsius.
++
++		Only supported for particular Intel Xe graphics platforms.
++
++What:		/sys/bus/pci/drivers/xe/.../hwmon/hwmon<i>/temp3_emergency
++Date:		December 2025
++KernelVersion:	6.19
++Contact:	intel-xe@lists.freedesktop.org
++Description:	RO. VRAM shutdown temperature in millidegree Celsius.
++
++		Only supported for particular Intel Xe graphics platforms.
++
++What:		/sys/bus/pci/drivers/xe/.../hwmon/hwmon<i>/temp3_crit
++Date:		December 2025
++KernelVersion:	6.19
++Contact:	intel-xe@lists.freedesktop.org
++Description:	RO. VRAM critical temperature in millidegree Celsius.
++
++		Only supported for particular Intel Xe graphics platforms.
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index 413ba4c8b62e..8e6dd2665596 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -321,6 +321,9 @@ struct xe_device {
+ 		 * pcode mailbox commands.
+ 		 */
+ 		u8 has_mbx_power_limits:1;
++		/** @info.has_mbx_thermal_info: Device has support for thermal mailbox commands.
++		 */
++		u8 has_mbx_thermal_info:1;
+ 		/** @info.has_mem_copy_instr: Device supports MEM_COPY instruction */
+ 		u8 has_mem_copy_instr:1;
+ 		/** @info.has_mert: Device has standalone MERT */
+diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
+index ff2aea52ef75..66a8c3e40027 100644
+--- a/drivers/gpu/drm/xe/xe_hwmon.c
++++ b/drivers/gpu/drm/xe/xe_hwmon.c
+@@ -53,6 +53,14 @@ enum xe_fan_channel {
+ 	FAN_MAX,
+ };
+ 
++enum xe_temp_limit {
++	TEMP_LIMIT_PKG_SHUTDOWN,
++	TEMP_LIMIT_PKG_TJMAX,
++	TEMP_LIMIT_MEM_SHUTDOWN,
++	TEMP_LIMIT_PKG_CRIT,
++	TEMP_LIMIT_MEM_TJMAX,
++};
++
+ /* Attribute index for powerX_xxx_interval sysfs entries */
+ enum sensor_attr_power {
+ 	SENSOR_INDEX_PSYS_PL1,
+@@ -111,6 +119,18 @@ struct xe_hwmon_fan_info {
+ 	u64 time_prev;
+ };
+ 
++/**
++ * struct xe_hwmon_thermal_info - to store temperature data
++ */
++struct xe_hwmon_thermal_info {
++	union {
++		/** @limits: temperatures limits */
++		u8 limit[8];
++		/** @data: temperature limits in dwords */
++		u32 data[2];
++	};
++};
++
+ /**
+  * struct xe_hwmon - xe hwmon data structure
+  */
+@@ -137,7 +157,8 @@ struct xe_hwmon {
+ 	u32 pl1_on_boot[CHANNEL_MAX];
+ 	/** @pl2_on_boot: power limit PL2 on boot */
+ 	u32 pl2_on_boot[CHANNEL_MAX];
+-
++	/** @temp: Temperature info */
++	struct xe_hwmon_thermal_info temp;
+ };
+ 
+ static int xe_hwmon_pcode_read_power_limit(const struct xe_hwmon *hwmon, u32 attr, int channel,
+@@ -677,8 +698,11 @@ static const struct attribute_group *hwmon_groups[] = {
+ };
+ 
+ static const struct hwmon_channel_info * const hwmon_info[] = {
+-	HWMON_CHANNEL_INFO(temp, HWMON_T_LABEL, HWMON_T_INPUT | HWMON_T_LABEL,
+-			   HWMON_T_INPUT | HWMON_T_LABEL),
++	HWMON_CHANNEL_INFO(temp,
++			   HWMON_T_LABEL,
++			   HWMON_T_LABEL | HWMON_T_INPUT | HWMON_T_EMERGENCY | HWMON_T_CRIT |
++			   HWMON_T_MAX,
++			   HWMON_T_LABEL | HWMON_T_INPUT | HWMON_T_EMERGENCY | HWMON_T_CRIT),
+ 	HWMON_CHANNEL_INFO(power, HWMON_P_MAX | HWMON_P_RATED_MAX | HWMON_P_LABEL | HWMON_P_CRIT |
+ 			   HWMON_P_CAP,
+ 			   HWMON_P_MAX | HWMON_P_RATED_MAX | HWMON_P_LABEL | HWMON_P_CAP),
+@@ -689,6 +713,23 @@ static const struct hwmon_channel_info * const hwmon_info[] = {
+ 	NULL
+ };
+ 
++static int xe_hwmon_pcode_read_thermal_info(struct xe_hwmon *hwmon)
++{
++	struct xe_tile *root_tile = xe_device_get_root_tile(hwmon->xe);
++	int ret = 0;
++
++	if (!hwmon->xe->info.has_mbx_power_limits)
++		return -EOPNOTSUPP;
++
++	/* Read thermal info */
++	ret = xe_pcode_read(root_tile, PCODE_MBOX(PCODE_THERMAL_INFO, READ_THERMAL_LIMITS, 0),
++			    &hwmon->temp.data[0], &hwmon->temp.data[1]);
++	drm_dbg(&hwmon->xe->drm, "thermal info read ret %d, val 0x%x val1 0x%x\n", ret,
++		hwmon->temp.data[0], hwmon->temp.data[1]);
++
++	return ret;
++}
++
+ /* I1 is exposed as power_crit or as curr_crit depending on bit 31 */
+ static int xe_hwmon_pcode_read_i1(const struct xe_hwmon *hwmon, u32 *uval)
+ {
+@@ -787,6 +828,34 @@ static umode_t
+ xe_hwmon_temp_is_visible(struct xe_hwmon *hwmon, u32 attr, int channel)
+ {
+ 	switch (attr) {
++	case hwmon_temp_emergency:
++		switch (channel) {
++		case CHANNEL_PKG:
++			return hwmon->temp.limit[TEMP_LIMIT_PKG_SHUTDOWN] ? 0444 : 0;
++		case CHANNEL_VRAM:
++			return hwmon->temp.limit[TEMP_LIMIT_MEM_SHUTDOWN] ? 0444 : 0;
++		default:
++			return 0;
++		}
++		break;
++	case hwmon_temp_crit:
++		switch (channel) {
++		case CHANNEL_PKG:
++			return hwmon->temp.limit[TEMP_LIMIT_PKG_TJMAX] ? 0444 : 0;
++		case CHANNEL_VRAM:
++			return hwmon->temp.limit[TEMP_LIMIT_MEM_TJMAX] ? 0444 : 0;
++		default:
++			return 0;
++		}
++		break;
++	case hwmon_temp_max:
++		switch (channel) {
++		case CHANNEL_PKG:
++			return hwmon->temp.limit[TEMP_LIMIT_PKG_CRIT] ? 0444 : 0;
++		default:
++			return 0;
++		}
++		break;
+ 	case hwmon_temp_input:
+ 	case hwmon_temp_label:
+ 		return xe_reg_is_valid(xe_hwmon_get_reg(hwmon, REG_TEMP, channel)) ? 0444 : 0;
+@@ -807,10 +876,46 @@ xe_hwmon_temp_read(struct xe_hwmon *hwmon, u32 attr, int channel, long *val)
+ 
+ 		/* HW register value is in degrees Celsius, convert to millidegrees. */
+ 		*val = REG_FIELD_GET(TEMP_MASK, reg_val) * MILLIDEGREE_PER_DEGREE;
+-		return 0;
++		break;
++	case hwmon_temp_emergency:
++		switch (channel) {
++		case CHANNEL_PKG:
++			*val = hwmon->temp.limit[TEMP_LIMIT_PKG_SHUTDOWN] * MILLIDEGREE_PER_DEGREE;
++			break;
++		case CHANNEL_VRAM:
++			*val = hwmon->temp.limit[TEMP_LIMIT_MEM_SHUTDOWN] * MILLIDEGREE_PER_DEGREE;
++			break;
++		default:
++			*val = 0;
++			return -EOPNOTSUPP;
++		}
++		break;
++	case hwmon_temp_crit:
++		switch (channel) {
++		case CHANNEL_PKG:
++			*val = hwmon->temp.limit[TEMP_LIMIT_PKG_TJMAX] * MILLIDEGREE_PER_DEGREE;
++			break;
++		case CHANNEL_VRAM:
++			*val = hwmon->temp.limit[TEMP_LIMIT_MEM_TJMAX] * MILLIDEGREE_PER_DEGREE;
++			break;
++		default:
++			*val = 0;
++			return -EOPNOTSUPP;
++		}
++		break;
++	case hwmon_temp_max:
++		switch (channel) {
++		case CHANNEL_PKG:
++			*val = hwmon->temp.limit[TEMP_LIMIT_PKG_CRIT] * MILLIDEGREE_PER_DEGREE;
++			break;
++		default:
++			return 0;
++		}
++		break;
+ 	default:
+ 		return -EOPNOTSUPP;
+ 	}
++	return 0;
+ }
+ 
+ static umode_t
+@@ -1263,6 +1368,9 @@ xe_hwmon_get_preregistration_info(struct xe_hwmon *hwmon)
+ 	for (channel = 0; channel < FAN_MAX; channel++)
+ 		if (xe_hwmon_is_visible(hwmon, hwmon_fan, hwmon_fan_input, channel))
+ 			xe_hwmon_fan_input_read(hwmon, channel, &fan_speed);
++
++	if (xe_hwmon_pcode_read_thermal_info(hwmon))
++		drm_dbg(&hwmon->xe->drm, "Thermal mailbox support not present in firmware\n");
+ }
+ 
+ int xe_hwmon_register(struct xe_device *xe)
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index 673761c8623e..a47637900e84 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -311,6 +311,7 @@ static const struct xe_device_desc dg2_desc = {
+ 	.has_display = true,
+ 	.has_fan_control = true,
+ 	.has_mbx_power_limits = false,
++	.has_mbx_thermal_info = false,
+ };
+ 
+ static const __maybe_unused struct xe_device_desc pvc_desc = {
+@@ -328,6 +329,7 @@ static const __maybe_unused struct xe_device_desc pvc_desc = {
+ 	.vm_max_level = 4,
+ 	.vram_flags = XE_VRAM_FLAGS_NEED64K,
+ 	.has_mbx_power_limits = false,
++	.has_mbx_thermal_info = false,
+ };
+ 
+ static const struct xe_device_desc mtl_desc = {
+@@ -365,6 +367,7 @@ static const struct xe_device_desc bmg_desc = {
+ 	.has_fan_control = true,
+ 	.has_flat_ccs = 1,
+ 	.has_mbx_power_limits = true,
++	.has_mbx_thermal_info = true,
+ 	.has_gsc_nvm = 1,
+ 	.has_heci_cscfi = 1,
+ 	.has_i2c = true,
+@@ -418,6 +421,7 @@ static const struct xe_device_desc cri_desc = {
+ 	.has_flat_ccs = false,
+ 	.has_i2c = true,
+ 	.has_mbx_power_limits = true,
++	.has_mbx_thermal_info = true,
+ 	.has_mert = true,
+ 	.has_pre_prod_wa = 1,
+ 	.has_sriov = true,
+@@ -681,6 +685,7 @@ static int xe_info_init_early(struct xe_device *xe,
+ 	/* runtime fusing may force flat_ccs to disabled later */
+ 	xe->info.has_flat_ccs = desc->has_flat_ccs;
+ 	xe->info.has_mbx_power_limits = desc->has_mbx_power_limits;
++	xe->info.has_mbx_thermal_info = desc->has_mbx_thermal_info;
+ 	xe->info.has_gsc_nvm = desc->has_gsc_nvm;
+ 	xe->info.has_heci_gscfi = desc->has_heci_gscfi;
+ 	xe->info.has_heci_cscfi = desc->has_heci_cscfi;
+diff --git a/drivers/gpu/drm/xe/xe_pci_types.h b/drivers/gpu/drm/xe/xe_pci_types.h
+index 3bb51d155951..34d2b66188e4 100644
+--- a/drivers/gpu/drm/xe/xe_pci_types.h
++++ b/drivers/gpu/drm/xe/xe_pci_types.h
+@@ -48,6 +48,7 @@ struct xe_device_desc {
+ 	u8 has_late_bind:1;
+ 	u8 has_llc:1;
+ 	u8 has_mbx_power_limits:1;
++	u8 has_mbx_thermal_info:1;
+ 	u8 has_mem_copy_instr:1;
+ 	u8 has_mert:1;
+ 	u8 has_pre_prod_wa:1;
+diff --git a/drivers/gpu/drm/xe/xe_pcode_api.h b/drivers/gpu/drm/xe/xe_pcode_api.h
+index 975892d6b230..a3bff76a074d 100644
+--- a/drivers/gpu/drm/xe/xe_pcode_api.h
++++ b/drivers/gpu/drm/xe/xe_pcode_api.h
+@@ -65,6 +65,9 @@
+ #define       FAN_TABLE				1
+ #define       VR_CONFIG				2
+ 
++#define	PCODE_THERMAL_INFO			0x25
++#define	READ_THERMAL_LIMITS			0x0
++
+ #define   PCODE_FREQUENCY_CONFIG		0x6e
+ /* Frequency Config Sub Commands (param1) */
+ #define     PCODE_MBOX_FC_SC_READ_FUSED_P0	0x0
 -- 
 2.25.1
 
