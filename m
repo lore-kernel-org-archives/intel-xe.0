@@ -4,186 +4,185 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DA5FCD5B87D
-	for <intel-xe@archiver.kernel.org>; Tue, 16 Dec 2025 01:13:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 71518D5B87A
+	for <intel-xe@archiver.kernel.org>; Tue, 16 Dec 2025 01:19:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9A58510E209;
-	Tue, 16 Dec 2025 01:13:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2991410E621;
+	Tue, 16 Dec 2025 01:19:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VrdowxZr";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="oI1njgaE";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7A7A610E209
- for <intel-xe@lists.freedesktop.org>; Tue, 16 Dec 2025 01:13:03 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3948410E621
+ for <intel-xe@lists.freedesktop.org>; Tue, 16 Dec 2025 01:19:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765847583; x=1797383583;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=tFeRFzsrPcTfVPsxWUY+E0Ta2iLabIvtDQSMw7XSDW8=;
- b=VrdowxZrCpFG36BQ4kNMRRLn9W2MPuNrWw/+ORlgyXsG0JA9i3Qn7w8L
- 2mHIAUKSJww1yMSwxuX4tXpDUd7J2tpr01cwtbyFq492f5rSMWtjMX2W4
- JqQ7XYl1u9KAwFKuxycJtGYkqs33QbZnj/DQFrZzwuj6xr1wiL52mCZC9
- kOaf5aQJhuLCUA3RxaRlndu4hvI+SvZOQ0lmOxcNAkZ0IFTccXNuuaXV7
- bWuTtRqDNv1/A+l+407hRIXw/ACI1bofbcoNexNYehZSxnGXYQixHWbFr
- S9A4Lw9Po/gWwqFN4YCCZrQZxKCM/DGxrz7zxIgmKJnRdK7hrcFy1I8/Q w==;
-X-CSE-ConnectionGUID: 8fbXQHx8TPOvXigjNR6qTQ==
-X-CSE-MsgGUID: fkhnXXIxTl6ELcA+VG7vIw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11643"; a="78069946"
-X-IronPort-AV: E=Sophos;i="6.21,152,1763452800"; d="scan'208";a="78069946"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Dec 2025 17:13:03 -0800
-X-CSE-ConnectionGUID: cqezupjTT+uBsfP7fcp0jw==
-X-CSE-MsgGUID: IEnBKr3IQ+qe8d4l/EGyEA==
+ t=1765847946; x=1797383946;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:mime-version;
+ bh=0LsJSSBI39lQkyrPuUudmuwcHU3pN1jt+ZS9wc+9WzU=;
+ b=oI1njgaE4ho5cGqtkBUmoWa/dSRHc17ALVwH+AXMVlXGZckPRmR1Tvlq
+ tWuAFbeGNupSGvloR5wN1s6muw7n7scyx/Ww9lz7VU+mQUbZh+Je3jZ3+
+ iRQOuwPwsbPKKVlKTt5svscK1U716yLwERPebD6ciXUh9a8Wl9OQ/h67B
+ bHa8IbnO4OJj3eoyZHabJc0YQ0mXzdoKaacmci17xCwThzJFkIN6h2zul
+ wG5VVgmWXoU7HYzhmoW3U0BQBRHzWmCCmi40oDfI1vJ9iZHwGN50xw4ad
+ KG6Q49W6F5KYOMB/O+XeFTYTGaYvb/JzZlH6XlgMrP6BnrqfjWXisvqSw A==;
+X-CSE-ConnectionGUID: WVlP1m6/SJ6rz2u/m5bwGg==
+X-CSE-MsgGUID: iyGL/pDJSyy7Kd/Ak4w8pw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11635"; a="67700992"
+X-IronPort-AV: E=Sophos;i="6.20,256,1758610800"; d="scan'208,217";a="67700992"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Dec 2025 17:19:06 -0800
+X-CSE-ConnectionGUID: nWKyyn9tRkWFEMAZx4GEHw==
+X-CSE-MsgGUID: f/0IXxagTTSiYG2utXNRVg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,152,1763452800"; d="scan'208";a="202372130"
-Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
- by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Dec 2025 17:13:03 -0800
+X-IronPort-AV: E=Sophos;i="6.21,152,1763452800"; 
+ d="scan'208,217";a="202985193"
+Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
+ by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Dec 2025 17:19:06 -0800
 Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Mon, 15 Dec 2025 17:13:02 -0800
+ 15.2.2562.29; Mon, 15 Dec 2025 17:19:04 -0800
 Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
  FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29 via Frontend Transport; Mon, 15 Dec 2025 17:13:02 -0800
-Received: from DM5PR21CU001.outbound.protection.outlook.com (52.101.62.32) by
+ 15.2.2562.29 via Frontend Transport; Mon, 15 Dec 2025 17:19:04 -0800
+Received: from CH5PR02CU005.outbound.protection.outlook.com (40.107.200.27) by
  edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Mon, 15 Dec 2025 17:13:02 -0800
+ 15.2.2562.29; Mon, 15 Dec 2025 17:19:04 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=CvZ92YT4Z9WoNa4A12YKz7giWGOaiBBzZ1sj7c0F3QX920DEvJZjOpqcEhY1bYLs/g5l+20ulLnAmjkmXKXvR+qrVYPpEoOtnNVj10Oo1KpFdahHcMxQjxZ0J78hhs2UwylqICuE/YpL6875Szy8Fam2cReQjUvgamKP6l2uPOXlYkKVoD92XtToJL5fF003d7rfLJW85Wc/dREUTD9q4lySUWWbKLSG+TWmsIMyNXW8tHrqtA8RF9mtGUufva7bMdrUUYx0ZPPCS2vFanlWiGtXRcM9glRcyh19lN1hQ8rW1IR+068jEqTbAlzyqS+uXhNTSDVhNR50NZugJIyuHA==
+ b=ha6I7eC3O2SfbpgmOKpeaRx9wkSel+OUWGGF0Bp93Q9r1DMkqWPYGs4PSPi2LUJvqPSpaBoIvk2qeoaIDP/5UkQ3jWrQydXRufW60vRjW5/n0/vPmA25wWP4CcgEBgRd7J3nXuCcdyfNmq8ROjoLniJr3m4/XMyL4CE8a2gxxvAMafkeOc9j0caFnuL8NaUgzbSg4PabCZhgjDcoiwdgm/mxmrr4Fl6QNicQnLIg6/1D8DLqd39tXUjSUIJfnBFvhPDA63IQpRIscEfeoTkka4y7Aqi01HA1OKl36GZoMFs3AD86UO3aqA5+fxiLiGJi73hKLGbwFcBvi5KrR85nEw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=YTjjOSAsw/AcqgHx0qlFRHN8fC9fYFqpSitD5DnuAxE=;
- b=qQB4IyoywgX7LfK0yrMVYk2wKfce/4c7GUIFo8cWTZ1pHe3RV26b7zmT4eWDSnjlLCgsoDwM6ON4nQP6FvzeBWdzgmoUDz9MoivVp1+qLoyPruCx1CyDiCjdQlnmQkhvAjurDQ9zStP1eNcQJGpOv9Y4CdvQnbcfbOkqtPQlsjrcge/t4C+KG1MTsOpG8jWlUMlxx0suJsvAPJBTtIcGjTFrdBERQXDu5xupUjkZ+A8WGdaFx1jjXt6NkvgW6x03UNVhecrwjUhdAU+NiSp+cBnILDgPrmt4C9YG/95MRtbD3b92xsMGEMwTqP6GZUpG82W+sLkhbbmOe6j6oOZmig==
+ bh=zSpzLUxM847786Rq+UlGnPwmRN3UcXvjW9Qu5n6xLII=;
+ b=Cpg3NlKiMn7l30wPFoGi6yZ2uj/dkIz8dBE1DnDkDiHKlNglQ7w+RMxXV5GE2c4410yNX/MCQ7bzNY1dfDDxbqklgiEbRWJMIzslZFpO+/plF7vNQpGDjKOF3u+sWeDWE0kit5MNZg1/6EFGdOzK8ObvimR3hG/ssIpgq2NCUgLTaiPKbujHOlyfRpB46u+b6LFg2sqZgQ7coD507yQNEEIMvbN6e7VwS3S21Ha6HO1K+sdA+TvqbrI2pLlfcXalTNO7YwLcRsDnudxAhXL4k21oIlKRPtCCvN+4XgP9M4YPghG9oPOlQit9+rcAqASY3rfybTW+dlBaHTDJkR384w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by IA4PR11MB9033.namprd11.prod.outlook.com (2603:10b6:208:566::11)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9412.13; Tue, 16 Dec
- 2025 01:12:59 +0000
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::9e94:e21f:e11a:332]) by PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::9e94:e21f:e11a:332%7]) with mapi id 15.20.9412.011; Tue, 16 Dec 2025
- 01:12:59 +0000
-Date: Mon, 15 Dec 2025 17:12:57 -0800
-From: Matthew Brost <matthew.brost@intel.com>
-To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-CC: <intel-xe@lists.freedesktop.org>, <francois.dugast@intel.com>,
- <michal.mrozek@intel.com>
-Subject: Re: [PATCH v2 5/7] drm/xe: Wait on in-syncs when swicthing to
- dma-fence mode
-Message-ID: <aUCyGSq/6p86GdoS@lstrano-desk.jf.intel.com>
-References: <20251212182847.1683222-1-matthew.brost@intel.com>
- <20251212182847.1683222-6-matthew.brost@intel.com>
- <f8d4426124338517d5bc9f99daf8fd665c9a0c3f.camel@linux.intel.com>
- <aUCBrn8nGPSp4lBR@lstrano-desk.jf.intel.com>
- <236818068ac38d0fbfe0603a84cd056d2961bfb8.camel@linux.intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <236818068ac38d0fbfe0603a84cd056d2961bfb8.camel@linux.intel.com>
-X-ClientProxiedBy: MW4PR03CA0223.namprd03.prod.outlook.com
- (2603:10b6:303:b9::18) To PH7PR11MB6522.namprd11.prod.outlook.com
- (2603:10b6:510:212::12)
+Received: from MN0PR11MB6278.namprd11.prod.outlook.com (2603:10b6:208:3c2::8)
+ by DS7PR11MB6271.namprd11.prod.outlook.com (2603:10b6:8:95::6) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9412.13; Tue, 16 Dec 2025 01:19:00 +0000
+Received: from MN0PR11MB6278.namprd11.prod.outlook.com
+ ([fe80::a9df:4a4d:b9e7:76e2]) by MN0PR11MB6278.namprd11.prod.outlook.com
+ ([fe80::a9df:4a4d:b9e7:76e2%6]) with mapi id 15.20.9412.011; Tue, 16 Dec 2025
+ 01:19:00 +0000
+Content-Type: multipart/alternative;
+ boundary="------------sLcUjs9BX8YGA4fRUje3FU88"
+Message-ID: <9335d8a0-8d06-4fbd-b855-48dfc2966330@intel.com>
+Date: Mon, 15 Dec 2025 17:18:58 -0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/3] drm/xe/eustall: Disallow 0 EU stall property values
+To: Ashutosh Dixit <ashutosh.dixit@intel.com>, <intel-xe@lists.freedesktop.org>
+CC: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>,
+ <peter.senna@intel.com>
+References: <20251212061850.1565459-1-ashutosh.dixit@intel.com>
+ <20251212061850.1565459-4-ashutosh.dixit@intel.com>
+Content-Language: en-US
+From: Harish Chegondi <harish.chegondi@intel.com>
+In-Reply-To: <20251212061850.1565459-4-ashutosh.dixit@intel.com>
+X-ClientProxiedBy: MW4PR04CA0277.namprd04.prod.outlook.com
+ (2603:10b6:303:89::12) To MN0PR11MB6278.namprd11.prod.outlook.com
+ (2603:10b6:208:3c2::8)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|IA4PR11MB9033:EE_
-X-MS-Office365-Filtering-Correlation-Id: 59e8bfd8-d233-4a99-a585-08de3c40409d
+X-MS-TrafficTypeDiagnostic: MN0PR11MB6278:EE_|DS7PR11MB6271:EE_
+X-MS-Office365-Filtering-Correlation-Id: 793fabfa-99cb-469e-aba7-08de3c4117ea
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014|7053199007;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?NGtCd1QzRWtlTDgwTXJIakJIM0hES2djeitSNnFJYmphQmp0d21weFZKR24z?=
- =?utf-8?B?NEtKdTNUbGZnMmdJNkIxbmI0d1pPVldrSzJTYnp1dzMxOGp2ZWhEMWxRYkNV?=
- =?utf-8?B?QndoQUVpQ2RoVTR3S3I1RER5NWs1TkdCSFFpT3hzVGROcnhyaW1DWit6N2Z2?=
- =?utf-8?B?S0VWcm9UU2p3QWY4OE43M1BPcUI3REh3blduT1ozTjdKcUMwaFhvWGhYN0FE?=
- =?utf-8?B?K3JKWW1vSjdOdmZXNlJCaFB2UHpCWDhoa2hESS9waDh4VWlqREVqanNIcURL?=
- =?utf-8?B?VUdkd0xlQ2RGcnNOdkNZM0JWRnlLYjc2RGx4eitzOGFIaFhvZkhlQkdYaU5U?=
- =?utf-8?B?RkRtbTVkWjRPaXMzU1ZDbnFmUFB0NUZPTmhldlJ3Y3lXdTJES3grbmVQVzcr?=
- =?utf-8?B?S0JNamtsT0hpaHVFWW01L2ZSNGNyU0NtZWFBV3RYdkxtUWUvSzVzQmQ2Z0pR?=
- =?utf-8?B?b0IxSDN6MkVKcWFqVytkRE9jWFlmd3UwYU5Cem5lVHFBejFFMHJoVHE3MHMz?=
- =?utf-8?B?RmZXL2NVT3Vud2hRL1NhMGNVZFhTUjFOeDhpSjNsM1RxTy9GRTNDd1VCVFBI?=
- =?utf-8?B?SWNJVWwvSVB4OGl5OFpPalphUktYNDZYMENMcWZXeHkyMVp4cVZhUTNEM2Mv?=
- =?utf-8?B?SWErbmVDK05aUHFCUG16VEE2MjlsZEVOaUdQNDBic0V0em9wZ1dMVVpmU0E4?=
- =?utf-8?B?QTlTZVVWcTUxZWt0R2pXSkk0MVR4T0ZBTWJZUnMrVW1kSHhZTmgwZ2lNd0VN?=
- =?utf-8?B?S0NMQVRwbzhaSnZJVmJlNlNWM0pBZVBmZGtTdDk0OVZZTXJxNXMzM2c2bHNQ?=
- =?utf-8?B?dnhyWmhMQnJ0Qit1VVFMZ3B1clQyM2FVeGlYS3hoNUZlbE5KblVTN29FbGtF?=
- =?utf-8?B?QWdZT3BZbUI4MmJreExIdkM5bGh1b3JPR1o1d0dyc294VkVkaHBKK0pycWZN?=
- =?utf-8?B?eUR6MWlJa2dsOGI2NFlqQnBkd0Q5TzZMbVBsY2hWdEk2VDFXUmNoMmRpUk1R?=
- =?utf-8?B?akF6WGNCUXZ1TmdsQUJ3VjJ4OWdoQmlvRHRrazlnWTBHaHR3aGdlbUpLcEYv?=
- =?utf-8?B?T0R3TEpBMW84RzZpVThrMVBFZVNVSW84UXNWSlNWUXFxNUw1QVRQOUhlRHBP?=
- =?utf-8?B?VHREN3NDM1VEaGI5Mkc5SmQ5d0hhYXBuMDlGdnlxR0JXRFJhc2x2KzBzSHk0?=
- =?utf-8?B?WkFTY2ppaFFEb1JpOWpTQkpzUTVEWUovZEQ4QlUzUEZOdHd5SnNsQVNLbTQw?=
- =?utf-8?B?OHprQWhQUHNOMXFyMVJWMmx1OG5LQkhNUERrRTBoaUJ1UnlxOGMrL01FKzlU?=
- =?utf-8?B?c3orbkxlU3daZXRMM1crencvM0tQUjgwcmQ5SDRYaW5NcnBPTlpUSXVoRGRR?=
- =?utf-8?B?QThXSk85bzduZmRMR3RZZjRQWDI5ZlFoQnZobXVpcmNldUgvM3VnZk9VcW9q?=
- =?utf-8?B?TGhBNUFYMHZsK0hvWXEveURBTmV1UHg4NGhBcWZTVlR6MDJSaFVubGFtdE9P?=
- =?utf-8?B?cWNOL0V2UWFkNXBjQnZiN1V2YnVnVW1WeDEzbkJiN0ZWczJDWkhBNUxRU0hv?=
- =?utf-8?B?UGJxU05XNENPSC9NaFh2TkVXeHR5MzgvSEpTQzBpOWhTUXB2VkZhTUhuN2w4?=
- =?utf-8?B?Z3VNQXB3ZmFFQkg2WVFLSnA3NDJ3Mlc0S0czT3NPMFpscW5LY0kyZ3R4cFMz?=
- =?utf-8?B?bTdlSTYrMkZuQ1BiK05QTTZmeXR0WUVzM3R5TC9MUHh2eG9LcFYwYng2Vjg5?=
- =?utf-8?B?V3hmeGY2bFBTR2dnVC9QbzBJbnU2VHFQUlBiUU5KRkVmTHljMlQxWGpMRnBl?=
- =?utf-8?B?QVBkTUI4YzZ3NGFDM2hoWm9qMUtQK0d0TkhPaVVmTVFmSTRhSzVzRW1TSjVw?=
- =?utf-8?B?Vk8xMXZFdE1IMklFL3R6VjJwL2FOL3pXSDI1TGNNN2VMd0ExNnZtcGVpQzBr?=
- =?utf-8?Q?KTlskv/+P52+RToX3CFiRhokt2Ay3VJQ?=
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|366016|376014|1800799024|13003099007|8096899003; 
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?Rk5HMmFJSmg5Q1paSklsVjJ1VGNzK0hFQkRac3FNQVBJWUVEdGdpNHpGcjhT?=
+ =?utf-8?B?bzFJZXNFTkFoUW53dG1EOHVCZGsyaWVVZm1vSG1Ha2YvY1RQNUNZamZPWlgz?=
+ =?utf-8?B?KzNNaUVMWHVCOVpqdW9YY3NoRERjQlRGK3dPNTdSWkMrVmVITU8xd25uSFNR?=
+ =?utf-8?B?eWI0YUhuZXdqU3liSktOcTVldXYyY1doeDk0d2IyZVY2WUlZbTFoTGZydkxx?=
+ =?utf-8?B?WVYrRUhpOE5NN3poSGZUTjFnVUZwb0tnYVhqTXpTNjU4VnV3V1ZWS0F6ZjNW?=
+ =?utf-8?B?aC81K3lwemE1akxOdkpZTXpJSkc5M2lPNHhLUUlQRSt5Q1BRZldvRG9qUnlm?=
+ =?utf-8?B?SWpLbTdTcm52SEx4ZktKekFUb0FONkUyemFaQzdPRS9KbFJ2TWJWUWtZcklS?=
+ =?utf-8?B?MVdaSk5CVThEVGVnM3FySXBnTEQyMGQ5dkRSelhmdnIxVDBWMmkzOXNYdTEw?=
+ =?utf-8?B?eHhrNEhsUWhDR01IcFZYdzl5MjJjNURlR1JOci9LdXY1eFB3ekF6TGNkNkhP?=
+ =?utf-8?B?YkJjQVd1WGFpcktnb2plQVJ3S01vYjUxeVY2c1VzbXlHaVZqak9lNmZSbUJX?=
+ =?utf-8?B?NlA3YXJZWFJOVFhnellKUmg4bE5iUnB2UUF0Z2hyWXZKR0ZpZnhQRnhwVTJz?=
+ =?utf-8?B?ekt4VmRpbXBZSkxLQ3pQdDNmUkpxUFJVcU96Mkwvek1lNCtYWHJuM0wzd0Qr?=
+ =?utf-8?B?WURzOFE0N1JMM2lOQ09GcWVlSFpYZ282ZE1vVjN5OXRBNTVEWHpwd0E3Sjdn?=
+ =?utf-8?B?ZU5rb0ROdnBUb3RMTzlXbUdrZWdOZXp5cDc2NnlqeTc3MVp3bCt2bFhheVNm?=
+ =?utf-8?B?UXZqa2xpMm85MjhkM1FibFNLMllhbzFkejVseDhKQnFOME83L1hoVWhSZkt0?=
+ =?utf-8?B?UjFQYk9QSjUrbUYwempQeVVOT3B6UmlSRlB4TGRsZi9MTFdLSjFSQ1FQRWZx?=
+ =?utf-8?B?ZmRBdUJzSDBsdFUya3NxYU93Zy9pNkZibDM0ZmhTSkpwQVY0aThENmJmekxt?=
+ =?utf-8?B?THJRS3FjZnNFMGg4WDJkQlNFWFZGV1VPZm9sUEFSd3kxUGR6VjB5MTcxM24z?=
+ =?utf-8?B?T05odWF3SllDNnZuamE0bjNackNaMjZScWxXMGVLM2FsNjZrQWRXaStDNERP?=
+ =?utf-8?B?eDRQMkRKVTlmREx1KzNoMmZKN3FiRmtEa2hYN0d4TGIraGc0ZkdjaE03R3V2?=
+ =?utf-8?B?YTdlYS9zM01kUUlxa3o0d3RUZEhBRXRRWUNPT2p6SWhiMTR0WDJGQlNvOXZ5?=
+ =?utf-8?B?cDN2dURvazExMmdMUFgxbFkzUXNxcittVlV0SG1LekdBUEVZL3JGL0cvVlMv?=
+ =?utf-8?B?MWFNRml3SlNhNk9xbGgyUVRjZ0hVTm43S2wvSkt6SWR5T2xDd1JZR01pYkxy?=
+ =?utf-8?B?SFNCQlBIelN2QjVacG9Fb0IyUDk3R0YzZkNEMURjWFVsNjE2VzBjWTRlanpT?=
+ =?utf-8?B?S01PUnBNdnI2L2NUbEFFN3dKL2FqN1Rnc04xNzIxQU80V2c3MEE5V2RpVWFI?=
+ =?utf-8?B?TlQwVjh3QnFQei9oL0hQdTNTRDNoZmg3UW9BRWdVM2llaXJEV0xWeEs5dXY2?=
+ =?utf-8?B?SC9OMkN2TU5FNWkzVEFmWk5BbDlBV1h5ckFmWjR4VURhTFVvdmNRM0VzR2dB?=
+ =?utf-8?B?MHJ5czVQay9WOUlBL3ZpUEJuN0h6VW5mTUpOT1Nyb2JURnJCMTl5TkNRYXNM?=
+ =?utf-8?B?ZFJ5UnhZazhVVHQxV2gxc1N1R1dpeVNPaVBRZE9VemhHRzQyejhsNFovdTZE?=
+ =?utf-8?B?WjgwK2RUZ0RmOGpVUFl0M2J1cDhGL2Z2bS93VWFZb0FiZ1hCK0wzUWYwT1Iy?=
+ =?utf-8?B?cEsyS0wrbmZndTZPV3NKWEpjc2xPdmUyTmNQRjBMRkpad05NMGZnZThUa05F?=
+ =?utf-8?B?Z2FITDBCZ2tXanRZaUk1WjFhUlJnZktEd1hObDdEQzFXZHc9PQ==?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014)(7053199007); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:MN0PR11MB6278.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(1800799024)(13003099007)(8096899003); DIR:OUT;
+ SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?S253S2NjdjI2VXBNN2VXUXdBSW1QUUEwNEdvbmN1M1B5TWFVRGVvQk8vK3hw?=
- =?utf-8?B?T1lOM0ttbkNlWjNnTWdkSVhxQjdkMExoMDBDTFFRbU9va3F1R2orSkRkUG8r?=
- =?utf-8?B?TzNWalZwem4xSGVubHZwUEUxNGM1bUhZd1d6dko5dUZ4ZUNlUDIvbDhhM0VC?=
- =?utf-8?B?UCtPazVIZGdMd1p6U0RrN1d2V0Z4RXAvT3Rzc0NhdGFMUjE1NjJPblcrMFhF?=
- =?utf-8?B?RWY2eG1lZDExRHF3MEhQQzNvZDFCU3VBSmZJRHV0Ujd3VmQ2Zjl5bzZlOW1K?=
- =?utf-8?B?UjhITWVoS3RmUkRaYWpCWFJ4RFFibHNCT3JOVUVEdHdBM0llbGhXYzhrdm5Y?=
- =?utf-8?B?Tk9VQ29TNmtBdFp2QWlIeG5sZDVIWFFNbWpDckhBZDIya0thMzNQM1lPY1NH?=
- =?utf-8?B?NVYwUm5OUWs0c1Z2amYwaEsvU2xta3JvSFNWVU9LZVhMWnNjVVZtb01hSThh?=
- =?utf-8?B?NEdjRjNTbFZPSEs0emJJT2JpY0djeTFZRU1NTmF2U2JibGV5ZHZROHpvdmk0?=
- =?utf-8?B?eEZ0UVEzMCs0SG5hd2tPcGNvSVUwMG1sOE5vakttRVJ2SzBnNlBObEVLZ1Ux?=
- =?utf-8?B?TkZkWFQ2Mm5qYmg1dWl1VTRKRk9KUkI0KzhxQVpDS3diREZDdUk3WVFhbjgv?=
- =?utf-8?B?Um95YktvWFRLM1RKd2xnaGM4eDZBaU5OVWxZTUxOdHgxSVFLYzljKy9PbmpH?=
- =?utf-8?B?VEpxazVhbW5pK3greDlmMlRXQXNiRW85ejhuQlFZVE10Y0llaGNzaHk3UGN1?=
- =?utf-8?B?UnAzUVVSNVVQa1I0QjlvYUN2ODNtWGs0aHpCeEg0eXVzSEFWTzF1UXRhODJP?=
- =?utf-8?B?R1RxRnhlZnJpUHJTWit6dC9xWksrZnB1Y3c1NVUzS2NKVm9HUnYveUZFZ2x6?=
- =?utf-8?B?eENJM2hVbXpGemw3NmVpT3BUYkMycGtHWXltY3NURDJTWUV4NlNIWWhOMWly?=
- =?utf-8?B?YlNRM0R1d0U0bHZzUUxDdjJyWDgvL2NxRFpUOHdIQWRwcmRiWFdTckltU3Qr?=
- =?utf-8?B?aGRZUkEvNHNEenFlVTlLREVLV2l2RHlFdGZ5eld4dHZVR1V2RjQyWmpDVUZO?=
- =?utf-8?B?N3dueUtwcGp6RzhOQjNqK0ZSeTQ3VytZT0pUN1I4T3FhVWV5MzVkY1VDd1BE?=
- =?utf-8?B?TkEwRit5eTVWVUZTT3o4ZkEvVUt0YjFIK3I4VnAvRkQ1R1BJMzFHMkRiVVk3?=
- =?utf-8?B?TEpObFBybTAyVXRuMnNGMVNsUmdKamwrRGF1VERESGkxa2hVR3RuNEhPa2Fj?=
- =?utf-8?B?RmdRRUJKWGFPL2FDWDRMNFdxVXp6ek85Wkl2ZmIrZXpRTnhHUGdwTmVGNjR5?=
- =?utf-8?B?OGsxZzBIM3B0bjNCK1ZyRmhJd1U3SEtJUjk2dDhJditNUndjZ1YvSTd0Yy9u?=
- =?utf-8?B?NU5iYUVDd2VoRHBEN2VyR2VZZ2ZjN1puRDJzeGtRUFQ2NmlZRVJnSXlzaGcw?=
- =?utf-8?B?OWxlTDdxSm16WW9rWnpOY0hBT29GbFc2MEZSbW4ySUZjT2dCRkRIMDBTK0VS?=
- =?utf-8?B?Q1k2VTdmbW9IeTJ1M3NKbjFFVCtQbTVaMnc2RGlZOEpkc3NSQzB2bGYxenoz?=
- =?utf-8?B?dFFpWkJNRHRMbjBGckNPeThrcWJ0OUNTK2x1SDAzenNwNWpTREFnYnBuYzlK?=
- =?utf-8?B?MTNXVm9sYTQ0U2FOaU54MHhpQklBd1FNVVlPcnI3K2hEdUN1KytlZ25FM3I1?=
- =?utf-8?B?RWZBemZlUEZrSDRhU3NIdzBqb29QbWFacUZnVjJrKzZoN1JYeU40dUtlbHQ0?=
- =?utf-8?B?dzhzNDRSU1lmZThwa0RlT2xLN3F6bmp5U0ZFMmY5d3luSFVydjM5Y25IZ0lE?=
- =?utf-8?B?RTEzak96VFRMdThtUHFPKzRjYmtTZk1kS0lyQTVvcnV5MlkzNHYwZ2xia1N6?=
- =?utf-8?B?MTBhM1RlYlk5cmJNdmZOclJic1hVTVVxc3F4S012VjB4eGFXWWgwc3JyQUVM?=
- =?utf-8?B?VDB2N0RYYlZJNTBuTzdEQ1ovUnFSU2JCNzJSS1BMVnBwNmxSWFJiMWN2MWFI?=
- =?utf-8?B?czhXQ3FQblBoV2RGRTBXa0s0NTd0bnVwcDdXdVdHTWhZREI4R0FiN0FTbzB5?=
- =?utf-8?B?ayt2MTJ2Rlg5QzFUbjNXZ0QzUkQzYkx2VjVvNkdCN0U1UVV4TDhpYjg4VDNY?=
- =?utf-8?B?TExJWll5MlVnNlVnTHVObTNyTld6UkhNSmJ2M00ybkdzOHZsVGNzTmRBcm9x?=
- =?utf-8?B?UkE9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 59e8bfd8-d233-4a99-a585-08de3c40409d
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?aTRKRWtlMXBPM1Mzd1NyU0dlZ1VVSnJQYzVMWkRDaDJZNi9JK1IrNnJpeDlS?=
+ =?utf-8?B?RmNKMGV2ME1DQ0g0OHNMampYcks2MlE5RnJpSUdXVzdEOCs2b1NheE1Jb0Jn?=
+ =?utf-8?B?ZGZEblVldCtuYiswTzlkekdROEt6RSt0dEk2RkNKYmZwUGdtai9FeUtmbmt2?=
+ =?utf-8?B?NG9CK21reWZ3NGZOZHZUbU1RTVBhbFpuZ2tBV2syYjdha0wvcDduUFgxTm9P?=
+ =?utf-8?B?Z29iem12cE9NRnQycmxvNHBHSDFTUkYvcXFmOTlET0lUaTYvNnVwNEM2elVE?=
+ =?utf-8?B?K3A4YlFZYUI3RDBFdTNIY0ZJS29XZFZ6dVU2UkozQVB6azA4ZW4vMUQ0M2tJ?=
+ =?utf-8?B?WlJlN2xiUm5sSFN5eFF2WkdTbUdBVlE3ZzlxVzBDZkM3a0JzOGdYVGw4bzJj?=
+ =?utf-8?B?c3NMdHBpMXIwZzNTbmFqQ0FOZExyZFIrUXdiQzZ4L25ub0xHL2xiR0xUSTR1?=
+ =?utf-8?B?ZVFVWUNXbjFtdDhPTjk1S3FHdDNWN0hyd0xLSWREa2hSK1JwZ29ZTjJsQTJv?=
+ =?utf-8?B?Vm5BTEx0WHZnWGRoNGFVdVFOS3RKMlo5SkVYUk5lZ2h6M25OR1VzMG1GY2Q5?=
+ =?utf-8?B?dmlaQXdzUDRnSU9iL1NEM2lHNmZqUFdNWW9zL2FGa1hBV3JuL3JDU0VjZ0ZT?=
+ =?utf-8?B?bk5lc0Nla2kwQndsdGI0RnhtRS8zenIzUDFIM2tMUU5NMnpGWWdRejQyZThK?=
+ =?utf-8?B?RVJNVzc0cXF1WWFPZDd6NEtWTndBc1FSVFFSMytWV0Y3QmRNeHZJbnRoanBr?=
+ =?utf-8?B?SVQ2ckh3eDZGQVVGRWRJQ1h4WUtCSUhnQWJ6Y1hvS0xpbHlqaEszWStpcERh?=
+ =?utf-8?B?U2JBVnVIUHo3S2gzWWo2ZUNMNUk4QmlEenNybldNYWlza1c2V1lKR1FxUUhw?=
+ =?utf-8?B?RlpzaTZVbzJ0K1ViNmk4dEppSXB2ZS84U2VnemlBMFFQZDJ1VjQybmovL0RQ?=
+ =?utf-8?B?N2p0ZytQRnhnR3VaZWlkQlYyUzNoeFBmY3VUNCtsRm03QlhDWFIzSi9ydXF3?=
+ =?utf-8?B?Y0o4TVNHTHNTMEQ1eGxNWVp3cy9TSTI0eDF4Ly9jZ21QSmFiUUFDcUoxbS91?=
+ =?utf-8?B?VlBsZitLNTV4QlN4ZG5XbVZ5QW8wekZWS2lOSlJNZkZqS1VGbVN1TWtJS0ZP?=
+ =?utf-8?B?ak1NNlE0VVV3bGVXaFJhS1dOYzl4RmUyNGpHN2gyaVNPMitwWHdYeHBJS2xV?=
+ =?utf-8?B?QS9NRVY1MmwycER6UFdmVWtXVmc2c3pPWHFvdmRybWh4Y3lNcm5rS0NFWTRx?=
+ =?utf-8?B?dmJ6MjFrTzhjZGs4ZTJXTkV5cCtMWjVRRExxbXRLckM5dnJ3V0x0TjFmVG1W?=
+ =?utf-8?B?YWJmRVk3bWVRcWRsZjF4TlJ4RkFRdmF3Y05hMlhzZGtMQlZpckJVMWFFS2Ro?=
+ =?utf-8?B?SEFLNVJNK1ZiZllTaEtzejVTeGVRbk0xYXlCSGswUVVQeDdyQkx1Vm0xcndD?=
+ =?utf-8?B?ZWJWT1RKY1ZEa3lkU1RkQ2RhQitoOVlNeEoybnYxQTM2VG5QYnhqZjMzTlM1?=
+ =?utf-8?B?aUxzRGFaOVV2WjdKbjZZRGp4bXFoRFV3MW5aWGhVYjlIVHFIV2IxWTk4bkE1?=
+ =?utf-8?B?SVN2UVVMQ1ppZUVuUHlWQXFPOWs4d1lkN3JzV0JBQThScHpHcFF2b2RrM2U0?=
+ =?utf-8?B?dERRQjRWWU9lTFVrQk5mdmkxTWdPUEtYUHNaL09uaTdidFl6YUFEd2dHV0FD?=
+ =?utf-8?B?cWNWRm5sZ01rck9qVXRNQTZVTWUva2FaNWl1VXVTOUt6NjRURExjMHBPd25i?=
+ =?utf-8?B?ZmFCSzE4Nit3R3F0QS9Gd3pnUHpzRDB4RElWM1hubmxWSjFyWjMzdUl2YmZu?=
+ =?utf-8?B?NXYwbHU0enJvVnJZaXJjVnB2M3Nielh5WEwyUW91c2dGcEVlaCtQeVBQalI3?=
+ =?utf-8?B?Rzlhd252cnorSkMxWUFGK1RHOWpBaUpZS25sUmJidXBQckdHbit5dTJmUnJM?=
+ =?utf-8?B?UGNmMDNqS1duRDQ0STNkQjJjN3pnTVhIZjlKVnA2N3h5eUR6UWY3dGxjVmtr?=
+ =?utf-8?B?M0ZuUk9qc2ZFN0hRWEk0bFdBcnkyNVBJMVZ3ZVJSemZaMml1VWdCdUVLZDF5?=
+ =?utf-8?B?djQzdXhmUE10cEpYS1VIcUo1WmtMUG9aYnlpMWJ6K29hQW9HWjcrUERpV2tv?=
+ =?utf-8?B?UGlyZ3B4SGFZdUhNVGY2b2tMSzZtclpBeEdMc01ONWMwM1p6Y1ZTYWRCbzNU?=
+ =?utf-8?B?VlE9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 793fabfa-99cb-469e-aba7-08de3c4117ea
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6278.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Dec 2025 01:12:59.4469 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Dec 2025 01:19:00.7229 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: LItw5q2cemKLHKWk06hidVTbzTl/0iq8IJq9gcLidWTk2nZ2VZN7xX0r+r0DvvjTZhGtyjRGl/7vAORZ6gTpoA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA4PR11MB9033
+X-MS-Exchange-CrossTenant-UserPrincipalName: YFqBvtfAeYmN/bMw0huBx94IXLxm6cp5V9tweDTX2bx/jXNIDq3vrSSWsXz2usKIHxCeUUIfjWug54of7svOdpFV9WwAfhJMCwoBQMNCDzw=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR11MB6271
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -199,367 +198,88 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Dec 15, 2025 at 10:48:59PM +0100, Thomas Hellström wrote:
-> On Mon, 2025-12-15 at 13:46 -0800, Matthew Brost wrote:
-> > On Mon, Dec 15, 2025 at 11:32:23AM +0100, Thomas Hellström wrote:
-> > > On Fri, 2025-12-12 at 10:28 -0800, Matthew Brost wrote:
-> > > > If a dma-fence submission has in-fences and pagefault queues are
-> > > > running
-> > > > work, there is little incentive to kick the pagefault queues off
-> > > > the
-> > > > hardware until the dma-fence submission is ready to run.
-> > > > Therefore,
-> > > > wait
-> > > > on the in-fences of the dma-fence submission before removing the
-> > > > pagefault queues from the hardware.
-> > > > 
-> > > > v2:
-> > > >  - Fix kernel doc (CI)
-> > > >  - Don't wait under lock (Thomas)
-> > > >  - Make wait interruptable
-> > > > 
-> > > > Suggested-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> > > > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> > > > ---
-> > > >  drivers/gpu/drm/xe/xe_exec.c            |  9 +++--
-> > > >  drivers/gpu/drm/xe/xe_hw_engine_group.c | 44
-> > > > +++++++++++++++++++++--
-> > > > --
-> > > >  drivers/gpu/drm/xe/xe_hw_engine_group.h |  4 ++-
-> > > >  drivers/gpu/drm/xe/xe_sync.c            | 29 ++++++++++++++++
-> > > >  drivers/gpu/drm/xe/xe_sync.h            |  2 ++
-> > > >  5 files changed, 78 insertions(+), 10 deletions(-)
-> > > > 
-> > > > diff --git a/drivers/gpu/drm/xe/xe_exec.c
-> > > > b/drivers/gpu/drm/xe/xe_exec.c
-> > > > index 4d81210e41f5..d462add2d005 100644
-> > > > --- a/drivers/gpu/drm/xe/xe_exec.c
-> > > > +++ b/drivers/gpu/drm/xe/xe_exec.c
-> > > > @@ -121,7 +121,7 @@ int xe_exec_ioctl(struct drm_device *dev,
-> > > > void
-> > > > *data, struct drm_file *file)
-> > > >  	u64 addresses[XE_HW_ENGINE_MAX_INSTANCE];
-> > > >  	struct drm_gpuvm_exec vm_exec = {.extra.fn =
-> > > > xe_exec_fn};
-> > > >  	struct drm_exec *exec = &vm_exec.exec;
-> > > > -	u32 i, num_syncs, num_ufence = 0;
-> > > > +	u32 i, num_syncs, num_in_sync = 0, num_ufence = 0;
-> > > >  	struct xe_validation_ctx ctx;
-> > > >  	struct xe_sched_job *job;
-> > > >  	struct xe_vm *vm;
-> > > > @@ -182,6 +182,9 @@ int xe_exec_ioctl(struct drm_device *dev,
-> > > > void
-> > > > *data, struct drm_file *file)
-> > > >  
-> > > >  		if (xe_sync_is_ufence(&syncs[num_syncs]))
-> > > >  			num_ufence++;
-> > > > +
-> > > > +		if (!num_in_sync &&
-> > > > xe_sync_needs_wait(&syncs[num_syncs]))
-> > > > +			num_in_sync++;
-> > > >  	}
-> > > >  
-> > > >  	if (XE_IOCTL_DBG(xe, num_ufence > 1)) {
-> > > > @@ -202,7 +205,9 @@ int xe_exec_ioctl(struct drm_device *dev,
-> > > > void
-> > > > *data, struct drm_file *file)
-> > > >  	mode = xe_hw_engine_group_find_exec_mode(q);
-> > > >  
-> > > >  	if (mode == EXEC_MODE_DMA_FENCE) {
-> > > > -		err = xe_hw_engine_group_get_mode(group, mode,
-> > > > &previous_mode);
-> > > > +		err = xe_hw_engine_group_get_mode(group, mode,
-> > > > &previous_mode,
-> > > > +						  syncs,
-> > > > num_in_sync
-> > > > ?
-> > > > +						  num_syncs :
-> > > > 0);
-> > > >  		if (err)
-> > > >  			goto err_syncs;
-> > > >  	}
-> > > > diff --git a/drivers/gpu/drm/xe/xe_hw_engine_group.c
-> > > > b/drivers/gpu/drm/xe/xe_hw_engine_group.c
-> > > > index 4d9263a1a208..022fc0c30d38 100644
-> > > > --- a/drivers/gpu/drm/xe/xe_hw_engine_group.c
-> > > > +++ b/drivers/gpu/drm/xe/xe_hw_engine_group.c
-> > > > @@ -11,6 +11,7 @@
-> > > >  #include "xe_gt.h"
-> > > >  #include "xe_gt_stats.h"
-> > > >  #include "xe_hw_engine_group.h"
-> > > > +#include "xe_sync.h"
-> > > >  #include "xe_vm.h"
-> > > >  
-> > > >  static void
-> > > > @@ -21,7 +22,8 @@ hw_engine_group_resume_lr_jobs_func(struct
-> > > > work_struct *w)
-> > > >  	int err;
-> > > >  	enum xe_hw_engine_group_execution_mode previous_mode;
-> > > >  
-> > > > -	err = xe_hw_engine_group_get_mode(group, EXEC_MODE_LR,
-> > > > &previous_mode);
-> > > > +	err = xe_hw_engine_group_get_mode(group, EXEC_MODE_LR,
-> > > > &previous_mode,
-> > > > +					  NULL, 0);
-> > > >  	if (err)
-> > > >  		return;
-> > > >  
-> > > > @@ -189,10 +191,12 @@ void
-> > > > xe_hw_engine_group_resume_faulting_lr_jobs(struct
-> > > > xe_hw_engine_group
-> > > > *group
-> > > >  /**
-> > > >   * xe_hw_engine_group_suspend_faulting_lr_jobs() - Suspend the
-> > > > faulting LR jobs of this group
-> > > >   * @group: The hw engine group
-> > > > + * @has_deps: dma-fence job triggering suspend has dependencies
-> > > >   *
-> > > >   * Return: 0 on success, negative error code on error.
-> > > >   */
-> > > > -static int xe_hw_engine_group_suspend_faulting_lr_jobs(struct
-> > > > xe_hw_engine_group *group)
-> > > > +static int xe_hw_engine_group_suspend_faulting_lr_jobs(struct
-> > > > xe_hw_engine_group *group,
-> > > > +						       bool
-> > > > has_deps)
-> > > >  {
-> > > >  	int err;
-> > > >  	struct xe_exec_queue *q;
-> > > > @@ -201,11 +205,19 @@ static int
-> > > > xe_hw_engine_group_suspend_faulting_lr_jobs(struct
-> > > > xe_hw_engine_group
-> > > >  	lockdep_assert_held_write(&group->mode_sem);
-> > > >  
-> > > >  	list_for_each_entry(q, &group->exec_queue_list,
-> > > > hw_engine_group_link) {
-> > > > +		bool idle_skip_suspend;
-> > > > +
-> > > >  		if (!xe_vm_in_fault_mode(q->vm))
-> > > >  			continue;
-> > > >  
-> > > > +		idle_skip_suspend =
-> > > > xe_exec_queue_idle_skip_suspend(q);
-> > > > +		if (!idle_skip_suspend && has_deps)
-> > > > +			return -EAGAIN;
-> > > > +
-> > > >  		xe_gt_stats_incr(q->gt,
-> > > > XE_GT_STATS_ID_HW_ENGINE_GROUP_SUSPEND_LR_QUEUE_COUNT, 1);
-> > > > -		need_resume |=
-> > > > !xe_exec_queue_idle_skip_suspend(q);
-> > > > +
-> > > > +
-> > > > +		need_resume |= !idle_skip_suspend;
-> > > >  		q->ops->suspend(q);
-> > > >  	}
-> > > >  
-> > > > @@ -258,7 +270,7 @@ static int
-> > > > xe_hw_engine_group_wait_for_dma_fence_jobs(struct
-> > > > xe_hw_engine_group
-> > > >  	return 0;
-> > > >  }
-> > > >  
-> > > > -static int switch_mode(struct xe_hw_engine_group *group)
-> > > > +static int switch_mode(struct xe_hw_engine_group *group, bool
-> > > > has_deps)
-> > > >  {
-> > > >  	int err = 0;
-> > > >  	enum xe_hw_engine_group_execution_mode new_mode;
-> > > > @@ -268,7 +280,8 @@ static int switch_mode(struct
-> > > > xe_hw_engine_group
-> > > > *group)
-> > > >  	switch (group->cur_mode) {
-> > > >  	case EXEC_MODE_LR:
-> > > >  		new_mode = EXEC_MODE_DMA_FENCE;
-> > > > -		err =
-> > > > xe_hw_engine_group_suspend_faulting_lr_jobs(group);
-> > > > +		err =
-> > > > xe_hw_engine_group_suspend_faulting_lr_jobs(group,
-> > > > +								 
-> > > > has_deps);
-> > > >  		break;
-> > > >  	case EXEC_MODE_DMA_FENCE:
-> > > >  		new_mode = EXEC_MODE_LR;
-> > > > @@ -289,14 +302,18 @@ static int switch_mode(struct
-> > > > xe_hw_engine_group *group)
-> > > >   * @group: The hw engine group
-> > > >   * @new_mode: The new execution mode
-> > > >   * @previous_mode: Pointer to the previous mode provided for use
-> > > > by
-> > > > caller
-> > > > + * @syncs: Syncs from exec IOCTL
-> > > > + * @num_syncs: Number of syncs from exec IOCTL
-> > > >   *
-> > > >   * Return: 0 if successful, -EINTR if locking failed.
-> > > >   */
-> > > >  int xe_hw_engine_group_get_mode(struct xe_hw_engine_group
-> > > > *group,
-> > > >  				enum
-> > > > xe_hw_engine_group_execution_mode new_mode,
-> > > > -				enum
-> > > > xe_hw_engine_group_execution_mode *previous_mode)
-> > > > +				enum
-> > > > xe_hw_engine_group_execution_mode *previous_mode,
-> > > > +				struct xe_sync_entry *syncs, int
-> > > > num_syncs)
-> > > >  __acquires(&group->mode_sem)
-> > > >  {
-> > > > +	bool has_deps = !!num_syncs;
-> > > >  	int err = down_read_interruptible(&group->mode_sem);
-> > > >  
-> > > >  	if (err)
-> > > > @@ -306,14 +323,27 @@ __acquires(&group->mode_sem)
-> > > >  
-> > > >  	if (new_mode != group->cur_mode) {
-> > > >  		up_read(&group->mode_sem);
-> > > > +retry:
-> > > >  		err = down_write_killable(&group->mode_sem);
-> > > >  		if (err)
-> > > >  			return err;
-> > > >  
-> > > >  		if (new_mode != group->cur_mode) {
-> > > > -			err = switch_mode(group);
-> > > > +			err = switch_mode(group, has_deps);
-> > > >  			if (err) {
-> > > >  				up_write(&group->mode_sem);
-> > > > +				if (err == -EAGAIN) {
-> > > > +					int i;
-> > > > +
-> > > > +					for (i = 0; i <
-> > > > num_syncs;
-> > > > ++i) {
-> > > > +						err =
-> > > > xe_sync_entry_wait(syncs + i);
-> > > > +						if (err)
-> > > > +							return
-> > > > err;
-> > > > +					}
-> > > > +
-> > > > +					has_deps = false;
-> > > > +					goto retry;
-> > > > +				}
-> > > >  				return err;
-> > > >  			}
-> > > >  		}
-> > > > diff --git a/drivers/gpu/drm/xe/xe_hw_engine_group.h
-> > > > b/drivers/gpu/drm/xe/xe_hw_engine_group.h
-> > > > index 797ee81acbf2..8b17ccd30b70 100644
-> > > > --- a/drivers/gpu/drm/xe/xe_hw_engine_group.h
-> > > > +++ b/drivers/gpu/drm/xe/xe_hw_engine_group.h
-> > > > @@ -11,6 +11,7 @@
-> > > >  struct drm_device;
-> > > >  struct xe_exec_queue;
-> > > >  struct xe_gt;
-> > > > +struct xe_sync_entry;
-> > > >  
-> > > >  int xe_hw_engine_setup_groups(struct xe_gt *gt);
-> > > >  
-> > > > @@ -19,7 +20,8 @@ void xe_hw_engine_group_del_exec_queue(struct
-> > > > xe_hw_engine_group *group, struct
-> > > >  
-> > > >  int xe_hw_engine_group_get_mode(struct xe_hw_engine_group
-> > > > *group,
-> > > >  				enum
-> > > > xe_hw_engine_group_execution_mode new_mode,
-> > > > -				enum
-> > > > xe_hw_engine_group_execution_mode *previous_mode);
-> > > > +				enum
-> > > > xe_hw_engine_group_execution_mode *previous_mode,
-> > > > +				struct xe_sync_entry *syncs, int
-> > > > num_syncs);
-> > > >  void xe_hw_engine_group_put(struct xe_hw_engine_group *group);
-> > > >  
-> > > >  enum xe_hw_engine_group_execution_mode
-> > > > diff --git a/drivers/gpu/drm/xe/xe_sync.c
-> > > > b/drivers/gpu/drm/xe/xe_sync.c
-> > > > index 1fc4fa278b78..d970e11962ff 100644
-> > > > --- a/drivers/gpu/drm/xe/xe_sync.c
-> > > > +++ b/drivers/gpu/drm/xe/xe_sync.c
-> > > > @@ -228,6 +228,35 @@ int xe_sync_entry_add_deps(struct
-> > > > xe_sync_entry
-> > > > *sync, struct xe_sched_job *job)
-> > > >  	return 0;
-> > > >  }
-> > > >  
-> > > > +/**
-> > > > + * xe_sync_entry_wait() - Wait on in-sync
-> > > > + * @sync: Sync object
-> > > > + *
-> > > > + * If the sync is in an in-sync, wait on the sync to signal.
-> > > > + *
-> > > > + * Return: 0 on success, -ERESTARTSYS on failure (interruption)
-> > > > + */
-> > > > +int xe_sync_entry_wait(struct xe_sync_entry *sync)
-> > > > +{
-> > > > +	if (sync->flags & DRM_XE_SYNC_FLAG_SIGNAL)
-> > > > +		return 0;
-> > > > +
-> > > > +	return dma_fence_wait(sync->fence, true);
-> > > > +}
-> > > > +
-> > > > +/**
-> > > > + * xe_sync_needs_wait() - Sync needs a wait (input dma-fence not
-> > > > signaled)
-> > > > + * @sync: Sync object
-> > > > + *
-> > > > + * Return: True if sync needs a wait, False otherwise
-> > > > + */
-> > > > +bool xe_sync_needs_wait(struct xe_sync_entry *sync)
-> > > > +{
-> > > > +
-> > > > +	return !(sync->flags & DRM_XE_SYNC_FLAG_SIGNAL) &&
-> > > > +		!test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &sync-
-> > > > >fence-
-> > > > > flags);
-> > > 
-> > > dma_fence_is_signaled() ?
-> > > 
-> > 
-> > I don't want to signal the fence here, Phillip Stanner merged a
-> > dma-fence helper that does this check to drm-misc-next but this
-> > change
-> > hasn't made it to dma-xe-next yet. I have patch built on top of his
-> > series to to convert Xe to use these helpers, when I rebase that
-> > patch
-> > I'll fixup this code too.
-> 
-> OK. Just out of interest, why not signal the fence here?
-> /Thomas
-> 
+--------------sLcUjs9BX8YGA4fRUje3FU88
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-It’s probably fine to signal the fence. This is just a defensive
-leftover from my early days in Xe to avoid signaling the Xe hardware
-fence from anywhere other than a single location. This won’t be a
-hardware fence though; here, this is an eager check where I don’t think
-it’s worth taking the dma-fence spinlock.
+Hi Ashutosh,
 
-Matt 
+On 12/11/25 22:18, Ashutosh Dixit wrote:
+> An EU stall property value of 0 is invalid and will cause a NPD.
+>
+> Reported-by: Peter Senna Tschudin<peter.senna@linux.intel.com>
+> Closes:https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/6453
 
-> 
-> > 
-> > Matt 
-> > 
-> > > Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> > > 
-> > > > +}
-> > > > +
-> > > >  void xe_sync_entry_signal(struct xe_sync_entry *sync, struct
-> > > > dma_fence *fence)
-> > > >  {
-> > > >  	if (!(sync->flags & DRM_XE_SYNC_FLAG_SIGNAL))
-> > > > diff --git a/drivers/gpu/drm/xe/xe_sync.h
-> > > > b/drivers/gpu/drm/xe/xe_sync.h
-> > > > index 51f2d803e977..6b949194acff 100644
-> > > > --- a/drivers/gpu/drm/xe/xe_sync.h
-> > > > +++ b/drivers/gpu/drm/xe/xe_sync.h
-> > > > @@ -29,6 +29,8 @@ int xe_sync_entry_add_deps(struct xe_sync_entry
-> > > > *sync,
-> > > >  			   struct xe_sched_job *job);
-> > > >  void xe_sync_entry_signal(struct xe_sync_entry *sync,
-> > > >  			  struct dma_fence *fence);
-> > > > +int xe_sync_entry_wait(struct xe_sync_entry *sync);
-> > > > +bool xe_sync_needs_wait(struct xe_sync_entry *sync);
-> > > >  void xe_sync_entry_cleanup(struct xe_sync_entry *sync);
-> > > >  struct dma_fence *
-> > > >  xe_sync_in_fence_get(struct xe_sync_entry *sync, int num_sync,
-> > > 
-> 
+Is this the correct URL? I am unable to access this issue.
+
+Thanks
+
+Harish.
+
+> Fixes: 1537ec85ebd7 ("drm/xe/uapi: Introduce API for EU stall sampling")
+> Signed-off-by: Ashutosh Dixit<ashutosh.dixit@intel.com>
+> ---
+>   drivers/gpu/drm/xe/xe_eu_stall.c | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/xe/xe_eu_stall.c b/drivers/gpu/drm/xe/xe_eu_stall.c
+> index 97dfb7945b7ac..a5c36a317a707 100644
+> --- a/drivers/gpu/drm/xe/xe_eu_stall.c
+> +++ b/drivers/gpu/drm/xe/xe_eu_stall.c
+> @@ -315,7 +315,7 @@ static int xe_eu_stall_user_ext_set_property(struct xe_device *xe, u64 extension
+>   		return -EFAULT;
+>   
+>   	if (XE_IOCTL_DBG(xe, ext.property >= ARRAY_SIZE(xe_set_eu_stall_property_funcs)) ||
+> -	    XE_IOCTL_DBG(xe, ext.pad))
+> +	    XE_IOCTL_DBG(xe, !ext.property) || XE_IOCTL_DBG(xe, ext.pad))
+>   		return -EINVAL;
+>   
+>   	idx = array_index_nospec(ext.property, ARRAY_SIZE(xe_set_eu_stall_property_funcs));
+--------------sLcUjs9BX8YGA4fRUje3FU88
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  </head>
+  <body>
+    <p><font face="Courier New, Courier, monospace">Hi Ashutosh,</font></p>
+    <div class="moz-cite-prefix">On 12/11/25 22:18, Ashutosh Dixit
+      wrote:<br>
+    </div>
+    <blockquote type="cite" cite="mid:20251212061850.1565459-4-ashutosh.dixit@intel.com">
+      <pre wrap="" class="moz-quote-pre">An EU stall property value of 0 is invalid and will cause a NPD.
+
+Reported-by: Peter Senna Tschudin <a class="moz-txt-link-rfc2396E" href="mailto:peter.senna@linux.intel.com">&lt;peter.senna@linux.intel.com&gt;</a>
+Closes: <a class="moz-txt-link-freetext" href="https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/6453">https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/6453</a></pre>
+    </blockquote>
+    <p>Is this the correct URL? I am unable to access this issue.</p>
+    <p>Thanks</p>
+    <p>Harish.</p>
+    <blockquote type="cite" cite="mid:20251212061850.1565459-4-ashutosh.dixit@intel.com">
+      <pre wrap="" class="moz-quote-pre">
+Fixes: 1537ec85ebd7 (&quot;drm/xe/uapi: Introduce API for EU stall sampling&quot;)
+Signed-off-by: Ashutosh Dixit <a class="moz-txt-link-rfc2396E" href="mailto:ashutosh.dixit@intel.com">&lt;ashutosh.dixit@intel.com&gt;</a>
+---
+ drivers/gpu/drm/xe/xe_eu_stall.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/xe/xe_eu_stall.c b/drivers/gpu/drm/xe/xe_eu_stall.c
+index 97dfb7945b7ac..a5c36a317a707 100644
+--- a/drivers/gpu/drm/xe/xe_eu_stall.c
++++ b/drivers/gpu/drm/xe/xe_eu_stall.c
+@@ -315,7 +315,7 @@ static int xe_eu_stall_user_ext_set_property(struct xe_device *xe, u64 extension
+ 		return -EFAULT;
+ 
+ 	if (XE_IOCTL_DBG(xe, ext.property &gt;= ARRAY_SIZE(xe_set_eu_stall_property_funcs)) ||
+-	    XE_IOCTL_DBG(xe, ext.pad))
++	    XE_IOCTL_DBG(xe, !ext.property) || XE_IOCTL_DBG(xe, ext.pad))
+ 		return -EINVAL;
+ 
+ 	idx = array_index_nospec(ext.property, ARRAY_SIZE(xe_set_eu_stall_property_funcs));
+</pre>
+    </blockquote>
+  </body>
+</html>
+
+--------------sLcUjs9BX8YGA4fRUje3FU88--
