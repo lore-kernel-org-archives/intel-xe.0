@@ -4,46 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 58531D609B3
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CEF13D609B5
 	for <intel-xe@archiver.kernel.org>; Tue, 16 Dec 2025 15:38:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0432010E974;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5949A10E980;
 	Tue, 16 Dec 2025 15:38:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="QP/0tIHQ";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="HE8Q1h9N";
 	dkim-atps=neutral
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4177210E75D
- for <intel-xe@lists.freedesktop.org>; Tue, 16 Dec 2025 15:38:19 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E28A010E809
+ for <intel-xe@lists.freedesktop.org>; Tue, 16 Dec 2025 15:38:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
- h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
- Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
+ In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=c8RBn/gDwVn0t/UG+pL9hpR9qmbKuEC1VKOhxA4Fd4g=; b=QP/0tIHQP/ePg5lPS4VqzQ2bYw
- 8wSH4rC6BO8OlhSBJYUIIf23FetqMWmh+P0xxtLxQtER7ZCGIEFvR/TMxw9htjLIy7dBaFPTPbFvh
- tMBZ7nDQPqmgCLBuEMKGwULLJYoA0LvS8OOBrz2F4vZ/YZvY4R1CMx4/DO5zJEENt/LqACLxVzD/5
- rBB0GKTTqK+XHxYMsaGHlS88+5qX6BNMj9EGRNrIHViGRvVA4/DHOTQEe5IqrIalbDDLHB/LZ7jxI
- L9E/8eBsF6jb71w6fHz3V8VvoDBofKvS/lP0v/VC6zxU22oBA5FdwfDNNSZifRkU2J1Kp5sLDERzz
- s6UUPNtg==;
+ bh=BkZ8h+2FlwXTLeQirpVJjvu5QJDBkrYJEZ86MUUlB7I=; b=HE8Q1h9NHZdCBlRs10aYiR0aNA
+ Ul3djrGo0U4Wo5G5tO4Wx+aIk+N+UvZCjikZWIFbPImDIHQvIr891hg6K4DlxYUYXeHzBKuhqTbhb
+ 3a6YB33RQZWCVaT0/tQuo1Qii2BjpABb43tOA2fG5SApbNt4vKK3w6agA9g3CTviuLg+REZwXKAYd
+ YcRhLw5hixzzW5apJ+jU2BCi4m4bPvi1WN0TLKIXKree0ii3n9k72CkzJO5N1i86fsGcAbo4QMK0P
+ J6nehyRMXT4UWCGKHeYdfFPmYa4cqXuvmoBhadlYxDLDxgg5JcYNFPaAcv2PNOAmtmIRkld5AYawn
+ JtyKdU2w==;
 Received: from [90.240.106.137] (helo=localhost)
  by fanzine2.igalia.com with utf8esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1vVX7x-00DRSA-Go; Tue, 16 Dec 2025 16:38:17 +0100
+ id 1vVX81-00DRSj-5f; Tue, 16 Dec 2025 16:38:21 +0100
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: intel-xe@lists.freedesktop.org
 Cc: kernel-dev@igalia.com, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
+ Jani Nikula <jani.nikula@intel.com>,
+ =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>,
+ Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [PATCH v16 3/8] drm/xe/xelp: Quiesce memory traffic before
- invalidating AuxCCS
-Date: Tue, 16 Dec 2025 15:38:00 +0000
-Message-ID: <20251216153805.96056-4-tvrtko.ursulin@igalia.com>
+Subject: [PATCH v16 8/8] drm/xe/xelp: Expose AuxCCS frame buffer modifiers on
+ Alderlake-P
+Date: Tue, 16 Dec 2025 15:38:05 +0000
+Message-ID: <20251216153805.96056-9-tvrtko.ursulin@igalia.com>
 X-Mailer: git-send-email 2.51.1
 In-Reply-To: <20251216153805.96056-1-tvrtko.ursulin@igalia.com>
 References: <20251216153805.96056-1-tvrtko.ursulin@igalia.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -59,66 +63,58 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-According to i915 commit
-ad8ebf12217e ("drm/i915/gt: Ensure memory quiesced before invalidation")
-quiescing of the memory traffic is required before invalidating the AuxCCS
-tables.
+Now that we have implemented all the related missing bits we can enable
+the AuxCCS compressed modifiers which were disabled in
+cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if built for Xe").
 
-Add an extra pipe control flush to achieve that.
+Tested with KDE Wayland, on Lenovo Carbon X1 ADL-P:
+
+        [PLANE:32:plane 1A]: type=PRI
+                uapi: [FB:242] AR30 little-endian (0x30335241),0x100000000000008,2880x1800, visible=visible, src=28
+                hw: [FB:242] AR30 little-endian (0x30335241),0x100000000000008,2880x1800, visible=yes, src=2880.000
+
+Display is working fine - no artefacts, no DMAR/PIPE faults.
+
+v2:
+ * Adjust patch title. (Rodrigo)
+
+v3:
+ * Complete rewrite based on the display parent interface.
 
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+References: cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if built for Xe")
+Cc: Jani Nikula <jani.nikula@intel.com>
+Cc: José Roberto de Souza <jose.souza@intel.com>
+Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com> # v2
 ---
- drivers/gpu/drm/xe/xe_ring_ops.c       | 10 +++++++++-
- drivers/gpu/drm/xe/xe_ring_ops_types.h |  2 +-
- 2 files changed, 10 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/display/xe_display.c | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
-index 02bb3e1f20b7..6f8b4dc39d3a 100644
---- a/drivers/gpu/drm/xe/xe_ring_ops.c
-+++ b/drivers/gpu/drm/xe/xe_ring_ops.c
-@@ -360,12 +360,20 @@ static void __emit_job_gen12_render_compute(struct xe_sched_job *job,
- 	struct xe_gt *gt = job->q->gt;
- 	struct xe_device *xe = gt_to_xe(gt);
- 	bool lacks_render = !(gt->info.engine_mask & XE_HW_ENGINE_RCS_MASK);
-+	const bool aux_ccs = has_aux_ccs(xe);
- 	u32 mask_flags = 0;
+diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
+index eda65a05f601..b3ab912720e8 100644
+--- a/drivers/gpu/drm/xe/display/xe_display.c
++++ b/drivers/gpu/drm/xe/display/xe_display.c
+@@ -536,12 +536,20 @@ static const struct intel_display_irq_interface xe_display_irq_interface = {
+ 	.synchronize = irq_synchronize,
+ };
  
- 	*head = lrc->ring.tail;
- 
- 	i = emit_copy_timestamp(lrc, dw, i);
- 
-+	/*
-+	 * On AuxCCS platforms the invalidation of the Aux table requires
-+	 * quiescing the memory traffic beforehand.
-+	 */
-+	if (aux_ccs)
-+		i = emit_render_cache_flush(job, dw, i);
++static bool has_auxccs(struct drm_device *drm)
++{
++	struct xe_device *xe = to_xe_device(drm);
 +
- 	dw[i++] = preparser_disable(true);
- 	if (lacks_render)
- 		mask_flags = PIPE_CONTROL_3D_ARCH_FLAGS;
-@@ -376,7 +384,7 @@ static void __emit_job_gen12_render_compute(struct xe_sched_job *job,
- 	i = emit_pipe_invalidate(job->q, mask_flags, job->ring_ops_flush_tlb, dw, i);
- 
- 	/* hsdes: 1809175790 */
--	if (has_aux_ccs(xe))
-+	if (aux_ccs)
- 		i = emit_aux_table_inv(gt, CCS_AUX_INV, dw, i);
- 
- 	dw[i++] = preparser_disable(false);
-diff --git a/drivers/gpu/drm/xe/xe_ring_ops_types.h b/drivers/gpu/drm/xe/xe_ring_ops_types.h
-index d7e3e150a9a5..477dc7defd72 100644
---- a/drivers/gpu/drm/xe/xe_ring_ops_types.h
-+++ b/drivers/gpu/drm/xe/xe_ring_ops_types.h
-@@ -8,7 +8,7 @@
- 
- struct xe_sched_job;
- 
--#define MAX_JOB_SIZE_DW 58
-+#define MAX_JOB_SIZE_DW 70
- #define MAX_JOB_SIZE_BYTES (MAX_JOB_SIZE_DW * 4)
++	return xe->info.platform == XE_ALDERLAKE_P;
++}
++
+ static const struct intel_display_parent_interface parent = {
+ 	.hdcp = &xe_display_hdcp_interface,
+ 	.irq = &xe_display_irq_interface,
+ 	.panic = &xe_display_panic_interface,
+ 	.rpm = &xe_display_rpm_interface,
+ 	.stolen = &xe_display_stolen_interface,
++	.has_auxccs = has_auxccs,
+ };
  
  /**
 -- 
