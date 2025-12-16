@@ -4,60 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1FD46D5E130
-	for <intel-xe@archiver.kernel.org>; Tue, 16 Dec 2025 11:32:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2E5E3D5E136
+	for <intel-xe@archiver.kernel.org>; Tue, 16 Dec 2025 11:34:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D176510E70A;
-	Tue, 16 Dec 2025 11:32:53 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TTNrrAo+";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AD99210E704;
- Tue, 16 Dec 2025 11:32:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765884771; x=1797420771;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=AJ7AIQ/Y67ADOdmVR2elpS/em6+5xguyK7AuzVoIWdI=;
- b=TTNrrAo+UGb8gVzb6OF4RIp5NHVtfeV7mqrbjWfRzjwZNTwVEryOwyJU
- bGiao+810sonNe4qBjwKXJQqLLdB273mN//O0D2M3m+a2tZOTUOJbrto3
- j1lMKIey4EKQMrjKfwcGra1CZAwxlg+leB9S6Vpf3BPGmVorMoFUT8fyi
- 6INf67pvK6FCi/wvRayICyhiafTjulGaNLxAqVpVq9y9XZt05A107IEAo
- KPGbCXS5ZqUrsWcPsplOPeFJdu0m2S5f6abvDInvNDgFYcdaEGBSvI6am
- 6X4mnr7ssxty3EL5RsCXEu4UhIwr2BfkepK1O41M2oXn3f9I28j4ip8Rp g==;
-X-CSE-ConnectionGUID: fI/5doeDR92zQCZikgRAmQ==
-X-CSE-MsgGUID: Myu7A89PRrak2mvkuL7U1Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11643"; a="79255411"
-X-IronPort-AV: E=Sophos;i="6.21,153,1763452800"; d="scan'208";a="79255411"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2025 03:32:51 -0800
-X-CSE-ConnectionGUID: P4ldY8DMSyKa8Efejof1eQ==
-X-CSE-MsgGUID: msEJXspjQ5KJVo77OYPbHA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,153,1763452800"; d="scan'208";a="228675151"
-Received: from lkp-server02.sh.intel.com (HELO 034c7e8e53c3) ([10.239.97.151])
- by orviesa002.jf.intel.com with ESMTP; 16 Dec 2025 03:32:50 -0800
-Received: from kbuild by 034c7e8e53c3 with local (Exim 4.98.2)
- (envelope-from <lkp@intel.com>) id 1vVTIN-000000001ke-20Zm;
- Tue, 16 Dec 2025 11:32:47 +0000
-Date: Tue, 16 Dec 2025 19:32:32 +0800
-From: kernel test robot <lkp@intel.com>
-To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Cc: oe-kbuild-all@lists.linux.dev,
- Michal Wajdeczko <michal.wajdeczko@intel.com>,
- Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
- Matthew Brost <matthew.brost@intel.com>
-Subject: Re: [CI 2/4] drm/xe/guc: Introduce GUC_FIRMWARE_VER_AT_LEAST helper
-Message-ID: <202512161949.FGqB4Iim-lkp@intel.com>
-References: <20251215201806.196514-3-michal.wajdeczko@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id DF33C10E70A;
+	Tue, 16 Dec 2025 11:34:09 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6185210E70A;
+ Tue, 16 Dec 2025 11:34:08 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4261529802199976690=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251215201806.196514-3-michal.wajdeczko@intel.com>
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/cx0=3A_Use_the_con?=
+ =?utf-8?q?solidated_HDMI_tables?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Suraj Kandpal" <suraj.kandpal@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 16 Dec 2025 11:34:08 -0000
+Message-ID: <176588484839.93218.16245687902465951070@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20251216082732.1384018-1-suraj.kandpal@intel.com>
+In-Reply-To: <20251216082732.1384018-1-suraj.kandpal@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,93 +36,139 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Michal,
+--===============4261529802199976690==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-kernel test robot noticed the following build errors:
+== Series Details ==
 
-[auto build test ERROR on drm-xe/drm-xe-next]
-[also build test ERROR on drm/drm-next drm-i915/for-linux-next drm-i915/for-linux-next-fixes drm-misc/drm-misc-next drm-tip/drm-tip linus/master v6.19-rc1 next-20251216]
-[cannot apply to daeinki-drm-exynos/exynos-drm-next]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Series: drm/i915/cx0: Use the consolidated HDMI tables
+URL   : https://patchwork.freedesktop.org/series/159083/
+State : success
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Michal-Wajdeczko/drm-xe-Introduce-IF_ARGS-macro-utility/20251216-042142
-base:   https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
-patch link:    https://lore.kernel.org/r/20251215201806.196514-3-michal.wajdeczko%40intel.com
-patch subject: [CI 2/4] drm/xe/guc: Introduce GUC_FIRMWARE_VER_AT_LEAST helper
-config: sparc-randconfig-001-20251216 (https://download.01.org/0day-ci/archive/20251216/202512161949.FGqB4Iim-lkp@intel.com/config)
-compiler: sparc64-linux-gcc (GCC) 8.5.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251216/202512161949.FGqB4Iim-lkp@intel.com/reproduce)
+== Summary ==
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202512161949.FGqB4Iim-lkp@intel.com/
+CI Bug Log - changes from xe-4251-301c90aee06999676070d16b9f508541f7d5bf5c_BAT -> xe-pw-159083v1_BAT
+====================================================
 
-All errors (new ones prefixed by >>):
+Summary
+-------
 
-   In file included from drivers/gpu/drm/xe/xe_gt_sriov_pf_migration.c:20:
-   drivers/gpu/drm/xe/xe_gt_sriov_pf_migration.c: In function 'pf_gt_migration_check_support':
->> drivers/gpu/drm/xe/xe_guc.h:19:73: error: expected expression before ')' token
-    #define MAKE_GUC_VER(maj, min, pat) (((maj) << 16) | ((min) << 8) | (pat))
-                                                                            ^
-   drivers/gpu/drm/xe/xe_guc.h:23:3: note: in expansion of macro 'MAKE_GUC_VER'
-      MAKE_GUC_VER(PICK_ARG1(ver), PICK_ARG2(ver), IF_ARGS(PICK_ARG3(ver), 0, PICK_ARG3(ver))))
-      ^~~~~~~~~~~~
-   drivers/gpu/drm/xe/xe_guc.h:30:36: note: in expansion of macro 'MAKE_GUC_VER_ARGS'
-     xe_guc_fw_version_at_least((guc), MAKE_GUC_VER_ARGS(ver))
-                                       ^~~~~~~~~~~~~~~~~
-   drivers/gpu/drm/xe/xe_gt_sriov_pf_migration.c:1029:7: note: in expansion of macro 'GUC_FIRMWARE_VER_AT_LEAST'
-     if (!GUC_FIRMWARE_VER_AT_LEAST(&gt->uc.guc, 70, 54))
-          ^~~~~~~~~~~~~~~~~~~~~~~~~
---
-   In file included from drivers/gpu/drm/xe/xe_guc_ads.c:23:
-   drivers/gpu/drm/xe/xe_guc_ads.c: In function 'guc_waklv_init':
->> drivers/gpu/drm/xe/xe_guc.h:19:73: error: expected expression before ')' token
-    #define MAKE_GUC_VER(maj, min, pat) (((maj) << 16) | ((min) << 8) | (pat))
-                                                                            ^
-   drivers/gpu/drm/xe/xe_guc.h:23:3: note: in expansion of macro 'MAKE_GUC_VER'
-      MAKE_GUC_VER(PICK_ARG1(ver), PICK_ARG2(ver), IF_ARGS(PICK_ARG3(ver), 0, PICK_ARG3(ver))))
-      ^~~~~~~~~~~~
-   drivers/gpu/drm/xe/xe_guc.h:30:36: note: in expansion of macro 'MAKE_GUC_VER_ARGS'
-     xe_guc_fw_version_at_least((guc), MAKE_GUC_VER_ARGS(ver))
-                                       ^~~~~~~~~~~~~~~~~
-   drivers/gpu/drm/xe/xe_guc_ads.c:350:6: note: in expansion of macro 'GUC_FIRMWARE_VER_AT_LEAST'
-     if (GUC_FIRMWARE_VER_AT_LEAST(&gt->uc.guc, 70, 44) && XE_GT_WA(gt, 16026508708))
-         ^~~~~~~~~~~~~~~~~~~~~~~~~
->> drivers/gpu/drm/xe/xe_guc.h:19:73: error: expected expression before ')' token
-    #define MAKE_GUC_VER(maj, min, pat) (((maj) << 16) | ((min) << 8) | (pat))
-                                                                            ^
-   drivers/gpu/drm/xe/xe_guc.h:23:3: note: in expansion of macro 'MAKE_GUC_VER'
-      MAKE_GUC_VER(PICK_ARG1(ver), PICK_ARG2(ver), IF_ARGS(PICK_ARG3(ver), 0, PICK_ARG3(ver))))
-      ^~~~~~~~~~~~
-   drivers/gpu/drm/xe/xe_guc.h:30:36: note: in expansion of macro 'MAKE_GUC_VER_ARGS'
-     xe_guc_fw_version_at_least((guc), MAKE_GUC_VER_ARGS(ver))
-                                       ^~~~~~~~~~~~~~~~~
-   drivers/gpu/drm/xe/xe_guc_ads.c:353:6: note: in expansion of macro 'GUC_FIRMWARE_VER_AT_LEAST'
-     if (GUC_FIRMWARE_VER_AT_LEAST(&gt->uc.guc, 70, 47) && XE_GT_WA(gt, 16026007364)) {
-         ^~~~~~~~~~~~~~~~~~~~~~~~~
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (12 -> 12)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-159083v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_waitfence@abstime:
+    - bat-dg2-oem2:       [PASS][1] -> [TIMEOUT][2] ([Intel XE#6506])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4251-301c90aee06999676070d16b9f508541f7d5bf5c/bat-dg2-oem2/igt@xe_waitfence@abstime.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159083v1/bat-dg2-oem2/igt@xe_waitfence@abstime.html
+
+  * igt@xe_waitfence@engine:
+    - bat-dg2-oem2:       [PASS][3] -> [FAIL][4] ([Intel XE#6519])
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4251-301c90aee06999676070d16b9f508541f7d5bf5c/bat-dg2-oem2/igt@xe_waitfence@engine.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159083v1/bat-dg2-oem2/igt@xe_waitfence@engine.html
+
+  
+  [Intel XE#6506]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506
+  [Intel XE#6519]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519
 
 
-vim +19 drivers/gpu/drm/xe/xe_guc.h
+Build changes
+-------------
 
-dd08ebf6c3525a7 Matthew Brost    2023-03-30  13  
-4eb0aab6e4434ad Julia Filipchuk  2024-08-02  14  /*
-4eb0aab6e4434ad Julia Filipchuk  2024-08-02  15   * GuC version number components are defined to be only 8-bit size,
-4eb0aab6e4434ad Julia Filipchuk  2024-08-02  16   * so converting to a 32bit 8.8.8 integer allows simple (and safe)
-4eb0aab6e4434ad Julia Filipchuk  2024-08-02  17   * numerical comparisons.
-4eb0aab6e4434ad Julia Filipchuk  2024-08-02  18   */
-4eb0aab6e4434ad Julia Filipchuk  2024-08-02 @19  #define MAKE_GUC_VER(maj, min, pat)	(((maj) << 16) | ((min) << 8) | (pat))
-4eb0aab6e4434ad Julia Filipchuk  2024-08-02  20  #define MAKE_GUC_VER_STRUCT(ver)	MAKE_GUC_VER((ver).major, (ver).minor, (ver).patch)
-9100abdb735432b Michal Wajdeczko 2025-12-15  21  #define MAKE_GUC_VER_ARGS(ver...) \
-9100abdb735432b Michal Wajdeczko 2025-12-15  22  	(BUILD_BUG_ON_ZERO(COUNT_ARGS(ver) < 2 || COUNT_ARGS(ver) > 3) + \
-9100abdb735432b Michal Wajdeczko 2025-12-15  23  	 MAKE_GUC_VER(PICK_ARG1(ver), PICK_ARG2(ver), IF_ARGS(PICK_ARG3(ver), 0, PICK_ARG3(ver))))
-9100abdb735432b Michal Wajdeczko 2025-12-15  24  
+  * Linux: xe-4251-301c90aee06999676070d16b9f508541f7d5bf5c -> xe-pw-159083v1
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+  IGT_8666: 8666
+  xe-4251-301c90aee06999676070d16b9f508541f7d5bf5c: 301c90aee06999676070d16b9f508541f7d5bf5c
+  xe-pw-159083v1: 159083v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159083v1/index.html
+
+--===============4261529802199976690==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/cx0: Use the consolidated HDMI tables</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/159083/">https://patchwork.freedesktop.org/series/159083/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159083v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159083v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4251-301c90aee06999676070d16b9f508541f7d5bf5c_BAT -&gt; xe-pw-159083v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (12 -&gt; 12)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-159083v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@xe_waitfence@abstime:</p>
+<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4251-301c90aee06999676070d16b9f508541f7d5bf5c/bat-dg2-oem2/igt@xe_waitfence@abstime.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159083v1/bat-dg2-oem2/igt@xe_waitfence@abstime.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506">Intel XE#6506</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_waitfence@engine:</p>
+<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4251-301c90aee06999676070d16b9f508541f7d5bf5c/bat-dg2-oem2/igt@xe_waitfence@engine.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159083v1/bat-dg2-oem2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519">Intel XE#6519</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4251-301c90aee06999676070d16b9f508541f7d5bf5c -&gt; xe-pw-159083v1</li>
+</ul>
+<p>IGT_8666: 8666<br />
+  xe-4251-301c90aee06999676070d16b9f508541f7d5bf5c: 301c90aee06999676070d16b9f508541f7d5bf5c<br />
+  xe-pw-159083v1: 159083v1</p>
+
+</body>
+</html>
+
+--===============4261529802199976690==--
