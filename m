@@ -4,55 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F234DD5E12E
-	for <intel-xe@archiver.kernel.org>; Tue, 16 Dec 2025 11:28:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1FD46D5E130
+	for <intel-xe@archiver.kernel.org>; Tue, 16 Dec 2025 11:32:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 36F6510E119;
-	Tue, 16 Dec 2025 11:28:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D176510E70A;
+	Tue, 16 Dec 2025 11:32:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AQUJZPLA";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TTNrrAo+";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 91B8410E119
- for <intel-xe@lists.freedesktop.org>; Tue, 16 Dec 2025 11:28:31 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AD99210E704;
+ Tue, 16 Dec 2025 11:32:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765884512; x=1797420512;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=MDWQdwO4chqqWEg9SUD6lEI3UoPKlcyvwWkqKu2JhC8=;
- b=AQUJZPLAUKpf5znsk4Y+V3RwqlxsOkeS2y8aXzPzWZBoKErQz5C3Crmu
- 1g27+fOXLuhAaRLr00AEH/AT9ie5whk22wPlxGTt8XQRjS44QgUmQ4blr
- z3c0MLU4RnzG2m7d68ufjjWZbRtxRup8cyRg4PEAbP+SwKD6JKz18hdBo
- VR+NwEDb40kdKdV0GI9lAzw7zv2bIwm1b/Qs+E2/0krMKI6U7exDF5tsX
- HVgpGx3GFiXcaYtXJVXWU1mNFo+kup868VO5d2rSflvmejPeTKqetxWHQ
- Gm7O/0K081xVC8jZXTQkABvlXZy5RvPD+SzbI73uCBUH4PiGFq737ZSlm Q==;
-X-CSE-ConnectionGUID: YHauMdB+S42TiXJExWsziA==
-X-CSE-MsgGUID: iDlgR177RN+htKBaKdxjvg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11643"; a="78105791"
-X-IronPort-AV: E=Sophos;i="6.21,153,1763452800"; d="scan'208";a="78105791"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2025 03:28:31 -0800
-X-CSE-ConnectionGUID: F80MZvAbQvCzY2YdQ4EawQ==
-X-CSE-MsgGUID: gDOKYxvcSqqemHaZQsdRzw==
+ t=1765884771; x=1797420771;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=AJ7AIQ/Y67ADOdmVR2elpS/em6+5xguyK7AuzVoIWdI=;
+ b=TTNrrAo+UGb8gVzb6OF4RIp5NHVtfeV7mqrbjWfRzjwZNTwVEryOwyJU
+ bGiao+810sonNe4qBjwKXJQqLLdB273mN//O0D2M3m+a2tZOTUOJbrto3
+ j1lMKIey4EKQMrjKfwcGra1CZAwxlg+leB9S6Vpf3BPGmVorMoFUT8fyi
+ 6INf67pvK6FCi/wvRayICyhiafTjulGaNLxAqVpVq9y9XZt05A107IEAo
+ KPGbCXS5ZqUrsWcPsplOPeFJdu0m2S5f6abvDInvNDgFYcdaEGBSvI6am
+ 6X4mnr7ssxty3EL5RsCXEu4UhIwr2BfkepK1O41M2oXn3f9I28j4ip8Rp g==;
+X-CSE-ConnectionGUID: fI/5doeDR92zQCZikgRAmQ==
+X-CSE-MsgGUID: Myu7A89PRrak2mvkuL7U1Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11643"; a="79255411"
+X-IronPort-AV: E=Sophos;i="6.21,153,1763452800"; d="scan'208";a="79255411"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Dec 2025 03:32:51 -0800
+X-CSE-ConnectionGUID: P4ldY8DMSyKa8Efejof1eQ==
+X-CSE-MsgGUID: msEJXspjQ5KJVo77OYPbHA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,153,1763452800"; d="scan'208";a="197093712"
-Received: from sannilnx-dsk.jer.intel.com ([10.12.231.107])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2025 03:28:29 -0800
-From: Alexander Usyskin <alexander.usyskin@intel.com>
-To: Raag Jadav <raag.jadav@intel.com>,
+X-IronPort-AV: E=Sophos;i="6.21,153,1763452800"; d="scan'208";a="228675151"
+Received: from lkp-server02.sh.intel.com (HELO 034c7e8e53c3) ([10.239.97.151])
+ by orviesa002.jf.intel.com with ESMTP; 16 Dec 2025 03:32:50 -0800
+Received: from kbuild by 034c7e8e53c3 with local (Exim 4.98.2)
+ (envelope-from <lkp@intel.com>) id 1vVTIN-000000001ke-20Zm;
+ Tue, 16 Dec 2025 11:32:47 +0000
+Date: Tue, 16 Dec 2025 19:32:32 +0800
+From: kernel test robot <lkp@intel.com>
+To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: oe-kbuild-all@lists.linux.dev,
+ Michal Wajdeczko <michal.wajdeczko@intel.com>,
  Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Alexander Usyskin <alexander.usyskin@intel.com>,
- Reuven Abliyev <reuven.abliyev@intel.com>, intel-xe@lists.freedesktop.org
-Subject: [PATCH v2] drm/xe/nvm: enable cri platform
-Date: Tue, 16 Dec 2025 13:10:34 +0200
-Message-ID: <20251216111034.3093507-1-alexander.usyskin@intel.com>
-X-Mailer: git-send-email 2.43.0
+ Matthew Brost <matthew.brost@intel.com>
+Subject: Re: [CI 2/4] drm/xe/guc: Introduce GUC_FIRMWARE_VER_AT_LEAST helper
+Message-ID: <202512161949.FGqB4Iim-lkp@intel.com>
+References: <20251215201806.196514-3-michal.wajdeczko@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251215201806.196514-3-michal.wajdeczko@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,106 +72,90 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Mark CRI as one that have the CSC NVM device.
-Update the writable override flow to take the information from
-the scratch register for CRI.
+Hi Michal,
 
-Signed-off-by: Alexander Usyskin <alexander.usyskin@intel.com>
----
+kernel test robot noticed the following build errors:
 
-V2: Fix commit message format (Raag)
-    Drop fallthrough; (Raag)
+[auto build test ERROR on drm-xe/drm-xe-next]
+[also build test ERROR on drm/drm-next drm-i915/for-linux-next drm-i915/for-linux-next-fixes drm-misc/drm-misc-next drm-tip/drm-tip linus/master v6.19-rc1 next-20251216]
+[cannot apply to daeinki-drm-exynos/exynos-drm-next]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
- drivers/gpu/drm/xe/xe_nvm.c | 34 +++++++++++++++++++++++-----------
- drivers/gpu/drm/xe/xe_pci.c |  1 +
- 2 files changed, 24 insertions(+), 11 deletions(-)
+url:    https://github.com/intel-lab-lkp/linux/commits/Michal-Wajdeczko/drm-xe-Introduce-IF_ARGS-macro-utility/20251216-042142
+base:   https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
+patch link:    https://lore.kernel.org/r/20251215201806.196514-3-michal.wajdeczko%40intel.com
+patch subject: [CI 2/4] drm/xe/guc: Introduce GUC_FIRMWARE_VER_AT_LEAST helper
+config: sparc-randconfig-001-20251216 (https://download.01.org/0day-ci/archive/20251216/202512161949.FGqB4Iim-lkp@intel.com/config)
+compiler: sparc64-linux-gcc (GCC) 8.5.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251216/202512161949.FGqB4Iim-lkp@intel.com/reproduce)
 
-diff --git a/drivers/gpu/drm/xe/xe_nvm.c b/drivers/gpu/drm/xe/xe_nvm.c
-index 33f4ac82fc80..01510061d4d4 100644
---- a/drivers/gpu/drm/xe/xe_nvm.c
-+++ b/drivers/gpu/drm/xe/xe_nvm.c
-@@ -10,6 +10,7 @@
- #include "xe_device_types.h"
- #include "xe_mmio.h"
- #include "xe_nvm.h"
-+#include "xe_pcode_api.h"
- #include "regs/xe_gsc_regs.h"
- #include "xe_sriov.h"
- 
-@@ -45,39 +46,50 @@ static bool xe_nvm_non_posted_erase(struct xe_device *xe)
- {
- 	struct xe_mmio *mmio = xe_root_tile_mmio(xe);
- 
--	if (xe->info.platform != XE_BATTLEMAGE)
-+	switch (xe->info.platform) {
-+	case XE_CRESCENTISLAND:
-+	case XE_BATTLEMAGE:
-+		return !(xe_mmio_read32(mmio, XE_REG(GEN12_CNTL_PROTECTED_NVM_REG)) &
-+			 NVM_NON_POSTED_ERASE_CHICKEN_BIT);
-+	default:
- 		return false;
--	return !(xe_mmio_read32(mmio, XE_REG(GEN12_CNTL_PROTECTED_NVM_REG)) &
--		 NVM_NON_POSTED_ERASE_CHICKEN_BIT);
-+	}
- }
- 
- static bool xe_nvm_writable_override(struct xe_device *xe)
- {
- 	struct xe_mmio *mmio = xe_root_tile_mmio(xe);
- 	bool writable_override;
--	resource_size_t base;
-+	struct xe_reg reg;
-+	u32 test_bit;
- 
- 	switch (xe->info.platform) {
-+	case XE_CRESCENTISLAND:
-+		reg = PCODE_SCRATCH(0);
-+		test_bit = FDO_MODE;
-+		break;
- 	case XE_BATTLEMAGE:
--		base = DG2_GSC_HECI2_BASE;
-+		reg = HECI_FWSTS2(DG2_GSC_HECI2_BASE);
-+		test_bit = HECI_FW_STATUS_2_NVM_ACCESS_MODE;
- 		break;
- 	case XE_PVC:
--		base = PVC_GSC_HECI2_BASE;
-+		reg = HECI_FWSTS2(PVC_GSC_HECI2_BASE);
-+		test_bit = HECI_FW_STATUS_2_NVM_ACCESS_MODE;
- 		break;
- 	case XE_DG2:
--		base = DG2_GSC_HECI2_BASE;
-+		reg = HECI_FWSTS2(DG2_GSC_HECI2_BASE);
-+		test_bit = HECI_FW_STATUS_2_NVM_ACCESS_MODE;
- 		break;
- 	case XE_DG1:
--		base = DG1_GSC_HECI2_BASE;
-+		reg = HECI_FWSTS2(DG1_GSC_HECI2_BASE);
-+		test_bit = HECI_FW_STATUS_2_NVM_ACCESS_MODE;
- 		break;
- 	default:
- 		drm_err(&xe->drm, "Unknown platform\n");
- 		return true;
- 	}
- 
--	writable_override =
--		!(xe_mmio_read32(mmio, HECI_FWSTS2(base)) &
--		  HECI_FW_STATUS_2_NVM_ACCESS_MODE);
-+	writable_override = !(xe_mmio_read32(mmio, reg) & test_bit);
- 	if (writable_override)
- 		drm_info(&xe->drm, "NVM access overridden by jumper\n");
- 	return writable_override;
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index 0887d1912283..535325796067 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -416,6 +416,7 @@ static const struct xe_device_desc cri_desc = {
- 	.dma_mask_size = 52,
- 	.has_display = false,
- 	.has_flat_ccs = false,
-+	.has_gsc_nvm = 1,
- 	.has_i2c = true,
- 	.has_mbx_power_limits = true,
- 	.has_mert = true,
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202512161949.FGqB4Iim-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   In file included from drivers/gpu/drm/xe/xe_gt_sriov_pf_migration.c:20:
+   drivers/gpu/drm/xe/xe_gt_sriov_pf_migration.c: In function 'pf_gt_migration_check_support':
+>> drivers/gpu/drm/xe/xe_guc.h:19:73: error: expected expression before ')' token
+    #define MAKE_GUC_VER(maj, min, pat) (((maj) << 16) | ((min) << 8) | (pat))
+                                                                            ^
+   drivers/gpu/drm/xe/xe_guc.h:23:3: note: in expansion of macro 'MAKE_GUC_VER'
+      MAKE_GUC_VER(PICK_ARG1(ver), PICK_ARG2(ver), IF_ARGS(PICK_ARG3(ver), 0, PICK_ARG3(ver))))
+      ^~~~~~~~~~~~
+   drivers/gpu/drm/xe/xe_guc.h:30:36: note: in expansion of macro 'MAKE_GUC_VER_ARGS'
+     xe_guc_fw_version_at_least((guc), MAKE_GUC_VER_ARGS(ver))
+                                       ^~~~~~~~~~~~~~~~~
+   drivers/gpu/drm/xe/xe_gt_sriov_pf_migration.c:1029:7: note: in expansion of macro 'GUC_FIRMWARE_VER_AT_LEAST'
+     if (!GUC_FIRMWARE_VER_AT_LEAST(&gt->uc.guc, 70, 54))
+          ^~~~~~~~~~~~~~~~~~~~~~~~~
+--
+   In file included from drivers/gpu/drm/xe/xe_guc_ads.c:23:
+   drivers/gpu/drm/xe/xe_guc_ads.c: In function 'guc_waklv_init':
+>> drivers/gpu/drm/xe/xe_guc.h:19:73: error: expected expression before ')' token
+    #define MAKE_GUC_VER(maj, min, pat) (((maj) << 16) | ((min) << 8) | (pat))
+                                                                            ^
+   drivers/gpu/drm/xe/xe_guc.h:23:3: note: in expansion of macro 'MAKE_GUC_VER'
+      MAKE_GUC_VER(PICK_ARG1(ver), PICK_ARG2(ver), IF_ARGS(PICK_ARG3(ver), 0, PICK_ARG3(ver))))
+      ^~~~~~~~~~~~
+   drivers/gpu/drm/xe/xe_guc.h:30:36: note: in expansion of macro 'MAKE_GUC_VER_ARGS'
+     xe_guc_fw_version_at_least((guc), MAKE_GUC_VER_ARGS(ver))
+                                       ^~~~~~~~~~~~~~~~~
+   drivers/gpu/drm/xe/xe_guc_ads.c:350:6: note: in expansion of macro 'GUC_FIRMWARE_VER_AT_LEAST'
+     if (GUC_FIRMWARE_VER_AT_LEAST(&gt->uc.guc, 70, 44) && XE_GT_WA(gt, 16026508708))
+         ^~~~~~~~~~~~~~~~~~~~~~~~~
+>> drivers/gpu/drm/xe/xe_guc.h:19:73: error: expected expression before ')' token
+    #define MAKE_GUC_VER(maj, min, pat) (((maj) << 16) | ((min) << 8) | (pat))
+                                                                            ^
+   drivers/gpu/drm/xe/xe_guc.h:23:3: note: in expansion of macro 'MAKE_GUC_VER'
+      MAKE_GUC_VER(PICK_ARG1(ver), PICK_ARG2(ver), IF_ARGS(PICK_ARG3(ver), 0, PICK_ARG3(ver))))
+      ^~~~~~~~~~~~
+   drivers/gpu/drm/xe/xe_guc.h:30:36: note: in expansion of macro 'MAKE_GUC_VER_ARGS'
+     xe_guc_fw_version_at_least((guc), MAKE_GUC_VER_ARGS(ver))
+                                       ^~~~~~~~~~~~~~~~~
+   drivers/gpu/drm/xe/xe_guc_ads.c:353:6: note: in expansion of macro 'GUC_FIRMWARE_VER_AT_LEAST'
+     if (GUC_FIRMWARE_VER_AT_LEAST(&gt->uc.guc, 70, 47) && XE_GT_WA(gt, 16026007364)) {
+         ^~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+vim +19 drivers/gpu/drm/xe/xe_guc.h
+
+dd08ebf6c3525a7 Matthew Brost    2023-03-30  13  
+4eb0aab6e4434ad Julia Filipchuk  2024-08-02  14  /*
+4eb0aab6e4434ad Julia Filipchuk  2024-08-02  15   * GuC version number components are defined to be only 8-bit size,
+4eb0aab6e4434ad Julia Filipchuk  2024-08-02  16   * so converting to a 32bit 8.8.8 integer allows simple (and safe)
+4eb0aab6e4434ad Julia Filipchuk  2024-08-02  17   * numerical comparisons.
+4eb0aab6e4434ad Julia Filipchuk  2024-08-02  18   */
+4eb0aab6e4434ad Julia Filipchuk  2024-08-02 @19  #define MAKE_GUC_VER(maj, min, pat)	(((maj) << 16) | ((min) << 8) | (pat))
+4eb0aab6e4434ad Julia Filipchuk  2024-08-02  20  #define MAKE_GUC_VER_STRUCT(ver)	MAKE_GUC_VER((ver).major, (ver).minor, (ver).patch)
+9100abdb735432b Michal Wajdeczko 2025-12-15  21  #define MAKE_GUC_VER_ARGS(ver...) \
+9100abdb735432b Michal Wajdeczko 2025-12-15  22  	(BUILD_BUG_ON_ZERO(COUNT_ARGS(ver) < 2 || COUNT_ARGS(ver) > 3) + \
+9100abdb735432b Michal Wajdeczko 2025-12-15  23  	 MAKE_GUC_VER(PICK_ARG1(ver), PICK_ARG2(ver), IF_ARGS(PICK_ARG3(ver), 0, PICK_ARG3(ver))))
+9100abdb735432b Michal Wajdeczko 2025-12-15  24  
+
 -- 
-2.43.0
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
