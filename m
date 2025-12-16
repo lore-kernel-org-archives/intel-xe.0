@@ -4,60 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8235ED609CE
-	for <intel-xe@archiver.kernel.org>; Tue, 16 Dec 2025 16:57:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1EE25D609C2
+	for <intel-xe@archiver.kernel.org>; Tue, 16 Dec 2025 17:02:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 42FBF10E239;
-	Tue, 16 Dec 2025 16:57:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C828210E239;
+	Tue, 16 Dec 2025 17:02:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ADlAnNrF";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XtZhS+F8";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8742E10E239;
- Tue, 16 Dec 2025 16:57:53 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 50AAF10E239
+ for <intel-xe@lists.freedesktop.org>; Tue, 16 Dec 2025 17:02:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765904273; x=1797440273;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=U4dv8SX+OrYLbNRCnDhZknWVsE7jyL7lyrULFDaPg44=;
- b=ADlAnNrFjmD1ferUGmzkG5Whd9WEBzmWssNUBXBPFaq+Rji1lSYwWvUY
- pA24UQw7NrFpiV0YFlpabUp1WohupivlaWSIXMS+igV7dAFkPsnKoHYqK
- TL0sL72mCCTQvov8jE3OIstKwOj39KLigsL1VE7Qv3JsZiIOpRrJ/efzD
- y8WE5wW9u3umUOe5bqPjRKvPTFkVQhkXWvo9aId4DQil8ivcdQCp0+HHy
- Xt8xzK2H+SoXPoCcUzeFji6AIgYS0X2EHQbS7Oj9dkhLlf+A9+SzZpLWw
- L3/lCG+M+OIhG5aET/pfdV7hB2ZXEeACc4IBMiMeR8HwVEiMd2y0hCkCi Q==;
-X-CSE-ConnectionGUID: 6rfHnJFPRwqJoI5CoNxrvg==
-X-CSE-MsgGUID: 4SvMdryIQ46Dv05CIJZuUg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11644"; a="78466858"
-X-IronPort-AV: E=Sophos;i="6.21,153,1763452800"; d="scan'208";a="78466858"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2025 08:57:53 -0800
-X-CSE-ConnectionGUID: xjyi3gLoRk+tmvTqLMLmTg==
-X-CSE-MsgGUID: vVAIJ7n+Qq6TooHJnadVtw==
+ t=1765904521; x=1797440521;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=03KSJ1l7SRimWVr7BBDGOdp0HTTKi/uc1JTwQow9MYE=;
+ b=XtZhS+F8sZbGFBmudoS0XgChu11K51LGCpM7DUmfz+o5fWSWo5FaMzV3
+ FtkCPV2+3+5QilGzmZiYy8Lqz6sxACeA7jP+whwEilpxhFPgDxSR2UCuW
+ yncT6LolijhBEdRzRwEgVn+3OXoXwgChfNMI8MJYEbLATtt8KMlKwBIEY
+ +qF1YowRBTqr9gXyQYm6CRKzHQkU2K5NXahe4SPSrv9aQ981k3uYItwlu
+ Cn7ByrVsBUWifH+tvmCAekOriNwzgMCSDtgG04ZBdSgfyp/ey1EKpaTJo
+ FikEuy1AZ/ivvzRHn7qPhpPvREDKAojhOai9LMn88XfdZxCcycb137Cl5 w==;
+X-CSE-ConnectionGUID: fgio8qhjQE6Np9L+Ub/XYA==
+X-CSE-MsgGUID: uWqWOYBdSBGyJVJ8QLgmRw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11644"; a="71683433"
+X-IronPort-AV: E=Sophos;i="6.21,153,1763452800"; d="scan'208";a="71683433"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Dec 2025 09:02:01 -0800
+X-CSE-ConnectionGUID: lus+Mz4yRWa2CA08ZbyB1g==
+X-CSE-MsgGUID: xxwkuxO1SbGmdgMUDZbgtQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,153,1763452800"; d="scan'208";a="198059783"
-Received: from dhhellew-desk2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.153])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2025 08:57:51 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Jouni =?utf-8?Q?H=C3=B6gander?= <jouni.hogander@intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Cc: Jouni =?utf-8?Q?H=C3=B6gander?= <jouni.hogander@intel.com>, Rodrigo Vivi
- <rodrigo.vivi@intel.com>
-Subject: Re: [PATCH] drm/i915/display: Allow async flip when Selective Fetch
- is enabled
-In-Reply-To: <20251216130351.2799110-1-jouni.hogander@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20251216130351.2799110-1-jouni.hogander@intel.com>
-Date: Tue, 16 Dec 2025 18:57:47 +0200
-Message-ID: <4c23bcd7bf3b1f70e77e917d62f490775ad0dd95@intel.com>
+Received: from dut4086lnl.fm.intel.com ([10.105.10.207])
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Dec 2025 09:02:00 -0800
+From: Jonathan Cavitt <jonathan.cavitt@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: saurabhg.gupta@intel.com, alex.zuo@intel.com, jonathan.cavitt@intel.com,
+ peter.senna@intel.com, ayaz.siddiqui@intel.com, varun.gupta@intel.com
+Subject: [PATCH] drm/xe/xe_svm: Only count unique pagefaults
+Date: Tue, 16 Dec 2025 17:02:01 +0000
+Message-ID: <20251216170200.8714-2-jonathan.cavitt@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,41 +64,48 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 16 Dec 2025, Jouni H=C3=B6gander <jouni.hogander@intel.com> wrote:
-> Fix silent conflict during drm-next backmerge causing async flips being
-> rejected when Selective Fetch is enabled.
->
-> Fixes: b8304863a399 ("Merge drm/drm-next into drm-intel-next")
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Signed-off-by: Jouni H=C3=B6gander <jouni.hogander@intel.com>
+The function __xe_svm_handle_pagefault increments the value of
+XE_GT_STATS_ID_SVM_PAGEFAULT_COUNT every time it is called by
+xe_svm_handle_pagefault.  However, if __xe_svm_handle_pagefault returns
+-EAGAIN, it can be called again in a loop, resulting in
+XE_GT_STATS_ID_SVM_PAGEFAULT_COUNT being incremented multiple times for
+the same pagefault instance.  This can occur if, for example,
+xe_svm_garbage_collector return -EAGAIN.
 
-Acked-by: Jani Nikula <jani.nikula@intel.com>
+It does not make sense to increment the SVM pagefault count more than
+once per pagefault, so only increment it once per call to
+xe_svm_handle_pagefault.
 
-> ---
->  drivers/gpu/drm/i915/display/intel_display.c | 8 --------
->  1 file changed, 8 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
-rm/i915/display/intel_display.c
-> index 9c6d3ecdb589e..d5947cc9b94c5 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -6026,14 +6026,6 @@ static int intel_async_flip_check_uapi(struct inte=
-l_atomic_state *state,
->  		return -EINVAL;
->  	}
->=20=20
-> -	/* FIXME: selective fetch should be disabled for async flips */
-> -	if (new_crtc_state->enable_psr2_sel_fetch) {
-> -		drm_dbg_kms(display->drm,
-> -			    "[CRTC:%d:%s] async flip disallowed with PSR2 selective fetch\n",
-> -			    crtc->base.base.id, crtc->base.name);
-> -		return -EINVAL;
-> -	}
-> -
->  	for_each_oldnew_intel_plane_in_state(state, plane, old_plane_state,
->  					     new_plane_state, i) {
->  		if (plane->pipe !=3D crtc->pipe)
+Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+Cc: Peter Senna <peter.senna@intel.com>
+Cc: Ayaz A Siddiqui <ayaz.siddiqui@intel.com>
+Cc: Varun Gupta <varun.gupta@intel.com>
+---
+ drivers/gpu/drm/xe/xe_svm.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
---=20
-Jani Nikula, Intel
+diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
+index 93550c7c84ac..245ffa6330bb 100644
+--- a/drivers/gpu/drm/xe/xe_svm.c
++++ b/drivers/gpu/drm/xe/xe_svm.c
+@@ -1026,8 +1026,6 @@ static int __xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
+ 	lockdep_assert_held_write(&vm->lock);
+ 	xe_assert(vm->xe, xe_vma_is_cpu_addr_mirror(vma));
+ 
+-	xe_gt_stats_incr(gt, XE_GT_STATS_ID_SVM_PAGEFAULT_COUNT, 1);
+-
+ retry:
+ 	/* Always process UNMAPs first so view SVM ranges is current */
+ 	err = xe_svm_garbage_collector(vm);
+@@ -1178,6 +1176,8 @@ int xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
+ 			    bool atomic)
+ {
+ 	int need_vram, ret;
++
++	xe_gt_stats_incr(gt, XE_GT_STATS_ID_SVM_PAGEFAULT_COUNT, 1);
+ retry:
+ 	need_vram = xe_vma_need_vram_for_atomic(vm->xe, vma, atomic);
+ 	if (need_vram < 0)
+-- 
+2.43.0
+
