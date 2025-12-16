@@ -4,64 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EFF88D5B87A
-	for <intel-xe@archiver.kernel.org>; Mon, 15 Dec 2025 23:54:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 40161D5B874
+	for <intel-xe@archiver.kernel.org>; Tue, 16 Dec 2025 00:03:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9289410E04E;
-	Mon, 15 Dec 2025 23:54:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F343410E5D3;
+	Tue, 16 Dec 2025 00:03:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="RZYdSMIZ";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="DLC6O38n";
 	dkim-atps=neutral
-Received: from mail-yx1-f45.google.com (mail-yx1-f45.google.com
- [74.125.224.45])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0920C10E198
- for <intel-xe@lists.freedesktop.org>; Mon, 15 Dec 2025 23:54:41 +0000 (UTC)
-Received: by mail-yx1-f45.google.com with SMTP id
- 956f58d0204a3-6446704997cso3529797d50.2
- for <intel-xe@lists.freedesktop.org>; Mon, 15 Dec 2025 15:54:41 -0800 (PST)
+Received: from mail-yw1-f173.google.com (mail-yw1-f173.google.com
+ [209.85.128.173])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 19BEF10E5DC
+ for <intel-xe@lists.freedesktop.org>; Tue, 16 Dec 2025 00:03:02 +0000 (UTC)
+Received: by mail-yw1-f173.google.com with SMTP id
+ 00721157ae682-78ab039ddb4so40332737b3.3
+ for <intel-xe@lists.freedesktop.org>; Mon, 15 Dec 2025 16:03:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1765842881; x=1766447681; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1765843381; x=1766448181; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:message-id:date:subject:cc
  :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=qi1iA3gThMzNW0vwvQOq+i42JuDGcJBaX7DYkycH1V4=;
- b=RZYdSMIZ6+7e1g57wd9PorWB+4X/Q7vWwbKBAkc1NW8JghjrBGDdqUmrCMAAcOIMHe
- gEAPUCa1c+XYwpEPy0OK9JbZsWtZZ8cv7uLF3TDnZpPGZlqKfWfCD/x+a7d6/HYTUXGj
- Wxkf0VCozEXU9oajQDLxBleweZYOE20pFwZ/og+eGT7wK4nge6VsHIjhA1eWA5FI9c0b
- 5lZYCSpYbwhQxf5gF5JRXCYtdGKOWfuLJzaeUCtp4r7w7khB15TZ55i5e6SMzLUY0hlr
- JpVte0AY1MJm0a9PxuxeqHB82kg+BqzxZ5w6xhO6mpyBOLOUNjYdKP8IwSsHLWDagaJG
- BpZQ==
+ bh=X3fuzXH5SEfyeqaUBVlqx0NH11f8VqTdNd2pukYtUTI=;
+ b=DLC6O38nSWRVv769MbRCVawqoIkd7EOU1X8W4Dko9ZdcY5LSWsprvGUGXaOnkHzUhv
+ +xrZIXHxLA2AACDwNM5LxzfQkyrZCEwpnDsjSG1pP3NRRgqTtgI071LUWPNrvREsdhUR
+ ZpNhO5+XjLHzBYwTwn4imNe8ESbTJeYNOkjOfYcovjodhkBVW/Ft8N/U9ppyrswjAYGF
+ ChdJnfFzm9Bf/y8Nlep6qMASOwoE3u1ONtfIE+L6YT42fCPZofcxJKIuzXGY33o0B2Bg
+ 15z5JrGrf1+GKUMtJKXNxYLHUUf0/HXXjgpbw7lcGIu36Vb4LwUOE5EiC/oYx6ajVF2a
+ ERwg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1765842881; x=1766447681;
+ d=1e100.net; s=20230601; t=1765843381; x=1766448181;
  h=content-transfer-encoding:mime-version:message-id:date:subject:cc
  :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
  :message-id:reply-to;
- bh=qi1iA3gThMzNW0vwvQOq+i42JuDGcJBaX7DYkycH1V4=;
- b=OatAa8u60oAOFkrfi77rfxui2s1t2Cm8tXXFv78k8VoP+3JDVtwyKLoS77/kJrfRVa
- y3XNCzc7ks/Md3/uJ3dIMmsbyLFd7/XNciVwGXeKtKAci5YG0V6FQZu+j54LRCDdOYr8
- V2cbOn7mWWvKjgl03LbcgYNuv6s4Yum/jgidgSQoueD2JqbM23JpjKPoUTKlFMOPqK8o
- bgqE7fv0jW9m34D+sAEKxUwPaxD9zQyAvsF096FuQbL5SAAInrh10LXqB82ua6AKINm1
- 5E1CqaZTltd4l4G3t85n0M84CSZIvsegkoCGt1tyJt2BFxYG9jWaBpsz6PjF3BT5lxeH
- pxKg==
+ bh=X3fuzXH5SEfyeqaUBVlqx0NH11f8VqTdNd2pukYtUTI=;
+ b=D2Mr0k6e7CYgRy0+BGW6Nz181M5t3rVCWGRFiEhrt6Q5QYggeJjXvuoeWN2pPk0Vvh
+ zHTNdBRcrr2KUxuqhdfbam+UDoImwIZoQc1inw9KDkWOVjz4CzwXlnY2qQDM6kDakXzV
+ Yt5xmgo8d8pCHWi5Hy9/CIWAKQDlhHCXkgpMrNWZ7ulldVI30Bb5NK2HijufnFMThgcf
+ LzTVnjwr/tqPZGkC7xeRQTmBj/qGIwYtpPStr5TDmJ34ySbJpsJGuOtU//lGI5Q3tsHW
+ MfglNR+v+xvlU10udkSZ5u+O7lSG5KSVLdMueJ/lUyblHy0dy28uvX72XhSG5Z2iJJJs
+ 3x0g==
 X-Forwarded-Encrypted: i=1;
- AJvYcCU1rYUDjPq/3JVW2DMrksW/1LPdjFsnhzK8bfVeMVhtc1WqmNTUm5RhzzfaYvMOmvOO5iz8icZKbg==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyVDBDyd/dNvY0HqNHlmHeI7W3GIkwbkOkinf0wHwhUM2fQTckl
- Zc+LRGbixHgnH1B5LvS/O2ZHurhooL22Ae13aPeTHq2C6nSKkYk7XETG
-X-Gm-Gg: AY/fxX5pTlVCJHfjiGby1hKXvuVHIdWqQE6DZA3idTptOS3Qe7/+eeMNT0vQJeeGc13
- JXQAmQlSG+dIngPxTC6LGfXmgpU4zDDFrPQ2OjWuP/hgV8ELrcBMXtvFfBMxG5eCjDmrWwWg65G
- FiqKN7OkOADhmD+DMPHb37I42SJDSosyGkIY0GUHp5jkP/QcNrGymsACJDZuhP6aizdwPGefq4H
- rCpTcIscUCkUw26yKbhCcTCsI0HFiuj2z+v/gfdKjgCixb+DMQC3iBsMeJrm+bQi7fQk5dJy5X+
- PysIy9UFlQNQ+T4O+YRmL9C9XC3Mh4R8+Hh0xFWUqOS8C30X7VnED9x40dGUPpGVfbss2bGCvyr
- idPht5zO5bWAXtlZ/eEDkl9Zx1A99qfSJp8aaJTyX+bzwouQKc0ESYwsDLLN3eNfV3U0qwJgaSh
- NpayRBdJ1eB4PMJQTz
-X-Google-Smtp-Source: AGHT+IGRC8RK5GGvwd89lteOSW/cKBszESs470jpMcci5izqE12F53ZF9gQk4OUHdFNNGNhLh3aShg==
-X-Received: by 2002:a05:690e:4093:b0:644:28bb:fb53 with SMTP id
- 956f58d0204a3-64555664cb0mr9353405d50.66.1765842880827; 
- Mon, 15 Dec 2025 15:54:40 -0800 (PST)
+ AJvYcCUV+H25eXzLkzaU+T8QHLbaJXrzR4Oh+cM7wNNCnOpHx2NoThX5GvAf7sbkyGLyL3JtR8ubDrvohQ==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yy43MvtWF3zrej5tQQppgElzGwfNcirP4YmZI+envXaA7+kRvlZ
+ lMwxGd3AjvYxia9NerZpFQDW37/THx7ga1hPxmWhQcYmYbXA4lIPMT4V
+X-Gm-Gg: AY/fxX6E8rGyeV0J8J4owAASzd5courAO8F0q5pZJfWUfLjuHsihMX9eUM+TFzlbXfP
+ lCpXDePj7aedNJL6nL8NwBjaXuq/2+q/yE2eiY8z3XvXfSqMtNx/2kk4wC1UNe48t9DPnanasgU
+ Oav2NHhw+drn90zbBD5O5GJFr2FCsCW1OBeV63ZuS4SEgVwwNiugy/cdr9ueUrDWLQb2bydHdKn
+ 8dFzwHXMxBVSEt5RqoVGFqrE8D0mHcGAivBwdak37g5evxkoXO8LwVBjrmcNw1cd6c3gzu0RSpn
+ M/OylZOcHW8Oe8oDC2JzA/kWIgRdKoyadjLF0yZiSc1+lPSqXgmhWIQ3jtvvFBS2FZuudSDuSAe
+ SNShTB6dJZXJlVt6GWDkiAeukRhPJXUQr1ThQ5O5CuycYxo0Pi2/mIbUUjH47lslxd5DHYQ620m
+ J69F2YWw==
+X-Google-Smtp-Source: AGHT+IHU3vVA2SYJElE2obpcVI0gnvNEkzHvH2Jecy5LnMGranUYJKQCbTFXNsf82RxNUZqqx3bXJg==
+X-Received: by 2002:a05:690c:9c07:b0:786:8410:31dc with SMTP id
+ 00721157ae682-78e66e750b1mr103406167b3.53.1765843380840; 
+ Mon, 15 Dec 2025 16:03:00 -0800 (PST)
 Received: from localhost ([2601:346:0:79bd:6b0:1f10:bc87:9bd7])
  by smtp.gmail.com with ESMTPSA id
- 956f58d0204a3-64477dc673asm6997136d50.25.2025.12.15.15.54.40
+ 00721157ae682-78e748ef4fdsm33347247b3.15.2025.12.15.16.03.00
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 15 Dec 2025 15:54:40 -0800 (PST)
+ Mon, 15 Dec 2025 16:03:00 -0800 (PST)
 From: "Yury Norov (NVIDIA)" <yury.norov@gmail.com>
 To: Lucas De Marchi <lucas.demarchi@intel.com>,
  =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
@@ -70,11 +70,12 @@ To: Lucas De Marchi <lucas.demarchi@intel.com>,
  Harish Chegondi <harish.chegondi@intel.com>,
  intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  linux-kernel@vger.kernel.org
-Cc: "Yury Norov (NVIDIA)" <yury.norov@gmail.com>
-Subject: [PATCH] drm/xe/eustall: use bitmap_empty() in
- xe_eu_stall_stream_read_locked()
-Date: Mon, 15 Dec 2025 18:54:38 -0500
-Message-ID: <20251215235439.330124-1-yury.norov@gmail.com>
+Cc: "Yury Norov (NVIDIA)" <yury.norov@gmail.com>,
+ Thomas Gleixner <tglx@linutronix.de>
+Subject: [PATCH] drm/xe/eustall: use bitmap_weighted_or() in
+ xe_eu_stall_stream_init()
+Date: Mon, 15 Dec 2025 19:02:58 -0500
+Message-ID: <20251216000259.331293-1-yury.norov@gmail.com>
 X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -92,27 +93,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-bitmap_empty() is more verbose and efficient, as it stops traversing
-data_drop mask as soon as the 1st set bit found.
+Commit 437cb3ded2503 ("cpumask: Introduce cpumask_weighted_or()") added
+the new helper, which fits well here. Use it.
 
 Signed-off-by: Yury Norov (NVIDIA) <yury.norov@gmail.com>
 ---
- drivers/gpu/drm/xe/xe_eu_stall.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_eu_stall.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_eu_stall.c b/drivers/gpu/drm/xe/xe_eu_stall.c
-index 97dfb7945b7a..b896b7ff5900 100644
+index b896b7ff5900..8bd4307afbbd 100644
 --- a/drivers/gpu/drm/xe/xe_eu_stall.c
 +++ b/drivers/gpu/drm/xe/xe_eu_stall.c
-@@ -544,7 +544,7 @@ static ssize_t xe_eu_stall_stream_read_locked(struct xe_eu_stall_data_stream *st
- 	int ret = 0;
+@@ -737,9 +737,9 @@ static int xe_eu_stall_stream_init(struct xe_eu_stall_data_stream *stream,
+ 	u32 vaddr_offset;
+ 	int ret;
  
- 	mutex_lock(&stream->xecore_buf_lock);
--	if (bitmap_weight(stream->data_drop.mask, XE_MAX_DSS_FUSE_BITS)) {
-+	if (!bitmap_empty(stream->data_drop.mask, XE_MAX_DSS_FUSE_BITS)) {
- 		if (!stream->data_drop.reported_to_user) {
- 			stream->data_drop.reported_to_user = true;
- 			xe_gt_dbg(gt, "EU stall data dropped in XeCores: %*pb\n",
+-	bitmap_or(all_xecores, gt->fuse_topo.g_dss_mask, gt->fuse_topo.c_dss_mask,
+-		  XE_MAX_DSS_FUSE_BITS);
+-	num_xecores = bitmap_weight(all_xecores, XE_MAX_DSS_FUSE_BITS);
++	num_xecores = bitmap_weighted_or(all_xecores, gt->fuse_topo.g_dss_mask,
++						      gt->fuse_topo.c_dss_mask,
++						      XE_MAX_DSS_FUSE_BITS);
+ 	last_xecore = xe_gt_topology_mask_last_dss(all_xecores) + 1;
+ 
+ 	max_wait_num_reports = num_data_rows(per_xecore_buf_size * num_xecores);
 -- 
 2.43.0
 
