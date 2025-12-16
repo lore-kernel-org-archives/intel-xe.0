@@ -4,34 +4,34 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 013AAD5CC89
-	for <intel-xe@archiver.kernel.org>; Tue, 16 Dec 2025 09:22:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1CE85D5CC97
+	for <intel-xe@archiver.kernel.org>; Tue, 16 Dec 2025 09:22:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B701A10E7B7;
+	by gabe.freedesktop.org (Postfix) with ESMTP id CE26810E7A5;
 	Tue, 16 Dec 2025 09:22:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="IOKpWADA";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="P4Y+SwMl";
 	dkim-atps=neutral
 Received: from lankhorst.se (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D1C5610E7DA;
- Tue, 16 Dec 2025 09:22:32 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D481E10E7A5;
+ Tue, 16 Dec 2025 09:22:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1765876951;
- bh=Bne1RUVyYhtMfwYqK3Ip48zVZdJr+u55XTL2YPV9fWw=;
+ s=default; t=1765876953;
+ bh=Mi72tZLkVY+OWZNlHhJHSloPqeEUuXErW5xRvyEChLQ=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=IOKpWADAHy+3JQcRCXNytxA8kDSpW9oc+UMtYxo9gTW6ZHcrqHrpxyfwJBiFX2ubi
- iVhEbPUzJ5r8sUyPDtZGSAAjJpBO2xDBcUAaL8H4I+uPDW31QW4fnfGQNbJ1KXegLN
- LRL9D3t10umupBr6tEz9A1XkkZPJcSkWXXrVVmWZAmNIhbjJsm3EeIvT4l+DKp7Cjr
- QFNgGjJu3nlBlQ29lwMK3gm4XPSuub8gp3uXn/7VpsADbtIYV+ezb10ZSvma24FN9p
- RKhIfA0nmJTt5gaztqYZQl5FjNY+Bt4jHHefk2tprXMW5Z0vrYf+9XMyTwTA/CdTA4
- mMu8ZMZYY+zBQ==
+ b=P4Y+SwMldtNQeGfIS1FXT/Mc+6wuklxSaZzUXxHtRIJwJqXd5sxgayT5urfMsW++i
+ SDAvXijnsY0qE1HzMKyTdL0isyGcHaMqOAAvGsbnd/eW9BJcenEdG/zxSOPTpSn2OM
+ FstGDrmMNEuvH24ASdd6RunmfgEIisK5Lpc1CcgLZbKlpmGM0Zb7ZpO8qD9JfAfyYU
+ duVAAH/Xx05YHK8cMoFPPd56Ol4EsnwTSX+4Gx5wBb5pFl3YXOYPCeSgVI19ULzDdb
+ puVGuJ9jC9uJcrY2dklG6NFS+jvX0SsOYJ1LPV/IuMzlJLR5YdOeYewOmkGlaJFzmc
+ 6KWvsJX5OUAdw==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-xe@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Subject: [i915-rt v2 01/16] drm/i915/display: Fix intel_lpe_audio_irq_handler
- for PREEMPT-RT
-Date: Tue, 16 Dec 2025 10:22:28 +0100
-Message-ID: <20251216092226.1777909-19-dev@lankhorst.se>
+Subject: [i915-rt v2 05/16] drm/i915/display: Move vblank put until after
+ critical section
+Date: Tue, 16 Dec 2025 10:22:32 +0100
+Message-ID: <20251216092226.1777909-23-dev@lankhorst.se>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20251216092226.1777909-18-dev@lankhorst.se>
 References: <20251216092226.1777909-18-dev@lankhorst.se>
@@ -51,35 +51,63 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The LPE audio interrupt comes from the i915 interrupt handler. It
-should be in irq disabled context.
+drm_crtc_vblank_put may take some locks, this should probably
+not be the first thing we do after entering the time sensitive
+part.
 
-With PREEMPT_RT enabled, the IRQ handler is threaded.
-Because intel_lpe_audio_irq_handler() may be called in threaded IRQ context,
-generic_handle_irq_safe API disables the interrupts before calling LPE's
-interrupt top half handler.
+A better place is after programming is completed. Add a flag
+to put the vblank after completion.
 
-This fixes braswell audio issues with RT enabled.
+In the case of drm_vblank_work_schedule, we may not even need
+to disable the vblank interrupt any more if it takes its own
+reference.
 
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+Reviewed-by: Uma Shankar <uma.shankar@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_lpe_audio.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_cursor.c | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_lpe_audio.c b/drivers/gpu/drm/i915/display/intel_lpe_audio.c
-index 5b41abe1c64d5..172c0062237eb 100644
---- a/drivers/gpu/drm/i915/display/intel_lpe_audio.c
-+++ b/drivers/gpu/drm/i915/display/intel_lpe_audio.c
-@@ -262,7 +262,7 @@ void intel_lpe_audio_irq_handler(struct intel_display *display)
- 	if (!HAS_LPE_AUDIO(display))
- 		return;
+diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
+index 2c5d917fbd7e9..3e84a2078a0a7 100644
+--- a/drivers/gpu/drm/i915/display/intel_cursor.c
++++ b/drivers/gpu/drm/i915/display/intel_cursor.c
+@@ -816,6 +816,7 @@ intel_legacy_cursor_update(struct drm_plane *_plane,
+ 		to_intel_crtc_state(crtc->base.state);
+ 	struct intel_crtc_state *new_crtc_state;
+ 	struct intel_vblank_evade_ctx evade;
++	bool has_vblank = false;
+ 	int ret;
  
--	ret = generic_handle_irq(display->audio.lpe.irq);
-+	ret = generic_handle_irq_safe(display->audio.lpe.irq);
- 	if (ret)
- 		drm_err_ratelimited(display->drm,
- 				    "error handling LPE audio irq: %d\n", ret);
+ 	/*
+@@ -913,6 +914,8 @@ intel_legacy_cursor_update(struct drm_plane *_plane,
+ 	intel_psr_lock(crtc_state);
+ 
+ 	if (!drm_WARN_ON(display->drm, drm_crtc_vblank_get(&crtc->base))) {
++		has_vblank = true;
++
+ 		/*
+ 		 * TODO: maybe check if we're still in PSR
+ 		 * and skip the vblank evasion entirely?
+@@ -922,8 +925,6 @@ intel_legacy_cursor_update(struct drm_plane *_plane,
+ 		local_irq_disable();
+ 
+ 		intel_vblank_evade(&evade);
+-
+-		drm_crtc_vblank_put(&crtc->base);
+ 	} else {
+ 		local_irq_disable();
+ 	}
+@@ -939,6 +940,9 @@ intel_legacy_cursor_update(struct drm_plane *_plane,
+ 
+ 	intel_psr_unlock(crtc_state);
+ 
++	if (has_vblank)
++		drm_crtc_vblank_put(&crtc->base);
++
+ 	if (old_plane_state->ggtt_vma != new_plane_state->ggtt_vma) {
+ 		drm_vblank_work_init(&old_plane_state->unpin_work, &crtc->base,
+ 				     intel_cursor_unpin_work);
 -- 
 2.51.0
 
