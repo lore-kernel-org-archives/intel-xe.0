@@ -4,53 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9EFD8D637B3
-	for <intel-xe@archiver.kernel.org>; Tue, 16 Dec 2025 21:49:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2E27AD637DC
+	for <intel-xe@archiver.kernel.org>; Tue, 16 Dec 2025 21:49:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3D27E10E9A1;
-	Tue, 16 Dec 2025 21:49:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0420410E9A6;
+	Tue, 16 Dec 2025 21:49:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZlI8Hy8y";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gVyhw4n0";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9BA4610E9A0;
- Tue, 16 Dec 2025 21:49:20 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B7C5310E06C;
+ Tue, 16 Dec 2025 21:49:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765921761; x=1797457761;
+ t=1765921766; x=1797457766;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=laq1cGCAasO1tKveWVCQfFDMvVtKB7Y42zgcez1net4=;
- b=ZlI8Hy8yjfgUrWHZeKqAnwKcUUihEbTyexq1bJEOuQNz/OL8YL4rHSpm
- wwFdOIzFknWudiI3W+IBaqw7qM6qAjW4SfLrTjXcvYbS1ISODwlg6TkNF
- sP29dQnTf9KkM+x/2VsXUqmwxcTXwiIROgG1jYUxBbCcKMcBb0p4Zd7BC
- ufdxhfvWt2XtkXjmbH0CP4wsmyYMWpcKtxawXZPDLpVUNfPODcPqs7LVO
- gIk28FOOVG8XZIfAAZzqHXuuGITWW3p9YAIlYQ2Ba89qk06HGxYHzuWtE
- uI26vcBNUaE+RzMyaLgr0SlY2ZSLQy8ofbA7E3tk+zb2x6omkNn/TRw5l w==;
-X-CSE-ConnectionGUID: RWEvTMSET9mNVcwbV3PFTg==
-X-CSE-MsgGUID: wRsrFnPUQjCl9ZR3UbVdgQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11644"; a="67045816"
-X-IronPort-AV: E=Sophos;i="6.21,154,1763452800"; d="scan'208";a="67045816"
+ bh=t1B4nwXkd8lkBz/YWX1T0zkbHgh5BukCJx4y164mOmI=;
+ b=gVyhw4n0PGNtX7uBbj+WVlPb8kwv9mbaRPTY8SnTFwsjccB2JyJZkA+o
+ HZ/ZE0HMx++sg1Qq5Tpvn8MULmtP9QEl/gUUwHVWAW1rgnrTn6DI7ljWW
+ wAz/vrlbJKPkacHHp8tYpc9lBoc3g+3DfL7q+T4KenrLmmnRS47+vZvRO
+ nx7P4p4P/YI4l8lCDLMSVAqatLv4eUd0s3yadCUZTjm6dZqe6CWsTMkuN
+ dQUUyaLa8cxmTv5BQvxcPmWfurTOdJJCTCOyHFlSKP55uK3Y50sJutxUc
+ 50C3gDZ7DuBtCh0eQNdJXFVf1x8ItQl8V7fBvEFTOS8EyTQfgoiaX/+Cy g==;
+X-CSE-ConnectionGUID: vXU6tnPxQ0ebEOU5jLxqZQ==
+X-CSE-MsgGUID: 2lPM9VufQ46KFb6gMai3cg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11644"; a="67045825"
+X-IronPort-AV: E=Sophos;i="6.21,154,1763452800"; d="scan'208";a="67045825"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2025 13:49:21 -0800
-X-CSE-ConnectionGUID: t1a5Iaj2QgWLBVfH+Xwuhg==
-X-CSE-MsgGUID: dwbwhvwTQeqoOJwAkOKm1g==
+ 16 Dec 2025 13:49:26 -0800
+X-CSE-ConnectionGUID: locRs7EfSn6whCoOrHSaGA==
+X-CSE-MsgGUID: QlZShiNYSQC/myHhlpPYTw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,154,1763452800"; d="scan'208";a="198615326"
+X-IronPort-AV: E=Sophos;i="6.21,154,1763452800"; d="scan'208";a="198615365"
 Received: from mrbroom-desk1.ger.corp.intel.com (HELO
  mwajdecz-hp.clients.intel.com) ([10.246.20.17])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2025 13:49:19 -0800
+ 16 Dec 2025 13:49:24 -0800
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	dri-devel@lists.freedesktop.org
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
+Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
+ Michal Wajdeczko <michal.wajdeczko@intel.com>,
  Matthew Brost <matthew.brost@intel.com>
-Subject: [PATCH v3 1/4] drm/xe: Introduce IF_ARGS macro utility
-Date: Tue, 16 Dec 2025 22:48:56 +0100
-Message-ID: <20251216214902.1429-2-michal.wajdeczko@intel.com>
+Subject: [PATCH v3 4/4] drm/xe/pf: Add handling for MLRC adverse event
+ threshold
+Date: Tue, 16 Dec 2025 22:48:59 +0100
+Message-ID: <20251216214902.1429-5-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20251216214902.1429-1-michal.wajdeczko@intel.com>
 References: <20251216214902.1429-1-michal.wajdeczko@intel.com>
@@ -70,143 +71,63 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We want to extend our macro-based KLV list definitions with new
-information about the version from which given KLV is supported.
-Add utility IF_ARGS macro that can be used in code generators to
-emit different code based on the presence of additional arguments.
+From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 
-Introduce macro itself and extend our kunit tests to cover it.
-We will use this macro in next patch.
+Since it is illegal to register a MLRC context when scheduler groups are
+enabled, the GuC consider the VF doing so as an adverse event. Like for
+other adverse event, there is a threshold for how many times the event
+can happen before the GuC throws an error, which we need to add support
+for.
 
+Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 Acked-by: Matthew Brost <matthew.brost@intel.com>
 ---
-v3: add alternate implementation for older GCC (Michal)
-    as kernel test robot reported errors on GCC 8.5.0
-    same errors seen also on 9.5.0 but not on 10.1.0
----
- drivers/gpu/drm/xe/tests/xe_args_test.c | 54 +++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_args.h            | 27 +++++++++++++
- 2 files changed, 81 insertions(+)
+ drivers/gpu/drm/xe/abi/guc_klvs_abi.h                | 9 +++++++++
+ drivers/gpu/drm/xe/xe_guc_klv_thresholds_set_types.h | 1 +
+ 2 files changed, 10 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/tests/xe_args_test.c b/drivers/gpu/drm/xe/tests/xe_args_test.c
-index f3fb23aa5d2e..8bef24cf8c70 100644
---- a/drivers/gpu/drm/xe/tests/xe_args_test.c
-+++ b/drivers/gpu/drm/xe/tests/xe_args_test.c
-@@ -78,6 +78,24 @@ static void pick_arg_example(struct kunit *test)
- #undef buz
- }
+diff --git a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h b/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
+index 265a135e7061..89a4f8c504e6 100644
+--- a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
++++ b/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
+@@ -352,6 +352,12 @@ enum  {
+  *      :1: NORMAL = schedule VF always, irrespective of whether it has work or not
+  *      :2: HIGH = schedule VF in the next time-slice after current active
+  *          time-slice completes if it has active work
++ *
++ * _`GUC_KLV_VF_CFG_THRESHOLD_MULTI_LRC_COUNT` : 0x8A0D
++ *      Given that multi-LRC contexts are incompatible with SRIOV scheduler
++ *      groups and cause the latter to be turned off when registered with the
++ *      GuC, this config allows the PF to set a threshold for multi-LRC context
++ *      registrations by VFs to monitor their behavior.
+  */
  
-+static void if_args_example(struct kunit *test)
-+{
-+	enum { Z = 1, Q };
-+
-+#define foo	X, Y
-+#define bar	IF_ARGS(Z, Q, foo)
-+#define buz	IF_ARGS(Z, Q, DROP_FIRST_ARG(FIRST_ARG(foo)))
-+
-+	KUNIT_EXPECT_EQ(test, bar, Z);
-+	KUNIT_EXPECT_EQ(test, buz, Q);
-+	KUNIT_EXPECT_STREQ(test, __stringify(bar), "Z");
-+	KUNIT_EXPECT_STREQ(test, __stringify(buz), "Q");
-+
-+#undef foo
-+#undef bar
-+#undef buz
-+}
-+
- static void sep_comma_example(struct kunit *test)
- {
- #define foo(f)	f(X) f(Y) f(Z) f(Q)
-@@ -198,6 +216,40 @@ static void last_arg_test(struct kunit *test)
- 	KUNIT_EXPECT_STREQ(test, __stringify(LAST_ARG(MAX_ARGS)), "-12");
- }
+ #define GUC_KLV_VF_CFG_GGTT_START_KEY		0x0001
+@@ -410,6 +416,9 @@ enum  {
+ #define   GUC_SCHED_PRIORITY_NORMAL		1u
+ #define   GUC_SCHED_PRIORITY_HIGH		2u
  
-+static void if_args_test(struct kunit *test)
-+{
-+	bool with_args = true;
-+	bool no_args = false;
-+	enum { X = 100 };
++#define GUC_KLV_VF_CFG_THRESHOLD_MULTI_LRC_COUNT_KEY	0x8a0d
++#define GUC_KLV_VF_CFG_THRESHOLD_MULTI_LRC_COUNT_LEN	1u
 +
-+	KUNIT_EXPECT_TRUE(test, IF_ARGS(true, false, FOO_ARGS));
-+	KUNIT_EXPECT_FALSE(test, IF_ARGS(true, false, NO_ARGS));
-+
-+	KUNIT_EXPECT_TRUE(test, CONCATENATE(IF_ARGS(with, no, FOO_ARGS), _args));
-+	KUNIT_EXPECT_FALSE(test, CONCATENATE(IF_ARGS(with, no, NO_ARGS), _args));
-+
-+	KUNIT_EXPECT_STREQ(test, __stringify(IF_ARGS(yes, no, FOO_ARGS)), "yes");
-+	KUNIT_EXPECT_STREQ(test, __stringify(IF_ARGS(no, no, NO_ARGS)), "no");
-+
-+	KUNIT_EXPECT_EQ(test, IF_ARGS(CALL_ARGS(COUNT_ARGS, FOO_ARGS), -1, FOO_ARGS), 4);
-+	KUNIT_EXPECT_EQ(test, IF_ARGS(CALL_ARGS(COUNT_ARGS, FOO_ARGS), -1, NO_ARGS), -1);
-+	KUNIT_EXPECT_EQ(test, IF_ARGS(CALL_ARGS(COUNT_ARGS, NO_ARGS), -1, FOO_ARGS), 0);
-+	KUNIT_EXPECT_EQ(test, IF_ARGS(CALL_ARGS(COUNT_ARGS, NO_ARGS), -1, NO_ARGS), -1);
-+
-+	KUNIT_EXPECT_EQ(test,
-+			CALL_ARGS(FIRST_ARG,
-+				  CALL_ARGS(CONCATENATE, IF_ARGS(FOO, MAX, FOO_ARGS), _ARGS)), X);
-+	KUNIT_EXPECT_EQ(test,
-+			CALL_ARGS(FIRST_ARG,
-+				  CALL_ARGS(CONCATENATE, IF_ARGS(FOO, MAX, NO_ARGS), _ARGS)), -1);
-+	KUNIT_EXPECT_EQ(test,
-+			CALL_ARGS(COUNT_ARGS,
-+				  CALL_ARGS(CONCATENATE, IF_ARGS(FOO, MAX, FOO_ARGS), _ARGS)), 4);
-+	KUNIT_EXPECT_EQ(test,
-+			CALL_ARGS(COUNT_ARGS,
-+				  CALL_ARGS(CONCATENATE, IF_ARGS(FOO, MAX, NO_ARGS), _ARGS)), 12);
-+}
-+
- static struct kunit_case args_tests[] = {
- 	KUNIT_CASE(count_args_test),
- 	KUNIT_CASE(call_args_example),
-@@ -209,6 +261,8 @@ static struct kunit_case args_tests[] = {
- 	KUNIT_CASE(last_arg_example),
- 	KUNIT_CASE(last_arg_test),
- 	KUNIT_CASE(pick_arg_example),
-+	KUNIT_CASE(if_args_example),
-+	KUNIT_CASE(if_args_test),
- 	KUNIT_CASE(sep_comma_example),
- 	{}
- };
-diff --git a/drivers/gpu/drm/xe/xe_args.h b/drivers/gpu/drm/xe/xe_args.h
-index 4dbc7e53c624..f550b5e3b993 100644
---- a/drivers/gpu/drm/xe/xe_args.h
-+++ b/drivers/gpu/drm/xe/xe_args.h
-@@ -121,6 +121,33 @@
- #define PICK_ARG11(args...)		PICK_ARG10(DROP_FIRST_ARG(args))
- #define PICK_ARG12(args...)		PICK_ARG11(DROP_FIRST_ARG(args))
+ /*
+  * Workaround keys:
+  */
+diff --git a/drivers/gpu/drm/xe/xe_guc_klv_thresholds_set_types.h b/drivers/gpu/drm/xe/xe_guc_klv_thresholds_set_types.h
+index 5f84da3d10d3..45ab5a3b5218 100644
+--- a/drivers/gpu/drm/xe/xe_guc_klv_thresholds_set_types.h
++++ b/drivers/gpu/drm/xe/xe_guc_klv_thresholds_set_types.h
+@@ -37,6 +37,7 @@
+ 	define(H2G_STORM, guc_time_us)			\
+ 	define(IRQ_STORM, irq_time_us)			\
+ 	define(DOORBELL_STORM, doorbell_time_us)	\
++	define(MULTI_LRC_COUNT, multi_lrc_count, 70, 53)\
+ 	/* end */
  
-+/**
-+ * IF_ARGS() - Make selection based on optional argument list.
-+ * @then: token to return if arguments are present
-+ * @else: token to return if arguments are empty
-+ * @...: arguments to check (optional)
-+ *
-+ * This macro allows to select a token based on the presence of the argument list.
-+ *
-+ * Example:
-+ *
-+ *	#define foo	X, Y
-+ *	#define bar	IF_ARGS(Z, Q, foo)
-+ *	#define buz	IF_ARGS(Z, Q, DROP_FIRST_ARG(FIRST_ARG(foo)))
-+ *
-+ *	With above definitions bar expands to Z while buz expands to Q.
-+ */
-+#if defined(CONFIG_CC_IS_CLANG) || GCC_VERSION >= 100100
-+#define IF_ARGS(then, else, ...)	FIRST_ARG(__VA_OPT__(then,) else)
-+#else
-+#define IF_ARGS(then, else, ...)	_IF_ARGS(then, else, CALL_ARGS(FIRST_ARG, __VA_ARGS__))
-+#define _IF_ARGS(then, else, ...)	__IF_ARGS(then, else, CALL_ARGS(COUNT_ARGS, __VA_ARGS__))
-+#define __IF_ARGS(then, else, n)	___IF_ARGS(then, else, CALL_ARGS(CONCATENATE, ___IF_ARG, n))
-+#define ___IF_ARGS(then, else, if)	CALL_ARGS(if, then, else)
-+#define ___IF_ARG1(then, else)		then
-+#define ___IF_ARG0(then, else)		else
-+#endif
-+
  /**
-  * ARGS_SEP_COMMA - Definition of a comma character.
-  *
 -- 
 2.47.1
 
