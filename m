@@ -4,52 +4,184 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 85BBBD6554C
-	for <intel-xe@archiver.kernel.org>; Wed, 17 Dec 2025 10:53:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 098ABD6552C
+	for <intel-xe@archiver.kernel.org>; Wed, 17 Dec 2025 10:54:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 44F5D88CBF;
-	Wed, 17 Dec 2025 10:53:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BCAC710E800;
+	Wed, 17 Dec 2025 10:54:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="kLEMO3CE";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ibsiJTMu";
 	dkim-atps=neutral
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 30A2588CBF;
- Wed, 17 Dec 2025 10:53:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
- References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=WdAZIJ51QVLGRvm7EbyF2gBi6kUW/gq/lBucmNT/lOA=; b=kLEMO3CEet0+wOHupEjaXs2okp
- veH2P74ENlFrWzijgwRlpk9KwJNAGaHXPcm2Ly1TL18r/Stg5U+0Uqx4x0UO68kpfvXV8QjBb+I25
- cpz+hhOE6eQ1oSjlGosEFS51I9vn2cQmEij5bekqVcqdsmjrRY/Uo7hvZqYQYO+Lgp/onUXx5s4Hp
- UHb27rmqmgl+zwdXBTc3VHQBGDrTf/NghkZvnWenGjUKZ7/ludV89t1EUseIoU0noEuaOnRRNChn2
- zQv+Pgo9OlEtr0h8DTyri55GHJmdKtxKXR1VssyENDS1/6nAPH+Ik0Ev8scOiypPhyDtPW+JR+5u8
- WHM7Qd8A==;
-Received: from [90.240.106.137] (helo=[192.168.0.101])
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1vVp9Z-00DoX6-KE; Wed, 17 Dec 2025 11:53:09 +0100
-Message-ID: <c0ca4ea2-a803-4250-8d24-f93d0112d043@igalia.com>
-Date: Wed, 17 Dec 2025 10:53:08 +0000
-MIME-Version: 1.0
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 79D9B10E800
+ for <intel-xe@lists.freedesktop.org>; Wed, 17 Dec 2025 10:54:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1765968849; x=1797504849;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=zwN6mn+tzw+3SGDmQmfSo11vrcPhtbM3uOsz3wSPuLU=;
+ b=ibsiJTMuGO0mWFPP9/8zJDtkMIDFJ1pqJ/IwGOIWHfz1V6k+Jl952nnD
+ k2iAPo3lFTDkDw0D/vdffIw1dBHV7Eg8JuboyddbAkxaEsmnxQ0YvW12n
+ v6o4+9sCUOh4tvy9O7cywQAtLdFVe6WJkh1sfx/CkFASrDj6xtJJI/HEX
+ JiMzlJNXmo9t0cyG1pUQ3eLpATvuFVVn0kc148tmwsWdAZPI2qfw3ZsVz
+ f80rGcHJWcsZZr/tE6TMijieGluimbx4qWs6dJ1ZJL1CX4kdq/rqNBxdu
+ wxMu1m0jfHj2p8pDXRCohEyeVktJuCJe1zsY8gHX0mUPVIhjmHarNnQRJ g==;
+X-CSE-ConnectionGUID: 0fXd0yc6TS2fVN2QNWsBTA==
+X-CSE-MsgGUID: L+UJddlMRTKGEUjpmEJxhg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11644"; a="79360451"
+X-IronPort-AV: E=Sophos;i="6.21,155,1763452800"; d="scan'208";a="79360451"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Dec 2025 02:54:08 -0800
+X-CSE-ConnectionGUID: Ifs4xM1WQ3qp2YSGA9oWEg==
+X-CSE-MsgGUID: 5eUDtV9QSkC14wfq2CVdkA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,155,1763452800"; d="scan'208";a="202470958"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Dec 2025 02:54:08 -0800
+Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.29; Wed, 17 Dec 2025 02:54:07 -0800
+Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.29 via Frontend Transport; Wed, 17 Dec 2025 02:54:07 -0800
+Received: from CY7PR03CU001.outbound.protection.outlook.com (40.93.198.33) by
+ edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.29; Wed, 17 Dec 2025 02:54:07 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=dK6QlHB9Xe4mq3T8al1UAwhTATS2sFQTr9rSW+tsOUgZgBvoKQXAqoNnM3jlVmCYyexVjXSM3Y8Xj0V5jBOzP5LLXr6VH5Vof0PH1YIWNn2pj6snbSIHXjRoT/kFLZnP0TzgA1q2Pgrlh5YBbEWz/TxdKdChWQtRuYm74S4wN3O30g/qVetDL5pduF2sFSHHMCrTo6+lSM/FKWwlO37X/mxoscr8wLfKntf/j7LZHAC65aBfrAnczOlQZB2T8W8eW4x7a1bii083Nh3CikVoHV0B1hrZZif0cA19OtmbuRj2d5gWM92G7Ps5rzuiR51WU983Qf82UAtfBTHqiYV9Wg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=vdyn8qOTiEH48uqR+BvApb/BvPe0D0s3A7bd6RgYTa8=;
+ b=TYsd2ZhiQEun+I0FCm7T/98GODNbuYHiLjVSMWu2mjDxWb6x1mMy45aGTbVYix4QNqVOwpN+IpvdQX2BxLinAwXpGlda5/UvhuelZQAIjfyM3VrOWVUml6j/zxLLWUMV5eKN2Q4F4T/fmJ/x9KrMi8c+KlpvGEaJZ6Wh7zXepw8n4dVR4jsFLEeieL4jpLkV9wW6L10jI8wM2E/rIFZG7DBMaX4oh7ZGBKxCRVKmVFlIeFO/z+bWIEAIZBE33Kai9YQ+SLUB7hx/tTzU38wxu7nGYcagbJnMe/PP8yS8X517GjW22ewuy8zfz+QTZ9vIXnTRqcVIXW6/PU+0t+oC2A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from CO1PR11MB5169.namprd11.prod.outlook.com (2603:10b6:303:95::19)
+ by MW4PR11MB6886.namprd11.prod.outlook.com (2603:10b6:303:224::19)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9434.7; Wed, 17 Dec
+ 2025 10:54:05 +0000
+Received: from CO1PR11MB5169.namprd11.prod.outlook.com
+ ([fe80::92e5:185a:2a3e:2349]) by CO1PR11MB5169.namprd11.prod.outlook.com
+ ([fe80::92e5:185a:2a3e:2349%2]) with mapi id 15.20.9412.011; Wed, 17 Dec 2025
+ 10:54:05 +0000
+Message-ID: <dfaff8d8-9158-411c-8feb-b2dfddf85e29@intel.com>
+Date: Wed, 17 Dec 2025 12:51:57 +0200
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 09/28] drm/sched: Add fair scheduling policy
-To: dri-devel@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org, kernel-dev@igalia.com,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Danilo Krummrich <dakr@kernel.org>, Matthew Brost <matthew.brost@intel.com>,
- Philipp Stanner <phasta@kernel.org>,
- Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>
-References: <20251215150807.58819-1-tvrtko.ursulin@igalia.com>
- <20251215150807.58819-10-tvrtko.ursulin@igalia.com>
-Content-Language: en-GB
-From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-In-Reply-To: <20251215150807.58819-10-tvrtko.ursulin@igalia.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Subject: Re: [PATCH] drm/xe: Fix NULL pointer dereference in xe_exec_ioctl
+To: Matthew Auld <matthew.auld@intel.com>, <intel-xe@lists.freedesktop.org>
+CC: <matthew.brost@intel.com>
+References: <20251217061728.35768-1-tapani.palli@intel.com>
+ <773d97c4-defc-422c-a3a9-c7769f367493@intel.com>
+ <e14dc32f-3c4a-453e-b0fe-09da137e172c@intel.com>
+Content-Language: en-US
+From: =?UTF-8?Q?Tapani_P=C3=A4lli?= <tapani.palli@intel.com>
+In-Reply-To: <e14dc32f-3c4a-453e-b0fe-09da137e172c@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: DUZPR01CA0139.eurprd01.prod.exchangelabs.com
+ (2603:10a6:10:4bd::14) To CO1PR11MB5169.namprd11.prod.outlook.com
+ (2603:10b6:303:95::19)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CO1PR11MB5169:EE_|MW4PR11MB6886:EE_
+X-MS-Office365-Filtering-Correlation-Id: ed4cf0dc-6be2-4ce7-3f69-08de3d5a982e
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?cmtYM3hVSHZGUVJ2d21EQ2UyNnJHVVBtejVnM1FKUW03dU1udHQrR2p3NWhY?=
+ =?utf-8?B?NVYyaGRpeDBvY0NHNy9JNkpiSnNqRXpXaUNHSmZleGlsbEk4QWR0VWlYV0dU?=
+ =?utf-8?B?RUdRZWdSc3MxSk5VaUtJR0NXbmJFNkM5cHpxc0ZnVXJma255YzVLNlA0MitC?=
+ =?utf-8?B?Rk8yZ2ozd096Smk5SDRhekFUVFlyOURaS3RTNTJReEZaMWtrdU9YTi9ySVVX?=
+ =?utf-8?B?Y3JEUVJoREZEQ2dQNTJMckJQNlFaVUF4Z0VzTTZoU2VUUG55Qk9iUnZUamRh?=
+ =?utf-8?B?SUR5YkhsQ2toVDRNM2dVL3JaZWIyRHJVVzNNWGZmWHkvS0drQzBZdDFGV1pK?=
+ =?utf-8?B?Uk1jMjZTNjdmSXFvakJucVRMcGVTWGNXRFJkMW82djlPRGpHTjd5blBMYjRy?=
+ =?utf-8?B?aWNJQUgwQVROUFRUZkJxNGRuZUovQnpFTzlIN0U3a2did1Z2em5sNWV6dEVz?=
+ =?utf-8?B?YXZWamMwMlBsRUsxeDV5MDI1eGZGV0NESmxrb0JQLzRDYndoenBnUThETFFW?=
+ =?utf-8?B?cW56YjdJTitXZW1RK01BWHhrSXNSYWJxTHZqSnMrYloxNmZtejdHendlNjU4?=
+ =?utf-8?B?NHIvNFRjd0lGRkNkbVRjY0NhOWY1QUk0eTY0a3JoalZVMFFjUU5SQkoyZTJX?=
+ =?utf-8?B?RGJxb3dadHFJb1hmblZ2L0s1RjMyaEFTZW80YWZmejY3Qy81ajUrb2RJZzd1?=
+ =?utf-8?B?cnlTeHlIRFd6RDBSbHBGN3AyQVBtNjFaNEcwRGhjb2dmRnM4dnNLQVYyK0or?=
+ =?utf-8?B?alFTTVppclpQaGU5aXY2MUNwSHd6L2s1cEtBbHhMYWdSVVNDNmR2bzNEejhN?=
+ =?utf-8?B?ZGFZTTJLZnRQQTQ3a3AzMGhDZFp6NHozU0lSVU0wU2xNdzVraXlSZzJQY3M5?=
+ =?utf-8?B?WXk1Vm10L2dEOUFueFUvMThzRDl0NjJmRE9yNHlZVmxOVFdtbVlDU2VqQU1Q?=
+ =?utf-8?B?c3lkMmNvZVB3YlpDUWhOd01LUG9mNHViYXQ3MmhJdEJNVUo5bTZFVy9qNmVC?=
+ =?utf-8?B?M1paRWt0QVFVVnd0dWF6SkRaT3lXSGFXdFJ0N20wTlk3NjA5cFN0MjZTcU9P?=
+ =?utf-8?B?TTRSaWdTSlZ0R3RYZVA2M0hLM3N4NVNJMzlQRlU3NWtBN0Z2NGo5c1pwZ0h3?=
+ =?utf-8?B?QXIxSjlKUU9VcysxSnRiRHhsZVIrN0RqenhJVmo4b2FYZ0VWWndSNFdSKzRq?=
+ =?utf-8?B?Sjg2M3ZDY3N5VGtRalJuWG4xNG5HbEpuTUpWRlBPRkNmbmxNdTgvNnJaQXoy?=
+ =?utf-8?B?SW84WjBnUlpzZ1pBdU5KMDMzLytQZ3krVEJZWlphUVBodmc0aFFIUytQY0cw?=
+ =?utf-8?B?aFkwZzNuVjU0WkRlYVRzWm1mMUx4OUZPbjJKSlZyQ2hTdFFGOW5CZjNoRWE4?=
+ =?utf-8?B?UmpwbUNOS2xFUExtY3h5cjRKZFJZNERtcG56Zi9KM3o3V3VocWVlc2JsS3dP?=
+ =?utf-8?B?QTh0bm0wU1F2ZHFjcjRDcmhveloxMnNHczE0cWhXWjhJNXlSR0pWa093WUxS?=
+ =?utf-8?B?NHlKTUdzaldCenMzSCs0U3ZrZ1pHUTI3ZFgzMVpwaEpibG9Ma3V2QmN3bTlM?=
+ =?utf-8?B?cXJNcWR3WlR0c05tc0xGWnJKZG5UOWlMalZUblZtMVBqM3pLZzc4aG5aVnRL?=
+ =?utf-8?B?TVd4MFptV25EMG9pbXJ2VVMvbnNUcnhXZXJnckJCTTRiMTFBb2pZRzVxOXdN?=
+ =?utf-8?B?bkwvNjRKL0VHRVhRZGQ0V242SVVza2t4SXJseHZPL29qU0R3dHBpOGlEWGpu?=
+ =?utf-8?B?ZXhKZXI0Y0J2RUphQkhEUVAxK1JvMTk4ZkVHM0FDL3MvemxyNjR1cmVZVkpC?=
+ =?utf-8?B?akxLbklkeUx5bWRodzkyMU5uRGFFNStBZEMvVFdib0E0TzNDTmQyNXNQMG44?=
+ =?utf-8?B?VU1YN0gxSTI5ZFdKdlp2TkJUYlB4R3lxYjYrTVdhcGlKYXpjZWlJWnRBcVc0?=
+ =?utf-8?Q?y1AOGjdkyx5bUpVjUZZF+srTut53d+0a?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CO1PR11MB5169.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?U1NqTU01djJneXh5bC9SdDV0dTEvdC9JeDJ5NUpTU2pVdkdLSUl6VzRCRjBJ?=
+ =?utf-8?B?MGMxMzJTQ2JhTXRqa0s4T3RVVnY4OEFhTDJadlNLUkR0TXc5QncrangwOThp?=
+ =?utf-8?B?T2FJN2V4TEIrUHprL1ZwdldkM0cvVmdxU2UxUks3aUJ2OCtrTkVHa3owdC9z?=
+ =?utf-8?B?SnNDY3ZUTVRpbjVJc1l4NEg1dkp6TGRQZm1mamFsRVI2emxIcjExemI4K1cx?=
+ =?utf-8?B?SVBhMkgzL2dZWTBWWGpBdUdMUnR3V0lYQm5lcGpCVVdTK2lkZUc3UExJbWlB?=
+ =?utf-8?B?YmtEWnhiTFNVbEZadUxhK0RYZkJGRFFMS0YxQ1pBVVR6MW1wb2ZZK3VVa2J2?=
+ =?utf-8?B?d0hiSm5xWUpjRnAvMkVVakZRdUo5QWZFbFNVWjFCdmNUanU0Z0JCcXdldkE0?=
+ =?utf-8?B?cTdqVmhUaUJmNFp4UDRPdU1LTnJxbnZsMVRBbkNQVzN4TDJPcVNBbjNkV3d5?=
+ =?utf-8?B?cXV0NFFWMFZxbUd1THN6TTFyZVFFWUVRb0hRYnhoV0d5alY2Z0NUaDJvLzRh?=
+ =?utf-8?B?WVYzZEVSQ2dZZ3FwZ3FzRHJnb0xwSUdkeEtQYkkvTDFSay9EWWhrend6NFhX?=
+ =?utf-8?B?U1ZRKzc4ekNUUlpPZE1iMFJYKzlQRmpNY0RlZ3dqdEIwVTV6RmUzRmluZDhv?=
+ =?utf-8?B?UzZ2UFlraWNLYjlXVmFJenQzNmZ4N2kwVk53NUJvblo0YmpYYWU1VXdOdW5I?=
+ =?utf-8?B?eTAxZ2xpTmNIQmJOdFRvWjlWVkRrNTl2cXk1TjlVeW9sTUU0b0RuR2V1Wkhj?=
+ =?utf-8?B?MWZTeUdoQndCZVZCY0F6UklsQktSd3VYMmc4QWZiZHhlL1Y4MDJqYUhaNWRx?=
+ =?utf-8?B?c2haQWEzQW52WFdsdFkzby90elZlTGZFQXFZb1BHK1d1TG1LcjA2S1ZhV083?=
+ =?utf-8?B?REpNU0RUNVo0RUJhd2hVQ3pHbmhIZDlDaFAwRm14UnRuRXBHUmMyTDZmb1Jo?=
+ =?utf-8?B?SGNOVGVhSy8va2lqaURmTHZiaXQvNHorRFgzNGtBVGZHV1ZxSFJGcEdBN3VR?=
+ =?utf-8?B?MnZFaGRtUFRsb3Zaem9IL21uYWd1d2dxTHVzazM2bCtGSURLV293VUlWSmFr?=
+ =?utf-8?B?OTBIMDU0blZWYzJjQUd0ZFlvYnByWTRCWU5reERRcG84QXg0ZENjcFZ2dFZv?=
+ =?utf-8?B?V3E3S0wrc3g2NXEwWWp0M3pMdkNtejVYdVUwdWllMzUyenB5WmE5VGtQclJQ?=
+ =?utf-8?B?SmI1SERGSTdqMFVyVDNleTFsZ3VYNXRaenBXdzN6RGpMRFdHOTQ0VFIzRVpI?=
+ =?utf-8?B?K2s2VXIvZXphdGhIbGd4QmE5VVVscWs0R3RVT0V3MXlJelZLd2VHcWdRZVA4?=
+ =?utf-8?B?Tk0yekpLVnpXcVFGSEVyRTJweXdOSHBMbVJNaE84ZkhEdUlLbW0vaXFTRnRM?=
+ =?utf-8?B?b3NoTUZSRGIrbHhNTittek9WYmFuQ2E2WEFCencrUS9PQ3QzV2RtTW1teVlz?=
+ =?utf-8?B?eWlLYTNiK1ZYdUJTRFV5YmtFQlQzVEhHMmRKb1ltdTJLbDZEdEhKUWpkUjlP?=
+ =?utf-8?B?K1BSdElEQ3hKWXk4NDhwbnd4cGxmaDViSTAxU3cyd3FqQzFxZWNzTFFMOUIx?=
+ =?utf-8?B?Vy9idnhvUnhyRE5VR0RTVmNWdUczdXJReGdOZVRCSllRSDFYUk13WVFUREg1?=
+ =?utf-8?B?TTA5dDRkdEtQcjBJV3RKYmg2azdreFpnaXdPcitHOVVKU3h0YXI2U1g4TGNB?=
+ =?utf-8?B?NHNURUEyZ3JuYXY3Y2h4bWVMbzJHa0pQRzN5SkxPYXN0dHdmbnlLVFVHYnFI?=
+ =?utf-8?B?QTRublhUU1B3S2dJMlowbkRvcTlTSGZvM21JMlZDK0dTTGZJYmpzMENoMzZP?=
+ =?utf-8?B?eTcwTlhybXBxRkRoTkZLc1dEQloxTWhtZ1lXaTBoYk1LVlZrU1RudUdUMU4v?=
+ =?utf-8?B?SjBkeFBKd0FJcGVPV292S3ZPK2wvZ0o5RlE1U3VUMC9RQ2lLWHlXUkQ4MGY4?=
+ =?utf-8?B?U2tTUVBGWkM3LzdoNU5waHIzQ290STVoc2N6ZWx5RzR4R040N0FjV3hSblQ0?=
+ =?utf-8?B?azVIeHJIT3I4eFhlcjllM1pSNTRjZXVnemk4cnc2aHNJYnVBQjdhV2xLTFNY?=
+ =?utf-8?B?bGMyM0R4VUcrN3V4YWp0UThPdXVHd1NrK2VuQ2ZtTkNibnZGOC9yUGFHM2Nw?=
+ =?utf-8?B?TEVURm1pTlpucnBoZUQ4VXFyRk1OcG5SanRNd3UxQWFhVThwaitDNWRMWFZv?=
+ =?utf-8?B?d1E9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: ed4cf0dc-6be2-4ce7-3f69-08de3d5a982e
+X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB5169.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Dec 2025 10:54:04.8709 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: zwCW9O2XxraYccYcMzWltELZwkIrL9qdPUne1wZ4WoIu7RV7KjHw1Ze9GKsYMaqCGUXUwlrkUsZU28KDeHt9GA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR11MB6886
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,470 +197,103 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
-On 15/12/2025 15:07, Tvrtko Ursulin wrote:
-> The FAIR scheduling policy is built upon the same concepts as the well
-> known CFS CPU scheduler - entity run queue is sorted by the virtual GPU
-> time consumed by entities in a way that the entity with least vruntime
-> runs first.
-> 
-> It is able to avoid total priority starvation, which is one of the
-> problems with FIFO, and it also does not need for per priority run queues.
-> As it scales the actual GPU runtime by an exponential factor as the
-> priority decreases, the virtual runtime for low priority entities grows
-> faster than for normal priority, pushing them further down the runqueue
-> order for the same real GPU time spent.
-> 
-> Apart from this fundamental fairness, fair policy is especially strong in
-> oversubscription workloads where it is able to give more GPU time to short
-> and bursty workloads when they are running in parallel with GPU heavy
-> clients submitting deep job queues.
-> 
-> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-> Cc: Christian König <christian.koenig@amd.com>
-> Cc: Danilo Krummrich <dakr@kernel.org>
-> Cc: Matthew Brost <matthew.brost@intel.com>
-> Cc: Philipp Stanner <phasta@kernel.org>
-> Cc: Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>
-> ---
->   drivers/gpu/drm/scheduler/sched_entity.c   |  28 ++--
->   drivers/gpu/drm/scheduler/sched_internal.h |   5 +
->   drivers/gpu/drm/scheduler/sched_main.c     |  11 +-
->   drivers/gpu/drm/scheduler/sched_rq.c       | 182 ++++++++++++++++++++-
->   include/drm/gpu_scheduler.h                |  17 +-
->   5 files changed, 224 insertions(+), 19 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/scheduler/sched_entity.c b/drivers/gpu/drm/scheduler/sched_entity.c
-> index 46b1e8185781..fb53dfb0385a 100644
-> --- a/drivers/gpu/drm/scheduler/sched_entity.c
-> +++ b/drivers/gpu/drm/scheduler/sched_entity.c
-> @@ -108,6 +108,8 @@ int drm_sched_entity_init(struct drm_sched_entity *entity,
->   	entity->num_sched_list = num_sched_list;
->   	entity->priority = priority;
->   	entity->last_user = current->group_leader;
-> +	entity->rq_priority = drm_sched_policy == DRM_SCHED_POLICY_FAIR ?
-> +			      DRM_SCHED_PRIORITY_KERNEL : priority;
->   	/*
->   	 * It's perfectly valid to initialize an entity without having a valid
->   	 * scheduler attached. It's just not valid to use the scheduler before it
-> @@ -124,17 +126,23 @@ int drm_sched_entity_init(struct drm_sched_entity *entity,
->   		 */
->   		pr_warn("%s: called with uninitialized scheduler\n", __func__);
->   	} else if (num_sched_list) {
-> -		/* The "priority" of an entity cannot exceed the number of run-queues of a
-> -		 * scheduler. Protect against num_rqs being 0, by converting to signed. Choose
-> -		 * the lowest priority available.
-> +		enum drm_sched_priority p = entity->priority;
-> +
-> +		/*
-> +		 * The "priority" of an entity cannot exceed the number of
-> +		 * run-queues of a scheduler. Protect against num_rqs being 0,
-> +		 * by converting to signed. Choose the lowest priority
-> +		 * available.
->   		 */
-> -		if (entity->priority >= sched_list[0]->num_rqs) {
-> -			dev_err(sched_list[0]->dev, "entity has out-of-bounds priority: %u. num_rqs: %u\n",
-> -				entity->priority, sched_list[0]->num_rqs);
-> -			entity->priority = max_t(s32, (s32) sched_list[0]->num_rqs - 1,
-> -						 (s32) DRM_SCHED_PRIORITY_KERNEL);
-> +		if (p >= sched_list[0]->num_user_rqs) {
-> +			dev_err(sched_list[0]->dev, "entity with out-of-bounds priority:%u num_user_rqs:%u\n",
-> +				p, sched_list[0]->num_user_rqs);
-> +			p = max_t(s32,
-> +				 (s32)sched_list[0]->num_user_rqs - 1,
-> +				 (s32)DRM_SCHED_PRIORITY_KERNEL);
-> +			entity->priority = p;
->   		}
-> -		entity->rq = sched_list[0]->sched_rq[entity->priority];
-> +		entity->rq = sched_list[0]->sched_rq[entity->rq_priority];
->   	}
->   
->   	init_completion(&entity->entity_idle);
-> @@ -571,7 +579,7 @@ void drm_sched_entity_select_rq(struct drm_sched_entity *entity)
->   
->   	spin_lock(&entity->lock);
->   	sched = drm_sched_pick_best(entity->sched_list, entity->num_sched_list);
-> -	rq = sched ? sched->sched_rq[entity->priority] : NULL;
-> +	rq = sched ? sched->sched_rq[entity->rq_priority] : NULL;
->   	if (rq != entity->rq) {
->   		drm_sched_rq_remove_entity(entity->rq, entity);
->   		entity->rq = rq;
-> diff --git a/drivers/gpu/drm/scheduler/sched_internal.h b/drivers/gpu/drm/scheduler/sched_internal.h
-> index 9adad48ec084..593e380a2d59 100644
-> --- a/drivers/gpu/drm/scheduler/sched_internal.h
-> +++ b/drivers/gpu/drm/scheduler/sched_internal.h
-> @@ -12,6 +12,8 @@
->    * @kref: reference count for the object.
->    * @lock: lock guarding the @runtime updates.
->    * @runtime: time entity spent on the GPU.
-> + * @prev_runtime: previous @runtime used to get the runtime delta.
-> + * @vruntime: virtual runtime as accumulated by the fair algorithm.
->    *
->    * Because jobs and entities have decoupled lifetimes, ie. we cannot access the
->    * entity once the job is completed and we know how much time it took on the
-> @@ -22,6 +24,8 @@ struct drm_sched_entity_stats {
->   	struct kref	kref;
->   	spinlock_t	lock;
->   	ktime_t		runtime;
-> +	ktime_t		prev_runtime;
-> +	ktime_t		vruntime;
->   };
->   
->   /* Used to choose between FIFO and RR job-scheduling */
-> @@ -29,6 +33,7 @@ extern int drm_sched_policy;
->   
->   #define DRM_SCHED_POLICY_RR    0
->   #define DRM_SCHED_POLICY_FIFO  1
-> +#define DRM_SCHED_POLICY_FAIR  2
->   
->   bool drm_sched_can_queue(struct drm_gpu_scheduler *sched,
->   			 struct drm_sched_entity *entity);
-> diff --git a/drivers/gpu/drm/scheduler/sched_main.c b/drivers/gpu/drm/scheduler/sched_main.c
-> index 4c10c7ba6704..294376bd8d77 100644
-> --- a/drivers/gpu/drm/scheduler/sched_main.c
-> +++ b/drivers/gpu/drm/scheduler/sched_main.c
-> @@ -90,7 +90,7 @@ int drm_sched_policy = DRM_SCHED_POLICY_FIFO;
->    * DOC: sched_policy (int)
->    * Used to override default entities scheduling policy in a run queue.
->    */
-> -MODULE_PARM_DESC(sched_policy, "Specify the scheduling policy for entities on a run-queue, " __stringify(DRM_SCHED_POLICY_RR) " = Round Robin, " __stringify(DRM_SCHED_POLICY_FIFO) " = FIFO (default).");
-> +MODULE_PARM_DESC(sched_policy, "Specify the scheduling policy for entities on a run-queue, " __stringify(DRM_SCHED_POLICY_RR) " = Round Robin, " __stringify(DRM_SCHED_POLICY_FIFO) " = FIFO (default), " __stringify(DRM_SCHED_POLICY_FAIR) " = Fair.");
->   module_param_named(sched_policy, drm_sched_policy, int, 0444);
->   
->   static u32 drm_sched_available_credits(struct drm_gpu_scheduler *sched)
-> @@ -1140,11 +1140,14 @@ int drm_sched_init(struct drm_gpu_scheduler *sched, const struct drm_sched_init_
->   		sched->own_submit_wq = true;
->   	}
->   
-> -	sched->sched_rq = kmalloc_array(args->num_rqs, sizeof(*sched->sched_rq),
-> +	sched->num_user_rqs = args->num_rqs;
-> +	sched->num_rqs = drm_sched_policy != DRM_SCHED_POLICY_FAIR ?
-> +			 args->num_rqs : 1;
-> +	sched->sched_rq = kmalloc_array(sched->num_rqs, sizeof(*sched->sched_rq),
->   					GFP_KERNEL | __GFP_ZERO);
->   	if (!sched->sched_rq)
->   		goto Out_check_own;
-> -	sched->num_rqs = args->num_rqs;
-> +
->   	for (i = DRM_SCHED_PRIORITY_KERNEL; i < sched->num_rqs; i++) {
->   		sched->sched_rq[i] = kzalloc(sizeof(*sched->sched_rq[i]), GFP_KERNEL);
->   		if (!sched->sched_rq[i])
-> @@ -1293,7 +1296,7 @@ void drm_sched_increase_karma(struct drm_sched_job *bad)
->   	if (bad->s_priority != DRM_SCHED_PRIORITY_KERNEL) {
->   		atomic_inc(&bad->karma);
->   
-> -		for (i = DRM_SCHED_PRIORITY_HIGH; i < sched->num_rqs; i++) {
-> +		for (i = DRM_SCHED_PRIORITY_KERNEL; i < sched->num_rqs; i++) {
->   			struct drm_sched_rq *rq = sched->sched_rq[i];
->   
->   			spin_lock(&rq->lock);
-> diff --git a/drivers/gpu/drm/scheduler/sched_rq.c b/drivers/gpu/drm/scheduler/sched_rq.c
-> index 2d1f579d8352..120cf2b7995e 100644
-> --- a/drivers/gpu/drm/scheduler/sched_rq.c
-> +++ b/drivers/gpu/drm/scheduler/sched_rq.c
-> @@ -16,6 +16,35 @@ drm_sched_entity_compare_before(struct rb_node *a, const struct rb_node *b)
->   	return ktime_before(ea->oldest_job_waiting, eb->oldest_job_waiting);
->   }
->   
-> +static void drm_sched_rq_update_prio(struct drm_sched_rq *rq)
-> +{
-> +	enum drm_sched_priority prio = DRM_SCHED_PRIORITY_INVALID;
-> +	struct rb_node *rb;
-> +
-> +	lockdep_assert_held(&rq->lock);
-> +
-> +	rb = rb_first_cached(&rq->rb_tree_root);
-> +	if (rb) {
-> +		struct drm_sched_entity *entity =
-> +			rb_entry(rb, typeof(*entity), rb_tree_node);
-> +
-> +		/*
-> +		 * The normal locking order is entity then run-queue so taking
-> +		 * the entity lock here would be a locking inversion for the
-> +		 * case when the current head of the run-queue is different from
-> +		 * the one we already have locked. The unlocked read is fine
-> +		 * though, because if the priority had just changed it is no big
-> +		 * deal for our algorithm, but just a transient reachable only
-> +		 * by drivers with userspace dynamic priority changes API. Equal
-> +		 * in effect to the priority change becoming visible a few
-> +		 * instructions later.
-> +		 */
-> +		prio = READ_ONCE(entity->priority);
-> +	}
-> +
-> +	rq->head_prio = prio;
-> +}
-> +
->   static void drm_sched_rq_remove_fifo_locked(struct drm_sched_entity *entity,
->   					    struct drm_sched_rq *rq)
->   {
-> @@ -25,6 +54,7 @@ static void drm_sched_rq_remove_fifo_locked(struct drm_sched_entity *entity,
->   	if (!RB_EMPTY_NODE(&entity->rb_tree_node)) {
->   		rb_erase_cached(&entity->rb_tree_node, &rq->rb_tree_root);
->   		RB_CLEAR_NODE(&entity->rb_tree_node);
-> +		drm_sched_rq_update_prio(rq);
->   	}
->   }
->   
-> @@ -46,6 +76,7 @@ static void drm_sched_rq_update_fifo_locked(struct drm_sched_entity *entity,
->   
->   	rb_add_cached(&entity->rb_tree_node, &rq->rb_tree_root,
->   		      drm_sched_entity_compare_before);
-> +	drm_sched_rq_update_prio(rq);
->   }
->   
->   /**
-> @@ -62,6 +93,138 @@ void drm_sched_rq_init(struct drm_gpu_scheduler *sched,
->   	INIT_LIST_HEAD(&rq->entities);
->   	rq->rb_tree_root = RB_ROOT_CACHED;
->   	rq->sched = sched;
-> +	rq->head_prio = DRM_SCHED_PRIORITY_INVALID;
-> +}
-> +
-> +static ktime_t
-> +drm_sched_rq_get_min_vruntime(struct drm_sched_rq *rq)
-> +{
-> +	ktime_t vruntime = 0;
-> +	struct rb_node *rb;
-> +
-> +	lockdep_assert_held(&rq->lock);
-> +
-> +	for (rb = rb_first_cached(&rq->rb_tree_root); rb; rb = rb_next(rb)) {
-> +		struct drm_sched_entity *entity =
-> +			rb_entry(rb, typeof(*entity), rb_tree_node);
-> +		struct drm_sched_entity_stats *stats = entity->stats;
-> +
-> +		/*
-> +		 * We only need the spin lock here on platforms where access to
-> +		 * 64-bit ktime_t can tear but for simplicity we take it un-
-> +		 * conditionally.
-> +		 */
-> +		spin_lock(&stats->lock);
-> +		vruntime = stats->vruntime;
-> +		spin_unlock(&stats->lock);
+On 12/17/25 12:31, Matthew Auld wrote:
+> On 17/12/2025 10:27, Matthew Auld wrote:
+>> On 17/12/2025 06:17, Tapani Pälli wrote:
+>>> Helper function xe_sync_needs_wait expects sync->fence when accessing
+>>> flags, patch makes sure we call only when sync->fence exists.
+>>>
+>>> Fixes NULL pointer dereference seen with Vulkan workloads:
+>>>
+>>> [  118.410401] RIP: 0010:xe_sync_needs_wait+0x27/0x50 [xe]
+>>>
+>>> Fixes: 4ac9048d0501 ("drm/xe: Wait on in-syncs when swicthing to 
+>>> dma- fence mode")
+>>> Signed-off-by: Tapani Pälli <tapani.palli@intel.com>
+>>> ---
+>>>   drivers/gpu/drm/xe/xe_exec.c | 3 ++-
+>>>   1 file changed, 2 insertions(+), 1 deletion(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/xe/xe_exec.c 
+>>> b/drivers/gpu/drm/xe/xe_exec.c
+>>> index 730a5c9c2637..ea368f02cb9f 100644
+>>> --- a/drivers/gpu/drm/xe/xe_exec.c
+>>> +++ b/drivers/gpu/drm/xe/xe_exec.c
+>>> @@ -184,7 +184,8 @@ int xe_exec_ioctl(struct drm_device *dev, void 
+>>> *data, struct drm_file *file)
+>>>           if (xe_sync_is_ufence(&syncs[num_syncs]))
+>>>               num_ufence++;
+>>> -        if (!num_in_sync && xe_sync_needs_wait(&syncs[num_syncs]))
+>>> +        if (!num_in_sync && syncs[num_syncs].fence &&
+>>> +            xe_sync_needs_wait(&syncs[num_syncs]))
+>>
+>> In xe_sync_entry_parse() it looks like it will always populate the 
+>> fence for the !signal case, otherwise throwing an error if that is 
+>> not possible. And xe_sync_needs_wait() will only touch the fence if 
+>> it's the signal case? So it seems like this should not be possible?
+>
+> Sorry meant to type:
+>
+> s/touch the fence if it's the signal/touch the fence if it's the !signal/
+>
+I'm not sure of the complete flow but it is quite easy to reproduce.
 
-In v2 refactoring I lost the return here. Since the point is to only 
-look at the top entity. I will post v5 with the fix in a few days.
+Here is the stacktrace snippet:
 
-Regards,
+[  118.410401] RIP: 0010:xe_sync_needs_wait+0x27/0x50 [xe]
+[  118.410940] Code: 90 90 90 0f 1f 44 00 00 55 48 89 f1 48 89 e5 48 83 
+ec 08 48 83 7e 08 00 0f 84 79 be 1c 00 31 c0 f6 41 4c 01 75 11 48 8b 41 
+08 <48> 8b 40 30 48 d1 e8 83 e0 01 83 f0 01 c9 31 d2 31 c9 31 f6 31 ff
+[  118.410949] RSP: 0018:ffffccec8ea7bb18 EFLAGS: 00010246
+[  118.410957] RAX: 0000000000000000 RBX: 00007ff23812f460 RCX: 
+ffff8c1790db4800
+[  118.410964] RDX: 0000000000000000 RSI: 0000000000000000 RDI: 
+0000000000000000
+[  118.410968] RBP: ffffccec8ea7bb20 R08: 0000000000000000 R09: 
+0000000000000000
+[  118.410973] R10: 0000000000000000 R11: 0000000000000000 R12: 
+ffff8c1790db4800
+[  118.410978] R13: 0000000000000000 R14: ffff8c178b67e000 R15: 
+0000000000000000
+[  118.410984] FS:  0000000101aff6c0(0000) GS:ffff8c27350d1000(0000) 
+knlGS:000000007fe20000
+[  118.410992] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[  118.410998] CR2: 0000000000000030 CR3: 00000001037ef005 CR4: 
+0000000000772ef0
+[  118.411004] PKRU: 55555554
+[  118.411008] Call Trace:
+[  118.411013]  <TASK>
+[  118.411022]  xe_exec_ioctl+0x375/0xea0 [xe]
+[  118.411377]  ? __x64_sys_ioctl+0xbd/0x100
+[  118.411392]  ? do_syscall_64+0xa7/0x580
+[  118.411403]  ? dma_fence_free+0x1a/0x30
+[  118.411419]  ? __pfx_xe_exec_fn+0x10/0x10 [xe]
+[  118.411752]  ? drm_syncobj_array_free+0x56/0x80 [drm]
+[  118.411915]  ? drm_syncobj_query_ioctl+0x20f/0x460 [drm]
+[  118.412035]  ? __pfx_xe_exec_ioctl+0x10/0x10 [xe]
+[  118.412372]  drm_ioctl_kernel+0xae/0x110 [drm]
+[  118.412524]  drm_ioctl+0x2ee/0x5d0 [drm]
+[  118.412649]  ? __pfx_xe_exec_ioctl+0x10/0x10 [xe]
+[  118.412989]  ? __pm_runtime_resume+0x5f/0x90
+[  118.413002]  xe_drm_ioctl+0x61/0xb0 [xe]
+[  118.413329]  __x64_sys_ioctl+0xa3/0x100
+[  118.413338]  x64_sys_call+0x1060/0x2360
+[  118.413347]  do_syscall_64+0x74/0x580
+[  118.413355]  ? x64_sys_call+0x1060/0x2360
+[  118.413360]  ? do_syscall_64+0xa7/0x580
+[  118.413368]  ? __do_sys_getpid+0x1d/0x30
+[  118.413377]  ? x64_sys_call+0xf9d/0x2360
+[  118.413383]  ? do_syscall_64+0xa7/0x580
+[  118.413389]  ? x64_sys_call+0x1060/0x2360
+[  118.413395]  ? do_syscall_64+0xa7/0x580
+[  118.413401]  ? sysvec_apic_timer_interrupt+0x54/0xd0
+[  118.413410]  entry_SYSCALL_64_after_hwframe+0x76/0x7e
+[  118.413418] RIP: 0033:0x7ff29c93287d
 
-Tvrtko
 
-> +	}
-> +
-> +	return vruntime;
-> +}
-> +
-> +static void
-> +drm_sched_entity_save_vruntime(struct drm_sched_entity *entity,
-> +			       ktime_t min_vruntime)
-> +{
-> +	struct drm_sched_entity_stats *stats = entity->stats;
-> +	ktime_t vruntime;
-> +
-> +	spin_lock(&stats->lock);
-> +	vruntime = stats->vruntime;
-> +	if (min_vruntime && vruntime > min_vruntime)
-> +		vruntime = ktime_sub(vruntime, min_vruntime);
-> +	else
-> +		vruntime = 0;
-> +	stats->vruntime = vruntime;
-> +	spin_unlock(&stats->lock);
-> +}
-> +
-> +static ktime_t
-> +drm_sched_entity_restore_vruntime(struct drm_sched_entity *entity,
-> +				  ktime_t min_vruntime,
-> +				  enum drm_sched_priority rq_prio)
-> +{
-> +	struct drm_sched_entity_stats *stats = entity->stats;
-> +	enum drm_sched_priority prio = entity->priority;
-> +	ktime_t vruntime;
-> +
-> +	BUILD_BUG_ON(DRM_SCHED_PRIORITY_NORMAL < DRM_SCHED_PRIORITY_HIGH);
-> +
-> +	spin_lock(&stats->lock);
-> +	vruntime = stats->vruntime;
-> +
-> +	/*
-> +	 * Special handling for entities which were picked from the top of the
-> +	 * queue and are now re-joining the top with another one already there.
-> +	 */
-> +	if (!vruntime && min_vruntime) {
-> +		if (prio > rq_prio) {
-> +			/*
-> +			 * Lower priority should not overtake higher when re-
-> +			 * joining at the top of the queue.
-> +			 */
-> +			vruntime = ns_to_ktime(prio - rq_prio);
-> +		} else if (prio < rq_prio) {
-> +			/*
-> +			 * Higher priority can go first.
-> +			 */
-> +			vruntime = -ns_to_ktime(rq_prio - prio);
-> +		}
-> +	}
-> +
-> +	/*
-> +	 * Restore saved relative position in the queue.
-> +	 */
-> +	vruntime = ktime_add(min_vruntime, vruntime);
-> +
-> +	stats->vruntime = vruntime;
-> +	spin_unlock(&stats->lock);
-> +
-> +	return vruntime;
-> +}
-> +
-> +static ktime_t drm_sched_entity_update_vruntime(struct drm_sched_entity *entity)
-> +{
-> +	/*
-> +	 * Core part of the CFS-like algorithm is that the virtual runtime of
-> +	 * lower priority tasks should grow quicker than the higher priority
-> +	 * ones, so that when we then schedule entities with the aim of keeping
-> +	 * their accumulated virtual time balanced, we can approach fair
-> +	 * distribution of GPU time.
-> +	 *
-> +	 * For converting the real GPU time into virtual we pick some
-> +	 * multipliers with the idea to achieve the following GPU time
-> +	 * distribution:
-> +	 *
-> +	 *  - Kernel priority gets roughly 2x GPU time compared to high.
-> +	 *  - High gets ~4x relative to normal.
-> +	 *  - Normal gets ~8x relative to low.
-> +	 */
-> +	static const unsigned int shift[] = {
-> +		[DRM_SCHED_PRIORITY_KERNEL] = 1,
-> +		[DRM_SCHED_PRIORITY_HIGH]   = 2,
-> +		[DRM_SCHED_PRIORITY_NORMAL] = 4,
-> +		[DRM_SCHED_PRIORITY_LOW]    = 7,
-> +	};
-> +	struct drm_sched_entity_stats *stats = entity->stats;
-> +	ktime_t runtime, prev;
-> +
-> +	spin_lock(&stats->lock);
-> +	prev = stats->prev_runtime;
-> +	runtime = stats->runtime;
-> +	stats->prev_runtime = runtime;
-> +	runtime = ktime_add_ns(stats->vruntime,
-> +			       ktime_to_ns(ktime_sub(runtime, prev)) <<
-> +			       shift[entity->priority]);
-> +	stats->vruntime = runtime;
-> +	spin_unlock(&stats->lock);
-> +
-> +	return runtime;
-> +}
-> +
-> +static ktime_t drm_sched_entity_get_job_ts(struct drm_sched_entity *entity)
-> +{
-> +	return drm_sched_entity_update_vruntime(entity);
->   }
->   
->   /**
-> @@ -98,8 +261,14 @@ drm_sched_rq_add_entity(struct drm_sched_entity *entity, ktime_t ts)
->   		list_add_tail(&entity->list, &rq->entities);
->   	}
->   
-> -	if (drm_sched_policy == DRM_SCHED_POLICY_RR)
-> +	if (drm_sched_policy == DRM_SCHED_POLICY_FAIR) {
-> +		ts = drm_sched_rq_get_min_vruntime(rq);
-> +		ts = drm_sched_entity_restore_vruntime(entity, ts,
-> +						       rq->head_prio);
-> +	} else if (drm_sched_policy == DRM_SCHED_POLICY_RR) {
->   		ts = entity->rr_ts;
-> +	}
-> +
->   	drm_sched_rq_update_fifo_locked(entity, rq, ts);
->   
->   	spin_unlock(&rq->lock);
-> @@ -171,7 +340,9 @@ void drm_sched_rq_pop_entity(struct drm_sched_entity *entity)
->   	if (next_job) {
->   		ktime_t ts;
->   
-> -		if (drm_sched_policy == DRM_SCHED_POLICY_FIFO)
-> +		if (drm_sched_policy == DRM_SCHED_POLICY_FAIR)
-> +			ts = drm_sched_entity_get_job_ts(entity);
-> +		else if (drm_sched_policy == DRM_SCHED_POLICY_FIFO)
->   			ts = next_job->submit_ts;
->   		else
->   			ts = drm_sched_rq_next_rr_ts(rq, entity);
-> @@ -179,6 +350,13 @@ void drm_sched_rq_pop_entity(struct drm_sched_entity *entity)
->   		drm_sched_rq_update_fifo_locked(entity, rq, ts);
->   	} else {
->   		drm_sched_rq_remove_fifo_locked(entity, rq);
-> +
-> +		if (drm_sched_policy == DRM_SCHED_POLICY_FAIR) {
-> +			ktime_t min_vruntime;
-> +
-> +			min_vruntime = drm_sched_rq_get_min_vruntime(rq);
-> +			drm_sched_entity_save_vruntime(entity, min_vruntime);
-> +		}
->   	}
->   	spin_unlock(&rq->lock);
->   	spin_unlock(&entity->lock);
-> diff --git a/include/drm/gpu_scheduler.h b/include/drm/gpu_scheduler.h
-> index bf31c4c58a4c..dd514a413156 100644
-> --- a/include/drm/gpu_scheduler.h
-> +++ b/include/drm/gpu_scheduler.h
-> @@ -63,6 +63,7 @@ struct drm_file;
->    * to an array, and as such should start at 0.
->    */
->   enum drm_sched_priority {
-> +	DRM_SCHED_PRIORITY_INVALID = -1, /* Internal marker - do not use. */
->   	DRM_SCHED_PRIORITY_KERNEL,
->   	DRM_SCHED_PRIORITY_HIGH,
->   	DRM_SCHED_PRIORITY_NORMAL,
-> @@ -150,6 +151,11 @@ struct drm_sched_entity {
->   	 */
->   	enum drm_sched_priority         priority;
->   
-> +	/**
-> +	 * @rq_priority: Run-queue priority
-> +	 */
-> +	enum drm_sched_priority         rq_priority;
-> +
->   	/**
->   	 * @rr_ts:
->   	 *
-> @@ -254,10 +260,11 @@ struct drm_sched_entity {
->    * struct drm_sched_rq - queue of entities to be scheduled.
->    *
->    * @sched: the scheduler to which this rq belongs to.
-> - * @lock: protects @entities, @rb_tree_root and @rr_ts.
-> + * @lock: protects @entities, @rb_tree_root, @rr_ts and @head_prio.
->    * @rr_ts: monotonically incrementing fake timestamp for RR mode.
->    * @entities: list of the entities to be scheduled.
->    * @rb_tree_root: root of time based priority queue of entities for FIFO scheduling
-> + * @head_prio: priority of the top tree element.
->    *
->    * Run queue is a set of entities scheduling command submissions for
->    * one specific ring. It implements the scheduling policy that selects
-> @@ -271,6 +278,7 @@ struct drm_sched_rq {
->   	ktime_t				rr_ts;
->   	struct list_head		entities;
->   	struct rb_root_cached		rb_tree_root;
-> +	enum drm_sched_priority		head_prio;
->   };
->   
->   /**
-> @@ -563,8 +571,10 @@ struct drm_sched_backend_ops {
->    * @credit_count: the current credit count of this scheduler
->    * @timeout: the time after which a job is removed from the scheduler.
->    * @name: name of the ring for which this scheduler is being used.
-> - * @num_rqs: Number of run-queues. This is at most DRM_SCHED_PRIORITY_COUNT,
-> - *           as there's usually one run-queue per priority, but could be less.
-> + * @num_user_rqs: Number of run-queues. This is at most
-> + *                DRM_SCHED_PRIORITY_COUNT, as there's usually one run-queue per
-> + *                priority, but could be less.
-> + * @num_rqs: Equal to @num_user_rqs for FIFO and RR and 1 for the FAIR policy.
->    * @sched_rq: An allocated array of run-queues of size @num_rqs;
->    * @job_scheduled: once drm_sched_entity_flush() is called the scheduler
->    *                 waits on this wait queue until all the scheduled jobs are
-> @@ -597,6 +607,7 @@ struct drm_gpu_scheduler {
->   	long				timeout;
->   	const char			*name;
->   	u32                             num_rqs;
-> +	u32                             num_user_rqs;
->   	struct drm_sched_rq             **sched_rq;
->   	wait_queue_head_t		job_scheduled;
->   	atomic64_t			job_id_count;
 
+>>
+>>>               num_in_sync++;
+>>>       }
+>>
+>
