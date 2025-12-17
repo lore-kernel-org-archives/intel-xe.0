@@ -4,57 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5574DD65C47
-	for <intel-xe@archiver.kernel.org>; Wed, 17 Dec 2025 13:26:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 629B0D65C49
+	for <intel-xe@archiver.kernel.org>; Wed, 17 Dec 2025 13:48:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1671A10EBB9;
-	Wed, 17 Dec 2025 13:26:01 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Lu6wwy8M";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A913110E357
- for <intel-xe@lists.freedesktop.org>; Wed, 17 Dec 2025 13:25:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765977959; x=1797513959;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=e6Kw3bniN0gpFGWE8Eb+AOYElinwvTn3NM8j4fNu134=;
- b=Lu6wwy8MNjLhUhu3ZabieNJeZFLLxUlbD/zdEqUjyw9di2bpPQacyMan
- r0lyjLHgGUSUc3/KIDJoYLhUGaKbQ1u3ui4UERwuk53CVA3if1FIhZU6O
- fFzdNfeYxksXEEleGVxzVogCswZ/KAv/gdWcMDkvIy1H63Y97oWnRSJjl
- qDDir6NStyl7aRPF4ncV8ySCmGdgxAQGpskahENjCHyf160F5wpCr6mZ7
- 9kd0G3okHYCZ0B2ciDNx0XW8HmIIO/tOT4560MSHNFCWRmBe0pNCXuAHL
- JNhPdG1Kt+HqXE5+UdVNDd1mCeOyLP0I79ngz39ddf5tBuxnNZms6ty4H A==;
-X-CSE-ConnectionGUID: tA+heypeTo+hk7pPfCVH3g==
-X-CSE-MsgGUID: E3zc6q3zRxaoUwTb9lcBjw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11645"; a="67956176"
-X-IronPort-AV: E=Sophos;i="6.21,155,1763452800"; d="scan'208";a="67956176"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Dec 2025 05:25:59 -0800
-X-CSE-ConnectionGUID: 8qZZaAHjTxSC5rklFivsLQ==
-X-CSE-MsgGUID: wRlIq3lhQ4alRE20Kcrz+g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,155,1763452800"; d="scan'208";a="202681347"
-Received: from abityuts-desk.ger.corp.intel.com (HELO tpalli-mobl3.intel.com)
- ([10.245.245.124])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Dec 2025 05:25:57 -0800
-From: =?UTF-8?q?Tapani=20P=C3=A4lli?= <tapani.palli@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: matthew.brost@intel.com, matthew.auld@intel.com,
- =?UTF-8?q?Tapani=20P=C3=A4lli?= <tapani.palli@intel.com>
-Subject: [PATCH v3] drm/xe: Fix NULL pointer dereference in xe_exec_ioctl
-Date: Wed, 17 Dec 2025 15:24:12 +0200
-Message-ID: <20251217132412.435755-1-tapani.palli@intel.com>
-X-Mailer: git-send-email 2.52.0
-In-Reply-To: <6f9d860f-f95c-4b3b-9d5c-1a0c295bcdd6@intel.com>
-References: <6f9d860f-f95c-4b3b-9d5c-1a0c295bcdd6@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2539510EA53;
+	Wed, 17 Dec 2025 13:48:04 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9A25F10EA53;
+ Wed, 17 Dec 2025 13:48:02 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2442915752239441501=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Fix_NULL_pointer_?=
+ =?utf-8?q?dereference_in_xe=5Fexec=5Fioctl_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Tapani_P=C3=A4lli?= <tapani.palli@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 17 Dec 2025 13:48:02 -0000
+Message-ID: <176597928263.97631.8508627159095567974@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20251217061728.35768-1-tapani.palli@intel.com>
+In-Reply-To: <20251217061728.35768-1-tapani.palli@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,54 +36,145 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Helper function xe_sync_needs_wait expects sync->fence when accessing
-flags, patch makes sure we call only when sync->fence exists.
+--===============2442915752239441501==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-v2: move null checking to xe_sync_needs_wait and make
-    xe_sync_entry_wait utilize this helper (Matthew Auld)
-v3: further simplify code (Matthew Auld)
+== Series Details ==
 
-Fixes NULL pointer dereference seen with Vulkan workloads:
+Series: drm/xe: Fix NULL pointer dereference in xe_exec_ioctl (rev2)
+URL   : https://patchwork.freedesktop.org/series/159132/
+State : success
 
-[  118.410401] RIP: 0010:xe_sync_needs_wait+0x27/0x50 [xe]
+== Summary ==
 
-Fixes: 4ac9048d0501 ("drm/xe: Wait on in-syncs when swicthing to dma-fence mode")
-Signed-off-by: Tapani Pälli <tapani.palli@intel.com>
----
- drivers/gpu/drm/xe/xe_sync.c | 10 ++++------
- 1 file changed, 4 insertions(+), 6 deletions(-)
+CI Bug Log - changes from xe-4255-2eb2f8746a879f1c0e4c56b715c179424dafd8e0_BAT -> xe-pw-159132v2_BAT
+====================================================
 
-diff --git a/drivers/gpu/drm/xe/xe_sync.c b/drivers/gpu/drm/xe/xe_sync.c
-index ee1344a880b9..c8fdcdbd6ae7 100644
---- a/drivers/gpu/drm/xe/xe_sync.c
-+++ b/drivers/gpu/drm/xe/xe_sync.c
-@@ -238,10 +238,8 @@ int xe_sync_entry_add_deps(struct xe_sync_entry *sync, struct xe_sched_job *job)
-  */
- int xe_sync_entry_wait(struct xe_sync_entry *sync)
- {
--	if (sync->flags & DRM_XE_SYNC_FLAG_SIGNAL)
--		return 0;
--
--	return dma_fence_wait(sync->fence, true);
-+	return xe_sync_needs_wait(sync) ?
-+		dma_fence_wait(sync->fence, true) : 0;
- }
- 
- /**
-@@ -252,8 +250,8 @@ int xe_sync_entry_wait(struct xe_sync_entry *sync)
-  */
- bool xe_sync_needs_wait(struct xe_sync_entry *sync)
- {
--	return !(sync->flags & DRM_XE_SYNC_FLAG_SIGNAL) &&
--		!test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &sync->fence->flags);
-+	return sync->fence &&
-+	       !test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &sync->fence->flags);
- }
- 
- void xe_sync_entry_signal(struct xe_sync_entry *sync, struct dma_fence *fence)
--- 
-2.52.0
+Summary
+-------
 
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (12 -> 12)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-159132v2_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_module_load@load:
+    - bat-bmg-1:          [PASS][1] -> [ABORT][2] ([Intel XE#6887])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4255-2eb2f8746a879f1c0e4c56b715c179424dafd8e0/bat-bmg-1/igt@xe_module_load@load.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159132v2/bat-bmg-1/igt@xe_module_load@load.html
+
+  
+#### Possible fixes ####
+
+  * igt@xe_waitfence@engine:
+    - bat-dg2-oem2:       [FAIL][3] ([Intel XE#6519]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4255-2eb2f8746a879f1c0e4c56b715c179424dafd8e0/bat-dg2-oem2/igt@xe_waitfence@engine.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159132v2/bat-dg2-oem2/igt@xe_waitfence@engine.html
+
+  
+  [Intel XE#6519]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519
+  [Intel XE#6887]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6887
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8668 -> IGT_8669
+  * Linux: xe-4255-2eb2f8746a879f1c0e4c56b715c179424dafd8e0 -> xe-pw-159132v2
+
+  IGT_8668: 906681747a312ef11ef9af8ab1fa6eff28b4cbd0 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_8669: 319db2ffba419f9711acc72895f065a818905efa @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-4255-2eb2f8746a879f1c0e4c56b715c179424dafd8e0: 2eb2f8746a879f1c0e4c56b715c179424dafd8e0
+  xe-pw-159132v2: 159132v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159132v2/index.html
+
+--===============2442915752239441501==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Fix NULL pointer dereference in xe_exec_ioctl (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/159132/">https://patchwork.freedesktop.org/series/159132/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159132v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159132v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4255-2eb2f8746a879f1c0e4c56b715c179424dafd8e0_BAT -&gt; xe-pw-159132v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (12 -&gt; 12)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-159132v2_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@xe_module_load@load:<ul>
+<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4255-2eb2f8746a879f1c0e4c56b715c179424dafd8e0/bat-bmg-1/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159132v2/bat-bmg-1/igt@xe_module_load@load.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6887">Intel XE#6887</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_waitfence@engine:<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4255-2eb2f8746a879f1c0e4c56b715c179424dafd8e0/bat-dg2-oem2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519">Intel XE#6519</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159132v2/bat-dg2-oem2/igt@xe_waitfence@engine.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8668 -&gt; IGT_8669</li>
+<li>Linux: xe-4255-2eb2f8746a879f1c0e4c56b715c179424dafd8e0 -&gt; xe-pw-159132v2</li>
+</ul>
+<p>IGT_8668: 906681747a312ef11ef9af8ab1fa6eff28b4cbd0 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_8669: 319db2ffba419f9711acc72895f065a818905efa @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-4255-2eb2f8746a879f1c0e4c56b715c179424dafd8e0: 2eb2f8746a879f1c0e4c56b715c179424dafd8e0<br />
+  xe-pw-159132v2: 159132v2</p>
+
+</body>
+</html>
+
+--===============2442915752239441501==--
