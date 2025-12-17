@@ -4,51 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3E176D6406D
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7C918D6406E
 	for <intel-xe@archiver.kernel.org>; Wed, 17 Dec 2025 01:26:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 91FAD10E9C4;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9D1AC10E9C5;
 	Wed, 17 Dec 2025 01:26:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MRBAbM0E";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ogh+T/4o";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 689A010E9BA
- for <intel-xe@lists.freedesktop.org>; Wed, 17 Dec 2025 01:26:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BE19710E9BE
+ for <intel-xe@lists.freedesktop.org>; Wed, 17 Dec 2025 01:26:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765934805; x=1797470805;
+ t=1765934801; x=1797470801;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Ack8lnET32luB0m2bm7vtC6cGNjkqQy64nJ72wEzbfo=;
- b=MRBAbM0EfQ5X7SJQZRYiekVJyin4Hn6Qi+0OT/sbQoPCjIG2jAPohcQh
- 1GPt9lQohUbcBJrkZJvtgSgAOMPhrxRQQsoLDx6ne2Fye/yCM1My6IkYS
- qEFkjNJeTkQwGZ58OgYPNJea4oIr0CocQLYdJbIHI4/TDL0C3Kdn1vv1k
- 71aEiJ8pbIG8Dc5urYnnR9LgcPDgkKpsQwX+T3VJNu35BLHrrc2Xc0Kot
- Vp51z7Bq3KcmIzKURNcy0jKUYXJEYJ7YOdlJghhca6+lUM0DvvLXm6OqK
- prMXIXcFuvQlazkYU0Rzy+qhyx68FnbFV61V2b44uyKSiGkfq62375Uk8 w==;
-X-CSE-ConnectionGUID: 1SVq0EDlRamEn2ee9u+xXQ==
-X-CSE-MsgGUID: fTFDomxVTOWuSmKnKEvjUg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11644"; a="67903853"
-X-IronPort-AV: E=Sophos;i="6.21,154,1763452800"; d="scan'208";a="67903853"
+ bh=6vp4wviiJk1JHbMboO34SjsRAYzGICvqYjfxo8qLOIw=;
+ b=Ogh+T/4o6GkccjUMAXnofEO9r7h7mlWjlRpMFekHWFRLy+RN0nzV0ckC
+ u5ujwAEE65PMNeg+ylS1aDR1JjFZtIt9OvwQOZTlXTE2G1KtzUsJyQTgJ
+ fOWbci1jZiS8hHSL4+H9Y2jDSAJIeBOgr+T2GJ5t6cBcKygpgwPvcYtlV
+ op7AJzo3gp1C0un08pvMwkZFoDDGDyylhtn/xvcyjMYhGG8Rj4DhGSwS6
+ x0tS7mavM5IjIiYFKKr2vPJW6CCop3pItl/KZYU3GHDgGHV7r+fpD0lzh
+ 3/f1eLeWDp343vQYmcl9fe97rbkPodi/75JvNI3WtTJAAkgfj94BQwqKF A==;
+X-CSE-ConnectionGUID: NePNboiuTWarnqBLrdU5QA==
+X-CSE-MsgGUID: u1XjfNaGQQWiNm+TnNLVWg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11644"; a="67903844"
+X-IronPort-AV: E=Sophos;i="6.21,154,1763452800"; d="scan'208";a="67903844"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2025 17:26:44 -0800
-X-CSE-ConnectionGUID: 3/QagzfFQUivyKywnfKuQg==
-X-CSE-MsgGUID: skWwGpn2R22D+Ai9jKrfwg==
+ 16 Dec 2025 17:26:41 -0800
+X-CSE-ConnectionGUID: xywbNTEOQJuiwXecGUF95g==
+X-CSE-MsgGUID: nIK0E9slQEy9OZY1foIaDg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,154,1763452800"; d="scan'208";a="202360652"
+X-IronPort-AV: E=Sophos;i="6.21,154,1763452800"; d="scan'208";a="202360632"
 Received: from valcore-skull-1.fm.intel.com ([10.1.39.17])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2025 17:26:44 -0800
+ 16 Dec 2025 17:26:40 -0800
 From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
  Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH v4 13/13] drm/xe/sriov: Add debugfs to set EQ and PT for
- scheduler groups
-Date: Tue, 16 Dec 2025 17:26:33 -0800
-Message-ID: <20251217012620.758252-28-daniele.ceraolospurio@intel.com>
+Subject: [PATCH v4 08/13] drm/xe/sriov: Add debugfs to enable scheduler groups
+Date: Tue, 16 Dec 2025 17:26:28 -0800
+Message-ID: <20251217012620.758252-23-daniele.ceraolospurio@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20251217012620.758252-15-daniele.ceraolospurio@intel.com>
 References: <20251217012620.758252-15-daniele.ceraolospurio@intel.com>
@@ -69,64 +68,78 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Debugfs files are added to allow a user to provide a comma-separated list
-of values to assign to each group for each VF.
+Reading the debugfs file lists the available configurations by name.
+Writing the name of a configuration to the file will enable it.
+Note that while this debugfs is PF-only, follow up patches will add some
+debugfs files that are applicable to VF as well, so the function accepts
+a vfid parameter to be ready for that.
 
 Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
 Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 ---
-v2: drop files for individual groups, check input length (Michal)
-v3: add an extra space when to separate the dumped values (Michal)
-v4: remove the extra space (Michal)
+v2: don't print anything if the feature is unsupported (Michal), add
+    TODO for reworking init order to know if there are valid groups
+    when we register debugfs, check for basic feature support.
+v3: use drm_puts, list modes even if we only support the disabled
+    one (Michal)
+v4: pass vfid now instead of reworking in future patch, make print
+    logic more compact, use the enum type instead of u32 (Michal)
 ---
- drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c | 118 +++++++++++++++++++-
- 1 file changed, 117 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c | 126 ++++++++++++++++++++
+ 1 file changed, 126 insertions(+)
 
 diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
-index e3e6d2d9beff..8ddffe728673 100644
+index ece9eed5d7c5..f80664dcbb8f 100644
 --- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
 +++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
-@@ -163,10 +163,18 @@ static void pf_add_policy_attrs(struct xe_gt *gt, struct dentry *parent)
-  *          :   ├── tile0
-  *              :   ├── gt0
-  *                  :   ├── sched_groups_mode
-+ *                      ├── sched_groups_exec_quantums_ms
-+ *                      ├── sched_groups_preempt_timeout_us
-  *                      ├── sched_groups
-  *                      :   ├── group0
-  *                          :
-- *                          └── groupN
-+ *          :               └── groupN
-+ *          ├── vf1
+@@ -156,6 +156,131 @@ static void pf_add_policy_attrs(struct xe_gt *gt, struct dentry *parent)
+ 	debugfs_create_file_unsafe("sample_period_ms", 0644, parent, parent, &sample_period_fops);
+ }
+ 
++/*
++ *      /sys/kernel/debug/dri/BDF/
++ *      ├── sriov
++ *      :   ├── pf
 + *          :   ├── tile0
 + *              :   ├── gt0
-+ *                  :   ├── sched_groups_exec_quantums_ms
-+ *                      ├── sched_groups_preempt_timeout_us
-+ *                      :
-  */
- 
- static const char *sched_group_mode_to_string(enum xe_sriov_sched_group_modes mode)
-@@ -261,6 +269,108 @@ static const struct file_operations sched_groups_fops = {
- 	.release = single_release,
- };
- 
-+static int sched_groups_config_show(struct seq_file *m, void *data,
-+				    void (*get)(struct xe_gt *, unsigned int, u32 *, u32))
++ *                  :   ├── sched_groups_mode
++ */
++
++static const char *sched_group_mode_to_string(enum xe_sriov_sched_group_modes mode)
++{
++	switch (mode) {
++	case XE_SRIOV_SCHED_GROUPS_DISABLED:
++		return "disabled";
++	case XE_SRIOV_SCHED_GROUPS_MEDIA_SLICES:
++		return "media_slices";
++	case XE_SRIOV_SCHED_GROUPS_MODES_COUNT:
++		/* dummy mode to make the compiler happy */
++		break;
++	}
++
++	return "unknown";
++}
++
++static int sched_groups_info(struct seq_file *m, void *data)
 +{
 +	struct drm_printer p = drm_seq_file_printer(m);
-+	unsigned int vfid = extract_vfid(m->private);
 +	struct xe_gt *gt = extract_gt(m->private);
-+	u32 values[GUC_MAX_SCHED_GROUPS];
-+	bool first = true;
-+	u8 group;
++	enum xe_sriov_sched_group_modes current_mode =
++		gt->sriov.pf.policy.guc.sched_groups.current_mode;
++	enum xe_sriov_sched_group_modes mode;
 +
-+	get(gt, vfid, values, ARRAY_SIZE(values));
++	for (mode = XE_SRIOV_SCHED_GROUPS_DISABLED;
++	     mode < XE_SRIOV_SCHED_GROUPS_MODES_COUNT;
++	     mode++) {
++		if (!xe_sriov_gt_pf_policy_has_sched_group_mode(gt, mode))
++			continue;
 +
-+	for (group = 0; group < ARRAY_SIZE(values); group++) {
-+		drm_printf(&p, "%s%u", first ? "" : ",", values[group]);
-+
-+		first = false;
++		drm_printf(&p, "%s%s%s%s",
++			   mode == XE_SRIOV_SCHED_GROUPS_DISABLED ? "" : " ",
++			   mode == current_mode ? "[" : "",
++			   sched_group_mode_to_string(mode),
++			   mode == current_mode ? "]" : "");
 +	}
 +
 +	drm_puts(&p, "\n");
@@ -134,18 +147,18 @@ index e3e6d2d9beff..8ddffe728673 100644
 +	return 0;
 +}
 +
-+static ssize_t sched_groups_config_write(struct file *file, const char __user *ubuf,
-+					 size_t size, loff_t *pos,
-+					 int (*set)(struct xe_gt *, unsigned int, u32 *, u32))
++static int sched_groups_open(struct inode *inode, struct file *file)
 +{
-+	struct dentry *parent = file_inode(file)->i_private;
-+	unsigned int vfid = extract_vfid(parent);
-+	struct xe_gt *gt = extract_gt(parent);
-+	u32 values[GUC_MAX_SCHED_GROUPS];
-+	int *input;
-+	u32 count;
++	return single_open(file, sched_groups_info, inode->i_private);
++}
++
++static ssize_t sched_groups_write(struct file *file, const char __user *ubuf,
++				  size_t size, loff_t *pos)
++{
++	struct xe_gt *gt = extract_gt(file_inode(file)->i_private);
++	enum xe_sriov_sched_group_modes mode;
++	char name[32];
 +	int ret;
-+	int i;
 +
 +	if (*pos)
 +		return -ESPIPE;
@@ -153,89 +166,73 @@ index e3e6d2d9beff..8ddffe728673 100644
 +	if (!size)
 +		return -ENODATA;
 +
-+	ret = parse_int_array_user(ubuf, min(size, GUC_MAX_SCHED_GROUPS * sizeof(u32)), &input);
-+	if (ret)
++	if (size > sizeof(name) - 1)
++		return -EINVAL;
++
++	ret = simple_write_to_buffer(name, sizeof(name) - 1, pos, ubuf, size);
++	if (ret < 0)
 +		return ret;
++	name[ret] = '\0';
 +
-+	count = input[0];
-+	if (count > GUC_MAX_SCHED_GROUPS) {
-+		ret = -E2BIG;
-+		goto out;
-+	}
++	for (mode = XE_SRIOV_SCHED_GROUPS_DISABLED;
++	     mode < XE_SRIOV_SCHED_GROUPS_MODES_COUNT;
++	     mode++)
++		if (sysfs_streq(name, sched_group_mode_to_string(mode)))
++			break;
 +
-+	for (i = 0; i < count; i++) {
-+		if (input[i + 1] < 0 || input[i + 1] > S32_MAX) {
-+			ret = -EINVAL;
-+			goto out;
-+		}
-+
-+		values[i] = input[i + 1];
-+	}
++	if (mode == XE_SRIOV_SCHED_GROUPS_MODES_COUNT)
++		return -EINVAL;
 +
 +	guard(xe_pm_runtime)(gt_to_xe(gt));
-+	ret = set(gt, vfid, values, count);
++	ret = xe_gt_sriov_pf_policy_set_sched_groups_mode(gt, mode);
 +
-+out:
-+	kfree(input);
 +	return ret < 0 ? ret : size;
 +}
 +
-+#define DEFINE_SRIOV_GT_GRP_CFG_DEBUGFS_ATTRIBUTE(CONFIG)			\
-+static int sched_groups_##CONFIG##_show(struct seq_file *m, void *data)		\
-+{										\
-+	return sched_groups_config_show(m, data,				\
-+					xe_gt_sriov_pf_config_get_groups_##CONFIG); \
-+}										\
-+										\
-+static int sched_groups_##CONFIG##_open(struct inode *inode, struct file *file)	\
-+{										\
-+	return single_open(file, sched_groups_##CONFIG##_show,			\
-+			   inode->i_private);					\
-+}										\
-+										\
-+static ssize_t sched_groups_##CONFIG##_write(struct file *file,			\
-+					      const char __user *ubuf,		\
-+					      size_t size, loff_t *pos)		\
-+{										\
-+	return sched_groups_config_write(file, ubuf, size, pos,			\
-+					 xe_gt_sriov_pf_config_set_groups_##CONFIG); \
-+}										\
-+										\
-+static const struct file_operations sched_groups_##CONFIG##_fops = {		\
-+	.owner = THIS_MODULE,							\
-+	.open = sched_groups_##CONFIG##_open,					\
-+	.read = seq_read,							\
-+	.llseek = seq_lseek,							\
-+	.write = sched_groups_##CONFIG##_write,					\
-+	.release = single_release,						\
++static const struct file_operations sched_groups_fops = {
++	.owner = THIS_MODULE,
++	.open = sched_groups_open,
++	.read = seq_read,
++	.write = sched_groups_write,
++	.llseek = seq_lseek,
++	.release = single_release,
++};
++
++static void pf_add_sched_groups(struct xe_gt *gt, struct dentry *parent, unsigned int vfid)
++{
++	xe_gt_assert(gt, gt == extract_gt(parent));
++	xe_gt_assert(gt, vfid == extract_vfid(parent));
++
++	/*
++	 * TODO: we currently call this function before we initialize scheduler
++	 * groups, so at this point in time we don't know if there are any
++	 * valid groups on the GT and we can't selectively register the debugfs
++	 * only if there are any. Therefore, we always register the debugfs
++	 * files if we're on a platform that has support for groups.
++	 * We should rework the flow so that debugfs is registered after the
++	 * policy init, so that we check if there are valid groups before
++	 * adding the debugfs files.
++	 */
++	if (!xe_sriov_gt_pf_policy_has_sched_groups_support(gt))
++		return;
++
++	if (vfid != PFID)
++		return;
++
++	debugfs_create_file("sched_groups_mode", 0644, parent, parent, &sched_groups_fops);
 +}
 +
-+DEFINE_SRIOV_GT_GRP_CFG_DEBUGFS_ATTRIBUTE(exec_quantums);
-+DEFINE_SRIOV_GT_GRP_CFG_DEBUGFS_ATTRIBUTE(preempt_timeouts);
-+
- static ssize_t sched_group_engines_read(struct file *file, char __user *buf,
- 					size_t count, loff_t *ppos)
- {
-@@ -322,6 +432,11 @@ static void pf_add_sched_groups(struct xe_gt *gt, struct dentry *parent, unsigne
- 	if (!xe_sriov_gt_pf_policy_has_sched_groups_support(gt))
- 		return;
+ /*
+  *      /sys/kernel/debug/dri/BDF/
+  *      ├── sriov
+@@ -531,6 +656,7 @@ static void pf_populate_gt(struct xe_gt *gt, struct dentry *dent, unsigned int v
+ 	} else {
+ 		pf_add_config_attrs(gt, dent, PFID);
+ 		pf_add_policy_attrs(gt, dent);
++		pf_add_sched_groups(gt, dent, PFID);
  
-+	debugfs_create_file("sched_groups_exec_quantums_ms", 0644, parent, parent,
-+			    &sched_groups_exec_quantums_fops);
-+	debugfs_create_file("sched_groups_preempt_timeouts_us", 0644, parent, parent,
-+			    &sched_groups_preempt_timeouts_fops);
-+
- 	if (vfid != PFID)
- 		return;
- 
-@@ -702,6 +817,7 @@ static void pf_populate_gt(struct xe_gt *gt, struct dentry *dent, unsigned int v
- 
- 	if (vfid) {
- 		pf_add_config_attrs(gt, dent, vfid);
-+		pf_add_sched_groups(gt, dent, vfid);
- 
- 		debugfs_create_file("control", 0600, dent, NULL, &control_ops);
- 
+ 		drm_debugfs_create_files(pf_info, ARRAY_SIZE(pf_info), dent, minor);
+ 	}
 -- 
 2.43.0
 
