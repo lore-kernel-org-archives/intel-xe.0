@@ -4,50 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6EC8BD65C72
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 837DAD65C6B
 	for <intel-xe@archiver.kernel.org>; Wed, 17 Dec 2025 15:29:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1991710ED14;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2247E10ED16;
 	Wed, 17 Dec 2025 15:29:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SpWuumtj";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XHNsY05k";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 77BEB10E8CC;
- Wed, 17 Dec 2025 15:28:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 97E3010EC72;
+ Wed, 17 Dec 2025 15:28:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765985327; x=1797521327;
+ t=1765985338; x=1797521338;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=A2mLH1yBrU3fuyAxVA2viSeQ3nwnOKxhgGlhrrWStJQ=;
- b=SpWuumtjvsn4r5EQWlWYEUnlJ7sHM46wrkHSQgmxL6T4KOuwKjO6lhfW
- BwJbHl+y5rndk40p/bgNF721B/nZLcOCcYCmtcSbOCRvPPa7cwjXJWLlR
- ykt9Omj5YAOCr/d51+SxrN7IjOZes63e3by0SQsgOdmStXWZV75weg1a6
- Yi7n9rzAG2bM1lN6liY41oNv1XuOybSS7TM1TExAdi/KcVJg84FkHEiLC
- lxa+hQu90PM+dxgl39Z4bfbncTGF8ox3nnciE7iK8K26XuYqDguBccvG0
- P6tGuWQOaPZNVVTBisSrlvoMqSX9ouXnwjE4MIA1IPqfoQoyrT3VNnOz2 g==;
-X-CSE-ConnectionGUID: MbFaAd2uReyqWZsWqYGQAw==
-X-CSE-MsgGUID: 1OKMIfagSC2IujLYn7+jLw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11645"; a="71781436"
-X-IronPort-AV: E=Sophos;i="6.21,156,1763452800"; d="scan'208";a="71781436"
+ bh=JvQMh0KZi2mfo8JqbBMLWJcDxwbZVP8JH7h3uAfmqTs=;
+ b=XHNsY05koXyYFCtsqtMxEZj9u9u6HZ0elQOvW/0gkVprjdwfaCEJ0nob
+ bQwU4AbIoKb3giEFr1O9YYLEgpIOkkTY6NsE6B1/4no/nkWKpiwl9fMqx
+ /b8o+tTXSs7M/rNoS/g601n979ymKphXsf1XxnJa7MTC4bUJnxjZvL6FE
+ 0bRQBRDt5mYougwkQReZwTI++IDAp1WrdYet6Oki8Jj2uMX0unkwlpTdg
+ AcfeJn+YsPcXxSKFjopgsHB4/VRb5SYjSfcNOtAndaWlZaYBfrkT079TH
+ 5OnxnuOb5ix1ToCvnawu9miv4zofdSdN/n/oEf+lPSe3G+yYTEFuhvYpF Q==;
+X-CSE-ConnectionGUID: 5t/tCGwoS6+KmDmuYTufWw==
+X-CSE-MsgGUID: qvk/lkWGTUSu/ZpocNtDtQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11645"; a="71781473"
+X-IronPort-AV: E=Sophos;i="6.21,156,1763452800"; d="scan'208";a="71781473"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Dec 2025 07:28:47 -0800
-X-CSE-ConnectionGUID: rF2KcuwoRVyq9Gsuqk1iGg==
-X-CSE-MsgGUID: 2Kax5y+TQzSwz1GoAzyXgg==
+ 17 Dec 2025 07:28:58 -0800
+X-CSE-ConnectionGUID: PRnjYJk4StOx5MjXonsKtw==
+X-CSE-MsgGUID: lHcERoyZShG/qTnakLzaFA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,156,1763452800"; d="scan'208";a="198097299"
+X-IronPort-AV: E=Sophos;i="6.21,156,1763452800"; d="scan'208";a="198097333"
 Received: from display-adls.igk.intel.com ([10.211.131.198])
- by orviesa009.jf.intel.com with ESMTP; 17 Dec 2025 07:28:45 -0800
+ by orviesa009.jf.intel.com with ESMTP; 17 Dec 2025 07:28:56 -0800
 From: Mika Kahola <mika.kahola@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Mika Kahola <mika.kahola@intel.com>
-Subject: [PATCH v2 05/15] drm/i915/cx0: Drop encoder from port clock
- calculation
-Date: Wed, 17 Dec 2025 17:19:45 +0200
-Message-Id: <20251217151955.1690202-6-mika.kahola@intel.com>
+Subject: [PATCH v2 14/15] drm/i915/lt_phy: Drop 27.2 MHz rate
+Date: Wed, 17 Dec 2025 17:19:54 +0200
+Message-Id: <20251217151955.1690202-15-mika.kahola@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251217151955.1690202-1-mika.kahola@intel.com>
 References: <20251217151955.1690202-1-mika.kahola@intel.com>
@@ -67,69 +66,89 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-For C10 and C20 we have unused encoder parameter passed
-to port clock calculation function. Remove encoder from
-passing it to port clock calculation function.
+Drop 27.2 MHz pll table as with these pll dividers
+the port clock will be incorrectly calculated to 27.0 MHz.
+For 27.2 MHz rate the PLl dividers are calculated
+algorithmically making pll table for this rate redundant.
 
 Signed-off-by: Mika Kahola <mika.kahola@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cx0_phy.c | 14 ++++++--------
- 1 file changed, 6 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/i915/display/intel_lt_phy.c | 55 ---------------------
+ 1 file changed, 55 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-index 664c48dc0ce3..b7ac89e32586 100644
---- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-@@ -2103,8 +2103,7 @@ static bool cx0pll_state_is_dp(const struct intel_cx0pll_state *pll_state)
- 	return c20pll_state_is_dp(&pll_state->c20);
- }
+diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.c b/drivers/gpu/drm/i915/display/intel_lt_phy.c
+index 13acfc7c0469..bc73b1466bc4 100644
+--- a/drivers/gpu/drm/i915/display/intel_lt_phy.c
++++ b/drivers/gpu/drm/i915/display/intel_lt_phy.c
+@@ -801,60 +801,6 @@ static const struct intel_lt_phy_pll_state xe3plpd_lt_hdmi_252 = {
+ 	},
+ };
  
--static int intel_c10pll_calc_port_clock(struct intel_encoder *encoder,
--					const struct intel_c10pll_state *pll_state)
-+static int intel_c10pll_calc_port_clock(const struct intel_c10pll_state *pll_state)
- {
- 	unsigned int frac_quot = 0, frac_rem = 0, frac_den = 1;
- 	unsigned int multiplier, tx_clk_div, hdmi_div, refclk = 38400;
-@@ -2135,8 +2134,7 @@ static bool intel_c20phy_use_mpllb(const struct intel_c20pll_state *state)
- 	return state->tx[0] & C20_PHY_USE_MPLLB;
- }
+-static const struct intel_lt_phy_pll_state xe3plpd_lt_hdmi_272 = {
+-	.clock = 27200,
+-	.config = {
+-		0x84,
+-		0x2d,
+-		0x0,
+-	},
+-	.addr_msb = {
+-		0x87,
+-		0x87,
+-		0x87,
+-		0x87,
+-		0x88,
+-		0x88,
+-		0x88,
+-		0x88,
+-		0x88,
+-		0x88,
+-		0x88,
+-		0x88,
+-		0x88,
+-	},
+-	.addr_lsb = {
+-		0x10,
+-		0x0c,
+-		0x14,
+-		0xe4,
+-		0x0c,
+-		0x10,
+-		0x14,
+-		0x18,
+-		0x48,
+-		0x40,
+-		0x4c,
+-		0x24,
+-		0x44,
+-	},
+-	.data = {
+-		{ 0x0,  0x4c, 0x2,  0x0  },
+-		{ 0x0b, 0x15, 0x26, 0xa0 },
+-		{ 0x60, 0x0,  0x0,  0x0  },
+-		{ 0x8,  0x4,  0x96, 0x28 },
+-		{ 0xfa, 0x0c, 0x84, 0x11 },
+-		{ 0x80, 0x0f, 0xd9, 0x53 },
+-		{ 0x86, 0x0,  0x0,  0x0  },
+-		{ 0x1,  0xa0, 0x1,  0x0  },
+-		{ 0x4b, 0x0,  0x0,  0x0  },
+-		{ 0x28, 0x0,  0x0,  0x0  },
+-		{ 0x0,  0x14, 0x2a, 0x14 },
+-		{ 0x0,  0x0,  0x0,  0x0  },
+-		{ 0x0,  0x0,  0x0,  0x0  },
+-	},
+-};
+-
+ static const struct intel_lt_phy_pll_state xe3plpd_lt_hdmi_742p5 = {
+ 	.clock = 74250,
+ 	.config = {
+@@ -1019,7 +965,6 @@ static const struct intel_lt_phy_pll_state xe3plpd_lt_hdmi_5p94 = {
  
--static int intel_c20pll_calc_port_clock(struct intel_encoder *encoder,
--					const struct intel_c20pll_state *pll_state)
-+static int intel_c20pll_calc_port_clock(const struct intel_c20pll_state *pll_state)
- {
- 	unsigned int frac, frac_en, frac_quot, frac_rem, frac_den;
- 	unsigned int multiplier, refclk = 38400;
-@@ -2325,7 +2323,7 @@ static void intel_c10pll_readout_hw_state(struct intel_encoder *encoder,
- 
- 	intel_cx0_phy_transaction_end(encoder, wakeref);
- 
--	pll_state->clock = intel_c10pll_calc_port_clock(encoder, pll_state);
-+	pll_state->clock = intel_c10pll_calc_port_clock(pll_state);
- 
- 	cx0pll_state->ssc_enabled = readout_ssc_state(encoder, true);
- 
-@@ -2821,7 +2819,7 @@ static void intel_c20pll_readout_hw_state(struct intel_encoder *encoder,
- 		}
- 	}
- 
--	pll_state->clock = intel_c20pll_calc_port_clock(encoder, pll_state);
-+	pll_state->clock = intel_c20pll_calc_port_clock(pll_state);
- 
- 	intel_cx0_phy_transaction_end(encoder, wakeref);
- 
-@@ -3713,9 +3711,9 @@ int intel_cx0pll_calc_port_clock(struct intel_encoder *encoder,
- 				 const struct intel_cx0pll_state *pll_state)
- {
- 	if (intel_encoder_is_c10phy(encoder))
--		return intel_c10pll_calc_port_clock(encoder, &pll_state->c10);
-+		return intel_c10pll_calc_port_clock(&pll_state->c10);
- 
--	return intel_c20pll_calc_port_clock(encoder, &pll_state->c20);
-+	return intel_c20pll_calc_port_clock(&pll_state->c20);
- }
- 
- /*
+ static const struct intel_lt_phy_pll_params xe3plpd_lt_hdmi_tables[] = {
+ 	LT_PHY_PLL_HDMI_PARAMS(25200, xe3plpd_lt_hdmi_252),
+-	LT_PHY_PLL_HDMI_PARAMS(27200, xe3plpd_lt_hdmi_272),
+ 	LT_PHY_PLL_HDMI_PARAMS(74250, xe3plpd_lt_hdmi_742p5),
+ 	LT_PHY_PLL_HDMI_PARAMS(148500, xe3plpd_lt_hdmi_1p485),
+ 	LT_PHY_PLL_HDMI_PARAMS(594000, xe3plpd_lt_hdmi_5p94),
 -- 
 2.34.1
 
