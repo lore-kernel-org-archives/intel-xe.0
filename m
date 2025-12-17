@@ -4,54 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9F6C7D65C63
-	for <intel-xe@archiver.kernel.org>; Wed, 17 Dec 2025 22:40:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CBE9FD65C63
+	for <intel-xe@archiver.kernel.org>; Wed, 17 Dec 2025 22:46:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 570D410E075;
-	Wed, 17 Dec 2025 22:40:29 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="E/eK+01X";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7FA8A10E075
- for <intel-xe@lists.freedesktop.org>; Wed, 17 Dec 2025 22:40:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1766011229; x=1797547229;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=iz7q1um51lpnZ22CHB0WqpY68e2lsq69vc0grUbKmUU=;
- b=E/eK+01XCdpDXB+Rf+pQkZc5Ux2SwRtVOQbfxuYQ2kUzvgDGBUO65AGf
- b3U/EzoEWOfthmvBGcm/9nv2W8RiVDyVpZeeY/o9AcHg8YcGl9/IMqQbD
- r79b+hTYPina8ett7PsRJzhjqiuq5rM3vbqnA6qltQtmW2glk/H8I0Gcp
- PgSe9r6kO9N4Yd8r5pDhcwibS3ZqVfd7GY+EdKCmV72SKjfOf18c2bGdD
- RIOAXon0gxe4ovnJKZgPCzBGoUS2JVOaWOtrdwtQ6wnXaPoTrdmnjoMi6
- 9/s+4vZqMypR0cmAcJaXF9T0cb7o/v7jykCciR8Tnf5cgHaOgVU0Tlkc6 g==;
-X-CSE-ConnectionGUID: kTixg8qNSA+TJHTDe8vHAg==
-X-CSE-MsgGUID: W07JPVqpRIWmONkUEUnXcA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11645"; a="71590764"
-X-IronPort-AV: E=Sophos;i="6.21,156,1763452800"; d="scan'208";a="71590764"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Dec 2025 14:40:29 -0800
-X-CSE-ConnectionGUID: Ts0JUrM6R4iIrw5zPDIW+w==
-X-CSE-MsgGUID: 8cNZitOjSGezTt6qz7YznQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,156,1763452800"; d="scan'208";a="198434297"
-Received: from pawels1x-mobl1.ger.corp.intel.com (HELO
- mwajdecz-hp.clients.intel.com) ([10.94.249.29])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Dec 2025 14:40:27 -0800
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v4 1/4] drm/xe: Introduce IF_ARGS macro utility
-Date: Wed, 17 Dec 2025 23:40:18 +0100
-Message-ID: <20251217224018.3490-1-michal.wajdeczko@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20251216214902.1429-2-michal.wajdeczko@intel.com>
-References: <20251216214902.1429-2-michal.wajdeczko@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 82D2110E1B6;
+	Wed, 17 Dec 2025 22:46:10 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 74CC110E1B6;
+ Wed, 17 Dec 2025 22:46:09 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_PF=3A_Add_handling_for_ne?=
+ =?utf-8?q?w_adverse_event_thresholds_=28rev5=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 17 Dec 2025 22:46:09 -0000
+Message-ID: <176601156947.98733.6928237163014698011@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20251216214902.1429-1-michal.wajdeczko@intel.com>
+In-Reply-To: <20251216214902.1429-1-michal.wajdeczko@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,147 +36,171 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We want to extend our macro-based KLV list definitions with new
-information about the version from which given KLV is supported.
-Add utility IF_ARGS macro that can be used in code generators to
-emit different code based on the presence of additional arguments.
+== Series Details ==
 
-Introduce macro itself and extend our kunit tests to cover it.
-We will use this macro in next patch.
+Series: PF: Add handling for new adverse event thresholds (rev5)
+URL   : https://patchwork.freedesktop.org/series/158874/
+State : warning
 
-Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Acked-by: Matthew Brost <matthew.brost@intel.com>
----
-v3: add alternate implementation for older GCC (Michal)
-    as kernel test robot reported errors on GCC 8.5.0
-    same errors seen also on 9.5.0 but not on 10.1.0
-v4: fix typo in kunit test to differentiate fail/pass (Michal)
----
- drivers/gpu/drm/xe/tests/xe_args_test.c | 54 +++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_args.h            | 27 +++++++++++++
- 2 files changed, 81 insertions(+)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/xe/tests/xe_args_test.c b/drivers/gpu/drm/xe/tests/xe_args_test.c
-index f3fb23aa5d2e..2687a1b054dd 100644
---- a/drivers/gpu/drm/xe/tests/xe_args_test.c
-+++ b/drivers/gpu/drm/xe/tests/xe_args_test.c
-@@ -78,6 +78,24 @@ static void pick_arg_example(struct kunit *test)
- #undef buz
- }
- 
-+static void if_args_example(struct kunit *test)
-+{
-+	enum { Z = 1, Q };
-+
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+5f54f403acc61a45ad2b4d68dfd74b336dce1968
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 33491eafce3aef96c5ee58a637a5381d9bb7a28c
+Author: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Date:   Tue Dec 16 22:48:59 2025 +0100
+
+    drm/xe/pf: Add handling for MLRC adverse event threshold
+    
+    Since it is illegal to register a MLRC context when scheduler groups are
+    enabled, the GuC consider the VF doing so as an adverse event. Like for
+    other adverse event, there is a threshold for how many times the event
+    can happen before the GuC throws an error, which we need to add support
+    for.
+    
+    Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+    Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+    Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+    Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+    Acked-by: Matthew Brost <matthew.brost@intel.com>
++ /mt/dim checkpatch b8b72578c50083961ef150f128e6e8c0c3396864 drm-intel
+51868ad68aba drm/xe: Introduce IF_ARGS macro utility
+-:30: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#30: FILE: drivers/gpu/drm/xe/tests/xe_args_test.c:85:
 +#define foo	X, Y
-+#define bar	IF_ARGS(Z, Q, foo)
-+#define buz	IF_ARGS(Z, Q, DROP_FIRST_ARG(FIRST_ARG(foo)))
-+
-+	KUNIT_EXPECT_EQ(test, bar, Z);
-+	KUNIT_EXPECT_EQ(test, buz, Q);
-+	KUNIT_EXPECT_STREQ(test, __stringify(bar), "Z");
-+	KUNIT_EXPECT_STREQ(test, __stringify(buz), "Q");
-+
-+#undef foo
-+#undef bar
-+#undef buz
-+}
-+
- static void sep_comma_example(struct kunit *test)
- {
- #define foo(f)	f(X) f(Y) f(Z) f(Q)
-@@ -198,6 +216,40 @@ static void last_arg_test(struct kunit *test)
- 	KUNIT_EXPECT_STREQ(test, __stringify(LAST_ARG(MAX_ARGS)), "-12");
- }
- 
-+static void if_args_test(struct kunit *test)
-+{
-+	bool with_args = true;
-+	bool no_args = false;
-+	enum { X = 100 };
-+
-+	KUNIT_EXPECT_TRUE(test, IF_ARGS(true, false, FOO_ARGS));
-+	KUNIT_EXPECT_FALSE(test, IF_ARGS(true, false, NO_ARGS));
-+
-+	KUNIT_EXPECT_TRUE(test, CONCATENATE(IF_ARGS(with, no, FOO_ARGS), _args));
-+	KUNIT_EXPECT_FALSE(test, CONCATENATE(IF_ARGS(with, no, NO_ARGS), _args));
-+
-+	KUNIT_EXPECT_STREQ(test, __stringify(IF_ARGS(yes, no, FOO_ARGS)), "yes");
-+	KUNIT_EXPECT_STREQ(test, __stringify(IF_ARGS(yes, no, NO_ARGS)), "no");
-+
-+	KUNIT_EXPECT_EQ(test, IF_ARGS(CALL_ARGS(COUNT_ARGS, FOO_ARGS), -1, FOO_ARGS), 4);
-+	KUNIT_EXPECT_EQ(test, IF_ARGS(CALL_ARGS(COUNT_ARGS, FOO_ARGS), -1, NO_ARGS), -1);
-+	KUNIT_EXPECT_EQ(test, IF_ARGS(CALL_ARGS(COUNT_ARGS, NO_ARGS), -1, FOO_ARGS), 0);
-+	KUNIT_EXPECT_EQ(test, IF_ARGS(CALL_ARGS(COUNT_ARGS, NO_ARGS), -1, NO_ARGS), -1);
-+
-+	KUNIT_EXPECT_EQ(test,
-+			CALL_ARGS(FIRST_ARG,
-+				  CALL_ARGS(CONCATENATE, IF_ARGS(FOO, MAX, FOO_ARGS), _ARGS)), X);
-+	KUNIT_EXPECT_EQ(test,
-+			CALL_ARGS(FIRST_ARG,
-+				  CALL_ARGS(CONCATENATE, IF_ARGS(FOO, MAX, NO_ARGS), _ARGS)), -1);
-+	KUNIT_EXPECT_EQ(test,
-+			CALL_ARGS(COUNT_ARGS,
-+				  CALL_ARGS(CONCATENATE, IF_ARGS(FOO, MAX, FOO_ARGS), _ARGS)), 4);
-+	KUNIT_EXPECT_EQ(test,
-+			CALL_ARGS(COUNT_ARGS,
-+				  CALL_ARGS(CONCATENATE, IF_ARGS(FOO, MAX, NO_ARGS), _ARGS)), 12);
-+}
-+
- static struct kunit_case args_tests[] = {
- 	KUNIT_CASE(count_args_test),
- 	KUNIT_CASE(call_args_example),
-@@ -209,6 +261,8 @@ static struct kunit_case args_tests[] = {
- 	KUNIT_CASE(last_arg_example),
- 	KUNIT_CASE(last_arg_test),
- 	KUNIT_CASE(pick_arg_example),
-+	KUNIT_CASE(if_args_example),
-+	KUNIT_CASE(if_args_test),
- 	KUNIT_CASE(sep_comma_example),
- 	{}
- };
-diff --git a/drivers/gpu/drm/xe/xe_args.h b/drivers/gpu/drm/xe/xe_args.h
-index 4dbc7e53c624..f550b5e3b993 100644
---- a/drivers/gpu/drm/xe/xe_args.h
-+++ b/drivers/gpu/drm/xe/xe_args.h
-@@ -121,6 +121,33 @@
- #define PICK_ARG11(args...)		PICK_ARG10(DROP_FIRST_ARG(args))
- #define PICK_ARG12(args...)		PICK_ARG11(DROP_FIRST_ARG(args))
- 
-+/**
-+ * IF_ARGS() - Make selection based on optional argument list.
-+ * @then: token to return if arguments are present
-+ * @else: token to return if arguments are empty
-+ * @...: arguments to check (optional)
-+ *
-+ * This macro allows to select a token based on the presence of the argument list.
-+ *
-+ * Example:
-+ *
-+ *	#define foo	X, Y
-+ *	#define bar	IF_ARGS(Z, Q, foo)
-+ *	#define buz	IF_ARGS(Z, Q, DROP_FIRST_ARG(FIRST_ARG(foo)))
-+ *
-+ *	With above definitions bar expands to Z while buz expands to Q.
-+ */
-+#if defined(CONFIG_CC_IS_CLANG) || GCC_VERSION >= 100100
+
+BUT SEE:
+
+   do {} while (0) advice is over-stated in a few situations:
+
+   The more obvious case is macros, like MODULE_PARM_DESC, invoked at
+   file-scope, where C disallows code (it must be in functions).  See
+   $exceptions if you have one to add by name.
+
+   More troublesome is declarative macros used at top of new scope,
+   like DECLARE_PER_CPU.  These might just compile with a do-while-0
+   wrapper, but would be incorrect.  Most of these are handled by
+   detecting struct,union,etc declaration primitives in $exceptions.
+
+   Theres also macros called inside an if (block), which "return" an
+   expression.  These cannot do-while, and need a ({}) wrapper.
+
+   Enjoy this qualification while we work to improve our heuristics.
+
+-:122: ERROR:SPACING: space required after that ',' (ctx:VxB)
+#122: FILE: drivers/gpu/drm/xe/xe_args.h:141:
 +#define IF_ARGS(then, else, ...)	FIRST_ARG(__VA_OPT__(then,) else)
-+#else
-+#define IF_ARGS(then, else, ...)	_IF_ARGS(then, else, CALL_ARGS(FIRST_ARG, __VA_ARGS__))
-+#define _IF_ARGS(then, else, ...)	__IF_ARGS(then, else, CALL_ARGS(COUNT_ARGS, __VA_ARGS__))
-+#define __IF_ARGS(then, else, n)	___IF_ARGS(then, else, CALL_ARGS(CONCATENATE, ___IF_ARG, n))
-+#define ___IF_ARGS(then, else, if)	CALL_ARGS(if, then, else)
+                                 	                         ^
+
+-:128: WARNING:MACRO_ARG_UNUSED: Argument 'else' is not used in function-like macro
+#128: FILE: drivers/gpu/drm/xe/xe_args.h:147:
 +#define ___IF_ARG1(then, else)		then
+
+-:129: WARNING:MACRO_ARG_UNUSED: Argument 'then' is not used in function-like macro
+#129: FILE: drivers/gpu/drm/xe/xe_args.h:148:
 +#define ___IF_ARG0(then, else)		else
-+#endif
-+
- /**
-  * ARGS_SEP_COMMA - Definition of a comma character.
-  *
--- 
-2.47.1
+
+total: 2 errors, 2 warnings, 0 checks, 105 lines checked
+367a75c68743 drm/xe/guc: Introduce GUC_FIRMWARE_VER_AT_LEAST helper
+1324f1241ca2 drm/xe/pf: Prepare for new threshold KLVs
+-:37: WARNING:MACRO_ARG_UNUSED: Argument 'NAME' is not used in function-like macro
+#37: FILE: drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c:307:
++#define encode_threshold_config(TAG, NAME, VER...) ({					\
++	if (IF_ARGS(GUC_FIRMWARE_VER_AT_LEAST(&gt->uc.guc, VER), true, VER)) {		\
++		cfg[n++] = PREP_GUC_KLV_TAG(VF_CFG_THRESHOLD_##TAG);			\
++		cfg[n++] = config->thresholds[MAKE_XE_GUC_KLV_THRESHOLD_INDEX(TAG)];	\
++	}										\
+ });
+
+-:37: WARNING:TRAILING_SEMICOLON: macros should not use a trailing semicolon
+#37: FILE: drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c:307:
++#define encode_threshold_config(TAG, NAME, VER...) ({					\
++	if (IF_ARGS(GUC_FIRMWARE_VER_AT_LEAST(&gt->uc.guc, VER), true, VER)) {		\
++		cfg[n++] = PREP_GUC_KLV_TAG(VF_CFG_THRESHOLD_##TAG);			\
++		cfg[n++] = config->thresholds[MAKE_XE_GUC_KLV_THRESHOLD_INDEX(TAG)];	\
++	}										\
+ });
+
+-:68: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'TAG' - possible side-effects?
+#68: FILE: drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c:2557:
++#define define_threshold_key_to_provision_case(TAG, NAME, VER...)			\
+ 	case MAKE_GUC_KLV_VF_CFG_THRESHOLD_KEY(TAG):					\
+ 		BUILD_BUG_ON(MAKE_GUC_KLV_VF_CFG_THRESHOLD_LEN(TAG) != 1u);		\
+ 		if (len != MAKE_GUC_KLV_VF_CFG_THRESHOLD_LEN(TAG))			\
+ 			return -EBADMSG;						\
++		if (IF_ARGS(!GUC_FIRMWARE_VER_AT_LEAST(&gt->uc.guc, VER), false, VER))	\
++			return -EKEYREJECTED;						\
+ 		return pf_provision_threshold(gt, vfid,					\
+ 					      MAKE_XE_GUC_KLV_THRESHOLD_INDEX(TAG),	\
+ 					      value[0]);
+
+-:68: WARNING:MACRO_ARG_UNUSED: Argument 'NAME' is not used in function-like macro
+#68: FILE: drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c:2557:
++#define define_threshold_key_to_provision_case(TAG, NAME, VER...)			\
+ 	case MAKE_GUC_KLV_VF_CFG_THRESHOLD_KEY(TAG):					\
+ 		BUILD_BUG_ON(MAKE_GUC_KLV_VF_CFG_THRESHOLD_LEN(TAG) != 1u);		\
+ 		if (len != MAKE_GUC_KLV_VF_CFG_THRESHOLD_LEN(TAG))			\
+ 			return -EBADMSG;						\
++		if (IF_ARGS(!GUC_FIRMWARE_VER_AT_LEAST(&gt->uc.guc, VER), false, VER))	\
++			return -EKEYREJECTED;						\
+ 		return pf_provision_threshold(gt, vfid,					\
+ 					      MAKE_XE_GUC_KLV_THRESHOLD_INDEX(TAG),	\
+ 					      value[0]);
+
+-:68: WARNING:MACRO_WITH_FLOW_CONTROL: Macros with flow control statements should be avoided
+#68: FILE: drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c:2557:
++#define define_threshold_key_to_provision_case(TAG, NAME, VER...)			\
+ 	case MAKE_GUC_KLV_VF_CFG_THRESHOLD_KEY(TAG):					\
+ 		BUILD_BUG_ON(MAKE_GUC_KLV_VF_CFG_THRESHOLD_LEN(TAG) != 1u);		\
+ 		if (len != MAKE_GUC_KLV_VF_CFG_THRESHOLD_LEN(TAG))			\
+ 			return -EBADMSG;						\
++		if (IF_ARGS(!GUC_FIRMWARE_VER_AT_LEAST(&gt->uc.guc, VER), false, VER))	\
++			return -EKEYREJECTED;						\
+ 		return pf_provision_threshold(gt, vfid,					\
+ 					      MAKE_XE_GUC_KLV_THRESHOLD_INDEX(TAG),	\
+ 					      value[0]);
+
+-:68: WARNING:TRAILING_SEMICOLON: macros should not use a trailing semicolon
+#68: FILE: drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c:2557:
++#define define_threshold_key_to_provision_case(TAG, NAME, VER...)			\
+ 	case MAKE_GUC_KLV_VF_CFG_THRESHOLD_KEY(TAG):					\
+ 		BUILD_BUG_ON(MAKE_GUC_KLV_VF_CFG_THRESHOLD_LEN(TAG) != 1u);		\
+ 		if (len != MAKE_GUC_KLV_VF_CFG_THRESHOLD_LEN(TAG))			\
+ 			return -EBADMSG;						\
++		if (IF_ARGS(!GUC_FIRMWARE_VER_AT_LEAST(&gt->uc.guc, VER), false, VER))	\
++			return -EKEYREJECTED;						\
+ 		return pf_provision_threshold(gt, vfid,					\
+ 					      MAKE_XE_GUC_KLV_THRESHOLD_INDEX(TAG),	\
+ 					      value[0]);
+
+-:97: WARNING:MACRO_ARG_UNUSED: Argument 'TAG' is not used in function-like macro
+#97: FILE: drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c:305:
++#define register_threshold_attribute(TAG, NAME, VER...) ({				\
++	if (IF_ARGS(GUC_FIRMWARE_VER_AT_LEAST(&gt->uc.guc, VER), true, VER))		\
++		debugfs_create_file_unsafe("threshold_" #NAME, 0644, parent, parent,	\
++					   &NAME##_fops);				\
++});
+
+-:97: WARNING:TRAILING_SEMICOLON: macros should not use a trailing semicolon
+#97: FILE: drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c:305:
++#define register_threshold_attribute(TAG, NAME, VER...) ({				\
++	if (IF_ARGS(GUC_FIRMWARE_VER_AT_LEAST(&gt->uc.guc, VER), true, VER))		\
++		debugfs_create_file_unsafe("threshold_" #NAME, 0644, parent, parent,	\
++					   &NAME##_fops);				\
++});
+
+total: 0 errors, 7 warnings, 1 checks, 85 lines checked
+33491eafce3a drm/xe/pf: Add handling for MLRC adverse event threshold
+
 
