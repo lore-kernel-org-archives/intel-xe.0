@@ -4,33 +4,33 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CCCA2D6554F
-	for <intel-xe@archiver.kernel.org>; Wed, 17 Dec 2025 10:35:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 120DDD65544
+	for <intel-xe@archiver.kernel.org>; Wed, 17 Dec 2025 10:35:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6B4AC10EC76;
+	by gabe.freedesktop.org (Postfix) with ESMTP id B468E10EC74;
 	Wed, 17 Dec 2025 10:35:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="L+U/2ahV";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="cNhn2fJB";
 	dkim-atps=neutral
 Received: from lankhorst.se (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9262910EC6E;
- Wed, 17 Dec 2025 10:35:27 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2EB6010EC65;
+ Wed, 17 Dec 2025 10:35:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1765967726;
- bh=Qyjkrg23NvqAtrZ6SXaT7ACN9JWfiY1iU+ZEiaE5bX4=;
+ s=default; t=1765967719;
+ bh=VBco7zVB9VTaGgt3tIx7GWoTZdb6hMaqwzco395EbzY=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=L+U/2ahV2qDDXrazvIS4/sKxWpk733Riwfm4r6gFLhUCCPJ5kgur6Z9+KXnzfTSAV
- wOqQUy04e9IDxyfJCE0G7DduA+bfzF9O31bDVIzIaKzu2TG2BqmvPNeCRH+owG27Um
- Q+GyrrH0IaWRajC8VV9+8goBSr365BjXp7+AycDbmEpMet+BsthqxQA0fQfwQPnvwv
- NMMNU7xrvELztoXB5g886y2jhweOB0wW/pRlqPtRmDO0lqIh2MXUApDGkzw/C0WcIy
- vKu8TYhkUhcgAbTxiPTWxfDgO5ytRpa20aI1VkgY/tM3WOoHqzS0A0WOudntZxqKY9
- 6NsKHo9sZe+rw==
+ b=cNhn2fJB5d0cXC6PZzfi3nqxf9hRFvdlfF2D0IcM0G8LGg4FYb7kSay2ZkUNgjXWS
+ kkzRwn+cNSJ6qJRCEdM5Q3mtadSXpcRgxv2IPhuNQy+jp9xvgRj5w060+fXmqVkdsc
+ fDMtDdDJr8qdK99ftpwW9kYcwwANT4u0gPeWLU0Tf+mu0E+ktzoV/UnMLJxuPNjSh6
+ 8gPCWTgZ03cyR1IuMQZO1Bi18VrEtZ7IOtnVrRvZUstY1srPhCMiopje1E1UNaMPjh
+ 3lKmeJYFFDaavhqJTDrCak4h2g7I2DKqZV7FORB9qR/Ek1W1PWKJbDqHMffsmBeMOo
+ mn4uEhVp4xw2w==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-xe@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Subject: [i915-rt v3 16/16] Revert "drm/i915: Depend on !PREEMPT_RT."
-Date: Wed, 17 Dec 2025 11:35:23 +0100
-Message-ID: <20251217103506.1873859-34-dev@lankhorst.se>
+Subject: [i915-rt v3 11/16] PREEMPT_RT injection
+Date: Wed, 17 Dec 2025 11:35:18 +0100
+Message-ID: <20251217103506.1873859-29-dev@lankhorst.se>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20251217103506.1873859-18-dev@lankhorst.se>
 References: <20251217103506.1873859-18-dev@lankhorst.se>
@@ -50,30 +50,71 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-
-Once the known issues are addressed, it should be safe to enable the
-driver.
-
-Acked-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Signed-off-by: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/i915/Kconfig | 1 -
- 1 file changed, 1 deletion(-)
+ drivers/gpu/drm/i915/Kconfig.debug | 15 ---------------
+ drivers/gpu/drm/xe/Kconfig.debug   |  5 +++++
+ kernel/Kconfig.preempt             |  4 ++--
+ 3 files changed, 7 insertions(+), 17 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/Kconfig b/drivers/gpu/drm/i915/Kconfig
-index 5e939004b6463..40a9234e6e5dc 100644
---- a/drivers/gpu/drm/i915/Kconfig
-+++ b/drivers/gpu/drm/i915/Kconfig
-@@ -3,7 +3,6 @@ config DRM_I915
- 	tristate "Intel 8xx/9xx/G3x/G4x/HD Graphics"
- 	depends on DRM
- 	depends on X86 && PCI
--	depends on !PREEMPT_RT
- 	select INTEL_GTT if X86
- 	select INTERVAL_TREE
- 	# we need shmfs for the swappable backing store, and in particular
+diff --git a/drivers/gpu/drm/i915/Kconfig.debug b/drivers/gpu/drm/i915/Kconfig.debug
+index 3562a02ef7adc..0ab10ff41e38d 100644
+--- a/drivers/gpu/drm/i915/Kconfig.debug
++++ b/drivers/gpu/drm/i915/Kconfig.debug
+@@ -233,21 +233,6 @@ config DRM_I915_LOW_LEVEL_TRACEPOINTS
+ 
+ 	  If in doubt, say "N".
+ 
+-config DRM_I915_DEBUG_VBLANK_EVADE
+-	bool "Enable extra debug warnings for vblank evasion"
+-	depends on DRM_I915
+-	default n
+-	help
+-	  Choose this option to turn on extra debug warnings for the
+-	  vblank evade mechanism. This gives a warning every time the
+-	  the deadline allotted for the vblank evade critical section
+-	  is exceeded, even if there isn't an actual risk of missing
+-	  the vblank.
+-
+-	  Recommended for driver developers only.
+-
+-	  If in doubt, say "N".
+-
+ config DRM_I915_DEBUG_RUNTIME_PM
+ 	bool "Enable extra state checking for runtime PM"
+ 	depends on DRM_I915
+diff --git a/drivers/gpu/drm/xe/Kconfig.debug b/drivers/gpu/drm/xe/Kconfig.debug
+index 01227c77f6d70..1d5f11c6e88f3 100644
+--- a/drivers/gpu/drm/xe/Kconfig.debug
++++ b/drivers/gpu/drm/xe/Kconfig.debug
+@@ -30,6 +30,11 @@ config DRM_XE_DEBUG
+ 
+ 	  If in doubt, say "N".
+ 
++config DRM_I915_DEBUG_VBLANK_EVADE
++        def_bool y
++        depends on DRM_XE
++
++
+ config DRM_XE_DEBUG_VM
+ 	bool "Enable extra VM debugging info"
+ 	default n
+diff --git a/kernel/Kconfig.preempt b/kernel/Kconfig.preempt
+index da326800c1c9b..68a6d42c55abe 100644
+--- a/kernel/Kconfig.preempt
++++ b/kernel/Kconfig.preempt
+@@ -87,9 +87,9 @@ config PREEMPT_LAZY
+ endchoice
+ 
+ config PREEMPT_RT
+-	bool "Fully Preemptible Kernel (Real-Time)"
+-	depends on EXPERT && ARCH_SUPPORTS_RT && !COMPILE_TEST
++	def_bool y
+ 	select PREEMPTION
++	depends on ARCH_SUPPORTS_RT
+ 	help
+ 	  This option turns the kernel into a real-time kernel by replacing
+ 	  various locking primitives (spinlocks, rwlocks, etc.) with
 -- 
 2.51.0
 
