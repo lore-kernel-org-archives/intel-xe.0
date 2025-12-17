@@ -4,56 +4,163 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 06D36D65C7C
-	for <intel-xe@archiver.kernel.org>; Wed, 17 Dec 2025 17:05:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CDD2ED65C53
+	for <intel-xe@archiver.kernel.org>; Wed, 17 Dec 2025 17:23:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BA9EF10E8B4;
-	Wed, 17 Dec 2025 17:05:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8C7D010E587;
+	Wed, 17 Dec 2025 17:23:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="j8vi/pm3";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gQ8Daeq+";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 63F7B10E8B4
- for <intel-xe@lists.freedesktop.org>; Wed, 17 Dec 2025 17:05:17 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 95E2F10E587
+ for <intel-xe@lists.freedesktop.org>; Wed, 17 Dec 2025 17:23:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765991117; x=1797527117;
+ t=1765992227; x=1797528227;
  h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=rfPfFzUpULZP0uI4R00RcsdKtLX7zOfgTdA3nHBknQ8=;
- b=j8vi/pm39eENbdsAG/fI8XhsVxzJEixx10JG9gmVjmxcEU/KgWcjky30
- 1q/IGi5fvXtP1wHF+jnJl+Cscxm5WGB5qXsBxy1i2vkzW/xNYaxkxJDrI
- JFbyHAuHzLDyNomoR/KOTf8mJ+R9unTbs9oFjxYpc9NOEJezJp+LRM40A
- tiiWZsXPvHtOnfVU6erGfg8gtSSf165iH0eek8VTE2wPAVP9HkAKSNobb
- 8Y6izRJGhOO5HmO31aaYiLJcI30z3bAricCCBN3RRKqxR8iCAJ52JbeHz
- eWNEfI6DxEA5mI3YOM73BS0vopd1ON4KhyShpCnQwk4bEil6aVUkXNr1+ A==;
-X-CSE-ConnectionGUID: hx1KfXd1QNuKjPO6w8EjNQ==
-X-CSE-MsgGUID: w60RFNaaQlSESySaL1x9pg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11645"; a="85354912"
-X-IronPort-AV: E=Sophos;i="6.21,156,1763452800"; d="scan'208";a="85354912"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ in-reply-to:mime-version;
+ bh=vJUDYeHXWu9qNDQ9Hl8+WuQoYct8WGCXkvuzlSAiIug=;
+ b=gQ8Daeq+jCS7ju3GCD90C629gVYynY5EYmIM3ZADdy8SS6jH/mdx/Lo5
+ bqHNesdh25VANaY3a5Idtf4rJpX4+W27R0bBGBycl2oCeBZx3o6r99UBX
+ uhXHiduHkRwIxKmyAERCrlTMvfZwey00nnDDWn/jI4HWdhANa2y35qEw5
+ iHczcd18P84BnCZvBbX+q1dIMIdioQPMLGG+P5TAwzwfKb1zsL8Mw2tMq
+ AN0ni7/rkUuJwnGS2REy1Aypc0AlRX9bAw9sOt9PaMJ/RvYL9MuePF+S8
+ PdwBYcIEL5YUeU8NRrSfgFEnwR5gToPau5rgE034acEBYbpagxi5WkAyP A==;
+X-CSE-ConnectionGUID: 0NzUiYdrQFOsFtIhpVZ/BQ==
+X-CSE-MsgGUID: HUv5mSOrQiusixkWxXsSqg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11645"; a="85357217"
+X-IronPort-AV: E=Sophos;i="6.21,156,1763452800"; d="scan'208";a="85357217"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Dec 2025 09:05:17 -0800
-X-CSE-ConnectionGUID: Uaz4/AEBQimNRGG2PCldIg==
-X-CSE-MsgGUID: pNfILwp5QGCEqL8hHBvcCg==
+ 17 Dec 2025 09:23:46 -0800
+X-CSE-ConnectionGUID: 0n489gB3TI2xhjf3+HwpfQ==
+X-CSE-MsgGUID: IVJQeG7uQjGHRGUI+N3lsw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,156,1763452800"; d="scan'208";a="221742510"
-Received: from black.igk.intel.com ([10.91.253.5])
- by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Dec 2025 09:05:15 -0800
-Date: Wed, 17 Dec 2025 18:05:12 +0100
-From: Raag Jadav <raag.jadav@intel.com>
-To: Karthik Poosa <karthik.poosa@intel.com>
-Cc: intel-xe@lists.freedesktop.org, anshuman.gupta@intel.com,
- badal.nilawar@intel.com, rodrigo.vivi@intel.com, riana.tauro@intel.com
-Subject: Re: [PATCH v3 1/4] drm/xe/hwmon: Expose temperature limits
-Message-ID: <aULiyK1tWOxKZLI8@black.igk.intel.com>
-References: <20251216114030.226399-1-karthik.poosa@intel.com>
- <20251216114030.226399-2-karthik.poosa@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+X-IronPort-AV: E=Sophos;i="6.21,156,1763452800"; d="scan'208";a="197483683"
+Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
+ by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Dec 2025 09:23:46 -0800
+Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.29; Wed, 17 Dec 2025 09:23:45 -0800
+Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
+ FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.29 via Frontend Transport; Wed, 17 Dec 2025 09:23:45 -0800
+Received: from CH5PR02CU005.outbound.protection.outlook.com (40.107.200.2) by
+ edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.29; Wed, 17 Dec 2025 09:23:45 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=flL5ChZxNSKnmTY2qppmJ6Gah6/I8bf581KoNQdyGeJb3ppRtcMmYT4qKkRbQFBMc/Qh82l+c2+N9QhuoGQBE4Odiy5xx/eTUdNlaD80l+o+FfDzDpJP9NyJYRifGAvTzHvdR3gPwEH4vo+uO/3uAXMsQgqGs6tklEGn4Ls4RR4PPJvwlYJDj8uAlcGylAytOkR6EuEa2M054PkfYGMGFjmwJO0OpNcXwxNTdIQLmmxwBGWdisFKpXiNyhYgHoVYdL4Ha1dmNMXCyuAYUMGt65ZkP2CE8bx/LLaEcFGWi0SRWHYl+P+edi/TJPn7k6MGRAJdsPOys5OTeDD6uvw/1g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=J5Vku6s685ahKi3Vw5Vjb/FoQOq3z37zo5w3wB8OVSM=;
+ b=yp9oRT893XBoEDLPqWGURn0f7fylgOpFV62RSLr+KxwRiVBV4JsJSKRpj/WeG8BqGs1ga0chOB91wTj2jwhhenxKv3WwzMyLi/XpxIhdpLJV2ZklewTeGz8A0VocxQ5Kw6ucpjX1lNgdKN3XtFKjRLgKJb6m0uUywow0ZI2uXcwC+3MTN6r7qmdQLa8fa2ZGhCAIf30q8im/NuAU8e/ylgspUQLBv7/fYQrKyaNAKfY4xurZPHNuyYz/ZG9NSsID8tpv7fqTOhz0/pdeBWaX6r4XtKPYwNvXatfxppzBn8IXIvNcvH9IXQonjTb8HI+PM7mh8c63hIHvE9HQhXvmUw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from CYYPR11MB8430.namprd11.prod.outlook.com (2603:10b6:930:c6::19)
+ by BL3PR11MB6458.namprd11.prod.outlook.com (2603:10b6:208:3bd::5)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9434.6; Wed, 17 Dec
+ 2025 17:23:42 +0000
+Received: from CYYPR11MB8430.namprd11.prod.outlook.com
+ ([fe80::76d2:8036:2c6b:7563]) by CYYPR11MB8430.namprd11.prod.outlook.com
+ ([fe80::76d2:8036:2c6b:7563%6]) with mapi id 15.20.9434.001; Wed, 17 Dec 2025
+ 17:23:42 +0000
+Date: Wed, 17 Dec 2025 12:23:39 -0500
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Michal Wajdeczko <michal.wajdeczko@intel.com>
+CC: <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH] drm/xe/pf: Fix typo in function kernel-doc
+Message-ID: <aULnG7jGU0RwR0Hp@intel.com>
+References: <20251217150702.2669-1-michal.wajdeczko@intel.com>
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20251216114030.226399-2-karthik.poosa@intel.com>
+In-Reply-To: <20251217150702.2669-1-michal.wajdeczko@intel.com>
+X-ClientProxiedBy: BYAPR21CA0026.namprd21.prod.outlook.com
+ (2603:10b6:a03:114::36) To CYYPR11MB8430.namprd11.prod.outlook.com
+ (2603:10b6:930:c6::19)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CYYPR11MB8430:EE_|BL3PR11MB6458:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6e087ec5-2034-4a65-4bc9-08de3d9106a8
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?JjgxM4cMp0gpKy7Bc4V9PLfb3CUgmf4TtLdFSAzN6rGkZHyZHKMayDfrQSmn?=
+ =?us-ascii?Q?S9cxyZ5hw8DsuV4cyc8yxhdNUWPJ+yEFncFxAI7XnKoCLgWP0iBer1iSUfvQ?=
+ =?us-ascii?Q?8oir+f/SwuLWoYSUCjHShsuk1AL4TXMEV6KyvVioOmgqqaOtJKgPczCdhThZ?=
+ =?us-ascii?Q?rTUTATV0J3+mFy5S7QX2g1c3Smytxmt6tlGHZdO/lR9NdJaUBQu8dAXGp+Xf?=
+ =?us-ascii?Q?JJ8kmx9q0lSAzsRvaiULSbHVrisKeJ/kYVft62yJHUKXHCqbgkYMU3R3VElg?=
+ =?us-ascii?Q?ihRF/YLuWur5Z72ikhih3TSDi+T2YQpwkkMRoaaZyrWcHEdEeOXQU3BkmVVk?=
+ =?us-ascii?Q?cqvXfVBMwdD2+9Ekx4jvmPa8UyMLc9AFgJzXZwgjuTrC8H14b7/KJRzK3G1K?=
+ =?us-ascii?Q?Z5hfh457DzsC02xRssJGZszhX/EjH8+2EyBicFDFwzzt0GOFGFwmFA95jhgV?=
+ =?us-ascii?Q?XPn/EK2ieBA1Kydht6+xJraFoMc4VwbEvLIr9mcHHUilEDQSeJcxJRYA/e44?=
+ =?us-ascii?Q?AZzOapdpeT+unsuoQpNqZ4TeEiDjmlLU8JyfIme/2iClYO3e3tFz/ExGzptK?=
+ =?us-ascii?Q?NwJcLOYww5ZB8NPk8KcnoeCjbsG78oPWBNqACVlNGCwRdCH9p2+uyvFjN38e?=
+ =?us-ascii?Q?RrGImO9VDoxbaFdULF3g6gohfnuNJb6PV1N241YBgQIxzn0T8mKyJ+9O89M3?=
+ =?us-ascii?Q?Ct5hzDOzLza13u8t0medQsGRKuL2irZoYC/qAT1oJhcsKYYZnwKn8fLsd/i3?=
+ =?us-ascii?Q?WZWubq9sj6TgXxfMi//NwQFXQ72Oj7UBvmgRNFXSv6qDT8NuS558S/C7Vf2V?=
+ =?us-ascii?Q?eVYU2gTFirT0MZcWU9fVFux1r8pZQ8NJE0nAWOOTomHVQtNYh3uO4i+1Zd99?=
+ =?us-ascii?Q?7fXaEevKVY8mpjgl08eGfokLTluEvBXUsRBIp7SJNNRKWw/UoDpZn4uzuWpN?=
+ =?us-ascii?Q?JCMsnAkzHAwrCOwBkIC7NJhMuM1tjYFriPiF+NJomhHFQpItA4Fikffrc5gs?=
+ =?us-ascii?Q?g6f3vrLqBAMC42i+PXUS4R5lgI2qDWJjhEP8s9SoxPUTGdyOG1l6s6zxuQdS?=
+ =?us-ascii?Q?VGeDgoJnt11gJjoRAeoAINknA6bGLL2/RZYqq95qr9TY1N0zbKAOimSwWOY/?=
+ =?us-ascii?Q?UySUymdUAh+CNJUKhnBPcaJbXS53Qb2tBGLQxb3SepzJX/Eyu8kiHAfWy2eg?=
+ =?us-ascii?Q?44HXXylgze0HGIxuTAWCgvWUca6pFctztR0bJOdJ8fw7VdIB3wg12IhWkKnl?=
+ =?us-ascii?Q?Xt3Hws+ue+E+8NtxpAweIJA2QrkHe5CjbXoSqsd/rsQgg9rwwsIYhNkeVFkG?=
+ =?us-ascii?Q?q6r6rtPVaKnmhRhBoDdozWmVGzBhZr9TTUwxZqL7iTuGzmKQy/1Ow04kzgiu?=
+ =?us-ascii?Q?UrOgUl9p8n4kcrp+krgVaiAjo8SMV24vC6ZWAGMKUkZGtRPq2VAbT8o+tapP?=
+ =?us-ascii?Q?6aLnIcWbXrz7VV7A770OPlXVYkisPnkf?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CYYPR11MB8430.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?F2RqDfjuWXwrt0wCRe0pWIqPgoNOMqGZs+hkaF2hLUTAGdQckdfkH1/So2ln?=
+ =?us-ascii?Q?IyvNRkOCgKxFE5Gjku6nq4N/rW6Pvzk2BWq1vaDFjyetvwCjdsvgXuwJZqrQ?=
+ =?us-ascii?Q?dIpUHcz+islX3/j8pEDRkMAxO4QP49Mh2tOoXT1dHXulpAQBHvB7AU4aumL4?=
+ =?us-ascii?Q?wTQXaCVo1H0q/hQSikgagkeYzfSbQAID/FX1oUByCEjIPOHVYZbqD2Ht9EH5?=
+ =?us-ascii?Q?2NNrTo92pgqlUsdwbJrlaI/GQ+2fQdh40jsizNMQMRxccLKJ4PFJCFCfLuEi?=
+ =?us-ascii?Q?yFGqiat971rq99giQmXDwAsLJ0BDtamwsPdgeNO2CYyuSdqyBEBwkt6G+lC2?=
+ =?us-ascii?Q?dTvYFUvPBuS16yQlzdU6Co/O8Qkd9zAUm8w15VjIkloMTUjcGbPniAEIwiW9?=
+ =?us-ascii?Q?oqB7crniiGlrYC4wmY+UrvpyNrSIyFyEK74/+cjCe/dt55nCoikH/Ib8kyjw?=
+ =?us-ascii?Q?bCKHkiSjVNuc3AwiSVHbwPxscG4FeqtU4mznElPSQEKUhAsVQP1wUp2auo+i?=
+ =?us-ascii?Q?db9Tdbbat1v78Nb5E9VaiFYw3meGcMU1yzaOGWONst0iiqWD2nl/+JhVyZK5?=
+ =?us-ascii?Q?XSO0r6ktd4PO5S6MKQVB7VKxg0ojHLr644jEJ6YtY4mUiQH3itWOI0heNEjS?=
+ =?us-ascii?Q?G4gP49fpQAWVxWGmQBljRXq50hAcey6E/0ZpoaLrDhTNGaA4Z8GWiDiZzVWQ?=
+ =?us-ascii?Q?rIUDgaVCYTsxAfTA7QFXjUlL+xEtGYIBqNxpmYIBQprNSJm0Subr7GwMmKiF?=
+ =?us-ascii?Q?ZH5YPL5n7J1AwLJvoTNvLk4J6KXTUPQUQYplWUqlsIL8DZccacyqGijQ8xZi?=
+ =?us-ascii?Q?P9oiZlcZrSpDyED8/UcqbiROx32rfQQsnomdnvHR5DHXkfec8nMsjU9nt7vd?=
+ =?us-ascii?Q?iZ8erIYDcdMTiYfvWnBFmiiMf685IhvjSxz0uwchY0MoDxZVQ26dfuGvvgFk?=
+ =?us-ascii?Q?97DbHSI6ZTyci1DUAigy+pdb0NTTuCmzGV0a0WmBnXskd7kQ7YC9xszGsFh/?=
+ =?us-ascii?Q?PP8mjPxNvlKpuMO3GMDksgRNYmYys30xwLXf9MQSO0SQPrjZgfnMtgRcqeLG?=
+ =?us-ascii?Q?wLNQDmRqGpz7H7h0+S/yOmSN7Rg2ZZJhSC4OvwGrbdBvnxo87EIgPVEDOlEe?=
+ =?us-ascii?Q?xHgb/Nc78wzWgHssErI9cYghDVVWiKv0AUoheK2ozDDkyUYaXWDRxBJPCyzg?=
+ =?us-ascii?Q?C8Hkp/qtEXxwm/cKVs6gpQj423w3WRJikUx7HEkf9Lt3Voo10QH7nycgzVWQ?=
+ =?us-ascii?Q?whS/K5Pi8rLiSJi3QgRfYcv4tulC7j3/0FDRIid9ELV4hgzunKQ7TyiDFzLX?=
+ =?us-ascii?Q?FoH2SNCBpQVGstDY+qxskChlllo69PLScqjAEjxSRpGnwR6xbM1o6wYvxNGT?=
+ =?us-ascii?Q?p4KVUn0raljoK5CMn1si9pg0slxOooikVw4GmwZnS+6ccxWd3CBs59QdBvcV?=
+ =?us-ascii?Q?98zXgRJbERIdCnGpwSVNXxIVGfOPvI80C8Oklt5SuZCSoqjAE6hOIw+lk9Ph?=
+ =?us-ascii?Q?MpQBQc83F2CGlY4ANET9Q8n5vrjyqFjpwa5Zq8INFyInbspGNt7tTGUyYAq/?=
+ =?us-ascii?Q?ORJRtaf14GTlLPWarism/oRoLGvHkQtDCSuRhTP5stC+lMIYQ2+cJ3FpKfBi?=
+ =?us-ascii?Q?aA=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6e087ec5-2034-4a65-4bc9-08de3d9106a8
+X-MS-Exchange-CrossTenant-AuthSource: CYYPR11MB8430.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Dec 2025 17:23:42.7462 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: jWFUWGSwntDIODv9AJiCECtgxv9Iky7amdFBmVXmvFkK0g1f/nW8q8OZvHjyqus/AfXz3Ir84YMqwJrrFzUXLw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL3PR11MB6458
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,361 +175,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Dec 16, 2025 at 05:10:27PM +0530, Karthik Poosa wrote:
-> Read temperature limits using pcode mailbox and
-> expose shutdown temperature limit as tempX_emergency,
-> critical temperature limit of as tempX_crit and
-> GPU average temperature limit as tempX_max.
+On Wed, Dec 17, 2025 at 04:07:02PM +0100, Michal Wajdeczko wrote:
+> The function name is missing an underscore, which results in:
+
+I'm glad you wrote this. I was looking to the patch first without been able
+to spot the difference! o.O
+
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+
 > 
-> Update Xe hwmon documentation for these entries.
+>   Warning: ../drivers/gpu/drm/xe/xe_gt_sriov_pf_control.c:1261
+>   This comment starts with '/**', but isn't a kernel-doc comment.
+>   Refer to Documentation/doc-guide/kernel-doc.rst
+>   * xe_gt_sriov_pf_control_trigger restore_vf() - Start ...
 > 
-> Signed-off-by: Karthik Poosa <karthik.poosa@intel.com>
+> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 > ---
->  .../ABI/testing/sysfs-driver-intel-xe-hwmon   |  40 ++++++
->  drivers/gpu/drm/xe/xe_device_types.h          |   3 +
->  drivers/gpu/drm/xe/xe_hwmon.c                 | 116 +++++++++++++++++-
->  drivers/gpu/drm/xe/xe_pci.c                   |   5 +
->  drivers/gpu/drm/xe/xe_pci_types.h             |   1 +
->  drivers/gpu/drm/xe/xe_pcode_api.h             |   3 +
->  6 files changed, 164 insertions(+), 4 deletions(-)
+>  drivers/gpu/drm/xe/xe_gt_sriov_pf_control.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> diff --git a/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon b/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
-> index d9e2b17c6872..c8f211c336be 100644
-> --- a/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
-> +++ b/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
-> @@ -196,3 +196,43 @@ Description:	RW. Package burst power limit interval (Tau in PL2/Tau) in
->  		milliseconds over which sustained power is averaged.
+> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_control.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_control.c
+> index bf48b05797de..5cb705c7ee7a 100644
+> --- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_control.c
+> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_control.c
+> @@ -1259,7 +1259,7 @@ int xe_gt_sriov_pf_control_process_restore_data(struct xe_gt *gt, unsigned int v
+>  }
 >  
->  		Only supported for particular Intel Xe graphics platforms.
-> +
-> +What:		/sys/bus/pci/drivers/xe/.../hwmon/hwmon<i>/temp2_emergency
-> +Date:		December 2025
-> +KernelVersion:	6.19
-> +Contact:	intel-xe@lists.freedesktop.org
-> +Description:	RO. Package shutdown temperature in millidegree Celsius.
-> +
-> +		Only supported for particular Intel Xe graphics platforms.
-> +
-> +What:		/sys/bus/pci/drivers/xe/.../hwmon/hwmon<i>/temp2_crit
-> +Date:		December 2025
-> +KernelVersion:	6.19
-> +Contact:	intel-xe@lists.freedesktop.org
-> +Description:	RO. Package critical temperature in millidegree Celsius.
-> +
-> +		Only supported for particular Intel Xe graphics platforms.
-> +
-> +What:		/sys/bus/pci/drivers/xe/.../hwmon/hwmon<i>/temp2_max
-> +Date:		December 2025
-> +KernelVersion:	6.19
-> +Contact:	intel-xe@lists.freedesktop.org
-> +Description:	RO. Package average temperature limit in millidegree Celsius.
-> +
-> +		Only supported for particular Intel Xe graphics platforms.
-> +
-> +What:		/sys/bus/pci/drivers/xe/.../hwmon/hwmon<i>/temp3_emergency
-> +Date:		December 2025
-> +KernelVersion:	6.19
-> +Contact:	intel-xe@lists.freedesktop.org
-> +Description:	RO. VRAM shutdown temperature in millidegree Celsius.
-> +
-> +		Only supported for particular Intel Xe graphics platforms.
-> +
-> +What:		/sys/bus/pci/drivers/xe/.../hwmon/hwmon<i>/temp3_crit
-> +Date:		December 2025
-> +KernelVersion:	6.19
-> +Contact:	intel-xe@lists.freedesktop.org
-> +Description:	RO. VRAM critical temperature in millidegree Celsius.
-> +
-> +		Only supported for particular Intel Xe graphics platforms.
-
-As per hwmon documentation all these attributes are RW so they don't
-match with ABI expectations.
-
-> diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-> index 413ba4c8b62e..8e6dd2665596 100644
-> --- a/drivers/gpu/drm/xe/xe_device_types.h
-> +++ b/drivers/gpu/drm/xe/xe_device_types.h
-> @@ -321,6 +321,9 @@ struct xe_device {
->  		 * pcode mailbox commands.
->  		 */
->  		u8 has_mbx_power_limits:1;
-> +		/** @info.has_mbx_thermal_info: Device has support for thermal mailbox commands.
-> +		 */
-
-Can be one line.
-
-> +		u8 has_mbx_thermal_info:1;
->  		/** @info.has_mem_copy_instr: Device supports MEM_COPY instruction */
->  		u8 has_mem_copy_instr:1;
->  		/** @info.has_mert: Device has standalone MERT */
-> diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
-> index ff2aea52ef75..66a8c3e40027 100644
-> --- a/drivers/gpu/drm/xe/xe_hwmon.c
-> +++ b/drivers/gpu/drm/xe/xe_hwmon.c
-> @@ -53,6 +53,14 @@ enum xe_fan_channel {
->  	FAN_MAX,
->  };
->  
-> +enum xe_temp_limit {
-> +	TEMP_LIMIT_PKG_SHUTDOWN,
-> +	TEMP_LIMIT_PKG_TJMAX,
-> +	TEMP_LIMIT_MEM_SHUTDOWN,
-> +	TEMP_LIMIT_PKG_CRIT,
-> +	TEMP_LIMIT_MEM_TJMAX,
-> +};
-> +
->  /* Attribute index for powerX_xxx_interval sysfs entries */
->  enum sensor_attr_power {
->  	SENSOR_INDEX_PSYS_PL1,
-> @@ -111,6 +119,18 @@ struct xe_hwmon_fan_info {
->  	u64 time_prev;
->  };
->  
-> +/**
-> + * struct xe_hwmon_thermal_info - to store temperature data
-> + */
-> +struct xe_hwmon_thermal_info {
-> +	union {
-> +		/** @limits: temperatures limits */
-> +		u8 limit[8];
-
-What are the magic numbers? Can we have proper defines?
-
-> +		/** @data: temperature limits in dwords */
-> +		u32 data[2];
-> +	};
-> +};
-> +
 >  /**
->   * struct xe_hwmon - xe hwmon data structure
->   */
-> @@ -137,7 +157,8 @@ struct xe_hwmon {
->  	u32 pl1_on_boot[CHANNEL_MAX];
->  	/** @pl2_on_boot: power limit PL2 on boot */
->  	u32 pl2_on_boot[CHANNEL_MAX];
-> -
-> +	/** @temp: Temperature info */
-> +	struct xe_hwmon_thermal_info temp;
->  };
->  
->  static int xe_hwmon_pcode_read_power_limit(const struct xe_hwmon *hwmon, u32 attr, int channel,
-> @@ -677,8 +698,11 @@ static const struct attribute_group *hwmon_groups[] = {
->  };
->  
->  static const struct hwmon_channel_info * const hwmon_info[] = {
-> -	HWMON_CHANNEL_INFO(temp, HWMON_T_LABEL, HWMON_T_INPUT | HWMON_T_LABEL,
-> -			   HWMON_T_INPUT | HWMON_T_LABEL),
-> +	HWMON_CHANNEL_INFO(temp,
-> +			   HWMON_T_LABEL,
-> +			   HWMON_T_LABEL | HWMON_T_INPUT | HWMON_T_EMERGENCY | HWMON_T_CRIT |
-> +			   HWMON_T_MAX,
-> +			   HWMON_T_LABEL | HWMON_T_INPUT | HWMON_T_EMERGENCY | HWMON_T_CRIT),
->  	HWMON_CHANNEL_INFO(power, HWMON_P_MAX | HWMON_P_RATED_MAX | HWMON_P_LABEL | HWMON_P_CRIT |
->  			   HWMON_P_CAP,
->  			   HWMON_P_MAX | HWMON_P_RATED_MAX | HWMON_P_LABEL | HWMON_P_CAP),
-> @@ -689,6 +713,23 @@ static const struct hwmon_channel_info * const hwmon_info[] = {
->  	NULL
->  };
->  
-> +static int xe_hwmon_pcode_read_thermal_info(struct xe_hwmon *hwmon)
-> +{
-> +	struct xe_tile *root_tile = xe_device_get_root_tile(hwmon->xe);
-> +	int ret = 0;
-> +
-> +	if (!hwmon->xe->info.has_mbx_power_limits)
-> +		return -EOPNOTSUPP;
-> +
-> +	/* Read thermal info */
-> +	ret = xe_pcode_read(root_tile, PCODE_MBOX(PCODE_THERMAL_INFO, READ_THERMAL_LIMITS, 0),
-> +			    &hwmon->temp.data[0], &hwmon->temp.data[1]);
-> +	drm_dbg(&hwmon->xe->drm, "thermal info read ret %d, val 0x%x val1 0x%x\n", ret,
-> +		hwmon->temp.data[0], hwmon->temp.data[1]);
-> +
-> +	return ret;
-> +}
-> +
->  /* I1 is exposed as power_crit or as curr_crit depending on bit 31 */
->  static int xe_hwmon_pcode_read_i1(const struct xe_hwmon *hwmon, u32 *uval)
->  {
-> @@ -787,6 +828,34 @@ static umode_t
->  xe_hwmon_temp_is_visible(struct xe_hwmon *hwmon, u32 attr, int channel)
->  {
->  	switch (attr) {
-> +	case hwmon_temp_emergency:
-> +		switch (channel) {
-> +		case CHANNEL_PKG:
-> +			return hwmon->temp.limit[TEMP_LIMIT_PKG_SHUTDOWN] ? 0444 : 0;
-> +		case CHANNEL_VRAM:
-> +			return hwmon->temp.limit[TEMP_LIMIT_MEM_SHUTDOWN] ? 0444 : 0;
-> +		default:
-> +			return 0;
-> +		}
-> +		break;
-> +	case hwmon_temp_crit:
-> +		switch (channel) {
-> +		case CHANNEL_PKG:
-> +			return hwmon->temp.limit[TEMP_LIMIT_PKG_TJMAX] ? 0444 : 0;
-> +		case CHANNEL_VRAM:
-> +			return hwmon->temp.limit[TEMP_LIMIT_MEM_TJMAX] ? 0444 : 0;
-> +		default:
-> +			return 0;
-> +		}
-> +		break;
-> +	case hwmon_temp_max:
-> +		switch (channel) {
-> +		case CHANNEL_PKG:
-> +			return hwmon->temp.limit[TEMP_LIMIT_PKG_CRIT] ? 0444 : 0;
-> +		default:
-> +			return 0;
-> +		}
-> +		break;
->  	case hwmon_temp_input:
->  	case hwmon_temp_label:
->  		return xe_reg_is_valid(xe_hwmon_get_reg(hwmon, REG_TEMP, channel)) ? 0444 : 0;
-> @@ -807,10 +876,46 @@ xe_hwmon_temp_read(struct xe_hwmon *hwmon, u32 attr, int channel, long *val)
->  
->  		/* HW register value is in degrees Celsius, convert to millidegrees. */
->  		*val = REG_FIELD_GET(TEMP_MASK, reg_val) * MILLIDEGREE_PER_DEGREE;
-> -		return 0;
-> +		break;
-> +	case hwmon_temp_emergency:
-> +		switch (channel) {
-> +		case CHANNEL_PKG:
-> +			*val = hwmon->temp.limit[TEMP_LIMIT_PKG_SHUTDOWN] * MILLIDEGREE_PER_DEGREE;
-> +			break;
-> +		case CHANNEL_VRAM:
-> +			*val = hwmon->temp.limit[TEMP_LIMIT_MEM_SHUTDOWN] * MILLIDEGREE_PER_DEGREE;
-> +			break;
-> +		default:
-> +			*val = 0;
-
-Do you need this?
-
-> +			return -EOPNOTSUPP;
-> +		}
-> +		break;
-> +	case hwmon_temp_crit:
-> +		switch (channel) {
-> +		case CHANNEL_PKG:
-> +			*val = hwmon->temp.limit[TEMP_LIMIT_PKG_TJMAX] * MILLIDEGREE_PER_DEGREE;
-> +			break;
-> +		case CHANNEL_VRAM:
-> +			*val = hwmon->temp.limit[TEMP_LIMIT_MEM_TJMAX] * MILLIDEGREE_PER_DEGREE;
-> +			break;
-> +		default:
-> +			*val = 0;
-
-Ditto.
-
-> +			return -EOPNOTSUPP;
-> +		}
-> +		break;
-> +	case hwmon_temp_max:
-> +		switch (channel) {
-> +		case CHANNEL_PKG:
-> +			*val = hwmon->temp.limit[TEMP_LIMIT_PKG_CRIT] * MILLIDEGREE_PER_DEGREE;
-> +			break;
-> +		default:
-> +			return 0;
-> +		}
-> +		break;
->  	default:
->  		return -EOPNOTSUPP;
->  	}
-> +	return 0;
->  }
->  
->  static umode_t
-> @@ -1263,6 +1368,9 @@ xe_hwmon_get_preregistration_info(struct xe_hwmon *hwmon)
->  	for (channel = 0; channel < FAN_MAX; channel++)
->  		if (xe_hwmon_is_visible(hwmon, hwmon_fan, hwmon_fan_input, channel))
->  			xe_hwmon_fan_input_read(hwmon, channel, &fan_speed);
-> +
-> +	if (xe_hwmon_pcode_read_thermal_info(hwmon))
-> +		drm_dbg(&hwmon->xe->drm, "Thermal mailbox support not present in firmware\n");
->  }
->  
->  int xe_hwmon_register(struct xe_device *xe)
-> diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-> index 673761c8623e..a47637900e84 100644
-> --- a/drivers/gpu/drm/xe/xe_pci.c
-> +++ b/drivers/gpu/drm/xe/xe_pci.c
-> @@ -311,6 +311,7 @@ static const struct xe_device_desc dg2_desc = {
->  	.has_display = true,
->  	.has_fan_control = true,
->  	.has_mbx_power_limits = false,
-> +	.has_mbx_thermal_info = false,
-
-Why?
-
->  };
->  
->  static const __maybe_unused struct xe_device_desc pvc_desc = {
-> @@ -328,6 +329,7 @@ static const __maybe_unused struct xe_device_desc pvc_desc = {
->  	.vm_max_level = 4,
->  	.vram_flags = XE_VRAM_FLAGS_NEED64K,
->  	.has_mbx_power_limits = false,
-> +	.has_mbx_thermal_info = false,
-
-Ditto.
-
->  };
->  
->  static const struct xe_device_desc mtl_desc = {
-> @@ -365,6 +367,7 @@ static const struct xe_device_desc bmg_desc = {
->  	.has_fan_control = true,
->  	.has_flat_ccs = 1,
->  	.has_mbx_power_limits = true,
-> +	.has_mbx_thermal_info = true,
->  	.has_gsc_nvm = 1,
->  	.has_heci_cscfi = 1,
->  	.has_i2c = true,
-> @@ -418,6 +421,7 @@ static const struct xe_device_desc cri_desc = {
->  	.has_flat_ccs = false,
->  	.has_i2c = true,
->  	.has_mbx_power_limits = true,
-> +	.has_mbx_thermal_info = true,
->  	.has_mert = true,
->  	.has_pre_prod_wa = 1,
->  	.has_sriov = true,
-> @@ -681,6 +685,7 @@ static int xe_info_init_early(struct xe_device *xe,
->  	/* runtime fusing may force flat_ccs to disabled later */
->  	xe->info.has_flat_ccs = desc->has_flat_ccs;
->  	xe->info.has_mbx_power_limits = desc->has_mbx_power_limits;
-> +	xe->info.has_mbx_thermal_info = desc->has_mbx_thermal_info;
->  	xe->info.has_gsc_nvm = desc->has_gsc_nvm;
->  	xe->info.has_heci_gscfi = desc->has_heci_gscfi;
->  	xe->info.has_heci_cscfi = desc->has_heci_cscfi;
-> diff --git a/drivers/gpu/drm/xe/xe_pci_types.h b/drivers/gpu/drm/xe/xe_pci_types.h
-> index 3bb51d155951..34d2b66188e4 100644
-> --- a/drivers/gpu/drm/xe/xe_pci_types.h
-> +++ b/drivers/gpu/drm/xe/xe_pci_types.h
-> @@ -48,6 +48,7 @@ struct xe_device_desc {
->  	u8 has_late_bind:1;
->  	u8 has_llc:1;
->  	u8 has_mbx_power_limits:1;
-> +	u8 has_mbx_thermal_info:1;
->  	u8 has_mem_copy_instr:1;
->  	u8 has_mert:1;
->  	u8 has_pre_prod_wa:1;
-> diff --git a/drivers/gpu/drm/xe/xe_pcode_api.h b/drivers/gpu/drm/xe/xe_pcode_api.h
-> index 975892d6b230..a3bff76a074d 100644
-> --- a/drivers/gpu/drm/xe/xe_pcode_api.h
-> +++ b/drivers/gpu/drm/xe/xe_pcode_api.h
-> @@ -65,6 +65,9 @@
->  #define       FAN_TABLE				1
->  #define       VR_CONFIG				2
->  
-> +#define	PCODE_THERMAL_INFO			0x25
-> +#define	READ_THERMAL_LIMITS			0x0
-
-Does this match with spacing convention and ordering?
-
-Raag
-
->  #define   PCODE_FREQUENCY_CONFIG		0x6e
->  /* Frequency Config Sub Commands (param1) */
->  #define     PCODE_MBOX_FC_SC_READ_FUSED_P0	0x0
+> - * xe_gt_sriov_pf_control_trigger restore_vf() - Start an SR-IOV VF migration data restore sequence.
+> + * xe_gt_sriov_pf_control_trigger_restore_vf() - Start an SR-IOV VF migration data restore sequence.
+>   * @gt: the &xe_gt
+>   * @vfid: the VF identifier
+>   *
 > -- 
-> 2.25.1
+> 2.47.1
 > 
