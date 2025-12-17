@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7741FD64071
-	for <intel-xe@archiver.kernel.org>; Wed, 17 Dec 2025 03:50:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A4310D64071
+	for <intel-xe@archiver.kernel.org>; Wed, 17 Dec 2025 03:55:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3712D10E27E;
-	Wed, 17 Dec 2025 03:50:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6A2F910E27E;
+	Wed, 17 Dec 2025 03:55:33 +0000 (UTC)
 Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2C50B10E27E;
- Wed, 17 Dec 2025 03:50:17 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3429662775189989178=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 87AC310E27E;
+ Wed, 17 Dec 2025 03:55:31 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Introduce_SRIOV_scheduler_g?=
- =?utf-8?q?roups_=28rev4=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe=3A_drm/xe=3A_Separ?=
+ =?utf-8?q?ate_out_GuC_RC_code?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Daniele Ceraolo Spurio" <daniele.ceraolospurio@intel.com>
+To: "Vinay Belgaumkar" <vinay.belgaumkar@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 17 Dec 2025 03:50:17 -0000
-Message-ID: <176594341715.95861.15261489488649889086@a3b018990fe9>
+Date: Wed, 17 Dec 2025 03:55:31 -0000
+Message-ID: <176594373155.95861.6116573448248886992@a3b018990fe9>
 X-Patchwork-Hint: ignore
-References: <20251217012620.758252-15-daniele.ceraolospurio@intel.com>
-In-Reply-To: <20251217012620.758252-15-daniele.ceraolospurio@intel.com>
+References: <20251217013702.3597539-1-vinay.belgaumkar@intel.com>
+In-Reply-To: <20251217013702.3597539-1-vinay.belgaumkar@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,106 +40,44 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============3429662775189989178==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: Introduce SRIOV scheduler groups (rev4)
-URL   : https://patchwork.freedesktop.org/series/158142/
-State : success
+Series: drm/xe: drm/xe: Separate out GuC RC code
+URL   : https://patchwork.freedesktop.org/series/159128/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-4255-2eb2f8746a879f1c0e4c56b715c179424dafd8e0_BAT -> xe-pw-158142v4_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+8f50e69d0ce3656564bbdf8b3e213d61470d463f
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit c1d3ffe9f86f9d742cbcc21e6d96a8dcec052791
+Author: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+Date:   Tue Dec 16 17:37:02 2025 -0800
 
-Summary
--------
+    drm/xe: Add a wrapper for set/unset params
+    
+    Also, extract out the GuC RC related set/unset param functions
+    into xe_guc_rc file. GuC still allows us to override GuC RC mode
+    using an SLPC H2G interface. Continue to use that interface, but
+    move the related code to the newly created xe_guc_rc file.
+    
+    v2: xe_guc_rc functions to use guc pointer instead of gt (Michal W)
+    
+    Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
++ /mt/dim checkpatch 2eb2f8746a879f1c0e4c56b715c179424dafd8e0 drm-intel
+a4599c7bcdfe drm/xe: Decouple GuC RC code from xe_guc_pc
+-:168: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#168: 
+new file mode 100644
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (12 -> 12)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * IGT: IGT_8668 -> IGT_8669
-  * Linux: xe-4255-2eb2f8746a879f1c0e4c56b715c179424dafd8e0 -> xe-pw-158142v4
-
-  IGT_8668: 906681747a312ef11ef9af8ab1fa6eff28b4cbd0 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_8669: 319db2ffba419f9711acc72895f065a818905efa @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-4255-2eb2f8746a879f1c0e4c56b715c179424dafd8e0: 2eb2f8746a879f1c0e4c56b715c179424dafd8e0
-  xe-pw-158142v4: 158142v4
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158142v4/index.html
-
---===============3429662775189989178==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+total: 0 errors, 1 warnings, 0 checks, 304 lines checked
+c1d3ffe9f86f drm/xe: Add a wrapper for set/unset params
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Introduce SRIOV scheduler groups (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/158142/">https://patchwork.freedesktop.org/series/158142/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158142v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158142v4/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4255-2eb2f8746a879f1c0e4c56b715c179424dafd8e0_BAT -&gt; xe-pw-158142v4_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (12 -&gt; 12)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8668 -&gt; IGT_8669</li>
-<li>Linux: xe-4255-2eb2f8746a879f1c0e4c56b715c179424dafd8e0 -&gt; xe-pw-158142v4</li>
-</ul>
-<p>IGT_8668: 906681747a312ef11ef9af8ab1fa6eff28b4cbd0 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_8669: 319db2ffba419f9711acc72895f065a818905efa @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-4255-2eb2f8746a879f1c0e4c56b715c179424dafd8e0: 2eb2f8746a879f1c0e4c56b715c179424dafd8e0<br />
-  xe-pw-158142v4: 158142v4</p>
-
-</body>
-</html>
-
---===============3429662775189989178==--
