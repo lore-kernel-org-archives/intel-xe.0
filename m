@@ -4,50 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B2E76D6406B
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AF07AD609D5
 	for <intel-xe@archiver.kernel.org>; Wed, 17 Dec 2025 01:26:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6D9DF10E80A;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6D8D910E6E2;
 	Wed, 17 Dec 2025 01:26:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LcPubGaU";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="n8v6gjL/";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3E44210E9BA
- for <intel-xe@lists.freedesktop.org>; Wed, 17 Dec 2025 01:26:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B7C6510E9C0
+ for <intel-xe@lists.freedesktop.org>; Wed, 17 Dec 2025 01:26:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765934798; x=1797470798;
+ t=1765934804; x=1797470804;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Ck/lovL3GhZ2F9XS6VeDEDlxeEETqqJE2YM4ACCW/gk=;
- b=LcPubGaUtazRuP7anLUnOpXlm5xsRl2W73D744YSrjsZ7D8GGfaawhuF
- N9Dmv5UBvIW1w9S13OEibG9M6i8LzUFeI1Mg80/t4TeYiuC68tAQh9uOw
- LiV/89TitagxSgGFWgKWcuJgfc5w0Mp13IAVjUGdKoeVDpu1Z+GzUKGzs
- sCVVMcQWebW/nI1o12V+qn/WFsaPwIr0su6/vb10HwII/FQOUvY5R/7LZ
- AOE8MQJKUNSbQ4Ym/4P7ywQWUN1lG7pB39a7O1t0/UcwaVrHmb1NGPvlr
- bXQ/Wi3VV+1BK78unZc7ybMnET3SLfjMB7oQSnrZjrAmC6+jLcdjCtSEz A==;
-X-CSE-ConnectionGUID: h9VPH43mT/i5ChiWLdI7Fw==
-X-CSE-MsgGUID: YF3OZ/XeQSGwdOcgLek1Tg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11644"; a="67903832"
-X-IronPort-AV: E=Sophos;i="6.21,154,1763452800"; d="scan'208";a="67903832"
+ bh=D73qXqrxvicIj5U978k4EIwErdqKvOVYT3dXAsQk7kU=;
+ b=n8v6gjL/UGOEOaShALSQ4uc7MTM3gbxCgblbQ728h2gQvrcjdUJhDNP5
+ Yq7XenOENo0pHF2d/c26iYEWp47SHt5Y1FkmizrLCeogwc9Dpd+XJlIuA
+ W/dkQPixG7De+bK7M5OPly45uMOQjd3ozAL3czSPKxLy/JUCCcoY/L+wy
+ lj+9TwQSS0wxXFpJqb8YjO05xwVHn33ZDo46FebazYIQo/2+CwpW3iM9g
+ ET5t3BX/v7jkBnehoj4FAwmW/fVgyk64WGvPo8fiSrAcI7Ns+rCpf0sR6
+ p+QyYa01RQeCyGx5qhQVecCcVjDQhwJsaH29z7V+2nfLSj415QuH1aPVu Q==;
+X-CSE-ConnectionGUID: D4gEOoxCTyCSEiOjg1GRxA==
+X-CSE-MsgGUID: tYAd1vAHS8OGuRYSI0TS+g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11644"; a="67903852"
+X-IronPort-AV: E=Sophos;i="6.21,154,1763452800"; d="scan'208";a="67903852"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2025 17:26:37 -0800
-X-CSE-ConnectionGUID: mgRPN5UbRfKS0saZiv7IgA==
-X-CSE-MsgGUID: HmKGbHAXQqKUOLBdAA98yQ==
+ 16 Dec 2025 17:26:44 -0800
+X-CSE-ConnectionGUID: lMv73upiQ7eTM7/9NFfu8Q==
+X-CSE-MsgGUID: rc/vuP/9TrufiNP4D2zQKQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,154,1763452800"; d="scan'208";a="202360605"
+X-IronPort-AV: E=Sophos;i="6.21,154,1763452800"; d="scan'208";a="202360647"
 Received: from valcore-skull-1.fm.intel.com ([10.1.39.17])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2025 17:26:35 -0800
+ 16 Dec 2025 17:26:43 -0800
 From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
  Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH v4 02/13] drm/xe/gt: Add engine masks for each class
-Date: Tue, 16 Dec 2025 17:26:22 -0800
-Message-ID: <20251217012620.758252-17-daniele.ceraolospurio@intel.com>
+Subject: [PATCH v4 12/13] drm/xe/sriov: Add functions to set preempt timeouts
+ for each group
+Date: Tue, 16 Dec 2025 17:26:32 -0800
+Message-ID: <20251217012620.758252-27-daniele.ceraolospurio@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20251217012620.758252-15-daniele.ceraolospurio@intel.com>
 References: <20251217012620.758252-15-daniele.ceraolospurio@intel.com>
@@ -67,127 +68,209 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Follow up patches will need the engine masks for VCS and VECS engines.
-Since we already have a macro for the CCS engines, just extend the same
-approach to all classes.
-
-To avoid confusion with the XE_HW_ENGINE_*_MASK masks, the new macros
-use the _INSTANCES suffix instead. For consistency, rename CCS_MASK to
-CCS_INSTANCES as well.
+The KLV to set the preemption timeout for each groups works the exact
+same way as the one for the exec quantums, so we add similar functions.
 
 Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
 Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 ---
-v2: Use _INSTANCES suffix (Michal)
-v3: s/__ENGINE_INSTANCES_MASK/XE_ENGINE_INSTANCES_FROM_MASK/ (Michal)
+v2: drop the option of setting a single group, minor updates (Michal)
+v3: use GUC_MAX_SCHED_GROUPS to define the max KLV length
+v4: mention which GuC version the KLV was added in (Michal)
 ---
- drivers/gpu/drm/xe/xe_gt.h          | 9 ++++++++-
- drivers/gpu/drm/xe/xe_gt_ccs_mode.c | 8 ++++----
- drivers/gpu/drm/xe/xe_gt_ccs_mode.h | 2 +-
- drivers/gpu/drm/xe/xe_guc.c         | 2 +-
- drivers/gpu/drm/xe/xe_guc_submit.c  | 2 +-
- 5 files changed, 15 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/xe/abi/guc_klvs_abi.h      | 13 +++
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c | 95 +++++++++++++++++++++-
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h |  5 ++
+ drivers/gpu/drm/xe/xe_guc_klv_helpers.c    |  2 +
+ 4 files changed, 114 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt.h b/drivers/gpu/drm/xe/xe_gt.h
-index 94969ddd9d88..a2ba80c954a6 100644
---- a/drivers/gpu/drm/xe/xe_gt.h
-+++ b/drivers/gpu/drm/xe/xe_gt.h
-@@ -20,7 +20,14 @@
- 		for_each_if(((hwe__) = (gt__)->hw_engines + (id__)) && \
- 			  xe_hw_engine_is_valid((hwe__)))
+diff --git a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h b/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
+index dc753c317ae0..e33bd622ab44 100644
+--- a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
++++ b/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
+@@ -405,6 +405,16 @@ enum  {
+  *      the GuC always sets the EQ for all groups (even the non-enabled ones),
+  *      so if we provide fewer values than the max the GuC will use 0 for the
+  *      remaining groups. This KLV is available starting from GuC 70.53.0.
++ *
++ * _`GUC_KLV_VF_CFG_ENGINE_GROUP_PREEMPT_TIMEOUT' : 0x8A0F
++ *      This config sets the VFs-preemption-timeout for each scheduling group in
++ *      microseconds. The driver must provide an array of values, with each of
++ *      them matching the respective group index (first value goes to group 0,
++ *      second to group 1, etc). The setting of group values follows the same
++ *      behavior and rules as setting via GUC_KLV_VF_CFG_PREEMPT_TIMEOUT. Note
++ *      that the GuC always sets the EQ for all groups (even the non-enabled
++ *      ones), so if we provide fewer values than the max the GuC will use 0 for
++ *      the remaining groups. This KLV is available starting from GuC 70.53.0.
+  */
  
--#define CCS_MASK(gt) (((gt)->info.engine_mask & XE_HW_ENGINE_CCS_MASK) >> XE_HW_ENGINE_CCS0)
-+#define XE_ENGINE_INSTANCES_FROM_MASK(gt, NAME) \
-+	(((gt)->info.engine_mask & XE_HW_ENGINE_##NAME##_MASK) >> XE_HW_ENGINE_##NAME##0)
+ #define GUC_KLV_VF_CFG_GGTT_START_KEY		0x0001
+@@ -470,6 +480,9 @@ enum  {
+ #define GUC_KLV_VF_CFG_ENGINE_GROUP_EXEC_QUANTUM_MIN_LEN	1u
+ #define GUC_KLV_VF_CFG_ENGINE_GROUP_EXEC_QUANTUM_MAX_LEN	GUC_MAX_SCHED_GROUPS
+ 
++#define GUC_KLV_VF_CFG_ENGINE_GROUP_PREEMPT_TIMEOUT_KEY		0x8a0f
++#define GUC_KLV_VF_CFG_ENGINE_GROUP_PREEMPT_TIMEOUT_MIN_LEN	1u
++#define GUC_KLV_VF_CFG_ENGINE_GROUP_PREEMPT_TIMEOUT_MAX_LEN	GUC_MAX_SCHED_GROUPS
+ /*
+  * Workaround keys:
+  */
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
+index c663f349b437..5a870914b102 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
+@@ -295,13 +295,18 @@ static u32 encode_config_sched(struct xe_gt *gt, u32 *cfg, u32 n,
+ 	if (xe_sriov_gt_pf_policy_has_multi_group_modes(gt)) {
+ 		BUILD_BUG_ON(ARRAY_SIZE(config->exec_quantum) >
+ 			     GUC_KLV_VF_CFG_ENGINE_GROUP_EXEC_QUANTUM_MAX_LEN);
++		BUILD_BUG_ON(ARRAY_SIZE(config->preempt_timeout) >
++			     GUC_KLV_VF_CFG_ENGINE_GROUP_PREEMPT_TIMEOUT_MAX_LEN);
+ 
+ 		cfg[n++] = PREP_GUC_KLV_CONST(GUC_KLV_VF_CFG_ENGINE_GROUP_EXEC_QUANTUM_KEY,
+ 					      ARRAY_SIZE(config->exec_quantum));
+ 		for (i = 0; i < ARRAY_SIZE(config->exec_quantum); i++)
+ 			cfg[n++] = config->exec_quantum[i];
+ 
+-		/* TODO: add group preempt timeout setting */
++		cfg[n++] = PREP_GUC_KLV_CONST(GUC_KLV_VF_CFG_ENGINE_GROUP_PREEMPT_TIMEOUT_KEY,
++					      ARRAY_SIZE(config->preempt_timeout));
++		for (i = 0; i < ARRAY_SIZE(config->preempt_timeout); i++)
++			cfg[n++] = config->preempt_timeout[i];
+ 	} else {
+ 		cfg[n++] = PREP_GUC_KLV_TAG(VF_CFG_EXEC_QUANTUM);
+ 		cfg[n++] = config->exec_quantum[0];
+@@ -2265,6 +2270,89 @@ int xe_gt_sriov_pf_config_bulk_set_preempt_timeout_locked(struct xe_gt *gt, u32
+ 					   preempt_timeout_unit, n, err);
+ }
+ 
++static int pf_provision_groups_preempt_timeouts(struct xe_gt *gt, unsigned int vfid,
++						const u32 *preempt_timeouts, u32 count)
++{
++	struct xe_gt_sriov_config *config = pf_pick_vf_config(gt, vfid);
++	int err;
++	int i;
 +
-+#define RCS_INSTANCES(gt) XE_ENGINE_INSTANCES_FROM_MASK(gt, RCS)
-+#define VCS_INSTANCES(gt) XE_ENGINE_INSTANCES_FROM_MASK(gt, VCS)
-+#define VECS_INSTANCES(gt) XE_ENGINE_INSTANCES_FROM_MASK(gt, VECS)
-+#define CCS_INSTANCES(gt) XE_ENGINE_INSTANCES_FROM_MASK(gt, CCS)
-+#define GSCCS_INSTANCES(gt) XE_ENGINE_INSTANCES_FROM_MASK(gt, GSCCS)
- 
- #define GT_VER(gt) ({ \
- 	typeof(gt) gt_ = (gt); \
-diff --git a/drivers/gpu/drm/xe/xe_gt_ccs_mode.c b/drivers/gpu/drm/xe/xe_gt_ccs_mode.c
-index 50fffc9ebf62..91ac22ef5703 100644
---- a/drivers/gpu/drm/xe/xe_gt_ccs_mode.c
-+++ b/drivers/gpu/drm/xe/xe_gt_ccs_mode.c
-@@ -17,7 +17,7 @@
- static void __xe_gt_apply_ccs_mode(struct xe_gt *gt, u32 num_engines)
++	err = pf_push_vf_grp_cfg_u32(gt, vfid, GUC_KLV_VF_CFG_ENGINE_GROUP_PREEMPT_TIMEOUT_KEY,
++				     preempt_timeouts, count);
++	if (unlikely(err))
++		return err;
++
++	/*
++	 * GuC silently clamps values exceeding the max and zeroes out the
++	 * quantum for groups not in the klv payload
++	 */
++	for (i = 0; i < ARRAY_SIZE(config->preempt_timeout); i++) {
++		if (i < count)
++			config->preempt_timeout[i] =
++				min_t(u32, preempt_timeouts[i],
++				      GUC_KLV_VF_CFG_PREEMPT_TIMEOUT_MAX_VALUE);
++		else
++			config->preempt_timeout[i] = 0;
++	}
++
++	return 0;
++}
++
++static void pf_get_groups_preempt_timeouts(struct xe_gt *gt, unsigned int vfid,
++					   u32 *preempt_timeouts, u32 max_count)
++{
++	struct xe_gt_sriov_config *config = pf_pick_vf_config(gt, vfid);
++	u32 count = min_t(u32, max_count, ARRAY_SIZE(config->preempt_timeout));
++
++	memcpy(preempt_timeouts, config->preempt_timeout, sizeof(u32) * count);
++}
++
++/**
++ * xe_gt_sriov_pf_config_set_groups_preempt_timeouts() - Configure PF/VF PTs for sched groups.
++ * @gt: the &xe_gt
++ * @vfid: the PF or VF identifier
++ * @preempt_timeouts: array of requested PTs in microseconds (0 is infinity)
++ * @count: number of entries in the array
++ *
++ * This function can only be called on PF.
++ * It will log the provisioned value or an error in case of the failure.
++ *
++ * Return: 0 on success or a negative error code on failure.
++ */
++int xe_gt_sriov_pf_config_set_groups_preempt_timeouts(struct xe_gt *gt, unsigned int vfid,
++						      u32 *preempt_timeouts, u32 count)
++{
++	int err;
++
++	guard(mutex)(xe_gt_sriov_pf_master_mutex(gt));
++
++	err = pf_provision_groups_preempt_timeouts(gt, vfid, preempt_timeouts, count);
++
++	return pf_groups_cfg_set_u32_done(gt, vfid, preempt_timeouts, count,
++					  pf_get_groups_preempt_timeouts,
++					  "preempt_timeout",
++					  preempt_timeout_unit, err);
++}
++
++/**
++ * xe_gt_sriov_pf_config_get_groups_preempt_timeouts() - Get PF/VF sched groups PTs
++ * @gt: the &xe_gt
++ * @vfid: the PF or VF identifier
++ * @preempt_timeouts: array in which to store the preemption timeouts values
++ * @count: maximum number of entries to store
++ *
++ * This function can only be called on PF.
++ */
++void xe_gt_sriov_pf_config_get_groups_preempt_timeouts(struct xe_gt *gt, unsigned int vfid,
++						       u32 *preempt_timeouts, u32 count)
++{
++	guard(mutex)(xe_gt_sriov_pf_master_mutex(gt));
++
++	xe_gt_assert(gt, count <= GUC_MAX_SCHED_GROUPS);
++
++	pf_get_groups_preempt_timeouts(gt, vfid, preempt_timeouts, count);
++}
++
+ static const char *sched_priority_unit(u32 priority)
  {
- 	u32 mode = CCS_MODE_CSLICE_0_3_MASK; /* disable all by default */
--	int num_slices = hweight32(CCS_MASK(gt));
-+	int num_slices = hweight32(CCS_INSTANCES(gt));
- 	struct xe_device *xe = gt_to_xe(gt);
- 	int width, cslice = 0;
- 	u32 config = 0;
-@@ -59,7 +59,7 @@ static void __xe_gt_apply_ccs_mode(struct xe_gt *gt, u32 num_engines)
- 			config |= BIT(hwe->instance) << XE_HW_ENGINE_CCS0;
+ 	return priority == GUC_SCHED_PRIORITY_LOW ? "(low)" :
+@@ -2712,6 +2800,11 @@ static int pf_restore_vf_config_klv(struct xe_gt *gt, unsigned int vfid,
+ 			return -EBADMSG;
+ 		return pf_provision_groups_exec_quantums(gt, vfid, value, len);
  
- 			/* If a slice is fused off, leave disabled */
--			while ((CCS_MASK(gt) & BIT(cslice)) == 0)
-+			while ((CCS_INSTANCES(gt) & BIT(cslice)) == 0)
- 				cslice++;
++	case GUC_KLV_VF_CFG_ENGINE_GROUP_PREEMPT_TIMEOUT_KEY:
++		if (len > GUC_KLV_VF_CFG_ENGINE_GROUP_PREEMPT_TIMEOUT_MAX_LEN)
++			return -EBADMSG;
++		return pf_provision_groups_preempt_timeouts(gt, vfid, value, len);
++
+ 	case GUC_KLV_VF_CFG_PREEMPT_TIMEOUT_KEY:
+ 		if (len != GUC_KLV_VF_CFG_PREEMPT_TIMEOUT_LEN)
+ 			return -EBADMSG;
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h
+index aaed1f490da8..3c6c8b6655af 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h
+@@ -60,6 +60,11 @@ int xe_gt_sriov_pf_config_set_preempt_timeout_locked(struct xe_gt *gt, unsigned
+ 						     u32 preempt_timeout);
+ int xe_gt_sriov_pf_config_bulk_set_preempt_timeout_locked(struct xe_gt *gt, u32 preempt_timeout);
  
- 			mode &= ~CCS_MODE_CSLICE(cslice, CCS_MODE_CSLICE_MASK);
-@@ -94,7 +94,7 @@ num_cslices_show(struct device *kdev,
- {
- 	struct xe_gt *gt = kobj_to_gt(&kdev->kobj);
++void xe_gt_sriov_pf_config_get_groups_preempt_timeouts(struct xe_gt *gt, unsigned int vfid,
++						       u32 *preempt_timeout, u32 max_count);
++int xe_gt_sriov_pf_config_set_groups_preempt_timeouts(struct xe_gt *gt, unsigned int vfid,
++						      u32 *preempt_timeout, u32 count);
++
+ u32 xe_gt_sriov_pf_config_get_sched_priority(struct xe_gt *gt, unsigned int vfid);
+ int xe_gt_sriov_pf_config_set_sched_priority(struct xe_gt *gt, unsigned int vfid, u32 priority);
  
--	return sysfs_emit(buf, "%u\n", hweight32(CCS_MASK(gt)));
-+	return sysfs_emit(buf, "%u\n", hweight32(CCS_INSTANCES(gt)));
- }
+diff --git a/drivers/gpu/drm/xe/xe_guc_klv_helpers.c b/drivers/gpu/drm/xe/xe_guc_klv_helpers.c
+index b696a21f87e8..97600edda837 100644
+--- a/drivers/gpu/drm/xe/xe_guc_klv_helpers.c
++++ b/drivers/gpu/drm/xe/xe_guc_klv_helpers.c
+@@ -58,6 +58,8 @@ const char *xe_guc_klv_key_to_string(u16 key)
+ 		return "sched_priority";
+ 	case GUC_KLV_VF_CFG_ENGINE_GROUP_EXEC_QUANTUM_KEY:
+ 		return "sched_groups_exec_quantum";
++	case GUC_KLV_VF_CFG_ENGINE_GROUP_PREEMPT_TIMEOUT_KEY:
++		return "sched_groups_preempt_timeout";
  
- static DEVICE_ATTR_RO(num_cslices);
-@@ -131,7 +131,7 @@ ccs_mode_store(struct device *kdev, struct device_attribute *attr,
- 	 * Ensure number of engines specified is valid and there is an
- 	 * exact multiple of engines for slices.
- 	 */
--	num_slices = hweight32(CCS_MASK(gt));
-+	num_slices = hweight32(CCS_INSTANCES(gt));
- 	if (!num_engines || num_engines > num_slices || num_slices % num_engines) {
- 		xe_gt_dbg(gt, "Invalid compute config, %d engines %d slices\n",
- 			  num_engines, num_slices);
-diff --git a/drivers/gpu/drm/xe/xe_gt_ccs_mode.h b/drivers/gpu/drm/xe/xe_gt_ccs_mode.h
-index f8779852cf0d..ef3b853f5c8c 100644
---- a/drivers/gpu/drm/xe/xe_gt_ccs_mode.h
-+++ b/drivers/gpu/drm/xe/xe_gt_ccs_mode.h
-@@ -17,7 +17,7 @@ int xe_gt_ccs_mode_sysfs_init(struct xe_gt *gt);
- static inline bool xe_gt_ccs_mode_enabled(const struct xe_gt *gt)
- {
- 	/* Check if there are more than one compute engines available */
--	return hweight32(CCS_MASK(gt)) > 1;
-+	return hweight32(CCS_INSTANCES(gt)) > 1;
- }
- 
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
-index 09ac092c3687..44360437beeb 100644
---- a/drivers/gpu/drm/xe/xe_guc.c
-+++ b/drivers/gpu/drm/xe/xe_guc.c
-@@ -175,7 +175,7 @@ static bool needs_wa_dual_queue(struct xe_gt *gt)
- 	 * the DUAL_QUEUE_WA on all newer platforms on GTs that have CCS engines
- 	 * to move management back to the GuC.
- 	 */
--	if (CCS_MASK(gt) && GRAPHICS_VERx100(gt_to_xe(gt)) >= 1270)
-+	if (CCS_INSTANCES(gt) && GRAPHICS_VERx100(gt_to_xe(gt)) >= 1270)
- 		return true;
- 
- 	return false;
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index 43fd2069f9b2..d6cfc3481ace 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -407,7 +407,7 @@ static int guc_init_global_schedule_policy(struct xe_guc *guc)
- 
- 	*emit++ = XE_GUC_ACTION_UPDATE_SCHEDULING_POLICIES_KLV;
- 
--	if (CCS_MASK(guc_to_gt(guc)))
-+	if (CCS_INSTANCES(guc_to_gt(guc)))
- 		emit = emit_render_compute_yield_klv(emit);
- 
- 	count = emit - data;
+ 	/* VF CFG threshold keys */
+ #define define_threshold_key_to_string_case(TAG, NAME, ...)	\
 -- 
 2.43.0
 
