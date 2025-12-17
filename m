@@ -4,55 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 17038D64076
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 90E63D6407A
 	for <intel-xe@archiver.kernel.org>; Wed, 17 Dec 2025 06:10:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C7A4410EBB9;
-	Wed, 17 Dec 2025 06:10:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 427E510EBC3;
+	Wed, 17 Dec 2025 06:10:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IjfW0s0T";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="F+PRX7+5";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 11EDF10EB9D;
- Wed, 17 Dec 2025 06:10:42 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CB0AE10EBBB;
+ Wed, 17 Dec 2025 06:10:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765951842; x=1797487842;
+ t=1765951850; x=1797487850;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=chn1JR2mzMrNyYY79wHL63+JUjLak3xvQrgKrgE0Bio=;
- b=IjfW0s0TOa/C9/QrhPMrlFuNZ6CABb3tvQnwbx6KSUZi3epLl9RYzNqh
- o7TM9GGrueXZoBnJI1NJhzySr9B2Yjsgw5Gg49P/z+j7SuCjSsJaClPNA
- 9nB9tZ8lRyPqRF1+WlUKYh16r5FI/cn4+7uZEeKJrQBjFwRyerRk1A1mn
- ns7mth2o4DP1u7+DjrcjsSqAao7XVYjsv6c/mMkbJmHNJRX1fqnPlOE/D
- T0NOFXf/QV/83yIjvFN05d9pRigqhbQX2I1ZEtFC3Son+ZSjwruBDORG9
- 9PDeUjt//xIWvXBQY7tR1z4eSfFzPmE5YbEq7o/cp/Mh2t3HKzdgbEN2w Q==;
-X-CSE-ConnectionGUID: JlEWW9AMS869UnTQZJ5l7A==
-X-CSE-MsgGUID: 9ZWUsiEuThWHILnfN5PXoA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11644"; a="85471204"
-X-IronPort-AV: E=Sophos;i="6.21,155,1763452800"; d="scan'208";a="85471204"
+ bh=4NVR9fZNQDxvjbZLD7leA8NnxvpYpzNUXJpBXsfDF/U=;
+ b=F+PRX7+5pQRTNMMBTKBWoVl03wW7PK8NEpjFckixj3KUJu148MoIEpKO
+ WeJ8OhghY+RYPfjgV3Xr3J6/fh0p0Aw+JaDEzj1Rcdvo//BMbWKarDPzm
+ 5xhDC6qi0COs1yMkz+UELcRwuOmgLc3jmYmI34P+vI+GN+l/N+0aS7z61
+ B+HOK5AioDsa9bHEnR2mRs1sqEqXVz5Qybd4J76Qnx+GRuIRdZrrsdJBa
+ G6dzlXjetv4XANeEtsZehlNMPGmjGo+Lq4oaMo90Xy4pwpvntcGUH26ON
+ pSQ9FEnwuBb0TETg7lqiGNW3By1bIliI6RSx45OWUnYpfZinsZHTuFRBG A==;
+X-CSE-ConnectionGUID: QDiWnuODStafmEM3kdhsdQ==
+X-CSE-MsgGUID: Qi47l3K8TvyNw9u8xMMXSQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11644"; a="85471225"
+X-IronPort-AV: E=Sophos;i="6.21,155,1763452800"; d="scan'208";a="85471225"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2025 22:10:42 -0800
-X-CSE-ConnectionGUID: zcFaNJxfSweUS4j7vc4cag==
-X-CSE-MsgGUID: Cippw83fQyuU5yAFgmjSVg==
+ 16 Dec 2025 22:10:49 -0800
+X-CSE-ConnectionGUID: iHdyKRM3Qq6DTYaOH934Cg==
+X-CSE-MsgGUID: FaEjl2pDQrWLXK+sy3b3JQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,155,1763452800"; d="scan'208";a="198105201"
+X-IronPort-AV: E=Sophos;i="6.21,155,1763452800"; d="scan'208";a="198105252"
 Received: from cfl-desktop.iind.intel.com ([10.190.239.20])
- by fmviesa006.fm.intel.com with ESMTP; 16 Dec 2025 22:10:40 -0800
+ by fmviesa006.fm.intel.com with ESMTP; 16 Dec 2025 22:10:48 -0800
 From: Uma Shankar <uma.shankar@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com, ville.syrjala@linux.intel.com,
  Uma Shankar <uma.shankar@intel.com>
-Subject: [PATCH 13/19] drm/{i915, xe}: Remove i915_reg.h from intel_rom.c
-Date: Wed, 17 Dec 2025 11:52:03 +0530
-Message-ID: <20251217062209.852324-14-uma.shankar@intel.com>
+Subject: [PATCH 17/19] drm/{i915,
+ xe}: Remove i915_reg.h from intel_display_power_well.c
+Date: Wed, 17 Dec 2025 11:52:07 +0530
+Message-ID: <20251217062209.852324-18-uma.shankar@intel.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20251217062209.852324-1-uma.shankar@intel.com>
 References: <20251217062209.852324-1-uma.shankar@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,67 +68,44 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Make intel_rom.c free from including i915_reg.h.
+Make intel_display_power_well.c free from including i915_reg.h.
 
 Signed-off-by: Uma Shankar <uma.shankar@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_rom.c  | 4 ++--
- drivers/gpu/drm/i915/i915_reg.h           | 8 --------
- include/drm/intel/intel_gmd_common_regs.h | 8 ++++++++
- 3 files changed, 10 insertions(+), 10 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display_power_well.c | 2 +-
+ drivers/gpu/drm/i915/display/intel_display_regs.h       | 5 +++++
+ 2 files changed, 6 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_rom.c b/drivers/gpu/drm/i915/display/intel_rom.c
-index 2f17dc856e7f..2b9801d370a3 100644
---- a/drivers/gpu/drm/i915/display/intel_rom.c
-+++ b/drivers/gpu/drm/i915/display/intel_rom.c
-@@ -3,9 +3,9 @@
-  * Copyright © 2024 Intel Corporation
-  */
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+index db185a859133..8a1f1c61c6da 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
++++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+@@ -6,8 +6,8 @@
+ #include <linux/iopoll.h>
  
--#include "i915_drv.h"
--#include "i915_reg.h"
+ #include <drm/drm_print.h>
 +#include <drm/intel/intel_gmd_common_regs.h>
  
-+#include "i915_drv.h"
- #include "intel_rom.h"
- #include "intel_uncore.h"
+-#include "i915_reg.h"
+ #include "intel_backlight_regs.h"
+ #include "intel_combo_phy.h"
+ #include "intel_combo_phy_regs.h"
+diff --git a/drivers/gpu/drm/i915/display/intel_display_regs.h b/drivers/gpu/drm/i915/display/intel_display_regs.h
+index b433982cee56..fce36b34c796 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_regs.h
++++ b/drivers/gpu/drm/i915/display/intel_display_regs.h
+@@ -916,6 +916,11 @@
+ #define   SPRITEA_INVALID_GTT_STATUS			REG_BIT(1)
+ #define   PLANEA_INVALID_GTT_STATUS			REG_BIT(0)
  
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 77ae9a9ba27a..fd3f87f0bcd9 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -891,14 +891,6 @@
- #define   SGGI_DIS			REG_BIT(15)
- #define   SGR_DIS			REG_BIT(13)
- 
--#define PRIMARY_SPI_TRIGGER			_MMIO(0x102040)
--#define PRIMARY_SPI_ADDRESS			_MMIO(0x102080)
--#define PRIMARY_SPI_REGIONID			_MMIO(0x102084)
--#define SPI_STATIC_REGIONS			_MMIO(0x102090)
--#define   OPTIONROM_SPI_REGIONID_MASK		REG_GENMASK(7, 0)
--#define OROM_OFFSET				_MMIO(0x1020c0)
--#define   OROM_OFFSET_MASK			REG_GENMASK(20, 16)
--
- #define MTL_MEDIA_GSI_BASE		0x380000
- 
- #endif /* _I915_REG_H_ */
-diff --git a/include/drm/intel/intel_gmd_common_regs.h b/include/drm/intel/intel_gmd_common_regs.h
-index 01fffc983e47..59ea27228935 100644
---- a/include/drm/intel/intel_gmd_common_regs.h
-+++ b/include/drm/intel/intel_gmd_common_regs.h
-@@ -291,4 +291,12 @@
- #define   INSTPM_TLB_INVALIDATE	(1 << 9)
- #define   INSTPM_SYNC_FLUSH	(1 << 5)
- 
-+#define PRIMARY_SPI_TRIGGER			_MMIO(0x102040)
-+#define PRIMARY_SPI_ADDRESS			_MMIO(0x102080)
-+#define PRIMARY_SPI_REGIONID			_MMIO(0x102084)
-+#define SPI_STATIC_REGIONS			_MMIO(0x102090)
-+#define   OPTIONROM_SPI_REGIONID_MASK		REG_GENMASK(7, 0)
-+#define OROM_OFFSET				_MMIO(0x1020c0)
-+#define   OROM_OFFSET_MASK			REG_GENMASK(20, 16)
++#define MI_ARB_VLV		_MMIO(VLV_DISPLAY_BASE + 0x6504)
 +
- #endif
++/* Disable display A/B trickle feed */
++#define   MI_ARB_DISPLAY_TRICKLE_FEED_DISABLE	(1 << 2)
++
+ #define CBR1_VLV			_MMIO(VLV_DISPLAY_BASE + 0x70400)
+ #define  CBR_PND_DEADLINE_DISABLE	(1 << 31)
+ #define  CBR_PWM_CLOCK_MUX_SELECT	(1 << 30)
 -- 
 2.50.1
 
