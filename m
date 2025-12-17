@@ -4,50 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CA199D637DF
-	for <intel-xe@archiver.kernel.org>; Wed, 17 Dec 2025 01:26:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9FF8AD609D5
+	for <intel-xe@archiver.kernel.org>; Wed, 17 Dec 2025 01:26:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5371210E9BF;
-	Wed, 17 Dec 2025 01:26:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5894910E311;
+	Wed, 17 Dec 2025 01:26:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MYH5loJi";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lZTbV44E";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0762210E80A
- for <intel-xe@lists.freedesktop.org>; Wed, 17 Dec 2025 01:26:40 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 513D510E9C0
+ for <intel-xe@lists.freedesktop.org>; Wed, 17 Dec 2025 01:26:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765934800; x=1797470800;
+ t=1765934803; x=1797470803;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=eX3xCILRSfAajxaxUmvbwL9GTcg7uoZrvC6Z/H6Q0E0=;
- b=MYH5loJiy6Q0MWgO9r5mTkc4rDMqeCRyTGGHxRc71u4i9Zrj3/asQfOj
- dhbKPB4JzxtfSrJwakEE9yqCS29Jz4E0VprZHKvB1H0ppIZS6sZjVpYCo
- OiSCIhSJptbXZaSEPB0QDJf6pl8+GCNM1mr471lCqRypXvZlupZh695i2
- zacPuCAhaH5XeVRb+USqNURZycGcaZXn5MpL4CM6VGeRSvJ0onRYIZtUy
- Wp4g2y0l7coYLXGp5kk/fu/mjZUZCJr+B/g1WtFEyt+Hk7FVTxHUKRqVD
- ++b45otM62I5mJRd292hcgwCEhB33kWh48MQ6ZqL3tdHF48YMLmseSVtG Q==;
-X-CSE-ConnectionGUID: 6gMilRdpRZOQbeCQfCbTWg==
-X-CSE-MsgGUID: 5+GdwzTSR+a9qPvXXFTfvg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11644"; a="67903843"
-X-IronPort-AV: E=Sophos;i="6.21,154,1763452800"; d="scan'208";a="67903843"
+ bh=xb6oDbG8md7omzBJ5kS+ZIl1VelhiM53MYbro2uFLGs=;
+ b=lZTbV44ETTzGzmqUV8V8JO4tI0Z5caiS2IwWlnNduKoi80qm0/Pl/0nF
+ f97cv+cMuTg/GzvvdSroh4J4hAQ9nV2Ic1g6KMSmIwVS4v+KLaj3u+ccX
+ WQl1UUVk8lWpUEbl9xtlFX8NgIclVG3CoD7MvkUG2ia8hf1/9wM10NnWd
+ xwieiDWF2AKKeH2p9Um7rAR0LFfaSMJOr1ssBr9f5oTOJH6yqup1f3wQV
+ O/77ihtP3zv015I12/FuWicKyRRGuZ/IwgvE0Qg0473nAIwEB9xgp01K6
+ kNv9GZVYuOxMScs9miXwk06pBtkVGrCgunmzhiTmTAYu20sSnlrbBqt9c Q==;
+X-CSE-ConnectionGUID: 4BqYc8x/TUWfzh9LCJDFrw==
+X-CSE-MsgGUID: LcB54yWLS0uXAH5ECyaenQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11644"; a="67903850"
+X-IronPort-AV: E=Sophos;i="6.21,154,1763452800"; d="scan'208";a="67903850"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2025 17:26:40 -0800
-X-CSE-ConnectionGUID: 9f4+O/A7RcG266Mj5VP0/A==
-X-CSE-MsgGUID: LkjH3rt9Rn6oMB6z5K8Zbg==
+ 16 Dec 2025 17:26:42 -0800
+X-CSE-ConnectionGUID: BvRcoRucQLOh5Qus3XUMUg==
+X-CSE-MsgGUID: rcAjeR9dTRmLs2Xi99bgGA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,154,1763452800"; d="scan'208";a="202360627"
+X-IronPort-AV: E=Sophos;i="6.21,154,1763452800"; d="scan'208";a="202360639"
 Received: from valcore-skull-1.fm.intel.com ([10.1.39.17])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2025 17:26:39 -0800
+ 16 Dec 2025 17:26:42 -0800
 From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
  Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH v4 07/13] drm/xe/vf: Check if scheduler groups are enabled
-Date: Tue, 16 Dec 2025 17:26:27 -0800
-Message-ID: <20251217012620.758252-22-daniele.ceraolospurio@intel.com>
+Subject: [PATCH v4 10/13] drm/xe/sriov: Prep for multiple exec quantums and
+ preemption timeouts
+Date: Tue, 16 Dec 2025 17:26:30 -0800
+Message-ID: <20251217012620.758252-25-daniele.ceraolospurio@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20251217012620.758252-15-daniele.ceraolospurio@intel.com>
 References: <20251217012620.758252-15-daniele.ceraolospurio@intel.com>
@@ -67,192 +68,159 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-VF can check if PF has enabled scheduler groups with a dedicated KLV
-query. If scheduler groups are enabled, MLRC queue registrations are
-forbidden.
+Each scheduler group can be independently configured with its own exec
+quantum and preemption timeouts. The existing KLVs to configure those
+parameters will apply the value to all groups (even if they're not
+enabled at the moment).
+
+When scheduler groups are disabled, the GuC uses the values from Group 0.
 
 Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com> #v3
+Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 ---
-v4: split from previous patch, add a check on the returned value for the
-query (Michal)
+v2: improve doc, use ARRAY_SIZE for loops (Michal)
 ---
- drivers/gpu/drm/xe/abi/guc_klvs_abi.h     |  7 +++
- drivers/gpu/drm/xe/xe_exec_queue.c        |  3 +
- drivers/gpu/drm/xe/xe_gt_sriov_vf.c       | 67 +++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_gt_sriov_vf.h       |  1 +
- drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h |  2 +
- drivers/gpu/drm/xe/xe_guc_klv_helpers.c   |  3 +
- 6 files changed, 83 insertions(+)
+ drivers/gpu/drm/xe/abi/guc_klvs_abi.h         |  8 ++++++
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c    | 25 +++++++++++++------
+ .../gpu/drm/xe/xe_gt_sriov_pf_config_types.h  |  5 ++--
+ 3 files changed, 28 insertions(+), 10 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h b/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
-index ac10cf3adbc1..39dee685a92c 100644
+index 39dee685a92c..60758c034bf7 100644
 --- a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
 +++ b/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
-@@ -48,11 +48,18 @@
-  *      Refers to 32 bit architecture version as reported by the HW IP.
-  *      This key is supported on MTL+ platforms only.
-  *      Requires GuC ABI 1.2+.
-+ *
-+ * _`GUC_KLV_GLOBAL_CFG_GROUP_SCHEDULING_AVAILABLE` : 0x3001
-+ *      Tells the driver whether scheduler groups are enabled or not.
-+ *      Requires GuC ABI 1.26+
-  */
- 
- #define GUC_KLV_GLOBAL_CFG_GMD_ID_KEY			0x3000u
- #define GUC_KLV_GLOBAL_CFG_GMD_ID_LEN			1u
- 
-+#define GUC_KLV_GLOBAL_CFG_GROUP_SCHEDULING_AVAILABLE_KEY	0x3001u
-+#define GUC_KLV_GLOBAL_CFG_GROUP_SCHEDULING_AVAILABLE_LEN	1u
-+
- /**
-  * DOC: GuC Self Config KLVs
+@@ -297,6 +297,10 @@ enum  {
+  *      it to take effect. Such cases might typically happen on a 1PF+1VF
+  *      Virtualization config enabled for heavier workloads like AI/ML.
   *
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-index c336dcd19020..0b9e074b022f 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue.c
-+++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-@@ -1114,6 +1114,9 @@ static bool has_sched_groups(struct xe_gt *gt)
- 	if (IS_SRIOV_PF(gt_to_xe(gt)) && xe_gt_sriov_pf_sched_groups_enabled(gt))
- 		return true;
++ *      If scheduling groups are supported, the provided value is applied to all
++ *      groups (even if they've not yet been enabled). Support for this feature
++ *      is available from GuC 70.53.0.
++ *
+  *      The max value for this KLV is 100 seconds, anything exceeding that
+  *      will be clamped to the max.
+  *
+@@ -319,6 +323,10 @@ enum  {
+  *      on a 1PF+1VF Virtualization config enabled for heavier workloads like
+  *      AI/ML.
+  *
++ *      If scheduling groups are supported, the provided value is applied to all
++ *      groups (even if they've not yet been enabled). Support for this feature
++ *      is available from GuC 70.53.0.
++ *
+  *      The max value for this KLV is 100 seconds, anything exceeding that
+  *      will be clamped to the max.
+  *
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
+index 6e8507c24986..3e36a3c479a0 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
+@@ -299,10 +299,10 @@ static u32 encode_config(struct xe_gt *gt, u32 *cfg, const struct xe_gt_sriov_co
+ 	}
  
-+	if (IS_SRIOV_VF(gt_to_xe(gt)) && xe_gt_sriov_vf_sched_groups_enabled(gt))
-+		return true;
-+
- 	return false;
- }
+ 	cfg[n++] = PREP_GUC_KLV_TAG(VF_CFG_EXEC_QUANTUM);
+-	cfg[n++] = config->exec_quantum;
++	cfg[n++] = config->exec_quantum[0];
  
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-index b8b391cfc8eb..d91c65dc3496 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-@@ -612,6 +612,52 @@ static void vf_cache_gmdid(struct xe_gt *gt)
- 	gt->sriov.vf.runtime.gmdid = xe_gt_sriov_vf_gmdid(gt);
- }
+ 	cfg[n++] = PREP_GUC_KLV_TAG(VF_CFG_PREEMPT_TIMEOUT);
+-	cfg[n++] = config->preempt_timeout;
++	cfg[n++] = config->preempt_timeout[0];
  
-+static int vf_query_sched_groups(struct xe_gt *gt)
-+{
-+	struct xe_guc *guc = &gt->uc.guc;
-+	struct xe_uc_fw_version guc_version;
-+	u32 value = 0;
-+	int err;
-+
-+	xe_gt_sriov_vf_guc_versions(gt, NULL, &guc_version);
-+
-+	if (MAKE_GUC_VER_STRUCT(guc_version) < MAKE_GUC_VER(1, 26, 0))
-+		return 0;
-+
-+	err = guc_action_query_single_klv32(guc,
-+					    GUC_KLV_GLOBAL_CFG_GROUP_SCHEDULING_AVAILABLE_KEY,
-+					    &value);
-+	if (unlikely(err)) {
-+		xe_gt_sriov_err(gt, "Failed to obtain sched groups status (%pe)\n",
-+				ERR_PTR(err));
-+		return err;
-+	}
-+
-+	/* valid values are 0 (disabled) and 1 (enabled) */
-+	if (value > 1) {
-+		xe_gt_sriov_err(gt, "Invalid sched groups status %u\n", value);
-+		return -EPROTO;
-+	}
-+
-+	xe_gt_sriov_dbg(gt, "sched groups %s\n", str_enabled_disabled(value));
-+	return value;
-+}
-+
-+static int vf_cache_sched_groups_status(struct xe_gt *gt)
-+{
-+	int ret;
-+
-+	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
-+
-+	ret = vf_query_sched_groups(gt);
-+	if (ret < 0)
-+		return ret;
-+
-+	gt->sriov.vf.runtime.uses_sched_groups = ret;
-+
-+	return 0;
-+}
-+
- /**
-  * xe_gt_sriov_vf_query_config - Query SR-IOV config data over MMIO.
-  * @gt: the &xe_gt
-@@ -641,12 +687,33 @@ int xe_gt_sriov_vf_query_config(struct xe_gt *gt)
+ #define encode_threshold_config(TAG, NAME, VER...) ({					\
+ 	if (IF_ARGS(GUC_FIRMWARE_VER_AT_LEAST(&gt->uc.guc, VER), true, VER)) {		\
+@@ -1860,12 +1860,15 @@ static int pf_provision_exec_quantum(struct xe_gt *gt, unsigned int vfid,
+ {
+ 	struct xe_gt_sriov_config *config = pf_pick_vf_config(gt, vfid);
+ 	int err;
++	int i;
+ 
+ 	err = pf_push_vf_cfg_exec_quantum(gt, vfid, &exec_quantum);
  	if (unlikely(err))
  		return err;
  
-+	err = vf_cache_sched_groups_status(gt);
-+	if (unlikely(err))
-+		return err;
+-	config->exec_quantum = exec_quantum;
++	for (i = 0; i < ARRAY_SIZE(config->exec_quantum); i++)
++		config->exec_quantum[i] = exec_quantum;
 +
- 	if (has_gmdid(xe))
- 		vf_cache_gmdid(gt);
- 
  	return 0;
  }
  
-+/**
-+ * xe_gt_sriov_vf_sched_groups_enabled() - Check if PF has enabled multiple
-+ * scheduler groups
-+ * @gt: the &xe_gt
-+ *
-+ * This function is for VF use only.
-+ *
-+ * Return: true if shed groups were enabled, false otherwise.
-+ */
-+bool xe_gt_sriov_vf_sched_groups_enabled(struct xe_gt *gt)
-+{
-+	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
-+	xe_gt_assert(gt, gt->sriov.vf.guc_version.major);
-+
-+	return gt->sriov.vf.runtime.uses_sched_groups;
-+}
-+
- /**
-  * xe_gt_sriov_vf_guc_ids - VF GuC context IDs configuration.
-  * @gt: the &xe_gt
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.h b/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
-index af40276790fa..7d97189c2d3d 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
-@@ -30,6 +30,7 @@ bool xe_gt_sriov_vf_recovery_pending(struct xe_gt *gt);
- u32 xe_gt_sriov_vf_gmdid(struct xe_gt *gt);
- u16 xe_gt_sriov_vf_guc_ids(struct xe_gt *gt);
- u64 xe_gt_sriov_vf_lmem(struct xe_gt *gt);
-+bool xe_gt_sriov_vf_sched_groups_enabled(struct xe_gt *gt);
- 
- u32 xe_gt_sriov_vf_read32(struct xe_gt *gt, struct xe_reg reg);
- void xe_gt_sriov_vf_write32(struct xe_gt *gt, struct xe_reg reg, u32 val);
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h b/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
-index 510c33116fbd..9a6b5672d569 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
-@@ -27,6 +27,8 @@ struct xe_gt_sriov_vf_selfconfig {
- struct xe_gt_sriov_vf_runtime {
- 	/** @gmdid: cached value of the GDMID register. */
- 	u32 gmdid;
-+	/** @uses_sched_groups: whether PF enabled sched groups or not. */
-+	bool uses_sched_groups;
- 	/** @regs_size: size of runtime register array. */
- 	u32 regs_size;
- 	/** @num_regs: number of runtime registers in the array. */
-diff --git a/drivers/gpu/drm/xe/xe_guc_klv_helpers.c b/drivers/gpu/drm/xe/xe_guc_klv_helpers.c
-index 1b08b443606e..dd504b77cb17 100644
---- a/drivers/gpu/drm/xe/xe_guc_klv_helpers.c
-+++ b/drivers/gpu/drm/xe/xe_guc_klv_helpers.c
-@@ -21,6 +21,9 @@
- const char *xe_guc_klv_key_to_string(u16 key)
+@@ -1873,7 +1876,7 @@ static u32 pf_get_exec_quantum(struct xe_gt *gt, unsigned int vfid)
  {
- 	switch (key) {
-+	/* GuC Global Config KLVs */
-+	case GUC_KLV_GLOBAL_CFG_GROUP_SCHEDULING_AVAILABLE_KEY:
-+		return "group_scheduling_available";
- 	/* VGT POLICY keys */
- 	case GUC_KLV_VGT_POLICY_SCHED_IF_IDLE_KEY:
- 		return "sched_if_idle";
+ 	struct xe_gt_sriov_config *config = pf_pick_vf_config(gt, vfid);
+ 
+-	return config->exec_quantum;
++	return config->exec_quantum[0];
+ }
+ 
+ /**
+@@ -1990,12 +1993,14 @@ static int pf_provision_preempt_timeout(struct xe_gt *gt, unsigned int vfid,
+ {
+ 	struct xe_gt_sriov_config *config = pf_pick_vf_config(gt, vfid);
+ 	int err;
++	int i;
+ 
+ 	err = pf_push_vf_cfg_preempt_timeout(gt, vfid, &preempt_timeout);
+ 	if (unlikely(err))
+ 		return err;
+ 
+-	config->preempt_timeout = preempt_timeout;
++	for (i = 0; i < ARRAY_SIZE(config->preempt_timeout); i++)
++		config->preempt_timeout[i] = preempt_timeout;
+ 
+ 	return 0;
+ }
+@@ -2004,7 +2009,7 @@ static u32 pf_get_preempt_timeout(struct xe_gt *gt, unsigned int vfid)
+ {
+ 	struct xe_gt_sriov_config *config = pf_pick_vf_config(gt, vfid);
+ 
+-	return config->preempt_timeout;
++	return config->preempt_timeout[0];
+ }
+ 
+ /**
+@@ -2183,10 +2188,14 @@ u32 xe_gt_sriov_pf_config_get_sched_priority(struct xe_gt *gt, unsigned int vfid
+ 
+ static void pf_reset_config_sched(struct xe_gt *gt, struct xe_gt_sriov_config *config)
+ {
++	int i;
++
+ 	lockdep_assert_held(xe_gt_sriov_pf_master_mutex(gt));
+ 
+-	config->exec_quantum = 0;
+-	config->preempt_timeout = 0;
++	for (i = 0; i < ARRAY_SIZE(config->exec_quantum); i++) {
++		config->exec_quantum[i] = 0;
++		config->preempt_timeout[i] = 0;
++	}
+ }
+ 
+ static int pf_provision_threshold(struct xe_gt *gt, unsigned int vfid,
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config_types.h b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config_types.h
+index 686c7b3b6d7a..75a48d0fa859 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config_types.h
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config_types.h
+@@ -6,6 +6,7 @@
+ #ifndef _XE_GT_SRIOV_PF_CONFIG_TYPES_H_
+ #define _XE_GT_SRIOV_PF_CONFIG_TYPES_H_
+ 
++#include "abi/guc_scheduler_abi.h"
+ #include "xe_ggtt_types.h"
+ #include "xe_guc_klv_thresholds_set_types.h"
+ 
+@@ -30,9 +31,9 @@ struct xe_gt_sriov_config {
+ 	/** @begin_db: start index of GuC doorbell ID range. */
+ 	u16 begin_db;
+ 	/** @exec_quantum: execution-quantum in milliseconds. */
+-	u32 exec_quantum;
++	u32 exec_quantum[GUC_MAX_SCHED_GROUPS];
+ 	/** @preempt_timeout: preemption timeout in microseconds. */
+-	u32 preempt_timeout;
++	u32 preempt_timeout[GUC_MAX_SCHED_GROUPS];
+ 	/** @sched_priority: scheduling priority. */
+ 	u32 sched_priority;
+ 	/** @thresholds: GuC thresholds for adverse events notifications. */
 -- 
 2.43.0
 
