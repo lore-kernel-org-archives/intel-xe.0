@@ -4,27 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 86E20D64093
-	for <intel-xe@archiver.kernel.org>; Wed, 17 Dec 2025 09:01:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A0EA6D6409D
+	for <intel-xe@archiver.kernel.org>; Wed, 17 Dec 2025 09:29:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 459E910E270;
-	Wed, 17 Dec 2025 09:01:48 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1F6DA10E270;
- Wed, 17 Dec 2025 09:01:47 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0294493785920769671=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6023410E584;
+	Wed, 17 Dec 2025 09:29:43 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DE2rrUCG";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7F1D310E584;
+ Wed, 17 Dec 2025 09:29:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1765963782; x=1797499782;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=bg0QNI+eFJcSJHHaxIvGhOgggeThv4Q5/qtAlfZDeck=;
+ b=DE2rrUCGEKp1prezC3pKrR4ERrEcWIH/VDd7cXdQRbEuEoN6iCQ7xXkJ
+ vt1k/phvmt7PqFNnM9WNKaISXH78JSAWp2E9q4fAReONtXL0DQz0XdiUJ
+ KOHWFBl/k2nSYYjuPKqTRF1udYD41AGku7hosM+lk8hKDbBX0gYAOj44C
+ SHzf/2bHAAGKhrGhoGLLNdu9zNTFC5xIlWhjJTqEfm8nt44VHXmoRCYrI
+ D7POgf6JzaKnkKz2H+9yse2ssJyReq2eOxzlhYxgGjBLcY5Z3k0CHcBt7
+ dyK/EXrvXPmPdivDo/gRpKiuFyG9ONKhd5iBNPF2qHsAcc8NJEUZaH4Wx w==;
+X-CSE-ConnectionGUID: nD2dlsJYTFuHPc0UDWpk/g==
+X-CSE-MsgGUID: D70MnyhhTN2SHYFtdyTucQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11644"; a="79014553"
+X-IronPort-AV: E=Sophos;i="6.21,155,1763452800"; d="scan'208";a="79014553"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Dec 2025 01:29:41 -0800
+X-CSE-ConnectionGUID: 5lryVW6xRuec1l+5tKJyyQ==
+X-CSE-MsgGUID: aGcDzaupSBi2VCNTku7XWA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,155,1763452800"; d="scan'208";a="198752694"
+Received: from display-adls.igk.intel.com ([10.211.131.198])
+ by fmviesa009.fm.intel.com with ESMTP; 17 Dec 2025 01:29:39 -0800
+From: Mika Kahola <mika.kahola@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: Srinivas Pandruvada <srinivas.pandruvada@linux.intel.com>,
+	Borah@freedesktop.org,
+	Chaitanya Kumar <chaitanya.kumar.borah@intel.com>
+Subject: [core-for-CI] powercap: intel_rapl: Fix possible recursive lock
+ warning
+Date: Wed, 17 Dec 2025 11:20:57 +0200
+Message-Id: <20251217092057.1231895-1-mika.kahola@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Fix_NULL_pointer_?=
- =?utf-8?q?dereference_in_xe=5Fexec=5Fioctl?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Tapani_P=C3=A4lli?= <tapani.palli@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 17 Dec 2025 09:01:47 -0000
-Message-ID: <176596210712.96797.11297933965966689888@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20251217061728.35768-1-tapani.palli@intel.com>
-In-Reply-To: <20251217061728.35768-1-tapani.palli@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,145 +64,145 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0294493785920769671==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+From: Srinivas Pandruvada <srinivas.pandruvada@linux.intel.com>
 
-== Series Details ==
+With the RAPL PMU addition, there is a recursive locking when CPU online
+callback function calls rapl_package_add_pmu(). Here cpu_hotplug_lock
+is already acquired by cpuhp_thread_fun() and rapl_package_add_pmu()
+tries to acquire again.
 
-Series: drm/xe: Fix NULL pointer dereference in xe_exec_ioctl
-URL   : https://patchwork.freedesktop.org/series/159132/
-State : success
+<4>[ 8.197433] ============================================
+<4>[ 8.197437] WARNING: possible recursive locking detected
+<4>[ 8.197440] 6.19.0-rc1-lgci-xe-xe-4242-05b7c58b3367dca84+ #1 Not tainted
+<4>[ 8.197444] --------------------------------------------
+<4>[ 8.197447] cpuhp/0/20 is trying to acquire lock:
+<4>[ 8.197450] ffffffff83487870 (cpu_hotplug_lock){++++}-{0:0}, at:
+rapl_package_add_pmu+0x37/0x370 [intel_rapl_common]
+<4>[ 8.197463]
+but task is already holding lock:
+<4>[ 8.197466] ffffffff83487870 (cpu_hotplug_lock){++++}-{0:0}, at:
+cpuhp_thread_fun+0x6d/0x290
+<4>[ 8.197477]
+other info that might help us debug this:
+<4>[ 8.197480] Possible unsafe locking scenario:
 
-== Summary ==
+<4>[ 8.197483] CPU0
+<4>[ 8.197485] ----
+<4>[ 8.197487] lock(cpu_hotplug_lock);
+<4>[ 8.197490] lock(cpu_hotplug_lock);
+<4>[ 8.197493]
+*** DEADLOCK ***
+..
+..
+<4>[ 8.197542] __lock_acquire+0x146e/0x2790
+<4>[ 8.197548] lock_acquire+0xc4/0x2c0
+<4>[ 8.197550] ? rapl_package_add_pmu+0x37/0x370 [intel_rapl_common]
+<4>[ 8.197556] cpus_read_lock+0x41/0x110
+<4>[ 8.197558] ? rapl_package_add_pmu+0x37/0x370 [intel_rapl_common]
+<4>[ 8.197561] rapl_package_add_pmu+0x37/0x370 [intel_rapl_common]
+<4>[ 8.197565] rapl_cpu_online+0x85/0x87 [intel_rapl_msr]
+<4>[ 8.197568] ? __pfx_rapl_cpu_online+0x10/0x10 [intel_rapl_msr]
+<4>[ 8.197570] cpuhp_invoke_callback+0x41f/0x6c0
+<4>[ 8.197573] ? cpuhp_thread_fun+0x6d/0x290
+<4>[ 8.197575] cpuhp_thread_fun+0x1e2/0x290
+<4>[ 8.197578] ? smpboot_thread_fn+0x26/0x290
+<4>[ 8.197581] smpboot_thread_fn+0x12f/0x290
+<4>[ 8.197584] ? __pfx_smpboot_thread_fn+0x10/0x10
+<4>[ 8.197586] kthread+0x11f/0x250
+<4>[ 8.197589] ? __pfx_kthread+0x10/0x10
+<4>[ 8.197592] ret_from_fork+0x344/0x3a0
+<4>[ 8.197595] ? __pfx_kthread+0x10/0x10
+<4>[ 8.197597] ret_from_fork_asm+0x1a/0x30
+<4>[ 8.197604] </TASK>
 
-CI Bug Log - changes from xe-4255-2eb2f8746a879f1c0e4c56b715c179424dafd8e0_BAT -> xe-pw-159132v1_BAT
-====================================================
+Fix this issue in the same way as rapl powercap package domain is added
+from the same CPU online callback by introducing another interface which
+doesn't call cpu_read_lock(). Add rapl_package_add_pmu_locked() which
+doesn't call cpu_read_lock(). The original rapl_package_add_pmu() still
+calls cpu_read_lock() for TPMI RAPL.
 
-Summary
--------
+Fixes: 748d6ba43afd ("powercap: intel_rapl: Enable MSR-based RAPL PMU support")
+Reported-by: Borah, Chaitanya Kumar <chaitanya.kumar.borah@intel.com>
+Closes: https://lore.kernel.org/linux-pm/5427ede1-57a0-43d1-99f3-8ca4b0643e82@intel.com/T/#u
+Signed-off-by: Srinivas Pandruvada <srinivas.pandruvada@linux.intel.com>
+---
+ drivers/powercap/intel_rapl_common.c | 15 ++++++++++++---
+ drivers/powercap/intel_rapl_msr.c    |  2 +-
+ include/linux/intel_rapl.h           |  2 ++
+ 3 files changed, 15 insertions(+), 4 deletions(-)
 
-  **SUCCESS**
+diff --git a/drivers/powercap/intel_rapl_common.c b/drivers/powercap/intel_rapl_common.c
+index b9d87e56cbbc..27eaf0d4265f 100644
+--- a/drivers/powercap/intel_rapl_common.c
++++ b/drivers/powercap/intel_rapl_common.c
+@@ -2032,7 +2032,7 @@ static int rapl_pmu_update(struct rapl_package *rp)
+ 	return ret;
+ }
+ 
+-int rapl_package_add_pmu(struct rapl_package *rp)
++int rapl_package_add_pmu_locked(struct rapl_package *rp)
+ {
+ 	struct rapl_package_pmu_data *data = &rp->pmu_data;
+ 	int idx;
+@@ -2040,8 +2040,6 @@ int rapl_package_add_pmu(struct rapl_package *rp)
+ 	if (rp->has_pmu)
+ 		return -EEXIST;
+ 
+-	guard(cpus_read_lock)();
+-
+ 	for (idx = 0; idx < rp->nr_domains; idx++) {
+ 		struct rapl_domain *rd = &rp->domains[idx];
+ 		int domain = rd->id;
+@@ -2091,6 +2089,17 @@ int rapl_package_add_pmu(struct rapl_package *rp)
+ 
+ 	return rapl_pmu_update(rp);
+ }
++EXPORT_SYMBOL_GPL(rapl_package_add_pmu_locked);
++
++int rapl_package_add_pmu(struct rapl_package *rp)
++{
++	if (rp->has_pmu)
++		return -EEXIST;
++
++	guard(cpus_read_lock)();
++
++	return rapl_package_add_pmu_locked(rp);
++}
+ EXPORT_SYMBOL_GPL(rapl_package_add_pmu);
+ 
+ void rapl_package_remove_pmu(struct rapl_package *rp)
+diff --git a/drivers/powercap/intel_rapl_msr.c b/drivers/powercap/intel_rapl_msr.c
+index 0ce1096b6314..ef3435de1926 100644
+--- a/drivers/powercap/intel_rapl_msr.c
++++ b/drivers/powercap/intel_rapl_msr.c
+@@ -82,7 +82,7 @@ static int rapl_cpu_online(unsigned int cpu)
+ 		if (IS_ERR(rp))
+ 			return PTR_ERR(rp);
+ 		if (rapl_msr_pmu)
+-			rapl_package_add_pmu(rp);
++			rapl_package_add_pmu_locked(rp);
+ 	}
+ 	cpumask_set_cpu(cpu, &rp->cpumask);
+ 	return 0;
+diff --git a/include/linux/intel_rapl.h b/include/linux/intel_rapl.h
+index e9ade2ff4af6..68fea61ca77d 100644
+--- a/include/linux/intel_rapl.h
++++ b/include/linux/intel_rapl.h
+@@ -214,9 +214,11 @@ void rapl_remove_package(struct rapl_package *rp);
+ 
+ #ifdef CONFIG_PERF_EVENTS
+ int rapl_package_add_pmu(struct rapl_package *rp);
++int rapl_package_add_pmu_locked(struct rapl_package *rp);
+ void rapl_package_remove_pmu(struct rapl_package *rp);
+ #else
+ static inline int rapl_package_add_pmu(struct rapl_package *rp) { return 0; }
++static inline int rapl_package_add_pmu_locked(struct rapl_package *rp) { return 0; }
+ static inline void rapl_package_remove_pmu(struct rapl_package *rp) { }
+ #endif
+ 
+-- 
+2.34.1
 
-  No regressions found.
-
-  
-
-Participating hosts (12 -> 12)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-159132v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_waitfence@reltime:
-    - bat-dg2-oem2:       [PASS][1] -> [FAIL][2] ([Intel XE#6520])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4255-2eb2f8746a879f1c0e4c56b715c179424dafd8e0/bat-dg2-oem2/igt@xe_waitfence@reltime.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159132v1/bat-dg2-oem2/igt@xe_waitfence@reltime.html
-
-  
-#### Possible fixes ####
-
-  * igt@xe_waitfence@engine:
-    - bat-dg2-oem2:       [FAIL][3] ([Intel XE#6519]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4255-2eb2f8746a879f1c0e4c56b715c179424dafd8e0/bat-dg2-oem2/igt@xe_waitfence@engine.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159132v1/bat-dg2-oem2/igt@xe_waitfence@engine.html
-
-  
-  [Intel XE#6519]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519
-  [Intel XE#6520]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520
-
-
-Build changes
--------------
-
-  * IGT: IGT_8668 -> IGT_8669
-  * Linux: xe-4255-2eb2f8746a879f1c0e4c56b715c179424dafd8e0 -> xe-pw-159132v1
-
-  IGT_8668: 906681747a312ef11ef9af8ab1fa6eff28b4cbd0 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_8669: 319db2ffba419f9711acc72895f065a818905efa @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-4255-2eb2f8746a879f1c0e4c56b715c179424dafd8e0: 2eb2f8746a879f1c0e4c56b715c179424dafd8e0
-  xe-pw-159132v1: 159132v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159132v1/index.html
-
---===============0294493785920769671==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Fix NULL pointer dereference in xe_exec_ioctl</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/159132/">https://patchwork.freedesktop.org/series/159132/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159132v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159132v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4255-2eb2f8746a879f1c0e4c56b715c179424dafd8e0_BAT -&gt; xe-pw-159132v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (12 -&gt; 12)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-159132v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@xe_waitfence@reltime:<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4255-2eb2f8746a879f1c0e4c56b715c179424dafd8e0/bat-dg2-oem2/igt@xe_waitfence@reltime.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159132v1/bat-dg2-oem2/igt@xe_waitfence@reltime.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520">Intel XE#6520</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_waitfence@engine:<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4255-2eb2f8746a879f1c0e4c56b715c179424dafd8e0/bat-dg2-oem2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519">Intel XE#6519</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159132v1/bat-dg2-oem2/igt@xe_waitfence@engine.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8668 -&gt; IGT_8669</li>
-<li>Linux: xe-4255-2eb2f8746a879f1c0e4c56b715c179424dafd8e0 -&gt; xe-pw-159132v1</li>
-</ul>
-<p>IGT_8668: 906681747a312ef11ef9af8ab1fa6eff28b4cbd0 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_8669: 319db2ffba419f9711acc72895f065a818905efa @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-4255-2eb2f8746a879f1c0e4c56b715c179424dafd8e0: 2eb2f8746a879f1c0e4c56b715c179424dafd8e0<br />
-  xe-pw-159132v1: 159132v1</p>
-
-</body>
-</html>
-
---===============0294493785920769671==--
