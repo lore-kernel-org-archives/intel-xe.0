@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AF07AD609D5
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E4C46D6406C
 	for <intel-xe@archiver.kernel.org>; Wed, 17 Dec 2025 01:26:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6D8D910E6E2;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9CB9C10E9BD;
 	Wed, 17 Dec 2025 01:26:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="n8v6gjL/";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XN8LpL7q";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B7C6510E9C0
- for <intel-xe@lists.freedesktop.org>; Wed, 17 Dec 2025 01:26:43 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CC75810E80A
+ for <intel-xe@lists.freedesktop.org>; Wed, 17 Dec 2025 01:26:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765934804; x=1797470804;
+ t=1765934799; x=1797470799;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=D73qXqrxvicIj5U978k4EIwErdqKvOVYT3dXAsQk7kU=;
- b=n8v6gjL/UGOEOaShALSQ4uc7MTM3gbxCgblbQ728h2gQvrcjdUJhDNP5
- Yq7XenOENo0pHF2d/c26iYEWp47SHt5Y1FkmizrLCeogwc9Dpd+XJlIuA
- W/dkQPixG7De+bK7M5OPly45uMOQjd3ozAL3czSPKxLy/JUCCcoY/L+wy
- lj+9TwQSS0wxXFpJqb8YjO05xwVHn33ZDo46FebazYIQo/2+CwpW3iM9g
- ET5t3BX/v7jkBnehoj4FAwmW/fVgyk64WGvPo8fiSrAcI7Ns+rCpf0sR6
- p+QyYa01RQeCyGx5qhQVecCcVjDQhwJsaH29z7V+2nfLSj415QuH1aPVu Q==;
-X-CSE-ConnectionGUID: D4gEOoxCTyCSEiOjg1GRxA==
-X-CSE-MsgGUID: tYAd1vAHS8OGuRYSI0TS+g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11644"; a="67903852"
-X-IronPort-AV: E=Sophos;i="6.21,154,1763452800"; d="scan'208";a="67903852"
+ bh=JjKvmLNXBy/O4fJ3KuL70fY6dMbM9VWmnfhFs9ExyqE=;
+ b=XN8LpL7qtOLNZ5ce3sOt+KZ9A52LX6enH5sh3+Fo7RhoipGSiVgj0sJp
+ H99oCTI2iRdU6El7fxDFlHcPhYGnse20LYr/Ms3X0bOfZ4iuToPC3ST74
+ NgYyR8Q4ql8+lyidf4ULbxakrqcXC7KasmGp09p/0hSFy30eoJ62tocxN
+ C73s8qxJRnrVMEUUllQzc2gf1UONoMSMXaqPZUpyC/V/PXTeOOACeoAsq
+ w5C0/rGLGfgv1yLKV5tOjeN8u2Ys45VL5ETt0sfZHbjpFrsRaB6SS3/Rq
+ SQuHfsPSogtyuKphmR94mzCuf4uEhDYf/pO5OQgC7i/GFHILQdyHO4XQs g==;
+X-CSE-ConnectionGUID: I+uoePrPTQSi++3LHR8blA==
+X-CSE-MsgGUID: rZfO8JkMTxWFQXheL7JaYg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11644"; a="67903839"
+X-IronPort-AV: E=Sophos;i="6.21,154,1763452800"; d="scan'208";a="67903839"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2025 17:26:44 -0800
-X-CSE-ConnectionGUID: lMv73upiQ7eTM7/9NFfu8Q==
-X-CSE-MsgGUID: rc/vuP/9TrufiNP4D2zQKQ==
+ 16 Dec 2025 17:26:39 -0800
+X-CSE-ConnectionGUID: mqkD1rsvRFutH5u3d32y1A==
+X-CSE-MsgGUID: YUDC1r/BQVKmKNi2/IfuDA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,154,1763452800"; d="scan'208";a="202360647"
+X-IronPort-AV: E=Sophos;i="6.21,154,1763452800"; d="scan'208";a="202360619"
 Received: from valcore-skull-1.fm.intel.com ([10.1.39.17])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2025 17:26:43 -0800
+ 16 Dec 2025 17:26:38 -0800
 From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
  Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH v4 12/13] drm/xe/sriov: Add functions to set preempt timeouts
- for each group
-Date: Tue, 16 Dec 2025 17:26:32 -0800
-Message-ID: <20251217012620.758252-27-daniele.ceraolospurio@intel.com>
+Subject: [PATCH v4 05/13] drm/xe/sriov: Add support for enabling scheduler
+ groups
+Date: Tue, 16 Dec 2025 17:26:25 -0800
+Message-ID: <20251217012620.758252-20-daniele.ceraolospurio@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20251217012620.758252-15-daniele.ceraolospurio@intel.com>
 References: <20251217012620.758252-15-daniele.ceraolospurio@intel.com>
@@ -68,209 +68,346 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The KLV to set the preemption timeout for each groups works the exact
-same way as the one for the exec quantums, so we add similar functions.
+Scheduler groups are enabled by sending a specific policy configuration
+KLV to the GuC. We don't allow changing this policy if there are VF
+active, since the expectation is that the VF will only check if the
+feature is enabled during driver initialization.
+
+While the GuC interface supports a maximum of 8 groups, the actual
+number of groups that can be enabled can be lower than that and
+can be different on different devices. For now, all devices support up
+to 2 groups, so we check that we do not have more groups than that.
+
+The functions added by this patch will be used by sysfs/debugfs, coming
+in follow up patches.
 
 Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com> #v3
 ---
-v2: drop the option of setting a single group, minor updates (Michal)
-v3: use GUC_MAX_SCHED_GROUPS to define the max KLV length
-v4: mention which GuC version the KLV was added in (Michal)
+v2: code improvements, add GUC_MAX_SCHED_GROUPS define, don't add
+    XE_SRIOV_SCHED_GROUPS_NONE to supported_modes (Michal)
+v3: fix enum/integer mismatch, use GUC_MAX_SCHED_GROUPS to define the
+    max KLV length and not the other way around
+v4: add min and max len defines for the KLV, use the enum type instead
+    of u32 where possible.
 ---
- drivers/gpu/drm/xe/abi/guc_klvs_abi.h      | 13 +++
- drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c | 95 +++++++++++++++++++++-
- drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h |  5 ++
- drivers/gpu/drm/xe/xe_guc_klv_helpers.c    |  2 +
- 4 files changed, 114 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/abi/guc_klvs_abi.h         |  22 +++
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.c    | 153 ++++++++++++++++++
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.h    |   7 +
+ .../gpu/drm/xe/xe_gt_sriov_pf_policy_types.h  |   6 +
+ drivers/gpu/drm/xe/xe_guc_klv_helpers.c       |   2 +
+ 5 files changed, 190 insertions(+)
 
 diff --git a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h b/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
-index dc753c317ae0..e33bd622ab44 100644
+index 89a4f8c504e6..ac10cf3adbc1 100644
 --- a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
 +++ b/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
-@@ -405,6 +405,16 @@ enum  {
-  *      the GuC always sets the EQ for all groups (even the non-enabled ones),
-  *      so if we provide fewer values than the max the GuC will use 0 for the
-  *      remaining groups. This KLV is available starting from GuC 70.53.0.
+@@ -8,6 +8,8 @@
+ 
+ #include <linux/types.h>
+ 
++#include "abi/guc_scheduler_abi.h"
++
+ /**
+  * DOC: GuC KLV
+  *
+@@ -200,6 +202,20 @@ enum  {
+  *      :0: adverse events are not counted (default)
+  *      :n: sample period in milliseconds
+  *
++ * _`GUC_KLV_VGT_POLICY_ENGINE_GROUP_CONFIG` : 0x8004
++ *      This config allows the PF to split the engines across scheduling groups.
++ *      Each group is independently timesliced across VFs, allowing different
++ *      VFs to be active on the HW at the same time. When enabling this feature,
++ *      all engines must be assigned to a group (and only one group), or they
++ *      will be excluded from scheduling after this KLV is sent. To enable
++ *      the groups, the driver must provide a masks array with
++ *      GUC_MAX_ENGINE_CLASSES entries for each group, with each mask indicating
++ *      which logical instances of that class belong to the group. Therefore,
++ *      the length of this KLV when enabling groups is
++ *      num_groups * GUC_MAX_ENGINE_CLASSES. To disable the groups, the driver
++ *      must send the KLV without any payload (i.e. len = 0). The maximum
++ *      number of groups is 8.
 + *
-+ * _`GUC_KLV_VF_CFG_ENGINE_GROUP_PREEMPT_TIMEOUT' : 0x8A0F
-+ *      This config sets the VFs-preemption-timeout for each scheduling group in
-+ *      microseconds. The driver must provide an array of values, with each of
-+ *      them matching the respective group index (first value goes to group 0,
-+ *      second to group 1, etc). The setting of group values follows the same
-+ *      behavior and rules as setting via GUC_KLV_VF_CFG_PREEMPT_TIMEOUT. Note
-+ *      that the GuC always sets the EQ for all groups (even the non-enabled
-+ *      ones), so if we provide fewer values than the max the GuC will use 0 for
-+ *      the remaining groups. This KLV is available starting from GuC 70.53.0.
-  */
+  * _`GUC_KLV_VGT_POLICY_RESET_AFTER_VF_SWITCH` : 0x8D00
+  *      This enum is to reset utilized HW engine after VF Switch (i.e to clean
+  *      up Stale HW register left behind by previous VF)
+@@ -214,6 +230,12 @@ enum  {
+ #define GUC_KLV_VGT_POLICY_ADVERSE_SAMPLE_PERIOD_KEY	0x8002
+ #define GUC_KLV_VGT_POLICY_ADVERSE_SAMPLE_PERIOD_LEN	1u
  
- #define GUC_KLV_VF_CFG_GGTT_START_KEY		0x0001
-@@ -470,6 +480,9 @@ enum  {
- #define GUC_KLV_VF_CFG_ENGINE_GROUP_EXEC_QUANTUM_MIN_LEN	1u
- #define GUC_KLV_VF_CFG_ENGINE_GROUP_EXEC_QUANTUM_MAX_LEN	GUC_MAX_SCHED_GROUPS
++#define GUC_KLV_VGT_POLICY_ENGINE_GROUP_CONFIG_KEY	0x8004
++#define GUC_KLV_VGT_POLICY_ENGINE_GROUP_MAX_COUNT	GUC_MAX_SCHED_GROUPS
++#define GUC_KLV_VGT_POLICY_ENGINE_GROUP_CONFIG_MIN_LEN 0
++#define GUC_KLV_VGT_POLICY_ENGINE_GROUP_CONFIG_MAX_LEN \
++	(GUC_KLV_VGT_POLICY_ENGINE_GROUP_MAX_COUNT * GUC_MAX_ENGINE_CLASSES)
++
+ #define GUC_KLV_VGT_POLICY_RESET_AFTER_VF_SWITCH_KEY	0x8D00
+ #define GUC_KLV_VGT_POLICY_RESET_AFTER_VF_SWITCH_LEN	1u
  
-+#define GUC_KLV_VF_CFG_ENGINE_GROUP_PREEMPT_TIMEOUT_KEY		0x8a0f
-+#define GUC_KLV_VF_CFG_ENGINE_GROUP_PREEMPT_TIMEOUT_MIN_LEN	1u
-+#define GUC_KLV_VF_CFG_ENGINE_GROUP_PREEMPT_TIMEOUT_MAX_LEN	GUC_MAX_SCHED_GROUPS
- /*
-  * Workaround keys:
-  */
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-index c663f349b437..5a870914b102 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-@@ -295,13 +295,18 @@ static u32 encode_config_sched(struct xe_gt *gt, u32 *cfg, u32 n,
- 	if (xe_sriov_gt_pf_policy_has_multi_group_modes(gt)) {
- 		BUILD_BUG_ON(ARRAY_SIZE(config->exec_quantum) >
- 			     GUC_KLV_VF_CFG_ENGINE_GROUP_EXEC_QUANTUM_MAX_LEN);
-+		BUILD_BUG_ON(ARRAY_SIZE(config->preempt_timeout) >
-+			     GUC_KLV_VF_CFG_ENGINE_GROUP_PREEMPT_TIMEOUT_MAX_LEN);
- 
- 		cfg[n++] = PREP_GUC_KLV_CONST(GUC_KLV_VF_CFG_ENGINE_GROUP_EXEC_QUANTUM_KEY,
- 					      ARRAY_SIZE(config->exec_quantum));
- 		for (i = 0; i < ARRAY_SIZE(config->exec_quantum); i++)
- 			cfg[n++] = config->exec_quantum[i];
- 
--		/* TODO: add group preempt timeout setting */
-+		cfg[n++] = PREP_GUC_KLV_CONST(GUC_KLV_VF_CFG_ENGINE_GROUP_PREEMPT_TIMEOUT_KEY,
-+					      ARRAY_SIZE(config->preempt_timeout));
-+		for (i = 0; i < ARRAY_SIZE(config->preempt_timeout); i++)
-+			cfg[n++] = config->preempt_timeout[i];
- 	} else {
- 		cfg[n++] = PREP_GUC_KLV_TAG(VF_CFG_EXEC_QUANTUM);
- 		cfg[n++] = config->exec_quantum[0];
-@@ -2265,6 +2270,89 @@ int xe_gt_sriov_pf_config_bulk_set_preempt_timeout_locked(struct xe_gt *gt, u32
- 					   preempt_timeout_unit, n, err);
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.c
+index fc60e7a01434..1b8d14da93d2 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.c
+@@ -97,6 +97,23 @@ static int pf_push_policy_u32(struct xe_gt *gt, u16 key, u32 value)
+ 	return pf_push_policy_klvs(gt, 1, klv, ARRAY_SIZE(klv));
  }
  
-+static int pf_provision_groups_preempt_timeouts(struct xe_gt *gt, unsigned int vfid,
-+						const u32 *preempt_timeouts, u32 count)
++static int pf_push_policy_payload(struct xe_gt *gt, u16 key, void *payload, u32 num_dwords)
 +{
-+	struct xe_gt_sriov_config *config = pf_pick_vf_config(gt, vfid);
-+	int err;
-+	int i;
++	CLASS(xe_guc_buf, buf)(&gt->uc.guc.buf, GUC_KLV_LEN_MIN + num_dwords);
++	u32 *klv;
 +
-+	err = pf_push_vf_grp_cfg_u32(gt, vfid, GUC_KLV_VF_CFG_ENGINE_GROUP_PREEMPT_TIMEOUT_KEY,
-+				     preempt_timeouts, count);
-+	if (unlikely(err))
-+		return err;
++	if (!xe_guc_buf_is_valid(buf))
++		return -ENOBUFS;
++
++	klv = xe_guc_buf_cpu_ptr(buf);
++
++	klv[0] = PREP_GUC_KLV(key, num_dwords);
++	if (num_dwords)
++		memcpy(&klv[1], payload, num_dwords * sizeof(u32));
++
++	return pf_push_policy_buf_klvs(gt, 1, buf, GUC_KLV_LEN_MIN + num_dwords);
++}
++
+ static int pf_update_policy_bool(struct xe_gt *gt, u16 key, bool *policy, bool value)
+ {
+ 	int err;
+@@ -397,6 +414,17 @@ static void pf_sched_group_media_slices(struct xe_gt *gt, struct guc_sched_group
+ 	if (group < 2)
+ 		return;
+ 
++	/*
++	 * If we have more groups than the GuC can support then we don't want to
++	 * expose this specific mode, because the GuC will return an error if we
++	 * try to enable it.
++	 */
++	if (group > gt->sriov.pf.policy.guc.sched_groups.max_groups) {
++		xe_gt_sriov_notice(gt, "media_slice mode has too many groups: %u vs %u\n",
++				   group, gt->sriov.pf.policy.guc.sched_groups.max_groups);
++		return;
++	}
++
+ 	/* The GuC expects an array with a guc_sched_group entry for each group */
+ 	values = drmm_kcalloc(&gt_to_xe(gt)->drm, group, sizeof(struct guc_sched_group),
+ 			      GFP_KERNEL);
+@@ -459,6 +487,15 @@ static void pf_init_sched_groups(struct xe_gt *gt)
+ 	if (!xe_sriov_gt_pf_policy_has_sched_groups_support(gt))
+ 		return;
+ 
++	/*
++	 * The GuC interface supports up to 8 groups. However, the GuC only
++	 * fully allocates resources for a subset of groups, based on the number
++	 * of engines and expected usage. The plan is for this to become
++	 * queryable via H2G, but for now GuC FW for all devices supports a
++	 * maximum of 2 groups so we can just hardcode that.
++	 */
++	gt->sriov.pf.policy.guc.sched_groups.max_groups = 2;
++
+ 	for (m = XE_SRIOV_SCHED_GROUPS_DISABLED + 1; m < XE_SRIOV_SCHED_GROUPS_MODES_COUNT; m++) {
+ 		u32 *num_groups = &gt->sriov.pf.policy.guc.sched_groups.modes[m].num_groups;
+ 		struct guc_sched_group **groups =
+@@ -484,14 +521,129 @@ static void pf_init_sched_groups(struct xe_gt *gt)
+ 		}
+ 
+ 		xe_gt_assert(gt, *num_groups < GUC_MAX_SCHED_GROUPS);
++
++		if (*num_groups)
++			gt->sriov.pf.policy.guc.sched_groups.supported_modes |= BIT(m);
+ 	}
+ }
+ 
++/**
++ * xe_sriov_gt_pf_policy_has_multi_group_modes() - check whether the GT supports
++ * any scheduler modes that have multiple groups
++ * @gt: the &xe_gt to check
++ *
++ * This function can only be called on PF.
++ *
++ * Return: true if the GT supports modes with multiple groups, false otherwise.
++ */
++bool xe_sriov_gt_pf_policy_has_multi_group_modes(struct xe_gt *gt)
++{
++	return gt->sriov.pf.policy.guc.sched_groups.supported_modes;
++}
++
++/**
++ * xe_sriov_gt_pf_policy_has_sched_group_mode() - check whether the GT supports
++ * a specific scheduler group mode
++ * @gt: the &xe_gt to check
++ * @mode: the mode to check
++ *
++ * This function can only be called on PF.
++ *
++ * Return: true if the GT supports the specified mode, false otherwise.
++ */
++bool xe_sriov_gt_pf_policy_has_sched_group_mode(struct xe_gt *gt,
++						enum xe_sriov_sched_group_modes mode)
++{
++	if (mode == XE_SRIOV_SCHED_GROUPS_DISABLED)
++		return true;
++
++	return gt->sriov.pf.policy.guc.sched_groups.supported_modes & BIT(mode);
++}
++
++static int __pf_provision_sched_groups(struct xe_gt *gt, enum xe_sriov_sched_group_modes mode)
++{
++	struct guc_sched_group *groups = gt->sriov.pf.policy.guc.sched_groups.modes[mode].groups;
++	u32 num_groups = gt->sriov.pf.policy.guc.sched_groups.modes[mode].num_groups;
++
++	return pf_push_policy_payload(gt, GUC_KLV_VGT_POLICY_ENGINE_GROUP_CONFIG_KEY,
++				      groups, num_groups * GUC_MAX_ENGINE_CLASSES);
++}
++
++static int pf_provision_sched_groups(struct xe_gt *gt, enum xe_sriov_sched_group_modes mode)
++{
++	int err;
++
++	xe_gt_assert(gt, IS_SRIOV_PF(gt_to_xe(gt)));
++	lockdep_assert_held(xe_gt_sriov_pf_master_mutex(gt));
++
++	if (!xe_sriov_gt_pf_policy_has_sched_group_mode(gt, mode))
++		return -EINVAL;
++
++	/* already in the desired mode */
++	if (gt->sriov.pf.policy.guc.sched_groups.current_mode == mode)
++		return 0;
 +
 +	/*
-+	 * GuC silently clamps values exceeding the max and zeroes out the
-+	 * quantum for groups not in the klv payload
++	 * We don't allow changing this with VFs active since it is hard for
++	 * VFs to check.
 +	 */
-+	for (i = 0; i < ARRAY_SIZE(config->preempt_timeout); i++) {
-+		if (i < count)
-+			config->preempt_timeout[i] =
-+				min_t(u32, preempt_timeouts[i],
-+				      GUC_KLV_VF_CFG_PREEMPT_TIMEOUT_MAX_VALUE);
-+		else
-+			config->preempt_timeout[i] = 0;
-+	}
++	if (xe_sriov_pf_num_vfs(gt_to_xe(gt)))
++		return -EBUSY;
++
++	err = __pf_provision_sched_groups(gt, mode);
++	if (err)
++		return err;
++
++	gt->sriov.pf.policy.guc.sched_groups.current_mode = mode;
 +
 +	return 0;
 +}
 +
-+static void pf_get_groups_preempt_timeouts(struct xe_gt *gt, unsigned int vfid,
-+					   u32 *preempt_timeouts, u32 max_count)
++static int pf_reprovision_sched_groups(struct xe_gt *gt)
 +{
-+	struct xe_gt_sriov_config *config = pf_pick_vf_config(gt, vfid);
-+	u32 count = min_t(u32, max_count, ARRAY_SIZE(config->preempt_timeout));
++	xe_gt_assert(gt, IS_SRIOV_PF(gt_to_xe(gt)));
++	lockdep_assert_held(xe_gt_sriov_pf_master_mutex(gt));
 +
-+	memcpy(preempt_timeouts, config->preempt_timeout, sizeof(u32) * count);
++	/* We only have something to provision if we have possible groups */
++	if (!xe_sriov_gt_pf_policy_has_multi_group_modes(gt))
++		return 0;
++
++	return __pf_provision_sched_groups(gt, gt->sriov.pf.policy.guc.sched_groups.current_mode);
++}
++
++static void pf_sanitize_sched_groups(struct xe_gt *gt)
++{
++	xe_gt_assert(gt, IS_SRIOV_PF(gt_to_xe(gt)));
++	lockdep_assert_held(xe_gt_sriov_pf_master_mutex(gt));
++
++	gt->sriov.pf.policy.guc.sched_groups.current_mode = XE_SRIOV_SCHED_GROUPS_DISABLED;
 +}
 +
 +/**
-+ * xe_gt_sriov_pf_config_set_groups_preempt_timeouts() - Configure PF/VF PTs for sched groups.
-+ * @gt: the &xe_gt
-+ * @vfid: the PF or VF identifier
-+ * @preempt_timeouts: array of requested PTs in microseconds (0 is infinity)
-+ * @count: number of entries in the array
++ * xe_gt_sriov_pf_policy_set_sched_groups_mode() - Control the 'sched_groups' policy.
++ * @gt: the &xe_gt where to apply the policy
++ * @value: the sched_group mode to be activated
 + *
 + * This function can only be called on PF.
-+ * It will log the provisioned value or an error in case of the failure.
 + *
 + * Return: 0 on success or a negative error code on failure.
 + */
-+int xe_gt_sriov_pf_config_set_groups_preempt_timeouts(struct xe_gt *gt, unsigned int vfid,
-+						      u32 *preempt_timeouts, u32 count)
++int xe_gt_sriov_pf_policy_set_sched_groups_mode(struct xe_gt *gt,
++						enum xe_sriov_sched_group_modes mode)
 +{
-+	int err;
++	if (!xe_sriov_gt_pf_policy_has_multi_group_modes(gt))
++		return -ENODEV;
 +
 +	guard(mutex)(xe_gt_sriov_pf_master_mutex(gt));
-+
-+	err = pf_provision_groups_preempt_timeouts(gt, vfid, preempt_timeouts, count);
-+
-+	return pf_groups_cfg_set_u32_done(gt, vfid, preempt_timeouts, count,
-+					  pf_get_groups_preempt_timeouts,
-+					  "preempt_timeout",
-+					  preempt_timeout_unit, err);
++	return pf_provision_sched_groups(gt, mode);
 +}
 +
-+/**
-+ * xe_gt_sriov_pf_config_get_groups_preempt_timeouts() - Get PF/VF sched groups PTs
-+ * @gt: the &xe_gt
-+ * @vfid: the PF or VF identifier
-+ * @preempt_timeouts: array in which to store the preemption timeouts values
-+ * @count: maximum number of entries to store
-+ *
-+ * This function can only be called on PF.
-+ */
-+void xe_gt_sriov_pf_config_get_groups_preempt_timeouts(struct xe_gt *gt, unsigned int vfid,
-+						       u32 *preempt_timeouts, u32 count)
-+{
-+	guard(mutex)(xe_gt_sriov_pf_master_mutex(gt));
-+
-+	xe_gt_assert(gt, count <= GUC_MAX_SCHED_GROUPS);
-+
-+	pf_get_groups_preempt_timeouts(gt, vfid, preempt_timeouts, count);
-+}
-+
- static const char *sched_priority_unit(u32 priority)
+ static void pf_sanitize_guc_policies(struct xe_gt *gt)
  {
- 	return priority == GUC_SCHED_PRIORITY_LOW ? "(low)" :
-@@ -2712,6 +2800,11 @@ static int pf_restore_vf_config_klv(struct xe_gt *gt, unsigned int vfid,
- 			return -EBADMSG;
- 		return pf_provision_groups_exec_quantums(gt, vfid, value, len);
+ 	pf_sanitize_sched_if_idle(gt);
+ 	pf_sanitize_reset_engine(gt);
+ 	pf_sanitize_sample_period(gt);
++	pf_sanitize_sched_groups(gt);
+ }
  
-+	case GUC_KLV_VF_CFG_ENGINE_GROUP_PREEMPT_TIMEOUT_KEY:
-+		if (len > GUC_KLV_VF_CFG_ENGINE_GROUP_PREEMPT_TIMEOUT_MAX_LEN)
-+			return -EBADMSG;
-+		return pf_provision_groups_preempt_timeouts(gt, vfid, value, len);
+ /**
+@@ -530,6 +682,7 @@ int xe_gt_sriov_pf_policy_reprovision(struct xe_gt *gt, bool reset)
+ 	err |= pf_reprovision_sched_if_idle(gt);
+ 	err |= pf_reprovision_reset_engine(gt);
+ 	err |= pf_reprovision_sample_period(gt);
++	err |= pf_reprovision_sched_groups(gt);
+ 	mutex_unlock(xe_gt_sriov_pf_master_mutex(gt));
+ 
+ 	xe_pm_runtime_put(gt_to_xe(gt));
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.h b/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.h
+index f5e3b2595063..d6e96302ff68 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.h
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.h
+@@ -8,6 +8,8 @@
+ 
+ #include <linux/types.h>
+ 
++#include "xe_gt_sriov_pf_policy_types.h"
 +
- 	case GUC_KLV_VF_CFG_PREEMPT_TIMEOUT_KEY:
- 		if (len != GUC_KLV_VF_CFG_PREEMPT_TIMEOUT_LEN)
- 			return -EBADMSG;
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h
-index aaed1f490da8..3c6c8b6655af 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h
-@@ -60,6 +60,11 @@ int xe_gt_sriov_pf_config_set_preempt_timeout_locked(struct xe_gt *gt, unsigned
- 						     u32 preempt_timeout);
- int xe_gt_sriov_pf_config_bulk_set_preempt_timeout_locked(struct xe_gt *gt, u32 preempt_timeout);
+ struct drm_printer;
+ struct xe_gt;
  
-+void xe_gt_sriov_pf_config_get_groups_preempt_timeouts(struct xe_gt *gt, unsigned int vfid,
-+						       u32 *preempt_timeout, u32 max_count);
-+int xe_gt_sriov_pf_config_set_groups_preempt_timeouts(struct xe_gt *gt, unsigned int vfid,
-+						      u32 *preempt_timeout, u32 count);
-+
- u32 xe_gt_sriov_pf_config_get_sched_priority(struct xe_gt *gt, unsigned int vfid);
- int xe_gt_sriov_pf_config_set_sched_priority(struct xe_gt *gt, unsigned int vfid, u32 priority);
+@@ -18,6 +20,11 @@ bool xe_gt_sriov_pf_policy_get_reset_engine(struct xe_gt *gt);
+ int xe_gt_sriov_pf_policy_set_sample_period(struct xe_gt *gt, u32 value);
+ u32 xe_gt_sriov_pf_policy_get_sample_period(struct xe_gt *gt);
+ bool xe_sriov_gt_pf_policy_has_sched_groups_support(struct xe_gt *gt);
++bool xe_sriov_gt_pf_policy_has_multi_group_modes(struct xe_gt *gt);
++bool xe_sriov_gt_pf_policy_has_sched_group_mode(struct xe_gt *gt,
++						enum xe_sriov_sched_group_modes mode);
++int xe_gt_sriov_pf_policy_set_sched_groups_mode(struct xe_gt *gt,
++						enum xe_sriov_sched_group_modes mode);
  
+ void xe_gt_sriov_pf_policy_init(struct xe_gt *gt);
+ void xe_gt_sriov_pf_policy_sanitize(struct xe_gt *gt);
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy_types.h b/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy_types.h
+index 11527ab1db7a..97d278190521 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy_types.h
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy_types.h
+@@ -24,6 +24,9 @@ enum xe_sriov_sched_group_modes {
+ 
+ /**
+  * struct xe_gt_sriov_scheduler_groups - Scheduler groups policy info
++ * @max_groups: max number of groups supported by the GuC for the platform
++ * @supported_modes: mask of supported modes
++ * @current_mode: active scheduler groups mode
+  * @modes: array of masks and their number for each mode
+  * @modes.groups: array of engine instance groups in given mode, with each group
+  *                consisting of GUC_MAX_ENGINE_CLASSES engine instances masks. A
+@@ -33,6 +36,9 @@ enum xe_sriov_sched_group_modes {
+  *                    are in the same group.
+  */
+ struct xe_gt_sriov_scheduler_groups {
++	u8 max_groups;
++	u32 supported_modes;
++	enum xe_sriov_sched_group_modes current_mode;
+ 	struct {
+ 		struct guc_sched_group *groups;
+ 		u32 num_groups;
 diff --git a/drivers/gpu/drm/xe/xe_guc_klv_helpers.c b/drivers/gpu/drm/xe/xe_guc_klv_helpers.c
-index b696a21f87e8..97600edda837 100644
+index 146a6eda9e06..1b08b443606e 100644
 --- a/drivers/gpu/drm/xe/xe_guc_klv_helpers.c
 +++ b/drivers/gpu/drm/xe/xe_guc_klv_helpers.c
-@@ -58,6 +58,8 @@ const char *xe_guc_klv_key_to_string(u16 key)
- 		return "sched_priority";
- 	case GUC_KLV_VF_CFG_ENGINE_GROUP_EXEC_QUANTUM_KEY:
- 		return "sched_groups_exec_quantum";
-+	case GUC_KLV_VF_CFG_ENGINE_GROUP_PREEMPT_TIMEOUT_KEY:
-+		return "sched_groups_preempt_timeout";
- 
- 	/* VF CFG threshold keys */
- #define define_threshold_key_to_string_case(TAG, NAME, ...)	\
+@@ -26,6 +26,8 @@ const char *xe_guc_klv_key_to_string(u16 key)
+ 		return "sched_if_idle";
+ 	case GUC_KLV_VGT_POLICY_ADVERSE_SAMPLE_PERIOD_KEY:
+ 		return "sample_period";
++	case GUC_KLV_VGT_POLICY_ENGINE_GROUP_CONFIG_KEY:
++		return "engine_group_config";
+ 	case GUC_KLV_VGT_POLICY_RESET_AFTER_VF_SWITCH_KEY:
+ 		return "reset_engine";
+ 	/* VF CFG keys */
 -- 
 2.43.0
 
