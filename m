@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D92E5D65C69
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 975BBD65C6C
 	for <intel-xe@archiver.kernel.org>; Wed, 17 Dec 2025 15:28:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8F89310ED01;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5A5FD10ED05;
 	Wed, 17 Dec 2025 15:28:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jI12VO7/";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jmULvm8I";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8AC8210ED07;
- Wed, 17 Dec 2025 15:28:50 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5608F10E8C1;
+ Wed, 17 Dec 2025 15:28:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765985331; x=1797521331;
+ t=1765985336; x=1797521336;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=eaG8dJ/ekyrDZgccVo96Ciu/oA/AfHKvgAl+K460Fr0=;
- b=jI12VO7/zAkNyc/oeVi3qaFvTUkCzMtFpVSReVjf0Wr1SnzxzKcXFIUE
- PFEaHHHj9brL4oZ5iXq64jrSAlNo8BmtRpiCJmMV25FdyP16D+evO1vh3
- ewf1/ib37mlSJoIxcf5dGOW2VKeoa543ST1h5P47RtFocbFFNZrMR+Rwe
- DBB7gj/eKFsLJCpx+/aBLuUGhnHGAH8g3jgWc3bY9LKZKFVVMsI8PqTW+
- VJs8E8swy4f/NGb57VZPJLDKa61wFRq683TOnSqkoEVr2YJwEijUxjiQT
- h9DF3mtEm1UTdWrT/beW99OeSd5BcIxVCpr0FplPi1IuUugCzCI5AqBPZ A==;
-X-CSE-ConnectionGUID: NGmvaRRYR7i4rz1pkizUqg==
-X-CSE-MsgGUID: MTnmPmelRIGjv2hFl9mHVA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11645"; a="71781450"
-X-IronPort-AV: E=Sophos;i="6.21,156,1763452800"; d="scan'208";a="71781450"
+ bh=hbyynb5bxs/Z8YKvCyxilwemIXVIPNwepx0zIqrHKNM=;
+ b=jmULvm8IE7I5rfGSfF0s5PSlR2TMcDIPXtWmAvefYIVIytn1h11xllcK
+ XfPsxqB41kQaxn6DiY/lgx1mgWDCoaYBMdJhmM9IfR3V40nQRXPS59hmk
+ 8MIa4oH+ey+rhm46NhF9RC49t239mpTNvfGKr9OLmZDEnzvfOTG7BEhjb
+ ZJ2BD2z3TrC6GvdB+dimQnhvXV7KMVauu+yWjGp9XW/lfQeFOGRLMZACP
+ nahCg1ROzYOSLRE/BcDu/A98IUvZuq6Kl2ucWc3oypMjq4hmZRVQ4k2eQ
+ s5LtllgrZKQ1DZfNgYNCemjHqYXYW6es6PpDBHFAhGmpa4UZ1B3MaoJad g==;
+X-CSE-ConnectionGUID: KbVQ4XE5RT64YURebYoYUg==
+X-CSE-MsgGUID: S5zkHvHbTf6DaD+iyJ0L+w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11645"; a="71781465"
+X-IronPort-AV: E=Sophos;i="6.21,156,1763452800"; d="scan'208";a="71781465"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Dec 2025 07:28:51 -0800
-X-CSE-ConnectionGUID: TrfWbOeASNSjJ69VNvW/oQ==
-X-CSE-MsgGUID: X8yu0O4zTcOjZGa04Tn7Vg==
+ 17 Dec 2025 07:28:56 -0800
+X-CSE-ConnectionGUID: UEfu7X3vSjefSuc3aAU0GQ==
+X-CSE-MsgGUID: abaZ/O5BSE2ljsYFMb+aOg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,156,1763452800"; d="scan'208";a="198097309"
+X-IronPort-AV: E=Sophos;i="6.21,156,1763452800"; d="scan'208";a="198097322"
 Received: from display-adls.igk.intel.com ([10.211.131.198])
- by orviesa009.jf.intel.com with ESMTP; 17 Dec 2025 07:28:49 -0800
+ by orviesa009.jf.intel.com with ESMTP; 17 Dec 2025 07:28:54 -0800
 From: Mika Kahola <mika.kahola@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Mika Kahola <mika.kahola@intel.com>
-Subject: [PATCH v2 08/15] drm/i915/display: Add helper function for fuzzy
- clock check
-Date: Wed, 17 Dec 2025 17:19:48 +0200
-Message-Id: <20251217151955.1690202-9-mika.kahola@intel.com>
+Subject: [PATCH v2 12/15] drm/i915/lt_phy: Add verification for lt phy pll
+ dividers
+Date: Wed, 17 Dec 2025 17:19:52 +0200
+Message-Id: <20251217151955.1690202-13-mika.kahola@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251217151955.1690202-1-mika.kahola@intel.com>
 References: <20251217151955.1690202-1-mika.kahola@intel.com>
@@ -67,133 +67,127 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The hard coded clock rate stored in the PLL state will be removed by
-a follow-up change. Prepare for that here to calculate instead the
-clock from the PLL divider values in the PLL state. Since this
-calculated clock can have a +-1 kHz difference wrt. the request clock,
-use a fuzzy check when looking up the corresponding table entry.
+Add verification for lt phy pll dividers during boot. The port clock
+is calculated from pll dividers and compared against the requested
+port clock value. If there are a difference exceeding +-1 kHz an
+drm_warn() is thrown out to indicate possible pll divider mismatch.
 
 v2:
-- Use the stricter +-1 kHz allowed difference.
-- Derive the clock from PLL dividers in intel_cx0pll_enable().
-- Move corresponding fuzzy check for LT PHY PLLs to this patch.
+- Move the LT_PHY_PLL_PARAMS -> LT_PHY_PLL_DP/HDMI_PARAMS change
+  earlier.
+- Use tables[i].name != NULL as a terminating condition.
+- Use state vs. params term consistently in intel_c10pll_verify_clock()
+  and intel_c20pll_verify_clock().
 
 Signed-off-by: Mika Kahola <mika.kahola@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cx0_phy.c | 26 +++++++++++++++++---
- drivers/gpu/drm/i915/display/intel_cx0_phy.h |  1 +
- drivers/gpu/drm/i915/display/intel_lt_phy.c  |  6 ++++-
- 3 files changed, 28 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.c |  2 +
+ drivers/gpu/drm/i915/display/intel_lt_phy.c   | 63 +++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_lt_phy.h   |  1 +
+ 3 files changed, 66 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-index ab402bd8a125..4d006c14c049 100644
---- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-@@ -2211,6 +2211,11 @@ static int intel_c20pll_calc_port_clock(const struct intel_c20pll_state *pll_sta
- 	return vco << tx_rate_mult >> tx_clk_div >> tx_rate;
+diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+index 7127bc2a0898..f35a9252f4e1 100644
+--- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
++++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+@@ -38,6 +38,7 @@
+ #include "intel_dpll.h"
+ #include "intel_dpll_mgr.h"
+ #include "intel_hti.h"
++#include "intel_lt_phy.h"
+ #include "intel_mg_phy_regs.h"
+ #include "intel_pch_refclk.h"
+ #include "intel_step.h"
+@@ -4639,6 +4640,7 @@ void intel_dpll_init(struct intel_display *display)
+ 	 * debug option.
+ 	 */
+ 	intel_cx0pll_verify_plls(display);
++	intel_lt_phy_verify_plls(display);
  }
  
-+bool intel_cx0pll_clock_matches(int clock1, int clock2)
-+{
-+	return abs(clock1 - clock2) <= 1;
-+}
-+
- /*
-  * TODO: Convert the following to align with intel_c20pll_find_table() and
-  * intel_c20pll_calc_state_from_table().
-@@ -2224,7 +2229,10 @@ static int intel_c10pll_calc_state_from_table(struct intel_encoder *encoder,
- 	int i;
- 
- 	for (i = 0; tables[i].name; i++) {
--		if (port_clock == tables[i].clock_rate) {
-+		int clock = intel_c10pll_calc_port_clock(tables[i].c10);
-+
-+		drm_WARN_ON(display->drm, !intel_cx0pll_clock_matches(clock, tables[i].clock_rate));
-+		if (intel_cx0pll_clock_matches(port_clock, clock)) {
- 			pll_state->c10 = *tables[i].c10;
- 			intel_cx0pll_update_ssc(encoder, pll_state, is_dp);
- 			intel_c10pll_update_pll(encoder, pll_state);
-@@ -2710,6 +2718,7 @@ static const struct intel_cx0pll_params *
- intel_c20_pll_find_table(const struct intel_crtc_state *crtc_state,
- 			 struct intel_encoder *encoder)
- {
-+	struct intel_display *display = to_intel_display(crtc_state);
- 	const struct intel_cx0pll_params *tables;
- 	int i;
- 
-@@ -2717,9 +2726,13 @@ intel_c20_pll_find_table(const struct intel_crtc_state *crtc_state,
- 	if (!tables)
- 		return NULL;
- 
--	for (i = 0; tables[i].name; i++)
--		if (crtc_state->port_clock == tables[i].clock_rate)
-+	for (i = 0; tables[i].name; i++) {
-+		int clock = intel_c20pll_calc_port_clock(tables[i].c20);
-+
-+		drm_WARN_ON(display->drm, !intel_cx0pll_clock_matches(clock, tables[i].clock_rate));
-+		if (intel_cx0pll_clock_matches(crtc_state->port_clock, clock))
- 			return &tables[i];
-+	}
- 
- 	return NULL;
- }
-@@ -3252,7 +3265,6 @@ static u32 intel_cx0_get_pclk_pll_ack(u8 lane_mask)
- static void intel_cx0pll_enable(struct intel_encoder *encoder,
- 				const struct intel_cx0pll_state *pll_state)
- {
--	int port_clock = pll_state->use_c10 ? pll_state->c10.clock : pll_state->c20.clock;
- 	struct intel_display *display = to_intel_display(encoder);
- 	enum phy phy = intel_encoder_to_phy(encoder);
- 	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
-@@ -3260,6 +3272,12 @@ static void intel_cx0pll_enable(struct intel_encoder *encoder,
- 	u8 maxpclk_lane = lane_reversal ? INTEL_CX0_LANE1 :
- 					  INTEL_CX0_LANE0;
- 	struct ref_tracker *wakeref = intel_cx0_phy_transaction_begin(encoder);
-+	int port_clock;
-+
-+	if (pll_state->use_c10)
-+		port_clock = intel_c10pll_calc_port_clock(&pll_state->c10);
-+	else
-+		port_clock = intel_c20pll_calc_port_clock(&pll_state->c20);
- 
- 	/*
- 	 * Lane reversal is never used in DP-alt mode, in that case the
-diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.h b/drivers/gpu/drm/i915/display/intel_cx0_phy.h
-index 9f10113e2d18..3d9c580eb562 100644
---- a/drivers/gpu/drm/i915/display/intel_cx0_phy.h
-+++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.h
-@@ -43,6 +43,7 @@ void intel_mtl_tbt_pll_enable_clock(struct intel_encoder *encoder,
- 				    int port_clock);
- void intel_mtl_tbt_pll_disable_clock(struct intel_encoder *encoder);
- 
-+bool intel_cx0pll_clock_matches(int clock1, int clock2);
- int intel_cx0pll_calc_state(const struct intel_crtc_state *crtc_state,
- 			    struct intel_encoder *encoder,
- 			    struct intel_dpll_hw_state *hw_state);
+ /**
 diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.c b/drivers/gpu/drm/i915/display/intel_lt_phy.c
-index 64e223f35fdf..e33f6f48a6ce 100644
+index e33f6f48a6ce..13acfc7c0469 100644
 --- a/drivers/gpu/drm/i915/display/intel_lt_phy.c
 +++ b/drivers/gpu/drm/i915/display/intel_lt_phy.c
-@@ -1792,6 +1792,7 @@ int
- intel_lt_phy_pll_calc_state(struct intel_crtc_state *crtc_state,
- 			    struct intel_encoder *encoder)
- {
-+	struct intel_display *display = to_intel_display(crtc_state);
- 	const struct intel_lt_phy_pll_params *tables;
- 	int i;
+@@ -2343,3 +2343,66 @@ void intel_xe3plpd_pll_disable(struct intel_encoder *encoder)
+ 		intel_lt_phy_pll_disable(encoder);
  
-@@ -1800,7 +1801,10 @@ intel_lt_phy_pll_calc_state(struct intel_crtc_state *crtc_state,
- 		return -EINVAL;
- 
- 	for (i = 0; tables[i].name; i++) {
--		if (crtc_state->port_clock == tables[i].clock_rate) {
-+		int clock = intel_lt_phy_calc_port_clock(display, tables[i].state);
+ }
 +
-+		drm_WARN_ON(display->drm, !intel_cx0pll_clock_matches(clock, tables[i].clock_rate));
-+		if (intel_cx0pll_clock_matches(crtc_state->port_clock, clock)) {
- 			crtc_state->dpll_hw_state.ltpll = *tables[i].state;
- 			if (intel_crtc_has_dp_encoder(crtc_state)) {
- 				if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP))
++static void intel_lt_phy_pll_verify_clock(struct intel_display *display,
++					  int precomputed_clock,
++					  const char *pll_state_name,
++					  const struct intel_lt_phy_pll_state *pll_state,
++					  bool is_precomputed_state)
++{
++	struct drm_printer p;
++	int clock;
++
++	clock = intel_lt_phy_calc_port_clock(display, pll_state);
++
++	if (intel_cx0pll_clock_matches(clock, precomputed_clock))
++		return;
++
++	drm_warn(display->drm,
++		 "PLL state %s (%s): clock difference too high: computed %d, pre-computed %d\n",
++		 pll_state_name,
++		 is_precomputed_state ? "precomputed" : "computed",
++		 clock, precomputed_clock);
++
++	if (!drm_debug_enabled(DRM_UT_KMS))
++		return;
++
++	p = drm_dbg_printer(display->drm, DRM_UT_KMS, NULL);
++
++	drm_printf(&p, "PLL state %s (%s):\n",
++		   pll_state_name,
++		   is_precomputed_state ? "precomputed" : "computed");
++	intel_lt_phy_dump_hw_state(display, pll_state);
++}
++
++static void intel_lt_phy_pll_verify_params(struct intel_display *display,
++					   const struct intel_lt_phy_pll_params *pll_params)
++{
++	struct intel_lt_phy_pll_state pll_state;
++
++	intel_lt_phy_pll_verify_clock(display, pll_params->clock_rate, pll_params->name, pll_params->state, true);
++
++	if (!pll_params->is_hdmi)
++		return;
++
++	if (intel_lt_phy_calculate_hdmi_state(&pll_state, pll_params->clock_rate) != 0)
++		return;
++
++	intel_lt_phy_pll_verify_clock(display, pll_params->clock_rate, pll_params->name, &pll_state, false);
++}
++
++static void intel_lt_phy_pll_verify_tables(struct intel_display *display,
++					   const struct intel_lt_phy_pll_params *tables)
++{
++	int i;
++
++	for (i = 0; tables[i].name; i++)
++		intel_lt_phy_pll_verify_params(display, &tables[i]);
++}
++
++void intel_lt_phy_verify_plls(struct intel_display *display)
++{
++	intel_lt_phy_pll_verify_tables(display, xe3plpd_lt_dp_tables);
++	intel_lt_phy_pll_verify_tables(display, xe3plpd_lt_edp_tables);
++	intel_lt_phy_pll_verify_tables(display, xe3plpd_lt_hdmi_tables);
++}
+diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.h b/drivers/gpu/drm/i915/display/intel_lt_phy.h
+index c4999a55473e..56c5a875d93b 100644
+--- a/drivers/gpu/drm/i915/display/intel_lt_phy.h
++++ b/drivers/gpu/drm/i915/display/intel_lt_phy.h
+@@ -41,5 +41,6 @@ intel_lt_phy_calculate_hdmi_state(struct intel_lt_phy_pll_state *lt_state,
+ void intel_xe3plpd_pll_enable(struct intel_encoder *encoder,
+ 			      const struct intel_crtc_state *crtc_state);
+ void intel_xe3plpd_pll_disable(struct intel_encoder *encoder);
++void intel_lt_phy_verify_plls(struct intel_display *display);
+ 
+ #endif /* __INTEL_LT_PHY_H__ */
 -- 
 2.34.1
 
