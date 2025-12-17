@@ -4,54 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 90EE8D637DF
-	for <intel-xe@archiver.kernel.org>; Wed, 17 Dec 2025 01:26:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 84641D609D5
+	for <intel-xe@archiver.kernel.org>; Wed, 17 Dec 2025 01:26:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 502AF10E9BD;
-	Wed, 17 Dec 2025 01:26:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4888C10E80A;
+	Wed, 17 Dec 2025 01:26:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="L4MO2V11";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bfnQ6hPw";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C09B410E80A
- for <intel-xe@lists.freedesktop.org>; Wed, 17 Dec 2025 01:26:34 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4AAAE10E80A
+ for <intel-xe@lists.freedesktop.org>; Wed, 17 Dec 2025 01:26:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765934795; x=1797470795;
+ t=1765934799; x=1797470799;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=cpnQi62sWWF5Sez5/ej8cGxj9xHgLUMrDeGrPznRCHE=;
- b=L4MO2V11gaCMohbQnqgEqIWjrPTZ5FtU1Q54y4FmSdTfud5cl2jk2jLU
- CPo/70Tuv48m9Xf0YXiTGOgDGqtEou1etGXdxTAR3THTI3eSjzDgUN2+y
- I3QzCfUEdWLt16Ixe5bAYpA5WUSVga4r7LoOddCQPhgLn6v9F/E2Tdgo9
- KvCQ1OPN92+8chdsbvn4xDwNKJYEDRXoNfXB5Jc5UOlxd/q1zWajGuRxB
- SmZzlK9G7mLXfFHdGlLqXRp0tckiF70OK71j9bTgD9o6jz2tNBYVlD7cY
- KU1LU4lNc71COs/A3Mwu2ETsUkOrkL3a5Y9nyMvhMlurd0vFY9MpDcml+ w==;
-X-CSE-ConnectionGUID: 1xshWzpCQAKiWX5thana5A==
-X-CSE-MsgGUID: 04ES3qYPSAqQuU6ICIB8ZA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11644"; a="67903829"
-X-IronPort-AV: E=Sophos;i="6.21,154,1763452800"; d="scan'208";a="67903829"
+ bh=+eNkCrpWlHax+ECsbrflsfQR/3mv9dMQf8EKucxrxoI=;
+ b=bfnQ6hPwy7nA7UuS+uyj98W7k4vT64JKLaB55ywh92AB5xC5i61tC7gJ
+ UUSk+mu/sI57zEaRb+tmJt9sHTsoDD66XVzHyi0nhBL6iwnRfJjBbCzhb
+ Ihl4QljwCK7R+FglMW3OaH2vpMNn8uRUkp9O1+kdG+AF/dHDIhuSm+adI
+ yyM+Vsrcfy+twCa8vNNLBertlV5i+jTT39nsKyZ0y9FmUN42fNz0RRkoQ
+ Y8jDU3baKPGQDVlVcdeu4CnrL9sxzyROEdgdDy//RpihG9WIpbrLG84Zf
+ sRuOFE7FEpWzD3cjD8dSV464VKvQ/QwUq34qQU0DNuJ2gVI9veYn6dXLZ A==;
+X-CSE-ConnectionGUID: cgLcHq+nS0CP+UZVmGTFyw==
+X-CSE-MsgGUID: aVxq4ZcRTBq8i1Z7QvWKRQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11644"; a="67903838"
+X-IronPort-AV: E=Sophos;i="6.21,154,1763452800"; d="scan'208";a="67903838"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2025 17:26:35 -0800
-X-CSE-ConnectionGUID: wynNLB/6TkumEgcdqvmmiw==
-X-CSE-MsgGUID: AIMgYMyaSau/32deHgfRvQ==
+ 16 Dec 2025 17:26:38 -0800
+X-CSE-ConnectionGUID: ud9BKTw9T5CziHoboQOcTQ==
+X-CSE-MsgGUID: gHab4PEYTZinngA8yrD8/g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,154,1763452800"; d="scan'208";a="202360602"
+X-IronPort-AV: E=Sophos;i="6.21,154,1763452800"; d="scan'208";a="202360615"
 Received: from valcore-skull-1.fm.intel.com ([10.1.39.17])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2025 17:26:34 -0800
+ 16 Dec 2025 17:26:37 -0800
 From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Subject: [PATCH v4 01/13] DO_NOT_MERGE: PF: Add handling for new adverse event
- thresholds
-Date: Tue, 16 Dec 2025 17:26:21 -0800
-Message-ID: <20251217012620.758252-16-daniele.ceraolospurio@intel.com>
+Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
+ Michal Wajdeczko <michal.wajdeczko@intel.com>
+Subject: [PATCH v4 04/13] drm/xe/sriov: Initialize scheduler groups
+Date: Tue, 16 Dec 2025 17:26:24 -0800
+Message-ID: <20251217012620.758252-19-daniele.ceraolospurio@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20251217012620.758252-15-daniele.ceraolospurio@intel.com>
 References: <20251217012620.758252-15-daniele.ceraolospurio@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -67,352 +68,364 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This patch is a squash of the entire series called "PF: Add handling
-for new adverse event thresholds" [1], which is a dependency for the
-follow up patches.
-The series is being reviewed separately, this patch is only include so
-that the next ones build correctly.
+Scheduler groups (a.k.a. Engine Groups Scheduling, or EGS) is a GuC
+feature that allows the driver to define groups of engines that are
+independently scheduled across VFs, which allows different VFs to be
+active on the HW at the same time on different groups. The feature is
+available for BMG and newer HW starting on GuC 70.53.0, but some
+required fixes have been added to GuC 70.55.1.
 
-[1] https://patchwork.freedesktop.org/series/158874/
+This is intended for specific scenarios where the admin knows that the
+VFs are not going to fully utilize the HW and therefore assigning all of
+it to a single VF would lead to part of it being permanently idle.
+We do not allow the admin to decide how to divide the engines across
+groups, but we instead support specific configurations that are designed
+for specific use-cases. During PF initialization we detect which
+configurations are possible on a given GT and create the relevant
+groups. Since the GuC expect a mask for each class for each group, that
+is what we save when we init the configs.
+
+Right now we only have one use-case on the media GT. If the VFs are
+running a frame render + encoding at a not-too-high resolution (e.g.
+1080@30fps) the render can produce frames faster than the video engine
+can encode them, which means that the maximum number of parallel VFs is
+limited by the VCS bandwidth. Since our products can have multiple VCS
+engines, allowing multiple VFs to be active on the different VCS engines
+at the same time allows us to run more parallel VFs on the same HW.
+Given that engines in the same media slice share some resources (e.g.
+SFC), we assign each media slice to a different scheduling group. We
+refer to this configuration as "media_slices", given that each slice
+gets its own group. Since upcoming products have a different number of
+video engines per-slice, for now we limit the media_slices mode to BMG,
+but we expect to add support for newer HW soon.
+
 Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com> #v3
 ---
- drivers/gpu/drm/xe/abi/guc_klvs_abi.h         |  9 ++++
- drivers/gpu/drm/xe/tests/xe_args_test.c       | 54 +++++++++++++++++++
- drivers/gpu/drm/xe/xe_args.h                  | 27 ++++++++++
- drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c    | 19 ++++---
- drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c   |  9 ++--
- drivers/gpu/drm/xe/xe_gt_sriov_pf_migration.c |  2 +-
- drivers/gpu/drm/xe/xe_guc.h                   | 21 ++++++++
- drivers/gpu/drm/xe/xe_guc_ads.c               |  4 +-
- .../drm/xe/xe_guc_klv_thresholds_set_types.h  |  6 +++
- 9 files changed, 138 insertions(+), 13 deletions(-)
+v2: Use asserts for coding errors, code cleanups, better docs (Michal),
+    limit groups to 2, limit to BMG and newer, bump required GuC to
+    70.55.1.
+v3: Use a struct sched_groups array instead of an array of u32 masks,
+    move the max_group check to the next patch, rename NONE to
+    DISABLED (Michal), limit the media_slices mode to BMG.
+v4: Rework switch case to have the compiler flag the missing cases,
+    fix enum docs, use GUC_FIRMWARE_VER_AT_LEAST
+---
+ drivers/gpu/drm/xe/abi/guc_scheduler_abi.h    |   9 ++
+ drivers/gpu/drm/xe/xe_gt.h                    |   3 +
+ drivers/gpu/drm/xe/xe_gt_sriov_pf.c           |   3 +
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.c    | 148 ++++++++++++++++++
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.h    |   2 +
+ .../gpu/drm/xe/xe_gt_sriov_pf_policy_types.h  |  33 ++++
+ 6 files changed, 198 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h b/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
-index 265a135e7061..89a4f8c504e6 100644
---- a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
-+++ b/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
-@@ -352,6 +352,12 @@ enum  {
-  *      :1: NORMAL = schedule VF always, irrespective of whether it has work or not
-  *      :2: HIGH = schedule VF in the next time-slice after current active
-  *          time-slice completes if it has active work
-+ *
-+ * _`GUC_KLV_VF_CFG_THRESHOLD_MULTI_LRC_COUNT` : 0x8A0D
-+ *      Given that multi-LRC contexts are incompatible with SRIOV scheduler
-+ *      groups and cause the latter to be turned off when registered with the
-+ *      GuC, this config allows the PF to set a threshold for multi-LRC context
-+ *      registrations by VFs to monitor their behavior.
-  */
+diff --git a/drivers/gpu/drm/xe/abi/guc_scheduler_abi.h b/drivers/gpu/drm/xe/abi/guc_scheduler_abi.h
+index db9c171f8b64..513b22a87428 100644
+--- a/drivers/gpu/drm/xe/abi/guc_scheduler_abi.h
++++ b/drivers/gpu/drm/xe/abi/guc_scheduler_abi.h
+@@ -6,6 +6,8 @@
+ #ifndef _ABI_GUC_SCHEDULER_ABI_H
+ #define _ABI_GUC_SCHEDULER_ABI_H
  
- #define GUC_KLV_VF_CFG_GGTT_START_KEY		0x0001
-@@ -410,6 +416,9 @@ enum  {
- #define   GUC_SCHED_PRIORITY_NORMAL		1u
- #define   GUC_SCHED_PRIORITY_HIGH		2u
- 
-+#define GUC_KLV_VF_CFG_THRESHOLD_MULTI_LRC_COUNT_KEY	0x8a0d
-+#define GUC_KLV_VF_CFG_THRESHOLD_MULTI_LRC_COUNT_LEN	1u
-+
- /*
-  * Workaround keys:
-  */
-diff --git a/drivers/gpu/drm/xe/tests/xe_args_test.c b/drivers/gpu/drm/xe/tests/xe_args_test.c
-index f3fb23aa5d2e..8bef24cf8c70 100644
---- a/drivers/gpu/drm/xe/tests/xe_args_test.c
-+++ b/drivers/gpu/drm/xe/tests/xe_args_test.c
-@@ -78,6 +78,24 @@ static void pick_arg_example(struct kunit *test)
- #undef buz
- }
- 
-+static void if_args_example(struct kunit *test)
-+{
-+	enum { Z = 1, Q };
-+
-+#define foo	X, Y
-+#define bar	IF_ARGS(Z, Q, foo)
-+#define buz	IF_ARGS(Z, Q, DROP_FIRST_ARG(FIRST_ARG(foo)))
-+
-+	KUNIT_EXPECT_EQ(test, bar, Z);
-+	KUNIT_EXPECT_EQ(test, buz, Q);
-+	KUNIT_EXPECT_STREQ(test, __stringify(bar), "Z");
-+	KUNIT_EXPECT_STREQ(test, __stringify(buz), "Q");
-+
-+#undef foo
-+#undef bar
-+#undef buz
-+}
-+
- static void sep_comma_example(struct kunit *test)
- {
- #define foo(f)	f(X) f(Y) f(Z) f(Q)
-@@ -198,6 +216,40 @@ static void last_arg_test(struct kunit *test)
- 	KUNIT_EXPECT_STREQ(test, __stringify(LAST_ARG(MAX_ARGS)), "-12");
- }
- 
-+static void if_args_test(struct kunit *test)
-+{
-+	bool with_args = true;
-+	bool no_args = false;
-+	enum { X = 100 };
-+
-+	KUNIT_EXPECT_TRUE(test, IF_ARGS(true, false, FOO_ARGS));
-+	KUNIT_EXPECT_FALSE(test, IF_ARGS(true, false, NO_ARGS));
-+
-+	KUNIT_EXPECT_TRUE(test, CONCATENATE(IF_ARGS(with, no, FOO_ARGS), _args));
-+	KUNIT_EXPECT_FALSE(test, CONCATENATE(IF_ARGS(with, no, NO_ARGS), _args));
-+
-+	KUNIT_EXPECT_STREQ(test, __stringify(IF_ARGS(yes, no, FOO_ARGS)), "yes");
-+	KUNIT_EXPECT_STREQ(test, __stringify(IF_ARGS(no, no, NO_ARGS)), "no");
-+
-+	KUNIT_EXPECT_EQ(test, IF_ARGS(CALL_ARGS(COUNT_ARGS, FOO_ARGS), -1, FOO_ARGS), 4);
-+	KUNIT_EXPECT_EQ(test, IF_ARGS(CALL_ARGS(COUNT_ARGS, FOO_ARGS), -1, NO_ARGS), -1);
-+	KUNIT_EXPECT_EQ(test, IF_ARGS(CALL_ARGS(COUNT_ARGS, NO_ARGS), -1, FOO_ARGS), 0);
-+	KUNIT_EXPECT_EQ(test, IF_ARGS(CALL_ARGS(COUNT_ARGS, NO_ARGS), -1, NO_ARGS), -1);
-+
-+	KUNIT_EXPECT_EQ(test,
-+			CALL_ARGS(FIRST_ARG,
-+				  CALL_ARGS(CONCATENATE, IF_ARGS(FOO, MAX, FOO_ARGS), _ARGS)), X);
-+	KUNIT_EXPECT_EQ(test,
-+			CALL_ARGS(FIRST_ARG,
-+				  CALL_ARGS(CONCATENATE, IF_ARGS(FOO, MAX, NO_ARGS), _ARGS)), -1);
-+	KUNIT_EXPECT_EQ(test,
-+			CALL_ARGS(COUNT_ARGS,
-+				  CALL_ARGS(CONCATENATE, IF_ARGS(FOO, MAX, FOO_ARGS), _ARGS)), 4);
-+	KUNIT_EXPECT_EQ(test,
-+			CALL_ARGS(COUNT_ARGS,
-+				  CALL_ARGS(CONCATENATE, IF_ARGS(FOO, MAX, NO_ARGS), _ARGS)), 12);
-+}
-+
- static struct kunit_case args_tests[] = {
- 	KUNIT_CASE(count_args_test),
- 	KUNIT_CASE(call_args_example),
-@@ -209,6 +261,8 @@ static struct kunit_case args_tests[] = {
- 	KUNIT_CASE(last_arg_example),
- 	KUNIT_CASE(last_arg_test),
- 	KUNIT_CASE(pick_arg_example),
-+	KUNIT_CASE(if_args_example),
-+	KUNIT_CASE(if_args_test),
- 	KUNIT_CASE(sep_comma_example),
- 	{}
- };
-diff --git a/drivers/gpu/drm/xe/xe_args.h b/drivers/gpu/drm/xe/xe_args.h
-index 4dbc7e53c624..f550b5e3b993 100644
---- a/drivers/gpu/drm/xe/xe_args.h
-+++ b/drivers/gpu/drm/xe/xe_args.h
-@@ -121,6 +121,33 @@
- #define PICK_ARG11(args...)		PICK_ARG10(DROP_FIRST_ARG(args))
- #define PICK_ARG12(args...)		PICK_ARG11(DROP_FIRST_ARG(args))
- 
-+/**
-+ * IF_ARGS() - Make selection based on optional argument list.
-+ * @then: token to return if arguments are present
-+ * @else: token to return if arguments are empty
-+ * @...: arguments to check (optional)
-+ *
-+ * This macro allows to select a token based on the presence of the argument list.
-+ *
-+ * Example:
-+ *
-+ *	#define foo	X, Y
-+ *	#define bar	IF_ARGS(Z, Q, foo)
-+ *	#define buz	IF_ARGS(Z, Q, DROP_FIRST_ARG(FIRST_ARG(foo)))
-+ *
-+ *	With above definitions bar expands to Z while buz expands to Q.
-+ */
-+#if defined(CONFIG_CC_IS_CLANG) || GCC_VERSION >= 100100
-+#define IF_ARGS(then, else, ...)	FIRST_ARG(__VA_OPT__(then,) else)
-+#else
-+#define IF_ARGS(then, else, ...)	_IF_ARGS(then, else, CALL_ARGS(FIRST_ARG, __VA_ARGS__))
-+#define _IF_ARGS(then, else, ...)	__IF_ARGS(then, else, CALL_ARGS(COUNT_ARGS, __VA_ARGS__))
-+#define __IF_ARGS(then, else, n)	___IF_ARGS(then, else, CALL_ARGS(CONCATENATE, ___IF_ARG, n))
-+#define ___IF_ARGS(then, else, if)	CALL_ARGS(if, then, else)
-+#define ___IF_ARG1(then, else)		then
-+#define ___IF_ARG0(then, else)		else
-+#endif
++#include <linux/types.h>
 +
  /**
-  * ARGS_SEP_COMMA - Definition of a comma character.
-  *
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-index 59c5c6b4d994..6e8507c24986 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-@@ -269,7 +269,8 @@ static u32 encode_config_ggtt(u32 *cfg, const struct xe_gt_sriov_config *config,
- }
+  * Generic defines required for registration with and submissions to the GuC
+  * scheduler. Includes engine class/instance defines and context attributes
+@@ -45,4 +47,11 @@
+ #define GUC_CONTEXT_DISABLE		0
+ #define GUC_CONTEXT_ENABLE		1
  
- /* Return: number of configuration dwords written */
--static u32 encode_config(u32 *cfg, const struct xe_gt_sriov_config *config, bool details)
-+static u32 encode_config(struct xe_gt *gt, u32 *cfg, const struct xe_gt_sriov_config *config,
-+			 bool details)
- {
- 	u32 n = 0;
- 
-@@ -303,9 +304,11 @@ static u32 encode_config(u32 *cfg, const struct xe_gt_sriov_config *config, bool
- 	cfg[n++] = PREP_GUC_KLV_TAG(VF_CFG_PREEMPT_TIMEOUT);
- 	cfg[n++] = config->preempt_timeout;
- 
--#define encode_threshold_config(TAG, ...) ({					\
--	cfg[n++] = PREP_GUC_KLV_TAG(VF_CFG_THRESHOLD_##TAG);			\
--	cfg[n++] = config->thresholds[MAKE_XE_GUC_KLV_THRESHOLD_INDEX(TAG)];	\
-+#define encode_threshold_config(TAG, NAME, VER...) ({					\
-+	if (IF_ARGS(GUC_FIRMWARE_VER_AT_LEAST(&gt->uc.guc, VER), true, VER)) {		\
-+		cfg[n++] = PREP_GUC_KLV_TAG(VF_CFG_THRESHOLD_##TAG);			\
-+		cfg[n++] = config->thresholds[MAKE_XE_GUC_KLV_THRESHOLD_INDEX(TAG)];	\
-+	}										\
- });
- 
- 	MAKE_XE_GUC_KLV_THRESHOLDS_SET(encode_threshold_config);
-@@ -328,7 +331,7 @@ static int pf_push_full_vf_config(struct xe_gt *gt, unsigned int vfid)
- 		return -ENOBUFS;
- 
- 	cfg = xe_guc_buf_cpu_ptr(buf);
--	num_dwords = encode_config(cfg, config, true);
-+	num_dwords = encode_config(gt, cfg, config, true);
- 	xe_gt_assert(gt, num_dwords <= max_cfg_dwords);
- 
- 	if (xe_gt_is_media_type(gt)) {
-@@ -2518,7 +2521,7 @@ ssize_t xe_gt_sriov_pf_config_save(struct xe_gt *gt, unsigned int vfid, void *bu
- 			ret = -ENOBUFS;
- 		} else {
- 			config = pf_pick_vf_config(gt, vfid);
--			ret = encode_config(buf, config, false) * sizeof(u32);
-+			ret = encode_config(gt, buf, config, false) * sizeof(u32);
- 		}
- 	}
- 	mutex_unlock(xe_gt_sriov_pf_master_mutex(gt));
-@@ -2551,11 +2554,13 @@ static int pf_restore_vf_config_klv(struct xe_gt *gt, unsigned int vfid,
- 		return pf_provision_preempt_timeout(gt, vfid, value[0]);
- 
- 	/* auto-generate case statements */
--#define define_threshold_key_to_provision_case(TAG, ...)				\
-+#define define_threshold_key_to_provision_case(TAG, NAME, VER...)			\
- 	case MAKE_GUC_KLV_VF_CFG_THRESHOLD_KEY(TAG):					\
- 		BUILD_BUG_ON(MAKE_GUC_KLV_VF_CFG_THRESHOLD_LEN(TAG) != 1u);		\
- 		if (len != MAKE_GUC_KLV_VF_CFG_THRESHOLD_LEN(TAG))			\
- 			return -EBADMSG;						\
-+		if (IF_ARGS(!GUC_FIRMWARE_VER_AT_LEAST(&gt->uc.guc, VER), false, VER))	\
-+			return -EKEYREJECTED;						\
- 		return pf_provision_threshold(gt, vfid,					\
- 					      MAKE_XE_GUC_KLV_THRESHOLD_INDEX(TAG),	\
- 					      value[0]);
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
-index 0fd863609848..ece9eed5d7c5 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
-@@ -21,6 +21,7 @@
- #include "xe_gt_sriov_pf_monitor.h"
- #include "xe_gt_sriov_pf_policy.h"
- #include "xe_gt_sriov_pf_service.h"
-+#include "xe_guc.h"
- #include "xe_pm.h"
- #include "xe_sriov_pf.h"
- #include "xe_sriov_pf_provision.h"
-@@ -301,9 +302,11 @@ static void pf_add_config_attrs(struct xe_gt *gt, struct dentry *parent, unsigne
- 				   &sched_priority_fops);
- 
- 	/* register all threshold attributes */
--#define register_threshold_attribute(TAG, NAME, ...) \
--	debugfs_create_file_unsafe("threshold_" #NAME, 0644, parent, parent, \
--				   &NAME##_fops);
-+#define register_threshold_attribute(TAG, NAME, VER...) ({				\
-+	if (IF_ARGS(GUC_FIRMWARE_VER_AT_LEAST(&gt->uc.guc, VER), true, VER))		\
-+		debugfs_create_file_unsafe("threshold_" #NAME, 0644, parent, parent,	\
-+					   &NAME##_fops);				\
-+});
- 	MAKE_XE_GUC_KLV_THRESHOLDS_SET(register_threshold_attribute)
- #undef register_threshold_attribute
- }
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_migration.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_migration.c
-index 3174a8dee779..7410e7b93256 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_migration.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_migration.c
-@@ -1026,7 +1026,7 @@ static void action_ring_cleanup(void *arg)
- 
- static void pf_gt_migration_check_support(struct xe_gt *gt)
- {
--	if (GUC_FIRMWARE_VER(&gt->uc.guc) < MAKE_GUC_VER(70, 54, 0))
-+	if (!GUC_FIRMWARE_VER_AT_LEAST(&gt->uc.guc, 70, 54))
- 		xe_sriov_pf_migration_disable(gt_to_xe(gt), "requires GuC version >= 70.54.0");
- }
- 
-diff --git a/drivers/gpu/drm/xe/xe_guc.h b/drivers/gpu/drm/xe/xe_guc.h
-index fdb08658d05a..a169f231cbd8 100644
---- a/drivers/gpu/drm/xe/xe_guc.h
-+++ b/drivers/gpu/drm/xe/xe_guc.h
-@@ -18,10 +18,16 @@
-  */
- #define MAKE_GUC_VER(maj, min, pat)	(((maj) << 16) | ((min) << 8) | (pat))
- #define MAKE_GUC_VER_STRUCT(ver)	MAKE_GUC_VER((ver).major, (ver).minor, (ver).patch)
-+#define MAKE_GUC_VER_ARGS(ver...) \
-+	(BUILD_BUG_ON_ZERO(COUNT_ARGS(ver) < 2 || COUNT_ARGS(ver) > 3) + \
-+	 MAKE_GUC_VER(PICK_ARG1(ver), PICK_ARG2(ver), IF_ARGS(PICK_ARG3(ver), 0, PICK_ARG3(ver))))
++/* scheduler groups */
++#define GUC_MAX_SCHED_GROUPS		8
 +
- #define GUC_SUBMIT_VER(guc) \
- 	MAKE_GUC_VER_STRUCT((guc)->fw.versions.found[XE_UC_FW_VER_COMPATIBILITY])
- #define GUC_FIRMWARE_VER(guc) \
- 	MAKE_GUC_VER_STRUCT((guc)->fw.versions.found[XE_UC_FW_VER_RELEASE])
-+#define GUC_FIRMWARE_VER_AT_LEAST(guc, ver...) \
-+	xe_guc_fw_version_at_least((guc), MAKE_GUC_VER_ARGS(ver))
++struct guc_sched_group {
++	u32 engines[GUC_MAX_ENGINE_CLASSES];
++} __packed;
++
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_gt.h b/drivers/gpu/drm/xe/xe_gt.h
+index a2ba80c954a6..de7e47763411 100644
+--- a/drivers/gpu/drm/xe/xe_gt.h
++++ b/drivers/gpu/drm/xe/xe_gt.h
+@@ -29,6 +29,9 @@
+ #define CCS_INSTANCES(gt) XE_ENGINE_INSTANCES_FROM_MASK(gt, CCS)
+ #define GSCCS_INSTANCES(gt) XE_ENGINE_INSTANCES_FROM_MASK(gt, GSCCS)
  
- struct drm_printer;
++/* Our devices have up to 4 media slices */
++#define MAX_MEDIA_SLICES 4
++
+ #define GT_VER(gt) ({ \
+ 	typeof(gt) gt_ = (gt); \
+ 	struct xe_device *xe = gt_to_xe(gt_); \
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf.c
+index 0714c758b9c1..0d97a823e702 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_pf.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf.c
+@@ -14,6 +14,7 @@
+ #include "xe_gt_sriov_pf_control.h"
+ #include "xe_gt_sriov_pf_helpers.h"
+ #include "xe_gt_sriov_pf_migration.h"
++#include "xe_gt_sriov_pf_policy.h"
+ #include "xe_gt_sriov_pf_service.h"
+ #include "xe_gt_sriov_printk.h"
+ #include "xe_guc_submit.h"
+@@ -123,6 +124,8 @@ int xe_gt_sriov_pf_init(struct xe_gt *gt)
+ 	if (err)
+ 		return err;
  
-@@ -96,4 +102,19 @@ static inline struct drm_device *guc_to_drm(struct xe_guc *guc)
- 	return &guc_to_xe(guc)->drm;
++	xe_gt_sriov_pf_policy_init(gt);
++
+ 	err = xe_gt_sriov_pf_migration_init(gt);
+ 	if (err)
+ 		return err;
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.c
+index 4445f660e6d1..fc60e7a01434 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.c
+@@ -3,6 +3,8 @@
+  * Copyright © 2023-2024 Intel Corporation
+  */
+ 
++#include <drm/drm_managed.h>
++
+ #include "abi/guc_actions_sriov_abi.h"
+ 
+ #include "xe_bo.h"
+@@ -10,6 +12,7 @@
+ #include "xe_gt_sriov_pf_helpers.h"
+ #include "xe_gt_sriov_pf_policy.h"
+ #include "xe_gt_sriov_printk.h"
++#include "xe_guc.h"
+ #include "xe_guc_buf.h"
+ #include "xe_guc_ct.h"
+ #include "xe_guc_klv_helpers.h"
+@@ -351,6 +354,139 @@ u32 xe_gt_sriov_pf_policy_get_sample_period(struct xe_gt *gt)
+ 	return value;
+ }
+ 
++static void pf_sched_group_media_slices(struct xe_gt *gt, struct guc_sched_group **groups,
++					u32 *num_groups)
++{
++	u8 slice_to_group[MAX_MEDIA_SLICES];
++	u32 vecs_mask = VECS_INSTANCES(gt);
++	u32 gsc_mask = GSCCS_INSTANCES(gt);
++	u32 vcs_mask = VCS_INSTANCES(gt);
++	struct guc_sched_group *values;
++	struct xe_hw_engine *hwe;
++	enum xe_hw_engine_id id;
++	int group = 0;
++	int slice;
++
++	xe_gt_assert(gt, xe_gt_is_media_type(gt));
++
++	/*
++	 * Post-BMG the matching of video engines to slices changes, so for now
++	 * we don't allow this mode on those platforms.
++	 */
++	if (gt_to_xe(gt)->info.platform > XE_BATTLEMAGE)
++		return;
++
++	/*
++	 * On BMG and older platforms a media slice has 2 VCS and a VECS. We
++	 * bundle the GSC with the first slice.
++	 */
++	for (slice = 0; slice < MAX_MEDIA_SLICES; slice++) {
++		if ((vcs_mask & 0x3) || (vecs_mask & 0x1) || (gsc_mask & 0x1))
++			slice_to_group[slice] = group++;
++
++		vcs_mask >>= 2;
++		vecs_mask >>= 1;
++		gsc_mask >>= 1;
++	}
++
++	xe_gt_assert(gt, !vcs_mask);
++	xe_gt_assert(gt, !vecs_mask);
++	xe_gt_assert(gt, !gsc_mask);
++
++	/* We need at least 2 slices to split them up */
++	if (group < 2)
++		return;
++
++	/* The GuC expects an array with a guc_sched_group entry for each group */
++	values = drmm_kcalloc(&gt_to_xe(gt)->drm, group, sizeof(struct guc_sched_group),
++			      GFP_KERNEL);
++	if (!values)
++		return;
++
++	for_each_hw_engine(hwe, gt, id) {
++		u8 guc_class = xe_engine_class_to_guc_class(hwe->class);
++
++		switch (hwe->class) {
++		case XE_ENGINE_CLASS_VIDEO_DECODE:
++			slice = hwe->instance / 2;
++			break;
++		case XE_ENGINE_CLASS_VIDEO_ENHANCE:
++			slice = hwe->instance;
++			break;
++		case XE_ENGINE_CLASS_OTHER:
++			slice = 0;
++			break;
++		default:
++			xe_gt_assert_msg(gt, false,
++					 "unknown media gt class %u (%s) during EGS setup\n",
++					 hwe->class, hwe->name);
++			slice = 0;
++		}
++
++		values[slice_to_group[slice]].engines[guc_class] |= BIT(hwe->logical_instance);
++	}
++
++	*groups = values;
++	*num_groups = group;
++}
++
++/**
++ * xe_sriov_gt_pf_policy_has_sched_groups_support() - Checks whether scheduler
++ * groups are supported.
++ * @gt: the &xe_gt
++ *
++ * This function can only be called on PF.
++ *
++ * Return: true if scheduler groups are supported, false otherwise.
++ */
++bool xe_sriov_gt_pf_policy_has_sched_groups_support(struct xe_gt *gt)
++{
++	xe_gt_assert(gt, IS_SRIOV_PF(gt_to_xe(gt)));
++
++	/*
++	 * The GuC supports scheduler groups from v70.53.0, but a fix for it has
++	 * been merged in v70.55.1, so we require the latter. The feature is
++	 * also only enabled on BMG and newer FW.
++	 */
++	return GUC_FIRMWARE_VER_AT_LEAST(&gt->uc.guc, 70, 55, 1) &&
++	       gt_to_xe(gt)->info.platform >= XE_BATTLEMAGE;
++}
++
++static void pf_init_sched_groups(struct xe_gt *gt)
++{
++	enum xe_sriov_sched_group_modes m;
++
++	if (!xe_sriov_gt_pf_policy_has_sched_groups_support(gt))
++		return;
++
++	for (m = XE_SRIOV_SCHED_GROUPS_DISABLED + 1; m < XE_SRIOV_SCHED_GROUPS_MODES_COUNT; m++) {
++		u32 *num_groups = &gt->sriov.pf.policy.guc.sched_groups.modes[m].num_groups;
++		struct guc_sched_group **groups =
++			&gt->sriov.pf.policy.guc.sched_groups.modes[m].groups;
++
++		switch (m) {
++		case XE_SRIOV_SCHED_GROUPS_MEDIA_SLICES:
++			/* this mode only has groups on the media GT */
++			if (xe_gt_is_media_type(gt))
++				pf_sched_group_media_slices(gt, groups, num_groups);
++			break;
++		case XE_SRIOV_SCHED_GROUPS_DISABLED:
++		case XE_SRIOV_SCHED_GROUPS_MODES_COUNT:
++			/*
++			 * By defining m of type enum xe_sriov_sched_group_modes
++			 * we can get the compiler to automatically flag
++			 * missing cases if new enum entries are added. However,
++			 * to keep the compiler happy we also need to add the
++			 * cases that are excluded from the loop.
++			 */
++			xe_gt_assert(gt, false);
++			break;
++		}
++
++		xe_gt_assert(gt, *num_groups < GUC_MAX_SCHED_GROUPS);
++	}
++}
++
+ static void pf_sanitize_guc_policies(struct xe_gt *gt)
+ {
+ 	pf_sanitize_sched_if_idle(gt);
+@@ -401,6 +537,18 @@ int xe_gt_sriov_pf_policy_reprovision(struct xe_gt *gt, bool reset)
+ 	return err ? -ENXIO : 0;
  }
  
 +/**
-+ * xe_guc_fw_version_at_least() - Check if GuC is at least of given version.
-+ * @guc: the &xe_guc
-+ * @ver: the version to check
++ * xe_gt_sriov_pf_policy_init() - Initializes the SW state of the PF policies.
++ * @gt: the &xe_gt
 + *
-+ * The @ver should be prepared using MAKE_GUC_VER(major, minor, patch).
-+ *
-+ * Return: true if loaded GuC firmware is at least of given version,
-+ *         false otherwise.
++ * This function can only be called on PF. This function does not touch the HW,
++ * but must be called after the engines have been initialized.
 + */
-+static inline bool xe_guc_fw_version_at_least(const struct xe_guc *guc, u32 ver)
++void xe_gt_sriov_pf_policy_init(struct xe_gt *gt)
 +{
-+	return GUC_FIRMWARE_VER(guc) >= ver;
++	pf_init_sched_groups(gt);
 +}
 +
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c b/drivers/gpu/drm/xe/xe_guc_ads.c
-index e06c6aa335bf..5feeb91426ee 100644
---- a/drivers/gpu/drm/xe/xe_guc_ads.c
-+++ b/drivers/gpu/drm/xe/xe_guc_ads.c
-@@ -347,10 +347,10 @@ static void guc_waklv_init(struct xe_guc_ads *ads)
- 		guc_waklv_enable(ads, NULL, 0, &offset, &remain,
- 				 GUC_WORKAROUND_KLV_ID_BACK_TO_BACK_RCS_ENGINE_RESET);
+ static void print_guc_policies(struct drm_printer *p, struct xe_gt_sriov_guc_policies *policy)
+ {
+ 	drm_printf(p, "%s:\t%s\n",
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.h b/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.h
+index 2a5dc33dc6d7..f5e3b2595063 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.h
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.h
+@@ -17,7 +17,9 @@ int xe_gt_sriov_pf_policy_set_reset_engine(struct xe_gt *gt, bool enable);
+ bool xe_gt_sriov_pf_policy_get_reset_engine(struct xe_gt *gt);
+ int xe_gt_sriov_pf_policy_set_sample_period(struct xe_gt *gt, u32 value);
+ u32 xe_gt_sriov_pf_policy_get_sample_period(struct xe_gt *gt);
++bool xe_sriov_gt_pf_policy_has_sched_groups_support(struct xe_gt *gt);
  
--	if (GUC_FIRMWARE_VER(&gt->uc.guc) >= MAKE_GUC_VER(70, 44, 0) && XE_GT_WA(gt, 16026508708))
-+	if (GUC_FIRMWARE_VER_AT_LEAST(&gt->uc.guc, 70, 44) && XE_GT_WA(gt, 16026508708))
- 		guc_waklv_enable(ads, NULL, 0, &offset, &remain,
- 				 GUC_WA_KLV_RESET_BB_STACK_PTR_ON_VF_SWITCH);
--	if (GUC_FIRMWARE_VER(&gt->uc.guc) >= MAKE_GUC_VER(70, 47, 0) && XE_GT_WA(gt, 16026007364)) {
-+	if (GUC_FIRMWARE_VER_AT_LEAST(&gt->uc.guc, 70, 47) && XE_GT_WA(gt, 16026007364)) {
- 		u32 data[] = {
- 			0x0,
- 			0xF,
-diff --git a/drivers/gpu/drm/xe/xe_guc_klv_thresholds_set_types.h b/drivers/gpu/drm/xe/xe_guc_klv_thresholds_set_types.h
-index 0a028c94756d..45ab5a3b5218 100644
---- a/drivers/gpu/drm/xe/xe_guc_klv_thresholds_set_types.h
-+++ b/drivers/gpu/drm/xe/xe_guc_klv_thresholds_set_types.h
-@@ -24,6 +24,11 @@
-  * ABI and the associated &NAME, that may be used in code or debugfs/sysfs::
-  *
-  *	define(TAG, NAME)
-+ *
-+ * If required, KLVs can be labeled with GuC firmware version that added them::
-+ *
-+ *	define(TAG, NAME, MAJOR, MINOR)
-+ *	define(TAG, NAME, MAJOR, MINOR, PATCH)
++void xe_gt_sriov_pf_policy_init(struct xe_gt *gt);
+ void xe_gt_sriov_pf_policy_sanitize(struct xe_gt *gt);
+ int xe_gt_sriov_pf_policy_reprovision(struct xe_gt *gt, bool reset);
+ int xe_gt_sriov_pf_policy_print(struct xe_gt *gt, struct drm_printer *p);
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy_types.h b/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy_types.h
+index 4de532af135e..11527ab1db7a 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy_types.h
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy_types.h
+@@ -8,16 +8,49 @@
+ 
+ #include <linux/types.h>
+ 
++#include "abi/guc_scheduler_abi.h"
++
++/**
++ * enum xe_sriov_sched_group_modes - list of possible scheduler group modes
++ * @XE_SRIOV_SCHED_GROUPS_DISABLED: no separate groups (i.e., all engines in group 0)
++ * @XE_SRIOV_SCHED_GROUPS_MEDIA_SLICES: separate groups for each media slice
++ * @XE_SRIOV_SCHED_GROUPS_MODES_COUNT: number of valid modes
++ */
++enum xe_sriov_sched_group_modes {
++	XE_SRIOV_SCHED_GROUPS_DISABLED = 0,
++	XE_SRIOV_SCHED_GROUPS_MEDIA_SLICES,
++	XE_SRIOV_SCHED_GROUPS_MODES_COUNT /* must be last */
++};
++
++/**
++ * struct xe_gt_sriov_scheduler_groups - Scheduler groups policy info
++ * @modes: array of masks and their number for each mode
++ * @modes.groups: array of engine instance groups in given mode, with each group
++ *                consisting of GUC_MAX_ENGINE_CLASSES engine instances masks. A
++ *                A NULL value indicates that all the engines are in the same
++ *                group for this mode on this GT.
++ * @modes.num_groups: number of groups in given mode, zero if all the engines
++ *                    are in the same group.
++ */
++struct xe_gt_sriov_scheduler_groups {
++	struct {
++		struct guc_sched_group *groups;
++		u32 num_groups;
++	} modes[XE_SRIOV_SCHED_GROUPS_MODES_COUNT];
++};
++
+ /**
+  * struct xe_gt_sriov_guc_policies - GuC SR-IOV policies.
+  * @sched_if_idle: controls strict scheduling policy.
+  * @reset_engine: controls engines reset on VF switch policy.
+  * @sample_period: adverse events sampling period (in milliseconds).
++ * @sched_groups: available scheduling group configurations.
   */
- #define MAKE_XE_GUC_KLV_THRESHOLDS_SET(define)		\
- 	define(CAT_ERR, cat_error_count)		\
-@@ -32,6 +37,7 @@
- 	define(H2G_STORM, guc_time_us)			\
- 	define(IRQ_STORM, irq_time_us)			\
- 	define(DOORBELL_STORM, doorbell_time_us)	\
-+	define(MULTI_LRC_COUNT, multi_lrc_count, 70, 53)\
- 	/* end */
+ struct xe_gt_sriov_guc_policies {
+ 	bool sched_if_idle;
+ 	bool reset_engine;
+ 	u32 sample_period;
++	struct xe_gt_sriov_scheduler_groups sched_groups;
+ };
  
  /**
 -- 
