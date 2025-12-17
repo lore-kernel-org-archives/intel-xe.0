@@ -4,55 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A17DCD64076
-	for <intel-xe@archiver.kernel.org>; Wed, 17 Dec 2025 06:19:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C6D9FD64077
+	for <intel-xe@archiver.kernel.org>; Wed, 17 Dec 2025 06:26:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5BC2710EB48;
-	Wed, 17 Dec 2025 06:19:17 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OPUVJn3w";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1D2C010EB48
- for <intel-xe@lists.freedesktop.org>; Wed, 17 Dec 2025 06:19:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765952356; x=1797488356;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=BqDjVZRY+CsiVHDH8WxC3bTE559dg9gFfCxtsm1cYcY=;
- b=OPUVJn3w//T2xazA9XOz60h1XFOYllnEUN0r/Th2LTpOHM/5DjeKFKBt
- /CLgHmtVwZ42hcX71NfTFKmNsP5UYg+gA6O3kVVR4kjju4NsMhGelKCvR
- ITbPCzOcWO4A+EJmZRMEBgN3eTGlibapGyHDkg0f2O2VbbkElenHDY5WV
- 0EpgSH1mkT4PjNYNndH267BbY2nyW4OWvZYK6TiRNMEUvcFasd89CpO7l
- UGjrXa5WHID7nhgmLoyg0jeekghfwKNqX29IMFloZyJQLUnUnB5BlpNEG
- q5h5gsUWCmMqPX5VlvOMJL8aU7qW0hSm/iEb38et95WuaKO7PI7oryqX8 g==;
-X-CSE-ConnectionGUID: X3KqdI8HTLez0zb8Mejb3A==
-X-CSE-MsgGUID: TIReDbauTc2ik5OKSulpyQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11644"; a="70459320"
-X-IronPort-AV: E=Sophos;i="6.21,155,1763452800"; d="scan'208";a="70459320"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2025 22:19:16 -0800
-X-CSE-ConnectionGUID: l+/QWzi3TRCxB81acd9tEw==
-X-CSE-MsgGUID: YLywUgatRqun5WVrvcRctA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,155,1763452800"; d="scan'208";a="235614264"
-Received: from abityuts-desk.ger.corp.intel.com (HELO tpalli-mobl3.intel.com)
- ([10.245.245.124])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2025 22:19:14 -0800
-From: =?UTF-8?q?Tapani=20P=C3=A4lli?= <tapani.palli@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: matthew.brost@intel.com,
- =?UTF-8?q?Tapani=20P=C3=A4lli?= <tapani.palli@intel.com>
-Subject: [PATCH] drm/xe: Fix NULL pointer dereference in xe_exec_ioctl
-Date: Wed, 17 Dec 2025 08:17:28 +0200
-Message-ID: <20251217061728.35768-1-tapani.palli@intel.com>
-X-Mailer: git-send-email 2.52.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 882AB10E19C;
+	Wed, 17 Dec 2025 06:26:25 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 61CC210EB5B;
+ Wed, 17 Dec 2025 06:26:24 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Make_Display_free_from_i9?=
+ =?utf-8?q?15=5Freg=2Eh?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Uma Shankar" <uma.shankar@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 17 Dec 2025 06:26:24 -0000
+Message-ID: <176595278439.96412.15926656077356361969@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20251217062209.852324-1-uma.shankar@intel.com>
+In-Reply-To: <20251217062209.852324-1-uma.shankar@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,36 +36,95 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Helper function xe_sync_needs_wait expects sync->fence when accessing
-flags, patch makes sure we call only when sync->fence exists.
+== Series Details ==
 
-Fixes NULL pointer dereference seen with Vulkan workloads:
+Series: Make Display free from i915_reg.h
+URL   : https://patchwork.freedesktop.org/series/159130/
+State : warning
 
-[  118.410401] RIP: 0010:xe_sync_needs_wait+0x27/0x50 [xe]
+== Summary ==
 
-Fixes: 4ac9048d0501 ("drm/xe: Wait on in-syncs when swicthing to dma-fence mode")
-Signed-off-by: Tapani Pälli <tapani.palli@intel.com>
----
- drivers/gpu/drm/xe/xe_exec.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+8f50e69d0ce3656564bbdf8b3e213d61470d463f
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit f183716025ad09ab677d08b46ac3f748049b691c
+Author: Uma Shankar <uma.shankar@intel.com>
+Date:   Wed Dec 17 11:52:09 2025 +0530
 
-diff --git a/drivers/gpu/drm/xe/xe_exec.c b/drivers/gpu/drm/xe/xe_exec.c
-index 730a5c9c2637..ea368f02cb9f 100644
---- a/drivers/gpu/drm/xe/xe_exec.c
-+++ b/drivers/gpu/drm/xe/xe_exec.c
-@@ -184,7 +184,8 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
- 		if (xe_sync_is_ufence(&syncs[num_syncs]))
- 			num_ufence++;
- 
--		if (!num_in_sync && xe_sync_needs_wait(&syncs[num_syncs]))
-+		if (!num_in_sync && syncs[num_syncs].fence &&
-+		    xe_sync_needs_wait(&syncs[num_syncs]))
- 			num_in_sync++;
- 	}
- 
--- 
-2.52.0
+    drm/{i915, xe}: Removed i915_reg.h from display
+    
+    Make display files free from including i915_reg.h.
+    
+    Signed-off-by: Uma Shankar <uma.shankar@intel.com>
++ /mt/dim checkpatch 2eb2f8746a879f1c0e4c56b715c179424dafd8e0 drm-intel
+9ad12c7fa9d3 drm/{i915, xe}: Extract common registers into a separate file
+-:57: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#57: 
+new file mode 100644
+
+-:74: WARNING:LONG_LINE: line length of 124 exceeds 100 columns
+#74: FILE: include/drm/intel/intel_gmd_common_regs.h:13:
++#define   TRANS_CHICKEN2_FRAME_START_DELAY(x)		REG_FIELD_PREP(TRANS_CHICKEN2_FRAME_START_DELAY_MASK, (x)) /* 0-3 */
+
+total: 0 errors, 2 warnings, 0 checks, 50 lines checked
+753edd94e038 drm/{i915, xe}: Extract South chicken registers
+cbd55bb40782 drm/{i915, xe}: Extract display interrupt definitions
+-:52: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#52: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:1369:
++
++
+
+total: 0 errors, 0 warnings, 1 checks, 88 lines checked
+7b1300b97fe1 drm/{i915, xe}: Extract DSPCLK_GATE_D
+c36489116648 drm/{i915, xe}: Extract pcode definitions
+-:191: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#191: FILE: include/drm/intel/intel_gmd_common_regs.h:139:
++#define   DISPLAY_TO_PCODE_PIPE_COUNT(x)	REG_FIELD_PREP(DISPLAY_TO_PCODE_PIPE_COUNT_MASK, (x))
+
+-:219: ERROR:CODE_INDENT: code indent should use tabs where possible
+#219: FILE: include/drm/intel/intel_gmd_common_regs.h:167:
++            /* See also IPS_CTL */$
+
+total: 1 errors, 1 warnings, 0 checks, 221 lines checked
+b0c38f023894 drm/{i915, xe}: Remove i915_reg.h from intel_display_device.c
+84db1ed76918 drm/{i915, xe}: Remove i915_reg.h from intel_dram.c
+66fdc87f7e27 drm/{i915, xe}: Removed i915_reg.h from intel_display.c
+3ad63a27f4fe drm/{i915, xe}: Remove i915_reg.h from intel_overlay.c
+5868b3e36460 drm/{i915, xe}: Remove i915_reg.h from g4x_dp.c
+00187d159475 drm/{i915, xe}: Remove i915_reg.h from i9xx_wm.c
+-:99: WARNING:BLOCK_COMMENT_STYLE: Block comments use * on subsequent lines
+#99: FILE: include/drm/intel/intel_gmd_common_regs.h:275:
++#define   INSTPM_AGPBUSY_INT_EN (1 << 11) /* gen3: when disabled, pending interrupts
++					will not assert AGPBUSY# and will only
+
+-:100: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#100: FILE: include/drm/intel/intel_gmd_common_regs.h:276:
++					be delivered when out of C3. */
+
+total: 0 errors, 2 warnings, 0 checks, 74 lines checked
+cdf3d85164be drm/{i915, xe}: Remove i915_reg.h from g4x_hdmi.c
+ac94949407c3 drm/{i915, xe}: Remove i915_reg.h from intel_rom.c
+1bf5225d739c drm/{i915, xe}: Remove i915_reg.h from intel_psr.c
+76cf1faf87ba drm/{i915, xe}: Remove i915_reg.h from intel_fifo_underrun.c
+e3727aaae98d drm/{i915, xe}: Remove i915_reg.h from intel_display_irq.c
+-:205: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#205: FILE: include/drm/intel/intel_gmd_common_regs.h:381:
++
++
+
+total: 0 errors, 0 warnings, 1 checks, 194 lines checked
+04349bae6aa4 drm/{i915, xe}: Remove i915_reg.h from intel_display_power_well.c
+fd6451b235b7 drm/{i915, xe}: Remove i915_reg.h from intel_modeset_setup.c
+f183716025ad drm/{i915, xe}: Removed i915_reg.h from display
+
 
