@@ -4,58 +4,36 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 091BFD6552F
-	for <intel-xe@archiver.kernel.org>; Wed, 17 Dec 2025 10:31:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 95949D65544
+	for <intel-xe@archiver.kernel.org>; Wed, 17 Dec 2025 10:35:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BC3EC10EC31;
-	Wed, 17 Dec 2025 10:31:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 37DB310E61F;
+	Wed, 17 Dec 2025 10:35:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SlU3kFBn";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="O9k5lttp";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 602E110EC31
- for <intel-xe@lists.freedesktop.org>; Wed, 17 Dec 2025 10:31:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765967475; x=1797503475;
- h=message-id:date:mime-version:subject:from:to:cc:
- references:in-reply-to:content-transfer-encoding;
- bh=0P9GQ4HYqV+c3IdvgNKj7wuo6ZX9KicCBLWUNbK43eQ=;
- b=SlU3kFBnQpyCL4dgUF7Q9kzcUpEmIMf/wunEvp5AVzyEcmk/8aUDcv+O
- vX16ppMhdEy8WNJ6MpI/0777Qbf1PtYH6mGbfrj9X+u008vi1nF+Vm4Ve
- 5Hc0tdWHTKjbtDk7qQTDKVXcdbN8w19RL7B5wkXOyDnHVmPn8k3tsDgGi
- SKsm719I0ecsWThBEArag+rgXv2eMSbDXqXt+cPXYSnnXNMrqNmgQxWMb
- Xn0QRT5RxZwongueXNnJ/O5AAUWOsjgZ19b3y2z+p8zzM+7229dRJ1jh3
- ckekujASoLrqPBOebjGX60KMr/vGSxwRBukeDnFW9qTirFxwC+tgXiZzp w==;
-X-CSE-ConnectionGUID: YcnmKaXQQn2FfCNze4prGg==
-X-CSE-MsgGUID: J67T1VKMSjeI7+GUky07SA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11644"; a="71760523"
-X-IronPort-AV: E=Sophos;i="6.21,155,1763452800"; d="scan'208";a="71760523"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Dec 2025 02:31:15 -0800
-X-CSE-ConnectionGUID: Drgjm3xMTFa03OlUHKYApw==
-X-CSE-MsgGUID: 4mkREyt2QtaYmnQShdOgoQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,155,1763452800"; d="scan'208";a="198156392"
-Received: from fpallare-mobl4.ger.corp.intel.com (HELO [10.245.245.182])
- ([10.245.245.182])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Dec 2025 02:31:14 -0800
-Message-ID: <e14dc32f-3c4a-453e-b0fe-09da137e172c@intel.com>
-Date: Wed, 17 Dec 2025 10:31:11 +0000
+Received: from lankhorst.se (lankhorst.se [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CE4F210E669;
+ Wed, 17 Dec 2025 10:35:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
+ s=default; t=1765967711;
+ bh=8BPcByaflesaeXaGlSJNsTKCeZ40FdxWId7Xd01QKR4=;
+ h=From:To:Cc:Subject:Date:From;
+ b=O9k5lttpProbPXQhhxymTcxjEJNhsSYnHLN8y9Kp7KC7JIktEdjDOsENvS3M5bZtp
+ eSI4VaBzF9UJMyFz12YQOPE9JmrHpNkkrl/PG9qeY2GarLTMTr3TfOh7bL52/fVirZ
+ BtZ1Dk3eGrqf+7RnQaRVzNxageP9yyH6G/sl4/qdIANbQmUUu/pIcVfloYQNNC6fU7
+ 3lpHz8ebsINK5LCNm6y9xMo7wRrUr/3tAE8y/PGVLK2Q8+3TByCNFwPnuFt3WRSSbC
+ 1Iv2UUzrdVH7X8Uq6OMYqwow9cjnRsnHtouPdKPHrzi3+9VEnkw/oNPTLaXl8LMn7u
+ oUNZhLkKy4rJg==
+From: Maarten Lankhorst <dev@lankhorst.se>
+To: intel-xe@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Subject: [i915-rt v3 00/16] drm/i915/display: All patches to make PREEMPT_RT
+ work on i915 + xe.
+Date: Wed, 17 Dec 2025 11:35:07 +0100
+Message-ID: <20251217103506.1873859-18-dev@lankhorst.se>
+X-Mailer: git-send-email 2.51.0
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/xe: Fix NULL pointer dereference in xe_exec_ioctl
-From: Matthew Auld <matthew.auld@intel.com>
-To: =?UTF-8?Q?Tapani_P=C3=A4lli?= <tapani.palli@intel.com>,
- intel-xe@lists.freedesktop.org
-Cc: matthew.brost@intel.com
-References: <20251217061728.35768-1-tapani.palli@intel.com>
- <773d97c4-defc-422c-a3a9-c7769f367493@intel.com>
-Content-Language: en-GB
-In-Reply-To: <773d97c4-defc-422c-a3a9-c7769f367493@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -71,45 +49,51 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 17/12/2025 10:27, Matthew Auld wrote:
-> On 17/12/2025 06:17, Tapani Pälli wrote:
->> Helper function xe_sync_needs_wait expects sync->fence when accessing
->> flags, patch makes sure we call only when sync->fence exists.
->>
->> Fixes NULL pointer dereference seen with Vulkan workloads:
->>
->> [  118.410401] RIP: 0010:xe_sync_needs_wait+0x27/0x50 [xe]
->>
->> Fixes: 4ac9048d0501 ("drm/xe: Wait on in-syncs when swicthing to dma- 
->> fence mode")
->> Signed-off-by: Tapani Pälli <tapani.palli@intel.com>
->> ---
->>   drivers/gpu/drm/xe/xe_exec.c | 3 ++-
->>   1 file changed, 2 insertions(+), 1 deletion(-)
->>
->> diff --git a/drivers/gpu/drm/xe/xe_exec.c b/drivers/gpu/drm/xe/xe_exec.c
->> index 730a5c9c2637..ea368f02cb9f 100644
->> --- a/drivers/gpu/drm/xe/xe_exec.c
->> +++ b/drivers/gpu/drm/xe/xe_exec.c
->> @@ -184,7 +184,8 @@ int xe_exec_ioctl(struct drm_device *dev, void 
->> *data, struct drm_file *file)
->>           if (xe_sync_is_ufence(&syncs[num_syncs]))
->>               num_ufence++;
->> -        if (!num_in_sync && xe_sync_needs_wait(&syncs[num_syncs]))
->> +        if (!num_in_sync && syncs[num_syncs].fence &&
->> +            xe_sync_needs_wait(&syncs[num_syncs]))
-> 
-> In xe_sync_entry_parse() it looks like it will always populate the fence 
-> for the !signal case, otherwise throwing an error if that is not 
-> possible. And xe_sync_needs_wait() will only touch the fence if it's the 
-> signal case? So it seems like this should not be possible?
+Another test run with i915 as well.
 
-Sorry meant to type:
+Maarten Lankhorst (11):
+  drm/i915/display: Fix intel_lpe_audio_irq_handler for PREEMPT-RT
+  drm/i915/display: Make get_vblank_counter use intel_de_read_fw()
+  drm/i915/display: Use intel_de_write_fw in intel_pipe_fastset
+  drm/i915/display: Make set_pipeconf use the fw variants
+  drm/i915/display: Move vblank put until after critical section
+  drm/i915/display: Remove locking from intel_vblank_evade critical
+    section
+  drm/i915/display: Handle vlv dsi workaround in scanline_in_safe_range
+    too
+  drm/i915/display: Make icl_dsi_frame_update use _fw too
+  drm/i915/display: Enable interrupts earlier on PREEMPT_RT
+  PREEMPT_RT injection
+  drm/i915/display: Use intel_de_read_fw in colorops
 
-s/touch the fence if it's the signal/touch the fence if it's the !signal/
+Mike Galbraith (1):
+  drm/i915: Use preempt_disable/enable_rt() where recommended
 
-> 
->>               num_in_sync++;
->>       }
-> 
+Sebastian Andrzej Siewior (4):
+  drm/i915/gt: Use spin_lock_irq() instead of local_irq_disable() +
+    spin_lock()
+  drm/i915: Drop the irqs_disabled() check
+  drm/i915/guc: Consider also RCU depth in busy loop.
+  Revert "drm/i915: Depend on !PREEMPT_RT."
+
+ drivers/gpu/drm/i915/Kconfig                  |   1 -
+ drivers/gpu/drm/i915/Kconfig.debug            |  15 ---
+ drivers/gpu/drm/i915/display/icl_dsi.c        |   4 +-
+ drivers/gpu/drm/i915/display/intel_color.c    |   4 +-
+ drivers/gpu/drm/i915/display/intel_crtc.c     |  12 +-
+ drivers/gpu/drm/i915/display/intel_cursor.c   |   8 +-
+ drivers/gpu/drm/i915/display/intel_display.c  |  46 ++++----
+ .../gpu/drm/i915/display/intel_lpe_audio.c    |   2 +-
+ drivers/gpu/drm/i915/display/intel_vblank.c   | 111 ++++++++++--------
+ drivers/gpu/drm/i915/display/intel_vblank.h   |   1 +
+ drivers/gpu/drm/i915/display/intel_vrr.c      |  16 +--
+ .../drm/i915/gt/intel_execlists_submission.c  |  17 +--
+ drivers/gpu/drm/i915/gt/uc/intel_guc.h        |   2 +-
+ drivers/gpu/drm/i915/i915_request.c           |   2 -
+ drivers/gpu/drm/xe/Kconfig.debug              |   5 +
+ kernel/Kconfig.preempt                        |   4 +-
+ 16 files changed, 133 insertions(+), 117 deletions(-)
+
+-- 
+2.51.0
 
