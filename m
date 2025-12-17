@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 90CF4D6407E
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 42059D6407D
 	for <intel-xe@archiver.kernel.org>; Wed, 17 Dec 2025 06:10:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 486EA10EB9D;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0369110EB9B;
 	Wed, 17 Dec 2025 06:10:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="P/j4/kn5";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZY/abXCL";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 59BE910EB89;
- Wed, 17 Dec 2025 06:10:34 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9883910EB98;
+ Wed, 17 Dec 2025 06:10:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765951834; x=1797487834;
+ t=1765951840; x=1797487840;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=D0fnuZ09PSXwh6g/jMhGwuoRoTc9dVvR8/zs1VN+hIs=;
- b=P/j4/kn5xw1roy4ABSkzg+AqiRJW0Xa2BonIihn02miQOc3EgqdHIVEl
- cInkqoJpwuJBPMv51x1gpgOy9uWEua9DKSgsfvSr/dxzal26SCf87YlUB
- e7cg4w6znj+ESpEyz5tQQyQK800w+5g0P4xRKKvYTUYslTD7Tf+so04Zb
- NclZDyq1I1+pwf0jlNavpI6zJzUHzObBoWnw80TMu5knlYS3V0tD6HnZL
- /EZY6vISEU3gtqIR2R38bem+0OpSqY4qU6zdWxGztYaiKRx1vNtsJ4fCN
- mVVoRfOqhmvNVLfljDb6mNpDoXzfuAaNvj5fIRVElkvDECSxRtLZulPPg Q==;
-X-CSE-ConnectionGUID: ttSse37YTauv9rGbsRDi1g==
-X-CSE-MsgGUID: ci7VT8FvSWScBfPl1uWa1Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11644"; a="85471176"
-X-IronPort-AV: E=Sophos;i="6.21,155,1763452800"; d="scan'208";a="85471176"
+ bh=fUe6hE8iJ1h3YRuOIOZCPv/fn/yZUvk8DZ9XAphYlLE=;
+ b=ZY/abXCLAcEaGQEvyhBzmnYWAQwV0QE8qu2ReG5ga/SqWOFgyu1AMA4e
+ dc7FP+kgw8h27Mod+KuG+s1q49rk6xtGNlnpKDkxt+C7ROS6iZ7KnjqnM
+ ZAbmfZzLpEQUOph3jHtT46OLKfjNnLvIp+JRn9V9LnO/YefUR3V1zdMQ+
+ WG4ztRQGNsD3EOiP2iPaP4Elj0oNPzdMmgSLUCvu/jw1ekdO+LBdkOoKG
+ NKnmHTQaDcDu05qEr9EExTyUNjRuCD+VyGFwwwwCCE1q8DK7PZ+x9E5nk
+ ZzdQENVk8Rm25sf/3M7qUyIEc7zn279J8tXbWtpNalREvu07tAnBGsTji Q==;
+X-CSE-ConnectionGUID: 1Th1fmUgTrGP8SpaafHUJA==
+X-CSE-MsgGUID: Pc/qkop1R42063VmitdgEQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11644"; a="85471202"
+X-IronPort-AV: E=Sophos;i="6.21,155,1763452800"; d="scan'208";a="85471202"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2025 22:10:34 -0800
-X-CSE-ConnectionGUID: eVPhl9o2TwqxIif4SAxa0w==
-X-CSE-MsgGUID: ORXKGQeIQSaKF8hXvyJVSA==
+ 16 Dec 2025 22:10:40 -0800
+X-CSE-ConnectionGUID: Fam0nm/ORVmkK0B+ay10WQ==
+X-CSE-MsgGUID: y35PsiYzRX2jF/53VQG8TQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,155,1763452800"; d="scan'208";a="198105183"
+X-IronPort-AV: E=Sophos;i="6.21,155,1763452800"; d="scan'208";a="198105197"
 Received: from cfl-desktop.iind.intel.com ([10.190.239.20])
- by fmviesa006.fm.intel.com with ESMTP; 16 Dec 2025 22:10:32 -0800
+ by fmviesa006.fm.intel.com with ESMTP; 16 Dec 2025 22:10:38 -0800
 From: Uma Shankar <uma.shankar@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com, ville.syrjala@linux.intel.com,
  Uma Shankar <uma.shankar@intel.com>
-Subject: [PATCH 09/19] drm/{i915, xe}: Remove i915_reg.h from intel_overlay.c
-Date: Wed, 17 Dec 2025 11:51:59 +0530
-Message-ID: <20251217062209.852324-10-uma.shankar@intel.com>
+Subject: [PATCH 12/19] drm/{i915, xe}: Remove i915_reg.h from g4x_hdmi.c
+Date: Wed, 17 Dec 2025 11:52:02 +0530
+Message-ID: <20251217062209.852324-13-uma.shankar@intel.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20251217062209.852324-1-uma.shankar@intel.com>
 References: <20251217062209.852324-1-uma.shankar@intel.com>
@@ -67,130 +67,78 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Move GEN2_ISR and some interrupt definitions to common header.
-This removes dependency of i915_reg.h from intel_overlay.c.
+Move TRANS_CHICKEN1 reg to common header to make g4x_hdmi.c
+free from i915_reg.h dependency.
 
 Signed-off-by: Uma Shankar <uma.shankar@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_overlay.c |  2 +-
- drivers/gpu/drm/i915/i915_reg.h              | 36 -------------------
- include/drm/intel/intel_gmd_common_regs.h    | 38 ++++++++++++++++++++
- 3 files changed, 39 insertions(+), 37 deletions(-)
+ drivers/gpu/drm/i915/display/g4x_hdmi.c   |  2 +-
+ drivers/gpu/drm/i915/i915_reg.h           | 12 ------------
+ include/drm/intel/intel_gmd_common_regs.h | 13 +++++++++++++
+ 3 files changed, 14 insertions(+), 13 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_overlay.c b/drivers/gpu/drm/i915/display/intel_overlay.c
-index 88eb7ae5765c..62026f7f71d3 100644
---- a/drivers/gpu/drm/i915/display/intel_overlay.c
-+++ b/drivers/gpu/drm/i915/display/intel_overlay.c
-@@ -28,6 +28,7 @@
+diff --git a/drivers/gpu/drm/i915/display/g4x_hdmi.c b/drivers/gpu/drm/i915/display/g4x_hdmi.c
+index 8b22447e8e23..c5bff08c7cee 100644
+--- a/drivers/gpu/drm/i915/display/g4x_hdmi.c
++++ b/drivers/gpu/drm/i915/display/g4x_hdmi.c
+@@ -6,9 +6,9 @@
+  */
  
- #include <drm/drm_fourcc.h>
  #include <drm/drm_print.h>
 +#include <drm/intel/intel_gmd_common_regs.h>
  
- #include "gem/i915_gem_internal.h"
- #include "gem/i915_gem_object_frontbuffer.h"
-@@ -37,7 +38,6 @@
- #include "gt/intel_ring.h"
- 
- #include "i915_drv.h"
+ #include "g4x_hdmi.h"
 -#include "i915_reg.h"
- #include "intel_color_regs.h"
- #include "intel_de.h"
- #include "intel_display_regs.h"
+ #include "intel_atomic.h"
+ #include "intel_audio.h"
+ #include "intel_connector.h"
 diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index e807be4a9962..ec80c21f88b8 100644
+index 1ae12cd1911b..77ae9a9ba27a 100644
 --- a/drivers/gpu/drm/i915/i915_reg.h
 +++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -522,42 +522,6 @@
- /* These are all the "old" interrupts */
- #define ILK_BSD_USER_INTERRUPT				(1 << 5)
+@@ -835,18 +835,6 @@
+ #define   MASK_WAKEMEM				REG_BIT(13)
+ #define   DDI_CLOCK_REG_ACCESS			REG_BIT(7)
  
--#define I915_PM_INTERRUPT				(1 << 31)
--#define I915_ISP_INTERRUPT				(1 << 22)
--#define I915_LPE_PIPE_B_INTERRUPT			(1 << 21)
--#define I915_LPE_PIPE_A_INTERRUPT			(1 << 20)
--#define I915_MIPIC_INTERRUPT				(1 << 19)
--#define I915_MIPIA_INTERRUPT				(1 << 18)
--#define I915_PIPE_CONTROL_NOTIFY_INTERRUPT		(1 << 18)
--#define I915_DISPLAY_PORT_INTERRUPT			(1 << 17)
--#define I915_DISPLAY_PIPE_C_HBLANK_INTERRUPT		(1 << 16)
--#define I915_MASTER_ERROR_INTERRUPT			(1 << 15)
--#define I915_DISPLAY_PIPE_B_HBLANK_INTERRUPT		(1 << 14)
--#define I915_GMCH_THERMAL_SENSOR_EVENT_INTERRUPT	(1 << 14) /* p-state */
--#define I915_DISPLAY_PIPE_A_HBLANK_INTERRUPT		(1 << 13)
--#define I915_HWB_OOM_INTERRUPT				(1 << 13)
--#define I915_LPE_PIPE_C_INTERRUPT			(1 << 12)
--#define I915_SYNC_STATUS_INTERRUPT			(1 << 12)
--#define I915_MISC_INTERRUPT				(1 << 11)
--#define I915_DISPLAY_PLANE_A_FLIP_PENDING_INTERRUPT	(1 << 11)
--#define I915_DISPLAY_PIPE_C_VBLANK_INTERRUPT		(1 << 10)
--#define I915_DISPLAY_PLANE_B_FLIP_PENDING_INTERRUPT	(1 << 10)
--#define I915_DISPLAY_PIPE_C_EVENT_INTERRUPT		(1 << 9)
--#define I915_OVERLAY_PLANE_FLIP_PENDING_INTERRUPT	(1 << 9)
--#define I915_DISPLAY_PIPE_C_DPBM_INTERRUPT		(1 << 8)
--#define I915_DISPLAY_PLANE_C_FLIP_PENDING_INTERRUPT	(1 << 8)
--#define I915_DISPLAY_PIPE_A_VBLANK_INTERRUPT		(1 << 7)
--#define I915_DISPLAY_PIPE_A_EVENT_INTERRUPT		(1 << 6)
--#define I915_DISPLAY_PIPE_B_VBLANK_INTERRUPT		(1 << 5)
--#define I915_DISPLAY_PIPE_B_EVENT_INTERRUPT		(1 << 4)
--#define I915_DISPLAY_PIPE_A_DPBM_INTERRUPT		(1 << 3)
--#define I915_DISPLAY_PIPE_B_DPBM_INTERRUPT		(1 << 2)
--#define I915_DEBUG_INTERRUPT				(1 << 2)
--#define I915_WINVALID_INTERRUPT				(1 << 1)
--#define I915_USER_INTERRUPT				(1 << 1)
--#define I915_ASLE_INTERRUPT				(1 << 0)
--#define I915_BSD_USER_INTERRUPT				(1 << 25)
+-/* Icelake PPS_DATA and _ECC DIP Registers.
+- * These are available for transcoders B,C and eDP.
+- * Adding the _A so as to reuse the _MMIO_TRANS2
+- * definition, with which it offsets to the right location.
+- */
 -
- #define GEN6_BSD_RNCID			_MMIO(0x12198)
+-#define _TRANSA_CHICKEN1	 0xf0060
+-#define _TRANSB_CHICKEN1	 0xf1060
+-#define TRANS_CHICKEN1(pipe)	_MMIO_PIPE(pipe, _TRANSA_CHICKEN1, _TRANSB_CHICKEN1)
+-#define   TRANS_CHICKEN1_HDMIUNIT_GC_DISABLE	REG_BIT(10)
+-#define   TRANS_CHICKEN1_DP0UNIT_GC_DISABLE	REG_BIT(4)
+-
+ #define  VLV_PMWGICZ				_MMIO(0x1300a4)
  
- #define GEN7_FF_THREAD_MODE		_MMIO(0x20a0)
+ #define  HSW_EDRAM_CAP				_MMIO(0x120010)
 diff --git a/include/drm/intel/intel_gmd_common_regs.h b/include/drm/intel/intel_gmd_common_regs.h
-index 1908c203d54c..6d302fb8aa94 100644
+index 9cd7f50c5de3..01fffc983e47 100644
 --- a/include/drm/intel/intel_gmd_common_regs.h
 +++ b/include/drm/intel/intel_gmd_common_regs.h
-@@ -219,4 +219,42 @@
- #define   GMD_ID_RELEASE_MASK			REG_GENMASK(21, 14)
- #define   GMD_ID_STEP				REG_GENMASK(5, 0)
+@@ -103,6 +103,19 @@
+ #define   SKL_PLANE1_STRETCH_MAX_X1	REG_FIELD_PREP(SKL_PLANE1_STRETCH_MAX_MASK, 3)
+ #define   BDW_UNMASK_VBL_TO_REGS_IN_SRD	REG_BIT(0) /* bdw */
  
-+#define GEN2_ISR	_MMIO(0x20ac)
++/*
++ * Icelake PPS_DATA and _ECC DIP Registers.
++ * These are available for transcoders B,C and eDP.
++ * Adding the _A so as to reuse the _MMIO_TRANS2
++ * definition, with which it offsets to the right location.
++ */
 +
-+#define I915_PM_INTERRUPT				(1 << 31)
-+#define I915_ISP_INTERRUPT				(1 << 22)
-+#define I915_LPE_PIPE_B_INTERRUPT			(1 << 21)
-+#define I915_LPE_PIPE_A_INTERRUPT			(1 << 20)
-+#define I915_MIPIC_INTERRUPT				(1 << 19)
-+#define I915_MIPIA_INTERRUPT				(1 << 18)
-+#define I915_PIPE_CONTROL_NOTIFY_INTERRUPT		(1 << 18)
-+#define I915_DISPLAY_PORT_INTERRUPT			(1 << 17)
-+#define I915_DISPLAY_PIPE_C_HBLANK_INTERRUPT		(1 << 16)
-+#define I915_MASTER_ERROR_INTERRUPT			(1 << 15)
-+#define I915_DISPLAY_PIPE_B_HBLANK_INTERRUPT		(1 << 14)
-+#define I915_GMCH_THERMAL_SENSOR_EVENT_INTERRUPT	(1 << 14) /* p-state */
-+#define I915_DISPLAY_PIPE_A_HBLANK_INTERRUPT		(1 << 13)
-+#define I915_HWB_OOM_INTERRUPT				(1 << 13)
-+#define I915_LPE_PIPE_C_INTERRUPT			(1 << 12)
-+#define I915_SYNC_STATUS_INTERRUPT			(1 << 12)
-+#define I915_MISC_INTERRUPT				(1 << 11)
-+#define I915_DISPLAY_PLANE_A_FLIP_PENDING_INTERRUPT	(1 << 11)
-+#define I915_DISPLAY_PIPE_C_VBLANK_INTERRUPT		(1 << 10)
-+#define I915_DISPLAY_PLANE_B_FLIP_PENDING_INTERRUPT	(1 << 10)
-+#define I915_DISPLAY_PIPE_C_EVENT_INTERRUPT		(1 << 9)
-+#define I915_OVERLAY_PLANE_FLIP_PENDING_INTERRUPT	(1 << 9)
-+#define I915_DISPLAY_PIPE_C_DPBM_INTERRUPT		(1 << 8)
-+#define I915_DISPLAY_PLANE_C_FLIP_PENDING_INTERRUPT	(1 << 8)
-+#define I915_DISPLAY_PIPE_A_VBLANK_INTERRUPT		(1 << 7)
-+#define I915_DISPLAY_PIPE_A_EVENT_INTERRUPT		(1 << 6)
-+#define I915_DISPLAY_PIPE_B_VBLANK_INTERRUPT		(1 << 5)
-+#define I915_DISPLAY_PIPE_B_EVENT_INTERRUPT		(1 << 4)
-+#define I915_DISPLAY_PIPE_A_DPBM_INTERRUPT		(1 << 3)
-+#define I915_DISPLAY_PIPE_B_DPBM_INTERRUPT		(1 << 2)
-+#define I915_DEBUG_INTERRUPT				(1 << 2)
-+#define I915_WINVALID_INTERRUPT				(1 << 1)
-+#define I915_USER_INTERRUPT				(1 << 1)
-+#define I915_ASLE_INTERRUPT				(1 << 0)
-+#define I915_BSD_USER_INTERRUPT				(1 << 25)
++#define _TRANSA_CHICKEN1	 0xf0060
++#define _TRANSB_CHICKEN1	 0xf1060
++#define TRANS_CHICKEN1(pipe)	_MMIO_PIPE(pipe, _TRANSA_CHICKEN1, _TRANSB_CHICKEN1)
++#define   TRANS_CHICKEN1_HDMIUNIT_GC_DISABLE	REG_BIT(10)
++#define   TRANS_CHICKEN1_DP0UNIT_GC_DISABLE	REG_BIT(4)
 +
- #endif
+ #define _TRANSA_CHICKEN2	 0xf0064
+ #define _TRANSB_CHICKEN2	 0xf1064
+ #define TRANS_CHICKEN2(pipe)	_MMIO_PIPE(pipe, _TRANSA_CHICKEN2, _TRANSB_CHICKEN2)
 -- 
 2.50.1
 
