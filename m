@@ -4,52 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DB2A9D65C43
-	for <intel-xe@archiver.kernel.org>; Wed, 17 Dec 2025 12:50:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 698BBD65C43
+	for <intel-xe@archiver.kernel.org>; Wed, 17 Dec 2025 12:57:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7775510E2EE;
-	Wed, 17 Dec 2025 12:50:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 03F1E10E087;
+	Wed, 17 Dec 2025 12:57:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZFtLTXZN";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OQ6J8Hff";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 322C510E2EE
- for <intel-xe@lists.freedesktop.org>; Wed, 17 Dec 2025 12:50:29 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8F2CE10E087
+ for <intel-xe@lists.freedesktop.org>; Wed, 17 Dec 2025 12:57:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765975829; x=1797511829;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=sVy0HGRL+JaGFBlBRuNQ0JaZqIj9m1BfasJw49Jmczw=;
- b=ZFtLTXZNBNJN3y1hHmqr7SswcKkAjDaZ1lozXO45rGuS2L9BIrd7qOTr
- vpkMSpO+6EeJ0091i+EQsrb4yY2CR8JGwqFzz+8wfRmWjeXUYSv4WBx5x
- UIvUW69NMSkfJ4YVOILcFzZRLl+IgzwiUM0XP1JpMFwAt0usbRb5dtBrM
- WyappxDkgtDeFlVuErbLZ0Ft2LngeC4I+bz8eXg2ZbQtm4haXNNmKJtYA
- svhW4kubGGtK+qLuk7hP4m5IhQJyH/Yh6G7Gee8gwooU73S5AGHAfQLyu
- ZU1pELYjcvkLRrdLMpJjTZF/KkdRwZ3OMURdBSAMs7W/ZcoQHet9PuoU/ g==;
-X-CSE-ConnectionGUID: imAeGnS/TaaCxZUJWrc1jg==
-X-CSE-MsgGUID: s1/qgCqJR3K6avY8nIn4jg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11645"; a="85500159"
-X-IronPort-AV: E=Sophos;i="6.21,155,1763452800"; d="scan'208";a="85500159"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Dec 2025 04:50:28 -0800
-X-CSE-ConnectionGUID: qghlgx4cTLC71SZeB/2PPg==
-X-CSE-MsgGUID: gqraGq2gRliUZ/rHslfc3w==
+ t=1765976277; x=1797512277;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=edGf3gpQFeuvMvCpqdY/Xm6EAiqhq6jDx/S818uVFAE=;
+ b=OQ6J8Hffn/+a4c90QK3M90CTHzYg9Ob2eew8WRfoo06bWXcysTOUAmMb
+ z7W9/yp2Wq2DoqNGajEJ9oOHenjI42oSAmN8He85S5PUMIiO86KsPrDM2
+ D+4R6IRfrewb0Yndx/2yvwx0JKA/NLfvfMRu2+8D1nlCB6T/SF29z/82l
+ QdDUEQNsL/VwtdopAW+kw1EX5OXU/TD5KulXEcRd7WKVZJDRhU8gb1q7S
+ qhuYz7ErrDhPFtPtMZqrGjgjOUMrLr+qHCWXBoL6UhiOoP0wvcOVybJfQ
+ 1dNyodo+ejqKtRlCrl5vdgqZQVTXNBf3JIHDgdRR11NlfM6f+r00O6CIs Q==;
+X-CSE-ConnectionGUID: 2vN/3wyHQ2ClPmZxaWVPZw==
+X-CSE-MsgGUID: d1yl9bkQQLSO4Mi+ZSmhlg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11645"; a="90571080"
+X-IronPort-AV: E=Sophos;i="6.21,155,1763452800"; d="scan'208";a="90571080"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Dec 2025 04:57:56 -0800
+X-CSE-ConnectionGUID: Hh+rOCigQq6SzvE6OmGxLw==
+X-CSE-MsgGUID: H15dc30OQzWJUiZvBazp4A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,155,1763452800"; d="scan'208";a="203394561"
-Received: from bvivekan-desk.iind.intel.com ([10.190.238.63])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Dec 2025 04:50:27 -0800
-From: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Matt Roper <matthew.d.roper@intel.com>,
- Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
-Subject: [PATCH] drm/xe/device: Discard check for lmem_init
-Date: Wed, 17 Dec 2025 18:21:43 +0530
-Message-ID: <20251217125143.2430557-2-balasubramani.vivekanandan@intel.com>
-X-Mailer: git-send-email 2.43.0
+X-IronPort-AV: E=Sophos;i="6.21,155,1763452800"; d="scan'208";a="197401204"
+Received: from fpallare-mobl4.ger.corp.intel.com (HELO [10.245.245.182])
+ ([10.245.245.182])
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Dec 2025 04:57:56 -0800
+Message-ID: <dc533a8b-ad80-446f-a3f7-1fdde195a0e2@intel.com>
+Date: Wed, 17 Dec 2025 12:57:52 +0000
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] drm/xe: Fix NULL pointer dereference in xe_exec_ioctl
+To: =?UTF-8?Q?Tapani_P=C3=A4lli?= <tapani.palli@intel.com>,
+ intel-xe@lists.freedesktop.org
+Cc: matthew.brost@intel.com
+References: <f1ae6465-3276-48a5-8dc4-e3caf2b9e2b8@intel.com>
+ <20251217123209.430427-1-tapani.palli@intel.com>
+Content-Language: en-GB
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <20251217123209.430427-1-tapani.palli@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -65,117 +71,55 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Prior to lmem init check, driver is waiting for the pcode uncore_init
-status. uncore_init status will be asserted after the complete boot and
-initialization of the SoC by the pcode. uncore_init confirms that lmem
-init and mmio unblock has been already completed.
-It makes no sense to check for lmem init after the pcode uncore_init
-check. So it can be removed.
+On 17/12/2025 12:32, Tapani Pälli wrote:
+> Helper function xe_sync_needs_wait expects sync->fence when accessing
+> flags, patch makes sure we call only when sync->fence exists.
+> 
+> v2: move null checking to xe_sync_needs_wait and make
+>      xe_sync_entry_wait utilize this helper (Matthew Auld)
+> 
+> Fixes NULL pointer dereference seen with Vulkan workloads:
+> 
+> [  118.410401] RIP: 0010:xe_sync_needs_wait+0x27/0x50 [xe]
+> 
+> Fixes: 4ac9048d0501 ("drm/xe: Wait on in-syncs when swicthing to dma-fence mode")
+> Signed-off-by: Tapani Pälli <tapani.palli@intel.com>
+> ---
+>   drivers/gpu/drm/xe/xe_sync.c | 5 +++--
+>   1 file changed, 3 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_sync.c b/drivers/gpu/drm/xe/xe_sync.c
+> index ee1344a880b9..2b6c2e2527ae 100644
+> --- a/drivers/gpu/drm/xe/xe_sync.c
+> +++ b/drivers/gpu/drm/xe/xe_sync.c
+> @@ -241,7 +241,8 @@ int xe_sync_entry_wait(struct xe_sync_entry *sync)
+>   	if (sync->flags & DRM_XE_SYNC_FLAG_SIGNAL)
+>   		return 0;
 
-Signed-off-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
----
- drivers/gpu/drm/xe/xe_device.c | 67 +++-------------------------------
- 1 file changed, 5 insertions(+), 62 deletions(-)
+^^ I think we can drop this bit, since below will now check it?
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 1197f914ef77..3818d0cccb0e 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -8,7 +8,6 @@
- #include <linux/aperture.h>
- #include <linux/delay.h>
- #include <linux/fault-inject.h>
--#include <linux/iopoll.h>
- #include <linux/units.h>
- 
- #include <drm/drm_atomic_helper.h>
-@@ -630,63 +629,6 @@ static int xe_set_dma_info(struct xe_device *xe)
- 	return err;
- }
- 
--static int lmem_initializing(struct xe_device *xe)
--{
--	if (xe_mmio_read32(xe_root_tile_mmio(xe), GU_CNTL) & LMEM_INIT)
--		return 0;
--
--	if (signal_pending(current))
--		return -EINTR;
--
--	return 1;
--}
--
--static int wait_for_lmem_ready(struct xe_device *xe)
--{
--	const unsigned long TIMEOUT_SEC = 60;
--	unsigned long prev_jiffies;
--	int initializing;
--
--	if (!IS_DGFX(xe))
--		return 0;
--
--	if (IS_SRIOV_VF(xe))
--		return 0;
--
--	if (!lmem_initializing(xe))
--		return 0;
--
--	drm_dbg(&xe->drm, "Waiting for lmem initialization\n");
--	prev_jiffies = jiffies;
--
--	/*
--	 * The boot firmware initializes local memory and
--	 * assesses its health. If memory training fails,
--	 * the punit will have been instructed to keep the GT powered
--	 * down.we won't be able to communicate with it
--	 *
--	 * If the status check is done before punit updates the register,
--	 * it can lead to the system being unusable.
--	 * use a timeout and defer the probe to prevent this.
--	 */
--	poll_timeout_us(initializing = lmem_initializing(xe),
--			initializing <= 0,
--			20 * USEC_PER_MSEC, TIMEOUT_SEC * USEC_PER_SEC, true);
--	if (initializing < 0)
--		return initializing;
--
--	if (initializing) {
--		drm_dbg(&xe->drm, "lmem not initialized by firmware\n");
--		return -EPROBE_DEFER;
--	}
--
--	drm_dbg(&xe->drm, "lmem ready after %ums",
--		jiffies_to_msecs(jiffies - prev_jiffies));
--
--	return 0;
--}
--ALLOW_ERROR_INJECTION(wait_for_lmem_ready, ERRNO); /* See xe_pci_probe() */
--
- static void vf_update_device_info(struct xe_device *xe)
- {
- 	xe_assert(xe, IS_SRIOV_VF(xe));
-@@ -740,6 +682,11 @@ int xe_device_probe_early(struct xe_device *xe)
- 	if (IS_SRIOV_VF(xe))
- 		vf_update_device_info(xe);
- 
-+	/*
-+	 * Check for pcode uncore_init status to confirm if the SoC
-+	 * initialization is complete. Until done, any MMIO or lmem access from
-+	 * the driver will be blocked
-+	 */
- 	err = xe_pcode_probe_early(xe);
- 	if (err || xe_survivability_mode_is_requested(xe)) {
- 		int save_err = err;
-@@ -756,10 +703,6 @@ int xe_device_probe_early(struct xe_device *xe)
- 		return save_err;
- 	}
- 
--	err = wait_for_lmem_ready(xe);
--	if (err)
--		return err;
--
- 	xe->wedged.mode = xe_modparam.wedged_mode;
- 
- 	err = xe_device_vram_alloc(xe);
--- 
-2.43.0
+>   
+> -	return dma_fence_wait(sync->fence, true);
+> +	return xe_sync_needs_wait(sync) ?
+> +		dma_fence_wait(sync->fence, true) : 0;
+>   }
+>   
+>   /**
+> @@ -252,7 +253,7 @@ int xe_sync_entry_wait(struct xe_sync_entry *sync)
+>    */
+>   bool xe_sync_needs_wait(struct xe_sync_entry *sync)
+>   {
+> -	return !(sync->flags & DRM_XE_SYNC_FLAG_SIGNAL) &&
+> +	return !(sync->flags & DRM_XE_SYNC_FLAG_SIGNAL) && sync->fence &&
+>   		!test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &sync->fence->flags);
+
+Here I think we can maybe simplify:
+
+sync->fence && !test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &sync->fence->flags)
+
+Since sync->fence != NULL must imply an in-fence which will always be 
+!signal for the flags anyway?
+
+>   }
+>   
 
