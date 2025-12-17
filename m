@@ -4,49 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CD7D5D65C6F
-	for <intel-xe@archiver.kernel.org>; Wed, 17 Dec 2025 15:28:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0A475D65C6C
+	for <intel-xe@archiver.kernel.org>; Wed, 17 Dec 2025 15:28:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8607C10EBD7;
-	Wed, 17 Dec 2025 15:28:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B5B4810ECFE;
+	Wed, 17 Dec 2025 15:28:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="F2+fs/vI";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Sw3NZDvQ";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 83F3210E8C7;
- Wed, 17 Dec 2025 15:28:42 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2185B10E8CA;
+ Wed, 17 Dec 2025 15:28:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765985323; x=1797521323;
+ t=1765985326; x=1797521326;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=FknJgjAHAEtvsVi+N+i8y8wTdqS5f2Q4xBpjhKasQ4k=;
- b=F2+fs/vI6qOrKsDLGJIiuGqV0hHNfE9yf1dapJ7tU6A8kzEd10GQNYBW
- 5eswDeh6ftCFp/REtflECisLGNlexgVYpxfBFIcbdZ6NAsyi/rLkriekP
- urX2MTiJLfli6U/tDhcQXvb4ghUWpZsx3YzJEy1xu5GaHqkIRJ5qzm8JD
- QEKhaK7PuRGNMnpcb4+snqXOJqbWHSndgcuoSh26QbQIgpbSvHEANDeqh
- BDIHaPvrZ8sFqpfZN7IAgZsLOSSLCRrFnS2qNxYUGh380MjmT7fee3PD4
- Zmw5x3uNESRoNPM7h6yjAzAwO6s12BJlPNW1oKmesBrkJfavO4p0TaScu g==;
-X-CSE-ConnectionGUID: CP525jICR+yYhY4Kc/8kPg==
-X-CSE-MsgGUID: d/aSd7q/QT6kL7VsFsvmsg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11645"; a="71781420"
-X-IronPort-AV: E=Sophos;i="6.21,156,1763452800"; d="scan'208";a="71781420"
+ bh=VJlNLscnPkOwDXb/A0lkAkh6pUPZzWidGLTm6TNl9ko=;
+ b=Sw3NZDvQS4jMDdG30FR49cW8LobHXoy202GJ+NcYefk7H+1h5hWzgqlC
+ gWW6kkPUHmjWoTImgZm5aAy9SwgTa/Qqtg9d+aEc7G/ykfjIt86TNJntb
+ D2fomp9Nu9oFm7iW0EJZ01/LgVG8dMoIQkKi+vI4L7O+hODmc2U7U8fdl
+ lUVVExPYAIk+e+5PG8SYUIDb5/UrdcUiJSbHdATb+P3TM3+xK/Mp3EVui
+ zMwpkeT+oUNq0aUwULZ+8y/a9e4Skn+vQG/j2KF4rNwISZPq9rAzrIy8H
+ 7y+YZ1HLQlHTiW3hLsDH4lqpICbdC+zqsZxtjXobKBtK2WmV8dV1jD6BI w==;
+X-CSE-ConnectionGUID: oDRIhfKUSj23c0Xybs6cFQ==
+X-CSE-MsgGUID: dR/b+munQDapDZtP563poA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11645"; a="71781430"
+X-IronPort-AV: E=Sophos;i="6.21,156,1763452800"; d="scan'208";a="71781430"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Dec 2025 07:28:43 -0800
-X-CSE-ConnectionGUID: MMVcv/pvTs61uBBxTXn0LA==
-X-CSE-MsgGUID: fM08wiTJTGCGWU0ImD1L1w==
+ 17 Dec 2025 07:28:45 -0800
+X-CSE-ConnectionGUID: jqwlPWrbTZ2tJlnBmDSWUA==
+X-CSE-MsgGUID: xLqJncsXQ2eHNfabVeh/IA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,156,1763452800"; d="scan'208";a="198097289"
+X-IronPort-AV: E=Sophos;i="6.21,156,1763452800"; d="scan'208";a="198097296"
 Received: from display-adls.igk.intel.com ([10.211.131.198])
- by orviesa009.jf.intel.com with ESMTP; 17 Dec 2025 07:28:41 -0800
+ by orviesa009.jf.intel.com with ESMTP; 17 Dec 2025 07:28:44 -0800
 From: Mika Kahola <mika.kahola@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Mika Kahola <mika.kahola@intel.com>
-Subject: [PATCH v2 02/15] drm/i915/c20: Move C20 port clock calculation
-Date: Wed, 17 Dec 2025 17:19:42 +0200
-Message-Id: <20251217151955.1690202-3-mika.kahola@intel.com>
+Subject: [PATCH v2 04/15] drm/i915/lt_phy: Drop LT PHY crtc_state for port
+ calculation
+Date: Wed, 17 Dec 2025 17:19:44 +0200
+Message-Id: <20251217151955.1690202-5-mika.kahola@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251217151955.1690202-1-mika.kahola@intel.com>
 References: <20251217151955.1690202-1-mika.kahola@intel.com>
@@ -66,135 +67,149 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Prepare removal of .clock member from the pll state
-structure by moving intel_c20pll_calc_port_clock()
-function.
-
-No functional change.
+Drop crtc_state from intel_lt_phy_calc_port_clock() function call
+and replace it with pll state instead. Follow-up changes will
+call these functions without a crtc_state available.
 
 Signed-off-by: Mika Kahola <mika.kahola@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cx0_phy.c | 100 +++++++++----------
- 1 file changed, 50 insertions(+), 50 deletions(-)
+ drivers/gpu/drm/i915/display/intel_ddi.c    |  4 +++-
+ drivers/gpu/drm/i915/display/intel_dpll.c   |  3 ++-
+ drivers/gpu/drm/i915/display/intel_lt_phy.c | 19 ++++++++-----------
+ drivers/gpu/drm/i915/display/intel_lt_phy.h |  4 ++--
+ 4 files changed, 15 insertions(+), 15 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-index 5fb39c114078..1deb865618b7 100644
---- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-@@ -2130,6 +2130,56 @@ static int intel_c10pll_calc_port_clock(struct intel_encoder *encoder,
- 	return tmpclk;
- }
- 
-+static bool intel_c20phy_use_mpllb(const struct intel_c20pll_state *state)
-+{
-+	return state->tx[0] & C20_PHY_USE_MPLLB;
-+}
-+
-+static int intel_c20pll_calc_port_clock(struct intel_encoder *encoder,
-+					const struct intel_c20pll_state *pll_state)
-+{
-+	unsigned int frac, frac_en, frac_quot, frac_rem, frac_den;
-+	unsigned int multiplier, refclk = 38400;
-+	unsigned int tx_clk_div;
-+	unsigned int ref_clk_mpllb_div;
-+	unsigned int fb_clk_div4_en;
-+	unsigned int ref, vco;
-+	unsigned int tx_rate_mult;
-+	unsigned int tx_rate = REG_FIELD_GET(C20_PHY_TX_RATE, pll_state->tx[0]);
-+
-+	if (intel_c20phy_use_mpllb(pll_state)) {
-+		tx_rate_mult = 1;
-+		frac_en = REG_FIELD_GET(C20_MPLLB_FRACEN, pll_state->mpllb[6]);
-+		frac_quot = pll_state->mpllb[8];
-+		frac_rem =  pll_state->mpllb[9];
-+		frac_den =  pll_state->mpllb[7];
-+		multiplier = REG_FIELD_GET(C20_MULTIPLIER_MASK, pll_state->mpllb[0]);
-+		tx_clk_div = REG_FIELD_GET(C20_MPLLB_TX_CLK_DIV_MASK, pll_state->mpllb[0]);
-+		ref_clk_mpllb_div = REG_FIELD_GET(C20_REF_CLK_MPLLB_DIV_MASK, pll_state->mpllb[6]);
-+		fb_clk_div4_en = 0;
-+	} else {
-+		tx_rate_mult = 2;
-+		frac_en = REG_FIELD_GET(C20_MPLLA_FRACEN, pll_state->mplla[6]);
-+		frac_quot = pll_state->mplla[8];
-+		frac_rem =  pll_state->mplla[9];
-+		frac_den =  pll_state->mplla[7];
-+		multiplier = REG_FIELD_GET(C20_MULTIPLIER_MASK, pll_state->mplla[0]);
-+		tx_clk_div = REG_FIELD_GET(C20_MPLLA_TX_CLK_DIV_MASK, pll_state->mplla[1]);
-+		ref_clk_mpllb_div = REG_FIELD_GET(C20_REF_CLK_MPLLB_DIV_MASK, pll_state->mplla[6]);
-+		fb_clk_div4_en = REG_FIELD_GET(C20_FB_CLK_DIV4_EN, pll_state->mplla[0]);
-+	}
-+
-+	if (frac_en)
-+		frac = frac_quot + DIV_ROUND_CLOSEST(frac_rem, frac_den);
-+	else
-+		frac = 0;
-+
-+	ref = DIV_ROUND_CLOSEST(refclk * (1 << (1 + fb_clk_div4_en)), 1 << ref_clk_mpllb_div);
-+	vco = DIV_ROUND_CLOSEST_ULL(mul_u32_u32(ref, (multiplier << (17 - 2)) + frac) >> 17, 10);
-+
-+	return vco << tx_rate_mult >> tx_clk_div >> tx_rate;
-+}
-+
- /*
-  * TODO: Convert the following to align with intel_c20pll_find_table() and
-  * intel_c20pll_calc_state_from_table().
-@@ -2702,56 +2752,6 @@ int intel_cx0pll_calc_state(const struct intel_crtc_state *crtc_state,
- 	return intel_c20pll_calc_state(crtc_state, encoder, hw_state);
- }
- 
--static bool intel_c20phy_use_mpllb(const struct intel_c20pll_state *state)
--{
--	return state->tx[0] & C20_PHY_USE_MPLLB;
--}
--
--static int intel_c20pll_calc_port_clock(struct intel_encoder *encoder,
--					const struct intel_c20pll_state *pll_state)
--{
--	unsigned int frac, frac_en, frac_quot, frac_rem, frac_den;
--	unsigned int multiplier, refclk = 38400;
--	unsigned int tx_clk_div;
--	unsigned int ref_clk_mpllb_div;
--	unsigned int fb_clk_div4_en;
--	unsigned int ref, vco;
--	unsigned int tx_rate_mult;
--	unsigned int tx_rate = REG_FIELD_GET(C20_PHY_TX_RATE, pll_state->tx[0]);
--
--	if (intel_c20phy_use_mpllb(pll_state)) {
--		tx_rate_mult = 1;
--		frac_en = REG_FIELD_GET(C20_MPLLB_FRACEN, pll_state->mpllb[6]);
--		frac_quot = pll_state->mpllb[8];
--		frac_rem =  pll_state->mpllb[9];
--		frac_den =  pll_state->mpllb[7];
--		multiplier = REG_FIELD_GET(C20_MULTIPLIER_MASK, pll_state->mpllb[0]);
--		tx_clk_div = REG_FIELD_GET(C20_MPLLB_TX_CLK_DIV_MASK, pll_state->mpllb[0]);
--		ref_clk_mpllb_div = REG_FIELD_GET(C20_REF_CLK_MPLLB_DIV_MASK, pll_state->mpllb[6]);
--		fb_clk_div4_en = 0;
--	} else {
--		tx_rate_mult = 2;
--		frac_en = REG_FIELD_GET(C20_MPLLA_FRACEN, pll_state->mplla[6]);
--		frac_quot = pll_state->mplla[8];
--		frac_rem =  pll_state->mplla[9];
--		frac_den =  pll_state->mplla[7];
--		multiplier = REG_FIELD_GET(C20_MULTIPLIER_MASK, pll_state->mplla[0]);
--		tx_clk_div = REG_FIELD_GET(C20_MPLLA_TX_CLK_DIV_MASK, pll_state->mplla[1]);
--		ref_clk_mpllb_div = REG_FIELD_GET(C20_REF_CLK_MPLLB_DIV_MASK, pll_state->mplla[6]);
--		fb_clk_div4_en = REG_FIELD_GET(C20_FB_CLK_DIV4_EN, pll_state->mplla[0]);
--	}
--
--	if (frac_en)
--		frac = frac_quot + DIV_ROUND_CLOSEST(frac_rem, frac_den);
--	else
--		frac = 0;
--
--	ref = DIV_ROUND_CLOSEST(refclk * (1 << (1 + fb_clk_div4_en)), 1 << ref_clk_mpllb_div);
--	vco = DIV_ROUND_CLOSEST_ULL(mul_u32_u32(ref, (multiplier << (17 - 2)) + frac) >> 17, 10);
--
--	return vco << tx_rate_mult >> tx_clk_div >> tx_rate;
--}
--
- static void intel_c20pll_readout_hw_state(struct intel_encoder *encoder,
- 					  struct intel_cx0pll_state *cx0pll_state)
+diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+index cb91d07cdaa6..d8739e2bb004 100644
+--- a/drivers/gpu/drm/i915/display/intel_ddi.c
++++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+@@ -4247,13 +4247,15 @@ void intel_ddi_get_clock(struct intel_encoder *encoder,
+ static void xe3plpd_ddi_get_config(struct intel_encoder *encoder,
+ 				   struct intel_crtc_state *crtc_state)
  {
++	struct intel_display *display = to_intel_display(encoder);
++
+ 	intel_lt_phy_pll_readout_hw_state(encoder, crtc_state, &crtc_state->dpll_hw_state.ltpll);
+ 
+ 	if (crtc_state->dpll_hw_state.ltpll.tbt_mode)
+ 		crtc_state->port_clock = intel_mtl_tbt_calc_port_clock(encoder);
+ 	else
+ 		crtc_state->port_clock =
+-			intel_lt_phy_calc_port_clock(encoder, crtc_state);
++			intel_lt_phy_calc_port_clock(display, &crtc_state->dpll_hw_state.ltpll);
+ 	intel_ddi_get_config(encoder, crtc_state);
+ }
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_dpll.c b/drivers/gpu/drm/i915/display/intel_dpll.c
+index a4f372c9e6fc..1b5b18fa0a36 100644
+--- a/drivers/gpu/drm/i915/display/intel_dpll.c
++++ b/drivers/gpu/drm/i915/display/intel_dpll.c
+@@ -1219,6 +1219,7 @@ static int xe3plpd_crtc_compute_clock(struct intel_atomic_state *state,
+ 		intel_atomic_get_new_crtc_state(state, crtc);
+ 	struct intel_encoder *encoder =
+ 		intel_get_crtc_new_encoder(state, crtc_state);
++	struct intel_display *display = to_intel_display(encoder);
+ 	int ret;
+ 
+ 	ret = intel_lt_phy_pll_calc_state(crtc_state, encoder);
+@@ -1227,7 +1228,7 @@ static int xe3plpd_crtc_compute_clock(struct intel_atomic_state *state,
+ 
+ 	/* TODO: Do the readback via intel_compute_shared_dplls() */
+ 	crtc_state->port_clock =
+-			intel_lt_phy_calc_port_clock(encoder, crtc_state);
++			intel_lt_phy_calc_port_clock(display, &crtc_state->dpll_hw_state.ltpll);
+ 
+ 	crtc_state->hw.adjusted_mode.crtc_clock = intel_crtc_dotclock(crtc_state);
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.c b/drivers/gpu/drm/i915/display/intel_lt_phy.c
+index 939c8975fd4c..74b0bc90c959 100644
+--- a/drivers/gpu/drm/i915/display/intel_lt_phy.c
++++ b/drivers/gpu/drm/i915/display/intel_lt_phy.c
+@@ -1679,7 +1679,8 @@ intel_lt_phy_calculate_hdmi_state(struct intel_lt_phy_pll_state *lt_state,
+ }
+ 
+ static int
+-intel_lt_phy_calc_hdmi_port_clock(const struct intel_crtc_state *crtc_state)
++intel_lt_phy_calc_hdmi_port_clock(struct intel_display *display,
++				  const struct intel_lt_phy_pll_state *lt_state)
+ {
+ #define REGVAL(i) (				\
+ 	(lt_state->data[i][3])		|	\
+@@ -1688,9 +1689,6 @@ intel_lt_phy_calc_hdmi_port_clock(const struct intel_crtc_state *crtc_state)
+ 	(lt_state->data[i][0] << 24)		\
+ )
+ 
+-	struct intel_display *display = to_intel_display(crtc_state);
+-	const struct intel_lt_phy_pll_state *lt_state =
+-		&crtc_state->dpll_hw_state.ltpll;
+ 	int clk = 0;
+ 	u32 d8, pll_reg_5, pll_reg_3, pll_reg_57, m2div_frac, m2div_int;
+ 	u64 temp0, temp1;
+@@ -1748,12 +1746,10 @@ intel_lt_phy_calc_hdmi_port_clock(const struct intel_crtc_state *crtc_state)
+ }
+ 
+ int
+-intel_lt_phy_calc_port_clock(struct intel_encoder *encoder,
+-			     const struct intel_crtc_state *crtc_state)
++intel_lt_phy_calc_port_clock(struct intel_display *display,
++			     const struct intel_lt_phy_pll_state *lt_state)
+ {
+ 	int clk;
+-	const struct intel_lt_phy_pll_state *lt_state =
+-		&crtc_state->dpll_hw_state.ltpll;
+ 	u8 mode, rate;
+ 
+ 	mode = REG_FIELD_GET8(LT_PHY_VDR_MODE_ENCODING_MASK,
+@@ -1769,7 +1765,7 @@ intel_lt_phy_calc_port_clock(struct intel_encoder *encoder,
+ 				      lt_state->config[0]);
+ 		clk = intel_lt_phy_get_dp_clock(rate);
+ 	} else {
+-		clk = intel_lt_phy_calc_hdmi_port_clock(crtc_state);
++		clk = intel_lt_phy_calc_hdmi_port_clock(display, lt_state);
+ 	}
+ 
+ 	return clk;
+@@ -2220,6 +2216,7 @@ void intel_lt_phy_pll_readout_hw_state(struct intel_encoder *encoder,
+ 				       const struct intel_crtc_state *crtc_state,
+ 				       struct intel_lt_phy_pll_state *pll_state)
+ {
++	struct intel_display *display = to_intel_display(encoder);
+ 	u8 owned_lane_mask;
+ 	u8 lane;
+ 	struct ref_tracker *wakeref;
+@@ -2245,7 +2242,7 @@ void intel_lt_phy_pll_readout_hw_state(struct intel_encoder *encoder,
+ 	}
+ 
+ 	pll_state->clock =
+-		intel_lt_phy_calc_port_clock(encoder, crtc_state);
++		intel_lt_phy_calc_port_clock(display, &crtc_state->dpll_hw_state.ltpll);
+ 	intel_lt_phy_transaction_end(encoder, wakeref);
+ }
+ 
+@@ -2275,7 +2272,7 @@ void intel_lt_phy_pll_state_verify(struct intel_atomic_state *state,
+ 
+ 	encoder = intel_get_crtc_new_encoder(state, new_crtc_state);
+ 	intel_lt_phy_pll_readout_hw_state(encoder, new_crtc_state, &pll_hw_state);
+-	clock = intel_lt_phy_calc_port_clock(encoder, new_crtc_state);
++	clock = intel_lt_phy_calc_port_clock(display, &new_crtc_state->dpll_hw_state.ltpll);
+ 
+ 	dig_port = enc_to_dig_port(encoder);
+ 	if (intel_tc_port_in_tbt_alt_mode(dig_port))
+diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.h b/drivers/gpu/drm/i915/display/intel_lt_phy.h
+index 7659c92b6c3c..c4999a55473e 100644
+--- a/drivers/gpu/drm/i915/display/intel_lt_phy.h
++++ b/drivers/gpu/drm/i915/display/intel_lt_phy.h
+@@ -21,8 +21,8 @@ void intel_lt_phy_pll_disable(struct intel_encoder *encoder);
+ int
+ intel_lt_phy_pll_calc_state(struct intel_crtc_state *crtc_state,
+ 			    struct intel_encoder *encoder);
+-int intel_lt_phy_calc_port_clock(struct intel_encoder *encoder,
+-				 const struct intel_crtc_state *crtc_state);
++int intel_lt_phy_calc_port_clock(struct intel_display *display,
++				 const struct intel_lt_phy_pll_state *lt_state);
+ void intel_lt_phy_set_signal_levels(struct intel_encoder *encoder,
+ 				    const struct intel_crtc_state *crtc_state);
+ void intel_lt_phy_dump_hw_state(struct intel_display *display,
 -- 
 2.34.1
 
