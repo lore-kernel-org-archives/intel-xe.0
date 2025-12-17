@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 89BDAD65C7C
-	for <intel-xe@archiver.kernel.org>; Wed, 17 Dec 2025 17:29:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 61440D65C7E
+	for <intel-xe@archiver.kernel.org>; Wed, 17 Dec 2025 17:34:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 05A3310E8D5;
-	Wed, 17 Dec 2025 17:29:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0764C10E8D5;
+	Wed, 17 Dec 2025 17:34:59 +0000 (UTC)
 Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9D28110E8D5;
- Wed, 17 Dec 2025 17:29:43 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6335936983887895786=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 77E5710E8D5;
+ Wed, 17 Dec 2025 17:34:58 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/pf=3A_Fix_typo_in_fu?=
- =?utf-8?q?nction_kernel-doc?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/i915/pll=3A_Verify_pl?=
+ =?utf-8?q?l_dividers_and_remove_redundant_=2Eclock_member_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
+To: "Mika Kahola" <mika.kahola@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 17 Dec 2025 17:29:43 -0000
-Message-ID: <176599258362.98733.5410404805932508288@a3b018990fe9>
+Date: Wed, 17 Dec 2025 17:34:58 -0000
+Message-ID: <176599289848.97606.12259806072661538776@a3b018990fe9>
 X-Patchwork-Hint: ignore
-References: <20251217150702.2669-1-michal.wajdeczko@intel.com>
-In-Reply-To: <20251217150702.2669-1-michal.wajdeczko@intel.com>
+References: <20251217151955.1690202-1-mika.kahola@intel.com>
+In-Reply-To: <20251217151955.1690202-1-mika.kahola@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,206 +40,125 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============6335936983887895786==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe/pf: Fix typo in function kernel-doc
-URL   : https://patchwork.freedesktop.org/series/159161/
-State : success
+Series: drm/i915/pll: Verify pll dividers and remove redundant .clock member (rev2)
+URL   : https://patchwork.freedesktop.org/series/159089/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-4257-810ba5ee6a71b54b99289f397e8ca9147047c395_BAT -> xe-pw-159161v1_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+8f50e69d0ce3656564bbdf8b3e213d61470d463f
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 176151407a52e05308cb7390d79af83a1997fe17
+Author: Mika Kahola <mika.kahola@intel.com>
+Date:   Wed Dec 17 17:19:55 2025 +0200
 
-Summary
--------
+    drm/i915/display: Remove .clock member from eDP/DP/HDMI pll tables
+    
+    PLL state structure has a member .clock. This is not needed as
+    the port clock is possible to calculate from the pll dividers.
+    Remove the .clock from the pll state structure.
+    
+    v2: Keep the pll_state->clock assignment in
+        intel_snps_hdmi_pll_compute_mpllb().
+    
+    Signed-off-by: Mika Kahola <mika.kahola@intel.com>
++ /mt/dim checkpatch 605176fe40c828b491a1532367df157529895b87 drm-intel
+794c3ab7e7d5 drm/i915/c10: Move C10 port clock calculation
+a2283db79d78 drm/i915/c20: Move C20 port clock calculation
+94e7889a0215 drm/i915/cx0: Drop Cx0 crtc_state from HDMI TMDS pll divider calculation
+56614d886f2d drm/i915/lt_phy: Drop LT PHY crtc_state for port calculation
+375af7865ff8 drm/i915/cx0: Drop encoder from port clock calculation
+fccfcdeafc69 drm/i915/cx0: Create macro around pll tables
+-:51: CHECK:MACRO_ARG_PRECEDENCE: Macro argument '__state' may be better as '(__state)' to avoid precedence issues
+#51: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy.c:794:
++#define __C10PLL_PARAMS(__is_hdmi, __clock_rate, __state) { \
++	.name = __stringify(__state), \
++	.is_c10 = true, \
++	.is_hdmi = __is_hdmi, \
++	.clock_rate = __clock_rate, \
++	.c10 = &__state, \
++}
 
-  **SUCCESS**
+-:59: CHECK:MACRO_ARG_PRECEDENCE: Macro argument '__state' may be better as '(__state)' to avoid precedence issues
+#59: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy.c:802:
++#define __C20PLL_PARAMS(__is_hdmi, __clock_rate, __state)    { \
++	.name = __stringify(__state), \
++	.is_c10 = false, \
++	.is_hdmi = __is_hdmi, \
++	.clock_rate = __clock_rate, \
++	.c20 = &__state, \
++}
 
-  No regressions found.
+-:68: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#68: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy.c:811:
++#define C10PLL_DP_PARAMS(__clock_rate, __state)         __C10PLL_PARAMS(false, __clock_rate, __state)
 
-  
+-:71: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#71: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy.c:814:
++#define C20PLL_DP_PARAMS(__clock_rate, __state)         __C20PLL_PARAMS(false, __clock_rate, __state)
 
-Participating hosts (12 -> 12)
-------------------------------
+total: 0 errors, 2 warnings, 2 checks, 391 lines checked
+72a66cb1a31f drm/i915/lt_phy: Create macro for lt phy pll state
+-:39: CHECK:MACRO_ARG_PRECEDENCE: Macro argument '__state' may be better as '(__state)' to avoid precedence issues
+#39: FILE: drivers/gpu/drm/i915/display/intel_lt_phy.c:446:
++#define __LT_PHY_PLL_PARAMS(__is_hdmi, __clock_rate, __state)    { \
++	.name = __stringify(__state), \
++	.is_hdmi = __is_hdmi, \
++	.clock_rate = __clock_rate, \
++	.state = &__state, \
++}
 
-  No changes in participating hosts
+-:46: WARNING:LONG_LINE: line length of 104 exceeds 100 columns
+#46: FILE: drivers/gpu/drm/i915/display/intel_lt_phy.c:453:
++#define LT_PHY_PLL_HDMI_PARAMS(__clock_rate, __state)	__LT_PHY_PLL_PARAMS(true, __clock_rate, __state)
 
-Known issues
-------------
+-:47: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
+#47: FILE: drivers/gpu/drm/i915/display/intel_lt_phy.c:454:
++#define LT_PHY_PLL_DP_PARAMS(__clock_rate, __state)	__LT_PHY_PLL_PARAMS(false, __clock_rate, __state)
 
-  Here are the changes found in xe-pw-159161v1_BAT that come from known issues:
+total: 0 errors, 2 warnings, 1 checks, 125 lines checked
+f54167c28033 drm/i915/display: Add helper function for fuzzy clock check
+38d3e27a659a drm/i915/cx0: Fix HDMI FRL clock rates
+038a989576e2 drm/i915/cx0: Add a fuzzy check for DP/HDMI clock rates during programming
+8847d02ff871 drm/i915/cx0: Verify C10/C20 pll dividers
+-:69: WARNING:LONG_LINE: line length of 108 exceeds 100 columns
+#69: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy.c:3864:
++	intel_c10pll_verify_clock(display, pll_params->clock_rate, pll_params->name, pll_params->c10, true);
 
-### IGT changes ###
+-:76: WARNING:LONG_LINE: line length of 104 exceeds 100 columns
+#76: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy.c:3871:
++	intel_c10pll_verify_clock(display, pll_params->clock_rate, pll_params->name, &pll_state, false);
 
-#### Issues hit ####
+-:115: WARNING:LONG_LINE: line length of 108 exceeds 100 columns
+#115: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy.c:3910:
++	intel_c20pll_verify_clock(display, pll_params->clock_rate, pll_params->name, pll_params->c20, true);
 
-  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
-    - bat-bmg-1:          NOTRUN -> [SKIP][1] ([Intel XE#2233])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159161v1/bat-bmg-1/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
+-:123: WARNING:LONG_LINE: line length of 104 exceeds 100 columns
+#123: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy.c:3918:
++	intel_c20pll_verify_clock(display, pll_params->clock_rate, pll_params->name, &pll_state, false);
 
-  * igt@kms_dsc@dsc-basic:
-    - bat-bmg-1:          NOTRUN -> [SKIP][2] ([Intel XE#2244])
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159161v1/bat-bmg-1/igt@kms_dsc@dsc-basic.html
+total: 0 errors, 4 warnings, 0 checks, 152 lines checked
+b2ec1adc3c21 drm/i915/lt_phy: Add verification for lt phy pll dividers
+-:85: WARNING:LONG_LINE: line length of 114 exceeds 100 columns
+#85: FILE: drivers/gpu/drm/i915/display/intel_lt_phy.c:2383:
++	intel_lt_phy_pll_verify_clock(display, pll_params->clock_rate, pll_params->name, pll_params->state, true);
 
-  * igt@kms_psr@psr-sprite-plane-onoff:
-    - bat-bmg-1:          NOTRUN -> [SKIP][3] ([Intel XE#1406] / [Intel XE#2234] / [Intel XE#2850]) +2 other tests skip
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159161v1/bat-bmg-1/igt@kms_psr@psr-sprite-plane-onoff.html
+-:93: WARNING:LONG_LINE: line length of 108 exceeds 100 columns
+#93: FILE: drivers/gpu/drm/i915/display/intel_lt_phy.c:2391:
++	intel_lt_phy_pll_verify_clock(display, pll_params->clock_rate, pll_params->name, &pll_state, false);
 
-  * igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit:
-    - bat-bmg-1:          NOTRUN -> [SKIP][4] ([Intel XE#2229])
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159161v1/bat-bmg-1/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html
-
-  * igt@xe_pat@pat-index-xehpc:
-    - bat-bmg-1:          NOTRUN -> [SKIP][5] ([Intel XE#1420])
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159161v1/bat-bmg-1/igt@xe_pat@pat-index-xehpc.html
-
-  * igt@xe_pat@pat-index-xelp:
-    - bat-bmg-1:          NOTRUN -> [SKIP][6] ([Intel XE#2245])
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159161v1/bat-bmg-1/igt@xe_pat@pat-index-xelp.html
-
-  * igt@xe_pat@pat-index-xelpg:
-    - bat-bmg-1:          NOTRUN -> [SKIP][7] ([Intel XE#2236])
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159161v1/bat-bmg-1/igt@xe_pat@pat-index-xelpg.html
-
-  
-#### Possible fixes ####
-
-  * igt@xe_module_load@load:
-    - bat-bmg-1:          [ABORT][8] ([Intel XE#6887]) -> [PASS][9]
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4257-810ba5ee6a71b54b99289f397e8ca9147047c395/bat-bmg-1/igt@xe_module_load@load.html
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159161v1/bat-bmg-1/igt@xe_module_load@load.html
-
-  
-  [Intel XE#1406]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1406
-  [Intel XE#1420]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1420
-  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
-  [Intel XE#2233]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2233
-  [Intel XE#2234]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2234
-  [Intel XE#2236]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2236
-  [Intel XE#2244]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2244
-  [Intel XE#2245]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2245
-  [Intel XE#2850]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2850
-  [Intel XE#6887]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6887
-
-
-Build changes
--------------
-
-  * Linux: xe-4257-810ba5ee6a71b54b99289f397e8ca9147047c395 -> xe-pw-159161v1
-
-  IGT_8669: 319db2ffba419f9711acc72895f065a818905efa @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-4257-810ba5ee6a71b54b99289f397e8ca9147047c395: 810ba5ee6a71b54b99289f397e8ca9147047c395
-  xe-pw-159161v1: 159161v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159161v1/index.html
-
---===============6335936983887895786==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/pf: Fix typo in function kernel-doc</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/159161/">https://patchwork.freedesktop.org/series/159161/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159161v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159161v1/index.html</a></td></tr>
-
-</table>
+total: 0 errors, 2 warnings, 0 checks, 86 lines checked
+7cf9f46caa30 drm/i915/cx0: Drop C20 25.175 MHz rate
+89b4bd46c010 drm/i915/lt_phy: Drop 27.2 MHz rate
+176151407a52 drm/i915/display: Remove .clock member from eDP/DP/HDMI pll tables
 
 
-    <h1>CI Bug Log - changes from xe-4257-810ba5ee6a71b54b99289f397e8ca9147047c395_BAT -&gt; xe-pw-159161v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (12 -&gt; 12)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-159161v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:</p>
-<ul>
-<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159161v1/bat-bmg-1/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2233">Intel XE#2233</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_dsc@dsc-basic:</p>
-<ul>
-<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159161v1/bat-bmg-1/igt@kms_dsc@dsc-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2244">Intel XE#2244</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@psr-sprite-plane-onoff:</p>
-<ul>
-<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159161v1/bat-bmg-1/igt@kms_psr@psr-sprite-plane-onoff.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1406">Intel XE#1406</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2234">Intel XE#2234</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2850">Intel XE#2850</a>) +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit:</p>
-<ul>
-<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159161v1/bat-bmg-1/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xehpc:</p>
-<ul>
-<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159161v1/bat-bmg-1/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1420">Intel XE#1420</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xelp:</p>
-<ul>
-<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159161v1/bat-bmg-1/igt@xe_pat@pat-index-xelp.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2245">Intel XE#2245</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xelpg:</p>
-<ul>
-<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159161v1/bat-bmg-1/igt@xe_pat@pat-index-xelpg.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2236">Intel XE#2236</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_module_load@load:<ul>
-<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4257-810ba5ee6a71b54b99289f397e8ca9147047c395/bat-bmg-1/igt@xe_module_load@load.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6887">Intel XE#6887</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159161v1/bat-bmg-1/igt@xe_module_load@load.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4257-810ba5ee6a71b54b99289f397e8ca9147047c395 -&gt; xe-pw-159161v1</li>
-</ul>
-<p>IGT_8669: 319db2ffba419f9711acc72895f065a818905efa @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-4257-810ba5ee6a71b54b99289f397e8ca9147047c395: 810ba5ee6a71b54b99289f397e8ca9147047c395<br />
-  xe-pw-159161v1: 159161v1</p>
-
-</body>
-</html>
-
---===============6335936983887895786==--
