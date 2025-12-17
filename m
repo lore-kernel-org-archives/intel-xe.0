@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 69678D6407F
-	for <intel-xe@archiver.kernel.org>; Wed, 17 Dec 2025 06:10:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BCA73D64080
+	for <intel-xe@archiver.kernel.org>; Wed, 17 Dec 2025 06:10:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 19C1710EBBE;
-	Wed, 17 Dec 2025 06:10:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7F08D10EBBB;
+	Wed, 17 Dec 2025 06:10:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KTqhrhCs";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WpKsZVYe";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 17E9910EBB1;
- Wed, 17 Dec 2025 06:10:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9938F10EBBB;
+ Wed, 17 Dec 2025 06:10:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765951846; x=1797487846;
+ t=1765951851; x=1797487851;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=5ljjJbSTC2fewhPcGashjdgeB+fL+HG/KVjS20by3gk=;
- b=KTqhrhCsEwdv83DVjiRyby8ykQrcEdFMKzpddiCcLjlhn1K1/RA/TcyY
- n9MUmOsVlaVZM+LqtLKHkbKxvoEz+NSPSTKnPpY0vxPS3u4DJa0Rcd6L1
- gfVSy9K0E35gwswOtZ7cGseEHPdpqRdx34QfkjKeoXNvFrM+0Enm9+PwZ
- 8tchC7NZB82VTdevQijHLDe/2W6WbAnYPr6WVJY97VVkYsZXgq1nPQdOz
- z+G98rY3c9EhMcobm85i1XaZwZim060J0y/aQ7W7t0UsAYRNGa6cHdjcP
- 7jy+s82Ghykp+o9vAYHNWnaE0cUB/el53p+ijtF4qYKr7pv9oIQTmXAla g==;
-X-CSE-ConnectionGUID: 3F23UhmyQ86yUG271+3uQg==
-X-CSE-MsgGUID: cvL2cMawT16Q4TFMrmi1Yw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11644"; a="85471215"
-X-IronPort-AV: E=Sophos;i="6.21,155,1763452800"; d="scan'208";a="85471215"
+ bh=ZhUwYQIr1aBARLS6XJbwlt5lwJ34xTSD5kcFlJy7cus=;
+ b=WpKsZVYe181izcp4p3+cZJdH/DHaErvx/zMb3nFjgmMLowVAzrUIHu3c
+ voJNkRSTLTM8OB/TSJCoFrhxIBq4U27x7v4WBLxC2QJ5y1YMhte7JWE6X
+ iB2dsymP2U6QT1rOZVFaxrUEiK1et7a6Jw1E/uAYiYy+PRBuUwu5FRm0K
+ yIybuy/lBbepsyg9fnsRuP2m2GH7ckorIC/7/WKoCyaZgnKomBCZYkiVo
+ tdijXZAvfIoeU3V1ganTRVzYxLpUbsU3Nv6Mww4i2Dmuv1SexIHzKHhlL
+ WrbSlq+eAtxPojV4OlDGJfRKyeCfxrGhYGO7pftz1vHjJPzbBteF2ZR1o A==;
+X-CSE-ConnectionGUID: j1bjb/DxTtyC+ABtLge5JQ==
+X-CSE-MsgGUID: boMPjcBHRmOUFZTPAbzU6A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11644"; a="85471227"
+X-IronPort-AV: E=Sophos;i="6.21,155,1763452800"; d="scan'208";a="85471227"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2025 22:10:46 -0800
-X-CSE-ConnectionGUID: dehQ+XthS3iJSU4dhtJJtA==
-X-CSE-MsgGUID: CU5d52FORCy8zbtEwr15Lw==
+ 16 Dec 2025 22:10:51 -0800
+X-CSE-ConnectionGUID: M/lmD1B2RNCR5ozg7grvnA==
+X-CSE-MsgGUID: i7CasxmqRwWxdKP0KJOQxA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,155,1763452800"; d="scan'208";a="198105213"
+X-IronPort-AV: E=Sophos;i="6.21,155,1763452800"; d="scan'208";a="198105259"
 Received: from cfl-desktop.iind.intel.com ([10.190.239.20])
- by fmviesa006.fm.intel.com with ESMTP; 16 Dec 2025 22:10:44 -0800
+ by fmviesa006.fm.intel.com with ESMTP; 16 Dec 2025 22:10:50 -0800
 From: Uma Shankar <uma.shankar@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com, ville.syrjala@linux.intel.com,
  Uma Shankar <uma.shankar@intel.com>
-Subject: [PATCH 15/19] drm/{i915,
- xe}: Remove i915_reg.h from intel_fifo_underrun.c
-Date: Wed, 17 Dec 2025 11:52:05 +0530
-Message-ID: <20251217062209.852324-16-uma.shankar@intel.com>
+Subject: [PATCH 18/19] drm/{i915,
+ xe}: Remove i915_reg.h from intel_modeset_setup.c
+Date: Wed, 17 Dec 2025 11:52:08 +0530
+Message-ID: <20251217062209.852324-19-uma.shankar@intel.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20251217062209.852324-1-uma.shankar@intel.com>
 References: <20251217062209.852324-1-uma.shankar@intel.com>
@@ -68,94 +68,74 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Move GEN7_ERR_INT reg to common header to make intel_fifo_underrun.c
-free from including i915_reg.h.
+Move GEN9_CLKGATE_DIS_0 reg to common header to make
+intel_modeset_setup.c free from i915_reg.h include.
 
 Signed-off-by: Uma Shankar <uma.shankar@intel.com>
 ---
- .../drm/i915/display/intel_fifo_underrun.c    |  2 +-
- drivers/gpu/drm/i915/i915_reg.h               | 23 -------------------
- include/drm/intel/intel_gmd_common_regs.h     | 23 +++++++++++++++++++
- 3 files changed, 24 insertions(+), 24 deletions(-)
+ drivers/gpu/drm/i915/display/intel_modeset_setup.c |  2 +-
+ drivers/gpu/drm/i915/i915_reg.h                    | 13 -------------
+ include/drm/intel/intel_gmd_common_regs.h          | 13 +++++++++++++
+ 3 files changed, 14 insertions(+), 14 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_fifo_underrun.c b/drivers/gpu/drm/i915/display/intel_fifo_underrun.c
-index b413b3e871d8..c834be759e40 100644
---- a/drivers/gpu/drm/i915/display/intel_fifo_underrun.c
-+++ b/drivers/gpu/drm/i915/display/intel_fifo_underrun.c
-@@ -28,8 +28,8 @@
- #include <linux/seq_buf.h>
- 
+diff --git a/drivers/gpu/drm/i915/display/intel_modeset_setup.c b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
+index d10cbf69a5f8..2502f0076e64 100644
+--- a/drivers/gpu/drm/i915/display/intel_modeset_setup.c
++++ b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
+@@ -10,8 +10,8 @@
+ #include <drm/drm_atomic_uapi.h>
  #include <drm/drm_print.h>
+ #include <drm/drm_vblank.h>
 +#include <drm/intel/intel_gmd_common_regs.h>
  
 -#include "i915_reg.h"
- #include "intel_de.h"
- #include "intel_display_irq.h"
- #include "intel_display_regs.h"
+ #include "i9xx_wm.h"
+ #include "intel_atomic.h"
+ #include "intel_bw.h"
 diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 409c450a208a..ef2b33bbebee 100644
+index 44df40e25e37..e41b80cae1d8 100644
 --- a/drivers/gpu/drm/i915/i915_reg.h
 +++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -326,29 +326,6 @@
- #define GEN7_MEDIA_MAX_REQ_COUNT	_MMIO(0x4070)
- #define GEN7_GFX_MAX_REQ_COUNT		_MMIO(0x4074)
+@@ -632,19 +632,6 @@
+ #define VLV_CLK_CTL2			_MMIO(0x101104)
+ #define   CLK_CTL2_CZCOUNT_30NS_SHIFT	28
  
--#define GEN7_ERR_INT	_MMIO(0x44040)
--#define   ERR_INT_POISON		(1 << 31)
--#define   ERR_INT_INVALID_GTT_PTE	(1 << 29)
--#define   ERR_INT_INVALID_PTE_DATA	(1 << 28)
--#define   ERR_INT_SPRITE_C_FAULT	(1 << 23)
--#define   ERR_INT_PRIMARY_C_FAULT	(1 << 22)
--#define   ERR_INT_CURSOR_C_FAULT	(1 << 21)
--#define   ERR_INT_SPRITE_B_FAULT	(1 << 20)
--#define   ERR_INT_PRIMARY_B_FAULT	(1 << 19)
--#define   ERR_INT_CURSOR_B_FAULT	(1 << 18)
--#define   ERR_INT_SPRITE_A_FAULT	(1 << 17)
--#define   ERR_INT_PRIMARY_A_FAULT	(1 << 16)
--#define   ERR_INT_CURSOR_A_FAULT	(1 << 15)
--#define   ERR_INT_MMIO_UNCLAIMED	(1 << 13)
--#define   ERR_INT_PIPE_CRC_DONE_C	(1 << 8)
--#define   ERR_INT_FIFO_UNDERRUN_C	(1 << 6)
--#define   ERR_INT_PIPE_CRC_DONE_B	(1 << 5)
--#define   ERR_INT_FIFO_UNDERRUN_B	(1 << 3)
--#define   ERR_INT_PIPE_CRC_DONE_A	(1 << 2)
--#define   ERR_INT_PIPE_CRC_DONE(pipe)	(1 << (2 + (pipe) * 3))
--#define   ERR_INT_FIFO_UNDERRUN_A	(1 << 0)
--#define   ERR_INT_FIFO_UNDERRUN(pipe)	(1 << ((pipe) * 3))
+-/*
+- * GEN9 clock gating regs
+- */
+-#define GEN9_CLKGATE_DIS_0		_MMIO(0x46530)
+-#define   DARBF_GATING_DIS		REG_BIT(27)
+-#define   MTL_PIPEDMC_GATING_DIS(pipe)	REG_BIT(15 - (pipe))
+-#define   PWM2_GATING_DIS		REG_BIT(14)
+-#define   PWM1_GATING_DIS		REG_BIT(13)
 -
- #define FPGA_DBG		_MMIO(0x42300)
- #define   FPGA_DBG_RM_NOCLAIM	REG_BIT(31)
- 
+-#define GEN9_CLKGATE_DIS_3		_MMIO(0x46538)
+-#define   TGL_VRH_GATING_DIS		REG_BIT(31)
+-#define   DPT_GATING_DIS		REG_BIT(22)
+-
+ #define VLV_DPFLIPSTAT				_MMIO(VLV_DISPLAY_BASE + 0x70028)
+ #define   PIPEB_LINE_COMPARE_INT_EN			REG_BIT(29)
+ #define   PIPEB_HLINE_INT_EN			REG_BIT(28)
 diff --git a/include/drm/intel/intel_gmd_common_regs.h b/include/drm/intel/intel_gmd_common_regs.h
-index 13b3e4ad27f4..db7a03699bcb 100644
+index 5a42b473de8a..6faccce3de2a 100644
 --- a/include/drm/intel/intel_gmd_common_regs.h
 +++ b/include/drm/intel/intel_gmd_common_regs.h
-@@ -325,4 +325,27 @@
- #define   SKL_EDP_PSR_FIX_RDWRAP	REG_BIT(3)
- #define   IGNORE_PSR2_HW_TRACKING	REG_BIT(1)
+@@ -403,4 +403,17 @@
+ #define  GEN11_GT_DW1_IRQ		(1 << 1)
+ #define  GEN11_GT_DW0_IRQ		(1 << 0)
  
-+#define GEN7_ERR_INT	_MMIO(0x44040)
-+#define   ERR_INT_POISON		(1 << 31)
-+#define   ERR_INT_INVALID_GTT_PTE	(1 << 29)
-+#define   ERR_INT_INVALID_PTE_DATA	(1 << 28)
-+#define   ERR_INT_SPRITE_C_FAULT	(1 << 23)
-+#define   ERR_INT_PRIMARY_C_FAULT	(1 << 22)
-+#define   ERR_INT_CURSOR_C_FAULT	(1 << 21)
-+#define   ERR_INT_SPRITE_B_FAULT	(1 << 20)
-+#define   ERR_INT_PRIMARY_B_FAULT	(1 << 19)
-+#define   ERR_INT_CURSOR_B_FAULT	(1 << 18)
-+#define   ERR_INT_SPRITE_A_FAULT	(1 << 17)
-+#define   ERR_INT_PRIMARY_A_FAULT	(1 << 16)
-+#define   ERR_INT_CURSOR_A_FAULT	(1 << 15)
-+#define   ERR_INT_MMIO_UNCLAIMED	(1 << 13)
-+#define   ERR_INT_PIPE_CRC_DONE_C	(1 << 8)
-+#define   ERR_INT_FIFO_UNDERRUN_C	(1 << 6)
-+#define   ERR_INT_PIPE_CRC_DONE_B	(1 << 5)
-+#define   ERR_INT_FIFO_UNDERRUN_B	(1 << 3)
-+#define   ERR_INT_PIPE_CRC_DONE_A	(1 << 2)
-+#define   ERR_INT_PIPE_CRC_DONE(pipe)	(1 << (2 + (pipe) * 3))
-+#define   ERR_INT_FIFO_UNDERRUN_A	(1 << 0)
-+#define   ERR_INT_FIFO_UNDERRUN(pipe)	(1 << ((pipe) * 3))
++/*
++ * GEN9 clock gating regs
++ */
++#define GEN9_CLKGATE_DIS_0		_MMIO(0x46530)
++#define   DARBF_GATING_DIS		REG_BIT(27)
++#define   MTL_PIPEDMC_GATING_DIS(pipe)	REG_BIT(15 - (pipe))
++#define   PWM2_GATING_DIS		REG_BIT(14)
++#define   PWM1_GATING_DIS		REG_BIT(13)
++
++#define GEN9_CLKGATE_DIS_3		_MMIO(0x46538)
++#define   TGL_VRH_GATING_DIS		REG_BIT(31)
++#define   DPT_GATING_DIS		REG_BIT(22)
 +
  #endif
 -- 
