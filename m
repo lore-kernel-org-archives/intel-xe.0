@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D3D7AD6407A
-	for <intel-xe@archiver.kernel.org>; Wed, 17 Dec 2025 06:10:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C64A8D64076
+	for <intel-xe@archiver.kernel.org>; Wed, 17 Dec 2025 06:10:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 854AC10EB5B;
-	Wed, 17 Dec 2025 06:10:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 848BB10EB5A;
+	Wed, 17 Dec 2025 06:10:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="T46A8moM";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="F96wP4Wb";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CE7C310EB50;
- Wed, 17 Dec 2025 06:10:19 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 56FF910EB65;
+ Wed, 17 Dec 2025 06:10:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1765951820; x=1797487820;
+ t=1765951824; x=1797487824;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=8hQUKfgIOos8wUBaM9is1kbVAYLXwC9pjl+YFC7h9AU=;
- b=T46A8moM/f340Nrk1ttoyya0nXGSKm5dmqDGsEbkP7I5zFPcM6iDIFsW
- uzhMasmEsA/UgR/zAcyKDYoh4+8MmiCukZkE4DduIi+zRE8m3L2LLPRnr
- 1qg4k0akvDipZZyatAniXGnlCjwmHejmVFUBEvevY6a6GqcJi8gfiJNdM
- WYCyKXXj/Y0NMq+x610qIrniXcB8eZqQlRiS+Ogk58OTztRuBF/aOmyRk
- vpei2zqxCuwJHT7HbI+Yd9j379zi8YHdYEB5cvB1qYJZIyokn93+lObtW
- je9cJbAuhDGGy6SHptLWsVjxxDrsO+nCX+AN1r5oIKUEwuApI3tStKIiX A==;
-X-CSE-ConnectionGUID: Dbxo1s+gSDKm0qpHMO0Duw==
-X-CSE-MsgGUID: OnRYb9GeRAuf6dYi+EHZCg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11644"; a="85471124"
-X-IronPort-AV: E=Sophos;i="6.21,155,1763452800"; d="scan'208";a="85471124"
+ bh=gr9jSs2U/9ZV0Hm0Cg4BdZkhRD97Esh6kodHSha9mEE=;
+ b=F96wP4WbVN+JDA/XEyrDDlUH69wUj00HVuPqaOL/XUd0gKtcZxt8K489
+ q5F2lZf+f5yywJ5VgPioxbmU4QflWAqh7qospRyp6fFfd6KDj9GxmMfqg
+ zwlWdStonr1B6SNme8chAoqlO/hjJxPZhNu4zxvnFf5uZpIB5B15P2Gyc
+ 1IlAyrAn9lBSdnOz8YQ/6mjIwKlZseQGHxaWhBguX8fAac52wncPVewjl
+ vraWxW9a1GzxgncCIwXC5i8RifYuxcibIWlvKknrbcmuYK4MIqGHGAZQ8
+ YJsGWMldwnGdbY0bwxBgpb8jCbl27NjTmBd9Qbp5uE9C9wKtOE1OwSXWM A==;
+X-CSE-ConnectionGUID: ak65mzxgR8GyixdfuVdQAg==
+X-CSE-MsgGUID: ES3SYLReQq6qi8EIQyd+Ew==
+X-IronPort-AV: E=McAfee;i="6800,10657,11644"; a="85471139"
+X-IronPort-AV: E=Sophos;i="6.21,155,1763452800"; d="scan'208";a="85471139"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2025 22:10:19 -0800
-X-CSE-ConnectionGUID: Tpu+ZY49Sgyr8kDpDui+ag==
-X-CSE-MsgGUID: /TbyjkNvQzGRYZFQDXCFqw==
+ 16 Dec 2025 22:10:24 -0800
+X-CSE-ConnectionGUID: jZOWCMZ0S9KFyjKEhbHFUQ==
+X-CSE-MsgGUID: D9A5RFBxQXODGKe8To/fYA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,155,1763452800"; d="scan'208";a="198105130"
+X-IronPort-AV: E=Sophos;i="6.21,155,1763452800"; d="scan'208";a="198105155"
 Received: from cfl-desktop.iind.intel.com ([10.190.239.20])
- by fmviesa006.fm.intel.com with ESMTP; 16 Dec 2025 22:10:18 -0800
+ by fmviesa006.fm.intel.com with ESMTP; 16 Dec 2025 22:10:22 -0800
 From: Uma Shankar <uma.shankar@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com, ville.syrjala@linux.intel.com,
  Uma Shankar <uma.shankar@intel.com>
-Subject: [PATCH 02/19] drm/{i915, xe}: Extract South chicken registers
-Date: Wed, 17 Dec 2025 11:51:52 +0530
-Message-ID: <20251217062209.852324-3-uma.shankar@intel.com>
+Subject: [PATCH 04/19] drm/{i915, xe}: Extract DSPCLK_GATE_D
+Date: Wed, 17 Dec 2025 11:51:54 +0530
+Message-ID: <20251217062209.852324-5-uma.shankar@intel.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20251217062209.852324-1-uma.shankar@intel.com>
 References: <20251217062209.852324-1-uma.shankar@intel.com>
@@ -67,24 +67,24 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Extract South Chicken registers to common header.
-This allows intel_pch_refclk.c not to include i915_reg.h
+Move DSPCLK_GATE_D register definition to common header.
+This allows intel_gmbus.c free of i915_reg.h include.
 
 Signed-off-by: Uma Shankar <uma.shankar@intel.com>
 ---
- .../gpu/drm/i915/display/intel_pch_refclk.c   |  2 +-
- drivers/gpu/drm/i915/i915_reg.h               | 27 -------------------
- include/drm/intel/intel_gmd_common_regs.h     | 27 +++++++++++++++++++
- 3 files changed, 28 insertions(+), 28 deletions(-)
+ drivers/gpu/drm/i915/display/intel_gmbus.c |  2 +-
+ drivers/gpu/drm/i915/i915_reg.h            | 50 ----------------------
+ include/drm/intel/intel_gmd_common_regs.h  | 49 +++++++++++++++++++++
+ 3 files changed, 50 insertions(+), 51 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_pch_refclk.c b/drivers/gpu/drm/i915/display/intel_pch_refclk.c
-index 9a89bb6dcf65..55abb97c6562 100644
---- a/drivers/gpu/drm/i915/display/intel_pch_refclk.c
-+++ b/drivers/gpu/drm/i915/display/intel_pch_refclk.c
-@@ -4,8 +4,8 @@
-  */
+diff --git a/drivers/gpu/drm/i915/display/intel_gmbus.c b/drivers/gpu/drm/i915/display/intel_gmbus.c
+index 2caff677600c..b77860c5d649 100644
+--- a/drivers/gpu/drm/i915/display/intel_gmbus.c
++++ b/drivers/gpu/drm/i915/display/intel_gmbus.c
+@@ -34,8 +34,8 @@
  
  #include <drm/drm_print.h>
+ #include <drm/display/drm_hdcp_helper.h>
 +#include <drm/intel/intel_gmd_common_regs.h>
  
 -#include "i915_reg.h"
@@ -92,77 +92,136 @@ index 9a89bb6dcf65..55abb97c6562 100644
  #include "intel_display_regs.h"
  #include "intel_display_types.h"
 diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index f60259c41c56..c1f33c11ac1b 100644
+index a338f01a539b..30f504a47593 100644
 --- a/drivers/gpu/drm/i915/i915_reg.h
 +++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -1023,33 +1023,6 @@
+@@ -614,47 +614,6 @@
+ #define  DSTATE_GFX_CLOCK_GATING		(1 << 1)
+ #define  DSTATE_DOT_CLOCK_GATING		(1 << 0)
+ 
+-#define DSPCLK_GATE_D			_MMIO(0x6200)
+-#define VLV_DSPCLK_GATE_D		_MMIO(VLV_DISPLAY_BASE + 0x6200)
+-# define DPUNIT_B_CLOCK_GATE_DISABLE		(1 << 30) /* 965 */
+-# define VSUNIT_CLOCK_GATE_DISABLE		(1 << 29) /* 965 */
+-# define VRHUNIT_CLOCK_GATE_DISABLE		(1 << 28) /* 965 */
+-# define VRDUNIT_CLOCK_GATE_DISABLE		(1 << 27) /* 965 */
+-# define AUDUNIT_CLOCK_GATE_DISABLE		(1 << 26) /* 965 */
+-# define DPUNIT_A_CLOCK_GATE_DISABLE		(1 << 25) /* 965 */
+-# define DPCUNIT_CLOCK_GATE_DISABLE		(1 << 24) /* 965 */
+-# define PNV_GMBUSUNIT_CLOCK_GATE_DISABLE	(1 << 24) /* pnv */
+-# define TVRUNIT_CLOCK_GATE_DISABLE		(1 << 23) /* 915-945 */
+-# define TVCUNIT_CLOCK_GATE_DISABLE		(1 << 22) /* 915-945 */
+-# define TVFUNIT_CLOCK_GATE_DISABLE		(1 << 21) /* 915-945 */
+-# define TVEUNIT_CLOCK_GATE_DISABLE		(1 << 20) /* 915-945 */
+-# define DVSUNIT_CLOCK_GATE_DISABLE		(1 << 19) /* 915-945 */
+-# define DSSUNIT_CLOCK_GATE_DISABLE		(1 << 18) /* 915-945 */
+-# define DDBUNIT_CLOCK_GATE_DISABLE		(1 << 17) /* 915-945 */
+-# define DPRUNIT_CLOCK_GATE_DISABLE		(1 << 16) /* 915-945 */
+-# define DPFUNIT_CLOCK_GATE_DISABLE		(1 << 15) /* 915-945 */
+-# define DPBMUNIT_CLOCK_GATE_DISABLE		(1 << 14) /* 915-945 */
+-# define DPLSUNIT_CLOCK_GATE_DISABLE		(1 << 13) /* 915-945 */
+-# define DPLUNIT_CLOCK_GATE_DISABLE		(1 << 12) /* 915-945 */
+-# define DPOUNIT_CLOCK_GATE_DISABLE		(1 << 11)
+-# define DPBUNIT_CLOCK_GATE_DISABLE		(1 << 10)
+-# define DCUNIT_CLOCK_GATE_DISABLE		(1 << 9)
+-# define DPUNIT_CLOCK_GATE_DISABLE		(1 << 8)
+-# define VRUNIT_CLOCK_GATE_DISABLE		(1 << 7) /* 915+: reserved */
+-# define OVHUNIT_CLOCK_GATE_DISABLE		(1 << 6) /* 830-865 */
+-# define DPIOUNIT_CLOCK_GATE_DISABLE		(1 << 6) /* 915-945 */
+-# define OVFUNIT_CLOCK_GATE_DISABLE		(1 << 5)
+-# define OVBUNIT_CLOCK_GATE_DISABLE		(1 << 4)
+-/*
+- * This bit must be set on the 830 to prevent hangs when turning off the
+- * overlay scaler.
+- */
+-# define OVRUNIT_CLOCK_GATE_DISABLE		(1 << 3)
+-# define OVCUNIT_CLOCK_GATE_DISABLE		(1 << 2)
+-# define OVUUNIT_CLOCK_GATE_DISABLE		(1 << 1)
+-# define ZVUNIT_CLOCK_GATE_DISABLE		(1 << 0) /* 830 */
+-# define OVLUNIT_CLOCK_GATE_DISABLE		(1 << 0) /* 845,865 */
+-
+ #define RENCLK_GATE_D1		_MMIO(0x6204)
+ # define BLITTER_CLOCK_GATE_DISABLE		(1 << 13) /* 945GM only */
+ # define MPEG_CLOCK_GATE_DISABLE		(1 << 12) /* 945GM only */
+@@ -990,15 +949,6 @@
  #define   TRANS_CHICKEN1_HDMIUNIT_GC_DISABLE	REG_BIT(10)
  #define   TRANS_CHICKEN1_DP0UNIT_GC_DISABLE	REG_BIT(4)
  
--#define SOUTH_CHICKEN1		_MMIO(0xc2000)
--#define  FDIA_PHASE_SYNC_SHIFT_OVR	19
--#define  FDIA_PHASE_SYNC_SHIFT_EN	18
--#define  INVERT_DDIE_HPD			REG_BIT(28)
--#define  INVERT_DDID_HPD_MTP			REG_BIT(27)
--#define  INVERT_TC4_HPD				REG_BIT(26)
--#define  INVERT_TC3_HPD				REG_BIT(25)
--#define  INVERT_TC2_HPD				REG_BIT(24)
--#define  INVERT_TC1_HPD				REG_BIT(23)
--#define  INVERT_DDID_HPD			(1 << 18)
--#define  INVERT_DDIC_HPD			(1 << 17)
--#define  INVERT_DDIB_HPD			(1 << 16)
--#define  INVERT_DDIA_HPD			(1 << 15)
--#define  FDI_PHASE_SYNC_OVR(pipe) (1 << (FDIA_PHASE_SYNC_SHIFT_OVR - ((pipe) * 2)))
--#define  FDI_PHASE_SYNC_EN(pipe) (1 << (FDIA_PHASE_SYNC_SHIFT_EN - ((pipe) * 2)))
--#define  FDI_BC_BIFURCATION_SELECT	(1 << 12)
--#define  CHASSIS_CLK_REQ_DURATION_MASK	(0xf << 8)
--#define  CHASSIS_CLK_REQ_DURATION(x)	((x) << 8)
--#define  SBCLK_RUN_REFCLK_DIS		(1 << 7)
--#define  ICP_SECOND_PPS_IO_SELECT	REG_BIT(2)
--#define  SPT_PWM_GRANULARITY		(1 << 0)
--#define SOUTH_CHICKEN2		_MMIO(0xc2004)
--#define  FDI_MPHY_IOSFSB_RESET_STATUS	(1 << 13)
--#define  FDI_MPHY_IOSFSB_RESET_CTL	(1 << 12)
--#define  LPT_PWM_GRANULARITY		(1 << 5)
--#define  DPLS_EDP_PPS_FIX_DIS		(1 << 0)
+-#define SOUTH_DSPCLK_GATE_D	_MMIO(0xc2020)
+-#define  PCH_GMBUSUNIT_CLOCK_GATE_DISABLE (1 << 31)
+-#define  PCH_DPLUNIT_CLOCK_GATE_DISABLE (1 << 30)
+-#define  PCH_DPLSUNIT_CLOCK_GATE_DISABLE (1 << 29)
+-#define  PCH_DPMGUNIT_CLOCK_GATE_DISABLE (1 << 15)
+-#define  PCH_CPUNIT_CLOCK_GATE_DISABLE (1 << 14)
+-#define  CNP_PWM_CGE_GATING_DISABLE (1 << 13)
+-#define  PCH_LP_PARTITION_LEVEL_DISABLE  (1 << 12)
 -
- #define SOUTH_DSPCLK_GATE_D	_MMIO(0xc2020)
- #define  PCH_GMBUSUNIT_CLOCK_GATE_DISABLE (1 << 31)
- #define  PCH_DPLUNIT_CLOCK_GATE_DISABLE (1 << 30)
+ #define  VLV_PMWGICZ				_MMIO(0x1300a4)
+ 
+ #define  HSW_EDRAM_CAP				_MMIO(0x120010)
 diff --git a/include/drm/intel/intel_gmd_common_regs.h b/include/drm/intel/intel_gmd_common_regs.h
-index 4d91bc2dbb27..b4cfd186d5c0 100644
+index b4cfd186d5c0..fb2a327befd8 100644
 --- a/include/drm/intel/intel_gmd_common_regs.h
 +++ b/include/drm/intel/intel_gmd_common_regs.h
-@@ -4,6 +4,33 @@
+@@ -4,6 +4,46 @@
  #ifndef _INTEL_GMD_COMMON_REG_H_
  #define _INTEL_GMD_COMMON_REG_H_
  
-+#define SOUTH_CHICKEN1		_MMIO(0xc2000)
-+#define  FDIA_PHASE_SYNC_SHIFT_OVR	19
-+#define  FDIA_PHASE_SYNC_SHIFT_EN	18
-+#define  INVERT_DDIE_HPD			REG_BIT(28)
-+#define  INVERT_DDID_HPD_MTP			REG_BIT(27)
-+#define  INVERT_TC4_HPD				REG_BIT(26)
-+#define  INVERT_TC3_HPD				REG_BIT(25)
-+#define  INVERT_TC2_HPD				REG_BIT(24)
-+#define  INVERT_TC1_HPD				REG_BIT(23)
-+#define  INVERT_DDID_HPD			(1 << 18)
-+#define  INVERT_DDIC_HPD			(1 << 17)
-+#define  INVERT_DDIB_HPD			(1 << 16)
-+#define  INVERT_DDIA_HPD			(1 << 15)
-+#define  FDI_PHASE_SYNC_OVR(pipe) (1 << (FDIA_PHASE_SYNC_SHIFT_OVR - ((pipe) * 2)))
-+#define  FDI_PHASE_SYNC_EN(pipe) (1 << (FDIA_PHASE_SYNC_SHIFT_EN - ((pipe) * 2)))
-+#define  FDI_BC_BIFURCATION_SELECT	(1 << 12)
-+#define  CHASSIS_CLK_REQ_DURATION_MASK	(0xf << 8)
-+#define  CHASSIS_CLK_REQ_DURATION(x)	((x) << 8)
-+#define  SBCLK_RUN_REFCLK_DIS		(1 << 7)
-+#define  ICP_SECOND_PPS_IO_SELECT	REG_BIT(2)
-+#define  SPT_PWM_GRANULARITY		(1 << 0)
-+#define SOUTH_CHICKEN2		_MMIO(0xc2004)
-+#define  FDI_MPHY_IOSFSB_RESET_STATUS	(1 << 13)
-+#define  FDI_MPHY_IOSFSB_RESET_CTL	(1 << 12)
-+#define  LPT_PWM_GRANULARITY		(1 << 5)
-+#define  DPLS_EDP_PPS_FIX_DIS		(1 << 0)
++#define DSPCLK_GATE_D			_MMIO(0x6200)
++#define VLV_DSPCLK_GATE_D		_MMIO(VLV_DISPLAY_BASE + 0x6200)
++# define DPUNIT_B_CLOCK_GATE_DISABLE		(1 << 30) /* 965 */
++# define VSUNIT_CLOCK_GATE_DISABLE		(1 << 29) /* 965 */
++# define VRHUNIT_CLOCK_GATE_DISABLE		(1 << 28) /* 965 */
++# define VRDUNIT_CLOCK_GATE_DISABLE		(1 << 27) /* 965 */
++# define AUDUNIT_CLOCK_GATE_DISABLE		(1 << 26) /* 965 */
++# define DPUNIT_A_CLOCK_GATE_DISABLE		(1 << 25) /* 965 */
++# define DPCUNIT_CLOCK_GATE_DISABLE		(1 << 24) /* 965 */
++# define PNV_GMBUSUNIT_CLOCK_GATE_DISABLE	(1 << 24) /* pnv */
++# define TVRUNIT_CLOCK_GATE_DISABLE		(1 << 23) /* 915-945 */
++# define TVCUNIT_CLOCK_GATE_DISABLE		(1 << 22) /* 915-945 */
++# define TVFUNIT_CLOCK_GATE_DISABLE		(1 << 21) /* 915-945 */
++# define TVEUNIT_CLOCK_GATE_DISABLE		(1 << 20) /* 915-945 */
++# define DVSUNIT_CLOCK_GATE_DISABLE		(1 << 19) /* 915-945 */
++# define DSSUNIT_CLOCK_GATE_DISABLE		(1 << 18) /* 915-945 */
++# define DDBUNIT_CLOCK_GATE_DISABLE		(1 << 17) /* 915-945 */
++# define DPRUNIT_CLOCK_GATE_DISABLE		(1 << 16) /* 915-945 */
++# define DPFUNIT_CLOCK_GATE_DISABLE		(1 << 15) /* 915-945 */
++# define DPBMUNIT_CLOCK_GATE_DISABLE		(1 << 14) /* 915-945 */
++# define DPLSUNIT_CLOCK_GATE_DISABLE		(1 << 13) /* 915-945 */
++# define DPLUNIT_CLOCK_GATE_DISABLE		(1 << 12) /* 915-945 */
++# define DPOUNIT_CLOCK_GATE_DISABLE		(1 << 11)
++# define DPBUNIT_CLOCK_GATE_DISABLE		(1 << 10)
++# define DCUNIT_CLOCK_GATE_DISABLE		(1 << 9)
++# define DPUNIT_CLOCK_GATE_DISABLE		(1 << 8)
++# define VRUNIT_CLOCK_GATE_DISABLE		(1 << 7) /* 915+: reserved */
++# define OVHUNIT_CLOCK_GATE_DISABLE		(1 << 6) /* 830-865 */
++# define DPIOUNIT_CLOCK_GATE_DISABLE		(1 << 6) /* 915-945 */
++# define OVFUNIT_CLOCK_GATE_DISABLE		(1 << 5)
++# define OVBUNIT_CLOCK_GATE_DISABLE		(1 << 4)
++/*
++ * This bit must be set on the 830 to prevent hangs when turning off the
++ * overlay scaler.
++ */
++# define OVRUNIT_CLOCK_GATE_DISABLE		(1 << 3)
++# define OVCUNIT_CLOCK_GATE_DISABLE		(1 << 2)
++# define OVUUNIT_CLOCK_GATE_DISABLE		(1 << 1)
++# define ZVUNIT_CLOCK_GATE_DISABLE		(1 << 0) /* 830 */
++# define OVLUNIT_CLOCK_GATE_DISABLE		(1 << 0) /* 845,865 */
+ #define SOUTH_CHICKEN1		_MMIO(0xc2000)
+ #define  FDIA_PHASE_SYNC_SHIFT_OVR	19
+ #define  FDIA_PHASE_SYNC_SHIFT_EN	18
+@@ -31,6 +71,15 @@
+ #define  LPT_PWM_GRANULARITY		(1 << 5)
+ #define  DPLS_EDP_PPS_FIX_DIS		(1 << 0)
+ 
++#define SOUTH_DSPCLK_GATE_D	_MMIO(0xc2020)
++#define  PCH_GMBUSUNIT_CLOCK_GATE_DISABLE (1 << 31)
++#define  PCH_DPLUNIT_CLOCK_GATE_DISABLE (1 << 30)
++#define  PCH_DPLSUNIT_CLOCK_GATE_DISABLE (1 << 29)
++#define  PCH_DPMGUNIT_CLOCK_GATE_DISABLE (1 << 15)
++#define  PCH_CPUNIT_CLOCK_GATE_DISABLE (1 << 14)
++#define  CNP_PWM_CGE_GATING_DISABLE (1 << 13)
++#define  PCH_LP_PARTITION_LEVEL_DISABLE  (1 << 12)
 +
  #define _TRANSA_CHICKEN2	 0xf0064
  #define _TRANSB_CHICKEN2	 0xf1064
