@@ -4,49 +4,37 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1657CD711C7
-	for <intel-xe@archiver.kernel.org>; Thu, 18 Dec 2025 21:44:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BDA6FD711CA
+	for <intel-xe@archiver.kernel.org>; Thu, 18 Dec 2025 21:50:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C687510EB9A;
-	Thu, 18 Dec 2025 21:44:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DB00910E3D7;
+	Thu, 18 Dec 2025 21:50:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gh0dP9Tp";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="PI16WklO";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6498F10EB8B
- for <intel-xe@lists.freedesktop.org>; Thu, 18 Dec 2025 21:44:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1766094264; x=1797630264;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=IpM/WO2e98aO7/3s7cAyZ1+4XR6/1+WzG/Kox+nq5jk=;
- b=gh0dP9TpfkvDOkajgCY0K8hddEG601OEDDlgq+nHF8cugA2Ox04rn9D9
- 9or2y/4v8+8PMFVgcoSSAIbuLAMzYg+3QIr//WAFycUUzisk+RYeIr12m
- tMA2MFBTlxfQ2u7IuAmqDiz4ybYiFcBl0rXRMeaHYMbHluzdA2G879/5S
- lDZubBOewCSZlT/ZbMCQshN05w2qW5Ok52HXbGTyeL4aZ/h1SENbm8fct
- jjFKxXUoo2W4VYJPsrbW8ej1WVGvL+DsWFzFPAgsjVKvyeezc3FQIgMxp
- HliVlgEl6E1YNsKuDxJhEwDQJcAtwRSaPv1IjdtJShWvR+enB60PT41xW w==;
-X-CSE-ConnectionGUID: 1jXbevPyTFm70iiH7IU34Q==
-X-CSE-MsgGUID: uft7arfNTUiqfRguGMdLCQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11646"; a="68104128"
-X-IronPort-AV: E=Sophos;i="6.21,159,1763452800"; d="scan'208";a="68104128"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Dec 2025 13:44:24 -0800
-X-CSE-ConnectionGUID: xc1QAPM6TQuAUEOdZyzqiw==
-X-CSE-MsgGUID: diyVOlQbQm+wsJqBWaNEEw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,159,1763452800"; d="scan'208";a="199166547"
-Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Dec 2025 13:44:24 -0800
-From: Matthew Brost <matthew.brost@intel.com>
+Received: from lankhorst.se (lankhorst.se [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D740B10E369;
+ Thu, 18 Dec 2025 21:50:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
+ s=default; t=1766094614;
+ bh=21yd4s2inocFgSSFTxfC+g7F9qvDinACjGF8WYMNDds=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=PI16WklO/A49cJgs69jARKjMVjtWBLPlBiBanSCc8TPToCXYqelGuEGFKaOiwVhGj
+ qs1hqIJczS82hpMEug66SBsMpuw6T4OEjVpu5fXmoK2gQng96J6+LvJUyFQ43nEACW
+ kIOobkVbhYd2QahvMrE/9ULFFhnDqsuBZEP0IYM0PujLrL29wXJ8WnZFIw3FN1KjpJ
+ eeWaXH9TyV1UYBfijDOlCMlA/9DvxDJaykI7tuzgoVaoYpxIcmACEcVl5bTea8feIK
+ faPZB/vdg1Cz1KSrcPCyS0aXvraoliLWnbd9Pq4Na8BpVxUzy8p4Hhwfjvnhl31uCt
+ f7zE88fq5rilg==
+From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v2 0/3] Attempt to fixup reset, wedge, unload corner cases
-Date: Thu, 18 Dec 2025 13:44:15 -0800
-Message-Id: <20251218214418.4037401-1-matthew.brost@intel.com>
-X-Mailer: git-send-email 2.34.1
+Cc: intel-gfx@lists.freedesktop.org
+Subject: [i915-rt v4.2] drm/i915/display: Remove uncore lock from
+ vlv_atomic_update_fifo
+Date: Thu, 18 Dec 2025 22:50:11 +0100
+Message-ID: <20251218215011.1983656-1-dev@lankhorst.se>
+X-Mailer: git-send-email 2.51.0
+In-Reply-To: <20251218210616.137111-1-dev@lankhorst.se>
+References: <20251218210616.137111-1-dev@lankhorst.se>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -63,26 +51,44 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We have several bug reports [1], [2], [3] describing failures in reset,
-wedge, and unload corner cases where memory is not properly freed or
-fences fail to signal. This patch attempts to address the issue by
-forcefully killing any remaining queues on driver unload and wedging the
-device if not in mode 2.
+TODO: Grab uncore lock during entire vblank evasion before disabling
+interrupts, and check what breaks?
 
-Matt 
+Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
+---
+ drivers/gpu/drm/i915/display/i9xx_wm.c | 5 -----
+ 1 file changed, 5 deletions(-)
 
-[1] https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/5466
-[2] https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/5530
-[3] https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/6029
-
-Matthew Brost (3):
-  drm/xe: Always kill exec queues in xe_guc_submit_pause_abort
-  drm/xe: Forcefully tear down exec queues in GuC submit fini
-  drm/xe: Trigger queue cleanup if not in wedged mode 2
-
- drivers/gpu/drm/xe/xe_guc_submit.c | 61 ++++++++++++++++++++----------
- 1 file changed, 40 insertions(+), 21 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/i9xx_wm.c b/drivers/gpu/drm/i915/display/i9xx_wm.c
+index 167277cd88778..78a044c98bdf9 100644
+--- a/drivers/gpu/drm/i915/display/i9xx_wm.c
++++ b/drivers/gpu/drm/i915/display/i9xx_wm.c
+@@ -1863,8 +1863,6 @@ static void vlv_atomic_update_fifo(struct intel_atomic_state *state,
+ 				   struct intel_crtc *crtc)
+ {
+ 	struct intel_display *display = to_intel_display(crtc);
+-	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+-	struct intel_uncore *uncore = &dev_priv->uncore;
+ 	const struct intel_crtc_state *crtc_state =
+ 		intel_atomic_get_new_crtc_state(state, crtc);
+ 	const struct vlv_fifo_state *fifo_state =
+@@ -1893,7 +1891,6 @@ static void vlv_atomic_update_fifo(struct intel_atomic_state *state,
+ 	 * intel_pipe_update_start() has already disabled interrupts
+ 	 * for us, so a plain spin_lock() is sufficient here.
+ 	 */
+-	spin_lock(&uncore->lock);
+ 
+ 	switch (crtc->pipe) {
+ 	case PIPE_A:
+@@ -1952,8 +1949,6 @@ static void vlv_atomic_update_fifo(struct intel_atomic_state *state,
+ 	}
+ 
+ 	intel_de_read_fw(display, DSPARB(display));
+-
+-	spin_unlock(&uncore->lock);
+ }
+ 
+ #undef VLV_FIFO
 -- 
-2.34.1
+2.51.0
 
