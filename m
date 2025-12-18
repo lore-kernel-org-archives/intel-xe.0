@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2913AD711C4
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2C11ED6E2B7
 	for <intel-xe@archiver.kernel.org>; Thu, 18 Dec 2025 22:39:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D3C9210EBC4;
+	by gabe.freedesktop.org (Postfix) with ESMTP id D68DE10EBC5;
 	Thu, 18 Dec 2025 22:39:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bnbcWWPk";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="I5QZIOuL";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 39C9110EBC4
- for <intel-xe@lists.freedesktop.org>; Thu, 18 Dec 2025 22:39:06 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7AAFF10EBC4
+ for <intel-xe@lists.freedesktop.org>; Thu, 18 Dec 2025 22:39:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1766097546; x=1797633546;
+ t=1766097545; x=1797633545;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=3oUoDAUblCzgWG/H6Qawe71R7R/9pN1db1AIrXu3KQA=;
- b=bnbcWWPkEsc4Uj365F0oUPZ2iP0XhAxj2W+DxeRvlsbf/U7Dq8Jt4wOM
- CiMQ0hufavYCTpibD4Hhc/uPbveG+N0tPEwNowNYtcCx1ksFNpFgGvg2j
- 5vDRzf4t+Xtox16cU0+qlK4CEjU+BHvR/GuUIk7CCO9w9fphO8dn7eW/3
- IAdWq1nnx23S671CDk+Ru6eTEVI+OFPlDf4wCPjguB09hJUTEUQqJVqEE
- Mb+OVFxGGfNcAOoNKgzMva4N48A9ENFXFvjkeTqy1AvgOPVmrUI8vakOf
- BFzXtccquCld7rg1EBKcF5ZFksNsPjJE9/Ls9gKIhBhXmu8TdasGA2YLL g==;
-X-CSE-ConnectionGUID: Vr7+GjFtTrm3OXx17ZaprQ==
-X-CSE-MsgGUID: cbKwVmJwT76i4NhkroU79Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11646"; a="71910907"
-X-IronPort-AV: E=Sophos;i="6.21,159,1763452800"; d="scan'208";a="71910907"
+ bh=KcyQwK989o32thH0GwY1/58WR1KYveJzx/MHKU2L0Gs=;
+ b=I5QZIOuLrdpDKtpta3vtASO0BrDmY5DYzDxBvs0GpuDef7vscsdP6WuA
+ TVqfmJlltf3x/DGTDlfcHRrFEbjv5SGEUoBfmI6xEDLdKritrOpkW3vSt
+ i58lebr6kfINq1FPW0zWZv7to2qayRPor077IWJP+MxLjMuPe5hckUVOw
+ TRdT+IUCaZTFc6/TvWJQ82sX5zzryEJBiPuvHkoKGTHOqkQkltejIwp14
+ 9daC/aipY78pe0Oj1VzqBuDvlIp5QDrUuuYI9xkmjEC8dAKbhxfaZRw7P
+ cCtGT5lvDIcBQMpEd1L08bVwP5W9k7OeJ9l2J9dzkRhHAN4pjS1rSzPVB g==;
+X-CSE-ConnectionGUID: 1rObzASTT9i9SA2v3UPUXg==
+X-CSE-MsgGUID: hiEEGQH4RKy/HPUomXqWdQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11646"; a="71910903"
+X-IronPort-AV: E=Sophos;i="6.21,159,1763452800"; d="scan'208";a="71910903"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  18 Dec 2025 14:39:05 -0800
-X-CSE-ConnectionGUID: ovbtf0SYQYK19fQ9k4n6pA==
-X-CSE-MsgGUID: mWMXKZHYT8eNI9Lh3ukM/Q==
+X-CSE-ConnectionGUID: cLwaNr3/SbGoNCAxjD4j0A==
+X-CSE-MsgGUID: xS5AOguBQ3KQ0wkKTLdQvA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,159,1763452800"; d="scan'208";a="199176839"
+X-IronPort-AV: E=Sophos;i="6.21,159,1763452800"; d="scan'208";a="199176837"
 Received: from valcore-skull-1.fm.intel.com ([10.1.39.17])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Dec 2025 14:39:06 -0800
+ 18 Dec 2025 14:39:05 -0800
 From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI 06/12] drm/xe/vf: Check if scheduler groups are enabled
-Date: Thu, 18 Dec 2025 14:38:52 -0800
-Message-ID: <20251218223846.1146344-20-daniele.ceraolospurio@intel.com>
+Subject: [CI 05/12] drm/xe/pf: Scheduler groups are incompatible with multi-lrc
+Date: Thu, 18 Dec 2025 14:38:51 -0800
+Message-ID: <20251218223846.1146344-19-daniele.ceraolospurio@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20251218223846.1146344-14-daniele.ceraolospurio@intel.com>
 References: <20251218223846.1146344-14-daniele.ceraolospurio@intel.com>
@@ -65,189 +65,243 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-VF can check if PF has enabled scheduler groups with a dedicated KLV
-query. If scheduler groups are enabled, MLRC queue registrations are
-forbidden.
+Since engines in the same class can be divided across multiple groups,
+the GuC does not allow scheduler groups to be active if there are
+multi-lrc contexts. This means that:
+
+1) if a MLRC context is registered when we enable scheduler groups, the
+   GuC will silently ignore the configuration
+2) if a MLRC context is registered after scheduler groups are enabled,
+   the GuC will disable the groups and generate an adverse event.
+
+The expectation is that the admin will ensure that all apps that use
+MLRC on PF have been terminated before scheduler groups are created. A
+check is added anyway to make sure we don't still have contexts waiting
+to be cleaned up laying around. A check is also added at queue creation
+time to block MLRC queue creation if scheduler groups have been enabled.
 
 Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
 Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 ---
- drivers/gpu/drm/xe/abi/guc_klvs_abi.h     |  7 +++
- drivers/gpu/drm/xe/xe_exec_queue.c        |  3 +
- drivers/gpu/drm/xe/xe_gt_sriov_vf.c       | 67 +++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_gt_sriov_vf.h       |  1 +
- drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h |  2 +
- drivers/gpu/drm/xe/xe_guc_klv_helpers.c   |  3 +
- 6 files changed, 83 insertions(+)
+ drivers/gpu/drm/xe/xe_exec_queue.c         | 16 +++++++++++++
+ drivers/gpu/drm/xe/xe_gt_sriov_pf.c        | 17 +++++++++++++
+ drivers/gpu/drm/xe/xe_gt_sriov_pf.h        |  8 +++++++
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.c | 28 ++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.h |  1 +
+ drivers/gpu/drm/xe/xe_guc_submit.c         | 21 ++++++++++++++++
+ drivers/gpu/drm/xe/xe_guc_submit.h         |  2 ++
+ 7 files changed, 93 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h b/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
-index ac10cf3adbc1..39dee685a92c 100644
---- a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
-+++ b/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
-@@ -48,11 +48,18 @@
-  *      Refers to 32 bit architecture version as reported by the HW IP.
-  *      This key is supported on MTL+ platforms only.
-  *      Requires GuC ABI 1.2+.
-+ *
-+ * _`GUC_KLV_GLOBAL_CFG_GROUP_SCHEDULING_AVAILABLE` : 0x3001
-+ *      Tells the driver whether scheduler groups are enabled or not.
-+ *      Requires GuC ABI 1.26+
-  */
- 
- #define GUC_KLV_GLOBAL_CFG_GMD_ID_KEY			0x3000u
- #define GUC_KLV_GLOBAL_CFG_GMD_ID_LEN			1u
- 
-+#define GUC_KLV_GLOBAL_CFG_GROUP_SCHEDULING_AVAILABLE_KEY	0x3001u
-+#define GUC_KLV_GLOBAL_CFG_GROUP_SCHEDULING_AVAILABLE_LEN	1u
-+
- /**
-  * DOC: GuC Self Config KLVs
-  *
 diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-index c336dcd19020..0b9e074b022f 100644
+index 41023a464480..c336dcd19020 100644
 --- a/drivers/gpu/drm/xe/xe_exec_queue.c
 +++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-@@ -1114,6 +1114,9 @@ static bool has_sched_groups(struct xe_gt *gt)
- 	if (IS_SRIOV_PF(gt_to_xe(gt)) && xe_gt_sriov_pf_sched_groups_enabled(gt))
- 		return true;
+@@ -17,6 +17,7 @@
+ #include "xe_dep_scheduler.h"
+ #include "xe_device.h"
+ #include "xe_gt.h"
++#include "xe_gt_sriov_pf.h"
+ #include "xe_gt_sriov_vf.h"
+ #include "xe_hw_engine_class_sysfs.h"
+ #include "xe_hw_engine_group.h"
+@@ -1108,6 +1109,14 @@ static u32 calc_validate_logical_mask(struct xe_device *xe,
+ 	return return_mask;
+ }
  
-+	if (IS_SRIOV_VF(gt_to_xe(gt)) && xe_gt_sriov_vf_sched_groups_enabled(gt))
++static bool has_sched_groups(struct xe_gt *gt)
++{
++	if (IS_SRIOV_PF(gt_to_xe(gt)) && xe_gt_sriov_pf_sched_groups_enabled(gt))
 +		return true;
 +
- 	return false;
- }
- 
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-index b8b391cfc8eb..d91c65dc3496 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-@@ -612,6 +612,52 @@ static void vf_cache_gmdid(struct xe_gt *gt)
- 	gt->sriov.vf.runtime.gmdid = xe_gt_sriov_vf_gmdid(gt);
- }
- 
-+static int vf_query_sched_groups(struct xe_gt *gt)
-+{
-+	struct xe_guc *guc = &gt->uc.guc;
-+	struct xe_uc_fw_version guc_version;
-+	u32 value = 0;
-+	int err;
-+
-+	xe_gt_sriov_vf_guc_versions(gt, NULL, &guc_version);
-+
-+	if (MAKE_GUC_VER_STRUCT(guc_version) < MAKE_GUC_VER(1, 26, 0))
-+		return 0;
-+
-+	err = guc_action_query_single_klv32(guc,
-+					    GUC_KLV_GLOBAL_CFG_GROUP_SCHEDULING_AVAILABLE_KEY,
-+					    &value);
-+	if (unlikely(err)) {
-+		xe_gt_sriov_err(gt, "Failed to obtain sched groups status (%pe)\n",
-+				ERR_PTR(err));
-+		return err;
-+	}
-+
-+	/* valid values are 0 (disabled) and 1 (enabled) */
-+	if (value > 1) {
-+		xe_gt_sriov_err(gt, "Invalid sched groups status %u\n", value);
-+		return -EPROTO;
-+	}
-+
-+	xe_gt_sriov_dbg(gt, "sched groups %s\n", str_enabled_disabled(value));
-+	return value;
++	return false;
 +}
 +
-+static int vf_cache_sched_groups_status(struct xe_gt *gt)
-+{
-+	int ret;
-+
-+	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
-+
-+	ret = vf_query_sched_groups(gt);
-+	if (ret < 0)
-+		return ret;
-+
-+	gt->sriov.vf.runtime.uses_sched_groups = ret;
-+
-+	return 0;
-+}
-+
- /**
-  * xe_gt_sriov_vf_query_config - Query SR-IOV config data over MMIO.
-  * @gt: the &xe_gt
-@@ -641,12 +687,33 @@ int xe_gt_sriov_vf_query_config(struct xe_gt *gt)
- 	if (unlikely(err))
- 		return err;
+ int xe_exec_queue_create_ioctl(struct drm_device *dev, void *data,
+ 			       struct drm_file *file)
+ {
+@@ -1200,6 +1209,13 @@ int xe_exec_queue_create_ioctl(struct drm_device *dev, void *data,
+ 			return -ENOENT;
+ 		}
  
-+	err = vf_cache_sched_groups_status(gt);
-+	if (unlikely(err))
-+		return err;
++		/* SRIOV sched groups are not compatible with multi-lrc */
++		if (XE_IOCTL_DBG(xe, args->width > 1 && has_sched_groups(hwe->gt))) {
++			up_read(&vm->lock);
++			xe_vm_put(vm);
++			return -EINVAL;
++		}
 +
- 	if (has_gmdid(xe))
- 		vf_cache_gmdid(gt);
- 
+ 		q = xe_exec_queue_create(xe, vm, logical_mask,
+ 					 args->width, hwe, flags,
+ 					 args->extensions);
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf.c
+index 0d97a823e702..fb5c9101e275 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_pf.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf.c
+@@ -284,3 +284,20 @@ int xe_gt_sriov_pf_wait_ready(struct xe_gt *gt)
+ 	pf_flush_restart(gt);
  	return 0;
  }
- 
++
 +/**
-+ * xe_gt_sriov_vf_sched_groups_enabled() - Check if PF has enabled multiple
-+ * scheduler groups
++ * xe_gt_sriov_pf_sched_groups_enabled - Check if multiple scheduler groups are
++ * enabled
 + * @gt: the &xe_gt
 + *
-+ * This function is for VF use only.
++ * This function is for PF use only.
 + *
 + * Return: true if shed groups were enabled, false otherwise.
 + */
-+bool xe_gt_sriov_vf_sched_groups_enabled(struct xe_gt *gt)
++bool xe_gt_sriov_pf_sched_groups_enabled(struct xe_gt *gt)
 +{
-+	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
-+	xe_gt_assert(gt, gt->sriov.vf.guc_version.major);
++	xe_gt_assert(gt, IS_SRIOV_PF(gt_to_xe(gt)));
 +
-+	return gt->sriov.vf.runtime.uses_sched_groups;
++	return xe_gt_sriov_pf_policy_sched_groups_enabled(gt);
++}
++
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf.h b/drivers/gpu/drm/xe/xe_gt_sriov_pf.h
+index e7fde3f9937a..1ccfc7137b98 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_pf.h
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf.h
+@@ -6,6 +6,8 @@
+ #ifndef _XE_GT_SRIOV_PF_H_
+ #define _XE_GT_SRIOV_PF_H_
+ 
++#include <linux/types.h>
++
+ struct xe_gt;
+ 
+ #ifdef CONFIG_PCI_IOV
+@@ -16,6 +18,7 @@ void xe_gt_sriov_pf_init_hw(struct xe_gt *gt);
+ void xe_gt_sriov_pf_sanitize_hw(struct xe_gt *gt, unsigned int vfid);
+ void xe_gt_sriov_pf_stop_prepare(struct xe_gt *gt);
+ void xe_gt_sriov_pf_restart(struct xe_gt *gt);
++bool xe_gt_sriov_pf_sched_groups_enabled(struct xe_gt *gt);
+ #else
+ static inline int xe_gt_sriov_pf_init_early(struct xe_gt *gt)
+ {
+@@ -38,6 +41,11 @@ static inline void xe_gt_sriov_pf_stop_prepare(struct xe_gt *gt)
+ static inline void xe_gt_sriov_pf_restart(struct xe_gt *gt)
+ {
+ }
++
++static inline bool xe_gt_sriov_pf_sched_groups_enabled(struct xe_gt *gt)
++{
++	return false;
++}
+ #endif
+ 
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.c
+index cf6ead37bd64..c28606ca6623 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.c
+@@ -16,6 +16,7 @@
+ #include "xe_guc_buf.h"
+ #include "xe_guc_ct.h"
+ #include "xe_guc_klv_helpers.h"
++#include "xe_guc_submit.h"
+ #include "xe_pm.h"
+ 
+ /*
+@@ -590,6 +591,19 @@ static int pf_provision_sched_groups(struct xe_gt *gt, enum xe_sriov_sched_group
+ 	if (xe_sriov_pf_num_vfs(gt_to_xe(gt)))
+ 		return -EBUSY;
+ 
++	/*
++	 * The GuC silently ignores the setting if any MLRC contexts are
++	 * registered. We expect the admin to make sure that all apps that use
++	 * MLRC are terminated before scheduler groups are enabled, so this
++	 * check is just to make sure that the exec_queue destruction has been
++	 * completed.
++	 */
++	if (mode != XE_SRIOV_SCHED_GROUPS_DISABLED &&
++	    xe_guc_has_registered_mlrc_queues(&gt->uc.guc)) {
++		xe_gt_sriov_notice(gt, "can't enable sched groups with active MLRC queues\n");
++		return -EPERM;
++	}
++
+ 	err = __pf_provision_sched_groups(gt, mode);
+ 	if (err)
+ 		return err;
+@@ -638,6 +652,20 @@ int xe_gt_sriov_pf_policy_set_sched_groups_mode(struct xe_gt *gt,
+ 	return pf_provision_sched_groups(gt, mode);
+ }
+ 
++/**
++ * xe_gt_sriov_pf_policy_sched_groups_enabled() - check whether the GT has
++ * multiple scheduler groups enabled
++ * @gt: the &xe_gt to check
++ *
++ * This function can only be called on PF.
++ *
++ * Return: true if the GT has multiple groups enabled, false otherwise.
++ */
++bool xe_gt_sriov_pf_policy_sched_groups_enabled(struct xe_gt *gt)
++{
++	return gt->sriov.pf.policy.guc.sched_groups.current_mode != XE_SRIOV_SCHED_GROUPS_DISABLED;
++}
++
+ static void pf_sanitize_guc_policies(struct xe_gt *gt)
+ {
+ 	pf_sanitize_sched_if_idle(gt);
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.h b/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.h
+index d6e96302ff68..bd73aa58f9ca 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.h
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.h
+@@ -25,6 +25,7 @@ bool xe_sriov_gt_pf_policy_has_sched_group_mode(struct xe_gt *gt,
+ 						enum xe_sriov_sched_group_modes mode);
+ int xe_gt_sriov_pf_policy_set_sched_groups_mode(struct xe_gt *gt,
+ 						enum xe_sriov_sched_group_modes mode);
++bool xe_gt_sriov_pf_policy_sched_groups_enabled(struct xe_gt *gt);
+ 
+ void xe_gt_sriov_pf_policy_init(struct xe_gt *gt);
+ void xe_gt_sriov_pf_policy_sanitize(struct xe_gt *gt);
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index 1777133246e4..8149786747a2 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -3562,6 +3562,27 @@ void xe_guc_submit_print(struct xe_guc *guc, struct drm_printer *p)
+ 	mutex_unlock(&guc->submission_state.lock);
+ }
+ 
++/**
++ * xe_guc_has_registered_mlrc_queues - check whether there are any MLRC queues
++ * registered with the GuC
++ * @guc: GuC.
++ *
++ * Return: true if any MLRC queue is registered with the GuC, false otherwise.
++ */
++bool xe_guc_has_registered_mlrc_queues(struct xe_guc *guc)
++{
++	struct xe_exec_queue *q;
++	unsigned long index;
++
++	guard(mutex)(&guc->submission_state.lock);
++
++	xa_for_each(&guc->submission_state.exec_queue_lookup, index, q)
++		if (q->width > 1)
++			return true;
++
++	return false;
 +}
 +
  /**
-  * xe_gt_sriov_vf_guc_ids - VF GuC context IDs configuration.
-  * @gt: the &xe_gt
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.h b/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
-index af40276790fa..7d97189c2d3d 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
-@@ -30,6 +30,7 @@ bool xe_gt_sriov_vf_recovery_pending(struct xe_gt *gt);
- u32 xe_gt_sriov_vf_gmdid(struct xe_gt *gt);
- u16 xe_gt_sriov_vf_guc_ids(struct xe_gt *gt);
- u64 xe_gt_sriov_vf_lmem(struct xe_gt *gt);
-+bool xe_gt_sriov_vf_sched_groups_enabled(struct xe_gt *gt);
+  * xe_guc_contexts_hwsp_rebase - Re-compute GGTT references within all
+  * exec queues registered to given GuC.
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.h b/drivers/gpu/drm/xe/xe_guc_submit.h
+index 4d89b2975fe9..b3839a90c142 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.h
++++ b/drivers/gpu/drm/xe/xe_guc_submit.h
+@@ -52,6 +52,8 @@ xe_guc_exec_queue_snapshot_free(struct xe_guc_submit_exec_queue_snapshot *snapsh
+ void xe_guc_submit_print(struct xe_guc *guc, struct drm_printer *p);
+ void xe_guc_register_vf_exec_queue(struct xe_exec_queue *q, int ctx_type);
  
- u32 xe_gt_sriov_vf_read32(struct xe_gt *gt, struct xe_reg reg);
- void xe_gt_sriov_vf_write32(struct xe_gt *gt, struct xe_reg reg, u32 val);
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h b/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
-index 510c33116fbd..9a6b5672d569 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
-@@ -27,6 +27,8 @@ struct xe_gt_sriov_vf_selfconfig {
- struct xe_gt_sriov_vf_runtime {
- 	/** @gmdid: cached value of the GDMID register. */
- 	u32 gmdid;
-+	/** @uses_sched_groups: whether PF enabled sched groups or not. */
-+	bool uses_sched_groups;
- 	/** @regs_size: size of runtime register array. */
- 	u32 regs_size;
- 	/** @num_regs: number of runtime registers in the array. */
-diff --git a/drivers/gpu/drm/xe/xe_guc_klv_helpers.c b/drivers/gpu/drm/xe/xe_guc_klv_helpers.c
-index 1b08b443606e..dd504b77cb17 100644
---- a/drivers/gpu/drm/xe/xe_guc_klv_helpers.c
-+++ b/drivers/gpu/drm/xe/xe_guc_klv_helpers.c
-@@ -21,6 +21,9 @@
- const char *xe_guc_klv_key_to_string(u16 key)
- {
- 	switch (key) {
-+	/* GuC Global Config KLVs */
-+	case GUC_KLV_GLOBAL_CFG_GROUP_SCHEDULING_AVAILABLE_KEY:
-+		return "group_scheduling_available";
- 	/* VGT POLICY keys */
- 	case GUC_KLV_VGT_POLICY_SCHED_IF_IDLE_KEY:
- 		return "sched_if_idle";
++bool xe_guc_has_registered_mlrc_queues(struct xe_guc *guc);
++
+ int xe_guc_contexts_hwsp_rebase(struct xe_guc *guc, void *scratch);
+ 
+ #endif
 -- 
 2.43.0
 
