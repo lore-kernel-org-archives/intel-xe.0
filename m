@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6DDC6D711C7
-	for <intel-xe@archiver.kernel.org>; Thu, 18 Dec 2025 21:29:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 54F61D711C8
+	for <intel-xe@archiver.kernel.org>; Thu, 18 Dec 2025 21:29:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 22BFE10EB74;
-	Thu, 18 Dec 2025 21:29:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1776710EB76;
+	Thu, 18 Dec 2025 21:29:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SoGvA14k";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LEJLorfl";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A1F8810EAD9
- for <intel-xe@lists.freedesktop.org>; Thu, 18 Dec 2025 21:29:49 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D37D310EAD9
+ for <intel-xe@lists.freedesktop.org>; Thu, 18 Dec 2025 21:29:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1766093390; x=1797629390;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=F8xXbht2SokzE5kU1vRHIQKZdMwwrYQCqNQrtYCnW4M=;
- b=SoGvA14kPy1Mzyy8cFVfl2f6wEk6zfXx2XiQZawEGWYDsE/iPEZya3cw
- gwiYKWho3zTTneBHmz05Y7qNa2TaCClKXng3EtNGRRJDYtOnevga2TTPV
- B/R4mcL4VFt1nQ6PvJimZBilLfFHasYGvfdvU/oGftIBEfL+vtLu9fug9
- cVOxLfTt7JMmDZ4x0lObcUzqxuiAEvvuKDBtPwk1UnJyOlpMRxFAxZDmn
- apmwTMABJ7L2qZC724yUqur70eVZeWmaFCnIGdM0jh27/5Ojw2JuF5jrC
- U95VrEJYvwD03bIO6wEmRCNUe9jbUm3tCadBUWgjeugdB+WYVhrj5mHaz A==;
-X-CSE-ConnectionGUID: voZ/35lcSfSH9de+FmbiGQ==
-X-CSE-MsgGUID: 7mwh3Hl3QZajoVqBzJ+WHA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11646"; a="67808713"
-X-IronPort-AV: E=Sophos;i="6.21,159,1763452800"; d="scan'208";a="67808713"
+ t=1766093389; x=1797629389;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=QEoRu40hvzhxmFvXEYAjdKvdnItgsq8VwDs7tssQOxk=;
+ b=LEJLorflkIpXsPRcI/tkKrRcnvvZNGBslUd007eyksKUJqxLQ2qq7gMe
+ xX36xMXSHRfrtU3e6Zo/TdoW36wsr9Jh3UuYLt6X2eZWOSpRJahUUt1QX
+ by2EL0GYQB1a3G7JFzpSqbocyJkdS5X/c7zNOveukop4VdZ4Fyfmf9ZW1
+ 8d2L0TsnU2cnjg7yyrIvIRstXjkdMPFDsfx+/gMHqFOTccTKCD4Yq+Hgq
+ du61i73lftxghXzrvINVjwfGu9UQ+PyHEyegeS/Cwg9xiXSZH4aOTfzJX
+ 27EnsbqzyCUproxFZm+5j3VSKAOwXpiFy8HJZHUlj/39UVH86+RCM/uCl Q==;
+X-CSE-ConnectionGUID: lXnniFP2R2WMVjXZ3B03gg==
+X-CSE-MsgGUID: 8iYyUoJTSqGpSBKHJJrMlw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11646"; a="67808709"
+X-IronPort-AV: E=Sophos;i="6.21,159,1763452800"; d="scan'208";a="67808709"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Dec 2025 13:29:49 -0800
-X-CSE-ConnectionGUID: GMDgqWlfTiaD5G/h5ojifg==
-X-CSE-MsgGUID: weXKW/QZTlu7xjm7kJyVjg==
+ 18 Dec 2025 13:29:48 -0800
+X-CSE-ConnectionGUID: Qo1p9lhsR7yuHqOjgkZV+g==
+X-CSE-MsgGUID: p9iGOcP7R4K9ulmFiZZJ6Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,159,1763452800"; d="scan'208";a="198594098"
+X-IronPort-AV: E=Sophos;i="6.21,159,1763452800"; d="scan'208";a="198594087"
 Received: from dut4086lnl.fm.intel.com ([10.105.10.207])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  18 Dec 2025 13:29:48 -0800
@@ -47,12 +47,11 @@ Cc: saurabhg.gupta@intel.com, alex.zuo@intel.com, jonathan.cavitt@intel.com,
  matthew.brost@intel.com, daniele.ceraolospurio@intel.com,
  rodrigo.vivi@intel.com, michal.wajdeczko@intel.com,
  stuart.summers@intel.com, dixit.ashutosh@intel.com
-Subject: [PATCH v2 4/4] drm/xe/guc: READ_ONCE ct state in xe_guc_ct_initialized
-Date: Thu, 18 Dec 2025 21:29:51 +0000
-Message-ID: <20251218212946.16577-10-jonathan.cavitt@intel.com>
+Subject: [PATCH v2 0/4] drm/xe/guc: Prevent compiler read/write optimization
+ breaks
+Date: Thu, 18 Dec 2025 21:29:47 +0000
+Message-ID: <20251218212946.16577-6-jonathan.cavitt@intel.com>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20251218212946.16577-6-jonathan.cavitt@intel.com>
-References: <20251218212946.16577-6-jonathan.cavitt@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -69,48 +68,47 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Use READ_ONCE when reading ct->state in xe_guc_ct_initialized to prevent
-the compiler from ignoring this operation.
+Use READ_ONCE and WRITE_ONCE when operating on ct->state and the
+g2h_fence->done values to prevent the compiler from ignoring these
+necessary operations.
 
-Fixes: 0b93b7dcd9eb ("drm/xe: Fix early wedge on GuC load failure")
+v2: (Matt Brost)
+- Add Fixes tags
+- Add comments
+
+v3:
+- Split into multiple patches (Rodrigo Vivi)
+
+v4:
+- s/xe_guc_ct/guc (Michal W)
+- Add comments with READ_ONCE and WRITE_ONCE updates
+  (Rodrigo, Stuart, Dixit)
+- Squash patches with same Fixes target
+  (Rodrigo, Stuart, Dixit)
+- Add partial comment justifying WRITE_ONCE in guc_ct_change_state
+  before READ_ONCE in xe_guc_ct_enabled is added (Rodrigo Vivi)
+  - Update above comment when adding READ_ONCE to xe_guc_ct_enabled
+    (jcavitt)
+
 Suggested-by: Matthew Brost <matthew.brost@intel.com>
+Suggested-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
 Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
----
- drivers/gpu/drm/xe/xe_guc_ct.c | 5 ++++-
- drivers/gpu/drm/xe/xe_guc_ct.h | 3 ++-
- 2 files changed, 6 insertions(+), 2 deletions(-)
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: Stuart Summers <stuart.summers@intel.com>
+Cc: Dixit Ashutosh <dixit.ashutosh@intel.com>
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
-index c59e38189cf0..24857c2c8cb5 100644
---- a/drivers/gpu/drm/xe/xe_guc_ct.c
-+++ b/drivers/gpu/drm/xe/xe_guc_ct.c
-@@ -530,7 +530,10 @@ static void guc_ct_change_state(struct xe_guc_ct *ct,
- 		xe_pm_runtime_put(ct_to_xe(ct));
- 	ct->g2h_outstanding = 0;
- 
--	/* WRITE_ONCE pairs with READ_ONCE in xe_guc_ct_enabled. */
-+	/*
-+	 * WRITE_ONCE pairs with READ_ONCEs in xe_guc_ct_initialized and
-+	 * xe_guc_ct_enabled.
-+	 */
- 	WRITE_ONCE(ct->state, state);
- 
- 	xe_gt_dbg(gt, "GuC CT communication channel %s\n",
-diff --git a/drivers/gpu/drm/xe/xe_guc_ct.h b/drivers/gpu/drm/xe/xe_guc_ct.h
-index 5f2811a06833..767365a33dee 100644
---- a/drivers/gpu/drm/xe/xe_guc_ct.h
-+++ b/drivers/gpu/drm/xe/xe_guc_ct.h
-@@ -30,7 +30,8 @@ void xe_guc_ct_print(struct xe_guc_ct *ct, struct drm_printer *p, bool want_ctb)
- 
- static inline bool xe_guc_ct_initialized(struct xe_guc_ct *ct)
- {
--	return ct->state != XE_GUC_CT_STATE_NOT_INITIALIZED;
-+	/* READ_ONCE pairs with WRITE_ONCE in guc_ct_change_state. */
-+	return READ_ONCE(ct->state) != XE_GUC_CT_STATE_NOT_INITIALIZED;
- }
- 
- static inline bool xe_guc_ct_enabled(struct xe_guc_ct *ct)
+Jonathan Cavitt (4):
+  drm/xe/guc: WRITE_ONCE g2h_fence done in g2h_fence_cancel
+  drm/xe/guc: WRITE_ONCE g2h_fence done in parse_g2h_response
+  drm/xe/guc: READ/WRITE_ONCE ct state in ct_change_state and enabled
+  drm/xe/guc: READ_ONCE ct state in xe_guc_ct_initialized
+
+ drivers/gpu/drm/xe/xe_guc_ct.c | 14 +++++++++++---
+ drivers/gpu/drm/xe/xe_guc_ct.h |  6 ++++--
+ 2 files changed, 15 insertions(+), 5 deletions(-)
+
 -- 
 2.43.0
 
