@@ -4,27 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EEB5ED6ACD8
-	for <intel-xe@archiver.kernel.org>; Thu, 18 Dec 2025 09:38:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 59245D68BDA
+	for <intel-xe@archiver.kernel.org>; Thu, 18 Dec 2025 10:05:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B22D910EC78;
-	Thu, 18 Dec 2025 09:38:57 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C15DB10EC78;
- Thu, 18 Dec 2025 09:38:56 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1224212163080775309=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7F6AB10E964;
+	Thu, 18 Dec 2025 10:05:40 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TM/OI0fP";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2433410E881;
+ Thu, 18 Dec 2025 10:05:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1766052339; x=1797588339;
+ h=message-id:date:mime-version:from:to:cc:subject:
+ content-transfer-encoding;
+ bh=NJrmPBsg5z4/WIRINNnAlaz+67SqTSo/cC/xf9b1eRc=;
+ b=TM/OI0fPCQYzlULlJ04UE82vEZJ8RSyXMtMVH4UHODbF/ECfjF52Jzvl
+ VfcfJHw7j9LSbt6AKegfTj++iq64XSslpigVxoEic5vm4vt3X4z+pc8Nk
+ ZfgrgY6cQoXzFO+5VsoaSSCAy2e8S2bIKfMa6dhO2Rs1kfme0tTqRy+8r
+ QPZ3U5a/zIf28F4Hq//NPUHqqbnTN4B5+823UXYDuZqVZqvbX/dnz+TUw
+ /M/5tWQfnPu+VxjQxNoofah0xtPSirEP3yLfuntntNNXF+2DuJSlb1xhr
+ 6/UlZaQOlyewO1XbLx+UmdsDLm6cSjun5cFQfE7mFLLKU3KXneTUrOBOm Q==;
+X-CSE-ConnectionGUID: +WfBa8IUTOy2Il/xnxtI/g==
+X-CSE-MsgGUID: 7fIkDoHpTX2FdL/Uf6V31g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11645"; a="68074346"
+X-IronPort-AV: E=Sophos;i="6.21,158,1763452800"; d="scan'208";a="68074346"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Dec 2025 02:05:39 -0800
+X-CSE-ConnectionGUID: k+hSyMbHQjKRzPqwN7dFhQ==
+X-CSE-MsgGUID: xu4xCMtjQFCjBn5iyTzLhw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,158,1763452800"; d="scan'208";a="198147952"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO [10.245.244.76])
+ ([10.245.244.76])
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Dec 2025 02:05:35 -0800
+Message-ID: <21861d1b-54bf-4853-9c35-97abe3c5deba@linux.intel.com>
+Date: Thu, 18 Dec 2025 11:05:33 +0100
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Prepare_GVT_for_display_mod?=
- =?utf-8?q?ularization_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 18 Dec 2025 09:38:56 -0000
-Message-ID: <176605073678.98733.17527225744194605549@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20251218082302.2327243-1-ankit.k.nautiyal@intel.com>
-In-Reply-To: <20251218082302.2327243-1-ankit.k.nautiyal@intel.com>
+User-Agent: Mozilla Thunderbird
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+To: Simona Vetter <simona.vetter@ffwll.ch>, Dave Airlie <airlied@gmail.com>
+Cc: dim-tools@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Matthew Brost <matthew.brost@intel.com>, Oded Gabbay <ogabbay@kernel.org>,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
+ <tursulin@ursulin.net>, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>
+Subject: [PULL] drm-misc-fixes
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,139 +73,68 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1224212163080775309==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hi Dave, Simona,
 
-== Series Details ==
+Here's all the accumulated fixes from drm-misc-fixes!
 
-Series: Prepare GVT for display modularization (rev2)
-URL   : https://patchwork.freedesktop.org/series/159008/
-State : success
+Kind regards,
+Maarten Lankhorst
 
-== Summary ==
+drm-misc-fixes-2025-12-18:
+drm-misc-fixes for v6.19-rc2:
+- Add -EDEADLK handling in drm unit tests.
+- Plug DRM_IOCTL_GEM_CHANGE_HANDLE leak.
+- Fix regression in sony-td4353-jdi.
+- Kconfig fix for visionox-rm69299.
+- Do not load amdxdna when running virtualized.
+The following changes since commit 8f0b4cce4481fb22653697cced8d0d04027cb1e8:
 
-CI Bug Log - changes from xe-4262-c84dc8f40d4f4462990de0437ebb2425c9f82b48_BAT -> xe-pw-159008v2_BAT
-====================================================
+  Linux 6.19-rc1 (2025-12-14 16:05:07 +1200)
 
-Summary
--------
+are available in the Git repository at:
 
-  **SUCCESS**
+  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-fixes-2025-12-18
 
-  No regressions found.
+for you to fetch changes up to 2bfca4fe1f36eb6618e5712a8b5b41433bb6f10b:
 
-  
+  drm/panel: visionox-rm69299: Depend on BACKLIGHT_CLASS_DEVICE (2025-12-16 11:28:52 +0100)
 
-Participating hosts (12 -> 12)
-------------------------------
+----------------------------------------------------------------
+drm-misc-fixes for v6.19-rc2:
+- Add -EDEADLK handling in drm unit tests.
+- Plug DRM_IOCTL_GEM_CHANGE_HANDLE leak.
+- Fix regression in sony-td4353-jdi.
+- Kconfig fix for visionox-rm69299.
+- Do not load amdxdna when running virtualized.
 
-  No changes in participating hosts
+----------------------------------------------------------------
+Guido Günther (1):
+      drm/panel: visionox-rm69299: Depend on BACKLIGHT_CLASS_DEVICE
 
-Known issues
-------------
+José Expósito (3):
+      drm/tests: hdmi: Handle drm_kunit_helper_enable_crtc_connector() returning EDEADLK
+      drm/tests: Handle EDEADLK in drm_test_check_valid_clones()
+      drm/tests: Handle EDEADLK in set_up_atomic_state()
 
-  Here are the changes found in xe-pw-159008v2_BAT that come from known issues:
+Karol Wachowski (1):
+      drm: Fix object leak in DRM_IOCTL_GEM_CHANGE_HANDLE
 
-### IGT changes ###
+Maarten Lankhorst (1):
+      Merge remote-tracking branch 'drm/drm-fixes' into drm-misc-fixes
 
-#### Issues hit ####
+Marijn Suijten (1):
+      drm/panel: sony-td4353-jdi: Enable prepare_prev_first
 
-  * igt@xe_module_load@load:
-    - bat-bmg-1:          [PASS][1] -> [ABORT][2] ([Intel XE#6818])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4262-c84dc8f40d4f4462990de0437ebb2425c9f82b48/bat-bmg-1/igt@xe_module_load@load.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159008v2/bat-bmg-1/igt@xe_module_load@load.html
+Mario Limonciello (AMD) (1):
+      accel/amdxdna: Block running under a hypervisor
 
-  * igt@xe_waitfence@abstime:
-    - bat-dg2-oem2:       [PASS][3] -> [TIMEOUT][4] ([Intel XE#6506])
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4262-c84dc8f40d4f4462990de0437ebb2425c9f82b48/bat-dg2-oem2/igt@xe_waitfence@abstime.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159008v2/bat-dg2-oem2/igt@xe_waitfence@abstime.html
-
-  
-  [Intel XE#6506]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506
-  [Intel XE#6818]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6818
-
-
-Build changes
--------------
-
-  * Linux: xe-4262-c84dc8f40d4f4462990de0437ebb2425c9f82b48 -> xe-pw-159008v2
-
-  IGT_8671: 8671
-  xe-4262-c84dc8f40d4f4462990de0437ebb2425c9f82b48: c84dc8f40d4f4462990de0437ebb2425c9f82b48
-  xe-pw-159008v2: 159008v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159008v2/index.html
-
---===============1224212163080775309==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Prepare GVT for display modularization (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/159008/">https://patchwork.freedesktop.org/series/159008/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159008v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159008v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4262-c84dc8f40d4f4462990de0437ebb2425c9f82b48_BAT -&gt; xe-pw-159008v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (12 -&gt; 12)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-159008v2_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@xe_module_load@load:</p>
-<ul>
-<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4262-c84dc8f40d4f4462990de0437ebb2425c9f82b48/bat-bmg-1/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159008v2/bat-bmg-1/igt@xe_module_load@load.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6818">Intel XE#6818</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_waitfence@abstime:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4262-c84dc8f40d4f4462990de0437ebb2425c9f82b48/bat-dg2-oem2/igt@xe_waitfence@abstime.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159008v2/bat-dg2-oem2/igt@xe_waitfence@abstime.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506">Intel XE#6506</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4262-c84dc8f40d4f4462990de0437ebb2425c9f82b48 -&gt; xe-pw-159008v2</li>
-</ul>
-<p>IGT_8671: 8671<br />
-  xe-4262-c84dc8f40d4f4462990de0437ebb2425c9f82b48: c84dc8f40d4f4462990de0437ebb2425c9f82b48<br />
-  xe-pw-159008v2: 159008v2</p>
-
-</body>
-</html>
-
---===============1224212163080775309==--
+ drivers/accel/amdxdna/aie2_pci.c                   |   6 +
+ drivers/gpu/drm/drm_gem.c                          |   8 +-
+ drivers/gpu/drm/panel/Kconfig                      |   1 +
+ drivers/gpu/drm/panel/panel-sony-td4353-jdi.c      |   2 +
+ drivers/gpu/drm/tests/drm_atomic_state_test.c      |  40 +++++-
+ drivers/gpu/drm/tests/drm_hdmi_state_helper_test.c | 143 +++++++++++++++++++++
+ 6 files changed, 193 insertions(+), 7 deletions(-)
