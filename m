@@ -4,66 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9CD47D6E2CA
-	for <intel-xe@archiver.kernel.org>; Thu, 18 Dec 2025 19:18:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F32D4D6E2DC
+	for <intel-xe@archiver.kernel.org>; Thu, 18 Dec 2025 19:27:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4CA1C10EAB1;
-	Thu, 18 Dec 2025 19:18:32 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="C5xQrWrK";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6162210EAB1;
- Thu, 18 Dec 2025 19:18:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1766085510; x=1797621510;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=QAGzJAyIPlihyB3mtMWZdIgnTkEprYFa1So1zhdCXvY=;
- b=C5xQrWrKc2RMDS4b7DWUUguW5LGYHI4DY7wuUvyL1OVAK4WcGAXej98k
- ssmCfPNNvAWA6fxI+99TeheyKSpU/WZ1+EgBLdeszCaB4AcReHBuhj6bv
- rGYhXHpIhoLJMV1K0v2r6RS7zqcy7pD0/3Wy8YH57phUme6EjekBlRBWt
- /CuUfJQauJpnp8XLJLB6S97S9Fn+6uBDqB9yUXCLVuZ41F/74/fXTTZrB
- lSqFwHLwd3MYeFLgu8VaPP4qbEL1L6qYznSGR0l6baQNvuOCkTUF7ck8S
- 77JqmoMrW9/ydd7ssW1CjVslq0dN0NvFRjwCN+xCBciqjIAgXaU0LvPAj w==;
-X-CSE-ConnectionGUID: r5tEdYY5ScexHx118KhLqw==
-X-CSE-MsgGUID: EiIEtlnKToKlUtez7lhq9A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11646"; a="55627901"
-X-IronPort-AV: E=Sophos;i="6.21,159,1763452800"; d="scan'208";a="55627901"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Dec 2025 11:18:29 -0800
-X-CSE-ConnectionGUID: ThV+FfWDRlul+/IJcYxA2w==
-X-CSE-MsgGUID: miONQjiOSMuLfqTbJs/b1g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,159,1763452800"; d="scan'208";a="222076812"
-Received: from dhhellew-desk2.ger.corp.intel.com (HELO [10.245.244.93])
- ([10.245.244.93])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Dec 2025 11:18:26 -0800
-Message-ID: <8ed95ebd4525bbedbf62aa2ca26bcaf8ae1e4526.camel@linux.intel.com>
-Subject: Re: [PATCH v5 03/24] drm/pagemap, drm/xe: Ensure that the devmem
- allocation is idle before use
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org, stable@vger.kernel.org, 
- dri-devel@lists.freedesktop.org, himal.prasad.ghimiray@intel.com, 
- apopple@nvidia.com, airlied@gmail.com, Simona Vetter
- <simona.vetter@ffwll.ch>, 	felix.kuehling@amd.com, Christian
- =?ISO-8859-1?Q?K=F6nig?=	 <christian.koenig@amd.com>, dakr@kernel.org,
- "Mrozek, Michal"	 <michal.mrozek@intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>
-Date: Thu, 18 Dec 2025 20:18:24 +0100
-In-Reply-To: <aURI/tEMA6GInnCh@lstrano-desk.jf.intel.com>
-References: <20251218162101.605379-1-thomas.hellstrom@linux.intel.com>
- <20251218162101.605379-4-thomas.hellstrom@linux.intel.com>
- <aURI/tEMA6GInnCh@lstrano-desk.jf.intel.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.3 (3.54.3-2.fc41) 
+	by gabe.freedesktop.org (Postfix) with ESMTP id B766E10E340;
+	Thu, 18 Dec 2025 19:27:35 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 695FC10E182;
+ Thu, 18 Dec 2025 19:27:34 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1599248939908514823=="
 MIME-Version: 1.0
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/xe=5Fguc=5Fct=3A_Dro?=
+ =?utf-8?q?p_smp=5Fmb_in_parse=5Fg2h=5Fresponse?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jonathan Cavitt" <jonathan.cavitt@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 18 Dec 2025 19:27:34 -0000
+Message-ID: <176608605441.102714.16034142838272697993@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20251218165803.9042-2-jonathan.cavitt@intel.com>
+In-Reply-To: <20251218165803.9042-2-jonathan.cavitt@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,204 +36,155 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 2025-12-18 at 10:33 -0800, Matthew Brost wrote:
-> On Thu, Dec 18, 2025 at 05:20:40PM +0100, Thomas Hellstr=C3=B6m wrote:
-> > In situations where no system memory is migrated to devmem, and in
-> > upcoming patches where another GPU is performing the migration to
-> > the newly allocated devmem buffer, there is nothing to ensure any
-> > ongoing clear to the devmem allocation or async eviction from the
-> > devmem allocation is complete.
+--===============1599248939908514823==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+== Series Details ==
+
+Series: drm/xe/xe_guc_ct: Drop smp_mb in parse_g2h_response
+URL   : https://patchwork.freedesktop.org/series/159238/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from xe-4267-e0eb6ad399f8369d978ca40f07cbf5c6c16647d7_BAT -> xe-pw-159238v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (12 -> 12)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-159238v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_waitfence@abstime:
+    - bat-dg2-oem2:       [PASS][1] -> [TIMEOUT][2] ([Intel XE#6506])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4267-e0eb6ad399f8369d978ca40f07cbf5c6c16647d7/bat-dg2-oem2/igt@xe_waitfence@abstime.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159238v1/bat-dg2-oem2/igt@xe_waitfence@abstime.html
+
+  * igt@xe_waitfence@engine:
+    - bat-dg2-oem2:       [PASS][3] -> [FAIL][4] ([Intel XE#6519])
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4267-e0eb6ad399f8369d978ca40f07cbf5c6c16647d7/bat-dg2-oem2/igt@xe_waitfence@engine.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159238v1/bat-dg2-oem2/igt@xe_waitfence@engine.html
+
+  
+#### Possible fixes ####
+
+  * igt@xe_waitfence@reltime:
+    - bat-dg2-oem2:       [FAIL][5] ([Intel XE#6520]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4267-e0eb6ad399f8369d978ca40f07cbf5c6c16647d7/bat-dg2-oem2/igt@xe_waitfence@reltime.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159238v1/bat-dg2-oem2/igt@xe_waitfence@reltime.html
+
+  
+  [Intel XE#6506]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506
+  [Intel XE#6519]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519
+  [Intel XE#6520]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520
 
 
-> >=20
-> > Address that by passing a struct dma_fence down to the copy
-> > functions, and ensure it is waited for before migration is marked
-> > complete.
-> >=20
-> > v3:
-> > - New patch.
-> > v4:
-> > - Update the logic used for determining when to wait for the
-> > =C2=A0 pre_migrate_fence.
-> > - Update the logic used for determining when to warn for the
-> > =C2=A0 pre_migrate_fence since the scheduler fences apparently
-> > =C2=A0 can signal out-of-order.
-> > v5:
-> > - Fix a UAF (CI)
-> > - Remove references to source P2P migration (Himal)
-> > - Put the pre_migrate_fence after migration.
-> >=20
-> > Fixes: c5b3eb5a906c ("drm/xe: Add GPUSVM device memory copy vfunc
-> > functions")
-> > Cc: Matthew Brost <matthew.brost@intel.com>
-> > Cc: <stable@vger.kernel.org> # v6.15+
-> > Signed-off-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
-> > ---
-> > =C2=A0drivers/gpu/drm/drm_pagemap.c | 17 ++++++---
-> > =C2=A0drivers/gpu/drm/xe/xe_svm.c=C2=A0=C2=A0 | 65 ++++++++++++++++++++=
-++++++++++-
-> > ----
-> > =C2=A0include/drm/drm_pagemap.h=C2=A0=C2=A0=C2=A0=C2=A0 | 17 +++++++--
-> > =C2=A03 files changed, 83 insertions(+), 16 deletions(-)
-> >=20
-> > diff --git a/drivers/gpu/drm/drm_pagemap.c
-> > b/drivers/gpu/drm/drm_pagemap.c
-> > index 4cf8f54e5a27..ac3832f85190 100644
-> > --- a/drivers/gpu/drm/drm_pagemap.c
-> > +++ b/drivers/gpu/drm/drm_pagemap.c
-> > @@ -3,6 +3,7 @@
-> > =C2=A0 * Copyright =C2=A9 2024-2025 Intel Corporation
-> > =C2=A0 */
-> > =C2=A0
-> > +#include <linux/dma-fence.h>
-> > =C2=A0#include <linux/dma-mapping.h>
-> > =C2=A0#include <linux/migrate.h>
-> > =C2=A0#include <linux/pagemap.h>
-> > @@ -408,10 +409,14 @@ int drm_pagemap_migrate_to_devmem(struct
-> > drm_pagemap_devmem *devmem_allocation,
-> > =C2=A0		drm_pagemap_get_devmem_page(page, zdd);
-> > =C2=A0	}
-> > =C2=A0
-> > -	err =3D ops->copy_to_devmem(pages, pagemap_addr, npages);
-> > +	err =3D ops->copy_to_devmem(pages, pagemap_addr, npages,
-> > +				=C2=A0 devmem_allocation-
-> > >pre_migrate_fence);
-> > =C2=A0	if (err)
-> > =C2=A0		goto err_finalize;
-> > =C2=A0
-> > +	dma_fence_put(devmem_allocation->pre_migrate_fence);
-> > +	devmem_allocation->pre_migrate_fence =3D NULL;
-> > +
-> > =C2=A0	/* Upon success bind devmem allocation to range and zdd */
-> > =C2=A0	devmem_allocation->timeslice_expiration =3D get_jiffies_64()
-> > +
-> > =C2=A0		msecs_to_jiffies(timeslice_ms);
-> > @@ -596,7 +601,7 @@ int drm_pagemap_evict_to_ram(struct
-> > drm_pagemap_devmem *devmem_allocation)
-> > =C2=A0	for (i =3D 0; i < npages; ++i)
-> > =C2=A0		pages[i] =3D migrate_pfn_to_page(src[i]);
-> > =C2=A0
-> > -	err =3D ops->copy_to_ram(pages, pagemap_addr, npages);
-> > +	err =3D ops->copy_to_ram(pages, pagemap_addr, npages, NULL);
-> > =C2=A0	if (err)
-> > =C2=A0		goto err_finalize;
-> > =C2=A0
-> > @@ -719,7 +724,7 @@ static int __drm_pagemap_migrate_to_ram(struct
-> > vm_area_struct *vas,
-> > =C2=A0	for (i =3D 0; i < npages; ++i)
-> > =C2=A0		pages[i] =3D migrate_pfn_to_page(migrate.src[i]);
-> > =C2=A0
-> > -	err =3D ops->copy_to_ram(pages, pagemap_addr, npages);
-> > +	err =3D ops->copy_to_ram(pages, pagemap_addr, npages, NULL);
-> > =C2=A0	if (err)
-> > =C2=A0		goto err_finalize;
-> > =C2=A0
-> > @@ -800,11 +805,14 @@
-> > EXPORT_SYMBOL_GPL(drm_pagemap_pagemap_ops_get);
-> > =C2=A0 * @ops: Pointer to the operations structure for GPU SVM device
-> > memory
-> > =C2=A0 * @dpagemap: The struct drm_pagemap we're allocating from.
-> > =C2=A0 * @size: Size of device memory allocation
-> > + * @pre_migrate_fence: Fence to wait for or pipeline behind before
-> > migration starts.
-> > + * (May be NULL).
-> > =C2=A0 */
-> > =C2=A0void drm_pagemap_devmem_init(struct drm_pagemap_devmem
-> > *devmem_allocation,
-> > =C2=A0			=C2=A0=C2=A0=C2=A0=C2=A0 struct device *dev, struct mm_struct
-> > *mm,
-> > =C2=A0			=C2=A0=C2=A0=C2=A0=C2=A0 const struct drm_pagemap_devmem_ops
-> > *ops,
-> > -			=C2=A0=C2=A0=C2=A0=C2=A0 struct drm_pagemap *dpagemap, size_t
-> > size)
-> > +			=C2=A0=C2=A0=C2=A0=C2=A0 struct drm_pagemap *dpagemap, size_t
-> > size,
-> > +			=C2=A0=C2=A0=C2=A0=C2=A0 struct dma_fence *pre_migrate_fence)
-> > =C2=A0{
-> > =C2=A0	init_completion(&devmem_allocation->detached);
-> > =C2=A0	devmem_allocation->dev =3D dev;
-> > @@ -812,6 +820,7 @@ void drm_pagemap_devmem_init(struct
-> > drm_pagemap_devmem *devmem_allocation,
-> > =C2=A0	devmem_allocation->ops =3D ops;
-> > =C2=A0	devmem_allocation->dpagemap =3D dpagemap;
-> > =C2=A0	devmem_allocation->size =3D size;
-> > +	devmem_allocation->pre_migrate_fence =3D pre_migrate_fence;
-> > =C2=A0}
-> > =C2=A0EXPORT_SYMBOL_GPL(drm_pagemap_devmem_init);
-> > =C2=A0
-> > diff --git a/drivers/gpu/drm/xe/xe_svm.c
-> > b/drivers/gpu/drm/xe/xe_svm.c
-> > index bab8e6cbe53d..b806a1fce188 100644
-> > --- a/drivers/gpu/drm/xe/xe_svm.c
-> > +++ b/drivers/gpu/drm/xe/xe_svm.c
-> > @@ -472,11 +472,12 @@ static void xe_svm_copy_us_stats_incr(struct
-> > xe_gt *gt,
-> > =C2=A0
-> > =C2=A0static int xe_svm_copy(struct page **pages,
-> > =C2=A0		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct drm_pagemap_addr *p=
-agemap_addr,
-> > -		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 unsigned long npages, const enu=
-m
-> > xe_svm_copy_dir dir)
-> > +		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 unsigned long npages, const enu=
-m
-> > xe_svm_copy_dir dir,
-> > +		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct dma_fence *pre_migrate_f=
-ence)
-> > =C2=A0{
-> > =C2=A0	struct xe_vram_region *vr =3D NULL;
-> > =C2=A0	struct xe_gt *gt =3D NULL;
-> > -	struct xe_device *xe;
-> > +	struct xe_device *xe =3D NULL;
-> > =C2=A0	struct dma_fence *fence =3D NULL;
-> > =C2=A0	unsigned long i;
-> > =C2=A0#define XE_VRAM_ADDR_INVALID	~0x0ull
-> > @@ -485,6 +486,16 @@ static int xe_svm_copy(struct page **pages,
-> > =C2=A0	bool sram =3D dir =3D=3D XE_SVM_COPY_TO_SRAM;
-> > =C2=A0	ktime_t start =3D xe_gt_stats_ktime_get();
-> > =C2=A0
-> > +	if (pre_migrate_fence &&
-> > dma_fence_is_container(pre_migrate_fence)) {
-> > +		/*
-> > +		 * This would typically be a composite fence
-> > operation on the destination memory.
-> > +		 * Ensure that the other GPU operation on the
-> > destination is complete.
-> > +		 */
-> > +		err =3D dma_fence_wait(pre_migrate_fence, true);
-> > +		if (err)
-> > +			return err;
-> > +	}
-> > +
->=20
-> I'm not fully convienced this code works. Consider the case where we
-> allocate memory a device A and we copying from device B. In this case
-> device A issues the clear but device B issues the copy. The
-> pre_migrate_fence is not going be a container and I believe our
-> ordering
-> breaks.
+Build changes
+-------------
 
-So the logic to handle that case was moved to the patch that enables
-source migration, as per Himal's review comment. So consider this patch
-only for destination migration where the devmem allocation is allocated
-on the same gpu that migrates.
+  * Linux: xe-4267-e0eb6ad399f8369d978ca40f07cbf5c6c16647d7 -> xe-pw-159238v1
 
->=20
-> Would it be simplier to pass in the pre_migrate_fence fence a
-> dependency
-> to the first copy job issued, then set it to NULL. The drm scheduler
-> is
-> smart enough to squash the input fence into a NOP if a copy / clear
-> are
-> from the same devices queues.
+  IGT_8674: f38f4d8e9c65aff45ac807e646d06e38bc3193a2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-4267-e0eb6ad399f8369d978ca40f07cbf5c6c16647d7: e0eb6ad399f8369d978ca40f07cbf5c6c16647d7
+  xe-pw-159238v1: 159238v1
 
-I intended to do that as a follow-up if needed but since this is a fix
-that fixes an existing problem I wanted it to be lightweight. But let
-me take a quick look at that and probably resend only that patch.
+== Logs ==
 
-/Thomas
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159238v1/index.html
+
+--===============1599248939908514823==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
 
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/xe_guc_ct: Drop smp_mb in parse_g2h_response</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/159238/">https://patchwork.freedesktop.org/series/159238/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159238v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159238v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4267-e0eb6ad399f8369d978ca40f07cbf5c6c16647d7_BAT -&gt; xe-pw-159238v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (12 -&gt; 12)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-159238v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@xe_waitfence@abstime:</p>
+<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4267-e0eb6ad399f8369d978ca40f07cbf5c6c16647d7/bat-dg2-oem2/igt@xe_waitfence@abstime.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159238v1/bat-dg2-oem2/igt@xe_waitfence@abstime.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506">Intel XE#6506</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_waitfence@engine:</p>
+<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4267-e0eb6ad399f8369d978ca40f07cbf5c6c16647d7/bat-dg2-oem2/igt@xe_waitfence@engine.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159238v1/bat-dg2-oem2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519">Intel XE#6519</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_waitfence@reltime:<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4267-e0eb6ad399f8369d978ca40f07cbf5c6c16647d7/bat-dg2-oem2/igt@xe_waitfence@reltime.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520">Intel XE#6520</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159238v1/bat-dg2-oem2/igt@xe_waitfence@reltime.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4267-e0eb6ad399f8369d978ca40f07cbf5c6c16647d7 -&gt; xe-pw-159238v1</li>
+</ul>
+<p>IGT_8674: f38f4d8e9c65aff45ac807e646d06e38bc3193a2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-4267-e0eb6ad399f8369d978ca40f07cbf5c6c16647d7: e0eb6ad399f8369d978ca40f07cbf5c6c16647d7<br />
+  xe-pw-159238v1: 159238v1</p>
+
+</body>
+</html>
+
+--===============1599248939908514823==--
