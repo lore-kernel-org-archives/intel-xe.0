@@ -4,56 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7E304D711C3
-	for <intel-xe@archiver.kernel.org>; Thu, 18 Dec 2025 21:08:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E7801D711C3
+	for <intel-xe@archiver.kernel.org>; Thu, 18 Dec 2025 21:11:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3C07710E2E4;
-	Thu, 18 Dec 2025 21:08:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A667610E2E4;
+	Thu, 18 Dec 2025 21:11:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FDTB5mK4";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jC4Iyotu";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 45F9D10E2E4
- for <intel-xe@lists.freedesktop.org>; Thu, 18 Dec 2025 21:08:24 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7455310E2E4
+ for <intel-xe@lists.freedesktop.org>; Thu, 18 Dec 2025 21:10:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1766092104; x=1797628104;
+ t=1766092259; x=1797628259;
  h=date:message-id:from:to:cc:subject:in-reply-to:
  references:mime-version;
- bh=D6YuTwaymB+t7wqx49M6IXwwGQtZmfgbqHicKdk1KN8=;
- b=FDTB5mK4+vdmsYL2Mss3OcSykuvdVhfYJn8cM/yJTyW7wZwYYAAM2hu+
- yOF5JcU+KUmT3E5yteqOuNZfMZKDL4cH3SqTwVz2lLjMbD3bBgqqfQaoV
- csg1cBoj72tSa12Fuvim9ICJTpyDdb1TayovppAMUCqG9UKDE9Vh01VpP
- hpA+0WulY7JwBVJSoMNQ5iw0s3rGPREGFSyuqIKX/bPV2XjMQeRw7ODel
- 1htL+K0GE8aJLNqxQkwsfMDIVb45LS67X3tWnt0Egk4aAWItc9cSBY3Tz
- aW61NobYsK8xHIPgXD6MvVwRPqNTu1FluHl1zClVXtZib9di5WwNDtuDY Q==;
-X-CSE-ConnectionGUID: cUesqsgqQ3+2ZE3tMrs88Q==
-X-CSE-MsgGUID: /xeocMncTwmqreRs6tBQeQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11646"; a="68210615"
-X-IronPort-AV: E=Sophos;i="6.21,159,1763452800"; d="scan'208";a="68210615"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Dec 2025 13:08:24 -0800
-X-CSE-ConnectionGUID: 4n+sc0t6QDqJxK07zCtvXg==
-X-CSE-MsgGUID: IE+A2Yl4RZ+sPPDjP0YSFw==
+ bh=GB902RBn6/w4f3BbMuV2UddXtZYqh62ujHhgXkvdr5A=;
+ b=jC4IyotuLU3A6CAnwheSVODXPKwH6p42SXiV9hcq6VU/9AbH5TKoNIzd
+ 0sKnScKFymBDg0JYQtNJY8ZWH6QCnrLQaJ29BXq7juw60TRE2wmY6n9X5
+ ohIvhY4g32RTmSNMFk5ivthJ5HueibNMCxmbOegk9Ecc0wl8JokHWYUqI
+ kKqS3JU+mf/Fgk+zmJS38JwwCPjOzSoozsEjMZpXWLCuo5qBBb0Ao6bwr
+ O1+tkDZg4flvFCHJVag4n4YOVKUAqbJ/1I1Objjz+Nq2G5z2RCexnzcDO
+ z+hJZCOhbjoA+eBHrLNccwz4d1SVnKu0gzXvFZd+rd7jRrf1uh4sAxl4U Q==;
+X-CSE-ConnectionGUID: 7CIO2xafQEWXFohEp8TBGw==
+X-CSE-MsgGUID: mWdRhMXxRI67yvchAPGpGg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11646"; a="71688002"
+X-IronPort-AV: E=Sophos;i="6.21,159,1763452800"; d="scan'208";a="71688002"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Dec 2025 13:10:59 -0800
+X-CSE-ConnectionGUID: auNYsikuSTaWgTTdN+kyxQ==
+X-CSE-MsgGUID: teMFfM8uRKy6MD/YiQCIWw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,159,1763452800"; d="scan'208";a="197944253"
+X-IronPort-AV: E=Sophos;i="6.21,159,1763452800"; d="scan'208";a="198281461"
 Received: from unknown (HELO adixit-MOBL3.intel.com) ([10.57.131.238])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Dec 2025 13:08:24 -0800
-Date: Thu, 18 Dec 2025 13:08:23 -0800
-Message-ID: <87345733co.wl-ashutosh.dixit@intel.com>
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Dec 2025 13:10:58 -0800
+Date: Thu, 18 Dec 2025 13:10:57 -0800
+Message-ID: <871pkr338e.wl-ashutosh.dixit@intel.com>
 From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
-To: Jonathan Cavitt <jonathan.cavitt@intel.com>
-Cc: intel-xe@lists.freedesktop.org, saurabhg.gupta@intel.com,
- alex.zuo@intel.com, matthew.brost@intel.com,
- daniele.ceraolospurio@intel.com, rodrigo.vivi@intel.com,
- michal.wajdeczko@intel.com
-Subject: Re: [PATCH 1/6] drm/xe/xe_guc_ct: WRITE_ONCE g2h_fence done in
- g2h_fence_cancel
-In-Reply-To: <20251218153527.6436-9-jonathan.cavitt@intel.com>
+To: "Cavitt, Jonathan" <jonathan.cavitt@intel.com>
+Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, "Gupta,\
+ Saurabhg" <saurabhg.gupta@intel.com>, "Zuo, Alex" <alex.zuo@intel.com>,
+ "Brost, Matthew" <matthew.brost@intel.com>, "Ceraolo Spurio, Daniele"
+ <daniele.ceraolospurio@intel.com>,
+ "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
+ "Wajdeczko, Michal" <Michal.Wajdeczko@intel.com>
+Subject: Re: [PATCH 6/6] drm/xe/xe_guc_ct: Justify WRITE_ONCE/READ_ONCE usage
+In-Reply-To: <CH0PR11MB54447005D7FF2D3CBB7BBB36E5A8A@CH0PR11MB5444.namprd11.prod.outlook.com>
 References: <20251218153527.6436-8-jonathan.cavitt@intel.com>
- <20251218153527.6436-9-jonathan.cavitt@intel.com>
+ <20251218153527.6436-14-jonathan.cavitt@intel.com>
+ <874ipn33oo.wl-ashutosh.dixit@intel.com>
+ <CH0PR11MB54447005D7FF2D3CBB7BBB36E5A8A@CH0PR11MB5444.namprd11.prod.outlook.com>
 User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
  FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
  Emacs/30.2 (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
@@ -73,43 +76,79 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 18 Dec 2025 07:35:29 -0800, Jonathan Cavitt wrote:
+On Thu, 18 Dec 2025 13:03:45 -0800, Cavitt, Jonathan wrote:
 >
-> Use WRITE_ONCE when operating on g2h_fence->done in g2h_fence_cancel to
-> prevent the compiler from ignoring this operation.
+> -----Original Message-----
+> From: Dixit, Ashutosh <ashutosh.dixit@intel.com>
+> Sent: Thursday, December 18, 2025 1:01 PM
+> To: Cavitt, Jonathan <jonathan.cavitt@intel.com>
+> Cc: intel-xe@lists.freedesktop.org; Gupta, Saurabhg <saurabhg.gupta@intel.com>; Zuo, Alex <alex.zuo@intel.com>; Brost, Matthew <matthew.brost@intel.com>; Ceraolo Spurio, Daniele <daniele.ceraolospurio@intel.com>; Vivi, Rodrigo <rodrigo.vivi@intel.com>; Wajdeczko, Michal <Michal.Wajdeczko@intel.com>
+> Subject: Re: [PATCH 6/6] drm/xe/xe_guc_ct: Justify WRITE_ONCE/READ_ONCE usage
+> >
+> > On Thu, 18 Dec 2025 07:35:34 -0800, Jonathan Cavitt wrote:
+> > >
+> > > Usage of READ_ONCE and WRITE_ONCE requires comments justifying it.
+> > > Some recently added uses had cross-dependencies with each other, but
+> > > needed to be added separately, so introduce the justifications now when
+> > > it makes more sense to.
+> >
+> > What is the reason for doing this in a separate patch? Afais, these
+> > comments should be added in the same patches where the code was changed. So
+> > people can see it in a single patch...
 >
-> Fixes: 94de94d24ea8 ("drm/xe/guc: Cancel ongoing H2G requests when stopping CT")
-> Suggested-by: Matthew Brost <matthew.brost@intel.com>
-> Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
-> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_guc_ct.c | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
-> index c3df9b3f1b4d..d177df166d2a 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_ct.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_ct.c
-> @@ -206,7 +206,9 @@ static void g2h_fence_cancel(struct g2h_fence *g2h_fence)
->  {
->	g2h_fence->cancel = true;
->	g2h_fence->fail = true;
-> -	g2h_fence->done = true;
-> +
-> +	/* WRITE_ONCE pairs with wait_event_timeout in guc_ct_send_recv */
-> +	WRITE_ONCE(g2h_fence->done, true);
->  }
+> Because the comment "WRITE_ONCE pairs with READ_ONCEs in xe_guc_ct_initialized
+> and xe_guc_ct_enabled" doesn't make sense when those functions don't have
+> READ_ONCEs yet.
 
-So the compiler just optimizes ->done? It doesn't optimize ->cancel and
-->fail, e.g.?
-
-Generally ok to do this, but sometimes they are also unnecessary. Have we
-seen evidence of the compiler optimizing this out? Also in other places
-where we are doing this in other patches?
-
+As Stuart mentioned the WRITE and READ should be in a single patch
+anyway. Together with the comments.
 
 >
->  static bool g2h_fence_needs_alloc(struct g2h_fence *g2h_fence)
-> --
-> 2.43.0
->
+> >
+> > >
+> > > Suggested-by: Matthew Brost <matthew.brost@intel.com>
+> > > Suggested-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> > > Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+> > > ---
+> > >  drivers/gpu/drm/xe/xe_guc_ct.c | 5 +++++
+> > >  drivers/gpu/drm/xe/xe_guc_ct.h | 2 ++
+> > >  2 files changed, 7 insertions(+)
+> > >
+> > > diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
+> > > index 20ac0438ffb6..24857c2c8cb5 100644
+> > > --- a/drivers/gpu/drm/xe/xe_guc_ct.c
+> > > +++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+> > > @@ -529,6 +529,11 @@ static void guc_ct_change_state(struct xe_guc_ct *ct,
+> > >	if (ct->g2h_outstanding)
+> > >		xe_pm_runtime_put(ct_to_xe(ct));
+> > >	ct->g2h_outstanding = 0;
+> > > +
+> > > +	/*
+> > > +	 * WRITE_ONCE pairs with READ_ONCEs in xe_guc_ct_initialized and
+> > > +	 * xe_guc_ct_enabled.
+> > > +	 */
+> > >	WRITE_ONCE(ct->state, state);
+> > >
+> > >	xe_gt_dbg(gt, "GuC CT communication channel %s\n",
+> > > diff --git a/drivers/gpu/drm/xe/xe_guc_ct.h b/drivers/gpu/drm/xe/xe_guc_ct.h
+> > > index cb1335f1d66f..8d318b094f33 100644
+> > > --- a/drivers/gpu/drm/xe/xe_guc_ct.h
+> > > +++ b/drivers/gpu/drm/xe/xe_guc_ct.h
+> > > @@ -30,11 +30,13 @@ void xe_guc_ct_print(struct xe_guc_ct *ct, struct drm_printer *p, bool want_ctb)
+> > >
+> > >  static inline bool xe_guc_ct_initialized(struct xe_guc_ct *ct)
+> > >  {
+> > > +	/* READ_ONCE pairs with WRITE_ONCE in guc_ct_change_state */
+> > >	return READ_ONCE(ct->state) != XE_GUC_CT_STATE_NOT_INITIALIZED;
+> > >  }
+> > >
+> > >  static inline bool xe_guc_ct_enabled(struct xe_guc_ct *ct)
+> > >  {
+> > > +	/* READ_ONCE pairs with WRITE_ONCE in guc_ct_change_state */
+> > >	return READ_ONCE(ct->state) == XE_GUC_CT_STATE_ENABLED;
+> > >  }
+> > >
+> > > --
+> > > 2.43.0
+> > >
+> >
