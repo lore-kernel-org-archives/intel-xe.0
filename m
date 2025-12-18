@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4F928D711C8
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4F8E8D711C7
 	for <intel-xe@archiver.kernel.org>; Thu, 18 Dec 2025 21:29:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0286210EB73;
-	Thu, 18 Dec 2025 21:29:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EA9FF10EAD9;
+	Thu, 18 Dec 2025 21:29:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="J/uAtQfd";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BM+tkDY3";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 66F6110EAD9
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8487210EB73
  for <intel-xe@lists.freedesktop.org>; Thu, 18 Dec 2025 21:29:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1766093389; x=1797629389;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=W5rWayGNIcqPTpSv4A0F/5pfEQa10iUpbWDjawg+wkU=;
- b=J/uAtQfdbnRDIj5QyTXDRW1pIB987VdBAo3nbQbZZ32NFER5x8wKHnD1
- SnYZas1slmRag8YvZsvfUvP0RHGFXz4kt+6qPKSS8D3p76qmsYdsB8RMw
- ZoyAsf8h0mZN337BROLVD5GRW7NgyHdpFNX+7mUo4QnCofHjoLOlWXbBU
- xN3P3xBYowEmALh7snHeXqg2SEAOdr/2ya/B2i4pA5VJqrRCrf9IWp/Gh
- XHoWgCQkFsX11Ql/1yXW6xzck1eIJWBr/YAt7o5r17NUwODcDGSsXshrb
- qTBk72dFzqkMm/JJiVdEX5/+U8DkJh4auFbSbDEGoCQgnXv/PTlwMg4/N g==;
-X-CSE-ConnectionGUID: D8/dqQ2HSduAUd7ULjjtPw==
-X-CSE-MsgGUID: DulxMgqoSjKXYSkddaSvxA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11646"; a="67808711"
-X-IronPort-AV: E=Sophos;i="6.21,159,1763452800"; d="scan'208";a="67808711"
+ bh=29kUn7U6+WiT++iWU2DolVqjAxyHb6KnyMPV3LU09ZM=;
+ b=BM+tkDY3lg09zREzeaKGMpiTvrfVdfazp752Ydf8d4FPX7C4IqOy7pSs
+ XA7ApW7yVvowPSsnYYvSamhnxVL0Hxq5DNUB5iXVGzDbn03b+A/YUdvD2
+ Z0OEOSYDAg1imQxxU3TXvY+QY9l144snhk7rZ385QYDE8/LaQyEl8K2nK
+ 6vpKcpoSHqTum+eUBy3sdJ8KAnEJmdy7yj4OriZoglwTOqMWYdwow3513
+ Ly0/lq7hjEwddvEFIwAxHbP5sB/PHThdHBmkeUKYH6i1JJTf8UnLrfjov
+ mP3KV80JpT9RgUp3r8tdUdvnCNIJAlkXSmnJ/GCLsmaFxWueexdM18m+e Q==;
+X-CSE-ConnectionGUID: 6bJ/NHLGQeGKIviKnDl2jQ==
+X-CSE-MsgGUID: G9cP/HdbTX2RIV+hIaYOcw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11646"; a="67808712"
+X-IronPort-AV: E=Sophos;i="6.21,159,1763452800"; d="scan'208";a="67808712"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  18 Dec 2025 13:29:49 -0800
-X-CSE-ConnectionGUID: PaOd76ynSvqqRfsNc3cbWQ==
-X-CSE-MsgGUID: HfOOi89HSQSKiT79oZdSMQ==
+X-CSE-ConnectionGUID: ppgQh8/rTn6uEKFPg0FqgA==
+X-CSE-MsgGUID: rBrpS8dXQcq1O/0uyKekrQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,159,1763452800"; d="scan'208";a="198594093"
+X-IronPort-AV: E=Sophos;i="6.21,159,1763452800"; d="scan'208";a="198594096"
 Received: from dut4086lnl.fm.intel.com ([10.105.10.207])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  18 Dec 2025 13:29:48 -0800
@@ -47,10 +47,10 @@ Cc: saurabhg.gupta@intel.com, alex.zuo@intel.com, jonathan.cavitt@intel.com,
  matthew.brost@intel.com, daniele.ceraolospurio@intel.com,
  rodrigo.vivi@intel.com, michal.wajdeczko@intel.com,
  stuart.summers@intel.com, dixit.ashutosh@intel.com
-Subject: [PATCH v2 2/4] drm/xe/guc: WRITE_ONCE g2h_fence done in
- parse_g2h_response
-Date: Thu, 18 Dec 2025 21:29:49 +0000
-Message-ID: <20251218212946.16577-8-jonathan.cavitt@intel.com>
+Subject: [PATCH v2 3/4] drm/xe/guc: READ/WRITE_ONCE ct state in
+ ct_change_state and enabled
+Date: Thu, 18 Dec 2025 21:29:50 +0000
+Message-ID: <20251218212946.16577-9-jonathan.cavitt@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20251218212946.16577-6-jonathan.cavitt@intel.com>
 References: <20251218212946.16577-6-jonathan.cavitt@intel.com>
@@ -70,31 +70,49 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Use WRITE_ONCE when operating on g2h_fence->done in parse_g2h_response
-to prevent the compiler from ignoring this operation.
+Use WRITE_ONCE when operating on ct->state in guc_ct_change_state to
+prevent the compiler from ignoring this operation.  Use READ_ONCE when
+reading ct->state in xe_guc_ct_enabled for the same reason.
 
-Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
+Fixes: dc75d03716fe ("drm/xe/guc: Add more GuC CT states")
 Suggested-by: Matthew Brost <matthew.brost@intel.com>
 Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc_ct.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_guc_ct.c | 4 +++-
+ drivers/gpu/drm/xe/xe_guc_ct.h | 3 ++-
+ 2 files changed, 5 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
-index d177df166d2a..38b58590c94b 100644
+index 38b58590c94b..c59e38189cf0 100644
 --- a/drivers/gpu/drm/xe/xe_guc_ct.c
 +++ b/drivers/gpu/drm/xe/xe_guc_ct.c
-@@ -1500,7 +1500,8 @@ static int parse_g2h_response(struct xe_guc_ct *ct, u32 *msg, u32 len)
+@@ -529,7 +529,9 @@ static void guc_ct_change_state(struct xe_guc_ct *ct,
+ 	if (ct->g2h_outstanding)
+ 		xe_pm_runtime_put(ct_to_xe(ct));
+ 	ct->g2h_outstanding = 0;
+-	ct->state = state;
++
++	/* WRITE_ONCE pairs with READ_ONCE in xe_guc_ct_enabled. */
++	WRITE_ONCE(ct->state, state);
  
- 	g2h_release_space(ct, GUC_CTB_HXG_MSG_MAX_LEN);
+ 	xe_gt_dbg(gt, "GuC CT communication channel %s\n",
+ 		  state == XE_GUC_CT_STATE_STOPPED ? "stopped" :
+diff --git a/drivers/gpu/drm/xe/xe_guc_ct.h b/drivers/gpu/drm/xe/xe_guc_ct.h
+index 5599939f8fe1..5f2811a06833 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ct.h
++++ b/drivers/gpu/drm/xe/xe_guc_ct.h
+@@ -35,7 +35,8 @@ static inline bool xe_guc_ct_initialized(struct xe_guc_ct *ct)
  
--	g2h_fence->done = true;
-+	/* WRITE_ONCE pairs with wait_event_timeout in guc_ct_send_recv */
-+	WRITE_ONCE(g2h_fence->done, true);
- 	smp_mb();
+ static inline bool xe_guc_ct_enabled(struct xe_guc_ct *ct)
+ {
+-	return ct->state == XE_GUC_CT_STATE_ENABLED;
++	/* READ_ONCE pairs with WRITE_ONCE in guc_ct_change_state. */
++	return READ_ONCE(ct->state) == XE_GUC_CT_STATE_ENABLED;
+ }
  
- 	wake_up_all(&ct->g2h_fence_wq);
+ static inline void xe_guc_ct_irq_handler(struct xe_guc_ct *ct)
 -- 
 2.43.0
 
