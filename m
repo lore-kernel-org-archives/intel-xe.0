@@ -4,53 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 542CED711CC
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9ACDDD711CD
 	for <intel-xe@archiver.kernel.org>; Thu, 18 Dec 2025 22:39:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DCDFC10EBC6;
+	by gabe.freedesktop.org (Postfix) with ESMTP id E564E10EBCC;
 	Thu, 18 Dec 2025 22:39:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QEija50G";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Z2cje6Pk";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BA10F10EBC4
- for <intel-xe@lists.freedesktop.org>; Thu, 18 Dec 2025 22:39:06 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D098410EBC4
+ for <intel-xe@lists.freedesktop.org>; Thu, 18 Dec 2025 22:39:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1766097546; x=1797633546;
+ t=1766097544; x=1797633544;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=dqvLG2sfUthRfuGs2UpJAbocNZKHyK0J4O7Fzfb9aA0=;
- b=QEija50Gy8XA10lTtH3vImQUk3mCMzh7SUvJ+6BKKE0rrX6INlZmiJqg
- IcbPwY/6xr29l4P8KzCLV5QeFjoElDzVUJM8ijZYLSCXSTRgKN5KJL2xB
- aH/VEiH/3tJWVqBGbemqfnDZL1IBCFZEJO/L6kJG2tj7EoqbT2tagicwc
- 4vsUdt+kVB72QAezFpRHDCusW3O/wKkGXLZPJDLthRLW78tE4OnmY/15s
- +KB4/ftCGOI+H+fRbZC06mpxWlPQS0MFSYjl27h2qGksFfTa9otzh+RQt
- RD2qhFgMqgkB3JI/wvZE29PIblHovZC+jjlwYPjHlA/tktuwer1E4nmcs w==;
-X-CSE-ConnectionGUID: hrkQeq/BSiKirIEaHFAPBw==
-X-CSE-MsgGUID: zfHrXT7YTXGAHuPdRBZDqQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11646"; a="71910908"
-X-IronPort-AV: E=Sophos;i="6.21,159,1763452800"; d="scan'208";a="71910908"
+ bh=Ui4zB/4y/DzTQMHZomEHXH+O1fqgw973dmAmHEWK1vU=;
+ b=Z2cje6PkyA+mwEDW4Ft25obKvAJDoy8+gl5CLnQHcbT2IcG41+qOvbdC
+ QhGfRjgKoelVcQluRZiUFezWcGdhp7CXSBFh2nGIkbWbX1jEW97ThO5x8
+ Nq/O8aMVcZpyvf+aSaqhOpVx5RKguOOuLu5Rw5/NWaXIu1LoVxa3xyy+I
+ lIFVjTzvZ9ZbtT8pU5qG9UgynfJzlVHH0D2YYXsCNauVd/Gcc46AEJkyg
+ n7RaaqzmhfAFefvBI0vikcQBE+QP19gN0GrRLxpV8T4xEcG1HliuPi1Oo
+ BmgDzhpMT/rc7V41NUoExilaJy6unHnfIa8P6mFt559+oMl0vCEplAsp/ A==;
+X-CSE-ConnectionGUID: +M1CCfhhT5OWj2Vkm3RGAQ==
+X-CSE-MsgGUID: j+QhevNWSZClvtFCeuGIcg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11646"; a="71910902"
+X-IronPort-AV: E=Sophos;i="6.21,159,1763452800"; d="scan'208";a="71910902"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Dec 2025 14:39:06 -0800
-X-CSE-ConnectionGUID: L0yhNDGvRRClM05BSH4dGw==
-X-CSE-MsgGUID: h1Wg0x5vRaGHQv6qkQ2aNA==
+ 18 Dec 2025 14:39:04 -0800
+X-CSE-ConnectionGUID: 84J4fT2ESmq5G9wAYyrpDQ==
+X-CSE-MsgGUID: wKzHdJa7TH6bSbxJ0KjwHQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,159,1763452800"; d="scan'208";a="199176840"
+X-IronPort-AV: E=Sophos;i="6.21,159,1763452800"; d="scan'208";a="199176834"
 Received: from valcore-skull-1.fm.intel.com ([10.1.39.17])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Dec 2025 14:39:06 -0800
+ 18 Dec 2025 14:39:04 -0800
 From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI 07/12] drm/xe/pf: Add debugfs to enable scheduler groups
-Date: Thu, 18 Dec 2025 14:38:53 -0800
-Message-ID: <20251218223846.1146344-21-daniele.ceraolospurio@intel.com>
+Subject: [CI 04/12] drm/xe/pf: Add support for enabling scheduler groups
+Date: Thu, 18 Dec 2025 14:38:50 -0800
+Message-ID: <20251218223846.1146344-18-daniele.ceraolospurio@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20251218223846.1146344-14-daniele.ceraolospurio@intel.com>
 References: <20251218223846.1146344-14-daniele.ceraolospurio@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -66,163 +65,339 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Reading the debugfs file lists the available configurations by name.
-Writing the name of a configuration to the file will enable it.
-Note that while this debugfs is PF-only, follow up patches will add some
-debugfs files that are applicable to VF as well, so the function accepts
-a vfid parameter to be ready for that.
+Scheduler groups are enabled by sending a specific policy configuration
+KLV to the GuC. We don't allow changing this policy if there are VF
+active, since the expectation is that the VF will only check if the
+feature is enabled during driver initialization.
+
+While the GuC interface supports a maximum of 8 groups, the actual
+number of groups that can be enabled can be lower than that and
+can be different on different devices. For now, all devices support up
+to 2 groups, so we check that we do not have more groups than that.
+
+The functions added by this patch will be used by sysfs/debugfs, coming
+in follow up patches.
 
 Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
 Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c | 126 ++++++++++++++++++++
- 1 file changed, 126 insertions(+)
+ drivers/gpu/drm/xe/abi/guc_klvs_abi.h         |  22 +++
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.c    | 153 ++++++++++++++++++
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.h    |   7 +
+ .../gpu/drm/xe/xe_gt_sriov_pf_policy_types.h  |   6 +
+ drivers/gpu/drm/xe/xe_guc_klv_helpers.c       |   2 +
+ 5 files changed, 190 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
-index ece9eed5d7c5..f80664dcbb8f 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
-@@ -156,6 +156,131 @@ static void pf_add_policy_attrs(struct xe_gt *gt, struct dentry *parent)
- 	debugfs_create_file_unsafe("sample_period_ms", 0644, parent, parent, &sample_period_fops);
+diff --git a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h b/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
+index 89a4f8c504e6..ac10cf3adbc1 100644
+--- a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
++++ b/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
+@@ -8,6 +8,8 @@
+ 
+ #include <linux/types.h>
+ 
++#include "abi/guc_scheduler_abi.h"
++
+ /**
+  * DOC: GuC KLV
+  *
+@@ -200,6 +202,20 @@ enum  {
+  *      :0: adverse events are not counted (default)
+  *      :n: sample period in milliseconds
+  *
++ * _`GUC_KLV_VGT_POLICY_ENGINE_GROUP_CONFIG` : 0x8004
++ *      This config allows the PF to split the engines across scheduling groups.
++ *      Each group is independently timesliced across VFs, allowing different
++ *      VFs to be active on the HW at the same time. When enabling this feature,
++ *      all engines must be assigned to a group (and only one group), or they
++ *      will be excluded from scheduling after this KLV is sent. To enable
++ *      the groups, the driver must provide a masks array with
++ *      GUC_MAX_ENGINE_CLASSES entries for each group, with each mask indicating
++ *      which logical instances of that class belong to the group. Therefore,
++ *      the length of this KLV when enabling groups is
++ *      num_groups * GUC_MAX_ENGINE_CLASSES. To disable the groups, the driver
++ *      must send the KLV without any payload (i.e. len = 0). The maximum
++ *      number of groups is 8.
++ *
+  * _`GUC_KLV_VGT_POLICY_RESET_AFTER_VF_SWITCH` : 0x8D00
+  *      This enum is to reset utilized HW engine after VF Switch (i.e to clean
+  *      up Stale HW register left behind by previous VF)
+@@ -214,6 +230,12 @@ enum  {
+ #define GUC_KLV_VGT_POLICY_ADVERSE_SAMPLE_PERIOD_KEY	0x8002
+ #define GUC_KLV_VGT_POLICY_ADVERSE_SAMPLE_PERIOD_LEN	1u
+ 
++#define GUC_KLV_VGT_POLICY_ENGINE_GROUP_CONFIG_KEY	0x8004
++#define GUC_KLV_VGT_POLICY_ENGINE_GROUP_MAX_COUNT	GUC_MAX_SCHED_GROUPS
++#define GUC_KLV_VGT_POLICY_ENGINE_GROUP_CONFIG_MIN_LEN 0
++#define GUC_KLV_VGT_POLICY_ENGINE_GROUP_CONFIG_MAX_LEN \
++	(GUC_KLV_VGT_POLICY_ENGINE_GROUP_MAX_COUNT * GUC_MAX_ENGINE_CLASSES)
++
+ #define GUC_KLV_VGT_POLICY_RESET_AFTER_VF_SWITCH_KEY	0x8D00
+ #define GUC_KLV_VGT_POLICY_RESET_AFTER_VF_SWITCH_LEN	1u
+ 
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.c
+index fc60e7a01434..cf6ead37bd64 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.c
+@@ -97,6 +97,23 @@ static int pf_push_policy_u32(struct xe_gt *gt, u16 key, u32 value)
+ 	return pf_push_policy_klvs(gt, 1, klv, ARRAY_SIZE(klv));
  }
  
-+/*
-+ *      /sys/kernel/debug/dri/BDF/
-+ *      ├── sriov
-+ *      :   ├── pf
-+ *          :   ├── tile0
-+ *              :   ├── gt0
-+ *                  :   ├── sched_groups_mode
-+ */
-+
-+static const char *sched_group_mode_to_string(enum xe_sriov_sched_group_modes mode)
++static int pf_push_policy_payload(struct xe_gt *gt, u16 key, void *payload, u32 num_dwords)
 +{
-+	switch (mode) {
-+	case XE_SRIOV_SCHED_GROUPS_DISABLED:
-+		return "disabled";
-+	case XE_SRIOV_SCHED_GROUPS_MEDIA_SLICES:
-+		return "media_slices";
-+	case XE_SRIOV_SCHED_GROUPS_MODES_COUNT:
-+		/* dummy mode to make the compiler happy */
-+		break;
-+	}
++	CLASS(xe_guc_buf, buf)(&gt->uc.guc.buf, GUC_KLV_LEN_MIN + num_dwords);
++	u32 *klv;
 +
-+	return "unknown";
++	if (!xe_guc_buf_is_valid(buf))
++		return -ENOBUFS;
++
++	klv = xe_guc_buf_cpu_ptr(buf);
++
++	klv[0] = PREP_GUC_KLV(key, num_dwords);
++	if (num_dwords)
++		memcpy(&klv[1], payload, num_dwords * sizeof(u32));
++
++	return pf_push_policy_buf_klvs(gt, 1, buf, GUC_KLV_LEN_MIN + num_dwords);
 +}
 +
-+static int sched_groups_info(struct seq_file *m, void *data)
-+{
-+	struct drm_printer p = drm_seq_file_printer(m);
-+	struct xe_gt *gt = extract_gt(m->private);
-+	enum xe_sriov_sched_group_modes current_mode =
-+		gt->sriov.pf.policy.guc.sched_groups.current_mode;
-+	enum xe_sriov_sched_group_modes mode;
-+
-+	for (mode = XE_SRIOV_SCHED_GROUPS_DISABLED;
-+	     mode < XE_SRIOV_SCHED_GROUPS_MODES_COUNT;
-+	     mode++) {
-+		if (!xe_sriov_gt_pf_policy_has_sched_group_mode(gt, mode))
-+			continue;
-+
-+		drm_printf(&p, "%s%s%s%s",
-+			   mode == XE_SRIOV_SCHED_GROUPS_DISABLED ? "" : " ",
-+			   mode == current_mode ? "[" : "",
-+			   sched_group_mode_to_string(mode),
-+			   mode == current_mode ? "]" : "");
+ static int pf_update_policy_bool(struct xe_gt *gt, u16 key, bool *policy, bool value)
+ {
+ 	int err;
+@@ -397,6 +414,17 @@ static void pf_sched_group_media_slices(struct xe_gt *gt, struct guc_sched_group
+ 	if (group < 2)
+ 		return;
+ 
++	/*
++	 * If we have more groups than the GuC can support then we don't want to
++	 * expose this specific mode, because the GuC will return an error if we
++	 * try to enable it.
++	 */
++	if (group > gt->sriov.pf.policy.guc.sched_groups.max_groups) {
++		xe_gt_sriov_notice(gt, "media_slice mode has too many groups: %u vs %u\n",
++				   group, gt->sriov.pf.policy.guc.sched_groups.max_groups);
++		return;
 +	}
 +
-+	drm_puts(&p, "\n");
+ 	/* The GuC expects an array with a guc_sched_group entry for each group */
+ 	values = drmm_kcalloc(&gt_to_xe(gt)->drm, group, sizeof(struct guc_sched_group),
+ 			      GFP_KERNEL);
+@@ -459,6 +487,15 @@ static void pf_init_sched_groups(struct xe_gt *gt)
+ 	if (!xe_sriov_gt_pf_policy_has_sched_groups_support(gt))
+ 		return;
+ 
++	/*
++	 * The GuC interface supports up to 8 groups. However, the GuC only
++	 * fully allocates resources for a subset of groups, based on the number
++	 * of engines and expected usage. The plan is for this to become
++	 * queryable via H2G, but for now GuC FW for all devices supports a
++	 * maximum of 2 groups so we can just hardcode that.
++	 */
++	gt->sriov.pf.policy.guc.sched_groups.max_groups = 2;
++
+ 	for (m = XE_SRIOV_SCHED_GROUPS_DISABLED + 1; m < XE_SRIOV_SCHED_GROUPS_MODES_COUNT; m++) {
+ 		u32 *num_groups = &gt->sriov.pf.policy.guc.sched_groups.modes[m].num_groups;
+ 		struct guc_sched_group **groups =
+@@ -484,14 +521,129 @@ static void pf_init_sched_groups(struct xe_gt *gt)
+ 		}
+ 
+ 		xe_gt_assert(gt, *num_groups < GUC_MAX_SCHED_GROUPS);
++
++		if (*num_groups)
++			gt->sriov.pf.policy.guc.sched_groups.supported_modes |= BIT(m);
+ 	}
+ }
+ 
++/**
++ * xe_sriov_gt_pf_policy_has_multi_group_modes() - check whether the GT supports
++ * any scheduler modes that have multiple groups
++ * @gt: the &xe_gt to check
++ *
++ * This function can only be called on PF.
++ *
++ * Return: true if the GT supports modes with multiple groups, false otherwise.
++ */
++bool xe_sriov_gt_pf_policy_has_multi_group_modes(struct xe_gt *gt)
++{
++	return gt->sriov.pf.policy.guc.sched_groups.supported_modes;
++}
++
++/**
++ * xe_sriov_gt_pf_policy_has_sched_group_mode() - check whether the GT supports
++ * a specific scheduler group mode
++ * @gt: the &xe_gt to check
++ * @mode: the mode to check
++ *
++ * This function can only be called on PF.
++ *
++ * Return: true if the GT supports the specified mode, false otherwise.
++ */
++bool xe_sriov_gt_pf_policy_has_sched_group_mode(struct xe_gt *gt,
++						enum xe_sriov_sched_group_modes mode)
++{
++	if (mode == XE_SRIOV_SCHED_GROUPS_DISABLED)
++		return true;
++
++	return gt->sriov.pf.policy.guc.sched_groups.supported_modes & BIT(mode);
++}
++
++static int __pf_provision_sched_groups(struct xe_gt *gt, enum xe_sriov_sched_group_modes mode)
++{
++	struct guc_sched_group *groups = gt->sriov.pf.policy.guc.sched_groups.modes[mode].groups;
++	u32 num_groups = gt->sriov.pf.policy.guc.sched_groups.modes[mode].num_groups;
++
++	return pf_push_policy_payload(gt, GUC_KLV_VGT_POLICY_ENGINE_GROUP_CONFIG_KEY,
++				      groups, num_groups * GUC_MAX_ENGINE_CLASSES);
++}
++
++static int pf_provision_sched_groups(struct xe_gt *gt, enum xe_sriov_sched_group_modes mode)
++{
++	int err;
++
++	xe_gt_assert(gt, IS_SRIOV_PF(gt_to_xe(gt)));
++	lockdep_assert_held(xe_gt_sriov_pf_master_mutex(gt));
++
++	if (!xe_sriov_gt_pf_policy_has_sched_group_mode(gt, mode))
++		return -EINVAL;
++
++	/* already in the desired mode */
++	if (gt->sriov.pf.policy.guc.sched_groups.current_mode == mode)
++		return 0;
++
++	/*
++	 * We don't allow changing this with VFs active since it is hard for
++	 * VFs to check.
++	 */
++	if (xe_sriov_pf_num_vfs(gt_to_xe(gt)))
++		return -EBUSY;
++
++	err = __pf_provision_sched_groups(gt, mode);
++	if (err)
++		return err;
++
++	gt->sriov.pf.policy.guc.sched_groups.current_mode = mode;
 +
 +	return 0;
 +}
 +
-+static int sched_groups_open(struct inode *inode, struct file *file)
++static int pf_reprovision_sched_groups(struct xe_gt *gt)
 +{
-+	return single_open(file, sched_groups_info, inode->i_private);
++	xe_gt_assert(gt, IS_SRIOV_PF(gt_to_xe(gt)));
++	lockdep_assert_held(xe_gt_sriov_pf_master_mutex(gt));
++
++	/* We only have something to provision if we have possible groups */
++	if (!xe_sriov_gt_pf_policy_has_multi_group_modes(gt))
++		return 0;
++
++	return __pf_provision_sched_groups(gt, gt->sriov.pf.policy.guc.sched_groups.current_mode);
 +}
 +
-+static ssize_t sched_groups_write(struct file *file, const char __user *ubuf,
-+				  size_t size, loff_t *pos)
++static void pf_sanitize_sched_groups(struct xe_gt *gt)
 +{
-+	struct xe_gt *gt = extract_gt(file_inode(file)->i_private);
-+	enum xe_sriov_sched_group_modes mode;
-+	char name[32];
-+	int ret;
++	xe_gt_assert(gt, IS_SRIOV_PF(gt_to_xe(gt)));
++	lockdep_assert_held(xe_gt_sriov_pf_master_mutex(gt));
 +
-+	if (*pos)
-+		return -ESPIPE;
-+
-+	if (!size)
-+		return -ENODATA;
-+
-+	if (size > sizeof(name) - 1)
-+		return -EINVAL;
-+
-+	ret = simple_write_to_buffer(name, sizeof(name) - 1, pos, ubuf, size);
-+	if (ret < 0)
-+		return ret;
-+	name[ret] = '\0';
-+
-+	for (mode = XE_SRIOV_SCHED_GROUPS_DISABLED;
-+	     mode < XE_SRIOV_SCHED_GROUPS_MODES_COUNT;
-+	     mode++)
-+		if (sysfs_streq(name, sched_group_mode_to_string(mode)))
-+			break;
-+
-+	if (mode == XE_SRIOV_SCHED_GROUPS_MODES_COUNT)
-+		return -EINVAL;
-+
-+	guard(xe_pm_runtime)(gt_to_xe(gt));
-+	ret = xe_gt_sriov_pf_policy_set_sched_groups_mode(gt, mode);
-+
-+	return ret < 0 ? ret : size;
++	gt->sriov.pf.policy.guc.sched_groups.current_mode = XE_SRIOV_SCHED_GROUPS_DISABLED;
 +}
 +
-+static const struct file_operations sched_groups_fops = {
-+	.owner = THIS_MODULE,
-+	.open = sched_groups_open,
-+	.read = seq_read,
-+	.write = sched_groups_write,
-+	.llseek = seq_lseek,
-+	.release = single_release,
-+};
-+
-+static void pf_add_sched_groups(struct xe_gt *gt, struct dentry *parent, unsigned int vfid)
++/**
++ * xe_gt_sriov_pf_policy_set_sched_groups_mode() - Control the 'sched_groups' policy.
++ * @gt: the &xe_gt where to apply the policy
++ * @mode: the sched_group mode to be activated
++ *
++ * This function can only be called on PF.
++ *
++ * Return: 0 on success or a negative error code on failure.
++ */
++int xe_gt_sriov_pf_policy_set_sched_groups_mode(struct xe_gt *gt,
++						enum xe_sriov_sched_group_modes mode)
 +{
-+	xe_gt_assert(gt, gt == extract_gt(parent));
-+	xe_gt_assert(gt, vfid == extract_vfid(parent));
++	if (!xe_sriov_gt_pf_policy_has_multi_group_modes(gt))
++		return -ENODEV;
 +
-+	/*
-+	 * TODO: we currently call this function before we initialize scheduler
-+	 * groups, so at this point in time we don't know if there are any
-+	 * valid groups on the GT and we can't selectively register the debugfs
-+	 * only if there are any. Therefore, we always register the debugfs
-+	 * files if we're on a platform that has support for groups.
-+	 * We should rework the flow so that debugfs is registered after the
-+	 * policy init, so that we check if there are valid groups before
-+	 * adding the debugfs files.
-+	 */
-+	if (!xe_sriov_gt_pf_policy_has_sched_groups_support(gt))
-+		return;
-+
-+	if (vfid != PFID)
-+		return;
-+
-+	debugfs_create_file("sched_groups_mode", 0644, parent, parent, &sched_groups_fops);
++	guard(mutex)(xe_gt_sriov_pf_master_mutex(gt));
++	return pf_provision_sched_groups(gt, mode);
 +}
 +
- /*
-  *      /sys/kernel/debug/dri/BDF/
-  *      ├── sriov
-@@ -531,6 +656,7 @@ static void pf_populate_gt(struct xe_gt *gt, struct dentry *dent, unsigned int v
- 	} else {
- 		pf_add_config_attrs(gt, dent, PFID);
- 		pf_add_policy_attrs(gt, dent);
-+		pf_add_sched_groups(gt, dent, PFID);
+ static void pf_sanitize_guc_policies(struct xe_gt *gt)
+ {
+ 	pf_sanitize_sched_if_idle(gt);
+ 	pf_sanitize_reset_engine(gt);
+ 	pf_sanitize_sample_period(gt);
++	pf_sanitize_sched_groups(gt);
+ }
  
- 		drm_debugfs_create_files(pf_info, ARRAY_SIZE(pf_info), dent, minor);
- 	}
+ /**
+@@ -530,6 +682,7 @@ int xe_gt_sriov_pf_policy_reprovision(struct xe_gt *gt, bool reset)
+ 	err |= pf_reprovision_sched_if_idle(gt);
+ 	err |= pf_reprovision_reset_engine(gt);
+ 	err |= pf_reprovision_sample_period(gt);
++	err |= pf_reprovision_sched_groups(gt);
+ 	mutex_unlock(xe_gt_sriov_pf_master_mutex(gt));
+ 
+ 	xe_pm_runtime_put(gt_to_xe(gt));
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.h b/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.h
+index f5e3b2595063..d6e96302ff68 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.h
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.h
+@@ -8,6 +8,8 @@
+ 
+ #include <linux/types.h>
+ 
++#include "xe_gt_sriov_pf_policy_types.h"
++
+ struct drm_printer;
+ struct xe_gt;
+ 
+@@ -18,6 +20,11 @@ bool xe_gt_sriov_pf_policy_get_reset_engine(struct xe_gt *gt);
+ int xe_gt_sriov_pf_policy_set_sample_period(struct xe_gt *gt, u32 value);
+ u32 xe_gt_sriov_pf_policy_get_sample_period(struct xe_gt *gt);
+ bool xe_sriov_gt_pf_policy_has_sched_groups_support(struct xe_gt *gt);
++bool xe_sriov_gt_pf_policy_has_multi_group_modes(struct xe_gt *gt);
++bool xe_sriov_gt_pf_policy_has_sched_group_mode(struct xe_gt *gt,
++						enum xe_sriov_sched_group_modes mode);
++int xe_gt_sriov_pf_policy_set_sched_groups_mode(struct xe_gt *gt,
++						enum xe_sriov_sched_group_modes mode);
+ 
+ void xe_gt_sriov_pf_policy_init(struct xe_gt *gt);
+ void xe_gt_sriov_pf_policy_sanitize(struct xe_gt *gt);
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy_types.h b/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy_types.h
+index 11527ab1db7a..97d278190521 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy_types.h
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy_types.h
+@@ -24,6 +24,9 @@ enum xe_sriov_sched_group_modes {
+ 
+ /**
+  * struct xe_gt_sriov_scheduler_groups - Scheduler groups policy info
++ * @max_groups: max number of groups supported by the GuC for the platform
++ * @supported_modes: mask of supported modes
++ * @current_mode: active scheduler groups mode
+  * @modes: array of masks and their number for each mode
+  * @modes.groups: array of engine instance groups in given mode, with each group
+  *                consisting of GUC_MAX_ENGINE_CLASSES engine instances masks. A
+@@ -33,6 +36,9 @@ enum xe_sriov_sched_group_modes {
+  *                    are in the same group.
+  */
+ struct xe_gt_sriov_scheduler_groups {
++	u8 max_groups;
++	u32 supported_modes;
++	enum xe_sriov_sched_group_modes current_mode;
+ 	struct {
+ 		struct guc_sched_group *groups;
+ 		u32 num_groups;
+diff --git a/drivers/gpu/drm/xe/xe_guc_klv_helpers.c b/drivers/gpu/drm/xe/xe_guc_klv_helpers.c
+index 146a6eda9e06..1b08b443606e 100644
+--- a/drivers/gpu/drm/xe/xe_guc_klv_helpers.c
++++ b/drivers/gpu/drm/xe/xe_guc_klv_helpers.c
+@@ -26,6 +26,8 @@ const char *xe_guc_klv_key_to_string(u16 key)
+ 		return "sched_if_idle";
+ 	case GUC_KLV_VGT_POLICY_ADVERSE_SAMPLE_PERIOD_KEY:
+ 		return "sample_period";
++	case GUC_KLV_VGT_POLICY_ENGINE_GROUP_CONFIG_KEY:
++		return "engine_group_config";
+ 	case GUC_KLV_VGT_POLICY_RESET_AFTER_VF_SWITCH_KEY:
+ 		return "reset_engine";
+ 	/* VF CFG keys */
 -- 
 2.43.0
 
