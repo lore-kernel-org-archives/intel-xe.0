@@ -4,82 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1ED69D6E2A8
-	for <intel-xe@archiver.kernel.org>; Thu, 18 Dec 2025 15:38:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 500FCD6E2AF
+	for <intel-xe@archiver.kernel.org>; Thu, 18 Dec 2025 15:57:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CFDB110E84E;
-	Thu, 18 Dec 2025 15:38:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EEDD410E0C3;
+	Thu, 18 Dec 2025 15:57:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="UiBq43M2";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="f1CHaZLb";
 	dkim-atps=neutral
-Received: from mail-pj1-f68.google.com (mail-pj1-f68.google.com
- [209.85.216.68])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3CA9C10E0C1
- for <intel-xe@lists.freedesktop.org>; Thu, 18 Dec 2025 06:46:49 +0000 (UTC)
-Received: by mail-pj1-f68.google.com with SMTP id
- 98e67ed59e1d1-34b75f7a134so245876a91.0
- for <intel-xe@lists.freedesktop.org>; Wed, 17 Dec 2025 22:46:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1766040409; x=1766645209; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=b4DXMpQBlzOPKb0PDGmvx/k+LAdVPHJJW3EIFcNTF2o=;
- b=UiBq43M2lPo1cvgbj7ZkTaNjm+4N5tbrbaQd4q81TxPAfY6uXULWE7a+Z4FLL/Py4M
- 1SpN11PBUaUramnDQwRxMYYQlA0oG5rIUhWj11loEr3+Yd/vlqo/FkcdjBNeb7TxbA6o
- gZjiVC+TBGPce0mHz2KaIiHnRMTdQ+awjT5EyE7cOgt92OjA3lSuD3C6WBheOReVxWZk
- Z7UUmCSrlfTAXcvtLWvPf4kFfCskzQ5RfZXYxSxV32ze0lyIRP9Rjn9EcFw/3Rssa9Wy
- J1c1SiHsUkLZtlvGcRS46XHvVO1vLh7s7CdGJ8ETtrmnu2zUtSwlX3/GkE2+X8CtMsKe
- NiDA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1766040409; x=1766645209;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=b4DXMpQBlzOPKb0PDGmvx/k+LAdVPHJJW3EIFcNTF2o=;
- b=GA8gWbGPQl2LYEZCCJKyXe1G74acvlD18UHu5seIczYkAEvFKIdA5YYrT+3PLrz77X
- tmvvO/qfQlCv9ynNKadEVAdNPp5U0QU0SErPgxvuaPpkMFFn6INI/Wt4wjL97FOIPeoM
- 0Du/LNHiOXlGOFr09MgBHgozGO5OPmbJI2hr7o71ygJur4iGmAPXE29ndAJhyANEhOEa
- 1qSQkYKCZkIPgXcVcUZmCKzn4ZxACq7GSAdHVXpQU5OiYSCcqH+3FQQFu2zyTNJ8ZG/O
- PDfxKaRESRHntfIY+AlwU5WJWZo5mo8MM77CRwXcKoCk2mcQ6NQCHrbP2MHNznX9j2xN
- 0K9A==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXLnB181vBCn48i/uhwLNcr/XfqRxFaY4GSWrrmkH9rfe88lhNouiaTKorHUDOOXFRzSe2dr251YQ==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzpptBW7InHJXDYsGIkPskwUm77R7G10LrF0OYp5HGx7Bw2IXqj
- mFVkhM3cOebgmZO77LksYjTzSNwl6CzSYwNC+2rlRrX5JmpGgRtS/5Ie
-X-Gm-Gg: AY/fxX59IWGIqmdOmIWNqjMnRfqi4kOtcwive1+dqUgGcie7Vmx2nyORU89xPoCgcUx
- hlgOfKW/9iumSgs+OFyGHNnQ2yjtjgepNKU1zQAifpV4CAPeRDfGfy1WndQfjkExmGJu0n0pwUd
- gGu8vXL0NAHbIAKBpY9QVK9YMWuu2a/J/eO81BgInTdZBQ1/wSlb/hOTJDLSComisMJbg5+4p4q
- RJ+iiGvFa47JA77raqlxNjpN0SPIOhqZ47cME+JJVf8nAOgNPWglv7JKJgqISgnsD2Zg79yaM4j
- UtJsq+uSeE3jwdevXj87gk48nojeH7GuiM4eHbvw6d3KyZ9dzmFJjA402sAtyxQ8eP0ibANWIWI
- 8LiWxum1TxM5rJMfCeW95ZaxF+M74UHDimrQmXPKARRosmIWK2N9dg7mbRcQHF83vlZudNHmPs2
- FN0R80J4AJSCi0TkOZ4kO5xgiEiEi5xg==
-X-Google-Smtp-Source: AGHT+IFdoRZrRw5QtahV2gQwoNmNE41LBDvRqQFg+/l7MdbEQhD1YMberBYJd/2SCYxQ4wWDPjvV0w==
-X-Received: by 2002:a17:90b:184d:b0:341:8ad7:5f7a with SMTP id
- 98e67ed59e1d1-34abd848874mr17858772a91.18.1766040408650; 
- Wed, 17 Dec 2025 22:46:48 -0800 (PST)
-Received: from LilGuy ([2409:40c2:1022:14d2:aaa5:8d6d:efa8:e19c])
- by smtp.googlemail.com with ESMTPSA id
- 98e67ed59e1d1-34e70dcc7bcsm1448312a91.13.2025.12.17.22.46.43
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 17 Dec 2025 22:46:48 -0800 (PST)
-From: Swaraj Gaikwad <swarajgaikwad1925@gmail.com>
-To: swarajgaikwad1925@gmail.com
-Cc: airlied@gmail.com, david.hunter.linux@gmail.com,
- dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, lucas.demarchi@intel.com,
- rodrigo.vivi@intel.com, simona@ffwll.ch, skhan@linuxfoundation.org,
- thomas.hellstrom@linux.intel.com
-Subject: Re: [PATCH] drm/xe: Fix documentation heading levels in xe_guc_pc.c
-Date: Thu, 18 Dec 2025 12:16:38 +0530
-Message-ID: <20251218064639.7474-1-swarajgaikwad1925@gmail.com>
-X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20251209094836.18589-1-swarajgaikwad1925@gmail.com>
-References: <20251209094836.18589-1-swarajgaikwad1925@gmail.com>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A2CEA10E0C3
+ for <intel-xe@lists.freedesktop.org>; Thu, 18 Dec 2025 15:57:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1766073454; x=1797609454;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=DNKhp844NO1vIgJRZvGpNaDemwm5KvBONpG8I9wD+zY=;
+ b=f1CHaZLbl3HgTAPn1Fi9UqW8TB5cmaTMH3DNi4ZcrB0E6osFJ3vn6wVP
+ PAo6VUnGG8VhyqdkKYdsZp5DLDouk3YGlv8r5f5TEuqSGRNG8tlKWhMmx
+ 3Y0hza33BPATbXdHW18m0e/P4i8Y+3+Xqm2l9+duvPK5/wChIeyU511BL
+ Z4Dr2pKPAlE04/PraPu/9lqIfA+nmyme3dTmhjTqamrGLpN16zOvmvZum
+ TId2oLQ1WBZF1hBX6EMGQLqM5ibtc5rwHGVsQ540u3OLAvbIVXvCmP480
+ eV7e3V00nenUHTWGQeNBGz7ZFuIt95TiKlwIN3MRCc56FH72yj5adwNyq w==;
+X-CSE-ConnectionGUID: LJlrFKJwTvCYz0DG9RK2Pg==
+X-CSE-MsgGUID: FJ+UhkPJSjGPtyqG1iuYDA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11646"; a="68101595"
+X-IronPort-AV: E=Sophos;i="6.21,158,1763452800"; d="scan'208";a="68101595"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Dec 2025 07:57:33 -0800
+X-CSE-ConnectionGUID: y+/OmiGeQz2AAm2URbPbaw==
+X-CSE-MsgGUID: aOT53BgVSPurrv3RSOKLjw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,158,1763452800"; d="scan'208";a="198218463"
+Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.97])
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Dec 2025 07:57:32 -0800
+Date: Thu, 18 Dec 2025 17:57:29 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Matt Roper <matthew.d.roper@intel.com>
+Cc: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>,
+ intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH] drm/xe/device: Discard check for lmem_init
+Message-ID: <aUQkaeP3aMEcCZNL@intel.com>
+References: <20251217125143.2430557-2-balasubramani.vivekanandan@intel.com>
+ <20251217231229.GC1180203@mdroper-desk1.amr.corp.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Thu, 18 Dec 2025 15:38:53 +0000
+In-Reply-To: <20251217231229.GC1180203@mdroper-desk1.amr.corp.intel.com>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -94,14 +72,53 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi
+On Wed, Dec 17, 2025 at 03:12:29PM -0800, Matt Roper wrote:
+> On Wed, Dec 17, 2025 at 06:21:43PM +0530, Balasubramani Vivekanandan wrote:
+> > Prior to lmem init check, driver is waiting for the pcode uncore_init
+> > status. uncore_init status will be asserted after the complete boot and
+> > initialization of the SoC by the pcode. uncore_init confirms that lmem
+> > init and mmio unblock has been already completed.
+> > It makes no sense to check for lmem init after the pcode uncore_init
+> > check. So it can be removed.
+> 
+> While I think this should be fine on our current platforms, one thing
+> that worries me is that we'll bypass xe_pcode_ready() if we ever have a
+> device that sets skip_pcode in xe_pci.c.  No such device exists today,
+> but if one shows up in the future it may not be obvious when enabling
+> the platform that we'd need to add back the GU_CNTL check (or something
+> equivalent).
+> 
+> A couple thoughts:
+> 
+>  - Maybe we should have an initial patch that drops 'skip_pcode' from
+>    xe_device_desc since it's not being used today.  If it becomes
+>    necessary in the future, then we can easily re-add it, and the
+>    process of doing so may help remind us that we also need to do other
+>    checks to make sure the device/lmem is fully initialized and ready to
+>    use.
+> 
+>  - Maybe we should replace wait_for_lmem_ready() with an
+>    "assert_lmem_ready()" function that will just do a quick sanity check
+>    on debug builds.
+> 
+>         static void assert_lmem_ready(struct xe_device *xe) {
+>                 if (!IS_DGFX(xe) || IS_SRIOV_VF(xe))
+>                         return;
+> 
+>                 xe_assert(xe, xe_mmio_read32(xe_root_tile_mmio(xe), GU_CNTL) & LMEM_INIT);
+>         }
+> 
+>    That eliminates all the looping/polling logic, but still helps make
+>    sure we don't miss anything if we ever need to skip the pcode step on
+>    a future platform (or if the init flows change and our ordering
+>    assumptions are no longer true).  And since it's an xe_assert() it's
+>    only active on debug/CI builds and will be compiled out on release
+>    builds.
 
-Iâ€™m following up on this patch from last week. It addresses a couple of Sphinx
-documentation errors ("A level 2 section cannot be used here") that occur
-when building htmldocs.
+This stuff doesn't look performance critical in any way,
+so there is no good reason to compile it out from release
+builds.
 
-Please let me know if the changes look good or if you would like me to
-adjust anything.
-
-Thanks,
-Swaraj
+-- 
+Ville Syrjälä
+Intel
