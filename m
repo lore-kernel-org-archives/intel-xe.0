@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CA383D711CE
-	for <intel-xe@archiver.kernel.org>; Thu, 18 Dec 2025 22:39:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 37A93D711C4
+	for <intel-xe@archiver.kernel.org>; Thu, 18 Dec 2025 22:39:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0F34B10EBD2;
-	Thu, 18 Dec 2025 22:39:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EA51E10EBC1;
+	Thu, 18 Dec 2025 22:39:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gDq2YoEo";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hsOcN4uG";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 273A910EBC4
- for <intel-xe@lists.freedesktop.org>; Thu, 18 Dec 2025 22:39:04 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4D40C10EBC4
+ for <intel-xe@lists.freedesktop.org>; Thu, 18 Dec 2025 22:39:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1766097544; x=1797633544;
+ t=1766097547; x=1797633547;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=85wngnjkbQ1F7FuZjxROPgI+V+maMjyEXHuB/0LkuVw=;
- b=gDq2YoEoA5KEQ6QK5TA2JNL04aAJX8TLs8oSJOPP5NYJjd22DJByS+RU
- 0E32TgihXicowB/dvZ9BNb5r+M9EcR1Qgub7Bd0UJYDkb+tZdY8slbUye
- 8tIrkFEUJIrz06SLERqaeCio+RlB+adpwdoiHee+AMRiBHH5QctSpFvfs
- fSTnNTb8zQyfvkdei+8iDDbnKQ9bxroNyp3mff3vHFnuYfsbjkmNi/mhW
- T/Hw681MLM4b8LbbEV7FL9O8g0tK7WmI/tnYZgJAKYik5cP4LY+IViK0J
- kU/BcCA94i5nhBeNtA2SfvcJOgESjx908g8HcqSVvhPDmOp5+tEYPFkZO Q==;
-X-CSE-ConnectionGUID: iwNANbcEQI+619dQzpf3ag==
-X-CSE-MsgGUID: B8QR6ct/RVuz/st0a2fz/Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11646"; a="71910899"
-X-IronPort-AV: E=Sophos;i="6.21,159,1763452800"; d="scan'208";a="71910899"
+ bh=GV/p0YJobtNUo3qdzx0nRWY2xmcwftiv/NCWKzeD1Bs=;
+ b=hsOcN4uGMjE3NVMxJdfeRrnbP6KJ2d1etCFzq+GsD4jvQLv3tqAlvZQj
+ 5uz890TP8BDWMc3eb9eC87/BBAePla8H/1ZsUygVWEuFckUIIAJOHTqC/
+ zIpzifQMPVC717RN+CXl8rlIjd346T9C4bSM9zmLVDVzrT02Ll7Sk2p5c
+ 6QF+322w30zBGdctyNYTQVbxPpWvZLmSVn9i+iN/Iv/JbDF9R6ZmRD0mN
+ j+kGQ77nzoJ7Pc0BX4fvSX/mrBH93hrowvSK2/1DGTZMhmdPWaqleZ5m2
+ KSRTYKbkybpAJz83ROpdQUwTlkcwIkCgbFCzW/InuMWKzqvr5Q7SH06U/ w==;
+X-CSE-ConnectionGUID: aihBna+nQe6MPwq/g6y7YA==
+X-CSE-MsgGUID: ahnRwic+RqqTiTx9XmktsQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11646"; a="71910909"
+X-IronPort-AV: E=Sophos;i="6.21,159,1763452800"; d="scan'208";a="71910909"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Dec 2025 14:39:03 -0800
-X-CSE-ConnectionGUID: sZAne1N+Tpq+XJ8q9y7+3w==
-X-CSE-MsgGUID: V7tNjCTcQuiGtYA6QQs/tQ==
+ 18 Dec 2025 14:39:07 -0800
+X-CSE-ConnectionGUID: M/ZsNXjNTTqAnaUVEwrDMQ==
+X-CSE-MsgGUID: 9ptQVuCKQF+jS5R1VskWig==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,159,1763452800"; d="scan'208";a="199176831"
+X-IronPort-AV: E=Sophos;i="6.21,159,1763452800"; d="scan'208";a="199176845"
 Received: from valcore-skull-1.fm.intel.com ([10.1.39.17])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Dec 2025 14:39:04 -0800
+ 18 Dec 2025 14:39:07 -0800
 From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI 03/12] drm/xe/pf: Initialize scheduler groups
-Date: Thu, 18 Dec 2025 14:38:49 -0800
-Message-ID: <20251218223846.1146344-17-daniele.ceraolospurio@intel.com>
+Subject: [CI 08/12] drm/xe/pf: Add debugfs with scheduler groups information
+Date: Thu, 18 Dec 2025 14:38:54 -0800
+Message-ID: <20251218223846.1146344-22-daniele.ceraolospurio@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20251218223846.1146344-14-daniele.ceraolospurio@intel.com>
 References: <20251218223846.1146344-14-daniele.ceraolospurio@intel.com>
@@ -66,357 +66,110 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Scheduler groups (a.k.a. Engine Groups Scheduling, or EGS) is a GuC
-feature that allows the driver to define groups of engines that are
-independently scheduled across VFs, which allows different VFs to be
-active on the HW at the same time on different groups. The feature is
-available for BMG and newer HW starting on GuC 70.53.0, but some
-required fixes have been added to GuC 70.55.1.
-
-This is intended for specific scenarios where the admin knows that the
-VFs are not going to fully utilize the HW and therefore assigning all of
-it to a single VF would lead to part of it being permanently idle.
-We do not allow the admin to decide how to divide the engines across
-groups, but we instead support specific configurations that are designed
-for specific use-cases. During PF initialization we detect which
-configurations are possible on a given GT and create the relevant
-groups. Since the GuC expect a mask for each class for each group, that
-is what we save when we init the configs.
-
-Right now we only have one use-case on the media GT. If the VFs are
-running a frame render + encoding at a not-too-high resolution (e.g.
-1080@30fps) the render can produce frames faster than the video engine
-can encode them, which means that the maximum number of parallel VFs is
-limited by the VCS bandwidth. Since our products can have multiple VCS
-engines, allowing multiple VFs to be active on the different VCS engines
-at the same time allows us to run more parallel VFs on the same HW.
-Given that engines in the same media slice share some resources (e.g.
-SFC), we assign each media slice to a different scheduling group. We
-refer to this configuration as "media_slices", given that each slice
-gets its own group. Since upcoming products have a different number of
-video engines per-slice, for now we limit the media_slices mode to BMG,
-but we expect to add support for newer HW soon.
+Under a new subfolder, an entry is created for each group to list the
+engines assigned to them. We create enough entries for each possible
+group, with the disabled groups just returning an empty list.
 
 Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
 Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 ---
- drivers/gpu/drm/xe/abi/guc_scheduler_abi.h    |   9 ++
- drivers/gpu/drm/xe/xe_gt.h                    |   3 +
- drivers/gpu/drm/xe/xe_gt_sriov_pf.c           |   3 +
- drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.c    | 148 ++++++++++++++++++
- drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.h    |   2 +
- .../gpu/drm/xe/xe_gt_sriov_pf_policy_types.h  |  33 ++++
- 6 files changed, 198 insertions(+)
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c | 59 +++++++++++++++++++++
+ 1 file changed, 59 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/abi/guc_scheduler_abi.h b/drivers/gpu/drm/xe/abi/guc_scheduler_abi.h
-index db9c171f8b64..513b22a87428 100644
---- a/drivers/gpu/drm/xe/abi/guc_scheduler_abi.h
-+++ b/drivers/gpu/drm/xe/abi/guc_scheduler_abi.h
-@@ -6,6 +6,8 @@
- #ifndef _ABI_GUC_SCHEDULER_ABI_H
- #define _ABI_GUC_SCHEDULER_ABI_H
- 
-+#include <linux/types.h>
-+
- /**
-  * Generic defines required for registration with and submissions to the GuC
-  * scheduler. Includes engine class/instance defines and context attributes
-@@ -45,4 +47,11 @@
- #define GUC_CONTEXT_DISABLE		0
- #define GUC_CONTEXT_ENABLE		1
- 
-+/* scheduler groups */
-+#define GUC_MAX_SCHED_GROUPS		8
-+
-+struct guc_sched_group {
-+	u32 engines[GUC_MAX_ENGINE_CLASSES];
-+} __packed;
-+
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_gt.h b/drivers/gpu/drm/xe/xe_gt.h
-index a2ba80c954a6..de7e47763411 100644
---- a/drivers/gpu/drm/xe/xe_gt.h
-+++ b/drivers/gpu/drm/xe/xe_gt.h
-@@ -29,6 +29,9 @@
- #define CCS_INSTANCES(gt) XE_ENGINE_INSTANCES_FROM_MASK(gt, CCS)
- #define GSCCS_INSTANCES(gt) XE_ENGINE_INSTANCES_FROM_MASK(gt, GSCCS)
- 
-+/* Our devices have up to 4 media slices */
-+#define MAX_MEDIA_SLICES 4
-+
- #define GT_VER(gt) ({ \
- 	typeof(gt) gt_ = (gt); \
- 	struct xe_device *xe = gt_to_xe(gt_); \
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf.c
-index 0714c758b9c1..0d97a823e702 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_pf.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf.c
-@@ -14,6 +14,7 @@
- #include "xe_gt_sriov_pf_control.h"
- #include "xe_gt_sriov_pf_helpers.h"
- #include "xe_gt_sriov_pf_migration.h"
-+#include "xe_gt_sriov_pf_policy.h"
- #include "xe_gt_sriov_pf_service.h"
- #include "xe_gt_sriov_printk.h"
- #include "xe_guc_submit.h"
-@@ -123,6 +124,8 @@ int xe_gt_sriov_pf_init(struct xe_gt *gt)
- 	if (err)
- 		return err;
- 
-+	xe_gt_sriov_pf_policy_init(gt);
-+
- 	err = xe_gt_sriov_pf_migration_init(gt);
- 	if (err)
- 		return err;
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.c
-index 4445f660e6d1..fc60e7a01434 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.c
-@@ -3,6 +3,8 @@
-  * Copyright © 2023-2024 Intel Corporation
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
+index f80664dcbb8f..e3e6d2d9beff 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
+@@ -163,6 +163,10 @@ static void pf_add_policy_attrs(struct xe_gt *gt, struct dentry *parent)
+  *          :   ├── tile0
+  *              :   ├── gt0
+  *                  :   ├── sched_groups_mode
++ *                      ├── sched_groups
++ *                      :   ├── group0
++ *                          :
++ *                          └── groupN
   */
  
-+#include <drm/drm_managed.h>
-+
- #include "abi/guc_actions_sriov_abi.h"
- 
- #include "xe_bo.h"
-@@ -10,6 +12,7 @@
- #include "xe_gt_sriov_pf_helpers.h"
- #include "xe_gt_sriov_pf_policy.h"
- #include "xe_gt_sriov_printk.h"
-+#include "xe_guc.h"
- #include "xe_guc_buf.h"
- #include "xe_guc_ct.h"
- #include "xe_guc_klv_helpers.h"
-@@ -351,6 +354,139 @@ u32 xe_gt_sriov_pf_policy_get_sample_period(struct xe_gt *gt)
- 	return value;
- }
- 
-+static void pf_sched_group_media_slices(struct xe_gt *gt, struct guc_sched_group **groups,
-+					u32 *num_groups)
-+{
-+	u8 slice_to_group[MAX_MEDIA_SLICES];
-+	u32 vecs_mask = VECS_INSTANCES(gt);
-+	u32 gsc_mask = GSCCS_INSTANCES(gt);
-+	u32 vcs_mask = VCS_INSTANCES(gt);
-+	struct guc_sched_group *values;
-+	struct xe_hw_engine *hwe;
-+	enum xe_hw_engine_id id;
-+	int group = 0;
-+	int slice;
-+
-+	xe_gt_assert(gt, xe_gt_is_media_type(gt));
-+
-+	/*
-+	 * Post-BMG the matching of video engines to slices changes, so for now
-+	 * we don't allow this mode on those platforms.
-+	 */
-+	if (gt_to_xe(gt)->info.platform > XE_BATTLEMAGE)
-+		return;
-+
-+	/*
-+	 * On BMG and older platforms a media slice has 2 VCS and a VECS. We
-+	 * bundle the GSC with the first slice.
-+	 */
-+	for (slice = 0; slice < MAX_MEDIA_SLICES; slice++) {
-+		if ((vcs_mask & 0x3) || (vecs_mask & 0x1) || (gsc_mask & 0x1))
-+			slice_to_group[slice] = group++;
-+
-+		vcs_mask >>= 2;
-+		vecs_mask >>= 1;
-+		gsc_mask >>= 1;
-+	}
-+
-+	xe_gt_assert(gt, !vcs_mask);
-+	xe_gt_assert(gt, !vecs_mask);
-+	xe_gt_assert(gt, !gsc_mask);
-+
-+	/* We need at least 2 slices to split them up */
-+	if (group < 2)
-+		return;
-+
-+	/* The GuC expects an array with a guc_sched_group entry for each group */
-+	values = drmm_kcalloc(&gt_to_xe(gt)->drm, group, sizeof(struct guc_sched_group),
-+			      GFP_KERNEL);
-+	if (!values)
-+		return;
-+
-+	for_each_hw_engine(hwe, gt, id) {
-+		u8 guc_class = xe_engine_class_to_guc_class(hwe->class);
-+
-+		switch (hwe->class) {
-+		case XE_ENGINE_CLASS_VIDEO_DECODE:
-+			slice = hwe->instance / 2;
-+			break;
-+		case XE_ENGINE_CLASS_VIDEO_ENHANCE:
-+			slice = hwe->instance;
-+			break;
-+		case XE_ENGINE_CLASS_OTHER:
-+			slice = 0;
-+			break;
-+		default:
-+			xe_gt_assert_msg(gt, false,
-+					 "unknown media gt class %u (%s) during EGS setup\n",
-+					 hwe->class, hwe->name);
-+			slice = 0;
-+		}
-+
-+		values[slice_to_group[slice]].engines[guc_class] |= BIT(hwe->logical_instance);
-+	}
-+
-+	*groups = values;
-+	*num_groups = group;
-+}
-+
-+/**
-+ * xe_sriov_gt_pf_policy_has_sched_groups_support() - Checks whether scheduler
-+ * groups are supported.
-+ * @gt: the &xe_gt
-+ *
-+ * This function can only be called on PF.
-+ *
-+ * Return: true if scheduler groups are supported, false otherwise.
-+ */
-+bool xe_sriov_gt_pf_policy_has_sched_groups_support(struct xe_gt *gt)
-+{
-+	xe_gt_assert(gt, IS_SRIOV_PF(gt_to_xe(gt)));
-+
-+	/*
-+	 * The GuC supports scheduler groups from v70.53.0, but a fix for it has
-+	 * been merged in v70.55.1, so we require the latter. The feature is
-+	 * also only enabled on BMG and newer FW.
-+	 */
-+	return GUC_FIRMWARE_VER_AT_LEAST(&gt->uc.guc, 70, 55, 1) &&
-+	       gt_to_xe(gt)->info.platform >= XE_BATTLEMAGE;
-+}
-+
-+static void pf_init_sched_groups(struct xe_gt *gt)
-+{
-+	enum xe_sriov_sched_group_modes m;
-+
-+	if (!xe_sriov_gt_pf_policy_has_sched_groups_support(gt))
-+		return;
-+
-+	for (m = XE_SRIOV_SCHED_GROUPS_DISABLED + 1; m < XE_SRIOV_SCHED_GROUPS_MODES_COUNT; m++) {
-+		u32 *num_groups = &gt->sriov.pf.policy.guc.sched_groups.modes[m].num_groups;
-+		struct guc_sched_group **groups =
-+			&gt->sriov.pf.policy.guc.sched_groups.modes[m].groups;
-+
-+		switch (m) {
-+		case XE_SRIOV_SCHED_GROUPS_MEDIA_SLICES:
-+			/* this mode only has groups on the media GT */
-+			if (xe_gt_is_media_type(gt))
-+				pf_sched_group_media_slices(gt, groups, num_groups);
-+			break;
-+		case XE_SRIOV_SCHED_GROUPS_DISABLED:
-+		case XE_SRIOV_SCHED_GROUPS_MODES_COUNT:
-+			/*
-+			 * By defining m of type enum xe_sriov_sched_group_modes
-+			 * we can get the compiler to automatically flag
-+			 * missing cases if new enum entries are added. However,
-+			 * to keep the compiler happy we also need to add the
-+			 * cases that are excluded from the loop.
-+			 */
-+			xe_gt_assert(gt, false);
-+			break;
-+		}
-+
-+		xe_gt_assert(gt, *num_groups < GUC_MAX_SCHED_GROUPS);
-+	}
-+}
-+
- static void pf_sanitize_guc_policies(struct xe_gt *gt)
- {
- 	pf_sanitize_sched_if_idle(gt);
-@@ -401,6 +537,18 @@ int xe_gt_sriov_pf_policy_reprovision(struct xe_gt *gt, bool reset)
- 	return err ? -ENXIO : 0;
- }
- 
-+/**
-+ * xe_gt_sriov_pf_policy_init() - Initializes the SW state of the PF policies.
-+ * @gt: the &xe_gt
-+ *
-+ * This function can only be called on PF. This function does not touch the HW,
-+ * but must be called after the engines have been initialized.
-+ */
-+void xe_gt_sriov_pf_policy_init(struct xe_gt *gt)
-+{
-+	pf_init_sched_groups(gt);
-+}
-+
- static void print_guc_policies(struct drm_printer *p, struct xe_gt_sriov_guc_policies *policy)
- {
- 	drm_printf(p, "%s:\t%s\n",
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.h b/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.h
-index 2a5dc33dc6d7..f5e3b2595063 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.h
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.h
-@@ -17,7 +17,9 @@ int xe_gt_sriov_pf_policy_set_reset_engine(struct xe_gt *gt, bool enable);
- bool xe_gt_sriov_pf_policy_get_reset_engine(struct xe_gt *gt);
- int xe_gt_sriov_pf_policy_set_sample_period(struct xe_gt *gt, u32 value);
- u32 xe_gt_sriov_pf_policy_get_sample_period(struct xe_gt *gt);
-+bool xe_sriov_gt_pf_policy_has_sched_groups_support(struct xe_gt *gt);
- 
-+void xe_gt_sriov_pf_policy_init(struct xe_gt *gt);
- void xe_gt_sriov_pf_policy_sanitize(struct xe_gt *gt);
- int xe_gt_sriov_pf_policy_reprovision(struct xe_gt *gt, bool reset);
- int xe_gt_sriov_pf_policy_print(struct xe_gt *gt, struct drm_printer *p);
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy_types.h b/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy_types.h
-index 4de532af135e..11527ab1db7a 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy_types.h
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy_types.h
-@@ -8,16 +8,49 @@
- 
- #include <linux/types.h>
- 
-+#include "abi/guc_scheduler_abi.h"
-+
-+/**
-+ * enum xe_sriov_sched_group_modes - list of possible scheduler group modes
-+ * @XE_SRIOV_SCHED_GROUPS_DISABLED: no separate groups (i.e., all engines in group 0)
-+ * @XE_SRIOV_SCHED_GROUPS_MEDIA_SLICES: separate groups for each media slice
-+ * @XE_SRIOV_SCHED_GROUPS_MODES_COUNT: number of valid modes
-+ */
-+enum xe_sriov_sched_group_modes {
-+	XE_SRIOV_SCHED_GROUPS_DISABLED = 0,
-+	XE_SRIOV_SCHED_GROUPS_MEDIA_SLICES,
-+	XE_SRIOV_SCHED_GROUPS_MODES_COUNT /* must be last */
-+};
-+
-+/**
-+ * struct xe_gt_sriov_scheduler_groups - Scheduler groups policy info
-+ * @modes: array of masks and their number for each mode
-+ * @modes.groups: array of engine instance groups in given mode, with each group
-+ *                consisting of GUC_MAX_ENGINE_CLASSES engine instances masks. A
-+ *                A NULL value indicates that all the engines are in the same
-+ *                group for this mode on this GT.
-+ * @modes.num_groups: number of groups in given mode, zero if all the engines
-+ *                    are in the same group.
-+ */
-+struct xe_gt_sriov_scheduler_groups {
-+	struct {
-+		struct guc_sched_group *groups;
-+		u32 num_groups;
-+	} modes[XE_SRIOV_SCHED_GROUPS_MODES_COUNT];
-+};
-+
- /**
-  * struct xe_gt_sriov_guc_policies - GuC SR-IOV policies.
-  * @sched_if_idle: controls strict scheduling policy.
-  * @reset_engine: controls engines reset on VF switch policy.
-  * @sample_period: adverse events sampling period (in milliseconds).
-+ * @sched_groups: available scheduling group configurations.
-  */
- struct xe_gt_sriov_guc_policies {
- 	bool sched_if_idle;
- 	bool reset_engine;
- 	u32 sample_period;
-+	struct xe_gt_sriov_scheduler_groups sched_groups;
+ static const char *sched_group_mode_to_string(enum xe_sriov_sched_group_modes mode)
+@@ -257,8 +261,49 @@ static const struct file_operations sched_groups_fops = {
+ 	.release = single_release,
  };
  
- /**
++static ssize_t sched_group_engines_read(struct file *file, char __user *buf,
++					size_t count, loff_t *ppos)
++{
++	struct dentry *dent = file_dentry(file);
++	struct xe_gt *gt = extract_gt(dent->d_parent->d_parent);
++	struct xe_gt_sriov_scheduler_groups *info = &gt->sriov.pf.policy.guc.sched_groups;
++	struct guc_sched_group *groups = info->modes[info->current_mode].groups;
++	u32 num_groups = info->modes[info->current_mode].num_groups;
++	unsigned int group = (uintptr_t)extract_priv(dent);
++	struct xe_hw_engine *hwe;
++	enum xe_hw_engine_id id;
++	char engines[128];
++
++	engines[0] = '\0';
++
++	if (group < num_groups) {
++		for_each_hw_engine(hwe, gt, id) {
++			u8 guc_class = xe_engine_class_to_guc_class(hwe->class);
++			u32 mask = groups[group].engines[guc_class];
++
++			if (mask & BIT(hwe->logical_instance)) {
++				strlcat(engines, hwe->name, sizeof(engines));
++				strlcat(engines, " ", sizeof(engines));
++			}
++		}
++		strlcat(engines, "\n", sizeof(engines));
++	}
++
++	return simple_read_from_buffer(buf, count, ppos, engines, strlen(engines));
++}
++
++static const struct file_operations sched_group_engines_fops = {
++	.owner = THIS_MODULE,
++	.open = simple_open,
++	.read = sched_group_engines_read,
++	.llseek = default_llseek,
++};
++
+ static void pf_add_sched_groups(struct xe_gt *gt, struct dentry *parent, unsigned int vfid)
+ {
++	struct dentry *groups;
++	u8 group;
++
+ 	xe_gt_assert(gt, gt == extract_gt(parent));
+ 	xe_gt_assert(gt, vfid == extract_vfid(parent));
+ 
+@@ -271,6 +316,8 @@ static void pf_add_sched_groups(struct xe_gt *gt, struct dentry *parent, unsigne
+ 	 * We should rework the flow so that debugfs is registered after the
+ 	 * policy init, so that we check if there are valid groups before
+ 	 * adding the debugfs files.
++	 * Similarly, instead of using GUC_MAX_SCHED_GROUPS we could use
++	 * gt->sriov.pf.policy.guc.sched_groups.max_number_of_groups.
+ 	 */
+ 	if (!xe_sriov_gt_pf_policy_has_sched_groups_support(gt))
+ 		return;
+@@ -279,6 +326,18 @@ static void pf_add_sched_groups(struct xe_gt *gt, struct dentry *parent, unsigne
+ 		return;
+ 
+ 	debugfs_create_file("sched_groups_mode", 0644, parent, parent, &sched_groups_fops);
++
++	groups = debugfs_create_dir("sched_groups", parent);
++	if (IS_ERR(groups))
++		return;
++
++	for (group = 0; group < GUC_MAX_SCHED_GROUPS; group++) {
++		char name[10];
++
++		snprintf(name, sizeof(name), "group%u", group);
++		debugfs_create_file(name, 0644, groups, (void *)(uintptr_t)group,
++				    &sched_group_engines_fops);
++	}
+ }
+ 
+ /*
 -- 
 2.43.0
 
