@@ -4,27 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 706A2D6ACE5
-	for <intel-xe@archiver.kernel.org>; Thu, 18 Dec 2025 11:04:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 71B02D6ACE6
+	for <intel-xe@archiver.kernel.org>; Thu, 18 Dec 2025 11:13:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2C7F510EE6B;
-	Thu, 18 Dec 2025 11:04:16 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BD72B10EE65;
- Thu, 18 Dec 2025 11:04:15 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2147579098838827710=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1DB9710E3CA;
+	Thu, 18 Dec 2025 11:13:06 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DSVXO0XM";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DA35510E3CA
+ for <intel-xe@lists.freedesktop.org>; Thu, 18 Dec 2025 11:13:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1766056385; x=1797592385;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=GK1gxGtst83M+i1kewoKm2Bb032HxM6mDxl+EagmXs4=;
+ b=DSVXO0XMTyq3M3rTG6UFfkTZ907ajYmxEA0SKuP3dTp2f+/MPBdY2kAr
+ 65si0Hdk1d/BSfyX8+KUbIYTOdeYkemDtS/UQ88bWxM48VKX3dSckPUdl
+ y1ab8146G31YP4/nC7dO2fUMMK0zgoOO0szkI8cE3vHxfnfgNaYLXJBko
+ PJ9gH3PHazWH7Q5sYd6MQx9pOxAqJCFsKrfNDXBVOTjWq+/EYmWHxkken
+ 2r0uYQjYHhGgd/aDERdz8tVPEP6MbiLthQLqkgy/0mTlNnb+gK7oeBPe8
+ 5Am0YsfLJTn/kW9eZYqBgn2xEwPcxteRerrSOa+7EiKDL4iLtmvZUTO9f A==;
+X-CSE-ConnectionGUID: lx7YgKecSpmtDJ0VyLDRmA==
+X-CSE-MsgGUID: M58id+bASlyW4YfZUtQcVQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11645"; a="78321748"
+X-IronPort-AV: E=Sophos;i="6.21,158,1763452800"; d="scan'208";a="78321748"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Dec 2025 03:13:04 -0800
+X-CSE-ConnectionGUID: r/nuWJX2RLKkD7+mMcYsTA==
+X-CSE-MsgGUID: jqT7sfBZQ8ONjuGE/0VYiw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,158,1763452800"; d="scan'208";a="197820701"
+Received: from black.igk.intel.com ([10.91.253.5])
+ by orviesa010.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Dec 2025 03:13:03 -0800
+Date: Thu, 18 Dec 2025 12:12:59 +0100
+From: Raag Jadav <raag.jadav@intel.com>
+To: Matt Roper <matthew.d.roper@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-xe@lists.freedesktop.org,
+ matthew.brost@intel.com, michal.wajdeczko@intel.com,
+ badal.nilawar@intel.com, karthik.poosa@intel.com, dev@lankhorst.se
+Subject: Re: [PATCH v1] drm/xe/pm: Handle GT resume failure
+Message-ID: <aUPhu0QGLd-hIQcQ@black.igk.intel.com>
+References: <20251217131909.1226331-1-raag.jadav@intel.com>
+ <aULnjAabXkM9jVfX@intel.com>
+ <20251217173834.GK4164497@mdroper-desk1.amr.corp.intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Survivability_mode_fixes_?=
- =?utf-8?q?=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Riana Tauro" <riana.tauro@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 18 Dec 2025 11:04:15 -0000
-Message-ID: <176605585577.100700.18353425123963945031@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20251218105151.586575-4-riana.tauro@intel.com>
-In-Reply-To: <20251218105151.586575-4-riana.tauro@intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251217173834.GK4164497@mdroper-desk1.amr.corp.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,234 +67,82 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============2147579098838827710==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Wed, Dec 17, 2025 at 09:38:34AM -0800, Matt Roper wrote:
+> On Wed, Dec 17, 2025 at 12:25:32PM -0500, Rodrigo Vivi wrote:
+> > On Wed, Dec 17, 2025 at 06:49:09PM +0530, Raag Jadav wrote:
+> > > We've been historically ignoring GT resume failure. Since the function
+> > > can return error, handle it properly.
+> > 
+> > I probably had a reason for it, but since I didn't document and
+> > cannot remember it, let's go forward and make the clean flow.
+> > 
+> > Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> > 
+> > > 
+> > > Signed-off-by: Raag Jadav <raag.jadav@intel.com>
+> > > ---
+> > >  drivers/gpu/drm/xe/xe_pm.c | 14 ++++++++++----
+> > >  1 file changed, 10 insertions(+), 4 deletions(-)
+> > > 
+> > > diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
+> > > index 4390ba69610d..a8b50091d62e 100644
+> > > --- a/drivers/gpu/drm/xe/xe_pm.c
+> > > +++ b/drivers/gpu/drm/xe/xe_pm.c
+> > > @@ -260,8 +260,11 @@ int xe_pm_resume(struct xe_device *xe)
+> > >  
+> > >  	xe_irq_resume(xe);
+> > >  
+> > > -	for_each_gt(gt, xe, id)
+> > > -		xe_gt_resume(gt);
+> > > +	for_each_gt(gt, xe, id) {
+> > > +		err = xe_gt_resume(gt);
+> > > +		if (err)
+> > > +			goto err;
+> 
+> When we propagate these errors upward, what's the end result / where
+> does it eventually get handled?  If the device is still [partially]
+> usable after an error, wouldn't it be better to not bail out of the loop
+> immediately, but rather at least try to resume the other GTs, the
+> display, etc. before returning the error at the end to indicate
+> something failed?  Then you might still have a partially functioning
+> device and have a better chance of at least having your screen turn back
+> on to show the relevant error messages?
 
-== Series Details ==
+I had a similar question when I came across xe_device_probe(), but as
+Lucas mentioned[1] that the expectation here is pretty much "all or
+nothing". Again, not my call but I think we should be consistent.
 
-Series: Survivability mode fixes (rev2)
-URL   : https://patchwork.freedesktop.org/series/159096/
-State : success
+[1] https://lore.kernel.org/intel-xe/lliho4ci6gi5spxxelttgqntbh7rxr4utg4dgfevlrdy54phrh@2k4mjuofaqye/
 
-== Summary ==
+Raag
 
-CI Bug Log - changes from xe-4264-3158dc8267ffa4ca7a7cb44b3411d177df3b211c_BAT -> xe-pw-159096v2_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (12 -> 12)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-159096v2_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
-    - bat-bmg-1:          NOTRUN -> [SKIP][1] ([Intel XE#2233])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159096v2/bat-bmg-1/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
-
-  * igt@kms_dsc@dsc-basic:
-    - bat-bmg-1:          NOTRUN -> [SKIP][2] ([Intel XE#2244])
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159096v2/bat-bmg-1/igt@kms_dsc@dsc-basic.html
-
-  * igt@kms_psr@psr-sprite-plane-onoff:
-    - bat-bmg-1:          NOTRUN -> [SKIP][3] ([Intel XE#1406] / [Intel XE#2234] / [Intel XE#2850]) +2 other tests skip
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159096v2/bat-bmg-1/igt@kms_psr@psr-sprite-plane-onoff.html
-
-  * igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit:
-    - bat-bmg-1:          NOTRUN -> [SKIP][4] ([Intel XE#2229])
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159096v2/bat-bmg-1/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html
-
-  * igt@xe_pat@pat-index-xehpc:
-    - bat-bmg-1:          NOTRUN -> [SKIP][5] ([Intel XE#1420])
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159096v2/bat-bmg-1/igt@xe_pat@pat-index-xehpc.html
-
-  * igt@xe_pat@pat-index-xelp:
-    - bat-bmg-1:          NOTRUN -> [SKIP][6] ([Intel XE#2245])
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159096v2/bat-bmg-1/igt@xe_pat@pat-index-xelp.html
-
-  * igt@xe_pat@pat-index-xelpg:
-    - bat-bmg-1:          NOTRUN -> [SKIP][7] ([Intel XE#2236])
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159096v2/bat-bmg-1/igt@xe_pat@pat-index-xelpg.html
-
-  * igt@xe_waitfence@engine:
-    - bat-dg2-oem2:       [PASS][8] -> [FAIL][9] ([Intel XE#6519])
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4264-3158dc8267ffa4ca7a7cb44b3411d177df3b211c/bat-dg2-oem2/igt@xe_waitfence@engine.html
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159096v2/bat-dg2-oem2/igt@xe_waitfence@engine.html
-
-  * igt@xe_waitfence@reltime:
-    - bat-dg2-oem2:       [PASS][10] -> [FAIL][11] ([Intel XE#6520])
-   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4264-3158dc8267ffa4ca7a7cb44b3411d177df3b211c/bat-dg2-oem2/igt@xe_waitfence@reltime.html
-   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159096v2/bat-dg2-oem2/igt@xe_waitfence@reltime.html
-
-  
-#### Possible fixes ####
-
-  * igt@xe_module_load@load:
-    - bat-bmg-1:          [ABORT][12] ([Intel XE#6818]) -> [PASS][13]
-   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4264-3158dc8267ffa4ca7a7cb44b3411d177df3b211c/bat-bmg-1/igt@xe_module_load@load.html
-   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159096v2/bat-bmg-1/igt@xe_module_load@load.html
-
-  
-  [Intel XE#1406]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1406
-  [Intel XE#1420]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1420
-  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
-  [Intel XE#2233]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2233
-  [Intel XE#2234]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2234
-  [Intel XE#2236]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2236
-  [Intel XE#2244]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2244
-  [Intel XE#2245]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2245
-  [Intel XE#2850]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2850
-  [Intel XE#6519]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519
-  [Intel XE#6520]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520
-  [Intel XE#6818]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6818
-
-
-Build changes
--------------
-
-  * Linux: xe-4264-3158dc8267ffa4ca7a7cb44b3411d177df3b211c -> xe-pw-159096v2
-
-  IGT_8671: 8671
-  xe-4264-3158dc8267ffa4ca7a7cb44b3411d177df3b211c: 3158dc8267ffa4ca7a7cb44b3411d177df3b211c
-  xe-pw-159096v2: 159096v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159096v2/index.html
-
---===============2147579098838827710==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Survivability mode fixes (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/159096/">https://patchwork.freedesktop.org/series/159096/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159096v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159096v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4264-3158dc8267ffa4ca7a7cb44b3411d177df3b211c_BAT -&gt; xe-pw-159096v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (12 -&gt; 12)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-159096v2_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:</p>
-<ul>
-<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159096v2/bat-bmg-1/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2233">Intel XE#2233</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_dsc@dsc-basic:</p>
-<ul>
-<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159096v2/bat-bmg-1/igt@kms_dsc@dsc-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2244">Intel XE#2244</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@psr-sprite-plane-onoff:</p>
-<ul>
-<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159096v2/bat-bmg-1/igt@kms_psr@psr-sprite-plane-onoff.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1406">Intel XE#1406</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2234">Intel XE#2234</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2850">Intel XE#2850</a>) +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit:</p>
-<ul>
-<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159096v2/bat-bmg-1/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xehpc:</p>
-<ul>
-<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159096v2/bat-bmg-1/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1420">Intel XE#1420</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xelp:</p>
-<ul>
-<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159096v2/bat-bmg-1/igt@xe_pat@pat-index-xelp.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2245">Intel XE#2245</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xelpg:</p>
-<ul>
-<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159096v2/bat-bmg-1/igt@xe_pat@pat-index-xelpg.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2236">Intel XE#2236</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_waitfence@engine:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4264-3158dc8267ffa4ca7a7cb44b3411d177df3b211c/bat-dg2-oem2/igt@xe_waitfence@engine.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159096v2/bat-dg2-oem2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519">Intel XE#6519</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_waitfence@reltime:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4264-3158dc8267ffa4ca7a7cb44b3411d177df3b211c/bat-dg2-oem2/igt@xe_waitfence@reltime.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159096v2/bat-dg2-oem2/igt@xe_waitfence@reltime.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520">Intel XE#6520</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_module_load@load:<ul>
-<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4264-3158dc8267ffa4ca7a7cb44b3411d177df3b211c/bat-bmg-1/igt@xe_module_load@load.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6818">Intel XE#6818</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159096v2/bat-bmg-1/igt@xe_module_load@load.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4264-3158dc8267ffa4ca7a7cb44b3411d177df3b211c -&gt; xe-pw-159096v2</li>
-</ul>
-<p>IGT_8671: 8671<br />
-  xe-4264-3158dc8267ffa4ca7a7cb44b3411d177df3b211c: 3158dc8267ffa4ca7a7cb44b3411d177df3b211c<br />
-  xe-pw-159096v2: 159096v2</p>
-
-</body>
-</html>
-
---===============2147579098838827710==--
+> > > +	}
+> > >  
+> > >  	xe_display_pm_resume(xe);
+> > >  
+> > > @@ -656,8 +659,11 @@ int xe_pm_runtime_resume(struct xe_device *xe)
+> > >  
+> > >  	xe_irq_resume(xe);
+> > >  
+> > > -	for_each_gt(gt, xe, id)
+> > > -		xe->d3cold.allowed ? xe_gt_resume(gt) : xe_gt_runtime_resume(gt);
+> > > +	for_each_gt(gt, xe, id) {
+> > > +		err = xe->d3cold.allowed ? xe_gt_resume(gt) : xe_gt_runtime_resume(gt);
+> > > +		if (err)
+> > > +			goto out;
+> > > +	}
+> > >  
+> > >  	xe_display_pm_runtime_resume(xe);
+> > >  
+> > > -- 
+> > > 2.43.0
+> > > 
+> 
+> -- 
+> Matt Roper
+> Graphics Software Engineer
+> Linux GPU Platform Enablement
+> Intel Corporation
