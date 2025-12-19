@@ -4,27 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B0441D7495D
-	for <intel-xe@archiver.kernel.org>; Fri, 19 Dec 2025 06:58:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C5C9AD74964
+	for <intel-xe@archiver.kernel.org>; Fri, 19 Dec 2025 07:13:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6EBB610EE3C;
-	Fri, 19 Dec 2025 06:58:27 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 696EF10EE8C;
- Fri, 19 Dec 2025 06:58:26 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8233444243159268143=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 37EBD10EE5C;
+	Fri, 19 Dec 2025 07:13:00 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VGZK/s+C";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 67EB510EE2F;
+ Fri, 19 Dec 2025 07:12:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1766128378; x=1797664378;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=l6tQ61PY49V14D2GFNf2ZWG1cSVvC9o+jThxs8XO4a0=;
+ b=VGZK/s+CsB148f3NNEZzJGAKP5ZstifkP9LymCJZ0XI+k7YLQbVuWcOS
+ H9IvY/BQG6B9v9bLoXhaU9Dv9DYHylcyU6vkHdHDbVT6r93NExqvrTX5Y
+ ZJmKfBFwYz8Wy4RfIWq6M4o+0u9h5BYRqi0uEmmnWuJ0hUa2SRvMT7/FJ
+ rrEMVp+AC25FAgsRyQB7Tfyfl7jNEZS/nfStFLkkUBa/m/XiDN8UeklkK
+ 0hsu7ceAHbe+uINckL87MUd0jyxnciAbTk5KWPxE2spuVtxkvocNNhy5I
+ okFwlDzvm/cHg3Y5iViHZyoV/Pn1Vf1U8J+CufMlN4d8tJ6jin+Yogyju w==;
+X-CSE-ConnectionGUID: ok5PmrYJQjuk+Ujg3NpR9g==
+X-CSE-MsgGUID: vaUvx7LSStWyikeaMLJBzg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11646"; a="93562270"
+X-IronPort-AV: E=Sophos;i="6.21,159,1763452800"; d="scan'208";a="93562270"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Dec 2025 23:12:58 -0800
+X-CSE-ConnectionGUID: ehlmLq8RQd2ulsLScpO5gg==
+X-CSE-MsgGUID: tmngKEg8QLq9e6rSl6ttBQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,159,1763452800"; d="scan'208";a="222209418"
+Received: from dut-2a59.iind.intel.com ([10.190.239.113])
+ by fmviesa002.fm.intel.com with ESMTP; 18 Dec 2025 23:12:54 -0800
+From: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+To: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
+Cc: harry.wentland@amd.com, jani.nikula@linux.intel.com,
+ louis.chauvet@bootlin.com, mwen@igalia.com, contact@emersion.fr,
+ alex.hung@amd.com, daniels@collabora.com, uma.shankar@intel.com,
+ suraj.kandpal@intel.com, nfraprado@collabora.com,
+ ville.syrjala@linux.intel.com, matthew.d.roper@intel.com
+Subject: [PATCH 00/13] drm: Color pipeline teardown and follow-up
+ fixes/improvements
+Date: Fri, 19 Dec 2025 12:26:01 +0530
+Message-Id: <20251219065614.190834-1-chaitanya.kumar.borah@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Prepare_GVT_for_display_mod?=
- =?utf-8?q?ularization_=28rev3=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 19 Dec 2025 06:58:26 -0000
-Message-ID: <176612750642.104675.15279041339345791691@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20251219060302.2365123-1-ankit.k.nautiyal@intel.com>
-In-Reply-To: <20251219060302.2365123-1-ankit.k.nautiyal@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,125 +67,81 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8233444243159268143==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+This series contains follow-up fixes and improvements for the DRM color
+pipeline infrastructure that was introduced in v6.19.[1][2]
 
-== Series Details ==
+The central handling of clean up of colorop from the mode_config list
+is missing. While vkms calls drm_colorop_pipeline_destroy() in vkms_destroy(),
+amd driver calls it only during failure of the init path and i915/xe driver
+does not call it at all. This means amd and intel leaks these objects on
+driver removal.
 
-Series: Prepare GVT for display modularization (rev3)
-URL   : https://patchwork.freedesktop.org/series/159008/
-State : success
+This series adds the teardown of mode_config.colorop_list in drm_mode_config_cleanup().
+Since, i915/xe sub-classes the drm_colorop within intel_colorop it was not enough
+to just use drm_colorop_pipeline_destroy(). Therefore, this series
 
-== Summary ==
+- Introduces driver-managed destruction for drm_colorop objects and
+  updates core helpers to use driver-provided destroy callbacks.
+- Ensures all colorop objects are correctly torn down during
+  mode_config cleanup and driver removal.
 
-CI Bug Log - changes from xe-4272-93db616df689a410d961e7c614c57e61d17a29a0_BAT -> xe-pw-159008v3_BAT
-====================================================
+In addition to that following changes are made in the series
+- Fixes enum name lifetime leaks in color pipeline init in i915, amdgpu_dm, and vkms
+- Corrects the ordering of the 3D LUT block in the i915 plane color pipeline
+- Refactors i915 plane color pipeline initialization to reliably clean
+  up partially constructed pipelines on failure.
 
-Summary
--------
+Thanks for taking a look. Feedback is welcome.
 
-  **SUCCESS**
+[1] https://lore.kernel.org/dri-devel/cbe00ac4-a535-47d3-813a-e2eda7e9b991@amd.com/
+[2] https://lore.kernel.org/intel-gfx/20251203085211.3663374-1-uma.shankar@intel.com/
 
-  No regressions found.
+==
+Chaitanya
 
-  
+Cc: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: Uma Shankar <uma.shankar@intel.com>
+Cc: Suraj Kandpal <suraj.kandpal@intel.com>
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Cc: Harry Wentland <harry.wentland@amd.com>
+Cc: Alex Hung <alex.hung@amd.com>
+Cc: Louis Chauvet <louis.chauvet@bootlin.com>
+Cc: Melissa Wen <mwen@igalia.com>
+Cc: Simon Ser <contact@emersion.fr>
+Cc: Daniel Stone <daniels@collabora.com>
+Cc: Nícolas F. R. A. Prado <nfraprado@collabora.com>
 
-Participating hosts (12 -> 12)
-------------------------------
+Chaitanya Kumar Borah (13):
+  drm/i915/color: Place 3D LUT after CSC in plane color pipeline
+  drm/amd/display: Fix color pipeline enum name leak
+  drm/vkms: Fix color pipeline enum name leak
+  drm/i915/display: Fix color pipeline enum name leak
+  drm: Allow driver-managed destruction of colorop objects
+  drm/colorop: Add destroy helper for colorop objects
+  drm/amd/display: Hook up colorop destroy helper for plane pipelines
+  drm/vkms: Hook up colorop destroy helper for plane pipelines
+  drm/i915/display: Hook up intel_colorop_destroy
+  drm: Clean up colorop objects during mode_config cleanup
+  drm/vkms: Remove drm_colorop_pipeline_destroy() from vkms_destroy()
+  drm/colorop: Use destroy callback for color pipeline teardown
+  drm/i915/color: Add failure handling in plane color pipeline init
 
-  No changes in participating hosts
+ .../amd/display/amdgpu_dm/amdgpu_dm_colorop.c |  31 +++-
+ .../amd/display/amdgpu_dm/amdgpu_dm_plane.c   |  13 +-
+ drivers/gpu/drm/drm_colorop.c                 |  46 +++--
+ drivers/gpu/drm/drm_mode_config.c             |   6 +
+ .../drm/i915/display/intel_color_pipeline.c   | 161 +++++++++++++-----
+ drivers/gpu/drm/i915/display/intel_colorop.c  |   6 +
+ drivers/gpu/drm/i915/display/intel_colorop.h  |   1 +
+ drivers/gpu/drm/vkms/vkms_colorop.c           |  31 ++--
+ drivers/gpu/drm/vkms/vkms_drv.c               |   1 -
+ include/drm/drm_colorop.h                     |  40 ++++-
+ 10 files changed, 249 insertions(+), 87 deletions(-)
 
-Known issues
-------------
+-- 
+2.25.1
 
-  Here are the changes found in xe-pw-159008v3_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_module_load@load:
-    - bat-bmg-1:          [PASS][1] -> [ABORT][2] ([Intel XE#6818])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4272-93db616df689a410d961e7c614c57e61d17a29a0/bat-bmg-1/igt@xe_module_load@load.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159008v3/bat-bmg-1/igt@xe_module_load@load.html
-
-  
-  [Intel XE#6818]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6818
-
-
-Build changes
--------------
-
-  * Linux: xe-4272-93db616df689a410d961e7c614c57e61d17a29a0 -> xe-pw-159008v3
-
-  IGT_8674: f38f4d8e9c65aff45ac807e646d06e38bc3193a2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-4272-93db616df689a410d961e7c614c57e61d17a29a0: 93db616df689a410d961e7c614c57e61d17a29a0
-  xe-pw-159008v3: 159008v3
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159008v3/index.html
-
---===============8233444243159268143==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Prepare GVT for display modularization (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/159008/">https://patchwork.freedesktop.org/series/159008/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159008v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159008v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4272-93db616df689a410d961e7c614c57e61d17a29a0_BAT -&gt; xe-pw-159008v3_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (12 -&gt; 12)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-159008v3_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@xe_module_load@load:<ul>
-<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4272-93db616df689a410d961e7c614c57e61d17a29a0/bat-bmg-1/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159008v3/bat-bmg-1/igt@xe_module_load@load.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6818">Intel XE#6818</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4272-93db616df689a410d961e7c614c57e61d17a29a0 -&gt; xe-pw-159008v3</li>
-</ul>
-<p>IGT_8674: f38f4d8e9c65aff45ac807e646d06e38bc3193a2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-4272-93db616df689a410d961e7c614c57e61d17a29a0: 93db616df689a410d961e7c614c57e61d17a29a0<br />
-  xe-pw-159008v3: 159008v3</p>
-
-</body>
-</html>
-
---===============8233444243159268143==--
