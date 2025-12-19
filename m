@@ -4,55 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 33C57D767CB
-	for <intel-xe@archiver.kernel.org>; Fri, 19 Dec 2025 10:40:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 66578D767CB
+	for <intel-xe@archiver.kernel.org>; Fri, 19 Dec 2025 10:49:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E504110EF1A;
-	Fri, 19 Dec 2025 10:40:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2CD3A10E46E;
+	Fri, 19 Dec 2025 10:49:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MuM1ZhI7";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NXPeWB1x";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F19BC10EF1A;
- Fri, 19 Dec 2025 10:40:42 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F29E810E46E
+ for <intel-xe@lists.freedesktop.org>; Fri, 19 Dec 2025 10:49:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1766140843; x=1797676843;
+ t=1766141361; x=1797677361;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=WSV6HmIuXnv6s+ZEg1C64NtydTV6UoWYPVYTwfmwr6U=;
- b=MuM1ZhI7Jt1lLmHzimzBBDkwIfzgBfScNmx9b2OlKy+Wri2pIQtrrxNF
- cT6o2z0VHrKF5CtlrgA+Rkqgb4TElpTv8hnK7F9DExNK0oXaGtDHuh4iX
- rvcrmQmJwVpukPTvjrq0PSuBysTwYihwbeT0+rabHTlkiMMyxlvMWnH2F
- hp4KoqM2ICyFqh00JwXkg1NLe1E4dL8vIxQwpzGpDEXP7xCHWWX0QJcjn
- tnyZV+G+QOQzUNOdBjfVnmUkmkZgQG0Nyrlm9PEFd+qdRy3hlPK39FLid
- ZnZE4RDzzEtyt7PvzJqmXpvRCRWNnuLAjo2OL55WboPtUsO6MFm8b9JJh Q==;
-X-CSE-ConnectionGUID: vY22bnNARhCAxXLe/OhF/w==
-X-CSE-MsgGUID: PycFPg4QQIeuPJEwqrh+lg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11646"; a="68147402"
-X-IronPort-AV: E=Sophos;i="6.21,161,1763452800"; d="scan'208";a="68147402"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Dec 2025 02:40:42 -0800
-X-CSE-ConnectionGUID: C4MLeRFUSHKPppwRfQHsXw==
-X-CSE-MsgGUID: sk05BGZBRHCpA9dfAbJgAg==
+ bh=OR1k4o3dsDcWLutPkGyvrr5+FGt4PGDtU14zvSX6DBI=;
+ b=NXPeWB1xkZXqi4O4WuHBHQuJ1NZ/1Bm4yJl2sbDCbbKNyJfoIZDKdMTC
+ bOtBaY7YyA0eXRXmlGL4Wr9bRvk+bBXqeP7GALdwsMGH/2p5I7+a89Q9/
+ kWoCxF1/y5q/4n7Ie0m4nI3Vod99r4dRk02c/kaHL8GQ8s6Khg8cHXGra
+ L28aaUM27hjLHHzQZMMhRDi6qiYxoLTBERSUXpZxADWLjLRL9Dx2vraex
+ VmiAHMBNJZ6T/cJEeHFZBWFNAPoQmili97ogxgd2OI3vbB3/sa+4JeicE
+ 0+MO8HvzpAUar0SoaSPHh2w5Rs666Gdn4EAES9Muq70jH7/EGy9Qh4UWM w==;
+X-CSE-ConnectionGUID: GU9gOMZGS5KXkWB1oAF+Eg==
+X-CSE-MsgGUID: 5KW3I6aAR6alsH8MquDkyQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11646"; a="79469806"
+X-IronPort-AV: E=Sophos;i="6.21,161,1763452800"; d="scan'208";a="79469806"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Dec 2025 02:49:21 -0800
+X-CSE-ConnectionGUID: Ey/IYvfcSReRlKCjc1x55w==
+X-CSE-MsgGUID: 6ue5WZIhTKOz7OFcxU584g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,161,1763452800"; d="scan'208";a="203351325"
-Received: from mwiniars-mobl.ger.corp.intel.com (HELO localhost)
- ([10.245.246.34])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Dec 2025 02:40:40 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com
-Subject: [PATCH] drm/xe/display: drop i915_utils.h
-Date: Fri, 19 Dec 2025 12:40:36 +0200
-Message-ID: <20251219104036.855258-1-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.47.3
+X-IronPort-AV: E=Sophos;i="6.21,161,1763452800"; d="scan'208";a="197981602"
+Received: from dhhellew-desk2.ger.corp.intel.com (HELO fdugast-desk.home)
+ ([10.245.244.207])
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Dec 2025 02:49:19 -0800
+From: Francois Dugast <francois.dugast@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Francois Dugast <francois.dugast@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+Subject: [RFC v1] drm/xe/migrate: Configure migration queue as low latency
+Date: Fri, 19 Dec 2025 11:49:03 +0100
+Message-ID: <20251219104903.291774-1-francois.dugast@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -69,56 +68,44 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-With the i915 switch to generic fault injection, display no longer needs
-the compat i915_utils.h. Remove it, along with a few includes.
+Commit 5488bec96bcc ("drm/xe/uapi: Use hint for guc to set GT frequency")
+introduced low latency hint for use by user space when creating an exec
+queue. This instructs SLPC to ramp the GT frequency aggressively.
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+SVM relies on an internal exec queue to migrate memory upon page faults.
+This change creates this exec queue with the low latency hint to speed up
+migration.
+
+This should not impact systems where GT frequency is set over sysfs, or
+with long running workloads which give enough time for the frequency to
+ramp up. An example of memory access pattern that shows an improvement of
+SVM performance is running hundreds of times IGT eu-fault-2m-once-device
+in xe_exec_system_allocator. The copy duration provided by GT stats in
+svm_2M_device_copy_us shows per GPU page fault:
+    ~ 165 μs without low latency hint
+    ~ 130 μs with low latency hint
+
+Suggested-by: Matthew Brost <matthew.brost@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Signed-off-by: Francois Dugast <francois.dugast@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_connector.c      | 2 --
- drivers/gpu/drm/i915/display/intel_display_driver.c | 2 --
- drivers/gpu/drm/xe/compat-i915-headers/i915_utils.h | 7 -------
- 3 files changed, 11 deletions(-)
- delete mode 100644 drivers/gpu/drm/xe/compat-i915-headers/i915_utils.h
+ drivers/gpu/drm/xe/xe_migrate.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_connector.c b/drivers/gpu/drm/i915/display/intel_connector.c
-index c128bc4215c4..682bf1be350d 100644
---- a/drivers/gpu/drm/i915/display/intel_connector.c
-+++ b/drivers/gpu/drm/i915/display/intel_connector.c
-@@ -31,8 +31,6 @@
- #include <drm/drm_print.h>
- #include <drm/drm_probe_helper.h>
- 
--#include "i915_drv.h"
--#include "i915_utils.h" /* for i915_inject_probe_failure() */
- #include "intel_connector.h"
- #include "intel_display_core.h"
- #include "intel_display_debugfs.h"
-diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
-index e1d29aea0ddc..240acf599670 100644
---- a/drivers/gpu/drm/i915/display/intel_display_driver.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
-@@ -18,8 +18,6 @@
- #include <drm/drm_probe_helper.h>
- #include <drm/drm_vblank.h>
- 
--#include "i915_drv.h"
--#include "i915_utils.h" /* for i915_inject_probe_failure() */
- #include "i9xx_wm.h"
- #include "intel_acpi.h"
- #include "intel_atomic.h"
-diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_utils.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_utils.h
-deleted file mode 100644
-index 3639721f0bf8..000000000000
---- a/drivers/gpu/drm/xe/compat-i915-headers/i915_utils.h
-+++ /dev/null
-@@ -1,7 +0,0 @@
--/* SPDX-License-Identifier: MIT */
--/*
-- * Copyright © 2023 Intel Corporation
-- */
--
--/* for a couple of users under i915/display */
--#define i915_inject_probe_failure(unused) ((unused) && 0)
+diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+index f3b66b55acfb..878b13f27be4 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.c
++++ b/drivers/gpu/drm/xe/xe_migrate.c
+@@ -471,7 +471,8 @@ int xe_migrate_init(struct xe_migrate *m)
+ 					    EXEC_QUEUE_FLAG_KERNEL |
+ 					    EXEC_QUEUE_FLAG_PERMANENT |
+ 					    EXEC_QUEUE_FLAG_HIGH_PRIORITY |
+-					    EXEC_QUEUE_FLAG_MIGRATE, 0);
++					    EXEC_QUEUE_FLAG_MIGRATE |
++					    EXEC_QUEUE_FLAG_LOW_LATENCY, 0);
+ 	} else {
+ 		m->q = xe_exec_queue_create_class(xe, primary_gt, vm,
+ 						  XE_ENGINE_CLASS_COPY,
 -- 
-2.47.3
+2.43.0
 
