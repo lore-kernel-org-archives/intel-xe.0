@@ -4,188 +4,101 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7333AD74961
-	for <intel-xe@archiver.kernel.org>; Fri, 19 Dec 2025 08:37:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0D62BD74968
+	for <intel-xe@archiver.kernel.org>; Fri, 19 Dec 2025 08:44:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 379B310E1E0;
-	Fri, 19 Dec 2025 08:37:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 975B910ED39;
+	Fri, 19 Dec 2025 08:44:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kZaI5h8E";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="BBOHpXIB";
+	dkim=pass (2048-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="MCLBxV55";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D0B3010E1E0
- for <intel-xe@lists.freedesktop.org>; Fri, 19 Dec 2025 08:37:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1766133469; x=1797669469;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=gTwLJicPOWtHyjfMc5kiUrgEBqBKSBCzLshI3gcwIqE=;
- b=kZaI5h8E9gH0J6t5QfYUKMrA1VAo8oAslBd01C7HixUyCLAfPZ7g4FWH
- 4D0snZR/Zs49F0YHyvLNhlHGSWyRxkb46Gg4rA7qQjhf5JSxfNz7mxSJo
- OWTfl8VFLnjImSYuW/EbNO+z995OFGUS9+9O/zOosWCIDgDafoO32n1Gp
- EfZANtLOedFq5WPq9flzspVUgUsQQxvzUm6cjJljbiuZKbOvE+J3dwc/H
- WBwqiXDVPYjujvA7y9eesWrWMFR/zrkFO4YRL4rGaoOSzJ7QI8HwMSiCg
- WAtvhCQaf9kK4IznpN7fDbWJldqrIYCQBP5xCoZ1QgIqIAekX+2jYashk A==;
-X-CSE-ConnectionGUID: +wh+EyI2TxSv1Gk1hMDaVg==
-X-CSE-MsgGUID: 7HagqXQ4QXKJAKrAtDgGnw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11646"; a="68068105"
-X-IronPort-AV: E=Sophos;i="6.21,159,1763452800"; d="scan'208";a="68068105"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Dec 2025 00:37:48 -0800
-X-CSE-ConnectionGUID: EItSKmB8R3OGIAUhRNeBMA==
-X-CSE-MsgGUID: pFCVe/PxTUKvT7WYYc1AtA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,159,1763452800"; d="scan'208";a="203199534"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by fmviesa005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Dec 2025 00:37:48 -0800
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Fri, 19 Dec 2025 00:37:47 -0800
-Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29 via Frontend Transport; Fri, 19 Dec 2025 00:37:47 -0800
-Received: from BL2PR02CU003.outbound.protection.outlook.com (52.101.52.70) by
- edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Fri, 19 Dec 2025 00:37:46 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ioUasaH1B9CqsLnPViIZSdKc5xY8sWh7ZRF9yEa7M710EJfgRlKfYDtEcS1b0Q+1xqwIg91UQS/Q+2qYixc9HVfdAeLdcLc+70TFCQDF920YmfaSb0owEwMwpWAO585uxiahfqKLzlvu5HaahDNXkM1xoYYxW/3KdlrXhIv40Dr7yu3vgmZkNauq6/ll+6Cjqc5nUdM/TLKoLpYYqpyKGHGDDOTkh8O80Numc5WHYvsF/x0xVOO0QUkekLcLiFLhTM+ofmH+QLo8oozlR+d009sgcPJ0fzwro3RXOBrOYZh4vXwZUm2Y5IcaQ3abdcTXNfD4ayTDstLokB0BSBi8oQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ywd+6fQpQiEG0l7MKz06rAJttm6FWLE5Bio280syQno=;
- b=d9F30uAr+esfjJNT8aAwryJtK3VnKtn6kXOADWm58YfiahzEuUKXAxF5AZcDwHMlQPPPRVAIv5/fd7+Mmw9/ihih21hUd2JWVgVldP5/exFsebl0IGBt4vudFRNy7rMsw54rqshMgYyqDfbXYApOAHluPKNkEKhcQJ9ZoGhW52rKsBoeD4gKZ4JRRvQia8MlbiS1fLw+ls3s6THEo5xK75w71i3BjvP15U3uLKPrhKE6F9zzRCIi3PQ7su8N5CXBYZeacE1Jezo3yWYsZvxPycS6ACU+PFYkCDND+nIITTmsUNAWZAmUaic9BntxrIkS8fkTJsOHQ+5ZCqywufAtuw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from BN9PR11MB5530.namprd11.prod.outlook.com (2603:10b6:408:103::8)
- by DM3PPFFCD58DF03.namprd11.prod.outlook.com (2603:10b6:f:fc00::f63)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9434.9; Fri, 19 Dec
- 2025 08:37:44 +0000
-Received: from BN9PR11MB5530.namprd11.prod.outlook.com
- ([fe80::13bd:eb49:2046:32a9]) by BN9PR11MB5530.namprd11.prod.outlook.com
- ([fe80::13bd:eb49:2046:32a9%4]) with mapi id 15.20.9434.009; Fri, 19 Dec 2025
- 08:37:44 +0000
-Message-ID: <4af066d2-b9c8-4352-b709-dc3ab1e58784@intel.com>
-Date: Fri, 19 Dec 2025 14:07:36 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/4] drm/xe/hwmon: Expose temperature limits
-To: Raag Jadav <raag.jadav@intel.com>, "Poosa, Karthik"
- <karthik.poosa@intel.com>, <linux@roeck-us.net>
-CC: <intel-xe@lists.freedesktop.org>, <anshuman.gupta@intel.com>,
- <rodrigo.vivi@intel.com>, <riana.tauro@intel.com>
-References: <20251216114030.226399-1-karthik.poosa@intel.com>
- <20251216114030.226399-2-karthik.poosa@intel.com>
- <aULiyK1tWOxKZLI8@black.igk.intel.com>
- <3849de5d-2cf9-4a06-b35f-428253a4e0d3@intel.com>
- <aUPiXUAji8P9QvFH@black.igk.intel.com>
-Content-Language: en-US
-From: "Nilawar, Badal" <badal.nilawar@intel.com>
-In-Reply-To: <aUPiXUAji8P9QvFH@black.igk.intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MA5P287CA0251.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:1ae::12) To BN9PR11MB5530.namprd11.prod.outlook.com
- (2603:10b6:408:103::8)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8833810EC92
+ for <intel-xe@lists.freedesktop.org>; Fri, 19 Dec 2025 08:44:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1766133889;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type;
+ bh=upMiXO1bVUKRVMOQaCC6tvSV7uMV7Xger8IN4wXmILU=;
+ b=BBOHpXIBQq2FePl+CeD2pU9a4P87hFhp46g0pc2UsHskcqY7Rsjun7ca9HedDVjjhRJJ+z
+ y7LlwgfvAJPqG7RnyQEsuOWFHQkJ++JfmDe6V+xzMowifNlG4bEE3NHM7vHlWzHPX3fw/N
+ z9YjBjLgiTOdknyGry8VURTIWDGBrgk=
+Received: from mail-wr1-f71.google.com (mail-wr1-f71.google.com
+ [209.85.221.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-445-fsJJcHb_Nt-UOU5AkKZx6Q-1; Fri, 19 Dec 2025 03:44:47 -0500
+X-MC-Unique: fsJJcHb_Nt-UOU5AkKZx6Q-1
+X-Mimecast-MFC-AGG-ID: fsJJcHb_Nt-UOU5AkKZx6Q_1766133886
+Received: by mail-wr1-f71.google.com with SMTP id
+ ffacd0b85a97d-43065ad16a8so767618f8f.1
+ for <intel-xe@lists.freedesktop.org>; Fri, 19 Dec 2025 00:44:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=redhat.com; s=google; t=1766133886; x=1766738686; darn=lists.freedesktop.org;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=upMiXO1bVUKRVMOQaCC6tvSV7uMV7Xger8IN4wXmILU=;
+ b=MCLBxV55p5uQ6GxCCeyatSCgzNN3BZQIZGoAmDJlVeaat3oEFYnAG5gAZfT8sbHB60
+ xCfTSYVeH7jqcoKBpcwczWE23g4Ym2TMjYo6sRZXnkD0MH2Sh4sCNcCLnR/rMcxEytHC
+ oFjuZI1j5igfeHX4TJOcx9PACNNXsYisKPns0SmdjOQOqZ4k2aqILukr0i0BaiTnEqgv
+ DNx7uLV9wRhYikmXhAijN4bcs28kTZpJmo/VOvD5WqaRx5X/tRwdyQfKqMIz0rUSPohD
+ 4DTMTVcxJxA1Pxv1v2qcgy7negEtKfzjd3QHKkFp3T8cKFB4qVrWdxnH2EYjB+YhQMV8
+ oV4A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1766133886; x=1766738686;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=upMiXO1bVUKRVMOQaCC6tvSV7uMV7Xger8IN4wXmILU=;
+ b=m7dTS3dTpU95t3MiVaJ5nYXr3frgv0k1r4CR86yPBwb6Vkzjx0konFy24H/Bzr3ATa
+ iKRe3ZpmrdQJ6cmfenGb4l2y44ZoA9oBaC6keTd6Z04WP5nXn4+Ek5YP3J6hQIInmHcf
+ +mEaE3cGvdfmszO+mTx3B6GkPFJutY9tpAAdtk4IwVRdqL7nSL6+95z4OPgyGhN3E3sO
+ R3/L0Mmnp6pLcF2y1/M3EgUsVp9+hum+JuBUmncGMEhmMnbM7mqHRQh3Z5plu3foRO3c
+ In0joJXfdO2ZVn7rdWiwzLFapcRrJskObuXLCUW0SqS8xFogui07hMq4WoGclw9BMR+a
+ 6ZFg==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCXFoPk79eOD9xnpGbXKB1+Q4pplLEKuEBQzKlUbkjAKD4Ql7Wf1HBN/sYCXeXsxUSwG4+XxBHOz8A==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwmNAWEhFZthabI45xu4hGOsYYPb35YoU0HL2f8glkgcUrX2Y7x
+ Zm6XIVsx7TW+ZAN0HU6apq0/9nWYNoglWLkqm2LkSCS+x/CrZ+DSb5upeeebSe4q/cU8Mrh3Nnt
+ kYG3liiY7solPqC+FRrfVn7+s2t9nCriDqIdR+Uq5dlJkL5hBoAOHSmUnGBublxWuYuq7
+X-Gm-Gg: AY/fxX4bKyI8Oi1Qq/JfpW5UbdLaTMpeKiVYSaTWxu2WxhT+gf9+zYE+lVpNkngLNem
+ zkzL2abytFA6wD7AmT9nFrq3+XUedCBWMyDYYuD0z9wzH0Rc3V55/4da6M6WY+N/uDDKu+9Pu8B
+ cwZRywgINIlyDC4wvIHLz3+nVF0ssft1S4QPzIXy4hmOw9XxBqKovzTGppLpTgsv7A1ROkdittV
+ 1JhZN2rJd2NnfClE0QhuM167FqDPVx15S8rQuzsKqkRcQ0G8LbpzSNJQuSKraptvr/k/H+gAJqa
+ y2ZZGTTiYR0Z3c6ETxB8xn0CgCh4CSZ+OTLhyGd4muwXxlLin8iga/yzlymvWw==
+X-Received: by 2002:a05:600c:46c4:b0:471:14af:c715 with SMTP id
+ 5b1f17b1804b1-47d19533472mr18628735e9.3.1766133886195; 
+ Fri, 19 Dec 2025 00:44:46 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFHRZt6KWe46mx6ZtB4B52L3xtqXwoxBu7fs8J9csqjRO/5q6Y+k4W1VISevBepJVzaVLD4ew==
+X-Received: by 2002:a05:600c:46c4:b0:471:14af:c715 with SMTP id
+ 5b1f17b1804b1-47d19533472mr18628285e9.3.1766133885661; 
+ Fri, 19 Dec 2025 00:44:45 -0800 (PST)
+Received: from localhost ([2a01:e0a:b25:f902::ff])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-47be2723d19sm95746485e9.2.2025.12.19.00.44.44
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 19 Dec 2025 00:44:45 -0800 (PST)
+Date: Fri, 19 Dec 2025 09:44:44 +0100
+From: Maxime Ripard <mripard@redhat.com>
+To: Dave Airlie <airlied@gmail.com>, 
+	Simona Vetter <simona.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>, 
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-misc-next
+Message-ID: <20251219-arcane-quaint-skunk-e383b0@houat>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN9PR11MB5530:EE_|DM3PPFFCD58DF03:EE_
-X-MS-Office365-Filtering-Correlation-Id: d3140526-946d-4b53-c785-08de3ed9e128
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?WUd3K09QK0hwdjFpd1pxVGxEVFNzdkhVbGQyYnhudlJtZHN4OHlDMURRamRt?=
- =?utf-8?B?b0p6TzFFdlNkNmpyYzlITTlXZUJaRzZzZFBXVnRCSVVOc3kwNDV3Q3JpUERs?=
- =?utf-8?B?bFkraGl5cXFiSFhJUjFZT1lKNTljaDdwVjVZUVRQQWZ5ZVFtTFBCbUx5aW9y?=
- =?utf-8?B?TlBxRXc2b3A4a1JvRkJLbkY4ZU83dGc4R3RjTFlZanFOb2RYS1NXd2lvMk42?=
- =?utf-8?B?SG5SMEpTVGlyam1XaVFNWDk4V3RWTkZuK0FFcVpiczhoRlJTNUdMUndRZlF0?=
- =?utf-8?B?TXBwaVUvL1RlTGFqL1VTR29JWFpRKzFWRGFvNmZSZU40S0ZPRHNwTWhIb2hB?=
- =?utf-8?B?anh3NU8vcXQxekdsZlFzd3FyRGJNeDROanZ3b1NMSTNoTnc4bHdxTnNGVDNM?=
- =?utf-8?B?Z3Myc1QrOU5BZ3JBTVRvK1U2Tk5ORE1mbVREUVBCQll3MnZWTWgya1c5c24x?=
- =?utf-8?B?cmpIVlhWV1RGTjFJcGVHcjhFU3hwUXoybjZXWWJ0UExabm1HdGZuY0lqNzVE?=
- =?utf-8?B?WWVvWEkzaWtNSlJVZ2NTYm5JM0V2V3hDVUVNK0RrQkxvTXJiY2Q5Q3NEekJQ?=
- =?utf-8?B?T2xvay9CdEg3QkFLNU5QSmxJYVU1OEx1THFnSm9YSWg1NTJkaU1FdWVrbE1y?=
- =?utf-8?B?aHRHalJKbmh4R1ljU2d0K0pNb2pLVUc1YlpsaERwZEtCUFI2UDAvQWlwR0tj?=
- =?utf-8?B?T0xRdGJZVlJlYlNWTXIvOTdiTE9kamhFVndFZ2x5ZmZkc1FRc25QaHBvMkdI?=
- =?utf-8?B?SmhsVHhIUEVJbk5qZk1PUW5CelhWV2RUVHRCbS9pR283U2xkSTdWRjVKbzlL?=
- =?utf-8?B?dHFmSzM1ZVFSbldycmtPTExZMWRUTlBKb2phWDRzN2NGRU1aSVIvQ0h0Y05X?=
- =?utf-8?B?K1gveVNlTm9qUUJiYmtCRmt5LzFsaGZZT2hKMDloUUc5VU1NRzN1clNUNmE3?=
- =?utf-8?B?bzlKM2NSMC9sa0NIWXNrS0lpWFpyUkwrTnRwQkZvUkY5THhka0xFcU9pdStn?=
- =?utf-8?B?MVJxTVk1NHRlL2p2NmZYbUdtL2c0NDZ6MWxyb1pweTNoU0MxaDJYMytLTWlL?=
- =?utf-8?B?TGEveEJSRjJmQVJlNXpBYXRVbFpZV3Q1Zit1Zk5Kamk3dWFrWWV0REVTUVNS?=
- =?utf-8?B?REROMFUxN2FVTW9RU1ovK1ExeGMvMk1wQjVGWVJYVlhnTDIwelFNcDhZT2VB?=
- =?utf-8?B?Z3NYeTlNdzFJRUk3cEdBWCtVcUFoWjNTekV1NE42QmdZa0tPUjBaYlIrRXFJ?=
- =?utf-8?B?Y3RMSjlpSElzNHY5RWFoZmJlWDkvWHQ5Zm8zRUE3YmtMaVk1cmJ4MUZXQXNM?=
- =?utf-8?B?cWprR3d4QjVSTndaVDFySEJWUCtwYVpjSzFSa0FNcEdhYUtkQVM4bDFGZTRt?=
- =?utf-8?B?WForN0x2eVJvai9DZjRJbFBSd3dEdml3ZEVZTUIwVHBFV2ZMaEdjSHRtTDhm?=
- =?utf-8?B?ZHE5Q1FQK042Q1luVktZb3VCcXdtTjI5RUZ3STZ6c1pZT2doNEdRNUJwemQw?=
- =?utf-8?B?Q3hrakxyR1M2dUpRdU1VbGtRbDlkanlnNytCUENMbUFmQkI0NDl0QmtDc2tM?=
- =?utf-8?B?c0hKRzZsUm9FQzRpSGhqcktFT1VuSnRPZmFCTXFkVldpUkhtZWdOZTh6OWJ3?=
- =?utf-8?B?NDFreW9WMTM1b0J6ak42a1o5MzA0MTBhemtRS3l5TmpzSVcxRVlLWmN4bE8r?=
- =?utf-8?B?cjA5bEwrK25HWTZVa2RCemFQY3RWdTRDSjFpV3FFb0hreGR4NSt3S3k2UXZ2?=
- =?utf-8?B?WEI2ZXF6SHAyaFhDV1IxbC8xWU5zU2VZM1VvU1RObmZOYUJEVDlrWWQ2SW9t?=
- =?utf-8?B?b3ZxL0VMUWUyaEpHU2RQa3pLbHJQaHNwUlhKK1UzV08ycW14ckw5bjZKUUNT?=
- =?utf-8?B?bCtIR2Y0RGxzVW13aTJaOUpWcHpXZWhUd2dyWXZIUzhrNTdrdjNxdG50eVo5?=
- =?utf-8?Q?QqvGxHHRGh0aparG2kemyh+CRjxhjcyW?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN9PR11MB5530.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TVNXNDVlU3B3eUN5bithUFFOOHF0UkNKZy9taU1mWGhkQ1dSMEVlYlB3SmJj?=
- =?utf-8?B?NzBQVkZPU3hDNUc1ekJRL1dZTHhCTksxVHNuQmRxSGluLytRRWNRRFc4d2Y3?=
- =?utf-8?B?K0JId3U3aGpEcHIyei9FTjlLeUdDUlU2eS9ncTcxUXlkMXJ0aHJ4QlhzWUtU?=
- =?utf-8?B?aGRZNGd3emprV1RLQTNxbUsrUVNlR0l2RVprVFFuNHljZ1ZpUXU2UmJva092?=
- =?utf-8?B?RTZUenhvTUtNbzVrNXNCdjI2ekx1Q25Gano4Y3VpOUNXVTNteDZVM0w3V0pv?=
- =?utf-8?B?bVloaHZsZHg4WGUzcWxPaWlTVGpJWFJhalNFWWc4MVZwVW1wbFRkZmo2dy9Q?=
- =?utf-8?B?bjlmY1lTVUVYMndqdkNhaTJ4NG55bm81UGZZSXplbzFaTWNjR3ZkaHdTYk5m?=
- =?utf-8?B?RXlIeCs0OFhNWkNWQVA0Q3BjV3c5d2VFZzJCZkU5bjFWVHZSeVkxSFlHdXZI?=
- =?utf-8?B?aDBWUUZsbjJYYzJMdVJ5R1VlRFhCb1RXWldhSm9KYWE0OXNkUGdMKzJGYzAz?=
- =?utf-8?B?NVFMaDRCN3N5VlV4MzE3SUs4UXd1UUJaTDFnNlNnTlJZeER0K0FyNUxYUnR3?=
- =?utf-8?B?WVY3K2ZxdFQ4UzlKeWw5RmxZUmZzN0JpRlBpR1hwb0RyTmpXczJ0Snlkcm9q?=
- =?utf-8?B?MTJzVnhlM3VURkVJdmg5VTNuVEtBZXFvMlBKZ0dqSHlIWXE1bk1Ld1RvRk9n?=
- =?utf-8?B?c1M1NjFYL0FXMm1yY2RrYkcyYXEwMEc1ekgzak4vWDluYk9sQXdzdmJvWm9j?=
- =?utf-8?B?Sk1oOGVrZHgxN0IreCt6U3o2RHp6Y1RiQ1hxdXU1Tm1lYXpJdlZ5RVBFWHdv?=
- =?utf-8?B?c1ZsUTYvaHpHWlc1NHVsODBUUXhVTWxsMGpGcE1mRFlpOHVsanlQdUducUJ4?=
- =?utf-8?B?eXh0UGk0bWJyT3NWb2gwTVU4Z3VjTDYwbm5mMUQ5L2pCTTVXUFNpMlIwUFlN?=
- =?utf-8?B?MktqanlQUGJtSzRsMWZjeGV2TmxqZ0RxMDNvVHEyYnE4Q0pPMUJLZ1JaaGxG?=
- =?utf-8?B?WkJrWU5jemhEUXBaTGR0aWoyaXMxd3ExcWVFcVZaN1Zia1JuTHJSNWpHd295?=
- =?utf-8?B?MFdNeEJBZyttSlREZ0NQK0dhRGNFTHh0R1JMM2gwTjRXT21PbzF3TWxCZmZH?=
- =?utf-8?B?eXVMTU1UM2tEdUJqT3EzZk1vYlQzeG5EQ1RBR0d5NU9scnV2UWthY1VVS0V3?=
- =?utf-8?B?NDRjWXNPajBxeTZPWkhRZEVOaVZWaWg3c09vWlZyNDc3My9sN2J1eXZiMkc5?=
- =?utf-8?B?d0FTSHhPQkRpaTluZ09XREowdDJlYkFtdGYvc3lFT1JlMWtaS3ZZaDAyRElG?=
- =?utf-8?B?K3h6Q0NSU2Fra2FpOTBQVXhBTkhXYm1JN1c2NDNUMksyNG1WeVBvSVN5WDFL?=
- =?utf-8?B?c1ZnNXVPbFBmbVBiellwZXRmY0pXWG9nZGJkSGkyQUdPMWt0QU5LdmpqYi9v?=
- =?utf-8?B?bm4zMURoQzJ0bHE2VzNJdFBVdlFpY2pKNDdLWkNRekNjcWpPQ3ZqZDh5bzE4?=
- =?utf-8?B?ZGo5bkM1dHpNOEJiSFdIZ0tKNzJXakpjRnJlNzZmTlF6VHY1Uk91M2JxbUV3?=
- =?utf-8?B?TU10RkkxRDJIYUxjSU5mclRyMDAwUThlUXNrRXZnd3N2TkdKaUtkVjgySENi?=
- =?utf-8?B?QVVOSWtFdjFYdndRYm4yejhqYncrOS9uencxUGo3VHloMGF2RVRoOXMyUVJi?=
- =?utf-8?B?SHc4NlZ1a2x0L2ZqRFNTRkQvaWpOclVLTnB2UjMzbEpzYlNFTEVXYnE4OHlp?=
- =?utf-8?B?R25RZHJXejY1a2hhY3R0V1FodEt0U2Y4aVVqNEZrTXNCOFFUaGhIMnpsT2RO?=
- =?utf-8?B?OGFQY2ZKWHhOY0xwUUs0QW1IS0JYRmZkemYzengyTVp0dkovRExjNHZIc0Fk?=
- =?utf-8?B?M08wdmUyN0orUyswbWYrQk5KUVJEWnN4NG1yRlhXRDFqM3hVR2MrblE2VWFr?=
- =?utf-8?B?ZGdxUE1YQklJV3dnVFJ3d3BxdXBOQjBBcUZnV1dXREorUWEwSFFPdm1BZHhL?=
- =?utf-8?B?Tis0NG9RTzFFN2o0bjMwU0ZXTFkrOCtScmZPdWFnMk1IVkhsWm1WcStkdy9Z?=
- =?utf-8?B?c1BCajdmb1M1clVueGt3d3RLVFByK2NVUkZ4V2R0dXU5M1JWVHpFdW1pWjkz?=
- =?utf-8?B?endhdmgyb2lmb2JBd1d0Z2pnYjVoMnIwa0hZZjF6REZmdlE1bVdQZGZNUm5W?=
- =?utf-8?B?YWc9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: d3140526-946d-4b53-c785-08de3ed9e128
-X-MS-Exchange-CrossTenant-AuthSource: BN9PR11MB5530.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Dec 2025 08:37:44.3217 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: mm9BSGfUT2l0CifrGRV6aVBltYDdewjbsniLAM0l+gQHOjV/ztYl0Y4CN7JGfdlQtjnHxbRvJv8Kx+jh25QfdA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM3PPFFCD58DF03
-X-OriginatorOrg: intel.com
+Content-Type: multipart/signed; micalg=pgp-sha384;
+ protocol="application/pgp-signature"; boundary="mlkpzx4zkpvmtckn"
+Content-Disposition: inline
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -200,390 +113,469 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Guenter,
 
-On 18-12-2025 16:45, Raag Jadav wrote:
-> On Thu, Dec 18, 2025 at 01:07:57PM +0530, Poosa, Karthik wrote:
->> On 17-12-2025 22:35, Raag Jadav wrote:
->>> On Tue, Dec 16, 2025 at 05:10:27PM +0530, Karthik Poosa wrote:
->>>> Read temperature limits using pcode mailbox and
->>>> expose shutdown temperature limit as tempX_emergency,
->>>> critical temperature limit of as tempX_crit and
->>>> GPU average temperature limit as tempX_max.
->>>>
->>>> Update Xe hwmon documentation for these entries.
->>>>
->>>> Signed-off-by: Karthik Poosa <karthik.poosa@intel.com>
->>>> ---
->>>>    .../ABI/testing/sysfs-driver-intel-xe-hwmon   |  40 ++++++
->>>>    drivers/gpu/drm/xe/xe_device_types.h          |   3 +
->>>>    drivers/gpu/drm/xe/xe_hwmon.c                 | 116 +++++++++++++++++-
->>>>    drivers/gpu/drm/xe/xe_pci.c                   |   5 +
->>>>    drivers/gpu/drm/xe/xe_pci_types.h             |   1 +
->>>>    drivers/gpu/drm/xe/xe_pcode_api.h             |   3 +
->>>>    6 files changed, 164 insertions(+), 4 deletions(-)
->>>>
->>>> diff --git a/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon b/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
->>>> index d9e2b17c6872..c8f211c336be 100644
->>>> --- a/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
->>>> +++ b/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
->>>> @@ -196,3 +196,43 @@ Description:	RW. Package burst power limit interval (Tau in PL2/Tau) in
->>>>    		milliseconds over which sustained power is averaged.
->>>>    		Only supported for particular Intel Xe graphics platforms.
->>>> +
->>>> +What:		/sys/bus/pci/drivers/xe/.../hwmon/hwmon<i>/temp2_emergency
->>>> +Date:		December 2025
->>>> +KernelVersion:	6.19
->>>> +Contact:	intel-xe@lists.freedesktop.org
->>>> +Description:	RO. Package shutdown temperature in millidegree Celsius.
->>>> +
->>>> +		Only supported for particular Intel Xe graphics platforms.
->>>> +
->>>> +What:		/sys/bus/pci/drivers/xe/.../hwmon/hwmon<i>/temp2_crit
->>>> +Date:		December 2025
->>>> +KernelVersion:	6.19
->>>> +Contact:	intel-xe@lists.freedesktop.org
->>>> +Description:	RO. Package critical temperature in millidegree Celsius.
->>>> +
->>>> +		Only supported for particular Intel Xe graphics platforms.
->>>> +
->>>> +What:		/sys/bus/pci/drivers/xe/.../hwmon/hwmon<i>/temp2_max
->>>> +Date:		December 2025
->>>> +KernelVersion:	6.19
->>>> +Contact:	intel-xe@lists.freedesktop.org
->>>> +Description:	RO. Package average temperature limit in millidegree Celsius.
->>>> +
->>>> +		Only supported for particular Intel Xe graphics platforms.
->>>> +
->>>> +What:		/sys/bus/pci/drivers/xe/.../hwmon/hwmon<i>/temp3_emergency
->>>> +Date:		December 2025
->>>> +KernelVersion:	6.19
->>>> +Contact:	intel-xe@lists.freedesktop.org
->>>> +Description:	RO. VRAM shutdown temperature in millidegree Celsius.
->>>> +
->>>> +		Only supported for particular Intel Xe graphics platforms.
->>>> +
->>>> +What:		/sys/bus/pci/drivers/xe/.../hwmon/hwmon<i>/temp3_crit
->>>> +Date:		December 2025
->>>> +KernelVersion:	6.19
->>>> +Contact:	intel-xe@lists.freedesktop.org
->>>> +Description:	RO. VRAM critical temperature in millidegree Celsius.
->>>> +
->>>> +		Only supported for particular Intel Xe graphics platforms.
->>> As per hwmon documentation all these attributes are RW so they don't
->>> match with ABI expectations.
->> 1. These are read only values for our hardware, write is not supported.
->>
->> 2. Couple of other drivers are also supporting readonly for temp_crit.
->>
->> Ex:
->>
->> a) drivers/net/ethernet/broadcom/bnxt/bnxt_hwmon.c - bnxt_hwmon_is_visible
->>
->> 75 static umode_t bnxt_hwmon_is_visible(const void *_data, enum
->> hwmon_sensor_types type,
->>   76                                      u32 attr, int channel)
->>   77 { 82
->>   83         switch (attr) {
->>   86         case hwmon_temp_max:
->>   87         case hwmon_temp_crit:
->>   88         case hwmon_temp_emergency:
->>   89         case hwmon_temp_max_alarm:
->>   90         case hwmon_temp_crit_alarm:
->>   91         case hwmon_temp_emergency_alarm:
->>   92                 if (!(bp->fw_cap &
->> BNXT_FW_CAP_THRESHOLD_TEMP_SUPPORTED))
->>   93                         return 0;
->>   94                 return 0444;
->>
->> b) . drivers/hwmon/intel-m10-bmc-hwmon.c -
->>
->> static const struct hwmon_ops m10bmc_hwmon_ops = {
->>          .visible = 0444,
->>          .read = m10bmc_hwmon_read,
->>
->> 3. hwmon also doesn't report any violation for 0444 return from
->> xe_hwmon_temp_is_visible.
-> Sure, but since this is a pre-defined ABI which we don't control I'll let
-> the maintainers have the final call on this.
+--mlkpzx4zkpvmtckn
+Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: [PULL] drm-misc-next
+MIME-Version: 1.0
 
-Could you please share your thoughts on this? Temperature limits are 
-kept RO as hardware doesn't allow to write.
+Hi Dave, Sima,
 
-Thanks,
-Badal
+Here's the drm-misc-next PR for this week.
 
->
-> Raag
->
->>>> diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
->>>> index 413ba4c8b62e..8e6dd2665596 100644
->>>> --- a/drivers/gpu/drm/xe/xe_device_types.h
->>>> +++ b/drivers/gpu/drm/xe/xe_device_types.h
->>>> @@ -321,6 +321,9 @@ struct xe_device {
->>>>    		 * pcode mailbox commands.
->>>>    		 */
->>>>    		u8 has_mbx_power_limits:1;
->>>> +		/** @info.has_mbx_thermal_info: Device has support for thermal mailbox commands.
->>>> +		 */
->>> Can be one line.
->>>
->>>> +		u8 has_mbx_thermal_info:1;
->>>>    		/** @info.has_mem_copy_instr: Device supports MEM_COPY instruction */
->>>>    		u8 has_mem_copy_instr:1;
->>>>    		/** @info.has_mert: Device has standalone MERT */
->>>> diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
->>>> index ff2aea52ef75..66a8c3e40027 100644
->>>> --- a/drivers/gpu/drm/xe/xe_hwmon.c
->>>> +++ b/drivers/gpu/drm/xe/xe_hwmon.c
->>>> @@ -53,6 +53,14 @@ enum xe_fan_channel {
->>>>    	FAN_MAX,
->>>>    };
->>>> +enum xe_temp_limit {
->>>> +	TEMP_LIMIT_PKG_SHUTDOWN,
->>>> +	TEMP_LIMIT_PKG_TJMAX,
->>>> +	TEMP_LIMIT_MEM_SHUTDOWN,
->>>> +	TEMP_LIMIT_PKG_CRIT,
->>>> +	TEMP_LIMIT_MEM_TJMAX,
->>>> +};
->>>> +
->>>>    /* Attribute index for powerX_xxx_interval sysfs entries */
->>>>    enum sensor_attr_power {
->>>>    	SENSOR_INDEX_PSYS_PL1,
->>>> @@ -111,6 +119,18 @@ struct xe_hwmon_fan_info {
->>>>    	u64 time_prev;
->>>>    };
->>>> +/**
->>>> + * struct xe_hwmon_thermal_info - to store temperature data
->>>> + */
->>>> +struct xe_hwmon_thermal_info {
->>>> +	union {
->>>> +		/** @limits: temperatures limits */
->>>> +		u8 limit[8];
->>> What are the magic numbers? Can we have proper defines?
->> We can use xe_temp_limit max value and keep remaining bytes as reserved.
->>
->>>> +		/** @data: temperature limits in dwords */
->>>> +		u32 data[2];
->>>> +	};
->>>> +};
->>>> +
->>>>    /**
->>>>     * struct xe_hwmon - xe hwmon data structure
->>>>     */
->>>> @@ -137,7 +157,8 @@ struct xe_hwmon {
->>>>    	u32 pl1_on_boot[CHANNEL_MAX];
->>>>    	/** @pl2_on_boot: power limit PL2 on boot */
->>>>    	u32 pl2_on_boot[CHANNEL_MAX];
->>>> -
->>>> +	/** @temp: Temperature info */
->>>> +	struct xe_hwmon_thermal_info temp;
->>>>    };
->>>>    static int xe_hwmon_pcode_read_power_limit(const struct xe_hwmon *hwmon, u32 attr, int channel,
->>>> @@ -677,8 +698,11 @@ static const struct attribute_group *hwmon_groups[] = {
->>>>    };
->>>>    static const struct hwmon_channel_info * const hwmon_info[] = {
->>>> -	HWMON_CHANNEL_INFO(temp, HWMON_T_LABEL, HWMON_T_INPUT | HWMON_T_LABEL,
->>>> -			   HWMON_T_INPUT | HWMON_T_LABEL),
->>>> +	HWMON_CHANNEL_INFO(temp,
->>>> +			   HWMON_T_LABEL,
->>>> +			   HWMON_T_LABEL | HWMON_T_INPUT | HWMON_T_EMERGENCY | HWMON_T_CRIT |
->>>> +			   HWMON_T_MAX,
->>>> +			   HWMON_T_LABEL | HWMON_T_INPUT | HWMON_T_EMERGENCY | HWMON_T_CRIT),
->>>>    	HWMON_CHANNEL_INFO(power, HWMON_P_MAX | HWMON_P_RATED_MAX | HWMON_P_LABEL | HWMON_P_CRIT |
->>>>    			   HWMON_P_CAP,
->>>>    			   HWMON_P_MAX | HWMON_P_RATED_MAX | HWMON_P_LABEL | HWMON_P_CAP),
->>>> @@ -689,6 +713,23 @@ static const struct hwmon_channel_info * const hwmon_info[] = {
->>>>    	NULL
->>>>    };
->>>> +static int xe_hwmon_pcode_read_thermal_info(struct xe_hwmon *hwmon)
->>>> +{
->>>> +	struct xe_tile *root_tile = xe_device_get_root_tile(hwmon->xe);
->>>> +	int ret = 0;
->>>> +
->>>> +	if (!hwmon->xe->info.has_mbx_power_limits)
->>>> +		return -EOPNOTSUPP;
->>>> +
->>>> +	/* Read thermal info */
->>>> +	ret = xe_pcode_read(root_tile, PCODE_MBOX(PCODE_THERMAL_INFO, READ_THERMAL_LIMITS, 0),
->>>> +			    &hwmon->temp.data[0], &hwmon->temp.data[1]);
->>>> +	drm_dbg(&hwmon->xe->drm, "thermal info read ret %d, val 0x%x val1 0x%x\n", ret,
->>>> +		hwmon->temp.data[0], hwmon->temp.data[1]);
->>>> +
->>>> +	return ret;
->>>> +}
->>>> +
->>>>    /* I1 is exposed as power_crit or as curr_crit depending on bit 31 */
->>>>    static int xe_hwmon_pcode_read_i1(const struct xe_hwmon *hwmon, u32 *uval)
->>>>    {
->>>> @@ -787,6 +828,34 @@ static umode_t
->>>>    xe_hwmon_temp_is_visible(struct xe_hwmon *hwmon, u32 attr, int channel)
->>>>    {
->>>>    	switch (attr) {
->>>> +	case hwmon_temp_emergency:
->>>> +		switch (channel) {
->>>> +		case CHANNEL_PKG:
->>>> +			return hwmon->temp.limit[TEMP_LIMIT_PKG_SHUTDOWN] ? 0444 : 0;
->>>> +		case CHANNEL_VRAM:
->>>> +			return hwmon->temp.limit[TEMP_LIMIT_MEM_SHUTDOWN] ? 0444 : 0;
->>>> +		default:
->>>> +			return 0;
->>>> +		}
->>>> +		break;
->>>> +	case hwmon_temp_crit:
->>>> +		switch (channel) {
->>>> +		case CHANNEL_PKG:
->>>> +			return hwmon->temp.limit[TEMP_LIMIT_PKG_TJMAX] ? 0444 : 0;
->>>> +		case CHANNEL_VRAM:
->>>> +			return hwmon->temp.limit[TEMP_LIMIT_MEM_TJMAX] ? 0444 : 0;
->>>> +		default:
->>>> +			return 0;
->>>> +		}
->>>> +		break;
->>>> +	case hwmon_temp_max:
->>>> +		switch (channel) {
->>>> +		case CHANNEL_PKG:
->>>> +			return hwmon->temp.limit[TEMP_LIMIT_PKG_CRIT] ? 0444 : 0;
->>>> +		default:
->>>> +			return 0;
->>>> +		}
->>>> +		break;
->>>>    	case hwmon_temp_input:
->>>>    	case hwmon_temp_label:
->>>>    		return xe_reg_is_valid(xe_hwmon_get_reg(hwmon, REG_TEMP, channel)) ? 0444 : 0;
->>>> @@ -807,10 +876,46 @@ xe_hwmon_temp_read(struct xe_hwmon *hwmon, u32 attr, int channel, long *val)
->>>>    		/* HW register value is in degrees Celsius, convert to millidegrees. */
->>>>    		*val = REG_FIELD_GET(TEMP_MASK, reg_val) * MILLIDEGREE_PER_DEGREE;
->>>> -		return 0;
->>>> +		break;
->>>> +	case hwmon_temp_emergency:
->>>> +		switch (channel) {
->>>> +		case CHANNEL_PKG:
->>>> +			*val = hwmon->temp.limit[TEMP_LIMIT_PKG_SHUTDOWN] * MILLIDEGREE_PER_DEGREE;
->>>> +			break;
->>>> +		case CHANNEL_VRAM:
->>>> +			*val = hwmon->temp.limit[TEMP_LIMIT_MEM_SHUTDOWN] * MILLIDEGREE_PER_DEGREE;
->>>> +			break;
->>>> +		default:
->>>> +			*val = 0;
->>> Do you need this?
->>>
->>>> +			return -EOPNOTSUPP;
->>>> +		}
->>>> +		break;
->>>> +	case hwmon_temp_crit:
->>>> +		switch (channel) {
->>>> +		case CHANNEL_PKG:
->>>> +			*val = hwmon->temp.limit[TEMP_LIMIT_PKG_TJMAX] * MILLIDEGREE_PER_DEGREE;
->>>> +			break;
->>>> +		case CHANNEL_VRAM:
->>>> +			*val = hwmon->temp.limit[TEMP_LIMIT_MEM_TJMAX] * MILLIDEGREE_PER_DEGREE;
->>>> +			break;
->>>> +		default:
->>>> +			*val = 0;
->>> Ditto.
->>>
->>>> +			return -EOPNOTSUPP;
->>>> +		}
->>>> +		break;
->>>> +	case hwmon_temp_max:
->>>> +		switch (channel) {
->>>> +		case CHANNEL_PKG:
->>>> +			*val = hwmon->temp.limit[TEMP_LIMIT_PKG_CRIT] * MILLIDEGREE_PER_DEGREE;
->>>> +			break;
->>>> +		default:
->>>> +			return 0;
->>>> +		}
->>>> +		break;
->>>>    	default:
->>>>    		return -EOPNOTSUPP;
->>>>    	}
->>>> +	return 0;
->>>>    }
->>>>    static umode_t
->>>> @@ -1263,6 +1368,9 @@ xe_hwmon_get_preregistration_info(struct xe_hwmon *hwmon)
->>>>    	for (channel = 0; channel < FAN_MAX; channel++)
->>>>    		if (xe_hwmon_is_visible(hwmon, hwmon_fan, hwmon_fan_input, channel))
->>>>    			xe_hwmon_fan_input_read(hwmon, channel, &fan_speed);
->>>> +
->>>> +	if (xe_hwmon_pcode_read_thermal_info(hwmon))
->>>> +		drm_dbg(&hwmon->xe->drm, "Thermal mailbox support not present in firmware\n");
->>>>    }
->>>>    int xe_hwmon_register(struct xe_device *xe)
->>>> diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
->>>> index 673761c8623e..a47637900e84 100644
->>>> --- a/drivers/gpu/drm/xe/xe_pci.c
->>>> +++ b/drivers/gpu/drm/xe/xe_pci.c
->>>> @@ -311,6 +311,7 @@ static const struct xe_device_desc dg2_desc = {
->>>>    	.has_display = true,
->>>>    	.has_fan_control = true,
->>>>    	.has_mbx_power_limits = false,
->>>> +	.has_mbx_thermal_info = false,
->>> Why?
->>>
->>>>    };
->>>>    static const __maybe_unused struct xe_device_desc pvc_desc = {
->>>> @@ -328,6 +329,7 @@ static const __maybe_unused struct xe_device_desc pvc_desc = {
->>>>    	.vm_max_level = 4,
->>>>    	.vram_flags = XE_VRAM_FLAGS_NEED64K,
->>>>    	.has_mbx_power_limits = false,
->>>> +	.has_mbx_thermal_info = false,
->>> Ditto.
->>>
->>>>    };
->>>>    static const struct xe_device_desc mtl_desc = {
->>>> @@ -365,6 +367,7 @@ static const struct xe_device_desc bmg_desc = {
->>>>    	.has_fan_control = true,
->>>>    	.has_flat_ccs = 1,
->>>>    	.has_mbx_power_limits = true,
->>>> +	.has_mbx_thermal_info = true,
->>>>    	.has_gsc_nvm = 1,
->>>>    	.has_heci_cscfi = 1,
->>>>    	.has_i2c = true,
->>>> @@ -418,6 +421,7 @@ static const struct xe_device_desc cri_desc = {
->>>>    	.has_flat_ccs = false,
->>>>    	.has_i2c = true,
->>>>    	.has_mbx_power_limits = true,
->>>> +	.has_mbx_thermal_info = true,
->>>>    	.has_mert = true,
->>>>    	.has_pre_prod_wa = 1,
->>>>    	.has_sriov = true,
->>>> @@ -681,6 +685,7 @@ static int xe_info_init_early(struct xe_device *xe,
->>>>    	/* runtime fusing may force flat_ccs to disabled later */
->>>>    	xe->info.has_flat_ccs = desc->has_flat_ccs;
->>>>    	xe->info.has_mbx_power_limits = desc->has_mbx_power_limits;
->>>> +	xe->info.has_mbx_thermal_info = desc->has_mbx_thermal_info;
->>>>    	xe->info.has_gsc_nvm = desc->has_gsc_nvm;
->>>>    	xe->info.has_heci_gscfi = desc->has_heci_gscfi;
->>>>    	xe->info.has_heci_cscfi = desc->has_heci_cscfi;
->>>> diff --git a/drivers/gpu/drm/xe/xe_pci_types.h b/drivers/gpu/drm/xe/xe_pci_types.h
->>>> index 3bb51d155951..34d2b66188e4 100644
->>>> --- a/drivers/gpu/drm/xe/xe_pci_types.h
->>>> +++ b/drivers/gpu/drm/xe/xe_pci_types.h
->>>> @@ -48,6 +48,7 @@ struct xe_device_desc {
->>>>    	u8 has_late_bind:1;
->>>>    	u8 has_llc:1;
->>>>    	u8 has_mbx_power_limits:1;
->>>> +	u8 has_mbx_thermal_info:1;
->>>>    	u8 has_mem_copy_instr:1;
->>>>    	u8 has_mert:1;
->>>>    	u8 has_pre_prod_wa:1;
->>>> diff --git a/drivers/gpu/drm/xe/xe_pcode_api.h b/drivers/gpu/drm/xe/xe_pcode_api.h
->>>> index 975892d6b230..a3bff76a074d 100644
->>>> --- a/drivers/gpu/drm/xe/xe_pcode_api.h
->>>> +++ b/drivers/gpu/drm/xe/xe_pcode_api.h
->>>> @@ -65,6 +65,9 @@
->>>>    #define       FAN_TABLE				1
->>>>    #define       VR_CONFIG				2
->>>> +#define	PCODE_THERMAL_INFO			0x25
->>>> +#define	READ_THERMAL_LIMITS			0x0
->>> Does this match with spacing convention and ordering?
->>>
->>> Raag
->>>
->>>>    #define   PCODE_FREQUENCY_CONFIG		0x6e
->>>>    /* Frequency Config Sub Commands (param1) */
->>>>    #define     PCODE_MBOX_FC_SC_READ_FUSED_P0	0x0
->>>> -- 
->>>> 2.25.1
->>>>
+The diffstat is bigger than reported in the tag because
+drm-misc-next-2025-12-12 hasn't been merged in drm-next yet.
+
+Thanks!
+Maxime
+
+drm-misc-next-2025-12-19:
+drm-misc-next for 6.20:
+
+Core Changes:
+
+  - dma-buf: Add tracepoints
+  - sched: Introduce new helpers
+
+Driver Changes:
+
+  - amdxdna: Enable hardware context priority, Remove (obsolete and
+    never public) NPU2 Support, Race condition fix
+  - rockchip: Add RK3368 HDMI Support
+  - rz-du: Add RZ/V2H(P) MIPI-DSI Support
+
+  - panels:
+    - st7571: Introduce SPI support
+    - New panels: Sitronix ST7920, Samsung LTL106HL02, LG LH546WF1-ED01, Ha=
+nnStar HSD156JUW2
+The following changes since commit 8f0b4cce4481fb22653697cced8d0d04027cb1e8:
+
+  Linux 6.19-rc1 (2025-12-14 16:05:07 +1200)
+
+are available in the Git repository at:
+
+  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-next-202=
+5-12-19
+
+for you to fetch changes up to 332070795bd96193756cb4446eddc3ec9ff6a0e8:
+
+  accel/amdxdna: Enable hardware context priority (2025-12-18 10:36:44 -080=
+0)
+
+----------------------------------------------------------------
+drm-misc-next for 6.20:
+
+Core Changes:
+
+  - dma-buf: Add tracepoints
+  - sched: Introduce new helpers
+
+Driver Changes:
+
+  - amdxdna: Enable hardware context priority, Remove (obsolete and
+    never public) NPU2 Support, Race condition fix
+  - rockchip: Add RK3368 HDMI Support
+  - rz-du: Add RZ/V2H(P) MIPI-DSI Support
+
+  - panels:
+    - st7571: Introduce SPI support
+    - New panels: Sitronix ST7920, Samsung LTL106HL02, LG LH546WF1-ED01, Ha=
+nnStar HSD156JUW2
+
+----------------------------------------------------------------
+Akash Goel (1):
+      drm/panthor: Remove redundant call to disable the MCU
+
+Alexey Klimov (1):
+      gpu/panel-edp: add AUO panel entry for B140HAN06.4
+
+Amin GATTOUT (1):
+      drm/panel: otm8009a: Switch to mipi_dsi_multi_context helpers
+
+Anton Bambura (1):
+      gpu/drm: panel: add Samsung LTL106HL02 MIPI DSI panel driver
+
+Ashley Smith (1):
+      drm/panthor: Enable timestamp propagation
+
+Boris Brezillon (27):
+      drm/panthor: Always wait after sending a command to an AS
+      drm/panthor: Kill lock_region()
+      drm/panthor: Recover from panthor_gpu_flush_caches() failures
+      drm/panthor: Add support for atomic page table updates
+      drm/panthor: Make panthor_vm_[un]map_pages() more robust
+      drm/panthor: Relax a check in panthor_sched_pre_reset()
+      drm/panthor: Simplify group idleness tracking
+      drm/panthor: Don't try to enable extract events
+      drm/panthor: Fix the full_tick check
+      drm/panthor: Fix the group priority rotation logic
+      drm/panthor: Fix immediate ticking on a disabled tick
+      drm/panthor: Fix the logic that decides when to stop ticking
+      drm/panthor: Make sure we resume the tick when new jobs are submitted
+      drm/panthor: Kill panthor_sched_immediate_tick()
+      drm/panthor: Drop a WARN_ON() in group_free_queue()
+      drm/panthor: Make sure caches are flushed/invalidated when an AS is r=
+ecycled
+      drm/panthor: Unlock the locked region before disabling an AS
+      drm/panthor: Provide a custom dma_buf implementation
+      drm/panthor: Fix panthor_gpu_coherency_set()
+      drm/panthor: Expose the selected coherency protocol to the UMD
+      drm/panthor: Add a PANTHOR_BO_SYNC ioctl
+      drm/panthor: Add an ioctl to query BO flags
+      drm/panfrost: Provide a custom dma_buf implementation
+      drm/panfrost: Expose the selected coherency protocol to the UMD
+      drm/panfrost: Add an ioctl to query BO flags
+      drm/gem: Fix builds with CONFIG_MMU=3Dn
+      drm/panthor: Fix kerneldoc in uAPI header
+
+Chia-I Wu (2):
+      drm/panthor: fix queue_reset_timeout_locked
+      drm/panthor: fix for dma-fence safe access rules
+
+Christian K=F6nig (4):
+      dma-buf: replace "#if" with just "if"
+      dma-buf: improve sg_table debugging hack v4
+      dma-buf: enable DMABUF_DEBUG by default on DEBUG kernels
+      dma-buf/selftests: drop the mock_wait implementation
+
+Dan Carpenter (2):
+      drm/plane: Fix IS_ERR() vs NULL bug drm_plane_create_color_pipeline_p=
+roperty()
+      drm/panthor: unlock on error in panthor_ioctl_bo_create()
+
+David Heidelberg (7):
+      dt-bindings: panel: s6e3fc2x01: Sort and remove unnecessary properties
+      dt-bindings: panel: sw43408: adjust to reflect the DDIC and panel used
+      drm/panel: sw43408: Introduce LH546WF1-ED01 panel compatible
+      drm/panel: sw43408: Separate reset sequence into own function
+      drm/panel: sw43408: Remove manual invocation of unprepare at remove
+      drm/panel: sw43408: Switch to devm_regulator_bulk_get_const
+      drm/panel: sw43408: Improve wording when reset-gpios aren't available
+
+Eslam Khafagy (1):
+      drm: pl111: replace dev_* print functions with drm_* variants
+
+Faith Ekstrand (4):
+      drm/panthor: Bump the driver version to 1.7
+      drm/panfrost: Add a PANFROST_SYNC_BO ioctl
+      drm/panfrost: Add flag to map GEM object Write-Back Cacheable
+      drm/panfrost: Bump the driver version to 1.6
+
+Heiko Stuebner (2):
+      dt-bindings: display: rockchip: dw-hdmi: Add compatible for RK3368 HD=
+MI
+      drm/rockchip: hdmi: add RK3368 controller variant
+
+Iker Pedrosa (3):
+      dt-bindings: display: sitronix,st7920: Add DT schema
+      drm: Add driver for Sitronix ST7920 LCD displays
+      MAINTAINERS: Add entry for Sitronix ST7920 driver
+
+Jani Nikula (11):
+      drm/hyperv: move Kconfig under driver directory
+      drm/vgem: move Kconfig under driver directory
+      drm/Kconfig: move generic Kconfig options above drivers
+      drm/Kconfig: sort driver Kconfig source list
+      drm/vblank: remove drm_wait_one_vblank() completely
+      drm/vblank: remove superfluous pipe check
+      drm/vblank: add return value to drm_crtc_wait_one_vblank()
+      drm/vblank: limit vblank variable scope to atomic
+      drm/vblank: use the drm_vblank_crtc() and drm_crtc_vblank_crtc() help=
+ers more
+      drm/vblank: prefer drm_crtc_vblank_crtc() over drm_vblank_crtc()
+      drm/gem: fix build for mm_get_unmapped_area() call after backmerge
+
+Karol Wachowski (1):
+      accel/ivpu: Validate scatter-gather size against buffer size
+
+Karunika Choo (1):
+      drm/panthor: Fix NULL pointer dereference on panthor_fw_unplug
+
+Lad Prabhakar (3):
+      dt-bindings: display: bridge: renesas,dsi: Document RZ/V2H(P) and RZ/=
+V2N
+      drm: renesas: rz-du: mipi_dsi: Add LPCLK clock support
+      drm: renesas: rz-du: mipi_dsi: Add support for RZ/V2H(P) SoC
+
+Langyan Ye (1):
+      drm/panel-edp: Add CSW MNE007QB3-1
+
+Lizhi Hou (10):
+      accel/amdxdna: Poll MPNPU_PWAITMODE after requesting firmware suspend
+      accel/amdxdna: Fix tail-pointer polling in mailbox_get_msg()
+      accel/amdxdna: Fix race condition when checking rpm_on
+      accel/amdxdna: Fix cu_idx being cleared by memset() during command se=
+tup
+      accel/amdxdna: Fix race where send ring appears full due to delayed h=
+ead update
+      accel/amdxdna: Fix potential NULL pointer dereference in context clea=
+nup
+      accel/amdxdna: Remove amdxdna_flush()
+      accel/amdxdna: Remove NPU2 support
+      accel/amdxdna: Enable temporal sharing only mode
+      accel/amdxdna: Enable hardware context priority
+
+Lo=EFc Molinari (13):
+      drm/shmem-helper: Simplify page offset calculation in fault handler
+      drm/shmem-helper: Map huge pages in fault handler
+      drm/gem: Introduce drm_gem_get_unmapped_area() fop
+      drm/gem: Add huge tmpfs mountpoint helpers
+      drm/i915: Use huge tmpfs mountpoint helpers
+      drm/v3d: Use huge tmpfs mountpoint helpers
+      drm/gem: Get rid of *_with_mnt helpers
+      drm/panthor: Introduce huge tmpfs mountpoint option
+      drm/panfrost: Introduce huge tmpfs mountpoint option
+      Documentation/gpu/drm-mm: Add THP paragraph to GEM mapping section
+      drm/panthor: Add flag to map GEM object Write-Back Cacheable
+      drm/i915: Fix BO alloc flags
+      drm/gem: Fix kerneldoc warnings
+
+Luca Ceresoli (2):
+      drm/bridge: add drm_bridge_unplug() and drm_bridge_enter/exit()
+      drm/bridge: ti-sn65dsi83: protect device resources on unplug
+
+Marcus Folkesson (7):
+      drm/sitronix/st7571-i2c: rename 'struct drm_device' in st7571_device
+      drm/sitronix/st7571-i2c: add 'struct device' to st7571_device
+      drm/sitronix/st7571-i2c: move common structures to st7571.h
+      drm/sitronix/st7571-i2c: make probe independent of hw interface
+      drm/sitronix/st7571: split up the driver into a common and an i2c part
+      drm/sitronix/st7571-spi: add support for SPI interface
+      dt-bindings: display: sitronix,st7571: add example for SPI
+
+Matthew Brost (2):
+      drm/sched: Add several job helpers to avoid drivers touching schedule=
+r state
+      drm/sched: Add pending job list iterator
+
+Maxime Ripard (2):
+      drm/atomic: Add dev pointer to drm_private_obj
+      Merge drm/drm-next into drm-misc-next
+
+Philipp Stanner (9):
+      drm/todo: Add section with task for GPU scheduler
+      drm/todo: Add entry for unlocked drm/sched rq readers
+      dma-buf/dma-fence: Add dma_fence_test_signaled_flag()
+      dma-buf/dma-fence: Add dma_fence_check_and_signal()
+      amd/amdkfd: Use dma_fence_check_and_signal()
+      drm/xe: Use dma_fence_check_and_signal_locked()
+      dma-buf: Don't misuse dma_fence_signal()
+      drm/ttm: Use dma_fence_check_and_signal()
+      dma-buf/dma-fence: Remove return code of signaling-functions
+
+Renjun Wang (2):
+      dt-bindings: display: simple: Add HannStar HSD156JUW2
+      drm/panel: simple: Add HannStar HSD156JUW2
+
+Suraj Kandpal (1):
+      drm/display/dp_mst: Add protection against 0 vcpi
+
+Svyatoslav Ryhel (1):
+      dt-bindings: display: panel: document Samsung LTL106HL02 MIPI DSI pan=
+el
+
+Thomas Zimmermann (9):
+      drm/ast: Move cursor format conversion into helper function
+      drm/ast: Support cursor buffers objects in I/O memory
+      drm/ast: Wrap cursor framebuffer access in drm_gem_fb_begin/end_cpu_a=
+ccess()
+      drm/amdgpu: Do not implement mode_set_base_atomic callback
+      drm/nouveau: Do not implement mode_set_base_atomic callback
+      drm/radeon: Do not implement mode_set_base_atomic callback
+      drm/fbdev-helper: Remove drm_fb_helper_debug_enter/_leave()
+      fbcon: Remove fb_debug_enter/_leave from struct fb_ops
+      drm/vblank: Unexport drm_wait_one_vblank()
+
+Tvrtko Ursulin (6):
+      drm/panic: Report invalid or unsupported panic modes
+      drm/ttm: Make ttm_bo_init_validate safe against ttm_operation_ctx re-=
+ordering
+      drm/ttm: Resource cannot be NULL in ttm_resource_intersects
+      drm/ttm: Tidy ttm_operation_ctx initialization
+      drm/ttm: Tidy usage of local variables a little bit
+      drm/syncobj: Convert syncobj idr to xarray
+
+Val Packett (1):
+      drm/panel-edp: Add AUO B140QAX01.H panel
+
+gaoxiang17 (1):
+      dma-buf: add some tracepoints to debug.
+
+ .../bindings/display/bridge/renesas,dsi.yaml       |  120 ++-
+ .../bindings/display/panel/lg,sw43408.yaml         |   13 +-
+ .../bindings/display/panel/panel-simple-dsi.yaml   |    2 +
+ .../bindings/display/panel/panel-simple.yaml       |    2 +
+ .../bindings/display/panel/samsung,s6e3fc2x01.yaml |   20 +-
+ .../display/rockchip/rockchip,dw-hdmi.yaml         |    1 +
+ .../bindings/display/sitronix,st7571.yaml          |   25 +
+ .../bindings/display/sitronix,st7920.yaml          |   58 ++
+ Documentation/gpu/drm-mm.rst                       |   29 +-
+ Documentation/gpu/todo.rst                         |   45 +
+ Documentation/process/debugging/kgdb.rst           |   28 -
+ MAINTAINERS                                        |   10 +
+ drivers/accel/amdxdna/Makefile                     |    1 -
+ drivers/accel/amdxdna/aie2_ctx.c                   |   18 +-
+ drivers/accel/amdxdna/aie2_message.c               |   92 +-
+ drivers/accel/amdxdna/aie2_msg_priv.h              |    8 +-
+ drivers/accel/amdxdna/aie2_pci.c                   |    2 +-
+ drivers/accel/amdxdna/aie2_pci.h                   |    4 +
+ drivers/accel/amdxdna/aie2_pm.c                    |   17 +-
+ drivers/accel/amdxdna/aie2_psp.c                   |   15 +
+ drivers/accel/amdxdna/aie2_smu.c                   |   27 +-
+ drivers/accel/amdxdna/amdxdna_ctx.h                |    1 +
+ drivers/accel/amdxdna/amdxdna_mailbox.c            |   46 +-
+ drivers/accel/amdxdna/amdxdna_pci_drv.c            |   30 +-
+ drivers/accel/amdxdna/amdxdna_pci_drv.h            |    2 -
+ drivers/accel/amdxdna/amdxdna_pm.c                 |   22 +-
+ drivers/accel/amdxdna/npu1_regs.c                  |    2 +
+ drivers/accel/amdxdna/npu2_regs.c                  |  115 ---
+ drivers/accel/amdxdna/npu4_regs.c                  |    3 +
+ drivers/accel/amdxdna/npu5_regs.c                  |    2 +
+ drivers/accel/amdxdna/npu6_regs.c                  |    2 +
+ drivers/accel/ivpu/ivpu_gem.c                      |    2 +-
+ drivers/accel/ivpu/ivpu_mmu_context.c              |   20 +-
+ drivers/accel/ivpu/ivpu_mmu_context.h              |    5 +-
+ drivers/dma-buf/Kconfig                            |    2 +-
+ drivers/dma-buf/dma-buf.c                          |  128 ++-
+ drivers/dma-buf/dma-fence.c                        |  100 +-
+ drivers/dma-buf/st-dma-fence.c                     |   55 +-
+ drivers/gpu/drm/Kconfig                            |  213 ++---
+ drivers/gpu/drm/amd/amdgpu/dce_v10_0.c             |   35 +-
+ drivers/gpu/drm/amd/amdgpu/dce_v6_0.c              |   35 +-
+ drivers/gpu/drm/amd/amdgpu/dce_v8_0.c              |   35 +-
+ drivers/gpu/drm/amd/amdkfd/kfd_process.c           |    6 +-
+ drivers/gpu/drm/ast/ast_cursor.c                   |   83 +-
+ drivers/gpu/drm/bridge/ti-sn65dsi83.c              |   86 +-
+ drivers/gpu/drm/display/drm_dp_mst_topology.c      |    3 +-
+ drivers/gpu/drm/drm_atomic.c                       |    1 +
+ drivers/gpu/drm/drm_bridge.c                       |   62 ++
+ drivers/gpu/drm/drm_fb_helper.c                    |  108 ---
+ drivers/gpu/drm/drm_gem.c                          |  203 +++-
+ drivers/gpu/drm/drm_gem_shmem_helper.c             |   86 +-
+ drivers/gpu/drm/drm_panic.c                        |   77 +-
+ drivers/gpu/drm/drm_plane.c                        |    4 +-
+ drivers/gpu/drm/drm_syncobj.c                      |   65 +-
+ drivers/gpu/drm/drm_vblank.c                       |   52 +-
+ drivers/gpu/drm/hyperv/Kconfig                     |   14 +
+ drivers/gpu/drm/i915/Makefile                      |    3 +-
+ drivers/gpu/drm/i915/gem/i915_gem_object_types.h   |   10 +-
+ drivers/gpu/drm/i915/gem/i915_gem_shmem.c          |   58 +-
+ drivers/gpu/drm/i915/gem/i915_gemfs.c              |   71 --
+ drivers/gpu/drm/i915/gem/i915_gemfs.h              |   14 -
+ drivers/gpu/drm/i915/gem/selftests/huge_pages.c    |   15 +-
+ drivers/gpu/drm/i915/i915_drv.h                    |    5 -
+ drivers/gpu/drm/nouveau/dispnv04/crtc.c            |   24 +-
+ drivers/gpu/drm/panel/Kconfig                      |   13 +
+ drivers/gpu/drm/panel/Makefile                     |    1 +
+ drivers/gpu/drm/panel/panel-edp.c                  |    3 +
+ drivers/gpu/drm/panel/panel-lg-sw43408.c           |   64 +-
+ drivers/gpu/drm/panel/panel-orisetech-otm8009a.c   |  175 ++--
+ drivers/gpu/drm/panel/panel-samsung-ltl106hl02.c   |  179 ++++
+ drivers/gpu/drm/panel/panel-simple.c               |   28 +
+ drivers/gpu/drm/panfrost/panfrost_device.c         |    3 +
+ drivers/gpu/drm/panfrost/panfrost_device.h         |    1 +
+ drivers/gpu/drm/panfrost/panfrost_drv.c            |  107 ++-
+ drivers/gpu/drm/panfrost/panfrost_drv.h            |    9 +
+ drivers/gpu/drm/panfrost/panfrost_gem.c            |  257 +++++
+ drivers/gpu/drm/panfrost/panfrost_gem.h            |   12 +
+ drivers/gpu/drm/panfrost/panfrost_gpu.c            |   26 +-
+ drivers/gpu/drm/panfrost/panfrost_regs.h           |   10 +-
+ drivers/gpu/drm/panthor/panthor_device.c           |   13 +-
+ drivers/gpu/drm/panthor/panthor_drv.c              |   89 +-
+ drivers/gpu/drm/panthor/panthor_drv.h              |    9 +
+ drivers/gpu/drm/panthor/panthor_fw.c               |    8 +-
+ drivers/gpu/drm/panthor/panthor_gem.c              |  258 ++++-
+ drivers/gpu/drm/panthor/panthor_gem.h              |    8 +
+ drivers/gpu/drm/panthor/panthor_gpu.c              |   21 +-
+ drivers/gpu/drm/panthor/panthor_mmu.c              |  314 +++---
+ drivers/gpu/drm/panthor/panthor_sched.c            |  256 ++---
+ drivers/gpu/drm/pl111/pl111_display.c              |    4 +-
+ drivers/gpu/drm/pl111/pl111_drv.c                  |   29 +-
+ drivers/gpu/drm/pl111/pl111_nomadik.c              |    4 +-
+ drivers/gpu/drm/pl111/pl111_nomadik.h              |    4 +-
+ drivers/gpu/drm/pl111/pl111_versatile.c            |   53 +-
+ drivers/gpu/drm/pl111/pl111_versatile.h            |    2 +-
+ drivers/gpu/drm/radeon/atombios_crtc.c             |   74 +-
+ drivers/gpu/drm/radeon/radeon_legacy_crtc.c        |   23 +-
+ drivers/gpu/drm/radeon/radeon_mode.h               |   10 +-
+ drivers/gpu/drm/renesas/rz-du/rzg2l_mipi_dsi.c     |  453 +++++++++
+ .../gpu/drm/renesas/rz-du/rzg2l_mipi_dsi_regs.h    |   34 +
+ drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c        |   16 +
+ drivers/gpu/drm/scheduler/sched_main.c             |   40 +-
+ drivers/gpu/drm/sitronix/Kconfig                   |   48 +-
+ drivers/gpu/drm/sitronix/Makefile                  |    3 +
+ drivers/gpu/drm/sitronix/st7571-i2c.c              | 1003 +---------------=
+----
+ drivers/gpu/drm/sitronix/st7571-spi.c              |   76 ++
+ drivers/gpu/drm/sitronix/st7571.c                  |  918 ++++++++++++++++=
+++
+ drivers/gpu/drm/sitronix/st7571.h                  |   91 ++
+ drivers/gpu/drm/sitronix/st7920.c                  |  867 +++++++++++++++++
+ drivers/gpu/drm/ttm/tests/ttm_bo_validate_test.c   |    2 +-
+ drivers/gpu/drm/ttm/ttm_bo.c                       |   64 +-
+ drivers/gpu/drm/ttm/ttm_bo_util.c                  |   57 +-
+ drivers/gpu/drm/ttm/ttm_bo_vm.c                    |   12 +-
+ drivers/gpu/drm/ttm/ttm_device.c                   |    5 +-
+ drivers/gpu/drm/ttm/ttm_pool.c                     |   26 +-
+ drivers/gpu/drm/ttm/ttm_resource.c                 |   14 +-
+ drivers/gpu/drm/ttm/ttm_tt.c                       |    2 +-
+ drivers/gpu/drm/v3d/Makefile                       |    3 +-
+ drivers/gpu/drm/v3d/v3d_bo.c                       |    6 +-
+ drivers/gpu/drm/v3d/v3d_drv.c                      |    2 +-
+ drivers/gpu/drm/v3d/v3d_drv.h                      |   11 +-
+ drivers/gpu/drm/v3d/v3d_gem.c                      |   21 +-
+ drivers/gpu/drm/v3d/v3d_gemfs.c                    |   62 --
+ drivers/gpu/drm/vgem/Kconfig                       |    9 +
+ drivers/gpu/drm/xe/xe_hw_fence.c                   |    4 +-
+ drivers/video/fbdev/core/fbcon.c                   |   24 -
+ drivers/video/fbdev/core/fbcon.h                   |    1 -
+ include/drm/drm_atomic.h                           |    5 +
+ include/drm/drm_bridge.h                           |   12 +
+ include/drm/drm_device.h                           |   15 +
+ include/drm/drm_fb_helper.h                        |   21 -
+ include/drm/drm_file.h                             |    7 +-
+ include/drm/drm_gem.h                              |   45 +-
+ include/drm/drm_gem_shmem_helper.h                 |    3 -
+ include/drm/drm_modeset_helper_vtables.h           |   23 -
+ include/drm/drm_vblank.h                           |    3 +-
+ include/drm/gpu_scheduler.h                        |   52 +
+ include/linux/dma-fence.h                          |   35 +-
+ include/linux/fb.h                                 |    4 -
+ include/trace/events/dma_buf.h                     |  157 +++
+ include/uapi/drm/amdxdna_accel.h                   |    8 +
+ include/uapi/drm/panfrost_drm.h                    |   76 +-
+ include/uapi/drm/panthor_drm.h                     |  157 ++-
+ 142 files changed, 6078 insertions(+), 2928 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/sitronix,st79=
+20.yaml
+ delete mode 100644 drivers/accel/amdxdna/npu2_regs.c
+ create mode 100644 drivers/gpu/drm/hyperv/Kconfig
+ delete mode 100644 drivers/gpu/drm/i915/gem/i915_gemfs.c
+ delete mode 100644 drivers/gpu/drm/i915/gem/i915_gemfs.h
+ create mode 100644 drivers/gpu/drm/panel/panel-samsung-ltl106hl02.c
+ create mode 100644 drivers/gpu/drm/panfrost/panfrost_drv.h
+ create mode 100644 drivers/gpu/drm/panthor/panthor_drv.h
+ create mode 100644 drivers/gpu/drm/sitronix/st7571-spi.c
+ create mode 100644 drivers/gpu/drm/sitronix/st7571.c
+ create mode 100644 drivers/gpu/drm/sitronix/st7571.h
+ create mode 100644 drivers/gpu/drm/sitronix/st7920.c
+ delete mode 100644 drivers/gpu/drm/v3d/v3d_gemfs.c
+ create mode 100644 drivers/gpu/drm/vgem/Kconfig
+ create mode 100644 include/trace/events/dma_buf.h
+
+--mlkpzx4zkpvmtckn
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCaUUQfAAKCRAnX84Zoj2+
+djWXAX4+0/O9YzAabAtWchIt+dCw2ZkYTHeI/wy4x03deEoAOTQg88jpt52iJfCY
+7XxuU5YBf0DE09iTu+reSxXxOt2kR6rw6YU6wTJxDeZIPydxQG8eIBIpok3kovpm
+/ahpLdiaAw==
+=Pp5K
+-----END PGP SIGNATURE-----
+
+--mlkpzx4zkpvmtckn--
+
