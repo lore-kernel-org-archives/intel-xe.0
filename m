@@ -4,50 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9BEE5E6689C
-	for <intel-xe@archiver.kernel.org>; Fri, 19 Dec 2025 21:12:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A0A7AE66892
+	for <intel-xe@archiver.kernel.org>; Fri, 19 Dec 2025 21:17:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 572CF10F0C9;
-	Fri, 19 Dec 2025 21:12:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 56F3510E036;
+	Fri, 19 Dec 2025 21:17:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XRo2ZGg/";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bL8ylJrL";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3E96E10F0C3
- for <intel-xe@lists.freedesktop.org>; Fri, 19 Dec 2025 21:12:07 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1BAEC10E036
+ for <intel-xe@lists.freedesktop.org>; Fri, 19 Dec 2025 21:17:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1766178727; x=1797714727;
- h=from:to:subject:date:message-id:mime-version:
+ t=1766179030; x=1797715030;
+ h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=ZNIJwOvZganhd6mQubG2W/HJc37VDT5IPZGSDZGdtyA=;
- b=XRo2ZGg/UgHE0ypYZfIT98z5Sh3KjhVLqM+its+Ftls8Frk+jJJS0r8o
- Pm9+iRYzGIU2YRt0WGLq4e5DsHvKxJA8VHmt/Jn5z2bSPjp8iTrlOlLIl
- sSrPU3pY5ROpwhcecHU0N1yojrEjb7Xw1Vk2v5aHAL1SMJHh44rqT2lsb
- BQrPZsraTjztZFysUDK57JbLExfxKEhglsXz5rW2/B2Mp6oJGnYIdU4Bk
- EBoT/ThsbrTNZs3uycI80/3rqnbyqEKZZ9WvLkZDLt4NvMoiS/htbHU0V
- M9taCSRE4+zP5qC9uO57q8kB1/Chk+qj9aTrKIB5wv7J9U8jE3kLyn2i4 g==;
-X-CSE-ConnectionGUID: y7hhupptRq6idL+GMqKYtQ==
-X-CSE-MsgGUID: ziIaezIfT2GenSWNwXT8pA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11647"; a="78460619"
-X-IronPort-AV: E=Sophos;i="6.21,162,1763452800"; d="scan'208";a="78460619"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Dec 2025 13:12:06 -0800
-X-CSE-ConnectionGUID: Sfyv2C8dQ+GKfafFCpy56g==
-X-CSE-MsgGUID: grOpAU0iSqiKPktcyd8sXA==
+ bh=IP6ObKd/7ZmnOt1JFaoOttolvWHiwIctku5jkkrQnUw=;
+ b=bL8ylJrLMM+6OVFTINcTk09iCYhLT2b2O+DL+jxqAM1wHWGQlFlpkus0
+ C8xA/oUQKu4q807dUKVZMKW0EmXOlkirgnrUXaH9iFMwUERjcNk0swg2S
+ CVR7Yu7+UVUozuZAk3FOdbBIqzn4NG2ddRz2qVsq0ZxSO35Nl+gPMgSKd
+ 1cMMtb/I3YU2R9LkPXc3sec/1E/kmZxhlnnpPUs12j7unHpUgpAKqwsvO
+ j+6GeYmHkUMFAEh0o7n93ZjwBMaHh3H5SxXFw1alX/J8EvD/zJ2VDaca6
+ mCLYkLKLucf6VdI1M9V5+VZs2tZdNP+7OFlITED7oCL1ZH2zVrie7d9kf Q==;
+X-CSE-ConnectionGUID: lIH0uUI1QFe5VrO8rQUyTA==
+X-CSE-MsgGUID: LaTICgkGQQyDc0SgckXp/Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11647"; a="68036833"
+X-IronPort-AV: E=Sophos;i="6.21,162,1763452800"; d="scan'208";a="68036833"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Dec 2025 13:17:09 -0800
+X-CSE-ConnectionGUID: QIlJBsfjSqWtcVi3gLP43w==
+X-CSE-MsgGUID: NoXcn9b1TriTPnGJfhURBg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,162,1763452800"; d="scan'208";a="204030369"
-Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Dec 2025 13:12:07 -0800
-From: Matthew Brost <matthew.brost@intel.com>
+X-IronPort-AV: E=Sophos;i="6.21,162,1763452800"; d="scan'208";a="199447605"
+Received: from mdroper-desk1.fm.intel.com ([10.1.39.133])
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Dec 2025 13:17:07 -0800
+From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH 0/3] Migrate layer improvements 
-Date: Fri, 19 Dec 2025 13:11:58 -0800
-Message-Id: <20251219211201.4107410-1-matthew.brost@intel.com>
-X-Mailer: git-send-email 2.34.1
+Cc: matthew.d.roper@intel.com
+Subject: [CI 0/2] drm/xe: Add xe_pci_rebar
+Date: Fri, 19 Dec 2025 13:16:47 -0800
+Message-ID: <20251219211650.1908961-4-matthew.d.roper@intel.com>
+X-Mailer: git-send-email 2.52.0
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -63,19 +65,27 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We have occasionally seen the migrate engine take a page fault. Add some
-debug logs and assertions to ensure we know what we are doing.
+Quick re-base and CI resubmission of Lucas' series from [1].  The
+prerequisite PCI changes for v6.19 are now present in the DRM trees via
+the recent backmerge, so that should unblock landing of the Xe rebar
+patches.
 
-Matt
+[1] https://lore.kernel.org/all/20251117-xe-pci-rebar-2-part-2-v2-0-9f3dac7dec36@intel.com/
 
-Matthew Brost (3):
-  drm/xe: Show migrate VM layout
-  drm/xe: Assert VRAM address is valid in migrate layer
-  drm/xe: Assert actual size of VRAM mapped in migrate VM is aligned
+Lucas De Marchi (2):
+  drm/xe: Move rebar to its own file
+  drm/xe: Improve rebar log messages
 
- drivers/gpu/drm/xe/xe_migrate.c | 28 +++++++++++++++++++++++++++-
- 1 file changed, 27 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/Makefile       |   1 +
+ drivers/gpu/drm/xe/xe_pci.c       |   3 +-
+ drivers/gpu/drm/xe/xe_pci_rebar.c | 106 ++++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_pci_rebar.h |  13 ++++
+ drivers/gpu/drm/xe/xe_vram.c      |  91 -------------------------
+ drivers/gpu/drm/xe/xe_vram.h      |   1 -
+ 6 files changed, 122 insertions(+), 93 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/xe_pci_rebar.c
+ create mode 100644 drivers/gpu/drm/xe/xe_pci_rebar.h
 
 -- 
-2.34.1
+2.52.0
 
