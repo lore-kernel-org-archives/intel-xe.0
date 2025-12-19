@@ -4,55 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AF37CD7494F
-	for <intel-xe@archiver.kernel.org>; Fri, 19 Dec 2025 03:48:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8CB70D74951
+	for <intel-xe@archiver.kernel.org>; Fri, 19 Dec 2025 03:57:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 633A010EC75;
-	Fri, 19 Dec 2025 03:48:53 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ggcF4pz3";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0E49B10EC9A;
- Fri, 19 Dec 2025 03:48:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1766116132; x=1797652132;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=U1xV13OvDLoeD8ixUwH9J0spFRoHTo2FApIH939pPrE=;
- b=ggcF4pz3vZjSrQaR76BQvMHQxmjFzGkldz3UTdBvyBMEptJseXyfVZlB
- LD69dN8QzoWYd+HDxpLjF6sYtodMIG/Tau6RBg/b8awFUoVn0bT9004vB
- 5ekMUCYD3xwZ4nMcA+R9eTlVq230t4nm4E+X0XghpOw7W4H/RkjHcN6Dt
- La8uoAcP9yrg2I2L3vj6GXucHXYMM0nfbvtE0jGafKGGcfX5xgMsaNeTT
- qgCttsD5toTK3k1NbgLPG/2egZc7Ynqr2SMVSDNhS5MTPahPJunCcpB+J
- EoGiNhn+ELw+Rdb+/a2GrKFluEL0MZ1HPvK03Di4P1WoHDAx/NBQFwrG4 Q==;
-X-CSE-ConnectionGUID: KR9L4wKeTSO7m4U/+/n8DA==
-X-CSE-MsgGUID: 4AhOn1CUTzmBeSl2LjOsfg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11646"; a="55654426"
-X-IronPort-AV: E=Sophos;i="6.21,159,1763452800"; d="scan'208";a="55654426"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Dec 2025 19:48:52 -0800
-X-CSE-ConnectionGUID: NhM8x1AnTLCdoxCUtBXUYg==
-X-CSE-MsgGUID: omEFlunbQ7iiG7uZwhJBqQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,159,1763452800"; d="scan'208";a="203150808"
-Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
- by fmviesa005.fm.intel.com with ESMTP; 18 Dec 2025 19:48:50 -0800
-From: Suraj Kandpal <suraj.kandpal@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Cc: ankit.k.nautiyal@intel.com, imre.deak@intel.com, mika.kahola@intel.com,
- Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH v2] drm/i915/cx0: Use the consolidated HDMI tables
-Date: Fri, 19 Dec 2025 09:18:46 +0530
-Message-Id: <20251219034846.1434478-1-suraj.kandpal@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20251216082732.1384018-1-suraj.kandpal@intel.com>
-References: <20251216082732.1384018-1-suraj.kandpal@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 31FA110E151;
+	Fri, 19 Dec 2025 03:57:05 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1D8BE10E151;
+ Fri, 19 Dec 2025 03:57:04 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3364344615577373278=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Print_GuC_queue_s?=
+ =?utf-8?q?ubmission_state_on_engine_reset?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Brost" <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 19 Dec 2025 03:57:04 -0000
+Message-ID: <176611662410.104482.7403749384130017156@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20251218224546.4057424-1-matthew.brost@intel.com>
+In-Reply-To: <20251218224546.4057424-1-matthew.brost@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,52 +36,125 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Use the consolidated HDMI tables before we try to compute them via
-algorithm. The reason is that these are the ideal values and even
-though the values calculated via the HDMI algorithm are correct but
-not always ideal. This is done for C20 and already exists for C10.
+--===============3364344615577373278==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
----
-v1 -> v2: 
-- Update commit message (Ankit)
-- Change TODO comment line (Ankit)
+== Series Details ==
 
- drivers/gpu/drm/i915/display/intel_cx0_phy.c | 13 ++++++++-----
- 1 file changed, 8 insertions(+), 5 deletions(-)
+Series: drm/xe: Print GuC queue submission state on engine reset
+URL   : https://patchwork.freedesktop.org/series/159253/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-index f6d69627154e..f956a117f1f6 100644
---- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-@@ -2671,15 +2671,18 @@ static int intel_c20pll_calc_state(const struct intel_crtc_state *crtc_state,
- 	hw_state->cx0pll.use_c10 = false;
- 	hw_state->cx0pll.lane_count = crtc_state->lane_count;
- 
--	/* try computed C20 HDMI tables before using consolidated tables */
--	if (!is_dp)
--		/* TODO: Update SSC state for HDMI as well */
--		err = intel_c20_compute_hdmi_tmds_pll(crtc_state, &hw_state->cx0pll.c20);
--
-+	/*
-+	 * Try the ideal C20 HDMI tables before trying to compute them since the values
-+	 * calculated even though would be correct but not ideal
-+	 */
- 	if (err)
- 		err = intel_c20pll_calc_state_from_table(crtc_state, encoder,
- 							 &hw_state->cx0pll);
- 
-+	/* TODO: Update SSC state for HDMI as well */
-+	if (!is_dp && err)
-+		err = intel_c20_compute_hdmi_tmds_pll(crtc_state, &hw_state->cx0pll.c20);
-+
- 	if (err)
- 		return err;
- 
--- 
-2.34.1
+== Summary ==
 
+CI Bug Log - changes from xe-4272-93db616df689a410d961e7c614c57e61d17a29a0_BAT -> xe-pw-159253v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (12 -> 12)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-159253v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_module_load@load:
+    - bat-bmg-1:          [PASS][1] -> [ABORT][2] ([Intel XE#6818])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4272-93db616df689a410d961e7c614c57e61d17a29a0/bat-bmg-1/igt@xe_module_load@load.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159253v1/bat-bmg-1/igt@xe_module_load@load.html
+
+  
+  [Intel XE#6818]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6818
+
+
+Build changes
+-------------
+
+  * Linux: xe-4272-93db616df689a410d961e7c614c57e61d17a29a0 -> xe-pw-159253v1
+
+  IGT_8674: f38f4d8e9c65aff45ac807e646d06e38bc3193a2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-4272-93db616df689a410d961e7c614c57e61d17a29a0: 93db616df689a410d961e7c614c57e61d17a29a0
+  xe-pw-159253v1: 159253v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159253v1/index.html
+
+--===============3364344615577373278==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Print GuC queue submission state on engine reset</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/159253/">https://patchwork.freedesktop.org/series/159253/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159253v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159253v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4272-93db616df689a410d961e7c614c57e61d17a29a0_BAT -&gt; xe-pw-159253v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (12 -&gt; 12)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-159253v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@xe_module_load@load:<ul>
+<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4272-93db616df689a410d961e7c614c57e61d17a29a0/bat-bmg-1/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159253v1/bat-bmg-1/igt@xe_module_load@load.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6818">Intel XE#6818</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4272-93db616df689a410d961e7c614c57e61d17a29a0 -&gt; xe-pw-159253v1</li>
+</ul>
+<p>IGT_8674: f38f4d8e9c65aff45ac807e646d06e38bc3193a2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-4272-93db616df689a410d961e7c614c57e61d17a29a0: 93db616df689a410d961e7c614c57e61d17a29a0<br />
+  xe-pw-159253v1: 159253v1</p>
+
+</body>
+</html>
+
+--===============3364344615577373278==--
