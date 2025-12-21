@@ -4,189 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 53A81D68BD5
-	for <intel-xe@archiver.kernel.org>; Sun, 21 Dec 2025 10:49:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DAEAFE66886
+	for <intel-xe@archiver.kernel.org>; Sun, 21 Dec 2025 18:52:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7B96410E153;
-	Sun, 21 Dec 2025 10:49:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 76ED910E048;
+	Sun, 21 Dec 2025 18:52:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nzs/6W57";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PYSBZWaO";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7436B10E0AE
- for <intel-xe@lists.freedesktop.org>; Sun, 21 Dec 2025 10:49:08 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5B39F10E048
+ for <intel-xe@lists.freedesktop.org>; Sun, 21 Dec 2025 18:52:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1766314148; x=1797850148;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=d+p8gy+GQFUn62VPHQxmRCgdl41YV/8DFP0Ua0Dbk4k=;
- b=nzs/6W57dcv2GRiKQuRmYwmuW+C2bXHnSZBM95aA55BFFh+zipSJ3Zd3
- QEscK+JX+yTQ4HbasxO2GeRimo1rFF6yAD6ZtOdYi12bo0aaJyw7XL8dJ
- nXMzaNdc4ACEv+VGdKdWQ/0Cgo86F6VwV3RNddXc6FzWTUm7PxLE+SDI0
- XwnctCgskkuQJUY8EfPt6JmmDXX+2/l1zGugWUjNyvWTXrqzEztZoFiy/
- 12QRRpqL/ROymGJTJwTUO+8IGGq2iyalCM+wdZ1H9cNqu1hDCv/mF0T+W
- SZTkaw5kC00yw4sStCD6u+Mc8C8JMbGh905Q4qASG6gyT0QLxKl9vMMPu w==;
-X-CSE-ConnectionGUID: zU7bJnvPQ+uFHhqqz5uzRg==
-X-CSE-MsgGUID: kQKmeYdhTOCJ2+Uk2k8/TA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11648"; a="93677340"
-X-IronPort-AV: E=Sophos;i="6.21,164,1763452800"; d="scan'208";a="93677340"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Dec 2025 02:49:08 -0800
-X-CSE-ConnectionGUID: UAEl0Oz4RxOmpS30rHlPIQ==
-X-CSE-MsgGUID: mcNeYlheSWWzNJWJxbj5Tw==
+ t=1766343138; x=1797879138;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=oQvVvyzBY6i3uw0rP7/hvYOz6RDa0GGMKy89IkUnM0k=;
+ b=PYSBZWaOHNS0QyCbArH8MlpIeYiGikP+Zs1FRW+2cApwKBPfe2OKZK5D
+ g2XZ66+7Bd9va6F8yW56s5QSRJM/NK+E4tQVnWmnnfSHF0oTSbFpfUAhB
+ U+TEWK4V4fQpFHNtGeV2WHxTnnh2ZF+nSnLQEPLdWrm7w0C464lrnJYW3
+ +13TihAM51VrtNp5YloErCmZhDc98PRB2wTxXVBTZtu5cA+0PwDoiNwco
+ e5+YKx6gXN+kP4Jpxm5oWaP4PjavnC0Yl6dJM1gTjgyQ4L58R69iavry7
+ kK9cZVszN4kbmduiOGfsZxDYc0GnkBoGH20sEGR8u5W/fm21nNURTpp50 Q==;
+X-CSE-ConnectionGUID: tBmXxobLTbaFox2NgcIZxg==
+X-CSE-MsgGUID: 5gZh6YYfT3qkJ5AA6mDJ2Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11649"; a="68369537"
+X-IronPort-AV: E=Sophos;i="6.21,166,1763452800"; d="scan'208";a="68369537"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Dec 2025 10:52:17 -0800
+X-CSE-ConnectionGUID: 67Mu8VseT2SFlQl3+PHHSw==
+X-CSE-MsgGUID: cW5ZRhmXTP2Ls5z0Lqu0Kw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,164,1763452800"; d="scan'208";a="199185503"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by fmviesa006.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Dec 2025 02:49:07 -0800
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Sun, 21 Dec 2025 02:49:06 -0800
-Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29 via Frontend Transport; Sun, 21 Dec 2025 02:49:06 -0800
-Received: from CO1PR03CU002.outbound.protection.outlook.com (52.101.46.34) by
- edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Sun, 21 Dec 2025 02:49:06 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=VjhjcoREKgvJEZAiSHEDWADD2l37E8Eb5NxlNeoVbF4Qx9Iowlwx644TM4/jXmN3k8uqeo7nwvb5xGfqo6eWzsJSb+SXJpS81kiU5D1heZbqu/TWA0PBc4ESWYtIozHVS2FW8ogsXv2wjPAKrMClZtKf1CZ4A0lyeeX46Zf5l0jxeUKO/MczmyAO3xjuUnydb5c2b2kPr/wyb3jNoRFnGEXarciSaAxr9lO7BJP8iDn7aAOMrvI+PAcT8o/irVou8+uT1Z0bcoYP4seYbULdDcBLOXrcHCM6bcGNtgX5xTEXulHvx+POlaOz/YnpU7lvK31UbumCpQCIjT77b19KRw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=DHh2tw8zMheEn7VWIy8HE2rnRjzZFrfcRSzWFs2ww4k=;
- b=khWOw5257P26Jg1aEqSiR85ii/wKTvoTdJiDD/ylDzsNrkA2/LOFns3pUN78sBav1Xa6sbKKPeWmmzTrKmx3DIUL6ez9sBTxH0XGpyacqRo6Vwy3fln58JP6hzfxzLB/5qfsG/xjcpdfTikfZqoMNobrv2Bj/AmCdiZUe24qlqnTuSKuXrs4aP42pIFdfZXjqWayY2nbPzhsYp+WBaR8LL4BDlGbNVqSJ3Rh6B8THwYu56mhQE8Pn+63IdR36xq7/m7mz/pwBmg6BUtaVNdNkcZf73JgYVUlxmHwfO16vn4Fa6sXP1BElTVaWwOY+fz7l6EdfM5EXJcRaP+zwFeRPw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DS0PR11MB7958.namprd11.prod.outlook.com (2603:10b6:8:f9::19) by
- SJ0PR11MB4846.namprd11.prod.outlook.com (2603:10b6:a03:2d8::24) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9434.11; Sun, 21 Dec
- 2025 10:49:05 +0000
-Received: from DS0PR11MB7958.namprd11.prod.outlook.com
- ([fe80::d3ba:63fc:10be:dfca]) by DS0PR11MB7958.namprd11.prod.outlook.com
- ([fe80::d3ba:63fc:10be:dfca%7]) with mapi id 15.20.9434.009; Sun, 21 Dec 2025
- 10:49:04 +0000
-Message-ID: <18e569c3-188f-43eb-931d-3aa7f449aac6@intel.com>
-Date: Sun, 21 Dec 2025 16:18:56 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/xe: select CONFIGFS_FS dependency
-To: Michal Wajdeczko <michal.wajdeczko@intel.com>, Matt Roper
- <matthew.d.roper@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, <anshuman.gupta@intel.com>
-References: <20251219080513.848072-2-riana.tauro@intel.com>
- <aUV3dk3wUpf7U6tP@intel.com>
- <20251219163238.GN4164497@mdroper-desk1.amr.corp.intel.com>
- <43529e9d-3bd4-44d5-a603-8394a7a0f049@intel.com>
-Content-Language: en-US
-From: Riana Tauro <riana.tauro@intel.com>
-In-Reply-To: <43529e9d-3bd4-44d5-a603-8394a7a0f049@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MA5P287CA0029.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:17a::13) To DS0PR11MB7958.namprd11.prod.outlook.com
- (2603:10b6:8:f9::19)
+X-IronPort-AV: E=Sophos;i="6.21,166,1763452800"; d="scan'208";a="204284896"
+Received: from black.igk.intel.com ([10.91.253.5])
+ by fmviesa004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Dec 2025 10:52:15 -0800
+Date: Sun, 21 Dec 2025 19:52:12 +0100
+From: Raag Jadav <raag.jadav@intel.com>
+To: Karthik Poosa <karthik.poosa@intel.com>
+Cc: intel-xe@lists.freedesktop.org, anshuman.gupta@intel.com,
+ badal.nilawar@intel.com, rodrigo.vivi@intel.com, riana.tauro@intel.com
+Subject: Re: [PATCH v3 4/4] drm/xe/hwmon: Expose individual vram temperature
+Message-ID: <aUhB3E2JyXQDY_kI@black.igk.intel.com>
+References: <20251216114030.226399-1-karthik.poosa@intel.com>
+ <20251216114030.226399-5-karthik.poosa@intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR11MB7958:EE_|SJ0PR11MB4846:EE_
-X-MS-Office365-Filtering-Correlation-Id: b2047312-df47-43c5-bf9e-08de407e8f29
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?U3NEd0lFc0xzYXZaYnBZSjZSakRRQUNMU0dQKzU0UHZkOGloN0FUZ1o0MHpD?=
- =?utf-8?B?WGJYQ1l4bEgvTVprQkNBb1ZrOVgrMkdwNXhSQm9HcCtzVE1PVC84YWpXQXAr?=
- =?utf-8?B?Qm1kLzNuc0hXcEh0NzZtZTQvRURZbmErWUN0RVI1aVJldzQrQ1JZeEt3T1FJ?=
- =?utf-8?B?UHhnNzgxZzVDbi9Zak90L3hVM0crZThqUmVpbU1qeXlMWXk1eWRsY2ZoOHJN?=
- =?utf-8?B?cVpETWpzaHVFSTVqWnM1dDduRTJlRlZCSzFOZUVFelNrdnc3WmdsazBRYVFz?=
- =?utf-8?B?RE1lSFRiMTJnNEhjcWtiMElOVkJPbkNtT2dRSHFJSlU2RWFPa20xbUhSZmhq?=
- =?utf-8?B?bGdmNjRuWWxJdldEVUgzR2pYakEyUjg5eUl1QmQzcDFsdGZvQThUV2pIVVl1?=
- =?utf-8?B?OVdTQkxFWitUWk5JT3NHdVdLMzF2OHZ4MUJ3RkxBUGswY2hodjJuZm5OVWhl?=
- =?utf-8?B?akZPNlNvbnNpd1pDMytCczB3Z1hob3owWll5YkNONmVIVGI2ZHl2UE4wQkc3?=
- =?utf-8?B?Vk92VWE0TkZEcGhFQUFuck9lZGtLQTJtYjIrdHRzNzl3Z2wwZXBCM3JSZXV3?=
- =?utf-8?B?bHN3Q0JEdHFPTmoydGc5QTVZZ1NJVTJlUVZhU29ZL1pRRXJsSURsSU9UdDZW?=
- =?utf-8?B?cE1SenlyZjZKTGN2ZGo0dmxHV2tWTUp3UnNsNDBvRXNzNmQ5ZHFiTHBQbW5D?=
- =?utf-8?B?cnQ4VUk5bGN5bEU0cWZheVZBMG0wanlyZzBuM0FncFhISjNmN3RFekxOUmhH?=
- =?utf-8?B?a0M1em9oNnZKTGtrelRzdThTNGRuY001aTM0QkhqM0xibi9mdFlGUDBUbGhI?=
- =?utf-8?B?bXpIZlhUYkJ6Y1MxOXJhcEpyaG9ZQnZXMmNtZkxkZTY1cWloaGhodHROc0or?=
- =?utf-8?B?Z0ZuU0NSTnl4ZU9mWTR5Zit1VDF5ZkE0MXF6aGltK3dHUGtKYVdYQU82MU9q?=
- =?utf-8?B?YU5LcHNkZzBJZU1yY1daSnlJTDZZQlRUMlQwcDJ1RWtnbWdPakJ1WEwyNmtQ?=
- =?utf-8?B?cnkwMDF4NGhEVWJHWWJnbDQ0Z3FpSnFldUhJbFR1L05BMVhPam5DUFUyZHE2?=
- =?utf-8?B?LytDclRFT0JWc1BVWlNyYld4N2FRNGVVbk9RVlhkb1FLUm01V3c2Y3gzb1Zk?=
- =?utf-8?B?MmcxM2ZreGJGdmZrQ0Z5LzNwMldnUGJjdjlXeVFPalVJVUZOOS85eWJQWUVK?=
- =?utf-8?B?YjlvaWNjTlFaOTY5V3pWRzh0Q1h4bGRqWWp1RWRTaWtZZW8rUTB1SVN1UlFn?=
- =?utf-8?B?bmpjVDlpcWRmMEVRSUg4WllUTFF2RU5kMXp1VHV2VTRYSWVtbEZkbitFNGFL?=
- =?utf-8?B?VTdiSmQraFJzSUduTFBESEExSFFzRWRmZVJMWmZKSjZlTDJZeGNrSGVsZFNP?=
- =?utf-8?B?clFnUEJEakVScVlEaGp4aXEwVitqRmlnN2VSWGkrT3JtLzk2d0g5VFFsK2Q5?=
- =?utf-8?B?bGNsM2NFUXVVOXRyN3VEQXpybXFtWjVNc1BJUmJIN25vUWh1YjJhSzRKYVlL?=
- =?utf-8?B?azJhdFJFUEVVNW95RUFRbm9oVVdhYjh6cVh3QUtOS1l0Q2V6RS9xMlgvSnNi?=
- =?utf-8?B?NjNEM3hlZXZYRWdKWS9GM3BFbW5VbXd5M1ViWndFWjZ2VGNuaDlnZWxDakUx?=
- =?utf-8?B?YzltRzlUUHY0OWRkYkZqQlJrZFBNQzduSU1kdnRaK3hidWRRN1FBZVhIWW9E?=
- =?utf-8?B?b0Y4NUdYamRKSEVCbWVXcmJUVGVCMURjYlg0dUF5V0Nxa2xVTVNvZXF4b25K?=
- =?utf-8?B?OGJxa0hocHQ0aWZtcWlpTkRqaVpEVnpld3FUbHFUL0RYdFN0L1RCem5lWndm?=
- =?utf-8?B?Wm9FZjJLQ056WC9iRkdCU0JGUGlMTS9ZdDVxQmZnc29SaGNZdTlhTGpLSHVK?=
- =?utf-8?B?cXpmUUFpZXN0ZXVveUxYOFlBZTRCVlFDckt0SVV5TXJQSHo5SDEzdTRPR2NF?=
- =?utf-8?B?TUllSnpzRlV5aFErOTdtcnV4VTZvSmp0QklmcVdiOGJvMEE3dnVDcGRyRFVY?=
- =?utf-8?B?a2NOZTQvL3VnPT0=?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR11MB7958.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?WGVpaWtmaXZjTGZPK3lsbTJhL21lSFBzMFlVRTBSV2ZKd1BUbnVHSFllRWhK?=
- =?utf-8?B?Z0kvQmpUZXM4dTZKcDluWU1ZK24vRUZ1NHJKd3RJZ1A1WU1pTlJGZFlGUXR0?=
- =?utf-8?B?aFMrbDFnVElhdDdPNndENGhnN3c3R2dDWlhQQ01PTkZlb2pGUXE4ZEpiV2FB?=
- =?utf-8?B?UEhGVmMxaXhJY1c1bHhiSXNaNnhqQWFNOCs5SjUwQUwwZVZyVkVmK2JBdG5F?=
- =?utf-8?B?a2Q4K3Q4dVRMMitTbFZBMStoaGcwakk3S2tnYThWczIwL1E1L0pZNlU4WGdP?=
- =?utf-8?B?eWVQVFE2VG8zN2tUb0xoOHVyLzhzSWxobzJ3UVV1MnB4eVh5ZG5tVnd0S2Q3?=
- =?utf-8?B?V1Nka0c3RzFyem44ZjBwVzZrQ01FQUcrbmwxcHBpc1dYQ0xmUHpkNTBFeFhL?=
- =?utf-8?B?Qk1YWmppa1crQ2hiU2drZ0NpcUwyT3NqeFVlYncxdlA1bHFTWllxaElOeUZl?=
- =?utf-8?B?Z2dYT2N6dXVDaEJZWjJDSE1aWm1KVm1Hb2M4alBSVzkvTFhhM2lHUnlQZ3Y1?=
- =?utf-8?B?ZUFjT2Q2bTdlSllBT2dRdWpxN201SWNvbUxNYURJSzFBUDVvRjM4VzE3a2FY?=
- =?utf-8?B?K2tSaENId1JOK3hsTm5MSnBKUTRJSjRwL0hqL1gwTlIvN2ZXRjhOaENnc2FQ?=
- =?utf-8?B?RDlyS1ozNUFaY0p5Z2ZybnNIMHdDaENYbCt2ZllhSzdLalAxRXpCcGtuNU1r?=
- =?utf-8?B?NWVGS1VjTFlOVmcrQ0I0Nld6YXhnS01pMHZUYk5YN1lCcnA5Z2VQWEluVm51?=
- =?utf-8?B?T2dubmtEOUlMclJiMnVBVldVaDVBYXJJY2ZtQ1cvaUlEYXRkZ0ljYSt5SmFq?=
- =?utf-8?B?U1NLVnJNVUdjMFJ0aU5aeEkrcWZPM3BVUW9hcmFXTDFWcE14L3RZU1J6c3NK?=
- =?utf-8?B?a3ZWQm10R2lBbTdBWTBSTGdGemY0cWk3RW96Y2tSM3hjRi82WnJzVm1NZ015?=
- =?utf-8?B?cU9WY2dBNTFLUjBFb2ZadHYreGVQZG0yU1B3YXpGM016Tk1CSmlwNjZsUHE4?=
- =?utf-8?B?ekZWNFJQYkNWWURNaGM3alBlY2JYdXJCdW0xdEllZjdZdHhYdUdVdCtlbU4r?=
- =?utf-8?B?Nk80U3RSZGFrK25yWmY2SU5Vbmp5YTUva2p2RmJNdUI4V0s1SXVNb0JQYS9N?=
- =?utf-8?B?eFlPUE5pTW1UbC93U25xMktuYmFRVTlYcU5RL0NZcjQ3akRyMDFSMWJaWjRN?=
- =?utf-8?B?WGtCakNvMkQvZ1dURDZZbnp0RHF5aytXZ0gxeWpEZkdwRHorcDJIai9hY2lP?=
- =?utf-8?B?eUJvTDN4dGM3dFlnMDdkNmFJbjd3NmtwcW55U3h5U2Vwdml4bkc1c1UySjh4?=
- =?utf-8?B?Qnh1Q2xWR3VhdXhQU0F1U1hxOVQxZEthZndQRFpBYmZ0MG1scm0vNFdweEZr?=
- =?utf-8?B?Z2hYNVVLQlFVbFJGSlAxUjRmWi9tbTB6d3BNenFQUnROejQyTUNTZlVBSi9r?=
- =?utf-8?B?MmdHKy96Ti8vZlZSSUNXVVRLUUdpbFRSK3VETWlYbzU2Y0RXdlpvTGtyWnFm?=
- =?utf-8?B?T1lUT3lvTHFiTmNoRFJYYkxwZFNaZjk3Y2RmbkNIR2pneE1sdGVUdW51cmpE?=
- =?utf-8?B?emdQRW5OTVM1cXIyOFpPYmxPN0lQaW1BOGkyMlBTVUh2RTFhN3VzWC9pc3ZV?=
- =?utf-8?B?cW9QRWhJQUpyME5nbGlya0pIbjJjTDJ2Y21ScWEwNnZycWtYWTV3Wk9GcHVC?=
- =?utf-8?B?UHpvVjVoMUZSaDVCVXI2Rzh2UDA2YVlsV2w3NWFWeGdoRnNQTnVpOHJQS21x?=
- =?utf-8?B?TjdKZjlHWUsxRWVZaSsxNzJWNWdzcFU2QTBUSjFHSHptL2dMR004cURzY0xT?=
- =?utf-8?B?ZmpETlRuc1Z6Y3dGZ1NBQVRoVjM4c3VzNTA2L0xDY3hHb1M5ekhFLzJOU1BJ?=
- =?utf-8?B?MFlvbFUxTDdrTksyTHlyUGp5V3VXNTBzZXlrcTRoZ2g3RGQ5emkxOGQ3dXRp?=
- =?utf-8?B?UWljaGp6Rmp0amVZSW0vRGd3c1p5TGY2QTJ1TjdseFUzSTd6bmoxNU9wbWJj?=
- =?utf-8?B?WlFyWngvY2FNVzRqNTg5NlJmN0QvT09jbmw0WjdPUkFIZXFLRkJrMmpkSVBY?=
- =?utf-8?B?V045MFNpbUJGMFc3anRHMC9JWEdhTWtWblBnRFZuOFRMN2lOQ085bzFkZEUr?=
- =?utf-8?B?UkVRd1U5allSQWZUY2lYeE1KM0p4ZThSWmJoYlN2a3BHNHhUaWh2WkloMTN6?=
- =?utf-8?B?QXEyTnFPTVFhQmlKOW84MGZzMDRCL0s2eEptUTRqYVZzOFMzZHFsTWNmWCtn?=
- =?utf-8?B?YVhYUm1hY2w2RERNK05PU0RlMU96bkwraENwU3lrVVM2QzZsRWs3NjI0aThu?=
- =?utf-8?B?OG40eEw2cy95OFlRbFFiZ0tqQmIrMjQvWEloQ1lwNTBtN1NsaG5JZz09?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: b2047312-df47-43c5-bf9e-08de407e8f29
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7958.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Dec 2025 10:49:04.8414 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 9kikvp54Kgw/raf1xuqwlMXwzHBj9TpAlPVibTTcfGlGe7xa6rwjVy3qCW4YGV1vo4OIOedhgWU+0H9xuT/V2A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB4846
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251216114030.226399-5-karthik.poosa@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -201,97 +68,246 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-
-
-On 12/19/2025 10:12 PM, Michal Wajdeczko wrote:
+On Tue, Dec 16, 2025 at 05:10:30PM +0530, Karthik Poosa wrote:
+> Expose individual VRAM temperature attributes.
+> Update Xe hwmon documentation for this entry.
 > 
+> v2:
+>  - Avoid using default switch case for VRAM individual temperatures.
+>  - Append labels with vram number.
+>  - Update kernel version in Xe hwmon documentation.
 > 
-> On 12/19/2025 5:32 PM, Matt Roper wrote:
->> On Fri, Dec 19, 2025 at 11:04:06AM -0500, Rodrigo Vivi wrote:
->>> On Fri, Dec 19, 2025 at 01:35:14PM +0530, Riana Tauro wrote:
->>>> Xe driver uses configfs functions to expose configuration to userspace.
->>>> If CONFIGFS_FS is built as module (=m) when Xe is built-in (=y),
->>>> undefined reference errors occur.
->>>
->>> Perhaps we don't need  this middle phrase. Only the first and the last.
->>> But anyway, we need the patch in. I just pushed it.
->>>
->>> Thanks,
->>> Rodrigo.
->>>
->>>> Add select CONFIGFS_FS to ensure configfs is built at minimum required
->>>> level.
->>
->> If we make this change, shouldn't we also remove all of the #ifdef logic
->> we have to support running without configfs?
+> Signed-off-by: Karthik Poosa <karthik.poosa@intel.com>
+> ---
+>  .../ABI/testing/sysfs-driver-intel-xe-hwmon   | 24 ++++++++++
+>  drivers/gpu/drm/xe/regs/xe_pcode_regs.h       |  2 +
+>  drivers/gpu/drm/xe/xe_hwmon.c                 | 47 ++++++++++++++++++-
+>  3 files changed, 72 insertions(+), 1 deletion(-)
 > 
-> but is it a good idea to always back select CONFIGFS ?
-> maybe the actual fix should be like this:
-> 
-> -xe-$(CONFIG_CONFIGFS_FS) += xe_configfs.o
+> diff --git a/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon b/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
+> index 51a35fcfb393..b58a96b1857d 100644
+> --- a/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
+> +++ b/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
+> @@ -284,3 +284,27 @@ Contact:	intel-xe@lists.freedesktop.org
+>  Description:	RO. GPU PCIe critical temperature in millidegree Celsius.
+>  
+>  		Only supported for particular Intel Xe graphics platforms.
 > +
-> +ifdef CONFIG_CONFIGFS_FS
-> +       xe-y += xe_configfs.o
-> +endif
+> +What:		/sys/bus/pci/drivers/xe/.../hwmon/hwmon<i>/temp6-21_input
+
+Brace around channel range with '[]'.
+
+> +Date:		December 2025
+> +KernelVersion:	6.19
+> +Contact:	intel-xe@lists.freedesktop.org
+> +Description:	RO. Individual VRAM temperature in millidegree Celsius.
+> +
+> +		Only supported for particular Intel Xe graphics platforms.
+> +
+> +What:		/sys/bus/pci/drivers/xe/.../hwmon/hwmon<i>/temp6-21_emergency
+
+Ditto.
+
+> +Date:		December 2025
+> +KernelVersion:	6.19
+> +Contact:	intel-xe@lists.freedesktop.org
+> +Description:	RO. Individual VRAM shutdown temperature in millidegree Celsius.
+> +
+> +		Only supported for particular Intel Xe graphics platforms.
+> +
+> +What:		/sys/bus/pci/drivers/xe/.../hwmon/hwmon<i>/temp6-21_crit
+
+Ditto.
+
+> +Date:		December 2025
+> +KernelVersion:	6.19
+> +Contact:	intel-xe@lists.freedesktop.org
+> +Description:	RO. Individual VRAM critical temperature in millidegree Celsius.
+> +
+> +		Only supported for particular Intel Xe graphics platforms.
+> diff --git a/drivers/gpu/drm/xe/regs/xe_pcode_regs.h b/drivers/gpu/drm/xe/regs/xe_pcode_regs.h
+> index fb097607b86c..7c35e2605d2f 100644
+> --- a/drivers/gpu/drm/xe/regs/xe_pcode_regs.h
+> +++ b/drivers/gpu/drm/xe/regs/xe_pcode_regs.h
+> @@ -23,5 +23,7 @@
+>  #define BMG_FAN_3_SPEED				XE_REG(0x1381a0)
+>  #define BMG_VRAM_TEMPERATURE			XE_REG(0x1382c0)
+>  #define BMG_PACKAGE_TEMPERATURE			XE_REG(0x138434)
+> +#define BMG_VRAM_TEMPERATURE_N(n)		XE_REG(0x138260 + (n))
+
+Is this the correct ordering?
+
+> +#define TEMP_MASK_VRAM_N			REG_GENMASK(31, 8)
+
+We usually have spacing for masks and bitfields. Please refer to
+xe_mchbar_regs.h.
+
+>  #endif /* _XE_PCODE_REGS_H_ */
+> diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
+> index b8519c734b4e..8eb1dd8f4b2f 100644
+> --- a/drivers/gpu/drm/xe/xe_hwmon.c
+> +++ b/drivers/gpu/drm/xe/xe_hwmon.c
+> @@ -39,12 +39,16 @@ enum xe_hwmon_reg_operation {
+>  	REG_READ64,
+>  };
+>  
+> +#define MAX_VRAM_CHANNELS      (16)
+> +
+>  enum xe_hwmon_channel {
+>  	CHANNEL_CARD,
+>  	CHANNEL_PKG,
+>  	CHANNEL_VRAM,
+>  	CHANNEL_MCTRL,
+>  	CHANNEL_PCIE,
+> +	CHANNEL_VRAM_N,
+> +	CHANNEL_VRAM_N_MAX = CHANNEL_VRAM_N + MAX_VRAM_CHANNELS,
+
+Please consider the future prospects (or risks) of this approach. We're
+writing ourselves into a corner here, because now any new component will
+be id'ed after CHANNEL_VRAM_N_MAX and with that we can potentially hit
+scaling problem with MAX_VRAM_CHANNELS.
+
+I have already mentioned it once[1] but again, not my call.
+
+[1] https://lore.kernel.org/intel-xe/Z5SPWwiB15ptK4hR@black.fi.intel.com/
+
+
+>  	CHANNEL_MAX,
+>  };
+>  
+> @@ -256,6 +260,8 @@ static struct xe_reg xe_hwmon_get_reg(struct xe_hwmon *hwmon, enum xe_hwmon_reg
+>  				return BMG_PACKAGE_TEMPERATURE;
+>  			else if (channel == CHANNEL_VRAM)
+>  				return BMG_VRAM_TEMPERATURE;
+> +			else if (channel >= CHANNEL_VRAM_N && channel <= CHANNEL_VRAM_N_MAX)
+> +				return BMG_VRAM_TEMPERATURE_N(((channel % CHANNEL_VRAM_N) * 4));
+>  		} else if (xe->info.platform == XE_DG2) {
+>  			if (channel == CHANNEL_PKG)
+>  				return PCU_CR_PACKAGE_TEMPERATURE;
+> @@ -715,6 +721,22 @@ static const struct hwmon_channel_info * const hwmon_info[] = {
+>  			   HWMON_T_MAX,
+>  			   HWMON_T_LABEL | HWMON_T_INPUT | HWMON_T_EMERGENCY | HWMON_T_CRIT,
+>  			   HWMON_T_LABEL | HWMON_T_INPUT | HWMON_T_EMERGENCY | HWMON_T_CRIT,
+> +			   HWMON_T_LABEL | HWMON_T_INPUT | HWMON_T_EMERGENCY | HWMON_T_CRIT,
+> +			   HWMON_T_LABEL | HWMON_T_INPUT | HWMON_T_EMERGENCY | HWMON_T_CRIT,
+> +			   HWMON_T_LABEL | HWMON_T_INPUT | HWMON_T_EMERGENCY | HWMON_T_CRIT,
+> +			   HWMON_T_LABEL | HWMON_T_INPUT | HWMON_T_EMERGENCY | HWMON_T_CRIT,
+> +			   HWMON_T_LABEL | HWMON_T_INPUT | HWMON_T_EMERGENCY | HWMON_T_CRIT,
+> +			   HWMON_T_LABEL | HWMON_T_INPUT | HWMON_T_EMERGENCY | HWMON_T_CRIT,
+> +			   HWMON_T_LABEL | HWMON_T_INPUT | HWMON_T_EMERGENCY | HWMON_T_CRIT,
+> +			   HWMON_T_LABEL | HWMON_T_INPUT | HWMON_T_EMERGENCY | HWMON_T_CRIT,
+> +			   HWMON_T_LABEL | HWMON_T_INPUT | HWMON_T_EMERGENCY | HWMON_T_CRIT,
+> +			   HWMON_T_LABEL | HWMON_T_INPUT | HWMON_T_EMERGENCY | HWMON_T_CRIT,
+> +			   HWMON_T_LABEL | HWMON_T_INPUT | HWMON_T_EMERGENCY | HWMON_T_CRIT,
+> +			   HWMON_T_LABEL | HWMON_T_INPUT | HWMON_T_EMERGENCY | HWMON_T_CRIT,
+> +			   HWMON_T_LABEL | HWMON_T_INPUT | HWMON_T_EMERGENCY | HWMON_T_CRIT,
+> +			   HWMON_T_LABEL | HWMON_T_INPUT | HWMON_T_EMERGENCY | HWMON_T_CRIT,
+> +			   HWMON_T_LABEL | HWMON_T_INPUT | HWMON_T_EMERGENCY | HWMON_T_CRIT,
+> +			   HWMON_T_LABEL | HWMON_T_INPUT | HWMON_T_EMERGENCY | HWMON_T_CRIT,
+>  			   HWMON_T_LABEL | HWMON_T_INPUT | HWMON_T_EMERGENCY | HWMON_T_CRIT),
+>  	HWMON_CHANNEL_INFO(power, HWMON_P_MAX | HWMON_P_RATED_MAX | HWMON_P_LABEL | HWMON_P_CRIT |
+>  			   HWMON_P_CAP,
+> @@ -921,6 +943,9 @@ xe_hwmon_temp_is_visible(struct xe_hwmon *hwmon, u32 attr, int channel)
+>  			return (!get_mc_temp(hwmon, &val)) ? 0444 : 0;
+>  		case CHANNEL_PCIE:
+>  			return (!get_pcie_temp(hwmon, &val)) ? 0444 : 0;
+> +		case CHANNEL_VRAM_N...CHANNEL_VRAM_N_MAX:
+
+So this means we're exposing them all but do we really have 16 VRAMs?
+
+> +			return xe_reg_is_valid(xe_hwmon_get_reg(hwmon, REG_TEMP,
+> +					       channel)) ? 0444 : 0;
+>  		default:
+>  			return 0;
+>  		}
+> @@ -935,6 +960,9 @@ xe_hwmon_temp_is_visible(struct xe_hwmon *hwmon, u32 attr, int channel)
+>  			return (!get_mc_temp(hwmon, &val)) ? 0444 : 0;
+>  		case CHANNEL_PCIE:
+>  			return (!get_pcie_temp(hwmon, &val)) ? 0444 : 0;
+> +		case CHANNEL_VRAM_N...CHANNEL_VRAM_N_MAX:
+
+Ditto.
+
+> +			return xe_reg_is_valid(xe_hwmon_get_reg(hwmon, REG_TEMP,
+> +					       channel)) ? 0444 : 0;
+>  		default:
+>  			return 0;
+>  		}
+> @@ -958,6 +986,9 @@ xe_hwmon_temp_is_visible(struct xe_hwmon *hwmon, u32 attr, int channel)
+>  			return (!get_mc_temp(hwmon, &val)) ? 0444 : 0;
+>  		case CHANNEL_PCIE:
+>  			return (!get_pcie_temp(hwmon, &val)) ? 0444 : 0;
+> +		case CHANNEL_VRAM_N...CHANNEL_VRAM_N_MAX:
+
+Ditto.
+
+> +			return xe_reg_is_valid(xe_hwmon_get_reg(hwmon, REG_TEMP,
+> +					       channel)) ? 0444 : 0;
+>  		default:
+>  			return 0;
+>  		}
+> @@ -986,6 +1017,12 @@ xe_hwmon_temp_read(struct xe_hwmon *hwmon, u32 attr, int channel, long *val)
+>  			return get_mc_temp(hwmon, val);
+>  		case CHANNEL_PCIE:
+>  			return get_pcie_temp(hwmon, val);
+> +		case CHANNEL_VRAM_N...CHANNEL_VRAM_N_MAX:
+> +			reg_val = xe_mmio_read32(mmio, xe_hwmon_get_reg(hwmon, REG_TEMP, channel));
+> +			/* Temperature format here is S 31.23.8 */
+
+I'm not confident if this is translatable to human beings, could you
+please elaborate?
+
+> +			*val = REG_FIELD_GET(TEMP_MASK_VRAM_N, reg_val) *
+> +					     ((reg_val >> 31) ? -1 : 1) * MILLIDEGREE_PER_DEGREE;
+> +			break;
+>  		default:
+>  			*val = 0;
+>  			return -EOPNOTSUPP;
+> @@ -999,6 +1036,7 @@ xe_hwmon_temp_read(struct xe_hwmon *hwmon, u32 attr, int channel, long *val)
+>  			break;
+>  		case CHANNEL_VRAM:
+>  		case CHANNEL_MCTRL:
+> +		case CHANNEL_VRAM_N...CHANNEL_VRAM_N_MAX:
+>  			*val = hwmon->temp.limit[TEMP_LIMIT_MEM_SHUTDOWN] * MILLIDEGREE_PER_DEGREE;
+>  			break;
+>  		default:
+> @@ -1014,6 +1052,7 @@ xe_hwmon_temp_read(struct xe_hwmon *hwmon, u32 attr, int channel, long *val)
+>  			break;
+>  		case CHANNEL_VRAM:
+>  		case CHANNEL_MCTRL:
+> +		case CHANNEL_VRAM_N...CHANNEL_VRAM_N_MAX:
+>  			*val = hwmon->temp.limit[TEMP_LIMIT_MEM_TJMAX] * MILLIDEGREE_PER_DEGREE;
+>  			break;
+>  		default:
+> @@ -1386,16 +1425,22 @@ static int xe_hwmon_read_label(struct device *dev,
+>  			       enum hwmon_sensor_types type,
+>  			       u32 attr, int channel, const char **str)
+>  {
+> +	char temp[16] = {0};
+> +
+>  	switch (type) {
+>  	case hwmon_temp:
+>  		if (channel == CHANNEL_PKG)
+>  			*str = "pkg";
+>  		else if (channel == CHANNEL_VRAM)
+> -			*str = "vram";
+> +			*str = "vram_avg";
+>  		else if (channel == CHANNEL_MCTRL)
+>  			*str = "mctrl_avg";
+>  		else if (channel == CHANNEL_PCIE)
+>  			*str = "pcie";
+> +		else if (channel >= CHANNEL_VRAM_N && channel <= CHANNEL_VRAM_N_MAX) {
+> +			sprintf(temp, "vram_%d", (channel - CHANNEL_VRAM_N));
+> +			*str = temp;
+
+Can this be done without temp?
+
+Raag
+
+> +		}
+>  		return 0;
+>  	case hwmon_power:
+>  	case hwmon_energy:
+> -- 
+> 2.25.1
 > 
-
-Hi Matt/Michal
-
-This was the first approach i tried. But if CONFIG_CONFIGFS_FS is set to 
-m we get undefined references for the configfs functions
-
-drivers/gpu/drm/xe/xe_configfs.o: in function 
-`xe_configfs_get_psmi_enabled':
-xe_configfs.c:(.text+0x182c): undefined reference to `config_item_put'
-
-  drivers/gpu/drm/xe/xe_configfs.o: in function `xe_configfs_init':
-xe_configfs.c:(.init.text+0x24): undefined reference to `config_group_init'
-
-We should either change the header checks to have IS_BUILTIN
-
-or select.
-
-Since there are many other drivers selecting CONFIGFS and this is seen 
-in powerpc builds. Sent this as the first patch
-
-drivers/gpio/Kconfig:1979:      select CONFIGFS_FS
-drivers/acpi/Kconfig:518:       select CONFIGFS_FS
-
-Thanks
-Riana
-
-> 
->>
->>
->> Matt
->>
->>>>
->>>> Cc: Matt Roper <matthew.d.roper@intel.com>
->>>> Reported-by: kernel test robot <lkp@intel.com>
->>>> Closes: https://lore.kernel.org/oe-kbuild-all/202512190827.IeXYj4qg-lkp@intel.com/
->>>> Closes: https://lore.kernel.org/oe-kbuild-all/202512181854.hPyTAXc5-lkp@intel.com/
->>>> Closes: https://lore.kernel.org/oe-kbuild-all/202512190407.CcUFXX2F-lkp@intel.com/
->>>> Fixes: 16280ded45fb ("drm/xe: Add configfs to enable survivability mode")
->>>> Signed-off-by: Riana Tauro <riana.tauro@intel.com>
->>>> ---
->>>>   drivers/gpu/drm/xe/Kconfig | 1 +
->>>>   1 file changed, 1 insertion(+)
->>>>
->>>> diff --git a/drivers/gpu/drm/xe/Kconfig b/drivers/gpu/drm/xe/Kconfig
->>>> index 4b288eb3f5b0..1094c5fc5bdf 100644
->>>> --- a/drivers/gpu/drm/xe/Kconfig
->>>> +++ b/drivers/gpu/drm/xe/Kconfig
->>>> @@ -46,6 +46,7 @@ config DRM_XE
->>>>   	select WANT_DEV_COREDUMP
->>>>   	select AUXILIARY_BUS
->>>>   	select REGMAP if I2C
->>>> +	select CONFIGFS_FS
->>>>   	help
->>>>   	  Driver for Intel Xe2 series GPUs and later. Experimental support
->>>>   	  for Xe series is also available.
->>>> -- 
->>>> 2.47.1
->>>>
->>
-> 
-
