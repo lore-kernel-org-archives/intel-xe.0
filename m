@@ -4,54 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F1911E67495
-	for <intel-xe@archiver.kernel.org>; Mon, 22 Dec 2025 04:57:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9B3F1E6748D
+	for <intel-xe@archiver.kernel.org>; Mon, 22 Dec 2025 06:56:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 084FD10E507;
-	Mon, 22 Dec 2025 04:57:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CB56310E0D5;
+	Mon, 22 Dec 2025 06:56:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="A/4jrpxI";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OUUp8duj";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 975E210E412;
- Mon, 22 Dec 2025 04:57:00 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1329D10E0D5;
+ Mon, 22 Dec 2025 06:56:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1766379421; x=1797915421;
+ t=1766386570; x=1797922570;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=QD7mkJTKC0gNDxt4CUY/ut7Kjp7ngBgYoUDDEpfkaJ4=;
- b=A/4jrpxISni3WM4pKHC2hp0hiQwnKiTUtWlW0YE1AwPQP0CGBPxjSFxs
- wd4fYK4P0FBwzTGGZ1wwOIo/SVTr9YubnJlesSNl4MWFd/Z/UqSYoTgIZ
- UNjKs14an8kJWfJ4Cwym002w1L66+Y8zNn38tFSVwLCfHR/OXEd5ZAtrU
- LiM8w1US5EDi2kWbiNSEXyH7tHvwPg0S2dnt2oJMh/lGmwsFHEFSl8Q5f
- 97PGUTOaytCfO5szEN2UOKq5evo9v9IxzqCCjVLlixM5ijst6PUP6dozM
- cbWFDAs3JjHkjMfLBwRg/efKR62/v4hC6BkTh+abPrpUKJg8sH0bfQrIO A==;
-X-CSE-ConnectionGUID: a8ZBrfmBRYyZR6n1sHV8nA==
-X-CSE-MsgGUID: F2OTRwerSNStJGFMOs1T+A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11649"; a="68214235"
-X-IronPort-AV: E=Sophos;i="6.21,167,1763452800"; d="scan'208";a="68214235"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Dec 2025 20:57:01 -0800
-X-CSE-ConnectionGUID: d1iK/ISQQUSq7U5bMjSy0w==
-X-CSE-MsgGUID: GnOKLbx3RsyNCU26O2ge2w==
+ bh=LGHstNW54ahZU4fQFa6p0E4h5sTWTOZs9QUffMMaT6A=;
+ b=OUUp8duj5avvOjsUCXQqG3bPud25RflOjjUfgf/sZQ1cKaEqJhAofXrH
+ fE7gg4uPYl/UyQlCgWOoY8e0et/GqtL0jnrG389YGCmCkgzFQfXasFFdi
+ j3wpEESrMTpm5+d65Thw8EHbdx/nJExaz/WI5rhpx73y8ya/jFTAmEjhj
+ UdvWDBvZZMBSr1UW8BUX8yYhXU4MBTGh8c+gxOzdN5WoGuQk2NPtqLkz0
+ 34ibaWkV3VySlWpa4/afWDPvpFwpGePpgjh+YWJqeiFFijvoIPjyrjf+r
+ d/TkP9ONLOXyMeIXw47ZgrALhmrWZsaRtxJwf+b3EUd1jh01IVP2wamsI g==;
+X-CSE-ConnectionGUID: TgS6UgM8SfaBkPyJxOm+Kg==
+X-CSE-MsgGUID: dkEO31xTTbWWiM3CM3LDCw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11649"; a="55814291"
+X-IronPort-AV: E=Sophos;i="6.21,167,1763452800"; d="scan'208";a="55814291"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Dec 2025 22:56:09 -0800
+X-CSE-ConnectionGUID: +rOCopBVTEies29m9RfbDg==
+X-CSE-MsgGUID: qSzMvZVlS4uZlcHnyBkAfg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,167,1763452800"; d="scan'208";a="236849514"
-Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Dec 2025 20:56:59 -0800
-From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: imre.deak@intel.com,
-	Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH] drm/i915/vdsc: Account for DSC slice overhead in
- intel_vdsc_min_cdclk()
-Date: Mon, 22 Dec 2025 10:14:43 +0530
-Message-ID: <20251222044443.2443411-1-ankit.k.nautiyal@intel.com>
-X-Mailer: git-send-email 2.45.2
+X-IronPort-AV: E=Sophos;i="6.21,167,1763452800"; d="scan'208";a="198688075"
+Received: from yadavs-z690i-a-ultra-plus.iind.intel.com ([10.190.216.90])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Dec 2025 22:56:08 -0800
+From: Sanjay Yadav <sanjay.kumar.yadav@intel.com>
+To: dri-devel@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>,
+ Matthew Auld <matthew.auld@intel.com>
+Subject: [PATCH 0/2] drm/buddy: Fix BUG_ON from oversized rounded allocations
+Date: Mon, 22 Dec 2025 12:22:39 +0530
+Message-ID: <20251222065238.1661415-4-sanjay.kumar.yadav@intel.com>
+X-Mailer: git-send-email 2.52.0
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -67,101 +68,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-When DSC is enabled on a pipe, the pipe pixel rate input to the
-CDCLK frequency and pipe joining calculation needs an adjustment to
-account for compression overhead "bubbles" added at each horizontal
-slice boundary.
+This series addresses a crash in drm_buddy allocator when allocation
+requests exceed mm->max_order after rounding operations. This can occur
+with non-power-of-two VRAM sizes (e.g., 10G = 8G + 2G roots) where
+mm->max_order represents the largest block (8G).
 
-Account for this overhead while computing min cdclk required for DSC.
+The issue manifests in two scenarios:
 
-v2: Get rid of the scaling factor and return unchanged pixel-rate
-instead of 0.
+1. CONTIGUOUS allocations: roundup_pow_of_two(9G) = 16G > 10G
+2. Large min_block_size: round_up(9G, 8G) = 16G > 10G
 
-Bspec:68912
-Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_vdsc.c | 45 +++++++++++++++++++++--
- 1 file changed, 41 insertions(+), 4 deletions(-)
+Both cases trigger BUG_ON(order > mm->max_order) deep in the allocation
+path, crashing the system on invalid user input.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c b/drivers/gpu/drm/i915/display/intel_vdsc.c
-index ad5fe841e4b3..b91cd009be9d 100644
---- a/drivers/gpu/drm/i915/display/intel_vdsc.c
-+++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
-@@ -1050,15 +1050,52 @@ void intel_vdsc_state_dump(struct drm_printer *p, int indent,
- 	drm_dsc_dump_config(p, indent, &crtc_state->dsc.config);
- }
- 
-+static
-+int intel_dsc_get_pixel_rate_with_dsc_bubbles(int pixel_rate, int htotal,
-+					      int dsc_horizontal_slices)
-+{
-+	int dsc_slice_bubbles;
-+	u64 num;
-+
-+	if (!htotal)
-+		return pixel_rate;
-+
-+	dsc_slice_bubbles = 14 * dsc_horizontal_slices;
-+	num = (u64)pixel_rate * (u64)(htotal + dsc_slice_bubbles);
-+
-+	return (int)DIV_ROUND_UP_ULL(num, (u64)htotal);
-+}
-+
-+static
-+int pixel_rate_with_dsc_bubbles(const struct intel_crtc_state *crtc_state, int pixel_rate)
-+{
-+	struct intel_display *display = to_intel_display(crtc_state);
-+	const struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
-+	const struct drm_dsc_config *vdsc_cfg = &crtc_state->dsc.config;
-+	int dsc_horizontal_slices;
-+
-+	if (drm_WARN_ON(display->drm, !vdsc_cfg->slice_width))
-+		return pixel_rate;
-+
-+	dsc_horizontal_slices = vdsc_cfg->pic_width / vdsc_cfg->slice_width;
-+
-+	return intel_dsc_get_pixel_rate_with_dsc_bubbles(pixel_rate,
-+							 adjusted_mode->crtc_htotal,
-+							 dsc_horizontal_slices);
-+}
-+
- int intel_vdsc_min_cdclk(const struct intel_crtc_state *crtc_state)
- {
- 	struct intel_display *display = to_intel_display(crtc_state);
- 	int num_vdsc_instances = intel_dsc_get_num_vdsc_instances(crtc_state);
-+	int pixel_rate;
- 	int min_cdclk;
- 
- 	if (!crtc_state->dsc.compression_enable)
- 		return 0;
- 
-+	pixel_rate = pixel_rate_with_dsc_bubbles(crtc_state, crtc_state->pixel_rate);
-+
- 	/*
- 	 * When we decide to use only one VDSC engine, since
- 	 * each VDSC operates with 1 ppc throughput, pixel clock
-@@ -1066,7 +1103,7 @@ int intel_vdsc_min_cdclk(const struct intel_crtc_state *crtc_state)
- 	 * If there 2 VDSC engines, then pixel clock can't be higher than
- 	 * VDSC clock(cdclk) * 2 and so on.
- 	 */
--	min_cdclk = DIV_ROUND_UP(crtc_state->pixel_rate, num_vdsc_instances);
-+	min_cdclk = DIV_ROUND_UP(pixel_rate, num_vdsc_instances);
- 
- 	if (crtc_state->joiner_pipes) {
- 		int pixel_clock = intel_dp_mode_to_fec_clock(crtc_state->hw.adjusted_mode.clock);
-@@ -1084,9 +1121,9 @@ int intel_vdsc_min_cdclk(const struct intel_crtc_state *crtc_state)
- 		 * => CDCLK >= compressed_bpp * Pixel clock  / 2 * Bigjoiner Interface bits
- 		 */
- 		int bigjoiner_interface_bits = DISPLAY_VER(display) >= 14 ? 36 : 24;
--		int min_cdclk_bj =
--			(fxp_q4_to_int_roundup(crtc_state->dsc.compressed_bpp_x16) *
--			 pixel_clock) / (2 * bigjoiner_interface_bits);
-+		int adjusted_pixel_rate = pixel_rate_with_dsc_bubbles(crtc_state, pixel_clock);
-+		int min_cdclk_bj = (fxp_q4_to_int_roundup(crtc_state->dsc.compressed_bpp_x16) *
-+				   adjusted_pixel_rate) / (2 * bigjoiner_interface_bits);
- 
- 		min_cdclk = max(min_cdclk, min_cdclk_bj);
- 	}
+The fix validates the rounded size early and handles it appropriately:
+- For CONTIGUOUS-only allocations, use the existing try_harder fallback
+- For other cases (non-contiguous, or contiguous+range), return -EINVAL
+
+Cc: Christian König <christian.koenig@amd.com>
+Cc: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
+Suggested-by: Matthew Auld <matthew.auld@intel.com>
+
+Sanjay Yadav (2):
+  drm/buddy: Prevent BUG_ON by validating rounded allocation
+  drm/tests/drm_buddy: Add tests for allocations exceeding max_order
+
+ drivers/gpu/drm/drm_buddy.c            |  9 +++++++
+ drivers/gpu/drm/tests/drm_buddy_test.c | 35 ++++++++++++++++++++++++++
+ 2 files changed, 44 insertions(+)
+
 -- 
-2.45.2
+2.52.0
 
