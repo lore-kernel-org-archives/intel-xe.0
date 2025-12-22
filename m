@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3841CE67810
-	for <intel-xe@archiver.kernel.org>; Mon, 22 Dec 2025 18:38:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A7A27E67810
+	for <intel-xe@archiver.kernel.org>; Mon, 22 Dec 2025 18:44:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E65CE10E0B6;
-	Mon, 22 Dec 2025 18:38:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 366E210E24E;
+	Mon, 22 Dec 2025 18:44:09 +0000 (UTC)
 Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B675510E0B6;
- Mon, 22 Dec 2025 18:38:44 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6550072823518382958=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C34B710E24E;
+ Mon, 22 Dec 2025 18:44:07 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Use_trans_push_mechanism_to?=
- =?utf-8?q?_generate_frame_change_event_=28rev8=29?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Dynamic_drm=5Fpagemaps_an?=
+ =?utf-8?q?d_Initial_multi-device_SVM_=28rev7=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>
+To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 22 Dec 2025 18:38:44 -0000
-Message-ID: <176642872472.111846.9787326434731172131@a3b018990fe9>
+Date: Mon, 22 Dec 2025 18:44:07 -0000
+Message-ID: <176642904779.111296.17060260924987683980@a3b018990fe9>
 X-Patchwork-Hint: ignore
-References: <20251219130537.3024373-1-jouni.hogander@intel.com>
-In-Reply-To: <20251219130537.3024373-1-jouni.hogander@intel.com>
+References: <20251219113320.183860-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20251219113320.183860-1-thomas.hellstrom@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,121 +40,78 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============6550072823518382958==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: Use trans push mechanism to generate frame change event (rev8)
-URL   : https://patchwork.freedesktop.org/series/139831/
-State : success
+Series: Dynamic drm_pagemaps and Initial multi-device SVM (rev7)
+URL   : https://patchwork.freedesktop.org/series/156525/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-4293-0b9ab258bd57ffe1b88e942940534f4bf5139b72_BAT -> xe-pw-139831v8_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+99339247d1ae4378b24366da182e712bdc623311
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit abec65093d8fa7fa506a8ea8477e2ff6d790b41c
+Author: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Date:   Fri Dec 19 12:33:20 2025 +0100
 
-Summary
--------
+    drm/xe/svm: Serialize migration to device if racing
+    
+    Introduce an rw-semaphore to serialize migration to device if
+    it's likely that migration races with another device migration
+    of the same CPU address space range.
+    This is a temporary fix to attempt to mitigate a livelock that
+    might happen if many devices try to migrate a range at the same
+    time, and it affects only devices using the xe driver.
+    A longer term fix is probably improvements in the core mm
+    migration layer.
+    
+    Suggested-by: Matthew Brost <matthew.brost@intel.com>
+    Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+    Reviewed-by: Matthew Brost <matthew.brost@intel.com>
++ /mt/dim checkpatch f101d56dc32350daa45c130ff7a6d46512f614a9 drm-intel
+352552776ef3 drm/xe/svm: Fix a debug printout
+00c1b29abd29 drm/pagemap: Remove some dead code
+97c84c301127 drm/pagemap, drm/xe: Ensure that the devmem allocation is idle before use
+f78a6b72577e drm/pagemap, drm/xe: Add refcounting to struct drm_pagemap
+36c42d702f05 drm/pagemap: Add a refcounted drm_pagemap backpointer to struct drm_pagemap_zdd
+2e7e18b49ad4 drm/pagemap, drm/xe: Manage drm_pagemap provider lifetimes
+a9a721429203 drm/pagemap: Add a drm_pagemap cache and shrinker
+-:177: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#177: 
+new file mode 100644
 
-  **SUCCESS**
+total: 0 errors, 1 warnings, 0 checks, 725 lines checked
+8c7fa46eaad0 drm/xe: Use the drm_pagemap cache and shrinker
+95a892491e28 drm/pagemap: Remove the drm_pagemap_create() interface
+676155ee4fcb drm/pagemap_util: Add a utility to assign an owner to a set of interconnected gpus
+-:213: CHECK:MACRO_ARG_REUSE: Macro argument reuse '_name' - possible side-effects?
+#213: FILE: include/drm/drm_pagemap_util.h:53:
++#define DRM_PAGEMAP_OWNER_LIST_DEFINE(_name)	\
++	struct drm_pagemap_owner_list _name = {	\
++	  .lock = __MUTEX_INITIALIZER((_name).lock),	\
++	  .peers = LIST_HEAD_INIT((_name).peers) }
 
-  No regressions found.
-
-  
-
-Participating hosts (12 -> 12)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-139831v8_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@xe_waitfence@reltime:
-    - bat-dg2-oem2:       [FAIL][1] ([Intel XE#6520]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4293-0b9ab258bd57ffe1b88e942940534f4bf5139b72/bat-dg2-oem2/igt@xe_waitfence@reltime.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139831v8/bat-dg2-oem2/igt@xe_waitfence@reltime.html
-
-  
-  [Intel XE#6520]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520
-
-
-Build changes
--------------
-
-  * Linux: xe-4293-0b9ab258bd57ffe1b88e942940534f4bf5139b72 -> xe-pw-139831v8
-
-  IGT_8674: f38f4d8e9c65aff45ac807e646d06e38bc3193a2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-4293-0b9ab258bd57ffe1b88e942940534f4bf5139b72: 0b9ab258bd57ffe1b88e942940534f4bf5139b72
-  xe-pw-139831v8: 139831v8
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139831v8/index.html
-
---===============6550072823518382958==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Use trans push mechanism to generate frame change event (rev8)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/139831/">https://patchwork.freedesktop.org/series/139831/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139831v8/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139831v8/index.html</a></td></tr>
-
-</table>
+total: 0 errors, 0 warnings, 1 checks, 192 lines checked
+9c3481ca40cb drm/xe: Use the drm_pagemap_util helper to get a svm pagemap owner
+c1a158d1b5f8 drm/xe: Pass a drm_pagemap pointer around with the memory advise attributes
+5db62104b410 drm/xe: Use the vma attibute drm_pagemap to select where to migrate
+d44a483ccbdf drm/xe: Simplify madvise_preferred_mem_loc()
+d6b967f189cb drm/xe/uapi: Extend the madvise functionality to support foreign pagemap placement for svm
+4fc7e3290a77 drm/xe: Support pcie p2p dma as a fast interconnect
+eaa6449fa0f9 drm/xe/vm: Add a couple of VM debug printouts
+d19c1b92372b drm/xe/svm: Document how xe keeps drm_pagemap references
+975b4bf7f4e5 drm/pagemap, drm/xe: Clean up the use of the device-private page owner
+4bda664e3a9c drm/gpusvm: Introduce a function to scan the current migration state
+241c3cd735b6 drm/xe: Use drm_gpusvm_scan_mm()
+4a2424e7bb4d drm/pagemap, drm/xe: Support destination migration over interconnect
+ce3c89d1c4c4 drm/pagemap: Support source migration over interconnect
+abec65093d8f drm/xe/svm: Serialize migration to device if racing
 
 
-    <h1>CI Bug Log - changes from xe-4293-0b9ab258bd57ffe1b88e942940534f4bf5139b72_BAT -&gt; xe-pw-139831v8_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (12 -&gt; 12)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-139831v8_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_waitfence@reltime:<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4293-0b9ab258bd57ffe1b88e942940534f4bf5139b72/bat-dg2-oem2/igt@xe_waitfence@reltime.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520">Intel XE#6520</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139831v8/bat-dg2-oem2/igt@xe_waitfence@reltime.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4293-0b9ab258bd57ffe1b88e942940534f4bf5139b72 -&gt; xe-pw-139831v8</li>
-</ul>
-<p>IGT_8674: f38f4d8e9c65aff45ac807e646d06e38bc3193a2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-4293-0b9ab258bd57ffe1b88e942940534f4bf5139b72: 0b9ab258bd57ffe1b88e942940534f4bf5139b72<br />
-  xe-pw-139831v8: 139831v8</p>
-
-</body>
-</html>
-
---===============6550072823518382958==--
