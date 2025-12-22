@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6438DE6B25B
-	for <intel-xe@archiver.kernel.org>; Mon, 22 Dec 2025 23:43:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4122BE6781B
+	for <intel-xe@archiver.kernel.org>; Mon, 22 Dec 2025 23:48:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0FA6110E21A;
-	Mon, 22 Dec 2025 23:43:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F28F410E06C;
+	Mon, 22 Dec 2025 23:48:51 +0000 (UTC)
 Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D295C10E099;
- Mon, 22 Dec 2025 23:43:33 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0476453708115017500=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EC5DB10E06C;
+ Mon, 22 Dec 2025 23:48:50 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Don=27t_use_absol?=
- =?utf-8?q?ute_path_in_generated_header_comment_=28rev2=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/configs=3A_Fix_bui?=
+ =?utf-8?q?ld_breaks?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Calvin Owens" <calvin@wbinvd.org>
+To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 22 Dec 2025 23:43:33 -0000
-Message-ID: <176644701385.111846.8763019909079714347@a3b018990fe9>
+Date: Mon, 22 Dec 2025 23:48:50 -0000
+Message-ID: <176644733096.112879.18183232086415015849@a3b018990fe9>
 X-Patchwork-Hint: ignore
-References: <20251222165441.516102-2-rodrigo.vivi@intel.com>
-In-Reply-To: <20251222165441.516102-2-rodrigo.vivi@intel.com>
+References: <20251222175006.9706-1-michal.wajdeczko@intel.com>
+In-Reply-To: <20251222175006.9706-1-michal.wajdeczko@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,102 +40,80 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0476453708115017500==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe: Don't use absolute path in generated header comment (rev2)
-URL   : https://patchwork.freedesktop.org/series/156919/
-State : success
+Series: drm/xe/configs: Fix build breaks
+URL   : https://patchwork.freedesktop.org/series/159395/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-4295-f101d56dc32350daa45c130ff7a6d46512f614a9_BAT -> xe-pw-156919v2_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+99339247d1ae4378b24366da182e712bdc623311
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 5372c9080cbe13be468409dc80c9147fe21a394f
+Author: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Date:   Mon Dec 22 18:50:06 2025 +0100
 
-Summary
--------
+    drm/xe/configfs: Fix 'undefined reference to xe_configfs_...' errors
+    
+    On configs where Xe is built-in (DRM_XE=y) but configfs is defined
+    as a module (CONFIGFS=m), we were not enabling our configfs stubs,
+    which might lead to the following build errors:
+    
+       powerpc64-linux-ld: drivers/gpu/drm/xe/xe_guc.o: in function `xe_guc_init_post_hwconfig':
+       xe_guc.c:(.text+0x2f08): undefined reference to `xe_configfs_get_psmi_enabled'
+       powerpc64-linux-ld: drivers/gpu/drm/xe/xe_hw_engine.o: in function `xe_hw_engines_init_early':
+       xe_hw_engine.c:(.text+0xedc): undefined reference to `xe_configfs_get_engines_allowed'
+       powerpc64-linux-ld: drivers/gpu/drm/xe/xe_lrc.o: in function `setup_configfs_post_ctx_restore_bb':
+       xe_lrc.c:(.text+0xb30): undefined reference to `xe_configfs_get_ctx_restore_post_bb'
+       powerpc64-linux-ld: drivers/gpu/drm/xe/xe_lrc.o: in function `setup_configfs_mid_ctx_restore_bb':
+       xe_lrc.c:(.text+0xbc0): undefined reference to `xe_configfs_get_ctx_restore_mid_bb'
+       powerpc64-linux-ld: drivers/gpu/drm/xe/xe_lrc.o: in function `xe_lrc_init':
+       xe_lrc.c:(.text+0x32fc): undefined reference to `xe_configfs_get_ctx_restore_mid_bb'
+       powerpc64-linux-ld: drivers/gpu/drm/xe/xe_module.o:(.data.rel.ro+0x10): undefined reference to `xe_configfs_init'
+       powerpc64-linux-ld: drivers/gpu/drm/xe/xe_module.o:(.data.rel.ro+0x18): undefined reference to `xe_configfs_exit'
+       powerpc64-linux-ld: drivers/gpu/drm/xe/xe_pci.o: in function `xe_pci_probe':
+       xe_pci.c:(.text+0x1514): undefined reference to `xe_configfs_check_device'
+       powerpc64-linux-ld: drivers/gpu/drm/xe/xe_psmi.o: in function `xe_psmi_debugfs_register':
+       xe_psmi.c:(.text+0x508): undefined reference to `xe_configfs_get_psmi_enabled'
+       powerpc64-linux-ld: drivers/gpu/drm/xe/xe_psmi.o: in function `xe_psmi_init':
+       xe_psmi.c:(.text+0x5c4): undefined reference to `xe_configfs_get_psmi_enabled'
+       powerpc64-linux-ld: drivers/gpu/drm/xe/xe_rtp.o: in function `xe_rtp_match_psmi_enabled':
+       xe_rtp.c:(.text+0xba0): undefined reference to `xe_configfs_get_psmi_enabled'
+       powerpc64-linux-ld: drivers/gpu/drm/xe/xe_survivability_mode.o: in function `xe_survivability_mode_is_requested':
+       xe_survivability_mode.c:(.text+0x434): undefined reference to `xe_configfs_get_survivability_mode'
+       powerpc64-linux-ld: drivers/gpu/drm/xe/xe_sriov_pf.o: in function `xe_sriov_pf_readiness':
+       xe_sriov_pf.c:(.text+0x2a0): undefined reference to `xe_configfs_get_max_vfs'
+    
+    Fix that by using IS_REACHABLE check instead of IS_ENABLED when
+    deciding whether to stub variant or not.
+    
+    Fixes: 16280ded45fb ("drm/xe: Add configfs to enable survivability mode")
+    Reported-by: kernel test robot <lkp@intel.com>
+    Closes: https://lore.kernel.org/oe-kbuild-all/202512190407.CcUFXX2F-lkp@intel.com/
+    Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+    Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+    Cc: Matt Roper <matthew.d.roper@intel.com>
+    Cc: Riana Tauro <riana.tauro@intel.com>
++ /mt/dim checkpatch f101d56dc32350daa45c130ff7a6d46512f614a9 drm-intel
+f69ca6f24817 drm/xe/configfs: Fix 'parameter name omitted' errors
+-:10: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#10: 
+   static inline u32 xe_configfs_get_ctx_restore_mid_bb(struct pci_dev *pdev, enum xe_engine_class,
 
-  **SUCCESS**
+total: 0 errors, 1 warnings, 0 checks, 11 lines checked
+5372c9080cbe drm/xe/configfs: Fix 'undefined reference to xe_configfs_...' errors
+-:11: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#11: 
+   powerpc64-linux-ld: drivers/gpu/drm/xe/xe_guc.o: in function `xe_guc_init_post_hwconfig':
 
-  No regressions found.
-
-  
-
-Participating hosts (12 -> 12)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-4295-f101d56dc32350daa45c130ff7a6d46512f614a9 -> xe-pw-156919v2
-
-  IGT_8674: f38f4d8e9c65aff45ac807e646d06e38bc3193a2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-4295-f101d56dc32350daa45c130ff7a6d46512f614a9: f101d56dc32350daa45c130ff7a6d46512f614a9
-  xe-pw-156919v2: 156919v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156919v2/index.html
-
---===============0476453708115017500==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Don&#x27;t use absolute path in generated header comment (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/156919/">https://patchwork.freedesktop.org/series/156919/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156919v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156919v2/index.html</a></td></tr>
-
-</table>
+total: 0 errors, 1 warnings, 0 checks, 8 lines checked
 
 
-    <h1>CI Bug Log - changes from xe-4295-f101d56dc32350daa45c130ff7a6d46512f614a9_BAT -&gt; xe-pw-156919v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (12 -&gt; 12)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4295-f101d56dc32350daa45c130ff7a6d46512f614a9 -&gt; xe-pw-156919v2</li>
-</ul>
-<p>IGT_8674: f38f4d8e9c65aff45ac807e646d06e38bc3193a2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-4295-f101d56dc32350daa45c130ff7a6d46512f614a9: f101d56dc32350daa45c130ff7a6d46512f614a9<br />
-  xe-pw-156919v2: 156919v2</p>
-
-</body>
-</html>
-
---===============0476453708115017500==--
