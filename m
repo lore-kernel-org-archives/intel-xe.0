@@ -4,54 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 046DCE6781B
-	for <intel-xe@archiver.kernel.org>; Mon, 22 Dec 2025 23:18:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6438DE6B25B
+	for <intel-xe@archiver.kernel.org>; Mon, 22 Dec 2025 23:43:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BF52110E23F;
-	Mon, 22 Dec 2025 23:18:16 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XV0Alh5B";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4F1C010E1C8
- for <intel-xe@lists.freedesktop.org>; Mon, 22 Dec 2025 23:18:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1766445488; x=1797981488;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=9q17Rn/9WqbSCVydPyHDWJCjAtWfTgkRNzDi22pZhJM=;
- b=XV0Alh5BePNlwyFwM7fFQU2Cn24S1w/KEdngaC+N+2igxcSfZMGqErmN
- NiF77gAhD2+aiieuNCv7riF7lctLcPvARr+wlZUUMFbMlzNinUYtAx3LD
- T+ZAjhDqSTmPFBqjARpvGhwIsXmug5tB+i1JSOki7iiesH7UNZQULZx5Q
- df3bANA0VeA/VH5+8353hgnbLB/Xj1RI8j3wc9E6O14KzUHzOFXdcagiK
- lkm5Wjn+mVzok48eH7maRGGq2fzddExk1h6Bzpb2lmWMMiW0hw7M35LJf
- MRDJRa1T0IrxfxXZtM39XPNCPebZI5sVooUOGPoTaCGAJnoi7yLijg1HM w==;
-X-CSE-ConnectionGUID: T75+uVBfSBujvgKJ2r/lYg==
-X-CSE-MsgGUID: Nx2S41bTQX2efH3C/B4HEg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11650"; a="68184646"
-X-IronPort-AV: E=Sophos;i="6.21,169,1763452800"; d="scan'208";a="68184646"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Dec 2025 15:18:02 -0800
-X-CSE-ConnectionGUID: 44QpXRq7ToGXbUvQJk8qfw==
-X-CSE-MsgGUID: PyZ82aRhQWme4DE5/fgVMw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,169,1763452800"; d="scan'208";a="199290451"
-Received: from unerlige-desk1.jf.intel.com ([10.88.27.165])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Dec 2025 15:18:00 -0800
-From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v7 3/3] drm/xe/soc_remapper: Add system controller config for
- SoC remapper
-Date: Mon, 22 Dec 2025 15:17:59 -0800
-Message-ID: <20251222231755.3131809-8-umesh.nerlige.ramappa@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20251222231755.3131809-5-umesh.nerlige.ramappa@intel.com>
-References: <20251222231755.3131809-5-umesh.nerlige.ramappa@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0FA6110E21A;
+	Mon, 22 Dec 2025 23:43:35 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D295C10E099;
+ Mon, 22 Dec 2025 23:43:33 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0476453708115017500=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Don=27t_use_absol?=
+ =?utf-8?q?ute_path_in_generated_header_comment_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Calvin Owens" <calvin@wbinvd.org>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 22 Dec 2025 23:43:33 -0000
+Message-ID: <176644701385.111846.8763019909079714347@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20251222165441.516102-2-rodrigo.vivi@intel.com>
+In-Reply-To: <20251222165441.516102-2-rodrigo.vivi@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,133 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Define system controller config bits and helpers for SoC remapper.
+--===============0476453708115017500==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-Reviewed-by: Badal Nilawar <badal.nilawar@intel.com>
----
-v2: (Badal)
-- Add kernel doc for function
+== Series Details ==
 
-v3: (Badal)
-- Prevent bad access to SoC remapper
+Series: drm/xe: Don't use absolute path in generated header comment (rev2)
+URL   : https://patchwork.freedesktop.org/series/156919/
+State : success
 
-v4: (Shuicheng)
-- Put has_soc_remapper_sysctrl in alphabetical order in the struct.
----
- drivers/gpu/drm/xe/regs/xe_soc_remapper_regs.h |  1 +
- drivers/gpu/drm/xe/xe_device_types.h           |  5 +++++
- drivers/gpu/drm/xe/xe_pci.c                    |  2 ++
- drivers/gpu/drm/xe/xe_pci_types.h              |  1 +
- drivers/gpu/drm/xe/xe_soc_remapper.c           | 17 +++++++++++++++--
- 5 files changed, 24 insertions(+), 2 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/xe/regs/xe_soc_remapper_regs.h b/drivers/gpu/drm/xe/regs/xe_soc_remapper_regs.h
-index 9edf234227a9..be0eb37e73ad 100644
---- a/drivers/gpu/drm/xe/regs/xe_soc_remapper_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_soc_remapper_regs.h
-@@ -9,5 +9,6 @@
- 
- #define SG_REMAP_INDEX1			XE_REG(SOC_BASE + 0x08)
- #define   SG_REMAP_TELEM_MASK		REG_GENMASK(31, 24)
-+#define   SG_REMAP_SYSCTRL_MASK		REG_GENMASK(23, 16)
- 
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index fc121b236dd9..e2bfd37da014 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -333,6 +333,8 @@ struct xe_device {
- 		u8 has_pxp:1;
- 		/** @info.has_range_tlb_inval: Has range based TLB invalidations */
- 		u8 has_range_tlb_inval:1;
-+		/** @info.has_soc_remapper_sysctrl: Has SoC remapper system controller */
-+		u8 has_soc_remapper_sysctrl:1;
- 		/** @info.has_soc_remapper_telem: Has SoC remapper telemetry support */
- 		u8 has_soc_remapper_telem:1;
- 		/** @info.has_sriov: Supports SR-IOV */
-@@ -582,6 +584,9 @@ struct xe_device {
- 
- 		/** @soc_remapper.set_telem_region: Set telemetry index */
- 		void (*set_telem_region)(struct xe_device *xe, u32 index);
-+
-+		/** @soc_remapper.set_sysctrl_region: Set system controller index */
-+		void (*set_sysctrl_region)(struct xe_device *xe, u32 index);
- 	} soc_remapper;
- 
- 	/**
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index 55daa1b5f383..9d0dbbb98362 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -422,6 +422,7 @@ static const struct xe_device_desc cri_desc = {
- 	.has_mbx_power_limits = true,
- 	.has_mert = true,
- 	.has_pre_prod_wa = 1,
-+	.has_soc_remapper_sysctrl = true,
- 	.has_soc_remapper_telem = true,
- 	.has_sriov = true,
- 	.max_gt_per_tile = 2,
-@@ -694,6 +695,7 @@ static int xe_info_init_early(struct xe_device *xe,
- 	xe->info.has_page_reclaim_hw_assist = desc->has_page_reclaim_hw_assist;
- 	xe->info.has_pre_prod_wa = desc->has_pre_prod_wa;
- 	xe->info.has_pxp = desc->has_pxp;
-+	xe->info.has_soc_remapper_sysctrl = desc->has_soc_remapper_sysctrl;
- 	xe->info.has_soc_remapper_telem = desc->has_soc_remapper_telem;
- 	xe->info.has_sriov = xe_configfs_primary_gt_allowed(to_pci_dev(xe->drm.dev)) &&
- 		desc->has_sriov;
-diff --git a/drivers/gpu/drm/xe/xe_pci_types.h b/drivers/gpu/drm/xe/xe_pci_types.h
-index e2bd4c81b2a7..5f20f56571d1 100644
---- a/drivers/gpu/drm/xe/xe_pci_types.h
-+++ b/drivers/gpu/drm/xe/xe_pci_types.h
-@@ -53,6 +53,7 @@ struct xe_device_desc {
- 	u8 has_pre_prod_wa:1;
- 	u8 has_page_reclaim_hw_assist:1;
- 	u8 has_pxp:1;
-+	u8 has_soc_remapper_sysctrl:1;
- 	u8 has_soc_remapper_telem:1;
- 	u8 has_sriov:1;
- 	u8 needs_scratch:1;
-diff --git a/drivers/gpu/drm/xe/xe_soc_remapper.c b/drivers/gpu/drm/xe/xe_soc_remapper.c
-index eaf18d85279d..f894f4899cf3 100644
---- a/drivers/gpu/drm/xe/xe_soc_remapper.c
-+++ b/drivers/gpu/drm/xe/xe_soc_remapper.c
-@@ -20,6 +20,12 @@ static void xe_soc_remapper_set_telem_region(struct xe_device *xe, u32 index)
- 				   REG_FIELD_PREP(SG_REMAP_TELEM_MASK, index));
- }
- 
-+static void xe_soc_remapper_set_sysctrl_region(struct xe_device *xe, u32 index)
-+{
-+	xe_soc_remapper_set_region(xe, SG_REMAP_INDEX1, SG_REMAP_SYSCTRL_MASK,
-+				   REG_FIELD_PREP(SG_REMAP_SYSCTRL_MASK, index));
-+}
-+
- /**
-  * xe_soc_remapper_init() - Initialize SoC remapper
-  * @xe: Pointer to xe device.
-@@ -30,10 +36,17 @@ static void xe_soc_remapper_set_telem_region(struct xe_device *xe, u32 index)
-  */
- int xe_soc_remapper_init(struct xe_device *xe)
- {
--	if (xe->info.has_soc_remapper_telem) {
-+	bool has_soc_remapper = xe->info.has_soc_remapper_telem ||
-+				xe->info.has_soc_remapper_sysctrl;
-+
-+	if (has_soc_remapper)
- 		spin_lock_init(&xe->soc_remapper.lock);
-+
-+	if (xe->info.has_soc_remapper_telem)
- 		xe->soc_remapper.set_telem_region = xe_soc_remapper_set_telem_region;
--	}
-+
-+	if (xe->info.has_soc_remapper_sysctrl)
-+		xe->soc_remapper.set_sysctrl_region = xe_soc_remapper_set_sysctrl_region;
- 
- 	return 0;
- }
--- 
-2.43.0
+CI Bug Log - changes from xe-4295-f101d56dc32350daa45c130ff7a6d46512f614a9_BAT -> xe-pw-156919v2_BAT
+====================================================
 
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (12 -> 12)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-4295-f101d56dc32350daa45c130ff7a6d46512f614a9 -> xe-pw-156919v2
+
+  IGT_8674: f38f4d8e9c65aff45ac807e646d06e38bc3193a2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-4295-f101d56dc32350daa45c130ff7a6d46512f614a9: f101d56dc32350daa45c130ff7a6d46512f614a9
+  xe-pw-156919v2: 156919v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156919v2/index.html
+
+--===============0476453708115017500==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Don&#x27;t use absolute path in generated header comment (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/156919/">https://patchwork.freedesktop.org/series/156919/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156919v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156919v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4295-f101d56dc32350daa45c130ff7a6d46512f614a9_BAT -&gt; xe-pw-156919v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (12 -&gt; 12)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4295-f101d56dc32350daa45c130ff7a6d46512f614a9 -&gt; xe-pw-156919v2</li>
+</ul>
+<p>IGT_8674: f38f4d8e9c65aff45ac807e646d06e38bc3193a2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-4295-f101d56dc32350daa45c130ff7a6d46512f614a9: f101d56dc32350daa45c130ff7a6d46512f614a9<br />
+  xe-pw-156919v2: 156919v2</p>
+
+</body>
+</html>
+
+--===============0476453708115017500==--
