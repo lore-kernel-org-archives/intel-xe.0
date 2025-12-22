@@ -4,58 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3046CE6B25C
-	for <intel-xe@archiver.kernel.org>; Mon, 22 Dec 2025 22:14:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AEFB6E6B257
+	for <intel-xe@archiver.kernel.org>; Mon, 22 Dec 2025 22:14:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DABFF10E124;
-	Mon, 22 Dec 2025 22:14:13 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Is2qZvaf";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 518BB10E069;
- Mon, 22 Dec 2025 22:14:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1766441652; x=1797977652;
- h=from:date:subject:mime-version:content-transfer-encoding:
- message-id:to:cc;
- bh=bHwCns0HxiRpqGSxMhGZ3sbBQzQAu6f4JfPfCA7g8OE=;
- b=Is2qZvaf2pqNXU/EBoOSgrWPqIRo08+tSk0DPDnCeEXs5CYn9safyZSz
- u+bF2YZcLwmLgy0DW97RKPyfFBnt8WNKdYTtQUPJN+H1eKkLnUjKO3CoJ
- wYvA2o35JTpxnkYtDKJ/ytMCTpMekVnKmb2LZJ9s0+G8+zmXZjAwGB9w0
- wN+Eee87pg3Pm8GYrbVzjIKZlS4TdGz3yywQ/p7Pyv1RCgeXtD5ouQg+8
- nG/vCiMABqOivc1DIU4wGfqW01RyBYdHdVmN0QAxogKmbm0O/JR7chsTV
- MWFjcghr3VefQzZFcl0S8WtJxMHMZ3xPSLdjBxLvh34v8m7UYGogJ4AA/ A==;
-X-CSE-ConnectionGUID: BesidCs1T0ilk+a0XwAC9A==
-X-CSE-MsgGUID: 1wHUl7PCScaszDsulL6oOQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11650"; a="93769141"
-X-IronPort-AV: E=Sophos;i="6.21,169,1763452800"; d="scan'208";a="93769141"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Dec 2025 14:14:11 -0800
-X-CSE-ConnectionGUID: Eq9dxcDNST6QYGBetNESrg==
-X-CSE-MsgGUID: PgXHOCM2ShygO02Q38uB8A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,169,1763452800"; d="scan'208";a="198766362"
-Received: from smoehrl-linux.amr.corp.intel.com (HELO [192.168.1.16])
- ([10.124.220.137])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Dec 2025 14:14:10 -0800
-From: Gustavo Sousa <gustavo.sousa@intel.com>
-Date: Mon, 22 Dec 2025 19:13:47 -0300
-Subject: [PATCH] drm/i915/cdclk: Incorporate Xe3_LPD changes for CD2X divider
+	by gabe.freedesktop.org (Postfix) with ESMTP id 523AC10E124;
+	Mon, 22 Dec 2025 22:14:57 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4474310E124;
+ Mon, 22 Dec 2025 22:14:56 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5543865280514022314=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251222-xe3_lpd-no-cd2x-divider-v1-1-96f1e112baaa@intel.com>
-X-B4-Tracking: v=1; b=H4sIAJvCSWkC/x3M0QpAQBBA0V/RPJtiEOtXJMnMMqWl3dq25N9tH
- s/DvQ8E8SoBxuIBL1GDXi6jLgvYjtXtgsrZQBV1NRFhkmY5b0Z34caUkDUqi8d2sMZWpidrBsj
- 17cVq+s/T/L4f4oy2t2kAAAA=
-X-Change-ID: 20251222-xe3_lpd-no-cd2x-divider-48f9f0972f98
-To: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
-Cc: Gustavo Sousa <gustavo.sousa@intel.com>
-X-Mailer: b4 0.15-dev
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_reduce_?=
+ =?utf-8?q?i915=5Fdrv=2Eh_usage_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 22 Dec 2025 22:14:56 -0000
+Message-ID: <176644169627.111846.14699013455835164454@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <cover.1766406794.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1766406794.git.jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,96 +36,125 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Xe3_LPD, there is no instruction to program the CD2X divider anymore
-and the hardware is expected to always use the default value of 0b00,
-meaning "divide by 1".
+--===============5543865280514022314==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-With that, the CDCLK_CTL register was changed so that:
+== Series Details ==
 
-  (1) The field "CD2X Divider Select" became a debug-only field.
-      Because we are programming CDCLK_CTL with a direct write instead
-      of read-modify-write operation, we still need to program "CD2X
-      Divider Select" in order to keep the field from deviating from its
-      default value.  Let's, however, throw a warning if we encounter a
-      CDCLK value that would result in an unexpected value for that
-      field.
+Series: drm/i915/display: reduce i915_drv.h usage (rev2)
+URL   : https://patchwork.freedesktop.org/series/159278/
+State : success
 
-  (2) The field "CD2X Pipe Select" has been removed. In fact, some
-      debugging in a PTL machine showed that such field comes back as
-      zero after writing a non-zero value to it.  As such, do not
-      program it starting with Xe3_LPD.
+== Summary ==
 
-Bspec: 68864, 69090
-Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
----
- drivers/gpu/drm/i915/display/intel_cdclk.c | 27 ++++++++++++++++++++++-----
- 1 file changed, 22 insertions(+), 5 deletions(-)
+CI Bug Log - changes from xe-4295-f101d56dc32350daa45c130ff7a6d46512f614a9_BAT -> xe-pw-159278v2_BAT
+====================================================
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-index 0aa59d624095..684b8437951b 100644
---- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-+++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-@@ -1933,6 +1933,8 @@ static u32 bxt_cdclk_cd2x_pipe(struct intel_display *display, enum pipe pipe)
- static u32 bxt_cdclk_cd2x_div_sel(struct intel_display *display,
- 				  int cdclk, int vco, u16 waveform)
- {
-+	u32 ret;
-+
- 	/* cdclk = vco / 2 / div{1,1.5,2,4} */
- 	switch (cdclk_divider(cdclk, vco, waveform)) {
- 	default:
-@@ -1941,14 +1943,27 @@ static u32 bxt_cdclk_cd2x_div_sel(struct intel_display *display,
- 		drm_WARN_ON(display->drm, vco != 0);
- 		fallthrough;
- 	case 2:
--		return BXT_CDCLK_CD2X_DIV_SEL_1;
-+		ret = BXT_CDCLK_CD2X_DIV_SEL_1;
-+		break;
- 	case 3:
--		return BXT_CDCLK_CD2X_DIV_SEL_1_5;
-+		ret = BXT_CDCLK_CD2X_DIV_SEL_1_5;
-+		break;
- 	case 4:
--		return BXT_CDCLK_CD2X_DIV_SEL_2;
-+		ret = BXT_CDCLK_CD2X_DIV_SEL_2;
-+		break;
- 	case 8:
--		return BXT_CDCLK_CD2X_DIV_SEL_4;
-+		ret = BXT_CDCLK_CD2X_DIV_SEL_4;
-+		break;
- 	}
-+
-+	/*
-+	 * On Xe3_LPD onward, the expectation is to always have
-+	 * BXT_CDCLK_CD2X_DIV_SEL_1 as the default.
-+	 */
-+	if (DISPLAY_VER(display) >= 30)
-+		drm_WARN_ON(display->drm, ret != BXT_CDCLK_CD2X_DIV_SEL_1);
-+
-+	return ret;
- }
- 
- static u16 cdclk_squash_waveform(struct intel_display *display,
-@@ -2136,7 +2151,9 @@ static u32 bxt_cdclk_ctl(struct intel_display *display,
- 
- 	waveform = cdclk_squash_waveform(display, cdclk);
- 
--	val = bxt_cdclk_cd2x_div_sel(display, cdclk, vco, waveform) |
-+	val = bxt_cdclk_cd2x_div_sel(display, cdclk, vco, waveform);
-+
-+	if (DISPLAY_VER(display) < 30)
- 		bxt_cdclk_cd2x_pipe(display, pipe);
- 
- 	/*
+Summary
+-------
 
----
-base-commit: f2a0e58c77845e1a5cb6c549dc02b2670042e588
-change-id: 20251222-xe3_lpd-no-cd2x-divider-48f9f0972f98
+  **SUCCESS**
 
-Best regards,
---  
-Gustavo Sousa <gustavo.sousa@intel.com>
+  No regressions found.
 
+  
+
+Participating hosts (12 -> 12)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-159278v2_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_waitfence@reltime:
+    - bat-dg2-oem2:       [PASS][1] -> [FAIL][2] ([Intel XE#6520])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4295-f101d56dc32350daa45c130ff7a6d46512f614a9/bat-dg2-oem2/igt@xe_waitfence@reltime.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159278v2/bat-dg2-oem2/igt@xe_waitfence@reltime.html
+
+  
+  [Intel XE#6520]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520
+
+
+Build changes
+-------------
+
+  * Linux: xe-4295-f101d56dc32350daa45c130ff7a6d46512f614a9 -> xe-pw-159278v2
+
+  IGT_8674: f38f4d8e9c65aff45ac807e646d06e38bc3193a2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-4295-f101d56dc32350daa45c130ff7a6d46512f614a9: f101d56dc32350daa45c130ff7a6d46512f614a9
+  xe-pw-159278v2: 159278v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159278v2/index.html
+
+--===============5543865280514022314==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/display: reduce i915_drv.h usage (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/159278/">https://patchwork.freedesktop.org/series/159278/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159278v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159278v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4295-f101d56dc32350daa45c130ff7a6d46512f614a9_BAT -&gt; xe-pw-159278v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (12 -&gt; 12)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-159278v2_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@xe_waitfence@reltime:<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4295-f101d56dc32350daa45c130ff7a6d46512f614a9/bat-dg2-oem2/igt@xe_waitfence@reltime.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159278v2/bat-dg2-oem2/igt@xe_waitfence@reltime.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520">Intel XE#6520</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4295-f101d56dc32350daa45c130ff7a6d46512f614a9 -&gt; xe-pw-159278v2</li>
+</ul>
+<p>IGT_8674: f38f4d8e9c65aff45ac807e646d06e38bc3193a2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-4295-f101d56dc32350daa45c130ff7a6d46512f614a9: f101d56dc32350daa45c130ff7a6d46512f614a9<br />
+  xe-pw-159278v2: 159278v2</p>
+
+</body>
+</html>
+
+--===============5543865280514022314==--
