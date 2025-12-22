@@ -4,58 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C7DB9E674B1
-	for <intel-xe@archiver.kernel.org>; Mon, 22 Dec 2025 13:32:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2C1C5E674AF
+	for <intel-xe@archiver.kernel.org>; Mon, 22 Dec 2025 13:32:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8C20910E087;
-	Mon, 22 Dec 2025 13:32:23 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aows0r9n";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F1EBD10E087;
- Mon, 22 Dec 2025 13:32:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1766410342; x=1797946342;
- h=date:from:to:cc:subject:in-reply-to:message-id:
- references:mime-version;
- bh=z0PL3yw7npBzIphRkse52mnRYN2jRCvYezGp5O+7HhI=;
- b=aows0r9n0LvaqkMgW5bMiAj1+x3cU6DLxJcjU5q6FXS47syuzgeWaTS0
- lIDpEioYLG5wAUsvVzG9Nd6jjrJqGfxLH3HVCQTBN+w8OeQpWblg5Cy82
- MCdObjdap4kdHBbPWJLn0R4hw8FWghpES+5c+YDWe/sfYsg5j905PHvk9
- LCt9hYn09uhasc4SIbsheLEsIZOWd3hSegim1T6tobE41MIXfmpgZT75y
- 9czba5GEvtOz9ChnQBNLuUtUoGJ9VpmYjp48oXARcfw7qWBNpwASL7Fwq
- G7JqHbgmviLdL/MDPdUnOZV4sTBhpeYswyZwvHGFrJlhZaH83ohOvhjgd A==;
-X-CSE-ConnectionGUID: 6vjiRlRNQe6ZGZb3/otvTA==
-X-CSE-MsgGUID: CbT1iVwqSremR2UmK43zZA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11650"; a="85845616"
-X-IronPort-AV: E=Sophos;i="6.21,168,1763452800"; d="scan'208";a="85845616"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Dec 2025 05:32:22 -0800
-X-CSE-ConnectionGUID: RvAneLjBRACM+D6gh1bZxg==
-X-CSE-MsgGUID: nfdq1bBvSXm6dwv216kg6g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,168,1763452800"; d="scan'208";a="204048638"
-Received: from administrator-system-product-name.igk.intel.com
- ([10.91.214.181])
- by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Dec 2025 05:32:12 -0800
-Date: Mon, 22 Dec 2025 14:32:10 +0100 (CET)
-From: =?ISO-8859-2?Q?Micha=B3_Grzelak?= <michal.grzelak@intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
- Ville Syrjala <ville.syrjala@linux.intel.com>
-Subject: Re: [PATCH v2 4/4] drm/i915/display: use to_intel_uncore() to avoid
- i915_drv.h
-In-Reply-To: <44a5d526a097ab9276e60162263fa8cd23325ce7.1766406794.git.jani.nikula@intel.com>
-Message-ID: <1302bc22-a4bb-cb71-70a1-d20e8385c517@intel.com>
-References: <cover.1766406794.git.jani.nikula@intel.com>
- <44a5d526a097ab9276e60162263fa8cd23325ce7.1766406794.git.jani.nikula@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id DF01E10E087;
+	Mon, 22 Dec 2025 13:32:55 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CCFC510E087;
+ Mon, 22 Dec 2025 13:32:54 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: multipart/mixed;
- boundary="8323329-1683723297-1766410333=:1478141"
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Migrate_layer_improvement?=
+ =?utf-8?q?s?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Brost" <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 22 Dec 2025 13:32:54 -0000
+Message-ID: <176641037484.111296.18203809071711316600@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20251219211201.4107410-1-matthew.brost@intel.com>
+In-Reply-To: <20251219211201.4107410-1-matthew.brost@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,29 +36,44 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-  This message is in MIME format.  The first part should be readable text,
-  while the remaining parts are likely unreadable without MIME-aware tools.
+== Series Details ==
 
---8323329-1683723297-1766410333=:1478141
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8BIT
+Series: Migrate layer improvements
+URL   : https://patchwork.freedesktop.org/series/159320/
+State : warning
 
-On Mon, 22 Dec 2025, Jani Nikula wrote:
-> A number of places that include i915_drv.h only need it to get from
-> display to i915 to uncore. We have to_intel_uncore() for that, use it to
-> avoid the i915_drv.h include.
->
-> v2: Rebase
->
-> Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
-> Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+== Summary ==
 
-Reviewed-by: Michał Grzelak <michal.grzelak@intel.com>
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+99339247d1ae4378b24366da182e712bdc623311
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit efbfb3bdbb4dcffbb56c4c4aa6bf7a06fc424dd3
+Author: Matthew Brost <matthew.brost@intel.com>
+Date:   Fri Dec 19 13:12:01 2025 -0800
 
-BR,
-Michał
---8323329-1683723297-1766410333=:1478141--
+    drm/xe: Assert actual size of VRAM mapped in migrate VM is aligned
+    
+    We have been asserting that the usable size of VRAM is 2M aligned while
+    mapping the actual size of VRAM in the migrate VM. Update the assertion
+    to reflect what we are actually mapping.
+    
+    Signed-off-by: Matthew Brost <matthew.brost@intel.com>
++ /mt/dim checkpatch f2a0e58c77845e1a5cb6c549dc02b2670042e588 drm-intel
+9f436301ead9 drm/xe: Show migrate VM layout
+-:87: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email name mismatch: 'From: Matthew Brost <matthew.brost@intel.com>' != 'Signed-off-by: Matthew <matthew.brost@intel.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 67 lines checked
+a525570fa977 drm/xe: Assert VRAM address is valid in migrate layer
+efbfb3bdbb4d drm/xe: Assert actual size of VRAM mapped in migrate VM is aligned
+
+
