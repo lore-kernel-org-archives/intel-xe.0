@@ -4,66 +4,86 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 702A4E6F093
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0109BE6F098
 	for <intel-xe@archiver.kernel.org>; Tue, 23 Dec 2025 14:57:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0153510E181;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 56BB310E237;
 	Tue, 23 Dec 2025 14:57:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=realtek.com header.i=@realtek.com header.b="eEa16hv7";
+	dkim=pass (2048-bit key; secure) header.d=wbinvd.org header.i=@wbinvd.org header.b="ApEwevB5";
 	dkim-atps=neutral
-X-Greylist: delayed 400 seconds by postgrey-1.36 at gabe;
- Tue, 23 Dec 2025 07:54:43 UTC
-Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0BFC510E0C9
- for <intel-xe@lists.freedesktop.org>; Tue, 23 Dec 2025 07:54:42 +0000 (UTC)
-X-SpamFilter-By: ArmorX SpamTrap 5.80 with qID 5BN7lvLN3961266,
- This message is accepted by code: ctloc85258
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=realtek.com; s=dkim;
- t=1766476077; bh=xByRV1TY48tGSFoUCJDAh3e/CdOl93sKfyavZMY91wE=;
- h=From:To:Subject:Date:Message-ID:References:In-Reply-To:
- Content-Type:Content-Transfer-Encoding:MIME-Version;
- b=eEa16hv7w4iMTsKRtL7NU1oC6rbtm5oOdjGouu1OSaqP+8ibwoSjgcMNHv9b3uY4e
- bAfS2IgU/18Tqu/HlqeZVcuazzMZunsv4lnCK1OSPTr4VxnL+/7jZX1iMlq+sgycEI
- 1IIHu94PjxGKUEOtgyG/w+ettjldltb25u7ZpRIaF0M+NeUPddSq03ANQ+tyUXIlJD
- UB6ZCuQYbIzJdocgZT2R6whoaA1VuMaLwYMgOoJkeR4HwDUJG7JXPmXdHKM/z2IDfc
- JRE7ul6rrvEl9yN1TShpiFCtjkueqM9QUE/0kaEb1JNIoS/zkccxSnZVvdehrBlqKu
- cJolkAqQKcH/Q==
-Received: from mail.realtek.com (rtkexhmbs04.realtek.com.tw[10.21.1.54])
- by rtits2.realtek.com.tw (8.15.2/3.21/5.94) with ESMTPS id 5BN7lvLN3961266
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Tue, 23 Dec 2025 15:47:57 +0800
-Received: from RTKEXHMBS06.realtek.com.tw (10.21.1.56) by
- RTKEXHMBS04.realtek.com.tw (10.21.1.54) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.10; Tue, 23 Dec 2025 15:47:57 +0800
-Received: from RTKEXHMBS06.realtek.com.tw (10.21.1.56) by
- RTKEXHMBS06.realtek.com.tw (10.21.1.56) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.10; Tue, 23 Dec 2025 15:47:57 +0800
-Received: from RTKEXHMBS06.realtek.com.tw ([fe80::4cbd:6c6c:b92b:3913]) by
- RTKEXHMBS06.realtek.com.tw ([fe80::4cbd:6c6c:b92b:3913%10]) with mapi id
- 15.02.1748.010; Tue, 23 Dec 2025 15:47:57 +0800
-From: Ping-Ke Shih <pkshih@realtek.com>
-To: Chris Russomanno <russomch@aol.com>, "intel-xe@lists.freedesktop.org"
- <intel-xe@lists.freedesktop.org>, "linux-wireless@vger.kernel.org"
- <linux-wireless@vger.kernel.org>
-Subject: RE: [BUG] Intel B580 (e20b) HDMI Flicker & Realtek RTL8922AE 6GHz
- missing - Mint 22.3
-Thread-Topic: [BUG] Intel B580 (e20b) HDMI Flicker & Realtek RTL8922AE 6GHz
- missing - Mint 22.3
-Thread-Index: AQHccYNzkqomb5qXxkujgzhV+EMuFbUu29YA
-Date: Tue, 23 Dec 2025 07:47:57 +0000
-Message-ID: <3dcf5e11aa284daa9d3733141ccdc17f@realtek.com>
-References: <AB8446D8-708B-4971-8852-87353112E60F.ref@aol.com>
- <AB8446D8-708B-4971-8852-87353112E60F@aol.com>
-In-Reply-To: <AB8446D8-708B-4971-8852-87353112E60F@aol.com>
-Accept-Language: en-US, zh-TW
-Content-Language: zh-TW
-x-originating-ip: [172.21.6.42]
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com
+ [209.85.214.176])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1462010E12B
+ for <intel-xe@lists.freedesktop.org>; Mon, 22 Dec 2025 20:26:17 +0000 (UTC)
+Received: by mail-pl1-f176.google.com with SMTP id
+ d9443c01a7336-2a0c09bb78cso31293645ad.0
+ for <intel-xe@lists.freedesktop.org>; Mon, 22 Dec 2025 12:26:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=wbinvd.org; s=wbinvd; t=1766435177; x=1767039977; darn=lists.freedesktop.org;
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:references:message-id:subject:cc:to:from:date:from:to
+ :cc:subject:date:message-id:reply-to;
+ bh=+DxzbqKFHsT4b/4uUhTmGkgX6zZO5THXjLNxNVuEr44=;
+ b=ApEwevB5q41iquHu53coO9vs70NWdAAP6ZoW6VgML1InicmQjxVGm8VAKt/B/hfbQN
+ SlVGAEymjGVLzMUtwS6eagYSsrAxz+QUyhN9y1A+u3zBWsVl1u8TEOcidc2eqkaQOaaP
+ UzcCDVqRFxJ9lHc6cWTh4LhygG6EhmjHwPREdAiZqicW4hBnQEMemHBSruY1MicHYJWu
+ qk1xEiIlBpV3QZ+qxrqbQ7K9YlYinpJktNVB065f5bh3Y4PCtQe711IL6BL//fkjhzCv
+ ZD/JRxXO2B/hBL53m6vT8+oG+NXulatGbMi9oeuWz5jNoT5g61jG+SruQ++qEsAJZHFt
+ DWwA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1766435177; x=1767039977;
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:references:message-id:subject:cc:to:from:date:x-gm-gg
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=+DxzbqKFHsT4b/4uUhTmGkgX6zZO5THXjLNxNVuEr44=;
+ b=cuQzM0pOYazUOuyqCnO9cmRj5H1u8nEhgI2KEzkgXCSAssk639gibPPs4ioEFwmwIo
+ Wj/0cdRAp/iEuDxwYUkeBYOv3XCXjr0KVhxjY3pPsB02XTX5wQQMRjUrJRcG5O0w/oUz
+ kqT9J+RdnABsW9o5RYbOzDa6nxJ0qQC/7quWoymFY0PqwuapaX7Kf52Zyva1ieo9BdzW
+ x2rdcBULnKC7BanjvSsqW1/7WakmiK0GJ3VkvvXB3LFfUgIFQiw6K32OyqwutpyYbKqV
+ DFGCcF8Qvq9jTGX1Jqf6HlXAVlizzDAl724aQflXZeYaavTEoRloHqIEcoC3MtaxybIT
+ cmBw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVD5uZCgL25mzZsLXPxxRF500Gq1CjS6pDyVJs1SnQGu6tyc+FJoM9Y/3sjVkbG0360siY7tvFqEw==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yxr8TWpDXsgX2ino7ZpcbrkjsSie9RTVGQIp7I6N1J7pEzIb5Co
+ 9ABwUb5TJW0NIPpPaGv7VwvTLYbqrnigdkgKxhQtJ46XQoBhqgdFp2UBbY65dF044eA=
+X-Gm-Gg: AY/fxX7ANSaf2b7rta/afnyep6ZQWrpoF61ayXg40l8PdUIN5+92p8tKWBPKwEZFko7
+ VvhS+HZqZeC2nHh8174t6OMAr/Iu7EusC6zrWgu+cxT1SESALw8tVMX5GdYv9j/DxDpCsD86/go
+ SQI6RbiBXnsM8K46IuBwItBUrGJQtf8d2ZHl/I7j5Gy1mZi4IuGzE9DDhhlP7eOknidHwV/oAmk
+ L/tuoTSWYchevlfFUHeZ50t9xgggq98APr3vWFimzYkjS15OxsJb5Wtx45BHrdQ2wG24VCrzgDy
+ yPOzNlAYAw5RGMRgvev4P3mMakqJjHk2Cuvslfy84IfeyXIxZJbvc2Uhv+8VUZTBmD+/D046Hsf
+ bkAxGzKGd80G0IN5Rz/5WDyirzIti5P/eoRJKKWsqzLX7+KBvDPzBeu0ZS4k2iod+8wT5heRRkw
+ fkmY6sAWiXABC2bQ==
+X-Google-Smtp-Source: AGHT+IEef3h4w4xy+0//cSAXBXPqJ6FpxI5XKGCOhkF8d53cw2jZ45moHevagz8DR3MnmSRpzd0mAw==
+X-Received: by 2002:a17:902:d48e:b0:29e:fc06:b8a5 with SMTP id
+ d9443c01a7336-2a2cab16368mr168301475ad.18.1766435177388; 
+ Mon, 22 Dec 2025 12:26:17 -0800 (PST)
+Received: from mozart.vkv.me ([2001:5a8:468b:d007:f7c3:5e3f:f742:635e])
+ by smtp.gmail.com with ESMTPSA id
+ d9443c01a7336-2a2f3c666d5sm104099455ad.21.2025.12.22.12.26.16
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 22 Dec 2025 12:26:17 -0800 (PST)
+Date: Mon, 22 Dec 2025 12:26:15 -0800
+From: Calvin Owens <calvin@wbinvd.org>
+To: "Vivi, Rodrigo" <rodrigo.vivi@intel.com>
+Cc: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "airlied@gmail.com" <airlied@gmail.com>,
+ "lucas.demarchi@intel.com" <lucas.demarchi@intel.com>,
+ "thomas.hellstrom@linux.intel.com" <thomas.hellstrom@linux.intel.com>,
+ "simona@ffwll.ch" <simona@ffwll.ch>
+Subject: Re: [PATCH] drm/xe: Don't use absolute path in generated header
+ comment
+Message-ID: <aUmpZzD_5RauueUo@mozart.vkv.me>
+References: <7fa5ef0acc89a9d94c328f6651c1d405bcd833a4.1761920974.git.calvin@wbinvd.org>
+ <aUhQHcgL4U-HgSv6@mozart.vkv.me>
+ <40b24664850c231b1a2fd80a084d4a7f32b8148e.camel@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <40b24664850c231b1a2fd80a084d4a7f32b8148e.camel@intel.com>
 X-Mailman-Approved-At: Tue, 23 Dec 2025 14:57:33 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -79,56 +99,86 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Chris Russomanno <russomch@aol.com> wrote:
-> Hello,
->=20
-> I am reporting two issues encountered on brand-new hardware using Linux M=
-int 22.3 with Kernel 6.14.0-generic.
->=20
-> Hardware Environment:
-> - GPU: Intel Arc B580 (Battlemage), PCI ID: [8086:e20b]
-> - WiFi: Realtek RTL8922AE (rtw89), Firmware: rtw8922a_fw-3.bin
-> - Display: Samsung 4K Monitor connected via HDMI (No DisplayPort availabl=
-e)
->=20
-> Issue 1: Intel Xe HDMI Flickering
-> The Samsung monitor experiences intermittent black-screen flickering (1-2=
- seconds) at both 4K and 1080p
-> resolutions. This behavior is not present on Windows 11.
-> Troubleshooting attempted:
-> - Added kernel parameters: quiet splash i915.enable_psr=3D0 xe.force_prob=
-e=3De20b i915.enable_dc=3D0
-> intel_iommu=3Digfx_off intel_idle.max_cstate=3D2
-> - Forced "TearFree" and "TripleBuffer" in xorg.conf.
-> - Frequency remains at 60Hz.
->=20
-> Issue 2: Realtek RTL8922AE 6GHz/WiFi 7 Missing
-> The card functions on 5GHz (1200 Mb/s) but does not scan or see 6GHz freq=
-uencies.
-> Troubleshooting attempted:
-> - Set regdom to US (iw reg set US).
-> - Driver options: rtw89_pci disable_aspm=3Dy, rtw89_core disable_6g=3DN.
-> - 'iw list' does not return any 6GHz/6105 MHz frequencies.
+On Monday 12/22 at 16:56 +0000, Vivi, Rodrigo wrote:
+> On Sun, 2025-12-21 at 11:53 -0800, Calvin Owens wrote:
+> > On Friday 10/31 at 07:48 -0700, Calvin Owens wrote:
+> > > Building the XE driver through Yocto throws this QA warning:
+> > > 
+> > >     WARNING: mc:house:linux-stable-6.17-r0 do_package_qa: QA Issue:
+> > > File /usr/src/debug/linux-
+> > > stable/6.17/drivers/gpu/drm/xe/generated/xe_device_wa_oob.h in
+> > > package linux-stable-src contains reference to TMPDIR [buildpaths]
+> > >     WARNING: mc:house:linux-stable-6.17-r0 do_package_qa: QA Issue:
+> > > File /usr/src/debug/linux-
+> > > stable/6.17/drivers/gpu/drm/xe/generated/xe_wa_oob.h in package
+> > > linux-stable-src contains reference to TMPDIR [buildpaths]
+> > > 
+> > > ...because the comment at the top of the generated header contains
+> > > the
+> > > absolute path to the rules file at build time:
+> > > 
+> > >     * This file was generated from rules: /home/calvinow/git/meta-
+> > > house/build/tmp-house/work-shared/nuc14rvhu7/kernel-
+> > > source/drivers/gpu/drm/xe/xe_device_wa_oob.rules
+> > > 
+> > > Fix this minor annoyance by putting the basename of the rules file
+> > > in
+> > > the generated comment instead of the absolute path, so the
+> > > generated
+> > > header contents no longer depend on the location of the kernel
+> > > source.
+> > 
+> > Hi all,
+> > 
+> > This is about as trivial as it gets: it's been a couple months, can I
+> > get some eyes on this please?
+> > 
+> > This is the only place in the entire kernel source where the content
+> > of
+> > a generated header depends on the absolute path to the kernel tree.
+> > It
+> > makes kernel source packages non-reproducible.
+> 
+> Sorry about that and for the delay.
+> 
+> I just resent the patch for CI:
+> https://lore.kernel.org/intel-xe/20251222165441.516102-2-rodrigo.vivi@intel.com/
+> 
+> We can push after passing it.
 
-Please share output of 'iw list' before/after setting US.=20
+No apology necessary, thanks for kicking it for me :)
 
-In my side (expected) frequencies of band 4 are:
+Calvin
 
-[Before]
-                Frequencies:
-                        * 5955.0 MHz [1] (disabled)
-                        * 5975.0 MHz [5] (disabled)
-                        * 5995.0 MHz [9] (disabled)
-                        * 6015.0 MHz [13] (disabled)
-                        * 6035.0 MHz [17] (disabled)
-                        * 6055.0 MHz [21] (disabled)
-
-[After]
-                Frequencies:
-                        * 5955.0 MHz [1] (12.0 dBm) (no IR)
-                        * 5975.0 MHz [5] (12.0 dBm) (no IR)
-                        * 5995.0 MHz [9] (12.0 dBm) (no IR)
-                        * 6015.0 MHz [13] (12.0 dBm) (no IR)
-                        * 6035.0 MHz [17] (12.0 dBm) (no IR)
-
-
+> Thanks,
+> Rodrigo.
+> 
+> > 
+> > Thanks
+> > Calvin
+> > 
+> > > Signed-off-by: Calvin Owens <calvin@wbinvd.org>
+> > > ---
+> > >  drivers/gpu/drm/xe/xe_gen_wa_oob.c | 3 ++-
+> > >  1 file changed, 2 insertions(+), 1 deletion(-)
+> > > 
+> > > diff --git a/drivers/gpu/drm/xe/xe_gen_wa_oob.c
+> > > b/drivers/gpu/drm/xe/xe_gen_wa_oob.c
+> > > index 247e41c1c48d..e7a50b1348b7 100644
+> > > --- a/drivers/gpu/drm/xe/xe_gen_wa_oob.c
+> > > +++ b/drivers/gpu/drm/xe/xe_gen_wa_oob.c
+> > > @@ -195,7 +195,8 @@ int main(int argc, const char *argv[])
+> > >  		}
+> > >  	}
+> > >  
+> > > -	fprintf(args[ARGS_CHEADER].f, HEADER, args[ARGS_INPUT].fn,
+> > > prefix, prefix);
+> > > +	fprintf(args[ARGS_CHEADER].f, HEADER,
+> > > xbasename(args[ARGS_INPUT].fn),
+> > > +		prefix, prefix);
+> > >  
+> > >  	ret = parse(args[ARGS_INPUT].f, args[ARGS_CSOURCE].f,
+> > >  		    args[ARGS_CHEADER].f, prefix);
+> > > -- 
+> > > 2.47.3
+> > > 
