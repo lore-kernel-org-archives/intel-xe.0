@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 840D6E6ADFE
-	for <intel-xe@archiver.kernel.org>; Mon, 22 Dec 2025 21:15:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BE74AE6ADFE
+	for <intel-xe@archiver.kernel.org>; Mon, 22 Dec 2025 21:20:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 391E510E08C;
-	Mon, 22 Dec 2025 21:15:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 81C6610E040;
+	Mon, 22 Dec 2025 21:20:52 +0000 (UTC)
 Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3DE3010E08C;
- Mon, 22 Dec 2025 21:15:26 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4863863027744133771=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3C5BF10E040;
+ Mon, 22 Dec 2025 21:20:51 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Dynamic_drm=5Fpagemaps_and_?=
- =?utf-8?q?Initial_multi-device_SVM_=28rev8=29?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/i915/display=3A_reduc?=
+ =?utf-8?q?e_i915=5Fdrv=2Eh_usage_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+To: "Jani Nikula" <jani.nikula@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 22 Dec 2025 21:15:26 -0000
-Message-ID: <176643812624.111846.952998386429559960@a3b018990fe9>
+Date: Mon, 22 Dec 2025 21:20:51 -0000
+Message-ID: <176643845124.111846.9509937134621685613@a3b018990fe9>
 X-Patchwork-Hint: ignore
-References: <20251219113320.183860-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20251219113320.183860-1-thomas.hellstrom@linux.intel.com>
+References: <cover.1766406794.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1766406794.git.jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,121 +40,54 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============4863863027744133771==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: Dynamic drm_pagemaps and Initial multi-device SVM (rev8)
-URL   : https://patchwork.freedesktop.org/series/156525/
-State : success
+Series: drm/i915/display: reduce i915_drv.h usage (rev2)
+URL   : https://patchwork.freedesktop.org/series/159278/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-4295-f101d56dc32350daa45c130ff7a6d46512f614a9_BAT -> xe-pw-156525v8_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+99339247d1ae4378b24366da182e712bdc623311
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 5581117943e23b6d793658911b3513e890ad7b5b
+Author: Jani Nikula <jani.nikula@intel.com>
+Date:   Mon Dec 22 14:34:03 2025 +0200
 
-Summary
--------
+    drm/i915/display: use to_intel_uncore() to avoid i915_drv.h
+    
+    A number of places that include i915_drv.h only need it to get from
+    display to i915 to uncore. We have to_intel_uncore() for that, use it to
+    avoid the i915_drv.h include.
+    
+    v2: Rebase
+    
+    Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
+    Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+    Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+    Reviewed-by: Michał Grzelak <michal.grzelak@intel.com>
++ /mt/dim checkpatch f101d56dc32350daa45c130ff7a6d46512f614a9 drm-intel
+bb7b06380ead drm/i915: remove unused dev_priv local variable
+1faa8bc6b03a drm/xe/compat: remove unused forcewake get/put macros
+fc08a7ee263f drm/xe/compat: convert uncore macro to static inlines
+5581117943e2 drm/i915/display: use to_intel_uncore() to avoid i915_drv.h
+-:386: WARNING:LINE_SPACING: Missing a blank line after declarations
+#386: FILE: drivers/gpu/drm/i915/display/intel_vblank.c:310:
++	struct intel_uncore *uncore = to_intel_uncore(display->drm);
++	spin_lock(&uncore->lock);
 
-  **SUCCESS**
+-:396: WARNING:LINE_SPACING: Missing a blank line after declarations
+#396: FILE: drivers/gpu/drm/i915/display/intel_vblank.c:317:
++	struct intel_uncore *uncore = to_intel_uncore(display->drm);
++	spin_unlock(&uncore->lock);
 
-  No regressions found.
-
-  
-
-Participating hosts (12 -> 12)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-156525v8_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_waitfence@reltime:
-    - bat-dg2-oem2:       [PASS][1] -> [FAIL][2] ([Intel XE#6520])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4295-f101d56dc32350daa45c130ff7a6d46512f614a9/bat-dg2-oem2/igt@xe_waitfence@reltime.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156525v8/bat-dg2-oem2/igt@xe_waitfence@reltime.html
-
-  
-  [Intel XE#6520]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520
-
-
-Build changes
--------------
-
-  * Linux: xe-4295-f101d56dc32350daa45c130ff7a6d46512f614a9 -> xe-pw-156525v8
-
-  IGT_8674: f38f4d8e9c65aff45ac807e646d06e38bc3193a2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-4295-f101d56dc32350daa45c130ff7a6d46512f614a9: f101d56dc32350daa45c130ff7a6d46512f614a9
-  xe-pw-156525v8: 156525v8
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156525v8/index.html
-
---===============4863863027744133771==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+total: 0 errors, 2 warnings, 0 checks, 327 lines checked
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Dynamic drm_pagemaps and Initial multi-device SVM (rev8)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/156525/">https://patchwork.freedesktop.org/series/156525/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156525v8/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156525v8/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4295-f101d56dc32350daa45c130ff7a6d46512f614a9_BAT -&gt; xe-pw-156525v8_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (12 -&gt; 12)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-156525v8_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@xe_waitfence@reltime:<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4295-f101d56dc32350daa45c130ff7a6d46512f614a9/bat-dg2-oem2/igt@xe_waitfence@reltime.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156525v8/bat-dg2-oem2/igt@xe_waitfence@reltime.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520">Intel XE#6520</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4295-f101d56dc32350daa45c130ff7a6d46512f614a9 -&gt; xe-pw-156525v8</li>
-</ul>
-<p>IGT_8674: f38f4d8e9c65aff45ac807e646d06e38bc3193a2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-4295-f101d56dc32350daa45c130ff7a6d46512f614a9: f101d56dc32350daa45c130ff7a6d46512f614a9<br />
-  xe-pw-156525v8: 156525v8</p>
-
-</body>
-</html>
-
---===============4863863027744133771==--
