@@ -4,56 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1E33EE6B274
-	for <intel-xe@archiver.kernel.org>; Tue, 23 Dec 2025 11:53:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5CA6AE6B272
+	for <intel-xe@archiver.kernel.org>; Tue, 23 Dec 2025 11:57:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D37A310E0BE;
-	Tue, 23 Dec 2025 11:53:41 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cfXuxKb6";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7C20110E0BE
- for <intel-xe@lists.freedesktop.org>; Tue, 23 Dec 2025 11:53:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1766490820; x=1798026820;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=4v5Zddn5MXrOirqpDV3wKakZu/KGKUlQFQrR+AlIkTI=;
- b=cfXuxKb6j02fFkCbyCDDrLmkALxEFjTjJd+gaWEPfRwNshfW8Z31OS8H
- PrBzgJi6vLMTMVlZqGlcf30Y0TFVbvSuIn5Np9tOd1fJgapSGRw56AlnY
- lIY9wC/pYPJ+GKRRNuYgu5AtivkvbSK//CC1ZuS4cjYtEP+Vi7uxrzxxA
- 58+Nb9fE9Kb8qO1tWnnO14+Wwvyj+iaoPl/PIWlDfTTqYgG+ZFhhcLrwI
- D6IVtKxaShZqzGkLivQv1RCEVCBH3TBm7GKM7OnoJ3UrEaZrdP+QbjPjI
- nIhGroykLskBXFY49bYh7fLPrwRwVSpTZH7nUO2hVw2JdJc325skamEEh Q==;
-X-CSE-ConnectionGUID: Xaus1MUdSK+VDlYYkSEapg==
-X-CSE-MsgGUID: WInVhIzHSxiGaM2bB0JPQw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11650"; a="68413449"
-X-IronPort-AV: E=Sophos;i="6.21,170,1763452800"; d="scan'208";a="68413449"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Dec 2025 03:53:40 -0800
-X-CSE-ConnectionGUID: ow8IE/UoSjSKybF62/3uRg==
-X-CSE-MsgGUID: mFKrwlJMSBGaXR7G6yIxvA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,170,1763452800"; d="scan'208";a="237176808"
-Received: from klitkey1-mobl1.ger.corp.intel.com (HELO fdugast-desk.home)
- ([10.245.244.78])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Dec 2025 03:53:39 -0800
-From: Francois Dugast <francois.dugast@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Francois Dugast <francois.dugast@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [PATCH] drm/xe/migrate: Configure migration queue as low latency
-Date: Tue, 23 Dec 2025 12:53:27 +0100
-Message-ID: <20251223115327.49555-1-francois.dugast@intel.com>
-X-Mailer: git-send-email 2.43.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id D746310E0BE;
+	Tue, 23 Dec 2025 11:57:09 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DA4EF10E0BE;
+ Tue, 23 Dec 2025 11:57:08 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_Use_trans_push_mechanism?=
+ =?utf-8?q?_to_generate_frame_change_event_=28rev9=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 23 Dec 2025 11:57:08 -0000
+Message-ID: <176649102889.114188.4413588646470905388@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20251223105120.21505-1-jouni.hogander@intel.com>
+In-Reply-To: <20251223105120.21505-1-jouni.hogander@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,48 +36,88 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Commit 5488bec96bcc ("drm/xe/uapi: Use hint for guc to set GT frequency")
-introduced low latency hint for use by user space when creating an exec
-queue. This instructs SLPC to ramp the GT frequency aggressively.
+== Series Details ==
 
-SVM relies on an internal exec queue to migrate memory upon page faults.
-This change creates this exec queue with the low latency hint to speed up
-migration.
+Series: Use trans push mechanism to generate frame change event (rev9)
+URL   : https://patchwork.freedesktop.org/series/139831/
+State : warning
 
-This should not impact systems where GT frequency is set over sysfs, or
-with long running workloads which give enough time for the frequency to
-ramp up. An example of memory access pattern that shows an improvement of
-SVM performance is running hundreds of times IGT eu-fault-2m-once-device
-in xe_exec_system_allocator. The copy duration provided by GT stats in
-svm_2M_device_copy_us shows per GPU page fault:
-    ~ 165 μs without low latency hint
-    ~ 130 μs with low latency hint
+== Summary ==
 
-Suggested-by: Matthew Brost <matthew.brost@intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Signed-off-by: Francois Dugast <francois.dugast@intel.com>
----
- drivers/gpu/drm/xe/xe_migrate.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
++ trap cleanup EXIT
++ KERNEL=/kernel
++ MT=/root/linux/maintainer-tools
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
+Cloning into '/root/linux/maintainer-tools'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ make -C /root/linux/maintainer-tools
+make: Entering directory '/root/linux/maintainer-tools'
+cc -O2 -g -Wextra -o remap-log remap-log.c
+make: Leaving directory '/root/linux/maintainer-tools'
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ /root/linux/maintainer-tools/dim sparse --fast cab246648fd89efbe8d20ed4c86e7fcebd7606da
+Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
+Fast mode used, each commit won't be checked separately.
++drivers/gpu/drm/i915/display/intel_alpm.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_atomic.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_cdclk.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_color.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_crtc.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h, drivers/gpu/drm/i915/display/intel_display_trace.h):
++drivers/gpu/drm/i915/display/intel_crtc_state_dump.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_cursor.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_cx0_phy.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_ddi.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_display.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_display_debugfs.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_display_driver.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_display_irq.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h, drivers/gpu/drm/i915/display/intel_display_trace.h):
++drivers/gpu/drm/i915/display/intel_display_power_well.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_dp.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_dp_mst.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_dsb.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_flipq.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_frontbuffer.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h, drivers/gpu/drm/i915/display/intel_display_trace.h):
++drivers/gpu/drm/i915/display/intel_hdmi.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_lt_phy.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_panel.c: note: in included file:
++drivers/gpu/drm/i915/display/intel_plane.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h, drivers/gpu/drm/i915/display/intel_display_trace.h):
++drivers/gpu/drm/i915/display/intel_vblank.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_vrr.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/skl_universal_plane.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
 
-diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-index 3de8ce2516e2..00eef41a9e36 100644
---- a/drivers/gpu/drm/xe/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/xe_migrate.c
-@@ -472,7 +472,8 @@ int xe_migrate_init(struct xe_migrate *m)
- 					    EXEC_QUEUE_FLAG_KERNEL |
- 					    EXEC_QUEUE_FLAG_PERMANENT |
- 					    EXEC_QUEUE_FLAG_HIGH_PRIORITY |
--					    EXEC_QUEUE_FLAG_MIGRATE, 0);
-+					    EXEC_QUEUE_FLAG_MIGRATE |
-+					    EXEC_QUEUE_FLAG_LOW_LATENCY, 0);
- 	} else {
- 		m->q = xe_exec_queue_create_class(xe, primary_gt, vm,
- 						  XE_ENGINE_CLASS_COPY,
--- 
-2.43.0
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
+
 
