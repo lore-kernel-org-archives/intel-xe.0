@@ -4,51 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BDD1EE6F086
-	for <intel-xe@archiver.kernel.org>; Tue, 23 Dec 2025 10:45:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 04C11E6F082
+	for <intel-xe@archiver.kernel.org>; Tue, 23 Dec 2025 10:45:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 726BA10E23D;
-	Tue, 23 Dec 2025 10:45:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B617710E237;
+	Tue, 23 Dec 2025 10:45:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lSEoszEl";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="h3eQprXc";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B17D510E21B;
- Tue, 23 Dec 2025 10:45:35 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 327E210E237;
+ Tue, 23 Dec 2025 10:45:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1766486736; x=1798022736;
+ t=1766486743; x=1798022743;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=SUmnDrc7GjhB4iSyNAtsDlZbiQJFMAJZGsT+TNMGMMY=;
- b=lSEoszElhSZwgROSwrVX1xK3d7JrdHtzQyJWjf/H0JyWszCCKMlvahmM
- UcnJtDz4h0wImX9QgM8CVTnIOQN3gaoYuAyMXsSNGcUD89mHvhigIMYos
- 77sbVd9GrlsGZ6bq1GhHImHqukeLfFEKRZJw1doMECWIug/WN7F7Br3r6
- jok1jiLC4PQthqngawZ2KzLr/V4uUtS74LB2T/qpsg0nEMqko1XRa4xfe
- c50rK/lh8QHfCk2ajSbm0xvLUBdM/5n/Kk/RmmP5TLgH1hHSPaC2GQtww
- Tfcu4VEpk3HGc2cc64v97O3btYMCA0c4vKGPVIhs9x2gyMKEWO7UEurnR Q==;
-X-CSE-ConnectionGUID: mLbnChKpRCek6Ch87Ql82Q==
-X-CSE-MsgGUID: yGCSrE0dTXene1ajb8zVJw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11650"; a="68090001"
-X-IronPort-AV: E=Sophos;i="6.21,170,1763452800"; d="scan'208";a="68090001"
+ bh=2s2EXac30uPt9GQjjc9ty6qWUHeckav08gbJGyFgm0o=;
+ b=h3eQprXcOK+QXlk9Q5NO8INTsHMk7zcJTvAf+C/p77dGDgqVSZNbZFJF
+ UtwglFsGX6o6oRI3ojjlFvJ8+aG4Yer9Xm/ayNxzhQ1qm8yDMi36dhZbw
+ qVC87NNp0hTPPSbxXvj4IF4nT+1VFYZkaq8T0khBg2+YCHgrp7GCUT3y/
+ Xj/e9+xpFk8M3VwrwQPTT5lLkG4EMONFsFGYo1iBteCkr4+dyv6yU6qEx
+ PAPTnBNvzB7sXC9MZdy8gNlpwzCFDjkA0s2/e0k+fSYVWEZx8cFomsysT
+ 1XnwBqxvpeLtfcvBPOqzb++VwK0mTg4+RSzOVklhLjQ5hBRSQ9cpj7seA g==;
+X-CSE-ConnectionGUID: TJpyfVbXT5iJBUxmNAF+2g==
+X-CSE-MsgGUID: K9rK0Nd8S1Cvw/BouIipow==
+X-IronPort-AV: E=McAfee;i="6800,10657,11650"; a="68090007"
+X-IronPort-AV: E=Sophos;i="6.21,170,1763452800"; d="scan'208";a="68090007"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Dec 2025 02:45:36 -0800
-X-CSE-ConnectionGUID: Whws5qWOR4qjZ/hIwzNsDA==
-X-CSE-MsgGUID: DevL4SxVSPWBzSqiQ/11/g==
+ 23 Dec 2025 02:45:43 -0800
+X-CSE-ConnectionGUID: 6LFrvBN5QqKt5+8OA54uAA==
+X-CSE-MsgGUID: g+FrTB1FStCbj/4P3iTw6Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,170,1763452800"; d="scan'208";a="199734551"
+X-IronPort-AV: E=Sophos;i="6.21,170,1763452800"; d="scan'208";a="199734568"
 Received: from mgolanimitul-x299-ud4-pro.iind.intel.com ([10.190.239.114])
- by orviesa007.jf.intel.com with ESMTP; 23 Dec 2025 02:45:31 -0800
+ by orviesa007.jf.intel.com with ESMTP; 23 Dec 2025 02:45:39 -0800
 From: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org, mitulkumar.ajitkumar.golani@intel.com,
  ankit.k.nautiyal@intel.com, ville.syrjala@linux.intel.com,
  uma.shankar@intel.com, jani.nikula@intel.com
-Subject: [PATCH v11 11/18] drm/i915/vrr: Write DC balance params to hw
- registers
-Date: Tue, 23 Dec 2025 16:15:33 +0530
-Message-ID: <20251223104542.2688548-12-mitulkumar.ajitkumar.golani@intel.com>
+Subject: [PATCH v11 14/18] drm/i915/display: Wait for VRR PUSH status update
+Date: Tue, 23 Dec 2025 16:15:36 +0530
+Message-ID: <20251223104542.2688548-15-mitulkumar.ajitkumar.golani@intel.com>
 X-Mailer: git-send-email 2.48.1
 In-Reply-To: <20251223104542.2688548-1-mitulkumar.ajitkumar.golani@intel.com>
 References: <20251223104542.2688548-1-mitulkumar.ajitkumar.golani@intel.com>
@@ -68,145 +67,54 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Write DC Balance parameters to hw registers.
+After VRR Push is sent, need to wait till flipline decision boundary
+to get Push bit to get cleared.
 
 --v2:
-- Update commit header.
-- Separate crtc_state params from this patch. (Ankit)
+- Adjust delays to vrr vmin vblank delays. (Ankit)
 
 --v3:
-- Write registers at compute config.
-- Update condition for write.
+- Change intel_vrr_vmin_safe_window_end() so that
+intel_dsb_wait_for_delayed_vblank() uses correct delay. (Ankit)
 
 --v4:
-- Address issue with state checker.
-
---v5:
-- Initialise some more dc balance register while enabling VRR.
-
---v6:
-- FLIPLINE_CFG need to be configure at last, as it is double buffer
-arming point.
-
---v7:
-- Initialise and reset live value of vmax and vmin as well.
-
---v8:
-- Add separate functions while writing hw registers. (Ankit)
-
---v9:
-- Add DC Balance counter enable bit to this patch. (Ankit)
-
---v10:
-- Add rigister writes to vrr_enable/disable. (Ankit)
+- Simplify intel_vrr_vmin_safe_window_end implementation. (Ankit)
 
 Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+Reviewed-by: Uma Shankar <uma.shankar@intel.com>
 Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_vrr.c | 76 ++++++++++++++++++++++++
- 1 file changed, 76 insertions(+)
+ drivers/gpu/drm/i915/display/intel_vrr.c | 15 +++++++++++++--
+ 1 file changed, 13 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-index 92be789a6500..68b39fe0f7bc 100644
+index 68b39fe0f7bc..a4a198a28519 100644
 --- a/drivers/gpu/drm/i915/display/intel_vrr.c
 +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-@@ -781,6 +781,80 @@ static void intel_vrr_set_vrr_timings(const struct intel_crtc_state *crtc_state)
- 		       intel_vrr_hw_flipline(crtc_state) - 1);
+@@ -1095,10 +1095,21 @@ int intel_vrr_safe_window_start(const struct intel_crtc_state *crtc_state)
+ 		return crtc_state->hw.adjusted_mode.crtc_vdisplay;
  }
  
-+static void
-+intel_vrr_enable_dc_balancing(const struct intel_crtc_state *crtc_state)
++static int
++intel_vrr_dcb_vmin_vblank_start(const struct intel_crtc_state *crtc_state)
 +{
-+	struct intel_display *display = to_intel_display(crtc_state);
-+	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
-+	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-+	enum pipe pipe = crtc->pipe;
-+
-+	if (!crtc_state->vrr.dc_balance.enable)
-+		return;
-+
-+	intel_de_write(display, TRANS_VRR_DCB_ADJ_VMAX_CFG(cpu_transcoder),
-+		       VRR_DCB_ADJ_VMAX(crtc_state->vrr.vmax - 1));
-+	intel_de_write(display, TRANS_VRR_DCB_ADJ_VMAX_CFG_LIVE(cpu_transcoder),
-+		       VRR_DCB_ADJ_VMAX(crtc_state->vrr.vmax - 1));
-+	intel_de_write(display, TRANS_VRR_DCB_VMAX(cpu_transcoder),
-+		       VRR_DCB_VMAX(crtc_state->vrr.vmax - 1));
-+	intel_de_write(display, TRANS_VRR_DCB_VMAX_LIVE(cpu_transcoder),
-+		       VRR_DCB_VMAX(crtc_state->vrr.vmax - 1));
-+	intel_de_write(display, TRANS_VRR_DCB_FLIPLINE(cpu_transcoder),
-+		       VRR_DCB_FLIPLINE(crtc_state->vrr.flipline - 1));
-+	intel_de_write(display, TRANS_VRR_DCB_FLIPLINE_LIVE(cpu_transcoder),
-+		       VRR_DCB_FLIPLINE(crtc_state->vrr.flipline - 1));
-+	intel_de_write(display, TRANS_VRR_DCB_ADJ_FLIPLINE_CFG_LIVE(cpu_transcoder),
-+		       VRR_DCB_ADJ_FLIPLINE(crtc_state->vrr.flipline - 1));
-+	intel_de_write(display, TRANS_VRR_DCB_ADJ_FLIPLINE_CFG(cpu_transcoder),
-+		       VRR_DCB_ADJ_FLIPLINE(crtc_state->vrr.flipline - 1));
-+	intel_de_write(display, PIPEDMC_DCB_VMIN(pipe),
-+		       crtc_state->vrr.dc_balance.vmin - 1);
-+	intel_de_write(display, PIPEDMC_DCB_VMAX(pipe),
-+		       crtc_state->vrr.dc_balance.vmax - 1);
-+	intel_de_write(display, PIPEDMC_DCB_MAX_INCREASE(pipe),
-+		       crtc_state->vrr.dc_balance.max_increase);
-+	intel_de_write(display, PIPEDMC_DCB_MAX_DECREASE(pipe),
-+		       crtc_state->vrr.dc_balance.max_decrease);
-+	intel_de_write(display, PIPEDMC_DCB_GUARDBAND(pipe),
-+		       crtc_state->vrr.dc_balance.guardband);
-+	intel_de_write(display, PIPEDMC_DCB_SLOPE(pipe),
-+		       crtc_state->vrr.dc_balance.slope);
-+	intel_de_write(display, PIPEDMC_DCB_VBLANK(pipe),
-+		       crtc_state->vrr.dc_balance.vblank_target);
-+	intel_de_write(display, TRANS_ADAPTIVE_SYNC_DCB_CTL(cpu_transcoder),
-+		       ADAPTIVE_SYNC_COUNTER_EN);
++	return (intel_vrr_dcb_vmin_vblank_start_next(crtc_state) < 0) ?
++		intel_vrr_dcb_vmin_vblank_start_final(crtc_state) :
++		intel_vrr_dcb_vmin_vblank_start_next(crtc_state);
 +}
 +
-+static void
-+intel_vrr_disable_dc_balancing(const struct intel_crtc_state *old_crtc_state)
-+{
-+	struct intel_display *display = to_intel_display(old_crtc_state);
-+	enum transcoder cpu_transcoder = old_crtc_state->cpu_transcoder;
-+	struct intel_crtc *crtc = to_intel_crtc(old_crtc_state->uapi.crtc);
-+	enum pipe pipe = crtc->pipe;
-+
-+	if (!old_crtc_state->vrr.dc_balance.enable)
-+		return;
-+
-+	intel_de_write(display, TRANS_ADAPTIVE_SYNC_DCB_CTL(cpu_transcoder), 0);
-+	intel_de_write(display, PIPEDMC_DCB_VMIN(pipe), 0);
-+	intel_de_write(display, PIPEDMC_DCB_VMAX(pipe), 0);
-+	intel_de_write(display, PIPEDMC_DCB_MAX_INCREASE(pipe), 0);
-+	intel_de_write(display, PIPEDMC_DCB_MAX_DECREASE(pipe), 0);
-+	intel_de_write(display, PIPEDMC_DCB_GUARDBAND(pipe), 0);
-+	intel_de_write(display, PIPEDMC_DCB_SLOPE(pipe), 0);
-+	intel_de_write(display, PIPEDMC_DCB_VBLANK(pipe), 0);
-+	intel_de_write(display, TRANS_VRR_DCB_ADJ_VMAX_CFG_LIVE(cpu_transcoder), 0);
-+	intel_de_write(display, TRANS_VRR_DCB_ADJ_FLIPLINE_CFG_LIVE(cpu_transcoder), 0);
-+	intel_de_write(display, TRANS_VRR_DCB_VMAX_LIVE(cpu_transcoder), 0);
-+	intel_de_write(display, TRANS_VRR_DCB_FLIPLINE_LIVE(cpu_transcoder), 0);
-+	intel_de_write(display, TRANS_VRR_DCB_ADJ_VMAX_CFG(cpu_transcoder), 0);
-+	intel_de_write(display, TRANS_VRR_DCB_ADJ_FLIPLINE_CFG(cpu_transcoder), 0);
-+	intel_de_write(display, TRANS_VRR_DCB_VMAX(cpu_transcoder), 0);
-+	intel_de_write(display, TRANS_VRR_DCB_FLIPLINE(cpu_transcoder), 0);
-+}
-+
- static void intel_vrr_tg_enable(const struct intel_crtc_state *crtc_state,
- 				bool cmrr_enable)
+ int intel_vrr_vmin_safe_window_end(const struct intel_crtc_state *crtc_state)
  {
-@@ -827,6 +901,7 @@ void intel_vrr_enable(const struct intel_crtc_state *crtc_state)
- 		return;
- 
- 	intel_vrr_set_vrr_timings(crtc_state);
-+	intel_vrr_enable_dc_balancing(crtc_state);
- 
- 	if (!intel_vrr_always_use_vrr_tg(display))
- 		intel_vrr_tg_enable(crtc_state, crtc_state->cmrr.enable);
-@@ -842,6 +917,7 @@ void intel_vrr_disable(const struct intel_crtc_state *old_crtc_state)
- 	if (!intel_vrr_always_use_vrr_tg(display))
- 		intel_vrr_tg_disable(old_crtc_state);
- 
-+	intel_vrr_disable_dc_balancing(old_crtc_state);
- 	intel_vrr_set_fixed_rr_timings(old_crtc_state);
+-	return intel_vrr_vmin_vblank_start(crtc_state) -
+-	       crtc_state->set_context_latency;
++	int vmin_vblank_start = crtc_state->vrr.dc_balance.enable ?
++			intel_vrr_dcb_vmin_vblank_start(crtc_state) :
++			intel_vrr_vmin_vblank_start(crtc_state);
++
++	return vmin_vblank_start - crtc_state->set_context_latency;
  }
  
+ int intel_vrr_dcb_vmin_vblank_start_next(const struct intel_crtc_state *crtc_state)
 -- 
 2.48.1
 
