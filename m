@@ -4,54 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 38FE5E6F06C
-	for <intel-xe@archiver.kernel.org>; Tue, 23 Dec 2025 08:16:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9E0F5E6F06C
+	for <intel-xe@archiver.kernel.org>; Tue, 23 Dec 2025 08:23:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E9C0B10E1B7;
-	Tue, 23 Dec 2025 08:16:31 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cQP4bqbW";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BDA7610E19E;
- Tue, 23 Dec 2025 08:16:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1766477790; x=1798013790;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=3/gTHv6yE0PKfjpTPbM13BlaHn+ESkKfwhLeSKmRQzQ=;
- b=cQP4bqbWfdghapRa+FHCkq+osiVkgvUYhCUSxvkLyCvakVuvMW2BLICA
- 2FZKYfp+NRLVolbxnbibb7OQd6B+WIg4I8dRxcVPYkK3/3GeekiHusMJ8
- lTsgMB6vjMf6fRQRKNi0DgYXwp8brocYLhJ7WSjHQhUdVFCQO9PTqxKq7
- Emkw7GBxDlpdqVELJszyHdbz6SuUXXf6m32SxbmId0fGJPrt94NBWgEVH
- +aOz/MJ3kmVuSN41NGGxFbs821KZlzSOsXqwSWI1465hZH0bej2uNVkU6
- xHgBtkKg7fx0MEMQDNKnowYTP7nPm8PCIkr5/v70kAjmDLh5a/4UjetuV w==;
-X-CSE-ConnectionGUID: mnW/upGnSWeJwtJhkXhN5w==
-X-CSE-MsgGUID: 24U6WOyeR12b23vWDATB/w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11650"; a="68081706"
-X-IronPort-AV: E=Sophos;i="6.21,170,1763452800"; d="scan'208";a="68081706"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Dec 2025 00:16:30 -0800
-X-CSE-ConnectionGUID: bK4uF+fARm69Spgu/241vQ==
-X-CSE-MsgGUID: s0pLaLnUSx6fSfCTMdVL/g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,170,1763452800"; d="scan'208";a="204224381"
-Received: from nemesa.iind.intel.com ([10.190.239.22])
- by fmviesa005.fm.intel.com with ESMTP; 23 Dec 2025 00:16:29 -0800
-From: Nemesa Garg <nemesa.garg@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: Nemesa Garg <nemesa.garg@intel.com>
-Subject: [PATCH 3/3] drm/i915/display: Common wrapper for casf and pfit
-Date: Tue, 23 Dec 2025 13:43:00 +0530
-Message-Id: <20251223081300.1196417-4-nemesa.garg@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20251223081300.1196417-1-nemesa.garg@intel.com>
-References: <20251223081300.1196417-1-nemesa.garg@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id B57EC10E142;
+	Tue, 23 Dec 2025 08:23:07 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C580510E142;
+ Tue, 23 Dec 2025 08:23:06 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Make_casf_updates_atomic_?=
+ =?utf-8?q?and_dsb_ready_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Nemesa Garg" <nemesa.garg@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 23 Dec 2025 08:23:06 -0000
+Message-ID: <176647818680.113796.7078277313747087343@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20251223081300.1196417-1-nemesa.garg@intel.com>
+In-Reply-To: <20251223081300.1196417-1-nemesa.garg@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,154 +36,262 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Make a common wrapper for pipe_scaling and sharpness
-which will be invoked from hsw_crtc_enable and
-pipe_fastset. Then accoridng to the condition
-pfit_enable or casf_enable or casf_update_strength
-can be invoked. This is done so that all pipe
-related functions can be under one umberalla.
+== Series Details ==
 
-Signed-off-by: Nemesa Garg <nemesa.garg@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display.c | 24 ++++------------
- drivers/gpu/drm/i915/display/skl_scaler.c    | 29 ++++++++++++++++++++
- drivers/gpu/drm/i915/display/skl_scaler.h    |  3 ++
- 3 files changed, 37 insertions(+), 19 deletions(-)
+Series: Make casf updates atomic and dsb ready (rev2)
+URL   : https://patchwork.freedesktop.org/series/158668/
+State : warning
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 568730ffe359..ddab4a1417ec 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -991,15 +991,6 @@ static bool audio_disabling(const struct intel_crtc_state *old_crtc_state,
- 		 memcmp(old_crtc_state->eld, new_crtc_state->eld, MAX_ELD_BYTES) != 0);
- }
- 
--static bool intel_casf_enabling(const struct intel_crtc_state *new_crtc_state,
--				const struct intel_crtc_state *old_crtc_state)
--{
--	if (!new_crtc_state->hw.active)
--		return false;
--
--	return is_enabling(hw.casf_params.casf_enable, old_crtc_state, new_crtc_state);
--}
--
- static bool intel_casf_disabling(const struct intel_crtc_state *old_crtc_state,
- 				 const struct intel_crtc_state *new_crtc_state)
- {
-@@ -1679,7 +1670,7 @@ static void hsw_crtc_enable(struct intel_atomic_state *state,
- 			glk_pipe_scaler_clock_gating_wa(pipe_crtc, true);
- 
- 		if (DISPLAY_VER(display) >= 9)
--			skl_pfit_enable(pipe_crtc_state);
-+			skl_scaler_enable(state, crtc);
- 		else
- 			ilk_pfit_enable(pipe_crtc_state);
- 
-@@ -6635,7 +6626,8 @@ void intel_crtc_arm_fifo_underrun(struct intel_crtc *crtc,
- 	}
- }
- 
--static void intel_pipe_fastset(const struct intel_crtc_state *old_crtc_state,
+== Summary ==
+
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+99339247d1ae4378b24366da182e712bdc623311
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit ee2af1f4cf858cb2aec0cab26b72c346bcb240fb
+Author: Nemesa Garg <nemesa.garg@intel.com>
+Date:   Tue Dec 23 13:43:00 2025 +0530
+
+    drm/i915/display: Common wrapper for casf and pfit
+    
+    Make a common wrapper for pipe_scaling and sharpness
+    which will be invoked from hsw_crtc_enable and
+    pipe_fastset. Then accoridng to the condition
+    pfit_enable or casf_enable or casf_update_strength
+    can be invoked. This is done so that all pipe
+    related functions can be under one umberalla.
+    
+    Signed-off-by: Nemesa Garg <nemesa.garg@intel.com>
++ /mt/dim checkpatch f101d56dc32350daa45c130ff7a6d46512f614a9 drm-intel
+1e6006f17593 drm/i915/display: Move casf_compute_config
+-:49: ERROR:CODE_INDENT: code indent should use tabs where possible
+#49: FILE: drivers/gpu/drm/i915/display/intel_display.c:6428:
++                    old_crtc_state->uapi.sharpness_strength)$
+
+-:49: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#49: FILE: drivers/gpu/drm/i915/display/intel_display.c:6428:
++                    old_crtc_state->uapi.sharpness_strength)$
+
+-:50: ERROR:CODE_INDENT: code indent should use tabs where possible
+#50: FILE: drivers/gpu/drm/i915/display/intel_display.c:6429:
++                        new_crtc_state->uapi.mode_changed = true;$
+
+-:50: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#50: FILE: drivers/gpu/drm/i915/display/intel_display.c:6429:
++                        new_crtc_state->uapi.mode_changed = true;$
+
+total: 2 errors, 2 warnings, 0 checks, 30 lines checked
+88e2834f013e drm/i915/display: Introduce skl_pipe_scaler_setup()
+-:26: ERROR:CODE_INDENT: code indent should use tabs where possible
+#26: FILE: drivers/gpu/drm/i915/display/skl_scaler.c:765:
++        struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);$
+
+-:26: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#26: FILE: drivers/gpu/drm/i915/display/skl_scaler.c:765:
++        struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);$
+
+-:28: ERROR:CODE_INDENT: code indent should use tabs where possible
+#28: FILE: drivers/gpu/drm/i915/display/skl_scaler.c:767:
++                &crtc_state->scaler_state;$
+
+-:28: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#28: FILE: drivers/gpu/drm/i915/display/skl_scaler.c:767:
++                &crtc_state->scaler_state;$
+
+-:66: ERROR:CODE_INDENT: code indent should use tabs where possible
+#66: FILE: drivers/gpu/drm/i915/display/skl_scaler.c:782:
++                          PS_WIN_XSIZE(width) | PS_WIN_YSIZE(height));$
+
+-:66: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#66: FILE: drivers/gpu/drm/i915/display/skl_scaler.c:782:
++                          PS_WIN_XSIZE(width) | PS_WIN_YSIZE(height));$
+
+total: 3 errors, 3 warnings, 0 checks, 114 lines checked
+ee2af1f4cf85 drm/i915/display: Common wrapper for casf and pfit
+-:50: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#50: FILE: drivers/gpu/drm/i915/display/intel_display.c:6622:
 +static void intel_pipe_fastset(struct intel_atomic_state *state,
 +		const struct intel_crtc_state *old_crtc_state,
- 			       const struct intel_crtc_state *new_crtc_state)
- {
- 	struct intel_display *display = to_intel_display(new_crtc_state);
-@@ -6653,8 +6645,7 @@ static void intel_pipe_fastset(const struct intel_crtc_state *old_crtc_state,
- 
- 	/* on skylake this is done by detaching scalers */
+
+-:57: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (8, 24)
+#57: FILE: drivers/gpu/drm/i915/display/intel_display.c:6639:
  	if (DISPLAY_VER(display) >= 9) {
--		if (new_crtc_state->pch_pfit.enabled)
--			skl_pfit_enable(new_crtc_state);
 +			skl_scaler_enable(state, crtc);
- 	} else if (HAS_PCH_SPLIT(display)) {
- 		if (new_crtc_state->pch_pfit.enabled)
- 			ilk_pfit_enable(new_crtc_state);
-@@ -6706,7 +6697,7 @@ static void commit_pipe_pre_planes(struct intel_atomic_state *state,
- 			bdw_set_pipe_misc(NULL, new_crtc_state);
- 
- 		if (intel_crtc_needs_fastset(new_crtc_state))
--			intel_pipe_fastset(old_crtc_state, new_crtc_state);
-+			intel_pipe_fastset(state, old_crtc_state, new_crtc_state);
- 	}
- 
- 	intel_psr2_program_trans_man_trk_ctl(NULL, new_crtc_state);
-@@ -6805,11 +6796,6 @@ static void intel_pre_update_crtc(struct intel_atomic_state *state,
- 			intel_vrr_set_transcoder_timings(new_crtc_state);
- 	}
- 
--	if (intel_casf_enabling(new_crtc_state, old_crtc_state))
--		intel_casf_enable(new_crtc_state);
--	else if (new_crtc_state->hw.casf_params.strength != old_crtc_state->hw.casf_params.strength)
--		intel_casf_update_strength(new_crtc_state);
--
- 	intel_fbc_update(state, crtc);
- 
- 	drm_WARN_ON(display->drm, !intel_display_power_is_enabled(display, POWER_DOMAIN_DC_OFF));
-diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c b/drivers/gpu/drm/i915/display/skl_scaler.c
-index abd951f7dd71..19a9c4a0da0a 100644
---- a/drivers/gpu/drm/i915/display/skl_scaler.c
-+++ b/drivers/gpu/drm/i915/display/skl_scaler.c
-@@ -752,6 +752,19 @@ static void skl_scaler_setup_filter(struct intel_display *display,
- 	}
- }
- 
+
+-:93: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'feature' - possible side-effects?
+#93: FILE: drivers/gpu/drm/i915/display/skl_scaler.c:755:
 +#define is_enabling(feature, old_crtc_state, new_crtc_state) \
 +        ((!(old_crtc_state)->feature || intel_crtc_needs_modeset(new_crtc_state)) && \
 +         (new_crtc_state)->feature)
-+
-+static bool intel_casf_enabling(const struct intel_crtc_state *new_crtc_state,
-+                                const struct intel_crtc_state *old_crtc_state)
-+{
-+        if (!new_crtc_state->hw.active)
-+                return false;
-+
-+        return is_enabling(hw.casf_params.casf_enable, old_crtc_state, new_crtc_state);
-+}
-+
- #define CASF_SCALER_FILTER_SELECT \
- 	(PS_FILTER_PROGRAMMED | \
- 	PS_Y_VERT_FILTER_SELECT(0) | \
-@@ -859,6 +872,22 @@ void skl_pipe_scaler_setup(const struct intel_crtc_state *crtc_state,
- 			  PS_WIN_XPOS(x) | PS_WIN_YPOS(y));
- }
- 
-+void skl_scaler_enable(struct intel_atomic_state *state,
-+                       struct intel_crtc *crtc)
-+{
-+        struct intel_crtc_state *new_crtc_state =
-+                intel_atomic_get_new_crtc_state(state, crtc);
-+        struct intel_crtc_state *old_crtc_state =
-+                intel_atomic_get_old_crtc_state(state, crtc);
-+
+
+-:93: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'feature' may be better as '(feature)' to avoid precedence issues
+#93: FILE: drivers/gpu/drm/i915/display/skl_scaler.c:755:
++#define is_enabling(feature, old_crtc_state, new_crtc_state) \
++        ((!(old_crtc_state)->feature || intel_crtc_needs_modeset(new_crtc_state)) && \
++         (new_crtc_state)->feature)
+
+-:93: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'new_crtc_state' - possible side-effects?
+#93: FILE: drivers/gpu/drm/i915/display/skl_scaler.c:755:
++#define is_enabling(feature, old_crtc_state, new_crtc_state) \
++        ((!(old_crtc_state)->feature || intel_crtc_needs_modeset(new_crtc_state)) && \
++         (new_crtc_state)->feature)
+
+-:94: ERROR:CODE_INDENT: code indent should use tabs where possible
+#94: FILE: drivers/gpu/drm/i915/display/skl_scaler.c:756:
++        ((!(old_crtc_state)->feature || intel_crtc_needs_modeset(new_crtc_state)) && \$
+
+-:94: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#94: FILE: drivers/gpu/drm/i915/display/skl_scaler.c:756:
++        ((!(old_crtc_state)->feature || intel_crtc_needs_modeset(new_crtc_state)) && \$
+
+-:95: ERROR:CODE_INDENT: code indent should use tabs where possible
+#95: FILE: drivers/gpu/drm/i915/display/skl_scaler.c:757:
++         (new_crtc_state)->feature)$
+
+-:95: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#95: FILE: drivers/gpu/drm/i915/display/skl_scaler.c:757:
++         (new_crtc_state)->feature)$
+
+-:98: ERROR:CODE_INDENT: code indent should use tabs where possible
+#98: FILE: drivers/gpu/drm/i915/display/skl_scaler.c:760:
++                                const struct intel_crtc_state *old_crtc_state)$
+
+-:98: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#98: FILE: drivers/gpu/drm/i915/display/skl_scaler.c:760:
++                                const struct intel_crtc_state *old_crtc_state)$
+
+-:100: ERROR:CODE_INDENT: code indent should use tabs where possible
+#100: FILE: drivers/gpu/drm/i915/display/skl_scaler.c:762:
++        if (!new_crtc_state->hw.active)$
+
+-:100: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#100: FILE: drivers/gpu/drm/i915/display/skl_scaler.c:762:
++        if (!new_crtc_state->hw.active)$
+
+-:101: ERROR:CODE_INDENT: code indent should use tabs where possible
+#101: FILE: drivers/gpu/drm/i915/display/skl_scaler.c:763:
++                return false;$
+
+-:101: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#101: FILE: drivers/gpu/drm/i915/display/skl_scaler.c:763:
++                return false;$
+
+-:103: ERROR:CODE_INDENT: code indent should use tabs where possible
+#103: FILE: drivers/gpu/drm/i915/display/skl_scaler.c:765:
++        return is_enabling(hw.casf_params.casf_enable, old_crtc_state, new_crtc_state);$
+
+-:103: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#103: FILE: drivers/gpu/drm/i915/display/skl_scaler.c:765:
++        return is_enabling(hw.casf_params.casf_enable, old_crtc_state, new_crtc_state);$
+
+-:114: ERROR:CODE_INDENT: code indent should use tabs where possible
+#114: FILE: drivers/gpu/drm/i915/display/skl_scaler.c:876:
++                       struct intel_crtc *crtc)$
+
+-:114: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#114: FILE: drivers/gpu/drm/i915/display/skl_scaler.c:876:
++                       struct intel_crtc *crtc)$
+
+-:116: ERROR:CODE_INDENT: code indent should use tabs where possible
+#116: FILE: drivers/gpu/drm/i915/display/skl_scaler.c:878:
++        struct intel_crtc_state *new_crtc_state =$
+
+-:116: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#116: FILE: drivers/gpu/drm/i915/display/skl_scaler.c:878:
++        struct intel_crtc_state *new_crtc_state =$
+
+-:117: ERROR:CODE_INDENT: code indent should use tabs where possible
+#117: FILE: drivers/gpu/drm/i915/display/skl_scaler.c:879:
++                intel_atomic_get_new_crtc_state(state, crtc);$
+
+-:117: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#117: FILE: drivers/gpu/drm/i915/display/skl_scaler.c:879:
++                intel_atomic_get_new_crtc_state(state, crtc);$
+
+-:118: ERROR:CODE_INDENT: code indent should use tabs where possible
+#118: FILE: drivers/gpu/drm/i915/display/skl_scaler.c:880:
++        struct intel_crtc_state *old_crtc_state =$
+
+-:118: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#118: FILE: drivers/gpu/drm/i915/display/skl_scaler.c:880:
++        struct intel_crtc_state *old_crtc_state =$
+
+-:119: ERROR:CODE_INDENT: code indent should use tabs where possible
+#119: FILE: drivers/gpu/drm/i915/display/skl_scaler.c:881:
++                intel_atomic_get_old_crtc_state(state, crtc);$
+
+-:119: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#119: FILE: drivers/gpu/drm/i915/display/skl_scaler.c:881:
++                intel_atomic_get_old_crtc_state(state, crtc);$
+
+-:121: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#121: FILE: drivers/gpu/drm/i915/display/skl_scaler.c:883:
++       if (new_crtc_state->pch_pfit.enabled)$
+
+-:121: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (7, 15)
+#121: FILE: drivers/gpu/drm/i915/display/skl_scaler.c:883:
 +       if (new_crtc_state->pch_pfit.enabled)
 +               skl_pfit_enable(new_crtc_state);
+
+-:122: ERROR:CODE_INDENT: code indent should use tabs where possible
+#122: FILE: drivers/gpu/drm/i915/display/skl_scaler.c:884:
++               skl_pfit_enable(new_crtc_state);$
+
+-:122: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#122: FILE: drivers/gpu/drm/i915/display/skl_scaler.c:884:
++               skl_pfit_enable(new_crtc_state);$
+
+-:123: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#123: FILE: drivers/gpu/drm/i915/display/skl_scaler.c:885:
++       else if (intel_casf_enabling(new_crtc_state, old_crtc_state))$
+
+-:123: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (7, 16)
+#123: FILE: drivers/gpu/drm/i915/display/skl_scaler.c:885:
 +       else if (intel_casf_enabling(new_crtc_state, old_crtc_state))
 +                intel_casf_enable(new_crtc_state);
+
+-:124: ERROR:CODE_INDENT: code indent should use tabs where possible
+#124: FILE: drivers/gpu/drm/i915/display/skl_scaler.c:886:
++                intel_casf_enable(new_crtc_state);$
+
+-:124: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#124: FILE: drivers/gpu/drm/i915/display/skl_scaler.c:886:
++                intel_casf_enable(new_crtc_state);$
+
+-:125: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#125: FILE: drivers/gpu/drm/i915/display/skl_scaler.c:887:
++       else if (new_crtc_state->hw.casf_params.strength != old_crtc_state->hw.casf_params.strength)$
+
+-:125: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (7, 16)
+#125: FILE: drivers/gpu/drm/i915/display/skl_scaler.c:887:
 +       else if (new_crtc_state->hw.casf_params.strength != old_crtc_state->hw.casf_params.strength)
 +                intel_casf_update_strength(new_crtc_state);
-+}
-+
- void
- skl_program_plane_scaler(struct intel_dsb *dsb,
- 			 struct intel_plane *plane,
-diff --git a/drivers/gpu/drm/i915/display/skl_scaler.h b/drivers/gpu/drm/i915/display/skl_scaler.h
-index 94bde5d1c06a..3d49836334b7 100644
---- a/drivers/gpu/drm/i915/display/skl_scaler.h
-+++ b/drivers/gpu/drm/i915/display/skl_scaler.h
-@@ -40,6 +40,9 @@ void skl_scaler_get_config(struct intel_crtc_state *crtc_state);
- 
- void skl_scaler_setup_casf(struct intel_crtc_state *crtc_state);
- 
-+void skl_scaler_enable(struct intel_atomic_state *state,
-+                       struct intel_crtc *crtc);
-+
- enum drm_mode_status
- skl_scaler_mode_valid(struct intel_display *display,
- 		      const struct drm_display_mode *mode,
--- 
-2.25.1
+
+-:126: ERROR:CODE_INDENT: code indent should use tabs where possible
+#126: FILE: drivers/gpu/drm/i915/display/skl_scaler.c:888:
++                intel_casf_update_strength(new_crtc_state);$
+
+-:126: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#126: FILE: drivers/gpu/drm/i915/display/skl_scaler.c:888:
++                intel_casf_update_strength(new_crtc_state);$
+
+-:141: ERROR:CODE_INDENT: code indent should use tabs where possible
+#141: FILE: drivers/gpu/drm/i915/display/skl_scaler.h:44:
++                       struct intel_crtc *crtc);$
+
+-:141: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#141: FILE: drivers/gpu/drm/i915/display/skl_scaler.h:44:
++                       struct intel_crtc *crtc);$
+
+total: 15 errors, 22 warnings, 4 checks, 110 lines checked
+
 
