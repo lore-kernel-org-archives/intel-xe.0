@@ -4,143 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 78DD3CFD651
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 961FBCFD641
 	for <intel-xe@archiver.kernel.org>; Wed,  7 Jan 2026 14:19:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3EEE510E5FC;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2CB5410E5F9;
 	Wed,  7 Jan 2026 14:19:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="K7E1c7P5";
+	dkim=pass (2048-bit key; unprotected) header.d=aol.com header.i=@aol.com header.b="syINP3jC";
 	dkim-atps=neutral
-Received: from BL2PR02CU003.outbound.protection.outlook.com
- (mail-eastusazon11011013.outbound.protection.outlook.com [52.101.52.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 939FB10E035;
- Wed,  7 Jan 2026 09:19:03 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=DYXQLn4N3V3NXipG1clrByACJbEvXC2PgGXn+90agzR98trvGHkxnQQKtWd0ebhlYtvMHkVz/bcHoTKh/xzlW4buHwE5VAd7S9HPz+TWktoG9MtLbLy4JHinAC8+FOAgucVubABaLXKcAs98cSWM0jzvjqql5MzxzW1g7WbDSY96RzEP9/IYcKih6Dgu0C/FVNtPjgj6Dfq01/JO0HJ6P5hmE0KoFrFVzCzCVOh7U8CxabKb3cQiybuY6vJ0Se4+wJsRGaYY7rJ6bdllXByc+1eKinFBhPdIqZTLUfJkHKCc4rcJftZbyn0xY/okjmcKyW9pn/tSwXIyVVHsgAbFig==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=C9aj6PiUrCwqMql/PuF5C/6bsBspOVgysa2aa1exepM=;
- b=vsbzFl37a1LArBBQ217ArnKdy/l9SHfJ2M/cKDiiJMBnhxre5kib6rnAjtofOjpORz7pTbSbm8eYNxc6twOdT9gFXvuJ1JtSwnN7rlL7UIxR3pPDiB7Q8QzmoCkrPt7AGcFY5EdbV7ryiJGa3sjQJ5y3QFcs5080Q7YJBfN1RYh2nSfQViVr6wMIIiAwRVQ/tJnYmSm+s7yJ5k1F+NmbsoCMB8Gs3uoSFH895+vODJxRREU2xfLSfgP+Uka8XjjhEYH9IlAy+GnsRD8eiLkCmuHNODa1B4dfHeRJYijxsbBJrurs5seFJMr+Kh6Ot/QHtxwTlkZMbasykNQ65aeEyQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=C9aj6PiUrCwqMql/PuF5C/6bsBspOVgysa2aa1exepM=;
- b=K7E1c7P55UGTtlAeD9BBRWZqodkKz1msBJlkTaXcedRwyM6MHDdEXACwnvM1jvJPuCSG8lHH4rQL06Hne8FMH3y4RnhHwn+Jinez2JdqExljQl4o1NqK7PJzNuxyKtVLoXv8Rkpnh1lCQnj0akU0fqdd8zMZ6wmWtWGkHW0Z8hQuxx5pLQg4DY63DAlHG/l3xQEcRx3R5e0jCag4hwfrajmqPbPLHG+QmdRmmjxelmIoszMddmdUDeVjw3u/p1RnQO/r8TAzseS3FVIEjkXzx4PL5n0fS8U3fLcXhVXmDC0QZIGihTixMkL9RKdJeI+IvIi2NJPU/r01WJXj+nM2sw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from DM4PR12MB9072.namprd12.prod.outlook.com (2603:10b6:8:be::6) by
- MN2PR12MB4335.namprd12.prod.outlook.com (2603:10b6:208:1d4::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9499.2; Wed, 7 Jan
- 2026 09:18:59 +0000
-Received: from DM4PR12MB9072.namprd12.prod.outlook.com
- ([fe80::9e49:782:8e98:1ff1]) by DM4PR12MB9072.namprd12.prod.outlook.com
- ([fe80::9e49:782:8e98:1ff1%5]) with mapi id 15.20.9499.002; Wed, 7 Jan 2026
- 09:18:59 +0000
-From: Jordan Niethe <jniethe@nvidia.com>
-To: linux-mm@kvack.org
-Cc: balbirs@nvidia.com, matthew.brost@intel.com, akpm@linux-foundation.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- david@redhat.com, ziy@nvidia.com, apopple@nvidia.com,
- lorenzo.stoakes@oracle.com, lyude@redhat.com, dakr@kernel.org,
- airlied@gmail.com, simona@ffwll.ch, rcampbell@nvidia.com,
- mpenttil@redhat.com, jgg@nvidia.com, willy@infradead.org,
- linuxppc-dev@lists.ozlabs.org, intel-xe@lists.freedesktop.org,
- jgg@ziepe.ca, Felix.Kuehling@amd.com
-Subject: [PATCH v2 07/11] mm: Add a new swap type for migration entries of
- device private pages
-Date: Wed,  7 Jan 2026 20:18:19 +1100
-Message-Id: <20260107091823.68974-8-jniethe@nvidia.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260107091823.68974-1-jniethe@nvidia.com>
-References: <20260107091823.68974-1-jniethe@nvidia.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SJ0PR03CA0385.namprd03.prod.outlook.com
- (2603:10b6:a03:3a1::30) To DM4PR12MB9072.namprd12.prod.outlook.com
- (2603:10b6:8:be::6)
+Received: from sonic321-26.consmr.mail.bf2.yahoo.com
+ (sonic321-26.consmr.mail.bf2.yahoo.com [74.6.133.81])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8E44D10E15A
+ for <intel-xe@lists.freedesktop.org>; Tue, 23 Dec 2025 15:28:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aol.com; s=a2048;
+ t=1766503729; bh=LwvYDYaktTk8lXo8IkTorI+EErZp158qmx9KmCPBgCY=;
+ h=Date:From:To:In-Reply-To:References:Subject:From:Subject:Reply-To;
+ b=syINP3jCE6tTrC8UGQsq4XDoCq/re/OMlf9WdEp2P+cDRwI9vunlTZO5iQpra0LGMdi1LBZMlozg7TIwqF5Zke6iEduU2q3f6cFK4EIGv+ooXL8ZaB/A4IxqxLn2pVsmanuHbywNkjabh74zvhMnj5ALncPu0HNlbZUStucV+0p4jYaTdw0F9Z1sjyh7Wy3WcUJU9I8xiJblHxecjH1jAiCIs/nOm6KZ8+6L27YED+B37oZTFEwlVzZVfxCsDwCPafC6dhl7tPy8nbjQzj4d755yaLjQd2Ot5Jubxv02EJkYs7SNPqUgUOLrPFvU4+0GF1c16fHUlvo7yukcg7uDAA==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
+ t=1766503729; bh=Qq4tIwqcZHVkWs5e5HFMDJ3lc7XM1TfnSvv75bm//br=;
+ h=X-Sonic-MF:Date:From:To:Subject:From:Subject;
+ b=KYtWWAZg6H8jw3ESwQRR1ZEMpNsffIDMA1O7a4BE6GGiG7q0i/A2iUtmu0LkfZW3KEZ9N7iJisS6S4dp7iqDpH2ZAHkbpx1hyyuN9Q0ynwkpnOJdKZ5KuzS9kCL8nv1darUQLP9nEqL+8DwdvZK1hzp1T3JX/OvqxKECvirLX0sznTD2cRYQOl7rl0Mt6bTRDWGRYcE0KFH0W/pEyAEO5jFVDc7TRhE5aJuovornzO1grf49li2X42PeljxV2AVb+tQLsOfHp+z0GDsrJbG2/hxCYVK7LLdYWXcsXuLkDtqkBCz1Pw+xMCff/qufSdQ+h+rZ/pPooX7MWzqjrt13MQ==
+X-YMail-OSG: 9.bcxMYVM1mKRDRhKZSrbwO3oQuViIto6D8IOa.V0jpA0FH6d8C61o1QQMQ67pe
+ QV2yREeuKtRZAWsVF9eF5JVzEIsOyim6yXy8Vwf43VXDFqU_3sNGBrmpSWUilqBFzyJA21Nn_Zab
+ 9o0GsuTj7LLrw_NaS7YDapQ_ihY2I2DV3VqFWHZaznZiadXxBTwSrWavXV7wsR8Nt6fHEjTRQFdR
+ GhWNCm2XmypF10lHcsfbPKTyw7W8lCyFboMdPB2sltSfeYrmDQ6Mcs3fgznhf0IpjVjg1FKdLThv
+ XdxDKVizPLLGtO4HXyZwsOUH_.rbyqA9Pn4jM69JFzltKBagPC6HjM52Zbdbwp7dhaMd_BFoFGFt
+ EG6tKxE8C3pEyVbVIjhelklurpfeOhUDYdmTxEj4PG76hubT1QKzKohYwGDqfxyY9UzZDT5jr3cI
+ QSivmYzzqtTmh7lEzWP8_q2ElGcfrO9mI4MFwhDCEstAAzptvUhM3bBYFq_oZyDvP3L6h2DldR8e
+ ovx46nEvr0YN5rnMaB82LokGtTN7hDpzEBk16lA9fQmuan1cTi40amyUu4ciwn0iH8h8su6fDMFl
+ MOYLSSs63usceojZ6evrFSFfzWRjJ7OuSsSUsdeZkUVobkcM9qw2MIYClYRbZNbeoWBPQjfd8FmY
+ xLaPT8tKOPB2gpAgoTj0krC9n9n4Zsvu54leJScguh6WQKKVvYkj1jf5Qw2DBgpxTxX95JomZxI1
+ x2626WOzZkEEdQXwc8JlkeRe8_VEcm4R24B8iIqZJxgsjOarSHCnIZNXAeeNBiM7JPE.hPzRFKuF
+ wQAgpNFNzHPvSBMc2u4j61RETcpPlaLUpqWnDypopyonxV11d9M8kBvzF7Ep4o1u_BOvuHhwlQen
+ LHfdZCLciWmrd4OCUMgpJpHcG9r9GyKwdNJO1AjC06RAauqomcGwqIoEGA3LM9vS7mxHxKIyH_.4
+ JEIKJDkEzwtLs4lifm4W_xR2tc5BygxBz5rIx69RWiqQI4l5laHHesdIXrPaimWMhKl38vfGhfBd
+ 2arDkncVdC4ud9S.aIAHtw_dmSB_J7CJ5NP3O1MB1zcVLUOP91AktAlMFTXf7TKSZ4SuTiinm7gl
+ AEjgJgwKBrVJ5bQyIAhhLyjFdPHl6PVHiDplr3zIGAnWTP.6dCYYRrrb_XW0yg5mmyZDP4AuYmrG
+ 4VYGDDr18zuKUR_8e.9bQ1sOGB01M_Xfx9kfB77iLWAl2mZImabwcsI0SCyQQuSA5.DyIXNc.q7h
+ w07lgJWXLhqSVIogdgBbbt9zGN.eGNnxi.fFMBtHp5vlOPOR_nCSEN1ldCZW60D13ID1N_fJZwai
+ xQJ8ooSCc0sBIqaUYg4agSiFdDFJs4sIh7vSp0cdPBfiRs7_McTiaEnunNPs4r9n1Db4iJbRrw32
+ JxNAE1VAbniBuMHe4R8IQQKbteTzVS5ed6ADmlkB2w4aJoQMFe1XlRhi3KOXssrvReynkZFSob9S
+ 6nvj5_Bry2cQTJ1FUgm1ZI7unAa3nItAo.7MCOpqFXDuqTI9G_6MScDgGCaN4jeqCKeAJhgGjQTA
+ .xoGRg0gEvZ0uVVGT5KyYVWkWrGGMZmyLy2nDcdnI8MCuaoHiFEOfNfgjXgsGkxzaSxADj_V9V6G
+ ckmqX_JaN8nwX952ensVpqF0nZn01uoBayX5yfT9BaoDPL0MT_IE9wxVPmw9qLWutiHWuoxMU0K.
+ vaTNF8ZcdqErPl14XkNPME4F7FRlxch7z3xkqffwwbFWKTVD5kVTQ_kXF1nQ2sbyhxH5C5oHBLfP
+ H4GNiYxcwihM8XLLJYGvTzKzL71ldzhTNbGBcgGgtaKIqCkpbvUBZAIFSlZfKj2pvr1wuQxQZPFg
+ qi41w6x6htlyi2prvdVpTU0km9.cnGXPkPg7c13OZnDBHqHWpzoBX5cCrtkTUtRVZZL4FwW_EkK0
+ 5JlI9FGBQPVFOy6QOPksOuIIwUWA2KMfgExdoe0iYNeWA6eyoGvmqWT4SPZAvL8Ro6Vg6hrFzXyz
+ iGzpWsRh4822YK3CY_uxuoLvYdmLAwh8z_uDDP2i5sBfOyZ8BU4kdUeLXTfsNfzySSPUpoLbCxhV
+ JXcSIlFIwZBL_ZLLByrkZUVzhlSlApUR2exAs.thunC9c_pfVcqJPknU1MqC47XBLXxczfagovuI
+ Nybwc5ncKdpme0PxpuR3mTkgmViGAu5UCpMbdPsyjgqo7OH0flFjz_aaYwXhbFSl4eq4faZVLuQ1
+ XXIHcv7US7a_IVM0ZViFz7qE7e3Iu4dw66tAZQpjtwg--
+X-Sonic-MF: <russomch@aol.com>
+X-Sonic-ID: 5e079aa0-f50e-42e9-a405-4eea7ac4a35d
+Received: from sonic.gate.mail.ne1.yahoo.com by
+ sonic321.consmr.mail.bf2.yahoo.com with HTTP; Tue, 23 Dec 2025 15:28:49 +0000
+Date: Tue, 23 Dec 2025 15:28:37 +0000 (UTC)
+From: Chris <russomch@aol.com>
+To: Ping-Ke Shih <pkshih@realtek.com>, 
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, 
+ "linux-wireless@vger.kernel.org" <linux-wireless@vger.kernel.org>
+Message-ID: <2033055489.1974567.1766503717295@mail.yahoo.com>
+In-Reply-To: <3dcf5e11aa284daa9d3733141ccdc17f@realtek.com>
+References: <AB8446D8-708B-4971-8852-87353112E60F.ref@aol.com>
+ <AB8446D8-708B-4971-8852-87353112E60F@aol.com>
+ <3dcf5e11aa284daa9d3733141ccdc17f@realtek.com>
+Subject: Re: [BUG] Intel B580 (e20b) HDMI Flicker & Realtek RTL8922AE 6GHz
+ missing - Mint 22.3
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR12MB9072:EE_|MN2PR12MB4335:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3f61c9a2-1e11-4bc3-5141-08de4dcdca35
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|7416014|376014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?R75kbQcNyL/4Vk6JQaGbR6IDlp0GiskJWiDUUo0QhPrlsSrYn3Ti3rGdO26c?=
- =?us-ascii?Q?rVoUVwQAaGm/72vB0fwWrwQdKDfNKbJrieV3zH6Pa1nRIBPl0Isp466Tyqcc?=
- =?us-ascii?Q?slcyUeNgl5dQthmROKHDAvebslgDQhZJ4bZHHWnrjFwU3/oNCofcTkE11SRA?=
- =?us-ascii?Q?Z0bVvsQYp8135PIYS7WJpf6JHDibp0YTIf7dsWOmGghPgMc5PRNoMqiKGNyp?=
- =?us-ascii?Q?iHyMfUTVoApELrR+N8nH1Z4cxYxxqM9GccIL61sZTVnrgFnlFLqCU6BbersT?=
- =?us-ascii?Q?aBVy/v6zi12OCEC0wQ2YQaGZ9pzeHQoyiL7jjsQotUd27J4FB0TQHHiffy9l?=
- =?us-ascii?Q?+5CdKY1AXJznSJWjIh8yCSvSWc04iu19GxAm7W59WW29Oq5kxx3EwEWCZioi?=
- =?us-ascii?Q?LCj8vy+QAIPV7m6kDmfwpD7VrPvsMWVeAIqZajsNAHFVkFm07KsG7y8IACvc?=
- =?us-ascii?Q?4CParhIihA7tNhdMUoi4WDhk787GoaYreyZT4Heykq9+W4L7fu3ZzvOcCZ4X?=
- =?us-ascii?Q?As/rLCNJ3DcV3GRHhkstKOul5k7mkbAsa46cVrnOD2xzETMwsPMscDXtCiV8?=
- =?us-ascii?Q?KtF/TpfRJxqbpfV3vUiL8Jx/PfYbCQjRxphMn9maLdkIhyo1eadrw/Ix101i?=
- =?us-ascii?Q?ftEdg1wWdpY6PmElmlyBsBMtwUYFhVJE6XvmSRGRozzkZ1iwxYsM4yKZ+BSP?=
- =?us-ascii?Q?+Y3mNnV5tcXT5RRAwhAK57Sz1MF7NFb13i89vXLo+nJHi6JQCfAN122wAVoM?=
- =?us-ascii?Q?ddGb5sqm1kn38gqif5mx07sfFacCrnHu9rUKORzAj8WigJ7Mu8UV+CnbIuXl?=
- =?us-ascii?Q?l0Xq8MVTZxeIAhMPHn2kRj9CsFO+/yzupf0HiZZoqJyAgGW7BNkodx97H0rD?=
- =?us-ascii?Q?cUR21SjGOjEHf0Vn5gQ4WQz6rkR20cKFox2ZtTan1oDhhZ7W/bLE6mswWYh9?=
- =?us-ascii?Q?JSEQAuKq3vYSCZuqJNo0iE85iYNUQQsn2srWPs2QDCta6LjtSY+RfqQnKM9t?=
- =?us-ascii?Q?2SiPW+uj5WAsJqpEBtWs+wIeQnFfz8CvXoiTG6IK6yXKOihAlNuROBMHI6QV?=
- =?us-ascii?Q?QFBybtYmwJe0LianzPo7WRQ7NgGu3BVvX8SmjCSJNB39O0MLXCK1HGWt0g6e?=
- =?us-ascii?Q?qkGnlNcGKNltgr2GPZGiUvTxKx+lvFhf+hNKkmJCY1hMfJd3BFYLmuZYsMY3?=
- =?us-ascii?Q?FpJ1oeTR3Uk1aGrhf4O5S48VyxnvtBrZaAO5rG/m8da8Luj0cTvHOnXHRla1?=
- =?us-ascii?Q?rCv9gIw8jqoeWuvQ48IllJytJpcujQTd5cTRSeqVWQWj2OTjzfYr09JlkDHw?=
- =?us-ascii?Q?6trCSYLFDzdP1zaNQHbKmLQ4hI1oFn4y2gt4GDRt8dBOuLSMIu7xkNzCffXf?=
- =?us-ascii?Q?oHvlPXkya4YN2iTETFbbrQfZiU78BGq+tJy1oxpauuxUDzQZTrlMolXdN0Sa?=
- =?us-ascii?Q?7ElO0FVJhsHl4twB2yJdx46I1Ww1ane/?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR12MB9072.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(7416014)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?xqLLrA4SgKCEPCq80/Pt6k9/pbixGTWCx54lOKdcuHv5q+I+q5dwQGwlPvc9?=
- =?us-ascii?Q?8J5Wq2Xna3pJyF0uO99cpElH9j3H8WU8Til1YuwAmjIBTMKEWBP4g3hgSi1M?=
- =?us-ascii?Q?6D7q0lQaWV0RuYKmWquGvV7WOFWcQ8PPkbQjLDuXcvGvSSDelzO0RIFq9VTZ?=
- =?us-ascii?Q?iptdvlPCARKFgEMlQKHiZ20lLuu/P31RKVdRIAeX4k6zWdG0dYDtmw6aWcW/?=
- =?us-ascii?Q?bIgxJRBP6zqChFB5vbfsFnM0OWEaKg1j1vnQSez4LUq9XLsyApTutA4ve0/Y?=
- =?us-ascii?Q?HnX1EqAVOvleASr6W+RgJzFzS0vi4aYBJ+SoKwmyDXR8kYu0nlu+vuzTZ6h2?=
- =?us-ascii?Q?1fRiaylyEkfUZnyjsB5pJbVINbQbT0M4jXsPd0uzTgm9bsymA8vor6To1Vdo?=
- =?us-ascii?Q?F/Pbe9p8/7Rk9s52qnsrEN9+bReA1vyki+/yYYy9k+SQi7erp6JK6r72hANe?=
- =?us-ascii?Q?5EeXym3Rpm80MQ4NSBEcVK03j5gICQD0ebkC9Yx8JowiMQG/I8IOeTO5MIUA?=
- =?us-ascii?Q?4QEyDMpyvwrsV7UW5lCAcjD1m/DMx7I2C1S/P+wiwaxebSVXOKGqYnniy/Eo?=
- =?us-ascii?Q?fVFl+pZ0xl5Igzlm3/LOGgYKRhskzkKOJVrmdoczQlt85py9TNuyoETDXePl?=
- =?us-ascii?Q?B3aW/PRwmtBo/DKMOcpCbqA1up2XhrF8oCi/B7oOFs0aZcNoKTd5POiKDO2P?=
- =?us-ascii?Q?UdFHoxiOpYqlmbeQt3fBtqjtFzBx85nXVlfdfVv74BsCFiSJvMvoX/y7yijO?=
- =?us-ascii?Q?bgu9wOMucJuBKWa1vlJieNr4nZpvBt8y2OOnkYdaK+Dt/wt7ucs5SEO3WMbU?=
- =?us-ascii?Q?msOfNyrkG/Gl/frWuUHsWQBFsc+2B2gW+MJ9sZz+M86HoDx2YHrTWvdjUkxh?=
- =?us-ascii?Q?6AvJ9wPBXOgx4L336jwedEUW6STZUayPMvr9rL0GdmpnnSi4gQPTwbI83Xut?=
- =?us-ascii?Q?UXSdIvpnIucGKa/z6rr5p3l/bKbEuo4utnf7c00Ph4d7KcsEA9RPG5I5Xgz4?=
- =?us-ascii?Q?Fy+vUzIywLRwmFoRjfpWFu/mBfD83mOuLU1ZD4IDh16V0oJC07y0o1FBPwek?=
- =?us-ascii?Q?sg5fInAjpmVuLKAdlqfPxhnhjrOzQzkzOsTrxGlI4IlKZcwVTwJOPAzk8al1?=
- =?us-ascii?Q?tHf8Zgd4XUlgpBDNmw8Q5vsZMz9k84wMcp9NynZjHRywkRvvUlI0FB2SdoI6?=
- =?us-ascii?Q?ezfOTBGV2kL032L8+SZ7NGrEkr9JxMz7kXJyNACDffKAVTzYwjumLES/M0TI?=
- =?us-ascii?Q?pL/pVwEg0II5HWzHAUfNCboV1PXuRRQGOAHxLPoTinxSavAbSr5xSvwwUOT1?=
- =?us-ascii?Q?ysJr4ASggJqLWLyODyzNQIkQWJDeZGRIgJmwjA49AZUvVf4C1OzffI7ETzAX?=
- =?us-ascii?Q?cDqVh2hZ1Khik4U6hjVpzDSRiFy7ualfhIn0c/9nDPR7aZCTY2dt38623PDp?=
- =?us-ascii?Q?GBaSH91P/K2Q3vGiEqealBLpwYFySggXAF39TyX72bC8FRmEDPAF6Vb0+SZl?=
- =?us-ascii?Q?PObikY4Z0Y72jIjt+j9FcvxxyV1sjBvIt6fGEVZGxFsP+VMpV0lSfauMonLv?=
- =?us-ascii?Q?CyuRC4QZAJbv0pFmAQETziDTGvpPIEBfuHWSHrEPyTsZOF1a9sv7zBSwxJtP?=
- =?us-ascii?Q?gXWXGUARzL59TyNX63bKFZf4l9YQZBGYS/7jSUo4RB4hogdceCxrkzkKOSz0?=
- =?us-ascii?Q?5mpnEd3tJvKDYppBmF3E70khZZtURBCAWBonC12klzqIX1k4slwl4SNBJVSH?=
- =?us-ascii?Q?d0qdHZqLsA=3D=3D?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3f61c9a2-1e11-4bc3-5141-08de4dcdca35
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB9072.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Jan 2026 09:18:59.3024 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: aVpjqozdUyvcVtlXp5Luhgiuw07R81PRLkZD30z2m5S3QvwJ8epU3m97kPsvaAl255kT65BLiiF41DL7RVWxYQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4335
-X-Mailman-Approved-At: Wed, 07 Jan 2026 14:19:15 +0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Mailer: WebService/1.1.24866 AolMailNorrin
+X-Mailman-Approved-At: Wed, 07 Jan 2026 14:19:14 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -155,343 +90,349 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-A future change will remove device private pages from the physical
-address space. This will mean that device private pages no longer have
-pfns and must be handled separately.
+On Tuesday, December 23, 2025 at 02:48:01 AM EST, Ping-Ke Shih <pkshih@real=
+tek.com> wrote:=20
 
-When migrating a device private page a migration entry is created for
-that page - this includes the pfn for that page. Once device private
-pages begin using device memory offsets instead of pfns we will need to
-be able to determine which kind of value is in the entry so we can
-associate it with the correct page.
 
-Introduce new swap types:
 
-  - SWP_MIGRATION_DEVICE_READ
-  - SWP_MIGRATION_DEVICE_WRITE
-  - SWP_MIGRATION_DEVICE_READ_EXCLUSIVE
 
-These correspond to
+Chris Russomanno <russomch@aol.com> wrote:
 
-  - SWP_MIGRATION_READ
-  - SWP_MIGRATION_WRITE
-  - SWP_MIGRATION_READ_EXCLUSIVE
+> Hello,
+>=20
+> I am reporting two issues encountered on brand-new hardware using Linux M=
+int 22.3 with Kernel 6.14.0-generic.
+>=20
+> Hardware Environment:
+> - GPU: Intel Arc B580 (Battlemage), PCI ID: [8086:e20b]
+> - WiFi: Realtek RTL8922AE (rtw89), Firmware: rtw8922a_fw-3.bin
+> - Display: Samsung 4K Monitor connected via HDMI (No DisplayPort availabl=
+e)
+>=20
+> Issue 1: Intel Xe HDMI Flickering
+> The Samsung monitor experiences intermittent black-screen flickering (1-2=
+ seconds) at both 4K and 1080p
+> resolutions. This behavior is not present on Windows 11.
+> Troubleshooting attempted:
+> - Added kernel parameters: quiet splash i915.enable_psr=3D0 xe.force_prob=
+e=3De20b i915.enable_dc=3D0
+> intel_iommu=3Digfx_off intel_idle.max_cstate=3D2
+> - Forced "TearFree" and "TripleBuffer" in xorg.conf.
+> - Frequency remains at 60Hz.
+>=20
+> Issue 2: Realtek RTL8922AE 6GHz/WiFi 7 Missing
+> The card functions on 5GHz (1200 Mb/s) but does not scan or see 6GHz freq=
+uencies.
+> Troubleshooting attempted:
+> - Set regdom to US (iw reg set US).
+> - Driver options: rtw89_pci disable_aspm=3Dy, rtw89_core disable_6g=3DN.
+> - 'iw list' does not return any 6GHz/6105 MHz frequencies.
 
-except the swap entry contains a device private offset.
 
-The SWP_MIGRATION_DEVICE swap types are treated as specializations of
-the SWP_MIGRATION types. That is, the existing helpers such as
-is_writable_migration_entry() will still return true for a
-SWP_MIGRATION_DEVICE_WRITE entry. Likewise, the
-make_*__migration_entry_from_page() helpers will determine create either
-a SWP_MIGRATION_DEVICE or a SWP_MIGRATION type as the page requires.
+Please share output of 'iw list' before/after setting US.=20
 
-Introduce new helpers such as
-is_writable_device_migration_private_entry() to disambiguate between a
-SWP_MIGRATION_WRITE and a SWP_MIGRATION_DEVICE_WRITE entry.
+In my side (expected) frequencies of band 4 are:
 
-Introduce corresponding softleaf types and helpers.
+[Before]
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 Frequencies:
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 * 5955.0 MHz [1] (disabled)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 * 5975.0 MHz [5] (disabled)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 * 5995.0 MHz [9] (disabled)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 * 6015.0 MHz [13] (disabled)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 * 6035.0 MHz [17] (disabled)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 * 6055.0 MHz [21] (disabled)
 
-Signed-off-by: Jordan Niethe <jniethe@nvidia.com>
-Signed-off-by: Alistair Popple <apopple@nvidia.com>
----
-v1:
-  - Update for softleaf infrastructure
-  - Handle make_readable_migration_entry_from_page() and friends
-  - s/make_device_migration_readable_exclusive_migration_entry/make_readable_exclusive_migration_device_private_entry
-  - s/is_device_migration_readable_exclusive_entry/is_readable_exclusive_device_private_migration_entry/
-v2:
-  - Add softleaf_is_migration_device_private_read()
----
- include/linux/leafops.h | 86 +++++++++++++++++++++++++++++++++++++----
- include/linux/swap.h    |  8 +++-
- include/linux/swapops.h | 79 +++++++++++++++++++++++++++++++++++++
- 3 files changed, 164 insertions(+), 9 deletions(-)
+[After]
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 Frequencies:
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 * 5955.0 MHz [1] (12.0 dBm) (no IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 * 5975.0 MHz [5] (12.0 dBm) (no IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 * 5995.0 MHz [9] (12.0 dBm) (no IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 * 6015.0 MHz [13] (12.0 dBm) (no IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 * 6035.0 MHz [17] (12.0 dBm) (no IR)
 
-diff --git a/include/linux/leafops.h b/include/linux/leafops.h
-index 2fde8208da13..2fa09ffe9e34 100644
---- a/include/linux/leafops.h
-+++ b/include/linux/leafops.h
-@@ -28,6 +28,9 @@ enum softleaf_type {
- 	SOFTLEAF_DEVICE_PRIVATE_READ,
- 	SOFTLEAF_DEVICE_PRIVATE_WRITE,
- 	SOFTLEAF_DEVICE_EXCLUSIVE,
-+	SOFTLEAF_MIGRATION_DEVICE_READ,
-+	SOFTLEAF_MIGRATION_DEVICE_READ_EXCLUSIVE,
-+	SOFTLEAF_MIGRATION_DEVICE_WRITE,
- 	/* H/W posion types. */
- 	SOFTLEAF_HWPOISON,
- 	/* Marker types. */
-@@ -165,6 +168,12 @@ static inline enum softleaf_type softleaf_type(softleaf_t entry)
- 		return SOFTLEAF_DEVICE_PRIVATE_READ;
- 	case SWP_DEVICE_EXCLUSIVE:
- 		return SOFTLEAF_DEVICE_EXCLUSIVE;
-+	case SWP_MIGRATION_DEVICE_READ:
-+		return SOFTLEAF_MIGRATION_DEVICE_READ;
-+	case SWP_MIGRATION_DEVICE_WRITE:
-+		return SOFTLEAF_MIGRATION_DEVICE_WRITE;
-+	case SWP_MIGRATION_DEVICE_READ_EXCLUSIVE:
-+		return SOFTLEAF_MIGRATION_DEVICE_READ_EXCLUSIVE;
- #endif
- #ifdef CONFIG_MEMORY_FAILURE
- 	case SWP_HWPOISON:
-@@ -190,16 +199,75 @@ static inline bool softleaf_is_swap(softleaf_t entry)
- 	return softleaf_type(entry) == SOFTLEAF_SWAP;
- }
- 
-+/**
-+ * softleaf_is_migration_device_private() - Is this leaf entry a migration
-+ * device private entry?
-+ * @entry: Leaf entry.
-+ *
-+ * Returns: true if the leaf entry is a device private entry, otherwise false.
-+ */
-+static inline bool softleaf_is_migration_device_private(softleaf_t entry)
-+{
-+	switch (softleaf_type(entry)) {
-+	case SOFTLEAF_MIGRATION_DEVICE_READ:
-+	case SOFTLEAF_MIGRATION_DEVICE_WRITE:
-+	case SOFTLEAF_MIGRATION_DEVICE_READ_EXCLUSIVE:
-+		return true;
-+	default:
-+		return false;
-+	}
-+}
-+
-+/**
-+ * softleaf_is_migration_device_private_write() - Is this leaf entry a writable
-+ * device private migration entry?
-+ * @entry: Leaf entry.
-+ *
-+ * Returns: true if the leaf entry is a writable device private migration entry,
-+ * otherwise false.
-+ */
-+static inline bool softleaf_is_migration_device_private_write(softleaf_t entry)
-+{
-+	return softleaf_type(entry) == SOFTLEAF_MIGRATION_DEVICE_WRITE;
-+}
-+
-+/**
-+ * softleaf_is_migration_device_private_read() - Is this leaf entry a readable
-+ * device private migration entry?
-+ * @entry: Leaf entry.
-+ *
-+ * Returns: true if the leaf entry is an readable device private migration
-+ * entry, otherwise false.
-+ */
-+static inline bool softleaf_is_migration_device_private_read(softleaf_t entry)
-+{
-+	return softleaf_type(entry) == SOFTLEAF_MIGRATION_DEVICE_READ;
-+}
-+
-+/**
-+ * softleaf_is_migration_read_exclusive() - Is this leaf entry an exclusive
-+ * readable device private migration entry?
-+ * @entry: Leaf entry.
-+ *
-+ * Returns: true if the leaf entry is an exclusive readable device private
-+ * migration entry, otherwise false.
-+ */
-+static inline bool softleaf_is_migration_device_private_read_exclusive(softleaf_t entry)
-+{
-+	return softleaf_type(entry) == SOFTLEAF_MIGRATION_DEVICE_READ_EXCLUSIVE;
-+}
-+
- /**
-  * softleaf_is_migration_write() - Is this leaf entry a writable migration entry?
-  * @entry: Leaf entry.
-  *
-- * Returns: true if the leaf entry is a writable migration entry, otherwise
-- * false.
-+ * Returns: true if the leaf entry is a writable migration entry or a writable
-+ * device private migration entry, otherwise false.
-  */
- static inline bool softleaf_is_migration_write(softleaf_t entry)
- {
--	return softleaf_type(entry) == SOFTLEAF_MIGRATION_WRITE;
-+	return softleaf_type(entry) == SOFTLEAF_MIGRATION_WRITE ||
-+	       softleaf_is_migration_device_private_write(entry);
- }
- 
- /**
-@@ -211,7 +279,8 @@ static inline bool softleaf_is_migration_write(softleaf_t entry)
-  */
- static inline bool softleaf_is_migration_read(softleaf_t entry)
- {
--	return softleaf_type(entry) == SOFTLEAF_MIGRATION_READ;
-+	return softleaf_type(entry) == SOFTLEAF_MIGRATION_READ ||
-+	       softleaf_is_migration_device_private_read(entry);
- }
- 
- /**
-@@ -219,12 +288,13 @@ static inline bool softleaf_is_migration_read(softleaf_t entry)
-  * readable migration entry?
-  * @entry: Leaf entry.
-  *
-- * Returns: true if the leaf entry is an exclusive readable migration entry,
-- * otherwise false.
-+ * Returns: true if the leaf entry is an exclusive readable migration entry or
-+ * exclusive readable device private migration entry, otherwise false.
-  */
- static inline bool softleaf_is_migration_read_exclusive(softleaf_t entry)
- {
--	return softleaf_type(entry) == SOFTLEAF_MIGRATION_READ_EXCLUSIVE;
-+	return softleaf_type(entry) == SOFTLEAF_MIGRATION_READ_EXCLUSIVE ||
-+	       softleaf_is_migration_device_private_read_exclusive(entry);
- }
- 
- /**
-@@ -241,7 +311,7 @@ static inline bool softleaf_is_migration(softleaf_t entry)
- 	case SOFTLEAF_MIGRATION_WRITE:
- 		return true;
- 	default:
--		return false;
-+		return softleaf_is_migration_device_private(entry);
- 	}
- }
- 
-diff --git a/include/linux/swap.h b/include/linux/swap.h
-index 38ca3df68716..c15e3b3067cd 100644
---- a/include/linux/swap.h
-+++ b/include/linux/swap.h
-@@ -74,12 +74,18 @@ static inline int current_is_kswapd(void)
-  *
-  * When a page is mapped by the device for exclusive access we set the CPU page
-  * table entries to a special SWP_DEVICE_EXCLUSIVE entry.
-+ *
-+ * Because device private pages do not use regular PFNs, special migration
-+ * entries are also needed.
-  */
- #ifdef CONFIG_DEVICE_PRIVATE
--#define SWP_DEVICE_NUM 3
-+#define SWP_DEVICE_NUM 6
- #define SWP_DEVICE_WRITE (MAX_SWAPFILES+SWP_HWPOISON_NUM+SWP_MIGRATION_NUM)
- #define SWP_DEVICE_READ (MAX_SWAPFILES+SWP_HWPOISON_NUM+SWP_MIGRATION_NUM+1)
- #define SWP_DEVICE_EXCLUSIVE (MAX_SWAPFILES+SWP_HWPOISON_NUM+SWP_MIGRATION_NUM+2)
-+#define SWP_MIGRATION_DEVICE_READ (MAX_SWAPFILES+SWP_HWPOISON_NUM+SWP_MIGRATION_NUM+3)
-+#define SWP_MIGRATION_DEVICE_READ_EXCLUSIVE (MAX_SWAPFILES+SWP_HWPOISON_NUM+SWP_MIGRATION_NUM+4)
-+#define SWP_MIGRATION_DEVICE_WRITE (MAX_SWAPFILES+SWP_HWPOISON_NUM+SWP_MIGRATION_NUM+5)
- #else
- #define SWP_DEVICE_NUM 0
- #endif
-diff --git a/include/linux/swapops.h b/include/linux/swapops.h
-index a9ad997bd5ec..bae76d3831fb 100644
---- a/include/linux/swapops.h
-+++ b/include/linux/swapops.h
-@@ -148,6 +148,43 @@ static inline swp_entry_t make_device_exclusive_entry(pgoff_t offset)
- 	return swp_entry(SWP_DEVICE_EXCLUSIVE, offset);
- }
- 
-+static inline swp_entry_t make_readable_migration_device_private_entry(pgoff_t offset)
-+{
-+	return swp_entry(SWP_MIGRATION_DEVICE_READ, offset);
-+}
-+
-+static inline swp_entry_t make_writable_migration_device_private_entry(pgoff_t offset)
-+{
-+	return swp_entry(SWP_MIGRATION_DEVICE_WRITE, offset);
-+}
-+
-+static inline bool is_device_private_migration_entry(swp_entry_t entry)
-+{
-+	return unlikely(swp_type(entry) == SWP_MIGRATION_DEVICE_READ ||
-+			swp_type(entry) == SWP_MIGRATION_DEVICE_READ_EXCLUSIVE ||
-+			swp_type(entry) == SWP_MIGRATION_DEVICE_WRITE);
-+}
-+
-+static inline bool is_readable_device_migration_private_entry(swp_entry_t entry)
-+{
-+	return unlikely(swp_type(entry) == SWP_MIGRATION_DEVICE_READ);
-+}
-+
-+static inline bool is_writable_device_migration_private_entry(swp_entry_t entry)
-+{
-+	return unlikely(swp_type(entry) == SWP_MIGRATION_DEVICE_WRITE);
-+}
-+
-+static inline swp_entry_t make_readable_exclusive_migration_device_private_entry(pgoff_t offset)
-+{
-+	return swp_entry(SWP_MIGRATION_DEVICE_READ_EXCLUSIVE, offset);
-+}
-+
-+static inline bool is_readable_exclusive_device_private_migration_entry(swp_entry_t entry)
-+{
-+	return swp_type(entry) == SWP_MIGRATION_DEVICE_READ_EXCLUSIVE;
-+}
-+
- #else /* CONFIG_DEVICE_PRIVATE */
- static inline swp_entry_t make_readable_device_private_entry(pgoff_t offset)
- {
-@@ -164,6 +201,36 @@ static inline swp_entry_t make_device_exclusive_entry(pgoff_t offset)
- 	return swp_entry(0, 0);
- }
- 
-+static inline swp_entry_t make_readable_migration_device_private_entry(pgoff_t offset)
-+{
-+	return swp_entry(0, 0);
-+}
-+
-+static inline swp_entry_t make_writable_migration_device_private_entry(pgoff_t offset)
-+{
-+	return swp_entry(0, 0);
-+}
-+
-+static inline bool is_device_private_migration_entry(swp_entry_t entry)
-+{
-+	return false;
-+}
-+
-+static inline bool is_writable_device_migration_private_entry(swp_entry_t entry)
-+{
-+	return false;
-+}
-+
-+static inline swp_entry_t make_readable_exclusive_migration_device_private_entry(pgoff_t offset)
-+{
-+	return swp_entry(0, 0);
-+}
-+
-+static inline bool is_readable_exclusive_device_private_migration_entry(swp_entry_t entry)
-+{
-+	return false;
-+}
-+
- #endif /* CONFIG_DEVICE_PRIVATE */
- 
- #ifdef CONFIG_MIGRATION
-@@ -175,6 +242,10 @@ static inline swp_entry_t make_readable_migration_entry(pgoff_t offset)
- 
- static inline swp_entry_t make_readable_migration_entry_from_page(struct page *page, pgoff_t flags)
- {
-+	if (is_device_private_page(page))
-+		return make_readable_migration_device_private_entry(
-+				page_to_pfn(page) | flags);
-+
- 	return swp_entry(SWP_MIGRATION_READ, page_to_pfn(page) | flags);
- }
- 
-@@ -186,6 +257,10 @@ static inline swp_entry_t make_readable_exclusive_migration_entry(pgoff_t offset
- static inline swp_entry_t make_readable_exclusive_migration_entry_from_page(struct page *page,
- 									    pgoff_t flags)
- {
-+	if (is_device_private_page(page))
-+		return make_readable_exclusive_migration_device_private_entry(
-+				page_to_pfn(page) | flags);
-+
- 	return swp_entry(SWP_MIGRATION_READ_EXCLUSIVE, page_to_pfn(page) | flags);
- }
- 
-@@ -197,6 +272,10 @@ static inline swp_entry_t make_writable_migration_entry(pgoff_t offset)
- static inline swp_entry_t make_writable_migration_entry_from_page(struct page *page,
- 								  pgoff_t flags)
- {
-+	if (is_device_private_page(page))
-+		return make_writable_migration_device_private_entry(
-+				page_to_pfn(page) | flags);
-+
- 	return swp_entry(SWP_MIGRATION_WRITE, page_to_pfn(page) | flags);
- }
- 
--- 
-2.34.1
 
+=C2=A0
+________________________
+
+
+
+
+Hello Ping-Ke,
+
+Here is the output from my RTL8922AE on Linux Mint 22.3 (Kernel 6.x):
+
+[Before iw reg set US]=C2=A0
+
+Frequencies:
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 5955.0 MHz [1] (12.0 dBm) (no I=
+R)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 5975.0 MHz [5] (12.0 dBm) (no I=
+R)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 5995.0 MHz [9] (12.0 dBm) (no I=
+R)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6015.0 MHz [13] (12.0 dBm) (no =
+IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6035.0 MHz [17] (12.0 dBm) (no =
+IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6055.0 MHz [21] (12.0 dBm) (no =
+IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6075.0 MHz [25] (12.0 dBm) (no =
+IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6095.0 MHz [29] (12.0 dBm) (no =
+IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6115.0 MHz [33] (12.0 dBm) (no =
+IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6135.0 MHz [37] (12.0 dBm) (no =
+IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6155.0 MHz [41] (12.0 dBm) (no =
+IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6175.0 MHz [45] (12.0 dBm) (no =
+IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6195.0 MHz [49] (12.0 dBm) (no =
+IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6215.0 MHz [53] (12.0 dBm) (no =
+IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6235.0 MHz [57] (12.0 dBm) (no =
+IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6255.0 MHz [61] (12.0 dBm) (no =
+IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6275.0 MHz [65] (12.0 dBm) (no =
+IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6295.0 MHz [69] (12.0 dBm) (no =
+IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6315.0 MHz [73] (12.0 dBm) (no =
+IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6335.0 MHz [77] (12.0 dBm) (no =
+IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6355.0 MHz [81] (12.0 dBm) (no =
+IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6375.0 MHz [85] (12.0 dBm) (no =
+IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6395.0 MHz [89] (12.0 dBm) (no =
+IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6415.0 MHz [93] (12.0 dBm) (no =
+IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6435.0 MHz [97] (12.0 dBm) (no =
+IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6455.0 MHz [101] (12.0 dBm) (no=
+ IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6475.0 MHz [105] (12.0 dBm) (no=
+ IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6495.0 MHz [109] (12.0 dBm) (no=
+ IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6515.0 MHz [113] (12.0 dBm) (no=
+ IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6535.0 MHz [117] (12.0 dBm) (no=
+ IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6555.0 MHz [121] (12.0 dBm) (no=
+ IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6575.0 MHz [125] (12.0 dBm) (no=
+ IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6595.0 MHz [129] (12.0 dBm) (no=
+ IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6615.0 MHz [133] (12.0 dBm) (no=
+ IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6635.0 MHz [137] (12.0 dBm) (no=
+ IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6655.0 MHz [141] (12.0 dBm) (no=
+ IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6675.0 MHz [145] (12.0 dBm) (no=
+ IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6695.0 MHz [149] (12.0 dBm) (no=
+ IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6715.0 MHz [153] (12.0 dBm) (no=
+ IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6735.0 MHz [157] (12.0 dBm) (no=
+ IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6755.0 MHz [161] (12.0 dBm) (no=
+ IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6775.0 MHz [165] (12.0 dBm) (no=
+ IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6795.0 MHz [169] (12.0 dBm) (no=
+ IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6815.0 MHz [173] (12.0 dBm) (no=
+ IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6835.0 MHz [177] (12.0 dBm) (no=
+ IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6855.0 MHz [181] (12.0 dBm) (no=
+ IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6875.0 MHz [185] (12.0 dBm) (no=
+ IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6895.0 MHz [189] (12.0 dBm) (no=
+ IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6915.0 MHz [193] (12.0 dBm) (no=
+ IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6935.0 MHz [197] (12.0 dBm) (no=
+ IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6955.0 MHz [201] (12.0 dBm) (no=
+ IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6975.0 MHz [205] (12.0 dBm) (no=
+ IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6995.0 MHz [209] (12.0 dBm) (no=
+ IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 7015.0 MHz [213] (12.0 dBm) (no=
+ IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 7035.0 MHz [217] (12.0 dBm) (no=
+ IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 7055.0 MHz [221] (12.0 dBm) (no=
+ IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 7075.0 MHz [225] (12.0 dBm) (no=
+ IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 7095.0 MHz [229] (12.0 dBm) (no=
+ IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 7115.0 MHz [233] (12.0 dBm) (no=
+ IR)
+
+
+[After iw reg set US]
+
+Frequencies:
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 5955.0 MHz [1] (12.0 dBm) (no I=
+R)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 5975.0 MHz [5] (12.0 dBm) (no I=
+R)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 5995.0 MHz [9] (12.0 dBm) (no I=
+R)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6015.0 MHz [13] (12.0 dBm) (no =
+IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6035.0 MHz [17] (12.0 dBm) (no =
+IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6055.0 MHz [21] (12.0 dBm) (no =
+IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6075.0 MHz [25] (12.0 dBm) (no =
+IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6095.0 MHz [29] (12.0 dBm) (no =
+IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6115.0 MHz [33] (12.0 dBm) (no =
+IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6135.0 MHz [37] (12.0 dBm) (no =
+IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6155.0 MHz [41] (12.0 dBm) (no =
+IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6175.0 MHz [45] (12.0 dBm) (no =
+IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6195.0 MHz [49] (12.0 dBm) (no =
+IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6215.0 MHz [53] (12.0 dBm) (no =
+IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6235.0 MHz [57] (12.0 dBm) (no =
+IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6255.0 MHz [61] (12.0 dBm) (no =
+IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6275.0 MHz [65] (12.0 dBm) (no =
+IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6295.0 MHz [69] (12.0 dBm) (no =
+IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6315.0 MHz [73] (12.0 dBm) (no =
+IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6335.0 MHz [77] (12.0 dBm) (no =
+IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6355.0 MHz [81] (12.0 dBm) (no =
+IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6375.0 MHz [85] (12.0 dBm) (no =
+IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6395.0 MHz [89] (12.0 dBm) (no =
+IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6415.0 MHz [93] (12.0 dBm) (no =
+IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6435.0 MHz [97] (12.0 dBm) (no =
+IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6455.0 MHz [101] (12.0 dBm) (no=
+ IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6475.0 MHz [105] (12.0 dBm) (no=
+ IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6495.0 MHz [109] (12.0 dBm) (no=
+ IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6515.0 MHz [113] (12.0 dBm) (no=
+ IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6535.0 MHz [117] (12.0 dBm) (no=
+ IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6555.0 MHz [121] (12.0 dBm) (no=
+ IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6575.0 MHz [125] (12.0 dBm) (no=
+ IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6595.0 MHz [129] (12.0 dBm) (no=
+ IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6615.0 MHz [133] (12.0 dBm) (no=
+ IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6635.0 MHz [137] (12.0 dBm) (no=
+ IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6655.0 MHz [141] (12.0 dBm) (no=
+ IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6675.0 MHz [145] (12.0 dBm) (no=
+ IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6695.0 MHz [149] (12.0 dBm) (no=
+ IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6715.0 MHz [153] (12.0 dBm) (no=
+ IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6735.0 MHz [157] (12.0 dBm) (no=
+ IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6755.0 MHz [161] (12.0 dBm) (no=
+ IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6775.0 MHz [165] (12.0 dBm) (no=
+ IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6795.0 MHz [169] (12.0 dBm) (no=
+ IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6815.0 MHz [173] (12.0 dBm) (no=
+ IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6835.0 MHz [177] (12.0 dBm) (no=
+ IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6855.0 MHz [181] (12.0 dBm) (no=
+ IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6875.0 MHz [185] (12.0 dBm) (no=
+ IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6895.0 MHz [189] (12.0 dBm) (no=
+ IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6915.0 MHz [193] (12.0 dBm) (no=
+ IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6935.0 MHz [197] (12.0 dBm) (no=
+ IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6955.0 MHz [201] (12.0 dBm) (no=
+ IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6975.0 MHz [205] (12.0 dBm) (no=
+ IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6995.0 MHz [209] (12.0 dBm) (no=
+ IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 7015.0 MHz [213] (12.0 dBm) (no=
+ IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 7035.0 MHz [217] (12.0 dBm) (no=
+ IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 7055.0 MHz [221] (12.0 dBm) (no=
+ IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 7075.0 MHz [225] (12.0 dBm) (no=
+ IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 7095.0 MHz [229] (12.0 dBm) (no=
+ IR)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 7115.0 MHz [233] (12.0 dBm) (no=
+ IR)
+
+
+I have tested the iw list command before and after setting the region to US=
+.
+
+The Result: The frequencies in Band 4 remain identical. Both "Before" and "=
+After" already show (no IR) for all 6GHz frequencies. There was no change f=
+rom (disabled) to (no IR), as they were already set to (no IR).
+
+Even with the status at (no IR), the card is unable to see or connect to my=
+ 6GHz SSID, which is confirmed working on other devices and even with Windo=
+ws 11. It appears the card remains in a passive-only state regardless of th=
+e regulatory setting.
+
+Please let me know if you need specific dmesg logs or if I should test a sp=
+ecific patch.
+
+Thank you for your help!
+
+- Chris
