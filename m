@@ -4,143 +4,79 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C46F5CFD64B
-	for <intel-xe@archiver.kernel.org>; Wed,  7 Jan 2026 14:19:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3209BCFD64F
+	for <intel-xe@archiver.kernel.org>; Wed,  7 Jan 2026 14:19:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2C72610E5F8;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2AFE810E5F7;
 	Wed,  7 Jan 2026 14:19:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="Wnrfl7zU";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="NJw5gG+S";
 	dkim-atps=neutral
-Received: from SA9PR02CU001.outbound.protection.outlook.com
- (mail-southcentralusazon11013005.outbound.protection.outlook.com
- [40.93.196.5])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D803E10E580;
- Wed,  7 Jan 2026 09:19:09 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=cWAXa6f/KAQ1b4Tonky5JRaRkXjcol3BPtCA4QvJJ1VSLOAE+5uY7iM+9p/CG3vaIZFGwcP0wjlmTHPkMgrDuI2v8UPPQhCeVXE5VRJdp/xqsJY3YuszVYSS9pDMYLLmPtR3bCHTC2iQBsSuBaDk49+PcceQ//C9y7p5IJSeUZCbAYViErLetC4ccMuQnI68WiSyi7AosKqoU9hMOR7kq2X9fIucC1ZAVWj3Pt8GUn/sqQdU9o/5gd5ST8MGJHoeQxF1RIIO3L5tNByM9wAAwumF9Wh6jrzmJZhSivXLWL+LeajOEOt0JvjQCT6p3mwHS0zh1QRdrKtZR+phn/OP8w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=LXlf4tCqAJa8yGxE4UzLHrPybH0ghXSvneYVCU8VoD4=;
- b=hgPv0IIQfNMnR1iiioxYQ+2UNzWZZtkVjUm9Boc1qXB26oYVsDguMOaVQQO0MuiFonWeUDiXeXMJmOEW++ZagsDcfPLfaVtx1yKcEposfSf+b9jzJ9CByU2s57K3hpCumhHaonwaBI6yr7ByACrxiQn3JqqI1HGeAujenloMz6dA7AQqo9CxOONqHBa2YT2b81lLxntwRJUA/Na6M8UjztJHw6WauhyGJR+k+SF3iJYB3EJqPh98DoavbFJiQlGQwxugwT3PZG9T8ZKg8odT0Kpgo924nuVspEitGb7OuanZCUoack0f/Ejkm0Gu89RKYIYh4cXf2AEUKRWSIB8Zqg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=LXlf4tCqAJa8yGxE4UzLHrPybH0ghXSvneYVCU8VoD4=;
- b=Wnrfl7zU5E9x1uE2ZL1XQRD1UaWJfstpw2QNKDRwPIWF+NaDH/r62BkWC2g9DpU496pimu2TwHSQsb66NOVIGVFm6NAUPS94LpdNSnYGowHuqx27bpEUv4I08DgN52mJ6aMA4mz8M1FSM0B+72G7nuAin/AG4JJ+C2SlunKpFyvr0Va2oCnk/FZvB9bpkWefMsSf95BhdHKDBE9XgeGW1wYusBR+x1xNHst+RCnu39DdGzzsmrNlQ3y9QgRArQS3MpJsLCAxmEA7nrBVAp9iYsVrZF11ZK8oNcUS0WGk1YWWmshDTZEF1m6oZVZZRHvbfvVNFC6uiyoyXxgSKDZraw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from DM4PR12MB9072.namprd12.prod.outlook.com (2603:10b6:8:be::6) by
- MN2PR12MB4335.namprd12.prod.outlook.com (2603:10b6:208:1d4::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9499.2; Wed, 7 Jan
- 2026 09:19:06 +0000
-Received: from DM4PR12MB9072.namprd12.prod.outlook.com
- ([fe80::9e49:782:8e98:1ff1]) by DM4PR12MB9072.namprd12.prod.outlook.com
- ([fe80::9e49:782:8e98:1ff1%5]) with mapi id 15.20.9499.002; Wed, 7 Jan 2026
- 09:19:06 +0000
-From: Jordan Niethe <jniethe@nvidia.com>
-To: linux-mm@kvack.org
-Cc: balbirs@nvidia.com, matthew.brost@intel.com, akpm@linux-foundation.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- david@redhat.com, ziy@nvidia.com, apopple@nvidia.com,
- lorenzo.stoakes@oracle.com, lyude@redhat.com, dakr@kernel.org,
- airlied@gmail.com, simona@ffwll.ch, rcampbell@nvidia.com,
- mpenttil@redhat.com, jgg@nvidia.com, willy@infradead.org,
- linuxppc-dev@lists.ozlabs.org, intel-xe@lists.freedesktop.org,
- jgg@ziepe.ca, Felix.Kuehling@amd.com
-Subject: [PATCH v2 09/11] mm/util: Add flag to track device private pages in
- page snapshots
-Date: Wed,  7 Jan 2026 20:18:21 +1100
-Message-Id: <20260107091823.68974-10-jniethe@nvidia.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260107091823.68974-1-jniethe@nvidia.com>
-References: <20260107091823.68974-1-jniethe@nvidia.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SJ0PR13CA0077.namprd13.prod.outlook.com
- (2603:10b6:a03:2c4::22) To DM4PR12MB9072.namprd12.prod.outlook.com
- (2603:10b6:8:be::6)
+Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com
+ [209.85.167.45])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 80FF512B8DC
+ for <intel-xe@lists.freedesktop.org>; Thu, 25 Dec 2025 15:14:26 +0000 (UTC)
+Received: by mail-lf1-f45.google.com with SMTP id
+ 2adb3069b0e04-598f81d090cso7136906e87.2
+ for <intel-xe@lists.freedesktop.org>; Thu, 25 Dec 2025 07:14:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1766675665; x=1767280465; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=CRsUoCK6ChAGV/EtS0TA3rEDcBe8J8WItk/OJdEL24A=;
+ b=NJw5gG+Sl2ZDiGbWy+/SaHIVfip1VuclM9OqU3V90Cnb6tZ5fuesydrEP2nddwO+rp
+ 6o+cJXdJuqocVEKXfJN3TwTcfjCp2b88z0lwiGOVOnm0re4y1Q+304ysNAYPOPzJhmtW
+ skdB+wM5IHMPtvtzXsB+kZD5aCZlORwqWscV0nMBlsC/hwTmzHvcaRhwNXjs/QgxvK7/
+ BaMBtaiFbh9my6e1LJ6bxTFkfiCQhY4NXqAL2l1ChfXdZaKSnJKiLOAVl8WUw01JI1A0
+ nDWuJw9OOxZg0kSmzZNUbQVLgN9ngu/CJ3dd0XbNELHjq2p0TIZ35q3PH81c8QHOkB66
+ OHTQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1766675665; x=1767280465;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=CRsUoCK6ChAGV/EtS0TA3rEDcBe8J8WItk/OJdEL24A=;
+ b=H+Q2X1U7sGEjZGcxvV1zhHdcUyhBpgkOzR+Tb2BzLfKLBw5sssRyyCa0NG+xQYbfqM
+ 6QtP03ENUSJF55cDUq6bQeZvFBFJnYnc/9PeOJj/J1YWjuXTv+U+fRmDDRwbgEMG7Jl6
+ dH9o/m+UtP922fCzGo+dEqbRyYTqNRRP0VFnWZdsnm6Y5lhF10m7xG4Sud9tfpv8GBpJ
+ Oal+RU9KOwY/1pa6nVBl/5JxtdEK3GjUrlFucJ/rp/J50rMqyxuMVr6pA/qAxpvNI5mp
+ +jUGQwzc+asSc3BJmE/b6QKzujf7hn3gZQVdBAUiYinP57s9GQ5o1Nj2ass5awyRyh/h
+ lATQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCW4SpsNr/FToi9Kl5avfnCv4DPPbnf3QHS+UHPECc1h6z7SFWXFEIDS518TMAmKyxjmEAsWLSZqbQ==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxXqX8DdqdhJyE98pCN8Ht801DwFEAKHXWEv8I/l7E+dlbQDlEn
+ U82CObrGnFiyMYzPN3wj5Lfvv4zxEMEsPxm5wPxTYUmpbL3nGVGYQcr1gR1SJA==
+X-Gm-Gg: AY/fxX4D+WfQ/zPK1eMi31NIE0eBh9YrVD0+459EoTfvGWuRtEG0h4gNhCxPTsQPKGa
+ Gzeg34d17LFyrYWwseRln3rKtdNNqoPnkhfWYsODGLFOn5ndSYtPGj+g/TMLh+u/ct+4Jnvivj1
+ X+iLxMAvG4YS1DBtNfMTBTGSXeleCtruqu9beBBFllxFKYQjE0H85e0e8WzKuqttxGhq7CNTg8z
+ 3Ayh8bnFJJnA7taagIXR58P5+3h+8eGoLaCBNWNhTKCypPJAlSKOpE1ghY6w/8Bfa99ZPPQpkDY
+ NvcM+0+ux3kPQUlTBq99ENJ8OxG9tE4c2kZw8jjE5uowWdH5iJRrvpS2mInpH2Fvp2UKT/5R20v
+ 5qyWUZPY/IVUrLzMO0/vMwfuxcJBB0MaPZTP2VCB2B5xrwPfxaz0MwxAiGuPjoAizTHKTOmfA0c
+ ji17090bhQcGzPb2jMmxrvZxsCCJeOTYhOcJYR
+X-Google-Smtp-Source: AGHT+IG3fUB1OsaIHa7q7zKQFUnyBJ8l/j3vz64gfQ66ecODeQkSk6h74hXbYooIM/aC2AokrIX88g==
+X-Received: by 2002:ac2:4e0a:0:b0:594:2db8:312b with SMTP id
+ 2adb3069b0e04-59a17cff3c1mr6593946e87.7.1766675664468; 
+ Thu, 25 Dec 2025 07:14:24 -0800 (PST)
+Received: from localhost.localdomain ([176.33.67.19])
+ by smtp.gmail.com with ESMTPSA id
+ 2adb3069b0e04-59a186203eesm5866402e87.77.2025.12.25.07.14.22
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 25 Dec 2025 07:14:23 -0800 (PST)
+From: Alper Ak <alperyasinak1@gmail.com>
+To: michal.winiarski@intel.com
+Cc: Alper Ak <alperyasinak1@gmail.com>, Jason Gunthorpe <jgg@ziepe.ca>,
+ Yishai Hadas <yishaih@nvidia.com>,
+ Shameer Kolothum <skolothumtho@nvidia.com>,
+ Kevin Tian <kevin.tian@intel.com>, Alex Williamson <alex@shazbot.org>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, kvm@vger.kernel.org,
+ intel-xe@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] vfio/xe: Fix use-after-free in xe_vfio_pci_alloc_file()
+Date: Thu, 25 Dec 2025 18:13:49 +0300
+Message-ID: <20251225151349.360870-1-alperyasinak1@gmail.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR12MB9072:EE_|MN2PR12MB4335:EE_
-X-MS-Office365-Filtering-Correlation-Id: f236f506-a5df-403a-ebd1-08de4dcdcecf
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|7416014|376014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?ZTQJESdiy4jj44xcSojXZJoi5arAP0HbfwsLS83wdabYJfZyU5wUWvssgviW?=
- =?us-ascii?Q?qh9RAqfIBF8qO2l7wqzWVqw3x4YyyAfX51hGzPM+F1i8eoJWt4gmmkLPO9o3?=
- =?us-ascii?Q?Au4+NlKSCw8BcPgDV2JL/usSgPuxsZzcXROCaXNni9kKHIbRMQH2NYyTLuQh?=
- =?us-ascii?Q?PPvoJghW4zqCHQTu7ZTUUMrzJhTaTIg+79B46ln7ThM3Y4mqvzPnCpvp0F50?=
- =?us-ascii?Q?I2wWZk+YLUup1q6wdouco43k1tSsZ8yyXDT0dyy7sROEeiRaKaEzc2M39oNy?=
- =?us-ascii?Q?ZXRYPtQN2f6rCg+EoGpw8fVQa6s4V6RyuZ/hc414Bl/3ku+NyQP0OvpLPYYk?=
- =?us-ascii?Q?nbYfA8WKn92LOvZERHeJIHfUZGuPBlZD4uLNL0rORCZCVu0PN6PTjNRwa6c+?=
- =?us-ascii?Q?K56DrFdf4FosxpdvGgbx1U8Vb+3jc7aixMIMU++kJXE5kqxHAdSDsepPTI6e?=
- =?us-ascii?Q?rb6PZVi/u2HgKBfsrnYwKMzVAYCRa4O8H+KRQAzcdLpKoM32FXp2e+PF6v7O?=
- =?us-ascii?Q?Wthay8hPLiJquetU+FGcYklLNiRMIRo1aI+AaidxBBSMlUHWmSN3q2g0veAL?=
- =?us-ascii?Q?LPPUOPEIceh0BCHBDFFqEHOIUe4tKwHQ1d0KjoVx1xK57wGWuDBsl3yTvhOK?=
- =?us-ascii?Q?Z1RRxOdNbA6BrLNlWD1l+MVrS3Ctc1wd5m3mrpjTRovQPH3yONhVE+gtmAGJ?=
- =?us-ascii?Q?4CTzQp6pomKEBj+QywlMW6EMeyFYMzaKJktefZKAAkxYD9o7XAMju8V9p4V6?=
- =?us-ascii?Q?KS92Xo9f0FpHjs7zo+r7i5YG55tP94Gn7eusgxunSKS2Slwejc0HawWQHUC5?=
- =?us-ascii?Q?K8bW5JQdBdkvuSomRNztRMEAoX+G9jz9N49suahl3BnaJTTB/dk+ODG4m3Ls?=
- =?us-ascii?Q?pzT6726pvUzD3GiQFwMkinKr1sxGdJbjaxWej0YSMZMw1Ucrrpg2+azzwbVB?=
- =?us-ascii?Q?pG1Jl+hWYgqOsZfOCBGLhqJc/zT9N7ChB1JzNkeZnmH+8GLdnF99D9/QHOkk?=
- =?us-ascii?Q?DFdWUW+OEMRe8JquP9X1F+iTqaqjmz4UvT5VlSPE4OMGfaHeWlX5M8Wr0gIm?=
- =?us-ascii?Q?8X04TUZcRMSUMHYl6YxBS6RpydtX73NvuKpOb223dvNtJG5r5gouwkL35GaJ?=
- =?us-ascii?Q?MRRlqfmCtfaziUCYsCtMX3iSkoaqGmnn5bk9/dkJjtuoSvJHfTW0YSRwFoLv?=
- =?us-ascii?Q?1rS70XqXz+jYglZbbSN8H3YlejXvBVljn6PjUAb9b5uRL/wtW26kH7J/7fWw?=
- =?us-ascii?Q?V+6sAzEZ4eSCrZfrt1wUTtctMDVXXqxDp4hnRvCV8jAhXjox25OMIE+y1H0x?=
- =?us-ascii?Q?6UTXGgATRZxBtCGtLZ8INAwTUDXyArApbM0NMC2kh7wPNYLuhP0c9RF+k9ck?=
- =?us-ascii?Q?pi0Dah9gkFt9jNl1vpOsiOGKbUFnshG5U3wXaiVBsMKFamtK+drvXqXQYuqH?=
- =?us-ascii?Q?xKfp9/mVkylcI7/JXQaIqSlNaxyZm17L?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR12MB9072.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(7416014)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?4j7eQiyRbbmd+GlL1fDHDbBR7aZ69S+eocg0CKmaJryGxd7+XxjotOlgsLsy?=
- =?us-ascii?Q?ja3b9IgY4IGUXzaL3omH+dBvWTCCnfhuSz+jrmNCk3U0wQTuys4HETCLmg8r?=
- =?us-ascii?Q?IBmyGHPfAcBG1w06UW6FZF6dlqrlUk1TqUP382xEH6+++qOvz+V2ycqHD2f0?=
- =?us-ascii?Q?8Xfelunv8oWf7FcQiwoMBHVSxx3ybOWTCYxr65EI3vhCQyNoAM55QWDf5JoQ?=
- =?us-ascii?Q?5za0V3RVCaPUy/FXCC/0r6kanCxgslJdwZ+/1DvmVnSYB+7eLxwrx/MwXr8i?=
- =?us-ascii?Q?2OHSHvcwoDqtXjRRNSnpDMJrs9nra6v8sQKdcpxFSRx0AiH+JyUxLKs+wQ44?=
- =?us-ascii?Q?BSs1sZ1zf9uG7DDKwLC6Gp37peLwhopS4EriCCdjp6Rt++iPMaEc57lJoggG?=
- =?us-ascii?Q?857ZUkWbBKF9a/qT6XByAwOQL7xZ5urvg0+KUfn45/4uXmQk8WqTqgwuFpT0?=
- =?us-ascii?Q?fv09u2/lG5Ki2Pa+MkEXbObJgpDbwKic5fg0OMi+NcAoN0k706TPY3oscQGm?=
- =?us-ascii?Q?NY+bOFFKjNX5lZ8LbgZ21Lw9raHWOqrGo1ZzV5odsK1LEzA30URgm5c4yEFY?=
- =?us-ascii?Q?eXGEBBpjroqmF3C6pFV/ESec5m7PtheGvpjK0Msevikov4Nog1YhDKq4a6wc?=
- =?us-ascii?Q?maaCqsYbjQUxlCgmjiOSn1mSF3Sr7cSmbA/JSbHZFhgKGKFcQbME1BJMc6Ye?=
- =?us-ascii?Q?nYCaY1lZesxofOS9ghzmloOuK331FWRHY41IcLVEoorDYHOHkMasdzVhgeso?=
- =?us-ascii?Q?rr4dFhlerZlraUJPulZJJzid5erhQcfNnqA04JJ22b0J1x5acBtSplRFEFb7?=
- =?us-ascii?Q?t9QHoSJ8abgp6swCeKRhOQiOdOuprfx0KEwDFZunpM1HCN8fCEug08QtcQWc?=
- =?us-ascii?Q?VunX28KSzbeHL3xiL0CUrHHfttvKXjWy8GeM/Kd5nUb0DRiRnKViimH9CRq2?=
- =?us-ascii?Q?aEg3bCQ5l00x5VT1fnrWTc8z4Q+R6PsxpqgXVPR/XtK7AFOWUnZgOZK0Koch?=
- =?us-ascii?Q?CuulB0qebdRZkAobLL29lx4BQmancZqsk34HjMnfEc3U9087vbbFSCUm02Y2?=
- =?us-ascii?Q?Rfrm5HS4gLsAsD8HNiaNX6BRhSrcKasLYwofkG0EJcEmUTt9F/P8AIuKeazR?=
- =?us-ascii?Q?M25uYP1FGz1bhp8kr24CUXfQ59tu6V7ZARwswVJOwShjlNwX+tlwYso86RSo?=
- =?us-ascii?Q?EnL4XjzS4o0pq1yz87nNGMAoeNHBCATGCfRnGVwIl7NVaSCNnhUR4pPC5xic?=
- =?us-ascii?Q?d9fjComIH17yD1VER5gB5kt93eAG3QSIpIIr2po9ZdaMIhYfl7NDfkSm/DV2?=
- =?us-ascii?Q?D5v+ejka3dxdzg/OLjP+4XQGCm4e1c+nx+At4CHdi4DbR9erkdxiT6L3P2kc?=
- =?us-ascii?Q?h/1miETlcd8uKLjafiX8PPExJaFfhqeoW6rIus10i4HcBxC0puFovHXDNTTK?=
- =?us-ascii?Q?f/6k3ghgsNULuBMBVQPE9PLUaXnO5Xb4COZVkOTvtUybMynnzXuid4sqU5kG?=
- =?us-ascii?Q?zTMatRx421lizLGOXbYaiDCGmG753xqG1Et+wLbaGvT62B4eIez0l2YLCftY?=
- =?us-ascii?Q?JLsxatHPNzCDw9/N/VeCSMJZg0SOH3hfSCkg/35amj8SkQ5dgUjKkDuNtkmu?=
- =?us-ascii?Q?wAnJTuhlt2SRhO5I+anx9dyM+0/3Nsw0v3F4tIIb96ADhBuxBTrqr9L0xsPg?=
- =?us-ascii?Q?apAqjYNFHCYdadtGA2psWD9ZKTbEzlyWFTmV0uzJFWRCHq3oFkU2x/DqyTO6?=
- =?us-ascii?Q?RBXZ1vjlEQ=3D=3D?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f236f506-a5df-403a-ebd1-08de4dcdcecf
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB9072.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Jan 2026 09:19:06.7535 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: kTBAHCxJ8boXTe5WGwETefU0xPa1QESdzbHNj9evtMTUXAyvYPU13QxOpmdX2Fcbde2GvhLGB5W1O8Cn8jyOSA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4335
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Wed, 07 Jan 2026 14:19:15 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -156,77 +92,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-A future change will remove device private pages from the physical
-address space. This will mean that device private pages no longer have
-normal pfns and must be handled separately.
+migf->filp is accessed after migf has been freed. Save the error
+value before calling kfree() to prevent use-after-free.
 
-Add a new flag PAGE_SNAPSHOT_DEVICE_PRIVATE to track when the pfn of a
-page snapshot is a device private page.
-
-Signed-off-by: Jordan Niethe <jniethe@nvidia.com>
-Signed-off-by: Alistair Popple <apopple@nvidia.com>
+Fixes: 1f5556ec8b9e ("vfio/xe: Add device specific vfio_pci driver variant for Intel graphics")
+Signed-off-by: Alper Ak <alperyasinak1@gmail.com>
 ---
-v1:
-  - No change
-v2:
-  - No change
----
- fs/proc/page.c     | 6 ++++--
- include/linux/mm.h | 7 ++++---
- mm/util.c          | 3 +++
- 3 files changed, 11 insertions(+), 5 deletions(-)
+ drivers/vfio/pci/xe/main.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/fs/proc/page.c b/fs/proc/page.c
-index f9b2c2c906cd..adca0e681442 100644
---- a/fs/proc/page.c
-+++ b/fs/proc/page.c
-@@ -191,10 +191,12 @@ u64 stable_page_flags(const struct page *page)
- 	         folio_test_large_rmappable(folio)) {
- 		/* Note: we indicate any THPs here, not just PMD-sized ones */
- 		u |= 1 << KPF_THP;
--	} else if (is_huge_zero_pfn(ps.pfn)) {
-+	} else if (!(ps.flags & PAGE_SNAPSHOT_DEVICE_PRIVATE) &&
-+		   is_huge_zero_pfn(ps.pfn)) {
- 		u |= 1 << KPF_ZERO_PAGE;
- 		u |= 1 << KPF_THP;
--	} else if (is_zero_pfn(ps.pfn)) {
-+	} else if (!(ps.flags & PAGE_SNAPSHOT_DEVICE_PRIVATE)
-+		   && is_zero_pfn(ps.pfn)) {
- 		u |= 1 << KPF_ZERO_PAGE;
+diff --git a/drivers/vfio/pci/xe/main.c b/drivers/vfio/pci/xe/main.c
+index 0156b53c678b..8e1595e00e18 100644
+--- a/drivers/vfio/pci/xe/main.c
++++ b/drivers/vfio/pci/xe/main.c
+@@ -250,6 +250,7 @@ xe_vfio_pci_alloc_file(struct xe_vfio_pci_core_device *xe_vdev,
+ 	struct xe_vfio_pci_migration_file *migf;
+ 	const struct file_operations *fops;
+ 	int flags;
++	int ret;
+ 
+ 	migf = kzalloc(sizeof(*migf), GFP_KERNEL_ACCOUNT);
+ 	if (!migf)
+@@ -259,8 +260,9 @@ xe_vfio_pci_alloc_file(struct xe_vfio_pci_core_device *xe_vdev,
+ 	flags = type == XE_VFIO_FILE_SAVE ? O_RDONLY : O_WRONLY;
+ 	migf->filp = anon_inode_getfile("xe_vfio_mig", fops, migf, flags);
+ 	if (IS_ERR(migf->filp)) {
++		ret = PTR_ERR(migf->filp);
+ 		kfree(migf);
+-		return ERR_CAST(migf->filp);
++		return ERR_PTR(ret);
  	}
  
-diff --git a/include/linux/mm.h b/include/linux/mm.h
-index 15076261d0c2..e65329e1969f 100644
---- a/include/linux/mm.h
-+++ b/include/linux/mm.h
-@@ -4623,9 +4623,10 @@ static inline bool page_pool_page_is_pp(const struct page *page)
- }
- #endif
- 
--#define PAGE_SNAPSHOT_FAITHFUL (1 << 0)
--#define PAGE_SNAPSHOT_PG_BUDDY (1 << 1)
--#define PAGE_SNAPSHOT_PG_IDLE  (1 << 2)
-+#define PAGE_SNAPSHOT_FAITHFUL		(1 << 0)
-+#define PAGE_SNAPSHOT_PG_BUDDY		(1 << 1)
-+#define PAGE_SNAPSHOT_PG_IDLE		(1 << 2)
-+#define PAGE_SNAPSHOT_DEVICE_PRIVATE	(1 << 3)
- 
- struct page_snapshot {
- 	struct folio folio_snapshot;
-diff --git a/mm/util.c b/mm/util.c
-index 97cae40c0209..65e3f1a97d76 100644
---- a/mm/util.c
-+++ b/mm/util.c
-@@ -1218,6 +1218,9 @@ static void set_ps_flags(struct page_snapshot *ps, const struct folio *folio,
- 
- 	if (folio_test_idle(folio))
- 		ps->flags |= PAGE_SNAPSHOT_PG_IDLE;
-+
-+	if (is_device_private_page(page))
-+		ps->flags |= PAGE_SNAPSHOT_DEVICE_PRIVATE;
- }
- 
- /**
+ 	mutex_init(&migf->lock);
 -- 
-2.34.1
+2.43.0
 
