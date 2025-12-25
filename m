@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0F986E784AF
-	for <intel-xe@archiver.kernel.org>; Thu, 25 Dec 2025 01:18:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7DAD0E784AC
+	for <intel-xe@archiver.kernel.org>; Thu, 25 Dec 2025 01:18:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C1348113F74;
-	Thu, 25 Dec 2025 01:18:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3E26B113F7D;
+	Thu, 25 Dec 2025 01:18:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="h/oNMmnr";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="S5JQk43O";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D5C76113F6E
- for <intel-xe@lists.freedesktop.org>; Thu, 25 Dec 2025 01:17:41 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 797B4113F70
+ for <intel-xe@lists.freedesktop.org>; Thu, 25 Dec 2025 01:17:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1766625462; x=1798161462;
+ t=1766625463; x=1798161463;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=9HyxzVi0qp3rNFm73TKfmNUycfQ7PL/8MrbAmexNYE4=;
- b=h/oNMmnr3d5V8kX7Q4+6OxWeBRG7Vb93CKVB3L9YZvvhewbzGacr8QzT
- kI1xY6W8glzJSRZOkGbkj1Zg/eT8FSuVvT39sphoz/CLi/wBwywQLWXcy
- 0Y1TdBpb1iXvSUts3rhsbRW7bXck7PEFKfduwMYjVWWP7IU2L9Ye+iK5z
- Ke9geowDK0MVoJ43WOJe0+KB5bkTKGkA/+RcBz40pcW+PEOGGdaKEVlXR
- gfNkMC1f0RDSgUZeHrYgTme83OWfOWM0U8BIrKZeVe+vlGdkaEl+RWdE+
- RRPb/++Srg1fKpxJDO1a5UhzwfWzNp1gaua94rSpRgEF9yqlArrw/OQ/d A==;
-X-CSE-ConnectionGUID: eBe5eYMETfiNpHGFViRtzg==
-X-CSE-MsgGUID: hSjpgu8iSQuk7Cn+ix9GYg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11652"; a="85866357"
-X-IronPort-AV: E=Sophos;i="6.21,175,1763452800"; d="scan'208";a="85866357"
+ bh=4x3G0EcefWyoHe2sD9sOm1u/vKSwmw6R2fnYtemvsis=;
+ b=S5JQk43OmsopAnO9o27L7vRYn7qsmyS5e3ng5jA7jHxYwANmO9JUswEL
+ lFFleqDmR4rWYS5GWWXg754Va3+AAv+nr9XzlwIa1tqm+wAkNPPNiM7mJ
+ bYtzgXFIJuTnLaq5UnEH1wRmyF3rz8VYBXhSRxX04DILAferSI/OKJcF5
+ dhYPzRkoN2AHrClh648SjmkA7gxG3qk1jD1DTftMv8p6uKn/RJUEWvV90
+ wXQePAoulqzSvCnw5vCaSAJwIjI1kqOjsgXulZG9821hbuAM0fw4bAxDo
+ TiwYyiSZc9YcwfGB/zdElNtId+aqZRYA9/3NtNb8ul4DPYXlBZpUxHsxB Q==;
+X-CSE-ConnectionGUID: gxfHLRdWSa+BdaGhN5iezA==
+X-CSE-MsgGUID: ji9XjYoIQ4q2FH/1OOhVuw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11652"; a="85866366"
+X-IronPort-AV: E=Sophos;i="6.21,175,1763452800"; d="scan'208";a="85866366"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Dec 2025 17:17:41 -0800
-X-CSE-ConnectionGUID: EFhJNKx+RxWeN8g/J13TgA==
-X-CSE-MsgGUID: xX8DtUzYR7uUVWlyiil+gQ==
+ 24 Dec 2025 17:17:42 -0800
+X-CSE-ConnectionGUID: GkNLC/fURMy5dLPqyesBLQ==
+X-CSE-MsgGUID: m7ISB2qJTSS+0FkXC2bj7A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,175,1763452800"; d="scan'208";a="204629124"
+X-IronPort-AV: E=Sophos;i="6.21,175,1763452800"; d="scan'208";a="204629152"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Dec 2025 17:17:40 -0800
+ 24 Dec 2025 17:17:41 -0800
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: daniele.ceraolospurio@intel.com,
 	carlos.santa@intel.com
-Subject: [RFC PATCH 03/13] drm/xe: Store exec queue in hardware fence
-Date: Wed, 24 Dec 2025 17:17:24 -0800
-Message-Id: <20251225011734.341683-4-matthew.brost@intel.com>
+Subject: [RFC PATCH 12/13] drm/xe: Add CONFIG_DRM_XE_DEADLINE_WINDOW
+Date: Wed, 24 Dec 2025 17:17:33 -0800
+Message-Id: <20251225011734.341683-13-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251225011734.341683-1-matthew.brost@intel.com>
 References: <20251225011734.341683-1-matthew.brost@intel.com>
@@ -67,131 +67,58 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Enable hardware fences to set deadlines for exec queues.
+Configures the deadline window. If a fence is not signaled within this
+window before the set deadline, the deadline boost starts. The default
+is 3 ms, but this allows OEMs to tune the deadline implementation.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_hw_fence.c       | 4 +++-
- drivers/gpu/drm/xe/xe_hw_fence.h       | 2 +-
- drivers/gpu/drm/xe/xe_hw_fence_types.h | 6 ++++++
- drivers/gpu/drm/xe/xe_lrc.c            | 6 ++++--
- drivers/gpu/drm/xe/xe_lrc.h            | 3 ++-
- drivers/gpu/drm/xe/xe_sched_job.c      | 2 +-
- 6 files changed, 17 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/xe/Kconfig.profile   |  6 ++++++
+ drivers/gpu/drm/xe/xe_deadline_mgr.c | 10 ++++++++--
+ 2 files changed, 14 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_hw_fence.c b/drivers/gpu/drm/xe/xe_hw_fence.c
-index f6057456e460..5995bf095843 100644
---- a/drivers/gpu/drm/xe/xe_hw_fence.c
-+++ b/drivers/gpu/drm/xe/xe_hw_fence.c
-@@ -242,6 +242,7 @@ void xe_hw_fence_free(struct dma_fence *fence)
-  * xe_hw_fence_init() - Initialize an hw fence.
-  * @fence: Pointer to the fence to initialize.
-  * @ctx: Pointer to the struct xe_hw_fence_ctx fence context.
-+ * @q: Pointer to exec queue tied to the fence.
-  * @seqno_map: Pointer to the map into where the seqno is blitted.
-  *
-  * Initializes a pre-allocated hw fence.
-@@ -249,12 +250,13 @@ void xe_hw_fence_free(struct dma_fence *fence)
-  * dma-fence refcounting.
-  */
- void xe_hw_fence_init(struct dma_fence *fence, struct xe_hw_fence_ctx *ctx,
--		      struct iosys_map seqno_map)
-+		      struct xe_exec_queue *q, struct iosys_map seqno_map)
+diff --git a/drivers/gpu/drm/xe/Kconfig.profile b/drivers/gpu/drm/xe/Kconfig.profile
+index 7530df998148..b17ca4c67b8a 100644
+--- a/drivers/gpu/drm/xe/Kconfig.profile
++++ b/drivers/gpu/drm/xe/Kconfig.profile
+@@ -53,3 +53,9 @@ config DRM_XE_ENABLE_SCHEDTIMEOUT_LIMIT
+ 	  to apply to applicable user. For elevated user, all above MIN
+ 	  and MAX values will apply when this configuration is enable to
+ 	  apply limitation. By default limitation is applied.
++config DRM_XE_DEADLINE_WINDOW
++	int "Default deadline window (ms)"
++	default 3 # milliseconds
++	help
++	  Configures the deadline window. If a fence is not signaled within this
++	  window before set deadline, the deadline boost starts.
+diff --git a/drivers/gpu/drm/xe/xe_deadline_mgr.c b/drivers/gpu/drm/xe/xe_deadline_mgr.c
+index 5159ce35fdde..80a1bb72ea56 100644
+--- a/drivers/gpu/drm/xe/xe_deadline_mgr.c
++++ b/drivers/gpu/drm/xe/xe_deadline_mgr.c
+@@ -11,6 +11,12 @@
+ #include "xe_gt.h"
+ #include "xe_hw_fence.h"
+ 
++#ifdef CONFIG_DRM_XE_DEADLINE_WINDOW
++#define XE_DEADLINE_WINDOW	CONFIG_DRM_XE_DEADLINE_WINDOW
++#else
++#define XE_DEADLINE_WINDOW	3
++#endif
++
+ static void __xe_deadline_mgr_enter_deadline(struct xe_deadline_mgr *mgr)
  {
- 	struct  xe_hw_fence *hw_fence =
- 		container_of(fence, typeof(*hw_fence), dma);
+ 	lockdep_assert_held(&mgr->lock);
+@@ -96,8 +102,8 @@ static void __xe_deadline_mgr_update_deadline(struct xe_deadline_mgr *mgr)
+ 		hrtimer_cancel(&mgr->timer);
  
- 	hw_fence->xe = gt_to_xe(ctx->gt);
-+	hw_fence->q = q;
- 	snprintf(hw_fence->name, sizeof(hw_fence->name), "%s", ctx->name);
- 	hw_fence->seqno_map = seqno_map;
- 	INIT_LIST_HEAD(&hw_fence->irq_link);
-diff --git a/drivers/gpu/drm/xe/xe_hw_fence.h b/drivers/gpu/drm/xe/xe_hw_fence.h
-index f13a1c4982c7..7a8678c881d8 100644
---- a/drivers/gpu/drm/xe/xe_hw_fence.h
-+++ b/drivers/gpu/drm/xe/xe_hw_fence.h
-@@ -29,5 +29,5 @@ struct dma_fence *xe_hw_fence_alloc(void);
- void xe_hw_fence_free(struct dma_fence *fence);
+ 		if (mgr->deadline != XE_DEADLINE_NONE) {
+-			ktime_t deadline = ktime_sub(mgr->deadline,
+-						     ms_to_ktime(3));
++			ktime_t sub = ms_to_ktime(XE_DEADLINE_WINDOW);
++			ktime_t deadline = ktime_sub(mgr->deadline, sub);
+ 			ktime_t now = ktime_get();
  
- void xe_hw_fence_init(struct dma_fence *fence, struct xe_hw_fence_ctx *ctx,
--		      struct iosys_map seqno_map);
-+		      struct xe_exec_queue *q, struct iosys_map seqno_map);
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_hw_fence_types.h b/drivers/gpu/drm/xe/xe_hw_fence_types.h
-index 58a8d09afe5c..052bbab1fad6 100644
---- a/drivers/gpu/drm/xe/xe_hw_fence_types.h
-+++ b/drivers/gpu/drm/xe/xe_hw_fence_types.h
-@@ -13,6 +13,7 @@
- #include <linux/spinlock.h>
- 
- struct xe_device;
-+struct xe_exec_queue;
- struct xe_gt;
- 
- /**
-@@ -64,6 +65,11 @@ struct xe_hw_fence {
- 	struct dma_fence dma;
- 	/** @xe: Xe device for hw fence driver name */
- 	struct xe_device *xe;
-+	/**
-+	 * @q: Exec queue which fence is tied too, not ref counted, lookup
-+	 * protected by fence lock.
-+	 */
-+	struct xe_exec_queue *q;
- 	/** @name: name of hardware fence context */
- 	char name[MAX_FENCE_NAME_LEN];
- 	/** @seqno_map: I/O map for seqno */
-diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-index 70eae7d03a27..fc4b21e3c00d 100644
---- a/drivers/gpu/drm/xe/xe_lrc.c
-+++ b/drivers/gpu/drm/xe/xe_lrc.c
-@@ -1783,15 +1783,17 @@ void xe_lrc_free_seqno_fence(struct dma_fence *fence)
- /**
-  * xe_lrc_init_seqno_fence() - Initialize an lrc seqno fence.
-  * @lrc: Pointer to the lrc.
-+ ( @q: Pointner to exec queue.
-  * @fence: Pointer to the fence to initialize.
-  *
-  * Initializes a pre-allocated lrc seqno fence.
-  * After initialization, the fence is subject to normal
-  * dma-fence refcounting.
-  */
--void xe_lrc_init_seqno_fence(struct xe_lrc *lrc, struct dma_fence *fence)
-+void xe_lrc_init_seqno_fence(struct xe_lrc *lrc, struct xe_exec_queue *q,
-+			     struct dma_fence *fence)
- {
--	xe_hw_fence_init(fence, &lrc->fence_ctx, __xe_lrc_seqno_map(lrc));
-+	xe_hw_fence_init(fence, &lrc->fence_ctx, q, __xe_lrc_seqno_map(lrc));
- }
- 
- s32 xe_lrc_seqno(struct xe_lrc *lrc)
-diff --git a/drivers/gpu/drm/xe/xe_lrc.h b/drivers/gpu/drm/xe/xe_lrc.h
-index 8acf85273c1a..3d72b4c0da8e 100644
---- a/drivers/gpu/drm/xe/xe_lrc.h
-+++ b/drivers/gpu/drm/xe/xe_lrc.h
-@@ -118,7 +118,8 @@ u64 xe_lrc_descriptor(struct xe_lrc *lrc);
- u32 xe_lrc_seqno_ggtt_addr(struct xe_lrc *lrc);
- struct dma_fence *xe_lrc_alloc_seqno_fence(void);
- void xe_lrc_free_seqno_fence(struct dma_fence *fence);
--void xe_lrc_init_seqno_fence(struct xe_lrc *lrc, struct dma_fence *fence);
-+void xe_lrc_init_seqno_fence(struct xe_lrc *lrc, struct xe_exec_queue *q,
-+			     struct dma_fence *fence);
- s32 xe_lrc_seqno(struct xe_lrc *lrc);
- 
- u32 xe_lrc_start_seqno_ggtt_addr(struct xe_lrc *lrc);
-diff --git a/drivers/gpu/drm/xe/xe_sched_job.c b/drivers/gpu/drm/xe/xe_sched_job.c
-index cb674a322113..6099b4445835 100644
---- a/drivers/gpu/drm/xe/xe_sched_job.c
-+++ b/drivers/gpu/drm/xe/xe_sched_job.c
-@@ -270,7 +270,7 @@ void xe_sched_job_arm(struct xe_sched_job *job)
- 		struct dma_fence_chain *chain;
- 
- 		fence = job->ptrs[i].lrc_fence;
--		xe_lrc_init_seqno_fence(q->lrc[i], fence);
-+		xe_lrc_init_seqno_fence(q->lrc[i], q, fence);
- 		job->ptrs[i].lrc_fence = NULL;
- 		if (!i) {
- 			job->lrc_seqno = fence->seqno;
+ 			if (ktime_after(now, deadline)) {
 -- 
 2.34.1
 
