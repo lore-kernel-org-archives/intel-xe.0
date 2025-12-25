@@ -4,55 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7DAD0E784AC
-	for <intel-xe@archiver.kernel.org>; Thu, 25 Dec 2025 01:18:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 689BAE784A9
+	for <intel-xe@archiver.kernel.org>; Thu, 25 Dec 2025 01:25:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3E26B113F7D;
-	Thu, 25 Dec 2025 01:18:13 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="S5JQk43O";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 797B4113F70
- for <intel-xe@lists.freedesktop.org>; Thu, 25 Dec 2025 01:17:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1766625463; x=1798161463;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=4x3G0EcefWyoHe2sD9sOm1u/vKSwmw6R2fnYtemvsis=;
- b=S5JQk43OmsopAnO9o27L7vRYn7qsmyS5e3ng5jA7jHxYwANmO9JUswEL
- lFFleqDmR4rWYS5GWWXg754Va3+AAv+nr9XzlwIa1tqm+wAkNPPNiM7mJ
- bYtzgXFIJuTnLaq5UnEH1wRmyF3rz8VYBXhSRxX04DILAferSI/OKJcF5
- dhYPzRkoN2AHrClh648SjmkA7gxG3qk1jD1DTftMv8p6uKn/RJUEWvV90
- wXQePAoulqzSvCnw5vCaSAJwIjI1kqOjsgXulZG9821hbuAM0fw4bAxDo
- TiwYyiSZc9YcwfGB/zdElNtId+aqZRYA9/3NtNb8ul4DPYXlBZpUxHsxB Q==;
-X-CSE-ConnectionGUID: gxfHLRdWSa+BdaGhN5iezA==
-X-CSE-MsgGUID: ji9XjYoIQ4q2FH/1OOhVuw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11652"; a="85866366"
-X-IronPort-AV: E=Sophos;i="6.21,175,1763452800"; d="scan'208";a="85866366"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Dec 2025 17:17:42 -0800
-X-CSE-ConnectionGUID: GkNLC/fURMy5dLPqyesBLQ==
-X-CSE-MsgGUID: m7ISB2qJTSS+0FkXC2bj7A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,175,1763452800"; d="scan'208";a="204629152"
-Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Dec 2025 17:17:41 -0800
-From: Matthew Brost <matthew.brost@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: daniele.ceraolospurio@intel.com,
-	carlos.santa@intel.com
-Subject: [RFC PATCH 12/13] drm/xe: Add CONFIG_DRM_XE_DEADLINE_WINDOW
-Date: Wed, 24 Dec 2025 17:17:33 -0800
-Message-Id: <20251225011734.341683-13-matthew.brost@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20251225011734.341683-1-matthew.brost@intel.com>
-References: <20251225011734.341683-1-matthew.brost@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2EC2F11A22E;
+	Thu, 25 Dec 2025 01:25:22 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7240911A22E;
+ Thu, 25 Dec 2025 01:25:20 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Fence_deadlines_in_Xe?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Brost" <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 25 Dec 2025 01:25:20 -0000
+Message-ID: <176662592046.117299.17852896495800149792@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20251225011734.341683-1-matthew.brost@intel.com>
+In-Reply-To: <20251225011734.341683-1-matthew.brost@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,61 +35,71 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Configures the deadline window. If a fence is not signaled within this
-window before the set deadline, the deadline boost starts. The default
-is 3 ms, but this allows OEMs to tune the deadline implementation.
+== Series Details ==
 
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/xe/Kconfig.profile   |  6 ++++++
- drivers/gpu/drm/xe/xe_deadline_mgr.c | 10 ++++++++--
- 2 files changed, 14 insertions(+), 2 deletions(-)
+Series: Fence deadlines in Xe
+URL   : https://patchwork.freedesktop.org/series/159479/
+State : warning
 
-diff --git a/drivers/gpu/drm/xe/Kconfig.profile b/drivers/gpu/drm/xe/Kconfig.profile
-index 7530df998148..b17ca4c67b8a 100644
---- a/drivers/gpu/drm/xe/Kconfig.profile
-+++ b/drivers/gpu/drm/xe/Kconfig.profile
-@@ -53,3 +53,9 @@ config DRM_XE_ENABLE_SCHEDTIMEOUT_LIMIT
- 	  to apply to applicable user. For elevated user, all above MIN
- 	  and MAX values will apply when this configuration is enable to
- 	  apply limitation. By default limitation is applied.
-+config DRM_XE_DEADLINE_WINDOW
-+	int "Default deadline window (ms)"
-+	default 3 # milliseconds
-+	help
-+	  Configures the deadline window. If a fence is not signaled within this
-+	  window before set deadline, the deadline boost starts.
-diff --git a/drivers/gpu/drm/xe/xe_deadline_mgr.c b/drivers/gpu/drm/xe/xe_deadline_mgr.c
-index 5159ce35fdde..80a1bb72ea56 100644
---- a/drivers/gpu/drm/xe/xe_deadline_mgr.c
-+++ b/drivers/gpu/drm/xe/xe_deadline_mgr.c
-@@ -11,6 +11,12 @@
- #include "xe_gt.h"
- #include "xe_hw_fence.h"
- 
-+#ifdef CONFIG_DRM_XE_DEADLINE_WINDOW
-+#define XE_DEADLINE_WINDOW	CONFIG_DRM_XE_DEADLINE_WINDOW
-+#else
-+#define XE_DEADLINE_WINDOW	3
-+#endif
+== Summary ==
+
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+99339247d1ae4378b24366da182e712bdc623311
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 57a616bdccfbb37cf2e5ee97369a498393dbf2d2
+Author: Matthew Brost <matthew.brost@intel.com>
+Date:   Wed Dec 24 17:17:34 2025 -0800
+
+    drm/xe: Add exec queue deadline trace points
+    
+    Add exec queue deadline trace points to help debug and profile the
+    deadline implementation.
+    
+    Signed-off-by: Matthew Brost <matthew.brost@intel.com>
++ /mt/dim checkpatch 5c680ac45628b1951d20a444f400c82242029031 drm-intel
+c2c665d12514 drm/xe: Add dedicated message lock
+0d853ea7942e drm/xe: Add EXEC_QUEUE_FLAG_CAP_SYS_NICE
+373af0e47c0e drm/xe: Store exec queue in hardware fence
+bfd1dcedf478 drm/xe: Add deadline exec queue vfuncs
+8281afdd155f drm/xe: Export to_xe_hw_fence
+27d2eb31dc5e drm/xe: Add deadline manager
+-:30: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#30: 
+new file mode 100644
+
+-:119: CHECK:BRACES: Blank lines aren't necessary before a close brace '}'
+#119: FILE: drivers/gpu/drm/xe/xe_deadline_mgr.c:85:
 +
- static void __xe_deadline_mgr_enter_deadline(struct xe_deadline_mgr *mgr)
- {
- 	lockdep_assert_held(&mgr->lock);
-@@ -96,8 +102,8 @@ static void __xe_deadline_mgr_update_deadline(struct xe_deadline_mgr *mgr)
- 		hrtimer_cancel(&mgr->timer);
- 
- 		if (mgr->deadline != XE_DEADLINE_NONE) {
--			ktime_t deadline = ktime_sub(mgr->deadline,
--						     ms_to_ktime(3));
-+			ktime_t sub = ms_to_ktime(XE_DEADLINE_WINDOW);
-+			ktime_t deadline = ktime_sub(mgr->deadline, sub);
- 			ktime_t now = ktime_get();
- 
- 			if (ktime_after(now, deadline)) {
--- 
-2.34.1
++}
+
+-:165: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#165: FILE: drivers/gpu/drm/xe/xe_deadline_mgr.c:131:
++
++
+
+total: 0 errors, 1 warnings, 2 checks, 308 lines checked
+482ae2e6dea1 drm/xe: Add deadline manager to user exec queues
+819c1bd106be drm/xe: Stub out execlists deadline vfuncs as NOPs
+a10c43abe6c5 drm/xe: Make scheduler message lock IRQ-safe
+-:82: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'sched' may be better as '(sched)' to avoid precedence issues
+#82: FILE: drivers/gpu/drm/xe/xe_gpu_scheduler.h:34:
++#define xe_sched_msg_lock(sched)	\
++	scoped_guard(spinlock_irqsave, &sched->msg_lock)
+
+total: 0 errors, 0 warnings, 1 checks, 110 lines checked
+91baa6abb5a6 drm/xe: Implement GuC submission backend ops for deadlines
+6614fc118515 drm/xe: Enable deadlines on hardware fences
+3066661b59d8 drm/xe: Add CONFIG_DRM_XE_DEADLINE_WINDOW
+57a616bdccfb drm/xe: Add exec queue deadline trace points
+
 
