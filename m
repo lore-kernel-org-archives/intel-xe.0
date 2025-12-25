@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EC911E784A9
-	for <intel-xe@archiver.kernel.org>; Thu, 25 Dec 2025 01:17:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5D3A8E784AC
+	for <intel-xe@archiver.kernel.org>; Thu, 25 Dec 2025 01:17:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 97C96113F6E;
+	by gabe.freedesktop.org (Postfix) with ESMTP id EA6C4112ACD;
 	Thu, 25 Dec 2025 01:17:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WPxa+Lpi";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kc8tyJC7";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0BC7B112ACD
- for <intel-xe@lists.freedesktop.org>; Thu, 25 Dec 2025 01:17:40 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8F172113F6E
+ for <intel-xe@lists.freedesktop.org>; Thu, 25 Dec 2025 01:17:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1766625461; x=1798161461;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=dliK0YEinAEy0GSK+Mu9gSToWGo/7See9z1lttLpz0w=;
- b=WPxa+LpiFf2uaMdWwfZensvgNNm4PsMieS7eIx1SwwZqIwKkHem1kSWV
- mrDdGaccXsrC7GoLtYxzibHWVl6p++g56DyGqZtEAlh8wXG/7IHCVk/1Y
- yZIPsEyNSF1VFW9mY1OxAdLkw8CpL2Y4175aJcUOyUdx0vah6sCHyv1kL
- xIJhDdQ3Vd0YopqcFI0xzHRhTQhhtIi0yS9Lvym4r8ldmbmpemIF4bXLA
- JPZS69Yq3sGCUP67LcfF6Sj8nnPdoa2KLF3td37vQPlgusa7LnqcAit2c
- Dh/mJ8BkR3J+sC0dB1x9BNnsNFdwz/ThU99I+5Qc61PEL9vqty5iL4Nur w==;
-X-CSE-ConnectionGUID: JBespBEWTBSCg0JpEG8MlA==
-X-CSE-MsgGUID: q9aCcROwQxONCM6cjIZvmw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11652"; a="85866354"
-X-IronPort-AV: E=Sophos;i="6.21,175,1763452800"; d="scan'208";a="85866354"
+ t=1766625462; x=1798161462;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=6i4+mdZgDmSZZcyFTD+hUJnrNJzR8OXB2TNx6NJ2t0E=;
+ b=kc8tyJC7gl2+K9NuQ+AoWXgfgXeIBePmNan9/rD1OjW2PKbVVoLjHAEU
+ GenySjJIfunx4EQ+TSBsa5jl9mJ7sdm5RkR2ZTxyyxQ552uFs+bqY8PsC
+ K1MYE0Y5D044ZzoGNcQpOkFpCQoA3TZBodxQusD+Fbokoy3cxycfwF7gv
+ 6mnxMFoEHi2nzqpUj2BoJyDgQ3s5DoYDEpFYJe/5CCCBkUJFmOeYwyScW
+ iuz8b6aGXB/z77KNb3s9dR8nUpydgshOCXpO2iltcd4gQHvCljtEQTFeL
+ wyN159IVUpKgcOImODW9Uhdb0+Aj33Wpy2K2nkMYnPqHRRAJCiggJrcnq Q==;
+X-CSE-ConnectionGUID: IZQifoFeSGS+h2alvxmC8g==
+X-CSE-MsgGUID: i1VqU9xNRMW+nbklR4JAkA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11652"; a="85866355"
+X-IronPort-AV: E=Sophos;i="6.21,175,1763452800"; d="scan'208";a="85866355"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  24 Dec 2025 17:17:41 -0800
-X-CSE-ConnectionGUID: b03JMTO3Rw2zHhG04ZCusw==
-X-CSE-MsgGUID: ifshbtyHRE+Q+Vijzw865g==
+X-CSE-ConnectionGUID: 57Z5WegOQNqu3axBQ4xVDg==
+X-CSE-MsgGUID: gWIfEzeQTzqACK+M8iKoaA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,175,1763452800"; d="scan'208";a="204629115"
+X-IronPort-AV: E=Sophos;i="6.21,175,1763452800"; d="scan'208";a="204629118"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  24 Dec 2025 17:17:40 -0800
@@ -45,12 +45,13 @@ From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: daniele.ceraolospurio@intel.com,
 	carlos.santa@intel.com
-Subject: [RFC PATCH 00/13] Fence deadlines in Xe 
-Date: Wed, 24 Dec 2025 17:17:21 -0800
-Message-Id: <20251225011734.341683-1-matthew.brost@intel.com>
+Subject: [RFC PATCH 01/13] drm/xe: Add dedicated message lock
+Date: Wed, 24 Dec 2025 17:17:22 -0800
+Message-Id: <20251225011734.341683-2-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20251225011734.341683-1-matthew.brost@intel.com>
+References: <20251225011734.341683-1-matthew.brost@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -66,58 +67,80 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Implement fence deadlines in Xe. The idea is that if a deadline is set
-on a fence, we try hard to complete it within 3 ms of the deadline. This
-means for queues tied to a fence with CAP_SYS_ADMIN, we bump the
-priority, and for all queues tied to a fence, we ramp up the GPU
-frequency. The expected use case is a compositor that needs a steady
-frame rate but does not want to run at a higher priority than the
-application rendering the frame.
+Stop abusing DRM scheduler job list lock for messages, add dedicated
+message lock.
 
-Lightly tested; seems to be behaving as expected and not crashing.
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+Reviewed-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+Acked-by: Philipp Stanner <phasta@kernel.org>
+---
+ drivers/gpu/drm/xe/xe_gpu_scheduler.c       | 5 +++--
+ drivers/gpu/drm/xe/xe_gpu_scheduler.h       | 4 ++--
+ drivers/gpu/drm/xe/xe_gpu_scheduler_types.h | 2 ++
+ 3 files changed, 7 insertions(+), 4 deletions(-)
 
-Matt
-
-Matthew Brost (13):
-  drm/xe: Add dedicated message lock
-  drm/xe: Add EXEC_QUEUE_FLAG_CAP_SYS_NICE
-  drm/xe: Store exec queue in hardware fence
-  drm/xe: Add deadline exec queue vfuncs
-  drm/xe: Export to_xe_hw_fence
-  drm/xe: Add deadline manager
-  drm/xe: Add deadline manager to user exec queues
-  drm/xe: Stub out execlists deadline vfuncs as NOPs
-  drm/xe: Make scheduler message lock IRQ-safe
-  drm/xe: Implement GuC submission backend ops for deadlines
-  drm/xe: Enable deadlines on hardware fences
-  drm/xe: Add CONFIG_DRM_XE_DEADLINE_WINDOW
-  drm/xe: Add exec queue deadline trace points
-
- drivers/gpu/drm/xe/Kconfig.profile           |   6 +
- drivers/gpu/drm/xe/Makefile                  |   1 +
- drivers/gpu/drm/xe/xe_deadline_mgr.c         | 219 +++++++++++++++++++
- drivers/gpu/drm/xe/xe_deadline_mgr.h         |  26 +++
- drivers/gpu/drm/xe/xe_deadline_mgr_types.h   |  34 +++
- drivers/gpu/drm/xe/xe_exec_queue.c           |   7 +
- drivers/gpu/drm/xe/xe_exec_queue_types.h     |  15 ++
- drivers/gpu/drm/xe/xe_execlist.c             |  20 ++
- drivers/gpu/drm/xe/xe_gpu_scheduler.c        |  33 +--
- drivers/gpu/drm/xe/xe_gpu_scheduler.h        |  11 +-
- drivers/gpu/drm/xe/xe_gpu_scheduler_types.h  |   2 +
- drivers/gpu/drm/xe/xe_guc_exec_queue_types.h |   2 +-
- drivers/gpu/drm/xe/xe_guc_submit.c           | 137 ++++++++++--
- drivers/gpu/drm/xe/xe_hw_fence.c             |  29 ++-
- drivers/gpu/drm/xe/xe_hw_fence.h             |   5 +-
- drivers/gpu/drm/xe/xe_hw_fence_types.h       |  13 ++
- drivers/gpu/drm/xe/xe_lrc.c                  |   6 +-
- drivers/gpu/drm/xe/xe_lrc.h                  |   3 +-
- drivers/gpu/drm/xe/xe_sched_job.c            |   2 +-
- drivers/gpu/drm/xe/xe_trace.h                |  10 +
- 20 files changed, 530 insertions(+), 51 deletions(-)
- create mode 100644 drivers/gpu/drm/xe/xe_deadline_mgr.c
- create mode 100644 drivers/gpu/drm/xe/xe_deadline_mgr.h
- create mode 100644 drivers/gpu/drm/xe/xe_deadline_mgr_types.h
-
+diff --git a/drivers/gpu/drm/xe/xe_gpu_scheduler.c b/drivers/gpu/drm/xe/xe_gpu_scheduler.c
+index f91e06d03511..f4f23317191f 100644
+--- a/drivers/gpu/drm/xe/xe_gpu_scheduler.c
++++ b/drivers/gpu/drm/xe/xe_gpu_scheduler.c
+@@ -77,6 +77,7 @@ int xe_sched_init(struct xe_gpu_scheduler *sched,
+ 	};
+ 
+ 	sched->ops = xe_ops;
++	spin_lock_init(&sched->msg_lock);
+ 	INIT_LIST_HEAD(&sched->msgs);
+ 	INIT_WORK(&sched->work_process_msg, xe_sched_process_msg_work);
+ 
+@@ -117,7 +118,7 @@ void xe_sched_add_msg(struct xe_gpu_scheduler *sched,
+ void xe_sched_add_msg_locked(struct xe_gpu_scheduler *sched,
+ 			     struct xe_sched_msg *msg)
+ {
+-	lockdep_assert_held(&sched->base.job_list_lock);
++	lockdep_assert_held(&sched->msg_lock);
+ 
+ 	list_add_tail(&msg->link, &sched->msgs);
+ 	xe_sched_process_msg_queue(sched);
+@@ -131,7 +132,7 @@ void xe_sched_add_msg_locked(struct xe_gpu_scheduler *sched,
+ void xe_sched_add_msg_head(struct xe_gpu_scheduler *sched,
+ 			   struct xe_sched_msg *msg)
+ {
+-	lockdep_assert_held(&sched->base.job_list_lock);
++	lockdep_assert_held(&sched->msg_lock);
+ 
+ 	list_add(&msg->link, &sched->msgs);
+ 	xe_sched_process_msg_queue(sched);
+diff --git a/drivers/gpu/drm/xe/xe_gpu_scheduler.h b/drivers/gpu/drm/xe/xe_gpu_scheduler.h
+index c7a77a3a9681..dceb2cd0ee5b 100644
+--- a/drivers/gpu/drm/xe/xe_gpu_scheduler.h
++++ b/drivers/gpu/drm/xe/xe_gpu_scheduler.h
+@@ -33,12 +33,12 @@ void xe_sched_add_msg_head(struct xe_gpu_scheduler *sched,
+ 
+ static inline void xe_sched_msg_lock(struct xe_gpu_scheduler *sched)
+ {
+-	spin_lock(&sched->base.job_list_lock);
++	spin_lock(&sched->msg_lock);
+ }
+ 
+ static inline void xe_sched_msg_unlock(struct xe_gpu_scheduler *sched)
+ {
+-	spin_unlock(&sched->base.job_list_lock);
++	spin_unlock(&sched->msg_lock);
+ }
+ 
+ static inline void xe_sched_stop(struct xe_gpu_scheduler *sched)
+diff --git a/drivers/gpu/drm/xe/xe_gpu_scheduler_types.h b/drivers/gpu/drm/xe/xe_gpu_scheduler_types.h
+index 6731b13da8bb..63d9bf92583c 100644
+--- a/drivers/gpu/drm/xe/xe_gpu_scheduler_types.h
++++ b/drivers/gpu/drm/xe/xe_gpu_scheduler_types.h
+@@ -47,6 +47,8 @@ struct xe_gpu_scheduler {
+ 	const struct xe_sched_backend_ops	*ops;
+ 	/** @msgs: list of messages to be processed in @work_process_msg */
+ 	struct list_head			msgs;
++	/** @msg_lock: Message lock */
++	spinlock_t				msg_lock;
+ 	/** @work_process_msg: processes messages */
+ 	struct work_struct		work_process_msg;
+ };
 -- 
 2.34.1
 
