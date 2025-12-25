@@ -4,54 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5D3A8E784AC
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D68D9E784AF
 	for <intel-xe@archiver.kernel.org>; Thu, 25 Dec 2025 01:17:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EA6C4112ACD;
-	Thu, 25 Dec 2025 01:17:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 95401113F6F;
+	Thu, 25 Dec 2025 01:17:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kc8tyJC7";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="g2AKvaDk";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8F172113F6E
- for <intel-xe@lists.freedesktop.org>; Thu, 25 Dec 2025 01:17:41 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 334FD113F70
+ for <intel-xe@lists.freedesktop.org>; Thu, 25 Dec 2025 01:17:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1766625462; x=1798161462;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=6i4+mdZgDmSZZcyFTD+hUJnrNJzR8OXB2TNx6NJ2t0E=;
- b=kc8tyJC7gl2+K9NuQ+AoWXgfgXeIBePmNan9/rD1OjW2PKbVVoLjHAEU
- GenySjJIfunx4EQ+TSBsa5jl9mJ7sdm5RkR2ZTxyyxQ552uFs+bqY8PsC
- K1MYE0Y5D044ZzoGNcQpOkFpCQoA3TZBodxQusD+Fbokoy3cxycfwF7gv
- 6mnxMFoEHi2nzqpUj2BoJyDgQ3s5DoYDEpFYJe/5CCCBkUJFmOeYwyScW
- iuz8b6aGXB/z77KNb3s9dR8nUpydgshOCXpO2iltcd4gQHvCljtEQTFeL
- wyN159IVUpKgcOImODW9Uhdb0+Aj33Wpy2K2nkMYnPqHRRAJCiggJrcnq Q==;
-X-CSE-ConnectionGUID: IZQifoFeSGS+h2alvxmC8g==
-X-CSE-MsgGUID: i1VqU9xNRMW+nbklR4JAkA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11652"; a="85866355"
-X-IronPort-AV: E=Sophos;i="6.21,175,1763452800"; d="scan'208";a="85866355"
+ bh=gTpqSloEDiZjOsdH40BC10R/jpkGL8u6zC2sbIl/3kI=;
+ b=g2AKvaDkLub9+RCaCXs2Xg97edDpYDhtHXkhUb9sRtwuqEPwo08IfiUg
+ dcT+0W2VmOHWsid7zZpktkMIUWtU/A/lXkzZJtcpUEh81IwO/QReeAlhO
+ 3QMzUGC/gsjJ2bQwYv6t4PNiWZ73fWOv950b9YqPbyLAAkt/updy1aFhE
+ HO4Qsb+GxNzPKVOI3X9hiJIBwrKkaN1fN28rVGkMKgFc7sLCBUxVhikfn
+ p9ep+JtpV33B1S6xeRikDezPfUBzN4bej72ML+gSR3QwrRZfuh43EvdLD
+ e1gdwtAU3choGJyWm0gtRieEUTTeAR5QZHP7t07Zp1jawpSv1+psmmOH/ A==;
+X-CSE-ConnectionGUID: awIaNLefQNKToFXnu5NSIA==
+X-CSE-MsgGUID: xU6Zk94OSpyXWWdQ4lzaQA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11652"; a="85866362"
+X-IronPort-AV: E=Sophos;i="6.21,175,1763452800"; d="scan'208";a="85866362"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  24 Dec 2025 17:17:41 -0800
-X-CSE-ConnectionGUID: 57Z5WegOQNqu3axBQ4xVDg==
-X-CSE-MsgGUID: gWIfEzeQTzqACK+M8iKoaA==
+X-CSE-ConnectionGUID: EpmQ4wxWSWyySWdXHUgLRA==
+X-CSE-MsgGUID: ztmG8XnkSEGJ9ffJmoLYIg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,175,1763452800"; d="scan'208";a="204629118"
+X-IronPort-AV: E=Sophos;i="6.21,175,1763452800"; d="scan'208";a="204629140"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Dec 2025 17:17:40 -0800
+ 24 Dec 2025 17:17:41 -0800
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: daniele.ceraolospurio@intel.com,
 	carlos.santa@intel.com
-Subject: [RFC PATCH 01/13] drm/xe: Add dedicated message lock
-Date: Wed, 24 Dec 2025 17:17:22 -0800
-Message-Id: <20251225011734.341683-2-matthew.brost@intel.com>
+Subject: [RFC PATCH 08/13] drm/xe: Stub out execlists deadline vfuncs as NOPs
+Date: Wed, 24 Dec 2025 17:17:29 -0800
+Message-Id: <20251225011734.341683-9-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251225011734.341683-1-matthew.brost@intel.com>
 References: <20251225011734.341683-1-matthew.brost@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -67,80 +68,52 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Stop abusing DRM scheduler job list lock for messages, add dedicated
-message lock.
+The execlists backend is non-functional but shouldn’t crash. Stub out
+execlists deadline vfuncs as NOPs.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-Acked-by: Philipp Stanner <phasta@kernel.org>
 ---
- drivers/gpu/drm/xe/xe_gpu_scheduler.c       | 5 +++--
- drivers/gpu/drm/xe/xe_gpu_scheduler.h       | 4 ++--
- drivers/gpu/drm/xe/xe_gpu_scheduler_types.h | 2 ++
- 3 files changed, 7 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/xe/xe_execlist.c | 20 ++++++++++++++++++++
+ 1 file changed, 20 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_gpu_scheduler.c b/drivers/gpu/drm/xe/xe_gpu_scheduler.c
-index f91e06d03511..f4f23317191f 100644
---- a/drivers/gpu/drm/xe/xe_gpu_scheduler.c
-+++ b/drivers/gpu/drm/xe/xe_gpu_scheduler.c
-@@ -77,6 +77,7 @@ int xe_sched_init(struct xe_gpu_scheduler *sched,
- 	};
- 
- 	sched->ops = xe_ops;
-+	spin_lock_init(&sched->msg_lock);
- 	INIT_LIST_HEAD(&sched->msgs);
- 	INIT_WORK(&sched->work_process_msg, xe_sched_process_msg_work);
- 
-@@ -117,7 +118,7 @@ void xe_sched_add_msg(struct xe_gpu_scheduler *sched,
- void xe_sched_add_msg_locked(struct xe_gpu_scheduler *sched,
- 			     struct xe_sched_msg *msg)
- {
--	lockdep_assert_held(&sched->base.job_list_lock);
-+	lockdep_assert_held(&sched->msg_lock);
- 
- 	list_add_tail(&msg->link, &sched->msgs);
- 	xe_sched_process_msg_queue(sched);
-@@ -131,7 +132,7 @@ void xe_sched_add_msg_locked(struct xe_gpu_scheduler *sched,
- void xe_sched_add_msg_head(struct xe_gpu_scheduler *sched,
- 			   struct xe_sched_msg *msg)
- {
--	lockdep_assert_held(&sched->base.job_list_lock);
-+	lockdep_assert_held(&sched->msg_lock);
- 
- 	list_add(&msg->link, &sched->msgs);
- 	xe_sched_process_msg_queue(sched);
-diff --git a/drivers/gpu/drm/xe/xe_gpu_scheduler.h b/drivers/gpu/drm/xe/xe_gpu_scheduler.h
-index c7a77a3a9681..dceb2cd0ee5b 100644
---- a/drivers/gpu/drm/xe/xe_gpu_scheduler.h
-+++ b/drivers/gpu/drm/xe/xe_gpu_scheduler.h
-@@ -33,12 +33,12 @@ void xe_sched_add_msg_head(struct xe_gpu_scheduler *sched,
- 
- static inline void xe_sched_msg_lock(struct xe_gpu_scheduler *sched)
- {
--	spin_lock(&sched->base.job_list_lock);
-+	spin_lock(&sched->msg_lock);
+diff --git a/drivers/gpu/drm/xe/xe_execlist.c b/drivers/gpu/drm/xe/xe_execlist.c
+index 46c17a18a3f4..1e9323fe19e3 100644
+--- a/drivers/gpu/drm/xe/xe_execlist.c
++++ b/drivers/gpu/drm/xe/xe_execlist.c
+@@ -469,6 +469,23 @@ static bool execlist_exec_queue_reset_status(struct xe_exec_queue *q)
+ 	return false;
  }
  
- static inline void xe_sched_msg_unlock(struct xe_gpu_scheduler *sched)
- {
--	spin_unlock(&sched->base.job_list_lock);
-+	spin_unlock(&sched->msg_lock);
- }
- 
- static inline void xe_sched_stop(struct xe_gpu_scheduler *sched)
-diff --git a/drivers/gpu/drm/xe/xe_gpu_scheduler_types.h b/drivers/gpu/drm/xe/xe_gpu_scheduler_types.h
-index 6731b13da8bb..63d9bf92583c 100644
---- a/drivers/gpu/drm/xe/xe_gpu_scheduler_types.h
-+++ b/drivers/gpu/drm/xe/xe_gpu_scheduler_types.h
-@@ -47,6 +47,8 @@ struct xe_gpu_scheduler {
- 	const struct xe_sched_backend_ops	*ops;
- 	/** @msgs: list of messages to be processed in @work_process_msg */
- 	struct list_head			msgs;
-+	/** @msg_lock: Message lock */
-+	spinlock_t				msg_lock;
- 	/** @work_process_msg: processes messages */
- 	struct work_struct		work_process_msg;
++static void execlist_exec_queue_set_deadline(struct xe_exec_queue *q,
++					     struct dma_fence *fence,
++					     ktime_t deadline)
++{
++	/* NIY */
++}
++
++static void execlist_exec_queue_enter_deadline(struct xe_exec_queue *q)
++{
++	/* NIY */
++}
++
++static void execlist_exec_queue_exit_deadline(struct xe_exec_queue *q)
++{
++	/* NIY */
++}
++
+ static const struct xe_exec_queue_ops execlist_exec_queue_ops = {
+ 	.init = execlist_exec_queue_init,
+ 	.kill = execlist_exec_queue_kill,
+@@ -481,6 +498,9 @@ static const struct xe_exec_queue_ops execlist_exec_queue_ops = {
+ 	.suspend_wait = execlist_exec_queue_suspend_wait,
+ 	.resume = execlist_exec_queue_resume,
+ 	.reset_status = execlist_exec_queue_reset_status,
++	.set_deadline = execlist_exec_queue_set_deadline,
++	.enter_deadline = execlist_exec_queue_enter_deadline,
++	.exit_deadline = execlist_exec_queue_exit_deadline,
  };
+ 
+ int xe_execlist_init(struct xe_gt *gt)
 -- 
 2.34.1
 
