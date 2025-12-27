@@ -4,142 +4,79 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B9FC0CFD647
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B4676CFD648
 	for <intel-xe@archiver.kernel.org>; Wed,  7 Jan 2026 14:19:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 732F110E604;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 62E8F10E5F3;
 	Wed,  7 Jan 2026 14:19:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="Oayfklxc";
+	dkim=pass (2048-bit key; unprotected) header.d=aol.com header.i=@aol.com header.b="e7EVDxMZ";
 	dkim-atps=neutral
-Received: from PH7PR06CU001.outbound.protection.outlook.com
- (mail-westus3azon11010062.outbound.protection.outlook.com [52.101.201.62])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D433210E57A;
- Wed,  7 Jan 2026 09:18:49 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=lQG1AIIOXQoFdWwNyRPyKyFzOJZ4qQFx+WET8mmupYTMUBCPvLBixjfsVdlixSH/Yiq1VzTWHtixCoc/iSWL6yvcct3IyrnIsPbnAhmLTgkG6lWsd836QXgxWp0f8Yronicc5A3a9cOhi1FF4kUdxAX1hX7+/pG2oQ5URD9l3/N1mNhkb4a26u+jCILfnphoGf/u1xtFBgP1JY/X0tsqklTB1jbGzAcq0/eJ5Nl2cleUm0/c74SPKPrvkE1HRIKR45vER1/oMxaCNFSngB7p3xgaFwn/6nCZVnOzPFQruYDh/oQTdANJRW+0nN6JzWd+EFn4n3F7bafhm/Y7uwFHAg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=dhknLqz+dspdMBKvGag/XA1l5jaLYWio94HP1a8ZjVo=;
- b=qkH843nwvBriypMywhDMbrtYg1NpIjH7zyygl+T6aWH9qxJEo4hdUZ6/JVYxAh7mCYTNTVf9BzpK3ool4yvSWSEjnuR73x/1IPI7XbAAuujs4NbTUAvs3MziTrJ82sss4Bw1q7MGtYR1c9YyiKdMeAKDeW/SjMjXuuEKRbpo6VKjiVCmPraDrGUZnziAzAhlKm4JUSKv8GKZ73H4YdFw6+8GN8ifsVhlsUAbJ4HUDOR7o5VAMUytoPWSfCU/ZLzGAIo4fi/5rlh9vllNAHiHh8YGqcAOWJRfTl3rT6jlJx36KSGrHDmVtSup5tbycOPaep4QZOjU12eZmwAZ7V50wA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=dhknLqz+dspdMBKvGag/XA1l5jaLYWio94HP1a8ZjVo=;
- b=OayfklxcYfsnJEMtU1rnZpp4o6RvnE3e3G5QKX7ecs0Xb8HUhmsFeabU7AkQHQQiD+FcCCMVXJM+6YvhY72HgxdxpxvRczGYptdcQ8Od3u9rR868NbyofD5L9OvbaYsRKdZUS6a/a5bqlqjEv4NhclCCGSyrw5RBZ5ykLcX3+Ggf9DYG2g/qcd+iMX0u8fID9llcmvRSiBXpLQSbjmzKVvpZhHCB/58uMjwrdVJLnV8bV0ftKNhR1TERN7bnXVQe6u3bE2FiFXwO7gSOzcqW8CMSYtWjB3AGRR0DHjNgS0tzybsIrv0LbM6WA+WDtbzp0OAzt69ZTomOdXD4uyYYiw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from DM4PR12MB9072.namprd12.prod.outlook.com (2603:10b6:8:be::6) by
- MN2PR12MB4335.namprd12.prod.outlook.com (2603:10b6:208:1d4::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9499.2; Wed, 7 Jan
- 2026 09:18:47 +0000
-Received: from DM4PR12MB9072.namprd12.prod.outlook.com
- ([fe80::9e49:782:8e98:1ff1]) by DM4PR12MB9072.namprd12.prod.outlook.com
- ([fe80::9e49:782:8e98:1ff1%5]) with mapi id 15.20.9499.002; Wed, 7 Jan 2026
- 09:18:47 +0000
-From: Jordan Niethe <jniethe@nvidia.com>
-To: linux-mm@kvack.org
-Cc: balbirs@nvidia.com, matthew.brost@intel.com, akpm@linux-foundation.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- david@redhat.com, ziy@nvidia.com, apopple@nvidia.com,
- lorenzo.stoakes@oracle.com, lyude@redhat.com, dakr@kernel.org,
- airlied@gmail.com, simona@ffwll.ch, rcampbell@nvidia.com,
- mpenttil@redhat.com, jgg@nvidia.com, willy@infradead.org,
- linuxppc-dev@lists.ozlabs.org, intel-xe@lists.freedesktop.org,
- jgg@ziepe.ca, Felix.Kuehling@amd.com
-Subject: [PATCH v2 04/11] mm/migrate_device: Add migrate PFN flag to track
- device private pages
-Date: Wed,  7 Jan 2026 20:18:16 +1100
-Message-Id: <20260107091823.68974-5-jniethe@nvidia.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260107091823.68974-1-jniethe@nvidia.com>
-References: <20260107091823.68974-1-jniethe@nvidia.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SJ0PR03CA0216.namprd03.prod.outlook.com
- (2603:10b6:a03:39f::11) To DM4PR12MB9072.namprd12.prod.outlook.com
- (2603:10b6:8:be::6)
+Received: from sonic302-1.consmr.mail.bf2.yahoo.com
+ (sonic302-1.consmr.mail.bf2.yahoo.com [74.6.135.40])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B8B1711B887
+ for <intel-xe@lists.freedesktop.org>; Sat, 27 Dec 2025 05:22:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aol.com; s=a2048;
+ t=1766812927; bh=G7dcBcX39I/DaGJY6WNVI+iHWYZIbkNRFqormajOaa8=;
+ h=Date:From:To:In-Reply-To:References:Subject:From:Subject:Reply-To;
+ b=e7EVDxMZ3pKHLT98e61NikmHdXdn96sZiDTO7cUfQKGJeZcfQcgpqPYcTEjo8RQ3EobXyPBtB/ah8f5/F+se8L3GSKRHJlHRT5U9b2iiZQUc0B44DAxdtK56/qdWVo/D6L0abRVeR58ES7d9lNBxoHetH9FSzWFFuyp7eL+8An/p0QMW5nyrcAF8HGxNjMKrlfkPQUTTrmz8G6cy74TkxWrBOnvywREVZVEcKTr2myU5lLV2shQ7jvv1bwtxMsVIDnQMiIX/05yMtbXI624cFjH0zCM3/mwZ6vbdpScxMAKdlzwXhWYjHepfEQ9jVLP6q856a6OPn+kTeFY0oPy2lw==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
+ t=1766812927; bh=N1XGD+4WYVK9aVYqpBN7vauTMPNIVfSNqrEo/t2J/yz=;
+ h=X-Sonic-MF:Date:From:To:Subject:From:Subject;
+ b=C2pfZNSGc1py7RjuHQ1/PPmIho1wu+kdKzRlAR2YwUOm7PLRgkxMq0J+cu9V8T35Iob7Kvrzrc4N7vDzglUxMKgafolCq9AZ7A+nQrL2888WYTjRtFkUY0oWxHgeXIkYdM+4Asn1PwbVM743kWJn+88/32+wL42nNm/ENNsW7JLDq6JDGi4wKM69/IjpgSsyfelTEPym2Kwd6w+yIRI1xp7d2b+ZDTpOKnBZ/Cv7oHGVpfP0O7vLBDcFbSS8KKdF5nD4BFbS1EIeokoMBeCcYLEwiR9nr+Rg/MSE1fMymcoSynD4g6LSMmQdIfzkSK1QwCp/9mGWzxQmEC4PoQjJDA==
+X-YMail-OSG: DrmeVXAVM1k83cssHG.hBhVMRHWW70F.kDwZ1luQyN3AsYgXsCAuyW8lA4IqhGN
+ xBrY4IsFj0ijiCWtAxqA4B7YQIfw72aGf_NPQF_xXAlxhRk16DvXwH8CxEywS_Agvem3b6M1rPVV
+ EzpKqfrIuU0HduY6dw7rPERb6sAbTBRZaYWmA3Ef3kHljgI4Z5yNOecGeQdLknEckCoR7XhHHuz0
+ ydKyTLjuS8rctjlbGOl12R0c6AgnLpQEa8Ld3Hcp19T0jrDHqwRe3jcclnb4fcNvjwNfS2xWoAWY
+ uLVN7kRDrC_uU8ABjSPdDqNwek_ep3S2SKix4PtJc3PeVbTdf2ywlkeE__bLDvyY2GIX_7b_U8sL
+ QOCgm2td.une1vIn1hCH8G8VOae8NABw9DuH_HbkTvtRxHMuwk1e3f2AR4q.4u5et4uh3xY_58II
+ _iYCId4BPZDvfcr90.EW6bf3CtwPIhvzxrb47A0ZkapvpidrOr.n2tojnqFE4qJS90dmmY8YHqbj
+ 0.Pmw7esC7318LUHTjhThk.4yXC4j6y7DP7.4S9HKW86YDbnqA2t8cuKNUKswdKhM_HUBvuECe1f
+ UoeP4MEpEfyPwltDHXAHrJT3y7W37ASDDgfk4MOLN1MY9CXv4iOqFVoRZTXSQoqUnmoG.kE0nkuX
+ yvHnBxoMaLlHDfmOaA7v2GS3FJ45e4cxcee7Xn.u2vAQdKs2Q.G7H39fq5qTC6cVpmcNZAFUNcEV
+ U0991zg4tM6QAS1XPZAZS9JfmxqWvG2gTM.3eRpfuQbqOljdDsRT9BWmoaJP0t0JUPv6Y8PoC54t
+ xMsdYhVHyPFmwLxojbh6JnlMxAlMK8PwjZd9g5l0Kc.70GyeP_mO_FQDYUPIyYZuRYUIlu_sQatB
+ fqH330e3ydCvlP.eJm7wJqai4AfvsJ__8pK1jftsDeQMwRtHY2reculnnxx4UhIsg0fJlq9.4WYi
+ xKbkDD7Xvk4cl5weAmdxGieUVCdl_QO31HNgLmaNzjlo6bBi4Amny5mKtEakMuXezEPvHbHGRnav
+ 4vYc5fsVL2MtCBm2UVE2QNnV3hXwXuAYrwijqWEd2VZnX2E2PNVSf2DL9FUjgtGl53LZ9Pp_I8hz
+ 3gvyy47kY4iLyh6T.h_yydGZG8wyFk0ZDu7mS8g0NklL8fRwr3Ak9LbU7HHB8qFxrVXazj6IJVjB
+ AdmzTvdWi9a1knJH65OsSJD8138BKaJNlFWNGZA6kkBCUooOAQIpEsGolMp_molNNr1izmAfGEDM
+ ievz0qRXEG9XOZmyhl1MuFn8MQZ630jZxyV2sbAXT_Y89vrR_hg.D.s3uw4yA5VqkQbddNqmL1sU
+ uYGMiFI.fnQZ80cedIZX47InB0Uyfx6srEj6zs0C2tvgg1Ox4ApyQwy78O9hdOxFj_W1NKwcOy_H
+ TBmzHS5jSL15P7xXAZbCHfYdkDc165MyPUjxVEKWRrd.csaPS2vO6zStNLSpPYtvv.NADs..5L4e
+ Q6HLqwBSvyfddtvFq59RO2wriST1iOkJCSo3c6wpF7Jv0IsPKJI34SEf_Z2WGd4ervqeL88u6XX5
+ Ayn9MHAui1fZsYb3jZPTRFEsgilOmmW0CDKYyRNJ1dyHzD0H_1RwI_g2P_4UShZCkuNR5OCxRjKT
+ QyISC16O0H1X5yEQZsZ49rkmWAMTIQKDyH2R72l_FslZYYzKxw7NZ849vkTzmPHi0ZwpwuXfNdfa
+ gLWpSUMGts7JnIBJ6HDStYQ.xXo2MJ1gsf66SR8vuq7jdQfyEUIwd5XPFQrlupRl49g3JBEg0C32
+ GHXBq_mpA4n4afnx.qMZ01rGASRh6xleMMPN.GE_TpQt0Jnh0xRxqh8EM3YGF8F1bH6phVW3w8GO
+ ntpDXoGBuC0YU16N8Jk66Ep3tPccNlPoDI19weji5FVNtECxjYejcZTe0Ggpk1ZbKH1aKl2DeL3J
+ qtSBjUOj6aEL9ln.DMkyU1zSO0b69Vka3TvBWuvyBxcPOc_L7Qm2xQcbjQpgGhkp8.RoPp6UlJpQ
+ yY70VNjzVitwzfpOTJxoDt5aamczfTuDhjzV0xKcHfI0e36aMV8nChnsbLESKZ0KefflySPQbhi_
+ 8oacZHVm0nu1VArBNQI6mZKYtS4UmVhotBuTCqNCz50OkKv9kmSx8eiwnxOj0eg.J20RG.KL7f1F
+ 0A_k6Czrl5EUgT0WWzDLZV..ACTdUS79IlgAHEZ42r._c_Wa2Mf1BN7Ia.EdCb9hQP_6Ik0lJRaC
+ Zszal8CY7EwOHEXtPb7O3A0WgBOZMnbMNn4g_7FgyIg--
+X-Sonic-MF: <russomch@aol.com>
+X-Sonic-ID: 510bae83-a7c3-422b-8163-90cf32ff4a47
+Received: from sonic.gate.mail.ne1.yahoo.com by
+ sonic302.consmr.mail.bf2.yahoo.com with HTTP; Sat, 27 Dec 2025 05:22:07 +0000
+Date: Sat, 27 Dec 2025 05:21:13 +0000 (UTC)
+From: Chris <russomch@aol.com>
+To: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, 
+ "linux-wireless@vger.kernel.org" <linux-wireless@vger.kernel.org>, 
+ Ping-Ke Shih <pkshih@realtek.com>
+Message-ID: <1619250700.2388478.1766812873221@mail.yahoo.com>
+In-Reply-To: <dae24a713d354c27ac3814c02822099d@realtek.com>
+References: <AB8446D8-708B-4971-8852-87353112E60F.ref@aol.com>
+ <AB8446D8-708B-4971-8852-87353112E60F@aol.com>
+ <3dcf5e11aa284daa9d3733141ccdc17f@realtek.com>
+ <2033055489.1974567.1766503717295@mail.yahoo.com>
+ <dae24a713d354c27ac3814c02822099d@realtek.com>
+Subject: Re: [BUG] Intel B580 (e20b) HDMI Flicker & Realtek RTL8922AE 6GHz
+ missing - Mint 22.3
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR12MB9072:EE_|MN2PR12MB4335:EE_
-X-MS-Office365-Filtering-Correlation-Id: c757fa64-3c9f-4762-dffb-08de4dcdc307
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|7416014|376014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?SZg+8t0edlSpKuAZCRxnTDz2uycNYT99ojCRPVEkmsnZgHPGys8VczRah7WR?=
- =?us-ascii?Q?zPZqK76fFjgCBcxYJct0MChAeDPpqdiHX5YkdtVvHJQkgmY2OUIopXuEFXNS?=
- =?us-ascii?Q?QioaQs1TTTj1Mi0GGZcTe0DxRKHeGXJpvXWS0IXpBwCQJ0pmXcPi4NLkpz2e?=
- =?us-ascii?Q?saLjqCq2oAkVbpHkhN43VZ0ARuDrG8ojec02iTBGbycqlSupTckQP9U1aljV?=
- =?us-ascii?Q?Bsd5z0B2JOMEV8sm9vXDCxuWEXninQGSakRJ+Xtq3RICfmOUGVZbZVTXRSgk?=
- =?us-ascii?Q?QV31vbdw/+ZjF3Dqn5NrH4bdivuk6K29GUwDdJT/WepZ0PpWeftwQpqDRxLO?=
- =?us-ascii?Q?PisbJyHwB69Ep4VibWGiyhgBa5HAEt22BcKZ6j9F/xt44wVSFAI2ZCH7WqDG?=
- =?us-ascii?Q?YvdtFfFP40bjSnXtYTv/o2ZJ64HMWmGRRor+jQuv2EQUHB4MErHX+qh0jzMb?=
- =?us-ascii?Q?zdQaQOtVrPF90HUfl98J/XAXN7cQ/gVmuoKNTSFncCona66PbDcHlGi4DYUj?=
- =?us-ascii?Q?L5LhE3T9SRtQbCgXuw/RA3gRQv6dGoRXQ+SAUflQ6Yxdfv+bE5mxsMK93qmv?=
- =?us-ascii?Q?LytdaOsZ2NOM7hoB8Dd9EXUjZ6SjKHKr02iyf0p0/256ZSCqBnS17KRFLEDf?=
- =?us-ascii?Q?GdhFrZGaexwq+Lgqxtgn9gIjDe85VSofEhEFBHyDnMS+75yEYV63r7knRvOY?=
- =?us-ascii?Q?O9f7TPtG8FHmwgxjETMi1vW/yW8Bz3Ikk/Tqx2bMSO6yRwrWLyziFwdNEWPr?=
- =?us-ascii?Q?d/gHnwC0hm81eq8ezSW329Gb9N7oMlLgaaral65qemRXRjqX9KBGsVPBXSnW?=
- =?us-ascii?Q?SH7qG2PnJNYgTH0WaBkq/JTEeDmAyk0pYT50DqrpZ+mNVqLrm5CVcw6m2uNl?=
- =?us-ascii?Q?EKY256/RmZVg3brR1cm3Qd9cJJFWEcoJfb6GhHsxY3vvPjUk5FuaJSuE4v04?=
- =?us-ascii?Q?Inq0lWshLVy3kHbt9IMZSsLAfPr2OWZM5RnBrTZG41WuT2/9zBOppymGCIYN?=
- =?us-ascii?Q?03v4O9PuKDHQV10xftVG7fdcS/RuHsFvhuLFxyMh5YjsrLtkyiyDTNAMo2br?=
- =?us-ascii?Q?pUWv+sZ2qJtBqNb/8df9zkrmRBO6jQmoey/iLOGHv+GOsH4emC4DwaKxDPc3?=
- =?us-ascii?Q?xymfCr2ItE3ddDFNt50y7YdkqbGBkD8QFPQVgtXd2z/Y7lvBddlUUprUp26B?=
- =?us-ascii?Q?c2enXrf7GO4VpJRTrHenhpevz/gTG7IXYAjS08RzXco4RrX0+LYLA8POUyk3?=
- =?us-ascii?Q?WDbaOHr1OvZsGkNbNFAlOi7iBbw6jaLh2cp+sqyJn8EDV9v0APYA/RuWolNc?=
- =?us-ascii?Q?89iV5y46S00+Qf6gzP56tozZSqepfRlZOenR4j3AEsLp7kue3I9LeDfyID6u?=
- =?us-ascii?Q?9WpryNeaJ5uqEXB1KRxck9ThqdO8zeJ0z7mA4EPJuHth3D6lGGuvJBqxdOGz?=
- =?us-ascii?Q?mycrRx947xzCyGST2/JBIUW2lPbnEL2C?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR12MB9072.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(7416014)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?xmvIcnr/+4dpknwDiViapRscU5UeybjZFqVlYG8bdWz93u9AHadtHA6yM58j?=
- =?us-ascii?Q?rT3dj9C89ixkBkiYWcv9KM3pCx4032XYVbOHNRtlhWsgJRoeyHaDP0XZo1Jj?=
- =?us-ascii?Q?mxMPUN9rGif/qMYQ6KxF3LAKg3fChN+ztmCvtpfht2x/ZpsmAFPURPAMyjqG?=
- =?us-ascii?Q?PVYCtax3y/RtfCV3U7pr5V7OUmiF41bURkpuMRle3BKzle3hi/9YAzrLslb9?=
- =?us-ascii?Q?afhrVhcjceby6c3M1O6m91IO0W6uBZ62qvmacfUt5K/BbHfG9qksYFbrDzGL?=
- =?us-ascii?Q?ilXOu/wyIzLrYuv+xK6qLiXsNRViSXPwrjnNRHERQyqU6YlNrgAzcakkhPS4?=
- =?us-ascii?Q?jNmIqTcoTdj4l9D5wa3RGdgQP4DI4BXCzMbJppFV85eNSYb6qqRFjGrmXsey?=
- =?us-ascii?Q?PbDXqCkyCi2yrkeTF1f+rN3zWr98MCt4Cu9LZAfnj4Rd67v7eyjqo8Pjfb7w?=
- =?us-ascii?Q?JA3gh5RV5tDgE2ScCnADzo4d2sMrVpX99G+ev6laBv1uFaAfJd+b0KDeozIm?=
- =?us-ascii?Q?+HgdG57Ctd6iU+Ggrk09LUzgvZR6/TEJL9QLFuZzChvu8tLwUw3kUEDoTjDS?=
- =?us-ascii?Q?7bzWbZpDXQUOoSa8BDw/I2nDS+s3fAcWBLaQl98aqoPfXcIKf+r3tlFUxbmb?=
- =?us-ascii?Q?mM1zvFZTmPvTIMex28j+RlsVo/Fz8+QnQP6cavWBOAua1+Ym1sjLPGOp9vqm?=
- =?us-ascii?Q?0x8bALQxg60YMdAJTlogQiv6b9vZ4oB5COU14CjndE0xY41rblwqc9E6dmV7?=
- =?us-ascii?Q?QDg/vasw5i9DfmjzCRDjs6dFwz0sAb63C+1oKnKqkZ3bLcvP0BNxCa1Ig6pR?=
- =?us-ascii?Q?OmfOmSHgs6sPqNlREydueshs859RTrDFMDDHzvEfySLRqtdoAm2Xek/pD/5L?=
- =?us-ascii?Q?0IepBROUk0BC+CmSk94wwkeQbZ+QFgkpaUFxrkE5o9K+HmFphi1eDxg7HmEg?=
- =?us-ascii?Q?jsbgUWpe14uWw7/f3gS9XOXWfKFg7zaBuUScTJjn3fG34Y3AC1J3Zx06vp/F?=
- =?us-ascii?Q?HBy20juj0HsxNimEs4wXF1FLpP6cEfaqIBpVCgeujI3nt1rbEKv6sbfh7kiR?=
- =?us-ascii?Q?/i3F7YcTmUKigdZfHcojEZSRS7gZ1xcQgy4gAyJHttKe+A3HWPwIgElJjx5T?=
- =?us-ascii?Q?84/78aL2OTf0VquAngcpugcjdp7jjeVt4J+N0MlyezVEbWIpCKMnH69ujgVh?=
- =?us-ascii?Q?PXGRRPFiA+pK1R1R5nnOjpaUuxvanomge0cSUsKcMxK+3HoRTs2QRp35DZ1g?=
- =?us-ascii?Q?vhtkKzBzbCir1+qbrXOGqQQ4lLuXmWYDy6Wlrd1xUO7hUeV6AQanTQaPEY5Z?=
- =?us-ascii?Q?bc4we25ymSqyNs26ZE+V6DepHuCDGVvlDg2Knx5fEstSdxXF0l9YDYiPRMvT?=
- =?us-ascii?Q?xrZ6mSGnNW49d4qWsBKYxez5X60IVq6X5AOxj9mKfNHQOVR+prRtYUVV89u+?=
- =?us-ascii?Q?KCoVYUjfvjtjxp6B1SvO9ZwoaYDhAptrfQjajOEHGNDzoTSLyTVhvKJrKWIy?=
- =?us-ascii?Q?kc/5JxWAWvD/WQ9s5FYBgopxApkPkRSDRkfwE0rdiqjrboMS36ngIMPkMS0M?=
- =?us-ascii?Q?/QukWjMR5G211//6Ge3RwcBHqks++BW2vSAKXspFVJugFrSLxMk1p0me1fHf?=
- =?us-ascii?Q?1r3CqhrhSqiXk6UkEwHds5nonHqeTAr6jdog+664+n+3DgrWVZ6NFQ/4GAJg?=
- =?us-ascii?Q?Cph+mYy4UWC+C+0DvdcvnHcx4RrMCc6QCPlVryEF00vJxG5xIvTigdFuOke9?=
- =?us-ascii?Q?3iMr0p95ng=3D=3D?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c757fa64-3c9f-4762-dffb-08de4dcdc307
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB9072.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Jan 2026 09:18:47.0677 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: CUqtF9fw0xFj/VuUXjZDLAj4C4JJQJcsrZJPc0p2qNM4LatORyIPDc+B+F53b303/SDHyVA6owwWUeCyH/bzVw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4335
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Mailer: WebService/1.1.24866 AolMailNorrin
 X-Mailman-Approved-At: Wed, 07 Jan 2026 14:19:15 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -155,131 +92,409 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-A future change will remove device private pages from the physical
-address space. This will mean that device private pages no longer have
-normal PFN and must be handled separately.
+On Tuesday, December 23, 2025 at 09:12:32 PM EST, Ping-Ke Shih <pkshih@real=
+tek.com> wrote:=20
 
-Prepare for this by adding a MIGRATE_PFN_DEVICE_PRIVATE flag to indicate
-that a migrate pfn contains a PFN for a device private page.
 
-Signed-off-by: Jordan Niethe <jniethe@nvidia.com>
-Signed-off-by: Alistair Popple <apopple@nvidia.com>
 
----
-v1:
-- Update for HMM huge page support
-- Update existing drivers to use MIGRATE_PFN_DEVICE
-v2:
-- Include changes to migrate_pfn_from_page()
-- Rename to MIGRATE_PFN_DEVICE_PRIVATE
-- drm/amd: Check adev->gmc.xgmi.connected_to_cpu
-- lib/test_hmm.c: Check chunk->pagemap.type == MEMORY_DEVICE_PRIVATE
----
- drivers/gpu/drm/amd/amdkfd/kfd_migrate.c |  7 ++++++-
- drivers/gpu/drm/nouveau/nouveau_dmem.c   |  3 ++-
- drivers/gpu/drm/xe/xe_svm.c              |  2 +-
- include/linux/migrate.h                  | 14 +++++++++-----
- lib/test_hmm.c                           |  6 +++++-
- 5 files changed, 23 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_migrate.c b/drivers/gpu/drm/amd/amdkfd/kfd_migrate.c
-index c493b19268cc..1a07a8b92e8f 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_migrate.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_migrate.c
-@@ -206,7 +206,12 @@ svm_migrate_copy_done(struct amdgpu_device *adev, struct dma_fence *mfence)
- unsigned long
- svm_migrate_addr_to_mpfn(struct amdgpu_device *adev, unsigned long addr)
- {
--	return migrate_pfn((addr + adev->kfd.pgmap.range.start) >> PAGE_SHIFT);
-+	unsigned long flags = 0;
-+
-+	if (!adev->gmc.xgmi.connected_to_cpu)
-+		flags |= MIGRATE_PFN_DEVICE_PRIVATE;
-+	return migrate_pfn((addr + adev->kfd.pgmap.range.start) >> PAGE_SHIFT) |
-+	       flags;
- }
- 
- static void
-diff --git a/drivers/gpu/drm/nouveau/nouveau_dmem.c b/drivers/gpu/drm/nouveau/nouveau_dmem.c
-index bd3f7102c3f9..adfa3df5cbc5 100644
---- a/drivers/gpu/drm/nouveau/nouveau_dmem.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_dmem.c
-@@ -484,7 +484,8 @@ nouveau_dmem_evict_chunk(struct nouveau_dmem_chunk *chunk)
- 	dma_info = kvcalloc(npages, sizeof(*dma_info), GFP_KERNEL | __GFP_NOFAIL);
- 
- 	migrate_device_range(src_pfns,
--			     migrate_pfn(chunk->pagemap.range.start >> PAGE_SHIFT),
-+			     migrate_pfn(chunk->pagemap.range.start >> PAGE_SHIFT) |
-+			     MIGRATE_PFN_DEVICE_PRIVATE,
- 			     npages);
- 
- 	for (i = 0; i < npages; i++) {
-diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
-index 260676b0d246..f82790d7e7e6 100644
---- a/drivers/gpu/drm/xe/xe_svm.c
-+++ b/drivers/gpu/drm/xe/xe_svm.c
-@@ -698,7 +698,7 @@ static int xe_svm_populate_devmem_mpfn(struct drm_pagemap_devmem *devmem_allocat
- 		int i;
- 
- 		for (i = 0; i < drm_buddy_block_size(buddy, block) >> PAGE_SHIFT; ++i)
--			pfn[j++] = migrate_pfn(block_pfn + i);
-+			pfn[j++] = migrate_pfn(block_pfn + i) | MIGRATE_PFN_DEVICE_PRIVATE;
- 	}
- 
- 	return 0;
-diff --git a/include/linux/migrate.h b/include/linux/migrate.h
-index d269ec1400be..5fd2ee080bc0 100644
---- a/include/linux/migrate.h
-+++ b/include/linux/migrate.h
-@@ -122,11 +122,12 @@ static inline int migrate_misplaced_folio(struct folio *folio, int node)
-  * have enough bits to store all physical address and flags. So far we have
-  * enough room for all our flags.
-  */
--#define MIGRATE_PFN_VALID	(1UL << 0)
--#define MIGRATE_PFN_MIGRATE	(1UL << 1)
--#define MIGRATE_PFN_WRITE	(1UL << 3)
--#define MIGRATE_PFN_COMPOUND	(1UL << 4)
--#define MIGRATE_PFN_SHIFT	6
-+#define MIGRATE_PFN_VALID		(1UL << 0)
-+#define MIGRATE_PFN_MIGRATE		(1UL << 1)
-+#define MIGRATE_PFN_WRITE		(1UL << 3)
-+#define MIGRATE_PFN_COMPOUND		(1UL << 4)
-+#define MIGRATE_PFN_DEVICE_PRIVATE	(1UL << 5)
-+#define MIGRATE_PFN_SHIFT		6
- 
- static inline struct page *migrate_pfn_to_page(unsigned long mpfn)
- {
-@@ -142,6 +143,9 @@ static inline unsigned long migrate_pfn(unsigned long pfn)
- 
- static inline unsigned long migrate_pfn_from_page(struct page *page)
- {
-+	if (is_device_private_page(page))
-+		return migrate_pfn(page_to_pfn(page)) |
-+		       MIGRATE_PFN_DEVICE_PRIVATE;
- 	return migrate_pfn(page_to_pfn(page));
- }
- 
-diff --git a/lib/test_hmm.c b/lib/test_hmm.c
-index a6ff292596f3..872d3846af7b 100644
---- a/lib/test_hmm.c
-+++ b/lib/test_hmm.c
-@@ -1385,11 +1385,15 @@ static void dmirror_device_evict_chunk(struct dmirror_chunk *chunk)
- 	unsigned long *src_pfns;
- 	unsigned long *dst_pfns;
- 	unsigned int order = 0;
-+	unsigned long flags = 0;
- 
- 	src_pfns = kvcalloc(npages, sizeof(*src_pfns), GFP_KERNEL | __GFP_NOFAIL);
- 	dst_pfns = kvcalloc(npages, sizeof(*dst_pfns), GFP_KERNEL | __GFP_NOFAIL);
- 
--	migrate_device_range(src_pfns, migrate_pfn(start_pfn), npages);
-+	if (chunk->pagemap.type == MEMORY_DEVICE_PRIVATE)
-+		flags |= MIGRATE_PFN_DEVICE_PRIVATE;
-+
-+	migrate_device_range(src_pfns, migrate_pfn(start_pfn) | flags, npages);
- 	for (i = 0; i < npages; i++) {
- 		struct page *dpage, *spage;
- 
--- 
-2.34.1
+Chris <russomch@aol.com> wrote:
+> On Tuesday, December 23, 2025 at 02:48:01 AM EST, Ping-Ke Shih <pkshih@re=
+altek.com> wrote:
+>=20
+>=20
+>=20
+>=20
+> Chris Russomanno <russomch@aol.com> wrote:
+>=20
+> > Hello,
+> >
+> > I am reporting two issues encountered on brand-new hardware using Linux=
+ Mint 22.3 with Kernel
+> 6.14.0-generic.
+> >
+> > Hardware Environment:
+> > - GPU: Intel Arc B580 (Battlemage), PCI ID: [8086:e20b]
+> > - WiFi: Realtek RTL8922AE (rtw89), Firmware: rtw8922a_fw-3.bin
+> > - Display: Samsung 4K Monitor connected via HDMI (No DisplayPort availa=
+ble)
+> >
+> > Issue 1: Intel Xe HDMI Flickering
+> > The Samsung monitor experiences intermittent black-screen flickering (1=
+-2 seconds) at both 4K and 1080p
+> > resolutions. This behavior is not present on Windows 11.
+> > Troubleshooting attempted:
+> > - Added kernel parameters: quiet splash i915.enable_psr=3D0 xe.force_pr=
+obe=3De20b i915.enable_dc=3D0
+> > intel_iommu=3Digfx_off intel_idle.max_cstate=3D2
+> > - Forced "TearFree" and "TripleBuffer" in xorg.conf.
+> > - Frequency remains at 60Hz.
+> >
+> > Issue 2: Realtek RTL8922AE 6GHz/WiFi 7 Missing
+> > The card functions on 5GHz (1200 Mb/s) but does not scan or see 6GHz fr=
+equencies.
+> > Troubleshooting attempted:
+> > - Set regdom to US (iw reg set US).
+> > - Driver options: rtw89_pci disable_aspm=3Dy, rtw89_core disable_6g=3DN=
+.
+> > - 'iw list' does not return any 6GHz/6105 MHz frequencies.
+>=20
+>=20
+> Please share output of 'iw list' before/after setting US.
+>=20
+> In my side (expected) frequencies of band 4 are:
+>=20
+> [Before]
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 Frequencies:
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 * 5955.0 MHz [1] (disabled)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 * 5975.0 MHz [5] (disabled)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 * 5995.0 MHz [9] (disabled)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 * 6015.0 MHz [13] (disabled)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 * 6035.0 MHz [17] (disabled)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 * 6055.0 MHz [21] (disabled)
+>=20
+> [After]
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 Frequencies:
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 * 5955.0 MHz [1] (12.0 dBm) (no IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 * 5975.0 MHz [5] (12.0 dBm) (no IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 * 5995.0 MHz [9] (12.0 dBm) (no IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 * 6015.0 MHz [13] (12.0 dBm) (no IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 * 6035.0 MHz [17] (12.0 dBm) (no IR)
+>=20
+>=20
+>=20
+> ________________________
+>=20
+>=20
+>=20
+>=20
+> Hello Ping-Ke,
+>=20
+> Here is the output from my RTL8922AE on Linux Mint 22.3 (Kernel 6.x):
+>=20
+> [Before iw reg set US]
+>=20
+> Frequencies:
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 5955.0 MHz [1] (12.0 dBm) (no =
+IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 5975.0 MHz [5] (12.0 dBm) (no =
+IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 5995.0 MHz [9] (12.0 dBm) (no =
+IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6015.0 MHz [13] (12.0 dBm) (no=
+ IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6035.0 MHz [17] (12.0 dBm) (no=
+ IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6055.0 MHz [21] (12.0 dBm) (no=
+ IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6075.0 MHz [25] (12.0 dBm) (no=
+ IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6095.0 MHz [29] (12.0 dBm) (no=
+ IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6115.0 MHz [33] (12.0 dBm) (no=
+ IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6135.0 MHz [37] (12.0 dBm) (no=
+ IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6155.0 MHz [41] (12.0 dBm) (no=
+ IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6175.0 MHz [45] (12.0 dBm) (no=
+ IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6195.0 MHz [49] (12.0 dBm) (no=
+ IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6215.0 MHz [53] (12.0 dBm) (no=
+ IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6235.0 MHz [57] (12.0 dBm) (no=
+ IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6255.0 MHz [61] (12.0 dBm) (no=
+ IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6275.0 MHz [65] (12.0 dBm) (no=
+ IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6295.0 MHz [69] (12.0 dBm) (no=
+ IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6315.0 MHz [73] (12.0 dBm) (no=
+ IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6335.0 MHz [77] (12.0 dBm) (no=
+ IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6355.0 MHz [81] (12.0 dBm) (no=
+ IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6375.0 MHz [85] (12.0 dBm) (no=
+ IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6395.0 MHz [89] (12.0 dBm) (no=
+ IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6415.0 MHz [93] (12.0 dBm) (no=
+ IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6435.0 MHz [97] (12.0 dBm) (no=
+ IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6455.0 MHz [101] (12.0 dBm) (n=
+o IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6475.0 MHz [105] (12.0 dBm) (n=
+o IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6495.0 MHz [109] (12.0 dBm) (n=
+o IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6515.0 MHz [113] (12.0 dBm) (n=
+o IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6535.0 MHz [117] (12.0 dBm) (n=
+o IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6555.0 MHz [121] (12.0 dBm) (n=
+o IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6575.0 MHz [125] (12.0 dBm) (n=
+o IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6595.0 MHz [129] (12.0 dBm) (n=
+o IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6615.0 MHz [133] (12.0 dBm) (n=
+o IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6635.0 MHz [137] (12.0 dBm) (n=
+o IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6655.0 MHz [141] (12.0 dBm) (n=
+o IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6675.0 MHz [145] (12.0 dBm) (n=
+o IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6695.0 MHz [149] (12.0 dBm) (n=
+o IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6715.0 MHz [153] (12.0 dBm) (n=
+o IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6735.0 MHz [157] (12.0 dBm) (n=
+o IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6755.0 MHz [161] (12.0 dBm) (n=
+o IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6775.0 MHz [165] (12.0 dBm) (n=
+o IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6795.0 MHz [169] (12.0 dBm) (n=
+o IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6815.0 MHz [173] (12.0 dBm) (n=
+o IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6835.0 MHz [177] (12.0 dBm) (n=
+o IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6855.0 MHz [181] (12.0 dBm) (n=
+o IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6875.0 MHz [185] (12.0 dBm) (n=
+o IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6895.0 MHz [189] (12.0 dBm) (n=
+o IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6915.0 MHz [193] (12.0 dBm) (n=
+o IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6935.0 MHz [197] (12.0 dBm) (n=
+o IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6955.0 MHz [201] (12.0 dBm) (n=
+o IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6975.0 MHz [205] (12.0 dBm) (n=
+o IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6995.0 MHz [209] (12.0 dBm) (n=
+o IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 7015.0 MHz [213] (12.0 dBm) (n=
+o IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 7035.0 MHz [217] (12.0 dBm) (n=
+o IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 7055.0 MHz [221] (12.0 dBm) (n=
+o IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 7075.0 MHz [225] (12.0 dBm) (n=
+o IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 7095.0 MHz [229] (12.0 dBm) (n=
+o IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 7115.0 MHz [233] (12.0 dBm) (n=
+o IR)
+>=20
+>=20
+> [After iw reg set US]
+>=20
+> Frequencies:
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 5955.0 MHz [1] (12.0 dBm) (no =
+IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 5975.0 MHz [5] (12.0 dBm) (no =
+IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 5995.0 MHz [9] (12.0 dBm) (no =
+IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6015.0 MHz [13] (12.0 dBm) (no=
+ IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6035.0 MHz [17] (12.0 dBm) (no=
+ IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6055.0 MHz [21] (12.0 dBm) (no=
+ IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6075.0 MHz [25] (12.0 dBm) (no=
+ IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6095.0 MHz [29] (12.0 dBm) (no=
+ IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6115.0 MHz [33] (12.0 dBm) (no=
+ IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6135.0 MHz [37] (12.0 dBm) (no=
+ IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6155.0 MHz [41] (12.0 dBm) (no=
+ IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6175.0 MHz [45] (12.0 dBm) (no=
+ IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6195.0 MHz [49] (12.0 dBm) (no=
+ IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6215.0 MHz [53] (12.0 dBm) (no=
+ IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6235.0 MHz [57] (12.0 dBm) (no=
+ IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6255.0 MHz [61] (12.0 dBm) (no=
+ IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6275.0 MHz [65] (12.0 dBm) (no=
+ IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6295.0 MHz [69] (12.0 dBm) (no=
+ IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6315.0 MHz [73] (12.0 dBm) (no=
+ IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6335.0 MHz [77] (12.0 dBm) (no=
+ IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6355.0 MHz [81] (12.0 dBm) (no=
+ IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6375.0 MHz [85] (12.0 dBm) (no=
+ IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6395.0 MHz [89] (12.0 dBm) (no=
+ IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6415.0 MHz [93] (12.0 dBm) (no=
+ IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6435.0 MHz [97] (12.0 dBm) (no=
+ IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6455.0 MHz [101] (12.0 dBm) (n=
+o IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6475.0 MHz [105] (12.0 dBm) (n=
+o IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6495.0 MHz [109] (12.0 dBm) (n=
+o IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6515.0 MHz [113] (12.0 dBm) (n=
+o IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6535.0 MHz [117] (12.0 dBm) (n=
+o IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6555.0 MHz [121] (12.0 dBm) (n=
+o IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6575.0 MHz [125] (12.0 dBm) (n=
+o IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6595.0 MHz [129] (12.0 dBm) (n=
+o IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6615.0 MHz [133] (12.0 dBm) (n=
+o IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6635.0 MHz [137] (12.0 dBm) (n=
+o IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6655.0 MHz [141] (12.0 dBm) (n=
+o IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6675.0 MHz [145] (12.0 dBm) (n=
+o IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6695.0 MHz [149] (12.0 dBm) (n=
+o IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6715.0 MHz [153] (12.0 dBm) (n=
+o IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6735.0 MHz [157] (12.0 dBm) (n=
+o IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6755.0 MHz [161] (12.0 dBm) (n=
+o IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6775.0 MHz [165] (12.0 dBm) (n=
+o IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6795.0 MHz [169] (12.0 dBm) (n=
+o IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6815.0 MHz [173] (12.0 dBm) (n=
+o IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6835.0 MHz [177] (12.0 dBm) (n=
+o IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6855.0 MHz [181] (12.0 dBm) (n=
+o IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6875.0 MHz [185] (12.0 dBm) (n=
+o IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6895.0 MHz [189] (12.0 dBm) (n=
+o IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6915.0 MHz [193] (12.0 dBm) (n=
+o IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6935.0 MHz [197] (12.0 dBm) (n=
+o IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6955.0 MHz [201] (12.0 dBm) (n=
+o IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6975.0 MHz [205] (12.0 dBm) (n=
+o IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 6995.0 MHz [209] (12.0 dBm) (n=
+o IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 7015.0 MHz [213] (12.0 dBm) (n=
+o IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 7035.0 MHz [217] (12.0 dBm) (n=
+o IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 7055.0 MHz [221] (12.0 dBm) (n=
+o IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 7075.0 MHz [225] (12.0 dBm) (n=
+o IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 7095.0 MHz [229] (12.0 dBm) (n=
+o IR)
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * 7115.0 MHz [233] (12.0 dBm) (n=
+o IR)
+>=20
+>=20
+> I have tested the iw list command before and after setting the region to =
+US.
+>=20
+> The Result: The frequencies in Band 4 remain identical. Both "Before" and=
+ "After" already show (no IR) for
+> all 6GHz frequencies. There was no change from (disabled) to (no IR), as =
+they were already set to (no IR).
+>=20
+> Even with the status at (no IR), the card is unable to see or connect to =
+my 6GHz SSID, which is confirmed
+> working on other devices and even with Windows 11. It appears the card re=
+mains in a passive-only state
+> regardless of the regulatory setting.
 
+At 6GHz channels, it should be passive scan.=20
+
+With "no IR", I suppose it can find AP operating on 6GHz channels, so let's
+clarify scan first. Setup a trace-cmd before doing scan at another terminal=
+.
+
+=C2=A0 sudo trace-cmd record=C2=A0 -e mac80211 -e cfg80211
+
+Then, do scan by
+
+=C2=A0 sudo iw wlan1 scan | grep "\(SSID\|freq\):"
+
+Stop trace-cmd by ctrl-C, and check report by
+
+=C2=A0 trace-cmd report
+
+If you can see something like below, AP on 6GHz channels is found:
+
+=C2=A0 (trace-cmd report)
+=C2=A0 cfg80211_return_bss:=C2=A0 aa:bb:cc:dd:ee:ff, band: 3, freq: 6135.00=
+0
+
+=C2=A0 (iw scan result)
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 freq: 6135.0
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 SSID: abc_6G
+
+
+Ping-Ke
+
+
+__________
+
+
+Hello Ping-Ke,
+
+I have completed the trace-cmd recording and analyzed the full report.
+
+A search of the entire report shows zero entries for band: 3 and zero entri=
+es for any frequencies in the 6xxx.000 range.
+
+The trace successfully captured scanning on Band 1 (5GHz), with many entrie=
+s for freq: 5500.000 and 5530.000.
+
+The manual iw scan also returned no results for 6GHz.
+
+So we know the card appears to be successfully scanning 2.4GHz and 5GHz, bu=
+t is completely silent on 6GHz. Even though iw list shows the channels as (=
+no IR), the driver/firmware does not seem to be initiating a passive scan o=
+n those frequencies.
+
+I have the trace.dat file ready if you would like me to provide it.
+
+Thank you,
+
+Chris
