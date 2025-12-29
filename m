@@ -4,27 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E5CE9D3B7E5
-	for <intel-xe@archiver.kernel.org>; Mon, 29 Dec 2025 11:25:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 01F91E8FDB1
+	for <intel-xe@archiver.kernel.org>; Mon, 29 Dec 2025 11:54:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7F0AC10E1C3;
-	Mon, 29 Dec 2025 11:25:50 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8145910E1C3;
- Mon, 29 Dec 2025 11:25:49 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8800740353831702676=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 97E0A10E40F;
+	Mon, 29 Dec 2025 11:54:54 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="M6EPMlIb";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A25E410E40F;
+ Mon, 29 Dec 2025 11:54:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1767009293; x=1798545293;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=dPKsf3Sr8UThs9O2LOm4AVrHWpSHhPMdBievTdg74To=;
+ b=M6EPMlIbkzehQEuoZINR2u1yZOJAnm1JComhF0VUEJ4XzYXjfhkTNR9H
+ SlEOyxMutgigY/rz1woY0KUQ+fk6fLDChquqza/hsyrsIxzL+SM1pYrJY
+ BTZ6e1YIoCQIRtllkNqntV74VfkHB/2qgYNQjToA68Z3ijf4sGiH20PO/
+ c1vozJb7qfm9W9W1jR0ykLkqRHxTeraJCqS8LvEgWz3AGJDj+8UN7OaP8
+ a1fG+9UimGLYSMkQcJ8XvDonkP6/mRs7lCnRBHrNmRmYKkcNqC02Fsv9g
+ yniEQqEtP1ZLzZXGRXQWd98VaVWbwgCjtuoAWlceuE/R9g8/fjCQ/XVTI g==;
+X-CSE-ConnectionGUID: 4gCDMlTuQC6qGSu+4XPGRQ==
+X-CSE-MsgGUID: Z2CRXLo8SBG9lThx185Jcw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11655"; a="68593147"
+X-IronPort-AV: E=Sophos;i="6.21,185,1763452800"; d="scan'208";a="68593147"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Dec 2025 03:54:53 -0800
+X-CSE-ConnectionGUID: djvHF6KjTuipryxAguoXgQ==
+X-CSE-MsgGUID: e98se58PQmGkvhVMbZgSqQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,185,1763452800"; d="scan'208";a="201176732"
+Received: from lfiedoro-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.147])
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Dec 2025 03:54:50 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Cc: jani.nikula@intel.com, rodrigo.vivi@intel.com,
+ ville.syrjala@linux.intel.com
+Subject: [PATCH 0/3] drm/{i915,
+ xe}/display: remove the -Ddrm_i915_private=xe_device hack
+Date: Mon, 29 Dec 2025 13:54:42 +0200
+Message-ID: <cover.1767009044.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.47.3
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_Panel_R?=
- =?utf-8?q?eplay_BW_optimization_for_DP2=2E0_tunneling_=28rev4=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Manna, Animesh" <animesh.manna@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 29 Dec 2025 11:25:49 -0000
-Message-ID: <176700754951.119487.3484564459245135344@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20251229095913.57790-1-animesh.manna@intel.com>
-In-Reply-To: <20251229095913.57790-1-animesh.manna@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,139 +67,35 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8800740353831702676==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Finally, after countless patches and hours of work, we've reached a
+point where we can remove the -Ddrm_i915_private=xe_device build hack.
 
-== Series Details ==
+\o/
 
-Series: drm/i915/display: Panel Replay BW optimization for DP2.0 tunneling (rev4)
-URL   : https://patchwork.freedesktop.org/series/158736/
-State : success
+BR,
+Jani.
 
-== Summary ==
+Jani Nikula (3):
+  drm/i915: drop i915 param from i915_fence{,_context}_timeout()
+  drm/xe: remove compat i915_drv.h and -Ddrm_i915_private=xe_device hack
+  drm/i915/utils: drop unnecessary ifdefs
 
-CI Bug Log - changes from xe-4308-e292d4ff61cf3423ddb4128ea86c88c93de973ad_BAT -> xe-pw-158736v4_BAT
-====================================================
+ drivers/gpu/drm/i915/display/intel_display.c  |  4 +---
+ .../drm/i915/display/intel_display_utils.h    |  4 ----
+ drivers/gpu/drm/i915/gem/i915_gem_clflush.c   |  2 +-
+ drivers/gpu/drm/i915/i915_config.c            |  3 +--
+ drivers/gpu/drm/i915/i915_config.h            | 10 +++------
+ drivers/gpu/drm/i915/i915_request.c           |  3 +--
+ drivers/gpu/drm/i915/i915_utils.h             |  4 ----
+ drivers/gpu/drm/xe/Makefile                   |  3 +--
+ .../drm/xe/compat-i915-headers/i915_config.h  |  5 +----
+ .../gpu/drm/xe/compat-i915-headers/i915_drv.h | 22 -------------------
+ 10 files changed, 9 insertions(+), 51 deletions(-)
+ delete mode 100644 drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
 
-Summary
--------
+-- 
+2.47.3
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (12 -> 12)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-158736v4_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@xe_waitfence@abstime:
-    - bat-dg2-oem2:       [TIMEOUT][1] ([Intel XE#6506]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4308-e292d4ff61cf3423ddb4128ea86c88c93de973ad/bat-dg2-oem2/igt@xe_waitfence@abstime.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158736v4/bat-dg2-oem2/igt@xe_waitfence@abstime.html
-
-  * igt@xe_waitfence@engine:
-    - bat-dg2-oem2:       [FAIL][3] ([Intel XE#6519]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4308-e292d4ff61cf3423ddb4128ea86c88c93de973ad/bat-dg2-oem2/igt@xe_waitfence@engine.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158736v4/bat-dg2-oem2/igt@xe_waitfence@engine.html
-
-  
-  [Intel XE#6506]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506
-  [Intel XE#6519]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519
-
-
-Build changes
--------------
-
-  * Linux: xe-4308-e292d4ff61cf3423ddb4128ea86c88c93de973ad -> xe-pw-158736v4
-
-  IGT_8679: 8679
-  xe-4308-e292d4ff61cf3423ddb4128ea86c88c93de973ad: e292d4ff61cf3423ddb4128ea86c88c93de973ad
-  xe-pw-158736v4: 158736v4
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158736v4/index.html
-
---===============8800740353831702676==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/display: Panel Replay BW optimization for DP2.0 tunneling (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/158736/">https://patchwork.freedesktop.org/series/158736/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158736v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158736v4/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4308-e292d4ff61cf3423ddb4128ea86c88c93de973ad_BAT -&gt; xe-pw-158736v4_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (12 -&gt; 12)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-158736v4_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@xe_waitfence@abstime:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4308-e292d4ff61cf3423ddb4128ea86c88c93de973ad/bat-dg2-oem2/igt@xe_waitfence@abstime.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506">Intel XE#6506</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158736v4/bat-dg2-oem2/igt@xe_waitfence@abstime.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@xe_waitfence@engine:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4308-e292d4ff61cf3423ddb4128ea86c88c93de973ad/bat-dg2-oem2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519">Intel XE#6519</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158736v4/bat-dg2-oem2/igt@xe_waitfence@engine.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4308-e292d4ff61cf3423ddb4128ea86c88c93de973ad -&gt; xe-pw-158736v4</li>
-</ul>
-<p>IGT_8679: 8679<br />
-  xe-4308-e292d4ff61cf3423ddb4128ea86c88c93de973ad: e292d4ff61cf3423ddb4128ea86c88c93de973ad<br />
-  xe-pw-158736v4: 158736v4</p>
-
-</body>
-</html>
-
---===============8800740353831702676==--
