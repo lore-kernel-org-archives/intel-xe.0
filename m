@@ -4,166 +4,184 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C5531E9273E
-	for <intel-xe@archiver.kernel.org>; Mon, 29 Dec 2025 17:24:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 978CDE92FD7
+	for <intel-xe@archiver.kernel.org>; Mon, 29 Dec 2025 21:37:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 87BB810E5D4;
-	Mon, 29 Dec 2025 17:24:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3DE5210E516;
+	Mon, 29 Dec 2025 21:37:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Su/mSkqX";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nI58O6Fc";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9DC4910E5D4;
- Mon, 29 Dec 2025 17:24:14 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3533C10E516
+ for <intel-xe@lists.freedesktop.org>; Mon, 29 Dec 2025 21:37:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1767029054; x=1798565054;
+ t=1767044256; x=1798580256;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=Us3iTvcLxeHI5dvn2cSsnKgVoOFO3WoLNBBl1kjTFdc=;
- b=Su/mSkqXqXykjZeQGEEFfEGTPzpkg5vfxL86rBedwR9cJUyXuhAX9fLC
- XUnunJKt0cT/b2pTS7B3M+S8+f8d1iRNEUYrA0q/ziJeFJC5bClRJ1zs2
- XMffCrw7ApoX5HRvd53NLfGHpqlnT0x6uyQ60Me4Rq1dq0FlwwO1a/8jc
- wCnFc2WDEuFeyh45pHTE7LThApA0EJZMhdLvA3tcW3oWwN4Z8LlOVacI9
- 8KlhaFgvPP8rsZ3T8OuuRIdftH3u7F/Jm8AXQC/JyX9FhW6WG3wzl/4BF
- N7HATsk+F3cTjIiOhNcVoFINQYsY0l4bDCIJDJKj/fe7Y8ava9yKQEHJ1 w==;
-X-CSE-ConnectionGUID: UmKZXDppTFSzS2JrWPBDbQ==
-X-CSE-MsgGUID: 71JQSWOOTYiDJ4soFw2RJw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11656"; a="68525881"
-X-IronPort-AV: E=Sophos;i="6.21,186,1763452800"; d="scan'208";a="68525881"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ bh=P750vkKqe8R/XysNOn8ju+K5GCXKpmze1PM8FiTRrQM=;
+ b=nI58O6Fcs991eTGkjlzLZrpUM/+kMvwGWiNV7nGWvjsgNHLYSYnUyHFd
+ pU5opXt9xPtad7Xj62v4g5ecw8iAWQ93m2Zbdoi4ilNNsaKZzulqgoL3U
+ DbBXyUwenr65skj3ZDw9tQlQH4GeEyYunpWBsHqeGt/sIYbBMokrkiv4y
+ 3uorSSMexqjw+2YPOmkyJCTT1UvmIfrnpEUDVbzE5fc3YPkmGN4wbxehV
+ gYS4zpaIvN+brZjg27dK/o5c8K1cf8RFSnHK76F5wMrlRdJ+52iNHfu9R
+ uVbgsbUIFaro9w9ZsftjLYRN9whHSRndSHArKrxbB5LKz0yEZ5EWbfpXx A==;
+X-CSE-ConnectionGUID: MXS4drCWS9WDzH3aQF/QlQ==
+X-CSE-MsgGUID: XeKIPq6CTQ+bFhQNKClwXQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11656"; a="68539109"
+X-IronPort-AV: E=Sophos;i="6.21,187,1763452800"; d="scan'208";a="68539109"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Dec 2025 09:24:14 -0800
-X-CSE-ConnectionGUID: DqrTcz4tSDmJAQxW9S28Nw==
-X-CSE-MsgGUID: lfDKdsfMSne5FK/zTUICfg==
+ 29 Dec 2025 13:37:36 -0800
+X-CSE-ConnectionGUID: OrGnD1rBTY2lvGCzSkoKfA==
+X-CSE-MsgGUID: mF8kwG1ZQpmD1Mh/mOyKLA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,186,1763452800"; d="scan'208";a="200930978"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by orviesa007.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Dec 2025 09:24:15 -0800
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Mon, 29 Dec 2025 09:24:13 -0800
-Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+X-IronPort-AV: E=Sophos;i="6.21,187,1763452800"; d="scan'208";a="232080352"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by fmviesa001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Dec 2025 13:37:36 -0800
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
  ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29 via Frontend Transport; Mon, 29 Dec 2025 09:24:13 -0800
-Received: from PH0PR06CU001.outbound.protection.outlook.com (40.107.208.68) by
- edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
+ 15.2.2562.29; Mon, 29 Dec 2025 13:37:35 -0800
+Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Mon, 29 Dec 2025 09:24:13 -0800
+ 15.2.2562.29 via Frontend Transport; Mon, 29 Dec 2025 13:37:35 -0800
+Received: from BL2PR02CU003.outbound.protection.outlook.com (52.101.52.18) by
+ edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.29; Mon, 29 Dec 2025 13:37:35 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=guO0pEcYZP0sGEF9hX6V2D3Hp9TH7fTofP4rq0xJNwMbXw3KJSQfC1YXrs6Lgq3g1dRyue7JMgfnj2k/DeQTwyPiOXujJIYnL6lXYfKh8AgG8ashAp24O+DOObhXxJD3YXfjp3peXUDcxjf6N8WN8Sm6Ywk2CRftKPh3z0pf9HbiTkE1ijmgISOxhmwnRAZ7gWlkVu2kGXnM6m7q+RupcIF6TkxQYAlk2s+gQscCI8fQJ7BvIkGcbzc0qCpJfCMU5mRQNYdOiPIb3nBbX87V8ekAqCsJJLHT/r68yEDcFVuIj+Dqeg95dxkcFchCYie1YsKuUrRck/SLeBqex7zTYw==
+ b=BGR7uP+FtoVZkvHMD1t4/eQhVopM9SC0gFETgaDE9gvrF5TzID9Ysm70C6sFdHfhoy21vgqspLduEB9rASupu2+F8l3Ib6ygRoAkDdNTOD4boGSmEaIg/O8VFRXK5FitMFJ1e0v3mRaEkSBLcpbenTeHkqH7uAeTbogiaqr4CTc45TCbDB/YQ/0+TsN3rDR5eeXmra8/CauGUB0LkDFxXKV34EZbs4tQ3aW9twhAaa829FQsH1u05pA+W9XQQb8wvBhEPimu5MFRBDZ+w6I9yF+R+XwcoUz2jFOWChJqluRtB6+xLG5yCEnzZxWxHG8CPjLAJAx2KuDF/r3RmeczRg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=6GcubcObzXNlAOSqfkydYVddLWERdgD8bzo+jXWUmh4=;
- b=Bp8RYzatVorJMekp2TuvuQDLehpqlNgeNPYFppqsMeIFayL1170IcSjRIEaagViWQsjbQi1k1J0hY2qQVkOWUlVo73kj9gD5zGLjwmpZ5NX9KJ0LEtqxO7hNpx/Kvtk5q5YPfys63HIIKPq1AwaKZ3PO5XAJEb84xgRqQkrTrd7oDDgK0u1qUSDoP706UYiCWq8SBLliGBD1NNkzqQcvsfs8pEwflzB5bobPIL/kOlcA15kdx+elENuYJV+LsC2ew7ICwvbgOmDPp/UYKqC0TAy5g33+MOCG82ntkrchGa+cGiUfrLwHacUmzbUZyFZhZyWbIa7a8VlwtKvtnY5AFA==
+ bh=BBG/Q1/tvddZozLoLhhg5hChDK7knokdkdw0+kKSKF8=;
+ b=BwNmeWCiq2MXpqLF0CFm5RQvjEQr//UayhTH3XmD5DeuM1lnEx4YPgdJdG5WtxhM85Ggjo17MaKwDthUM4zOTN0m9umT1lV+fhbawXT4tNZbTHQRMnLp6LKXBqtp2UXdZsV/zvo+jf/9Oh1XOmybcMn6fEoA+c0tv8Xkd1xVIeKAvtZREf6wRh8oL/nb+jWlqCNDZPOJ9BSVwuSeu5pNFSWY9X6WmecQwBxIf8tUWmgoHDqPAlDVAWdThWODQSQCoY9y6nCoqj9Rcr0yCrmEICOBbVHHiY4ELNAR2CHpoeZzIDp8XSCT1EBh23gW3XF6LGSK80wyarqTjMClHjCr+g==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DS0PR11MB8182.namprd11.prod.outlook.com (2603:10b6:8:163::17)
- by CO1PR11MB5009.namprd11.prod.outlook.com (2603:10b6:303:9e::11) with
+Received: from DS0PR11MB7408.namprd11.prod.outlook.com (2603:10b6:8:136::15)
+ by DM4PR11MB6119.namprd11.prod.outlook.com (2603:10b6:8:b0::17) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9456.14; Mon, 29 Dec
- 2025 17:24:10 +0000
-Received: from DS0PR11MB8182.namprd11.prod.outlook.com
- ([fe80::7b65:81e6:c6c4:449e]) by DS0PR11MB8182.namprd11.prod.outlook.com
- ([fe80::7b65:81e6:c6c4:449e%4]) with mapi id 15.20.9456.013; Mon, 29 Dec 2025
- 17:24:10 +0000
-Date: Mon, 29 Dec 2025 09:24:08 -0800
-From: Matt Roper <matthew.d.roper@intel.com>
+ 2025 21:37:33 +0000
+Received: from DS0PR11MB7408.namprd11.prod.outlook.com
+ ([fe80::6387:4b73:8906:7543]) by DS0PR11MB7408.namprd11.prod.outlook.com
+ ([fe80::6387:4b73:8906:7543%7]) with mapi id 15.20.9456.008; Mon, 29 Dec 2025
+ 21:37:33 +0000
+Date: Mon, 29 Dec 2025 13:37:27 -0800
+From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 To: Jani Nikula <jani.nikula@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, <intel-gfx@lists.freedesktop.org>,
- <rodrigo.vivi@intel.com>, <ville.syrjala@linux.intel.com>
-Subject: Re: [PATCH 3/3] drm/i915/utils: drop unnecessary ifdefs
-Message-ID: <20251229172408.GI1180203@mdroper-desk1.amr.corp.intel.com>
-References: <cover.1767009044.git.jani.nikula@intel.com>
- <f40a1fd365cbcfb77bd76ce0041c4523699f6052.1767009044.git.jani.nikula@intel.com>
-Content-Type: text/plain; charset="us-ascii"
+CC: <intel-xe@lists.freedesktop.org>, Matt Roper <matthew.d.roper@intel.com>
+Subject: Re: [PATCH] drm/xe: Enable out of tree compile for Xe KMD
+Message-ID: <aVL0lwd7EBrARLvf@soc-5CG1426VCC.clients.intel.com>
+References: <20251224223046.2819609-2-umesh.nerlige.ramappa@intel.com>
+ <b131c1d8e94335d679db480f1442b6836a6056e8@intel.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Disposition: inline
-In-Reply-To: <f40a1fd365cbcfb77bd76ce0041c4523699f6052.1767009044.git.jani.nikula@intel.com>
-X-ClientProxiedBy: BY3PR05CA0009.namprd05.prod.outlook.com
- (2603:10b6:a03:254::14) To DS0PR11MB8182.namprd11.prod.outlook.com
- (2603:10b6:8:163::17)
+In-Reply-To: <b131c1d8e94335d679db480f1442b6836a6056e8@intel.com>
+X-ClientProxiedBy: MW4PR03CA0248.namprd03.prod.outlook.com
+ (2603:10b6:303:b4::13) To DS0PR11MB7408.namprd11.prod.outlook.com
+ (2603:10b6:8:136::15)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR11MB8182:EE_|CO1PR11MB5009:EE_
-X-MS-Office365-Filtering-Correlation-Id: 17f91254-be4a-4188-8270-08de46ff1459
+X-MS-TrafficTypeDiagnostic: DS0PR11MB7408:EE_|DM4PR11MB6119:EE_
+X-MS-Office365-Filtering-Correlation-Id: 94ebc542-6774-4bdd-979d-08de472279bb
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?SCPzsRaORpH/9PHwTwpExEOze3DTKZIluvMgCyTVEp9jD3NAh1qTZONPtNYa?=
- =?us-ascii?Q?/VNr2R+ipXGKI2PsODX6AGNpcszl6iOEZ5kHUAeIzXJApbggVcob/2/emr72?=
- =?us-ascii?Q?EjhM66ntHmSnaB/QrJx8c25C8cSrXbG1E+V2uaZ0CehApj9CkjW7aIs0Qkx/?=
- =?us-ascii?Q?ObVinktbVdKSXeRFuU6Zpw6qRNgZJ6lTRUwgn1pDpxbo6143wM+MyEjid5gD?=
- =?us-ascii?Q?qlADjOZJPj8caH8Fj10KhT+UnXcJy0abk1kkvVESWF2hwEGhbZOo1U+kGJS3?=
- =?us-ascii?Q?oxvdF9ICjgX6eZlHC8WRkNi4TFSiPlgyMVoB2IlhlOye7iRAITvWBHkMIDbi?=
- =?us-ascii?Q?Wcsu5cty4AX7lgFA8VLrQ8fxYh2lnGxXAL8Igxw5mmvdxOp57kEVA+fouwBL?=
- =?us-ascii?Q?2vI8yluDnp3dpAnNrRrv4QHGD0lIGa8sx+zIzpr2d32L241eRouu4X1BPVVe?=
- =?us-ascii?Q?3wB0nqVzu5/jJZ+bwxXD/OQY+4SkVovibjswfV44nldlFfoj96047RqEirBC?=
- =?us-ascii?Q?V8foMlyyoZCJ0u0sx3fY3Wu2ip9YzW9Wx4yi6382XM1yu20Xa/JhWdM41XET?=
- =?us-ascii?Q?p+wujn2js5a06fLNq9VHcPdysnetVnGvN8SqrFNMyH0l5ayn6Rb8DKDd7XDo?=
- =?us-ascii?Q?xwoowW7Fdz7kZtdnn/dT9rTlYawYr1lHZeiq73FgEfPVaaHxaA8CFX9dJGXH?=
- =?us-ascii?Q?vwJFEyDc4GZ8/8DLMsxH2yfGXx2eU+Hm2/r5A8ywd3xzzh8c1eRkMncw4jwj?=
- =?us-ascii?Q?/DO1943xN93IPeynRU3TMEO2MMijp2mgzpjtzibHcLrEP8mKR3KTFTZTv+lI?=
- =?us-ascii?Q?1cpX58jz+nftKGTSq4wkjm4HTPtdQ4MygLhaw7nB3EcBU6aBMnyCqw5v3wy/?=
- =?us-ascii?Q?yV+mPnmWwmkuHQNvJ7FzO2b+OBtKF1SdOM79DrjRYPxGlwkuNAQiJ6iv6I2w?=
- =?us-ascii?Q?Za2pG90FY7Ri2xOCGcMDOWCvX8YRIZw0rNOyRhbLX1OLQl0NVGfVTEGypz5p?=
- =?us-ascii?Q?jjMA/FH4UF9bP/HC7uryo2Lfe0qiGIH0FNArCABoPtAmzmw8p2j0Cf/UIZUi?=
- =?us-ascii?Q?W3Ijtsok235WygCgUPWVm9BDcogu/HfDJOhHKr1EAAK8rKH/PoJQoXtfVY+C?=
- =?us-ascii?Q?DY8m4vaGQoYuI+iMj9QH2OirK/DL8BI/Fi6UK34Cnn97FsqJws1dyqbu4ME9?=
- =?us-ascii?Q?8KUjMSvTjivUA5z7ANYIY02zSwkEzyr8+kwFLtbkvU5woM5SePnfynwFC7/K?=
- =?us-ascii?Q?T/VZEjmpoFFzRqNmTOMNWOWk0XEocYCwqG5KNnJSqaTKhnKBsDltqavKlx4/?=
- =?us-ascii?Q?yORDokkF0jgUAO0x3Du/WEv2PuKbdWWw80nTKd0jfXgXATgMPbBtCfHSxxDP?=
- =?us-ascii?Q?UtQyNNI2DObWGoYGqE69Kuc3G1RL1tGfZTkyj3JozqoQsmbzYUHcRVsUbNtR?=
- =?us-ascii?Q?v2WUFzrCQ4uktJhyaFoq8u45vJWs40jk?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?UGVCSDZXeFRrT215MlVNdVMxR20rVm9xL3dGUGVzbmp4MmlQbWVnVHo1SVor?=
+ =?utf-8?B?SkxOYUFLaEtFN09qUmp2SWtWellGTEdaaDdLQW5pdW9SNFVuWitvUFNUVXA3?=
+ =?utf-8?B?WGdvSGszMFUvSzJDeWNTeXpzRGdPb09xRDh6WW5KaE80U1pkUDZYYUt5aXZt?=
+ =?utf-8?B?d3ZVRTQwVDREeFc3WmJLMmN3ZmJOVmJ6QWpiTUQwbmc3L2VqSTdzUEN6ckJP?=
+ =?utf-8?B?UXkzZWtRWlZYanU1YzZKUlY2OERtZjRJNjJHY0xmUitxaGJGYnBiV0xSaU8v?=
+ =?utf-8?B?cEl5RUtwMytJQm02RzBNRElxdXJrNDRSR3J6WGJvTFZsbUxQOU5NV0VoOE5m?=
+ =?utf-8?B?WUdPY0FBY0s0T2I4RFJuWUF3L3dQNHo5dXNLUlhnMXk3YUxWOHJZY2xIUlg3?=
+ =?utf-8?B?TktDUUYyQU13RWNYZUhXd2QzdnFOcWlNVUpPRUJjQ1lkbS8vcGxKL0Z3SWZy?=
+ =?utf-8?B?MkNMMnJKNHlHVnF3NncvWUIrSXFQbFRZU0xMSElaeXhodHhScUo0T3FwUXpO?=
+ =?utf-8?B?RTN4QTcyK21hT0Q0aXl2am1iZTFMdVBzNU41ZTJBczBaemNnVkc2TGxDanhT?=
+ =?utf-8?B?ZFNBb0NiMXZSTmt3QTRiMktIWXFiQitRVHMxcHFBdElFaHcrK05Cc0c5eXd6?=
+ =?utf-8?B?dHFYejV0WVNNK1JmS2t6bEhXaW9JRXMxOXpZaVJmOVV5QmdHaDhRTXVRcEJV?=
+ =?utf-8?B?MHJoc095TXg4dWg3MUpTM2dlclM2blFjMXJhRVJUZ0JDVkJzT2R3NCt4Q0M0?=
+ =?utf-8?B?Q2sxWmVYcXh2NHc1YU5SOFZjRnplUmYzaGRUNXZFOEpWS3dNYnp1TUhnNll3?=
+ =?utf-8?B?MUNrUlhwcExlWTJlLzNwblVzNk5rNDZnS1JEaFg1d3lROHhQU2ZZWUZSemZO?=
+ =?utf-8?B?R2dpZkxiQzQ5dEUxWjJUNyt6cXkxQ1RDanNJTUphUkZlV0kweUhpKzdYRzh2?=
+ =?utf-8?B?NERtczArdjVyMXc3MjE1Q1hFQ1U0bk02RVhRKys0MllsVHhjaEUyeEQ4dHFC?=
+ =?utf-8?B?dkQyMTJLRjNwekk5ZmVBU1h1ckFodkEwNkgzVG85OFVZaWVxeFZjTFZySm9K?=
+ =?utf-8?B?T2ZoZDZiUmlZNk16TVI3bi9MWUMvTEVuRkxlQkFkeWQ4N00rYzJaYUlFTU9W?=
+ =?utf-8?B?b2JjYWVZOEI0ZGNRN1IwVk9yOWhVNU9wTS9oUU5mZjBORGhmaVVYSy9zbWZI?=
+ =?utf-8?B?M2IvRS9hNGxFTC9BR0srdWtmZTBOVTF0c2U4R2RnNmJkTmhCVDRaU2tFWjR1?=
+ =?utf-8?B?c0RWZjhWU2JOd1ZNa0M0WmNkeGZOUnRYdXFQT2UvVFBzQXRTaXZQVU1reW1t?=
+ =?utf-8?B?cUZUOTBabFZUYU5vTXdCcUVhRkx6Q2I4aWRHcklwc0dnRzFFY2pjMXFkRW5H?=
+ =?utf-8?B?VVdWV3BFN05OZ09ZclI3VE52SkZPMFkvWWxSOWhSTmxtbzNjZlRPcWlsa0ky?=
+ =?utf-8?B?c1J3alFmWXRyQWJQMFc2VzA3QnZjUXJqVDN0SEFlTWZ1MFNmaVJjQUw5bDM3?=
+ =?utf-8?B?dGd6cG94cUlMYTVGZjlWVExvRnRjd2N6VExzWHhuVnJDeDlreVZHWnVWS0hy?=
+ =?utf-8?B?Si81TjVQUXh5eWdXVXJWNjFhcThZNHZ2TVNVZGw3VzlVSEpzZlRRTStONnZn?=
+ =?utf-8?B?RFBFSzRPTUE1NXdGL3RxWVhDdUpRamJ5cWU5ODdsUnNQZkcybjRjemZMQzln?=
+ =?utf-8?B?YzdVazZqQVh1RFZ3VlJybUQ2eFpIY1licENRaHJGM3h5QWdsODZuV0xsaEhL?=
+ =?utf-8?B?UVZFZ2xEbGFKcXZIZXZlMFdBWmgycGxsNkFNV09YbFJRSlZ2OVBCcU55MTNE?=
+ =?utf-8?B?eDlmQ1YzSTQ3NkhUNmhQWUNIVEtGR2pZdU5EckczWTY2bmx2MEN4enVMMmw1?=
+ =?utf-8?B?bSsrS0grZnN1bGRWcVo5NlBkYUwvY0oxVytaRjJ6YnVoN3N5STlvaDJBdjNU?=
+ =?utf-8?B?TDlhczZDV3ZrMitnaWg4Y09NWVhGNUNlckoycHRvbXc4SHYrRXg3cXBKM3hk?=
+ =?utf-8?B?MUtnVTFnT21nPT0=?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR11MB8182.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:DS0PR11MB7408.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?40SFpjUKJsEVl66A/FyFI3pxeteTai0U9FY6sEjbFVBW+fVRhKE51swYeIxN?=
- =?us-ascii?Q?SXWXjzTwMdurF5Rs1fIIVpbx7WsBaWALgGQYrVHTHCM3Cdz9SY/3Pj0eDQk3?=
- =?us-ascii?Q?RNHfwaKQNLYJNdBEegiePtZAYE0RHN6da/SMwORH+RCmDDBJwy0nT9qc//s9?=
- =?us-ascii?Q?hFCvleSq8cMMg1mn9kEGU6ibFUtEgmfZK16gkAoVmYcwHdVBTkC8m3518JVP?=
- =?us-ascii?Q?wCycs1488hDh1KG6OXp72S8XC1zxboI7Ape1lEG1vEOk0Wu23zP5oUoqw8bd?=
- =?us-ascii?Q?18gjYL/tB/AtYBSN08Kx3p4Ajagfzrel/V1uWSNqXRzmIKuZ5Q03vDlqZAis?=
- =?us-ascii?Q?iCFvGT7XX9uROD/AEBYKQ/6B761GFRS4aM7CdRMETyt0gW1V4yn1TgMfme+c?=
- =?us-ascii?Q?WOsQkFcKiZMcphEq83EUarUUPMn6pEhuu5zzoGojya1HX/it6ada+cXSZur0?=
- =?us-ascii?Q?Acrmk4yMmhjqmCkJWVs/yxNJKBKuQQLRXhz4SDeoHOAtxKLUMsQma9Brq4XZ?=
- =?us-ascii?Q?FtHQW3Iq1OV75TYr8qmVraH7dcpvKm58rxHZpsM2Fw2mopXozqnPr+f0g20D?=
- =?us-ascii?Q?dUkDWg+/Es0m0AC+inF5ZZ58r6wRwBBaTFT0APeGAwfwaGBVLwse/5HzeXlV?=
- =?us-ascii?Q?0OfjkYikUHUSAdF//bw0UIcDY6rDKZq48VdChDCJB50WvCdVtUlPgkQc6wxD?=
- =?us-ascii?Q?YK9IcF+IW6OFflRA8yTgZ2iSVk/eWfMPZ0KIyk2oZAGhCUjHOCoSY94sGBiA?=
- =?us-ascii?Q?VQlXUjTZ/sv0nTkySyl8u3zxNhwD1ukXhCWXRcNw1Iro/Tifu/tIrNV4zT47?=
- =?us-ascii?Q?puiF0mMttA98HVnRO44s32bxXxQFKyTcnFu7wNF2+busbONm31RlGedKPhcT?=
- =?us-ascii?Q?ykYL6U++IfujYQ3sJhi1yEmFXx0oBbmQI7DvixNfDyPTIa+ETnU0BZj4saR5?=
- =?us-ascii?Q?aoXXgmwUtIxWGecVT/QtjFmAlrqSbqjQ6pWZH90U+e3KUY77lUMYPX9LwW0K?=
- =?us-ascii?Q?AONxXx9iMpG/Su6ESHehzR4wDR3rKpWdLFeCFoXuqEwR3zt6y2O9IpWp2Z+P?=
- =?us-ascii?Q?qyCKob0c/fw/5hHVfdoB/sd89J5h4A6W3GDbLVmSzrVG02wuiqg3pXrcMa+r?=
- =?us-ascii?Q?s/s8hQjFrkReT7hKVkUSe39DS7kiFg4wuSNk7m5a7gQUzDop2HVb8sL+OlqV?=
- =?us-ascii?Q?W5vfFmImcHQHS3LFTFHseCVRgMdoPBARYsow0BSozaB6rULqXVLBBzHD4gR5?=
- =?us-ascii?Q?aE13FCgLb7aWUS4T6mlZXjXYFLzAywrW0Mi0YCyyw2d0QSHHJ+pyKFpz3vbE?=
- =?us-ascii?Q?dtKXtYZoFHiIePoUrM0MS61ixLLNoLskdBxzuJHbY4CdvVgwDxsPTudO3hPg?=
- =?us-ascii?Q?EK8Ur8K8K9S9IN+xbk025+hCqyTNUVgLVqOML4xzRM9hxwSNweL17PSWQqcc?=
- =?us-ascii?Q?kw0Cu5y4JUEt35+wtBgzEGwXacYZuoyKp4fb+WWrD89wVfB0oSfzvn5JfA4b?=
- =?us-ascii?Q?SspJucAGcDaWTuqM/u/4tDqSRGwAxrNTNK19AavTt1oST5u1F78R+qRokWpq?=
- =?us-ascii?Q?wktYwLep7jDERdmevNxIa6/XLDpgZ2wEDbNp/awrYbwCrImAGJl1+vQjJ0Q4?=
- =?us-ascii?Q?T1nkDRKEokJesS5kbyfRKBDbttIq/Fb4igro9CeB1d9K448fczZCT6kubzdU?=
- =?us-ascii?Q?0jEQ6G0ljtYxH33mBxpcrbvaQo/hAhwzC4+dtbQ+lnDiamxAKt2Uh1+wAlqH?=
- =?us-ascii?Q?EGBBwiZKdLeuU2pnua/adeu1peX6QXk=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 17f91254-be4a-4188-8270-08de46ff1459
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB8182.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?S0hvMjlPUHV6L2ZHa3lBMEtNRSt4dTRHeXhoOWtVTGg1cGk4UHhnM1lIL2lx?=
+ =?utf-8?B?eWVMSHBzL3puWllKMWlUbnIwSTBrbVJtY3dXVGF1c0xTUlFVLytjbEdKa0dq?=
+ =?utf-8?B?bFZaQXRBb2ZsNlcwM3NDUDdRZ2JMTTgySjE1RUVMOXVzSFpPMHJmK0V5VU1I?=
+ =?utf-8?B?L0Zkckl6ZXFHeGNrZGZMRWt0T0R6N2c4T3dXbjdWSXBrOW5kVlBOcHY5Q2JU?=
+ =?utf-8?B?NkdlT2VlVjdwN01qNGdpZ01BQ2ZZcjh3N0ZtMGlwMFg3S2hPQjdVQWlqVWNQ?=
+ =?utf-8?B?MlJSU0REZFk0NnF1Y0lVWC9BZDVlbkhMTEFvTHU2UU5sZzZBRlZLTXhJTnhR?=
+ =?utf-8?B?a1p3Y2U3eXJuWFFCakUveGUvUWN3MkNZZGEvR0s2cE8xTFlPbklMK3RDbVNM?=
+ =?utf-8?B?UU1qWUpqTkxQYVZadk5tMEgvZUNTSUJVaTJlVWp6dU82STVoU1VmdGwrZUZo?=
+ =?utf-8?B?MFkzWUkvOVVFa0JMT0pwU3VrcnFzY3N2cVc5bFhJQ25FMVNLK0NzRExXdjRO?=
+ =?utf-8?B?WHNyZTBtQWUyZXo3ejZjRVhKR3dnL0k2RVpYOVhDTkkxaGFkczczNVVJY25r?=
+ =?utf-8?B?c3hZUjVXZW14Q2htbzJCcFZVMDl0ZFZ0RDRoZ2paZXdMRE9ray9yQkgraW90?=
+ =?utf-8?B?S1ZZNUNaQ3NFMVNoUHN3REJkTzFnaDZDQ3ZRczRsdnphSmxLRDVQdTQ0a2dX?=
+ =?utf-8?B?VjZKOGdWcWhWeWtXbEkvS01OTjFXcG9seUVCNDI4bU1rYk1JVVZiaCtiRjJv?=
+ =?utf-8?B?NW5ZQzhHcUlyUmdqeWM0bUptTWRBUmYyZ1NKaG1lQWY0ZW9pOWc2VlFiRVNt?=
+ =?utf-8?B?NDg1WUsvSzQvbEdFcjZ5UCsvelNaekJvbU5jRE9QZTBnUTZJZjVMamJJdHhy?=
+ =?utf-8?B?UlpuRHBxYjFlNWszbXg4b0xFcU9LR25XTThjUmpOVUdNOE1pMmErLzh2MmNC?=
+ =?utf-8?B?T1R5ZWVYZVdNNG5nZXdmRnFyYytNYmpzMStSSnZ1ZkM1Zm9Rd2FYemJwZTRl?=
+ =?utf-8?B?eUZDNGFYWXF0TklWaFRqWkdTcmJQeVVEWmFGTFFVQXZYVE9Bam9qWFJZcnBy?=
+ =?utf-8?B?K2xVNEczeUF5UXNZcC9GWjFiKzIwV0Y0NmFLaDF2TTE3R29scGxSSkZKZSt2?=
+ =?utf-8?B?WEZaYUYxSXA5SmNBdzVGV0lTY2U0dnpRNHFUMHhlbENlRDYyd0dmTlIrbk5B?=
+ =?utf-8?B?OUVRVjFRYms0VUNnc2hqSTdKUzZENTZSZnlDdWh2dnNGdkpmLzh4UnAxai9M?=
+ =?utf-8?B?VDFBQ3RsTVdiZS94d1NaYmwvSWhsZHFHd3VUQURKWDR3N1c1SkE4TGtDSE9n?=
+ =?utf-8?B?bEIvdWhHYTllRmhkWXZseFhrVDdoNjlvajUxSFJYOTQ2VEFSSUJaUmt4S1VI?=
+ =?utf-8?B?Z1BWV1pPbVhyQmVsK1NHeTJhemI3dzFlUXlXN1F6WjM1MjZqUlBzY0pIcFRk?=
+ =?utf-8?B?b0JIZkhNSnkrMUltbSsyRm9QeVYya2VmU1E2K3ZidzhJcWtwVDZVUG9UYVFN?=
+ =?utf-8?B?VTk5WTVreE5tWTlZc0hvRHBoQ2dML2hOeHZqL2hYVmROVUs5bi9zc3JBKzVH?=
+ =?utf-8?B?TU9EWno2V1NPTzZWQU54WGhQUVRRSi9WUWNLa084bEVqM3Awc1d2cUFVQWlG?=
+ =?utf-8?B?NjlQQlFjMHp6bDFSeURwQW56ZWMrTlI0T0EyOTVCS1IwYjkvbjJ3ZFhBcVdi?=
+ =?utf-8?B?V3RHZFA5akdOQUQwSXJLV0E2Sk9LVDJ0MTBhdVp4VmsyN0lNUzlGZGFVa0tU?=
+ =?utf-8?B?bEhQYVl2cjR5SENxUEtabmRvNFRIdGlJQVRraVhMclRGcm0yd3dUQjBlelNX?=
+ =?utf-8?B?Wm4wQjRIWUpsR0VaZGkraC8wK0FobWFDUlBWby9wbTFoRUNLMGZSbnlIUnpz?=
+ =?utf-8?B?Znhlb3VoZ1lIMVFYSmh1VWgwYy9ha1pmTm52Z0RWdjVYcGEvTnJYdzJDcHJn?=
+ =?utf-8?B?cGZYNDB5SE5RWXcwOER0WWpiYkJVOWE2eXlEeEFuaEs4TGRYR0syVzR3OUhE?=
+ =?utf-8?B?emw3MUNJOE5kalprTTFqVU1JdW1ueWtPbEMrTzZ0czkvT2lIWi9lSkl6V3RY?=
+ =?utf-8?B?cy80ZTNxYVdOdXhSOXY2OXFSQlNGM241NFgvcGk2RHlxQURZK2xrVXpVMzZl?=
+ =?utf-8?B?TjRZTzBRVUYzdlREbDI4eXRBK05tOXBZWFhRUXJIVGF3TStZL1lMeFU4emNH?=
+ =?utf-8?B?VHozdkZhUnYwVWh4SjBnNS84MWQrc0h5VEZIL3g0SW85L3B5Q0VGQnNXam5O?=
+ =?utf-8?B?TFhvV0FyanZ1cGNheDJqL3Z6RzhXVVZmcG4raWhYZURwSEVQdWtuWUN5VWpj?=
+ =?utf-8?B?SlBwS2lhNVlWOWtlUVRKVjFjVE5sRlNkV2wzL0c1dDIydFNoZXdHOWF3NE1C?=
+ =?utf-8?Q?0ZlaRoZWB425AAWFTvxqBKPkhVqDXCiwL303a?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 94ebc542-6774-4bdd-979d-08de472279bb
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7408.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Dec 2025 17:24:10.6762 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Dec 2025 21:37:33.1870 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ZFnIkun+nrYLZjF5E/x5ZrpcVawbXStw8cF0p6irqOtDhDVo6ofQBvqP0+c7+dNRFSg0T4oNzfEH6Y1uy6eQHkyg68LcuNvLHaSXaIeFvus=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR11MB5009
+X-MS-Exchange-CrossTenant-UserPrincipalName: sani4B/tY0ulZcb20yUNi+Tavkrfs5TWQ4mcfgOC2pota90i0OZI+h5Lr8VHObJwtUGOlyesImr+lQaDDGM5V1u45OEfP6lAuQN2d8fHGJM=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB6119
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -179,80 +197,207 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Dec 29, 2025 at 01:54:45PM +0200, Jani Nikula wrote:
-> The i915_utils.h and intel_display_utils.h were in some cases included
-> from the same files, the former via i915_drv.h and the latter
-> directly. This lead to a clash between MISSING_CASE() and
-> fetch_and_zero() defined in both, requiring ifdefs.
-> 
-> With the display dependency on i915_drv.h removed, we can also remove
-> the now unnecessary ifdefs.
-> 
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+On Mon, Dec 29, 2025 at 11:10:56AM +0200, Jani Nikula wrote:
+>On Wed, 24 Dec 2025, Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com> wrote:
+>> When trying to build the xe module out of tree, the compile fails to
+>> find the right trace header files and display paths.
+>>
+>> Both i915 and xe directories are copied to an out of tree location and
+>> the usual commands to build an out of tree module must be used to build
+>> xe.
+>>
+>> Based on the link below, modify the TRACE_INCLUDE_PATH to fix this.
+>>
+>> https://lwn.net/Articles/383362/
+>>
+>> In addition use relative path for display components in the Makefile
+>
+>Please don't do any of this.
+>
+>See include/trace/define_trace.h and the comment on TRACE_INCLUDE_PATH:
+>
+> * TRACE_INCLUDE_PATH if the path is something other than core kernel include/trace
+> *     then this macro can define the path to use. Note, the path is relative to
+> *     define_trace.h, not the file including it. Full path names for out of tree
+> *     modules must be used.
+>
+>See also commit 4e6d7719bdc5 ("drm/i915: Use correct path to trace
+>include").
+>
+>If you are doing some weird out-of-tree hacks, you need to keep them,
+>well, out-of-tree.
 
-Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+Out of tree build didn't work for me without these. Maybe I am missing 
+something then. Will look into it.
 
-> ---
->  drivers/gpu/drm/i915/display/intel_display_utils.h | 4 ----
->  drivers/gpu/drm/i915/i915_utils.h                  | 4 ----
->  2 files changed, 8 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_utils.h b/drivers/gpu/drm/i915/display/intel_display_utils.h
-> index 2a18f160320c..affa3179f52c 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_utils.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_utils.h
-> @@ -9,18 +9,14 @@
->  
->  struct intel_display;
->  
-> -#ifndef MISSING_CASE
->  #define MISSING_CASE(x) WARN(1, "Missing case (%s == %ld)\n", \
->  			     __stringify(x), (long)(x))
-> -#endif
->  
-> -#ifndef fetch_and_zero
->  #define fetch_and_zero(ptr) ({						\
->  	typeof(*ptr) __T = *(ptr);					\
->  	*(ptr) = (typeof(*ptr))0;					\
->  	__T;								\
->  })
-> -#endif
->  
->  #define KHz(x) (1000 * (x))
->  #define MHz(x) KHz(1000 * (x))
-> diff --git a/drivers/gpu/drm/i915/i915_utils.h b/drivers/gpu/drm/i915/i915_utils.h
-> index 9e5b7fcadbe2..ecc20e0528f4 100644
-> --- a/drivers/gpu/drm/i915/i915_utils.h
-> +++ b/drivers/gpu/drm/i915/i915_utils.h
-> @@ -38,22 +38,18 @@
->  
->  struct drm_i915_private;
->  
-> -#ifndef MISSING_CASE
->  #define MISSING_CASE(x) WARN(1, "Missing case (%s == %ld)\n", \
->  			     __stringify(x), (long)(x))
-> -#endif
->  
->  #define i915_probe_error(i915, fmt, ...) ({ \
->  	drm_err(&(i915)->drm, fmt, ##__VA_ARGS__); \
->  })
->  
-> -#ifndef fetch_and_zero
->  #define fetch_and_zero(ptr) ({						\
->  	typeof(*ptr) __T = *(ptr);					\
->  	*(ptr) = (typeof(*ptr))0;					\
->  	__T;								\
->  })
-> -#endif
->  
->  /*
->   * check_user_mbz: Check that a user value exists and is zero
-> -- 
-> 2.47.3
-> 
+Thanks,
+Umesh
 
--- 
-Matt Roper
-Graphics Software Engineer
-Linux GPU Platform Enablement
-Intel Corporation
+>
+>> Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+>> ---
+>>  drivers/gpu/drm/i915/Makefile                      | 4 ++++
+>>  drivers/gpu/drm/i915/display/intel_display_trace.h | 2 +-
+>>  drivers/gpu/drm/i915/gvt/trace.h                   | 2 +-
+>>  drivers/gpu/drm/i915/i915_trace.h                  | 2 +-
+>>  drivers/gpu/drm/i915/intel_uncore_trace.h          | 2 +-
+>>  drivers/gpu/drm/xe/Makefile                        | 6 +++---
+>>  drivers/gpu/drm/xe/xe_trace.h                      | 2 +-
+>>  drivers/gpu/drm/xe/xe_trace_bo.h                   | 2 +-
+>>  drivers/gpu/drm/xe/xe_trace_guc.h                  | 2 +-
+>>  drivers/gpu/drm/xe/xe_trace_lrc.h                  | 2 +-
+>>  10 files changed, 15 insertions(+), 11 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
+>> index 4db24050edb0..13a910a005fa 100644
+>> --- a/drivers/gpu/drm/i915/Makefile
+>> +++ b/drivers/gpu/drm/i915/Makefile
+>> @@ -374,6 +374,8 @@ i915-y += \
+>>  	display/intel_vrr.o \
+>>  	display/vlv_dsi.o \
+>>  	display/vlv_dsi_pll.o
+>> +subdir-ccflags-y += \
+>> +	-I$(src)/display
+>
+>In particular, I do not want display/ added to header search path
+>here. We're in the process of removing i915 includes of display headers,
+>and this makes it harder to track them.
+>
+>BR,
+>Jani.
+>
+>>
+>>  i915-$(CONFIG_DRM_I915_DP_TUNNEL) += \
+>>  	display/intel_dp_tunnel.o
+>> @@ -419,6 +421,8 @@ i915-y += \
+>>  i915-$(CONFIG_DRM_I915_GVT) += \
+>>  	intel_gvt.o \
+>>  	intel_gvt_mmio_table.o
+>> +subdir-ccflags-$(CONFIG_DRM_I915_GVT) += \
+>> +	-I$(src)/gvt
+>>  include $(src)/gvt/Makefile
+>>
+>>  obj-$(CONFIG_DRM_I915) += i915.o
+>> diff --git a/drivers/gpu/drm/i915/display/intel_display_trace.h b/drivers/gpu/drm/i915/display/intel_display_trace.h
+>> index 27ebc32cb61a..aa43f2a5510a 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_display_trace.h
+>> +++ b/drivers/gpu/drm/i915/display/intel_display_trace.h
+>> @@ -853,6 +853,6 @@ TRACE_EVENT(intel_frontbuffer_flush,
+>>  /* This part must be outside protection */
+>>  #undef TRACE_INCLUDE_PATH
+>>  #undef TRACE_INCLUDE_FILE
+>> -#define TRACE_INCLUDE_PATH ../../drivers/gpu/drm/i915/display
+>> +#define TRACE_INCLUDE_PATH .
+>>  #define TRACE_INCLUDE_FILE intel_display_trace
+>>  #include <trace/define_trace.h>
+>> diff --git a/drivers/gpu/drm/i915/gvt/trace.h b/drivers/gpu/drm/i915/gvt/trace.h
+>> index 63874d385c6f..235d51ee48ad 100644
+>> --- a/drivers/gpu/drm/i915/gvt/trace.h
+>> +++ b/drivers/gpu/drm/i915/gvt/trace.h
+>> @@ -378,6 +378,6 @@ TRACE_EVENT(render_mmio,
+>>  /* This part must be out of protection */
+>>  #undef TRACE_INCLUDE_PATH
+>>  #undef TRACE_INCLUDE_FILE
+>> -#define TRACE_INCLUDE_PATH ../../drivers/gpu/drm/i915/gvt
+>> +#define TRACE_INCLUDE_PATH .
+>>  #define TRACE_INCLUDE_FILE trace
+>>  #include <trace/define_trace.h>
+>> diff --git a/drivers/gpu/drm/i915/i915_trace.h b/drivers/gpu/drm/i915/i915_trace.h
+>> index 7ed41ce9b708..a074a5f542fc 100644
+>> --- a/drivers/gpu/drm/i915/i915_trace.h
+>> +++ b/drivers/gpu/drm/i915/i915_trace.h
+>> @@ -721,6 +721,6 @@ DEFINE_EVENT(i915_context, i915_context_free,
+>>  /* This part must be outside protection */
+>>  #undef TRACE_INCLUDE_PATH
+>>  #undef TRACE_INCLUDE_FILE
+>> -#define TRACE_INCLUDE_PATH ../../drivers/gpu/drm/i915
+>> +#define TRACE_INCLUDE_PATH .
+>>  #define TRACE_INCLUDE_FILE i915_trace
+>>  #include <trace/define_trace.h>
+>> diff --git a/drivers/gpu/drm/i915/intel_uncore_trace.h b/drivers/gpu/drm/i915/intel_uncore_trace.h
+>> index f13ff71edf2d..01219e97574b 100644
+>> --- a/drivers/gpu/drm/i915/intel_uncore_trace.h
+>> +++ b/drivers/gpu/drm/i915/intel_uncore_trace.h
+>> @@ -44,6 +44,6 @@ TRACE_EVENT_CONDITION(i915_reg_rw,
+>>  /* This part must be outside protection */
+>>  #undef TRACE_INCLUDE_PATH
+>>  #undef TRACE_INCLUDE_FILE
+>> -#define TRACE_INCLUDE_PATH ../../drivers/gpu/drm/i915
+>> +#define TRACE_INCLUDE_PATH .
+>>  #define TRACE_INCLUDE_FILE intel_uncore_trace
+>>  #include <trace/define_trace.h>
+>> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+>> index a6749dd6a725..00aa4634f10b 100644
+>> --- a/drivers/gpu/drm/xe/Makefile
+>> +++ b/drivers/gpu/drm/xe/Makefile
+>> @@ -201,16 +201,16 @@ endif
+>>  subdir-ccflags-$(CONFIG_DRM_XE_DISPLAY) += \
+>>  	-I$(src)/display/ext \
+>>  	-I$(src)/compat-i915-headers \
+>> -	-I$(srctree)/drivers/gpu/drm/i915/display/ \
+>> +	-I$(src)/../i915/display/ \
+>>  	-Ddrm_i915_private=xe_device
+>>
+>>  # Rule to build SOC code shared with i915
+>> -$(obj)/i915-soc/%.o: $(srctree)/drivers/gpu/drm/i915/soc/%.c FORCE
+>> +$(obj)/i915-soc/%.o: $(src)/../i915/soc/%.c FORCE
+>>  	$(call cmd,force_checksrc)
+>>  	$(call if_changed_rule,cc_o_c)
+>>
+>>  # Rule to build display code shared with i915
+>> -$(obj)/i915-display/%.o: $(srctree)/drivers/gpu/drm/i915/display/%.c FORCE
+>> +$(obj)/i915-display/%.o: $(src)/../i915/display/%.c FORCE
+>>  	$(call cmd,force_checksrc)
+>>  	$(call if_changed_rule,cc_o_c)
+>>
+>> diff --git a/drivers/gpu/drm/xe/xe_trace.h b/drivers/gpu/drm/xe/xe_trace.h
+>> index 6d12fcc13f43..f3ef77e2bcda 100644
+>> --- a/drivers/gpu/drm/xe/xe_trace.h
+>> +++ b/drivers/gpu/drm/xe/xe_trace.h
+>> @@ -515,6 +515,6 @@ TRACE_EVENT(xe_exec_queue_reach_max_job_count,
+>>  /* This part must be outside protection */
+>>  #undef TRACE_INCLUDE_PATH
+>>  #undef TRACE_INCLUDE_FILE
+>> -#define TRACE_INCLUDE_PATH ../../drivers/gpu/drm/xe
+>> +#define TRACE_INCLUDE_PATH .
+>>  #define TRACE_INCLUDE_FILE xe_trace
+>>  #include <trace/define_trace.h>
+>> diff --git a/drivers/gpu/drm/xe/xe_trace_bo.h b/drivers/gpu/drm/xe/xe_trace_bo.h
+>> index 86323cf3be2c..8a687dcf09ba 100644
+>> --- a/drivers/gpu/drm/xe/xe_trace_bo.h
+>> +++ b/drivers/gpu/drm/xe/xe_trace_bo.h
+>> @@ -258,6 +258,6 @@ DEFINE_EVENT(xe_vm, xe_vm_ops_fail,
+>>  /* This part must be outside protection */
+>>  #undef TRACE_INCLUDE_PATH
+>>  #undef TRACE_INCLUDE_FILE
+>> -#define TRACE_INCLUDE_PATH ../../drivers/gpu/drm/xe
+>> +#define TRACE_INCLUDE_PATH .
+>>  #define TRACE_INCLUDE_FILE xe_trace_bo
+>>  #include <trace/define_trace.h>
+>> diff --git a/drivers/gpu/drm/xe/xe_trace_guc.h b/drivers/gpu/drm/xe/xe_trace_guc.h
+>> index 78949db9cfce..aac9eebd4815 100644
+>> --- a/drivers/gpu/drm/xe/xe_trace_guc.h
+>> +++ b/drivers/gpu/drm/xe/xe_trace_guc.h
+>> @@ -154,6 +154,6 @@ TRACE_EVENT(xe_guc_engine_activity,
+>>  /* This part must be outside protection */
+>>  #undef TRACE_INCLUDE_PATH
+>>  #undef TRACE_INCLUDE_FILE
+>> -#define TRACE_INCLUDE_PATH ../../drivers/gpu/drm/xe
+>> +#define TRACE_INCLUDE_PATH .
+>>  #define TRACE_INCLUDE_FILE xe_trace_guc
+>>  #include <trace/define_trace.h>
+>> diff --git a/drivers/gpu/drm/xe/xe_trace_lrc.h b/drivers/gpu/drm/xe/xe_trace_lrc.h
+>> index d525cbee1e34..ada8f97a99e0 100644
+>> --- a/drivers/gpu/drm/xe/xe_trace_lrc.h
+>> +++ b/drivers/gpu/drm/xe/xe_trace_lrc.h
+>> @@ -47,6 +47,6 @@ TRACE_EVENT(xe_lrc_update_timestamp,
+>>  /* This part must be outside protection */
+>>  #undef TRACE_INCLUDE_PATH
+>>  #undef TRACE_INCLUDE_FILE
+>> -#define TRACE_INCLUDE_PATH ../../drivers/gpu/drm/xe
+>> +#define TRACE_INCLUDE_PATH .
+>>  #define TRACE_INCLUDE_FILE xe_trace_lrc
+>>  #include <trace/define_trace.h>
+>
+>-- 
+>Jani Nikula, Intel
