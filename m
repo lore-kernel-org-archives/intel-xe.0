@@ -4,59 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 69EF0E8FDB1
-	for <intel-xe@archiver.kernel.org>; Mon, 29 Dec 2025 11:55:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B7A4AE8FDB1
+	for <intel-xe@archiver.kernel.org>; Mon, 29 Dec 2025 12:01:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1E0C610E41A;
-	Mon, 29 Dec 2025 11:55:12 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ImEfhHa0";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3BABC10E419;
- Mon, 29 Dec 2025 11:55:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1767009311; x=1798545311;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=AjOpUYGrMQ+gn8drwiVxUnM2EvkVbo7SaLydfNdrNg8=;
- b=ImEfhHa0Mi9uRC3oU06Ta6tkEwMq/wKTna9UJ6TU9pKAX9wpsgIL9YPv
- gR2Cu2fgD3ZwsLIZFuMYCjbKWDFCOFMXy4lYBP1JL55z2KaJ4iQJgZPzT
- jMYMWcX0DmpP9rvzqLiTNLfb1AFG05iKYS0Mg1pSRCxh5b7aNKCEFgQY9
- ALSuCPud8+TNC2ZqsMPuXuUFRYZoXLPm4tWCQZBsbTBvWJUAFW8ugUhRg
- d6skNi07m6v7Q/AkM6NMX/2jahHBJrN2lPYPEcOR3rcoBcxqMKv41EDn1
- 5ktYuGo1MF3vxlVyrqOL+x0Viy6VZ9ROJbDRNub/N9Q6O9/n1RlRIXSnw g==;
-X-CSE-ConnectionGUID: 6ZGa/K3UQguJ6qqsmIErPw==
-X-CSE-MsgGUID: j7Y9bEemR/WguWsDMwoKRg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11655"; a="68593164"
-X-IronPort-AV: E=Sophos;i="6.21,185,1763452800"; d="scan'208";a="68593164"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Dec 2025 03:55:11 -0800
-X-CSE-ConnectionGUID: a2sjNROGRq2LuC1fIw1B4A==
-X-CSE-MsgGUID: HdWWEhB/Tem76LoTrIIhdQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,185,1763452800"; d="scan'208";a="201176786"
-Received: from lfiedoro-mobl.ger.corp.intel.com (HELO localhost)
- ([10.245.246.147])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Dec 2025 03:55:08 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Cc: jani.nikula@intel.com, rodrigo.vivi@intel.com,
- ville.syrjala@linux.intel.com
-Subject: [PATCH 3/3] drm/i915/utils: drop unnecessary ifdefs
-Date: Mon, 29 Dec 2025 13:54:45 +0200
-Message-ID: <f40a1fd365cbcfb77bd76ce0041c4523699f6052.1767009044.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <cover.1767009044.git.jani.nikula@intel.com>
-References: <cover.1767009044.git.jani.nikula@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7A17C10E0ED;
+	Mon, 29 Dec 2025 12:01:12 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A736110E0ED;
+ Mon, 29 Dec 2025 12:01:11 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/=7Bi915=2C_xe=7D/disp?=
+ =?utf-8?q?lay=3A_remove_the_-Ddrm=5Fi915=5Fprivate=3Dxe=5Fdevice_hack?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 29 Dec 2025 12:01:11 -0000
+Message-ID: <176700967169.119487.7389439747055946884@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <cover.1767009044.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1767009044.git.jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,73 +36,50 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The i915_utils.h and intel_display_utils.h were in some cases included
-from the same files, the former via i915_drv.h and the latter
-directly. This lead to a clash between MISSING_CASE() and
-fetch_and_zero() defined in both, requiring ifdefs.
+== Series Details ==
 
-With the display dependency on i915_drv.h removed, we can also remove
-the now unnecessary ifdefs.
+Series: drm/{i915, xe}/display: remove the -Ddrm_i915_private=xe_device hack
+URL   : https://patchwork.freedesktop.org/series/159523/
+State : warning
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display_utils.h | 4 ----
- drivers/gpu/drm/i915/i915_utils.h                  | 4 ----
- 2 files changed, 8 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_utils.h b/drivers/gpu/drm/i915/display/intel_display_utils.h
-index 2a18f160320c..affa3179f52c 100644
---- a/drivers/gpu/drm/i915/display/intel_display_utils.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_utils.h
-@@ -9,18 +9,14 @@
- 
- struct intel_display;
- 
--#ifndef MISSING_CASE
- #define MISSING_CASE(x) WARN(1, "Missing case (%s == %ld)\n", \
- 			     __stringify(x), (long)(x))
--#endif
- 
--#ifndef fetch_and_zero
- #define fetch_and_zero(ptr) ({						\
- 	typeof(*ptr) __T = *(ptr);					\
- 	*(ptr) = (typeof(*ptr))0;					\
- 	__T;								\
- })
--#endif
- 
- #define KHz(x) (1000 * (x))
- #define MHz(x) KHz(1000 * (x))
-diff --git a/drivers/gpu/drm/i915/i915_utils.h b/drivers/gpu/drm/i915/i915_utils.h
-index 9e5b7fcadbe2..ecc20e0528f4 100644
---- a/drivers/gpu/drm/i915/i915_utils.h
-+++ b/drivers/gpu/drm/i915/i915_utils.h
-@@ -38,22 +38,18 @@
- 
- struct drm_i915_private;
- 
--#ifndef MISSING_CASE
- #define MISSING_CASE(x) WARN(1, "Missing case (%s == %ld)\n", \
- 			     __stringify(x), (long)(x))
--#endif
- 
- #define i915_probe_error(i915, fmt, ...) ({ \
- 	drm_err(&(i915)->drm, fmt, ##__VA_ARGS__); \
- })
- 
--#ifndef fetch_and_zero
- #define fetch_and_zero(ptr) ({						\
- 	typeof(*ptr) __T = *(ptr);					\
- 	*(ptr) = (typeof(*ptr))0;					\
- 	__T;								\
- })
--#endif
- 
- /*
-  * check_user_mbz: Check that a user value exists and is zero
--- 
-2.47.3
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+99339247d1ae4378b24366da182e712bdc623311
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 2b4f1c009d9f8879b5284defbdaaa98dcaed0d32
+Author: Jani Nikula <jani.nikula@intel.com>
+Date:   Mon Dec 29 13:54:45 2025 +0200
+
+    drm/i915/utils: drop unnecessary ifdefs
+    
+    The i915_utils.h and intel_display_utils.h were in some cases included
+    from the same files, the former via i915_drv.h and the latter
+    directly. This lead to a clash between MISSING_CASE() and
+    fetch_and_zero() defined in both, requiring ifdefs.
+    
+    With the display dependency on i915_drv.h removed, we can also remove
+    the now unnecessary ifdefs.
+    
+    Signed-off-by: Jani Nikula <jani.nikula@intel.com>
++ /mt/dim checkpatch df5d22c1ab5224f7e58dfef51e03f239f25a407f drm-intel
+435614e5f640 drm/i915: drop i915 param from i915_fence{, _context}_timeout()
+496b24349a5f drm/xe: remove compat i915_drv.h and -Ddrm_i915_private=xe_device hack
+-:27: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#27: 
+deleted file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 9 lines checked
+2b4f1c009d9f drm/i915/utils: drop unnecessary ifdefs
+
 
