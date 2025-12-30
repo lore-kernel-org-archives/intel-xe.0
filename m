@@ -4,64 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id ED3EEEE499A
-	for <intel-xe@archiver.kernel.org>; Tue, 30 Dec 2025 19:40:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8CB11EE01F6
+	for <intel-xe@archiver.kernel.org>; Tue, 30 Dec 2025 21:23:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 87B9D10E943;
-	Tue, 30 Dec 2025 19:40:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 38E8910E242;
+	Tue, 30 Dec 2025 21:23:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OjmSXpLh";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JLRZIxM/";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 80D0E10E940;
- Tue, 30 Dec 2025 19:40:31 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EC22B10E242;
+ Tue, 30 Dec 2025 21:23:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1767123631; x=1798659631;
- h=message-id:date:mime-version:from:to:cc:subject:
- content-transfer-encoding;
- bh=ULyoY1Plq1ryLsbHXwylBw8P/lScEJ5zdO+Dj5PItoY=;
- b=OjmSXpLhFHa21a2+93NpoQZ7iH0ZoUb1GMW1CbcWzA5/cPaybvh7QT3h
- jlsxNNtIbZpFPg0sC2XfcdNlIOs9A302fOA3j0x2wPfkS+RLbKi9gOUMy
- QwOOtgX3KR1p9k/TkBWfPu4Fkb9eLClM7jmBwKpuGbOYhFAO2DBlviJ5l
- biaqNe4UJwsVtioDwmS9O0j+YE3CrR9XwfbDAkO9TxSTaLW+G4ZjbX6Gb
- TczKP511pg89humEhy8/AXohlp25pFE35FI13AQ1zbzNpmubFpE610+60
- /FJmdN7u3r6VMubfSIAOK075eMqOtBKXgFKP/gBWVAfrvLJXYg/DKjy5H Q==;
-X-CSE-ConnectionGUID: 0Lmx74FWTpewmGbwQpjm8A==
-X-CSE-MsgGUID: ZWsQEVgIQSGNXyM8ygiOAg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11657"; a="68782207"
-X-IronPort-AV: E=Sophos;i="6.21,189,1763452800"; d="scan'208";a="68782207"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Dec 2025 11:40:31 -0800
-X-CSE-ConnectionGUID: i68HPsv0TZ+glm9uzSoy3g==
-X-CSE-MsgGUID: T/cJdtuJS4GsFR894R0Gnw==
+ t=1767129799; x=1798665799;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=7/SepoqWdjvk/U9ie5TprvDK+meEAIcqeIPVjqa6b/g=;
+ b=JLRZIxM/Im6e5FOu33ETeJLLWXLUuHZ7uQApsKw5yVriY/jdW5A3V838
+ gnRv3XQFBVAzb0qHyKqccUH/PpqU6N9+EniIia3yIBo9o1LsRqY7Q3tlJ
+ K1bsxUXRY5d5a3izKWJ+4OBMQ5RdLSdrKWIsBUy2y5W/tTgn2FkjPn1jD
+ KgbwhoOeG2vxd+kmkG7nOQcpbxJdkbd+5/WR/Oa/0e7XXamxAZPFPAU0+
+ b4Dz9pLtUDCH6H80WIGPSmfnWMrpjpd1yIgpjglpLeLOrF1eahlNRBiTj
+ tgEqPunkBDaFjZn6OByBxt53a4fhSlvgD5I1lHW7z++T33QTQyvAoUpNQ g==;
+X-CSE-ConnectionGUID: rjGSjdukQICOW5zbyjblEQ==
+X-CSE-MsgGUID: CMiCdxL4S7mxMhYix3F6Ig==
+X-IronPort-AV: E=McAfee;i="6800,10657,11657"; a="67910045"
+X-IronPort-AV: E=Sophos;i="6.21,189,1763452800"; d="scan'208";a="67910045"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Dec 2025 13:23:18 -0800
+X-CSE-ConnectionGUID: iilGdmsuQUamLPLsbNRkZg==
+X-CSE-MsgGUID: pg4unHMsTo2Ws+Xueu9rIQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,189,1763452800"; d="scan'208";a="202234718"
-Received: from klitkey1-mobl1.ger.corp.intel.com (HELO [10.245.245.158])
- ([10.245.245.158])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Dec 2025 11:40:27 -0800
-Message-ID: <5506492b-02ca-47bc-8712-51e67f0e4b8b@linux.intel.com>
-Date: Tue, 30 Dec 2025 20:40:25 +0100
+X-IronPort-AV: E=Sophos;i="6.21,189,1763452800"; d="scan'208";a="201546031"
+Received: from igk-lkp-server01.igk.intel.com (HELO 8a0c053bdd2a)
+ ([10.211.93.152])
+ by fmviesa008.fm.intel.com with ESMTP; 30 Dec 2025 13:23:17 -0800
+Received: from kbuild by 8a0c053bdd2a with local (Exim 4.98.2)
+ (envelope-from <lkp@intel.com>) id 1vahBS-0000000081c-4AWG;
+ Tue, 30 Dec 2025 21:23:14 +0000
+Date: Tue, 30 Dec 2025 22:23:00 +0100
+From: kernel test robot <lkp@intel.com>
+To: Suraj Kandpal <suraj.kandpal@intel.com>, intel-xe@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org
+Cc: oe-kbuild-all@lists.linux.dev, ankit.k.nautiyal@intel.com,
+ mika.kahola@intel.com, Suraj Kandpal <suraj.kandpal@intel.com>
+Subject: Re: [PATCH 1/3] drm/i915/cx0: Split PLL enabling/disabling in two
+ parts
+Message-ID: <202512302233.vcqoghOz-lkp@intel.com>
+References: <20251230083142.70064-2-suraj.kandpal@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-To: Simona Vetter <simona.vetter@ffwll.ch>, Dave Airlie <airlied@gmail.com>
-Cc: dim-tools@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Matthew Brost <matthew.brost@intel.com>, Oded Gabbay <ogabbay@kernel.org>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
- <tursulin@ursulin.net>, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>
-Subject: [PULL] drm-misc-fixes
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251230083142.70064-2-suraj.kandpal@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,49 +72,70 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Dave, Simona,
+Hi Suraj,
 
-Last pull request of the year 2025, happy 2026!
+kernel test robot noticed the following build warnings:
 
-Kind regards,
-~Maarten Lankhorst
+[auto build test WARNING on drm-i915/for-linux-next]
+[also build test WARNING on drm-tip/drm-tip]
+[cannot apply to drm-i915/for-linux-next-fixes linus/master v6.19-rc3 next-20251219]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-drm-misc-fixes-2025-12-29:
-drm-misc-fixes for v6.19-rc4:
-- Documentation fixes and MODULE_LICENSE fix for shmem helper.
-- Fix warnings in nouveau prepare_fb().
-- Prevent export of protected objects in imagination driver.
-The following changes since commit 2bfca4fe1f36eb6618e5712a8b5b41433bb6f10b:
+url:    https://github.com/intel-lab-lkp/linux/commits/Suraj-Kandpal/drm-i915-cx0-Split-PLL-enabling-disabling-in-two-parts/20251230-163308
+base:   https://gitlab.freedesktop.org/drm/i915/kernel.git for-linux-next
+patch link:    https://lore.kernel.org/r/20251230083142.70064-2-suraj.kandpal%40intel.com
+patch subject: [PATCH 1/3] drm/i915/cx0: Split PLL enabling/disabling in two parts
+config: x86_64-rhel-9.4-kunit (https://download.01.org/0day-ci/archive/20251230/202512302233.vcqoghOz-lkp@intel.com/config)
+compiler: gcc-14 (Debian 14.2.0-19) 14.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251230/202512302233.vcqoghOz-lkp@intel.com/reproduce)
 
-  drm/panel: visionox-rm69299: Depend on BACKLIGHT_CLASS_DEVICE (2025-12-16 11:28:52 +0100)
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202512302233.vcqoghOz-lkp@intel.com/
 
-are available in the Git repository at:
+All warnings (new ones prefixed by >>):
 
-  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-fixes-2025-12-29
+   In file included from include/linux/bits.h:5,
+                    from include/linux/bitops.h:6,
+                    from include/linux/log2.h:12,
+                    from drivers/gpu/drm/i915/display/intel_cx0_phy.c:6:
+   drivers/gpu/drm/i915/display/intel_cx0_phy.c: In function 'intel_cx0pll_enable_clock':
+>> include/vdso/bits.h:7:33: warning: statement with no effect [-Wunused-value]
+       7 | #define BIT(nr)                 (UL(1) << (nr))
+         |                                 ^
+   drivers/gpu/drm/i915/display/intel_cx0_phy.c:32:33: note: in expansion of macro 'BIT'
+      32 | #define INTEL_CX0_LANE0         BIT(0)
+         |                                 ^~~
+   drivers/gpu/drm/i915/display/intel_cx0_phy.c:3388:43: note: in expansion of macro 'INTEL_CX0_LANE0'
+    3388 |                                           INTEL_CX0_LANE0;
+         |                                           ^~~~~~~~~~~~~~~
+--
+   In file included from include/linux/bits.h:5,
+                    from include/linux/bitops.h:6,
+                    from include/linux/log2.h:12,
+                    from display/intel_cx0_phy.c:6:
+   display/intel_cx0_phy.c: In function 'intel_cx0pll_enable_clock':
+>> include/vdso/bits.h:7:33: warning: statement with no effect [-Wunused-value]
+       7 | #define BIT(nr)                 (UL(1) << (nr))
+         |                                 ^
+   display/intel_cx0_phy.c:32:33: note: in expansion of macro 'BIT'
+      32 | #define INTEL_CX0_LANE0         BIT(0)
+         |                                 ^~~
+   display/intel_cx0_phy.c:3388:43: note: in expansion of macro 'INTEL_CX0_LANE0'
+    3388 |                                           INTEL_CX0_LANE0;
+         |                                           ^~~~~~~~~~~~~~~
 
-for you to fetch changes up to 3fbd97618f49e07e05aad96510e5f2ed22d68809:
 
-  drm/gem-shmem: Fix the MODULE_LICENSE() string (2025-12-21 20:15:36 +0100)
+vim +7 include/vdso/bits.h
 
-----------------------------------------------------------------
-drm-misc-fixes for v6.19-rc4:
-- Documentation fixes and MODULE_LICENSE fix for shmem helper.
-- Fix warnings in nouveau prepare_fb().
-- Prevent export of protected objects in imagination driver.
+3945ff37d2f48d Vincenzo Frascino 2020-03-20  6  
+3945ff37d2f48d Vincenzo Frascino 2020-03-20 @7  #define BIT(nr)			(UL(1) << (nr))
+cbdb1f163af2bb Andy Shevchenko   2022-11-28  8  #define BIT_ULL(nr)		(ULL(1) << (nr))
+3945ff37d2f48d Vincenzo Frascino 2020-03-20  9  
 
-----------------------------------------------------------------
-Alessio Belle (1):
-      drm/imagination: Disallow exporting of PM/FW protected objects
-
-Lyude Paul (1):
-      drm/nouveau/dispnv50: Don't call drm_atomic_get_crtc_state() in prepare_fb
-
-Thomas Zimmermann (2):
-      drm/gem-shmem: Fix typos in documentation
-      drm/gem-shmem: Fix the MODULE_LICENSE() string
-
- drivers/gpu/drm/drm_gem_shmem_helper.c  |  5 +++--
- drivers/gpu/drm/imagination/pvr_gem.c   | 11 +++++++++++
- drivers/gpu/drm/nouveau/dispnv50/atom.h | 13 +++++++++++++
- drivers/gpu/drm/nouveau/dispnv50/wndw.c |  2 +-
- 4 files changed, 28 insertions(+), 3 deletions(-)
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
