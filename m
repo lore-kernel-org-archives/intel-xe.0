@@ -4,126 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1D7B4E92FE2
-	for <intel-xe@archiver.kernel.org>; Mon, 29 Dec 2025 22:07:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5DACFE92FE3
+	for <intel-xe@archiver.kernel.org>; Tue, 30 Dec 2025 01:45:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D079C89220;
-	Mon, 29 Dec 2025 22:07:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CF64D10E7A5;
+	Tue, 30 Dec 2025 01:45:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=broadcom.com header.i=@broadcom.com header.b="FRaKcR0g";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jiClDVtZ";
 	dkim-atps=neutral
-Received: from mail-pj1-f100.google.com (mail-pj1-f100.google.com
- [209.85.216.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 531CE89220
- for <intel-xe@lists.freedesktop.org>; Mon, 29 Dec 2025 22:07:06 +0000 (UTC)
-Received: by mail-pj1-f100.google.com with SMTP id
- 98e67ed59e1d1-34c3cb504efso10868600a91.2
- for <intel-xe@lists.freedesktop.org>; Mon, 29 Dec 2025 14:07:06 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1767046026; x=1767650826;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:dkim-signature:x-gm-gg:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=UwzcNp2HYOV4Z1mSXVXCsNd5TObEfxUddJJZvW7JJZk=;
- b=XvVU8GRdV0dknYurNSJXY08kUgeMmYOCULo26hbTmWg25B57Y8B0D4S95HamTkSTPt
- Zlk//MM+CE7LIlxRjN1mfEJm67EOpyGWdYxlV3TPHQOYU3pGbc+MUDX4VUxszZgWAjdw
- 0+6S/q2eV+3UE3OB+WwOPQngaOfKT7wRvL7Wj/Xe4duU7tInJIz8p4Zxg7DkfC2ewpDp
- 9lSTsQNJX8H+vNbQIQEEBRnG+0np3X2C5LFek2SfkhkE5g3ghCxXvawOaTwSVTM5bg+C
- ydoUervUqiWXlEIFS6hS58M9BjsKLbyTZEM0zBq238ditbq+yleuYGZqMT1fieepr7wM
- pN7Q==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWYI2nRSJsNrOuU2h70TqdFCNCsHWcAylxbYBfm44xGbHoMkrbvTo+IBfp2ZNlWiQ1f47mKuXN/mA==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyThTkGNwLKisih2Lq8NySc4Kj8ybbhWzvsIqzbLwTLlRfs5SmV
- xpM0lhmogel77xDY4O+ATwKwdBDGH/MCluH4sftyBI0oUN4qxiHAALCuP/IsDQddM99SHpZajCh
- To28bnkXIHr/7vkpsMP7KiA0nya3NQt4f+Rpk5LJtuqP+lnB8eReF2lRDuSyU8MthhoHxfVp62+
- yR18qyST65VSZwD+fyhci7vuYXlXDEsLFKc0JBKzKIJjQlOXd8YpLeTOFT9PFT7sjS91n5VPpQQ
- 9n7FAESyHjqGN9y/gQ=
-X-Gm-Gg: AY/fxX5czx0J+59oaWb1nsRdAejRJ9QtxWNyDQ0OqCB02oOT+KcSHQk+PYSAyxXqg1E
- u1xAQsNV/zY5szxcbdaLs5yI1g980B+hU97Xi1tKWPVcQX4muaFIci8Q4uluzZ4ByaqULlAi4hD
- ZkPYvz1dHv8nFNtCeeZc0zKw1AHAG55XMLkZ4xTHB7emy27AsshJMqpG87dULGuGcKUhfic023s
- 3qxM/d7ILi+ce8AA3lZG5iX7LHaK+CPddBF8Ot4y/WulJpGq8TIYuepLWv0rRYBnFpmn6U+7gI1
- imbU9uqaAkhpxEQb2o2VnxxiiSNhmzFkL1Gr6XoB5vhMlzrgo+vLmd+Gtx/0H2LDvLov7F5NxHq
- 8Xd3J3tYgBMAEqbhGtKh41ECwY6QedT3VbpGmIsyNa7ZMuHHwJmwN7nyRNyJvWg6DLaaLqc60gW
- lgzr/ONVYbaN+vPgjqQ8Yxhc9l0+se+1QfWjBTmYaQZZde
-X-Google-Smtp-Source: AGHT+IEPdx7Bc+puiFxfDmTEo7F3lVfJxXIjHuP4v2ksg1iyrPC9J/e+EwnDexVZ9EL8roDmdhfepEOMmpsC
-X-Received: by 2002:a17:90b:1fc7:b0:335:2eef:4ca8 with SMTP id
- 98e67ed59e1d1-34e921e9f46mr26425774a91.33.1767046025723; 
- Mon, 29 Dec 2025 14:07:05 -0800 (PST)
-Received: from smtp-us-east1-p01-i01-si01.dlp.protect.broadcom.com
- (address-144-49-247-117.dlp.protect.broadcom.com. [144.49.247.117])
- by smtp-relay.gmail.com with ESMTPS id
- 98e67ed59e1d1-34e70d4d0f0sm4449351a91.2.2025.12.29.14.07.05
- for <intel-xe@lists.freedesktop.org>
- (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Mon, 29 Dec 2025 14:07:05 -0800 (PST)
-X-Relaying-Domain: broadcom.com
-X-CFilter-Loop: Reflected
-Received: by mail-qt1-f198.google.com with SMTP id
- d75a77b69052e-4ee0995fa85so285531141cf.1
- for <intel-xe@lists.freedesktop.org>; Mon, 29 Dec 2025 14:07:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=broadcom.com; s=google; t=1767046024; x=1767650824;
- darn=lists.freedesktop.org; 
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=UwzcNp2HYOV4Z1mSXVXCsNd5TObEfxUddJJZvW7JJZk=;
- b=FRaKcR0gPMBUVwuog0aarnuJmP/2S3CricO6N9nvEqWUObcDO0zDfiurFZPSU3/gnC
- 0kosm3PkxZEOJMvKCRVyZyAGRsYP4K09SxODODpRU3NLuZ1m8Ae1CIp+ckyGCuXkrhqx
- Pu57n1oUquf3gxYAz/xqyoM5YbmUVwt7E/zSM=
-X-Forwarded-Encrypted: i=1;
- AJvYcCUmUm/N4udFNrsOhl0/grZU5Tm6mrYDp4MMZC1gI/rkIN6U2NAmTFvYinZ/TE3JbQpLAIJ4t1hfdg==@lists.freedesktop.org
-X-Received: by 2002:a05:6214:428e:b0:88a:3681:1d96 with SMTP id
- 6a1803df08f44-88d881b984fmr478636126d6.63.1767045551438; 
- Mon, 29 Dec 2025 13:59:11 -0800 (PST)
-X-Received: by 2002:a05:6214:428e:b0:88a:3681:1d96 with SMTP id
- 6a1803df08f44-88d881b984fmr478635666d6.63.1767045550918; 
- Mon, 29 Dec 2025 13:59:10 -0800 (PST)
-Received: from localhost.localdomain
- (pool-173-49-113-140.phlapa.fios.verizon.net. [173.49.113.140])
- by smtp.gmail.com with ESMTPSA id
- 6a1803df08f44-88d9759f164sm231530026d6.24.2025.12.29.13.59.09
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 29 Dec 2025 13:59:10 -0800 (PST)
-From: Zack Rusin <zack.rusin@broadcom.com>
-To: dri-devel@lists.freedesktop.org
-Cc: Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org,
- Ard Biesheuvel <ardb@kernel.org>, Ce Sun <cesun102@amd.com>,
- Chia-I Wu <olvaffe@gmail.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Danilo Krummrich <dakr@kernel.org>, Dave Airlie <airlied@redhat.com>,
- Deepak Rawat <drawat.floss@gmail.com>,
- Dmitry Osipenko <dmitry.osipenko@collabora.com>,
- Gerd Hoffmann <kraxel@redhat.com>,
- Gurchetan Singh <gurchetansingh@chromium.org>,
- Hans de Goede <hansg@kernel.org>, Hawking Zhang <Hawking.Zhang@amd.com>,
- Helge Deller <deller@gmx.de>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, Jani Nikula <jani.nikula@linux.intel.com>,
- Javier Martinez Canillas <javierm@redhat.com>,
- Jocelyn Falempe <jfalempe@redhat.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Lijo Lazar <lijo.lazar@amd.com>, linux-efi@vger.kernel.org,
- linux-fbdev@vger.kernel.org, linux-hyperv@vger.kernel.org,
- linux-kernel@vger.kernel.org, Lucas De Marchi <lucas.demarchi@intel.com>,
- Lyude Paul <lyude@redhat.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- "Mario Limonciello (AMD)" <superm1@kernel.org>,
- Mario Limonciello <mario.limonciello@amd.com>,
- Maxime Ripard <mripard@kernel.org>, nouveau@lists.freedesktop.org,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Simona Vetter <simona@ffwll.ch>,
- spice-devel@lists.freedesktop.org,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, virtualization@lists.linux.dev,
- Vitaly Prosyak <vitaly.prosyak@amd.com>
-Subject: [PATCH 00/12] Recover sysfb after DRM probe failure
-Date: Mon, 29 Dec 2025 16:58:06 -0500
-Message-ID: <20251229215906.3688205-1-zack.rusin@broadcom.com>
-X-Mailer: git-send-email 2.48.1
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 997D410E7A5
+ for <intel-xe@lists.freedesktop.org>; Tue, 30 Dec 2025 01:45:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1767059110; x=1798595110;
+ h=date:from:to:cc:subject:message-id:mime-version;
+ bh=156xh75pJf4Ky6te+aTxq/F0T3iBkE7HYRpyGjDEjew=;
+ b=jiClDVtZ5z+wSqZi74VYKVVrGqD12s0hYIDgvEc2L4KjtdaTcC7Sstfn
+ CYYW9u2yWpTFDBlKUAW9naEW5vE4usPoM8f0FUYF6dmQdC0y7HUlfGcpa
+ asxfeZ8Wgcl4t5ddT3tukwZUWTGvqUK9CfjrfxNUeV8lqDMGBdJxmvYLs
+ pmRbnPk1dIsWkuih9oQRtYV+Xs0BxsjQ2rfGPGf46//M6rga2S2rSy+UU
+ ELrw1z4Fr+ip+xYke8o0p71K0cLs1ePq3ccRuvctIvs9w5euwnnTBZj+Q
+ 0mpZxcZfduTpmWyjLw+eHREipr3c++Dqqy37m3u0JH4S/geHR7QjWZXl9 A==;
+X-CSE-ConnectionGUID: tI1CrYu7T/uSCpqWf/NruQ==
+X-CSE-MsgGUID: wN9hzwy5SGua4Ix8TSny9Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11656"; a="68551561"
+X-IronPort-AV: E=Sophos;i="6.21,187,1763452800"; d="scan'208";a="68551561"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Dec 2025 17:45:10 -0800
+X-CSE-ConnectionGUID: ONhZkeUeTdak3oExD5NTFw==
+X-CSE-MsgGUID: Ud6xeXUpSKSZGiXNXQgpIA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,187,1763452800"; d="scan'208";a="231748962"
+Received: from lkp-server02.sh.intel.com (HELO dd3453e2b682) ([10.239.97.151])
+ by orviesa002.jf.intel.com with ESMTP; 29 Dec 2025 17:45:08 -0800
+Received: from kbuild by dd3453e2b682 with local (Exim 4.98.2)
+ (envelope-from <lkp@intel.com>) id 1vaOnK-000000008Bd-2k2B;
+ Tue, 30 Dec 2025 01:45:06 +0000
+Date: Tue, 30 Dec 2025 09:44:49 +0800
+From: kernel test robot <lkp@intel.com>
+To: "Thomas =?utf-8?Q?Hellstr=C3=B6m"?= <thomas.hellstrom@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Subject: [drm-xe:drm-xe-fixes] BUILD SUCCESS
+ bed2a6bd20681aacfb063015c1edfab6f58a333e
+Message-ID: <202512300944.0u82dlWw-lkp@intel.com>
+User-Agent: s-nail v14.9.25
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-DetectorID-Processed: b00c1d49-9d2e-4205-b15f-d015386d3d5e
+Content-Type: text/plain; charset=us-ascii
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -138,119 +66,177 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Almost a rite of passage for every DRM developer and most Linux users
-is upgrading your DRM driver/updating boot flags/changing some config
-and having DRM driver fail at probe resulting in a blank screen.
+tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-fixes
+branch HEAD: bed2a6bd20681aacfb063015c1edfab6f58a333e  drm/xe/guc: READ/WRITE_ONCE g2h_fence->done
 
-Currently there's no way to recover from DRM driver probe failure. PCI
-DRM driver explicitly throw out the existing sysfb to get exclusive
-access to PCI resources so if the probe fails the system is left without
-a functioning display driver.
+elapsed time: 891m
 
-Add code to sysfb to recever system framebuffer when DRM driver's probe
-fails. This means that a DRM driver that fails to load reloads the system
-framebuffer driver.
+configs tested: 158
+configs skipped: 2
 
-This works best with simpledrm. Without it Xorg won't recover because
-it still tries to load the vendor specific driver which ends up usually
-not working at all. With simpledrm the system recovers really nicely
-ending up with a working console and not a blank screen.
+The following configs have been built successfully.
+More configs may be tested in the coming days.
 
-There's a caveat in that some hardware might require some special magic
-register write to recover EFI display. I'd appreciate it a lot if
-maintainers could introduce a temporary failure in their drivers
-probe to validate that the sysfb recovers and they get a working console.
-The easiest way to double check it is by adding:
- /* XXX: Temporary failure to test sysfb restore - REMOVE BEFORE COMMIT */
- dev_info(&pdev->dev, "Testing sysfb restore: forcing probe failure\n");
- ret = -EINVAL;
- goto out_error;
-or such right after the devm_aperture_remove_conflicting_pci_devices .
+tested configs:
+alpha                             allnoconfig    gcc-15.1.0
+alpha                            allyesconfig    gcc-15.1.0
+alpha                               defconfig    gcc-15.1.0
+arc                              allmodconfig    gcc-15.1.0
+arc                               allnoconfig    gcc-15.1.0
+arc                              allyesconfig    gcc-15.1.0
+arc                                 defconfig    gcc-15.1.0
+arc                   randconfig-001-20251229    gcc-13.4.0
+arc                   randconfig-002-20251229    gcc-8.5.0
+arm                               allnoconfig    clang-22
+arm                              allyesconfig    gcc-15.1.0
+arm                        clps711x_defconfig    clang-22
+arm                          collie_defconfig    gcc-15.1.0
+arm                                 defconfig    clang-22
+arm                      jornada720_defconfig    clang-22
+arm                   randconfig-001-20251229    gcc-15.1.0
+arm                   randconfig-002-20251229    gcc-12.5.0
+arm                   randconfig-003-20251229    clang-22
+arm                   randconfig-004-20251229    gcc-15.1.0
+arm                        realview_defconfig    clang-16
+arm                        spear6xx_defconfig    clang-22
+arm64                            allmodconfig    clang-19
+arm64                             allnoconfig    gcc-15.1.0
+arm64                               defconfig    gcc-15.1.0
+arm64                 randconfig-001-20251229    clang-22
+arm64                 randconfig-002-20251229    clang-22
+arm64                 randconfig-003-20251229    gcc-10.5.0
+arm64                 randconfig-004-20251229    gcc-9.5.0
+csky                             allmodconfig    gcc-15.1.0
+csky                              allnoconfig    gcc-15.1.0
+csky                                defconfig    gcc-15.1.0
+csky                  randconfig-001-20251229    gcc-15.1.0
+csky                  randconfig-002-20251229    gcc-15.1.0
+hexagon                          allmodconfig    clang-17
+hexagon                           allnoconfig    clang-22
+hexagon                             defconfig    clang-22
+hexagon               randconfig-001-20251229    clang-22
+hexagon               randconfig-002-20251229    clang-22
+i386                             allmodconfig    gcc-14
+i386                              allnoconfig    gcc-14
+i386                             allyesconfig    gcc-14
+i386        buildonly-randconfig-001-20251229    clang-20
+i386        buildonly-randconfig-002-20251229    gcc-14
+i386        buildonly-randconfig-003-20251229    gcc-13
+i386        buildonly-randconfig-004-20251229    clang-20
+i386        buildonly-randconfig-005-20251229    gcc-14
+i386        buildonly-randconfig-006-20251229    gcc-14
+i386                                defconfig    clang-20
+i386                  randconfig-001-20251229    gcc-14
+i386                  randconfig-002-20251229    clang-20
+i386                  randconfig-003-20251229    clang-20
+i386                  randconfig-004-20251229    clang-20
+i386                  randconfig-005-20251229    clang-20
+i386                  randconfig-006-20251229    clang-20
+i386                  randconfig-007-20251229    clang-20
+i386                  randconfig-011-20251229    gcc-14
+i386                  randconfig-012-20251229    gcc-14
+i386                  randconfig-013-20251229    gcc-14
+i386                  randconfig-014-20251229    gcc-14
+loongarch                        allmodconfig    clang-19
+loongarch                         allnoconfig    clang-22
+loongarch                           defconfig    clang-19
+loongarch             randconfig-001-20251229    clang-18
+loongarch             randconfig-002-20251229    clang-18
+m68k                             allmodconfig    gcc-15.1.0
+m68k                              allnoconfig    gcc-15.1.0
+m68k                             allyesconfig    gcc-15.1.0
+m68k                                defconfig    gcc-15.1.0
+microblaze                        allnoconfig    gcc-15.1.0
+microblaze                       allyesconfig    gcc-15.1.0
+microblaze                          defconfig    gcc-15.1.0
+mips                             allmodconfig    gcc-15.1.0
+mips                              allnoconfig    gcc-15.1.0
+mips                             allyesconfig    gcc-15.1.0
+mips                     decstation_defconfig    gcc-15.1.0
+nios2                            allmodconfig    gcc-11.5.0
+nios2                             allnoconfig    gcc-11.5.0
+nios2                               defconfig    gcc-11.5.0
+nios2                 randconfig-001-20251229    gcc-11.5.0
+nios2                 randconfig-002-20251229    gcc-11.5.0
+openrisc                         allmodconfig    gcc-15.1.0
+openrisc                          allnoconfig    gcc-15.1.0
+openrisc                            defconfig    gcc-15.1.0
+parisc                           allmodconfig    gcc-15.1.0
+parisc                            allnoconfig    gcc-15.1.0
+parisc                           allyesconfig    gcc-15.1.0
+parisc                              defconfig    gcc-15.1.0
+parisc                randconfig-001-20251229    gcc-13.4.0
+parisc                randconfig-002-20251229    gcc-13.4.0
+parisc64                            defconfig    gcc-15.1.0
+powerpc                          allmodconfig    gcc-15.1.0
+powerpc                           allnoconfig    gcc-15.1.0
+powerpc                    mvme5100_defconfig    gcc-15.1.0
+powerpc               randconfig-001-20251229    gcc-12.5.0
+powerpc               randconfig-002-20251229    clang-18
+powerpc64             randconfig-001-20251229    clang-20
+powerpc64             randconfig-002-20251229    clang-22
+riscv                            allmodconfig    clang-22
+riscv                             allnoconfig    gcc-15.1.0
+riscv                            allyesconfig    clang-16
+riscv                               defconfig    clang-22
+s390                             allmodconfig    clang-18
+s390                              allnoconfig    clang-22
+s390                             allyesconfig    gcc-15.1.0
+s390                                defconfig    clang-22
+sh                               allmodconfig    gcc-15.1.0
+sh                                allnoconfig    gcc-15.1.0
+sh                               allyesconfig    gcc-15.1.0
+sh                                  defconfig    gcc-15.1.0
+sparc                             allnoconfig    gcc-15.1.0
+sparc                               defconfig    gcc-15.1.0
+sparc                 randconfig-001-20251229    gcc-13.4.0
+sparc                 randconfig-002-20251229    gcc-15.1.0
+sparc64                          allmodconfig    clang-22
+sparc64                             defconfig    clang-20
+sparc64               randconfig-001-20251229    clang-20
+sparc64               randconfig-002-20251229    gcc-8.5.0
+um                               allmodconfig    clang-19
+um                                allnoconfig    clang-22
+um                               allyesconfig    gcc-14
+um                                  defconfig    clang-22
+um                             i386_defconfig    gcc-14
+um                    randconfig-001-20251229    gcc-14
+um                    randconfig-002-20251229    clang-22
+um                           x86_64_defconfig    clang-22
+x86_64                           allmodconfig    clang-20
+x86_64                            allnoconfig    clang-20
+x86_64                           allyesconfig    clang-20
+x86_64      buildonly-randconfig-001-20251229    clang-20
+x86_64      buildonly-randconfig-002-20251229    clang-20
+x86_64      buildonly-randconfig-003-20251229    gcc-14
+x86_64      buildonly-randconfig-004-20251229    clang-20
+x86_64      buildonly-randconfig-005-20251229    gcc-14
+x86_64      buildonly-randconfig-006-20251229    gcc-13
+x86_64                              defconfig    gcc-14
+x86_64                randconfig-001-20251230    gcc-14
+x86_64                randconfig-002-20251230    clang-20
+x86_64                randconfig-003-20251230    clang-20
+x86_64                randconfig-004-20251230    clang-20
+x86_64                randconfig-005-20251230    clang-20
+x86_64                randconfig-006-20251230    gcc-14
+x86_64                randconfig-011-20251229    clang-20
+x86_64                randconfig-012-20251229    gcc-14
+x86_64                randconfig-013-20251229    clang-20
+x86_64                randconfig-014-20251229    clang-20
+x86_64                randconfig-015-20251229    clang-20
+x86_64                randconfig-016-20251229    gcc-14
+x86_64                randconfig-071-20251229    clang-20
+x86_64                randconfig-072-20251229    gcc-14
+x86_64                randconfig-073-20251229    gcc-13
+x86_64                randconfig-074-20251229    clang-20
+x86_64                randconfig-075-20251229    clang-20
+x86_64                randconfig-076-20251229    clang-20
+x86_64                          rhel-9.4-rust    clang-20
+xtensa                            allnoconfig    gcc-15.1.0
+xtensa                           allyesconfig    gcc-15.1.0
+xtensa                randconfig-001-20251229    gcc-8.5.0
+xtensa                randconfig-002-20251229    gcc-15.1.0
 
-Cc: Alex Deucher <alexander.deucher@amd.com>
-Cc: amd-gfx@lists.freedesktop.org
-Cc: Ard Biesheuvel <ardb@kernel.org>
-Cc: Ce Sun <cesun102@amd.com>
-Cc: Chia-I Wu <olvaffe@gmail.com>
-Cc: "Christian König" <christian.koenig@amd.com>
-Cc: Danilo Krummrich <dakr@kernel.org>
-Cc: Dave Airlie <airlied@redhat.com>
-Cc: Deepak Rawat <drawat.floss@gmail.com>
-Cc: Dmitry Osipenko <dmitry.osipenko@collabora.com>
-Cc: dri-devel@lists.freedesktop.org
-Cc: Gerd Hoffmann <kraxel@redhat.com>
-Cc: Gurchetan Singh <gurchetansingh@chromium.org>
-Cc: Hans de Goede <hansg@kernel.org>
-Cc: Hawking Zhang <Hawking.Zhang@amd.com>
-Cc: Helge Deller <deller@gmx.de>
-Cc: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
-Cc: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: Javier Martinez Canillas <javierm@redhat.com>
-Cc: Jocelyn Falempe <jfalempe@redhat.com>
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: Lijo Lazar <lijo.lazar@amd.com>
-Cc: linux-efi@vger.kernel.org
-Cc: linux-fbdev@vger.kernel.org
-Cc: linux-hyperv@vger.kernel.org
-Cc: linux-kernel@vger.kernel.org
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Lyude Paul <lyude@redhat.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Cc: "Mario Limonciello (AMD)" <superm1@kernel.org>
-Cc: Mario Limonciello <mario.limonciello@amd.com>
-Cc: Maxime Ripard <mripard@kernel.org>
-Cc: nouveau@lists.freedesktop.org
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Simona Vetter <simona@ffwll.ch>
-Cc: spice-devel@lists.freedesktop.org
-Cc: "Thomas Hellström" <thomas.hellstrom@linux.intel.com>
-Cc: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: "Timur Kristóf" <timur.kristof@gmail.com>
-Cc: Tvrtko Ursulin <tursulin@ursulin.net>
-Cc: virtualization@lists.linux.dev
-Cc: Vitaly Prosyak <vitaly.prosyak@amd.com>
-
-Zack Rusin (12):
-  video/aperture: Add sysfb restore on DRM probe failure
-  drm/vmwgfx: Use devm aperture helpers for sysfb restore on probe
-    failure
-  drm/xe: Use devm aperture helpers for sysfb restore on probe failure
-  drm/amdgpu: Use devm aperture helpers for sysfb restore on probe
-    failure
-  drm/virtio: Add sysfb restore on probe failure
-  drm/nouveau: Use devm aperture helpers for sysfb restore on probe
-    failure
-  drm/qxl: Use devm aperture helpers for sysfb restore on probe failure
-  drm/vboxvideo: Use devm aperture helpers for sysfb restore on probe
-    failure
-  drm/hyperv: Add sysfb restore on probe failure
-  drm/ast: Use devm aperture helpers for sysfb restore on probe failure
-  drm/radeon: Use devm aperture helpers for sysfb restore on probe
-    failure
-  drm/i915: Use devm aperture helpers for sysfb restore on probe failure
-
- drivers/firmware/efi/sysfb_efi.c           |   2 +-
- drivers/firmware/sysfb.c                   | 191 +++++++++++++--------
- drivers/firmware/sysfb_simplefb.c          |  10 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c |   9 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c    |   7 +
- drivers/gpu/drm/ast/ast_drv.c              |  13 +-
- drivers/gpu/drm/hyperv/hyperv_drm_drv.c    |  23 +++
- drivers/gpu/drm/i915/i915_driver.c         |  13 +-
- drivers/gpu/drm/nouveau/nouveau_drm.c      |  16 +-
- drivers/gpu/drm/qxl/qxl_drv.c              |  14 +-
- drivers/gpu/drm/radeon/radeon_drv.c        |  15 +-
- drivers/gpu/drm/vboxvideo/vbox_drv.c       |  13 +-
- drivers/gpu/drm/virtio/virtgpu_drv.c       |  29 ++++
- drivers/gpu/drm/vmwgfx/vmwgfx_drv.c        |  13 +-
- drivers/gpu/drm/xe/xe_device.c             |   7 +-
- drivers/gpu/drm/xe/xe_pci.c                |   7 +
- drivers/video/aperture.c                   |  54 ++++++
- include/linux/aperture.h                   |  14 ++
- include/linux/sysfb.h                      |   6 +
- 19 files changed, 368 insertions(+), 88 deletions(-)
-
--- 
-2.48.1
-
+--
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
