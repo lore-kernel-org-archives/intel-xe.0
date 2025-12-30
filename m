@@ -4,59 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 860CDEE0214
-	for <intel-xe@archiver.kernel.org>; Tue, 30 Dec 2025 15:29:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A832FEE0215
+	for <intel-xe@archiver.kernel.org>; Tue, 30 Dec 2025 15:43:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1041F10E913;
-	Tue, 30 Dec 2025 15:29:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3F23510E522;
+	Tue, 30 Dec 2025 15:43:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JM4haG3V";
+	dkim=pass (2048-bit key; unprotected) header.d=suse.com header.i=@suse.com header.b="NNXqtuFH";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D41C210E911;
- Tue, 30 Dec 2025 15:29:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1767108572; x=1798644572;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=BRydKcpDs26YemeA6M/dtOc/vy7KuqT8LiQy/2JTKio=;
- b=JM4haG3VX1EYPLw9vYX5+2ejHnbKrV9GcfHJSFfoK/+hcpNwECwiLf20
- zWf4C+5M5NnBTGAEINBjBuFkwHP2ZtKPMKxuHipjmWANSvc01fD9JMQnk
- /h7Gxk3sluFzly33ZSFqk4uApe9AHhoFNjm+Nk6ruegGDYGiiipDrVxFd
- rHbsxNwknuqoOxk+VZWNl+EbZskqn2r+TDEnYT0GzxIudBu7902OXc0QC
- zP3xfqH1k0f3pcZP6p9tp1xbBw6wshETxbg6FejsBdgGgRxIwSWALsPnG
- EL0X+EX3X931iumRVh1k9iOTmRDyLwAG8LRu6OjS413Il3zKp44EXwcaj g==;
-X-CSE-ConnectionGUID: JxydWfFoQQy00qFM2S9Pcg==
-X-CSE-MsgGUID: /W8glLOrSUmK7UkaHqggEA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11657"; a="80069206"
-X-IronPort-AV: E=Sophos;i="6.21,189,1763452800"; d="scan'208";a="80069206"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Dec 2025 07:29:31 -0800
-X-CSE-ConnectionGUID: chDeC9WoTxuiC0TH6bDxVw==
-X-CSE-MsgGUID: NImSVSHIQ1ut6pqR4WoH2g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,189,1763452800"; d="scan'208";a="201493818"
-Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.246.171])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Dec 2025 07:29:29 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Suraj Kandpal <suraj.kandpal@intel.com>, intel-xe@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org
-Cc: ankit.k.nautiyal@intel.com, mika.kahola@intel.com, Suraj Kandpal
- <suraj.kandpal@intel.com>
-Subject: Re: [PATCH 3/3] drm/i915/cx0: Clear response ready & error bit
-In-Reply-To: <20251230083142.70064-4-suraj.kandpal@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20251230083142.70064-1-suraj.kandpal@intel.com>
- <20251230083142.70064-4-suraj.kandpal@intel.com>
-Date: Tue, 30 Dec 2025 17:29:25 +0200
-Message-ID: <9cc99447d45269c91b9d7cb43a07dd829f6f7c95@intel.com>
+Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com
+ [209.85.167.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 15AB210E919
+ for <intel-xe@lists.freedesktop.org>; Tue, 30 Dec 2025 15:43:04 +0000 (UTC)
+Received: by mail-lf1-f52.google.com with SMTP id
+ 2adb3069b0e04-595825c8eb3so10216678e87.0
+ for <intel-xe@lists.freedesktop.org>; Tue, 30 Dec 2025 07:43:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=suse.com; s=google; t=1767109382; x=1767714182; darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=UuyGl/AZyQjVQCbBt2jNVWaKpqTC2aRWnYus6/cTMyo=;
+ b=NNXqtuFHhX/RciLxSOU8WO4NWw9X6Oiy1WcU9FuKWNI1GDSUKGW/r09fmf3vPADu2i
+ qWEtnAVpnHcJSXR0wGd/ek7cwwx9HelwbSoIAzO0McW9dCVacFtf6LMKOvHSXQlSRM+s
+ 39zX/VGqWlBRwBd5Hsjl6UVP1mte7aU3xNs5FLqBKmbfXK2waZAvJRszJwuvx5vdny1t
+ IsoNaHneiwn6CTUDkp15jjO1U+J1omxxu2PHIkI0WkimQak2KM5t1yF4iMqZCp1lorMF
+ LfZBsX5jIoYcIARzGPCp0AgXwQC3EboYxDNuDBB/cYR5UFtRooDT/5NTByClKJn/F9eA
+ A0kw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1767109382; x=1767714182;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=UuyGl/AZyQjVQCbBt2jNVWaKpqTC2aRWnYus6/cTMyo=;
+ b=Yds/Er48Z1QDmBOvsY5VD+zJpL3EM8wLjnOHBWq5w3ut6H7oBBhGDT2+6amAy/5xOP
+ wlJ89HuSsg9I6cjlyc+CRFkn8/MLUJZzXYvX596wLLxCf5Tpx2UUA4lfl8MSmDK08Qnz
+ SD2chJ8cVwPH5oBcd0K1MMtqXFQOMsFH73PBSysE+7U1krP0hPWCz7hClVt4U/Fd1TI4
+ 5FeOOY2Bf614GZ6CLEpADPeoDY7Le/rkkWh0ZcXtzZjITCnwYAFhwIZGFX3ZTsuV1aom
+ +pj7u9U1vGdhO8TAGBfyFTr890vAA1GCmhXZ+s2grcC4tnB96UZud0i90yskCFBEyP0C
+ mL2g==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCXR7xAsUyZPZqLmmgzq85FTFawk/t76YRVIJkg5E7v6k8LR/OWJgez62gj2/bhgC6bhSR+4+uEzdQ==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yz+CSi/Hs61h+CumNcb9M7YmSVZTug8CmEKoi6sUMKpGwv8A+99
+ nSJxWwuD6lOxh0+WBgfbZMYSM7/t0U8K2OTmtW3Fy+IsAkghG67/T0IN2UbglJ9u3FzRX2ICTNw
+ tHsYBf1xfI4nT1BwNJey+lgwrrhyR8vQJHBkJiaOcDQ==
+X-Gm-Gg: AY/fxX7zdo9m98wpQWR9ykavgX1uOS5jeKdBYre6+WujHsd0WF1PO8l1FSm5Rnkaeii
+ VR17OOwtxTeDqiqUQ9LxuF7Tt7EqcoeTJNTLyZlJnulvITNwyDdBFwBO7bz6EPyoqLX+4XkA+u9
+ rv/klUlFTTF6+y40759Jx03/nXze8ADkZNOMgf9vpTfy1DMBdgqWkRbh8qz5JS3q8F3SnuiQK4K
+ Pvy9IZj58x8V04J9Ezk5KEwJtd8Y8npSzqsdYGgc/PHMMfov3yQ7ejNDzontbxpB1oQGdp7DoIB
+ YxWgppskHYSCN43rNm2GACtb1IQa
+X-Google-Smtp-Source: AGHT+IEiOszR/dmQ0W8nUyVU4uBq5XZYn2gxKvCzyxC/HCbTuL0COEdCVgq6omNZBz4cUy/uqnELRTwGsOtKMT1/IoE=
+X-Received: by 2002:a05:6512:1591:b0:595:8350:5812 with SMTP id
+ 2adb3069b0e04-59a17d4c7b9mr9199283e87.36.1767109382190; Tue, 30 Dec 2025
+ 07:43:02 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain
+References: <20251224160026.124106-1-marco.crivellari@suse.com>
+ <aUwwunqiFw3YdKUo@lstrano-desk.jf.intel.com>
+In-Reply-To: <aUwwunqiFw3YdKUo@lstrano-desk.jf.intel.com>
+From: Marco Crivellari <marco.crivellari@suse.com>
+Date: Tue, 30 Dec 2025 16:42:51 +0100
+X-Gm-Features: AQt7F2poId7AdIkEB8ZF9b6jvFxVwtgIxfRSZm5wlbmusfrccxCifnR4zP7eTFs
+Message-ID: <CAAofZF7H_sPKh=oG7C=fN-mtevZjZ038DjOL0rwDVuOib9p4Dw@mail.gmail.com>
+Subject: Re: [PATCH] drm/xe: Replace use of system_wq with system_percpu_wq
+To: Matthew Brost <matthew.brost@intel.com>
+Cc: linux-kernel@vger.kernel.org, intel-xe@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, Tejun Heo <tj@kernel.org>, 
+ Lai Jiangshan <jiangshanlai@gmail.com>,
+ Frederic Weisbecker <frederic@kernel.org>, 
+ Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
+ Michal Hocko <mhocko@suse.com>, 
+ Lucas De Marchi <lucas.demarchi@intel.com>, 
+ Thomas Hellstrom <thomas.hellstrom@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,48 +93,64 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 30 Dec 2025, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
-> Clear the response ready and error bit of PORT_P2M_MESSAGE_BUS_STATUS
-> before writing the transaction pending bit of
-> PORT_M2P_MSGBUS_CTL as that is a hard requirement. If not done
-> we find that the PHY hangs since it ends up in a weird state if left
-> idle for more than 1 hour.
+On Wed, Dec 24, 2025 at 7:28=E2=80=AFPM Matthew Brost <matthew.brost@intel.=
+com> wrote:
+> [...]
+> >  drivers/gpu/drm/xe/xe_tlb_inval.c | 6 +++---
+> >  1 file changed, 3 insertions(+), 3 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/xe/xe_tlb_inval.c b/drivers/gpu/drm/xe/xe_=
+tlb_inval.c
+> > index 918a59e686ea..b2cf6e17fbc5 100644
+> > --- a/drivers/gpu/drm/xe/xe_tlb_inval.c
+> > +++ b/drivers/gpu/drm/xe/xe_tlb_inval.c
+> > @@ -94,7 +94,7 @@ static void xe_tlb_inval_fence_timeout(struct work_st=
+ruct *work)
+> >               xe_tlb_inval_fence_signal(fence);
+> >       }
+> >       if (!list_empty(&tlb_inval->pending_fences))
+> > -             queue_delayed_work(system_wq, &tlb_inval->fence_tdr,
+> > +             queue_delayed_work(system_percpu_wq, &tlb_inval->fence_td=
+r,
 >
-> Bspec: 65101
-> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_cx0_phy.c | 4 ++++
->  1 file changed, 4 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-> index 5edd293b533b..5ebc3404eee2 100644
-> --- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-> +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-> @@ -222,6 +222,8 @@ static int __intel_cx0_read_once(struct intel_encoder *encoder,
->  		return -ETIMEDOUT;
->  	}
->  
-> +	intel_clear_response_ready_flag(encoder, lane);
-> +
+> Actually system_wq or system_percpu_wq doesn't work here as this is the
+> fence signaling path. We should use one Xe's ordered work queues which
+> is properly setup to be reclaim same.
 
-Please rename the non-static function. Nobody knows what that's related
-to without looking at the function.
+Hi,
 
-BR,
-Jani.
+So only for this specific workqueue we should use for example this, instead=
+:
 
->  	intel_de_write(display, XELPDP_PORT_M2P_MSGBUS_CTL(display, port, lane),
->  		       XELPDP_PORT_M2P_TRANSACTION_PENDING |
->  		       XELPDP_PORT_M2P_COMMAND_READ |
-> @@ -293,6 +295,8 @@ static int __intel_cx0_write_once(struct intel_encoder *encoder,
->  		return -ETIMEDOUT;
->  	}
->  
-> +	intel_clear_response_ready_flag(encoder, lane);
-> +
->  	intel_de_write(display, XELPDP_PORT_M2P_MSGBUS_CTL(display, port, lane),
->  		       XELPDP_PORT_M2P_TRANSACTION_PENDING |
->  		       (committed ? XELPDP_PORT_M2P_COMMAND_WRITE_COMMITTED :
+462     /** @ordered_wq: used to serialize compute mode resume */
+463     struct workqueue_struct *ordered_wq;
 
--- 
-Jani Nikula, Intel
+I noticed this has been allocated using:
+
+ 490     xe->ordered_wq =3D alloc_ordered_workqueue("xe-ordered-wq", 0);
+
+Using alloc_ordered_workqueue() makes this workqueue to be unbound.
+
+569 #define alloc_ordered_workqueue(fmt, flags, args...)            \
+570     alloc_workqueue(fmt, WQ_UNBOUND | __WQ_ORDERED | (flags), 1, ##args=
+)
+
+So this patch should be split in 2:
+- 1 patch with Xe's ordered workqueue, changing the behavior to
+unbound "implicitly"
+- 1 patch changing system_wq with the new per-cpu wq (system_percpu_wq).
+
+To keep this workqueue per-cpu we can use xe->unordered_wq, that makes use =
+of
+alloc_workqueue() without specifying flags (eg. WQ_UNBOUND or the new
+WQ_PERCPU),
+making this workqueue per-cpu.
+
+Would this sound reasonable to you?
+
+Thanks!
+--=20
+
+Marco Crivellari
+
+L3 Support Engineer
