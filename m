@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CCA9FC2A07A
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 01187C2A07B
 	for <intel-xe@archiver.kernel.org>; Mon,  5 Jan 2026 04:02:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EAEEE10E359;
-	Mon,  5 Jan 2026 04:02:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3173B10E289;
+	Mon,  5 Jan 2026 04:02:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ht1aHPN/";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JDBfeAXD";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 751C510E1FF
- for <intel-xe@lists.freedesktop.org>; Mon,  5 Jan 2026 04:02:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BBEB010E372
+ for <intel-xe@lists.freedesktop.org>; Mon,  5 Jan 2026 04:02:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1767585765; x=1799121765;
+ t=1767585766; x=1799121766;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=/RuygoF5aLM82Hq77T1sA/K3MPYaUzKJSloyiwIYpBg=;
- b=ht1aHPN/c/Rji+4rTCZ8FWlBayvDcKjT8FFGpAhaw5W0vTXuLJrJPkYZ
- tdfmji4glleMI8Fs1dVW9e3yeFALTWwRG4XSBjHueYvvh4ZeKGzUXeWiE
- AyXU67LutOrLx6aDhMbXq67wJRWHdXl5WqMw1w+ENyVnGbUb+caVhRcn4
- EU9Mvlr2WEYzqsICEd/0YN4iB3d4DtzCwrdiBvv3BDMvVL5oDbJj2igFb
- Xjgbhcew4xpgsFbAzsyUk6rLXZlv3tYyF1qduWHCl2DjHvDhEeAUW/FGR
- JbZpihp/7+4HGLjliQekivp9dnD22Aq+QUlYWlxK7YVJieHMzorA+WQdY A==;
-X-CSE-ConnectionGUID: 2R8m+PN4TBmH82kYj3yQdQ==
-X-CSE-MsgGUID: gSoa4tL4RFaLzQnwrff13Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11661"; a="68856259"
-X-IronPort-AV: E=Sophos;i="6.21,202,1763452800"; d="scan'208";a="68856259"
+ bh=gB4OnKMagsed6Fs82mWDZP3+QI7F/a0dQc5YYU0gPao=;
+ b=JDBfeAXDPlrur84m0K5K/I2yQHfQfYBIStmxy/1DWtMq7FHGBoOQORE9
+ cGL3jLeHVgeDjAfZ3yDFrgVItNi+zf8GaObAEsYfAx/8mpy2anpjW9Ab5
+ gVXiRR5ObXzWyPIjLX6tsFrVFvGhQHf1uCesQigryHJ8/P6l6EgnmBhSr
+ IRLjXcWAox3uTobmbppgsFZywSmnr+enMM3isYvJIcEmMewrwjZflc6Gv
+ emvUR0vPBzJxjYH7/Ooyg+ifUO/V4ooEEmmNvj3FjnVZhv4yKCdCQNoEo
+ Gd9RLBwRe5E9DEqksxCYY4RIOKGbjtxydFKpAHlkXRbOLei1l/7vYbnRY g==;
+X-CSE-ConnectionGUID: 0NecL6CJT3Kl6KT8keiEKg==
+X-CSE-MsgGUID: xf5qRaSmQXKkEGiMHlme9g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11661"; a="68856271"
+X-IronPort-AV: E=Sophos;i="6.21,202,1763452800"; d="scan'208";a="68856271"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jan 2026 20:02:44 -0800
-X-CSE-ConnectionGUID: tqVwpmB3TGeUOG8NSyYT/w==
-X-CSE-MsgGUID: Lyuv0BSkRQmoO4GMF8ieDw==
+ 04 Jan 2026 20:02:45 -0800
+X-CSE-ConnectionGUID: ICPWp3jyRIetPnh9ZWbKUQ==
+X-CSE-MsgGUID: bvn8ERXFRiGcned1/ZsMLw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,202,1763452800"; d="scan'208";a="202060667"
+X-IronPort-AV: E=Sophos;i="6.21,202,1763452800"; d="scan'208";a="202060688"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  04 Jan 2026 20:02:42 -0800
@@ -45,14 +45,13 @@ From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: daniele.ceraolospurio@intel.com,
 	carlos.santa@intel.com
-Subject: [PATCH v2 09/22] drm/xe: Stub out execlists deadline vfuncs as NOPs
-Date: Sun,  4 Jan 2026 20:02:24 -0800
-Message-Id: <20260105040237.1307873-10-matthew.brost@intel.com>
+Subject: [PATCH v2 18/22] drm/xe: Add timestamp_ms to LRC snapshot
+Date: Sun,  4 Jan 2026 20:02:33 -0800
+Message-Id: <20260105040237.1307873-19-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260105040237.1307873-1-matthew.brost@intel.com>
 References: <20260105040237.1307873-1-matthew.brost@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,50 +67,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The execlists backend is non-functional but shouldn’t crash. Stub out
-execlists deadline vfuncs as NOPs.
-
-v2:
- - Use set_deadline_state vfunc
+Add a timestamp in milliseconds to the LRC snapshot to make it easier to
+reason about how long the LRC has been running and the average duration
+of each job.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_execlist.c | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
+ drivers/gpu/drm/xe/xe_lrc.c | 4 ++++
+ drivers/gpu/drm/xe/xe_lrc.h | 1 +
+ 2 files changed, 5 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_execlist.c b/drivers/gpu/drm/xe/xe_execlist.c
-index 46c17a18a3f4..52c83c4b48ac 100644
---- a/drivers/gpu/drm/xe/xe_execlist.c
-+++ b/drivers/gpu/drm/xe/xe_execlist.c
-@@ -469,6 +469,19 @@ static bool execlist_exec_queue_reset_status(struct xe_exec_queue *q)
- 	return false;
+diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
+index eccc7f2642bf..f3ada74d297e 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.c
++++ b/drivers/gpu/drm/xe/xe_lrc.c
+@@ -22,6 +22,7 @@
+ #include "xe_drm_client.h"
+ #include "xe_exec_queue_types.h"
+ #include "xe_gt.h"
++#include "xe_gt_clock.h"
+ #include "xe_gt_printk.h"
+ #include "xe_hw_fence.h"
+ #include "xe_map.h"
+@@ -2289,6 +2290,8 @@ struct xe_lrc_snapshot *xe_lrc_snapshot_capture(struct xe_lrc *lrc)
+ 	snapshot->replay_size = lrc->replay_size;
+ 	snapshot->lrc_snapshot = NULL;
+ 	snapshot->ctx_timestamp = lower_32_bits(xe_lrc_ctx_timestamp(lrc));
++	snapshot->ctx_timestamp_ms =
++		xe_gt_clock_interval_to_ms(lrc->gt, xe_lrc_ctx_timestamp(lrc));
+ 	snapshot->ctx_job_timestamp = xe_lrc_ctx_job_timestamp(lrc);
+ 	return snapshot;
  }
+@@ -2342,6 +2345,7 @@ void xe_lrc_snapshot_print(struct xe_lrc_snapshot *snapshot, struct drm_printer
+ 	drm_printf(p, "\tStart seqno: (memory) %d\n", snapshot->start_seqno);
+ 	drm_printf(p, "\tSeqno: (memory) %d\n", snapshot->seqno);
+ 	drm_printf(p, "\tTimestamp: 0x%08x\n", snapshot->ctx_timestamp);
++	drm_printf(p, "\tTimestamp ms: %llu\n", snapshot->ctx_timestamp_ms);
+ 	drm_printf(p, "\tJob Timestamp: 0x%08x\n", snapshot->ctx_job_timestamp);
  
-+static void execlist_exec_queue_set_deadline(struct xe_exec_queue *q,
-+					     struct dma_fence *fence,
-+					     ktime_t deadline)
-+{
-+	/* NIY */
-+}
-+
-+static void execlist_exec_queue_set_deadline_state(struct xe_exec_queue *q,
-+						   enum xe_deadline_mgr_state state)
-+{
-+	/* NIY */
-+}
-+
- static const struct xe_exec_queue_ops execlist_exec_queue_ops = {
- 	.init = execlist_exec_queue_init,
- 	.kill = execlist_exec_queue_kill,
-@@ -481,6 +494,8 @@ static const struct xe_exec_queue_ops execlist_exec_queue_ops = {
- 	.suspend_wait = execlist_exec_queue_suspend_wait,
- 	.resume = execlist_exec_queue_resume,
- 	.reset_status = execlist_exec_queue_reset_status,
-+	.set_deadline = execlist_exec_queue_set_deadline,
-+	.set_deadline_state = execlist_exec_queue_set_deadline_state,
+ 	if (!snapshot->lrc_snapshot)
+diff --git a/drivers/gpu/drm/xe/xe_lrc.h b/drivers/gpu/drm/xe/xe_lrc.h
+index 3d72b4c0da8e..59413d9fc1ff 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.h
++++ b/drivers/gpu/drm/xe/xe_lrc.h
+@@ -39,6 +39,7 @@ struct xe_lrc_snapshot {
+ 	u32 seqno;
+ 	u32 ctx_timestamp;
+ 	u32 ctx_job_timestamp;
++	u64 ctx_timestamp_ms;
  };
  
- int xe_execlist_init(struct xe_gt *gt)
+ #define LRC_PPHWSP_FLUSH_INVAL_SCRATCH_ADDR (0x34 * 4)
 -- 
 2.34.1
 
