@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 873E6C2A082
-	for <intel-xe@archiver.kernel.org>; Mon,  5 Jan 2026 04:02:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D819FC2A080
+	for <intel-xe@archiver.kernel.org>; Mon,  5 Jan 2026 04:02:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3356210E39C;
-	Mon,  5 Jan 2026 04:02:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B557410E38B;
+	Mon,  5 Jan 2026 04:02:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="l6k7ZyuD";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lzG717SR";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A2F6C10E289
- for <intel-xe@lists.freedesktop.org>; Mon,  5 Jan 2026 04:02:45 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CAFB510E289
+ for <intel-xe@lists.freedesktop.org>; Mon,  5 Jan 2026 04:02:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1767585766; x=1799121766;
+ t=1767585765; x=1799121765;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=t/QJS1kyW7MxnTtUzvIUjSpo+9hANRIMUiQJFqWsIWQ=;
- b=l6k7ZyuDS8PZYd824Jw0v2vJcFI270BHzuBGwZk/jn6TsNbXf01w5TXw
- MirAfYUqw22AkCSlXOfxdxpz9RvlAcMFrx7MOTYw0vF3VJZLgpSQ2DMd2
- LOAtjQSDt0KhTdUWcQEjVtEf5PoFCKjTNvCKrUCUP/Rk3LiV0zA9lhlys
- 9TttZnCXdPAyjlOCl+jnFFBH8Ox2eZmBESQASPUCmM+5eDTlndGS9WkmT
- PXoNC/60FwyVRTeUonTKPEQsIgGUVMTn+7hvkekpZt16PVTaNHHdIfYVH
- wBCBsWfFKh0uNuF4fPwCwcZpycsfRo71Ep6zJEaDOvoBFOY64lemuHRJs g==;
-X-CSE-ConnectionGUID: 6925ggJLSqmLT4jXq2emEg==
-X-CSE-MsgGUID: nfCwKMhFSRiGLqvbPkxpSA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11661"; a="68856269"
-X-IronPort-AV: E=Sophos;i="6.21,202,1763452800"; d="scan'208";a="68856269"
+ bh=AZa2JOkuz76bm1XgubfD/YXO7wOthmESDl34Su+CRY8=;
+ b=lzG717SRMUy81roP7SUhKlPeumxPfkuStr7ebhsysFl2MQitn3nbIZmZ
+ ffcDHY10BTigpx2dV39/FqnwMBgJc9gVlJVFedpTpZGtsFA/XP7x/3XH2
+ c9J9s2bBiN1TailLfnq8nz/zbfmPDKnHu13Sm4tAMStb+gVQOoV8SA9pH
+ CQo4AFnGu24LiByzoYxPGj1b8PI1Pm8MDjV2cPNZJfI0/vbDwut0EsLOi
+ 5WSTaPoIt5by66nQhddUDjGTVKy+LSrNc8PzBgAZjOGkxuIf3InM6J2eE
+ f54mSAxL1c8/gbLa7qlG1RBYbWUtpLT32Znxlm7spGO8qLr+idnXaVyrB A==;
+X-CSE-ConnectionGUID: H+l3bwtoRNOGIN8SecH5mg==
+X-CSE-MsgGUID: TYlhCTlKQHy376v0pYwGfg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11661"; a="68856264"
+X-IronPort-AV: E=Sophos;i="6.21,202,1763452800"; d="scan'208";a="68856264"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jan 2026 20:02:45 -0800
-X-CSE-ConnectionGUID: TCs4TrA/RoSl7hqCHZM+SQ==
-X-CSE-MsgGUID: m1sl5c16SgyXomccQJbLkw==
+ 04 Jan 2026 20:02:44 -0800
+X-CSE-ConnectionGUID: E1Ar8+aKRAW6CLSaP3epbQ==
+X-CSE-MsgGUID: HkYJCzAGSaiNF3MtnRlm2g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,202,1763452800"; d="scan'208";a="202060677"
+X-IronPort-AV: E=Sophos;i="6.21,202,1763452800"; d="scan'208";a="202060671"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  04 Jan 2026 20:02:42 -0800
@@ -45,9 +45,10 @@ From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: daniele.ceraolospurio@intel.com,
 	carlos.santa@intel.com
-Subject: [PATCH v2 14/22] drm/xe: Fix Kconfig.profile newlines
-Date: Sun,  4 Jan 2026 20:02:29 -0800
-Message-Id: <20260105040237.1307873-15-matthew.brost@intel.com>
+Subject: [PATCH v2 11/22] drm/xe: Support unstable opcodes for static
+ scheduler messages
+Date: Sun,  4 Jan 2026 20:02:26 -0800
+Message-Id: <20260105040237.1307873-12-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260105040237.1307873-1-matthew.brost@intel.com>
 References: <20260105040237.1307873-1-matthew.brost@intel.com>
@@ -67,71 +68,91 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add missing newlines between Kconfig options in Kconfig.profile to
-improve readability.
+To support a single static scheduler message with a changing opcode,
+read the message opcode under the message lock and pass it to the
+scheduler for processing.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/Kconfig.profile | 7 +++++++
- 1 file changed, 7 insertions(+)
+ drivers/gpu/drm/xe/xe_gpu_scheduler.c       | 10 +++++++---
+ drivers/gpu/drm/xe/xe_gpu_scheduler_types.h |  2 +-
+ drivers/gpu/drm/xe/xe_guc_submit.c          |  5 +++--
+ 3 files changed, 11 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/Kconfig.profile b/drivers/gpu/drm/xe/Kconfig.profile
-index 7530df998148..594acedf7b56 100644
---- a/drivers/gpu/drm/xe/Kconfig.profile
-+++ b/drivers/gpu/drm/xe/Kconfig.profile
-@@ -5,24 +5,28 @@ config DRM_XE_JOB_TIMEOUT_MAX
- 	help
- 	  Configures the default max job timeout after which job will
- 	  be forcefully taken away from scheduler.
+diff --git a/drivers/gpu/drm/xe/xe_gpu_scheduler.c b/drivers/gpu/drm/xe/xe_gpu_scheduler.c
+index 8ea5480a517d..0c568cf0460b 100644
+--- a/drivers/gpu/drm/xe/xe_gpu_scheduler.c
++++ b/drivers/gpu/drm/xe/xe_gpu_scheduler.c
+@@ -24,7 +24,7 @@ static void xe_sched_process_msg_queue_if_ready(struct xe_gpu_scheduler *sched)
+ }
+ 
+ static struct xe_sched_msg *
+-xe_sched_get_msg(struct xe_gpu_scheduler *sched)
++xe_sched_get_msg(struct xe_gpu_scheduler *sched, unsigned int *opcode)
+ {
+ 	struct xe_sched_msg *msg;
+ 
+@@ -33,6 +33,9 @@ xe_sched_get_msg(struct xe_gpu_scheduler *sched)
+ 					       struct xe_sched_msg, link);
+ 		if (msg)
+ 			list_del_init(&msg->link);
 +
- config DRM_XE_JOB_TIMEOUT_MIN
- 	int "Default min job timeout (ms)"
- 	default 1 # milliseconds
- 	help
- 	  Configures the default min job timeout after which job will
- 	  be forcefully taken away from scheduler.
-+
- config DRM_XE_TIMESLICE_MAX
- 	int "Default max timeslice duration (us)"
- 	default 10000000 # microseconds
- 	help
- 	  Configures the default max timeslice duration between multiple
- 	  contexts by guc scheduling.
-+
- config DRM_XE_TIMESLICE_MIN
- 	int "Default min timeslice duration (us)"
- 	default 1 # microseconds
- 	help
- 	  Configures the default min timeslice duration between multiple
- 	  contexts by guc scheduling.
-+
- config DRM_XE_PREEMPT_TIMEOUT
- 	int "Preempt timeout (us, jiffy granularity)"
- 	default 640000 # microseconds
-@@ -31,6 +35,7 @@ config DRM_XE_PREEMPT_TIMEOUT
- 	  when submitting a new context. If the current context does not hit
- 	  an arbitration point and yield to HW before the timer expires, the
- 	  HW will be reset to allow the more important context to execute.
-+
- config DRM_XE_PREEMPT_TIMEOUT_MAX
- 	int "Default max preempt timeout (us)"
- 	default 10000000 # microseconds
-@@ -38,6 +43,7 @@ config DRM_XE_PREEMPT_TIMEOUT_MAX
- 	  Configures the default max preempt timeout after which context
- 	  will be forcefully taken away and higher priority context will
- 	  run.
-+
- config DRM_XE_PREEMPT_TIMEOUT_MIN
- 	int "Default min preempt timeout (us)"
- 	default 1 # microseconds
-@@ -45,6 +51,7 @@ config DRM_XE_PREEMPT_TIMEOUT_MIN
- 	  Configures the default min preempt timeout after which context
- 	  will be forcefully taken away and higher priority context will
- 	  run.
-+
- config DRM_XE_ENABLE_SCHEDTIMEOUT_LIMIT
- 	bool "Default configuration of limitation on scheduler timeout"
- 	default y
++		/* Opcode only stable under lock for static messages */
++		*opcode = msg->opcode;
+ 	}
+ 
+ 	return msg;
+@@ -43,13 +46,14 @@ static void xe_sched_process_msg_work(struct work_struct *w)
+ 	struct xe_gpu_scheduler *sched =
+ 		container_of(w, struct xe_gpu_scheduler, work_process_msg);
+ 	struct xe_sched_msg *msg;
++	unsigned int opcode;
+ 
+ 	if (READ_ONCE(sched->base.pause_submit))
+ 		return;
+ 
+-	msg = xe_sched_get_msg(sched);
++	msg = xe_sched_get_msg(sched, &opcode);
+ 	if (msg) {
+-		sched->ops->process_msg(msg);
++		sched->ops->process_msg(msg, opcode);
+ 
+ 		xe_sched_process_msg_queue_if_ready(sched);
+ 	}
+diff --git a/drivers/gpu/drm/xe/xe_gpu_scheduler_types.h b/drivers/gpu/drm/xe/xe_gpu_scheduler_types.h
+index 63d9bf92583c..ea8b0d703d12 100644
+--- a/drivers/gpu/drm/xe/xe_gpu_scheduler_types.h
++++ b/drivers/gpu/drm/xe/xe_gpu_scheduler_types.h
+@@ -34,7 +34,7 @@ struct xe_sched_backend_ops {
+ 	 * @process_msg: Process a message. Allowed to block, it is this
+ 	 * function's responsibility to free message if dynamically allocated.
+ 	 */
+-	void (*process_msg)(struct xe_sched_msg *msg);
++	void (*process_msg)(struct xe_sched_msg *msg, unsigned int opcode);
+ };
+ 
+ /**
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index 07ffab338e4a..26cd9fa6e2b3 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -2046,13 +2046,14 @@ static void __guc_exec_queue_process_msg_set_multi_queue_priority(struct xe_sche
+ #define MSG_LOCKED	BIT(8)
+ #define MSG_HEAD	BIT(9)
+ 
+-static void guc_exec_queue_process_msg(struct xe_sched_msg *msg)
++static void guc_exec_queue_process_msg(struct xe_sched_msg *msg,
++				       unsigned int opcode)
+ {
+ 	struct xe_device *xe = guc_to_xe(exec_queue_to_guc(msg->private_data));
+ 
+ 	trace_xe_sched_msg_recv(msg);
+ 
+-	switch (msg->opcode) {
++	switch (opcode) {
+ 	case CLEANUP:
+ 		__guc_exec_queue_process_msg_cleanup(msg);
+ 		break;
 -- 
 2.34.1
 
