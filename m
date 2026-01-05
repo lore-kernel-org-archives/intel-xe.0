@@ -4,50 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C2E4BC2A07A
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9CDE6C2A076
 	for <intel-xe@archiver.kernel.org>; Mon,  5 Jan 2026 04:02:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9C1B910E3AC;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9BDCE10E3A9;
 	Mon,  5 Jan 2026 04:02:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="i09wMHj6";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="idh7v3Le";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4FF3610E232
- for <intel-xe@lists.freedesktop.org>; Mon,  5 Jan 2026 04:02:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DA2BC10E395;
+ Mon,  5 Jan 2026 04:02:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1767585764; x=1799121764;
+ t=1767585767; x=1799121767;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=mSm+a4HPs2r+DDA9dnmjlUII2ECQqQU/g2YeIYAbF8E=;
- b=i09wMHj6jq1Ocu1eZ8Rp+rsO6TzPA8YCWnEe3bT3PeWbyqawobPFBcpd
- Tv/8TwHZ0BLvf6LkQ6pNL96dimRrpkEMg/HGPeSuzYQNx/JnR+BOHklxA
- caB0JFHzmGi9+qAns/SjI2XkHYCE9DW3GHhGB0QVEHfoQjE5WR/FjN5Ef
- sSYYGnXhSUaEGdURSS5hmz+/ek8LxV515XBXm90AB0E7tzgI6B4qmEK3w
- 1vb0e+/DlfO+ncYvsMkqtAdheEkba8+ls7CBQuYFZygwqvnH9rzxnnDtr
- ShCNIY8Ffos2Yd4RWzUYP6qL5LYOvtydnU95rky5tY5PH3fUEgdA1HZFn A==;
-X-CSE-ConnectionGUID: xk8RF4mYQXeTa5vUitJrXw==
-X-CSE-MsgGUID: EGK7jJITRxqMAYWiqt5vog==
-X-IronPort-AV: E=McAfee;i="6800,10657,11661"; a="68856258"
-X-IronPort-AV: E=Sophos;i="6.21,202,1763452800"; d="scan'208";a="68856258"
+ bh=xUhXEfnUOO28h+l50ozfjdZKUotxN1xCccQ08S8HzKA=;
+ b=idh7v3LeoIna7S7QgdsWw8mJOiWgI00YxN1jqnaEYpOBYkWFjb/3yuJI
+ 69gTFbA0Jv8RcLNj0TG8tnSv1TOPyaaUQucaVOV/8po18CsjONfqLcsW4
+ 4CkGe6WpbkFSXpk8zO+ZUeKgJ9os2ZMwSrhhTZ4iT5LwAtSJSyjvBYOa2
+ FINylamhJYxeZPRBRKcQcxQ/UbMwBUmE1qTfaqdo4/bdDPl9yWsnKYIWz
+ U1zOuhs8nk6BWglRM0vUg+Md5AWldEj7NIe92VV2TlpDj/Obmx+IXKohJ
+ P6YOXGYSvOuQ6sxDAvtkhrwKNHGNYDwSFOX4qU1NNEAn8Vhg5+gIXKBEi Q==;
+X-CSE-ConnectionGUID: 1PErsKpzRimzOoI1TdTWWQ==
+X-CSE-MsgGUID: ielk9tQ1T9KObWNlua+akA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11661"; a="68856277"
+X-IronPort-AV: E=Sophos;i="6.21,202,1763452800"; d="scan'208";a="68856277"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jan 2026 20:02:44 -0800
-X-CSE-ConnectionGUID: o12Nf9IETQKGcxOXZ9DRmQ==
-X-CSE-MsgGUID: DVCeGlHoSs6R4otTbnXsGQ==
+ 04 Jan 2026 20:02:46 -0800
+X-CSE-ConnectionGUID: hg8jDOPARqC1kGgx7YJAyQ==
+X-CSE-MsgGUID: ePgdiP0ERlKzdo5Rd0lCfw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,202,1763452800"; d="scan'208";a="202060654"
+X-IronPort-AV: E=Sophos;i="6.21,202,1763452800"; d="scan'208";a="202060694"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  04 Jan 2026 20:02:42 -0800
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: daniele.ceraolospurio@intel.com,
-	carlos.santa@intel.com
-Subject: [PATCH v2 03/22] drm/xe: Store exec queue in hardware fence
-Date: Sun,  4 Jan 2026 20:02:18 -0800
-Message-Id: <20260105040237.1307873-4-matthew.brost@intel.com>
+Cc: daniele.ceraolospurio@intel.com, carlos.santa@intel.com,
+ dri-devel@lists.freedesktop.org
+Subject: [PATCH v2 21/22] drm/atomic: Export fence deadline helper for atomic
+ commits
+Date: Sun,  4 Jan 2026 20:02:36 -0800
+Message-Id: <20260105040237.1307873-22-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260105040237.1307873-1-matthew.brost@intel.com>
 References: <20260105040237.1307873-1-matthew.brost@intel.com>
@@ -67,134 +68,78 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Enable hardware fences to set deadlines for exec queues.
+drm_atomic_helper_wait_for_fences() computes the next vblank start time
+(for single-CRTC commits) and uses it to set an advisory deadline on the
+incoming plane fences before waiting.
 
-v2:
- - Fix kernel doc (CI)
+Expose this logic as drm_atomic_helper_set_fence_deadline() so drivers
+with custom commit plumbing can reuse the same deadline calculation and
+fence annotation without open-coding it.
 
+No functional change intended: drm_atomic_helper_wait_for_fences()
+continues to set the same deadlines as before, now via the exported
+helper.
+
+Cc: <dri-devel@lists.freedesktop.org>
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_hw_fence.c       | 4 +++-
- drivers/gpu/drm/xe/xe_hw_fence.h       | 2 +-
- drivers/gpu/drm/xe/xe_hw_fence_types.h | 6 ++++++
- drivers/gpu/drm/xe/xe_lrc.c            | 6 ++++--
- drivers/gpu/drm/xe/xe_lrc.h            | 3 ++-
- drivers/gpu/drm/xe/xe_sched_job.c      | 2 +-
- 6 files changed, 17 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/drm_atomic_helper.c | 11 ++++++++---
+ include/drm/drm_atomic_helper.h     |  3 +++
+ 2 files changed, 11 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_hw_fence.c b/drivers/gpu/drm/xe/xe_hw_fence.c
-index f6057456e460..5995bf095843 100644
---- a/drivers/gpu/drm/xe/xe_hw_fence.c
-+++ b/drivers/gpu/drm/xe/xe_hw_fence.c
-@@ -242,6 +242,7 @@ void xe_hw_fence_free(struct dma_fence *fence)
-  * xe_hw_fence_init() - Initialize an hw fence.
-  * @fence: Pointer to the fence to initialize.
-  * @ctx: Pointer to the struct xe_hw_fence_ctx fence context.
-+ * @q: Pointer to exec queue tied to the fence.
-  * @seqno_map: Pointer to the map into where the seqno is blitted.
-  *
-  * Initializes a pre-allocated hw fence.
-@@ -249,12 +250,13 @@ void xe_hw_fence_free(struct dma_fence *fence)
-  * dma-fence refcounting.
+diff --git a/drivers/gpu/drm/drm_atomic_helper.c b/drivers/gpu/drm/drm_atomic_helper.c
+index cc1f0c102414..321fad478ee0 100644
+--- a/drivers/gpu/drm/drm_atomic_helper.c
++++ b/drivers/gpu/drm/drm_atomic_helper.c
+@@ -1770,11 +1770,15 @@ void drm_atomic_helper_commit_modeset_enables(struct drm_device *dev,
+ EXPORT_SYMBOL(drm_atomic_helper_commit_modeset_enables);
+ 
+ /*
++ * drm_atomic_helper_set_fence_deadline() - set fence deadlines
++ * @dev: DRM device
++ * @state: atomic state object being committed
++ *
+  * For atomic updates which touch just a single CRTC, calculate the time of the
+  * next vblank, and inform all the fences of the deadline.
   */
- void xe_hw_fence_init(struct dma_fence *fence, struct xe_hw_fence_ctx *ctx,
--		      struct iosys_map seqno_map)
-+		      struct xe_exec_queue *q, struct iosys_map seqno_map)
+-static void set_fence_deadline(struct drm_device *dev,
+-			       struct drm_atomic_state *state)
++void drm_atomic_helper_set_fence_deadline(struct drm_device *dev,
++					  struct drm_atomic_state *state)
  {
- 	struct  xe_hw_fence *hw_fence =
- 		container_of(fence, typeof(*hw_fence), dma);
- 
- 	hw_fence->xe = gt_to_xe(ctx->gt);
-+	hw_fence->q = q;
- 	snprintf(hw_fence->name, sizeof(hw_fence->name), "%s", ctx->name);
- 	hw_fence->seqno_map = seqno_map;
- 	INIT_LIST_HEAD(&hw_fence->irq_link);
-diff --git a/drivers/gpu/drm/xe/xe_hw_fence.h b/drivers/gpu/drm/xe/xe_hw_fence.h
-index f13a1c4982c7..7a8678c881d8 100644
---- a/drivers/gpu/drm/xe/xe_hw_fence.h
-+++ b/drivers/gpu/drm/xe/xe_hw_fence.h
-@@ -29,5 +29,5 @@ struct dma_fence *xe_hw_fence_alloc(void);
- void xe_hw_fence_free(struct dma_fence *fence);
- 
- void xe_hw_fence_init(struct dma_fence *fence, struct xe_hw_fence_ctx *ctx,
--		      struct iosys_map seqno_map);
-+		      struct xe_exec_queue *q, struct iosys_map seqno_map);
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_hw_fence_types.h b/drivers/gpu/drm/xe/xe_hw_fence_types.h
-index 58a8d09afe5c..052bbab1fad6 100644
---- a/drivers/gpu/drm/xe/xe_hw_fence_types.h
-+++ b/drivers/gpu/drm/xe/xe_hw_fence_types.h
-@@ -13,6 +13,7 @@
- #include <linux/spinlock.h>
- 
- struct xe_device;
-+struct xe_exec_queue;
- struct xe_gt;
- 
- /**
-@@ -64,6 +65,11 @@ struct xe_hw_fence {
- 	struct dma_fence dma;
- 	/** @xe: Xe device for hw fence driver name */
- 	struct xe_device *xe;
-+	/**
-+	 * @q: Exec queue which fence is tied too, not ref counted, lookup
-+	 * protected by fence lock.
-+	 */
-+	struct xe_exec_queue *q;
- 	/** @name: name of hardware fence context */
- 	char name[MAX_FENCE_NAME_LEN];
- 	/** @seqno_map: I/O map for seqno */
-diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-index 70eae7d03a27..eccc7f2642bf 100644
---- a/drivers/gpu/drm/xe/xe_lrc.c
-+++ b/drivers/gpu/drm/xe/xe_lrc.c
-@@ -1783,15 +1783,17 @@ void xe_lrc_free_seqno_fence(struct dma_fence *fence)
- /**
-  * xe_lrc_init_seqno_fence() - Initialize an lrc seqno fence.
-  * @lrc: Pointer to the lrc.
-+ * @q: Pointner to exec queue.
-  * @fence: Pointer to the fence to initialize.
-  *
-  * Initializes a pre-allocated lrc seqno fence.
-  * After initialization, the fence is subject to normal
-  * dma-fence refcounting.
-  */
--void xe_lrc_init_seqno_fence(struct xe_lrc *lrc, struct dma_fence *fence)
-+void xe_lrc_init_seqno_fence(struct xe_lrc *lrc, struct xe_exec_queue *q,
-+			     struct dma_fence *fence)
- {
--	xe_hw_fence_init(fence, &lrc->fence_ctx, __xe_lrc_seqno_map(lrc));
-+	xe_hw_fence_init(fence, &lrc->fence_ctx, q, __xe_lrc_seqno_map(lrc));
+ 	struct drm_crtc *crtc;
+ 	struct drm_crtc_state *new_crtc_state;
+@@ -1809,6 +1813,7 @@ static void set_fence_deadline(struct drm_device *dev,
+ 		dma_fence_set_deadline(new_plane_state->fence, vbltime);
+ 	}
  }
++EXPORT_SYMBOL(drm_atomic_helper_set_fence_deadline);
  
- s32 xe_lrc_seqno(struct xe_lrc *lrc)
-diff --git a/drivers/gpu/drm/xe/xe_lrc.h b/drivers/gpu/drm/xe/xe_lrc.h
-index 8acf85273c1a..3d72b4c0da8e 100644
---- a/drivers/gpu/drm/xe/xe_lrc.h
-+++ b/drivers/gpu/drm/xe/xe_lrc.h
-@@ -118,7 +118,8 @@ u64 xe_lrc_descriptor(struct xe_lrc *lrc);
- u32 xe_lrc_seqno_ggtt_addr(struct xe_lrc *lrc);
- struct dma_fence *xe_lrc_alloc_seqno_fence(void);
- void xe_lrc_free_seqno_fence(struct dma_fence *fence);
--void xe_lrc_init_seqno_fence(struct xe_lrc *lrc, struct dma_fence *fence);
-+void xe_lrc_init_seqno_fence(struct xe_lrc *lrc, struct xe_exec_queue *q,
-+			     struct dma_fence *fence);
- s32 xe_lrc_seqno(struct xe_lrc *lrc);
+ /**
+  * drm_atomic_helper_wait_for_fences - wait for fences stashed in plane state
+@@ -1839,7 +1844,7 @@ int drm_atomic_helper_wait_for_fences(struct drm_device *dev,
+ 	struct drm_plane_state *new_plane_state;
+ 	int i, ret;
  
- u32 xe_lrc_start_seqno_ggtt_addr(struct xe_lrc *lrc);
-diff --git a/drivers/gpu/drm/xe/xe_sched_job.c b/drivers/gpu/drm/xe/xe_sched_job.c
-index cb674a322113..6099b4445835 100644
---- a/drivers/gpu/drm/xe/xe_sched_job.c
-+++ b/drivers/gpu/drm/xe/xe_sched_job.c
-@@ -270,7 +270,7 @@ void xe_sched_job_arm(struct xe_sched_job *job)
- 		struct dma_fence_chain *chain;
+-	set_fence_deadline(dev, state);
++	drm_atomic_helper_set_fence_deadline(dev, state);
  
- 		fence = job->ptrs[i].lrc_fence;
--		xe_lrc_init_seqno_fence(q->lrc[i], fence);
-+		xe_lrc_init_seqno_fence(q->lrc[i], q, fence);
- 		job->ptrs[i].lrc_fence = NULL;
- 		if (!i) {
- 			job->lrc_seqno = fence->seqno;
+ 	for_each_new_plane_in_state(state, plane, new_plane_state, i) {
+ 		if (!new_plane_state->fence)
+diff --git a/include/drm/drm_atomic_helper.h b/include/drm/drm_atomic_helper.h
+index e154ee4f0696..401e83ab408d 100644
+--- a/include/drm/drm_atomic_helper.h
++++ b/include/drm/drm_atomic_helper.h
+@@ -186,6 +186,9 @@ int drm_atomic_helper_page_flip_target(
+ 				uint32_t target,
+ 				struct drm_modeset_acquire_ctx *ctx);
+ 
++void drm_atomic_helper_set_fence_deadline(struct drm_device *dev,
++					  struct drm_atomic_state *state);
++
+ /**
+  * drm_atomic_crtc_for_each_plane - iterate over planes currently attached to CRTC
+  * @plane: the loop cursor
 -- 
 2.34.1
 
