@@ -4,27 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 64268C79F89
-	for <intel-xe@archiver.kernel.org>; Mon,  5 Jan 2026 13:00:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 18995C79F8C
+	for <intel-xe@archiver.kernel.org>; Mon,  5 Jan 2026 13:01:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0FEE810E0FE;
-	Mon,  5 Jan 2026 13:00:35 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BB48D10E0FE;
- Mon,  5 Jan 2026 13:00:33 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2834463149319374965=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 80E6710E15E;
+	Mon,  5 Jan 2026 13:01:40 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hluR6FhD";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1532910E0FE;
+ Mon,  5 Jan 2026 13:01:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1767618099; x=1799154099;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=wNWLklSFP9ZjlETyvB9c8GU1hamvJmxdKOspbzU30BE=;
+ b=hluR6FhDeXH/BPz/cH047d6sDRVJtHqtiNmJ8XVVHB5kTQCMdnG5PB3g
+ srDBHv7cqOogYnZV2iCzbsK4gSh6TP2XdjFaDDYRPYsbi/uNb/z0O/ZhK
+ O/9hR7DQiPFGvRB3qyRwZ80C2wzRJBFDFt4DRYHLx+j0iLu/4ttmzp8e5
+ oyCWicp+W2Fo4IHaK46PG1sRLTjJ6yPXmwgjDwLuu/M3dy+LAO6K+M6BY
+ J+jY5buVG2cKbnzshQ+6HU9K2HmGtSumxao1Y2ci1h5nMOjofPtlsZhPV
+ SmZYHwo+B51jfkTFQ9C9PMaooW2QfGKrlgjanGgOehWWSghWZJYmotYMz w==;
+X-CSE-ConnectionGUID: /pqyU73nRxOGMIWet8v3XQ==
+X-CSE-MsgGUID: F2TCPPAHROCAAud4QY3ogw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11662"; a="68175198"
+X-IronPort-AV: E=Sophos;i="6.21,203,1763452800"; d="scan'208";a="68175198"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Jan 2026 05:01:39 -0800
+X-CSE-ConnectionGUID: wDqqZ+d+SvOUqMRaP5wcHQ==
+X-CSE-MsgGUID: 3CqYZd4WSnOmqYrpuPbrBg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,203,1763452800"; d="scan'208";a="202402615"
+Received: from ettammin-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.3])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Jan 2026 05:01:35 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: animesh.manna@intel.com, uma.shankar@intel.com, imre.deak@intel.com,
+ jouni.hogander@intel.com
+Subject: Re: [PATCH 9/9] drm/i915/display: Add DC3CO disable handling for psr2
+In-Reply-To: <20251209113332.2770263-10-dibin.moolakadan.subrahmanian@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20251209113332.2770263-1-dibin.moolakadan.subrahmanian@intel.com>
+ <20251209113332.2770263-10-dibin.moolakadan.subrahmanian@intel.com>
+Date: Mon, 05 Jan 2026 15:01:32 +0200
+Message-ID: <fdefc5412bfc1c29e7a7a0e704f1dc86c9edabdd@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_Fix_the?=
- =?utf-8?q?_SPDX_license_identifier_for_C_headers?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 05 Jan 2026 13:00:33 -0000
-Message-ID: <176761803376.126140.14459310494142943765@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260105113544.574323-1-ankit.k.nautiyal@intel.com>
-In-Reply-To: <20260105113544.574323-1-ankit.k.nautiyal@intel.com>
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,125 +68,169 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============2834463149319374965==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Tue, 09 Dec 2025, Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com> wrote:
+> dc6 should be enabled instead of dc3co after  6 idle frames
+> while in psr2.(re enable part of tgl dc3co handling)
 
-== Series Details ==
+Please write proper commit messages. I don't understand what this patch
+is supposed to do based on this.
 
-Series: drm/i915/display: Fix the SPDX license identifier for C headers
-URL   : https://patchwork.freedesktop.org/series/159641/
-State : success
+> Signed-off-by: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
+> ---
+>  .../drm/i915/display/intel_display_types.h    |  1 +
+>  drivers/gpu/drm/i915/display/intel_psr.c      | 78 ++++++++++++++++++-
+>  2 files changed, 78 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+> index 27f69df7ee9c..6ff53cd58052 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -1759,6 +1759,7 @@ struct intel_psr {
+>  	bool panel_replay_enabled;
+>  	u32 dc3co_exitline;
+>  	u32 dc3co_exit_delay;
+> +	struct delayed_work dc3co_work;
+>  	u8 entry_setup_frames;
+>  
+>  	u8 io_wake_lines;
+> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+> index 18bf45455ea2..4be709d1d324 100644
+> --- a/drivers/gpu/drm/i915/display/intel_psr.c
+> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
+> @@ -1157,6 +1157,78 @@ static void psr2_program_idle_frames(struct intel_dp *intel_dp,
+>  		     EDP_PSR2_IDLE_FRAMES(idle_frames));
+>  }
+>  
+> +static void psr2_dc3co_disable(struct intel_dp *intel_dp)
+> +{
+> +	struct intel_display *display = to_intel_display(intel_dp);
+> +	struct i915_power_domains *power_domains = &display->power.domains;
 
-== Summary ==
+There's currently one place in intel_psr.c that checks
+power_domains->allowed_dc_mask, and I think even that is too much.
 
-CI Bug Log - changes from xe-4329-f5136cded03e959ebb00a1160e5f00973c38007e_BAT -> xe-pw-159641v1_BAT
-====================================================
+display->power belongs to intel_display_power*.c, and nobody else.
 
-Summary
--------
+I think you probably need a helper function to ask for this stuff from
+power modules.
 
-  **SUCCESS**
+> +
+> +	if ((power_domains->allowed_dc_mask & DC_STATE_EN_UPTO_DC3CO) != DC_STATE_EN_UPTO_DC3CO)
+> +		return;
+> +
+> +	intel_display_power_set_target_dc_state(display, DC_STATE_EN_UPTO_DC6);
+> +	/* Todo restore PSR2 idle frames , ALPM control*/
 
-  No regressions found.
+	/* TODO: restore PSR2 idle frames, ALPM control */
 
-  
+> +}
+> +
+> +static void psr2_dc3co_disable_on_exit(struct intel_dp *intel_dp)
+> +{
+> +	struct intel_display *display = to_intel_display(intel_dp);
+> +	struct i915_power_domains *power_domains = &display->power.domains;
+> +
+> +	if ((power_domains->allowed_dc_mask & DC_STATE_EN_UPTO_DC3CO) != DC_STATE_EN_UPTO_DC3CO)
+> +		return;
+> +
+> +	cancel_delayed_work(&intel_dp->psr.dc3co_work);
+> +	intel_dc3co_source_unset(display, DC3CO_SOURCE_PSR2);
+> +}
+> +
+> +static void psr2_dc3co_disable_work(struct work_struct *work)
+> +{
+> +	struct intel_dp *intel_dp =
+> +		container_of(work, typeof(*intel_dp), psr.dc3co_work.work);
+> +
+> +	mutex_lock(&intel_dp->psr.lock);
+> +	/* If delayed work is pending, it is not idle */
+> +	if (delayed_work_pending(&intel_dp->psr.dc3co_work))
+> +		goto unlock;
+> +	/* enable DC6 after idle frames*/
+> +	psr2_dc3co_disable(intel_dp);
+> +
+> +unlock:
+> +	mutex_unlock(&intel_dp->psr.lock);
+> +}
+> +
+> +/*
+> + * When we will be completely rely on PSR2 S/W tracking in future,
+> + * intel_psr_flush() will invalidate and flush the PSR for ORIGIN_FLIP
+> + * event also therefore psr2_dc3co_flush_locked() require to be changed
+> + * accordingly in future.
+> + */
+> +
+> +static void
+> +psr2_dc3co_flush_locked(struct intel_dp *intel_dp, unsigned int frontbuffer_bits,
+> +			enum fb_op_origin origin)
+> +{
+> +	struct intel_display *display = to_intel_display(intel_dp);
+> +	struct i915_power_domains *power_domains = &display->power.domains;
+> +
+> +	if (!(power_domains->allowed_dc_mask & DC_STATE_EN_UPTO_DC3CO))
+> +		return;
+> +
+> +	if (!intel_dp->psr.sel_update_enabled ||
+> +	    !intel_dp->psr.active)
+> +		return;
+> +	/*
+> +	 * At every frontbuffer flush flip event modified delay of delayed work,
+> +	 * when delayed work schedules that means display has been idle.
+> +	 */
+> +	if (!(frontbuffer_bits &
+> +	    INTEL_FRONTBUFFER_ALL_MASK(intel_dp->psr.pipe)))
+> +		return;
+> +
+> +	mod_delayed_work(display->wq.unordered, &intel_dp->psr.dc3co_work,
+> +			 intel_dp->psr.dc3co_exit_delay);
+> +}
+> +
+>  static bool intel_psr2_sel_fetch_config_valid(struct intel_dp *intel_dp,
+>  					      struct intel_crtc_state *crtc_state)
+>  {
+> @@ -2117,7 +2189,7 @@ static void intel_psr_exit(struct intel_dp *intel_dp)
+>  		intel_de_rmw(display, TRANS_DP2_CTL(intel_dp->psr.transcoder),
+>  			     TRANS_DP2_PANEL_REPLAY_ENABLE, 0);
+>  	} else if (intel_dp->psr.sel_update_enabled) {
+> -
+> +		psr2_dc3co_disable_on_exit(intel_dp);
+>  		val = intel_de_rmw(display,
+>  				   EDP_PSR2_CTL(display, cpu_transcoder),
+>  				   EDP_PSR2_ENABLE, 0);
+> @@ -2259,6 +2331,7 @@ void intel_psr_disable(struct intel_dp *intel_dp,
+>  
+>  	mutex_unlock(&intel_dp->psr.lock);
+>  	cancel_work_sync(&intel_dp->psr.work);
+> +	cancel_delayed_work_sync(&intel_dp->psr.dc3co_work);
+>  }
+>  
+>  /**
+> @@ -2289,6 +2362,7 @@ void intel_psr_pause(struct intel_dp *intel_dp)
+>  	mutex_unlock(&psr->lock);
+>  
+>  	cancel_work_sync(&psr->work);
+> +	cancel_delayed_work_sync(&psr->dc3co_work);
+>  }
+>  
+>  /**
+> @@ -3475,6 +3549,7 @@ void intel_psr_flush(struct intel_display *display,
+>  		if (origin == ORIGIN_FLIP ||
+>  		    (origin == ORIGIN_CURSOR_UPDATE &&
+>  		     !intel_dp->psr.psr2_sel_fetch_enabled)) {
+> +			psr2_dc3co_flush_locked(intel_dp, frontbuffer_bits, origin);
+>  			goto unlock;
+>  		}
+>  
+> @@ -3533,6 +3608,7 @@ void intel_psr_init(struct intel_dp *intel_dp)
+>  		intel_dp->psr.link_standby = connector->panel.vbt.psr.full_link;
+>  
+>  	INIT_WORK(&intel_dp->psr.work, intel_psr_work);
+> +	INIT_DELAYED_WORK(&intel_dp->psr.dc3co_work, psr2_dc3co_disable_work);
+>  	mutex_init(&intel_dp->psr.lock);
+>  }
 
-Participating hosts (11 -> 11)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-159641v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_waitfence@reltime:
-    - bat-dg2-oem2:       [PASS][1] -> [FAIL][2] ([Intel XE#6520])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4329-f5136cded03e959ebb00a1160e5f00973c38007e/bat-dg2-oem2/igt@xe_waitfence@reltime.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159641v1/bat-dg2-oem2/igt@xe_waitfence@reltime.html
-
-  
-  [Intel XE#6520]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520
-
-
-Build changes
--------------
-
-  * Linux: xe-4329-f5136cded03e959ebb00a1160e5f00973c38007e -> xe-pw-159641v1
-
-  IGT_8682: 8682
-  xe-4329-f5136cded03e959ebb00a1160e5f00973c38007e: f5136cded03e959ebb00a1160e5f00973c38007e
-  xe-pw-159641v1: 159641v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159641v1/index.html
-
---===============2834463149319374965==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/display: Fix the SPDX license identifier for C headers</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/159641/">https://patchwork.freedesktop.org/series/159641/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159641v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159641v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4329-f5136cded03e959ebb00a1160e5f00973c38007e_BAT -&gt; xe-pw-159641v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (11 -&gt; 11)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-159641v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@xe_waitfence@reltime:<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4329-f5136cded03e959ebb00a1160e5f00973c38007e/bat-dg2-oem2/igt@xe_waitfence@reltime.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159641v1/bat-dg2-oem2/igt@xe_waitfence@reltime.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520">Intel XE#6520</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4329-f5136cded03e959ebb00a1160e5f00973c38007e -&gt; xe-pw-159641v1</li>
-</ul>
-<p>IGT_8682: 8682<br />
-  xe-4329-f5136cded03e959ebb00a1160e5f00973c38007e: f5136cded03e959ebb00a1160e5f00973c38007e<br />
-  xe-pw-159641v1: 159641v1</p>
-
-</body>
-</html>
-
---===============2834463149319374965==--
+-- 
+Jani Nikula, Intel
