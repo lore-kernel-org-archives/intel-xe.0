@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3552DC2A081
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 873E6C2A082
 	for <intel-xe@archiver.kernel.org>; Mon,  5 Jan 2026 04:02:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E900510E395;
-	Mon,  5 Jan 2026 04:02:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3356210E39C;
+	Mon,  5 Jan 2026 04:02:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="btgjta0v";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="l6k7ZyuD";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 529B110E359
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A2F6C10E289
  for <intel-xe@lists.freedesktop.org>; Mon,  5 Jan 2026 04:02:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1767585765; x=1799121765;
+ t=1767585766; x=1799121766;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=GAoUtw6SOh6dzyG+8onCBaRhL6QE/XgdURqvQph2pD0=;
- b=btgjta0v4Uc5uM5T0TDmuVJQljuK8oXsftQutN4Jt+XhPjdvUbV6P7xu
- OgLPxIUNzL90AjRNacDEeHq9l4zLetFmoIY2OpSxpRE79ZBhHo3Gu+2o3
- gUu2+XhMJvQ9Nxt6vk02vfTArpczXm5SzqRRRnGMYg2jr0cyDRq2C9E91
- 5IrqmAcWyK9a/nggRLFERAOCbXTYVNiYj6mGlu7ig0ECleh0wSQjY4AHH
- MND3odkNx4NuvkFTKiKwrZQqW6mMlhasLwNDlB85tkQBX0sF6RSwJyZ7g
- 2dFWDGaLcWoEqZZEZYfoqVWbjQl4Bo1L1O2drcpEkHYErZBJmVPaBjsba A==;
-X-CSE-ConnectionGUID: 1W9kGlLVS22+GL7gauIaZg==
-X-CSE-MsgGUID: l6B34RH8ToWHmRJToxZ4Wg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11661"; a="68856267"
-X-IronPort-AV: E=Sophos;i="6.21,202,1763452800"; d="scan'208";a="68856267"
+ bh=t/QJS1kyW7MxnTtUzvIUjSpo+9hANRIMUiQJFqWsIWQ=;
+ b=l6k7ZyuDS8PZYd824Jw0v2vJcFI270BHzuBGwZk/jn6TsNbXf01w5TXw
+ MirAfYUqw22AkCSlXOfxdxpz9RvlAcMFrx7MOTYw0vF3VJZLgpSQ2DMd2
+ LOAtjQSDt0KhTdUWcQEjVtEf5PoFCKjTNvCKrUCUP/Rk3LiV0zA9lhlys
+ 9TttZnCXdPAyjlOCl+jnFFBH8Ox2eZmBESQASPUCmM+5eDTlndGS9WkmT
+ PXoNC/60FwyVRTeUonTKPEQsIgGUVMTn+7hvkekpZt16PVTaNHHdIfYVH
+ wBCBsWfFKh0uNuF4fPwCwcZpycsfRo71Ep6zJEaDOvoBFOY64lemuHRJs g==;
+X-CSE-ConnectionGUID: 6925ggJLSqmLT4jXq2emEg==
+X-CSE-MsgGUID: nfCwKMhFSRiGLqvbPkxpSA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11661"; a="68856269"
+X-IronPort-AV: E=Sophos;i="6.21,202,1763452800"; d="scan'208";a="68856269"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  04 Jan 2026 20:02:45 -0800
-X-CSE-ConnectionGUID: 3DLBJRB2T/SyJtJiadYF5A==
-X-CSE-MsgGUID: kQMXReikTgas5BUrWuDKVg==
+X-CSE-ConnectionGUID: TCs4TrA/RoSl7hqCHZM+SQ==
+X-CSE-MsgGUID: m1sl5c16SgyXomccQJbLkw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,202,1763452800"; d="scan'208";a="202060683"
+X-IronPort-AV: E=Sophos;i="6.21,202,1763452800"; d="scan'208";a="202060677"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  04 Jan 2026 20:02:42 -0800
@@ -45,9 +45,9 @@ From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: daniele.ceraolospurio@intel.com,
 	carlos.santa@intel.com
-Subject: [PATCH v2 16/22] drm/xe: Add exec queue deadline trace points
-Date: Sun,  4 Jan 2026 20:02:31 -0800
-Message-Id: <20260105040237.1307873-17-matthew.brost@intel.com>
+Subject: [PATCH v2 14/22] drm/xe: Fix Kconfig.profile newlines
+Date: Sun,  4 Jan 2026 20:02:29 -0800
+Message-Id: <20260105040237.1307873-15-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260105040237.1307873-1-matthew.brost@intel.com>
 References: <20260105040237.1307873-1-matthew.brost@intel.com>
@@ -67,90 +67,71 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add exec queue deadline trace points to help debug and profile the
-deadline implementation.
-
-v2:
- - Add freq / prio tracepoints
+Add missing newlines between Kconfig options in Kconfig.profile to
+improve readability.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_deadline_mgr.c |  4 +++-
- drivers/gpu/drm/xe/xe_guc_submit.c   | 10 +++++++---
- drivers/gpu/drm/xe/xe_trace.h        | 20 ++++++++++++++++++++
- 3 files changed, 30 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/xe/Kconfig.profile | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_deadline_mgr.c b/drivers/gpu/drm/xe/xe_deadline_mgr.c
-index 8ebecf92aa8c..f3c920017e40 100644
---- a/drivers/gpu/drm/xe/xe_deadline_mgr.c
-+++ b/drivers/gpu/drm/xe/xe_deadline_mgr.c
-@@ -69,8 +69,10 @@ static bool __xe_deadline_mgr_enter_deadline(struct xe_deadline_mgr *mgr,
- 	lockdep_assert_held(&mgr->lock);
- 
- 	if (XE_DEADLINE_EXIT_DELAY_MS &&
--	    mgr->state != XE_DEADLINE_MGR_STATE_NO_BOOST)
-+	    mgr->state != XE_DEADLINE_MGR_STATE_NO_BOOST) {
- 		cancel_delayed_work(&mgr->exit_delay);
-+		trace_xe_exec_queue_cancel_deadline_exit(mgr->q);
-+	}
- 
- 	if (mgr->state != state && !__xe_deadline_mgr_deadline_signaled(mgr)) {
- 		mgr->state = state;
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index 1aca444faf8b..7e47c375f530 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -2088,12 +2088,16 @@ __guc_exec_queue_process_msg_set_deadline_state(struct xe_sched_msg *msg,
- 	struct xe_guc *guc = exec_queue_to_guc(q);
- 	enum xe_deadline_mgr_state state;
- 
--	if (opcode == EXIT_DEADLINE)
-+	if (opcode == EXIT_DEADLINE) {
- 		state = XE_DEADLINE_MGR_STATE_NO_BOOST;
--	else if (opcode == ENTER_DEADLINE_FREQ)
-+		trace_xe_exec_queue_exit_deadline(q);
-+	} else if (opcode == ENTER_DEADLINE_FREQ) {
- 		state = XE_DEADLINE_MGR_STATE_FREQ_BOOST;
--	else
-+		trace_xe_exec_queue_enter_deadline_freq(q);
-+	} else {
- 		state = XE_DEADLINE_MGR_STATE_PRIO_BOOST;
-+		trace_xe_exec_queue_enter_deadline_prio(q);
-+	}
- 
- 	if (guc_exec_queue_allowed_to_change_state(q))
- 		deadline_policies(guc, q, state);
-diff --git a/drivers/gpu/drm/xe/xe_trace.h b/drivers/gpu/drm/xe/xe_trace.h
-index 6d12fcc13f43..14592403d2c0 100644
---- a/drivers/gpu/drm/xe/xe_trace.h
-+++ b/drivers/gpu/drm/xe/xe_trace.h
-@@ -233,6 +233,26 @@ DEFINE_EVENT(xe_exec_queue, xe_exec_queue_lr_cleanup,
- 	     TP_ARGS(q)
- );
- 
-+DEFINE_EVENT(xe_exec_queue, xe_exec_queue_enter_deadline_freq,
-+	     TP_PROTO(struct xe_exec_queue *q),
-+	     TP_ARGS(q)
-+);
+diff --git a/drivers/gpu/drm/xe/Kconfig.profile b/drivers/gpu/drm/xe/Kconfig.profile
+index 7530df998148..594acedf7b56 100644
+--- a/drivers/gpu/drm/xe/Kconfig.profile
++++ b/drivers/gpu/drm/xe/Kconfig.profile
+@@ -5,24 +5,28 @@ config DRM_XE_JOB_TIMEOUT_MAX
+ 	help
+ 	  Configures the default max job timeout after which job will
+ 	  be forcefully taken away from scheduler.
 +
-+DEFINE_EVENT(xe_exec_queue, xe_exec_queue_enter_deadline_prio,
-+	     TP_PROTO(struct xe_exec_queue *q),
-+	     TP_ARGS(q)
-+);
+ config DRM_XE_JOB_TIMEOUT_MIN
+ 	int "Default min job timeout (ms)"
+ 	default 1 # milliseconds
+ 	help
+ 	  Configures the default min job timeout after which job will
+ 	  be forcefully taken away from scheduler.
 +
-+DEFINE_EVENT(xe_exec_queue, xe_exec_queue_exit_deadline,
-+	     TP_PROTO(struct xe_exec_queue *q),
-+	     TP_ARGS(q)
-+);
+ config DRM_XE_TIMESLICE_MAX
+ 	int "Default max timeslice duration (us)"
+ 	default 10000000 # microseconds
+ 	help
+ 	  Configures the default max timeslice duration between multiple
+ 	  contexts by guc scheduling.
 +
-+DEFINE_EVENT(xe_exec_queue, xe_exec_queue_cancel_deadline_exit,
-+	     TP_PROTO(struct xe_exec_queue *q),
-+	     TP_ARGS(q)
-+);
+ config DRM_XE_TIMESLICE_MIN
+ 	int "Default min timeslice duration (us)"
+ 	default 1 # microseconds
+ 	help
+ 	  Configures the default min timeslice duration between multiple
+ 	  contexts by guc scheduling.
 +
- DECLARE_EVENT_CLASS(xe_sched_job,
- 		    TP_PROTO(struct xe_sched_job *job),
- 		    TP_ARGS(job),
+ config DRM_XE_PREEMPT_TIMEOUT
+ 	int "Preempt timeout (us, jiffy granularity)"
+ 	default 640000 # microseconds
+@@ -31,6 +35,7 @@ config DRM_XE_PREEMPT_TIMEOUT
+ 	  when submitting a new context. If the current context does not hit
+ 	  an arbitration point and yield to HW before the timer expires, the
+ 	  HW will be reset to allow the more important context to execute.
++
+ config DRM_XE_PREEMPT_TIMEOUT_MAX
+ 	int "Default max preempt timeout (us)"
+ 	default 10000000 # microseconds
+@@ -38,6 +43,7 @@ config DRM_XE_PREEMPT_TIMEOUT_MAX
+ 	  Configures the default max preempt timeout after which context
+ 	  will be forcefully taken away and higher priority context will
+ 	  run.
++
+ config DRM_XE_PREEMPT_TIMEOUT_MIN
+ 	int "Default min preempt timeout (us)"
+ 	default 1 # microseconds
+@@ -45,6 +51,7 @@ config DRM_XE_PREEMPT_TIMEOUT_MIN
+ 	  Configures the default min preempt timeout after which context
+ 	  will be forcefully taken away and higher priority context will
+ 	  run.
++
+ config DRM_XE_ENABLE_SCHEDTIMEOUT_LIMIT
+ 	bool "Default configuration of limitation on scheduler timeout"
+ 	default y
 -- 
 2.34.1
 
