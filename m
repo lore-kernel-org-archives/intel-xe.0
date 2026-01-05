@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2FDEDC2A074
-	for <intel-xe@archiver.kernel.org>; Mon,  5 Jan 2026 11:33:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D0BD0C2A09F
+	for <intel-xe@archiver.kernel.org>; Mon,  5 Jan 2026 11:38:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ABB2310E0B5;
-	Mon,  5 Jan 2026 11:33:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8835810E0B5;
+	Mon,  5 Jan 2026 11:38:17 +0000 (UTC)
 Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4FE8E10E0B5;
- Mon,  5 Jan 2026 11:33:20 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0387225699470845412=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DFEBD10E0B5;
+ Mon,  5 Jan 2026 11:38:16 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_update_?=
- =?utf-8?q?the_wa=5F22014263786_=28rev3=29?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Enable_THP_support_in_drm?=
+ =?utf-8?q?=5Fpagemap_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Vinod Govindapillai" <vinod.govindapillai@intel.com>
+To: "Francois Dugast" <francois.dugast@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 05 Jan 2026 11:33:20 -0000
-Message-ID: <176761280032.125837.6270502409442518616@a3b018990fe9>
+Date: Mon, 05 Jan 2026 11:38:16 -0000
+Message-ID: <176761309691.125838.7115813622675815264@a3b018990fe9>
 X-Patchwork-Hint: ignore
-References: <20260105104858.283686-1-vinod.govindapillai@intel.com>
-In-Reply-To: <20260105104858.283686-1-vinod.govindapillai@intel.com>
+References: <20260105111945.73292-1-francois.dugast@intel.com>
+In-Reply-To: <20260105111945.73292-1-francois.dugast@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,102 +40,85 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0387225699470845412==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/i915/display: update the wa_22014263786 (rev3)
-URL   : https://patchwork.freedesktop.org/series/159108/
-State : success
+Series: Enable THP support in drm_pagemap (rev2)
+URL   : https://patchwork.freedesktop.org/series/159119/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-4328-1e67e97365e753132855b1b3decbf214d9f694b3_BAT -> xe-pw-159108v3_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+9f1cb6875f3f9eb0925ed50c16100322a2df513c
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 124e9a526d86d6159e7f7880fe6eaf02813636e0
+Author: Francois Dugast <francois.dugast@intel.com>
+Date:   Mon Jan 5 12:18:28 2026 +0100
 
-Summary
--------
+    drm/pagemap: Enable THP support for GPU memory migration
+    
+    This enables support for Transparent Huge Pages (THP) for device pages by
+    using MIGRATE_VMA_SELECT_COMPOUND during migration. It removes the need to
+    split folios and loop multiple times over all pages to perform required
+    operations at page level. Instead, we rely on newly introduced support for
+    higher orders in drm_pagemap and folio-level API.
+    
+    In Xe, this drastically improves performance when using SVM. The GT stats
+    below collected after a 2MB page fault show overall servicing is more than
+    7 times faster, and thanks to reduced CPU overhead the time spent on the
+    actual copy goes from 23% without THP to 80% with THP:
+    
+    Without THP:
+    
+        svm_2M_pagefault_us: 966
+        svm_2M_migrate_us: 942
+        svm_2M_device_copy_us: 223
+        svm_2M_get_pages_us: 9
+        svm_2M_bind_us: 10
+    
+    With THP:
+    
+        svm_2M_pagefault_us: 132
+        svm_2M_migrate_us: 128
+        svm_2M_device_copy_us: 106
+        svm_2M_get_pages_us: 1
+        svm_2M_bind_us: 2
+    
+    v2:
+    - Fix one occurrence of drm_pagemap_get_devmem_page() (Matthew Brost)
+    
+    Cc: Matthew Brost <matthew.brost@intel.com>
+    Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+    Cc: Michal Mrozek <michal.mrozek@intel.com>
+    Signed-off-by: Francois Dugast <francois.dugast@intel.com>
++ /mt/dim checkpatch f5136cded03e959ebb00a1160e5f00973c38007e drm-intel
+0872a7993017 mm/migrate: Add migrate_device_split_page
+-:82: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#82: FILE: mm/migrate_device.c:796:
++	VM_BUG_ON_FOLIO(!order, folio);
 
-  **SUCCESS**
+-:83: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#83: FILE: mm/migrate_device.c:797:
++	VM_BUG_ON_FOLIO(!folio_is_device_private(folio), folio);
 
-  No regressions found.
+-:84: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#84: FILE: mm/migrate_device.c:798:
++	VM_BUG_ON_FOLIO(folio_ref_count(folio), folio);
 
-  
+-:94: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#94: FILE: mm/migrate_device.c:808:
++		VM_BUG_ON_FOLIO(ret, folio);
 
-Participating hosts (11 -> 11)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-4328-1e67e97365e753132855b1b3decbf214d9f694b3 -> xe-pw-159108v3
-
-  IGT_8682: 8682
-  xe-4328-1e67e97365e753132855b1b3decbf214d9f694b3: 1e67e97365e753132855b1b3decbf214d9f694b3
-  xe-pw-159108v3: 159108v3
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159108v3/index.html
-
---===============0387225699470845412==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/display: update the wa_22014263786 (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/159108/">https://patchwork.freedesktop.org/series/159108/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159108v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159108v3/index.html</a></td></tr>
-
-</table>
+total: 0 errors, 4 warnings, 0 checks, 95 lines checked
+8c90bd8d385f drm/pagemap: Unlock and put folios when possible
+a31c265bf613 drm/pagemap: Add helper to access zone_device_data
+b9a74a425d5a DONOTMERGE drm/pagemap: Add drm_pagemap_cpages
+124e9a526d86 drm/pagemap: Enable THP support for GPU memory migration
 
 
-    <h1>CI Bug Log - changes from xe-4328-1e67e97365e753132855b1b3decbf214d9f694b3_BAT -&gt; xe-pw-159108v3_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (11 -&gt; 11)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4328-1e67e97365e753132855b1b3decbf214d9f694b3 -&gt; xe-pw-159108v3</li>
-</ul>
-<p>IGT_8682: 8682<br />
-  xe-4328-1e67e97365e753132855b1b3decbf214d9f694b3: 1e67e97365e753132855b1b3decbf214d9f694b3<br />
-  xe-pw-159108v3: 159108v3</p>
-
-</body>
-</html>
-
---===============0387225699470845412==--
