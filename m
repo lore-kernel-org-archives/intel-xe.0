@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E56BEC2A083
-	for <intel-xe@archiver.kernel.org>; Mon,  5 Jan 2026 04:02:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E9DE4C2A086
+	for <intel-xe@archiver.kernel.org>; Mon,  5 Jan 2026 04:02:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B4B9510E3AE;
-	Mon,  5 Jan 2026 04:02:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0323A10E3B6;
+	Mon,  5 Jan 2026 04:02:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KLRGhHAn";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FN1UooOZ";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D72BE10E289
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BBAFE10E359
  for <intel-xe@lists.freedesktop.org>; Mon,  5 Jan 2026 04:02:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1767585766; x=1799121766;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=LsMZfnonLn3X98ZoU/RsInvbI5cBVC5T/CI7zhAqkOw=;
- b=KLRGhHAn8cON7Qip9aTcod4wfl3DVpNn53EVsPjJEC7GNzbhx5krx0FR
- 9dVCCSH3E2vwFptIkM0NWYuxCMHLWuJ/HY/hBG114skJ7nr8kJX3i4euf
- DsFJzf0afvQtk4o59jSCOLoqihngnWwH6NQeVuqwrPoqAlaOeniBl36MO
- yu0ZBKlP2HEh9bGd9xpp7dQxPUCV41Y6w8yhZvKd3KvWxgKHbPxGdlGQU
- Zq0S8pzrKeiiF5Re2ea5rEbClIUfzwFUQssFutmcRXvc1JA/1CeRSjbBJ
- m2IHp/HgjNouqqyOv43oq5hdy+u4kkS8Pr+3oXn0l/PHUzcRksGAc3S8J A==;
-X-CSE-ConnectionGUID: K0fbUYxnSsOJWGO73gnwyw==
-X-CSE-MsgGUID: FOwgIX+BSGSdzCZ3QJY8tw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11661"; a="68856276"
-X-IronPort-AV: E=Sophos;i="6.21,202,1763452800"; d="scan'208";a="68856276"
+ bh=Xb/RK9XjGpsD0C6HEshOqiIAs5LYQTNLZuRStUDwxQM=;
+ b=FN1UooOZoeDwxIFtvqyXNCfw1uaNmc7Two2lI9nhaF7liIGF/80k1QVJ
+ BuAm7sfdF1J5i9kVZkuBFwJshJzgzychkHkmsRN+w0y6uC7zYA16Ncz1y
+ w9y4A+Fe0kgtcnGTqiWrAajWNZukqjGcaWijCsFYU6V6F0vbVU2oWyHQF
+ bxUDD8yMEdFFLkgGoSuek2s16gr32gdW4EoTmP74S3jS0gYSr8yboJBcs
+ zmajKmEAuwy4OQXazq9tFkEcmH/j3AU4W1FtsqXtcIW03z56m/qkS/63T
+ JN0WkuFxZmjtbkoxJSNBDKUnebAZ5mxQmxefl5YP7MWrEKr0HpcR6GcBe A==;
+X-CSE-ConnectionGUID: 0qhmNkqLQjWKx/8F/DBbxQ==
+X-CSE-MsgGUID: YTBXpgLdRF28i413Mf5zoQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11661"; a="68856270"
+X-IronPort-AV: E=Sophos;i="6.21,202,1763452800"; d="scan'208";a="68856270"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jan 2026 20:02:46 -0800
-X-CSE-ConnectionGUID: CdMRlphxRmiQCWPP9H9GKA==
-X-CSE-MsgGUID: qxWf/wv7SFu7kDlFeBeGAw==
+ 04 Jan 2026 20:02:45 -0800
+X-CSE-ConnectionGUID: ECC6cm4ISeaIFGctpk+XXg==
+X-CSE-MsgGUID: 8hfMH7W2RZWavAwzARIbHQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,202,1763452800"; d="scan'208";a="202060692"
+X-IronPort-AV: E=Sophos;i="6.21,202,1763452800"; d="scan'208";a="202060687"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  04 Jan 2026 20:02:42 -0800
@@ -45,9 +45,9 @@ From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: daniele.ceraolospurio@intel.com,
 	carlos.santa@intel.com
-Subject: [PATCH v2 20/22] drm/xe: Document the deadline manager
-Date: Sun,  4 Jan 2026 20:02:35 -0800
-Message-Id: <20260105040237.1307873-21-matthew.brost@intel.com>
+Subject: [PATCH v2 17/22] drm/xe: Add hw fence deadline trace points
+Date: Sun,  4 Jan 2026 20:02:32 -0800
+Message-Id: <20260105040237.1307873-18-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260105040237.1307873-1-matthew.brost@intel.com>
 References: <20260105040237.1307873-1-matthew.brost@intel.com>
@@ -67,114 +67,110 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add kernel-doc describing the Xe deadline manager and its behavior.
-
-The documentation explains the deadline model, state machine, and timer
-behavior used to boost frequency and priority as deadlines approach. It
-also documents deadline lifecycle rules, queue limitations, locking, and
-the Kconfig options that control the boost window and priority boost
-sub-window.
-
-This is intended to make the deadline logic easier to reason about and
-to clarify the constraints under which it operates, particularly for
-latency-sensitive use cases such as compositors.
+Add hw fence deadline trace points to help debug and profile the
+deadline implementation.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_deadline_mgr.c | 80 ++++++++++++++++++++++++++++
- 1 file changed, 80 insertions(+)
+ drivers/gpu/drm/xe/xe_deadline_mgr.c | 14 ++++++++++++--
+ drivers/gpu/drm/xe/xe_trace.h        | 22 ++++++++++++++++++++--
+ 2 files changed, 32 insertions(+), 4 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_deadline_mgr.c b/drivers/gpu/drm/xe/xe_deadline_mgr.c
-index e2ee23f6e787..0a240e09da9b 100644
+index f3c920017e40..e2ee23f6e787 100644
 --- a/drivers/gpu/drm/xe/xe_deadline_mgr.c
 +++ b/drivers/gpu/drm/xe/xe_deadline_mgr.c
-@@ -12,6 +12,86 @@
+@@ -10,6 +10,7 @@
+ #include "xe_exec_queue.h"
+ #include "xe_gt.h"
  #include "xe_hw_fence.h"
- #include "xe_trace.h"
++#include "xe_trace.h"
  
-+/**
-+ * DOC: Xe deadline manager
-+ *
-+ * The Xe deadline manager provides per-exec-queue deadline boosting to help
-+ * latency-sensitive workloads (e.g. compositors) avoid missing presentation
-+ * deadlines.
-+ *
-+ * Overview
-+ * ========
-+ * Userspace may associate an absolute deadline (ktime_t) with the hardware
-+ * fence of a submitted job. The manager tracks deadlines for in-flight jobs on
-+ * a queue and programs a single hrtimer based on the earliest outstanding
-+ * deadline.
-+ *
-+ * When the earliest deadline approaches, the manager transitions the queue into
-+ * a boosted state via @q->ops->set_deadline_state(). Boosting is intended to be
-+ * minimal and time-bounded:
-+ *
-+ *   - Frequency boost begins when the current time is within
-+ *     %XE_DEADLINE_WINDOW_US of the deadline.
-+ *
-+ *   - Optionally, the final portion of the window additionally boosts
-+ *     priority. The length of this priority-boost sub-window is controlled by
-+ *     %XE_DEADLINE_PRIO_BOOST_WINDOW_PERCENT.
-+ *
-+ * State machine
-+ * =============
-+ * The manager maintains a current deadline state:
-+ *
-+ *   - %XE_DEADLINE_MGR_STATE_NO_BOOST   - normal execution.
-+ *   - %XE_DEADLINE_MGR_STATE_FREQ_BOOST - frequency boost active.
-+ *   - %XE_DEADLINE_MGR_STATE_PRIO_BOOST - priority + frequency boost active.
-+ *
-+ * For a non-empty deadline list, the manager schedules an hrtimer to fire at:
-+ *
-+ *     earliest_deadline - %XE_DEADLINE_WINDOW_US
-+ *
-+ * When the timer fires and the earliest deadline is still pending, the manager
-+ * transitions to %XE_DEADLINE_MGR_STATE_FREQ_BOOST or directly to
-+ * %XE_DEADLINE_MGR_STATE_PRIO_BOOST depending on
-+ * %XE_DEADLINE_PRIO_BOOST_WINDOW_PERCENT. If a priority-boost sub-window is
-+ * configured, the timer is re-armed to transition from frequency-only to
-+ * priority boost at:
-+ *
-+ *     earliest_deadline - prio_boost_window
-+ *
-+ * If the earliest deadline changes (add/remove), the timer is canceled and
-+ * reprogrammed. If the deadline is already within the configured window when
-+ * updated, the appropriate boost state is entered immediately.
-+ *
-+ * Deadline lifecycle
-+ * ==================
-+ * Deadlines are tracked per struct xe_hw_fence and stored on
-+ * @mgr->deadlines sorted by deadline time (earliest first). Adding a deadline
-+ * may be called multiple times for the same fence; upper layers are expected
-+ * to only reduce deadlines. Removing a deadline must be done exactly once after
-+ * the fence is signaled. After removal, future add attempts for that fence are
-+ * treated as NOPs.
-+ *
-+ * Concurrency and limitations
-+ * ===========================
-+ * The manager is protected by @mgr->lock (spinlock) and uses an hrtimer in
-+ * %CLOCK_MONOTONIC absolute mode.
-+ *
-+ * Parallel queues are not supported because their job fence is a dma-fence
-+ * chain and individual hardware fences may be freed while still referenced by
-+ * the manager. Multi-queue is not supported because deadline boosting requires
-+ * per-queue control of priority and frequency. The deadline logic is also
-+ * disabled when the feature is disabled via Kconfig or when the queue is
-+ * created in a boosted state.
-+ *
-+ * Tuning
-+ * ======
-+ * %XE_DEADLINE_WINDOW_US controls how early boosting begins relative to the
-+ * deadline (default 3000 us). %XE_DEADLINE_PRIO_BOOST_WINDOW_PERCENT controls
-+ * what fraction of that window uses priority boosting in addition to frequency
-+ * boosting (default 60%). %XE_DEADLINE_EXIT_DELAY_MS controls delay after
-+ * deadline is done until boosting mode exits (default 100 ms).
-+ */
-+
  #ifdef CONFIG_DRM_XE_DEADLINE_WINDOW_US
  #define XE_DEADLINE_WINDOW_US	CONFIG_DRM_XE_DEADLINE_WINDOW_US
- #else
+@@ -345,6 +346,8 @@ void xe_deadline_mgr_add_deadline(struct xe_deadline_mgr *mgr,
+ 	__xe_deadline_mgr_remove_deadline(mgr, hw_fence);
+ 	__xe_deadline_mgr_add_deadline(mgr, hw_fence, deadline);
+ 	__xe_deadline_mgr_update_deadline(mgr);
++
++	trace_xe_hw_fence_add_deadline(hw_fence);
+ }
+ 
+ /**
+@@ -359,15 +362,22 @@ void xe_deadline_mgr_add_deadline(struct xe_deadline_mgr *mgr,
+ void xe_deadline_mgr_remove_deadline(struct xe_deadline_mgr *mgr,
+ 				     struct dma_fence *fence)
+ {
++	struct xe_hw_fence *hw_fence;
++
+ 	if (mgr->state == XE_DEADLINE_MGR_STATE_UNSUPPORTED)
+ 		return;
+ 
+ 	guard(spinlock_irqsave)(&mgr->lock);
+ 
++	hw_fence = to_xe_hw_fence(fence);
++
+ 	xe_assert(gt_to_xe(mgr->q->gt), !dma_fence_is_container(fence));
+ 	xe_assert(gt_to_xe(mgr->q->gt), dma_fence_is_signaled(fence));
+ 	xe_assert(gt_to_xe(mgr->q->gt),
+-		  to_xe_hw_fence(fence)->deadline.time != XE_DEADLINE_DONE);
++		  hw_fence->deadline.time != XE_DEADLINE_DONE);
++
++	if (hw_fence->deadline.time != XE_DEADLINE_NONE)
++		trace_xe_hw_fence_remove_deadline(hw_fence);
+ 
+-	__xe_deadline_mgr_remove_deadline(mgr, to_xe_hw_fence(fence));
++	__xe_deadline_mgr_remove_deadline(mgr, hw_fence);
+ }
+diff --git a/drivers/gpu/drm/xe/xe_trace.h b/drivers/gpu/drm/xe/xe_trace.h
+index 14592403d2c0..5c84b8503de3 100644
+--- a/drivers/gpu/drm/xe/xe_trace.h
++++ b/drivers/gpu/drm/xe/xe_trace.h
+@@ -369,6 +369,8 @@ DECLARE_EVENT_CLASS(xe_hw_fence,
+ 			     __field(u64, ctx)
+ 			     __field(u32, seqno)
+ 			     __field(struct xe_hw_fence *, fence)
++			     __field(s64, delta_ns)
++			     __field(bool, missed)
+ 			     ),
+ 
+ 		    TP_fast_assign(
+@@ -376,10 +378,16 @@ DECLARE_EVENT_CLASS(xe_hw_fence,
+ 			   __entry->ctx = fence->dma.context;
+ 			   __entry->seqno = fence->dma.seqno;
+ 			   __entry->fence = fence;
++			   __entry->delta_ns =
++			   ktime_to_ns(ktime_sub(fence->deadline.time, ktime_get()));
++			   __entry->missed = (__entry->delta_ns < 0 &&
++			    fence->deadline.time != XE_DEADLINE_NONE);
+ 			   ),
+ 
+-		    TP_printk("dev=%s, ctx=0x%016llx, fence=%p, seqno=%u",
+-			      __get_str(dev), __entry->ctx, __entry->fence, __entry->seqno)
++		    TP_printk("dev=%s, ctx=0x%llx, fence=%p, seqno=%u, missed=%d, delta_ns=0x%llx",
++			      __get_str(dev), __entry->ctx, __entry->fence,
++			      __entry->seqno, __entry->missed ? 1 : 0,
++			      (u64)__entry->delta_ns)
+ );
+ 
+ DEFINE_EVENT(xe_hw_fence, xe_hw_fence_create,
+@@ -397,6 +405,16 @@ DEFINE_EVENT(xe_hw_fence, xe_hw_fence_try_signal,
+ 	     TP_ARGS(fence)
+ );
+ 
++DEFINE_EVENT(xe_hw_fence, xe_hw_fence_add_deadline,
++	     TP_PROTO(struct xe_hw_fence *fence),
++	     TP_ARGS(fence)
++);
++
++DEFINE_EVENT(xe_hw_fence, xe_hw_fence_remove_deadline,
++	     TP_PROTO(struct xe_hw_fence *fence),
++	     TP_ARGS(fence)
++);
++
+ TRACE_EVENT(xe_reg_rw,
+ 	TP_PROTO(struct xe_mmio *mmio, bool write, u32 reg, u64 val, int len),
+ 
 -- 
 2.34.1
 
