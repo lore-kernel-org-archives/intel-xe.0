@@ -4,27 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 614EBCD042A
-	for <intel-xe@archiver.kernel.org>; Tue,  6 Jan 2026 01:12:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B314FCD042B
+	for <intel-xe@archiver.kernel.org>; Tue,  6 Jan 2026 01:29:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 06BA910E050;
-	Tue,  6 Jan 2026 01:12:32 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4B80A10E050;
- Tue,  6 Jan 2026 01:12:31 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5472767705022997649=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0EEF310E3C4;
+	Tue,  6 Jan 2026 01:29:33 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZsO1izKm";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2DEEB10E231
+ for <intel-xe@lists.freedesktop.org>; Tue,  6 Jan 2026 01:29:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1767662972; x=1799198972;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Wx1KV+GCvFbitTbPqrW9xYXiKexxFPasaYXgpyNMGhQ=;
+ b=ZsO1izKmFrgrKXtq6PYeFHvQXV3P8FZXc33vtoxeIadkoBT0q/Bpahd8
+ g8dlP1OwrWDO/RypXpo+CLTSDchMElq37+Jp/TewoRs6bFAz6F3x43S5D
+ 8WG7De0rdSKczpcSGqJrcHjPuzZ2t5HgBcgURfvFtbhPE2YVBHi6+JALB
+ U9QWyxklsDNpuRTEAKXrR6etcgyPdeDixaFPyI+PcStasC8YbgOoWE4DZ
+ wsP7QQAi6P2O/4ije5wOk2nebd8BrjF2/SDMbW0HI6/+nKUO2y24U4hRa
+ v0T2UoooDEvVahqnkysiLy1z53hKFMIp4QXPBn3qTuUCXkiv0QNbZ/R1t g==;
+X-CSE-ConnectionGUID: 5xy/8ucRRfOHh/iqeHSLoQ==
+X-CSE-MsgGUID: 5CA7FSTPRLim7tEmf2VGsg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11662"; a="69072797"
+X-IronPort-AV: E=Sophos;i="6.21,204,1763452800"; d="scan'208";a="69072797"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Jan 2026 17:29:32 -0800
+X-CSE-ConnectionGUID: 7vQqOlj8RKezln2aZZUPAw==
+X-CSE-MsgGUID: H0P0FJvPRF2HRtF6d1SJzw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,204,1763452800"; d="scan'208";a="202148070"
+Received: from nvishwa1-desk.sc.intel.com ([172.25.29.139])
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Jan 2026 17:29:32 -0800
+From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: matthew.brost@intel.com
+Subject: [PATCH 0/2] drm/xe: Remove multi-queue KEEP_ACTIVE feature
+Date: Mon,  5 Jan 2026 17:29:14 -0800
+Message-ID: <20260106012920.2850975-4-niranjana.vishwanathapura@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EFull=3A_failure_for_Page-reclaim_fixes_and_PRL?=
- =?utf-8?q?_stats_addition_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Brian Nguyen" <brian3.nguyen@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 06 Jan 2026 01:12:31 -0000
-Message-ID: <176766195129.127454.9919390379485448116@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260105233351.3753716-6-brian3.nguyen@intel.com>
-In-Reply-To: <20260105233351.3753716-6-brian3.nguyen@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,61 +61,26 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5472767705022997649==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+There is no must have requirement for this feature from Compute UMD.
+Revert it.
 
-== Series Details ==
+Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 
-Series: Page-reclaim fixes and PRL stats addition (rev2)
-URL   : https://patchwork.freedesktop.org/series/159478/
-State : failure
+Niranjana Vishwanathapura (2):
+  Revert "drm/xe/multi_queue: Support active group after primary is
+    destroyed"
+  drm/xe/doc: Remove KEEP_ACTIVE feature
 
-== Summary ==
+ drivers/gpu/drm/xe/xe_device.c           |  7 +--
+ drivers/gpu/drm/xe/xe_exec_queue.c       | 60 ++----------------------
+ drivers/gpu/drm/xe/xe_exec_queue.h       |  2 -
+ drivers/gpu/drm/xe/xe_exec_queue_types.h |  4 --
+ include/uapi/drm/xe_drm.h                |  4 --
+ 5 files changed, 5 insertions(+), 72 deletions(-)
 
-ERROR: The runconfig 'xe-4331-908651b5352ab4610d22645ef30427d2d36a954c_FULL' does not exist in the database
+-- 
+2.43.0
 
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159478v2/index.html
-
---===============5472767705022997649==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Page-reclaim fixes and PRL stats addition (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/159478/">https://patchwork.freedesktop.org/series/159478/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159478v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159478v2/index.html</a></td></tr>
-
-</table>
-
-
-    <p>ERROR: The runconfig 'xe-4331-908651b5352ab4610d22645ef30427d2d36a954c_FULL' does not exist in the database</p>
-
-</body>
-</html>
-
---===============5472767705022997649==--
