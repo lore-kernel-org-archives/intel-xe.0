@@ -4,81 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 45501CD0435
-	for <intel-xe@archiver.kernel.org>; Tue,  6 Jan 2026 04:04:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CF029CD0430
+	for <intel-xe@archiver.kernel.org>; Tue,  6 Jan 2026 04:04:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E9E1510E1D0;
-	Tue,  6 Jan 2026 04:04:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 065FE10E45E;
+	Tue,  6 Jan 2026 04:04:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fzL0vgV9";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dLx4oJqy";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A571E10E1D0;
- Tue,  6 Jan 2026 04:04:26 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3FC6610E46B;
+ Tue,  6 Jan 2026 04:04:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1767672267; x=1799208267;
+ t=1767672278; x=1799208278;
  h=message-id:date:subject:to:cc:references:from:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=XWNvTycn+IyBHei/MTWm8aQlKmYVOHXIDLIf1ADS1tU=;
- b=fzL0vgV99Am2egMYc9dZ3cUbHHUi3JORr1MI6ldwS+o6wH4glAGYA6KU
- jT5xK4odvnXYe2kEEHFkmw1WMcMri/YOWwxybhFEHPArSiyWhhkiOlEEh
- kFgNW1+3hNY8yCvOnlne8rHEi8JbaIliwqSyG83YqghWT03ER7gNl4eNx
- seIF/9fQTSrp7HiDeVa+QP2HMHZfm+kP3lK12UbFI3U3BjSAWu0OxqaOn
- 1j7heFU4ejS3821+n06PVsAypCv7z2V8LqLNCbsEac/mjoLdmfd3fBf+1
- XysVVCZjb9YnP4SBM2tnEflQTur5O8yi7Bm6kKlIXgThTS0p+sAd5l/LI A==;
-X-CSE-ConnectionGUID: HEc2XLg+SC2N3chvO7Gwqw==
-X-CSE-MsgGUID: kewYJZzDSh2QjxrzxFG7gw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11662"; a="68779876"
-X-IronPort-AV: E=Sophos;i="6.21,204,1763452800"; d="scan'208";a="68779876"
+ bh=hgCWh577v6+L6NfPNGafhzCLKbtR1GhsgVy9bTt97K4=;
+ b=dLx4oJqytbVfFoOrGWnlzq8flVcBVtb7/MFFwxV2pX7IHbPm+xiGCKYO
+ S1mIiyQZgjoO0ejBYKC1+yQ/x23Jsc5BLSAkFYnBcenRHay9Z23KJSCk0
+ x8i3Zw99V+w3C4Bi6XO5OOCFTbRq/Bwm2f3CDfWl0wxsIfZZ6iNlE4Hq3
+ WgvUmdAYtYvMRqvCQ/yymS1jgGNa+5gW5Qjre8RqP2sYPT9OAqKGLibeh
+ oAG8qcBb0rKVfsOKIsipcWNKW2/xpm9V4tRPUaqT3ObSPEbh+8lv3vrPD
+ Ut/v0oELPPL/qtxyGBG9Um5KWTrJBxcFEzoQQZQiDU7qjQfYCqmi6vvEc A==;
+X-CSE-ConnectionGUID: 5nKnyzZPTNKcVFnj5tUdJA==
+X-CSE-MsgGUID: qYY2lZRcT9WNFyWBWbCEzA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11662"; a="68779906"
+X-IronPort-AV: E=Sophos;i="6.21,204,1763452800"; d="scan'208";a="68779906"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jan 2026 20:04:26 -0800
-X-CSE-ConnectionGUID: DYM3j0HDSBifNjrOIB7tTg==
-X-CSE-MsgGUID: R1dEV/Y/QcKFqflHEJkQdg==
+ 05 Jan 2026 20:04:38 -0800
+X-CSE-ConnectionGUID: nf0SNUPBQkmd6W7+3UfUsg==
+X-CSE-MsgGUID: W9Zs3egWQqaJtd8Sll1s3w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,204,1763452800"; d="scan'208";a="202324795"
+X-IronPort-AV: E=Sophos;i="6.21,204,1763452800"; d="scan'208";a="202324849"
 Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
  by orviesa009.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jan 2026 20:04:26 -0800
-Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
+ 05 Jan 2026 20:04:38 -0800
+Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
  fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Mon, 5 Jan 2026 20:04:25 -0800
-Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
- FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ 15.2.2562.29; Mon, 5 Jan 2026 20:04:21 -0800
+Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
+ FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29 via Frontend Transport; Mon, 5 Jan 2026 20:04:25 -0800
-Received: from SN4PR2101CU001.outbound.protection.outlook.com (40.93.195.54)
- by edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
+ 15.2.2562.29 via Frontend Transport; Mon, 5 Jan 2026 20:04:21 -0800
+Received: from CY7PR03CU001.outbound.protection.outlook.com (40.93.198.55) by
+ edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Mon, 5 Jan 2026 20:03:47 -0800
+ 15.2.2562.29; Mon, 5 Jan 2026 20:03:22 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=EBuFOvjOkcgj03xm7CbvfM1mTMIgd2IZ//qhmW8MqQ4hprMIau6tvwo2bFBsRvlP6xM+FFOpOppMJ/D/j83aIiy7uKmN7nm+cZIpUpCvOtygs6WGMthUeZsQtmYp8ljuyRzzIlb/E2yVgj6GMufjRmJ/ncmAKgC9rVqzf7sQYx0WCOL8RAJiKHUk88TuwRx4xE29ojJyVg9gMKpSCCm1a3wKw5jjG9lwdcG5bAnup5n3h++gdQklTexLAIvwfDy8zizJhwlk1WWafwxNJXTtTDUQdl5BCHxDj5VxCmD6gMkjmX4eulylMWHCIzfQkxJuzoVFzm/NQEuzcCcew3fBrQ==
+ b=Sdq/W0lymUKERDpwcemOpNUc0SAi+pRnGUyJLa/GKTOoyvp4Y2WeO+/me6FVjCq1p9ua85j3ro9HjLGtA3I/rWb8Le4+3+yuAG1rHTWRtcXl9A2Z7c4gagWtd+u+KjVBMBAvhnGXg08Alv8VgZbIUQAJ43R+YEavkLCmw0bdsUdCv8FhvNQXBFXNY8fI1eeGrkPqo9S4e8NcAtvQHvNLOvIP5fbNS0dMtdW37mm/6/iIOYBO0YkBur+snnzxYOZtLuXkuzx8dYm5GWA+wp3Bofjh0yI5iEHylpmiNPGKNPoJR/fKcv32fscR2B4itXnJaTvQhmAeT5ApCQbTPd+Cvw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=TOiwGW8ZQ2vGVQ/np6CrgcC7nQoyZ4xQyTb6L6VIx6M=;
- b=DQQddxJ3DI3LWx6pNNXv7ycIZKcR2rveAZWPme8ppeOjuFa/hQqoyDhx39Icg8F/7HtoxPrUvjkDAFMb9QLDW32XoJpNKw5Ofy34pPR66sbe/+6P0ME2wahW147TjQWXU6lZeHN+aOJkgFbqNOmyOYxi2CcaKiBqG009O17Y41zqGbCEW8N48pmJTVtkrq0VJT2aqk9nZO8GtOYphmU3GXX8YHCFYvgTOu6kj17u9vALoIpGQiMeI2jUsOqw8Bbg+PH+7EPJrTF2fnf6TcMpImHKPc8ltXBbIGtqtjAtnTOjjyC1+WuRUHgri71mwEdCxaAgY+fBXp0AlbpN+i/T+w==
+ bh=a3H5lZe1JLeoL7GHpDHSIT8xyy/YLsZKTLHPnssFzvE=;
+ b=lVR/BIc2CXebv6z/xr5x5psXmd3rrtnIAUZyPMTnGNG2jzXxPDZd/N06ThaTa46QFaUthaXdA7blSkto9l4uDdU+X248Y59IbwtsR5m+4Wg7gKOcFLpeJEcBwLrPt13taIrC9b+03IrRa+lMd1xTxVg46dY01sHwrgapcpcrvcMmI9HNFZ1Or57ubMEccdhY4MRxUK5u+s2BnUuxfqXkxt30t16M52glgHbOhsG+qrTItJi2lk8WbNHWk1RIpk5qc8fKBIiohD+olo/hCSgu8uK9ls2Uw+dVlLDexb9PAHbwKouBZHUlLqJhNKd8JCQjymYTJPsrR7AKni8ukc2hhw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from IA0PR11MB7307.namprd11.prod.outlook.com (2603:10b6:208:437::10)
- by CH3PR11MB7323.namprd11.prod.outlook.com (2603:10b6:610:152::6)
- with Microsoft SMTP Server (version=TLS1_2,
+ by DM4PR11MB6141.namprd11.prod.outlook.com (2603:10b6:8:b3::13) with
+ Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9478.4; Tue, 6 Jan
- 2026 04:03:45 +0000
+ 2026 04:03:15 +0000
 Received: from IA0PR11MB7307.namprd11.prod.outlook.com
  ([fe80::dafa:d38d:8ac1:e843]) by IA0PR11MB7307.namprd11.prod.outlook.com
  ([fe80::dafa:d38d:8ac1:e843%6]) with mapi id 15.20.9478.004; Tue, 6 Jan 2026
- 04:03:45 +0000
-Message-ID: <6a5bb2e7-73b7-436f-bcbb-da6227b30115@intel.com>
-Date: Tue, 6 Jan 2026 09:33:37 +0530
+ 04:03:15 +0000
+Message-ID: <91aff155-7c12-444e-a876-e1b831e97a37@intel.com>
+Date: Tue, 6 Jan 2026 09:33:08 +0530
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 1/5] drm: Define user readable error codes for atomic
- ioctl
+Subject: Re: [PATCH v6 4/5] drm/atomic: Return user readable error in
+ atomic_ioctl
 To: "Kandpal, Suraj" <suraj.kandpal@intel.com>, Maarten Lankhorst
  <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
  Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
@@ -92,110 +92,110 @@ CC: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
  "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
  "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
 References: <20251009-atomic-v6-0-d209709cc3ba@intel.com>
- <20251009-atomic-v6-1-d209709cc3ba@intel.com>
- <DM3PPF208195D8D40A2E899BB7D51A45B25E3FAA@DM3PPF208195D8D.namprd11.prod.outlook.com>
+ <20251009-atomic-v6-4-d209709cc3ba@intel.com>
+ <DM3PPF208195D8D35B470FB27BB47AD262BE3FAA@DM3PPF208195D8D.namprd11.prod.outlook.com>
 Content-Language: en-US
 From: "Murthy, Arun R" <arun.r.murthy@intel.com>
-In-Reply-To: <DM3PPF208195D8D40A2E899BB7D51A45B25E3FAA@DM3PPF208195D8D.namprd11.prod.outlook.com>
+In-Reply-To: <DM3PPF208195D8D35B470FB27BB47AD262BE3FAA@DM3PPF208195D8D.namprd11.prod.outlook.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MA5P287CA0262.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:1f1::16) To IA0PR11MB7307.namprd11.prod.outlook.com
+X-ClientProxiedBy: MA5P287CA0253.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:1f1::7) To IA0PR11MB7307.namprd11.prod.outlook.com
  (2603:10b6:208:437::10)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: IA0PR11MB7307:EE_|CH3PR11MB7323:EE_
-X-MS-Office365-Filtering-Correlation-Id: c308c6bc-9621-4dc7-dcc2-08de4cd89678
+X-MS-TrafficTypeDiagnostic: IA0PR11MB7307:EE_|DM4PR11MB6141:EE_
+X-MS-Office365-Filtering-Correlation-Id: 67897b99-cb08-4b0f-b38f-08de4cd8847a
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|7416014|376014|1800799024|921020; 
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?enNBTFJXQXZTbGZURWdEMmdBQ0svTEIraGpsRThiSnJkcHgzUktxNFNadUhs?=
- =?utf-8?B?SDFZQmp0V2UwOUJkM0QzZkpoWWtXYk1lb2podFVxcUFvN0k4T2RWbWRHZk5J?=
- =?utf-8?B?cTlBMFYrVlRqNTh2RWd4aTNRbjQ0YzVBUTduK1JMUmhueFI1ZE1tQlQrNnZW?=
- =?utf-8?B?eU5meXhKeU9za3VQVDV6WS8wTnRTaU1qSkIyZHJwRkhHNDNldFdWWEZoU1p2?=
- =?utf-8?B?V0xaOUdMNmtDSDRKSEtnMkZHY0NlS3I4S2pMVDREVFlVbnUwb1I4TVNRQUJh?=
- =?utf-8?B?aFE3UTg0STFFNlp6UVlSWkhER3o1bGFNZnpmTy9DS3hFMDdmVW9Xa2xzcWFM?=
- =?utf-8?B?enFocVQ1ZFZTYnFwb1c0UVEreHpWenhndW14NHFrTW1WR0VTWS9tUjNEakJ6?=
- =?utf-8?B?aG1jeWYvZzJtOU9qeGg2TDRHbzYwZnR2OTFRNGxpS2xrbUNhdUE2OGE5ZHpW?=
- =?utf-8?B?ZjAyNGxmaHRVUFlDTzU2Nzg5MXpXdlY2VFVJUGpyQ1ZITUxBeXgxVjgwbVpz?=
- =?utf-8?B?dEtoc056bGNnSEZhV01vK2lkNjlNNDk5Y0J6V0cwTDZVc05KM0ZCRE1VcnRh?=
- =?utf-8?B?UlNsSjVPeWVJVU1tcUl3akFsUlRoaDBOTWswNWNXMGdOY1Z6WHpwQ0lBcXBO?=
- =?utf-8?B?K2tNazQzcFpSWitjb1FxcU0zSitLTUEzaktSdGJKZGhlWWhqZVdubWJlS09o?=
- =?utf-8?B?ME94YnNxTTNjdkpVbDZxOWsyeGRMbmxHc2V5UEl4dEVvUUphdGZXdUxNczJH?=
- =?utf-8?B?OEpEaGIrWkVWSjVrWEZQbmJZK2NRMzdXTExncU4rYm5wUTRISjlJcGJ0NzlH?=
- =?utf-8?B?Z1RWZENaU3RmZ3JWQ1RMQmovczJBR3VTcGVlZ29MN1M5aHd3VnYza2E0eW1p?=
- =?utf-8?B?eFZpWlVTdlBFK0dtV2JzVHIzbzFwcmZIYnozZEJkOWtvc1pXTVFUWkMvbHRx?=
- =?utf-8?B?SkJBcXlsd0RMTXBCWE1WUFo2VmQ2Uk9NWU0wQ1JDNDdWTmJQeG9Ob0IxczQz?=
- =?utf-8?B?ZDhOckdwSHZWckIxdXZQc3FNck1ncDU4Y2dSTUJzVkZlVmlQTVBCV2RzYW9U?=
- =?utf-8?B?R1BXRlpHUHhFV2ZGV3FZOStnc1BibmJSOURZdmlEeVB3c3Y1c05HY0hoVnVY?=
- =?utf-8?B?akNqYm5MYVZ1TUJXRVgyMDA1bEJjL05QT0Z3a1lJTWpyVk9SeE9CbnVEUElY?=
- =?utf-8?B?MkRSNjVFSDUwNURXN2ZDYXJ6eUoyQzdSUTlZREpIYjdST2lWYzhRYlNrdzhu?=
- =?utf-8?B?NjhvaC9CM3M4cFptZDRzVmh4enZtZjhhdWV6dWxmSVBLVWdoby9ZU2xtOVFO?=
- =?utf-8?B?M1M1UFJEaUFWcWJZcEo1K3c4RnNGcDMrUGFMVkVDL2x6Ull4a1RaR2twNkNI?=
- =?utf-8?B?a0tUcjdoTEdCM0ZBZGF0aUxlTnFtL1RValpUNzZsQzdZOXdJWGJvU24zc2ti?=
- =?utf-8?B?YXp6dWhPQjRQbG9QR2ljVTRuTWN0OXYxYURCdFVQL1BRQTQ3UzFJM0NqNnB2?=
- =?utf-8?B?ejFpd1FVa0JJMVhFa3hyejY0ODhjS1QvbXl3aStYUHpzL1YzcDlYRnFzOHZp?=
- =?utf-8?B?Q3ovRWRFdTVhc01sZnhDOGFtcnFLNlRPNWI0M1ByMi9NTEdrT3NFNUhLcGN1?=
- =?utf-8?B?Mkhsa0V5K0QyeUhYeDVEd3ZBdGNFS3ZYOUdjRmNtdlNSTUhWYnA0dUE1UUF3?=
- =?utf-8?B?bVIzR0daTG5wVGxqbmdSN3l6VzlYeG5WYWVMb2QySHBnVkR4NlZlK1R4RFY3?=
- =?utf-8?B?SHovZGhZVGdYc3NzUlEvSk1iMWVseEEvK2RtajZTUHpIQ2JLaUhKRlozWS90?=
- =?utf-8?B?U3FWMGlwSEdEeDB4Y3Q2aFFHSVk0Mzd4Y05xZVNXa3dXeWsvaWwvQ01FVENp?=
- =?utf-8?B?TDFIaEVmVjRTMVh6Wm1DOXFOSXhMOURJd3NBc1l0MjJ5OUswaVpPVjliTXFZ?=
- =?utf-8?B?YWV4RjQyUnRYZkxTRzltajFuM1VJek5pZVRXMG9mMU9DbVR0a0pNRFVJVmJx?=
- =?utf-8?Q?RKsPJX4nlvv+YYL7jH35VAVY07NDbw=3D?=
+ ARA:13230040|7416014|376014|1800799024|366016|921020; 
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?R01PcnY3ZllqV1d0Tll4WEtRTWxZWVAweFJHNjZzZ1laVWxoWFRLYmFSSDR6?=
+ =?utf-8?B?MWdTa1pXVDh6SmFnRFNDaUUzVFZ4b0VnMGhBaXY2a2RrVHhBNGlwZnZiYU5H?=
+ =?utf-8?B?WEQzZ1NwcUZYTnBpTDBleWkwS2FkZTQxUlBYaWl3WStIOW1WT0FhSnNSME93?=
+ =?utf-8?B?Yys4bjJ0U2RjWjBYSUhWVkhvZlRUUUNvTlN4TkNaK1F3cy9GYVFWTHlLRUpi?=
+ =?utf-8?B?NnpCKzAxc0pJQTdVS29ZbjVWY3VsVjYvRU90UzI5M25UTFhPWnFUbVBtbEhE?=
+ =?utf-8?B?SExJTXpUOHBKR1Z5c1NsVzhBc1VlOTNyTTVXdDJRSE1nREJMaFRzaUpuQ3k3?=
+ =?utf-8?B?YkR4blNsUFpUbFJQOVpvN0s2R0ZTUFIwcHJsT1BKYmFMajA2M29mWHYxUHZj?=
+ =?utf-8?B?eERVSkE4cHY1VkM5TkZGdlpsTDgxb2cvbjBseitlSVVyUGdNc0Jrd1BPN3pl?=
+ =?utf-8?B?eGtTNmpBeTdLSjJiMXcrbjQrbFQ1c0JEcTNpWmNHbmJmNXFyNjZDT2d1Ti9y?=
+ =?utf-8?B?K3VFcVFMQ1k1ZlAzZDJrR2c5NzhBT0hCY2djM1VUZ2d2OTVmR2N1d1l3MHBa?=
+ =?utf-8?B?VFhGNVRrMGtvc0NuaDZqbDNvbHNhMFpFRnNtMjVkRmZHRDBuYUpabUh3Si8z?=
+ =?utf-8?B?K2d3bVEvTkh0ekQ0bnJnQUYxaVRzNklCMGtnU1RvWko4akczVDZ4N244S25w?=
+ =?utf-8?B?Y2kxM1lNUG9ZSVBlUThrU1VqTzBlSFIrUWVKVU52OGZPai9ISmJNZWhFcEhN?=
+ =?utf-8?B?SXZwVUd2RkZpN1kraEUrSXZLRnJZSUVadWpSWFBmSXVsc0l0cVFlendzR1FX?=
+ =?utf-8?B?SExnQWtlOTN5RTlCZzQzTk54WWFxVTdWQVBmejMzcVAwUDRtaEZPb0dSK29v?=
+ =?utf-8?B?U3B0dXdGZ0tMSS9CNUhUVWJEem5FUTZCRVVYOG83Vnc5RUNMMVJiOHkzZ1Bq?=
+ =?utf-8?B?MnRrSTRwdmtROGpBd1hzSFpnL3YrMWlEYnJTUmdiWGVDMmxQZmVldW9TUmRG?=
+ =?utf-8?B?RmZDQWFlaEgrVVlXR2tpNDdhd09XWmdNUTFGT0JFMlpTaVdhOXRhbWtIVzQ0?=
+ =?utf-8?B?UkdIK0EzWC8zcHo4enpseS9MZUt1dUEySWNSYTN0M1NqVmhzZFpvenRja1VW?=
+ =?utf-8?B?cGdKcWdVdk5EdW1pTEVDNDcvWTErTkpUVmp6eDNjQk45ZGsvWit3ZlY1dU5x?=
+ =?utf-8?B?b1Joc1BEMWlFR2lwS1Q0NnR6R0dKVmROanc5QTZWeThKRUU4WXJRVHFJakkv?=
+ =?utf-8?B?V1NnRlE5bFpDSWUvQWlTaXVOdllMYUJmWjJlVk5Ga0hOZDZUYk8zeTBlY0dy?=
+ =?utf-8?B?TWdoRkJjeGw3TkdMYzdBR2p4bEh1Mm0vZnJlaW0zMm1QSGRCK0xyUVN6MEFk?=
+ =?utf-8?B?UGROdUhYWThWNWlLak5UNUFGNUl0eS9jeXpRK2VhaWdaK2E4U0s5YUZTVXdp?=
+ =?utf-8?B?aWV4T1BHUHpoNktZa3VaQTFwbjFzQ3JkQ0sySno1elY0VUVmSlRDVUxWYVpx?=
+ =?utf-8?B?clU4OVVUN0ZZNzRjT1luT3hnYkFQSGhJWTZUd3lmRFlCNUhNNlNmRmYvZ2M0?=
+ =?utf-8?B?UmF1WWJMVlg3WEo4MUdKWmhkZ0hjbTE4eWpuOWloN2N1UDdOSXh2cXBMTExY?=
+ =?utf-8?B?algvRmVXSmJ3ZE11bWpFSjduOWpqazZIUHVDU1dIc0diZ005b3N4U0JnV0NG?=
+ =?utf-8?B?bmt4dStDTGZkRnN2YWNDVjVwdWdFa3JPSkdTYjlKK0FlRkRJTWpUdmdpTGk5?=
+ =?utf-8?B?UzB2NGNYUUg0RmZzcEM0WHJ6NUpSU20wUE9WRWxQWFFyV1EvTERFSlM2Wmh5?=
+ =?utf-8?B?Ym9GeGxxZ01WZEZld1M2ako4RXV0ZHFlenFhKzF1d1VQbjdNMUpEdEhrUXFE?=
+ =?utf-8?B?NitZTnFqTTVBVDRiZ3Nlenl5ajcyT0IyUXY3cGxmaDhTSHFCSEQrUDFHK2Vr?=
+ =?utf-8?B?bnlxODA3SFNmOXorNWFVRU5tbExEaS9WSUNOTlpPTzhJR0NLYlgxNkJMaHhY?=
+ =?utf-8?Q?1kQinQ4DtBJrNovCYrNY0qnwUDJaS8=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:IA0PR11MB7307.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(7416014)(376014)(1800799024)(921020); DIR:OUT; SFP:1101;
+ SFS:(13230040)(7416014)(376014)(1800799024)(366016)(921020); DIR:OUT; SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bTVpbDViRFJ4WE5makFhZEtFY3UzV3hLcTBqZUZXcElNeUJIMHdMYlBZYUhW?=
- =?utf-8?B?YU8rWmxjem5pSzB2QXYrUXBxTkcrOFpUWnZJRnBRMGQxSnFncW1UMkwydUM4?=
- =?utf-8?B?d3c4QjArK1VPRW5wTkM2WnFabEhVV08xaTU2cE5yUHo5Z1ZDMnllbG5VcWdH?=
- =?utf-8?B?VXZUMk4vOW0rL0J2SFo2WFNYSzUydDV1TngybXBJZGZreU5iVG9TOS95WlFO?=
- =?utf-8?B?eVhhMjZoelUycVQybkFKZ2FiODlFVUIvSW5pTUgyUE8zcE1pZHR4bjZrelBW?=
- =?utf-8?B?V0dUQlhGak9SSXdWRnV4K0NCRituQjZIUi96QW5wU1BheXFHcngvL2ZtaWJy?=
- =?utf-8?B?MDJLWEdIaVBUZnRUSHhHTVErUmZBWEloVVR2L2Z6VHAvT01XRW1ULzdVK01N?=
- =?utf-8?B?WWdON0NBSGhXd3RheFpsMVRISlVpdzJTMkNZcmFueDB0QTFBZHpSOEloU2Ri?=
- =?utf-8?B?ZEt0a0tNVnVaM1V0Mm82eHdUWlpEeTYyeDIxeVZQUEtvU2xDSzI2NEJMWktY?=
- =?utf-8?B?Z1VnZmQ1aHVTdWo4TXlJeTl2Rm9oS2J6a3ZmeGI1bzYvNDlHdmVqSWVwK250?=
- =?utf-8?B?QnFIdzJSSlJGc3N3NEh5Mnd5UGc4OFF3NVhoUGg2djBReFNyVkxBcEgrYWYw?=
- =?utf-8?B?MDkvSTBBNFRCR0FwWFM1UTNGQzdXMVpPNXkwYUVZSEV6RVh2ckNLL3pXZjFv?=
- =?utf-8?B?ZlRBTEhlc1JYTnh4T0hacFdiSkdlSkhJKzl6d0JUcTFVKzlLNU5hbDExMFR2?=
- =?utf-8?B?U2RveVY3Sy9yUlV2QkpSNXFKWTdSM0tnRTVvQXVwbUJBVlM4cDRJTmgwWlFt?=
- =?utf-8?B?LzFpR1N5OXY2cnI1UG1vT1k5NW1kTUhQWGRFOHRBYysweXhYdzZpZnpkc1VS?=
- =?utf-8?B?Y1ozRnl1Mkt6bzdKaklIL0dLa1BUNm1HdHNXKzIxeDQ3K2RobGhaYi85YmFH?=
- =?utf-8?B?eHVYR1RFT09Mc2d6YVl3cGR2bDllcms1Wkovc01iUmZtdWhORk5BY0h5enMw?=
- =?utf-8?B?bStma1ZReEtHSTVSYVhUVDBocFptYW8wUFJPMUNpR0szSm02NDhyVWp2cmM4?=
- =?utf-8?B?US9VVTExZjAvN1lmRTE2RFNEQkJabFZDTDRiTTBDOC85VVUyNGthRlZLeVhy?=
- =?utf-8?B?N1hHRUpRYTlVWktSVHAzcnZJZWRsSXFCNlFFdzdGbG80cVhyMmpaUklBZTBt?=
- =?utf-8?B?STJ5aFRta1pneGlTSk1tWGtaMGVnaStHK2l4eHQyR1dGM1NxeDNHNnE4aHdM?=
- =?utf-8?B?Vkw0cFNDdTJUVVJXcVkvRytGMUVvb29iQXMwcTdTYVNxWEpUclR1NWUwRFNE?=
- =?utf-8?B?Z3k5blQzVm00ODZYV2FISDQxeEg2NmNNL29lMzBKUEUreEJhWmh1eGZlNUhk?=
- =?utf-8?B?OFZVQjloR2lMdGZkMjRCM0N3NzVnaUl2WHhJdGNaTmFScGhpdWlvYUVKNWd6?=
- =?utf-8?B?S05UWkdqdzlzRFNhLzZDcVlaUW5XV3hleGI2V1ZpUlFTVzMwczkyMGFiTis0?=
- =?utf-8?B?YmF1bnRTK0ltSUVXR2cwV1FnajgyYlRjTE1FWWpBOGdBaWsrRHZzc1FzUmYx?=
- =?utf-8?B?eit2SjUvSWNPaDFGWnc0dUFYSGF5MDlHa2k3eFJXK0pjdkRXZjdPUnc5Z2RK?=
- =?utf-8?B?dG9JNHhCRWpiWVlwclJKbi9DRmxlSWJ0SnlsOVBUcGhUZDhZTldaR1Jjc0pi?=
- =?utf-8?B?YVcrNUovZUNTSWxjaG51SGN0UkZWSGRKb3ZkSW9zMFlGNTNEQjcwQ2Z6VUkr?=
- =?utf-8?B?L1NlOFkyNWFhSVZkZFBvUUxmMUZJTC94M3RnY3lXTjlFWmdReC91YmtQTWcz?=
- =?utf-8?B?UytDV1JIbEZ4Z3ZLOGdrcjJnRmFRZWYwRTA0cWJCdHVXK3lKV2p0Y2xISWl0?=
- =?utf-8?B?RjVBRnJqeDhLT0hPWHNrSnBqajA5eVh1ZTJGSnJ5cFI2TkpKQ0kxQlh4UzIr?=
- =?utf-8?B?ZnBJc3lsOXEvVmZLVnprcDRpSGdCOVhEVUFCQ2tWQXRJQ2tBYVIvdFg0NEhk?=
- =?utf-8?B?aXNhUW1wVFQ0dGlOc0ROM2d4Mlc0SlRlUmt2V0pHT3pESGJUbG1RUVJMSFcr?=
- =?utf-8?B?SDVWdUgwWGVJNThRR1k4b0YzY3p2VU1mK0t0K2laTDRuWEthbFN0cC9yWTZK?=
- =?utf-8?B?dXJRa2pWcGlkdzJyWnY4SDkweXhhQXFMRDZpdXM1dlgvUU53aHJKa2lXVzVP?=
- =?utf-8?B?TG5aYTE1QVhvcXUvM1ZWM1RRTW1WaTZTanB5QkhCd1ZTSGIrdWo5dm9DNm52?=
- =?utf-8?B?K3JlbjZJNWNIYW1QUXJxMUQzbjgxQmtPUDNLVmtZaDBVTC9sM01wdXZhbmVP?=
- =?utf-8?B?MlBQaThTMGtpbmd3MlJRSmk2Vk0yUGY0eFJBd3JZU1BGdlFZZjlUdz09?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: c308c6bc-9621-4dc7-dcc2-08de4cd89678
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TDJveXFRelQ5ZlFmUVUxL3FFUkxJaFJscWlQUU55WFVWSEJBVnU4Y252d0kw?=
+ =?utf-8?B?RHhFZlRiVStkUVVnRnZzWG5Kcmx5YWN2MGh1NzVEYlA0Rm5meWwxZFJUR3FX?=
+ =?utf-8?B?L3I1alUvczltQm13a1FtQ1ovK0s0bUNoZEVBVEt6ejJzNnZLUFdhdVY2SjU2?=
+ =?utf-8?B?RHhqQ1p3OEl4b0tGa2E2aytCcUw3aWtpNFFsSW9jaXlZMFJpcy9JRStsWEgx?=
+ =?utf-8?B?TFpaODZnNGo1VENyYktQU1lVNkNjOE1BRTJZOGZKb1BOUktNbC83S2V3Q3d6?=
+ =?utf-8?B?ODBGczhINkdtOWxFeUFCSEI3Rmt1eVBhVWFpVUdiY3hveUd2STZUSFFBU2M1?=
+ =?utf-8?B?SnNwYWJncHpkc0NSNEZWYVZ6cFJiZGxKRUU4eTdwd2pNdEZ2VEVIUWlaK0dZ?=
+ =?utf-8?B?QXIxSTUwZTVxbGovZGE1SDZsTWZFakZpcC9VUFhkUVZ2aE1SRHI4QkN3a05V?=
+ =?utf-8?B?Skp1NW5OK0E0S3dBMGl1dmJCSUZPUG5SMUl6RDZZWWpmMkh3Y2FRaDRzQXYx?=
+ =?utf-8?B?aHBJM0ZxeWh2NDd2dld0em9FRU5CbGU1cDNQR1BVdXpCN3laZnViK0NnMTQ2?=
+ =?utf-8?B?d24vTjh1THF2bmVjMHlqMWJWdlF1MytHNkV3d01wQThkR3p5bnlrK2xvTFE4?=
+ =?utf-8?B?Q2FPRHc4SVowTDZ4V09YbUtvc2Jwekh6VTZrVDdNbXF0cEJUZjRySjR4U3Vq?=
+ =?utf-8?B?N2h2OTczb25hMnRqRzdCV2Q0d2FqRDROSFo3N2hCRWFseC9uL3gzaEcxSytL?=
+ =?utf-8?B?Yy8vMnRJbEJicnVhMjFQVUh4MnNIL3NEU2NGRjBqdFFOa2V2b1A0ZGlaVmR6?=
+ =?utf-8?B?QTUrWGVLTnZ1UFlocU1JMmdLT3J2NmFVM05GMlV5a2tyOEtCRm55OVNKVUJJ?=
+ =?utf-8?B?K0hqalNJblZHUmlXQW5kN1ViUVdqaks4akpROWlOUjI0cTNRd1dzcHVGYjBN?=
+ =?utf-8?B?YnBlSzFvT2FnbXRJM1lGZ0NjM2FsalNURU84UWcrSXFkaHlzcldianRvSkRF?=
+ =?utf-8?B?Q2cyUkFUZGJJcWY4OVAyZjBiUWR0S1UwOUZEU3dWb2N3Ujh1ZkZQUTB4QlFF?=
+ =?utf-8?B?M2ZVSjRXd3ZMZFVPR2hpTnVGczE1UW1mR3FYUW5nbEZ2NWFJb1UwQWxmaC9a?=
+ =?utf-8?B?V3J0dmhtWGdSQk5qdFpaRWszRmNwZFRxWk12WURQUzBUcHhveFlHQ1A2OGRr?=
+ =?utf-8?B?d1NMY1FFekppbkFhbTZqeUJrR0ZyNE5EbERtZUZCU3R6R2R5RHVIeFF2Mkh2?=
+ =?utf-8?B?ZFJ1TjhGbVAzYTRVaWx2QW5Dd3hJc1NhRUZaR3cvYlR2UmlSQUJWMXBxbnlk?=
+ =?utf-8?B?UGI1eUVMS3JuUkFTZnM2YlI0VVc5anZuUG8zTGlqVXI2N2hhNTVzUWxsaVJn?=
+ =?utf-8?B?Z2dGZytuZjlFWXlEQU8zWG5KQnBueVdFdmlibk9TRGN3SERRRExCRHAxT1Q5?=
+ =?utf-8?B?OTZYbFR0YW82T1BQVGMrWWJjSzUzRXcraDJwd2NCbVo3cGRHOUpCN0s2TTVQ?=
+ =?utf-8?B?eTFJNlAyTHkxR1hhZWN5WGNScCtsRzZrdS94Zm5ZNE9ZY1czU1JOSVZFb2Fn?=
+ =?utf-8?B?b2IxcHNSVDFVWFR2UXFXTUlIeCswSFcxNm5lckZ1Vjl1SHRmaUdUd1dXdGw1?=
+ =?utf-8?B?QmdqNWRwRnJRcFJ2TWVTRWIrOHUxSm9keEdiTy83UkpDMUhoMFFxMGtRSnRK?=
+ =?utf-8?B?RjhWTDVBVkpOZmk3eXRxUXgzYXFZdGowc1BIQ3VIK0JtY21sL1JEcU9yZmtr?=
+ =?utf-8?B?L0Q4d20rNE5NeFNwaUs3SzRuSDkwZHUzK2hLNkhjUzJJVjdGbEVTZm0xQXdF?=
+ =?utf-8?B?WGZ2MGNPWVRnT0hGUVVwWFdnWDRDTGtiWlNEN0pMRldjd0RIQS9kWUwvOFli?=
+ =?utf-8?B?UHMvK1RVb2tJNjdJNUdSWVBySDhmWHorWVVsb3pUa0hGNHF6TkUrMDAvaUZh?=
+ =?utf-8?B?b2toeTJSK1NFaVBYUnZySDJNYU9USHBWYlZvYmVDOENoR0ZveFQwd0hZSnla?=
+ =?utf-8?B?SURETytwZ00yOUYzSTdmNk5zY3pxR2xNbHEvYlpUeDJUS3I4L2lOTEgyRUFu?=
+ =?utf-8?B?QyszQ20xd01DcmxueGpPbW1wUHBIY1ZJeUdCcVpMK2dSU1VLMXlUNEg0UVhJ?=
+ =?utf-8?B?R2kzSDhzRzRhRko4MTV4bG5NZFowVzF2cmVTOWNUUUtJc1UrQVRTRTJ3UkxC?=
+ =?utf-8?B?SG0wQWxyd01oOHJQSGIzRXNSSHh2aEpUcDBFZk9GNldzd0VBNVErS0VHV2V1?=
+ =?utf-8?B?cmkzakwxaUhGNy9BdDNieDFSdDBJc2J2NE9lY2lXRjUvejZSaHNtT1dlQTRt?=
+ =?utf-8?B?SU1QZ2lYWjBvZUVDNVE4RkM3dVEraUZxQWZwWFJPcUlkL3ltQ05pQT09?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 67897b99-cb08-4b0f-b38f-08de4cd8847a
 X-MS-Exchange-CrossTenant-AuthSource: IA0PR11MB7307.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jan 2026 04:03:45.6573 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jan 2026 04:03:15.5804 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 6fC7OQ82+j0u8M9lIm71LqIXHn8Kkek2djAi5oo+yYEnFAo+/T9gkj0+0/YNFgjyCZQ3k6G3iZs6YtpQ9KSBAA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR11MB7323
+X-MS-Exchange-CrossTenant-UserPrincipalName: Rje8aYLT+xWclNj958k2wy6QWcPmSisGCV+P2wdUQumfU9S3zErY4Hz5v1je5u03DKCyaZN8dvtrm/UQ4OPXOA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB6141
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -211,79 +211,206 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thanks for the review!
-
-On 29-10-2025 12:32, Kandpal, Suraj wrote:
->> Subject: [PATCH v6 1/5] drm: Define user readable error codes for atomic ioctl
+On 29-10-2025 13:45, Kandpal, Suraj wrote:
+>> Subject: [PATCH v6 4/5] drm/atomic: Return user readable error in
+>> atomic_ioctl
 >>
->> There can be multiple reasons for a failure in atomic_ioctl. Most often in these
->> error conditions -EINVAL is returned. User/Compositor would have to blindly
->> take a call on failure of this ioctl so as to use ALLOW_MODESET or any. It would
-> Or Any ? I think you need to rephrase
-Done!
->> be good if user/compositor gets a readable error code on failure so they can
->> take proper corrections in the next commit.
->> The struct drm_mode_atomic is being passed by the user/compositor which
->> holds the properties for modeset/flip. Reusing the same struct for returning
->> the error code in case of failure can save by creating a new uapi/interface for
->> returning the error code.
-> This sentence seems a little weird can you correct this.
-Done!
->> The element 'reserved' in the struct drm_mode_atomic is used for returning
->> the user readable error code. This points to the struct
-> In that case why leave the element name as 'reserved' should that be changed
-Good thought!
-There are drm clients checking for this reserved variable to be NULL as 
-its unused.
-Once this patch is merged, then will a follow-on patch to change this 
-variable name.
->> drm_mode_atomic_err_code. Failure reasons have been initialized in
->> DRM_MODE_ATOMIC_FAILURE_REASON.
-> I don't see the code for this here.
-Done! Updated!
+>> Add user readable error codes for failure cases in drm_atomic_ioctl() so that
+>> user can decode the error code and take corrective measurements.
+>>
 >> Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
 >> ---
->>   include/uapi/drm/drm_mode.h | 41
->> +++++++++++++++++++++++++++++++++++++++++
->>   1 file changed, 41 insertions(+)
+>>   drivers/gpu/drm/drm_atomic_uapi.c | 71
+>> ++++++++++++++++++++++++++++-----------
+>>   1 file changed, 52 insertions(+), 19 deletions(-)
 >>
->> diff --git a/include/uapi/drm/drm_mode.h b/include/uapi/drm/drm_mode.h
+>> diff --git a/drivers/gpu/drm/drm_atomic_uapi.c
+>> b/drivers/gpu/drm/drm_atomic_uapi.c
 >> index
->> 1e0e02a79b5c8db200cf9fd35edfe163d701cbd5..1e9eeae472e74bbd1b5e0b6f7
->> 9f9782cafaf5b6e 100644
->> --- a/include/uapi/drm/drm_mode.h
->> +++ b/include/uapi/drm/drm_mode.h
->> @@ -45,6 +45,7 @@ extern "C" {
->>   #define DRM_CONNECTOR_NAME_LEN	32
->>   #define DRM_DISPLAY_MODE_LEN	32
->>   #define DRM_PROP_NAME_LEN	32
->> +#define DRM_MODE_ATOMIC_FAILURE_STRING_LEN	128
+>> 3ef478e717bec917d1b8803c72bbcc8d6409d745..3d4e9709e8e289cf302413
+>> e171b1336812d65c1c 100644
+>> --- a/drivers/gpu/drm/drm_atomic_uapi.c
+>> +++ b/drivers/gpu/drm/drm_atomic_uapi.c
+>> @@ -1036,6 +1036,11 @@ int drm_atomic_set_property(struct
+>> drm_atomic_state *state,
+>>   			ret = drm_atomic_connector_get_property(connector,
+>> connector_state,
+>>   								prop,
+>> &old_val);
+>>   			ret = drm_atomic_check_prop_changes(ret, old_val,
+>> prop_value, prop);
+>> +			if (ret) {
+>> +				drm_mode_atomic_add_error_msg(&state-
+>>> error_code,
+>> +
+>> DRM_MODE_ATOMIC_ASYNC_PROP_CHANGED,
+>> +							      "property change
+>> not allowed in async flip");
+>> +			}
+>>   			break;
+>>   		}
 >>
->>   #define DRM_MODE_TYPE_BUILTIN	(1<<0) /* deprecated */
->>   #define DRM_MODE_TYPE_CLOCK_C	((1<<1) | DRM_MODE_TYPE_BUILTIN)
->> /* deprecated */
->> @@ -1205,6 +1206,46 @@ struct drm_mode_destroy_dumb {
->>   		DRM_MODE_ATOMIC_NONBLOCK |\
->>   		DRM_MODE_ATOMIC_ALLOW_MODESET)
+>> @@ -1058,6 +1063,11 @@ int drm_atomic_set_property(struct
+>> drm_atomic_state *state,
+>>   			ret = drm_atomic_crtc_get_property(crtc, crtc_state,
+>>   							   prop, &old_val);
+>>   			ret = drm_atomic_check_prop_changes(ret, old_val,
+>> prop_value, prop);
+>> +			if (ret) {
+>> +				drm_mode_atomic_add_error_msg(&state-
+>>> error_code,
+>> +
+>> DRM_MODE_ATOMIC_ASYNC_PROP_CHANGED,
+>> +							      "property change
+>> not allowed in async flip");
+>> +			}
+>>   			break;
+>>   		}
 >>
->> +/**
->> + * enum drm_mode_atomic_err_code -  error codes for failures in
->> +atomic_ioctl
->> + * @DRM_MODE_ATOMIC_INVALID_API_USAGE: invallid API
->> usage(DRM_ATOMIC not
->> + *				       enabled, invalid falg, page_flip event
->> + *				       with test-only, etc)
->> + * @DRM_MODE_ATOMIC_CRTC_NEED_FULL_MODESET: Need full modeset
-> Should this be just be CRTC_NEED_MODESET to make it differ from the below definition.
-Taken care of to match the error code/function in the KMD.
->> on this
->> +crtc
->> + * @DRM_MODE_ATOMIC_NEED_FULL_MODESET: Need full modeset on all
->> +connected crtc's
->> + * @DRM_MODE_ATOMIC_ASYN_NOTSUPP_PLANE: Aync flip not supported
-> Typos here
-> * DRM_MODE_ATOMIC_ASYNC_NOT_SUPP_PLANE
-> * Async
+>> @@ -1096,9 +1106,10 @@ int drm_atomic_set_property(struct
+>> drm_atomic_state *state,
+>>   					ret = plane_funcs-
+>>> atomic_async_check(plane, state, true);
+>>   				if (ret) {
+>> -					drm_dbg_atomic(prop->dev,
+>> -						       "[PLANE:%d:%s] does not
+>> support async flips\n",
+>> -						       obj->id, plane->name);
+>> +
+>> 	drm_mode_atomic_add_error_msg(&state->error_code,
+>> +
+>> DRM_MODE_ATOMIC_ASYNC_NOT_SUPP_PLANE,
+>> +
+>> "[PLANE:%d:%s] does not support async flip",
+>> +								      obj->id,
+>> plane->name);
+>>   					break;
+>>   				}
+>>   			}
+>> @@ -1393,6 +1404,7 @@ int drm_mode_atomic_ioctl(struct drm_device
+>> *dev,
+>>   	struct drm_atomic_state *state;
+>>   	struct drm_modeset_acquire_ctx ctx;
+>>   	struct drm_out_fence_state *fence_state;
+>> +	struct drm_mode_atomic_err_code __user *error_code_ptr;
+>>   	int ret = 0;
+>>   	unsigned int i, j, num_fences = 0;
+>>   	bool async_flip = false;
+>> @@ -1401,6 +1413,14 @@ int drm_mode_atomic_ioctl(struct drm_device
+>> *dev,
+>>   	if (!drm_core_check_feature(dev, DRIVER_ATOMIC))
+>>   		return -EOPNOTSUPP;
+>>
+>> +	if (!arg->reserved)
+>> +		drm_dbg_atomic(dev,
+>> +			       "memory not allocated for drm_atomic error
+>> reporting\n");
+>> +	else
+>> +		/* update the error code if any error to allow user handling it
+>> */
+> First letter in uppercase.
+
+Done!
+
+>> +		error_code_ptr = (struct drm_mode_atomic_err_code __user
+>> *)
+>> +				 (unsigned long)arg->reserved;
+>> +
+>>   	state = drm_atomic_state_alloc(dev);
+>>   	if (!state)
+>>   		return -ENOMEM;
+>> @@ -1409,31 +1429,35 @@ int drm_mode_atomic_ioctl(struct drm_device
+>> *dev,
+>>   	state->acquire_ctx = &ctx;
+>>   	state->allow_modeset = !!(arg->flags &
+>> DRM_MODE_ATOMIC_ALLOW_MODESET);
+>>
+>> +	memset(&state->error_code, 0, sizeof(struct
+>> +drm_mode_atomic_err_code));
+> Isn't is better to have it as
+> sizeof(*error_code_ptr)
+
+Done!
+
+>> +
+>>   	/* disallow for userspace that has not enabled atomic cap (even
+>>   	 * though this may be a bit overkill, since legacy userspace
+>>   	 * wouldn't know how to call this ioctl)
+>>   	 */
+>>   	if (!file_priv->atomic) {
+>> -		drm_dbg_atomic(dev,
+>> -			       "commit failed: atomic cap not enabled\n");
+>> -		return -EINVAL;
+>> +		drm_mode_atomic_add_error_msg(&state->error_code,
+>> +
+>> DRM_MODE_ATOMIC_INVALID_API_USAGE,
+>> +					      "DRM_ATOMIC capability not
+>> enabled");
+> I'd rather have it say drm atomic capability not enabled
+Done!
+>> +		ret = -EINVAL;
+>> +		goto out;
+>>   	}
+>>
+>>   	if (arg->flags & ~DRM_MODE_ATOMIC_FLAGS) {
+>> -		drm_dbg_atomic(dev, "commit failed: invalid flag\n");
+>> -		return -EINVAL;
+>> -	}
+>> -
+>> -	if (arg->reserved) {
+>> -		drm_dbg_atomic(dev, "commit failed: reserved field set\n");
+>> -		return -EINVAL;
+>> +		drm_mode_atomic_add_error_msg(&state->error_code,
+>> +
+>> DRM_MODE_ATOMIC_INVALID_API_USAGE,
+>> +					      "invalid flag");
+>> +		ret = -EINVAL;
+>> +		goto out;
+>>   	}
+>>
+>>   	if (arg->flags & DRM_MODE_PAGE_FLIP_ASYNC) {
+>>   		if (!dev->mode_config.async_page_flip) {
+>> -			drm_dbg_atomic(dev,
+>> -				       "commit failed:
+>> DRM_MODE_PAGE_FLIP_ASYNC not supported\n");
+>> -			return -EINVAL;
+>> +			drm_mode_atomic_add_error_msg(&state-
+>>> error_code,
+>> +
+>> DRM_MODE_ATOMIC_INVALID_API_USAGE,
+>> +
+>> "DRM_MODE_PAGE_FLIP_ASYNC not supported with ATOMIC ioctl");
+>> +			ret = -EINVAL;
+>> +			goto out;
+>>   		}
+>>
+>>   		async_flip = true;
+>> @@ -1442,9 +1466,11 @@ int drm_mode_atomic_ioctl(struct drm_device
+>> *dev,
+>>   	/* can't test and expect an event at the same time. */
+>>   	if ((arg->flags & DRM_MODE_ATOMIC_TEST_ONLY) &&
+>>   			(arg->flags & DRM_MODE_PAGE_FLIP_EVENT)) {
+>> -		drm_dbg_atomic(dev,
+>> -			       "commit failed: page-flip event requested with
+>> test-only commit\n");
+>> -		return -EINVAL;
+>> +		drm_mode_atomic_add_error_msg(&state->error_code,
+>> +
+>> DRM_MODE_ATOMIC_INVALID_API_USAGE,
+>> +					      "page-flip event requested with
+>> test-only commit");
+>> +		ret = -EINVAL;
+>> +		goto out;
+>>   	}
+>>
+>>   retry:
+>> @@ -1543,6 +1569,13 @@ int drm_mode_atomic_ioctl(struct drm_device
+>> *dev,
+>>   	}
+>>
+>>   out:
+>> +	/* update the error code if any error to allow user handling it */
+> First letter in uppercase here
 
 Done!
 
@@ -295,45 +422,15 @@ Arun R Murthy
 > Regards,
 > Suraj Kandpal
 >
->> on this
->> +plane
->> + * DRM_MODE_ATOMIC_ASYNC_MODIFIER_NOT_SUPP: Modifier not
->> supported by
->> +async flip
->> + * @DRM_MODE_ATOMIC_ASYNC_PROP_CHANGED: Property changed in
->> async flip
->> +*/ enum drm_mode_atomic_failure_codes {
->> +	DRM_MODE_ATOMIC_INVALID_API_USAGE,
->> +	DRM_MODE_ATOMIC_CRTC_NEED_FULL_MODESET,
->> +	DRM_MODE_ATOMIC_NEED_FULL_MODESET,
->> +	DRM_MODE_ATOMIC_ASYNC_NOT_SUPP_PLANE,
->> +	DRM_MODE_ATOMIC_ASYNC_MODIFIER_NOT_SUPP,
->> +	DRM_MODE_ATOMIC_ASYNC_PROP_CHANGED,
->> +};
+>> +	if (ret < 0 && arg->reserved) {
+>> +		if (copy_to_user(error_code_ptr, &state->error_code,
+>> +				 sizeof(state->error_code)))
+>> +			return -EFAULT;
+>> +	}
 >> +
->> +/**
->> + * drm_mode_atomic_err_code - struct to store the error code
->> + *
->> + * pointer to this struct will be stored in reserved variable of
->> + * struct drm_mode_atomic to report the failure cause to the user.
->> + *
->> + * @failure_code: error codes defined in enum
->> +drm_moide_atomic_failure_code
->> + * @failure_string_ptr: pointer to user readable error message string
->> + * @failure_obj_ptr: pointer to the drm_object that caused error
->> + * @reserved: reserved for future use
->> + * @count_objs: count of drm_objects if multiple drm_objects caused
->> +error  */ struct drm_mode_atomic_err_code {
->> +	__u64 failure_code;
->> +	__u64 failure_objs_ptr;
->> +	__u64 reserved;
->> +	__u32 count_objs;
->> +	char failure_string[DRM_MODE_ATOMIC_FAILURE_STRING_LEN];
->> +};
->> +
->>   struct drm_mode_atomic {
->>   	__u32 flags;
->>   	__u32 count_objs;
+>>   	if (num_fences)
+>>   		complete_signaling(dev, state, fence_state, num_fences, !ret);
+>>
 >>
 >> --
 >> 2.25.1
