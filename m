@@ -4,52 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B4E21CEFCEC
-	for <intel-xe@archiver.kernel.org>; Tue,  6 Jan 2026 18:40:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0A488CEFCF0
+	for <intel-xe@archiver.kernel.org>; Tue,  6 Jan 2026 18:55:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7616110E1D3;
-	Tue,  6 Jan 2026 18:40:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 45B4910E062;
+	Tue,  6 Jan 2026 18:55:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nPFec0Xv";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ezj2sx5p";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DB04110E1D3
- for <intel-xe@lists.freedesktop.org>; Tue,  6 Jan 2026 18:40:43 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0DFDF10E062
+ for <intel-xe@lists.freedesktop.org>; Tue,  6 Jan 2026 18:55:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1767724844; x=1799260844;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
+ t=1767725715; x=1799261715;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
  bh=Cn8VKLBLypnAgJyxUsGbtWbt22pDhJ+FtUrGj5WMfDE=;
- b=nPFec0Xv9CD3rp4ZYwBtyEmpFEzImJwQwLZJiYHOTAZGxCbNG4BEGLBy
- ov87fln9Mwg6mVdd+3D6/NyejQ/xpw9nhokvzgEd1NTjzl18fcE0jcteD
- x2fqiSet9XIFIVrwjlGFQMb5ceK7joTwfAI9xld552nL33fp9LbpvMlLV
- FxW8PIQSVhouHAQXlQrDGPGX6yYzC1T51e8IjiczkudiUA0WJAKRhI92y
- fJt7W+uHK9LhLlnCLFuFA8WIcpMWnKmg8pDbKx9llC1S01TGIAa5b6zrm
- UihsJp+B23XIFBt32gP4wRd1ankToyPjEFycF0z/9i9oaNHE13J0bMkb5 g==;
-X-CSE-ConnectionGUID: KIZXakfsTDuPhEPJH6evpQ==
-X-CSE-MsgGUID: xHJs9p7ySLefMFdfwmb61w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11635"; a="69029400"
-X-IronPort-AV: E=Sophos;i="6.20,256,1758610800"; d="scan'208";a="69029400"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jan 2026 10:40:44 -0800
-X-CSE-ConnectionGUID: hjWVS5slShKXescvWGjPLA==
-X-CSE-MsgGUID: ZMhKIdSuTJCtARhEG+Zvzw==
+ b=Ezj2sx5pNsFJJLGQhi0foGuuuj8Epc3VtTH8rkBbSPmkU9aSHSqLBK75
+ E4VSGdcakEFg6ViE6H83hd/pjy7pO+801GRnTaVPe1TJ3Y+61Iro2AfHu
+ SMvj9TXa2uxaDrw/nF76F9sQwksYUhcbdhNjLIAnB86RhOdVDWH/RpNFa
+ NdAIG4df7ysVSzOt2QXliZi1Ez6oiwle1qje1tTbI1EYb0iId0lJOsMPF
+ zLQD9Hax9EoyAVSUXOyQxNcGliBTtbzmYrag7B0IkFLFvetzUtzwyN83S
+ 4Ev2lRxdKwrOKAR7M66FDdM8ok09ukERdNI04uQy/tvEpmzJJxe/7MLh1 Q==;
+X-CSE-ConnectionGUID: Uq1dR9sSTfGsvue8ex154g==
+X-CSE-MsgGUID: vQ8HHGcMQQiEkplE68VB2A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11663"; a="80547100"
+X-IronPort-AV: E=Sophos;i="6.21,206,1763452800"; d="scan'208";a="80547100"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Jan 2026 10:55:14 -0800
+X-CSE-ConnectionGUID: Hf8HX2eNRPOpe8qx7u8Ckg==
+X-CSE-MsgGUID: /WPVoLMlSYeCe+RJw/MLqw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,206,1763452800"; d="scan'208";a="202487122"
+X-IronPort-AV: E=Sophos;i="6.21,206,1763452800"; d="scan'208";a="202333309"
 Received: from dut6304bmgfrd.fm.intel.com ([10.36.21.42])
- by orviesa009.jf.intel.com with ESMTP; 06 Jan 2026 10:40:43 -0800
+ by fmviesa007.fm.intel.com with ESMTP; 06 Jan 2026 10:55:13 -0800
 From: Xin Wang <x.wang@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Xin Wang <x.wang@intel.com>, Matthew Auld <matthew.auld@intel.com>,
  Matt Roper <matthew.d.roper@intel.com>
 Subject: [PATCH v3] drm/xe: Allow compressible surfaces to be 1-way coherent
-Date: Tue,  6 Jan 2026 18:40:31 +0000
-Message-ID: <20260106184031.964336-1-x.wang@intel.com>
+Date: Tue,  6 Jan 2026 18:55:01 +0000
+Message-ID: <20260106185501.964562-1-x.wang@intel.com>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20251104191705.1433993-1-x.wang@intel.com>
-References: <20251104191705.1433993-1-x.wang@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
