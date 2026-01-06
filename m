@@ -4,53 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 565BACEFD0C
-	for <intel-xe@archiver.kernel.org>; Tue,  6 Jan 2026 20:55:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BC9E4CEFD10
+	for <intel-xe@archiver.kernel.org>; Tue,  6 Jan 2026 21:03:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 12FA110E03D;
-	Tue,  6 Jan 2026 20:55:35 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Dm6VDnO2";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 10F4510E03D
- for <intel-xe@lists.freedesktop.org>; Tue,  6 Jan 2026 20:55:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1767732934; x=1799268934;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=qtIGMq5chKMwxeZokX1klf45AKh6hH0N550SMfyJLr4=;
- b=Dm6VDnO2E7xPoi9R85WYxb+Eve6SFmoOClDmVg/TbXqpV6eoClv6mg2z
- 6uux6nEL2Kr4K8VFBLMNI/8wtG40UwDe31KVaZAH09aAnWSrWo343QCgc
- sIBpWvbnhSnHyoYzoqX++6UK/FxC7AerQXrjluolBix/fqHbuk3qgwj4G
- 5jneRvVEvq8MY+YATaHkN6kJakRrST52KyWZfQazZM95Ch5rHc304aEt7
- ZqOi1TEFbr9IkG0jxbeRrQTEluurosRLh4BEuBVTsBYV/wDhHwp7ezZx4
- MDxgpDWrbatDjGUI70/EVGPk3jQR7eXsEfMp7Af7rEOEvdoDdStD/utgE Q==;
-X-CSE-ConnectionGUID: gTPdeHdZRzWvV24wGm3UrA==
-X-CSE-MsgGUID: 5/QBiX5eRuSkV2mCaE+c/A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11663"; a="69013381"
-X-IronPort-AV: E=Sophos;i="6.21,206,1763452800"; d="scan'208";a="69013381"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jan 2026 12:55:34 -0800
-X-CSE-ConnectionGUID: sw3ZFnlZTWWgRVhf2b/+gA==
-X-CSE-MsgGUID: 4Pcvqg7qTCWiWZBoNXV4/Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,206,1763452800"; d="scan'208";a="203200788"
-Received: from dut4450lnl.fm.intel.com ([10.105.10.103])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jan 2026 12:55:33 -0800
-From: Jonathan Cavitt <jonathan.cavitt@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: saurabhg.gupta@intel.com, alex.zuo@intel.com, jonathan.cavitt@intel.com,
- stuart.summers@intel.com, matthew.brost@intel.com
-Subject: [PATCH v3] drm/xe/xe_guc_ct: Exit CT submission fence wait on GT reset
-Date: Tue,  6 Jan 2026 20:55:34 +0000
-Message-ID: <20260106205533.60180-2-jonathan.cavitt@intel.com>
-X-Mailer: git-send-email 2.43.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 58B8410E004;
+	Tue,  6 Jan 2026 21:03:54 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AE90910E004;
+ Tue,  6 Jan 2026 21:03:53 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============9114348145391482087=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Remove_multi-queu?=
+ =?utf-8?q?e_KEEP=5FACTIVE_feature_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Niranjana Vishwanathapura" <niranjana.vishwanathapura@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 06 Jan 2026 21:03:53 -0000
+Message-ID: <176773343370.130560.15141366802797574141@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260106191051.2866538-4-niranjana.vishwanathapura@intel.com>
+In-Reply-To: <20260106191051.2866538-4-niranjana.vishwanathapura@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,64 +36,131 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-It's possible if unlikely that the GuC could be reset in the time
-between performing a guc_ct_send and the G2H fence completing in
-guc_ct_send_recv.  Exit early if this is occurs.
+--===============9114348145391482087==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-v2: Rebase
+== Series Details ==
 
-v3: goto retry_same_fence if ct is not alive (Stuart)
+Series: drm/xe: Remove multi-queue KEEP_ACTIVE feature (rev3)
+URL   : https://patchwork.freedesktop.org/series/159666/
+State : success
 
-Suggested-by: Stuart Summers <stuart.summers@intel.com>
-Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
----
- drivers/gpu/drm/xe/xe_guc_ct.c | 14 +++++++++-----
- 1 file changed, 9 insertions(+), 5 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
-index dfbf76037b04..0bdcbe6503a7 100644
---- a/drivers/gpu/drm/xe/xe_guc_ct.c
-+++ b/drivers/gpu/drm/xe/xe_guc_ct.c
-@@ -1238,6 +1238,10 @@ int xe_guc_ct_send_g2h_handler(struct xe_guc_ct *ct, const u32 *action, u32 len)
- 	return ret;
- }
- 
-+#define ct_alive(ct)    \
-+	(xe_guc_ct_enabled(ct) && !ct->ctbs.h2g.info.broken && \
-+	 !ct->ctbs.g2h.info.broken)
-+
- /*
-  * Check if a GT reset is in progress or will occur and if GT reset brought the
-  * CT back up. Randomly picking 5 seconds for an upper limit to do a GT a reset.
-@@ -1247,12 +1251,8 @@ static bool retry_failure(struct xe_guc_ct *ct, int ret)
- 	if (!(ret == -EDEADLK || ret == -EPIPE || ret == -ENODEV))
- 		return false;
- 
--#define ct_alive(ct)	\
--	(xe_guc_ct_enabled(ct) && !ct->ctbs.h2g.info.broken && \
--	 !ct->ctbs.g2h.info.broken)
- 	if (!wait_event_interruptible_timeout(ct->wq, ct_alive(ct), HZ * 5))
- 		return false;
--#undef ct_alive
- 
- 	return true;
- }
-@@ -1304,7 +1304,11 @@ static int guc_ct_send_recv(struct xe_guc_ct *ct, const u32 *action, u32 len,
- 	/* READ_ONCEs pairs with WRITE_ONCEs in parse_g2h_response
- 	 * and g2h_fence_cancel.
- 	 */
--	ret = wait_event_timeout(ct->g2h_fence_wq, READ_ONCE(g2h_fence.done), HZ);
-+	ret = wait_event_timeout(ct->g2h_fence_wq, !ct_alive(ct) ||
-+				 READ_ONCE(g2h_fence.done), HZ);
-+	if (!ct_alive(ct))
-+		goto retry_same_fence;
-+
- 	if (!ret) {
- 		LNL_FLUSH_WORK(&ct->g2h_worker);
- 		if (READ_ONCE(g2h_fence.done)) {
--- 
-2.43.0
+CI Bug Log - changes from xe-4336-3d6700a02638d446a4e8ad92a8212c3efef84ae0_BAT -> xe-pw-159666v3_BAT
+====================================================
 
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (12 -> 12)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-159666v3_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Warnings ####
+
+  * igt@xe_module_load@load:
+    - bat-bmg-1:          [ABORT][1] ([Intel XE#6922] / [Intel XE#6930]) -> [ABORT][2] ([Intel XE#6818])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4336-3d6700a02638d446a4e8ad92a8212c3efef84ae0/bat-bmg-1/igt@xe_module_load@load.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159666v3/bat-bmg-1/igt@xe_module_load@load.html
+
+  
+  [Intel XE#6818]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6818
+  [Intel XE#6922]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6922
+  [Intel XE#6930]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6930
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8686 -> IGT_8688
+  * Linux: xe-4336-3d6700a02638d446a4e8ad92a8212c3efef84ae0 -> xe-pw-159666v3
+
+  IGT_8686: 8686
+  IGT_8688: bf529184be041a0197778395aa71dbb1e5d47bff @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-4336-3d6700a02638d446a4e8ad92a8212c3efef84ae0: 3d6700a02638d446a4e8ad92a8212c3efef84ae0
+  xe-pw-159666v3: 159666v3
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159666v3/index.html
+
+--===============9114348145391482087==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Remove multi-queue KEEP_ACTIVE feature (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/159666/">https://patchwork.freedesktop.org/series/159666/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159666v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159666v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4336-3d6700a02638d446a4e8ad92a8212c3efef84ae0_BAT -&gt; xe-pw-159666v3_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (12 -&gt; 12)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-159666v3_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Warnings</h4>
+<ul>
+<li>igt@xe_module_load@load:<ul>
+<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4336-3d6700a02638d446a4e8ad92a8212c3efef84ae0/bat-bmg-1/igt@xe_module_load@load.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6922">Intel XE#6922</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6930">Intel XE#6930</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159666v3/bat-bmg-1/igt@xe_module_load@load.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6818">Intel XE#6818</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8686 -&gt; IGT_8688</li>
+<li>Linux: xe-4336-3d6700a02638d446a4e8ad92a8212c3efef84ae0 -&gt; xe-pw-159666v3</li>
+</ul>
+<p>IGT_8686: 8686<br />
+  IGT_8688: bf529184be041a0197778395aa71dbb1e5d47bff @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-4336-3d6700a02638d446a4e8ad92a8212c3efef84ae0: 3d6700a02638d446a4e8ad92a8212c3efef84ae0<br />
+  xe-pw-159666v3: 159666v3</p>
+
+</body>
+</html>
+
+--===============9114348145391482087==--
