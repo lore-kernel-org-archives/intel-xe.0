@@ -4,27 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C4BF3CE9D5B
-	for <intel-xe@archiver.kernel.org>; Tue,  6 Jan 2026 15:25:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 01B14CE9D75
+	for <intel-xe@archiver.kernel.org>; Tue,  6 Jan 2026 16:04:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6162A10E0EC;
-	Tue,  6 Jan 2026 15:25:28 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EDE3E10E522;
- Tue,  6 Jan 2026 15:25:26 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1766106710180856552=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id AD0FB10E3EA;
+	Tue,  6 Jan 2026 16:04:29 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Q7OngM4L";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D8C5210E0EC;
+ Tue,  6 Jan 2026 16:04:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1767715468; x=1799251468;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=ywcXi/KRPk/ezq8QoHHlwmAfT0cBkesMmHgTX8bSDb8=;
+ b=Q7OngM4LgYdYBvn/NQi0RS0hx8GhzszqGI9zXiinFmA3Fzi77VGyaa8C
+ ifGUm74Hk9NBY/5M2QR0dAaQAZS7no8DLkXj+7fV2thvLTuwHaOSaLGu/
+ skqOaWH4V+YkRWFd9jeX/579h6oGHMni1juvcTp2/Bi/s4EOyuXymIfeV
+ XzGdsLYn/y3IHWpiPIH7xMMD06qjGX3UG+tu3dKuQowCHaJXPfof8pf+q
+ RGGwR22EJLBbSes4AqrOjPG+EcmXpOH9s0EaFdpGGX9v81gMAs+T//9qm
+ h9trqupK4EiItOxlMhpm5N8RU/auc3nLyc8SZTGZvUznDyCiy6GzyWGY3 w==;
+X-CSE-ConnectionGUID: jyB59mV/T1ensjou2nCPNA==
+X-CSE-MsgGUID: KcmYSn7US3SF+gFiwRFn0Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11663"; a="86667140"
+X-IronPort-AV: E=Sophos;i="6.21,204,1763452800"; d="scan'208";a="86667140"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Jan 2026 08:04:27 -0800
+X-CSE-ConnectionGUID: /eTG9HdcQVaOFASGposZAQ==
+X-CSE-MsgGUID: wCaodbDGTI+53AJo6q/Bnw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,204,1763452800"; d="scan'208";a="201824511"
+Received: from amilburn-desk.amilburn-desk (HELO [10.245.245.21])
+ ([10.245.245.21])
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Jan 2026 08:04:25 -0800
+Message-ID: <60ab8e82-a079-4ca1-adcc-ee50cfc5641d@intel.com>
+Date: Tue, 6 Jan 2026 16:04:23 +0000
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Remove_multi-queu?=
- =?utf-8?q?e_KEEP=5FACTIVE_feature_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Niranjana Vishwanathapura" <niranjana.vishwanathapura@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 06 Jan 2026 15:25:26 -0000
-Message-ID: <176771312696.129938.16399743834569535325@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260106012920.2850975-4-niranjana.vishwanathapura@intel.com>
-In-Reply-To: <20260106012920.2850975-4-niranjana.vishwanathapura@intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] drm/buddy: Prevent BUG_ON by validating rounded
+ allocation
+To: Sanjay Yadav <sanjay.kumar.yadav@intel.com>,
+ dri-devel@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org, =?UTF-8?Q?Christian_K=C3=B6nig?=
+ <christian.koenig@amd.com>,
+ Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
+References: <20251222065238.1661415-4-sanjay.kumar.yadav@intel.com>
+ <20251222065238.1661415-5-sanjay.kumar.yadav@intel.com>
+Content-Language: en-GB
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <20251222065238.1661415-5-sanjay.kumar.yadav@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,125 +71,78 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1766106710180856552==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On 22/12/2025 06:52, Sanjay Yadav wrote:
+> When DRM_BUDDY_CONTIGUOUS_ALLOCATION is set, the requested size is
+> rounded up to the next power-of-two via roundup_pow_of_two().
+> Similarly, for non-contiguous allocations with large min_block_size,
+> the size is aligned up via round_up(). Both operations can produce a
+> rounded size that exceeds mm->size, which later triggers
+> BUG_ON(order > mm->max_order).
+> 
+> Example scenarios:
+> - 9G CONTIGUOUS allocation on 10G VRAM memory:
+>    roundup_pow_of_two(9G) = 16G > 10G
+> - 9G allocation with 8G min_block_size on 10G VRAM memory:
+>    round_up(9G, 8G) = 16G > 10G
+> 
+> Fix this by checking the rounded size against mm->size. For
+> non-contiguous or range allocations where size > mm->size is invalid,
+> return -EINVAL immediately. For contiguous allocations without range
+> restrictions, allow the request to fall through to the existing
+> __alloc_contig_try_harder() fallback.
+> 
+> This ensures invalid user input returns an error or uses the fallback
+> path instead of hitting BUG_ON.
+> 
+> Cc: Christian König <christian.koenig@amd.com>
+> Cc: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
+> Suggested-by: Matthew Auld <matthew.auld@intel.com>
+> Signed-off-by: Sanjay Yadav <sanjay.kumar.yadav@intel.com>
 
-== Series Details ==
+I think we should maybe add a fixes tag:
 
-Series: drm/xe: Remove multi-queue KEEP_ACTIVE feature (rev2)
-URL   : https://patchwork.freedesktop.org/series/159666/
-State : success
+Fixes: 0a1844bf0b53 ("drm/buddy: Improve contiguous memory allocation")
+Cc: <stable@vger.kernel.org> # v6.7+
 
-== Summary ==
+?
 
-CI Bug Log - changes from xe-4335-265d13795b45a5e68304e2cab23ea35975c871e8_BAT -> xe-pw-159666v2_BAT
-====================================================
+I don't think current xe can actually trigger this yet, but not sure if 
+amdgpu or something can somehow trigger this in some obscure case.
 
-Summary
--------
+We could maybe also add:
 
-  **SUCCESS**
+Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/6712
 
-  No regressions found.
+So it auto-closes plus gives some more context that this fix was 
+motivated from code inspection and not some user report. Otherwise I 
+think the change looks reasonable,
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
 
-  
+> ---
+>   drivers/gpu/drm/drm_buddy.c | 9 +++++++++
+>   1 file changed, 9 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/drm_buddy.c b/drivers/gpu/drm/drm_buddy.c
+> index 2f279b46bd2c..5141348fc6c9 100644
+> --- a/drivers/gpu/drm/drm_buddy.c
+> +++ b/drivers/gpu/drm/drm_buddy.c
+> @@ -1155,6 +1155,15 @@ int drm_buddy_alloc_blocks(struct drm_buddy *mm,
+>   	order = fls(pages) - 1;
+>   	min_order = ilog2(min_block_size) - ilog2(mm->chunk_size);
+>   
+> +	if (order > mm->max_order || size > mm->size) {
+> +		if ((flags & DRM_BUDDY_CONTIGUOUS_ALLOCATION) &&
+> +		    !(flags & DRM_BUDDY_RANGE_ALLOCATION))
+> +			return __alloc_contig_try_harder(mm, original_size,
+> +							 original_min_size, blocks);
+> +
+> +		return -EINVAL;
+> +	}
+> +
+>   	do {
+>   		order = min(order, (unsigned int)fls(pages) - 1);
+>   		BUG_ON(order > mm->max_order);
 
-Participating hosts (12 -> 11)
-------------------------------
-
-  Missing    (1): bat-bmg-3 
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-159666v2_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_waitfence@reltime:
-    - bat-dg2-oem2:       [PASS][1] -> [FAIL][2] ([Intel XE#6520])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4335-265d13795b45a5e68304e2cab23ea35975c871e8/bat-dg2-oem2/igt@xe_waitfence@reltime.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159666v2/bat-dg2-oem2/igt@xe_waitfence@reltime.html
-
-  
-  [Intel XE#6520]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520
-
-
-Build changes
--------------
-
-  * Linux: xe-4335-265d13795b45a5e68304e2cab23ea35975c871e8 -> xe-pw-159666v2
-
-  IGT_8686: 8686
-  xe-4335-265d13795b45a5e68304e2cab23ea35975c871e8: 265d13795b45a5e68304e2cab23ea35975c871e8
-  xe-pw-159666v2: 159666v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159666v2/index.html
-
---===============1766106710180856552==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Remove multi-queue KEEP_ACTIVE feature (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/159666/">https://patchwork.freedesktop.org/series/159666/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159666v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159666v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4335-265d13795b45a5e68304e2cab23ea35975c871e8_BAT -&gt; xe-pw-159666v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (12 -&gt; 11)</h2>
-<p>Missing    (1): bat-bmg-3 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-159666v2_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@xe_waitfence@reltime:<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4335-265d13795b45a5e68304e2cab23ea35975c871e8/bat-dg2-oem2/igt@xe_waitfence@reltime.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159666v2/bat-dg2-oem2/igt@xe_waitfence@reltime.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520">Intel XE#6520</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4335-265d13795b45a5e68304e2cab23ea35975c871e8 -&gt; xe-pw-159666v2</li>
-</ul>
-<p>IGT_8686: 8686<br />
-  xe-4335-265d13795b45a5e68304e2cab23ea35975c871e8: 265d13795b45a5e68304e2cab23ea35975c871e8<br />
-  xe-pw-159666v2: 159666v2</p>
-
-</body>
-</html>
-
---===============1766106710180856552==--
