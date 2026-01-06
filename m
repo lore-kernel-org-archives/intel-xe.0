@@ -4,53 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 23F57CEFCF2
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8B8CECEFCF6
 	for <intel-xe@archiver.kernel.org>; Tue,  6 Jan 2026 19:10:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D63B110E548;
+	by gabe.freedesktop.org (Postfix) with ESMTP id E634210E549;
 	Tue,  6 Jan 2026 19:10:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nTeIqJ6s";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="N00/56mP";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9E16410E549
- for <intel-xe@lists.freedesktop.org>; Tue,  6 Jan 2026 19:10:57 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1B5DE10E548
+ for <intel-xe@lists.freedesktop.org>; Tue,  6 Jan 2026 19:10:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1767726657; x=1799262657;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=RJZK6aHkKfpy98luoilFxdLWcCKQ0uiIFEEk12r6vS8=;
- b=nTeIqJ6sm7OI+BxUA7DPS7Gsb/smkvJL2uflsPsXuFazodqGQVsq86fG
- 2zCE9ELzdMad5TrEJ1A0beFde4GXC5D9WOG9GWHc6iormlGBxTh0O1QP2
- +FWRVX93nOvm4RIMul1oki+qHslmwcYJKKmb3XqN0o8prXbGx37pMzhAY
- 6ZOsh8NKTqKIW3KIJvvOkCRKydDFeVlY4WuMweHqadYc9hoNrXOZcZSp5
- iySAcBGvPx6Y642yThimh1JU/j2zJXNzioYGZgc3rj+EbADtKk+cqc+LB
- 7iJfcZygfbOTASx5bgrPLl4lfXhVZsrV9bQ6Htv9XUzG2vKHnPcFt6p4Q Q==;
-X-CSE-ConnectionGUID: y3v6hRqHR5CzG/VRABBgjQ==
-X-CSE-MsgGUID: KJapNkgKQAeTDyuzIVFIvg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11663"; a="71671916"
-X-IronPort-AV: E=Sophos;i="6.21,206,1763452800"; d="scan'208";a="71671916"
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=B+vizo1usCki9rWyvyR0B88ZC86e6mwS86TvZsknixY=;
+ b=N00/56mPU9eulU4yUB2TJF7ydKZo7Nmv+GW3RG5U1z5n72ShxESNvC7U
+ QYB/QKMVH7sHFJMNTdH3i/ewgT55XvRibagoFZAB6VgLV+o2zK74dpC0y
+ kIkVzh/TGKplMINh8KEs2OTm3olSZGH8ZNXyXQTTE2h7eWRdRySRftkh2
+ xD3QLqXKSJe2fdxQOL9jB31r42l2TNZ8C+BuSFSbAxpvc7PZUNOoZnXfj
+ 1+ZD97sacKAFzjsCevPSOxkgjY5h0BLYGDaoa3gs5entp+CU8R40C4QVb
+ wvp/uWXoKcHd63Svc7ovtK141mOtJ/IZJUDxqpothOT5SB+lCRC0rokeB w==;
+X-CSE-ConnectionGUID: JsBQ4aFUQBa5Rg91hDLfSA==
+X-CSE-MsgGUID: F9RQYBseRnW/AXV39M7qyA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11663"; a="71671915"
+X-IronPort-AV: E=Sophos;i="6.21,206,1763452800"; d="scan'208";a="71671915"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  06 Jan 2026 11:10:56 -0800
-X-CSE-ConnectionGUID: DpbJiGi7QiCD18BWzuudSQ==
-X-CSE-MsgGUID: y0NbI44ASIysE/YAmE2Nug==
+X-CSE-ConnectionGUID: 1f5KgIUfTR2gk/m3IjiG/A==
+X-CSE-MsgGUID: 2ev5KVTRS9e1XEr1m+1ouw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,206,1763452800"; d="scan'208";a="202493300"
+X-IronPort-AV: E=Sophos;i="6.21,206,1763452800"; d="scan'208";a="202493297"
 Received: from nvishwa1-desk.sc.intel.com ([172.25.29.139])
  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  06 Jan 2026 11:10:57 -0800
 From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.brost@intel.com
-Subject: [PATCH 1/2] Revert "drm/xe/multi_queue: Support active group after
- primary is destroyed"
-Date: Tue,  6 Jan 2026 11:10:50 -0800
-Message-ID: <20260106191051.2866538-5-niranjana.vishwanathapura@intel.com>
+Subject: [PATCH 0/2] drm/xe: Remove multi-queue KEEP_ACTIVE feature
+Date: Tue,  6 Jan 2026 11:10:49 -0800
+Message-ID: <20260106191051.2866538-4-niranjana.vishwanathapura@intel.com>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260106191051.2866538-4-niranjana.vishwanathapura@intel.com>
-References: <20260106191051.2866538-4-niranjana.vishwanathapura@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -67,208 +64,24 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This reverts commit 3131a43ecb346ae3b5287ee195779fc38c6fcd11.
-
 There is no must have requirement for this feature from Compute UMD.
+Revert it.
 
 Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 Reviewed-by: Matthew Brost <matthew.brost@intel.com>
----
+
+Niranjana Vishwanathapura (2):
+  Revert "drm/xe/multi_queue: Support active group after primary is
+    destroyed"
+  drm/xe/doc: Remove KEEP_ACTIVE feature
+
  drivers/gpu/drm/xe/xe_device.c           |  7 +--
- drivers/gpu/drm/xe/xe_exec_queue.c       | 55 +-----------------------
+ drivers/gpu/drm/xe/xe_exec_queue.c       | 60 ++----------------------
  drivers/gpu/drm/xe/xe_exec_queue.h       |  2 -
  drivers/gpu/drm/xe/xe_exec_queue_types.h |  4 --
  include/uapi/drm/xe_drm.h                |  4 --
- 5 files changed, 3 insertions(+), 69 deletions(-)
+ 5 files changed, 5 insertions(+), 72 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index e101d290b2a6..f4741cbe4c45 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -180,12 +180,7 @@ static void xe_file_close(struct drm_device *dev, struct drm_file *file)
- 	xa_for_each(&xef->exec_queue.xa, idx, q) {
- 		if (q->vm && q->hwe->hw_engine_group)
- 			xe_hw_engine_group_del_exec_queue(q->hwe->hw_engine_group, q);
--
--		if (xe_exec_queue_is_multi_queue_primary(q))
--			xe_exec_queue_group_kill_put(q->multi_queue.group);
--		else
--			xe_exec_queue_kill(q);
--
-+		xe_exec_queue_kill(q);
- 		xe_exec_queue_put(q);
- 	}
- 	xa_for_each(&xef->vm.xa, idx, vm)
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-index 0b9e074b022f..529a40ca4002 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue.c
-+++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-@@ -467,26 +467,6 @@ struct xe_exec_queue *xe_exec_queue_create_bind(struct xe_device *xe,
- }
- ALLOW_ERROR_INJECTION(xe_exec_queue_create_bind, ERRNO);
- 
--static void xe_exec_queue_group_kill(struct kref *ref)
--{
--	struct xe_exec_queue_group *group = container_of(ref, struct xe_exec_queue_group,
--							 kill_refcount);
--	xe_exec_queue_kill(group->primary);
--}
--
--static inline void xe_exec_queue_group_kill_get(struct xe_exec_queue_group *group)
--{
--	kref_get(&group->kill_refcount);
--}
--
--void xe_exec_queue_group_kill_put(struct xe_exec_queue_group *group)
--{
--	if (!group)
--		return;
--
--	kref_put(&group->kill_refcount, xe_exec_queue_group_kill);
--}
--
- void xe_exec_queue_destroy(struct kref *ref)
- {
- 	struct xe_exec_queue *q = container_of(ref, struct xe_exec_queue, refcount);
-@@ -716,7 +696,6 @@ static int xe_exec_queue_group_init(struct xe_device *xe, struct xe_exec_queue *
- 	group->primary = q;
- 	group->cgp_bo = bo;
- 	INIT_LIST_HEAD(&group->list);
--	kref_init(&group->kill_refcount);
- 	xa_init_flags(&group->xa, XA_FLAGS_ALLOC1);
- 	mutex_init(&group->list_lock);
- 	q->multi_queue.group = group;
-@@ -792,11 +771,6 @@ static int xe_exec_queue_group_add(struct xe_device *xe, struct xe_exec_queue *q
- 
- 	q->multi_queue.pos = pos;
- 
--	if (group->primary->multi_queue.keep_active) {
--		xe_exec_queue_group_kill_get(group);
--		q->multi_queue.keep_active = true;
--	}
--
- 	return 0;
- }
- 
-@@ -810,11 +784,6 @@ static void xe_exec_queue_group_delete(struct xe_device *xe, struct xe_exec_queu
- 	lrc = xa_erase(&group->xa, q->multi_queue.pos);
- 	xe_assert(xe, lrc);
- 	xe_lrc_put(lrc);
--
--	if (q->multi_queue.keep_active) {
--		xe_exec_queue_group_kill_put(group);
--		q->multi_queue.keep_active = false;
--	}
- }
- 
- static int exec_queue_set_multi_group(struct xe_device *xe, struct xe_exec_queue *q,
-@@ -836,24 +805,12 @@ static int exec_queue_set_multi_group(struct xe_device *xe, struct xe_exec_queue
- 		return -EINVAL;
- 
- 	if (value & DRM_XE_MULTI_GROUP_CREATE) {
--		if (XE_IOCTL_DBG(xe, value & ~(DRM_XE_MULTI_GROUP_CREATE |
--					       DRM_XE_MULTI_GROUP_KEEP_ACTIVE)))
--			return -EINVAL;
--
--		/*
--		 * KEEP_ACTIVE is not supported in preempt fence mode as in that mode,
--		 * VM_DESTROY ioctl expects all exec queues of that VM are already killed.
--		 */
--		if (XE_IOCTL_DBG(xe, (value & DRM_XE_MULTI_GROUP_KEEP_ACTIVE) &&
--				 xe_vm_in_preempt_fence_mode(q->vm)))
-+		if (XE_IOCTL_DBG(xe, value & ~DRM_XE_MULTI_GROUP_CREATE))
- 			return -EINVAL;
- 
- 		q->multi_queue.valid = true;
- 		q->multi_queue.is_primary = true;
- 		q->multi_queue.pos = 0;
--		if (value & DRM_XE_MULTI_GROUP_KEEP_ACTIVE)
--			q->multi_queue.keep_active = true;
--
- 		return 0;
- 	}
- 
-@@ -1419,11 +1376,6 @@ void xe_exec_queue_kill(struct xe_exec_queue *q)
- 
- 	q->ops->kill(q);
- 	xe_vm_remove_compute_exec_queue(q->vm, q);
--
--	if (!xe_exec_queue_is_multi_queue_primary(q) && q->multi_queue.keep_active) {
--		xe_exec_queue_group_kill_put(q->multi_queue.group);
--		q->multi_queue.keep_active = false;
--	}
- }
- 
- int xe_exec_queue_destroy_ioctl(struct drm_device *dev, void *data,
-@@ -1450,10 +1402,7 @@ int xe_exec_queue_destroy_ioctl(struct drm_device *dev, void *data,
- 	if (q->vm && q->hwe->hw_engine_group)
- 		xe_hw_engine_group_del_exec_queue(q->hwe->hw_engine_group, q);
- 
--	if (xe_exec_queue_is_multi_queue_primary(q))
--		xe_exec_queue_group_kill_put(q->multi_queue.group);
--	else
--		xe_exec_queue_kill(q);
-+	xe_exec_queue_kill(q);
- 
- 	trace_xe_exec_queue_close(q);
- 	xe_exec_queue_put(q);
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue.h b/drivers/gpu/drm/xe/xe_exec_queue.h
-index b5ad975d7e97..b1e51789128f 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue.h
-+++ b/drivers/gpu/drm/xe/xe_exec_queue.h
-@@ -113,8 +113,6 @@ static inline struct xe_exec_queue *xe_exec_queue_multi_queue_primary(struct xe_
- 	return xe_exec_queue_is_multi_queue(q) ? q->multi_queue.group->primary : q;
- }
- 
--void xe_exec_queue_group_kill_put(struct xe_exec_queue_group *group);
--
- bool xe_exec_queue_is_lr(struct xe_exec_queue *q);
- 
- bool xe_exec_queue_is_idle(struct xe_exec_queue *q);
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-index 67ea5eebf70b..5fc516b0bb77 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
-+++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-@@ -62,8 +62,6 @@ struct xe_exec_queue_group {
- 	struct list_head list;
- 	/** @list_lock: Secondary queue list lock */
- 	struct mutex list_lock;
--	/** @kill_refcount: ref count to kill primary queue */
--	struct kref kill_refcount;
- 	/** @sync_pending: CGP_SYNC_DONE g2h response pending */
- 	bool sync_pending;
- 	/** @banned: Group banned */
-@@ -163,8 +161,6 @@ struct xe_exec_queue {
- 		u8 valid:1;
- 		/** @multi_queue.is_primary: Is primary queue (Q0) of the group */
- 		u8 is_primary:1;
--		/** @multi_queue.keep_active: Keep the group active after primary is destroyed */
--		u8 keep_active:1;
- 	} multi_queue;
- 
- 	/** @sched_props: scheduling properties */
-diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index bb69f9b30c7d..077e66a682e2 100644
---- a/include/uapi/drm/xe_drm.h
-+++ b/include/uapi/drm/xe_drm.h
-@@ -1280,9 +1280,6 @@ struct drm_xe_vm_bind {
-  *    then a new multi-queue group is created with this queue as the primary queue
-  *    (Q0). Otherwise, the queue gets added to the multi-queue group whose primary
-  *    queue's exec_queue_id is specified in the lower 32 bits of the 'value' field.
-- *    If the extension's 'value' field has %DRM_XE_MULTI_GROUP_KEEP_ACTIVE flag
-- *    set, then the multi-queue group is kept active after the primary queue is
-- *    destroyed.
-  *    All the other non-relevant bits of extension's 'value' field while adding the
-  *    primary or the secondary queues of the group must be set to 0.
-  *  - %DRM_XE_EXEC_QUEUE_SET_PROPERTY_MULTI_QUEUE_PRIORITY - Set the queue
-@@ -1331,7 +1328,6 @@ struct drm_xe_exec_queue_create {
- #define   DRM_XE_EXEC_QUEUE_SET_HANG_REPLAY_STATE		3
- #define   DRM_XE_EXEC_QUEUE_SET_PROPERTY_MULTI_GROUP		4
- #define     DRM_XE_MULTI_GROUP_CREATE				(1ull << 63)
--#define     DRM_XE_MULTI_GROUP_KEEP_ACTIVE			(1ull << 62)
- #define   DRM_XE_EXEC_QUEUE_SET_PROPERTY_MULTI_QUEUE_PRIORITY	5
- 	/** @extensions: Pointer to the first extension struct, if any */
- 	__u64 extensions;
 -- 
 2.43.0
 
