@@ -4,52 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0A488CEFCF0
-	for <intel-xe@archiver.kernel.org>; Tue,  6 Jan 2026 18:55:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3DB90CEFCEC
+	for <intel-xe@archiver.kernel.org>; Tue,  6 Jan 2026 19:01:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 45B4910E062;
-	Tue,  6 Jan 2026 18:55:15 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ezj2sx5p";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0DFDF10E062
- for <intel-xe@lists.freedesktop.org>; Tue,  6 Jan 2026 18:55:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1767725715; x=1799261715;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=Cn8VKLBLypnAgJyxUsGbtWbt22pDhJ+FtUrGj5WMfDE=;
- b=Ezj2sx5pNsFJJLGQhi0foGuuuj8Epc3VtTH8rkBbSPmkU9aSHSqLBK75
- E4VSGdcakEFg6ViE6H83hd/pjy7pO+801GRnTaVPe1TJ3Y+61Iro2AfHu
- SMvj9TXa2uxaDrw/nF76F9sQwksYUhcbdhNjLIAnB86RhOdVDWH/RpNFa
- NdAIG4df7ysVSzOt2QXliZi1Ez6oiwle1qje1tTbI1EYb0iId0lJOsMPF
- zLQD9Hax9EoyAVSUXOyQxNcGliBTtbzmYrag7B0IkFLFvetzUtzwyN83S
- 4Ev2lRxdKwrOKAR7M66FDdM8ok09ukERdNI04uQy/tvEpmzJJxe/7MLh1 Q==;
-X-CSE-ConnectionGUID: Uq1dR9sSTfGsvue8ex154g==
-X-CSE-MsgGUID: vQ8HHGcMQQiEkplE68VB2A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11663"; a="80547100"
-X-IronPort-AV: E=Sophos;i="6.21,206,1763452800"; d="scan'208";a="80547100"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jan 2026 10:55:14 -0800
-X-CSE-ConnectionGUID: Hf8HX2eNRPOpe8qx7u8Ckg==
-X-CSE-MsgGUID: /WPVoLMlSYeCe+RJw/MLqw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,206,1763452800"; d="scan'208";a="202333309"
-Received: from dut6304bmgfrd.fm.intel.com ([10.36.21.42])
- by fmviesa007.fm.intel.com with ESMTP; 06 Jan 2026 10:55:13 -0800
-From: Xin Wang <x.wang@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Xin Wang <x.wang@intel.com>, Matthew Auld <matthew.auld@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>
-Subject: [PATCH v3] drm/xe: Allow compressible surfaces to be 1-way coherent
-Date: Tue,  6 Jan 2026 18:55:01 +0000
-Message-ID: <20260106185501.964562-1-x.wang@intel.com>
-X-Mailer: git-send-email 2.43.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id E7FF810E549;
+	Tue,  6 Jan 2026 19:01:05 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 753CF10E548;
+ Tue,  6 Jan 2026 19:01:05 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe=3A_Allow_compressi?=
+ =?utf-8?q?ble_surfaces_to_be_1-way_coherent_=28rev4=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Xin Wang" <x.wang@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 06 Jan 2026 19:01:05 -0000
+Message-ID: <176772606547.130241.16285688473829071498@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260106185501.964562-1-x.wang@intel.com>
+In-Reply-To: <20260106185501.964562-1-x.wang@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,314 +36,335 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+== Series Details ==
+
+Series: drm/xe: Allow compressible surfaces to be 1-way coherent (rev4)
+URL   : https://patchwork.freedesktop.org/series/157036/
+State : warning
+
+== Summary ==
+
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+9f1cb6875f3f9eb0925ed50c16100322a2df513c
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 689777d70aa7750fcdefdc00ecbfd86bc7545371
+Author: Xin Wang <x.wang@intel.com>
+Date:   Tue Jan 6 18:55:01 2026 +0000
+
+    drm/xe: Allow compressible surfaces to be 1-way coherent
+    
+    Previously, compressible surfaces were required to be non-coherent (allocated
+    as WC) because compression and coherency were mutually exclusive. Starting
+    with Xe3, hardware supports combining compression with 1-way coherency,
+    allowing compressible surfaces to be allocated as WB memory. This provides
+    applications with more efficient memory allocation by avoiding WC allocation
+    overhead that can cause system stuttering and memory management challenges.
+    
+    The implementation adds support for compressed+coherent PAT entry for the
+    xe3_lpg devices and updates the driver logic to handle the new compression
+    capabilities.
+    
+    v2: (Matthew Auld)
+     - Improved error handling with XE_IOCTL_DBG()
+     - Enhanced documentation and comments
+     - Fixed xe_bo_needs_ccs_pages() outdated compression assumptions
+    
+    v3:
+     - Improve WB compression support detection by checking PAT table instead
+    of version check
+    
+    Bspec: 71582, 59361, 59399
+    Cc: Matthew Auld <matthew.auld@intel.com>
+    Cc: Matt Roper <matthew.d.roper@intel.com>
+    Signed-off-by: Xin Wang <x.wang@intel.com>
++ /mt/dim checkpatch 3d6700a02638d446a4e8ad92a8212c3efef84ae0 drm-intel
+689777d70aa7 drm/xe: Allow compressible surfaces to be 1-way coherent
+-:6: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#6: 
 Previously, compressible surfaces were required to be non-coherent (allocated
-as WC) because compression and coherency were mutually exclusive. Starting
-with Xe3, hardware supports combining compression with 1-way coherency,
-allowing compressible surfaces to be allocated as WB memory. This provides
-applications with more efficient memory allocation by avoiding WC allocation
-overhead that can cause system stuttering and memory management challenges.
 
-The implementation adds support for compressed+coherent PAT entry for the
-xe3_lpg devices and updates the driver logic to handle the new compression
-capabilities.
-
-v2: (Matthew Auld)
- - Improved error handling with XE_IOCTL_DBG()
- - Enhanced documentation and comments
- - Fixed xe_bo_needs_ccs_pages() outdated compression assumptions
-
-v3:
- - Improve WB compression support detection by checking PAT table instead
-of version check
-
-Bspec: 71582, 59361, 59399
-Cc: Matthew Auld <matthew.auld@intel.com>
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Signed-off-by: Xin Wang <x.wang@intel.com>
----
- drivers/gpu/drm/xe/regs/xe_gt_regs.h |  6 ++++
- drivers/gpu/drm/xe/xe_bo.c           | 41 ++++++++++++++++++------
- drivers/gpu/drm/xe/xe_gt.c           | 32 +++++++++++++++++++
- drivers/gpu/drm/xe/xe_pat.c          | 47 ++++++++++++++++++++++++----
- drivers/gpu/drm/xe/xe_vm.c           | 13 ++++++++
- 5 files changed, 124 insertions(+), 15 deletions(-)
-
-diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-index 93643da57428..24fc64fc832e 100644
---- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-@@ -89,6 +89,7 @@
- #define   UNIFIED_COMPRESSION_FORMAT		REG_GENMASK(3, 0)
- 
- #define XE2_GAMREQSTRM_CTRL			XE_REG_MCR(0x4194)
-+#define   EN_CMP_1WCOH				REG_BIT(15)
- #define   CG_DIS_CNTLBUS			REG_BIT(6)
- 
- #define CCS_AUX_INV				XE_REG(0x4208)
-@@ -101,6 +102,11 @@
- 
- #define XE2_LMEM_CFG				XE_REG(0x48b0)
- 
-+#define XE2_GAMWALK_CTRL			0x47e4
-+#define XE2_GAMWALK_CTRL_MEDIA			XE_REG(XE2_GAMWALK_CTRL + MEDIA_GT_GSI_OFFSET)
-+#define XE2_GAMWALK_CTRL_3D			XE_REG_MCR(XE2_GAMWALK_CTRL)
-+#define   EN_CMP_1WCOH_GW			REG_BIT(14)
-+
- #define XEHP_FLAT_CCS_BASE_ADDR			XE_REG_MCR(0x4910)
- #define XEHP_FLAT_CCS_PTR			REG_GENMASK(31, 8)
- 
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index 8b6474cd3eaf..efd199557f67 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -29,6 +29,7 @@
- #include "xe_gt.h"
- #include "xe_map.h"
- #include "xe_migrate.h"
-+#include "xe_pat.h"
- #include "xe_pm.h"
- #include "xe_preempt_fence.h"
- #include "xe_pxp.h"
-@@ -3517,17 +3518,39 @@ bool xe_bo_needs_ccs_pages(struct xe_bo *bo)
- 	if (IS_DGFX(xe) && (bo->flags & XE_BO_FLAG_SYSTEM))
- 		return false;
- 
-+	/* Check if userspace explicitly requested no compression */
-+	if (bo->flags & XE_BO_FLAG_NO_COMPRESSION)
-+		return false;
-+
- 	/*
--	 * Compression implies coh_none, therefore we know for sure that WB
--	 * memory can't currently use compression, which is likely one of the
--	 * common cases.
--	 * Additionally, userspace may explicitly request no compression via the
--	 * DRM_XE_GEM_CREATE_FLAG_NO_COMPRESSION flag, which should also disable
--	 * CCS usage.
-+	 * For WB (Write-Back) CPU caching mode, check if compression is
-+	 * supported through any available PAT index. If not, FlatCCS
-+	 * can't be used.
- 	 */
--	if (bo->cpu_caching == DRM_XE_GEM_CPU_CACHING_WB ||
--	    bo->flags & XE_BO_FLAG_NO_COMPRESSION)
--		return false;
-+	if (bo->cpu_caching == DRM_XE_GEM_CPU_CACHING_WB) {
-+		bool wb_comp_supported = false;
-+
-+		/*
-+		 * Compression for WB caching was introduced in
-+		 * GRAPHICS_VER 30 (Xe2). Earlier versions do not
-+		 * support it.
-+		 */
-+		if (GRAPHICS_VER(xe) < 30)
-+			return false;
-+
-+		for (int i = 0; i < xe->pat.n_entries; i++) {
-+			if (!xe->pat.table[i].valid)
-+				continue;
-+			if (xe_pat_index_get_comp_en(xe, i) &&
-+			    xe_pat_index_get_coh_mode(xe, i) != XE_COH_NONE) {
-+				wb_comp_supported = true;
-+				break;
-+			}
-+		}
-+
-+		if (!wb_comp_supported)
-+			return false;
-+	}
- 
- 	return true;
- }
-diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-index 313ce83ab0e5..04dbf995a18b 100644
---- a/drivers/gpu/drm/xe/xe_gt.c
-+++ b/drivers/gpu/drm/xe/xe_gt.c
-@@ -140,6 +140,36 @@ static void xe_gt_disable_host_l2_vram(struct xe_gt *gt)
- 	xe_gt_mcr_multicast_write(gt, XE2_GAMREQSTRM_CTRL, reg);
- }
- 
-+static void xe_gt_enable_comp_1wcoh(struct xe_gt *gt)
-+{
-+	struct xe_device *xe = gt_to_xe(gt);
-+	unsigned int fw_ref;
-+	u32 reg;
-+
-+	if (IS_SRIOV_VF(xe))
-+		return;
-+
-+	if (GRAPHICS_VER(xe) >= 30 && xe->info.has_flat_ccs) {
-+		fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
-+		if (!fw_ref)
-+			return;
-+
-+		reg = xe_gt_mcr_unicast_read_any(gt, XE2_GAMREQSTRM_CTRL);
-+		reg |= EN_CMP_1WCOH;
-+		xe_gt_mcr_multicast_write(gt, XE2_GAMREQSTRM_CTRL, reg);
-+
-+		if (xe_gt_is_media_type(gt)) {
-+			xe_mmio_rmw32(&gt->mmio, XE2_GAMWALK_CTRL_MEDIA, 0, EN_CMP_1WCOH_GW);
-+		} else {
-+			reg = xe_gt_mcr_unicast_read_any(gt, XE2_GAMWALK_CTRL_3D);
-+			reg |= EN_CMP_1WCOH_GW;
-+			xe_gt_mcr_multicast_write(gt, XE2_GAMWALK_CTRL_3D, reg);
-+		}
-+
-+		xe_force_wake_put(gt_to_fw(gt), fw_ref);
-+	}
-+}
-+
- static void gt_reset_worker(struct work_struct *w);
- 
- static int emit_job_sync(struct xe_exec_queue *q, struct xe_bb *bb,
-@@ -466,6 +496,7 @@ static int gt_init_with_gt_forcewake(struct xe_gt *gt)
- 	xe_gt_topology_init(gt);
- 	xe_gt_mcr_init(gt);
- 	xe_gt_enable_host_l2_vram(gt);
-+	xe_gt_enable_comp_1wcoh(gt);
- 
- 	if (xe_gt_is_main_type(gt)) {
- 		err = xe_ggtt_init(gt_to_tile(gt)->mem.ggtt);
-@@ -745,6 +776,7 @@ static int do_gt_restart(struct xe_gt *gt)
- 	xe_pat_init(gt);
- 
- 	xe_gt_enable_host_l2_vram(gt);
-+	xe_gt_enable_comp_1wcoh(gt);
- 
- 	xe_gt_mcr_set_implicit_defaults(gt);
- 	xe_reg_sr_apply_mmio(&gt->reg_sr, gt);
-diff --git a/drivers/gpu/drm/xe/xe_pat.c b/drivers/gpu/drm/xe/xe_pat.c
-index 2c3375e0250b..440a9013dc04 100644
---- a/drivers/gpu/drm/xe/xe_pat.c
-+++ b/drivers/gpu/drm/xe/xe_pat.c
-@@ -132,9 +132,10 @@ static const struct xe_pat_table_entry xelpg_pat_table[] = {
-  * in the table.
-  *
-  * Note: There is an implicit assumption in the driver that compression and
-- * coh_1way+ are mutually exclusive. If this is ever not true then userptr
-- * and imported dma-buf from external device will have uncleared ccs state. See
-- * also xe_bo_needs_ccs_pages().
-+ * coh_1way+ are mutually exclusive for platforms prior to Xe3. Starting
-+ * with Xe3, compression can be combined with coherency. If using compression
-+ * with coherency, userptr and imported dma-buf from external device will
-+ * have uncleared ccs state. See also xe_bo_needs_ccs_pages().
-  */
- #define XE2_PAT(no_promote, comp_en, l3clos, l3_policy, l4_policy, __coh_mode) \
- 	{ \
-@@ -144,8 +145,7 @@ static const struct xe_pat_table_entry xelpg_pat_table[] = {
- 			REG_FIELD_PREP(XE2_L3_POLICY, l3_policy) | \
- 			REG_FIELD_PREP(XE2_L4_POLICY, l4_policy) | \
- 			REG_FIELD_PREP(XE2_COH_MODE, __coh_mode), \
--		.coh_mode = (BUILD_BUG_ON_ZERO(__coh_mode && comp_en) || __coh_mode) ? \
--			XE_COH_AT_LEAST_1WAY : XE_COH_NONE, \
-+		.coh_mode = __coh_mode ? XE_COH_AT_LEAST_1WAY : XE_COH_NONE, \
- 		.valid = 1 \
- 	}
- 
-@@ -181,6 +181,38 @@ static const struct xe_pat_table_entry xe2_pat_table[] = {
- 	[31] = XE2_PAT( 0, 0, 3, 0, 3, 3 ),
- };
- 
-+static const struct xe_pat_table_entry xe3_lpg_pat_table[] = {
+-:206: ERROR:SPACING: space prohibited after that open square bracket '['
+#206: FILE: drivers/gpu/drm/xe/xe_pat.c:185:
 +	[ 0] = XE2_PAT( 0, 0, 0, 0, 3, 0 ),
+
+-:206: ERROR:SPACING: space prohibited after that open parenthesis '('
+#206: FILE: drivers/gpu/drm/xe/xe_pat.c:185:
++	[ 0] = XE2_PAT( 0, 0, 0, 0, 3, 0 ),
+
+-:206: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#206: FILE: drivers/gpu/drm/xe/xe_pat.c:185:
++	[ 0] = XE2_PAT( 0, 0, 0, 0, 3, 0 ),
+
+-:207: ERROR:SPACING: space prohibited after that open square bracket '['
+#207: FILE: drivers/gpu/drm/xe/xe_pat.c:186:
 +	[ 1] = XE2_PAT( 0, 0, 0, 0, 3, 2 ),
+
+-:207: ERROR:SPACING: space prohibited after that open parenthesis '('
+#207: FILE: drivers/gpu/drm/xe/xe_pat.c:186:
++	[ 1] = XE2_PAT( 0, 0, 0, 0, 3, 2 ),
+
+-:207: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#207: FILE: drivers/gpu/drm/xe/xe_pat.c:186:
++	[ 1] = XE2_PAT( 0, 0, 0, 0, 3, 2 ),
+
+-:208: ERROR:SPACING: space prohibited after that open square bracket '['
+#208: FILE: drivers/gpu/drm/xe/xe_pat.c:187:
 +	[ 2] = XE2_PAT( 0, 0, 0, 0, 3, 3 ),
+
+-:208: ERROR:SPACING: space prohibited after that open parenthesis '('
+#208: FILE: drivers/gpu/drm/xe/xe_pat.c:187:
++	[ 2] = XE2_PAT( 0, 0, 0, 0, 3, 3 ),
+
+-:208: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#208: FILE: drivers/gpu/drm/xe/xe_pat.c:187:
++	[ 2] = XE2_PAT( 0, 0, 0, 0, 3, 3 ),
+
+-:209: ERROR:SPACING: space prohibited after that open square bracket '['
+#209: FILE: drivers/gpu/drm/xe/xe_pat.c:188:
 +	[ 3] = XE2_PAT( 0, 0, 0, 3, 3, 0 ),
+
+-:209: ERROR:SPACING: space prohibited after that open parenthesis '('
+#209: FILE: drivers/gpu/drm/xe/xe_pat.c:188:
++	[ 3] = XE2_PAT( 0, 0, 0, 3, 3, 0 ),
+
+-:209: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#209: FILE: drivers/gpu/drm/xe/xe_pat.c:188:
++	[ 3] = XE2_PAT( 0, 0, 0, 3, 3, 0 ),
+
+-:210: ERROR:SPACING: space prohibited after that open square bracket '['
+#210: FILE: drivers/gpu/drm/xe/xe_pat.c:189:
 +	[ 4] = XE2_PAT( 0, 0, 0, 3, 0, 2 ),
+
+-:210: ERROR:SPACING: space prohibited after that open parenthesis '('
+#210: FILE: drivers/gpu/drm/xe/xe_pat.c:189:
++	[ 4] = XE2_PAT( 0, 0, 0, 3, 0, 2 ),
+
+-:210: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#210: FILE: drivers/gpu/drm/xe/xe_pat.c:189:
++	[ 4] = XE2_PAT( 0, 0, 0, 3, 0, 2 ),
+
+-:211: ERROR:SPACING: space prohibited after that open square bracket '['
+#211: FILE: drivers/gpu/drm/xe/xe_pat.c:190:
 +	[ 5] = XE2_PAT( 0, 0, 0, 3, 3, 2 ),
+
+-:211: ERROR:SPACING: space prohibited after that open parenthesis '('
+#211: FILE: drivers/gpu/drm/xe/xe_pat.c:190:
++	[ 5] = XE2_PAT( 0, 0, 0, 3, 3, 2 ),
+
+-:211: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#211: FILE: drivers/gpu/drm/xe/xe_pat.c:190:
++	[ 5] = XE2_PAT( 0, 0, 0, 3, 3, 2 ),
+
+-:212: ERROR:SPACING: space prohibited after that open square bracket '['
+#212: FILE: drivers/gpu/drm/xe/xe_pat.c:191:
 +	[ 6] = XE2_PAT( 1, 0, 0, 1, 3, 0 ),
+
+-:212: ERROR:SPACING: space prohibited after that open parenthesis '('
+#212: FILE: drivers/gpu/drm/xe/xe_pat.c:191:
++	[ 6] = XE2_PAT( 1, 0, 0, 1, 3, 0 ),
+
+-:212: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#212: FILE: drivers/gpu/drm/xe/xe_pat.c:191:
++	[ 6] = XE2_PAT( 1, 0, 0, 1, 3, 0 ),
+
+-:213: ERROR:SPACING: space prohibited after that open square bracket '['
+#213: FILE: drivers/gpu/drm/xe/xe_pat.c:192:
 +	[ 7] = XE2_PAT( 0, 0, 0, 3, 0, 3 ),
+
+-:213: ERROR:SPACING: space prohibited after that open parenthesis '('
+#213: FILE: drivers/gpu/drm/xe/xe_pat.c:192:
++	[ 7] = XE2_PAT( 0, 0, 0, 3, 0, 3 ),
+
+-:213: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#213: FILE: drivers/gpu/drm/xe/xe_pat.c:192:
++	[ 7] = XE2_PAT( 0, 0, 0, 3, 0, 3 ),
+
+-:214: ERROR:SPACING: space prohibited after that open square bracket '['
+#214: FILE: drivers/gpu/drm/xe/xe_pat.c:193:
 +	[ 8] = XE2_PAT( 0, 0, 0, 3, 0, 0 ),
+
+-:214: ERROR:SPACING: space prohibited after that open parenthesis '('
+#214: FILE: drivers/gpu/drm/xe/xe_pat.c:193:
++	[ 8] = XE2_PAT( 0, 0, 0, 3, 0, 0 ),
+
+-:214: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#214: FILE: drivers/gpu/drm/xe/xe_pat.c:193:
++	[ 8] = XE2_PAT( 0, 0, 0, 3, 0, 0 ),
+
+-:215: ERROR:SPACING: space prohibited after that open square bracket '['
+#215: FILE: drivers/gpu/drm/xe/xe_pat.c:194:
 +	[ 9] = XE2_PAT( 0, 1, 0, 0, 3, 0 ),
+
+-:215: ERROR:SPACING: space prohibited after that open parenthesis '('
+#215: FILE: drivers/gpu/drm/xe/xe_pat.c:194:
++	[ 9] = XE2_PAT( 0, 1, 0, 0, 3, 0 ),
+
+-:215: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#215: FILE: drivers/gpu/drm/xe/xe_pat.c:194:
++	[ 9] = XE2_PAT( 0, 1, 0, 0, 3, 0 ),
+
+-:216: ERROR:SPACING: space prohibited after that open parenthesis '('
+#216: FILE: drivers/gpu/drm/xe/xe_pat.c:195:
 +	[10] = XE2_PAT( 0, 1, 0, 3, 0, 0 ),
+
+-:216: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#216: FILE: drivers/gpu/drm/xe/xe_pat.c:195:
++	[10] = XE2_PAT( 0, 1, 0, 3, 0, 0 ),
+
+-:217: ERROR:SPACING: space prohibited after that open parenthesis '('
+#217: FILE: drivers/gpu/drm/xe/xe_pat.c:196:
 +	[11] = XE2_PAT( 1, 1, 0, 1, 3, 0 ),
+
+-:217: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#217: FILE: drivers/gpu/drm/xe/xe_pat.c:196:
++	[11] = XE2_PAT( 1, 1, 0, 1, 3, 0 ),
+
+-:218: ERROR:SPACING: space prohibited after that open parenthesis '('
+#218: FILE: drivers/gpu/drm/xe/xe_pat.c:197:
 +	[12] = XE2_PAT( 0, 1, 0, 3, 3, 0 ),
+
+-:218: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#218: FILE: drivers/gpu/drm/xe/xe_pat.c:197:
++	[12] = XE2_PAT( 0, 1, 0, 3, 3, 0 ),
+
+-:219: ERROR:SPACING: space prohibited after that open parenthesis '('
+#219: FILE: drivers/gpu/drm/xe/xe_pat.c:198:
 +	[13] = XE2_PAT( 0, 0, 0, 0, 0, 0 ),
+
+-:219: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#219: FILE: drivers/gpu/drm/xe/xe_pat.c:198:
++	[13] = XE2_PAT( 0, 0, 0, 0, 0, 0 ),
+
+-:220: ERROR:SPACING: space prohibited after that open parenthesis '('
+#220: FILE: drivers/gpu/drm/xe/xe_pat.c:199:
 +	[14] = XE2_PAT( 0, 1, 0, 0, 0, 0 ),
+
+-:220: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#220: FILE: drivers/gpu/drm/xe/xe_pat.c:199:
++	[14] = XE2_PAT( 0, 1, 0, 0, 0, 0 ),
+
+-:221: ERROR:SPACING: space prohibited after that open parenthesis '('
+#221: FILE: drivers/gpu/drm/xe/xe_pat.c:200:
 +	[15] = XE2_PAT( 1, 1, 0, 1, 1, 0 ),
+
+-:221: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#221: FILE: drivers/gpu/drm/xe/xe_pat.c:200:
++	[15] = XE2_PAT( 1, 1, 0, 1, 1, 0 ),
+
+-:222: ERROR:SPACING: space prohibited after that open parenthesis '('
+#222: FILE: drivers/gpu/drm/xe/xe_pat.c:201:
 +	[16] = XE2_PAT( 0, 1, 0, 0, 3, 2 ),
-+	/* 17..19 are reserved; leave set to all 0's */
+
+-:222: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#222: FILE: drivers/gpu/drm/xe/xe_pat.c:201:
++	[16] = XE2_PAT( 0, 1, 0, 0, 3, 2 ),
+
+-:224: ERROR:SPACING: space prohibited after that open parenthesis '('
+#224: FILE: drivers/gpu/drm/xe/xe_pat.c:203:
 +	[20] = XE2_PAT( 0, 0, 1, 0, 3, 0 ),
+
+-:224: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#224: FILE: drivers/gpu/drm/xe/xe_pat.c:203:
++	[20] = XE2_PAT( 0, 0, 1, 0, 3, 0 ),
+
+-:225: ERROR:SPACING: space prohibited after that open parenthesis '('
+#225: FILE: drivers/gpu/drm/xe/xe_pat.c:204:
 +	[21] = XE2_PAT( 0, 1, 1, 0, 3, 0 ),
+
+-:225: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#225: FILE: drivers/gpu/drm/xe/xe_pat.c:204:
++	[21] = XE2_PAT( 0, 1, 1, 0, 3, 0 ),
+
+-:226: ERROR:SPACING: space prohibited after that open parenthesis '('
+#226: FILE: drivers/gpu/drm/xe/xe_pat.c:205:
 +	[22] = XE2_PAT( 0, 0, 1, 0, 3, 2 ),
+
+-:226: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#226: FILE: drivers/gpu/drm/xe/xe_pat.c:205:
++	[22] = XE2_PAT( 0, 0, 1, 0, 3, 2 ),
+
+-:227: ERROR:SPACING: space prohibited after that open parenthesis '('
+#227: FILE: drivers/gpu/drm/xe/xe_pat.c:206:
 +	[23] = XE2_PAT( 0, 0, 1, 0, 3, 3 ),
+
+-:227: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#227: FILE: drivers/gpu/drm/xe/xe_pat.c:206:
++	[23] = XE2_PAT( 0, 0, 1, 0, 3, 3 ),
+
+-:228: ERROR:SPACING: space prohibited after that open parenthesis '('
+#228: FILE: drivers/gpu/drm/xe/xe_pat.c:207:
 +	[24] = XE2_PAT( 0, 0, 2, 0, 3, 0 ),
+
+-:228: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#228: FILE: drivers/gpu/drm/xe/xe_pat.c:207:
++	[24] = XE2_PAT( 0, 0, 2, 0, 3, 0 ),
+
+-:229: ERROR:SPACING: space prohibited after that open parenthesis '('
+#229: FILE: drivers/gpu/drm/xe/xe_pat.c:208:
 +	[25] = XE2_PAT( 0, 1, 2, 0, 3, 0 ),
+
+-:229: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#229: FILE: drivers/gpu/drm/xe/xe_pat.c:208:
++	[25] = XE2_PAT( 0, 1, 2, 0, 3, 0 ),
+
+-:230: ERROR:SPACING: space prohibited after that open parenthesis '('
+#230: FILE: drivers/gpu/drm/xe/xe_pat.c:209:
 +	[26] = XE2_PAT( 0, 0, 2, 0, 3, 2 ),
+
+-:230: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#230: FILE: drivers/gpu/drm/xe/xe_pat.c:209:
++	[26] = XE2_PAT( 0, 0, 2, 0, 3, 2 ),
+
+-:231: ERROR:SPACING: space prohibited after that open parenthesis '('
+#231: FILE: drivers/gpu/drm/xe/xe_pat.c:210:
 +	[27] = XE2_PAT( 0, 0, 2, 0, 3, 3 ),
+
+-:231: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#231: FILE: drivers/gpu/drm/xe/xe_pat.c:210:
++	[27] = XE2_PAT( 0, 0, 2, 0, 3, 3 ),
+
+-:232: ERROR:SPACING: space prohibited after that open parenthesis '('
+#232: FILE: drivers/gpu/drm/xe/xe_pat.c:211:
 +	[28] = XE2_PAT( 0, 0, 3, 0, 3, 0 ),
+
+-:232: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#232: FILE: drivers/gpu/drm/xe/xe_pat.c:211:
++	[28] = XE2_PAT( 0, 0, 3, 0, 3, 0 ),
+
+-:233: ERROR:SPACING: space prohibited after that open parenthesis '('
+#233: FILE: drivers/gpu/drm/xe/xe_pat.c:212:
 +	[29] = XE2_PAT( 0, 1, 3, 0, 3, 0 ),
+
+-:233: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#233: FILE: drivers/gpu/drm/xe/xe_pat.c:212:
++	[29] = XE2_PAT( 0, 1, 3, 0, 3, 0 ),
+
+-:234: ERROR:SPACING: space prohibited after that open parenthesis '('
+#234: FILE: drivers/gpu/drm/xe/xe_pat.c:213:
 +	[30] = XE2_PAT( 0, 0, 3, 0, 3, 2 ),
+
+-:234: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#234: FILE: drivers/gpu/drm/xe/xe_pat.c:213:
++	[30] = XE2_PAT( 0, 0, 3, 0, 3, 2 ),
+
+-:235: ERROR:SPACING: space prohibited after that open parenthesis '('
+#235: FILE: drivers/gpu/drm/xe/xe_pat.c:214:
 +	[31] = XE2_PAT( 0, 0, 3, 0, 3, 3 ),
-+};
- /* Special PAT values programmed outside the main table */
- static const struct xe_pat_table_entry xe2_pat_ats = XE2_PAT( 0, 0, 0, 0, 3, 3 );
- static const struct xe_pat_table_entry xe2_pat_pta = XE2_PAT( 0, 0, 0, 0, 3, 0 );
-@@ -501,7 +533,10 @@ void xe_pat_init_early(struct xe_device *xe)
- 		xe->pat.idx[XE_CACHE_WB] = 2;
- 	} else if (GRAPHICS_VER(xe) == 30 || GRAPHICS_VER(xe) == 20) {
- 		xe->pat.ops = &xe2_pat_ops;
--		xe->pat.table = xe2_pat_table;
-+		if (GRAPHICS_VER(xe) == 30)
-+			xe->pat.table = xe3_lpg_pat_table;
-+		else
-+			xe->pat.table = xe2_pat_table;
- 		xe->pat.pat_ats = &xe2_pat_ats;
- 		if (IS_DGFX(xe))
- 			xe->pat.pat_pta = &xe2_pat_pta;
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index a07d8b53de66..481ee7763b09 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -3405,6 +3405,7 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe, struct xe_vm *vm,
- 			DRM_XE_VM_BIND_FLAG_CPU_ADDR_MIRROR;
- 		u16 pat_index = (*bind_ops)[i].pat_index;
- 		u16 coh_mode;
-+		bool comp_en;
- 
- 		if (XE_IOCTL_DBG(xe, is_cpu_addr_mirror &&
- 				 (!xe_vm_in_fault_mode(vm) ||
-@@ -3421,6 +3422,7 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe, struct xe_vm *vm,
- 		pat_index = array_index_nospec(pat_index, xe->pat.n_entries);
- 		(*bind_ops)[i].pat_index = pat_index;
- 		coh_mode = xe_pat_index_get_coh_mode(xe, pat_index);
-+		comp_en = xe_pat_index_get_comp_en(xe, pat_index);
- 		if (XE_IOCTL_DBG(xe, !coh_mode)) { /* hw reserved */
- 			err = -EINVAL;
- 			goto free_bind_ops;
-@@ -3451,6 +3453,8 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe, struct xe_vm *vm,
- 				 op == DRM_XE_VM_BIND_OP_MAP_USERPTR) ||
- 		    XE_IOCTL_DBG(xe, coh_mode == XE_COH_NONE &&
- 				 op == DRM_XE_VM_BIND_OP_MAP_USERPTR) ||
-+		    XE_IOCTL_DBG(xe, comp_en &&
-+				 op == DRM_XE_VM_BIND_OP_MAP_USERPTR) ||
- 		    XE_IOCTL_DBG(xe, op == DRM_XE_VM_BIND_OP_MAP_USERPTR &&
- 				 !IS_ENABLED(CONFIG_DRM_GPUSVM)) ||
- 		    XE_IOCTL_DBG(xe, obj &&
-@@ -3529,6 +3533,7 @@ static int xe_vm_bind_ioctl_validate_bo(struct xe_device *xe, struct xe_bo *bo,
- 					u16 pat_index, u32 op, u32 bind_flags)
- {
- 	u16 coh_mode;
-+	bool comp_en;
- 
- 	if (XE_IOCTL_DBG(xe, (bo->flags & XE_BO_FLAG_NO_COMPRESSION) &&
- 			 xe_pat_index_get_comp_en(xe, pat_index)))
-@@ -3574,6 +3579,14 @@ static int xe_vm_bind_ioctl_validate_bo(struct xe_device *xe, struct xe_bo *bo,
- 		return -EINVAL;
- 	}
- 
-+	/*
-+	 * Ensures that imported buffer objects (dma-bufs) are not mapped
-+	 * with a PAT index that enables compression.
-+	 */
-+	comp_en = xe_pat_index_get_comp_en(xe, pat_index);
-+	if (XE_IOCTL_DBG(xe, bo->ttm.base.import_attach && comp_en))
-+		return -EINVAL;
-+
- 	/* If a BO is protected it can only be mapped if the key is still valid */
- 	if ((bind_flags & DRM_XE_VM_BIND_FLAG_CHECK_PXP) && xe_bo_is_protected(bo) &&
- 	    op != DRM_XE_VM_BIND_OP_UNMAP && op != DRM_XE_VM_BIND_OP_UNMAP_ALL)
--- 
-2.43.0
+
+-:235: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#235: FILE: drivers/gpu/drm/xe/xe_pat.c:214:
++	[31] = XE2_PAT( 0, 0, 3, 0, 3, 3 ),
+
+total: 68 errors, 1 warnings, 0 checks, 237 lines checked
+
 
