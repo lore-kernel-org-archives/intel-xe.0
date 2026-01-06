@@ -4,62 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 67513CD0437
-	for <intel-xe@archiver.kernel.org>; Tue,  6 Jan 2026 04:40:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AFFF2CD0438
+	for <intel-xe@archiver.kernel.org>; Tue,  6 Jan 2026 04:46:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0A20A10E479;
-	Tue,  6 Jan 2026 04:40:18 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ku3befbO";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 43DC110E46C;
- Tue,  6 Jan 2026 04:40:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1767674417; x=1799210417;
- h=from:date:subject:mime-version:content-transfer-encoding:
- message-id:references:in-reply-to:to:cc;
- bh=cWFtMFkUcMnx1zIGC+kMkASxaXa5Gok1cvtRbGojIZQ=;
- b=ku3befbOUL2tXaOszHK1L3JaP9tPNFBdOdMLWa6q+bWVVoKndW7NVaTR
- OHfl8qPRk4XrKvJl0iIHo4zd5Rj7MrOfJaS39QIqSCd+lW/nKPrvYgl+z
- kwV7xpi0444pNPm9FGC86SnZiV8dptm0Fs8qeubrdM41cFhKZlPXZFF0Y
- IAmFWc2YTvggGByT7e/dUt/rBXz2spiH/kpynIeHi5KfR66RY8qtexi3o
- H9VePvWeO/Y1uHBTW70Pz5/j57JZkYz/LUkEMztU1MoeC4kGRJM/F8nFr
- +EyQwI5lR8/WNYO780kNdZeOrvtzDfOKOdHhAZZqE+s5q/kGAna+z0YNm w==;
-X-CSE-ConnectionGUID: uCMAeuhfSICp6PUXCcheLA==
-X-CSE-MsgGUID: H7g774tQTMmPiVoj2t8r4Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11662"; a="86459363"
-X-IronPort-AV: E=Sophos;i="6.21,204,1763452800"; d="scan'208";a="86459363"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jan 2026 20:40:16 -0800
-X-CSE-ConnectionGUID: eYyKf3nQR1aEsuoAhwdrFw==
-X-CSE-MsgGUID: 8EDJLJxEQmGQw7VIswnQRw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,204,1763452800"; d="scan'208";a="207034420"
-Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
- by fmviesa005.fm.intel.com with ESMTP; 05 Jan 2026 20:40:11 -0800
-From: Arun R Murthy <arun.r.murthy@intel.com>
-Date: Tue, 06 Jan 2026 10:08:00 +0530
-Subject: [PATCH v7 5/5] drm/i915/display: Error codes for async flip failures
-MIME-Version: 1.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 73A5310E22D;
+	Tue,  6 Jan 2026 04:46:18 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A04DA10E22D;
+ Tue,  6 Jan 2026 04:46:17 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260106-atomic-v7-5-d51d9a351684@intel.com>
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_User_readable_error_codes?=
+ =?utf-8?q?_on_atomic=5Fioctl_failure_=28rev6=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Arun R Murthy" <arun.r.murthy@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 06 Jan 2026 04:46:17 -0000
+Message-ID: <176767477765.128107.10681777105841510220@a3b018990fe9>
+X-Patchwork-Hint: ignore
 References: <20260106-atomic-v7-0-d51d9a351684@intel.com>
 In-Reply-To: <20260106-atomic-v7-0-d51d9a351684@intel.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Jani Nikula <jani.nikula@linux.intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
- Tvrtko Ursulin <tursulin@ursulin.net>, xaver.hugl@kde.org, 
- harry.wentland@amd.com, uma.shankar@intel.com, louis.chauvet@bootlin.com
-Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org, Arun R Murthy <arun.r.murthy@intel.com>
-X-Mailer: b4 0.15-dev
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,68 +36,47 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-For failures in async flip atomic check/commit path return user readable
-error codes in struct drm_atomic_state.
+== Series Details ==
 
-Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display.c | 25 ++++++++++++++-----------
- 1 file changed, 14 insertions(+), 11 deletions(-)
+Series: User readable error codes on atomic_ioctl failure (rev6)
+URL   : https://patchwork.freedesktop.org/series/152277/
+State : warning
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 81b3a6692ca20198ed4460af25a61b2d48e76023..737a07f9c0ca08682b13c20ab5877c1b57c09990 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -6016,9 +6016,10 @@ static int intel_async_flip_check_uapi(struct intel_atomic_state *state,
- 	}
- 
- 	if (intel_crtc_needs_modeset(new_crtc_state)) {
--		drm_dbg_kms(display->drm,
--			    "[CRTC:%d:%s] modeset required\n",
--			    crtc->base.base.id, crtc->base.name);
-+		drm_mode_atomic_add_error_msg(&state->base.error_code,
-+					      DRM_MODE_ATOMIC_CRTC_NEED_FULL_MODESET,
-+					      "[CRTC:%d:%s] requires full modeset",
-+					      crtc->base.base.id, crtc->base.name);
- 		return -EINVAL;
- 	}
- 
-@@ -6085,9 +6086,10 @@ static int intel_async_flip_check_hw(struct intel_atomic_state *state, struct in
- 	}
- 
- 	if (intel_crtc_needs_modeset(new_crtc_state)) {
--		drm_dbg_kms(display->drm,
--			    "[CRTC:%d:%s] modeset required\n",
--			    crtc->base.base.id, crtc->base.name);
-+		drm_mode_atomic_add_error_msg(&state->base.error_code,
-+					      DRM_MODE_ATOMIC_CRTC_NEED_FULL_MODESET,
-+					      "[CRTC:%d:%s] requires full modeset",
-+					      crtc->base.base.id, crtc->base.name);
- 		return -EINVAL;
- 	}
- 
-@@ -6125,11 +6127,12 @@ static int intel_async_flip_check_hw(struct intel_atomic_state *state, struct in
- 
- 		if (!intel_plane_can_async_flip(plane, new_plane_state->hw.fb->format,
- 						new_plane_state->hw.fb->modifier)) {
--			drm_dbg_kms(display->drm,
--				    "[PLANE:%d:%s] pixel format %p4cc / modifier 0x%llx does not support async flip\n",
--				    plane->base.base.id, plane->base.name,
--				    &new_plane_state->hw.fb->format->format,
--				    new_plane_state->hw.fb->modifier);
-+			drm_mode_atomic_add_error_msg(&state->base.error_code,
-+						      DRM_MODE_ATOMIC_ASYNC_MODIFIER_NOT_SUPP,
-+						      "[PLANE:%d:%s] pixel format %p4cc / 0x%llx modifier does not support async flip",
-+						      plane->base.base.id, plane->base.name,
-+						      &new_plane_state->hw.fb->format->format,
-+						      new_plane_state->hw.fb->modifier);
- 			return -EINVAL;
- 		}
- 
+== Summary ==
 
--- 
-2.25.1
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+9f1cb6875f3f9eb0925ed50c16100322a2df513c
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 0dd76c872e5d885ee5c9d78f83bfbd1f0e2abc9b
+Author: Arun R Murthy <arun.r.murthy@intel.com>
+Date:   Tue Jan 6 10:08:00 2026 +0530
+
+    drm/i915/display: Error codes for async flip failures
+    
+    For failures in async flip atomic check/commit path return user readable
+    error codes in struct drm_atomic_state.
+    
+    Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
++ /mt/dim checkpatch b3845fe8af5ec5c1d4b26e40ac6b4c7370e5fa35 drm-intel
+bbf45f3f424e drm: Define user readable error codes for atomic ioctl
+5ee9e7acc5de drm/atomic: Add error_code element in atomic_state
+843310ce8b87 drm/atomic: Allocate atomic_state at the beginning of atomic_ioctl
+23c47d64713b drm/atomic: Return user readable error in atomic_ioctl
+-:47: WARNING:LONG_LINE: line length of 107 exceeds 100 columns
+#47: FILE: drivers/gpu/drm/drm_atomic_uapi.c:1254:
++								      DRM_MODE_ATOMIC_ASYNC_NOT_SUPP_PLANE,
+
+total: 0 errors, 1 warnings, 0 checks, 131 lines checked
+0dd76c872e5d drm/i915/display: Error codes for async flip failures
+
 
