@@ -4,50 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 04B56D0D155
-	for <intel-xe@archiver.kernel.org>; Wed,  7 Jan 2026 17:47:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E75B6D0D145
+	for <intel-xe@archiver.kernel.org>; Wed,  7 Jan 2026 17:47:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A627E10E61A;
-	Wed,  7 Jan 2026 17:47:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9C2B910E642;
+	Wed,  7 Jan 2026 17:47:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UjWgSw++";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NiFYPU4Z";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A051110E5A9
- for <intel-xe@lists.freedesktop.org>; Wed,  7 Jan 2026 17:47:53 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2144110E61A
+ for <intel-xe@lists.freedesktop.org>; Wed,  7 Jan 2026 17:47:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1767808074; x=1799344074;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=sJbqc9gDPetPXVHz44uY62zU7SodNzoaz99gJLZ1IKc=;
- b=UjWgSw++yjPeIU8iAlZU6X368iOCPaKMG7s25kOCZ0ZJ6zunQby1WBgP
- lc9MIupMCIBmmzIV2V+3u6KHQ+KEwiyYgn8Ks5v4BewsNN/5wgfY1oZCU
- MsAq5JynOuj58MLE+xRNT6ii7MKaqVFFwsH6ufElD1UQm0J/5Gt/UmNcV
- Q7+9lbvpYZvh15C+Tt6/kuVbsfBV25jy1vUeRmF/QCTA2uijed8a4zRkj
- vzVcZaRVuQ7QyCqFkn1bgJSR0yPfOF1hrMthhtyBNaxfgWYiG1bnVVMdD
- VSrq7tllTmv1G1mrpNr3ld0DycNheBKCnrJju/K5U7laJmNe+JK6brwCB A==;
-X-CSE-ConnectionGUID: +yOF4U5fTZ6Jy6GxwP7hgA==
-X-CSE-MsgGUID: oaQSQd8BSQia01GiSlBMnA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11664"; a="69096470"
-X-IronPort-AV: E=Sophos;i="6.21,208,1763452800"; d="scan'208";a="69096470"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jan 2026 09:47:45 -0800
-X-CSE-ConnectionGUID: l9qvoCo9TzOIJF8+CqvYnw==
-X-CSE-MsgGUID: tcsQnGwOQMOlT+ABZvbOgQ==
+ t=1767808076; x=1799344076;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=b0sxkSYQUJ7TuclZZKYoxrbl24oxWDhLNviMEXq+V4o=;
+ b=NiFYPU4ZounqfG8t/0+EDJ3rzlr7vku59jS61Jp0dIlvWihY2+81Q0q8
+ dMR6jw+CSbaJMOkSVgfN3Nzb5TAHB+053+JZn/LoLgzZMupZtjxhEE17o
+ InGpGQAGjOQl4QY+5KdclwgWvgbChf4WpepQ28jLpk0jKaM9my2BGzKIP
+ iJtV5CLSkjycXoego8EEtcgzd7w+H3w8YrhFSKPdIEepGf0Zwfdioal57
+ rN7WDwBADrzhqzoT+S21Nj5s8CmyCjdMiAI3aNJ4AI2a5FXkxZwusbc4Y
+ tySqC5xcylqeCP8EIfJ5k/xcwROLTaHqFb8vIvfqNBW8N4GNF5D/gvgwf g==;
+X-CSE-ConnectionGUID: d2u8lugUT/GkGUj3nHM3Cw==
+X-CSE-MsgGUID: aMHz8xTySnaubfLwsG4m/Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11664"; a="91842128"
+X-IronPort-AV: E=Sophos;i="6.21,208,1763452800"; d="scan'208";a="91842128"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jan 2026 09:47:56 -0800
+X-CSE-ConnectionGUID: pisTEKLHRJi1zN4HBII4Kw==
+X-CSE-MsgGUID: JBCy55c0QHiUb9OYX0BvYw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,208,1763452800"; d="scan'208";a="202768572"
+X-IronPort-AV: E=Sophos;i="6.21,208,1763452800"; d="scan'208";a="202191218"
 Received: from llaguna-dev.igk.intel.com (HELO localhost) ([10.91.214.40])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jan 2026 09:47:44 -0800
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jan 2026 09:47:54 -0800
 From: Lukasz Laguna <lukasz.laguna@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: michal.wajdeczko@intel.com, rodrigo.vivi@intel.com, lukasz.laguna@intel.com
-Subject: [PATCH v12 0/4] drm/xe: Improve wedged mode handling
-Date: Wed,  7 Jan 2026 18:47:37 +0100
-Message-Id: <20260107174741.29163-1-lukasz.laguna@intel.com>
+Subject: [PATCH v12 3/4] drm/xe/vf: Disallow setting wedged mode to
+ upon-any-hang
+Date: Wed,  7 Jan 2026 18:47:40 +0100
+Message-Id: <20260107174741.29163-4-lukasz.laguna@intel.com>
 X-Mailer: git-send-email 2.40.0
+In-Reply-To: <20260107174741.29163-1-lukasz.laguna@intel.com>
+References: <20260107174741.29163-1-lukasz.laguna@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -64,64 +67,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Prevent the VF from attempting to update the GuC reset policy when
-changing the wedged mode, as this operation is not supported on VFs.
+In upon-any-hang (2) wedged mode, engine resets need to be disabled,
+which requires changing the GuC reset policy. VFs are not permitted to
+do that.
 
-Additionally, validate the wedged_mode module parameter input, update
-the driver's internal wedged.mode state only after successful reset
-policy change, and allow setting wedged_mode=2 only in debug builds
-if running as PF.
+Signed-off-by: Lukasz Laguna <lukasz.laguna@intel.com>
+Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+---
+ drivers/gpu/drm/xe/xe_device.c | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-v1: https://patchwork.freedesktop.org/series/148214/#rev1
-v2: Replace magic numbers with definitions (Matt, Michal)
-    Use helper to sanitize wedged_mode (Michal)
-    Change debug messages (Michal)
-    Reorder patches (Michal)
-    Add fixes tag (Matt)
-v3: Rename xe_device_wedged_mode_validate to
-    xe_device_validate_wedged_mode (Michal)
-    Make enum nameless (Michal)
-    Add default field in enum (Michal)
-    Change names of enum fields to match modparam description (Michal)
-v4: Fix GuC reset policy update
-    Replace missing magic numbers with definitions
-    Update debug message
-v5: Remove old rb-s from the patch that changed
-v6: Use string names instead of enum values in log messages (Michal)
-    Handle inconsistent reset policy state between GTs (Michal)
-    Use bool param in function toggling reset policy (Michal)
-    Update commits titles and descriptions (Michal)
-v7: Rebase series (Lukasz)
-    Rename helpers (Michal, Lukasz)
-    Split complex condition into smaller, separate ones (Michal)
-    Don't introduce XE_WEDGED_MODE_MISCONFIGURED enum field (Michal)
-    Add needs_policy_update helper (Michal)
-v8: Apply missing rb (Lukasz)
-v9: Simplify conditions (Rodrigo)
-v10: Define enum outside of the xe_device struct
-     Fix description of module parameter (Michal)
-v11: Update the Xe Device Wedging doc (Rodrigo)
-     Provide a more detailed commit description (Rodrigo)
-v12: Rename helpers to make wedged mode context explicit (Rodrigo)
-
-Lukasz Laguna (4):
-  drm/xe: Validate wedged_mode parameter and define enum for modes
-  drm/xe: Update wedged.mode only after successful reset policy change
-  drm/xe/vf: Disallow setting wedged mode to upon-any-hang
-  drm/xe/pf: Allow upon-any-hang wedged mode only in debug config
-
- drivers/gpu/drm/xe/xe_debugfs.c      | 75 ++++++++++++++++++++++------
- drivers/gpu/drm/xe/xe_device.c       | 60 +++++++++++++++++++---
- drivers/gpu/drm/xe/xe_device.h       |  2 +
- drivers/gpu/drm/xe/xe_device_types.h | 23 ++++++++-
- drivers/gpu/drm/xe/xe_guc_ads.c      | 16 +++---
- drivers/gpu/drm/xe/xe_guc_ads.h      |  5 +-
- drivers/gpu/drm/xe/xe_guc_capture.c  |  9 +++-
- drivers/gpu/drm/xe/xe_guc_submit.c   |  7 +--
- drivers/gpu/drm/xe/xe_module.c       | 10 ++--
- drivers/gpu/drm/xe/xe_module.h       |  2 +-
- 10 files changed, 170 insertions(+), 39 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index 62ec2e2d6436..d3431128670e 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -1387,6 +1387,11 @@ int xe_device_validate_wedged_mode(struct xe_device *xe, unsigned int mode)
+ 	if (mode > XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET) {
+ 		drm_dbg(&xe->drm, "wedged_mode: invalid value (%u)\n", mode);
+ 		return -EINVAL;
++	} else if (mode == XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET && IS_SRIOV_VF(xe)) {
++		drm_dbg(&xe->drm, "wedged_mode: (%u) %s mode is not supported for %s\n",
++			mode, xe_wedged_mode_to_string(mode),
++			xe_sriov_mode_to_string(xe_device_sriov_mode(xe)));
++		return -EPERM;
+ 	}
+ 
+ 	return 0;
 -- 
 2.40.0
 
