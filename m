@@ -4,163 +4,163 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A6025CFD64C
-	for <intel-xe@archiver.kernel.org>; Wed,  7 Jan 2026 14:19:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 64FFCCFD63E
+	for <intel-xe@archiver.kernel.org>; Wed,  7 Jan 2026 14:19:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D297C10E5F0;
-	Wed,  7 Jan 2026 14:19:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3DF2910E5FB;
+	Wed,  7 Jan 2026 14:19:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="EOf23MSt";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="soW/1Eie";
 	dkim-atps=neutral
-Received: from DM1PR04CU001.outbound.protection.outlook.com
- (mail-centralusazon11010011.outbound.protection.outlook.com [52.101.61.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1460B10E239;
- Mon,  5 Jan 2026 02:57:01 +0000 (UTC)
+Received: from CY3PR05CU001.outbound.protection.outlook.com
+ (mail-westcentralusazon11013005.outbound.protection.outlook.com
+ [40.93.201.5])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 97AC410E558;
+ Wed,  7 Jan 2026 00:05:36 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=wckCI63R6/9xVmC/6XGBT3dykx3MIgS1VjY/2Xv679lHfFZxeLXXL75iLlF7jU2nOgAfKlGnpnrRIpFdunCyA+PBH2CYBPVX+YI9JXYngDNrWRLXZWg7/Fy1JWAPGYX5GjOK/RDpXS55NaNVsoSct/PZTHwXnWuKDs9W2AIz1YH4fVVSjOLU7D8dgd2k9dWIuWdqB95/UZQZ9iTy+EyB6ShRwgoCA1qYyDc60i9ZDRqHUrg/lojo87e2MKSb4c7sT4HHaX0+tKxpHw60lrbrvbumPOmkihl2YiSk7bx4Ys+3kxb1AbuaoO1OCV2szR19Sc2xtypdQ7ZKilwrJ3/rJw==
+ b=RICTf/l2pJLPhJjgNKRrrdd4GRHOfSVb/CXbRryL2ycPUCQYDm2jJce8un6b+o2ArnWRyYPRiQSiS/8EvDcTbwDGECwJU5Eq3QSCh5GxE4qd6Z70r++17T3vE8/mmItxJScV3D3M3H3waHPHdOsvXN4DUGcv2JeiGx+Zl1u9B/QADdBhDjjWTR4c2OswBRSYH/BH1JeQ8s17DXZ+/r99JmG0Vj7y+qf1Vf3Yl7DIuFEbzR90zZKuk095o94Blb1z/0hxRcJ1w/QdDHaUUxezeY1EozYg33zvKnxWm18YmqOM/X1iuOj6LOpyvIEPJur/w3nEvpHXtl1UZXKOKvsWpw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Nyy48whnGjacWokjmDk6PQCzcsbUdfO8CvZVzfVDOk8=;
- b=YKocyFCz4WUV/+kuCxjhBw0u76yO7iBwFq1eBEDl0DeabVqylz+e4cdY6pBsiOgXRoDLTs8sFuJV6kRkREBXFLkqcQOBhjZ5sL5zGvHsSxdJFr4ja1eZ/rPf9dErVd1cIzhE6eGvbJoM4WwURmy+KqKXh8AB7rJFgWPWJI37D5y/PokTibnovKx6qMbM+q0/Skr5XpVVbZ6u87h4Peq1kH/yzHZCLDV14t9xRuh4U95FiTUeertYBa97FRA8y+bb/PnBOkhZ7RVVQLGIklINNV7q1ZaHg+IhS27SV2y1eZ10/i+Y0kPPiRdjtN4r9q2BCxrZJSOHakwMWVhr8kBbwQ==
+ bh=Ox3oC6cpwRR4Jlt8sljIm8jNQ702Wm1ig1H1O6PPLpM=;
+ b=An9zmXIl6OD7TBelSNzDHK56I32rDXgE9d1nohy5A0JP7HEEu6XoTCY2kxgJTAzGR7rZJyeoSwaWzbkKQkXsW0D4Y2Hf5AMlvPX4lQcwx3o4OUKx+x9bt7ioUMy913Ucb34D+HPUEgPMZrC5RrzO4OjrXmNQsdyKDvpo3TLPYjUjIKV+m3DPqxkGu1xZ65bpacJuoOMy52+GLrvOV8WoPpNPMRiFlTkzjJdmaySbEdr+5xF4jPGpIv9y+RvVf0Ujh8bvdnjrYW2Ez60WDg41oDq4KI1v3aUy6Hoq+e5zHMDHB/w83XnDZOuiMgaBcKEYVrY4g6YP5qcucXG5gudg8g==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Nyy48whnGjacWokjmDk6PQCzcsbUdfO8CvZVzfVDOk8=;
- b=EOf23MStmEnlNVl+QNVCsA6rFiPvW1OP5ZFqxW7XGOvWoAH59C+HyHlctAIuF1fHnLM3zYF5psZgTxD8zt4CCz426+8YLmi0sa4NVhDZPXa2qccSzs11ol9/Ok4cvsWOEiUgIcPTUVGXzM93HQIJIBpmR+fcDDCKisTG1l15e7ZPfD/30PrCAK3EGfGPrDm7PZ69VQxvNU2jQGyTOISBy/jmy1UaXKaGlfMZ5OvMMknUJLQWj7t0lGmZ8qtCpyowek2fxmZMPSRFbdOOif/1zZu1oC1o7vBVFztKif092w8Ua4hSSMXj0M+xAmerNRh0b6LDQUXb+fwuZX0efFLOKA==
+ bh=Ox3oC6cpwRR4Jlt8sljIm8jNQ702Wm1ig1H1O6PPLpM=;
+ b=soW/1EieSxKN9++IjOMgY739VYepFMyUtbzGjXdg6FpvV6qNNUoz0Jgrb2nPOLSeJwhFFXtxregILCoE7yiQBl7HJus85+5voQ/99IlzHj2uE0gvdXJ59nCF5fzh5Kn1ZwNoVFwms/QQjDlR+KrWA2MeTzMZdk6Sw7Z+T77I3Uk=
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from DM4PR12MB9072.namprd12.prod.outlook.com (2603:10b6:8:be::6) by
- PH7PR12MB8796.namprd12.prod.outlook.com (2603:10b6:510:272::22) with
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from DM4PR12MB8476.namprd12.prod.outlook.com (2603:10b6:8:17e::15)
+ by MN0PR12MB6343.namprd12.prod.outlook.com (2603:10b6:208:3c0::14) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9478.4; Mon, 5 Jan
- 2026 02:56:55 +0000
-Received: from DM4PR12MB9072.namprd12.prod.outlook.com
- ([fe80::9e49:782:8e98:1ff1]) by DM4PR12MB9072.namprd12.prod.outlook.com
- ([fe80::9e49:782:8e98:1ff1%5]) with mapi id 15.20.9478.004; Mon, 5 Jan 2026
- 02:56:55 +0000
-Message-ID: <ca992e0c-2299-47cb-8558-103db426d9b9@nvidia.com>
-Date: Mon, 5 Jan 2026 13:56:47 +1100
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9499.2; Wed, 7 Jan
+ 2026 00:05:33 +0000
+Received: from DM4PR12MB8476.namprd12.prod.outlook.com
+ ([fe80::2d79:122f:c62b:1cd8]) by DM4PR12MB8476.namprd12.prod.outlook.com
+ ([fe80::2d79:122f:c62b:1cd8%6]) with mapi id 15.20.9499.002; Wed, 7 Jan 2026
+ 00:05:33 +0000
+Message-ID: <924e88fe-e2ff-4faf-8800-a056ef775599@amd.com>
+Date: Tue, 6 Jan 2026 17:05:31 -0700
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 4/8] mm: Add a new swap type for migration entries of
- device private pages
-To: Alistair Popple <apopple@nvidia.com>
-Cc: linux-mm@kvack.org, balbirs@nvidia.com, matthew.brost@intel.com,
- akpm@linux-foundation.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, david@redhat.com, ziy@nvidia.com,
- lorenzo.stoakes@oracle.com, lyude@redhat.com, dakr@kernel.org,
- airlied@gmail.com, simona@ffwll.ch, rcampbell@nvidia.com,
- mpenttil@redhat.com, jgg@nvidia.com, willy@infradead.org,
- linuxppc-dev@lists.ozlabs.org, intel-xe@lists.freedesktop.org, jgg@ziepe.ca,
- Felix.Kuehling@amd.com
-References: <20251231043154.42931-1-jniethe@nvidia.com>
- <20251231043154.42931-5-jniethe@nvidia.com>
- <knd4e43pwy3stoj5ydld4fl4kjzzjnsod5kpucnnhzgbs5hrmv@fxrcyzo7e72x>
+Subject: Re: [PATCH 12/13] drm/colorop: Use destroy callback for color
+ pipeline teardown
+To: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
+Cc: harry.wentland@amd.com, jani.nikula@linux.intel.com,
+ louis.chauvet@bootlin.com, mwen@igalia.com, contact@emersion.fr,
+ daniels@collabora.com, uma.shankar@intel.com, suraj.kandpal@intel.com,
+ nfraprado@collabora.com, ville.syrjala@linux.intel.com,
+ matthew.d.roper@intel.com
+References: <20251219065614.190834-1-chaitanya.kumar.borah@intel.com>
+ <20251219065614.190834-13-chaitanya.kumar.borah@intel.com>
 Content-Language: en-US
-From: Jordan Niethe <jniethe@nvidia.com>
-In-Reply-To: <knd4e43pwy3stoj5ydld4fl4kjzzjnsod5kpucnnhzgbs5hrmv@fxrcyzo7e72x>
+From: Alex Hung <alex.hung@amd.com>
+In-Reply-To: <20251219065614.190834-13-chaitanya.kumar.borah@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: BY5PR17CA0008.namprd17.prod.outlook.com
- (2603:10b6:a03:1b8::21) To DM4PR12MB9072.namprd12.prod.outlook.com
- (2603:10b6:8:be::6)
+X-ClientProxiedBy: MW4PR03CA0134.namprd03.prod.outlook.com
+ (2603:10b6:303:8c::19) To DM4PR12MB8476.namprd12.prod.outlook.com
+ (2603:10b6:8:17e::15)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR12MB9072:EE_|PH7PR12MB8796:EE_
-X-MS-Office365-Filtering-Correlation-Id: 9c317940-facb-4e8e-4178-08de4c0615e6
+X-MS-TrafficTypeDiagnostic: DM4PR12MB8476:EE_|MN0PR12MB6343:EE_
+X-MS-Office365-Filtering-Correlation-Id: ef472afd-7c53-45bf-8547-08de4d807a47
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|7416014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?Y1gvV29CamJwaDBEbnBlVWtpRHUrcXo1U2c4K0RsUUQ0eWw4dER3N2VUbkpu?=
- =?utf-8?B?U2hEQUlVWkpqbzliR3pTZGltTkVJQm5MZHkxc2wyeDNpK29jY3ltTUF4Z1Fh?=
- =?utf-8?B?WERtV1UvSFphblROdWxudXFqSFhYL3Z2dEhGYVUrVUo0WXNiRlQ5YXJGRnZR?=
- =?utf-8?B?OEh5b2Y1WEwxc2QzbFJ4ZEpzVUx4N3RHem9JeTBZQmpRblgwZlY5WXpNaDRF?=
- =?utf-8?B?V2poUXFlK1hBd2ZBUW5TQjczOGZKNmtCOXNNUTRkYzhXLytvSXhCK1pXd0ZM?=
- =?utf-8?B?VkJjbkFoS012Y2g1Tm1TNjd2YThOQ2ozSjVpcmFRclBKKzRHUHdnL2dRN2tB?=
- =?utf-8?B?K0M5SitQc2F5VmVtdWJGdXdtdHhIay8zbG5FNENpQzU5QzdRTC85RG9VS1lE?=
- =?utf-8?B?anJiSnNBaVhBcXNlNndGc3dUalQzdFNiUHloNm9CbzhvVXRXc3VUNGFpVSs0?=
- =?utf-8?B?YWl5MXNzeUxuQ2EyRFJZVGFhVDV0bHFVQUNER0M0K1IrbS8ydEtsWFNJSUNN?=
- =?utf-8?B?TjkzeDVCU09Fek5MTlg4SGJEQmRLeUhKNTdneUN5YzJheEIrY0c2czM2OWtk?=
- =?utf-8?B?T0I4M01kZU9wdG9kLzJxRVV4MEYvaTlDNm1QWDV0UjJsQTdQaENaT0d3S2dZ?=
- =?utf-8?B?ZVg1eTBRNXVITDRYZ3hRUWRVN1N5WWRQT0ROYzVJZDJnbG13MzBCNDh1UThG?=
- =?utf-8?B?M0lxNXBNcjU1cnBOclpvcW5zdVg4Y3EyRVNtNTk5WXkvZTBsb1lmdnRCT1VF?=
- =?utf-8?B?SkFWRXZQSWo5ZFQwd3pQdEY3RXV0RVJGT21aZDhveE1wVkZ3eHZHcHdsNTA5?=
- =?utf-8?B?YjZ0M1dOQlhBazZaL1JQTGU5NWZtM1B6TWtQekhIM3p5NG8zYmJPaTFOWWwv?=
- =?utf-8?B?d25KVXZuaDAvQW9rRDdvcmJ1MEZaZkpxQjlJWXY4WTFzc0NlSUhxbFA1eWNk?=
- =?utf-8?B?YUJkWUM0UHZldlF1a1JNT205emZGNlpPME10R0V3SU1WZ3pTempOWTQweDlN?=
- =?utf-8?B?RGN6U1MwYUdnSk5OdW95UytwaGNPdmtHMXlobHBPQmlUaXRtYTNBbjZRcEtq?=
- =?utf-8?B?QnVsSDZhWVJpTzhOMEwwSGtIci9pKzdWdTBPUTRtN09BRGFtdVhTVzFLemRG?=
- =?utf-8?B?VlIxU04wS3pkVWtLUW9qTU1uZ05SbEVLakJXSjRodTNzSis3d2o2WXdaa2dM?=
- =?utf-8?B?S3ZKb3lHWDVEN0loeXowVTJXb2pxK1pEWFkwaXVFK1llYUNzdTAzVWtFRllG?=
- =?utf-8?B?T2cyOEo2U3NUcGpHZlZGV2JOWXBMR3F4SllsSXUwajFTVkpBaG93Y0xYbEhs?=
- =?utf-8?B?QXV4YUEvbW5jYzlsMnI4emROd3o3K0ZBYU0rODJRMDBOUW1lcXlBeURqKy9x?=
- =?utf-8?B?U2o5ZU9FSlR3blZUOU9vMnp5eHBDT0tBUkxwczhZNGwvbFBpVitoa0ZZcFBh?=
- =?utf-8?B?eDB3V0Vib1RUR0JTZ2xrYndnRythRTN2anF6Z2Z4T1BrcmtRT2YxaldEMHVK?=
- =?utf-8?B?ekZ6MmhVMVRLdEY0TzJuWWxCTHBHYzBxQnEvSjlhVEM3MkZXcnlhdzdsWERB?=
- =?utf-8?B?YjJFeGl0endSQXkvU09WaXc3azBwT1h4eFNsV2txUjA2bWI1Wjl0UWQ1NUZx?=
- =?utf-8?B?T3FtVzVIK1VGM1NzajJzSWRLOVQ1dG5hTFJPZjc2RmJNbjYxUDA1SmpQMXZ1?=
- =?utf-8?B?UXVJbzJucE9yZjR1eVVsNEFJQ2taUU5MM2NOYUE2ZktuK0E0Z0M2SUVMVVhO?=
- =?utf-8?B?Zjh0UkhMY0xEaTRrQXVaNktnWXE3WHRFeWVRVHNiZHhuN3pwQnpQL2V0SHdU?=
- =?utf-8?B?cFFlUTVRN24wUlVzbFdSN2dpZVlXMkRxU1g0Q1BRS2VYSE1WbGxvS0lJZHRZ?=
- =?utf-8?B?YkNERmd5RnV3TnoraHNnV01VWlpveThEOTRVa3V5KzZhQUErM096cXU3V3Y0?=
- =?utf-8?Q?jlW3MjsJFPm42Z4eaamf1j5gVbmHXG/v?=
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|366016|1800799024|376014|7416014|7053199007; 
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?OUt6OXdiMDVDUHlkSS9yaHNNYzg2VFc5R3VEcDVqUkVtYjEwMjQzaTQrdFBY?=
+ =?utf-8?B?NXBrSm0vOFFVOEFaU0h5L2FPOU9INjdjRFhwd3crWE5VN0VlcVRUaWFJbTdB?=
+ =?utf-8?B?NnhUYzNGb0dkWW9kTDMya1U3b0pVZm5HMmkyT3NmQ1JOdDBhcHBFbHZKS21K?=
+ =?utf-8?B?NDVtZjVHeWdSZzZMaDJTeXBhNTV6Vk9kYys0bDQ2YWk5MklaWnAvSXdiSVBx?=
+ =?utf-8?B?enhqN3grcUJCVC8xYXJHWGRQbGVFNlROcDNyTXF1cTdvWng1bWcwQXM5ekl6?=
+ =?utf-8?B?RHFHTGFURnFZdytXZVVqSVgyZnBmS3JnNkhFUGg4eFA3N2ZRRnZ1ZXdVN3dB?=
+ =?utf-8?B?eTc3L2NIbUh5N2dxT25CWlpJamN2WlhwUDFWSjBBQzB2bzEvVE9pSjVNWmZV?=
+ =?utf-8?B?ajZ3MTJQVnltV1VSQWpLcHAvY1RqWEFNRndraHp3VXBJN1ZWMWRDSUhoNmU4?=
+ =?utf-8?B?ZGNORlA3SkdudjhGZmpWQjgvU3lsUHg3bU00SDFLbWg0ODRUMTA3ZUl1Nld3?=
+ =?utf-8?B?QW52SE1WTW8vZkROZ2V2ZmFSeXErYW9odmFnWkNvTzJjbmFLeURXaUVncXk3?=
+ =?utf-8?B?Zzl1aDNpR0JQd2FPdk5EMkhra3pudG5mMGQxQXFXdVdBS0d1a3NOei9ZS0Zp?=
+ =?utf-8?B?bjlZanp0WThuZTZkZFRVSFpENUxaQkJiSWo0VSsza1oxb0tWSEpwRmRZVWRB?=
+ =?utf-8?B?VVlwMndFSjhwZ2xqSWZ5RlA5ZVhJNmFJODBYazlzY0NvYmo1OHNxd1RueExU?=
+ =?utf-8?B?Y3Z0a1JHbmxWbnpXQzh1elJTdlk1djhLZDVpMHlJRjFwUFFRZXVVOWN2L25J?=
+ =?utf-8?B?WS82UGVnMXcvczJxRE5BYi9mcE1zb2tlblN5c0t3aUZUYmhwaktTZlUrZGNG?=
+ =?utf-8?B?OFhPSElrdEVnNXZla01ITDdtaE1TbEVlQU84QU8yZ1ZzQkE3emxLalpjTU5u?=
+ =?utf-8?B?dDVCYXZkWUZ3b1VmcmVqRG1zeVB6THY1aGJRT2laMzFBZlppQmxlcEFkRWFN?=
+ =?utf-8?B?c1RCSWxoWGNoOCtmdEcrZ0pPTEJ5cm0zYTFINE1oTWZxVVlPMkVNZ1phbTF0?=
+ =?utf-8?B?Z3dEdm9IMDNxNzZkQVpwWDFPQjVSWVdlTWRRZmtrT1hPeDRzQzJ1Si9Bc3du?=
+ =?utf-8?B?MEZ4SnpQakxJbnYwTjhnQUxEZlducVdOVmZ4UGRHTDB5d21tYXhvTE5MWjlE?=
+ =?utf-8?B?ZFBsMTBKa1g1S1NyT3ZYRkR4cGV0L3BhQ0xoN2p0VGIycy9UQ29OK0w2OElq?=
+ =?utf-8?B?S2M1TGtaeHdseUdvYXFuMlg2Y1MyR0RCQ1RDNXVJbk56TWFrajdrcXVXN3NS?=
+ =?utf-8?B?TnIyd29VWXc3akl4QUdyMEF0QVlESUpPdlJBcENHZkxLcUdESUxMOUxjeDBl?=
+ =?utf-8?B?WmZPT0FzUDd3ODI4UVdrRlBZdSt4VXovUnpUcW9DWVliYU52R0J5aFRzQXA1?=
+ =?utf-8?B?ZVVtNUFSa3doUWIwazIxT0JVSTE2QUZ6NXVVK1BnNVJ6dmNBd0F6V3g0dkEv?=
+ =?utf-8?B?a0tJaEZTVjh2cHUrbnFvZVVwN2x4MkVzSXBSRTYxRGpDQmk2UkF1a0VaeG9M?=
+ =?utf-8?B?a1ovOFI4Wm1UVHpPVUprTkErK1pTWHdIaEZnVjNUNTJNbElTdDJHbFplMmZz?=
+ =?utf-8?B?Sm9qL0haTDdyVVc3Z1FiVWEzYzI1aXp2c21QVHFrOVdHNmo0N3VhdEMvdGlW?=
+ =?utf-8?B?TlZVREk4UkpRelh5Yk85WWQyK2RsMDltUHpMU1FyeXRhYis2Y3IrckRsZ3ZV?=
+ =?utf-8?B?SU8wSFdiZFh1NVJlWTg2VU5idG0ycjVXdkFHSytHMzRqbmxOOUt2cENQM3Nw?=
+ =?utf-8?B?Mjg4Njd6dzNHVHR2TzczOHYrWTRXOE5ES254MlhraWFFTEg1UFgvbTJSVWkv?=
+ =?utf-8?B?cW1JbmZaMzhrR0g4cDdJNjhEeSswV291MDBPZHd3VGFVRytIU3BJOWVyRVJh?=
+ =?utf-8?Q?ziFzNOc7Nb7BKguQ0c8AafzQOjcKRI3J?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR12MB9072.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(7416014)(1800799024)(366016); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:DM4PR12MB8476.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(376014)(7416014)(7053199007); DIR:OUT;
+ SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?K2pjZDh1Ui84WFE1NmFnemVEVUNHVkR6U3d4QVJZTmp6VDFRbUx6NjlWUkJY?=
- =?utf-8?B?K1huK3picm9PTGhoVCtGQkZNZU1zUTlmL2tpYnpneWtndVo3MURNcXMzVkRR?=
- =?utf-8?B?aVV6NmltRml6NXdrSmlZd3pzL2tXZnRVVHpHaWJyT3Q2YzF4YTJBaWZIeDBP?=
- =?utf-8?B?RzY0TEc5ZDdZVUszZWg1elpNQThNcW0rRHhnY0dkSm1SSUJNeGxsaFY1djdZ?=
- =?utf-8?B?TFRySG5ra05uSmh3WldOTlhBMTVxMTNHSnZFYXo0S2dVc3M1c3VpQ3dIR2NW?=
- =?utf-8?B?Y2tZNDQvallRZkVTVGQrNG1pRHVnOXpWckVzd0hFRnlQbDZTR3lCZjZyaW9v?=
- =?utf-8?B?QkY5eFE2NE9zMjNKMmpxbVBKN3BQNEhDWEhDdllHaytBR1FGakU5NUIzUWto?=
- =?utf-8?B?QUdja0dXbFU0cXEvbjNmdUI3VUtzMVZVdk85YWNxRERDRXpja2Z0TGZwRUJM?=
- =?utf-8?B?Uzd5RjdiVDIvOTArRlBjNXRlQTlwY3RXUTcxZTBFR3F1MERDUzNjVGN6Qmk5?=
- =?utf-8?B?ZEVQVmZTWGVkbGl6OUQzK1RJbndWTzNDaklyUDQyWWpxZElEanpTMnhyS2py?=
- =?utf-8?B?am9EWFNqRkpRWGRqVE5COERpR2VPYmpFQVh0UHBNdmNNREdYdXYxTkRDbTZp?=
- =?utf-8?B?blYzTmtLTzQzMVNEdnpOR2hoTkNsTmxpZGZQMXNCZmhLK3YrRE1idk90ODIr?=
- =?utf-8?B?QlE1QmE5NWpMMTRud3hPUVRsWXlZNUJTS0hSVUlmb21yKzUveFNoeENrRWVT?=
- =?utf-8?B?YjlxS2hlbkpFeUZjNXdNY0JDL3Uxd1RJTUJGb0FCWEdmYWkrakZKd0dlbVRL?=
- =?utf-8?B?a25HS3pQWmRxbUN5eFVxb1J6anRYTHBYVlJSOXdQMi93VWMzc1ZKWjBIMGgy?=
- =?utf-8?B?MWRIWStyWkdlZmhtdWkrZDZaN2ZTeWh2MDhkS3BGWGdvTU1Zc0RqOU9JODBa?=
- =?utf-8?B?cHR5emZuSkw1b3I1TmhWY2FxUld4dllWQ2tIQkZFaWMvb1FPMEowRFVKdnBn?=
- =?utf-8?B?Ym1zVjNkanhJNXE1bzF6M0tYRk4zTTZHTnhrcDY1NDRrMGVTZ3BsT3pvVklT?=
- =?utf-8?B?bFYyd2VnYm9DbmxXU1dKL1ZQSGNoMjlPWWFCTkc0dVYrQ1VxTHdidlQyQWhy?=
- =?utf-8?B?NS9EaVNuNU5yM1hHQk1RSExOa1hUck5pajQ3ZDhOQ05wdDRpQVJJMU44cmZh?=
- =?utf-8?B?RThtbnJtV290UWRybnRsdzk3VXBsY0V4ME9vQlJNUHJIMHdXS3FwMmxHeFk1?=
- =?utf-8?B?Z2lsSDY4RVhYWjlxdkoxUnBUY1ZLYzMzWUJjR2wwSENLTytSUjRkWDgwMTJw?=
- =?utf-8?B?dm03VktPMGR6bll4cURDajF4K3RUTWVneUtKQkV5NlBLeTZLVDVCQ2Fzalp0?=
- =?utf-8?B?ajZGeERnWm1QclpYOWRUY2wwcGVENG5DcjMvZkN0YTAvVjFFWTZ4WXg3ZjA5?=
- =?utf-8?B?VFhxaGdGMVQvc2dUWDZJMjRzNFBrOENiYmhTT2VtQ05qQ3RkeWhsMEVRMDhv?=
- =?utf-8?B?R0pTcngxenNCekNYMEwrZ011VzNPQkxZL0NnSDZ0aU5mSDZuYXMvT0xpUnh2?=
- =?utf-8?B?VHdDTjR6cnpBTnV3M0pxSE9FdWF4eXE2cnBSaHRXRk9jbXFiaVNqcGl2UjN3?=
- =?utf-8?B?TlVTdWRXd09ubTNsemlzc1Y1Mk50TEt1dzFwNFh1eUN2MDFIUGp5QVRwYVVW?=
- =?utf-8?B?RFREckNMbEs0SzhsNC9MK2RLZE9pbDAyODh3KzE2N2F3eFZkTncwUGlzcjVK?=
- =?utf-8?B?Q1lzRjl0NjR0YnA0ZXlCZDN1YkpBUVZQOVE0bGlhOWFlNVByMUJ0UTZVYWlr?=
- =?utf-8?B?UmxDaWU3bVdaUkQvMGFycDV2dW93bnRET0NybG5oVEl1NDFIb0RhYkQyRy85?=
- =?utf-8?B?VC9QNkpaaUtvRW1pNkF5cU9IRXZUTHRJdlFzSGc1UXB0SGtmUmZoNGFlMHQ0?=
- =?utf-8?B?VlBtOE92Y2Q0UW03blNaL3U5VVV6eU8rc3JkdXR6Y2xHMDFOV0dxbURlQ25h?=
- =?utf-8?B?OS9KWmZlVVlxMWdvS0VqODl3YmgwRHVtN1VmY0ZEcGgxa3RCUDJzSnNWOGpV?=
- =?utf-8?B?Z29FejFvL2poQVlENDkyVXlVbmMyL1h4RWR3MTc1SXpCQTFUVjFsQk1Td2ty?=
- =?utf-8?B?QmF6ZlVHNWMrY3dzT1crc2ptNWwrenNEQldWUW5pN09CODdBR25rN29Td0dV?=
- =?utf-8?B?TFVCRGpLTURoYzJWby9rUDBCT0ZIT0x2c3dTSHVPZnlZcTF2MlpkTEdjTm9x?=
- =?utf-8?B?WENRNWc5cGIrcjhYZUd4NHFsNXBNQ2NzTGxBd3docnpmcTVzZlp1TXVtSmNi?=
- =?utf-8?B?NjBvdG5PK1ZKbFZHN0NIWkR2b1NVeXl3ZFBUbEtROUlXM0NQdG1NUT09?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9c317940-facb-4e8e-4178-08de4c0615e6
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB9072.namprd12.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?VkVhVHdwU3Bhd0x6cUFKbHFoZzFLb2NsVnhNZEFVMncyZy8vSEYzL2ZlV29j?=
+ =?utf-8?B?UFBHdWRtKy9XT1FKT2FJdWUvQXZ2TUZRS1Q5bENzaE9KdTlpNmpnelhRSGR2?=
+ =?utf-8?B?MDRuTk9HdnNmVnBHdXV0Y2Fod29KaXNUNDlHQUxtM1NmcVMwd1FRa1EzcER6?=
+ =?utf-8?B?K2FLbFVUcStqalM1blQxU3dVQ1F1QzJxdzJoV0J2djI3NUtxUU00SGtVVHZj?=
+ =?utf-8?B?NjkzU2tYNGtmeTEyS0pDOGY1aGY2MGZIMnl2RDhualUrLzN4WnpZelZ1SUh6?=
+ =?utf-8?B?TDVTbGlJTkhtS3p6eGVTaTBzd0NGLzFiTHJqMURxdU1KbXNvbUhmbE5sa0FE?=
+ =?utf-8?B?V1I2TmZiUmlnUlh6ZFU5QzBCeTBFK1E5TjBsSFpib2lOSXJBZk1idmREd0NV?=
+ =?utf-8?B?MERtbGxRMzR6V0FSUWsveEZyUnBjNjNYc3BWOWNLSVdyd1JUNEdIT2RqdmVt?=
+ =?utf-8?B?NzRxVUtqRkJ3N1FLSWtWTXRBNllVNXVzSGIzYWRrQWFFQ1lsUVZHcElBUmRD?=
+ =?utf-8?B?czJOaDdxcTVCWmw2TVBGeTlqNk45WGtQbDBtRDV6ZmptcDBTM1pmOTlBZHZW?=
+ =?utf-8?B?NDdhaDl6eFNGVVlMelNiQkhucUhrQVdDQnJsY3JNcmhwVnp0SnBLKzJGR1lT?=
+ =?utf-8?B?Ym42akNmZndidHdhbFZWR1ZkNDYyMEhTU29nalhYMGZSaUVwWEZyb3h4elhZ?=
+ =?utf-8?B?M0dBQUNkRDNPWVRkcFVvaUM0azZSR1VMcG41OTcyZXlnNU5Bbm1LdHhiZnd6?=
+ =?utf-8?B?M3F6T3FtZW1lSnBBMFFFaThPZWMxR2MzMytxc2thNE4rcm9KSkd0eDQwQjlF?=
+ =?utf-8?B?S3dianhrWVJxaGpuSThoOXZNZVlaUTh2OUh1SWJBYVNQb0N1TjdHWWVDZmFp?=
+ =?utf-8?B?MVBWS21pc0xYUG9NZjUva2czVEhqVVRFVE94TjhoUXJjOWkrYUdNMlpobVBI?=
+ =?utf-8?B?cm9wMFBRSmxHRlJOb05HaVFVUFpFM0oweUpXS3V5Q0tJMlp4UExsMjhTRUZD?=
+ =?utf-8?B?aElobW05aUJycUt3QzhIZnpwQjhOdXFKMFFiTXdZNjhIeVJwcTJROUNFYmJY?=
+ =?utf-8?B?L3JPT1BvRzhSOEtPTUEyNzFJaFk5ZjIvMGJZRTdRaUpKZ25ORzJmMzV0TEds?=
+ =?utf-8?B?amNrakF0dGc3Q1pVcnlvbDZXRDVDbHhmNjUxSlBINnZYTmNWZHBwQlJENlNz?=
+ =?utf-8?B?UHFDcFlzd01jRXg1RkNkS3JBRlhzVHZSWXBCUUFMYkFiOTA1WGVzWmlJRWZK?=
+ =?utf-8?B?eXdtOTZqYnVwRlVTdlVSKytVNjMrejNSR3ZKckg4MXludko2TXdCRm1QSy9K?=
+ =?utf-8?B?S2QxU3o5QjRJZFhkSnUrcFQyMFBWR3ZTWHF4NUNFVnQ3NEdxK00wSTVONFRj?=
+ =?utf-8?B?RHN1cWZQWXRTSnhTVzdIbWtFNXFMVG5BVEtTYWplOUlONzl5OUR2Yld6Zjdv?=
+ =?utf-8?B?eVNKa3Y3LzZTR21jQ3JWZTV0VUc4TjhxUlZHZWVaQ0pWMWIxUCtpMWlJSGoy?=
+ =?utf-8?B?LzE0VHEreGxHWEtUN3dlWE5HaTVXeE80bG9ray9BT0ZSVWFlaVlBWEw4aDRt?=
+ =?utf-8?B?TCtsZDI1ZG1oa0l2WGEybEd4M2VRcUNra25FK2I1MGxsY3djblVvV2RmN2cz?=
+ =?utf-8?B?NHB6RGdxVS94MEV4eTdpYnBpWGdoVjVEVXZqYWdYdmpMM1dncUdOQ0FkR2E1?=
+ =?utf-8?B?QnZZVXh6czZ3a0c2d0xjbDU2Qm9VZHVBd295S0phNy9NRWFwVGZZeTZDWTdN?=
+ =?utf-8?B?MlRTM2NraThBempPYThsdVU2aXA0N1lEa0lxMTBMYjJUK2R4OFlmbXIyV3Rw?=
+ =?utf-8?B?L3dVemU3YTluakplRzJIOXVVUWp3QW9EaE56blR0QVFQQ1gwb3FpRndDM3pz?=
+ =?utf-8?B?a3hUNUw4RHA3N0ZVNFdXZFJ0L0RSY2hyYUNteVVaS0FkU1k3d2M3U3Z2WjRj?=
+ =?utf-8?B?MTNqVEpIeGljQVJyRWdhR3d4bkZOTENRaERnZ29IdmE3QTFvait3QVdISXZn?=
+ =?utf-8?B?WXFvOG1iMGFud3pFeUczWWN6YTZIZjBQWnZiM0VKWkN3bGhQVFRGQXMzRWlN?=
+ =?utf-8?B?SDZsTHQzK09mWlZiZjZTdzd4dFdPdHg3cUNJWUR4VVcyR01kVDIydHVSd3M4?=
+ =?utf-8?B?aGlIQWRyc2Q4ZWQvRTZaM21VVTJ4b3R4NThIeitEb1lJSExkZVFONVVaMzJ2?=
+ =?utf-8?B?aWlnL25LdllMYnh0enJtcmRxcnVYcTRlVHFKZWxXdERjNmppaEU2T1E1VUlR?=
+ =?utf-8?B?Vy9GZUxSTElJVXJLSGVua3pWanNyNE9OSVNneGtpTmpvaDRrSWRkbzd1b29j?=
+ =?utf-8?B?T1NxblhjNFNSWHcvWlAyc1MxR1JWWk9ONVdyRC9qVzlSTWVQazZyUT09?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ef472afd-7c53-45bf-8547-08de4d807a47
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB8476.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Jan 2026 02:56:55.5423 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Jan 2026 00:05:33.7356 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: UvlrUiRsLYKEB86UKUV1WHtVjny10Mqal1AZmAK2+Oa6asobdXF2MML7Lu5GFVf3BvMhmX7nrzGc47k+QUaPCg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB8796
-X-Mailman-Approved-At: Wed, 07 Jan 2026 14:19:15 +0000
+X-MS-Exchange-CrossTenant-UserPrincipalName: /vFRQpaI07kl/7/vzkhR/OIJJ/wO0UNVuHc1qs0lguJwjONFzvR+qsT/uJwk1VY/pmXAfjpHXglEB6UIPmKlsA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR12MB6343
+X-Mailman-Approved-At: Wed, 07 Jan 2026 14:19:14 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -175,512 +175,33 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi,
+Reviewed-by: Alex Hung <alex.hung@amd.com>
 
-On 5/1/26 12:17, Alistair Popple wrote:
-> On 2025-12-31 at 15:31 +1100, Jordan Niethe <jniethe@nvidia.com> wrote...
->> A future change will remove device private pages from the physical
->> address space. This will mean that device private pages no longer have
->> pfns and must be handled separately.
->>
->> When migrating a device private page a migration entry is created for
->> that page - this includes the pfn for that page. Once device private
->> pages begin using device memory offsets instead of pfns we will need to
->> be able to determine which kind of value is in the entry so we can
->> associate it with the correct page.
->>
->> Introduce new swap types:
->>
->>    - SWP_MIGRATION_DEVICE_READ
->>    - SWP_MIGRATION_DEVICE_WRITE
->>    - SWP_MIGRATION_DEVICE_READ_EXCLUSIVE
->>
->> These correspond to
->>
->>    - SWP_MIGRATION_READ
->>    - SWP_MIGRATION_WRITE
->>    - SWP_MIGRATION_READ_EXCLUSIVE
->>
->> except the swap entry contains a device private offset.
->>
->> The existing helpers such as is_writable_migration_entry() will still
->> return true for a SWP_MIGRATION_DEVICE_WRITE entry.
->>
->> Introduce new helpers such as
->> is_writable_device_migration_private_entry() to disambiguate between a
->> SWP_MIGRATION_WRITE and a SWP_MIGRATION_DEVICE_WRITE entry.
->>
->> Introduce corresponding softleaf types and helpers.
->>
->> Signed-off-by: Jordan Niethe <jniethe@nvidia.com>
->> Signed-off-by: Alistair Popple <apopple@nvidia.com>
->> ---
->> v1:
->>    - Update for softleaf infrastructure
->>    - Handle make_readable_migration_entry_from_page() and friends
->>    - s/make_device_migration_readable_exclusive_migration_entry/make_readable_exclusive_migration_device_private_entry
->>    - s/is_device_migration_readable_exclusive_entry/is_readable_exclusive_device_private_migration_entry/
->> ---
->>   include/linux/leafops.h | 70 +++++++++++++++++++++++++++++++++----
->>   include/linux/swap.h    |  8 ++++-
->>   include/linux/swapops.h | 76 +++++++++++++++++++++++++++++++++++++++++
->>   mm/huge_memory.c        | 21 +++++++++---
->>   mm/memory.c             | 10 ++++--
->>   mm/mprotect.c           | 21 +++++++++---
->>   mm/page_vma_mapped.c    |  3 +-
->>   7 files changed, 188 insertions(+), 21 deletions(-)
->>
->> diff --git a/include/linux/leafops.h b/include/linux/leafops.h
->> index cfafe7a5e7b1..a4a5c3ad647b 100644
->> --- a/include/linux/leafops.h
->> +++ b/include/linux/leafops.h
->> @@ -28,6 +28,9 @@ enum softleaf_type {
->>   	SOFTLEAF_DEVICE_PRIVATE_READ,
->>   	SOFTLEAF_DEVICE_PRIVATE_WRITE,
->>   	SOFTLEAF_DEVICE_EXCLUSIVE,
->> +	SOFTLEAF_MIGRATION_DEVICE_READ,
->> +	SOFTLEAF_MIGRATION_DEVICE_READ_EXCLUSIVE,
->> +	SOFTLEAF_MIGRATION_DEVICE_WRITE,
->>   	/* H/W posion types. */
->>   	SOFTLEAF_HWPOISON,
->>   	/* Marker types. */
->> @@ -165,6 +168,12 @@ static inline enum softleaf_type softleaf_type(softleaf_t entry)
->>   		return SOFTLEAF_DEVICE_PRIVATE_READ;
->>   	case SWP_DEVICE_EXCLUSIVE:
->>   		return SOFTLEAF_DEVICE_EXCLUSIVE;
->> +	case SWP_MIGRATION_DEVICE_READ:
->> +		return SOFTLEAF_MIGRATION_DEVICE_READ;
->> +	case SWP_MIGRATION_DEVICE_WRITE:
->> +		return SOFTLEAF_MIGRATION_DEVICE_WRITE;
->> +	case SWP_MIGRATION_DEVICE_READ_EXCLUSIVE:
->> +		return SOFTLEAF_MIGRATION_DEVICE_READ_EXCLUSIVE;
->>   #endif
->>   #ifdef CONFIG_MEMORY_FAILURE
->>   	case SWP_HWPOISON:
->> @@ -190,16 +199,62 @@ static inline bool softleaf_is_swap(softleaf_t entry)
->>   	return softleaf_type(entry) == SOFTLEAF_SWAP;
->>   }
->>   
->> +/**
->> + * softleaf_is_migration_device_private() - Is this leaf entry a migration
->> + * device private entry?
->> + * @entry: Leaf entry.
->> + *
->> + * Returns: true if the leaf entry is a device private entry, otherwise false.
->> + */
->> +static inline bool softleaf_is_migration_device_private(softleaf_t entry)
->> +{
->> +	switch (softleaf_type(entry)) {
->> +	case SOFTLEAF_MIGRATION_DEVICE_READ:
->> +	case SOFTLEAF_MIGRATION_DEVICE_WRITE:
->> +	case SOFTLEAF_MIGRATION_DEVICE_READ_EXCLUSIVE:
->> +		return true;
->> +	default:
->> +		return false;
->> +	}
->> +}
->> +
->> +/**
->> + * softleaf_is_migration_device_private_write() - Is this leaf entry a writable
->> + * device private migration entry?
->> + * @entry: Leaf entry.
->> + *
->> + * Returns: true if the leaf entry is a writable device private migration entry,
->> + * otherwise false.
->> + */
->> +static inline bool softleaf_is_migration_device_private_write(softleaf_t entry)
->> +{
->> +	return softleaf_type(entry) == SOFTLEAF_MIGRATION_DEVICE_WRITE;
->> +}
->> +
->> +/**
->> + * softleaf_is_migration_read_exclusive() - Is this leaf entry an exclusive
->> + * readable device private migration entry?
->> + * @entry: Leaf entry.
->> + *
->> + * Returns: true if the leaf entry is an exclusive readable device private
->> + * migration entry, otherwise false.
->> + */
->> +static inline bool softleaf_is_migration_device_private_read_exclusive(softleaf_t entry)
->> +{
->> +	return softleaf_type(entry) == SOFTLEAF_MIGRATION_DEVICE_READ_EXCLUSIVE;
->> +}
->> +
->>   /**
->>    * softleaf_is_migration_write() - Is this leaf entry a writable migration entry?
->>    * @entry: Leaf entry.
->>    *
->> - * Returns: true if the leaf entry is a writable migration entry, otherwise
->> - * false.
->> + * Returns: true if the leaf entry is a writable migration entry or a writable
->> + * device private migration entry, otherwise false.
->>    */
->>   static inline bool softleaf_is_migration_write(softleaf_t entry)
->>   {
->> -	return softleaf_type(entry) == SOFTLEAF_MIGRATION_WRITE;
->> +	return softleaf_type(entry) == SOFTLEAF_MIGRATION_WRITE ||
->> +	       softleaf_is_migration_device_private_write(entry);
->>   }
->>   
->>   /**
->> @@ -219,12 +274,13 @@ static inline bool softleaf_is_migration_read(softleaf_t entry)
->>    * readable migration entry?
->>    * @entry: Leaf entry.
->>    *
->> - * Returns: true if the leaf entry is an exclusive readable migration entry,
->> - * otherwise false.
->> + * Returns: true if the leaf entry is an exclusive readable migration entry or
->> + * exclusive readable device private migration entry, otherwise false.
->>    */
->>   static inline bool softleaf_is_migration_read_exclusive(softleaf_t entry)
->>   {
->> -	return softleaf_type(entry) == SOFTLEAF_MIGRATION_READ_EXCLUSIVE;
->> +	return softleaf_type(entry) == SOFTLEAF_MIGRATION_READ_EXCLUSIVE ||
->> +	       softleaf_is_migration_device_private_read_exclusive(entry);
->>   }
->>   
->>   /**
->> @@ -241,7 +297,7 @@ static inline bool softleaf_is_migration(softleaf_t entry)
->>   	case SOFTLEAF_MIGRATION_WRITE:
->>   		return true;
->>   	default:
->> -		return false;
->> +		return softleaf_is_migration_device_private(entry);
->>   	}
->>   }
+On 12/18/25 23:56, Chaitanya Kumar Borah wrote:
+> Switch drm_colorop_pipeline_destroy() to use the driver-provided
+> destroy callback instead of directly calling drm_colorop_cleanup()
+> and freeing the object.
 > 
-> See below for a bit more context but I'm not convinced we want to include device
-> private entries in the definition for softleaf_is_migration(), etc. It seems
-> to me like it would be better to make callers explicitly deal with the device
-> private cases separately which most seem to do anyway.
-
-That is not generally the case - the only instances where the device
-private cases are dealt with separately are when we are creating new
-entries.
-
-The advantage to treating the device private migration leaf entry as a
-specialization of the migration leaf entry is that because most callers
-are not creating new entries, they do not need to be updated to
-accommodate the new entry type.
-
-As an example - take hmm_vma_handle_pte() -
-
-                 if (softleaf_is_migration(entry)) {
-                         pte_unmap(ptep);
-                         hmm_vma_walk->last = addr;
-                         migration_entry_wait(walk->mm, pmdp, addr);
-                         return -EBUSY;
-                 }
-
-We'd need to update this to be
-
-         if (softleaf_is_migration(entry) || 
-softleaf_is_migration_device_private(entry))
-
-There is no distinction between these cases so this is just noise.
-
-That would be the case for the majority of the callers of
-softleaf_is_migration(), softleaf_is_migration_read(),
-softleaf_is_migration_read_exclusive(), softleaf_is_migration_write().
-
-This specialization treatment is further convenient as it allows
-make_readable_migration_entry_from_page() to create a device private
-migration entry or a migration entry as required.
-
-The code in change_pte_range() called out below as difficult to read 
-would actually
-be simplified by using the make_.*_migration_entry_from_page() helpers
-as it would remove the conditional. The only extra consideration is
-making sure the SWP_MIG_YOUNG_BIT and SWP_MIG_DIRTY_BIT bits were copied
-to the new swap entry. 
-  
-  
-
-
+> This allows drivers that embed struct drm_colorop in driver-specific
+> objects to perform correct teardown.
 > 
-> We also need to be consistent in the definitions - softleaf_is_migration(),
-> softleaf_is_migration_read_exclusive() and softleaf_is_migration_write()
-> all return true when encountering a device private entry but
-> softleaf_is_migration_read() does not.
-
-Thanks - this is a mistake.
-
+> Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+> ---
+>   drivers/gpu/drm/drm_colorop.c | 3 +--
+>   1 file changed, 1 insertion(+), 2 deletions(-)
 > 
->> diff --git a/include/linux/swap.h b/include/linux/swap.h
->> index 38ca3df68716..c15e3b3067cd 100644
->> --- a/include/linux/swap.h
->> +++ b/include/linux/swap.h
->> @@ -74,12 +74,18 @@ static inline int current_is_kswapd(void)
->>    *
->>    * When a page is mapped by the device for exclusive access we set the CPU page
->>    * table entries to a special SWP_DEVICE_EXCLUSIVE entry.
->> + *
->> + * Because device private pages do not use regular PFNs, special migration
->> + * entries are also needed.
->>    */
->>   #ifdef CONFIG_DEVICE_PRIVATE
->> -#define SWP_DEVICE_NUM 3
->> +#define SWP_DEVICE_NUM 6
->>   #define SWP_DEVICE_WRITE (MAX_SWAPFILES+SWP_HWPOISON_NUM+SWP_MIGRATION_NUM)
->>   #define SWP_DEVICE_READ (MAX_SWAPFILES+SWP_HWPOISON_NUM+SWP_MIGRATION_NUM+1)
->>   #define SWP_DEVICE_EXCLUSIVE (MAX_SWAPFILES+SWP_HWPOISON_NUM+SWP_MIGRATION_NUM+2)
->> +#define SWP_MIGRATION_DEVICE_READ (MAX_SWAPFILES+SWP_HWPOISON_NUM+SWP_MIGRATION_NUM+3)
->> +#define SWP_MIGRATION_DEVICE_READ_EXCLUSIVE (MAX_SWAPFILES+SWP_HWPOISON_NUM+SWP_MIGRATION_NUM+4)
->> +#define SWP_MIGRATION_DEVICE_WRITE (MAX_SWAPFILES+SWP_HWPOISON_NUM+SWP_MIGRATION_NUM+5)
->>   #else
->>   #define SWP_DEVICE_NUM 0
->>   #endif
->> diff --git a/include/linux/swapops.h b/include/linux/swapops.h
->> index 72aa636fdb48..2bd01f97b4f0 100644
->> --- a/include/linux/swapops.h
->> +++ b/include/linux/swapops.h
->> @@ -148,6 +148,43 @@ static inline swp_entry_t make_device_exclusive_entry(pgoff_t offset)
->>   	return swp_entry(SWP_DEVICE_EXCLUSIVE, offset);
->>   }
->>   
->> +static inline swp_entry_t make_readable_migration_device_private_entry(pgoff_t offset)
->> +{
->> +	return swp_entry(SWP_MIGRATION_DEVICE_READ, offset);
->> +}
->> +
->> +static inline swp_entry_t make_writable_migration_device_private_entry(pgoff_t offset)
->> +{
->> +	return swp_entry(SWP_MIGRATION_DEVICE_WRITE, offset);
->> +}
->> +
->> +static inline bool is_device_private_migration_entry(swp_entry_t entry)
->> +{
->> +	return unlikely(swp_type(entry) == SWP_MIGRATION_DEVICE_READ ||
->> +			swp_type(entry) == SWP_MIGRATION_DEVICE_READ_EXCLUSIVE ||
->> +			swp_type(entry) == SWP_MIGRATION_DEVICE_WRITE);
->> +}
->> +
->> +static inline bool is_readable_device_migration_private_entry(swp_entry_t entry)
->> +{
->> +	return unlikely(swp_type(entry) == SWP_MIGRATION_DEVICE_READ);
->> +}
->> +
->> +static inline bool is_writable_device_migration_private_entry(swp_entry_t entry)
->> +{
->> +	return unlikely(swp_type(entry) == SWP_MIGRATION_DEVICE_WRITE);
->> +}
->> +
->> +static inline swp_entry_t make_readable_exclusive_migration_device_private_entry(pgoff_t offset)
->> +{
->> +	return swp_entry(SWP_MIGRATION_DEVICE_READ_EXCLUSIVE, offset);
->> +}
->> +
->> +static inline bool is_readable_exclusive_device_private_migration_entry(swp_entry_t entry)
->> +{
->> +	return swp_type(entry) == SWP_MIGRATION_DEVICE_READ_EXCLUSIVE;
->> +}
->> +
->>   #else /* CONFIG_DEVICE_PRIVATE */
->>   static inline swp_entry_t make_readable_device_private_entry(pgoff_t offset)
->>   {
->> @@ -164,6 +201,36 @@ static inline swp_entry_t make_device_exclusive_entry(pgoff_t offset)
->>   	return swp_entry(0, 0);
->>   }
->>   
->> +static inline swp_entry_t make_readable_migration_device_private_entry(pgoff_t offset)
->> +{
->> +	return swp_entry(0, 0);
->> +}
->> +
->> +static inline swp_entry_t make_writable_migration_device_private_entry(pgoff_t offset)
->> +{
->> +	return swp_entry(0, 0);
->> +}
->> +
->> +static inline bool is_device_private_migration_entry(swp_entry_t entry)
->> +{
->> +	return false;
->> +}
->> +
->> +static inline bool is_writable_device_migration_private_entry(swp_entry_t entry)
->> +{
->> +	return false;
->> +}
->> +
->> +static inline swp_entry_t make_readable_exclusive_migration_device_private_entry(pgoff_t offset)
->> +{
->> +	return swp_entry(0, 0);
->> +}
->> +
->> +static inline bool is_readable_exclusive_device_private_migration_entry(swp_entry_t entry)
->> +{
->> +	return false;
->> +}
->> +
->>   #endif /* CONFIG_DEVICE_PRIVATE */
->>   
->>   #ifdef CONFIG_MIGRATION
->> @@ -175,6 +242,9 @@ static inline swp_entry_t make_readable_migration_entry(pgoff_t offset)
->>   
->>   static inline swp_entry_t make_readable_migration_entry_from_page(struct page *page)
->>   {
->> +	if (is_device_private_page(page))
->> +		return make_readable_migration_device_private_entry(page_to_pfn(page));
->> +
->>   	return swp_entry(SWP_MIGRATION_READ, page_to_pfn(page));
->>   }
->>   
->> @@ -185,6 +255,9 @@ static inline swp_entry_t make_readable_exclusive_migration_entry(pgoff_t offset
->>   
->>   static inline swp_entry_t make_readable_exclusive_migration_entry_from_page(struct page *page)
->>   {
->> +	if (is_device_private_page(page))
->> +		return make_readable_exclusive_migration_device_private_entry(page_to_pfn(page));
->> +
->>   	return swp_entry(SWP_MIGRATION_READ_EXCLUSIVE, page_to_pfn(page));
->>   }
->>   
->> @@ -195,6 +268,9 @@ static inline swp_entry_t make_writable_migration_entry(pgoff_t offset)
->>   
->>   static inline swp_entry_t make_writable_migration_entry_from_page(struct page *page)
->>   {
->> +	if (is_device_private_page(page))
->> +		return make_writable_migration_device_private_entry(page_to_pfn(page));
->> +
->>   	return swp_entry(SWP_MIGRATION_WRITE, page_to_pfn(page));
->>   }
->>   
->> diff --git a/mm/huge_memory.c b/mm/huge_memory.c
->> index 08c68e2e3f06..bbfe5e87884a 100644
->> --- a/mm/huge_memory.c
->> +++ b/mm/huge_memory.c
->> @@ -1800,7 +1800,11 @@ static void copy_huge_non_present_pmd(
->>   
->>   	if (softleaf_is_migration_write(entry) ||
->>   	    softleaf_is_migration_read_exclusive(entry)) {
->> -		entry = make_readable_migration_entry(swp_offset(entry));
->> +		if (softleaf_is_migration_device_private_write(entry) ||
->> +		    softleaf_is_migration_device_private_read_exclusive(entry))
->> +			entry = make_readable_migration_device_private_entry(swp_offset(entry));
->> +		else
->> +			entry = make_readable_migration_entry(swp_offset(entry));
->>   		pmd = swp_entry_to_pmd(entry);
->>   		if (pmd_swp_soft_dirty(*src_pmd))
->>   			pmd = pmd_swp_mksoft_dirty(pmd);
->> @@ -2523,10 +2527,17 @@ static void change_non_present_huge_pmd(struct mm_struct *mm,
->>   		 * A protection check is difficult so
->>   		 * just be safe and disable write
->>   		 */
->> -		if (folio_test_anon(folio))
->> -			entry = make_readable_exclusive_migration_entry(swp_offset(entry));
->> -		else
->> -			entry = make_readable_migration_entry(swp_offset(entry));
->> +		if (folio_test_anon(folio)) {
->> +			if (folio_is_device_private(folio))
->> +				entry = make_readable_exclusive_migration_device_private_entry(swp_offset(entry));
->> +			else
->> +				entry = make_readable_exclusive_migration_entry(swp_offset(entry));
->> +		} else {
->> +			if (folio_is_device_private(folio))
->> +				entry = make_readable_migration_device_private_entry(swp_offset(entry));
-> 
-> Note that device private folios are always anon, so we should never hit this
-> path. We have enough other warnings scattered around for creating device private
-> entries for non-anon folios so I'd just remove the else clause entirely and
-> leave a comment saying they must be anon.
-
-Good idea.
-
-> 
->> +			else
->> +				entry = make_readable_migration_entry(swp_offset(entry));
->> +		}
->>   		newpmd = swp_entry_to_pmd(entry);
->>   		if (pmd_swp_soft_dirty(*pmd))
->>   			newpmd = pmd_swp_mksoft_dirty(newpmd);
->> diff --git a/mm/memory.c b/mm/memory.c
->> index 2a55edc48a65..8e5e305bc2dc 100644
->> --- a/mm/memory.c
->> +++ b/mm/memory.c
->> @@ -963,8 +963,14 @@ copy_nonpresent_pte(struct mm_struct *dst_mm, struct mm_struct *src_mm,
->>   			 * to be set to read. A previously exclusive entry is
->>   			 * now shared.
->>   			 */
->> -			entry = make_readable_migration_entry(
->> -							swp_offset(entry));
->> +
->> +			if (softleaf_is_migration_device_private(entry))
->> +				entry = make_readable_migration_device_private_entry(
->> +								swp_offset(entry));
->> +			else
->> +				entry = make_readable_migration_entry(
->> +								swp_offset(entry));
->> +
->>   			pte = softleaf_to_pte(entry);
->>   			if (pte_swp_soft_dirty(orig_pte))
->>   				pte = pte_swp_mksoft_dirty(pte);
->> diff --git a/mm/mprotect.c b/mm/mprotect.c
->> index 283889e4f1ce..61542a80074b 100644
->> --- a/mm/mprotect.c
->> +++ b/mm/mprotect.c
->> @@ -327,11 +327,22 @@ static long change_pte_range(struct mmu_gather *tlb,
->>   				 * A protection check is difficult so
->>   				 * just be safe and disable write
->>   				 */
->> -				if (folio_test_anon(folio))
->> -					entry = make_readable_exclusive_migration_entry(
->> -							     swp_offset(entry));
->> -				else
->> -					entry = make_readable_migration_entry(swp_offset(entry));
->> +				if (!is_writable_device_migration_private_entry(entry)) {
-> 
-> I had to read this code a few times to convince myself it was correct.
-> I think it would be better to not make softleaf_is_migration_write()
-> return true for a device private migration entry and to instead deal with
-> writable device private entries one level up, same as how we deal with
-> softleaf_is_device_private_write().
-
-As mentioned above, as an alternative, I think the
-make_.*_migration_entry_from_page() might make this easier to follow.
-
-> 
->> +					if (folio_test_anon(folio))
->> +						entry = make_readable_exclusive_migration_entry(
->> +								swp_offset(entry));
->> +					else
->> +						entry = make_readable_migration_entry(
->> +								swp_offset(entry));
->> +				} else {
->> +					if (folio_test_anon(folio))
->> +						entry = make_readable_exclusive_migration_device_private_entry(
->> +								swp_offset(entry));
->> +					else
->> +						entry = make_readable_migration_device_private_entry(
->> +								swp_offset(entry));
-> 
-> Same comment as above for non-anon device private folios.
-
-Ack.
-
-Thanks,
-Jordan.
-
-> 
->> +				}
->> +
->>   				newpte = swp_entry_to_pte(entry);
->>   				if (pte_swp_soft_dirty(oldpte))
->>   					newpte = pte_swp_mksoft_dirty(newpte);
->> diff --git a/mm/page_vma_mapped.c b/mm/page_vma_mapped.c
->> index 7fddafed3ebb..b19820a51e95 100644
->> --- a/mm/page_vma_mapped.c
->> +++ b/mm/page_vma_mapped.c
->> @@ -255,7 +255,8 @@ bool page_vma_mapped_walk(struct page_vma_mapped_walk *pvmw)
->>   
->>   				if (!softleaf_is_migration(entry) ||
->>   				    !check_pmd(softleaf_to_pfn(entry),
->> -					       softleaf_is_device_private(entry),
->> +					       softleaf_is_device_private(entry) ||
->> +					       softleaf_is_migration_device_private(entry),
->>   					       pvmw))
->>   					return not_found(pvmw);
->>   				return true;
->> -- 
->> 2.34.1
->>
+> diff --git a/drivers/gpu/drm/drm_colorop.c b/drivers/gpu/drm/drm_colorop.c
+> index 4b27804bb0bd..fafe45b93ff8 100644
+> --- a/drivers/gpu/drm/drm_colorop.c
+> +++ b/drivers/gpu/drm/drm_colorop.c
+> @@ -205,8 +205,7 @@ void drm_colorop_pipeline_destroy(struct drm_device *dev)
+>   	struct drm_colorop *colorop, *next;
+>   
+>   	list_for_each_entry_safe(colorop, next, &config->colorop_list, head) {
+> -		drm_colorop_cleanup(colorop);
+> -		kfree(colorop);
+> +		colorop->funcs->destroy(colorop);
+>   	}
+>   }
+>   EXPORT_SYMBOL(drm_colorop_pipeline_destroy);
 
