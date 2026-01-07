@@ -4,142 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6B322CFD641
-	for <intel-xe@archiver.kernel.org>; Wed,  7 Jan 2026 14:20:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 33534CFD63E
+	for <intel-xe@archiver.kernel.org>; Wed,  7 Jan 2026 14:30:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 326CC10E615;
-	Wed,  7 Jan 2026 14:20:11 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="OTWFgZ7Z";
-	dkim-atps=neutral
-Received: from DM5PR21CU001.outbound.protection.outlook.com
- (mail-centralusazon11011049.outbound.protection.outlook.com [52.101.62.49])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4D11510E971;
- Wed, 31 Dec 2025 04:32:52 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=BeO48Xrx0uDovOV5ZgZgr28QWpJtCpZ1O0T74LkyMNUN8UqYMMSECszfHpoWSvQJKgAFwCEcImgOmkKIgVrWwwoyWc7LNEZu6sGhgW39gffJW1avjTHNt/oKwQjnxrfZ1J8Oyl8DeqwkG/kNBvAWiuamJrPG8rHsnLy96Nej2bUndtntv0BqT3UyzcNsjAkxQqtFsWB5+0LzPECV0tmfoGYmT0zfti6APb1KvOkIjx+XzGEijid4pUJiefHj9z/sDb1u8wjk1tekCXMM7yaibrKka/9jYV4CtAg62aMLyCBHp1wyjYJk+m2saAkzJYb2h0c1WTDWa1L3DB+xgusAsw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=xLG2q0VP7Vyh1Bsb2NpKSu79+UhLVwrIjeauB2iDFM8=;
- b=vYRDN+1Yac3RYvnFVgXKl+KazBxDAIii72ziAWU6KcXOQCgnzIxDpDol9yavJ/xJ/a3tzwx0mVeYwStTP4Q0bzr/ct/EPitD5KaOl6znEiTk0I+nOJ/Yheh0AaJ1/a7TwuD5vUKEHgC4Yloy4eeXXzY2BxrGuKhgXPafuEIG38THnS24FvwO8h9LnH+9sCDR6xi7jZA/Qxgq+KMGMTGpwmqSjDAX2l3f9Fhkc9neqtIQ8M/hSu0NZDbPcHeO2I9evthU3dXCHorBl7illn4YwFWrApQtae/ugfeSyA/LUopBrNQAjy8I+mD5kdQ0JtxtI/1V0MjBQlmm36ETlILWvw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=xLG2q0VP7Vyh1Bsb2NpKSu79+UhLVwrIjeauB2iDFM8=;
- b=OTWFgZ7Z9bKR0+2clwQDZVTGyrbT6Z1Hmj0zB315VM9PSBTWuc8DJtjmlR5aNDQiEC8n5MeRm3w7i3b1m3J38iSKUSCMfxMsPNy+IVYkAorCrQ5luM4tb/rFFcWfQOM4e2/oHrA8nGRGypm9Pzib6WCZxzUyrDAyCcnRR5jbqg7v+wPPAiYcg0m+Ug538XdwMk0kVNqwnl+Afiy2yIiZmDpx+Fss9LNorJH9ekglbLGtVwkUy0CHq/kZzfKTQLVsxyW/BRepOHl8OMSUtRBDRm8wpfSJgH80aX+z/Qqlkr4Aou3Mx30IXo/BUsZy09ra2gUQKG+tcNlBVIX67GJ8Zw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from DM4PR12MB9072.namprd12.prod.outlook.com (2603:10b6:8:be::6) by
- DS7PR12MB6045.namprd12.prod.outlook.com (2603:10b6:8:86::18) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9478.4; Wed, 31 Dec 2025 04:32:49 +0000
-Received: from DM4PR12MB9072.namprd12.prod.outlook.com
- ([fe80::9e49:782:8e98:1ff1]) by DM4PR12MB9072.namprd12.prod.outlook.com
- ([fe80::9e49:782:8e98:1ff1%5]) with mapi id 15.20.9478.004; Wed, 31 Dec 2025
- 04:32:49 +0000
-From: Jordan Niethe <jniethe@nvidia.com>
-To: linux-mm@kvack.org
-Cc: balbirs@nvidia.com, matthew.brost@intel.com, akpm@linux-foundation.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- david@redhat.com, ziy@nvidia.com, apopple@nvidia.com,
- lorenzo.stoakes@oracle.com, lyude@redhat.com, dakr@kernel.org,
- airlied@gmail.com, simona@ffwll.ch, rcampbell@nvidia.com,
- mpenttil@redhat.com, jgg@nvidia.com, willy@infradead.org,
- linuxppc-dev@lists.ozlabs.org, intel-xe@lists.freedesktop.org,
- jgg@ziepe.ca, Felix.Kuehling@amd.com
-Subject: [PATCH v1 7/8] mm/hmm: Add flag to track device private pages
-Date: Wed, 31 Dec 2025 15:31:53 +1100
-Message-Id: <20251231043154.42931-8-jniethe@nvidia.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20251231043154.42931-1-jniethe@nvidia.com>
-References: <20251231043154.42931-1-jniethe@nvidia.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: BY5PR04CA0026.namprd04.prod.outlook.com
- (2603:10b6:a03:1d0::36) To DM4PR12MB9072.namprd12.prod.outlook.com
- (2603:10b6:8:be::6)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ED87889091;
+	Wed,  7 Jan 2026 14:29:59 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E9D8D88BE3;
+ Wed,  7 Jan 2026 14:29:58 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4679764191739744193=="
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR12MB9072:EE_|DS7PR12MB6045:EE_
-X-MS-Office365-Filtering-Correlation-Id: a9682556-285e-4dfa-bff9-08de4825a705
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|7416014|366016|1800799024;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?awHDZGo0yKySAI7O/jdjpN8WbYpdkEF6Sm89gvzjhXR67XypsUX298qgo15g?=
- =?us-ascii?Q?oos2LwI2KBKOYo34/SCX0FunSA2tw7PvZsuXTSQ+Lk+oYthQ9rmHAGwfmFMK?=
- =?us-ascii?Q?cB7E0NJnih3jHIbkAC1WzZlr16SRSy5f99ifsf3fdLUm3HE7/2owmhSeYBeu?=
- =?us-ascii?Q?Tv6Ggox1Fv/kWzzbPogbrIdhNy1RQCq2nUvS6oMMhhFe4J9m5lW3lG//SMEn?=
- =?us-ascii?Q?jFwPF8qRrwAsv98bLYuW3eUzNohq+NCoQ4F0ZPfeuDsJAot1/2H4eeLkmxLJ?=
- =?us-ascii?Q?6vOmtL/ClfLegjauEwm/CY7Umt+PD8pKjZFpIfp86w63/63xajPDlcvs4t5I?=
- =?us-ascii?Q?Hl8nKs3IEgi6B/xPJf2YZYvqiwHSkEWTSophBDcfaAYn+1yKgT42Daw+VO4A?=
- =?us-ascii?Q?zrICzzrMcbXB2uwSeaFpwEPv5c868lmYuNy5hf9cYB7JeVa24G0slW2uYasA?=
- =?us-ascii?Q?yfvN/o/YgrZb2P6B+oZsLFsEKgGygIKYdNosm0L7KSEOt5GYV4gWF7JS/tMa?=
- =?us-ascii?Q?OX7rXNVeKKdzh1p6MYP5S1oeYMBnFNHPSrgupvv8WAa0qS760zh0u0kVVYR+?=
- =?us-ascii?Q?kQrAisFjYzOvERnoOWUmpxls9ob/+0TGGVglfpr89nWRl/oi/HpKTTARQ7xQ?=
- =?us-ascii?Q?buK7W9ToAxHsSfLOcGbDjCqN8+i1DghLzDruNUT2lmZFaFl8Ljkd5MbGgq3k?=
- =?us-ascii?Q?y8lMvJMwlDAhglGe2OTyhqrVO/la3V6y2zcN/LTmMJKezzQwhArslrFtmfv6?=
- =?us-ascii?Q?Vy85DnzxI5nfHfeS341ffqq2FFEWYiATiGkRUbB8HvNVgA1xS02YVoNJA+E6?=
- =?us-ascii?Q?yA//OWGbDMh0Sl5RMWxKxJki6DzdLkaFWaeX901zbfxbEu9KVAcXmen7aypI?=
- =?us-ascii?Q?teWyAbV4TI92pi7HEygQG9rtZ1gHDDTGJmofQvrMk3djQ6bi2MUSv5XBJ8lS?=
- =?us-ascii?Q?biKbOvO1yZC2p9hW/K3+lJ+Est2qr0yHG441LHkxWJi6Mt8Oz8ACOqHvU444?=
- =?us-ascii?Q?JQB/i3sxO5CTF4S8Y9i+VFSEd7xPv8z51Xcu0PE7BCn4yUd7mem327GM0ypE?=
- =?us-ascii?Q?H9+ADdc4OT9fwtFhHN8D9TWittefMos9pHGcVFzDa0OEE4rEjcDqbSc+CtUN?=
- =?us-ascii?Q?/7Mp+9cjPVc45IM7QJ9UtSF7oWsQYnfia3jTykhoeSk6se7+2xGHGyqRdlL0?=
- =?us-ascii?Q?hm5DIlbUtVp6UWYbfk8vGMAp8Foi2nfL626rlAIIHo2joXfQO5MDD4P3s3Kx?=
- =?us-ascii?Q?w+0DOHdnrI3w/TBT5V+2F42bLfJS/AKYSnVmvfaDVblQyHdXfSBuA4UlxJ1J?=
- =?us-ascii?Q?M/lr3RIopTbTqQFN/LHqAKGvjlzt4HL9VOXRABfp8t7y6auXH86rPdUqg8HS?=
- =?us-ascii?Q?EY9JyOWIQmDxPaez0olxMq+T4HsZItZIxNW497PybsFmZoxLdxcxf6hLrWsa?=
- =?us-ascii?Q?eIUw8D0nkWZz7CnoVfE7nS0Q0CD2kvKU?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR12MB9072.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(7416014)(366016)(1800799024); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?w8ca40s1XjPBmzGkhVwBGHGeoc5yd6uaCqMUNcVOtRA6l3w3QcushJTXXfnF?=
- =?us-ascii?Q?7TLJ95drlJHz2Fp8ji3RKD+q2IeYl2i3UcsCG2M/5edfWB0Oxa+kzoei2ust?=
- =?us-ascii?Q?e4vysgvg52FWbM3CdL2mXhT39ZjC0/myTv+AR2wvP98J78dQir8591eRYRvl?=
- =?us-ascii?Q?xl5Iqjm1Q29aia/Y+VYjk0wXi3CZWmoN8TQgYeKKakuO0zmzx+bVP9Vvxfvl?=
- =?us-ascii?Q?DAK0DsxwV1RWU+qV+xDXCQH6Kbr9iu3lyvZ6GAuAh8Rrt3riq0FUOCMK/ANv?=
- =?us-ascii?Q?Rybef1U4IEb2N9Gyl1/E6jcBZTp6URCVsUbuuzKv22vfcVdyzDLgdCkd+ity?=
- =?us-ascii?Q?enAAIZoLk4bbO4LZAsPjoyArvxWcrQTrGZH/0ZQT/2X+xzcL2tU9g6GWyIL2?=
- =?us-ascii?Q?Bny92QKamNCulwXa03Sauf3uHK9TaUBaS9V4Z3LVrwuyASnlxgisoafE4ml6?=
- =?us-ascii?Q?KOQ51Ir4oSkjF9ahDRrI4yKqc3smB3b0F9+9lmn4I5PoGm3TuVHrOy6TwcGG?=
- =?us-ascii?Q?I5TKeta34gaqvxHbJpYlUsWjBDCKBvYmQz5R28Vkd0uLFtN/CV8PjXjKn+mu?=
- =?us-ascii?Q?eashSteDkSlEKQRP07/rslvMLCkSVpt6eoxBjES7JL7HIiAtQ0uEi3LPB151?=
- =?us-ascii?Q?w01Nz4LIxwKYVhQ3sa5tPGdFIatW4LNLiCTqspDfEaboZ/t9M2wFGyeoSPXq?=
- =?us-ascii?Q?pjX5uJyiqudAQvRz6N0IrTXrD8p2OE0tkfERwZegR5TBH+YsA7dXDFyPIj+e?=
- =?us-ascii?Q?1Nl9xSi8JKfs8v2gveW+FUQBEnbWfNYhqQhjY7EoZf5zSjfjl4CKctvoH37L?=
- =?us-ascii?Q?C4GiYjiVZ48hyVMVObqHEuBSz2BLTK+gkMY2icujsdBzR7NMr1o9cKhjRVjF?=
- =?us-ascii?Q?iHI1qxgnWmtEis2UKRiCAHfcNyXaRm0GJwA7KOJ/AAniYMRo50geBJKXPb6/?=
- =?us-ascii?Q?TKGBFc3ay0g/nLFW4cbupnCQT0epykn0cZgj0zFOCqyhHx6CraxrjuGI9AEu?=
- =?us-ascii?Q?NSbFwyzFVwQYuZk0dNuCoMX3sZLI/oMZ7SaJFJnnP3/7TFU+tE8DwspSzwSr?=
- =?us-ascii?Q?dNAy/5Dt90I/BR3hCEW8rlgF+Dr9NzRlImyDsJlhEDVO+yOryGd8NG/gV83e?=
- =?us-ascii?Q?CCnn0+357hWetMCKyKAAVfFp6FSk4DomZfnlomPQ1XWuNDTmO2517ayMTs3S?=
- =?us-ascii?Q?dvJmJBnL2jSGF6bsH7KhinySPAVomB9uqm0cSMcPkJnTTpIfYH/4WAoaTvvg?=
- =?us-ascii?Q?+WSJZXPBs2RDvR7E2TYVdezkrKUFQmdqzj7UCZg5rSfg75PoyXw9i9X7Rppn?=
- =?us-ascii?Q?3wsVv2WeY1vhQzJ5dShPAaZ3kXT8LqC94rsMIQhUjvlDo9luTPSnnB2wMlRB?=
- =?us-ascii?Q?AbPy9WqqxKg9w1docTwuO6HTqDDAIw/kzj9Urj41Fya439pkVvm/KcV4QBwb?=
- =?us-ascii?Q?DlkDaHoUA0mOm7LrgFq9Oyu6RU+20KiYI4XYajlc841Y8ZdAZVGUn/APPhw3?=
- =?us-ascii?Q?36kjnAfhNjcsm7wisvn1BQ0WZrJLsH73fZ0zLOHIgFKn3G1CIQwr8X9E81I6?=
- =?us-ascii?Q?TzeQbwHcPfE4GiX0noHFamnJKeWYFvKHP4uHxar7TXtR6Q6jU4yj7vziBzr4?=
- =?us-ascii?Q?pJBG3cbGN5g/X9Z4J+oXkWP7CayHI9LcclMIIW+luI0YdfAxZCzVsR7fUqY4?=
- =?us-ascii?Q?uURco5eDpmj7Pu58cafby15yUVU0cYX8syBkCTWpmGhPuGz657BDIF6XkJIB?=
- =?us-ascii?Q?qf+Xn4QDOA=3D=3D?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a9682556-285e-4dfa-bff9-08de4825a705
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB9072.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Dec 2025 04:32:49.0976 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 538k7vD0b1aZWy1rF1YKKBb7ces0ddhICYH4GdgMcrwt4RAqmiS+41LvS1kRJgXs7AtD4k07OxMMR6n8Oocwyg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB6045
-X-Mailman-Approved-At: Wed, 07 Jan 2026 14:19:15 +0000
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/sched=3A_Simplify_idle_?=
+ =?utf-8?q?entity_check?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Tvrtko Ursulin" <tvrtko.ursulin@igalia.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 07 Jan 2026 14:29:58 -0000
+Message-ID: <176779619894.133188.16640936776668603030@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260107134405.96603-1-tvrtko.ursulin@igalia.com>
+In-Reply-To: <20260107134405.96603-1-tvrtko.ursulin@igalia.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -151,80 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-A future change will remove device private pages from the physical
-address space. This will mean that device private pages no longer have
-normal pfns and must be handled separately.
+--===============4679764191739744193==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Prepare for this by adding a HMM_PFN_DEVICE_PRIVATE flag to indicate
-that a hmm_pfn contains a PFN for a device private page.
+== Series Details ==
 
-Signed-off-by: Jordan Niethe <jniethe@nvidia.com>
-Signed-off-by: Alistair Popple <apopple@nvidia.com>
+Series: drm/sched: Simplify idle entity check
+URL   : https://patchwork.freedesktop.org/series/159736/
+State : success
 
----
-v1:
-  - Update HMM_PFN_ORDER_SHIFT
-  - Handle hmm_vma_handle_absent_pmd()
----
- include/linux/hmm.h | 4 +++-
- mm/hmm.c            | 5 +++--
- 2 files changed, 6 insertions(+), 3 deletions(-)
+== Summary ==
 
-diff --git a/include/linux/hmm.h b/include/linux/hmm.h
-index db75ffc949a7..d8756c341620 100644
---- a/include/linux/hmm.h
-+++ b/include/linux/hmm.h
-@@ -23,6 +23,7 @@ struct mmu_interval_notifier;
-  * HMM_PFN_WRITE - if the page memory can be written to (requires HMM_PFN_VALID)
-  * HMM_PFN_ERROR - accessing the pfn is impossible and the device should
-  *                 fail. ie poisoned memory, special pages, no vma, etc
-+ * HMM_PFN_DEVICE_PRIVATE - the pfn field contains a DEVICE_PRIVATE pfn.
-  * HMM_PFN_P2PDMA - P2P page
-  * HMM_PFN_P2PDMA_BUS - Bus mapped P2P transfer
-  * HMM_PFN_DMA_MAPPED - Flag preserved on input-to-output transformation
-@@ -40,6 +41,7 @@ enum hmm_pfn_flags {
- 	HMM_PFN_VALID = 1UL << (BITS_PER_LONG - 1),
- 	HMM_PFN_WRITE = 1UL << (BITS_PER_LONG - 2),
- 	HMM_PFN_ERROR = 1UL << (BITS_PER_LONG - 3),
-+	HMM_PFN_DEVICE_PRIVATE = 1UL << (BITS_PER_LONG - 7),
- 	/*
- 	 * Sticky flags, carried from input to output,
- 	 * don't forget to update HMM_PFN_INOUT_FLAGS
-@@ -48,7 +50,7 @@ enum hmm_pfn_flags {
- 	HMM_PFN_P2PDMA     = 1UL << (BITS_PER_LONG - 5),
- 	HMM_PFN_P2PDMA_BUS = 1UL << (BITS_PER_LONG - 6),
- 
--	HMM_PFN_ORDER_SHIFT = (BITS_PER_LONG - 11),
-+	HMM_PFN_ORDER_SHIFT = (BITS_PER_LONG - 12),
- 
- 	/* Input flags */
- 	HMM_PFN_REQ_FAULT = HMM_PFN_VALID,
-diff --git a/mm/hmm.c b/mm/hmm.c
-index 4ec74c18bef6..14895fa6575f 100644
---- a/mm/hmm.c
-+++ b/mm/hmm.c
-@@ -267,7 +267,7 @@ static int hmm_vma_handle_pte(struct mm_walk *walk, unsigned long addr,
- 		if (softleaf_is_device_private(entry) &&
- 		    page_pgmap(softleaf_to_page(entry))->owner ==
- 		    range->dev_private_owner) {
--			cpu_flags = HMM_PFN_VALID;
-+			cpu_flags = HMM_PFN_VALID | HMM_PFN_DEVICE_PRIVATE;
- 			if (softleaf_is_device_private_write(entry))
- 				cpu_flags |= HMM_PFN_WRITE;
- 			new_pfn_flags = softleaf_to_pfn(entry) | cpu_flags;
-@@ -347,7 +347,8 @@ static int hmm_vma_handle_absent_pmd(struct mm_walk *walk, unsigned long start,
- 	    softleaf_to_folio(entry)->pgmap->owner ==
- 	    range->dev_private_owner) {
- 		unsigned long cpu_flags = HMM_PFN_VALID |
--			hmm_pfn_flags_order(PMD_SHIFT - PAGE_SHIFT);
-+			hmm_pfn_flags_order(PMD_SHIFT - PAGE_SHIFT) |
-+			HMM_PFN_DEVICE_PRIVATE;
- 		unsigned long pfn = softleaf_to_pfn(entry);
- 		unsigned long i;
- 
--- 
-2.34.1
+CI Bug Log - changes from xe-4339-77ca0c5f244b2796408d20cf3c0741094304e09f_BAT -> xe-pw-159736v1_BAT
+====================================================
 
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (11 -> 11)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-4339-77ca0c5f244b2796408d20cf3c0741094304e09f -> xe-pw-159736v1
+
+  IGT_8691: 8691
+  xe-4339-77ca0c5f244b2796408d20cf3c0741094304e09f: 77ca0c5f244b2796408d20cf3c0741094304e09f
+  xe-pw-159736v1: 159736v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159736v1/index.html
+
+--===============4679764191739744193==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/sched: Simplify idle entity check</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/159736/">https://patchwork.freedesktop.org/series/159736/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159736v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159736v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4339-77ca0c5f244b2796408d20cf3c0741094304e09f_BAT -&gt; xe-pw-159736v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (11 -&gt; 11)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4339-77ca0c5f244b2796408d20cf3c0741094304e09f -&gt; xe-pw-159736v1</li>
+</ul>
+<p>IGT_8691: 8691<br />
+  xe-4339-77ca0c5f244b2796408d20cf3c0741094304e09f: 77ca0c5f244b2796408d20cf3c0741094304e09f<br />
+  xe-pw-159736v1: 159736v1</p>
+
+</body>
+</html>
+
+--===============4679764191739744193==--
