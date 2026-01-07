@@ -4,169 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 739F6D0D14F
-	for <intel-xe@archiver.kernel.org>; Wed,  7 Jan 2026 17:45:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8659AD0D145
+	for <intel-xe@archiver.kernel.org>; Wed,  7 Jan 2026 17:47:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 38A4210E0F3;
-	Wed,  7 Jan 2026 17:45:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 31C8C10E2B6;
+	Wed,  7 Jan 2026 17:47:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YgMK1vrq";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ma/rDggi";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7D1F610E0F3
- for <intel-xe@lists.freedesktop.org>; Wed,  7 Jan 2026 17:45:17 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 85D7C10E2B6
+ for <intel-xe@lists.freedesktop.org>; Wed,  7 Jan 2026 17:47:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1767807917; x=1799343917;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=Hp9EjxCknJrnj9ZUruSZjnUhzXnFc0Hvsymtu/aU//M=;
- b=YgMK1vrqKOCGQAAAFjvF21XG4uAbvgQd7kGP6W+x1KamRsd7N/th0uW8
- uvBQr80CwPJNW0J2efSNLSdq28e/WoB3gLHTZQXnh/kcmFAq4Dq1T/wYq
- 6cDSxoJpZcFsqjQKBlAlgYkaFnzwHzPbwR0gku5z8hhh1u7v0c/xiya5Q
- Nm6cq59fFzaL+HY9aa/3tnvCxdiE+S0yZlE9jKONKsf/cuUu9Zwlr6J0h
- QibtLNmRlOSp2s5FMPBn7wrT1i6bdOAgTrIvLxTKqba44kKOVbbZysyXL
- XVg1XWQJ6ybC4kUol5UO4aC9OGVkQP3X8SqsNdgG3sgsGOwa2/k6/NAqC g==;
-X-CSE-ConnectionGUID: TuQ0J8zJRRGzIKkLGpcSTA==
-X-CSE-MsgGUID: N6kcnNy/SiODdo1T+pp75Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11664"; a="68375834"
-X-IronPort-AV: E=Sophos;i="6.21,208,1763452800"; d="scan'208";a="68375834"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jan 2026 09:45:17 -0800
-X-CSE-ConnectionGUID: 1PVhfZfDQ6eTngFkdOQjcg==
-X-CSE-MsgGUID: AuKBXTraSLCddvDw2xpOGg==
+ t=1767808074; x=1799344074;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=jYT1rSHGDP86hJsAMXDDrnAg0TmEMmoJdUXZHUZQ9p4=;
+ b=ma/rDggi+EN5ZjlZzhxGD927OW8vABh6WbZTDuZ0Fy56bOQxXsCBXB5y
+ 0q4hXksUdRattB68RwO4Chmf5Y/qzk1AacadvhPurVFQuUJPOjJmwlcG6
+ eTqU0QfvMw4Sym8htTfi+hn6nN/2RvvLwZ8UGcv9AKdVKz2sfIO7Ec0nT
+ A11shQ2uB98l1G/6PLINmiVP1RTpNeiCrqtI0X7rb2cpC12lJNdyMXOm+
+ 1TZDeNjQ3ttObSHUISNEmFLJgSm9e4pJaquJVEyZyWj9W7+7RMDMP9u3x
+ uwvhOeNFqt7DRsCwoSgsbZiHbsRr6PCX9vpxJ8e3Wmt60+EN1eGqB75j6 A==;
+X-CSE-ConnectionGUID: 5I2xMhDbQAyyjhYRyE9huA==
+X-CSE-MsgGUID: ERVOzHLdQ0OGGEDNdqfq9w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11664"; a="69096474"
+X-IronPort-AV: E=Sophos;i="6.21,208,1763452800"; d="scan'208";a="69096474"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jan 2026 09:47:48 -0800
+X-CSE-ConnectionGUID: DzLcfKhFSNyE7llx30b4XA==
+X-CSE-MsgGUID: Gid16bwOR5CeEkWgQgnXWQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,208,1763452800"; d="scan'208";a="208045735"
-Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
- by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jan 2026 09:45:17 -0800
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Wed, 7 Jan 2026 09:45:16 -0800
-Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29 via Frontend Transport; Wed, 7 Jan 2026 09:45:16 -0800
-Received: from BL2PR02CU003.outbound.protection.outlook.com (52.101.52.16) by
- edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Wed, 7 Jan 2026 09:45:15 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=I80BUleU2qJ6vRdo4CtQa/xgPhUJAFH39DXC+ivcRjb64/smHVHI15ORGfQLRaj8lbxGDhcQe1u/jpKTNa1ejxSv/n/aeZd5XTn832+4PxuK8Y+m7/0mmnMlLrzNxvg++hMCFmvcMhd5tNk3y78AVSM4TjhhUX5pjfnaVS4SV1VZ51fQDHrSxzjahDVDXtYWvwH3sb8vYjGvSSZUMzro6vd9RCP2YZiHBoJeqGD+Y22HBl3zEqThJiGwIyM/uA1j4uihk1/Zw0AYB/hFYc8YuhXLvazOkDkN2xQ8/y+wQ9O/y0I/H4AxYosLLCMv1hwNckre+jWfGNrV9Q4mzxmyOg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ktUch30De/8frvBoDZSUU826B0QM7nM5R2s5mvBmSy4=;
- b=qt63dVlpu7F/wz6+UrewTwVkotT+eaU11gufkW0UKrhpE58l91qlNRIrzZwEPcq0GrXIAEaYcruLT67L/P8UqAQBymr+PVle5H9rq4wYUaCjDo54m/1i3sBjpPuqu246R5Y5enLZb065howtevnP1ytrqvh911e+H96MNt6R4h8nmsS3PklqDtjQPriHTO23Lk5Zb2hj8Ez4LmEWF3VQxvE0NMlct3tEsj/jUbN6ElHvTO5pBAWGNkxBMWvkOP9WVYMJ8gSVzmfKI0Ghtg2kt+hQCSpK3AKyl5ylK0/PFRkRQml/9GRiajLRGOkfOjyjffh2bqxONNWlYzS6W2YHIA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DS0PR11MB8182.namprd11.prod.outlook.com (2603:10b6:8:163::17)
- by IA1PR11MB7824.namprd11.prod.outlook.com (2603:10b6:208:3f9::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9499.2; Wed, 7 Jan
- 2026 17:45:13 +0000
-Received: from DS0PR11MB8182.namprd11.prod.outlook.com
- ([fe80::7b65:81e6:c6c4:449e]) by DS0PR11MB8182.namprd11.prod.outlook.com
- ([fe80::7b65:81e6:c6c4:449e%4]) with mapi id 15.20.9499.002; Wed, 7 Jan 2026
- 17:45:12 +0000
-Date: Wed, 7 Jan 2026 09:45:09 -0800
-From: Matt Roper <matthew.d.roper@intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, Matthew Brost <matthew.brost@intel.com>, 
- Michal Wajdeczko <michal.wajdeczko@intel.com>, Tomasz Lis
- <tomasz.lis@intel.com>
-Subject: Re: [PATCH 2/5] drm/xe/vf: fix struct xe_gt_sriov_vf_migration
- kernel-doc
-Message-ID: <20260107174509.GR1180203@mdroper-desk1.amr.corp.intel.com>
-References: <20260107155401.2379127-1-jani.nikula@intel.com>
- <20260107155401.2379127-2-jani.nikula@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20260107155401.2379127-2-jani.nikula@intel.com>
-X-ClientProxiedBy: BYAPR07CA0106.namprd07.prod.outlook.com
- (2603:10b6:a03:12b::47) To DS0PR11MB8182.namprd11.prod.outlook.com
- (2603:10b6:8:163::17)
+X-IronPort-AV: E=Sophos;i="6.21,208,1763452800"; d="scan'208";a="202768585"
+Received: from llaguna-dev.igk.intel.com (HELO localhost) ([10.91.214.40])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jan 2026 09:47:47 -0800
+From: Lukasz Laguna <lukasz.laguna@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: michal.wajdeczko@intel.com, rodrigo.vivi@intel.com, lukasz.laguna@intel.com
+Subject: [PATCH v12 1/4] drm/xe: Validate wedged_mode parameter and define
+ enum for modes
+Date: Wed,  7 Jan 2026 18:47:38 +0100
+Message-Id: <20260107174741.29163-2-lukasz.laguna@intel.com>
+X-Mailer: git-send-email 2.40.0
+In-Reply-To: <20260107174741.29163-1-lukasz.laguna@intel.com>
+References: <20260107174741.29163-1-lukasz.laguna@intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR11MB8182:EE_|IA1PR11MB7824:EE_
-X-MS-Office365-Filtering-Correlation-Id: b011454f-a3f2-43f8-1eb1-08de4e148228
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?F1MNTKoEH1fCqIX1/xFRfLI5ZaJ0dqA7Vp4O3kScptQU325ezkG7hExHcVKi?=
- =?us-ascii?Q?ThU7pP4xY8vy689NQEc0cevAn62FwlReKZPNPJYLstDl5AhMlstgVgZ+l6DQ?=
- =?us-ascii?Q?l/+Q+puFYKFYB/X0v6Sl3Rb97Tx4rxk3FZfK+10IzSCqyQJ5pgsWdU87fsLW?=
- =?us-ascii?Q?o+PsC9hhZqxqKsu5HfR+dwTc+UquGE1owlg2XF9V7/9B2YI/pU+r2WcsV456?=
- =?us-ascii?Q?PFLzD0YAjq2rgqO7gpEnXOyo3juti3iWiLaB1Lq3hz9dtqDfXLaFNrqmqhwk?=
- =?us-ascii?Q?oyN9Fec/dDSdKHFStxx97fMifbnIDJ7STlV+9WSGp9fMHgJrO4Dh/oxz65vu?=
- =?us-ascii?Q?w7qP5tLw9/gVSPzp5rvFSsmtt6HwKqbRkJxzJPWaMw/IyaFQTX5Yd/Mmu7L+?=
- =?us-ascii?Q?OKhE5mEPVSwfn8vnJtLxJqwXcaOVrlFqS6rK50UvcYRI4cM4zVW4LSoOmBR+?=
- =?us-ascii?Q?BOxBDb+lnDI2kAuV97UtgBrc7xC+7E5vszhx34f595wG8NjTYwGeyCURbVZu?=
- =?us-ascii?Q?FzJm6/PndD5DEdnaPu4pF8+7LnfSW/+ZB9L01rcrTisEltXcdyPrOXhXC+6z?=
- =?us-ascii?Q?J3T7dfGm4Lqng0w8V2S8h9jQE5gnssp69LS0hP6Ea4S8p56Gqo3QutPkvPZX?=
- =?us-ascii?Q?ka2WErrJh8ftfhDvA9xyl2k8aZwGK7XlRmrB8PukySRMdH+utTpo4helvw0j?=
- =?us-ascii?Q?0FHHSfIN65v/nijBYxxkcnmgJHM1YiB7tB10a6vXrTFkdDThcvMGm3XEjEnC?=
- =?us-ascii?Q?PrXzGhRpr8cNCNcNwFMgk6idhpAOdVIjfwD/+No6HjIc04ooJge304AVJrD8?=
- =?us-ascii?Q?/A8QNgxqFuLM/BuWiptQs+c48bxiwAyaXDkqLe4bztn4E4fbz7v/DTqPknOM?=
- =?us-ascii?Q?w0Ouzqo8kY0h0fZVS1u36UkiSznhgCL8lMwQeHaIfw1JpL3b6zbCXMgnl1PH?=
- =?us-ascii?Q?Wpcy4c7TQewzng0I6wyoqj0VRuBwgUTdnO6Dj/49BlNaFXH5UhEmSavixorM?=
- =?us-ascii?Q?2sVfjrcM2nbNF8ep34FrLLEiXHmZoN34nVpoDLVWKdo40bMYB6+gIASeT6Jo?=
- =?us-ascii?Q?CJmF9tQRK98eUxnSi7tEgAUtLBQuivXK/kj07u/mkyNqTksghtyDCTEgIPWW?=
- =?us-ascii?Q?2Jos96BAlKDXgQVaTb1VtZzXPEX94yRzCqNPMSQI9OoW+HytwVscWWBokO+x?=
- =?us-ascii?Q?jxwUKME4psNKPb5LYomMyaheMavzEp9CLqJxK+ylvdFUU/8RLZjhq4aCRtxz?=
- =?us-ascii?Q?s66urOVj0XkX2t5lyGsl1xIGCG6VPnuqymp5edKw3FFnoKHeKNWPl8GqpqME?=
- =?us-ascii?Q?cwJOKdKmXI5MPK/pSDsgaHsxsPiwS9oC5f6PJlCbOviWzLAlmr40Norm2ZsO?=
- =?us-ascii?Q?seoKdfygvn39Hp1T8trOeJMnCbHTWAIEFXLKda0Ntt2gebbPaUAR+Rkw8+40?=
- =?us-ascii?Q?K2k0KRRnFwiXAvoUiSSQF2RCSuF9+ACp?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR11MB8182.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?grG3PUwu/5Z7AgGsPswX/UhlqSoyktGAEBbdnUJ8neH+xWSXiia3zqyIuxU/?=
- =?us-ascii?Q?BaHbv0qAZ3QbhbZYz4aWdL7B1PbE7LrzZ5lw/D31/pcGpdelvKQkPOteE+4h?=
- =?us-ascii?Q?GapjrLNAiC0Zn5Sm8bHOmd2ccc0H9pwFStFAa8gHvgUHvfkLfXFLIcCUH18Q?=
- =?us-ascii?Q?TIsG02ghjbFMscaNbveDUi6KlMbNGiURuETJ2KvDhzkTJ32Glq46gmnpbyuh?=
- =?us-ascii?Q?Qa3mrOVbEBeETSRfmpCzPiO8TIgSN0nZbcdwIN4AGZMeuJD3XxiZwImbrKFH?=
- =?us-ascii?Q?EqSkAbh5fr1ArsPAYYd8DTOBsVVKVdePdx9Er4bwyn5vHevvw9cHeyxDuDZc?=
- =?us-ascii?Q?hHhp98voTLRMFsSwPt77GJ8qQM+biVDUzr+SVSf49VkybFnV3W5UTZvWNK8y?=
- =?us-ascii?Q?wDMmw9988VGhvlp9IzqwoJLlwGD6Z7p63u6wnM/3rF0kNVzFFWsr8FbIZOVM?=
- =?us-ascii?Q?Ca/CiCb58V0BkkvhfrgKNA6eC5cyYozjqKi3zCmmAfYtC/d94NaAGjdFzqup?=
- =?us-ascii?Q?hY1nFBaXW7lRO4GBNGbPbvgaH4QjmBkOyMBIcD6W6GUizbhCpmyQKkm9Nnr8?=
- =?us-ascii?Q?U4o4fp1g43SXg1jZXBGN60xbxvAw6FUXfmKYDs8t6NZqoCkz3o/kLzqN6anv?=
- =?us-ascii?Q?pp5jnlq+fpDqo7u6/fHgJ90k1Rdr6CC/0PHiRWqXpJ1ZCXeIGIkZ6Pi7Yb4l?=
- =?us-ascii?Q?7sJcY42SL/mqeAAgNUj7AjLqUjNGRKNBbzg6gNsAMtNshdZsWb6mYmL1dKqT?=
- =?us-ascii?Q?so1yePQoJ/sS55f4YNg7b3F66+Qraj427soiB7gAnWtmwazBUWA8NWn4l7ro?=
- =?us-ascii?Q?mlBpCzVDDvFVEJJaYlO1BcWarMhzvp41K9G5n9tGPgGg09p5dXkAX09ZoDbj?=
- =?us-ascii?Q?i6RvQiy/Y5Z5vLAomADt/WXTC/tG3HTTx6NS/GRXdpfmKDr5rdn1mjfMNt6X?=
- =?us-ascii?Q?o0NPx9GO49+Z23lPK2P1rxfx94gYVmu0p2aY4T6L/yTjHVi+UhfmhQ/Y3LrR?=
- =?us-ascii?Q?CRf6dENpNk3fFefc4uMvDeZr7DeuzXvvhSzmD/etJS4pfzrrG1hECYwJ+OAq?=
- =?us-ascii?Q?a4DBNqfqM+rIy8wLzX2NvMuZWWkCoezi/ne/Jz18z6nj1HrRDXeW888teDIC?=
- =?us-ascii?Q?oNlaB/qxc3lYPDqFyaT9aH8j7GcY2ZyENpFf9/VxaNqkzQdasS/Gwb6w551g?=
- =?us-ascii?Q?eA1CRrclFxeKeIaLTFghGMBQa7sau2/cNxP0L4In5g4ktjFn8Gk9I73cIgaj?=
- =?us-ascii?Q?m5uplS2Fm3C4Bh9aLTNEDZFsTgNoADOa+JpY4zyH9y+JbiN4BIDJRXq5APFE?=
- =?us-ascii?Q?quh+YRVVMkTSPNcyDwVmJksUovMqboaR14jwoPMlxLvXA/awr7ZIXbLoDIQx?=
- =?us-ascii?Q?Z0J89rj1Ipv3JJZk4XhOkZh7gcVdYv1qzcfSyHzKcyMxFsDoQfOHAJOgQUxU?=
- =?us-ascii?Q?JKquFRSmJJQs1jiBzG17SzA+stLCqvQ4ghPNeYgs9iG1AXoCs/+kubigW4oZ?=
- =?us-ascii?Q?euBBQx0JbXS2ucOT6g5vHyk08QAsMRbbyequJ9+bCMgcksCn0lrMy7wsm+R9?=
- =?us-ascii?Q?yys7T0Km+CgfBnhh8rPNZx2i7mVuTQF1L7So6IHzKxWMqHgGtvrNXRJ5vwZM?=
- =?us-ascii?Q?AvdHvr0xT+n1OalKA5M29WYZKrhpa6rxDN9K3BSt9FiXhfpAF1JMjexb2kJd?=
- =?us-ascii?Q?+F9Pd1RQWOQuJK3vxmKMOPybdx60bRp4OlESHRm5XbaU/eZ5PuVASJO7TVAU?=
- =?us-ascii?Q?p/A4CjeqJZIi0bvUpzrbnxl0oppQ1TU=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: b011454f-a3f2-43f8-1eb1-08de4e148228
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB8182.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Jan 2026 17:45:12.6651 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: wrPLwkrhZwZdQ4qV53AMuiW0ADA9/IdLjqvl6sRtN0SXRXTDl2WMQIHAZLhXd/Uy7QfJPI6pqo3iVy3QsIJTsAZLrcGvbaQj2mJNvuAppHY=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB7824
-X-OriginatorOrg: intel.com
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -181,47 +67,291 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Jan 07, 2026 at 05:53:58PM +0200, Jani Nikula wrote:
-> Fix kernel-doc warnings on struct xe_gt_sriov_vf_migration:
-> 
-> Warning: ../drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h:47 cannot
->   understand function prototype: 'struct xe_gt_sriov_vf_migration'
-> 
-> Fixes: e1d2e2d878bf ("drm/xe/vf: Add xe_gt_recovery_pending helper")
-> Cc: Matthew Brost <matthew.brost@intel.com>
-> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-> Cc: Tomasz Lis <tomasz.lis@intel.com>
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+Check correctness of the wedged_mode parameter input to ensure only
+supported values are accepted. Additionally, replace magic numbers with
+a clearly defined enum.
 
-Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+Signed-off-by: Lukasz Laguna <lukasz.laguna@intel.com>
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+---
+ drivers/gpu/drm/xe/xe_debugfs.c      |  5 +--
+ drivers/gpu/drm/xe/xe_device.c       | 54 ++++++++++++++++++++++++----
+ drivers/gpu/drm/xe/xe_device.h       |  2 ++
+ drivers/gpu/drm/xe/xe_device_types.h | 21 ++++++++++-
+ drivers/gpu/drm/xe/xe_guc_ads.c      |  4 +--
+ drivers/gpu/drm/xe/xe_guc_capture.c  |  9 ++++-
+ drivers/gpu/drm/xe/xe_guc_submit.c   |  7 ++--
+ drivers/gpu/drm/xe/xe_module.c       | 10 +++---
+ drivers/gpu/drm/xe/xe_module.h       |  2 +-
+ 9 files changed, 94 insertions(+), 20 deletions(-)
 
-> ---
->  drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h b/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
-> index 9a6b5672d569..4ef881b9b662 100644
-> --- a/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
-> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
-> @@ -43,10 +43,10 @@ struct xe_gt_sriov_vf_runtime {
->  };
->  
->  /**
-> - * xe_gt_sriov_vf_migration - VF migration data.
-> + * struct xe_gt_sriov_vf_migration - VF migration data.
->   */
->  struct xe_gt_sriov_vf_migration {
-> -	/** @migration: VF migration recovery worker */
-> +	/** @worker: VF migration recovery worker */
->  	struct work_struct worker;
->  	/** @lock: Protects recovery_queued, teardown */
->  	spinlock_t lock;
-> -- 
-> 2.47.3
-> 
-
+diff --git a/drivers/gpu/drm/xe/xe_debugfs.c b/drivers/gpu/drm/xe/xe_debugfs.c
+index 0907868b32d6..db2afd60d8bc 100644
+--- a/drivers/gpu/drm/xe/xe_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_debugfs.c
+@@ -267,8 +267,9 @@ static ssize_t wedged_mode_set(struct file *f, const char __user *ubuf,
+ 	if (ret)
+ 		return ret;
+ 
+-	if (wedged_mode > 2)
+-		return -EINVAL;
++	ret = xe_device_validate_wedged_mode(xe, wedged_mode);
++	if (ret)
++		return ret;
+ 
+ 	if (xe->wedged.mode == wedged_mode)
+ 		return size;
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index f4741cbe4c45..62ec2e2d6436 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -784,7 +784,10 @@ int xe_device_probe_early(struct xe_device *xe)
+ 	if (err)
+ 		return err;
+ 
+-	xe->wedged.mode = xe_modparam.wedged_mode;
++	xe->wedged.mode = xe_device_validate_wedged_mode(xe, xe_modparam.wedged_mode) ?
++			  XE_WEDGED_MODE_DEFAULT : xe_modparam.wedged_mode;
++	drm_dbg(&xe->drm, "wedged_mode: setting mode (%u) %s\n",
++		xe->wedged.mode, xe_wedged_mode_to_string(xe->wedged.mode));
+ 
+ 	err = xe_device_vram_alloc(xe);
+ 	if (err)
+@@ -1267,10 +1270,10 @@ static void xe_device_wedged_fini(struct drm_device *drm, void *arg)
+  * DOC: Xe Device Wedging
+  *
+  * Xe driver uses drm device wedged uevent as documented in Documentation/gpu/drm-uapi.rst.
+- * When device is in wedged state, every IOCTL will be blocked and GT cannot be
+- * used. Certain critical errors like gt reset failure, firmware failures can cause
+- * the device to be wedged. The default recovery method for a wedged state
+- * is rebind/bus-reset.
++ * When device is in wedged state, every IOCTL will be blocked and GT cannot
++ * be used. The conditions under which the driver declares the device wedged
++ * depend on the wedged mode configuration (see &enum xe_wedged_mode). The
++ * default recovery method for a wedged state is rebind/bus-reset.
+  *
+  * Another recovery method is vendor-specific. Below are the cases that send
+  * ``WEDGED=vendor-specific`` recovery method in drm device wedged uevent.
+@@ -1335,7 +1338,7 @@ void xe_device_declare_wedged(struct xe_device *xe)
+ 	struct xe_gt *gt;
+ 	u8 id;
+ 
+-	if (xe->wedged.mode == 0) {
++	if (xe->wedged.mode == XE_WEDGED_MODE_NEVER) {
+ 		drm_dbg(&xe->drm, "Wedged mode is forcibly disabled\n");
+ 		return;
+ 	}
+@@ -1369,3 +1372,42 @@ void xe_device_declare_wedged(struct xe_device *xe)
+ 		drm_dev_wedged_event(&xe->drm, xe->wedged.method, NULL);
+ 	}
+ }
++
++/**
++ * xe_device_validate_wedged_mode - Check if given mode is supported
++ * @xe: the &xe_device
++ * @mode: requested mode to validate
++ *
++ * Check whether the provided wedged mode is supported.
++ *
++ * Return: 0 if mode is supported, error code otherwise.
++ */
++int xe_device_validate_wedged_mode(struct xe_device *xe, unsigned int mode)
++{
++	if (mode > XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET) {
++		drm_dbg(&xe->drm, "wedged_mode: invalid value (%u)\n", mode);
++		return -EINVAL;
++	}
++
++	return 0;
++}
++
++/**
++ * xe_wedged_mode_to_string - Convert enum value to string.
++ * @mode: the &xe_wedged_mode to convert
++ *
++ * Returns: wedged mode as a user friendly string.
++ */
++const char *xe_wedged_mode_to_string(enum xe_wedged_mode mode)
++{
++	switch (mode) {
++	case XE_WEDGED_MODE_NEVER:
++		return "never";
++	case XE_WEDGED_MODE_UPON_CRITICAL_ERROR:
++		return "upon-critical-error";
++	case XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET:
++		return "upon-any-hang-no-reset";
++	default:
++		return "<invalid>";
++	}
++}
+diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
+index 3e72fa4609f8..3740143790db 100644
+--- a/drivers/gpu/drm/xe/xe_device.h
++++ b/drivers/gpu/drm/xe/xe_device.h
+@@ -194,6 +194,8 @@ static inline bool xe_device_wedged(struct xe_device *xe)
+ 
+ void xe_device_set_wedged_method(struct xe_device *xe, unsigned long method);
+ void xe_device_declare_wedged(struct xe_device *xe);
++int xe_device_validate_wedged_mode(struct xe_device *xe, unsigned int mode);
++const char *xe_wedged_mode_to_string(enum xe_wedged_mode mode);
+ 
+ struct xe_file *xe_file_get(struct xe_file *xef);
+ void xe_file_put(struct xe_file *xef);
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index a85be9ba175e..d790129a06db 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -46,6 +46,25 @@ struct xe_pat_ops;
+ struct xe_pxp;
+ struct xe_vram_region;
+ 
++/**
++ * enum xe_wedged_mode - possible wedged modes
++ * @XE_WEDGED_MODE_NEVER: Device will never be declared wedged.
++ * @XE_WEDGED_MODE_UPON_CRITICAL_ERROR: Device will be declared wedged only
++ *	when critical error occurs like GT reset failure or firmware failure.
++ *	This is the default mode.
++ * @XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET: Device will be declared wedged on
++ *	any hang. In this mode, engine resets are disabled to avoid automatic
++ *	recovery attempts. This mode is primarily intended for debugging hangs.
++ */
++enum xe_wedged_mode {
++	XE_WEDGED_MODE_NEVER = 0,
++	XE_WEDGED_MODE_UPON_CRITICAL_ERROR = 1,
++	XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET = 2,
++};
++
++#define XE_WEDGED_MODE_DEFAULT		XE_WEDGED_MODE_UPON_CRITICAL_ERROR
++#define XE_WEDGED_MODE_DEFAULT_STR	"upon-critical-error"
++
+ #define XE_BO_INVALID_OFFSET	LONG_MAX
+ 
+ #define GRAPHICS_VER(xe) ((xe)->info.graphics_verx100 / 100)
+@@ -626,7 +645,7 @@ struct xe_device {
+ 		/** @wedged.flag: Xe device faced a critical error and is now blocked. */
+ 		atomic_t flag;
+ 		/** @wedged.mode: Mode controlled by kernel parameter and debugfs */
+-		int mode;
++		enum xe_wedged_mode mode;
+ 		/** @wedged.method: Recovery method to be sent in the drm device wedged uevent */
+ 		unsigned long method;
+ 	} wedged;
+diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c b/drivers/gpu/drm/xe/xe_guc_ads.c
+index 5feeb91426ee..2b47e897d2ea 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ads.c
++++ b/drivers/gpu/drm/xe/xe_guc_ads.c
+@@ -451,7 +451,7 @@ static void guc_policies_init(struct xe_guc_ads *ads)
+ 	ads_blob_write(ads, policies.max_num_work_items,
+ 		       GLOBAL_POLICY_MAX_NUM_WI);
+ 
+-	if (xe->wedged.mode == 2)
++	if (xe->wedged.mode == XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET)
+ 		global_flags |= GLOBAL_POLICY_DISABLE_ENGINE_RESET;
+ 
+ 	ads_blob_write(ads, policies.global_flags, global_flags);
+@@ -1004,7 +1004,7 @@ int xe_guc_ads_scheduler_policy_toggle_reset(struct xe_guc_ads *ads)
+ 	policies->dpc_promote_time = ads_blob_read(ads, policies.dpc_promote_time);
+ 	policies->max_num_work_items = ads_blob_read(ads, policies.max_num_work_items);
+ 	policies->is_valid = 1;
+-	if (xe->wedged.mode == 2)
++	if (xe->wedged.mode == XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET)
+ 		policies->global_flags |= GLOBAL_POLICY_DISABLE_ENGINE_RESET;
+ 	else
+ 		policies->global_flags &= ~GLOBAL_POLICY_DISABLE_ENGINE_RESET;
+diff --git a/drivers/gpu/drm/xe/xe_guc_capture.c b/drivers/gpu/drm/xe/xe_guc_capture.c
+index 2cda92f7b323..bdd700ac1e54 100644
+--- a/drivers/gpu/drm/xe/xe_guc_capture.c
++++ b/drivers/gpu/drm/xe/xe_guc_capture.c
+@@ -1889,7 +1889,14 @@ xe_guc_capture_get_matching_and_lock(struct xe_exec_queue *q)
+ 		return NULL;
+ 
+ 	xe = gt_to_xe(q->gt);
+-	if (xe->wedged.mode >= 2 || !xe_device_uc_enabled(xe) || IS_SRIOV_VF(xe))
++
++	if (xe->wedged.mode == XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET)
++		return NULL;
++
++	if (!xe_device_uc_enabled(xe))
++		return NULL;
++
++	if (IS_SRIOV_VF(xe))
+ 		return NULL;
+ 
+ 	ss = &xe->devcoredump.snapshot;
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index 7a4218f76024..45aa56b30a12 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -1339,8 +1339,9 @@ void xe_guc_submit_wedge(struct xe_guc *guc)
+ 	err = devm_add_action_or_reset(guc_to_xe(guc)->drm.dev,
+ 				       guc_submit_wedged_fini, guc);
+ 	if (err) {
+-		xe_gt_err(gt, "Failed to register clean-up on wedged.mode=2; "
+-			  "Although device is wedged.\n");
++		xe_gt_err(gt, "Failed to register clean-up in wedged.mode=%s; "
++			  "Although device is wedged.\n",
++			  xe_wedged_mode_to_string(XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET));
+ 		return;
+ 	}
+ 
+@@ -1355,7 +1356,7 @@ static bool guc_submit_hint_wedged(struct xe_guc *guc)
+ {
+ 	struct xe_device *xe = guc_to_xe(guc);
+ 
+-	if (xe->wedged.mode != 2)
++	if (xe->wedged.mode != XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET)
+ 		return false;
+ 
+ 	if (xe_device_wedged(xe))
+diff --git a/drivers/gpu/drm/xe/xe_module.c b/drivers/gpu/drm/xe/xe_module.c
+index d08338fc3bc1..9934f90691fd 100644
+--- a/drivers/gpu/drm/xe/xe_module.c
++++ b/drivers/gpu/drm/xe/xe_module.c
+@@ -10,6 +10,7 @@
+ 
+ #include <drm/drm_module.h>
+ 
++#include "xe_device.h"
+ #include "xe_drv.h"
+ #include "xe_configfs.h"
+ #include "xe_hw_fence.h"
+@@ -29,7 +30,8 @@
+ #define DEFAULT_FORCE_PROBE		CONFIG_DRM_XE_FORCE_PROBE
+ #define DEFAULT_MAX_VFS			~0
+ #define DEFAULT_MAX_VFS_STR		"unlimited"
+-#define DEFAULT_WEDGED_MODE		1
++#define DEFAULT_WEDGED_MODE		XE_WEDGED_MODE_DEFAULT
++#define DEFAULT_WEDGED_MODE_STR		XE_WEDGED_MODE_DEFAULT_STR
+ #define DEFAULT_SVM_NOTIFIER_SIZE	512
+ 
+ struct xe_modparam xe_modparam = {
+@@ -88,10 +90,10 @@ MODULE_PARM_DESC(max_vfs,
+ 		 "[default=" DEFAULT_MAX_VFS_STR "])");
+ #endif
+ 
+-module_param_named_unsafe(wedged_mode, xe_modparam.wedged_mode, int, 0600);
++module_param_named_unsafe(wedged_mode, xe_modparam.wedged_mode, uint, 0600);
+ MODULE_PARM_DESC(wedged_mode,
+-		 "Module's default policy for the wedged mode (0=never, 1=upon-critical-errors, 2=upon-any-hang "
+-		 "[default=" __stringify(DEFAULT_WEDGED_MODE) "])");
++		 "Module's default policy for the wedged mode (0=never, 1=upon-critical-error, 2=upon-any-hang-no-reset "
++		 "[default=" DEFAULT_WEDGED_MODE_STR "])");
+ 
+ static int xe_check_nomodeset(void)
+ {
+diff --git a/drivers/gpu/drm/xe/xe_module.h b/drivers/gpu/drm/xe/xe_module.h
+index 5a3bfea8b7b4..1c75f38ca393 100644
+--- a/drivers/gpu/drm/xe/xe_module.h
++++ b/drivers/gpu/drm/xe/xe_module.h
+@@ -21,7 +21,7 @@ struct xe_modparam {
+ #ifdef CONFIG_PCI_IOV
+ 	unsigned int max_vfs;
+ #endif
+-	int wedged_mode;
++	unsigned int wedged_mode;
+ 	u32 svm_notifier_size;
+ };
+ 
 -- 
-Matt Roper
-Graphics Software Engineer
-Linux GPU Platform Enablement
-Intel Corporation
+2.40.0
+
