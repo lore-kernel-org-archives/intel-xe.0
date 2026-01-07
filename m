@@ -4,163 +4,143 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CCC81CFD656
-	for <intel-xe@archiver.kernel.org>; Wed,  7 Jan 2026 14:19:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 17C38CFD658
+	for <intel-xe@archiver.kernel.org>; Wed,  7 Jan 2026 14:19:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8EFC210E5FF;
+	by gabe.freedesktop.org (Postfix) with ESMTP id BFA4A10E602;
 	Wed,  7 Jan 2026 14:19:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="PoJWLzE2";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="f8raeWxh";
 	dkim-atps=neutral
-Received: from CY3PR05CU001.outbound.protection.outlook.com
- (mail-westcentralusazon11013071.outbound.protection.outlook.com
- [40.93.201.71])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 341C310E004;
- Wed,  7 Jan 2026 00:02:38 +0000 (UTC)
+Received: from CH5PR02CU005.outbound.protection.outlook.com
+ (mail-northcentralusazon11012054.outbound.protection.outlook.com
+ [40.107.200.54])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E79A810E576;
+ Wed,  7 Jan 2026 09:19:12 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=bvoB2E8eFgv5QoMPIp2Ak8liDzf1GFQ1WyoZXMXb0Iq//Ft0MaAK3N42MGb1DfgdwKUctYkH7kEGyecZTytgbZRdt7+QhwA6xM+FVPSLbu6Lz31sayD2O18l6q6rlX83wAC9QRCDuGaEKHtQAbzU4vUcb1DgEL8G9eINzyGXP5awc/S0a+DqAeWkdI5CTag/IktYEtWnjUj4huPnpSk6FxMkx/ncx3vM8ks8TrtmGN4KHUCbhU6UjiZuFG9sfTswBNlwpsFfEBhwyoFqAEH+e7K3cv6aSKEs6Onw3iy2pvDq+Dl33eOvIUtVi2YFNvvJwiCSz90E3BWL3ftAmxjDBA==
+ b=Lh5fZN4B/ZvZWxctxSR9lOaCGdaekf5n1I+h1R3FJ1/e5WeVY22o2m8ytaqhpXBcmfhgwUlnekfLw9PxMM1uPbZZogD90p8DibvliZBigeNRuUbwd7P3HX+Y/qYGnG4tBU0dEfviyL6qd7v3KIQ0tK9G4anzqGLm0XMHjiWT+MsSFgKcJcy/3WZoCbbM2SRRzGks0hB1d1z3HU/U/vNdjRZtTSnJhKq6kEsI0bAqw/Lh0YW/SiGZEx2m27jeIdT7OWboqxjHkc+O0/VohS2uRjetzDUY72KRbZ7NXiP4gqY8TxknwDNYkiPtQzNDpRuK1mza5a551IN7V4kxiV9gfQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=1n48UA7DQh1I8+oePIJxclpPeCZpArbyR0/tc3SjSKw=;
- b=jL/HZv85C5WrkT4c0Opqnh52wZbzX7Nc9AlcXfb6SmI+PN+huM19/8thTD/KhMrFPjftLWsJFBlfzq/FwIypzr9U3bxkot3RiBQl0JK0+6zNW3YjavMwRkmTWW8BU77XzYsWDVi4rW7pQvG0JWxyIWW4IR8M+nI7f3XxY44jj8dzBZdd6Hh3FvSkZTiXI7aWjfRlvptsFDbcqDRUFQZ/IQT7iN9x06bJSSKUoSQQFcKVbJUPacIYn+x+/REgr7hexDX9ZO797wfAnKf8uJbilomPr/+3BLHWCS/G676TykKukq8Wy12tD85ccC2JLEPrn8h+qpyYdrXUTRCMMpx9zA==
+ bh=yY1pGzhVJmWWFgyAMcfofUzjK4DzwQXkn1zo4epIkjM=;
+ b=SM3l3EU9R8in/J3dvVBOj3msGuphicEcGs+EvpBT6BOu+3CqW1/XcD51NOVfNwoV24BwK3a1FnibmwTkmR+GRj/W7kwG6OAcSLWa0D/49fi0U6lPwegZHvnwvPabMBIQDc+TNTW/xQ2CJjy9frS81Yp3HEegHMey4XNWUTaMBIkj9Lkd+WSQHZQSOE/pKWLNH2WXa9C4WTvMTiJEQwwktYeBHiL+kyPSyVgDkpgNUC8kReew32rhc2qE68CxIfOnH3j3w9KyoK22dQ/FqWiRkEUQuZze/5y9twYdavgJnCOICZM1RgPFErdbs43+rjG6m0GXMyrPYraawFpwTSu0Lg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=1n48UA7DQh1I8+oePIJxclpPeCZpArbyR0/tc3SjSKw=;
- b=PoJWLzE232NVN7zx2qqakSGOZfoeq8KRctrCbymkUKLO/fCDFlTmrv40LU7fXHc81XQV0A1eFVVGT8RLSJT34IXfPJ4kDn2DFno3vSaAhmp5HWW24IaRsCO6KlgO2XePEn1O+3U+Gi2TY6hHvdQXR0Kr4RgSVBG4XMm+b12eBqM=
+ bh=yY1pGzhVJmWWFgyAMcfofUzjK4DzwQXkn1zo4epIkjM=;
+ b=f8raeWxheeLqJHbwaZyk8F1fGqku+OHAWYJbZZjblyex8ey/4x3U4kuJzXlaqZPYRKo1r0d+PznvGoVQlHcWz6Kd95i53dJB59ApElT5kQztdBUSOCFV0Tq5C4C8Z+PM12kxYXoIdTA+LXsnyQLdQEJdJzT4gZZEXnIE2azwSEtbRFIbxhgHogdTmrWOh6CupRo/fOtN+4gdV81Sq8ULnghh1gN0PqNJnpKkIiIllUxVmjwhz49peuCzAvvnLE7QH2tqacjTrajzEYld8q9j5aRfMO13yBUrEotwPuX+fLtQ0AdUcdhOiZFByifqqgb8V/CwyOYjIV5YvwUPFm1TeA==
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from DM4PR12MB8476.namprd12.prod.outlook.com (2603:10b6:8:17e::15)
- by PH7PR12MB6787.namprd12.prod.outlook.com (2603:10b6:510:1ad::15) with
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from DM4PR12MB9072.namprd12.prod.outlook.com (2603:10b6:8:be::6) by
+ MN2PR12MB4335.namprd12.prod.outlook.com (2603:10b6:208:1d4::13) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9478.4; Wed, 7 Jan
- 2026 00:02:33 +0000
-Received: from DM4PR12MB8476.namprd12.prod.outlook.com
- ([fe80::2d79:122f:c62b:1cd8]) by DM4PR12MB8476.namprd12.prod.outlook.com
- ([fe80::2d79:122f:c62b:1cd8%6]) with mapi id 15.20.9499.002; Wed, 7 Jan 2026
- 00:02:33 +0000
-Message-ID: <4b71d7cd-72d4-4666-8f9e-81a30ce1817f@amd.com>
-Date: Tue, 6 Jan 2026 17:02:30 -0700
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 05/13] drm: Allow driver-managed destruction of colorop
- objects
-To: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
-Cc: harry.wentland@amd.com, jani.nikula@linux.intel.com,
- louis.chauvet@bootlin.com, mwen@igalia.com, contact@emersion.fr,
- daniels@collabora.com, uma.shankar@intel.com, suraj.kandpal@intel.com,
- nfraprado@collabora.com, ville.syrjala@linux.intel.com,
- matthew.d.roper@intel.com
-References: <20251219065614.190834-1-chaitanya.kumar.borah@intel.com>
- <20251219065614.190834-6-chaitanya.kumar.borah@intel.com>
-Content-Language: en-US
-From: Alex Hung <alex.hung@amd.com>
-In-Reply-To: <20251219065614.190834-6-chaitanya.kumar.borah@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MW4PR03CA0277.namprd03.prod.outlook.com
- (2603:10b6:303:b5::12) To DM4PR12MB8476.namprd12.prod.outlook.com
- (2603:10b6:8:17e::15)
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9499.2; Wed, 7 Jan
+ 2026 09:19:10 +0000
+Received: from DM4PR12MB9072.namprd12.prod.outlook.com
+ ([fe80::9e49:782:8e98:1ff1]) by DM4PR12MB9072.namprd12.prod.outlook.com
+ ([fe80::9e49:782:8e98:1ff1%5]) with mapi id 15.20.9499.002; Wed, 7 Jan 2026
+ 09:19:10 +0000
+From: Jordan Niethe <jniethe@nvidia.com>
+To: linux-mm@kvack.org
+Cc: balbirs@nvidia.com, matthew.brost@intel.com, akpm@linux-foundation.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ david@redhat.com, ziy@nvidia.com, apopple@nvidia.com,
+ lorenzo.stoakes@oracle.com, lyude@redhat.com, dakr@kernel.org,
+ airlied@gmail.com, simona@ffwll.ch, rcampbell@nvidia.com,
+ mpenttil@redhat.com, jgg@nvidia.com, willy@infradead.org,
+ linuxppc-dev@lists.ozlabs.org, intel-xe@lists.freedesktop.org,
+ jgg@ziepe.ca, Felix.Kuehling@amd.com
+Subject: [PATCH v2 10/11] mm/hmm: Add flag to track device private pages
+Date: Wed,  7 Jan 2026 20:18:22 +1100
+Message-Id: <20260107091823.68974-11-jniethe@nvidia.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20260107091823.68974-1-jniethe@nvidia.com>
+References: <20260107091823.68974-1-jniethe@nvidia.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: BYAPR08CA0045.namprd08.prod.outlook.com
+ (2603:10b6:a03:117::22) To DM4PR12MB9072.namprd12.prod.outlook.com
+ (2603:10b6:8:be::6)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR12MB8476:EE_|PH7PR12MB6787:EE_
-X-MS-Office365-Filtering-Correlation-Id: fb05009d-c710-421e-43e3-08de4d800e9c
+X-MS-TrafficTypeDiagnostic: DM4PR12MB9072:EE_|MN2PR12MB4335:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2983e305-5c6e-49bb-3994-08de4dcdd0ec
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|7416014|376014|1800799024|366016|7053199007; 
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?ZEZQUWI0ZTY4WDZMZTlaYzkyaGtVVUpVd3d1eXpIMjFva3hlcms0cnZmTVpS?=
- =?utf-8?B?MitLRWlWYkh2TDl5NWd5d0VvUkFMMVU3c2VubkFiWlJoWTg3Um5ieHBrVzBx?=
- =?utf-8?B?c1p0WU0vUlFZZ1dCY1JsRDFhSWxEMThhZlhlZ3BCN3BEMmxBakhIVFFJS21L?=
- =?utf-8?B?OGl6ZTZkK3JzVXY5YURVbjRWeVJOa1NTTElIWnVneGNWRStiTHdPQmoxYXE4?=
- =?utf-8?B?dVRGV3R4K08wbE8vcENBT3p6eUEvY2tKUU5tYzNQTWtDbm84Si9wVXBMMGp0?=
- =?utf-8?B?N2ZvNUNKSDB3L005TVdUcTEyRGZ5V29idkZQZy9yRC9rRElHZ0lVNXhXb1Zs?=
- =?utf-8?B?R3VJVEtJdFp5bWRUMjNxMnhacWJYSTZncjhxQzJlZU15eGVNRFF4d05SUXQw?=
- =?utf-8?B?TDl6SEIyc0tQTkJ1d1kyQ0JjUW1BK0ZjSGM2UlNwTFBIeU1UUjVML0h4M3gz?=
- =?utf-8?B?bFU4dDJGc0p2eE1WUUFvMWF4UCtWbktHUEpYcjhOK0dWaFl5YkgxMjRZR2hF?=
- =?utf-8?B?SUo0Uk1abHhhU1d5dCtUb0cyWVRHZFYwZjlwU3d6Tkh2QTlFelppWGJGYUZo?=
- =?utf-8?B?OElGbjMrQTlOdHE0MUtRZ0ZBVkZkT1ZoeDl1Zkk0R0ttejFwcjRieTRTanRL?=
- =?utf-8?B?UWE2ajE5VlJQK0RJbHRZTEdMVnI3SFluZXdEWHJzeFczR3dHN0pYWUxMOHc0?=
- =?utf-8?B?SXJlL2ZKMkNZTlZaYlJ2YzZGZE8zcXY1ZkZPNVpmUmxMVXBxYjcyWUpsSFcy?=
- =?utf-8?B?UTNaUnhuUFB6UVh3RlFWUHFiazRRWlBhYzJJWitZTWhyUVk1dGxIWmwvOE0x?=
- =?utf-8?B?S2s1YytweVpWaC9CT01pZHNBKy9KOEc1dWdSVWpydm9nallsNnF5am96NmlI?=
- =?utf-8?B?SHlTTEZybnFEUFExMlhOb24vWWFOc1FzNVY5cDBXUXU0a204Rm4xRHkvWjUv?=
- =?utf-8?B?OEtJbytWQk5BaUJaUmd1UUc1STZSOWI1SHNKZmRPUWFYbTdqdHNpcGJsdlhy?=
- =?utf-8?B?OWt5SEttNE80eHNSdDlWRXFmS1diZjZXd0licVpwaHBzeXhTbGcrTnFpY09m?=
- =?utf-8?B?VFRJYzdOQXZMR3ZMcExNalVhUmdyNXFDRnhFN3JickVGSGFrTlBjdk0weHpj?=
- =?utf-8?B?a1dPRUJMd2NYWnVWN3c5TVkzUWRIZDBobGwxVFhQRTZScUcydG85eWFKYnR2?=
- =?utf-8?B?QTl3Ymw4Wlp5b2NiUFIzK2hRSkdBNEw5SWJyUkp0eXdaTHIvK0FEOXBNOGwv?=
- =?utf-8?B?MEluUVJoRnRYZXRtV2poeWFTNFB6Z1dKdTh2enMzbncyRWJ0Z2gvY0pYdm9v?=
- =?utf-8?B?V3NyYXIySEpJRjNkTGkwUk9mVEs1OHNSVm41RFVTdHk2bDBaVktZR1dKcWdw?=
- =?utf-8?B?clN2QWlYVVBXbWFhR2NlVDBlVm9xSmVGSFVqLzRHY3VUak9malVNVFBNTDFV?=
- =?utf-8?B?dGFSaHA4eG4zMi9yTGtDclk4NE84ejF3L1pWcyt1UlY4dkxxa1VVK0R4K3M3?=
- =?utf-8?B?RG1DVXhjRllaMFpUa2JXOFdLeEhSZGsrWVo3dWhOemRFdER1UDIvejRHZUxV?=
- =?utf-8?B?K3phL2xJNUUrdmx0MFp6TEhQeGIxSlRzcnpXV3VJdjlzMDlwc0N4c213U2du?=
- =?utf-8?B?Z2twUTd0Q2NSNEVnRW1NSEh5RVczdEhlSEJWSzNiWXM1cmd4NWdjeDhmY0dJ?=
- =?utf-8?B?N1pWRE9uVFJaRnVVQ1ZBcHFKY1JEb2NaQUNJb3E0YkkyRHhyY1UyUU0rMitl?=
- =?utf-8?B?a3d5dlpIeUdWWEdmL0UwQkE2KzZNekhtVGVwaXpNMWlYd25BTDdWY1A0SHJz?=
- =?utf-8?B?dUU2OUhqQWpZUnh2cnpuNEVkb2xKdlpBdG1UMEh0SzBlejM1My9iZU9NYVVO?=
- =?utf-8?B?MXVEeWxRU3p0dGFWMjQ0RzNoN0NHNEJHKzdabFJRZyt3QkN2SERldUdLd0ZW?=
- =?utf-8?Q?snHarRUcWJ24hj/HnbMFKNm70eTtLWv6?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|7416014|376014|1800799024|366016;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?vDvVQBSp2/zHDHkJdwquavwCAd15grPABHWERSAZnXoGfBcvYhp75EtrprpV?=
+ =?us-ascii?Q?aK+Cxhc6E4ZrVtz2pnOozhXOt6l5BSZZF4T+HkUydO5o0hCg4mDmkOlAau2s?=
+ =?us-ascii?Q?Dw6WYvufyhVOnwQEBfbPq/pU9MfrG2DHrRgrxUzJX8OaDf3gT9GXQd9AQ+o3?=
+ =?us-ascii?Q?CsMP0PivYq34sKk0pLL39h3foPITHf4DULKAuUF7RZfE20xLGKqdYVRYRQS1?=
+ =?us-ascii?Q?qg1yeVT7TRBZOTmokhJBQwc3LrXOAnKT9pWbYywgIQwJtpXN2yDU3q5B6/hx?=
+ =?us-ascii?Q?gDg+zTk86XgvT8k4dtQX8/NueYk8ct9SlGHTzVsMuRr8nOT2exTgGj1+xRYu?=
+ =?us-ascii?Q?tsSzNSqBZovhNqS079ZlYUwMNeKt3ycFwypf2lN52w4bl+dkyorQqbbPCbdq?=
+ =?us-ascii?Q?6l9hvnI4XYcvXcfXQ++kBbs2pYftucZXwXZKKGGqHZyIcuT8j1OUFBWY6Kdn?=
+ =?us-ascii?Q?itILqCP+T5Cv92guhfdEFZufWH9itYruBxqaZos5WaiZTvXYN9n+Gb/GdoRH?=
+ =?us-ascii?Q?Yir39nL0M9Q/Wy3JZUqAbVFOlYY14rvh2muZIC21pul7PMsqSI9ENiS2OCKF?=
+ =?us-ascii?Q?0hgTfiL9L8ARXtLTXCAzlq6Wwa01IUevvkyS7iQb5YTxgPBiIUu2+g/1N4Yq?=
+ =?us-ascii?Q?FnG3aaT2dQh4OedrLIuHjtQXgqF3y4wPuGpIHLC8S1l2fRELq82i/saByQoh?=
+ =?us-ascii?Q?K8C/wlvSplLXA6Pd3r+c+339IWWT6EJ49O39Xao0KOzUpRcq3nfZ8CkidQrx?=
+ =?us-ascii?Q?I/SOyirKmoJNYfKLWsqPahlU1dYPQGn4Bf19zpKWEXjK13GP2tmaCgbWsxmv?=
+ =?us-ascii?Q?1h5+SaxbpjmMpqg+/jIo9PhDPSbECBEFkU3LjStHE6jxEh4coXL/0AWljcil?=
+ =?us-ascii?Q?XAFcI9Vn3MM13TleMG639kw+A4Oh7qlum5Azw81V2CeDBEZpa5BejErIKn0a?=
+ =?us-ascii?Q?uA5fHM1mramwnKQCJe2InOwiIp529DhrtRDnShP1TBdVoaL4DAv7etKpDM1g?=
+ =?us-ascii?Q?QD5+0E7bTjstp2/SVTeYrC1kp08kqzRF4gv0ut53Or8+c1I96fnN/SpSwqYp?=
+ =?us-ascii?Q?GVHh9gcZOkJr0BmYxonUpYsBKtJNqFxKXF2sRtK7MFmBrOmrMHQOH5tg6wJw?=
+ =?us-ascii?Q?PJS3f2EazObEJbaI0WI1lr7UFJaK3cTD/ZPk4qRuJU+4cWNj8Y6o4XhXqzmA?=
+ =?us-ascii?Q?a4OsFkbKBR7weoyy6OLUlo/wC4pEoWkq91Wd7T/kT7bA3ZGFxMeiSo3E4BjU?=
+ =?us-ascii?Q?mGKYL3VthVvHrj7g6qQjJhnK9wPCPSeOVfW8VUkiwh+VMuk3dLS5O0vPp7/2?=
+ =?us-ascii?Q?9Y09QfSzFBWWHlcTaopFNQTU+fw3rL9jujYvvLnWYLILdmxa59bE/HX9VBt0?=
+ =?us-ascii?Q?1wBv9vcoqJW/cTzK9b2cdBtf9RAKodyaGFgsZYnt4+8Xk1B2PcocPNLSQT56?=
+ =?us-ascii?Q?NQJuUo91Faroy9K0ESZ1bhQToLmsUwYx?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR12MB8476.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(7416014)(376014)(1800799024)(366016)(7053199007); DIR:OUT;
- SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:DM4PR12MB9072.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(7416014)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NXlpQkp0SHplUjd0a0R6RyszZkFmcy9Fa2Y0MzRxc3UwUFpTeml3RzBBVmcy?=
- =?utf-8?B?bGZJM2lRcm5vVkJIL1JyUmFDZmhNMWFTNUhhUDBYaTRRazRKU3ZiUCt4NGtr?=
- =?utf-8?B?M2VzVzBvYlNzbi9WU2pDT09sZERmNDE4TUZBTGRGSXQ2M0VZWHlFWVBNb010?=
- =?utf-8?B?M2hYUW1sbkJDRU1oTDBmMlFOcU5RSWg3VlYvL1ZwdjUzR0VWQWI4d0JUTFVW?=
- =?utf-8?B?cDVEbXo0bGFsY1QzVCtVSU4vTWZScnI5czRYUFZVQkRqNzFxeHZhQTJReVFi?=
- =?utf-8?B?aSsxNmc0RkRpYWZEaS81S3VxcTU5Y1dlYklOQW53OWpXMUlSbnJRdTVYR1Bn?=
- =?utf-8?B?VFBYR3J6L3hBbWhCRnRpbmVzV2FTZHdMUHl4TmFVcGtBbTRKYld6L3Vta3FK?=
- =?utf-8?B?d2NaSHdDZWRCaWYwczdVNm5oVUkzQy8xdE8vUjB2cXZmUGxJZ2lxc01HaXdJ?=
- =?utf-8?B?QzNGYVZSME4xTE5Vei9TdUM4eGduY3lXWkZjK3g3cFlNUjNDWWUra0VFckFI?=
- =?utf-8?B?ekUyVGk3cWc4dDBmY2dpbUZLNkY1VWV0MVkvampwNkRscFZ0b1lYbUxxYUNE?=
- =?utf-8?B?Z0dIWHEwTGZmNHBsZjNXeW8zWlJIdS9XS3V5emptc0VPb0tFa1IzRzFrb2tT?=
- =?utf-8?B?NFZ6T1RweVZLS3FlSWd1emtPWE9QZHpJSGtxOWsvOGc5b1pzU3ZNdjlybmtx?=
- =?utf-8?B?LzdsblFGK1lscEJlRnRybU5XYVVBbUVYOGNzRVNLZ1hQN3hkcDJBQnh1d0dk?=
- =?utf-8?B?R1dVRDRXcG8wcXhQY1k0bGVlYmV6M3A0cCtFd1BZTU9oNkRDaEJPVFNmb2JD?=
- =?utf-8?B?ZWpsbDhjNGFtUUtHZkRUL1VNNUtXdTRIdDdpaHkvS24zVDFXVEI3RnFRekVo?=
- =?utf-8?B?WjM2b2dqWUh1Tyt4YTNXMzJvZ1NPdm54YkdpZE9CSFl3YStoT3lDbVBxZSsy?=
- =?utf-8?B?eEdCaDMxOUlKcU90cEpjNXhOTXQxL29VR2tpc2pqVjM3TE5kRGFiRk04Q29V?=
- =?utf-8?B?azdJMUszWEdyRmlCTlBDY2k4TG1ONmQ5eVM0c08xR3FyUk5qNUpQT0JMQkFk?=
- =?utf-8?B?Kzc5azZUYTExbVVIZ21sSUxCeFliYmlMbkE0LzNiTk50WUpEbEdjUExBaE83?=
- =?utf-8?B?eUg4eFg4cGJLQmhONy9HeldMQTdPeU9rc1V3cjRqa05WeDhKVTh5czVMMjlw?=
- =?utf-8?B?Qi9jWHVJa3VFNXVSVE9nSEFPUlg5em5EWG9kYWEvMnpUVjRQdytoS2tBdnM2?=
- =?utf-8?B?d25UbTFOdVA4VnNKd1Bpd1dlNDBSak9vV2hKdFRUaEhlcVZXanVlZGtRWWdu?=
- =?utf-8?B?Y2wveW1NcHNSaE5oTzFKck00Z0k0emovSUgxSU5HaC8zaW1QTlREd2dBdDdj?=
- =?utf-8?B?VGJlUDc5V0dqekp3bjhVTFM1M1VucWFDbXA5QWo1S0QxZlJXZmFkNGVRQ0FW?=
- =?utf-8?B?Nk8yRnB4UFl6SnFGSXRjQjd4bzlpeWsxVmhHbkhaKzZFa3o3UC82QldiTWVo?=
- =?utf-8?B?REVwalFGdHNhVnNIR01jVHhCMXloTy92RnpOcjlZejg4UTRQN1ZHN1VCbCs4?=
- =?utf-8?B?K1JJZlpseElFSm1PdTJyMHFkc2R3T1hzRy9CTHJUa3l1dmNvR1UwWVRrK1Jx?=
- =?utf-8?B?MmhxM3pMYUhkcG9NTVdGekhlR241MEFJaHhvRzVZNlZvSXUyTS9NZUNZQThj?=
- =?utf-8?B?SlBZb2JNMEVYTmFxUVNTbkJWM2VKcFdNWTFGRjdvdUZpZ3hDZjJXOGZzRWhS?=
- =?utf-8?B?RFJiNEpEWG5RVEpGZjcxYU1ZNWtJMHlENStncUkzZ0lnWUNaVFh2ZXZlbHp2?=
- =?utf-8?B?ZnBEV1Jldi9BTGtOaVpmWTRRS1BObFlWajMxYnlEU3dJUUFzUkI3anowSThX?=
- =?utf-8?B?NlhSTVA5RC9LTzAvOXJIaXV6eVl2eVd6YnNuY21mYlQxQS9WL3J4YkJDU0py?=
- =?utf-8?B?anFTL2VkcjhBaFMrelYwZzE1dWozL1hIQ0NBQm5OZm1FWVZBd3hZbXZyeU4x?=
- =?utf-8?B?ZFoySHZPNkx4K2JXcmY1S21tc1NYTStDUnEzNlhDZndJK0ZzVWFPWkRGQmtx?=
- =?utf-8?B?WWFxcWozMkFTeXJDN2xHdzhFUHRxRm5WTEtjYUZQMEcyazFkZVJRMEM0UUhw?=
- =?utf-8?B?bUNZRUh3S2F0cEFBSG10ck5NbkNOUk9VMS9rN2d1Nk1kdE5QM3hrSis3MklS?=
- =?utf-8?B?aDhyd3hyM3BrOXV4dGVTdm0yZ0Jram4vTUZ2UVFVZEdERHdIcW9UckNNVTE5?=
- =?utf-8?B?a2ZDK1piTW9lM3V2aTRFYmx3WFZNWUxtbHhobXVIQ0dwa2RQV21velBnNmNZ?=
- =?utf-8?B?bkxScW4wVGxhQVRUOEU2MzkwcUd2WHF1YjB5MFlQaFVZaXlaSkRFdz09?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: fb05009d-c710-421e-43e3-08de4d800e9c
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB8476.namprd12.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?N8jvgwfg5ERRMOsj2q9r8ntv3txmXCJ20KNFaOX3Yf2WfyRiwFI8E63Si7Zc?=
+ =?us-ascii?Q?0Kw5PWQNa2EL2cwtG2Lxrk3C8O8pHmy7vVnn7TE2jHQf9EShl4xjAjRpgouD?=
+ =?us-ascii?Q?Ot5THyTdGUGY/xjQ5HSZPEEpdDTEuKZtcc9fqdSkPIlW2S6UGt/tsD7AAGU5?=
+ =?us-ascii?Q?utCCaBdM4U38SzYxRRO6L+uUHF33+3AhILGYuFwmBAUnVOrIy6qrs1bBJttS?=
+ =?us-ascii?Q?1Bs+yxWWTYU+1dSN7j/QoqOGUZp9NT/PNHJrG0/VX2P0rxDtQT0bA+O8teWE?=
+ =?us-ascii?Q?cJI/dCLH4a8QZhw1wrlrQI4e3+d7dzOH21ULnAVSssQQwT75UbPkC/AU2/AS?=
+ =?us-ascii?Q?2U0rbO3gi8jIPjybOR2+TosbS0mdATf+ILy7ULVKhyYGFYPNlQvL3SCOS+Ca?=
+ =?us-ascii?Q?MRLbGFKpMMeQTLmvuQPEgdo1hlfaEq8YcO+ROczlzvXIClSldzy5h3oTfGlv?=
+ =?us-ascii?Q?WNq615h2c6/edWUaZ7dRFv6dKawyt7NsabphftyUMqUteHJKrMkbVGygWgG/?=
+ =?us-ascii?Q?HZC442JFcZzc43V0QHQQR8kqRsMllb0bY3tztXOj46U6gZAzxbmKE/37Pejp?=
+ =?us-ascii?Q?isQA9gU3XOAik3pO2uguPK9MqEcBDgj7OcYCJPjs3mnfzV3B/dKjzJNuK84q?=
+ =?us-ascii?Q?hgXuD6yuS59bKNUZNKPPKvZbNqSsnhG7Nsp24mW69ZpDEB6Dbhq4l5KeRRVh?=
+ =?us-ascii?Q?m7HHpuGz86Ng5mQbg1Pqr9aJ1pY5UfkhCV6qNVbid9/hsIlrpgTtRPtYKnua?=
+ =?us-ascii?Q?0gDM9puhnE12l9tbc5p4KZYvvUXz6Xx1MmjcsslYmS7r99y1Jh5yejHQix/+?=
+ =?us-ascii?Q?b8unWyC5UFQLB3G9hAn9RxV33iF0tctZMexaDHzMMPS9zBM1RbZCor4q4DoN?=
+ =?us-ascii?Q?WqLT0HQZLK5Y9E7J8touTeD1VuR8pR97auq717NN0RaZxYcKXecZwsMUZ4Bn?=
+ =?us-ascii?Q?X0VmELIusqkvgX+SLnJF21k70SbgLr4U6GmECBGuIa+mIbEADLIbkQl1woz5?=
+ =?us-ascii?Q?kKhfoFzNRkWkO5m4G1zKpbw0MzOLwT6Bae7kMedgXPy33YesmZ4EHni1y+aQ?=
+ =?us-ascii?Q?viufPEvB0XzyjlACf1xqrMVkym16CWvZ+S6WqELtU38w2rSR0iOo2XFquie2?=
+ =?us-ascii?Q?VAXNlrhUAs40qG8Djr6u1tGPy1wQfS9+5ps1+QsodqUxfIsKQzALgaECWJMq?=
+ =?us-ascii?Q?dB1+F0WUCeTFIrTQZbmZ4IoAZvrxO6wToUnfuw79WkTQ0Fj7/Eo2cW0K5HHL?=
+ =?us-ascii?Q?ke74lKVpeND4A449C39ZEpbuTKLVRBQUFaoGpy1O1F1N2GwglMtz2ilWbXYQ?=
+ =?us-ascii?Q?sxtHhE8XVcveMRz05FyPZK2m7P0MKsZ1tORo1sBxS5NPDY88i3/Y2kONLnHj?=
+ =?us-ascii?Q?9lVI7TXcK1xXF038J7uM4Xrpm+5SN5YAcRStmFNZFBojcnUuwbdyy+bM4Y9i?=
+ =?us-ascii?Q?ZAcLCZ7QX+BzVv94v3oXxUg9DXzkAkKDHxPVg7tYLPlCwdxHux/sZHnuGt7Z?=
+ =?us-ascii?Q?cW9DbzUaORwgrRXe/0cS83qdugUNCrmaJNadBjKfaFLEN6327SBRpyqdapuz?=
+ =?us-ascii?Q?woKXLYVnjH2ZIXG4CQnS4H/nZBygKTxngoEY88mQrYYPqgBmWhY/c0kf1MBz?=
+ =?us-ascii?Q?LFhcUdzwCkt6/b+E3zAqRpSnS+hpsMWD7vXXc8fp7SJ+rMsqUZcvM2XaOz/x?=
+ =?us-ascii?Q?LfovwBQa0MxDOCksOG5UVnO97R7+FgDpJwcd0BmKTVWJVXBSoeEvrvu6kpAX?=
+ =?us-ascii?Q?4+tz90c6ZQ=3D=3D?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2983e305-5c6e-49bb-3994-08de4dcdd0ec
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB9072.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Jan 2026 00:02:33.1121 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Jan 2026 09:19:10.5616 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: uO5ESEkTTiuKYmmSiw1LRJEIGeGlgJqUAxsfatu9HsW8JEp+i6yDVh+P1gt/Unqg9Rl1er2/LaSFuV1vv1Ahcg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB6787
-X-Mailman-Approved-At: Wed, 07 Jan 2026 14:19:14 +0000
+X-MS-Exchange-CrossTenant-UserPrincipalName: O/1NsIoK6Fi3d/0veucu3cC2ObCdOFtNMPMljg8s1otN/jmwGL5+UR5tds2Ix5TZJWmXmUXbXi745hSTGIdWxw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4335
+X-Mailman-Approved-At: Wed, 07 Jan 2026 14:19:15 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -175,382 +155,79 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-It is a nitpick, but is it better to have patch 6 first, and then 
-separate changes to drm to a single patch, and move the changes in 
-amdgpu, vkms and i915 in the following corresponding patches (7, 8 and 9)?
+A future change will remove device private pages from the physical
+address space. This will mean that device private pages no longer have
+normal pfns and must be handled separately.
 
-We can avoid passing NULL to struct drm_colorop_funcs *funcs.
+Prepare for this by adding a HMM_PFN_DEVICE_PRIVATE flag to indicate
+that a hmm_pfn contains a PFN for a device private page.
 
-Otherwise it looks good to me.
+Signed-off-by: Jordan Niethe <jniethe@nvidia.com>
+Signed-off-by: Alistair Popple <apopple@nvidia.com>
 
-Reviewed-by: Alex Hung <alex.hung@amd.com>
+---
+v1:
+  - Update HMM_PFN_ORDER_SHIFT
+  - Handle hmm_vma_handle_absent_pmd()
+v2:
+  - No change
+---
+ include/linux/hmm.h | 4 +++-
+ mm/hmm.c            | 5 +++--
+ 2 files changed, 6 insertions(+), 3 deletions(-)
 
-On 12/18/25 23:56, Chaitanya Kumar Borah wrote:
-> Some drivers might want to embed struct drm_colorop inside
-> driver-specific objects, similar to planes or CRTCs. In such
-> cases, freeing only the drm_colorop is incorrect.
-> 
-> Add a drm_colorop_funcs callback to allow drivers to provide a destroy
-> hook that cleans up the full enclosing object. Make changes in helper
-> functions to accept helper functions as argument. Pass NULL for now
-> to retain current behavior.
-> 
-> Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
-> ---
->   .../amd/display/amdgpu_dm/amdgpu_dm_colorop.c | 18 ++++++-----
->   drivers/gpu/drm/drm_colorop.c                 | 31 +++++++++++++------
->   .../drm/i915/display/intel_color_pipeline.c   |  8 ++---
->   drivers/gpu/drm/vkms/vkms_colorop.c           | 10 +++---
->   include/drm/drm_colorop.h                     | 30 +++++++++++++++---
->   5 files changed, 66 insertions(+), 31 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_colorop.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_colorop.c
-> index a2de3bba8346..dfdb4fb4219f 100644
-> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_colorop.c
-> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_colorop.c
-> @@ -72,7 +72,7 @@ int amdgpu_dm_initialize_default_pipeline(struct drm_plane *plane, struct drm_pr
->   		goto cleanup;
->   	}
->   
-> -	ret = drm_plane_colorop_curve_1d_init(dev, ops[i], plane,
-> +	ret = drm_plane_colorop_curve_1d_init(dev, ops[i], plane, NULL,
->   					      amdgpu_dm_supported_degam_tfs,
->   					      DRM_COLOROP_FLAG_ALLOW_BYPASS);
->   	if (ret)
-> @@ -89,7 +89,7 @@ int amdgpu_dm_initialize_default_pipeline(struct drm_plane *plane, struct drm_pr
->   		goto cleanup;
->   	}
->   
-> -	ret = drm_plane_colorop_mult_init(dev, ops[i], plane, DRM_COLOROP_FLAG_ALLOW_BYPASS);
-> +	ret = drm_plane_colorop_mult_init(dev, ops[i], plane, NULL, DRM_COLOROP_FLAG_ALLOW_BYPASS);
->   	if (ret)
->   		goto cleanup;
->   
-> @@ -104,7 +104,8 @@ int amdgpu_dm_initialize_default_pipeline(struct drm_plane *plane, struct drm_pr
->   		goto cleanup;
->   	}
->   
-> -	ret = drm_plane_colorop_ctm_3x4_init(dev, ops[i], plane, DRM_COLOROP_FLAG_ALLOW_BYPASS);
-> +	ret = drm_plane_colorop_ctm_3x4_init(dev, ops[i], plane, NULL,
-> +					     DRM_COLOROP_FLAG_ALLOW_BYPASS);
->   	if (ret)
->   		goto cleanup;
->   
-> @@ -120,7 +121,7 @@ int amdgpu_dm_initialize_default_pipeline(struct drm_plane *plane, struct drm_pr
->   			goto cleanup;
->   		}
->   
-> -		ret = drm_plane_colorop_curve_1d_init(dev, ops[i], plane,
-> +		ret = drm_plane_colorop_curve_1d_init(dev, ops[i], plane, NULL,
->   						amdgpu_dm_supported_shaper_tfs,
->   						DRM_COLOROP_FLAG_ALLOW_BYPASS);
->   		if (ret)
-> @@ -137,7 +138,8 @@ int amdgpu_dm_initialize_default_pipeline(struct drm_plane *plane, struct drm_pr
->   			goto cleanup;
->   		}
->   
-> -		ret = drm_plane_colorop_curve_1d_lut_init(dev, ops[i], plane, MAX_COLOR_LUT_ENTRIES,
-> +		ret = drm_plane_colorop_curve_1d_lut_init(dev, ops[i], plane, NULL,
-> +							MAX_COLOR_LUT_ENTRIES,
->   							DRM_COLOROP_LUT1D_INTERPOLATION_LINEAR,
->   							DRM_COLOROP_FLAG_ALLOW_BYPASS);
->   		if (ret)
-> @@ -154,7 +156,7 @@ int amdgpu_dm_initialize_default_pipeline(struct drm_plane *plane, struct drm_pr
->   			goto cleanup;
->   		}
->   
-> -		ret = drm_plane_colorop_3dlut_init(dev, ops[i], plane, LUT3D_SIZE,
-> +		ret = drm_plane_colorop_3dlut_init(dev, ops[i], plane, NULL, LUT3D_SIZE,
->   					DRM_COLOROP_LUT3D_INTERPOLATION_TETRAHEDRAL,
->   					DRM_COLOROP_FLAG_ALLOW_BYPASS);
->   		if (ret)
-> @@ -172,7 +174,7 @@ int amdgpu_dm_initialize_default_pipeline(struct drm_plane *plane, struct drm_pr
->   		goto cleanup;
->   	}
->   
-> -	ret = drm_plane_colorop_curve_1d_init(dev, ops[i], plane,
-> +	ret = drm_plane_colorop_curve_1d_init(dev, ops[i], plane, NULL,
->   					      amdgpu_dm_supported_blnd_tfs,
->   					      DRM_COLOROP_FLAG_ALLOW_BYPASS);
->   	if (ret)
-> @@ -189,7 +191,7 @@ int amdgpu_dm_initialize_default_pipeline(struct drm_plane *plane, struct drm_pr
->   		goto cleanup;
->   	}
->   
-> -	ret = drm_plane_colorop_curve_1d_lut_init(dev, ops[i], plane, MAX_COLOR_LUT_ENTRIES,
-> +	ret = drm_plane_colorop_curve_1d_lut_init(dev, ops[i], plane, NULL, MAX_COLOR_LUT_ENTRIES,
->   						  DRM_COLOROP_LUT1D_INTERPOLATION_LINEAR,
->   						  DRM_COLOROP_FLAG_ALLOW_BYPASS);
->   	if (ret)
-> diff --git a/drivers/gpu/drm/drm_colorop.c b/drivers/gpu/drm/drm_colorop.c
-> index 44eb823585d2..efe61bdd9b24 100644
-> --- a/drivers/gpu/drm/drm_colorop.c
-> +++ b/drivers/gpu/drm/drm_colorop.c
-> @@ -93,7 +93,8 @@ static const struct drm_prop_enum_list drm_colorop_lut3d_interpolation_list[] =
->   /* Init Helpers */
->   
->   static int drm_plane_colorop_init(struct drm_device *dev, struct drm_colorop *colorop,
-> -				  struct drm_plane *plane, enum drm_colorop_type type,
-> +				  struct drm_plane *plane, const struct drm_colorop_funcs *funcs,
-> +				  enum drm_colorop_type type,
->   				  uint32_t flags)
->   {
->   	struct drm_mode_config *config = &dev->mode_config;
-> @@ -109,6 +110,7 @@ static int drm_plane_colorop_init(struct drm_device *dev, struct drm_colorop *co
->   	colorop->type = type;
->   	colorop->plane = plane;
->   	colorop->next = NULL;
-> +	colorop->funcs = funcs;
->   
->   	list_add_tail(&colorop->head, &config->colorop_list);
->   	colorop->index = config->num_colorop++;
-> @@ -203,6 +205,7 @@ EXPORT_SYMBOL(drm_colorop_pipeline_destroy);
->    * @dev: DRM device
->    * @colorop: The drm_colorop object to initialize
->    * @plane: The associated drm_plane
-> + * @funcs: control functions for the new colorop
->    * @supported_tfs: A bitfield of supported drm_plane_colorop_curve_1d_init enum values,
->    *                 created using BIT(curve_type) and combined with the OR '|'
->    *                 operator.
-> @@ -210,7 +213,8 @@ EXPORT_SYMBOL(drm_colorop_pipeline_destroy);
->    * @return zero on success, -E value on failure
->    */
->   int drm_plane_colorop_curve_1d_init(struct drm_device *dev, struct drm_colorop *colorop,
-> -				    struct drm_plane *plane, u64 supported_tfs, uint32_t flags)
-> +				    struct drm_plane *plane, const struct drm_colorop_funcs *funcs,
-> +				    u64 supported_tfs, uint32_t flags)
->   {
->   	struct drm_prop_enum_list enum_list[DRM_COLOROP_1D_CURVE_COUNT];
->   	int i, len;
-> @@ -231,7 +235,7 @@ int drm_plane_colorop_curve_1d_init(struct drm_device *dev, struct drm_colorop *
->   		return -EINVAL;
->   	}
->   
-> -	ret = drm_plane_colorop_init(dev, colorop, plane, DRM_COLOROP_1D_CURVE, flags);
-> +	ret = drm_plane_colorop_init(dev, colorop, plane, funcs, DRM_COLOROP_1D_CURVE, flags);
->   	if (ret)
->   		return ret;
->   
-> @@ -288,20 +292,23 @@ static int drm_colorop_create_data_prop(struct drm_device *dev, struct drm_color
->    * @dev: DRM device
->    * @colorop: The drm_colorop object to initialize
->    * @plane: The associated drm_plane
-> + * @funcs: control functions for new colorop
->    * @lut_size: LUT size supported by driver
->    * @interpolation: 1D LUT interpolation type
->    * @flags: bitmask of misc, see DRM_COLOROP_FLAG_* defines.
->    * @return zero on success, -E value on failure
->    */
->   int drm_plane_colorop_curve_1d_lut_init(struct drm_device *dev, struct drm_colorop *colorop,
-> -					struct drm_plane *plane, uint32_t lut_size,
-> +					struct drm_plane *plane,
-> +					const struct drm_colorop_funcs *funcs,
-> +					uint32_t lut_size,
->   					enum drm_colorop_lut1d_interpolation_type interpolation,
->   					uint32_t flags)
->   {
->   	struct drm_property *prop;
->   	int ret;
->   
-> -	ret = drm_plane_colorop_init(dev, colorop, plane, DRM_COLOROP_1D_LUT, flags);
-> +	ret = drm_plane_colorop_init(dev, colorop, plane, funcs, DRM_COLOROP_1D_LUT, flags);
->   	if (ret)
->   		return ret;
->   
-> @@ -339,11 +346,12 @@ int drm_plane_colorop_curve_1d_lut_init(struct drm_device *dev, struct drm_color
->   EXPORT_SYMBOL(drm_plane_colorop_curve_1d_lut_init);
->   
->   int drm_plane_colorop_ctm_3x4_init(struct drm_device *dev, struct drm_colorop *colorop,
-> -				   struct drm_plane *plane, uint32_t flags)
-> +				   struct drm_plane *plane, const struct drm_colorop_funcs *funcs,
-> +				   uint32_t flags)
->   {
->   	int ret;
->   
-> -	ret = drm_plane_colorop_init(dev, colorop, plane, DRM_COLOROP_CTM_3X4, flags);
-> +	ret = drm_plane_colorop_init(dev, colorop, plane, funcs, DRM_COLOROP_CTM_3X4, flags);
->   	if (ret)
->   		return ret;
->   
-> @@ -363,16 +371,18 @@ EXPORT_SYMBOL(drm_plane_colorop_ctm_3x4_init);
->    * @dev: DRM device
->    * @colorop: The drm_colorop object to initialize
->    * @plane: The associated drm_plane
-> + * @funcs: control functions for the new colorop
->    * @flags: bitmask of misc, see DRM_COLOROP_FLAG_* defines.
->    * @return zero on success, -E value on failure
->    */
->   int drm_plane_colorop_mult_init(struct drm_device *dev, struct drm_colorop *colorop,
-> -				struct drm_plane *plane, uint32_t flags)
-> +				struct drm_plane *plane, const struct drm_colorop_funcs *funcs,
-> +				uint32_t flags)
->   {
->   	struct drm_property *prop;
->   	int ret;
->   
-> -	ret = drm_plane_colorop_init(dev, colorop, plane, DRM_COLOROP_MULTIPLIER, flags);
-> +	ret = drm_plane_colorop_init(dev, colorop, plane, funcs, DRM_COLOROP_MULTIPLIER, flags);
->   	if (ret)
->   		return ret;
->   
-> @@ -391,6 +401,7 @@ EXPORT_SYMBOL(drm_plane_colorop_mult_init);
->   
->   int drm_plane_colorop_3dlut_init(struct drm_device *dev, struct drm_colorop *colorop,
->   				 struct drm_plane *plane,
-> +				 const struct drm_colorop_funcs *funcs,
->   				 uint32_t lut_size,
->   				 enum drm_colorop_lut3d_interpolation_type interpolation,
->   				 uint32_t flags)
-> @@ -398,7 +409,7 @@ int drm_plane_colorop_3dlut_init(struct drm_device *dev, struct drm_colorop *col
->   	struct drm_property *prop;
->   	int ret;
->   
-> -	ret = drm_plane_colorop_init(dev, colorop, plane, DRM_COLOROP_3D_LUT, flags);
-> +	ret = drm_plane_colorop_init(dev, colorop, plane, funcs, DRM_COLOROP_3D_LUT, flags);
->   	if (ret)
->   		return ret;
->   
-> diff --git a/drivers/gpu/drm/i915/display/intel_color_pipeline.c b/drivers/gpu/drm/i915/display/intel_color_pipeline.c
-> index 04af552b3648..d3d73d60727c 100644
-> --- a/drivers/gpu/drm/i915/display/intel_color_pipeline.c
-> +++ b/drivers/gpu/drm/i915/display/intel_color_pipeline.c
-> @@ -25,7 +25,7 @@ int _intel_color_pipeline_plane_init(struct drm_plane *plane, struct drm_prop_en
->   
->   	colorop = intel_colorop_create(INTEL_PLANE_CB_PRE_CSC_LUT);
->   
-> -	ret = drm_plane_colorop_curve_1d_lut_init(dev, &colorop->base, plane,
-> +	ret = drm_plane_colorop_curve_1d_lut_init(dev, &colorop->base, plane, NULL,
->   						  PLANE_DEGAMMA_SIZE,
->   						  DRM_COLOROP_LUT1D_INTERPOLATION_LINEAR,
->   						  DRM_COLOROP_FLAG_ALLOW_BYPASS);
-> @@ -39,7 +39,7 @@ int _intel_color_pipeline_plane_init(struct drm_plane *plane, struct drm_prop_en
->   	prev_op = &colorop->base;
->   
->   	colorop = intel_colorop_create(INTEL_PLANE_CB_CSC);
-> -	ret = drm_plane_colorop_ctm_3x4_init(dev, &colorop->base, plane,
-> +	ret = drm_plane_colorop_ctm_3x4_init(dev, &colorop->base, plane, NULL,
->   					     DRM_COLOROP_FLAG_ALLOW_BYPASS);
->   	if (ret)
->   		return ret;
-> @@ -52,7 +52,7 @@ int _intel_color_pipeline_plane_init(struct drm_plane *plane, struct drm_prop_en
->   	    plane->type == DRM_PLANE_TYPE_PRIMARY) {
->   		colorop = intel_colorop_create(INTEL_PLANE_CB_3DLUT);
->   
-> -		ret = drm_plane_colorop_3dlut_init(dev, &colorop->base, plane, 17,
-> +		ret = drm_plane_colorop_3dlut_init(dev, &colorop->base, plane, NULL, 17,
->   						   DRM_COLOROP_LUT3D_INTERPOLATION_TETRAHEDRAL,
->   						   true);
->   		if (ret)
-> @@ -64,7 +64,7 @@ int _intel_color_pipeline_plane_init(struct drm_plane *plane, struct drm_prop_en
->   	}
->   
->   	colorop = intel_colorop_create(INTEL_PLANE_CB_POST_CSC_LUT);
-> -	ret = drm_plane_colorop_curve_1d_lut_init(dev, &colorop->base, plane,
-> +	ret = drm_plane_colorop_curve_1d_lut_init(dev, &colorop->base, plane, NULL,
->   						  PLANE_GAMMA_SIZE,
->   						  DRM_COLOROP_LUT1D_INTERPOLATION_LINEAR,
->   						  DRM_COLOROP_FLAG_ALLOW_BYPASS);
-> diff --git a/drivers/gpu/drm/vkms/vkms_colorop.c b/drivers/gpu/drm/vkms/vkms_colorop.c
-> index d03a1f2e9c41..9e9dd0494628 100644
-> --- a/drivers/gpu/drm/vkms/vkms_colorop.c
-> +++ b/drivers/gpu/drm/vkms/vkms_colorop.c
-> @@ -31,7 +31,7 @@ static int vkms_initialize_color_pipeline(struct drm_plane *plane, struct drm_pr
->   		goto cleanup;
->   	}
->   
-> -	ret = drm_plane_colorop_curve_1d_init(dev, ops[i], plane, supported_tfs,
-> +	ret = drm_plane_colorop_curve_1d_init(dev, ops[i], plane, NULL, supported_tfs,
->   					      DRM_COLOROP_FLAG_ALLOW_BYPASS);
->   	if (ret)
->   		goto cleanup;
-> @@ -48,7 +48,8 @@ static int vkms_initialize_color_pipeline(struct drm_plane *plane, struct drm_pr
->   		goto cleanup;
->   	}
->   
-> -	ret = drm_plane_colorop_ctm_3x4_init(dev, ops[i], plane, DRM_COLOROP_FLAG_ALLOW_BYPASS);
-> +	ret = drm_plane_colorop_ctm_3x4_init(dev, ops[i], plane, NULL,
-> +					     DRM_COLOROP_FLAG_ALLOW_BYPASS);
->   	if (ret)
->   		goto cleanup;
->   
-> @@ -64,7 +65,8 @@ static int vkms_initialize_color_pipeline(struct drm_plane *plane, struct drm_pr
->   		goto cleanup;
->   	}
->   
-> -	ret = drm_plane_colorop_ctm_3x4_init(dev, ops[i], plane, DRM_COLOROP_FLAG_ALLOW_BYPASS);
-> +	ret = drm_plane_colorop_ctm_3x4_init(dev, ops[i], plane, NULL,
-> +					     DRM_COLOROP_FLAG_ALLOW_BYPASS);
->   	if (ret)
->   		goto cleanup;
->   
-> @@ -80,7 +82,7 @@ static int vkms_initialize_color_pipeline(struct drm_plane *plane, struct drm_pr
->   		goto cleanup;
->   	}
->   
-> -	ret = drm_plane_colorop_curve_1d_init(dev, ops[i], plane, supported_tfs,
-> +	ret = drm_plane_colorop_curve_1d_init(dev, ops[i], plane, NULL, supported_tfs,
->   					      DRM_COLOROP_FLAG_ALLOW_BYPASS);
->   	if (ret)
->   		goto cleanup;
-> diff --git a/include/drm/drm_colorop.h b/include/drm/drm_colorop.h
-> index a3a32f9f918c..45d1b1d3faf9 100644
-> --- a/include/drm/drm_colorop.h
-> +++ b/include/drm/drm_colorop.h
-> @@ -187,6 +187,19 @@ struct drm_colorop_state {
->   	struct drm_atomic_state *state;
->   };
->   
-> +/**
-> + * struct drm_colorop_funcs - driver colorop control functions
-> + */
-> +struct drm_colorop_funcs {
-> +	/**
-> +	 * @destroy:
-> +	 *
-> +	 * Clean up colorop resources. This is called at driver unload time
-> +	 * through drm_mode_config_cleanup()
-> +	 */
-> +	void (*destroy)(struct drm_colorop *colorop);
-> +};
-> +
->   /**
->    * struct drm_colorop - DRM color operation control structure
->    *
-> @@ -362,6 +375,8 @@ struct drm_colorop {
->   	 */
->   	struct drm_property *next_property;
->   
-> +	/** @funcs: colorop control functions */
-> +	const struct drm_colorop_funcs *funcs;
->   };
->   
->   #define obj_to_colorop(x) container_of(x, struct drm_colorop, base)
-> @@ -390,17 +405,22 @@ void drm_colorop_pipeline_destroy(struct drm_device *dev);
->   void drm_colorop_cleanup(struct drm_colorop *colorop);
->   
->   int drm_plane_colorop_curve_1d_init(struct drm_device *dev, struct drm_colorop *colorop,
-> -				    struct drm_plane *plane, u64 supported_tfs, uint32_t flags);
-> +				    struct drm_plane *plane, const struct drm_colorop_funcs *funcs,
-> +				    u64 supported_tfs, uint32_t flags);
->   int drm_plane_colorop_curve_1d_lut_init(struct drm_device *dev, struct drm_colorop *colorop,
-> -					struct drm_plane *plane, uint32_t lut_size,
-> +					struct drm_plane *plane,
-> +					const struct drm_colorop_funcs *funcs,
-> +					uint32_t lut_size,
->   					enum drm_colorop_lut1d_interpolation_type interpolation,
->   					uint32_t flags);
->   int drm_plane_colorop_ctm_3x4_init(struct drm_device *dev, struct drm_colorop *colorop,
-> -				   struct drm_plane *plane, uint32_t flags);
-> +				   struct drm_plane *plane, const struct drm_colorop_funcs *funcs,
-> +				   uint32_t flags);
->   int drm_plane_colorop_mult_init(struct drm_device *dev, struct drm_colorop *colorop,
-> -				struct drm_plane *plane, uint32_t flags);
-> +				struct drm_plane *plane, const struct drm_colorop_funcs *funcs,
-> +				uint32_t flags);
->   int drm_plane_colorop_3dlut_init(struct drm_device *dev, struct drm_colorop *colorop,
-> -				 struct drm_plane *plane,
-> +				 struct drm_plane *plane, const struct drm_colorop_funcs *funcs,
->   				 uint32_t lut_size,
->   				 enum drm_colorop_lut3d_interpolation_type interpolation,
->   				 uint32_t flags);
+diff --git a/include/linux/hmm.h b/include/linux/hmm.h
+index db75ffc949a7..d8756c341620 100644
+--- a/include/linux/hmm.h
++++ b/include/linux/hmm.h
+@@ -23,6 +23,7 @@ struct mmu_interval_notifier;
+  * HMM_PFN_WRITE - if the page memory can be written to (requires HMM_PFN_VALID)
+  * HMM_PFN_ERROR - accessing the pfn is impossible and the device should
+  *                 fail. ie poisoned memory, special pages, no vma, etc
++ * HMM_PFN_DEVICE_PRIVATE - the pfn field contains a DEVICE_PRIVATE pfn.
+  * HMM_PFN_P2PDMA - P2P page
+  * HMM_PFN_P2PDMA_BUS - Bus mapped P2P transfer
+  * HMM_PFN_DMA_MAPPED - Flag preserved on input-to-output transformation
+@@ -40,6 +41,7 @@ enum hmm_pfn_flags {
+ 	HMM_PFN_VALID = 1UL << (BITS_PER_LONG - 1),
+ 	HMM_PFN_WRITE = 1UL << (BITS_PER_LONG - 2),
+ 	HMM_PFN_ERROR = 1UL << (BITS_PER_LONG - 3),
++	HMM_PFN_DEVICE_PRIVATE = 1UL << (BITS_PER_LONG - 7),
+ 	/*
+ 	 * Sticky flags, carried from input to output,
+ 	 * don't forget to update HMM_PFN_INOUT_FLAGS
+@@ -48,7 +50,7 @@ enum hmm_pfn_flags {
+ 	HMM_PFN_P2PDMA     = 1UL << (BITS_PER_LONG - 5),
+ 	HMM_PFN_P2PDMA_BUS = 1UL << (BITS_PER_LONG - 6),
+ 
+-	HMM_PFN_ORDER_SHIFT = (BITS_PER_LONG - 11),
++	HMM_PFN_ORDER_SHIFT = (BITS_PER_LONG - 12),
+ 
+ 	/* Input flags */
+ 	HMM_PFN_REQ_FAULT = HMM_PFN_VALID,
+diff --git a/mm/hmm.c b/mm/hmm.c
+index 4ec74c18bef6..14895fa6575f 100644
+--- a/mm/hmm.c
++++ b/mm/hmm.c
+@@ -267,7 +267,7 @@ static int hmm_vma_handle_pte(struct mm_walk *walk, unsigned long addr,
+ 		if (softleaf_is_device_private(entry) &&
+ 		    page_pgmap(softleaf_to_page(entry))->owner ==
+ 		    range->dev_private_owner) {
+-			cpu_flags = HMM_PFN_VALID;
++			cpu_flags = HMM_PFN_VALID | HMM_PFN_DEVICE_PRIVATE;
+ 			if (softleaf_is_device_private_write(entry))
+ 				cpu_flags |= HMM_PFN_WRITE;
+ 			new_pfn_flags = softleaf_to_pfn(entry) | cpu_flags;
+@@ -347,7 +347,8 @@ static int hmm_vma_handle_absent_pmd(struct mm_walk *walk, unsigned long start,
+ 	    softleaf_to_folio(entry)->pgmap->owner ==
+ 	    range->dev_private_owner) {
+ 		unsigned long cpu_flags = HMM_PFN_VALID |
+-			hmm_pfn_flags_order(PMD_SHIFT - PAGE_SHIFT);
++			hmm_pfn_flags_order(PMD_SHIFT - PAGE_SHIFT) |
++			HMM_PFN_DEVICE_PRIVATE;
+ 		unsigned long pfn = softleaf_to_pfn(entry);
+ 		unsigned long i;
+ 
+-- 
+2.34.1
 
