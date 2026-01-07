@@ -4,61 +4,155 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8D565CF6C17
-	for <intel-xe@archiver.kernel.org>; Wed,  7 Jan 2026 09:14:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D3C00CDC198
+	for <intel-xe@archiver.kernel.org>; Wed,  7 Jan 2026 09:41:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3E3E110E574;
-	Wed,  7 Jan 2026 09:14:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 89E6410E57F;
+	Wed,  7 Jan 2026 09:41:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JdJbRvj0";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="v9LJOGU/";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 37CCB10E573;
- Wed,  7 Jan 2026 09:14:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1767777290; x=1799313290;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=wjiY1bZfmRxFM0+21b+/Mces0wvAXm6lnUKM0bkl2vA=;
- b=JdJbRvj0E0UDmf2W6hjdYb5MEpHU4mQnxx/AJ86StXuUeI6bDy51bHEJ
- bKCgxIREi9iVn0baNG8ctlGZVJ6naMoQBb1tPASxUDPYMdNV4XLEbuvf5
- ZNZooN2P3GID7TSlJT9zGZJFFH2ZkvJrlAfE0ug0/bf/dO3CFMWPK72V2
- EFSKIItyy8NXBpe/aQsM//QcAFmaRHQ8KVNr+pAKoQtp5B2PpHyhjHGF+
- Yw04UuTJCt/NBOjBr6TFQgrGXCEByYTMQaC1WgxhJn4pbqPpI1f4w/weA
- loBukiQTxu07a703i4fMT5nrgHCycTYQlvFUCOX1wLP7Q8DYLBGqo3051 Q==;
-X-CSE-ConnectionGUID: zlvdcB1vRui6swK2hFw9Ew==
-X-CSE-MsgGUID: oK0WVYE/Tliu66MqNYJfIg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11663"; a="86729429"
-X-IronPort-AV: E=Sophos;i="6.21,207,1763452800"; d="scan'208";a="86729429"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jan 2026 01:14:50 -0800
-X-CSE-ConnectionGUID: dwPnGL2WTZG3RGf/T6oOuA==
-X-CSE-MsgGUID: KysnPNPVRhOrIN2T4MvbNA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,207,1763452800"; d="scan'208";a="203138538"
-Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.60])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jan 2026 01:14:47 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Cc: animesh.manna@intel.com, uma.shankar@intel.com, imre.deak@intel.com,
- jouni.hogander@intel.com
-Subject: Re: [PATCH 4/9] drm/i915/display: Add DC3CO eligibility logic
-In-Reply-To: <8e41d261-4edb-45c2-b89e-749ac49457ef@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20251209113332.2770263-1-dibin.moolakadan.subrahmanian@intel.com>
- <20251209113332.2770263-5-dibin.moolakadan.subrahmanian@intel.com>
- <e6ee14b445df7979d8bd90ee0f45ab7505d1e92e@intel.com>
- <8e41d261-4edb-45c2-b89e-749ac49457ef@intel.com>
-Date: Wed, 07 Jan 2026 11:14:44 +0200
-Message-ID: <170b656e770e89fbe486f051b7396b82bfb12b6c@intel.com>
+Received: from BL0PR03CU003.outbound.protection.outlook.com
+ (mail-eastusazon11012003.outbound.protection.outlook.com [52.101.53.3])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A658C10E57D;
+ Wed,  7 Jan 2026 09:41:06 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=wF6JuxST+LWp5OIlyfEgmLLrUSAIvAoFPTRaXGxNeAo/bXv3AySa6taV6mo71/C0+g+XTYAQhkLphjj+4lst3fo0AiW2CPPvqegkhe1ATCCKxilEzF2Boq1JYz86Dsv2qGGkl3jU8dQUL46d8Mb3D9TmBCewIZi1ZJD0RNMeUkmVgPBxt1w+BM0rEg6yyQ8MoZkovDd77znaOAIL0pLtU9tzkOOw+6hXq+XPeCe7iuzxIOdsNyEAJdKXsUPf/e/rceXwQFQ8p+ktrg3STU67uP16ZbhZRst7WOFFku/X+UTClbB1g/BxslqQ8Li/s91+EtYVvh3vK/fEo2k5203Qrw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=QwyzmupSCvXoiCvHeRH94laqE/VqOLZn+8QGJjs2ciM=;
+ b=Be/N4v0bfCvIemmJXZCRMpJw/mf79EjLIYsQKBr5g6X2zD0Bdu0OD7qXf6lE8T/vInKq85u9TxREILRgG5+GGcTvieX5L3/5t7gYN2l3yWvZuzCXmXX6/XoFK5nS2VQ9H62zrjtdDehHTKSWMbjav/WYUjXXIppCmwGZWw26yZ0a6Oek734hxPkbh7014SZdVJt8HYLuyQBT1vlzER5wfbmbs4YJ2NVOrTf4j0Sk+g7nCWT6IfcaVR9AMrkfPjlZAnn63Yim5ZT88bMQq2uapD33G0Ti5lcrAEvUDshnGgU65m+b4VN31fPbWZ+/ri0n4W4/DsIGjrXmXjOeivuong==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=QwyzmupSCvXoiCvHeRH94laqE/VqOLZn+8QGJjs2ciM=;
+ b=v9LJOGU/iDGfJDdwOsHZL+hInoYcdNA9b2ALGFo4Z7El7EzJDe8uXFgZD89REshuVTBR7BzM1OSarR9pGJk43YSAeK7ZkqTNtneb9FlYA+3O6cL/jDNR0OjFy79am3NkuJgKudGm5e6BRQo3DPotyRvtHvBpNGtZwspHSvHNafg=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from PH8PR12MB7301.namprd12.prod.outlook.com (2603:10b6:510:222::12)
+ by SA1PR12MB9548.namprd12.prod.outlook.com (2603:10b6:806:458::10)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9499.2; Wed, 7 Jan
+ 2026 09:41:03 +0000
+Received: from PH8PR12MB7301.namprd12.prod.outlook.com
+ ([fe80::a929:e8eb:ef22:6350]) by PH8PR12MB7301.namprd12.prod.outlook.com
+ ([fe80::a929:e8eb:ef22:6350%5]) with mapi id 15.20.9478.005; Wed, 7 Jan 2026
+ 09:41:03 +0000
+Message-ID: <a6d5c716-9f09-412a-9613-ba3213d20b4c@amd.com>
+Date: Wed, 7 Jan 2026 15:10:52 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] drm/buddy: Prevent BUG_ON by validating rounded
+ allocation
+To: Matthew Auld <matthew.auld@intel.com>,
+ Sanjay Yadav <sanjay.kumar.yadav@intel.com>, dri-devel@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org, =?UTF-8?Q?Christian_K=C3=B6nig?=
+ <christian.koenig@amd.com>
+References: <20251222065238.1661415-4-sanjay.kumar.yadav@intel.com>
+ <20251222065238.1661415-5-sanjay.kumar.yadav@intel.com>
+ <60ab8e82-a079-4ca1-adcc-ee50cfc5641d@intel.com>
+Content-Language: en-US
+From: Arunpravin Paneer Selvam <arunpravin.paneerselvam@amd.com>
+In-Reply-To: <60ab8e82-a079-4ca1-adcc-ee50cfc5641d@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: PN4PR01CA0102.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:2ac::7) To PH8PR12MB7301.namprd12.prod.outlook.com
+ (2603:10b6:510:222::12)
 MIME-Version: 1.0
-Content-Type: text/plain
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH8PR12MB7301:EE_|SA1PR12MB9548:EE_
+X-MS-Office365-Filtering-Correlation-Id: 39a3062a-f235-4a00-3eec-08de4dd0df32
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016|7053199007;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?NFVhYmtRQkZFS0RVKzdtK3duRWVqb05pYWNxR3M1Q2JOajd5UXpEY0ZtSFl5?=
+ =?utf-8?B?dkV2OU5KcVJnR1JjQkRyaUMvMm1MWEpqNE9GQ25KRGhKV1ZsQU1RYWNFU3FP?=
+ =?utf-8?B?Q09sS1dwY2hxSld5Tm1NRDhqZDk3bUMvRzkzUmZQL3k3RkxZK2RsTVYxVXhU?=
+ =?utf-8?B?QzlNdnBIdzBwYTVnMUovU2w5T1Q3QnB3ZmtMbkxiZ3pzZkZobWRoMzR2SDY0?=
+ =?utf-8?B?YUdhYmgvUG1JYmxHV281NVVRQmxBM2xEc01MRm94Z0tzOHQ0TGFWMlM2UTVq?=
+ =?utf-8?B?V29Rb2tOclg3VUlBcXZjU1haMkJRalA4RFJYdzZvemlPWk5PZmhzc0ZZTlE1?=
+ =?utf-8?B?dUtYZFhGcW0rVTNIRndFZ2Z2Y3B4NSt2ekdYTzdmbkhBM1Y1S1ZHY3EwaDVw?=
+ =?utf-8?B?SzVsbmk4KzdNeGJaclQ4SWtPUUZNZG9XUnI5L25wd0dscjNsVFF6QkRmV1or?=
+ =?utf-8?B?RkFwQzd3cFlONW1jNStFOVJ4YXo5b1dKNVptdUJBQkhPKzFMWXFuZWRjbFYy?=
+ =?utf-8?B?UzUwTCtzeGV3SGZ2eFUwK0pKUVFWSXVyRjBmWHYwbDVBUjJZR0NNS20yNnNM?=
+ =?utf-8?B?dnJrK0xVOGVFdVl5K1NXZ2hzcjNpaU5PenFpak5DaW9iVUM1SjlBYXJ1NjhR?=
+ =?utf-8?B?bFRMSGZneHhIVW1GRnN6a242RlpKL21tdW1HbHg4RWRXQXJTR3BrcUoyZVhQ?=
+ =?utf-8?B?czFPUXNuVE1FWWVlcG4yS0krdHE5V3ZPbzJFMmtld3pWWnQwMlV6OXFzam9K?=
+ =?utf-8?B?NDF5Uml1Y1FIczVuTmxVRjBPRlMwdVZtVWFTQ2twZjR3ZnI1Qys5bzFTdmVa?=
+ =?utf-8?B?TTNBODBCNXQ2bGVxOFNSMnVDWTcrU09mQkxaRE5aMDREdXNramZSVHptNWRQ?=
+ =?utf-8?B?NDhuaFIxcWtzZ1d6a2lFNEN3Q2NuNTZLSDVmQlkrTHcyUWhFWk5MTVk4eGJN?=
+ =?utf-8?B?SUgzdmhpSmhTSUJpV2VSTHduZzd5WDRsa0czTk1YOS85SXhCWURvQ1NlWVVr?=
+ =?utf-8?B?a1BCb21Xd0puTDgwU2pHekRxVHZiTVROc1NiSk1aQ0lyOHJwdDRXNVd6VEpK?=
+ =?utf-8?B?bktHSFh1djBTN0c2MEJ0bGF3UGd2d2gzYmp4eE5nRzc1WjJGQ21DNEJqdTl5?=
+ =?utf-8?B?c2xRNExVWDdqc2VvbFFEQnBEbnBhc2NKME9OUW9zS0c1d2xPamJiVlBRTmtK?=
+ =?utf-8?B?Q0w3U2V3TmE5VFlFckZxd3lpdEplTkZOeURvVmIyVjFINy9hK3lxdUdUMjdh?=
+ =?utf-8?B?cUhjbU1nZ3hDanpodDVjem1hK3paNEdhRzc1MGROQ3JKQWNVaCsvdC80WUZU?=
+ =?utf-8?B?aXZ1TVhPRVU3VXRDYnVKcWtGYk5BKzVDdzJVODVIN0FXYndTQ1ZQc2hGWU84?=
+ =?utf-8?B?OHdyZEk3STNJME9OYU1FZkYzYktoRi9KVEhOZk5mQlV6a1hNRGt0ZmVDU2NX?=
+ =?utf-8?B?YUttZXcySHFoelJ3WTM0OThNL0Zaa2tzcFFObXVPejd6dmd4N016eU1ya1Jv?=
+ =?utf-8?B?OHp0ajdsdSt2U3J6Q0owbUZWSE1NS2hwSVQzRDgyVHRDamdEc1BDdG9EWFJO?=
+ =?utf-8?B?c2VHNVVzaDYzdlErckk5VXB6My9CR2Q5MDJ2RTc2UDM4ODNuSXZxakZzYUFa?=
+ =?utf-8?B?SGkzOEZNcUIzRTFpa3pxTE5VVXB0bm8weW9mK1ZzR2grcmN2OEJ5WVU5RTYy?=
+ =?utf-8?B?SXZnTnlWaWpkNUJxeTN1d3lOWStPczV4RW45d0I0eWFzZ3dZYisva2c2SjNK?=
+ =?utf-8?B?K0NmdGJUUERuUmEzRGxJbG1Xb0JNVm1YemFYYWNIOTQ0dzU5bFRiNkdjb252?=
+ =?utf-8?B?bis3bW83cmlrWHVsVXEycXN4UTE0ZHZpbVRKTUlYVytOcnI3UHR0T2Q3TUJO?=
+ =?utf-8?B?eXRtVHB5SFZlSmNyUFdtTk1ZNUhEcUJxcGh5T1B6WDVRcFE9PQ==?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH8PR12MB7301.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016)(7053199007); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?K2VrckhYNlowQzN2MXV0U1dCT2NsN1Avb3FzUHY3UVNDblFWQll5QzNxVnpM?=
+ =?utf-8?B?bW1NcFFNZlJsclpKbm5CYlgzUWNOaytCeFRoN3NMelJSbWQ5cmJobUF3a0RR?=
+ =?utf-8?B?ekZCVEEvcnZWTFl3SFN0Y1E4K2NuOFZlbk9ZdGNPdWRMNWFVQWJ2dGM1YzFl?=
+ =?utf-8?B?TkJRR1MwZjJGYStiVnZnaXc5WldMYUFwRlA5ZmcvZ09BeEtMazVTY1FtMkdk?=
+ =?utf-8?B?eUJFZlRoSDVUNjlVUWJ2QXpGcGNxSEIzQTZsUmgybnE3V05Mc1BVaTRSempv?=
+ =?utf-8?B?SVZMOHFqMHhCbG9SRnRJZjg2aHg5ZE1pbzgxU2lTdUZ0c0g4QVlqWmZnNko3?=
+ =?utf-8?B?K0VjMUpvbWFRa3QwdmNLbTJRTlFRK1VHY1lRTmJteVJjOGlwVk9oQTV0d0VZ?=
+ =?utf-8?B?dGpNdnM4RE1OQ1lWMmR0bHpBc25kcDE0TUlwL2hiMEZ2d2VqSGVjRUhqbDc2?=
+ =?utf-8?B?alA4RlhmYlJ4V2wrRzNqSm93K1ZlVzhhZEp6d2N2OGtiM3VIQXN6WWRJcDZS?=
+ =?utf-8?B?aExXeGxLclNmMDlwa2EvTDh6ZklmZXZxKzFHZ1dHSFcvbFJ5V1FyNCthbWts?=
+ =?utf-8?B?Y3JmTGdoRCtPZTJ2NDk2TjVXc2UrQmZCQmN2Z1IyQVhaTWtUR3dHckw0aE9U?=
+ =?utf-8?B?M08zVitCbVBGbTdzR2paL0o1ODNhTmRUM0NrSEdNMUJvUGU4NmJTWjJmbjNF?=
+ =?utf-8?B?TTk5MktvWUJYUEkxbmV2enB1bzJpY2RhOHd1Q2VGRW1ETjZ1SVN2UFB6Ylh5?=
+ =?utf-8?B?WkVOblYwc1ZoS0duOEhWR290cEJIa2JxSzZHdmt6K3RkeWVwdDVaOEl1b3dt?=
+ =?utf-8?B?WkFPcWVNUXBhRW5ESXpzY0tYNHlva3BySUROTVV3eWZQZkNLLy9QN2pQRzNu?=
+ =?utf-8?B?cG1VZDZPQys5bDVEWXpWSVFiWk8wT3c0a2ZvUnVRbnFRVnNOWm5QaUF2OUVU?=
+ =?utf-8?B?eEN6cmZOVUpINlF5QUdHQmFtK1BmaG5UL2ZIVzhBZXdvTGZXNlNTYTVJMElR?=
+ =?utf-8?B?NDZuakIzV09JUk04cUZmS2RSbnB0UjJBSTh0RGJjblpMN1VORkh3aFMyb1dP?=
+ =?utf-8?B?WVM3cDcrRVpIZFVQYWVuTTNMM1Jmd2RsYjJjbVlsQ3h3cjloOGVDdWNycDFV?=
+ =?utf-8?B?N0ZQbDBZRVRZOFhlTjlKaFpBYnNtTGNYNXJmRTNiRTRrTmFBa0dHR1p6RmZl?=
+ =?utf-8?B?elJteGNnTVVDRElGRXZVODF4RlA0Z2d3UjM0ZlMzaUsxa1BSRnU4andKdFRa?=
+ =?utf-8?B?TGt4ejFvVDhibnc5aGdyTnVKR0FSbGF3OVpjNVV3SHFVT2ZZSmJDZng5WUlz?=
+ =?utf-8?B?VU9tVVlSTHlRRUIrT0pGVTh1MGdYTVRpaTc2bWdoREJVNGlVV1l4L2Q2Tnpz?=
+ =?utf-8?B?TTNKU2xaMHJ5VlBENHpBdWU2NWRKcmdxekFBd2c3aE1md0Fxc3RpWFBzaU1a?=
+ =?utf-8?B?OHlvaWsvdWNCeVcxMGJFZlR0UUtSYmp5N0NON1VqcE81TE5IanlFd09rc2dZ?=
+ =?utf-8?B?NDA4Ri8zbitkR3R4UU5yVXljNW9IS1M4OXZ6M053K0FvN2gzUnQrQjBPdnE4?=
+ =?utf-8?B?VFVLbkdEL1dSdWxOYitKWlJOdTZYcFVycDlUeW9sY3RpVzdQNEJUYnEyVmNF?=
+ =?utf-8?B?K2ZnZ0ZwbU1WY0NteGVUeThhbTdpUVBxa2l1TEJCczhwdHdlWXNqWjBDSnFa?=
+ =?utf-8?B?SnpzdUt5dGRiMUNCblRlMTVRVWJRS1hlSUFvcFY2cEF5VXZVQTh3YXMvNzdv?=
+ =?utf-8?B?WGNiRDVCQ01OY3hTRHhnRlBseEFGR1VYd2ZFUVZjYkNpL1hjRTYrSVVhYVNB?=
+ =?utf-8?B?eERZUlFDU241ME1mdnlNM0xBMENHZ2tncFZiOGtBV2wvVWhQTkJxUnlnV2pl?=
+ =?utf-8?B?T3NLT0FUcGJJR1lqN0lXdEgxaHZDYVNDWWx1a040ZFZlZWVBbExCMEJ0Q25L?=
+ =?utf-8?B?RW1hYllLNFg1OTU0QkowenM0WWtYUFlOMEdKLzMxOFZjMVc0NDZ1R3A3ZXpG?=
+ =?utf-8?B?TFAwdzYrcW54Z2JUNjFJV2hxNFVWQkZWNkdOUVVmRk5FQUlHSVlVQzhEc1BY?=
+ =?utf-8?B?d2JTaXpyekRZWnUwZ1JuQW1xOGNHRithQ0ZWOWhyeCtxT1l3Mm9OK3VCb1ZU?=
+ =?utf-8?B?WXAyT2I3RHl1TTdFdmRxT0pQVExqUWRoeTkzOFJGN2szUnpQbTQ5b2JOK2F5?=
+ =?utf-8?B?MkplMWtPemVVbnRPdUtNS0kwK3creHpHTzJsUFJmNGt4eUZpWXJNTWNseUkv?=
+ =?utf-8?B?MDY0R1gvUFRnczlKbXF5NTF6djU4Yjg0V216WTdCbVVCV1JLc2tBSzh1RjdV?=
+ =?utf-8?B?anNScU10RksyTXdGUW9wQjVoWElKZHBXdUpSOEtEd1U2Wk1hRGswdz09?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 39a3062a-f235-4a00-3eec-08de4dd0df32
+X-MS-Exchange-CrossTenant-AuthSource: PH8PR12MB7301.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Jan 2026 09:41:03.3005 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 5H0vqnb7nOqAUD0tRuKTXYOSxprcXSTVXElocvKXRm0+fhqLnhs8elWGneSwvIoYaJa9OfJSdWQyAc0C1XDSZg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB9548
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,254 +167,77 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 06 Jan 2026, Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com> wrote:
-> On 05-01-2026 18:25, Jani Nikula wrote:
->> On Tue, 09 Dec 2025, Dibin Moolakadan Subrahmanian<dibin.moolakadan.subrahmanian@intel.com> wrote:
->>> Introduce dc3co_allow in struct intel_display and determine DC3CO
->>> eligibility during atomic_check(). DC3CO is permitted only when:
->>>
->>>    - the active pipe drives eDP,
->>>    - the pipe is single-pipe (no joiner),
->>>    - the pipe/port combination supports DC3CO.
->>>
->>> When eligible, intel_atomic_commit_tail() programs the target DC state
->>> as DC_STATE_EN_UPTO_DC3CO; otherwise we fall back to DC6. Update the
->>> PSR vblank enable/disable path to follow the same policy.
->>>
->>> Also extend get_allowed_dc_mask() to expose DC3CO support on
->>> DISPLAY_VER >= 35.
->>>
->>> Signed-off-by: Dibin Moolakadan Subrahmanian<dibin.moolakadan.subrahmanian@intel.com>
->>> ---
->>>   drivers/gpu/drm/i915/display/intel_display.c  | 75 +++++++++++++++++++
->>>   drivers/gpu/drm/i915/display/intel_display.h  |  1 +
->>>   .../gpu/drm/i915/display/intel_display_core.h |  3 +
->>>   .../drm/i915/display/intel_display_power.c    |  4 +-
->>>   drivers/gpu/drm/i915/display/intel_psr.c      | 13 ++--
->>>   5 files changed, 87 insertions(+), 9 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
->>> index 9c6d3ecdb589..205f55a87736 100644
->>> --- a/drivers/gpu/drm/i915/display/intel_display.c
->>> +++ b/drivers/gpu/drm/i915/display/intel_display.c
->>> @@ -6295,6 +6295,75 @@ static int intel_joiner_add_affected_crtcs(struct intel_atomic_state *state)
->>>   	return 0;
->>>   }
->>>   
->>> +bool intel_dc3co_allowed(struct intel_display *display)
->>> +{
->>> +	return display->power.dc3co_allow;
->> Very few files should touch display->power, and this is not one of them.
->>
->> 'git grep "display->power" -- drivers/gpu/drm/i915/display'
->
-> Yes, git grep shows few files , I will try to move all dc3co functions to
-> drivers/gpu/drm/i915/display/intel_display_power.c.
->
->>
->> When is it okay to call this function and expect to get sane results?
->
-> display->power.dc3co_allow is only updated in intel_dc3co_allow_check() which is called from
-> intel_atomic_commit_tail().intel_dc3co_allowed() only intended to be called from intel_post_plane_update()
-> path(ALPM/PSR), which executes as part of intel_atomic_commit_tail().
 
-The point being, you have a complicated set of rules, and who's going to
-know them and how when reading the code?
-
-BR,
-Jani.
-
+On 06/01/26 21:34, Matthew Auld wrote:
+> On 22/12/2025 06:52, Sanjay Yadav wrote:
+>> When DRM_BUDDY_CONTIGUOUS_ALLOCATION is set, the requested size is
+>> rounded up to the next power-of-two via roundup_pow_of_two().
+>> Similarly, for non-contiguous allocations with large min_block_size,
+>> the size is aligned up via round_up(). Both operations can produce a
+>> rounded size that exceeds mm->size, which later triggers
+>> BUG_ON(order > mm->max_order).
+>>
+>> Example scenarios:
+>> - 9G CONTIGUOUS allocation on 10G VRAM memory:
+>>    roundup_pow_of_two(9G) = 16G > 10G
+>> - 9G allocation with 8G min_block_size on 10G VRAM memory:
+>>    round_up(9G, 8G) = 16G > 10G
+>>
+>> Fix this by checking the rounded size against mm->size. For
+>> non-contiguous or range allocations where size > mm->size is invalid,
+>> return -EINVAL immediately. For contiguous allocations without range
+>> restrictions, allow the request to fall through to the existing
+>> __alloc_contig_try_harder() fallback.
+>>
+>> This ensures invalid user input returns an error or uses the fallback
+>> path instead of hitting BUG_ON.
+>>
+>> Cc: Christian König <christian.koenig@amd.com>
+>> Cc: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
+>> Suggested-by: Matthew Auld <matthew.auld@intel.com>
+>> Signed-off-by: Sanjay Yadav <sanjay.kumar.yadav@intel.com>
 >
->>
->>> +}
->>> +
->>> +static bool intel_dc3co_port_pipe_compatible(struct intel_dp *intel_dp,
->>> +					     const struct intel_crtc_state *crtc_state)
->>> +{
->>> +	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
->>> +	enum pipe pipe = to_intel_crtc(crtc_state->uapi.crtc)->pipe;
->>> +	enum port port = dig_port->base.port;
->>> +	int num_pipes = intel_crtc_num_joined_pipes(crtc_state);
->>> +
->>> +	if (num_pipes != 1)
->>> +		return false;
->>> +
->>> +	if (!(pipe <= PIPE_B && port <= PORT_B))
->>> +		return false;
->>> +
->>> +	return true;
->> That's a really complicated way to say
->>
->> 	return num_pipes == 1 && pipe <= PIPEB && port <= PORT_B;
+> I think we should maybe add a fixes tag:
 >
-> I will update this.
+> Fixes: 0a1844bf0b53 ("drm/buddy: Improve contiguous memory allocation")
+> Cc: <stable@vger.kernel.org> # v6.7+
 >
->>
->>> +}
->>> +
->>> +static void intel_dc3co_allow_check(struct intel_atomic_state *state)
->> What does "check" mean here? Or in *any* function?
->>
->> Check sounds like something that's a pure function that doesn't change
->> anything... but this does.
+> ?
 >
-> I will split this function to two , one for check and one for initialization
+> I don't think current xe can actually trigger this yet, but not sure 
+> if amdgpu or something can somehow trigger this in some obscure case.
 >
->>> +{
->>> +	struct intel_display *display = to_intel_display(state);
->>> +	struct intel_crtc *crtc;
->>> +	struct intel_crtc_state *new_crtc_state;
->>> +	struct intel_encoder *encoder;
->>> +	struct intel_dp *intel_dp;
->>> +	int i;
->>> +	struct i915_power_domains *power_domains = &display->power.domains;
->>> +	bool any_active = false;
->>> +	bool allow = true;
->>> +
->>> +	display->power.dc3co_allow = 0;
->> That's now cached state with no stated rules on when it's valid and when
->> it's not.
->>
->>> +
->>> +	if ((power_domains->allowed_dc_mask & DC_STATE_EN_UPTO_DC3CO) != DC_STATE_EN_UPTO_DC3CO)
->>> +		return;
->>> +
->>> +	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
->>> +		if (!new_crtc_state->hw.active)
->>> +			continue;
->>> +
->>> +		any_active = true;
->>> +
->>> +		for_each_intel_encoder_mask(display->drm, encoder,
->>> +					    new_crtc_state->uapi.encoder_mask) {
->>> +			/* If any active pipe not eDP disable*/
->> What?
+> We could maybe also add:
 >
-> I will correct comment /* Disallow DC3CO if any active pipe is not eDP */
+> Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/6712
 >
->>
->>> +			if (!intel_encoder_is_dp(encoder) ||
->>> +			    encoder->type != INTEL_OUTPUT_EDP) {
->>> +				allow = false;
->>> +				goto out;
->>> +			}
->>> +			intel_dp = enc_to_intel_dp(encoder);
->>> +			/* Port, joiner, pipe placement checks */
->> Is that a helpful comment?
->>
->>> +			if (!intel_dc3co_port_pipe_compatible(intel_dp, new_crtc_state)) {
->>> +				allow = false;
->>> +				goto out;
->>> +			}
->>> +		}
->>> +	}
->>> +
->>> +	if (!any_active)
->>> +		allow = false;
->>> +
->>> +out:
->>> +	display->power.dc3co_allow = allow;
->>> +}
->>> +
->> intel_display.[ch] is not the dumping ground for random new code. The
->> goal is to *reduce* the size of it, not increase.
+> So it auto-closes plus gives some more context that this fix was 
+> motivated from code inspection and not some user report. Otherwise I 
+> think the change looks reasonable,
+> Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+Reviewed-by: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
 >
-> This function needs encoder,port and pipe information, which is why I added
-> it in intel_display.c.However,I agree it is updating dc3co_allow . I will check if
-> it can be moved to intel_display_power.c.
+>> ---
+>>   drivers/gpu/drm/drm_buddy.c | 9 +++++++++
+>>   1 file changed, 9 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/drm_buddy.c b/drivers/gpu/drm/drm_buddy.c
+>> index 2f279b46bd2c..5141348fc6c9 100644
+>> --- a/drivers/gpu/drm/drm_buddy.c
+>> +++ b/drivers/gpu/drm/drm_buddy.c
+>> @@ -1155,6 +1155,15 @@ int drm_buddy_alloc_blocks(struct drm_buddy *mm,
+>>       order = fls(pages) - 1;
+>>       min_order = ilog2(min_block_size) - ilog2(mm->chunk_size);
+>>   +    if (order > mm->max_order || size > mm->size) {
+>> +        if ((flags & DRM_BUDDY_CONTIGUOUS_ALLOCATION) &&
+>> +            !(flags & DRM_BUDDY_RANGE_ALLOCATION))
+>> +            return __alloc_contig_try_harder(mm, original_size,
+>> +                             original_min_size, blocks);
+>> +
+>> +        return -EINVAL;
+>> +    }
+>> +
+>>       do {
+>>           order = min(order, (unsigned int)fls(pages) - 1);
+>>           BUG_ON(order > mm->max_order);
 >
->>
->>>   static int intel_atomic_check_config(struct intel_atomic_state *state,
->>>   				     struct intel_link_bw_limits *limits,
->>>   				     enum pipe *failed_pipe)
->>> @@ -6565,6 +6634,8 @@ int intel_atomic_check(struct drm_device *dev,
->>>   	if (ret)
->>>   		goto fail;
->>>   
->>> +	intel_dc3co_allow_check(state);
->>> +
->>>   	for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
->>>   					    new_crtc_state, i) {
->>>   		intel_color_assert_luts(new_crtc_state);
->>> @@ -7601,6 +7672,10 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
->>>   		 */
->>>   		intel_uncore_arm_unclaimed_mmio_detection(&dev_priv->uncore);
->>>   	}
->>> +	if (intel_dc3co_allowed(display))
->>> +		intel_display_power_set_target_dc_state(display, DC_STATE_EN_UPTO_DC3CO);
->>> +	else
->>> +		intel_display_power_set_target_dc_state(display, DC_STATE_EN_UPTO_DC6);
->>>   	/*
->>>   	 * Delay re-enabling DC states by 17 ms to avoid the off->on->off
->>>   	 * toggling overhead at and above 60 FPS.
->>> diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
->>> index f8e6e4e82722..97987f082560 100644
->>> --- a/drivers/gpu/drm/i915/display/intel_display.h
->>> +++ b/drivers/gpu/drm/i915/display/intel_display.h
->>> @@ -560,5 +560,6 @@ bool assert_port_valid(struct intel_display *display, enum port port);
->>>   
->>>   bool intel_scanout_needs_vtd_wa(struct intel_display *display);
->>>   int intel_crtc_num_joined_pipes(const struct intel_crtc_state *crtc_state);
->>> +bool intel_dc3co_allowed(struct intel_display *display);
->>>   
->>>   #endif
->>> diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
->>> index d708d322aa85..fa567c95029c 100644
->>> --- a/drivers/gpu/drm/i915/display/intel_display_core.h
->>> +++ b/drivers/gpu/drm/i915/display/intel_display_core.h
->>> @@ -538,6 +538,9 @@ struct intel_display {
->>>   
->>>   		/* perform PHY state sanity checks? */
->>>   		bool chv_phy_assert[2];
->>> +
->>> +		/* mark dc3co entry is allowed*/
->> 		                              ^- space missing
-> will add space.
->>
->>> +		bool dc3co_allow;
->> Still unclear when this is valid.
->>
->>>   	} power;
->>>   
->>>   	struct {
->>> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
->>> index 0961b194554c..e99552f18756 100644
->>> --- a/drivers/gpu/drm/i915/display/intel_display_power.c
->>> +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
->>> @@ -956,7 +956,9 @@ static u32 get_allowed_dc_mask(struct intel_display *display, int enable_dc)
->>>   	if (!HAS_DISPLAY(display))
->>>   		return 0;
->>>   
->>> -	if (DISPLAY_VER(display) >= 20)
->>> +	if (DISPLAY_VER(display) >= 35)
->>> +		max_dc = 3;
->>> +	else if (DISPLAY_VER(display) >= 20)
->>>   		max_dc = 2;
->>>   	else if (display->platform.dg2)
->>>   		max_dc = 1;
->>> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
->>> index 753359069044..9c616f449ad6 100644
->>> --- a/drivers/gpu/drm/i915/display/intel_psr.c
->>> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
->>> @@ -3903,14 +3903,11 @@ void intel_psr_notify_vblank_enable_disable(struct intel_display *display,
->>>   		return;
->>>   	}
->>>   
->>> -	/*
->>> -	 * NOTE: intel_display_power_set_target_dc_state is used
->>> -	 * only by PSR * code for DC3CO handling. DC3CO target
->>> -	 * state is currently disabled in * PSR code. If DC3CO
->>> -	 * is taken into use we need take that into account here
->>> -	 * as well.
->>> -	 */
->>> -	intel_display_power_set_target_dc_state(display, enable ? DC_STATE_DISABLE :
->>> +	if (intel_dc3co_allowed(display))
->>> +		intel_display_power_set_target_dc_state(display, enable ? DC_STATE_DISABLE :
->>> +						DC_STATE_EN_UPTO_DC3CO);
->>> +	else
->>> +		intel_display_power_set_target_dc_state(display, enable ? DC_STATE_DISABLE :
->>>   						DC_STATE_EN_UPTO_DC6);
->>>   }
-
--- 
-Jani Nikula, Intel
