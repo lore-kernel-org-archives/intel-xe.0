@@ -4,62 +4,190 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A8BC4CF6C1F
-	for <intel-xe@archiver.kernel.org>; Wed,  7 Jan 2026 09:49:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1EE37CD584D
+	for <intel-xe@archiver.kernel.org>; Wed,  7 Jan 2026 10:37:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4E95A10E58C;
-	Wed,  7 Jan 2026 09:49:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CBA1010E0EA;
+	Wed,  7 Jan 2026 10:37:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="i1qjYwHu";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="a+Jh8k6w";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F2C9810E596;
- Wed,  7 Jan 2026 09:49:24 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D35E510E0EA;
+ Wed,  7 Jan 2026 10:37:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1767779365; x=1799315365;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=E13izJo/j20r0sibMz9GJl/CFdWJvI9CSdbFJta2THo=;
- b=i1qjYwHueWqV/NKA6GaIZBnMo3XYftX+8WITeZIKDINHvwFRK82smCuV
- Zlc+PG8yu1ebZ4z4A2AQg3YIv4OrUSbKrmcy9kaa7eX8qsFLW0D9YZKvO
- K9kt+HrLeq3MzHroO+C1CTmGO/rNzvrYctjKOIZWH2ckZuSuI/lrJc6Ll
- bebF9+RY02fXNq3vdSjZVeXdWuLb9+fGWONd0EOi2LbnPLzAcvIgIRfdt
- yA13Aalpj4YcjnIQtzHHdUYS6rB0FNR/90Z5FR1mICjgIPxO/cmOVPTC5
- vi1dEOk2foo0Gtvx3CjZOG5eZz4Hst0JcUBl7NrOQYzF7nR/GDBmZ2gxQ g==;
-X-CSE-ConnectionGUID: DOEdkbkuQD6FzzkalRItGQ==
-X-CSE-MsgGUID: GG8QRtWbQPCZDiJtczpfMg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11663"; a="80259717"
-X-IronPort-AV: E=Sophos;i="6.21,207,1763452800"; d="scan'208";a="80259717"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jan 2026 01:49:25 -0800
-X-CSE-ConnectionGUID: emiu4u0HTW6LpXFCx2RNBg==
-X-CSE-MsgGUID: GZBewADqRUexb+wxFZAkmw==
+ t=1767782251; x=1799318251;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=BDVBJMGh1orwbhbsjxuS0fAW1tpFukw5Rv24fAyFccQ=;
+ b=a+Jh8k6wRGwUB1skppPZsn11FMZpMUZdN5cKjGhzZgywqFEKhDWzWEHe
+ mKH8LO4WvlK2+A1gCGBKWKLLSYBC/FsbjQsxaxnJnQg71SOiycHxI9ZXp
+ YVOh56r+qr2ahJSYgWn9+ODExgKH0UukgIcSYJnC3e1gu/LKn9YI4ZwSN
+ IyGBzLuQVLVz4fqYSLsBeAxnP8+ndyVbl2X71yT9p3h0L3pAyovsTdYVx
+ 4hZe9iukBXZaHFhinfMTL0wbxH72Yemch5r9yexbcthgcJAeuaUhxeu2a
+ dA61Gu8MaKMhJSYTVcXn2Vj1Fa6tv8f4Qe8GByijCwPkJgPYYIJ0z6/lQ g==;
+X-CSE-ConnectionGUID: Rxndo9rJSLuQlrxUH6MCSA==
+X-CSE-MsgGUID: qi7U5r18Q/2yAl1Z3RrU3g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11663"; a="91807640"
+X-IronPort-AV: E=Sophos;i="6.21,207,1763452800"; d="scan'208";a="91807640"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jan 2026 02:37:31 -0800
+X-CSE-ConnectionGUID: vVbaBvfERHeMKpOEx4bw8Q==
+X-CSE-MsgGUID: n5wrAlpxRmGWMQLwk+0ffg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,207,1763452800"; d="scan'208";a="203146926"
-Received: from aiddamse-mobl3.gar.corp.intel.com (HELO [10.247.141.88])
- ([10.247.141.88])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jan 2026 01:49:20 -0800
-Message-ID: <7b4c33f9-d675-4ede-a01d-aef74f368354@linux.intel.com>
-Date: Wed, 7 Jan 2026 15:18:56 +0530
-MIME-Version: 1.0
+X-IronPort-AV: E=Sophos;i="6.21,207,1763452800"; d="scan'208";a="202951732"
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by orviesa008.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jan 2026 02:37:30 -0800
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.29; Wed, 7 Jan 2026 02:37:30 -0800
+Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.29 via Frontend Transport; Wed, 7 Jan 2026 02:37:30 -0800
+Received: from CH1PR05CU001.outbound.protection.outlook.com (52.101.193.26) by
+ edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.29; Wed, 7 Jan 2026 02:37:29 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=XXuGIyrrJa5MmrOyUk93h9fsM4rjxPwTPBoNLPBic3jeNyS0acd0C7NtTtcgAK2NtleQpLAzE+A8+HPoXaPjp7HoHTThXO/xK9EDGBDcP9Lm/7tGpq6FN6BO4SQxoKEvz9cA79WWGUVmjs/8x4JVijYIw6qw6bc3s7Ogo3BnxwDhzSNzvn90ufTW7vb3EtsUEJs0aBZD+l6zU+gjTFXmEQzMrB3u6PeKjGIzYnaiWwXXoP5qd2iB24JvJi0luRHn6055q6FpqIv/chzD0gbLYewLpKMFIwnZi4J9SkdR4G7BPcex+OpwWubGe5ctKdCPye26QEarWF8qcmuE+8N+wQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=u9p7jULGuQ2c3Zb3KJLOSZIX+MMmxjQlCY6ar0hurXY=;
+ b=AQcoVGaOmovXxoxJ73VaRxsaXRGEFgZsHRD4k6weZLQYEVizWf5Nhi8jeuPDfmwvhDPRLJIRf4FrRGCDnLHT1S5wltLFa1UL66rfts+nbgKB0WCjYCb3pPGuJfPqtbPA3r3YIP+CGrkQMUkdmFEBsWsLEKdLxqRcwW4IUgKdlUiUEI10A+KNXUikX+Tm48TfBJ1mcWkCl3Gf1XEhzVxGwj3PjvIhkhM73LUriNmK1dT1p4w96qmpY6ow+Z0usEgX4nVJSqO9nPFUqL//rTuQVM9VcjQheo1Kh4WqNm6x8bBM4gvEGcrf1M95HpUXR4K7cFWn690RE9/Hpx/+LWSSUw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DS0PR11MB8208.namprd11.prod.outlook.com (2603:10b6:8:165::18)
+ by DM3PR11MB8735.namprd11.prod.outlook.com (2603:10b6:0:4b::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9499.2; Wed, 7 Jan
+ 2026 10:37:27 +0000
+Received: from DS0PR11MB8208.namprd11.prod.outlook.com
+ ([fe80::ecb0:7475:84de:ca9c]) by DS0PR11MB8208.namprd11.prod.outlook.com
+ ([fe80::ecb0:7475:84de:ca9c%5]) with mapi id 15.20.9499.002; Wed, 7 Jan 2026
+ 10:37:27 +0000
+Message-ID: <10b31338-7a36-4c35-9e7e-48d9c4c8051a@intel.com>
+Date: Wed, 7 Jan 2026 16:07:21 +0530
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/4] drm/xe/xe_drm_ras: Add support for drm ras
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>, Riana Tauro
- <riana.tauro@intel.com>, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- anshuman.gupta@intel.com, lukas@wunner.de, simona.vetter@ffwll.ch,
- airlied@gmail.com, pratik.bari@intel.com, joshua.santosh.ranjan@intel.com,
- ashwin.kumar.kulkarni@intel.com, shubham.kumar@intel.com
-References: <20251205083934.3602030-6-riana.tauro@intel.com>
- <20251205083934.3602030-8-riana.tauro@intel.com> <aTibQi4lZDSgyISK@intel.com>
+Subject: Re: [PATCH 1/2] drm/buddy: Prevent BUG_ON by validating rounded
+ allocation
+To: Arunpravin Paneer Selvam <arunpravin.paneerselvam@amd.com>, Matthew Auld
+ <matthew.auld@intel.com>, <dri-devel@lists.freedesktop.org>
+CC: <intel-xe@lists.freedesktop.org>, =?UTF-8?Q?Christian_K=C3=B6nig?=
+ <christian.koenig@amd.com>
+References: <20251222065238.1661415-4-sanjay.kumar.yadav@intel.com>
+ <20251222065238.1661415-5-sanjay.kumar.yadav@intel.com>
+ <60ab8e82-a079-4ca1-adcc-ee50cfc5641d@intel.com>
+ <a6d5c716-9f09-412a-9613-ba3213d20b4c@amd.com>
 Content-Language: en-US
-From: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
-In-Reply-To: <aTibQi4lZDSgyISK@intel.com>
-Content-Type: text/plain; charset=UTF-8
+From: "Yadav, Sanjay Kumar" <sanjay.kumar.yadav@intel.com>
+In-Reply-To: <a6d5c716-9f09-412a-9613-ba3213d20b4c@amd.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: MW4PR03CA0357.namprd03.prod.outlook.com
+ (2603:10b6:303:dc::32) To DS0PR11MB8208.namprd11.prod.outlook.com
+ (2603:10b6:8:165::18)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS0PR11MB8208:EE_|DM3PR11MB8735:EE_
+X-MS-Office365-Filtering-Correlation-Id: 647e43f6-615e-49db-1c71-08de4dd8c0cb
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016|7053199007;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?dXgxRGUxMDQ0dTNLZXRxUzZXTm9Ma2k5bFVvMndIM3N3SWNidGxWTkY2T2M4?=
+ =?utf-8?B?ZDZuOGxJSVlwOTVLQXNVc1ZldXROd2ZFRXk0bUdCcVh3MmxrV2pBRFZsRUlW?=
+ =?utf-8?B?bW5raVV0OW9TQUNkV1c0ZHhqVGVnY1lqYVovNnlxTXdNaTlFSUFtZkQzdTBX?=
+ =?utf-8?B?ZDJpWXBFc2Qwdk5DRkRONk0rdktuL1dtdzVqaW1VK2lHVk1YeEo0N0RTeUxl?=
+ =?utf-8?B?bHhxNnNCN2p4YUY3QTNwQW1temphaTZTM2pQS1J2MkxkSUdSM0xkSFBtVWVL?=
+ =?utf-8?B?RGNrMUJ0WmVXZDl1SXNwZThTU0ZuTk9sZmFnYVhrNWNjS0kwMkdKQ1BjNzlY?=
+ =?utf-8?B?Um5qUkpLOHFNYkRIQmRqSkVMdTJhUFVmbmFoQ1A4WUcyV0tXZFZBVjhzNERo?=
+ =?utf-8?B?TWxRTU0rR2k3S2tiUU56MWtyVnA2ZFp2NnI5QmFwSjlwckNTN2hhQjRaTmVi?=
+ =?utf-8?B?aU56d0UrL2VTK2ppMjR3TnZJa0ZzR2FKNjlzKzdGTERMa1pRSDgzUUdCOFJs?=
+ =?utf-8?B?Rnh3ckh6SmVuYlFnWGhkTmtvbDJMOUpUeW1vdWl3ckNEcGprcGJ1ZTcwNGJt?=
+ =?utf-8?B?ZE81NllDR2Z6eXJYUHhTMEo0QUM0N3ZRL09HcEVlWG5RYmxsNHhmeERnempN?=
+ =?utf-8?B?YmptOUZIUmtRNGxvRGJwSzgxL1lGd1c5VGVVWHVETnlpT1pocnNHTGI4UC9H?=
+ =?utf-8?B?UWxLVXJ5bGNhL3hFdXh4eTloeTQrQzZ2Qk1iaCtETVNsYzNRTmZKdkRlaTlU?=
+ =?utf-8?B?ak9JUzRWUjZwTkZhTDdZL01QM3dSN2loR0Y1ZHJzZVdaZmYxS1c2MTRmRnY3?=
+ =?utf-8?B?WTNwMElQbDkzUnVMdndIdHlyVHZXRkxsd2xWR1FUd2UxRUIzcVZWOEVqd2p6?=
+ =?utf-8?B?bjBwZS9hWlBzaXpvZVNxK0kvZEZZYS9FaGR1alRMN0RjL3AvRXZuVFZpK0Rj?=
+ =?utf-8?B?K2tRZU8rR1JOOG9TQUZrQyt5K1dJSWthNVR1QlZmRU96Z2M1VGErZ2Z4UFJY?=
+ =?utf-8?B?a3ZWMk90MlY0dHlXcGZpQW5lTmQ0WEtXVmlUbkdHdU9lQUMwcnhLZEwzaVFL?=
+ =?utf-8?B?L1RNckNQM3dJM0Q2emJrK0JFSjMyQWl0ODhwR2tBMFlOLzcveHovZUtxditU?=
+ =?utf-8?B?eHFqMzdFUEZQMnVsL0pqbTllQ2JMMzJqYVBwSEFjMDYrdGgrREdveGtLWXEy?=
+ =?utf-8?B?Q1pWcDdtUkEwQXpVN2hEbGFEdkF5N0YrS0xRUVNLS25OSElpelByL3FRZWdY?=
+ =?utf-8?B?L0xuYzgzdTZRNGxVcGhJZjlzV3l0cWRyQ3p0YWUrSFJxbkxVRDEyRWV3MDBh?=
+ =?utf-8?B?UzlxQ3RIOStYWEpXUUt1bWZFM3FzT01mbk52clh0SjB0OXp4cHM0NVFtWW84?=
+ =?utf-8?B?VXhzTy84K0ZTa0wzSHZQQmQvWU14aTNadWNGS0xlbTY4YjA1cVkrZ2dXYzJF?=
+ =?utf-8?B?NytoTzVZNWJwZkRjVkw1U1lLOTM3ZjQ1UUI2R3VwNnkwLzcrUGhqa0kxbVhS?=
+ =?utf-8?B?SXVrVjFudmVmbDFUK3RoQ3lBRHJBNkVrSm1ITVRjMkF0TU1DR24vYTV0WUFq?=
+ =?utf-8?B?SjRMWng1d2xrbHZSQlMzYXRVTFZzS2JWUU9Cb3dlUStabHRFc1d4NDFHcE14?=
+ =?utf-8?B?N2F0U1dlbWQ2bGxOd0krSmwwTEpKTHNlQUdnUWRYZ3YreEd0RGJQNHVvWFBh?=
+ =?utf-8?B?YnNZQlBPYmVGb0V4M2RmQUsrRGV6ZXoyMmpGTm9ZQ2lMN25tRTlic0dXVGRa?=
+ =?utf-8?B?ZEEyNG4yL1hQeGtFbDJOWTJHK3VBTE5yRXhRTVFzNytzYkdzUzluRUZwWGNP?=
+ =?utf-8?B?Y1diU3huVXRRaXlXcWZncE1NSHhKV1p6OFc4VUtTQ2JaaGpUTDZoYVB6OWRs?=
+ =?utf-8?B?YlQvUUlxbE1HcWhDcFNLVi9vbGR4T01XWitId3RaWlNzT1E9PQ==?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS0PR11MB8208.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016)(7053199007); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RC9OaU1aeUhxYkdGUWFuU2ZjcnpCUEF2cXRncUtDY2xTdzdDYnpieGlqNUkx?=
+ =?utf-8?B?cjdBL3FPOUdIZjZmcU5ISU52U2lSOTZSQktrSUtJckxqVDdYS09weStuZ0g0?=
+ =?utf-8?B?WG5ZMmt2a0FlWUxMQU9lSXlUQ2lIS2JqV1BpSVBCN0NycHZoT0twdVFaaUdP?=
+ =?utf-8?B?cERaMFVoMnFpYTF2V3MxR2FUejBnOG5KTmV4cy8ycnFTLzQzR3ZJRllnbG81?=
+ =?utf-8?B?UDVFSTFXQzRpRkR6SHFiRXJtbFprMDRGMlN1Q0VQVWI1VEFCdUxpd1JkekNE?=
+ =?utf-8?B?WkZqMCtMM2dUbVRXbEdKZ0JhY2dYekVySDFBTjJGU2Vzb1RGaDBQVnlzVldP?=
+ =?utf-8?B?Sk1VRHN1YXhrUTkyQW9aZkpVRlRtUkMxaU44R0lUK3U3aE02MWtwK0FRYmhZ?=
+ =?utf-8?B?ZkNrbENyMGdyNXhGSkNxSVZrQWZWbVVMOHlmS2Qva3ZSenpsRmhhNVQ0M08v?=
+ =?utf-8?B?UnUxTWJpTURQYXdpMERqRExtMTk5YjlkcmpFR1JjcnNEZ1Bjeml2SFJVZzd5?=
+ =?utf-8?B?TXhybEtQZFJMKzY5eGhCdjZpRm9KcURYTDFUZUk2bWN0UkVWcERjcWJFT1ZF?=
+ =?utf-8?B?d0NOMld6MEd2bm90WTB1Wm1FMmxYM08zbTNGNWtLSnZ5ZTZCNHJsMEE4Tkh6?=
+ =?utf-8?B?KzR2Q3A0c2VWbnByOGtjZEtkNEllS2JYR2RuR0laU2doSHdzZG91MVhrZGln?=
+ =?utf-8?B?Y3hrcWRyQXRZWXk3dTFPZzNvSzZFOGtERDBLdjNydnpRcU40RjRCWjBSeDdU?=
+ =?utf-8?B?Q3BXN1pSdThyUEJ0SnFQTXBNWUFEV1FFYWZXVXl4cGk1VW01VVVqQ2wzaTZn?=
+ =?utf-8?B?dkpqWTZ3bHFSLytkTzJ4UUkvOXcyV20rRnBXVmorVHRvNHJVMG8ybGhWekNs?=
+ =?utf-8?B?cFV2QXZIbXJSQ2g1Yzk1dHNIaFdwTlY3cHdxQVk2NVNaUmNwYUZmd1BtNVBh?=
+ =?utf-8?B?WXZFQWxiL1krWWY5UjhPeVB6bkt1OGZoS0U4eTVTNlhVR2dGemNHUTJxUjZZ?=
+ =?utf-8?B?R1Z0YktGaUtoV2t6NVlYQjBwMzVhbHBZQzZyVUtMV29rOTFUY1duT2VibFJ4?=
+ =?utf-8?B?aHlVL2tNWjhSaXdwVVRyVGF4Q29hK3hpOU93UzNJVTQycmZ6RzRmdTgvTG0x?=
+ =?utf-8?B?RnRoeG80L0tOVE9VNmtFYlQ4RnRHQVZlU1lORy9aWUYxMzlBU2FSbWFlNjZm?=
+ =?utf-8?B?dnJxM0FPR3R2b1E0WkNFL3IyaVF2Tm90VTRwRkV6QzdwRXovSUZHa1BPYmZU?=
+ =?utf-8?B?MktVTTNrQ3p6LzVsRUpwTzBiN1Q2Tm9zUGc5elpJQnlHZFVsdFVUcHFIZlhW?=
+ =?utf-8?B?cnRNaVhOd01ZVlQ0NlU0UTFza1N2TmFyWVd0M3l4eW9tYitBT2Q3T0NzQUl3?=
+ =?utf-8?B?dndid3ZRYnZJWW5lZUVtbmh5R2xnWVR4UGd1cDM1cWJZNWlnZG1weEVRS01w?=
+ =?utf-8?B?d3gvdnhiYmFzNkQwRE9zQlR3MHpRanVpWUtIcXpGUFhxWDdIRjhLODBldTBl?=
+ =?utf-8?B?NXh5cEVWOXdCS0hoWC9ySnJCcnJySW9LcjhVQUdCc0VsYVFnWnRZMjZzM0t3?=
+ =?utf-8?B?MG1sYTlwWUNjMXNRb3p0bm5UY3hXa0hoalVtT2txL1QyZG1obUNaRHlIeENB?=
+ =?utf-8?B?Q2wxeU9WQThJS2p5bVZMdEUvdXo3cCs5V1RPR2xWOGp4RWRxc2FqaTZ0Tnla?=
+ =?utf-8?B?TjkxOEdncmVjbUdxSUNNeTI2VEs4WDZ3KzVqRDNsUzlCK2xxbVAvZEIydm9S?=
+ =?utf-8?B?UnBTTVd5ZVpwcDNGSFpCR2MydjJTNTRsK3g3L0JROFFVaG0vZGw0SkQrM3Zo?=
+ =?utf-8?B?ZGx3V0ZZdVg0V3Q4QUtSNkJHNi83WEdqYjVybXM4YTBBMzdHUTQzQVQ5T25p?=
+ =?utf-8?B?V2R6SWh1b2sySFFvUEV5QVZudnJUU2hGaVg0aEREVFVqUytlN1kxbVRMVll3?=
+ =?utf-8?B?a3FVZU13VWhmK1ppYUZyS2MyT2ZiK3lNK1ZOMG11NWdPa1MwckRtdzZUdld0?=
+ =?utf-8?B?N250WC9kdU9TQ0o1bXc0MXJPVWpYYy9XMm9hbk13RGxERHU2Y3VkV3ErZUxl?=
+ =?utf-8?B?NFVkams3RFVCbVFaSW1KMFo2M1Nha1QrOWdJdE9xTDZLbzFwSS8xQktaRitk?=
+ =?utf-8?B?NkJ1MXhUaThJUS9SN0pYbjVUNG1ZVEV5aDhnaGZORE5PYXFRYkxMMFhiSjBN?=
+ =?utf-8?B?K0ptaC9tQ2tEYTJPMDdwd2VsL0xQZjJYZHVQNjZhc3c4bkVPbXpkQWM1NDhz?=
+ =?utf-8?B?aG1uS2wwYndwR04wZG9RWlJGY0RYMHFEVTdGbEY1QUFwaXdZUkYzQ2RnZVJr?=
+ =?utf-8?B?YkJUTzJmQzJzQWJiYjRxdEp0Tng5Uk9VVTVkUFFVTGNtWmNOZVNObitXUllJ?=
+ =?utf-8?Q?cFBPbZLx6WNQkNmY=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 647e43f6-615e-49db-1c71-08de4dd8c0cb
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB8208.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Jan 2026 10:37:27.7605 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Ya74yPALZx6kdhmkSCdhfc12OCTjMAx1eK2KYNMXITakUe2ZwAXEdt6CGdwU8tBK/FoZHb7TUdzb7mZFIaIhwN+DKrEXYu/OXTQ3raqfZ8g=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM3PR11MB8735
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,626 +203,84 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
-On 10-12-2025 03:27, Rodrigo Vivi wrote:
-> On Fri, Dec 05, 2025 at 02:09:34PM +0530, Riana Tauro wrote:
->> Allocate correctable, nonfatal and fatal nodes per xe device.
->> Each node contains error classes, counters and respective
->> query counter functions.
->>
->> Add basic functionality to create and register drm nodes.
->> Below operations can be performed using Generic netlink DRM RAS interface
->>
->> List Nodes:
->>
->> $ sudo ynl --family drm_ras  --dump list-nodes
->> [{'device-name': '0000:03:00.0',
->>   'node-id': 0,
->>   'node-name': 'correctable-errors',
->>   'node-type': 'error-counter'},
->>  {'device-name': '0000:03:00.0',
->>   'node-id': 1,
->>   'node-name': 'nonfatal-errors',
->>   'node-type': 'error-counter'},
->>  {'device-name': '0000:03:00.0',
->>   'node-id': 2,
->>   'node-name': 'fatal-errors',
->>   'node-type': 'error-counter'}]
->>
->> Get Error counters:
->>
->> $ sudo ynl --family drm_ras  --dump get-error-counters --json '{"node-id":1}'
->> [{'error-id': 1, 'error-name': 'Core Compute Error', 'error-value': 0},
->>  {'error-id': 2, 'error-name': 'SOC Internal Error', 'error-value': 0}]
->>
->> Query Error counter:
->>
->> $ sudo ynl --family drm_ras --do query-error-counter  --json '{"node-id":1, "error-id":1}'
->> {'error-id': 1, 'error-name': 'Core Compute Error', 'error-value': 0}
->>
->> Signed-off-by: Riana Tauro <riana.tauro@intel.com>
->> ---
->> v2: Add ID's and names as uAPI (Rodrigo)
->>     Add documentation
->>     Modify commit message
->> ---
->>  drivers/gpu/drm/xe/Makefile           |   1 +
->>  drivers/gpu/drm/xe/xe_device_types.h  |   4 +
->>  drivers/gpu/drm/xe/xe_drm_ras.c       | 199 ++++++++++++++++++++++++++
->>  drivers/gpu/drm/xe/xe_drm_ras.h       |  12 ++
->>  drivers/gpu/drm/xe/xe_drm_ras_types.h |  40 ++++++
->>  drivers/gpu/drm/xe/xe_hw_error.c      |  64 ++++-----
->>  include/uapi/drm/xe_drm.h             |  82 +++++++++++
->>  7 files changed, 368 insertions(+), 34 deletions(-)
->>  create mode 100644 drivers/gpu/drm/xe/xe_drm_ras.c
->>  create mode 100644 drivers/gpu/drm/xe/xe_drm_ras.h
->>  create mode 100644 drivers/gpu/drm/xe/xe_drm_ras_types.h
->>
->> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
->> index a7e13a676f7d..bc417ef19280 100644
->> --- a/drivers/gpu/drm/xe/Makefile
->> +++ b/drivers/gpu/drm/xe/Makefile
->> @@ -41,6 +41,7 @@ xe-y += xe_bb.o \
->>  	xe_device_sysfs.o \
->>  	xe_dma_buf.o \
->>  	xe_drm_client.o \
->> +	xe_drm_ras.o \
->>  	xe_eu_stall.o \
->>  	xe_exec.o \
->>  	xe_exec_queue.o \
->> diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
->> index 9de73353223f..d6ea275700e1 100644
->> --- a/drivers/gpu/drm/xe/xe_device_types.h
->> +++ b/drivers/gpu/drm/xe/xe_device_types.h
->> @@ -13,6 +13,7 @@
->>  #include <drm/ttm/ttm_device.h>
->>  
->>  #include "xe_devcoredump_types.h"
->> +#include "xe_drm_ras_types.h"
->>  #include "xe_heci_gsc.h"
->>  #include "xe_late_bind_fw_types.h"
->>  #include "xe_lmtt_types.h"
->> @@ -361,6 +362,9 @@ struct xe_device {
->>  		bool oob_initialized;
->>  	} wa_active;
->>  
->> +	/** @ras: ras structure for device */
->> +	struct xe_drm_ras ras;
->> +
->>  	/** @survivability: survivability information for device */
->>  	struct xe_survivability survivability;
->>  
->> diff --git a/drivers/gpu/drm/xe/xe_drm_ras.c b/drivers/gpu/drm/xe/xe_drm_ras.c
->> new file mode 100644
->> index 000000000000..764b14b1edf8
->> --- /dev/null
->> +++ b/drivers/gpu/drm/xe/xe_drm_ras.c
->> @@ -0,0 +1,199 @@
->> +// SPDX-License-Identifier: MIT
->> +/*
->> + * Copyright © 2025 Intel Corporation
->> + */
->> +
->> +#include <drm/drm_managed.h>
->> +#include <drm/drm_ras.h>
->> +#include <linux/bitmap.h>
->> +
->> +#include "xe_device.h"
->> +#include "xe_drm_ras.h"
->> +
->> +static const char * const errors[] = DRM_XE_RAS_ERROR_CLASS_NAMES;
->> +static const char * const error_severity[] = DRM_XE_RAS_ERROR_SEVERITY_NAMES;
->> +
->> +static int hw_query_error_counter(struct xe_drm_ras_counter *info,
->> +				  u32 error_id, const char **name, u32 *val)
->> +{
->> +	if (error_id >= DRM_XE_RAS_ERROR_CLASS_MAX)
->> +		return -EINVAL;
->> +
->> +	if (!info[error_id].name)
->> +		return -ENOENT;
->> +
->> +	*name = info[error_id].name;
->> +	*val = atomic64_read(&info[error_id].counter);
->> +
->> +	return 0;
->> +}
->> +
->> +static int query_non_fatal_error_counters(struct drm_ras_node *ep,
->> +					  u32 error_id, const char **name,
->> +					  u32 *val)
->> +{
->> +	struct xe_device *xe = ep->priv;
->> +	struct xe_drm_ras *ras = &xe->ras;
->> +	struct xe_drm_ras_counter *info = ras->info[DRM_XE_RAS_ERROR_NONFATAL];
->> +
->> +	return hw_query_error_counter(info, error_id, name, val);
->> +}
->> +
->> +static int query_fatal_error_counters(struct drm_ras_node *ep,
->> +				      u32 error_id, const char **name,
->> +				      u32 *val)
->> +{
->> +	struct xe_device *xe = ep->priv;
->> +	struct xe_drm_ras *ras = &xe->ras;
->> +	struct xe_drm_ras_counter *info = ras->info[DRM_XE_RAS_ERROR_FATAL];
->> +
->> +	return hw_query_error_counter(info, error_id, name, val);
->> +}
->> +
->> +static int query_correctable_error_counters(struct drm_ras_node *ep,
->> +					    u32 error_id, const char **name,
->> +					    u32 *val)
->> +{
->> +	struct xe_device *xe = ep->priv;
->> +	struct xe_drm_ras *ras = &xe->ras;
->> +	struct xe_drm_ras_counter *info = ras->info[DRM_XE_RAS_ERROR_CORRECTABLE];
->> +
->> +	return hw_query_error_counter(info, error_id, name, val);
->> +}
->> +
->> +static struct xe_drm_ras_counter *allocate_and_copy_counters(struct xe_device *xe,
->> +							     int count)
->> +{
->> +	struct xe_drm_ras_counter *counter;
->> +	int i;
->> +
->> +	counter = drmm_kzalloc(&xe->drm, count * sizeof(struct xe_drm_ras_counter), GFP_KERNEL);
->> +	if (!counter)
->> +		return ERR_PTR(-ENOMEM);
->> +
->> +	for (i = 0; i < count; i++) {
->> +		if (!errors[i])
->> +			continue;
->> +
->> +		counter[i].name = errors[i];
->> +		atomic64_set(&counter[i].counter, 0);
->> +	}
->> +
->> +	return counter;
->> +}
->> +
->> +static int assign_node_params(struct xe_device *xe, struct drm_ras_node *node,
->> +			      const enum drm_xe_ras_error_severity severity)
->> +{
->> +	struct xe_drm_ras *ras = &xe->ras;
->> +	int count = 0, ret = 0;
->> +
->> +	count = DRM_XE_RAS_ERROR_CLASS_MAX;
->> +	node->error_counter_range.first = DRM_XE_RAS_ERROR_CORE_COMPUTE;
->> +	node->error_counter_range.last = DRM_XE_RAS_ERROR_CLASS_MAX - 1;
->> +
->> +	ras->info[severity] = allocate_and_copy_counters(xe, count);
->> +	if (IS_ERR(ras->info[severity]))
->> +		return PTR_ERR(ras->info[severity]);
->> +
->> +	switch (severity) {
->> +	case DRM_XE_RAS_ERROR_CORRECTABLE:
->> +		node->query_error_counter = query_correctable_error_counters;
->> +		break;
->> +	case DRM_XE_RAS_ERROR_NONFATAL:
->> +		node->query_error_counter = query_non_fatal_error_counters;
->> +		break;
->> +	case DRM_XE_RAS_ERROR_FATAL:
->> +		node->query_error_counter = query_fatal_error_counters;
->> +		break;
->> +	default:
->> +		break;
->> +	}
->> +
->> +	return ret;
->> +}
->> +
->> +static int register_nodes(struct xe_device *xe)
->> +{
->> +	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
->> +	struct xe_drm_ras *ras = &xe->ras;
->> +	const char *device_name;
->> +	int i = 0, ret;
->> +
->> +	device_name = kasprintf(GFP_KERNEL, "%04x:%02x:%02x.%d",
->> +				pci_domain_nr(pdev->bus), pdev->bus->number,
->> +				PCI_SLOT(pdev->devfn), PCI_FUNC(pdev->devfn));
->> +
->> +	for (i = 0; i < DRM_XE_RAS_ERROR_SEVERITY_MAX; i++) {
->> +		struct drm_ras_node *node = &ras->node[i];
->> +
->> +		node->device_name = device_name;
->> +		node->node_name = error_severity[i];
->> +		node->type = DRM_RAS_NODE_TYPE_ERROR_COUNTER;
->> +		node->priv = xe;
->> +
->> +		ret = assign_node_params(xe, node, i);
->> +		if (ret)
->> +			return ret;
->> +
->> +		ret = drm_ras_node_register(node);
->> +		if (ret) {
->> +			drm_err(&xe->drm, "Failed to register drm ras tile node\n");
->> +			return ret;
->> +		}
->> +	}
->> +
->> +	return 0;
->> +}
->> +
->> +static void xe_drm_ras_unregister_nodes(void *arg)
->> +{
->> +	struct xe_device *xe = arg;
->> +	struct xe_drm_ras *ras = &xe->ras;
->> +	int i = 0;
->> +
->> +	for (i = 0; i < DRM_XE_RAS_ERROR_SEVERITY_MAX; i++) {
->> +		struct drm_ras_node *node = &ras->node[i];
->> +
->> +		drm_ras_node_unregister(node);
->> +
->> +		if (i == 0)
->> +			kfree(node->device_name);
->> +	}
->> +}
->> +
->> +/**
->> + * xe_drm_ras_allocate_nodes - Allocate drm ras nodes
->> + * @xe: xe device instance
->> + *
->> + * Allocate xe drm ras nodes for all error severities per device
->> + *
->> + * Return: 0 on success, error code on failure
->> + */
->> +int xe_drm_ras_allocate_nodes(struct xe_device *xe)
->> +{
->> +	struct xe_drm_ras *ras = &xe->ras;
->> +	struct drm_ras_node *node;
->> +	int err;
->> +
->> +	node = drmm_kzalloc(&xe->drm, DRM_XE_RAS_ERROR_SEVERITY_MAX * sizeof(struct drm_ras_node),
->> +			    GFP_KERNEL);
->> +	if (!node)
->> +		return -ENOMEM;
->> +
->> +	ras->node = node;
->> +
->> +	err = register_nodes(xe);
->> +	if (err) {
->> +		drm_err(&xe->drm, "Failed to register drm ras node\n");
->> +		return err;
->> +	}
->> +
->> +	err = devm_add_action_or_reset(xe->drm.dev, xe_drm_ras_unregister_nodes, xe);
->> +	if (err) {
->> +		drm_err(&xe->drm, "Failed to add action for xe drm_ras\n");
->> +		return err;
->> +	}
->> +
->> +	return 0;
->> +}
->> diff --git a/drivers/gpu/drm/xe/xe_drm_ras.h b/drivers/gpu/drm/xe/xe_drm_ras.h
->> new file mode 100644
->> index 000000000000..6272b5da4e6d
->> --- /dev/null
->> +++ b/drivers/gpu/drm/xe/xe_drm_ras.h
->> @@ -0,0 +1,12 @@
->> +/* SPDX-License-Identifier: MIT */
->> +/*
->> + * Copyright © 2025 Intel Corporation
->> + */
->> +#ifndef XE_DRM_RAS_H_
->> +#define XE_DRM_RAS_H_
->> +
->> +struct xe_device;
->> +
->> +int xe_drm_ras_allocate_nodes(struct xe_device *xe);
->> +
->> +#endif
->> diff --git a/drivers/gpu/drm/xe/xe_drm_ras_types.h b/drivers/gpu/drm/xe/xe_drm_ras_types.h
->> new file mode 100644
->> index 000000000000..409d6fa54a23
->> --- /dev/null
->> +++ b/drivers/gpu/drm/xe/xe_drm_ras_types.h
->> @@ -0,0 +1,40 @@
->> +/* SPDX-License-Identifier: MIT */
->> +/*
->> + * Copyright © 2025 Intel Corporation
->> + */
->> +
->> +#ifndef _XE_DRM_RAS_TYPES_H_
->> +#define _XE_DRM_RAS_TYPES_H_
->> +
->> +#include <drm/xe_drm.h>
->> +#include <linux/atomic.h>
->> +
->> +struct drm_ras_node;
->> +
->> +/**
->> + * struct xe_drm_ras_counter - xe ras counter
->> + *
->> + * This structure contains error class and counter information
->> + */
->> +struct xe_drm_ras_counter {
->> +	/** @name: error class name */
->> +	const char *name;
->> +	/** @counter: count of error */
->> +	atomic64_t counter;
->> +};
->> +
->> +/**
->> + * struct xe_drm_ras - xe drm ras structure
->> + *
->> + * This structure has details of error counters
->> + */
->> +struct xe_drm_ras {
->> +	/** @node: DRM RAS node */
->> +	struct drm_ras_node *node;
->> +
->> +	/** @info: info array for all types of errors */
->> +	struct xe_drm_ras_counter *info[DRM_XE_RAS_ERROR_SEVERITY_MAX];
->> +
->> +};
->> +
->> +#endif
->> diff --git a/drivers/gpu/drm/xe/xe_hw_error.c b/drivers/gpu/drm/xe/xe_hw_error.c
->> index 8c65291f36fc..d63078d00b56 100644
->> --- a/drivers/gpu/drm/xe/xe_hw_error.c
->> +++ b/drivers/gpu/drm/xe/xe_hw_error.c
->> @@ -10,20 +10,14 @@
->>  #include "regs/xe_irq_regs.h"
->>  
->>  #include "xe_device.h"
->> +#include "xe_drm_ras.h"
->>  #include "xe_hw_error.h"
->>  #include "xe_mmio.h"
->>  #include "xe_survivability_mode.h"
->>  
->>  #define  HEC_UNCORR_FW_ERR_BITS 4
->>  extern struct fault_attr inject_csc_hw_error;
->> -
->> -/* Error categories reported by hardware */
->> -enum hardware_error {
->> -	HARDWARE_ERROR_CORRECTABLE = 0,
->> -	HARDWARE_ERROR_NONFATAL = 1,
->> -	HARDWARE_ERROR_FATAL = 2,
->> -	HARDWARE_ERROR_MAX,
->> -};
->> +static const char * const error_severity[] = DRM_XE_RAS_ERROR_SEVERITY_NAMES;
->>  
->>  static const char * const hec_uncorrected_fw_errors[] = {
->>  	"Fatal",
->> @@ -32,20 +26,6 @@ static const char * const hec_uncorrected_fw_errors[] = {
->>  	"Data Corruption"
->>  };
->>  
->> -static const char *hw_error_to_str(const enum hardware_error hw_err)
->> -{
->> -	switch (hw_err) {
->> -	case HARDWARE_ERROR_CORRECTABLE:
->> -		return "CORRECTABLE";
->> -	case HARDWARE_ERROR_NONFATAL:
->> -		return "NONFATAL";
->> -	case HARDWARE_ERROR_FATAL:
->> -		return "FATAL";
->> -	default:
->> -		return "UNKNOWN";
->> -	}
->> -}
->> -
->>  static bool fault_inject_csc_hw_error(void)
->>  {
->>  	return IS_ENABLED(CONFIG_DEBUG_FS) && should_fail(&inject_csc_hw_error, 1);
->> @@ -62,9 +42,10 @@ static void csc_hw_error_work(struct work_struct *work)
->>  		drm_err(&xe->drm, "Failed to enable runtime survivability mode\n");
->>  }
->>  
->> -static void csc_hw_error_handler(struct xe_tile *tile, const enum hardware_error hw_err)
->> +static void csc_hw_error_handler(struct xe_tile *tile,
->> +				 const enum drm_xe_ras_error_severity severity)
->>  {
->> -	const char *hw_err_str = hw_error_to_str(hw_err);
->> +	const char *severity_str = error_severity[severity];
->>  	struct xe_device *xe = tile_to_xe(tile);
->>  	struct xe_mmio *mmio = &tile->mmio;
->>  	u32 base, err_bit, err_src;
->> @@ -78,7 +59,7 @@ static void csc_hw_error_handler(struct xe_tile *tile, const enum hardware_error
->>  	err_src = xe_mmio_read32(mmio, HEC_UNCORR_ERR_STATUS(base));
->>  	if (!err_src) {
->>  		drm_err_ratelimited(&xe->drm, HW_ERR "Tile%d reported HEC_ERR_STATUS_%s blank\n",
->> -				    tile->id, hw_err_str);
->> +				    tile->id, severity_str);
->>  		return;
->>  	}
->>  
->> @@ -87,7 +68,7 @@ static void csc_hw_error_handler(struct xe_tile *tile, const enum hardware_error
->>  		for_each_set_bit(err_bit, &fw_err, HEC_UNCORR_FW_ERR_BITS) {
->>  			drm_err_ratelimited(&xe->drm, HW_ERR
->>  					    "%s: HEC Uncorrected FW %s error reported, bit[%d] is set\n",
->> -					     hw_err_str, hec_uncorrected_fw_errors[err_bit],
->> +					     severity_str, hec_uncorrected_fw_errors[err_bit],
->>  					     err_bit);
->>  
->>  			schedule_work(&tile->csc_hw_error_work);
->> @@ -97,9 +78,9 @@ static void csc_hw_error_handler(struct xe_tile *tile, const enum hardware_error
->>  	xe_mmio_write32(mmio, HEC_UNCORR_ERR_STATUS(base), err_src);
->>  }
->>  
->> -static void hw_error_source_handler(struct xe_tile *tile, const enum hardware_error hw_err)
->> +static void hw_error_source_handler(struct xe_tile *tile, enum drm_xe_ras_error_severity severity)
->>  {
->> -	const char *hw_err_str = hw_error_to_str(hw_err);
->> +	const char *severity_str = error_severity[severity];
->>  	struct xe_device *xe = tile_to_xe(tile);
->>  	unsigned long flags;
->>  	u32 err_src;
->> @@ -108,17 +89,17 @@ static void hw_error_source_handler(struct xe_tile *tile, const enum hardware_er
->>  		return;
->>  
->>  	spin_lock_irqsave(&xe->irq.lock, flags);
->> -	err_src = xe_mmio_read32(&tile->mmio, DEV_ERR_STAT_REG(hw_err));
->> +	err_src = xe_mmio_read32(&tile->mmio, DEV_ERR_STAT_REG(severity));
->>  	if (!err_src) {
->>  		drm_err_ratelimited(&xe->drm, HW_ERR "Tile%d reported DEV_ERR_STAT_%s blank!\n",
->> -				    tile->id, hw_err_str);
->> +				    tile->id, severity_str);
->>  		goto unlock;
->>  	}
->>  
->>  	if (err_src & XE_CSC_ERROR)
->> -		csc_hw_error_handler(tile, hw_err);
->> +		csc_hw_error_handler(tile, severity);
->>  
->> -	xe_mmio_write32(&tile->mmio, DEV_ERR_STAT_REG(hw_err), err_src);
->> +	xe_mmio_write32(&tile->mmio, DEV_ERR_STAT_REG(severity), err_src);
->>  
->>  unlock:
->>  	spin_unlock_irqrestore(&xe->irq.lock, flags);
->> @@ -136,16 +117,30 @@ static void hw_error_source_handler(struct xe_tile *tile, const enum hardware_er
->>   */
->>  void xe_hw_error_irq_handler(struct xe_tile *tile, const u32 master_ctl)
->>  {
->> -	enum hardware_error hw_err;
->> +	u32 hw_err;
->>  
->>  	if (fault_inject_csc_hw_error())
->>  		schedule_work(&tile->csc_hw_error_work);
->>  
->> -	for (hw_err = 0; hw_err < HARDWARE_ERROR_MAX; hw_err++)
->> +	for (hw_err = 0; hw_err < DRM_XE_RAS_ERROR_SEVERITY_MAX; hw_err++)
->>  		if (master_ctl & ERROR_IRQ(hw_err))
->>  			hw_error_source_handler(tile, hw_err);
->>  }
->>  
->> +static int hw_error_info_init(struct xe_device *xe)
->> +{
->> +	int ret;
->> +
->> +	if (xe->info.platform != XE_PVC)
->> +		return 0;
->> +
->> +	ret = xe_drm_ras_allocate_nodes(xe);
->> +	if (ret)
->> +		return ret;
->> +
->> +	return 0;
->> +}
->> +
->>  /*
->>   * Process hardware errors during boot
->>   */
->> @@ -178,5 +173,6 @@ void xe_hw_error_init(struct xe_device *xe)
->>  
->>  	INIT_WORK(&tile->csc_hw_error_work, csc_hw_error_work);
->>  
->> +	hw_error_info_init(xe);
->>  	process_hw_errors(xe);
->>  }
->> diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
->> index 0d99bb0cd20a..3f6c38908b70 100644
->> --- a/include/uapi/drm/xe_drm.h
->> +++ b/include/uapi/drm/xe_drm.h
->> @@ -2294,6 +2294,88 @@ struct drm_xe_vm_query_mem_range_attr {
->>  
->>  };
->>  
->> +/**
->> + * DOC: Xe DRM RAS
->> + *
->> + * The enums and strings defined below map to the attributes of the DRM RAS Netlink Interface.
->> + * Refer to Documentation/netlink/specs/drm_ras.yaml for complete interface specification.
->> + *
->> + * Node Registration
->> + * =================
->> + *
->> + * The driver registers DRM RAS nodes for each error severity level.
->> + * enum drm_xe_ras_error_severity defines the node-id, while DRM_XE_RAS_ERROR_SEVERITY_NAMES maps
->> + * node-id to node-name.
->> + *
->> + * Error Classification
->> + * ====================
->> + *
->> + * Each node contains a list of error counters. Each error is identified by a error-id and
->> + * an error-name. enum drm_xe_ras_error_class defines the error-id, while
->> + * DRM_XE_RAS_ERROR_CLASS_NAMES maps error-id to error-name.
->> + *
->> + * User Interface
->> + * ==============
->> + *
->> + * To retrieve error values of a error counter, userspace applications should
->> + * follow the below steps:
->> + *
->> + * 1. Use command LIST_NODES to enumerate all available nodes
->> + * 2. Select node by node-id or node-name
->> + * 3. Use command GET_ERROR_COUNTERS to list errors of specific node
->> + * 4. Query specific error values using either error-id or error-name
->> + *
->> + * .. code-block:: C
->> + *
->> + *	// Lookup tables for ID-to-name resolution
->> + *	static const char *nodes[] = DRM_XE_RAS_ERROR_SEVERITY_NAMES;
->> + *	static const char *errors[] = DRM_XE_RAS_ERROR_CLASS_NAMES;
->> + *
->> + */
->> +
->> +/**
->> + * enum drm_xe_ras_error_severity - Supported drm ras error severity.
->> + */
->> +enum drm_xe_ras_error_severity {
->> +	/** @DRM_XE_RAS_ERROR_CORRECTABLE: Correctable Error */
->> +	DRM_XE_RAS_ERROR_CORRECTABLE = 0,
->> +	/** @DRM_XE_RAS_ERROR_NONFATAL: Non fatal Error */
->> +	DRM_XE_RAS_ERROR_NONFATAL,
->> +	/** @DRM_XE_RAS_ERROR_FATAL: Fatal error */
->> +	DRM_XE_RAS_ERROR_FATAL,
->> +	/** @DRM_XE_RAS_ERROR_SEVERITY_MAX: Max severity */
->> +	DRM_XE_RAS_ERROR_SEVERITY_MAX, /* non-ABI */
->> +};
->> +
->> +/**
->> + * enum drm_xe_ras_error_class - Supported drm ras error classes.
->> + */
->> +enum drm_xe_ras_error_class {
->> +	/** @DRM_XE_RAS_ERROR_CORE_COMPUTE: GT and Media Error */
->> +	DRM_XE_RAS_ERROR_CORE_COMPUTE = 1,
->> +	/** @DRM_XE_RAS_ERROR_SOC_INTERNAL: SOC Error */
->> +	DRM_XE_RAS_ERROR_SOC_INTERNAL,
->> +	/** @DRM_XE_RAS_ERROR_CLASS_MAX: Max Error */
->> +	DRM_XE_RAS_ERROR_CLASS_MAX,	/* non-ABI */
->> +};
->> +
->> +/*
->> + * Error severity to name mapping.
->> + */
->> +#define DRM_XE_RAS_ERROR_SEVERITY_NAMES {				\
->> +	[DRM_XE_RAS_ERROR_CORRECTABLE] = "correctable-errors",		\
->> +	[DRM_XE_RAS_ERROR_NONFATAL] = "nonfatal-errors",		\
->> +	[DRM_XE_RAS_ERROR_FATAL] = "fatal-errors",			\
->> +}
->> +
->> +/*
->> + * Error class to name mapping.
->> + */
->> +#define DRM_XE_RAS_ERROR_CLASS_NAMES {					\
->> +	[DRM_XE_RAS_ERROR_CORE_COMPUTE] =  "Core Compute Error",	\
->> +	[DRM_XE_RAS_ERROR_SOC_INTERNAL] =  "SOC Internal Error",	\
+On 07-01-2026 15:10, Arunpravin Paneer Selvam wrote:
 >
-> These looks good to me.
->
-> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-> Cc: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
->
-> Joonas, Aravind, does this align what you had in mind for the uAPI?
+> On 06/01/26 21:34, Matthew Auld wrote:
+>> On 22/12/2025 06:52, Sanjay Yadav wrote:
+>>> When DRM_BUDDY_CONTIGUOUS_ALLOCATION is set, the requested size is
+>>> rounded up to the next power-of-two via roundup_pow_of_two().
+>>> Similarly, for non-contiguous allocations with large min_block_size,
+>>> the size is aligned up via round_up(). Both operations can produce a
+>>> rounded size that exceeds mm->size, which later triggers
+>>> BUG_ON(order > mm->max_order).
+>>>
+>>> Example scenarios:
+>>> - 9G CONTIGUOUS allocation on 10G VRAM memory:
+>>>    roundup_pow_of_two(9G) = 16G > 10G
+>>> - 9G allocation with 8G min_block_size on 10G VRAM memory:
+>>>    round_up(9G, 8G) = 16G > 10G
+>>>
+>>> Fix this by checking the rounded size against mm->size. For
+>>> non-contiguous or range allocations where size > mm->size is invalid,
+>>> return -EINVAL immediately. For contiguous allocations without range
+>>> restrictions, allow the request to fall through to the existing
+>>> __alloc_contig_try_harder() fallback.
+>>>
+>>> This ensures invalid user input returns an error or uses the fallback
+>>> path instead of hitting BUG_ON.
+>>>
+>>> Cc: Christian König <christian.koenig@amd.com>
+>>> Cc: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
+>>> Suggested-by: Matthew Auld <matthew.auld@intel.com>
+>>> Signed-off-by: Sanjay Yadav <sanjay.kumar.yadav@intel.com>
+>>
+>> I think we should maybe add a fixes tag:
+>>
+>> Fixes: 0a1844bf0b53 ("drm/buddy: Improve contiguous memory allocation")
+>> Cc: <stable@vger.kernel.org> # v6.7+
+>>
+>> ?
+>>
+>> I don't think current xe can actually trigger this yet, but not sure 
+>> if amdgpu or something can somehow trigger this in some obscure case.
+>>
+>> We could maybe also add:
+>>
+>> Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/6712
+>>
+>> So it auto-closes plus gives some more context that this fix was 
+>> motivated from code inspection and not some user report. Otherwise I 
+>> think the change looks reasonable,
+>> Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+> Reviewed-by: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
 
-Ya, the only change I would request is not to have space in the names,
-better use '-' as separator.
+Thank you, Matt A and Arun, for the review. I will include the Fixes, Cc 
+(kernel version), Reviewed-by and Closes tags in v2.
 
-Thanks,
-Aravind.
->
-> Thanks,
-> Rodrigo.
->
->> +}
->> +
->>  #if defined(__cplusplus)
->>  }
->>  #endif
->> -- 
->> 2.47.1
+-Sanjay
+
+>>
+>>> ---
+>>>   drivers/gpu/drm/drm_buddy.c | 9 +++++++++
+>>>   1 file changed, 9 insertions(+)
+>>>
+>>> diff --git a/drivers/gpu/drm/drm_buddy.c b/drivers/gpu/drm/drm_buddy.c
+>>> index 2f279b46bd2c..5141348fc6c9 100644
+>>> --- a/drivers/gpu/drm/drm_buddy.c
+>>> +++ b/drivers/gpu/drm/drm_buddy.c
+>>> @@ -1155,6 +1155,15 @@ int drm_buddy_alloc_blocks(struct drm_buddy *mm,
+>>>       order = fls(pages) - 1;
+>>>       min_order = ilog2(min_block_size) - ilog2(mm->chunk_size);
+>>>   +    if (order > mm->max_order || size > mm->size) {
+>>> +        if ((flags & DRM_BUDDY_CONTIGUOUS_ALLOCATION) &&
+>>> +            !(flags & DRM_BUDDY_RANGE_ALLOCATION))
+>>> +            return __alloc_contig_try_harder(mm, original_size,
+>>> +                             original_min_size, blocks);
+>>> +
+>>> +        return -EINVAL;
+>>> +    }
+>>> +
+>>>       do {
+>>>           order = min(order, (unsigned int)fls(pages) - 1);
+>>>           BUG_ON(order > mm->max_order);
 >>
