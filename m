@@ -4,58 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D139AD185DD
-	for <intel-xe@archiver.kernel.org>; Thu,  8 Jan 2026 12:07:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 78DCFD185EC
+	for <intel-xe@archiver.kernel.org>; Thu,  8 Jan 2026 12:24:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 967B610E6F9;
-	Thu,  8 Jan 2026 12:07:05 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RoHLjpkl";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5032110E6F9
- for <intel-xe@lists.freedesktop.org>; Thu,  8 Jan 2026 12:07:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1767874024; x=1799410024;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=DsS3F4FYzMNIACzRBynRFS1+f0FebWJ41XHZCWvHpFg=;
- b=RoHLjpklot+k6GAiJtn8Z1iRZ/J3W18bUtx0ypF/mTj8wk9llCreC88V
- 1QZ7Hv5KiLYde2yD+xrYJmqhG7dWaytEgVZEoBjQoGPwkompmE3NMKp9o
- /I1Vm4rDfeaP073afHn6qe0xa5xNXRfV+Cv0XcHuuWaTw+WrPjuPPiPsv
- 0doxA3ohemdHW5I2skdWBtWPDGUI0ZYGEJJXxTAuyfI1KxZNKEPT9VY/k
- nCRMDkqX+X0Z+gML5HU1CjIMTz4OUzzXTGW+e3m+FT7x2PDjyf66pUlDE
- 8nde+DZvo/aI1qPBfncQQO6M207Sn/gCWd3z1LATNoiaVkHBhTghNDjFg A==;
-X-CSE-ConnectionGUID: AZ9v6BIERrqMMjzlnxQnHA==
-X-CSE-MsgGUID: /6GsnCNRT3+LPIm/v8DEeg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11665"; a="86839573"
-X-IronPort-AV: E=Sophos;i="6.21,210,1763452800"; d="scan'208";a="86839573"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jan 2026 04:07:04 -0800
-X-CSE-ConnectionGUID: jxG1ht1wQ5i1uaMoIBdZKg==
-X-CSE-MsgGUID: Py0+1GsuQfCQhbCcha99Jw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,210,1763452800"; d="scan'208";a="203463970"
-Received: from anoopcvi-vm.gar.corp.intel.com ([10.109.80.88])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jan 2026 04:07:00 -0800
-From: "Anoop, Vijay" <anoop.c.vijay@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: umesh.nerlige.ramappa@intel.com, badal.nilawar@intel.com,
- rodrigo.vivi@intel.com, aravind.iddamsetty@intel.com,
- riana.tauro@intel.com, anshuman.gupta@intel.com, matthew.d.roper@intel.com,
- michael.j.ruhl@intel.com, paul.e.luse@intel.com,
- mohamed.mansoor.v@intel.com, kam.nasim@intel.com, anoop.c.vijay@intel.com
-Subject: [PATCH v3 6/6] drm/xe/sysctrl: Enable System Controller for Xe3p
-Date: Thu,  8 Jan 2026 04:05:54 -0800
-Message-ID: <20260108120548.1015154-14-anoop.c.vijay@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260108120548.1015154-8-anoop.c.vijay@intel.com>
-References: <20260108120548.1015154-8-anoop.c.vijay@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 26AC610E293;
+	Thu,  8 Jan 2026 12:24:22 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0D1DF10E293;
+ Thu,  8 Jan 2026 12:24:21 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5124910641593412589=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/buddy=3A_Fix_BUG=5FON_f?=
+ =?utf-8?q?rom_oversized_rounded_allocations_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Sanjay Yadav" <sanjay.kumar.yadav@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 08 Jan 2026 12:24:21 -0000
+Message-ID: <176787506104.136594.4631694009998281335@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260108113227.2101872-4-sanjay.kumar.yadav@intel.com>
+In-Reply-To: <20260108113227.2101872-4-sanjay.kumar.yadav@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,67 +36,194 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Anoop Vijay <anoop.c.vijay@intel.com>
+--===============5124910641593412589==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Add PCI device detection for System Controller capability
-and update build system to include System Controller
-components.
+== Series Details ==
 
-Signed-off-by: Anoop Vijay <anoop.c.vijay@intel.com>
----
- drivers/gpu/drm/xe/Makefile       | 2 ++
- drivers/gpu/drm/xe/xe_pci.c       | 2 ++
- drivers/gpu/drm/xe/xe_pci_types.h | 1 +
- 3 files changed, 5 insertions(+)
+Series: drm/buddy: Fix BUG_ON from oversized rounded allocations (rev2)
+URL   : https://patchwork.freedesktop.org/series/159357/
+State : success
 
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index 2b20c79d7ec9..947fbcac65d5 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -121,6 +121,8 @@ xe-y += xe_bb.o \
- 	xe_step.o \
- 	xe_survivability_mode.o \
- 	xe_sync.o \
-+	xe_sysctrl.o \
-+	xe_sysctrl_mailbox.o \
- 	xe_tile.o \
- 	xe_tile_sysfs.o \
- 	xe_tlb_inval.o \
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index 91e0553a8163..b6dc3030b673 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -426,6 +426,7 @@ static const struct xe_device_desc cri_desc = {
- 	.has_soc_remapper_sysctrl = true,
- 	.has_soc_remapper_telem = true,
- 	.has_sriov = true,
-+	.has_sysctrl = true,
- 	.max_gt_per_tile = 2,
- 	.require_force_probe = true,
- 	.va_bits = 57,
-@@ -701,6 +702,7 @@ static int xe_info_init_early(struct xe_device *xe,
- 	xe->info.has_soc_remapper_telem = desc->has_soc_remapper_telem;
- 	xe->info.has_sriov = xe_configfs_primary_gt_allowed(to_pci_dev(xe->drm.dev)) &&
- 		desc->has_sriov;
-+	xe->info.has_sysctrl = desc->has_sysctrl;
- 	xe->info.has_mem_copy_instr = desc->has_mem_copy_instr;
- 	xe->info.skip_guc_pc = desc->skip_guc_pc;
- 	xe->info.skip_mtcfg = desc->skip_mtcfg;
-diff --git a/drivers/gpu/drm/xe/xe_pci_types.h b/drivers/gpu/drm/xe/xe_pci_types.h
-index 5f20f56571d1..53e44a32883d 100644
---- a/drivers/gpu/drm/xe/xe_pci_types.h
-+++ b/drivers/gpu/drm/xe/xe_pci_types.h
-@@ -56,6 +56,7 @@ struct xe_device_desc {
- 	u8 has_soc_remapper_sysctrl:1;
- 	u8 has_soc_remapper_telem:1;
- 	u8 has_sriov:1;
-+	u8 has_sysctrl:1;
- 	u8 needs_scratch:1;
- 	u8 skip_guc_pc:1;
- 	u8 skip_mtcfg:1;
--- 
-2.43.0
+== Summary ==
 
+CI Bug Log - changes from xe-4345-580c8957e96b7372e82590d1b1e6c2842c245077_BAT -> xe-pw-159357v2_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (11 -> 12)
+------------------------------
+
+  Additional (1): bat-bmg-1 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-159357v2_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
+    - bat-bmg-1:          NOTRUN -> [SKIP][1] ([Intel XE#2233])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159357v2/bat-bmg-1/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
+
+  * igt@kms_dsc@dsc-basic:
+    - bat-bmg-1:          NOTRUN -> [SKIP][2] ([Intel XE#2244])
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159357v2/bat-bmg-1/igt@kms_dsc@dsc-basic.html
+
+  * igt@kms_psr@psr-sprite-plane-onoff:
+    - bat-bmg-1:          NOTRUN -> [SKIP][3] ([Intel XE#1406] / [Intel XE#2234] / [Intel XE#2850]) +2 other tests skip
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159357v2/bat-bmg-1/igt@kms_psr@psr-sprite-plane-onoff.html
+
+  * igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit:
+    - bat-bmg-1:          NOTRUN -> [SKIP][4] ([Intel XE#2229])
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159357v2/bat-bmg-1/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html
+
+  * igt@xe_pat@pat-index-xehpc:
+    - bat-bmg-1:          NOTRUN -> [SKIP][5] ([Intel XE#1420])
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159357v2/bat-bmg-1/igt@xe_pat@pat-index-xehpc.html
+
+  * igt@xe_pat@pat-index-xelp:
+    - bat-bmg-1:          NOTRUN -> [SKIP][6] ([Intel XE#2245])
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159357v2/bat-bmg-1/igt@xe_pat@pat-index-xelp.html
+
+  * igt@xe_pat@pat-index-xelpg:
+    - bat-bmg-1:          NOTRUN -> [SKIP][7] ([Intel XE#2236])
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159357v2/bat-bmg-1/igt@xe_pat@pat-index-xelpg.html
+
+  
+  [Intel XE#1406]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1406
+  [Intel XE#1420]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1420
+  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
+  [Intel XE#2233]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2233
+  [Intel XE#2234]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2234
+  [Intel XE#2236]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2236
+  [Intel XE#2244]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2244
+  [Intel XE#2245]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2245
+  [Intel XE#2850]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2850
+
+
+Build changes
+-------------
+
+  * Linux: xe-4345-580c8957e96b7372e82590d1b1e6c2842c245077 -> xe-pw-159357v2
+
+  IGT_8692: 8692
+  xe-4345-580c8957e96b7372e82590d1b1e6c2842c245077: 580c8957e96b7372e82590d1b1e6c2842c245077
+  xe-pw-159357v2: 159357v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159357v2/index.html
+
+--===============5124910641593412589==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/buddy: Fix BUG_ON from oversized rounded allocations (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/159357/">https://patchwork.freedesktop.org/series/159357/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159357v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159357v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4345-580c8957e96b7372e82590d1b1e6c2842c245077_BAT -&gt; xe-pw-159357v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (11 -&gt; 12)</h2>
+<p>Additional (1): bat-bmg-1 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-159357v2_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:</p>
+<ul>
+<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159357v2/bat-bmg-1/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2233">Intel XE#2233</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_dsc@dsc-basic:</p>
+<ul>
+<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159357v2/bat-bmg-1/igt@kms_dsc@dsc-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2244">Intel XE#2244</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@psr-sprite-plane-onoff:</p>
+<ul>
+<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159357v2/bat-bmg-1/igt@kms_psr@psr-sprite-plane-onoff.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1406">Intel XE#1406</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2234">Intel XE#2234</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2850">Intel XE#2850</a>) +2 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit:</p>
+<ul>
+<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159357v2/bat-bmg-1/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xehpc:</p>
+<ul>
+<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159357v2/bat-bmg-1/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1420">Intel XE#1420</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xelp:</p>
+<ul>
+<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159357v2/bat-bmg-1/igt@xe_pat@pat-index-xelp.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2245">Intel XE#2245</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xelpg:</p>
+<ul>
+<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159357v2/bat-bmg-1/igt@xe_pat@pat-index-xelpg.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2236">Intel XE#2236</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4345-580c8957e96b7372e82590d1b1e6c2842c245077 -&gt; xe-pw-159357v2</li>
+</ul>
+<p>IGT_8692: 8692<br />
+  xe-4345-580c8957e96b7372e82590d1b1e6c2842c245077: 580c8957e96b7372e82590d1b1e6c2842c245077<br />
+  xe-pw-159357v2: 159357v2</p>
+
+</body>
+</html>
+
+--===============5124910641593412589==--
