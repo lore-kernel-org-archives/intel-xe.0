@@ -4,33 +4,33 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E8E73D185C3
-	for <intel-xe@archiver.kernel.org>; Thu,  8 Jan 2026 10:34:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D470CD148A4
+	for <intel-xe@archiver.kernel.org>; Thu,  8 Jan 2026 10:34:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9F8F710E6F0;
-	Thu,  8 Jan 2026 10:34:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3D11710E6EB;
+	Thu,  8 Jan 2026 10:34:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="naaYVynx";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="caIjZePk";
 	dkim-atps=neutral
 Received: from lankhorst.se (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7514F10E334
- for <intel-xe@lists.freedesktop.org>; Thu,  8 Jan 2026 10:34:19 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CFE5610E125
+ for <intel-xe@lists.freedesktop.org>; Thu,  8 Jan 2026 10:34:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1767868458;
- bh=KVcXXUirHkLxrk2pyd1RrvJBrNz1L3jaA7yJgC8FcA4=;
+ s=default; t=1767868454;
+ bh=gh/GNqbWR3Tk8u84+nHOJy8RgRotk7olbbYvhvnh78s=;
  h=From:To:Subject:Date:In-Reply-To:References:From;
- b=naaYVynx+VZqjrjtjYeGv01H1oZotccyicxzH5AxrqajLABf8keUXttNZQLLsxTQ5
- ZjP8tpHpt0IROKXZTwkbAf56ZrdiNoGhSvQezfuA2qEmkMhHBNOBGdzBW1z3KzJsVv
- /FhJDS2hYERfOGyKGIeDFlyUXCRZ8WRUjlvI/iF9i7W4L2gfvxgvYzzsFTJlAp7Jnx
- FTErP86HKKAvhrWVEF7OWdsCr+8F14IB8r3E4z9br8YG9JZQYlD6WVU+FWJsiCy31f
- JYMK21oj3wOurprBhlalqUvnhdBccEDTfUBS2hRtDN9i/mo0sIMVPC/5OH8q/wPyYV
- 7iVfxHiGgizuw==
+ b=caIjZePkuPLmQiZf6ZVKVuHTxl1jlx+NPrzQeDaKnwtlCIPv4grq04BRY0v0H7jJt
+ Q8kji2pLLTixRJ8yH65DWqxStRq7eUTKwoV2t2ZxJZ7C1FFpk08OnfQL4TsNo16jk+
+ uXoAYE3OBvQlTwEixn4u/GPU7zQRU4iyBOJ2PqDElm/unTLB7dLTin7LCWlDRtYia+
+ DAFC0yoOuXWipIejh+EVF+S8a0bChd0s3+EvO22Vd+ARlWkLnDpddslPjhrFuWUJlI
+ h6vWipOxXV2hwbXCFL8/wc9reczOzvcN31C8D1O0CNxbKt3s04tzPL2f7D4XN1vqc0
+ bp/hc7F2ybp1w==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-xe@lists.freedesktop.org
-Subject: [FOR-CI-DO-NOT-REVIEW 08/12] drm/xe: Make xe_ggtt_node offset
- relative to starting offset
-Date: Thu,  8 Jan 2026 11:34:11 +0100
-Message-ID: <20260108103412.637731-9-dev@lankhorst.se>
+Subject: [FOR-CI-DO-NOT-REVIEW 02/12] drm/xe: Convert xe_fb_pin to use a
+ callback for insertion into GGTT
+Date: Thu,  8 Jan 2026 11:34:05 +0100
+Message-ID: <20260108103412.637731-3-dev@lankhorst.se>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20260108103412.637731-1-dev@lankhorst.se>
 References: <20260108103412.637731-1-dev@lankhorst.se>
@@ -50,92 +50,366 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This will make node shifting in the next commit a one-liner.
+The rotation details belong in xe_fb_pin.c, while the operations involving
+GGTT belong to xe_ggtt.c. As directly locking xe_ggtt etc results in
+exposing all of xe_ggtt details anyway, create a special function that
+allocates a ggtt_node, and allow display to populate it using a callback
+as a compromise.
 
+Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+Reviewed-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/xe/xe_ggtt.c | 21 ++++++++++++++-------
- 1 file changed, 14 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/xe/display/xe_fb_pin.c | 102 ++++++++++++-------------
+ drivers/gpu/drm/xe/xe_ggtt.c           |  90 ++++++++++++++++------
+ drivers/gpu/drm/xe/xe_ggtt.h           |   9 ++-
+ drivers/gpu/drm/xe/xe_ggtt_types.h     |   9 ++-
+ 4 files changed, 130 insertions(+), 80 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
-index 7d191c68629c6..3db70df49e25a 100644
---- a/drivers/gpu/drm/xe/xe_ggtt.c
-+++ b/drivers/gpu/drm/xe/xe_ggtt.c
-@@ -300,7 +300,7 @@ static void __xe_ggtt_init_early(struct xe_ggtt *ggtt, u64 start, u64 size)
- {
- 	ggtt->start = start;
- 	ggtt->size = size;
--	drm_mm_init(&ggtt->mm, start, size);
-+	drm_mm_init(&ggtt->mm, 0, size - start);
+diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+index a22a9182dadb0..a1cd42001f442 100644
+--- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
++++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+@@ -171,12 +171,13 @@ static int __xe_pin_fb_vma_dpt(const struct intel_framebuffer *fb,
  }
  
- int xe_ggtt_init_kunit(struct xe_ggtt *ggtt, u32 start, u32 size)
-@@ -402,7 +402,7 @@ static void xe_ggtt_initial_clear(struct xe_ggtt *ggtt)
- 	/* Display may have allocated inside ggtt, so be careful with clearing here */
- 	mutex_lock(&ggtt->lock);
- 	drm_mm_for_each_hole(hole, &ggtt->mm, start, end)
--		xe_ggtt_clear(ggtt, start, end - start);
-+		xe_ggtt_clear(ggtt, ggtt->start + start, end - start);
+ static void
+-write_ggtt_rotated(struct xe_bo *bo, struct xe_ggtt *ggtt, u32 *ggtt_ofs, u32 bo_ofs,
++write_ggtt_rotated(struct xe_ggtt *ggtt, u32 *ggtt_ofs,
++		   u64 pte_flags,
++		   xe_ggtt_set_pte_fn write_pte,
++		   struct xe_bo *bo, u32 bo_ofs,
+ 		   u32 width, u32 height, u32 src_stride, u32 dst_stride)
+ {
+-	struct xe_device *xe = xe_bo_device(bo);
+ 	u32 column, row;
+-	u64 pte = ggtt->pt_ops->pte_encode_flags(bo, xe->pat.idx[XE_CACHE_NONE]);
  
- 	xe_ggtt_invalidate(ggtt);
- 	mutex_unlock(&ggtt->lock);
-@@ -419,7 +419,7 @@ static void ggtt_node_remove(struct xe_ggtt_node *node)
+ 	for (column = 0; column < width; column++) {
+ 		u32 src_idx = src_stride * (height - 1) + column + bo_ofs;
+@@ -184,7 +185,7 @@ write_ggtt_rotated(struct xe_bo *bo, struct xe_ggtt *ggtt, u32 *ggtt_ofs, u32 bo
+ 		for (row = 0; row < height; row++) {
+ 			u64 addr = xe_bo_addr(bo, src_idx * XE_PAGE_SIZE, XE_PAGE_SIZE);
  
- 	mutex_lock(&ggtt->lock);
- 	if (bound)
--		xe_ggtt_clear(ggtt, node->base.start, node->base.size);
-+		xe_ggtt_clear(ggtt, xe_ggtt_node_addr(node), node->base.size);
- 	drm_mm_remove_node(&node->base);
- 	node->base.size = 0;
- 	mutex_unlock(&ggtt->lock);
-@@ -574,13 +574,13 @@ int xe_ggtt_node_insert_balloon_locked(struct xe_ggtt_node *node, u64 start, u64
- 	lockdep_assert_held(&ggtt->lock);
+-			ggtt->pt_ops->ggtt_set_pte(ggtt, *ggtt_ofs, pte | addr);
++			write_pte(ggtt, *ggtt_ofs, pte_flags | addr);
+ 			*ggtt_ofs += XE_PAGE_SIZE;
+ 			src_idx -= src_stride;
+ 		}
+@@ -194,6 +195,28 @@ write_ggtt_rotated(struct xe_bo *bo, struct xe_ggtt *ggtt, u32 *ggtt_ofs, u32 bo
+ 	}
+ }
  
- 	node->base.color = 0;
--	node->base.start = start;
-+	node->base.start = start - ggtt->start;
- 	node->base.size = end - start;
++struct fb_rotate_args {
++	const struct i915_gtt_view *view;
++	struct xe_bo *bo;
++};
++
++static void write_ggtt_rotated_node(struct xe_ggtt *ggtt, struct xe_ggtt_node *node,
++				    u64 pte_flags, xe_ggtt_set_pte_fn write_pte, void *data)
++{
++	struct fb_rotate_args *args = data;
++	struct xe_bo *bo = args->bo;
++	const struct intel_rotation_info *rot_info = &args->view->rotated;
++	u32 ggtt_ofs = node->base.start;
++
++	for (u32 i = 0; i < ARRAY_SIZE(rot_info->plane); i++)
++		write_ggtt_rotated(ggtt, &ggtt_ofs, pte_flags, write_pte,
++				   bo, rot_info->plane[i].offset,
++				   rot_info->plane[i].width,
++				   rot_info->plane[i].height,
++				   rot_info->plane[i].src_stride,
++				   rot_info->plane[i].dst_stride);
++}
++
+ static int __xe_pin_fb_vma_ggtt(const struct intel_framebuffer *fb,
+ 				const struct i915_gtt_view *view,
+ 				struct i915_vma *vma,
+@@ -204,66 +227,43 @@ static int __xe_pin_fb_vma_ggtt(const struct intel_framebuffer *fb,
+ 	struct xe_device *xe = to_xe_device(fb->base.dev);
+ 	struct xe_tile *tile0 = xe_device_get_root_tile(xe);
+ 	struct xe_ggtt *ggtt = tile0->mem.ggtt;
++	u64 pte, size;
+ 	u32 align;
+-	int ret;
++	int ret = 0;
  
- 	err = drm_mm_reserve_node(&ggtt->mm, &node->base);
+ 	/* TODO: Consider sharing framebuffer mapping?
+ 	 * embed i915_vma inside intel_framebuffer
+ 	 */
+ 	guard(xe_pm_runtime_noresume)(xe);
+-	ACQUIRE(mutex_intr, lock)(&ggtt->lock);
+-	ret = ACQUIRE_ERR(mutex_intr, &lock);
+-	if (ret)
+-		return ret;
  
- 	if (xe_tile_WARN(ggtt->tile, err, "Failed to balloon GGTT %#llx-%#llx (%pe)\n",
--			 node->base.start, node->base.start + node->base.size, ERR_PTR(err)))
-+			 xe_ggtt_node_addr(node), xe_ggtt_node_addr(node) + node->base.size, ERR_PTR(err)))
- 		return err;
+ 	align = XE_PAGE_SIZE;
+-	if (xe_bo_is_vram(bo) && ggtt->flags & XE_GGTT_FLAGS_64K)
+-		align = max_t(u32, align, SZ_64K);
++	if (xe_bo_is_vram(bo) && xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K)
++		align = max(align, SZ_64K);
  
- 	xe_ggtt_dump_node(ggtt, &node->base, "balloon");
-@@ -771,7 +771,7 @@ static void xe_ggtt_map_bo(struct xe_ggtt *ggtt, struct xe_ggtt_node *node,
- 	if (XE_WARN_ON(!node))
- 		return;
- 
--	start = node->base.start;
-+	start = xe_ggtt_node_addr(node);
- 	end = start + xe_bo_size(bo);
- 
- 	if (!xe_bo_is_vram(bo) && !xe_bo_is_stolen(bo)) {
-@@ -892,6 +892,13 @@ static int __xe_ggtt_insert_bo_at(struct xe_ggtt *ggtt, struct xe_bo *bo,
++	/* Fast case, preallocated GGTT view? */
+ 	if (bo->ggtt_node[tile0->id] && view->type == I915_GTT_VIEW_NORMAL) {
+ 		vma->node = bo->ggtt_node[tile0->id];
+-	} else if (view->type == I915_GTT_VIEW_NORMAL) {
+-		vma->node = xe_ggtt_node_init(ggtt);
+-		if (IS_ERR(vma->node))
+-			return PTR_ERR(vma->node);
+-
+-		ret = xe_ggtt_node_insert_locked(vma->node, xe_bo_size(bo), align, 0);
+-		if (ret) {
+-			xe_ggtt_node_fini(vma->node);
+-			return ret;
+-		}
+-
+-		xe_ggtt_map_bo(ggtt, vma->node, bo, xe->pat.idx[XE_CACHE_NONE]);
+-	} else {
+-		u32 i, ggtt_ofs;
+-		const struct intel_rotation_info *rot_info = &view->rotated;
+-
+-		/* display seems to use tiles instead of bytes here, so convert it back.. */
+-		u32 size = intel_rotation_info_size(rot_info) * XE_PAGE_SIZE;
+-
+-		vma->node = xe_ggtt_node_init(ggtt);
+-		if (IS_ERR(vma->node)) {
+-			ret = PTR_ERR(vma->node);
+-			return ret;
+-		}
+-
+-		ret = xe_ggtt_node_insert_locked(vma->node, size, align, 0);
+-		if (ret) {
+-			xe_ggtt_node_fini(vma->node);
+-			return ret;
+-		}
+-
+-		ggtt_ofs = vma->node->base.start;
+-
+-		for (i = 0; i < ARRAY_SIZE(rot_info->plane); i++)
+-			write_ggtt_rotated(bo, ggtt, &ggtt_ofs,
+-					   rot_info->plane[i].offset,
+-					   rot_info->plane[i].width,
+-					   rot_info->plane[i].height,
+-					   rot_info->plane[i].src_stride,
+-					   rot_info->plane[i].dst_stride);
++		return 0;
  	}
  
- 	mutex_lock(&ggtt->lock);
-+	if (start >= ggtt->start)
-+		start -= ggtt->start;
++	/* TODO: Consider sharing framebuffer mapping?
++	 * embed i915_vma inside intel_framebuffer
++	 */
++	if (view->type == I915_GTT_VIEW_NORMAL)
++		size = xe_bo_size(bo);
 +	else
-+		start = 0;
++		/* display uses tiles instead of bytes here, so convert it back.. */
++		size = intel_rotation_info_size(&view->rotated) * XE_PAGE_SIZE;
 +
-+	end -= ggtt->start;
++	pte = xe_ggtt_encode_pte_flags(ggtt, bo, xe->pat.idx[XE_CACHE_NONE]);
++	vma->node = xe_ggtt_node_insert_transform(ggtt, bo, pte,
++						  ALIGN(size, align), align,
++						  view->type == I915_GTT_VIEW_NORMAL ?
++						  NULL : write_ggtt_rotated_node,
++						  &(struct fb_rotate_args){view, bo});
++	if (IS_ERR(vma->node))
++		ret = PTR_ERR(vma->node);
 +
- 	err = drm_mm_insert_node_in_range(&ggtt->mm, &bo->ggtt_node[tile_id]->base,
- 					  xe_bo_size(bo), alignment, 0, start, end, 0);
- 	if (err) {
-@@ -1212,7 +1219,7 @@ u64 xe_ggtt_read_pte(struct xe_ggtt *ggtt, u64 offset)
-  */
- u64 xe_ggtt_node_addr(const struct xe_ggtt_node *node)
- {
--	return node->base.start;
-+	return node->base.start + READ_ONCE(node->ggtt->start);
+ 	return ret;
  }
  
+diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
+index 6be89363f591f..6bb6dcb0419ad 100644
+--- a/drivers/gpu/drm/xe/xe_ggtt.c
++++ b/drivers/gpu/drm/xe/xe_ggtt.c
+@@ -636,19 +636,7 @@ void xe_ggtt_shift_nodes_locked(struct xe_ggtt *ggtt, s64 shift)
+ 	}
+ }
+ 
+-/**
+- * xe_ggtt_node_insert_locked - Locked version to insert a &xe_ggtt_node into the GGTT
+- * @node: the &xe_ggtt_node to be inserted
+- * @size: size of the node
+- * @align: alignment constrain of the node
+- * @mm_flags: flags to control the node behavior
+- *
+- * It cannot be called without first having called xe_ggtt_init() once.
+- * To be used in cases where ggtt->lock is already taken.
+- *
+- * Return: 0 on success or a negative error code on failure.
+- */
+-int xe_ggtt_node_insert_locked(struct xe_ggtt_node *node,
++static int xe_ggtt_node_insert_locked(struct xe_ggtt_node *node,
+ 			       u32 size, u32 align, u32 mm_flags)
+ {
+ 	return drm_mm_insert_node_generic(&node->ggtt->mm, &node->base, size, align, 0,
+@@ -687,9 +675,11 @@ int xe_ggtt_node_insert(struct xe_ggtt_node *node, u32 size, u32 align)
+  * This function will allocate the struct %xe_ggtt_node and return its pointer.
+  * This struct will then be freed after the node removal upon xe_ggtt_node_remove()
+  * or xe_ggtt_node_remove_balloon_locked().
+- * Having %xe_ggtt_node struct allocated doesn't mean that the node is already allocated
+- * in GGTT. Only the xe_ggtt_node_insert(), xe_ggtt_node_insert_locked(),
+- * xe_ggtt_node_insert_balloon_locked() will ensure the node is inserted or reserved in GGTT.
++ *
++ * Having %xe_ggtt_node struct allocated doesn't mean that the node is already
++ * allocated in GGTT. Only xe_ggtt_node_insert(), allocation through
++ * xe_ggtt_node_insert_transform(), or xe_ggtt_node_insert_balloon_locked() will ensure the node is inserted or reserved
++ * in GGTT.
+  *
+  * Return: A pointer to %xe_ggtt_node struct on success. An ERR_PTR otherwise.
+  **/
+@@ -752,13 +742,12 @@ size_t xe_ggtt_node_pt_size(const struct xe_ggtt_node *node)
+  * @ggtt: the &xe_ggtt where node will be mapped
+  * @node: the &xe_ggtt_node where this BO is mapped
+  * @bo: the &xe_bo to be mapped
+- * @pat_index: Which pat_index to use.
++ * @pte: The pte flags to append.
+  */
+-void xe_ggtt_map_bo(struct xe_ggtt *ggtt, struct xe_ggtt_node *node,
+-		    struct xe_bo *bo, u16 pat_index)
++static void xe_ggtt_map_bo(struct xe_ggtt *ggtt, struct xe_ggtt_node *node,
++			   struct xe_bo *bo, u64 pte)
+ {
+-
+-	u64 start, pte, end;
++	u64 start, end;
+ 	struct xe_res_cursor cur;
+ 
+ 	if (XE_WARN_ON(!node))
+@@ -767,7 +756,6 @@ void xe_ggtt_map_bo(struct xe_ggtt *ggtt, struct xe_ggtt_node *node,
+ 	start = node->base.start;
+ 	end = start + xe_bo_size(bo);
+ 
+-	pte = ggtt->pt_ops->pte_encode_flags(bo, pat_index);
+ 	if (!xe_bo_is_vram(bo) && !xe_bo_is_stolen(bo)) {
+ 		xe_assert(xe_bo_device(bo), bo->ttm.ttm);
+ 
+@@ -797,10 +785,63 @@ void xe_ggtt_map_bo_unlocked(struct xe_ggtt *ggtt, struct xe_bo *bo)
+ {
+ 	u16 cache_mode = bo->flags & XE_BO_FLAG_NEEDS_UC ? XE_CACHE_NONE : XE_CACHE_WB;
+ 	u16 pat_index = tile_to_xe(ggtt->tile)->pat.idx[cache_mode];
++	u64 pte;
+ 
+ 	mutex_lock(&ggtt->lock);
+-	xe_ggtt_map_bo(ggtt, bo->ggtt_node[ggtt->tile->id], bo, pat_index);
++	pte = ggtt->pt_ops->pte_encode_flags(bo, pat_index);
++	xe_ggtt_map_bo(ggtt, bo->ggtt_node[ggtt->tile->id], bo, pte);
++	mutex_unlock(&ggtt->lock);
++}
++
++/**
++ * xe_ggtt_node_insert_transform - Insert a newly allocated &xe_ggtt_node into the GGTT
++ * @ggtt: the &xe_ggtt where the node will inserted/reserved.
++ * @bo: The bo to be transformed
++ * @pte_flags: The extra GGTT flags to add to mapping.
++ * @size: size of the node
++ * @align: required alignment for node
++ * @transform: transformation function that will populate the GGTT node, or NULL for linear mapping.
++ * @arg: Extra argument to pass to the transformation function.
++ *
++ * This function allows inserting a GGTT node with a custom transformation function.
++ * This is useful for display to allow inserting rotated framebuffers to GGTT.
++ *
++ * Return: A pointer to %xe_ggtt_node struct on success. An ERR_PTR otherwise.
++ */
++struct xe_ggtt_node *xe_ggtt_node_insert_transform(struct xe_ggtt *ggtt,
++						   struct xe_bo *bo, u64 pte_flags,
++						   u64 size, u32 align,
++						   xe_ggtt_transform_cb transform, void *arg)
++{
++	struct xe_ggtt_node *node;
++	int ret;
++
++	node = xe_ggtt_node_init(ggtt);
++	if (IS_ERR(node))
++		return ERR_CAST(node);
++
++	if (mutex_lock_interruptible(&ggtt->lock) < 0) {
++		ret = -ERESTARTSYS;
++		goto err;
++	}
++
++	ret = xe_ggtt_node_insert_locked(node, size, align, 0);
++	if (ret)
++		goto err_unlock;
++
++	if (transform)
++		transform(ggtt, node, pte_flags, ggtt->pt_ops->ggtt_set_pte, arg);
++	else
++		xe_ggtt_map_bo(ggtt, node, bo, pte_flags);
++
+ 	mutex_unlock(&ggtt->lock);
++	return node;
++
++err_unlock:
++	mutex_unlock(&ggtt->lock);
++err:
++	xe_ggtt_node_fini(node);
++	return ERR_PTR(ret);
+ }
+ 
+ static int __xe_ggtt_insert_bo_at(struct xe_ggtt *ggtt, struct xe_bo *bo,
+@@ -841,8 +882,9 @@ static int __xe_ggtt_insert_bo_at(struct xe_ggtt *ggtt, struct xe_bo *bo,
+ 	} else {
+ 		u16 cache_mode = bo->flags & XE_BO_FLAG_NEEDS_UC ? XE_CACHE_NONE : XE_CACHE_WB;
+ 		u16 pat_index = tile_to_xe(ggtt->tile)->pat.idx[cache_mode];
++		u64 pte = ggtt->pt_ops->pte_encode_flags(bo, pat_index);
+ 
+-		xe_ggtt_map_bo(ggtt, bo->ggtt_node[tile_id], bo, pat_index);
++		xe_ggtt_map_bo(ggtt, bo->ggtt_node[tile_id], bo, pte);
+ 	}
+ 	mutex_unlock(&ggtt->lock);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_ggtt.h b/drivers/gpu/drm/xe/xe_ggtt.h
+index df7196ec4696e..9adfc58edf581 100644
+--- a/drivers/gpu/drm/xe/xe_ggtt.h
++++ b/drivers/gpu/drm/xe/xe_ggtt.h
+@@ -27,13 +27,14 @@ u64 xe_ggtt_start(struct xe_ggtt *ggtt);
+ u64 xe_ggtt_size(struct xe_ggtt *ggtt);
+ 
+ int xe_ggtt_node_insert(struct xe_ggtt_node *node, u32 size, u32 align);
+-int xe_ggtt_node_insert_locked(struct xe_ggtt_node *node,
+-			       u32 size, u32 align, u32 mm_flags);
++struct xe_ggtt_node *
++xe_ggtt_node_insert_transform(struct xe_ggtt *ggtt,
++			      struct xe_bo *bo, u64 pte,
++			      u64 size, u32 align,
++			      xe_ggtt_transform_cb transform, void *arg);
+ void xe_ggtt_node_remove(struct xe_ggtt_node *node, bool invalidate);
+ bool xe_ggtt_node_allocated(const struct xe_ggtt_node *node);
+ size_t xe_ggtt_node_pt_size(const struct xe_ggtt_node *node);
+-void xe_ggtt_map_bo(struct xe_ggtt *ggtt, struct xe_ggtt_node *node,
+-		    struct xe_bo *bo, u16 pat_index);
+ void xe_ggtt_map_bo_unlocked(struct xe_ggtt *ggtt, struct xe_bo *bo);
+ int xe_ggtt_insert_bo(struct xe_ggtt *ggtt, struct xe_bo *bo, struct drm_exec *exec);
+ int xe_ggtt_insert_bo_at(struct xe_ggtt *ggtt, struct xe_bo *bo,
+diff --git a/drivers/gpu/drm/xe/xe_ggtt_types.h b/drivers/gpu/drm/xe/xe_ggtt_types.h
+index d773cf284c032..5fd723ce81087 100644
+--- a/drivers/gpu/drm/xe/xe_ggtt_types.h
++++ b/drivers/gpu/drm/xe/xe_ggtt_types.h
+@@ -71,6 +71,11 @@ struct xe_ggtt_node {
+ 	bool invalidate_on_remove;
+ };
+ 
++typedef void (*xe_ggtt_set_pte_fn)(struct xe_ggtt *ggtt, u64 addr, u64 pte);
++typedef void (*xe_ggtt_transform_cb)(struct xe_ggtt *ggtt,
++				     struct xe_ggtt_node *node,
++				     u64 pte_flags,
++				     xe_ggtt_set_pte_fn set_pte, void *arg);
  /**
+  * struct xe_ggtt_pt_ops - GGTT Page table operations
+  * Which can vary from platform to platform.
+@@ -78,8 +83,10 @@ struct xe_ggtt_node {
+ struct xe_ggtt_pt_ops {
+ 	/** @pte_encode_flags: Encode PTE flags for a given BO */
+ 	u64 (*pte_encode_flags)(struct xe_bo *bo, u16 pat_index);
++
+ 	/** @ggtt_set_pte: Directly write into GGTT's PTE */
+-	void (*ggtt_set_pte)(struct xe_ggtt *ggtt, u64 addr, u64 pte);
++	xe_ggtt_set_pte_fn ggtt_set_pte;
++
+ 	/** @ggtt_get_pte: Directly read from GGTT's PTE */
+ 	u64 (*ggtt_get_pte)(struct xe_ggtt *ggtt, u64 addr);
+ };
 -- 
 2.51.0
 
