@@ -4,82 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1F2FED185F8
-	for <intel-xe@archiver.kernel.org>; Thu,  8 Jan 2026 13:45:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 628EED185F9
+	for <intel-xe@archiver.kernel.org>; Thu,  8 Jan 2026 13:58:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D086610E730;
-	Thu,  8 Jan 2026 13:45:19 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=suse.com header.i=@suse.com header.b="f3/CcVG1";
-	dkim-atps=neutral
-Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com
- [209.85.167.51])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8508610E734
- for <intel-xe@lists.freedesktop.org>; Thu,  8 Jan 2026 13:45:18 +0000 (UTC)
-Received: by mail-lf1-f51.google.com with SMTP id
- 2adb3069b0e04-598f8136a24so3296338e87.3
- for <intel-xe@lists.freedesktop.org>; Thu, 08 Jan 2026 05:45:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=suse.com; s=google; t=1767879917; x=1768484717; darn=lists.freedesktop.org; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=57WnosdqODosJZTnTpnEoGznMRam2UK+IuBaIVvt90k=;
- b=f3/CcVG1n5Wv8JfsZ00i4K3yZMoIkmiAaGmHCS8GAFFNl37eMeWbVKn9lJVdsgvlOD
- eCYMr8+5VxHkOCjTUOMDJ6yGcWCmLPyOGb7ZzPSkzqh02cLWw3FCG1DXwHH5iTamVtyr
- a/J/jWQb9EqICjaKWzkuPzqLHzUsZ/eMfuOeKM+v+q2/IbORy0IPF797L8cme+cZ2G3X
- OYsEofmjnHurC3wU05X+Gg+BtMfmmiNQ0j1jfDGhIFmVSW2FXXS1fmc2bWqsCEWn4fum
- Qt7PU6n1Iq359apjoXZeW8nl9L5RFKUWXUR2Rst/aiyvWYar9HscDK0HaI0hb9qCFKcG
- oA7g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1767879917; x=1768484717;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=57WnosdqODosJZTnTpnEoGznMRam2UK+IuBaIVvt90k=;
- b=qOH3PlUX0xMwanll6nZIjzNin0yp8iANVYnVlgQts/U0RFoqm2eGy1jggisVyQpWwl
- 2N++dZvvLc1IhbpFis0Bn2FD81S5yr789NdDyYK9Cs0e4Ulnml8XTCVlcQJQvcchUpQ4
- ILB33oeAJiC7qo3WpBmkvHKnMe71b89egOshgaadR5kKmSsTTsemoCByusGkwRGjXmrE
- tZJomtJaIN0q0rcPcb8PU0gmL+/Ydrp1qB67Nl8qluKc6G8eFyuU5VrEC98AVnKfD52R
- UHFuE/l/QvI/csb5ACmEe1KsM/G89N1E23lXNomTr49oEkqxPHAI4/p1jYDTUqphoUy+
- cL+w==
-X-Forwarded-Encrypted: i=1;
- AJvYcCW9PjNk+RRHGeHoK39CHP2ngqJLBajxGg4yIvkQJkfvsTeaBcMOpZTHkGjjRIXrdmDe45VmWVcxig==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxkXZX5cGAxGgsw1fo6rrsFYY9vxFuO3MK5SSsI39iBa6J16Mlb
- d9fYV+asNumlvQPyKM6Yd9gLExHMyRydIoTMmoaKHDq6UWGgbQILN3DpnbCG91TjSfLeLpqQu4T
- Gzq3AD7hHLIYCndZzhYOuSqhkO3kmgtFm5UW+coz4Nw==
-X-Gm-Gg: AY/fxX6cwmID/x6JCFdo8ZimyGeA5S62D0CZC3i8qiwsvaZRRgzaJ7NcVzGAkslJO1L
- IrUXwZYkAm+dW3PYCNw+U9wUPUxim+1+4OepnFYreUAZPU/Pt3rntSvcw5cpnsea8x7bVrAevnz
- 7WiNLfE2dQfttTYivIwVi0yCODZEymvEgw9WBa930yREUFuMe1pqIqmLvHAN92x9gadffs6lj4d
- FJ+q5G9rby3KRcYjaaC+VNro9gWmimy/ksjSDMgoYe7PJbcykSCPAWKI4SKNoYlmpCB5arcoy6D
- bVkIDBxKRk7plQuk3uJ1ypdgqwepGNYvmZZyRbI=
-X-Google-Smtp-Source: AGHT+IGMqI/iZvTRGhFmoBHDfoJkE8zFzfVGT7taiQDmDkz3Qb1DNCz9w00arXjq1uq2WZ+x5tTUL27c2leyOAfcxMg=
-X-Received: by 2002:a05:6512:b0d:b0:594:3004:ce37 with SMTP id
- 2adb3069b0e04-59b6f04501emr2145731e87.44.1767879916595; Thu, 08 Jan 2026
- 05:45:16 -0800 (PST)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2423110E73B;
+	Thu,  8 Jan 2026 13:58:04 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E208510E73A;
+ Thu,  8 Jan 2026 13:58:03 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2711134405420426685=="
 MIME-Version: 1.0
-References: <20251103170604.310895-1-marco.crivellari@suse.com>
- <20251103170604.310895-2-marco.crivellari@suse.com>
- <aV-xEjo5ejSM73DN@intel.com>
-In-Reply-To: <aV-xEjo5ejSM73DN@intel.com>
-From: Marco Crivellari <marco.crivellari@suse.com>
-Date: Thu, 8 Jan 2026 14:45:05 +0100
-X-Gm-Features: AQt7F2qegOvSFGwG-R0OwLu7gR7jxITAuTDYCqaymVCIP34UBPVWbtG2yiWHdvk
-Message-ID: <CAAofZF4_uV+78JWq2FLaezv4qaVK7BiyVLXmXNtaPXB_jhvDYQ@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] drm/xe: replace use of system_unbound_wq with
- system_dfl_wq
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: linux-kernel@vger.kernel.org, intel-xe@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, Tejun Heo <tj@kernel.org>, 
- Lai Jiangshan <jiangshanlai@gmail.com>,
- Frederic Weisbecker <frederic@kernel.org>, 
- Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
- Michal Hocko <mhocko@suse.com>, 
- Lucas De Marchi <lucas.demarchi@intel.com>, 
- Thomas Hellstrom <thomas.hellstrom@linux.intel.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/hwmon=3A_Expose_new_?=
+ =?utf-8?q?temperature_attributes_=28rev5=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Karthik Poosa" <karthik.poosa@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 08 Jan 2026 13:58:03 -0000
+Message-ID: <176788068392.136594.14155474102639216721@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260108130323.426531-1-karthik.poosa@intel.com>
+In-Reply-To: <20260108130323.426531-1-karthik.poosa@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -91,93 +36,155 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Jan 8, 2026 at 2:29=E2=80=AFPM Rodrigo Vivi <rodrigo.vivi@intel.com=
-> wrote:
-> I'm sorry for the delay here, but could you please refactor this commit
-> message?
->
-> The first part of this commit message is the true justification for your
-> original work, not for this patch here.
+--===============2711134405420426685==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Hi Rodrigo,
+== Series Details ==
 
-Sure, I already have a new version of it:
+Series: drm/xe/hwmon: Expose new temperature attributes (rev5)
+URL   : https://patchwork.freedesktop.org/series/158384/
+State : success
 
----
+== Summary ==
 
-This patch continues the effort to refactor workqueue APIs, which has begun
-with the changes introducing new workqueues and a new alloc_workqueue flag:
+CI Bug Log - changes from xe-4346-d7d19ebd62e1a312e67f4484df9a4e2b407d93d0_BAT -> xe-pw-158384v5_BAT
+====================================================
 
-   commit 128ea9f6ccfb ("workqueue: Add system_percpu_wq and system_dfl_wq"=
-)
-   commit 930c2ea566af ("workqueue: Add new WQ_PERCPU flag")
+Summary
+-------
 
-The point of the refactoring is to eventually alter the default behavior of
-workqueues to become unbound by default so that their workload placement is
-optimized by the scheduler.
+  **SUCCESS**
 
-Before that to happen, workqueue users must be converted to the better name=
-d
-new workqueues with no intended behaviour changes:
+  No regressions found.
 
-   system_wq -> system_percpu_wq
-   system_unbound_wq -> system_dfl_wq
+  
 
-This way the old obsolete workqueues (system_wq, system_unbound_wq) can be
-removed in the future.
+Participating hosts (12 -> 12)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-158384v5_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_waitfence@engine:
+    - bat-dg2-oem2:       [PASS][1] -> [FAIL][2] ([Intel XE#6519])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4346-d7d19ebd62e1a312e67f4484df9a4e2b407d93d0/bat-dg2-oem2/igt@xe_waitfence@engine.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158384v5/bat-dg2-oem2/igt@xe_waitfence@engine.html
+
+  * igt@xe_waitfence@reltime:
+    - bat-dg2-oem2:       [PASS][3] -> [FAIL][4] ([Intel XE#6520])
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4346-d7d19ebd62e1a312e67f4484df9a4e2b407d93d0/bat-dg2-oem2/igt@xe_waitfence@reltime.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158384v5/bat-dg2-oem2/igt@xe_waitfence@reltime.html
+
+  
+#### Possible fixes ####
+
+  * igt@xe_waitfence@abstime:
+    - bat-dg2-oem2:       [TIMEOUT][5] ([Intel XE#6506]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4346-d7d19ebd62e1a312e67f4484df9a4e2b407d93d0/bat-dg2-oem2/igt@xe_waitfence@abstime.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158384v5/bat-dg2-oem2/igt@xe_waitfence@abstime.html
+
+  
+  [Intel XE#6506]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506
+  [Intel XE#6519]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519
+  [Intel XE#6520]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520
 
 
-> Except for your last phrase, which indicates, some wish of removing
-> the unbound_wq, it doesn't state clear on why we should change the
-> unbound per the dfl (default?).
->
-> Perhaps the authors of these cases below wanted to be unbound,
-> but choosing the default will make us to be tied to whatever
-> default might become in the future.
->
-> Right now both unbound and dfl are identical. In the future
-> you are planning to remove the unbound, but what about the dfl?
-> Any plans or possible changes? If no change is planned to dfl,
-> why create default and simply not stay with the unbound one
-> that is much more clear on its intention?
+Build changes
+-------------
 
-Yes, "dfl" is "default".
+  * Linux: xe-4346-d7d19ebd62e1a312e67f4484df9a4e2b407d93d0 -> xe-pw-158384v5
 
-With the new version above I think it is clear, but in short: the rename
-is needed as a first refactoring step; the plan is to have an unbound workq=
-ueue
-as default.
+  IGT_8692: 8692
+  xe-4346-d7d19ebd62e1a312e67f4484df9a4e2b407d93d0: d7d19ebd62e1a312e67f4484df9a4e2b407d93d0
+  xe-pw-158384v5: 158384v5
 
-system_unbound_wq will be removed and changed with system_dfl_wq.
-system_dfl_wq is the new unbound workqueue, it works exactly the same as
-system_unbound_wq.
+== Logs ==
 
-system_wq will be replaced with system_percpu_wq; same thing as above,
-no behavioral changes, system_percpu_wq is the new per-cpu workqueue.
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158384v5/index.html
 
-This is to make clear that if a per-cpu workqueue is not needed, the correc=
-t
-choice is system_dfl_wq.
+--===============2711134405420426685==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Also, during this conversion phase, I can tell many subsystems asked to
-change system_wq (the name of the "old" per-cpu workqueue) with
-system_dfl_wq, because they just wanted to use a system workqueue and
-thought system_wq was already the unbound one.
 
-All of this work has been discussed here:
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
 
-https://lore.kernel.org/all/20250221112003.1dSuoGyc@linutronix.de/
 
-I will add this Link to the above commit log. Let me know if it sounds good=
-.
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/hwmon: Expose new temperature attributes (rev5)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/158384/">https://patchwork.freedesktop.org/series/158384/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
 
-Thanks!
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158384v5/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158384v5/index.html</a></td></tr>
 
---=20
+</table>
 
-Marco Crivellari
 
-L3 Support Engineer
+    <h1>CI Bug Log - changes from xe-4346-d7d19ebd62e1a312e67f4484df9a4e2b407d93d0_BAT -&gt; xe-pw-158384v5_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (12 -&gt; 12)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-158384v5_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@xe_waitfence@engine:</p>
+<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4346-d7d19ebd62e1a312e67f4484df9a4e2b407d93d0/bat-dg2-oem2/igt@xe_waitfence@engine.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158384v5/bat-dg2-oem2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519">Intel XE#6519</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_waitfence@reltime:</p>
+<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4346-d7d19ebd62e1a312e67f4484df9a4e2b407d93d0/bat-dg2-oem2/igt@xe_waitfence@reltime.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158384v5/bat-dg2-oem2/igt@xe_waitfence@reltime.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520">Intel XE#6520</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_waitfence@abstime:<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4346-d7d19ebd62e1a312e67f4484df9a4e2b407d93d0/bat-dg2-oem2/igt@xe_waitfence@abstime.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506">Intel XE#6506</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158384v5/bat-dg2-oem2/igt@xe_waitfence@abstime.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4346-d7d19ebd62e1a312e67f4484df9a4e2b407d93d0 -&gt; xe-pw-158384v5</li>
+</ul>
+<p>IGT_8692: 8692<br />
+  xe-4346-d7d19ebd62e1a312e67f4484df9a4e2b407d93d0: d7d19ebd62e1a312e67f4484df9a4e2b407d93d0<br />
+  xe-pw-158384v5: 158384v5</p>
+
+</body>
+</html>
+
+--===============2711134405420426685==--
