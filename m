@@ -4,59 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DC1F9D185DB
-	for <intel-xe@archiver.kernel.org>; Thu,  8 Jan 2026 11:34:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C1306D185DB
+	for <intel-xe@archiver.kernel.org>; Thu,  8 Jan 2026 11:40:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9803310E6F7;
-	Thu,  8 Jan 2026 11:34:06 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="A2HvGj0X";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3933210E6F3;
- Thu,  8 Jan 2026 11:34:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1767872043; x=1799408043;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=O9OKzb82aehrtdtLLN/pGjjQh2VlqlZUawKxMMshgts=;
- b=A2HvGj0XxLL58WZBT++IvLd6e66/L1oLhr+CRB19eMQN2Ped06wgkXEJ
- VZyStl5qQ+Fk5ob1Bo1CwcEqWDy63JWnReWyDpg63pctmPp+5c5NQT61R
- txyL32Jw3ZJrgH9bgmhEtU8t553tJkXfUqCABeTMudeh8Ao/HFaTg6ZfA
- KR7qlNdUg1MMOnYEBV3ct3skUz8GfAHcOpdLKXjeAL2lPtvKPG98f4IkZ
- BpZuNOBMGubTcjEiyNpZeKQhGwQwJ2KzyyeS9UF48ZOs7IVkPdguk+9qI
- ohnFrToJa14tKRej3SHRfibnWWZsjSW1IA/xzrQD3LYPBVaBp8V8ZTLKg w==;
-X-CSE-ConnectionGUID: sBQ7JGd/ReyTvkyXuxIKdQ==
-X-CSE-MsgGUID: d3B3mku4RHqasSTad6PpCg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11664"; a="71824661"
-X-IronPort-AV: E=Sophos;i="6.21,210,1763452800"; d="scan'208";a="71824661"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jan 2026 03:34:03 -0800
-X-CSE-ConnectionGUID: ckJRLKW1RgybaOEVFRcsVg==
-X-CSE-MsgGUID: gVuMBuWWQRaboSGc1C6+3w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,210,1763452800"; d="scan'208";a="208024049"
-Received: from yadavs-z690i-a-ultra-plus.iind.intel.com ([10.190.216.90])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jan 2026 03:34:01 -0800
-From: Sanjay Yadav <sanjay.kumar.yadav@intel.com>
-To: dri-devel@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>,
- Matthew Auld <matthew.auld@intel.com>
-Subject: [PATCH v2 2/2] drm/tests/drm_buddy: Add tests for allocations
- exceeding max_order
-Date: Thu,  8 Jan 2026 17:02:30 +0530
-Message-ID: <20260108113227.2101872-6-sanjay.kumar.yadav@intel.com>
-X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20260108113227.2101872-4-sanjay.kumar.yadav@intel.com>
-References: <20260108113227.2101872-4-sanjay.kumar.yadav@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7A3B510E6F4;
+	Thu,  8 Jan 2026 11:40:14 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0BB1810E6F3;
+ Thu,  8 Jan 2026 11:40:13 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6859949206468186515=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Privatize_struct_?=
+ =?utf-8?q?xe=5Fggtt=5Fnode=2E_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Maarten Lankhorst" <dev@lankhorst.se>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 08 Jan 2026 11:40:13 -0000
+Message-ID: <176787241304.136184.11855335132344333562@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260108101014.579906-9-dev@lankhorst.se>
+In-Reply-To: <20260108101014.579906-9-dev@lankhorst.se>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,85 +36,194 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add kunit tests that exercise edge cases where allocation requests
-exceed mm->max_order after rounding. This can happen with
-non-power-of-two VRAM sizes when the allocator rounds up requests.
+--===============6859949206468186515==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-For example, with 10G VRAM (8G + 2G roots), mm->max_order represents
-the 8G block. A 9G allocation can round up to 16G in multiple ways:
-CONTIGUOUS allocation rounds to next power-of-two, or non-CONTIGUOUS
-with 8G min_block_size rounds to next alignment boundary.
+== Series Details ==
 
-The test validates CONTIGUOUS and RANGE flag combinations, ensuring that
-only CONTIGUOUS-alone allocations use try_harder fallback, while other
-combinations return -EINVAL when rounded size exceeds memory, preventing
-BUG_ON assertions.
+Series: drm/xe: Privatize struct xe_ggtt_node. (rev2)
+URL   : https://patchwork.freedesktop.org/series/156258/
+State : success
 
-Cc: Christian König <christian.koenig@amd.com>
-Cc: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
-Suggested-by: Matthew Auld <matthew.auld@intel.com>
-Signed-off-by: Sanjay Yadav <sanjay.kumar.yadav@intel.com>
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
----
- drivers/gpu/drm/tests/drm_buddy_test.c | 35 ++++++++++++++++++++++++++
- 1 file changed, 35 insertions(+)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/tests/drm_buddy_test.c b/drivers/gpu/drm/tests/drm_buddy_test.c
-index 5f40b5343bd8..e6f8459c6c54 100644
---- a/drivers/gpu/drm/tests/drm_buddy_test.c
-+++ b/drivers/gpu/drm/tests/drm_buddy_test.c
-@@ -857,6 +857,40 @@ static void drm_test_buddy_alloc_limit(struct kunit *test)
- 	drm_buddy_fini(&mm);
- }
- 
-+static void drm_test_buddy_alloc_exceeds_max_order(struct kunit *test)
-+{
-+	u64 mm_size = SZ_8G + SZ_2G, size = SZ_8G + SZ_1G, min_block_size = SZ_8G;
-+	struct drm_buddy mm;
-+	LIST_HEAD(blocks);
-+	int err;
-+
-+	KUNIT_ASSERT_FALSE_MSG(test, drm_buddy_init(&mm, mm_size, SZ_4K),
-+			       "buddy_init failed\n");
-+
-+	/* CONTIGUOUS allocation should succeed via try_harder fallback */
-+	KUNIT_ASSERT_FALSE_MSG(test, drm_buddy_alloc_blocks(&mm, 0, mm_size, size,
-+							    SZ_4K, &blocks,
-+							    DRM_BUDDY_CONTIGUOUS_ALLOCATION),
-+			       "buddy_alloc hit an error size=%llu\n", size);
-+	drm_buddy_free_list(&mm, &blocks, 0);
-+
-+	/* Non-CONTIGUOUS with large min_block_size should return -EINVAL */
-+	err = drm_buddy_alloc_blocks(&mm, 0, mm_size, size, min_block_size, &blocks, 0);
-+	KUNIT_EXPECT_EQ(test, err, -EINVAL);
-+
-+	/* Non-CONTIGUOUS + RANGE with large min_block_size should return -EINVAL */
-+	err = drm_buddy_alloc_blocks(&mm, 0, mm_size, size, min_block_size, &blocks,
-+				     DRM_BUDDY_RANGE_ALLOCATION);
-+	KUNIT_EXPECT_EQ(test, err, -EINVAL);
-+
-+	/* CONTIGUOUS + RANGE should return -EINVAL (no try_harder for RANGE) */
-+	err = drm_buddy_alloc_blocks(&mm, 0, mm_size, size, SZ_4K, &blocks,
-+				     DRM_BUDDY_CONTIGUOUS_ALLOCATION | DRM_BUDDY_RANGE_ALLOCATION);
-+	KUNIT_EXPECT_EQ(test, err, -EINVAL);
-+
-+	drm_buddy_fini(&mm);
-+}
-+
- static int drm_buddy_suite_init(struct kunit_suite *suite)
- {
- 	while (!random_seed)
-@@ -877,6 +911,7 @@ static struct kunit_case drm_buddy_tests[] = {
- 	KUNIT_CASE(drm_test_buddy_alloc_clear),
- 	KUNIT_CASE(drm_test_buddy_alloc_range_bias),
- 	KUNIT_CASE(drm_test_buddy_fragmentation_performance),
-+	KUNIT_CASE(drm_test_buddy_alloc_exceeds_max_order),
- 	{}
- };
- 
--- 
-2.52.0
+CI Bug Log - changes from xe-4345-580c8957e96b7372e82590d1b1e6c2842c245077_BAT -> xe-pw-156258v2_BAT
+====================================================
 
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (11 -> 12)
+------------------------------
+
+  Additional (1): bat-bmg-1 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-156258v2_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
+    - bat-bmg-1:          NOTRUN -> [SKIP][1] ([Intel XE#2233])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156258v2/bat-bmg-1/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
+
+  * igt@kms_dsc@dsc-basic:
+    - bat-bmg-1:          NOTRUN -> [SKIP][2] ([Intel XE#2244])
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156258v2/bat-bmg-1/igt@kms_dsc@dsc-basic.html
+
+  * igt@kms_psr@psr-sprite-plane-onoff:
+    - bat-bmg-1:          NOTRUN -> [SKIP][3] ([Intel XE#1406] / [Intel XE#2234] / [Intel XE#2850]) +2 other tests skip
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156258v2/bat-bmg-1/igt@kms_psr@psr-sprite-plane-onoff.html
+
+  * igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit:
+    - bat-bmg-1:          NOTRUN -> [SKIP][4] ([Intel XE#2229])
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156258v2/bat-bmg-1/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html
+
+  * igt@xe_pat@pat-index-xehpc:
+    - bat-bmg-1:          NOTRUN -> [SKIP][5] ([Intel XE#1420])
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156258v2/bat-bmg-1/igt@xe_pat@pat-index-xehpc.html
+
+  * igt@xe_pat@pat-index-xelp:
+    - bat-bmg-1:          NOTRUN -> [SKIP][6] ([Intel XE#2245])
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156258v2/bat-bmg-1/igt@xe_pat@pat-index-xelp.html
+
+  * igt@xe_pat@pat-index-xelpg:
+    - bat-bmg-1:          NOTRUN -> [SKIP][7] ([Intel XE#2236])
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156258v2/bat-bmg-1/igt@xe_pat@pat-index-xelpg.html
+
+  
+  [Intel XE#1406]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1406
+  [Intel XE#1420]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1420
+  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
+  [Intel XE#2233]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2233
+  [Intel XE#2234]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2234
+  [Intel XE#2236]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2236
+  [Intel XE#2244]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2244
+  [Intel XE#2245]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2245
+  [Intel XE#2850]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2850
+
+
+Build changes
+-------------
+
+  * Linux: xe-4345-580c8957e96b7372e82590d1b1e6c2842c245077 -> xe-pw-156258v2
+
+  IGT_8692: 8692
+  xe-4345-580c8957e96b7372e82590d1b1e6c2842c245077: 580c8957e96b7372e82590d1b1e6c2842c245077
+  xe-pw-156258v2: 156258v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156258v2/index.html
+
+--===============6859949206468186515==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Privatize struct xe_ggtt_node. (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/156258/">https://patchwork.freedesktop.org/series/156258/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156258v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156258v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4345-580c8957e96b7372e82590d1b1e6c2842c245077_BAT -&gt; xe-pw-156258v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (11 -&gt; 12)</h2>
+<p>Additional (1): bat-bmg-1 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-156258v2_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:</p>
+<ul>
+<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156258v2/bat-bmg-1/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2233">Intel XE#2233</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_dsc@dsc-basic:</p>
+<ul>
+<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156258v2/bat-bmg-1/igt@kms_dsc@dsc-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2244">Intel XE#2244</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@psr-sprite-plane-onoff:</p>
+<ul>
+<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156258v2/bat-bmg-1/igt@kms_psr@psr-sprite-plane-onoff.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1406">Intel XE#1406</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2234">Intel XE#2234</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2850">Intel XE#2850</a>) +2 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit:</p>
+<ul>
+<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156258v2/bat-bmg-1/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xehpc:</p>
+<ul>
+<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156258v2/bat-bmg-1/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1420">Intel XE#1420</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xelp:</p>
+<ul>
+<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156258v2/bat-bmg-1/igt@xe_pat@pat-index-xelp.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2245">Intel XE#2245</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xelpg:</p>
+<ul>
+<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156258v2/bat-bmg-1/igt@xe_pat@pat-index-xelpg.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2236">Intel XE#2236</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4345-580c8957e96b7372e82590d1b1e6c2842c245077 -&gt; xe-pw-156258v2</li>
+</ul>
+<p>IGT_8692: 8692<br />
+  xe-4345-580c8957e96b7372e82590d1b1e6c2842c245077: 580c8957e96b7372e82590d1b1e6c2842c245077<br />
+  xe-pw-156258v2: 156258v2</p>
+
+</body>
+</html>
+
+--===============6859949206468186515==--
