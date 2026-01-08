@@ -4,26 +4,79 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 08642D1D480
-	for <intel-xe@archiver.kernel.org>; Thu,  8 Jan 2026 16:50:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A821BD1D478
+	for <intel-xe@archiver.kernel.org>; Thu,  8 Jan 2026 16:54:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B1B7410E36D;
-	Thu,  8 Jan 2026 16:50:28 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0286C10E36A;
- Thu,  8 Jan 2026 16:50:28 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4250374219741861135=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5D25010E79D;
+	Thu,  8 Jan 2026 16:54:13 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=suse.com header.i=@suse.com header.b="G6CswSjd";
+	dkim-atps=neutral
+Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com
+ [209.85.167.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4553210E79D
+ for <intel-xe@lists.freedesktop.org>; Thu,  8 Jan 2026 16:54:12 +0000 (UTC)
+Received: by mail-lf1-f47.google.com with SMTP id
+ 2adb3069b0e04-59b6f04cae6so1878196e87.2
+ for <intel-xe@lists.freedesktop.org>; Thu, 08 Jan 2026 08:54:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=suse.com; s=google; t=1767891251; x=1768496051; darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=5tFEi7D1Ny0FGyhvAd0NOx+lhbZg2wFDhqn24TA+o7I=;
+ b=G6CswSjdFRBoeUK0S8LcMQk3lz0jMJKokxLUqFCUzfL0boWFWBZpy2Ie8gXkjDRupp
+ orouDH0QfHLXGTdz5gRUQwMOTzJ3l57oIcLu5VT3MTMus9umdU3m5J2VBPnFsUgy59qf
+ 5fSDfsnzjx1yw167+/6ihzUSQp5hbOnHKu9VHiSL/mvK6z1njn66KppkFIklj6aZpys6
+ cJN84fx1xKXJwthCMRkVHQM2muNmuo61z+MT3DeVavPrG3K87z0kgf+iBodVxoP1DoDi
+ yTjQefVixl7a4SFER7hIWyeYIPyA7zAC8uFHPfABUUICSxseHW0lhXBs5igD+0FGKEEs
+ OZYQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1767891251; x=1768496051;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=5tFEi7D1Ny0FGyhvAd0NOx+lhbZg2wFDhqn24TA+o7I=;
+ b=gTxjMzYvj8JM9qAauQeq8r/fKbeU+ovz0z3YCaBL1/MSsfk1TwG5CeldDE4kEeedzi
+ zxGyo0OSMiXr6Z3ThZpZhWNEIaq/NEin9gfXSU0BjRK7ouzGbFAeOmtaivinqVfSBXx2
+ trMiQJLyMyett1UKksxL5N9r9BgDiSMTtybjlREEyqXqrqqABMhYOwuq6PCr52I8FTqv
+ B9GnVbzSRTkgSuwjX4Uhfpfqj+jYwczY3F/HAHvd9GIpPIk28t4Ux3BdfG9Mtea2kzP/
+ 5n5SQ/uZ619vsjzwXPcdchpcLPodxnIu4RHTjdYGXwK6d+l7GBhB0irrIxHovLgaCZi5
+ v37Q==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVpJHv1dbeGrcI4moXReTHM0Sy+lWHcwVD91WTl/RHu4RR5HTmdlBkInMpo/IW/pB8ewjGqBwJ4IQ==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwtkSlK9a1P4AEvXlTbT/DHcHc4xooePZPJBhzntFRLJ2CRiz4Z
+ MVC6DD9F/tLvviAbxpwrWnlI4o0Y9XPoEJZQTDAPd8cqoAwaFJVX251gL3cowitcwyX6n3M0+xV
+ e73mOXL9XSjq2Erf4NP2wGHy0vpPPTg32tXty9gmFwg==
+X-Gm-Gg: AY/fxX5sVaDVEVjUqt7E5i4ba/BYY7QBjyZOLOPxgdLmb3w80pCSbfo2652yb/1nmGV
+ MGXhILfV66fbMhgmuoLJiNiUkXUsJ1iNZa7h2Pp44vIXxThLPS0m0V4PUQqoVDBC0RqabPUUR59
+ FjkHXtWDy4+Sw8hihXhQAlk8yoROo6wm8XQ2Be65SsV2GHmy5lROojB3FLwD6oK/D9/zWy6vzaV
+ RHgJ2ZGWUDMb2j8VWdq6o9pLxG/2j3yMbGKX5+wB1r7jCgGkTJbIdVtPLGXl98bi+35jn0aXlqg
+ NxM9bD6fpJ5trr3aNsf7nvYj1U5F
+X-Google-Smtp-Source: AGHT+IHcaq3Iod3MNNgnnvFFNIpcziSsOqmmFlOGlQ74iUyxAGstEgFcIYPH3qVrmLUpnmc350OzASEAfdSgs1QHSkM=
+X-Received: by 2002:a05:6512:10cf:b0:598:de74:7a66 with SMTP id
+ 2adb3069b0e04-59b6f023bc8mr2163410e87.26.1767891247505; Thu, 08 Jan 2026
+ 08:54:07 -0800 (PST)
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Rust_GPUVM_prerequisites?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Alice Ryhl" <aliceryhl@google.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 08 Jan 2026 16:50:28 -0000
-Message-ID: <176789102800.137987.11000793898809621472@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260108-gpuvm-rust-v2-0-dbd014005a0b@google.com>
-In-Reply-To: <20260108-gpuvm-rust-v2-0-dbd014005a0b@google.com>
+References: <20251103170604.310895-1-marco.crivellari@suse.com>
+ <20251103170604.310895-3-marco.crivellari@suse.com>
+In-Reply-To: <20251103170604.310895-3-marco.crivellari@suse.com>
+From: Marco Crivellari <marco.crivellari@suse.com>
+Date: Thu, 8 Jan 2026 17:53:56 +0100
+X-Gm-Features: AQt7F2oYFLywsT6cVyy-Fw18Te-lDh35_yrTBGDJ2XEJK1ILpY0zCAOBMCVlL-4
+Message-ID: <CAAofZF5iwRcEg9813aZf+Bib36u3K9MSjCwt478rzxuKW97gcw@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] drm/xe: add WQ_PERCPU to alloc_workqueue users
+To: linux-kernel@vger.kernel.org, intel-xe@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org
+Cc: Tejun Heo <tj@kernel.org>, Lai Jiangshan <jiangshanlai@gmail.com>, 
+ Frederic Weisbecker <frederic@kernel.org>,
+ Sebastian Andrzej Siewior <bigeasy@linutronix.de>, 
+ Michal Hocko <mhocko@suse.com>, Lucas De Marchi <lucas.demarchi@intel.com>, 
+ Thomas Hellstrom <thomas.hellstrom@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -35,141 +88,44 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============4250374219741861135==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hi,
 
-== Series Details ==
+I realized something in the meantime, looking manually at the patch,
+while preparing the v3.
+There is a bug in the alloc_workqueue() line in xe_ggtt_init_early():
 
-Series: Rust GPUVM prerequisites
-URL   : https://patchwork.freedesktop.org/series/159824/
-State : success
+On Mon, Nov 3, 2025 at 6:06=E2=80=AFPM Marco Crivellari
+<marco.crivellari@suse.com> wrote:
+> [...]
+> diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
+> index 5edc0cad47e2..566163ab96ae 100644
+> --- a/drivers/gpu/drm/xe/xe_ggtt.c
+> +++ b/drivers/gpu/drm/xe/xe_ggtt.c
+> @@ -291,7 +291,7 @@ int xe_ggtt_init_early(struct xe_ggtt *ggtt)
+>         else
+>                 ggtt->pt_ops =3D &xelp_pt_ops;
+>
+> -       ggtt->wq =3D alloc_workqueue("xe-ggtt-wq", 0, WQ_MEM_RECLAIM);
+> +       ggtt->wq =3D alloc_workqueue("xe-ggtt-wq", WQ_PERCPU, WQ_MEM_RECL=
+AIM);
+>         if (!ggtt->wq)
+>                 return -ENOMEM;
 
-== Summary ==
+> -       ggtt->wq =3D alloc_workqueue("xe-ggtt-wq", 0, WQ_MEM_RECLAIM);
 
-CI Bug Log - changes from xe-4346-d7d19ebd62e1a312e67f4484df9a4e2b407d93d0_BAT -> xe-pw-159824v1_BAT
-====================================================
+The workqueue flag is the 2nd parameter, not the 3rd. The 3rd is max_active=
+.
 
-Summary
--------
+I will send a patch in order to fix this before proceeding with this
+entire series.
 
-  **SUCCESS**
+Thanks!
 
-  No regressions found.
+--=20
 
-  
+Marco Crivellari
 
-Participating hosts (12 -> 12)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-159824v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_waitfence@engine:
-    - bat-dg2-oem2:       [PASS][1] -> [FAIL][2] ([Intel XE#6519])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4346-d7d19ebd62e1a312e67f4484df9a4e2b407d93d0/bat-dg2-oem2/igt@xe_waitfence@engine.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159824v1/bat-dg2-oem2/igt@xe_waitfence@engine.html
-
-  
-#### Possible fixes ####
-
-  * igt@xe_waitfence@abstime:
-    - bat-dg2-oem2:       [TIMEOUT][3] ([Intel XE#6506]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4346-d7d19ebd62e1a312e67f4484df9a4e2b407d93d0/bat-dg2-oem2/igt@xe_waitfence@abstime.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159824v1/bat-dg2-oem2/igt@xe_waitfence@abstime.html
-
-  
-  [Intel XE#6506]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506
-  [Intel XE#6519]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519
-
-
-Build changes
--------------
-
-  * Linux: xe-4346-d7d19ebd62e1a312e67f4484df9a4e2b407d93d0 -> xe-pw-159824v1
-
-  IGT_8692: 8692
-  xe-4346-d7d19ebd62e1a312e67f4484df9a4e2b407d93d0: d7d19ebd62e1a312e67f4484df9a4e2b407d93d0
-  xe-pw-159824v1: 159824v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159824v1/index.html
-
---===============4250374219741861135==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Rust GPUVM prerequisites</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/159824/">https://patchwork.freedesktop.org/series/159824/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159824v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159824v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4346-d7d19ebd62e1a312e67f4484df9a4e2b407d93d0_BAT -&gt; xe-pw-159824v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (12 -&gt; 12)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-159824v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@xe_waitfence@engine:<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4346-d7d19ebd62e1a312e67f4484df9a4e2b407d93d0/bat-dg2-oem2/igt@xe_waitfence@engine.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159824v1/bat-dg2-oem2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519">Intel XE#6519</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_waitfence@abstime:<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4346-d7d19ebd62e1a312e67f4484df9a4e2b407d93d0/bat-dg2-oem2/igt@xe_waitfence@abstime.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506">Intel XE#6506</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159824v1/bat-dg2-oem2/igt@xe_waitfence@abstime.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4346-d7d19ebd62e1a312e67f4484df9a4e2b407d93d0 -&gt; xe-pw-159824v1</li>
-</ul>
-<p>IGT_8692: 8692<br />
-  xe-4346-d7d19ebd62e1a312e67f4484df9a4e2b407d93d0: d7d19ebd62e1a312e67f4484df9a4e2b407d93d0<br />
-  xe-pw-159824v1: 159824v1</p>
-
-</body>
-</html>
-
---===============4250374219741861135==--
+L3 Support Engineer
