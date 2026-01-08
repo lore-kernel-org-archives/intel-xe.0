@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 135A1D185C2
-	for <intel-xe@archiver.kernel.org>; Thu,  8 Jan 2026 10:35:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 83D40D185C2
+	for <intel-xe@archiver.kernel.org>; Thu,  8 Jan 2026 10:40:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CC6E510E327;
-	Thu,  8 Jan 2026 10:35:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 445A310E32C;
+	Thu,  8 Jan 2026 10:40:42 +0000 (UTC)
 Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5231710E125;
- Thu,  8 Jan 2026 10:35:21 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6492906792787470775=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 277D910E32A;
+ Thu,  8 Jan 2026 10:40:41 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_v3_7/7=5D_drm/i915/irq=3A_E?=
- =?utf-8?q?nable_flip=5Fdone_for_each_plane_on_async_flip?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe=3A_Privatize_struc?=
+ =?utf-8?q?t_xe=5Fggtt=5Fnode=2E_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Murthy, Arun R" <arun.r.murthy@intel.com>
+To: "Maarten Lankhorst" <dev@lankhorst.se>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 08 Jan 2026 10:35:21 -0000
-Message-ID: <176786852133.136594.8929229559872010047@a3b018990fe9>
+Date: Thu, 08 Jan 2026 10:40:41 -0000
+Message-ID: <176786884116.136184.14351810225401109503@a3b018990fe9>
 X-Patchwork-Hint: ignore
-References: <20260108-async-v3-0-e7730c3fe9ff@intel.com>
-In-Reply-To: <20260108-async-v3-0-e7730c3fe9ff@intel.com>
+References: <20260108101014.579906-9-dev@lankhorst.se>
+In-Reply-To: <20260108101014.579906-9-dev@lankhorst.se>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,190 +40,60 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============6492906792787470775==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: v3 7/7] drm/i915/irq: Enable flip_done for each plane on async flip
-URL   : https://patchwork.freedesktop.org/series/159791/
-State : success
+Series: drm/xe: Privatize struct xe_ggtt_node. (rev2)
+URL   : https://patchwork.freedesktop.org/series/156258/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-4345-580c8957e96b7372e82590d1b1e6c2842c245077_BAT -> xe-pw-159791v1_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+9f1cb6875f3f9eb0925ed50c16100322a2df513c
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit c2bf49c644f02ef78be452d1f5fe481537217804
+Author: Maarten Lankhorst <dev@lankhorst.se>
+Date:   Thu Jan 8 11:10:22 2026 +0100
 
-Summary
--------
+    drm/xe: Privatize xe_ggtt_node
+    
+    Nothing requires it any more, make the member private.
+    
+    Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+    Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
++ /mt/dim checkpatch 580c8957e96b7372e82590d1b1e6c2842c245077 drm-intel
+04e0c5a6b4e3 drm/xe: Start using ggtt->start in preparation of balloon removal
+-:115: CHECK:SPACING: No space is necessary after a cast
+#115: FILE: drivers/gpu/drm/xe/xe_ggtt.c:331:
++		ggtt_size = (gsm_size / 8) * (u64) XE_PAGE_SIZE - ggtt_start;
 
-  **SUCCESS**
+total: 0 errors, 0 warnings, 1 checks, 187 lines checked
+4a461e0a0d7a drm/xe: Convert xe_fb_pin to use a callback for insertion into GGTT
+-:190: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#190: FILE: drivers/gpu/drm/xe/xe_ggtt.c:640:
++static int xe_ggtt_node_insert_locked(struct xe_ggtt_node *node,
+ 			       u32 size, u32 align, u32 mm_flags)
 
-  No regressions found.
+-:203: WARNING:LONG_LINE_COMMENT: line length of 120 exceeds 100 columns
+#203: FILE: drivers/gpu/drm/xe/xe_ggtt.c:681:
++ * xe_ggtt_node_insert_transform(), or xe_ggtt_node_insert_balloon_locked() will ensure the node is inserted or reserved
 
-  
+total: 0 errors, 1 warnings, 1 checks, 314 lines checked
+513cc38e3a97 drm/xe: Add xe_ggtt_node_addr() to avoid dereferencing xe_ggtt_node
+770cabb5eb17 drm/xe/display: Avoid dereferencing xe_ggtt_node
+-:9: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#9: 
+Also sneak in a xe_bo_size() for stolen, too small to put as separate commit.
 
-Participating hosts (11 -> 12)
-------------------------------
-
-  Additional (1): bat-bmg-1 
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-159791v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
-    - bat-bmg-1:          NOTRUN -> [SKIP][1] ([Intel XE#2233])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159791v1/bat-bmg-1/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
-
-  * igt@kms_dsc@dsc-basic:
-    - bat-bmg-1:          NOTRUN -> [SKIP][2] ([Intel XE#2244])
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159791v1/bat-bmg-1/igt@kms_dsc@dsc-basic.html
-
-  * igt@kms_psr@psr-sprite-plane-onoff:
-    - bat-bmg-1:          NOTRUN -> [SKIP][3] ([Intel XE#1406] / [Intel XE#2234] / [Intel XE#2850]) +2 other tests skip
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159791v1/bat-bmg-1/igt@kms_psr@psr-sprite-plane-onoff.html
-
-  * igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit:
-    - bat-bmg-1:          NOTRUN -> [SKIP][4] ([Intel XE#2229])
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159791v1/bat-bmg-1/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html
-
-  * igt@xe_pat@pat-index-xehpc:
-    - bat-bmg-1:          NOTRUN -> [SKIP][5] ([Intel XE#1420])
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159791v1/bat-bmg-1/igt@xe_pat@pat-index-xehpc.html
-
-  * igt@xe_pat@pat-index-xelp:
-    - bat-bmg-1:          NOTRUN -> [SKIP][6] ([Intel XE#2245])
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159791v1/bat-bmg-1/igt@xe_pat@pat-index-xelp.html
-
-  * igt@xe_pat@pat-index-xelpg:
-    - bat-bmg-1:          NOTRUN -> [SKIP][7] ([Intel XE#2236])
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159791v1/bat-bmg-1/igt@xe_pat@pat-index-xelpg.html
-
-  
-  [Intel XE#1406]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1406
-  [Intel XE#1420]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1420
-  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
-  [Intel XE#2233]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2233
-  [Intel XE#2234]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2234
-  [Intel XE#2236]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2236
-  [Intel XE#2244]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2244
-  [Intel XE#2245]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2245
-  [Intel XE#2850]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2850
+total: 0 errors, 1 warnings, 0 checks, 40 lines checked
+d57dd1e5fa35 drm/xe: Do not dereference ggtt_node in xe_bo.c
+ae5ee32ffe07 drm/xe: Improve xe_gt_sriov_pf_config GGTT handling
+c2bf49c644f0 drm/xe: Privatize xe_ggtt_node
 
 
-Build changes
--------------
-
-  * Linux: xe-4345-580c8957e96b7372e82590d1b1e6c2842c245077 -> xe-pw-159791v1
-
-  IGT_8692: 8692
-  xe-4345-580c8957e96b7372e82590d1b1e6c2842c245077: 580c8957e96b7372e82590d1b1e6c2842c245077
-  xe-pw-159791v1: 159791v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159791v1/index.html
-
---===============6492906792787470775==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>v3 7/7] drm/i915/irq: Enable flip_done for each plane on async flip</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/159791/">https://patchwork.freedesktop.org/series/159791/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159791v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159791v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4345-580c8957e96b7372e82590d1b1e6c2842c245077_BAT -&gt; xe-pw-159791v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (11 -&gt; 12)</h2>
-<p>Additional (1): bat-bmg-1 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-159791v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:</p>
-<ul>
-<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159791v1/bat-bmg-1/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2233">Intel XE#2233</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_dsc@dsc-basic:</p>
-<ul>
-<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159791v1/bat-bmg-1/igt@kms_dsc@dsc-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2244">Intel XE#2244</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@psr-sprite-plane-onoff:</p>
-<ul>
-<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159791v1/bat-bmg-1/igt@kms_psr@psr-sprite-plane-onoff.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1406">Intel XE#1406</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2234">Intel XE#2234</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2850">Intel XE#2850</a>) +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit:</p>
-<ul>
-<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159791v1/bat-bmg-1/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xehpc:</p>
-<ul>
-<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159791v1/bat-bmg-1/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1420">Intel XE#1420</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xelp:</p>
-<ul>
-<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159791v1/bat-bmg-1/igt@xe_pat@pat-index-xelp.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2245">Intel XE#2245</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xelpg:</p>
-<ul>
-<li>bat-bmg-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159791v1/bat-bmg-1/igt@xe_pat@pat-index-xelpg.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2236">Intel XE#2236</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4345-580c8957e96b7372e82590d1b1e6c2842c245077 -&gt; xe-pw-159791v1</li>
-</ul>
-<p>IGT_8692: 8692<br />
-  xe-4345-580c8957e96b7372e82590d1b1e6c2842c245077: 580c8957e96b7372e82590d1b1e6c2842c245077<br />
-  xe-pw-159791v1: 159791v1</p>
-
-</body>
-</html>
-
---===============6492906792787470775==--
