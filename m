@@ -4,144 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4C4E5D14888
-	for <intel-xe@archiver.kernel.org>; Thu,  8 Jan 2026 01:29:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5ECF3D14889
+	for <intel-xe@archiver.kernel.org>; Thu,  8 Jan 2026 01:43:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 07F5910E2E4;
-	Thu,  8 Jan 2026 01:29:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 03BF810E2E4;
+	Thu,  8 Jan 2026 01:43:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="XFPiHdNn";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IRgGHh/X";
 	dkim-atps=neutral
-Received: from BYAPR05CU005.outbound.protection.outlook.com
- (mail-westusazon11010065.outbound.protection.outlook.com [52.101.85.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3DBD010E2E4;
- Thu,  8 Jan 2026 01:29:33 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=K/KTeJNnSWKvyh3PNgCX/b+qCY5qczTIl2lkkuxsBmUQGjX1BV2nqSsPqOYdfAIWzk+Fq/f3sOicOvSKjSYQDdaSxXZ7pQdhfEQL9RkbHU0Hfpn7pY3tv+xMmw1ZrlPT/kOfj1HbExxBicrj9mLMtAFOc6Am/dr0datwe4+c9DeTd9VZX13xt2QTTppo4T4CY64qKcjYWmJIclucVB2RMUiVWNL6USO2YChYWiyytfawNB3B5Hzg6KM6k5OLkoWHfog4jBV0uiI6vgrDxPQbwvW6goWSj9NJrwiDD2yevP26jLaJu28DNrC5YrMe5zBOP3KCZGIxSVEG2830NjgHdA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=JZM5g8Fsm40lY9IKMTZ9GP0l5I8u7cd2Ddm0hwXpwpw=;
- b=DfDFjp2ZIP7KCQDQXAyPa3MEphiozk6W5EAQSctLC+OlK0FO1pva7Jx3U/sRQWpPKavZotjPX5ipKFjnuPF8AAkH/d6KLXn5YKSysNfLYhIQAigOHJKyVhNFTkFKHhgvh4IQDQGx4fiAFdjrOnGTJ2KUN0NELul6q89vfmK8GmYgJRNN+Gy00nwPuw6TTzmVuiQpfvldp/rrdFofd2tSNE3c5Vinsc7L83lX8m8p4VZ0st5Msh26LBq357v55psXyqcLFoFoEzOytpKIkHEmtbP+Hz6YmeyaG1KQlOkswQeiL9hoGfcjgyp/jiuKzVdetVby+dpvrwnN+mhnTi4Kng==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=JZM5g8Fsm40lY9IKMTZ9GP0l5I8u7cd2Ddm0hwXpwpw=;
- b=XFPiHdNnIsfyNhnrG8qnVUQ/zVtAaB4jwCW/yvD/shqjGDqBMltH0UV/Nd/ny28fjWbSh+UPq2Hl3Kfqo8FF09Ip1PAvNHM58gphHyafiS9SD22Dl8zWnYFAQeKBGjwKOiaddGx6rmynBswmSVen3rLYTOTdigy2SfuVzbc3ZodXTJOPuIWrOD+rqmCxGQC2kzdYjWW+cuKQETz0y04xtiX9v2TvNUlUgNFEi9yMsY6g9D8CkHiV8bNxf/y6u1lmY8ecWnT30WbCC6Xuh4/emkKs43ubw5Cj7yrKr8109dSfpZhPi258YS9kdLQDdPASJ5Xh0onu9+7xJ/Qtjv+XRA==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from DS0PR12MB7726.namprd12.prod.outlook.com (2603:10b6:8:130::6) by
- IA1PR12MB7496.namprd12.prod.outlook.com (2603:10b6:208:418::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9499.2; Thu, 8 Jan
- 2026 01:29:26 +0000
-Received: from DS0PR12MB7726.namprd12.prod.outlook.com
- ([fe80::953f:2f80:90c5:67fe]) by DS0PR12MB7726.namprd12.prod.outlook.com
- ([fe80::953f:2f80:90c5:67fe%4]) with mapi id 15.20.9499.001; Thu, 8 Jan 2026
- 01:29:26 +0000
-Date: Thu, 8 Jan 2026 12:29:21 +1100
-From: Alistair Popple <apopple@nvidia.com>
-To: Balbir Singh <balbirs@nvidia.com>
-Cc: Jason Gunthorpe <jgg@nvidia.com>, 
- Andrew Morton <akpm@linux-foundation.org>, Jordan Niethe <jniethe@nvidia.com>,
- linux-mm@kvack.org, matthew.brost@intel.com, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, 
- david@redhat.com, ziy@nvidia.com, lorenzo.stoakes@oracle.com, lyude@redhat.com,
- dakr@kernel.org, airlied@gmail.com, simona@ffwll.ch, rcampbell@nvidia.com, 
- mpenttil@redhat.com, willy@infradead.org, linuxppc-dev@lists.ozlabs.org, 
- intel-xe@lists.freedesktop.org, Felix.Kuehling@amd.com
-Subject: Re: [PATCH v2 00/11] Remove device private pages from physical
- address space
-Message-ID: <xbyzuogb4axcl26dozux5tahoj64mgfgweiq7ppelvsl7emzu5@ovvqsjm7xyue>
-References: <20260107091823.68974-1-jniethe@nvidia.com>
- <20260107120608.5ccd2cc7e4227d2e80028bd9@linux-foundation.org>
- <20260107205404.GI293394@nvidia.com>
- <c288bda8-66c4-4971-9322-e1450855f93b@nvidia.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <c288bda8-66c4-4971-9322-e1450855f93b@nvidia.com>
-X-ClientProxiedBy: SY5P282CA0125.AUSP282.PROD.OUTLOOK.COM
- (2603:10c6:10:209::14) To DS0PR12MB7726.namprd12.prod.outlook.com
- (2603:10b6:8:130::6)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8E19710E2E4
+ for <intel-xe@lists.freedesktop.org>; Thu,  8 Jan 2026 01:42:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1767836579; x=1799372579;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=5cRiduLiQzY4O1blubYM73nAofIsQACU+n8JB86D+Mg=;
+ b=IRgGHh/XHiRaHo6qCYQuEVxLOiXSB8/5y6HRGPL5hhFg2P1GLpie52JT
+ 8rwFhE9IlwrrZOYYUXwpkYeBq7oQMvMQY4qfHwqwN9LJSN6tZjnnXR0H+
+ BjHiDp0HsasmzJMlbeS4bJnikP7TWe3AquKgTvPJ7BU7L1ZCTCd+nQjJR
+ iE5f8u3Ezb78Kf21Lwx4cYHGN9M5GavKjY+0FQ/CC8Vq3QHhjwrMNmLW9
+ Px3Z3vF4Wpcn+0hMI36zYhUb0cyJRFYTI9lXeXMjGAkrj8+FNB78xBoEA
+ P74rMgOcF9PMAexwTNLbNJKmr+4/FkYwHUAz4IOTgjgssfKoR27CI0Jue A==;
+X-CSE-ConnectionGUID: whVfaiWoTMikusVmxh5/uA==
+X-CSE-MsgGUID: by5va5MNQVmj1qN6WGIfIQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11664"; a="69126340"
+X-IronPort-AV: E=Sophos;i="6.21,209,1763452800"; d="scan'208";a="69126340"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jan 2026 17:42:59 -0800
+X-CSE-ConnectionGUID: pow5Yh+sSgO4m9uCMfo1Bw==
+X-CSE-MsgGUID: p3GjUgZvR6mtlvmAU49noQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,209,1763452800"; d="scan'208";a="203342003"
+Received: from dut6304bmgfrd.fm.intel.com ([10.36.21.42])
+ by fmviesa008.fm.intel.com with ESMTP; 07 Jan 2026 17:42:59 -0800
+From: Xin Wang <x.wang@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Xin Wang <x.wang@intel.com>, Matthew Auld <matthew.auld@intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>
+Subject: [PATCH v4] drm/xe: Allow compressible surfaces to be 1-way coherent
+Date: Thu,  8 Jan 2026 01:42:57 +0000
+Message-ID: <20260108014257.398697-1-x.wang@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR12MB7726:EE_|IA1PR12MB7496:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6725c405-351d-48b4-5771-08de4e555c4f
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|7416014|376014|366016;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?7AZpyj5dOVytlkNmYpyNxaikPSbJyUMrte3dJaNSnqsdZUlaGn+Q9eH6lyJ1?=
- =?us-ascii?Q?oAgimmj87BnZ0yEVhF6TcUcpDFYGASP1d0xSJLWMAsowCwm/le8+YFVw7T1h?=
- =?us-ascii?Q?KVWeTn6wXimwghVS0ksLDIlj6QK8l5lRAWl8fZpY5MHxDRpBjeg0Zts7MOE+?=
- =?us-ascii?Q?nVuexwJ5alVKX48NKBU+89rXzeleMZzl0qW1dwIvhhQihCHYGeKItnDfZ5GV?=
- =?us-ascii?Q?vm43lnWfcRIs3E5wg0Sl2s4EPe8Ry95iRCLksmnNFHRPtlK0IjePF5G4twJL?=
- =?us-ascii?Q?kDroPLYX3mklD8usCkViGiKvBE5x1M/eAR/ay+4GT+E123ROLapA4B2Q+CvB?=
- =?us-ascii?Q?JfvhboYCAsPru5fZ/vgo9koGt7ATXRDWe20oLFS85RSSenc9Nyz+/pSb7VGB?=
- =?us-ascii?Q?CYyGG/sCHP1zmp1Z+54BJjUTdw6Fbc3aVpyw2OiXcbHIRM5fmLwxldKJYAb/?=
- =?us-ascii?Q?LFjGvhsiFFkD/pORXr7loCSsALpiy11XGb8Htsa2OGXhh6SByV+ZjH+9Xhql?=
- =?us-ascii?Q?hOO06Nr5ztjecu5TF1Ks8vfGH81ejIY1Z1CthT7eqx44cl8hvZliLIdjQoxd?=
- =?us-ascii?Q?C5MNMfgNQWn58hcSTCh7HNIGxO8ZFUUtnEOP9WBgcU8jobXD+2tYpG1qN+n6?=
- =?us-ascii?Q?mS1WyXdxItvZ/p1UNgWi+Qlw/VpYyWCm8pMhBGlG7zu5x7BEDEzEZB/bhBGB?=
- =?us-ascii?Q?IAdMWISKq1/xicuKe4AhYnLZHOnQXKLHx+K4i8l/Kwpsgu3nbVEYyAOGiXA1?=
- =?us-ascii?Q?vCqaLO5OkIlhiSM0VdNge5hRG9CXdJCQQ9oL0KbtGFsRS76vpxtAp6WSqTOA?=
- =?us-ascii?Q?hi0kmC9KdaKF0mE3ArUzmQnIrFCMH3YM0ZmVlkcYxEq3OyCncfFHTk9HmZhY?=
- =?us-ascii?Q?krDSoiSMLECmXdVyHiAv/3yqXtmQ/e+ijqcm+ojwNHK2lvMYq0V4SahL3Ubq?=
- =?us-ascii?Q?xBGQHg2PMKEkNxr5mptn+DcGZsEDbfymacARSrdrYHPueXv64PAJzBNv72Wl?=
- =?us-ascii?Q?aOQ2iBBog3v5dMlvdO7BjTADz6ff+l1jgH1s0Ktnm9paa5qEi0ZiaDNC4q3W?=
- =?us-ascii?Q?B9jzLZyKP6VyZ7W30QVGAbAZQkVc2Gmf1xxUHOW9NZjpF4M+4DxaccELbTho?=
- =?us-ascii?Q?tXDTGJMCGjKbVKPuppcNnPPY9CJFhhm3CRTjqCUqh52VXJxk+pgp67ogsrux?=
- =?us-ascii?Q?BsLKpgr6aCRjvg8mRelBJl2cu1oExVHCM/k/8jVcN5PbhuQdy34Qz/oVtgmq?=
- =?us-ascii?Q?oRD9cZyHID+589qwsB8DxEedd6Mo2B3hsUi4o8b/SO2GR+EdmlZt9Ae2E26n?=
- =?us-ascii?Q?b5qmTiAsoJiRsxrDbJ1mcs8kIPL5AmCnf11oYnaDZU1ihOMsGFwf3JHhS3jh?=
- =?us-ascii?Q?rMydxplsEHmi4zMp8LS1PjZepWxFTTj9omY2k2QZBNzsiEZPAX6dCZJFzLvf?=
- =?us-ascii?Q?R7Jepy7whIWpy7vV8zPXoNWDb+gXeHdHVAjfwdzlbdE+hK6ulKK5pQ=3D=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR12MB7726.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(7416014)(376014)(366016); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?Ge+qKoeoN5aOb30shbTPBSOp8YcSnogKad59x3vEyzvIkcCjFn3JMPG1WZMJ?=
- =?us-ascii?Q?NMfzde25HX+arpAkDAM5O1MUUTntPU+apKpNnLGk51jtR7ntNbdcMBwem6hk?=
- =?us-ascii?Q?rH479JRi2Wcd3/Aez97zwsDmkdL3U8FN252hI1m8sS5NFiYB3Rr5Pk1V1n1y?=
- =?us-ascii?Q?wNqSdAFGnnZcn8HHYB8I1p4u1jrOM0l75rym0v8m2a9dWDCr+1v1WHnkAgon?=
- =?us-ascii?Q?VXtMAWp898PskpchsRJxCbhQOnGWZo0X2uDH5szqd31Ix1sjvoHUg3iol4YA?=
- =?us-ascii?Q?N9J00gCIYkMPmRTwBBysz5m+QygEpdOqdVo+TBgzdsrrvOQfQsOzdSCz4KFh?=
- =?us-ascii?Q?gyCBEzpCirPMHcsoujP16otBp8mkwRE6PEeejomLG6x4QEekz9b+7I13wjP+?=
- =?us-ascii?Q?T1cOaBUI8YvOn18RIhqH0wT8DGJ7tcwGzGEUxmhluiU2hQHjLOZBta+IYNv5?=
- =?us-ascii?Q?a5f/sPAaxg32ZhQPCv0ldeQjPQkuzo3IV62Wlh2AkSnzIMNTBec4UuQTDbBK?=
- =?us-ascii?Q?cdAHBNR3Tk/g453J259tWvpCmT/j1r/0r4oaMa70ksMURD/Ckqcf6nsYIno4?=
- =?us-ascii?Q?IxSZ8wiUDz3wD+iv5prAixush9s1E1Gtg2FLGvTEcURgMPYEkIniuPet/Wto?=
- =?us-ascii?Q?kujv0sruVjYpFg01SjGiAh2wCPMLU4ACs/hDjubUhF50xhN5MF63YC71Ofib?=
- =?us-ascii?Q?wWvHeBOQdkYX5WTh+I8XQ8LQ6wJnF22scJZ5Kpm3y4WBXKEnf66bohGFwNbk?=
- =?us-ascii?Q?R9OhYXYFvCA0RDmW8Mqt3jJtsUJqBB8WdYUu/Z1sNmkHLFoGjtmKU2TG0R+B?=
- =?us-ascii?Q?dXxwO+hWgr5ZpaMcveX5nL9ZtYirZ0enfAz+1hZsAt1giMGknk4xsxWa2b5Q?=
- =?us-ascii?Q?H3eqDYcRWQQh4udAGiabhpllh++qeFEUOJX+WI/6wiuaCJWK290ozuPZSaKc?=
- =?us-ascii?Q?KhAsBbq+JK+c7Rds7TisF6iZ8l3BjhlQkJaOon1zSzGWhv0B46FsF7SEx874?=
- =?us-ascii?Q?f/rsmiPe4YW+SEXfAum/TLMuRI2sBhHLKb4vMf/OkfXqbd6aaZuma4rdh09g?=
- =?us-ascii?Q?ajP1a2MEfxk6R1nUUlbhQAXf6wCGHUSqwbezkc5esF2+eFzYucgW4fqd8C8/?=
- =?us-ascii?Q?urHnPm3GAwVzyWXJpUN4L6kfzVhS9TWRNW3IOmIpZgefVXYqa7g1ZmrhO3kg?=
- =?us-ascii?Q?fcKvWLqe2u+h+CQV53EVC95TcXeb7qZXG60MWYxJrLX0wFPcFqZqNwlnk60g?=
- =?us-ascii?Q?Wqy+CnW1zTA6kyRin7t7rvnMQ2uiQuEuRHfKAz/MvoLLkJviVNPQN2UIzBVJ?=
- =?us-ascii?Q?A8X1ZCqKfk5yJ4m+3kDoVXBUwPf/LmK6bNmN/OBK5z5Lc5Bk8TqRbduBVlfk?=
- =?us-ascii?Q?CXf9Fl+zoMW2p/aR+Xu0B6XC+LEk/ufZMK1XbNVgqAMyMltjp8TWO1X0Tgdg?=
- =?us-ascii?Q?i4Tc6NQSAvi4gFhxZG3A1QNpvzCBXxAE/Ax+myB1LLXYt5Ysw9ak5XGjCl5t?=
- =?us-ascii?Q?IV02OaZtFQeeIa2vzSIw08hxYWktp7SxPtzfwoNx03CXy6pDzOgSv+rjTY+q?=
- =?us-ascii?Q?N4zdjgxxtVI4Ic4dbWbR4ScosyhknYOiEm9XHuwJn+AUayxlnxjUChbdN/T4?=
- =?us-ascii?Q?82pZbO2cnCODx6uMeeBI7WkOO43vd0o2AbF6MpYTHCPc/aoMlsdJ7gmvIXkO?=
- =?us-ascii?Q?hJxw/FfIRm4QCCx5zRyvDiEakhtxWVK0HECIw4rlF9qk0gzbNdCK8v9h7cGn?=
- =?us-ascii?Q?oG9Wkic6iQ=3D=3D?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6725c405-351d-48b4-5771-08de4e555c4f
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR12MB7726.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jan 2026 01:29:26.2648 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: qYCZ5kIZbhTVJ445SVL39CbzaWOOmexftEqkpj1dTx9ZUdX45dB1W6UjmBnmUgUYAX4v0TkkreUha/NTqLrkow==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB7496
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -156,62 +64,336 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 2026-01-08 at 08:02 +1100, Balbir Singh <balbirs@nvidia.com> wrote...
-> On 1/8/26 06:54, Jason Gunthorpe wrote:
-> > On Wed, Jan 07, 2026 at 12:06:08PM -0800, Andrew Morton wrote:
-> > 
-> >>>   2) Attempting to add the device private pages to the linear map at
-> >>>      addresses beyond the actual physical memory causes issues on
-> >>>      architectures like aarch64  - meaning the feature does not work there [0].
-> >>
-> >> Can you better help us understand the seriousness of these problems? 
-> >> How much are our users really hurting from this?
-> > 
-> > We think it is pretty serious, in the future HW support sense, as it
-> > means real systems being built do not work :)
+Previously, compressible surfaces were required to be non-coherent (allocated
+as WC) because compression and coherency were mutually exclusive. Starting
+with Xe3, hardware supports combining compression with 1-way coherency,
+allowing compressible surfaces to be allocated as WB memory. This provides
+applications with more efficient memory allocation by avoiding WC allocation
+overhead that can cause system stuttering and memory management challenges.
 
-There's actually existing HW that could benefit from this support - after all
-there is nothing stopping someone plugging a Intel/AMD/NVIDIA GPU into an ARM
-machine today :-)
+The implementation adds support for compressed+coherent PAT entry for the
+xe3_lpg devices and updates the driver logic to handle the new compression
+capabilities.
 
-So it would be nice if we could support this feature there as it results in
-really sub-optimal performance compared with x86 when using the SVM (shared
-virtual memory) feature because data has to be remote mapped (ie. accessed via
-PCIe link) rather than migrated to local GPU video memory.
+v2: (Matthew Auld)
+ - Improved error handling with XE_IOCTL_DBG()
+ - Enhanced documentation and comments
+ - Fixed xe_bo_needs_ccs_pages() outdated compression assumptions
 
-Having the kernel steal physical address space has also caused problems on
-x86 - we have encountered virtualised environments which depending on specific
-firmware/BIOS don't have enough free physical address space to support device
-private pages and hence migration of memory to the GPU device, again leading to
-sub-optmial performance.
+v3:
+ - Improve WB compression support detection by checking PAT table instead
+of version check
 
-> > Also Willy and others were cheering this work on at LPC. I think the
-> > possible followup to move DEVICE_PRIVATE from struct page and reduce
-> > the memory allocation would be well celebrated.
+v4:
+ - Add XE_CACHE_WB_COMPRESSION, which simplifies the logic.
 
-For reference the recording of my LPC presentation covering both this series and
-the above is here - https://www.youtube.com/watch?v=CFe_c8-tEuM
+Bspec: 71582, 59361, 59399
+Cc: Matthew Auld <matthew.auld@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Signed-off-by: Xin Wang <x.wang@intel.com>
+---
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h |  6 ++++
+ drivers/gpu/drm/xe/xe_bo.c           | 17 ++++-----
+ drivers/gpu/drm/xe/xe_gt.c           | 32 +++++++++++++++++
+ drivers/gpu/drm/xe/xe_pat.c          | 52 ++++++++++++++++++++++++----
+ drivers/gpu/drm/xe/xe_pat.h          |  2 ++
+ drivers/gpu/drm/xe/xe_pt_types.h     |  1 +
+ drivers/gpu/drm/xe/xe_vm.c           | 13 +++++++
+ 7 files changed, 109 insertions(+), 14 deletions(-)
 
-The hope is that in addition to enabling support for this more broadly across
-other platforms/architectures that it will also enable further clean-ups to
-reduce memory allocation overhead (I almost convinced myself we wouldn't need a
-struct at all ... almost)
+diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+index 93643da57428..24fc64fc832e 100644
+--- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+@@ -89,6 +89,7 @@
+ #define   UNIFIED_COMPRESSION_FORMAT		REG_GENMASK(3, 0)
+ 
+ #define XE2_GAMREQSTRM_CTRL			XE_REG_MCR(0x4194)
++#define   EN_CMP_1WCOH				REG_BIT(15)
+ #define   CG_DIS_CNTLBUS			REG_BIT(6)
+ 
+ #define CCS_AUX_INV				XE_REG(0x4208)
+@@ -101,6 +102,11 @@
+ 
+ #define XE2_LMEM_CFG				XE_REG(0x48b0)
+ 
++#define XE2_GAMWALK_CTRL			0x47e4
++#define XE2_GAMWALK_CTRL_MEDIA			XE_REG(XE2_GAMWALK_CTRL + MEDIA_GT_GSI_OFFSET)
++#define XE2_GAMWALK_CTRL_3D			XE_REG_MCR(XE2_GAMWALK_CTRL)
++#define   EN_CMP_1WCOH_GW			REG_BIT(14)
++
+ #define XEHP_FLAT_CCS_BASE_ADDR			XE_REG_MCR(0x4910)
+ #define XEHP_FLAT_CCS_PTR			REG_GENMASK(31, 8)
+ 
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index 8b6474cd3eaf..637adefd020d 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -29,6 +29,7 @@
+ #include "xe_gt.h"
+ #include "xe_map.h"
+ #include "xe_migrate.h"
++#include "xe_pat.h"
+ #include "xe_pm.h"
+ #include "xe_preempt_fence.h"
+ #include "xe_pxp.h"
+@@ -3517,16 +3518,16 @@ bool xe_bo_needs_ccs_pages(struct xe_bo *bo)
+ 	if (IS_DGFX(xe) && (bo->flags & XE_BO_FLAG_SYSTEM))
+ 		return false;
+ 
++	/* Check if userspace explicitly requested no compression */
++	if (bo->flags & XE_BO_FLAG_NO_COMPRESSION)
++		return false;
++
+ 	/*
+-	 * Compression implies coh_none, therefore we know for sure that WB
+-	 * memory can't currently use compression, which is likely one of the
+-	 * common cases.
+-	 * Additionally, userspace may explicitly request no compression via the
+-	 * DRM_XE_GEM_CREATE_FLAG_NO_COMPRESSION flag, which should also disable
+-	 * CCS usage.
++	 * For WB (Write-Back) CPU caching mode, check if the device
++	 * supports WB compression with coherency.
+ 	 */
+-	if (bo->cpu_caching == DRM_XE_GEM_CPU_CACHING_WB ||
+-	    bo->flags & XE_BO_FLAG_NO_COMPRESSION)
++	if (bo->cpu_caching == DRM_XE_GEM_CPU_CACHING_WB &&
++	    xe->pat.idx[XE_CACHE_WB_COMPRESSION] == XE_PAT_INVALID_IDX)
+ 		return false;
+ 
+ 	return true;
+diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+index 313ce83ab0e5..04dbf995a18b 100644
+--- a/drivers/gpu/drm/xe/xe_gt.c
++++ b/drivers/gpu/drm/xe/xe_gt.c
+@@ -140,6 +140,36 @@ static void xe_gt_disable_host_l2_vram(struct xe_gt *gt)
+ 	xe_gt_mcr_multicast_write(gt, XE2_GAMREQSTRM_CTRL, reg);
+ }
+ 
++static void xe_gt_enable_comp_1wcoh(struct xe_gt *gt)
++{
++	struct xe_device *xe = gt_to_xe(gt);
++	unsigned int fw_ref;
++	u32 reg;
++
++	if (IS_SRIOV_VF(xe))
++		return;
++
++	if (GRAPHICS_VER(xe) >= 30 && xe->info.has_flat_ccs) {
++		fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
++		if (!fw_ref)
++			return;
++
++		reg = xe_gt_mcr_unicast_read_any(gt, XE2_GAMREQSTRM_CTRL);
++		reg |= EN_CMP_1WCOH;
++		xe_gt_mcr_multicast_write(gt, XE2_GAMREQSTRM_CTRL, reg);
++
++		if (xe_gt_is_media_type(gt)) {
++			xe_mmio_rmw32(&gt->mmio, XE2_GAMWALK_CTRL_MEDIA, 0, EN_CMP_1WCOH_GW);
++		} else {
++			reg = xe_gt_mcr_unicast_read_any(gt, XE2_GAMWALK_CTRL_3D);
++			reg |= EN_CMP_1WCOH_GW;
++			xe_gt_mcr_multicast_write(gt, XE2_GAMWALK_CTRL_3D, reg);
++		}
++
++		xe_force_wake_put(gt_to_fw(gt), fw_ref);
++	}
++}
++
+ static void gt_reset_worker(struct work_struct *w);
+ 
+ static int emit_job_sync(struct xe_exec_queue *q, struct xe_bb *bb,
+@@ -466,6 +496,7 @@ static int gt_init_with_gt_forcewake(struct xe_gt *gt)
+ 	xe_gt_topology_init(gt);
+ 	xe_gt_mcr_init(gt);
+ 	xe_gt_enable_host_l2_vram(gt);
++	xe_gt_enable_comp_1wcoh(gt);
+ 
+ 	if (xe_gt_is_main_type(gt)) {
+ 		err = xe_ggtt_init(gt_to_tile(gt)->mem.ggtt);
+@@ -745,6 +776,7 @@ static int do_gt_restart(struct xe_gt *gt)
+ 	xe_pat_init(gt);
+ 
+ 	xe_gt_enable_host_l2_vram(gt);
++	xe_gt_enable_comp_1wcoh(gt);
+ 
+ 	xe_gt_mcr_set_implicit_defaults(gt);
+ 	xe_reg_sr_apply_mmio(&gt->reg_sr, gt);
+diff --git a/drivers/gpu/drm/xe/xe_pat.c b/drivers/gpu/drm/xe/xe_pat.c
+index 2c3375e0250b..14d0dce5190a 100644
+--- a/drivers/gpu/drm/xe/xe_pat.c
++++ b/drivers/gpu/drm/xe/xe_pat.c
+@@ -132,9 +132,10 @@ static const struct xe_pat_table_entry xelpg_pat_table[] = {
+  * in the table.
+  *
+  * Note: There is an implicit assumption in the driver that compression and
+- * coh_1way+ are mutually exclusive. If this is ever not true then userptr
+- * and imported dma-buf from external device will have uncleared ccs state. See
+- * also xe_bo_needs_ccs_pages().
++ * coh_1way+ are mutually exclusive for platforms prior to Xe3. Starting
++ * with Xe3, compression can be combined with coherency. If using compression
++ * with coherency, userptr and imported dma-buf from external device will
++ * have uncleared ccs state. See also xe_bo_needs_ccs_pages().
+  */
+ #define XE2_PAT(no_promote, comp_en, l3clos, l3_policy, l4_policy, __coh_mode) \
+ 	{ \
+@@ -144,8 +145,7 @@ static const struct xe_pat_table_entry xelpg_pat_table[] = {
+ 			REG_FIELD_PREP(XE2_L3_POLICY, l3_policy) | \
+ 			REG_FIELD_PREP(XE2_L4_POLICY, l4_policy) | \
+ 			REG_FIELD_PREP(XE2_COH_MODE, __coh_mode), \
+-		.coh_mode = (BUILD_BUG_ON_ZERO(__coh_mode && comp_en) || __coh_mode) ? \
+-			XE_COH_AT_LEAST_1WAY : XE_COH_NONE, \
++		.coh_mode = __coh_mode ? XE_COH_AT_LEAST_1WAY : XE_COH_NONE, \
+ 		.valid = 1 \
+ 	}
+ 
+@@ -181,6 +181,38 @@ static const struct xe_pat_table_entry xe2_pat_table[] = {
+ 	[31] = XE2_PAT( 0, 0, 3, 0, 3, 3 ),
+ };
+ 
++static const struct xe_pat_table_entry xe3_lpg_pat_table[] = {
++	[ 0] = XE2_PAT( 0, 0, 0, 0, 3, 0 ),
++	[ 1] = XE2_PAT( 0, 0, 0, 0, 3, 2 ),
++	[ 2] = XE2_PAT( 0, 0, 0, 0, 3, 3 ),
++	[ 3] = XE2_PAT( 0, 0, 0, 3, 3, 0 ),
++	[ 4] = XE2_PAT( 0, 0, 0, 3, 0, 2 ),
++	[ 5] = XE2_PAT( 0, 0, 0, 3, 3, 2 ),
++	[ 6] = XE2_PAT( 1, 0, 0, 1, 3, 0 ),
++	[ 7] = XE2_PAT( 0, 0, 0, 3, 0, 3 ),
++	[ 8] = XE2_PAT( 0, 0, 0, 3, 0, 0 ),
++	[ 9] = XE2_PAT( 0, 1, 0, 0, 3, 0 ),
++	[10] = XE2_PAT( 0, 1, 0, 3, 0, 0 ),
++	[11] = XE2_PAT( 1, 1, 0, 1, 3, 0 ),
++	[12] = XE2_PAT( 0, 1, 0, 3, 3, 0 ),
++	[13] = XE2_PAT( 0, 0, 0, 0, 0, 0 ),
++	[14] = XE2_PAT( 0, 1, 0, 0, 0, 0 ),
++	[15] = XE2_PAT( 1, 1, 0, 1, 1, 0 ),
++	[16] = XE2_PAT( 0, 1, 0, 0, 3, 2 ),
++	/* 17..19 are reserved; leave set to all 0's */
++	[20] = XE2_PAT( 0, 0, 1, 0, 3, 0 ),
++	[21] = XE2_PAT( 0, 1, 1, 0, 3, 0 ),
++	[22] = XE2_PAT( 0, 0, 1, 0, 3, 2 ),
++	[23] = XE2_PAT( 0, 0, 1, 0, 3, 3 ),
++	[24] = XE2_PAT( 0, 0, 2, 0, 3, 0 ),
++	[25] = XE2_PAT( 0, 1, 2, 0, 3, 0 ),
++	[26] = XE2_PAT( 0, 0, 2, 0, 3, 2 ),
++	[27] = XE2_PAT( 0, 0, 2, 0, 3, 3 ),
++	[28] = XE2_PAT( 0, 0, 3, 0, 3, 0 ),
++	[29] = XE2_PAT( 0, 1, 3, 0, 3, 0 ),
++	[30] = XE2_PAT( 0, 0, 3, 0, 3, 2 ),
++	[31] = XE2_PAT( 0, 0, 3, 0, 3, 3 ),
++};
+ /* Special PAT values programmed outside the main table */
+ static const struct xe_pat_table_entry xe2_pat_ats = XE2_PAT( 0, 0, 0, 0, 3, 3 );
+ static const struct xe_pat_table_entry xe2_pat_pta = XE2_PAT( 0, 0, 0, 0, 3, 0 );
+@@ -490,6 +522,7 @@ static const struct xe_pat_ops xe3p_xpc_pat_ops = {
+ 
+ void xe_pat_init_early(struct xe_device *xe)
+ {
++	xe->pat.idx[XE_CACHE_WB_COMPRESSION] = XE_PAT_INVALID_IDX;
+ 	if (GRAPHICS_VERx100(xe) == 3511) {
+ 		xe->pat.ops = &xe3p_xpc_pat_ops;
+ 		xe->pat.table = xe3p_xpc_pat_table;
+@@ -501,7 +534,12 @@ void xe_pat_init_early(struct xe_device *xe)
+ 		xe->pat.idx[XE_CACHE_WB] = 2;
+ 	} else if (GRAPHICS_VER(xe) == 30 || GRAPHICS_VER(xe) == 20) {
+ 		xe->pat.ops = &xe2_pat_ops;
+-		xe->pat.table = xe2_pat_table;
++		if (GRAPHICS_VER(xe) == 30) {
++			xe->pat.table = xe3_lpg_pat_table;
++			xe->pat.idx[XE_CACHE_WB_COMPRESSION] = 16;
++		} else {
++			xe->pat.table = xe2_pat_table;
++		}
+ 		xe->pat.pat_ats = &xe2_pat_ats;
+ 		if (IS_DGFX(xe))
+ 			xe->pat.pat_pta = &xe2_pat_pta;
+@@ -658,6 +696,8 @@ int xe_pat_dump_sw_config(struct xe_gt *gt, struct drm_printer *p)
+ 	if (GRAPHICS_VER(xe) >= 20) {
+ 		drm_printf(p, "IDX[XE_CACHE_NONE_COMPRESSION] = %d\n",
+ 			   xe->pat.idx[XE_CACHE_NONE_COMPRESSION]);
++		drm_printf(p, "IDX[XE_CACHE_WB_COMPRESSION] = %d\n",
++			   xe->pat.idx[XE_CACHE_WB_COMPRESSION]);
+ 	}
+ 
+ 	return 0;
+diff --git a/drivers/gpu/drm/xe/xe_pat.h b/drivers/gpu/drm/xe/xe_pat.h
+index d5dadfb7f924..1b2c7d3c7c16 100644
+--- a/drivers/gpu/drm/xe/xe_pat.h
++++ b/drivers/gpu/drm/xe/xe_pat.h
+@@ -12,6 +12,8 @@ struct drm_printer;
+ struct xe_device;
+ struct xe_gt;
+ 
++#define XE_PAT_INVALID_IDX	U32_MAX
++
+ /**
+  * struct xe_pat_table_entry - The pat_index encoding and other meta information.
+  */
+diff --git a/drivers/gpu/drm/xe/xe_pt_types.h b/drivers/gpu/drm/xe/xe_pt_types.h
+index 88fabf8e2655..84b51d3762a4 100644
+--- a/drivers/gpu/drm/xe/xe_pt_types.h
++++ b/drivers/gpu/drm/xe/xe_pt_types.h
+@@ -20,6 +20,7 @@ enum xe_cache_level {
+ 	XE_CACHE_WT,
+ 	XE_CACHE_WB,
+ 	XE_CACHE_NONE_COMPRESSION, /*UC + COH_NONE + COMPRESSION */
++	XE_CACHE_WB_COMPRESSION,
+ 	__XE_CACHE_LEVEL_COUNT,
+ };
+ 
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index a07d8b53de66..481ee7763b09 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -3405,6 +3405,7 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe, struct xe_vm *vm,
+ 			DRM_XE_VM_BIND_FLAG_CPU_ADDR_MIRROR;
+ 		u16 pat_index = (*bind_ops)[i].pat_index;
+ 		u16 coh_mode;
++		bool comp_en;
+ 
+ 		if (XE_IOCTL_DBG(xe, is_cpu_addr_mirror &&
+ 				 (!xe_vm_in_fault_mode(vm) ||
+@@ -3421,6 +3422,7 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe, struct xe_vm *vm,
+ 		pat_index = array_index_nospec(pat_index, xe->pat.n_entries);
+ 		(*bind_ops)[i].pat_index = pat_index;
+ 		coh_mode = xe_pat_index_get_coh_mode(xe, pat_index);
++		comp_en = xe_pat_index_get_comp_en(xe, pat_index);
+ 		if (XE_IOCTL_DBG(xe, !coh_mode)) { /* hw reserved */
+ 			err = -EINVAL;
+ 			goto free_bind_ops;
+@@ -3451,6 +3453,8 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe, struct xe_vm *vm,
+ 				 op == DRM_XE_VM_BIND_OP_MAP_USERPTR) ||
+ 		    XE_IOCTL_DBG(xe, coh_mode == XE_COH_NONE &&
+ 				 op == DRM_XE_VM_BIND_OP_MAP_USERPTR) ||
++		    XE_IOCTL_DBG(xe, comp_en &&
++				 op == DRM_XE_VM_BIND_OP_MAP_USERPTR) ||
+ 		    XE_IOCTL_DBG(xe, op == DRM_XE_VM_BIND_OP_MAP_USERPTR &&
+ 				 !IS_ENABLED(CONFIG_DRM_GPUSVM)) ||
+ 		    XE_IOCTL_DBG(xe, obj &&
+@@ -3529,6 +3533,7 @@ static int xe_vm_bind_ioctl_validate_bo(struct xe_device *xe, struct xe_bo *bo,
+ 					u16 pat_index, u32 op, u32 bind_flags)
+ {
+ 	u16 coh_mode;
++	bool comp_en;
+ 
+ 	if (XE_IOCTL_DBG(xe, (bo->flags & XE_BO_FLAG_NO_COMPRESSION) &&
+ 			 xe_pat_index_get_comp_en(xe, pat_index)))
+@@ -3574,6 +3579,14 @@ static int xe_vm_bind_ioctl_validate_bo(struct xe_device *xe, struct xe_bo *bo,
+ 		return -EINVAL;
+ 	}
+ 
++	/*
++	 * Ensures that imported buffer objects (dma-bufs) are not mapped
++	 * with a PAT index that enables compression.
++	 */
++	comp_en = xe_pat_index_get_comp_en(xe, pat_index);
++	if (XE_IOCTL_DBG(xe, bo->ttm.base.import_attach && comp_en))
++		return -EINVAL;
++
+ 	/* If a BO is protected it can only be mapped if the key is still valid */
+ 	if ((bind_flags & DRM_XE_VM_BIND_FLAG_CHECK_PXP) && xe_bo_is_protected(bo) &&
+ 	    op != DRM_XE_VM_BIND_OP_UNMAP && op != DRM_XE_VM_BIND_OP_UNMAP_ALL)
+-- 
+2.43.0
 
-> > The Intel Xe and AMD GPU teams are the two drivers most important to
-> > be testing this as they consume the feature.
-> > 
-> 
-> And the ultravisor usage in powerpc as well (book3s_hv_uvmem).
-
-As does Nouveau (which I've tested). But I agree AMD GPU and Intel Xe are the
-most important drivers here. I would be surprised if anyone was actually using
-the powerpc ultravisor, and I don't have access to a setup for this, so unless
-some PPC folk can offer to help I wouldn't like to see testing there hold up
-the series.
-
-Especially as I believe most of the driver side changes are relatively straight
-forward.
-
- - Alistair
-
-> Balbir
