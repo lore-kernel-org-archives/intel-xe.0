@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 08FD5D0D17C
-	for <intel-xe@archiver.kernel.org>; Thu,  8 Jan 2026 00:20:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 066BBCD5859
+	for <intel-xe@archiver.kernel.org>; Thu,  8 Jan 2026 00:20:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BE44710E190;
-	Thu,  8 Jan 2026 00:20:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BBE9610E2DD;
+	Thu,  8 Jan 2026 00:20:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Jh2FJ7Pm";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="O5EiaJvS";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4AADC10E0FA
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C580110E190
  for <intel-xe@lists.freedesktop.org>; Thu,  8 Jan 2026 00:20:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1767831613; x=1799367613;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=izP5IF89rt/4ZMCGiQqZYx6nKPGPt5IC5Kesppfc+ig=;
- b=Jh2FJ7Pm3WzqWSj0K3/05WkfAW9kLjxHSeveNGVEnUsICd5XzlUXGTXK
- X4p9UgFjZH/wjdFvwNUkfJLkBjLL8/OgABW2mp/+wdqa4J/ka6zOIOlzb
- ovOxbzv7SNMFj9dSh4mfrLr4BlKtVRjSeO6BDf8xR6MAk5qj4N3eub+H8
- 5HyF0zpKgZpJxeBbPmCaZW01wXUd7Wi72e6AAWvX4Y+VDwIm1qulllF7G
- 09aYNK9m015fw7zuv0xCfJrR8h+d0VY7Z+/ZLOdLQIGzXCO/k2KTh72pN
- Y4C9+0KWQVj8afnRBT56GRoOypZIiCjZ+LFUXYzasC3hmlNmXjxeF4kYI Q==;
-X-CSE-ConnectionGUID: 2TKy63kxQIGKX6tZNL++VA==
-X-CSE-MsgGUID: 83zmgj6kTgy7UvVeYqW+Eg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11664"; a="71785539"
-X-IronPort-AV: E=Sophos;i="6.21,209,1763452800"; d="scan'208";a="71785539"
+ bh=nIhtLl41DSRs2ydx3qaBlRkYW7HT81ADBwTc6o1+8vI=;
+ b=O5EiaJvSSLdGUXMP51FEAg6TQVPIX2I+1O4h5i1NvBzIq3ETLoCR+dHb
+ cIH+X0zBmHV6VdWyQioAKUvjOzPvYxWJv1ltv+7sFq6urakzmLo2vgdYE
+ bDQSJnYBBbOKtV4vckuW4ukaTRf0MloVR0lUXSXyxkhn1osrtprKb8tXw
+ pzM8BxbLjAhw4P2uzuBu+uNP5OrzfbxEn9tugIFRCTUnpT57Kd83iB4L0
+ AAZv+6B/6fFj7kxUYe/SBdUFYG/RkmkMAvd19Y1UiC9N8pW4W6izqqpqe
+ cz85lBQ7SWxVmlGUlxcpKBPw5Vep80RX2nM9xkgR2t0m0MoxtC4jhulyS w==;
+X-CSE-ConnectionGUID: re0CDaqVRAOSz3jx8oHA4A==
+X-CSE-MsgGUID: 2Mv9P34gRgGxXwRaIvvouQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11664"; a="71785540"
+X-IronPort-AV: E=Sophos;i="6.21,209,1763452800"; d="scan'208";a="71785540"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  07 Jan 2026 16:20:13 -0800
-X-CSE-ConnectionGUID: mlFDSH1LRoiXAB9MKOS/Rg==
-X-CSE-MsgGUID: pBY2G8UWQ/i/9n1KknW+Cg==
+X-CSE-ConnectionGUID: abh21wlrTSi9RdnEYI16GQ==
+X-CSE-MsgGUID: MrX+x4r5R3G+lmiCrcQxjQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,209,1763452800"; d="scan'208";a="203500995"
+X-IronPort-AV: E=Sophos;i="6.21,209,1763452800"; d="scan'208";a="203500999"
 Received: from mdroper-desk1.fm.intel.com ([10.1.39.133])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  07 Jan 2026 16:20:13 -0800
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.d.roper@intel.com
-Subject: [PATCH 2/4] drm/xe/oa: Stop whitelisting OAG_OASTATUS
-Date: Wed,  7 Jan 2026 16:20:03 -0800
-Message-ID: <20260108002000.384449-8-matthew.d.roper@intel.com>
+Subject: [PATCH 3/4] drm/xe/oa: Stop whitelisting OAM registers on non Xe2/Xe3
+Date: Wed,  7 Jan 2026 16:20:04 -0800
+Message-ID: <20260108002000.384449-9-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260108002000.384449-6-matthew.d.roper@intel.com>
 References: <20260108002000.384449-6-matthew.d.roper@intel.com>
@@ -66,49 +66,47 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-OAG_OASTATUS has always been part of the hardware whitelist and thus
-accessible to userspace for all platforms supported by the Xe driver.
-There has never been any need to add it to the software whitelist.
+With the introduction of standalone media in Xe_LPM (version 13.00), the
+OAM register space was part of the hardware's built-in register
+whitelist, granting userspace read-only access automatically.  There is
+no need to explicitly whitelist the registers on media version 13.00.
+
+From Xe2_HPM (13.01) onward, userspace access to these registers was
+deliberately removed by the hardware teams; by design, those registers
+are not supposed to be needed by userspace for proper OA operation and
+they're not supposed to be added to the software whitelist either.
+Unfortunately they're already on the software table, so it's possible
+that some of our KMD<->UMD OA interaction got misdesigned and trying to
+remove them now might break userspace.  While we investigate further to
+see whether or not it's possible to safely remove them, place an upper
+bound on the whitelist entries to prevent this mistake from spreading
+past Xe3 platforms.
 
 Bspec: 45545, 60150
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/xe_reg_whitelist.c | 11 ++++++-----
- 1 file changed, 6 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/xe/xe_reg_whitelist.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_reg_whitelist.c b/drivers/gpu/drm/xe/xe_reg_whitelist.c
-index 1bcb01f93914..7491a8393b6f 100644
+index 7491a8393b6f..99956c3574f9 100644
 --- a/drivers/gpu/drm/xe/xe_reg_whitelist.c
 +++ b/drivers/gpu/drm/xe/xe_reg_whitelist.c
-@@ -95,9 +95,6 @@ static const struct xe_rtp_entry_sr register_whitelist[] = {
- 	WHITELIST(status, RING_FORCE_TO_NONPRIV_ACCESS_RD), \
- 	WHITELIST(head, RING_FORCE_TO_NONPRIV_ACCESS_RD | RING_FORCE_TO_NONPRIV_RANGE_4)
- 
--#define WHITELIST_OAG_MMIO_TRG \
--	WHITELIST_OA_MMIO_TRG(OAG_OASTATUS, OAG_OAHEADPTR)
--
- #define WHITELIST_OAM_MMIO_TRG \
- 	WHITELIST_OA_MMIO_TRG(OAM_STATUS(XE_OAM_SAG_BASE_ADJ), \
- 			      OAM_HEAD_POINTER(XE_OAM_SAG_BASE_ADJ)), \
-@@ -112,12 +109,16 @@ static const struct xe_rtp_entry_sr register_whitelist[] = {
- 	{ XE_RTP_NAME("oag_mmio_trg_rcs"),
- 	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(1200, XE_RTP_END_VERSION_UNDEFINED),
- 		       ENGINE_CLASS(RENDER)),
--	  XE_RTP_ACTIONS(WHITELIST_OAG_MMIO_TRG)
-+	  XE_RTP_ACTIONS(WHITELIST(OAG_OAHEADPTR,
-+				   RING_FORCE_TO_NONPRIV_ACCESS_RD |
-+				   RING_FORCE_TO_NONPRIV_RANGE_4))
- 	},
- 	{ XE_RTP_NAME("oag_mmio_trg_ccs"),
- 	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(1200, XE_RTP_END_VERSION_UNDEFINED),
- 		       ENGINE_CLASS(COMPUTE)),
--	  XE_RTP_ACTIONS(WHITELIST_OAG_MMIO_TRG)
-+	  XE_RTP_ACTIONS(WHITELIST(OAG_OAHEADPTR,
-+				   RING_FORCE_TO_NONPRIV_ACCESS_RD |
-+				   RING_FORCE_TO_NONPRIV_RANGE_4))
+@@ -121,12 +121,12 @@ static const struct xe_rtp_entry_sr register_whitelist[] = {
+ 				   RING_FORCE_TO_NONPRIV_RANGE_4))
  	},
  	{ XE_RTP_NAME("oam_mmio_trg_vcs"),
- 	  XE_RTP_RULES(MEDIA_VERSION_RANGE(1300, XE_RTP_END_VERSION_UNDEFINED),
+-	  XE_RTP_RULES(MEDIA_VERSION_RANGE(1300, XE_RTP_END_VERSION_UNDEFINED),
++	  XE_RTP_RULES(MEDIA_VERSION_RANGE(1301, 3099),
+ 		       ENGINE_CLASS(VIDEO_DECODE)),
+ 	  XE_RTP_ACTIONS(WHITELIST_OAM_MMIO_TRG)
+ 	},
+ 	{ XE_RTP_NAME("oam_mmio_trg_vecs"),
+-	  XE_RTP_RULES(MEDIA_VERSION_RANGE(1300, XE_RTP_END_VERSION_UNDEFINED),
++	  XE_RTP_RULES(MEDIA_VERSION_RANGE(1301, 3099),
+ 		       ENGINE_CLASS(VIDEO_ENHANCE)),
+ 	  XE_RTP_ACTIONS(WHITELIST_OAM_MMIO_TRG)
+ 	},
 -- 
 2.52.0
 
