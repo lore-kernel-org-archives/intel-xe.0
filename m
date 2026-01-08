@@ -4,59 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EEF48CF6A9C
-	for <intel-xe@archiver.kernel.org>; Thu,  8 Jan 2026 09:45:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1949BCF6AB8
+	for <intel-xe@archiver.kernel.org>; Thu,  8 Jan 2026 09:45:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ADEA510E6CD;
-	Thu,  8 Jan 2026 09:45:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C16C710E6D5;
+	Thu,  8 Jan 2026 09:45:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Y15CcPcF";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UQRNmBQN";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EBD9C10E6D3;
- Thu,  8 Jan 2026 09:45:09 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 712B310E6D4;
+ Thu,  8 Jan 2026 09:45:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1767865510; x=1799401510;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=kc31T/hoyCQI526nRB+gqjg8+IOOoh2x8rbt0K/NoUU=;
- b=Y15CcPcFyaEYjxtSalt2GnM9dFCROdqJ9A2AMXW4D06zLYedwPKzeZYP
- aYCMzxo/xlVw55I1hwv/2c9B0Y+jsmbQxj2MtJEovReaPuxsPOZG4/sLk
- n7SpX5Qjraq5LMN0gXXjEHEW8w4Mgxf4QytHyiXNgUlyP0/FXj2S24zNK
- Dia3REr+sg+tgI3rbZp6E7T2M3bHsLj+9vFxQZ48flI5ky3x5a7ajtgna
- TAmews3dhk0sny4WOiV8y7nSv/kAoZEICKVCvTloLilqzKqI1nhZMZzoe
- cc16gE6IhSzAEL/qzydrYQ7YvvHgQswsgTvvZ/NvGdZCsWL0HF1n2FY0+ A==;
-X-CSE-ConnectionGUID: OempDnacQLO7NCnuPD0tpw==
-X-CSE-MsgGUID: Paq1YAnpQ12VwYYB1jvypg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11664"; a="79960131"
-X-IronPort-AV: E=Sophos;i="6.21,210,1763452800"; d="scan'208";a="79960131"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jan 2026 01:45:10 -0800
-X-CSE-ConnectionGUID: MnytnPgbTMqE9P1LeUB+4A==
-X-CSE-MsgGUID: 8G4x97muT0mQmRFXTnqWDg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,210,1763452800"; d="scan'208";a="208001164"
-Received: from ettammin-desk.ger.corp.intel.com (HELO localhost)
- ([10.245.246.109])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ t=1767865519; x=1799401519;
+ h=from:date:subject:mime-version:content-transfer-encoding:
+ message-id:references:in-reply-to:to:cc;
+ bh=Rjps/nX0jH3DCZt1X85lB/JZXzMu4fAgJVPB8baQO0Y=;
+ b=UQRNmBQNV5r3zbgQ6n2kQlNTWOHvQHgpN/yf4M5eFHbgwzEcneVL+XOS
+ XjE8GIxZiUweScT78oZCKmDuEu+neDeX1KK3g72ozUHGuay07sr0XRuQ4
+ bDZDK3oS9Aq5B2S63YWJYdUHWsj1VBagrQdIz1izcAVzDYbPvD1q2+Lc+
+ OmovAPeTvXlKwQN4stVtZWHNBZybu2ZuC12Cvf72eeWasHu+PCtyxHheq
+ vOYt4IG8uXozSuKVhkQ4n9qdiclK7L9onnuAuIydm2X9PsrUdkEYrwpfA
+ MrSWxnKmA7kxpwY1cCdaIY78Yzs0HHXPZydNTdpTHprlm2qNTnbvjvPZE w==;
+X-CSE-ConnectionGUID: WJrvzC/MQmm0zZOd54EMig==
+X-CSE-MsgGUID: N0qQzBh7TKmg4Q1VqaHqgg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11664"; a="72876541"
+X-IronPort-AV: E=Sophos;i="6.21,210,1763452800"; d="scan'208";a="72876541"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  08 Jan 2026 01:45:08 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: =?utf-8?B?SsOpcsO0bWU=?= Tollet <jerome.tollet@gmail.com>,
- rodrigo.vivi@intel.com, ankit.k.nautiyal@intel.com
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH v2] drm/i915/hdmi: Poll for 200 msec for
- TMDS_Scrambler_Status
-In-Reply-To: <CADN_a6OKUQ6fgu-JjNvwFb_MV8dxTDhppoq4DDnQ9p_t-JZ8yg@mail.gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <CADN_a6OKUQ6fgu-JjNvwFb_MV8dxTDhppoq4DDnQ9p_t-JZ8yg@mail.gmail.com>
-Date: Thu, 08 Jan 2026 11:45:04 +0200
-Message-ID: <1afd1c1c255e96c95687175e9cc0c92041f8ccbc@intel.com>
+X-CSE-ConnectionGUID: EUDy9DWVTRyD8FwbQAXkjw==
+X-CSE-MsgGUID: +OOmk2EjQKq17vy5p8ltSw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,210,1763452800"; d="scan'208";a="208232073"
+Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
+ by orviesa005.jf.intel.com with ESMTP; 08 Jan 2026 01:45:03 -0800
+From: Arun R Murthy <arun.r.murthy@intel.com>
+Date: Thu, 08 Jan 2026 15:13:23 +0530
+Subject: [PATCH [RFC] v3 2/7] drm/atomic/plane: create async flip property
+ for plane
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260108-async-v3-2-e7730c3fe9ff@intel.com>
+References: <20260108-async-v3-0-e7730c3fe9ff@intel.com>
+In-Reply-To: <20260108-async-v3-0-e7730c3fe9ff@intel.com>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Jani Nikula <jani.nikula@linux.intel.com>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
+ Tvrtko Ursulin <tursulin@ursulin.net>, xaver.hugl@kde.org, 
+ andrealmeid@igalia.com, naveen1.kumar@intel.com, ville.syrjala@intel.com, 
+ Dmitry Baryshkov <lumag@kernel.org>
+Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org, Arun R Murthy <arun.r.murthy@intel.com>
+X-Mailer: b4 0.15-dev
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,112 +76,28 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 08 Jan 2026, J=C3=A9r=C3=B4me Tollet <jerome.tollet@gmail.com> wrot=
-e:
-> Hello,
-> As per HDMI 2.0 specification, after scrambled video transmission begins,
->  the source must poll the TMDS_Scrambler_Status bit until it reads 1 or
->  until a timeout of 200 ms.
->
->  Add a polling step after enabling the HDMI port to verify scrambling
->  status, following the spec requirement.
->
->  Without the wait for the scrambling bit to set, some HDMI 2.0 monitors f=
-ail
->  to decode the signal at 4K@60Hz (594 MHz) when SCDC scrambling is not yet
->  fully configured by the sink.
->
->  v2:
->   - Instead of the fixed delay, poll for TMDS scramble status for 200 msec
->     as per the HDMI spec. (Ankit)
+For the planes supporting async flip create the plane property for
+enabling async flip.
 
-The patch is whitespace broken.
+Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+---
+ drivers/gpu/drm/drm_plane.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
->
->  Reported-by: Jerome Tollet <jerome.tollet@gmail.com>
->  Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/6868
->  Link: https://lore.kernel.org/dri-devel/20251230091037.5603-1-jerome.tol=
-let@gmail.com/
->  Signed-off-by: Jerome Tollet <jerome.tollet@gmail.com>
->  Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
->  ---
->   drivers/gpu/drm/i915/display/intel_ddi.c  |  2 ++
->   drivers/gpu/drm/i915/display/intel_hdmi.c | 25 +++++++++++++++++++++++
->   drivers/gpu/drm/i915/display/intel_hdmi.h |  2 ++
->   3 files changed, 29 insertions(+)
->
->  diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c
-> b/drivers/gpu/drm/i915/display/intel_ddi.c
->  index cb91d07cdaa6..c708b713f0e8 100644
->  --- a/drivers/gpu/drm/i915/display/intel_ddi.c
->  +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
->  @@ -3506,6 +3506,8 @@ static void intel_ddi_enable_hdmi(struct
-> intel_atomic_state *state,
->   }
->
->   intel_ddi_buf_enable(encoder, buf_ctl);
->  +
->  + intel_hdmi_poll_for_scrambling_enable(crtc_state, connector);
->   }
->
->   static void intel_ddi_enable(struct intel_atomic_state *state,
->  diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c
-> b/drivers/gpu/drm/i915/display/intel_hdmi.c
->  index 055e68810d0d..958d939ae6ee 100644
->  --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
->  +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
->  @@ -2694,6 +2694,31 @@ intel_hdmi_add_properties(struct intel_hdmi
-> *intel_hdmi, struct drm_connector *_
->   drm_connector_attach_max_bpc_property(&connector->base, 8, 12);
->   }
->
->  +/*
->  + * As Per HDMI 2.0 spec: after scrambled video transmission begins,
->  + * poll TMDS_Scrambler_Status until it reads 1, for up to 200 ms.
->  + */
->  +void
->  +intel_hdmi_poll_for_scrambling_enable(const struct intel_crtc_state
-> *crtc_state,
->  +       struct drm_connector *_connector)
->  +{
->  + struct intel_connector *connector =3D to_intel_connector(_connector);
->  + struct intel_display *display =3D to_intel_display(crtc_state);
->  + bool scrambling_enabled =3D false;
->  + int ret;
->  +
->  + if (!crtc_state->hdmi_scrambling)
->  + return;
->  +
->  + /* Poll for a max of 200 msec as per HDMI spec */
->  + ret =3D poll_timeout_us(scrambling_enabled =3D
-> drm_scdc_get_scrambling_status(&connector->base),
->  +       scrambling_enabled, 1000, 200 * 1000, false);
->  + if (ret)
->  + drm_dbg_kms(display->drm,
->  +     "[CONNECTOR:%d:%s] Timed out waiting for scrambling enable\n",
->  +     connector->base.base.id, connector->base.name);
->  +}
->  +
->   /*
->    * intel_hdmi_handle_sink_scrambling: handle sink scrambling/clock rati=
-o setup
->    * @encoder: intel_encoder
->  diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.h
-> b/drivers/gpu/drm/i915/display/intel_hdmi.h
->  index be2fad57e4ad..0fa3661568e8 100644
->  --- a/drivers/gpu/drm/i915/display/intel_hdmi.h
->  +++ b/drivers/gpu/drm/i915/display/intel_hdmi.h
->  @@ -70,5 +70,7 @@ void hsw_read_infoframe(struct intel_encoder *encoder,
->   const struct intel_crtc_state *crtc_state,
->   unsigned int type,
->   void *frame, ssize_t len);
->  +void intel_hdmi_poll_for_scrambling_enable(const struct
-> intel_crtc_state *crtc_state,
->  +    struct drm_connector *_connector);
->
->   #endif /* __INTEL_HDMI_H__ */
->  --
->  2.45.2
+diff --git a/drivers/gpu/drm/drm_plane.c b/drivers/gpu/drm/drm_plane.c
+index ca51c87267662c11cee5f28276b2b941e1a87973..dd457cf37e0977298e026b014414c59764432032 100644
+--- a/drivers/gpu/drm/drm_plane.c
++++ b/drivers/gpu/drm/drm_plane.c
+@@ -498,6 +498,8 @@ static int __drm_universal_plane_init(struct drm_device *dev,
+ 						   blob->base.id);
+ 	}
+ 
++	if (dev->mode_config.async_page_flip)
++		drm_plane_create_async_flip_property(plane);
+ 
+ 	return 0;
+ }
 
---=20
-Jani Nikula, Intel
+-- 
+2.25.1
+
