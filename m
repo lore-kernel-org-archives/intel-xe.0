@@ -4,33 +4,34 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DA50FCF6ABF
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B5E98CF6ABE
 	for <intel-xe@archiver.kernel.org>; Thu,  8 Jan 2026 10:10:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A4E1B10E6EB;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 806FA10E6EF;
 	Thu,  8 Jan 2026 10:10:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="EeIRO/O5";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="kFXi2EKH";
 	dkim-atps=neutral
 Received: from lankhorst.se (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F142210E6E5
- for <intel-xe@lists.freedesktop.org>; Thu,  8 Jan 2026 10:10:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B180D10E6E6
+ for <intel-xe@lists.freedesktop.org>; Thu,  8 Jan 2026 10:10:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1767867021;
- bh=71l59JpWFmZE4xHSnkT8NiHEYejDDff460x/dz+CycM=;
+ s=default; t=1767867022;
+ bh=Gwb3y3P8DPqsA/WwZKZeEL60+HubBxa4PWo6SSGk9aY=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=EeIRO/O5EmSg1USQifjAhtjOvJ/q9v5oHwDwm/QCRz2MChV/YAgxqJnOsm4PcXmJr
- AYVuE0ypQ9Z6faiyUpDtsggcm8vP4NO1kngTXM6fzEyu12VoGyaLJsy+s0328dUVkw
- jergZQzERieuQzyV6uMEKEa8FXY/6UcoZ5GUvVhd5fkII01u9Bdhk41euB9zECLtDo
- w2fzc/ye25+WpUgBatIwbg9i0hzPpC5nOJDKQV03VSLGOxSjh6kRcsOP+iUhFMTgwp
- FRt/2exvRxDarL8/93Ysi32EA4UNr8XVqNAdF6wp7py7ZJ6cYeuZOyGwQzKmGYEnxb
- xc/g9San/Z8HQ==
+ b=kFXi2EKHLX63/J5kns2AN1Dxb8WfoK6YJQXvI2MatmVxsvlfmpx53PuAANtGn4h40
+ TQgq+irIoVFfC7xBN2thCz8IA18Rc/NqqKBnOk/91b9Qt7xhny8MmI/MK5tv+Szp2E
+ AEv32uilnmtL5jasaPXNm9/D2cJ/FhWZNxD77xMECR8Ufo440UmX0QnXFQIqF9lNxf
+ iaJGdNLT5YolH9usQclPcu7vKs7mBU1Y8spy9r7yk5HjIBbsNNFEbM0xBBe5riwG3j
+ Fa2185ekTCXfVHRaIxW4zQyPcEvaasxyEzlpi0UBclf9pxVQnXFS77zOnrIZ1dzHd7
+ bN5DKXG/bXK9A==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-xe@lists.freedesktop.org
-Cc: Maarten Lankhorst <dev@lankhorst.se>
-Subject: [PATCH v2 5/7] drm/xe: Do not dereference ggtt_node in xe_bo.c
-Date: Thu,  8 Jan 2026 11:10:20 +0100
-Message-ID: <20260108101014.579906-14-dev@lankhorst.se>
+Cc: Maarten Lankhorst <dev@lankhorst.se>, Matthew.brost@intel.com,
+ Michal Wajdeczko <michal.wajdeczko@intel.com>
+Subject: [PATCH v2 6/7] drm/xe: Improve xe_gt_sriov_pf_config GGTT handling
+Date: Thu,  8 Jan 2026 11:10:21 +0100
+Message-ID: <20260108101014.579906-15-dev@lankhorst.se>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20260108101014.579906-9-dev@lankhorst.se>
 References: <20260108101014.579906-9-dev@lankhorst.se>
@@ -50,47 +51,98 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-A careful inspection of __xe_ggtt_insert_bo_at() shows that
-the ggtt_node can always be seen as inserted from xe_bo.c
-due to the way error handling is performed.
+Do not directly dereference xe_ggtt_node, and add
+a function to retrieve the allocated GGTT size.
 
-The checks are also a little bit too paranoid, since we
-never create a bo with ggtt_node[id] initialised but not
-inserted into the GGTT, which can be seen by looking at
-__xe_ggtt_insert_bo_at()
-
-Additionally, the size of the GGTT is never bigger than 4 GB,
-so adding a check at that level is incorrect.
-
+Reviewed-by: Matthew.brost@intel.com
+Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/xe/xe_bo.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/xe/xe_ggtt.c               | 11 +++++++++++
+ drivers/gpu/drm/xe/xe_ggtt.h               |  1 +
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c | 15 ++++++++-------
+ 3 files changed, 20 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index 8b6474cd3eaf2..21e7a738cfed8 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -1709,7 +1709,7 @@ static void xe_ttm_bo_destroy(struct ttm_buffer_object *ttm_bo)
- 	xe_assert(xe, list_empty(&ttm_bo->base.gpuva.list));
- 
- 	for_each_tile(tile, xe, id)
--		if (bo->ggtt_node[id] && bo->ggtt_node[id]->base.size)
-+		if (bo->ggtt_node[id])
- 			xe_ggtt_remove_bo(tile->mem.ggtt, bo);
- 
- #ifdef CONFIG_PROC_FS
-@@ -3603,8 +3603,8 @@ void xe_bo_put(struct xe_bo *bo)
- 			might_lock(&bo->client->bos_lock);
- #endif
- 		for_each_tile(tile, xe_bo_device(bo), id)
--			if (bo->ggtt_node[id] && bo->ggtt_node[id]->ggtt)
--				xe_ggtt_might_lock(bo->ggtt_node[id]->ggtt);
-+			if (bo->ggtt_node[id])
-+				xe_ggtt_might_lock(tile->mem.ggtt);
- 		drm_gem_object_put(&bo->ttm.base);
- 	}
+diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
+index 7f45bcd0c56b0..e396f33e2c5c9 100644
+--- a/drivers/gpu/drm/xe/xe_ggtt.c
++++ b/drivers/gpu/drm/xe/xe_ggtt.c
+@@ -1196,3 +1196,14 @@ u64 xe_ggtt_node_addr(const struct xe_ggtt_node *node)
+ {
+ 	return node->base.start;
  }
++
++/**
++ * xe_ggtt_node_size - Get @node allocation size.
++ * @node: &xe_ggtt_node
++ *
++ * Get the allocated node's size.
++ */
++u64 xe_ggtt_node_size(const struct xe_ggtt_node *node)
++{
++	return node->base.size;
++}
+diff --git a/drivers/gpu/drm/xe/xe_ggtt.h b/drivers/gpu/drm/xe/xe_ggtt.h
+index 76336a6296c45..70d5e07ac4b66 100644
+--- a/drivers/gpu/drm/xe/xe_ggtt.h
++++ b/drivers/gpu/drm/xe/xe_ggtt.h
+@@ -62,5 +62,6 @@ u64 xe_ggtt_encode_pte_flags(struct xe_ggtt *ggtt, struct xe_bo *bo, u16 pat_ind
+ u64 xe_ggtt_read_pte(struct xe_ggtt *ggtt, u64 offset);
+ 
+ u64 xe_ggtt_node_addr(const struct xe_ggtt_node *node);
++u64 xe_ggtt_node_size(const struct xe_ggtt_node *node);
+ 
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
+index bed6580d8d090..9f2525f3cb379 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
+@@ -284,7 +284,7 @@ static u32 encode_config_ggtt(u32 *cfg, const struct xe_gt_sriov_config *config,
+ 	if (!xe_ggtt_node_allocated(node))
+ 		return 0;
+ 
+-	return encode_ggtt(cfg, node->base.start, node->base.size, details);
++	return encode_ggtt(cfg, xe_ggtt_node_addr(node), xe_ggtt_node_size(node), details);
+ }
+ 
+ static u32 encode_config_sched(struct xe_gt *gt, u32 *cfg, u32 n,
+@@ -545,9 +545,9 @@ static int pf_provision_vf_ggtt(struct xe_gt *gt, unsigned int vfid, u64 size)
+ 
+ 	xe_ggtt_assign(node, vfid);
+ 	xe_gt_sriov_dbg_verbose(gt, "VF%u assigned GGTT %llx-%llx\n",
+-				vfid, node->base.start, node->base.start + node->base.size - 1);
++				vfid, xe_ggtt_node_addr(node), xe_ggtt_node_addr(node) + size - 1);
+ 
+-	err = pf_distribute_config_ggtt(gt->tile, vfid, node->base.start, node->base.size);
++	err = pf_distribute_config_ggtt(gt->tile, vfid, xe_ggtt_node_addr(node), size);
+ 	if (unlikely(err))
+ 		goto err;
+ 
+@@ -564,7 +564,7 @@ static u64 pf_get_vf_config_ggtt(struct xe_gt *gt, unsigned int vfid)
+ 	struct xe_ggtt_node *node = config->ggtt_region;
+ 
+ 	xe_gt_assert(gt, xe_gt_is_main_type(gt));
+-	return xe_ggtt_node_allocated(node) ? node->base.size : 0;
++	return xe_ggtt_node_allocated(node) ? xe_ggtt_node_size(node) : 0;
+ }
+ 
+ /**
+@@ -3040,11 +3040,12 @@ int xe_gt_sriov_pf_config_print_ggtt(struct xe_gt *gt, struct drm_printer *p)
+ 		if (!xe_ggtt_node_allocated(config->ggtt_region))
+ 			continue;
+ 
+-		string_get_size(config->ggtt_region->base.size, 1, STRING_UNITS_2,
++		string_get_size(xe_ggtt_node_size(config->ggtt_region), 1, STRING_UNITS_2,
+ 				buf, sizeof(buf));
+ 		drm_printf(p, "VF%u:\t%#0llx-%#llx\t(%s)\n",
+-			   n, config->ggtt_region->base.start,
+-			   config->ggtt_region->base.start + config->ggtt_region->base.size - 1,
++			   n, xe_ggtt_node_addr(config->ggtt_region),
++			   xe_ggtt_node_addr(config->ggtt_region) +
++			   xe_ggtt_node_size(config->ggtt_region) - 1,
+ 			   buf);
+ 	}
+ 
 -- 
 2.51.0
 
