@@ -4,155 +4,160 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CB713D232C7
-	for <intel-xe@archiver.kernel.org>; Thu,  8 Jan 2026 23:39:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B81F9D232C6
+	for <intel-xe@archiver.kernel.org>; Thu,  8 Jan 2026 23:41:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 80CE110E7D3;
-	Thu,  8 Jan 2026 23:39:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 71D1710E7DB;
+	Thu,  8 Jan 2026 23:41:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="WX/4E5Ar";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="TMXOe7zs";
 	dkim-atps=neutral
-Received: from CY3PR05CU001.outbound.protection.outlook.com
- (mail-westcentralusazon11013006.outbound.protection.outlook.com
- [40.93.201.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2940F10E7D3
- for <intel-xe@lists.freedesktop.org>; Thu,  8 Jan 2026 23:39:53 +0000 (UTC)
+Received: from BN1PR04CU002.outbound.protection.outlook.com
+ (mail-eastus2azon11010010.outbound.protection.outlook.com [52.101.56.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 46B2410E7EF;
+ Thu,  8 Jan 2026 23:41:24 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=yRx5xaFzIktRZObm9GeD4/OQHfJ2XAJyQq8YV5zzxCx/dIwVvoZSgc/IX9xWslhNaDGwckM0bkOf/CHVjgaPIAjFe8ZnpnN8chJXU/TIaAtZAtYN7ZdWjZP4YO9NocJeqwFnSGNOvU1wb9YKVuCvi2FuBNtKbwovCddAaccEwpqnAPtqbr/9hl7USBxTLN3C7u8GgUcC0K/HzSLlfruAbDtwFBgZtHrx1ANlZp+zPfWaEnHxbXKuCDNpj6KynsHld90cIWM8hogNnFNcDnS8nHaWLenXJoI5aLolt5PG9Mwuo0zVwG6xtOobkzuiMMRzVBqGUaK+hPJBkYxurw6MIg==
+ b=tekkW5XICDFWsv1X0V8AmhCAmXx4WrnVs1J1sXStPS2By1WObDTKzrkLPpmmo7VcO4RFXzJmh/CYNw1ht7LtOZ/NAA8abzKlKhaGe4B3JdC9ftcUVB9/u9MewxXiEVH1rmzgUB6bXz4DKJh4EeDEJsudeyZldca8wt6aEuO4fRiuGNG7FyM2BxsxP1KQd7VhicMUxdZrG43u0f6Zy3QWMp7Qha14TrQ8twqaccht3f0KL7Vs1qtxtckFhelseIvu1uw/NDdo5477qyIu+EzG1+hNr60bDf8AwmapoVphKOYdVHMyYgJJShaqKC4tlo2KZUDfDTENMXGYjcaRtDRiXg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Akc6dKynaVEGoTlAdd4u3YbgAQgbLM48dJrNRyUHIaY=;
- b=ZoeYYU+GA+SuyMeSIsXvnP2pPRrRWSdYb0ZIiBgyp8tawFzKeiUqq0Mg36Q655cSpM78zyFhL8byEhsxKbjez3YAdFwzZKPr3f4f9m+bulBP+QG+TQtejMMTmp8xy3iTRX4UB0Fxmc6IIQUokOdunrjHE+7R6lLs1s84dkpjuNEcu01fUUzMKfKJznO53mDgs0bNKABfouRD7qRxo+JlRaIO3gJfPEhZ+by42Du+CdxAoZ9opeslXK+aeZToNq+Z+FM90+HHCb0ckK7wnna/zNssBrQX9t4SsEdKExXnlVddw9QOdgrN6/1fZiHTL/9NYC5qkifP+Rrc/zSohwkAKg==
+ bh=lEjHDZZC97K3WCYH8fG6Iwu5wzGnnCM7C2bIlMjJ8nA=;
+ b=g6z/Oc5J2Sf0yq8pcfiHGjHwiFTYFlhOA8mRfdrpdTtEpvdJnZYQC7qmFbO1VWo2/DLuqt6VWx9fW7PI46Vjy7/tPWarVL72rfM1C7z60oCqkTRemw1PykJSFdY8t0xsi2FjJoszO750GvSkXcDjIAM1GqVIEPZB3t+uT7Oz7yczr17rOP733wxKzqrG6MTXc5NIowmTG97qX76pIPd9KC2xWTf32c7VtY1Xiofaf1PZXOxOsMcyx1UgLsV9DD7T9JOG715ebWqrWEQiozfHIbC+vnrrDOrkOykY1mAIpyLdiA2XRWVcLOecOHllB59+u4gXsTwcJkYGrPFA6Lo6MQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
  dkim=pass header.d=nvidia.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
  s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Akc6dKynaVEGoTlAdd4u3YbgAQgbLM48dJrNRyUHIaY=;
- b=WX/4E5Ar/2X3+eYUK7ssnub6Xh3emYwtMFDXoIP4eWDphbvQ12VByZQ3IvBWgjj6YLKIygmMz4UkQ0IQvS49y42t2W5CpZcFhmutyjdz1ZaypK6fw7AAvNnWXQOWBwpGO4v9CfbWOBp9NpXRd2eEw3VdP7J5bQlcdv73mJgeB7HtZD5Dw5fZXN4vCgg6TQ9sq3YnBBdfgBwMSeTVLsPT6ijo5PRcV9hVDPb6h0dM+UQWOfNMyXUxAq9tYXl2uJS7U5+fCSwX9a0pZty1qmgkFM0NNdMqQht7F/J7rX6LKhSR6USxt4jyG/mQkyVQuO3UJevcWEiAPbkqy0fm73+eoQ==
+ bh=lEjHDZZC97K3WCYH8fG6Iwu5wzGnnCM7C2bIlMjJ8nA=;
+ b=TMXOe7zsV0yhVdWyV+Po+X+FiFQZx2U4rFZY462vr5TcoDWbY6ZH84BxER8wWgnL0hlMu/vHkSHykAB5uk7qKJ9Q3fGci6loIWjYdrNA4IKEiZa9m13UpgUEkdGENLcD8mnIIylGqhhx0bhItz8WqBECwUWr/pb/DcHTo2bmL9OAWfsFUHz8OAoCKRdtMIR8jbnhAQYBOMwl9H7yR7SSvJic4WtOD7O09/UGspmigBV/NrSehIe5QHw3pgQTZOr7XHXFYX9HOBvopICyH1tPVDEZKXSHDuVcotEGYoP92St/TH7/5aiEUhfvnEmpGiBFLeD6yP20vzK4p6oQeRW+VA==
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=nvidia.com;
 Received: from DM4PR12MB9072.namprd12.prod.outlook.com (2603:10b6:8:be::6) by
  DS4PR12MB9684.namprd12.prod.outlook.com (2603:10b6:8:281::11) with
  Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9478.4; Thu, 8 Jan 2026 23:39:50 +0000
+ 15.20.9478.4; Thu, 8 Jan 2026 23:41:20 +0000
 Received: from DM4PR12MB9072.namprd12.prod.outlook.com
  ([fe80::9e49:782:8e98:1ff1]) by DM4PR12MB9072.namprd12.prod.outlook.com
  ([fe80::9e49:782:8e98:1ff1%5]) with mapi id 15.20.9499.002; Thu, 8 Jan 2026
- 23:39:50 +0000
-Message-ID: <8bf680f0-94ed-4614-9ace-a081a6558460@nvidia.com>
-Date: Fri, 9 Jan 2026 10:39:45 +1100
+ 23:41:19 +0000
+Message-ID: <106a76cf-c2e6-4371-85e0-b6308255c075@nvidia.com>
+Date: Fri, 9 Jan 2026 10:41:11 +1100
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RESENDv2 v2 07/11] mm: Add a new swap type for migration entries
- of device private pages
-To: Lorenzo Stoakes <lorenzo.stoakes@oracle.com>
-Cc: intel-xe@lists.freedesktop.org, matthew.brost@intel.com
-References: <20260108060102.41357-1-jniethe@nvidia.com>
- <20260108060102.41357-8-jniethe@nvidia.com>
- <ed99b6b6-f722-470d-a40e-dddfcc9ae585@lucifer.local>
+Subject: Re: [PATCH v2 04/11] mm/migrate_device: Add migrate PFN flag to track
+ device private pages
+To: Felix Kuehling <felix.kuehling@amd.com>, linux-mm@kvack.org
+Cc: balbirs@nvidia.com, matthew.brost@intel.com, akpm@linux-foundation.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ david@redhat.com, ziy@nvidia.com, apopple@nvidia.com,
+ lorenzo.stoakes@oracle.com, lyude@redhat.com, dakr@kernel.org,
+ airlied@gmail.com, simona@ffwll.ch, rcampbell@nvidia.com,
+ mpenttil@redhat.com, jgg@nvidia.com, willy@infradead.org,
+ linuxppc-dev@lists.ozlabs.org, intel-xe@lists.freedesktop.org, jgg@ziepe.ca
+References: <20260107091823.68974-1-jniethe@nvidia.com>
+ <20260107091823.68974-5-jniethe@nvidia.com>
+ <93449f35-9512-47d2-ad32-0f0efabfb8f5@amd.com>
 Content-Language: en-US
 From: Jordan Niethe <jniethe@nvidia.com>
-In-Reply-To: <ed99b6b6-f722-470d-a40e-dddfcc9ae585@lucifer.local>
+In-Reply-To: <93449f35-9512-47d2-ad32-0f0efabfb8f5@amd.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-ClientProxiedBy: SY4P282CA0001.AUSP282.PROD.OUTLOOK.COM
  (2603:10c6:10:a0::11) To DM4PR12MB9072.namprd12.prod.outlook.com
  (2603:10b6:8:be::6)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: DM4PR12MB9072:EE_|DS4PR12MB9684:EE_
-X-MS-Office365-Filtering-Correlation-Id: fc238e6e-3049-4ed0-e47a-08de4f0f374b
+X-MS-Office365-Filtering-Correlation-Id: 0713fcab-8975-4adb-a7d6-08de4f0f6c7b
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?YUN1NDdKdStLVkQwdGhkZldXRzBrUjBKUWM4cXY0OW9jQ055MUttUlBHUWJI?=
- =?utf-8?B?a1RwZDlqVGErQ1ZMVm9KSytMZVF5NDJqeFFGa3pVSlBoREhLQ2ovSnFpRHd4?=
- =?utf-8?B?MDJVK2k1SmNkeFMzR1grckdPWmEvNi9BZFZ3Z2pnRzhFdFVEL2xJdWowTHhm?=
- =?utf-8?B?d3hVaXBrVTdldzlKYko4bjVWL09ya2c1cC82MmNzN1V1YzViQ01oOWtNM3cw?=
- =?utf-8?B?dnl0c1VTcUwzbmF6dDlTREdCWDlEL2lpTnhQaWZBQzVPUDgxcTh6REorcWYv?=
- =?utf-8?B?cW9CTXFRc094VHQyc1JRdUxJd05kdXJaVVdCakZ5cGpTNGltbGFhTlpseGlm?=
- =?utf-8?B?dVhhRjBEQ2tIY1ZYSHRiaUZiV0U0RU1zYnhoam8vUGo3eklWaXp1NWN4Y0tu?=
- =?utf-8?B?bGJMT2ZaUEJmRWhPQ0JDMm9RYzdJZTJxQjVxZktTYVZ4TXlBRWpQdHpnTGpW?=
- =?utf-8?B?MnNWK0c4TGpPaysrcTg4ODgvYzNlQ0NHVHJYRENDRzRlR0VMSEk1alV4WS84?=
- =?utf-8?B?S1hPWmt5RGxDLzV3eGZWMkRtalBmWkswdWlPaG8vUFpTT0kxbGVpK1BzQWhD?=
- =?utf-8?B?MDdlbnI3enpkQ0pQWHZWNVg3UUZ2SmFnSFJ5RVVMb2lQSk1TdmNMVVFSeUpw?=
- =?utf-8?B?YXJiRWtxSmUyRkRrVkZIb0xEMEZ6VWozWnBaYXl1WHVtZ01LMWZhZWtkVGxZ?=
- =?utf-8?B?Z0lXOVB4MENDTy9zallQNVJaVVlZTDc2Tm1PWG1LTzgyRkpmSk9OQUlkdXBS?=
- =?utf-8?B?MUxDaGpxWnM2clNCOUVpdkpjaVVtbXBJTzY1MGN4dW1sTmw2amVZTUg3Z0Zp?=
- =?utf-8?B?ZlpoNWQrYW4xSWtlVWVCYkRwWDhzYzFCRVJwYXV5K3pFZTg2d253S0VzbG5I?=
- =?utf-8?B?dzUxNm9VaGNVckVSVmdka3VtOFFQRGFTczdjVmgyMzl4dURtNytMNjlvRjg2?=
- =?utf-8?B?THZ6QkVwak94T0k3S2R4N09mTGkyT1Z6aGIxQlNmSFZNbGprVEVnc3dQZmNH?=
- =?utf-8?B?WFVWVUs5ZXhteWJlQmRqVStlTkQzNkVOUlB2UlFpVVRJS2htVTRVME85cG10?=
- =?utf-8?B?K3FLY0lqcTJhVVdEMG1vT2pTN01GUFMyS2lpekdKY25iaTZSN0tlZjZENUdI?=
- =?utf-8?B?V0RIZXlmL1NuMkdSRGcvZjVPSjBSTU9hYzBQUmlWZ25NdTJwc2NsUm45Vklu?=
- =?utf-8?B?WmExWS9CMklKdjcvYUg3N2xuQS9EcHNFWTNCSmhtVnRFd3RaNGxGZDZDcDV6?=
- =?utf-8?B?dDRsRE9XdVR3dTlkR1hCY1BITkFMVS9RUW9jOE5UK2J1ek5TR3ZER0pWM2N4?=
- =?utf-8?B?NkZ1ZzVOMjY5a0ZJZUswTkFycHRMNGhIdThIZzErWmFmYUNMWkdwT0dNekhH?=
- =?utf-8?B?cUdRV3o5d3BBcEF3Ny80MElOWEY3RzF3aDBYOG9aTXBSWFZqR3RHNjg5UEJi?=
- =?utf-8?B?MUZHZ0ZXZUpRd2pPRnBJb0diK0FpNzcyYVNYZDFWcDdITUJTV1lLajJBODVp?=
- =?utf-8?B?KzcwT2xwMmRuZXJwTVB4YkhtejJaZ3JGaENuLzZ1Sy9CUkNQbG9rMGNsSDMv?=
- =?utf-8?B?RFhsaUVKclgyeHQ5TmFvRUtSSzNBZEI3Z2tCWS95UDNpdG9PakcyblFWc25M?=
- =?utf-8?B?TUFacVpIMU5vVVByWFRTRm1nSVpQOSs5WmtzQU1IdmRIMkcvRjQ5Y0RqSFND?=
- =?utf-8?B?VzB4dEVURzZvTnV3MWdrdUQ3VGJZNm5vZzRCNVJBVWN1cytNQlRXQ0tLUFg4?=
- =?utf-8?B?bUJJWmtia3RFSHBrQ3hHQVNES1JXZ24yQ21ibWdRTkwxdnhuSkdQTFJQOGxh?=
- =?utf-8?B?QnQ3QmFmY25wYlpNVmhYanFoYUJrYnRrcmVTY3AvMEhHVWZTUGMzdGNSMGNR?=
- =?utf-8?B?ZVlsaGgxdWtYYm92UDgxZm5lQ1paUkhrVmFnOHQzVjJJVnhiZzd3QlZmUFRx?=
- =?utf-8?Q?ZbIqE7hHIGL/cUwT9g7Kr6TF9024VJY4?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|7416014|366016|376014;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?UjZqSVpzbDNzMGg1SmxjNHk1bFh2WERPUXdqQVZuM1pyVkVBanZIckl4cWNP?=
+ =?utf-8?B?U24xV1hOZldzamN1M3FzbElnWXp3K3U3c2hxTFh2eXIyS2VEcnowNEhNQ0lU?=
+ =?utf-8?B?Yy9vVXdsMWRabFNWNWV4YzhJcmdkdGhubDV2emNzbzZvaVkyNWZ1RkJFdURy?=
+ =?utf-8?B?OTNnb0tMaVArSzRJSXFPVHhaUkRmR3hkL21BY09tSGNBQnBPQTRsZjk4MmpM?=
+ =?utf-8?B?RzF1UmNGNTNiTjVRQU5EQmM4TzQ0Z1IrTG9iaWRqN3d2R2wybjM0MkxkY3dP?=
+ =?utf-8?B?NzBQT210azB6em9qdDg2R0ZncEpyYTN3Y1JUSkR0cUlubDBjWjI1QzJhejZT?=
+ =?utf-8?B?SnE4YytPdTQ4ZmU2dTREWHdCaHJCKy9ZK3pyZXZPUHB6cHJBMU9pLzE0aHFw?=
+ =?utf-8?B?U3h0TGNSd3BiLzdaay9kNGJZUEY1NFJmRUg0SlAxaDd4UmJGQVlKT2pVVXZZ?=
+ =?utf-8?B?cnp6a0xZRDk4d2tsK0V0S1dXb2JjdWNIOGozT3RhQVFHdDEwd0J6T0JEQUp4?=
+ =?utf-8?B?RS80d1R4NkVzTGs5bGw2MDRlNVFULzE3OXVQM3BiZVZZMENibkZpRTlNcVpu?=
+ =?utf-8?B?NGxhYzRnc2hTZmNhSkNuTWpvem9JY1BVaFQ5Q3dxK2pNWFFueTBUMjNxUW84?=
+ =?utf-8?B?UXlzdnZPYmdDUjdJTTVFYlMva3FSSHphckEzY2g4T1BVMHIyUGJFUFVkNDFP?=
+ =?utf-8?B?d29DMi9JbjV5bEFoZHBHejNqeXhlM2pnUXB6dmRmWHFiMzUyU21wK2dJMnNr?=
+ =?utf-8?B?cVdJY20xcmdRaTJVcDIwMUtEbHJiWk8yS3RwMXVkREpJRHcxbE4ydnVwdC9h?=
+ =?utf-8?B?bjBnSmpKcUJRZWw2SFNvK2NvZFZQcWNqYjJLVi9NY0IveC96dlFEQ3QzUTBX?=
+ =?utf-8?B?Q0tHajlmR0hndFEyekNNM005ZWtBZUJzQ2JkL1U0b0RqVTNtMkxudVI1bEkw?=
+ =?utf-8?B?QnNZZERncDFrc1JhdEhRZUtoQTdZVWFxamh4bW9aRUc0RjNPNHBpek5DY3Ey?=
+ =?utf-8?B?UExYWVJidjFlSTkrdHkvMy9BWk5SVjc2VnI3elE2ZVJiZG12MmcyU1FESkJO?=
+ =?utf-8?B?c0Q5ZU80QXhOejRsYkNBbzhPTldMVWdHQUplenZXMC9Cd24zbHRQVkxNR0RE?=
+ =?utf-8?B?cG9vMmVUWE9PUEpzQXJnNG8xN0FTbFpxMVEyWkZaN3VHQWJiVU85QlBzS3NK?=
+ =?utf-8?B?UHlZMmZGYzhiMkUzc09EblNxMDdibmdFQk9JTU5XU3J3YjA5S2l1UXI1aGR6?=
+ =?utf-8?B?V1UwTHgzNG1CaDdFYytnQy9HZVNkZHh6aFZjcU1BVDd4MkNIMXVEaHJjN21p?=
+ =?utf-8?B?b1Y2anJMSFBraWxnekx2VklEWmk3SDhmc1Q2WUNMMHFHWUZBRkVHM1RmZ0NJ?=
+ =?utf-8?B?U21rcklSVCtmS3RnYzNrOEJlQlBIYWtNYmZMd0VVVmcwQmQ1ZGRqU3hDekRL?=
+ =?utf-8?B?YmsyR3BkQlRZNldCVlVMbkgwWGYzT1cyTWIxOEJ3OU9sczJzT2M3WWZrdXhQ?=
+ =?utf-8?B?Q2h6SzlRWDQ2a0JhVWFscVUwcDZ0Q0dCUmJFU0x1VUJxKzNRbzBNUUJGSmVF?=
+ =?utf-8?B?eElmSjNDeUZ0SlhabjRhYVBsZkxHcDJDSVdxY1BCUmNBL1RiMGJCcnBuRlZu?=
+ =?utf-8?B?VEtUVU90WlJsc1phMHRQeU5hZkRWcTVCdWl0L1FXVC9LdkFrS2tUcXljeXNv?=
+ =?utf-8?B?cjE1eDA0b0N2MHA3R0NzNFlPek9GUHZOYys1VVVkcGdlTE50R2FmUkFnSm9H?=
+ =?utf-8?B?NGFKRElHRFIyY1FkMTkrSFlBU21XakErRjVaWXBoSUo5ZFp6N2huMmFrbldW?=
+ =?utf-8?B?WWlUb0xLcDdiNVYxOVRVdzYvZ0Z2RmI5Q2x0Vmtza0tYRUpZTU15UFZjbXdV?=
+ =?utf-8?B?NUV3TE9DZE9PR2dFVjVCdFVWalJWaFpmYnMvNmFBTFVJeGx4MHZsR1pwQXZV?=
+ =?utf-8?Q?cc2R1EJOk+hzUU/JiE9asSFH1w0e2Wgv?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DM4PR12MB9072.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
+ SFS:(13230040)(1800799024)(7416014)(366016)(376014); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UFVwN2pzM0ZJOFFGb3kzVWtLL2tNa3NJcGg2Z2V6YkV2bFlKbXRNcmpldjNI?=
- =?utf-8?B?THVtUEN3ODFwR3B1ZFRNazg1dklaaFVkZnFPZFNNOVMxR1MrZVZoR1E0eE91?=
- =?utf-8?B?b2FWWG5WdXl4eFVOYVpNYW9iTU1UUkZuMXgrb2RPT244Z3BLZkgzdWNzNGhJ?=
- =?utf-8?B?eGdFVjUwRERpYUZVUW5pWm14MWdlODRxWFU2NUtQMzRrUmpIV05LYmx0Ukww?=
- =?utf-8?B?WDlJR00vRzFMM21xQ0hLemJORTEzMG8ya0l2ZElpV1RVWVdsZnpsMXV1RWtZ?=
- =?utf-8?B?L3M2NUVVWHJya0RyQk1GTkRmTVFtb2gxcFpuM3J2NDREb25TVUR1VkhvQ0Ra?=
- =?utf-8?B?SW92d1JLZWFnR1JZazhmcTgvdlZBYXVuT052NTVacnovaFFVdmZld0Q1M0R4?=
- =?utf-8?B?b0N1YjAwS3h3RFJ6NVpNQmF5RHlXYVRUcmFRbElJeEI3MGc5R3hzYTFOcHZY?=
- =?utf-8?B?eFJyTmZJMzhvbUpSQ3RYak91cjRISDEwa1JvVTZDdzhKSjRZM2t5MFFFcXFP?=
- =?utf-8?B?alpaM3QrcWwyaFJ4YzVQNk5uWU9JMERVcHppL0FidDhzRlRUcGFaTGhqLzd2?=
- =?utf-8?B?RnFkTGJZbGpBWG9WZmo3eEpDSDk0bW9kV3dPSXl4VVlDZTlQL0xkWHpnR0ZO?=
- =?utf-8?B?Z280aitRaTVwSHU0YW9Hd0dITDZpeE9zZ3dPeFIxbkVwc2hxWXNHTEhKb21Q?=
- =?utf-8?B?cTFkaXlUZ3Nqend4STlUbk45ZGQ2V2UrV2tUYUZJaGEwTXI1b3FWeHdnTWpP?=
- =?utf-8?B?RXdlQWRNREUyYjg2bzA2UzFDL1VtT25NNUNpYnVDWFdZL2hXbEN4N0gxcUpC?=
- =?utf-8?B?NW11YW1waGdDL1VvVlYwWUU0UUNacGE2cnFVK0hIUyttOTNOZXlaT2tlOGNW?=
- =?utf-8?B?TUgyN01YbXN1TGRhVFpmSCs2RVdhQUFxbDIzNHV6TjdURTN5SklLV3loOThz?=
- =?utf-8?B?cUw4cDdzTG0yaGVoYzlDT3N4ajRZOHpGbmhpT1EvdTM4bWVEN2lueFBGRUd0?=
- =?utf-8?B?TjJOTjFyeHF1V2xUODk1QWcyVE1nTEE2a0hreFRTQXVlSmc3aFZZRTByamVP?=
- =?utf-8?B?a0hkUXNJb1ZXTHhzeFZ1dGFlYkRGU1plYmJha09USEFRdk9Ra3FBMFRJc3BN?=
- =?utf-8?B?c0ZpQkRJL3pkd29iQWxLTndsYnBHVlZYUk92d3crdnlDcjdJYzY3ZEF6U3Ex?=
- =?utf-8?B?MmFPTGREVkxabDNzQVZtdUJXTTViaHFpcHFOVU1ibTlHWnFmMDM2M3BESEVS?=
- =?utf-8?B?WWdBM3RHQVdjNjRYT01NNThkc3Z2SCtqMFhBQnNHVnRJcmZrTGs0bGo2VUtn?=
- =?utf-8?B?QzJ5dWIxeHVkQjNNN0xJOTEwaXFTSU9vR1hNdU1JM3V4ZWxHdHBrZm50VmRQ?=
- =?utf-8?B?K1JQekJtR2JPSUR3ZXlodlVPZFVWZm5iUmVCMElsRVBWWE9ya1phS2psL1pT?=
- =?utf-8?B?KzJINVdXY202RytjclhlaDh1bXQrR09QM0czUGhpMWpReG1rRS9lSEdhaERa?=
- =?utf-8?B?RXc3bzlQMXh5bW1SeU50QlhIWko3NEUzUWpteVZNZkN4aGhFMGxrYjhWQ2VL?=
- =?utf-8?B?dStPQ2lzejJVT0VOZi9aajJ1MmhkRko5TXRzNjFDOGQ3a1EyM2xnWlltTEQ5?=
- =?utf-8?B?Tm1qRFNpeXpzSEdOajBNRkQweU1la3RrOUNsYXQ1bFVWMTF5ZDltK2dmNmlD?=
- =?utf-8?B?U3ZraFNLREVXSTNsUlRrWkVpTUM0ekxUeVJXQXRhN2ZDRzE3eUZsNmZUNTcy?=
- =?utf-8?B?VzFVU3ZmbVVkZkVJTmx6VHRlWTIrVHN6UkU5NnhlWHpEcHJTSVBDd3FYSEhs?=
- =?utf-8?B?QlZIL0wvaVFGM28xTytkSGFmeUlubVQ4SEltYXBaemZiNGRJNWlWVXRNVlJr?=
- =?utf-8?B?SERnc2ZKS2hLMU9SaTZEVVMvVGRSM1dxM3hodjg3eXhRc3ErejZ6bEJZZElV?=
- =?utf-8?B?REZPSFNlbnJJRGFLVitjclh1QWFXQ3JOYW9jOWl0NUxLcmZJWGJIOThJb1pl?=
- =?utf-8?B?TmtDVUExbklxNTdXT0w1eWVuakNIZmkvajlDc0ZZYzlla2lIcC9VU0t3VGdl?=
- =?utf-8?B?bnkwTkJzWXorcGh2MUFpOWdIdGw1N2cxQzh4TEtTY1dVbU12YkhYSFNrS3l2?=
- =?utf-8?B?Ym96QUo2QzE0WVpEb3hmdFR1T3NCbXpmb21sbEN4SlNUMkJkSGhOczJTVms2?=
- =?utf-8?B?ckZmYWFPZWhNdGRkbHdsM1lQRW9ILzEyajRWYm93Qlo5US9ndHoxcTBDSkZH?=
- =?utf-8?B?bEhUaHA4aUFROXVCYjNWWUw0MnpQeVpnSVdkRzF3cXV0bFdlWkxHTGc0ZnBF?=
- =?utf-8?B?OE1SbWlYQ3duN2NsNGxURUVPTkxKRlJmS3ExUzRwK2psaGkyQTUxdz09?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UTdwZVovOXpJbkp2VU1Od1FNL3dlVndaQ0c2MElxcDhsSnJQSDNZcFdMZ3lD?=
+ =?utf-8?B?dU1Lbk5JUFVkdklXbmNGcWZFM21ob0hwMEo5bkZDMk92OGRyaC9OSXI5UnEw?=
+ =?utf-8?B?bnRjTU5iM0dMS0EvRVVXYXV1d3JVblhlNHpXeXQ4RmdNVVkvd2xtV0Y3NUpU?=
+ =?utf-8?B?MkVrTXdEQWxBVDlPQ01OeHVsSU53ZHJPN29YNE1vSExoOXZuaWtkeG1pVXM3?=
+ =?utf-8?B?ZlJTT3JQdFBDRmRBelN3Sk1hV2dOdEVFS0kzMjlubVZoU1dDMm5wejdkNVlk?=
+ =?utf-8?B?VC9uRWVRMDdZRVMva042K0V0bXhKcEdLUXVFSDVReC9OY1FRSEpiZ0dCTWpC?=
+ =?utf-8?B?RUFBaERWYnZ1Vm9sT3dpVTFxZ09YTU96eVJRK1RDdkdncTEwQ0VkREhRd01y?=
+ =?utf-8?B?R3BMQkxQMTEvV3RDcDVHYVkxcUh0OGg3OEVoVWgwcElVR2NGQWFiRDRkRWtF?=
+ =?utf-8?B?MVJZbm9tUTVqc3JPTXNGU2V0ZFJINzAwU01ZcUVMdTBVTXZ6aE1pakI5UUd3?=
+ =?utf-8?B?VXl2YjhnSFVscER0MUYvSWZjNGtpRVNaWmgvUUhPR1d6ODhLNnVvYnlhSmx1?=
+ =?utf-8?B?ME9WSVhkeU93R0ZJNGVIVDNqQWtRSVppQXZDV0VoUUFQVlJRdTZPNkQrOFdJ?=
+ =?utf-8?B?UEpTd1VrYmZzQUFYZldJcm10dTA5aFVuSFhaRUN5cWxXMGhpZEVWa2tKd2Mr?=
+ =?utf-8?B?YUhxcDZmT3RsdjhLUXh5N2N0cXhMSlpXb01rbFZ4OGpOSTRJRWNwOHdoRkYv?=
+ =?utf-8?B?MENGTTNONjNxRU9LUkhXU0NWSjUwVUhRL2M2TnpvTTZydDhyb3hsNFJSemFE?=
+ =?utf-8?B?ZG41bUpxbXBYNUw5aGtZdWNsMjJXTEZzQTFnWWlvT0M5a2JGQlBlelNEL05m?=
+ =?utf-8?B?T1hZODBsTDBnNFZ1WVBQbGFZN21CalNvQ2ZnN3NyN1pYU1B0YklOdzhFQnl4?=
+ =?utf-8?B?TUVrOSs5RDN3RVg0WVhIekI3YXlEdUcvTWdnTysreXEzUnhVekZhODBVelZn?=
+ =?utf-8?B?bzFyL1VyWXdkMk1jSGY5ZkgxUEphT3lFVVRpd0syMzBYcDUyTk9lbFVPRDFJ?=
+ =?utf-8?B?b2wyQ1dCWk5JM2NrRXlUNWh1QTVLMW9qYTJQL2VEdlVDbjExSDZFbzc2Wkl2?=
+ =?utf-8?B?Yk90RWlSZ3pIZGFhYi9Qckh1ZmRzUEhQblFEZkQyeno3YVp6K0ZtMWQxUDNx?=
+ =?utf-8?B?eVAvMmFkSko3U2JxQndNVFh3bXN0b2VXcXFqWVlJMnFMREtjZVl2eHNjRjdI?=
+ =?utf-8?B?cDZxZDFuU1V6U01JT3NZWnJVTE9PRndGN1RqclBDS2Vhb05wdG8xU2lMUG82?=
+ =?utf-8?B?K1V1ODJ0Y3FlMzFtQVM0cUk5dkdua3NMbGh3SkpLMjZOanFGeFZQc0hnM3FY?=
+ =?utf-8?B?VU9NWE9xVVNLUUphMDhYRy8vMTB1K1RXZmVnK29TOEFiY0xBQVhRdnJ5ZUhm?=
+ =?utf-8?B?LzlsTEsvWm84Uy90N0phTlFxRVdVMWtOU3FGeHAwamYzM0Z4QlJQdU1mZzMy?=
+ =?utf-8?B?UTdQMWRUcWNCVlNGTUhWRjNqYnhUMTNicUl3alNlMzNVc091UGdWcU9jc2Y5?=
+ =?utf-8?B?RHMrUEdiM0QxcmNXYkVPTk0yQVpmbmxxczhialRPQS9pTEt2ZXhyTVlnQlZB?=
+ =?utf-8?B?NEJyMUlVcUxXd2RhTm1qMlR4bmVBWEtEcmJ6Mk96TmZRSHljWTdybDh0TFJD?=
+ =?utf-8?B?TUJhRU9IVGZTdlgzS3V4d3R6Z2F3cHNhRkZxMGlEV1l3V3VxMUpieWUwbjEw?=
+ =?utf-8?B?SjRzc0o2Y0RTeEJJQ1NvQTNMeERHQkFvdzRvTkwxSXpyd0x4L0FNNHNBVm5Z?=
+ =?utf-8?B?KzkrbGZjMkxnS2ZiMngwN29ZZDRzNTQ1RnFYRkc2QmtNaDJkWGtQWkVSNncr?=
+ =?utf-8?B?Z016UW1sc25NMlFJU0dPc3dPLzRtOWlMeFRma2pOSWt3TFBLMVJlL1BrQW9J?=
+ =?utf-8?B?Q04xanlFQkUzcFJOSkx4QkU1NGxMMlB6cFBlUXJOWjVDTkliVXVBQnJISkxQ?=
+ =?utf-8?B?SUsxVk93T2ZkKzNCZFB1S3EvdTVlQXF2MFJnV0hwTlRyRWV6MHdSWUhQdzYr?=
+ =?utf-8?B?TDV6eE01ZkFVbHJnUUNydG1CQVQ1cnUyWmRmWUNVNDY0aktZOENWZDVsQUVk?=
+ =?utf-8?B?T0hUWUpmclRMMjlJcUIzQWFyejk3NEQyUnhzT2lSYkRIUiszQXFhTExtcFMv?=
+ =?utf-8?B?SGNzTTdLVGhUUGxBaWdZS0NFbnE3R3QrUnRRQUJaUjE4VmRyZVVBeW9pSWV3?=
+ =?utf-8?B?Z2U1azBqUmhXMkJSWnlDS2RuUm5EdGlVNDlYNUozZkltMERUOURhdjRhYzNp?=
+ =?utf-8?B?a1hJWG5QTnAwOU00c2JiVXYvc0VmWUtYR1UzcDAwVjNpOU53RjRzZz09?=
 X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: fc238e6e-3049-4ed0-e47a-08de4f0f374b
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0713fcab-8975-4adb-a7d6-08de4f0f6c7b
 X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB9072.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jan 2026 23:39:50.6623 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jan 2026 23:41:19.9101 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: tg5nD+3edK4VFF+RyNzrNaL8p5kmAzJgb0QaALnaJjM8fJf+vTxkwEtbwy9JQ2mHwOv+PzJQ4kQtmmdrXdJkpw==
+X-MS-Exchange-CrossTenant-UserPrincipalName: xq5Hmar/r9E2Olhu77s+iGKxlw3WUFxkSPeV0vAcLDbAQ45InL7tIbvhRB5p5EvTyFfUR2AVXxnFMebeG48RYA==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS4PR12MB9684
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -170,177 +175,40 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Hi,
 
-On 9/1/26 06:08, Lorenzo Stoakes wrote:
-
->> @@ -28,6 +28,9 @@ enum softleaf_type {
->>   	SOFTLEAF_DEVICE_PRIVATE_READ,
->>   	SOFTLEAF_DEVICE_PRIVATE_WRITE,
->>   	SOFTLEAF_DEVICE_EXCLUSIVE,
->> +	SOFTLEAF_MIGRATION_DEVICE_READ,
->> +	SOFTLEAF_MIGRATION_DEVICE_READ_EXCLUSIVE,
->> +	SOFTLEAF_MIGRATION_DEVICE_WRITE,
+On 9/1/26 07:01, Felix Kuehling wrote:
 > 
-> I think these should be SOFTLEAF_MIGRATION_DEVICE_PRIVATE_xxx
+>> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_migrate.c b/drivers/gpu/ 
+>> drm/amd/amdkfd/kfd_migrate.c
+>> index c493b19268cc..1a07a8b92e8f 100644
+>> --- a/drivers/gpu/drm/amd/amdkfd/kfd_migrate.c
+>> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_migrate.c
+>> @@ -206,7 +206,12 @@ svm_migrate_copy_done(struct amdgpu_device *adev, 
+>> struct dma_fence *mfence)
+>>   unsigned long
+>>   svm_migrate_addr_to_mpfn(struct amdgpu_device *adev, unsigned long 
+>> addr)
+>>   {
+>> -    return migrate_pfn((addr + adev->kfd.pgmap.range.start) >> 
+>> PAGE_SHIFT);
+>> +    unsigned long flags = 0;
+>> +
+>> +    if (!adev->gmc.xgmi.connected_to_cpu)
 > 
-> And I realise that's a mouthful :)
+> We could probably use adev->kfd.pgmap.type == MEMORY_DEVICE_PRIVATE 
+> here. This avoids making any assumptions about how KFD decides device 
+> page type it wants to use, which may change on future HW generations.
 > 
-> But to be consistent with other naming, including SOFTLEAF_DEVICE_PRIVATE_*.
+> Other than that, this looks good to me.
 
-Sure.
+That's a good point - I'll update.
 
-> 
-> 
-> I don't see any users of this, do you definitely use it? I mean presumably you
-> might in a subsequent patch, not checked.
-> 
-> Otherwise I'd wrap it into softleaf_is_migration().
-
-It gets used in the final patch of the series when we begin doing things 
-like:
-
-static inline struct page *softleaf_to_page(softleaf_t entry)
-{
-	struct page *page;
-
-	if (softleaf_is_migration_device_private(entry) ||
-	    softleaf_is_device_private(entry))
-		page = device_private_entry_to_page(entry);
-	else
-		page = pfn_to_page(softleaf_to_pfn(entry));
-
-
-> 
->>
->>   /**
->> @@ -211,7 +279,8 @@ static inline bool softleaf_is_migration_write(softleaf_t entry)
->>    */
->>   static inline bool softleaf_is_migration_read(softleaf_t entry)
->>   {
-> 
-> For these ones that you are making sort of compound now, can you please update
-> the kdoc to reflect it? You've done it for others but not this one.
->
-
-Sure, sorry I missed this one.
-
->> -	return softleaf_type(entry) == SOFTLEAF_MIGRATION_READ;
->> +	return softleaf_type(entry) == SOFTLEAF_MIGRATION_READ ||
->> +	       softleaf_is_migration_device_private_read(entry);
->>   }
->>
->>   /**
->> @@ -219,12 +288,13 @@ static inline bool softleaf_is_migration_read(softleaf_t entry)
->>    * readable migration entry?
->>    * @entry: Leaf entry.
->>    *
->> - * Returns: true if the leaf entry is an exclusive readable migration entry,
->> - * otherwise false.
->> + * Returns: true if the leaf entry is an exclusive readable migration entry or
->> + * exclusive readable device private migration entry, otherwise false.
->>    */
->>   static inline bool softleaf_is_migration_read_exclusive(softleaf_t entry)
->>   {
->> -	return softleaf_type(entry) == SOFTLEAF_MIGRATION_READ_EXCLUSIVE;
->> +	return softleaf_type(entry) == SOFTLEAF_MIGRATION_READ_EXCLUSIVE ||
->> +	       softleaf_is_migration_device_private_read_exclusive(entry);
->>   }
->>
->>   /**
->> @@ -241,7 +311,7 @@ static inline bool softleaf_is_migration(softleaf_t entry)
->>   	case SOFTLEAF_MIGRATION_WRITE:
->>   		return true;
->>   	default:
->> -		return false;
->> +		return softleaf_is_migration_device_private(entry);
->>   	}
->>   }
-> 
-> So all of these above ^^^ are making it so you can't determine if an entry is
-> 'migration xxx' vs. 'migration xxx device private'. Is this ok?
-> 
-> Does anything need to exclusively determine if something is a 'migration
-> xxx'?
-> 
-> If not then fine, but just wanted to check.
-
-The new entry types have the following relationship:
-
-SOFTLEAF_MIGRATION_DEVICE_READ is-a SOFTLEAF_MIGRATION_READ
-SOFTLEAF_MIGRATION_READ !is-a SOFTLEAF_MIGRATION_DEVICE_READ
-
-So it is remains possible the distinguish the types using the
-softleaf_is_migration_device_private_read() check
-
-In practice, the only reason for introducing this new type is so we know 
-when
-we can not call pfn_to_page() on the swap entry offset. That is the only 
-time
-that the difference matters.
-
-Rather than introducing a new type we could accomplish this by adding a new
-flag like SWP_MIG_DIRTY, SWP_MIG_YOUNG but my concern was how we handle the
-!migration_entry_supports_ad() case.
-
-
-> 
->>
->> diff --git a/include/linux/swap.h b/include/linux/swap.h
->> index 38ca3df68716..c15e3b3067cd 100644
->> --- a/include/linux/swap.h
->> +++ b/include/linux/swap.h
->> @@ -74,12 +74,18 @@ static inline int current_is_kswapd(void)
->>    *
->>    * When a page is mapped by the device for exclusive access we set the CPU page
->>    * table entries to a special SWP_DEVICE_EXCLUSIVE entry.
->> + *
->> + * Because device private pages do not use regular PFNs, special migration
->> + * entries are also needed.
->>    */
->>   #ifdef CONFIG_DEVICE_PRIVATE
->> -#define SWP_DEVICE_NUM 3
->> +#define SWP_DEVICE_NUM 6
->>   #define SWP_DEVICE_WRITE (MAX_SWAPFILES+SWP_HWPOISON_NUM+SWP_MIGRATION_NUM)
->>   #define SWP_DEVICE_READ (MAX_SWAPFILES+SWP_HWPOISON_NUM+SWP_MIGRATION_NUM+1)
->>   #define SWP_DEVICE_EXCLUSIVE (MAX_SWAPFILES+SWP_HWPOISON_NUM+SWP_MIGRATION_NUM+2)
->> +#define SWP_MIGRATION_DEVICE_READ (MAX_SWAPFILES+SWP_HWPOISON_NUM+SWP_MIGRATION_NUM+3)
->> +#define SWP_MIGRATION_DEVICE_READ_EXCLUSIVE (MAX_SWAPFILES+SWP_HWPOISON_NUM+SWP_MIGRATION_NUM+4)
->> +#define SWP_MIGRATION_DEVICE_WRITE (MAX_SWAPFILES+SWP_HWPOISON_NUM+SWP_MIGRATION_NUM+5)
-> 
-> I've lost track on how many entries we have left, have you tested this with a
-> config that maximises the number?
-
-Good point - let me double check that.
-
-> 
-> I really hate how we do this by the way, that's another thing to fix... :)
-> 
->>   #else
->>   #define SWP_DEVICE_NUM 0
->>   #endif
->> diff --git a/include/linux/swapops.h b/include/linux/swapops.h
->> index a9ad997bd5ec..bae76d3831fb 100644
->> --- a/include/linux/swapops.h
->> +++ b/include/linux/swapops.h
-> 
-> Since this is pure softleaf stuff can we please put it all in leafops.h if
-> possible? I know we already have some stuff here rather than there, but this
-> really doesn't seem to belong here.
-
-The reason for adding the swapops.h entries to correspond with the softleaf
-entries was it looked like the swapops were still required for making
-the entries currently.
-
-That is, there aren't softleaf equivalents to
-make_readable_device_private_entry() and friends yet.
-
-Would it be better if I introduced the swapops.h changes in a proceeding 
-patch?
-
-> 
-> 
-> Cheers, Lorenzo
-
-Thanks for reviewing.
-
+Thanks for review,
 Jordan.
+
+> 
+> Thanks,
+>    Felix
+> 
+> 
+
 
