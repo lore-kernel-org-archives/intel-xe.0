@@ -4,27 +4,138 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3FA1DD232C2
-	for <intel-xe@archiver.kernel.org>; Thu,  8 Jan 2026 22:28:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2DE04D232C3
+	for <intel-xe@archiver.kernel.org>; Thu,  8 Jan 2026 22:36:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D785610E197;
-	Thu,  8 Jan 2026 22:28:51 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CA35110E197;
- Thu,  8 Jan 2026 22:28:49 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2191659875400582547=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 936A110E7D1;
+	Thu,  8 Jan 2026 22:36:52 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.b="Vw1c9142";
+	dkim=pass (2048-bit key; unprotected) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="W9E7IMdJ";
+	dkim-atps=neutral
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com
+ [205.220.180.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 96B0210E197
+ for <intel-xe@lists.freedesktop.org>; Thu,  8 Jan 2026 22:36:51 +0000 (UTC)
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+ by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id
+ 608JUGQt2810407
+ for <intel-xe@lists.freedesktop.org>; Thu, 8 Jan 2026 22:36:50 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+ cc:content-transfer-encoding:content-type:date:from:in-reply-to
+ :message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+ GEXHQQIiYlBolxhY5lShSaN6kwpgKwCzZFN1EOZ8k9s=; b=Vw1c9142603JFSEY
+ lxOMZB1CLa58DVQ7Yza+KLvynHkw0nSU6WeymVSMI7KguEFRXC65xwOjZU46k10G
+ dzNlne3/6l5lUxS/fY6nJQQ6QbxDjIsfKZ3YRDzAZBjvD+6dIs2XRCFc086EGU67
+ P7WTbINZFDMIleXXno0ZtUFKw+sQCQA8kwXNvP/YMZ/94/LFEvKvhSgYVsSuBzou
+ svhSlALSodmS85NWGrwIYJMFfQ7eSjQ7/dARFgTNhUy+de64CGoiXVVvkEU98ChS
+ 5REUn9Je0w1uasRgvDfxRywyS8FxhgPoC1XmnXyKLvXfUhqskLFRbODjtF80dZNR
+ InjUKA==
+Received: from mail-dl1-f71.google.com (mail-dl1-f71.google.com [74.125.82.71])
+ by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bjjt0gdy0-1
+ (version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+ for <intel-xe@lists.freedesktop.org>; Thu, 08 Jan 2026 22:36:50 +0000 (GMT)
+Received: by mail-dl1-f71.google.com with SMTP id
+ a92af1059eb24-11b9786fb51so17985098c88.1
+ for <intel-xe@lists.freedesktop.org>; Thu, 08 Jan 2026 14:36:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=oss.qualcomm.com; s=google; t=1767911809; x=1768516609;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=GEXHQQIiYlBolxhY5lShSaN6kwpgKwCzZFN1EOZ8k9s=;
+ b=W9E7IMdJbUUXY1nbH69Bh9D9uu1fg/OH1rF+2ciQyxicI7Y2faE5Lh2IdYQd74Jx37
+ vFZmnxQI/Gcp4A17r8PzaTGyLtvyZMA1k7rReLXJbTFcf+km6r1rILxXt9wQJDTVAQ9p
+ LEhzT6w8pW0/1QDsEO75CuqAYLSylv722hJjrDxnhb3XOmWbaZsozOYvPRLD0WCCwctk
+ HGNsef2220ykM7TjavvPMUhK2f0lJnSF/3PpE4WQHsLcasCUvzgtzYsr3/ofmsX/fkUT
+ zQ81VDMIp62EtdJAaLhC23zinTFk0uL2Po3n1OHWh2hi5IyMbgCs0QeFDhWBp636jYp9
+ bo0Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1767911809; x=1768516609;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=GEXHQQIiYlBolxhY5lShSaN6kwpgKwCzZFN1EOZ8k9s=;
+ b=YvQx10ImpZIMwbycEuQO1+hfR06Jkmxi8WExZ1+LOI8he5Iqh6BxQzI8aRg5AjC+Us
+ mRkCJ+vx9xNHRP7anEQJD9thFDklmzzfSL/RxvH4yn1+gNPaRt57X1W5WDebGN4zdx4T
+ JQQSQJTFQJvlaY5kHwkTMrJPrcfmDFw+8/yMcxbJLyG/9LwjLSTo9gI6qhxDkzj1Psu0
+ hWMC//KfK1JJwJs+xPZxUPZwjZbRKXxr/WiQD5gXc+2d0W8ftcVQNpcaTCPJd7w/Sz1g
+ GFIWat+kMJv5rcWFeawNUfPoZbWgivRS60wHB2FcAqzYN9KTMU0ygUABLTtNr4IZiDFe
+ jtvQ==
+X-Gm-Message-State: AOJu0Yy2VWwHD2eJsmANs6Dp8DMXyjiBFlcfRHA+/mFRDp3Qf35iRl5t
+ F022F2su7rcYdH6c605Bu1LMov6dBEIeH2VFwwBXTacY4S0q5QwMbkfwg6rw/mPLiBg76xBX8Gi
+ Dua+RH3vsqUaP3shhBzgPqARNc3NJ08DYtF9eol5SW7XonuBkpymRCUiLgvsp077OF++d/g==
+X-Gm-Gg: AY/fxX7Y9TfoOf/kSux2qNHG6qW8zINsP98HvEnXK/H7Ft0MHG06ebVw0g/VXjwr2oP
+ a5TuBLaxLKz8mVRj7paLHLIYNZz1M1wMjH8Kmb0rh6sEhEgtBYQWtsZ3tXg+2ZxeZ6CyiPLjH39
+ tpwBLGic1grjK7QSlngalviFDZb5sIUQpp/maPt/lvflRKWlkFZivp4ADGyGkLgKZJq9IgodC7q
+ seI6yqEiLVzw1A4AIhBD5/qlturFDKInbUqKZMiS9hYCw33Ue02A/f8De9DgIVvoLFe+DkAf3uk
+ L20NVvRP6k1Bx3h+I6wq15j0wXXmWkVTtk4fEBu8tfzVFu6uX7tGEuPJhFBcVeYFknso/Tgun2O
+ W9siuAZo0KZ8M8SRbNrIBuUtVrht0Qb9KDTW1eSzFt9Dc9lHLMrz+34J1OkKgOtwBUAAG8z7c
+X-Received: by 2002:a05:7022:6986:b0:119:e56b:9593 with SMTP id
+ a92af1059eb24-121f8b4d325mr7519273c88.24.1767911808973; 
+ Thu, 08 Jan 2026 14:36:48 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IH+SZ+RIP5xRNWgolwJBGeMu6C/vaaB+uQW6xoBDiVC/tTucDUBQEeNS413nrNSqv31eBp35w==
+X-Received: by 2002:a05:7022:6986:b0:119:e56b:9593 with SMTP id
+ a92af1059eb24-121f8b4d325mr7519248c88.24.1767911808242; 
+ Thu, 08 Jan 2026 14:36:48 -0800 (PST)
+Received: from [10.226.49.150] (i-global254.qualcomm.com. [199.106.103.254])
+ by smtp.gmail.com with ESMTPSA id
+ a92af1059eb24-121f24985d1sm15186129c88.16.2026.01.08.14.36.46
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 08 Jan 2026 14:36:47 -0800 (PST)
+Message-ID: <b986eb03-0887-4eb2-a7a7-50ef63e51096@oss.qualcomm.com>
+Date: Thu, 8 Jan 2026 15:36:45 -0700
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EFull=3A_success_for_drm/xe/guc=3A_Bump_GUC_ver?=
- =?utf-8?q?sion_for_NVL-S=2C_CRI_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Julia Filipchuk" <julia.filipchuk@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 08 Jan 2026 22:28:49 -0000
-Message-ID: <176791132982.138403.11540666164504135444@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260108181956.1254908-6-julia.filipchuk@intel.com>
-In-Reply-To: <20260108181956.1254908-6-julia.filipchuk@intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/4] drm/ras: Introduce the DRM RAS infrastructure over
+ generic netlink
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>, Riana Tauro
+ <riana.tauro@intel.com>, Jakub Kicinski <kuba@kernel.org>
+Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ aravind.iddamsetty@linux.intel.com, anshuman.gupta@intel.com,
+ joonas.lahtinen@linux.intel.com, lukas@wunner.de,
+ simona.vetter@ffwll.ch, airlied@gmail.com, pratik.bari@intel.com,
+ joshua.santosh.ranjan@intel.com, ashwin.kumar.kulkarni@intel.com,
+ shubham.kumar@intel.com, Lijo Lazar <lijo.lazar@amd.com>,
+ Hawking Zhang <Hawking.Zhang@amd.com>,
+ "David S. Miller" <davem@davemloft.net>,
+ Paolo Abeni <pabeni@redhat.com>, Eric Dumazet <edumazet@google.com>,
+ netdev@vger.kernel.org
+References: <20251205083934.3602030-6-riana.tauro@intel.com>
+ <20251205083934.3602030-7-riana.tauro@intel.com> <aTiWNkGmwFsxY-iO@intel.com>
+Content-Language: en-US
+From: Zack McKevitt <zachary.mckevitt@oss.qualcomm.com>
+In-Reply-To: <aTiWNkGmwFsxY-iO@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-GUID: ATYosVeFIL7t1axvBAPNNh9ynpczTzPg
+X-Authority-Analysis: v=2.4 cv=VJzQXtPX c=1 sm=1 tr=0 ts=69603182 cx=c_pps
+ a=JYo30EpNSr/tUYqK9jHPoA==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
+ a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=QyXUC8HyAAAA:8 a=EUspDBNiAAAA:8 a=zd2uoN0lAAAA:8
+ a=VwQbUJbxAAAA:8 a=J1Y8HTJGAAAA:8 a=20KFwNOVAAAA:8 a=1XWaLZrsAAAA:8
+ a=xpdD5PO0PlcQJzLAUvMA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=Fk4IpSoW4aLDllm1B1p-:22 a=y1Q9-5lHfBjTkpIzbSAN:22
+X-Proofpoint-ORIG-GUID: ATYosVeFIL7t1axvBAPNNh9ynpczTzPg
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTA4MDE3MSBTYWx0ZWRfXy73dd8ZZneKR
+ /R3ydJENfwMPBvpD1QQzxJqnOZn6NfLnx58Xo2xvMN8oiQZMgaSQBCgqgy99qJiSi07ytKyazlp
+ /5OipBKUZAfHtuqXtvod/FMOKct4PvauaWN+a91LhNplZ3W+3tbidNbkHZ0PWzu6qgDS8mnQqtG
+ zIbd7YzW46wfE02p+4y/VPZ9w1weFyMtFqC/lKt7h8rAgZ8suLj2AklYuIZy1G1gV5yyc7EEIuZ
+ XwMk1cnqCkzJgZsVYAlSyqd3Hs0sG/4OVcVtv+1ZOB4jnvKAMbMe8niPhwUN6MW1Yu9zL4sGgLT
+ Z/bxbBDXhU4U+csiK+d2KSBF1s3eYu/YQHl9B+o88+xKP0tvyKuBFnpZu/VZR6CFvdXox54za36
+ z8dXPMxJfCV3EDQXkyhQij7kxXASlo0XW7PGnj7t7VS5U3RD5AC9TZQtfri9U7kM75tLIm4gGur
+ TRXJc1tNSKEoDIMIstw==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2026-01-08_04,2026-01-08_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 suspectscore=0 spamscore=0 phishscore=0 clxscore=1011
+ priorityscore=1501 adultscore=0 bulkscore=0 lowpriorityscore=0
+ impostorscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2512120000
+ definitions=main-2601080171
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,764 +147,1141 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============2191659875400582547==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
 
-== Series Details ==
 
-Series: drm/xe/guc: Bump GUC version for NVL-S, CRI (rev2)
-URL   : https://patchwork.freedesktop.org/series/159711/
-State : success
+On 12/9/2025 2:35 PM, Rodrigo Vivi wrote:
+
+Apologies for the delay getting back to this. We are still supportive of 
+this functionality making it into the DRM subsystem but have a couple of 
+questions.
+
+> On Fri, Dec 05, 2025 at 02:09:33PM +0530, Riana Tauro wrote:
+>> From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+>>
+>> Introduces the DRM RAS infrastructure over generic netlink.
+>>
+>> The new interface allows drivers to expose RAS nodes and their
+>> associated error counters to userspace in a structured and extensible
+>> way. Each drm_ras node can register its own set of error counters, which
+>> are then discoverable and queryable through netlink operations. This
+>> lays the groundwork for reporting and managing hardware error states
+>> in a unified manner across different DRM drivers.
+>>
+>> Currently is only supports error-counter nodes. But it can be
+>> extended later.
+>>
+>> The registration is also no tied to any drm node, so it can be
+>> used by accel devices as well.
+
+Thank you for including the userspace reference implementation. I have
+begun prototyping an extension for our qaic accel driver to incorporate
+telemetry functionality by adding a new node type to drm_ras. Overall, 
+extending the interface is intuitive.
+
+>>
+>> It uses the new and mandatory YAML description format stored in
+>> Documentation/netlink/specs/. This forces a single generic netlink
+>> family namespace for the entire drm: "drm-ras".
+>> But multiple-endpoints are supported within the single family.
+>>
+>> Any modification to this API needs to be applied to
+>> Documentation/netlink/specs/drm_ras.yaml before regenerating the
+>> code:
+>>
+>> $ tools/net/ynl/pyynl/ynl_gen_c.py --spec \
+>>   Documentation/netlink/specs/drm_ras.yaml --mode uapi --header \
+>>   > include/uapi/drm/drm_ras.h
+>>
+>> $ tools/net/ynl/pyynl/ynl_gen_c.py --spec \
+>>   Documentation/netlink/specs/drm_ras.yaml --mode kernel --header \
+>>   > include/drm/drm_ras_nl.h
+>>
+>> $ tools/net/ynl/pyynl/ynl_gen_c.py --spec \
+>>   Documentation/netlink/specs/drm_ras.yaml --mode kernel --source \
+>>   > drivers/gpu/drm/drm_ras_nl.c
+>>
+>> Cc: Zack McKevitt <zachary.mckevitt@oss.qualcomm.com>
+>> Cc: Lukas Wunner <lukas@wunner.de>
+>> Cc: Lijo Lazar <lijo.lazar@amd.com>
+>> Cc: Hawking Zhang <Hawking.Zhang@amd.com>
+>> Cc: Jakub Kicinski <kuba@kernel.org>
+>> Cc: David S. Miller <davem@davemloft.net>
+>> Cc: Paolo Abeni <pabeni@redhat.com>
+>> Cc: Eric Dumazet <edumazet@google.com>
+>> Cc: netdev@vger.kernel.org
+>> Co-developed-by: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
+>> Signed-off-by: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
+>> Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+>> Signed-off-by: Riana Tauro <riana.tauro@intel.com>
+>> ---
+>> v2: fix doc and memory leak
+>>      use xe_for_each_start
+>>      use standard genlmsg_iput (Jakub Kicinski)
+>>
+>> v3: add documentation to index
+>>      modify documentation to mention uAPI requirements (Rodrigo)
+>> ---
+>>   Documentation/gpu/drm-ras.rst            | 109 +++++++
+>>   Documentation/gpu/index.rst              |   1 +
+>>   Documentation/netlink/specs/drm_ras.yaml | 130 +++++++++
+>>   drivers/gpu/drm/Kconfig                  |   9 +
+>>   drivers/gpu/drm/Makefile                 |   1 +
+>>   drivers/gpu/drm/drm_drv.c                |   6 +
+>>   drivers/gpu/drm/drm_ras.c                | 351 +++++++++++++++++++++++
+>>   drivers/gpu/drm/drm_ras_genl_family.c    |  42 +++
+>>   drivers/gpu/drm/drm_ras_nl.c             |  54 ++++
+>>   include/drm/drm_ras.h                    |  76 +++++
+>>   include/drm/drm_ras_genl_family.h        |  17 ++
+>>   include/drm/drm_ras_nl.h                 |  24 ++
+>>   include/uapi/drm/drm_ras.h               |  49 ++++
+>>   13 files changed, 869 insertions(+)
+>>   create mode 100644 Documentation/gpu/drm-ras.rst
+>>   create mode 100644 Documentation/netlink/specs/drm_ras.yaml
+>>   create mode 100644 drivers/gpu/drm/drm_ras.c
+>>   create mode 100644 drivers/gpu/drm/drm_ras_genl_family.c
+>>   create mode 100644 drivers/gpu/drm/drm_ras_nl.c
+>>   create mode 100644 include/drm/drm_ras.h
+>>   create mode 100644 include/drm/drm_ras_genl_family.h
+>>   create mode 100644 include/drm/drm_ras_nl.h
+>>   create mode 100644 include/uapi/drm/drm_ras.h
+>>
+>> diff --git a/Documentation/gpu/drm-ras.rst b/Documentation/gpu/drm-ras.rst
+>> new file mode 100644
+>> index 000000000000..cec60cf5d17d
+>> --- /dev/null
+>> +++ b/Documentation/gpu/drm-ras.rst
+>> @@ -0,0 +1,109 @@
+>> +.. SPDX-License-Identifier: GPL-2.0+
+>> +
+>> +============================
+>> +DRM RAS over Generic Netlink
+>> +============================
+>> +
+>> +The DRM RAS (Reliability, Availability, Serviceability) interface provides a
+>> +standardized way for GPU/accelerator drivers to expose error counters and
+>> +other reliability nodes to user space via Generic Netlink. This allows
+>> +diagnostic tools, monitoring daemons, or test infrastructure to query hardware
+>> +health in a uniform way across different DRM drivers.
+>> +
+>> +Key Goals:
+>> +
+>> +* Provide a standardized RAS solution for GPU and accelerator drivers, enabling
+>> +  data center monitoring and reliability operations.
+>> +* Implement a single drm-ras Generic Netlink family to meet modern Netlink YAML
+>> +  specifications and centralize all RAS-related communication in one namespace.
+>> +* Support a basic error counter interface, addressing the immediate, essential
+>> +  monitoring needs.
+>> +* Offer a flexible, future-proof interface that can be extended to support
+>> +  additional types of RAS data in the future.
+>> +* Allow multiple nodes per driver, enabling drivers to register separate
+>> +  nodes for different IP blocks, sub-blocks, or other logical subdivisions
+>> +  as applicable.
+>> +
+>> +Nodes
+>> +=====
+>> +
+>> +Nodes are logical abstractions representing an error source or block within
+>> +the device. Currently, only error counter nodes is supported.
+>> +
+>> +Drivers are responsible for registering and unregistering nodes via the
+>> +`drm_ras_node_register()` and `drm_ras_node_unregister()` APIs.
+>> +
+>> +Node Management
+>> +-------------------
+>> +
+>> +.. kernel-doc:: drivers/gpu/drm/drm_ras.c
+>> +   :doc: DRM RAS Node Management
+>> +.. kernel-doc:: drivers/gpu/drm/drm_ras.c
+>> +   :internal:
+>> +
+>> +Generic Netlink Usage
+>> +=====================
+>> +
+>> +The interface is implemented as a Generic Netlink family named ``drm-ras``.
+>> +User space tools can:
+>> +
+>> +* List registered nodes with the ``get-nodes`` command.
+>> +* List all error counters in an node with the ``get-error-counters`` command.
+>> +* Query error counters using the ``query-error-counter`` command.
+>> +
+>> +YAML-based Interface
+>> +--------------------
+>> +
+>> +The interface is described in a YAML specification:
+>> +
+>> +:ref:`Documentation/netlink/specs/drm_ras.yaml`
+>> +
+>> +This YAML is used to auto-generate user space bindings via
+>> +``tools/net/ynl/pyynl/ynl_gen_c.py``, and drives the structure of netlink
+>> +attributes and operations.
+>> +
+>> +Usage Notes
+>> +-----------
+>> +
+>> +* User space must first enumerate nodes to obtain their IDs.
+>> +* Node IDs or Node names can be used for all further queries, such as error counters.
+>> +* Error counters can be queried by either the Error ID or Error name.
+>> +* Query Parameters should be defined as part of the uAPI to ensure user interface stability.
+>> +* The interface supports future extension by adding new node types and
+>> +  additional attributes.
+>> +
+>> +Example: List nodes using ynl
+>> +
+>> +.. code-block:: bash
+>> +
+>> +    sudo ynl --family drm_ras  --dump list-nodes
+>> +    [{'device-name': '0000:03:00.0',
+>> +    'node-id': 0,
+>> +    'node-name': 'correctable-errors',
+>> +    'node-type': 'error-counter'},
+>> +    {'device-name': '0000:03:00.0',
+>> +     'node-id': 1,
+>> +    'node-name': 'nonfatal-errors',
+>> +    'node-type': 'error-counter'},
+>> +    {'device-name': '0000:03:00.0',
+>> +    'node-id': 2,
+>> +    'node-name': 'fatal-errors',
+>> +    'node-type': 'error-counter'}]
+>> +
+>> +Example: List all error counters using ynl
+>> +
+>> +.. code-block:: bash
+>> +
+>> +
+>> +   sudo ynl --family drm_ras  --dump get-error-counters --json '{"node-id":1}'
+>> +   [{'error-id': 1, 'error-name': 'error_name_1', 'error-value': 0},
+>> +   {'error-id': 2, 'error-name': 'error_name_2', 'error-value': 0}]
+>> +
+>> +
+>> +Example: Query an error counter for a given node
+>> +
+>> +.. code-block:: bash
+>> +
+>> +   sudo ynl --family drm_ras --do query-error-counter  --json '{"node-id":2, "error-id":1}'
+>> +   {'error-id': 1, 'error-name': 'error_name_1', 'error-value': 0}
+>> +
+>> diff --git a/Documentation/gpu/index.rst b/Documentation/gpu/index.rst
+>> index 7dcb15850afd..60c73fdcfeed 100644
+>> --- a/Documentation/gpu/index.rst
+>> +++ b/Documentation/gpu/index.rst
+>> @@ -9,6 +9,7 @@ GPU Driver Developer's Guide
+>>      drm-mm
+>>      drm-kms
+>>      drm-kms-helpers
+>> +   drm-ras
+>>      drm-uapi
+>>      drm-usage-stats
+>>      driver-uapi
+>> diff --git a/Documentation/netlink/specs/drm_ras.yaml b/Documentation/netlink/specs/drm_ras.yaml
+>> new file mode 100644
+>> index 000000000000..be0e379c5bc9
+>> --- /dev/null
+>> +++ b/Documentation/netlink/specs/drm_ras.yaml
+>> @@ -0,0 +1,130 @@
+>> +# SPDX-License-Identifier: ((GPL-2.0 WITH Linux-syscall-note) OR BSD-3-Clause)
+>> +---
+>> +name: drm-ras
+>> +protocol: genetlink
+>> +uapi-header: drm/drm_ras.h
+>> +
+>> +doc: >-
+>> +  DRM RAS (Reliability, Availability, Serviceability) over Generic Netlink.
+>> +  Provides a standardized mechanism for DRM drivers to register "nodes"
+>> +  representing hardware/software components capable of reporting error counters.
+>> +  Userspace tools can query the list of nodes or individual error counters
+>> +  via the Generic Netlink interface.
+>> +
+>> +definitions:
+>> +  -
+>> +    type: enum
+>> +    name: node-type
+>> +    value-start: 1
+>> +    entries: [error-counter]
+>> +    doc: >-
+>> +         Type of the node. Currently, only error-counter nodes are
+>> +         supported, which expose reliability counters for a hardware/software
+>> +         component.
+>> +
+>> +attribute-sets:
+>> +  -
+>> +    name: node-attrs
+>> +    attributes:
+>> +      -
+>> +        name: node-id
+>> +        type: u32
+>> +        doc: >-
+>> +             Unique identifier for the node.
+>> +             Assigned dynamically by the DRM RAS core upon registration.
+>> +      -
+>> +        name: device-name
+>> +        type: string
+>> +        doc: >-
+>> +             Device name chosen by the driver at registration.
+>> +             Can be a PCI BDF, UUID, or module name if unique.
+>> +      -
+>> +        name: node-name
+>> +        type: string
+>> +        doc: >-
+>> +             Node name chosen by the driver at registration.
+>> +             Can be an IP block name, or any name that identifies the
+>> +             RAS node inside the device.
+>> +      -
+>> +        name: node-type
+>> +        type: u32
+>> +        doc: Type of this node, identifying its function.
+>> +        enum: node-type
+>> +  -
+>> +    name: error-counter-attrs
+>> +    attributes:
+>> +      -
+>> +        name: node-id
+>> +        type: u32
+>> +        doc:  Node ID targeted by this error counter operation.
+>> +      -
+>> +        name: error-id
+>> +        type: u32
+>> +        doc: Unique identifier for a specific error counter within an node.
+>> +      -
+>> +        name: error-name
+>> +        type: string
+>> +        doc: Name of the error.
+>> +      -
+>> +        name: error-value
+>> +        type: u32
+>> +        doc: Current value of the requested error counter.
+>> +
+>> +operations:
+>> +  list:
+>> +    -
+>> +      name: list-nodes
+>> +      doc: >-
+>> +           Retrieve the full list of currently registered DRM RAS nodes.
+>> +           Each node includes its dynamically assigned ID, name, and type.
+>> +           **Important:** User space must call this operation first to obtain
+>> +           the node IDs. These IDs are required for all subsequent
+>> +           operations on nodes, such as querying error counters.
+
+I am curious about security implications of this design. If the complete 
+list of RAS nodes is visible for any process on the system (and one 
+wants to avoid requiring CAP_NET_ADMIN), there should be some way to 
+enforce permission checks when performing these operations if desired.
+
+For example, this might be implemented in the driver's definition of 
+callback functions like query_error_counter; some drivers may want to 
+ensure that the process can in fact open the file descriptor 
+corresponding to the queried device before serving a netlink request. Is 
+it enough for a driver to simply return -EPERM in this case? Any driver 
+that doesnt wish to protect its RAS nodes need not implement checks in 
+their callbacks.
+
+I dont see any such permissions checks in your driver implementation 
+which is understandable given that it may not be necessary for your use 
+cases. However, this would be a concern for our driver if we were to 
+adopt this interface.
+
+>> +      attribute-set: node-attrs
+>> +      flags: [admin-perm]
+>> +      dump:
+>> +        reply:
+>> +          attributes:
+>> +            - node-id
+>> +            - device-name
+>> +            - node-name
+>> +            - node-type
+>> +    -
+>> +      name: get-error-counters
+>> +      doc: >-
+>> +           Retrieve the full list of error counters for a given node.
+>> +           The response include the id, the name, and even the current
+>> +           value of each counter.
+>> +      attribute-set: error-counter-attrs
+>> +      flags: [admin-perm]
+>> +      dump:
+>> +        request:
+>> +          attributes:
+>> +            - node-id
+>> +        reply:
+>> +          attributes:
+>> +            - error-id
+>> +            - error-name
+>> +            - error-value
+>> +    -
+>> +      name: query-error-counter
+>> +      doc: >-
+>> +           Query the information of a specific error counter for a given node.
+>> +           Users must provide the node ID and the error counter ID.
+>> +           The response contains the id, the name, and the current value
+>> +           of the counter.
+>> +      attribute-set: error-counter-attrs
+>> +      flags: [admin-perm]
+>> +      do:
+>> +        request:
+>> +          attributes:
+>> +            - node-id
+>> +            - error-id
+>> +        reply:
+>> +          attributes:
+>> +            - error-id
+>> +            - error-name
+>> +            - error-value
+>> +
+>> +kernel-family:
+>> +  headers: ["drm/drm_ras_nl.h"]
+>> diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
+>> index 7e6bc0b3a589..5cfb23b80441 100644
+>> --- a/drivers/gpu/drm/Kconfig
+>> +++ b/drivers/gpu/drm/Kconfig
+>> @@ -130,6 +130,15 @@ config DRM_PANIC_SCREEN_QR_VERSION
+>>   	  Smaller QR code are easier to read, but will contain less debugging
+>>   	  data. Default is 40.
+>>   
+>> +config DRM_RAS
+>> +	bool "DRM RAS support"
+>> +	depends on DRM
+>> +	help
+>> +	  Enables the DRM RAS (Reliability, Availability and Serviceability)
+>> +	  support for DRM drivers. This provides a Generic Netlink interface
+>> +	  for error reporting and queries.
+>> +	  If in doubt, say "N".
+>> +
+>>   config DRM_DEBUG_DP_MST_TOPOLOGY_REFS
+>>           bool "Enable refcount backtrace history in the DP MST helpers"
+>>   	depends on STACKTRACE_SUPPORT
+>> diff --git a/drivers/gpu/drm/Makefile b/drivers/gpu/drm/Makefile
+>> index 4b3f3ad5058a..cd19573b2d9f 100644
+>> --- a/drivers/gpu/drm/Makefile
+>> +++ b/drivers/gpu/drm/Makefile
+>> @@ -95,6 +95,7 @@ drm-$(CONFIG_DRM_ACCEL) += ../../accel/drm_accel.o
+>>   drm-$(CONFIG_DRM_PANIC) += drm_panic.o
+>>   drm-$(CONFIG_DRM_DRAW) += drm_draw.o
+>>   drm-$(CONFIG_DRM_PANIC_SCREEN_QR_CODE) += drm_panic_qr.o
+>> +drm-$(CONFIG_DRM_RAS) += drm_ras.o drm_ras_nl.o drm_ras_genl_family.o
+>>   obj-$(CONFIG_DRM)	+= drm.o
+>>   
+>>   obj-$(CONFIG_DRM_PANEL_ORIENTATION_QUIRKS) += drm_panel_orientation_quirks.o
+>> diff --git a/drivers/gpu/drm/drm_drv.c b/drivers/gpu/drm/drm_drv.c
+>> index 2915118436ce..6b965c3d3307 100644
+>> --- a/drivers/gpu/drm/drm_drv.c
+>> +++ b/drivers/gpu/drm/drm_drv.c
+>> @@ -53,6 +53,7 @@
+>>   #include <drm/drm_panic.h>
+>>   #include <drm/drm_print.h>
+>>   #include <drm/drm_privacy_screen_machine.h>
+>> +#include <drm/drm_ras_genl_family.h>
+>>   
+>>   #include "drm_crtc_internal.h"
+>>   #include "drm_internal.h"
+>> @@ -1223,6 +1224,7 @@ static const struct file_operations drm_stub_fops = {
+>>   
+>>   static void drm_core_exit(void)
+>>   {
+>> +	drm_ras_genl_family_unregister();
+>>   	drm_privacy_screen_lookup_exit();
+>>   	drm_panic_exit();
+>>   	accel_core_exit();
+>> @@ -1261,6 +1263,10 @@ static int __init drm_core_init(void)
+>>   
+>>   	drm_privacy_screen_lookup_init();
+>>   
+>> +	ret = drm_ras_genl_family_register();
+>> +	if (ret < 0)
+>> +		goto error;
+>> +
+>>   	drm_core_init_complete = true;
+>>   
+>>   	DRM_DEBUG("Initialized\n");
+>> diff --git a/drivers/gpu/drm/drm_ras.c b/drivers/gpu/drm/drm_ras.c
+>> new file mode 100644
+>> index 000000000000..32f3897ce580
+>> --- /dev/null
+>> +++ b/drivers/gpu/drm/drm_ras.c
+>> @@ -0,0 +1,351 @@
+>> +// SPDX-License-Identifier: MIT
+>> +/*
+>> + * Copyright © 2025 Intel Corporation
+>> + */
+>> +
+>> +#include <linux/module.h>
+>> +#include <linux/kernel.h>
+>> +#include <linux/netdevice.h>
+>> +#include <linux/xarray.h>
+>> +#include <net/genetlink.h>
+>> +
+>> +#include <drm/drm_ras.h>
+>> +
+>> +/**
+>> + * DOC: DRM RAS Node Management
+>> + *
+>> + * This module provides the infrastructure to manage RAS (Reliability,
+>> + * Availability, and Serviceability) nodes for DRM drivers. Each
+>> + * DRM driver may register one or more RAS nodes, which represent
+>> + * logical components capable of reporting error counters and other
+>> + * reliability metrics.
+>> + *
+>> + * The nodes are stored in a global xarray `drm_ras_xa` to allow
+>> + * efficient lookup by ID. Nodes can be registered or unregistered
+>> + * dynamically at runtime.
+>> + *
+>> + * A Generic Netlink family `drm_ras` exposes two main operations to
+>> + * userspace:
+
+Nit: Three main operations.
+
+>> + *
+>> + * 1. LIST_NODES: Dump all currently registered RAS nodes.
+>> + *    The user receives an array of node IDs, names, and types.
+>> + *
+>> + * 2. GET_ERROR_COUNTERS: Dump all error counters of a given node.
+>> + *    The user receives an array of error IDs, names, and current value.
+>> + *
+>> + * 3. QUERY_ERROR_COUNTER: Query a specific error counter for a given node.
+>> + *    Userspace must provide the node ID and the counter ID, and
+>> + *    receives the ID, the error name, and its current value.
+>> + *
+>> + * Node registration:
+>> + * - drm_ras_node_register(): Registers a new node and assigns
+>> + *   it a unique ID in the xarray.
+>> + * - drm_ras_node_unregister(): Removes a previously registered
+>> + *   node from the xarray.
+>> + *
+>> + * Node type:
+>> + * - ERROR_COUNTER:
+>> + *     + Currently, only error counters are supported.
+>> + *     + The driver must implement the query_error_counter() callback to provide
+>> + *       the name and the value of the error counter.
+>> + *     + The driver must provide a error_counter_range.last value informing the
+>> + *       last valid error ID.
+>> + *     + The driver can provide a error_counter_range.first value informing the
+>> + *       frst valid error ID.
+>> + *     + The error counters in the driver doesn't need to be contiguous, but the
+>> + *       driver must return -ENOENT to the query_error_counter as an indication
+>> + *       that the ID should be skipped and not listed in the netlink API.
+>> + *
+>> + * Netlink handlers:
+>> + * - drm_ras_nl_list_nodes_dumpit(): Implements the LIST_NODES
+>> + *   operation, iterating over the xarray.
+>> + * - drm_ras_nl_get_error_counters_dumpit(): Implements the GET_ERROR_COUNTERS
+>> + *   operation, iterating over the know valid error_counter_range.
+>> + * - drm_ras_nl_query_error_counter_doit(): Implements the QUERY_ERROR_COUNTER
+>> + *   operation, fetching a counter value from a specific node.
+>> + */
+>> +
+>> +static DEFINE_XARRAY_ALLOC(drm_ras_xa);
+>> +
+>> +/*
+>> + * The netlink callback context carries dump state across multiple dumpit calls
+>> + */
+>> +struct drm_ras_ctx {
+>> +	/* Which xarray id to restart the dump from */
+>> +	unsigned long restart;
+>> +};
+>> +
+>> +/**
+>> + * drm_ras_nl_list_nodes_dumpit() - Dump all registered RAS nodes
+>> + * @skb: Netlink message buffer
+>> + * @cb: Callback context for multi-part dumps
+>> + *
+>> + * Iterates over all registered RAS nodes in the global xarray and appends
+>> + * their attributes (ID, name, type) to the given netlink message buffer.
+>> + * Uses @cb->ctx to track progress in case the message buffer fills up, allowing
+>> + * multi-part dump support. On buffer overflow, updates the context to resume
+>> + * from the last node on the next invocation.
+>> + *
+>> + * Return: 0 if all nodes fit in @skb, number of bytes added to @skb if
+>> + *          the buffer filled up (requires multi-part continuation), or
+>> + *          a negative error code on failure.
+>> + */
+>> +int drm_ras_nl_list_nodes_dumpit(struct sk_buff *skb,
+>> +				 struct netlink_callback *cb)
+>> +{
+>> +	const struct genl_info *info = genl_info_dump(cb);
+>> +	struct drm_ras_ctx *ctx = (void *)cb->ctx;
+>> +	struct drm_ras_node *node;
+>> +	struct nlattr *hdr;
+>> +	unsigned long id;
+>> +	int ret;
+>> +
+>> +	xa_for_each_start(&drm_ras_xa, id, node, ctx->restart) {
+>> +		hdr = genlmsg_iput(skb, info);
+>> +		if (!hdr) {
+>> +			ret = -EMSGSIZE;
+>> +			break;
+>> +		}
+>> +
+>> +		ret = nla_put_u32(skb, DRM_RAS_A_NODE_ATTRS_NODE_ID, node->id);
+>> +		if (ret) {
+>> +			genlmsg_cancel(skb, hdr);
+>> +			break;
+>> +		}
+>> +
+>> +		ret = nla_put_string(skb, DRM_RAS_A_NODE_ATTRS_DEVICE_NAME,
+>> +				     node->device_name);
+>> +		if (ret) {
+>> +			genlmsg_cancel(skb, hdr);
+>> +			break;
+>> +		}
+>> +
+>> +		ret = nla_put_string(skb, DRM_RAS_A_NODE_ATTRS_NODE_NAME,
+>> +				     node->node_name);
+>> +		if (ret) {
+>> +			genlmsg_cancel(skb, hdr);
+>> +			break;
+>> +		}
+>> +
+>> +		ret = nla_put_u32(skb, DRM_RAS_A_NODE_ATTRS_NODE_TYPE,
+>> +				  node->type);
+>> +		if (ret) {
+>> +			genlmsg_cancel(skb, hdr);
+>> +			break;
+>> +		}
+>> +
+>> +		genlmsg_end(skb, hdr);
+>> +	}
+>> +
+>> +	if (ret == -EMSGSIZE)
+>> +		ctx->restart = id;
+> 
+> Jakub had mentioned that we don't need this special handling
+> of the -EMSGSIZE, but then I'm not sure what to use in the
+> xa_for_each_start, so
+> 
+> Cc: Jakub Kicinski <kuba@kernel.org>
+> 
+> to ensure that we are in the right path here.
+> 
+> Riana, thank you so much for picking up this and addressing all
+> the comments. Patch looks good to me.
+> 
+> Thanks,
+> Rodrigo.
+> 
+>> +
+>> +	return ret;
+>> +}
+>> +
+>> +static int get_node_error_counter(u32 node_id, u32 error_id,
+>> +				  const char **name, u32 *value)
+>> +{
+>> +	struct drm_ras_node *node;
+>> +
+>> +	node = xa_load(&drm_ras_xa, node_id);
+>> +	if (!node || !node->query_error_counter)
+>> +		return -ENOENT;
+>> +
+>> +	if (error_id < node->error_counter_range.first ||
+>> +	    error_id > node->error_counter_range.last)
+>> +		return -EINVAL;
+>> +
+>> +	return node->query_error_counter(node, error_id, name, value);
+>> +}
+
+Regarding the permission check, node->query_error_counter could be 
+implemented to return -EPERM in this case by checking driver specified 
+fields in node->priv. Thoughts?
+
+>> +
+>> +static int msg_reply_value(struct sk_buff *msg, u32 error_id,
+>> +			   const char *error_name, u32 value)
+>> +{
+>> +	int ret;
+>> +
+>> +	ret = nla_put_u32(msg, DRM_RAS_A_ERROR_COUNTER_ATTRS_ERROR_ID, error_id);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	ret = nla_put_string(msg, DRM_RAS_A_ERROR_COUNTER_ATTRS_ERROR_NAME,
+>> +			     error_name);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	return nla_put_u32(msg, DRM_RAS_A_ERROR_COUNTER_ATTRS_ERROR_VALUE,
+>> +			   value);
+>> +}
+>> +
+>> +static int doit_reply_value(struct genl_info *info, u32 node_id,
+>> +			    u32 error_id)
+>> +{
+>> +	struct sk_buff *msg;
+>> +	struct nlattr *hdr;
+>> +	const char *error_name;
+>> +	u32 value;
+>> +	int ret;
+>> +
+>> +	msg = genlmsg_new(NLMSG_GOODSIZE, GFP_KERNEL);
+>> +	if (!msg)
+>> +		return -ENOMEM;
+>> +
+>> +	hdr = genlmsg_iput(msg, info);
+>> +	if (!hdr) {
+>> +		nlmsg_free(msg);
+>> +		return -EMSGSIZE;
+>> +	}
+>> +
+>> +	ret = get_node_error_counter(node_id, error_id,
+>> +				     &error_name, &value);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	ret = msg_reply_value(msg, error_id, error_name, value);
+>> +	if (ret) {
+>> +		genlmsg_cancel(msg, hdr);
+>> +		nlmsg_free(msg);
+>> +		return ret;
+>> +	}
+>> +
+>> +	genlmsg_end(msg, hdr);
+>> +
+>> +	return genlmsg_reply(msg, info);
+>> +}
+>> +
+>> +/**
+>> + * drm_ras_nl_get_error_counters_dumpit() - Dump all Error Counters
+>> + * @skb: Netlink message buffer
+>> + * @cb: Callback context for multi-part dumps
+>> + *
+>> + * Iterates over all error counters in a given Node and appends
+>> + * their attributes (ID, name, value) to the given netlink message buffer.
+>> + * Uses @cb->ctx to track progress in case the message buffer fills up, allowing
+>> + * multi-part dump support. On buffer overflow, updates the context to resume
+>> + * from the last node on the next invocation.
+>> + *
+>> + * Return: 0 if all errors fit in @skb, number of bytes added to @skb if
+>> + *          the buffer filled up (requires multi-part continuation), or
+>> + *          a negative error code on failure.
+>> + */
+>> +int drm_ras_nl_get_error_counters_dumpit(struct sk_buff *skb,
+>> +					 struct netlink_callback *cb)
+>> +{
+>> +	const struct genl_info *info = genl_info_dump(cb);
+>> +	struct drm_ras_ctx *ctx = (void *)cb->ctx;
+>> +	struct drm_ras_node *node;
+>> +	struct nlattr *hdr;
+>> +	const char *error_name;
+>> +	u32 node_id, error_id, value;
+>> +	int ret;
+>> +
+>> +	if (!info->attrs || !info->attrs[DRM_RAS_A_ERROR_COUNTER_ATTRS_NODE_ID])
+>> +		return -EINVAL;
+>> +
+>> +	node_id = nla_get_u32(info->attrs[DRM_RAS_A_ERROR_COUNTER_ATTRS_NODE_ID]);
+>> +
+>> +	node = xa_load(&drm_ras_xa, node_id);
+>> +	if (!node)
+>> +		return -ENOENT;
+>> +
+>> +	for (error_id = max(node->error_counter_range.first, ctx->restart);
+>> +	     error_id <= node->error_counter_range.last;
+>> +	     error_id++) {
+>> +		ret = get_node_error_counter(node_id, error_id,
+>> +					     &error_name, &value);
+>> +		/*
+>> +		 * For non-contiguous range, driver return -ENOENT as indication
+>> +		 * to skip this ID when listing all errors.
+>> +		 */
+>> +		if (ret == -ENOENT)
+>> +			continue;
+>> +		if (ret)
+>> +			return ret;
+>> +
+>> +		hdr = genlmsg_iput(skb, info);
+>> +
+>> +		if (!hdr) {
+>> +			ret = -EMSGSIZE;
+>> +			break;
+>> +		}
+>> +
+>> +		ret = msg_reply_value(skb, error_id, error_name, value);
+>> +		if (ret) {
+>> +			genlmsg_cancel(skb, hdr);
+>> +			break;
+>> +		}
+>> +
+>> +		genlmsg_end(skb, hdr);
+>> +	}
+>> +
+>> +	if (ret == -EMSGSIZE)
+>> +		ctx->restart = error_id;
+>> +
+>> +	return ret;
+>> +}
+>> +
+>> +/**
+>> + * drm_ras_nl_query_error_counter_doit() - Query an error counter of an node
+>> + * @skb: Netlink message buffer
+>> + * @info: Generic Netlink info containing attributes of the request
+>> + *
+>> + * Extracts the node ID and error ID from the netlink attributes and
+>> + * retrieves the current value of the corresponding error counter. Sends the
+>> + * result back to the requesting user via the standard Genl reply.
+>> + *
+>> + * Return: 0 on success, or negative errno on failure.
+>> + */
+>> +int drm_ras_nl_query_error_counter_doit(struct sk_buff *skb,
+>> +					struct genl_info *info)
+>> +{
+>> +	u32 node_id, error_id;
+>> +
+>> +	if (!info->attrs ||
+>> +	    !info->attrs[DRM_RAS_A_ERROR_COUNTER_ATTRS_NODE_ID] ||
+>> +	    !info->attrs[DRM_RAS_A_ERROR_COUNTER_ATTRS_ERROR_ID])
+>> +		return -EINVAL;
+>> +
+>> +	node_id = nla_get_u32(info->attrs[DRM_RAS_A_ERROR_COUNTER_ATTRS_NODE_ID]);
+>> +	error_id = nla_get_u32(info->attrs[DRM_RAS_A_ERROR_COUNTER_ATTRS_ERROR_ID]);
+>> +
+>> +	return doit_reply_value(info, node_id, error_id);
+>> +}
+>> +
+>> +/**
+>> + * drm_ras_node_register() - Register a new RAS node
+>> + * @node: Node structure to register
+>> + *
+>> + * Adds the given RAS node to the global node xarray and assigns it
+>> + * a unique ID. Both @node->name and @node->type must be valid.
+>> + *
+>> + * Return: 0 on success, or negative errno on failure:
+>> + */
+>> +int drm_ras_node_register(struct drm_ras_node *node)
+>> +{
+>> +	if (!node->device_name || !node->node_name)
+>> +		return -EINVAL;
+>> +
+>> +	/* Currently, only Error Counter Endpoinnts are supported */
+>> +	if (node->type != DRM_RAS_NODE_TYPE_ERROR_COUNTER)
+>> +		return -EINVAL;
+>> +
+>> +	/* Mandatorty entries for Error Counter Node */
+>> +	if (node->type == DRM_RAS_NODE_TYPE_ERROR_COUNTER &&
+>> +	    (!node->error_counter_range.last || !node->query_error_counter))
+>> +		return -EINVAL;
+>> +
+>> +	return xa_alloc(&drm_ras_xa, &node->id, node, xa_limit_32b, GFP_KERNEL);
+>> +}
+>> +EXPORT_SYMBOL(drm_ras_node_register);
+>> +
+>> +/**
+>> + * drm_ras_node_unregister() - Unregister a previously registered node
+>> + * @node: Node structure to unregister
+>> + *
+>> + * Removes the given node from the global node xarray using its ID.
+>> + */
+>> +void drm_ras_node_unregister(struct drm_ras_node *node)
+>> +{
+>> +	xa_erase(&drm_ras_xa, node->id);
+>> +}
+>> +EXPORT_SYMBOL(drm_ras_node_unregister);
+>> diff --git a/drivers/gpu/drm/drm_ras_genl_family.c b/drivers/gpu/drm/drm_ras_genl_family.c
+>> new file mode 100644
+>> index 000000000000..2d818b8c3808
+>> --- /dev/null
+>> +++ b/drivers/gpu/drm/drm_ras_genl_family.c
+>> @@ -0,0 +1,42 @@
+>> +// SPDX-License-Identifier: MIT
+>> +/*
+>> + * Copyright © 2025 Intel Corporation
+>> + */
+>> +
+>> +#include <drm/drm_ras_genl_family.h>
+>> +#include <drm/drm_ras_nl.h>
+>> +
+>> +/* Track family registration so the drm_exit can be called at any time */
+>> +static bool registered;
+>> +
+>> +/**
+>> + * drm_ras_genl_family_register() - Register drm-ras genl family
+>> + *
+>> + * Only to be called one at drm_drv_init()
+>> + */
+>> +int drm_ras_genl_family_register(void)
+>> +{
+>> +	int ret;
+>> +
+>> +	registered = false;
+>> +
+>> +	ret = genl_register_family(&drm_ras_nl_family);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	registered = true;
+>> +	return 0;
+>> +}
+>> +
+>> +/**
+>> + * drm_ras_genl_family_unregister() - Unregister drm-ras genl family
+>> + *
+>> + * To be called one at drm_drv_exit() at any moment, but only once.
+>> + */
+>> +void drm_ras_genl_family_unregister(void)
+>> +{
+>> +	if (registered) {
+>> +		genl_unregister_family(&drm_ras_nl_family);
+>> +		registered = false;
+>> +	}
+>> +}
+>> diff --git a/drivers/gpu/drm/drm_ras_nl.c b/drivers/gpu/drm/drm_ras_nl.c
+>> new file mode 100644
+>> index 000000000000..fcd1392410e4
+>> --- /dev/null
+>> +++ b/drivers/gpu/drm/drm_ras_nl.c
+>> @@ -0,0 +1,54 @@
+>> +// SPDX-License-Identifier: ((GPL-2.0 WITH Linux-syscall-note) OR BSD-3-Clause)
+>> +/* Do not edit directly, auto-generated from: */
+>> +/*	Documentation/netlink/specs/drm_ras.yaml */
+>> +/* YNL-GEN kernel source */
+>> +
+>> +#include <net/netlink.h>
+>> +#include <net/genetlink.h>
+>> +
+>> +#include <uapi/drm/drm_ras.h>
+>> +#include <drm/drm_ras_nl.h>
+>> +
+>> +/* DRM_RAS_CMD_GET_ERROR_COUNTERS - dump */
+>> +static const struct nla_policy drm_ras_get_error_counters_nl_policy[DRM_RAS_A_ERROR_COUNTER_ATTRS_NODE_ID + 1] = {
+>> +	[DRM_RAS_A_ERROR_COUNTER_ATTRS_NODE_ID] = { .type = NLA_U32, },
+>> +};
+>> +
+>> +/* DRM_RAS_CMD_QUERY_ERROR_COUNTER - do */
+>> +static const struct nla_policy drm_ras_query_error_counter_nl_policy[DRM_RAS_A_ERROR_COUNTER_ATTRS_ERROR_ID + 1] = {
+>> +	[DRM_RAS_A_ERROR_COUNTER_ATTRS_NODE_ID] = { .type = NLA_U32, },
+>> +	[DRM_RAS_A_ERROR_COUNTER_ATTRS_ERROR_ID] = { .type = NLA_U32, },
+>> +};
+>> +
+>> +/* Ops table for drm_ras */
+>> +static const struct genl_split_ops drm_ras_nl_ops[] = {
+>> +	{
+>> +		.cmd	= DRM_RAS_CMD_LIST_NODES,
+>> +		.dumpit	= drm_ras_nl_list_nodes_dumpit,
+>> +		.flags	= GENL_ADMIN_PERM | GENL_CMD_CAP_DUMP,
+>> +	},
+>> +	{
+>> +		.cmd		= DRM_RAS_CMD_GET_ERROR_COUNTERS,
+>> +		.dumpit		= drm_ras_nl_get_error_counters_dumpit,
+>> +		.policy		= drm_ras_get_error_counters_nl_policy,
+>> +		.maxattr	= DRM_RAS_A_ERROR_COUNTER_ATTRS_NODE_ID,
+>> +		.flags		= GENL_ADMIN_PERM | GENL_CMD_CAP_DUMP,
+>> +	},
+>> +	{
+>> +		.cmd		= DRM_RAS_CMD_QUERY_ERROR_COUNTER,
+>> +		.doit		= drm_ras_nl_query_error_counter_doit,
+>> +		.policy		= drm_ras_query_error_counter_nl_policy,
+>> +		.maxattr	= DRM_RAS_A_ERROR_COUNTER_ATTRS_ERROR_ID,
+>> +		.flags		= GENL_ADMIN_PERM | GENL_CMD_CAP_DO,
+>> +	},
+>> +};
+>> +
+>> +struct genl_family drm_ras_nl_family __ro_after_init = {
+>> +	.name		= DRM_RAS_FAMILY_NAME,
+>> +	.version	= DRM_RAS_FAMILY_VERSION,
+>> +	.netnsok	= true,
+>> +	.parallel_ops	= true,
+>> +	.module		= THIS_MODULE,
+>> +	.split_ops	= drm_ras_nl_ops,
+>> +	.n_split_ops	= ARRAY_SIZE(drm_ras_nl_ops),
+>> +};
+>> diff --git a/include/drm/drm_ras.h b/include/drm/drm_ras.h
+>> new file mode 100644
+>> index 000000000000..bba47a282ef8
+>> --- /dev/null
+>> +++ b/include/drm/drm_ras.h
+>> @@ -0,0 +1,76 @@
+>> +/* SPDX-License-Identifier: MIT */
+>> +/*
+>> + * Copyright © 2025 Intel Corporation
+>> + */
+>> +
+>> +#ifndef __DRM_RAS_H__
+>> +#define __DRM_RAS_H__
+>> +
+>> +#include "drm_ras_nl.h"
+>> +
+>> +/**
+>> + * struct drm_ras_node - A DRM RAS Node
+>> + */
+>> +struct drm_ras_node {
+>> +	/** @id: Unique identifier for the node. Dynamically assigned. */
+>> +	u32 id;
+>> +	/**
+>> +	 * @device_name: Human-readable name of the device. Given by the driver.
+>> +	 */
+>> +	const char *device_name;
+>> +	/** @node_name: Human-readable name of the node. Given by the driver. */
+>> +	const char *node_name;
+>> +	/** @type: Type of the node (enum drm_ras_node_type). */
+>> +	enum drm_ras_node_type type;
+>> +
+>> +	/* Error-Counter Related Callback and Variables */
+>> +
+>> +	/** @error_counter_range: Range of valid Error IDs for this node. */
+>> +	struct {
+>> +		/** @first: First valid Error ID. */
+>> +		u32 first;
+>> +		/** @last: Last valid Error ID. Mandatory entry. */
+>> +		u32 last;
+>> +	} error_counter_range;
+>> +
+>> +	/**
+>> +	 * @query_error_counter:
+>> +	 *
+>> +	 * This callback is used by drm-ras to query a specific error counter.
+>> +	 * counters supported by this node. Used for input check and to
+>> +	 * iterate in all counters.
+>> +	 *
+>> +	 * Driver should expect query_error_counters() to be called with
+>> +	 * error_id from `error_counter_range.first` to
+>> +	 * `error_counter_range.last`.
+>> +	 *
+>> +	 * The @query_error_counter is a mandatory callback for
+>> +	 * error_counter_node.
+>> +	 *
+>> +	 * Returns: 0 on success,
+>> +	 *          -ENOENT when error_id is not supported as an indication that
+>> +	 *                  drm_ras should silently skip this entry. Used for
+>> +	 *                  supporting non-contiguous error ranges.
+>> +	 *                  Driver is responsible for maintaining the list of
+>> +	 *                  supported error IDs in the range of first to last.
+>> +	 *          Other negative values on errors that should terminate the
+>> +	 *          netlink query.
+>> +	 */
+>> +	int (*query_error_counter)(struct drm_ras_node *ep, u32 error_id,
+>> +				   const char **name, u32 *val);
+>> +
+>> +	/** @priv: Driver private data */
+>> +	void *priv;
+>> +};
+>> +
+
+If new node types are frequently added, this struct may contain many
+unused fields. It seems like the necessary members for any given node
+type are: id, device_name, node_name, type, and priv. However, since
+this functionality is designed specifically for RAS, I think its ok.
+
+>> +struct drm_device;
+>> +
+>> +#if IS_ENABLED(CONFIG_DRM_RAS)
+>> +int drm_ras_node_register(struct drm_ras_node *ep);
+>> +void drm_ras_node_unregister(struct drm_ras_node *ep);
+>> +#else
+>> +static inline int drm_ras_node_register(struct drm_ras_node *ep) { return 0; }
+>> +static inline void drm_ras_node_unregister(struct drm_ras_node *ep) { }
+>> +#endif
+>> +
+>> +#endif
+>> diff --git a/include/drm/drm_ras_genl_family.h b/include/drm/drm_ras_genl_family.h
+>> new file mode 100644
+>> index 000000000000..5931b53429f1
+>> --- /dev/null
+>> +++ b/include/drm/drm_ras_genl_family.h
+>> @@ -0,0 +1,17 @@
+>> +/* SPDX-License-Identifier: MIT */
+>> +/*
+>> + * Copyright © 2025 Intel Corporation
+>> + */
+>> +
+>> +#ifndef __DRM_RAS_GENL_FAMILY_H__
+>> +#define __DRM_RAS_GENL_FAMILY_H__
+>> +
+>> +#if IS_ENABLED(CONFIG_DRM_RAS)
+>> +int drm_ras_genl_family_register(void);
+>> +void drm_ras_genl_family_unregister(void);
+>> +#else
+>> +static inline int drm_ras_genl_family_register(void) { return 0; }
+>> +static inline void drm_ras_genl_family_unregister(void) { }
+>> +#endif
+>> +
+>> +#endif
+>> diff --git a/include/drm/drm_ras_nl.h b/include/drm/drm_ras_nl.h
+>> new file mode 100644
+>> index 000000000000..9613b7d9ffdb
+>> --- /dev/null
+>> +++ b/include/drm/drm_ras_nl.h
+>> @@ -0,0 +1,24 @@
+>> +/* SPDX-License-Identifier: ((GPL-2.0 WITH Linux-syscall-note) OR BSD-3-Clause) */
+>> +/* Do not edit directly, auto-generated from: */
+>> +/*	Documentation/netlink/specs/drm_ras.yaml */
+>> +/* YNL-GEN kernel header */
+>> +
+>> +#ifndef _LINUX_DRM_RAS_GEN_H
+>> +#define _LINUX_DRM_RAS_GEN_H
+>> +
+>> +#include <net/netlink.h>
+>> +#include <net/genetlink.h>
+>> +
+>> +#include <uapi/drm/drm_ras.h>
+>> +#include <drm/drm_ras_nl.h>
+>> +
+>> +int drm_ras_nl_list_nodes_dumpit(struct sk_buff *skb,
+>> +				 struct netlink_callback *cb);
+>> +int drm_ras_nl_get_error_counters_dumpit(struct sk_buff *skb,
+>> +					 struct netlink_callback *cb);
+>> +int drm_ras_nl_query_error_counter_doit(struct sk_buff *skb,
+>> +					struct genl_info *info);
+>> +
+>> +extern struct genl_family drm_ras_nl_family;
+>> +
+>> +#endif /* _LINUX_DRM_RAS_GEN_H */
+>> diff --git a/include/uapi/drm/drm_ras.h b/include/uapi/drm/drm_ras.h
+>> new file mode 100644
+>> index 000000000000..3415ba345ac8
+>> --- /dev/null
+>> +++ b/include/uapi/drm/drm_ras.h
+>> @@ -0,0 +1,49 @@
+>> +/* SPDX-License-Identifier: ((GPL-2.0 WITH Linux-syscall-note) OR BSD-3-Clause) */
+>> +/* Do not edit directly, auto-generated from: */
+>> +/*	Documentation/netlink/specs/drm_ras.yaml */
+>> +/* YNL-GEN uapi header */
+>> +
+>> +#ifndef _UAPI_LINUX_DRM_RAS_H
+>> +#define _UAPI_LINUX_DRM_RAS_H
+>> +
+>> +#define DRM_RAS_FAMILY_NAME	"drm-ras"
+>> +#define DRM_RAS_FAMILY_VERSION	1
+>> +
+>> +/*
+>> + * Type of the node. Currently, only error-counter nodes are supported, which
+>> + * expose reliability counters for a hardware/software component.
+>> + */
+>> +enum drm_ras_node_type {
+>> +	DRM_RAS_NODE_TYPE_ERROR_COUNTER = 1,
+>> +};
+>> +
+>> +enum {
+>> +	DRM_RAS_A_NODE_ATTRS_NODE_ID = 1,
+>> +	DRM_RAS_A_NODE_ATTRS_DEVICE_NAME,
+>> +	DRM_RAS_A_NODE_ATTRS_NODE_NAME,
+>> +	DRM_RAS_A_NODE_ATTRS_NODE_TYPE,
+>> +
+>> +	__DRM_RAS_A_NODE_ATTRS_MAX,
+>> +	DRM_RAS_A_NODE_ATTRS_MAX = (__DRM_RAS_A_NODE_ATTRS_MAX - 1)
+>> +};
+>> +
+>> +enum {
+>> +	DRM_RAS_A_ERROR_COUNTER_ATTRS_NODE_ID = 1,
+>> +	DRM_RAS_A_ERROR_COUNTER_ATTRS_ERROR_ID,
+>> +	DRM_RAS_A_ERROR_COUNTER_ATTRS_ERROR_NAME,
+>> +	DRM_RAS_A_ERROR_COUNTER_ATTRS_ERROR_VALUE,
+>> +
+>> +	__DRM_RAS_A_ERROR_COUNTER_ATTRS_MAX,
+>> +	DRM_RAS_A_ERROR_COUNTER_ATTRS_MAX = (__DRM_RAS_A_ERROR_COUNTER_ATTRS_MAX - 1)
+>> +};
+>> +
+>> +enum {
+>> +	DRM_RAS_CMD_LIST_NODES = 1,
+>> +	DRM_RAS_CMD_GET_ERROR_COUNTERS,
+>> +	DRM_RAS_CMD_QUERY_ERROR_COUNTER,
+>> +
+>> +	__DRM_RAS_CMD_MAX,
+>> +	DRM_RAS_CMD_MAX = (__DRM_RAS_CMD_MAX - 1)
+>> +};
+>> +
+>> +#endif /* _UAPI_LINUX_DRM_RAS_H */
+>> -- 
+>> 2.47.1
+>>
+
+Thanks,
+
+Zack
 
-== Summary ==
-
-CI Bug Log - changes from xe-4347-6161d5f755ed70a6800bb930675efd37b06020d6_FULL -> xe-pw-159711v2_FULL
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (2 -> 2)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-159711v2_FULL that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_async_flips@alternate-sync-async-flip:
-    - shard-lnl:          [PASS][1] -> [FAIL][2] ([Intel XE#3718]) +1 other test fail
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4347-6161d5f755ed70a6800bb930675efd37b06020d6/shard-lnl-7/igt@kms_async_flips@alternate-sync-async-flip.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-lnl-8/igt@kms_async_flips@alternate-sync-async-flip.html
-
-  * igt@kms_big_fb@4-tiled-32bpp-rotate-90:
-    - shard-bmg:          NOTRUN -> [SKIP][3] ([Intel XE#2327]) +4 other tests skip
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-10/igt@kms_big_fb@4-tiled-32bpp-rotate-90.html
-
-  * igt@kms_big_fb@yf-tiled-32bpp-rotate-0:
-    - shard-bmg:          NOTRUN -> [SKIP][4] ([Intel XE#1124]) +10 other tests skip
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-1/igt@kms_big_fb@yf-tiled-32bpp-rotate-0.html
-
-  * igt@kms_big_fb@yf-tiled-addfb:
-    - shard-bmg:          NOTRUN -> [SKIP][5] ([Intel XE#2328])
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-2/igt@kms_big_fb@yf-tiled-addfb.html
-
-  * igt@kms_bw@connected-linear-tiling-4-displays-2160x1440p:
-    - shard-bmg:          NOTRUN -> [SKIP][6] ([Intel XE#2314] / [Intel XE#2894])
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-1/igt@kms_bw@connected-linear-tiling-4-displays-2160x1440p.html
-
-  * igt@kms_bw@linear-tiling-1-displays-2560x1440p:
-    - shard-bmg:          NOTRUN -> [SKIP][7] ([Intel XE#367]) +1 other test skip
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-10/igt@kms_bw@linear-tiling-1-displays-2560x1440p.html
-
-  * igt@kms_ccs@crc-primary-suspend-4-tiled-lnl-ccs@pipe-d-hdmi-a-3:
-    - shard-bmg:          NOTRUN -> [SKIP][8] ([Intel XE#2652] / [Intel XE#787]) +26 other tests skip
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-1/igt@kms_ccs@crc-primary-suspend-4-tiled-lnl-ccs@pipe-d-hdmi-a-3.html
-
-  * igt@kms_ccs@crc-primary-suspend-y-tiled-ccs:
-    - shard-bmg:          NOTRUN -> [SKIP][9] ([Intel XE#3432]) +1 other test skip
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-1/igt@kms_ccs@crc-primary-suspend-y-tiled-ccs.html
-
-  * igt@kms_ccs@crc-sprite-planes-basic-4-tiled-dg2-rc-ccs-cc:
-    - shard-bmg:          NOTRUN -> [SKIP][10] ([Intel XE#2887]) +14 other tests skip
-   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-2/igt@kms_ccs@crc-sprite-planes-basic-4-tiled-dg2-rc-ccs-cc.html
-
-  * igt@kms_chamelium_color@ctm-0-25:
-    - shard-bmg:          NOTRUN -> [SKIP][11] ([Intel XE#2325]) +1 other test skip
-   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-10/igt@kms_chamelium_color@ctm-0-25.html
-
-  * igt@kms_chamelium_edid@dp-edid-change-during-hibernate:
-    - shard-bmg:          NOTRUN -> [SKIP][12] ([Intel XE#2252]) +10 other tests skip
-   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-10/igt@kms_chamelium_edid@dp-edid-change-during-hibernate.html
-
-  * igt@kms_color_pipeline@plane-lut3d-green-only@pipe-d-dp-2:
-    - shard-bmg:          NOTRUN -> [SKIP][13] ([Intel XE#6969]) +4 other tests skip
-   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-1/igt@kms_color_pipeline@plane-lut3d-green-only@pipe-d-dp-2.html
-
-  * igt@kms_content_protection@atomic:
-    - shard-bmg:          NOTRUN -> [FAIL][14] ([Intel XE#1178] / [Intel XE#3304]) +3 other tests fail
-   [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-2/igt@kms_content_protection@atomic.html
-
-  * igt@kms_content_protection@dp-mst-type-0-hdcp14:
-    - shard-bmg:          NOTRUN -> [SKIP][15] ([Intel XE#6974])
-   [15]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-10/igt@kms_content_protection@dp-mst-type-0-hdcp14.html
-
-  * igt@kms_content_protection@type1:
-    - shard-bmg:          NOTRUN -> [SKIP][16] ([Intel XE#2341])
-   [16]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-1/igt@kms_content_protection@type1.html
-
-  * igt@kms_cursor_crc@cursor-onscreen-32x10:
-    - shard-bmg:          NOTRUN -> [SKIP][17] ([Intel XE#2320]) +3 other tests skip
-   [17]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-2/igt@kms_cursor_crc@cursor-onscreen-32x10.html
-
-  * igt@kms_cursor_crc@cursor-sliding-512x512:
-    - shard-bmg:          NOTRUN -> [SKIP][18] ([Intel XE#2321])
-   [18]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-10/igt@kms_cursor_crc@cursor-sliding-512x512.html
-
-  * igt@kms_dsc@dsc-with-output-formats:
-    - shard-bmg:          NOTRUN -> [SKIP][19] ([Intel XE#2244]) +1 other test skip
-   [19]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-1/igt@kms_dsc@dsc-with-output-formats.html
-
-  * igt@kms_fbc_dirty_rect@fbc-dirty-rectangle-out-visible-area:
-    - shard-bmg:          NOTRUN -> [SKIP][20] ([Intel XE#4422]) +1 other test skip
-   [20]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-1/igt@kms_fbc_dirty_rect@fbc-dirty-rectangle-out-visible-area.html
-
-  * igt@kms_flip@flip-vs-expired-vblank@b-edp1:
-    - shard-lnl:          [PASS][21] -> [FAIL][22] ([Intel XE#301])
-   [21]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4347-6161d5f755ed70a6800bb930675efd37b06020d6/shard-lnl-4/igt@kms_flip@flip-vs-expired-vblank@b-edp1.html
-   [22]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-lnl-3/igt@kms_flip@flip-vs-expired-vblank@b-edp1.html
-
-  * igt@kms_flip_scaled_crc@flip-64bpp-ytile-to-16bpp-ytile-downscaling:
-    - shard-bmg:          NOTRUN -> [SKIP][23] ([Intel XE#2293] / [Intel XE#2380]) +5 other tests skip
-   [23]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-2/igt@kms_flip_scaled_crc@flip-64bpp-ytile-to-16bpp-ytile-downscaling.html
-
-  * igt@kms_flip_scaled_crc@flip-64bpp-ytile-to-16bpp-ytile-downscaling@pipe-a-valid-mode:
-    - shard-bmg:          NOTRUN -> [SKIP][24] ([Intel XE#2293]) +5 other tests skip
-   [24]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-2/igt@kms_flip_scaled_crc@flip-64bpp-ytile-to-16bpp-ytile-downscaling@pipe-a-valid-mode.html
-
-  * igt@kms_frontbuffer_tracking@drrs-2p-primscrn-indfb-pgflip-blt:
-    - shard-bmg:          NOTRUN -> [SKIP][25] ([Intel XE#2311]) +32 other tests skip
-   [25]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-2/igt@kms_frontbuffer_tracking@drrs-2p-primscrn-indfb-pgflip-blt.html
-
-  * igt@kms_frontbuffer_tracking@fbc-2p-scndscrn-cur-indfb-move:
-    - shard-bmg:          NOTRUN -> [SKIP][26] ([Intel XE#4141]) +16 other tests skip
-   [26]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-2/igt@kms_frontbuffer_tracking@fbc-2p-scndscrn-cur-indfb-move.html
-
-  * igt@kms_frontbuffer_tracking@fbcdrrs-tiling-y:
-    - shard-bmg:          NOTRUN -> [SKIP][27] ([Intel XE#2352])
-   [27]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-10/igt@kms_frontbuffer_tracking@fbcdrrs-tiling-y.html
-
-  * igt@kms_frontbuffer_tracking@fbcpsr-2p-primscrn-shrfb-pgflip-blt:
-    - shard-bmg:          NOTRUN -> [SKIP][28] ([Intel XE#2313]) +31 other tests skip
-   [28]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-2/igt@kms_frontbuffer_tracking@fbcpsr-2p-primscrn-shrfb-pgflip-blt.html
-
-  * igt@kms_frontbuffer_tracking@plane-fbc-rte:
-    - shard-bmg:          NOTRUN -> [SKIP][29] ([Intel XE#2350])
-   [29]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-2/igt@kms_frontbuffer_tracking@plane-fbc-rte.html
-
-  * igt@kms_hdr@brightness-with-hdr:
-    - shard-bmg:          NOTRUN -> [SKIP][30] ([Intel XE#3544])
-   [30]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-2/igt@kms_hdr@brightness-with-hdr.html
-
-  * igt@kms_joiner@invalid-modeset-ultra-joiner:
-    - shard-bmg:          NOTRUN -> [SKIP][31] ([Intel XE#6911])
-   [31]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-1/igt@kms_joiner@invalid-modeset-ultra-joiner.html
-
-  * igt@kms_panel_fitting@legacy:
-    - shard-bmg:          NOTRUN -> [SKIP][32] ([Intel XE#2486]) +1 other test skip
-   [32]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-1/igt@kms_panel_fitting@legacy.html
-
-  * igt@kms_pipe_stress@stress-xrgb8888-ytiled:
-    - shard-bmg:          NOTRUN -> [SKIP][33] ([Intel XE#4329] / [Intel XE#6912])
-   [33]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-2/igt@kms_pipe_stress@stress-xrgb8888-ytiled.html
-
-  * igt@kms_plane_multiple@tiling-y:
-    - shard-bmg:          NOTRUN -> [SKIP][34] ([Intel XE#5020])
-   [34]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-2/igt@kms_plane_multiple@tiling-y.html
-
-  * igt@kms_pm_dc@dc6-psr:
-    - shard-bmg:          NOTRUN -> [SKIP][35] ([Intel XE#2392]) +1 other test skip
-   [35]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-2/igt@kms_pm_dc@dc6-psr.html
-
-  * igt@kms_psr2_sf@fbc-psr2-cursor-plane-move-continuous-sf:
-    - shard-bmg:          NOTRUN -> [SKIP][36] ([Intel XE#1406] / [Intel XE#1489]) +7 other tests skip
-   [36]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-10/igt@kms_psr2_sf@fbc-psr2-cursor-plane-move-continuous-sf.html
-
-  * igt@kms_psr2_su@page_flip-p010:
-    - shard-bmg:          NOTRUN -> [SKIP][37] ([Intel XE#1406] / [Intel XE#2387])
-   [37]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-1/igt@kms_psr2_su@page_flip-p010.html
-
-  * igt@kms_psr@psr-suspend:
-    - shard-bmg:          NOTRUN -> [SKIP][38] ([Intel XE#1406] / [Intel XE#2234] / [Intel XE#2850]) +14 other tests skip
-   [38]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-2/igt@kms_psr@psr-suspend.html
-
-  * igt@kms_rotation_crc@primary-y-tiled-reflect-x-90:
-    - shard-bmg:          NOTRUN -> [SKIP][39] ([Intel XE#3414] / [Intel XE#3904]) +2 other tests skip
-   [39]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-10/igt@kms_rotation_crc@primary-y-tiled-reflect-x-90.html
-
-  * igt@kms_rotation_crc@primary-yf-tiled-reflect-x-180:
-    - shard-bmg:          NOTRUN -> [SKIP][40] ([Intel XE#2330])
-   [40]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-2/igt@kms_rotation_crc@primary-yf-tiled-reflect-x-180.html
-
-  * igt@kms_sharpness_filter@invalid-filter-with-scaling-mode:
-    - shard-bmg:          NOTRUN -> [SKIP][41] ([Intel XE#6503]) +2 other tests skip
-   [41]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-2/igt@kms_sharpness_filter@invalid-filter-with-scaling-mode.html
-
-  * igt@sriov_basic@enable-vfs-bind-unbind-each-numvfs-all:
-    - shard-bmg:          NOTRUN -> [ABORT][42] ([Intel XE#3970])
-   [42]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-2/igt@sriov_basic@enable-vfs-bind-unbind-each-numvfs-all.html
-
-  * igt@xe_eudebug@multigpu-basic-client:
-    - shard-bmg:          NOTRUN -> [SKIP][43] ([Intel XE#4837]) +9 other tests skip
-   [43]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-2/igt@xe_eudebug@multigpu-basic-client.html
-
-  * igt@xe_eudebug_online@set-breakpoint-faultable:
-    - shard-bmg:          NOTRUN -> [SKIP][44] ([Intel XE#4837] / [Intel XE#6665]) +6 other tests skip
-   [44]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-10/igt@xe_eudebug_online@set-breakpoint-faultable.html
-
-  * igt@xe_exec_basic@multigpu-once-null-rebind:
-    - shard-bmg:          NOTRUN -> [SKIP][45] ([Intel XE#2322]) +8 other tests skip
-   [45]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-10/igt@xe_exec_basic@multigpu-once-null-rebind.html
-
-  * igt@xe_exec_multi_queue@two-queues-priority:
-    - shard-bmg:          NOTRUN -> [SKIP][46] ([Intel XE#6874]) +36 other tests skip
-   [46]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-1/igt@xe_exec_multi_queue@two-queues-priority.html
-
-  * igt@xe_exec_system_allocator@many-64k-mmap-free-huge:
-    - shard-bmg:          NOTRUN -> [SKIP][47] ([Intel XE#5007]) +2 other tests skip
-   [47]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-1/igt@xe_exec_system_allocator@many-64k-mmap-free-huge.html
-
-  * igt@xe_exec_system_allocator@many-execqueues-mmap-free-huge:
-    - shard-bmg:          NOTRUN -> [SKIP][48] ([Intel XE#4943]) +30 other tests skip
-   [48]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-10/igt@xe_exec_system_allocator@many-execqueues-mmap-free-huge.html
-
-  * igt@xe_exec_system_allocator@pat-index-madvise-pat-idx-uc-single-vma:
-    - shard-lnl:          [PASS][49] -> [FAIL][50] ([Intel XE#5625])
-   [49]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4347-6161d5f755ed70a6800bb930675efd37b06020d6/shard-lnl-3/igt@xe_exec_system_allocator@pat-index-madvise-pat-idx-uc-single-vma.html
-   [50]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-lnl-4/igt@xe_exec_system_allocator@pat-index-madvise-pat-idx-uc-single-vma.html
-
-  * igt@xe_fault_injection@exec-queue-create-fail-xe_pxp_exec_queue_add:
-    - shard-bmg:          NOTRUN -> [SKIP][51] ([Intel XE#6281])
-   [51]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-2/igt@xe_fault_injection@exec-queue-create-fail-xe_pxp_exec_queue_add.html
-
-  * igt@xe_media_fill@media-fill:
-    - shard-bmg:          NOTRUN -> [SKIP][52] ([Intel XE#2459] / [Intel XE#2596])
-   [52]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-10/igt@xe_media_fill@media-fill.html
-
-  * igt@xe_mmap@small-bar:
-    - shard-bmg:          NOTRUN -> [SKIP][53] ([Intel XE#586])
-   [53]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-2/igt@xe_mmap@small-bar.html
-
-  * igt@xe_multigpu_svm@mgpu-migration-basic:
-    - shard-bmg:          NOTRUN -> [SKIP][54] ([Intel XE#6964]) +2 other tests skip
-   [54]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-10/igt@xe_multigpu_svm@mgpu-migration-basic.html
-
-  * igt@xe_peer2peer@read:
-    - shard-bmg:          NOTRUN -> [SKIP][55] ([Intel XE#2427] / [Intel XE#6953])
-   [55]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-1/igt@xe_peer2peer@read.html
-
-  * igt@xe_pm@s4-d3cold-basic-exec:
-    - shard-bmg:          NOTRUN -> [SKIP][56] ([Intel XE#2284])
-   [56]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-1/igt@xe_pm@s4-d3cold-basic-exec.html
-
-  * igt@xe_pxp@pxp-optout:
-    - shard-bmg:          NOTRUN -> [SKIP][57] ([Intel XE#4733]) +1 other test skip
-   [57]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-1/igt@xe_pxp@pxp-optout.html
-
-  * igt@xe_query@multigpu-query-invalid-query:
-    - shard-bmg:          NOTRUN -> [SKIP][58] ([Intel XE#944]) +5 other tests skip
-   [58]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-2/igt@xe_query@multigpu-query-invalid-query.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_flip@flip-vs-expired-vblank@a-edp1:
-    - shard-lnl:          [FAIL][59] ([Intel XE#301]) -> [PASS][60]
-   [59]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4347-6161d5f755ed70a6800bb930675efd37b06020d6/shard-lnl-4/igt@kms_flip@flip-vs-expired-vblank@a-edp1.html
-   [60]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-lnl-3/igt@kms_flip@flip-vs-expired-vblank@a-edp1.html
-
-  
-#### Warnings ####
-
-  * igt@kms_tiled_display@basic-test-pattern:
-    - shard-bmg:          [SKIP][61] ([Intel XE#2426]) -> [FAIL][62] ([Intel XE#1729])
-   [61]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4347-6161d5f755ed70a6800bb930675efd37b06020d6/shard-bmg-9/igt@kms_tiled_display@basic-test-pattern.html
-   [62]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-10/igt@kms_tiled_display@basic-test-pattern.html
-
-  
-  [Intel XE#1124]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1124
-  [Intel XE#1178]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1178
-  [Intel XE#1406]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1406
-  [Intel XE#1489]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1489
-  [Intel XE#1729]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1729
-  [Intel XE#2234]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2234
-  [Intel XE#2244]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2244
-  [Intel XE#2252]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2252
-  [Intel XE#2284]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2284
-  [Intel XE#2293]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2293
-  [Intel XE#2311]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2311
-  [Intel XE#2313]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2313
-  [Intel XE#2314]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2314
-  [Intel XE#2320]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2320
-  [Intel XE#2321]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2321
-  [Intel XE#2322]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2322
-  [Intel XE#2325]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2325
-  [Intel XE#2327]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2327
-  [Intel XE#2328]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2328
-  [Intel XE#2330]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2330
-  [Intel XE#2341]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2341
-  [Intel XE#2350]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2350
-  [Intel XE#2352]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2352
-  [Intel XE#2380]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2380
-  [Intel XE#2387]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2387
-  [Intel XE#2392]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2392
-  [Intel XE#2426]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2426
-  [Intel XE#2427]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2427
-  [Intel XE#2459]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2459
-  [Intel XE#2486]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2486
-  [Intel XE#2596]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2596
-  [Intel XE#2652]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2652
-  [Intel XE#2850]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2850
-  [Intel XE#2887]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2887
-  [Intel XE#2894]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2894
-  [Intel XE#301]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/301
-  [Intel XE#3304]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3304
-  [Intel XE#3414]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3414
-  [Intel XE#3432]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3432
-  [Intel XE#3544]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3544
-  [Intel XE#367]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/367
-  [Intel XE#3718]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3718
-  [Intel XE#3904]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3904
-  [Intel XE#3970]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970
-  [Intel XE#4141]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4141
-  [Intel XE#4329]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4329
-  [Intel XE#4422]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4422
-  [Intel XE#4733]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4733
-  [Intel XE#4837]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4837
-  [Intel XE#4943]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4943
-  [Intel XE#5007]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5007
-  [Intel XE#5020]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5020
-  [Intel XE#5625]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5625
-  [Intel XE#586]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/586
-  [Intel XE#6281]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6281
-  [Intel XE#6503]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6503
-  [Intel XE#6665]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6665
-  [Intel XE#6874]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6874
-  [Intel XE#6911]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6911
-  [Intel XE#6912]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6912
-  [Intel XE#6953]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6953
-  [Intel XE#6964]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6964
-  [Intel XE#6969]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6969
-  [Intel XE#6974]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6974
-  [Intel XE#787]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/787
-  [Intel XE#944]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/944
-
-
-Build changes
--------------
-
-  * Linux: xe-4347-6161d5f755ed70a6800bb930675efd37b06020d6 -> xe-pw-159711v2
-
-  IGT_8692: 8692
-  xe-4347-6161d5f755ed70a6800bb930675efd37b06020d6: 6161d5f755ed70a6800bb930675efd37b06020d6
-  xe-pw-159711v2: 159711v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/index.html
-
---===============2191659875400582547==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/guc: Bump GUC version for NVL-S, CRI (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/159711/">https://patchwork.freedesktop.org/series/159711/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4347-6161d5f755ed70a6800bb930675efd37b06020d6_FULL -&gt; xe-pw-159711v2_FULL</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (2 -&gt; 2)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-159711v2_FULL that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@kms_async_flips@alternate-sync-async-flip:</p>
-<ul>
-<li>shard-lnl:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4347-6161d5f755ed70a6800bb930675efd37b06020d6/shard-lnl-7/igt@kms_async_flips@alternate-sync-async-flip.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-lnl-8/igt@kms_async_flips@alternate-sync-async-flip.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3718">Intel XE#3718</a>) +1 other test fail</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_big_fb@4-tiled-32bpp-rotate-90:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-10/igt@kms_big_fb@4-tiled-32bpp-rotate-90.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2327">Intel XE#2327</a>) +4 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_big_fb@yf-tiled-32bpp-rotate-0:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-1/igt@kms_big_fb@yf-tiled-32bpp-rotate-0.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1124">Intel XE#1124</a>) +10 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_big_fb@yf-tiled-addfb:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-2/igt@kms_big_fb@yf-tiled-addfb.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2328">Intel XE#2328</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_bw@connected-linear-tiling-4-displays-2160x1440p:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-1/igt@kms_bw@connected-linear-tiling-4-displays-2160x1440p.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2314">Intel XE#2314</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2894">Intel XE#2894</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_bw@linear-tiling-1-displays-2560x1440p:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-10/igt@kms_bw@linear-tiling-1-displays-2560x1440p.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/367">Intel XE#367</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_ccs@crc-primary-suspend-4-tiled-lnl-ccs@pipe-d-hdmi-a-3:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-1/igt@kms_ccs@crc-primary-suspend-4-tiled-lnl-ccs@pipe-d-hdmi-a-3.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2652">Intel XE#2652</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/787">Intel XE#787</a>) +26 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_ccs@crc-primary-suspend-y-tiled-ccs:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-1/igt@kms_ccs@crc-primary-suspend-y-tiled-ccs.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3432">Intel XE#3432</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_ccs@crc-sprite-planes-basic-4-tiled-dg2-rc-ccs-cc:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-2/igt@kms_ccs@crc-sprite-planes-basic-4-tiled-dg2-rc-ccs-cc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2887">Intel XE#2887</a>) +14 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium_color@ctm-0-25:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-10/igt@kms_chamelium_color@ctm-0-25.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2325">Intel XE#2325</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium_edid@dp-edid-change-during-hibernate:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-10/igt@kms_chamelium_edid@dp-edid-change-during-hibernate.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2252">Intel XE#2252</a>) +10 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_color_pipeline@plane-lut3d-green-only@pipe-d-dp-2:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-1/igt@kms_color_pipeline@plane-lut3d-green-only@pipe-d-dp-2.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6969">Intel XE#6969</a>) +4 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_content_protection@atomic:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-2/igt@kms_content_protection@atomic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1178">Intel XE#1178</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3304">Intel XE#3304</a>) +3 other tests fail</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_content_protection@dp-mst-type-0-hdcp14:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-10/igt@kms_content_protection@dp-mst-type-0-hdcp14.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6974">Intel XE#6974</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_content_protection@type1:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-1/igt@kms_content_protection@type1.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2341">Intel XE#2341</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_crc@cursor-onscreen-32x10:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-2/igt@kms_cursor_crc@cursor-onscreen-32x10.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2320">Intel XE#2320</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_crc@cursor-sliding-512x512:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-10/igt@kms_cursor_crc@cursor-sliding-512x512.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2321">Intel XE#2321</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_dsc@dsc-with-output-formats:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-1/igt@kms_dsc@dsc-with-output-formats.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2244">Intel XE#2244</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_fbc_dirty_rect@fbc-dirty-rectangle-out-visible-area:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-1/igt@kms_fbc_dirty_rect@fbc-dirty-rectangle-out-visible-area.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4422">Intel XE#4422</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@flip-vs-expired-vblank@b-edp1:</p>
-<ul>
-<li>shard-lnl:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4347-6161d5f755ed70a6800bb930675efd37b06020d6/shard-lnl-4/igt@kms_flip@flip-vs-expired-vblank@b-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-lnl-3/igt@kms_flip@flip-vs-expired-vblank@b-edp1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/301">Intel XE#301</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_scaled_crc@flip-64bpp-ytile-to-16bpp-ytile-downscaling:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-2/igt@kms_flip_scaled_crc@flip-64bpp-ytile-to-16bpp-ytile-downscaling.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2293">Intel XE#2293</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2380">Intel XE#2380</a>) +5 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_scaled_crc@flip-64bpp-ytile-to-16bpp-ytile-downscaling@pipe-a-valid-mode:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-2/igt@kms_flip_scaled_crc@flip-64bpp-ytile-to-16bpp-ytile-downscaling@pipe-a-valid-mode.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2293">Intel XE#2293</a>) +5 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@drrs-2p-primscrn-indfb-pgflip-blt:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-2/igt@kms_frontbuffer_tracking@drrs-2p-primscrn-indfb-pgflip-blt.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2311">Intel XE#2311</a>) +32 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@fbc-2p-scndscrn-cur-indfb-move:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-2/igt@kms_frontbuffer_tracking@fbc-2p-scndscrn-cur-indfb-move.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4141">Intel XE#4141</a>) +16 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@fbcdrrs-tiling-y:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-10/igt@kms_frontbuffer_tracking@fbcdrrs-tiling-y.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2352">Intel XE#2352</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@fbcpsr-2p-primscrn-shrfb-pgflip-blt:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-2/igt@kms_frontbuffer_tracking@fbcpsr-2p-primscrn-shrfb-pgflip-blt.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2313">Intel XE#2313</a>) +31 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@plane-fbc-rte:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-2/igt@kms_frontbuffer_tracking@plane-fbc-rte.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2350">Intel XE#2350</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_hdr@brightness-with-hdr:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-2/igt@kms_hdr@brightness-with-hdr.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3544">Intel XE#3544</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_joiner@invalid-modeset-ultra-joiner:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-1/igt@kms_joiner@invalid-modeset-ultra-joiner.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6911">Intel XE#6911</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_panel_fitting@legacy:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-1/igt@kms_panel_fitting@legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2486">Intel XE#2486</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_stress@stress-xrgb8888-ytiled:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-2/igt@kms_pipe_stress@stress-xrgb8888-ytiled.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4329">Intel XE#4329</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6912">Intel XE#6912</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_plane_multiple@tiling-y:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-2/igt@kms_plane_multiple@tiling-y.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5020">Intel XE#5020</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pm_dc@dc6-psr:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-2/igt@kms_pm_dc@dc6-psr.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2392">Intel XE#2392</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr2_sf@fbc-psr2-cursor-plane-move-continuous-sf:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-10/igt@kms_psr2_sf@fbc-psr2-cursor-plane-move-continuous-sf.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1406">Intel XE#1406</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1489">Intel XE#1489</a>) +7 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr2_su@page_flip-p010:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-1/igt@kms_psr2_su@page_flip-p010.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1406">Intel XE#1406</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2387">Intel XE#2387</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@psr-suspend:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-2/igt@kms_psr@psr-suspend.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1406">Intel XE#1406</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2234">Intel XE#2234</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2850">Intel XE#2850</a>) +14 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_rotation_crc@primary-y-tiled-reflect-x-90:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-10/igt@kms_rotation_crc@primary-y-tiled-reflect-x-90.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3414">Intel XE#3414</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3904">Intel XE#3904</a>) +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_rotation_crc@primary-yf-tiled-reflect-x-180:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-2/igt@kms_rotation_crc@primary-yf-tiled-reflect-x-180.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2330">Intel XE#2330</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_sharpness_filter@invalid-filter-with-scaling-mode:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-2/igt@kms_sharpness_filter@invalid-filter-with-scaling-mode.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6503">Intel XE#6503</a>) +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@sriov_basic@enable-vfs-bind-unbind-each-numvfs-all:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-2/igt@sriov_basic@enable-vfs-bind-unbind-each-numvfs-all.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970">Intel XE#3970</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_eudebug@multigpu-basic-client:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-2/igt@xe_eudebug@multigpu-basic-client.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4837">Intel XE#4837</a>) +9 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_eudebug_online@set-breakpoint-faultable:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-10/igt@xe_eudebug_online@set-breakpoint-faultable.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4837">Intel XE#4837</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6665">Intel XE#6665</a>) +6 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_basic@multigpu-once-null-rebind:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-10/igt@xe_exec_basic@multigpu-once-null-rebind.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2322">Intel XE#2322</a>) +8 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_multi_queue@two-queues-priority:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-1/igt@xe_exec_multi_queue@two-queues-priority.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6874">Intel XE#6874</a>) +36 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_system_allocator@many-64k-mmap-free-huge:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-1/igt@xe_exec_system_allocator@many-64k-mmap-free-huge.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5007">Intel XE#5007</a>) +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_system_allocator@many-execqueues-mmap-free-huge:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-10/igt@xe_exec_system_allocator@many-execqueues-mmap-free-huge.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4943">Intel XE#4943</a>) +30 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_system_allocator@pat-index-madvise-pat-idx-uc-single-vma:</p>
-<ul>
-<li>shard-lnl:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4347-6161d5f755ed70a6800bb930675efd37b06020d6/shard-lnl-3/igt@xe_exec_system_allocator@pat-index-madvise-pat-idx-uc-single-vma.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-lnl-4/igt@xe_exec_system_allocator@pat-index-madvise-pat-idx-uc-single-vma.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5625">Intel XE#5625</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_fault_injection@exec-queue-create-fail-xe_pxp_exec_queue_add:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-2/igt@xe_fault_injection@exec-queue-create-fail-xe_pxp_exec_queue_add.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6281">Intel XE#6281</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_media_fill@media-fill:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-10/igt@xe_media_fill@media-fill.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2459">Intel XE#2459</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2596">Intel XE#2596</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_mmap@small-bar:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-2/igt@xe_mmap@small-bar.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/586">Intel XE#586</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_multigpu_svm@mgpu-migration-basic:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-10/igt@xe_multigpu_svm@mgpu-migration-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6964">Intel XE#6964</a>) +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_peer2peer@read:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-1/igt@xe_peer2peer@read.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2427">Intel XE#2427</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6953">Intel XE#6953</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pm@s4-d3cold-basic-exec:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-1/igt@xe_pm@s4-d3cold-basic-exec.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2284">Intel XE#2284</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pxp@pxp-optout:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-1/igt@xe_pxp@pxp-optout.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4733">Intel XE#4733</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_query@multigpu-query-invalid-query:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-2/igt@xe_query@multigpu-query-invalid-query.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/944">Intel XE#944</a>) +5 other tests skip</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_flip@flip-vs-expired-vblank@a-edp1:<ul>
-<li>shard-lnl:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4347-6161d5f755ed70a6800bb930675efd37b06020d6/shard-lnl-4/igt@kms_flip@flip-vs-expired-vblank@a-edp1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/301">Intel XE#301</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-lnl-3/igt@kms_flip@flip-vs-expired-vblank@a-edp1.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@kms_tiled_display@basic-test-pattern:<ul>
-<li>shard-bmg:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4347-6161d5f755ed70a6800bb930675efd37b06020d6/shard-bmg-9/igt@kms_tiled_display@basic-test-pattern.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2426">Intel XE#2426</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159711v2/shard-bmg-10/igt@kms_tiled_display@basic-test-pattern.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1729">Intel XE#1729</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4347-6161d5f755ed70a6800bb930675efd37b06020d6 -&gt; xe-pw-159711v2</li>
-</ul>
-<p>IGT_8692: 8692<br />
-  xe-4347-6161d5f755ed70a6800bb930675efd37b06020d6: 6161d5f755ed70a6800bb930675efd37b06020d6<br />
-  xe-pw-159711v2: 159711v2</p>
-
-</body>
-</html>
-
---===============2191659875400582547==--
