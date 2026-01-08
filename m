@@ -4,33 +4,32 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EA1B3D1D465
-	for <intel-xe@archiver.kernel.org>; Thu,  8 Jan 2026 14:50:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 74005D1D465
+	for <intel-xe@archiver.kernel.org>; Thu,  8 Jan 2026 14:50:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AEB2210E775;
-	Thu,  8 Jan 2026 14:50:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3B4EE10E784;
+	Thu,  8 Jan 2026 14:50:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="bKjoQ8sW";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="Oph42R0e";
 	dkim-atps=neutral
 Received: from lankhorst.se (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C657C10E775
- for <intel-xe@lists.freedesktop.org>; Thu,  8 Jan 2026 14:50:20 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6B11210E775
+ for <intel-xe@lists.freedesktop.org>; Thu,  8 Jan 2026 14:50:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1767883819;
- bh=iz33+nGKN1E8xtvHoEdsTlsnRgCOPoAqMPrecuZrig0=;
+ s=default; t=1767883820;
+ bh=LmvuxWGaptpmW60MKIJQaNVIyXJ5H4Lk9pOozMdaVOk=;
  h=From:To:Subject:Date:In-Reply-To:References:From;
- b=bKjoQ8sWxwQhk4NQvxVe+xcVyH6q7iQ7lxyOzcC7FqVSyxOvfVVKZ/fnHqTQH3kLK
- 9uLAvt/30Ku6cZ5yGtaPya8gQmCQa4jTPH3PUa27/mdAeKmkS5qCeqcXnI3TRBD/p5
- 7/+0TjdjGLNVMzQSYVDZnYThBwEVrsFsulCnDamBEegzj1uGB5KievQ5OBIcUuSWby
- oo0DLygIcxiFMOQ6Y0u6Bg96sZwJ7e0QXFlNqJwXapZ71WlaXTLWJbKhThnlbDWXfS
- mkaxrPUYWtgMHcyc4OJaNvGqgylMZBpAYVjht27x+AKgJNJBSZXhGaimvk2by6dmcH
- KXtJWA1U+b0vw==
+ b=Oph42R0eqKtA93Z9EYA+TCFUzFUbzMZiglS3QTLkQOjLMETU54dxYxGPfDnRHEnzb
+ jpfTchLH1YsrJL81ar6JxRHO4mRACai3Aj6f0Nklw8pxyW3lPj9KaedhOuo2qWLU/b
+ H/vHFYNlbTzZD+//4hqNMEC9rPf9INZVSru6P8umwr+eyeX3vYVf5hZ+06c8avlQZO
+ H8cvo0AvdVuRKNiEZwV2pLSTYcCLwb3ufaAiEVlG7ca0Kn+E8V5y9OYglBySEvsmuH
+ HxL/WMEh6GN3G3gvZFGcz1Dnenu+5PMLmMwpQZ+xFYqngWwZ59Y/elwnlTjVoNx0TH
+ 8jyRAzODxXGbw==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-xe@lists.freedesktop.org
-Subject: [FOR-CI-DO-NOT-REVIEW 11/12] drm/xe: Make xe_ggtt_node_insert return
- a node
-Date: Thu,  8 Jan 2026 15:50:16 +0100
-Message-ID: <20260108145017.642206-2-dev@lankhorst.se>
+Subject: [FOR-CI-DO-NOT-REVIEW 12/12] drm/xe: Remove xe_ggtt_node_allocated
+Date: Thu,  8 Jan 2026 15:50:17 +0100
+Message-ID: <20260108145017.642206-3-dev@lankhorst.se>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20260108145017.642206-1-dev@lankhorst.se>
 References: <20260108103412.637731-1-dev@lankhorst.se>
@@ -51,226 +50,126 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This extra step is easier to handle inside xe_ggtt.c and makes
-xe_ggtt_node_allocated a simple null check instead, as the intermediate
-state 'allocated but not inserted' is no longer used.
-
-Privatize xe_ggtt_node_fini() as it's no longer used outside of
-xe_ggtt.c
+With the intermediate state gone, no longer useful. Just check against
+NULL.
 
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/tests/xe_guc_buf_kunit.c |  6 +-
- drivers/gpu/drm/xe/xe_ggtt.c                | 76 +++++++++------------
- drivers/gpu/drm/xe/xe_ggtt.h                |  5 +-
- drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c  | 24 +------
- 4 files changed, 38 insertions(+), 73 deletions(-)
+ drivers/gpu/drm/xe/display/xe_fb_pin.c     |  3 +--
+ drivers/gpu/drm/xe/xe_ggtt.c               | 14 --------------
+ drivers/gpu/drm/xe/xe_ggtt.h               |  1 -
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c | 12 ++++++------
+ 4 files changed, 7 insertions(+), 23 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/tests/xe_guc_buf_kunit.c b/drivers/gpu/drm/xe/tests/xe_guc_buf_kunit.c
-index acddbedcf17cb..7aeee6680d78c 100644
---- a/drivers/gpu/drm/xe/tests/xe_guc_buf_kunit.c
-+++ b/drivers/gpu/drm/xe/tests/xe_guc_buf_kunit.c
-@@ -38,12 +38,8 @@ static struct xe_bo *replacement_xe_managed_bo_create_pin_map(struct xe_device *
- 	if (flags & XE_BO_FLAG_GGTT) {
- 		struct xe_ggtt *ggtt = tile->mem.ggtt;
+diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+index d2c4e94180fa3..10915fb3151f4 100644
+--- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
++++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+@@ -352,8 +352,7 @@ static void __xe_unpin_fb_vma(struct i915_vma *vma)
  
--		bo->ggtt_node[tile->id] = xe_ggtt_node_init(ggtt);
-+		bo->ggtt_node[tile->id] = xe_ggtt_node_insert(ggtt, xe_bo_size(bo), SZ_4K);
- 		KUNIT_ASSERT_NOT_ERR_OR_NULL(test, bo->ggtt_node[tile->id]);
--
--		KUNIT_ASSERT_EQ(test, 0,
--				xe_ggtt_node_insert(bo->ggtt_node[tile->id],
--						    xe_bo_size(bo), SZ_4K));
- 	}
+ 	if (vma->dpt)
+ 		xe_bo_unpin_map_no_vm(vma->dpt);
+-	else if (!xe_ggtt_node_allocated(vma->bo->ggtt_node[tile_id]) ||
+-		 vma->bo->ggtt_node[tile_id] != vma->node)
++	else if (vma->bo->ggtt_node[tile_id] != vma->node)
+ 		xe_ggtt_node_remove(vma->node, false);
  
- 	return bo;
+ 	ttm_bo_reserve(&vma->bo->ttm, false, false, NULL);
 diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
-index e7b2b6626d645..0c1e2d8e4af5e 100644
+index 0c1e2d8e4af5e..8b7dfc98d322b 100644
 --- a/drivers/gpu/drm/xe/xe_ggtt.c
 +++ b/drivers/gpu/drm/xe/xe_ggtt.c
-@@ -459,6 +459,11 @@ static void xe_ggtt_initial_clear(struct xe_ggtt *ggtt)
- 	mutex_unlock(&ggtt->lock);
- }
- 
-+static void xe_ggtt_node_fini(struct xe_ggtt_node *node)
-+{
-+	kfree(node);
-+}
-+
- static void ggtt_node_remove(struct xe_ggtt_node *node)
- {
- 	struct xe_ggtt *ggtt = node->ggtt;
-@@ -622,68 +627,51 @@ static int xe_ggtt_node_insert_locked(struct xe_ggtt_node *node,
- 					  mm_flags);
- }
- 
-+static struct xe_ggtt_node *xe_ggtt_node_init(struct xe_ggtt *ggtt)
-+{
-+	struct xe_ggtt_node *node = kzalloc(sizeof(*node), GFP_NOFS);
-+
-+	if (!node)
-+		return ERR_PTR(-ENOMEM);
-+
-+	INIT_WORK(&node->delayed_removal_work, ggtt_node_remove_work_func);
-+	node->ggtt = ggtt;
-+
-+	return node;
-+}
-+
- /**
-  * xe_ggtt_node_insert - Insert a &xe_ggtt_node into the GGTT
-- * @node: the &xe_ggtt_node to be inserted
-+ * @ggtt: the @ggtt into which the node should be inserted.
-  * @size: size of the node
-  * @align: alignment constrain of the node
-  *
-- * It cannot be called without first having called xe_ggtt_init() once.
-- *
-- * Return: 0 on success or a negative error code on failure.
-+ * Return: &xe_ggtt_node on success or a ERR_PTR on failure.
-  */
--int xe_ggtt_node_insert(struct xe_ggtt_node *node, u32 size, u32 align)
-+struct xe_ggtt_node *xe_ggtt_node_insert(struct xe_ggtt *ggtt, u32 size, u32 align)
- {
-+	struct xe_ggtt_node *node;
- 	int ret;
- 
--	if (!node || !node->ggtt)
--		return -ENOENT;
-+	if (!ggtt)
-+		return ERR_PTR(-ENOENT);
-+
-+	node = xe_ggtt_node_init(ggtt);
-+	if (IS_ERR(node))
-+		return node;
- 
- 	mutex_lock(&node->ggtt->lock);
- 	ret = xe_ggtt_node_insert_locked(node, size, align,
- 					 DRM_MM_INSERT_HIGH);
- 	mutex_unlock(&node->ggtt->lock);
--
--	return ret;
--}
--
--/**
-- * xe_ggtt_node_init - Initialize %xe_ggtt_node struct
-- * @ggtt: the &xe_ggtt where the new node will later be inserted/reserved.
-- *
-- * This function will allocate the struct %xe_ggtt_node and return its pointer.
-- * This struct will then be freed after the node removal upon xe_ggtt_node_remove()
-- * Having %xe_ggtt_node struct allocated doesn't mean that the node is already allocated
-- * in GGTT. Only xe_ggtt_node_insert() will ensure the node is inserted or reserved in GGTT.
-- *
-- * Return: A pointer to %xe_ggtt_node struct on success. An ERR_PTR otherwise.
-- **/
--struct xe_ggtt_node *xe_ggtt_node_init(struct xe_ggtt *ggtt)
--{
--	struct xe_ggtt_node *node = kzalloc(sizeof(*node), GFP_NOFS);
--
--	if (!node)
--		return ERR_PTR(-ENOMEM);
--
--	INIT_WORK(&node->delayed_removal_work, ggtt_node_remove_work_func);
--	node->ggtt = ggtt;
-+	if (ret) {
-+		xe_ggtt_node_fini(node);
-+		return ERR_PTR(ret);
-+	}
- 
+@@ -672,20 +672,6 @@ struct xe_ggtt_node *xe_ggtt_node_insert(struct xe_ggtt *ggtt, u32 size, u32 ali
  	return node;
  }
  
 -/**
-- * xe_ggtt_node_fini - Forcebly finalize %xe_ggtt_node struct
-- * @node: the &xe_ggtt_node to be freed
+- * xe_ggtt_node_allocated - Check if node is allocated in GGTT
+- * @node: the &xe_ggtt_node to be inspected
 - *
-- * If anything went wrong with either xe_ggtt_node_insert() and this @node is
-- * not going to be reused, then this function needs to be called to free the
-- * %xe_ggtt_node struct
-- **/
--void xe_ggtt_node_fini(struct xe_ggtt_node *node)
+- * Return: True if allocated, False otherwise.
+- */
+-bool xe_ggtt_node_allocated(const struct xe_ggtt_node *node)
 -{
--	kfree(node);
+-	if (!node || !node->ggtt)
+-		return false;
+-
+-	return drm_mm_node_allocated(&node->base);
 -}
 -
  /**
-  * xe_ggtt_node_allocated - Check if node is allocated in GGTT
-  * @node: the &xe_ggtt_node to be inspected
+  * xe_ggtt_node_pt_size() - Get the size of page table entries needed to map a GGTT node.
+  * @node: the &xe_ggtt_node
 diff --git a/drivers/gpu/drm/xe/xe_ggtt.h b/drivers/gpu/drm/xe/xe_ggtt.h
-index a69d7624be526..e02bc52c0b4d2 100644
+index e02bc52c0b4d2..05f89bdc01bde 100644
 --- a/drivers/gpu/drm/xe/xe_ggtt.h
 +++ b/drivers/gpu/drm/xe/xe_ggtt.h
-@@ -18,13 +18,12 @@ int xe_ggtt_init_early(struct xe_ggtt *ggtt);
- int xe_ggtt_init_kunit(struct xe_ggtt *ggtt, u32 reserved, u32 size);
- int xe_ggtt_init(struct xe_ggtt *ggtt);
- 
--struct xe_ggtt_node *xe_ggtt_node_init(struct xe_ggtt *ggtt);
--void xe_ggtt_node_fini(struct xe_ggtt_node *node);
- void xe_ggtt_shift_nodes(struct xe_ggtt *ggtt, s64 shift);
- u64 xe_ggtt_start(struct xe_ggtt *ggtt);
- u64 xe_ggtt_size(struct xe_ggtt *ggtt);
- 
--int xe_ggtt_node_insert(struct xe_ggtt_node *node, u32 size, u32 align);
-+struct xe_ggtt_node *
-+xe_ggtt_node_insert(struct xe_ggtt *ggtt, u32 size, u32 align);
- struct xe_ggtt_node *
- xe_ggtt_node_insert_transform(struct xe_ggtt *ggtt,
- 			      struct xe_bo *bo, u64 pte,
+@@ -30,7 +30,6 @@ xe_ggtt_node_insert_transform(struct xe_ggtt *ggtt,
+ 			      u64 size, u32 align,
+ 			      xe_ggtt_transform_cb transform, void *arg);
+ void xe_ggtt_node_remove(struct xe_ggtt_node *node, bool invalidate);
+-bool xe_ggtt_node_allocated(const struct xe_ggtt_node *node);
+ size_t xe_ggtt_node_pt_size(const struct xe_ggtt_node *node);
+ void xe_ggtt_map_bo_unlocked(struct xe_ggtt *ggtt, struct xe_bo *bo);
+ int xe_ggtt_insert_bo(struct xe_ggtt *ggtt, struct xe_bo *bo, struct drm_exec *exec);
 diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-index 9f2525f3cb379..a6414d164166e 100644
+index a6414d164166e..ca757742d2748 100644
 --- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
 +++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-@@ -484,23 +484,9 @@ static int pf_distribute_config_ggtt(struct xe_tile *tile, unsigned int vfid, u6
- 	return err ?: err2;
- }
- 
--static void pf_release_ggtt(struct xe_tile *tile, struct xe_ggtt_node *node)
--{
--	if (xe_ggtt_node_allocated(node)) {
--		/*
--		 * explicit GGTT PTE assignment to the PF using xe_ggtt_assign()
--		 * is redundant, as PTE will be implicitly re-assigned to PF by
--		 * the xe_ggtt_clear() called by below xe_ggtt_remove_node().
--		 */
--		xe_ggtt_node_remove(node, false);
--	} else {
--		xe_ggtt_node_fini(node);
--	}
--}
--
- static void pf_release_vf_config_ggtt(struct xe_gt *gt, struct xe_gt_sriov_config *config)
+@@ -281,7 +281,7 @@ static u32 encode_config_ggtt(u32 *cfg, const struct xe_gt_sriov_config *config,
  {
--	pf_release_ggtt(gt_to_tile(gt), config->ggtt_region);
-+	xe_ggtt_node_remove(config->ggtt_region, false);
- 	config->ggtt_region = NULL;
- }
+ 	struct xe_ggtt_node *node = config->ggtt_region;
  
-@@ -535,14 +521,10 @@ static int pf_provision_vf_ggtt(struct xe_gt *gt, unsigned int vfid, u64 size)
- 	if (!size)
+-	if (!xe_ggtt_node_allocated(node))
++	if (!node)
  		return 0;
  
--	node = xe_ggtt_node_init(ggtt);
-+	node = xe_ggtt_node_insert(ggtt, size, alignment);
- 	if (IS_ERR(node))
- 		return PTR_ERR(node);
+ 	return encode_ggtt(cfg, xe_ggtt_node_addr(node), xe_ggtt_node_size(node), details);
+@@ -505,7 +505,7 @@ static int pf_provision_vf_ggtt(struct xe_gt *gt, unsigned int vfid, u64 size)
  
--	err = xe_ggtt_node_insert(node, size, alignment);
--	if (unlikely(err))
--		goto err;
--
- 	xe_ggtt_assign(node, vfid);
- 	xe_gt_sriov_dbg_verbose(gt, "VF%u assigned GGTT %llx-%llx\n",
- 				vfid, xe_ggtt_node_addr(node), xe_ggtt_node_addr(node) + size - 1);
-@@ -554,7 +536,7 @@ static int pf_provision_vf_ggtt(struct xe_gt *gt, unsigned int vfid, u64 size)
- 	config->ggtt_region = node;
- 	return 0;
- err:
--	pf_release_ggtt(tile, node);
-+	xe_ggtt_node_remove(node, false);
- 	return err;
+ 	size = round_up(size, alignment);
+ 
+-	if (xe_ggtt_node_allocated(config->ggtt_region)) {
++	if (config->ggtt_region) {
+ 		err = pf_distribute_config_ggtt(tile, vfid, 0, 0);
+ 		if (unlikely(err))
+ 			return err;
+@@ -516,7 +516,7 @@ static int pf_provision_vf_ggtt(struct xe_gt *gt, unsigned int vfid, u64 size)
+ 		if (unlikely(err))
+ 			return err;
+ 	}
+-	xe_gt_assert(gt, !xe_ggtt_node_allocated(config->ggtt_region));
++	xe_gt_assert(gt, !config->ggtt_region);
+ 
+ 	if (!size)
+ 		return 0;
+@@ -546,7 +546,7 @@ static u64 pf_get_vf_config_ggtt(struct xe_gt *gt, unsigned int vfid)
+ 	struct xe_ggtt_node *node = config->ggtt_region;
+ 
+ 	xe_gt_assert(gt, xe_gt_is_main_type(gt));
+-	return xe_ggtt_node_allocated(node) ? xe_ggtt_node_size(node) : 0;
++	return node ? xe_ggtt_node_size(node) : 0;
  }
  
+ /**
+@@ -2560,7 +2560,7 @@ int xe_gt_sriov_pf_config_release(struct xe_gt *gt, unsigned int vfid, bool forc
+ 
+ static void pf_sanitize_ggtt(struct xe_ggtt_node *ggtt_region, unsigned int vfid)
+ {
+-	if (xe_ggtt_node_allocated(ggtt_region))
++	if (ggtt_region)
+ 		xe_ggtt_assign(ggtt_region, vfid);
+ }
+ 
+@@ -3019,7 +3019,7 @@ int xe_gt_sriov_pf_config_print_ggtt(struct xe_gt *gt, struct drm_printer *p)
+ 
+ 	for (n = 1; n <= total_vfs; n++) {
+ 		config = &gt->sriov.pf.vfs[n].config;
+-		if (!xe_ggtt_node_allocated(config->ggtt_region))
++		if (!config->ggtt_region)
+ 			continue;
+ 
+ 		string_get_size(xe_ggtt_node_size(config->ggtt_region), 1, STRING_UNITS_2,
 -- 
 2.51.0
 
