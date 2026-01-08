@@ -4,195 +4,205 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 766FBD185FE
-	for <intel-xe@archiver.kernel.org>; Thu,  8 Jan 2026 14:12:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 09BEACF6ABF
+	for <intel-xe@archiver.kernel.org>; Thu,  8 Jan 2026 14:14:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3129210E1F0;
-	Thu,  8 Jan 2026 14:12:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B8D0A10E73F;
+	Thu,  8 Jan 2026 14:13:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="G+TAECvk";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aSzmPn2/";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F2C4F10E1F0;
- Thu,  8 Jan 2026 14:12:11 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5240C10E73F;
+ Thu,  8 Jan 2026 14:13:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1767881532; x=1799417532;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=iicQIK2ds6NTY3zDNgJtIDdVmAp8QlNQ+lMpcThy3II=;
- b=G+TAECvkFjDl+SlmxBGfpGmsU2Pj00GaxQnuEdA31ycDdY7PIqO6sTwi
- CLocBxxQDErJ0SrgWSYozLskMEvzKjelpA2ZgFIXG7/Cg8nX8TtL9NTBs
- UuyTh9x6hQw3frtDrWC+vpoogs6ZI8Gv/iVcTTHP+CsRpkltd4tWeO3Zy
- MEe3lSl6+4Ml08OK0sJWEXvmYCLlFkiJvZjAE2TA4HiwFmF5wDbpqzK4I
- SyVWV6CuxsPHxekH0lTnan9qMaZx9xV+53L0jvSX6W8CbT21lnTUzLi0W
- ZBrvs2iPPY10b4e6XnSHnmmovUqgvKL6kljfeCHDerrqwLdbSn3Mgqw7m g==;
-X-CSE-ConnectionGUID: iqufUShzQ5yG98TDaNHPDg==
-X-CSE-MsgGUID: 3Vd9VJcLTnWvjARX6elzTw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11665"; a="94728166"
-X-IronPort-AV: E=Sophos;i="6.21,211,1763452800"; d="scan'208";a="94728166"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jan 2026 06:12:11 -0800
-X-CSE-ConnectionGUID: eq7iUD52SSKgge27ci8OBw==
-X-CSE-MsgGUID: 2P9CPVFyRk6HrqR9za0eRw==
+ t=1767881638; x=1799417638;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-id:content-transfer-encoding: mime-version;
+ bh=2AQl2FVN2EKJ4B6/xkr5OU4aUArEZOue13ZWweLBotY=;
+ b=aSzmPn2/73v15n77ZZkGWRtNx7BAOi6KykIx9ypR+gWoqxC18f+ecJ5C
+ lRpKwAQHhcigZ4m87mMqnZrZTOrLANrpXHAWSXx+UTZp1HrlyrDKL0xOS
+ B5ic7SDczH33Ecb2/5Tff0NFrQq8xDo1iTucji5X9DhLo1NXqK1Xl4P/+
+ 6ify7kh4F1BBKeJE391+PyEliv1H7arhtIFuSekeUzr4D2LH+KW80m8UM
+ pSf4dfCT4gY9sjP/KuRX7CT4s4wGJPRlnQfB99AX6sd7/g9yyH+TkPRaH
+ vAfkSWLkPYSC4ufKYgOHGV53Mmz00nmMLEC9avvIlGBTAUTT5O/DxzVUy Q==;
+X-CSE-ConnectionGUID: qTZZ90otQXqrkfiFUu8uqw==
+X-CSE-MsgGUID: nPo8SA2+Qzqmma/O9otbMA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11665"; a="68453819"
+X-IronPort-AV: E=Sophos;i="6.21,211,1763452800"; d="scan'208";a="68453819"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jan 2026 06:13:58 -0800
+X-CSE-ConnectionGUID: ylABEfjmQZGSOy1//A72xg==
+X-CSE-MsgGUID: 9TiFQcAPSF+5+BZ/FKomzg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,211,1763452800"; d="scan'208";a="203488918"
-Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
- by fmviesa008.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jan 2026 06:12:11 -0800
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.21,211,1763452800"; d="scan'208";a="240700012"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by orviesa001.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jan 2026 06:13:58 -0800
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Thu, 8 Jan 2026 06:12:11 -0800
-Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ 15.2.2562.29; Thu, 8 Jan 2026 06:13:57 -0800
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29 via Frontend Transport; Thu, 8 Jan 2026 06:12:11 -0800
-Received: from BL2PR02CU003.outbound.protection.outlook.com (52.101.52.8) by
- edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
+ 15.2.2562.29 via Frontend Transport; Thu, 8 Jan 2026 06:13:57 -0800
+Received: from SA9PR02CU001.outbound.protection.outlook.com (40.93.196.1) by
+ edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Thu, 8 Jan 2026 06:12:10 -0800
+ 15.2.2562.29; Thu, 8 Jan 2026 06:13:56 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=vrMd+hx+mlBPZizzrDBL0l3Vy4Pfd6Vclfpjn/SZxEEYnCjf1USX5I1jcHrBaRQyaNTojb1jAE+QXgJjVUKKn7Odr0gP/xrYtiFSeBG6SBY6ZgVhHIJBDejOPzhvRfxzuKl/HvJKgqHeWMBHmm/XPm0SvHMYnKuPtESWJuk+gZ8YGPgkET+sn/KSAR7MiysT/rbzdLKgnMK2PbXAllWXUg94zqVG8cbyHLr/w+YCBKjU9RRNIAHVk9Sa5r2W6HTFysVmrvQXv7ApMVHYOx0yu4C81ILs7eU2uCAn8TqAqU8+fY8Bwtn+0aWpf/RQE06AnRfK9PYxGlOHNsZb2GKpIg==
+ b=IeoAHUgoP+FahJpA1dvfzRv/Icz86yGZvFH6A7aRwCgp76f4VnVbe2WPAQw30yvmkRd+ZqZoR8iq3xo4nPLV0gwKB05blEcCty1/lETvnvdvVxtAI7WrWKGCYT5j3EebFQHM5X/zoFpHERVW/auAwPHQi0yMEhgt4v/A74eN1lSOtLgWBZI9lBBi4eWiYrPXAowZZSvM2KHm9s0oz46haYyEu5/VHHUL04hnGVmADYpbIgqbDG6U5lZmZhDXVS64NWkOr3GuGvyqXsGYNGZG9fQ+h9u3v6+mkzDpBNjK9R9jIa5smeGcRUmHixzLL6qJXZJdoAmJn4zoXZaU5ObEtA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=IlvbEh2KuSFtKY09ycSkR5uTH2Bzo+Y42IQtCcMkaPk=;
- b=Tzl9m8th0hV6No0A+IDS4g9i65lATlKolULsmRbRWlbdBfleRRFz/+shaF6VNwFr5c8ASfK1u41DjuVvtoJCLDCY0ZV1Uex7dxn11EXQjb8WZoctdgvS5EkKotED3guo/kkqK/ePKTt8RJ4BYRe/RBzusQYCj1rkb6+LZs75kvxgV24QsVsQNygoJSyjDtP/gItYvB4bwAnz/LD9Yn4zxH0s4Gw9t56Vd3xKmYkCNN1wW/mUz4+czRzHEKWqd8aOloiXNhiQnK6rnXXcfMZyQOyte2sCBuZsFfB+6boMUdJJcagaEAaRmvlLRD7UjAlMUHaoQ6VMcqN0Rqs0Qh0QrA==
+ bh=2AQl2FVN2EKJ4B6/xkr5OU4aUArEZOue13ZWweLBotY=;
+ b=tUXfxts3pErXteyfI8/cOmrDWfD///S4WsMbZqAhmz0+QqGtJwyKIuoITqtqq6E7nYzwY8nQbgVTXgrrzk8ZWkQuCMHHDulypHZTx9S1Uq0C6zWEXu4ViAb85rSRMdAgfCjQ2WHUiYmnTFXL3NzYuWK2aosDZbFjGldEz9+arSf+AqNhBbO9VJQsxn2krQp6a09yCCigIlQQPnzG30EXFo4ffbUXPIqZkZO9qJ2T1OHFVIB3leXQyqoHdVFjWZMBfxZjPvYQnimgBxZgCFwTqnBDZhJovNsD2rq2EYf+jiQWaj68fkpOnKJ+QBwzDhu2stxwnEEvd6DyTCp1fx/nIw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from SJ1PR11MB6129.namprd11.prod.outlook.com (2603:10b6:a03:488::12)
- by CY8PR11MB6914.namprd11.prod.outlook.com (2603:10b6:930:5a::13)
+Received: from CYYPR11MB8430.namprd11.prod.outlook.com (2603:10b6:930:c6::19)
+ by LV3PR11MB8577.namprd11.prod.outlook.com (2603:10b6:408:1b8::21)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9499.3; Thu, 8 Jan
- 2026 14:12:06 +0000
-Received: from SJ1PR11MB6129.namprd11.prod.outlook.com
- ([fe80::45f:5907:efdb:cb5b]) by SJ1PR11MB6129.namprd11.prod.outlook.com
- ([fe80::45f:5907:efdb:cb5b%3]) with mapi id 15.20.9499.003; Thu, 8 Jan 2026
- 14:12:04 +0000
-Message-ID: <96fd9dee-20f1-4e1d-84b1-6243251a1e40@intel.com>
-Date: Thu, 8 Jan 2026 19:41:54 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 05/13] drm: Allow driver-managed destruction of colorop
- objects
-To: Alex Hung <alex.hung@amd.com>, <dri-devel@lists.freedesktop.org>,
- <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
- <amd-gfx@lists.freedesktop.org>
-CC: <harry.wentland@amd.com>, <jani.nikula@linux.intel.com>,
- <louis.chauvet@bootlin.com>, <mwen@igalia.com>, <contact@emersion.fr>,
- <daniels@collabora.com>, <uma.shankar@intel.com>, <suraj.kandpal@intel.com>,
- <nfraprado@collabora.com>, <ville.syrjala@linux.intel.com>,
- <matthew.d.roper@intel.com>
-References: <20251219065614.190834-1-chaitanya.kumar.borah@intel.com>
- <20251219065614.190834-6-chaitanya.kumar.borah@intel.com>
- <4b71d7cd-72d4-4666-8f9e-81a30ce1817f@amd.com>
-Content-Language: en-GB
-From: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
-In-Reply-To: <4b71d7cd-72d4-4666-8f9e-81a30ce1817f@amd.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MA5PR01CA0139.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:1b9::12) To SJ1PR11MB6129.namprd11.prod.outlook.com
- (2603:10b6:a03:488::12)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ1PR11MB6129:EE_|CY8PR11MB6914:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3eb9c801-b954-4777-041f-08de4ebfe60c
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|7416014|376014|1800799024|7053199007; 
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?aVZiNS9Qdlo2S1JDNklDbjl6MWM2aml6cmZOclVjaFpoaS9FUGZma2QxaXh5?=
- =?utf-8?B?emlEekJFR2ZlNDlaMEtsV1R1VVVFc25XczJnT3BWMTUrK1NkdWEyNlh4bmh6?=
- =?utf-8?B?TzZOckY3cGoxdy9xZXZCbXJOUU9DdHkyaVdhVDR0ZnBPY1VkM1pubFdqckJC?=
- =?utf-8?B?S0pqeFVaUE1UaHNWcWVjdUIwWU0zditSYlNTQjRZa3lxV2locFg2elRGTlZx?=
- =?utf-8?B?ZlJNZDFES1hkK0lrbGRGZTV0MTZ2WVZNMVhmM0M0M1M0TG1NOXRqU2tXOHpm?=
- =?utf-8?B?YStuVHZTek03MFNCaDBibVNIOU9PTXd2bVNpeHVZN0plUW9KZkVBZFZnd2tB?=
- =?utf-8?B?T08ybzZxRWRWNnJ4V2l1b0svS0wydENxbkpMVk4yS1lqVGFodXM2TEpjd0tH?=
- =?utf-8?B?M3VzMjJQREQ4RXJSQWQzV1NWLzY2SlBmUExQQmt2TVZjYkkwbkplMjVIcEMz?=
- =?utf-8?B?eHo1NkZqQmswY1JIdHRHUzFpWDZSV3hSdmdtRVhrZ2lZbXZQMmVwTlNjUjlC?=
- =?utf-8?B?QjdCdGNIUXZEU1lYZE4ySmM1L2R3SjJUdnJ0dUlrQkxFUVA2Ykk5NkNrWVpz?=
- =?utf-8?B?eWxSWS9wM1V3a3RGc3N2Q2VXc01PcU5aRzhvZEpqdi9qWUwzL2xRSGFJOUFR?=
- =?utf-8?B?OHdCQ1A3a2Q1TXJ6S0JSSndXWnptcllBamdRR2RxbzE1NEtpMXhKa0NYTVpp?=
- =?utf-8?B?MXNYNHl2Vkk4T0phRHNyYVVZenVWVlEzSWY4RUF2KzM2SGdOQmRMVFcxQkRk?=
- =?utf-8?B?aUFPWlZQTXp3c3VGckdPRnNsd1JabVRxVTdLQUxLQzNQam44VFoweEhEd2VZ?=
- =?utf-8?B?RnhpNkRPSmNZZnJXMFZaK0dlMHRXYnBvUXVFYnIweGVhUzllektvWXllRStM?=
- =?utf-8?B?ekV6UEJxanEyVk91ejlzOTNsODNNY01KeXY3QTdDeXBOSUFRM0ZaUlZhajFO?=
- =?utf-8?B?dzJVZmIrbVNkOTQyTTY1L2RDeEFYZXBvTXJnNko5cnRQenlicnRkZUtSblZm?=
- =?utf-8?B?b0FaSzQ5SVVJajZIdlVoTmhzYUYvVms0R3pZa2RjR0ZSMUZIQmZwRHFpT1Nu?=
- =?utf-8?B?K2krdHd4dVZoZVF4K2dKanR6NFNOR2Z4a092WDJ1blVzSTd3M3d4cG50a0pP?=
- =?utf-8?B?WHljNU5LZ1lhdTJMZzUveFE3RXc0eEk3TnRQSWVNYzNwTnZselRxbWlhM21v?=
- =?utf-8?B?enFZNTIwWElhcEQzdUZ3OEIwM2ZIdWpIZ3V4dmh6VzYyQXVyS2FXNC9WRmhC?=
- =?utf-8?B?MGk2YTN6VWg3cW9JeWxSb0hWS1hPRnRYSTkzN1k5S1UyOURJam5VMFB4Wk1T?=
- =?utf-8?B?emVtZk54TFQ4eEd6MUcwMCszdXFhTVlaUmcvdDBLVjBOYlRSSmdKaG5RWUtr?=
- =?utf-8?B?MnhMRGkxWmVSYmxUcDR4U1o0SmZQN0JiQlRNam9qTFZ2cU1QbFM0bzhkazA5?=
- =?utf-8?B?QWs5Zi9hMWI2MlRHaTZNeXZySU9JY3IvY3o2TjdadEJtWS9kbUZkanp5ZDkv?=
- =?utf-8?B?WmVEeENtNGVvRUloUUZBRVpINmZjUXNlaStoTW8yMmdQK3BzS2xlT1JYYytY?=
- =?utf-8?B?QkQ0dmZJdVovVXJ6R1RsWHdIY3FBMGVUT3NqMEV0WHg2SzJuekdVUkNWY1JX?=
- =?utf-8?B?WmNZSDVHUEEvTUt6ekRLVWxIQmJFS1lFRUxIRm45Zkd4dUhObE1Fd2loM0ZI?=
- =?utf-8?B?TWw1WUZqWFNkaGVyN1dOUVUzVW9WY3hKMWY3NC9SWWlzRFhQSG1XZ1Z1RkNJ?=
- =?utf-8?B?VnI1dTczdkRqaXAxeUQwcmZmSVQzK1d5RVJ1QVVUS29FV1VwMGRVN3dKM2gy?=
- =?utf-8?B?YmdiS3NjaEJ0eTk0aWlwVG1FK1RDdmNUSHAzdU5zWDJPV1FRMDVsZ2s0YXh2?=
- =?utf-8?B?alo5NmZKVEkwTkR1djhjZVRvUzArYnBoNlZJcVhpSG1KS1hTKzVhY0hZRXE3?=
- =?utf-8?Q?2mgn1lbruiqL7Pvs/sIlKNVy3JXzsEEL?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SJ1PR11MB6129.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(7416014)(376014)(1800799024)(7053199007); DIR:OUT;
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9499.4; Thu, 8 Jan
+ 2026 14:13:49 +0000
+Received: from CYYPR11MB8430.namprd11.prod.outlook.com
+ ([fe80::1d86:a34:519a:3b0d]) by CYYPR11MB8430.namprd11.prod.outlook.com
+ ([fe80::1d86:a34:519a:3b0d%5]) with mapi id 15.20.9499.003; Thu, 8 Jan 2026
+ 14:13:49 +0000
+From: "Vivi, Rodrigo" <rodrigo.vivi@intel.com>
+To: "marco.crivellari@suse.com" <marco.crivellari@suse.com>
+CC: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "airlied@gmail.com" <airlied@gmail.com>, "tj@kernel.org" <tj@kernel.org>,
+ "mhocko@suse.com" <mhocko@suse.com>, "simona@ffwll.ch" <simona@ffwll.ch>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "frederic@kernel.org" <frederic@kernel.org>, "jiangshanlai@gmail.com"
+ <jiangshanlai@gmail.com>, "linux-kernel@vger.kernel.org"
+ <linux-kernel@vger.kernel.org>, "bigeasy@linutronix.de"
+ <bigeasy@linutronix.de>, "lucas.demarchi@intel.com"
+ <lucas.demarchi@intel.com>, "thomas.hellstrom@linux.intel.com"
+ <thomas.hellstrom@linux.intel.com>
+Subject: Re: [PATCH v2 1/2] drm/xe: replace use of system_unbound_wq with
+ system_dfl_wq
+Thread-Topic: [PATCH v2 1/2] drm/xe: replace use of system_unbound_wq with
+ system_dfl_wq
+Thread-Index: AQHcTOQzs+I7GoXvTU+REq/ekOb0s7VIq6oAgAAEioCAAAgGAA==
+Date: Thu, 8 Jan 2026 14:13:49 +0000
+Message-ID: <d17704763f2abbb546574f2ae951e439bc7af48b.camel@intel.com>
+References: <20251103170604.310895-1-marco.crivellari@suse.com>
+ <20251103170604.310895-2-marco.crivellari@suse.com>
+ <aV-xEjo5ejSM73DN@intel.com>
+ <CAAofZF4_uV+78JWq2FLaezv4qaVK7BiyVLXmXNtaPXB_jhvDYQ@mail.gmail.com>
+In-Reply-To: <CAAofZF4_uV+78JWq2FLaezv4qaVK7BiyVLXmXNtaPXB_jhvDYQ@mail.gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Evolution 3.56.2 (3.56.2-2.fc42) 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: CYYPR11MB8430:EE_|LV3PR11MB8577:EE_
+x-ms-office365-filtering-correlation-id: 57d40f0b-a0b7-415d-6cbd-08de4ec02532
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|7416014|376014|1800799024|366016|38070700021; 
+x-microsoft-antispam-message-info: =?utf-8?B?M3BiQ3JmSk5xNDdTVDlzZHVJQ2puU3FDYTV4Zm05aysrNzlhdHhPby9xTjAr?=
+ =?utf-8?B?VkZxRVJaeDUvSUdmaEpSd3craE10SGV3R0lveTA5blE2UmRicWlJYnNyTS9T?=
+ =?utf-8?B?T0tOcXh0SVRrTXdYQUhTamZXMldsQVZQejJhYmR4OUJuL0lmd0I4OGJZN0NT?=
+ =?utf-8?B?ME5IckwxMGhOM09QaGUxdWQ1WWZSRVdTVzFHL2luRUlzenYrZ1BSV0dlank4?=
+ =?utf-8?B?Mmtxd1Zhc3V4QXJ2d3VRZFQrRVhMWHJLdXdhY0k4QSt1bTZQOU1Rc1IvOVUy?=
+ =?utf-8?B?anhFQnptVVhhK2kxYktQMjRVYW5YVDZ4dUYwT2pMWEY2cEhESzhVUHhCcEYw?=
+ =?utf-8?B?VEdYSFpZa2JqOWxPRUZ6UTJPREV6dnNqRnpYYmY2cEVQK3BRa3kxRzlNMWhu?=
+ =?utf-8?B?RjhvSXllZWF6VWpoYUZSU2ovdHlScjZpMkFLR09zZSt0M0c5M0ROL0FlK29x?=
+ =?utf-8?B?aE1KNU9sRStqSS9NdUh6Y29nVzNkMUFmejRGTEhUUjdCTytCeTB4Sm5WOThW?=
+ =?utf-8?B?dTgwOHpNVkJjMW9oMjNJTThHNHBVWXprV1UxSGw5L3hrSG03NkkzN3d1ODJR?=
+ =?utf-8?B?OXo0MjFhV0tVaGY1OHVkWWtHTGJsbWkrWXVuNTVrY2xIWTZieFloOWlSRy80?=
+ =?utf-8?B?djFGQ0ZDRVE5VFd3LzY3anErMnNuOTNOd3pqUWwzSkR1Tm9YVDdPMHp4Mi9F?=
+ =?utf-8?B?UUt1eHdaQ0tINUtJZm1zdkJlZTUwWDZzeHJEYmVtcmpCSk12UVFxVkdSVlVy?=
+ =?utf-8?B?aDVaRm5xQUhlem9VLzZHTnp2c29mU3pmUGNBM1VGUUZNcThpblpkZURRVmJI?=
+ =?utf-8?B?N3BVYUVGZTM2blUvaXpZVWJVQ1hvTjVHM21HajNTaFdVVkk0VVh2bDJjTzJ3?=
+ =?utf-8?B?VzBjK2V0dGRpaWRIUDdhQklicTM2WFhqZzVDekdrSkM0bWR0V3I1WVAxbUpK?=
+ =?utf-8?B?YnZ0N3ZnMlVjYWFReldtVWs2OUFzZVZjMDZGNmp4S2RtZzdYalUwT2lIYldV?=
+ =?utf-8?B?alBHS0hYeitueFQydTFWd3ROT254TTFSWEZpSTFvUlRHU3Z4d25EQ2Z4MkEx?=
+ =?utf-8?B?STRUOXhmTDUyTXZKV2Q0MGJvaWozdXhuWXFIM0NxeDQ5ZzhiRnBxbERpaWhi?=
+ =?utf-8?B?d1gwVDRSYzJrT3ZqekVNYzJOS1RuYU5QaGU5TjVxMnJmdkZxMjZlRzd6cUgx?=
+ =?utf-8?B?ZTZoL2VJaGYzZmhJbkF5Qm5QODhpNks4Y01SYzY1RGxhKzdEWk1Xcjl3QXVY?=
+ =?utf-8?B?Zi9vMUFaTlNyeFg0KzA2NFEveGsvRWJkUXJ1OFpnWXdXQ0RkN1ZJZm1DVGtz?=
+ =?utf-8?B?amIyUWcxSll6clBkNkNEKzc5UWFXd3NlU21CaU5KZlhaaGx0L1ppSVo2YUk0?=
+ =?utf-8?B?SklkNDFZMUpkajBWS0JUZmNiTE5zV2lraXFSMDRwNG5kQ2JaT0pNa3k4dHVa?=
+ =?utf-8?B?cjdYRTV3TWlRTnNLSDZtTU5Kb3VQNm1DdUt0MTk0cWxIRHZxd0t5eGo1dXNY?=
+ =?utf-8?B?RW9hYXpWa01VSXpPUElZR1kyblhvd0p2THZSTnZaRVdoc25VbHkzK0JoakNu?=
+ =?utf-8?B?cE1vWGpBcDJqUEpXbjNRVGsvUWtvYWxJT0FONFd4cjRzTjBZOWFkdGN4OHlu?=
+ =?utf-8?B?dHh4eEtQRHgyTEpCNVF5R2tZNlNDSTNDZzhya2I5L3BNSFg5R2x5VEtqaFRK?=
+ =?utf-8?B?VEQ0SHNFcUExSENsYnNlelFBSTFEOVoycHdjU2JLbXM2NGdWWmJnc0VZeng0?=
+ =?utf-8?B?Y2lxWG8yREdVa3cxQTF1VUR6V2QveUoycVZNY3hWSlpZaFh2MDBORnZLNFd1?=
+ =?utf-8?B?R2haTS9kdVUvcmJkUyt1UmVhbWdFUm03Ujl4RUl5MXZ6YWtzbmZtOTBqdUtT?=
+ =?utf-8?B?TldQdktmWDlLaEpueld4YnBZSnBvUlRFdnNjK3ZVeXRlRUJjNGR5aW51aTFU?=
+ =?utf-8?B?bGdlbitha055RFJld1VWbVdMTGRUNEQxL09CWmVsbmxJZVFNS0N4TmVKSXAy?=
+ =?utf-8?B?TEptaHN6YXNjbkJ1TzBXZVh5ZWlhWmJ6K0xTeEpYbkorL2dHeCtSZ000alFB?=
+ =?utf-8?Q?C/U790?=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CYYPR11MB8430.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(7416014)(376014)(1800799024)(366016)(38070700021); DIR:OUT;
  SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?clRuUnFpRHUwK0dCcHA0SEt2bUErWUorRGhraWFRdFlYclhRbCtMYnVrQjg3?=
- =?utf-8?B?VWVsVXBzQ2ptSldhZGFHSlNQZUJJRk0rbnA3cGV4MTk4UjZNV3FpVDNLVDg3?=
- =?utf-8?B?Rzd6V29oT3pna0l4M0lsK2xZRUZ1Q1RSd0ZQOFRHMS9JQy82Q09MZGZjN0Qx?=
- =?utf-8?B?SlFvNmtZNUxMMTcyenpMSGlkSWhGZzcwdjRIYzd0cVFZMmRLVTI3eElXcEM2?=
- =?utf-8?B?cHA1YjdrUGdkc1FPQTd2MFhFajRMTWg3K0VhLzlZczJOeUc5eWFJK0dhdGU5?=
- =?utf-8?B?aFNQaG1VaC80QzVEcVlvR0J5aVp5eGZIT01veDUrS0VGTWd1Q1ZEYVBra2ZH?=
- =?utf-8?B?NjEwclJLZzdjUldTSEl5a2d5K1RxSkxBbFprYk92TXBkd2NLVHEvSjkxZlNC?=
- =?utf-8?B?TTZYcE53T3JvRk9mdW5paml6V2NLSVlVQUJRSnhDWG8vdzVHTVo2Zy9OTGYz?=
- =?utf-8?B?Y1g3MkJacTB5TDdqUnRQaFhidDhkQWxXb2JXTHpER1BCY0w0Y0VRNXNaZFBU?=
- =?utf-8?B?OWVCRy9pOWs1dE9CWUVKOXBpaWhlVmg3YXhmdyszdDJDeHFmb1FrSld2NEo4?=
- =?utf-8?B?RmZ0RE13R0U2bHZJQldhUFZ0aDFVYkFuQWxadFFHaDk0bGxCZWQzVGd1Tjhp?=
- =?utf-8?B?YkVtRzIwdWE2elROZlhCS0VnU2tNMDdCV3Nqc2VkT2tNakFtbXdFZFJJTHd4?=
- =?utf-8?B?RGY5VzFidGl4cVFCb2laaXNYWEdRRVRuV2thS2xMTE1Ubi9TaW9taGZLelBz?=
- =?utf-8?B?WkhEZ2xQWmY0b1Vsc1NxYVRwZ3gzdHNXRUlkU2ViUndtUW9EYXJKd3VGczIv?=
- =?utf-8?B?dzFUbmVVVFBaQlNHbksrN2loVEpKNEREbENESTA2Uy85Yi9iVU5FRmJuNmJQ?=
- =?utf-8?B?aWo1SzdjSExrb0VIaGZZTjBHWG56Wmc3dGkxWklSeGJKOThBNk1qNjlFOUNo?=
- =?utf-8?B?ZU42QlE4alkxM2ZWdkhERlZVZlk3ell0WG5DT3Ywa1FPUGhySC9tSVN6RE5u?=
- =?utf-8?B?cEVnckJRYjRKM1VTKy9rQXRzbXdQNkRLSGFTTGRUTlErcTVsZ1hmSEpFa1Ev?=
- =?utf-8?B?WnlGS2FxRW9JZG4zd2NMU0ZRRFg0R00vTmNXdTJpU3QzMnFHTmZ0dlozd2Nr?=
- =?utf-8?B?bThZTjZWLzVoNlBaTDVQSUh5cFBPaE45NHd0N1cydzRaQWFMWTd1ZlN6Q1dS?=
- =?utf-8?B?L21ZV0h3Ym5vd1dJcHo2K1JoYU1OT2RFS1J1bkl2aGV4VytvdmFiTTF1ckJP?=
- =?utf-8?B?YlE2TCtlaWdYZThadlppMG5lWkY1ZFJZL1ZBWlZWWG15ODM1YjVra1QxUS9z?=
- =?utf-8?B?YmhTdGx2UGFIQkFyS21oZGZyZU5EaHBEOEc4NXhHUVdMRElPTm0zSFZkSjd0?=
- =?utf-8?B?MVI4R0RvazJ4c2hmR3d1Q3MwcVBRM2dWdml0UGhsNmNyZW5SY2t1emJ2c3JP?=
- =?utf-8?B?NlFGaDVTZTNxbXl4Vm1KODZPak91Nnl4ZUFTekRTMlk2dDUwak0zM1RxNmJL?=
- =?utf-8?B?UWtISFV4WTB5S0JKb3BhUm9hMU9tSkdsMU5MZHRPUkF5MHM5VUJwaW5rSE1w?=
- =?utf-8?B?TEtqMkgxaklRalNkZ2hYVnA3WXhESkc4ZjhrY1BCQ05rQlBCYXRocWQ1OCtv?=
- =?utf-8?B?V0k5dGNRcnpxVXRTNEVSYXh2ejZNN2F6cklWeDZKdFUwOUZWd0xxZ3hVaWMw?=
- =?utf-8?B?anQ1eWpFd3hUWkwvYkRiRGNKR2JUNkx3RWo2YldmeGowZXptQk1RaVI3eXBP?=
- =?utf-8?B?aFBjUmtZRHhYbk1CY2VnN1d2YWlRWS83VWwrTFFRSlU3S1JEMFVPaktuamRM?=
- =?utf-8?B?Uk5WaEZkbVFtZWJMTVRRb3p5MXlZNDFmYW4xWkdyZmI1bVFmbXI2bkloSWpY?=
- =?utf-8?B?TEJ6ZjQ1VjA1RGlseDZTVWRwMnJFRC9yK0Y3TERaeHdQdXJoNktTRmhzb25q?=
- =?utf-8?B?RGhVdzY3VlgzOTV5WkRzbVVGQ3JjNFYyNlJ4cDRKeGlTa2dKbmphMjBHbVdu?=
- =?utf-8?B?dHhQdCtiUzB3ZWFIMnZueXp1OTFzQWpqMGJZenVJeFdLTWZaZllGVWd3MFRZ?=
- =?utf-8?B?ZWppb1hVaCtKSTdEcVh4WGxDTzRTTTV2ZUdqa1pNRm9saTRvNkR0bFo2RXh1?=
- =?utf-8?B?WFI0Um1Vdzd3b21kYlZXYXdPKzJJTVBnUFdVdnVmUHNiOUZka2YwWWJoTkFT?=
- =?utf-8?B?S2tpd1FNNjNWbG5BS0VCNFptSkdCaFFrNy9CRzYzdmttOWxCajQyUFBIQi9u?=
- =?utf-8?B?N255TXJ2OVo5c3hLYitLdWd6WWxtUnVVS2tJTUFDVm5md3MvRWVtNFpHUklL?=
- =?utf-8?B?elJlRDU3SjFZa2hTOEUxZ1FtVXM2Y29pTy9KaHgwUDR2SDdQbXR4QjEyLzV0?=
- =?utf-8?Q?cy2SabP8rQc8HqfQ=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3eb9c801-b954-4777-041f-08de4ebfe60c
-X-MS-Exchange-CrossTenant-AuthSource: SJ1PR11MB6129.namprd11.prod.outlook.com
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?eXFMdTBvK2lHekhvdktzbzRYdG4xVUh3UzZVZURuZXVvMTBCL1dCR0E1aTd2?=
+ =?utf-8?B?WTlhOEcrK3NaaDkyNlR2dG1Pc1c3UW5UdVRIY1BKYWJoaStqNXNuRGhKK3ow?=
+ =?utf-8?B?bTZLRmd6bDdFYit1eEJ0TFhDREZRU1QwK056cnBVeGVVYnRGYVJYdTRqMGd2?=
+ =?utf-8?B?RXFtWnNDN0NKUjZKVlJacm15K0l4LzNwUXhpS0FqSzhxMDVEQXUxZ2gwWmZo?=
+ =?utf-8?B?b21pZXRaRUtNMHV1RUQzUkI0aWRjYmhRTU1SdDNzSHA4WmR3TUJQQi9SdGtO?=
+ =?utf-8?B?ZTBxcVZRMkdxdzNFRE9TSUVSSVJTNzdFK05pRUQvSmltVkU2c0J1UDNxLzQy?=
+ =?utf-8?B?YmVXUnJLclNHQVVJVk5sSkp3MUcvN2o1VnNyNVNuQnpURkpkOUhVME44MW12?=
+ =?utf-8?B?Y240OXZPRVMxTVZ6Z3M5SWVWcml4cTd3OGh1a3NiWExRd3pmVXdJclIrQldT?=
+ =?utf-8?B?blNqYlRlSmFhS2NERCtZcnYycmRwYU8yTEMyN2dhbDF4bFArZnZDT3pxeVJp?=
+ =?utf-8?B?MEtQOHlHUUhaRldUeFZva3k1T2pWZjA5WE1wU2xYOGEvZ3NrMjBwdUhPSmZx?=
+ =?utf-8?B?ZWU4S2tscEFoVk50a2REQk1lZnRZMUg0RVMzZ2oxU05QMEhUL2xYMlhscXNB?=
+ =?utf-8?B?VTQ5c21KK01reFBleTNnL1RVZC9jTnZlSDhBNE9MVzBMSHFWLzJvOFlOQzlD?=
+ =?utf-8?B?aUNpdWN3elhERFhFdUgrRlorLzV2UUx6ZDdRL0Z3NFdkYkxhUUNtSXlVU3dK?=
+ =?utf-8?B?cVVKUWoxN0hSUGg2dlgrNHdWbjdjQU43UHVaOUEwREZhY1B5dnprZjFFOGVE?=
+ =?utf-8?B?ekNYbW9QVDV3L0FzYUdnN21XaUxlbXE3aytWWkNrVjRsY25qOHo2R1VmSFlT?=
+ =?utf-8?B?K2tsWGM2VmZPRHRwMlIwQ2VLak9iQ0MrcjVYenpXdkRjRUg4cWRHLy9mS29h?=
+ =?utf-8?B?dnJWK0MyYnY4TVhueGJHMVlIVC9hU1Jac0JSc0FVQnhCajJ5dkVCem9IcDZF?=
+ =?utf-8?B?THRsWGhnV0xoNkZ1VWZqa2ZieGJXRlA3WmRsR1o4bEZaV2hjdFRFazhIZVUv?=
+ =?utf-8?B?Q2JTZUVVT2xSYUdXdExybmxLU1R2bXZlSFFQdm9IQXc0dkU5ZHUyWVJuZEgv?=
+ =?utf-8?B?bVlGZDBOOU5lT2RpVjJtbitWa2twaTlhT2lodFMyV1hZMVZDMkplQTBlMEtF?=
+ =?utf-8?B?OE00SXB5aDlHaFlYZEZpYzRzQU9IajZXZTYyZDRkMUMrTWxNdEx1RHpiUVFK?=
+ =?utf-8?B?NVRDTklOdmVleE01UHJ3SlNGWkN0VEJTaC9MSWN2WTk0ekljaC9VZXo4WDFa?=
+ =?utf-8?B?MkloZ3NsQTNqbjVzYWNwd3V4ZkIyejUzSHYrQ3RrcnVoZzFCeUEwWkhEdEgx?=
+ =?utf-8?B?SlhMN0tUaExDSnVYbnVQVXpHTm12QVRmcGhRa0FmOGw4NHJHaW9SRk1sMWZo?=
+ =?utf-8?B?N0t4SWlaZWhZdGVpTVJ5cDFvcWVQT29nSm15enFjbFdZeTBvemFKaGVuYUhR?=
+ =?utf-8?B?MEJybVhJU3pPNjF0RXUwR2VPZUh3RndZNi9kWkVBN3BOUTU3eUR5WFpZOHF5?=
+ =?utf-8?B?QWF3RG5qaW9sR0VPSUV5cVljUjd3YXFMeklOU0t5SWV4NTRwU2piT0M2YS96?=
+ =?utf-8?B?QzQ2bGJiaThmRGZ3RkdwZ21YVjBjUTVqS3Y0Vm5ZYk5sVnFJRzZvcCtSYzJJ?=
+ =?utf-8?B?byt3bnBXdWZ4SFkwUTFFWTRZSUxld1gwM3F1Z2RWdXRFMTFBbzFodnJaWU4v?=
+ =?utf-8?B?R0s5cWdGaHBhc2JlWmJoc0l5MUZ3NXNIcnRyVnRwdmVYVXZyMTg3NTNqaEpp?=
+ =?utf-8?B?em5SSnFwdS9NNUpOcVRuZmJzYnhhYlJuazUxS1pPTWFNdkxKRmJWUGQvZnBU?=
+ =?utf-8?B?b1lrb1JvRGRGRmNtaWJPSmQzTnBCcE5VV0UzTkZpOFVYMDFLK1NVSEhycnBa?=
+ =?utf-8?B?YnZob3BnOEN3MDU2RGR3ZHhhUXRMU0R0TVNKR3dzVjZYTnhYMlRxdFVQcGpC?=
+ =?utf-8?B?SDRCaEpyWlp4aVpRbnB4T05ZTWYwWXQ5U2tnWEJiMmwveWptN0VQUmxUNGZj?=
+ =?utf-8?B?WEZnYjd5UUFMZ25JSG8xOVRhdHdZenlOSzJwL3dzNXJ5bEoyaVpkeC9hNDBv?=
+ =?utf-8?B?WjNXZEhnOTVmMmZ0SHJjNlJYK2hYdVZVVTFtUWpzY08zbWZxUm9tcXY2MmF6?=
+ =?utf-8?B?bzIvN01hT2Vkckc5S0hVaU9LMVZ5Q3BDU1h3Q2RiYTlYWXdyTThaZUJ1aStS?=
+ =?utf-8?B?S01zVTEvaHFQQnFXN2JlZFRWT0NvNmdPemNMMGZqQ1crWm5VTFBmUHBHb0FF?=
+ =?utf-8?B?UGNtUHdwcEhrZW1HUXlMTm5OdityOHNqSm1LSXo3TThKczhuc1N6bG13dG1t?=
+ =?utf-8?Q?Q8l47XkFUkh0cNq0=3D?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <64C9EAF1C08C124BAC26C6A2CE3320D8@namprd11.prod.outlook.com>
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jan 2026 14:12:04.2635 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: iSgLDIedWx3NHGfFxnnVVnRKPhVvZZPnigDDKi6qdybznV2UBKEifxSUGIEw0o0BD+EoFgwTSkxUYzrqDNDUemBFt/gD6hFxSmTNDlX1LXY=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB6914
+X-MS-Exchange-CrossTenant-AuthSource: CYYPR11MB8430.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 57d40f0b-a0b7-415d-6cbd-08de4ec02532
+X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Jan 2026 14:13:49.7303 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: mwU3xPPHiWML/mwQst+OZFdi8KlobGCWFGSYhO13GdlBHztMEW7P099Aq4i8EwNm+ac++cxQEKCJA0Qha2uo4w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV3PR11MB8577
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -208,448 +218,59 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-
-On 1/7/2026 5:32 AM, Alex Hung wrote:
-> It is a nitpick, but is it better to have patch 6 first, and then 
-> separate changes to drm to a single patch, and move the changes in 
-> amdgpu, vkms and i915 in the following corresponding patches (7, 8 and 9)?
-> 
-> We can avoid passing NULL to struct drm_colorop_funcs *funcs.
-
-Thank you very much, Alex, for the review.
-
-I structured the patches this way to keep each patch buildable and to 
-keep the existing behavior intact until all changes are in place.
-
-Once the prototypes of the init functions are changed, all call sites 
-need to be updated. I couldn’t find a way to keep the DRM changes 
-isolated while also preserving per-patch buildability. If I am missing 
-something here, please let me know. I can respin accordingly.
-
-In any case, I can move patch 6 ahead of this one.
-
-==
-Chaitanya
-
-> 
-> Otherwise it looks good to me.
-> 
-> Reviewed-by: Alex Hung <alex.hung@amd.com>
-> 
-> On 12/18/25 23:56, Chaitanya Kumar Borah wrote:
->> Some drivers might want to embed struct drm_colorop inside
->> driver-specific objects, similar to planes or CRTCs. In such
->> cases, freeing only the drm_colorop is incorrect.
->>
->> Add a drm_colorop_funcs callback to allow drivers to provide a destroy
->> hook that cleans up the full enclosing object. Make changes in helper
->> functions to accept helper functions as argument. Pass NULL for now
->> to retain current behavior.
->>
->> Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
->> ---
->>   .../amd/display/amdgpu_dm/amdgpu_dm_colorop.c | 18 ++++++-----
->>   drivers/gpu/drm/drm_colorop.c                 | 31 +++++++++++++------
->>   .../drm/i915/display/intel_color_pipeline.c   |  8 ++---
->>   drivers/gpu/drm/vkms/vkms_colorop.c           | 10 +++---
->>   include/drm/drm_colorop.h                     | 30 +++++++++++++++---
->>   5 files changed, 66 insertions(+), 31 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_colorop.c 
->> b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_colorop.c
->> index a2de3bba8346..dfdb4fb4219f 100644
->> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_colorop.c
->> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_colorop.c
->> @@ -72,7 +72,7 @@ int amdgpu_dm_initialize_default_pipeline(struct 
->> drm_plane *plane, struct drm_pr
->>           goto cleanup;
->>       }
->> -    ret = drm_plane_colorop_curve_1d_init(dev, ops[i], plane,
->> +    ret = drm_plane_colorop_curve_1d_init(dev, ops[i], plane, NULL,
->>                             amdgpu_dm_supported_degam_tfs,
->>                             DRM_COLOROP_FLAG_ALLOW_BYPASS);
->>       if (ret)
->> @@ -89,7 +89,7 @@ int amdgpu_dm_initialize_default_pipeline(struct 
->> drm_plane *plane, struct drm_pr
->>           goto cleanup;
->>       }
->> -    ret = drm_plane_colorop_mult_init(dev, ops[i], plane, 
->> DRM_COLOROP_FLAG_ALLOW_BYPASS);
->> +    ret = drm_plane_colorop_mult_init(dev, ops[i], plane, NULL, 
->> DRM_COLOROP_FLAG_ALLOW_BYPASS);
->>       if (ret)
->>           goto cleanup;
->> @@ -104,7 +104,8 @@ int amdgpu_dm_initialize_default_pipeline(struct 
->> drm_plane *plane, struct drm_pr
->>           goto cleanup;
->>       }
->> -    ret = drm_plane_colorop_ctm_3x4_init(dev, ops[i], plane, 
->> DRM_COLOROP_FLAG_ALLOW_BYPASS);
->> +    ret = drm_plane_colorop_ctm_3x4_init(dev, ops[i], plane, NULL,
->> +                         DRM_COLOROP_FLAG_ALLOW_BYPASS);
->>       if (ret)
->>           goto cleanup;
->> @@ -120,7 +121,7 @@ int amdgpu_dm_initialize_default_pipeline(struct 
->> drm_plane *plane, struct drm_pr
->>               goto cleanup;
->>           }
->> -        ret = drm_plane_colorop_curve_1d_init(dev, ops[i], plane,
->> +        ret = drm_plane_colorop_curve_1d_init(dev, ops[i], plane, NULL,
->>                           amdgpu_dm_supported_shaper_tfs,
->>                           DRM_COLOROP_FLAG_ALLOW_BYPASS);
->>           if (ret)
->> @@ -137,7 +138,8 @@ int amdgpu_dm_initialize_default_pipeline(struct 
->> drm_plane *plane, struct drm_pr
->>               goto cleanup;
->>           }
->> -        ret = drm_plane_colorop_curve_1d_lut_init(dev, ops[i], plane, 
->> MAX_COLOR_LUT_ENTRIES,
->> +        ret = drm_plane_colorop_curve_1d_lut_init(dev, ops[i], plane, 
->> NULL,
->> +                            MAX_COLOR_LUT_ENTRIES,
->>                               DRM_COLOROP_LUT1D_INTERPOLATION_LINEAR,
->>                               DRM_COLOROP_FLAG_ALLOW_BYPASS);
->>           if (ret)
->> @@ -154,7 +156,7 @@ int amdgpu_dm_initialize_default_pipeline(struct 
->> drm_plane *plane, struct drm_pr
->>               goto cleanup;
->>           }
->> -        ret = drm_plane_colorop_3dlut_init(dev, ops[i], plane, 
->> LUT3D_SIZE,
->> +        ret = drm_plane_colorop_3dlut_init(dev, ops[i], plane, NULL, 
->> LUT3D_SIZE,
->>                       DRM_COLOROP_LUT3D_INTERPOLATION_TETRAHEDRAL,
->>                       DRM_COLOROP_FLAG_ALLOW_BYPASS);
->>           if (ret)
->> @@ -172,7 +174,7 @@ int amdgpu_dm_initialize_default_pipeline(struct 
->> drm_plane *plane, struct drm_pr
->>           goto cleanup;
->>       }
->> -    ret = drm_plane_colorop_curve_1d_init(dev, ops[i], plane,
->> +    ret = drm_plane_colorop_curve_1d_init(dev, ops[i], plane, NULL,
->>                             amdgpu_dm_supported_blnd_tfs,
->>                             DRM_COLOROP_FLAG_ALLOW_BYPASS);
->>       if (ret)
->> @@ -189,7 +191,7 @@ int amdgpu_dm_initialize_default_pipeline(struct 
->> drm_plane *plane, struct drm_pr
->>           goto cleanup;
->>       }
->> -    ret = drm_plane_colorop_curve_1d_lut_init(dev, ops[i], plane, 
->> MAX_COLOR_LUT_ENTRIES,
->> +    ret = drm_plane_colorop_curve_1d_lut_init(dev, ops[i], plane, 
->> NULL, MAX_COLOR_LUT_ENTRIES,
->>                             DRM_COLOROP_LUT1D_INTERPOLATION_LINEAR,
->>                             DRM_COLOROP_FLAG_ALLOW_BYPASS);
->>       if (ret)
->> diff --git a/drivers/gpu/drm/drm_colorop.c b/drivers/gpu/drm/ 
->> drm_colorop.c
->> index 44eb823585d2..efe61bdd9b24 100644
->> --- a/drivers/gpu/drm/drm_colorop.c
->> +++ b/drivers/gpu/drm/drm_colorop.c
->> @@ -93,7 +93,8 @@ static const struct drm_prop_enum_list 
->> drm_colorop_lut3d_interpolation_list[] =
->>   /* Init Helpers */
->>   static int drm_plane_colorop_init(struct drm_device *dev, struct 
->> drm_colorop *colorop,
->> -                  struct drm_plane *plane, enum drm_colorop_type type,
->> +                  struct drm_plane *plane, const struct 
->> drm_colorop_funcs *funcs,
->> +                  enum drm_colorop_type type,
->>                     uint32_t flags)
->>   {
->>       struct drm_mode_config *config = &dev->mode_config;
->> @@ -109,6 +110,7 @@ static int drm_plane_colorop_init(struct 
->> drm_device *dev, struct drm_colorop *co
->>       colorop->type = type;
->>       colorop->plane = plane;
->>       colorop->next = NULL;
->> +    colorop->funcs = funcs;
->>       list_add_tail(&colorop->head, &config->colorop_list);
->>       colorop->index = config->num_colorop++;
->> @@ -203,6 +205,7 @@ EXPORT_SYMBOL(drm_colorop_pipeline_destroy);
->>    * @dev: DRM device
->>    * @colorop: The drm_colorop object to initialize
->>    * @plane: The associated drm_plane
->> + * @funcs: control functions for the new colorop
->>    * @supported_tfs: A bitfield of supported 
->> drm_plane_colorop_curve_1d_init enum values,
->>    *                 created using BIT(curve_type) and combined with 
->> the OR '|'
->>    *                 operator.
->> @@ -210,7 +213,8 @@ EXPORT_SYMBOL(drm_colorop_pipeline_destroy);
->>    * @return zero on success, -E value on failure
->>    */
->>   int drm_plane_colorop_curve_1d_init(struct drm_device *dev, struct 
->> drm_colorop *colorop,
->> -                    struct drm_plane *plane, u64 supported_tfs, 
->> uint32_t flags)
->> +                    struct drm_plane *plane, const struct 
->> drm_colorop_funcs *funcs,
->> +                    u64 supported_tfs, uint32_t flags)
->>   {
->>       struct drm_prop_enum_list enum_list[DRM_COLOROP_1D_CURVE_COUNT];
->>       int i, len;
->> @@ -231,7 +235,7 @@ int drm_plane_colorop_curve_1d_init(struct 
->> drm_device *dev, struct drm_colorop *
->>           return -EINVAL;
->>       }
->> -    ret = drm_plane_colorop_init(dev, colorop, plane, 
->> DRM_COLOROP_1D_CURVE, flags);
->> +    ret = drm_plane_colorop_init(dev, colorop, plane, funcs, 
->> DRM_COLOROP_1D_CURVE, flags);
->>       if (ret)
->>           return ret;
->> @@ -288,20 +292,23 @@ static int drm_colorop_create_data_prop(struct 
->> drm_device *dev, struct drm_color
->>    * @dev: DRM device
->>    * @colorop: The drm_colorop object to initialize
->>    * @plane: The associated drm_plane
->> + * @funcs: control functions for new colorop
->>    * @lut_size: LUT size supported by driver
->>    * @interpolation: 1D LUT interpolation type
->>    * @flags: bitmask of misc, see DRM_COLOROP_FLAG_* defines.
->>    * @return zero on success, -E value on failure
->>    */
->>   int drm_plane_colorop_curve_1d_lut_init(struct drm_device *dev, 
->> struct drm_colorop *colorop,
->> -                    struct drm_plane *plane, uint32_t lut_size,
->> +                    struct drm_plane *plane,
->> +                    const struct drm_colorop_funcs *funcs,
->> +                    uint32_t lut_size,
->>                       enum drm_colorop_lut1d_interpolation_type 
->> interpolation,
->>                       uint32_t flags)
->>   {
->>       struct drm_property *prop;
->>       int ret;
->> -    ret = drm_plane_colorop_init(dev, colorop, plane, 
->> DRM_COLOROP_1D_LUT, flags);
->> +    ret = drm_plane_colorop_init(dev, colorop, plane, funcs, 
->> DRM_COLOROP_1D_LUT, flags);
->>       if (ret)
->>           return ret;
->> @@ -339,11 +346,12 @@ int drm_plane_colorop_curve_1d_lut_init(struct 
->> drm_device *dev, struct drm_color
->>   EXPORT_SYMBOL(drm_plane_colorop_curve_1d_lut_init);
->>   int drm_plane_colorop_ctm_3x4_init(struct drm_device *dev, struct 
->> drm_colorop *colorop,
->> -                   struct drm_plane *plane, uint32_t flags)
->> +                   struct drm_plane *plane, const struct 
->> drm_colorop_funcs *funcs,
->> +                   uint32_t flags)
->>   {
->>       int ret;
->> -    ret = drm_plane_colorop_init(dev, colorop, plane, 
->> DRM_COLOROP_CTM_3X4, flags);
->> +    ret = drm_plane_colorop_init(dev, colorop, plane, funcs, 
->> DRM_COLOROP_CTM_3X4, flags);
->>       if (ret)
->>           return ret;
->> @@ -363,16 +371,18 @@ EXPORT_SYMBOL(drm_plane_colorop_ctm_3x4_init);
->>    * @dev: DRM device
->>    * @colorop: The drm_colorop object to initialize
->>    * @plane: The associated drm_plane
->> + * @funcs: control functions for the new colorop
->>    * @flags: bitmask of misc, see DRM_COLOROP_FLAG_* defines.
->>    * @return zero on success, -E value on failure
->>    */
->>   int drm_plane_colorop_mult_init(struct drm_device *dev, struct 
->> drm_colorop *colorop,
->> -                struct drm_plane *plane, uint32_t flags)
->> +                struct drm_plane *plane, const struct 
->> drm_colorop_funcs *funcs,
->> +                uint32_t flags)
->>   {
->>       struct drm_property *prop;
->>       int ret;
->> -    ret = drm_plane_colorop_init(dev, colorop, plane, 
->> DRM_COLOROP_MULTIPLIER, flags);
->> +    ret = drm_plane_colorop_init(dev, colorop, plane, funcs, 
->> DRM_COLOROP_MULTIPLIER, flags);
->>       if (ret)
->>           return ret;
->> @@ -391,6 +401,7 @@ EXPORT_SYMBOL(drm_plane_colorop_mult_init);
->>   int drm_plane_colorop_3dlut_init(struct drm_device *dev, struct 
->> drm_colorop *colorop,
->>                    struct drm_plane *plane,
->> +                 const struct drm_colorop_funcs *funcs,
->>                    uint32_t lut_size,
->>                    enum drm_colorop_lut3d_interpolation_type 
->> interpolation,
->>                    uint32_t flags)
->> @@ -398,7 +409,7 @@ int drm_plane_colorop_3dlut_init(struct drm_device 
->> *dev, struct drm_colorop *col
->>       struct drm_property *prop;
->>       int ret;
->> -    ret = drm_plane_colorop_init(dev, colorop, plane, 
->> DRM_COLOROP_3D_LUT, flags);
->> +    ret = drm_plane_colorop_init(dev, colorop, plane, funcs, 
->> DRM_COLOROP_3D_LUT, flags);
->>       if (ret)
->>           return ret;
->> diff --git a/drivers/gpu/drm/i915/display/intel_color_pipeline.c b/ 
->> drivers/gpu/drm/i915/display/intel_color_pipeline.c
->> index 04af552b3648..d3d73d60727c 100644
->> --- a/drivers/gpu/drm/i915/display/intel_color_pipeline.c
->> +++ b/drivers/gpu/drm/i915/display/intel_color_pipeline.c
->> @@ -25,7 +25,7 @@ int _intel_color_pipeline_plane_init(struct 
->> drm_plane *plane, struct drm_prop_en
->>       colorop = intel_colorop_create(INTEL_PLANE_CB_PRE_CSC_LUT);
->> -    ret = drm_plane_colorop_curve_1d_lut_init(dev, &colorop->base, 
->> plane,
->> +    ret = drm_plane_colorop_curve_1d_lut_init(dev, &colorop->base, 
->> plane, NULL,
->>                             PLANE_DEGAMMA_SIZE,
->>                             DRM_COLOROP_LUT1D_INTERPOLATION_LINEAR,
->>                             DRM_COLOROP_FLAG_ALLOW_BYPASS);
->> @@ -39,7 +39,7 @@ int _intel_color_pipeline_plane_init(struct 
->> drm_plane *plane, struct drm_prop_en
->>       prev_op = &colorop->base;
->>       colorop = intel_colorop_create(INTEL_PLANE_CB_CSC);
->> -    ret = drm_plane_colorop_ctm_3x4_init(dev, &colorop->base, plane,
->> +    ret = drm_plane_colorop_ctm_3x4_init(dev, &colorop->base, plane, 
->> NULL,
->>                            DRM_COLOROP_FLAG_ALLOW_BYPASS);
->>       if (ret)
->>           return ret;
->> @@ -52,7 +52,7 @@ int _intel_color_pipeline_plane_init(struct 
->> drm_plane *plane, struct drm_prop_en
->>           plane->type == DRM_PLANE_TYPE_PRIMARY) {
->>           colorop = intel_colorop_create(INTEL_PLANE_CB_3DLUT);
->> -        ret = drm_plane_colorop_3dlut_init(dev, &colorop->base, 
->> plane, 17,
->> +        ret = drm_plane_colorop_3dlut_init(dev, &colorop->base, 
->> plane, NULL, 17,
->>                              DRM_COLOROP_LUT3D_INTERPOLATION_TETRAHEDRAL,
->>                              true);
->>           if (ret)
->> @@ -64,7 +64,7 @@ int _intel_color_pipeline_plane_init(struct 
->> drm_plane *plane, struct drm_prop_en
->>       }
->>       colorop = intel_colorop_create(INTEL_PLANE_CB_POST_CSC_LUT);
->> -    ret = drm_plane_colorop_curve_1d_lut_init(dev, &colorop->base, 
->> plane,
->> +    ret = drm_plane_colorop_curve_1d_lut_init(dev, &colorop->base, 
->> plane, NULL,
->>                             PLANE_GAMMA_SIZE,
->>                             DRM_COLOROP_LUT1D_INTERPOLATION_LINEAR,
->>                             DRM_COLOROP_FLAG_ALLOW_BYPASS);
->> diff --git a/drivers/gpu/drm/vkms/vkms_colorop.c b/drivers/gpu/drm/ 
->> vkms/vkms_colorop.c
->> index d03a1f2e9c41..9e9dd0494628 100644
->> --- a/drivers/gpu/drm/vkms/vkms_colorop.c
->> +++ b/drivers/gpu/drm/vkms/vkms_colorop.c
->> @@ -31,7 +31,7 @@ static int vkms_initialize_color_pipeline(struct 
->> drm_plane *plane, struct drm_pr
->>           goto cleanup;
->>       }
->> -    ret = drm_plane_colorop_curve_1d_init(dev, ops[i], plane, 
->> supported_tfs,
->> +    ret = drm_plane_colorop_curve_1d_init(dev, ops[i], plane, NULL, 
->> supported_tfs,
->>                             DRM_COLOROP_FLAG_ALLOW_BYPASS);
->>       if (ret)
->>           goto cleanup;
->> @@ -48,7 +48,8 @@ static int vkms_initialize_color_pipeline(struct 
->> drm_plane *plane, struct drm_pr
->>           goto cleanup;
->>       }
->> -    ret = drm_plane_colorop_ctm_3x4_init(dev, ops[i], plane, 
->> DRM_COLOROP_FLAG_ALLOW_BYPASS);
->> +    ret = drm_plane_colorop_ctm_3x4_init(dev, ops[i], plane, NULL,
->> +                         DRM_COLOROP_FLAG_ALLOW_BYPASS);
->>       if (ret)
->>           goto cleanup;
->> @@ -64,7 +65,8 @@ static int vkms_initialize_color_pipeline(struct 
->> drm_plane *plane, struct drm_pr
->>           goto cleanup;
->>       }
->> -    ret = drm_plane_colorop_ctm_3x4_init(dev, ops[i], plane, 
->> DRM_COLOROP_FLAG_ALLOW_BYPASS);
->> +    ret = drm_plane_colorop_ctm_3x4_init(dev, ops[i], plane, NULL,
->> +                         DRM_COLOROP_FLAG_ALLOW_BYPASS);
->>       if (ret)
->>           goto cleanup;
->> @@ -80,7 +82,7 @@ static int vkms_initialize_color_pipeline(struct 
->> drm_plane *plane, struct drm_pr
->>           goto cleanup;
->>       }
->> -    ret = drm_plane_colorop_curve_1d_init(dev, ops[i], plane, 
->> supported_tfs,
->> +    ret = drm_plane_colorop_curve_1d_init(dev, ops[i], plane, NULL, 
->> supported_tfs,
->>                             DRM_COLOROP_FLAG_ALLOW_BYPASS);
->>       if (ret)
->>           goto cleanup;
->> diff --git a/include/drm/drm_colorop.h b/include/drm/drm_colorop.h
->> index a3a32f9f918c..45d1b1d3faf9 100644
->> --- a/include/drm/drm_colorop.h
->> +++ b/include/drm/drm_colorop.h
->> @@ -187,6 +187,19 @@ struct drm_colorop_state {
->>       struct drm_atomic_state *state;
->>   };
->> +/**
->> + * struct drm_colorop_funcs - driver colorop control functions
->> + */
->> +struct drm_colorop_funcs {
->> +    /**
->> +     * @destroy:
->> +     *
->> +     * Clean up colorop resources. This is called at driver unload time
->> +     * through drm_mode_config_cleanup()
->> +     */
->> +    void (*destroy)(struct drm_colorop *colorop);
->> +};
->> +
->>   /**
->>    * struct drm_colorop - DRM color operation control structure
->>    *
->> @@ -362,6 +375,8 @@ struct drm_colorop {
->>        */
->>       struct drm_property *next_property;
->> +    /** @funcs: colorop control functions */
->> +    const struct drm_colorop_funcs *funcs;
->>   };
->>   #define obj_to_colorop(x) container_of(x, struct drm_colorop, base)
->> @@ -390,17 +405,22 @@ void drm_colorop_pipeline_destroy(struct 
->> drm_device *dev);
->>   void drm_colorop_cleanup(struct drm_colorop *colorop);
->>   int drm_plane_colorop_curve_1d_init(struct drm_device *dev, struct 
->> drm_colorop *colorop,
->> -                    struct drm_plane *plane, u64 supported_tfs, 
->> uint32_t flags);
->> +                    struct drm_plane *plane, const struct 
->> drm_colorop_funcs *funcs,
->> +                    u64 supported_tfs, uint32_t flags);
->>   int drm_plane_colorop_curve_1d_lut_init(struct drm_device *dev, 
->> struct drm_colorop *colorop,
->> -                    struct drm_plane *plane, uint32_t lut_size,
->> +                    struct drm_plane *plane,
->> +                    const struct drm_colorop_funcs *funcs,
->> +                    uint32_t lut_size,
->>                       enum drm_colorop_lut1d_interpolation_type 
->> interpolation,
->>                       uint32_t flags);
->>   int drm_plane_colorop_ctm_3x4_init(struct drm_device *dev, struct 
->> drm_colorop *colorop,
->> -                   struct drm_plane *plane, uint32_t flags);
->> +                   struct drm_plane *plane, const struct 
->> drm_colorop_funcs *funcs,
->> +                   uint32_t flags);
->>   int drm_plane_colorop_mult_init(struct drm_device *dev, struct 
->> drm_colorop *colorop,
->> -                struct drm_plane *plane, uint32_t flags);
->> +                struct drm_plane *plane, const struct 
->> drm_colorop_funcs *funcs,
->> +                uint32_t flags);
->>   int drm_plane_colorop_3dlut_init(struct drm_device *dev, struct 
->> drm_colorop *colorop,
->> -                 struct drm_plane *plane,
->> +                 struct drm_plane *plane, const struct 
->> drm_colorop_funcs *funcs,
->>                    uint32_t lut_size,
->>                    enum drm_colorop_lut3d_interpolation_type 
->> interpolation,
->>                    uint32_t flags);
-> 
-
+T24gVGh1LCAyMDI2LTAxLTA4IGF0IDE0OjQ1ICswMTAwLCBNYXJjbyBDcml2ZWxsYXJpIHdyb3Rl
+Og0KPiBPbiBUaHUsIEphbiA4LCAyMDI2IGF0IDI6MjnigK9QTSBSb2RyaWdvIFZpdmkgPHJvZHJp
+Z28udml2aUBpbnRlbC5jb20+DQo+IHdyb3RlOg0KPiA+IEknbSBzb3JyeSBmb3IgdGhlIGRlbGF5
+IGhlcmUsIGJ1dCBjb3VsZCB5b3UgcGxlYXNlIHJlZmFjdG9yIHRoaXMNCj4gPiBjb21taXQNCj4g
+PiBtZXNzYWdlPw0KPiA+IA0KPiA+IFRoZSBmaXJzdCBwYXJ0IG9mIHRoaXMgY29tbWl0IG1lc3Nh
+Z2UgaXMgdGhlIHRydWUganVzdGlmaWNhdGlvbiBmb3INCj4gPiB5b3VyDQo+ID4gb3JpZ2luYWwg
+d29yaywgbm90IGZvciB0aGlzIHBhdGNoIGhlcmUuDQo+IA0KPiBIaSBSb2RyaWdvLA0KPiANCj4g
+U3VyZSwgSSBhbHJlYWR5IGhhdmUgYSBuZXcgdmVyc2lvbiBvZiBpdDoNCj4gDQo+IC0tLQ0KPiAN
+Cj4gVGhpcyBwYXRjaCBjb250aW51ZXMgdGhlIGVmZm9ydCB0byByZWZhY3RvciB3b3JrcXVldWUg
+QVBJcywgd2hpY2ggaGFzDQo+IGJlZ3VuDQo+IHdpdGggdGhlIGNoYW5nZXMgaW50cm9kdWNpbmcg
+bmV3IHdvcmtxdWV1ZXMgYW5kIGEgbmV3IGFsbG9jX3dvcmtxdWV1ZQ0KPiBmbGFnOg0KPiANCj4g
+wqDCoCBjb21taXQgMTI4ZWE5ZjZjY2ZiICgid29ya3F1ZXVlOiBBZGQgc3lzdGVtX3BlcmNwdV93
+cSBhbmQNCj4gc3lzdGVtX2RmbF93cSIpDQo+IMKgwqAgY29tbWl0IDkzMGMyZWE1NjZhZiAoIndv
+cmtxdWV1ZTogQWRkIG5ldyBXUV9QRVJDUFUgZmxhZyIpDQo+IA0KPiBUaGUgcG9pbnQgb2YgdGhl
+IHJlZmFjdG9yaW5nIGlzIHRvIGV2ZW50dWFsbHkgYWx0ZXIgdGhlIGRlZmF1bHQNCj4gYmVoYXZp
+b3Igb2YNCj4gd29ya3F1ZXVlcyB0byBiZWNvbWUgdW5ib3VuZCBieSBkZWZhdWx0IHNvIHRoYXQg
+dGhlaXIgd29ya2xvYWQNCj4gcGxhY2VtZW50IGlzDQo+IG9wdGltaXplZCBieSB0aGUgc2NoZWR1
+bGVyLg0KPiANCj4gQmVmb3JlIHRoYXQgdG8gaGFwcGVuLCB3b3JrcXVldWUgdXNlcnMgbXVzdCBi
+ZSBjb252ZXJ0ZWQgdG8gdGhlDQo+IGJldHRlciBuYW1lZA0KPiBuZXcgd29ya3F1ZXVlcyB3aXRo
+IG5vIGludGVuZGVkIGJlaGF2aW91ciBjaGFuZ2VzOg0KPiANCj4gwqDCoCBzeXN0ZW1fd3EgLT4g
+c3lzdGVtX3BlcmNwdV93cQ0KPiDCoMKgIHN5c3RlbV91bmJvdW5kX3dxIC0+IHN5c3RlbV9kZmxf
+d3ENCj4gDQo+IFRoaXMgd2F5IHRoZSBvbGQgb2Jzb2xldGUgd29ya3F1ZXVlcyAoc3lzdGVtX3dx
+LCBzeXN0ZW1fdW5ib3VuZF93cSkNCj4gY2FuIGJlDQo+IHJlbW92ZWQgaW4gdGhlIGZ1dHVyZS4N
+Cj4gDQo+IA0KPiA+IEV4Y2VwdCBmb3IgeW91ciBsYXN0IHBocmFzZSwgd2hpY2ggaW5kaWNhdGVz
+LCBzb21lIHdpc2ggb2YgcmVtb3ZpbmcNCj4gPiB0aGUgdW5ib3VuZF93cSwgaXQgZG9lc24ndCBz
+dGF0ZSBjbGVhciBvbiB3aHkgd2Ugc2hvdWxkIGNoYW5nZSB0aGUNCj4gPiB1bmJvdW5kIHBlciB0
+aGUgZGZsIChkZWZhdWx0PykuDQo+ID4gDQo+ID4gUGVyaGFwcyB0aGUgYXV0aG9ycyBvZiB0aGVz
+ZSBjYXNlcyBiZWxvdyB3YW50ZWQgdG8gYmUgdW5ib3VuZCwNCj4gPiBidXQgY2hvb3NpbmcgdGhl
+IGRlZmF1bHQgd2lsbCBtYWtlIHVzIHRvIGJlIHRpZWQgdG8gd2hhdGV2ZXINCj4gPiBkZWZhdWx0
+IG1pZ2h0IGJlY29tZSBpbiB0aGUgZnV0dXJlLg0KPiA+IA0KPiA+IFJpZ2h0IG5vdyBib3RoIHVu
+Ym91bmQgYW5kIGRmbCBhcmUgaWRlbnRpY2FsLiBJbiB0aGUgZnV0dXJlDQo+ID4geW91IGFyZSBw
+bGFubmluZyB0byByZW1vdmUgdGhlIHVuYm91bmQsIGJ1dCB3aGF0IGFib3V0IHRoZSBkZmw/DQo+
+ID4gQW55IHBsYW5zIG9yIHBvc3NpYmxlIGNoYW5nZXM/IElmIG5vIGNoYW5nZSBpcyBwbGFubmVk
+IHRvIGRmbCwNCj4gPiB3aHkgY3JlYXRlIGRlZmF1bHQgYW5kIHNpbXBseSBub3Qgc3RheSB3aXRo
+IHRoZSB1bmJvdW5kIG9uZQ0KPiA+IHRoYXQgaXMgbXVjaCBtb3JlIGNsZWFyIG9uIGl0cyBpbnRl
+bnRpb24/DQo+IA0KPiBZZXMsICJkZmwiIGlzICJkZWZhdWx0Ii4NCj4gDQo+IFdpdGggdGhlIG5l
+dyB2ZXJzaW9uIGFib3ZlIEkgdGhpbmsgaXQgaXMgY2xlYXIsIGJ1dCBpbiBzaG9ydDogdGhlDQo+
+IHJlbmFtZQ0KPiBpcyBuZWVkZWQgYXMgYSBmaXJzdCByZWZhY3RvcmluZyBzdGVwOyB0aGUgcGxh
+biBpcyB0byBoYXZlIGFuIHVuYm91bmQNCj4gd29ya3F1ZXVlDQo+IGFzIGRlZmF1bHQuDQo+IA0K
+PiBzeXN0ZW1fdW5ib3VuZF93cSB3aWxsIGJlIHJlbW92ZWQgYW5kIGNoYW5nZWQgd2l0aCBzeXN0
+ZW1fZGZsX3dxLg0KPiBzeXN0ZW1fZGZsX3dxIGlzIHRoZSBuZXcgdW5ib3VuZCB3b3JrcXVldWUs
+IGl0IHdvcmtzIGV4YWN0bHkgdGhlIHNhbWUNCj4gYXMNCj4gc3lzdGVtX3VuYm91bmRfd3EuDQo+
+IA0KPiBzeXN0ZW1fd3Egd2lsbCBiZSByZXBsYWNlZCB3aXRoIHN5c3RlbV9wZXJjcHVfd3E7IHNh
+bWUgdGhpbmcgYXMNCj4gYWJvdmUsDQo+IG5vIGJlaGF2aW9yYWwgY2hhbmdlcywgc3lzdGVtX3Bl
+cmNwdV93cSBpcyB0aGUgbmV3IHBlci1jcHUgd29ya3F1ZXVlLg0KPiANCj4gVGhpcyBpcyB0byBt
+YWtlIGNsZWFyIHRoYXQgaWYgYSBwZXItY3B1IHdvcmtxdWV1ZSBpcyBub3QgbmVlZGVkLCB0aGUN
+Cj4gY29ycmVjdA0KPiBjaG9pY2UgaXMgc3lzdGVtX2RmbF93cS4NCj4gDQo+IEFsc28sIGR1cmlu
+ZyB0aGlzIGNvbnZlcnNpb24gcGhhc2UsIEkgY2FuIHRlbGwgbWFueSBzdWJzeXN0ZW1zIGFza2Vk
+DQo+IHRvDQo+IGNoYW5nZSBzeXN0ZW1fd3EgKHRoZSBuYW1lIG9mIHRoZSAib2xkIiBwZXItY3B1
+IHdvcmtxdWV1ZSkgd2l0aA0KPiBzeXN0ZW1fZGZsX3dxLCBiZWNhdXNlIHRoZXkganVzdCB3YW50
+ZWQgdG8gdXNlIGEgc3lzdGVtIHdvcmtxdWV1ZSBhbmQNCj4gdGhvdWdodCBzeXN0ZW1fd3Egd2Fz
+IGFscmVhZHkgdGhlIHVuYm91bmQgb25lLg0KPiANCj4gQWxsIG9mIHRoaXMgd29yayBoYXMgYmVl
+biBkaXNjdXNzZWQgaGVyZToNCj4gDQo+IGh0dHBzOi8vbG9yZS5rZXJuZWwub3JnL2FsbC8yMDI1
+MDIyMTExMjAwMy4xZFN1b0d5Y0BsaW51dHJvbml4LmRlLw0KPiANCj4gSSB3aWxsIGFkZCB0aGlz
+IExpbmsgdG8gdGhlIGFib3ZlIGNvbW1pdCBsb2cuIExldCBtZSBrbm93IGlmIGl0DQo+IHNvdW5k
+cyBnb29kLg0KDQpUaGlzIGlzIHBlcmZlY3QsIHRoYW5rIHlvdSENCg0KPiANCj4gVGhhbmtzIQ0K
