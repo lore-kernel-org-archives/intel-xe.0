@@ -4,27 +4,37 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8D7E7D1D460
-	for <intel-xe@archiver.kernel.org>; Thu,  8 Jan 2026 14:38:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CE734D1D467
+	for <intel-xe@archiver.kernel.org>; Thu,  8 Jan 2026 14:50:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3F00410E755;
-	Thu,  8 Jan 2026 14:38:10 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0E69910E755;
- Thu,  8 Jan 2026 14:38:09 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0201181706366417689=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 93B3B10E783;
+	Thu,  8 Jan 2026 14:50:21 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="AC4dGJYo";
+	dkim-atps=neutral
+Received: from lankhorst.se (lankhorst.se [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7905B10E775
+ for <intel-xe@lists.freedesktop.org>; Thu,  8 Jan 2026 14:50:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
+ s=default; t=1767883819;
+ bh=HNDsMQ5CLhAsXRnJjAR/nD6NILfQpbSNA2SxAFHsBPk=;
+ h=From:To:Subject:Date:In-Reply-To:References:From;
+ b=AC4dGJYo8njRlXciW1XE0gSp+ej7FJlsEucyr/K6nNKzoiebxtBJsyaIrKBYnVF9s
+ 2EdfgDFL1a9l0UoC6F2BSz/uNvMk49UFMqu/wrDpGi2nMn5esDI73LVgWDVYYo3QBb
+ UZp9X2uHPdeqWcJeObgPJhLnBYDEh0AUKo/wmuwoaLexSfUAi9TeU4W2bxQ/LAaWw+
+ uc4xnM2jAV9EK8ALyzKqMLytAcVO/e8kzJsEOhZ6C8uce4D1Jhm5TienOc+ztqkVpV
+ V7VDxp6Jsg5TinwaXSTxpaOKV33lzgIllST88BxS6+1CAdJg/fghFnvgkM154T6G3z
+ 0QTQdkk6ArqcA==
+From: Maarten Lankhorst <dev@lankhorst.se>
+To: intel-xe@lists.freedesktop.org
+Subject: [FOR-CI-DO-NOT-REVIEW 10/12] drm/xe: Move struct xe_ggtt to xe_ggtt.c
+Date: Thu,  8 Jan 2026 15:50:15 +0100
+Message-ID: <20260108145017.642206-1-dev@lankhorst.se>
+X-Mailer: git-send-email 2.51.0
+In-Reply-To: <20260108103412.637731-1-dev@lankhorst.se>
+References: <20260108103412.637731-1-dev@lankhorst.se>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Add_VBT-based_eDP_Pipe_Join?=
- =?utf-8?q?er_control?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 08 Jan 2026 14:38:09 -0000
-Message-ID: <176788308905.136594.9814712958077343748@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260108124141.1407760-1-ankit.k.nautiyal@intel.com>
-In-Reply-To: <20260108124141.1407760-1-ankit.k.nautiyal@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +46,182 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0201181706366417689==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 
-== Series Details ==
+No users left outside of xe_ggtt.c, so we can make the struct private.
 
-Series: Add VBT-based eDP Pipe Joiner control
-URL   : https://patchwork.freedesktop.org/series/159810/
-State : success
+This prevents us from accidentally touching it before init.
 
-== Summary ==
+Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
+---
+ drivers/gpu/drm/xe/xe_ggtt.c       | 55 +++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_ggtt.h       |  1 +
+ drivers/gpu/drm/xe/xe_ggtt_types.h | 61 +-----------------------------
+ 3 files changed, 58 insertions(+), 59 deletions(-)
 
-CI Bug Log - changes from xe-4346-d7d19ebd62e1a312e67f4484df9a4e2b407d93d0_BAT -> xe-pw-159810v1_BAT
-====================================================
+diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
+index c26d3c69850af..e7b2b6626d645 100644
+--- a/drivers/gpu/drm/xe/xe_ggtt.c
++++ b/drivers/gpu/drm/xe/xe_ggtt.c
+@@ -85,6 +85,61 @@ struct xe_ggtt_node {
+ 	bool invalidate_on_remove;
+ };
+ 
++/**
++ * struct xe_ggtt_pt_ops - GGTT Page table operations
++ * Which can vary from platform to platform.
++ */
++struct xe_ggtt_pt_ops {
++	/** @pte_encode_flags: Encode PTE flags for a given BO */
++	u64 (*pte_encode_flags)(struct xe_bo *bo, u16 pat_index);
++
++	/** @ggtt_set_pte: Directly write into GGTT's PTE */
++	xe_ggtt_set_pte_fn ggtt_set_pte;
++
++	/** @ggtt_get_pte: Directly read from GGTT's PTE */
++	u64 (*ggtt_get_pte)(struct xe_ggtt *ggtt, u64 addr);
++};
++
++/**
++ * struct xe_ggtt - Main GGTT struct
++ *
++ * In general, each tile can contains its own Global Graphics Translation Table
++ * (GGTT) instance.
++ */
++struct xe_ggtt {
++	/** @tile: Back pointer to tile where this GGTT belongs */
++	struct xe_tile *tile;
++        /** @start: Start offset of GGTT */
++	u64 start;
++	/** @size: Total usable size of this GGTT */
++	u64 size;
++
++#define XE_GGTT_FLAGS_64K BIT(0)
++	/**
++	 * @flags: Flags for this GGTT
++	 * Acceptable flags:
++	 * - %XE_GGTT_FLAGS_64K - if PTE size is 64K. Otherwise, regular is 4K.
++	 */
++	unsigned int flags;
++	/** @scratch: Internal object allocation used as a scratch page */
++	struct xe_bo *scratch;
++	/** @lock: Mutex lock to protect GGTT data */
++	struct mutex lock;
++	/**
++	 *  @gsm: The iomem pointer to the actual location of the translation
++	 * table located in the GSM for easy PTE manipulation
++	 */
++	u64 __iomem *gsm;
++	/** @pt_ops: Page Table operations per platform */
++	const struct xe_ggtt_pt_ops *pt_ops;
++	/** @mm: The memory manager used to manage individual GGTT allocations */
++	struct drm_mm mm;
++	/** @access_count: counts GGTT writes */
++	unsigned int access_count;
++	/** @wq: Dedicated unordered work queue to process node removals */
++	struct workqueue_struct *wq;
++};
++
+ static u64 xelp_ggtt_pte_flags(struct xe_bo *bo, u16 pat_index)
+ {
+ 	u64 pte = XE_PAGE_PRESENT;
+diff --git a/drivers/gpu/drm/xe/xe_ggtt.h b/drivers/gpu/drm/xe/xe_ggtt.h
+index 62b651bb3effb..a69d7624be526 100644
+--- a/drivers/gpu/drm/xe/xe_ggtt.h
++++ b/drivers/gpu/drm/xe/xe_ggtt.h
+@@ -9,6 +9,7 @@
+ #include "xe_ggtt_types.h"
+ 
+ struct drm_printer;
++struct xe_bo;
+ struct xe_tile;
+ struct drm_exec;
+ 
+diff --git a/drivers/gpu/drm/xe/xe_ggtt_types.h b/drivers/gpu/drm/xe/xe_ggtt_types.h
+index 6f32a0db5a82d..cf754e4d502ad 100644
+--- a/drivers/gpu/drm/xe/xe_ggtt_types.h
++++ b/drivers/gpu/drm/xe/xe_ggtt_types.h
+@@ -6,53 +6,11 @@
+ #ifndef _XE_GGTT_TYPES_H_
+ #define _XE_GGTT_TYPES_H_
+ 
++#include <linux/types.h>
+ #include <drm/drm_mm.h>
+ 
+-#include "xe_pt_types.h"
+-
+-struct xe_bo;
++struct xe_ggtt;
+ struct xe_ggtt_node;
+-struct xe_gt;
+-
+-/**
+- * struct xe_ggtt - Main GGTT struct
+- *
+- * In general, each tile can contains its own Global Graphics Translation Table
+- * (GGTT) instance.
+- */
+-struct xe_ggtt {
+-	/** @tile: Back pointer to tile where this GGTT belongs */
+-	struct xe_tile *tile;
+-	/** @start: Start offset of GGTT */
+-	u64 start;
+-	/** @size: Total usable size of this GGTT */
+-	u64 size;
+-
+-#define XE_GGTT_FLAGS_64K BIT(0)
+-	/**
+-	 * @flags: Flags for this GGTT
+-	 * Acceptable flags:
+-	 * - %XE_GGTT_FLAGS_64K - if PTE size is 64K. Otherwise, regular is 4K.
+-	 */
+-	unsigned int flags;
+-	/** @scratch: Internal object allocation used as a scratch page */
+-	struct xe_bo *scratch;
+-	/** @lock: Mutex lock to protect GGTT data */
+-	struct mutex lock;
+-	/**
+-	 *  @gsm: The iomem pointer to the actual location of the translation
+-	 * table located in the GSM for easy PTE manipulation
+-	 */
+-	u64 __iomem *gsm;
+-	/** @pt_ops: Page Table operations per platform */
+-	const struct xe_ggtt_pt_ops *pt_ops;
+-	/** @mm: The memory manager used to manage individual GGTT allocations */
+-	struct drm_mm mm;
+-	/** @access_count: counts GGTT writes */
+-	unsigned int access_count;
+-	/** @wq: Dedicated unordered work queue to process node removals */
+-	struct workqueue_struct *wq;
+-};
+ 
+ typedef void (*xe_ggtt_set_pte_fn)(struct xe_ggtt *ggtt, u64 addr, u64 pte);
+ typedef void (*xe_ggtt_transform_cb)(struct xe_ggtt *ggtt,
+@@ -60,19 +18,4 @@ typedef void (*xe_ggtt_transform_cb)(struct xe_ggtt *ggtt,
+ 				     u64 pte_flags,
+ 				     xe_ggtt_set_pte_fn set_pte, void *arg);
+ 
+-/**
+- * struct xe_ggtt_pt_ops - GGTT Page table operations
+- * Which can vary from platform to platform.
+- */
+-struct xe_ggtt_pt_ops {
+-	/** @pte_encode_flags: Encode PTE flags for a given BO */
+-	u64 (*pte_encode_flags)(struct xe_bo *bo, u16 pat_index);
+-
+-	/** @ggtt_set_pte: Directly write into GGTT's PTE */
+-	xe_ggtt_set_pte_fn ggtt_set_pte;
+-
+-	/** @ggtt_get_pte: Directly read from GGTT's PTE */
+-	u64 (*ggtt_get_pte)(struct xe_ggtt *ggtt, u64 addr);
+-};
+-
+ #endif
+-- 
+2.51.0
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (12 -> 12)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-4346-d7d19ebd62e1a312e67f4484df9a4e2b407d93d0 -> xe-pw-159810v1
-
-  IGT_8692: 8692
-  xe-4346-d7d19ebd62e1a312e67f4484df9a4e2b407d93d0: d7d19ebd62e1a312e67f4484df9a4e2b407d93d0
-  xe-pw-159810v1: 159810v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159810v1/index.html
-
---===============0201181706366417689==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Add VBT-based eDP Pipe Joiner control</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/159810/">https://patchwork.freedesktop.org/series/159810/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159810v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159810v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4346-d7d19ebd62e1a312e67f4484df9a4e2b407d93d0_BAT -&gt; xe-pw-159810v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (12 -&gt; 12)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4346-d7d19ebd62e1a312e67f4484df9a4e2b407d93d0 -&gt; xe-pw-159810v1</li>
-</ul>
-<p>IGT_8692: 8692<br />
-  xe-4346-d7d19ebd62e1a312e67f4484df9a4e2b407d93d0: d7d19ebd62e1a312e67f4484df9a4e2b407d93d0<br />
-  xe-pw-159810v1: 159810v1</p>
-
-</body>
-</html>
-
---===============0201181706366417689==--
