@@ -4,34 +4,36 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 64AB3CF6ABD
-	for <intel-xe@archiver.kernel.org>; Thu,  8 Jan 2026 10:34:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 66CC3CF6ABD
+	for <intel-xe@archiver.kernel.org>; Thu,  8 Jan 2026 10:34:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1E23610E327;
-	Thu,  8 Jan 2026 10:34:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 29B8D10E32A;
+	Thu,  8 Jan 2026 10:34:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="EqZCTt01";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="lyQ9jjCn";
 	dkim-atps=neutral
 Received: from lankhorst.se (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E4A0E10E125
- for <intel-xe@lists.freedesktop.org>; Thu,  8 Jan 2026 10:34:14 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 848E110E125
+ for <intel-xe@lists.freedesktop.org>; Thu,  8 Jan 2026 10:34:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1767868453;
- bh=4zXkes0lCyUrY1zS1eF58FTSGO7nOLs2ck6g/rL4DWs=;
- h=From:To:Subject:Date:From;
- b=EqZCTt01DnC86VbEm+Hi5Wfofd6c2VcukgRUaFVjtE83sSHvLcjRvs/W9pfHXz99i
- 2Uyoc0mclMFqzd4wEtMqwRr+KGcFHB/VThsFJJqYRSOnDK5CJI8XbUsfkbcojMtP9K
- HzYJCooHfiyfU7nu76GTVVFvothRxN6ce+WHTim/EI9khQLl7YzBw9FLU9wmZlaD7c
- wuifXeoaWyECyj/ulsWne4O+Bgu1N6BmbW6YOS637nJs0KH/sYDBNl7vathEChI0bF
- HwaRXgr89h0391maklYoJ8vbclcNnsntjJLHjC6gC+MYwbP2u0tRjpdik2aFTBo16R
- vY6MeFNbU5Q3Q==
+ s=default; t=1767868455;
+ bh=Tn+pDJV6SUuYI9rNrT8xQf/jNHZ0JsuQhY+NTOt4C0c=;
+ h=From:To:Subject:Date:In-Reply-To:References:From;
+ b=lyQ9jjCn5stNzeGHzuaQy9IEEPFSC4xsqFYG0tU+eRqaG0JRQCNvK6G4fimwtD74N
+ abQPwWniRCaa6VUMtERd38q7ODGOstQ3KQtB1CnyrdR3yWUiarVE+rLgdvNQtg1008
+ StXsCRwLFoJYk1WRm/ZLOjRu9ghQsPuGt+l6ZzauMnl969PF+fNMk4pSeFosrj/arg
+ RTT5j5CnEN1wFNMqIdL3aSazNZcR8Bd7ePqY/K0DH6RNa1onrYdalVJde6axqZ4IWg
+ qsF6wYsltWwzx3SpKM6G0O4G6KqY5BflRXMIQtap/ELPR8IbwBruf9hUx3dOAqucUN
+ 92YjTwSTwxsnA==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-xe@lists.freedesktop.org
-Subject: [FOR-CI-DO-NOT-REVIEW 00/12] Testing entire GGTT privatization
- preparation series.
-Date: Thu,  8 Jan 2026 11:34:03 +0100
-Message-ID: <20260108103412.637731-1-dev@lankhorst.se>
+Subject: [FOR-CI-DO-NOT-REVIEW 03/12] drm/xe: Add xe_ggtt_node_addr() to avoid
+ dereferencing xe_ggtt_node
+Date: Thu,  8 Jan 2026 11:34:06 +0100
+Message-ID: <20260108103412.637731-4-dev@lankhorst.se>
 X-Mailer: git-send-email 2.51.0
+In-Reply-To: <20260108103412.637731-1-dev@lankhorst.se>
+References: <20260108103412.637731-1-dev@lankhorst.se>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -48,40 +50,76 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Do not review, last version had some CI failures, but too old results so need a fresh run to debug.
+This function makes it possible to add an offset that is applied to
+all xe_ggtt_node's, and hides the internals from all its users.
 
-Maarten Lankhorst (12):
-  drm/xe: Start using ggtt->start in preparation of balloon removal
-  drm/xe: Convert xe_fb_pin to use a callback for insertion into GGTT
-  drm/xe: Add xe_ggtt_node_addr() to avoid dereferencing xe_ggtt_node
-  drm/xe/display: Avoid dereferencing xe_ggtt_node
-  drm/xe: Do not dereference ggtt_node in xe_bo.c
-  drm/xe: Improve xe_gt_sriov_pf_config GGTT handling
-  drm/xe: Privatize xe_ggtt_node
-  drm/xe: Make xe_ggtt_node offset relative to starting offset
-  drm/xe: Rewrite GGTT VF initialisation
-  drm/xe: Move struct xe_ggtt to xe_ggtt.c
-  drm/xe: Make xe_ggtt_node_insert return a node
-  drm/xe: Remove xe_ggtt_node_allocated
+Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
+---
+ drivers/gpu/drm/xe/xe_bo.h   |  8 +++++---
+ drivers/gpu/drm/xe/xe_ggtt.c | 11 +++++++++++
+ drivers/gpu/drm/xe/xe_ggtt.h |  2 ++
+ 3 files changed, 18 insertions(+), 3 deletions(-)
 
- .../gpu/drm/xe/compat-i915-headers/i915_vma.h |   4 +-
- drivers/gpu/drm/xe/display/xe_fb_pin.c        | 105 ++--
- drivers/gpu/drm/xe/display/xe_stolen.c        |   2 +-
- drivers/gpu/drm/xe/tests/xe_guc_buf_kunit.c   |   8 +-
- drivers/gpu/drm/xe/xe_bo.c                    |   6 +-
- drivers/gpu/drm/xe/xe_bo.h                    |   8 +-
- drivers/gpu/drm/xe/xe_device_types.h          |   2 -
- drivers/gpu/drm/xe/xe_ggtt.c                  | 490 ++++++++++--------
- drivers/gpu/drm/xe/xe_ggtt.h                  |  28 +-
- drivers/gpu/drm/xe/xe_ggtt_types.h            |  80 +--
- drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c    |  53 +-
- drivers/gpu/drm/xe/xe_gt_sriov_vf.c           |   5 +-
- drivers/gpu/drm/xe/xe_pci.c                   |   7 +
- drivers/gpu/drm/xe/xe_tile_sriov_vf.c         | 197 +------
- drivers/gpu/drm/xe/xe_tile_sriov_vf.h         |   4 +-
- drivers/gpu/drm/xe/xe_tile_sriov_vf_types.h   |   4 +
- 16 files changed, 399 insertions(+), 604 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
+index 8ab4474129c3d..c914ab719f20e 100644
+--- a/drivers/gpu/drm/xe/xe_bo.h
++++ b/drivers/gpu/drm/xe/xe_bo.h
+@@ -9,6 +9,7 @@
+ #include <drm/ttm/ttm_tt.h>
+ 
+ #include "xe_bo_types.h"
++#include "xe_ggtt.h"
+ #include "xe_macros.h"
+ #include "xe_validation.h"
+ #include "xe_vm_types.h"
+@@ -252,13 +253,14 @@ static inline u32
+ __xe_bo_ggtt_addr(struct xe_bo *bo, u8 tile_id)
+ {
+ 	struct xe_ggtt_node *ggtt_node = bo->ggtt_node[tile_id];
++	u64 offset;
+ 
+ 	if (XE_WARN_ON(!ggtt_node))
+ 		return 0;
+ 
+-	XE_WARN_ON(ggtt_node->base.size > xe_bo_size(bo));
+-	XE_WARN_ON(ggtt_node->base.start + ggtt_node->base.size > (1ull << 32));
+-	return ggtt_node->base.start;
++	offset = xe_ggtt_node_addr(ggtt_node);
++	XE_WARN_ON(offset + xe_bo_size(bo) > (1ull << 32));
++	return offset;
+ }
+ 
+ static inline u32
+diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
+index 6bb6dcb0419ad..7f45bcd0c56b0 100644
+--- a/drivers/gpu/drm/xe/xe_ggtt.c
++++ b/drivers/gpu/drm/xe/xe_ggtt.c
+@@ -1185,3 +1185,14 @@ u64 xe_ggtt_read_pte(struct xe_ggtt *ggtt, u64 offset)
+ {
+ 	return ioread64(ggtt->gsm + (offset / XE_PAGE_SIZE));
+ }
++
++/**
++ * xe_ggtt_node_addr - Get @node offset in GGTT.
++ * @node: &xe_ggtt_node
++ *
++ * Get the GGTT offset for allocated node.
++ */
++u64 xe_ggtt_node_addr(const struct xe_ggtt_node *node)
++{
++	return node->base.start;
++}
+diff --git a/drivers/gpu/drm/xe/xe_ggtt.h b/drivers/gpu/drm/xe/xe_ggtt.h
+index 9adfc58edf581..76336a6296c45 100644
+--- a/drivers/gpu/drm/xe/xe_ggtt.h
++++ b/drivers/gpu/drm/xe/xe_ggtt.h
+@@ -61,4 +61,6 @@ void xe_ggtt_might_lock(struct xe_ggtt *ggtt);
+ u64 xe_ggtt_encode_pte_flags(struct xe_ggtt *ggtt, struct xe_bo *bo, u16 pat_index);
+ u64 xe_ggtt_read_pte(struct xe_ggtt *ggtt, u64 offset);
+ 
++u64 xe_ggtt_node_addr(const struct xe_ggtt_node *node);
++
+ #endif
 -- 
 2.51.0
 
