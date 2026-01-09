@@ -4,32 +4,33 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EE710D1A627
-	for <intel-xe@archiver.kernel.org>; Fri,  9 Jan 2026 13:38:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6DE7ED1A62D
+	for <intel-xe@archiver.kernel.org>; Fri,  9 Jan 2026 13:38:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AD52610E8DC;
-	Fri,  9 Jan 2026 13:38:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 320B110E8D5;
+	Fri,  9 Jan 2026 13:38:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="orGEABIU";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="Ep4F9O6D";
 	dkim-atps=neutral
 Received: from lankhorst.se (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 451D410E8DB
- for <intel-xe@lists.freedesktop.org>; Fri,  9 Jan 2026 13:38:00 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5166A10E8D7
+ for <intel-xe@lists.freedesktop.org>; Fri,  9 Jan 2026 13:37:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1767965879;
- bh=ysc/4WbKphhduKzm6vm+SkSaimJy86k0YkeqQtDmLNI=;
+ s=default; t=1767965877;
+ bh=l+lWfkbo3bRef7s0QJAIWWviBuPgrQbSYbxtS/zvirY=;
  h=From:To:Subject:Date:In-Reply-To:References:From;
- b=orGEABIUXnbZZkHwOmy2I4J0cWPbIXRb7VBDcp545G9bP1npY5ervjDBvk9VJUiiB
- pLX06QRou4Q4fooDB+0Mg2IwXPXI7nWZUnSUEolumQS/h+Vz/g5iaOp97UJFfd7SeN
- PDsebr11QWvGHjruSLykJjvnyiSUfrAzfqKyE8drGfPY/uOFuTMyyhH9W5+e098I9G
- Jx0kF44nrblZNkB7TiVn1+0VQMCahQCazHMtzA9pvyxoxDWNKIvCOhFgwvJa+z2p9z
- bkC6PfYlTJ6QFYE+sgBNxS/HFBtmjcCYh0xWr9U99Aj6Vyc+crJ+FXwl+62US0i70l
- tvy1kfUozq4gQ==
+ b=Ep4F9O6DuuKlYmJEu2K6xriJtBxCRE4KB//G4Qr3Db3TYfFgBQlzNyMaaA3N9k77F
+ mSXfJ1V6odAoPQAUcBOVR463DqB8MuQ3qSXbmI+N4mhKKeNuO3+HXw/5d3UwpwXcAm
+ j5jfI6LJiuXh/kwiizgnGhBw5uc7+1Ku0GeHeJRn0+doxEYo8oz/AMTsPjuX2EBDQO
+ JfPERFN9XBOZbjcinPFMsbFrHQYSJH9ILTnei7KQPNyqHQI886TWje/ytXCd/PtOqX
+ 48HLrQl4mY+MqoKlQWpTC7TRfHWgXryLlynC7gTZ6zUPO1DafU5LV5nW+h7gfR+SBE
+ dRbZy3060uZxA==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-xe@lists.freedesktop.org
-Subject: [FOR-CI-DO-NOT-REVIEW-v3 12/12] drm/xe: Remove xe_ggtt_node_allocated
-Date: Fri,  9 Jan 2026 14:37:45 +0100
-Message-ID: <20260109133746.739923-13-dev@lankhorst.se>
+Subject: [FOR-CI-DO-NOT-REVIEW-v3 10/12] drm/xe: Move struct xe_ggtt to
+ xe_ggtt.c
+Date: Fri,  9 Jan 2026 14:37:43 +0100
+Message-ID: <20260109133746.739923-11-dev@lankhorst.se>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20260109133746.739923-1-dev@lankhorst.se>
 References: <20260109133746.739923-1-dev@lankhorst.se>
@@ -49,126 +50,178 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-With the intermediate state gone, no longer useful. Just check against
-NULL.
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 
+No users left outside of xe_ggtt.c, so we can make the struct private.
+
+This prevents us from accidentally touching it before init.
+
+Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/xe/display/xe_fb_pin.c     |  3 +--
- drivers/gpu/drm/xe/xe_ggtt.c               | 14 --------------
- drivers/gpu/drm/xe/xe_ggtt.h               |  1 -
- drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c | 12 ++++++------
- 4 files changed, 7 insertions(+), 23 deletions(-)
+ drivers/gpu/drm/xe/xe_ggtt.c       | 55 +++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_ggtt.h       |  1 +
+ drivers/gpu/drm/xe/xe_ggtt_types.h | 60 +-----------------------------
+ 3 files changed, 58 insertions(+), 58 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-index d2c4e94180fa3..10915fb3151f4 100644
---- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
-+++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-@@ -352,8 +352,7 @@ static void __xe_unpin_fb_vma(struct i915_vma *vma)
- 
- 	if (vma->dpt)
- 		xe_bo_unpin_map_no_vm(vma->dpt);
--	else if (!xe_ggtt_node_allocated(vma->bo->ggtt_node[tile_id]) ||
--		 vma->bo->ggtt_node[tile_id] != vma->node)
-+	else if (vma->bo->ggtt_node[tile_id] != vma->node)
- 		xe_ggtt_node_remove(vma->node, false);
- 
- 	ttm_bo_reserve(&vma->bo->ttm, false, false, NULL);
 diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
-index 96e27634e43b2..e8a80569d44d6 100644
+index d8ffba5144d5f..dee41ad79a4cf 100644
 --- a/drivers/gpu/drm/xe/xe_ggtt.c
 +++ b/drivers/gpu/drm/xe/xe_ggtt.c
-@@ -664,20 +664,6 @@ struct xe_ggtt_node *xe_ggtt_node_insert(struct xe_ggtt *ggtt, u32 size, u32 ali
- 	return node;
- }
+@@ -85,6 +85,61 @@ struct xe_ggtt_node {
+ 	bool invalidate_on_remove;
+ };
  
--/**
-- * xe_ggtt_node_allocated - Check if node is allocated in GGTT
-- * @node: the &xe_ggtt_node to be inspected
-- *
-- * Return: True if allocated, False otherwise.
-- */
--bool xe_ggtt_node_allocated(const struct xe_ggtt_node *node)
--{
--	if (!node || !node->ggtt)
--		return false;
--
--	return drm_mm_node_allocated(&node->base);
--}
--
- /**
-  * xe_ggtt_node_pt_size() - Get the size of page table entries needed to map a GGTT node.
-  * @node: the &xe_ggtt_node
++/**
++ * struct xe_ggtt_pt_ops - GGTT Page table operations
++ * Which can vary from platform to platform.
++ */
++struct xe_ggtt_pt_ops {
++	/** @pte_encode_flags: Encode PTE flags for a given BO */
++	u64 (*pte_encode_flags)(struct xe_bo *bo, u16 pat_index);
++
++	/** @ggtt_set_pte: Directly write into GGTT's PTE */
++	xe_ggtt_set_pte_fn ggtt_set_pte;
++
++	/** @ggtt_get_pte: Directly read from GGTT's PTE */
++	u64 (*ggtt_get_pte)(struct xe_ggtt *ggtt, u64 addr);
++};
++
++/**
++ * struct xe_ggtt - Main GGTT struct
++ *
++ * In general, each tile can contains its own Global Graphics Translation Table
++ * (GGTT) instance.
++ */
++struct xe_ggtt {
++	/** @tile: Back pointer to tile where this GGTT belongs */
++	struct xe_tile *tile;
++        /** @start: Start offset of GGTT */
++	u64 start;
++	/** @size: Total usable size of this GGTT */
++	u64 size;
++
++#define XE_GGTT_FLAGS_64K BIT(0)
++	/**
++	 * @flags: Flags for this GGTT
++	 * Acceptable flags:
++	 * - %XE_GGTT_FLAGS_64K - if PTE size is 64K. Otherwise, regular is 4K.
++	 */
++	unsigned int flags;
++	/** @scratch: Internal object allocation used as a scratch page */
++	struct xe_bo *scratch;
++	/** @lock: Mutex lock to protect GGTT data */
++	struct mutex lock;
++	/**
++	 *  @gsm: The iomem pointer to the actual location of the translation
++	 * table located in the GSM for easy PTE manipulation
++	 */
++	u64 __iomem *gsm;
++	/** @pt_ops: Page Table operations per platform */
++	const struct xe_ggtt_pt_ops *pt_ops;
++	/** @mm: The memory manager used to manage individual GGTT allocations */
++	struct drm_mm mm;
++	/** @access_count: counts GGTT writes */
++	unsigned int access_count;
++	/** @wq: Dedicated unordered work queue to process node removals */
++	struct workqueue_struct *wq;
++};
++
+ static u64 xelp_ggtt_pte_flags(struct xe_bo *bo, u16 pat_index)
+ {
+ 	u64 pte = XE_PAGE_PRESENT;
 diff --git a/drivers/gpu/drm/xe/xe_ggtt.h b/drivers/gpu/drm/xe/xe_ggtt.h
-index 6d8679bcc38fb..ffa3369927157 100644
+index 49ea8e7ecc105..403eb5c0db49d 100644
 --- a/drivers/gpu/drm/xe/xe_ggtt.h
 +++ b/drivers/gpu/drm/xe/xe_ggtt.h
-@@ -30,7 +30,6 @@ xe_ggtt_node_insert_transform(struct xe_ggtt *ggtt,
- 			      u64 size, u32 align,
- 			      xe_ggtt_transform_cb transform, void *arg);
- void xe_ggtt_node_remove(struct xe_ggtt_node *node, bool invalidate);
--bool xe_ggtt_node_allocated(const struct xe_ggtt_node *node);
- size_t xe_ggtt_node_pt_size(const struct xe_ggtt_node *node);
- void xe_ggtt_map_bo_unlocked(struct xe_ggtt *ggtt, struct xe_bo *bo);
- int xe_ggtt_insert_bo(struct xe_ggtt *ggtt, struct xe_bo *bo, struct drm_exec *exec);
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-index a6414d164166e..ca757742d2748 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-@@ -281,7 +281,7 @@ static u32 encode_config_ggtt(u32 *cfg, const struct xe_gt_sriov_config *config,
- {
- 	struct xe_ggtt_node *node = config->ggtt_region;
+@@ -9,6 +9,7 @@
+ #include "xe_ggtt_types.h"
  
--	if (!xe_ggtt_node_allocated(node))
-+	if (!node)
- 		return 0;
+ struct drm_printer;
++struct xe_bo;
+ struct xe_tile;
+ struct drm_exec;
  
- 	return encode_ggtt(cfg, xe_ggtt_node_addr(node), xe_ggtt_node_size(node), details);
-@@ -505,7 +505,7 @@ static int pf_provision_vf_ggtt(struct xe_gt *gt, unsigned int vfid, u64 size)
+diff --git a/drivers/gpu/drm/xe/xe_ggtt_types.h b/drivers/gpu/drm/xe/xe_ggtt_types.h
+index d82b71a198bc2..cf754e4d502ad 100644
+--- a/drivers/gpu/drm/xe/xe_ggtt_types.h
++++ b/drivers/gpu/drm/xe/xe_ggtt_types.h
+@@ -6,72 +6,16 @@
+ #ifndef _XE_GGTT_TYPES_H_
+ #define _XE_GGTT_TYPES_H_
  
- 	size = round_up(size, alignment);
++#include <linux/types.h>
+ #include <drm/drm_mm.h>
  
--	if (xe_ggtt_node_allocated(config->ggtt_region)) {
-+	if (config->ggtt_region) {
- 		err = pf_distribute_config_ggtt(tile, vfid, 0, 0);
- 		if (unlikely(err))
- 			return err;
-@@ -516,7 +516,7 @@ static int pf_provision_vf_ggtt(struct xe_gt *gt, unsigned int vfid, u64 size)
- 		if (unlikely(err))
- 			return err;
- 	}
--	xe_gt_assert(gt, !xe_ggtt_node_allocated(config->ggtt_region));
-+	xe_gt_assert(gt, !config->ggtt_region);
+-#include "xe_pt_types.h"
+-
+-struct xe_bo;
++struct xe_ggtt;
+ struct xe_ggtt_node;
+-struct xe_gt;
+-
+-/**
+- * struct xe_ggtt - Main GGTT struct
+- *
+- * In general, each tile can contains its own Global Graphics Translation Table
+- * (GGTT) instance.
+- */
+-struct xe_ggtt {
+-	/** @tile: Back pointer to tile where this GGTT belongs */
+-	struct xe_tile *tile;
+-	/** @start: Start offset of GGTT */
+-	u64 start;
+-	/** @size: Total usable size of this GGTT */
+-	u64 size;
+-
+-#define XE_GGTT_FLAGS_64K BIT(0)
+-	/**
+-	 * @flags: Flags for this GGTT
+-	 * Acceptable flags:
+-	 * - %XE_GGTT_FLAGS_64K - if PTE size is 64K. Otherwise, regular is 4K.
+-	 */
+-	unsigned int flags;
+-	/** @scratch: Internal object allocation used as a scratch page */
+-	struct xe_bo *scratch;
+-	/** @lock: Mutex lock to protect GGTT data */
+-	struct mutex lock;
+-	/**
+-	 *  @gsm: The iomem pointer to the actual location of the translation
+-	 * table located in the GSM for easy PTE manipulation
+-	 */
+-	u64 __iomem *gsm;
+-	/** @pt_ops: Page Table operations per platform */
+-	const struct xe_ggtt_pt_ops *pt_ops;
+-	/** @mm: The memory manager used to manage individual GGTT allocations */
+-	struct drm_mm mm;
+-	/** @access_count: counts GGTT writes */
+-	unsigned int access_count;
+-	/** @wq: Dedicated unordered work queue to process node removals */
+-	struct workqueue_struct *wq;
+-};
  
- 	if (!size)
- 		return 0;
-@@ -546,7 +546,7 @@ static u64 pf_get_vf_config_ggtt(struct xe_gt *gt, unsigned int vfid)
- 	struct xe_ggtt_node *node = config->ggtt_region;
+ typedef void (*xe_ggtt_set_pte_fn)(struct xe_ggtt *ggtt, u64 addr, u64 pte);
+ typedef void (*xe_ggtt_transform_cb)(struct xe_ggtt *ggtt,
+ 				     struct xe_ggtt_node *node,
+ 				     u64 pte_flags,
+ 				     xe_ggtt_set_pte_fn set_pte, void *arg);
+-/**
+- * struct xe_ggtt_pt_ops - GGTT Page table operations
+- * Which can vary from platform to platform.
+- */
+-struct xe_ggtt_pt_ops {
+-	/** @pte_encode_flags: Encode PTE flags for a given BO */
+-	u64 (*pte_encode_flags)(struct xe_bo *bo, u16 pat_index);
+-
+-	/** @ggtt_set_pte: Directly write into GGTT's PTE */
+-	xe_ggtt_set_pte_fn ggtt_set_pte;
+-
+-	/** @ggtt_get_pte: Directly read from GGTT's PTE */
+-	u64 (*ggtt_get_pte)(struct xe_ggtt *ggtt, u64 addr);
+-};
  
- 	xe_gt_assert(gt, xe_gt_is_main_type(gt));
--	return xe_ggtt_node_allocated(node) ? xe_ggtt_node_size(node) : 0;
-+	return node ? xe_ggtt_node_size(node) : 0;
- }
- 
- /**
-@@ -2560,7 +2560,7 @@ int xe_gt_sriov_pf_config_release(struct xe_gt *gt, unsigned int vfid, bool forc
- 
- static void pf_sanitize_ggtt(struct xe_ggtt_node *ggtt_region, unsigned int vfid)
- {
--	if (xe_ggtt_node_allocated(ggtt_region))
-+	if (ggtt_region)
- 		xe_ggtt_assign(ggtt_region, vfid);
- }
- 
-@@ -3019,7 +3019,7 @@ int xe_gt_sriov_pf_config_print_ggtt(struct xe_gt *gt, struct drm_printer *p)
- 
- 	for (n = 1; n <= total_vfs; n++) {
- 		config = &gt->sriov.pf.vfs[n].config;
--		if (!xe_ggtt_node_allocated(config->ggtt_region))
-+		if (!config->ggtt_region)
- 			continue;
- 
- 		string_get_size(xe_ggtt_node_size(config->ggtt_region), 1, STRING_UNITS_2,
+ #endif
 -- 
 2.51.0
 
