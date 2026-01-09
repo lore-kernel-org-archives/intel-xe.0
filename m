@@ -4,56 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CDEF2D1A61E
-	for <intel-xe@archiver.kernel.org>; Fri,  9 Jan 2026 13:26:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 436E9D1A61D
+	for <intel-xe@archiver.kernel.org>; Fri,  9 Jan 2026 13:37:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 949D210E8C2;
-	Fri,  9 Jan 2026 13:26:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0A61B10E8CB;
+	Fri,  9 Jan 2026 13:37:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="G8McY1re";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="N1VTTfGR";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 583B410E8C2
- for <intel-xe@lists.freedesktop.org>; Fri,  9 Jan 2026 13:26:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1767965210; x=1799501210;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=Egk+ZI8RZezOag/dTMBiKv/XD91Zla90YEJItbLgX1g=;
- b=G8McY1recPGcVfqGY/2T7DB0aKmuBTA14l4aCiIIqhMj4vQPYOV19JgI
- YBzUJxJnYzcLk59Bnhwe6Ab5PfYdV16wMRKrbFYnhVNxUmxXfkWPTD6J3
- VoqRBSJD8jsCMtJmir3xsSxoEAazSBg7WHItkqkP0J/AHmSfqWfX/NmZ8
- 85SqHMVvBoDFFUSGJyYQEDj8FfM9KJ/dHbxOrbXaLPGvoXMEYvi9ohYcq
- vj2ffKcAGLXzavF+0hCdYbcAR5CMxpHTGQGoWP9YvIYbpTfOqNz1tc7oD
- 3gBNC5ewlT5wk2W8CMfUudESrXCorcJK00QiNYJ5EiTwX+E2090lh/5yE g==;
-X-CSE-ConnectionGUID: iaWvY5nTRXyNuEVFXo1mKg==
-X-CSE-MsgGUID: VyFNsVkEQ6Onmyxk+TRjcA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11666"; a="73203411"
-X-IronPort-AV: E=Sophos;i="6.21,212,1763452800"; d="scan'208";a="73203411"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jan 2026 05:26:50 -0800
-X-CSE-ConnectionGUID: uP4QVg2/RziNpFKR79CpYw==
-X-CSE-MsgGUID: EfCOXUDDSd+MplDC5D1rhA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,212,1763452800"; d="scan'208";a="202678797"
-Received: from black.igk.intel.com ([10.91.253.5])
- by orviesa010.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jan 2026 05:26:49 -0800
-Date: Fri, 9 Jan 2026 14:26:45 +0100
-From: Raag Jadav <raag.jadav@intel.com>
-To: Karthik Poosa <karthik.poosa@intel.com>
-Cc: intel-xe@lists.freedesktop.org, anshuman.gupta@intel.com,
- badal.nilawar@intel.com, rodrigo.vivi@intel.com
-Subject: Re: [PATCH v4 3/4] drm/xe/hwmon: Expose GPU pcie temperature
-Message-ID: <aWECFeIZ_64ZHBaV@black.igk.intel.com>
-References: <20260108130323.426531-1-karthik.poosa@intel.com>
- <20260108130323.426531-4-karthik.poosa@intel.com>
+Received: from lankhorst.se (lankhorst.se [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B62E710E8D2
+ for <intel-xe@lists.freedesktop.org>; Fri,  9 Jan 2026 13:37:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
+ s=default; t=1767965871;
+ bh=HfuR1g6rcEE/WSNqpEckqEZhmX/oTSU7kK2lg5GJ8lk=;
+ h=From:To:Subject:Date:In-Reply-To:References:From;
+ b=N1VTTfGRTCYUzVDYysj/b4tbWxrUMeb/BeOqwyL7+pgn2lCzUdHKZtRtNOeRqAnno
+ zjIIw184gAwQgq8eFlzsg/kBJuzHIJrotsHF1xiLP+NhuI50hGhjVTI3YNuZqbpIkb
+ nNCJQomYJg6rMsNYEN/ZIyMzeg2dUirshg+PXM6FwvwbCT/D9UkmdYrhZd+urbBIHK
+ mJni5ydMEdImpns+0dFWglrRKkcgHcJEe526IHowfVUArAsgcrGpg0yfdsN4fMjgk2
+ HujadsjPQWPolxPO7NG2Q6uaQAKQwM8eZLKFFtBbXKo+Tqi3+Z0ITU881zD8kP1WDt
+ VJd+YBAGz3law==
+From: Maarten Lankhorst <dev@lankhorst.se>
+To: intel-xe@lists.freedesktop.org
+Subject: [FOR-CI-DO-NOT-REVIEW-v3 01/12] drm/xe: Start using ggtt->start in
+ preparation of balloon removal
+Date: Fri,  9 Jan 2026 14:37:34 +0100
+Message-ID: <20260109133746.739923-2-dev@lankhorst.se>
+X-Mailer: git-send-email 2.51.0
+In-Reply-To: <20260109133746.739923-1-dev@lankhorst.se>
+References: <20260109133746.739923-1-dev@lankhorst.se>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260108130323.426531-4-karthik.poosa@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,204 +50,240 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Jan 08, 2026 at 06:33:22PM +0530, Karthik Poosa wrote:
-> Expose GPU PCIe average temperature and its limits via hwmon
-> sysfs temp5_xxx.
+Instead of having ggtt->size point to the end of ggtt, have ggtt->size
+be the actual size of the GGTT, and introduce ggtt->start to point to
+the beginning of GGTT.
 
-Same comments as last patch. Also, use PCIe in subject.
+This will allow a massive cleanup of GGTT in case of SRIOV-VF.
 
-> Update Xe hwmon sysfs documentation for this.
-> 
-> v2: Update kernel version in Xe hwmon documentation. (Raag)
-> 
-> v3:
->  - Address review comments from Raag.
->  - Remove redundant debug log.
->  - Update kernel version in Xe hwmon documentation. (Raag)
-> 
-> Signed-off-by: Karthik Poosa <karthik.poosa@intel.com>
-> ---
->  .../ABI/testing/sysfs-driver-intel-xe-hwmon   | 24 ++++++++++++++
->  drivers/gpu/drm/xe/xe_hwmon.c                 | 32 +++++++++++++++++++
->  drivers/gpu/drm/xe/xe_pcode_api.h             |  4 ++-
->  3 files changed, 59 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon b/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
-> index a9fcfa6f11b9..6041805a5efc 100644
-> --- a/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
-> +++ b/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
-> @@ -260,3 +260,27 @@ Contact:	intel-xe@lists.freedesktop.org
->  Description:	RO. Memory controller critical temperature in millidegree Celsius.
->  
->  		Only supported for particular Intel Xe graphics platforms.
-> +
-> +What:		/sys/bus/pci/drivers/xe/.../hwmon/hwmon<i>/temp5_input
-> +Date:		January 2026
-> +KernelVersion:	7.0
-> +Contact:	intel-xe@lists.freedesktop.org
-> +Description:	RO. GPU PCIe temperature in millidegree Celsius.
-> +
-> +		Only supported for particular Intel Xe graphics platforms.
-> +
-> +What:		/sys/bus/pci/drivers/xe/.../hwmon/hwmon<i>/temp5_emergency
-> +Date:		January 2026
-> +KernelVersion:	7.0
-> +Contact:	intel-xe@lists.freedesktop.org
-> +Description:	RO. GPU PCIe shutdown temperature in millidegree Celsius.
-> +
-> +		Only supported for particular Intel Xe graphics platforms.
-> +
-> +What:		/sys/bus/pci/drivers/xe/.../hwmon/hwmon<i>/temp5_crit
-> +Date:		January 2026
-> +KernelVersion:	7.0
-> +Contact:	intel-xe@lists.freedesktop.org
-> +Description:	RO. GPU PCIe critical temperature in millidegree Celsius.
-> +
-> +		Only supported for particular Intel Xe graphics platforms.
+Reviewed-by: Stuart Summers <stuart.summers@intel.com>
+Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
+---
+ drivers/gpu/drm/xe/tests/xe_guc_buf_kunit.c |  2 +-
+ drivers/gpu/drm/xe/xe_ggtt.c                | 82 +++++++++++++--------
+ drivers/gpu/drm/xe/xe_ggtt.h                |  2 +
+ drivers/gpu/drm/xe/xe_ggtt_types.h          |  4 +-
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c  |  4 +-
+ 5 files changed, 60 insertions(+), 34 deletions(-)
 
-Same comments as last patch.
+diff --git a/drivers/gpu/drm/xe/tests/xe_guc_buf_kunit.c b/drivers/gpu/drm/xe/tests/xe_guc_buf_kunit.c
+index d266882adc0e0..acddbedcf17cb 100644
+--- a/drivers/gpu/drm/xe/tests/xe_guc_buf_kunit.c
++++ b/drivers/gpu/drm/xe/tests/xe_guc_buf_kunit.c
+@@ -67,7 +67,7 @@ static int guc_buf_test_init(struct kunit *test)
+ 
+ 	KUNIT_ASSERT_EQ(test, 0,
+ 			xe_ggtt_init_kunit(ggtt, DUT_GGTT_START,
+-					   DUT_GGTT_START + DUT_GGTT_SIZE));
++					   DUT_GGTT_SIZE));
+ 
+ 	kunit_activate_static_stub(test, xe_managed_bo_create_pin_map,
+ 				   replacement_xe_managed_bo_create_pin_map);
+diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
+index 9e6b4e9835424..b94aad265471b 100644
+--- a/drivers/gpu/drm/xe/xe_ggtt.c
++++ b/drivers/gpu/drm/xe/xe_ggtt.c
+@@ -137,10 +137,32 @@ static void ggtt_update_access_counter(struct xe_ggtt *ggtt)
+ 	}
+ }
+ 
++/**
++ * xe_ggtt_start - Get starting offset of GGTT.
++ * @ggtt: &xe_ggtt
++ *
++ * Returns: Starting offset for this &xe_ggtt.
++ */
++u64 xe_ggtt_start(struct xe_ggtt *ggtt)
++{
++	return ggtt->start;
++}
++
++/**
++ * xe_ggtt_size - Get size of GGTT.
++ * @ggtt: &xe_ggtt
++ *
++ * Returns: Total usable size of this &xe_ggtt.
++ */
++u64 xe_ggtt_size(struct xe_ggtt *ggtt)
++{
++	return ggtt->size;
++}
++
+ static void xe_ggtt_set_pte(struct xe_ggtt *ggtt, u64 addr, u64 pte)
+ {
+ 	xe_tile_assert(ggtt->tile, !(addr & XE_PTE_MASK));
+-	xe_tile_assert(ggtt->tile, addr < ggtt->size);
++	xe_tile_assert(ggtt->tile, addr < ggtt->start + ggtt->size);
+ 
+ 	writeq(pte, &ggtt->gsm[addr >> XE_PTE_SHIFT]);
+ }
+@@ -256,16 +278,16 @@ static const struct xe_ggtt_pt_ops xelpg_pt_wa_ops = {
+ 	.ggtt_get_pte = xe_ggtt_get_pte,
+ };
+ 
+-static void __xe_ggtt_init_early(struct xe_ggtt *ggtt, u32 reserved)
++static void __xe_ggtt_init_early(struct xe_ggtt *ggtt, u64 start, u64 size)
+ {
+-	drm_mm_init(&ggtt->mm, reserved,
+-		    ggtt->size - reserved);
++	ggtt->start = start;
++	ggtt->size = size;
++	drm_mm_init(&ggtt->mm, start, size);
+ }
+ 
+-int xe_ggtt_init_kunit(struct xe_ggtt *ggtt, u32 reserved, u32 size)
++int xe_ggtt_init_kunit(struct xe_ggtt *ggtt, u32 start, u32 size)
+ {
+-	ggtt->size = size;
+-	__xe_ggtt_init_early(ggtt, reserved);
++	__xe_ggtt_init_early(ggtt, start, size);
+ 	return 0;
+ }
+ EXPORT_SYMBOL_IF_KUNIT(xe_ggtt_init_kunit);
+@@ -293,26 +315,32 @@ int xe_ggtt_init_early(struct xe_ggtt *ggtt)
+ 	struct xe_device *xe = tile_to_xe(ggtt->tile);
+ 	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
+ 	unsigned int gsm_size;
++	u64 ggtt_start, wopcm = xe_wopcm_size(xe), ggtt_size;
+ 	int err;
+ 
+-	if (IS_SRIOV_VF(xe) || GRAPHICS_VERx100(xe) >= 1250)
+-		gsm_size = SZ_8M; /* GGTT is expected to be 4GiB */
+-	else
+-		gsm_size = probe_gsm_size(pdev);
+-
+-	if (gsm_size == 0) {
+-		xe_tile_err(ggtt->tile, "Hardware reported no preallocated GSM\n");
+-		return -ENOMEM;
++	if (!IS_SRIOV_VF(xe)) {
++		if (GRAPHICS_VERx100(xe) >= 1250)
++			gsm_size = SZ_8M; /* GGTT is expected to be 4GiB */
++		else
++			gsm_size = probe_gsm_size(pdev);
++		if (gsm_size == 0) {
++			xe_tile_err(ggtt->tile, "Hardware reported no preallocated GSM\n");
++			return -ENOMEM;
++		}
++		ggtt_start = wopcm;
++		ggtt_size = (gsm_size / 8) * (u64) XE_PAGE_SIZE - ggtt_start;
++	} else {
++		/* GGTT is expected to be 4GiB */
++		ggtt_start = wopcm;
++		ggtt_size = SZ_4G - ggtt_start;
+ 	}
+ 
+ 	ggtt->gsm = ggtt->tile->mmio.regs + SZ_8M;
+-	ggtt->size = (gsm_size / 8) * (u64) XE_PAGE_SIZE;
+-
+ 	if (IS_DGFX(xe) && xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K)
+ 		ggtt->flags |= XE_GGTT_FLAGS_64K;
+ 
+-	if (ggtt->size > GUC_GGTT_TOP)
+-		ggtt->size = GUC_GGTT_TOP;
++	if (ggtt_size + ggtt_start > GUC_GGTT_TOP)
++		ggtt_size = GUC_GGTT_TOP - ggtt_start;
+ 
+ 	if (GRAPHICS_VERx100(xe) >= 1270)
+ 		ggtt->pt_ops =
+@@ -326,7 +354,7 @@ int xe_ggtt_init_early(struct xe_ggtt *ggtt)
+ 	if (!ggtt->wq)
+ 		return -ENOMEM;
+ 
+-	__xe_ggtt_init_early(ggtt, xe_wopcm_size(xe));
++	__xe_ggtt_init_early(ggtt, ggtt_start, ggtt_size);
+ 
+ 	err = drmm_add_action_or_reset(&xe->drm, ggtt_fini_early, ggtt);
+ 	if (err)
+@@ -563,11 +591,9 @@ void xe_ggtt_node_remove_balloon_locked(struct xe_ggtt_node *node)
+ static void xe_ggtt_assert_fit(struct xe_ggtt *ggtt, u64 start, u64 size)
+ {
+ 	struct xe_tile *tile = ggtt->tile;
+-	struct xe_device *xe = tile_to_xe(tile);
+-	u64 __maybe_unused wopcm = xe_wopcm_size(xe);
+ 
+-	xe_tile_assert(tile, start >= wopcm);
+-	xe_tile_assert(tile, start + size < ggtt->size - wopcm);
++	xe_tile_assert(tile, start >= ggtt->start);
++	xe_tile_assert(tile, start + size <= ggtt->start + ggtt->size);
+ }
+ 
+ /**
+@@ -890,14 +916,12 @@ u64 xe_ggtt_largest_hole(struct xe_ggtt *ggtt, u64 alignment, u64 *spare)
+ {
+ 	const struct drm_mm *mm = &ggtt->mm;
+ 	const struct drm_mm_node *entry;
+-	u64 hole_min_start = xe_wopcm_size(tile_to_xe(ggtt->tile));
+ 	u64 hole_start, hole_end, hole_size;
+ 	u64 max_hole = 0;
+ 
+ 	mutex_lock(&ggtt->lock);
+-
+ 	drm_mm_for_each_hole(entry, mm, hole_start, hole_end) {
+-		hole_start = max(hole_start, hole_min_start);
++		hole_start = max(hole_start, ggtt->start);
+ 		hole_start = ALIGN(hole_start, alignment);
+ 		hole_end = ALIGN_DOWN(hole_end, alignment);
+ 		if (hole_start >= hole_end)
+@@ -1069,15 +1093,13 @@ u64 xe_ggtt_print_holes(struct xe_ggtt *ggtt, u64 alignment, struct drm_printer
+ {
+ 	const struct drm_mm *mm = &ggtt->mm;
+ 	const struct drm_mm_node *entry;
+-	u64 hole_min_start = xe_wopcm_size(tile_to_xe(ggtt->tile));
+ 	u64 hole_start, hole_end, hole_size;
+ 	u64 total = 0;
+ 	char buf[10];
+ 
+ 	mutex_lock(&ggtt->lock);
+-
+ 	drm_mm_for_each_hole(entry, mm, hole_start, hole_end) {
+-		hole_start = max(hole_start, hole_min_start);
++		hole_start = max(hole_start, ggtt->start);
+ 		hole_start = ALIGN(hole_start, alignment);
+ 		hole_end = ALIGN_DOWN(hole_end, alignment);
+ 		if (hole_start >= hole_end)
+diff --git a/drivers/gpu/drm/xe/xe_ggtt.h b/drivers/gpu/drm/xe/xe_ggtt.h
+index 93fea4b6079ce..df7196ec4696e 100644
+--- a/drivers/gpu/drm/xe/xe_ggtt.h
++++ b/drivers/gpu/drm/xe/xe_ggtt.h
+@@ -23,6 +23,8 @@ int xe_ggtt_node_insert_balloon_locked(struct xe_ggtt_node *node,
+ 				       u64 start, u64 size);
+ void xe_ggtt_node_remove_balloon_locked(struct xe_ggtt_node *node);
+ void xe_ggtt_shift_nodes_locked(struct xe_ggtt *ggtt, s64 shift);
++u64 xe_ggtt_start(struct xe_ggtt *ggtt);
++u64 xe_ggtt_size(struct xe_ggtt *ggtt);
+ 
+ int xe_ggtt_node_insert(struct xe_ggtt_node *node, u32 size, u32 align);
+ int xe_ggtt_node_insert_locked(struct xe_ggtt_node *node,
+diff --git a/drivers/gpu/drm/xe/xe_ggtt_types.h b/drivers/gpu/drm/xe/xe_ggtt_types.h
+index dacd796f81844..d773cf284c032 100644
+--- a/drivers/gpu/drm/xe/xe_ggtt_types.h
++++ b/drivers/gpu/drm/xe/xe_ggtt_types.h
+@@ -22,7 +22,9 @@ struct xe_gt;
+ struct xe_ggtt {
+ 	/** @tile: Back pointer to tile where this GGTT belongs */
+ 	struct xe_tile *tile;
+-	/** @size: Total size of this GGTT */
++	/** @start: Start offset of GGTT */
++	u64 start;
++	/** @size: Total usable size of this GGTT */
+ 	u64 size;
+ 
+ #define XE_GGTT_FLAGS_64K BIT(0)
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
+index 5a870914b102c..bed6580d8d090 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
+@@ -393,8 +393,8 @@ static int pf_push_full_vf_config(struct xe_gt *gt, unsigned int vfid)
+ 	xe_gt_assert(gt, num_dwords <= max_cfg_dwords);
+ 
+ 	if (vfid == PFID) {
+-		u64 ggtt_start = xe_wopcm_size(gt_to_xe(gt));
+-		u64 ggtt_size = gt_to_tile(gt)->mem.ggtt->size - ggtt_start;
++		u64 ggtt_start = xe_ggtt_start(gt_to_tile(gt)->mem.ggtt);
++		u64 ggtt_size = xe_ggtt_size(gt_to_tile(gt)->mem.ggtt);
+ 
+ 		/* plain PF config data will never include a real GGTT region */
+ 		xe_gt_assert(gt, !encode_config_ggtt(cfg + num_dwords, config, true));
+-- 
+2.51.0
 
-> diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
-> index 2bf5c9ac948a..317e30c4e1f1 100644
-> --- a/drivers/gpu/drm/xe/xe_hwmon.c
-> +++ b/drivers/gpu/drm/xe/xe_hwmon.c
-> @@ -44,6 +44,7 @@ enum xe_hwmon_channel {
->  	CHANNEL_PKG,
->  	CHANNEL_VRAM,
->  	CHANNEL_MCTRL,
-> +	CHANNEL_PCIE,
->  	CHANNEL_MAX,
->  };
->  
-> @@ -714,6 +715,7 @@ static const struct hwmon_channel_info * const hwmon_info[] = {
->  			   HWMON_T_LABEL | HWMON_T_INPUT | HWMON_T_EMERGENCY | HWMON_T_CRIT |
->  			   HWMON_T_MAX,
->  			   HWMON_T_LABEL | HWMON_T_INPUT | HWMON_T_EMERGENCY | HWMON_T_CRIT,
-> +			   HWMON_T_LABEL | HWMON_T_INPUT | HWMON_T_EMERGENCY | HWMON_T_CRIT,
-
-Alphabetic order please!
-
->  			   HWMON_T_LABEL | HWMON_T_INPUT | HWMON_T_EMERGENCY | HWMON_T_CRIT),
->  	HWMON_CHANNEL_INFO(power, HWMON_P_MAX | HWMON_P_RATED_MAX | HWMON_P_LABEL | HWMON_P_CRIT |
->  			   HWMON_P_CAP,
-> @@ -781,6 +783,27 @@ static int get_mc_temp(struct xe_hwmon *hwmon, long *val)
->  	return 0;
->  }
->  
-> +static int get_pcie_temp(struct xe_hwmon *hwmon, long *val)
-> +{
-> +	struct xe_tile *root_tile = xe_device_get_root_tile(hwmon->xe);
-> +	int ret = 0;
-
-Redundant initialization.
-
-> +	u32 data = 0;
-> +
-> +	ret = xe_pcode_read(root_tile, PCODE_MBOX(PCODE_THERMAL_INFO, READ_THERMAL_DATA,
-> +						  PCIE_SENSOR_GROUP_ID), &data, NULL);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* Sensor offset is different for G21 */
-> +	if (hwmon->xe->info.subplatform != XE_SUBPLATFORM_BATTLEMAGE_G21)
-> +		data >>= PCIE_SENSOR_SHIFT;
-
-Rather,
-
-#define PCIE_SENSOR_MASK		REG_GENMASK(30, 16)
-
-	data = REG_FIELD_GET(PCIE_SENSOR_MASK, data);
-
-> +	data &= TEMP_MASK_MAILBOX;
-
-Don't we already have TEMP_MASK?
-
-> +	*val = (s8)data * MILLIDEGREE_PER_DEGREE;
-> +
-> +	return 0;
-> +}
-> +
->  /* I1 is exposed as power_crit or as curr_crit depending on bit 31 */
->  static int xe_hwmon_pcode_read_i1(const struct xe_hwmon *hwmon, u32 *uval)
->  {
-> @@ -886,6 +909,7 @@ xe_hwmon_temp_is_visible(struct xe_hwmon *hwmon, u32 attr, int channel)
->  		case CHANNEL_VRAM:
->  			return hwmon->temp.limit[TEMP_LIMIT_MEM_SHUTDOWN] ? 0444 : 0;
->  		case CHANNEL_MCTRL:
-> +		case CHANNEL_PCIE:
->  			return hwmon->temp.count ? 0444 : 0;
->  		default:
->  			return 0;
-> @@ -898,6 +922,7 @@ xe_hwmon_temp_is_visible(struct xe_hwmon *hwmon, u32 attr, int channel)
->  		case CHANNEL_VRAM:
->  			return hwmon->temp.limit[TEMP_LIMIT_MEM_TJMAX] ? 0444 : 0;
->  		case CHANNEL_MCTRL:
-> +		case CHANNEL_PCIE:
->  			return hwmon->temp.count ? 0444 : 0;
->  		default:
->  			return 0;
-> @@ -919,6 +944,7 @@ xe_hwmon_temp_is_visible(struct xe_hwmon *hwmon, u32 attr, int channel)
->  			return xe_reg_is_valid(xe_hwmon_get_reg(hwmon, REG_TEMP,
->  					       channel)) ? 0444 : 0;
->  		case CHANNEL_MCTRL:
-> +		case CHANNEL_PCIE:
->  			return hwmon->temp.count ? 0444 : 0;
->  		default:
->  			return 0;
-> @@ -946,12 +972,15 @@ xe_hwmon_temp_read(struct xe_hwmon *hwmon, u32 attr, int channel, long *val)
->  			break;
->  		case CHANNEL_MCTRL:
->  			return get_mc_temp(hwmon, val);
-> +		case CHANNEL_PCIE:
-> +			return get_pcie_temp(hwmon, val);
->  		}
->  		break;
->  	case hwmon_temp_emergency:
->  		switch (channel) {
->  		case CHANNEL_PKG:
->  		case CHANNEL_MCTRL:
-> +		case CHANNEL_PCIE:
->  			*val = hwmon->temp.limit[TEMP_LIMIT_PKG_SHUTDOWN] * MILLIDEGREE_PER_DEGREE;
->  			break;
->  		case CHANNEL_VRAM:
-> @@ -963,6 +992,7 @@ xe_hwmon_temp_read(struct xe_hwmon *hwmon, u32 attr, int channel, long *val)
->  		switch (channel) {
->  		case CHANNEL_PKG:
->  		case CHANNEL_MCTRL:
-> +		case CHANNEL_PCIE:
->  			*val = hwmon->temp.limit[TEMP_LIMIT_PKG_TJMAX] * MILLIDEGREE_PER_DEGREE;
->  			break;
->  		case CHANNEL_VRAM:
-> @@ -1341,6 +1371,8 @@ static int xe_hwmon_read_label(struct device *dev,
->  			*str = "vram";
->  		else if (channel == CHANNEL_MCTRL)
->  			*str = "mctrl";
-> +		else if (channel == CHANNEL_PCIE)
-> +			*str = "pcie";
->  		return 0;
->  	case hwmon_power:
->  	case hwmon_energy:
-> diff --git a/drivers/gpu/drm/xe/xe_pcode_api.h b/drivers/gpu/drm/xe/xe_pcode_api.h
-> index fc8811a87741..dd7635bbc4e7 100644
-> --- a/drivers/gpu/drm/xe/xe_pcode_api.h
-> +++ b/drivers/gpu/drm/xe/xe_pcode_api.h
-> @@ -70,7 +70,9 @@
->  #define     READ_THERMAL_CONFIG			0x1
->  #define     READ_THERMAL_DATA			0x2
->  #define      TEMP_INDEX_MCTRL			0x2
-> -#define      TEMP_MASK_MAILBOX			REG_GENMASK8(6, 0)
-> +#define      TEMP_MASK_MAILBOX			REG_GENMASK8(7, 0)
-> +#define      PCIE_SENSOR_GROUP_ID		0x2
-
-The convention for submacros is double space here, so let's make
-it consistent.
-
-Raag
-
-> +#define      PCIE_SENSOR_SHIFT			16
->  
->  #define   PCODE_FREQUENCY_CONFIG		0x6e
->  /* Frequency Config Sub Commands (param1) */
-> -- 
-> 2.25.1
-> 
