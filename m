@@ -4,97 +4,190 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2E7ECD1A62E
-	for <intel-xe@archiver.kernel.org>; Fri,  9 Jan 2026 13:49:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 015E1D1A62D
+	for <intel-xe@archiver.kernel.org>; Fri,  9 Jan 2026 13:49:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E0FD910E8DA;
+	by gabe.freedesktop.org (Postfix) with ESMTP id AEBB710E8D7;
 	Fri,  9 Jan 2026 13:49:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="YUSONdW5";
+	dkim=pass (2048-bit key; unprotected) header.d=oracle.com header.i=@oracle.com header.b="EPHAQige";
+	dkim=pass (1024-bit key; unprotected) header.d=oracle.onmicrosoft.com header.i=@oracle.onmicrosoft.com header.b="bri3xpHj";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A387A10E16D;
- Fri,  9 Jan 2026 13:19:24 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id 4757643A0F;
- Fri,  9 Jan 2026 13:19:24 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D83ADC4CEF1;
- Fri,  9 Jan 2026 13:19:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1767964764;
- bh=dOxdIeEYnf0HHhRSlCVN+8qvKXOjd/cuc/y3jSDfBf4=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=YUSONdW55AHnI3b6E7AM+H4ziSAbRNNojnS9YaKKU56OSEAVcyjGNmbj6ESfHJ3V5
- xf67oZKNsHgnOLFuemh01jIB8kvlYYLup79S+W+UOwzKpa/XM91lGXBwGEr91CArqJ
- dNtKCj7HeuNPuSE9dlKijCprNkLxX5uoFRilwErcAEIWAGVj9sNDdAxO7DQ6ZhTPZt
- 04mQOhkgpmVlqbCRpYUPBFRYvsMqel6SzBsAaCB4Fs/b+9EZ2xUWtLOpD8sdViTUGx
- nJJw7wuj4MIEt9ouViJadObqt9nlWeGsYHnGauTsWRL37Gq9GujZHd5hFuHKr1mB3C
- Hn3TsHoXRQ0FA==
-Message-ID: <59fb1669-2908-4cab-b3c0-b97479da3fb9@kernel.org>
-Date: Fri, 9 Jan 2026 14:19:16 +0100
+Received: from mx0a-00069f02.pphosted.com (mx0a-00069f02.pphosted.com
+ [205.220.165.32])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 87D6010E8A3
+ for <intel-xe@lists.freedesktop.org>; Fri,  9 Jan 2026 11:32:50 +0000 (UTC)
+Received: from pps.filterd (m0246629.ppops.net [127.0.0.1])
+ by mx0b-00069f02.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id
+ 609Ap0W72799806; Fri, 9 Jan 2026 11:32:49 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=cc
+ :content-type:date:from:in-reply-to:message-id:mime-version
+ :references:subject:to; s=corp-2025-04-25; bh=/gXKEvgGHbIELbMD6V
+ UcW7BibQujUlbTj+BYhHZUhPo=; b=EPHAQige84keOyu6ouH87shIrxa7EET9tK
+ JN9PRkHJADWakeYupHxiLgNSG6Ca7zfLAjha2DZAljw35YVwV0eIAfGYWnqaE8yj
+ Mety3QwUjy/s6gFLE3TE3Kbn+amZBahZp5h+UGTYS6+7CYaMqLPcz1Hl817FU1E2
+ 13Eogl9eM4tdxa8UqOQHyX+7Jg3JINhwMBowFxWeDFgg0SjKuVyhwNmv4YjeicFO
+ j3aQcAEWuZkQMmPh2GhuAJWgegel70dHPFD79ysYxwEGC/z3k/LSJqfmyQhVRfO7
+ 6Q9CZmZqtE/LTD6LDIuoNpvCiog+faVxw6gZ3O3perxoRq91rFCw==
+Received: from iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com
+ (iadpaimrmta01.appoci.oracle.com [130.35.100.223])
+ by mx0b-00069f02.pphosted.com (PPS) with ESMTPS id 4bk09h0196-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Fri, 09 Jan 2026 11:32:49 +0000 (GMT)
+Received: from pps.filterd
+ (iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com [127.0.0.1])
+ by iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com (8.18.1.2/8.18.1.2)
+ with ESMTP id 609BH2mo020452; Fri, 9 Jan 2026 11:32:48 GMT
+Received: from ph0pr06cu001.outbound.protection.outlook.com
+ (mail-westus3azon11011057.outbound.protection.outlook.com [40.107.208.57])
+ by iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com (PPS) with ESMTPS id
+ 4besjp9jpk-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Fri, 09 Jan 2026 11:32:48 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=bR9IaJJxmNa4qqU90lNuymVf6ClTj4JbdZ+2Av65KHN4LZ20oFvD9TBcJipYu4bwFyg1iLfbLO/mcCZs0wmirLPRoZLuTSCFEmcVwQah28vdvkIylyjiI6toFJTVLBpbM62MQ1bzwuGD1UH1vlZ7UXE/TViNxi+j+rs0qlcFTe9nRqKumEQtQVGZLj22emyAlEoH6oiSafqskAxqA4NLPTyckFM2ug0lOJB/MS9sgtewA6FQYjbFV25Q/LV2vIFKZbmgpu1odSJXiHBJ3wmXk5kO0xrMPKABEGPL9lj2Qv7LmhPc8ojVN3xWtY9hjfKJ3WSXA/0OXCMFfB0gLCDkVw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=/gXKEvgGHbIELbMD6VUcW7BibQujUlbTj+BYhHZUhPo=;
+ b=dEty3HDruHSXgambJcFNGYmvZUSdRV6pFEPZqjoknjdlgcUcqtvNMD3VqKWuVNSescI5pPI/u1Q8fGZWK5FcsgFuCUQAau/TM7MMekm0kLc7vsi1wDgHYWNcIvD/P4h7FjhR30piLS96s1b2gd5Fg79873m8lMvyt9KqWDIt9geCU5WrMKz+Q4NcPD7/8g9Zd4pIVjQn1sF5KKapMwN6SYUYn+XNcp1K9/KHurYRO7jN6rtneETI1sQKH9rEOxd4ZSHxml1P9wAEn8uH53C/puNe2Baa+bOy+so0kiWyu0nak5219d2VJW8Oa8Nv8CILTUPhxt1fctsHO13nTpUJVQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oracle.com; dmarc=pass action=none header.from=oracle.com;
+ dkim=pass header.d=oracle.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=oracle.onmicrosoft.com; s=selector2-oracle-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=/gXKEvgGHbIELbMD6VUcW7BibQujUlbTj+BYhHZUhPo=;
+ b=bri3xpHjwM//HXFU1futlSbp8zauQfYpQ/aHsEAjkmfOb3yoG2e/isDwPY6IqTWg1Dt2jfxF+VHIfYMvHvmgBWQ7YE6heKEby9ph/9GrWuB3pA1UguN2vX17evrxi2nLtKUbRL/6cb07wdM8iLgOVI93zsss3GtjATG1AzhqET4=
+Received: from DM4PR10MB8218.namprd10.prod.outlook.com (2603:10b6:8:1cc::16)
+ by IA3PR10MB8163.namprd10.prod.outlook.com (2603:10b6:208:515::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9499.3; Fri, 9 Jan
+ 2026 11:32:45 +0000
+Received: from DM4PR10MB8218.namprd10.prod.outlook.com
+ ([fe80::f3ea:674e:7f2e:b711]) by DM4PR10MB8218.namprd10.prod.outlook.com
+ ([fe80::f3ea:674e:7f2e:b711%6]) with mapi id 15.20.9499.004; Fri, 9 Jan 2026
+ 11:32:45 +0000
+Date: Fri, 9 Jan 2026 11:32:47 +0000
+From: Lorenzo Stoakes <lorenzo.stoakes@oracle.com>
+To: Jordan Niethe <jniethe@nvidia.com>
+Cc: intel-xe@lists.freedesktop.org, matthew.brost@intel.com
+Subject: Re: [RESENDv2 v2 07/11] mm: Add a new swap type for migration
+ entries of device private pages
+Message-ID: <7b46131e-de14-40a9-be73-25855bb73ed0@lucifer.local>
+References: <20260108060102.41357-1-jniethe@nvidia.com>
+ <20260108060102.41357-8-jniethe@nvidia.com>
+ <ed99b6b6-f722-470d-a40e-dddfcc9ae585@lucifer.local>
+ <8bf680f0-94ed-4614-9ace-a081a6558460@nvidia.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <8bf680f0-94ed-4614-9ace-a081a6558460@nvidia.com>
+X-ClientProxiedBy: LO4P265CA0263.GBRP265.PROD.OUTLOOK.COM
+ (2603:10a6:600:37c::12) To DM4PR10MB8218.namprd10.prod.outlook.com
+ (2603:10b6:8:1cc::16)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/7] mm: Add folio_split_unref helper
-To: Francois Dugast <francois.dugast@intel.com>, intel-xe@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org, Matthew Brost <matthew.brost@intel.com>, 
- Balbir Singh <balbirs@nvidia.com>, Andrew Morton
- <akpm@linux-foundation.org>, Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
- Zi Yan <ziy@nvidia.com>, Baolin Wang <baolin.wang@linux.alibaba.com>,
- "Liam R. Howlett" <Liam.Howlett@oracle.com>, Nico Pache <npache@redhat.com>,
- Ryan Roberts <ryan.roberts@arm.com>, Dev Jain <dev.jain@arm.com>,
- Barry Song <baohua@kernel.org>, Lance Yang <lance.yang@linux.dev>,
- linux-mm@kvack.org, linux-kernel@vger.kernel.org,
- Alistair Popple <apopple@nvidia.com>
-References: <20260109085605.443316-1-francois.dugast@intel.com>
- <20260109085605.443316-2-francois.dugast@intel.com>
-From: "David Hildenbrand (Red Hat)" <david@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=david@kernel.org; keydata=
- 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
-In-Reply-To: <20260109085605.443316-2-francois.dugast@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM4PR10MB8218:EE_|IA3PR10MB8163:EE_
+X-MS-Office365-Filtering-Correlation-Id: d34adc41-90c4-481a-df40-08de4f72cf1b
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?oMDfs034e/89AR+STmX87l3GXMD4IMOSzoUdkZTP0KauKWIbBmeJo0yjkGfs?=
+ =?us-ascii?Q?kCnxQ9NzOpAA8F73RUiaP887uDCacQdv6zV8qROlhfhyyVEmpGTZfiYaW3Av?=
+ =?us-ascii?Q?2eyVgWKkr6hhaAWE8GggXcZcQLZc9H/ybWsxobHPTvMwqeFOncGx8xBaJvJW?=
+ =?us-ascii?Q?sLoEKPgwZT1quk7ORDPPKnqISl2xPQdqOutrzqrS7cRxtO2fu9mP/trtXGFc?=
+ =?us-ascii?Q?DC4alLYga7+un8AkC4u0sAEekmMBJeqdwZY53xMAFN8LAfNJzfpXhPemh2sl?=
+ =?us-ascii?Q?CzIQdjhXL1b/EDbBsnYG4ARY1jgJLnmRojhNWSdAtcnXWQTLc4jwydBuP7aS?=
+ =?us-ascii?Q?HpF0sp30ViIqXZ0bTUxNKgTfLyj9AL8jXtALrfc0CxI7x4NKQKqCXm4dWen2?=
+ =?us-ascii?Q?A9+w1Xna7cLq90H42qNZrRdaw3sFR8a3CmQLauO2XE7aFxgLTZiC45m3ya5J?=
+ =?us-ascii?Q?1U/dv92Hj7pCS/iTHp0vSEIec2Srh6uwx1TBgXt00wl1PnU3gUaYZOYvuQs/?=
+ =?us-ascii?Q?PuBmeQ2ZwcmOs0H1hP1T4LFSajsV7FK3bENC2PVkZ1N1l2lINrjO0ln7UBSk?=
+ =?us-ascii?Q?HcxOtNQLTu0HJVcQae2xQ+tdzeJ6KZgZl9/Ql1AeuNp+EEnvD5jKjBd+s/12?=
+ =?us-ascii?Q?fdOvshCCJKr0eeaK8lO7mioaj94rk9nGImri75ecB84j+lmMGPMS3T6P9MrJ?=
+ =?us-ascii?Q?1eOI1NbWS5kjxBhS0fTpME4RxgKhG1HGpuTDjCJqpDQIRSC05TOVLuIJvPgP?=
+ =?us-ascii?Q?kt6UnmhK2AYeUMY8zEF95KudVL1ftNuGrFVQ18ONdA83+/2tcU+q/h/iu4xe?=
+ =?us-ascii?Q?aXFtOfYeEBDN3NaWbGOTgd755D037QS96MB/DjlmIbhRcg2u+pR6nM9RyDmN?=
+ =?us-ascii?Q?AHt29juy+5xNvbq+f1mX68928CryGwoDZwSlCMZkFfjksaO0W5MhOAIFWeEe?=
+ =?us-ascii?Q?DCeldamsJ8Pp4gIPA8NsV7T/PcDnapqSh7gmzFAr16eFeDrI6++8BB9xLwsN?=
+ =?us-ascii?Q?EZMVHUMexKIQFvMgzDNz38w77+PjvnHfBHn6OZ1ZxkY2kZbg/c9jMj/+u9Cu?=
+ =?us-ascii?Q?u/KAmewn2acHqBAN+NPq+1msrJwMXZSJvSfOBx8zDFX9f3bZaqdc6cSJoPt/?=
+ =?us-ascii?Q?5t6REzvnGaC5ledm9NDKl88AOrmwGXyXubHBlR7/B9fXsMnL+6Dl5QC1A+hH?=
+ =?us-ascii?Q?b3LCg2nwnJ+0abx7wAWxQFI/sw+e6iNcNkMlUsBVoL7Vgqb/qpwSARE3/Na/?=
+ =?us-ascii?Q?YbJCht+XacHK6J2G999E3THvcjkqj7xlum3rB5hiqggCphsWUKZPCe9xjJ8t?=
+ =?us-ascii?Q?SS6B7frNytsYs64L9b3gzqr3Y7Cy4hYDnOqv5VqtZ35PLaAzDcOIPW6U2ji1?=
+ =?us-ascii?Q?fWhM1dZTxQSbIHZHo/xYKFlxc/HwZbDrX8aIH+HEZm06AgYzRoWgLWWKzA6a?=
+ =?us-ascii?Q?rDT0VbjZdonVwg+X4MSiNY/2ZaHjE/g+?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR10MB8218.namprd10.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(366016)(1800799024); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?AufqtMEJK337mpstXtZliMYO/0sWb9UwSYMFEQ7/f/tozt24e/Ojd+d/nWRZ?=
+ =?us-ascii?Q?qzjVjx8GOcxHPwOEn2uM65+NrpdRxf4pzyE6+Y1Uav7rq3pWQ05Wg1Tg+XdM?=
+ =?us-ascii?Q?yRmL2NJerKwSvjiGhnRulUC8SyqjDUdPiIHM2jvvVsyjExB1fkBQzCnHjn3b?=
+ =?us-ascii?Q?cQn9VQssLsf1KlJwd47tjjmNZCMRMMdkWa8y4hTmWGN0JBU5r6y9gTtZbOnh?=
+ =?us-ascii?Q?whLjCIOlTf41UtoKnluFWyfkhVYfnRwXdJFbcTj+n4desXvB4ThMuASsseRw?=
+ =?us-ascii?Q?AffQyCPewUAmtH4pKH6wkGMgtASvqfHW17HSRodkVadf31ChFLEV30ux0I01?=
+ =?us-ascii?Q?3RF/MgepsobdMmdIqDLb8Bl6B4ueMM2H8o9yg/MOWKhAMTqOY/ChsxipYiz5?=
+ =?us-ascii?Q?WWIz9WEjo4DJmz+ocL0otH/DYdOQ3Qi5hzx+88j6fxkBr46cWtLD4MbAOit2?=
+ =?us-ascii?Q?JiRLuw+XO+1oqXhhEierSxR7jFNhrxFa+mZ/3WScXhv+ty7oMOFbft2/w92F?=
+ =?us-ascii?Q?x3AEdMTFr8kCtyP8GRNAJppGcEhKO8kUB5QUE762XklSmXwWwFrZISuKc8Cx?=
+ =?us-ascii?Q?mpNPMRpMwAlSYjScOFlXTt+ACPbrgrhKufoVFZFi/XQOIr1/MIQ3itSNvL8E?=
+ =?us-ascii?Q?9dDay2nI4oENvmPR32CfGi2bwX6QIKElTqcQXA6Dd6fgxrw7P7FM1DFDWalY?=
+ =?us-ascii?Q?vey6Ex86tvJrwJJGQxUMUbIsxrQ2tuyvini5lQzybq+6bIVUKeOsYxNX5rS5?=
+ =?us-ascii?Q?CfZJA3jtn8I1aVuvA8JWhxtuK1i8L7RM7j59rV3uU83j1MDYlmodFuhy6GL2?=
+ =?us-ascii?Q?T7IXJenEu+t5bvGMmotlfLxWT25uk93xVH25xTxOQAL2o+ZP4o6KM0HeKyGS?=
+ =?us-ascii?Q?BShcO/7DdYf2Wke9BkLyQlgkg1K2d9RbrrvDiZNbGKJVCUPvKpN1ocilOY7W?=
+ =?us-ascii?Q?LbIe8TW+noThIOPp1va8ym38XHWMrbBe9GCYG9nja4QHpN+LAVoo6eGkv1/E?=
+ =?us-ascii?Q?i4HElog9niZgasIwqJFtYko/nv+YTstRFu+3pR+I3WenS+r2EtyKiJAev2Bc?=
+ =?us-ascii?Q?aFlWb5qTVu2KVI+IGxCye+W1vqkyG/C9v6Svwkp4Zxa9WSarVfo8uVHMYVGL?=
+ =?us-ascii?Q?GRec1UoBABMq9+IJcSYxbt0SElg1ZQVoKwg/UeeVzu66w63iJq0Rf8FhcWng?=
+ =?us-ascii?Q?pFPsKcEyp7Qc6QNn++F1hoBAlVzBR+9rEGwkq6/OtFTAhh7jMRam/29rqKEZ?=
+ =?us-ascii?Q?Uee+oiznIGN/xejC1msWfzQS7zQzRC9S7RIsoJ3kx8NyX7ncanEMTqeLTAIT?=
+ =?us-ascii?Q?XS75rkzQWqOa1RT9i2uxWvj26+0fMkyoRhhCjQxNKjFgzTG35rLPg3Q1YkX1?=
+ =?us-ascii?Q?xA011Cx/uTfv70Rxf/qd6SKHUipvMCw7jBVZuzDxRifiT857rNE1Zvy7Mp9G?=
+ =?us-ascii?Q?dMlc6N4C/nsCvGkSKcpVCHLHj6iWg/L43sFt3sUYetn1ZmvgSNJ0W7BMe0L2?=
+ =?us-ascii?Q?MLFiJPHf/IEB3kiietx0g73XOcIw9HjOtSJ0i3ysH3E3/jwAReqCuZgiYVTU?=
+ =?us-ascii?Q?9//M/IuI/M4eKi/CdRe6cjQ/OI5NGFUgwHYB174/byCBuM7gFuzY064PXb7C?=
+ =?us-ascii?Q?HQymE1sNll/kO8u7rC+KD4oj+MQ/Alr245kWtkre3BILS1yYR2nzvhirkdpZ?=
+ =?us-ascii?Q?SFfSCRo2U4yaPFfICXg6jVmZ0ZFt0FmOIzr5TtYH3iX1bZjBYfGI1PnCObx7?=
+ =?us-ascii?Q?54rktyIc1PDPwi+gTsHYLrpUcSbkJSY=3D?=
+X-MS-Exchange-AntiSpam-ExternalHop-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-ExternalHop-MessageData-0: B0dhAu3mIvuGcVEcxeNCmlPFG61yizyPadYtvuSzXF1Ptos7RBX+KkWBsSmU9XeNpkjWqb5J8fR+0SD+8kei+aCmGpwhYqrkyDOuvwh0bI2krRqvNO3tOUGw+ezbH/450WEGYlJPgl5APO395PhV4Bzi1N/R8T+OQYGhAawC/UZeGXEsyTNMMXtj9e4tOQ5zpNdyVs8nePEXebsFVIJ+yDRdKrG+9MP+OtFX/sM4YOj91go4Y7yaKymEf4TmOGwh3AHSaT7z+T5S+PITAMxqhYoacMK0Gof+PHGm470EjA5GuudCzu0RFEbjM3m5ne5+tH8//5Rjf5mm4148/3rma6h659/ZseavFJnnYsrYXKbSUzD+U915iZ/JG42vtN54COPyZ1ck63sKiCUUKvOXbQy2fqnFisgPlc9+D/22szGNhJH2oAWVovbQoLnb4G1xEzrWNphhq+F8JjueRTXV5W+BVpZeQdHG2hs90AwTCgm1q9DEtWEVtjWSoAEBfWRoU7HmSmtTmImTLLYt31ngRJVx9l7fnRHf5rqzo4mHg8xyUZlhYNU6CH6VslqbiptJd0CgGEWEsVC4vBBM9isQtm2TGyfJ0maU3JIkLEOriAc=
+X-OriginatorOrg: oracle.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d34adc41-90c4-481a-df40-08de4f72cf1b
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR10MB8218.namprd10.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jan 2026 11:32:45.3719 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 4e2c6054-71cb-48f1-bd6c-3a9705aca71b
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: mQKVWuV7di7CiBDwu2T9qAavWiiYq5LTFBu6k9TBw7IRsS5azk4YBnuyOlVr2s2NMcy2ww+NOTngODouMZiwiYWmPNuZk/CMs/VpTYYO+64=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA3PR10MB8163
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2026-01-09_03,2026-01-08_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 mlxlogscore=999
+ bulkscore=0
+ suspectscore=0 malwarescore=0 adultscore=0 mlxscore=0 phishscore=0
+ spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2512120000 definitions=main-2601090084
+X-Proofpoint-ORIG-GUID: 1KFr3lglssyHvFPKZy-kACFVZyUJXbeb
+X-Proofpoint-GUID: 1KFr3lglssyHvFPKZy-kACFVZyUJXbeb
+X-Authority-Analysis: v=2.4 cv=AZm83nXG c=1 sm=1 tr=0 ts=6960e761 b=1 cx=c_pps
+ a=zPCbziy225d3KhSqZt3L1A==:117
+ a=zPCbziy225d3KhSqZt3L1A==:17
+ a=6eWqkTHjU83fiwn7nKZWdM+Sl24=:19 a=z/mQ4Ysz8XfWz/Q5cLBRGdckG28=:19
+ a=lCpzRmAYbLLaTzLvsPZ7Mbvzbb8=:19 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=vUbySO9Y5rIA:10 a=GoEa3M9JfhUA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=kuTuYLHN2Zi8AzQQOpkA:9 a=CjuIK1q_8ugA:10 cc=ntf awl=host:12109
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTA5MDA4NCBTYWx0ZWRfX4C0UEvccThK+
+ 3/K5MfLORcA3IiR7m7TQOFcJFmafbZKCHdPPaf47TD/eXvKZAETiSyn8Vjtax8whdSY4enVvxYw
+ AlS8S0G2EBmUAUDldhGHq0/8eF1lOAGOmog/v/6qmSw0AZv7U4iAEl83tHOznFd0XYIhvaArmy4
+ 2sZfQz/bzwwEtjvY9XfUuIUkxrbAqKYOlZgLh/1SKYkGv7EGprP2pE4RklsB2ZgEdFhQtobHXkG
+ Fa1D1mDMDXdiTUi9W87k2EJD1jIBdEcVGfM/aDdkjJ4E6rTd5PB+HNLmPv7Iffkgb7DIAJ6aVZT
+ giP0Kkou18zndIzErMr+N/tKeXRy4KH9xLY3O2wZqGr7egAti1vThtAKPuvDqGKuTIHSPG61ln0
+ 71Y6cVvsWijiydH4ARmQRHWPJWd/Ya9xDhWVFQGtGHJavqcWEtA/mTmhFHLHfkyvZWbD5j5G07H
+ XFoQMwAseU2E58tJteyOmRDlk0mb11YsPPVyDz4s=
 X-Mailman-Approved-At: Fri, 09 Jan 2026 13:49:21 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -110,98 +203,189 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 1/9/26 09:54, Francois Dugast wrote:
-> From: Matthew Brost <matthew.brost@intel.com>
-> 
-> Add folio_split_unref helper which splits an unreferenced folio
+Hey Jordan,
 
-split_unref reads like "split and unref".
+Thanks for the feedback to the feedback :P but can you re-send this
+replying on the thread to everybody?
 
-You probably want to call this something like "folio_split_frozen" ?
+As it's important for all participants to see the back and forth.
 
-The very definition of "frozen" is "refcount = 0 ", so you can simplify 
-the documentation.
+Cheers, Lorenzo
 
-Are the folios you want to pass in there completely unused (-> free) or 
-might they still be in use (e.g., migration entries point at them during 
-folio split)
-
-So I am not sure yet if this should be "folio_split_frozen()" or 
-"folio_split_freed()" or sth like that.
-
-I'm not CCed on the other patches in the series or the cover letter, so 
-I don't see the context.
-
-You should describe in this patch here in which context the function is 
-supposed to be used in later commits.
-
-
-> (refcount == 0) into individual pages. Intended to be called on special
-> pages (e.g., device-private, DAX, etc.) when returning the folio to the
-> free page pool.
-> 
-> Cc: Balbir Singh <balbirs@nvidia.com>
-> Cc: Andrew Morton <akpm@linux-foundation.org>
-> Cc: David Hildenbrand <david@kernel.org>
-> Cc: Lorenzo Stoakes <lorenzo.stoakes@oracle.com>
-> Cc: Zi Yan <ziy@nvidia.com>
-> Cc: Baolin Wang <baolin.wang@linux.alibaba.com>
-> Cc: "Liam R. Howlett" <Liam.Howlett@oracle.com>
-> Cc: Nico Pache <npache@redhat.com>
-> Cc: Ryan Roberts <ryan.roberts@arm.com>
-> Cc: Dev Jain <dev.jain@arm.com>
-> Cc: Barry Song <baohua@kernel.org>
-> Cc: Lance Yang <lance.yang@linux.dev>
-> Cc: linux-mm@kvack.org
-> Cc: linux-kernel@vger.kernel.org
-> Suggested-by: Alistair Popple <apopple@nvidia.com>
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> Signed-off-by: Francois Dugast <francois.dugast@intel.com>
-> ---
->   include/linux/huge_mm.h |  1 +
->   mm/huge_memory.c        | 39 +++++++++++++++++++++++++++++++++++++++
->   2 files changed, 40 insertions(+)
-> 
-> diff --git a/include/linux/huge_mm.h b/include/linux/huge_mm.h
-> index a4d9f964dfde..18cb9728d8f1 100644
-> --- a/include/linux/huge_mm.h
-> +++ b/include/linux/huge_mm.h
-> @@ -369,6 +369,7 @@ enum split_type {
->   	SPLIT_TYPE_NON_UNIFORM,
->   };
->   
-> +void folio_split_unref(struct folio *folio);
->   int __split_huge_page_to_list_to_order(struct page *page, struct list_head *list,
->   		unsigned int new_order);
->   int folio_split_unmapped(struct folio *folio, unsigned int new_order);
-> diff --git a/mm/huge_memory.c b/mm/huge_memory.c
-> index 40cf59301c21..0eb9e6ad8639 100644
-> --- a/mm/huge_memory.c
-> +++ b/mm/huge_memory.c
-> @@ -3580,6 +3580,45 @@ static void __split_folio_to_order(struct folio *folio, int old_order,
->   		ClearPageCompound(&folio->page);
->   }
->   
-> +/**
-> + * folio_split_unref() - split an unreferenced folio (refcount == 0)
-> + * @folio: the to-be-split folio
-> + *
-> + * Split an unreferenced folio (refcount == 0) into individual pages.
-> + * Intended to be called on special pages (e.g., device-private, DAX, etc.)
-> + * when returning the folio to the free page pool.
-> + */
-> +void folio_split_unref(struct folio *folio)
-> +{
-> +	struct dev_pagemap *pgmap = page_pgmap(&folio->page);
-> +	int order, i;
-> +
-> +	folio->mapping = NULL;
-
-It's unclear why you mess with the mapping. Usually, throughout a folio 
-split, we populate the folio->mapping to all split folios.
-
-
--- 
-Cheers
-
-David
+On Fri, Jan 09, 2026 at 10:39:45AM +1100, Jordan Niethe wrote:
+> Hi,
+>
+> On 9/1/26 06:08, Lorenzo Stoakes wrote:
+>
+> > > @@ -28,6 +28,9 @@ enum softleaf_type {
+> > >   	SOFTLEAF_DEVICE_PRIVATE_READ,
+> > >   	SOFTLEAF_DEVICE_PRIVATE_WRITE,
+> > >   	SOFTLEAF_DEVICE_EXCLUSIVE,
+> > > +	SOFTLEAF_MIGRATION_DEVICE_READ,
+> > > +	SOFTLEAF_MIGRATION_DEVICE_READ_EXCLUSIVE,
+> > > +	SOFTLEAF_MIGRATION_DEVICE_WRITE,
+> >
+> > I think these should be SOFTLEAF_MIGRATION_DEVICE_PRIVATE_xxx
+> >
+> > And I realise that's a mouthful :)
+> >
+> > But to be consistent with other naming, including SOFTLEAF_DEVICE_PRIVATE_*.
+>
+> Sure.
+>
+> >
+> >
+> > I don't see any users of this, do you definitely use it? I mean presumably you
+> > might in a subsequent patch, not checked.
+> >
+> > Otherwise I'd wrap it into softleaf_is_migration().
+>
+> It gets used in the final patch of the series when we begin doing things
+> like:
+>
+> static inline struct page *softleaf_to_page(softleaf_t entry)
+> {
+> 	struct page *page;
+>
+> 	if (softleaf_is_migration_device_private(entry) ||
+> 	    softleaf_is_device_private(entry))
+> 		page = device_private_entry_to_page(entry);
+> 	else
+> 		page = pfn_to_page(softleaf_to_pfn(entry));
+>
+>
+> >
+> > >
+> > >   /**
+> > > @@ -211,7 +279,8 @@ static inline bool softleaf_is_migration_write(softleaf_t entry)
+> > >    */
+> > >   static inline bool softleaf_is_migration_read(softleaf_t entry)
+> > >   {
+> >
+> > For these ones that you are making sort of compound now, can you please update
+> > the kdoc to reflect it? You've done it for others but not this one.
+> >
+>
+> Sure, sorry I missed this one.
+>
+> > > -	return softleaf_type(entry) == SOFTLEAF_MIGRATION_READ;
+> > > +	return softleaf_type(entry) == SOFTLEAF_MIGRATION_READ ||
+> > > +	       softleaf_is_migration_device_private_read(entry);
+> > >   }
+> > >
+> > >   /**
+> > > @@ -219,12 +288,13 @@ static inline bool softleaf_is_migration_read(softleaf_t entry)
+> > >    * readable migration entry?
+> > >    * @entry: Leaf entry.
+> > >    *
+> > > - * Returns: true if the leaf entry is an exclusive readable migration entry,
+> > > - * otherwise false.
+> > > + * Returns: true if the leaf entry is an exclusive readable migration entry or
+> > > + * exclusive readable device private migration entry, otherwise false.
+> > >    */
+> > >   static inline bool softleaf_is_migration_read_exclusive(softleaf_t entry)
+> > >   {
+> > > -	return softleaf_type(entry) == SOFTLEAF_MIGRATION_READ_EXCLUSIVE;
+> > > +	return softleaf_type(entry) == SOFTLEAF_MIGRATION_READ_EXCLUSIVE ||
+> > > +	       softleaf_is_migration_device_private_read_exclusive(entry);
+> > >   }
+> > >
+> > >   /**
+> > > @@ -241,7 +311,7 @@ static inline bool softleaf_is_migration(softleaf_t entry)
+> > >   	case SOFTLEAF_MIGRATION_WRITE:
+> > >   		return true;
+> > >   	default:
+> > > -		return false;
+> > > +		return softleaf_is_migration_device_private(entry);
+> > >   	}
+> > >   }
+> >
+> > So all of these above ^^^ are making it so you can't determine if an entry is
+> > 'migration xxx' vs. 'migration xxx device private'. Is this ok?
+> >
+> > Does anything need to exclusively determine if something is a 'migration
+> > xxx'?
+> >
+> > If not then fine, but just wanted to check.
+>
+> The new entry types have the following relationship:
+>
+> SOFTLEAF_MIGRATION_DEVICE_READ is-a SOFTLEAF_MIGRATION_READ
+> SOFTLEAF_MIGRATION_READ !is-a SOFTLEAF_MIGRATION_DEVICE_READ
+>
+> So it is remains possible the distinguish the types using the
+> softleaf_is_migration_device_private_read() check
+>
+> In practice, the only reason for introducing this new type is so we know
+> when
+> we can not call pfn_to_page() on the swap entry offset. That is the only
+> time
+> that the difference matters.
+>
+> Rather than introducing a new type we could accomplish this by adding a new
+> flag like SWP_MIG_DIRTY, SWP_MIG_YOUNG but my concern was how we handle the
+> !migration_entry_supports_ad() case.
+>
+>
+> >
+> > >
+> > > diff --git a/include/linux/swap.h b/include/linux/swap.h
+> > > index 38ca3df68716..c15e3b3067cd 100644
+> > > --- a/include/linux/swap.h
+> > > +++ b/include/linux/swap.h
+> > > @@ -74,12 +74,18 @@ static inline int current_is_kswapd(void)
+> > >    *
+> > >    * When a page is mapped by the device for exclusive access we set the CPU page
+> > >    * table entries to a special SWP_DEVICE_EXCLUSIVE entry.
+> > > + *
+> > > + * Because device private pages do not use regular PFNs, special migration
+> > > + * entries are also needed.
+> > >    */
+> > >   #ifdef CONFIG_DEVICE_PRIVATE
+> > > -#define SWP_DEVICE_NUM 3
+> > > +#define SWP_DEVICE_NUM 6
+> > >   #define SWP_DEVICE_WRITE (MAX_SWAPFILES+SWP_HWPOISON_NUM+SWP_MIGRATION_NUM)
+> > >   #define SWP_DEVICE_READ (MAX_SWAPFILES+SWP_HWPOISON_NUM+SWP_MIGRATION_NUM+1)
+> > >   #define SWP_DEVICE_EXCLUSIVE (MAX_SWAPFILES+SWP_HWPOISON_NUM+SWP_MIGRATION_NUM+2)
+> > > +#define SWP_MIGRATION_DEVICE_READ (MAX_SWAPFILES+SWP_HWPOISON_NUM+SWP_MIGRATION_NUM+3)
+> > > +#define SWP_MIGRATION_DEVICE_READ_EXCLUSIVE (MAX_SWAPFILES+SWP_HWPOISON_NUM+SWP_MIGRATION_NUM+4)
+> > > +#define SWP_MIGRATION_DEVICE_WRITE (MAX_SWAPFILES+SWP_HWPOISON_NUM+SWP_MIGRATION_NUM+5)
+> >
+> > I've lost track on how many entries we have left, have you tested this with a
+> > config that maximises the number?
+>
+> Good point - let me double check that.
+>
+> >
+> > I really hate how we do this by the way, that's another thing to fix... :)
+> >
+> > >   #else
+> > >   #define SWP_DEVICE_NUM 0
+> > >   #endif
+> > > diff --git a/include/linux/swapops.h b/include/linux/swapops.h
+> > > index a9ad997bd5ec..bae76d3831fb 100644
+> > > --- a/include/linux/swapops.h
+> > > +++ b/include/linux/swapops.h
+> >
+> > Since this is pure softleaf stuff can we please put it all in leafops.h if
+> > possible? I know we already have some stuff here rather than there, but this
+> > really doesn't seem to belong here.
+>
+> The reason for adding the swapops.h entries to correspond with the softleaf
+> entries was it looked like the swapops were still required for making
+> the entries currently.
+>
+> That is, there aren't softleaf equivalents to
+> make_readable_device_private_entry() and friends yet.
+>
+> Would it be better if I introduced the swapops.h changes in a proceeding
+> patch?
+>
+> >
+> >
+> > Cheers, Lorenzo
+>
+> Thanks for reviewing.
+>
+> Jordan.
+>
