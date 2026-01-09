@@ -4,27 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 628C1D232E3
-	for <intel-xe@archiver.kernel.org>; Fri,  9 Jan 2026 05:43:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8B6A7D232E2
+	for <intel-xe@archiver.kernel.org>; Fri,  9 Jan 2026 05:58:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 004CA10E173;
-	Fri,  9 Jan 2026 05:43:11 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 05DE810E173;
- Fri,  9 Jan 2026 05:43:11 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4029181353045573338=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 44D7910E173;
+	Fri,  9 Jan 2026 05:58:19 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WOWsUo81";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A08D110E173
+ for <intel-xe@lists.freedesktop.org>; Fri,  9 Jan 2026 05:58:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1767938299; x=1799474299;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=JMK0O83OZsByg47PX7o0W3kFOC6uA7oSTKA26RDU3y0=;
+ b=WOWsUo81GG/n1B3tlcDkUu0JqVU4TU4ixjqlwQ6zVoKoYJgkW/mr/bnt
+ GDgAuljNoBD06jG5pbVXyXz7iZOvUJ2XB8NYMqCgye+7mpEWOyNfZBuPF
+ a4+eol5ZenVRyidK/Sbkq12QWRliQimSX9QKSOqGs2sBuFFi6Xgy59GxY
+ eK7xQ3FWxC9durZTHyX0efM/TRmFo3HzMc0ouW57AnSzKWHsLhq9q5r0Y
+ cdofcYrUB0NV6AoAuCYj4vbA7NWkitfmP6sAXjFgYlKUq4o0g4oNRat3j
+ NRoWdHKKQPOLznlaH0M/n5/IkztTr85NpOvxDVrEe1PZ2C8ETn62BoNt1 w==;
+X-CSE-ConnectionGUID: cNdJkv7mR+SZExQud9dbkQ==
+X-CSE-MsgGUID: BaKBOZBvQa+4RDL1/F4vjg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11665"; a="69370082"
+X-IronPort-AV: E=Sophos;i="6.21,212,1763452800"; d="scan'208";a="69370082"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jan 2026 21:58:18 -0800
+X-CSE-ConnectionGUID: 48hpek96Q8q37AoCwDaPPw==
+X-CSE-MsgGUID: n+mdh+FZQmKTsZABVyEwlQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,212,1763452800"; d="scan'208";a="207528414"
+Received: from black.igk.intel.com ([10.91.253.5])
+ by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jan 2026 21:58:16 -0800
+Date: Fri, 9 Jan 2026 06:58:13 +0100
+From: Raag Jadav <raag.jadav@intel.com>
+To: "Nilawar, Badal" <badal.nilawar@intel.com>
+Cc: intel-xe@lists.freedesktop.org, rodrigo.vivi@intel.com,
+ matthew.brost@intel.com, michal.wajdeczko@intel.com,
+ karthik.poosa@intel.com, matthew.d.roper@intel.com,
+ dev@lankhorst.se, jani.nikula@intel.com,
+ ville.syrjala@linux.intel.com, uma.shankar@intel.com
+Subject: Re: [PATCH v2] drm/xe/pm: Handle GT resume failure
+Message-ID: <aWCY9Y0CKyF1OyGC@black.igk.intel.com>
+References: <20251220073657.166810-1-raag.jadav@intel.com>
+ <78e5bb9e-595c-490d-96b0-bb01126d2f8a@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_use_por?=
- =?utf-8?q?t_not_transcoder_for_PORT=5FALPM=5FCTL?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Kaushlendra Kumar" <kaushlendra.kumar@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 09 Jan 2026 05:43:11 -0000
-Message-ID: <176793739100.139512.3955293042589403079@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260109050021.2017982-1-kaushlendra.kumar@intel.com>
-In-Reply-To: <20260109050021.2017982-1-kaushlendra.kumar@intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <78e5bb9e-595c-490d-96b0-bb01126d2f8a@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +68,68 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============4029181353045573338==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Fri, Jan 09, 2026 at 08:14:05AM +0530, Nilawar, Badal wrote:
+> On 20-12-2025 13:06, Raag Jadav wrote:
+> > We've been historically ignoring GT resume failure. Since the function
+> > can return error, handle it properly.
+> > 
+> > v2: Bring up display before bailing (Matt Roper, Rodrigo)
+> > 
+> > Signed-off-by: Raag Jadav <raag.jadav@intel.com>
+> > ---
+> >   drivers/gpu/drm/xe/xe_pm.c | 26 ++++++++++++++++++++++----
+> >   1 file changed, 22 insertions(+), 4 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
+> > index 4390ba69610d..559cf5490ac0 100644
+> > --- a/drivers/gpu/drm/xe/xe_pm.c
+> > +++ b/drivers/gpu/drm/xe/xe_pm.c
+> > @@ -260,10 +260,19 @@ int xe_pm_resume(struct xe_device *xe)
+> >   	xe_irq_resume(xe);
+> > -	for_each_gt(gt, xe, id)
+> > -		xe_gt_resume(gt);
+> > +	for_each_gt(gt, xe, id) {
+> > +		err = xe_gt_resume(gt);
+> > +		if (err)
+> > +			break;
+> 
+> GT and SAMedia are different entities (even if both are treated as GTs in
+> software), should we not continue attempting to resume the remaining GT even
+> if resuming first one fails.
 
-== Series Details ==
+My limited understanding is that GUI needs render engine, which the user
+won't be getting back either way.
 
-Series: drm/i915/display: use port not transcoder for PORT_ALPM_CTL
-URL   : https://patchwork.freedesktop.org/series/159849/
-State : success
+Raag
 
-== Summary ==
-
-CI Bug Log - changes from xe-4353-5760400bacff92a11593e5ae3e3e87cb11a0716a_BAT -> xe-pw-159849v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (12 -> 12)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-4353-5760400bacff92a11593e5ae3e3e87cb11a0716a -> xe-pw-159849v1
-
-  IGT_8692: 8692
-  xe-4353-5760400bacff92a11593e5ae3e3e87cb11a0716a: 5760400bacff92a11593e5ae3e3e87cb11a0716a
-  xe-pw-159849v1: 159849v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159849v1/index.html
-
---===============4029181353045573338==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/display: use port not transcoder for PORT_ALPM_CTL</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/159849/">https://patchwork.freedesktop.org/series/159849/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159849v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159849v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4353-5760400bacff92a11593e5ae3e3e87cb11a0716a_BAT -&gt; xe-pw-159849v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (12 -&gt; 12)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4353-5760400bacff92a11593e5ae3e3e87cb11a0716a -&gt; xe-pw-159849v1</li>
-</ul>
-<p>IGT_8692: 8692<br />
-  xe-4353-5760400bacff92a11593e5ae3e3e87cb11a0716a: 5760400bacff92a11593e5ae3e3e87cb11a0716a<br />
-  xe-pw-159849v1: 159849v1</p>
-
-</body>
-</html>
-
---===============4029181353045573338==--
+> > +	}
+> > +	/*
+> > +	 * Try to bring up display before bailing from GT resume failure,
+> > +	 * so we don't leave the user clueless with a blank screen.
+> > +	 */
+> >   	xe_display_pm_resume(xe);
+> > +	if (err)
+> > +		goto err;
+> >   	err = xe_bo_restore_late(xe);
+> >   	if (err)
+> > @@ -656,10 +665,19 @@ int xe_pm_runtime_resume(struct xe_device *xe)
+> >   	xe_irq_resume(xe);
+> > -	for_each_gt(gt, xe, id)
+> > -		xe->d3cold.allowed ? xe_gt_resume(gt) : xe_gt_runtime_resume(gt);
+> > +	for_each_gt(gt, xe, id) {
+> > +		err = xe->d3cold.allowed ? xe_gt_resume(gt) : xe_gt_runtime_resume(gt);
+> > +		if (err)
+> > +			break;
+> > +	}
+> > +	/*
+> > +	 * Try to bring up display before bailing from GT resume failure,
+> > +	 * so we don't leave the user clueless with a blank screen.
+> > +	 */
+> >   	xe_display_pm_runtime_resume(xe);
+> > +	if (err)
+> > +		goto out;
+> >   	if (xe->d3cold.allowed) {
+> >   		err = xe_bo_restore_late(xe);
