@@ -4,153 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A2793D16805
-	for <intel-xe@archiver.kernel.org>; Fri,  9 Jan 2026 10:34:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 50CE0D16802
+	for <intel-xe@archiver.kernel.org>; Fri,  9 Jan 2026 10:39:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F324610E894;
-	Fri,  9 Jan 2026 10:34:32 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="AYGkFnRw";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="IHUFvxjX";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="AYGkFnRw";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="IHUFvxjX";
-	dkim-atps=neutral
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1279410E892
- for <intel-xe@lists.freedesktop.org>; Fri,  9 Jan 2026 10:34:31 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id 892485BD4C;
- Fri,  9 Jan 2026 10:34:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1767954869; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=quXykmFucH86nMSyArVgl9RjHoQwr+Ungu8b5HjPcy4=;
- b=AYGkFnRwOFEi2fS+0MgdGKuPjA5xML1KOEc0VNsILP7ImaqRJ4uUWXamjRs8/0o0vpKGhf
- 7MdEAeqQ4bcAxw2TDloU/+OssmLjWH5UUlO21Va39W6gTXrp1mv9PEbzCDRLA8v7bJkvGC
- fj9pE11XRgdPxIiiCGMLZ4rIU7VzfFA=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1767954869;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=quXykmFucH86nMSyArVgl9RjHoQwr+Ungu8b5HjPcy4=;
- b=IHUFvxjXt6RNe94raOnQ1X8PE56K7NAxMjFmxFzfDsr06Ts6Avcj62ovlK3mxFEbcYeb9j
- Lla84MGwl3Bi/IDw==
-Authentication-Results: smtp-out2.suse.de;
-	none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1767954869; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=quXykmFucH86nMSyArVgl9RjHoQwr+Ungu8b5HjPcy4=;
- b=AYGkFnRwOFEi2fS+0MgdGKuPjA5xML1KOEc0VNsILP7ImaqRJ4uUWXamjRs8/0o0vpKGhf
- 7MdEAeqQ4bcAxw2TDloU/+OssmLjWH5UUlO21Va39W6gTXrp1mv9PEbzCDRLA8v7bJkvGC
- fj9pE11XRgdPxIiiCGMLZ4rIU7VzfFA=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1767954869;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=quXykmFucH86nMSyArVgl9RjHoQwr+Ungu8b5HjPcy4=;
- b=IHUFvxjXt6RNe94raOnQ1X8PE56K7NAxMjFmxFzfDsr06Ts6Avcj62ovlK3mxFEbcYeb9j
- Lla84MGwl3Bi/IDw==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 5C7883EA63;
- Fri,  9 Jan 2026 10:34:28 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id LvUmFbTZYGkGRAAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Fri, 09 Jan 2026 10:34:28 +0000
-Message-ID: <c816f7ed-66e0-4773-b3d1-4769234bd30b@suse.de>
-Date: Fri, 9 Jan 2026 11:34:27 +0100
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1323310E891;
+	Fri,  9 Jan 2026 10:39:09 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 89AF610E891;
+ Fri,  9 Jan 2026 10:39:07 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 00/12] Recover sysfb after DRM probe failure
-To: Zack Rusin <zack.rusin@broadcom.com>, dri-devel@lists.freedesktop.org
-Cc: Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org,
- Ard Biesheuvel <ardb@kernel.org>, Ce Sun <cesun102@amd.com>,
- Chia-I Wu <olvaffe@gmail.com>, =?UTF-8?Q?Christian_K=C3=B6nig?=
- <christian.koenig@amd.com>, Danilo Krummrich <dakr@kernel.org>,
- Dave Airlie <airlied@redhat.com>, Deepak Rawat <drawat.floss@gmail.com>,
- Dmitry Osipenko <dmitry.osipenko@collabora.com>,
- Gerd Hoffmann <kraxel@redhat.com>,
- Gurchetan Singh <gurchetansingh@chromium.org>,
- Hans de Goede <hansg@kernel.org>, Hawking Zhang <Hawking.Zhang@amd.com>,
- Helge Deller <deller@gmx.de>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, Jani Nikula <jani.nikula@linux.intel.com>,
- Javier Martinez Canillas <javierm@redhat.com>,
- Jocelyn Falempe <jfalempe@redhat.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Lijo Lazar <lijo.lazar@amd.com>, linux-efi@vger.kernel.org,
- linux-fbdev@vger.kernel.org, linux-hyperv@vger.kernel.org,
- linux-kernel@vger.kernel.org, Lucas De Marchi <lucas.demarchi@intel.com>,
- Lyude Paul <lyude@redhat.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- "Mario Limonciello (AMD)" <superm1@kernel.org>,
- Mario Limonciello <mario.limonciello@amd.com>,
- Maxime Ripard <mripard@kernel.org>, nouveau@lists.freedesktop.org,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Simona Vetter <simona@ffwll.ch>,
- spice-devel@lists.freedesktop.org,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- =?UTF-8?Q?Timur_Krist=C3=B3f?= <timur.kristof@gmail.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, virtualization@lists.linux.dev,
- Vitaly Prosyak <vitaly.prosyak@amd.com>
-References: <20251229215906.3688205-1-zack.rusin@broadcom.com>
-Content-Language: en-US
-From: Thomas Zimmermann <tzimmermann@suse.de>
-Autocrypt: addr=tzimmermann@suse.de; keydata=
- xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
- XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
- BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
- hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
- 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
- AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
- AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
- AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
- lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
- U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
- vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
- 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
- j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
- T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
- 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
- GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
- hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
- EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
- C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
- yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
- SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
- Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
- 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
-In-Reply-To: <20251229215906.3688205-1-zack.rusin@broadcom.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [-2.80 / 50.00]; BAYES_HAM(-3.00)[100.00%];
- SUSPICIOUS_RECIPS(1.50)[]; NEURAL_HAM_LONG(-1.00)[-1.000];
- NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
- RCVD_VIA_SMTP_AUTH(0.00)[]; ARC_NA(0.00)[];
- FREEMAIL_ENVRCPT(0.00)[gmail.com,gmx.de];
- MIME_TRACE(0.00)[0:+]; FUZZY_RATELIMITED(0.00)[rspamd.com];
- TO_DN_SOME(0.00)[]; RCPT_COUNT_TWELVE(0.00)[43];
- TAGGED_RCPT(0.00)[]; MID_RHS_MATCH_FROM(0.00)[];
- R_RATELIMIT(0.00)[to_ip_from(RLxtqcp3yg5i7i9mi6syp13ijk)];
- FROM_HAS_DN(0.00)[];
- FREEMAIL_CC(0.00)[amd.com,lists.freedesktop.org,kernel.org,gmail.com,redhat.com,collabora.com,chromium.org,gmx.de,linux.intel.com,vger.kernel.org,intel.com,ffwll.ch,ursulin.net,lists.linux.dev];
- RCVD_TLS_ALL(0.00)[]; FROM_EQ_ENVFROM(0.00)[];
- RCVD_COUNT_TWO(0.00)[2]; TO_MATCH_ENVRCPT_ALL(0.00)[];
- DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- DBL_BLOCKED_OPENRESOLVER(0.00)[linux.dev:email, suse.com:url, suse.de:mid,
- suse.de:email, imap1.dmz-prg2.suse.org:helo, lists.freedesktop.org:email]
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe=3A_Allow_compressi?=
+ =?utf-8?q?ble_surfaces_to_be_1-way_coherent_=28rev6=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Xin Wang" <x.wang@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 09 Jan 2026 10:39:07 -0000
+Message-ID: <176795514755.140724.12098687314798133879@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260109093007.546784-1-x.wang@intel.com>
+In-Reply-To: <20260109093007.546784-1-x.wang@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -162,170 +36,342 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi
+== Series Details ==
 
-Am 29.12.25 um 22:58 schrieb Zack Rusin:
-> Almost a rite of passage for every DRM developer and most Linux users
-> is upgrading your DRM driver/updating boot flags/changing some config
-> and having DRM driver fail at probe resulting in a blank screen.
->
-> Currently there's no way to recover from DRM driver probe failure. PCI
-> DRM driver explicitly throw out the existing sysfb to get exclusive
-> access to PCI resources so if the probe fails the system is left without
-> a functioning display driver.
->
-> Add code to sysfb to recever system framebuffer when DRM driver's probe
-> fails. This means that a DRM driver that fails to load reloads the system
-> framebuffer driver.
->
-> This works best with simpledrm. Without it Xorg won't recover because
-> it still tries to load the vendor specific driver which ends up usually
-> not working at all. With simpledrm the system recovers really nicely
-> ending up with a working console and not a blank screen.
->
-> There's a caveat in that some hardware might require some special magic
-> register write to recover EFI display. I'd appreciate it a lot if
-> maintainers could introduce a temporary failure in their drivers
-> probe to validate that the sysfb recovers and they get a working console.
-> The easiest way to double check it is by adding:
->   /* XXX: Temporary failure to test sysfb restore - REMOVE BEFORE COMMIT */
->   dev_info(&pdev->dev, "Testing sysfb restore: forcing probe failure\n");
->   ret = -EINVAL;
->   goto out_error;
-> or such right after the devm_aperture_remove_conflicting_pci_devices .
+Series: drm/xe: Allow compressible surfaces to be 1-way coherent (rev6)
+URL   : https://patchwork.freedesktop.org/series/157036/
+State : warning
 
-Recovering the display like that is guess work and will at best work 
-with simple discrete devices where the framebuffer is always located in 
-a confined graphics aperture.
+== Summary ==
 
-But the problem you're trying to solve is a real one.
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+9f1cb6875f3f9eb0925ed50c16100322a2df513c
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 4be4982042bc5f953762271f18bc5f584d86e0c8
+Author: Xin Wang <x.wang@intel.com>
+Date:   Fri Jan 9 09:30:06 2026 +0000
 
-What we'd want to do instead is to take the initial hardware state into 
-account when we do the initial mode-setting operation.
+    drm/xe: Allow compressible surfaces to be 1-way coherent
+    
+    Previously, compressible surfaces were required to be non-coherent (allocated
+    as WC) because compression and coherency were mutually exclusive. Starting
+    with Xe3, hardware supports combining compression with 1-way coherency,
+    allowing compressible surfaces to be allocated as WB memory. This provides
+    applications with more efficient memory allocation by avoiding WC allocation
+    overhead that can cause system stuttering and memory management challenges.
+    
+    The implementation adds support for compressed+coherent PAT entry for the
+    xe3_lpg devices and updates the driver logic to handle the new compression
+    capabilities.
+    
+    v2: (Matthew Auld)
+     - Improved error handling with XE_IOCTL_DBG()
+     - Enhanced documentation and comments
+     - Fixed xe_bo_needs_ccs_pages() outdated compression assumptions
+    
+    v3:
+     - Improve WB compression support detection by checking PAT table instead
+    of version check
+    
+    v4:
+     - Add XE_CACHE_WB_COMPRESSION, which simplifies the logic.
+    
+    v5:
+     - Use U16_MAX for the invalid PAT index. (Matthew Auld)
+    
+    Bspec: 71582, 59361, 59399
+    Cc: Matthew Auld <matthew.auld@intel.com>
+    Cc: Matt Roper <matthew.d.roper@intel.com>
+    Signed-off-by: Xin Wang <x.wang@intel.com>
+    Reviewed-by: Matthew Auld <matthew.auld@intel.com>
++ /mt/dim checkpatch 8c03c66faa101a552d780d9e9ec0cdcc0f80e317 drm-intel
+4be4982042bc drm/xe: Allow compressible surfaces to be 1-way coherent
+-:6: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#6: 
+Previously, compressible surfaces were required to be non-coherent (allocated
 
-The first step is to move each driver's remove_conflicting_devices call 
-to the latest possible location in the probe function. We usually do it 
-first, because that's easy. But on most hardware, it could happen much 
-later. The native driver is free to examine hardware state while probing 
-the device as long as it does not interfere with the pre-configured 
-framebuffer mode/format/address. Hence it can set up it's internal 
-structures while the sysfb device is still active.
+-:189: ERROR:SPACING: space prohibited after that open square bracket '['
+#189: FILE: drivers/gpu/drm/xe/xe_pat.c:185:
++	[ 0] = XE2_PAT( 0, 0, 0, 0, 3, 0 ),
 
-The next step for the native driver is to load the pre-configured 
-hardware state into its initial internal atomic state. Maxime has worked 
-on that on and off. The last iteration I'm aware of is at [1].
+-:189: ERROR:SPACING: space prohibited after that open parenthesis '('
+#189: FILE: drivers/gpu/drm/xe/xe_pat.c:185:
++	[ 0] = XE2_PAT( 0, 0, 0, 0, 3, 0 ),
 
-After the state-readout, the sysfb device has to be unplugged. But as 
-the underlying hardware config remains active, the native driver can now 
-use and modify it. We currently do a drm_mode_config_reset(), which 
-clears the state and then let the first client set a new display state. 
-But with state-readout, we could either pick up the existing framebuffer 
-directly or do a proper modeset from existing state.
+-:189: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#189: FILE: drivers/gpu/drm/xe/xe_pat.c:185:
++	[ 0] = XE2_PAT( 0, 0, 0, 0, 3, 0 ),
 
-As DRM clients control the mode setting, they'd likely need some changes 
-to handle state-readout. There's such code in i915's fbdev support AFAIK.
+-:190: ERROR:SPACING: space prohibited after that open square bracket '['
+#190: FILE: drivers/gpu/drm/xe/xe_pat.c:186:
++	[ 1] = XE2_PAT( 0, 0, 0, 0, 3, 2 ),
 
-Best regards
-Thomas
+-:190: ERROR:SPACING: space prohibited after that open parenthesis '('
+#190: FILE: drivers/gpu/drm/xe/xe_pat.c:186:
++	[ 1] = XE2_PAT( 0, 0, 0, 0, 3, 2 ),
 
-[1] 
-https://lore.kernel.org/dri-devel/20250902-drm-state-readout-v1-0-14ad5315da3f@kernel.org/
+-:190: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#190: FILE: drivers/gpu/drm/xe/xe_pat.c:186:
++	[ 1] = XE2_PAT( 0, 0, 0, 0, 3, 2 ),
 
->
-> Cc: Alex Deucher <alexander.deucher@amd.com>
-> Cc: amd-gfx@lists.freedesktop.org
-> Cc: Ard Biesheuvel <ardb@kernel.org>
-> Cc: Ce Sun <cesun102@amd.com>
-> Cc: Chia-I Wu <olvaffe@gmail.com>
-> Cc: "Christian König" <christian.koenig@amd.com>
-> Cc: Danilo Krummrich <dakr@kernel.org>
-> Cc: Dave Airlie <airlied@redhat.com>
-> Cc: Deepak Rawat <drawat.floss@gmail.com>
-> Cc: Dmitry Osipenko <dmitry.osipenko@collabora.com>
-> Cc: dri-devel@lists.freedesktop.org
-> Cc: Gerd Hoffmann <kraxel@redhat.com>
-> Cc: Gurchetan Singh <gurchetansingh@chromium.org>
-> Cc: Hans de Goede <hansg@kernel.org>
-> Cc: Hawking Zhang <Hawking.Zhang@amd.com>
-> Cc: Helge Deller <deller@gmx.de>
-> Cc: intel-gfx@lists.freedesktop.org
-> Cc: intel-xe@lists.freedesktop.org
-> Cc: Jani Nikula <jani.nikula@linux.intel.com>
-> Cc: Javier Martinez Canillas <javierm@redhat.com>
-> Cc: Jocelyn Falempe <jfalempe@redhat.com>
-> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-> Cc: Lijo Lazar <lijo.lazar@amd.com>
-> Cc: linux-efi@vger.kernel.org
-> Cc: linux-fbdev@vger.kernel.org
-> Cc: linux-hyperv@vger.kernel.org
-> Cc: linux-kernel@vger.kernel.org
-> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-> Cc: Lyude Paul <lyude@redhat.com>
-> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> Cc: "Mario Limonciello (AMD)" <superm1@kernel.org>
-> Cc: Mario Limonciello <mario.limonciello@amd.com>
-> Cc: Maxime Ripard <mripard@kernel.org>
-> Cc: nouveau@lists.freedesktop.org
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Cc: Simona Vetter <simona@ffwll.ch>
-> Cc: spice-devel@lists.freedesktop.org
-> Cc: "Thomas Hellström" <thomas.hellstrom@linux.intel.com>
-> Cc: Thomas Zimmermann <tzimmermann@suse.de>
-> Cc: "Timur Kristóf" <timur.kristof@gmail.com>
-> Cc: Tvrtko Ursulin <tursulin@ursulin.net>
-> Cc: virtualization@lists.linux.dev
-> Cc: Vitaly Prosyak <vitaly.prosyak@amd.com>
->
-> Zack Rusin (12):
->    video/aperture: Add sysfb restore on DRM probe failure
->    drm/vmwgfx: Use devm aperture helpers for sysfb restore on probe
->      failure
->    drm/xe: Use devm aperture helpers for sysfb restore on probe failure
->    drm/amdgpu: Use devm aperture helpers for sysfb restore on probe
->      failure
->    drm/virtio: Add sysfb restore on probe failure
->    drm/nouveau: Use devm aperture helpers for sysfb restore on probe
->      failure
->    drm/qxl: Use devm aperture helpers for sysfb restore on probe failure
->    drm/vboxvideo: Use devm aperture helpers for sysfb restore on probe
->      failure
->    drm/hyperv: Add sysfb restore on probe failure
->    drm/ast: Use devm aperture helpers for sysfb restore on probe failure
->    drm/radeon: Use devm aperture helpers for sysfb restore on probe
->      failure
->    drm/i915: Use devm aperture helpers for sysfb restore on probe failure
->
->   drivers/firmware/efi/sysfb_efi.c           |   2 +-
->   drivers/firmware/sysfb.c                   | 191 +++++++++++++--------
->   drivers/firmware/sysfb_simplefb.c          |  10 +-
->   drivers/gpu/drm/amd/amdgpu/amdgpu_device.c |   9 +-
->   drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c    |   7 +
->   drivers/gpu/drm/ast/ast_drv.c              |  13 +-
->   drivers/gpu/drm/hyperv/hyperv_drm_drv.c    |  23 +++
->   drivers/gpu/drm/i915/i915_driver.c         |  13 +-
->   drivers/gpu/drm/nouveau/nouveau_drm.c      |  16 +-
->   drivers/gpu/drm/qxl/qxl_drv.c              |  14 +-
->   drivers/gpu/drm/radeon/radeon_drv.c        |  15 +-
->   drivers/gpu/drm/vboxvideo/vbox_drv.c       |  13 +-
->   drivers/gpu/drm/virtio/virtgpu_drv.c       |  29 ++++
->   drivers/gpu/drm/vmwgfx/vmwgfx_drv.c        |  13 +-
->   drivers/gpu/drm/xe/xe_device.c             |   7 +-
->   drivers/gpu/drm/xe/xe_pci.c                |   7 +
->   drivers/video/aperture.c                   |  54 ++++++
->   include/linux/aperture.h                   |  14 ++
->   include/linux/sysfb.h                      |   6 +
->   19 files changed, 368 insertions(+), 88 deletions(-)
->
+-:191: ERROR:SPACING: space prohibited after that open square bracket '['
+#191: FILE: drivers/gpu/drm/xe/xe_pat.c:187:
++	[ 2] = XE2_PAT( 0, 0, 0, 0, 3, 3 ),
 
--- 
---
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Frankenstr. 146, 90461 Nürnberg, Germany, www.suse.com
-GF: Jochen Jaser, Andrew McDonald, Werner Knoblich, (HRB 36809, AG Nürnberg)
+-:191: ERROR:SPACING: space prohibited after that open parenthesis '('
+#191: FILE: drivers/gpu/drm/xe/xe_pat.c:187:
++	[ 2] = XE2_PAT( 0, 0, 0, 0, 3, 3 ),
+
+-:191: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#191: FILE: drivers/gpu/drm/xe/xe_pat.c:187:
++	[ 2] = XE2_PAT( 0, 0, 0, 0, 3, 3 ),
+
+-:192: ERROR:SPACING: space prohibited after that open square bracket '['
+#192: FILE: drivers/gpu/drm/xe/xe_pat.c:188:
++	[ 3] = XE2_PAT( 0, 0, 0, 3, 3, 0 ),
+
+-:192: ERROR:SPACING: space prohibited after that open parenthesis '('
+#192: FILE: drivers/gpu/drm/xe/xe_pat.c:188:
++	[ 3] = XE2_PAT( 0, 0, 0, 3, 3, 0 ),
+
+-:192: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#192: FILE: drivers/gpu/drm/xe/xe_pat.c:188:
++	[ 3] = XE2_PAT( 0, 0, 0, 3, 3, 0 ),
+
+-:193: ERROR:SPACING: space prohibited after that open square bracket '['
+#193: FILE: drivers/gpu/drm/xe/xe_pat.c:189:
++	[ 4] = XE2_PAT( 0, 0, 0, 3, 0, 2 ),
+
+-:193: ERROR:SPACING: space prohibited after that open parenthesis '('
+#193: FILE: drivers/gpu/drm/xe/xe_pat.c:189:
++	[ 4] = XE2_PAT( 0, 0, 0, 3, 0, 2 ),
+
+-:193: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#193: FILE: drivers/gpu/drm/xe/xe_pat.c:189:
++	[ 4] = XE2_PAT( 0, 0, 0, 3, 0, 2 ),
+
+-:194: ERROR:SPACING: space prohibited after that open square bracket '['
+#194: FILE: drivers/gpu/drm/xe/xe_pat.c:190:
++	[ 5] = XE2_PAT( 0, 0, 0, 3, 3, 2 ),
+
+-:194: ERROR:SPACING: space prohibited after that open parenthesis '('
+#194: FILE: drivers/gpu/drm/xe/xe_pat.c:190:
++	[ 5] = XE2_PAT( 0, 0, 0, 3, 3, 2 ),
+
+-:194: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#194: FILE: drivers/gpu/drm/xe/xe_pat.c:190:
++	[ 5] = XE2_PAT( 0, 0, 0, 3, 3, 2 ),
+
+-:195: ERROR:SPACING: space prohibited after that open square bracket '['
+#195: FILE: drivers/gpu/drm/xe/xe_pat.c:191:
++	[ 6] = XE2_PAT( 1, 0, 0, 1, 3, 0 ),
+
+-:195: ERROR:SPACING: space prohibited after that open parenthesis '('
+#195: FILE: drivers/gpu/drm/xe/xe_pat.c:191:
++	[ 6] = XE2_PAT( 1, 0, 0, 1, 3, 0 ),
+
+-:195: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#195: FILE: drivers/gpu/drm/xe/xe_pat.c:191:
++	[ 6] = XE2_PAT( 1, 0, 0, 1, 3, 0 ),
+
+-:196: ERROR:SPACING: space prohibited after that open square bracket '['
+#196: FILE: drivers/gpu/drm/xe/xe_pat.c:192:
++	[ 7] = XE2_PAT( 0, 0, 0, 3, 0, 3 ),
+
+-:196: ERROR:SPACING: space prohibited after that open parenthesis '('
+#196: FILE: drivers/gpu/drm/xe/xe_pat.c:192:
++	[ 7] = XE2_PAT( 0, 0, 0, 3, 0, 3 ),
+
+-:196: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#196: FILE: drivers/gpu/drm/xe/xe_pat.c:192:
++	[ 7] = XE2_PAT( 0, 0, 0, 3, 0, 3 ),
+
+-:197: ERROR:SPACING: space prohibited after that open square bracket '['
+#197: FILE: drivers/gpu/drm/xe/xe_pat.c:193:
++	[ 8] = XE2_PAT( 0, 0, 0, 3, 0, 0 ),
+
+-:197: ERROR:SPACING: space prohibited after that open parenthesis '('
+#197: FILE: drivers/gpu/drm/xe/xe_pat.c:193:
++	[ 8] = XE2_PAT( 0, 0, 0, 3, 0, 0 ),
+
+-:197: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#197: FILE: drivers/gpu/drm/xe/xe_pat.c:193:
++	[ 8] = XE2_PAT( 0, 0, 0, 3, 0, 0 ),
+
+-:198: ERROR:SPACING: space prohibited after that open square bracket '['
+#198: FILE: drivers/gpu/drm/xe/xe_pat.c:194:
++	[ 9] = XE2_PAT( 0, 1, 0, 0, 3, 0 ),
+
+-:198: ERROR:SPACING: space prohibited after that open parenthesis '('
+#198: FILE: drivers/gpu/drm/xe/xe_pat.c:194:
++	[ 9] = XE2_PAT( 0, 1, 0, 0, 3, 0 ),
+
+-:198: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#198: FILE: drivers/gpu/drm/xe/xe_pat.c:194:
++	[ 9] = XE2_PAT( 0, 1, 0, 0, 3, 0 ),
+
+-:199: ERROR:SPACING: space prohibited after that open parenthesis '('
+#199: FILE: drivers/gpu/drm/xe/xe_pat.c:195:
++	[10] = XE2_PAT( 0, 1, 0, 3, 0, 0 ),
+
+-:199: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#199: FILE: drivers/gpu/drm/xe/xe_pat.c:195:
++	[10] = XE2_PAT( 0, 1, 0, 3, 0, 0 ),
+
+-:200: ERROR:SPACING: space prohibited after that open parenthesis '('
+#200: FILE: drivers/gpu/drm/xe/xe_pat.c:196:
++	[11] = XE2_PAT( 1, 1, 0, 1, 3, 0 ),
+
+-:200: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#200: FILE: drivers/gpu/drm/xe/xe_pat.c:196:
++	[11] = XE2_PAT( 1, 1, 0, 1, 3, 0 ),
+
+-:201: ERROR:SPACING: space prohibited after that open parenthesis '('
+#201: FILE: drivers/gpu/drm/xe/xe_pat.c:197:
++	[12] = XE2_PAT( 0, 1, 0, 3, 3, 0 ),
+
+-:201: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#201: FILE: drivers/gpu/drm/xe/xe_pat.c:197:
++	[12] = XE2_PAT( 0, 1, 0, 3, 3, 0 ),
+
+-:202: ERROR:SPACING: space prohibited after that open parenthesis '('
+#202: FILE: drivers/gpu/drm/xe/xe_pat.c:198:
++	[13] = XE2_PAT( 0, 0, 0, 0, 0, 0 ),
+
+-:202: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#202: FILE: drivers/gpu/drm/xe/xe_pat.c:198:
++	[13] = XE2_PAT( 0, 0, 0, 0, 0, 0 ),
+
+-:203: ERROR:SPACING: space prohibited after that open parenthesis '('
+#203: FILE: drivers/gpu/drm/xe/xe_pat.c:199:
++	[14] = XE2_PAT( 0, 1, 0, 0, 0, 0 ),
+
+-:203: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#203: FILE: drivers/gpu/drm/xe/xe_pat.c:199:
++	[14] = XE2_PAT( 0, 1, 0, 0, 0, 0 ),
+
+-:204: ERROR:SPACING: space prohibited after that open parenthesis '('
+#204: FILE: drivers/gpu/drm/xe/xe_pat.c:200:
++	[15] = XE2_PAT( 1, 1, 0, 1, 1, 0 ),
+
+-:204: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#204: FILE: drivers/gpu/drm/xe/xe_pat.c:200:
++	[15] = XE2_PAT( 1, 1, 0, 1, 1, 0 ),
+
+-:205: ERROR:SPACING: space prohibited after that open parenthesis '('
+#205: FILE: drivers/gpu/drm/xe/xe_pat.c:201:
++	[16] = XE2_PAT( 0, 1, 0, 0, 3, 2 ),
+
+-:205: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#205: FILE: drivers/gpu/drm/xe/xe_pat.c:201:
++	[16] = XE2_PAT( 0, 1, 0, 0, 3, 2 ),
+
+-:207: ERROR:SPACING: space prohibited after that open parenthesis '('
+#207: FILE: drivers/gpu/drm/xe/xe_pat.c:203:
++	[20] = XE2_PAT( 0, 0, 1, 0, 3, 0 ),
+
+-:207: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#207: FILE: drivers/gpu/drm/xe/xe_pat.c:203:
++	[20] = XE2_PAT( 0, 0, 1, 0, 3, 0 ),
+
+-:208: ERROR:SPACING: space prohibited after that open parenthesis '('
+#208: FILE: drivers/gpu/drm/xe/xe_pat.c:204:
++	[21] = XE2_PAT( 0, 1, 1, 0, 3, 0 ),
+
+-:208: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#208: FILE: drivers/gpu/drm/xe/xe_pat.c:204:
++	[21] = XE2_PAT( 0, 1, 1, 0, 3, 0 ),
+
+-:209: ERROR:SPACING: space prohibited after that open parenthesis '('
+#209: FILE: drivers/gpu/drm/xe/xe_pat.c:205:
++	[22] = XE2_PAT( 0, 0, 1, 0, 3, 2 ),
+
+-:209: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#209: FILE: drivers/gpu/drm/xe/xe_pat.c:205:
++	[22] = XE2_PAT( 0, 0, 1, 0, 3, 2 ),
+
+-:210: ERROR:SPACING: space prohibited after that open parenthesis '('
+#210: FILE: drivers/gpu/drm/xe/xe_pat.c:206:
++	[23] = XE2_PAT( 0, 0, 1, 0, 3, 3 ),
+
+-:210: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#210: FILE: drivers/gpu/drm/xe/xe_pat.c:206:
++	[23] = XE2_PAT( 0, 0, 1, 0, 3, 3 ),
+
+-:211: ERROR:SPACING: space prohibited after that open parenthesis '('
+#211: FILE: drivers/gpu/drm/xe/xe_pat.c:207:
++	[24] = XE2_PAT( 0, 0, 2, 0, 3, 0 ),
+
+-:211: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#211: FILE: drivers/gpu/drm/xe/xe_pat.c:207:
++	[24] = XE2_PAT( 0, 0, 2, 0, 3, 0 ),
+
+-:212: ERROR:SPACING: space prohibited after that open parenthesis '('
+#212: FILE: drivers/gpu/drm/xe/xe_pat.c:208:
++	[25] = XE2_PAT( 0, 1, 2, 0, 3, 0 ),
+
+-:212: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#212: FILE: drivers/gpu/drm/xe/xe_pat.c:208:
++	[25] = XE2_PAT( 0, 1, 2, 0, 3, 0 ),
+
+-:213: ERROR:SPACING: space prohibited after that open parenthesis '('
+#213: FILE: drivers/gpu/drm/xe/xe_pat.c:209:
++	[26] = XE2_PAT( 0, 0, 2, 0, 3, 2 ),
+
+-:213: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#213: FILE: drivers/gpu/drm/xe/xe_pat.c:209:
++	[26] = XE2_PAT( 0, 0, 2, 0, 3, 2 ),
+
+-:214: ERROR:SPACING: space prohibited after that open parenthesis '('
+#214: FILE: drivers/gpu/drm/xe/xe_pat.c:210:
++	[27] = XE2_PAT( 0, 0, 2, 0, 3, 3 ),
+
+-:214: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#214: FILE: drivers/gpu/drm/xe/xe_pat.c:210:
++	[27] = XE2_PAT( 0, 0, 2, 0, 3, 3 ),
+
+-:215: ERROR:SPACING: space prohibited after that open parenthesis '('
+#215: FILE: drivers/gpu/drm/xe/xe_pat.c:211:
++	[28] = XE2_PAT( 0, 0, 3, 0, 3, 0 ),
+
+-:215: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#215: FILE: drivers/gpu/drm/xe/xe_pat.c:211:
++	[28] = XE2_PAT( 0, 0, 3, 0, 3, 0 ),
+
+-:216: ERROR:SPACING: space prohibited after that open parenthesis '('
+#216: FILE: drivers/gpu/drm/xe/xe_pat.c:212:
++	[29] = XE2_PAT( 0, 1, 3, 0, 3, 0 ),
+
+-:216: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#216: FILE: drivers/gpu/drm/xe/xe_pat.c:212:
++	[29] = XE2_PAT( 0, 1, 3, 0, 3, 0 ),
+
+-:217: ERROR:SPACING: space prohibited after that open parenthesis '('
+#217: FILE: drivers/gpu/drm/xe/xe_pat.c:213:
++	[30] = XE2_PAT( 0, 0, 3, 0, 3, 2 ),
+
+-:217: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#217: FILE: drivers/gpu/drm/xe/xe_pat.c:213:
++	[30] = XE2_PAT( 0, 0, 3, 0, 3, 2 ),
+
+-:218: ERROR:SPACING: space prohibited after that open parenthesis '('
+#218: FILE: drivers/gpu/drm/xe/xe_pat.c:214:
++	[31] = XE2_PAT( 0, 0, 3, 0, 3, 3 ),
+
+-:218: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#218: FILE: drivers/gpu/drm/xe/xe_pat.c:214:
++	[31] = XE2_PAT( 0, 0, 3, 0, 3, 3 ),
+
+total: 68 errors, 1 warnings, 0 checks, 245 lines checked
 
 
