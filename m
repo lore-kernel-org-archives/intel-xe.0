@@ -4,61 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2E9FFD1A627
-	for <intel-xe@archiver.kernel.org>; Fri,  9 Jan 2026 13:43:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 95F66D1A627
+	for <intel-xe@archiver.kernel.org>; Fri,  9 Jan 2026 13:44:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E834110E8D2;
-	Fri,  9 Jan 2026 13:43:25 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="A7fN0YV0";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 39C2910E8D2
- for <intel-xe@lists.freedesktop.org>; Fri,  9 Jan 2026 13:43:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1767966205; x=1799502205;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=t8pL0R/BzX+XBSzUmnfrKyRqq6ma79hvutwFeit6fKk=;
- b=A7fN0YV0RUklyBJMesBOQaC6BNZ8D6428Qh6giWESFyZj0rCcdvGkQP+
- aQLoTikh8154jh3hhME79LkWBCjs9L+I1Ovr1Gdp9NCkT1V22Xr6PkxAq
- tDIfDGelSQcu0FiOIWqfpxyvjOgKgcHVlXGqJxwpw/rZt3A+khwi5rk9l
- fid3F6NCrQfYE8RFN5TAs1jsfRmt1d2F3DhC/1HDFl+ehhPb1Sgy+hYWv
- rNyJQuw8VXKVsXupy7QPrtRoK/ilnzxCo/ezmQYJwsFpz9OMdD8vDZR/m
- EF+uFUOSfNVjRo9mouKTArZkI8Oo9eXoSHUDOy/Q1QfmjA74dGH3C5eK9 g==;
-X-CSE-ConnectionGUID: xOjWT0PGTcKyIpGayu2H6g==
-X-CSE-MsgGUID: 9VKuMK2uR9uuP3XBCzv+9g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11666"; a="56901486"
-X-IronPort-AV: E=Sophos;i="6.21,214,1763452800"; d="scan'208";a="56901486"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jan 2026 05:43:25 -0800
-X-CSE-ConnectionGUID: Cg3PmPtrRX6Y90onxnP9lg==
-X-CSE-MsgGUID: eOi1uOq2Ry6/UhWm+46EAg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,214,1763452800"; d="scan'208";a="207953377"
-Received: from black.igk.intel.com ([10.91.253.5])
- by fmviesa005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jan 2026 05:43:23 -0800
-Date: Fri, 9 Jan 2026 14:43:20 +0100
-From: Raag Jadav <raag.jadav@intel.com>
-To: "Nilawar, Badal" <badal.nilawar@intel.com>
-Cc: intel-xe@lists.freedesktop.org, rodrigo.vivi@intel.com,
- matthew.brost@intel.com, michal.wajdeczko@intel.com,
- karthik.poosa@intel.com, matthew.d.roper@intel.com,
- dev@lankhorst.se, jani.nikula@intel.com,
- ville.syrjala@linux.intel.com, uma.shankar@intel.com
-Subject: Re: [PATCH v2] drm/xe/pm: Handle GT resume failure
-Message-ID: <aWEF-MRhF5PiGTkP@black.igk.intel.com>
-References: <20251220073657.166810-1-raag.jadav@intel.com>
- <78e5bb9e-595c-490d-96b0-bb01126d2f8a@intel.com>
- <aWCY9Y0CKyF1OyGC@black.igk.intel.com>
- <7fe6e5fc-532d-4b27-878c-de47520f2482@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5C0CD10E8D4;
+	Fri,  9 Jan 2026 13:44:15 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5AD0A10E8D2;
+ Fri,  9 Jan 2026 13:44:14 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <7fe6e5fc-532d-4b27-878c-de47520f2482@intel.com>
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Testing_entire_GGTT_priva?=
+ =?utf-8?q?tization_preparation_series=2E_=28rev4=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Maarten Lankhorst" <dev@lankhorst.se>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 09 Jan 2026 13:44:14 -0000
+Message-ID: <176796625436.140724.16171365296332141186@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260109133746.739923-1-dev@lankhorst.se>
+In-Reply-To: <20260109133746.739923-1-dev@lankhorst.se>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,76 +36,90 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Jan 09, 2026 at 04:37:39PM +0530, Nilawar, Badal wrote:
-> On 09-01-2026 11:28, Raag Jadav wrote:
-> > On Fri, Jan 09, 2026 at 08:14:05AM +0530, Nilawar, Badal wrote:
-> > > On 20-12-2025 13:06, Raag Jadav wrote:
-> > > > We've been historically ignoring GT resume failure. Since the function
-> > > > can return error, handle it properly.
-> > > > 
-> > > > v2: Bring up display before bailing (Matt Roper, Rodrigo)
-> > > > 
-> > > > Signed-off-by: Raag Jadav <raag.jadav@intel.com>
-> > > > ---
-> > > >    drivers/gpu/drm/xe/xe_pm.c | 26 ++++++++++++++++++++++----
-> > > >    1 file changed, 22 insertions(+), 4 deletions(-)
-> > > > 
-> > > > diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
-> > > > index 4390ba69610d..559cf5490ac0 100644
-> > > > --- a/drivers/gpu/drm/xe/xe_pm.c
-> > > > +++ b/drivers/gpu/drm/xe/xe_pm.c
-> > > > @@ -260,10 +260,19 @@ int xe_pm_resume(struct xe_device *xe)
-> > > >    	xe_irq_resume(xe);
-> > > > -	for_each_gt(gt, xe, id)
-> > > > -		xe_gt_resume(gt);
-> > > > +	for_each_gt(gt, xe, id) {
-> > > > +		err = xe_gt_resume(gt);
-> > > > +		if (err)
-> > > > +			break;
-> > > GT and SAMedia are different entities (even if both are treated as GTs in
-> > > software), should we not continue attempting to resume the remaining GT even
-> > > if resuming first one fails.
-> > My limited understanding is that GUI needs render engine, which the user
-> > won't be getting back either way.
-> 
-> Ok, but how about multi-tile platform like PVC which doesn't have Render
-> engine and Media?
+== Series Details ==
 
-I'm assuming we don't need display to be able to debug them?
+Series: Testing entire GGTT privatization preparation series. (rev4)
+URL   : https://patchwork.freedesktop.org/series/159797/
+State : warning
 
-Regardless, a semi-working hardware would cause even more problems than
-solve IMHO but I'll leave to the experts to decide.
+== Summary ==
 
-Raag
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+9f1cb6875f3f9eb0925ed50c16100322a2df513c
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 9c296eda68405b4157b44e91f33343a35d31bbcf
+Author: Maarten Lankhorst <dev@lankhorst.se>
+Date:   Fri Jan 9 14:37:45 2026 +0100
 
-> > > > +	}
-> > > > +	/*
-> > > > +	 * Try to bring up display before bailing from GT resume failure,
-> > > > +	 * so we don't leave the user clueless with a blank screen.
-> > > > +	 */
-> > > >    	xe_display_pm_resume(xe);
-> > > > +	if (err)
-> > > > +		goto err;
-> > > >    	err = xe_bo_restore_late(xe);
-> > > >    	if (err)
-> > > > @@ -656,10 +665,19 @@ int xe_pm_runtime_resume(struct xe_device *xe)
-> > > >    	xe_irq_resume(xe);
-> > > > -	for_each_gt(gt, xe, id)
-> > > > -		xe->d3cold.allowed ? xe_gt_resume(gt) : xe_gt_runtime_resume(gt);
-> > > > +	for_each_gt(gt, xe, id) {
-> > > > +		err = xe->d3cold.allowed ? xe_gt_resume(gt) : xe_gt_runtime_resume(gt);
-> > > > +		if (err)
-> > > > +			break;
-> > > > +	}
-> > > > +	/*
-> > > > +	 * Try to bring up display before bailing from GT resume failure,
-> > > > +	 * so we don't leave the user clueless with a blank screen.
-> > > > +	 */
-> > > >    	xe_display_pm_runtime_resume(xe);
-> > > > +	if (err)
-> > > > +		goto out;
-> > > >    	if (xe->d3cold.allowed) {
-> > > >    		err = xe_bo_restore_late(xe);
+    drm/xe: Remove xe_ggtt_node_allocated
+    
+    With the intermediate state gone, no longer useful. Just check against
+    NULL.
+    
+    Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
++ /mt/dim checkpatch 5fca7141362c8198f287f7aaba7ea2c87ac0de49 drm-intel
+0b8e2ba7356b drm/xe: Start using ggtt->start in preparation of balloon removal
+-:115: CHECK:SPACING: No space is necessary after a cast
+#115: FILE: drivers/gpu/drm/xe/xe_ggtt.c:331:
++		ggtt_size = (gsm_size / 8) * (u64) XE_PAGE_SIZE - ggtt_start;
+
+total: 0 errors, 0 warnings, 1 checks, 187 lines checked
+554399b8a79f drm/xe: Convert xe_fb_pin to use a callback for insertion into GGTT
+-:190: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#190: FILE: drivers/gpu/drm/xe/xe_ggtt.c:640:
++static int xe_ggtt_node_insert_locked(struct xe_ggtt_node *node,
+ 			       u32 size, u32 align, u32 mm_flags)
+
+-:203: WARNING:LONG_LINE_COMMENT: line length of 120 exceeds 100 columns
+#203: FILE: drivers/gpu/drm/xe/xe_ggtt.c:681:
++ * xe_ggtt_node_insert_transform(), or xe_ggtt_node_insert_balloon_locked() will ensure the node is inserted or reserved
+
+total: 0 errors, 1 warnings, 1 checks, 314 lines checked
+c26c2d5388e2 drm/xe: Add xe_ggtt_node_addr() to avoid dereferencing xe_ggtt_node
+1f30e984e4c2 drm/xe/display: Avoid dereferencing xe_ggtt_node
+-:9: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#9: 
+Also sneak in a xe_bo_size() for stolen, too small to put as separate commit.
+
+total: 0 errors, 1 warnings, 0 checks, 40 lines checked
+2fe5d5214269 drm/xe: Do not dereference ggtt_node in xe_bo.c
+de21cccdc38c drm/xe: Improve xe_gt_sriov_pf_config GGTT handling
+4a791fe91e70 drm/xe: Privatize xe_ggtt_node
+ed3a1bdb964b drm/xe: Make xe_ggtt_node offset relative to starting offset
+-:53: WARNING:LONG_LINE: line length of 107 exceeds 100 columns
+#53: FILE: drivers/gpu/drm/xe/xe_ggtt.c:583:
++			 xe_ggtt_node_addr(node), xe_ggtt_node_addr(node) + node->base.size, ERR_PTR(err)))
+
+total: 0 errors, 1 warnings, 0 checks, 72 lines checked
+3ae79ed92a40 drm/xe: Rewrite GGTT VF initialisation
+-:18: WARNING:BAD_SIGN_OFF: Co-developed-by: must be immediately followed by Signed-off-by:
+#18: 
+Co-developed-by: Matthew Brost <matthew.brost@intel.com>
+
+
+-:61: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#61: FILE: drivers/gpu/drm/xe/xe_ggtt.c:357:
++			xe_tile_err(ggtt->tile, "tile%u: Invalid GGTT configuration: %#llx-%#llx\n",
++				     ggtt->tile->id, ggtt_start, ggtt_start + ggtt_size - 1);
+
+total: 0 errors, 1 warnings, 1 checks, 499 lines checked
+f6d61ff2a14a drm/xe: Move struct xe_ggtt to xe_ggtt.c
+-:46: ERROR:CODE_INDENT: code indent should use tabs where possible
+#46: FILE: drivers/gpu/drm/xe/xe_ggtt.c:112:
++        /** @start: Start offset of GGTT */$
+
+total: 1 errors, 0 warnings, 0 checks, 142 lines checked
+0193d384effe drm/xe: Make xe_ggtt_node_insert return a node
+9c296eda6840 drm/xe: Remove xe_ggtt_node_allocated
+
+
