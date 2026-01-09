@@ -4,142 +4,97 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D4001D1A627
-	for <intel-xe@archiver.kernel.org>; Fri,  9 Jan 2026 13:49:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2E7ECD1A62E
+	for <intel-xe@archiver.kernel.org>; Fri,  9 Jan 2026 13:49:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8860010E8D4;
+	by gabe.freedesktop.org (Postfix) with ESMTP id E0FD910E8DA;
 	Fri,  9 Jan 2026 13:49:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="Bubi61px";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="YUSONdW5";
 	dkim-atps=neutral
-Received: from PH8PR06CU001.outbound.protection.outlook.com
- (mail-westus3azon11012029.outbound.protection.outlook.com [40.107.209.29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 07F6710E304;
- Fri,  9 Jan 2026 01:18:39 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ResN7cV6/MHV/m8zU9w2Fhsrp/7XBlrmGqTio9IsLFXjkEVqHTsqznLwzCa8+/Lkfky5xx5t3gX5A07fXGW+0t5+wDjrK5GEQJi+qfa6yKNebC/K8dqJZ/xVYJwb8qlWEI8KAwhE2403akETQmHBT85BRzq+PGgsjvg9Hne3Mj7iJhlcZvkxqp4VultCLmjNYzZUZhpjzLyKYGjW4hv+0st7YoZ/H7v/RJitzjPa/ZqLBmPl42escE7vH1MARtbWvj9zfmuoYWnY4sY1hYKMqReqWseUMehoV1BLLd+MS3bCJ+nPPYoz8ArKobhho3sNvpPOAp1lceukO1WygiCDkQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=6f3fQ2B9zWZ7Zkc3V4rOI6Eu1cSfMF5y2kbCkApHtyI=;
- b=CntOM6Pjfk4ejJK1CkRV90v03A7yQqqPznjLXuOfLWnhmAgzNmmvvdwrHBaruepjjaF/guKoYsvuKYOVil6uEn4eI7pRtsQwKlhhtN41OV3w68I4F3dAlBr1G+TwkXFWGaiabIJS3DtOXMJH8mLp8yW7cYW5gHkuyI9qC8yZ/Mr9AwCP0/5mUHGo+435YxTdl+X+NHcKDyWBpCNORk7qbJZ3vYhovbNIE9U0XPK4ldJOA5uchhlGrcfjwORTylFMViVnKtM5TH+h3JwQNlPfWpPAl9JReLo2RGXkM/mWNOx4rEE8QuAcLvBaIiyEY7+ow65XeFAFPH/RW37YrYupdA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=6f3fQ2B9zWZ7Zkc3V4rOI6Eu1cSfMF5y2kbCkApHtyI=;
- b=Bubi61pxu3JwiYt87Cte8wDA1oyUczsRPshMqQ7xArEzYj4vVCPZdkb1zSOIrqxzp94xwL7uE8OMYcXJH8GoZo4+QD6NXArvTCWetvGaZhjt5Z4O6Uwu4PkfUz2gLaBgtlRQEp+Rw0kn/N7m6+XpN+UacVAsONFeKzyr1QNkZBQ4oPwX84k0S5Ut8a7Vgv+tyi8zd62Kuw7655DskNjRbKfe+JaWBewO2+wGdaoAwXWnTLsTkrbOAt80pw9d6/Fj+EAKOyUWc4KYzjZ4zaxl39buvmbIGMtZsGZ9xWs7/RgqD1G4d6RwNM72I6VSZeL3UbRnkjaktS9+mr5n7+VDDw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from PH0PR12MB8800.namprd12.prod.outlook.com (2603:10b6:510:26f::12)
- by SJ2PR12MB8009.namprd12.prod.outlook.com (2603:10b6:a03:4c7::10)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9499.4; Fri, 9 Jan
- 2026 01:18:35 +0000
-Received: from PH0PR12MB8800.namprd12.prod.outlook.com
- ([fe80::bdb6:e12f:18b6:2b77]) by PH0PR12MB8800.namprd12.prod.outlook.com
- ([fe80::bdb6:e12f:18b6:2b77%5]) with mapi id 15.20.9499.003; Fri, 9 Jan 2026
- 01:18:35 +0000
-Date: Thu, 8 Jan 2026 20:18:34 -0500
-From: Yury Norov <ynorov@nvidia.com>
-To: "Yury Norov (NVIDIA)" <yury.norov@gmail.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Harish Chegondi <harish.chegondi@intel.com>,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Thomas Gleixner <tglx@linutronix.de>
-Subject: Re: [PATCH] drm/xe/eustall: use bitmap_weighted_or() in
- xe_eu_stall_stream_init()
-Message-ID: <aWBXakZVHr4si8UQ@yury>
-References: <20251216000259.331293-1-yury.norov@gmail.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251216000259.331293-1-yury.norov@gmail.com>
-X-ClientProxiedBy: BN9PR03CA0674.namprd03.prod.outlook.com
- (2603:10b6:408:10e::19) To PH0PR12MB8800.namprd12.prod.outlook.com
- (2603:10b6:510:26f::12)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A387A10E16D;
+ Fri,  9 Jan 2026 13:19:24 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sea.source.kernel.org (Postfix) with ESMTP id 4757643A0F;
+ Fri,  9 Jan 2026 13:19:24 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D83ADC4CEF1;
+ Fri,  9 Jan 2026 13:19:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1767964764;
+ bh=dOxdIeEYnf0HHhRSlCVN+8qvKXOjd/cuc/y3jSDfBf4=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=YUSONdW55AHnI3b6E7AM+H4ziSAbRNNojnS9YaKKU56OSEAVcyjGNmbj6ESfHJ3V5
+ xf67oZKNsHgnOLFuemh01jIB8kvlYYLup79S+W+UOwzKpa/XM91lGXBwGEr91CArqJ
+ dNtKCj7HeuNPuSE9dlKijCprNkLxX5uoFRilwErcAEIWAGVj9sNDdAxO7DQ6ZhTPZt
+ 04mQOhkgpmVlqbCRpYUPBFRYvsMqel6SzBsAaCB4Fs/b+9EZ2xUWtLOpD8sdViTUGx
+ nJJw7wuj4MIEt9ouViJadObqt9nlWeGsYHnGauTsWRL37Gq9GujZHd5hFuHKr1mB3C
+ Hn3TsHoXRQ0FA==
+Message-ID: <59fb1669-2908-4cab-b3c0-b97479da3fb9@kernel.org>
+Date: Fri, 9 Jan 2026 14:19:16 +0100
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH0PR12MB8800:EE_|SJ2PR12MB8009:EE_
-X-MS-Office365-Filtering-Correlation-Id: b59a0e68-9311-4db7-cfb5-08de4f1d02e3
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|7416014|376014|10070799003|1800799024|7053199007; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?G7+9Korx67Aenn2xfUx7jLZh6ze/jg2d2I74GXW27FYps8ZPHmlVSXRhhCjV?=
- =?us-ascii?Q?MTFj4cCxKhjmnJlmdB3bEzv8N4zuZf2no9a7GR77i2L3d0QFYJndx/kyRboD?=
- =?us-ascii?Q?bvGwqIOOXI/Pd+fHxk6BPdOs9cT3oCV79sVP8uUgpe8QTMM5q3r94/SuFcUR?=
- =?us-ascii?Q?mRMknOx8/ReAzBqSkWc8CT8lT6gXyDGlXC1sWWRxi7h9At5k667PLYiWVJ/+?=
- =?us-ascii?Q?tyKU8BmWm5Rk6dwENjYTYhsvSCvrmo7wmCaHl/9MXvTlRGHjCUcqRAT7I7dV?=
- =?us-ascii?Q?l7iHRPgsxXPCd9YlV75pwnnFDpYoPlqKocIwKUUz5FxU17u8YMZtUv8kBOW2?=
- =?us-ascii?Q?aXRtxl6X0eZXbjj/MxO2OOf8eNFuoO/G9EX0YiaUc4dBt6MGZYp3PdyCGduT?=
- =?us-ascii?Q?rhGyFPIPdWMle1SUO1CBePsu7FfJAjPV8atLHZ6nDJFImA+if8ExKmk9MK9w?=
- =?us-ascii?Q?Fx8auovws+bB/m76Kot5CPy8cE/qXcEn08J6qcIoJUyYBGrDafCTdfiq5rT8?=
- =?us-ascii?Q?3QdqaxUK1W988N+825GS1i62ErDhDUilySHvf5e3KbR1JDQej4b7+kzwslrF?=
- =?us-ascii?Q?+2iwZN6nz25mX4khpDP4fkq4xKoP226jvvYkq452ajpcvx0t35XaqhSSsykI?=
- =?us-ascii?Q?gKCd4ICtuu2nww5xbXud/2pRInomlOKzNKAB6iMVru9jX6bTkT1dm+zu+0a0?=
- =?us-ascii?Q?uUs3GjMZ6ZmD2SI2jm+jyByuK5MgVKMoCXAkX31L6C+BA15ugML528K3IU4v?=
- =?us-ascii?Q?+muQ1vEDpuA793GXp7Vu4KQh6O1vf73N8nCMMAsaA12S5/7EKRfeL63cTnd6?=
- =?us-ascii?Q?9JoW5EYndhbVIKFPLBjEiC+Y4N2hcJET50jgzFfiYGDxPCR4jiJ9ufmA/LBn?=
- =?us-ascii?Q?VkU47HrTgMMI/q+kCzVApxvZhL0F8hi5yHK0+519g/vIkUUFLPOL9ivXm/jG?=
- =?us-ascii?Q?BSgqooa08sn8h+9vsEJhqkkx+KuP6BT1ODw6rIlvG1Kk3JT0iwLyn6ocNrR3?=
- =?us-ascii?Q?HcFZUQmYe8i1BhNE1RZEihvfYKU/EZoYXuf3eVYFumS5gleyFUK4t3UyGZvT?=
- =?us-ascii?Q?uvAdPvxN1gQ+TlKfbQKmVPSaivZfpFOzRdZ96kPKrVVA046a26Ct94QOOJux?=
- =?us-ascii?Q?3AOYkyI/36X4zenjaJYQ8Gn46XwYGo9DLH+xXKWlf1k77RkT1WUgIFDlmphY?=
- =?us-ascii?Q?Ngaot75Z7vdEbSKxof3XeMnD9JUmA3Bc8l17Uy4AWsIDirM00sPiDQpfx1VZ?=
- =?us-ascii?Q?QJYz+KKUTD36VdIxFW58XkejvgxtPOkwUVHKYPe4X/qbrrQsD9IlbVYjAzJg?=
- =?us-ascii?Q?QR8Isx4SV+LtEs8zw5iJwgOguwLGmZyEDDW4k0lGKUt00wy6wkx+C8EEnOS3?=
- =?us-ascii?Q?S71/Jkr3n8MYMSG4XpGwouOC4doY4KENx46kkJ6FkYyly8uI7yXEeQHcUuZf?=
- =?us-ascii?Q?h4wqru3hplemqjA1foO9OSYZ3ms5O0VM?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH0PR12MB8800.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(7416014)(376014)(10070799003)(1800799024)(7053199007);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?KGxpnPOB2hy0cUfwZNm63WaYzH96KYoSgMSDfkqbA1qCK3e3x+TAK9b6hCln?=
- =?us-ascii?Q?jkJBRKBWf7tH46QcRLt6ANuUyPEqGFjuZWfR7AHMNJuLltoO9XDiohvAEL9p?=
- =?us-ascii?Q?PWVtL8f9qPdFSZKsOiyxh2hW6+MMBWaifNKZ3/FF1ZiGJJadBQpX8DaidOQt?=
- =?us-ascii?Q?dRJ3VoeBqGDJIHD5O+8Ko8X6TZtMA6y61FxrbBeCVZG7SaR6NbTrVMSdPQ0a?=
- =?us-ascii?Q?gaONHa3UzGdq7okCrHylbvo5wLIx6jIYNK8zVrPXotKrZoO6gJ3pXbTRsulH?=
- =?us-ascii?Q?6WOj2E+hX+oaPXrKU/7hYHWhR+zyOuMwR4OHGm237472I6w7aCfTvwOJ9Teb?=
- =?us-ascii?Q?CVbX1Orw82dbFiMXuuAA6MoEhCiYk6dEdU3CyregKi69KztgBWEPapYOGlEg?=
- =?us-ascii?Q?SF5ryvi7BOTeDUesElNbmmGyxpujDrCItSLc/4fxyB6VIX5dUyQzvuP/MXpC?=
- =?us-ascii?Q?1rCamWGDT6i77k1Ia9vZgsaCEdiAqJwk0s5xzER7RGxhtJW7zLzGw2jNFB7r?=
- =?us-ascii?Q?4JMNohWJ77RSyy+iFAqhIqitG6nYRFm5spTL6cxd5RUEVuj7fxWtJLqm/HrU?=
- =?us-ascii?Q?f4f3yBzrSvB+MBiLvGrycQMGzJEAodUIowdYrjAzRbaU5tefJ0E+0YB74r4X?=
- =?us-ascii?Q?igSugwMGNP+FZp5AZlPiCHJSxvOoNcaElxp0J0KVTKHGS00aR7EOi28IsiRY?=
- =?us-ascii?Q?fLfP5cDmiJ4JvVJIlTkRi/OI3AIhABqnE1pVfY/lmbanZzmE/UjvnnUJr+eA?=
- =?us-ascii?Q?7173MOjnljNDTEFdjS0UEnWL8wM5qrRHejljowvzWsm63hyJ5ZSfXQmRXuJO?=
- =?us-ascii?Q?5lU8AcPWlDeaFskQtzAfGkdipuUy5UMl+YV8qcLhtgCr92P7rpArHXSDGIpv?=
- =?us-ascii?Q?PtgAarQgrb2pAsGBOJ7N8E4+EAjIOF3klF40gbDQkE0muspcQ1BuzyGI1hTJ?=
- =?us-ascii?Q?0iB1EddSg1wDMkXo7r6Aq+66E26ht/EWWsn30e6jHGv9uXOTCakirwHsR9NT?=
- =?us-ascii?Q?H50JfO6ahZFX9Gexl6b0HD98fzymOxiOwFhvEX5JmJme0xgc/Bocq/G1vfNB?=
- =?us-ascii?Q?wx+nx1RCZISSXfVeHEAx4m8q2mLoz4WSvpMzkkmmN9hl7F55lvOoHWPdX4KA?=
- =?us-ascii?Q?ERoYDt6gRGOtVvG7z8qsHJRdpkGm0lkudGiun3RCo5yjcIx0dc+bU8+VZfwg?=
- =?us-ascii?Q?BON8Ag1nx8VxzES0l0I8mYdZYSF1eUApvCe9+YSFLKd4XVRobmgdALlkmvjl?=
- =?us-ascii?Q?zNNlSwh/TmkJ95Ow7tLbQ7xGKVBleKqhU4/ivfozyEks2sbCiyniDWphkLEW?=
- =?us-ascii?Q?rK6DeVXAtlRSXV3mEP8E2muXXJx16F8QkQ1r9pug1+jWTjnvt4lKYlDNV2St?=
- =?us-ascii?Q?4i/wspAh72yl1TZ/QP+H9D04MwN8zDuk8GcOO2u1BS7kAvppJMTWqVyKdIvC?=
- =?us-ascii?Q?j4OoNX9eYeNF2Xy9RxrirhzeYWtFz1qbYKAugLM4LE/QAwys/e9aTo58udO0?=
- =?us-ascii?Q?NjYanjk01ncqf1HDhgiBW9vIhzUkb65f8Sl8us5bDIr+AyTHyX/k5m7Og5hB?=
- =?us-ascii?Q?2H/O1nDJ5RcTmzHps2RxuR4j0wFxUPIeqPcbOHIUwzmd8I0K5CedhiiQrj+A?=
- =?us-ascii?Q?svx1vJP19+4ZMkqPJe0PFSll6PlgnKjcu5TwsLfLRPzf6HfG5bAMe9Ej/xXf?=
- =?us-ascii?Q?d4aqTCUPCRFP1LPO4QZahsalVFG87WYPCzDH+LWVz7qUUh/b5Sk4kNYEEu9L?=
- =?us-ascii?Q?1kjK/uudtIEMa0JrdWh9fy5x1+3olhA8lFqKkZ7aC95CZ43FbxKq?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b59a0e68-9311-4db7-cfb5-08de4f1d02e3
-X-MS-Exchange-CrossTenant-AuthSource: PH0PR12MB8800.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jan 2026 01:18:35.5910 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 9kuQSh8/74gGLEyoe44nt0FSCvEiN0sdbwsSWDQWPdtOONHraJ7ZU7CcTJQ2G3K2IbTAqHsBNIdDU7k7/3P+Vw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR12MB8009
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/7] mm: Add folio_split_unref helper
+To: Francois Dugast <francois.dugast@intel.com>, intel-xe@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org, Matthew Brost <matthew.brost@intel.com>, 
+ Balbir Singh <balbirs@nvidia.com>, Andrew Morton
+ <akpm@linux-foundation.org>, Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
+ Zi Yan <ziy@nvidia.com>, Baolin Wang <baolin.wang@linux.alibaba.com>,
+ "Liam R. Howlett" <Liam.Howlett@oracle.com>, Nico Pache <npache@redhat.com>,
+ Ryan Roberts <ryan.roberts@arm.com>, Dev Jain <dev.jain@arm.com>,
+ Barry Song <baohua@kernel.org>, Lance Yang <lance.yang@linux.dev>,
+ linux-mm@kvack.org, linux-kernel@vger.kernel.org,
+ Alistair Popple <apopple@nvidia.com>
+References: <20260109085605.443316-1-francois.dugast@intel.com>
+ <20260109085605.443316-2-francois.dugast@intel.com>
+From: "David Hildenbrand (Red Hat)" <david@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=david@kernel.org; keydata=
+ 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
+In-Reply-To: <20260109085605.443316-2-francois.dugast@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Mailman-Approved-At: Fri, 09 Jan 2026 13:49:21 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -155,33 +110,98 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Ping?
+On 1/9/26 09:54, Francois Dugast wrote:
+> From: Matthew Brost <matthew.brost@intel.com>
+> 
+> Add folio_split_unref helper which splits an unreferenced folio
 
-On Mon, Dec 15, 2025 at 07:02:58PM -0500, Yury Norov (NVIDIA) wrote:
-> Commit 437cb3ded2503 ("cpumask: Introduce cpumask_weighted_or()") added
-> the new helper, which fits well here. Use it.
+split_unref reads like "split and unref".
+
+You probably want to call this something like "folio_split_frozen" ?
+
+The very definition of "frozen" is "refcount = 0 ", so you can simplify 
+the documentation.
+
+Are the folios you want to pass in there completely unused (-> free) or 
+might they still be in use (e.g., migration entries point at them during 
+folio split)
+
+So I am not sure yet if this should be "folio_split_frozen()" or 
+"folio_split_freed()" or sth like that.
+
+I'm not CCed on the other patches in the series or the cover letter, so 
+I don't see the context.
+
+You should describe in this patch here in which context the function is 
+supposed to be used in later commits.
+
+
+> (refcount == 0) into individual pages. Intended to be called on special
+> pages (e.g., device-private, DAX, etc.) when returning the folio to the
+> free page pool.
 > 
-> Signed-off-by: Yury Norov (NVIDIA) <yury.norov@gmail.com>
+> Cc: Balbir Singh <balbirs@nvidia.com>
+> Cc: Andrew Morton <akpm@linux-foundation.org>
+> Cc: David Hildenbrand <david@kernel.org>
+> Cc: Lorenzo Stoakes <lorenzo.stoakes@oracle.com>
+> Cc: Zi Yan <ziy@nvidia.com>
+> Cc: Baolin Wang <baolin.wang@linux.alibaba.com>
+> Cc: "Liam R. Howlett" <Liam.Howlett@oracle.com>
+> Cc: Nico Pache <npache@redhat.com>
+> Cc: Ryan Roberts <ryan.roberts@arm.com>
+> Cc: Dev Jain <dev.jain@arm.com>
+> Cc: Barry Song <baohua@kernel.org>
+> Cc: Lance Yang <lance.yang@linux.dev>
+> Cc: linux-mm@kvack.org
+> Cc: linux-kernel@vger.kernel.org
+> Suggested-by: Alistair Popple <apopple@nvidia.com>
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> Signed-off-by: Francois Dugast <francois.dugast@intel.com>
 > ---
->  drivers/gpu/drm/xe/xe_eu_stall.c | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
+>   include/linux/huge_mm.h |  1 +
+>   mm/huge_memory.c        | 39 +++++++++++++++++++++++++++++++++++++++
+>   2 files changed, 40 insertions(+)
 > 
-> diff --git a/drivers/gpu/drm/xe/xe_eu_stall.c b/drivers/gpu/drm/xe/xe_eu_stall.c
-> index b896b7ff5900..8bd4307afbbd 100644
-> --- a/drivers/gpu/drm/xe/xe_eu_stall.c
-> +++ b/drivers/gpu/drm/xe/xe_eu_stall.c
-> @@ -737,9 +737,9 @@ static int xe_eu_stall_stream_init(struct xe_eu_stall_data_stream *stream,
->  	u32 vaddr_offset;
->  	int ret;
->  
-> -	bitmap_or(all_xecores, gt->fuse_topo.g_dss_mask, gt->fuse_topo.c_dss_mask,
-> -		  XE_MAX_DSS_FUSE_BITS);
-> -	num_xecores = bitmap_weight(all_xecores, XE_MAX_DSS_FUSE_BITS);
-> +	num_xecores = bitmap_weighted_or(all_xecores, gt->fuse_topo.g_dss_mask,
-> +						      gt->fuse_topo.c_dss_mask,
-> +						      XE_MAX_DSS_FUSE_BITS);
->  	last_xecore = xe_gt_topology_mask_last_dss(all_xecores) + 1;
->  
->  	max_wait_num_reports = num_data_rows(per_xecore_buf_size * num_xecores);
-> -- 
-> 2.43.0
+> diff --git a/include/linux/huge_mm.h b/include/linux/huge_mm.h
+> index a4d9f964dfde..18cb9728d8f1 100644
+> --- a/include/linux/huge_mm.h
+> +++ b/include/linux/huge_mm.h
+> @@ -369,6 +369,7 @@ enum split_type {
+>   	SPLIT_TYPE_NON_UNIFORM,
+>   };
+>   
+> +void folio_split_unref(struct folio *folio);
+>   int __split_huge_page_to_list_to_order(struct page *page, struct list_head *list,
+>   		unsigned int new_order);
+>   int folio_split_unmapped(struct folio *folio, unsigned int new_order);
+> diff --git a/mm/huge_memory.c b/mm/huge_memory.c
+> index 40cf59301c21..0eb9e6ad8639 100644
+> --- a/mm/huge_memory.c
+> +++ b/mm/huge_memory.c
+> @@ -3580,6 +3580,45 @@ static void __split_folio_to_order(struct folio *folio, int old_order,
+>   		ClearPageCompound(&folio->page);
+>   }
+>   
+> +/**
+> + * folio_split_unref() - split an unreferenced folio (refcount == 0)
+> + * @folio: the to-be-split folio
+> + *
+> + * Split an unreferenced folio (refcount == 0) into individual pages.
+> + * Intended to be called on special pages (e.g., device-private, DAX, etc.)
+> + * when returning the folio to the free page pool.
+> + */
+> +void folio_split_unref(struct folio *folio)
+> +{
+> +	struct dev_pagemap *pgmap = page_pgmap(&folio->page);
+> +	int order, i;
+> +
+> +	folio->mapping = NULL;
+
+It's unclear why you mess with the mapping. Usually, throughout a folio 
+split, we populate the folio->mapping to all split folios.
+
+
+-- 
+Cheers
+
+David
