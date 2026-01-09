@@ -4,34 +4,36 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4DB29D1A627
-	for <intel-xe@archiver.kernel.org>; Fri,  9 Jan 2026 13:37:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 80F69D1A62F
+	for <intel-xe@archiver.kernel.org>; Fri,  9 Jan 2026 13:37:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0CBF010E8D2;
-	Fri,  9 Jan 2026 13:37:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3E29D10E8D6;
+	Fri,  9 Jan 2026 13:37:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="Of4DhWsM";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="ooM+07if";
 	dkim-atps=neutral
 Received: from lankhorst.se (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8DA2E10E8CB
- for <intel-xe@lists.freedesktop.org>; Fri,  9 Jan 2026 13:37:52 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2F61210E8D3
+ for <intel-xe@lists.freedesktop.org>; Fri,  9 Jan 2026 13:37:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1767965871;
- bh=cyXkPk3TmUZDEWwKN+waB09laCR8LWJEJ8+ic1oZXbA=;
- h=From:To:Subject:Date:From;
- b=Of4DhWsMB9Qa4BHoQ7d4hJ886545lMJi9BoNsT7uWJXG4lhk64UeIcqf3gXUR1kpg
- XpKMFeKFKAFgQ5k2eRT0vrXS1v22wTjR9ZG0/0j8zOlxieIsfux/V/5gXHRJXLvPFU
- RHIkHLwT34sbfMM5j2aEQ/wBu2Wh3f0Wyeurv0aG3EiPSBaMyzz5bTxzYO8I8bz6id
- wNnILxDHHtrbHI2ioPV1OZD0+wt+TKalXYLnFZ3Sz3XmQ9fA+B4+vUl9JuOgvhCT5X
- KKnRD5V/6Q25Trl/RLH+5xL3i/QGD8tPHlxNdfbpIhtFY/lhv7OtFcxJ10T3uBMayk
- 8Mvaqasa077dg==
+ s=default; t=1767965874;
+ bh=d/N6FPD2DZrJosYziSAYtvZHNjP/cC25jT0I9oDbkHQ=;
+ h=From:To:Subject:Date:In-Reply-To:References:From;
+ b=ooM+07ifW6QUTzwaNE2u9/h6y39y677qMqIJnMe5JqnM0q5t6QqxDciwoxdUfnrnx
+ jjrYogHkyho4oQ+HrF9o+/CyuXyhACX8jOJuR3mvuTMfOKe+xd3hJ5pcraMQtVqnA7
+ wDuKlOUoclA5KEDskY1vGbDJ49aBFMaepiVyNQod4SrgnHxFOdwGXQOPW2aHNNUPqJ
+ UG9ps4PjSw8qoqN7TVMqmtT0Sjds6+KAtUi4XCPffTLdiT8ois0ZAmTt+VNBJlMpsh
+ 1CUepdDAFtQ/i+6M6H+x8X7SSNLJdbRp4Ui7pk356G1u5xAH2i5oBv/Xk/a7IKnIUt
+ MUgnDCa4Iz5tw==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-xe@lists.freedesktop.org
-Subject: [FOR-CI-DO-NOT-REVIEW-v3 00/12] Testing entire GGTT privatization
- preparation series.
-Date: Fri,  9 Jan 2026 14:37:33 +0100
-Message-ID: <20260109133746.739923-1-dev@lankhorst.se>
+Subject: [FOR-CI-DO-NOT-REVIEW-v3 05/12] drm/xe: Do not dereference ggtt_node
+ in xe_bo.c
+Date: Fri,  9 Jan 2026 14:37:38 +0100
+Message-ID: <20260109133746.739923-6-dev@lankhorst.se>
 X-Mailer: git-send-email 2.51.0
+In-Reply-To: <20260109133746.739923-1-dev@lankhorst.se>
+References: <20260109133746.739923-1-dev@lankhorst.se>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -48,40 +50,47 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Do not review, last version had some CI failures, but too old results so need a fresh run to debug.
+A careful inspection of __xe_ggtt_insert_bo_at() shows that
+the ggtt_node can always be seen as inserted from xe_bo.c
+due to the way error handling is performed.
 
-Version 3 with bugfixes.
+The checks are also a little bit too paranoid, since we
+never create a bo with ggtt_node[id] initialised but not
+inserted into the GGTT, which can be seen by looking at
+__xe_ggtt_insert_bo_at()
 
-Maarten Lankhorst (12):
-  drm/xe: Start using ggtt->start in preparation of balloon removal
-  drm/xe: Convert xe_fb_pin to use a callback for insertion into GGTT
-  drm/xe: Add xe_ggtt_node_addr() to avoid dereferencing xe_ggtt_node
-  drm/xe/display: Avoid dereferencing xe_ggtt_node
-  drm/xe: Do not dereference ggtt_node in xe_bo.c
-  drm/xe: Improve xe_gt_sriov_pf_config GGTT handling
-  drm/xe: Privatize xe_ggtt_node
-  drm/xe: Make xe_ggtt_node offset relative to starting offset
-  drm/xe: Rewrite GGTT VF initialisation
-  drm/xe: Move struct xe_ggtt to xe_ggtt.c
-  drm/xe: Make xe_ggtt_node_insert return a node
-  drm/xe: Remove xe_ggtt_node_allocated
+Additionally, the size of the GGTT is never bigger than 4 GB,
+so adding a check at that level is incorrect.
 
- .../gpu/drm/xe/compat-i915-headers/i915_vma.h |   4 +-
- drivers/gpu/drm/xe/display/xe_fb_pin.c        | 105 ++--
- drivers/gpu/drm/xe/display/xe_stolen.c        |   2 +-
- drivers/gpu/drm/xe/tests/xe_guc_buf_kunit.c   |   8 +-
- drivers/gpu/drm/xe/xe_bo.c                    |   6 +-
- drivers/gpu/drm/xe/xe_bo.h                    |   8 +-
- drivers/gpu/drm/xe/xe_device_types.h          |   2 -
- drivers/gpu/drm/xe/xe_ggtt.c                  | 493 ++++++++++--------
- drivers/gpu/drm/xe/xe_ggtt.h                  |  28 +-
- drivers/gpu/drm/xe/xe_ggtt_types.h            |  80 +--
- drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c    |  53 +-
- drivers/gpu/drm/xe/xe_gt_sriov_vf.c           |   7 +-
- drivers/gpu/drm/xe/xe_tile_sriov_vf.c         | 198 +------
- drivers/gpu/drm/xe/xe_tile_sriov_vf.h         |   3 -
- 14 files changed, 378 insertions(+), 619 deletions(-)
+Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
+---
+ drivers/gpu/drm/xe/xe_bo.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index 6ab52fa397e3f..1763089f85832 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -1714,7 +1714,7 @@ static void xe_ttm_bo_destroy(struct ttm_buffer_object *ttm_bo)
+ 	xe_assert(xe, list_empty(&ttm_bo->base.gpuva.list));
+ 
+ 	for_each_tile(tile, xe, id)
+-		if (bo->ggtt_node[id] && bo->ggtt_node[id]->base.size)
++		if (bo->ggtt_node[id])
+ 			xe_ggtt_remove_bo(tile->mem.ggtt, bo);
+ 
+ #ifdef CONFIG_PROC_FS
+@@ -3608,8 +3608,8 @@ void xe_bo_put(struct xe_bo *bo)
+ 			might_lock(&bo->client->bos_lock);
+ #endif
+ 		for_each_tile(tile, xe_bo_device(bo), id)
+-			if (bo->ggtt_node[id] && bo->ggtt_node[id]->ggtt)
+-				xe_ggtt_might_lock(bo->ggtt_node[id]->ggtt);
++			if (bo->ggtt_node[id])
++				xe_ggtt_might_lock(tile->mem.ggtt);
+ 		drm_gem_object_put(&bo->ttm.base);
+ 	}
+ }
 -- 
 2.51.0
 
