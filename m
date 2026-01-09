@@ -4,161 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E9206D26D9C
-	for <intel-xe@archiver.kernel.org>; Fri,  9 Jan 2026 21:04:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F17ADD26D9C
+	for <intel-xe@archiver.kernel.org>; Fri,  9 Jan 2026 21:13:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ABD3C10E91A;
-	Fri,  9 Jan 2026 21:04:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 984DC10E91A;
+	Fri,  9 Jan 2026 21:13:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="2Iqn0nWe";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WuuectP9";
 	dkim-atps=neutral
-Received: from PH8PR06CU001.outbound.protection.outlook.com
- (mail-westus3azon11012007.outbound.protection.outlook.com [40.107.209.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7957410E344;
- Fri,  9 Jan 2026 21:04:13 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=GuBdyDosKNpyoafZpgVZ14yUIEP0rD9XmnzTB9UrnQgNlUP9nz5fp52XyBmxEw3r0hKZ3HsVkQ8p92Xwx2jEDQzfrm2a5hec7mSaDlmylPaSpICl4rTvjJBJ3umFLWnxdBxI8mLNTz/5Qh2P0dGtNfSSLtAHZHnWn7T2Ytpu6U6sfDsN4QAlR5jOhqiijrOUh4cGX90TD092Ex9UiOGAuBi9OaBKPLBIYfPqyTHYq5IVY9Zd8Qv1VneVhy+E28ggEIY8OjrMqn2NveSCiCnkB4GFW2Sz7YTYxL+E6Nt52sKPJxgoEVeQTT15KUs9OHPiCGcIDpKqjuGCifSTlOxQcQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=987WG82/4fdgilMdN2ubVOrpRs2w7yq7m26XNRwtGH8=;
- b=Sm3/QkkzJ1YtgyZzMG8zQIeWPEUy/zIuypkH+gSMt9B3b00LYZFy7cQjoiKknBqz+I4l6VdwLp+2K68M+Gtc68O6duvt8TSgJZni8yh3/EnR313BHwnqhWju2epbUBN78Og9uo3sI1NLrH6NwRC8kpAbrbY4hFwAKMeNFtmTbzIJ33BzzOFWviw3dH1/neaRt3fu2gPGAZP+HBY0xX5Z7kgp8KfQ4Nzf5YSuKkCLvl7sOJl4VnikUj/vsn5xxyBdYmmZMCdVj2XOz8QIM8316LuydZpYKzzjTDsDJoO6dOd5j9JUJ5VMHAByw7TfOKPP68KNGx9jqTzr6euID6yQ2g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=987WG82/4fdgilMdN2ubVOrpRs2w7yq7m26XNRwtGH8=;
- b=2Iqn0nWez6B39EBMzfT8gdmzd/jawMA+sRT9pX2Gwq2WpT5xeZ9fAyOVi29DNT9quc2Jhhh0XJJmwdZ08Y3qG4D/gSZ/E65ZFTyRYjZ/GeTFdPw1uZ7qx/8pCHEqTOm0HmbW5lAeERrG1yMFqwoZ+o4d6EWizce9myjXUC0AtMM=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from BN9PR12MB5115.namprd12.prod.outlook.com (2603:10b6:408:118::14)
- by IA0PR12MB7649.namprd12.prod.outlook.com (2603:10b6:208:437::17)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9499.4; Fri, 9 Jan
- 2026 21:04:03 +0000
-Received: from BN9PR12MB5115.namprd12.prod.outlook.com
- ([fe80::9269:317f:e85:cf81]) by BN9PR12MB5115.namprd12.prod.outlook.com
- ([fe80::9269:317f:e85:cf81%7]) with mapi id 15.20.9499.004; Fri, 9 Jan 2026
- 21:04:02 +0000
-Message-ID: <3334cea8-dbaf-4dce-8b6f-e22350f642b2@amd.com>
-Date: Fri, 9 Jan 2026 16:03:59 -0500
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 01/11] mm/migrate_device: Introduce
- migrate_pfn_from_page() helper
-To: Jordan Niethe <jniethe@nvidia.com>, linux-mm@kvack.org
-Cc: balbirs@nvidia.com, matthew.brost@intel.com, akpm@linux-foundation.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- david@redhat.com, ziy@nvidia.com, apopple@nvidia.com,
- lorenzo.stoakes@oracle.com, lyude@redhat.com, dakr@kernel.org,
- airlied@gmail.com, simona@ffwll.ch, rcampbell@nvidia.com,
- mpenttil@redhat.com, jgg@nvidia.com, willy@infradead.org,
- linuxppc-dev@lists.ozlabs.org, intel-xe@lists.freedesktop.org, jgg@ziepe.ca
-References: <20260107091823.68974-1-jniethe@nvidia.com>
- <20260107091823.68974-2-jniethe@nvidia.com>
- <10a8c08d-38f8-4d91-8f4e-f6140f5f260d@amd.com>
- <ebc909f1-ab70-4659-b037-bb82806fa159@nvidia.com>
-Content-Language: en-US
-From: "Kuehling, Felix" <felix.kuehling@amd.com>
-In-Reply-To: <ebc909f1-ab70-4659-b037-bb82806fa159@nvidia.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: YT4PR01CA0205.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:b01:ad::27) To BN9PR12MB5115.namprd12.prod.outlook.com
- (2603:10b6:408:118::14)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5C0DC10E91A
+ for <intel-xe@lists.freedesktop.org>; Fri,  9 Jan 2026 21:13:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1767993217; x=1799529217;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=DHA4+z5umLEEZbMCtlk/2zE4u6XE5LG323Z7eQg/nh8=;
+ b=WuuectP9lvVPO5oE8MEri7WQIA1/qGSJeMbXxOt9LmRiqpwtlZ7RLJnV
+ JfOLRridUYI7C42tQe/WaeOqzi+s88xnwgWmml8bEgD7HIqc8eo7t8hoV
+ zWGfKl901UHygYpCBf4siGB22kCu9PrOtAdg1+9NANrTk7gzBkc1lth7l
+ tGc4TSjsW69TKdFDa4GSjq299a6B90AZY99btngylpASYRtuvHADzxJpk
+ 9n5fu0AfdH2iR6Q1rorscoEz+PucBIIByqHjmeAeKzRkS9vFvOokM0GmL
+ z9/RTb4nLk6fEShmM2GRe1M0dOV48Cay39m3nR7AdGRa/hutxV/XRE2tX A==;
+X-CSE-ConnectionGUID: 24jvqt4mTQmNrGlzCY8I3A==
+X-CSE-MsgGUID: 8HSQTZSmSpmNL8kLDTFONQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11666"; a="69289976"
+X-IronPort-AV: E=Sophos;i="6.21,215,1763452800"; d="scan'208";a="69289976"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jan 2026 13:13:36 -0800
+X-CSE-ConnectionGUID: i553pLp6StCassBYXbOxcw==
+X-CSE-MsgGUID: 0L8sKYOnSoygKmMzx281aA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,215,1763452800"; d="scan'208";a="203853991"
+Received: from osgc-linux-buildserver.sh.intel.com ([10.112.232.103])
+ by fmviesa008.fm.intel.com with ESMTP; 09 Jan 2026 13:13:34 -0800
+From: Shuicheng Lin <shuicheng.lin@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: matthew.brost@intel.com, matthew.d.roper@intel.com,
+ Shuicheng Lin <shuicheng.lin@intel.com>
+Subject: [PATCH] drm/xe: Unregister drm device on probe error
+Date: Fri,  9 Jan 2026 21:10:42 +0000
+Message-ID: <20260109211041.2446012-2-shuicheng.lin@intel.com>
+X-Mailer: git-send-email 2.50.1
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN9PR12MB5115:EE_|IA0PR12MB7649:EE_
-X-MS-Office365-Filtering-Correlation-Id: 492c87db-ab9f-407d-cdd2-08de4fc29d7a
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|7416014|376014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?YTByUnA5cE5WSXJsME45RWpQc3JnQ3ZCQlh4MG8yU1M2OEoyem9aUjM3K0hl?=
- =?utf-8?B?U2ZjYnZqSWhxanBCNkg5c0JMYTN5WGdWTUoweGFoTEdSS3B1Mm5sdllYM1Vm?=
- =?utf-8?B?RGRSUXc1Zy9NT09lbjZkN2o4UlZpaEx6TXNOMVNaYkNpdDNkaFdFRGlFMGwy?=
- =?utf-8?B?WENDaDlxR2xJbzFzdjBGckcvVGxLVUNCR3JRN1YzYncyLzZEcEs0KzQ2YmVa?=
- =?utf-8?B?VjlmU20yQWZoVkNFc2h1RGhaK2tESEprT3FFbEh4ZkE3YXlSaVA5dmdOdWV1?=
- =?utf-8?B?UlQvRGdlYXJRMnhUZUVyZGRIbTE0M3g4RWgrNHIybENWZjllc1d6eGVyeDF0?=
- =?utf-8?B?eEdqU3Q0M1IrSWNaSjJ2Zmg2NDNRalNFeVdZbXpKejloMEVvZzFYMUVQa2Jv?=
- =?utf-8?B?a1lBdDVNNXpmb3JHY3dtL3FYSVFlbStNc0toVGU2c3B6NXFPRGtjUFcrL1d2?=
- =?utf-8?B?dHZ1ejlNbWJaS21ZVTBvd0NnWTFTNSt1RmErZTRCaG1CS09EUnJocXNmMzNu?=
- =?utf-8?B?Rk1YcGFQNnRVYWJCK2ZkWFlOZ1lwOGVzRFUrSkt0R0hEZFptRlpMbkdYRytB?=
- =?utf-8?B?czFnVGdBUjdLT3hxcE15VTBoTk0wbURYT0Q4MThtQ2c3bXRKN0E4SW1hSDRP?=
- =?utf-8?B?d2YxZFdteVBOTyszVUQxbGxTdVRUaDJXNUVzamduTkpGNWV4MG8xcldjeWdh?=
- =?utf-8?B?QnJlY1hldEJwSHRDWTZ1aGxGbll5dEsyaE5OcE9WeFBZemhlWmE1Tjk2T01R?=
- =?utf-8?B?elNXUTk4S0NTQllVd2lScy93dnNSUDE1N25Xd2ViTmJnMGlyYy9XOWNuWTFy?=
- =?utf-8?B?M2hEQzR1eTdKYkQ3ck1aWkR0RUJZZ3Y5c3M3ZWNOd2QzcEF1TVRYdUw1cC85?=
- =?utf-8?B?OHpyTUJUeWs4cE84VEF1RHJNSVVtWjgwVVUvYVNETU05SXpEMk5Pb280dWd2?=
- =?utf-8?B?bmEzTVNHUVlrbmo0OURlaHVWdjN4WjZ2TFFvNXZ5RmhhcWd0ajExN2tMMGNJ?=
- =?utf-8?B?RWR4Y3JuZmpKSUhJNGt3QytHQnREaURnL2hNQkZkQ0JWSllONU5ZRzVEVlho?=
- =?utf-8?B?R05qMmV0NWpEVWxxVFdwUlBiRzV4dEw2QjArSEFhSEpPWkF4R2lONDgwazFZ?=
- =?utf-8?B?cG16SVN3RG8yaVVKdDMyZnBYaWJSbURCSm9YVFhORjhJM1R0QlBMOGFiZEdl?=
- =?utf-8?B?dG10QjgzcDdMNEpjSVVtNkJYdnljekxDc0NMcWxrTGl6WHU3U2VSZDBUQTYy?=
- =?utf-8?B?ODJidEhoUWxoQkRyaHphcnc4UjR3M21Fb0t0UERpb2pDRC9ES1ZEV2cra3BI?=
- =?utf-8?B?dlBNVzBsWlFhYzRqbExBY0xiV2IyREZnZFlQQkNlcHpFZDhxalR5MXBLeGhC?=
- =?utf-8?B?b2R2OWNMREpEbTcwNmt1bllCQ0pCenlWWkM5NURXL1pZc2ZmU1pyQ3VyQnJq?=
- =?utf-8?B?aG1PK0tkdzVzV2p6ekJBbzNlQklzbEJia1ZITWNRUlh4RnNLRmp5Y1Q0TGsx?=
- =?utf-8?B?aDhybGtHMHQzQy84OXNYUHJpZnNTVjVrUjNoL2RERUJtZHB1eU14ZnRTM3BR?=
- =?utf-8?B?TFlqcXdHbU80enJqRVgyYm5BYTJXQ2tPSENDRDdiM0pIWCtBYkVEM1p3R3NI?=
- =?utf-8?B?TUNWUmE4dCtWWGYyN25CaUxTbVAzVTYvK1ZsUS8wakxNdUNDRFpKMHZSS04v?=
- =?utf-8?B?cFNJemxCemNEQjFydlFDUnVXUmdKc1Rtc2FJeXJWS3JUdDFVekdyTzdtUmdq?=
- =?utf-8?B?VVMrZGJRVlhYVjZtbG5INU5yTzRNRlZrbG5ZNmNlejdGajRDQ2U5YzRHeWls?=
- =?utf-8?B?cEVVRGpwUGROZ2dWQ0YxNGlyV2pGVXZGbDFuWXVrQjNXY0VjanJ0ZzBVRDl0?=
- =?utf-8?B?eG9Cd3Zwd251czY2aCt3dkx0Y3lQVENVbVNYT3JUNkNMaldjdjh2bHRUbHRV?=
- =?utf-8?Q?9+wIhs2Akvz/BlJQWY6p5VXDna56minm?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN9PR12MB5115.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(7416014)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZHJCaEJRZWhxeTByYjdTSU1EZi9ZczV6bW5CYXRMcHdEMFZ5bzR0Q0JBRm9F?=
- =?utf-8?B?YjJIKzVyTHJtbU5ESnR5aGU1c1Nnd0lvK0dLd2lSOVdqRWU3WSsvMXg0ZUds?=
- =?utf-8?B?TGwwVmZQbmEyK2ZWc3dVNzJGWlRuTXlVRjlLZmxHUVh2WTV6OTEzN2RhQ0pS?=
- =?utf-8?B?b215cmZ3OVhEZDBGUU1QSHJYb29BWExLdHZWajdvQ2FpMWlmUWd0WmlkS0Ur?=
- =?utf-8?B?THVZT0tNTlRCNiswekJOTjhnZ3UySm1GYU9VNEVBMmZSMzhRRFdXd1NyczRU?=
- =?utf-8?B?YTVIZklzaDRlL2tueFBiQklBQkhOOGh5Ujk4a0o4OXZRWEdLR1NTRkdrMlhn?=
- =?utf-8?B?RUFERTFZMXJ3c3lnTkxDQ3pvcEpUdGtxSXQwTS95Ly9NWTVRQjJKdmN1bW8v?=
- =?utf-8?B?Q3FuV2tTQTRBd1RXRUhxdStwS0Q1Vm1jTzU0a09MMjdMc28zUU9tQUNIb3JD?=
- =?utf-8?B?Rms0TllMWXZtd1hJVU9UUkNuVWRIOE9tV21BVDRYQzExMWVVSU95QjlvQUlT?=
- =?utf-8?B?WngrNDdTZ1VvMkVtQWZRMW0yQWl3b28wdDRENmVDZStzNzVtV2ZBdEdRNWVG?=
- =?utf-8?B?bXlCMm9OcTAyZUxzNVFSdFllejVTNXhiSUdJMWN3OWRKSG43TlVDdUN2NEV3?=
- =?utf-8?B?bmlQUStOK1BGTUtITmE0elRucFJNdkFFdVhIQm9UbWlURXdsTklVN0djSk03?=
- =?utf-8?B?bTVpa1BaY29OR2RxaEk1WGdVMG51Lzd5QTI0MkgvZERlSW9UaDZGSkM2aDdB?=
- =?utf-8?B?OUJkaFZ0UVZ6Yi9GNlQ5cFF1RGR5aFlocTJBcHRJRE1FQUl5Y1hMbU8vTVFU?=
- =?utf-8?B?ZllXVnFLelBWaVdpRVN3L1BjNTVDTmxCZFhWVVJkZHlkamRPVHVmVXQxaStj?=
- =?utf-8?B?enFrYUtaakRZNWpYV0FSZUw5Uk9kTTlnRjViRFVBc0JlbmVNd3NzRklaUUpk?=
- =?utf-8?B?Z042ZTk3aVR5dUtvVEh2TjJvUW9vbEcxcVN3bjlSRy9kSk96TG9sejRuNnR0?=
- =?utf-8?B?QW42TTRsVko2SE1QMkJqanVkWXJjTElPUDdXSkxUZkYwSEY2RTBSRW13SlZ0?=
- =?utf-8?B?U2EvK3BBME5TdTlQaWhReFc3VTl5bTNnRXpSV2pFK0lCYXhDZ2NrZTFvM25N?=
- =?utf-8?B?alF1RGp1NS8zdy81MmpzT1p6U25JRmUxeWpXdWNyVUZIdnFLSEZ1ck5kZzlv?=
- =?utf-8?B?WmtSWjBqSEdLbkhRams0OHA2UFRtUitjdUdkWExGNXVKNXRnQVlvVk1FMDlY?=
- =?utf-8?B?Q2xwZVl2WFdXZnd6dS8xWmdaWFJPY3N0THFyS0d0UTNyanQ2cnhjalo4SFZ5?=
- =?utf-8?B?OTRGWUJDZnhnaHRqeDVZT0VZR0o2cGtJekNpOHBPVk1VUTBvZ1FmVnJqUEwv?=
- =?utf-8?B?dlpvclRvSk1wYTllV1BERUw2NGJjdUhEMHJiR0crSkZVb3FXTU5FN2dqR1l4?=
- =?utf-8?B?MDl5R1QyQzM2N2ZSUzcxcmJtLzlzT0NzYWZ0SVBBZEg4elRsSkVnR0puTTNk?=
- =?utf-8?B?ZFB2dWlnRk0rVzZWNUV3dDVIM0VwTnllRTdyTlUxOE51VVJINnRFMkRCWXRN?=
- =?utf-8?B?WlFRbmRSMTBUaWovd0xVbldYNHN2Y1JKS2JlNDZYUHRnaEtkdEZTbEZHeFVz?=
- =?utf-8?B?bXRSNHF2allHTkpUc0dvZEVNZkw5MFpPajBZZDB5Z2drU2NkRzBwR0Rxa1NM?=
- =?utf-8?B?cktGQlF0WDZMellpOVo3a0NmNXEvUEZ0eWl3VTlhVGozK05NTG9KNDlaeUYz?=
- =?utf-8?B?WDNTZHlXRExmaXRTQXdwN016Y0lZMklNbjdlYng5S01XWE4vUm9JWHkyOU4y?=
- =?utf-8?B?SUlXeWdCZHJNRFc4SWhUOFQzc2tjVVorRnE3VlF4VXBNMVQyeGs1b2NySXBx?=
- =?utf-8?B?RjM2MU5EQUZ0cnlNYm1XSTdIYUM1cWZYa2dLajRrQkkyREdSbkt0b0NMVmhu?=
- =?utf-8?B?MzFza2JzdHMrNTh0RmxJK2pEd2ZZeERuRzVEQU8zOXZxTDFSb0VPdWc4WHU0?=
- =?utf-8?B?cUhUc2FwazFCZFNuVWpBeENiTjZNSVZMYjkzRjFnQjF0UHJqNmZtZ1lpNENW?=
- =?utf-8?B?dXF0QVVtTnNIWWpUd3JZam5aSU1XbXRCU1JmYnFlNjUzSmVNSTNlaHdrUlJY?=
- =?utf-8?B?MTJoSld6ZUhRKzQ0bk9XUDlvbGNaY1dBcTBNSTV6TlVIdmZFcDBNVVVCZUJn?=
- =?utf-8?B?OXp3YmZkOUZLYzIxVzNUdVRnODZMZUdHUEdPTitCeGdnNlRDQjNwL3hwZ3BE?=
- =?utf-8?B?MmNheXFXR2puNy9mRzVkOU1BVXE0ZTB0eU5DcTZ5RmNmS29iTEY2cnhJZEI2?=
- =?utf-8?B?bE9oYUNZNnMvbldOWFBoeElCc0VvZTJQa0lrKzhQL3RGQjFvMU5lZz09?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 492c87db-ab9f-407d-cdd2-08de4fc29d7a
-X-MS-Exchange-CrossTenant-AuthSource: BN9PR12MB5115.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jan 2026 21:04:01.9331 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: QGTQzawwGC3XTiwOXQ8Ty75V+NhLKKoFLKNL05+Djd5gcrhK10VIWdVWVHZR4Ed1VDZzvHb4uy5HSVNlF+/pTQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR12MB7649
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -173,39 +64,79 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Call drm_dev_unregister() when xe_device_probe() fails after successful
+drm_dev_register(). This ensures the DRM device is promptly unregistered
+before returning an error, avoiding leaving it registered on the failure
+path.
+Otherwise, there is warn message if xe_device_probe() is called again:
+"
+[  207.322365] [drm:drm_minor_register]
+[  207.322381] debugfs: '128' already exists in 'dri'
+[  207.322432] sysfs: cannot create duplicate filename '/devices/pci0000:00/0000:00:01.0/0000:01:00.0/0000:02:01.0/0000:03:00.0/drm/renderD128'
+[  207.322435] CPU: 5 UID: 0 PID: 10261 Comm: modprobe Tainted: G    B   W           6.19.0-rc2-lgci-xe-kernel+ #223 PREEMPT(voluntary)
+[  207.322439] Tainted: [B]=BAD_PAGE, [W]=WARN
+[  207.322440] Hardware name: ASUS System Product Name/PRIME Z790-P WIFI, BIOS 0812 02/24/2023
+[  207.322441] Call Trace:
+[  207.322442]  <TASK>
+[  207.322443]  dump_stack_lvl+0xa0/0xc0
+[  207.322446]  dump_stack+0x10/0x20
+[  207.322448]  sysfs_warn_dup+0xd5/0x110
+[  207.322451]  sysfs_create_dir_ns+0x1f6/0x280
+[  207.322453]  ? __pfx_sysfs_create_dir_ns+0x10/0x10
+[  207.322455]  ? lock_acquire+0x1a4/0x2e0
+[  207.322458]  ? __kasan_check_read+0x11/0x20
+[  207.322461]  kobject_add_internal+0x28d/0x8e0
+[  207.322464]  kobject_add+0x11f/0x1f0
+[  207.322465]  ? lock_acquire+0x1a4/0x2e0
+[  207.322467]  ? __pfx_kobject_add+0x10/0x10
+[  207.322469]  ? __kasan_check_write+0x14/0x20
+[  207.322471]  ? kobject_put+0x62/0x4a0
+[  207.322473]  ? get_device_parent.isra.0+0x1bb/0x4c0
+[  207.322475]  ? kobject_put+0x62/0x4a0
+[  207.322477]  device_add+0x2d7/0x1500
+[  207.322479]  ? __pfx_device_add+0x10/0x10
+[  207.322481]  ? drm_debugfs_add_file+0xfa/0x170
+[  207.322483]  ? drm_debugfs_add_files+0x82/0xd0
+[  207.322485]  ? drm_debugfs_add_files+0x82/0xd0
+[  207.322487]  drm_minor_register+0x10a/0x2d0
+[  207.322489]  drm_dev_register+0x143/0x860
+[  207.322491]  ? xe_configfs_get_psmi_enabled+0x12/0x90 [xe]
+[  207.322667]  xe_device_probe+0x185b/0x2c40 [xe]
+[  207.322812]  ? __pfx___drm_dev_dbg+0x10/0x10
+[  207.322815]  ? add_dr+0x180/0x220
+[  207.322818]  ? __pfx___drmm_mutex_release+0x10/0x10
+[  207.322821]  ? __pfx_xe_device_probe+0x10/0x10 [xe]
+[  207.322966]  ? xe_pm_init_early+0x33a/0x410 [xe]
+[  207.323136]  xe_pci_probe+0x936/0x1250 [xe]
+[  207.323298]  ? lock_acquire+0x1a4/0x2e0
+[  207.323302]  ? __pfx_xe_pci_probe+0x10/0x10 [xe]
+[  207.323464]  local_pci_probe+0xe6/0x1a0
+[  207.323468]  pci_device_probe+0x523/0x840
+[  207.323470]  ? __pfx_pci_device_probe+0x10/0x10
+[  207.323473]  ? sysfs_do_create_link_sd.isra.0+0x8c/0x110
+[  207.323476]  ? sysfs_create_link+0x48/0xc0
+[  207.323479]  really_probe+0x1fd/0x8a0
+...
+"
 
-On 2026-01-08 18:49, Jordan Niethe wrote:
-> Hi,
->
-> On 9/1/26 07:03, Felix Kuehling wrote:
->>
->>> @@ -646,7 +646,7 @@ svm_migrate_copy_to_ram(struct amdgpu_device 
->>> *adev, struct svm_range *prange,
->>>           pr_debug_ratelimited("dma mapping dst to 0x%llx, pfn 
->>> 0x%lx\n",
->>>                        dst[i] >> PAGE_SHIFT, page_to_pfn(dpage));
->>> -        migrate->dst[i] = migrate_pfn(page_to_pfn(dpage));
->>> +        migrate->dst[i] = migrate_pfn_from_page(dpage);
->>
->> You missed another instance of this in svm_migrate_copy_to_vram.
->
-> I might be missing something, but is there call to migrate_pfn() in
-> svm_migrate_copy_to_vram()? 
+Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
+Signed-off-by: Shuicheng Lin <shuicheng.lin@intel.com>
+---
+ drivers/gpu/drm/xe/xe_device.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-I see what's happening. You removed that call in patch 2. Never mind.
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index e400ad5c9f9e..329d17fd6100 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -1059,6 +1059,7 @@ int xe_device_probe(struct xe_device *xe)
+ 
+ err_unregister_display:
+ 	xe_display_unregister(xe);
++	drm_dev_unregister(&xe->drm);
+ 
+ 	return err;
+ }
+-- 
+2.50.1
 
-Regards,
-   Felix
-
-
-> I'm seeing svm_migrate_copy_to_vram() calls
-> svm_migrate_addr_to_mpfn() - that should be handled already.
->
-> Thanks for reviewing,
-> Jordan.
->
->>
->> Regards,
->>    Felix
->>
->>
