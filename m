@@ -4,36 +4,34 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 436E9D1A61D
-	for <intel-xe@archiver.kernel.org>; Fri,  9 Jan 2026 13:37:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4DB29D1A627
+	for <intel-xe@archiver.kernel.org>; Fri,  9 Jan 2026 13:37:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0A61B10E8CB;
-	Fri,  9 Jan 2026 13:37:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0CBF010E8D2;
+	Fri,  9 Jan 2026 13:37:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="N1VTTfGR";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="Of4DhWsM";
 	dkim-atps=neutral
 Received: from lankhorst.se (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B62E710E8D2
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8DA2E10E8CB
  for <intel-xe@lists.freedesktop.org>; Fri,  9 Jan 2026 13:37:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
  s=default; t=1767965871;
- bh=HfuR1g6rcEE/WSNqpEckqEZhmX/oTSU7kK2lg5GJ8lk=;
- h=From:To:Subject:Date:In-Reply-To:References:From;
- b=N1VTTfGRTCYUzVDYysj/b4tbWxrUMeb/BeOqwyL7+pgn2lCzUdHKZtRtNOeRqAnno
- zjIIw184gAwQgq8eFlzsg/kBJuzHIJrotsHF1xiLP+NhuI50hGhjVTI3YNuZqbpIkb
- nNCJQomYJg6rMsNYEN/ZIyMzeg2dUirshg+PXM6FwvwbCT/D9UkmdYrhZd+urbBIHK
- mJni5ydMEdImpns+0dFWglrRKkcgHcJEe526IHowfVUArAsgcrGpg0yfdsN4fMjgk2
- HujadsjPQWPolxPO7NG2Q6uaQAKQwM8eZLKFFtBbXKo+Tqi3+Z0ITU881zD8kP1WDt
- VJd+YBAGz3law==
+ bh=cyXkPk3TmUZDEWwKN+waB09laCR8LWJEJ8+ic1oZXbA=;
+ h=From:To:Subject:Date:From;
+ b=Of4DhWsMB9Qa4BHoQ7d4hJ886545lMJi9BoNsT7uWJXG4lhk64UeIcqf3gXUR1kpg
+ XpKMFeKFKAFgQ5k2eRT0vrXS1v22wTjR9ZG0/0j8zOlxieIsfux/V/5gXHRJXLvPFU
+ RHIkHLwT34sbfMM5j2aEQ/wBu2Wh3f0Wyeurv0aG3EiPSBaMyzz5bTxzYO8I8bz6id
+ wNnILxDHHtrbHI2ioPV1OZD0+wt+TKalXYLnFZ3Sz3XmQ9fA+B4+vUl9JuOgvhCT5X
+ KKnRD5V/6Q25Trl/RLH+5xL3i/QGD8tPHlxNdfbpIhtFY/lhv7OtFcxJ10T3uBMayk
+ 8Mvaqasa077dg==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-xe@lists.freedesktop.org
-Subject: [FOR-CI-DO-NOT-REVIEW-v3 01/12] drm/xe: Start using ggtt->start in
- preparation of balloon removal
-Date: Fri,  9 Jan 2026 14:37:34 +0100
-Message-ID: <20260109133746.739923-2-dev@lankhorst.se>
+Subject: [FOR-CI-DO-NOT-REVIEW-v3 00/12] Testing entire GGTT privatization
+ preparation series.
+Date: Fri,  9 Jan 2026 14:37:33 +0100
+Message-ID: <20260109133746.739923-1-dev@lankhorst.se>
 X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20260109133746.739923-1-dev@lankhorst.se>
-References: <20260109133746.739923-1-dev@lankhorst.se>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -50,240 +48,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Instead of having ggtt->size point to the end of ggtt, have ggtt->size
-be the actual size of the GGTT, and introduce ggtt->start to point to
-the beginning of GGTT.
+Do not review, last version had some CI failures, but too old results so need a fresh run to debug.
 
-This will allow a massive cleanup of GGTT in case of SRIOV-VF.
+Version 3 with bugfixes.
 
-Reviewed-by: Stuart Summers <stuart.summers@intel.com>
-Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
----
- drivers/gpu/drm/xe/tests/xe_guc_buf_kunit.c |  2 +-
- drivers/gpu/drm/xe/xe_ggtt.c                | 82 +++++++++++++--------
- drivers/gpu/drm/xe/xe_ggtt.h                |  2 +
- drivers/gpu/drm/xe/xe_ggtt_types.h          |  4 +-
- drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c  |  4 +-
- 5 files changed, 60 insertions(+), 34 deletions(-)
+Maarten Lankhorst (12):
+  drm/xe: Start using ggtt->start in preparation of balloon removal
+  drm/xe: Convert xe_fb_pin to use a callback for insertion into GGTT
+  drm/xe: Add xe_ggtt_node_addr() to avoid dereferencing xe_ggtt_node
+  drm/xe/display: Avoid dereferencing xe_ggtt_node
+  drm/xe: Do not dereference ggtt_node in xe_bo.c
+  drm/xe: Improve xe_gt_sriov_pf_config GGTT handling
+  drm/xe: Privatize xe_ggtt_node
+  drm/xe: Make xe_ggtt_node offset relative to starting offset
+  drm/xe: Rewrite GGTT VF initialisation
+  drm/xe: Move struct xe_ggtt to xe_ggtt.c
+  drm/xe: Make xe_ggtt_node_insert return a node
+  drm/xe: Remove xe_ggtt_node_allocated
 
-diff --git a/drivers/gpu/drm/xe/tests/xe_guc_buf_kunit.c b/drivers/gpu/drm/xe/tests/xe_guc_buf_kunit.c
-index d266882adc0e0..acddbedcf17cb 100644
---- a/drivers/gpu/drm/xe/tests/xe_guc_buf_kunit.c
-+++ b/drivers/gpu/drm/xe/tests/xe_guc_buf_kunit.c
-@@ -67,7 +67,7 @@ static int guc_buf_test_init(struct kunit *test)
- 
- 	KUNIT_ASSERT_EQ(test, 0,
- 			xe_ggtt_init_kunit(ggtt, DUT_GGTT_START,
--					   DUT_GGTT_START + DUT_GGTT_SIZE));
-+					   DUT_GGTT_SIZE));
- 
- 	kunit_activate_static_stub(test, xe_managed_bo_create_pin_map,
- 				   replacement_xe_managed_bo_create_pin_map);
-diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
-index 9e6b4e9835424..b94aad265471b 100644
---- a/drivers/gpu/drm/xe/xe_ggtt.c
-+++ b/drivers/gpu/drm/xe/xe_ggtt.c
-@@ -137,10 +137,32 @@ static void ggtt_update_access_counter(struct xe_ggtt *ggtt)
- 	}
- }
- 
-+/**
-+ * xe_ggtt_start - Get starting offset of GGTT.
-+ * @ggtt: &xe_ggtt
-+ *
-+ * Returns: Starting offset for this &xe_ggtt.
-+ */
-+u64 xe_ggtt_start(struct xe_ggtt *ggtt)
-+{
-+	return ggtt->start;
-+}
-+
-+/**
-+ * xe_ggtt_size - Get size of GGTT.
-+ * @ggtt: &xe_ggtt
-+ *
-+ * Returns: Total usable size of this &xe_ggtt.
-+ */
-+u64 xe_ggtt_size(struct xe_ggtt *ggtt)
-+{
-+	return ggtt->size;
-+}
-+
- static void xe_ggtt_set_pte(struct xe_ggtt *ggtt, u64 addr, u64 pte)
- {
- 	xe_tile_assert(ggtt->tile, !(addr & XE_PTE_MASK));
--	xe_tile_assert(ggtt->tile, addr < ggtt->size);
-+	xe_tile_assert(ggtt->tile, addr < ggtt->start + ggtt->size);
- 
- 	writeq(pte, &ggtt->gsm[addr >> XE_PTE_SHIFT]);
- }
-@@ -256,16 +278,16 @@ static const struct xe_ggtt_pt_ops xelpg_pt_wa_ops = {
- 	.ggtt_get_pte = xe_ggtt_get_pte,
- };
- 
--static void __xe_ggtt_init_early(struct xe_ggtt *ggtt, u32 reserved)
-+static void __xe_ggtt_init_early(struct xe_ggtt *ggtt, u64 start, u64 size)
- {
--	drm_mm_init(&ggtt->mm, reserved,
--		    ggtt->size - reserved);
-+	ggtt->start = start;
-+	ggtt->size = size;
-+	drm_mm_init(&ggtt->mm, start, size);
- }
- 
--int xe_ggtt_init_kunit(struct xe_ggtt *ggtt, u32 reserved, u32 size)
-+int xe_ggtt_init_kunit(struct xe_ggtt *ggtt, u32 start, u32 size)
- {
--	ggtt->size = size;
--	__xe_ggtt_init_early(ggtt, reserved);
-+	__xe_ggtt_init_early(ggtt, start, size);
- 	return 0;
- }
- EXPORT_SYMBOL_IF_KUNIT(xe_ggtt_init_kunit);
-@@ -293,26 +315,32 @@ int xe_ggtt_init_early(struct xe_ggtt *ggtt)
- 	struct xe_device *xe = tile_to_xe(ggtt->tile);
- 	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
- 	unsigned int gsm_size;
-+	u64 ggtt_start, wopcm = xe_wopcm_size(xe), ggtt_size;
- 	int err;
- 
--	if (IS_SRIOV_VF(xe) || GRAPHICS_VERx100(xe) >= 1250)
--		gsm_size = SZ_8M; /* GGTT is expected to be 4GiB */
--	else
--		gsm_size = probe_gsm_size(pdev);
--
--	if (gsm_size == 0) {
--		xe_tile_err(ggtt->tile, "Hardware reported no preallocated GSM\n");
--		return -ENOMEM;
-+	if (!IS_SRIOV_VF(xe)) {
-+		if (GRAPHICS_VERx100(xe) >= 1250)
-+			gsm_size = SZ_8M; /* GGTT is expected to be 4GiB */
-+		else
-+			gsm_size = probe_gsm_size(pdev);
-+		if (gsm_size == 0) {
-+			xe_tile_err(ggtt->tile, "Hardware reported no preallocated GSM\n");
-+			return -ENOMEM;
-+		}
-+		ggtt_start = wopcm;
-+		ggtt_size = (gsm_size / 8) * (u64) XE_PAGE_SIZE - ggtt_start;
-+	} else {
-+		/* GGTT is expected to be 4GiB */
-+		ggtt_start = wopcm;
-+		ggtt_size = SZ_4G - ggtt_start;
- 	}
- 
- 	ggtt->gsm = ggtt->tile->mmio.regs + SZ_8M;
--	ggtt->size = (gsm_size / 8) * (u64) XE_PAGE_SIZE;
--
- 	if (IS_DGFX(xe) && xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K)
- 		ggtt->flags |= XE_GGTT_FLAGS_64K;
- 
--	if (ggtt->size > GUC_GGTT_TOP)
--		ggtt->size = GUC_GGTT_TOP;
-+	if (ggtt_size + ggtt_start > GUC_GGTT_TOP)
-+		ggtt_size = GUC_GGTT_TOP - ggtt_start;
- 
- 	if (GRAPHICS_VERx100(xe) >= 1270)
- 		ggtt->pt_ops =
-@@ -326,7 +354,7 @@ int xe_ggtt_init_early(struct xe_ggtt *ggtt)
- 	if (!ggtt->wq)
- 		return -ENOMEM;
- 
--	__xe_ggtt_init_early(ggtt, xe_wopcm_size(xe));
-+	__xe_ggtt_init_early(ggtt, ggtt_start, ggtt_size);
- 
- 	err = drmm_add_action_or_reset(&xe->drm, ggtt_fini_early, ggtt);
- 	if (err)
-@@ -563,11 +591,9 @@ void xe_ggtt_node_remove_balloon_locked(struct xe_ggtt_node *node)
- static void xe_ggtt_assert_fit(struct xe_ggtt *ggtt, u64 start, u64 size)
- {
- 	struct xe_tile *tile = ggtt->tile;
--	struct xe_device *xe = tile_to_xe(tile);
--	u64 __maybe_unused wopcm = xe_wopcm_size(xe);
- 
--	xe_tile_assert(tile, start >= wopcm);
--	xe_tile_assert(tile, start + size < ggtt->size - wopcm);
-+	xe_tile_assert(tile, start >= ggtt->start);
-+	xe_tile_assert(tile, start + size <= ggtt->start + ggtt->size);
- }
- 
- /**
-@@ -890,14 +916,12 @@ u64 xe_ggtt_largest_hole(struct xe_ggtt *ggtt, u64 alignment, u64 *spare)
- {
- 	const struct drm_mm *mm = &ggtt->mm;
- 	const struct drm_mm_node *entry;
--	u64 hole_min_start = xe_wopcm_size(tile_to_xe(ggtt->tile));
- 	u64 hole_start, hole_end, hole_size;
- 	u64 max_hole = 0;
- 
- 	mutex_lock(&ggtt->lock);
--
- 	drm_mm_for_each_hole(entry, mm, hole_start, hole_end) {
--		hole_start = max(hole_start, hole_min_start);
-+		hole_start = max(hole_start, ggtt->start);
- 		hole_start = ALIGN(hole_start, alignment);
- 		hole_end = ALIGN_DOWN(hole_end, alignment);
- 		if (hole_start >= hole_end)
-@@ -1069,15 +1093,13 @@ u64 xe_ggtt_print_holes(struct xe_ggtt *ggtt, u64 alignment, struct drm_printer
- {
- 	const struct drm_mm *mm = &ggtt->mm;
- 	const struct drm_mm_node *entry;
--	u64 hole_min_start = xe_wopcm_size(tile_to_xe(ggtt->tile));
- 	u64 hole_start, hole_end, hole_size;
- 	u64 total = 0;
- 	char buf[10];
- 
- 	mutex_lock(&ggtt->lock);
--
- 	drm_mm_for_each_hole(entry, mm, hole_start, hole_end) {
--		hole_start = max(hole_start, hole_min_start);
-+		hole_start = max(hole_start, ggtt->start);
- 		hole_start = ALIGN(hole_start, alignment);
- 		hole_end = ALIGN_DOWN(hole_end, alignment);
- 		if (hole_start >= hole_end)
-diff --git a/drivers/gpu/drm/xe/xe_ggtt.h b/drivers/gpu/drm/xe/xe_ggtt.h
-index 93fea4b6079ce..df7196ec4696e 100644
---- a/drivers/gpu/drm/xe/xe_ggtt.h
-+++ b/drivers/gpu/drm/xe/xe_ggtt.h
-@@ -23,6 +23,8 @@ int xe_ggtt_node_insert_balloon_locked(struct xe_ggtt_node *node,
- 				       u64 start, u64 size);
- void xe_ggtt_node_remove_balloon_locked(struct xe_ggtt_node *node);
- void xe_ggtt_shift_nodes_locked(struct xe_ggtt *ggtt, s64 shift);
-+u64 xe_ggtt_start(struct xe_ggtt *ggtt);
-+u64 xe_ggtt_size(struct xe_ggtt *ggtt);
- 
- int xe_ggtt_node_insert(struct xe_ggtt_node *node, u32 size, u32 align);
- int xe_ggtt_node_insert_locked(struct xe_ggtt_node *node,
-diff --git a/drivers/gpu/drm/xe/xe_ggtt_types.h b/drivers/gpu/drm/xe/xe_ggtt_types.h
-index dacd796f81844..d773cf284c032 100644
---- a/drivers/gpu/drm/xe/xe_ggtt_types.h
-+++ b/drivers/gpu/drm/xe/xe_ggtt_types.h
-@@ -22,7 +22,9 @@ struct xe_gt;
- struct xe_ggtt {
- 	/** @tile: Back pointer to tile where this GGTT belongs */
- 	struct xe_tile *tile;
--	/** @size: Total size of this GGTT */
-+	/** @start: Start offset of GGTT */
-+	u64 start;
-+	/** @size: Total usable size of this GGTT */
- 	u64 size;
- 
- #define XE_GGTT_FLAGS_64K BIT(0)
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-index 5a870914b102c..bed6580d8d090 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-@@ -393,8 +393,8 @@ static int pf_push_full_vf_config(struct xe_gt *gt, unsigned int vfid)
- 	xe_gt_assert(gt, num_dwords <= max_cfg_dwords);
- 
- 	if (vfid == PFID) {
--		u64 ggtt_start = xe_wopcm_size(gt_to_xe(gt));
--		u64 ggtt_size = gt_to_tile(gt)->mem.ggtt->size - ggtt_start;
-+		u64 ggtt_start = xe_ggtt_start(gt_to_tile(gt)->mem.ggtt);
-+		u64 ggtt_size = xe_ggtt_size(gt_to_tile(gt)->mem.ggtt);
- 
- 		/* plain PF config data will never include a real GGTT region */
- 		xe_gt_assert(gt, !encode_config_ggtt(cfg + num_dwords, config, true));
+ .../gpu/drm/xe/compat-i915-headers/i915_vma.h |   4 +-
+ drivers/gpu/drm/xe/display/xe_fb_pin.c        | 105 ++--
+ drivers/gpu/drm/xe/display/xe_stolen.c        |   2 +-
+ drivers/gpu/drm/xe/tests/xe_guc_buf_kunit.c   |   8 +-
+ drivers/gpu/drm/xe/xe_bo.c                    |   6 +-
+ drivers/gpu/drm/xe/xe_bo.h                    |   8 +-
+ drivers/gpu/drm/xe/xe_device_types.h          |   2 -
+ drivers/gpu/drm/xe/xe_ggtt.c                  | 493 ++++++++++--------
+ drivers/gpu/drm/xe/xe_ggtt.h                  |  28 +-
+ drivers/gpu/drm/xe/xe_ggtt_types.h            |  80 +--
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c    |  53 +-
+ drivers/gpu/drm/xe/xe_gt_sriov_vf.c           |   7 +-
+ drivers/gpu/drm/xe/xe_tile_sriov_vf.c         | 198 +------
+ drivers/gpu/drm/xe/xe_tile_sriov_vf.h         |   3 -
+ 14 files changed, 378 insertions(+), 619 deletions(-)
+
 -- 
 2.51.0
 
