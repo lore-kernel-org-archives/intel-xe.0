@@ -4,63 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 63B84D232F8
-	for <intel-xe@archiver.kernel.org>; Fri,  9 Jan 2026 08:49:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F1879D232F7
+	for <intel-xe@archiver.kernel.org>; Fri,  9 Jan 2026 08:52:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 249AF10E872;
-	Fri,  9 Jan 2026 08:49:44 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iEts14dp";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3568D10E86E;
- Fri,  9 Jan 2026 08:49:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1767948583; x=1799484583;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=xGSddazHMJk2XjbDUv/uDrGUInG2phAIdiHXrLkxr08=;
- b=iEts14dpD93tUx91I86VjKg7gr8kZYe052Hzchjmjm+vKrUq2vYEJfbE
- +nMKAbYyWRkRwrj/3HLCTBEm74srvDPqkM04psmm8y+BkOFz4qf8oGAJl
- rhRO2EhiFGvJIaTIGlKJKPAtmz3+ZOcOXV0PsCjH9TdAW8zVvIj4ihBlZ
- D5wXmbBtCZPXeeYmWmKORD45HbRDu9cgDrxcf0oUM6oo3hFRMLxyqWNYt
- gLUxmK5F49YTJA2tNmt8mfArXYKYACYiIL9+qkK4Yui7GAdYZivIYKUkv
- FsFGRikEhK/Sed3ZHHOfRPwBN6472edp8mebiaScz+zyoFJ/vC9RWhMmI A==;
-X-CSE-ConnectionGUID: 5d5hvfEcTLu7oBQZZHRQaA==
-X-CSE-MsgGUID: f0hKuqneRlOFeBQudTemkw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11665"; a="69241853"
-X-IronPort-AV: E=Sophos;i="6.21,212,1763452800"; d="scan'208";a="69241853"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jan 2026 00:49:43 -0800
-X-CSE-ConnectionGUID: Lfba4l7SQXi2c9Z9N9W40g==
-X-CSE-MsgGUID: 6dUu6ORnR2WJgiSLpb4D4Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,212,1763452800"; d="scan'208";a="240926195"
-Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.143])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jan 2026 00:49:38 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Kaushlendra Kumar <kaushlendra.kumar@intel.com>, rodrigo.vivi@intel.com,
- joonas.lahtinen@linux.intel.com, tursulin@ursulin.net, airlied@gmail.com,
- simona@ffwll.ch
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, Kaushlendra Kumar
- <kaushlendra.kumar@intel.com>, Jouni =?utf-8?Q?H=C3=B6gander?=
- <jouni.hogander@intel.com>, Animesh Manna <animesh.manna@intel.com>
-Subject: Re: [PATCH] drm/i915/display: use port not transcoder for
- PORT_ALPM_CTL
-In-Reply-To: <20260109050021.2017982-1-kaushlendra.kumar@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260109050021.2017982-1-kaushlendra.kumar@intel.com>
-Date: Fri, 09 Jan 2026 10:49:35 +0200
-Message-ID: <6dfa37a9c19089bda5efe1c43d1a40d88d53cf89@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id AE87210E82C;
+	Fri,  9 Jan 2026 08:52:33 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 451BA10E855;
+ Fri,  9 Jan 2026 08:52:32 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm=3A_Color_pipeline_tea?=
+ =?utf-8?q?rdown_and_follow-up_fixes/improvements_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 09 Jan 2026 08:52:32 -0000
+Message-ID: <176794875228.140338.7616050502812004885@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260109081728.478844-1-chaitanya.kumar.borah@intel.com>
+In-Reply-To: <20260109081728.478844-1-chaitanya.kumar.borah@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,93 +36,100 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, 09 Jan 2026, Kaushlendra Kumar <kaushlendra.kumar@intel.com> wrote:
-> intel_alpm_disable() incorrectly passes cpu_transcoder as the
-> index to PORT_ALPM_CTL(), which expects an enum port. This
-> writes to the wrong register, potentially corrupting state on
-> unrelated ports.
->
-> Use dp_to_dig_port(intel_dp)->base.port to access the correct
-> port-indexed register.
+== Series Details ==
 
-Good catch!
+Series: drm: Color pipeline teardown and follow-up fixes/improvements (rev2)
+URL   : https://patchwork.freedesktop.org/series/159263/
+State : warning
 
-For future reference, please also do 'git blame' on the source to find
-out which commit introduced the error, and add a proper Fixes: tag. This
-way we know the kernels that are affected.
+== Summary ==
 
-We have to hop through code movement and multiple other changes to
-eventually land on commit 1ccbf135862b ("drm/i915/psr: Enable ALPM on
-source side for eDP Panel replay") adding the
-PORT_ALPM_CTL(cpu_transcoder) usage in intel_psr.c.
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+9f1cb6875f3f9eb0925ed50c16100322a2df513c
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 69b777918a78c45727a1454cc8c0f8f290c30554
+Author: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+Date:   Fri Jan 9 13:47:28 2026 +0530
 
-'dim fixes 1ccbf135862b' gives us:
+    drm/i915/color: Add failure handling in plane color pipeline init
+    
+    The plane color pipeline initialization built up multiple colorop blocks
+    inline, but did not reliably clean up partially constructed pipelines
+    when an intermediate step failed. This could lead to leaked colorop
+    objects and fragile error handling as the pipeline grows.
+    
+    Refactor the pipeline construction to use a common helper for adding
+    colorop blocks. This centralizes allocation, initialization, and
+    teardown logic, allowing the caller to reliably unwind all previously
+    created colorops on failure.
+    
+    v2:
+     - Refactor code to avoid repetition (Suraj)
+    
+    Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
++ /mt/dim checkpatch 9e5d93261e35cda4189383e8746fef35c7d0d335 drm-intel
+5a139efa3b28 drm/i915/color: Place 3D LUT after CSC in plane color pipeline
+5e50478c8bb3 drm/amd/display: Fix color pipeline enum name leak
+e760e26ad4b0 drm/vkms: Fix color pipeline enum name leak
+9013e0890912 drm/i915/display: Fix color pipeline enum name leak
+3e0ca4d9266c drm/colorop: Add destroy helper for colorop objects
+adb4e02ae286 drm: Allow driver-managed destruction of colorop objects
+-:58: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#58: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_colorop.c:125:
++		ret = drm_plane_colorop_curve_1d_init(dev, ops[i], plane, NULL,
+ 						amdgpu_dm_supported_shaper_tfs,
 
-Fixes: 1ccbf135862b ("drm/i915/psr: Enable ALPM on source side for eDP Pane=
-l replay")
-Cc: Jouni H=C3=B6gander <jouni.hogander@intel.com>
-Cc: Animesh Manna <animesh.manna@intel.com>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
-Cc: <stable@vger.kernel.org> # v6.10+
+-:67: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#67: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_colorop.c:142:
++		ret = drm_plane_colorop_curve_1d_lut_init(dev, ops[i], plane, NULL,
++							MAX_COLOR_LUT_ENTRIES,
 
-Which I'd usually just trim to the author/reviewers like this:
+-:77: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#77: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_colorop.c:160:
++		ret = drm_plane_colorop_3dlut_init(dev, ops[i], plane, NULL, LUT3D_SIZE,
+ 					DRM_COLOROP_LUT3D_INTERPOLATION_TETRAHEDRAL,
 
-Fixes: 1ccbf135862b ("drm/i915/psr: Enable ALPM on source side for eDP Pane=
-l replay")
-Cc: Jouni H=C3=B6gander <jouni.hogander@intel.com>
-Cc: Animesh Manna <animesh.manna@intel.com>
-Cc: <stable@vger.kernel.org> # v6.10+
+-:161: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u32' over 'uint32_t'
+#161: FILE: drivers/gpu/drm/drm_colorop.c:316:
++					uint32_t lut_size,
 
-And these are more important Cc's for the patch than any of the
-maintainers or dri-devel, which IMO should be dropped, regardless of
-what get_maintainer.pl says.
+-:352: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u32' over 'uint32_t'
+#352: FILE: include/drm/drm_colorop.h:413:
++					uint32_t lut_size,
 
-Obviously, a backport to kernels v6.10..v6.15 will fail due to the other
-changes, but it doesn't change the fact that the original broken commit
-was 1ccbf135862b in v6.10, and that's what we should reference.
+total: 0 errors, 0 warnings, 5 checks, 300 lines checked
+c07726aa4c3e drm/amd/display: Hook up colorop destroy helper for plane pipelines
+-:65: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#65: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_colorop.c:131:
++		ret = drm_plane_colorop_curve_1d_init(dev, ops[i], plane, &dm_colorop_funcs,
+ 						amdgpu_dm_supported_shaper_tfs,
+
+-:74: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#74: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_colorop.c:148:
++		ret = drm_plane_colorop_curve_1d_lut_init(dev, ops[i], plane,
++							&dm_colorop_funcs,
+
+-:84: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#84: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_colorop.c:167:
++		ret = drm_plane_colorop_3dlut_init(dev, ops[i], plane,
++					&dm_colorop_funcs, LUT3D_SIZE,
+
+total: 0 errors, 0 warnings, 3 checks, 79 lines checked
+ba78d9008bc6 drm/vkms: Hook up colorop destroy helper for plane pipelines
+669ed78c22d1 drm/i915/display: Hook up intel_colorop_destroy
+1c4c8446ebd4 drm: Clean up colorop objects during mode_config cleanup
+cda194dab653 drm/vkms: Remove drm_colorop_pipeline_destroy() from vkms_destroy()
+79d44e7b154d drm/colorop: Use destroy callback for color pipeline teardown
+69b777918a78 drm/i915/color: Add failure handling in plane color pipeline init
 
 
-BR,
-Jani.
-
-Oh, and also,
-
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-
->
-> Signed-off-by: Kaushlendra Kumar <kaushlendra.kumar@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_alpm.c | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_alpm.c b/drivers/gpu/drm/=
-i915/display/intel_alpm.c
-> index 6372f533f65b..09ba1c2be16c 100644
-> --- a/drivers/gpu/drm/i915/display/intel_alpm.c
-> +++ b/drivers/gpu/drm/i915/display/intel_alpm.c
-> @@ -557,6 +557,7 @@ void intel_alpm_disable(struct intel_dp *intel_dp)
->  {
->  	struct intel_display *display =3D to_intel_display(intel_dp);
->  	enum transcoder cpu_transcoder =3D intel_dp->alpm.transcoder;
-> +	enum port port =3D dp_to_dig_port(intel_dp)->base.port;
->=20=20
->  	if (DISPLAY_VER(display) < 20 || !intel_dp->alpm_dpcd)
->  		return;
-> @@ -568,7 +569,7 @@ void intel_alpm_disable(struct intel_dp *intel_dp)
->  		     ALPM_CTL_ALPM_AUX_LESS_ENABLE, 0);
->=20=20
->  	intel_de_rmw(display,
-> -		     PORT_ALPM_CTL(cpu_transcoder),
-> +		     PORT_ALPM_CTL(port),
->  		     PORT_ALPM_CTL_ALPM_AUX_LESS_ENABLE, 0);
->=20=20
->  	drm_dbg_kms(display->drm, "Disabling ALPM\n");
-
---=20
-Jani Nikula, Intel
