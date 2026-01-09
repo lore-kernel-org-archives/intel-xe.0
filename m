@@ -4,58 +4,176 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8DD9BD1A631
-	for <intel-xe@archiver.kernel.org>; Fri,  9 Jan 2026 14:10:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EF412D1A632
+	for <intel-xe@archiver.kernel.org>; Fri,  9 Jan 2026 14:13:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4881B10E215;
-	Fri,  9 Jan 2026 14:10:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A132710E8CB;
+	Fri,  9 Jan 2026 14:13:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YEsvfnQV";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Naq0EHPG";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7D4BC10E215;
- Fri,  9 Jan 2026 14:10:17 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7020610E215;
+ Fri,  9 Jan 2026 14:13:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1767967818; x=1799503818;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=VjhrDvuJgE+nyGfg9b1hBRmQe7IzqSenS2EDM6tbJhM=;
- b=YEsvfnQV6hVqzRJUzC/7XG1Xv5UScwTb7nBPWUVKF8rd8yHFNjceVNoZ
- 8uEAmoJJ7KFiJ7Kw2vSB7lFiJghhqVvp7Dbv2I61IhGq4DrAjXkAi/QiV
- eCiRDWozcgqwdeqmD2HxIi0kwGCvW8Y9dKkYRcqqwv6/vbZEDEUnP8oLe
- UxEL5UvOxjCmbavfOeq12ChKmjU67UG25JuqNEy0Y1zUjYj5dNflNy0kJ
- iRj42QZ6vAMyyrcszHhURqomvpx/9QWBCAdVwRl42QeoHk1bVBob5PCR+
- ImaUfp9W7BDYuZqIDVgAxWsi0LgUtt7dvE3ZvcVOrw6F5adO29eG/HUaV g==;
-X-CSE-ConnectionGUID: 9r8qpQ0nR0qcTvjw+3NyNw==
-X-CSE-MsgGUID: 2Hx0wTtcSfKLlsn4XszBmw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11666"; a="79644686"
-X-IronPort-AV: E=Sophos;i="6.21,214,1763452800"; d="scan'208";a="79644686"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jan 2026 06:10:17 -0800
-X-CSE-ConnectionGUID: FgyOGVbJRvi0T+ZzT8Lm1Q==
-X-CSE-MsgGUID: 6axCauoFQUGEioPXEBp45A==
+ t=1767968021; x=1799504021;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=xzkXjfMKttnJSkEhe+Betx6ie2ioZxtxf+lUh5ujLRw=;
+ b=Naq0EHPGs3bmTlCrKlyvBnIbgirGGxQUvmDsSihXrIuZHWfiFrnA8rVs
+ mCjJff/2VBPlqqmRw7AovPopY73nMjd5PXTVilEEvRrCSeKtnhfZOj3NY
+ Sz94Py6Al1agrlh2gnWDrm61nIbg8DlbD55ERuqN0JoufrLCwyuy9eXgx
+ bxukBamcQdrI7vYdrfAOV6uC7NciBdwMypzJMpqwZrXE8Io4Vrj+dRSlL
+ LXzeZS0y41og1Gzib0jGPGKyFR3JklHH8nqu07LX/40JPV/nx+8JdIwm6
+ SF0/cRRyK89eFLTMZJgzuZD1rzBhOcRFcQfFYq/k4gjZXqxZFkrLJUfN+ g==;
+X-CSE-ConnectionGUID: 92YmdiJtSUuaLz+tsRq0Mg==
+X-CSE-MsgGUID: kyioxuXITCuyJnN4U4HUYg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11666"; a="73206470"
+X-IronPort-AV: E=Sophos;i="6.21,214,1763452800"; d="scan'208";a="73206470"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jan 2026 06:13:41 -0800
+X-CSE-ConnectionGUID: VpmpXBo6QLmcrUdDRPh3Sw==
+X-CSE-MsgGUID: xRrEFAUKTu6J5Mj2DcGMbA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,214,1763452800"; d="scan'208";a="208313171"
-Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.143])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jan 2026 06:10:14 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com
-Subject: [PATCH] drm/{i915,
- xe}/pcode: move display pcode calls to parent interface
-Date: Fri,  9 Jan 2026 16:10:10 +0200
-Message-ID: <20260109141010.2848471-1-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.47.3
-MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-Content-Type: text/plain; charset=UTF-8
+X-IronPort-AV: E=Sophos;i="6.21,214,1763452800"; d="scan'208";a="208535739"
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jan 2026 06:13:40 -0800
+Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.29; Fri, 9 Jan 2026 06:13:39 -0800
+Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.29 via Frontend Transport; Fri, 9 Jan 2026 06:13:39 -0800
+Received: from BYAPR05CU005.outbound.protection.outlook.com (52.101.85.10) by
+ edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.29; Fri, 9 Jan 2026 06:13:39 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=GIZhIDyODk1iuuDy1SPgibQ+XlDkJrbJA0LUjwlyZ1xB43m+9UgMH5f/TAQ+a91Er9P2aDCNwFD0szOb4qoAb1tSE5ysrPukQGSaxPAMtwcTjzVVz5ASykB6M3mdwThFS1cr9xmVCkIa1+x1RP25sV1EYK13py7ZdorBu8rF8h6ep5zoW4HwvDAiVVW34zotmKnzWcogdNUaZ4V/nCGMZI6qEht3nq1k9qo5gXKKxbzgpGYDG8StFLodJHrEugyF1b0jHcm7bBkVT7x0za5W/rPeAfygS8AHtSh2wzB115WsSWcez3ubS1jmIvMqphLj8owhNGWcZrL828XZR2Tn6Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=/MedG/2rf39+LDgh5pmifr0z5Kn2VMv/9UQF0ZeiN70=;
+ b=wDMXCiDNRTBY9GoKBwC4IR35GSrFylEFmwflOnn2ju96ECF1kOOQEqjCjFdVic93TKhB9J3kcPJ6o88o3+pOq5G5xbxcmg1P7XGb35Nn3AZitC5CRI0LBgUk8WbMVIAOXC2VN8DiaBpWBZ+KRSMxj8mZd8s+roBpF5UHrqg6O0sOtsTeUC0nux8OVRFPlY3dm6s3CDeRG3m+CdHNU1FQXOqi9MCVVSqJMcTxbxxJTxM3mE3uxswUkhkQFMWuu/A0UfKUwjUPdV1yVBSFTtL2B1fnr8kBND4nPV9X9ID+eAGy04PmhPDCgmJ4kA0/01Qo1j8Dm8t9zHUL6dkU6fCrPQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from CYYPR11MB8430.namprd11.prod.outlook.com (2603:10b6:930:c6::19)
+ by SA2PR11MB5019.namprd11.prod.outlook.com (2603:10b6:806:f8::10)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9499.5; Fri, 9 Jan
+ 2026 14:13:38 +0000
+Received: from CYYPR11MB8430.namprd11.prod.outlook.com
+ ([fe80::1d86:a34:519a:3b0d]) by CYYPR11MB8430.namprd11.prod.outlook.com
+ ([fe80::1d86:a34:519a:3b0d%5]) with mapi id 15.20.9499.003; Fri, 9 Jan 2026
+ 14:13:38 +0000
+Date: Fri, 9 Jan 2026 09:13:31 -0500
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Riana Tauro <riana.tauro@intel.com>
+CC: Raag Jadav <raag.jadav@intel.com>, <intel-xe@lists.freedesktop.org>,
+ <dri-devel@lists.freedesktop.org>, <aravind.iddamsetty@linux.intel.com>,
+ <anshuman.gupta@intel.com>, <joonas.lahtinen@linux.intel.com>,
+ <simona.vetter@ffwll.ch>, <airlied@gmail.com>, <pratik.bari@intel.com>,
+ <joshua.santosh.ranjan@intel.com>, <ashwin.kumar.kulkarni@intel.com>,
+ <shubham.kumar@intel.com>
+Subject: Re: [PATCH v3 2/4] drm/xe/xe_drm_ras: Add support for drm ras
+Message-ID: <aWENCzpkeI4OaZqa@intel.com>
+References: <20251205083934.3602030-6-riana.tauro@intel.com>
+ <20251205083934.3602030-8-riana.tauro@intel.com>
+ <aTfcV5nb_vBOOBvP@black.igk.intel.com>
+ <ac78c819-51ce-4a6b-a5c8-1f327d1d8a7e@intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <ac78c819-51ce-4a6b-a5c8-1f327d1d8a7e@intel.com>
+X-ClientProxiedBy: SJ0PR05CA0031.namprd05.prod.outlook.com
+ (2603:10b6:a03:33f::6) To CYYPR11MB8430.namprd11.prod.outlook.com
+ (2603:10b6:930:c6::19)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CYYPR11MB8430:EE_|SA2PR11MB5019:EE_
+X-MS-Office365-Filtering-Correlation-Id: e494047e-d801-4034-cc3c-08de4f894870
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
+X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?C+njF92yjlpzyof3ZiGWFS/UDPpbbQgbwbduN0bDgfRt+rEwylg8znJF8s?=
+ =?iso-8859-1?Q?MzZqZGuGTzsgzsk9c58JJHBv5HNpdSPmb8eNm3M7cNHp6oJHaQWOowM5Wf?=
+ =?iso-8859-1?Q?iJV2GuKEwHHyW5N28+C8X4uAyHB6iHTjPIl2woecC55QYW/JXq+gU6Ppbt?=
+ =?iso-8859-1?Q?MqAwprTefnNl68gPhesAxqInHH2MHT/YPffHinkoII6AAMbdIlpw7daoxx?=
+ =?iso-8859-1?Q?ySZ3vveQEjSkFoD0S8vWhSMpIA9F7JeYUyel1VcYaL+Hwuf0dt++uiAZFY?=
+ =?iso-8859-1?Q?LjnBBFAFEvPZRo6+R13QhGlDBRLu0RN2p2HBgcJAl7sy1ovI9ntNmlUJwq?=
+ =?iso-8859-1?Q?PoXQCppCgZqZ0ptNEEY09IORQmxKtqGpzZevwkJqIIsmf3GwIzfN20R8PH?=
+ =?iso-8859-1?Q?vVDCXZI5jpbx5v0B+r/DOMVotLPISplTl7FAvXD10jqdrSW9QT+7UGgXQ2?=
+ =?iso-8859-1?Q?/7cmEOK2iSYY4fXytfV208OxPuTF+r/7acJWpo+u3htVcbMAhnUEe1lEIl?=
+ =?iso-8859-1?Q?jQKgyHeiOPVLw7NLmzoWa1gDJAcBUgBP3hjk13VIClRgTAggkHcq0nyr5J?=
+ =?iso-8859-1?Q?9lVYBG67WZ0ZvyeDzKYlXaxCwJEMeF9mmCp7G3Kb4avkxTdShuZuZ2jSol?=
+ =?iso-8859-1?Q?a+00GRJvJjo69OnKn+BmIhPEmzDM/QA3Zs25w6r3RtNNujiFiHoahoNPtc?=
+ =?iso-8859-1?Q?Pcw/vgrko5+2GmhzRZ+tdb3tj4c6NN62cf3ONzZo1WPM5TL/Wwe1gQ4lp9?=
+ =?iso-8859-1?Q?+VwS3B4jhfelkfZUhU7tKvdc1mz4TT9wXYYZw/BJCCd85eqBYXxF8Zl6XD?=
+ =?iso-8859-1?Q?WKur/4GldV/fV97hrMzazSnHoY1xwzA3FGaMlkQb5sm5gmVeebt2qXG1Qw?=
+ =?iso-8859-1?Q?JZXb0GHaI3LOZQLUx1UtCWDdH9R6dONBAVpwLOwS05KHqHrkf3jYW3Xlv+?=
+ =?iso-8859-1?Q?PVyAsX39/Eq6XH83tOkGM3lcF+JC1gTaeXedKo5FL04JQWXDUzkLkfDgbR?=
+ =?iso-8859-1?Q?ezhMhNrRqlecQKCpFgYEeqX5hUh5Dwa5zWdBtgbh5Im8M8eA8iwFh/WFug?=
+ =?iso-8859-1?Q?VqFTk22IsQvsScUlIxQREkPqocrvNQpF7fVuZkEawqmP5pjZ4y0yLvxn2t?=
+ =?iso-8859-1?Q?l2ToNTr9eBJaTqHUlvRWtD9v1coSPUj390HhoPsRT3xFP6/XIb7JfI8XYP?=
+ =?iso-8859-1?Q?At8A5q5BVFOSfmCVM+tYcwkgQ4qO7zv83ROy66oPoVhSM4p1EZRKUQfbJ1?=
+ =?iso-8859-1?Q?3raguSe/NP68HkZup2dzm59GbxD80cNudxHEHXoJvzWCaThV/kJAphtKc+?=
+ =?iso-8859-1?Q?bK7OFV4O2zn+64i9tkiHLz84litnZoARKaPAEzcHeMOgbVGCHw0YRYPptL?=
+ =?iso-8859-1?Q?lZJELdQ3VQ2q+mqbCsTK/AWuY99fLCUMVBtLHr1+EhKxzc036R7tMtvKxF?=
+ =?iso-8859-1?Q?HY3KbJwqdybyawozNMpBckiZg4WVHUOS66JFcLUH6a52i5QAjuBYl0WzfN?=
+ =?iso-8859-1?Q?MuOVZTwzZO0OiIfhWwrs+H?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CYYPR11MB8430.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(366016)(1800799024); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?V8B5X2Jezj9GaO9cFHx2EiSsd+g4LKd1UhHPdxl4yM94GMZie1GUwm6FAF?=
+ =?iso-8859-1?Q?Zj+ry0nDZaZHap1FyFXl9Pt21CgcFusaE5s+TD1rWxpzQnbL1+0CpOtSQz?=
+ =?iso-8859-1?Q?sTsj9dNzto63sPPVTKVzj/7pEEctR8N6jJmHo/HHAE4g0b7Vi1vnSRa9rw?=
+ =?iso-8859-1?Q?udymbTLAmin0mStixFSY1ENcYvjCOi1zDRdWAKbCvpjaiP/xXi7ufUAhHk?=
+ =?iso-8859-1?Q?7ORORvEfAo/V6JsZWUZB07cezWnjxGA74MWBu1DJ4C9+tvKENWzfzlPkEv?=
+ =?iso-8859-1?Q?wMC8OfmmW9csobCC72/Pfds2OJwVTCBaBFV5+NyruAjCLlRXNWtjbRsCHw?=
+ =?iso-8859-1?Q?A/XGTKoNdhEH6Wb4A7smkTa79BvQ3wUydECyebUQGV5LmGPxnHZ8daIDzv?=
+ =?iso-8859-1?Q?F4S10jDvIXddYYDhbxTqa9ft01mR6jDVmlqfkBUwkNH6vR7BCO0a/ZjAyn?=
+ =?iso-8859-1?Q?EWS7KlS5F7LUVJtYH4svluBVlLSwEmXCDVzQcZfA0lHCFNmUQNcL+Qfwt2?=
+ =?iso-8859-1?Q?F2kt0soyrfF5DNdSfjEjWDHMM9PUD4qet/5YZGoSs1xTXonP+z+1LBj/cV?=
+ =?iso-8859-1?Q?o5IPgWuXJqPBWfeqgvk/5HVJhux52EXHqbvCgVF2pxRXsTaH4xv3UL8CwN?=
+ =?iso-8859-1?Q?Dr4+DfMjg2Ut4YgT75QONzZ36LzHo64FuyzztwB0PfmSOwC9/NOkzPUwLR?=
+ =?iso-8859-1?Q?d6Q07g9FhvJ/OclMwPAa75dIoPuQ5zzPWNcZmvkyMYczzz9xF5S95Lqdme?=
+ =?iso-8859-1?Q?+vebAr9DLrTIcfca5e5MP3kqU7usIyA0/VAeN9LcuGSNVsLzb4R1okfXxZ?=
+ =?iso-8859-1?Q?Ni3xGE/88O83l94Wsti7e+j62vyXE/Xh4mj/pop6wvc2KHcoJQD5Hc2q16?=
+ =?iso-8859-1?Q?Bf0ZpuB33OWYfciDxsbk00Vu32JDnQ9hb/cq6OrsxTNBBGCUzlee88fCYj?=
+ =?iso-8859-1?Q?YkSuAffulIJepzeu2brrmlpXNEulb4dMR2NPiWdbgaXZfBfeo7ax4CKtl6?=
+ =?iso-8859-1?Q?lyvu5lXTerc+FII+6LhFevS2PYwqfbLdeV3Oo0h34A85dgrDll9NxHiMf6?=
+ =?iso-8859-1?Q?7WEtpTOEvgCzo7+DhnVnMyN2LqWTW5Z+WBkY4qhKa/vPB5hlYMmimyy0QW?=
+ =?iso-8859-1?Q?wAo8emdPOocpXYXOstlCZmVCral1YyB9MXIxfbz7YgYztkdIgHWG+QRElt?=
+ =?iso-8859-1?Q?Ep3qw9krLHWuRkbMIvttf3NNZAy0Wo2hCY7XN3srtW91jlLKw1+lMxEObQ?=
+ =?iso-8859-1?Q?3eRqC2THyQ7znPHUZRTTn9CG+2zrxf2WZbuWBcXWw0z6RsMGWIfI/Nue+8?=
+ =?iso-8859-1?Q?VPuh1s1chEpkQUE1p+U4wiBsm2kcGynBUVXs85qA2DCUBb3DU//R/RQVdh?=
+ =?iso-8859-1?Q?TzzeZfatG5VXgZgQEI4HGBhpJE+l6uREmZFP3U51ox4/SFoXMLZkepCIZI?=
+ =?iso-8859-1?Q?Yd+b0WvHQZwUutkCHF5P6ntxoWA7YPdll1Hf1Fjqe0zHBi9FLEFmqXSpt6?=
+ =?iso-8859-1?Q?ToFII3Ng9rgpKlaAgqO5eL+RAObSEZ39ltVBA4kMsyrSiQ61gSctc6yNHO?=
+ =?iso-8859-1?Q?Qj14yaH4UE+MRe7rySzIWzCqJL8nzUBfqv8pskD5VjWf/3L85/4dHaQrv2?=
+ =?iso-8859-1?Q?Zg8/AJAaSVDQLVWR3mDRf8xsMPckSM+T5yyudlDe9X7KURReKFMumEabQT?=
+ =?iso-8859-1?Q?3c0wL3tmwhU8Gd9Zewf6tJ0nBLrcs0N5T5d7Fd5rjtMopkc7gKCv43HrOr?=
+ =?iso-8859-1?Q?b8nfBKZrojDNXVZUy1cM8Unl7C97kenFa9CtfkSNNAXs5Iyjpbeg1C5G3K?=
+ =?iso-8859-1?Q?wPqUub+FfA=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: e494047e-d801-4034-cc3c-08de4f894870
+X-MS-Exchange-CrossTenant-AuthSource: CYYPR11MB8430.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jan 2026 14:13:38.0062 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: w1wYFVJ43E6G07AY31e3QzBdsdKXNBgDjn7v/Nrc7/TPIoPKCzUwPQ0DvCJRJpu2AbV1vXhiJtveOT/wXCpb3g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR11MB5019
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,735 +188,357 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Call the parent driver pcode functions through the parent interface
-function pointers instead of expecting both to have functions of the
-same name.
+On Fri, Jan 09, 2026 at 01:38:44PM +0530, Riana Tauro wrote:
+> Hi Raag
+> 
+> Thank you for the review
+> 
+> On 12/9/2025 1:52 PM, Raag Jadav wrote:
+> > On Fri, Dec 05, 2025 at 02:09:34PM +0530, Riana Tauro wrote:
+> > > Allocate correctable, nonfatal and fatal nodes per xe device.
+> > > Each node contains error classes, counters and respective
+> > > query counter functions.
+> > > 
+> > > Add basic functionality to create and register drm nodes.
+> > > Below operations can be performed using Generic netlink DRM RAS interface
+> > > 
+> > > List Nodes:
+> > > 
+> > > $ sudo ynl --family drm_ras  --dump list-nodes
+> > > [{'device-name': '0000:03:00.0',
+> > >    'node-id': 0,
+> > >    'node-name': 'correctable-errors',
+> > >    'node-type': 'error-counter'},
+> > >   {'device-name': '0000:03:00.0',
+> > >    'node-id': 1,
+> > >    'node-name': 'nonfatal-errors',
+> > >    'node-type': 'error-counter'},
+> > >   {'device-name': '0000:03:00.0',
+> > >    'node-id': 2,
+> > >    'node-name': 'fatal-errors',
+> > >    'node-type': 'error-counter'}]
+> > > 
+> > > Get Error counters:
+> > > 
+> > > $ sudo ynl --family drm_ras  --dump get-error-counters --json '{"node-id":1}'
+> > > [{'error-id': 1, 'error-name': 'Core Compute Error', 'error-value': 0},
+> > >   {'error-id': 2, 'error-name': 'SOC Internal Error', 'error-value': 0}]
+> > 
+> > Minor bikeshedding: Is there anything like 'SOC External'? If not, perhaps
+> > simply 'SOC' would be sufficient.
+> 
+> Agree. SoC should be sufficient
+> 
+> > 
+> > > Query Error counter:
+> > > 
+> > > $ sudo ynl --family drm_ras --do query-error-counter  --json '{"node-id":1, "error-id":1}'
+> > > {'error-id': 1, 'error-name': 'Core Compute Error', 'error-value': 0}
+> > 
+> > One more (sorry): So this means graphics will be a different id? Or do they
+> > overlap? How does it work?
+> > 
+> 
+> Did not get this question.
+> 
+> > 
+> > Also,
+> > 
+> > [*] I'm not much informed about the history here but the 'error' term
+> > seems slapped onto almost everything. We already know it's RAS so perhaps
+> > we add it only where make sense and try to simplify some of the naming?
+> 
+> Let's keep the errors in the node-names. Removing it from error-name should
+> be okay. Wil fix ths
+> 
+> 
+> > 
+> > ...
+> > 
+> > > diff --git a/drivers/gpu/drm/xe/xe_drm_ras.c b/drivers/gpu/drm/xe/xe_drm_ras.c
+> > > new file mode 100644
+> > > index 000000000000..764b14b1edf8
+> > > --- /dev/null
+> > > +++ b/drivers/gpu/drm/xe/xe_drm_ras.c
+> > > @@ -0,0 +1,199 @@
+> > > +// SPDX-License-Identifier: MIT
+> > > +/*
+> > > + * Copyright � 2025 Intel Corporation
+> > > + */
+> > > +
+> > > +#include <drm/drm_managed.h>
+> > > +#include <drm/drm_ras.h>
+> > > +#include <linux/bitmap.h>
+> > > +
+> > > +#include "xe_device.h"
+> > 
+> > This inherits some of the debt that should not be there, so let's try to
+> > get away with xe_device_types.h where possible. But please double check.
+> > 
+> > > +#include "xe_drm_ras.h"
+> > 
+> > ...
+> > 
+> > > +static struct xe_drm_ras_counter *allocate_and_copy_counters(struct xe_device *xe,
+> > > +							     int count)
+> > > +{
+> > > +	struct xe_drm_ras_counter *counter;
+> > > +	int i;
+> > > +
+> > > +	counter = drmm_kzalloc(&xe->drm, count * sizeof(struct xe_drm_ras_counter), GFP_KERNEL);
+> > 
+> > Why not drmm_kcalloc()? We get a bonus overflow protection.
+> 
+> Will check
+> 
+> > 
+> > > +	if (!counter)
+> > > +		return ERR_PTR(-ENOMEM);
+> > > +
+> > > +	for (i = 0; i < count; i++) {
+> > > +		if (!errors[i])
+> > > +			continue;
+> > > +
+> > > +		counter[i].name = errors[i];
+> > > +		atomic64_set(&counter[i].counter, 0);
+> > > +	}
+> > > +
+> > > +	return counter;
+> > > +}
+> > > +
+> > > +static int assign_node_params(struct xe_device *xe, struct drm_ras_node *node,
+> > > +			      const enum drm_xe_ras_error_severity severity)
+> > > +{
+> > > +	struct xe_drm_ras *ras = &xe->ras;
+> > > +	int count = 0, ret = 0;
+> > 
+> > Redundant initializations, also why do we need them?
+> 
+> redundant code from previous rev. Will remove
+> 
+> > 
+> > > +	count = DRM_XE_RAS_ERROR_CLASS_MAX;
+> > > +	node->error_counter_range.first = DRM_XE_RAS_ERROR_CORE_COMPUTE;
+> > > +	node->error_counter_range.last = DRM_XE_RAS_ERROR_CLASS_MAX - 1;
+> > > +
+> > > +	ras->info[severity] = allocate_and_copy_counters(xe, count);
+> > 
+> > This looks like count should be derived from first and last, or did I
+> > miss something?
+> 
+> assigned it directly. Can be done
+> 
+> > 
+> > > +	if (IS_ERR(ras->info[severity]))
+> > > +		return PTR_ERR(ras->info[severity]);
+> > > +
+> > > +	switch (severity) {
+> > > +	case DRM_XE_RAS_ERROR_CORRECTABLE:
+> > > +		node->query_error_counter = query_correctable_error_counters;
+> > > +		break;
+> > > +	case DRM_XE_RAS_ERROR_NONFATAL:
+> > > +		node->query_error_counter = query_non_fatal_error_counters;
+> > > +		break;
+> > > +	case DRM_XE_RAS_ERROR_FATAL:
+> > > +		node->query_error_counter = query_fatal_error_counters;
+> > > +		break;
+> > > +	default:
+> > 
+> > Do we need this?
+> 
+> yes.
+> 
+> > 
+> > > +		break;
+> > > +	}
+> > > +
+> > > +	return ret;
+> > > +}
+> > > +
+> > > +static int register_nodes(struct xe_device *xe)
+> > > +{
+> > > +	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
+> > > +	struct xe_drm_ras *ras = &xe->ras;
+> > > +	const char *device_name;
+> > > +	int i = 0, ret;
+> > 
+> > Redundant initialization. Also, ret belongs to the loop below.
+> > 
+> > > +	device_name = kasprintf(GFP_KERNEL, "%04x:%02x:%02x.%d",
+> > > +				pci_domain_nr(pdev->bus), pdev->bus->number,
+> > > +				PCI_SLOT(pdev->devfn), PCI_FUNC(pdev->devfn));
+> > > +
+> > > +	for (i = 0; i < DRM_XE_RAS_ERROR_SEVERITY_MAX; i++) {
+> > 
+> > We could potentially have a nice for_each_error_severity() now ;)
+> 
+> Sure. Will check. If its used in multiple places then its worth having a
+> helper
+> 
+> > 
+> > > +		struct drm_ras_node *node = &ras->node[i];
+> > > +
+> > > +		node->device_name = device_name;
+> > > +		node->node_name = error_severity[i];
+> > > +		node->type = DRM_RAS_NODE_TYPE_ERROR_COUNTER;
+> > > +		node->priv = xe;
+> > > +
+> > > +		ret = assign_node_params(xe, node, i);
+> > > +		if (ret)
+> > > +			return ret;
+> > > +
+> > > +		ret = drm_ras_node_register(node);
+> > > +		if (ret) {
+> > > +			drm_err(&xe->drm, "Failed to register drm ras tile node\n");
+> > > +			return ret;
+> > > +		}
+> > > +	}
+> > > +
+> > > +	return 0;
+> > > +}
+> > 
+> > ...
+> > 
+> > > +int xe_drm_ras_allocate_nodes(struct xe_device *xe)
+> > > +{
+> > > +	struct xe_drm_ras *ras = &xe->ras;
+> > > +	struct drm_ras_node *node;
+> > > +	int err;
+> > > +
+> > > +	node = drmm_kzalloc(&xe->drm, DRM_XE_RAS_ERROR_SEVERITY_MAX * sizeof(struct drm_ras_node),
+> > > +			    GFP_KERNEL);
+> > 
+> > Ditto for drmm_kcalloc().
+> > 
+> > > +	if (!node)
+> > > +		return -ENOMEM;
+> > > +
+> > > +	ras->node = node;
+> > > +
+> > > +	err = register_nodes(xe);
+> > > +	if (err) {
+> > > +		drm_err(&xe->drm, "Failed to register drm ras node\n");
+> > 
+> > You wanted to call drm_err_probe(), didn't you ...?
+> > 
+> > Ah, not upstream yet :(
+> > But perhaps an opportunity worth considering.
+> > 
+> > > +		return err;
+> > > +	}
+> > > +
+> > > +	err = devm_add_action_or_reset(xe->drm.dev, xe_drm_ras_unregister_nodes, xe);
+> > > +	if (err) {
+> > > +		drm_err(&xe->drm, "Failed to add action for xe drm_ras\n");
+> > 
+> > Ditto.
+> > 
+> > > +		return err;
+> > > +	}
+> > > +
+> > > +	return 0;
+> > 
+> > ...
+> > 
+> > > +/**
+> > > + * struct xe_drm_ras_counter - xe ras counter
+> > > + *
+> > > + * This structure contains error class and counter information
+> > > + */
+> > > +struct xe_drm_ras_counter {
+> > > +	/** @name: error class name */
+> > > +	const char *name;
+> > > +	/** @counter: count of error */
+> > > +	atomic64_t counter;
+> > > +};
+> > > +
+> > > +/**
+> > > + * struct xe_drm_ras - xe drm ras structure
+> > > + *
+> > > + * This structure has details of error counters
+> > > + */
+> > > +struct xe_drm_ras {
+> > > +	/** @node: DRM RAS node */
+> > > +	struct drm_ras_node *node;
+> > > +
+> > > +	/** @info: info array for all types of errors */
+> > > +	struct xe_drm_ras_counter *info[DRM_XE_RAS_ERROR_SEVERITY_MAX];
+> > > +
+> > > +};
+> > 
+> > Either separate the members with blank lines or don't, but let's be
+> > consistent.
+> 
+> Will fix
+> 
+> > 
+> > ...
+> > 
+> > >   void xe_hw_error_irq_handler(struct xe_tile *tile, const u32 master_ctl)
+> > >   {
+> > > -	enum hardware_error hw_err;
+> > > +	u32 hw_err;
+> > >   	if (fault_inject_csc_hw_error())
+> > >   		schedule_work(&tile->csc_hw_error_work);
+> > > -	for (hw_err = 0; hw_err < HARDWARE_ERROR_MAX; hw_err++)
+> > > +	for (hw_err = 0; hw_err < DRM_XE_RAS_ERROR_SEVERITY_MAX; hw_err++)
+> > 
+> > for_each_error_severity()
+> > 
+> > >   		if (master_ctl & ERROR_IRQ(hw_err))
+> > >   			hw_error_source_handler(tile, hw_err);
+> > >   }
+> > 
+> > ...
+> > 
+> > > +/**
+> > > + * enum drm_xe_ras_error_severity - Supported drm ras error severity.
+> > > + */
+> > > +enum drm_xe_ras_error_severity {
+> > > +	/** @DRM_XE_RAS_ERROR_CORRECTABLE: Correctable Error */
+> > > +	DRM_XE_RAS_ERROR_CORRECTABLE = 0,
+> > > +	/** @DRM_XE_RAS_ERROR_NONFATAL: Non fatal Error */
+> > > +	DRM_XE_RAS_ERROR_NONFATAL,
+> > > +	/** @DRM_XE_RAS_ERROR_FATAL: Fatal error */
+> > > +	DRM_XE_RAS_ERROR_FATAL,
+> > > +	/** @DRM_XE_RAS_ERROR_SEVERITY_MAX: Max severity */
+> > > +	DRM_XE_RAS_ERROR_SEVERITY_MAX, /* non-ABI */
+> > 
+> > This is guaranteed last member, so redundant comma.
+> 
+> ok
+> 
+> > 
+> > > +};
+> > > +
+> > > +/**
+> > > + * enum drm_xe_ras_error_class - Supported drm ras error classes.
+> > > + */
+> > > +enum drm_xe_ras_error_class {
+> > > +	/** @DRM_XE_RAS_ERROR_CORE_COMPUTE: GT and Media Error */
+> > > +	DRM_XE_RAS_ERROR_CORE_COMPUTE = 1,
+> > > +	/** @DRM_XE_RAS_ERROR_SOC_INTERNAL: SOC Error */
+> > > +	DRM_XE_RAS_ERROR_SOC_INTERNAL,
+> > > +	/** @DRM_XE_RAS_ERROR_CLASS_MAX: Max Error */
+> > > +	DRM_XE_RAS_ERROR_CLASS_MAX,	/* non-ABI */
+> > 
+> > Ditto.
+> > 
+> > > +};
+> > 
+> > Also, all of the enums share the same DRM_XE_RAS_ERROR_* prefix, so let's try
+> > to have distinguishable naming. Perhaps [*] would be useful here as well ;)
+> 
+> DRM_XE_RAS_ERROR_SEVERITY_* will cause longer names. Any suggestions?
 
-In i915, add the interface to existing intel_pcode.[ch], while in xe
-move them to new display/xe_display_pcode.[ch] and build it only for
-CONFIG_DRM_XE_DISPLAY=y.
+Try this full version first and see how the outcome looks like...
+if we are still respecting the line limits without ugly cuts, then let's go with it.
+otherwise try something shorter ERR_SEV_ ... or something like that...
 
-Do not add separate write and write_timeout calls in the
-interface. Instead, handle the default 1 ms timeout in the
-intel_parent.c glue layer.
-
-This drops the last intel_pcode.h includes from display, and allows us
-to remove the corresponding xe compat header.
-
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/hsw_ips.c        |  8 +--
- drivers/gpu/drm/i915/display/intel_bw.c       | 22 ++++----
- drivers/gpu/drm/i915/display/intel_cdclk.c    | 54 +++++++++----------
- .../drm/i915/display/intel_display_power.c    |  3 +-
- .../i915/display/intel_display_power_well.c   |  5 +-
- drivers/gpu/drm/i915/display/intel_dram.c     |  6 +--
- drivers/gpu/drm/i915/display/intel_hdcp.c     |  3 +-
- drivers/gpu/drm/i915/display/intel_parent.c   | 22 ++++++++
- drivers/gpu/drm/i915/display/intel_parent.h   |  7 +++
- drivers/gpu/drm/i915/display/skl_watermark.c  | 21 ++++----
- drivers/gpu/drm/i915/intel_pcode.c            | 16 ++++--
- drivers/gpu/drm/i915/intel_pcode.h            |  9 +---
- drivers/gpu/drm/xe/Makefile                   |  1 +
- .../drm/xe/compat-i915-headers/intel_pcode.h  | 11 ----
- drivers/gpu/drm/xe/display/xe_display.c       |  2 +
- drivers/gpu/drm/xe/display/xe_display_pcode.c | 38 +++++++++++++
- drivers/gpu/drm/xe/display/xe_display_pcode.h |  9 ++++
- drivers/gpu/drm/xe/xe_pcode.c                 | 30 -----------
- drivers/gpu/drm/xe/xe_pcode.h                 |  8 ---
- include/drm/intel/display_parent_interface.h  | 10 ++++
- 20 files changed, 160 insertions(+), 125 deletions(-)
- delete mode 100644 drivers/gpu/drm/xe/compat-i915-headers/intel_pcode.h
- create mode 100644 drivers/gpu/drm/xe/display/xe_display_pcode.c
- create mode 100644 drivers/gpu/drm/xe/display/xe_display_pcode.h
-
-diff --git a/drivers/gpu/drm/i915/display/hsw_ips.c b/drivers/gpu/drm/i915/display/hsw_ips.c
-index 008d339d5c21..0caaea2e64e1 100644
---- a/drivers/gpu/drm/i915/display/hsw_ips.c
-+++ b/drivers/gpu/drm/i915/display/hsw_ips.c
-@@ -14,7 +14,7 @@
- #include "intel_display_regs.h"
- #include "intel_display_rpm.h"
- #include "intel_display_types.h"
--#include "intel_pcode.h"
-+#include "intel_parent.h"
- 
- static void hsw_ips_enable(const struct intel_crtc_state *crtc_state)
- {
-@@ -39,8 +39,8 @@ static void hsw_ips_enable(const struct intel_crtc_state *crtc_state)
- 
- 	if (display->platform.broadwell) {
- 		drm_WARN_ON(display->drm,
--			    intel_pcode_write(display->drm, DISPLAY_IPS_CONTROL,
--					      val | IPS_PCODE_CONTROL));
-+			    intel_parent_pcode_write(display, DISPLAY_IPS_CONTROL,
-+						     val | IPS_PCODE_CONTROL));
- 		/*
- 		 * Quoting Art Runyan: "its not safe to expect any particular
- 		 * value in IPS_CTL bit 31 after enabling IPS through the
-@@ -72,7 +72,7 @@ bool hsw_ips_disable(const struct intel_crtc_state *crtc_state)
- 
- 	if (display->platform.broadwell) {
- 		drm_WARN_ON(display->drm,
--			    intel_pcode_write(display->drm, DISPLAY_IPS_CONTROL, 0));
-+			    intel_parent_pcode_write(display, DISPLAY_IPS_CONTROL, 0));
- 		/*
- 		 * Wait for PCODE to finish disabling IPS. The BSpec specified
- 		 * 42ms timeout value leads to occasional timeouts so use 100ms
-diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
-index 4ee3f5172f4e..8d84445c69f1 100644
---- a/drivers/gpu/drm/i915/display/intel_bw.c
-+++ b/drivers/gpu/drm/i915/display/intel_bw.c
-@@ -15,7 +15,7 @@
- #include "intel_display_utils.h"
- #include "intel_dram.h"
- #include "intel_mchbar_regs.h"
--#include "intel_pcode.h"
-+#include "intel_parent.h"
- #include "intel_uncore.h"
- #include "skl_watermark.h"
- 
-@@ -114,9 +114,9 @@ static int icl_pcode_read_qgv_point_info(struct intel_display *display,
- 	u16 dclk;
- 	int ret;
- 
--	ret = intel_pcode_read(display->drm, ICL_PCODE_MEM_SUBSYSYSTEM_INFO |
--			       ICL_PCODE_MEM_SS_READ_QGV_POINT_INFO(point),
--			       &val, &val2);
-+	ret = intel_parent_pcode_read(display, ICL_PCODE_MEM_SUBSYSYSTEM_INFO |
-+				      ICL_PCODE_MEM_SS_READ_QGV_POINT_INFO(point),
-+				      &val, &val2);
- 	if (ret)
- 		return ret;
- 
-@@ -141,8 +141,8 @@ static int adls_pcode_read_psf_gv_point_info(struct intel_display *display,
- 	int ret;
- 	int i;
- 
--	ret = intel_pcode_read(display->drm, ICL_PCODE_MEM_SUBSYSYSTEM_INFO |
--			       ADL_PCODE_MEM_SS_READ_PSF_GV_INFO, &val, NULL);
-+	ret = intel_parent_pcode_read(display, ICL_PCODE_MEM_SUBSYSYSTEM_INFO |
-+				      ADL_PCODE_MEM_SS_READ_PSF_GV_INFO, &val, NULL);
- 	if (ret)
- 		return ret;
- 
-@@ -189,11 +189,11 @@ static int icl_pcode_restrict_qgv_points(struct intel_display *display,
- 		return 0;
- 
- 	/* bspec says to keep retrying for at least 1 ms */
--	ret = intel_pcode_request(display->drm, ICL_PCODE_SAGV_DE_MEM_SS_CONFIG,
--				  points_mask,
--				  ICL_PCODE_REP_QGV_MASK | ADLS_PCODE_REP_PSF_MASK,
--				  ICL_PCODE_REP_QGV_SAFE | ADLS_PCODE_REP_PSF_SAFE,
--				  1);
-+	ret = intel_parent_pcode_request(display, ICL_PCODE_SAGV_DE_MEM_SS_CONFIG,
-+					 points_mask,
-+					 ICL_PCODE_REP_QGV_MASK | ADLS_PCODE_REP_PSF_MASK,
-+					 ICL_PCODE_REP_QGV_SAFE | ADLS_PCODE_REP_PSF_SAFE,
-+					 1);
- 
- 	if (ret < 0) {
- 		drm_err(display->drm,
-diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-index 7443e5285942..5c05a0eff2c9 100644
---- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-+++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-@@ -42,8 +42,8 @@
- #include "intel_display_wa.h"
- #include "intel_dram.h"
- #include "intel_mchbar_regs.h"
-+#include "intel_parent.h"
- #include "intel_pci_config.h"
--#include "intel_pcode.h"
- #include "intel_plane.h"
- #include "intel_psr.h"
- #include "intel_step.h"
-@@ -888,7 +888,7 @@ static void bdw_set_cdclk(struct intel_display *display,
- 		     "trying to change cdclk frequency with cdclk not enabled\n"))
- 		return;
- 
--	ret = intel_pcode_write(display->drm, BDW_PCODE_DISPLAY_FREQ_CHANGE_REQ, 0x0);
-+	ret = intel_parent_pcode_write(display, BDW_PCODE_DISPLAY_FREQ_CHANGE_REQ, 0x0);
- 	if (ret) {
- 		drm_err(display->drm,
- 			"failed to inform pcode about cdclk change\n");
-@@ -918,8 +918,8 @@ static void bdw_set_cdclk(struct intel_display *display,
- 	if (ret)
- 		drm_err(display->drm, "Switching back to LCPLL failed\n");
- 
--	intel_pcode_write(display->drm, HSW_PCODE_DE_WRITE_FREQ_REQ,
--			  cdclk_config->voltage_level);
-+	intel_parent_pcode_write(display, HSW_PCODE_DE_WRITE_FREQ_REQ,
-+				 cdclk_config->voltage_level);
- 
- 	intel_de_write(display, CDCLK_FREQ,
- 		       DIV_ROUND_CLOSEST(cdclk, 1000) - 1);
-@@ -1175,10 +1175,10 @@ static void skl_set_cdclk(struct intel_display *display,
- 	drm_WARN_ON_ONCE(display->drm,
- 			 display->platform.skylake && vco == 8640000);
- 
--	ret = intel_pcode_request(display->drm, SKL_PCODE_CDCLK_CONTROL,
--				  SKL_CDCLK_PREPARE_FOR_CHANGE,
--				  SKL_CDCLK_READY_FOR_CHANGE,
--				  SKL_CDCLK_READY_FOR_CHANGE, 3);
-+	ret = intel_parent_pcode_request(display, SKL_PCODE_CDCLK_CONTROL,
-+					 SKL_CDCLK_PREPARE_FOR_CHANGE,
-+					 SKL_CDCLK_READY_FOR_CHANGE,
-+					 SKL_CDCLK_READY_FOR_CHANGE, 3);
- 	if (ret) {
- 		drm_err(display->drm,
- 			"Failed to inform PCU about cdclk change (%d)\n", ret);
-@@ -1221,8 +1221,8 @@ static void skl_set_cdclk(struct intel_display *display,
- 	intel_de_posting_read(display, CDCLK_CTL);
- 
- 	/* inform PCU of the change */
--	intel_pcode_write(display->drm, SKL_PCODE_CDCLK_CONTROL,
--			  cdclk_config->voltage_level);
-+	intel_parent_pcode_write(display, SKL_PCODE_CDCLK_CONTROL,
-+				 cdclk_config->voltage_level);
- 
- 	intel_update_cdclk(display);
- }
-@@ -2230,18 +2230,18 @@ static void bxt_set_cdclk(struct intel_display *display,
- 	if (DISPLAY_VER(display) >= 14 || display->platform.dg2)
- 		; /* NOOP */
- 	else if (DISPLAY_VER(display) >= 11)
--		ret = intel_pcode_request(display->drm, SKL_PCODE_CDCLK_CONTROL,
--					  SKL_CDCLK_PREPARE_FOR_CHANGE,
--					  SKL_CDCLK_READY_FOR_CHANGE,
--					  SKL_CDCLK_READY_FOR_CHANGE, 3);
-+		ret = intel_parent_pcode_request(display, SKL_PCODE_CDCLK_CONTROL,
-+						 SKL_CDCLK_PREPARE_FOR_CHANGE,
-+						 SKL_CDCLK_READY_FOR_CHANGE,
-+						 SKL_CDCLK_READY_FOR_CHANGE, 3);
- 	else
- 		/*
- 		 * BSpec requires us to wait up to 150usec, but that leads to
- 		 * timeouts; the 2ms used here is based on experiment.
- 		 */
--		ret = intel_pcode_write_timeout(display->drm,
--						HSW_PCODE_DE_WRITE_FREQ_REQ,
--						0x80000000, 2);
-+		ret = intel_parent_pcode_write_timeout(display,
-+						       HSW_PCODE_DE_WRITE_FREQ_REQ,
-+						       0x80000000, 2);
- 
- 	if (ret) {
- 		drm_err(display->drm,
-@@ -2270,8 +2270,8 @@ static void bxt_set_cdclk(struct intel_display *display,
- 		 * Display versions 14 and beyond
- 		 */;
- 	else if (DISPLAY_VER(display) >= 11 && !display->platform.dg2)
--		ret = intel_pcode_write(display->drm, SKL_PCODE_CDCLK_CONTROL,
--					cdclk_config->voltage_level);
-+		ret = intel_parent_pcode_write(display, SKL_PCODE_CDCLK_CONTROL,
-+					       cdclk_config->voltage_level);
- 	if (DISPLAY_VER(display) < 11) {
- 		/*
- 		 * The timeout isn't specified, the 2ms used here is based on
-@@ -2279,9 +2279,9 @@ static void bxt_set_cdclk(struct intel_display *display,
- 		 * FIXME: Waiting for the request completion could be delayed
- 		 * until the next PCODE request based on BSpec.
- 		 */
--		ret = intel_pcode_write_timeout(display->drm,
--						HSW_PCODE_DE_WRITE_FREQ_REQ,
--						cdclk_config->voltage_level, 2);
-+		ret = intel_parent_pcode_write_timeout(display,
-+						       HSW_PCODE_DE_WRITE_FREQ_REQ,
-+						       cdclk_config->voltage_level, 2);
- 	}
- 	if (ret) {
- 		drm_err(display->drm,
-@@ -2581,11 +2581,11 @@ static void intel_pcode_notify(struct intel_display *display,
- 	if (pipe_count_update_valid)
- 		update_mask |= DISPLAY_TO_PCODE_PIPE_COUNT_VALID;
- 
--	ret = intel_pcode_request(display->drm, SKL_PCODE_CDCLK_CONTROL,
--				  SKL_CDCLK_PREPARE_FOR_CHANGE |
--				  update_mask,
--				  SKL_CDCLK_READY_FOR_CHANGE,
--				  SKL_CDCLK_READY_FOR_CHANGE, 3);
-+	ret = intel_parent_pcode_request(display, SKL_PCODE_CDCLK_CONTROL,
-+					 SKL_CDCLK_PREPARE_FOR_CHANGE |
-+					 update_mask,
-+					 SKL_CDCLK_READY_FOR_CHANGE,
-+					 SKL_CDCLK_READY_FOR_CHANGE, 3);
- 	if (ret)
- 		drm_err(display->drm,
- 			"Failed to inform PCU about display config (err %d)\n",
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
-index d27397f43863..06adf6afbec0 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-@@ -26,7 +26,6 @@
- #include "intel_mchbar_regs.h"
- #include "intel_parent.h"
- #include "intel_pch_refclk.h"
--#include "intel_pcode.h"
- #include "intel_pmdemand.h"
- #include "intel_pps_regs.h"
- #include "intel_snps_phy.h"
-@@ -1260,7 +1259,7 @@ static u32 hsw_read_dcomp(struct intel_display *display)
- static void hsw_write_dcomp(struct intel_display *display, u32 val)
- {
- 	if (display->platform.haswell) {
--		if (intel_pcode_write(display->drm, GEN6_PCODE_WRITE_D_COMP, val))
-+		if (intel_parent_pcode_write(display, GEN6_PCODE_WRITE_D_COMP, val))
- 			drm_dbg_kms(display->drm, "Failed to write to D_COMP\n");
- 	} else {
- 		intel_de_write(display, D_COMP_BDW, val);
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-index db185a859133..b01dda67986a 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-@@ -27,7 +27,6 @@
- #include "intel_dpll.h"
- #include "intel_hotplug.h"
- #include "intel_parent.h"
--#include "intel_pcode.h"
- #include "intel_pps.h"
- #include "intel_psr.h"
- #include "intel_tc.h"
-@@ -522,7 +521,7 @@ static void icl_tc_cold_exit(struct intel_display *display)
- 	int ret, tries = 0;
- 
- 	while (1) {
--		ret = intel_pcode_write(display->drm, ICL_PCODE_EXIT_TCCOLD, 0);
-+		ret = intel_parent_pcode_write(display, ICL_PCODE_EXIT_TCCOLD, 0);
- 		if (ret != -EAGAIN || ++tries == 3)
- 			break;
- 		msleep(1);
-@@ -1795,7 +1794,7 @@ tgl_tc_cold_request(struct intel_display *display, bool block)
- 		 * Spec states that we should timeout the request after 200us
- 		 * but the function below will timeout after 500us
- 		 */
--		ret = intel_pcode_read(display->drm, TGL_PCODE_TCCOLD, &low_val, &high_val);
-+		ret = intel_parent_pcode_read(display, TGL_PCODE_TCCOLD, &low_val, &high_val);
- 		if (ret == 0) {
- 			if (block &&
- 			    (low_val & TGL_PCODE_EXIT_TCCOLD_DATA_L_EXIT_FAILED))
-diff --git a/drivers/gpu/drm/i915/display/intel_dram.c b/drivers/gpu/drm/i915/display/intel_dram.c
-index 170de304fe96..3b9879714ea9 100644
---- a/drivers/gpu/drm/i915/display/intel_dram.c
-+++ b/drivers/gpu/drm/i915/display/intel_dram.c
-@@ -13,7 +13,7 @@
- #include "intel_display_utils.h"
- #include "intel_dram.h"
- #include "intel_mchbar_regs.h"
--#include "intel_pcode.h"
-+#include "intel_parent.h"
- #include "intel_uncore.h"
- #include "vlv_iosf_sb.h"
- 
-@@ -692,8 +692,8 @@ static int icl_pcode_read_mem_global_info(struct intel_display *display,
- 	u32 val = 0;
- 	int ret;
- 
--	ret = intel_pcode_read(display->drm, ICL_PCODE_MEM_SUBSYSYSTEM_INFO |
--			       ICL_PCODE_MEM_SS_READ_GLOBAL_INFO, &val, NULL);
-+	ret = intel_parent_pcode_read(display, ICL_PCODE_MEM_SUBSYSYSTEM_INFO |
-+				      ICL_PCODE_MEM_SS_READ_GLOBAL_INFO, &val, NULL);
- 	if (ret)
- 		return ret;
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
-index 7114fc405c29..8d3137067bf6 100644
---- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-@@ -33,7 +33,6 @@
- #include "intel_hdcp_regs.h"
- #include "intel_hdcp_shim.h"
- #include "intel_parent.h"
--#include "intel_pcode.h"
- #include "intel_step.h"
- 
- #define USE_HDCP_GSC(__display)		(DISPLAY_VER(__display) >= 14)
-@@ -398,7 +397,7 @@ static int intel_hdcp_load_keys(struct intel_display *display)
- 	 * Mailbox interface.
- 	 */
- 	if (DISPLAY_VER(display) == 9 && !display->platform.broxton) {
--		ret = intel_pcode_write(display->drm, SKL_PCODE_LOAD_HDCP_KEYS, 1);
-+		ret = intel_parent_pcode_write(display, SKL_PCODE_LOAD_HDCP_KEYS, 1);
- 		if (ret) {
- 			drm_err(display->drm,
- 				"Failed to initiate HDCP key load (%d)\n",
-diff --git a/drivers/gpu/drm/i915/display/intel_parent.c b/drivers/gpu/drm/i915/display/intel_parent.c
-index 72ae553f79a4..7f73695a0444 100644
---- a/drivers/gpu/drm/i915/display/intel_parent.c
-+++ b/drivers/gpu/drm/i915/display/intel_parent.c
-@@ -92,6 +92,28 @@ void intel_parent_pc8_unblock(struct intel_display *display)
- 	display->parent->pc8->unblock(display->drm);
- }
- 
-+/* pcode */
-+int intel_parent_pcode_read(struct intel_display *display, u32 mbox, u32 *val, u32 *val1)
-+{
-+	return display->parent->pcode->read(display->drm, mbox, val, val1);
-+}
-+
-+int intel_parent_pcode_write_timeout(struct intel_display *display, u32 mbox, u32 val, int timeout_ms)
-+{
-+	return display->parent->pcode->write(display->drm, mbox, val, timeout_ms);
-+}
-+
-+int intel_parent_pcode_write(struct intel_display *display, u32 mbox, u32 val)
-+{
-+	return intel_parent_pcode_write_timeout(display, mbox, val, 1);
-+}
-+
-+int intel_parent_pcode_request(struct intel_display *display, u32 mbox, u32 request,
-+			       u32 reply_mask, u32 reply, int timeout_base_ms)
-+{
-+	return display->parent->pcode->request(display->drm, mbox, request, reply_mask, reply, timeout_base_ms);
-+}
-+
- /* rps */
- bool intel_parent_rps_available(struct intel_display *display)
- {
-diff --git a/drivers/gpu/drm/i915/display/intel_parent.h b/drivers/gpu/drm/i915/display/intel_parent.h
-index 47cdc14f9aa2..04782bb26b61 100644
---- a/drivers/gpu/drm/i915/display/intel_parent.h
-+++ b/drivers/gpu/drm/i915/display/intel_parent.h
-@@ -36,6 +36,13 @@ void intel_parent_panic_finish(struct intel_display *display, struct intel_panic
- void intel_parent_pc8_block(struct intel_display *display);
- void intel_parent_pc8_unblock(struct intel_display *display);
- 
-+/* pcode */
-+int intel_parent_pcode_read(struct intel_display *display, u32 mbox, u32 *val, u32 *val1);
-+int intel_parent_pcode_write_timeout(struct intel_display *display, u32 mbox, u32 val, int timeout_ms);
-+int intel_parent_pcode_write(struct intel_display *display, u32 mbox, u32 val);
-+int intel_parent_pcode_request(struct intel_display *display, u32 mbox, u32 request,
-+			       u32 reply_mask, u32 reply, int timeout_base_ms);
-+
- /* rps */
- bool intel_parent_rps_available(struct intel_display *display);
- void intel_parent_rps_boost_if_not_started(struct intel_display *display, struct dma_fence *fence);
-diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
-index a6aab79812e5..b41da10f0f85 100644
---- a/drivers/gpu/drm/i915/display/skl_watermark.c
-+++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-@@ -26,7 +26,7 @@
- #include "intel_fb.h"
- #include "intel_fixed.h"
- #include "intel_flipq.h"
--#include "intel_pcode.h"
-+#include "intel_parent.h"
- #include "intel_plane.h"
- #include "intel_vblank.h"
- #include "intel_wm.h"
-@@ -115,9 +115,8 @@ intel_sagv_block_time(struct intel_display *display)
- 		u32 val = 0;
- 		int ret;
- 
--		ret = intel_pcode_read(display->drm,
--				       GEN12_PCODE_READ_SAGV_BLOCK_TIME_US,
--				       &val, NULL);
-+		ret = intel_parent_pcode_read(display, GEN12_PCODE_READ_SAGV_BLOCK_TIME_US,
-+					      &val, NULL);
- 		if (ret) {
- 			drm_dbg_kms(display->drm, "Couldn't read SAGV block time!\n");
- 			return 0;
-@@ -184,8 +183,8 @@ static void skl_sagv_enable(struct intel_display *display)
- 		return;
- 
- 	drm_dbg_kms(display->drm, "Enabling SAGV\n");
--	ret = intel_pcode_write(display->drm, GEN9_PCODE_SAGV_CONTROL,
--				GEN9_SAGV_ENABLE);
-+	ret = intel_parent_pcode_write(display, GEN9_PCODE_SAGV_CONTROL,
-+				       GEN9_SAGV_ENABLE);
- 
- 	/* We don't need to wait for SAGV when enabling */
- 
-@@ -217,9 +216,9 @@ static void skl_sagv_disable(struct intel_display *display)
- 
- 	drm_dbg_kms(display->drm, "Disabling SAGV\n");
- 	/* bspec says to keep retrying for at least 1 ms */
--	ret = intel_pcode_request(display->drm, GEN9_PCODE_SAGV_CONTROL,
--				  GEN9_SAGV_DISABLE,
--				  GEN9_SAGV_IS_DISABLED, GEN9_SAGV_IS_DISABLED, 1);
-+	ret = intel_parent_pcode_request(display, GEN9_PCODE_SAGV_CONTROL,
-+					 GEN9_SAGV_DISABLE,
-+					 GEN9_SAGV_IS_DISABLED, GEN9_SAGV_IS_DISABLED, 1);
- 	/*
- 	 * Some skl systems, pre-release machines in particular,
- 	 * don't actually have SAGV.
-@@ -3283,7 +3282,7 @@ static void skl_read_wm_latency(struct intel_display *display)
- 
- 	/* read the first set of memory latencies[0:3] */
- 	val = 0; /* data0 to be programmed to 0 for first set */
--	ret = intel_pcode_read(display->drm, GEN9_PCODE_READ_MEM_LATENCY, &val, NULL);
-+	ret = intel_parent_pcode_read(display, GEN9_PCODE_READ_MEM_LATENCY, &val, NULL);
- 	if (ret) {
- 		drm_err(display->drm, "SKL Mailbox read error = %d\n", ret);
- 		return;
-@@ -3296,7 +3295,7 @@ static void skl_read_wm_latency(struct intel_display *display)
- 
- 	/* read the second set of memory latencies[4:7] */
- 	val = 1; /* data0 to be programmed to 1 for second set */
--	ret = intel_pcode_read(display->drm, GEN9_PCODE_READ_MEM_LATENCY, &val, NULL);
-+	ret = intel_parent_pcode_read(display, GEN9_PCODE_READ_MEM_LATENCY, &val, NULL);
- 	if (ret) {
- 		drm_err(display->drm, "SKL Mailbox read error = %d\n", ret);
- 		return;
-diff --git a/drivers/gpu/drm/i915/intel_pcode.c b/drivers/gpu/drm/i915/intel_pcode.c
-index 756652b8ec97..76c5916b28f4 100644
---- a/drivers/gpu/drm/i915/intel_pcode.c
-+++ b/drivers/gpu/drm/i915/intel_pcode.c
-@@ -4,6 +4,7 @@
-  */
- 
- #include <drm/drm_print.h>
-+#include <drm/intel/display_parent_interface.h>
- 
- #include "i915_drv.h"
- #include "i915_reg.h"
-@@ -276,26 +277,31 @@ int snb_pcode_write_p(struct intel_uncore *uncore, u32 mbcmd, u32 p1, u32 p2, u3
- 	return err;
- }
- 
--/* Helpers with drm device */
--int intel_pcode_read(struct drm_device *drm, u32 mbox, u32 *val, u32 *val1)
-+static int intel_pcode_read(struct drm_device *drm, u32 mbox, u32 *val, u32 *val1)
- {
- 	struct drm_i915_private *i915 = to_i915(drm);
- 
- 	return snb_pcode_read(&i915->uncore, mbox, val, val1);
- }
- 
--int intel_pcode_write_timeout(struct drm_device *drm, u32 mbox, u32 val, int timeout_ms)
-+static int intel_pcode_write_timeout(struct drm_device *drm, u32 mbox, u32 val, int timeout_ms)
- {
- 	struct drm_i915_private *i915 = to_i915(drm);
- 
- 	return snb_pcode_write_timeout(&i915->uncore, mbox, val, timeout_ms);
- }
- 
--int intel_pcode_request(struct drm_device *drm, u32 mbox, u32 request,
--			u32 reply_mask, u32 reply, int timeout_base_ms)
-+static int intel_pcode_request(struct drm_device *drm, u32 mbox, u32 request,
-+			       u32 reply_mask, u32 reply, int timeout_base_ms)
- {
- 	struct drm_i915_private *i915 = to_i915(drm);
- 
- 	return skl_pcode_request(&i915->uncore, mbox, request, reply_mask, reply,
- 				 timeout_base_ms);
- }
-+
-+const struct intel_display_pcode_interface i915_display_pcode_interface = {
-+	.read = intel_pcode_read,
-+	.write = intel_pcode_write_timeout,
-+	.request = intel_pcode_request,
-+};
-diff --git a/drivers/gpu/drm/i915/intel_pcode.h b/drivers/gpu/drm/i915/intel_pcode.h
-index c91a821a88d4..19795ea8172e 100644
---- a/drivers/gpu/drm/i915/intel_pcode.h
-+++ b/drivers/gpu/drm/i915/intel_pcode.h
-@@ -27,13 +27,6 @@ int intel_pcode_init(struct intel_uncore *uncore);
- int snb_pcode_read_p(struct intel_uncore *uncore, u32 mbcmd, u32 p1, u32 p2, u32 *val);
- int snb_pcode_write_p(struct intel_uncore *uncore, u32 mbcmd, u32 p1, u32 p2, u32 val);
- 
--/* Helpers with drm device */
--int intel_pcode_read(struct drm_device *drm, u32 mbox, u32 *val, u32 *val1);
--int intel_pcode_write_timeout(struct drm_device *drm, u32 mbox, u32 val, int timeout_ms);
--#define intel_pcode_write(drm, mbox, val) \
--	intel_pcode_write_timeout((drm), (mbox), (val), 1)
--
--int intel_pcode_request(struct drm_device *drm, u32 mbox, u32 request,
--			u32 reply_mask, u32 reply, int timeout_base_ms);
-+extern const struct intel_display_pcode_interface i915_display_pcode_interface;
- 
- #endif /* _INTEL_PCODE_H */
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index 2b20c79d7ec9..cd67a683247e 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -213,6 +213,7 @@ xe-$(CONFIG_DRM_XE_DISPLAY) += \
- 	display/intel_fb_bo.o \
- 	display/intel_fbdev_fb.o \
- 	display/xe_display.o \
-+	display/xe_display_pcode.o \
- 	display/xe_display_rpm.o \
- 	display/xe_display_wa.o \
- 	display/xe_dsb_buffer.o \
-diff --git a/drivers/gpu/drm/xe/compat-i915-headers/intel_pcode.h b/drivers/gpu/drm/xe/compat-i915-headers/intel_pcode.h
-deleted file mode 100644
-index 4fcd3bf6b76f..000000000000
---- a/drivers/gpu/drm/xe/compat-i915-headers/intel_pcode.h
-+++ /dev/null
-@@ -1,11 +0,0 @@
--/* SPDX-License-Identifier: MIT */
--/*
-- * Copyright © 2023 Intel Corporation
-- */
--
--#ifndef __INTEL_PCODE_H__
--#define __INTEL_PCODE_H__
--
--#include "xe_pcode.h"
--
--#endif /* __INTEL_PCODE_H__ */
-diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
-index f8a831b5dc7d..182facce30ab 100644
---- a/drivers/gpu/drm/xe/display/xe_display.c
-+++ b/drivers/gpu/drm/xe/display/xe_display.c
-@@ -35,6 +35,7 @@
- #include "intel_hotplug.h"
- #include "intel_opregion.h"
- #include "skl_watermark.h"
-+#include "xe_display_pcode.h"
- #include "xe_display_rpm.h"
- #include "xe_hdcp_gsc.h"
- #include "xe_initial_plane.h"
-@@ -542,6 +543,7 @@ static const struct intel_display_parent_interface parent = {
- 	.initial_plane = &xe_display_initial_plane_interface,
- 	.irq = &xe_display_irq_interface,
- 	.panic = &xe_display_panic_interface,
-+	.pcode = &xe_display_pcode_interface,
- 	.rpm = &xe_display_rpm_interface,
- 	.stolen = &xe_display_stolen_interface,
- };
-diff --git a/drivers/gpu/drm/xe/display/xe_display_pcode.c b/drivers/gpu/drm/xe/display/xe_display_pcode.c
-new file mode 100644
-index 000000000000..f6820ef7e666
---- /dev/null
-+++ b/drivers/gpu/drm/xe/display/xe_display_pcode.c
-@@ -0,0 +1,38 @@
-+// SPDX-License-Identifier: MIT
-+/* Copyright © 2026 Intel Corporation */
-+
-+#include <drm/intel/display_parent_interface.h>
-+
-+#include "xe_device.h"
-+#include "xe_pcode.h"
-+
-+static int xe_display_pcode_read(struct drm_device *drm, u32 mbox, u32 *val, u32 *val1)
-+{
-+	struct xe_device *xe = to_xe_device(drm);
-+	struct xe_tile *tile = xe_device_get_root_tile(xe);
-+
-+	return xe_pcode_read(tile, mbox, val, val1);
-+}
-+
-+static int xe_display_pcode_write_timeout(struct drm_device *drm, u32 mbox, u32 val, int timeout_ms)
-+{
-+	struct xe_device *xe = to_xe_device(drm);
-+	struct xe_tile *tile = xe_device_get_root_tile(xe);
-+
-+	return xe_pcode_write_timeout(tile, mbox, val, timeout_ms);
-+}
-+
-+static int xe_display_pcode_request(struct drm_device *drm, u32 mbox, u32 request,
-+				    u32 reply_mask, u32 reply, int timeout_base_ms)
-+{
-+	struct xe_device *xe = to_xe_device(drm);
-+	struct xe_tile *tile = xe_device_get_root_tile(xe);
-+
-+	return xe_pcode_request(tile, mbox, request, reply_mask, reply, timeout_base_ms);
-+}
-+
-+const struct intel_display_pcode_interface xe_display_pcode_interface = {
-+	.read = xe_display_pcode_read,
-+	.write = xe_display_pcode_write_timeout,
-+	.request = xe_display_pcode_request,
-+};
-diff --git a/drivers/gpu/drm/xe/display/xe_display_pcode.h b/drivers/gpu/drm/xe/display/xe_display_pcode.h
-new file mode 100644
-index 000000000000..58bd2fb7fb79
---- /dev/null
-+++ b/drivers/gpu/drm/xe/display/xe_display_pcode.h
-@@ -0,0 +1,9 @@
-+/* SPDX-License-Identifier: MIT */
-+/* Copyright © 2026 Intel Corporation */
-+
-+#ifndef __XE_DISPLAY_PCODE_H__
-+#define __XE_DISPLAY_PCODE_H__
-+
-+extern const struct intel_display_pcode_interface xe_display_pcode_interface;
-+
-+#endif
-diff --git a/drivers/gpu/drm/xe/xe_pcode.c b/drivers/gpu/drm/xe/xe_pcode.c
-index 0d33c14ea0cf..dc66d0c7ee06 100644
---- a/drivers/gpu/drm/xe/xe_pcode.c
-+++ b/drivers/gpu/drm/xe/xe_pcode.c
-@@ -348,33 +348,3 @@ int xe_pcode_probe_early(struct xe_device *xe)
- 	return xe_pcode_ready(xe, false);
- }
- ALLOW_ERROR_INJECTION(xe_pcode_probe_early, ERRNO); /* See xe_pci_probe */
--
--/* Helpers with drm device. These should only be called by the display side */
--#if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
--
--int intel_pcode_read(struct drm_device *drm, u32 mbox, u32 *val, u32 *val1)
--{
--	struct xe_device *xe = to_xe_device(drm);
--	struct xe_tile *tile = xe_device_get_root_tile(xe);
--
--	return xe_pcode_read(tile, mbox, val, val1);
--}
--
--int intel_pcode_write_timeout(struct drm_device *drm, u32 mbox, u32 val, int timeout_ms)
--{
--	struct xe_device *xe = to_xe_device(drm);
--	struct xe_tile *tile = xe_device_get_root_tile(xe);
--
--	return xe_pcode_write_timeout(tile, mbox, val, timeout_ms);
--}
--
--int intel_pcode_request(struct drm_device *drm, u32 mbox, u32 request,
--			u32 reply_mask, u32 reply, int timeout_base_ms)
--{
--	struct xe_device *xe = to_xe_device(drm);
--	struct xe_tile *tile = xe_device_get_root_tile(xe);
--
--	return xe_pcode_request(tile, mbox, request, reply_mask, reply, timeout_base_ms);
--}
--
--#endif
-diff --git a/drivers/gpu/drm/xe/xe_pcode.h b/drivers/gpu/drm/xe/xe_pcode.h
-index a5584c1c75f9..490e4f269607 100644
---- a/drivers/gpu/drm/xe/xe_pcode.h
-+++ b/drivers/gpu/drm/xe/xe_pcode.h
-@@ -34,12 +34,4 @@ int xe_pcode_request(struct xe_tile *tile, u32 mbox, u32 request,
- 	| FIELD_PREP(PCODE_MB_PARAM1, param1)\
- 	| FIELD_PREP(PCODE_MB_PARAM2, param2))
- 
--/* Helpers with drm device */
--int intel_pcode_read(struct drm_device *drm, u32 mbox, u32 *val, u32 *val1);
--int intel_pcode_write_timeout(struct drm_device *drm, u32 mbox, u32 val, int timeout_ms);
--#define intel_pcode_write(drm, mbox, val) \
--	intel_pcode_write_timeout((drm), (mbox), (val), 1)
--int intel_pcode_request(struct drm_device *drm, u32 mbox, u32 request,
--			u32 reply_mask, u32 reply, int timeout_base_ms);
--
- #endif
-diff --git a/include/drm/intel/display_parent_interface.h b/include/drm/intel/display_parent_interface.h
-index ce946859a3a9..78f4e6744f18 100644
---- a/include/drm/intel/display_parent_interface.h
-+++ b/include/drm/intel/display_parent_interface.h
-@@ -55,6 +55,13 @@ struct intel_display_pc8_interface {
- 	void (*unblock)(struct drm_device *drm);
- };
- 
-+struct intel_display_pcode_interface {
-+	int (*read)(struct drm_device *drm, u32 mbox, u32 *val, u32 *val1);
-+	int (*write)(struct drm_device *drm, u32 mbox, u32 val, int timeout_ms);
-+	int (*request)(struct drm_device *drm, u32 mbox, u32 request,
-+		       u32 reply_mask, u32 reply, int timeout_base_ms);
-+};
-+
- struct intel_display_rpm_interface {
- 	struct ref_tracker *(*get)(const struct drm_device *drm);
- 	struct ref_tracker *(*get_raw)(const struct drm_device *drm);
-@@ -121,6 +128,9 @@ struct intel_display_parent_interface {
- 	/** @pc8: PC8 interface. Optional. */
- 	const struct intel_display_pc8_interface *pc8;
- 
-+	/** @pcode: Pcode interface */
-+	const struct intel_display_pcode_interface *pcode;
-+
- 	/** @rpm: Runtime PM functions */
- 	const struct intel_display_rpm_interface *rpm;
- 
--- 
-2.47.3
-
+> 
+> Thanks
+> Riana
+> 
+> > 
+> > Raag
+> 
