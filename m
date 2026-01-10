@@ -4,56 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8C363D277D9
-	for <intel-xe@archiver.kernel.org>; Sat, 10 Jan 2026 11:13:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 33432D277F0
+	for <intel-xe@archiver.kernel.org>; Sat, 10 Jan 2026 15:45:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1E38C10E00C;
-	Sat, 10 Jan 2026 11:13:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 473F210E1BE;
+	Sat, 10 Jan 2026 15:45:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SaKzdUyc";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BuxyngK0";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B5A5510E00C
- for <intel-xe@lists.freedesktop.org>; Sat, 10 Jan 2026 11:13:42 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 425C410E1A3;
+ Sat, 10 Jan 2026 15:45:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1768043623; x=1799579623;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=qiUhNT+gH9pdmCAVlf5NW23b5sVyodEQv79LAveYc84=;
- b=SaKzdUycwDOokebCzkLLAJvgS4m8hTXPE+9Fzd9NhJ9o1TpCTHYkMQ6+
- VsSAGGaL24usMK/1l50r8YVe3NYAuzd7B6cdacToOcuTLBe8SKWv4czOx
- kH4kcscJe9DjeDiAzxvl6ee/qOoXZsz1r6N9ndRDhtoTXgOaOgzhjLlwq
- F5LahXqLqCyZLy/BwfWfAL6H4ENGnK+OG0MRe3rFqudiCwq4+N/nF7HaG
- Fgil90rT/6396P0X3Cc6pYEe03k7jlrg8Lf/uye3WbywnFUsnKGQYDlCT
- 6kaPYEd618zzM1kPcXNEllPOsOVFTilWT3L6J85PcqGzezodlMIrRHujP g==;
-X-CSE-ConnectionGUID: V7WSjM54Tn+ZQJ1QFT5/1w==
-X-CSE-MsgGUID: tk6TL4KXT+iPQ052ySg2ZQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11666"; a="79698332"
-X-IronPort-AV: E=Sophos;i="6.21,215,1763452800"; d="scan'208";a="79698332"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jan 2026 03:13:42 -0800
-X-CSE-ConnectionGUID: nLFFBV5rSiOwludTFF7LUA==
-X-CSE-MsgGUID: FHTs8tQnTN+RI0f5J/X9nw==
+ t=1768059939; x=1799595939;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=yMogBhJEsQ3AonnwFDAyaFRcV5hsMBspKq5MRgVckrA=;
+ b=BuxyngK0/DZKagOuqdPGV8TLL4hCMWZAe1lS0ZLeNbPzPL2t3I8Tvphz
+ IlWdwfTgIXl3dk3im0S9AfEdOzse6M2PdRXJnBpPFhQjpywhPEs63LqGU
+ DqLc67eNCrl2PeTyeXGwaFvJnvw+eqgOWSeXAPrH1NGULoFIUIVxk0lib
+ jlb2+mpcXZj44MEnP7g9Vqm+OI4qRF7x29NUvx6PsKQOZ9dJPiVTg4Nt7
+ YCBEMM0cJCuksb9x5gdL+5ZSzexBXJq+L6MOsq0aY0RKoyxhsSB6C/0wK
+ HoQhoiaRHhBkQG/7+eG9xHt+5ct2nYcYZao762jNI9Za+Zf8J6+5xpqAK A==;
+X-CSE-ConnectionGUID: 7loikgolRPKzC/zDb3D8xg==
+X-CSE-MsgGUID: DbbgsIOsRoCQUfVYJiYPcw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11667"; a="86828680"
+X-IronPort-AV: E=Sophos;i="6.21,215,1763452800"; d="scan'208";a="86828680"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jan 2026 07:45:37 -0800
+X-CSE-ConnectionGUID: VrUH7lpMS2WGrKNnB3ACtw==
+X-CSE-MsgGUID: DMcwIlbnSluYis0H4YVn0Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,215,1763452800"; d="scan'208";a="204437802"
-Received: from black.igk.intel.com ([10.91.253.5])
- by fmviesa010.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jan 2026 03:13:41 -0800
-Date: Sat, 10 Jan 2026 12:13:38 +0100
-From: Raag Jadav <raag.jadav@intel.com>
-To: Karthik Poosa <karthik.poosa@intel.com>
-Cc: intel-xe@lists.freedesktop.org, anshuman.gupta@intel.com,
- badal.nilawar@intel.com, rodrigo.vivi@intel.com
-Subject: Re: [PATCH v5 3/4] drm/xe/hwmon: Expose GPU pcie temperature
-Message-ID: <aWI0YuShzGJ5nfmu@black.igk.intel.com>
-References: <20260109201644.736483-1-karthik.poosa@intel.com>
- <20260109201644.736483-4-karthik.poosa@intel.com>
+X-IronPort-AV: E=Sophos;i="6.21,215,1763452800"; d="scan'208";a="204138757"
+Received: from administrator-system-product-name.igk.intel.com
+ ([10.91.214.181])
+ by fmviesa009.fm.intel.com with ESMTP; 10 Jan 2026 07:45:36 -0800
+From: =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	intel-gfx-trybot@lists.freedesktop.org
+Cc: jani.saarinen@intel.com, suresh.kumar.kurmi@intel.com,
+ mohammed.thasleem@intel.com,
+ =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
+Subject: [CI v2 0/2] acpi: pm: s2idle: LPS0 changes
+Date: Sat, 10 Jan 2026 16:44:03 +0100
+Message-ID: <20260110154405.2825339-1-michal.grzelak@intel.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260109201644.736483-4-karthik.poosa@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
+ 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,54 +70,20 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Sat, Jan 10, 2026 at 01:46:43AM +0530, Karthik Poosa wrote:
-> Expose GPU PCIe average temperature and its limits via hwmon sysfs entry
+These series is a continuation of [1] and tests Rafael's changes.
 
-Please also use 'PCIe' with correct upper/lower case in patch subject.
+[1] https://lore.kernel.org/intel-xe/20260109223442.2622647-1-michal.grzelak@intel.com/
 
-...
+BR,
+Michał
 
->  /* Index of memory controller in READ_THERMAL_DATA output */
-> -#define TEMP_INDEX_MCTRL	(2)
-> +#define TEMP_INDEX_MCTRL	2
+Rafael J. Wysocki (2):
+  ACPI: PM: s2idle: Add missing checks to acpi_s2idle_begin_lps0()
+  ACPI: PM: s2idle: Add module parameter for LPS0 constraints checking
 
-Unneeded churn. If you don't want braces, don't even introduce it in
-earlier patch.
+ drivers/acpi/x86/s2idle.c | 9 +++++++--
+ 1 file changed, 7 insertions(+), 2 deletions(-)
 
-> +#define PCIE_SENSOR_GROUP_ID	0x2
+-- 
+2.45.2
 
-This is used as part of mailbox command ...
-
-> +#define PCIE_SENSOR_MASK	REG_GENMASK(31, 16)
-
-... and these are output bitfields, so both should be in xe_pcode_api.h.
-
-...
-
-> +static int get_pcie_temp(struct xe_hwmon *hwmon, long *val)
-> +{
-> +	struct xe_tile *root_tile = xe_device_get_root_tile(hwmon->xe);
-> +	int ret;
-> +	u32 data = 0;
-
-Use reverse xmas tree order.
-
-> +	ret = xe_pcode_read(root_tile, PCODE_MBOX(PCODE_THERMAL_INFO, READ_THERMAL_DATA,
-> +						  PCIE_SENSOR_GROUP_ID), &data, NULL);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* Sensor offset is different for G21 */
-> +	if (hwmon->xe->info.subplatform != XE_SUBPLATFORM_BATTLEMAGE_G21)
-> +		data = REG_FIELD_GET(PCIE_SENSOR_MASK, data);
-> +
-> +	data &= TEMP_MASK;
-
-Use REG_FIELD_GET() for consistency.
-
-> +	*val = (s8)data * MILLIDEGREE_PER_DEGREE;
-> +
-> +	return 0;
-> +}
-
-Reviewed-by: Raag Jadav <raag.jadav@intel.com>
