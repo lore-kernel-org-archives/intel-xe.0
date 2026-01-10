@@ -4,27 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 76988D277C1
-	for <intel-xe@archiver.kernel.org>; Sat, 10 Jan 2026 01:01:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 14208D277CA
+	for <intel-xe@archiver.kernel.org>; Sat, 10 Jan 2026 01:27:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E7F7210E2B8;
-	Sat, 10 Jan 2026 01:01:54 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7EBBC10E07F;
- Sat, 10 Jan 2026 01:01:54 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5403719466147765932=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id A4C1310E2BD;
+	Sat, 10 Jan 2026 01:27:48 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="juXipzj+";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 737FF10E234
+ for <intel-xe@lists.freedesktop.org>; Sat, 10 Jan 2026 01:27:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1768008468; x=1799544468;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=wJt6vgvow0QhZCm0V9GE5hAmBzh5C/FFCmnKTGtw8PI=;
+ b=juXipzj+R9jqJzzS7lyzqvvGuexdJcrTzHK//jdfd9KXtoBdEeIU3fcQ
+ NkPMuAtDgyiq3k578GVwJkeeFr3ooXyyAYoQ3+gc5QSQQss5lJ4ldaNx2
+ iBOKN7qDnU2UnhdnrT9l6bjmQ41BkgZxQbyz5WkCAeEfXLSYDRahxTJxQ
+ c863m/1YOizTCb8lhj1byKZ0m5Xy0XZRFGN12fPI+5W3OLCVXoXQ98YUR
+ cxpXPnkoZzlhRlfsWGjWMf7Mjd4Q7mu6+f8rXUqKixXAiwdbzOVvpyL/b
+ CjBhLCPC0FLIz/qGBVzceteQ2T0+0+oi2IK0uDlAyxhn8Qqn9aohf13vz A==;
+X-CSE-ConnectionGUID: XHDQLC2JTcygt/r3Lq8gYQ==
+X-CSE-MsgGUID: g3XpMNG/RIeb2vn4nk0H1g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11666"; a="73021812"
+X-IronPort-AV: E=Sophos;i="6.21,215,1763452800"; d="scan'208";a="73021812"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jan 2026 17:27:47 -0800
+X-CSE-ConnectionGUID: sIIWPAuUQN+aCiqPpN41bQ==
+X-CSE-MsgGUID: ZOjJrgc6TRytI6vhV/5iZQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,215,1763452800"; d="scan'208";a="208132047"
+Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jan 2026 17:27:46 -0800
+From: Matthew Brost <matthew.brost@intel.com>
+To: intel-xe@lists.freedesktop.org
+Subject: [PATCH v9 0/7] Fix DRM scheduler layering violations in Xe
+Date: Fri,  9 Jan 2026 17:27:32 -0800
+Message-Id: <20260110012739.2888434-1-matthew.brost@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Enable_GSC_loading_and_PXP_?=
- =?utf-8?q?for_PTL_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Daniele Ceraolo Spurio" <daniele.ceraolospurio@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Sat, 10 Jan 2026 01:01:54 -0000
-Message-ID: <176800691450.143365.5104326316583964102@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260108011340.2562349-5-daniele.ceraolospurio@intel.com>
-In-Reply-To: <20260108011340.2562349-5-daniele.ceraolospurio@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,125 +60,63 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5403719466147765932==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+At XDC, we discussed that drivers should avoid accessing DRM scheduler
+internals, misusing DRM scheduler locks, and adopt a well-defined
+pending job list iterator. This series proposes the necessary changes to
+the DRM scheduler to bring Xe in line with that agreement and updates Xe
+to use the new DRM scheduler API.
 
-== Series Details ==
+While here, cleanup LR queue handling and simplify GuC state machine in
+Xe too. Also rework LRC timestamp sampling to avoid scheduling toggle.
 
-Series: Enable GSC loading and PXP for PTL (rev2)
-URL   : https://patchwork.freedesktop.org/series/159774/
-State : success
+v2:
+ - Fix checkpatch / naming issues
+v3:
+ - Only allow pending job list iterator to be called on stopped schedulers
+ - Cleanup LR queue handling / fix a few misselanous Xe scheduler issues
+v4:
+ - Address Niranjana's feedback
+ - Add patch to avoid toggling scheduler state in the TDR
+v5:
+ - Rebase
+ - Fixup LRC timeout check (Umesh)
+v6:
+ - Fix VF bugs (Testing)
+v7:
+ - Disable timestamp WA on VF
+v9:
+ - CI rerun
 
-== Summary ==
+Matt
 
-CI Bug Log - changes from xe-4361-070b98e5f13d7b8c95b1f348629cdef8b7aafa80_BAT -> xe-pw-159774v2_BAT
-====================================================
+Matthew Brost (7):
+  drm/xe: Add dedicated message lock
+  drm/xe: Stop abusing DRM scheduler internals
+  drm/xe: Only toggle scheduling in TDR if GuC is running
+  drm/xe: Do not deregister queues in TDR
+  drm/xe: Remove special casing for LR queues in submission
+  drm/xe: Disable timestamp WA on VFs
+  drm/xe: Avoid toggling schedule state to check LRC timestamp in TDR
 
-Summary
--------
+ drivers/gpu/drm/xe/xe_gpu_scheduler.c        |   9 +-
+ drivers/gpu/drm/xe/xe_gpu_scheduler.h        |  37 +-
+ drivers/gpu/drm/xe/xe_gpu_scheduler_types.h  |   2 +
+ drivers/gpu/drm/xe/xe_guc_exec_queue_types.h |   2 -
+ drivers/gpu/drm/xe/xe_guc_submit.c           | 366 +++----------------
+ drivers/gpu/drm/xe/xe_guc_submit_types.h     |  11 -
+ drivers/gpu/drm/xe/xe_hw_fence.c             |  16 -
+ drivers/gpu/drm/xe/xe_hw_fence.h             |   2 -
+ drivers/gpu/drm/xe/xe_lrc.c                  |  45 ++-
+ drivers/gpu/drm/xe/xe_lrc.h                  |   3 +-
+ drivers/gpu/drm/xe/xe_ring_ops.c             |  25 +-
+ drivers/gpu/drm/xe/xe_sched_job.c            |   1 +
+ drivers/gpu/drm/xe/xe_sched_job_types.h      |   2 +
+ drivers/gpu/drm/xe/xe_trace.h                |   5 -
+ 14 files changed, 128 insertions(+), 398 deletions(-)
 
-  **SUCCESS**
+-- 
+2.34.1
 
-  No regressions found.
-
-  
-
-Participating hosts (12 -> 12)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-159774v2_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@xe_waitfence@abstime:
-    - bat-dg2-oem2:       [TIMEOUT][1] ([Intel XE#6506]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4361-070b98e5f13d7b8c95b1f348629cdef8b7aafa80/bat-dg2-oem2/igt@xe_waitfence@abstime.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159774v2/bat-dg2-oem2/igt@xe_waitfence@abstime.html
-
-  
-  [Intel XE#6506]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506
-
-
-Build changes
--------------
-
-  * Linux: xe-4361-070b98e5f13d7b8c95b1f348629cdef8b7aafa80 -> xe-pw-159774v2
-
-  IGT_8694: 8694
-  xe-4361-070b98e5f13d7b8c95b1f348629cdef8b7aafa80: 070b98e5f13d7b8c95b1f348629cdef8b7aafa80
-  xe-pw-159774v2: 159774v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159774v2/index.html
-
---===============5403719466147765932==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Enable GSC loading and PXP for PTL (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/159774/">https://patchwork.freedesktop.org/series/159774/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159774v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159774v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4361-070b98e5f13d7b8c95b1f348629cdef8b7aafa80_BAT -&gt; xe-pw-159774v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (12 -&gt; 12)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-159774v2_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_waitfence@abstime:<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4361-070b98e5f13d7b8c95b1f348629cdef8b7aafa80/bat-dg2-oem2/igt@xe_waitfence@abstime.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506">Intel XE#6506</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159774v2/bat-dg2-oem2/igt@xe_waitfence@abstime.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4361-070b98e5f13d7b8c95b1f348629cdef8b7aafa80 -&gt; xe-pw-159774v2</li>
-</ul>
-<p>IGT_8694: 8694<br />
-  xe-4361-070b98e5f13d7b8c95b1f348629cdef8b7aafa80: 070b98e5f13d7b8c95b1f348629cdef8b7aafa80<br />
-  xe-pw-159774v2: 159774v2</p>
-
-</body>
-</html>
-
---===============5403719466147765932==--
