@@ -4,50 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 35F86C9EC7D
-	for <intel-xe@archiver.kernel.org>; Mon, 12 Jan 2026 12:11:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3AFBAC9EC7C
+	for <intel-xe@archiver.kernel.org>; Mon, 12 Jan 2026 12:11:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ED86710E3BC;
-	Mon, 12 Jan 2026 12:11:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EC62B10E3B9;
+	Mon, 12 Jan 2026 12:11:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fMVKXKp6";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WLchT+qH";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D756010E3BC
- for <intel-xe@lists.freedesktop.org>; Mon, 12 Jan 2026 12:11:25 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B349F10E3B9
+ for <intel-xe@lists.freedesktop.org>; Mon, 12 Jan 2026 12:11:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1768219886; x=1799755886;
+ t=1768219889; x=1799755889;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=UD4pMCBBKkMegAeJG2cEa6sa9klZUj7Zdubxk8FJHHA=;
- b=fMVKXKp6bPDfpn+ZxANDflm4Q9yKI32WU+crWrzET5TxuuEnNKgq7Thj
- XBxHaLo1B66qG03NsCBMuE9lpH9+4unoZN121lDWdWwiFDxM2sxhicPbR
- tY1cBRgyi6Xby1lispOWufYxzEX6q+waTqf3Mcb4Ux5Uj0VwYqWI7S1W5
- SbZaF8UKOFAIr9pFyYps2WLzL22x7tHNSyxwK6M0lGL0PX5tvJZ8Vsyut
- fQXrnVsj38u4m82b+qAPrDBDCN+1A45OKXF400jbgC9g9/MZNBJQTlSik
- g0PEipQQeIm08rsXf2d4SlozzvKuPD3vHQq4N2m1hJB/Q0YakgUIUcMPV A==;
-X-CSE-ConnectionGUID: Z+1+2wxHQyiUJWtGDMES1g==
-X-CSE-MsgGUID: 68FNd+GxTCi832ziFwGO1w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11669"; a="69227225"
-X-IronPort-AV: E=Sophos;i="6.21,219,1763452800"; d="scan'208";a="69227225"
+ bh=q3xPOEIqXRSLMZgzdabJ7eRwCI2sotWCmMc1xCrgoqE=;
+ b=WLchT+qHflbS8JGwP8JskBPyevXbVV3BhXuOB+V3IDKAgm/HqKru6t8h
+ lQejOw1fFF9WN9HfqUYnxkOG9zBnUFxXeF9lym0uWGoeb50g+jhpTvEmL
+ sBsnF+jQ9B1FkwMTz6pGvqAwdaxK+e4ktfYSXbBUSRVqn5tIMCA98dy2h
+ PQpPuVQPjPsgMbCgzoEgWwk+pU1K+sOeobnakT+ilNXcsbo2sBDFNj1i+
+ Xf5rUFqEXn2KROjQ+L7RBAH5hnJWQahDrZusJxPRv09WngLNvyzkmkqkq
+ LZZlECXmJLqgS8/abxg7DyACmIgvAkl9pXrY8IaMv9W89VmvFAmX0JmPS A==;
+X-CSE-ConnectionGUID: OT7KHvmJR3eTdhkZmKcu/A==
+X-CSE-MsgGUID: 0feRY+9KRPK1FjMBusBsxQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11669"; a="69227228"
+X-IronPort-AV: E=Sophos;i="6.21,219,1763452800"; d="scan'208";a="69227228"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jan 2026 04:11:26 -0800
-X-CSE-ConnectionGUID: 5K5fYNQrRdKdRXCtWLrbsg==
-X-CSE-MsgGUID: brEMsWq/SdSMbSSpOKBjLA==
+ 12 Jan 2026 04:11:29 -0800
+X-CSE-ConnectionGUID: 7RRuLpOWS2ybC0EJ4FKPYQ==
+X-CSE-MsgGUID: Dak4tagGSj+GF/EO7uPbVQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,219,1763452800"; d="scan'208";a="204355659"
+X-IronPort-AV: E=Sophos;i="6.21,219,1763452800"; d="scan'208";a="204355667"
 Received: from sinjan-super-server.iind.intel.com ([10.190.239.39])
  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jan 2026 04:11:23 -0800
+ 12 Jan 2026 04:11:26 -0800
 From: Karthik Poosa <karthik.poosa@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: anshuman.gupta@intel.com, badal.nilawar@intel.com, rodrigo.vivi@intel.com,
  raag.jadav@intel.com, Karthik Poosa <karthik.poosa@intel.com>
-Subject: [PATCH v6 3/4] drm/xe/hwmon: Expose GPU PCIe temperature
-Date: Mon, 12 Jan 2026 17:47:23 +0530
-Message-Id: <20260112121724.951867-4-karthik.poosa@intel.com>
+Subject: [PATCH v6 4/4] drm/xe/hwmon: Expose individual VRAM channel
+ temperature
+Date: Mon, 12 Jan 2026 17:47:24 +0530
+Message-Id: <20260112121724.951867-5-karthik.poosa@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20260112121724.951867-1-karthik.poosa@intel.com>
 References: <20260112121724.951867-1-karthik.poosa@intel.com>
@@ -67,193 +68,263 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Expose GPU PCIe average temperature and its limits via hwmon sysfs entry
-temp5_xxx.
-Update Xe hwmon sysfs documentation for this.
+Expose individual VRAM temperature attributes.
+Update Xe hwmon documentation for this entry.
 
-v2: Update kernel version in Xe hwmon documentation. (Raag)
+v2:
+ - Avoid using default switch case for VRAM individual temperatures.
+ - Append labels with VRAM channel number.
+ - Update kernel version in Xe hwmon documentation.
 
 v3:
- - Address review comments from Raag.
- - Remove redundant debug log.
- - Update kernel version in Xe hwmon documentation. (Raag)
+ - Add missing brackets in Xe hwmon documentation from VRAM channel sysfs.
+ - Reorder BMG_VRAM_TEMPERATURE_N macro in xe_pcode_regs.h.
+ - Add api to check if VRAM is available on the channel.
 
 v4:
- - Address review comments from Raag.
- - Group new temperature attributes with existing temperature attributes
-   as per channel index in Xe hwmon documentation.
- - Use TEMP_MASK instead of TEMP_MASK_MAILBOX.
- - Add PCIE_SENSOR_MASK which uses REG_FIELD_GET as replacement of
-   PCIE_SENSOR_SHIFT.
+ - Improve VRAM label handling to eliminate temp variable by
+   introducing a dedicated array vram_label in xe_hwmon_thermal_info.
+ - Remove a magic number.
+ - Change the label from vram_X to vram_ch_X.
 
 v5:
  - Address review comments from Raag.
- - Use REG_FIELD_GET to get PCIe temperature.
- - Move PCIE_SENSOR_GROUP_ID and PCIE_SENSOR_MASK to xe_pcode_api.h
- - Cosmetic change.
+ - Change vram to VRAM in commit title and subject.
+ - Refactor BMG_VRAM_TEMPERATURE_N macro.
+ - Refactor is_vram_ch_available().
+ - Rephrase a comment.
+ - Check individual VRAM temperature limits in addition to VRAM
+   availability in xe_hwmon_temp_is_visible. (Raag)
+ - Move VRAM label change out of this patch.
 
 Signed-off-by: Karthik Poosa <karthik.poosa@intel.com>
-Reviewed-by: Raag Jadav <raag.jadav@intel.com>
 ---
- .../ABI/testing/sysfs-driver-intel-xe-hwmon   | 24 ++++++++++++++
- drivers/gpu/drm/xe/xe_hwmon.c                 | 32 +++++++++++++++++++
- drivers/gpu/drm/xe/xe_pcode_api.h             |  2 ++
- 3 files changed, 58 insertions(+)
+ .../ABI/testing/sysfs-driver-intel-xe-hwmon   | 22 +++++++
+ drivers/gpu/drm/xe/regs/xe_pcode_regs.h       |  3 +
+ drivers/gpu/drm/xe/xe_hwmon.c                 | 66 +++++++++++++++++++
+ 3 files changed, 91 insertions(+)
 
 diff --git a/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon b/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
-index 550206885624..6e21bebf0e0d 100644
+index 6e21bebf0e0d..55ab45f669ac 100644
 --- a/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
 +++ b/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
-@@ -189,6 +189,30 @@ Description:	RO. Memory controller average temperature in millidegree Celsius.
+@@ -211,6 +211,28 @@ KernelVersion:	7.0
+ Contact:	intel-xe@lists.freedesktop.org
+ Description:	RO. GPU PCIe temperature in millidegree Celsius.
  
++What:		/sys/bus/pci/drivers/xe/.../hwmon/hwmon<i>/temp[6-21]_crit
++Date:		January 2026
++KernelVersion:	7.0
++Contact:	intel-xe@lists.freedesktop.org
++Description:	RO. VRAM channel critical temperature in millidegree Celsius.
++
++		Only supported for particular Intel Xe graphics platforms.
++
++What:		/sys/bus/pci/drivers/xe/.../hwmon/hwmon<i>/temp[6-21]_emergency
++Date:		January 2026
++KernelVersion:	7.0
++Contact:	intel-xe@lists.freedesktop.org
++Description:	RO. VRAM channel shutdown temperature in millidegree Celsius.
++
++		Only supported for particular Intel Xe graphics platforms.
++
++What:		/sys/bus/pci/drivers/xe/.../hwmon/hwmon<i>/temp[6-21]_input
++Date:		January 2026
++KernelVersion:	7.0
++Contact:	intel-xe@lists.freedesktop.org
++Description:	RO. VRAM channel temperature in millidegree Celsius.
++
  		Only supported for particular Intel Xe graphics platforms.
  
-+What:		/sys/bus/pci/drivers/xe/.../hwmon/hwmon<i>/temp5_crit
-+Date:		January 2026
-+KernelVersion:	7.0
-+Contact:	intel-xe@lists.freedesktop.org
-+Description:	RO. GPU PCIe critical temperature in millidegree Celsius.
-+
-+		Only supported for particular Intel Xe graphics platforms.
-+
-+What:		/sys/bus/pci/drivers/xe/.../hwmon/hwmon<i>/temp5_emergency
-+Date:		January 2026
-+KernelVersion:	7.0
-+Contact:	intel-xe@lists.freedesktop.org
-+Description:	RO. GPU PCIe shutdown temperature in millidegree Celsius.
-+
-+		Only supported for particular Intel Xe graphics platforms.
-+
-+What:		/sys/bus/pci/drivers/xe/.../hwmon/hwmon<i>/temp5_input
-+Date:		January 2026
-+KernelVersion:	7.0
-+Contact:	intel-xe@lists.freedesktop.org
-+Description:	RO. GPU PCIe temperature in millidegree Celsius.
-+
-+		Only supported for particular Intel Xe graphics platforms.
-+
  What:		/sys/bus/pci/drivers/xe/.../hwmon/hwmon<i>/fan1_input
- Date:		March 2025
- KernelVersion:	6.16
+diff --git a/drivers/gpu/drm/xe/regs/xe_pcode_regs.h b/drivers/gpu/drm/xe/regs/xe_pcode_regs.h
+index fb097607b86c..45f09f39df96 100644
+--- a/drivers/gpu/drm/xe/regs/xe_pcode_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_pcode_regs.h
+@@ -22,6 +22,9 @@
+ #define BMG_FAN_2_SPEED				XE_REG(0x138170)
+ #define BMG_FAN_3_SPEED				XE_REG(0x1381a0)
+ #define BMG_VRAM_TEMPERATURE			XE_REG(0x1382c0)
++#define BMG_VRAM_TEMPERATURE_N(n)		XE_REG(0x138260 + ((n) * (sizeof(u32))))
++#define   TEMP_MASK_VRAM_N			REG_GENMASK(30, 8)
++#define   TEMP_SIGN_MASK			BIT(31)
+ #define BMG_PACKAGE_TEMPERATURE			XE_REG(0x138434)
+ 
+ #endif /* _XE_PCODE_REGS_H_ */
 diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
-index 51a2c23be99e..e8604e6300ac 100644
+index e8604e6300ac..b1737403a38b 100644
 --- a/drivers/gpu/drm/xe/xe_hwmon.c
 +++ b/drivers/gpu/drm/xe/xe_hwmon.c
-@@ -44,6 +44,7 @@ enum xe_hwmon_channel {
+@@ -39,12 +39,16 @@ enum xe_hwmon_reg_operation {
+ 	REG_READ64,
+ };
+ 
++#define MAX_VRAM_CHANNELS      (16)
++
+ enum xe_hwmon_channel {
+ 	CHANNEL_CARD,
  	CHANNEL_PKG,
  	CHANNEL_VRAM,
  	CHANNEL_MCTRL,
-+	CHANNEL_PCIE,
+ 	CHANNEL_PCIE,
++	CHANNEL_VRAM_N,
++	CHANNEL_VRAM_N_MAX = CHANNEL_VRAM_N + MAX_VRAM_CHANNELS,
  	CHANNEL_MAX,
  };
  
-@@ -712,6 +713,7 @@ static const struct hwmon_channel_info * const hwmon_info[] = {
- 			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL |
+@@ -105,6 +109,9 @@ enum sensor_attr_power {
+ /* Index of memory controller in READ_THERMAL_DATA output */
+ #define TEMP_INDEX_MCTRL	2
+ 
++/* Maximum characters in hwmon label name */
++#define MAX_LABEL_SIZE		16
++
+ /**
+  * struct xe_hwmon_energy_info - to accumulate energy
+  */
+@@ -139,6 +146,8 @@ struct xe_hwmon_thermal_info {
+ 	u8 count;
+ 	/** @value: signed value from each sensor */
+ 	s8 value[U8_MAX];
++	/** @vram_label: vram label names */
++	char vram_label[MAX_VRAM_CHANNELS][MAX_LABEL_SIZE];
+ };
+ 
+ /**
+@@ -255,6 +264,8 @@ static struct xe_reg xe_hwmon_get_reg(struct xe_hwmon *hwmon, enum xe_hwmon_reg
+ 				return BMG_PACKAGE_TEMPERATURE;
+ 			else if (channel == CHANNEL_VRAM)
+ 				return BMG_VRAM_TEMPERATURE;
++			else if (channel >= CHANNEL_VRAM_N && channel <= CHANNEL_VRAM_N_MAX)
++				return BMG_VRAM_TEMPERATURE_N(channel - CHANNEL_VRAM_N);
+ 		} else if (xe->info.platform == XE_DG2) {
+ 			if (channel == CHANNEL_PKG)
+ 				return PCU_CR_PACKAGE_TEMPERATURE;
+@@ -714,6 +725,22 @@ static const struct hwmon_channel_info * const hwmon_info[] = {
  			   HWMON_T_MAX,
  			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
+ 			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
++			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
++			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
++			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
++			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
++			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
++			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
++			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
++			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
++			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
++			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
++			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
++			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
++			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
++			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
++			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
 +			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
  			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL),
  	HWMON_CHANNEL_INFO(power, HWMON_P_MAX | HWMON_P_RATED_MAX | HWMON_P_LABEL | HWMON_P_CRIT |
  			   HWMON_P_CAP,
-@@ -771,6 +773,27 @@ static int get_mc_temp(struct xe_hwmon *hwmon, long *val)
- 	return 0;
+@@ -888,6 +915,21 @@ static void xe_hwmon_get_voltage(struct xe_hwmon *hwmon, int channel, long *valu
+ 	*value = DIV_ROUND_CLOSEST(REG_FIELD_GET(VOLTAGE_MASK, reg_val) * 2500, SF_VOLTAGE);
  }
  
-+static int get_pcie_temp(struct xe_hwmon *hwmon, long *val)
++static inline bool is_vram_ch_available(struct xe_hwmon *hwmon, int channel)
 +{
-+	struct xe_tile *root_tile = xe_device_get_root_tile(hwmon->xe);
-+	u32 data = 0;
-+	int ret;
++	struct xe_mmio *mmio = xe_root_tile_mmio(hwmon->xe);
++	int vram_id = channel - CHANNEL_VRAM_N;
++	struct xe_reg vram_reg;
 +
-+	ret = xe_pcode_read(root_tile, PCODE_MBOX(PCODE_THERMAL_INFO, READ_THERMAL_DATA,
-+						  PCIE_SENSOR_GROUP_ID), &data, NULL);
-+	if (ret)
-+		return ret;
++	vram_reg = xe_hwmon_get_reg(hwmon, REG_TEMP, channel);
++	if (!xe_reg_is_valid(vram_reg) || !xe_mmio_read32(mmio, vram_reg))
++		return false;
 +
-+	/* Sensor offset is different for G21 */
-+	if (hwmon->xe->info.subplatform != XE_SUBPLATFORM_BATTLEMAGE_G21)
-+		data = REG_FIELD_GET(PCIE_SENSOR_MASK, data);
-+
-+	data = REG_FIELD_GET(TEMP_MASK, data);
-+	*val = (s8)data * MILLIDEGREE_PER_DEGREE;
-+
-+	return 0;
++	/* Create label only for available vram channel */
++	sprintf(hwmon->temp.vram_label[vram_id], "vram_ch_%d", vram_id);
++	return true;
 +}
 +
- /* I1 is exposed as power_crit or as curr_crit depending on bit 31 */
- static int xe_hwmon_pcode_read_i1(const struct xe_hwmon *hwmon, u32 *uval)
+ static umode_t
+ xe_hwmon_temp_is_visible(struct xe_hwmon *hwmon, u32 attr, int channel)
  {
-@@ -876,6 +899,7 @@ xe_hwmon_temp_is_visible(struct xe_hwmon *hwmon, u32 attr, int channel)
- 		case CHANNEL_VRAM:
- 			return hwmon->temp.limit[TEMP_LIMIT_MEM_SHUTDOWN] ? 0444 : 0;
+@@ -901,6 +943,9 @@ xe_hwmon_temp_is_visible(struct xe_hwmon *hwmon, u32 attr, int channel)
  		case CHANNEL_MCTRL:
-+		case CHANNEL_PCIE:
+ 		case CHANNEL_PCIE:
  			return hwmon->temp.count ? 0444 : 0;
++		case CHANNEL_VRAM_N...CHANNEL_VRAM_N_MAX:
++			return (is_vram_ch_available(hwmon, channel) &&
++				hwmon->temp.limit[TEMP_LIMIT_MEM_SHUTDOWN]) ? 0444 : 0;
  		default:
  			return 0;
-@@ -887,6 +911,7 @@ xe_hwmon_temp_is_visible(struct xe_hwmon *hwmon, u32 attr, int channel)
- 		case CHANNEL_VRAM:
- 			return hwmon->temp.limit[TEMP_LIMIT_MEM_CRIT] ? 0444 : 0;
+ 		}
+@@ -913,6 +958,9 @@ xe_hwmon_temp_is_visible(struct xe_hwmon *hwmon, u32 attr, int channel)
  		case CHANNEL_MCTRL:
-+		case CHANNEL_PCIE:
+ 		case CHANNEL_PCIE:
  			return hwmon->temp.count ? 0444 : 0;
++		case CHANNEL_VRAM_N...CHANNEL_VRAM_N_MAX:
++			return (is_vram_ch_available(hwmon, channel) &&
++				hwmon->temp.limit[TEMP_LIMIT_MEM_CRIT]) ? 0444 : 0;
  		default:
  			return 0;
-@@ -906,6 +931,7 @@ xe_hwmon_temp_is_visible(struct xe_hwmon *hwmon, u32 attr, int channel)
- 			return xe_reg_is_valid(xe_hwmon_get_reg(hwmon, REG_TEMP,
- 								channel)) ? 0444 : 0;
+ 		}
+@@ -933,6 +981,8 @@ xe_hwmon_temp_is_visible(struct xe_hwmon *hwmon, u32 attr, int channel)
  		case CHANNEL_MCTRL:
-+		case CHANNEL_PCIE:
+ 		case CHANNEL_PCIE:
  			return hwmon->temp.count ? 0444 : 0;
++		case CHANNEL_VRAM_N...CHANNEL_VRAM_N_MAX:
++			return is_vram_ch_available(hwmon, channel) ? 0444 : 0;
  		default:
  			return 0;
-@@ -933,6 +959,8 @@ xe_hwmon_temp_read(struct xe_hwmon *hwmon, u32 attr, int channel, long *val)
- 			return 0;
- 		case CHANNEL_MCTRL:
+ 		}
+@@ -961,6 +1011,16 @@ xe_hwmon_temp_read(struct xe_hwmon *hwmon, u32 attr, int channel, long *val)
  			return get_mc_temp(hwmon, val);
-+		case CHANNEL_PCIE:
-+			return get_pcie_temp(hwmon, val);
+ 		case CHANNEL_PCIE:
+ 			return get_pcie_temp(hwmon, val);
++		case CHANNEL_VRAM_N...CHANNEL_VRAM_N_MAX:
++			reg_val = xe_mmio_read32(mmio, xe_hwmon_get_reg(hwmon, REG_TEMP, channel));
++			/*
++			 * This temperature format is 24 bit [31:8] signed integer and 8 bits
++			 * [7:0] fraction.
++			 */
++			*val = (s32)(REG_FIELD_GET(TEMP_MASK_VRAM_N, reg_val)) *
++				(REG_FIELD_GET(TEMP_SIGN_MASK, reg_val) ? -1 : 1) *
++				 MILLIDEGREE_PER_DEGREE;
++			return 0;
  		default:
  			return -EOPNOTSUPP;
  		}
-@@ -940,6 +968,7 @@ xe_hwmon_temp_read(struct xe_hwmon *hwmon, u32 attr, int channel, long *val)
- 		switch (channel) {
- 		case CHANNEL_PKG:
- 		case CHANNEL_MCTRL:
-+		case CHANNEL_PCIE:
+@@ -972,6 +1032,7 @@ xe_hwmon_temp_read(struct xe_hwmon *hwmon, u32 attr, int channel, long *val)
  			*val = hwmon->temp.limit[TEMP_LIMIT_PKG_SHUTDOWN] * MILLIDEGREE_PER_DEGREE;
  			return 0;
  		case CHANNEL_VRAM:
-@@ -952,6 +981,7 @@ xe_hwmon_temp_read(struct xe_hwmon *hwmon, u32 attr, int channel, long *val)
- 		switch (channel) {
- 		case CHANNEL_PKG:
- 		case CHANNEL_MCTRL:
-+		case CHANNEL_PCIE:
++		case CHANNEL_VRAM_N...CHANNEL_VRAM_N_MAX:
+ 			*val = hwmon->temp.limit[TEMP_LIMIT_MEM_SHUTDOWN] * MILLIDEGREE_PER_DEGREE;
+ 			return 0;
+ 		default:
+@@ -985,6 +1046,7 @@ xe_hwmon_temp_read(struct xe_hwmon *hwmon, u32 attr, int channel, long *val)
  			*val = hwmon->temp.limit[TEMP_LIMIT_PKG_CRIT] * MILLIDEGREE_PER_DEGREE;
  			return 0;
  		case CHANNEL_VRAM:
-@@ -1331,6 +1361,8 @@ static int xe_hwmon_read_label(struct device *dev,
- 			*str = "vram";
- 		else if (channel == CHANNEL_MCTRL)
++		case CHANNEL_VRAM_N...CHANNEL_VRAM_N_MAX:
+ 			*val = hwmon->temp.limit[TEMP_LIMIT_MEM_CRIT] * MILLIDEGREE_PER_DEGREE;
+ 			return 0;
+ 		default:
+@@ -1353,6 +1415,8 @@ static int xe_hwmon_read_label(struct device *dev,
+ 			       enum hwmon_sensor_types type,
+ 			       u32 attr, int channel, const char **str)
+ {
++	struct xe_hwmon *hwmon = dev_get_drvdata(dev);
++
+ 	switch (type) {
+ 	case hwmon_temp:
+ 		if (channel == CHANNEL_PKG)
+@@ -1363,6 +1427,8 @@ static int xe_hwmon_read_label(struct device *dev,
  			*str = "mctrl";
-+		else if (channel == CHANNEL_PCIE)
-+			*str = "pcie";
+ 		else if (channel == CHANNEL_PCIE)
+ 			*str = "pcie";
++		else if (channel >= CHANNEL_VRAM_N && channel <= CHANNEL_VRAM_N_MAX)
++			*str = hwmon->temp.vram_label[channel - CHANNEL_VRAM_N];
  		return 0;
  	case hwmon_power:
  	case hwmon_energy:
-diff --git a/drivers/gpu/drm/xe/xe_pcode_api.h b/drivers/gpu/drm/xe/xe_pcode_api.h
-index ad713a3e34e5..85cc7478b787 100644
---- a/drivers/gpu/drm/xe/xe_pcode_api.h
-+++ b/drivers/gpu/drm/xe/xe_pcode_api.h
-@@ -54,6 +54,8 @@
- #define     READ_THERMAL_LIMITS			0x0
- #define     READ_THERMAL_CONFIG			0x1
- #define     READ_THERMAL_DATA			0x2
-+#define       PCIE_SENSOR_GROUP_ID		0x2
-+#define       PCIE_SENSOR_MASK			REG_GENMASK(31, 16)
- 
- #define   PCODE_LATE_BINDING			0x5C
- #define     GET_CAPABILITY_STATUS		0x0
 -- 
 2.25.1
 
