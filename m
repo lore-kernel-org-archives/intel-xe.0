@@ -4,64 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C780DC9EC66
-	for <intel-xe@archiver.kernel.org>; Mon, 12 Jan 2026 10:27:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1A052C9EC67
+	for <intel-xe@archiver.kernel.org>; Mon, 12 Jan 2026 10:35:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8D1E810E0D5;
-	Mon, 12 Jan 2026 10:27:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A8B7810E347;
+	Mon, 12 Jan 2026 10:35:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="T+OLXLSH";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="imPTsm1G";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0356410E0D5;
- Mon, 12 Jan 2026 10:27:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1768213631; x=1799749631;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=M1qnNXXnU4ythQw3ZcVlVpymP9jZUc0obFE9gq46d10=;
- b=T+OLXLSHHLMLhJHApiqc0r+CH4WmNof1gaygeBJzccpkvfC4MWP9NFYb
- y3kjdV2E1FmKfcLj3E26E997usT0sBCKKWRp2TibMuIKGSmRpmhghHX/W
- mhLUpNmQGuhSy/R8YqkIgbXVmltaxBOGlSxXqheXoIztpGxj7y8oKBChG
- fGe52ZL/l4ec3zoBmhgtBttc2s/TXU6bw+nn9vJ+kcvc2J1JGwiC/EvGh
- UfKnxBFtzHyeKnkKOdsN7kzSxIo/PZl3lcmK1BegQR/BWEXrVaxIVgGFk
- SGayqXZEQ7BcTgzJLcdC6cq0668UKfQlh5k+VfZ4WcoVdBwzY6wOKGu84 w==;
-X-CSE-ConnectionGUID: KAuHs4NDTTKk3GYM5kDF1g==
-X-CSE-MsgGUID: FzfKZk7kTr2b+x3p6F+byA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11668"; a="69468613"
-X-IronPort-AV: E=Sophos;i="6.21,219,1763452800"; d="scan'208";a="69468613"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jan 2026 02:27:11 -0800
-X-CSE-ConnectionGUID: m5XYCjgfSnKoty+aAVa5mg==
-X-CSE-MsgGUID: iPGHhv32RsWosCWQjynV8w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,219,1763452800"; d="scan'208";a="208537619"
-Received: from black.igk.intel.com ([10.91.253.5])
- by fmviesa005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jan 2026 02:27:08 -0800
-Date: Mon, 12 Jan 2026 11:27:05 +0100
-From: Raag Jadav <raag.jadav@intel.com>
-To: Riana Tauro <riana.tauro@intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, aravind.iddamsetty@linux.intel.com,
- anshuman.gupta@intel.com, joonas.lahtinen@linux.intel.com,
- simona.vetter@ffwll.ch, airlied@gmail.com, pratik.bari@intel.com,
- joshua.santosh.ranjan@intel.com, ashwin.kumar.kulkarni@intel.com,
- shubham.kumar@intel.com
-Subject: Re: [PATCH v3 2/4] drm/xe/xe_drm_ras: Add support for drm ras
-Message-ID: <aWTMef5w6NH4SxRF@black.igk.intel.com>
-References: <20251205083934.3602030-6-riana.tauro@intel.com>
- <20251205083934.3602030-8-riana.tauro@intel.com>
- <aTfcV5nb_vBOOBvP@black.igk.intel.com>
- <ac78c819-51ce-4a6b-a5c8-1f327d1d8a7e@intel.com>
- <aWENCzpkeI4OaZqa@intel.com> <aWEljhdVF10_70Cz@black.igk.intel.com>
- <fb4fed2d-27e6-4533-a37e-8a8d24f20aae@intel.com>
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 987A510E353;
+ Mon, 12 Jan 2026 10:35:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+ References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=/dhTYA4EhZ3u5upG1mWmBqfUN7+6rWCY9Sa/F85Alas=; b=imPTsm1GUThOAbRq22yfTEGXIH
+ uRXwCiNJN8rxFAO/c8lm7Tctim78EfSxV4mQ/wu07Mt6dWu5Cd3IDCzsc/SYtErgFRSARQhwxxa3K
+ A7lL/3DLr12dTfPYkxEUj98aQfO4WL8NQeUju+iegkIbj4CYALWsYglk0pM2+wzhZh+gHhegVVP4X
+ sQBWmv/OwC1434sNYGZlPtX6buHk+T3QwQtmVd9UKcje90egXJIJa0PaEJ04EvI0yiGONM6IINi3C
+ M0JEANKgqz5tdGSdx3dQUfVSybOu+Y0l0o+3hLwySBAw7M2MevUWTphrv4PZkrcxnd1lSkLbMNMIE
+ j43m44VA==;
+Received: from [90.240.106.137] (helo=[192.168.0.101])
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+ id 1vfFGn-004M7p-J4; Mon, 12 Jan 2026 11:35:33 +0100
+Message-ID: <dfb07120-5abb-431e-9906-5630609954dd@igalia.com>
+Date: Mon, 12 Jan 2026 10:35:32 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <fb4fed2d-27e6-4533-a37e-8a8d24f20aae@intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/sched: Simplify idle entity check
+To: phasta@kernel.org, dri-devel@lists.freedesktop.org
+Cc: kernel-dev@igalia.com, intel-xe@lists.freedesktop.org,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Danilo Krummrich <dakr@kernel.org>, Matthew Brost <matthew.brost@intel.com>
+References: <20260107134405.96603-1-tvrtko.ursulin@igalia.com>
+ <1e7ae073820d0cbb7f6f615b40e0cf4c6133a062.camel@mailbox.org>
+ <607847da-4f8a-4c19-9ebe-c07f79ce1362@igalia.com>
+ <a51103108eaa84134591c8321c6a70a484daed2b.camel@mailbox.org>
+Content-Language: en-GB
+From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+In-Reply-To: <a51103108eaa84134591c8321c6a70a484daed2b.camel@mailbox.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,65 +64,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Jan 12, 2026 at 11:43:16AM +0530, Riana Tauro wrote:
-> On 1/9/2026 9:28 PM, Raag Jadav wrote:
-> > On Fri, Jan 09, 2026 at 09:13:31AM -0500, Rodrigo Vivi wrote:
-> > > On Fri, Jan 09, 2026 at 01:38:44PM +0530, Riana Tauro wrote:
-> > > > Hi Raag
-> > > > 
-> > > > Thank you for the review
-> > > > 
-> > > > On 12/9/2025 1:52 PM, Raag Jadav wrote:
-> > > > > On Fri, Dec 05, 2025 at 02:09:34PM +0530, Riana Tauro wrote:
-> > > > > > Allocate correctable, nonfatal and fatal nodes per xe device.
-> > > > > > Each node contains error classes, counters and respective
-> > > > > > query counter functions.
-> > > > > > 
-> > > > > > Add basic functionality to create and register drm nodes.
-> > > > > > Below operations can be performed using Generic netlink DRM RAS interface
 
-...
 
-> > > > > > +/**
-> > > > > > + * enum drm_xe_ras_error_class - Supported drm ras error classes.
-> > > > > > + */
-> > > > > > +enum drm_xe_ras_error_class {
-> > > > > > +	/** @DRM_XE_RAS_ERROR_CORE_COMPUTE: GT and Media Error */
-> > > > > > +	DRM_XE_RAS_ERROR_CORE_COMPUTE = 1,
-> > > > > > +	/** @DRM_XE_RAS_ERROR_SOC_INTERNAL: SOC Error */
-> > > > > > +	DRM_XE_RAS_ERROR_SOC_INTERNAL,
-> > > > > > +	/** @DRM_XE_RAS_ERROR_CLASS_MAX: Max Error */
-> > > > > > +	DRM_XE_RAS_ERROR_CLASS_MAX,	/* non-ABI */
-> > > > > > +};
-> > > > > 
-> > > > > Also, all of the enums share the same DRM_XE_RAS_ERROR_* prefix, so let's try
-> > > > > to have distinguishable naming. Perhaps [*] would be useful here as well ;)
-> > > > 
-> > > > DRM_XE_RAS_ERROR_SEVERITY_* will cause longer names. Any suggestions?
-> > 
-> > Already mentioned above[*], the key is to not overuse 'error' ;)
-> > 
-> > DRM_XE_RAS_SEVERITY_*
-> > DRM_XE_RAS_COMPONENT_*
+On 09/01/2026 14:48, Philipp Stanner wrote:
+> On Fri, 2026-01-09 at 14:06 +0000, Tvrtko Ursulin wrote:
+
+8><
+
+>> Back to the point - this patch can wait, no problem. To explain the
+>> context though.
+>>
+>> I wanted to get rid of looking at the list_empty here because I have a
+>> branch which improves the flow for the 1:1 sched:entity drivers.
+>>
+>> Why are the two related? If you remember in the fair scheduler series
+>> all the run-queue stuff is nicely grouped in sched_rq.c and encapsulated
+>> in the rq API, which made it possible to follow up with virtualizing the
+>> rq operations.
+>>
+>> The yet another relevant thing is the patch I sent this week which
+>> removes the special case where entity can be initialized with no schedulers.
+>>
+>> If we combined all these three pre-requisites, my branch allows the
+>> fully invariant sched:entity and 1:1:1 sched:rq:entity. Run-queue vfuncs
 > 
-> There's been an interest expressed to add telemetry nodes as well.
-> 
-> https://patchwork.freedesktop.org/patch/666138/?series=118435&rev=5
-> 
-> I have kept the prefix (DRM_XE_RAS_ERROR) consistent with the first patch
-> (type - ERROR_COUNTER) for alignment.
-> 
-> From my perspective retaining the prefix ERROR would be beneficial to
-> differentiate if there are different types.
-> 
-> Can you please have a look at the link and let me know if you still think
-> the same
+> Hm, wouldn't the CFS series annihilate multiple RQs anyways? This
+> sounds as if there are several series' floating around, cleaning up
+> similar things.
 
-Fair, whichever makes sense for the usecase and please excuse my
-bikeshedding.
+Yes and no. Yes, the CFS series makes sched:rq 1:1. No, the other series 
+is not overlapping but is adding on top of CFS.
 
-> For differentiation, i will add SEVERITY and CLASS/COMPONENT.
+It establishes runtime invariant sched:entity relationship for 1:1 
+users. And by making run-queue operation vfuncs dependant on M:N vs 1:1 
+scheduler usage, the latter removes the need for 1:1 to manage the 
+rbtree, the entity list, and probably some other simplifications which I 
+forget from the top of my head. It kind of tries to start working in the 
+direction of splitting the frontend and "backend" of the scheduler 
+better for those two different use cases.
 
-Thank you.
+Regards,
 
-Raag
+Tvrtko
+
