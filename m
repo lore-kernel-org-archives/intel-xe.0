@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DD14ECF45C0
-	for <intel-xe@archiver.kernel.org>; Mon, 12 Jan 2026 18:08:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 64778CF45C0
+	for <intel-xe@archiver.kernel.org>; Mon, 12 Jan 2026 18:08:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9A65410E2B1;
-	Mon, 12 Jan 2026 18:08:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2668910E432;
+	Mon, 12 Jan 2026 18:08:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="H06dxYgA";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TCtKAMDD";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0704710E422
- for <intel-xe@lists.freedesktop.org>; Mon, 12 Jan 2026 18:08:37 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A708310E42A
+ for <intel-xe@lists.freedesktop.org>; Mon, 12 Jan 2026 18:08:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1768241317; x=1799777317;
+ t=1768241320; x=1799777320;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=lL0Xg/0Ed+4pj2+se2+PWvc54aUJ8Qjt3XJ/TmG35bo=;
- b=H06dxYgAwESnnuFx4N4krXDJXUMQYqqS7l9WfhbI2nLGtlAYfxYOryhU
- bh2YEdjG/IkfzEHTpxTxH3ru078w5co/5HtX487Gvz/foP2HjWqQ2sokU
- VR5H2VgZjyiP/Cc7/gEC5Cgxtmd25Bvvo5fItjxhi2iUPbzUWMf4vxkDH
- 35t14z7IXT4plXd1ZROjcq8KMVRNQ8XVomLKgPNuU7EHqfFfFmIMw6mXW
- w4T8k43VESk68ZmO0X4h79Gs6NTsFq1DTFmyeDbcL/tem7kLMQ3VnqaIu
- Pq50Xp0mthvqzCB6U7SAJ6uRWX4skELHXfoeZmhQKfHT7pP1q2hnx2iVN w==;
-X-CSE-ConnectionGUID: IeLOIkZHTrK1rianEH8shw==
-X-CSE-MsgGUID: TxbsG+8kSpW5BFx1zeTOOA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11669"; a="80162743"
-X-IronPort-AV: E=Sophos;i="6.21,221,1763452800"; d="scan'208";a="80162743"
+ bh=9KwI58JV0DdPxCnujsvnuI5W4Geuk7wB9fFzXcGLohc=;
+ b=TCtKAMDDkwP5w50pC1ze3JFVJVAG92mnQtciHpDJ76uzqB/wRFc+0joC
+ 1v4LK1ZEo2FRVRXqjp0jxFqp+8LwbIcMTYaNphebHqZUHByzkSLLNuUM6
+ uX6dftAXUByUjDpRAo+SUgzKqcbF7YVYcCg6169xTKWfPsLW8bSsy/Ti8
+ S18u9AImXrw8oOflcNCXTdYpRYMMzjKLSsjWiDIEdxLF2/Y8MDsTmvti5
+ RC+fqd8U4Pg40XM1qvoY7NyvjGKJxZiQPPd4FxJtjK8/LySVSdmCHHDkI
+ xMh6DXiitMVsz9JfdAQpXinZlz0kTYzttJxkeg6dr3lbPy/QkRWcPY4cT w==;
+X-CSE-ConnectionGUID: /WvWW4J/S72gpZDuNG9H5Q==
+X-CSE-MsgGUID: f7ZwUnMLRPOzhbJ8KXaeuw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11669"; a="80162745"
+X-IronPort-AV: E=Sophos;i="6.21,221,1763452800"; d="scan'208";a="80162745"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jan 2026 10:08:37 -0800
-X-CSE-ConnectionGUID: X9fXLafWS6CFUH+QCHHi/A==
-X-CSE-MsgGUID: xca1t18oSJKiz/0r/Y3v7g==
+ 12 Jan 2026 10:08:40 -0800
+X-CSE-ConnectionGUID: HXNMl6erRpu/fNa6K2sOXA==
+X-CSE-MsgGUID: EAz/kkAlS++DRAxCJGMZPA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,221,1763452800"; d="scan'208";a="204561538"
+X-IronPort-AV: E=Sophos;i="6.21,221,1763452800"; d="scan'208";a="204561546"
 Received: from bfilipch-desk.jf.intel.com ([10.88.27.152])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jan 2026 10:08:36 -0800
+ 12 Jan 2026 10:08:39 -0800
 From: Julia Filipchuk <julia.filipchuk@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Julia Filipchuk <julia.filipchuk@intel.com>
-Subject: [PATCH 3/7] Revert "drm/xe/pvc: Add GuC firmware definition"
-Date: Mon, 12 Jan 2026 10:07:38 -0800
-Message-ID: <20260112180809.1474677-12-julia.filipchuk@intel.com>
+Subject: [PATCH 4/7] drm/xe/guc: Recommend GuC v70.55.3 for BMG,PTL
+Date: Mon, 12 Jan 2026 10:07:39 -0800
+Message-ID: <20260112180809.1474677-13-julia.filipchuk@intel.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20260112180809.1474677-9-julia.filipchuk@intel.com>
 References: <20260112180809.1474677-9-julia.filipchuk@intel.com>
@@ -66,25 +66,30 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This reverts commit 8dd6964315cd79f8b78cfe3c1fae1168865af29c.
+UAPI compatibility version 1.28.3
+
+Update recommended GuC version for BMG,PTL.
 
 Signed-off-by: Julia Filipchuk <julia.filipchuk@intel.com>
 ---
- drivers/gpu/drm/xe/xe_uc_fw.c | 1 -
- 1 file changed, 1 deletion(-)
+ drivers/gpu/drm/xe/xe_uc_fw.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_uc_fw.c b/drivers/gpu/drm/xe/xe_uc_fw.c
-index cacbf89e8f68..dcb4a32e7a64 100644
+index dcb4a32e7a64..3bff84ab4b5d 100644
 --- a/drivers/gpu/drm/xe/xe_uc_fw.c
 +++ b/drivers/gpu/drm/xe/xe_uc_fw.c
-@@ -119,7 +119,6 @@ struct fw_blobs_by_type {
- 	fw_def(BATTLEMAGE,	GT_TYPE_ANY,	major_ver(xe,	guc,	bmg,	70, 54, 0))	\
+@@ -115,8 +115,8 @@ struct fw_blobs_by_type {
+ #define XE_GT_TYPE_ANY XE_GT_TYPE_UNINITIALIZED
+ 
+ #define XE_GUC_FIRMWARE_DEFS(fw_def, mmp_ver, major_ver)					\
+-	fw_def(PANTHERLAKE,	GT_TYPE_ANY,	major_ver(xe,	guc,	ptl,	70, 54, 0))	\
+-	fw_def(BATTLEMAGE,	GT_TYPE_ANY,	major_ver(xe,	guc,	bmg,	70, 54, 0))	\
++	fw_def(PANTHERLAKE,	GT_TYPE_ANY,	major_ver(xe,	guc,	ptl,	70, 55, 3))	\
++	fw_def(BATTLEMAGE,	GT_TYPE_ANY,	major_ver(xe,	guc,	bmg,	70, 55, 3))	\
  	fw_def(LUNARLAKE,	GT_TYPE_ANY,	major_ver(xe,	guc,	lnl,	70, 53, 0))	\
  	fw_def(METEORLAKE,	GT_TYPE_ANY,	major_ver(i915,	guc,	mtl,	70, 53, 0))	\
--	fw_def(PVC,		GT_TYPE_ANY,	mmp_ver(xe,	guc,	pvc,	70, 44, 1))	\
  	fw_def(DG2,		GT_TYPE_ANY,	major_ver(i915,	guc,	dg2,	70, 53, 0))	\
- 	fw_def(DG1,		GT_TYPE_ANY,	major_ver(i915,	guc,	dg1,	70, 44, 1))	\
- 	fw_def(ALDERLAKE_N,	GT_TYPE_ANY,	major_ver(i915,	guc,	tgl,	70, 44, 1))	\
 -- 
 2.51.0
 
