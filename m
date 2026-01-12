@@ -4,172 +4,183 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6C9B7CF45B0
-	for <intel-xe@archiver.kernel.org>; Mon, 12 Jan 2026 17:23:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D9103CF45B7
+	for <intel-xe@archiver.kernel.org>; Mon, 12 Jan 2026 17:47:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 21D2610E00A;
-	Mon, 12 Jan 2026 17:23:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 97D9710E422;
+	Mon, 12 Jan 2026 17:47:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VmkSUnT7";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="pxBqF0Pl";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2965B10E422
- for <intel-xe@lists.freedesktop.org>; Mon, 12 Jan 2026 17:23:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1768238603; x=1799774603;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=UJ8Mb729rMexJ9l0ined2Bnx+W50xgXOM0FnKdTo0ak=;
- b=VmkSUnT72ML9PCR+UtJ04inXDLKtk9P0mAHs9N0h8q08BzpjdLrHlXAZ
- Ae8evlqnZbpquXKFr5O6sfehINxjUFdMU8xIXT67OBTWAIdDaZ8iz4EIT
- Ab5g7gKvyLfBI4co1U4P1L7ryMCZJoQzLoQ4tu5o9HvLbFNJrl9jqJj2u
- RbFhV5Ms0uVVO5mBUeHIs/6eNEusRRl48krc8zHCp4hlaGNRhvDRKUqXW
- hvGXnvcv1ust0c+L9RkAwElIcwkmzOgQdYXKkB0w6o8wq1xhj2KcpBdTu
- OK/P1N4idKoMv8gKhvT7Ws6xDud9ioATe9Xh8OGvRgQ+cP44Cx4fZfM3h g==;
-X-CSE-ConnectionGUID: FEShaCeGRXq+gu9czN86Eg==
-X-CSE-MsgGUID: +ZOhbPxiRy6+elzZROUQHg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11669"; a="68723453"
-X-IronPort-AV: E=Sophos;i="6.21,221,1763452800"; d="scan'208";a="68723453"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jan 2026 09:23:23 -0800
-X-CSE-ConnectionGUID: ztpizxCNRT2sJAjjtS2y/A==
-X-CSE-MsgGUID: n9XqpAutQJSP3Sy/8Lo22g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,221,1763452800"; d="scan'208";a="204159264"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by orviesa007.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jan 2026 09:23:23 -0800
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Mon, 12 Jan 2026 09:23:22 -0800
-Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29 via Frontend Transport; Mon, 12 Jan 2026 09:23:22 -0800
-Received: from MW6PR02CU001.outbound.protection.outlook.com (52.101.48.47) by
- edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Mon, 12 Jan 2026 09:23:22 -0800
+Received: from CH5PR02CU005.outbound.protection.outlook.com
+ (mail-northcentralusazon11012011.outbound.protection.outlook.com
+ [40.107.200.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 318DA10E21C;
+ Mon, 12 Jan 2026 17:47:11 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=C/Utyi2tVfKhhllC3qz/kSRxWDXgO9Iw0rrQLSyJnHg/Nl81LU4C/oihOHPcamAt4iEAMzZnOC7kwlhqzfPhAX5zEixvrtSsCTbR5FRlB+qNB5c7O5DSoqNc+t8DPPx4jilI5CkRQvpwb4MxLrwp47vvYKWVlPegsMcOfBe4VpeLnQuNgjokm1otNZz0NEk89/cbcp0Ou9YxX3agHJYw5Qu2/yvAtX45KrPY0qqDxKH3oEWyQpGf8/CLRv04ZFSKJaE7rqjs0QvcOXOXYt3uUp/RVmo+iXb8hkVoOsnwENBitfWrevgDHU7J6VcYbNFMIHaL/TLgQaJqYZJthXoGPA==
+ b=YILb9ezFyb3MG9kKGXbgAts5PVvg2ko3eHKPYcBRr6ug7KJjT92f9RHlQF3sG143HdTHOsUVVxYrxyieR7Pg7WlJR/G06k7nD9dWF5UD00hVjBBRUq2lbncGGkWA62BXTXLgnUcfV0RYNAVFz1HXRj4VMBswPkT5HaL8zQstZEQqEhU3BpV57BbVCJD/HUP43HhNuaCj1QnvGIQpiUTTCs0ngUu4tn8bNfbLC8nFvnEkM6jBQHIM2fDL60h6C7zmXRM4CWNwzOGDjp7CGVGBOjs4O9S6yVDJsF3jRiSSoIowoaZgiq4Ux8rIyTBzTnOJbd/TRyx20xxLeILMfW46Xw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=rOZEhhJMQK4MplQ1Xp70oGjoTD4EdlBO97q1DxiKxYU=;
- b=Cu6Gz8LLYrVxFoJ5R7Jy709j9msBqYp4sBJRKYm6x69qFYSv1/or6ivg3l8jECTXedLY2Nu0dLeTbnc/gV+v4gQFDUOJNaoVWlOJYqAbFqikfN2TV8t3SXHY/NZCoJ9rdvZNQ+MycAT06vV3GXKZkxsX9eQ+Jl3eipPT0VChHBsZW61b2Y99izd7O0BskDQgTCO2HC9ohB5rSzW2JTcwKAS/RHKxnO5TrsYIE3ROE4hfT7P0Y5Jrn/i8RZPU7NNfUjPCtIGZlcENmb6dkTUWybPMrJxy8gDanov7v/FlauVCkH4aFqcYGFd6vtwccmqsIkFcBit2zpJ69VgVyA9Aiw==
+ bh=N1J+BdCt6tiyG5IlAf9740izsatqm4Ntj+zK5oiEn5g=;
+ b=qyvA6xHOoul1NBtABxTwOUecPxqUDUeWVzjEqzYZvXvB+74L5O/XMgc6d5qwaWoQU85hBdpnmb8p/+7tBi+oMzUN5aJFiMa/JnXHsZGjxZ+d7l7F0NhphYYFasyA2OTuVHpZCYmAq3FKfp76BJi2M1B16TaI0offEa7NAMy5UCoCVyO05wvghrZxpvcYwavZp5b4v/QOaLMRhxrLj34OX+kcs3HIX4FTJURCX9Q3xziFuL0Y3OqZlR/yuIcL5KMMNwEfy6OZe3VZ58tryfmFQ82xM4W/efRYi5OoVNhn2kHFs7h8wu6cE1zU4RgppgRGAK2+w4TyvIQLb4LeH+xsrQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=N1J+BdCt6tiyG5IlAf9740izsatqm4Ntj+zK5oiEn5g=;
+ b=pxBqF0PlH3aKPOw1Lws0EBbewATSYCKIGXibh0/NWJo2Swe83FpBekNjpw3gy+3xX58+VynNoC+mNopbqz2C6iG60dROhUuR9NMs6pQRGP+558XsVYtBhmiMj6HyYFbUB2dkqTVnUf5lOG5t93mSE6nCMZ+NIKp8yNq7dfM+BgSthOeiJmC2n28ttJadOxDWmvLLBFpQRqoyw3qoAwsewVV1dGY6tK44KR/W219p3W2ltoGnwKH1AvValA2/UK3Qoe9EHOwVKo6vIKYVmIsrBVkrkDM7q+VTdjcZA0xW8GhUdmRiibOwTzvHQudXGKFTGaMqlyrLv5P1/Jjndra/2g==
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CYYPR11MB8430.namprd11.prod.outlook.com (2603:10b6:930:c6::19)
- by PH3PPFC0CDE789E.namprd11.prod.outlook.com (2603:10b6:518:1::d49)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9499.7; Mon, 12 Jan
- 2026 17:23:20 +0000
-Received: from CYYPR11MB8430.namprd11.prod.outlook.com
- ([fe80::1d86:a34:519a:3b0d]) by CYYPR11MB8430.namprd11.prod.outlook.com
- ([fe80::1d86:a34:519a:3b0d%5]) with mapi id 15.20.9499.005; Mon, 12 Jan 2026
- 17:23:20 +0000
-Date: Mon, 12 Jan 2026 12:23:17 -0500
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: "Poosa, Karthik" <karthik.poosa@intel.com>
-CC: Raag Jadav <raag.jadav@intel.com>, <intel-xe@lists.freedesktop.org>,
- <anshuman.gupta@intel.com>, <badal.nilawar@intel.com>
-Subject: Re: [PATCH v5 4/4] drm/xe/hwmon: Expose individual vram channel
- temperature
-Message-ID: <aWUuBYoZt9xmAlcf@intel.com>
-References: <20260109201644.736483-1-karthik.poosa@intel.com>
- <20260109201644.736483-5-karthik.poosa@intel.com>
- <aWJ9EK0bi7f6WNRH@black.igk.intel.com>
- <79952244-7068-4d03-b142-aa15c81e2b59@intel.com>
- <aWSsrNRG4dDjf2PY@black.igk.intel.com>
- <67e9d831-361b-4691-8a52-bc6d0695b7b5@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <67e9d831-361b-4691-8a52-bc6d0695b7b5@intel.com>
-X-ClientProxiedBy: SJ0PR05CA0188.namprd05.prod.outlook.com
- (2603:10b6:a03:330::13) To CYYPR11MB8430.namprd11.prod.outlook.com
- (2603:10b6:930:c6::19)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from DS7PR12MB9473.namprd12.prod.outlook.com (2603:10b6:8:252::5) by
+ DM4PR12MB6012.namprd12.prod.outlook.com (2603:10b6:8:6c::5) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9499.7; Mon, 12 Jan 2026 17:47:07 +0000
+Received: from DS7PR12MB9473.namprd12.prod.outlook.com
+ ([fe80::5189:ecec:d84a:133a]) by DS7PR12MB9473.namprd12.prod.outlook.com
+ ([fe80::5189:ecec:d84a:133a%5]) with mapi id 15.20.9499.005; Mon, 12 Jan 2026
+ 17:47:07 +0000
+From: Zi Yan <ziy@nvidia.com>
+To: Jason Gunthorpe <jgg@ziepe.ca>
+Cc: Matthew Wilcox <willy@infradead.org>, Balbir Singh <balbirs@nvidia.com>,
+ Francois Dugast <francois.dugast@intel.com>, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, Matthew Brost <matthew.brost@intel.com>,
+ Madhavan Srinivasan <maddy@linux.ibm.com>,
+ Nicholas Piggin <npiggin@gmail.com>, Michael Ellerman <mpe@ellerman.id.au>,
+ "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>,
+ Felix Kuehling <Felix.Kuehling@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@kernel.org>,
+ Bjorn Helgaas <bhelgaas@google.com>, Logan Gunthorpe <logang@deltatee.com>,
+ David Hildenbrand <david@kernel.org>, Oscar Salvador <osalvador@suse.de>,
+ Andrew Morton <akpm@linux-foundation.org>, Leon Romanovsky <leon@kernel.org>, 
+ Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
+ "Liam R . Howlett" <Liam.Howlett@oracle.com>,
+ Vlastimil Babka <vbabka@suse.cz>, Mike Rapoport <rppt@kernel.org>,
+ Suren Baghdasaryan <surenb@google.com>, Michal Hocko <mhocko@suse.com>,
+ Alistair Popple <apopple@nvidia.com>, linuxppc-dev@lists.ozlabs.org,
+ kvm@vger.kernel.org, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ linux-pci@vger.kernel.org, linux-mm@kvack.org, linux-cxl@vger.kernel.org
+Subject: Re: [PATCH v4 1/7] mm/zone_device: Add order argument to folio_free
+ callback
+Date: Mon, 12 Jan 2026 12:46:57 -0500
+X-Mailer: MailMate (2.0r6290)
+Message-ID: <86D91C8B-C3EA-4836-8DC2-829499477618@nvidia.com>
+In-Reply-To: <20260112165001.GG745888@ziepe.ca>
+References: <20260111205820.830410-1-francois.dugast@intel.com>
+ <20260111205820.830410-2-francois.dugast@intel.com>
+ <aWQlsyIVVGpCvB3y@casper.infradead.org>
+ <874d29da-2008-47e6-9c27-6c00abbf404a@nvidia.com>
+ <0D532F80-6C4D-4800-9473-485B828B55EC@nvidia.com>
+ <20260112134510.GC745888@ziepe.ca>
+ <218D42B0-3E08-4ABC-9FB4-1203BB31E547@nvidia.com>
+ <20260112165001.GG745888@ziepe.ca>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: SJ0PR03CA0195.namprd03.prod.outlook.com
+ (2603:10b6:a03:2ef::20) To DS7PR12MB9473.namprd12.prod.outlook.com
+ (2603:10b6:8:252::5)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CYYPR11MB8430:EE_|PH3PPFC0CDE789E:EE_
-X-MS-Office365-Filtering-Correlation-Id: 17965b7d-2384-49d5-5e4a-08de51ff47f7
+X-MS-TrafficTypeDiagnostic: DS7PR12MB9473:EE_|DM4PR12MB6012:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0ed69ae2-ee15-4670-2fff-08de52029ac4
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?px8QyfFbQF+UjgvwURzZd0jPG4YuHcVO5JzP0o2x0Ja4xyjyYXOzox1iuoM+?=
- =?us-ascii?Q?CZEik531m0be5AfKeONJsW3l8p3PiMJsnBdpkj7LH8PErcB5JGJFC7pcQPCH?=
- =?us-ascii?Q?yTRAKXdnbdpv649cWwWO3H7ITDX4cJqnYPL7sP2nywdd1/4qn81NoAnEe65c?=
- =?us-ascii?Q?3zOHoXW7l9y83cTPtw1M5tWNzQbJyVIHRkyUOtm6m7DaiNiUj/qaKneh9dER?=
- =?us-ascii?Q?JTeLYs3pKUnEie+w3EUFKiDqTrMJYxQ1fyZavS+f1mawt+0YlTlFyS5ictlk?=
- =?us-ascii?Q?68cz7Jw720wQkJA9UgwVQ1KR63Ixdqpo7pdC6YH4e4QYz3kkDtjKhR6+Kvya?=
- =?us-ascii?Q?yMCwZEICBOySeiykIwNxJJltyfJEXmC26iHmDjp4ITdK2OBx7BmWpkybFjKX?=
- =?us-ascii?Q?gnfxLjo99AhST5OCYpvYq/hUD4d480L5G003Dh6nV+pNuZ2nkk9EXQyS6y+J?=
- =?us-ascii?Q?RDisTe3gCP8lo4GiF+HWb8zMyNCBH2v0rRPOROaTN0YaTyNveplV9XavUNiK?=
- =?us-ascii?Q?IlGIfvh8zpFJcasO0VRSANf8hMPYz16jpv++BvplE3600LDAVwtlnXJ9RoKg?=
- =?us-ascii?Q?77rDkyKOuDdcacuGRWrXGl8eKIFQGyV+/zHCVs2YLDG0B1Dphj+UqzD44+Fj?=
- =?us-ascii?Q?uygQs2tbS8Es240U5IHJEHVJm4yWiJ95z4CVQvSzlfmV/KZutBzm8s4lh7Cl?=
- =?us-ascii?Q?dGDDRmZZZbct/Nqc5MzGDrOm+KamTqvU6oNAtMZZyTMOfNl1bm+EMPaVhJjh?=
- =?us-ascii?Q?fMxy0BHd3Fa4q+ZObot89d+9wO7YeAzxvlWk8QEA/Uge2qC3q1fayXW8WArz?=
- =?us-ascii?Q?R8VNrxiqo2uwqgTSke5gqUgf0cJVf0M9fPyRDxGE5KqzLaWnwZcGebWZhc/B?=
- =?us-ascii?Q?QcC0B7BKckzZLboIlhhsrEqUCucm6BRiDnvAqZAKpZeELv+ucOFBZk8REmjC?=
- =?us-ascii?Q?OGsaIa6iapDMtyybSIbdV60BQRVGKyW4QRl72wGnP/W2ZxcQnvs36zcnavpj?=
- =?us-ascii?Q?nz1s+aoEvx2J+nY/1cuUpVSuj3KxXO8Encfkm4wFKEdh8AOK69q6rV5RYSNg?=
- =?us-ascii?Q?AsPnC+UT8SCPl0lfqtR2QoPjUfU55mMUpa6gg+Gs70ylBxLqg1B3gn+NhaTW?=
- =?us-ascii?Q?3mSsA9vmitc+PMePGSyZ08I2yN+UyjQZ6CK3vtZ8S8BMK5WbipRaeSJbxici?=
- =?us-ascii?Q?smM8lUyVaSaxKxxLIM/IfyXgqA+VNaqZlZlV700bwyeVJz1zOaJqF3D2tuKP?=
- =?us-ascii?Q?1RVEdW1mVPxifiYS7ttbIo4rev1TEFnWFUc1fkZ1/7zE72w+rUgqE6ZyhyDH?=
- =?us-ascii?Q?pwhW8eW1j4q5/nExbyDsqyuA2rWAMMA63ogyRqMs4+XCl9N5qP5WUO/vzaEm?=
- =?us-ascii?Q?Qc3Uzv6KchzcabNNyWrGA9WCxzjc3VyHveUNm+LbCKbaJmhah9wQ5JO+bS5c?=
- =?us-ascii?Q?RnA7ePFj99Py2EAWQHqtMMSIGOcxoY3V?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|7416014|376014|1800799024|366016;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?dytEcXlBTlZtRDNiMFMrbnloVEVaVGdqa2puM1FJeEY2VnJOWDFtL1F0TGtl?=
+ =?utf-8?B?SWZENVdMdU1ZbzFhSU0zb2ZRSjVqcXRVQmFDZW81NjU0UytYdGZBYjZsNENv?=
+ =?utf-8?B?eWNIUkJFYUV1cmd2ZmtEYnZWSjJWRHZpUTZyUEsyS0JIZE1Hbk9JNGRvK0Z5?=
+ =?utf-8?B?Y09mTTlPNThNS1BGa1VvOFFMdGYrVjIvZFVNNWpoWTkyRGhRT2cyRHhuMVpG?=
+ =?utf-8?B?aWdpTlZOTkYydVlmMDlrdnZuZXhmRk5FTERBTzZkUitlUHdyTzZGZ25ab205?=
+ =?utf-8?B?YjBIL1BBRGNyazBLYTVlSEZPM0JiR3lnSS9GWVRheC94OWFrc1I0SmwzQ0M3?=
+ =?utf-8?B?WDE4WmJLMkQ1bjcxY09hSTVmUXlUcVZ1UFgvNXJSaXk0MVBCSWRJdllDWnBH?=
+ =?utf-8?B?N0MyTzV2TDE3T0NrZFRhOWtGUlJRR21HNFZGOHlTVWRlNk1hQ3JodlF3RUNk?=
+ =?utf-8?B?dzh6WllVdTRyOEE3ZTZ6RUk3TG00Q3JtT2llUjlSTm5ibzRlL0VEcnptZFJY?=
+ =?utf-8?B?L2NNb3p3YWVBT0JYeWxIeVd0VzdwTU51bFp6c2k3MXcwbjRldHY3SFZMU1dp?=
+ =?utf-8?B?alp3K0YyNGVSenZ6WWVVRVQ5WXd1bFBrQ3JqNnVUb0srNzdrK1VPTDVVUVBD?=
+ =?utf-8?B?UytMa3d1dFNvd2d5Rkw0WExzNndkbmVKa245d0lhK053YWpvL1FRYXZDTWo0?=
+ =?utf-8?B?UHpQQkFIZlpwRnE0cTlsUHA2VzRwQnkrVFVmVytHNHcwYTVZQndvQlRhdjVZ?=
+ =?utf-8?B?MVdPNUJrd3ZNRlNRaE41VUI5cXZCb2JPenRKZXEzdEU2aWF6Q3VGcHpwRVI2?=
+ =?utf-8?B?dlJLZWxzQXNNQmJlQ05MemV2ZUM0bDJBZEhMc0pwZFQrM1hITmVnYmlyTVcx?=
+ =?utf-8?B?ZmFJbEJaL2dNZEduU284MU1Pa0JobmpVWXRtQzJ5d0kvVVJrVmxBTjhNK3Vq?=
+ =?utf-8?B?TWR4dEpjZ0lDRC9iaE9QSndITlc2QUhwV3V5YmVta0RiVzJVY1FycTFnTDF2?=
+ =?utf-8?B?UG9RWTJmUjdJMHlRbVFCRm4zMXdOV3lWOGZQTVRjU1ZpS0dvVGt0K043QnZ6?=
+ =?utf-8?B?Tk5NY1Q1ZmRkOWNYMXZvMVFWVVFQUGxaQ29sM0JMM0lFeHlmUjhIMWlCNndM?=
+ =?utf-8?B?Zmd3clI0dndnak5LTnk0cEY1SEgvWHVXbWhhMHkzY0NEc1p2YU1vcGdMNllR?=
+ =?utf-8?B?TmUxOFBOSGhFVE5XdU5QRVdSdEFSWTlzcHRJdGZkM1hOdWNYbnBhc2oraUtq?=
+ =?utf-8?B?MmJYL3NoZVZJeVBpVUVNUXN0d0s1cDZlc2hsVnhrYmdCMW1tTkFwS3d3dlN2?=
+ =?utf-8?B?YmladmhiUndaaDM1NHBmQUlsYi95enBHa2FPUWNoU1JQdlJla09icHBZK3RU?=
+ =?utf-8?B?bUtLMUw1ZTIyRWFVZUZJYkk1Y0FqOWw0bm9FZSt2dnFUWmNUbXlacG5iV0cv?=
+ =?utf-8?B?RVlZSld6RWxZMldoOWlSdlYyZklPRjZtZTBxODJYVlJXaHRhU3BrbFdHS0dT?=
+ =?utf-8?B?ZXJyMkhNMzFBci90dmJ6Unc2Y29HNXM3Q0p6NnFnd1dXS2VDRm1UMkF2RVhJ?=
+ =?utf-8?B?VXFHSGRMdlc2ZGVxaGtjNXZIWWRCRk1SWWV0VWpuMy9pbGNVcnRzbENtSmlw?=
+ =?utf-8?B?ZUxWbk1vRkN4a0wyeHByWnNjYjhzckVCc3pWdWhUME1DWUl5OUpwbnlmWUto?=
+ =?utf-8?B?OVVJZzhSZnJVdzJkUmVKek5PM1pzTGs3ZXdVUUk4V2pDeWtKeEFtaEFKWlVL?=
+ =?utf-8?B?Vk14ZE8vckdkOUJhS2s4a1BGY1RBYVFxc1IzVDQvWlVmVVh1VVMyQ09BNGlY?=
+ =?utf-8?B?UmttQkNycHVZd3R3VExOT3RmTDFPZWtUSVZuT1Y0dnVqZ0xxREw4OFRsWWFt?=
+ =?utf-8?B?ZHZ2VUt4ckZOd3pGT2poOFlaVlZoY3oyMjJQTnl2ZXV2Y25pcTJCZnZsQ2lX?=
+ =?utf-8?Q?nWRc6PnT2UOD0jXlRWGp035ZvNOS9Aq4?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CYYPR11MB8430.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:DS7PR12MB9473.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(7416014)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?dflShVn3d11FtB6f2WB0dQ76n+2YA0IRYsRbc28K3eKzjErjKG8gmGcBGnLQ?=
- =?us-ascii?Q?MhXCZdSBZYR7V4n71aDq2fC4by8tWDilDqD7+BmhyxNd325XTEo99kwZkyud?=
- =?us-ascii?Q?tHw6r0q7BaudJsmbBtw9OoTIAw43P49GLdF4SLTnKNZVEkakC/lLo3tDJQin?=
- =?us-ascii?Q?njQGVi1586GHMyBd6Vt69CLRxNnOLM7QiwKb6x9x1l183ArtB8Z6KulKsbv5?=
- =?us-ascii?Q?M19CBBtgpMsY3oJW44Im3QmbRxktyP0iIHkCguqBw90r6/lkYp4wxnotXzNg?=
- =?us-ascii?Q?Mtv2qwb0v8RT6pGnbrSHOEz/l9O4AVze7QGnglRRezNT8OENiocR09SnvToQ?=
- =?us-ascii?Q?Kxo4d4F1hyhvPRErn/Nd0rigzvGx7vzb8RofmQeGFup6ev9fMZtn5fm1/VCK?=
- =?us-ascii?Q?qIYzxlRDs/LdUw2CcpjYw5fMqgJTStmfAY/Uqo7dadUDGc05BOZ+vKqrz+r9?=
- =?us-ascii?Q?NJCUDhL5neBn39drDhEBt7bBmfO8B/NF7cWgyNzXF+XN59LG8cVdiDTfq1zD?=
- =?us-ascii?Q?2ybK2UA+naGHSzh3hvfoAM2OOVzhzIGQM8w6/y7OZixC8n6NaCwn1UilhsPe?=
- =?us-ascii?Q?LQR3ZFpW5h9LOx2VLzwG2/Bx9ntRsqcZ7xwRNdrGxtqq/aG82cpfy6Sab6rR?=
- =?us-ascii?Q?kr2H7Lv2FrdQYFQYhyGXvLBs5tUoVicI9gWY21o1X9Xky+3SREVeD0tOwwT+?=
- =?us-ascii?Q?P4K3Bruyc9JG75KMKsATgUwtNn9S6VQ4jGXsrjK8nIjXeKiWhvobCMnsfS6M?=
- =?us-ascii?Q?WBoaTLu0yAF7f+sdftRbKJMCw/S7JX9hGTVAW9vEw3F7KXjhIAoMaA1h77b+?=
- =?us-ascii?Q?vZFsK1iBlqmytQ2eh5dCxWRTIwL+kUpFuagmRmvpKyGJ/Mv9q65Vltw3k+jg?=
- =?us-ascii?Q?l0QR8dX2ypSgGiaaeXoHzJjL83vfUsjVAGeE410fk0S6fg9UM8xVX71LKdXe?=
- =?us-ascii?Q?c9MG48PMYWyDqoP/CE4WFbmfqyoaWfqFHo4g1nEjlYqwFrfeYMWOrB6ZKkdA?=
- =?us-ascii?Q?BIhnMHMzv08+Z2bI975sb1a/n+ZzTy+jg9lYyOIJdUkaASkcYs+gA1puWOSh?=
- =?us-ascii?Q?Q9wroIC7wrTq22VP+IogEqVu2OUskmBWg7ZGv6+y/JJnlkbt7KL27yaxzdLK?=
- =?us-ascii?Q?PjMKmBiLhTaKKCsInunjh1+hn+7UFAdtzlCJ652bIvmjMKtj04LTY/74r9u/?=
- =?us-ascii?Q?uTVR0RJYeNALfCcwBT/3U6/fxS2pUvoi2YdtLBIrGQMa/5keDPgvMQBnto4J?=
- =?us-ascii?Q?jA2plFuNceAjv3RRJLEYL2P5DM9Zxb3be/NXlDgIukbqbn+wryD9Ha4LwW6J?=
- =?us-ascii?Q?yGaeHuZN0QB0Js7pV/AEfl1abd50qFXkAiqJ/m1R/vFOqVxs7MFNr8GhuLEP?=
- =?us-ascii?Q?JGCvMvAK+Qi4k82qwqvbFyB1T0Z2wfu1iLRKzp3ado+8sIAh5xX8fX8WilUJ?=
- =?us-ascii?Q?+6eFgEBTfBFAPXIp60ca3gScblgF8cd6VXxQ456oSnI/fprr/Z1cvB6khsUY?=
- =?us-ascii?Q?IMiWyzu4O8dNxOQYSLHMFbt99xIsV14sya68FvFX7vo6f7WgPAAZ8VdBY0rK?=
- =?us-ascii?Q?05vbYnHC+QdXZuBUE95/vGPZsLR34pQMxRYFl5nequvzTIagPlavGm4i1K8H?=
- =?us-ascii?Q?Gwv/jJQkE8CkFMMYFfNq44BAvHCHL1w/OIEiPzRNNznoPOE1JsNwOjlzuhfe?=
- =?us-ascii?Q?5CERdgpjXwns9eH6lcmRGZ/PhS9dE9XgiX186U7jdndF+vvh4Gjm1TIe7XpU?=
- =?us-ascii?Q?a59+4QBVgg=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 17965b7d-2384-49d5-5e4a-08de51ff47f7
-X-MS-Exchange-CrossTenant-AuthSource: CYYPR11MB8430.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UEdDZXE3Qi9QUjFJYjB2M2x2VytPc2xPTVd1TE14OUhzMElRdENqVTJKYTRS?=
+ =?utf-8?B?ZU14RGxaSG9uU3dxd0M4Rm1PVXlmaXVrcWN5RTA3YmFxRHprOWx1T2EzVmpa?=
+ =?utf-8?B?NTdmWWY1UWF3MTdRcFduYjJOd0ozQTYySlhjRXp2Y2xtbC9NWkV3TmQvN2lv?=
+ =?utf-8?B?OStkZjZQNm5oMXprWGpRekFzamxIUUtlM3BMdHk4MnpMZ2NKbDZiWlJvNnZ6?=
+ =?utf-8?B?ejZYZ3BUV1dESmxSQTRtd2xBNGtDYUNHYS9WS2hhelRzVzNlVEpTYmNHdy9O?=
+ =?utf-8?B?OWdRVFNBUkVzNlBlMUdVVVhaT251SXp4V2w1cmtHbmxKRExBcEdtOFpoSWlZ?=
+ =?utf-8?B?UVdxbURRbG1ZK3J2QUNvUys5cHdaK0QwSjBWa21XdFZvUzdqNStSeU91U1U2?=
+ =?utf-8?B?RFBTY3htNjdSZlEvRjI2QUlPTWs5T1B0RGVhUlgySDVNRFVDNzVqMFpCTHFv?=
+ =?utf-8?B?YW94N0hiczNTOFFhK2R5bmR0RFFBUHNvMXIyd1FzS3ZVWCtndWg4citJUnhK?=
+ =?utf-8?B?a1FXUGJHbCtYK3ExbjRIczFhM2JPakxSY1lsam80ejhVUThFTGZPRG90amFB?=
+ =?utf-8?B?VGlRTWtNVXhMejIxK2VvcFpZd0s2aml4cy9Gb2lUYWR5NXU4MHlNMzZ1NitG?=
+ =?utf-8?B?My9XVmZBYWNuaGlJcG5ONUJYMUVWK0VKcGwzWU5XUFIyY3pJdTJ6SGVEQjdl?=
+ =?utf-8?B?eFpsWFpJbGNheWt2S1orejhrVUk3emc4MVhOT1FkUzdYZVdaRWlkMGRtVE92?=
+ =?utf-8?B?ZnVRNmErN0RDY2tGV0Z5OW5FZjNLWG13Wk5QbW5vcUppUy9UN2tURitPc1Js?=
+ =?utf-8?B?SGlobm83YldoU1I4b1o1ekRJbVdvSk1rTkt0N0xnZC9WV3o2dmJBZkwwclRD?=
+ =?utf-8?B?Z3NidnUzSm5EM3k3SWt1bGN6TmtTdGwyOVlsYWlCM0VjV0tjc251eGVRRGth?=
+ =?utf-8?B?RGwrYnQxeU0rN1djNVpjcFBKVlduV3VqdG9wVTZWNVl0T0J5OFVTcSt3N2F4?=
+ =?utf-8?B?TUJIRG9CU0xhMUNKVFRxeXpOMmVzSHBqNjhDV2dOY0h3aThtMU1HbUxnc1c1?=
+ =?utf-8?B?bU9qUDZza201K2VwQ0FSZ0t6ajVkZWRsYUQ3VUZwTEhWbmZJSHNzTTVLL05p?=
+ =?utf-8?B?NTdmNWFWRDE3UG9XUGFkZEY3c29KVHFXalhCRktSTkUzWCthOE5ySkd6V0ZZ?=
+ =?utf-8?B?eXQ1bnB2eEhDN2JNOG1XNGtTLzBhUlE5VkgvUmpYcVFCd21NTmZKODc4ejFM?=
+ =?utf-8?B?SUdEZkdzd00wQTdvTHBxdTVGbWRjaDhjNHBGRXVzdlM0R3U5Z0txcWFsYW5v?=
+ =?utf-8?B?TU5uT0RKcERUZ2ppbTIrMHh1S3hPYy81TEZLQm40Ym1CWnZYelpkWWtWWFBI?=
+ =?utf-8?B?V1Q2RVA5RjJKTXc1WC9rSUYwTjBCRUd1a0lhV1VDdC93Z28yNm81V3J6TUxy?=
+ =?utf-8?B?c1F6V3BBdHFQNllmdkNmZE9SMTNjV2tuOEZBZjQ2T08wWS8xVUY1M09UQ3ZL?=
+ =?utf-8?B?VkJOME1RMHdQL1BXZ2xhUHNNY2x0Nm1TUHk0YzdMek9RQ0w5aStLV1RURGtC?=
+ =?utf-8?B?QVlrVDgvRzBNUU1HTStVbENXNHg0bENPKzdwVlNSNTlGTDRJb1Z3dTJYYS9E?=
+ =?utf-8?B?Q09MZlFTU3Mvc1dtK05LdzJpbXlCQmNWajNVYnN1U2dOS0t4dTR1RXJQaGxM?=
+ =?utf-8?B?UURuV3RkWVBBS09SNkhZTGVhMnNFVE1nODloenJWWmh5dmpWb29XdHRRVzNF?=
+ =?utf-8?B?UVlMU21yU3BadEpOTHhOeVpPODMzcHRLcC8vejFzMithckpuZ1FGc0tDZ3NZ?=
+ =?utf-8?B?Y1U0OFRVKzg0VHVxV25aUXoybkhNVXJwanVzN0N5ejQreW4wcFpFVE5XMkdQ?=
+ =?utf-8?B?VXhVdGloTDJzNnBpVmtodGluNW5SaktmemdNOG5FVVRmYUltek54bFBHT3Vn?=
+ =?utf-8?B?OEM5d2NOTzlET3M5STRNS3Y1OEhjMnJtNXlQaHMwdVErMjlWZVRvZ1RNT3FV?=
+ =?utf-8?B?ZXVZNnBpU0FvNnFtVUtScHM1aXA4RUxqV3pBdHBXUEltRkpwZ1A1L3Y1dVpB?=
+ =?utf-8?B?anNKcjZ2K1pCN1U4QngrZnl6UlUvZDJGMWVYZVZ1ZnRCTlBObDdmTTRYblJ4?=
+ =?utf-8?B?aERZaE14Nlc4eGtMUlFuOUF1QXllUlk2TW9aK3RmMDdIQ2hablFTcWdZZHZy?=
+ =?utf-8?B?Sy9hamMzMTBYamJzbGhoNUF6MnFoVGVjMHlJcUk5OEg5OTJWa3Q4ajYrZWtY?=
+ =?utf-8?B?ZklraDhDeWtzanV2UFdadW9hSUZadWdOV2RuaVNaMmdEUUJQd1ZJdU1EaU9L?=
+ =?utf-8?Q?0qRRHi2DIoGdMi79k9?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0ed69ae2-ee15-4670-2fff-08de52029ac4
+X-MS-Exchange-CrossTenant-AuthSource: DS7PR12MB9473.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Jan 2026 17:23:20.3278 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Jan 2026 17:47:07.4247 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: OHhixum3yZXDQe3mjS62DRt169zEcFPVh/tNt8dX6YT06JHUaPR+frMTe6QZunNrboepJQ32+iSe4Lj32/gyIg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH3PPFC0CDE789E
-X-OriginatorOrg: intel.com
+X-MS-Exchange-CrossTenant-UserPrincipalName: 7z6sPf+8v8slvfmOJEmaD3i4bGffy247ah29D6PaqtxxpDfobutQ0aiRiYvbdrMA
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB6012
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -184,197 +195,66 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Jan 12, 2026 at 05:15:35PM +0530, Poosa, Karthik wrote:
-> 
-> On 12-01-2026 13:41, Raag Jadav wrote:
-> > On Sun, Jan 11, 2026 at 12:52:39AM +0530, Poosa, Karthik wrote:
-> > > On 10-01-2026 21:53, Raag Jadav wrote:
-> > > > On Sat, Jan 10, 2026 at 01:46:44AM +0530, Karthik Poosa wrote:
-> > ...
-> > 
-> > > > > +static inline bool is_vram_ch_available(struct xe_hwmon *hwmon, int channel)
-> > > > > +{
-> > > > > +	struct xe_reg vram_ch_temp;
-> > > > > +	struct xe_mmio *mmio = xe_root_tile_mmio(hwmon->xe);
-> > > > > +
-> > > > > +	vram_ch_temp = xe_hwmon_get_reg(hwmon, REG_TEMP, channel);
-> > > > > +	if (xe_reg_is_valid(vram_ch_temp) && xe_mmio_read32(mmio, vram_ch_temp)) {
-> > > > > +		/* Create label only for available vram channel */
-> > > > > +		sprintf(hwmon->temp.vram_label[channel - CHANNEL_VRAM_N], "vram_ch_%d",
-> > > > > +			(channel - CHANNEL_VRAM_N));
-> > > > > +		return 1;
-> > > > > +	}
-> > > > > +	return 0;
-> > > > > +}
-> > > > I'd write this as
-> > > > 
-> > > > static inline bool is_vram_ch_available(struct xe_hwmon *hwmon, int channel)
-> > > > {
-> > > >           struct xe_mmio *mmio = xe_root_tile_mmio(hwmon->xe);
-> > > >           int vram_id = channel - CHANNEL_VRAM_N;
-> > > >           struct xe_reg vram_reg;
-> > > > 
-> > > >           vram_reg = xe_hwmon_get_reg(hwmon, REG_TEMP, channel);i!
-> > > >           if (!xe_reg_is_valid(vram_reg) || !xe_mmio_read32(mmio, vram_reg))
-> > > >                   return false;
-> > > > 
-> > > >           /* Create label only for available vram channel */
-> > > >           sprintf(hwmon->temp.vram_label[vram_id], "vram_ch_%d", vram_id);
-> > > >           return true;
-> > > > }
-> > > I'll agree with vram_id and boolean values, for readability,
-> > > other than that I would like to stick to current implementation.
-> > The usual practice is early return negative cases, but upto you.
-> okay we can do that in next revision
-> > 
-> > Also, just curious: Do we need the 'ch' string here? We already know
-> > it's channel, right?
-> yes to differentiate between existing channel "vram", I've appended with
-> _ch_X
-> > > > >    static umode_t
-> > > > >    xe_hwmon_temp_is_visible(struct xe_hwmon *hwmon, u32 attr, int channel)
-> > > > >    {
-> > > > > @@ -903,6 +944,8 @@ xe_hwmon_temp_is_visible(struct xe_hwmon *hwmon, u32 attr, int channel)
-> > > > >    		case CHANNEL_MCTRL:
-> > > > >    		case CHANNEL_PCIE:
-> > > > >    			return hwmon->temp.count ? 0444 : 0;
-> > > > > +		case CHANNEL_VRAM_N...CHANNEL_VRAM_N_MAX:
-> > > > > +			return is_vram_ch_available(hwmon, channel) ? 0444 : 0;
-> > > > Shouldn't we also check hwmon->temp.limit[TEMP_LIMIT_MEM_SHUTDOWN]?
-> > > that can be secondary check, then this would apply to all channels !
-> > For the channels that return data from the mailbox, we'd want to make sure
-> > the data source is also working. Else we'll have dummy attributes exposing
-> > no useful data.
-> okay, I shall add this in next revision
-> > 
-> > > > >    		default:
-> > > > >    			return 0;
-> > > > >    		}
-> > > > > @@ -915,6 +958,8 @@ xe_hwmon_temp_is_visible(struct xe_hwmon *hwmon, u32 attr, int channel)
-> > > > >    		case CHANNEL_MCTRL:
-> > > > >    		case CHANNEL_PCIE:
-> > > > >    			return hwmon->temp.count ? 0444 : 0;
-> > > > > +		case CHANNEL_VRAM_N...CHANNEL_VRAM_N_MAX:
-> > > > > +			return is_vram_ch_available(hwmon, channel) ? 0444 : 0;
-> > > > Ditto, hwmon->temp.limit[TEMP_LIMIT_MEM_CRIT]?
-> > > > 
-> > > > >    		default:
-> > > > >    			return 0;
-> > > > >    		}
-> > > > > @@ -935,6 +980,8 @@ xe_hwmon_temp_is_visible(struct xe_hwmon *hwmon, u32 attr, int channel)
-> > > > >    		case CHANNEL_MCTRL:
-> > > > >    		case CHANNEL_PCIE:
-> > > > >    			return hwmon->temp.count ? 0444 : 0;
-> > > > > +		case CHANNEL_VRAM_N...CHANNEL_VRAM_N_MAX:
-> > > > > +			return is_vram_ch_available(hwmon, channel) ? 0444 : 0;
-> > > > >    		default:
-> > > > >    			return 0;
-> > > > >    		}
-> > > > > @@ -963,6 +1010,16 @@ xe_hwmon_temp_read(struct xe_hwmon *hwmon, u32 attr, int channel, long *val)
-> > > > >    			return get_mc_temp(hwmon, val);
-> > > > >    		case CHANNEL_PCIE:
-> > > > >    			return get_pcie_temp(hwmon, val);
-> > > > > +		case CHANNEL_VRAM_N...CHANNEL_VRAM_N_MAX:
-> > > > > +			reg_val = xe_mmio_read32(mmio, xe_hwmon_get_reg(hwmon, REG_TEMP, channel));
-> > > > > +			/*
-> > > > > +			 * This temperature format is bit 31 for sign, bits [30:8] for whole number
-> > > > > +			 * and bits [7:0] for fraction
-> > > > Nit: "Temperature format is 24 bits [31:8] signed integer and
-> > > > 8 bits [7:0] fraction."
-> > > > 
-> > > > > +			 */
-> > > > > +			*val = (s32)(REG_FIELD_GET(TEMP_MASK_VRAM_N, reg_val)) */
-> > > > > +				(REG_FIELD_GET(TEMP_SIGN_MASK, reg_val) ? -1 : 1) *
-> > > > Since you're already casting it, I'm wondering if you need to check
-> > > > for sign?
-> > > |REG_FIELD_GET() returns unsigned type, which gets stored |the lower 24 bits
-> > > of an |s32|, discarding the sign bit; consequently, negative values are
-> > > interpreted as positive, requiring an explicit sign check.
-> > Would something like this work?
-> > 
-> > 	s32 vram_n = (reg_val & TEMP_SIGN_MASK) | REG_FIELD_GET(TEMP_MASK_VRAM_N, reg_val);
-> this is okay
-> > 
-> > 	*val = vram_n * MILLIDEGREE_PER_DEGREE;
-> 
-> but this wont work as it will treat value as unsigned and we'll need to
-> again check the sign check here.
-> 
-> existing one does these all in a single statement.
-> 
-> > 	return 0;
-> > 
-> > > > > +				 MILLIDEGREE_PER_DEGREE;
-> > > > > +			return 0;
-> > > > >    		default:
-> > > > >    			return -EOPNOTSUPP;
-> > > > >    		}
-> > > > > @@ -974,6 +1031,7 @@ xe_hwmon_temp_read(struct xe_hwmon *hwmon, u32 attr, int channel, long *val)
-> > > > >    			*val = hwmon->temp.limit[TEMP_LIMIT_PKG_SHUTDOWN] * MILLIDEGREE_PER_DEGREE;
-> > > > >    			return 0;
-> > > > >    		case CHANNEL_VRAM:
-> > > > > +		case CHANNEL_VRAM_N...CHANNEL_VRAM_N_MAX:
-> > > > >    			*val = hwmon->temp.limit[TEMP_LIMIT_MEM_SHUTDOWN] * MILLIDEGREE_PER_DEGREE;
-> > > > >    			return 0;
-> > > > >    		default:
-> > > > > @@ -987,6 +1045,7 @@ xe_hwmon_temp_read(struct xe_hwmon *hwmon, u32 attr, int channel, long *val)
-> > > > >    			*val = hwmon->temp.limit[TEMP_LIMIT_PKG_CRIT] * MILLIDEGREE_PER_DEGREE;
-> > > > >    			return 0;
-> > > > >    		case CHANNEL_VRAM:
-> > > > > +		case CHANNEL_VRAM_N...CHANNEL_VRAM_N_MAX:
-> > > > >    			*val = hwmon->temp.limit[TEMP_LIMIT_MEM_CRIT] * MILLIDEGREE_PER_DEGREE;
-> > > > >    			return 0;
-> > > > >    		default:
-> > > > > @@ -1356,16 +1415,20 @@ static int xe_hwmon_read_label(struct device *dev,
-> > > > >    			       enum hwmon_sensor_types type,
-> > > > >    			       u32 attr, int channel, const char **str)
-> > > > >    {
-> > > > > +	struct xe_hwmon *hwmon = dev_get_drvdata(dev);
-> > > > > +
-> > > > >    	switch (type) {
-> > > > >    	case hwmon_temp:
-> > > > >    		if (channel == CHANNEL_PKG)
-> > > > >    			*str = "pkg";
-> > > > >    		else if (channel == CHANNEL_VRAM)
-> > > > > -			*str = "vram";
-> > > > > +			*str = "vram_avg";
-> > > > If you look at the readings this is actually not average, so it's a bit
-> > > > misleading.
-> > > what is your suggestion for that label here ?
-> > Since this is a stable ABI, let's first make sure that we can actually
-> > change output string. If we can, then something like vram_high or
-> > vram_peak would be more appropriate.
-> > 
-> > Note: This is different from _max attribute which signifies the limit.
-> > 
-> > Raag
-> 
-> 1. Actually, this label change can be a separate patch.
-> 
-> 2. We are modifying label here, ABI still remains same, so this should be
-> okay
-> 
-> vram_peak seems apt, as it the current max value of all vrams
-> 
-> Rodrigo, can you also share your comments on this ?
+On 12 Jan 2026, at 11:50, Jason Gunthorpe wrote:
 
-I'd say we can keep it as 'vram' only... like the last version of this
-patch is doing. I see no reason to modify it.
+> On Mon, Jan 12, 2026 at 11:31:04AM -0500, Zi Yan wrote:
+>>> folio_free()
+>>>
+>>> 1) Allocator finds free memory
+>>> 2) zone_device_page_init() allocates the memory and makes refcount=1
+>>> 3) __folio_put() knows the recount 0.
+>>> 4) free_zone_device_folio() calls folio_free(), but it doesn't
+>>>    actually need to undo prep_compound_page() because *NOTHING* can
+>>>    use the page pointer at this point.
+>>> 5) Driver puts the memory back into the allocator and now #1 can
+>>>    happen. It knows how much memory to put back because folio->order
+>>>    is valid from #2
+>>> 6) #1 happens again, then #2 happens again and the folio is in the
+>>>    right state for use. The successor #2 fully undoes the work of the
+>>>    predecessor #2.
+>>
+>> But how can a successor #2 undo the work if the second #1 only allocates
+>> half of the original folio? For example, an order-9 at PFN 0 is
+>> allocated and freed, then an order-8 at PFN 0 is allocated and another
+>> order-8 at PFN 256 is allocated. How can two #2s undo the same order-9
+>> without corrupting each other’s data?
+>
+> What do you mean? The fundamental rule is you can't read the folio or
+> the order outside folio_free once it's refcount reaches 0.
 
-And if some tool out there is already relying on these strings, it
-might break. So, better to keep and avoid changing it.
+There is no such a rule. In core MM, folio_split(), which splits a high
+order folio to low order ones, freezes the folio (turning refcount to 0)
+and manipulates the folio order and all tail pages compound_head to
+restructure the folio. Your fundamental rule breaks this.
+Allowing compound information to stay after a folio is freed means
+you cannot tell whether a folio is under split or freed.
 
-> 
-> > 
-> > > > >    		else if (channel == CHANNEL_MCTRL)
-> > > > >    			*str = "mctrl";
-> > > > >    		else if (channel == CHANNEL_PCIE)
-> > > > >    			*str = "pcie";
-> > > > > +		else if (channel >= CHANNEL_VRAM_N && channel <= CHANNEL_VRAM_N_MAX)
-> > > > > +			*str = hwmon->temp.vram_label[channel - CHANNEL_VRAM_N];
-> > > > >    		return 0;
-> > > > >    	case hwmon_power:
-> > > > >    	case hwmon_energy:
-> > > > > -- 
-> > > > > 2.25.1
-> > > > > 
+>
+> So the successor #2 will write updated heads and order to the order 8
+> pages at PFN 0 and the ones starting at PFN 256 will remain with
+> garbage.
+>
+> This is OK because nothing is allowed to read them as their refcount
+> is 0.
+>
+> If later PFN256 is allocated then it will get updated head and order
+> at the same time it's refcount becomes 1.
+>
+> There is corruption and they don't corrupt each other's data.
+>
+>>> If the allocator is using the struct page memory then step #5 should
+>>> also clean up the struct page with the allocator data before returning
+>>> it to the allocator.
+>>
+>> Do you mean ->folio_free() callback should undo prep_compound_page()
+>> instead?
+>
+> I wouldn't say undo, I was very careful to say it needs to get the
+> struct page memory into a state that the allocator algorithm expects,
+> whatever that means.
+>
+> Jason
+
+
+Best Regards,
+Yan, Zi
