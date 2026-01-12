@@ -4,37 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 608BAC9EC94
-	for <intel-xe@archiver.kernel.org>; Mon, 12 Jan 2026 14:21:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F3D27C9EC8D
+	for <intel-xe@archiver.kernel.org>; Mon, 12 Jan 2026 14:31:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 209F410E3F3;
-	Mon, 12 Jan 2026 14:21:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AF60B10E3E6;
+	Mon, 12 Jan 2026 14:31:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="Wf4L0u+Z";
+	dkim=pass (2048-bit key; unprotected) header.d=bootlin.com header.i=@bootlin.com header.b="ruDhEWxO";
 	dkim-atps=neutral
-Received: from lankhorst.se (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BD9C110E3F1
- for <intel-xe@lists.freedesktop.org>; Mon, 12 Jan 2026 14:21:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1768227693;
- bh=r/yz7keuUjbdEh+CkdKVzv2Zcfwnt3tD6NOO86jxs6k=;
- h=From:To:Subject:Date:In-Reply-To:References:From;
- b=Wf4L0u+ZwbDFfK/AdREkr/MIFPSm+HCWOtq6quT44DyslYJZ6DrYQuuYu9ba78Oag
- X6vQbpCBT0B1IpB/uL1TpCofspIyGcDpclEojNnubpY+KppJYwi12mRnWrA3Bipn26
- HZDk3xNaer45luLzYlWcI4pu/USnQqMArGTgGRuUTtUN9PSO/SYpqs6Gc+IkC8IaBa
- uHKKasSoM6BFziAUrn3dDDQBESGs3kXMreQqCRyT8Uak8mvaMwnwUtHHtHYNVeYcLD
- NrjTIpTer1xiZ3JBvYmtSslFIT/AlOWPFl3+zvWywnd748wFXXBKmrjh7fuuxbXEow
- Dycp4O6BWbqmQ==
-From: Maarten Lankhorst <dev@lankhorst.se>
-To: intel-xe@lists.freedesktop.org
-Subject: [FOR-CI-DO-NOT-REVIEW-v4 12/12] drm/xe: Remove xe_ggtt_node_allocated
-Date: Mon, 12 Jan 2026 15:21:21 +0100
-Message-ID: <20260112142121.1153027-13-dev@lankhorst.se>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20260112142121.1153027-1-dev@lankhorst.se>
-References: <20260112142121.1153027-1-dev@lankhorst.se>
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B294A10E3E6;
+ Mon, 12 Jan 2026 14:31:18 +0000 (UTC)
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+ by smtpout-02.galae.net (Postfix) with ESMTPS id BE6C11A27E8;
+ Mon, 12 Jan 2026 14:31:16 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+ by smtpout-01.galae.net (Postfix) with ESMTPS id 7C06A606FA;
+ Mon, 12 Jan 2026 14:31:16 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon)
+ with ESMTPSA id F0028103C8CD8; Mon, 12 Jan 2026 15:31:11 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+ t=1768228275; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+ content-transfer-encoding:content-language:in-reply-to:references;
+ bh=eKWrsut8lnAqhMRfW6JJHMf1IUOdcYaVD+yV2vSIjtI=;
+ b=ruDhEWxOcA0/Wx2P1Sxf3of98HvE5oz0+6zK661X2QCtjrTJtyY1HReq2ofpOWHzF0fJqi
+ mGowF4iCFq5CJLPSbgXNkoHAhJk817hkHomAa8CDSj1Gl3wZj86v46qyeq2K8JR30KJQ/o
+ IU4ThquLIInzcjwHrdQ+qphH7r5fbZ9zW8uhRYKTW45px2kX74e+irgrzob5fsE5wmcqrk
+ eu8cYXHJ8TQl9ykJpk6TqG9Gpre1DiBiR+pJ7z0xk27H/BOhsC+sGHqMvj93y3xuU+fg6v
+ uKivhbYk5RX78vfSqrNxi/PyZtTEJnH516H1HX6+75Sq0SZIkE0/hyMxnmnASw==
+Message-ID: <13d1eb34-dfdf-4d5e-b1a8-10819289d8dc@bootlin.com>
+Date: Mon, 12 Jan 2026 15:31:35 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 03/13] drm/vkms: Fix color pipeline enum name leak
+To: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
+Cc: harry.wentland@amd.com, jani.nikula@linux.intel.com, mwen@igalia.com,
+ contact@emersion.fr, alex.hung@amd.com, daniels@collabora.com,
+ uma.shankar@intel.com, suraj.kandpal@intel.com, nfraprado@collabora.com,
+ ville.syrjala@linux.intel.com, matthew.d.roper@intel.com
+References: <20260109081728.478844-1-chaitanya.kumar.borah@intel.com>
+ <20260109081728.478844-4-chaitanya.kumar.borah@intel.com>
+From: Louis Chauvet <louis.chauvet@bootlin.com>
+Content-Language: en-US
+In-Reply-To: <20260109081728.478844-4-chaitanya.kumar.borah@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Last-TLS-Session-Version: TLSv1.3
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,136 +66,71 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-With the intermediate state gone, no longer useful. Just check against
-NULL where needed.
 
-Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
----
- drivers/gpu/drm/xe/display/xe_fb_pin.c     |  3 +--
- drivers/gpu/drm/xe/xe_ggtt.c               | 17 -----------------
- drivers/gpu/drm/xe/xe_ggtt.h               |  1 -
- drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c | 12 ++++++------
- 4 files changed, 7 insertions(+), 26 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-index d2c4e94180fa3..10915fb3151f4 100644
---- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
-+++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-@@ -352,8 +352,7 @@ static void __xe_unpin_fb_vma(struct i915_vma *vma)
- 
- 	if (vma->dpt)
- 		xe_bo_unpin_map_no_vm(vma->dpt);
--	else if (!xe_ggtt_node_allocated(vma->bo->ggtt_node[tile_id]) ||
--		 vma->bo->ggtt_node[tile_id] != vma->node)
-+	else if (vma->bo->ggtt_node[tile_id] != vma->node)
- 		xe_ggtt_node_remove(vma->node, false);
- 
- 	ttm_bo_reserve(&vma->bo->ttm, false, false, NULL);
-diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
-index cbe66114a8e11..47d10e00395fc 100644
---- a/drivers/gpu/drm/xe/xe_ggtt.c
-+++ b/drivers/gpu/drm/xe/xe_ggtt.c
-@@ -664,20 +664,6 @@ struct xe_ggtt_node *xe_ggtt_node_insert(struct xe_ggtt *ggtt, u32 size, u32 ali
- 	return node;
- }
- 
--/**
-- * xe_ggtt_node_allocated - Check if node is allocated in GGTT
-- * @node: the &xe_ggtt_node to be inspected
-- *
-- * Return: True if allocated, False otherwise.
-- */
--bool xe_ggtt_node_allocated(const struct xe_ggtt_node *node)
--{
--	if (!node || !node->ggtt)
--		return false;
--
--	return drm_mm_node_allocated(&node->base);
--}
--
- /**
-  * xe_ggtt_node_pt_size() - Get the size of page table entries needed to map a GGTT node.
-  * @node: the &xe_ggtt_node
-@@ -961,9 +947,6 @@ static void xe_ggtt_assign_locked(const struct xe_ggtt_node *node, u16 vfid)
- 
- 	lockdep_assert_held(&ggtt->lock);
- 
--	if (!xe_ggtt_node_allocated(node))
--		return;
--
- 	while (start < end) {
- 		ggtt->pt_ops->ggtt_set_pte(ggtt, start, pte);
- 		start += XE_PAGE_SIZE;
-diff --git a/drivers/gpu/drm/xe/xe_ggtt.h b/drivers/gpu/drm/xe/xe_ggtt.h
-index 6d8679bcc38fb..ffa3369927157 100644
---- a/drivers/gpu/drm/xe/xe_ggtt.h
-+++ b/drivers/gpu/drm/xe/xe_ggtt.h
-@@ -30,7 +30,6 @@ xe_ggtt_node_insert_transform(struct xe_ggtt *ggtt,
- 			      u64 size, u32 align,
- 			      xe_ggtt_transform_cb transform, void *arg);
- void xe_ggtt_node_remove(struct xe_ggtt_node *node, bool invalidate);
--bool xe_ggtt_node_allocated(const struct xe_ggtt_node *node);
- size_t xe_ggtt_node_pt_size(const struct xe_ggtt_node *node);
- void xe_ggtt_map_bo_unlocked(struct xe_ggtt *ggtt, struct xe_bo *bo);
- int xe_ggtt_insert_bo(struct xe_ggtt *ggtt, struct xe_bo *bo, struct drm_exec *exec);
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-index a6414d164166e..ca757742d2748 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-@@ -281,7 +281,7 @@ static u32 encode_config_ggtt(u32 *cfg, const struct xe_gt_sriov_config *config,
- {
- 	struct xe_ggtt_node *node = config->ggtt_region;
- 
--	if (!xe_ggtt_node_allocated(node))
-+	if (!node)
- 		return 0;
- 
- 	return encode_ggtt(cfg, xe_ggtt_node_addr(node), xe_ggtt_node_size(node), details);
-@@ -505,7 +505,7 @@ static int pf_provision_vf_ggtt(struct xe_gt *gt, unsigned int vfid, u64 size)
- 
- 	size = round_up(size, alignment);
- 
--	if (xe_ggtt_node_allocated(config->ggtt_region)) {
-+	if (config->ggtt_region) {
- 		err = pf_distribute_config_ggtt(tile, vfid, 0, 0);
- 		if (unlikely(err))
- 			return err;
-@@ -516,7 +516,7 @@ static int pf_provision_vf_ggtt(struct xe_gt *gt, unsigned int vfid, u64 size)
- 		if (unlikely(err))
- 			return err;
- 	}
--	xe_gt_assert(gt, !xe_ggtt_node_allocated(config->ggtt_region));
-+	xe_gt_assert(gt, !config->ggtt_region);
- 
- 	if (!size)
- 		return 0;
-@@ -546,7 +546,7 @@ static u64 pf_get_vf_config_ggtt(struct xe_gt *gt, unsigned int vfid)
- 	struct xe_ggtt_node *node = config->ggtt_region;
- 
- 	xe_gt_assert(gt, xe_gt_is_main_type(gt));
--	return xe_ggtt_node_allocated(node) ? xe_ggtt_node_size(node) : 0;
-+	return node ? xe_ggtt_node_size(node) : 0;
- }
- 
- /**
-@@ -2560,7 +2560,7 @@ int xe_gt_sriov_pf_config_release(struct xe_gt *gt, unsigned int vfid, bool forc
- 
- static void pf_sanitize_ggtt(struct xe_ggtt_node *ggtt_region, unsigned int vfid)
- {
--	if (xe_ggtt_node_allocated(ggtt_region))
-+	if (ggtt_region)
- 		xe_ggtt_assign(ggtt_region, vfid);
- }
- 
-@@ -3019,7 +3019,7 @@ int xe_gt_sriov_pf_config_print_ggtt(struct xe_gt *gt, struct drm_printer *p)
- 
- 	for (n = 1; n <= total_vfs; n++) {
- 		config = &gt->sriov.pf.vfs[n].config;
--		if (!xe_ggtt_node_allocated(config->ggtt_region))
-+		if (!config->ggtt_region)
- 			continue;
- 
- 		string_get_size(xe_ggtt_node_size(config->ggtt_region), 1, STRING_UNITS_2,
--- 
-2.51.0
+On 1/9/26 09:17, Chaitanya Kumar Borah wrote:
+> vkms_initialize_colorops() allocates enum names for color pipelines,
+> which are copied by drm_property_create_enum(). The temporary strings
+> were not freed, resulting in a memory leak.
+> 
+> Allocate enum names only after successful pipeline construction and
+> free them on all exit paths
+> 
+> Fixes: c1e578bd08da ("drm/vkms: Add enumerated 1D curve colorop")
+> Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+> Reviewed-by: Uma Shankar <uma.shankar@intel.com>
+> Reviewed-by: Alex Hung <alex.hung@amd.com>
+
+Reviewed-by: Louis Chauvet <louis.chauvet@bootlin.com>
+
+> ---
+>   drivers/gpu/drm/vkms/vkms_colorop.c | 15 ++++++++-------
+>   1 file changed, 8 insertions(+), 7 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/vkms/vkms_colorop.c b/drivers/gpu/drm/vkms/vkms_colorop.c
+> index 5c3ffc78aea0..d03a1f2e9c41 100644
+> --- a/drivers/gpu/drm/vkms/vkms_colorop.c
+> +++ b/drivers/gpu/drm/vkms/vkms_colorop.c
+> @@ -37,7 +37,6 @@ static int vkms_initialize_color_pipeline(struct drm_plane *plane, struct drm_pr
+>   		goto cleanup;
+>   
+>   	list->type = ops[i]->base.id;
+> -	list->name = kasprintf(GFP_KERNEL, "Color Pipeline %d", ops[i]->base.id);
+>   
+>   	i++;
+>   
+> @@ -88,6 +87,8 @@ static int vkms_initialize_color_pipeline(struct drm_plane *plane, struct drm_pr
+>   
+>   	drm_colorop_set_next_property(ops[i - 1], ops[i]);
+>   
+> +	list->name = kasprintf(GFP_KERNEL, "Color Pipeline %d", ops[0]->base.id);
+> +
+>   	return 0;
+>   
+>   cleanup:
+> @@ -103,18 +104,18 @@ static int vkms_initialize_color_pipeline(struct drm_plane *plane, struct drm_pr
+>   
+>   int vkms_initialize_colorops(struct drm_plane *plane)
+>   {
+> -	struct drm_prop_enum_list pipeline;
+> -	int ret;
+> +	struct drm_prop_enum_list pipeline = {};
+> +	int ret = 0;
+>   
+>   	/* Add color pipeline */
+>   	ret = vkms_initialize_color_pipeline(plane, &pipeline);
+>   	if (ret)
+> -		return ret;
+> +		goto out;
+>   
+>   	/* Create COLOR_PIPELINE property and attach */
+>   	ret = drm_plane_create_color_pipeline_property(plane, &pipeline, 1);
+> -	if (ret)
+> -		return ret;
+>   
+> -	return 0;
+> +	kfree(pipeline.name);
+> +out:
+> +	return ret;
+>   }
 
