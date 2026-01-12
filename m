@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D2B8CCF45DD
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9E62BCF45DB
 	for <intel-xe@archiver.kernel.org>; Mon, 12 Jan 2026 23:27:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5A35D10E43C;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5A52410E43D;
 	Mon, 12 Jan 2026 23:27:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XI/Kmrsd";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CZtNtN2b";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A2E3910E2BA
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BED7A10E435
  for <intel-xe@lists.freedesktop.org>; Mon, 12 Jan 2026 23:27:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1768260456; x=1799796456;
+ t=1768260457; x=1799796457;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=YCDV+uw3dmBSM2JwmPTSQUN8Tl9YjirnSysgLse3fUg=;
- b=XI/KmrsdFFlPCM709BqGjwOy9az9U5Verykgp1CDWRENiAEORIlbpA3K
- NFdJzDmTtt16+anr4QMyyoedR3Adioa3eYfzl4msFEkLCGfLkjdbpNQZn
- HqtYYgDZgoML2sK2aWZjqffqAj53xb5Q9zxJkca0bOmGgB+zFKBZI+i/R
- QfE7uH57/AUhCP9SyMUUapNb0iV10YU+1Ke3EauUhlzeouDHxhKe8CQzz
- yFqPv3rpV4JPfaW4FoTrupzCram3wAoRj4JijgIbcthI0KNJ/xsqEEU8/
- Ys0hn1GhFPokugt5mQeknK7b5l5dMD8rYcCCJk1yrOewkc9VfAUPqJOlp A==;
-X-CSE-ConnectionGUID: vZxF2xCBSDCraxY8m0Vz6g==
-X-CSE-MsgGUID: 9p1FESfnTkW+o/cqEB/7HQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11669"; a="69594768"
-X-IronPort-AV: E=Sophos;i="6.21,222,1763452800"; d="scan'208";a="69594768"
+ bh=NNERI+pLy9TgmQOui95U+SV/xnT+qHRWb/uzVENIAUs=;
+ b=CZtNtN2ba4M70125gVQ0hkzL+HzBKNMG8eI54l/KgT8KL6V2MCSshK2y
+ 7bP8VDqCOoD3S26Q7K9MeD79zSX4MyjKJBfHMp0VCNmiFMfjdW6GuABAa
+ +qjD9vZ8gAVgWmxrHnnbU8U2A4fDS1pCR0aC4MEfXKbYhHaWzbbsLpHiC
+ y9WemUqTXsWpu++meivLnHLUXGDLw3L1mBxyM13fiwqIsC3OMU5FPWUcZ
+ a+g5tbSsW3BGhyDQmH3Cz2PHGyo3+E4Awvq87fh0SLcfjm3YqqAVl9YJV
+ Vlq1Q3FnJRLwz5viEKTIrt8oivMypuvcEr1e8qbor0DGxc1zwg02tPnki Q==;
+X-CSE-ConnectionGUID: 1UpZ3DVuTSmclySU3uC8lA==
+X-CSE-MsgGUID: Ew7C7BfKRme31rIKyP/1VA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11669"; a="69594769"
+X-IronPort-AV: E=Sophos;i="6.21,222,1763452800"; d="scan'208";a="69594769"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  12 Jan 2026 15:27:36 -0800
-X-CSE-ConnectionGUID: yGScU8aiQbWBVgkV+79MHg==
-X-CSE-MsgGUID: 1unR4fc1Qc2o2YOTMjjUJQ==
+X-CSE-ConnectionGUID: u8LHFkLXTdKzEQcg8LY98g==
+X-CSE-MsgGUID: A2Oevs9PR82Q3tClSckb5Q==
 X-ExtLoop1: 1
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
@@ -43,10 +43,10 @@ Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: stuart.summers@intel.com
-Subject: [PATCH v3 05/11] drm/xe: Taint TLB invalidation seqno lock with
- GFP_KERNEL
-Date: Mon, 12 Jan 2026 15:27:24 -0800
-Message-Id: <20260112232730.3347414-6-matthew.brost@intel.com>
+Subject: [PATCH v3 06/11] drm/xe: Rename send_tlb_inval_ppgtt to
+ send_tlb_inval_asid_ppgtt
+Date: Mon, 12 Jan 2026 15:27:25 -0800
+Message-Id: <20260112232730.3347414-7-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260112232730.3347414-1-matthew.brost@intel.com>
 References: <20260112232730.3347414-1-matthew.brost@intel.com>
@@ -66,45 +66,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Taint TLB invalidation seqno lock with GFP_KERNEL as TLB invalidations
-can be in the path of reclaim (e.g., MMU notifiers).
+Context-based TLB invalidations have their own set of GuC TLB
+invalidation operations. Rename the current PPGTT invalidation function,
+which operates on ASIDs, to a more descriptive name that reflects its
+purpose.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Matt Atwood <matthew.s.atwood@intel.com>
+Reviewed-by: Stuart Summers <stuart.summers@intel.com>
 ---
- drivers/gpu/drm/xe/xe_tlb_inval.c | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+ drivers/gpu/drm/xe/xe_guc_tlb_inval.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_tlb_inval.c b/drivers/gpu/drm/xe/xe_tlb_inval.c
-index dec042248164..014a78502fe5 100644
---- a/drivers/gpu/drm/xe/xe_tlb_inval.c
-+++ b/drivers/gpu/drm/xe/xe_tlb_inval.c
-@@ -114,6 +114,16 @@ static void tlb_inval_fini(struct drm_device *drm, void *arg)
- 	xe_tlb_inval_reset(tlb_inval);
- }
+diff --git a/drivers/gpu/drm/xe/xe_guc_tlb_inval.c b/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
+index 43f6dbcb2bc2..a6a1c371a28e 100644
+--- a/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
++++ b/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
+@@ -150,9 +150,9 @@ static u64 normalize_invalidation_range(struct xe_gt *gt, u64 *start, u64 *end)
+  */
+ #define MAX_RANGE_TLB_INVALIDATION_LENGTH (rounddown_pow_of_two(ULONG_MAX))
  
-+static void primelockdep(struct xe_tlb_inval *tlb_inval)
-+{
-+	if (!IS_ENABLED(CONFIG_LOCKDEP))
-+		return;
-+
-+	fs_reclaim_acquire(GFP_KERNEL);
-+	might_lock(&tlb_inval->seqno_lock);
-+	fs_reclaim_release(GFP_KERNEL);
-+}
-+
- /**
-  * xe_gt_tlb_inval_init - Initialize TLB invalidation state
-  * @gt: GT structure
-@@ -140,6 +150,8 @@ int xe_gt_tlb_inval_init_early(struct xe_gt *gt)
- 	if (err)
- 		return err;
- 
-+	primelockdep(tlb_inval);
-+
- 	tlb_inval->job_wq = drmm_alloc_ordered_workqueue(&xe->drm,
- 							 "gt-tbl-inval-job-wq",
- 							 WQ_MEM_RECLAIM);
+-static int send_tlb_inval_ppgtt(struct xe_tlb_inval *tlb_inval, u32 seqno,
+-				u64 start, u64 end, u32 asid,
+-				struct drm_suballoc *prl_sa)
++static int send_tlb_inval_asid_ppgtt(struct xe_tlb_inval *tlb_inval, u32 seqno,
++				     u64 start, u64 end, u32 asid,
++				     struct drm_suballoc *prl_sa)
+ {
+ #define MAX_TLB_INVALIDATION_LEN	7
+ 	struct xe_guc *guc = tlb_inval->private;
+@@ -219,7 +219,7 @@ static long tlb_inval_timeout_delay(struct xe_tlb_inval *tlb_inval)
+ static const struct xe_tlb_inval_ops guc_tlb_inval_ops = {
+ 	.all = send_tlb_inval_all,
+ 	.ggtt = send_tlb_inval_ggtt,
+-	.ppgtt = send_tlb_inval_ppgtt,
++	.ppgtt = send_tlb_inval_asid_ppgtt,
+ 	.initialized = tlb_inval_initialized,
+ 	.flush = tlb_inval_flush,
+ 	.timeout_delay = tlb_inval_timeout_delay,
 -- 
 2.34.1
 
