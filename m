@@ -4,27 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 22DDAD25032
-	for <intel-xe@archiver.kernel.org>; Mon, 12 Jan 2026 08:20:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D1882D2504A
+	for <intel-xe@archiver.kernel.org>; Mon, 12 Jan 2026 08:22:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D7C8810E25E;
-	Mon, 12 Jan 2026 08:20:47 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1386F10E1EE;
- Mon, 12 Jan 2026 08:20:47 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8754463623292555489=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 95ED510E1EE;
+	Mon, 12 Jan 2026 08:22:04 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=suse.com header.i=@suse.com header.b="CP8+jxNw";
+	dkim-atps=neutral
+Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com
+ [209.85.208.179])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 03FF410E25E
+ for <intel-xe@lists.freedesktop.org>; Mon, 12 Jan 2026 08:22:03 +0000 (UTC)
+Received: by mail-lj1-f179.google.com with SMTP id
+ 38308e7fff4ca-382f9930e54so35906651fa.1
+ for <intel-xe@lists.freedesktop.org>; Mon, 12 Jan 2026 00:22:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=suse.com; s=google; t=1768206122; x=1768810922; darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=XsyXyJP6Y/3pXJrsSmemWHA6G4lKJakyXCrRJ0Arp2E=;
+ b=CP8+jxNwFh+ZAvlLKJ/WLlkugDHaIOlOyBGZTIhCndSRmfyom2xcEtQcCSYAa2qZ+k
+ uXxOAYAePtJV7fSEu9a8rnzEBEYM7NxNyWdrRnwo/sUKQJxAGWnWN6eMV70V7v1McvOf
+ WXLs6ui8zt2OwxwOlU2hM5wd7Nh4iFwDBHwQ+kauzbHSGqcsyoLLK3A9/oQ2wK8opp6D
+ 3q8BpEtuOlr+aaZNi0O3Fv2zOY8V1Zc2eHfd+uzj1SnvYmvF5Io3dCGPp7B+YV9P7SyU
+ uDyEed0Uhchq2o5MgZVboSkjjtfJUINSTO8ZsTzrQb5r8czRjffekphqjmnlczCI1iav
+ 2pAw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1768206122; x=1768810922;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=XsyXyJP6Y/3pXJrsSmemWHA6G4lKJakyXCrRJ0Arp2E=;
+ b=EvyM7mhy+sEAurqaEcqCuu+nQz/7sXg5GMoNVL/e86dIrq3blSbJ4K9VY4BuSvs/17
+ J4TUpXG175o813fGP4VT4qCG3lnHkaZ38bOnh2oJkuUfFLdJ99nNVr+ckv+cMRt1uGCo
+ Z2p4l4yDZQdmH/fvTDzv82aPU18XZ1Bobl/DY6nEetS6Jv5L51GubM9HY4w1YtVNrsG2
+ uBYvIUcELjy7SrsIjXdK9QswU1jbTktvk7Fbm4I4YXs9x5z+hRIbPcezOWfLKTivi3nF
+ 2euBH6FDjHAZ1RlLwwpcZRGJA2QrVT8bwfdD7DjjYfhigevk+CS4lCNA34sMBBqMuZ0p
+ 11hA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWjJN0Z9GlTw6Hc/EfqP+CHsPqt1v0zZDvIZHQe+yCeXrqS0CjGH8vSutijHTsLiQ+7EL9wEEZC9g==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxKB8uTb8bOLed3cwTY+88RuoxzHmXPcFtxVzeBCYQ++Qo4NhGd
+ cfFuNHvLFKj61ONGEHoS5PDckvCYVAMZw10tXktMk/+YxFZO1u3fGwWqSvBQw1c682K1AW4tcA2
+ D6KNLGMd6CPBnaLdOLv21B1odqNMsp2KvuGkDWeMOZQ==
+X-Gm-Gg: AY/fxX6tBsDgvWjpANhy7iemd/G7qf1PpYT+00CK8lGiP85rbWI+p4zoA+Bjx0paBiC
+ hxReKcg06HDOazU1dhR+n3T+x9TVGI4mYcV6a9zdyxAF4yL6hZ0zAg+MU345YbaW5bcLhc9noR2
+ JbRUBry0oQErPu0DCcsCZfistRWcvTE6dr2vLi090Ibjb/zWtrIR388DVG0UeiWQ1S3Wlnzz1Ub
+ bs7nTAxBNKwP+7H3v/KCcdDLp8ceP5fbP70ZZjjpwlzGO/iUX/+pEmcLgO6lfGgZiNxol1+qkvv
+ 1x+nMkSDda4PdYr8tV9aY231YBV7
+X-Google-Smtp-Source: AGHT+IFuACUf1fWUB9ZbsS9Sdz3QYI9+Xh93xr/4w50+jKvzzUPK2Cpq3akkyt4wX04ScI0yktbmcb7GtHOnPKgWtos=
+X-Received: by 2002:a05:651c:3044:b0:37f:d634:ba27 with SMTP id
+ 38308e7fff4ca-382eae93866mr56991641fa.9.1768206122134; Mon, 12 Jan 2026
+ 00:22:02 -0800 (PST)
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_MAINTAINERS=3A_drm=3A_add_m?=
- =?utf-8?q?aintainers_for_DRM_buddy_allocator?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Arunpravin Paneer Selvam" <arunpravin.paneerselvam@amd.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 12 Jan 2026 08:20:47 -0000
-Message-ID: <176820604707.145267.17379415339677576374@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260112072447.299685-1-Arunpravin.PaneerSelvam@amd.com>
-In-Reply-To: <20260112072447.299685-1-Arunpravin.PaneerSelvam@amd.com>
+References: <20260109155717.269221-1-marco.crivellari@suse.com>
+ <aWFO5bWNIy+N5/AS@lstrano-desk.jf.intel.com>
+In-Reply-To: <aWFO5bWNIy+N5/AS@lstrano-desk.jf.intel.com>
+From: Marco Crivellari <marco.crivellari@suse.com>
+Date: Mon, 12 Jan 2026 09:21:51 +0100
+X-Gm-Features: AZwV_Qgkje68RNYGplu1gjIwyLliDf0WfCkpizl2GJC68hku_3XVzv-uAgzd4Ec
+Message-ID: <CAAofZF7iaXC-KEp_Mq0pFWyVGi1R6Zd_REx-SBBMuhPZwa8eYw@mail.gmail.com>
+Subject: Re: [PATCH v2] drm/xe: Replace use of system_wq with
+ tlb_inval->fence_signal_wq
+To: Matthew Brost <matthew.brost@intel.com>
+Cc: linux-kernel@vger.kernel.org, intel-xe@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, Tejun Heo <tj@kernel.org>, 
+ Lai Jiangshan <jiangshanlai@gmail.com>,
+ Frederic Weisbecker <frederic@kernel.org>, 
+ Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
+ Michal Hocko <mhocko@suse.com>, 
+ Thomas Hellstrom <thomas.hellstrom@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,125 +90,29 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8754463623292555489==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Fri, Jan 9, 2026 at 7:54=E2=80=AFPM Matthew Brost <matthew.brost@intel.c=
+om> wrote:
+>
+> I hate to be nitpicky but this name / kernel doc isn't great.
+>
+> How about:
+>
+> /** @timeout_wq: schedules TLB invalidation fence timeouts */
+> struct workqueue_struct *timeout_wq;
+>
+> Functionality everything in this patch looks correct.
 
-== Series Details ==
+Hi,
 
-Series: MAINTAINERS: drm: add maintainers for DRM buddy allocator
-URL   : https://patchwork.freedesktop.org/series/159940/
-State : success
+Sure sounds good, I will send the v3.
 
-== Summary ==
+Thanks!
 
-CI Bug Log - changes from xe-4365-f339d0352f5f7e023e8ff89bb18291df8dfdad6e_BAT -> xe-pw-159940v1_BAT
-====================================================
+--=20
 
-Summary
--------
+Marco Crivellari
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (12 -> 12)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-159940v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_waitfence@engine:
-    - bat-dg2-oem2:       [PASS][1] -> [FAIL][2] ([Intel XE#6519])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4365-f339d0352f5f7e023e8ff89bb18291df8dfdad6e/bat-dg2-oem2/igt@xe_waitfence@engine.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159940v1/bat-dg2-oem2/igt@xe_waitfence@engine.html
-
-  
-  [Intel XE#6519]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519
-
-
-Build changes
--------------
-
-  * Linux: xe-4365-f339d0352f5f7e023e8ff89bb18291df8dfdad6e -> xe-pw-159940v1
-
-  IGT_8696: 8696
-  xe-4365-f339d0352f5f7e023e8ff89bb18291df8dfdad6e: f339d0352f5f7e023e8ff89bb18291df8dfdad6e
-  xe-pw-159940v1: 159940v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159940v1/index.html
-
---===============8754463623292555489==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>MAINTAINERS: drm: add maintainers for DRM buddy allocator</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/159940/">https://patchwork.freedesktop.org/series/159940/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159940v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159940v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4365-f339d0352f5f7e023e8ff89bb18291df8dfdad6e_BAT -&gt; xe-pw-159940v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (12 -&gt; 12)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-159940v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@xe_waitfence@engine:<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4365-f339d0352f5f7e023e8ff89bb18291df8dfdad6e/bat-dg2-oem2/igt@xe_waitfence@engine.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159940v1/bat-dg2-oem2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519">Intel XE#6519</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4365-f339d0352f5f7e023e8ff89bb18291df8dfdad6e -&gt; xe-pw-159940v1</li>
-</ul>
-<p>IGT_8696: 8696<br />
-  xe-4365-f339d0352f5f7e023e8ff89bb18291df8dfdad6e: f339d0352f5f7e023e8ff89bb18291df8dfdad6e<br />
-  xe-pw-159940v1: 159940v1</p>
-
-</body>
-</html>
-
---===============8754463623292555489==--
+L3 Support Engineer
