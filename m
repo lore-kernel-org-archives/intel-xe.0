@@ -4,175 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 33B99C9EC93
-	for <intel-xe@archiver.kernel.org>; Mon, 12 Jan 2026 14:18:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5CD40C9EC94
+	for <intel-xe@archiver.kernel.org>; Mon, 12 Jan 2026 14:21:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C5A2310E3E6;
-	Mon, 12 Jan 2026 14:18:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2097D10E3E4;
+	Mon, 12 Jan 2026 14:21:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="STKr9LmF";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="Q/xyJ1NU";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BE7B310E3E6;
- Mon, 12 Jan 2026 14:18:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1768227492; x=1799763492;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=nnCy3ZT9nb+t13BBPJzL0weXveoZhW9a27gjHMr0BUk=;
- b=STKr9LmFNlTh2Eml2yfhXDtv915iMKpGmjF6if7qOZW58JTok11bAtgX
- fTrT8s6uZLe6zsKmKs3rOh93r5PAwEN97bzA0vbi8oBYOeIbG88m2Cgo9
- zIrZ89HB0opZs8biw6C7EIJTn4bxa6v/yzOXlh1sJJs1t5wnaMhKTF9Pa
- QUcwfhfyhWGugKIMpDW1MVRckH5QQbgrxOzVH7IGZzvPtGqGTdea1ZOf2
- zrEhqPEOir1crMIgzgL60BS5B82DiJOOuMhsOopqFtMsnGyhU3jrLtQb1
- hx0d8FDryjfuBZmXSTmGbgQzWaDD3iBdxR4FEAq8D7zyTjU9eMxQZ9Mf9 w==;
-X-CSE-ConnectionGUID: H9Ru5hcNQROsLXfgrf6SHQ==
-X-CSE-MsgGUID: yotS8NQdTaqjy51KXcFt1g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11669"; a="86916628"
-X-IronPort-AV: E=Sophos;i="6.21,221,1763452800"; d="scan'208";a="86916628"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jan 2026 06:18:11 -0800
-X-CSE-ConnectionGUID: 8x/DYWLfSG+ke9+HlTIMBg==
-X-CSE-MsgGUID: Pl7coaHyRqCY6S4IWpNXJA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,221,1763452800"; d="scan'208";a="203905711"
-Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
- by orviesa009.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jan 2026 06:18:11 -0800
-Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
- fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Mon, 12 Jan 2026 06:18:10 -0800
-Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
- FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29 via Frontend Transport; Mon, 12 Jan 2026 06:18:10 -0800
-Received: from SN4PR2101CU001.outbound.protection.outlook.com (40.93.195.16)
- by edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Mon, 12 Jan 2026 06:18:10 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=a+GOrE/y8dRrA0G7JW69deIfaFYAF33Soy7EZaxp5jM6RHVQ9V/0oGlVwPbVB49sL4+h31UoHBAZEV80WQaJbE8kuUHTSgCTLpxxUmkUibzoH0DPJSvqmHi4LntnegeCPZwjzFNa2a4tuIr6Y+VMaECIy9XN7rhPE4VGkynYYl4xiC+SksMnVrHBkO1oOjDqR9kRUENvKHm2iIqGuta9mX/6C3MDggs89SbuIfWyVMZ/1k1vNTZWC8em2IwRLgKZ1FnskXky9opqgbq7cre5Bd91XH9jFs1fFL9T4mczgY7FAF68vG+wNZXxaRHLP5AAwTMj7Gf8YdwjvE0sLOMotw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=qBWyLjr/d7u8wMFMjz5LxSl0WC0PBy5yY3aQ2C0B4Uc=;
- b=cekgotxqQiye/lX9rz7FYkTwRqAZXZ0oszrOqwTS5DjuXoFsKSYAjYq6zLpXojtmX5nmRaB9pBPgxN/6j3DRayWrjg1h5wfsO8W80qMddlHhixLWieE3yLbMLWn1Huu3CB8Uf+KeXuu+URfRcBiawE2F5cZrgX1u2n9Owo/nSmMp1KeqL6Yz46KdWTYK10MTers+QC7R+NK0bhMfCOQ5IdAdz/u34FkW5C6Qu5QOR0gC+1a3BQmSjqzPaVOjniyE6m9NAAIZ60OX7Ubva5ILI8qA6DpVUs4V2/GnciKjFJpa2tEmDGp/LVEG6IkcxgTfI5jjmWjSkbBmg1dvKNGf3g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CY8PR11MB7828.namprd11.prod.outlook.com (2603:10b6:930:78::8)
- by PH7PR11MB5957.namprd11.prod.outlook.com (2603:10b6:510:1e0::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9499.7; Mon, 12 Jan
- 2026 14:18:04 +0000
-Received: from CY8PR11MB7828.namprd11.prod.outlook.com
- ([fe80::1171:db4d:d6ad:3277]) by CY8PR11MB7828.namprd11.prod.outlook.com
- ([fe80::1171:db4d:d6ad:3277%3]) with mapi id 15.20.9499.005; Mon, 12 Jan 2026
- 14:18:04 +0000
-Date: Mon, 12 Jan 2026 15:17:45 +0100
-From: Francois Dugast <francois.dugast@intel.com>
-To: <intel-xe@lists.freedesktop.org>
-CC: <dri-devel@lists.freedesktop.org>, Matthew Brost
- <matthew.brost@intel.com>, Andrew Morton <akpm@linux-foundation.org>, "David
- Hildenbrand" <david@kernel.org>, Lorenzo Stoakes
- <lorenzo.stoakes@oracle.com>, "Liam R . Howlett" <Liam.Howlett@oracle.com>,
- Vlastimil Babka <vbabka@suse.cz>, Mike Rapoport <rppt@kernel.org>, Suren
- Baghdasaryan <surenb@google.com>, Michal Hocko <mhocko@suse.com>, Zi Yan
- <ziy@nvidia.com>, Alistair Popple <apopple@nvidia.com>, Balbir Singh
- <balbirs@nvidia.com>, <linux-mm@kvack.org>
-Subject: Re: [PATCH v4 6/7] drm/pagemap: Correct cpages calculation for
- migrate_vma_setup
-Message-ID: <aWUCiRvO25iBFP5J@fdugast-desk>
-References: <20260111205820.830410-1-francois.dugast@intel.com>
- <20260111205820.830410-7-francois.dugast@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20260111205820.830410-7-francois.dugast@intel.com>
-Organization: Intel Corporation
-X-ClientProxiedBy: DU2PR04CA0232.eurprd04.prod.outlook.com
- (2603:10a6:10:2b1::27) To CY8PR11MB7828.namprd11.prod.outlook.com
- (2603:10b6:930:78::8)
+Received: from lankhorst.se (lankhorst.se [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7FB3C10E3E5
+ for <intel-xe@lists.freedesktop.org>; Mon, 12 Jan 2026 14:21:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
+ s=default; t=1768227684;
+ bh=HfuR1g6rcEE/WSNqpEckqEZhmX/oTSU7kK2lg5GJ8lk=;
+ h=From:To:Subject:Date:In-Reply-To:References:From;
+ b=Q/xyJ1NUrrhqc6/cIA9k/eJW84YjhvrEHmgSmyxmrNOD40Wawdku+6UL3RCsyj+Rf
+ WTrT/zavtQ43drFAuI6yBmfjc88FhelB0nenBtrLTl1JG2Ie4Erfm0YNhnGWa3EYRS
+ HcjzlOmWOQmgXB1S7RNk1EbWrw0dQuKIKACSZVYlB5w3BPJsu+CIeavdr8udgaO3Pf
+ WFLSpUMplHR0CV4j/dfJIiuIzDeF2teovqz5wMhWsK+sga/wWt18rX0mikcVyg/cGd
+ 2ShqEM+IuY751xRPjjxM/S1tguVAaiYQYE5loyBC6Lg4R9c2iJngHLiJIKewJIuJ+5
+ 99BvaoTjAvyVw==
+From: Maarten Lankhorst <dev@lankhorst.se>
+To: intel-xe@lists.freedesktop.org
+Subject: [FOR-CI-DO-NOT-REVIEW-v4 01/12] drm/xe: Start using ggtt->start in
+ preparation of balloon removal
+Date: Mon, 12 Jan 2026 15:21:10 +0100
+Message-ID: <20260112142121.1153027-2-dev@lankhorst.se>
+X-Mailer: git-send-email 2.51.0
+In-Reply-To: <20260112142121.1153027-1-dev@lankhorst.se>
+References: <20260112142121.1153027-1-dev@lankhorst.se>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY8PR11MB7828:EE_|PH7PR11MB5957:EE_
-X-MS-Office365-Filtering-Correlation-Id: d677ea19-3584-47ab-aac4-08de51e5662d
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|7416014|366016|1800799024;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?lu6g8OPQkkP9V0kyFwifCPPzz+LaguK4cZ9sdw8patzLmtFxEX4ZxwYUV7ij?=
- =?us-ascii?Q?e+UYHknlF5lPotKr0wjXOazbz3e4eY9PqXuhXhhpc/5Zq2bivG+0QLRCKXxU?=
- =?us-ascii?Q?vJY9f+we7eKHBbN/VE9qj4uxkSZFVEkf4yViRcGV0o3chnc1WZ+16nRLbG2y?=
- =?us-ascii?Q?4LgK0kSA7uAQYtn2+LPuaZaEvoZZ3EUYEofM7J9aCKaxa/zQjGcZR1rWyJ6A?=
- =?us-ascii?Q?10ugsJOD4ceeF8l/vJx9mUL6hbcBUzm5+CkSp8jvjHDkX46Gh5g1dKGPWfJl?=
- =?us-ascii?Q?ii7qjJ0la7iDgtS7vUFTS0//7IE1G3cYp2RvTvsJFVkWweQQWqzoAmF59QPa?=
- =?us-ascii?Q?Qxo0pEXIXrSEDKC5K6S7+M94SxeOgyfVTLede8sgRqC5Hf3b6SOMa6MfKjRY?=
- =?us-ascii?Q?cHIF9ryQ6HDsiYH6p3ZN/jUypeEKnIxGKjMkfHwPDOh/U+Jje6UHTuus/dJ4?=
- =?us-ascii?Q?yDBfm/iN4mA9w3SV1Z+L4xtEBi7VZXPE/jnhwYPS/NnnbjR9s4/VJq9sOaWN?=
- =?us-ascii?Q?3Wm2bzHylx7H1qSjhzZUjEwQtLdP98Sr/VlL1U+JgSXKp+PaUza+L4KXv5/k?=
- =?us-ascii?Q?wTtkpC/0kWkJRgzHLoF9VtPk19ECFqR5Bk1MqJT2UbtV3v87yjp2PBzneQ3l?=
- =?us-ascii?Q?+KWiDkqXwysZ57CfpQ3bYtsVdgmSgpCQPPoqa9+GZ0tCCQH7bI2Nm8Old/ga?=
- =?us-ascii?Q?VtuZ7gx3RdlQXWw3LKbLcUg/kaN161pFimYeY2UZ/kAe8tRoV6zMRcgf1V6y?=
- =?us-ascii?Q?ln0087jdSm7MvaEqXrbvNdpvM2CeRVwUggzLnA6kNWTjIjMQgtkQrAVfeFVb?=
- =?us-ascii?Q?lJ/a4t4k4hTHzcQK9guMoWpZbXzJv0bAHUwdgN/jYc6LjDLYeZpXmm6wwGoT?=
- =?us-ascii?Q?rdg/N0jjK2gPEzIRDBLgvH2v3LslQPu/cDJNqg7yuYKl14cBwTkcEvJ5x4uU?=
- =?us-ascii?Q?euNEBgBrf2p0Zx+qC7JOrohqJdZ3Ui8810bLepkvK42LRavwS8MTDOzVtUUa?=
- =?us-ascii?Q?GcFq4GKlzCgNDrlSqtWCq2l4Nfa9fm4xnuKI3M4XGt+LVswcqW0QxRg/v8Mi?=
- =?us-ascii?Q?e0UTHCJVQ6+C9radxZhXKoLNyFTeVtD3T5L6FuygkMcQfaruKH9kdsTd0aeF?=
- =?us-ascii?Q?OZxz5Ex9wHLGnI8q5hZelHlbhC3ahqaH1HJT4J3tMgTo4C4qIhvzWCbryds3?=
- =?us-ascii?Q?R5tBOjb1iOAZuG1E+6AY6YHNfu6EanoQfdrTemztFgZhnChODoDvpvX+r2/N?=
- =?us-ascii?Q?j75soZeJYmDinmyJp8z148eCcF58cJsfvm1e54CxIubJAUbgoX7DxT76hGbo?=
- =?us-ascii?Q?XQwWP/9QPOy1TfZ38DspKXxePCJ/3ASXC0HoqmQueAfm0rqtd4gCAWkjzcjB?=
- =?us-ascii?Q?7zt/07PCsOndW9IWH63eZ/vPEAwI6wjhhaKZpJ6mIH00uq0O+BNjUbqnXQP8?=
- =?us-ascii?Q?bDDflVvjwDLigAOhLr8RlDpvoBLWHLKn?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY8PR11MB7828.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(7416014)(366016)(1800799024); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?NTBmYTEcEMTeMinhcND1WPR/oZROSlNSY907rTKosDOFPtBINV7zqoErLAPz?=
- =?us-ascii?Q?WAKlwrsyu7AvIcwIw7jb4CYohZRYOzFGoAhQ3r8wjFWGilNRzNx44rQN67ha?=
- =?us-ascii?Q?IJkpba9XGsvrgE/yf1NQdhddGhOhaVk0C2LQNGx1AiRIjpEQVQZwcsspOzwu?=
- =?us-ascii?Q?8BHaiFjXGdmaMG6arjgCa75f8J+2oCfCs59aoEaqA6hQT5fwsd9j8dNS0Cf+?=
- =?us-ascii?Q?zqAxORGc2lrVXU62gj3H6ru89dw4WoSbZgPZy+12B7aeo+bMYY9N0F136OGE?=
- =?us-ascii?Q?Ezo4MZnLJLq5rup8dwGQvQ/P1cSJYsXIMZrISTEXzeR1hXum8EsiXKaEVCaP?=
- =?us-ascii?Q?Wzt3A2PV1wVVn5XLfZPKLAzEd3uTxdqLgfZZf8YtjzRdbJp9Exr/5dnyYKdA?=
- =?us-ascii?Q?+2WIO0McDOvXDmVNbJWZVAWzmKRHHn0Xux8ZIUi6NMKTjnP7HnDiy/nOmfor?=
- =?us-ascii?Q?K/xVuOFS6T4ChltOo269al72ZXL72Rt2rx1bPEKWdWyXsB3fMefUsgRoKll6?=
- =?us-ascii?Q?x6N8LEz4b2XxIpa9dKFwSU43Zbjjo6VY7+fnFEIH5MMGYlEUj4pXmSR2Zt6D?=
- =?us-ascii?Q?XrOSpT3RdfmjYn/Vk+FfYSA3QJM+RB0fnj5R2NzK0LxzeJByxYXvoBaG7vwh?=
- =?us-ascii?Q?NLlD5LKXGmChwfsQlUffo8DB4h9jPxyFprSSsyt2uZZYGbaUzYPDMRKx69sp?=
- =?us-ascii?Q?Dbk12OFVoreE5pL3WKcloo3DsQnP5B/6TA2XqJJNRB24P3dBZ4grl8JPAqzS?=
- =?us-ascii?Q?+CGA3LucacPWfKLuK+9vasVxfflv1sQCVFrE0z3WL6yNW8ekdOrGu8R1WxYM?=
- =?us-ascii?Q?Z1POrf16Pr8pg+Pg+OzMV293HsU6xSpU4NXMCjZ0WLhTXC5a/SjeEhzZ1zA6?=
- =?us-ascii?Q?BZBPIx4GT4/r6ViJcn8QCNB0Iw1QRU6iYBKlQPk1VpApuq86l4d2BvA02Iuq?=
- =?us-ascii?Q?P1UdGevEU00dNI+5SYkHpCAV03Cy1+CAnxtuPJReeNBJNfXLJArRqTu6zpsE?=
- =?us-ascii?Q?K+t/eQv8CacT/ceKJD8kmzw+JRj3Um9Ri2FDHk5ktoNX175DwcFlmVjA+rzW?=
- =?us-ascii?Q?AYUYoQ5J0FDkFE1cghYNlhpiE8wjvI5P2rodYvjXD3YpqffbKmlVPNoXIcVW?=
- =?us-ascii?Q?Siy9RFFrXykIpVqIUc722nyp7rlyV6kI+I4o03HNf33OTCZ8oXGO45hLnfFF?=
- =?us-ascii?Q?AJJKCep38panpItimK5LTl1ju7dcoNM2x/aYe/h4JpR76jJTUQkTCrq71r81?=
- =?us-ascii?Q?MH5VJyHmKkZu/fFIProvouvRXRIUoXRgYkhD6PjyZw/pfiUuvYtFmdW9dLDz?=
- =?us-ascii?Q?4Q3sVDlIQ3EL/mRd6YvNbhiA8Zcqa+0OLj1S5D5UrmZPSLBPFt9i7LbTpDRz?=
- =?us-ascii?Q?4BBIsKJHfApPHKM4HlW5CcqfoJ8jt0Nsy5Ly9iSgdVwapg2GqwKoVdqhpsVE?=
- =?us-ascii?Q?hSZtmcPOxgjTZ8ByDBlDKjS+iv5P6VV+6ZwGFrDpQD9tVkRflV+2haF7pEJc?=
- =?us-ascii?Q?SUhDtrTIxgywPB8Hx534NvZjHdmEsI8QMvB48PWdLivH+P3xaaQjz4dYo5j7?=
- =?us-ascii?Q?TvnqnAhQv56XxrFF45KeP1jGw9KD6omAMNasWX8SBBMdCK+BVAAyi4WXefDY?=
- =?us-ascii?Q?EGoXvambaaKb9hp3o2mt549FZaaLgN2uIug5AftKPeM4dkcwz1fvy4ly94RS?=
- =?us-ascii?Q?qVKIZm8XlHXu+YZWm3lQGoZV1hVokpE644a2DFlThCTSFyCEkCgHiu3eUjCx?=
- =?us-ascii?Q?bkWULUVbgfmBb/rjqwoj9u9dxWVk3as=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: d677ea19-3584-47ab-aac4-08de51e5662d
-X-MS-Exchange-CrossTenant-AuthSource: CY8PR11MB7828.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Jan 2026 14:18:03.9000 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: oSkr+AOFBXOSy8YHaYeqIy8xupl7q0yKJHFBrsTASn43iubOx5M0yWHRyAvWkJzi0IZjt1Mm/0BNsuLpJp+VviS/0PGNd7kBYeve5J0Meoo=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB5957
-X-OriginatorOrg: intel.com
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -187,94 +50,240 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Sun, Jan 11, 2026 at 09:55:45PM +0100, Francois Dugast wrote:
-> From: Matthew Brost <matthew.brost@intel.com>
-> 
-> cpages returned from migrate_vma_setup represents the total number of
-> individual pages found, not the number of 4K pages. The math in
-> drm_pagemap_migrate_to_devmem for npages is based on the number of 4K
-> pages, so cpages != npages can fail even if the entire memory range is
-> found in migrate_vma_setup (e.g., when a single 2M page is found).
-> Add drm_pagemap_cpages, which converts cpages to the number of 4K pages
-> found.
-> 
-> Cc: Andrew Morton <akpm@linux-foundation.org>
-> Cc: David Hildenbrand <david@kernel.org>
-> Cc: Lorenzo Stoakes <lorenzo.stoakes@oracle.com>
-> Cc: Liam R. Howlett <Liam.Howlett@oracle.com>
-> Cc: Vlastimil Babka <vbabka@suse.cz>
-> Cc: Mike Rapoport <rppt@kernel.org>
-> Cc: Suren Baghdasaryan <surenb@google.com>
-> Cc: Michal Hocko <mhocko@suse.com>
-> Cc: Zi Yan <ziy@nvidia.com>
-> Cc: Alistair Popple <apopple@nvidia.com>
-> Cc: Balbir Singh <balbirs@nvidia.com>
-> Cc: linux-mm@kvack.org
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> Signed-off-by: Francois Dugast <francois.dugast@intel.com>
+Instead of having ggtt->size point to the end of ggtt, have ggtt->size
+be the actual size of the GGTT, and introduce ggtt->start to point to
+the beginning of GGTT.
 
-Reviewed-by: Francois Dugast <francois.dugast@intel.com>
+This will allow a massive cleanup of GGTT in case of SRIOV-VF.
 
-> ---
->  drivers/gpu/drm/drm_pagemap.c | 38 ++++++++++++++++++++++++++++++++++-
->  1 file changed, 37 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/drm_pagemap.c b/drivers/gpu/drm/drm_pagemap.c
-> index 308c14291eba..af2c8f4da00e 100644
-> --- a/drivers/gpu/drm/drm_pagemap.c
-> +++ b/drivers/gpu/drm/drm_pagemap.c
-> @@ -452,6 +452,41 @@ static int drm_pagemap_migrate_range(struct drm_pagemap_devmem *devmem,
->  	return ret;
->  }
->  
-> +/**
-> + * drm_pagemap_cpages() - Count collected pages
-> + * @migrate_pfn: Array of migrate_pfn entries to account
-> + * @npages: Number of entries in @migrate_pfn
-> + *
-> + * Compute the total number of minimum-sized pages represented by the
-> + * collected entries in @migrate_pfn. The total is derived from the
-> + * order encoded in each entry.
-> + *
-> + * Return: Total number of minimum-sized pages.
-> + */
-> +static int drm_pagemap_cpages(unsigned long *migrate_pfn, unsigned long npages)
-> +{
-> +	unsigned long i, cpages = 0;
-> +
-> +	for (i = 0; i < npages;) {
-> +		struct page *page = migrate_pfn_to_page(migrate_pfn[i]);
-> +		struct folio *folio;
-> +		unsigned int order = 0;
-> +
-> +		if (page) {
-> +			folio = page_folio(page);
-> +			order = folio_order(folio);
-> +			cpages += NR_PAGES(order);
-> +		} else if (migrate_pfn[i] & MIGRATE_PFN_COMPOUND) {
-> +			order = HPAGE_PMD_ORDER;
-> +			cpages += NR_PAGES(order);
-> +		}
-> +
-> +		i += NR_PAGES(order);
-> +	}
-> +
-> +	return cpages;
-> +}
-> +
->  /**
->   * drm_pagemap_migrate_to_devmem() - Migrate a struct mm_struct range to device memory
->   * @devmem_allocation: The device memory allocation to migrate to.
-> @@ -564,7 +599,8 @@ int drm_pagemap_migrate_to_devmem(struct drm_pagemap_devmem *devmem_allocation,
->  		goto err_free;
->  	}
->  
-> -	if (migrate.cpages != npages) {
-> +	if (migrate.cpages != npages &&
-> +	    drm_pagemap_cpages(migrate.src, npages) != npages) {
->  		/*
->  		 * Some pages to migrate. But we want to migrate all or
->  		 * nothing. Raced or unknown device pages.
-> -- 
-> 2.43.0
-> 
+Reviewed-by: Stuart Summers <stuart.summers@intel.com>
+Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
+---
+ drivers/gpu/drm/xe/tests/xe_guc_buf_kunit.c |  2 +-
+ drivers/gpu/drm/xe/xe_ggtt.c                | 82 +++++++++++++--------
+ drivers/gpu/drm/xe/xe_ggtt.h                |  2 +
+ drivers/gpu/drm/xe/xe_ggtt_types.h          |  4 +-
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c  |  4 +-
+ 5 files changed, 60 insertions(+), 34 deletions(-)
+
+diff --git a/drivers/gpu/drm/xe/tests/xe_guc_buf_kunit.c b/drivers/gpu/drm/xe/tests/xe_guc_buf_kunit.c
+index d266882adc0e0..acddbedcf17cb 100644
+--- a/drivers/gpu/drm/xe/tests/xe_guc_buf_kunit.c
++++ b/drivers/gpu/drm/xe/tests/xe_guc_buf_kunit.c
+@@ -67,7 +67,7 @@ static int guc_buf_test_init(struct kunit *test)
+ 
+ 	KUNIT_ASSERT_EQ(test, 0,
+ 			xe_ggtt_init_kunit(ggtt, DUT_GGTT_START,
+-					   DUT_GGTT_START + DUT_GGTT_SIZE));
++					   DUT_GGTT_SIZE));
+ 
+ 	kunit_activate_static_stub(test, xe_managed_bo_create_pin_map,
+ 				   replacement_xe_managed_bo_create_pin_map);
+diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
+index 9e6b4e9835424..b94aad265471b 100644
+--- a/drivers/gpu/drm/xe/xe_ggtt.c
++++ b/drivers/gpu/drm/xe/xe_ggtt.c
+@@ -137,10 +137,32 @@ static void ggtt_update_access_counter(struct xe_ggtt *ggtt)
+ 	}
+ }
+ 
++/**
++ * xe_ggtt_start - Get starting offset of GGTT.
++ * @ggtt: &xe_ggtt
++ *
++ * Returns: Starting offset for this &xe_ggtt.
++ */
++u64 xe_ggtt_start(struct xe_ggtt *ggtt)
++{
++	return ggtt->start;
++}
++
++/**
++ * xe_ggtt_size - Get size of GGTT.
++ * @ggtt: &xe_ggtt
++ *
++ * Returns: Total usable size of this &xe_ggtt.
++ */
++u64 xe_ggtt_size(struct xe_ggtt *ggtt)
++{
++	return ggtt->size;
++}
++
+ static void xe_ggtt_set_pte(struct xe_ggtt *ggtt, u64 addr, u64 pte)
+ {
+ 	xe_tile_assert(ggtt->tile, !(addr & XE_PTE_MASK));
+-	xe_tile_assert(ggtt->tile, addr < ggtt->size);
++	xe_tile_assert(ggtt->tile, addr < ggtt->start + ggtt->size);
+ 
+ 	writeq(pte, &ggtt->gsm[addr >> XE_PTE_SHIFT]);
+ }
+@@ -256,16 +278,16 @@ static const struct xe_ggtt_pt_ops xelpg_pt_wa_ops = {
+ 	.ggtt_get_pte = xe_ggtt_get_pte,
+ };
+ 
+-static void __xe_ggtt_init_early(struct xe_ggtt *ggtt, u32 reserved)
++static void __xe_ggtt_init_early(struct xe_ggtt *ggtt, u64 start, u64 size)
+ {
+-	drm_mm_init(&ggtt->mm, reserved,
+-		    ggtt->size - reserved);
++	ggtt->start = start;
++	ggtt->size = size;
++	drm_mm_init(&ggtt->mm, start, size);
+ }
+ 
+-int xe_ggtt_init_kunit(struct xe_ggtt *ggtt, u32 reserved, u32 size)
++int xe_ggtt_init_kunit(struct xe_ggtt *ggtt, u32 start, u32 size)
+ {
+-	ggtt->size = size;
+-	__xe_ggtt_init_early(ggtt, reserved);
++	__xe_ggtt_init_early(ggtt, start, size);
+ 	return 0;
+ }
+ EXPORT_SYMBOL_IF_KUNIT(xe_ggtt_init_kunit);
+@@ -293,26 +315,32 @@ int xe_ggtt_init_early(struct xe_ggtt *ggtt)
+ 	struct xe_device *xe = tile_to_xe(ggtt->tile);
+ 	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
+ 	unsigned int gsm_size;
++	u64 ggtt_start, wopcm = xe_wopcm_size(xe), ggtt_size;
+ 	int err;
+ 
+-	if (IS_SRIOV_VF(xe) || GRAPHICS_VERx100(xe) >= 1250)
+-		gsm_size = SZ_8M; /* GGTT is expected to be 4GiB */
+-	else
+-		gsm_size = probe_gsm_size(pdev);
+-
+-	if (gsm_size == 0) {
+-		xe_tile_err(ggtt->tile, "Hardware reported no preallocated GSM\n");
+-		return -ENOMEM;
++	if (!IS_SRIOV_VF(xe)) {
++		if (GRAPHICS_VERx100(xe) >= 1250)
++			gsm_size = SZ_8M; /* GGTT is expected to be 4GiB */
++		else
++			gsm_size = probe_gsm_size(pdev);
++		if (gsm_size == 0) {
++			xe_tile_err(ggtt->tile, "Hardware reported no preallocated GSM\n");
++			return -ENOMEM;
++		}
++		ggtt_start = wopcm;
++		ggtt_size = (gsm_size / 8) * (u64) XE_PAGE_SIZE - ggtt_start;
++	} else {
++		/* GGTT is expected to be 4GiB */
++		ggtt_start = wopcm;
++		ggtt_size = SZ_4G - ggtt_start;
+ 	}
+ 
+ 	ggtt->gsm = ggtt->tile->mmio.regs + SZ_8M;
+-	ggtt->size = (gsm_size / 8) * (u64) XE_PAGE_SIZE;
+-
+ 	if (IS_DGFX(xe) && xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K)
+ 		ggtt->flags |= XE_GGTT_FLAGS_64K;
+ 
+-	if (ggtt->size > GUC_GGTT_TOP)
+-		ggtt->size = GUC_GGTT_TOP;
++	if (ggtt_size + ggtt_start > GUC_GGTT_TOP)
++		ggtt_size = GUC_GGTT_TOP - ggtt_start;
+ 
+ 	if (GRAPHICS_VERx100(xe) >= 1270)
+ 		ggtt->pt_ops =
+@@ -326,7 +354,7 @@ int xe_ggtt_init_early(struct xe_ggtt *ggtt)
+ 	if (!ggtt->wq)
+ 		return -ENOMEM;
+ 
+-	__xe_ggtt_init_early(ggtt, xe_wopcm_size(xe));
++	__xe_ggtt_init_early(ggtt, ggtt_start, ggtt_size);
+ 
+ 	err = drmm_add_action_or_reset(&xe->drm, ggtt_fini_early, ggtt);
+ 	if (err)
+@@ -563,11 +591,9 @@ void xe_ggtt_node_remove_balloon_locked(struct xe_ggtt_node *node)
+ static void xe_ggtt_assert_fit(struct xe_ggtt *ggtt, u64 start, u64 size)
+ {
+ 	struct xe_tile *tile = ggtt->tile;
+-	struct xe_device *xe = tile_to_xe(tile);
+-	u64 __maybe_unused wopcm = xe_wopcm_size(xe);
+ 
+-	xe_tile_assert(tile, start >= wopcm);
+-	xe_tile_assert(tile, start + size < ggtt->size - wopcm);
++	xe_tile_assert(tile, start >= ggtt->start);
++	xe_tile_assert(tile, start + size <= ggtt->start + ggtt->size);
+ }
+ 
+ /**
+@@ -890,14 +916,12 @@ u64 xe_ggtt_largest_hole(struct xe_ggtt *ggtt, u64 alignment, u64 *spare)
+ {
+ 	const struct drm_mm *mm = &ggtt->mm;
+ 	const struct drm_mm_node *entry;
+-	u64 hole_min_start = xe_wopcm_size(tile_to_xe(ggtt->tile));
+ 	u64 hole_start, hole_end, hole_size;
+ 	u64 max_hole = 0;
+ 
+ 	mutex_lock(&ggtt->lock);
+-
+ 	drm_mm_for_each_hole(entry, mm, hole_start, hole_end) {
+-		hole_start = max(hole_start, hole_min_start);
++		hole_start = max(hole_start, ggtt->start);
+ 		hole_start = ALIGN(hole_start, alignment);
+ 		hole_end = ALIGN_DOWN(hole_end, alignment);
+ 		if (hole_start >= hole_end)
+@@ -1069,15 +1093,13 @@ u64 xe_ggtt_print_holes(struct xe_ggtt *ggtt, u64 alignment, struct drm_printer
+ {
+ 	const struct drm_mm *mm = &ggtt->mm;
+ 	const struct drm_mm_node *entry;
+-	u64 hole_min_start = xe_wopcm_size(tile_to_xe(ggtt->tile));
+ 	u64 hole_start, hole_end, hole_size;
+ 	u64 total = 0;
+ 	char buf[10];
+ 
+ 	mutex_lock(&ggtt->lock);
+-
+ 	drm_mm_for_each_hole(entry, mm, hole_start, hole_end) {
+-		hole_start = max(hole_start, hole_min_start);
++		hole_start = max(hole_start, ggtt->start);
+ 		hole_start = ALIGN(hole_start, alignment);
+ 		hole_end = ALIGN_DOWN(hole_end, alignment);
+ 		if (hole_start >= hole_end)
+diff --git a/drivers/gpu/drm/xe/xe_ggtt.h b/drivers/gpu/drm/xe/xe_ggtt.h
+index 93fea4b6079ce..df7196ec4696e 100644
+--- a/drivers/gpu/drm/xe/xe_ggtt.h
++++ b/drivers/gpu/drm/xe/xe_ggtt.h
+@@ -23,6 +23,8 @@ int xe_ggtt_node_insert_balloon_locked(struct xe_ggtt_node *node,
+ 				       u64 start, u64 size);
+ void xe_ggtt_node_remove_balloon_locked(struct xe_ggtt_node *node);
+ void xe_ggtt_shift_nodes_locked(struct xe_ggtt *ggtt, s64 shift);
++u64 xe_ggtt_start(struct xe_ggtt *ggtt);
++u64 xe_ggtt_size(struct xe_ggtt *ggtt);
+ 
+ int xe_ggtt_node_insert(struct xe_ggtt_node *node, u32 size, u32 align);
+ int xe_ggtt_node_insert_locked(struct xe_ggtt_node *node,
+diff --git a/drivers/gpu/drm/xe/xe_ggtt_types.h b/drivers/gpu/drm/xe/xe_ggtt_types.h
+index dacd796f81844..d773cf284c032 100644
+--- a/drivers/gpu/drm/xe/xe_ggtt_types.h
++++ b/drivers/gpu/drm/xe/xe_ggtt_types.h
+@@ -22,7 +22,9 @@ struct xe_gt;
+ struct xe_ggtt {
+ 	/** @tile: Back pointer to tile where this GGTT belongs */
+ 	struct xe_tile *tile;
+-	/** @size: Total size of this GGTT */
++	/** @start: Start offset of GGTT */
++	u64 start;
++	/** @size: Total usable size of this GGTT */
+ 	u64 size;
+ 
+ #define XE_GGTT_FLAGS_64K BIT(0)
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
+index 5a870914b102c..bed6580d8d090 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
+@@ -393,8 +393,8 @@ static int pf_push_full_vf_config(struct xe_gt *gt, unsigned int vfid)
+ 	xe_gt_assert(gt, num_dwords <= max_cfg_dwords);
+ 
+ 	if (vfid == PFID) {
+-		u64 ggtt_start = xe_wopcm_size(gt_to_xe(gt));
+-		u64 ggtt_size = gt_to_tile(gt)->mem.ggtt->size - ggtt_start;
++		u64 ggtt_start = xe_ggtt_start(gt_to_tile(gt)->mem.ggtt);
++		u64 ggtt_size = xe_ggtt_size(gt_to_tile(gt)->mem.ggtt);
+ 
+ 		/* plain PF config data will never include a real GGTT region */
+ 		xe_gt_assert(gt, !encode_config_ggtt(cfg + num_dwords, config, true));
+-- 
+2.51.0
+
