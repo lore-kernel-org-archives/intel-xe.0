@@ -4,33 +4,32 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D478BC9EC94
-	for <intel-xe@archiver.kernel.org>; Mon, 12 Jan 2026 14:21:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 608BAC9EC94
+	for <intel-xe@archiver.kernel.org>; Mon, 12 Jan 2026 14:21:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9B88910E3F1;
-	Mon, 12 Jan 2026 14:21:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 209F410E3F3;
+	Mon, 12 Jan 2026 14:21:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="USvaTlad";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="Wf4L0u+Z";
 	dkim-atps=neutral
 Received: from lankhorst.se (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D344410E3E4
- for <intel-xe@lists.freedesktop.org>; Mon, 12 Jan 2026 14:21:26 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BD9C110E3F1
+ for <intel-xe@lists.freedesktop.org>; Mon, 12 Jan 2026 14:21:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1768227685;
- bh=qpi6RjIyKyMJbm1K3mD5WGIaVWDTYNIoF31kfnmnkL4=;
+ s=default; t=1768227693;
+ bh=r/yz7keuUjbdEh+CkdKVzv2Zcfwnt3tD6NOO86jxs6k=;
  h=From:To:Subject:Date:In-Reply-To:References:From;
- b=USvaTladgcr3X948WesyOgIFLPfw7Dz1kBFVLwynqa7HgXMpOKd9hxX8I6+4uhyUC
- nwPaZvpzh719y2giZ656pKrv0RVmNI4Guie4mkj5ux4VyNO6WUMKkangrMF1dIfnK+
- w+l7cI6H9s996rQGEcnQizOi6DUTS4Ku7QhVQBCBWAzyO3eZ6L3iMjRlTJmiZhZ/j9
- 5L5ZIL39YTCEDg8nfZNTIyt8WtCQFIwVCzSqI1ztlWRGFWGEX8P8d86HMgFArBEZy5
- hWsW+fhDICYZjr/e2pmMC3vseYFdyiLvI6bLKsbuLKpyRFidCX/MApsD/hQ6k6blj1
- tYoBnYGt4dm8w==
+ b=Wf4L0u+ZwbDFfK/AdREkr/MIFPSm+HCWOtq6quT44DyslYJZ6DrYQuuYu9ba78Oag
+ X6vQbpCBT0B1IpB/uL1TpCofspIyGcDpclEojNnubpY+KppJYwi12mRnWrA3Bipn26
+ HZDk3xNaer45luLzYlWcI4pu/USnQqMArGTgGRuUTtUN9PSO/SYpqs6Gc+IkC8IaBa
+ uHKKasSoM6BFziAUrn3dDDQBESGs3kXMreQqCRyT8Uak8mvaMwnwUtHHtHYNVeYcLD
+ NrjTIpTer1xiZ3JBvYmtSslFIT/AlOWPFl3+zvWywnd748wFXXBKmrjh7fuuxbXEow
+ Dycp4O6BWbqmQ==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-xe@lists.freedesktop.org
-Subject: [FOR-CI-DO-NOT-REVIEW-v4 03/12] drm/xe: Add xe_ggtt_node_addr() to
- avoid dereferencing xe_ggtt_node
-Date: Mon, 12 Jan 2026 15:21:12 +0100
-Message-ID: <20260112142121.1153027-4-dev@lankhorst.se>
+Subject: [FOR-CI-DO-NOT-REVIEW-v4 12/12] drm/xe: Remove xe_ggtt_node_allocated
+Date: Mon, 12 Jan 2026 15:21:21 +0100
+Message-ID: <20260112142121.1153027-13-dev@lankhorst.se>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20260112142121.1153027-1-dev@lankhorst.se>
 References: <20260112142121.1153027-1-dev@lankhorst.se>
@@ -50,76 +49,136 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This function makes it possible to add an offset that is applied to
-all xe_ggtt_node's, and hides the internals from all its users.
+With the intermediate state gone, no longer useful. Just check against
+NULL where needed.
 
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/xe/xe_bo.h   |  8 +++++---
- drivers/gpu/drm/xe/xe_ggtt.c | 11 +++++++++++
- drivers/gpu/drm/xe/xe_ggtt.h |  2 ++
- 3 files changed, 18 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/xe/display/xe_fb_pin.c     |  3 +--
+ drivers/gpu/drm/xe/xe_ggtt.c               | 17 -----------------
+ drivers/gpu/drm/xe/xe_ggtt.h               |  1 -
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c | 12 ++++++------
+ 4 files changed, 7 insertions(+), 26 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
-index 8ab4474129c3d..c914ab719f20e 100644
---- a/drivers/gpu/drm/xe/xe_bo.h
-+++ b/drivers/gpu/drm/xe/xe_bo.h
-@@ -9,6 +9,7 @@
- #include <drm/ttm/ttm_tt.h>
+diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+index d2c4e94180fa3..10915fb3151f4 100644
+--- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
++++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+@@ -352,8 +352,7 @@ static void __xe_unpin_fb_vma(struct i915_vma *vma)
  
- #include "xe_bo_types.h"
-+#include "xe_ggtt.h"
- #include "xe_macros.h"
- #include "xe_validation.h"
- #include "xe_vm_types.h"
-@@ -252,13 +253,14 @@ static inline u32
- __xe_bo_ggtt_addr(struct xe_bo *bo, u8 tile_id)
- {
- 	struct xe_ggtt_node *ggtt_node = bo->ggtt_node[tile_id];
-+	u64 offset;
+ 	if (vma->dpt)
+ 		xe_bo_unpin_map_no_vm(vma->dpt);
+-	else if (!xe_ggtt_node_allocated(vma->bo->ggtt_node[tile_id]) ||
+-		 vma->bo->ggtt_node[tile_id] != vma->node)
++	else if (vma->bo->ggtt_node[tile_id] != vma->node)
+ 		xe_ggtt_node_remove(vma->node, false);
  
- 	if (XE_WARN_ON(!ggtt_node))
- 		return 0;
- 
--	XE_WARN_ON(ggtt_node->base.size > xe_bo_size(bo));
--	XE_WARN_ON(ggtt_node->base.start + ggtt_node->base.size > (1ull << 32));
--	return ggtt_node->base.start;
-+	offset = xe_ggtt_node_addr(ggtt_node);
-+	XE_WARN_ON(offset + xe_bo_size(bo) > (1ull << 32));
-+	return offset;
- }
- 
- static inline u32
+ 	ttm_bo_reserve(&vma->bo->ttm, false, false, NULL);
 diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
-index a78aebcd5b194..f72fd3a79a376 100644
+index cbe66114a8e11..47d10e00395fc 100644
 --- a/drivers/gpu/drm/xe/xe_ggtt.c
 +++ b/drivers/gpu/drm/xe/xe_ggtt.c
-@@ -1185,3 +1185,14 @@ u64 xe_ggtt_read_pte(struct xe_ggtt *ggtt, u64 offset)
- {
- 	return ioread64(ggtt->gsm + (offset / XE_PAGE_SIZE));
+@@ -664,20 +664,6 @@ struct xe_ggtt_node *xe_ggtt_node_insert(struct xe_ggtt *ggtt, u32 size, u32 ali
+ 	return node;
  }
-+
-+/**
-+ * xe_ggtt_node_addr - Get @node offset in GGTT.
-+ * @node: &xe_ggtt_node
-+ *
-+ * Get the GGTT offset for allocated node.
-+ */
-+u64 xe_ggtt_node_addr(const struct xe_ggtt_node *node)
-+{
-+	return node->base.start;
-+}
+ 
+-/**
+- * xe_ggtt_node_allocated - Check if node is allocated in GGTT
+- * @node: the &xe_ggtt_node to be inspected
+- *
+- * Return: True if allocated, False otherwise.
+- */
+-bool xe_ggtt_node_allocated(const struct xe_ggtt_node *node)
+-{
+-	if (!node || !node->ggtt)
+-		return false;
+-
+-	return drm_mm_node_allocated(&node->base);
+-}
+-
+ /**
+  * xe_ggtt_node_pt_size() - Get the size of page table entries needed to map a GGTT node.
+  * @node: the &xe_ggtt_node
+@@ -961,9 +947,6 @@ static void xe_ggtt_assign_locked(const struct xe_ggtt_node *node, u16 vfid)
+ 
+ 	lockdep_assert_held(&ggtt->lock);
+ 
+-	if (!xe_ggtt_node_allocated(node))
+-		return;
+-
+ 	while (start < end) {
+ 		ggtt->pt_ops->ggtt_set_pte(ggtt, start, pte);
+ 		start += XE_PAGE_SIZE;
 diff --git a/drivers/gpu/drm/xe/xe_ggtt.h b/drivers/gpu/drm/xe/xe_ggtt.h
-index 9adfc58edf581..76336a6296c45 100644
+index 6d8679bcc38fb..ffa3369927157 100644
 --- a/drivers/gpu/drm/xe/xe_ggtt.h
 +++ b/drivers/gpu/drm/xe/xe_ggtt.h
-@@ -61,4 +61,6 @@ void xe_ggtt_might_lock(struct xe_ggtt *ggtt);
- u64 xe_ggtt_encode_pte_flags(struct xe_ggtt *ggtt, struct xe_bo *bo, u16 pat_index);
- u64 xe_ggtt_read_pte(struct xe_ggtt *ggtt, u64 offset);
+@@ -30,7 +30,6 @@ xe_ggtt_node_insert_transform(struct xe_ggtt *ggtt,
+ 			      u64 size, u32 align,
+ 			      xe_ggtt_transform_cb transform, void *arg);
+ void xe_ggtt_node_remove(struct xe_ggtt_node *node, bool invalidate);
+-bool xe_ggtt_node_allocated(const struct xe_ggtt_node *node);
+ size_t xe_ggtt_node_pt_size(const struct xe_ggtt_node *node);
+ void xe_ggtt_map_bo_unlocked(struct xe_ggtt *ggtt, struct xe_bo *bo);
+ int xe_ggtt_insert_bo(struct xe_ggtt *ggtt, struct xe_bo *bo, struct drm_exec *exec);
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
+index a6414d164166e..ca757742d2748 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
+@@ -281,7 +281,7 @@ static u32 encode_config_ggtt(u32 *cfg, const struct xe_gt_sriov_config *config,
+ {
+ 	struct xe_ggtt_node *node = config->ggtt_region;
  
-+u64 xe_ggtt_node_addr(const struct xe_ggtt_node *node);
-+
- #endif
+-	if (!xe_ggtt_node_allocated(node))
++	if (!node)
+ 		return 0;
+ 
+ 	return encode_ggtt(cfg, xe_ggtt_node_addr(node), xe_ggtt_node_size(node), details);
+@@ -505,7 +505,7 @@ static int pf_provision_vf_ggtt(struct xe_gt *gt, unsigned int vfid, u64 size)
+ 
+ 	size = round_up(size, alignment);
+ 
+-	if (xe_ggtt_node_allocated(config->ggtt_region)) {
++	if (config->ggtt_region) {
+ 		err = pf_distribute_config_ggtt(tile, vfid, 0, 0);
+ 		if (unlikely(err))
+ 			return err;
+@@ -516,7 +516,7 @@ static int pf_provision_vf_ggtt(struct xe_gt *gt, unsigned int vfid, u64 size)
+ 		if (unlikely(err))
+ 			return err;
+ 	}
+-	xe_gt_assert(gt, !xe_ggtt_node_allocated(config->ggtt_region));
++	xe_gt_assert(gt, !config->ggtt_region);
+ 
+ 	if (!size)
+ 		return 0;
+@@ -546,7 +546,7 @@ static u64 pf_get_vf_config_ggtt(struct xe_gt *gt, unsigned int vfid)
+ 	struct xe_ggtt_node *node = config->ggtt_region;
+ 
+ 	xe_gt_assert(gt, xe_gt_is_main_type(gt));
+-	return xe_ggtt_node_allocated(node) ? xe_ggtt_node_size(node) : 0;
++	return node ? xe_ggtt_node_size(node) : 0;
+ }
+ 
+ /**
+@@ -2560,7 +2560,7 @@ int xe_gt_sriov_pf_config_release(struct xe_gt *gt, unsigned int vfid, bool forc
+ 
+ static void pf_sanitize_ggtt(struct xe_ggtt_node *ggtt_region, unsigned int vfid)
+ {
+-	if (xe_ggtt_node_allocated(ggtt_region))
++	if (ggtt_region)
+ 		xe_ggtt_assign(ggtt_region, vfid);
+ }
+ 
+@@ -3019,7 +3019,7 @@ int xe_gt_sriov_pf_config_print_ggtt(struct xe_gt *gt, struct drm_printer *p)
+ 
+ 	for (n = 1; n <= total_vfs; n++) {
+ 		config = &gt->sriov.pf.vfs[n].config;
+-		if (!xe_ggtt_node_allocated(config->ggtt_region))
++		if (!config->ggtt_region)
+ 			continue;
+ 
+ 		string_get_size(xe_ggtt_node_size(config->ggtt_region), 1, STRING_UNITS_2,
 -- 
 2.51.0
 
