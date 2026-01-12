@@ -4,27 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3B94FC9EC6C
-	for <intel-xe@archiver.kernel.org>; Mon, 12 Jan 2026 10:42:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 079C1C9EC76
+	for <intel-xe@archiver.kernel.org>; Mon, 12 Jan 2026 11:23:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E6E3A10E35E;
-	Mon, 12 Jan 2026 10:42:56 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5DFAD10E35B;
- Mon, 12 Jan 2026 10:42:56 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7542851395348249580=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id A146D10E38B;
+	Mon, 12 Jan 2026 11:23:57 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="oB2lvARq";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6A47110E0D7;
+ Mon, 12 Jan 2026 11:23:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1768217035; x=1799753035;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=vpQ9JqNi8vbXtk07HarRI+KUMBkRhb2mbzH+2yXf7sU=;
+ b=oB2lvARqcmaPruSYEqRU7duY1Kb/+nVyD/VK5S0riHo4RjXLaHGZlb3F
+ db6+q7MpRI9V3AI5mDP/0Y5YtDN8s3fuZeMAz28uRY4sraGUVbggDWRKy
+ iIq5kkA2ux7VR+gbbho73Fiy17E9YM75x3Lmj93H3+3iXvjTbxLPIHEsJ
+ kLewJIfFpvjQ4RIe1dGlOD46MDXalQvRp2bQoIn9ucc2wWqKODLDkulGk
+ 27pdYYjC5uPz+WFUPS40KgDVcmvqGjXit4YAJhJc9JiIb/0NZy/Yf7QzB
+ kpDH9onVAC9lL0eY2V2jHHkFcl2R2hpBL8en+WLCq9kVk+rCMkz8DZOBD w==;
+X-CSE-ConnectionGUID: ZzvpFO/jSqmuD5lu/8xkFQ==
+X-CSE-MsgGUID: QZn5J2uSSD+zzFH08IqTDw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11668"; a="57038338"
+X-IronPort-AV: E=Sophos;i="6.21,219,1763452800"; d="scan'208";a="57038338"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Jan 2026 03:23:54 -0800
+X-CSE-ConnectionGUID: VBTLzxHXRc6HuSdW7ski3g==
+X-CSE-MsgGUID: pqAqYpfESSSGTYAIa7xZTg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,219,1763452800"; d="scan'208";a="209139569"
+Received: from ettammin-desk.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.222])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Jan 2026 03:23:50 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
+Cc: harry.wentland@amd.com, louis.chauvet@bootlin.com, mwen@igalia.com,
+ contact@emersion.fr, alex.hung@amd.com, daniels@collabora.com,
+ uma.shankar@intel.com, suraj.kandpal@intel.com, nfraprado@collabora.com,
+ ville.syrjala@linux.intel.com, matthew.d.roper@intel.com
+Subject: Re: [PATCH v2 05/13] drm/colorop: Add destroy helper for colorop
+ objects
+In-Reply-To: <20260109081728.478844-6-chaitanya.kumar.borah@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20260109081728.478844-1-chaitanya.kumar.borah@intel.com>
+ <20260109081728.478844-6-chaitanya.kumar.borah@intel.com>
+Date: Mon, 12 Jan 2026 13:23:46 +0200
+Message-ID: <bd769e61d261899ada538818b5a3923070ba2b72@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Replace_use_of_sy?=
- =?utf-8?q?stem=5Fwq_with_tlb=5Finval-=3Etimeout=5Fwq?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Marco Crivellari" <marco.crivellari@suse.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 12 Jan 2026 10:42:56 -0000
-Message-ID: <176821457637.145871.7900936405596947902@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260112094406.82641-1-marco.crivellari@suse.com>
-In-Reply-To: <20260112094406.82641-1-marco.crivellari@suse.com>
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,125 +72,74 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7542851395348249580==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Fri, 09 Jan 2026, Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com> wrote:
+> Add a helper that performs common cleanup and frees the
+> associated object. This can be used by drivers if they do not
+> require any driver-specific teardown.
+>
+> Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+> Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
+> Reviewed-by: Uma Shankar <uma.shankar@intel.com>
+> Reviewed-by: Alex Hung <alex.hung@amd.com>
+> ---
+>  drivers/gpu/drm/drm_colorop.c | 12 ++++++++++++
+>  include/drm/drm_colorop.h     | 10 ++++++++++
+>  2 files changed, 22 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/drm_colorop.c b/drivers/gpu/drm/drm_colorop.c
+> index 44eb823585d2..ba19a3ab23cb 100644
+> --- a/drivers/gpu/drm/drm_colorop.c
+> +++ b/drivers/gpu/drm/drm_colorop.c
+> @@ -178,6 +178,18 @@ void drm_colorop_cleanup(struct drm_colorop *colorop)
+>  }
+>  EXPORT_SYMBOL(drm_colorop_cleanup);
+>  
+> +/**
+> + * drm_colorop_destroy() - Helper for colorop destruction
+> + *
+> + * @colorop: colorop to destroy
+> + */
+> +void drm_colorop_destroy(struct drm_colorop *colorop)
+> +{
+> +	drm_colorop_cleanup(colorop);
+> +	kfree(colorop);
+> +}
+> +EXPORT_SYMBOL(drm_colorop_destroy);
+> +
+>  /**
+>   * drm_colorop_pipeline_destroy - Helper for color pipeline destruction
+>   *
+> diff --git a/include/drm/drm_colorop.h b/include/drm/drm_colorop.h
+> index a3a32f9f918c..0f5ba72c1704 100644
+> --- a/include/drm/drm_colorop.h
+> +++ b/include/drm/drm_colorop.h
+> @@ -420,6 +420,16 @@ void drm_colorop_atomic_destroy_state(struct drm_colorop *colorop,
+>   */
+>  void drm_colorop_reset(struct drm_colorop *colorop);
+>  
+> +/**
+> + * drm_colorop_destroy - destroy colorop
+> + * @colorop: drm colorop
+> + *
+> + * Destroys @colorop by performing common DRM cleanup and freeing the
+> + * colorop object. This can be used by drivers if they do not
+> + * require any driver-specific teardown.
+> + */
 
-== Series Details ==
+The kernel-doc should be with the function definition, not at the
+declaration, and certainly not both.
 
-Series: drm/xe: Replace use of system_wq with tlb_inval->timeout_wq
-URL   : https://patchwork.freedesktop.org/series/159945/
-State : success
+BR,
+Jani.
 
-== Summary ==
+> +void drm_colorop_destroy(struct drm_colorop *colorop);
+> +
+>  /**
+>   * drm_colorop_index - find the index of a registered colorop
+>   * @colorop: colorop to find index for
 
-CI Bug Log - changes from xe-4365-f339d0352f5f7e023e8ff89bb18291df8dfdad6e_BAT -> xe-pw-159945v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (12 -> 12)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-159945v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_waitfence@reltime:
-    - bat-dg2-oem2:       [PASS][1] -> [FAIL][2] ([Intel XE#6520])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4365-f339d0352f5f7e023e8ff89bb18291df8dfdad6e/bat-dg2-oem2/igt@xe_waitfence@reltime.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159945v1/bat-dg2-oem2/igt@xe_waitfence@reltime.html
-
-  
-  [Intel XE#6520]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520
-
-
-Build changes
--------------
-
-  * Linux: xe-4365-f339d0352f5f7e023e8ff89bb18291df8dfdad6e -> xe-pw-159945v1
-
-  IGT_8696: 8696
-  xe-4365-f339d0352f5f7e023e8ff89bb18291df8dfdad6e: f339d0352f5f7e023e8ff89bb18291df8dfdad6e
-  xe-pw-159945v1: 159945v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159945v1/index.html
-
---===============7542851395348249580==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Replace use of system_wq with tlb_inval-&gt;timeout_wq</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/159945/">https://patchwork.freedesktop.org/series/159945/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159945v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159945v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4365-f339d0352f5f7e023e8ff89bb18291df8dfdad6e_BAT -&gt; xe-pw-159945v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (12 -&gt; 12)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-159945v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@xe_waitfence@reltime:<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4365-f339d0352f5f7e023e8ff89bb18291df8dfdad6e/bat-dg2-oem2/igt@xe_waitfence@reltime.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159945v1/bat-dg2-oem2/igt@xe_waitfence@reltime.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520">Intel XE#6520</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4365-f339d0352f5f7e023e8ff89bb18291df8dfdad6e -&gt; xe-pw-159945v1</li>
-</ul>
-<p>IGT_8696: 8696<br />
-  xe-4365-f339d0352f5f7e023e8ff89bb18291df8dfdad6e: f339d0352f5f7e023e8ff89bb18291df8dfdad6e<br />
-  xe-pw-159945v1: 159945v1</p>
-
-</body>
-</html>
-
---===============7542851395348249580==--
+-- 
+Jani Nikula, Intel
