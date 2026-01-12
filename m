@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9E62BCF45DB
-	for <intel-xe@archiver.kernel.org>; Mon, 12 Jan 2026 23:27:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 07D25CF45DE
+	for <intel-xe@archiver.kernel.org>; Mon, 12 Jan 2026 23:27:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5A52410E43D;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 82DE910E43E;
 	Mon, 12 Jan 2026 23:27:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CZtNtN2b";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kEJBs4jA";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BED7A10E435
- for <intel-xe@lists.freedesktop.org>; Mon, 12 Jan 2026 23:27:36 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 16F6010E2BA
+ for <intel-xe@lists.freedesktop.org>; Mon, 12 Jan 2026 23:27:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1768260457; x=1799796457;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=NNERI+pLy9TgmQOui95U+SV/xnT+qHRWb/uzVENIAUs=;
- b=CZtNtN2ba4M70125gVQ0hkzL+HzBKNMG8eI54l/KgT8KL6V2MCSshK2y
- 7bP8VDqCOoD3S26Q7K9MeD79zSX4MyjKJBfHMp0VCNmiFMfjdW6GuABAa
- +qjD9vZ8gAVgWmxrHnnbU8U2A4fDS1pCR0aC4MEfXKbYhHaWzbbsLpHiC
- y9WemUqTXsWpu++meivLnHLUXGDLw3L1mBxyM13fiwqIsC3OMU5FPWUcZ
- a+g5tbSsW3BGhyDQmH3Cz2PHGyo3+E4Awvq87fh0SLcfjm3YqqAVl9YJV
- Vlq1Q3FnJRLwz5viEKTIrt8oivMypuvcEr1e8qbor0DGxc1zwg02tPnki Q==;
-X-CSE-ConnectionGUID: 1UpZ3DVuTSmclySU3uC8lA==
-X-CSE-MsgGUID: Ew7C7BfKRme31rIKyP/1VA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11669"; a="69594769"
-X-IronPort-AV: E=Sophos;i="6.21,222,1763452800"; d="scan'208";a="69594769"
+ bh=hevKHwZHWaYD2u5GrMgvwlzv6cL2D183j6BF7RDe4a4=;
+ b=kEJBs4jA0YO/rMREMAySho7NlYeTJ2ek4KZdPTr0pG3wZKV76glT2Nrx
+ J9ExyvVYwCgCqyOncCBzMR1uIAk/aNZBylph9RgC3R7FRP7ManwlfrxFa
+ AnWwuvlqek7Wp/wL0JBvAHWhXNGB/ukttHNGQd4b3eDbmoqkPzaBBQ7mp
+ E6mc5q8mL23VioI0tOqFt8uR1ZlIcm/NlfRLCiSlQd82F6hkykRbc7T7j
+ g5XMiPtcIdN5xdIrBa1KClz+otMFaXSWJ13+aB4/J4ZBjVhv8NKU6+m0r
+ NKvSp4sxa4k//O9kqxOpnQYFaMF8VGZPEYxgh7Stp4tHil/ibtGCxgCoe Q==;
+X-CSE-ConnectionGUID: zqUagb66QbGhUBNTgmmYPg==
+X-CSE-MsgGUID: +s+gDJOISR2coN72MgBwTg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11669"; a="69594772"
+X-IronPort-AV: E=Sophos;i="6.21,222,1763452800"; d="scan'208";a="69594772"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jan 2026 15:27:36 -0800
-X-CSE-ConnectionGUID: u8LHFkLXTdKzEQcg8LY98g==
-X-CSE-MsgGUID: A2Oevs9PR82Q3tClSckb5Q==
+ 12 Jan 2026 15:27:37 -0800
+X-CSE-ConnectionGUID: kA16ifITSo+69EyxkX+mKA==
+X-CSE-MsgGUID: o7x7m35ATMCthydddHKIZw==
 X-ExtLoop1: 1
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
@@ -43,10 +43,9 @@ Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: stuart.summers@intel.com
-Subject: [PATCH v3 06/11] drm/xe: Rename send_tlb_inval_ppgtt to
- send_tlb_inval_asid_ppgtt
-Date: Mon, 12 Jan 2026 15:27:25 -0800
-Message-Id: <20260112232730.3347414-7-matthew.brost@intel.com>
+Subject: [PATCH v3 09/11] drm/xe: Add exec queue active vfunc
+Date: Mon, 12 Jan 2026 15:27:28 -0800
+Message-Id: <20260112232730.3347414-10-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260112232730.3347414-1-matthew.brost@intel.com>
 References: <20260112232730.3347414-1-matthew.brost@intel.com>
@@ -66,43 +65,80 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Context-based TLB invalidations have their own set of GuC TLB
-invalidation operations. Rename the current PPGTT invalidation function,
-which operates on ASIDs, to a more descriptive name that reflects its
-purpose.
+If an exec queue is inactive (e.g., not registered or scheduling is
+disabled), TLB invalidations are not issued for that queue. Add a
+virtual function to determine the active state, which TLB invalidation
+logic can hook into.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Stuart Summers <stuart.summers@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc_tlb_inval.c | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/xe/xe_exec_queue_types.h | 2 ++
+ drivers/gpu/drm/xe/xe_execlist.c         | 7 +++++++
+ drivers/gpu/drm/xe/xe_guc_submit.c       | 6 ++++++
+ 3 files changed, 15 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_tlb_inval.c b/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
-index 43f6dbcb2bc2..a6a1c371a28e 100644
---- a/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
-+++ b/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
-@@ -150,9 +150,9 @@ static u64 normalize_invalidation_range(struct xe_gt *gt, u64 *start, u64 *end)
-  */
- #define MAX_RANGE_TLB_INVALIDATION_LENGTH (rounddown_pow_of_two(ULONG_MAX))
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+index d3e2789cf5bc..9cca558c5809 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
++++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+@@ -298,6 +298,8 @@ struct xe_exec_queue_ops {
+ 	void (*resume)(struct xe_exec_queue *q);
+ 	/** @reset_status: check exec queue reset status */
+ 	bool (*reset_status)(struct xe_exec_queue *q);
++	/** @active: check exec queue is active */
++	bool (*active)(struct xe_exec_queue *q);
+ };
  
--static int send_tlb_inval_ppgtt(struct xe_tlb_inval *tlb_inval, u32 seqno,
--				u64 start, u64 end, u32 asid,
--				struct drm_suballoc *prl_sa)
-+static int send_tlb_inval_asid_ppgtt(struct xe_tlb_inval *tlb_inval, u32 seqno,
-+				     u64 start, u64 end, u32 asid,
-+				     struct drm_suballoc *prl_sa)
- {
- #define MAX_TLB_INVALIDATION_LEN	7
- 	struct xe_guc *guc = tlb_inval->private;
-@@ -219,7 +219,7 @@ static long tlb_inval_timeout_delay(struct xe_tlb_inval *tlb_inval)
- static const struct xe_tlb_inval_ops guc_tlb_inval_ops = {
- 	.all = send_tlb_inval_all,
- 	.ggtt = send_tlb_inval_ggtt,
--	.ppgtt = send_tlb_inval_ppgtt,
-+	.ppgtt = send_tlb_inval_asid_ppgtt,
- 	.initialized = tlb_inval_initialized,
- 	.flush = tlb_inval_flush,
- 	.timeout_delay = tlb_inval_timeout_delay,
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_execlist.c b/drivers/gpu/drm/xe/xe_execlist.c
+index 46c17a18a3f4..e4a2674f48c7 100644
+--- a/drivers/gpu/drm/xe/xe_execlist.c
++++ b/drivers/gpu/drm/xe/xe_execlist.c
+@@ -469,6 +469,12 @@ static bool execlist_exec_queue_reset_status(struct xe_exec_queue *q)
+ 	return false;
+ }
+ 
++static bool execlist_exec_queue_active(struct xe_exec_queue *q)
++{
++	/* NIY */
++	return false;
++}
++
+ static const struct xe_exec_queue_ops execlist_exec_queue_ops = {
+ 	.init = execlist_exec_queue_init,
+ 	.kill = execlist_exec_queue_kill,
+@@ -481,6 +487,7 @@ static const struct xe_exec_queue_ops execlist_exec_queue_ops = {
+ 	.suspend_wait = execlist_exec_queue_suspend_wait,
+ 	.resume = execlist_exec_queue_resume,
+ 	.reset_status = execlist_exec_queue_reset_status,
++	.active = execlist_exec_queue_active,
+ };
+ 
+ int xe_execlist_init(struct xe_gt *gt)
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index be8fa76baf1d..19282e5ca897 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -2203,6 +2203,11 @@ static bool guc_exec_queue_reset_status(struct xe_exec_queue *q)
+ 	return exec_queue_reset(q) || exec_queue_killed_or_banned_or_wedged(q);
+ }
+ 
++static bool guc_exec_queue_active(struct xe_exec_queue *q)
++{
++	return exec_queue_enabled(q) && !exec_queue_pending_disable(q);
++}
++
+ /*
+  * All of these functions are an abstraction layer which other parts of Xe can
+  * use to trap into the GuC backend. All of these functions, aside from init,
+@@ -2222,6 +2227,7 @@ static const struct xe_exec_queue_ops guc_exec_queue_ops = {
+ 	.suspend_wait = guc_exec_queue_suspend_wait,
+ 	.resume = guc_exec_queue_resume,
+ 	.reset_status = guc_exec_queue_reset_status,
++	.active = guc_exec_queue_active,
+ };
+ 
+ static void guc_exec_queue_stop(struct xe_guc *guc, struct xe_exec_queue *q)
 -- 
 2.34.1
 
