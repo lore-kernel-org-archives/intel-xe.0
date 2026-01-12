@@ -4,52 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1A052C9EC67
-	for <intel-xe@archiver.kernel.org>; Mon, 12 Jan 2026 10:35:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3B94FC9EC6C
+	for <intel-xe@archiver.kernel.org>; Mon, 12 Jan 2026 10:42:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A8B7810E347;
-	Mon, 12 Jan 2026 10:35:36 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="imPTsm1G";
-	dkim-atps=neutral
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 987A510E353;
- Mon, 12 Jan 2026 10:35:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
- References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=/dhTYA4EhZ3u5upG1mWmBqfUN7+6rWCY9Sa/F85Alas=; b=imPTsm1GUThOAbRq22yfTEGXIH
- uRXwCiNJN8rxFAO/c8lm7Tctim78EfSxV4mQ/wu07Mt6dWu5Cd3IDCzsc/SYtErgFRSARQhwxxa3K
- A7lL/3DLr12dTfPYkxEUj98aQfO4WL8NQeUju+iegkIbj4CYALWsYglk0pM2+wzhZh+gHhegVVP4X
- sQBWmv/OwC1434sNYGZlPtX6buHk+T3QwQtmVd9UKcje90egXJIJa0PaEJ04EvI0yiGONM6IINi3C
- M0JEANKgqz5tdGSdx3dQUfVSybOu+Y0l0o+3hLwySBAw7M2MevUWTphrv4PZkrcxnd1lSkLbMNMIE
- j43m44VA==;
-Received: from [90.240.106.137] (helo=[192.168.0.101])
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1vfFGn-004M7p-J4; Mon, 12 Jan 2026 11:35:33 +0100
-Message-ID: <dfb07120-5abb-431e-9906-5630609954dd@igalia.com>
-Date: Mon, 12 Jan 2026 10:35:32 +0000
+	by gabe.freedesktop.org (Postfix) with ESMTP id E6E3A10E35E;
+	Mon, 12 Jan 2026 10:42:56 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5DFAD10E35B;
+ Mon, 12 Jan 2026 10:42:56 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7542851395348249580=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/sched: Simplify idle entity check
-To: phasta@kernel.org, dri-devel@lists.freedesktop.org
-Cc: kernel-dev@igalia.com, intel-xe@lists.freedesktop.org,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Danilo Krummrich <dakr@kernel.org>, Matthew Brost <matthew.brost@intel.com>
-References: <20260107134405.96603-1-tvrtko.ursulin@igalia.com>
- <1e7ae073820d0cbb7f6f615b40e0cf4c6133a062.camel@mailbox.org>
- <607847da-4f8a-4c19-9ebe-c07f79ce1362@igalia.com>
- <a51103108eaa84134591c8321c6a70a484daed2b.camel@mailbox.org>
-Content-Language: en-GB
-From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-In-Reply-To: <a51103108eaa84134591c8321c6a70a484daed2b.camel@mailbox.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Replace_use_of_sy?=
+ =?utf-8?q?stem=5Fwq_with_tlb=5Finval-=3Etimeout=5Fwq?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Marco Crivellari" <marco.crivellari@suse.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 12 Jan 2026 10:42:56 -0000
+Message-ID: <176821457637.145871.7900936405596947902@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260112094406.82641-1-marco.crivellari@suse.com>
+In-Reply-To: <20260112094406.82641-1-marco.crivellari@suse.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,49 +36,125 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============7542851395348249580==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+== Series Details ==
+
+Series: drm/xe: Replace use of system_wq with tlb_inval->timeout_wq
+URL   : https://patchwork.freedesktop.org/series/159945/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from xe-4365-f339d0352f5f7e023e8ff89bb18291df8dfdad6e_BAT -> xe-pw-159945v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (12 -> 12)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-159945v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_waitfence@reltime:
+    - bat-dg2-oem2:       [PASS][1] -> [FAIL][2] ([Intel XE#6520])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4365-f339d0352f5f7e023e8ff89bb18291df8dfdad6e/bat-dg2-oem2/igt@xe_waitfence@reltime.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159945v1/bat-dg2-oem2/igt@xe_waitfence@reltime.html
+
+  
+  [Intel XE#6520]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520
 
 
-On 09/01/2026 14:48, Philipp Stanner wrote:
-> On Fri, 2026-01-09 at 14:06 +0000, Tvrtko Ursulin wrote:
+Build changes
+-------------
 
-8><
+  * Linux: xe-4365-f339d0352f5f7e023e8ff89bb18291df8dfdad6e -> xe-pw-159945v1
 
->> Back to the point - this patch can wait, no problem. To explain the
->> context though.
->>
->> I wanted to get rid of looking at the list_empty here because I have a
->> branch which improves the flow for the 1:1 sched:entity drivers.
->>
->> Why are the two related? If you remember in the fair scheduler series
->> all the run-queue stuff is nicely grouped in sched_rq.c and encapsulated
->> in the rq API, which made it possible to follow up with virtualizing the
->> rq operations.
->>
->> The yet another relevant thing is the patch I sent this week which
->> removes the special case where entity can be initialized with no schedulers.
->>
->> If we combined all these three pre-requisites, my branch allows the
->> fully invariant sched:entity and 1:1:1 sched:rq:entity. Run-queue vfuncs
-> 
-> Hm, wouldn't the CFS series annihilate multiple RQs anyways? This
-> sounds as if there are several series' floating around, cleaning up
-> similar things.
+  IGT_8696: 8696
+  xe-4365-f339d0352f5f7e023e8ff89bb18291df8dfdad6e: f339d0352f5f7e023e8ff89bb18291df8dfdad6e
+  xe-pw-159945v1: 159945v1
 
-Yes and no. Yes, the CFS series makes sched:rq 1:1. No, the other series 
-is not overlapping but is adding on top of CFS.
+== Logs ==
 
-It establishes runtime invariant sched:entity relationship for 1:1 
-users. And by making run-queue operation vfuncs dependant on M:N vs 1:1 
-scheduler usage, the latter removes the need for 1:1 to manage the 
-rbtree, the entity list, and probably some other simplifications which I 
-forget from the top of my head. It kind of tries to start working in the 
-direction of splitting the frontend and "backend" of the scheduler 
-better for those two different use cases.
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159945v1/index.html
 
-Regards,
+--===============7542851395348249580==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Tvrtko
 
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Replace use of system_wq with tlb_inval-&gt;timeout_wq</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/159945/">https://patchwork.freedesktop.org/series/159945/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159945v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159945v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4365-f339d0352f5f7e023e8ff89bb18291df8dfdad6e_BAT -&gt; xe-pw-159945v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (12 -&gt; 12)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-159945v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@xe_waitfence@reltime:<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4365-f339d0352f5f7e023e8ff89bb18291df8dfdad6e/bat-dg2-oem2/igt@xe_waitfence@reltime.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159945v1/bat-dg2-oem2/igt@xe_waitfence@reltime.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520">Intel XE#6520</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4365-f339d0352f5f7e023e8ff89bb18291df8dfdad6e -&gt; xe-pw-159945v1</li>
+</ul>
+<p>IGT_8696: 8696<br />
+  xe-4365-f339d0352f5f7e023e8ff89bb18291df8dfdad6e: f339d0352f5f7e023e8ff89bb18291df8dfdad6e<br />
+  xe-pw-159945v1: 159945v1</p>
+
+</body>
+</html>
+
+--===============7542851395348249580==--
