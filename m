@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2061AD2D11F
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 72865D2F35C
 	for <intel-xe@archiver.kernel.org>; Tue, 13 Jan 2026 23:03:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C117B10E584;
+	by gabe.freedesktop.org (Postfix) with ESMTP id EBAEC10E587;
 	Tue, 13 Jan 2026 23:03:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Rg88QBbQ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kVHbVTNj";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D5A1D10E57D
- for <intel-xe@lists.freedesktop.org>; Tue, 13 Jan 2026 23:03:42 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C563210E56A
+ for <intel-xe@lists.freedesktop.org>; Tue, 13 Jan 2026 23:03:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1768345423; x=1799881423;
+ t=1768345420; x=1799881420;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=twKTpPuv/Flrtov2ve3qt3jKLe1x6ItLDRn6ePQn0VM=;
- b=Rg88QBbQaogsRvem78Lpe2RNCwgwn+FE4uevftwI8gTUiyfd8+0dAYSS
- QUctj6b019PGLvuA7rZ10mP6LX8RCEF73n2qFqzucUrwKT9mCnNDxoRjh
- PMlD3khppr91RrOD1lWOYCA6C7Ojkyfk3aGi5m6zeUPZajuzI1vUmWMjw
- vTBwqvhWzQaZ3KpU5mwnWnKzQOP2RsVvdZBaS7CEks+GHMV86h9gz8hBS
- XYrxEsC4msUjSeFCTXtUiL/bNONT0UtPaBUPI5pDlbI+YaEKYBWl4jHDO
- RBY945aOGm0VTITBeKxGYW/gP+6cuDGFkriKJag0OzFUOn4paFba9cmOU Q==;
-X-CSE-ConnectionGUID: n/yYbu5FQ1SGdi2qDBdExA==
-X-CSE-MsgGUID: BqiF+j2IQ0iFfsKK6dstlg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11670"; a="92311171"
-X-IronPort-AV: E=Sophos;i="6.21,224,1763452800"; d="scan'208";a="92311171"
+ bh=ts1lMru86QcZSUyz/gw93Hyls4tzHTFObRCIz1cDju0=;
+ b=kVHbVTNj9G5LUFryz+lYlLc1/evtl1WGfN2bnGcWaB1KzERN3ag8rv5Z
+ 2WXbrNp1XHBWKXlBD9wiLgNtps4bHwdPtB2b74sySpj2irWEB9wVLii2c
+ FdKqRW99HKHiuCjXhPffYbvluIWhN3ENfbHKwEk7L8Bjvj782SPsSiy4D
+ C+xNc0GQX7mbFhFd9EXW/HpUBZWnfUFbXFqUpl9Y6slQVzm+E+YLR/0T8
+ 4pqs0D8mCM3dU/wQXgP/kyS7FIlf8VmDFKRZY4aRVougvI2WJNB+LGxNj
+ WIKDR49u8vRPp1A1x9e9KLJW+w5r8M6qzZS/goHIliz5k4PVxEzFm4bm3 w==;
+X-CSE-ConnectionGUID: rjnF5yXWQpOgurHDoOIgMA==
+X-CSE-MsgGUID: oHhIfkQ+S1WSbfjx50NjKw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11670"; a="92311122"
+X-IronPort-AV: E=Sophos;i="6.21,224,1763452800"; d="scan'208";a="92311122"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jan 2026 15:03:42 -0800
-X-CSE-ConnectionGUID: BkNQUEkuQGenzYowNNrYCQ==
-X-CSE-MsgGUID: mjopXVzRTeyniKL+AFt2UQ==
+ 13 Jan 2026 15:03:40 -0800
+X-CSE-ConnectionGUID: SCJ+UH2US96cPFXBrdtzMQ==
+X-CSE-MsgGUID: x6P0v1+YTyGoeoAoIHQldw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,224,1763452800"; d="scan'208";a="204147449"
+X-IronPort-AV: E=Sophos;i="6.21,224,1763452800"; d="scan'208";a="204147285"
 Received: from mdroper-desk1.fm.intel.com ([10.1.39.133])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jan 2026 15:03:39 -0800
+ 13 Jan 2026 15:03:38 -0800
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.d.roper@intel.com
-Subject: [PATCH 65/79] drm/xe: Cleanup headers in xe_tlb_inval.c
-Date: Tue, 13 Jan 2026 15:04:10 -0800
-Message-ID: <20260113230315.3081153-146-matthew.d.roper@intel.com>
+Subject: [PATCH 12/79] drm/xe: Drop unused headers in xe_gt.c
+Date: Tue, 13 Jan 2026 15:03:17 -0800
+Message-ID: <20260113230315.3081153-93-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260113230315.3081153-81-matthew.d.roper@intel.com>
 References: <20260113230315.3081153-81-matthew.d.roper@intel.com>
@@ -66,35 +66,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-xe_tlb.inval.c doesn't need anything from abi/guc_actions_abi.h,
-xe_gt_printk.h, or xe_guc.h.  It also only needs the "types" headers for
-GT/device rather than the full headers.  Drop the unnecessary includes.
+xe_gt.c doesn't use anything from xe_gfxpipe_commands.h or xe_bo.h.
+Drop the unnecessary includes.
 
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/xe_tlb_inval.c | 7 ++-----
- 1 file changed, 2 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/xe/xe_gt.c | 2 --
+ 1 file changed, 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_tlb_inval.c b/drivers/gpu/drm/xe/xe_tlb_inval.c
-index dec042248164..8f6c2c665d91 100644
---- a/drivers/gpu/drm/xe/xe_tlb_inval.c
-+++ b/drivers/gpu/drm/xe/xe_tlb_inval.c
-@@ -5,13 +5,10 @@
+diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+index 04dbf995a18b..9d090d0f2438 100644
+--- a/drivers/gpu/drm/xe/xe_gt.c
++++ b/drivers/gpu/drm/xe/xe_gt.c
+@@ -13,13 +13,11 @@
+ #include <generated/xe_wa_oob.h>
  
- #include <drm/drm_managed.h>
- 
--#include "abi/guc_actions_abi.h"
--#include "xe_device.h"
-+#include "xe_device_types.h"
- #include "xe_force_wake.h"
--#include "xe_gt.h"
--#include "xe_gt_printk.h"
- #include "xe_gt_stats.h"
--#include "xe_guc.h"
-+#include "xe_gt_types.h"
- #include "xe_guc_ct.h"
- #include "xe_guc_tlb_inval.h"
- #include "xe_mmio.h"
+ #include "instructions/xe_alu_commands.h"
+-#include "instructions/xe_gfxpipe_commands.h"
+ #include "instructions/xe_mi_commands.h"
+ #include "regs/xe_engine_regs.h"
+ #include "regs/xe_gt_regs.h"
+ #include "xe_assert.h"
+ #include "xe_bb.h"
+-#include "xe_bo.h"
+ #include "xe_device.h"
+ #include "xe_eu_stall.h"
+ #include "xe_exec_queue.h"
 -- 
 2.52.0
 
