@@ -4,27 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5B582D2D0E8
-	for <intel-xe@archiver.kernel.org>; Tue, 13 Jan 2026 13:03:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 038DFD2D106
+	for <intel-xe@archiver.kernel.org>; Tue, 13 Jan 2026 13:54:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F135D10E4C6;
-	Tue, 13 Jan 2026 13:03:35 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 96A5E88CBF;
- Tue, 13 Jan 2026 13:03:35 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2352694343792704608=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id BD60F10E350;
+	Tue, 13 Jan 2026 13:54:45 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="F7SOYZKw";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A5ADB10E350;
+ Tue, 13 Jan 2026 13:54:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1768312485; x=1799848485;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=0MgdbZgh4bY3SIFUbxHAPwjOgOSH27ZFKkyGyF3luAE=;
+ b=F7SOYZKwL6RzeuAe0g8h5fgvPz+wbIFavUm9bCtAEkPQl3kYw3CAPyqH
+ f5fvVtfSkyPIT1jMbWAT0Bk2ef7Wja09ayPoueeR57G16cqkIl48ZbJhn
+ 2wrO6mtybuNDqqAiUkbvtc9R/koD+qyQtCCna9eqHxPd1aV6WyxKNd03O
+ WgiGiL5TiOSQIfH/rFeyyyc7QntGwN32EKJEs1swCyliNAZBqC4i/2vMm
+ eMzpbsL4LRTk7LYQMNKW88aXUcGO5StXg1xq7P7c074uqjx7oqiRkXcho
+ yY6ZAlBjZ7KgYpWoXuxHwGmFftx4LOCZVgHUrn+X+PEi6PwSiv0y5W3VA g==;
+X-CSE-ConnectionGUID: kudfE+e2QJyERQ1N/Nsc5A==
+X-CSE-MsgGUID: cyuojrMaRn265vY9w9CRdA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11670"; a="69518508"
+X-IronPort-AV: E=Sophos;i="6.21,222,1763452800"; d="scan'208";a="69518508"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jan 2026 05:54:45 -0800
+X-CSE-ConnectionGUID: 1KTgWGurT8iIcNVkZFZdWA==
+X-CSE-MsgGUID: IMgw8Mf6R2iQKL0k2GMNyA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,222,1763452800"; d="scan'208";a="204403787"
+Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jan 2026 05:54:42 -0800
+From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@linux.intel.com, ville.syrjala@linux.intel.com,
+ Jerome Tollet <jerome.tollet@gmail.com>,
+ Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Subject: [RESEND] drm/i915/hdmi: Poll for 200 msec for TMDS_Scrambler_Status
+Date: Tue, 13 Jan 2026 19:08:45 +0530
+Message-ID: <20260113133845.1636774-1-ankit.k.nautiyal@intel.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Privatize_struct_?=
- =?utf-8?q?xe=5Fggtt=2E_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Maarten Lankhorst" <dev@lankhorst.se>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 13 Jan 2026 13:03:35 -0000
-Message-ID: <176830941561.150144.10455386619924237428@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260113121807.1303124-1-dev@lankhorst.se>
-In-Reply-To: <20260113121807.1303124-1-dev@lankhorst.se>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +64,100 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============2352694343792704608==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+From: Jerome Tollet <jerome.tollet@gmail.com>
 
-== Series Details ==
+As per HDMI 2.0 specification, after scrambled video transmission begins,
+the source must poll the TMDS_Scrambler_Status bit until it reads 1 or
+until a timeout of 200 ms.
 
-Series: drm/xe: Privatize struct xe_ggtt. (rev2)
-URL   : https://patchwork.freedesktop.org/series/160006/
-State : success
+Add a polling step after enabling the HDMI port to verify scrambling
+status, following the spec requirement.
 
-== Summary ==
+Without the wait for the scrambling bit to set, some HDMI 2.0 monitors fail
+to decode the signal at 4K@60Hz (594 MHz) when SCDC scrambling is not yet
+fully configured by the sink.
 
-CI Bug Log - changes from xe-4376-f7424dfbcb8f05a13bb1da2bed8e2212d2b7a082_BAT -> xe-pw-160006v2_BAT
-====================================================
+v2:
+ - Instead of the fixed delay, poll for TMDS scramble status for 200 msec
+   as per the HDMI spec. (Ankit)
 
-Summary
--------
+Reported-by: Jerome Tollet <jerome.tollet@gmail.com>
+Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/6868
+Link: https://lore.kernel.org/dri-devel/20251230091037.5603-1-jerome.tollet@gmail.com/
+Signed-off-by: Jerome Tollet <jerome.tollet@gmail.com>
+Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+---
 
-  **SUCCESS**
+Rebased and resend to intel-gfx and intel-xe so that the patch is picked
+up by intel gfx CI.
 
-  No regressions found.
+---
+ drivers/gpu/drm/i915/display/intel_ddi.c  |  2 ++
+ drivers/gpu/drm/i915/display/intel_hdmi.c | 25 +++++++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_hdmi.h |  2 ++
+ 3 files changed, 29 insertions(+)
 
-  
+diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+index cb91d07cdaa6..c708b713f0e8 100644
+--- a/drivers/gpu/drm/i915/display/intel_ddi.c
++++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+@@ -3506,6 +3506,8 @@ static void intel_ddi_enable_hdmi(struct intel_atomic_state *state,
+ 	}
+ 
+ 	intel_ddi_buf_enable(encoder, buf_ctl);
++
++	intel_hdmi_poll_for_scrambling_enable(crtc_state, connector);
+ }
+ 
+ static void intel_ddi_enable(struct intel_atomic_state *state,
+diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
+index 055e68810d0d..6f7dcd7365a4 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdmi.c
++++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+@@ -3363,3 +3363,28 @@ intel_hdmi_dsc_get_bpp(int src_fractional_bpp, int slice_width, int num_slices,
+ 
+ 	return 0;
+ }
++
++/*
++ * As Per HDMI 2.0 spec: after scrambled video transmission begins,
++ * poll TMDS_Scrambler_Status until it reads 1, for up to 200 ms.
++ */
++void
++intel_hdmi_poll_for_scrambling_enable(const struct intel_crtc_state *crtc_state,
++				      struct drm_connector *_connector)
++{
++	struct intel_connector *connector = to_intel_connector(_connector);
++	struct intel_display *display = to_intel_display(crtc_state);
++	bool scrambling_enabled = false;
++	int ret;
++
++	if (!crtc_state->hdmi_scrambling)
++		return;
++
++	/* Poll for a max of 200 msec as per HDMI spec */
++	ret = poll_timeout_us(scrambling_enabled = drm_scdc_get_scrambling_status(&connector->base),
++			      scrambling_enabled, 1000, 200 * 1000, false);
++	if (ret)
++		drm_dbg_kms(display->drm,
++			    "[CONNECTOR:%d:%s] Timed out waiting for scrambling enable\n",
++			    connector->base.base.id, connector->base.name);
++}
+diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.h b/drivers/gpu/drm/i915/display/intel_hdmi.h
+index be2fad57e4ad..0fa3661568e8 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdmi.h
++++ b/drivers/gpu/drm/i915/display/intel_hdmi.h
+@@ -70,5 +70,7 @@ void hsw_read_infoframe(struct intel_encoder *encoder,
+ 			const struct intel_crtc_state *crtc_state,
+ 			unsigned int type,
+ 			void *frame, ssize_t len);
++void intel_hdmi_poll_for_scrambling_enable(const struct intel_crtc_state *crtc_state,
++					   struct drm_connector *_connector);
+ 
+ #endif /* __INTEL_HDMI_H__ */
+-- 
+2.45.2
 
-Participating hosts (12 -> 12)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-4376-f7424dfbcb8f05a13bb1da2bed8e2212d2b7a082 -> xe-pw-160006v2
-
-  IGT_8699: 0b67ab25f2eb58b296872c8c34474b79353727d5 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-4376-f7424dfbcb8f05a13bb1da2bed8e2212d2b7a082: f7424dfbcb8f05a13bb1da2bed8e2212d2b7a082
-  xe-pw-160006v2: 160006v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160006v2/index.html
-
---===============2352694343792704608==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Privatize struct xe_ggtt. (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/160006/">https://patchwork.freedesktop.org/series/160006/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160006v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160006v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4376-f7424dfbcb8f05a13bb1da2bed8e2212d2b7a082_BAT -&gt; xe-pw-160006v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (12 -&gt; 12)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4376-f7424dfbcb8f05a13bb1da2bed8e2212d2b7a082 -&gt; xe-pw-160006v2</li>
-</ul>
-<p>IGT_8699: 0b67ab25f2eb58b296872c8c34474b79353727d5 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-4376-f7424dfbcb8f05a13bb1da2bed8e2212d2b7a082: f7424dfbcb8f05a13bb1da2bed8e2212d2b7a082<br />
-  xe-pw-160006v2: 160006v2</p>
-
-</body>
-</html>
-
---===============2352694343792704608==--
