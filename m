@@ -4,59 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 114E7D29DE2
-	for <intel-xe@archiver.kernel.org>; Tue, 13 Jan 2026 08:43:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 86CC1D29DE8
+	for <intel-xe@archiver.kernel.org>; Tue, 13 Jan 2026 08:44:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 79AE410E471;
-	Tue, 13 Jan 2026 08:43:46 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Xa+e3/4Y";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7521510E470;
- Tue, 13 Jan 2026 08:43:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1768293825; x=1799829825;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=vU6HbpGBDh1oeOphbmzlkf3FTt5EpLymMNLwQFj5r3E=;
- b=Xa+e3/4Y/su/RjO4PXw/47Fyr+fJ7MKwoLeaz1JdWiPBAVeD0FOCYxTd
- GyVRDSWvtqbg6jqL3IvFf3TxIA/1/pipdPTggzgy6JIGtkbvQJ9c8VYGX
- cI0ghj65ebbw6RF120eVeKgSy9w+tmRRemLtM7dsT7ZQma5qBrs/1EXI6
- 9lmGuAfdMyP9+x4iINYfiIoSCCbzk13dZwGke9gJUo438uSDSZDNLqI0K
- g/RT1olUSL5BvccZyt1id5V32d3BBdZuROnVioNtiJpZh+9oP53+u7OI6
- L+Ivs5kKiPr2gysn1148tSxg0/Zjf3Mxe8tXUsy/olcN/xCrwynBMYJms Q==;
-X-CSE-ConnectionGUID: fSL6DlLgQDyh24TY/pXKcg==
-X-CSE-MsgGUID: ACB+be5XQ7+jFkVlfGS6DQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11669"; a="69627224"
-X-IronPort-AV: E=Sophos;i="6.21,222,1763452800"; d="scan'208";a="69627224"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jan 2026 00:43:44 -0800
-X-CSE-ConnectionGUID: dPmuvJA1RyaW1ayXqbsZSQ==
-X-CSE-MsgGUID: MtDRQywjSHinMpTz/Fs5qA==
-X-ExtLoop1: 1
-Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.36])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jan 2026 00:43:41 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Kaushlendra Kumar <kaushlendra.kumar@intel.com>, rodrigo.vivi@intel.com,
- joonas.lahtinen@linux.intel.com, tursulin@ursulin.net, airlied@gmail.com,
- simona@ffwll.ch
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, Kaushlendra Kumar
- <kaushlendra.kumar@intel.com>
-Subject: Re: [PATCH] drm/i915/bios: Use get_unaligned_* for VBT block size
-In-Reply-To: <20260113031210.330128-1-kaushlendra.kumar@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260113031210.330128-1-kaushlendra.kumar@intel.com>
-Date: Tue, 13 Jan 2026 10:43:38 +0200
-Message-ID: <a15f6e8a6ab43f2dbaa2b33c606ee001f6ed38cd@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4DE1710E475;
+	Tue, 13 Jan 2026 08:44:06 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 56A6D10E473;
+ Tue, 13 Jan 2026 08:44:05 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe=3A_Privatize_struc?=
+ =?utf-8?q?t_xe=5Fggtt=2E?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Maarten Lankhorst" <dev@lankhorst.se>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 13 Jan 2026 08:44:05 -0000
+Message-ID: <176829384534.148910.17366634511692828529@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260113083702.1276449-1-dev@lankhorst.se>
+In-Reply-To: <20260113083702.1276449-1-dev@lankhorst.se>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,53 +36,63 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 13 Jan 2026, Kaushlendra Kumar <kaushlendra.kumar@intel.com> wrote:
-> Replace pointer casts with get_unaligned_* helpers for VBT
-> block size reads. This ensures endianness and alignment
-> correctness in VBT parsing.
->
-> Signed-off-by: Kaushlendra Kumar <kaushlendra.kumar@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_bios.c | 5 +++--
->  1 file changed, 3 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
-> index 4b41068e9e35..dd1b3f629428 100644
-> --- a/drivers/gpu/drm/i915/display/intel_bios.c
-> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
-> @@ -45,6 +45,7 @@
->  
->  #define _INTEL_BIOS_PRIVATE
->  #include "intel_vbt_defs.h"
-> +#include <linux/unaligned.h>
+== Series Details ==
 
-Please put the include next to other linux/ includes, sorted.
+Series: drm/xe: Privatize struct xe_ggtt.
+URL   : https://patchwork.freedesktop.org/series/160006/
+State : warning
 
->  
->  /**
->   * DOC: Video BIOS Table (VBT)
-> @@ -85,9 +86,9 @@ static u32 _get_blocksize(const u8 *block_base)
->  {
->  	/* The MIPI Sequence Block v3+ has a separate size field. */
->  	if (*block_base == BDB_MIPI_SEQUENCE && *(block_base + 3) >= 3)
-> -		return *((const u32 *)(block_base + 4));
-> +		return get_unaligned_le32(block_base + 4);
->  	else
-> -		return *((const u16 *)(block_base + 1));
-> +		return get_unaligned_le16(block_base + 1);
+== Summary ==
 
-There's a handful of other places in the file that could use the same
-treatment.
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+ee83616c430ce70bd254bd2774d143a5733c8666
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit cfb4a50d0b36ea92586a075f674a6c89c519427b
+Author: Maarten Lankhorst <dev@lankhorst.se>
+Date:   Tue Jan 13 09:37:01 2026 +0100
 
-BR,
-Jani.
+    drm/xe: Remove xe_ggtt_node_allocated
+    
+    With the intermediate state gone, no longer useful. Just check against
+    NULL where needed.
+    
+    Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
++ /mt/dim checkpatch 868ad9166fa094185c18c3343d7944ff2171f9d3 drm-intel
+b758e7ed9b36 drm/xe: Make xe_ggtt_node offset relative to starting offset
+-:53: WARNING:LONG_LINE: line length of 107 exceeds 100 columns
+#53: FILE: drivers/gpu/drm/xe/xe_ggtt.c:583:
++			 xe_ggtt_node_addr(node), xe_ggtt_node_addr(node) + node->base.size, ERR_PTR(err)))
 
->  }
->  
->  /* Get BDB block size give a pointer to data after Block ID and Block Size. */
+total: 0 errors, 1 warnings, 0 checks, 72 lines checked
+aee5883e3d93 drm/xe: Rewrite GGTT VF initialisation
+-:18: WARNING:BAD_SIGN_OFF: Co-developed-by: must be immediately followed by Signed-off-by:
+#18: 
+Co-developed-by: Matthew Brost <matthew.brost@intel.com>
 
--- 
-Jani Nikula, Intel
+
+-:61: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#61: FILE: drivers/gpu/drm/xe/xe_ggtt.c:357:
++			xe_tile_err(ggtt->tile, "tile%u: Invalid GGTT configuration: %#llx-%#llx\n",
++				     ggtt->tile->id, ggtt_start, ggtt_start + ggtt_size - 1);
+
+total: 0 errors, 1 warnings, 1 checks, 570 lines checked
+523fd7f71108 drm/xe: Move struct xe_ggtt to xe_ggtt.c
+-:46: ERROR:CODE_INDENT: code indent should use tabs where possible
+#46: FILE: drivers/gpu/drm/xe/xe_ggtt.c:112:
++        /** @start: Start offset of GGTT */$
+
+total: 1 errors, 0 warnings, 0 checks, 142 lines checked
+dea2c9c09c0d drm/xe: Make xe_ggtt_node_insert return a node
+cfb4a50d0b36 drm/xe: Remove xe_ggtt_node_allocated
+
+
