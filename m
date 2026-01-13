@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D5F90D31890
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EE18DD31891
 	for <intel-xe@archiver.kernel.org>; Tue, 13 Jan 2026 23:03:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 09D9710E59D;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 124D910E59E;
 	Tue, 13 Jan 2026 23:03:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="d0l1BZR9";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="N1J9wZ1L";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9AF7410E568
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B57B810E56A
  for <intel-xe@lists.freedesktop.org>; Tue, 13 Jan 2026 23:03:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1768345421; x=1799881421;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Fwrf6GxL/2qaJw+sJBE4IJqB1aMT6LcuFbnXLJfQEkE=;
- b=d0l1BZR9CCpEhKd/LlDEXCQmX33XLky6daNGi/ofh/0B382VZBJLRsxp
- VdgbPpVavIpfUE7+k3wtRA1rAIItkemUeigWqKyoDvMtyOSR43Ftm8PaT
- rmyPsBdvOwUJ1LUbAJ/As6lZZQkgrZ2fAc0Qd9iWPQzv5SPMYkIh1ceyd
- Dhm0/IUff7BX/0bYxRwTuzSukiyp6hzFEvPcSGPCsGH5gzzzGuGA5XxtS
- 2SPbZbL0li+Nwo3meIEux66jPPUIehXeOblWNbOsCdsPWBQ9v4J3Me611
- zUfTc9iEBAtgl4KX5elRWyagPQp26hbEx0nwF/EkvL4QNvrOfWW+Oy62u Q==;
-X-CSE-ConnectionGUID: ObacOcJSTN2IO3Qr505A1Q==
-X-CSE-MsgGUID: ZxRW84rrT2u4pAKDVVAr1g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11670"; a="92311138"
-X-IronPort-AV: E=Sophos;i="6.21,224,1763452800"; d="scan'208";a="92311138"
+ bh=FpIKsdikLycTHjqLYYBu73q7phfsiLL6iw7vXLlcSTc=;
+ b=N1J9wZ1LXbnQWWXycF50hMHVrDJ/OdZJwWvtUs1iGCB4X4qp7bDcju6s
+ of/SJoz0OABSvD9NHln2uHMlNSdXsZeCjZfd9W7m5tpajqaof9wP4N9N5
+ azKqZ77VgcarQSl8Fjqv3tcW4d0LKbnTA9TTQBVMTPYSj7MrFLwlFEATZ
+ x1Td8Ukcgl2hE6ljmeI2MgZsPRl6+PMkAcaziU0xs0DTmje8/dWTPsHOK
+ g2I9fLDGOhxP+SaLYZYY9+fDXyMkMSXHLh4ZD7uD0Hb+iAVwPz0E8OKRm
+ PvJrKItLi+0WHc5JZURXCyYZQ7ZK3s0UxPCaTRLnXknosKlCxnfKbBmFR A==;
+X-CSE-ConnectionGUID: lU1M0lZkQpGVZQGY9oa8zA==
+X-CSE-MsgGUID: cVQl72p0QJ+jsfV3AARFNA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11670"; a="92311140"
+X-IronPort-AV: E=Sophos;i="6.21,224,1763452800"; d="scan'208";a="92311140"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  13 Jan 2026 15:03:40 -0800
-X-CSE-ConnectionGUID: h3i3BRl3SKSIN9VP1OntEQ==
-X-CSE-MsgGUID: +ySxFjDATqKJDL9dvy7RFg==
+X-CSE-ConnectionGUID: YNNzNQwLQbujUseiWnw1Fw==
+X-CSE-MsgGUID: 6Vbo1Mx/SFSMbqzC/xl/Iw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,224,1763452800"; d="scan'208";a="204147378"
+X-IronPort-AV: E=Sophos;i="6.21,224,1763452800"; d="scan'208";a="204147384"
 Received: from mdroper-desk1.fm.intel.com ([10.1.39.133])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  13 Jan 2026 15:03:38 -0800
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.d.roper@intel.com
-Subject: [PATCH 33/79] drm/xe: Drop unused headers in xe_guc_submit.c
-Date: Tue, 13 Jan 2026 15:03:38 -0800
-Message-ID: <20260113230315.3081153-114-matthew.d.roper@intel.com>
+Subject: [PATCH 36/79] drm/xe: Clean up headers in xe_huc_debugfs.c
+Date: Tue, 13 Jan 2026 15:03:41 -0800
+Message-ID: <20260113230315.3081153-117-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260113230315.3081153-81-matthew.d.roper@intel.com>
 References: <20260113230315.3081153-81-matthew.d.roper@intel.com>
@@ -66,34 +66,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-xe_guc_submit.c doesn't use anything from xe_lrc_layout.h or
-xe_hw_fence.h.  Drop the unnecessary includes.
+xe_huc_debugfs.c doesn't use anything from xe_device.h or xe_macros.h.
+It also doesn't need xe_gt.h, only xe_gt_types.h.  Drop/replace the
+unnecessary includes.  Also add an explicit include of drm_print.h,
+which was being indirectly included previously.
 
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc_submit.c | 2 --
- 1 file changed, 2 deletions(-)
+ drivers/gpu/drm/xe/xe_huc_debugfs.c | 5 ++---
+ 1 file changed, 2 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index be8fa76baf1d..a27ea931b956 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -17,7 +17,6 @@
- #include "abi/guc_actions_abi.h"
- #include "abi/guc_actions_slpc_abi.h"
- #include "abi/guc_klvs_abi.h"
--#include "regs/xe_lrc_layout.h"
- #include "xe_assert.h"
- #include "xe_bo.h"
- #include "xe_devcoredump.h"
-@@ -36,7 +35,6 @@
- #include "xe_guc_klv_helpers.h"
- #include "xe_guc_submit_types.h"
- #include "xe_hw_engine.h"
--#include "xe_hw_fence.h"
- #include "xe_lrc.h"
- #include "xe_macros.h"
- #include "xe_map.h"
+diff --git a/drivers/gpu/drm/xe/xe_huc_debugfs.c b/drivers/gpu/drm/xe/xe_huc_debugfs.c
+index df9c4d79b710..80829967b3d7 100644
+--- a/drivers/gpu/drm/xe/xe_huc_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_huc_debugfs.c
+@@ -7,11 +7,10 @@
+ 
+ #include <drm/drm_debugfs.h>
+ #include <drm/drm_managed.h>
++#include <drm/drm_print.h>
+ 
+-#include "xe_device.h"
+-#include "xe_gt.h"
++#include "xe_gt_types.h"
+ #include "xe_huc.h"
+-#include "xe_macros.h"
+ #include "xe_pm.h"
+ 
+ static struct xe_gt *
 -- 
 2.52.0
 
