@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A29A5D30CF4
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BE44CD30CF8
 	for <intel-xe@archiver.kernel.org>; Tue, 13 Jan 2026 23:03:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 20A8710E576;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 32D5A10E579;
 	Tue, 13 Jan 2026 23:03:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PwYx9T9h";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SmZm93pV";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9512E10E567
- for <intel-xe@lists.freedesktop.org>; Tue, 13 Jan 2026 23:03:40 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6FE9210E56B
+ for <intel-xe@lists.freedesktop.org>; Tue, 13 Jan 2026 23:03:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1768345420; x=1799881420;
+ t=1768345421; x=1799881421;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=3GZNDgPLmkkqT+mCaYoR5snEtu+vPn6Iq8yXCXNarrU=;
- b=PwYx9T9hXNIKH2eqe36nyQ9dkk2OiI2FSEd58HyYnEHI0rlWgooFukqz
- 77Lm28S95AUnadIQmpYdFw+M3UlWWOt45ZhTCSRHrnEX9XO0EuCyhonr2
- QuKJaxdyNgs5omealuDZCTeuyHzSCa/v6xAM10o7PPKGQWjpukeuzEJcp
- +KejJdscYXFAwjWihOlYZTDd2SpqwUI1TRdbcU1sh5aJYbw+cYhhGUZr2
- rqmaEQIuUjprICAOvJzMntcpFeiWhikMcCxMAatjh+IQKs+ErTxs1yPr/
- fwQEixNf88AqiWxXfwVovmxcoXYi8YEjxP1bK6aOX/PdhZItHhkPAfY/d A==;
-X-CSE-ConnectionGUID: Bl48LarMS1GFZRGC0B7m4A==
-X-CSE-MsgGUID: w4khccdjQDyEQck+kcfEPw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11670"; a="92311119"
-X-IronPort-AV: E=Sophos;i="6.21,224,1763452800"; d="scan'208";a="92311119"
+ bh=WG7PhLevKR0CZdWe3HAH13iNzH2pvL0bkhjDlUf/NLk=;
+ b=SmZm93pVrJFEo0BQNEWeoJdbOEsDYecEWPcSx+NPVT/cXJfUSw2pVjv6
+ yqmi0AnNuvJzQZvfr44Xq/QUcEXoJNyNIz6xagQlIhmmTRxMJVU4yKdbJ
+ 5GBh9rZDxNgZtD5Yn4fkYds0j/fVpiorh34jy7lQXCeGPp2ou8Xt/kGFd
+ YL6uYCdIv2FmaeGPf6YFZ+pcVDcT0xg9GddJAEEmZC0375hIwGLsQbAFl
+ HMRG1i7nPMeCUcy01HQwd+Z26q0kgr8/m6poCgDj+wPUKu8M4goFYnIZ6
+ cy6IsD+fzMbyBULDJ/s+fayhqpFkCEAMmm8x/NnfYU7TZnJySwwV/9ltU Q==;
+X-CSE-ConnectionGUID: AtvOzYQLTc+zKcGdxr1cQg==
+X-CSE-MsgGUID: QVYP5XQWTaK1RPCDsGGbMQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11670"; a="92311132"
+X-IronPort-AV: E=Sophos;i="6.21,224,1763452800"; d="scan'208";a="92311132"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  13 Jan 2026 15:03:40 -0800
-X-CSE-ConnectionGUID: Qitqw+r1QS6GQ+hh8UjQDw==
-X-CSE-MsgGUID: KHRWB8QqQRacYEjGC0+tjw==
+X-CSE-ConnectionGUID: Jjn+AUy4S+OIOXFFvWSBmg==
+X-CSE-MsgGUID: /eWVRQc2RTGVHaAXhDmrmw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,224,1763452800"; d="scan'208";a="204147292"
+X-IronPort-AV: E=Sophos;i="6.21,224,1763452800"; d="scan'208";a="204147365"
 Received: from mdroper-desk1.fm.intel.com ([10.1.39.133])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  13 Jan 2026 15:03:38 -0800
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.d.roper@intel.com
-Subject: [PATCH 14/79] drm/xe: Drop unused header in xe_gt_debugfs.c
-Date: Tue, 13 Jan 2026 15:03:19 -0800
-Message-ID: <20260113230315.3081153-95-matthew.d.roper@intel.com>
+Subject: [PATCH 27/79] drm/xe: Drop unused header in xe_guc_buf.c
+Date: Tue, 13 Jan 2026 15:03:32 -0800
+Message-ID: <20260113230315.3081153-108-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260113230315.3081153-81-matthew.d.roper@intel.com>
 References: <20260113230315.3081153-81-matthew.d.roper@intel.com>
@@ -66,26 +66,26 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-xe_gt_debugfs.c doesn't use anything from xe_macros.h.  Drop the
-unnecessary include.
+xe_guc_buf.c doesn't use anything from xe_asert.h.  Drop the unnecessary
+include.
 
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_debugfs.c | 1 -
+ drivers/gpu/drm/xe/xe_guc_buf.c | 1 -
  1 file changed, 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_debugfs.c b/drivers/gpu/drm/xe/xe_gt_debugfs.c
-index e4f38b5150fc..4363bc9c3606 100644
---- a/drivers/gpu/drm/xe/xe_gt_debugfs.c
-+++ b/drivers/gpu/drm/xe/xe_gt_debugfs.c
-@@ -22,7 +22,6 @@
- #include "xe_guc_hwconfig.h"
- #include "xe_hw_engine.h"
- #include "xe_lrc.h"
--#include "xe_macros.h"
- #include "xe_mocs.h"
- #include "xe_pat.h"
- #include "xe_pm.h"
+diff --git a/drivers/gpu/drm/xe/xe_guc_buf.c b/drivers/gpu/drm/xe/xe_guc_buf.c
+index c36fc31e0438..11f77decd8d1 100644
+--- a/drivers/gpu/drm/xe/xe_guc_buf.c
++++ b/drivers/gpu/drm/xe/xe_guc_buf.c
+@@ -6,7 +6,6 @@
+ #include <linux/cleanup.h>
+ #include <drm/drm_managed.h>
+ 
+-#include "xe_assert.h"
+ #include "xe_bo.h"
+ #include "xe_gt_printk.h"
+ #include "xe_guc.h"
 -- 
 2.52.0
 
