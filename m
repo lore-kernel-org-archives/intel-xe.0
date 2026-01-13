@@ -4,52 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 318A6D0C854
-	for <intel-xe@archiver.kernel.org>; Tue, 13 Jan 2026 11:16:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6A14FD0C856
+	for <intel-xe@archiver.kernel.org>; Tue, 13 Jan 2026 11:18:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C4EEA10E2EF;
-	Tue, 13 Jan 2026 11:15:59 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nh5o2Jrk";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2A84910E2EF
- for <intel-xe@lists.freedesktop.org>; Tue, 13 Jan 2026 11:15:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1768302958; x=1799838958;
- h=date:from:to:cc:subject:message-id;
- bh=+hxx91iXN/IyRFHH8knOIrGIYTXN7OSvoGpYomkxNg8=;
- b=nh5o2JrkHod1bA47l0yBX/ceZ0m/nW+CSSMgfhfpF1XqeVhz6RQg3iyx
- O/82aYwugO+IzHUJbE5G8dzs/XwvcsprXSa+v6kZ9qJBjZ+nNF2iWcEJG
- 8Epvj6czkY12LxcVE+It5FEkpsA5EUs5difzf+W9OhcL+IEWcTW6cyr2K
- 1o6o78u6YoAJ/EEan4GDwW3nG7oHHurpz/WXuC3QAAjXzKOS98GsO8fSk
- 0r5vCzfY5Alm11+/B6EfTq8hwtjVguo9RFmFuO9L5F/OniYA/NVr4cP2z
- YhntfBu7vq70uMYxsFUojxYqZjVftb1eTqv3qjZH6Ms2BPX9CRnPnM9Lx g==;
-X-CSE-ConnectionGUID: cEYkEeAVTpy8h8YWvVQ2sg==
-X-CSE-MsgGUID: +qZ0ZK3XSG+nheXBxG5ehg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11669"; a="69494137"
-X-IronPort-AV: E=Sophos;i="6.21,222,1763452800"; d="scan'208";a="69494137"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jan 2026 03:15:58 -0800
-X-CSE-ConnectionGUID: gp+XozKiQPGfae5ulH+AcQ==
-X-CSE-MsgGUID: 3yKWTVbVTF+JY4mld4dMQg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,222,1763452800"; d="scan'208";a="204635092"
-Received: from lkp-server01.sh.intel.com (HELO 765f4a05e27f) ([10.239.97.150])
- by fmviesa008.fm.intel.com with ESMTP; 13 Jan 2026 03:15:56 -0800
-Received: from kbuild by 765f4a05e27f with local (Exim 4.98.2)
- (envelope-from <lkp@intel.com>) id 1vfcNO-00000000Eei-1K7X;
- Tue, 13 Jan 2026 11:15:54 +0000
-Date: Tue, 13 Jan 2026 19:15:44 +0800
-From: kernel test robot <lkp@intel.com>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1FEE610E2E6;
+	Tue, 13 Jan 2026 11:18:07 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A225510E2E6;
+ Tue, 13 Jan 2026 11:18:05 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm=3A_Color_pipeline_tea?=
+ =?utf-8?q?rdown_and_follow-up_fixes/improvements_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Subject: [drm-xe:drm-xe-next] BUILD SUCCESS
- 49a498338417281f78594294c83707b140afde85
-Message-ID: <202601131938.dJVSVq5h-lkp@intel.com>
-User-Agent: s-nail v14.9.25
+Date: Tue, 13 Jan 2026 11:18:05 -0000
+Message-ID: <176830308566.149757.493133123495657274@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260113102303.724205-1-chaitanya.kumar.borah@intel.com>
+In-Reply-To: <20260113102303.724205-1-chaitanya.kumar.borah@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,240 +36,104 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
-branch HEAD: 49a498338417281f78594294c83707b140afde85  drm/xe/hwmon: Expose individual VRAM channel temperature
+== Series Details ==
 
-elapsed time: 760m
+Series: drm: Color pipeline teardown and follow-up fixes/improvements (rev3)
+URL   : https://patchwork.freedesktop.org/series/159263/
+State : warning
 
-configs tested: 218
-configs skipped: 2
+== Summary ==
 
-The following configs have been built successfully.
-More configs may be tested in the coming days.
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+ee83616c430ce70bd254bd2774d143a5733c8666
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit c73cf14db2c0ba24b1f3c82e3ef9a4c7ab142669
+Author: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+Date:   Tue Jan 13 15:53:03 2026 +0530
 
-tested configs:
-alpha                             allnoconfig    gcc-15.2.0
-alpha                            allyesconfig    gcc-15.2.0
-alpha                               defconfig    gcc-15.2.0
-arc                              allmodconfig    clang-16
-arc                               allnoconfig    gcc-15.2.0
-arc                              allyesconfig    clang-22
-arc                                 defconfig    gcc-15.2.0
-arc                   randconfig-001-20260113    clang-22
-arc                   randconfig-002-20260113    clang-22
-arc                           tb10x_defconfig    gcc-15.2.0
-arm                               allnoconfig    gcc-15.2.0
-arm                              allyesconfig    clang-16
-arm                                 defconfig    gcc-15.2.0
-arm                       imx_v6_v7_defconfig    gcc-15.2.0
-arm                   milbeaut_m10v_defconfig    gcc-15.2.0
-arm                            mmp2_defconfig    gcc-15.2.0
-arm                        mvebu_v7_defconfig    gcc-15.2.0
-arm                          pxa910_defconfig    clang-22
-arm                   randconfig-001-20260113    clang-22
-arm                   randconfig-002-20260113    clang-22
-arm                   randconfig-003-20260113    clang-22
-arm                   randconfig-004-20260113    clang-22
-arm                           spitz_defconfig    gcc-15.2.0
-arm                           sunxi_defconfig    gcc-15.2.0
-arm64                            allmodconfig    clang-22
-arm64                             allnoconfig    gcc-15.2.0
-arm64                               defconfig    gcc-15.2.0
-arm64                 randconfig-001-20260113    clang-22
-arm64                 randconfig-002-20260113    clang-22
-arm64                 randconfig-003-20260113    clang-22
-arm64                 randconfig-004-20260113    clang-22
-csky                             allmodconfig    gcc-15.2.0
-csky                              allnoconfig    gcc-15.2.0
-csky                                defconfig    gcc-15.2.0
-csky                  randconfig-001-20260113    clang-22
-csky                  randconfig-002-20260113    clang-22
-hexagon                          allmodconfig    gcc-15.2.0
-hexagon                           allnoconfig    gcc-15.2.0
-hexagon                             defconfig    gcc-15.2.0
-hexagon               randconfig-001-20260113    clang-22
-hexagon               randconfig-002-20260113    clang-22
-i386                             allmodconfig    clang-20
-i386                              allnoconfig    gcc-15.2.0
-i386                             allyesconfig    clang-20
-i386        buildonly-randconfig-001-20260113    clang-20
-i386        buildonly-randconfig-002-20260113    clang-20
-i386        buildonly-randconfig-003-20260113    clang-20
-i386        buildonly-randconfig-004-20260113    clang-20
-i386        buildonly-randconfig-005-20260113    clang-20
-i386        buildonly-randconfig-006-20260113    clang-20
-i386                                defconfig    gcc-15.2.0
-i386                  randconfig-001-20260113    clang-20
-i386                  randconfig-002-20260113    clang-20
-i386                  randconfig-003-20260113    clang-20
-i386                  randconfig-004-20260113    clang-20
-i386                  randconfig-005-20260113    clang-20
-i386                  randconfig-006-20260113    clang-20
-i386                  randconfig-007-20260113    clang-20
-i386                  randconfig-011-20260113    gcc-14
-i386                  randconfig-012-20260113    gcc-14
-i386                  randconfig-013-20260113    gcc-14
-i386                  randconfig-014-20260113    gcc-14
-i386                  randconfig-015-20260113    gcc-14
-i386                  randconfig-016-20260113    gcc-14
-i386                  randconfig-017-20260113    gcc-14
-loongarch                        allmodconfig    clang-22
-loongarch                         allnoconfig    gcc-15.2.0
-loongarch                           defconfig    clang-19
-loongarch             randconfig-001-20260113    clang-22
-loongarch             randconfig-001-20260113    gcc-15.2.0
-loongarch             randconfig-002-20260113    clang-22
-m68k                             allmodconfig    gcc-15.2.0
-m68k                              allnoconfig    gcc-15.2.0
-m68k                             allyesconfig    clang-16
-m68k                          amiga_defconfig    clang-22
-m68k                                defconfig    clang-19
-m68k                          hp300_defconfig    gcc-15.2.0
-m68k                        m5272c3_defconfig    clang-22
-m68k                        m5272c3_defconfig    gcc-15.2.0
-m68k                        mvme147_defconfig    gcc-15.2.0
-microblaze                        allnoconfig    gcc-15.2.0
-microblaze                       allyesconfig    gcc-15.2.0
-microblaze                          defconfig    clang-19
-mips                             allmodconfig    gcc-15.2.0
-mips                              allnoconfig    gcc-15.2.0
-mips                             allyesconfig    gcc-15.2.0
-mips                  cavium_octeon_defconfig    gcc-15.2.0
-mips                     cu1000-neo_defconfig    gcc-15.2.0
-mips                           gcw0_defconfig    clang-22
-mips                           ip30_defconfig    gcc-15.2.0
-mips                           rs90_defconfig    gcc-15.2.0
-mips                   sb1250_swarm_defconfig    clang-22
-nios2                            allmodconfig    clang-22
-nios2                             allnoconfig    clang-22
-nios2                               defconfig    clang-19
-nios2                 randconfig-001-20260113    clang-22
-nios2                 randconfig-001-20260113    gcc-8.5.0
-nios2                 randconfig-002-20260113    clang-22
-nios2                 randconfig-002-20260113    gcc-11.5.0
-openrisc                         allmodconfig    clang-22
-openrisc                          allnoconfig    clang-22
-openrisc                            defconfig    gcc-15.2.0
-parisc                           allmodconfig    gcc-15.2.0
-parisc                            allnoconfig    clang-22
-parisc                           allyesconfig    clang-19
-parisc                              defconfig    gcc-15.2.0
-parisc                generic-32bit_defconfig    gcc-15.2.0
-parisc                randconfig-001-20260113    clang-19
-parisc                randconfig-002-20260113    clang-19
-parisc64                            defconfig    clang-19
-powerpc                          allmodconfig    gcc-15.2.0
-powerpc                           allnoconfig    clang-22
-powerpc                      arches_defconfig    clang-22
-powerpc                  iss476-smp_defconfig    clang-22
-powerpc                   motionpro_defconfig    gcc-15.2.0
-powerpc                     mpc512x_defconfig    clang-22
-powerpc                     mpc5200_defconfig    clang-22
-powerpc                      pasemi_defconfig    clang-22
-powerpc                       ppc64_defconfig    gcc-15.2.0
-powerpc               randconfig-001-20260113    clang-19
-powerpc               randconfig-002-20260113    clang-19
-powerpc                     tqm8540_defconfig    clang-22
-powerpc                     tqm8541_defconfig    clang-22
-powerpc                     tqm8560_defconfig    gcc-15.2.0
-powerpc                      tqm8xx_defconfig    clang-22
-powerpc                        warp_defconfig    clang-22
-powerpc64             randconfig-001-20260113    clang-19
-powerpc64             randconfig-002-20260113    clang-19
-riscv                            allmodconfig    clang-22
-riscv                             allnoconfig    clang-22
-riscv                            allyesconfig    clang-16
-riscv                               defconfig    gcc-15.2.0
-riscv                 randconfig-001-20260113    gcc-15.2.0
-riscv                 randconfig-001-20260113    gcc-9.5.0
-riscv                 randconfig-002-20260113    gcc-15.2.0
-riscv                 randconfig-002-20260113    gcc-8.5.0
-s390                             allmodconfig    clang-19
-s390                              allnoconfig    clang-22
-s390                             allyesconfig    gcc-15.2.0
-s390                                defconfig    gcc-15.2.0
-s390                  randconfig-001-20260113    gcc-15.2.0
-s390                  randconfig-001-20260113    gcc-8.5.0
-s390                  randconfig-002-20260113    gcc-14.3.0
-s390                  randconfig-002-20260113    gcc-15.2.0
-sh                               allmodconfig    gcc-15.2.0
-sh                                allnoconfig    clang-22
-sh                               allyesconfig    clang-19
-sh                                  defconfig    gcc-14
-sh                               j2_defconfig    clang-22
-sh                          landisk_defconfig    gcc-15.2.0
-sh                     magicpanelr2_defconfig    gcc-15.2.0
-sh                    randconfig-001-20260113    gcc-15.2.0
-sh                    randconfig-002-20260113    gcc-14.3.0
-sh                    randconfig-002-20260113    gcc-15.2.0
-sh                      rts7751r2d1_defconfig    clang-22
-sh                        sh7757lcr_defconfig    gcc-15.2.0
-sparc                             allnoconfig    clang-22
-sparc                               defconfig    gcc-15.2.0
-sparc                 randconfig-001-20260113    gcc-14.3.0
-sparc                 randconfig-002-20260113    gcc-14.3.0
-sparc64                          allmodconfig    clang-22
-sparc64                             defconfig    gcc-14
-sparc64               randconfig-001-20260113    gcc-14.3.0
-sparc64               randconfig-002-20260113    gcc-14.3.0
-um                               allmodconfig    clang-19
-um                                allnoconfig    clang-22
-um                               allyesconfig    gcc-15.2.0
-um                                  defconfig    gcc-14
-um                             i386_defconfig    gcc-14
-um                    randconfig-001-20260113    gcc-14.3.0
-um                    randconfig-002-20260113    gcc-14.3.0
-um                           x86_64_defconfig    gcc-14
-x86_64                           allmodconfig    clang-20
-x86_64                            allnoconfig    clang-22
-x86_64                           allyesconfig    clang-20
-x86_64      buildonly-randconfig-001-20260113    clang-20
-x86_64      buildonly-randconfig-002-20260113    clang-20
-x86_64      buildonly-randconfig-003-20260113    clang-20
-x86_64      buildonly-randconfig-004-20260113    clang-20
-x86_64      buildonly-randconfig-005-20260113    clang-20
-x86_64      buildonly-randconfig-006-20260113    clang-20
-x86_64                              defconfig    gcc-14
-x86_64                                  kexec    clang-20
-x86_64                randconfig-001-20260113    gcc-14
-x86_64                randconfig-002-20260113    gcc-14
-x86_64                randconfig-003-20260113    gcc-14
-x86_64                randconfig-004-20260113    gcc-14
-x86_64                randconfig-005-20260113    gcc-14
-x86_64                randconfig-006-20260113    gcc-14
-x86_64                randconfig-011-20260113    clang-20
-x86_64                randconfig-011-20260113    gcc-13
-x86_64                randconfig-012-20260113    clang-20
-x86_64                randconfig-013-20260113    clang-20
-x86_64                randconfig-014-20260113    clang-20
-x86_64                randconfig-014-20260113    gcc-13
-x86_64                randconfig-015-20260113    clang-20
-x86_64                randconfig-015-20260113    gcc-14
-x86_64                randconfig-016-20260113    clang-20
-x86_64                randconfig-071-20260113    clang-20
-x86_64                randconfig-072-20260113    clang-20
-x86_64                randconfig-073-20260113    clang-20
-x86_64                randconfig-074-20260113    clang-20
-x86_64                randconfig-075-20260113    clang-20
-x86_64                randconfig-076-20260113    clang-20
-x86_64                               rhel-9.4    clang-20
-x86_64                           rhel-9.4-bpf    gcc-14
-x86_64                          rhel-9.4-func    clang-20
-x86_64                    rhel-9.4-kselftests    clang-20
-x86_64                         rhel-9.4-kunit    gcc-14
-x86_64                           rhel-9.4-ltp    gcc-14
-x86_64                          rhel-9.4-rust    clang-20
-xtensa                           alldefconfig    gcc-15.2.0
-xtensa                            allnoconfig    clang-22
-xtensa                           allyesconfig    clang-22
-xtensa                generic_kc705_defconfig    gcc-15.2.0
-xtensa                randconfig-001-20260113    gcc-14.3.0
-xtensa                randconfig-002-20260113    gcc-14.3.0
-xtensa                    smp_lx200_defconfig    gcc-15.2.0
+    drm/i915/color: Add failure handling in plane color pipeline init
+    
+    The plane color pipeline initialization built up multiple colorop blocks
+    inline, but did not reliably clean up partially constructed pipelines
+    when an intermediate step failed. This could lead to leaked colorop
+    objects and fragile error handling as the pipeline grows.
+    
+    Refactor the pipeline construction to use a common helper for adding
+    colorop blocks. This centralizes allocation, initialization, and
+    teardown logic, allowing the caller to reliably unwind all previously
+    created colorops on failure.
+    
+    v2:
+     - Refactor code to avoid repetition (Suraj)
+    
+    v3:
+     - s/nvl/xe3plpd (Suraj)
+    
+    Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+    Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
++ /mt/dim checkpatch f7424dfbcb8f05a13bb1da2bed8e2212d2b7a082 drm-intel
+f166843fe069 drm/i915/color: Place 3D LUT after CSC in plane color pipeline
+082162cf6dac drm/amd/display: Fix color pipeline enum name leak
+a1b78ac88836 drm/vkms: Fix color pipeline enum name leak
+adae6513f14a drm/i915/display: Fix color pipeline enum name leak
+57a50762145f drm/colorop: Add destroy helper for colorop objects
+d30796634823 drm: Allow driver-managed destruction of colorop objects
+-:58: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#58: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_colorop.c:125:
++		ret = drm_plane_colorop_curve_1d_init(dev, ops[i], plane, NULL,
+ 						amdgpu_dm_supported_shaper_tfs,
 
---
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+-:67: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#67: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_colorop.c:142:
++		ret = drm_plane_colorop_curve_1d_lut_init(dev, ops[i], plane, NULL,
++							MAX_COLOR_LUT_ENTRIES,
+
+-:77: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#77: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_colorop.c:160:
++		ret = drm_plane_colorop_3dlut_init(dev, ops[i], plane, NULL, LUT3D_SIZE,
+ 					DRM_COLOROP_LUT3D_INTERPOLATION_TETRAHEDRAL,
+
+-:161: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u32' over 'uint32_t'
+#161: FILE: drivers/gpu/drm/drm_colorop.c:319:
++					uint32_t lut_size,
+
+-:352: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u32' over 'uint32_t'
+#352: FILE: include/drm/drm_colorop.h:413:
++					uint32_t lut_size,
+
+total: 0 errors, 0 warnings, 5 checks, 300 lines checked
+f5fe63ab7aa5 drm/amd/display: Hook up colorop destroy helper for plane pipelines
+-:65: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#65: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_colorop.c:131:
++		ret = drm_plane_colorop_curve_1d_init(dev, ops[i], plane, &dm_colorop_funcs,
+ 						amdgpu_dm_supported_shaper_tfs,
+
+-:74: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#74: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_colorop.c:148:
++		ret = drm_plane_colorop_curve_1d_lut_init(dev, ops[i], plane,
++							&dm_colorop_funcs,
+
+-:84: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#84: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_colorop.c:167:
++		ret = drm_plane_colorop_3dlut_init(dev, ops[i], plane,
++					&dm_colorop_funcs, LUT3D_SIZE,
+
+total: 0 errors, 0 warnings, 3 checks, 79 lines checked
+9dd9367e1fd7 drm/vkms: Hook up colorop destroy helper for plane pipelines
+188831a5f26a drm/i915/display: Hook up intel_colorop_destroy
+cacb529a82d3 drm: Clean up colorop objects during mode_config cleanup
+f8d27de88de5 drm/vkms: Remove drm_colorop_pipeline_destroy() from vkms_destroy()
+354a590c9861 drm/colorop: Use destroy callback for color pipeline teardown
+c73cf14db2c0 drm/i915/color: Add failure handling in plane color pipeline init
+
+
