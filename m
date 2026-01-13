@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DEBFAD3189E
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 731DAD31896
 	for <intel-xe@archiver.kernel.org>; Tue, 13 Jan 2026 23:03:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E0B1A10E5AC;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8D7A210E5A7;
 	Tue, 13 Jan 2026 23:03:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lpvI7EGH";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SgqcdEAY";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0E67A10E56A
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9198510E567
  for <intel-xe@lists.freedesktop.org>; Tue, 13 Jan 2026 23:03:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1768345421; x=1799881421;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Wq18bYiTo8L1/M5WfnbFrtVc/G9pcGS87n0ltr4xzwA=;
- b=lpvI7EGHITxazQtswr3K7w1fTQpNSGRzFFmlizlFVd3P/LvwC962car2
- GcXDEbzzFYwQNE7wrTGHUOnyTVS2R24F1HN5uBM3ZZ22w1QZI7qs5Nc6T
- 73qS697bFxuHrgeFm39BHWIQF7PO3XBYI87bYtVRltzQaVuN4Q8C3Ga6p
- EkF4wmEjgA72/C/myUgnfig75uRFo7b5BYJG7lXWbjP3SimnQgivBPPco
- DLP3Za4sF5GhqpiYcnA/aBV13mVyyCj5usN5+FI09zZO/8ppTPtCAbj6a
- 4XVzDYsdKWg/hDHE7krSDk/TrD64I1VWO836O1/GnTfIhEGK1OI+sO/3q A==;
-X-CSE-ConnectionGUID: FfWLq6UZQYmVp8Gk08G0dw==
-X-CSE-MsgGUID: YUndAmsFS5e0UagwrQoJhQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11670"; a="92311126"
-X-IronPort-AV: E=Sophos;i="6.21,224,1763452800"; d="scan'208";a="92311126"
+ bh=wWAGJBbStVlGhkycRNea3G+Ixko7Dt+fWqfhd7kHO8Y=;
+ b=SgqcdEAYJx/JfqIqro4fIAkT/rnVZJlX4SZE0081A1SELFZQ0LmINl8i
+ VQyDeMMmT+3PtHMa/tUKkaWvnDgSPC+rx4XQG5D2RAEu65iQXIdVI5CXq
+ xnbGNyxBonY3bxFv6zyLjPu/p3FBZiKWt+j9ZDOKdJGpvBvaq2U05VxQ7
+ a/+gbfD/PukWavyg+GBxUNA4sFkkVgox1kdQTIssZXZOAVkL72dDlpz6G
+ u60fKr67QWj7v5rpjtQ6TeqIY197Yia1dEP1ltjPBeYLQHmY9uhhFDLaz
+ j5C5GE+h8bGTJGu3HTFP6bu+s1YqKVBMN7AFUXS3WTxcebtw7d/d7GK3+ Q==;
+X-CSE-ConnectionGUID: 0gSsH5dSRxChcnqzSaTDQA==
+X-CSE-MsgGUID: V1ABi9o4QYirFwsUyjeyyw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11670"; a="92311137"
+X-IronPort-AV: E=Sophos;i="6.21,224,1763452800"; d="scan'208";a="92311137"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  13 Jan 2026 15:03:40 -0800
-X-CSE-ConnectionGUID: gafzY095SpCBXTlE23FyJA==
-X-CSE-MsgGUID: fCjwSH9YT6mLJChuWx4tsQ==
+X-CSE-ConnectionGUID: Oz44v49bS0efRxU7YFigww==
+X-CSE-MsgGUID: 2n1vn23NSriClg+DF7T5pw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,224,1763452800"; d="scan'208";a="204147349"
+X-IronPort-AV: E=Sophos;i="6.21,224,1763452800"; d="scan'208";a="204147371"
 Received: from mdroper-desk1.fm.intel.com ([10.1.39.133])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  13 Jan 2026 15:03:38 -0800
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.d.roper@intel.com
-Subject: [PATCH 21/79] drm/xe: Cleanup headers in xe_gt_sriov_pf_service.c
-Date: Tue, 13 Jan 2026 15:03:26 -0800
-Message-ID: <20260113230315.3081153-102-matthew.d.roper@intel.com>
+Subject: [PATCH 30/79] drm/xe: Simplify headers in xe_guc_hwconfig.c
+Date: Tue, 13 Jan 2026 15:03:35 -0800
+Message-ID: <20260113230315.3081153-111-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260113230315.3081153-81-matthew.d.roper@intel.com>
 References: <20260113230315.3081153-81-matthew.d.roper@intel.com>
@@ -66,44 +66,30 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-xe_gt_sriov_pf_service.c doesn't use anything from
-guc_actions_sriov_abi.h, regs/xe_regs.h, or xe_gt_sriov_pf_helpers.h.
-Drop the unnecessary includes.  It does however need xe_assert.h and
-xe_sriov.h which were being indirectly included, so add explicit
-includes of those.
+xe_guc_hwconfig.c doesn't use anything from xe_device.h or xe_gt.h;
+instead if only needs the corresponding 'types' headers.  Replace the
+includes accordingly.
 
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_sriov_pf_service.c | 5 ++---
- 1 file changed, 2 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/xe/xe_guc_hwconfig.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_service.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_service.c
-index 2eb21610e5a0..b5e0a5b7723e 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_service.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_service.c
-@@ -5,20 +5,19 @@
+diff --git a/drivers/gpu/drm/xe/xe_guc_hwconfig.c b/drivers/gpu/drm/xe/xe_guc_hwconfig.c
+index af2c817d552c..b300901dbb8e 100644
+--- a/drivers/gpu/drm/xe/xe_guc_hwconfig.c
++++ b/drivers/gpu/drm/xe/xe_guc_hwconfig.c
+@@ -10,8 +10,8 @@
  
- #include <drm/drm_managed.h>
+ #include "abi/guc_actions_abi.h"
+ #include "xe_bo.h"
+-#include "xe_device.h"
+-#include "xe_gt.h"
++#include "xe_device_types.h"
++#include "xe_gt_types.h"
+ #include "xe_guc.h"
+ #include "xe_map.h"
  
--#include "abi/guc_actions_sriov_abi.h"
- #include "abi/guc_relay_actions_abi.h"
- 
- #include "regs/xe_gt_regs.h"
- #include "regs/xe_guc_regs.h"
--#include "regs/xe_regs.h"
- 
-+#include "xe_assert.h"
- #include "xe_mmio.h"
- #include "xe_gt_sriov_printk.h"
--#include "xe_gt_sriov_pf_helpers.h"
- #include "xe_gt_sriov_pf_service.h"
- #include "xe_gt_sriov_pf_service_types.h"
- #include "xe_guc_ct.h"
- #include "xe_guc_hxg_helpers.h"
-+#include "xe_sriov.h"
- #include "xe_sriov_pf_service.h"
- 
- static const struct xe_reg tgl_runtime_regs[] = {
 -- 
 2.52.0
 
