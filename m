@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 731DAD31896
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 82103D31899
 	for <intel-xe@archiver.kernel.org>; Tue, 13 Jan 2026 23:03:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8D7A210E5A7;
+	by gabe.freedesktop.org (Postfix) with ESMTP id A9FFD10E567;
 	Tue, 13 Jan 2026 23:03:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SgqcdEAY";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Z8pLsilH";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9198510E567
- for <intel-xe@lists.freedesktop.org>; Tue, 13 Jan 2026 23:03:41 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8578F10E569
+ for <intel-xe@lists.freedesktop.org>; Tue, 13 Jan 2026 23:03:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1768345421; x=1799881421;
+ t=1768345420; x=1799881420;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=wWAGJBbStVlGhkycRNea3G+Ixko7Dt+fWqfhd7kHO8Y=;
- b=SgqcdEAYJx/JfqIqro4fIAkT/rnVZJlX4SZE0081A1SELFZQ0LmINl8i
- VQyDeMMmT+3PtHMa/tUKkaWvnDgSPC+rx4XQG5D2RAEu65iQXIdVI5CXq
- xnbGNyxBonY3bxFv6zyLjPu/p3FBZiKWt+j9ZDOKdJGpvBvaq2U05VxQ7
- a/+gbfD/PukWavyg+GBxUNA4sFkkVgox1kdQTIssZXZOAVkL72dDlpz6G
- u60fKr67QWj7v5rpjtQ6TeqIY197Yia1dEP1ltjPBeYLQHmY9uhhFDLaz
- j5C5GE+h8bGTJGu3HTFP6bu+s1YqKVBMN7AFUXS3WTxcebtw7d/d7GK3+ Q==;
-X-CSE-ConnectionGUID: 0gSsH5dSRxChcnqzSaTDQA==
-X-CSE-MsgGUID: V1ABi9o4QYirFwsUyjeyyw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11670"; a="92311137"
-X-IronPort-AV: E=Sophos;i="6.21,224,1763452800"; d="scan'208";a="92311137"
+ bh=k5nPaK9E/z4KZsDYRhc9L8MoQa6yO4nbXV8jJKYy5ds=;
+ b=Z8pLsilHTakr+CYRuCNhdvo3Nv6fMXpaRPsTVDbhcl6gbskcMYvXsyUJ
+ SP+8ZOWUaQurYV6bd/GTWXSNMp90awkj8lRDMplYKA1yqVK/5/HijmpRX
+ oKylEGq/vgGPX3x6LFkGNwJMYD4r5bMWs8O4miJQpWc2W/ukNdFkioZOb
+ +EKfA78cSqf1CunsxnalxhWGQ0R6Woxvo+ifxnuCqIgy39DsuIKFbjsNr
+ LV8QN3HjJ65D6n9dWYInGm9cYJ4OUYjNasasE3Ctag2oZ1hf9ypdfnmnq
+ mxOzHCn6QaXcOlzvoPKjntgG+dok8K0+VhM5BF1OQPTmhu7m9Z8UZMerm g==;
+X-CSE-ConnectionGUID: HzZU+JAjSzKDhydXojTroA==
+X-CSE-MsgGUID: 6pdTMWcJS3OF9LOn94xebQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11670"; a="92311118"
+X-IronPort-AV: E=Sophos;i="6.21,224,1763452800"; d="scan'208";a="92311118"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  13 Jan 2026 15:03:40 -0800
-X-CSE-ConnectionGUID: Oz44v49bS0efRxU7YFigww==
-X-CSE-MsgGUID: 2n1vn23NSriClg+DF7T5pw==
+X-CSE-ConnectionGUID: zS+Kq3xdTrO0Uvh88OjFuw==
+X-CSE-MsgGUID: DEZBmrMmTKS+lZ2aUja98w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,224,1763452800"; d="scan'208";a="204147371"
+X-IronPort-AV: E=Sophos;i="6.21,224,1763452800"; d="scan'208";a="204147342"
 Received: from mdroper-desk1.fm.intel.com ([10.1.39.133])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  13 Jan 2026 15:03:38 -0800
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.d.roper@intel.com
-Subject: [PATCH 30/79] drm/xe: Simplify headers in xe_guc_hwconfig.c
-Date: Tue, 13 Jan 2026 15:03:35 -0800
-Message-ID: <20260113230315.3081153-111-matthew.d.roper@intel.com>
+Subject: [PATCH 19/79] drm/xe: Simplify header in xe_gt_sriov_pf_migration.c
+Date: Tue, 13 Jan 2026 15:03:24 -0800
+Message-ID: <20260113230315.3081153-100-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260113230315.3081153-81-matthew.d.roper@intel.com>
 References: <20260113230315.3081153-81-matthew.d.roper@intel.com>
@@ -66,30 +66,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-xe_guc_hwconfig.c doesn't use anything from xe_device.h or xe_gt.h;
-instead if only needs the corresponding 'types' headers.  Replace the
-includes accordingly.
+xe_gt_sriov_pf_migration.c doesn't directly use anything from
+xe_gt_sriov_pf_helpers.h.  Instead it just needs xe_sriov_pf_helpers.h,
+which was being included indirectly.  Switch the includes.
 
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc_hwconfig.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_migration.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_hwconfig.c b/drivers/gpu/drm/xe/xe_guc_hwconfig.c
-index af2c817d552c..b300901dbb8e 100644
---- a/drivers/gpu/drm/xe/xe_guc_hwconfig.c
-+++ b/drivers/gpu/drm/xe/xe_guc_hwconfig.c
-@@ -10,8 +10,8 @@
- 
- #include "abi/guc_actions_abi.h"
- #include "xe_bo.h"
--#include "xe_device.h"
--#include "xe_gt.h"
-+#include "xe_device_types.h"
-+#include "xe_gt_types.h"
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_migration.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_migration.c
+index 7410e7b93256..87a164efcc33 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_migration.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_migration.c
+@@ -14,7 +14,6 @@
+ #include "xe_gt_sriov_pf.h"
+ #include "xe_gt_sriov_pf_config.h"
+ #include "xe_gt_sriov_pf_control.h"
+-#include "xe_gt_sriov_pf_helpers.h"
+ #include "xe_gt_sriov_pf_migration.h"
+ #include "xe_gt_sriov_printk.h"
  #include "xe_guc.h"
- #include "xe_map.h"
+@@ -25,6 +24,7 @@
+ #include "xe_sriov.h"
+ #include "xe_sriov_packet.h"
+ #include "xe_sriov_packet_types.h"
++#include "xe_sriov_pf_helpers.h"
+ #include "xe_sriov_pf_migration.h"
  
+ #define XE_GT_SRIOV_PF_MIGRATION_RING_SIZE 5
 -- 
 2.52.0
 
