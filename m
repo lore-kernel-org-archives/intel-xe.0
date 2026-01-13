@@ -4,38 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 611C8D29DED
-	for <intel-xe@archiver.kernel.org>; Tue, 13 Jan 2026 08:37:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 114E7D29DE2
+	for <intel-xe@archiver.kernel.org>; Tue, 13 Jan 2026 08:43:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0FEE710E477;
-	Tue, 13 Jan 2026 08:37:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 79AE410E471;
+	Tue, 13 Jan 2026 08:43:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="Uf8aeIDf";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Xa+e3/4Y";
 	dkim-atps=neutral
-Received: from lankhorst.se (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CBD0210E472
- for <intel-xe@lists.freedesktop.org>; Tue, 13 Jan 2026 08:37:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1768293432;
- bh=mnZlY9JWDrPjVghRErE3IJihQ5jiqBl/Tp0Ftwml2LQ=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=Uf8aeIDfExrcBWEIZ+ovj3zw5b2q0OnPCowpYu3ZQcz+NLqM/uHXReD5ur7dF7IHo
- szlRkr1oQEzIyQRMbsVzaFpgezSD5RAs/Ts7tZ/FxyoivaOmA08ux501UHEM5WUN+5
- 47PoGN0+vak2D47vT695eYOmV8P646cFGAI1ha5DN36m2lmxBVB56hTAJ/vxiMzjTZ
- yYV3ug46hh8SbTASGjRiPXfmQCIY68sl8/qkyewtIcGVihqYuP80UtqAB5TNszUxOz
- HiN8ZYxJkgJsubCKMsgrrRtIqY1SoQ4clZ8juXJiImQDTAZgwgGqEJZltgV0Mrr4Ei
- a4Xsx0DkpcI3g==
-From: Maarten Lankhorst <dev@lankhorst.se>
-To: intel-xe@lists.freedesktop.org
-Cc: Maarten Lankhorst <dev@lankhorst.se>
-Subject: [PATCH v3 5/5] drm/xe: Remove xe_ggtt_node_allocated
-Date: Tue, 13 Jan 2026 09:37:01 +0100
-Message-ID: <20260113083702.1276449-6-dev@lankhorst.se>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20260113083702.1276449-1-dev@lankhorst.se>
-References: <20260113083702.1276449-1-dev@lankhorst.se>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7521510E470;
+ Tue, 13 Jan 2026 08:43:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1768293825; x=1799829825;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=vU6HbpGBDh1oeOphbmzlkf3FTt5EpLymMNLwQFj5r3E=;
+ b=Xa+e3/4Y/su/RjO4PXw/47Fyr+fJ7MKwoLeaz1JdWiPBAVeD0FOCYxTd
+ GyVRDSWvtqbg6jqL3IvFf3TxIA/1/pipdPTggzgy6JIGtkbvQJ9c8VYGX
+ cI0ghj65ebbw6RF120eVeKgSy9w+tmRRemLtM7dsT7ZQma5qBrs/1EXI6
+ 9lmGuAfdMyP9+x4iINYfiIoSCCbzk13dZwGke9gJUo438uSDSZDNLqI0K
+ g/RT1olUSL5BvccZyt1id5V32d3BBdZuROnVioNtiJpZh+9oP53+u7OI6
+ L+Ivs5kKiPr2gysn1148tSxg0/Zjf3Mxe8tXUsy/olcN/xCrwynBMYJms Q==;
+X-CSE-ConnectionGUID: fSL6DlLgQDyh24TY/pXKcg==
+X-CSE-MsgGUID: ACB+be5XQ7+jFkVlfGS6DQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11669"; a="69627224"
+X-IronPort-AV: E=Sophos;i="6.21,222,1763452800"; d="scan'208";a="69627224"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jan 2026 00:43:44 -0800
+X-CSE-ConnectionGUID: dPmuvJA1RyaW1ayXqbsZSQ==
+X-CSE-MsgGUID: MtDRQywjSHinMpTz/Fs5qA==
+X-ExtLoop1: 1
+Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.36])
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jan 2026 00:43:41 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Kaushlendra Kumar <kaushlendra.kumar@intel.com>, rodrigo.vivi@intel.com,
+ joonas.lahtinen@linux.intel.com, tursulin@ursulin.net, airlied@gmail.com,
+ simona@ffwll.ch
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, Kaushlendra Kumar
+ <kaushlendra.kumar@intel.com>
+Subject: Re: [PATCH] drm/i915/bios: Use get_unaligned_* for VBT block size
+In-Reply-To: <20260113031210.330128-1-kaushlendra.kumar@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20260113031210.330128-1-kaushlendra.kumar@intel.com>
+Date: Tue, 13 Jan 2026 10:43:38 +0200
+Message-ID: <a15f6e8a6ab43f2dbaa2b33c606ee001f6ed38cd@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,136 +71,50 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-With the intermediate state gone, no longer useful. Just check against
-NULL where needed.
+On Tue, 13 Jan 2026, Kaushlendra Kumar <kaushlendra.kumar@intel.com> wrote:
+> Replace pointer casts with get_unaligned_* helpers for VBT
+> block size reads. This ensures endianness and alignment
+> correctness in VBT parsing.
+>
+> Signed-off-by: Kaushlendra Kumar <kaushlendra.kumar@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_bios.c | 5 +++--
+>  1 file changed, 3 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
+> index 4b41068e9e35..dd1b3f629428 100644
+> --- a/drivers/gpu/drm/i915/display/intel_bios.c
+> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
+> @@ -45,6 +45,7 @@
+>  
+>  #define _INTEL_BIOS_PRIVATE
+>  #include "intel_vbt_defs.h"
+> +#include <linux/unaligned.h>
 
-Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
----
- drivers/gpu/drm/xe/display/xe_fb_pin.c     |  3 +--
- drivers/gpu/drm/xe/xe_ggtt.c               | 17 -----------------
- drivers/gpu/drm/xe/xe_ggtt.h               |  1 -
- drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c | 12 ++++++------
- 4 files changed, 7 insertions(+), 26 deletions(-)
+Please put the include next to other linux/ includes, sorted.
 
-diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-index d2c4e94180fa3..10915fb3151f4 100644
---- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
-+++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-@@ -352,8 +352,7 @@ static void __xe_unpin_fb_vma(struct i915_vma *vma)
- 
- 	if (vma->dpt)
- 		xe_bo_unpin_map_no_vm(vma->dpt);
--	else if (!xe_ggtt_node_allocated(vma->bo->ggtt_node[tile_id]) ||
--		 vma->bo->ggtt_node[tile_id] != vma->node)
-+	else if (vma->bo->ggtt_node[tile_id] != vma->node)
- 		xe_ggtt_node_remove(vma->node, false);
- 
- 	ttm_bo_reserve(&vma->bo->ttm, false, false, NULL);
-diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
-index 7538ba13cbab7..5e0225dab8462 100644
---- a/drivers/gpu/drm/xe/xe_ggtt.c
-+++ b/drivers/gpu/drm/xe/xe_ggtt.c
-@@ -664,20 +664,6 @@ struct xe_ggtt_node *xe_ggtt_node_insert(struct xe_ggtt *ggtt, u32 size, u32 ali
- 	return node;
- }
- 
--/**
-- * xe_ggtt_node_allocated - Check if node is allocated in GGTT
-- * @node: the &xe_ggtt_node to be inspected
-- *
-- * Return: True if allocated, False otherwise.
-- */
--bool xe_ggtt_node_allocated(const struct xe_ggtt_node *node)
--{
--	if (!node || !node->ggtt)
--		return false;
--
--	return drm_mm_node_allocated(&node->base);
--}
--
- /**
-  * xe_ggtt_node_pt_size() - Get the size of page table entries needed to map a GGTT node.
-  * @node: the &xe_ggtt_node
-@@ -961,9 +947,6 @@ static void xe_ggtt_assign_locked(const struct xe_ggtt_node *node, u16 vfid)
- 
- 	lockdep_assert_held(&ggtt->lock);
- 
--	if (!xe_ggtt_node_allocated(node))
--		return;
--
- 	while (start < end) {
- 		ggtt->pt_ops->ggtt_set_pte(ggtt, start, pte);
- 		start += XE_PAGE_SIZE;
-diff --git a/drivers/gpu/drm/xe/xe_ggtt.h b/drivers/gpu/drm/xe/xe_ggtt.h
-index 6d8679bcc38fb..ffa3369927157 100644
---- a/drivers/gpu/drm/xe/xe_ggtt.h
-+++ b/drivers/gpu/drm/xe/xe_ggtt.h
-@@ -30,7 +30,6 @@ xe_ggtt_node_insert_transform(struct xe_ggtt *ggtt,
- 			      u64 size, u32 align,
- 			      xe_ggtt_transform_cb transform, void *arg);
- void xe_ggtt_node_remove(struct xe_ggtt_node *node, bool invalidate);
--bool xe_ggtt_node_allocated(const struct xe_ggtt_node *node);
- size_t xe_ggtt_node_pt_size(const struct xe_ggtt_node *node);
- void xe_ggtt_map_bo_unlocked(struct xe_ggtt *ggtt, struct xe_bo *bo);
- int xe_ggtt_insert_bo(struct xe_ggtt *ggtt, struct xe_bo *bo, struct drm_exec *exec);
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-index a6414d164166e..ca757742d2748 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-@@ -281,7 +281,7 @@ static u32 encode_config_ggtt(u32 *cfg, const struct xe_gt_sriov_config *config,
- {
- 	struct xe_ggtt_node *node = config->ggtt_region;
- 
--	if (!xe_ggtt_node_allocated(node))
-+	if (!node)
- 		return 0;
- 
- 	return encode_ggtt(cfg, xe_ggtt_node_addr(node), xe_ggtt_node_size(node), details);
-@@ -505,7 +505,7 @@ static int pf_provision_vf_ggtt(struct xe_gt *gt, unsigned int vfid, u64 size)
- 
- 	size = round_up(size, alignment);
- 
--	if (xe_ggtt_node_allocated(config->ggtt_region)) {
-+	if (config->ggtt_region) {
- 		err = pf_distribute_config_ggtt(tile, vfid, 0, 0);
- 		if (unlikely(err))
- 			return err;
-@@ -516,7 +516,7 @@ static int pf_provision_vf_ggtt(struct xe_gt *gt, unsigned int vfid, u64 size)
- 		if (unlikely(err))
- 			return err;
- 	}
--	xe_gt_assert(gt, !xe_ggtt_node_allocated(config->ggtt_region));
-+	xe_gt_assert(gt, !config->ggtt_region);
- 
- 	if (!size)
- 		return 0;
-@@ -546,7 +546,7 @@ static u64 pf_get_vf_config_ggtt(struct xe_gt *gt, unsigned int vfid)
- 	struct xe_ggtt_node *node = config->ggtt_region;
- 
- 	xe_gt_assert(gt, xe_gt_is_main_type(gt));
--	return xe_ggtt_node_allocated(node) ? xe_ggtt_node_size(node) : 0;
-+	return node ? xe_ggtt_node_size(node) : 0;
- }
- 
- /**
-@@ -2560,7 +2560,7 @@ int xe_gt_sriov_pf_config_release(struct xe_gt *gt, unsigned int vfid, bool forc
- 
- static void pf_sanitize_ggtt(struct xe_ggtt_node *ggtt_region, unsigned int vfid)
- {
--	if (xe_ggtt_node_allocated(ggtt_region))
-+	if (ggtt_region)
- 		xe_ggtt_assign(ggtt_region, vfid);
- }
- 
-@@ -3019,7 +3019,7 @@ int xe_gt_sriov_pf_config_print_ggtt(struct xe_gt *gt, struct drm_printer *p)
- 
- 	for (n = 1; n <= total_vfs; n++) {
- 		config = &gt->sriov.pf.vfs[n].config;
--		if (!xe_ggtt_node_allocated(config->ggtt_region))
-+		if (!config->ggtt_region)
- 			continue;
- 
- 		string_get_size(xe_ggtt_node_size(config->ggtt_region), 1, STRING_UNITS_2,
+>  
+>  /**
+>   * DOC: Video BIOS Table (VBT)
+> @@ -85,9 +86,9 @@ static u32 _get_blocksize(const u8 *block_base)
+>  {
+>  	/* The MIPI Sequence Block v3+ has a separate size field. */
+>  	if (*block_base == BDB_MIPI_SEQUENCE && *(block_base + 3) >= 3)
+> -		return *((const u32 *)(block_base + 4));
+> +		return get_unaligned_le32(block_base + 4);
+>  	else
+> -		return *((const u16 *)(block_base + 1));
+> +		return get_unaligned_le16(block_base + 1);
+
+There's a handful of other places in the file that could use the same
+treatment.
+
+BR,
+Jani.
+
+>  }
+>  
+>  /* Get BDB block size give a pointer to data after Block ID and Block Size. */
+
 -- 
-2.51.0
-
+Jani Nikula, Intel
