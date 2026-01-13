@@ -4,27 +4,36 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 78919D2D0E3
-	for <intel-xe@archiver.kernel.org>; Tue, 13 Jan 2026 12:06:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0D1EDD2D0E2
+	for <intel-xe@archiver.kernel.org>; Tue, 13 Jan 2026 12:18:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 334AB10E337;
-	Tue, 13 Jan 2026 12:06:15 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AD54510E337;
- Tue, 13 Jan 2026 12:06:14 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5789104805224810625=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id BC61A10E4B7;
+	Tue, 13 Jan 2026 12:18:14 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="DRpQMyMd";
+	dkim-atps=neutral
+Received: from lankhorst.se (lankhorst.se [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D9D1510E33C
+ for <intel-xe@lists.freedesktop.org>; Tue, 13 Jan 2026 12:18:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
+ s=default; t=1768306692;
+ bh=8t9ZPmZKfszaQKoyT6k2FdQJbMb/46mj0JCOVYdEa60=;
+ h=From:To:Cc:Subject:Date:From;
+ b=DRpQMyMd+RaT+vA5SFHBMCzXdJWvXgyp41MueMLwIIgOFZKF/Rgko9cZKrA0Yfsyf
+ q3wYGG5VVndgmaoxJvVrb9xF5ZCts4+zpnQDVwehjHCYvp1qfix/osy5na5CV1BLGE
+ Oum7GL91FnALnHZt6c2DJeYEgK2UDvga4+bwSK153G5OL/QVDnNoMn7LMOV5AN84Ne
+ hCLfwCM/kUEUjdZSxmywSiMBELlkM/N34Q+VrCc6unmyIplEfWQODGC9BE0ByyFgMf
+ jB5eOXz9HroXfuf0FfVABEgiqOaqGawEI9oOo02/cyKptx1z8yFJOTT/Yk5I/NW5uI
+ sfg03fwKgcAIg==
+From: Maarten Lankhorst <dev@lankhorst.se>
+To: intel-xe@lists.freedesktop.org
+Cc: Maarten Lankhorst <dev@lankhorst.se>
+Subject: [PATCH v4 0/5] drm/xe: Privatize struct xe_ggtt.
+Date: Tue, 13 Jan 2026 13:18:02 +0100
+Message-ID: <20260113121807.1303124-1-dev@lankhorst.se>
+X-Mailer: git-send-email 2.51.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm=3A_Color_pipeline_teard?=
- =?utf-8?q?own_and_follow-up_fixes/improvements_=28rev3=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 13 Jan 2026 12:06:14 -0000
-Message-ID: <176830597470.149757.12250243770851062934@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260113102303.724205-1-chaitanya.kumar.borah@intel.com>
-In-Reply-To: <20260113102303.724205-1-chaitanya.kumar.borah@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,139 +45,37 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5789104805224810625==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Clean up SRIOV-VF handling and pop the balloons, move struct xe_ggtt to xe_ggtt.c,
+and clean up the API's slightly by removing a separate xe_gtt_node_init() step.
 
-== Series Details ==
+This makes the xe_ggtt_node_allocated obsolete, as we only create allocated nodes now.
 
-Series: drm: Color pipeline teardown and follow-up fixes/improvements (rev3)
-URL   : https://patchwork.freedesktop.org/series/159263/
-State : success
+Changes since previous version:
+- Move the changes to fix SRIOV-VF to first commit, otherwise it's
+  broken between first and second commit on bisection.
 
-== Summary ==
+Maarten Lankhorst (5):
+  drm/xe: Make xe_ggtt_node offset relative to starting offset
+  drm/xe: Rewrite GGTT VF initialisation
+  drm/xe: Move struct xe_ggtt to xe_ggtt.c
+  drm/xe: Make xe_ggtt_node_insert return a node
+  drm/xe: Remove xe_ggtt_node_allocated
 
-CI Bug Log - changes from xe-4375-0e1b1ce1c8adbc0a8ad1ee763a8a9eeaee297998_BAT -> xe-pw-159263v3_BAT
-====================================================
+ drivers/gpu/drm/xe/display/xe_fb_pin.c      |   3 +-
+ drivers/gpu/drm/xe/tests/xe_guc_buf_kunit.c |   6 +-
+ drivers/gpu/drm/xe/xe_device_types.h        |   2 -
+ drivers/gpu/drm/xe/xe_ggtt.c                | 345 ++++++++------------
+ drivers/gpu/drm/xe/xe_ggtt.h                |  12 +-
+ drivers/gpu/drm/xe/xe_ggtt_types.h          |  60 +---
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c  |  36 +-
+ drivers/gpu/drm/xe/xe_gt_sriov_vf.c         |   7 +-
+ drivers/gpu/drm/xe/xe_tile_sriov_vf.c       | 198 +----------
+ drivers/gpu/drm/xe/xe_tile_sriov_vf.h       |   3 -
+ 10 files changed, 163 insertions(+), 509 deletions(-)
 
-Summary
--------
+-- 
+2.51.0
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (12 -> 12)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-159263v3_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@xe_waitfence@abstime:
-    - bat-dg2-oem2:       [TIMEOUT][1] ([Intel XE#6506]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4375-0e1b1ce1c8adbc0a8ad1ee763a8a9eeaee297998/bat-dg2-oem2/igt@xe_waitfence@abstime.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159263v3/bat-dg2-oem2/igt@xe_waitfence@abstime.html
-
-  * igt@xe_waitfence@engine:
-    - bat-dg2-oem2:       [FAIL][3] ([Intel XE#6519]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4375-0e1b1ce1c8adbc0a8ad1ee763a8a9eeaee297998/bat-dg2-oem2/igt@xe_waitfence@engine.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159263v3/bat-dg2-oem2/igt@xe_waitfence@engine.html
-
-  
-  [Intel XE#6506]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506
-  [Intel XE#6519]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519
-
-
-Build changes
--------------
-
-  * Linux: xe-4375-0e1b1ce1c8adbc0a8ad1ee763a8a9eeaee297998 -> xe-pw-159263v3
-
-  IGT_8699: 0b67ab25f2eb58b296872c8c34474b79353727d5 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-4375-0e1b1ce1c8adbc0a8ad1ee763a8a9eeaee297998: 0e1b1ce1c8adbc0a8ad1ee763a8a9eeaee297998
-  xe-pw-159263v3: 159263v3
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159263v3/index.html
-
---===============5789104805224810625==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm: Color pipeline teardown and follow-up fixes/improvements (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/159263/">https://patchwork.freedesktop.org/series/159263/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159263v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159263v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4375-0e1b1ce1c8adbc0a8ad1ee763a8a9eeaee297998_BAT -&gt; xe-pw-159263v3_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (12 -&gt; 12)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-159263v3_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@xe_waitfence@abstime:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4375-0e1b1ce1c8adbc0a8ad1ee763a8a9eeaee297998/bat-dg2-oem2/igt@xe_waitfence@abstime.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506">Intel XE#6506</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159263v3/bat-dg2-oem2/igt@xe_waitfence@abstime.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@xe_waitfence@engine:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4375-0e1b1ce1c8adbc0a8ad1ee763a8a9eeaee297998/bat-dg2-oem2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519">Intel XE#6519</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159263v3/bat-dg2-oem2/igt@xe_waitfence@engine.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4375-0e1b1ce1c8adbc0a8ad1ee763a8a9eeaee297998 -&gt; xe-pw-159263v3</li>
-</ul>
-<p>IGT_8699: 0b67ab25f2eb58b296872c8c34474b79353727d5 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-4375-0e1b1ce1c8adbc0a8ad1ee763a8a9eeaee297998: 0e1b1ce1c8adbc0a8ad1ee763a8a9eeaee297998<br />
-  xe-pw-159263v3: 159263v3</p>
-
-</body>
-</html>
-
---===============5789104805224810625==--
