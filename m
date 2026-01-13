@@ -4,62 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 655A1CF45CB
-	for <intel-xe@archiver.kernel.org>; Tue, 13 Jan 2026 01:30:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 346D1CF45CB
+	for <intel-xe@archiver.kernel.org>; Tue, 13 Jan 2026 01:35:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2C40310E190;
-	Tue, 13 Jan 2026 01:30:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EBCBC10E190;
+	Tue, 13 Jan 2026 01:35:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SRkVHg2k";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FZgAui1p";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A35A610E190
- for <intel-xe@lists.freedesktop.org>; Tue, 13 Jan 2026 01:30:21 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3B45E10E2E0
+ for <intel-xe@lists.freedesktop.org>; Tue, 13 Jan 2026 01:35:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1768267822; x=1799803822;
+ t=1768268104; x=1799804104;
  h=date:from:to:cc:subject:message-id:references:
  content-transfer-encoding:in-reply-to:mime-version;
- bh=ADdancGPOPWc9D/5/1FtzWL4yUr0d84SzrPJRrQAVQ0=;
- b=SRkVHg2kSNuCzXYvJ41bCx6OgzSLHej55sNw0k2u+LgY0dPpYji3jnKH
- tbW8COvH7zmFley8IY8BojFxL+tS6sM4iIV2V9DeCWqcfLBdxV3xPfuwL
- 5g+QhKQyNvktLdZgLKDWXAMjxtAVdl5SR+mvfolU26akNLkIS/9wcb63h
- V7tbzBNz2wh16tLDBtj+Ga54SxOvxN0gUHR3qJVMrUjFB4ze40hCEUbFH
- kJn0ng/zuGj+mEMopv+RVeNNQVALZ57tr9jJhGGSkVyLglDSQGVhkREDr
- 7/pr+5LtkgV4Ha1b1JoD0/pzX9vysLJAPxssZvyPEd/VGzVv6BHk/jxo7 w==;
-X-CSE-ConnectionGUID: ukoixfRORMWQHe0eEHSUHA==
-X-CSE-MsgGUID: bW1yaCzVTx6FT+oZuuzoIw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11669"; a="73401285"
-X-IronPort-AV: E=Sophos;i="6.21,222,1763452800"; d="scan'208";a="73401285"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jan 2026 17:30:21 -0800
-X-CSE-ConnectionGUID: woI4gc0nTjyPpIMS7q3hSw==
-X-CSE-MsgGUID: SE77G6jMSG6XSnyUTGX+rw==
+ bh=VImugqVPDjOSvOCiGwIdKE0fX8PgdHrJ2TUsQftLnu4=;
+ b=FZgAui1pkWGBTCN9vnS3DkteMYrVQZgvDF7Sq1UaYhPVP8eEo8a26sO8
+ mIEf6TfKqYGC2OJTwj1aMF7VuyVu7mtBs6T4iUanRunoeJ2H51bH9Y8EY
+ iTM1mL5rlZU1fLvo1bP2P2kOp1H2svapmPZqil0FTQ7K5wEdvNR1YP0LJ
+ sbhDgKI6HMHGBr5eA+JRBsDgMLnagrQDpliuMUVYKMW0RXsYT2GHtQSAm
+ NlZNLgw6dS+3ntZcOwXCywZescLZAxOqGLv2tB2TiSsriURUSISSGtdp6
+ P4L1hv3sbvYDbwu5dbcyTmhkzqaGKnAyF3ooJx5Z7OmwrQIG7lYxDm8sb w==;
+X-CSE-ConnectionGUID: nrNwgDcfRLS7gK6pBnzY+Q==
+X-CSE-MsgGUID: 9+y1CFqrR2+VQ2XGnBTp4g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11669"; a="69625565"
+X-IronPort-AV: E=Sophos;i="6.21,222,1763452800"; d="scan'208";a="69625565"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Jan 2026 17:35:04 -0800
+X-CSE-ConnectionGUID: PGTHFjadRSuM6/OAWMxwsQ==
+X-CSE-MsgGUID: I2tO70JWSJau+36k+amadA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,222,1763452800"; d="scan'208";a="204885939"
-Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
- by fmviesa010.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jan 2026 17:30:21 -0800
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.21,222,1763452800"; d="scan'208";a="203879418"
+Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
+ by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Jan 2026 17:35:03 -0800
+Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Mon, 12 Jan 2026 17:30:20 -0800
+ 15.2.2562.29; Mon, 12 Jan 2026 17:35:03 -0800
 Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29 via Frontend Transport; Mon, 12 Jan 2026 17:30:20 -0800
-Received: from CY3PR05CU001.outbound.protection.outlook.com (40.93.201.3) by
+ 15.2.2562.29 via Frontend Transport; Mon, 12 Jan 2026 17:35:03 -0800
+Received: from MW6PR02CU001.outbound.protection.outlook.com (52.101.48.25) by
  edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Mon, 12 Jan 2026 17:30:20 -0800
+ 15.2.2562.29; Mon, 12 Jan 2026 17:35:03 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=OGNmQCDohPXLOp4zDnOuHanr+mhaJhoweGcYsr3vtFl5v9tlIg8953IYElq5YcMHsDYCs05tEN9dMuIAxo4Hfn1KiS4DWKoBmtXLAMs+gaqcC4TZLLWQHTfM0tnrKG3bkb/7fxnsSY0xuMvDDOl6XZrnk6HYfDOdAaJL7zL07W6LXfYMkqd5zDZPN4YINKi+bRcxzt3cFDhePODzdA330+gRXCM0Ze3QCNspD52gTQpbZ+AZlnmonS/w/TE6dfi9I5thcaYOGrfsSA3kW1588h/k7XMwW0fq4LRjmNwJrty0P0ASvwueSiARGL5ZLj45CNLd6FgSM9QLO2gJG8t3aA==
+ b=eBRgNFbDjaxCs/RYwMSbdAwW3OzPnHFsCNbaTi0rWU7RHw/gxohqaw/e02hkf66XMrnh4Gn1zgODXKho0xAf0mmkIuTtkd6wrL11uoE4tWhYxS7LCKqBN/2VhSPWCO5NVjHlUUAkyHGoVtjm2y74QVsZeLRLgH11qqdkwvSa1lqAnjxr8BjFVcZ5he5W1x326dRdHfUwWrPgquppAPLBBhmlmzDFpTF+QK26+Q2ZEWfoRpUityg0w+7WY/vL81V6+9uLECS3tt8nxXf3JVupjxaJ2OAy3WQYBuZmQ4zGav0waks0EXevygPi/Ue3sHy2cPKPyICflIryhELw0iAVMw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=V8E5cAGSWjP3amNtM8t61VEmSlzSmoKsBfe56AN9NC4=;
- b=n5UcIYbhLDKrmEzzrFrG9fmhW3cOHA4mOb4qYtMKAJPRcR9zbcT7C86GQ8vWXZT+PXpeXlgbovaRC14LCoYwEdLORYP6x9W3fy+dM4hbyzCoOmduXy+owPwcIZachh3fL9mIPG15O9+69g0JmGowuFnlWA2Cr5k/+QEfIuYWyqIUXhSxp9aCC4KvGtN/8SCwc6kBTgypas7qePTeHSnF7KtaXxqOJql2s2RHtZgFzyk78v4z2DnJlRKuAYDnP2HobgrnD/nBy4bw79pLTts13C58dhuSRlWU8SB1y9QkBB2iCi9bnZ5/AthjVmcOS1qwP4pp+qQiqQznvhwq9M77Jg==
+ bh=Tgm5LNtrAezLpXSm+GYcHDfRTZK7n5eRK+xJ/+oqBrM=;
+ b=WdXDKSUePZN4m0ZLoom5HoWe4bkaAoHJ4EkiH8/QWDwMyGAukFAzBHGn3pvPKVl2QuStMd5DxQ5fWAjONZNlBTePe8MUCn4+7O3i/8m6bka5dYQLVYjED0Il2GMGlkGtcX+gkLVm+MDGYbLlEXN0FAjc8cTAT4yggpqkDB+ti+b6MraL+PHNi8rRuJEFyiYteBrFwN+1afRlf+Fl+a0EUZsiSAgy4rf+mt7hN2tQxaxftilGfWHZUWOSCAH/UT57OScmcIQo/2iK6g8AhIhdwIG/YCKG6aoWBgKoSdwm5y94sHVW5teB9fl0FcgCaAi6wVunbsGVeNxbPkuOU9d8pQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -69,103 +69,104 @@ Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
  by BL1PR11MB6001.namprd11.prod.outlook.com (2603:10b6:208:385::12)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9499.7; Tue, 13 Jan
- 2026 01:30:17 +0000
+ 2026 01:35:01 +0000
 Received: from PH7PR11MB6522.namprd11.prod.outlook.com
  ([fe80::9e94:e21f:e11a:332]) by PH7PR11MB6522.namprd11.prod.outlook.com
  ([fe80::9e94:e21f:e11a:332%7]) with mapi id 15.20.9456.015; Tue, 13 Jan 2026
- 01:30:17 +0000
-Date: Mon, 12 Jan 2026 17:30:14 -0800
+ 01:35:01 +0000
+Date: Mon, 12 Jan 2026 17:34:58 -0800
 From: Matthew Brost <matthew.brost@intel.com>
 To: "Summers, Stuart" <stuart.summers@intel.com>
 CC: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH v3 04/11] drm/xe: Add vm to exec queues association
-Message-ID: <aWWgJnJ0OCz36WeO@lstrano-desk.jf.intel.com>
+Subject: Re: [PATCH v3 10/11] drm/xe: Add context-based invalidation to GuC
+ TLB invalidation backend
+Message-ID: <aWWhQpD6GysgmJYp@lstrano-desk.jf.intel.com>
 References: <20260112232730.3347414-1-matthew.brost@intel.com>
- <20260112232730.3347414-5-matthew.brost@intel.com>
- <840197fff028c4de7c80d62e64b963dbef425979.camel@intel.com>
+ <20260112232730.3347414-11-matthew.brost@intel.com>
+ <14464929638a4c6d727af6cda9152720dda7c468.camel@intel.com>
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <840197fff028c4de7c80d62e64b963dbef425979.camel@intel.com>
-X-ClientProxiedBy: SJ0PR03CA0160.namprd03.prod.outlook.com
- (2603:10b6:a03:338::15) To PH7PR11MB6522.namprd11.prod.outlook.com
+In-Reply-To: <14464929638a4c6d727af6cda9152720dda7c468.camel@intel.com>
+X-ClientProxiedBy: SJ0P220CA0019.NAMP220.PROD.OUTLOOK.COM
+ (2603:10b6:a03:41b::35) To PH7PR11MB6522.namprd11.prod.outlook.com
  (2603:10b6:510:212::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|BL1PR11MB6001:EE_
-X-MS-Office365-Filtering-Correlation-Id: f9c55455-aca6-4e0f-6d26-08de52434ea6
+X-MS-Office365-Filtering-Correlation-Id: 20ec925f-345e-45fe-10b4-08de5243f7f2
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
-X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?2xXZC9NOAksnn1Si5+q7Djv0ajlCJy0ptflSMvHIknsww3GZ6fD6U7PxyY?=
- =?iso-8859-1?Q?VyjG98hE8SY+1SptarU4CYInacn/WKvFBieLFuPFNj9vJ0MyMyq0IFtD+x?=
- =?iso-8859-1?Q?NKDyUTmgzft+8/y/Kxn4BL+b7/lB4qi2RHI3yzkYVGGVNc5GoxZpKSvS1g?=
- =?iso-8859-1?Q?zLAfDSujGjvr3V5oehl2ES2iuBcabdY4ATW2y3nrogVjLy5wjohGYDnBqL?=
- =?iso-8859-1?Q?Ksvxr1LhLXb0sC1vmtkmXSAjwbyhd9R0N/i3rEYSj8LsW/0uLMie2/E2nZ?=
- =?iso-8859-1?Q?/PtRmAFVEb0nH6MGpNMI+jBDE1BRSakklAqkOk6TNyYZNAN9dwSDoJoxz3?=
- =?iso-8859-1?Q?Luy3KignckuIU9gz0J2Lvju8+JsxllyIa9bnOqEh7vgQvBwaMXvHdk6nDt?=
- =?iso-8859-1?Q?W1dwin8w8f/TV6E09ww+4Lbc5htox2c5qYd14iGbos/Wbm+WwY2stFHAg8?=
- =?iso-8859-1?Q?DXdB3MQunFnAXHqDQtHqLUGmY1gNn3/TQGtg/jc9H3diREtdFau3Nlpitr?=
- =?iso-8859-1?Q?UjGIiAaZAQsxmok45uacdzMbIiuEsF2koq+X1r0Ia5a80uoZRmgAuexNwN?=
- =?iso-8859-1?Q?D4QYvhB8VyC5z8+0BURfEQiDh/6PS9DuJi3iAC2aFPFk3Hkn5K0Yb4phit?=
- =?iso-8859-1?Q?16td6Mr8IzbeNnzVJRsEBNiR43BOsRjGBTgjHTvF5kJ8/MaoKLLw/xoT7S?=
- =?iso-8859-1?Q?9nxDzUM4fYeQ+vCrwFSrXwepjgVfuH5CckwbFPUjnrDmx0yRgGut3QtDdB?=
- =?iso-8859-1?Q?a+7tMPVJSjWLzEHi5GQdZ/vckkH/cz2sMp187BYth3pCVUbkqoO/nik6hR?=
- =?iso-8859-1?Q?sBCmUaLA36SFwIrG92Q56pYe6S1Z15wiFuxvu2TN7VVoA3CI37mJbb0qfy?=
- =?iso-8859-1?Q?BBWKqDj+1pRbyW2heKcdlGrUPY6beohNab4IcSehT/iEg8+8DfRsQQnC8z?=
- =?iso-8859-1?Q?yVaUOnguuFMHnjmD/ewvgo3htHuWLQ4NsjSU+pJvQhWVRbIvtnWmv1tKuD?=
- =?iso-8859-1?Q?rIT7odP/z/v7viW6dmtWOU2aJ5pB64Zr0ED+fHzlmz+p9ZGrGnkviVFemA?=
- =?iso-8859-1?Q?C7KnHpCuFezQj47bcmEE/W3jJ3BiZe1/6awC9cAZIOPp2Dqx3W45/NebyZ?=
- =?iso-8859-1?Q?Y0EIvxG9szEhUtEM7BL+9mun7bfU6waOrZFv1qJj8UKJi9eglWhqz1Gk8M?=
- =?iso-8859-1?Q?JdiJhTIdQSuzkC1zQXj9MZeypxE75ymA1mFx/3xb51ZodrKn+aemw2DFjY?=
- =?iso-8859-1?Q?SLySo5efPEw32BKtng73bWmz2a0qfExVEeMNfGixQTdjP44FW3JDaLDBiR?=
- =?iso-8859-1?Q?Vm+Irnx5NiuxGHmBT75pmjUPbLABFVEzCfQWXhIp91Ae1xd5IrmSVSvBAH?=
- =?iso-8859-1?Q?Qnnq7HQA1ItXBc+5GR2bnRc5P4vWKFQwKUKHAlg+JdB9xSjgwPvqrr91P+?=
- =?iso-8859-1?Q?hNJsWDl98rgZvHhRdfRM9HwBG6o1yAaoXWKBdA9EN7LOF1uV1phtpqBCxt?=
- =?iso-8859-1?Q?Tbsw4G7Bxh0FeUl6GH9A6S?=
+X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?3hbyaVgUcblx33NeLwy4eFG7CgFQNLERCL4Ka07BoJw0E5RJmbvHr2wo8f?=
+ =?iso-8859-1?Q?8aKR8inlRFW8LdjYbb/BlRXeupNz6VIcBmV0HFZb0sr8jt3nPJ2GyRwuqt?=
+ =?iso-8859-1?Q?JrUDqzpevBOn2/M/jh76FKTvkxYC0dXcbJd8JvGZkIjMBav7P+WSB8x1WU?=
+ =?iso-8859-1?Q?4uWSr4SnYBOZlZW6NW1eBthVAeH87JqxHtZ+BhTHrrE33lsJ70NIpWRufT?=
+ =?iso-8859-1?Q?YgY3g9iYp30KbvvzXNdCiVixvnQeIM6IheIvRME2chVmXnNDRHikIKMUCK?=
+ =?iso-8859-1?Q?8BPM33mN7dy3WL2JH35TqXzkH6rkGEhEhczTw6/kYBbChNUzHaBaUs0Ffc?=
+ =?iso-8859-1?Q?+HA6/rcFQ+HzGslZINAZqxeNsCDRviYmAyYrgfCe+8CLlR3FhkFmyJ/8I/?=
+ =?iso-8859-1?Q?y9K7lvllK4B31+XRV5WGaZS9r7ZMEKcbqJj8Un25LqxvDbIP5mChYodfbT?=
+ =?iso-8859-1?Q?0R8CSzJCSWv3yCLoOfntMVQWtVHqVslDPnb3ZJ0GmsTGhS8LWY1l5Jsde4?=
+ =?iso-8859-1?Q?Py9w5d1CAdP2hDrCB+zpQoXVVph0HwX/ITlKNvYaWpGgVAyuEwN8PH0sH3?=
+ =?iso-8859-1?Q?Ht5/jGkrMd7ryrrxXrr4VlZZuGkwx8SLbBYU0yFzJl3SixdMnF5isfiETZ?=
+ =?iso-8859-1?Q?dloaIClVo9jtn/OT3I2Z3B2MHHZaKM+nJBl04rdRAbxgnZtwCmLrd4grC9?=
+ =?iso-8859-1?Q?QBu4cRSdhUFjI93gt0Zp53FU0dMCE+bU9EwmQbdn0fumnz9kEP/dHQmJv2?=
+ =?iso-8859-1?Q?mh1PtpFNTB45A1fl70byH+2onzOLVCXyFnQWgKT16n4plIaRZsZhRzC4/R?=
+ =?iso-8859-1?Q?yPqE8IiWBJs5kWX9GgZOnLdmGHdikmYLTwsGXjDPnyE8BWwtRhvjHWGUhn?=
+ =?iso-8859-1?Q?Sh/ceJq3ja/Bnl4bJFXMhefYO/SXabQ5kUtOUDzZKgoD2hOvEgs8thGlC+?=
+ =?iso-8859-1?Q?5MWfQKcB9k6i8qX+BJyCiLIikmnWkrDzcyiLYTrFHfx9FbZh48/UGz5/I/?=
+ =?iso-8859-1?Q?YojoL2MWvsfePtYjNZHC5+ALRVzqVlPGB3j6xZN8jW0ixEuhwTRvbKz0OD?=
+ =?iso-8859-1?Q?LV9eqQWwZvgHQxFoPtdhO7L8yIOvc5iYhVWwflwccAvBy5JaYnmZ4DtstI?=
+ =?iso-8859-1?Q?6Ax+cBjRHzIJxsY1fvRceRP/V2E8OX7zSFgmkLy3e5Xb7YdNbBrirp7N4O?=
+ =?iso-8859-1?Q?UNWdVdZLO7dCJRf4GC6jE2iQ9l3IiBGwbMOpp8JHxlGkz5QIrZDAAj/gNM?=
+ =?iso-8859-1?Q?wb1Gt1F5BR0PYnQY6y9I1tzsd93ZxnhZ/kdo+/JN1OOIsjnIL325sQvw3C?=
+ =?iso-8859-1?Q?ywdnf+G0z2jKlUROrdjyanpcgfEQ8RdllmyFkF6v9AjQjHU0l8xQqbHmsD?=
+ =?iso-8859-1?Q?cQHx9SFvIl0IrBy9g4BmUpeTN65+64Waul8qpHIJH0T0LsJ5z90Tx0JFDr?=
+ =?iso-8859-1?Q?H7A1NWALAb/35SKO0c05JjwsVZbOAkV17/rlqG9O9+BuwCMKR6WRCthxU5?=
+ =?iso-8859-1?Q?C9H54Jwww1Iq1BfzMPvQPd?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?W4J+wSoxKfd2DUmVfmwlh/f1u36Nu2b2DTuanogTcvW7NO7ohw7zFONSIp?=
- =?iso-8859-1?Q?dYnYPYzNWMNNQMCjsdp5o5fAxytechZo3C8L9OXs4ShCVT9m2Q9NW/cLtG?=
- =?iso-8859-1?Q?NgECmOYYmQAdoLXDv1yueJ+we+T8fav0itV0Wp5+RThWDKC/u+eJiXgQaP?=
- =?iso-8859-1?Q?RIWB731Zd1TbOaCoJj6Xt5K8FMlk8iE28gOfuYqxIUP0gAo/tXMLBSQk72?=
- =?iso-8859-1?Q?0G3f2VffjjS44NPdg6cXRm7oObUcXayYdJtdze/6cXdtxp/bJ8C8tzIeMr?=
- =?iso-8859-1?Q?+NepISFowMCLhUFVEF/jS6jSMzPvdkL3EfskOf1RA4YdcMnqDPbLypwQ3Q?=
- =?iso-8859-1?Q?prtAN3CVkB1Gu1ErvXZI28AT5qwt8KVc7PJPilS6eDddqBkKcnmzCRsvVx?=
- =?iso-8859-1?Q?DM/6ty3mlKOt8xgQNjMesEJ3s3mAzNLCJyS45rbl2VBnV/ANpQnanVkLHW?=
- =?iso-8859-1?Q?Zce2LDGOmZTwVax9ZA0U1t+35sZdiusToYsJsrSH9qD8e+E58StiNfUQ2M?=
- =?iso-8859-1?Q?h/EFsYuh6b6h+x3VMrSdCr58zpnNqN38rFV0ATS0elJbbYNPp9WRoWd6iC?=
- =?iso-8859-1?Q?1M1W3Dt3tuGJrAvthnCFea0OiVobqCyTeSdSDszPR3MCvdW/NlxxXB+5sU?=
- =?iso-8859-1?Q?YcTz0+PWC8FFGTcom+5rv8ZqWS0LURAVHvEdNclTu2ERvBMi06JTmuYYme?=
- =?iso-8859-1?Q?2Z6oaC7nNdFixMVOptHwYRpS1R1fpnodHxWkEeEh6FbNkDk8ISCz9wViPG?=
- =?iso-8859-1?Q?EvOSgD4mNJhCuXuNNj0zZ90ZSLRyPPpcvKDIQ4CH0IigFUxtwA/YXhH2gk?=
- =?iso-8859-1?Q?nYT0cjyHXc8wS0Lmq/nPjrEHqpy7iG4HUEiYKq6Z2a233K8CiN5B2h3nzr?=
- =?iso-8859-1?Q?aGRZ6M7/ZvWcenY1dNo8VOhuJwD7BYYgufSqVZXqYRDcVzi2PvmhQP8N3E?=
- =?iso-8859-1?Q?jDREkVQPkkZhDn65ZvfqIDkaL5lGxNNodh21BI1Ln/cbAKosoWx8TKMMo3?=
- =?iso-8859-1?Q?Qacxv4mUfLY6If1wBjsonVx9IdCPqsxhkwX4vCvKPbfvTO2p6EDXEuICrg?=
- =?iso-8859-1?Q?1ThxPgPtoe9ARWBQG3MdKTQDvI/kmyBP2SYTMFsM84d9y3CqC98CqO9QgQ?=
- =?iso-8859-1?Q?BZD1SFLAzQFhUvLWNmdOJVmei4v6CsNEpLricRxy158W7x4h0BL/IXp5En?=
- =?iso-8859-1?Q?+/7yk1HoNXdWB3SU6xvhJ2mztSwynv/cTIwV0dgkYuRsxHrdD0NKS8pRiw?=
- =?iso-8859-1?Q?pdux7BBEp1nolHXalDeZjPbaVN9aT3hIOGLDyBVp+Sbx5AGzE9H3eU34v1?=
- =?iso-8859-1?Q?jt0kQ0t+V+abXtO0ajNif9aYpBDqhXesDxkIywwktCPZ4ivLcuFdt3lJcu?=
- =?iso-8859-1?Q?9HwqJLIFK1nZbrH0JkNQEM9acbk77rmuRtnFSzrBv91zb/pbTyQloB7c9W?=
- =?iso-8859-1?Q?/rb5R5Sj2CfUG7NUNdarDBAMgjFaC5OtVDhEz695pMKK/qsZMejI30YjmB?=
- =?iso-8859-1?Q?nqv5TyXQ703dPLnnyll8nyBjTpt5X6xUnc6YJUlknjbogSGClnM5I7V8//?=
- =?iso-8859-1?Q?d8jOqemQbFJDU19Ee9E7+ZIAaPdTCu2g5bXLkGlSRCQyBR7uNV8eREYr0h?=
- =?iso-8859-1?Q?xdF9DEtXVgvrKuycYijCBihP7LZ2y10rigKSj/9bAFnY7GwjwnM9pj2aFT?=
- =?iso-8859-1?Q?lWP1PukWRq8SAuMQkQevrfal9CBM/9W23TcPRscsMU0hO3UDtsETzHCZi+?=
- =?iso-8859-1?Q?AiSXprjJTkXLF3v6iYKrSGvnXpdCvHiEda/D1nvnpUjAsYxDXFH9pI3fiS?=
- =?iso-8859-1?Q?m5Q+3FLLXj+Iq6ETCdFnhq0+mRMShOM=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: f9c55455-aca6-4e0f-6d26-08de52434ea6
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?1z26pOsBPOVcvyzhIELZDjpnsyhkcpUKWVgdcFgwiqqq+ksLJNGckd5g7h?=
+ =?iso-8859-1?Q?S8FqLwj1U+AInFWOGiV8k+C1LmaDNcTlXOeofdWD9wJJDY9tVyNRFI9lA+?=
+ =?iso-8859-1?Q?ZFMmd2Mm05H6uy6Ym2TPDF9SaEuWi/XXL78FXjr9sUC0ytuY59tJfpS/Kk?=
+ =?iso-8859-1?Q?1ATS+fSvWVRLRuIlqRoIfHEPncRg3edyHdA35mqLDkiSQUl+0NJiAYDgAr?=
+ =?iso-8859-1?Q?/sfN3J7mpcXSJHc2/GDlJKsuyd0lSD7s49vdrKTYmpplnpP5SvCdLdlwa2?=
+ =?iso-8859-1?Q?ouzgANHofhlKkkR2Gu8vv0sKrWVHJtC957A7Ek9uKeFFSC6nMHBLaGomq2?=
+ =?iso-8859-1?Q?AVGcYQyzuycwWxDL4viUASPJPt6G3PxTxyet3/aH0IphuO7WbNiPc6Fbic?=
+ =?iso-8859-1?Q?gq85hP8vvrEUIeJV+fW3audWL0QPn5je4zTgYBLMtwpfsnVccQ4GWJbJYk?=
+ =?iso-8859-1?Q?hBW8+Mu//i4pVVY5iUZHI0yytoRIEztELqVxht77/E28AKgvq9MLYLXpMk?=
+ =?iso-8859-1?Q?awL6nv0Q3Bfu5AP4RH/H0+6fDmnNFTf6EDVSodI8zPaX/3Fs0iAELiNAPP?=
+ =?iso-8859-1?Q?oeE/GjIJPtwhTS6i7CqgXJSpeGLkVQrkCvJJTT25ZEHkgGXN2MX5uRoXg+?=
+ =?iso-8859-1?Q?xnzpzq25dNKVdiwiOIYSzS1aVlVh9pGbsIdvb9AXSNSPMc0WUS1TTkKPS5?=
+ =?iso-8859-1?Q?+sWgR3NvHCGoTIo1aQ0lu1NmgF5pCxWH64fBEoXjgm9jL5qAchYl7Se1JI?=
+ =?iso-8859-1?Q?Wb4xW6L1VXpvfwdzhrqiS1c2hpvDuj+ax4A0fAnJBIuI0/EUeoZSQ+5udd?=
+ =?iso-8859-1?Q?iR1TYTdOFbOr4k6+i2bD5QWItR3Lff+l40qJBykQ439CWxWkxmaewOCNSF?=
+ =?iso-8859-1?Q?7t7rROJ7y7LEhHHPUmu0MqmMO2QECpEIuGl8rvCsprT/MJmMs4Fuk12BP9?=
+ =?iso-8859-1?Q?NpRKMxAoGbwiWAGclGcSOPkggBtNgLBlIBED70v+B8Pjtzif4Y3CvcHt+r?=
+ =?iso-8859-1?Q?TbTmf7/EgDPLIClcwbvSUNLt2JrLIsyYHMleCiUck7akkWC6wSTWFqjZ3F?=
+ =?iso-8859-1?Q?YqhPJE8XFjRDMctWiCak7+gKUOrHEuRcOvQBApRr+3KEdaCwF/UcmqXOsN?=
+ =?iso-8859-1?Q?gEYVUwH76g5o+gDnsI0IP44ggqCNPSf0pVp/yfZYTFS5TRrPGNyITvC927?=
+ =?iso-8859-1?Q?3KNR4iKUv2fbSRXc6JARZyhTPkPLJar7hzlyBOv5+cMVPOIeVVc7iIoCtr?=
+ =?iso-8859-1?Q?tnmMOn/ayn9ibipUO3WBzfEtXX8jhB+WLnPUiDayTDpmAU45g6VKg3UDr6?=
+ =?iso-8859-1?Q?RpNLe9yjJZAZbSoSnRYTzyoCbizFfPgJpsBxn3V9hDG3A8B4KaMN65QDpP?=
+ =?iso-8859-1?Q?SLhcE/GRaKVivIgMNQOegTxQh51mAEFZHUETjRg2Vqp96pJwWCYEljOuHS?=
+ =?iso-8859-1?Q?n/+Z8E1YHqUW7yY0LfT3xIksNBljB8o15Ia4TNSrywPCaIo/GBURWXmV0s?=
+ =?iso-8859-1?Q?nKSHNnCtSEW0770UOztPWYAP0zwYSsZcjH6HxTCsvqHebQG9hVWr0Mqijx?=
+ =?iso-8859-1?Q?WNp7Or5RAL8UTKocJevMK5tMozuOkZWn9aXSCoJYfACXaGkai73c1XdUsf?=
+ =?iso-8859-1?Q?2eWfkDqbaNS8iXmLIW09yCZJ9GBcSeUQuXpiTFDV4WTNqYgOUqJRDVgQqq?=
+ =?iso-8859-1?Q?S7xMTBzK/7Jh80ALPZPzasdm7ObzyGQ2nsQ/wxHWTJz7BnhjGcSU3XMohk?=
+ =?iso-8859-1?Q?flJo5EXwrDYXkarG9LcpoPmnDeBpVIOWGM32wmKUboAiK2zI79SOjD8Q8N?=
+ =?iso-8859-1?Q?H2GPbLvsVjSaDsjiNM8z5fRRwAnl55g=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 20ec925f-345e-45fe-10b4-08de5243f7f2
 X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Jan 2026 01:30:17.0566 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Jan 2026 01:35:01.0569 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: pMbcgdwN8OfOoMYfKYtPvBxeAwx0qmLrUZBvx8cIDIvYWQ96txl7JhIMOg0qhBAiVk+rofM2+cI3hee1LheuAA==
+X-MS-Exchange-CrossTenant-UserPrincipalName: 4V9STFktSR38dEgRgQEIgcpnYNBjs6s0YlmR1v1ebSv3elY3u40uq528DAjlafjC7VNFAXtnYH2HNFJkESs9tQ==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR11MB6001
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -182,270 +183,373 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Jan 12, 2026 at 06:04:53PM -0700, Summers, Stuart wrote:
+On Mon, Jan 12, 2026 at 06:28:01PM -0700, Summers, Stuart wrote:
 > On Mon, 2026-01-12 at 15:27 -0800, Matthew Brost wrote:
-> > Maintain a list of exec queues per vm which will be used by TLB
-> > invalidation code to do context-ID based tlb invalidations.
+> > Introduce context-based invalidation support to the GuC TLB
+> > invalidation
+> > backend. This is implemented by iterating over each exec queue per GT
+> > within a VM, skipping inactive queues, and issuing a context-based
+> > (GuC
+> > ID) H2G TLB invalidation. All H2G messages, except the final one, are
+> > sent with an invalid seqno, which the G2H handler drops to ensure the
+> > TLB invalidation fence is only signaled once all H2G messages are
+> > completed.
 > > 
-> > Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+> > A watermark mechanism is also added to switch between context-based
+> > TLB
+> > invalidations and full device-wide invalidations, as the return on
+> > investment for context-based invalidation diminishes when many exec
+> > queues are mapped.
+> > 
+> > v2:
+> >  - Fix checkpatch warnings
+> > v3:
+> >  - Rebase on PRL
+> >  - Use ref counting to avoid racing with deregisters
+> > 
 > > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> > Reviewed-by: Stuart Summers <stuart.summers@intel.com>
 > > ---
-> >  drivers/gpu/drm/xe/xe_device.h           |  7 ----
-> >  drivers/gpu/drm/xe/xe_device_types.h     |  7 ++++
-> >  drivers/gpu/drm/xe/xe_exec_queue.c       |  7 +++-
-> >  drivers/gpu/drm/xe/xe_exec_queue_types.h |  3 ++
-> >  drivers/gpu/drm/xe/xe_vm.c               | 46
-> > ++++++++++++++++++++++++
-> >  drivers/gpu/drm/xe/xe_vm.h               |  3 ++
-> >  drivers/gpu/drm/xe/xe_vm_types.h         | 13 +++++++
-> >  7 files changed, 78 insertions(+), 8 deletions(-)
+> >  drivers/gpu/drm/xe/xe_device_types.h  |   2 +
+> >  drivers/gpu/drm/xe/xe_guc_tlb_inval.c | 145
+> > +++++++++++++++++++++++++-
+> >  drivers/gpu/drm/xe/xe_pci.c           |   1 +
+> >  drivers/gpu/drm/xe/xe_pci_types.h     |   1 +
+> >  4 files changed, 145 insertions(+), 4 deletions(-)
 > > 
-> > diff --git a/drivers/gpu/drm/xe/xe_device.h
-> > b/drivers/gpu/drm/xe/xe_device.h
-> > index 10d04c324257..db939fc82f71 100644
-> > --- a/drivers/gpu/drm/xe/xe_device.h
-> > +++ b/drivers/gpu/drm/xe/xe_device.h
-> > @@ -62,13 +62,6 @@ static inline struct xe_tile
-> > *xe_device_get_root_tile(struct xe_device *xe)
-> >         return &xe->tiles[0];
-> >  }
-> >  
-> > -/*
-> > - * Highest GT/tile count for any platform.  Used only for memory
-> > allocation
-> > - * sizing.  Any logic looping over GTs or mapping userspace GT IDs
-> > into GT
-> > - * structures should use the per-platform xe->info.max_gt_per_tile
-> > instead.
-> > - */
-> > -#define XE_MAX_GT_PER_TILE 2
-> > -
-> >  static inline struct xe_gt *xe_device_get_gt(struct xe_device *xe,
-> > u8 gt_id)
-> >  {
-> >         struct xe_tile *tile;
 > > diff --git a/drivers/gpu/drm/xe/xe_device_types.h
 > > b/drivers/gpu/drm/xe/xe_device_types.h
-> > index 4dab3057f58d..8db870aaa382 100644
+> > index 8db870aaa382..b51acff4edcd 100644
 > > --- a/drivers/gpu/drm/xe/xe_device_types.h
 > > +++ b/drivers/gpu/drm/xe/xe_device_types.h
-> > @@ -79,6 +79,13 @@ enum xe_wedged_mode {
-> >  #define XE_GT1         1
-> >  #define XE_MAX_TILES_PER_DEVICE        (XE_GT1 + 1)
+> > @@ -358,6 +358,8 @@ struct xe_device {
+> >                 u8 has_pre_prod_wa:1;
+> >                 /** @info.has_pxp: Device has PXP support */
+> >                 u8 has_pxp:1;
+> > +               /** @info.has_ctx_tlb_inval: Has context based TLB
+> > invalidations */
+> > +               u8 has_ctx_tlb_inval:1;
+> >                 /** @info.has_range_tlb_inval: Has range based TLB
+> > invalidations */
+> >                 u8 has_range_tlb_inval:1;
+> >                 /** @info.has_soc_remapper_sysctrl: Has SoC remapper
+> > system controller */
+> > diff --git a/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
+> > b/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
+> > index 070d2e2cb7c9..328eced5f692 100644
+> > --- a/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
+> > +++ b/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
+> > @@ -6,15 +6,19 @@
+> >  #include "abi/guc_actions_abi.h"
 > >  
-> > +/*
-> > + * Highest GT/tile count for any platform.  Used only for memory
-> > allocation
-> > + * sizing.  Any logic looping over GTs or mapping userspace GT IDs
-> > into GT
-> > + * structures should use the per-platform xe->info.max_gt_per_tile
-> > instead.
-> > + */
-> > +#define XE_MAX_GT_PER_TILE 2
+> >  #include "xe_device.h"
+> > +#include "xe_exec_queue.h"
+> > +#include "xe_exec_queue_types.h"
+> >  #include "xe_gt_stats.h"
+> >  #include "xe_gt_types.h"
+> >  #include "xe_guc.h"
+> >  #include "xe_guc_ct.h"
+> > +#include "xe_guc_exec_queue_types.h"
+> >  #include "xe_guc_tlb_inval.h"
+> >  #include "xe_force_wake.h"
+> >  #include "xe_mmio.h"
+> >  #include "xe_sa.h"
+> >  #include "xe_tlb_inval.h"
+> > +#include "xe_vm.h"
+> >  
+> >  #include "regs/xe_guc_regs.h"
+> >  
+> > @@ -156,10 +160,16 @@ static int send_tlb_inval_ppgtt(struct xe_guc
+> > *guc, u32 seqno, u64 start,
+> >  {
+> >  #define MAX_TLB_INVALIDATION_LEN       7
+> >         struct xe_gt *gt = guc_to_gt(guc);
+> > +       struct xe_device *xe = guc_to_xe(guc);
+> >         u32 action[MAX_TLB_INVALIDATION_LEN];
+> >         u64 length = end - start;
+> >         int len = 0, err;
+> >  
+> > +       xe_gt_assert(gt, (type == XE_GUC_TLB_INVAL_PAGE_SELECTIVE &&
+> > +                         !xe->info.has_ctx_tlb_inval) ||
+> > +                    (type == XE_GUC_TLB_INVAL_PAGE_SELECTIVE_CTX &&
+> > +                     xe->info.has_ctx_tlb_inval));
 > > +
-> >  #define XE_MAX_ASID    (BIT(20))
+> >         action[len++] = XE_GUC_ACTION_TLB_INVALIDATION;
+> >         action[len++] = !prl_sa ? seqno :
+> > TLB_INVALIDATION_SEQNO_INVALID;
+> >         if (!gt_to_xe(gt)->info.has_range_tlb_inval ||
+> > @@ -168,9 +178,11 @@ static int send_tlb_inval_ppgtt(struct xe_guc
+> > *guc, u32 seqno, u64 start,
+> >         } else {
+> >                 u64 normalize_len = normalize_invalidation_range(gt,
+> > &start,
+> >                                                                 
+> > &end);
+> > +               bool need_flush = !prl_sa &&
+> > +                       seqno != TLB_INVALIDATION_SEQNO_INVALID;
 > >  
-> >  #define IS_PLATFORM_STEP(_xe, _platform, min_step, max_step)   \
-> > diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c
-> > b/drivers/gpu/drm/xe/xe_exec_queue.c
-> > index b5737563ee14..ce309d848916 100644
-> > --- a/drivers/gpu/drm/xe/xe_exec_queue.c
-> > +++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-> > @@ -154,8 +154,10 @@ static void __xe_exec_queue_free(struct
-> > xe_exec_queue *q)
-> >         if (xe_exec_queue_is_multi_queue(q))
-> >                 xe_exec_queue_group_cleanup(q);
+> >                 /* Flush on NULL case, Media is not required to
+> > modify flush due to no PPC so NOP */
+> > -               action[len++] = MAKE_INVAL_OP_FLUSH(type, !prl_sa);
+> > +               action[len++] = MAKE_INVAL_OP_FLUSH(type,
+> > need_flush);
+> >                 action[len++] = id;
+> >                 action[len++] = lower_32_bits(start);
+> >                 action[len++] = upper_32_bits(start);
+> > @@ -181,8 +193,10 @@ static int send_tlb_inval_ppgtt(struct xe_guc
+> > *guc, u32 seqno, u64 start,
+> >  #undef MAX_TLB_INVALIDATION_LEN
 > >  
-> > -       if (q->vm)
-> > +       if (q->vm) {
-> > +               xe_vm_remove_exec_queue(q->vm, q);
-> >                 xe_vm_put(q->vm);
+> >         err = send_tlb_inval(guc, action, len);
+> > -       if (!err && prl_sa)
+> > +       if (!err && prl_sa) {
+> > +               xe_gt_assert(gt, seqno !=
+> > TLB_INVALIDATION_SEQNO_INVALID);
+> >                 err = send_page_reclaim(guc, seqno,
+> > xe_sa_bo_gpu_addr(prl_sa));
 > > +       }
-> >  
-> >         if (q->xef)
-> >                 xe_file_put(q->xef);
-> > @@ -226,6 +228,7 @@ static struct xe_exec_queue
-> > *__xe_exec_queue_alloc(struct xe_device *xe,
-> >         q->ring_ops = gt->ring_ops[hwe->class];
-> >         q->ops = gt->exec_queue_ops;
-> >         INIT_LIST_HEAD(&q->lr.link);
-> > +       INIT_LIST_HEAD(&q->vm_exec_queue_link);
-> >         INIT_LIST_HEAD(&q->multi_gt_link);
-> >         INIT_LIST_HEAD(&q->hw_engine_group_link);
-> >         INIT_LIST_HEAD(&q->pxp.link);
-> > @@ -1205,6 +1208,8 @@ int xe_exec_queue_create_ioctl(struct
-> > drm_device *dev, void *data,
-> >         }
-> >  
-> >         q->xef = xe_file_get(xef);
-> > +       if (eci[0].engine_class != DRM_XE_ENGINE_CLASS_VM_BIND)
-> > +               xe_vm_add_exec_queue(vm, q);
-> 
-> This still will hit an issue if we're sending a TLB invalidation before
-> we register the context with GuC, just to reiterate... of course we
-> agreed to move forward here.
-> 
-
-Ah, no. The active vfunc called in last patch prevents against this.
-
-> >  
-> >         /* user id alloc must always be last in ioctl to prevent UAF
-> > */
-> >         err = xa_alloc(&xef->exec_queue.xa, &id, q, xa_limit_32b,
-> > GFP_KERNEL);
-> > diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h
-> > b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-> > index 5fc516b0bb77..d3e2789cf5bc 100644
-> > --- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
-> > +++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-> > @@ -205,6 +205,9 @@ struct xe_exec_queue {
-> >                 struct dma_fence *last_fence;
-> >         } tlb_inval[XE_EXEC_QUEUE_TLB_INVAL_COUNT];
-> >  
-> > +       /** @vm_exec_queue_link: Link to track exec queue within a
-> > VM's list of exec queues. */
-> > +       struct list_head vm_exec_queue_link;
-> > +
-> >         /** @pxp: PXP info tracking */
-> >         struct {
-> >                 /** @pxp.type: PXP session type used by this queue */
-> > diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-> > index bdb04d6bf39c..3a1a1bd74d8d 100644
-> > --- a/drivers/gpu/drm/xe/xe_vm.c
-> > +++ b/drivers/gpu/drm/xe/xe_vm.c
-> > @@ -1530,11 +1530,23 @@ struct xe_vm *xe_vm_create(struct xe_device
-> > *xe, u32 flags, struct xe_file *xef)
-> >         INIT_WORK(&vm->destroy_work, vm_destroy_work_func);
-> >  
-> >         INIT_LIST_HEAD(&vm->preempt.exec_queues);
-> > +       INIT_LIST_HEAD(&vm->exec_queues.list);
-> >         if (flags & XE_VM_FLAG_FAULT_MODE)
-> >                 vm->preempt.min_run_period_ms = xe-
-> > >min_run_period_pf_ms;
-> >         else
-> >                 vm->preempt.min_run_period_ms = xe-
-> > >min_run_period_lr_ms;
-> >  
-> > +       init_rwsem(&vm->exec_queues.lock);
-> > +       if (IS_ENABLED(CONFIG_PROVE_LOCKING)) {
-> > +               fs_reclaim_acquire(GFP_KERNEL);
-> > +               might_lock(&vm->exec_queues.lock);
-> > +               fs_reclaim_release(GFP_KERNEL);
-> > +
-> > +               down_read(&vm->exec_queues.lock);
-> > +               might_lock(&xe_root_mmio_gt(xe)->uc.guc.ct.lock);
-> > +               up_read(&vm->exec_queues.lock);
-> > +       }
-> > +
-> >         for_each_tile(tile, xe, id)
-> >                 xe_range_fence_tree_init(&vm->rftree[id]);
-> >  
-> > @@ -4570,3 +4582,37 @@ int xe_vm_alloc_cpu_addr_mirror_vma(struct
-> > xe_vm *vm, uint64_t start, uint64_t r
-> >         return xe_vm_alloc_vma(vm, &map_req, false);
+> >         return err;
 > >  }
 > >  
-> > +/**
-> > + * xe_vm_add_exec_queue() - Add exec queue to VM
-> > + * @vm: The VM.
-> > + * @q: The exec_queue
-> > + */
-> > +void xe_vm_add_exec_queue(struct xe_vm *vm, struct xe_exec_queue *q)
+> > @@ -201,6 +215,114 @@ static int send_tlb_inval_asid_ppgtt(struct
+> > xe_tlb_inval *tlb_inval, u32 seqno,
+> >                                     XE_GUC_TLB_INVAL_PAGE_SELECTIVE,
+> > prl_sa);
+> >  }
+> >  
+> > +static bool queue_mapped_in_guc(struct xe_guc *guc, struct
+> > xe_exec_queue *q)
 > > +{
-> > +       /* User VMs and queues only */
-> > +       xe_assert(vm->xe, !(q->flags & EXEC_QUEUE_FLAG_KERNEL));
-> > +       xe_assert(vm->xe, !(q->flags & EXEC_QUEUE_FLAG_PERMANENT));
-> > +       xe_assert(vm->xe, !(q->flags & EXEC_QUEUE_FLAG_VM));
-> > +       xe_assert(vm->xe, !(q->flags & EXEC_QUEUE_FLAG_MIGRATE));
-> > +       xe_assert(vm->xe, vm->xef);
+> > +       return q->gt == guc_to_gt(guc);
+> > +}
+> > +
+> > +static int send_tlb_inval_ctx_ppgtt(struct xe_tlb_inval *tlb_inval,
+> > u32 seqno,
+> > +                                   u64 start, u64 end, u32 asid,
+> > +                                   struct drm_suballoc *prl_sa)
+> > +{
+> > +       struct xe_guc *guc = tlb_inval->private;
+> > +       struct xe_device *xe = guc_to_xe(guc);
+> > +       struct xe_exec_queue *q, *next, *last_q = NULL;
+> > +       struct xe_vm *vm;
+> > +       LIST_HEAD(tlb_inval_list);
+> > +       int err = 0;
+> > +
+> > +       lockdep_assert_held(&tlb_inval->seqno_lock);
+> > +
+> > +       if (xe->info.force_execlist)
+> > +               return -ECANCELED;
+> > +
+> > +       vm = xe_device_asid_to_vm(xe, asid);
+> > +       if (IS_ERR(vm))
+> > +               return PTR_ERR(vm);
+> > +
+> > +       down_read(&vm->exec_queues.lock);
+> > +
+> > +       /*
+> > +        * XXX: Randomly picking a threshold for now. This will need
+> > to be
+> > +        * tuned based on expected UMD queue counts and performance
+> > profiling.
+> > +        */
+> > +#define EXEC_QUEUE_COUNT_FULL_THRESHOLD        8
+> > +       if (vm->exec_queues.count[guc_to_gt(guc)->info.id] >=
+> > +           EXEC_QUEUE_COUNT_FULL_THRESHOLD) {
+> > +               u32 action[] = {
+> > +                       XE_GUC_ACTION_TLB_INVALIDATION,
+> > +                       seqno,
+> > +                       MAKE_INVAL_OP(XE_GUC_TLB_INVAL_FULL),
+> > +               };
+> > +
+> > +               err = send_tlb_inval(guc, action,
+> > ARRAY_SIZE(action));
+> > +               goto err_unlock;
+> > +       }
+> > +#undef EXEC_QUEUE_COUNT_FULL_THRESHOLD
+> > +
+> > +       /*
+> > +        * Move exec queues to a temporary list to issue
+> > invalidations. The exec
+> > +        * queue must be mapped in the current GuC, active, and a
+> > reference must
+> > +        * be taken to prevent concurrent deregistrations.
+> > +        */
+> > +       list_for_each_entry_safe(q, next, &vm->exec_queues.list,
+> > +                                vm_exec_queue_link)
 > 
-> Can you add a check here against has_ctx_tlb_inval? No need to maintain
-> this list if the platform doesn't support this invalidation.
+> Nitpick: I'd prefer braces around the the if here so we aren't nesting
+> the multi-line condition within this list_for_each loop.
 > 
 
-Yes, I do that.
+Sure. CI and local testing is showing this loop explodes too. I'm
+reasing two GTs are modifying the list at the same time as I'm just
+using a read lock here. I think vm->exec_queues.list needs to be per GT
+actually or just use a mutex to protect the list.
 
-> Can we also assert that the q->vm is the same as the vm being passed
-> above? We want to make sure we aren't adding a queue from another VM
-> here.
+> > +               if (queue_mapped_in_guc(guc, q) && q->ops->active(q)
+> > &&
+> > +                   xe_exec_queue_get_unless_zero(q)) {
+> > +                       last_q = q;
+> > +                       list_move_tail(&q->vm_exec_queue_link,
+> > &tlb_inval_list);
+> > +               }
+> > +
+> > +       if (!last_q) {
+> > +               /*
+> > +                * We can't break fence ordering for TLB invalidation
+> > jobs, if
+> > +                * TLB invalidations are inflight issue a dummy
+> > invalidation to
+> > +                * maintain ordering. Nor can we move safely the
+> > seqno_recv when
+> > +                * returning -ECANCELED if TLB invalidations are in
+> > flight. Use
+> > +                * GGTT invalidation as dummy invalidation given ASID
+> > +                * invalidations are unsupported here.
+> > +                */
+> > +               if (xe_tlb_inval_idle(tlb_inval))
+> > +                       err = -ECANCELED;
+> > +               else
+> > +                       err = send_tlb_inval_ggtt(tlb_inval, seqno);
+> 
+> Can you give a little more context on this line actually? So this is
+> going to send down a 0x3 type invalidation to GuC (TLB_INVAL_GUC). GuC
+> is still doing an invalidation to hardware when we write this. Is that
+> the expectation with this?
 > 
 
-Yes, I can also do that.
+Yes, I think I explain this in the comment above. We are issuing a dummy
+invalidation to maintain ordering when required, this would be GuC TLBs.
+Not ideal but we can't break dma-fencing ordering and this case so be
+exceedingly rare.
+
+> > +               goto err_unlock;
+> > +       }
+> > +
+> > +       list_for_each_entry_safe(q, next, &tlb_inval_list,
+> > vm_exec_queue_link) {
+> > +               struct drm_suballoc *__prl_sa = NULL;
+> > +               int __seqno = TLB_INVALIDATION_SEQNO_INVALID;
+> > +               u32 type = XE_GUC_TLB_INVAL_PAGE_SELECTIVE_CTX;
+> > +
+> > +               xe_assert(xe, q->vm == vm);
+> > +
+> > +               if (err)
+> > +                       goto unref;
+> > +
+> > +               if (last_q == q) {
+> > +                       __prl_sa = prl_sa;
+> > +                       __seqno = seqno;
+> > +               }
+> > +
+> > +               err = send_tlb_inval_ppgtt(guc, __seqno, start, end,
+> > +                                          q->guc->id, type,
+> > __prl_sa);
+> > +
+> > +unref:
+> > +               /*
+> > +                * Must always return exec queue to original list /
+> > drop
+> > +                * reference
+> > +                */
+> > +               xe_exec_queue_put(q);
+> > +               list_move_tail(&q->vm_exec_queue_link, &vm-
+> > >exec_queues.list);
+> 
+> Will get back on this one... need to spend a little more time and do
+> some testing.
+> 
+
+I probably should flip the put for clarity but this is in fact safe as
+queue's memory can't disapear if vm->exec_queues.lock is held.
 
 Matt
 
 > Thanks,
 > Stuart
 > 
-> > +
-> > +       down_write(&vm->exec_queues.lock);
-> > +       list_add(&q->vm_exec_queue_link, &vm->exec_queues.list);
-> > +       ++vm->exec_queues.count[q->gt->info.id];
-> > +       up_write(&vm->exec_queues.lock);
-> > +}
-> > +
-> > +/**
-> > + * xe_vm_remove_exec_queue() - Remove exec queue from VM
-> > + * @vm: The VM.
-> > + * @q: The exec_queue
-> > + */
-> > +void xe_vm_remove_exec_queue(struct xe_vm *vm, struct xe_exec_queue
-> > *q)
-> > +{
-> > +       down_write(&vm->exec_queues.lock);
-> > +       if (!list_empty(&q->vm_exec_queue_link)) {
-> > +               list_del(&q->vm_exec_queue_link);
-> > +               --vm->exec_queues.count[q->gt->info.id];
 > > +       }
-> > +       up_write(&vm->exec_queues.lock);
+> > +
+> > +err_unlock:
+> > +       up_read(&vm->exec_queues.lock);
+> > +       xe_vm_put(vm);
+> > +
+> > +       return err;
 > > +}
-> > diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
-> > index 6cc98df47291..288115c7844a 100644
-> > --- a/drivers/gpu/drm/xe/xe_vm.h
-> > +++ b/drivers/gpu/drm/xe/xe_vm.h
-> > @@ -287,6 +287,9 @@ static inline struct dma_resv *xe_vm_resv(struct
-> > xe_vm *vm)
+> > +
+> >  static bool tlb_inval_initialized(struct xe_tlb_inval *tlb_inval)
+> >  {
+> >         struct xe_guc *guc = tlb_inval->private;
+> > @@ -228,7 +350,7 @@ static long tlb_inval_timeout_delay(struct
+> > xe_tlb_inval *tlb_inval)
+> >         return hw_tlb_timeout + 2 * delay;
+> >  }
 > >  
-> >  void xe_vm_kill(struct xe_vm *vm, bool unlocked);
+> > -static const struct xe_tlb_inval_ops guc_tlb_inval_ops = {
+> > +static const struct xe_tlb_inval_ops guc_tlb_inval_asid_ops = {
+> >         .all = send_tlb_inval_all,
+> >         .ggtt = send_tlb_inval_ggtt,
+> >         .ppgtt = send_tlb_inval_asid_ppgtt,
+> > @@ -237,6 +359,15 @@ static const struct xe_tlb_inval_ops
+> > guc_tlb_inval_ops = {
+> >         .timeout_delay = tlb_inval_timeout_delay,
+> >  };
 > >  
-> > +void xe_vm_add_exec_queue(struct xe_vm *vm, struct xe_exec_queue
-> > *q);
-> > +void xe_vm_remove_exec_queue(struct xe_vm *vm, struct xe_exec_queue
-> > *q);
+> > +static const struct xe_tlb_inval_ops guc_tlb_inval_ctx_ops = {
+> > +       .ggtt = send_tlb_inval_ggtt,
+> > +       .all = send_tlb_inval_all,
+> > +       .ppgtt = send_tlb_inval_ctx_ppgtt,
+> > +       .initialized = tlb_inval_initialized,
+> > +       .flush = tlb_inval_flush,
+> > +       .timeout_delay = tlb_inval_timeout_delay,
+> > +};
 > > +
 > >  /**
-> >   * xe_vm_assert_held(vm) - Assert that the vm's reservation object
-> > is held.
-> >   * @vm: The vm
-> > diff --git a/drivers/gpu/drm/xe/xe_vm_types.h
-> > b/drivers/gpu/drm/xe/xe_vm_types.h
-> > index 437f64202f3b..87318a4f5b08 100644
-> > --- a/drivers/gpu/drm/xe/xe_vm_types.h
-> > +++ b/drivers/gpu/drm/xe/xe_vm_types.h
-> > @@ -298,6 +298,19 @@ struct xe_vm {
-> >                 struct list_head pm_activate_link;
-> >         } preempt;
-> >  
-> > +       /** @exec_queues: Manages list of exec queues attached to
-> > this VM, protected by lock. */
-> > +       struct {
-> > +               /** @exec_queues.list: list of exec queues attached
-> > to this VM */
-> > +               struct list_head list;
-> > +               /**
-> > +                * @exec_queues.count: count of exec queues attached
-> > to this VM,
-> > +                * per GT
-> > +                */
-> > +               int count[XE_MAX_TILES_PER_DEVICE *
-> > XE_MAX_GT_PER_TILE];
-> > +               /** @exec_queues.lock: lock to protect exec_queues
-> > list */
-> > +               struct rw_semaphore lock;
-> > +       } exec_queues;
+> >   * xe_guc_tlb_inval_init_early() - Init GuC TLB invalidation early
+> >   * @guc: GuC object
+> > @@ -248,8 +379,14 @@ static const struct xe_tlb_inval_ops
+> > guc_tlb_inval_ops = {
+> >  void xe_guc_tlb_inval_init_early(struct xe_guc *guc,
+> >                                  struct xe_tlb_inval *tlb_inval)
+> >  {
+> > +       struct xe_device *xe = guc_to_xe(guc);
 > > +
-> >         /** @um: unified memory state */
-> >         struct {
-> >                 /** @asid: address space ID, unique to each VM */
+> >         tlb_inval->private = guc;
+> > -       tlb_inval->ops = &guc_tlb_inval_ops;
+> > +
+> > +       if (xe->info.has_ctx_tlb_inval)
+> > +               tlb_inval->ops = &guc_tlb_inval_ctx_ops;
+> > +       else
+> > +               tlb_inval->ops = &guc_tlb_inval_asid_ops;
+> >  }
+> >  
+> >  /**
+> > diff --git a/drivers/gpu/drm/xe/xe_pci.c
+> > b/drivers/gpu/drm/xe/xe_pci.c
+> > index 91e0553a8163..6ea1199f703e 100644
+> > --- a/drivers/gpu/drm/xe/xe_pci.c
+> > +++ b/drivers/gpu/drm/xe/xe_pci.c
+> > @@ -889,6 +889,7 @@ static int xe_info_init(struct xe_device *xe,
+> >                 xe->info.has_device_atomics_on_smem = 1;
+> >  
+> >         xe->info.has_range_tlb_inval = graphics_desc-
+> > >has_range_tlb_inval;
+> > +       xe->info.has_ctx_tlb_inval = graphics_desc-
+> > >has_ctx_tlb_inval;
+> >         xe->info.has_usm = graphics_desc->has_usm;
+> >         xe->info.has_64bit_timestamp = graphics_desc-
+> > >has_64bit_timestamp;
+> >  
+> > diff --git a/drivers/gpu/drm/xe/xe_pci_types.h
+> > b/drivers/gpu/drm/xe/xe_pci_types.h
+> > index 5f20f56571d1..000b54cbcd0e 100644
+> > --- a/drivers/gpu/drm/xe/xe_pci_types.h
+> > +++ b/drivers/gpu/drm/xe/xe_pci_types.h
+> > @@ -71,6 +71,7 @@ struct xe_graphics_desc {
+> >         u8 has_atomic_enable_pte_bit:1;
+> >         u8 has_indirect_ring_state:1;
+> >         u8 has_range_tlb_inval:1;
+> > +       u8 has_ctx_tlb_inval:1;
+> >         u8 has_usm:1;
+> >         u8 has_64bit_timestamp:1;
+> >  };
 > 
