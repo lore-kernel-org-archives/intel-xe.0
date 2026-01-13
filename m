@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 638FFD30CEE
-	for <intel-xe@archiver.kernel.org>; Tue, 13 Jan 2026 23:03:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D6306D2D114
+	for <intel-xe@archiver.kernel.org>; Tue, 13 Jan 2026 23:03:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DBB1D10E586;
+	by gabe.freedesktop.org (Postfix) with ESMTP id B20CF10E582;
 	Tue, 13 Jan 2026 23:03:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Iw/8XmrX";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VNUM1s/i";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E0FA410E56A
- for <intel-xe@lists.freedesktop.org>; Tue, 13 Jan 2026 23:03:41 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5BD9F10E576
+ for <intel-xe@lists.freedesktop.org>; Tue, 13 Jan 2026 23:03:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1768345422; x=1799881422;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=EJ4ysLhUqwuw3W74KcedyRzClK/ir74HlUJ8NOVqhto=;
- b=Iw/8XmrXgrKoyrxKmuoZhCee64PAjHjZFTXABYQGUWsc64jr+e50L5IL
- 1HYiLmTrMg+osmpsCbJnw1qfckvNIynZ63SlBrDrQ0mr4E+O3jBVCC6A3
- h1EuDtBpXXcOQ+YwwcvnhjJGsSvoX/OTf23xFaDzkNJftg5fd7XvZWdy/
- UCIOIYNoSfJ7QfR4KF1RN90nUc5SHJV0OSza9gqRbQEaW2Xe5jKl5qFv3
- qH8GUrOz8kuI51TiqVKNmrL+TqxZf/37eLEIMWM9AGk1Qr4gNOX8cgHst
- E/Tq4b3WlunxqRT1blQvpcEGxGlspy7+9j8y9P6hyP3bxOiJTpacQBSkq w==;
-X-CSE-ConnectionGUID: hHJBjKVxSGeeH4pAG5w+zQ==
-X-CSE-MsgGUID: fxm5t7AARdKVrkBnar0S5g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11670"; a="92311145"
-X-IronPort-AV: E=Sophos;i="6.21,224,1763452800"; d="scan'208";a="92311145"
+ bh=tYdVGcHP2bMrWhzhEIRaE21hd3BcYf4E71x8ctKdWzk=;
+ b=VNUM1s/iq+O7lM0ofC09tBbFdmSgcgsMXLim5CDAoHaKZ0aZUy8FFZTf
+ CpIaV/krge6AUIxbFRaORbTaePuCNWFz38HdAYRqhd6rU0vigK14TlDNh
+ fK2gFkCUqyB4F5AwZ9Rs5MDSAm7EYId7Eu0leHKmFfBk5uR1nX+6evp4P
+ omcV4V8tVMgBIZ+ElXmTxm8sdGGwqBdNZweGf9f8zHiqQTJ7+N9J5piA8
+ xdFD/UcIwqhuhn97depKBjvsvS8iMZoh7m3u0YvOxz+VvNYbVWJHELtGd
+ R3nIzvuYED/sj4oTiPyk0B6hkC40Da+CULAQVYUoN5/GwFHRSbUDq3DJM A==;
+X-CSE-ConnectionGUID: RD3bLRgBT1Gc4TYb2vpyiQ==
+X-CSE-MsgGUID: 92X17CM+So2b7Cw7TXwu1w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11670"; a="92311156"
+X-IronPort-AV: E=Sophos;i="6.21,224,1763452800"; d="scan'208";a="92311156"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  13 Jan 2026 15:03:41 -0800
-X-CSE-ConnectionGUID: QHTLn4VhSpegmN56oP6o1w==
-X-CSE-MsgGUID: F95TQcy8Tc+n8i274HEsMA==
+X-CSE-ConnectionGUID: 54gomMyVRpOceehMUK04ZQ==
+X-CSE-MsgGUID: VebAX34YSiOhA0XdNAQ48g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,224,1763452800"; d="scan'208";a="204147393"
+X-IronPort-AV: E=Sophos;i="6.21,224,1763452800"; d="scan'208";a="204147415"
 Received: from mdroper-desk1.fm.intel.com ([10.1.39.133])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jan 2026 15:03:38 -0800
+ 13 Jan 2026 15:03:39 -0800
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.d.roper@intel.com
-Subject: [PATCH 40/79] drm/xe: Cleanup headers in xe_hw_fence.c
-Date: Tue, 13 Jan 2026 15:03:45 -0800
-Message-ID: <20260113230315.3081153-121-matthew.d.roper@intel.com>
+Subject: [PATCH 50/79] drm/xe: Simplify include in xe_psmi.c
+Date: Tue, 13 Jan 2026 15:03:55 -0800
+Message-ID: <20260113230315.3081153-131-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260113230315.3081153-81-matthew.d.roper@intel.com>
 References: <20260113230315.3081153-81-matthew.d.roper@intel.com>
@@ -66,30 +66,26 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-xe_hw_fence.c doesn't use anything from xe_bo.h or xe_gt.h.  It also
-doesn't need xe_device.h, only the xe_device_types.h header.  Drop the
-unnecessary includes.
+xe_psmi.c only needs the device type header, not the full xe_device.c.
 
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/xe_hw_fence.c | 4 +---
- 1 file changed, 1 insertion(+), 3 deletions(-)
+ drivers/gpu/drm/xe/xe_psmi.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_hw_fence.c b/drivers/gpu/drm/xe/xe_hw_fence.c
-index 6b5bc67767d3..ae8ed15b64c5 100644
---- a/drivers/gpu/drm/xe/xe_hw_fence.c
-+++ b/drivers/gpu/drm/xe/xe_hw_fence.c
-@@ -8,9 +8,7 @@
- #include <linux/device.h>
- #include <linux/slab.h>
+diff --git a/drivers/gpu/drm/xe/xe_psmi.c b/drivers/gpu/drm/xe/xe_psmi.c
+index 6a54e38b81ba..899b01f72ba3 100644
+--- a/drivers/gpu/drm/xe/xe_psmi.c
++++ b/drivers/gpu/drm/xe/xe_psmi.c
+@@ -6,7 +6,7 @@
+ #include <linux/debugfs.h>
  
--#include "xe_bo.h"
+ #include "xe_bo.h"
 -#include "xe_device.h"
--#include "xe_gt.h"
 +#include "xe_device_types.h"
- #include "xe_hw_engine.h"
- #include "xe_macros.h"
- #include "xe_map.h"
+ #include "xe_configfs.h"
+ #include "xe_psmi.h"
+ 
 -- 
 2.52.0
 
