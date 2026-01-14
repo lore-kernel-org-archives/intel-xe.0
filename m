@@ -4,174 +4,191 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 41425D37E59
-	for <intel-xe@archiver.kernel.org>; Wed, 14 Jan 2026 16:09:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1192DD38FE2
+	for <intel-xe@archiver.kernel.org>; Wed, 14 Jan 2026 16:15:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F215B10E585;
-	Wed, 14 Jan 2026 16:09:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AA97410E273;
+	Wed, 14 Jan 2026 16:15:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="i94TcTHP";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Mfc0ML+d";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8D69410E585
- for <intel-xe@lists.freedesktop.org>; Wed, 14 Jan 2026 16:09:26 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 11B4A10E273
+ for <intel-xe@lists.freedesktop.org>; Wed, 14 Jan 2026 16:15:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1768406967; x=1799942967;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=TmUAuel7hIm+c6u183JQfLrb6Ocl/cC19ANZTLCGPOc=;
- b=i94TcTHPoLRCqLs6XoKbTkQk7jdimrdGiJ7dOIv13RQque7sKm+NHV7H
- 7Kzk/V4DXv1cs0SDoRSGUKIbTY07+61GeoUkdcK9S0KQYmUyOabqzrioz
- 7vUaDMT+Cq2VRcSKNA3PbMz7XhsI6QPhrDcJs3x3Xg9PzjMyxXdtG+4TJ
- kFnWxEJpbq03SCrVEUow9+GHWd3cIK5PoSiSArr42TOGHBV2G/ttoxCcK
- XWnUquR4uaOqtepyhFhQxbEkTkrnwzesZsEYyd88bM2zWlnXJONV0o9vZ
- AYfaxjVqy4Gj1WLntmnU5lyxOH4YCQmTgmz3oViz7TQdk3RJwYnGaOtOd A==;
-X-CSE-ConnectionGUID: sdbddwvZR2+4Eo9kk96tOg==
-X-CSE-MsgGUID: dVGLsnv8Q5aFBuBqt4J6uQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11671"; a="81073110"
-X-IronPort-AV: E=Sophos;i="6.21,225,1763452800"; d="scan'208";a="81073110"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jan 2026 08:09:26 -0800
-X-CSE-ConnectionGUID: zG2aJ1CuR7+tVRRmkaSWfg==
-X-CSE-MsgGUID: gwWQN/0tROSMvYAZEpsifw==
+ t=1768407335; x=1799943335;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:mime-version;
+ bh=+nAYGeCvQV5iBkAlqQXLeIZpjk1psi9ORRfn7DIer1k=;
+ b=Mfc0ML+dI/GIyTMPXSRmbq12rg3aQ+xMG+s3+lPjcDh3hcnbMAlLMxSn
+ KlE8ojRcsWQTh26+/N7Q/AdeUF5ePheOSCRcjN+dpL6YFGitOP9HnsyBA
+ CtZS3c1DFq/9c7drovwMQSCvi7yWn6aUAZVTcfMIsCz5j0r3uXtRvSjag
+ 1QTsglWc1LI4iSY6zwhhrnF4En80lV7BR/cxS2tJnOC7XvO/QyR/kWgTX
+ 0zxcX92yDBz+O7dVII0Bsz6BKu7Vwy5Z2QlKFykQz2g9spUW64Us1osOE
+ WyF8Ihmu5IpSQp0euowEpec8pgTisHSHj7abab+eD7MT7VM7UWGevMfLZ Q==;
+X-CSE-ConnectionGUID: aCe1VXgeR2KV9usrAn0KLA==
+X-CSE-MsgGUID: qirAwD2GSASIH6JHC5jZTg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11671"; a="69686320"
+X-IronPort-AV: E=Sophos;i="6.21,225,1763452800"; d="scan'208,217";a="69686320"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Jan 2026 08:15:34 -0800
+X-CSE-ConnectionGUID: IFy/vqdvS8OvgPrOoYTrEA==
+X-CSE-MsgGUID: zovBcCgfQXe3yQL77v7dAw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,225,1763452800"; d="scan'208";a="227842057"
-Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
- by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jan 2026 08:09:26 -0800
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
+ by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Jan 2026 08:15:34 -0800
+Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Wed, 14 Jan 2026 08:09:25 -0800
+ 15.2.2562.29; Wed, 14 Jan 2026 08:15:33 -0800
 Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29 via Frontend Transport; Wed, 14 Jan 2026 08:09:25 -0800
-Received: from SJ2PR03CU001.outbound.protection.outlook.com (52.101.43.2) by
+ 15.2.2562.29 via Frontend Transport; Wed, 14 Jan 2026 08:15:33 -0800
+Received: from PH0PR06CU001.outbound.protection.outlook.com (40.107.208.33) by
  edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Wed, 14 Jan 2026 08:09:25 -0800
+ 15.2.2562.29; Wed, 14 Jan 2026 08:15:33 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=bHfw8K3q7Aq+H7VRjBZU6kvIVML2N2+aA7umtQkFReTZwI0FSZ0mK4HzxusQ/W9O1k8UqJmdhMZRCuiyioYW/SJjHXpXnPY4JrPbU2j/ty2uZr3wnaZ8QWD8akYIt7er6U61m3aRRUxeBmhtWo7GooDcMVZ09WmOvr/Hrw99aT0uBPMsx9YyFIpdXaol3oquEU/MG9Akmg9g8janAG1TyhK8pR6dc28Z09VIqnkNEJ7/BNH8Mztb4pJlh3d/sDXQ2/QBlMtjbRHiBtjvpv+9BY5gWWoWC8/MzGPppSci7OsRyLO9Hmnqd/oTBbZJXmEcXv/4W8sEgdJBFHfschnVdg==
+ b=Oo5SMfMAtkxUpWUbkFasjhWOUPOZWNvEM/+d9ieIBKG3dhZjmNADPNSi0nPWWmxMjYX7GBHMxWb8ZdQbczoLqm8P6ObdrvKcefpf2VL1sco6YSF6wYlMrJIfvXRDYkW0RX/0ttJfID/VAqJWHhymfvttcafTA3WEwEwSl9hz3YBS0ff2PqbeO0eUXKu1HKrgqMg1RfZmRz4mOw9Qw4YCneam1ITlb0xvUzQueJq7p9jSkb4G7SfQCvWb7uaQcttUCCbm9Aiv0x8ZC/ln29sPebQgsd8x7qtW+8ytqofyPgKKgd3UShYmosUR9dnLyPJC+T1voPw65RxrvZ2u0W6mhg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=TX5Eota0nJrBLtGg2yqKkoi3zQlmosf8xKs5Zgx3Hio=;
- b=ai104BXj+ntcU0mDBPLAofrFosrO7cU5kC8XvzKNvL63XViRMpcKBBfM5+9b8gY+Cr4hnwreqtJfqRuINqrA0gHxUMDQ/hmcq1mmevvLpP/IkwopgfhVn5JAuvqsfUj86qu6NJGG7ESYdpA3Tlgqy7iGFbyo1pA69Nnr/F/YpL3r4m1MCpbdMtgqNLuF3zdm0Fhc73sHJT5+zBi4CWdLmoiAWs2yv8BRWqZb0qrzOcwriUWND+xWKnqEAXbHlnW38kXLLCDGxf8UFs8/zE26a0Bk9koXY9xsR2fugSipXMN+qYtxNZW8iSG+fMvoDfriIaE7OWWenEYih7vvcqlyGw==
+ bh=RY3jBBE3DtJrb2x+JLQsLqbdbz6dkMUzcBi+bMb4NoM=;
+ b=Rb1K+gYBVZbEo/WqBX+BJH5dI7ugzCYwKrbItIvDaR6Tfd7CvmEHBeYZyNOdhzU0H3C8UafBKMQdLB0aWokeng+493zVSxPVK6JghmUnezSMUbd1NOq7RIar395DWUKPjaRI5+3sJOOP5fDgPpx83fxabWtI2w4reUogeSUvmkslctp+BjgYX/UCXd4jWezn3IRiQZ0sZFzC9Ez72WppC2RgyJT+FrNPjYLh5t42jegQudWgGea25lrX30YIKEAooP+fASI+5BaX1Hh4mzb/svYwVjKQ/R8ik++aOgpguTxWrC3nfY6ScV0b3cGThY9adiS/aO946HxW1ajT1nUgPQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by IA3PR11MB8917.namprd11.prod.outlook.com (2603:10b6:208:57d::8)
+Received: from BN9PR11MB5530.namprd11.prod.outlook.com (2603:10b6:408:103::8)
+ by CH3PR11MB8210.namprd11.prod.outlook.com (2603:10b6:610:163::7)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9499.7; Wed, 14 Jan
- 2026 16:09:23 +0000
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::9e94:e21f:e11a:332]) by PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::9e94:e21f:e11a:332%7]) with mapi id 15.20.9456.015; Wed, 14 Jan 2026
- 16:09:23 +0000
-Date: Wed, 14 Jan 2026 08:09:21 -0800
-From: Matthew Brost <matthew.brost@intel.com>
-To: "Summers, Stuart" <stuart.summers@intel.com>
-CC: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH v3 10/11] drm/xe: Add context-based invalidation to GuC
- TLB invalidation backend
-Message-ID: <aWe/sZUWl07L+JSR@lstrano-desk.jf.intel.com>
-References: <20260112232730.3347414-1-matthew.brost@intel.com>
- <20260112232730.3347414-11-matthew.brost@intel.com>
- <14464929638a4c6d727af6cda9152720dda7c468.camel@intel.com>
- <aWWhQpD6GysgmJYp@lstrano-desk.jf.intel.com>
- <976ce0e45b400122953ede51994d0d2a32782173.camel@intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <976ce0e45b400122953ede51994d0d2a32782173.camel@intel.com>
-X-ClientProxiedBy: BYAPR11CA0042.namprd11.prod.outlook.com
- (2603:10b6:a03:80::19) To PH7PR11MB6522.namprd11.prod.outlook.com
- (2603:10b6:510:212::12)
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9520.5; Wed, 14 Jan
+ 2026 16:15:31 +0000
+Received: from BN9PR11MB5530.namprd11.prod.outlook.com
+ ([fe80::1451:ad37:6612:37fb]) by BN9PR11MB5530.namprd11.prod.outlook.com
+ ([fe80::1451:ad37:6612:37fb%4]) with mapi id 15.20.9520.003; Wed, 14 Jan 2026
+ 16:15:30 +0000
+Content-Type: multipart/alternative;
+ boundary="------------TjXUnWlPbxs5e2AQmEq0G9d2"
+Message-ID: <d3fe7cda-3428-49a6-9104-9b3b729e0c9c@intel.com>
+Date: Wed, 14 Jan 2026 21:45:21 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] drm/xe/guc: Add Wa_14025883347 for GuC DMA failure on
+ reset
+To: Sk Anirban <sk.anirban@intel.com>, <intel-xe@lists.freedesktop.org>
+CC: <anshuman.gupta@intel.com>, <riana.tauro@intel.com>,
+ <karthik.poosa@intel.com>, <raag.jadav@intel.com>, <soham.purkait@intel.com>, 
+ <mallesh.koujalagi@intel.com>, <vinay.belgaumkar@intel.com>,
+ <daniele.ceraolospurio@intel.com>, <nishanth.p.reddy@intel.com>,
+ <rodrigo.vivi@intel.com>
+References: <20260114130015.3917770-4-sk.anirban@intel.com>
+ <20260114130015.3917770-6-sk.anirban@intel.com>
+Content-Language: en-US
+From: "Nilawar, Badal" <badal.nilawar@intel.com>
+In-Reply-To: <20260114130015.3917770-6-sk.anirban@intel.com>
+X-ClientProxiedBy: MA0PR01CA0044.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:81::17) To BN9PR11MB5530.namprd11.prod.outlook.com
+ (2603:10b6:408:103::8)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|IA3PR11MB8917:EE_
-X-MS-Office365-Filtering-Correlation-Id: 40f679e9-ec65-4697-177e-08de53874892
+X-MS-TrafficTypeDiagnostic: BN9PR11MB5530:EE_|CH3PR11MB8210:EE_
+X-MS-Office365-Filtering-Correlation-Id: b081fc8a-3f11-43e3-3fbd-08de5388232e
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
-X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?MbPXdPxOcMBT4sui2pe0MiRXfgHMmN82leUqg//EobMr5rIDpN4nibcH8M?=
- =?iso-8859-1?Q?H8gu29tu+fSMv2w1ODxcG3C1rZwh0AbMoecnRFveFabg+ACpUno65K/1HW?=
- =?iso-8859-1?Q?jdIlf/+kj5LUdnMK2K2YtJCj9/XPT5smqqenkXV/5dGLnt3UDf/ncrie3o?=
- =?iso-8859-1?Q?dy0ffPWoPa2JFDrJdZ8uzlIaTN1L0YvTnM/VAbcRjT1ZuWjHlAENo5vriM?=
- =?iso-8859-1?Q?ZqGNLCA8oq4f+U0K9NlEKycQI+92EscTvVGxYAgEmKhdJ86uyN4BnmUsGQ?=
- =?iso-8859-1?Q?MEA2fd6K5dskkhSuZDV1nxeEVUaUjzhw5iDQcScNOA1mRGBB0/3YxHofIs?=
- =?iso-8859-1?Q?STLvykifyWKjm3ueN5jqkr4PEkjGW1iyJBidJldb9QuCU2FYS7QZTUCgVX?=
- =?iso-8859-1?Q?W8dZ48x0R8uKcJyFfoOz4PSyqFi5ojoJaxNo9S8zfTy62bWawSjXS+59aR?=
- =?iso-8859-1?Q?PSH73NvufrC47uyKg2CvPTtUmHmp04SCToCjYpYrqOezTzFwtRwhXjXC67?=
- =?iso-8859-1?Q?YOGpShHvHh3/plZS3rIcHYKiUV/LR1/lfXC5ANSPPrasaluog+ReKXfhJ1?=
- =?iso-8859-1?Q?WL4x0cjkMh/aFrNZQDGcewdhbokNerf2uZj0XUvMXnlJ2tKj8I6FikFMkJ?=
- =?iso-8859-1?Q?OJRRATAx1+2uRd/EYCPCzwp8vt+h4uLgXxhTzEZO6CCPrFqImWrWRQgd+c?=
- =?iso-8859-1?Q?Uz9rUzvJz7XRHxmqCgbo+W1IpuK5/mAEKLleqLqTQ0JpN57Z4I99zQQxjR?=
- =?iso-8859-1?Q?eI6hKTyjqOS58qn+dhIVLxf9CTNGLpub6z6Ze5j4BQGFCDvkXg0unC8Jv1?=
- =?iso-8859-1?Q?Ng5eYixHBdN+WYO/JVWQflE0MXJ+u5bKidC1yr6FTnJNSiS4oNosvxv6t5?=
- =?iso-8859-1?Q?0F5864bmmRaQimg06MpOJKCVg477YG0pd00GGd8fd/tU5aIksExFy55dGF?=
- =?iso-8859-1?Q?ijSAT9gufwQ4sa/Hnhqv1zZvZHigxHPFA+fSc2/byxTfgjAn0Mu9DR7zte?=
- =?iso-8859-1?Q?k3AtnHIfb94358IMUV5BCxZ1nnp0OOQKUcGp7m7LpX5W/W3eXoJsMBn/qY?=
- =?iso-8859-1?Q?ifI6U2+c/uF0A/dQlgQdQ0WhOIkrNvLb0GlJDbanOjCf2NAnBw7Pua+0zy?=
- =?iso-8859-1?Q?Zf6cibXftaprpUwfzMJXc6N9q2EXUv1GlLiaHmGa+JGSq7TipFqOJ1UIjJ?=
- =?iso-8859-1?Q?PjUBFq5x7Lu9DVZfPvkPYtyE0/hN1mHQt42ajcNLuEEbaTRTmxeOWNqWNc?=
- =?iso-8859-1?Q?0vgyrTQqaaN5JrMd8doqwWcZ15I9BqU+CM92yda3TIltTP0SdJp3dCk8yH?=
- =?iso-8859-1?Q?GsBMIch/se/uszmfVEuD2updtFTvoi6dhuQrKhtMSYDgzT27B2qVlk7SmZ?=
- =?iso-8859-1?Q?gpSbLRzyfDsxQXapCkGpKNUs6XMz6MefVEgqMWruMzxONpy87jIhApXg/6?=
- =?iso-8859-1?Q?4wjqQGWAWW1eZu7Z00UZfufnnAQdxGdFk2kz8NDZ9VsJFGzjxFZk2PYXaA?=
- =?iso-8859-1?Q?iXzHhWfYEZmo0W8al2sV+m2LjBVm0p9DfyL/5rNlWywUwRLgeF8rGrdpT5?=
- =?iso-8859-1?Q?pIpn7Up+ABAyAwvNOgnUSmqsmsexXVcZR58O4/y3LluVc456nzUB1utMuh?=
- =?iso-8859-1?Q?gzANqFJiOntxU=3D?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024|8096899003;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?clBGZ2RGMGNWTEdTYlBkQXpQVlFPenR2a0FxcTk0a25aZ1NuY0lVS0VqRjRB?=
+ =?utf-8?B?WHpybW5aaWVyOUtUZUp6VCtBUDUzUVNNRk1vZWpPekJQbkJON3kzd0s5ZStT?=
+ =?utf-8?B?SkVxSGJNYUszVnJJODdCSnU5dTdMb0h5ejF5ZUFMcWVvM3I0RGdmMXQyMm55?=
+ =?utf-8?B?WStKNFpQWHNRdlY4UmNyUGRucjh2emo1QUJNSDlJMFNOdEFnREM2bUd6QS9v?=
+ =?utf-8?B?MUI1Zy9XWW40b0czSG85c1FOU1JnT25LR0xUYzVGaWs2V1dZaElsczgydThO?=
+ =?utf-8?B?YVlwSEZxeGQvSHhPcXB4b1kyVGNpUTQvRnF4cW44WUR1a09HSEt6eFZhL3Nz?=
+ =?utf-8?B?eDFaRnJENCs1L0pQZEpyZWFkTHY2S1ovOGlZTHlVNHJObGVXY0tZNmlvRXQw?=
+ =?utf-8?B?bWMrYzFlbVZLMUxGWWN0LzNoUFF3SXpnTklzc3ZhbXcxa0VOVWljSjR4VFFr?=
+ =?utf-8?B?S1g5eXNnbTZyT1FwSVVrb2c0Z09YMGJ2WEhwaFc3bnJoTFRuUFFlaC9wRXFx?=
+ =?utf-8?B?cGhZeThVeDNTS3R2cDlCUStvL1k5V2E3RldJbk5aK2ZqajhtVzQ0N1c0dEJv?=
+ =?utf-8?B?WTR3Mms0TjRGaWJxWWFheWNBQ3BQWlRabkx1dUVqNTZSTEd4U2lYcVVBMUpB?=
+ =?utf-8?B?TmZPSlFSbVRNWW9ZY1BQRzgzRWlBZ1RRVVRSWjRQZWE1RFRsdHBuczBMOEhN?=
+ =?utf-8?B?Y1F5cldKV1kxdnJvK2lLelVmTHZvL3dWcTdFSFcxbmJvN0lBVE5oMm1ROExF?=
+ =?utf-8?B?dDBTUWRMblYxK2FORVNYZVRSR04xSk5SMThTL01wNDY4RHliQ0dEbFcya1lH?=
+ =?utf-8?B?WjV6UHpSRFlEUHU3aDE3d1FxQUY3QktRVDNHY2h4dVVKUWpqRHJDMWtpZHhx?=
+ =?utf-8?B?c29ERUhveVo4dHhBcHFsSjdYUWNrbkV5YXlmWThTUUlLNStVSS9lZlBscEN1?=
+ =?utf-8?B?andlSjNQRSt3SnBrLzlDRkluWThOVGZCYlZNa3hBaGEwU04vd2VyN3dXb1lR?=
+ =?utf-8?B?ak12bXZ3ZTVySG5MR0t4UXBqcCtGS0gyQ0NDd3dOTlQzeG50MWlCV3NtaGJp?=
+ =?utf-8?B?Ry9RNFd1TktKYTRoQTlTcFBxT2dlcVI5NkV0SytmOVV1eVRMMjJBVWlLenRV?=
+ =?utf-8?B?SVRqVENOVVppVkdrRGNLUmVkcmc1MmpyeEhDUGFiL3pmK3JEaWd4TWJRUDUz?=
+ =?utf-8?B?eTVCVkxtdDlLK0R0OUM5dTlaTm1pZGczbUcweEREbWRvWFVOcEJrTHhRYWhh?=
+ =?utf-8?B?T3YrbjZYRmxKOXo0R21TZjBWeWdDcFlKanFJOEp0VFYrcy9ONlJzNHUvNXhW?=
+ =?utf-8?B?UStRbW5SZUROalRTMnd0eTNIckk0L0J6bTZYR29OckJWalBjdWhmZkRPUGF6?=
+ =?utf-8?B?L0dNNko3ZDR0M0pkSlJvWWFoY3VOVFVINSt3U2psblJYUVEreDRrOG96b3pE?=
+ =?utf-8?B?T3RsMkxPOUR3MUhUVkp5em5EeTQydFBXTFVKRlBXMWZ4NU80U1lJNVZCVDhW?=
+ =?utf-8?B?dEd4SVRDRWNhMUhFT09EdGtUOEdvRGdyaGRHMHA2Qys1aGd6V0o1OEo2aHlH?=
+ =?utf-8?B?cXRtdHZmcHZkaW5ZZ1U2U2tMSit0bHNkV21vVmx1TWMzU0VHaC90amR4aU1Z?=
+ =?utf-8?B?aHlza1laS0ZsVFYrU3pmZ2xaTk1JZlltbUhWTnpQUWZWT3BReHd1MHB2czNq?=
+ =?utf-8?B?azREZmM5eHZCN05paGdBSkk0akd0Q2VlM2NhQVIzTmZEeWVMSUUvODB0WTVk?=
+ =?utf-8?B?b2F5cWx4TkxSRHptSXRTcng0cWc4VUZ3YUNGaGVUYStPS1d3Um9ldWJxeVha?=
+ =?utf-8?B?eWQzQWhCODgrSzI5YXl3a2lFRHdCMFBOcXBhWFJkMGFTc3RHTWoyMFFuRGVI?=
+ =?utf-8?B?aUhLdnZEbkhENndlbVFWaCtLMkZXYjNkMW1EcnRGOUNHSTJwK0t0TWREZFE1?=
+ =?utf-8?B?NnZkQVB6SXpDemNJd1Ywci80ZnV2TXJiUXpkd2E4MFNtQXdoaXFkeUdjWjdo?=
+ =?utf-8?B?dmNZSm54MEtwblBXZjdSTXVTaEcxeU43UyszRTZDdlJsWkFIU1hoNmQ2Y3oz?=
+ =?utf-8?B?V2hrNkZJbzZxbER4OVVBVEZpUzY0alRIY3lWOFV1bURvUlMvbVR3TVpjbGx3?=
+ =?utf-8?Q?leT8=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:BN9PR11MB5530.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(1800799024)(8096899003); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?Y1+GKIvUgSEEKkh4J66D4X3NsPFw0O4Fr1nCUIsb3gUAUYNS/K6dcCBPWe?=
- =?iso-8859-1?Q?FMkacZkJrejyTixrh6meimMi9/+igplZvEg6PX+vJP3XOam3CCWvSmqWT9?=
- =?iso-8859-1?Q?hmQWGpnA18dD/n6fALU4621Xnj2ReyBpD9c9qD//uH4D9TkdfbJuNiZE6A?=
- =?iso-8859-1?Q?xVzmuELNklqmtP3mWuD1jw+Aw/I4vQB6TF9G1Y8GFmhiRNJkWprromDCAB?=
- =?iso-8859-1?Q?4fJK5WOnwv9hTS/snxWy/RmHAEQ02KXIOmdJguQ7tF9CRuoGXWQ3aGKiy/?=
- =?iso-8859-1?Q?BVEqe1dENx6GqLeHNaM+dVvi26suiVfYyG7pqfdxwTnXUN5VrjSk9cQwCJ?=
- =?iso-8859-1?Q?6e8eRSkCcsFxBv54BtWhG5/5jO8l1OthBCcYHeelxUlaxYSyEEXhm0M+HP?=
- =?iso-8859-1?Q?t6GFwEtIfEf/jt60rvQ1DRsKJRWhHICVCvx6MK54rmMl/Tq2RoWJwMMBj1?=
- =?iso-8859-1?Q?OKwc98KRVLsPBvBH9qNPDlEPOEAtMPNv68B7jlnOCXxlAHZ6sdzR+6AYWh?=
- =?iso-8859-1?Q?QdMpDuB6u/dlfy4hvBEvLAoa5vDTQH//t327bnl4+iqwmR2953kN5EGh7D?=
- =?iso-8859-1?Q?6XZ0F85L6A0Yzx6w3xqKp/ufhACHb+9N0cbACw60BiA7Lil9QOg4chgLbk?=
- =?iso-8859-1?Q?zcH7qUUeOTwGzZYPLTqAdOYR8lXFASOz+duH1OpqKjpLnpAUT9lY9gGCPs?=
- =?iso-8859-1?Q?jenxDuP3PRaqdeHf2GBjcJLXnQ1+fuRVFTO5/PL6RdpYAIdVzOqSSennyi?=
- =?iso-8859-1?Q?4wrH3pKBBTUY1oXw0a8ppgoaPAEBwgVYkQCZlRTLXzZLAA07wYdsXVeSoU?=
- =?iso-8859-1?Q?p+ZK6QJE2e261QjF/dc8jlN2aOGT37ezUIFXGXnka2b/sL3z1o2dqQ+IQK?=
- =?iso-8859-1?Q?JY/WnRpS03UAlhhdACWGbNoPyHYvupb6+TWiCHMa8DEZE0p0Y3leY4TBFC?=
- =?iso-8859-1?Q?NXYh4sCNgSP4+aHB7EB2oedi7O0LOu4ZaPuQdVGxX27a32A7y0hEGMyLIu?=
- =?iso-8859-1?Q?bmyVDWm29IeTif99U3h5zCO4aM5MT/Ur47xWBvOAaIET+2OP9D6/g2WW9E?=
- =?iso-8859-1?Q?ak57bRMRwSgLmgVsSOMNf3aghCjgo1DTAksV/mUgcBSMtM8Q2WiHGjAMIt?=
- =?iso-8859-1?Q?0Rxw00QcwoIxeiESc/UlPyfSY2XmmffRPlNVZ0Tp/VrIILVMDJ8wcmA45h?=
- =?iso-8859-1?Q?EuhwQCEN2rOb+qiOEyI/Xx4HPccpnQASTAMIYPVfrb+YQwZvuSGP/eJnRC?=
- =?iso-8859-1?Q?higdfB6Mxsj6+Ju9/ivKMhoTPJ93y761sJCwYXyNxh6L/oyJ6Gxl/5AfWY?=
- =?iso-8859-1?Q?8Jorv/KtcnCQJiTeJVDe/X8CLxclG3X+ov1Cs48wbgo3LnLHG3HjjgPUFq?=
- =?iso-8859-1?Q?EWMJ6EhyKHqrD/eDhpC3oxI7L0yINOfft7AMPtztkiy7MQhd0tkeMfUAYB?=
- =?iso-8859-1?Q?qvGILOay+evvxgSxPchIJNSghtudRt82f7z+PIM0Uzohe4x/9LYL0EaQU/?=
- =?iso-8859-1?Q?n8PIKtnJWcg2gmndvuB/FLGv/U/kSc2jYhvR8TKn1TMCCDDAykGC7ATpXM?=
- =?iso-8859-1?Q?ls760t1u3tGvnSwFEWWLU2sphkEeSNymTLr82vpMAGAjZEVkDCg3T7g0Ea?=
- =?iso-8859-1?Q?5s+UZ90PStLIyU2doOs6G8yxzfL/Kug2EDbj0S5WMy3N+d2GsQrLFY4LA0?=
- =?iso-8859-1?Q?jLXsFc3oUu46Vt5rNlIvVMkxxpaFpMHL74wHXJLbSb+LeHaEiZVe3Lzuvz?=
- =?iso-8859-1?Q?xR42bqlNgLA0EEdVL62F/fueeMn8ov+VSFf5Bw45KsKTseB7qnHVHWHzir?=
- =?iso-8859-1?Q?QM0Xro9wTKZDSJxpOYn8tqjqT+nHogU=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 40f679e9-ec65-4697-177e-08de53874892
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZkJEVU1EZDU2UXdQeGhFU1hJbXpycVErTHlyaEpYOHh0cGVkSm13bE55akQx?=
+ =?utf-8?B?MlRkM05XdjVTN25Tem4wMW9LZmxKcTVId1I3SzVqajFNZnladGJhY0NjMUMz?=
+ =?utf-8?B?cXk4N3lZUTRTVDhBejlmSVRxY1VnMDBFYmhBQ2V2bUhMY2RacGlWMUp3MFor?=
+ =?utf-8?B?VGhSZTVuMXBCQkxGRVZqa1dMTjl3V2RlaGlqeXkzMVpCUUgvU0FwbEVBMmxt?=
+ =?utf-8?B?TjYvcGZkNGRoTnFxN052VTR3RzFReEVmOWZNQStwblRsRlQyZEpjWUVFOE5J?=
+ =?utf-8?B?UU1xOXU2K3k1ZXhFcnA0RXBndEtsTVNrUlBNbjZaYlBXNHlYOXFJQW5oNEh1?=
+ =?utf-8?B?cWVyaHRYN3pPNHdVb1N2a1VaNGdobkVxWU90Q3lTWWhpWUg3TnYzSGVJTnFR?=
+ =?utf-8?B?dVBBbmNqb2RWcWh0ZURsY2VLcUI4dkJ6RmhjZU9QOXZlQ09ETnE2elQ1eWxH?=
+ =?utf-8?B?TGZMZVBLWXQ5cjhGVWY0eWdRdGxPZWFsRGZqcEQxWkk2MEdpWFhCS1VtZVNP?=
+ =?utf-8?B?STZBYTV5Z0x3bkF0QURXM3cwdXp3TzZYR1JsRVBhQk9WWHZIam42bkhRaXlq?=
+ =?utf-8?B?bDJMZE10UmlLNjVEVWRBVTVieXlFZDZlc0orOStjZURhRnBEd2h3dXpXcngw?=
+ =?utf-8?B?U0VFRWIrbVdhem5pZVZpWXozYm5OT3E1cTZKYnlaZjREeWd1UmpRS3NaQWZu?=
+ =?utf-8?B?VDRpL25DVlJtOFgyZjc0SnplQlVISGQrQnJCbTQrbms3eUVCUUh5Mjhxc3Fo?=
+ =?utf-8?B?L1piTVo4STdVSGRxd0pGZ1BjMGxMb3JjVmtIV1JxckZxOVJ3dVpFUmc4dk1C?=
+ =?utf-8?B?VEtCOHFxUWNoM0lBbmFWSWpmLzhidVVDSlpOdlk3cjZYU3VBOXl0QmFVVm1C?=
+ =?utf-8?B?cHhFQ0VrcEJvRHVRTFBLMWlaaC82a1M4U0gwVDgzVjRscmRoNTJjekY3bE1q?=
+ =?utf-8?B?Q3Y4NlpEamVzeUxqZjFyUWd6L1VqNEVtS1FGZHJRTVN1czVkeFRJZUt4cFlM?=
+ =?utf-8?B?ZnBvTTBocEpOeEtrZ0tENFhxN2FIQ09SWE9DYTZmejcvcGZMcW9oY3Nia3Vn?=
+ =?utf-8?B?YTFCRlJKNmhPRzQvai9RSHU1SUJ1NG52RUsyM3Z4RGdjOVhNcDRkM212Yzd2?=
+ =?utf-8?B?OWRxRkNtTnZwa2t0Nks5aTN6YjYyNHRnVWxDV3RmN0xCRGsvRTZBWTlOVjBI?=
+ =?utf-8?B?czYrWmlWcXVRTnpqK2lBbkJhaXJUMCtibkhjR3RPN0E5cHJNdHNDQnpvN29T?=
+ =?utf-8?B?S292SGc1OFpUWGZYMk16RVM1ZllReHlQMkpsM29IQXlCNUlLNUpEU0hhV3pF?=
+ =?utf-8?B?bkllbWYxL1ByMXJiYkVlWW50dnZJMytQVnY2UjFDUGRDcVZ4cTBvRnF1ZEdF?=
+ =?utf-8?B?emt5UTgvRkRtT0FUc2VURVBEQkhGK2hlV1dNd08xVW1CdGVnb21WaVJkUzFU?=
+ =?utf-8?B?MGZGYWlZRjdlK2lyYU8reHdlcUZwZFNadjJPbWNjZkJlKzF1NWtMU2EvcWd3?=
+ =?utf-8?B?UEw4cDZzaTFaSFE4YkxNMEF1allYVGRkemFxVGlDeWt1aHlzdE9Sazlqb3pV?=
+ =?utf-8?B?R1pwVnV4cTdhZHM4R1FGQXlNZllpbzBEdlNWZnRtV1E2eHppeFFwRW1jclNx?=
+ =?utf-8?B?YmM4ais1OGlINkZ6RTBLd0RwWHFndDE4QmtyS21rQ2FQc3F4UXp6K3I5ZVE3?=
+ =?utf-8?B?SnVSYlNqV2VibDVYeDRwY3dQaGNWMU5kcVQwdGREQmVPTzRIS2l1WUdMTU9r?=
+ =?utf-8?B?UVd4dXZvaXpOR0tLbnJGblFkMTcvZ0huc1pVVHdRR0NqUlBFWmprUERLNEJY?=
+ =?utf-8?B?MXN1YjlWYjUyNGF1bVpkRklqVFBZZnlUWmdXTzBWVytVK3RJdEI1SXJyd3Vr?=
+ =?utf-8?B?dFk3TUMrWUhTbHRReTAwV2NaamgzeDJsVXZwNFJjc0hsSGNNVGYyd1JWZHVs?=
+ =?utf-8?B?SERMQmt3MFFoTGMzK0NEc3pqOUpLK1dDSitkUXJnVkxoUU53YzdBcnB1Skor?=
+ =?utf-8?B?c0xET1RtaE9Sc1dsUHFpOTJ3SHhFNjk4Tm1nYXhhb1FyS0FNK21qM0g4Y3pz?=
+ =?utf-8?B?QjErbk9QUWNwYWRydUVIMXNmdUFsUm9Ra2h2R05La1UrRHdnS1U2UUI4S0Nu?=
+ =?utf-8?B?RXF1azBPMHE5ZytNM1R3bXlBaG1jU2s0MERTUTlTWk5oRXV2bkpLcFByczA3?=
+ =?utf-8?B?YldHNE5ZSzZpMUFkK3Zyb3RrZ2FQeExjNVlySUs3S1hlSnlTdVRhMzlWbHV1?=
+ =?utf-8?B?Z2ZxbFM1bHpUNGZDM0Q5NE43d0JkeXhybmhKZTB2enRGV1RpcWVib2tFdDJY?=
+ =?utf-8?B?cUUwWENnckQ2a283UDg2SDhnNWU2L1BWcTJScDFEN2RlUVM5YmxGQT09?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: b081fc8a-3f11-43e3-3fbd-08de5388232e
+X-MS-Exchange-CrossTenant-AuthSource: BN9PR11MB5530.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Jan 2026 16:09:23.8200 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Jan 2026 16:15:30.7738 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: t2jqf16t6etcAzRmn8X3NjLOIVBRl9HE8mmVsv9aFH7iMieZjDQR5ut2UD65L6L4URhKDC6na30jp6k+r763iQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA3PR11MB8917
+X-MS-Exchange-CrossTenant-UserPrincipalName: bnh7l1rtBoZglB5Xhaxti+GKVGajUo8yAG/vlLCthj+ymSn3ULmXIF2jrMNUFPGDQ+5mSWVf+5Ls34uDcNbJJA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR11MB8210
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -187,456 +204,288 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Jan 13, 2026 at 03:36:59PM -0700, Summers, Stuart wrote:
-> On Mon, 2026-01-12 at 17:34 -0800, Matthew Brost wrote:
-> > On Mon, Jan 12, 2026 at 06:28:01PM -0700, Summers, Stuart wrote:
-> > > On Mon, 2026-01-12 at 15:27 -0800, Matthew Brost wrote:
-> > > > Introduce context-based invalidation support to the GuC TLB
-> > > > invalidation
-> > > > backend. This is implemented by iterating over each exec queue
-> > > > per GT
-> > > > within a VM, skipping inactive queues, and issuing a context-
-> > > > based
-> > > > (GuC
-> > > > ID) H2G TLB invalidation. All H2G messages, except the final one,
-> > > > are
-> > > > sent with an invalid seqno, which the G2H handler drops to ensure
-> > > > the
-> > > > TLB invalidation fence is only signaled once all H2G messages are
-> > > > completed.
-> > > > 
-> > > > A watermark mechanism is also added to switch between context-
-> > > > based
-> > > > TLB
-> > > > invalidations and full device-wide invalidations, as the return
-> > > > on
-> > > > investment for context-based invalidation diminishes when many
-> > > > exec
-> > > > queues are mapped.
-> > > > 
-> > > > v2:
-> > > >  - Fix checkpatch warnings
-> > > > v3:
-> > > >  - Rebase on PRL
-> > > >  - Use ref counting to avoid racing with deregisters
-> > > > 
-> > > > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> > > > ---
-> > > >  drivers/gpu/drm/xe/xe_device_types.h  |   2 +
-> > > >  drivers/gpu/drm/xe/xe_guc_tlb_inval.c | 145
-> > > > +++++++++++++++++++++++++-
-> > > >  drivers/gpu/drm/xe/xe_pci.c           |   1 +
-> > > >  drivers/gpu/drm/xe/xe_pci_types.h     |   1 +
-> > > >  4 files changed, 145 insertions(+), 4 deletions(-)
-> > > > 
-> > > > diff --git a/drivers/gpu/drm/xe/xe_device_types.h
-> > > > b/drivers/gpu/drm/xe/xe_device_types.h
-> > > > index 8db870aaa382..b51acff4edcd 100644
-> > > > --- a/drivers/gpu/drm/xe/xe_device_types.h
-> > > > +++ b/drivers/gpu/drm/xe/xe_device_types.h
-> > > > @@ -358,6 +358,8 @@ struct xe_device {
-> > > >                 u8 has_pre_prod_wa:1;
-> > > >                 /** @info.has_pxp: Device has PXP support */
-> > > >                 u8 has_pxp:1;
-> > > > +               /** @info.has_ctx_tlb_inval: Has context based
-> > > > TLB
-> > > > invalidations */
-> > > > +               u8 has_ctx_tlb_inval:1;
-> > > >                 /** @info.has_range_tlb_inval: Has range based
-> > > > TLB
-> > > > invalidations */
-> > > >                 u8 has_range_tlb_inval:1;
-> > > >                 /** @info.has_soc_remapper_sysctrl: Has SoC
-> > > > remapper
-> > > > system controller */
-> > > > diff --git a/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
-> > > > b/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
-> > > > index 070d2e2cb7c9..328eced5f692 100644
-> > > > --- a/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
-> > > > +++ b/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
-> > > > @@ -6,15 +6,19 @@
-> > > >  #include "abi/guc_actions_abi.h"
-> > > >  
-> > > >  #include "xe_device.h"
-> > > > +#include "xe_exec_queue.h"
-> > > > +#include "xe_exec_queue_types.h"
-> > > >  #include "xe_gt_stats.h"
-> > > >  #include "xe_gt_types.h"
-> > > >  #include "xe_guc.h"
-> > > >  #include "xe_guc_ct.h"
-> > > > +#include "xe_guc_exec_queue_types.h"
-> > > >  #include "xe_guc_tlb_inval.h"
-> > > >  #include "xe_force_wake.h"
-> > > >  #include "xe_mmio.h"
-> > > >  #include "xe_sa.h"
-> > > >  #include "xe_tlb_inval.h"
-> > > > +#include "xe_vm.h"
-> > > >  
-> > > >  #include "regs/xe_guc_regs.h"
-> > > >  
-> > > > @@ -156,10 +160,16 @@ static int send_tlb_inval_ppgtt(struct
-> > > > xe_guc
-> > > > *guc, u32 seqno, u64 start,
-> > > >  {
-> > > >  #define MAX_TLB_INVALIDATION_LEN       7
-> > > >         struct xe_gt *gt = guc_to_gt(guc);
-> > > > +       struct xe_device *xe = guc_to_xe(guc);
-> > > >         u32 action[MAX_TLB_INVALIDATION_LEN];
-> > > >         u64 length = end - start;
-> > > >         int len = 0, err;
-> > > >  
-> > > > +       xe_gt_assert(gt, (type == XE_GUC_TLB_INVAL_PAGE_SELECTIVE
-> > > > &&
-> > > > +                         !xe->info.has_ctx_tlb_inval) ||
-> > > > +                    (type == XE_GUC_TLB_INVAL_PAGE_SELECTIVE_CTX
-> > > > &&
-> > > > +                     xe->info.has_ctx_tlb_inval));
-> > > > +
-> > > >         action[len++] = XE_GUC_ACTION_TLB_INVALIDATION;
-> > > >         action[len++] = !prl_sa ? seqno :
-> > > > TLB_INVALIDATION_SEQNO_INVALID;
-> > > >         if (!gt_to_xe(gt)->info.has_range_tlb_inval ||
-> > > > @@ -168,9 +178,11 @@ static int send_tlb_inval_ppgtt(struct
-> > > > xe_guc
-> > > > *guc, u32 seqno, u64 start,
-> > > >         } else {
-> > > >                 u64 normalize_len =
-> > > > normalize_invalidation_range(gt,
-> > > > &start,
-> > > >                                                                 
-> > > > &end);
-> > > > +               bool need_flush = !prl_sa &&
-> > > > +                       seqno != TLB_INVALIDATION_SEQNO_INVALID;
-> > > >  
-> > > >                 /* Flush on NULL case, Media is not required to
-> > > > modify flush due to no PPC so NOP */
-> > > > -               action[len++] = MAKE_INVAL_OP_FLUSH(type,
-> > > > !prl_sa);
-> > > > +               action[len++] = MAKE_INVAL_OP_FLUSH(type,
-> > > > need_flush);
-> > > >                 action[len++] = id;
-> > > >                 action[len++] = lower_32_bits(start);
-> > > >                 action[len++] = upper_32_bits(start);
-> > > > @@ -181,8 +193,10 @@ static int send_tlb_inval_ppgtt(struct
-> > > > xe_guc
-> > > > *guc, u32 seqno, u64 start,
-> > > >  #undef MAX_TLB_INVALIDATION_LEN
-> > > >  
-> > > >         err = send_tlb_inval(guc, action, len);
-> > > > -       if (!err && prl_sa)
-> > > > +       if (!err && prl_sa) {
-> > > > +               xe_gt_assert(gt, seqno !=
-> > > > TLB_INVALIDATION_SEQNO_INVALID);
-> > > >                 err = send_page_reclaim(guc, seqno,
-> > > > xe_sa_bo_gpu_addr(prl_sa));
-> > > > +       }
-> > > >         return err;
-> > > >  }
-> > > >  
-> > > > @@ -201,6 +215,114 @@ static int send_tlb_inval_asid_ppgtt(struct
-> > > > xe_tlb_inval *tlb_inval, u32 seqno,
-> > > >                                    
-> > > > XE_GUC_TLB_INVAL_PAGE_SELECTIVE,
-> > > > prl_sa);
-> > > >  }
-> > > >  
-> > > > +static bool queue_mapped_in_guc(struct xe_guc *guc, struct
-> > > > xe_exec_queue *q)
-> > > > +{
-> > > > +       return q->gt == guc_to_gt(guc);
-> > > > +}
-> > > > +
-> > > > +static int send_tlb_inval_ctx_ppgtt(struct xe_tlb_inval
-> > > > *tlb_inval,
-> > > > u32 seqno,
-> > > > +                                   u64 start, u64 end, u32 asid,
-> > > > +                                   struct drm_suballoc *prl_sa)
-> > > > +{
-> > > > +       struct xe_guc *guc = tlb_inval->private;
-> > > > +       struct xe_device *xe = guc_to_xe(guc);
-> > > > +       struct xe_exec_queue *q, *next, *last_q = NULL;
-> > > > +       struct xe_vm *vm;
-> > > > +       LIST_HEAD(tlb_inval_list);
-> > > > +       int err = 0;
-> > > > +
-> > > > +       lockdep_assert_held(&tlb_inval->seqno_lock);
-> > > > +
-> > > > +       if (xe->info.force_execlist)
-> > > > +               return -ECANCELED;
-> > > > +
-> > > > +       vm = xe_device_asid_to_vm(xe, asid);
-> > > > +       if (IS_ERR(vm))
-> > > > +               return PTR_ERR(vm);
-> > > > +
-> > > > +       down_read(&vm->exec_queues.lock);
-> > > > +
-> > > > +       /*
-> > > > +        * XXX: Randomly picking a threshold for now. This will
-> > > > need
-> > > > to be
-> > > > +        * tuned based on expected UMD queue counts and
-> > > > performance
-> > > > profiling.
-> > > > +        */
-> > > > +#define EXEC_QUEUE_COUNT_FULL_THRESHOLD        8
-> > > > +       if (vm->exec_queues.count[guc_to_gt(guc)->info.id] >=
-> > > > +           EXEC_QUEUE_COUNT_FULL_THRESHOLD) {
-> > > > +               u32 action[] = {
-> > > > +                       XE_GUC_ACTION_TLB_INVALIDATION,
-> > > > +                       seqno,
-> > > > +                       MAKE_INVAL_OP(XE_GUC_TLB_INVAL_FULL),
-> > > > +               };
-> > > > +
-> > > > +               err = send_tlb_inval(guc, action,
-> > > > ARRAY_SIZE(action));
-> > > > +               goto err_unlock;
-> > > > +       }
-> > > > +#undef EXEC_QUEUE_COUNT_FULL_THRESHOLD
-> > > > +
-> > > > +       /*
-> > > > +        * Move exec queues to a temporary list to issue
-> > > > invalidations. The exec
-> > > > +        * queue must be mapped in the current GuC, active, and a
-> > > > reference must
-> > > > +        * be taken to prevent concurrent deregistrations.
-> > > > +        */
-> > > > +       list_for_each_entry_safe(q, next, &vm->exec_queues.list,
-> > > > +                                vm_exec_queue_link)
-> > > 
-> > > Nitpick: I'd prefer braces around the the if here so we aren't
-> > > nesting
-> > > the multi-line condition within this list_for_each loop.
-> > > 
-> > 
-> > Sure. CI and local testing is showing this loop explodes too. I'm
-> > reasing two GTs are modifying the list at the same time as I'm just
-> > using a read lock here. I think vm->exec_queues.list needs to be per
-> > GT
-> > actually or just use a mutex to protect the list.
-> > 
-> > > > +               if (queue_mapped_in_guc(guc, q) && q->ops-
-> > > > >active(q)
-> > > > &&
-> > > > +                   xe_exec_queue_get_unless_zero(q)) {
-> > > > +                       last_q = q;
-> > > > +                       list_move_tail(&q->vm_exec_queue_link,
-> > > > &tlb_inval_list);
-> > > > +               }
-> > > > +
-> > > > +       if (!last_q) {
-> > > > +               /*
-> > > > +                * We can't break fence ordering for TLB
-> > > > invalidation
-> > > > jobs, if
-> > > > +                * TLB invalidations are inflight issue a dummy
-> > > > invalidation to
-> > > > +                * maintain ordering. Nor can we move safely the
-> > > > seqno_recv when
-> > > > +                * returning -ECANCELED if TLB invalidations are
-> > > > in
-> > > > flight. Use
-> > > > +                * GGTT invalidation as dummy invalidation given
-> > > > ASID
-> > > > +                * invalidations are unsupported here.
-> > > > +                */
-> > > > +               if (xe_tlb_inval_idle(tlb_inval))
-> > > > +                       err = -ECANCELED;
-> > > > +               else
-> > > > +                       err = send_tlb_inval_ggtt(tlb_inval,
-> > > > seqno);
-> > > 
-> > > Can you give a little more context on this line actually? So this
-> > > is
-> > > going to send down a 0x3 type invalidation to GuC (TLB_INVAL_GUC).
-> > > GuC
-> > > is still doing an invalidation to hardware when we write this. Is
-> > > that
-> > > the expectation with this?
-> > > 
-> > 
-> > Yes, I think I explain this in the comment above. We are issuing a
-> > dummy
-> > invalidation to maintain ordering when required, this would be GuC
-> > TLBs.
-> > Not ideal but we can't break dma-fencing ordering and this case so be
-> > exceedingly rare.
-> 
-> Yeah the reasoning is clear to me. It just wasn't clear what would
-> happen with this GuC invalidation. Looking through the GuC source, I
-> see this is sending with Granularity of 0x1. This is "All mappings
-> within ASID and VF" according to bspec. We aren't actually passing an
-> ASID here and it looks like GuC isn't programming anything into that
-> field in the descriptor. So we'd have to get unlucky with a 0 (I
-> believe - can't find where they're clearing this at a glance) ASID
-> which seems unlikely.
-> 
-> So from the hardware side, there will be a lookup and failure to find
-> the ASID and the transaction should be dropped.
-> 
-> I think on current hardware this is ok and the invalidation still
-> completes at the GuC level (GuC receives the ack from hardware) and we
-> shouldn't get an invalidation timeout in the KMD. But there's always a
-> chance this could change in the future.
-> 
-> Can you add a comment here indicating this? Basically something like:
-> Expectation is that hardware will drop this request since GuC submits
-> an ASID based request without an ASID.
+--------------TjXUnWlPbxs5e2AQmEq0G9d2
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-This is a GuC GGTT TLB invalidation - not a full PPGTT or PASID
-invalidation. For example when we create or destroy a GGTT mapping, this
-is the type of invalidation we issue there.
 
-I picked GuC GGTT invalidation as I figure this was less costly than a
-full PPGTT invalidation but that is just a guess. Are ASID based
-invalidations available on platforms that want context based
-invalidations - my guess is no and maybe even confirmed that at one
-point by looking at GuC source.
+On 14-01-2026 18:30, Sk Anirban wrote:
+> Prevent GuC firmware DMA failures during GuC-only reset by disabling
+> idle flow and verifying SRAM handling completion. Without this, reset
+> can be issued while SRAM handler is copying WOPCM to SRAM,
+> causing GuC HW to get stuck.
+>
+> Signed-off-by: Sk Anirban<sk.anirban@intel.com>
+> ---
+>   drivers/gpu/drm/xe/regs/xe_guc_regs.h |  8 ++++++
+>   drivers/gpu/drm/xe/xe_guc.c           | 37 ++++++++++++++++++++++++++-
+>   drivers/gpu/drm/xe/xe_wa_oob.rules    |  9 +++++++
+>   3 files changed, 53 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/xe/regs/xe_guc_regs.h b/drivers/gpu/drm/xe/regs/xe_guc_regs.h
+> index 87984713dd12..2f38fd231083 100644
+> --- a/drivers/gpu/drm/xe/regs/xe_guc_regs.h
+> +++ b/drivers/gpu/drm/xe/regs/xe_guc_regs.h
+> @@ -40,6 +40,9 @@
+>   #define   GS_BOOTROM_JUMP_PASSED		REG_FIELD_PREP(GS_BOOTROM_MASK, 0x76)
+>   #define   GS_MIA_IN_RESET			REG_BIT(0)
+>   
+> +#define GUC_HASH_BOOT_CHECK			XE_REG(0xc010)
+> +#define   GUC_BOOT_HASH_CHK			REG_BIT(31)
+> +
+>   #define GUC_HEADER_INFO				XE_REG(0xc014)
+>   
+>   #define GUC_WOPCM_SIZE				XE_REG(0xc050)
+> @@ -83,7 +86,12 @@
+>   #define   GUC_WOPCM_OFFSET_MASK			REG_GENMASK(31, GUC_WOPCM_OFFSET_SHIFT)
+>   #define   HUC_LOADING_AGENT_GUC			REG_BIT(1)
+>   #define   GUC_WOPCM_OFFSET_VALID		REG_BIT(0)
+> +
+> +#define GUC_SRAM_STATUS				XE_REG(0xc398)
+Fix the indentation.
+> +#define   GUC_SRAM_HANDLING_MASK		REG_GENMASK(8, 7)
+> +
+>   #define GUC_MAX_IDLE_COUNT			XE_REG(0xc3e4)
+> +#define   GUC_IDLE_FLOW_DISABLE			REG_BIT(31)
+>   #define GUC_PMTIMESTAMP_LO			XE_REG(0xc3e8)
+>   #define GUC_PMTIMESTAMP_HI			XE_REG(0xc3ec)
+>   
+> diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+> index 44360437beeb..b5ec08a16aaf 100644
+> --- a/drivers/gpu/drm/xe/xe_guc.c
+> +++ b/drivers/gpu/drm/xe/xe_guc.c
+> @@ -900,6 +900,35 @@ int xe_guc_post_load_init(struct xe_guc *guc)
+>   	return xe_guc_submit_enable(guc);
+>   }
+>   
+> +/*
+> + * Wa_14025883347: Prevent GuC firmware DMA failures during GuC-only reset by ensuring
+> + * SRAM save/restore operations are complete before reset.
+> + */
+> +static int guc_prevent_fw_dma_failure_on_reset(struct xe_guc *guc)
+> +{
+> +	struct xe_gt *gt = guc_to_gt(guc);
+> +	u32 boot_hash_chk, guc_status, sram_status;
+> +
+> +	guc_status = xe_mmio_read32(&gt->mmio, GUC_STATUS);
+> +	if (REG_FIELD_GET(GS_UKERNEL_MASK, guc_status) != XE_GUC_LOAD_STATUS_READY)
+> +		return 0;
+> +
+> +	boot_hash_chk = xe_mmio_read32(&gt->mmio, GUC_HASH_BOOT_CHECK);
+> +	if (!(boot_hash_chk & GUC_BOOT_HASH_CHK))
+> +		return 0;
+> +
+> +	xe_mmio_rmw32(&gt->mmio, GUC_MAX_IDLE_COUNT, 0, GUC_IDLE_FLOW_DISABLE);
 
-I already have comment above indicating this is a GGTT based
-invalidation.
+To function RC6 properly re-enable Idle flow after reset.
 
-Matt
+> +
+> +	sram_status = xe_mmio_read32(&gt->mmio, GUC_SRAM_STATUS);
+> +	if (sram_status & GUC_SRAM_HANDLING_MASK) {
+> +		xe_gt_err(gt, "SRAM handling not complete (GUC_SRAM_STATUS: 0x%x)\n",
+> +			  sram_status);
+> +		return -EIO;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+>   int xe_guc_reset(struct xe_guc *guc)
+>   {
+>   	struct xe_gt *gt = guc_to_gt(guc);
+> @@ -909,6 +938,12 @@ int xe_guc_reset(struct xe_guc *guc)
+>   
+>   	xe_force_wake_assert_held(gt_to_fw(gt), XE_FW_GT);
+>   
+> +	if (XE_GT_WA(gt, 14025883347)) {
+> +		ret = guc_prevent_fw_dma_failure_on_reset(guc);
+> +		if (ret)
+> +			goto err_out;
+> +	}
+> +
+>   	if (IS_SRIOV_VF(gt_to_xe(gt)))
+>   		return xe_gt_sriov_vf_bootstrap(gt);
+>   
+> @@ -931,7 +966,7 @@ int xe_guc_reset(struct xe_guc *guc)
+>   	return 0;
+>   
+>   err_out:
+> -
+> +	xe_gt_err(gt, "custom GuC reset failed with %pe\n", ERR_PTR(ret));
 
-> 
-> Thanks,
-> Stuart
-> 
-> > 
-> > > > +               goto err_unlock;
-> > > > +       }
-> > > > +
-> > > > +       list_for_each_entry_safe(q, next, &tlb_inval_list,
-> > > > vm_exec_queue_link) {
-> > > > +               struct drm_suballoc *__prl_sa = NULL;
-> > > > +               int __seqno = TLB_INVALIDATION_SEQNO_INVALID;
-> > > > +               u32 type = XE_GUC_TLB_INVAL_PAGE_SELECTIVE_CTX;
-> > > > +
-> > > > +               xe_assert(xe, q->vm == vm);
-> > > > +
-> > > > +               if (err)
-> > > > +                       goto unref;
-> > > > +
-> > > > +               if (last_q == q) {
-> > > > +                       __prl_sa = prl_sa;
-> > > > +                       __seqno = seqno;
-> > > > +               }
-> > > > +
-> > > > +               err = send_tlb_inval_ppgtt(guc, __seqno, start,
-> > > > end,
-> > > > +                                          q->guc->id, type,
-> > > > __prl_sa);
-> > > > +
-> > > > +unref:
-> > > > +               /*
-> > > > +                * Must always return exec queue to original list
-> > > > /
-> > > > drop
-> > > > +                * reference
-> > > > +                */
-> > > > +               xe_exec_queue_put(q);
-> > > > +               list_move_tail(&q->vm_exec_queue_link, &vm-
-> > > > > exec_queues.list);
-> > > 
-> > > Will get back on this one... need to spend a little more time and
-> > > do
-> > > some testing.
-> > > 
-> > 
-> > I probably should flip the put for clarity but this is in fact safe
-> > as
-> > queue's memory can't disapear if vm->exec_queues.lock is held.
-> > 
-> > Matt
-> > 
-> > > Thanks,
-> > > Stuart
-> > > 
-> > > > +       }
-> > > > +
-> > > > +err_unlock:
-> > > > +       up_read(&vm->exec_queues.lock);
-> > > > +       xe_vm_put(vm);
-> > > > +
-> > > > +       return err;
-> > > > +}
-> > > > +
-> > > >  static bool tlb_inval_initialized(struct xe_tlb_inval
-> > > > *tlb_inval)
-> > > >  {
-> > > >         struct xe_guc *guc = tlb_inval->private;
-> > > > @@ -228,7 +350,7 @@ static long tlb_inval_timeout_delay(struct
-> > > > xe_tlb_inval *tlb_inval)
-> > > >         return hw_tlb_timeout + 2 * delay;
-> > > >  }
-> > > >  
-> > > > -static const struct xe_tlb_inval_ops guc_tlb_inval_ops = {
-> > > > +static const struct xe_tlb_inval_ops guc_tlb_inval_asid_ops = {
-> > > >         .all = send_tlb_inval_all,
-> > > >         .ggtt = send_tlb_inval_ggtt,
-> > > >         .ppgtt = send_tlb_inval_asid_ppgtt,
-> > > > @@ -237,6 +359,15 @@ static const struct xe_tlb_inval_ops
-> > > > guc_tlb_inval_ops = {
-> > > >         .timeout_delay = tlb_inval_timeout_delay,
-> > > >  };
-> > > >  
-> > > > +static const struct xe_tlb_inval_ops guc_tlb_inval_ctx_ops = {
-> > > > +       .ggtt = send_tlb_inval_ggtt,
-> > > > +       .all = send_tlb_inval_all,
-> > > > +       .ppgtt = send_tlb_inval_ctx_ppgtt,
-> > > > +       .initialized = tlb_inval_initialized,
-> > > > +       .flush = tlb_inval_flush,
-> > > > +       .timeout_delay = tlb_inval_timeout_delay,
-> > > > +};
-> > > > +
-> > > >  /**
-> > > >   * xe_guc_tlb_inval_init_early() - Init GuC TLB invalidation
-> > > > early
-> > > >   * @guc: GuC object
-> > > > @@ -248,8 +379,14 @@ static const struct xe_tlb_inval_ops
-> > > > guc_tlb_inval_ops = {
-> > > >  void xe_guc_tlb_inval_init_early(struct xe_guc *guc,
-> > > >                                  struct xe_tlb_inval *tlb_inval)
-> > > >  {
-> > > > +       struct xe_device *xe = guc_to_xe(guc);
-> > > > +
-> > > >         tlb_inval->private = guc;
-> > > > -       tlb_inval->ops = &guc_tlb_inval_ops;
-> > > > +
-> > > > +       if (xe->info.has_ctx_tlb_inval)
-> > > > +               tlb_inval->ops = &guc_tlb_inval_ctx_ops;
-> > > > +       else
-> > > > +               tlb_inval->ops = &guc_tlb_inval_asid_ops;
-> > > >  }
-> > > >  
-> > > >  /**
-> > > > diff --git a/drivers/gpu/drm/xe/xe_pci.c
-> > > > b/drivers/gpu/drm/xe/xe_pci.c
-> > > > index 91e0553a8163..6ea1199f703e 100644
-> > > > --- a/drivers/gpu/drm/xe/xe_pci.c
-> > > > +++ b/drivers/gpu/drm/xe/xe_pci.c
-> > > > @@ -889,6 +889,7 @@ static int xe_info_init(struct xe_device *xe,
-> > > >                 xe->info.has_device_atomics_on_smem = 1;
-> > > >  
-> > > >         xe->info.has_range_tlb_inval = graphics_desc-
-> > > > > has_range_tlb_inval;
-> > > > +       xe->info.has_ctx_tlb_inval = graphics_desc-
-> > > > > has_ctx_tlb_inval;
-> > > >         xe->info.has_usm = graphics_desc->has_usm;
-> > > >         xe->info.has_64bit_timestamp = graphics_desc-
-> > > > > has_64bit_timestamp;
-> > > >  
-> > > > diff --git a/drivers/gpu/drm/xe/xe_pci_types.h
-> > > > b/drivers/gpu/drm/xe/xe_pci_types.h
-> > > > index 5f20f56571d1..000b54cbcd0e 100644
-> > > > --- a/drivers/gpu/drm/xe/xe_pci_types.h
-> > > > +++ b/drivers/gpu/drm/xe/xe_pci_types.h
-> > > > @@ -71,6 +71,7 @@ struct xe_graphics_desc {
-> > > >         u8 has_atomic_enable_pte_bit:1;
-> > > >         u8 has_indirect_ring_state:1;
-> > > >         u8 has_range_tlb_inval:1;
-> > > > +       u8 has_ctx_tlb_inval:1;
-> > > >         u8 has_usm:1;
-> > > >         u8 has_64bit_timestamp:1;
-> > > >  };
-> > > 
-> 
+Rephrase the error message.
+
+Thanks,
+Badal
+
+>   	return ret;
+>   }
+>   
+> diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
+> index 5cd7fa6d2a5c..ff2efc7a68cc 100644
+> --- a/drivers/gpu/drm/xe/xe_wa_oob.rules
+> +++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
+> @@ -73,3 +73,12 @@
+>   15015404425_disable	PLATFORM(PANTHERLAKE), MEDIA_STEP(B0, FOREVER)
+>   16026007364    MEDIA_VERSION(3000)
+>   14020316580    MEDIA_VERSION(1301)
+> +
+> +14025883347	MEDIA_VERSION(1301)
+> +		MEDIA_VERSION(2000)
+> +		MEDIA_VERSION(3000)
+> +		MEDIA_VERSION(3002)
+> +		MEDIA_VERSION(3500)
+> +		MEDIA_VERSION(3503)
+> +		GRAPHICS_VERSION_RANGE(3000, 3001)
+> +		GRAPHICS_VERSION_RANGE(3003, 3005)
+--------------TjXUnWlPbxs5e2AQmEq0G9d2
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  </head>
+  <body>
+    <p><br>
+    </p>
+    <div class="moz-cite-prefix">On 14-01-2026 18:30, Sk Anirban wrote:<br>
+    </div>
+    <blockquote type="cite" cite="mid:20260114130015.3917770-6-sk.anirban@intel.com">
+      <pre wrap="" class="moz-quote-pre">Prevent GuC firmware DMA failures during GuC-only reset by disabling
+idle flow and verifying SRAM handling completion. Without this, reset
+can be issued while SRAM handler is copying WOPCM to SRAM,
+causing GuC HW to get stuck.
+
+Signed-off-by: Sk Anirban <a class="moz-txt-link-rfc2396E" href="mailto:sk.anirban@intel.com">&lt;sk.anirban@intel.com&gt;</a>
+---
+ drivers/gpu/drm/xe/regs/xe_guc_regs.h |  8 ++++++
+ drivers/gpu/drm/xe/xe_guc.c           | 37 ++++++++++++++++++++++++++-
+ drivers/gpu/drm/xe/xe_wa_oob.rules    |  9 +++++++
+ 3 files changed, 53 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/xe/regs/xe_guc_regs.h b/drivers/gpu/drm/xe/regs/xe_guc_regs.h
+index 87984713dd12..2f38fd231083 100644
+--- a/drivers/gpu/drm/xe/regs/xe_guc_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_guc_regs.h
+@@ -40,6 +40,9 @@
+ #define   GS_BOOTROM_JUMP_PASSED		REG_FIELD_PREP(GS_BOOTROM_MASK, 0x76)
+ #define   GS_MIA_IN_RESET			REG_BIT(0)
+ 
++#define GUC_HASH_BOOT_CHECK			XE_REG(0xc010)
++#define   GUC_BOOT_HASH_CHK			REG_BIT(31)
++
+ #define GUC_HEADER_INFO				XE_REG(0xc014)
+ 
+ #define GUC_WOPCM_SIZE				XE_REG(0xc050)
+@@ -83,7 +86,12 @@
+ #define   GUC_WOPCM_OFFSET_MASK			REG_GENMASK(31, GUC_WOPCM_OFFSET_SHIFT)
+ #define   HUC_LOADING_AGENT_GUC			REG_BIT(1)
+ #define   GUC_WOPCM_OFFSET_VALID		REG_BIT(0)
++
++#define GUC_SRAM_STATUS				XE_REG(0xc398)</pre>
+    </blockquote>
+    <font face="monospace">Fix the indentation.</font>
+    <blockquote type="cite" cite="mid:20260114130015.3917770-6-sk.anirban@intel.com">
+      <pre wrap="" class="moz-quote-pre">
++#define   GUC_SRAM_HANDLING_MASK		REG_GENMASK(8, 7)
++
+ #define GUC_MAX_IDLE_COUNT			XE_REG(0xc3e4)
++#define   GUC_IDLE_FLOW_DISABLE			REG_BIT(31)
+ #define GUC_PMTIMESTAMP_LO			XE_REG(0xc3e8)
+ #define GUC_PMTIMESTAMP_HI			XE_REG(0xc3ec)
+ 
+diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+index 44360437beeb..b5ec08a16aaf 100644
+--- a/drivers/gpu/drm/xe/xe_guc.c
++++ b/drivers/gpu/drm/xe/xe_guc.c
+@@ -900,6 +900,35 @@ int xe_guc_post_load_init(struct xe_guc *guc)
+ 	return xe_guc_submit_enable(guc);
+ }
+ 
++/*
++ * Wa_14025883347: Prevent GuC firmware DMA failures during GuC-only reset by ensuring
++ * SRAM save/restore operations are complete before reset.
++ */
++static int guc_prevent_fw_dma_failure_on_reset(struct xe_guc *guc)
++{
++	struct xe_gt *gt = guc_to_gt(guc);
++	u32 boot_hash_chk, guc_status, sram_status;
++
++	guc_status = xe_mmio_read32(&amp;gt-&gt;mmio, GUC_STATUS);
++	if (REG_FIELD_GET(GS_UKERNEL_MASK, guc_status) != XE_GUC_LOAD_STATUS_READY)
++		return 0;
++
++	boot_hash_chk = xe_mmio_read32(&amp;gt-&gt;mmio, GUC_HASH_BOOT_CHECK);
++	if (!(boot_hash_chk &amp; GUC_BOOT_HASH_CHK))
++		return 0;
++
++	xe_mmio_rmw32(&amp;gt-&gt;mmio, GUC_MAX_IDLE_COUNT, 0, GUC_IDLE_FLOW_DISABLE);</pre>
+    </blockquote>
+    <pre wrap="" class="moz-quote-pre"><font face="monospace" style="white-space: normal;">To function RC6 properly re-enable Idle flow after reset.&nbsp;&nbsp;</font></pre>
+    <blockquote type="cite" cite="mid:20260114130015.3917770-6-sk.anirban@intel.com">
+      <pre wrap="" class="moz-quote-pre">
++
++	sram_status = xe_mmio_read32(&amp;gt-&gt;mmio, GUC_SRAM_STATUS);
++	if (sram_status &amp; GUC_SRAM_HANDLING_MASK) {
++		xe_gt_err(gt, &quot;SRAM handling not complete (GUC_SRAM_STATUS: 0x%x)\n&quot;,
++			  sram_status);
++		return -EIO;
++	}
++
++	return 0;
++}
++
+ int xe_guc_reset(struct xe_guc *guc)
+ {
+ 	struct xe_gt *gt = guc_to_gt(guc);
+@@ -909,6 +938,12 @@ int xe_guc_reset(struct xe_guc *guc)
+ 
+ 	xe_force_wake_assert_held(gt_to_fw(gt), XE_FW_GT);
+ 
++	if (XE_GT_WA(gt, 14025883347)) {
++		ret = guc_prevent_fw_dma_failure_on_reset(guc);
++		if (ret)
++			goto err_out;
++	}
++
+ 	if (IS_SRIOV_VF(gt_to_xe(gt)))
+ 		return xe_gt_sriov_vf_bootstrap(gt);
+ 
+@@ -931,7 +966,7 @@ int xe_guc_reset(struct xe_guc *guc)
+ 	return 0;
+ 
+ err_out:
+-
++	xe_gt_err(gt, &quot;custom GuC reset failed with %pe\n&quot;, ERR_PTR(ret));</pre>
+    </blockquote>
+    <p><font face="monospace">Rephrase the error message.&nbsp;</font></p>
+    <p><font face="monospace">Thanks,<br>
+        Badal</font></p>
+    <blockquote type="cite" cite="mid:20260114130015.3917770-6-sk.anirban@intel.com">
+      <pre wrap="" class="moz-quote-pre">
+ 	return ret;
+ }
+ 
+diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
+index 5cd7fa6d2a5c..ff2efc7a68cc 100644
+--- a/drivers/gpu/drm/xe/xe_wa_oob.rules
++++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
+@@ -73,3 +73,12 @@
+ 15015404425_disable	PLATFORM(PANTHERLAKE), MEDIA_STEP(B0, FOREVER)
+ 16026007364    MEDIA_VERSION(3000)
+ 14020316580    MEDIA_VERSION(1301)
++
++14025883347	MEDIA_VERSION(1301)
++		MEDIA_VERSION(2000)
++		MEDIA_VERSION(3000)
++		MEDIA_VERSION(3002)
++		MEDIA_VERSION(3500)
++		MEDIA_VERSION(3503)
++		GRAPHICS_VERSION_RANGE(3000, 3001)
++		GRAPHICS_VERSION_RANGE(3003, 3005)
+</pre>
+    </blockquote>
+  </body>
+</html>
+
+--------------TjXUnWlPbxs5e2AQmEq0G9d2--
