@@ -4,27 +4,195 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C3858D37E39
-	for <intel-xe@archiver.kernel.org>; Wed, 14 Jan 2026 13:41:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 490CED37E37
+	for <intel-xe@archiver.kernel.org>; Wed, 14 Jan 2026 13:48:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EC75510E581;
-	Wed, 14 Jan 2026 13:41:15 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4FE8810E575;
- Wed, 14 Jan 2026 13:41:15 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4067237392616141809=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0437510E16D;
+	Wed, 14 Jan 2026 13:48:06 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fomW/hoe";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9B69610E16D
+ for <intel-xe@lists.freedesktop.org>; Wed, 14 Jan 2026 13:48:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1768398483; x=1799934483;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=LrCOhqYutKEfTfBb/nHOgr6A01fzqtVH+wYvANNRxsU=;
+ b=fomW/hoetBg+qTlrupPQ9rhXWJgcDmjYA55iw9ZEfKjCLBP0cpWec6Dq
+ LzTP+sI8dG56FT6R/LUVUtxnmILX2bLs3Ur2wDFsjUpEzb/vLKrEZZzT7
+ tCPWjXVznCN1EEsuNHe5GcZEhY0bYe+RHc185IjFc/UCiRCMPaq5hzq7Y
+ Pfv1eOvHVlb9eEaLQg9Z7RHq8l2U2Z4ycCKymomzUjBRUmJ4jltWvbeUf
+ Z4N8cQqohbX/PtcXN5nEeoa8Nid0yrowDiaD8typDQHKsESJNObaCYQ3G
+ 0vXyYMuBp8HTLnsLVsI+IyxP0mLIW5biDB1BJ2EDDYvOMX+X5rJEM2H3q A==;
+X-CSE-ConnectionGUID: KTYk8g0JR7e5e0fyOCfOMg==
+X-CSE-MsgGUID: W+GJRmLwR+6JIEmJJjLQBA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11671"; a="81058216"
+X-IronPort-AV: E=Sophos;i="6.21,225,1763452800"; d="scan'208";a="81058216"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Jan 2026 05:48:03 -0800
+X-CSE-ConnectionGUID: 55TF+BOoQMOL1UemVsiHTA==
+X-CSE-MsgGUID: W0QuZw9lSqKmBJMqt2ZgrQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,225,1763452800"; d="scan'208";a="204734267"
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by orviesa008.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Jan 2026 05:48:03 -0800
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.29; Wed, 14 Jan 2026 05:48:02 -0800
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.29 via Frontend Transport; Wed, 14 Jan 2026 05:48:02 -0800
+Received: from CY7PR03CU001.outbound.protection.outlook.com (40.93.198.18) by
+ edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.29; Wed, 14 Jan 2026 05:48:02 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=rb+IOcAtQYxDpNpZhxWv9MrrRtXyfgcd8yQE8BOLQqpdOOer7AihhuaZGxerLI/ABpYKbgNMDphzvZ/aCrZ3X2UYtRvTWVtStGBhTVeNk5A9vxvOpjBdKAOhQRupq3iI7UBaWzqBMhbEO2WLapujDpEJF74r35J3SLXrq2uZPcICUPDcLPBpL3TGs0tnKSY7dihEpUWWqYWdYkHszSO1FRq8amCWCSadddNtMtSH+G/HAfSN68xfUQSeXjytjtEITsp8nSoO9BMRs9kGVweemQJllhn4WfzucTBv4C5vGKicu9Mft57Z8SZYin3hZpGHujPeLu3tRoHxqBtwM0uFIA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=LdXhwrm8C0coZFNQ3q3k+y5uRk8JiF2sqmFXmD+AWKc=;
+ b=Fb6OLBffxaqRJk68DMiXVho/5cw3L0cgm0hhr0kqu9oftAyrlEv4MnnUoC/H0okFAxsnws+vThDRc21bz+5K5S1f9mVuwSdttFIU/EaQKF1NydZqg/F0pwz/nE7P7sox7R6yi/pWXaTwNSAQyT2ypIVyfvVUupEZYQKBtwWr8LnMzQsedH5yzYCZjcSD6ysg6ZjHfc3R8YazLkRUgmFQYJ2AMlIpXD9hylA2zAOVSQlh0ooE3osicPfvuscTTS/iIHoTTRJA2pFtlxAEF1fNIXsLcTXj5tAuJLoKYVvAQWW3s2FgO3l9kGaK9iLg+xNtBcwdAcfsZJ+/uWqSToEBSQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from BN9PR11MB5530.namprd11.prod.outlook.com (2603:10b6:408:103::8)
+ by MW4PR11MB7080.namprd11.prod.outlook.com (2603:10b6:303:21a::16)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9520.5; Wed, 14 Jan
+ 2026 13:48:00 +0000
+Received: from BN9PR11MB5530.namprd11.prod.outlook.com
+ ([fe80::1451:ad37:6612:37fb]) by BN9PR11MB5530.namprd11.prod.outlook.com
+ ([fe80::1451:ad37:6612:37fb%4]) with mapi id 15.20.9520.003; Wed, 14 Jan 2026
+ 13:48:00 +0000
+Message-ID: <70d581d1-e660-43dd-995e-fe9d48642427@intel.com>
+Date: Wed, 14 Jan 2026 19:17:50 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 02/12] PCI/ACPI: Add PERST# Assertion Delay _DSM method
+To: Manivannan Sadhasivam <mani@kernel.org>
+CC: <intel-xe@lists.freedesktop.org>, <linux-acpi@vger.kernel.org>,
+ <linux-pci@vger.kernel.org>, <anshuman.gupta@intel.com>, <rafael@kernel.org>, 
+ <lenb@kernel.org>, <bhelgaas@google.com>, <ilpo.jarvinen@linux.intel.com>,
+ <rodrigo.vivi@intel.com>, <varun.gupta@intel.com>,
+ <ville.syrjala@linux.intel.com>, <uma.shankar@intel.com>,
+ <karthik.poosa@intel.com>, <matthew.auld@intel.com>, <sk.anirban@intel.com>,
+ <raag.jadav@intel.com>
+References: <20260113164200.1151788-14-badal.nilawar@intel.com>
+ <20260113164200.1151788-16-badal.nilawar@intel.com>
+ <dn4s77miw7ts7aqqrzltqvlt4qmdb5ego5vkxvxcq7ns42fixh@vubkzxtgverr>
+Content-Language: en-US
+From: "Nilawar, Badal" <badal.nilawar@intel.com>
+In-Reply-To: <dn4s77miw7ts7aqqrzltqvlt4qmdb5ego5vkxvxcq7ns42fixh@vubkzxtgverr>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: PN4PR01CA0113.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:266::10) To BN9PR11MB5530.namprd11.prod.outlook.com
+ (2603:10b6:408:103::8)
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_drm/xe/guc=3A_Add_Wa=5F1402?=
- =?utf-8?q?5883347_for_GuC_DMA_failure_on_reset?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Sk Anirban" <sk.anirban@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 14 Jan 2026 13:41:15 -0000
-Message-ID: <176839807530.154435.7270852442418321496@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260114130015.3917770-4-sk.anirban@intel.com>
-In-Reply-To: <20260114130015.3917770-4-sk.anirban@intel.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN9PR11MB5530:EE_|MW4PR11MB7080:EE_
+X-MS-Office365-Filtering-Correlation-Id: 36cdaa11-3659-45de-939c-08de537387c3
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?STZ3L0JmeG1FSjFDMDZLeitkRlNJYW1mUzBPL0o0YkxiMy9RM3l3Uk1kQ1dh?=
+ =?utf-8?B?Qkt3bForVW14Z01NL1RmVkhZdndIaitmcnpZelE5b3VBT1M2NEpyZTBzVEtM?=
+ =?utf-8?B?YTlwMGtUdm5QUklLVlppNU1pYndvaldmTUVzNG9iV1pQK3BxeFUrUjgwY0Qy?=
+ =?utf-8?B?VWJRQXd5VWRIb2c0MG1yWXh5OW1wNEE0UW9hNU44RWF4SEk4RktCQ3poazY3?=
+ =?utf-8?B?QkFNTXpZWkgrcm1yTWRjb2NEV1hESmRrU3pFMFhnU3NJaUlKdW01VmZmb0oy?=
+ =?utf-8?B?cjRWNkxnWkJNb1ZldXptTG9HR1c0bWYveFIxM0ZOS2dvSTIrSW5Yb1VFYjIy?=
+ =?utf-8?B?UDlvUDlKMGdPVVlQMTBjM1BUQXdwNTVlbTQ4VWFzcFBFSWxkMlY0YVdBYS84?=
+ =?utf-8?B?enJMUElwT2lQcnJ2bXhKQkxEMmFqOFc5b0NYdlpOWjhyVjdwalJsUy81TEdL?=
+ =?utf-8?B?MG54SS91VVNsQ0NBY3lwWnh0UkdQY1ZLbGxRa2Q2bFRKVmRJVWlFT2I2bVB4?=
+ =?utf-8?B?c1VGZXBTREo0ZG42VFZYSlpLOU9YeXdLNXgxZHFMT0tXK0NNSWZRZU5hN1RG?=
+ =?utf-8?B?YzNsejFtUXlhbVhMZGxSbC8yK04rdkJ0MHlmZnA4NEQ0ZVh6Z1JWdGhWc3BQ?=
+ =?utf-8?B?amgvV1hEOXkwbmdhOCtPSjJ0cHl4WmtuOExDYTRUcFI2SHZENDdUN3h0Wlln?=
+ =?utf-8?B?cGIwbC9qd2U4S01taGs3S0JBU3dJNkxoMHJVdk1CMTA5QkJ4VkNxZDBjMHhO?=
+ =?utf-8?B?R1N5dDBlUVBMRjNhWkp5U0p1MGFLSURjOE01MHZFR2l5RWhDNFBDUWhUSXND?=
+ =?utf-8?B?Rzl3cjg2cDQ3dWZ1ZE0zbHg4dExDRG5razlPUTY0UGpRdm9WRndIV2E2RWRz?=
+ =?utf-8?B?c1JzUkViZ3A1NUxJdHRoMVlIV2pkU1pLR256cEdIVndWUjJyQVdKeXBxK0dY?=
+ =?utf-8?B?OHVuMytYZEtTbm1IS3o1MDdGYkYrTFVZVnBWbmlpWUlJZzNKam9sYm1JSVpN?=
+ =?utf-8?B?bjRjV0dxQjFoOXFKdjBWYXo5S29rU3poeVFVTXJJNkNWdWNYMzlONGE5S1ZR?=
+ =?utf-8?B?M01mOXhraFFObW9Ca3g5aTE0WW1QajFBUG1aMTBZRkJKS2lRZG10ZFlPUU1o?=
+ =?utf-8?B?cnlUc2ZIcFd5aEdmczBRMnJaMHk0VUFWdVlQWGlFUDdYeUdkdkl0anB6ZkpF?=
+ =?utf-8?B?YTloS3pVQWVHR0VIRWlyc0VZM01RMnROSWl5dGM0K0JQSDh6MEV0ZktUdGlH?=
+ =?utf-8?B?WkRmaDNOOVh5MkFBaTMxdXVCblRWQ3FUUFljWUpEUWlhc1hLRUU3RmdXc0dx?=
+ =?utf-8?B?emk1bFNpWVZvKzZ0Vkd1N0lVZCs4MlhZTEdla08wNVpOajZ1cEcwejNvblJk?=
+ =?utf-8?B?Nk81L2dUdjJZM0gyWDFmOUNmTjFZd3NnU2RsN3I3NnVNYzBlSmU5RlZzNUtr?=
+ =?utf-8?B?RGk3b3hpOEtXRjRXQnczU3lrU3I0MGlDOVBHRVkzOGZ6U2JnTlNDWHdnblFh?=
+ =?utf-8?B?U3N1cmhqV3dja3FzYnhhejlLUCs1bDlHWVRPSEltZGdGVnBvelRSU0M4MXNC?=
+ =?utf-8?B?eTl6T1o3QmFiL2oyeVIwY3NFeXh3TUFjZUxzZ1NKTUU2L3BmWTZWbEViemhx?=
+ =?utf-8?B?dmJEVEN1NE53UzMydnZEZGQwSEdMbEN3NXVtZnF4VGNVVGlCWjBnbitzZlpp?=
+ =?utf-8?B?enhsNUdxTzhGOGZ6V05nNkJnZHVaQThnTkdVdnpuK0xZTTFyZVdocDhIb2tZ?=
+ =?utf-8?B?TzJBU2lzbUxhYTZhQmljd2NYRWwveEVkL1BnTDNXQTh3KzJXa0ZlNGNYejJ4?=
+ =?utf-8?B?N0Q1OXFnaG9DRnRPMzA3QnJYSGorT3JxNUxvR3VwaUJZbDhoWFBJdWY3WGQ1?=
+ =?utf-8?B?TklEQXdDSTc4a0x3aGlLQndhSjJkeU9JZkx5d2JpZ2tFQlNmYUJEOHFtQXc2?=
+ =?utf-8?B?U1kzYTRDVWlJdTMrTTY0aFJhSllUZ2JaYlVxSHVKZGVYLzc3K3JydUM5NUcz?=
+ =?utf-8?B?UnFCSlVUdW9FNXNkMldIY2N0bGpjOTFjQjM5Tko3MUdrZW1DaWRsNG5pdU40?=
+ =?utf-8?B?bU1vL3ZDcTlOamV2VVpxOUtyREJscE1GUCtoQmlMdFJGR0ZRdm9rTS9zcTNR?=
+ =?utf-8?Q?k13o=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BN9PR11MB5530.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?SmYyd1B1TFBMbGpoczQ2STNXakdqZmNYV2ljQ2lpVjR3V1NEaHptRVhhNHVU?=
+ =?utf-8?B?Ym15QWNsc2dhR0VNTFliVDljZkdEbStHdHd6SUE4Sm9lN3lOQldrVmh0NVhP?=
+ =?utf-8?B?T1lOQ2V0U1JyMGpML3BVZjJlOXZiaUQ3Z2xPamJ5dFZlOHNETm1PRUwxelhh?=
+ =?utf-8?B?NFRWSjZuYlhzUURQUktmT3dTODFlb2F0NkM0cG1Nd050R00zUEIyV1c3M01i?=
+ =?utf-8?B?V1hjOHdGanl6VnBYcXhLWEo4UEt0THgrYzYyV3F6RHhQcW1XMWV3VDVxTUdD?=
+ =?utf-8?B?TzBhaGFwcnh6c1I3UndzQUZBelVHazA4V1RPYUM5NFlwWXQvQTNnQ3NsWC95?=
+ =?utf-8?B?SCsrUHM4WHJsQTRQNTFZZjlmd09PS2IrYkdGT1V1NC9QaTgvK2ZycW12Vzdm?=
+ =?utf-8?B?cEJIMHdSbzI4NFFWZ2V2a09ZL2NMQktvRlZzYWpvM0h1YjJGT3pNVDFNTjVr?=
+ =?utf-8?B?NHdUb1g5NXZERFEwWkJhSS9HQ1ZKbWJ6VDl5c1RGVzRPaCswcTlpaDhST0NL?=
+ =?utf-8?B?bU1DKzlhMGR5UmpPWjVGNm9jT2JCKzRCRXNIQlNIT05YV092UGFndWJJaDZ5?=
+ =?utf-8?B?ZnZ3TC9TVDZVallqU28renh5YlQwOUJRK1llTUlIcGF5MlVZeWYvSUg3T3ky?=
+ =?utf-8?B?TjYvbFAxSlB5K2JSNFNwZmpLbzFOSzF1SHV4NTd0bXIwaEtITjNHcHBFQ1Rv?=
+ =?utf-8?B?RnBFOWdNcHE4OFpXZlNiWUtSYk56YWZhOFdtUjQ1RWpTRTByMTVlVHFFTTBJ?=
+ =?utf-8?B?R2tIcEpaMkdVVFpnMDltSEwyZnh6K0xsUk9yQjl2dVZDS3NrcTRHNnZOSVR4?=
+ =?utf-8?B?b2lkZE81VXFZbFAvZVlrSU9KSGhRdGlHeCs1Z0ltaXYrQXVlR3BJb3p5QjJi?=
+ =?utf-8?B?SzJNTjFRakM2K3ZiR0lObnM2K0sxbG1yV293b21MdjVFME1MYjlPc0IyMTFN?=
+ =?utf-8?B?eGdMTlN3VW8wUThuVkFEK3NvNDNZWHRFUTNpR3BNdzVnb21mY1F5WFIrMmZo?=
+ =?utf-8?B?WmN5WmxEcWkrNmkwY1JEYllVeXZ4aWcyREZHMjRHWDJhOHIzUW5nY1lpSVZN?=
+ =?utf-8?B?ZmVpek1rcTRzOTVneE1qZW1IU2w2YUpDV2tsVjhQeTdiZ3owOUFGVkpibUNN?=
+ =?utf-8?B?eWN5N1Q3UGc4dHZQelZ3REl1aW5Nam1LaThjY3NDR0VZOUpwT3I5L3YrcUlr?=
+ =?utf-8?B?Y2VKb05OYlZaMlRXYW1tK3BMUDd5L2ZNR3F0QTJQb3NJNDJuRnQyTkhxTFA2?=
+ =?utf-8?B?ckpvQlFrVGdjV3c2ZWQ1a1ZwS09tUWpCYklDUnk3MEY0ZkVOcXB6UG02aVE4?=
+ =?utf-8?B?WWxCYVV4TUxFZUdDSmhUaEpkNkpCNUpmdmhLd29HQzUwYXE5WktWN0pLa2pm?=
+ =?utf-8?B?ZGpCdE9NTU9KOG11TGI5dTh0NTNXbzloZUlIbmRTYy9EZWpPdTRXb3JRZjZK?=
+ =?utf-8?B?azg0MFFmcTY5V3NpUDhqQzZSVGhkaHlFRmVocFdYSjdDeUNSNGlpWnRLQ0NX?=
+ =?utf-8?B?SUlBT2JOZUsxWnRDaHNTWjJ2Wld2ZVJDdEQrVXpRcDZ2RUY0SXZJaHpUb3Jj?=
+ =?utf-8?B?ZG14VkgvV1ZsSUo3QktCVngyKzRVOHp5TldZa3ZLSHVRT3NCUXZJZGlyeHho?=
+ =?utf-8?B?cllXZklJWHZZeUR1dkVMNGVEaTJXREJMK0dBb2dHZGpGZ2tXQWNYRmdyTmtr?=
+ =?utf-8?B?SFRCYWplSnR0czV3VDBUanZSTHl2S3RJbFVVR3JHTWRrcVV5YWZiT2p6b1hp?=
+ =?utf-8?B?RGpWOGI4eVdONzV2MnlqaEttNnFiVFdxTC94Q1IvVGtHak1BY250V0puUVZZ?=
+ =?utf-8?B?bDVYbndNcXlXa09wZEV0bkEwbWhlOHJyOERzYUtIUk5YLzdLa3ZUV0R4Y1pI?=
+ =?utf-8?B?NFJnR09CSGgzNE1DUW1QZFU5LzFKNnlvRDg0SzBBR24vYTU3dkFnMCtnUUFy?=
+ =?utf-8?B?WTFXdXh2ZTdCYVN3VzcyWGlwNFR0bnlXSzk2cFBTNkYxNjFiMTlndlk1bVk5?=
+ =?utf-8?B?U0lQeHlXTmxoZU1aWEZmOTUyc3ZNM2FhbXA4d3Q4b3JydU8rUnIwZkpEU0JM?=
+ =?utf-8?B?UGxtaGt3NnpsWEFhMGlSUGRVNVI3dVp1NmNGdUFTelpPVW5PVDlaRVBVaHRp?=
+ =?utf-8?B?alY4b3huS0d5cGtrbHZXeHNrSVFNbGhrbXdIeU0wSVd3U3dPdWV2aDRtWGJD?=
+ =?utf-8?B?dEdycXpUY29tZDRuVm9PejA3aTR5VmtHRUs1MFZ3a3dQTjZVTDN0a1JhNjlD?=
+ =?utf-8?B?aktCMG5uTk1maktrYzFCVGh3V05hWmJBWEpQSWRwWkNyc0R3Z2U5WkpMeFZ6?=
+ =?utf-8?B?ZmNMSVNvSzNmV0NLd1BSSHZIUFBEMTJaREF2bm16YUlKNS92ZWgzZz09?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 36cdaa11-3659-45de-939c-08de537387c3
+X-MS-Exchange-CrossTenant-AuthSource: BN9PR11MB5530.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Jan 2026 13:48:00.1066 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Q8jmQbq1nAEucm/QeSFCr7AnsV4viTbucCE49cLXRc8PtWDgAfs6WCUL4YWLeyQSSGd+4pkPPBNHcVzQiQ/hSQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR11MB7080
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,205 +204,132 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============4067237392616141809==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
 
-== Series Details ==
+On 13-01-2026 22:34, Manivannan Sadhasivam wrote:
+> On Tue, Jan 13, 2026 at 10:12:03PM +0530, Badal Nilawar wrote:
+>> From: Anshuman Gupta <anshuman.gupta@intel.com>
+>>
+>> Implement _DSM Method 0Bh as per PCI Firmware r3.3, sec 4.6.10, to request
+> 4.6.11
+I will fix this.
+>
+>> fixed delay in timing between the time the PME_TO_Ack message is received
+>> at the PCI Express Downstream Port that originated the PME_Turn_Off
+>> message, and the time the platform asserts PERST# to the slot during the
+>> corresponding Endpoint’s or PCI Express Upstream Port’s transition to
+>> D3cold while the system is in an ACPI operational state.
+>> Host platform supporting this feature ensures that device is observing
+>> this delay in every applicable D3Cold transition.
+>>
+>> Co-developed-by: Badal Nilawar <badal.nilawar@intel.com>
+>> Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
+>> Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+>> ---
+>> For VRSR feature with PERST# Assertion delay device will get enough time
+>> to transition to auxiliary power before main power removal.
+>> ---
+>>   drivers/pci/pci-acpi.c   | 60 ++++++++++++++++++++++++++++++++++++++++
+>>   include/linux/pci-acpi.h |  9 +++++-
+>>   2 files changed, 68 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/pci/pci-acpi.c b/drivers/pci/pci-acpi.c
+>> index 645d3005ba50..73eaee20a270 100644
+>> --- a/drivers/pci/pci-acpi.c
+>> +++ b/drivers/pci/pci-acpi.c
+>> @@ -1554,6 +1554,66 @@ int pci_acpi_request_d3cold_aux_power(struct pci_dev *dev, u32 requested_mw,
+>>   }
+>>   EXPORT_SYMBOL_GPL(pci_acpi_request_d3cold_aux_power);
+>>   
+>> +/**
+>> + * pci_acpi_add_perst_assertion_delay - Request PERST# Delay via ACPI DSM
+> I'd name the API as "pci_acpi_set_perst_assertion_delay", but the firmware spec
+> calls the _DSM as 'Add PERST# Assertion Delay", so I guess it is fine.
+>
+> But the description should be changed to "Add PERST# assertion delay via ACPI DSM"
+Sure.
+>
+>> + * @dev: PCI device instance
+>> + * @delay_us: Requested delay_us
+> "Delay to be added"?
+Ok.
+>
+>> + *
+>> + * Request PERST# Assertion Delay to platform firmware, via Root Port/
+> Here also.
+Ok.
+>
+>> + * Switch Downstream Port ACPI _DSM Function 0Bh, for the specified
+>> + * PCI device.
+>> + * Evaluate the _DSM and handle the response accordingly.
+>> + *
+>> + * Return: returns 0 on success and errno on failure.
+>> + */
+>> +int pci_acpi_add_perst_assertion_delay(struct pci_dev *dev, u32 delay_us)
+>> +{
+>> +	union acpi_object in_obj = {
+>> +		.integer.type = ACPI_TYPE_INTEGER,
+>> +		.integer.value = delay_us,
+>> +	};
+>> +
+>> +	union acpi_object *out_obj;
+>> +	int result, ret = -EINVAL;
+>> +	struct pci_dev *bdev;
+>> +	acpi_handle handle;
+>> +
+>> +	if (!dev)
+>> +		return -EINVAL;
+>> +
+>> +	for (bdev = dev; bdev; bdev = pci_upstream_bridge(bdev)) {
+>> +		handle = ACPI_HANDLE(&bdev->dev);
+>> +		if (handle &&
+>> +		    acpi_check_dsm(handle, &pci_acpi_dsm_guid, 4,
+>> +				   1 << DSM_PCI_PERST_ASSERTION_DELAY))
+>> +			break;
+>> +	}
+>> +
+>> +	if (!bdev)
+>> +		return -ENODEV;
+>> +
+>> +	out_obj = acpi_evaluate_dsm_typed(ACPI_HANDLE(&bdev->dev),
+>> +					  &pci_acpi_dsm_guid, 4,
+>> +					  DSM_PCI_PERST_ASSERTION_DELAY,
+>> +					  &in_obj, ACPI_TYPE_INTEGER);
+>> +	if (!out_obj)
+>> +		return -EINVAL;
+>> +
+>> +	result = out_obj->integer.value;
+>> +	ACPI_FREE(out_obj);
+>> +
+>> +	if (result == delay_us) {
+>> +		pci_info(dev, "PERST# Assertion Delay set to %u microseconds\n", delay_us);
+>> +		ret = 0;
+>> +	} else {
+>> +		pci_info(dev, "PERST# Assertion Delay request failed, using %u microseconds\n",
+>> +			 result);
+>> +	}
+> How about:
+>
+> 	if (result != delay_us) {
+> 		pci_warn(dev, "PERST# Assertion Delay request failed, using %u microseconds\n",
+> 			 result);
 
-Series: drm/xe/guc: Add Wa_14025883347 for GuC DMA failure on reset
-URL   : https://patchwork.freedesktop.org/series/160091/
-State : failure
+Kept pci_info as the delay request might not always be honored, and it's 
+up to the caller to handle the return appropriately.
+For instance, in the case of VRSR, if the delay request fails, VRSR 
+won't be enabled.
 
-== Summary ==
+Thanks,
+Badal
 
-CI Bug Log - changes from xe-4382-d5b0278e4bea2fb27de6d12b7f865a74072af677_BAT -> xe-pw-160091v1_BAT
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with xe-pw-160091v1_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-160091v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-Participating hosts (12 -> 12)
-------------------------------
-
-  No changes in participating hosts
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-160091v1_BAT:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@sriov_basic@enable-vfs-autoprobe-on:
-    - bat-ptl-1:          [PASS][1] -> [ABORT][2] +1 other test abort
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4382-d5b0278e4bea2fb27de6d12b7f865a74072af677/bat-ptl-1/igt@sriov_basic@enable-vfs-autoprobe-on.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/bat-ptl-1/igt@sriov_basic@enable-vfs-autoprobe-on.html
-    - bat-bmg-2:          [PASS][3] -> [ABORT][4] +1 other test abort
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4382-d5b0278e4bea2fb27de6d12b7f865a74072af677/bat-bmg-2/igt@sriov_basic@enable-vfs-autoprobe-on.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/bat-bmg-2/igt@sriov_basic@enable-vfs-autoprobe-on.html
-
-  * igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1:
-    - bat-bmg-1:          [PASS][5] -> [ABORT][6] +1 other test abort
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4382-d5b0278e4bea2fb27de6d12b7f865a74072af677/bat-bmg-1/igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/bat-bmg-1/igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1.html
-    - bat-ptl-2:          [PASS][7] -> [ABORT][8] +1 other test abort
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4382-d5b0278e4bea2fb27de6d12b7f865a74072af677/bat-ptl-2/igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1.html
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/bat-ptl-2/igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1.html
-
-  * igt@xe_module_load@load:
-    - bat-ptl-vm:         [PASS][9] -> [ABORT][10]
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4382-d5b0278e4bea2fb27de6d12b7f865a74072af677/bat-ptl-vm/igt@xe_module_load@load.html
-   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/bat-ptl-vm/igt@xe_module_load@load.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in xe-pw-160091v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@xe_waitfence@abstime:
-    - bat-dg2-oem2:       [TIMEOUT][11] ([Intel XE#6506]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4382-d5b0278e4bea2fb27de6d12b7f865a74072af677/bat-dg2-oem2/igt@xe_waitfence@abstime.html
-   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/bat-dg2-oem2/igt@xe_waitfence@abstime.html
-
-  * igt@xe_waitfence@engine:
-    - bat-dg2-oem2:       [FAIL][13] ([Intel XE#6519]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4382-d5b0278e4bea2fb27de6d12b7f865a74072af677/bat-dg2-oem2/igt@xe_waitfence@engine.html
-   [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/bat-dg2-oem2/igt@xe_waitfence@engine.html
-
-  
-  [Intel XE#6506]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506
-  [Intel XE#6519]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519
-
-
-Build changes
--------------
-
-  * Linux: xe-4382-d5b0278e4bea2fb27de6d12b7f865a74072af677 -> xe-pw-160091v1
-
-  IGT_8701: 8701
-  xe-4382-d5b0278e4bea2fb27de6d12b7f865a74072af677: d5b0278e4bea2fb27de6d12b7f865a74072af677
-  xe-pw-160091v1: 160091v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/index.html
-
---===============4067237392616141809==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/guc: Add Wa_14025883347 for GuC DMA failure on reset</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/160091/">https://patchwork.freedesktop.org/series/160091/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4382-d5b0278e4bea2fb27de6d12b7f865a74072af677_BAT -&gt; xe-pw-160091v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-160091v1_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-160091v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (12 -&gt; 12)</h2>
-<p>No changes in participating hosts</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-160091v1_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>
-<p>igt@sriov_basic@enable-vfs-autoprobe-on:</p>
-<ul>
-<li>bat-ptl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4382-d5b0278e4bea2fb27de6d12b7f865a74072af677/bat-ptl-1/igt@sriov_basic@enable-vfs-autoprobe-on.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/bat-ptl-1/igt@sriov_basic@enable-vfs-autoprobe-on.html">ABORT</a> +1 other test abort</li>
-<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4382-d5b0278e4bea2fb27de6d12b7f865a74072af677/bat-bmg-2/igt@sriov_basic@enable-vfs-autoprobe-on.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/bat-bmg-2/igt@sriov_basic@enable-vfs-autoprobe-on.html">ABORT</a> +1 other test abort</li>
-</ul>
-</li>
-<li>
-<p>igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1:</p>
-<ul>
-<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4382-d5b0278e4bea2fb27de6d12b7f865a74072af677/bat-bmg-1/igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/bat-bmg-1/igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1.html">ABORT</a> +1 other test abort</li>
-<li>bat-ptl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4382-d5b0278e4bea2fb27de6d12b7f865a74072af677/bat-ptl-2/igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/bat-ptl-2/igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1.html">ABORT</a> +1 other test abort</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_module_load@load:</p>
-<ul>
-<li>bat-ptl-vm:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4382-d5b0278e4bea2fb27de6d12b7f865a74072af677/bat-ptl-vm/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/bat-ptl-vm/igt@xe_module_load@load.html">ABORT</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-160091v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@xe_waitfence@abstime:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4382-d5b0278e4bea2fb27de6d12b7f865a74072af677/bat-dg2-oem2/igt@xe_waitfence@abstime.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506">Intel XE#6506</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/bat-dg2-oem2/igt@xe_waitfence@abstime.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@xe_waitfence@engine:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4382-d5b0278e4bea2fb27de6d12b7f865a74072af677/bat-dg2-oem2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519">Intel XE#6519</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/bat-dg2-oem2/igt@xe_waitfence@engine.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4382-d5b0278e4bea2fb27de6d12b7f865a74072af677 -&gt; xe-pw-160091v1</li>
-</ul>
-<p>IGT_8701: 8701<br />
-  xe-4382-d5b0278e4bea2fb27de6d12b7f865a74072af677: d5b0278e4bea2fb27de6d12b7f865a74072af677<br />
-  xe-pw-160091v1: 160091v1</p>
-
-</body>
-</html>
-
---===============4067237392616141809==--
+> 		return -EINVAL;
+> 	}
+>
+> 	pci_info(dev, "PERST# Assertion Delay set to %u microseconds\n", delay_us);
+>
+> 	return 0;
+>
+> - Mani
+>
