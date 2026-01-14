@@ -4,57 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3A570D38FF1
-	for <intel-xe@archiver.kernel.org>; Wed, 14 Jan 2026 17:12:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A1913D38FEC
+	for <intel-xe@archiver.kernel.org>; Wed, 14 Jan 2026 17:21:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EE34010E1EC;
-	Wed, 14 Jan 2026 17:12:08 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JgiyfvD7";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1F87710E1EC
- for <intel-xe@lists.freedesktop.org>; Wed, 14 Jan 2026 17:12:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1768410728; x=1799946728;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=2/rhSEvFfFLekT33FCzNpR5ro/NSkLcVrQq9RY1fQgE=;
- b=JgiyfvD7hEO6uKoV4raF1OGHAaFd/Km+jsol2Rei23XTuj6+917mep6L
- pnc43Y1c6dsIhMZP9hTg9LC5WVhBCRTErLWhleCpG1XqsYAoYdXR6C5yX
- /2B7DXFhgiE9+4WOIhZ0+6wz7eDiZhhvQ2OLnrQJY0eIbxiQeKmxsdFBY
- QayNnX8I8hO4tuESan8gZL8PbF35yldyoQMcEQQ5XGcX+hAy8ldWDUsE4
- eyBbeT7AwN5IKp8+wTEjIW/KVpMt/a8qjajtXKwyZAPzmjtMaHJEEOxfq
- B8uJrEmVuqjsg8XWe0pzySosDgr3GeE00ZQiUsi2djY3pYl4vNA+0+R3G A==;
-X-CSE-ConnectionGUID: V7niGrifRdWabx6VlTIdrQ==
-X-CSE-MsgGUID: GRY4frD8QaS/aOLl71Fqpg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11671"; a="69801787"
-X-IronPort-AV: E=Sophos;i="6.21,225,1763452800"; d="scan'208";a="69801787"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jan 2026 09:12:07 -0800
-X-CSE-ConnectionGUID: thPQOhdzT4Oxr2Gi2+p//w==
-X-CSE-MsgGUID: KEIQwVeARqGmpQZXAI0i0Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,225,1763452800"; d="scan'208";a="235985710"
-Received: from black.igk.intel.com ([10.91.253.5])
- by fmviesa001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jan 2026 09:11:59 -0800
-Date: Wed, 14 Jan 2026 18:11:55 +0100
-From: Raag Jadav <raag.jadav@intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 41/79] drm/xe: Cleanup headers in xe_i2c.c
-Message-ID: <aWfOW5RGpSfImfzW@black.igk.intel.com>
-References: <20260113230315.3081153-81-matthew.d.roper@intel.com>
- <20260113230315.3081153-122-matthew.d.roper@intel.com>
- <aWcloOfxYjg-XvFQ@black.igk.intel.com>
- <20260114162910.GG458797@mdroper-desk1.amr.corp.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5B7FC10E27A;
+	Wed, 14 Jan 2026 17:21:44 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 19F1210E27A;
+ Wed, 14 Jan 2026 17:21:43 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1882391447319975942=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260114162910.GG458797@mdroper-desk1.amr.corp.intel.com>
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/dp=3A_Clean_up_lin?=
+ =?utf-8?q?k_BW/DSC_slice_config_computation_=28DSC_slice=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Imre Deak" <imre.deak@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 14 Jan 2026 17:21:43 -0000
+Message-ID: <176841130310.153896.1998223431880751843@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260114162232.92731-1-imre.deak@intel.com>
+In-Reply-To: <20260114162232.92731-1-imre.deak@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,57 +36,141 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Jan 14, 2026 at 08:29:10AM -0800, Matt Roper wrote:
-> On Wed, Jan 14, 2026 at 06:12:00AM +0100, Raag Jadav wrote:
-> > On Tue, Jan 13, 2026 at 03:03:46PM -0800, Matt Roper wrote:
-> > > xe_i2c.c doesn't use anything from xe_device.h or xe_platform_types.h.
-> > > Drop the unnecessary includes.  However it does require xe_sriov.h which
-> > > was being indirectly included; add an explicit include for that.
-> > > 
-> > > Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-> > > ---
-> > >  drivers/gpu/drm/xe/xe_i2c.c | 4 ++--
-> > >  1 file changed, 2 insertions(+), 2 deletions(-)
-> > > 
-> > > diff --git a/drivers/gpu/drm/xe/xe_i2c.c b/drivers/gpu/drm/xe/xe_i2c.c
-> > > index befc77e46eae..1e1fb72e49bf 100644
-> > > --- a/drivers/gpu/drm/xe/xe_i2c.c
-> > > +++ b/drivers/gpu/drm/xe/xe_i2c.c
-> > > @@ -5,6 +5,7 @@
-> > >   * Copyright (C) 2025 Intel Corporation.
-> > >   */
-> > >  
-> > > +#include <drm/drm_print.h>
-> > >  #include <linux/array_size.h>
-> > >  #include <linux/container_of.h>
-> > >  #include <linux/device.h>
-> > > @@ -26,11 +27,10 @@
-> > >  #include "regs/xe_i2c_regs.h"
-> > >  #include "regs/xe_irq_regs.h"
-> > >  
-> > > -#include "xe_device.h"
-> > >  #include "xe_device_types.h"
-> > >  #include "xe_i2c.h"
-> > >  #include "xe_mmio.h"
-> > > -#include "xe_platform_types.h"
-> > > +#include "xe_sriov.h"
-> > 
-> > My guess is, with pci.h here you won't even need this. But I could be
-> > wrong.
-> 
-> In this case we needed xe_sriov.h for the definition of IS_SRIOV_VF()
-> that's used later in the file.
+--===============1882391447319975942==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Yep, missed it.
+== Series Details ==
 
-Reviewed-by: Raag Jadav <raag.jadav@intel.com>
+Series: drm/i915/dp: Clean up link BW/DSC slice config computation (DSC slice)
+URL   : https://patchwork.freedesktop.org/series/160098/
+State : success
 
-> > >  #include "xe_survivability_mode.h"
-> > >  
-> > >  /**
-> > > -- 
-> > > 2.52.0
-> > > 
+== Summary ==
+
+CI Bug Log - changes from xe-4382-d5b0278e4bea2fb27de6d12b7f865a74072af677_BAT -> xe-pw-160098v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (12 -> 12)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-160098v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_waitfence@reltime:
+    - bat-dg2-oem2:       [PASS][1] -> [FAIL][2] ([Intel XE#6520])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4382-d5b0278e4bea2fb27de6d12b7f865a74072af677/bat-dg2-oem2/igt@xe_waitfence@reltime.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160098v1/bat-dg2-oem2/igt@xe_waitfence@reltime.html
+
+  
+#### Possible fixes ####
+
+  * igt@xe_waitfence@abstime:
+    - bat-dg2-oem2:       [TIMEOUT][3] ([Intel XE#6506]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4382-d5b0278e4bea2fb27de6d12b7f865a74072af677/bat-dg2-oem2/igt@xe_waitfence@abstime.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160098v1/bat-dg2-oem2/igt@xe_waitfence@abstime.html
+
+  
+  [Intel XE#6506]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506
+  [Intel XE#6520]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520
+
+
+Build changes
+-------------
+
+  * Linux: xe-4382-d5b0278e4bea2fb27de6d12b7f865a74072af677 -> xe-pw-160098v1
+
+  IGT_8701: 8701
+  xe-4382-d5b0278e4bea2fb27de6d12b7f865a74072af677: d5b0278e4bea2fb27de6d12b7f865a74072af677
+  xe-pw-160098v1: 160098v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160098v1/index.html
+
+--===============1882391447319975942==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/dp: Clean up link BW/DSC slice config computation (DSC slice)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/160098/">https://patchwork.freedesktop.org/series/160098/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160098v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160098v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4382-d5b0278e4bea2fb27de6d12b7f865a74072af677_BAT -&gt; xe-pw-160098v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (12 -&gt; 12)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-160098v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@xe_waitfence@reltime:<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4382-d5b0278e4bea2fb27de6d12b7f865a74072af677/bat-dg2-oem2/igt@xe_waitfence@reltime.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160098v1/bat-dg2-oem2/igt@xe_waitfence@reltime.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520">Intel XE#6520</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_waitfence@abstime:<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4382-d5b0278e4bea2fb27de6d12b7f865a74072af677/bat-dg2-oem2/igt@xe_waitfence@abstime.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506">Intel XE#6506</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160098v1/bat-dg2-oem2/igt@xe_waitfence@abstime.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4382-d5b0278e4bea2fb27de6d12b7f865a74072af677 -&gt; xe-pw-160098v1</li>
+</ul>
+<p>IGT_8701: 8701<br />
+  xe-4382-d5b0278e4bea2fb27de6d12b7f865a74072af677: d5b0278e4bea2fb27de6d12b7f865a74072af677<br />
+  xe-pw-160098v1: 160098v1</p>
+
+</body>
+</html>
+
+--===============1882391447319975942==--
