@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A2F91D39016
-	for <intel-xe@archiver.kernel.org>; Wed, 14 Jan 2026 20:32:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 67AEDD3901A
+	for <intel-xe@archiver.kernel.org>; Wed, 14 Jan 2026 20:36:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 64B5C10E68A;
-	Wed, 14 Jan 2026 20:32:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1C2E210E690;
+	Wed, 14 Jan 2026 20:36:43 +0000 (UTC)
 Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 37F9110E688;
- Wed, 14 Jan 2026 20:32:03 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5845F10E690;
+ Wed, 14 Jan 2026 20:36:42 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3471799997915334392=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_Enable_THP_support_in_dr?=
- =?utf-8?q?m=5Fpagemap_=28rev6=29?=
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EFull=3A_failure_for_drm/xe/guc=3A_Add_Wa=5F140?=
+ =?utf-8?q?25883347_for_GuC_DMA_failure_on_reset?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Francois Dugast" <francois.dugast@intel.com>
+To: "Anirban, Sk" <sk.anirban@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 14 Jan 2026 20:32:03 -0000
-Message-ID: <176842272322.155664.17135207981009893595@a3b018990fe9>
+Date: Wed, 14 Jan 2026 20:36:42 -0000
+Message-ID: <176842300235.155684.1178983041378007284@a3b018990fe9>
 X-Patchwork-Hint: ignore
-References: <20260114192111.1267147-1-francois.dugast@intel.com>
-In-Reply-To: <20260114192111.1267147-1-francois.dugast@intel.com>
+References: <20260114130015.3917770-4-sk.anirban@intel.com>
+In-Reply-To: <20260114130015.3917770-4-sk.anirban@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,488 +40,631 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============3471799997915334392==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
 == Series Details ==
 
-Series: Enable THP support in drm_pagemap (rev6)
-URL   : https://patchwork.freedesktop.org/series/159119/
-State : warning
+Series: drm/xe/guc: Add Wa_14025883347 for GuC DMA failure on reset
+URL   : https://patchwork.freedesktop.org/series/160091/
+State : failure
 
 == Summary ==
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 733664f1edf3c01cc68e6dd0bbdb135158a98a1d
-Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
-Fast mode used, each commit won't be checked separately.
--
-+drivers/gpu/drm/display/drm_dp_helper.c:1979:1: error: bad constant expression
-+drivers/gpu/drm/display/drm_dp_helper.c:1980:1: error: bad constant expression
-+drivers/gpu/drm/display/drm_dp_helper.c:2144:1: error: bad constant expression
-+drivers/gpu/drm/display/drm_dp_helper.c:2145:1: error: bad constant expression
-+drivers/gpu/drm/drm_bridge.c:1643:1: error: bad constant expression
-+drivers/gpu/drm/drm_bridge.c:1644:1: error: bad constant expression
-+drivers/gpu/drm/drm_bridge.c:1645:1: error: bad constant expression
-+drivers/gpu/drm/drm_bridge.c:1645:1: error: bad constant expression
-+drivers/gpu/drm/drm_drv.c:60:1: error: bad constant expression
-+drivers/gpu/drm/drm_drv.c:61:1: error: bad constant expression
-+drivers/gpu/drm/drm_drv.c:62:1: error: bad constant expression
-+drivers/gpu/drm/drm_drv.c:62:1: error: bad constant expression
-+drivers/gpu/drm/drm_edid.c:1800:1: error: bad constant expression
-+drivers/gpu/drm/drm_edid.c:1801:1: error: bad constant expression
-+drivers/gpu/drm/drm_gem_framebuffer_helper.c:23:1: error: bad constant expression
-+drivers/gpu/drm/drm_gem_shmem_helper.c:28:1: error: bad constant expression
-+drivers/gpu/drm/drm_gem_shmem_helper.c:967:1: error: bad constant expression
-+drivers/gpu/drm/drm_gem_shmem_helper.c:968:1: error: bad constant expression
-+drivers/gpu/drm/drm_gem_shmem_helper.c:969:1: error: bad constant expression
-+drivers/gpu/drm/drm_gem_shmem_helper.c:969:1: error: bad constant expression
-+drivers/gpu/drm/drm_panel.c:733:1: error: bad constant expression
-+drivers/gpu/drm/drm_panel.c:734:1: error: bad constant expression
-+drivers/gpu/drm/drm_panel.c:735:1: error: bad constant expression
-+drivers/gpu/drm/drm_panel.c:735:1: error: bad constant expression
-+drivers/gpu/drm/drm_panel_orientation_quirks.c:601:1: error: bad constant expression
-+drivers/gpu/drm/drm_panel_orientation_quirks.c:602:1: error: bad constant expression
-+drivers/gpu/drm/drm_panel_orientation_quirks.c:602:1: error: bad constant expression
-+drivers/gpu/drm/drm_prime.c:44:1: error: bad constant expression
-+drivers/gpu/drm/drm_probe_helper.c:68:1: error: bad constant expression
-+drivers/gpu/drm/drm_simple_kms_helper.c:457:1: error: bad constant expression
-+drivers/gpu/drm/drm_simple_kms_helper.c:458:1: error: bad constant expression
-+drivers/gpu/drm/drm_simple_kms_helper.c:458:1: error: bad constant expression
-+drivers/gpu/drm/drm_vblank.c:173:1: error: bad constant expression
-+drivers/gpu/drm/drm_vblank.c:174:1: error: bad constant expression
-+drivers/gpu/drm/drm_vblank.c:175:1: error: bad constant expression
-+drivers/gpu/drm/drm_vblank.c:176:1: error: bad constant expression
-+drivers/gpu/drm/i915/display/dvo_ch7017.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/dvo_ch7xxx.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/dvo_ivch.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/dvo_ns2501.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/dvo_sil164.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/dvo_tfp410.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/g4x_dp.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/g4x_hdmi.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/hsw_ips.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/i9xx_plane.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/i9xx_wm.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h, drivers/gpu/drm/i915/display/intel_display_trace.h):
-+drivers/gpu/drm/i915/display/icl_dsi.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h, drivers/gpu/drm/i915/display/intel_dsi.h):
-+drivers/gpu/drm/i915/display/intel_acpi.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_alpm.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_atomic.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_audio.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_backlight.c: note: in included file:
-+drivers/gpu/drm/i915/display/intel_bios.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_bw.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_casf.c:147:21: error: too long token expansion
-+drivers/gpu/drm/i915/display/intel_casf.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_cdclk.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_color.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_colorop.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_color_pipeline.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_combo_phy.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_connector.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_crtc.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h, drivers/gpu/drm/i915/display/intel_display_trace.h):
-+drivers/gpu/drm/i915/display/intel_crt.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_crtc_state_dump.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_cursor.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_cx0_phy.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_dbuf_bw.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_ddi.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_display.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_display_debugfs.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_display_device.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_display_driver.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_display_irq.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h, drivers/gpu/drm/i915/display/intel_display_trace.h):
-+drivers/gpu/drm/i915/display/intel_display_power.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_display_power_map.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_display_power_well.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_display_reset.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_display_rps.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_dmc.c:131:1: error: bad constant expression
-+drivers/gpu/drm/i915/display/intel_dmc.c:134:1: error: bad constant expression
-+drivers/gpu/drm/i915/display/intel_dmc.c:137:1: error: bad constant expression
-+drivers/gpu/drm/i915/display/intel_dmc.c:140:1: error: bad constant expression
-+drivers/gpu/drm/i915/display/intel_dmc.c:143:1: error: bad constant expression
-+drivers/gpu/drm/i915/display/intel_dmc.c:146:1: error: bad constant expression
-+drivers/gpu/drm/i915/display/intel_dmc.c:149:1: error: bad constant expression
-+drivers/gpu/drm/i915/display/intel_dmc.c:153:1: error: bad constant expression
-+drivers/gpu/drm/i915/display/intel_dmc.c:154:1: error: bad constant expression
-+drivers/gpu/drm/i915/display/intel_dmc.c:157:1: error: bad constant expression
-+drivers/gpu/drm/i915/display/intel_dmc.c:160:1: error: bad constant expression
-+drivers/gpu/drm/i915/display/intel_dmc.c:163:1: error: bad constant expression
-+drivers/gpu/drm/i915/display/intel_dmc.c:166:1: error: bad constant expression
-+drivers/gpu/drm/i915/display/intel_dmc.c:170:1: error: bad constant expression
-+drivers/gpu/drm/i915/display/intel_dmc.c:174:1: error: bad constant expression
-+drivers/gpu/drm/i915/display/intel_dmc.c:178:1: error: bad constant expression
-+drivers/gpu/drm/i915/display/intel_dmc.c:182:1: error: bad constant expression
-+drivers/gpu/drm/i915/display/intel_dmc.c:186:1: error: bad constant expression
-+drivers/gpu/drm/i915/display/intel_dmc.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_dp_aux.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_dp.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_dp_hdcp.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_dpio_phy.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_dp_link_training.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_dpll.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_dpll_mgr.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_dp_mst.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_dpt.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_dpt_common.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_dp_test.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_drrs.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_dsb.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_dsi.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h, drivers/gpu/drm/i915/display/intel_dsi.h):
-+drivers/gpu/drm/i915/display/intel_dsi_dcs_backlight.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_dsi_vbt.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_dvo.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_encoder.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_fb_bo.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_fbc.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h, drivers/gpu/drm/i915/display/intel_display_trace.h):
-+drivers/gpu/drm/i915/display/intel_fb.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_fb_pin.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_fdi.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_fifo_underrun.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h, drivers/gpu/drm/i915/display/intel_display_trace.h):
-+drivers/gpu/drm/i915/display/intel_flipq.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_frontbuffer.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h, drivers/gpu/drm/i915/display/intel_display_trace.h):
-+drivers/gpu/drm/i915/display/intel_global_state.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_gmbus.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_hdcp.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_hdcp_gsc_message.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_hdmi.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_hotplug.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_hotplug_irq.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_initial_plane.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_link_bw.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_load_detect.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_lspcon.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_lt_phy.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_lvds.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_modeset_lock.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_modeset_setup.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_modeset_verify.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_opregion.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_overlay.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_panel.c: note: in included file:
-+drivers/gpu/drm/i915/display/intel_pch_display.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_pch_refclk.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_pfit.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_pipe_crc.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_plane.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h, drivers/gpu/drm/i915/display/intel_display_trace.h):
-+drivers/gpu/drm/i915/display/intel_pmdemand.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h, drivers/gpu/drm/i915/display/intel_display_trace.h):
-+drivers/gpu/drm/i915/display/intel_pps.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_psr.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_quirks.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_sdvo.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_snps_hdmi_pll.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_snps_phy.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_sprite.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_sprite_uapi.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_tc.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_tv.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_vblank.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_vdsc.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_vga.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_vrr.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_wm.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/skl_prefill.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/skl_scaler.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h, drivers/gpu/drm/i915/display/intel_display_trace.h):
-+drivers/gpu/drm/i915/display/skl_universal_plane.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/skl_watermark.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/vlv_clock.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/vlv_dsi.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/vlv_dsi_pll.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/vlv_sideband.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c:18:1: error: bad constant expression
-+drivers/gpu/drm/i915/gem/i915_gem_pages.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/gt/intel_reset.c:1569:12: warning: context imbalance in '_intel_gt_reset_lock' - different lock contexts for basic block
-+drivers/gpu/drm/i915/gt/intel_sseu.c:600:17: error: too long token expansion
-+drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c:191:1: error: bad constant expression
-+drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c:191:1: error: bad constant expression
-+drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c:191:1: error: bad constant expression
-+drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c:191:1: error: bad constant expression
-+drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c:191:1: error: bad constant expression
-+drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c:191:1: error: bad constant expression
-+drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c:191:1: error: bad constant expression
-+drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c:191:1: error: bad constant expression
-+drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c:191:1: error: bad constant expression
-+drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c:191:1: error: bad constant expression
-+drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c:191:1: error: bad constant expression
-+drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c:191:1: error: bad constant expression
-+drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c:191:1: error: bad constant expression
-+drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c:191:1: error: bad constant expression
-+drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c:191:1: error: bad constant expression
-+drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c:191:1: error: bad constant expression
-+drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c:191:1: error: bad constant expression
-+drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c:191:1: error: bad constant expression
-+drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c:191:1: error: bad constant expression
-+drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c:191:1: error: bad constant expression
-+drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c:191:1: error: bad constant expression
-+drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c:192:1: error: bad constant expression
-+drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c:192:1: error: bad constant expression
-+drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c:192:1: error: bad constant expression
-+drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c:192:1: error: bad constant expression
-+drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c:192:1: error: bad constant expression
-+drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c:192:1: error: bad constant expression
-+drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c:192:1: error: bad constant expression
-+drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c:192:1: error: bad constant expression
-+drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c:192:1: error: bad constant expression
-+drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c:192:1: error: bad constant expression
-+drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c:192:1: error: bad constant expression
-+drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c:192:1: error: bad constant expression
-+drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c:192:1: error: bad constant expression
-+drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c:192:1: error: bad constant expression
-+drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c:192:1: error: bad constant expression
-+drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c:192:1: error: bad constant expression
-+drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c:192:1: error: bad constant expression
-+drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c:192:1: error: bad constant expression
-+drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c:192:1: error: bad constant expression
-+drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c:193:1: error: bad constant expression
-+drivers/gpu/drm/i915/i915_active.c:1062:16: warning: context imbalance in '__i915_active_fence_set' - different lock contexts for basic block
-+drivers/gpu/drm/i915/i915_drm_client.c:92:9: error: incompatible types in comparison expression (different address spaces):
-+drivers/gpu/drm/i915/i915_drm_client.c:92:9: error: incompatible types in comparison expression (different address spaces):
-+drivers/gpu/drm/i915/i915_drm_client.c:92:9:    expected struct list_head const *list
-+drivers/gpu/drm/i915/i915_drm_client.c:92:9:    got struct list_head [noderef] __rcu *pos
-+drivers/gpu/drm/i915/i915_drm_client.c:92:9:    struct list_head *
-+drivers/gpu/drm/i915/i915_drm_client.c:92:9:    struct list_head *
-+drivers/gpu/drm/i915/i915_drm_client.c:92:9:    struct list_head [noderef] __rcu *
-+drivers/gpu/drm/i915/i915_drm_client.c:92:9:    struct list_head [noderef] __rcu *
-+drivers/gpu/drm/i915/i915_drm_client.c:92:9: warning: incorrect type in argument 1 (different address spaces)
-+drivers/gpu/drm/i915/i915_initial_plane.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/i915_irq.c:467:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:467:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:475:16: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:475:16: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:480:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:480:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:480:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:518:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:518:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:526:16: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:526:16: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:531:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:531:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:531:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:575:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:575:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:578:15: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:578:15: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:582:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:582:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:589:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:589:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:589:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:589:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_mitigations.c:133:1: error: bad constant expression
-+drivers/gpu/drm/i915/i915_module.c:125:1: error: bad constant expression
-+drivers/gpu/drm/i915/i915_module.c:126:1: error: bad constant expression
-+drivers/gpu/drm/i915/i915_module.c:128:1: error: bad constant expression
-+drivers/gpu/drm/i915/i915_module.c:129:1: error: bad constant expression
-+drivers/gpu/drm/i915/i915_module.c:129:1: error: bad constant expression
-+drivers/gpu/drm/i915/i915_panic.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/i915_params.c:100:1: error: bad constant expression
-+drivers/gpu/drm/i915/i915_params.c:100:1: error: bad constant expression
-+drivers/gpu/drm/i915/i915_params.c:104:1: error: bad constant expression
-+drivers/gpu/drm/i915/i915_params.c:104:1: error: bad constant expression
-+drivers/gpu/drm/i915/i915_params.c:107:1: error: bad constant expression
-+drivers/gpu/drm/i915/i915_params.c:107:1: error: bad constant expression
-+drivers/gpu/drm/i915/i915_params.c:110:1: error: bad constant expression
-+drivers/gpu/drm/i915/i915_params.c:110:1: error: bad constant expression
-+drivers/gpu/drm/i915/i915_params.c:119:1: error: bad constant expression
-+drivers/gpu/drm/i915/i915_params.c:119:1: error: bad constant expression
-+drivers/gpu/drm/i915/i915_params.c:123:1: error: bad constant expression
-+drivers/gpu/drm/i915/i915_params.c:123:1: error: bad constant expression
-+drivers/gpu/drm/i915/i915_params.c:125:1: error: bad constant expression
-+drivers/gpu/drm/i915/i915_params.c:125:1: error: bad constant expression
-+drivers/gpu/drm/i915/i915_params.c:66:1: error: bad constant expression
-+drivers/gpu/drm/i915/i915_params.c:66:1: error: bad constant expression
-+drivers/gpu/drm/i915/i915_params.c:69:1: error: bad constant expression
-+drivers/gpu/drm/i915/i915_params.c:69:1: error: bad constant expression
-+drivers/gpu/drm/i915/i915_params.c:73:1: error: bad constant expression
-+drivers/gpu/drm/i915/i915_params.c:73:1: error: bad constant expression
-+drivers/gpu/drm/i915/i915_params.c:79:1: error: bad constant expression
-+drivers/gpu/drm/i915/i915_params.c:79:1: error: bad constant expression
-+drivers/gpu/drm/i915/i915_params.c:84:1: error: bad constant expression
-+drivers/gpu/drm/i915/i915_params.c:84:1: error: bad constant expression
-+drivers/gpu/drm/i915/i915_params.c:88:1: error: bad constant expression
-+drivers/gpu/drm/i915/i915_params.c:88:1: error: bad constant expression
-+drivers/gpu/drm/i915/i915_params.c:91:1: error: bad constant expression
-+drivers/gpu/drm/i915/i915_params.c:91:1: error: bad constant expression
-+drivers/gpu/drm/i915/i915_params.c:95:1: error: bad constant expression
-+drivers/gpu/drm/i915/i915_params.c:95:1: error: bad constant expression
-+drivers/gpu/drm/i915/intel_uncore.c:1930:1: warning: context imbalance in 'fwtable_read8' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:1931:1: warning: context imbalance in 'fwtable_read16' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:1932:1: warning: context imbalance in 'fwtable_read32' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:1933:1: warning: context imbalance in 'fwtable_read64' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:1998:1: warning: context imbalance in 'gen6_write8' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:1999:1: warning: context imbalance in 'gen6_write16' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:2000:1: warning: context imbalance in 'gen6_write32' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:2020:1: warning: context imbalance in 'fwtable_write8' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:2021:1: warning: context imbalance in 'fwtable_write16' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:2022:1: warning: context imbalance in 'fwtable_write32' - unexpected unlock
-+drivers/gpu/drm/i915/intel_wakeref.c:148:19: warning: context imbalance in 'wakeref_auto_timeout' - unexpected unlock
-+drivers/gpu/drm/ttm/ttm_bo.c:1203:31: warning: symbol 'ttm_swap_ops' was not declared. Should it be static?
-+drivers/gpu/drm/ttm/ttm_bo_util.c:329:38:    expected void *virtual
-+drivers/gpu/drm/ttm/ttm_bo_util.c:329:38:    got void [noderef] __iomem *
-+drivers/gpu/drm/ttm/ttm_bo_util.c:329:38: warning: incorrect type in assignment (different address spaces)
-+drivers/gpu/drm/ttm/ttm_bo_util.c:332:38:    expected void *virtual
-+drivers/gpu/drm/ttm/ttm_bo_util.c:332:38:    got void [noderef] __iomem *
-+drivers/gpu/drm/ttm/ttm_bo_util.c:332:38: warning: incorrect type in assignment (different address spaces)
-+drivers/gpu/drm/ttm/ttm_bo_util.c:335:38:    expected void *virtual
-+drivers/gpu/drm/ttm/ttm_bo_util.c:335:38:    got void [noderef] __iomem *
-+drivers/gpu/drm/ttm/ttm_bo_util.c:335:38: warning: incorrect type in assignment (different address spaces)
-+drivers/gpu/drm/ttm/ttm_bo_util.c:465:28:    expected void volatile [noderef] __iomem *addr
-+drivers/gpu/drm/ttm/ttm_bo_util.c:465:28:    got void *virtual
-+drivers/gpu/drm/ttm/ttm_bo_util.c:465:28: warning: incorrect type in argument 1 (different address spaces)
-+drivers/gpu/drm/ttm/ttm_pool.c:119:1: error: bad constant expression
-+drivers/gpu/drm/ttm/ttm_pool.c:120:1: error: bad constant expression
-+drivers/gpu/drm/ttm/ttm_tt.c:54:1: error: bad constant expression
-+drivers/gpu/drm/ttm/ttm_tt.c:55:1: error: bad constant expression
-+drivers/gpu/drm/ttm/ttm_tt.c:59:1: error: bad constant expression
-+drivers/gpu/drm/ttm/ttm_tt.c:60:1: error: bad constant expression
-+drivers/gpu/drm/virtio/virtgpu_drv.c:217:1: error: bad constant expression
-+drivers/gpu/drm/virtio/virtgpu_drv.c:218:1: error: bad constant expression
-+drivers/gpu/drm/virtio/virtgpu_drv.c:218:1: error: bad constant expression
-+drivers/gpu/drm/virtio/virtgpu_drv.c:219:1: error: bad constant expression
-+drivers/gpu/drm/virtio/virtgpu_drv.c:220:1: error: bad constant expression
-+drivers/gpu/drm/virtio/virtgpu_drv.c:221:1: error: bad constant expression
-+drivers/gpu/drm/virtio/virtgpu_drv.c:52:1: error: bad constant expression
-+drivers/gpu/drm/virtio/virtgpu_drv.c:53:1: error: bad constant expression
-+drivers/gpu/drm/virtio/virtgpu_object.c:34:1: error: bad constant expression
-+drivers/gpu/drm/virtio/virtgpu_prime.c:30:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
+CI Bug Log - changes from xe-4382-d5b0278e4bea2fb27de6d12b7f865a74072af677_FULL -> xe-pw-160091v1_FULL
+====================================================
 
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with xe-pw-160091v1_FULL absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-160091v1_FULL, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  
+
+Participating hosts (2 -> 2)
+------------------------------
+
+  No changes in participating hosts
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in xe-pw-160091v1_FULL:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@xe_pmu@engine-activity-multi-client@engine-drm_xe_engine_class_video_enhance1:
+    - shard-bmg:          [PASS][1] -> [ABORT][2] +23 other tests abort
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4382-d5b0278e4bea2fb27de6d12b7f865a74072af677/shard-bmg-10/igt@xe_pmu@engine-activity-multi-client@engine-drm_xe_engine_class_video_enhance1.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/shard-bmg-1/igt@xe_pmu@engine-activity-multi-client@engine-drm_xe_engine_class_video_enhance1.html
+
+  * igt@xe_sriov_auto_provisioning@selfconfig-reprovision-reduce-numvfs:
+    - shard-bmg:          NOTRUN -> [ABORT][3] +5 other tests abort
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/shard-bmg-8/igt@xe_sriov_auto_provisioning@selfconfig-reprovision-reduce-numvfs.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in xe-pw-160091v1_FULL that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_big_fb@linear-8bpp-rotate-270:
+    - shard-bmg:          NOTRUN -> [SKIP][4] ([Intel XE#2327])
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/shard-bmg-1/igt@kms_big_fb@linear-8bpp-rotate-270.html
+
+  * igt@kms_big_fb@linear-max-hw-stride-64bpp-rotate-180-hflip:
+    - shard-bmg:          NOTRUN -> [SKIP][5] ([Intel XE#7059])
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/shard-bmg-8/igt@kms_big_fb@linear-max-hw-stride-64bpp-rotate-180-hflip.html
+
+  * igt@kms_big_fb@y-tiled-max-hw-stride-32bpp-rotate-180-hflip-async-flip:
+    - shard-bmg:          NOTRUN -> [SKIP][6] ([Intel XE#1124]) +5 other tests skip
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/shard-bmg-1/igt@kms_big_fb@y-tiled-max-hw-stride-32bpp-rotate-180-hflip-async-flip.html
+
+  * igt@kms_bw@connected-linear-tiling-3-displays-2160x1440p:
+    - shard-bmg:          NOTRUN -> [SKIP][7] ([Intel XE#2314] / [Intel XE#2894])
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/shard-bmg-1/igt@kms_bw@connected-linear-tiling-3-displays-2160x1440p.html
+
+  * igt@kms_bw@linear-tiling-2-displays-3840x2160p:
+    - shard-bmg:          NOTRUN -> [SKIP][8] ([Intel XE#367])
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/shard-bmg-8/igt@kms_bw@linear-tiling-2-displays-3840x2160p.html
+
+  * igt@kms_ccs@bad-aux-stride-y-tiled-gen12-rc-ccs-cc:
+    - shard-bmg:          NOTRUN -> [SKIP][9] ([Intel XE#2887]) +8 other tests skip
+   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/shard-bmg-8/igt@kms_ccs@bad-aux-stride-y-tiled-gen12-rc-ccs-cc.html
+
+  * igt@kms_ccs@crc-primary-suspend-y-tiled-ccs:
+    - shard-bmg:          NOTRUN -> [SKIP][10] ([Intel XE#3432])
+   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/shard-bmg-1/igt@kms_ccs@crc-primary-suspend-y-tiled-ccs.html
+
+  * igt@kms_chamelium_color@ctm-0-25:
+    - shard-bmg:          NOTRUN -> [SKIP][11] ([Intel XE#2325]) +1 other test skip
+   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/shard-bmg-10/igt@kms_chamelium_color@ctm-0-25.html
+
+  * igt@kms_chamelium_hpd@dp-hpd-storm:
+    - shard-bmg:          NOTRUN -> [SKIP][12] ([Intel XE#2252]) +3 other tests skip
+   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/shard-bmg-8/igt@kms_chamelium_hpd@dp-hpd-storm.html
+
+  * igt@kms_content_protection@dp-mst-type-1:
+    - shard-bmg:          NOTRUN -> [SKIP][13] ([Intel XE#2390] / [Intel XE#6974])
+   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/shard-bmg-1/igt@kms_content_protection@dp-mst-type-1.html
+
+  * igt@kms_cursor_crc@cursor-random-32x32:
+    - shard-bmg:          NOTRUN -> [SKIP][14] ([Intel XE#2320]) +3 other tests skip
+   [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/shard-bmg-10/igt@kms_cursor_crc@cursor-random-32x32.html
+
+  * igt@kms_dirtyfb@drrs-dirtyfb-ioctl:
+    - shard-bmg:          NOTRUN -> [SKIP][15] ([Intel XE#1508])
+   [15]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/shard-bmg-8/igt@kms_dirtyfb@drrs-dirtyfb-ioctl.html
+
+  * igt@kms_dp_link_training@uhbr-sst:
+    - shard-bmg:          NOTRUN -> [SKIP][16] ([Intel XE#4354])
+   [16]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/shard-bmg-10/igt@kms_dp_link_training@uhbr-sst.html
+
+  * igt@kms_dsc@dsc-with-bpc-formats:
+    - shard-bmg:          NOTRUN -> [SKIP][17] ([Intel XE#2244]) +1 other test skip
+   [17]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/shard-bmg-1/igt@kms_dsc@dsc-with-bpc-formats.html
+
+  * igt@kms_fbc_dirty_rect@fbc-dirty-rectangle-different-formats:
+    - shard-bmg:          NOTRUN -> [SKIP][18] ([Intel XE#4422])
+   [18]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/shard-bmg-1/igt@kms_fbc_dirty_rect@fbc-dirty-rectangle-different-formats.html
+
+  * igt@kms_fbcon_fbt@psr-suspend:
+    - shard-bmg:          NOTRUN -> [SKIP][19] ([Intel XE#776])
+   [19]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/shard-bmg-8/igt@kms_fbcon_fbt@psr-suspend.html
+
+  * igt@kms_frontbuffer_tracking@fbc-1p-offscreen-pri-shrfb-draw-blt:
+    - shard-bmg:          NOTRUN -> [SKIP][20] ([Intel XE#4141]) +5 other tests skip
+   [20]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/shard-bmg-8/igt@kms_frontbuffer_tracking@fbc-1p-offscreen-pri-shrfb-draw-blt.html
+
+  * igt@kms_frontbuffer_tracking@fbcdrrs-2p-primscrn-spr-indfb-onoff:
+    - shard-bmg:          NOTRUN -> [SKIP][21] ([Intel XE#2311]) +17 other tests skip
+   [21]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/shard-bmg-1/igt@kms_frontbuffer_tracking@fbcdrrs-2p-primscrn-spr-indfb-onoff.html
+
+  * igt@kms_frontbuffer_tracking@psr-2p-primscrn-indfb-plflip-blt:
+    - shard-bmg:          NOTRUN -> [SKIP][22] ([Intel XE#2313]) +13 other tests skip
+   [22]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/shard-bmg-1/igt@kms_frontbuffer_tracking@psr-2p-primscrn-indfb-plflip-blt.html
+
+  * igt@kms_frontbuffer_tracking@psr-argb161616f-draw-mmap-wc:
+    - shard-bmg:          NOTRUN -> [SKIP][23] ([Intel XE#7061]) +1 other test skip
+   [23]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/shard-bmg-1/igt@kms_frontbuffer_tracking@psr-argb161616f-draw-mmap-wc.html
+
+  * igt@kms_plane_scaling@planes-downscale-factor-0-5@pipe-c:
+    - shard-bmg:          NOTRUN -> [SKIP][24] ([Intel XE#6886]) +4 other tests skip
+   [24]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/shard-bmg-10/igt@kms_plane_scaling@planes-downscale-factor-0-5@pipe-c.html
+
+  * igt@kms_pm_rpm@modeset-lpsp-stress-no-wait:
+    - shard-bmg:          NOTRUN -> [SKIP][25] ([Intel XE#1439] / [Intel XE#3141] / [Intel XE#836])
+   [25]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/shard-bmg-9/igt@kms_pm_rpm@modeset-lpsp-stress-no-wait.html
+
+  * igt@kms_psr2_sf@psr2-cursor-plane-update-sf:
+    - shard-bmg:          NOTRUN -> [SKIP][26] ([Intel XE#1406] / [Intel XE#1489]) +6 other tests skip
+   [26]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/shard-bmg-10/igt@kms_psr2_sf@psr2-cursor-plane-update-sf.html
+
+  * igt@kms_psr@fbc-pr-primary-page-flip:
+    - shard-bmg:          NOTRUN -> [SKIP][27] ([Intel XE#1406] / [Intel XE#2234] / [Intel XE#2850]) +5 other tests skip
+   [27]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/shard-bmg-1/igt@kms_psr@fbc-pr-primary-page-flip.html
+
+  * igt@kms_rotation_crc@primary-yf-tiled-reflect-x-90:
+    - shard-bmg:          NOTRUN -> [SKIP][28] ([Intel XE#3414] / [Intel XE#3904])
+   [28]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/shard-bmg-8/igt@kms_rotation_crc@primary-yf-tiled-reflect-x-90.html
+
+  * igt@xe_eudebug@basic-vm-bind-discovery:
+    - shard-bmg:          NOTRUN -> [SKIP][29] ([Intel XE#4837]) +5 other tests skip
+   [29]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/shard-bmg-1/igt@xe_eudebug@basic-vm-bind-discovery.html
+
+  * igt@xe_eudebug_online@interrupt-other:
+    - shard-bmg:          NOTRUN -> [SKIP][30] ([Intel XE#4837] / [Intel XE#6665]) +2 other tests skip
+   [30]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/shard-bmg-1/igt@xe_eudebug_online@interrupt-other.html
+
+  * igt@xe_eudebug_online@pagefault-one-of-many:
+    - shard-bmg:          NOTRUN -> [SKIP][31] ([Intel XE#6665])
+   [31]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/shard-bmg-10/igt@xe_eudebug_online@pagefault-one-of-many.html
+
+  * igt@xe_eudebug_sriov@deny-eudebug:
+    - shard-bmg:          NOTRUN -> [SKIP][32] ([Intel XE#5793])
+   [32]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/shard-bmg-1/igt@xe_eudebug_sriov@deny-eudebug.html
+
+  * igt@xe_exec_basic@multigpu-once-null-rebind:
+    - shard-bmg:          NOTRUN -> [SKIP][33] ([Intel XE#2322]) +3 other tests skip
+   [33]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/shard-bmg-10/igt@xe_exec_basic@multigpu-once-null-rebind.html
+
+  * igt@xe_exec_multi_queue@many-execs-preempt-mode-fault-userptr-invalidate:
+    - shard-bmg:          NOTRUN -> [SKIP][34] ([Intel XE#6874]) +17 other tests skip
+   [34]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/shard-bmg-8/igt@xe_exec_multi_queue@many-execs-preempt-mode-fault-userptr-invalidate.html
+
+  * igt@xe_exec_system_allocator@process-many-large-execqueues-mmap-new-huge:
+    - shard-bmg:          NOTRUN -> [SKIP][35] ([Intel XE#4943]) +11 other tests skip
+   [35]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/shard-bmg-1/igt@xe_exec_system_allocator@process-many-large-execqueues-mmap-new-huge.html
+
+  * igt@xe_multigpu_svm@mgpu-coherency-fail-basic:
+    - shard-bmg:          NOTRUN -> [SKIP][36] ([Intel XE#6964])
+   [36]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/shard-bmg-10/igt@xe_multigpu_svm@mgpu-coherency-fail-basic.html
+
+  * igt@xe_pm@d3cold-mocs:
+    - shard-bmg:          NOTRUN -> [SKIP][37] ([Intel XE#2284])
+   [37]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/shard-bmg-10/igt@xe_pm@d3cold-mocs.html
+
+  * igt@xe_pxp@pxp-optout:
+    - shard-bmg:          NOTRUN -> [SKIP][38] ([Intel XE#4733])
+   [38]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/shard-bmg-10/igt@xe_pxp@pxp-optout.html
+
+  * igt@xe_query@multigpu-query-invalid-uc-fw-version-mbz:
+    - shard-bmg:          NOTRUN -> [SKIP][39] ([Intel XE#944])
+   [39]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/shard-bmg-1/igt@xe_query@multigpu-query-invalid-uc-fw-version-mbz.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_atomic_transition@plane-all-modeset-transition:
+    - shard-bmg:          [INCOMPLETE][40] -> [PASS][41] +1 other test pass
+   [40]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4382-d5b0278e4bea2fb27de6d12b7f865a74072af677/shard-bmg-2/igt@kms_atomic_transition@plane-all-modeset-transition.html
+   [41]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/shard-bmg-8/igt@kms_atomic_transition@plane-all-modeset-transition.html
+
+  * igt@kms_flip@flip-vs-expired-vblank@c-edp1:
+    - shard-lnl:          [FAIL][42] ([Intel XE#301] / [Intel XE#3149]) -> [PASS][43] +1 other test pass
+   [42]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4382-d5b0278e4bea2fb27de6d12b7f865a74072af677/shard-lnl-7/igt@kms_flip@flip-vs-expired-vblank@c-edp1.html
+   [43]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/shard-lnl-1/igt@kms_flip@flip-vs-expired-vblank@c-edp1.html
+
+  * igt@testdisplay:
+    - shard-bmg:          [ABORT][44] ([Intel XE#6740] / [Intel XE#6976]) -> [PASS][45]
+   [44]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4382-d5b0278e4bea2fb27de6d12b7f865a74072af677/shard-bmg-8/igt@testdisplay.html
+   [45]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/shard-bmg-10/igt@testdisplay.html
+
+  * igt@xe_exec_system_allocator@pat-index-madvise-pat-idx-uc-multi-vma:
+    - shard-lnl:          [FAIL][46] ([Intel XE#6353]) -> [PASS][47]
+   [46]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4382-d5b0278e4bea2fb27de6d12b7f865a74072af677/shard-lnl-2/igt@xe_exec_system_allocator@pat-index-madvise-pat-idx-uc-multi-vma.html
+   [47]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/shard-lnl-7/igt@xe_exec_system_allocator@pat-index-madvise-pat-idx-uc-multi-vma.html
+
+  
+#### Warnings ####
+
+  * igt@kms_tiled_display@basic-test-pattern:
+    - shard-bmg:          [SKIP][48] ([Intel XE#2426]) -> [FAIL][49] ([Intel XE#1729])
+   [48]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4382-d5b0278e4bea2fb27de6d12b7f865a74072af677/shard-bmg-9/igt@kms_tiled_display@basic-test-pattern.html
+   [49]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/shard-bmg-6/igt@kms_tiled_display@basic-test-pattern.html
+
+  
+  [Intel XE#1124]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1124
+  [Intel XE#1406]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1406
+  [Intel XE#1439]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1439
+  [Intel XE#1489]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1489
+  [Intel XE#1508]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1508
+  [Intel XE#1729]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1729
+  [Intel XE#2234]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2234
+  [Intel XE#2244]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2244
+  [Intel XE#2252]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2252
+  [Intel XE#2284]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2284
+  [Intel XE#2311]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2311
+  [Intel XE#2313]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2313
+  [Intel XE#2314]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2314
+  [Intel XE#2320]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2320
+  [Intel XE#2322]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2322
+  [Intel XE#2325]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2325
+  [Intel XE#2327]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2327
+  [Intel XE#2390]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2390
+  [Intel XE#2426]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2426
+  [Intel XE#2850]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2850
+  [Intel XE#2887]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2887
+  [Intel XE#2894]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2894
+  [Intel XE#301]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/301
+  [Intel XE#3141]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3141
+  [Intel XE#3149]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3149
+  [Intel XE#3414]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3414
+  [Intel XE#3432]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3432
+  [Intel XE#367]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/367
+  [Intel XE#3904]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3904
+  [Intel XE#4141]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4141
+  [Intel XE#4354]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4354
+  [Intel XE#4422]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4422
+  [Intel XE#4733]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4733
+  [Intel XE#4837]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4837
+  [Intel XE#4943]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4943
+  [Intel XE#5793]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5793
+  [Intel XE#6353]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6353
+  [Intel XE#6665]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6665
+  [Intel XE#6740]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6740
+  [Intel XE#6874]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6874
+  [Intel XE#6886]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6886
+  [Intel XE#6964]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6964
+  [Intel XE#6974]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6974
+  [Intel XE#6976]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6976
+  [Intel XE#7059]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7059
+  [Intel XE#7061]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7061
+  [Intel XE#776]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/776
+  [Intel XE#836]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/836
+  [Intel XE#944]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/944
 
 
+Build changes
+-------------
+
+  * Linux: xe-4382-d5b0278e4bea2fb27de6d12b7f865a74072af677 -> xe-pw-160091v1
+
+  IGT_8701: 8701
+  xe-4382-d5b0278e4bea2fb27de6d12b7f865a74072af677: d5b0278e4bea2fb27de6d12b7f865a74072af677
+  xe-pw-160091v1: 160091v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/index.html
+
+--===============3471799997915334392==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/guc: Add Wa_14025883347 for GuC DMA failure on reset</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/160091/">https://patchwork.freedesktop.org/series/160091/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4382-d5b0278e4bea2fb27de6d12b7f865a74072af677_FULL -&gt; xe-pw-160091v1_FULL</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-160091v1_FULL absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-160091v1_FULL, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (2 -&gt; 2)</h2>
+<p>No changes in participating hosts</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-160091v1_FULL:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>
+<p>igt@xe_pmu@engine-activity-multi-client@engine-drm_xe_engine_class_video_enhance1:</p>
+<ul>
+<li>shard-bmg:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4382-d5b0278e4bea2fb27de6d12b7f865a74072af677/shard-bmg-10/igt@xe_pmu@engine-activity-multi-client@engine-drm_xe_engine_class_video_enhance1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/shard-bmg-1/igt@xe_pmu@engine-activity-multi-client@engine-drm_xe_engine_class_video_enhance1.html">ABORT</a> +23 other tests abort</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_sriov_auto_provisioning@selfconfig-reprovision-reduce-numvfs:</p>
+<ul>
+<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/shard-bmg-8/igt@xe_sriov_auto_provisioning@selfconfig-reprovision-reduce-numvfs.html">ABORT</a> +5 other tests abort</li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-160091v1_FULL that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@kms_big_fb@linear-8bpp-rotate-270:</p>
+<ul>
+<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/shard-bmg-1/igt@kms_big_fb@linear-8bpp-rotate-270.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2327">Intel XE#2327</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_big_fb@linear-max-hw-stride-64bpp-rotate-180-hflip:</p>
+<ul>
+<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/shard-bmg-8/igt@kms_big_fb@linear-max-hw-stride-64bpp-rotate-180-hflip.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7059">Intel XE#7059</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_big_fb@y-tiled-max-hw-stride-32bpp-rotate-180-hflip-async-flip:</p>
+<ul>
+<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/shard-bmg-1/igt@kms_big_fb@y-tiled-max-hw-stride-32bpp-rotate-180-hflip-async-flip.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1124">Intel XE#1124</a>) +5 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_bw@connected-linear-tiling-3-displays-2160x1440p:</p>
+<ul>
+<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/shard-bmg-1/igt@kms_bw@connected-linear-tiling-3-displays-2160x1440p.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2314">Intel XE#2314</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2894">Intel XE#2894</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_bw@linear-tiling-2-displays-3840x2160p:</p>
+<ul>
+<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/shard-bmg-8/igt@kms_bw@linear-tiling-2-displays-3840x2160p.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/367">Intel XE#367</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_ccs@bad-aux-stride-y-tiled-gen12-rc-ccs-cc:</p>
+<ul>
+<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/shard-bmg-8/igt@kms_ccs@bad-aux-stride-y-tiled-gen12-rc-ccs-cc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2887">Intel XE#2887</a>) +8 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_ccs@crc-primary-suspend-y-tiled-ccs:</p>
+<ul>
+<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/shard-bmg-1/igt@kms_ccs@crc-primary-suspend-y-tiled-ccs.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3432">Intel XE#3432</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium_color@ctm-0-25:</p>
+<ul>
+<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/shard-bmg-10/igt@kms_chamelium_color@ctm-0-25.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2325">Intel XE#2325</a>) +1 other test skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium_hpd@dp-hpd-storm:</p>
+<ul>
+<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/shard-bmg-8/igt@kms_chamelium_hpd@dp-hpd-storm.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2252">Intel XE#2252</a>) +3 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_content_protection@dp-mst-type-1:</p>
+<ul>
+<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/shard-bmg-1/igt@kms_content_protection@dp-mst-type-1.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2390">Intel XE#2390</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6974">Intel XE#6974</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_crc@cursor-random-32x32:</p>
+<ul>
+<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/shard-bmg-10/igt@kms_cursor_crc@cursor-random-32x32.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2320">Intel XE#2320</a>) +3 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_dirtyfb@drrs-dirtyfb-ioctl:</p>
+<ul>
+<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/shard-bmg-8/igt@kms_dirtyfb@drrs-dirtyfb-ioctl.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1508">Intel XE#1508</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_dp_link_training@uhbr-sst:</p>
+<ul>
+<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/shard-bmg-10/igt@kms_dp_link_training@uhbr-sst.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4354">Intel XE#4354</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_dsc@dsc-with-bpc-formats:</p>
+<ul>
+<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/shard-bmg-1/igt@kms_dsc@dsc-with-bpc-formats.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2244">Intel XE#2244</a>) +1 other test skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_fbc_dirty_rect@fbc-dirty-rectangle-different-formats:</p>
+<ul>
+<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/shard-bmg-1/igt@kms_fbc_dirty_rect@fbc-dirty-rectangle-different-formats.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4422">Intel XE#4422</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_fbcon_fbt@psr-suspend:</p>
+<ul>
+<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/shard-bmg-8/igt@kms_fbcon_fbt@psr-suspend.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/776">Intel XE#776</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@fbc-1p-offscreen-pri-shrfb-draw-blt:</p>
+<ul>
+<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/shard-bmg-8/igt@kms_frontbuffer_tracking@fbc-1p-offscreen-pri-shrfb-draw-blt.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4141">Intel XE#4141</a>) +5 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@fbcdrrs-2p-primscrn-spr-indfb-onoff:</p>
+<ul>
+<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/shard-bmg-1/igt@kms_frontbuffer_tracking@fbcdrrs-2p-primscrn-spr-indfb-onoff.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2311">Intel XE#2311</a>) +17 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@psr-2p-primscrn-indfb-plflip-blt:</p>
+<ul>
+<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/shard-bmg-1/igt@kms_frontbuffer_tracking@psr-2p-primscrn-indfb-plflip-blt.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2313">Intel XE#2313</a>) +13 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@psr-argb161616f-draw-mmap-wc:</p>
+<ul>
+<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/shard-bmg-1/igt@kms_frontbuffer_tracking@psr-argb161616f-draw-mmap-wc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7061">Intel XE#7061</a>) +1 other test skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_plane_scaling@planes-downscale-factor-0-5@pipe-c:</p>
+<ul>
+<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/shard-bmg-10/igt@kms_plane_scaling@planes-downscale-factor-0-5@pipe-c.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6886">Intel XE#6886</a>) +4 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pm_rpm@modeset-lpsp-stress-no-wait:</p>
+<ul>
+<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/shard-bmg-9/igt@kms_pm_rpm@modeset-lpsp-stress-no-wait.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1439">Intel XE#1439</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3141">Intel XE#3141</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/836">Intel XE#836</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr2_sf@psr2-cursor-plane-update-sf:</p>
+<ul>
+<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/shard-bmg-10/igt@kms_psr2_sf@psr2-cursor-plane-update-sf.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1406">Intel XE#1406</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1489">Intel XE#1489</a>) +6 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@fbc-pr-primary-page-flip:</p>
+<ul>
+<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/shard-bmg-1/igt@kms_psr@fbc-pr-primary-page-flip.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1406">Intel XE#1406</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2234">Intel XE#2234</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2850">Intel XE#2850</a>) +5 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_rotation_crc@primary-yf-tiled-reflect-x-90:</p>
+<ul>
+<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/shard-bmg-8/igt@kms_rotation_crc@primary-yf-tiled-reflect-x-90.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3414">Intel XE#3414</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3904">Intel XE#3904</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_eudebug@basic-vm-bind-discovery:</p>
+<ul>
+<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/shard-bmg-1/igt@xe_eudebug@basic-vm-bind-discovery.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4837">Intel XE#4837</a>) +5 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_eudebug_online@interrupt-other:</p>
+<ul>
+<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/shard-bmg-1/igt@xe_eudebug_online@interrupt-other.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4837">Intel XE#4837</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6665">Intel XE#6665</a>) +2 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_eudebug_online@pagefault-one-of-many:</p>
+<ul>
+<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/shard-bmg-10/igt@xe_eudebug_online@pagefault-one-of-many.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6665">Intel XE#6665</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_eudebug_sriov@deny-eudebug:</p>
+<ul>
+<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/shard-bmg-1/igt@xe_eudebug_sriov@deny-eudebug.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5793">Intel XE#5793</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_basic@multigpu-once-null-rebind:</p>
+<ul>
+<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/shard-bmg-10/igt@xe_exec_basic@multigpu-once-null-rebind.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2322">Intel XE#2322</a>) +3 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_multi_queue@many-execs-preempt-mode-fault-userptr-invalidate:</p>
+<ul>
+<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/shard-bmg-8/igt@xe_exec_multi_queue@many-execs-preempt-mode-fault-userptr-invalidate.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6874">Intel XE#6874</a>) +17 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_system_allocator@process-many-large-execqueues-mmap-new-huge:</p>
+<ul>
+<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/shard-bmg-1/igt@xe_exec_system_allocator@process-many-large-execqueues-mmap-new-huge.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4943">Intel XE#4943</a>) +11 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_multigpu_svm@mgpu-coherency-fail-basic:</p>
+<ul>
+<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/shard-bmg-10/igt@xe_multigpu_svm@mgpu-coherency-fail-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6964">Intel XE#6964</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pm@d3cold-mocs:</p>
+<ul>
+<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/shard-bmg-10/igt@xe_pm@d3cold-mocs.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2284">Intel XE#2284</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pxp@pxp-optout:</p>
+<ul>
+<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/shard-bmg-10/igt@xe_pxp@pxp-optout.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4733">Intel XE#4733</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_query@multigpu-query-invalid-uc-fw-version-mbz:</p>
+<ul>
+<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/shard-bmg-1/igt@xe_query@multigpu-query-invalid-uc-fw-version-mbz.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/944">Intel XE#944</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@kms_atomic_transition@plane-all-modeset-transition:</p>
+<ul>
+<li>shard-bmg:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4382-d5b0278e4bea2fb27de6d12b7f865a74072af677/shard-bmg-2/igt@kms_atomic_transition@plane-all-modeset-transition.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/shard-bmg-8/igt@kms_atomic_transition@plane-all-modeset-transition.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@flip-vs-expired-vblank@c-edp1:</p>
+<ul>
+<li>shard-lnl:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4382-d5b0278e4bea2fb27de6d12b7f865a74072af677/shard-lnl-7/igt@kms_flip@flip-vs-expired-vblank@c-edp1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/301">Intel XE#301</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3149">Intel XE#3149</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/shard-lnl-1/igt@kms_flip@flip-vs-expired-vblank@c-edp1.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+<li>
+<p>igt@testdisplay:</p>
+<ul>
+<li>shard-bmg:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4382-d5b0278e4bea2fb27de6d12b7f865a74072af677/shard-bmg-8/igt@testdisplay.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6740">Intel XE#6740</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6976">Intel XE#6976</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/shard-bmg-10/igt@testdisplay.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_system_allocator@pat-index-madvise-pat-idx-uc-multi-vma:</p>
+<ul>
+<li>shard-lnl:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4382-d5b0278e4bea2fb27de6d12b7f865a74072af677/shard-lnl-2/igt@xe_exec_system_allocator@pat-index-madvise-pat-idx-uc-multi-vma.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6353">Intel XE#6353</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/shard-lnl-7/igt@xe_exec_system_allocator@pat-index-madvise-pat-idx-uc-multi-vma.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>igt@kms_tiled_display@basic-test-pattern:<ul>
+<li>shard-bmg:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4382-d5b0278e4bea2fb27de6d12b7f865a74072af677/shard-bmg-9/igt@kms_tiled_display@basic-test-pattern.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2426">Intel XE#2426</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v1/shard-bmg-6/igt@kms_tiled_display@basic-test-pattern.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1729">Intel XE#1729</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4382-d5b0278e4bea2fb27de6d12b7f865a74072af677 -&gt; xe-pw-160091v1</li>
+</ul>
+<p>IGT_8701: 8701<br />
+  xe-4382-d5b0278e4bea2fb27de6d12b7f865a74072af677: d5b0278e4bea2fb27de6d12b7f865a74072af677<br />
+  xe-pw-160091v1: 160091v1</p>
+
+</body>
+</html>
+
+--===============3471799997915334392==--
