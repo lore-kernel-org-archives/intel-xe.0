@@ -4,81 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7686CD31A30
-	for <intel-xe@archiver.kernel.org>; Wed, 14 Jan 2026 09:22:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C0164D31A3A
+	for <intel-xe@archiver.kernel.org>; Wed, 14 Jan 2026 09:48:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 354CB10E5E0;
-	Wed, 14 Jan 2026 09:22:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7542010E3AF;
+	Wed, 14 Jan 2026 09:48:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=suse.com header.i=@suse.com header.b="GitTTAag";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="Il7cukn2";
 	dkim-atps=neutral
-Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com
- [209.85.167.54])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6338510E5E0
- for <intel-xe@lists.freedesktop.org>; Wed, 14 Jan 2026 09:22:03 +0000 (UTC)
-Received: by mail-lf1-f54.google.com with SMTP id
- 2adb3069b0e04-59b76c092acso5661270e87.2
- for <intel-xe@lists.freedesktop.org>; Wed, 14 Jan 2026 01:22:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=suse.com; s=google; t=1768382521; x=1768987321; darn=lists.freedesktop.org; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=B+TLqsVb+BwjF4lG8vt/DUf2U0UB8iRBHws2zuhJqE0=;
- b=GitTTAagiASRB8+XuQcGzgIEhGVSe15tBfwUBHHpm6TWgGJ+XWATW4cxLS8w6sik1l
- E3Xkvtxu0T5jwjA8QphII4efF8BV2N8nRaw8/ejznl9172PxNuUZWsHLjmMmWJHctXNq
- UsLzyhhmRV1yIAh67CSzf1nx9NJAFYDY7+gvO7WoR0yMaAcpi9E5mjNHpQCejRqbalQ4
- ttZBsclgWip19wIzsyw/kPGtEEftZCmpkTR6liaQ1BkJ1G9XLaCTQQx1R7R3lk19YAZB
- QdoPaM2rPQX1YBkZ6Nmeva58S8w1DcsDBHg5TSprcOMc7umlU7JJkuqf1cnH/ybb5DAZ
- seNw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1768382521; x=1768987321;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=B+TLqsVb+BwjF4lG8vt/DUf2U0UB8iRBHws2zuhJqE0=;
- b=hcRyXR3tiVcQIZmaK1H1wOaU7ToDH/Sd7NhfzrqMYY4Tvkb3wYm/IVRAVL9fsLcj4g
- 0xKsumkzmZj0Swx8KqR2IwqorRdHBPOv4i84bnzoxpDTEviAtmeoHCXJQ7ymhCw72f3b
- U8yF9STopDMiU18TJr4U18ohenJxtrwBZ4rhqW7hNVJAEqR0M431mkGYtHSf5DYfBBEi
- l+7xIGmdD4leWz4HYZ4lqYZSgdIaNw82BbKg+9n5sknq9lPqxl0ItImXB9odDmxJISa2
- hosDj287mrUJ6bL85Buku46vX2q4qoC8a3ml7IRLACqpEincH7gntRCFFC0B1zMb/hyO
- uisw==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXYPUDMGf1PPvSbzdI0+9ampGPc3bwTspMPEDYtnKtHKCKWtAxSkFcV6V81gsdgmr2i/c6CKAgqMA==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yyianoh7keI/NVtCq6FW7kOhfaK17iKO3Xi5htEBnWkpeoY+kOA
- n9/YqscyeNKVs6uuvPk5x/GEQgScENC2a8RFoFvtSCSkqBzlASTiHQNvGIbALLLCrH1yHZtsEut
- 6QtqbSi2vv0fZtRUhc8LLthbSW4oBZrAM8EXEsM1JaQ==
-X-Gm-Gg: AY/fxX4dzTtlo2Ywj3VQovgHIiIFEGCxw9IkW3t1pivC0kK4H7fHoAJ7dLMQ5NdJ1t3
- y01PiL6Wd2GYy8ZA8IhcRRbVKGnMujoLyk7pFNOp+Ur5TprB7BhnZhMhgPTs5f6m6RbB/Paec9j
- Ib73fYZBCsX8rsyHdPZI0K9oxwO16RTu9Vf4/5XsVCla84R+hpU+0+H8f4OD9ELScKdLJ23jf4K
- 5LnhVAksFfnQktVIYVFdpgzDBZr3/uKlfLQq1wOMN43nC3gNDdx6tuwbgPfMKT2EbeDZDMazkFz
- pOdz+Z5YdrWBGPMlm6hxN87u75y53GTZb93c4vI=
-X-Received: by 2002:a05:6512:3d0f:b0:59a:183c:4863 with SMTP id
- 2adb3069b0e04-59ba1523e7bmr438957e87.8.1768382521040; Wed, 14 Jan 2026
- 01:22:01 -0800 (PST)
+Received: from lankhorst.se (lankhorst.se [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D605C10E3AF
+ for <intel-xe@lists.freedesktop.org>; Wed, 14 Jan 2026 09:48:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
+ s=default; t=1768384131;
+ bh=qpDWjArJfLXu4JzoguXHsQe9IsXH4l6UYHaofitANdw=;
+ h=Date:Subject:To:References:From:In-Reply-To:From;
+ b=Il7cukn27Wfl+XbuZobh7o7km+pn800qZvIGU/rSLYwIp1sPRJuG8NqxdcU/lu/Px
+ PGvP1JSlKGgBd2gAta448Iz/zIIbru0P+MmYLN/PgB+kKkIct3c1CF2YUs/v32nMwB
+ 3Kv34/5/sjZxS5iyhtJuiaBwnEVi938q9ctPazpzvMA1xaFPzdKBgwqPtsQirgrt7C
+ Xn7zLWIBdaUaYvSmOYnqlGPek2wEvjAi0L0RsCqc9pQ4K2A6eeSJ6kVCo7wFkYfrpN
+ v6gepvOExHOYpP3dIgfqPlYJhjuACChy6vRmgu4YqLaqHimLwiNL1Y92YksCFRoR4e
+ F2+t8y9n4GFPw==
+Message-ID: <62358c4f-081f-4cc5-9db9-511cc6c988af@lankhorst.se>
+Date: Wed, 14 Jan 2026 10:48:50 +0100
 MIME-Version: 1.0
-References: <20260112094406.82641-1-marco.crivellari@suse.com>
- <aWWz9pJ30Hxa0USG@lstrano-desk.jf.intel.com>
- <aWdKdllO8ZTRfYgp@lstrano-desk.jf.intel.com>
-In-Reply-To: <aWdKdllO8ZTRfYgp@lstrano-desk.jf.intel.com>
-From: Marco Crivellari <marco.crivellari@suse.com>
-Date: Wed, 14 Jan 2026 10:21:50 +0100
-X-Gm-Features: AZwV_Qhc6Bkk42aHGgyAMokWFyQuIbojktnom_cU3CoHLLk2SojYqiL1guAlJ4g
-Message-ID: <CAAofZF5X97shEA6a8-v=Qu6QtWwKg44O7pqLKs1XHQYSn+_f1Q@mail.gmail.com>
-Subject: Re: [PATCH v3] drm/xe: Replace use of system_wq with
- tlb_inval->timeout_wq
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: linux-kernel@vger.kernel.org, intel-xe@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, Tejun Heo <tj@kernel.org>, 
- Lai Jiangshan <jiangshanlai@gmail.com>,
- Frederic Weisbecker <frederic@kernel.org>, 
- Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
- Michal Hocko <mhocko@suse.com>, 
- Thomas Hellstrom <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 1/5] drm/xe: Make xe_ggtt_node offset relative to
+ starting offset
+To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ intel-xe@lists.freedesktop.org
+References: <20260113121807.1303124-1-dev@lankhorst.se>
+ <20260113121807.1303124-2-dev@lankhorst.se>
+ <33fb21fa-b75a-4109-9d4e-71f954a2e787@intel.com>
+Content-Language: en-US
+From: Maarten Lankhorst <dev@lankhorst.se>
+In-Reply-To: <33fb21fa-b75a-4109-9d4e-71f954a2e787@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -93,16 +55,228 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Jan 14, 2026 at 8:49=E2=80=AFAM Matthew Brost <matthew.brost@intel.=
-com> wrote:
-> [...]
->
-> Merged to drm-xe-next, thanks for the patch.
+Hey,
 
-Many thanks!
+Den 2026-01-13 kl. 23:07, skrev Michal Wajdeczko:
+> 
+> 
+> On 1/13/2026 1:18 PM, Maarten Lankhorst wrote:
+>> Fix all functions that use node->start to use xe_ggtt_node_addr,
+>> and add ggtt->start to node->start.
+>>
+>> This will make node shifting for SRIOV-VF a one-liner, instead of
+> 
+> SR-IOV VF
+> 
+>> manually changing each GGTT node's base address.
+>>
+>> Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
+>> ---
+>>  drivers/gpu/drm/xe/xe_ggtt.c | 58 ++++++++++++++++++++++--------------
+>>  1 file changed, 36 insertions(+), 22 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
+>> index cb23d97845a86..4bdd2c94021cd 100644
+>> --- a/drivers/gpu/drm/xe/xe_ggtt.c
+>> +++ b/drivers/gpu/drm/xe/xe_ggtt.c
+>> @@ -300,7 +300,7 @@ static void __xe_ggtt_init_early(struct xe_ggtt *ggtt, u64 start, u64 size)
+>>  {
+>>  	ggtt->start = start;
+>>  	ggtt->size = size;
+>> -	drm_mm_init(&ggtt->mm, start, size);
+>> +	drm_mm_init(&ggtt->mm, 0, size);
+>>  }
+>>  
+>>  int xe_ggtt_init_kunit(struct xe_ggtt *ggtt, u32 start, u32 size)
+>> @@ -402,7 +402,7 @@ static void xe_ggtt_initial_clear(struct xe_ggtt *ggtt)
+>>  	/* Display may have allocated inside ggtt, so be careful with clearing here */
+>>  	mutex_lock(&ggtt->lock);
+>>  	drm_mm_for_each_hole(hole, &ggtt->mm, start, end)
+>> -		xe_ggtt_clear(ggtt, start, end - start);
+>> +		xe_ggtt_clear(ggtt, ggtt->start + start, end - start);
+>>  
+>>  	xe_ggtt_invalidate(ggtt);
+>>  	mutex_unlock(&ggtt->lock);
+>> @@ -419,7 +419,7 @@ static void ggtt_node_remove(struct xe_ggtt_node *node)
+>>  
+>>  	mutex_lock(&ggtt->lock);
+>>  	if (bound)
+>> -		xe_ggtt_clear(ggtt, node->base.start, node->base.size);
+>> +		xe_ggtt_clear(ggtt, xe_ggtt_node_addr(node), node->base.size);
+> 
+> nit: maybe
+> 		xe_ggtt_clear(ggtt, xe_ggtt_node_addr(node), xe_ggtt_node_size(node));
+> 
+> 
+>>  	drm_mm_remove_node(&node->base);
+>>  	node->base.size = 0;
+>>  	mutex_unlock(&ggtt->lock);
+>> @@ -574,13 +574,13 @@ int xe_ggtt_node_insert_balloon_locked(struct xe_ggtt_node *node, u64 start, u64
+>>  	lockdep_assert_held(&ggtt->lock);
+>>  
+>>  	node->base.color = 0;
+>> -	node->base.start = start;
+>> +	node->base.start = start - ggtt->start;
+> 
+> nit: maybe we should add:
+> 
+> 	xe_assert(xe, start >= ggtt->start);
+> 
+>>  	node->base.size = end - start;
+>>  
+>>  	err = drm_mm_reserve_node(&ggtt->mm, &node->base);
+>>  
+>>  	if (xe_tile_WARN(ggtt->tile, err, "Failed to balloon GGTT %#llx-%#llx (%pe)\n",
+>> -			 node->base.start, node->base.start + node->base.size, ERR_PTR(err)))
+>> +			 xe_ggtt_node_addr(node), xe_ggtt_node_addr(node) + node->base.size, ERR_PTR(err)))
+>>  		return err;
+>>  
+>>  	xe_ggtt_dump_node(ggtt, &node->base, "balloon");
+>> @@ -771,7 +771,7 @@ static void xe_ggtt_map_bo(struct xe_ggtt *ggtt, struct xe_ggtt_node *node,
+>>  	if (XE_WARN_ON(!node))
+>>  		return;
+>>  
+>> -	start = node->base.start;
+>> +	start = xe_ggtt_node_addr(node);
+>>  	end = start + xe_bo_size(bo);
+>>  
+>>  	if (!xe_bo_is_vram(bo) && !xe_bo_is_stolen(bo)) {
+>> @@ -892,6 +892,17 @@ static int __xe_ggtt_insert_bo_at(struct xe_ggtt *ggtt, struct xe_bo *bo,
+>>  	}
+>>  
+>>  	mutex_lock(&ggtt->lock);
+>> +	/*
+>> +	 * all cases where start < ggtt_start when 0 is passed as argument are
+>> +	 * set to 0, as negative offsets are invalid.
+> 
+> but all start values < ggtt->start seems to be programming errors
+> (except start == 0 which is like a "don't care" flag)
+> 
+> so maybe this should be just:
+I think the asserts are ok to add, but why not handle it anyway instead of failing in a hard to debug way?
 
---=20
+> 
+> 	xe_assert(xe, start >= ggtt->start || !start);
+> 	xe_assert(xe, end >= ggtt->start);
+> 
+> 	if (start) {
+> 		start -= ggtt->start;
+> 		end -= ggtt->start;
+> 	}
+> 
+>> +	 */
+>> +	if (start < ggtt->start)
+>> +		start = 0;
+>> +	else
+>> +		start -= ggtt->start;
+>> +
+>> +	end -= ggtt->start;
+>> +
+>>  	err = drm_mm_insert_node_in_range(&ggtt->mm, &bo->ggtt_node[tile_id]->base,
+>>  					  xe_bo_size(bo), alignment, 0, start, end, 0);
+>>  	if (err) {
+>> @@ -1003,16 +1014,17 @@ static u64 xe_encode_vfid_pte(u16 vfid)
+>>  	return FIELD_PREP(GGTT_PTE_VFID, vfid) | XE_PAGE_PRESENT;
+>>  }
+>>  
+>> -static void xe_ggtt_assign_locked(struct xe_ggtt *ggtt, const struct drm_mm_node *node, u16 vfid)
+>> +static void xe_ggtt_assign_locked(const struct xe_ggtt_node *node, u16 vfid)
+>>  {
+>> -	u64 start = node->start;
+>> -	u64 size = node->size;
+>> +	struct xe_ggtt *ggtt = node->ggtt;
+>> +	u64 start = xe_ggtt_node_addr(node);
+>> +	u64 size = xe_ggtt_node_size(node);
+>>  	u64 end = start + size - 1;
+>>  	u64 pte = xe_encode_vfid_pte(vfid);
+>>  
+>>  	lockdep_assert_held(&ggtt->lock);
+>>  
+>> -	if (!drm_mm_node_allocated(node))
+>> +	if (!xe_ggtt_node_allocated(node))
+> 
+> nit: this could be:
+> 
+> 	if (!drm_mm_node_allocated(&node->base))
 
-Marco Crivellari
+Perhaps, but I'm deleting it anyway in the last patch.
 
-L3 Support Engineer
+>>  		return;
+>>  
+>>  	while (start < end) {
+>> @@ -1034,9 +1046,11 @@ static void xe_ggtt_assign_locked(struct xe_ggtt *ggtt, const struct drm_mm_node
+>>   */
+>>  void xe_ggtt_assign(const struct xe_ggtt_node *node, u16 vfid)
+>>  {
+>> -	mutex_lock(&node->ggtt->lock);
+>> -	xe_ggtt_assign_locked(node->ggtt, &node->base, vfid);
+>> -	mutex_unlock(&node->ggtt->lock);
+>> +	if (!node)
+>> +		return;
+> 
+> calling xe_ggtt_assign(NULL) is a clear programming error, why do we want to hide it now?
+
+There was already error handling in checking drm_mm_allocated(). That one will be removed soon, so this is the replacement.
+
+>> +
+>> +	guard(mutex)(&node->ggtt->lock);
+>> +	xe_ggtt_assign_locked(node, vfid);
+>>  }
+>>  
+>>  /**
+>> @@ -1058,14 +1072,14 @@ int xe_ggtt_node_save(struct xe_ggtt_node *node, void *dst, size_t size, u16 vfi
+>>  	if (!node)
+>>  		return -ENOENT;
+>>  
+>> -	guard(mutex)(&node->ggtt->lock);
+>> +	ggtt = node->ggtt;
+>> +	guard(mutex)(&ggtt->lock);
+> 
+> nit: nice but unrelated change
+> 
+>>  
+>>  	if (xe_ggtt_node_pt_size(node) != size)
+>>  		return -EINVAL;
+>>  
+>> -	ggtt = node->ggtt;
+>> -	start = node->base.start;
+>> -	end = start + node->base.size - 1;
+>> +	start = xe_ggtt_node_addr(node);
+>> +	end = start + xe_ggtt_node_size(node) - 1;
+>>  
+>>  	while (start < end) {
+>>  		pte = ggtt->pt_ops->ggtt_get_pte(ggtt, start);
+>> @@ -1098,14 +1112,14 @@ int xe_ggtt_node_load(struct xe_ggtt_node *node, const void *src, size_t size, u
+>>  	if (!node)
+>>  		return -ENOENT;
+>>  
+>> -	guard(mutex)(&node->ggtt->lock);
+>> +	ggtt = node->ggtt;
+>> +	guard(mutex)(&ggtt->lock);
+> 
+> ditto
+Yeah, but too small for a separate commit, which is why I added it to this one. :-)
+> 
+>>  
+>>  	if (xe_ggtt_node_pt_size(node) != size)
+>>  		return -EINVAL;
+>>  
+>> -	ggtt = node->ggtt;
+>> -	start = node->base.start;
+>> -	end = start + node->base.size - 1;
+>> +	start = xe_ggtt_node_addr(node);
+>> +	end = start + xe_ggtt_node_size(node) - 1;
+>>  
+>>  	while (start < end) {
+>>  		vfid_pte = u64_replace_bits(*buf++, vfid, GGTT_PTE_VFID);
+>> @@ -1212,7 +1226,7 @@ u64 xe_ggtt_read_pte(struct xe_ggtt *ggtt, u64 offset)
+>>   */
+>>  u64 xe_ggtt_node_addr(const struct xe_ggtt_node *node)
+>>  {
+>> -	return node->base.start;
+>> +	return node->base.start + node->ggtt->start;
+>>  }
+>>  
+>>  /**
+> 
+
