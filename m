@@ -4,27 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 11D39D30CF4
-	for <intel-xe@archiver.kernel.org>; Wed, 14 Jan 2026 00:03:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4E373D30CF5
+	for <intel-xe@archiver.kernel.org>; Wed, 14 Jan 2026 00:04:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C8ABA10E56E;
-	Wed, 14 Jan 2026 00:03:31 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5056F10E37F;
- Wed, 14 Jan 2026 00:03:31 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1145670032551116085=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0E41010E56E;
+	Wed, 14 Jan 2026 00:04:36 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GY8zdRxB";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 141BD10E37F
+ for <intel-xe@lists.freedesktop.org>; Wed, 14 Jan 2026 00:04:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1768349075; x=1799885075;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=vh/5IolTtmdKgvf7gS2e+mKAN7etcooFPMW4nyZg/2w=;
+ b=GY8zdRxBLkH1r5Ta2/v5juws8NmF8dxGAxE0/zJCKckOD4pn3sSUWTv4
+ XsXCEYaLywDhTFVNCoi6ltL+mqMN2kkprhjmhMXxT/W1HmljYrYQR1n4L
+ 9a83XwM1/L/vcqijFQ2Uj239YJf/ZXv3b8xy2j6pVyLFfLg7wJZlCYts7
+ xfrhxOL0Dcjpk5GAIYcxRurzymWb872/7ZgyZy0Es7x7Q+tS8r7M6pAui
+ ZeRp1RqYjr+I8JdyblpW7hO3RJ8f6YcV2Wp9LPcTlHmMrXLrPuvr7phy6
+ c7p+uufOjd8fS4NcnrJys9l7zZ5uPxg+0Mx9FiRLmk++wZrpO/YkOcsj1 w==;
+X-CSE-ConnectionGUID: 1xe9rlpXT/ynfHE1vOPwGg==
+X-CSE-MsgGUID: LH365nZcQduvLo0qaF/zsg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11670"; a="81010597"
+X-IronPort-AV: E=Sophos;i="6.21,224,1763452800"; d="scan'208";a="81010597"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jan 2026 16:04:34 -0800
+X-CSE-ConnectionGUID: WJvFlEGIQnCMVKilQ6S0Cg==
+X-CSE-MsgGUID: zN51gFeRR0ecEJ7am4bLuA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,224,1763452800"; d="scan'208";a="203740098"
+Received: from dut4344arlh.fm.intel.com ([10.105.10.86])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jan 2026 16:04:34 -0800
+From: Stuart Summers <stuart.summers@intel.com>
+To: 
+Cc: matthew.brost@intel.com, intel-xe@lists.freedesktop.org,
+ Stuart Summers <stuart.summers@intel.com>
+Subject: [PATCH 2/2] drm/xe: Enable ring based TLB invalidation for CI
+Date: Wed, 14 Jan 2026 00:04:21 +0000
+Message-Id: <20260114000421.331082-3-stuart.summers@intel.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20260114000421.331082-1-stuart.summers@intel.com>
+References: <20260114000421.331082-1-stuart.summers@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Cleanup_unused_headers_repo?=
- =?utf-8?q?rted_by_clangd?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matt Roper" <matthew.d.roper@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 14 Jan 2026 00:03:31 -0000
-Message-ID: <176834901129.152389.1704573053757884672@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260113230315.3081153-81-matthew.d.roper@intel.com>
-In-Reply-To: <20260113230315.3081153-81-matthew.d.roper@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,125 +64,28 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1145670032551116085==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Do not review - for CI only.
 
-== Series Details ==
+Signed-off-by: Stuart Summers <stuart.summers@intel.com>
+---
+ drivers/gpu/drm/xe/xe_pci.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-Series: Cleanup unused headers reported by clangd
-URL   : https://patchwork.freedesktop.org/series/160053/
-State : success
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index a2ce9da2e3cb..712ac1995c58 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -96,6 +96,7 @@ static const struct xe_graphics_desc graphics_xelpg = {
+ 	.has_asid = 1, \
+ 	.has_atomic_enable_pte_bit = 1, \
+ 	.has_range_tlb_inval = 1, \
++	.has_ring_tlb_inval = 1, \
+ 	.has_usm = 1, \
+ 	.has_64bit_timestamp = 1, \
+ 	.hw_engine_mask = \
+-- 
+2.34.1
 
-== Summary ==
-
-CI Bug Log - changes from xe-4378-5ef09fd6fa463fe02033807ed0c9c78957cdb0a8_BAT -> xe-pw-160053v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (12 -> 12)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-160053v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@xe_waitfence@engine:
-    - bat-dg2-oem2:       [FAIL][1] ([Intel XE#6519]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4378-5ef09fd6fa463fe02033807ed0c9c78957cdb0a8/bat-dg2-oem2/igt@xe_waitfence@engine.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160053v1/bat-dg2-oem2/igt@xe_waitfence@engine.html
-
-  
-  [Intel XE#6519]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519
-
-
-Build changes
--------------
-
-  * Linux: xe-4378-5ef09fd6fa463fe02033807ed0c9c78957cdb0a8 -> xe-pw-160053v1
-
-  IGT_8699: 0b67ab25f2eb58b296872c8c34474b79353727d5 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-4378-5ef09fd6fa463fe02033807ed0c9c78957cdb0a8: 5ef09fd6fa463fe02033807ed0c9c78957cdb0a8
-  xe-pw-160053v1: 160053v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160053v1/index.html
-
---===============1145670032551116085==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Cleanup unused headers reported by clangd</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/160053/">https://patchwork.freedesktop.org/series/160053/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160053v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160053v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4378-5ef09fd6fa463fe02033807ed0c9c78957cdb0a8_BAT -&gt; xe-pw-160053v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (12 -&gt; 12)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-160053v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_waitfence@engine:<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4378-5ef09fd6fa463fe02033807ed0c9c78957cdb0a8/bat-dg2-oem2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519">Intel XE#6519</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160053v1/bat-dg2-oem2/igt@xe_waitfence@engine.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4378-5ef09fd6fa463fe02033807ed0c9c78957cdb0a8 -&gt; xe-pw-160053v1</li>
-</ul>
-<p>IGT_8699: 0b67ab25f2eb58b296872c8c34474b79353727d5 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-4378-5ef09fd6fa463fe02033807ed0c9c78957cdb0a8: 5ef09fd6fa463fe02033807ed0c9c78957cdb0a8<br />
-  xe-pw-160053v1: 160053v1</p>
-
-</body>
-</html>
-
---===============1145670032551116085==--
