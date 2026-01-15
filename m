@@ -4,50 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 62463D3CCBF
-	for <intel-xe@archiver.kernel.org>; Thu, 15 Jan 2026 07:51:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D05B8D3CCBD
+	for <intel-xe@archiver.kernel.org>; Thu, 15 Jan 2026 07:51:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 275FE10E6D8;
-	Thu, 15 Jan 2026 07:51:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 90AE910E6DB;
+	Thu, 15 Jan 2026 07:51:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="j7cLjNJX";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="a474Xqcf";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0FD0810E6D2;
- Thu, 15 Jan 2026 07:51:08 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0EF2410E6D7;
+ Thu, 15 Jan 2026 07:51:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1768463468; x=1799999468;
+ t=1768463471; x=1799999471;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=hEpvVrR6VeXaavKCS1YkeprH0g9XZFKuygfPgWdwymc=;
- b=j7cLjNJXOhiOdsfPa8BlvNTT6jzDrhCSpib3fyNpqtnnyZR0X0SMb0gr
- BE56yrezz9IAQFFqbzhY/y38Wl32XbUlc4ZzjsxpfDbAOBZ5K9y858Fe0
- T/miBL6rYvZetNwi/zni1iZgIHj5uJaobUQfyM8K1Dr4T1hohL/sjbdU1
- WRMJN8VlfGY3YYonA6xZHooGWfkkXKlvA7N4pTsIgasaj2rXDoIBcIh9z
- /QV0F9H3h1oxT9xyDabEbDpijFSyzMNNRgTdHqPUvqic7BncqHvJfGvu/
- mJ9DBdlYfXKLgUnxikcKX1EOB3tehL0e8X/LgEIGiVDMEKiNE1y9tlD0V Q==;
-X-CSE-ConnectionGUID: /wawGN3sTc6Qa4kUDTDx2g==
-X-CSE-MsgGUID: HOqu1qr0QiqJs+28do/QIQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11671"; a="92436201"
-X-IronPort-AV: E=Sophos;i="6.21,226,1763452800"; d="scan'208";a="92436201"
+ bh=T/7lOctHHzmP+WuHPLJeetnak24m9yE493aV5GMOc2E=;
+ b=a474XqcfXYIwzATwlMjzGYnR7VwebpSFD2hEFZXM9LAWqP3g/KrATFs+
+ q6KXB8nTYv9lf4whUBNLh7Nyy5NrFxD4Cvj8NOzGBQH8vIgccvt3LpEkL
+ 0aqsb5aRCu6FY6T+fdEX37QTY8yCwrN5P86TqMnZidNoXPk2byQ3R9pDG
+ Wj0LG4VjkQONfHv96KElPV7cVXeR+Qpzwb3XiMFcDRrFVcDN9PoEF/vuK
+ zjDi9fSppuH5UkT5NdM2ELH2K1R7XOEs0PQWAYfn6XWHRLm6Wifag/chD
+ vYHS2bDaeP4OOafFYNlkWPP1SDgzaFBJJ4OAGMLKWw2XG5nSeMbscSkay w==;
+X-CSE-ConnectionGUID: OKeJGJhMR2GZ0gCvN4bunw==
+X-CSE-MsgGUID: xuVEN4Q3QS2RqXWGvqwZWg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11671"; a="92436207"
+X-IronPort-AV: E=Sophos;i="6.21,226,1763452800"; d="scan'208";a="92436207"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jan 2026 23:51:08 -0800
-X-CSE-ConnectionGUID: yZrComClThKXf0kXv0tL6g==
-X-CSE-MsgGUID: CVUk+KcaQ1aUMzCtr1mVNA==
+ 14 Jan 2026 23:51:11 -0800
+X-CSE-ConnectionGUID: aRIhzlBFRyS7ZwOEWjQzIw==
+X-CSE-MsgGUID: VtlDs5AuSYuoXByHq2Dv0g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,226,1763452800"; d="scan'208";a="204101694"
+X-IronPort-AV: E=Sophos;i="6.21,226,1763452800"; d="scan'208";a="204101717"
 Received: from display-adls.igk.intel.com ([10.211.131.198])
- by orviesa010.jf.intel.com with ESMTP; 14 Jan 2026 23:51:06 -0800
+ by orviesa010.jf.intel.com with ESMTP; 14 Jan 2026 23:51:09 -0800
 From: Mika Kahola <mika.kahola@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Mika Kahola <mika.kahola@intel.com>,
  Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH v3 01/15] drm/i915/cx0: Move C10 port clock calculation
-Date: Thu, 15 Jan 2026 07:50:47 +0000
-Message-ID: <20260115075101.2214842-2-mika.kahola@intel.com>
+Subject: [PATCH v3 03/15] drm/i915/cx0: Drop Cx0 crtc_state from HDMI TMDS pll
+ divider calculation
+Date: Thu, 15 Jan 2026 07:50:49 +0000
+Message-ID: <20260115075101.2214842-4-mika.kahola@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260115075101.2214842-1-mika.kahola@intel.com>
 References: <20260115075101.2214842-1-mika.kahola@intel.com>
@@ -67,90 +68,79 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Prepare removal of .clock member from pll state
-structures by moving intel_c10pll_calc_port_clock()
-function.
+Drop crtc_state from HDMI TMDS calculation and replace with the
+parameters that are only required. Follow-up changes will call
+these functions without a crtc_state available.
 
-No functional changes.
+v2: Keep required crtc_state param for intel_c20_pll_tables_get()
+    and other functions calling this one.
 
 Signed-off-by: Mika Kahola <mika.kahola@intel.com>
 Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cx0_phy.c | 54 ++++++++++----------
- 1 file changed, 27 insertions(+), 27 deletions(-)
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c | 17 +++++++++--------
+ 1 file changed, 9 insertions(+), 8 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-index 7288065d2461..5cd756321373 100644
+index ac5e304ba306..6447d7c80ffc 100644
 --- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
 +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-@@ -2103,6 +2103,33 @@ static bool cx0pll_state_is_dp(const struct intel_cx0pll_state *pll_state)
- 	return c20pll_state_is_dp(&pll_state->c20);
+@@ -2414,9 +2414,8 @@ static bool is_arrowlake_s_by_host_bridge(void)
+ 	return pdev && IS_ARROWLAKE_S_BY_HOST_BRIDGE_ID(host_bridge_pci_dev_id);
  }
  
-+static int intel_c10pll_calc_port_clock(struct intel_encoder *encoder,
-+					const struct intel_c10pll_state *pll_state)
-+{
-+	unsigned int frac_quot = 0, frac_rem = 0, frac_den = 1;
-+	unsigned int multiplier, tx_clk_div, hdmi_div, refclk = 38400;
-+	int tmpclk = 0;
-+
-+	if (pll_state->pll[0] & C10_PLL0_FRACEN) {
-+		frac_quot = pll_state->pll[12] << 8 | pll_state->pll[11];
-+		frac_rem =  pll_state->pll[14] << 8 | pll_state->pll[13];
-+		frac_den =  pll_state->pll[10] << 8 | pll_state->pll[9];
-+	}
-+
-+	multiplier = (REG_FIELD_GET8(C10_PLL3_MULTIPLIERH_MASK, pll_state->pll[3]) << 8 |
-+		      pll_state->pll[2]) / 2 + 16;
-+
-+	tx_clk_div = REG_FIELD_GET8(C10_PLL15_TXCLKDIV_MASK, pll_state->pll[15]);
-+	hdmi_div = REG_FIELD_GET8(C10_PLL15_HDMIDIV_MASK, pll_state->pll[15]);
-+
-+	tmpclk = DIV_ROUND_CLOSEST_ULL(mul_u32_u32(refclk, (multiplier << 16) + frac_quot) +
-+				     DIV_ROUND_CLOSEST(refclk * frac_rem, frac_den),
-+				     10 << (tx_clk_div + 16));
-+	tmpclk *= (hdmi_div ? 2 : 1);
-+
-+	return tmpclk;
-+}
-+
- /*
-  * TODO: Convert the following to align with intel_c20pll_find_table() and
-  * intel_c20pll_calc_state_from_table().
-@@ -2166,33 +2193,6 @@ static int intel_c10pll_calc_state(const struct intel_crtc_state *crtc_state,
- 	return 0;
- }
- 
--static int intel_c10pll_calc_port_clock(struct intel_encoder *encoder,
--					const struct intel_c10pll_state *pll_state)
--{
--	unsigned int frac_quot = 0, frac_rem = 0, frac_den = 1;
--	unsigned int multiplier, tx_clk_div, hdmi_div, refclk = 38400;
--	int tmpclk = 0;
--
--	if (pll_state->pll[0] & C10_PLL0_FRACEN) {
--		frac_quot = pll_state->pll[12] << 8 | pll_state->pll[11];
--		frac_rem =  pll_state->pll[14] << 8 | pll_state->pll[13];
--		frac_den =  pll_state->pll[10] << 8 | pll_state->pll[9];
--	}
--
--	multiplier = (REG_FIELD_GET8(C10_PLL3_MULTIPLIERH_MASK, pll_state->pll[3]) << 8 |
--		      pll_state->pll[2]) / 2 + 16;
--
--	tx_clk_div = REG_FIELD_GET8(C10_PLL15_TXCLKDIV_MASK, pll_state->pll[15]);
--	hdmi_div = REG_FIELD_GET8(C10_PLL15_HDMIDIV_MASK, pll_state->pll[15]);
--
--	tmpclk = DIV_ROUND_CLOSEST_ULL(mul_u32_u32(refclk, (multiplier << 16) + frac_quot) +
--				     DIV_ROUND_CLOSEST(refclk * frac_rem, frac_den),
--				     10 << (tx_clk_div + 16));
--	tmpclk *= (hdmi_div ? 2 : 1);
--
--	return tmpclk;
--}
--
- static int readout_enabled_lane_count(struct intel_encoder *encoder)
+-static u16 intel_c20_hdmi_tmds_tx_cgf_1(const struct intel_crtc_state *crtc_state)
++static u16 intel_c20_hdmi_tmds_tx_cgf_1(struct intel_display *display)
  {
- 	struct intel_display *display = to_intel_display(encoder);
+-	struct intel_display *display = to_intel_display(crtc_state);
+ 	u16 tx_misc;
+ 	u16 tx_dcc_cal_dac_ctrl_range = 8;
+ 	u16 tx_term_ctrl = 2;
+@@ -2438,7 +2437,8 @@ static u16 intel_c20_hdmi_tmds_tx_cgf_1(const struct intel_crtc_state *crtc_stat
+ 		C20_PHY_TX_DCC_BYPASS | C20_PHY_TX_TERM_CTL(tx_term_ctrl));
+ }
+ 
+-static int intel_c20_compute_hdmi_tmds_pll(const struct intel_crtc_state *crtc_state,
++static int intel_c20_compute_hdmi_tmds_pll(struct intel_display *display,
++					   int port_clock,
+ 					   struct intel_c20pll_state *pll_state)
+ {
+ 	u64 datarate;
+@@ -2452,10 +2452,10 @@ static int intel_c20_compute_hdmi_tmds_pll(const struct intel_crtc_state *crtc_s
+ 	u8  mpllb_ana_freq_vco;
+ 	u8  mpll_div_multiplier;
+ 
+-	if (crtc_state->port_clock < 25175 || crtc_state->port_clock > 600000)
++	if (port_clock < 25175 || port_clock > 600000)
+ 		return -EINVAL;
+ 
+-	datarate = ((u64)crtc_state->port_clock * 1000) * 10;
++	datarate = ((u64)port_clock * 1000) * 10;
+ 	mpll_tx_clk_div = ilog2(div64_u64((u64)CLOCK_9999MHZ, (u64)datarate));
+ 	vco_freq_shift = ilog2(div64_u64((u64)CLOCK_4999MHZ * (u64)256, (u64)datarate));
+ 	vco_freq = (datarate << vco_freq_shift) >> 8;
+@@ -2477,9 +2477,9 @@ static int intel_c20_compute_hdmi_tmds_pll(const struct intel_crtc_state *crtc_s
+ 	else
+ 		mpllb_ana_freq_vco = MPLLB_ANA_FREQ_VCO_0;
+ 
+-	pll_state->clock	= crtc_state->port_clock;
++	pll_state->clock	= port_clock;
+ 	pll_state->tx[0]	= 0xbe88;
+-	pll_state->tx[1]	= intel_c20_hdmi_tmds_tx_cgf_1(crtc_state);
++	pll_state->tx[1]	= intel_c20_hdmi_tmds_tx_cgf_1(display);
+ 	pll_state->tx[2]	= 0x0000;
+ 	pll_state->cmn[0]	= 0x0500;
+ 	pll_state->cmn[1]	= 0x0005;
+@@ -2731,7 +2731,8 @@ static int intel_c20pll_calc_state(const struct intel_crtc_state *crtc_state,
+ 
+ 	/* TODO: Update SSC state for HDMI as well */
+ 	if (!is_dp && err)
+-		err = intel_c20_compute_hdmi_tmds_pll(crtc_state, &hw_state->cx0pll.c20);
++		err = intel_c20_compute_hdmi_tmds_pll(display, crtc_state->port_clock,
++						      &hw_state->cx0pll.c20);
+ 
+ 	if (err)
+ 		return err;
 -- 
 2.43.0
 
