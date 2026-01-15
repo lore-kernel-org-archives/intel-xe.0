@@ -4,190 +4,182 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 05195D44C66
-	for <intel-xe@archiver.kernel.org>; Thu, 15 Jan 2026 15:58:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7DC1DD44C6F
+	for <intel-xe@archiver.kernel.org>; Thu, 15 Jan 2026 16:06:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BAF1910E188;
-	Thu, 15 Jan 2026 15:58:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3C51910E79E;
+	Thu, 15 Jan 2026 16:06:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="yoOsjCWX";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AKZLNX42";
 	dkim-atps=neutral
-Received: from CH1PR05CU001.outbound.protection.outlook.com
- (mail-northcentralusazon11010011.outbound.protection.outlook.com
- [52.101.193.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 202BC10E037;
- Thu, 15 Jan 2026 15:58:34 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C0D9310E79E
+ for <intel-xe@lists.freedesktop.org>; Thu, 15 Jan 2026 16:06:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1768493172; x=1800029172;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=UVV2W5HjMpRrJEPc13FPJKBUugP1o3WZsDpMUySQYKQ=;
+ b=AKZLNX42zjXcyW1UjTj86CkBYmbo78LsVIyq8Ws5k0sTtgwszjKF1py7
+ lgElMKVIXt8IFAT1hTEfoFxYS/SJdAAGny4nNLdnOEeX+LjOV4ixgSPUt
+ ytscb4UWw0QtrcergJ4+Mxw4GRfLBcisbBGL4C5z7jfRaNyYGJD7f822R
+ lmCQmLO//2I7SAkU1pRlgeMforEQ4aZrAyPsLJI5jyKmncx/MlLFVbt6n
+ nD5rt+Jxv3tJmXSgkqo+MWXe4nDhjNhxHSJBTqrp9orbUZjy+4wFmNqTO
+ V8figfi9ftXzKV3S8RoRj2hgMXHVXYrZAsRE9m/7cUxQGFFEvmXKdD2GK w==;
+X-CSE-ConnectionGUID: cg6w2S4wRCuxyi4xTBNAeA==
+X-CSE-MsgGUID: 0kyRZjIxSNeRqkLHG0Aopg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11672"; a="73643523"
+X-IronPort-AV: E=Sophos;i="6.21,228,1763452800"; d="scan'208";a="73643523"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jan 2026 08:06:12 -0800
+X-CSE-ConnectionGUID: Pns+ZWKaTsqtGTLgp5shWQ==
+X-CSE-MsgGUID: fI1LqRpWQ3qQ9iWYXik3tQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,228,1763452800"; d="scan'208";a="209126763"
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+ by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jan 2026 08:06:12 -0800
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.29; Thu, 15 Jan 2026 08:06:11 -0800
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.29 via Frontend Transport; Thu, 15 Jan 2026 08:06:11 -0800
+Received: from SA9PR02CU001.outbound.protection.outlook.com (40.93.196.59) by
+ edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.29; Thu, 15 Jan 2026 08:06:11 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=tdrcscu86pefir6hlnQsIuwih5RiDiEmpSfhbcnbuTxS9azkJCIaBFEsCTKw36YdnLlM6ix4N2QZ5IiU31Z9fw19RQPz20B5d6DiOqj9v/+6CHQ82HhVeIng7HxCuWA7ykdzUmoh3F5kus8TkALVOV7zUDRJosJ0CtkEBRptMSa0ZwsxlGdY+LPwvSXiN+WXlbDmHVvs6SkfG8MAao2M0AJ45rqg9LH8Q+hf7SLiLQcY3yVF3z75eAg+k8fbgmYJnTnbcz5hDHo3zVRd9QtqL5REIb8zhUApdyVKTCNN5n61EAWimxgNflDahNJIMQoG1EfL9p5hc/agwFL9Q3kA/A==
+ b=gm3Ax2CUFb2KzE6mg8N/HOAqd/OtPMqFFswZDx4yPWkoybSVLt5wngdhq/jvaYLmiVgI0nyXyeeLpvBJUEGnEVyVSZHwHEeG7L6JzDupMA1ML7/JvcHa4luwSZmjiazhQIegTqI9iACF7l6gXIGYXqwbZ2bZWR8H92fgfQgYAN6AEWvzUprKhaknToGMWcFZ4ZUAnj9Alw6Il6Y+SdATBtuqnEqAVaG78clnP/wdv7KuL7j9qmODSfSHJAd6u1Ns+z6BOXPam0zKCVQ+m4Dw+d0jDpz4UzEYHA2fc9IU8Yz6FVnhN5Cyg+DhK5hAbGCSyqXivGQm+HYI5ZHUuCf9dA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ny6Y3XZbe4GhcQgC2/euPtCvQi0K2eKyJGQUaZnUazE=;
- b=CAWYlzrfRJcA2I4mg6MJtuPX+qRfzNtSxaUC5wuPrXaNjxydbaabAt7/bfF/mRBsjdPjxp3J8HwJvm8b2ONdfCAbicZtGGGVMKlyXFaalJqYy5ieRM39pS6DQ3qxr0Z6cOy7w95ZD5BHnJBzVopUYalJXvqB0wP7KADfySrToStYwia3AM3SOAks6xUMD0YsdyXQf2KeOYGoycUJeTRYXjHDEb2BIZD5ZIr5/ZNWrkFokfYLmALllEIDXc+TjwlxGysaxVQy2ZxK4FpqLaJjVuJl62CWD2Oig10wpIUYrBSKKm31rzvafH/6VvWL1LK4a78ZI7QJ6xTdQsrmbqxVEg==
+ bh=bHNA+uIZu4cGB1vqz+isMgecjdjbwaffNfaGn/g2b4o=;
+ b=TLUxG89YpVog3HryIKCYVpnOAKoxzPfP1jizPXYNe3me7uOYTDUCQYK3gR4zan3z2zP3YIPClC17KIuQA+zG4j4VjVRaYfllbWgM+myHOCyXxDDa5I+ocymK5K1VTO9rzQUw5sh70r2MO/AsQqllOOScz08BJjx2s9+ltZi7VriSv1o5JWZz9XUMIbu+/tHbysEgRVoL7yufCruQ5k9tomPEMf9jyaGSg/3s7gI5/xC1ne5iA0J9/hLyljmdhTZ9y3IPPI9zEIDQs4gvuuk3wYXebYbMY0mOIkMFsAOZPzjE+TiPF1UBqDycS9CWhtwUhmQelUOJjPBK1NNoHbNMaA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ny6Y3XZbe4GhcQgC2/euPtCvQi0K2eKyJGQUaZnUazE=;
- b=yoOsjCWXqOnIaBkwgZndsIB6MQX1cK99N8i+gPz37mAiVUBNAdZHoTRIwsPrycj6x5PDn39pznLtJIDmCQEll27oEUGNJvERuhh7sc1H6uVRNgMhTM4wZ1QUwW9fOaTpRcp45AnxPUUwKBLk9aZ1jV+FrVRjgGz0FRTHpKCDMe8=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
- by MN2PR12MB4237.namprd12.prod.outlook.com (2603:10b6:208:1d6::7)
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from IA1PR11MB6418.namprd11.prod.outlook.com (2603:10b6:208:3aa::18)
+ by SJ1PR11MB6083.namprd11.prod.outlook.com (2603:10b6:a03:48a::9)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9520.4; Thu, 15 Jan
- 2026 15:58:28 +0000
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::46fb:96f2:7667:7ca5]) by PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::46fb:96f2:7667:7ca5%4]) with mapi id 15.20.9520.005; Thu, 15 Jan 2026
- 15:58:28 +0000
-Message-ID: <9025bacb-c7ed-4d21-b826-0cb0bf4311ac@amd.com>
-Date: Thu, 15 Jan 2026 16:58:17 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 00/12] Recover sysfb after DRM probe failure
-To: Thomas Zimmermann <tzimmermann@suse.de>,
- Zack Rusin <zack.rusin@broadcom.com>
-Cc: dri-devel@lists.freedesktop.org, Alex Deucher
- <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org,
- Ard Biesheuvel <ardb@kernel.org>, Ce Sun <cesun102@amd.com>,
- Chia-I Wu <olvaffe@gmail.com>, Danilo Krummrich <dakr@kernel.org>,
- Dave Airlie <airlied@redhat.com>, Deepak Rawat <drawat.floss@gmail.com>,
- Dmitry Osipenko <dmitry.osipenko@collabora.com>,
- Gerd Hoffmann <kraxel@redhat.com>,
- Gurchetan Singh <gurchetansingh@chromium.org>,
- Hans de Goede <hansg@kernel.org>, Hawking Zhang <Hawking.Zhang@amd.com>,
- Helge Deller <deller@gmx.de>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, Jani Nikula <jani.nikula@linux.intel.com>,
- Javier Martinez Canillas <javierm@redhat.com>,
- Jocelyn Falempe <jfalempe@redhat.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Lijo Lazar <lijo.lazar@amd.com>, linux-efi@vger.kernel.org,
- linux-fbdev@vger.kernel.org, linux-hyperv@vger.kernel.org,
- linux-kernel@vger.kernel.org, Lucas De Marchi <lucas.demarchi@intel.com>,
- Lyude Paul <lyude@redhat.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- "Mario Limonciello (AMD)" <superm1@kernel.org>,
- Mario Limonciello <mario.limonciello@amd.com>,
- Maxime Ripard <mripard@kernel.org>, nouveau@lists.freedesktop.org,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Simona Vetter <simona@ffwll.ch>,
- spice-devel@lists.freedesktop.org,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- =?UTF-8?Q?Timur_Krist=C3=B3f?= <timur.kristof@gmail.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, virtualization@lists.linux.dev,
- Vitaly Prosyak <vitaly.prosyak@amd.com>
-References: <20251229215906.3688205-1-zack.rusin@broadcom.com>
- <c816f7ed-66e0-4773-b3d1-4769234bd30b@suse.de>
- <CABQX2QNQU4XZ1rJFqnJeMkz8WP=t9atj0BqXHbDQab7ZnAyJxg@mail.gmail.com>
- <97993761-5884-4ada-b345-9fb64819e02a@suse.de>
- <9058636d-cc18-4c8f-92cf-782fd8f771af@amd.com>
- <4ee824d5-8ea0-4ae1-8bcb-5f8cbae37fc8@suse.de>
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9520.5; Thu, 15 Jan
+ 2026 16:06:08 +0000
+Received: from IA1PR11MB6418.namprd11.prod.outlook.com
+ ([fe80::b831:13bc:a1c9:2628]) by IA1PR11MB6418.namprd11.prod.outlook.com
+ ([fe80::b831:13bc:a1c9:2628%4]) with mapi id 15.20.9520.005; Thu, 15 Jan 2026
+ 16:06:08 +0000
+From: "Ruhl, Michael J" <michael.j.ruhl@intel.com>
+To: "Vijay, Anoop C" <anoop.c.vijay@intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+CC: "Nerlige Ramappa, Umesh" <umesh.nerlige.ramappa@intel.com>, "Nilawar,
+ Badal" <badal.nilawar@intel.com>, "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
+ "Iddamsetty, Aravind" <aravind.iddamsetty@intel.com>, "Tauro, Riana"
+ <riana.tauro@intel.com>, "Gupta, Anshuman" <anshuman.gupta@intel.com>,
+ "Roper, Matthew D" <matthew.d.roper@intel.com>, "Luse, Paul E"
+ <paul.e.luse@intel.com>, "V, Mohamed Mansoor" <mohamed.mansoor.v@intel.com>,
+ "Nasim, Kam" <kam.nasim@intel.com>
+Subject: RE: [PATCH v3 0/6] drm/xe/sysctrl: Add system controller component
+ for Xe3p dGPU platforms
+Thread-Topic: [PATCH v3 0/6] drm/xe/sysctrl: Add system controller component
+ for Xe3p dGPU platforms
+Thread-Index: AQHcgJdKwL747RRQYkmcH0fatxvElrVTb1AQ
+Date: Thu, 15 Jan 2026 16:06:08 +0000
+Message-ID: <IA1PR11MB6418BF48EB886CC4CA6BD838C18CA@IA1PR11MB6418.namprd11.prod.outlook.com>
+References: <20260108120548.1015154-8-anoop.c.vijay@intel.com>
+In-Reply-To: <20260108120548.1015154-8-anoop.c.vijay@intel.com>
+Accept-Language: en-US
 Content-Language: en-US
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-In-Reply-To: <4ee824d5-8ea0-4ae1-8bcb-5f8cbae37fc8@suse.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-ClientProxiedBy: FR4P281CA0301.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:f6::13) To PH7PR12MB5685.namprd12.prod.outlook.com
- (2603:10b6:510:13c::22)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|MN2PR12MB4237:EE_
-X-MS-Office365-Filtering-Correlation-Id: c40f6f14-90de-41c5-23dd-08de544eec2d
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|366016|7416014|376014|7053199007; 
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?MHN0SWN0N1dkZjFWbm1naVY1WFJKbW1HUWR0R2lmQm91SVBOUjZ5ZnE1TlJC?=
- =?utf-8?B?eEhiZGNFMURjek1GT3VYelZ1alNCOUtMVGtrU3JtbkdYN1VGelhXaTFmazFN?=
- =?utf-8?B?alkxUWgvckNJRVBldGYzY1Yza3lhV0h5eHRXUXUrNFdnckIzMEoyTFBJK0pU?=
- =?utf-8?B?eXcwbmlzdWtBUmFwQXdkaERFNEJKRnBiSTFXZUd1Zm9Cd255NGZPREFCV0hM?=
- =?utf-8?B?SjdsZ2lVTzJGZHBpeHhEdzhZdnErTFMxZ0FVVUlzVzNic0RmUjBvVmZaaURC?=
- =?utf-8?B?clkrbU9EeEE5MlV4ODRGN0tqRFQwcWxLNXdLZHFKamNQekw0L3VuMmZ1dXJR?=
- =?utf-8?B?UTBSM25VZi8xa2wxblpLQ0ZxaWRab0lCMU14L3grdGNHZ3ZLdVNZazNBbkVC?=
- =?utf-8?B?U2JpbHFlRExrbnhBbXpUUytiaWphV0x4WnpoaHQraDZIa1BDT2ZTVWNTbjc2?=
- =?utf-8?B?WUxRMHNCYW9Lc3pOMmU4aFdHZmViMFRnL1FZZDV6Q2E3UGtVNi9mR1VEaEtS?=
- =?utf-8?B?eHlrQndVQWJ5OVZYclBpaENUYTBzdW0vTTRzR3A0VEIrSUtManVDb3k5aEs0?=
- =?utf-8?B?ZDlUdlY5a0o5dkcvUDNsNlNBaDJUaXU4dmJldCt4YnY5aHRwZVRJSGpyKzFW?=
- =?utf-8?B?czRTM0JEYkFaWm02dFJGZzRVYnFETXFISDBHZXJISkxmRDM4UVRFVklpdWVz?=
- =?utf-8?B?QllCWWM4cDdWb09kOGNQRzUwV3hIWXU1T0ZiSG1nbGdxeHl0QkxWcmpML091?=
- =?utf-8?B?WlhuTk1jK1c1YTlySjZ4QzRodXVTcGxIS1lqL0lZa0hCaDNmNmNjTkhNL1Yy?=
- =?utf-8?B?aEpWVkc2UGJRK2w4WmphRTRoejh2K2d5aUV0R1JzVGNDN25RRllIYWhRcUVn?=
- =?utf-8?B?L0RaZjZPVGw5cWJxUlpldEZ2VHJ3ODI5Q2JudWZKOU11Lyt0Zk5ybTJIUFVY?=
- =?utf-8?B?VHBsMWMrVTM1ZjV0Q2h5Q2s2alFYYVl2RGcvTFhoUGk4VDI0SWNvVUVUVGs2?=
- =?utf-8?B?cjhzQk4ybFR4UzZsTXJuMHl3R1llK3RkUEJ6dDk2YXo4L1dtd1l0UXNFVm5K?=
- =?utf-8?B?TFhTY1BLOEtHN3BtTTFTb1A1c1BITGZiWDFIQlBTMURmdGh4VFF0dGJNNFdN?=
- =?utf-8?B?a2Q3eDljM2daK0ZXNWYxYnJwalFjNmtiTHQ0dllMRmxWa0N1MUJTNEJwWVlr?=
- =?utf-8?B?d3JLeDBNSUxId2lDNVZGdC9PNnNFYmZMNld0VGpvdUF1a0hlVXVrMnZ5ZGRL?=
- =?utf-8?B?aXRlR0kyY1M1QWtkQTZYcG1WTzJOdnRQNDk3Y0xXdUFOUmJIVFMvMndFb3Fu?=
- =?utf-8?B?UHJjaGxuU004VXJzVC95S2tkRVVKT3lMeThrNlVPZjRScEZMRkdVRXEwVTZl?=
- =?utf-8?B?RHg5QmUzTGFXblZtRE5YVFdDa3o0eXdvVUNxYjJ2OFFhcEsyaXl2UHBNSUQv?=
- =?utf-8?B?RUxXWlNlWkFFTVVydEExREFiQ08wdldTekZVNDY4ajJYNGx6OHY5WTcwZFQw?=
- =?utf-8?B?aW5vVzFSMG0vSlR2Vi8vNTU4RkwyN3NDc051ektOd01pdnlzdjRTanMvbDAz?=
- =?utf-8?B?QU11MXV6MDFWdWhuSHFqR1Iwb0FCdllyTzZPanA0dmpDTVdTTFBsRUdhRHdj?=
- =?utf-8?B?UUJDbngvTnN6YWR2cXNWdEl1b0k2NmV5bWlRd084MW8wQTBvN3IxeE1qY2Ux?=
- =?utf-8?B?aTZyZi9XQUNPMFZkR1BBSm1KN0lDZVd5RDNBcmJVSXhCMFlMNmZnT0Y3TjRt?=
- =?utf-8?B?ZU8zVkgxdTJ3TzN4ekJ4Y09JNWFKb1ZvSEJpRlZQeHc1TWJOaENzZm9hYUhx?=
- =?utf-8?B?ZmJDcjV4Vm5GMmFYN1M5Q2pjV0hXVTFocW81MkxiWVF3OTFkUWZCRHpDSktr?=
- =?utf-8?B?OVdtVXcycjdNVG9vTmk0WHhURVh0YjJCdFVUZGhNMU5PWGdtVW00eCtxOVU0?=
- =?utf-8?B?ZUYrSkMraE1xZXM3MWdLYSs3RnBTN3lUMEg3NjEwcHgzc1JCc2s1c3lhS3Zy?=
- =?utf-8?B?ODMwSlJoTnZRNVZmSFoybWRCcnJPMWhNQ3RQZ0RCdGR6N1ZZd3BzQnhxUWNv?=
- =?utf-8?B?N3Z3WnlBdWN5MFdvOGswZXFYb0Z5eWpMT1JKVkRuY0JSK095alVjSjdjaWVR?=
- =?utf-8?Q?45Bk=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(7416014)(376014)(7053199007); DIR:OUT;
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: IA1PR11MB6418:EE_|SJ1PR11MB6083:EE_
+x-ms-office365-filtering-correlation-id: aee9d694-6bad-4967-8c0a-08de544ffe87
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|366016|376014|1800799024|7053199007|38070700021; 
+x-microsoft-antispam-message-info: =?us-ascii?Q?YVYygrcGBiDgu8dh3CnU6smWUvcwf7VfpQamB3cBAfFYBXTv7dGtRPCfZ3CF?=
+ =?us-ascii?Q?/iUBCaYk3i4ZIzjcATVu9f1YRrQZNL49LuVuND05KUgHbZ2e6pIXWAKFTFjI?=
+ =?us-ascii?Q?9DJpbB3Jhi0l6jxZk096GpQqH6Vdd1jXQdtIxw4mFyZgTnoVMT+1D8g45HLl?=
+ =?us-ascii?Q?3JBQKMY+znBTqijf/cuNxV9eVCrejh2DDVW+PpUsMgNSV1nE+2edAT8tDMrZ?=
+ =?us-ascii?Q?FTn8Z3faSOHx+Fy5lzMCSWCl2kgvD+aSt8vrsxEQq+/BpnviMd3IU7kLm1bq?=
+ =?us-ascii?Q?Bntt+4cgKgaHJcZ/3PXkCi+mS/NXHdJeEu08oF4kUrDO89FlY6RHyjOc3Ct4?=
+ =?us-ascii?Q?EiQPite5A2LWNsbItX2zD3ZnpYBp94u065jorOdivyeio0sNl7qc/p4JBT3u?=
+ =?us-ascii?Q?oP+HnprJ7nd7MBUNTBDzqv53Pqq4J1AbOc5yJMeWdSGU88US1F63ztYQTNID?=
+ =?us-ascii?Q?uRBjYDRr+UqHQarefFQ26rVlpjUWymlgFtOwGt+YMmJ1r0nQd/o62SXLNYTP?=
+ =?us-ascii?Q?OpAYU2JDCLGklPAexUv+On0Uavicyd4nFWflanQS/gtkTZCc3JbPjB6S7c3f?=
+ =?us-ascii?Q?Ey0J266QO/tUEMX+eNE1WOfkQ67g83THNlDz8ScH8RCckTDHtiylR0c3Yc6k?=
+ =?us-ascii?Q?Ze14/mmX/AzyHJLd1f1WpGlN5XbNLCCdsZXMKqJXeiqtQNC/pVjcUcfiZvxE?=
+ =?us-ascii?Q?LjJdpfy+v9EUvIo4q+mgKF1FPSRbtgP6hGecgCkQcahCMo/FQIEwDf1jj6rm?=
+ =?us-ascii?Q?YmkL2V8hbvQIcxBTcevPIlwZiRyrpzcIq5/PMx73fmptNZ4WY8b2KppR/VBF?=
+ =?us-ascii?Q?R4VMFH7rxugQjNfmtWtYfXbDU2ep3UiZ65k3zDXAUN+grCol8bwE9A5dc39p?=
+ =?us-ascii?Q?kiPDSBkoEE2DElE95nuQVcgc4aAib9fhp6NlvClJQpc1J0DAALRez3sMn315?=
+ =?us-ascii?Q?7UV0XdjpN3be4N1mwlNYFPadhK5pp38K0F/t4wSodolNkhEVyktH19iA+Rs5?=
+ =?us-ascii?Q?gg1lVGY5pNWwEZitnwRq4myLLOC02abh2dJxul7p0aZFEzLAbkQfentDk6f8?=
+ =?us-ascii?Q?U7GfER8HhCFbXVdo3mJ6hvAG616d8L8noiZ3ubWw3VA1CllF4krJ70nb4a6t?=
+ =?us-ascii?Q?8e/D7MlzFlHawkvDpN/h37sfX1ScIOn0Og9vHSmNal/FtPxEcUroROMTrN8g?=
+ =?us-ascii?Q?BiM6pxDoSgAn71K9VKtfD1F1o0Z7y0st1RKHyE/nMw+vlascGxXlovtTtiGF?=
+ =?us-ascii?Q?kYgPkdOsnX/O5YyDsb2Ctwxs86It22KzXmiuRSgdbnLLZ/i8D/fjgaCs3pt3?=
+ =?us-ascii?Q?D7j1V6rutWFSBIJLUxxSAadKnwYs6NdYxpp+hO0ToJ5Lc6Wt2QsBav2vp59E?=
+ =?us-ascii?Q?ETMQKKgxDvfIx7Ny6vHf6HuokTrCnNy9zrt9Nyq/PX6uqePWAprvigSWto5q?=
+ =?us-ascii?Q?i/ZxlibwCIVEmDai1ntnnd0+Dg8/tZQf8g4XsSB7szQ4nPcQFiSlh8aeXHht?=
+ =?us-ascii?Q?ip+ZtsqgiugpIqyjL9aGZVnYZJXfbun/SyPKGtkDe36LKdnTdv+ZPhImI474?=
+ =?us-ascii?Q?22yYcjwKEV7z/rjisIwLdYCl8+io/nff2gTACPUlaTNCQP5wFdcPN3OJHCg6?=
+ =?us-ascii?Q?KddTBOl/qxmxew3jhaLgEeg=3D?=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:IA1PR11MB6418.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(1800799024)(7053199007)(38070700021); DIR:OUT;
  SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?M0l6SFlIREFkYllKUDZxUGduemhZd2R4QlY2LytQRCtkTFROSzdDWE04eFBj?=
- =?utf-8?B?VUhPcGVvOXMrMWpFSnh2bmtvKzF3aEYxRWVtNEJLbmRMQ1JmZUpSVjMvOUR5?=
- =?utf-8?B?c1g1cmgwSE42OGRRSHUyUzhaNXFUa0dVMDhCNEhNdnN3azlkVW5NbmxpOHJH?=
- =?utf-8?B?MU9jclNiYWRSdnpGVkxkWFZISHNrd0xjaTg1SEJRbzAvQ2xqcHl4MUMyelh1?=
- =?utf-8?B?bnlPUW1YZUVRWSt6bU5PRVYrTWp4VHQvOVIwOFlJVlplNWhrT00rWU0ydWha?=
- =?utf-8?B?VFhoTElZeU9tN0Vya0ozc244OTFaUHBzeU55V2VBN2ZwUUtJTnpPSDVsN1JP?=
- =?utf-8?B?NXdkeStMdnU3TFJNRWxyK0pBK2s4VjVXKytnYm02TVNtY1BVTDliRmVnUWpv?=
- =?utf-8?B?S2Rqbmtrc2NIMUFkdkQwOU9sb1YvbHB5bHNWUjk1cjBEQjhKeUVSdHRVOVdE?=
- =?utf-8?B?aVBHOGhoVkFidkZlMHhWU0xDSi9jQXlHNnFPeUxpem5SYTFUTHlWRldFbDVI?=
- =?utf-8?B?cGU4RkxNVFd5bXV1UW5uQVhxQXczZW93ZGErTFdGcEZNZTZNTjVSY04zUHZZ?=
- =?utf-8?B?QUsrM0JBSGkvOVJtY2s2eXY2UytEYytmVTh3TVBpSzI3NmloRkgwYnIvWkVQ?=
- =?utf-8?B?VjcyK0NkODBzL1RjbXBJSkR2RkM1YldTb1NOYWFKQ3BkTitlMDBpUklEbGsz?=
- =?utf-8?B?N0ZDRGpzS3ROV2ovb3Yrb09HQzFTRXd0cjRiNTc0bDF4NnFOd3JicEkxSTdZ?=
- =?utf-8?B?Qms4UlByNkZ5eXpyNUhIRVpCSTZQSVU0YmQ4R0FQd2NtZFJVZXBuYVZRTVpP?=
- =?utf-8?B?NHlqbnRQWklFL2JwM0NnVjdwQlRvblFsYUpMRTZOSC91eTFDNVBoUEg4RnVP?=
- =?utf-8?B?YjFsVk9ZM0M2bS9YZHgvNDcvYmpXZFN1UHR6Z3ppbEp5V2dqeVpZajdlRCtk?=
- =?utf-8?B?Sk1LcGQvdTM3V1BvRUpFZm9IMzZBSkFhR0gxaWlDTWs5V29wVGMwZWN3QWNJ?=
- =?utf-8?B?Yk5tNEQxVmhqcy9BL0syN1lTZk9ZTS9uL0lWZWZWQ1daSWFnRWdKK0FmRldl?=
- =?utf-8?B?cGpPTEN4STBQS1l5ZmdkRGdCL3JSblV5UitiY2hrZFN4eWhia2M0MWo4Z3Rv?=
- =?utf-8?B?Mno2YXo5VlFMRlRtVGNhV3hzUFBGZ3VUTDNURk5TdzBreHJlSzBSajZGRU54?=
- =?utf-8?B?NXNSTlBKRDM0d2dBYlJaVjBJUURoQU5mSmF4Nk1GalVER2J5TEN2Y2pzMVZW?=
- =?utf-8?B?R29pZWZ1ZHBlR2M5KzMzb295L0Q2aEthaTdWNG11OEhNd1VSbG1VM3JLamNK?=
- =?utf-8?B?YXhPbjNxSEJnUjE5YmVEcjkrRG1HVTZEQkFaR1BCYmxLUFFGWUtvM0Q4RjJ6?=
- =?utf-8?B?YUMxdkxacXVwQ2o3L2MydlZkekE1dFJFeEVDNk1zZ3pjNFdRdGxFUUdIemRl?=
- =?utf-8?B?VThxUU56eXJrbGtoTmM4Z250bkwyVTJlYjRlVmR1RHJUNkZVbVBpcTFHSGxK?=
- =?utf-8?B?RWFDR2tTQ2tZeWp1WFJmTWhkMkh5djVzSHZBSFI0STR4M1Y3OUxGd2pELys0?=
- =?utf-8?B?SE5JVCtJRVcwZndJWHYxQkljRWN3LzZITGU0a1BrM1NvSjRrNmgxK2VxSVl0?=
- =?utf-8?B?VXV4UUZGeWtIRm9yelBWbzFCbnhjNFh3dnpNeGYvOEMwR1VQdGN0WUVWK3pn?=
- =?utf-8?B?RFJxU0xtdUFZQUFDdGU0UVBQSFNwdzBQWldVS3puMjBRS0t3WE1lVDNYRVo0?=
- =?utf-8?B?dXBSTi85ZExGemJCWVFFM0tlWnpCekxyeDV1QmJNVGU1NlBIcW03UDdFRncx?=
- =?utf-8?B?NDEwTzd5djZLTUM3S3BzVWFuOGFGTFdtdzBNaSs0ZkhWSkxQeWFkdUF2QWI1?=
- =?utf-8?B?WS9GNTJMUGEvNjNwTkpPemF6aE5PUjFKUkxSS04wd1g5QVM4dGtPYS9ZRlhI?=
- =?utf-8?B?MHRaL2pGRWo0U01SU3VEWnZXRlRnMURmMmVweGxzYk4rSU9MVWlLYjBsV0F0?=
- =?utf-8?B?RFFFQUNWb2RwUUYrWWlkbmhsSkVJTGVrWktGaUVtMFBENG5GOVdiL1NaVXhS?=
- =?utf-8?B?cGNoeUFzeDcvSEd0eE1CbmRBZk5ndDkvcWNVYTNiK1dsd3FCa0hMNUpZSHNu?=
- =?utf-8?B?RXVOVFhCYXRvZzB0aEQrNDNWblFBY3Z1eXRhUjFNeWMwdU0wcm1CRHJNTDZ3?=
- =?utf-8?B?K2hxbnRFeHcyQldSUVZ2djAyTUJRa3pLM3hXR294QUhjUUtGc2xER0ZOK1Ba?=
- =?utf-8?B?ZHdudm9nTTZhY1BtUWlxYTFMVm1zZlB4dS94NmRyZkZacUdnaFRkMCtyQTU5?=
- =?utf-8?Q?Ht3SFRPKSW0RPC+RU0?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c40f6f14-90de-41c5-23dd-08de544eec2d
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?qE8swrP/ktzqEISSZNx1F+fFEP8mJe45cflNyV7V9nIbx6s0idao8Z4BUKgu?=
+ =?us-ascii?Q?Wvknuz7Oj+orDxL2xu/L2BD5NPbQmNBTV4OwhONXUYXqHY+mMhdte+gvjcs2?=
+ =?us-ascii?Q?ww1CpWUjbCE5HLXy5l75z+Kjzzl/4MnuVkgyO/EFIaNfA4dHKYEM7qAEwMc1?=
+ =?us-ascii?Q?cIJ62mHtwGntxG4JjuF9JD/gxW01glECXi00yMqnfTnsCM1hKvhXcNvWTsgB?=
+ =?us-ascii?Q?S29qgFrePAvLl/k7EWJ9xjSVDu9EYmcR4zATGiVldI32I3lOvf+sJX0RbiRS?=
+ =?us-ascii?Q?EA7gMKSrGot5kFQhycLKMiTH41EGrKgm1/9yyeJCf6H7dr1DpzOqbMIzVCXK?=
+ =?us-ascii?Q?IdmUr1zV7xUKEuZtAJvKIZ3VvjJpwdy7gbCC3Ri/bR3RDMRywAeFn/7PqLU2?=
+ =?us-ascii?Q?cAF8hSSs4A96+tGsZORNjiNEWeH+UI/oJ29oJvumEgj8gycr5caT2fHyvWKs?=
+ =?us-ascii?Q?auxa2M71IxgYD/bMhQSmH8uMmPHOeu/BaRPBEFBqsrrLbIARzxEgkbxd04g3?=
+ =?us-ascii?Q?OWyjDdvs50+7VgHn92C8D+0pBBBHmQQmcBYPq99dTrzUsqOHrXzXXQUZpP2o?=
+ =?us-ascii?Q?kWeQ6m+/g9CLN56EFGVCencYaA1tpEWD8Bl1t+8DcW+vkhs2eZtDhasVWCIE?=
+ =?us-ascii?Q?VMyX9GUh1x3zvdKgcB+YVqbR0XnQFmSkS9EMtyfwLbx0a9lQ3a9j1kO1xa9+?=
+ =?us-ascii?Q?gotgTuYV/R5v1maXJtDQpXjmB9PFynSL4YtI+LJ0MMK1UbkVmJF4cFIjjnGK?=
+ =?us-ascii?Q?7i06fGus3j82QOkISO6zHmDi6P2S64BjOv+ALvsomf3LcidthDFkdjuKPy1W?=
+ =?us-ascii?Q?rcSDGQoaYnzf0HglezPdeJ0EqfEylyCG9SMkAKNDKyoZhc7HZUIv1Aczv4Ko?=
+ =?us-ascii?Q?PthGgUrHypu/26CbhfKibCMqpxd4ENZr52SFXXwS4T04THpdtmWMfl+m9kzG?=
+ =?us-ascii?Q?cdUWxJza4l9xI30SS5PM/k1RDCGb9ePP9SGkkHVqbk2/gyZWd0CZ1qmsJlOU?=
+ =?us-ascii?Q?1CNnGgeta4+LLQ2yp0QazOucrH63ar/uPPYbwCq0fex0H+bdDDFVqHeCISk+?=
+ =?us-ascii?Q?t0Essy2FRvtQ48Zht1uNipp4ZJuldTYBNL3wVZqv65hVh4wujtFcN+ONmM8D?=
+ =?us-ascii?Q?t8X2pvwNP80pAvWHZ0CSL++rJ84gCuEcEFawsZyOGca8gPe/45YzAGXIL84E?=
+ =?us-ascii?Q?w5gNxmEqBah3MQRYFfYQU09HLFTfAlCccLebrXETuxtPH1GFMfVRfXc1PSk6?=
+ =?us-ascii?Q?43dywgbWC8BX+HZaH+9zrUnjk+GHbwxkOjxXiL3/NHt1D6bRk7ssg0y5qdI9?=
+ =?us-ascii?Q?ZAvgklIopPtIJti8NW57rJpfJ4oZNFjZH7UEsnLKVe+vobXhKgD1AkSCsgli?=
+ =?us-ascii?Q?/jfx+N/kPakMcBjYJCzRvRLX2QSUcvSqASSA8GnGh7s+6+7BLpto1YmQJ44R?=
+ =?us-ascii?Q?4iiZjbRmvqu1KAorPKjqsf2H7lWcJv8AylJtZJt6n/e9ORmt9Q/I+J5TSgHC?=
+ =?us-ascii?Q?7yK+jkIB/YaOJHobMa2yiS2GDRr2R9eBn6VCMMQM7LS5HMoZu7bsHL+Buk0A?=
+ =?us-ascii?Q?IDsKGhujCtNvCfqIapSsikJmVnHO/SQNY+2tOSaWBMrdETG/ZP6fmPTzbg4X?=
+ =?us-ascii?Q?eg+o52UgkT3OgTQ1Cc5Hu1IjmKZ/Tt8faR0Yh3nLUaJD992m/ewQSKIzuDjY?=
+ =?us-ascii?Q?8qPsmMNl8YM1+btBANd38zaCGkNxbFdHyh/OwI3K8fn9hjpjuflmD3qNXdeT?=
+ =?us-ascii?Q?qXFiUDC4+Q=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Jan 2026 15:58:28.3850 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: KxoOeCQliB0W2zqtxJhhW9V5fZh8He/NZl4fJJ/x6mPQ98GeRDJz7uBYLkkgoC8B
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4237
+X-MS-Exchange-CrossTenant-AuthSource: IA1PR11MB6418.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: aee9d694-6bad-4967-8c0a-08de544ffe87
+X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Jan 2026 16:06:08.2385 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: Ocm9BIJbvR62MC4h4OVAJcGNNMDAj4hJ5GJ7dW0dGyYg79kcoUa6MIVpgO6ZjPuYGWSLeLx10NBmVe5Xp2Bm4wWmvixHrvV6PVjYp7U6NPA=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ1PR11MB6083
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -202,211 +194,105 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 1/15/26 15:54, Thomas Zimmermann wrote:
-> Hi
->=20
-> Am 15.01.26 um 15:39 schrieb Christian K=C3=B6nig:
->> Sorry to being late, but I only now realized what you are doing here.
->>
->> On 1/15/26 12:02, Thomas Zimmermann wrote:
->>> Hi,
->>>
->>> apologies for the delay. I wanted to reply and then forgot about it.
->>>
->>> Am 10.01.26 um 05:52 schrieb Zack Rusin:
->>>> On Fri, Jan 9, 2026 at 5:34=E2=80=AFAM Thomas Zimmermann <tzimmermann@=
-suse.de> wrote:
->>>>> Hi
->>>>>
->>>>> Am 29.12.25 um 22:58 schrieb Zack Rusin:
->>>>>> Almost a rite of passage for every DRM developer and most Linux user=
-s
->>>>>> is upgrading your DRM driver/updating boot flags/changing some confi=
-g
->>>>>> and having DRM driver fail at probe resulting in a blank screen.
->>>>>>
->>>>>> Currently there's no way to recover from DRM driver probe failure. P=
-CI
->>>>>> DRM driver explicitly throw out the existing sysfb to get exclusive
->>>>>> access to PCI resources so if the probe fails the system is left wit=
-hout
->>>>>> a functioning display driver.
->>>>>>
->>>>>> Add code to sysfb to recever system framebuffer when DRM driver's pr=
-obe
->>>>>> fails. This means that a DRM driver that fails to load reloads the s=
-ystem
->>>>>> framebuffer driver.
->>>>>>
->>>>>> This works best with simpledrm. Without it Xorg won't recover becaus=
-e
->>>>>> it still tries to load the vendor specific driver which ends up usua=
-lly
->>>>>> not working at all. With simpledrm the system recovers really nicely
->>>>>> ending up with a working console and not a blank screen.
->>>>>>
->>>>>> There's a caveat in that some hardware might require some special ma=
-gic
->>>>>> register write to recover EFI display. I'd appreciate it a lot if
->>>>>> maintainers could introduce a temporary failure in their drivers
->>>>>> probe to validate that the sysfb recovers and they get a working con=
-sole.
->>>>>> The easiest way to double check it is by adding:
->>>>>> =C2=A0=C2=A0=C2=A0 /* XXX: Temporary failure to test sysfb restore -=
- REMOVE BEFORE COMMIT */
->>>>>> =C2=A0=C2=A0=C2=A0 dev_info(&pdev->dev, "Testing sysfb restore: forc=
-ing probe failure\n");
->>>>>> =C2=A0=C2=A0=C2=A0 ret =3D -EINVAL;
->>>>>> =C2=A0=C2=A0=C2=A0 goto out_error;
->>>>>> or such right after the devm_aperture_remove_conflicting_pci_devices=
- .
->>>>> Recovering the display like that is guess work and will at best work
->>>>> with simple discrete devices where the framebuffer is always located =
-in
->>>>> a confined graphics aperture.
->>>>>
->>>>> But the problem you're trying to solve is a real one.
->>>>>
->>>>> What we'd want to do instead is to take the initial hardware state in=
-to
->>>>> account when we do the initial mode-setting operation.
->>>>>
->>>>> The first step is to move each driver's remove_conflicting_devices ca=
-ll
->>>>> to the latest possible location in the probe function. We usually do =
-it
->>>>> first, because that's easy. But on most hardware, it could happen muc=
-h
->>>>> later.
->>>> Well, some drivers (vbox, vmwgfx, bochs and currus-qemu) do it because
->>>> they request pci regions which is going to fail otherwise. Because
->>>> grabbining the pci resources is in general the very first thing that
->>>> those drivers need to do to setup anything, we
->>>> remove_conflicting_devices first or at least very early.
->>> To my knowledge, requesting resources is more about correctness than a =
-hard requirement to use an I/O or memory range. Has this changed?
->> Nope that is not correct.
->>
->> At least for AMD GPUs remove_conflicting_devices() really early is neces=
-sary because otherwise some operations just result in a spontaneous system =
-reboot.=C2=A0=C2=A0=C2=A0
->=20
-> Here I was only talking about avoiding calls to request_resource() and si=
-milar interfaces.
->=20
->>
->> For example resizing the PCIe BAR giving access to VRAM or disabling VGA=
- emulation (which AFAIK is used for EFI as well) is only possible when the =
-VGA or EFI framebuffer driver is kicked out first.
->=20
-> Yeah, that's what I expected.
->=20
->>
->> And disabling VGA emulation is among the absolutely first steps you do t=
-o take over the scanout config.
->=20
-> Assuming the driver (or driver author) is careful, is it possible to only=
- read state from AMD hardware at such an early time?
+>-----Original Message-----
+>From: Vijay, Anoop C <anoop.c.vijay@intel.com>
+>Sent: Thursday, January 8, 2026 7:06 AM
+>To: intel-xe@lists.freedesktop.org
+>Cc: Nerlige Ramappa, Umesh <umesh.nerlige.ramappa@intel.com>; Nilawar,
+>Badal <badal.nilawar@intel.com>; Vivi, Rodrigo <rodrigo.vivi@intel.com>;
+>Iddamsetty, Aravind <aravind.iddamsetty@intel.com>; Tauro, Riana
+><riana.tauro@intel.com>; Gupta, Anshuman <anshuman.gupta@intel.com>;
+>Roper, Matthew D <matthew.d.roper@intel.com>; Ruhl, Michael J
+><michael.j.ruhl@intel.com>; Luse, Paul E <paul.e.luse@intel.com>; V, Moham=
+ed
+>Mansoor <mohamed.mansoor.v@intel.com>; Nasim, Kam
+><kam.nasim@intel.com>; Vijay, Anoop C <anoop.c.vijay@intel.com>
+>Subject: [PATCH v3 0/6] drm/xe/sysctrl: Add system controller component fo=
+r
+>Xe3p dGPU platforms
+>
+>From: Anoop Vijay <anoop.c.vijay@intel.com>
+>
+>This patch series introduces System Controller (sysctrl) component for Int=
+el
+>Xe3p
+>dGPU platforms.
+>
+>This component provides the foundational infrastructure for communication
+>with the System Controller firmware using MKHI protocol over a mailbox
+>interface.
 
-I'm not an expert for that particular stuff but I strongly don't think so.
+What is the MKHI protocol?
 
-Basically the VGA emulation is firmware which "owns" the CRTC registers and=
- might modify them at any time unless it's turned off first.
+Is there anything documenting this protocol?
 
-So you can't even use data/index pairs of registers etc...
+M
 
-> We usually do remove_conflicting_devices() as the first thing in most dri=
-ver's probe function. As a first step, it would be helpful to postpone itto=
- a later point.
-
-Well from what I knew that won't work in a lot of cases.
-
-I mean what we could do on non-AMD HW is to remove the conflicting driver, =
-play with the HW and if we find that this didn't worked reset the HW using =
-a PCI function level reset and try to load the EFI or whatever driver again=
-. But that has a rather low chance of working reliable I would say.
-
-The problem with AMD GPUs is that the PCI function level reset is broken to=
- begin with (which already caused us tons of headache in the case of pass t=
-hrough).
-
-Regards,
-Christian.
-
->=20
->>
->> So I absolutely clearly have to reject the amdgpu patch in this series, =
-that will break tons of use cases.
->=20
-> Don't worry, we're still in the early ideation phase.
->=20
-> Best regards
-> Thomas
->=20
->>
->> Regards,
->> Christian.
->>
->>>> I also don't think it's possible or even desirable by some drivers to
->>>> reuse the initial state, good example here is vmwgfx where by default
->>>> some people will setup their vm's with e.g. 8mb ram, when the vmwgfx
->>>> loads we allow scanning out from system memory, so you can set your vm
->>>> up with 8mb of vram but still use 4k resolutions when the driver
->>>> loads, this way the suspend size of the vm is very predictable (tiny
->>>> vram plus whatever ram was setup) while still allowing a lot of
->>>> flexibility.
->>> If there's no initial state to switch from, the first modeset can fail =
-while leaving the display unusable. There's no way around that. Going back =
-to the old state is not an option unless the driver has been written to sup=
-port this.
->>>
->>> The case of vmwgfx is special, but does not effect the overall problem.=
- For vmwgfx, it would be best to import that initial state and support a tr=
-ansparent modeset from vram to system memory (and back) at least during thi=
-s initial state.
->>>
->>>
->>>> In general I think however this is planned it's two or three separate =
-series:
->>>> 1) infrastructure to reload the sysfb driver (what this series is)
->>>> 2) making sure that drivers that do want to recover cleanly actually
->>>> clean out all the state on exit properly,
->>>> 3) abstracting at least some of that cleanup in some driver independen=
-t way
->>> That's really not going to work. For example, in the current series, yo=
-u invoke devm_aperture_remove_conflicting_pci_devices_done() after drm_mode=
-_reset(), drm_dev_register() and drm_client_setup(). Each of these calls ca=
-n modify hardware state. In the case of _register() and _setup(), the DRM c=
-lients can perform a modeset, which destroys the initial hardware state. Pa=
-tch 1 of this series removes the sysfb device/driver entirely. That should =
-be a no-go as it significantly complicates recovery. For example, if the na=
-tive drivers failed from an allocation failure, the sysfb device/driver is =
-not likely to come back either. As the very first thing, the series should =
-state which failures is is going to resolve, - failed hardware init, - inva=
-lid initial modesetting, - runtime errors (such ENOMEM, failed firmware loa=
-ding), - others? And then specify how a recovery to sysfb could look in eac=
-h supported scenario. In terms of implementation, make any transition betwe=
-en drivers
->>> gradually. The native driver needs to acquire the hardware resource (fr=
-amebuffer and I/O apertures) without unloading the sysfb driver. Luckily th=
-ere's struct drm_device.unplug, which does that. [1] Flipping this field di=
-sables hardware access for DRM drivers. All sysfb drivers support this. To =
-get the sysfb drivers ready, I suggest dedicated helpers for each drivers a=
-perture. The aperture helpers can use these callback to flip the DRM driver=
- off and on again. For example, efidrm could do this as a minimum: int efid=
-rm_aperture_suspend() { dev->unplug =3D true; remove_resource(/*framebuffer=
- aperture*/) return 0 } int efidrm_aperture_resume() { insert_resource(/*fr=
-amebuffer aperture*/) dev->unplug =3D false; return 0 } struct aperture_fun=
-cs efidrm_aperture_funcs { .suspend =3D efidrm_aperture_suspend, .resume =
-=3D efidrm_aperture_resume, } Pass this struct when efidrm acquires the fra=
-mebuffer aperture, so that the aperture helpers can control the behavior of=
- efidrm. With this, a multi-
->>> step takeover from sysfb to native driver can be tried. It's still a ma=
-ssive effort that requires an audit of each driver's probing logic. There's=
- no copy-paste pattern AFAICT. I suggest to pick one simple driver first an=
-d make a prototype. Let me also say that I DO like the general idea you're =
-proposing. But if it was easy, we would likely have done it already. Best r=
-egards Thomas
->>>> z
->=20
+>Key features introduced:
+>- Detection and initialization of System Controller interface on Xe3p dGPU
+>platforms
+>- Mailbox communication with System Controller firmware
+>- Fragmented message transfer for large command payloads
+>
+>This implementation establishes the base for future System Controller feat=
+ure
+>enablement and firmware command handling.
+>---
+>v2: (Umesh)
+>- Fix commit message to 75 chars per line
+>- Address CI.Hooks and checkpatch warnings
+>- Add sc_to_xe() helper for cleaner conversions
+>- Alphabetical order for headers
+>- Simplify write/read frame logic using memcpy
+>- Drop redundant frame length checks
+>- Use xe_mmio_rmw32() for register updates
+>- Align FIELD_PREP macros
+>- Improve error handling and timeout messages
+>- Handle phase_bit revert on write-frame failure
+>- Update rdata_len on partial receive before return
+>- Remove unnecessary headers
+>
+>v3: (Matt, Riana, Umesh)
+>- Split patch into logical series
+>- Rename SC_* macros to SYSCTRL_* for consistency
+>- Move MKHI_* defines to .c file
+>- Pass xe directly to helpers
+>- Place devm_add_action_or_reset() after set_sysctrl_region()
+>- Add kernel-doc for xe_sysctrl_mailbox_init()
+>- Add short documentation for System Controller in xe_sysctrl.c
+>- Avoid hardcoded sizes
+>- Move structs to _types.h
+>---
+>
+>Anoop Vijay (6):
+>  drm/xe/sysctrl: Add System Controller register definitions
+>  drm/xe/sysctrl: Add System Controller types and structures
+>  drm/xe/sysctrl: Add System Controller mailbox implementation
+>  drm/xe/sysctrl: Add System Controller initialization
+>  drm/xe/sysctrl: Integrate System Controller into device
+>  drm/xe/sysctrl: Enable System Controller for Xe3p
+>
+> drivers/gpu/drm/xe/Makefile                   |   2 +
+> drivers/gpu/drm/xe/regs/xe_sysctrl_regs.h     |  44 ++
+> drivers/gpu/drm/xe/xe_device.c                |   5 +
+> drivers/gpu/drm/xe/xe_device_types.h          |   6 +
+> drivers/gpu/drm/xe/xe_pci.c                   |   2 +
+> drivers/gpu/drm/xe/xe_pci_types.h             |   1 +
+> drivers/gpu/drm/xe/xe_sysctrl.c               |  70 +++
+> drivers/gpu/drm/xe/xe_sysctrl.h               |  13 +
+> drivers/gpu/drm/xe/xe_sysctrl_mailbox.c       | 429 ++++++++++++++++++
+> drivers/gpu/drm/xe/xe_sysctrl_mailbox.h       |  35 ++
+> drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h |  36 ++
+> drivers/gpu/drm/xe/xe_sysctrl_types.h         |  23 +
+> 12 files changed, 666 insertions(+)
+> create mode 100644 drivers/gpu/drm/xe/regs/xe_sysctrl_regs.h
+> create mode 100644 drivers/gpu/drm/xe/xe_sysctrl.c
+> create mode 100644 drivers/gpu/drm/xe/xe_sysctrl.h
+> create mode 100644 drivers/gpu/drm/xe/xe_sysctrl_mailbox.c
+> create mode 100644 drivers/gpu/drm/xe/xe_sysctrl_mailbox.h
+> create mode 100644 drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
+> create mode 100644 drivers/gpu/drm/xe/xe_sysctrl_types.h
+>
+>--
+>2.43.0
 
