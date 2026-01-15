@@ -4,101 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4E857D4117D
-	for <intel-xe@archiver.kernel.org>; Thu, 15 Jan 2026 12:29:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3F3DDD44C41
+	for <intel-xe@archiver.kernel.org>; Thu, 15 Jan 2026 13:02:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E6B6C10E021;
-	Thu, 15 Jan 2026 12:29:32 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="g+3y4CbB";
-	dkim=pass (2048-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="iYFkLte7";
-	dkim-atps=neutral
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 913AE10E759
- for <intel-xe@lists.freedesktop.org>; Thu, 15 Jan 2026 12:29:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1768480170;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type;
- bh=wp62IAblmjf2cdmiyyJKUfUX1geHsq0NaKyZVo0SXeY=;
- b=g+3y4CbBUT4m5wOK7DYu27yc6YtMgK41g6y8yQHoBEotY9J6gNQB0/+ZNIRbD4gFmAXKS2
- bve/rOIRK+PA3cW9Wxtrq2VsodWxPqqd7nBZk9mramLCpt3ESLhujEgvpdIw1jd0BkCQ5M
- i8C4JSos+9hcb+nXMxzCvj42R7GjjpY=
-Received: from mail-wr1-f71.google.com (mail-wr1-f71.google.com
- [209.85.221.71]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-656-ruHbg6afPD254_6KI-lGZA-1; Thu, 15 Jan 2026 07:29:29 -0500
-X-MC-Unique: ruHbg6afPD254_6KI-lGZA-1
-X-Mimecast-MFC-AGG-ID: ruHbg6afPD254_6KI-lGZA_1768480168
-Received: by mail-wr1-f71.google.com with SMTP id
- ffacd0b85a97d-430fc153d50so820415f8f.1
- for <intel-xe@lists.freedesktop.org>; Thu, 15 Jan 2026 04:29:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=redhat.com; s=google; t=1768480168; x=1769084968; darn=lists.freedesktop.org;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :from:to:cc:subject:date:message-id:reply-to;
- bh=wp62IAblmjf2cdmiyyJKUfUX1geHsq0NaKyZVo0SXeY=;
- b=iYFkLte7uRXwV98kgAlng0OYRFpOOgzpUUP6xKTJQoHmpzWMP7KqENx5mNUT0eEgAu
- EA1Fo625yQNpfdInDbugG03TSGLKUPbsq/znKqrXvMLv9FomqMBEi5X8154KvX3QWpj2
- P25PUivhXb1+zHIokCk0GXwZlubXKcrCfnDU14h/RR5/6CH90vMd6csjqXQsYRSNFK0E
- JxyDp98uIlDc2Oc9CbrQGtRk1tASH+DckhYb+P7iVB4HFzNakhxvZLjjj3rz1ndxgoWr
- HcC+7ZDncatNLo45/DYCU2hfg9VVCMug997zU7MlYg3Z9tqFJN6W4DdGlxutUi4M4O74
- ywdQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1768480168; x=1769084968;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=wp62IAblmjf2cdmiyyJKUfUX1geHsq0NaKyZVo0SXeY=;
- b=XMfTDetyQn988JTytUYBjlp7isIg0W5ZYc+rkDQUpq1BCTe5TCskNL7E/cFPObDXDG
- D1KKFFjDKAcvjQkSW73LsolPpl69rUyU8pHlSQDVR9d4PzcyAvRSjZnY0fVABe9gIOsI
- pq+sFA+4ck/OzTCHYclbNRJ6nZVRzMXPG9oYGrg0d9yVI728RfaV3iTzRetyU27oIiE7
- nyx2LpkLxTqt7RBj5wwkD/L07a6+CcLd5wJjvBrDNA3WU0qkAybwS1QMrUvaUJafN6BP
- CSGhy9B6GBFGvGccrgW+FjODEEAr2hJ/md7BddNgdx2qDlqHVFVOR0eAyxOogql0M0e6
- vLNg==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVZn4Q4MxtD8v3Sf/D9jd7XL0UFvnzGsOq9dsnzOFtJmmsm90Cvjxq/QCaotw/OrJsfek8DN/b3xA==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxOBCQ6CtUDMO3Q6A0JIJUYpm78BaNU9VeR1NvrX6qMCTOFV344
- dygxfuy3KHKDGY1LZg35tECthEph96urNacGrt6dBsVxnC7/qCMJdYEuGyzpULViF4tSdDKbAQf
- PrOOmKdmVUMiAcUI9S8kL6vvHBBp59pvCMK4Yn+18c1ZRkaOiDq4EhctBqQE+72tRiCoJ
-X-Gm-Gg: AY/fxX4960gKQ7lUDF1F969LP7ECYvWDZcdyo+Lf4krpKzQmlQlur1fyt3IApItknZf
- gfnirGpEXOxebkZyiFjBuxK6A+GLZa65yrPJ+2eg9EnjeBMJAmMLyLACZ321/ahKrI4OkKVM2EW
- yS8XkNdMVsLLIf2EFWri3WzhfA+xRkujzPqldTTiIKwfBDFBVqkWBgJiuhxYAQI4qZv6dDI0KNG
- sRr0kOYQ6T+6d8upzpP2pQjzMZGNMy7mU4JxlfP9Rw6m68kvn3ohFGTrNx68LZ9bz2/0Y+44/AE
- 7nI61WYbYIinSUUg3QdblL4oe9TvNH6QH8jszm68Ig4JAe9XYpbyA8n0CmdRyg==
-X-Received: by 2002:a05:600c:a406:b0:480:1d32:afc6 with SMTP id
- 5b1f17b1804b1-4801d32b09fmr3466415e9.4.1768480167602; 
- Thu, 15 Jan 2026 04:29:27 -0800 (PST)
-X-Received: by 2002:a05:600c:a406:b0:480:1d32:afc6 with SMTP id
- 5b1f17b1804b1-4801d32b09fmr3466205e9.4.1768480167181; 
- Thu, 15 Jan 2026 04:29:27 -0800 (PST)
-Received: from localhost ([2a01:e0a:b25:f902::ff])
- by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-47f428e5488sm46529905e9.14.2026.01.15.04.29.26
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 15 Jan 2026 04:29:26 -0800 (PST)
-Date: Thu, 15 Jan 2026 13:29:25 +0100
-From: Maxime Ripard <mripard@redhat.com>
-To: Dave Airlie <airlied@gmail.com>, 
-	Simona Vetter <simona.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Matthew Brost <matthew.brost@intel.com>, 
- Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>, 
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-misc-next
-Message-ID: <20260115-lilac-dragon-of-opposition-ac0a30@houat>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0294B10E75E;
+	Thu, 15 Jan 2026 13:02:40 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9AA2710E75C;
+ Thu, 15 Jan 2026 13:02:39 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2828697492310720904=="
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha384;
- protocol="application/pgp-signature"; boundary="ku7omxszsslfi5ud"
-Content-Disposition: inline
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_Disable?=
+ =?utf-8?q?_casf_with_joiner_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Nemesa Garg" <nemesa.garg@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 15 Jan 2026 13:02:39 -0000
+Message-ID: <176848215961.156731.15521149676256841352@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260113054925.633053-1-nemesa.garg@intel.com>
+In-Reply-To: <20260113054925.633053-1-nemesa.garg@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -110,287 +36,125 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-
---ku7omxszsslfi5ud
-Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: [PULL] drm-misc-next
+--===============2828697492310720904==
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Hi Dave, Sima,
+== Series Details ==
 
-Here's this week drm-misc-next PR
+Series: drm/i915/display: Disable casf with joiner (rev3)
+URL   : https://patchwork.freedesktop.org/series/159635/
+State : success
 
-Maxime
+== Summary ==
 
-drm-misc-next-2026-01-15:
-drm-misc-next for 6.20:
+CI Bug Log - changes from xe-4384-733664f1edf3c01cc68e6dd0bbdb135158a98a1d_BAT -> xe-pw-159635v3_BAT
+====================================================
 
-Core Changes:
+Summary
+-------
 
-- atomic: Introduce Gamma/Degamma LUT size check
-- gem: Fix a leak in drm_gem_get_unmapped_area
-- gpuvm: API sanitation for Rust bindings
-- panic: Few corner-cases fixes
+  **SUCCESS**
 
-Driver Changes:
+  No regressions found.
 
-- Replace system workqueue with percpu equivalent
+  
 
-- amdxdna: Update message buffer allocation requirements, Update
-  firmware version check
-- imagination: Add AM62P support
-- ivpu: Implement warm boot flow
-- rockchip: Get rid of atomic_check fixups, Add Rockchip RK3506 Support
-- rocket: Cleanups
+Participating hosts (12 -> 12)
+------------------------------
 
-- bridge:
-  - dw-hdmi-qp: Add support for HPD-less setups
-- panel:
-  - mantix: Various power management related improvements
-  - new panels: Innolux G150XGE-L05,
+  No changes in participating hosts
 
-- dma-buf:
-  - cma: Call clear_page instead of memset
-The following changes since commit 6a0b99e9fb45f403c3097a9047963d2dd5b0fab2:
+Known issues
+------------
 
-  drm/etnaviv: Add module parameter to force PPU flop reset (2026-01-06 16:=
-43:19 +0100)
+  Here are the changes found in xe-pw-159635v3_BAT that come from known issues:
 
-are available in the Git repository at:
+### IGT changes ###
 
-  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-next-202=
-6-01-15
+#### Possible fixes ####
 
-for you to fetch changes up to b36178488d479e9a53bbef2b01280378b5586e60:
+  * igt@xe_waitfence@reltime:
+    - bat-dg2-oem2:       [FAIL][1] ([Intel XE#6520]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4384-733664f1edf3c01cc68e6dd0bbdb135158a98a1d/bat-dg2-oem2/igt@xe_waitfence@reltime.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159635v3/bat-dg2-oem2/igt@xe_waitfence@reltime.html
 
-  accel/amdxdna: Fix notifier_wq flushing warning (2026-01-14 09:07:33 -080=
-0)
+  
+  [Intel XE#6520]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520
 
-----------------------------------------------------------------
-drm-misc-next for 6.20:
 
-Core Changes:
+Build changes
+-------------
 
-- atomic: Introduce Gamma/Degamma LUT size check
-- gem: Fix a leak in drm_gem_get_unmapped_area
-- gpuvm: API sanitation for Rust bindings
-- panic: Few corner-cases fixes
+  * Linux: xe-4384-733664f1edf3c01cc68e6dd0bbdb135158a98a1d -> xe-pw-159635v3
 
-Driver Changes:
+  IGT_8701: 8701
+  xe-4384-733664f1edf3c01cc68e6dd0bbdb135158a98a1d: 733664f1edf3c01cc68e6dd0bbdb135158a98a1d
+  xe-pw-159635v3: 159635v3
 
-- Replace system workqueue with percpu equivalent
+== Logs ==
 
-- amdxdna: Update message buffer allocation requirements, Update
-  firmware version check
-- imagination: Add AM62P support
-- ivpu: Implement warm boot flow
-- rockchip: Get rid of atomic_check fixups, Add Rockchip RK3506 Support
-- rocket: Cleanups
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159635v3/index.html
 
-- bridge:
-  - dw-hdmi-qp: Add support for HPD-less setups
-- panel:
-  - mantix: Various power management related improvements
-  - new panels: Innolux G150XGE-L05,
+--===============2828697492310720904==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-- dma-buf:
-  - cma: Call clear_page instead of memset
 
-----------------------------------------------------------------
-Alice Ryhl (3):
-      drm/gpuvm: drm_gpuvm_bo_obtain() requires lock and staged mode
-      drm/gpuvm: use const for drm_gpuva_op_* ptrs
-      drm/gpuvm: fix name in kernel doc of drm_gpuvm_bo_obtain_locked()
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
 
-Arunpravin Paneer Selvam (1):
-      MAINTAINERS: drm: add maintainers for DRM buddy allocator
 
-Boris Brezillon (2):
-      drm/gem: Fix a GEM leak in drm_gem_get_unmapped_area()
-      drm/panfrost: Fix a page leak in panfrost_mmu_map_fault_addr() when T=
-HP is on
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/display: Disable casf with joiner (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/159635/">https://patchwork.freedesktop.org/series/159635/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
 
-Chaoyi Chen (5):
-      dt-bindings: display: rockchip,dw-mipi-dsi: Add compatible for rk3506
-      dt-bindings: display: rockchip,vop: Add compatible for rk3506
-      drm/rockchip: dsi: Add support for rk3506
-      drm/rockchip: vop: Add support for rk3506
-      drm/rockchip: Drop ROCKCHIP_IOMMU depend for DRM_ROCKCHIP
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159635v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159635v3/index.html</a></td></tr>
 
-Chris Morgan (2):
-      dt-bindings: display: rockchip: Add no-hpd for dw-hdmi-qp controller
-      drm/bridge: dw-hdmi-qp: Add support for missing HPD
+</table>
 
-Daniel Stone (8):
-      drm/rockchip: vop2: Switch impossible format conditional to WARN_ON
-      drm/rockchip: vop2: Switch impossible pos conditional to WARN_ON
-      drm/rockchip: vop2: Fix Esmart test condition
-      drm/rockchip: vop2: Enforce scaling workaround in plane_check
-      drm/rockchip: vop2: Enforce AFBC source alignment in plane_check
-      drm/rockchip: vop2: Enforce AFBC transform stride align in plane_check
-      drm/rockchip: vop2: Use drm_is_afbc helper function
-      drm/rockchip: vop2: Simplify format_mod_supported
 
-Dmitry Baryshkov (3):
-      drm/mode_object: add drm_object_immutable_property_get_value()
-      drm/atomic: add max_size check to drm_property_replace_blob_from_id()
-      drm/atomic: verify that gamma/degamma LUTs are not too big
+    <h1>CI Bug Log - changes from xe-4384-733664f1edf3c01cc68e6dd0bbdb135158a98a1d_BAT -&gt; xe-pw-159635v3_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (12 -&gt; 12)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-159635v3_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_waitfence@reltime:<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4384-733664f1edf3c01cc68e6dd0bbdb135158a98a1d/bat-dg2-oem2/igt@xe_waitfence@reltime.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520">Intel XE#6520</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159635v3/bat-dg2-oem2/igt@xe_waitfence@reltime.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4384-733664f1edf3c01cc68e6dd0bbdb135158a98a1d -&gt; xe-pw-159635v3</li>
+</ul>
+<p>IGT_8701: 8701<br />
+  xe-4384-733664f1edf3c01cc68e6dd0bbdb135158a98a1d: 733664f1edf3c01cc68e6dd0bbdb135158a98a1d<br />
+  xe-pw-159635v3: 159635v3</p>
 
-Fabio Estevam (2):
-      dt-bindings: display: simple: Add Innolux G150XGE-L05 panel
-      drm/panel: simple: Add Innolux G150XGE-L05 panel entry
+</body>
+</html>
 
-Geert Uytterhoeven (1):
-      drm/rockchip: DRM_ROCKCHIP should depend on ARCH_ROCKCHIP
-
-Johan Hovold (1):
-      drm/tegra: dsi: fix device leak on probe
-
-Karol Wachowski (1):
-      accel/ivpu: Implement warm boot flow for NPU6 and unify boot handling
-
-Langyan Ye (1):
-      drm/panel: ilitek-ili9882t: Switch Tianma TL121BVMS07 to DSC 120Hz mo=
-de
-
-Linus Walleij (1):
-      dma-buf: heaps: Clear CMA pages with clear_page()
-
-Lizhi Hou (3):
-      accel/amdxdna: Update message DMA buffer allocation
-      accel/amdxdna: Update firmware version check for latest firmware
-      accel/amdxdna: Fix notifier_wq flushing warning
-
-Marco Crivellari (2):
-      drm/rockchip: replace use of system_unbound_wq with system_dfl_wq
-      drm/rockchip: replace use of system_wq with system_percpu_wq
-
-Michael Walle (1):
-      dt-bindings: gpu: img: Add AM62P SoC specific compatible
-
-Nathan Chancellor (2):
-      drm/panic: Ensure drm_panic_type is initialized to a valid value
-      drm/panic: Fix expected string for QR_CODE in drm_panic_type_map
-
-Nicolas Frattaroli (2):
-      dt-bindings: gpu: mali-valhall-csf: Add shader-present nvmem cell
-      drm/panthor: Implement reading shader_present from nvmem
-
-Quentin Schulz (3):
-      accel/rocket: fix unwinding in error path in rocket_core_init
-      accel/rocket: fix unwinding in error path in rocket_probe
-      accel/rocket: factor out code with find_core_for_dev in rocket_remove
-
-Randy Dunlap (1):
-      accel/rocket: rocket_accel.h: fix kernel-doc warnings
-
-Rob Herring (Arm) (1):
-      dt-bindings: display: panel-simple: Allow "data-mapping" for "yes-opt=
-oelectronics,ytc700tlag-05-201c"
-
-Sebastian Krzyszkowiak (5):
-      drm/panel: mantix: Enable DSI LPM
-      drm/panel: mantix: Improve power on sequence timings
-      drm/panel: mantix: Improve power off sequence
-      drm/panel: mantix: Drop bank 9 initialization
-      drm/panel: mantix: Don't turn on MIPI peripheral
-
-Tuo Li (1):
-      drm/panel: Fix a possible null-pointer dereference in jdi_panel_dsi_r=
-emove()
-
-Uwe Kleine-K=F6nig (2):
-      host1x: Make remove callback return void
-      host1x: Convert to bus methods
-
-Vladimir Yakovlev (1):
-      drm/panel: himax-hx83102: change to gpiod_set_value_cansleep
-
- .../bindings/display/panel/panel-simple.yaml       |   6 +-
- .../display/rockchip/rockchip,dw-mipi-dsi.yaml     |   2 +
- .../rockchip/rockchip,rk3588-dw-hdmi-qp.yaml       |   6 +
- .../bindings/display/rockchip/rockchip-vop.yaml    |   1 +
- .../bindings/gpu/arm,mali-valhall-csf.yaml         |  14 ++
- .../devicetree/bindings/gpu/img,powervr-rogue.yaml |   2 +
- MAINTAINERS                                        |  11 ++
- drivers/accel/amdxdna/aie2_error.c                 |  10 +-
- drivers/accel/amdxdna/aie2_message.c               |  33 +++--
- drivers/accel/amdxdna/aie2_pci.c                   |  36 ++---
- drivers/accel/amdxdna/aie2_pci.h                   |  10 +-
- drivers/accel/amdxdna/amdxdna_pci_drv.c            |   2 +-
- drivers/accel/amdxdna/npu1_regs.c                  |   6 +-
- drivers/accel/amdxdna/npu4_regs.c                  |  11 +-
- drivers/accel/amdxdna/npu5_regs.c                  |   2 -
- drivers/accel/amdxdna/npu6_regs.c                  |   2 -
- drivers/accel/ivpu/ivpu_debugfs.c                  |   4 +-
- drivers/accel/ivpu/ivpu_drv.c                      |   4 +-
- drivers/accel/ivpu/ivpu_fw.c                       |  13 +-
- drivers/accel/ivpu/ivpu_fw.h                       |   9 +-
- drivers/accel/ivpu/ivpu_hw_40xx_reg.h              |   6 +
- drivers/accel/ivpu/ivpu_hw_ip.c                    |  84 ++++++++----
- drivers/accel/ivpu/ivpu_hw_ip.h                    |   1 -
- drivers/accel/ivpu/ivpu_pm.c                       |  13 +-
- drivers/accel/ivpu/ivpu_pm.h                       |   1 -
- drivers/accel/rocket/rocket_core.c                 |   7 +-
- drivers/accel/rocket/rocket_drv.c                  |  30 ++--
- drivers/crypto/tegra/tegra-se-main.c               |   4 +-
- drivers/dma-buf/heaps/cma_heap.c                   |   2 +-
- .../drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c    |  18 +--
- drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c       |  34 ++++-
- drivers/gpu/drm/drm_atomic_uapi.c                  |  32 +++--
- drivers/gpu/drm/drm_gem.c                          |  10 +-
- drivers/gpu/drm/drm_gpuvm.c                        |  26 ++--
- drivers/gpu/drm/drm_mode_object.c                  |  25 ++++
- drivers/gpu/drm/drm_panic.c                        |  11 +-
- drivers/gpu/drm/drm_property.c                     |  11 ++
- drivers/gpu/drm/imagination/pvr_vm.c               |   2 +-
- drivers/gpu/drm/msm/msm_gem.h                      |   2 +-
- drivers/gpu/drm/msm/msm_gem_vma.c                  |   2 +-
- drivers/gpu/drm/nouveau/nouveau_uvmm.c             |   2 +-
- drivers/gpu/drm/panel/panel-himax-hx83102.c        |  12 +-
- drivers/gpu/drm/panel/panel-ilitek-ili9882t.c      | 147 +++++++++++++++++=
-+--
- drivers/gpu/drm/panel/panel-jdi-lpm102a188a.c      |   4 +-
- drivers/gpu/drm/panel/panel-mantix-mlaf057we51.c   |  35 ++---
- drivers/gpu/drm/panel/panel-simple.c               |  29 ++++
- drivers/gpu/drm/panfrost/panfrost_mmu.c            |  40 ++++--
- drivers/gpu/drm/panthor/panthor_hw.c               |  36 ++++-
- drivers/gpu/drm/rockchip/Kconfig                   |   4 +-
- drivers/gpu/drm/rockchip/dw-mipi-dsi-rockchip.c    |  20 +++
- drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c     |   4 +-
- drivers/gpu/drm/rockchip/rockchip_drm_vop.c        |   2 +-
- drivers/gpu/drm/rockchip/rockchip_drm_vop2.c       | 151 ++++++++++-------=
-----
- drivers/gpu/drm/rockchip/rockchip_vop_reg.c        |  57 ++++++++
- drivers/gpu/drm/rockchip/rockchip_vop_reg.h        |  14 ++
- drivers/gpu/drm/tegra/drm.c                        |   4 +-
- drivers/gpu/drm/tegra/dsi.c                        |   6 +-
- drivers/gpu/drm/xe/xe_vm.c                         |   4 +-
- drivers/gpu/host1x/bus.c                           |  67 +++++----
- drivers/staging/media/tegra-video/video.c          |   4 +-
- include/drm/drm_gpuvm.h                            |  12 +-
- include/drm/drm_mode_object.h                      |   3 +
- include/drm/drm_property.h                         |   1 +
- include/linux/host1x.h                             |   2 +-
- include/uapi/drm/rocket_accel.h                    |  98 +++++++++----
- 65 files changed, 882 insertions(+), 381 deletions(-)
-
---ku7omxszsslfi5ud
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCaWjdpQAKCRAnX84Zoj2+
-dtZSAX9ncRrvIO3d6C+yogIMsrRZ0S1cKIli1Pbg8eBhbvNeLtlqB/h3gJrlsxxw
-fYWgXAABf34PbReTTu+I/oRr4/nE9mzUucWccaWyhaHRvfNVthzK6A5rfADMigHn
-OAMqSAKaLw==
-=sm7n
------END PGP SIGNATURE-----
-
---ku7omxszsslfi5ud--
-
+--===============2828697492310720904==--
