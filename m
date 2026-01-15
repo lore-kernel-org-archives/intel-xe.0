@@ -4,70 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D0220C982C4
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A83BAC79FBF
 	for <intel-xe@archiver.kernel.org>; Fri, 16 Jan 2026 14:03:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 89B1210E8BE;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 61F8510E8BA;
 	Fri, 16 Jan 2026 14:03:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="TI4uP2qK";
+	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="MWai50Ub";
 	dkim-atps=neutral
-Received: from mail-dy1-f202.google.com (mail-dy1-f202.google.com
- [74.125.82.202])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9318110E7B3
- for <intel-xe@lists.freedesktop.org>; Thu, 15 Jan 2026 16:55:39 +0000 (UTC)
-Received: by mail-dy1-f202.google.com with SMTP id
- 5a478bee46e88-2b6af3eb78dso1495140eec.0
- for <intel-xe@lists.freedesktop.org>; Thu, 15 Jan 2026 08:55:39 -0800 (PST)
+Received: from mail-dl1-f74.google.com (mail-dl1-f74.google.com [74.125.82.74])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C832510E7B4
+ for <intel-xe@lists.freedesktop.org>; Thu, 15 Jan 2026 16:55:53 +0000 (UTC)
+Received: by mail-dl1-f74.google.com with SMTP id
+ a92af1059eb24-121b1cb8377so2145066c88.0
+ for <intel-xe@lists.freedesktop.org>; Thu, 15 Jan 2026 08:55:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=google.com; s=20230601; t=1768496139; x=1769100939;
+ d=google.com; s=20230601; t=1768496153; x=1769100953;
  darn=lists.freedesktop.org; 
- h=cc:to:from:subject:message-id:mime-version:date:from:to:cc:subject
- :date:message-id:reply-to;
- bh=VaQJeoN75Etkm+J2ZV77YQeRezGqFqsukbe+v7QIQ1Y=;
- b=TI4uP2qKCP5yxmfnRkFw4i1ICRGVI/tCreFhiYQnSl0v3f3CYhyKcE+h2rk0unDWCe
- NZNDCU6G6bjf4Hv0bYKTyNCtWdI4sp5jebAU1hddzPkDRFK1ILeoiGw2CEBzEjmpdzZr
- UmCoE3toqTh6D6t/N66YcwO4O7EALj0smIGD/QbJtyA1epRrIDm0hkYz9EPfYI2LRxjJ
- FLHnR3PzijoyjrXbKNas0ziPLw70iVgztiiyO1DwadlHS57T+7Wzo5RBo4Q8WRBiQNWB
- At+B/ONxoVF7gHdbkA8WRwztpx73/2q6hkRewe4dqDAlt1z2WJ7G1mE+lGQypH15PCFr
- WPJw==
+ h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
+ :date:from:to:cc:subject:date:message-id:reply-to;
+ bh=aUfgbjlk+oCRuYuk3n9o+FjPCOtDA20kNyuDihWC6Gw=;
+ b=MWai50Ubh1r9uUrJT6IC3viQunUWbR3wcD8SMduYMPs8+Z1i5AKMUGUhh63tYR0g2Q
+ 6U0g3ewwP7SmF+YoGTVVd346qxrfFvb9iAgtnKFKM9RWnXjF4WL2Yf7ycVjGjmBw+8PZ
+ 5eoBT7k7M6/UPHGQD7o2gwsrrhxpxl5HYbLPKVS1AFwh40w3yJKVPYKak9NjA4k8ANPT
+ 5OuAUrSH2JN9SoxCYD2UahQpiPbtA8+x5WYPehFx+D7Qaz+yMbCQPERm2HWBgKwbZiIT
+ SCgcC3BLoo6eqDAkh8d2epx6BYWRHfPKgvkbjzR7szWNEswcQQdwubjOSdYcRHLOtKbs
+ oJ2Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1768496139; x=1769100939;
- h=cc:to:from:subject:message-id:mime-version:date:x-gm-message-state
- :from:to:cc:subject:date:message-id:reply-to;
- bh=VaQJeoN75Etkm+J2ZV77YQeRezGqFqsukbe+v7QIQ1Y=;
- b=rSlDoxuNkLkku0TgTSeoVBiiDOHRc/rwSIXBhmOFKXAGQqBY54D/w11odLCR81OwGW
- QO1f+dayN/r0UjmxN6A09OEbBvapHYpomch/RMUnBhjJJuEIIh7b3okZDfCisFSfrC6U
- wC5UqVQDc6SwNK+EFBCENBLg4keac55gA7J8x6w2Ts76pV3JYY9/ZiKVm0/4gDF7mq7b
- Dm0J5QKg+aIPz16K8RT68CrInH7V/uWnGA+lF+qVH8RIPKB/PQAXW8t9JTCkSSmUdnc5
- ALVtORshUdVBqrIWkyYcGqFebNxLKCtm21G4OHQHcOlf5V4Qh0+2nCXfSPtGqq6uaT+v
- B5sA==
-X-Gm-Message-State: AOJu0YwFBObP6FAORqwIvjxrln91r41N30Pc1yl9xnREpbOL3O7T/N7a
- 7ZUNjXEgYQiyRt3560FMl9SJP5KrppmBpL9DF9DVgylGOY8evkNS63PK7GGdqcNxBOMDsuMD/JU
- PeCaMhKDd9uVjCnQftGJ7uHXWkusLJXDRGJOk6LqtvBkipK/G8zYBpPZ5lRe4B/kkzCkqtT0aCX
- quMX1IM8bjiEnioXo7dA8NjJK3kFh+axKDJTeJBi6LxqIf9UnO7g4PaziVVg==
-X-Received: from dybnk23.prod.google.com
- ([2002:a05:7300:cf17:b0:2ab:9e42:f552])
+ d=1e100.net; s=20230601; t=1768496153; x=1769100953;
+ h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
+ :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=aUfgbjlk+oCRuYuk3n9o+FjPCOtDA20kNyuDihWC6Gw=;
+ b=k6uPF4O7X7RgFZGd3MHPQ9eFLQ5ylzOxZoxwglExD86FZCaDZ7893oiPpd1QWZkWQ/
+ 7EJ1zQU5vJwsooWF3WNpEwZP7yNPCXZ7ILf30NlC57D59z7pA2AdL3KPQnmSNVvEQW1g
+ m5aYUD/iJspcoU5E5ft7Q0wIvISHtDbPr1CLa61kDowD/L+kHe4bRp0dqpNxMOYm2XZv
+ yPt65t59slMRUaZrJ9pdjgeUl+yhnIkqMBsogCfn++FN6T9YqFebwEmXq186yAbDhVOS
+ Xxm1Dc+IybF41I0Ve1d/TAz3Juv+IDTsPZNn9hh3aBcEl0WVNd+Beg04XN26XCT3cxlO
+ 4SLg==
+X-Gm-Message-State: AOJu0Ywob8AoZw6HipEA3pkdFx5EazprST9ddf0EBZsilwgTFI5FLK4K
+ /+48ra60KnQJOgZUTP3A9/ZmHfZ31CKDDKQpNk55KABcRrskAlyx0P0Q2S+PFw1LAL+ZifAGXxj
+ PJ7U2WJNnWqkn3o95EwSkAjMrHrdDwh0fUQZ8pGwQ3PWHL//gx1Z/PuJF5mYLa50Bm8GiegXDzL
+ rqJ/LtTwb6CZlnKhTIL/0zoVWiTPSJwPwhBTXt5dl0KDsqY4SOIfDLEX6hIg==
+X-Received: from dyot37.prod.google.com ([2002:a05:7300:6da5:b0:2ae:51c6:b62])
  (user=jdsultan job=prod-delivery.src-stubby-dispatcher) by
- 2002:a05:7300:a194:b0:2ae:5d27:ff38 with SMTP id
- 5a478bee46e88-2b6b410376fmr36451eec.35.1768496138591; 
- Thu, 15 Jan 2026 08:55:38 -0800 (PST)
-Date: Thu, 15 Jan 2026 08:54:46 -0800
+ 2002:a05:7022:61a7:b0:11a:5065:8763 with SMTP id
+ a92af1059eb24-1244a7195bfmr313682c88.5.1768496152922; 
+ Thu, 15 Jan 2026 08:55:52 -0800 (PST)
+Date: Thu, 15 Jan 2026 08:54:53 -0800
+In-Reply-To: <20260115-upstream-prep-v1-0-001d5b38fc11@google.com>
 Mime-Version: 1.0
-X-B4-Tracking: v=1; b=H4sIANYbaWkC/x2MQQqAIBAAvyJ7TlBBxb4SHay22kMmWhGIf086z
- sBMgYyJMEPPCiR8KNMZGsiOwbz7sCGnpTEooYyQUvM75iuhP3hMGPmknNTGWeGthtY0udL7/4a
- x1g/l0oyVXwAAAA==
-X-Change-Id: 20260115-upstream-prep-b29156970a75
+References: <20260115-upstream-prep-v1-0-001d5b38fc11@google.com>
 X-Developer-Key: i=jdsultan@google.com; a=ed25519;
  pk=RhTSABMOTIhvVE7NYiZwn1iDGYYNbaN092nvaEF2dxo=
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1768496136; l=4289;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1768496136; l=17248;
  i=jdsultan@google.com; s=20260115; h=from:subject:message-id;
- bh=2nPaoHCrEF1RGln7cSZwCo0/8v1VK4gPXRRgqEpJjc4=;
- b=GLYjq20j6T8KEGTDxfQxnYe8otqXNH0H6ddGaf/u0pFmhuodq1GEjgAA+e1bB49Z8FKZzR7Ar
- iBXv/9v4wcgCNylUOSGla7CxElPawgnM3wqSxiXSxRk3ZSGUi4m8nsi
+ bh=v7z/HxlcVgsPbzm7xiDYjVYOSQxb2FitXVH6KO1GjV4=;
+ b=jKuaHHaSGaibWpD7KE35bWEgMw21QagkbvhDS0Gkgl9P2l2kvpvMkAhjqm0bmhkZrtqIDiQ5D
+ QgxEk3ZC4ZiBHyFLGE44AU8C5lfj9I6NuUd1PiZNvhcX51XU12Ap7c/
 X-Mailer: b4 0.14.2
-Message-ID: <20260115-upstream-prep-v1-0-001d5b38fc11@google.com>
-Subject: [RFC PATCH 00/10] Enable seamless boot (fastboot) for PTL
+Message-ID: <20260115-upstream-prep-v1-7-001d5b38fc11@google.com>
+Subject: [PATCH RFC 07/10] drm/i915/display: Implement seamless fastboot for
+ MSO panels on PTL
 From: Juasheem Sultan <jdsultan@google.com>
 To: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
 Cc: Jani Nikula <jani.nikula@linux.intel.com>,
@@ -90,80 +87,470 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This RFC patch series proposes an implementation of seamless boot (fastboot)
-support for Panther Lake (PTL) platforms within the Xe driver, mirroring
-functionality already present in i915. The primary focus is on devices using
-MSO (Multi-Segment Operation) panels and EDP panels.
+The standard display probe and modeset setup path (`intel_setup_outputs`,
+`intel_modeset_setup_hw_state`) often resets the hardware or fails to
+perfectly match the BIOS configuration for dual-link MSO (Multi-Segment
+Operation) panels. This causes screen flickering or black screens during
+boot on Panther Lake (PTL).
 
-The goal of this series is to achieve a flicker-free transition from the
-bootloader (BIOS/UEFI) to the kernel driver by strictly adhering to the
-hardware state established by the firmware.
+This patch introduces a specialized "fastboot" probe path in
+`intel_display_driver_probe_nogem`:
 
-Key areas addressed in this revision:
-1.  **Boot State Preservation**: Where necessary, make amendments to initial
-	hardware readouts and ensure that the framebuffer state as established
-	by firmware is correctly passed into the driver as a memory object.
-2.  **Atomic State Handoff**: Adjusting the atomic commit path to prevent
-    unnecessary pipe disables or power well toggles when inheriting a valid
-    boot state.
-3.  **Passive Probing**: Introducing a "passive" initialization path that
-    builds the DRM software state without triggering hardware resets.
+1.  **Active Pipe Detection**: Iterates through pipes to find the one
+    left active by the BIOS.
+2.  **Hardware State Readout**: Uses `intel_crtc_get_pipe_config` to
+    accurately read the current hardware state.
+3.  **MSO Timing Reconstruction**: Detects if the hardware is driving
+    an MSO split mode (e.g., 1128px width) and manually scales the
+    timings (hdisplay, htotal, clock, etc.) to the full logical
+    resolution (2256px). This ensures the mode matches VBT/userspace
+    expectations and prevents invalid mode rejection.
+4.  **Topology Reconstruction**: Identifies the active encoder and
+    connector, links them to the CRTC, and synthesizes a valid DRM
+    mode from the readout.
+5.  **State Locking**: Invokes `intel_crtc_steal_state` to persist
+    this configuration as the initial atomic state.
+6.  **Cleanup & Bypass**: Removes unused connectors to prevent interference
+    and skips the standard heavyweight output setup if a valid BIOS
+    configuration is successfully reconstructed.
 
-This is an initial implementation subject to discussion. 
+This ensures the kernel driver seamlessly takes over the display without
+an intermediate modeset, preserving the splash screen.
 
-Change-Id: I5cd3bdd4f6f687f007e91f6d0afbfeecfc06762b
 Signed-off-by: Juasheem Sultan <jdsultan@google.com>
 ---
-Juasheem Sultan (10):
-      drm/i915/display: Implement passive initialization for splash screen preservation
-      drm/xe/display: Implement seamless boot state reconstruction for PTL
-      drm/i915/display: Implement aggressive boot state preservation for PTL
-      drm/xe/display: Fix initial plane reconstruction and stolen memory handling
-      drm/i915/display: Enable early PLL readout and robustify modeset setup
-      drm/i915/display: Fix vblank timestamps and update logic for fastboot
-      drm/i915/display: Implement seamless fastboot for MSO panels on PTL
-      drm/i915/display: Robustify fastboot and power init for seamless boot
-      drm/i915/display: Fix initial plane config readout and MSO stride for PTL
-      drm/i915/display: Refactor initial plane readout and harden boot handover
+ drivers/gpu/drm/i915/display/intel_display.h       |   2 -
+ .../gpu/drm/i915/display/intel_display_driver.c    | 309 +++++++++++++++++++--
+ 2 files changed, 286 insertions(+), 25 deletions(-)
 
- drivers/gpu/drm/i915/display/intel_bios.c          |  40 +-
- drivers/gpu/drm/i915/display/intel_cdclk.c         |  36 -
- drivers/gpu/drm/i915/display/intel_cdclk.h         |  41 +-
- drivers/gpu/drm/i915/display/intel_connector.c     |   9 +
- drivers/gpu/drm/i915/display/intel_connector.h     |   1 +
- drivers/gpu/drm/i915/display/intel_crtc.c          |  62 +-
- drivers/gpu/drm/i915/display/intel_ddi.c           | 205 +++++-
- drivers/gpu/drm/i915/display/intel_ddi.h           |   2 +
- drivers/gpu/drm/i915/display/intel_display.c       | 814 +++++++++++++++++++--
- drivers/gpu/drm/i915/display/intel_display.h       |   6 +
- drivers/gpu/drm/i915/display/intel_display_core.h  |   2 +
- .../gpu/drm/i915/display/intel_display_driver.c    | 329 ++++++++-
- drivers/gpu/drm/i915/display/intel_display_power.c |  16 +-
- drivers/gpu/drm/i915/display/intel_display_types.h |   8 +
- drivers/gpu/drm/i915/display/intel_dp.c            | 372 ++++++++--
- drivers/gpu/drm/i915/display/intel_dp.h            |   5 +
- drivers/gpu/drm/i915/display/intel_dpll_mgr.c      |  16 +-
- drivers/gpu/drm/i915/display/intel_dpll_mgr.h      |   1 +
- drivers/gpu/drm/i915/display/intel_hdmi.c          |  39 +
- drivers/gpu/drm/i915/display/intel_hdmi.h          |   2 +
- drivers/gpu/drm/i915/display/intel_modeset_setup.c |   7 +
- .../gpu/drm/i915/display/intel_modeset_verify.c    |  14 +-
- drivers/gpu/drm/i915/display/intel_panel.c         |  41 +-
- drivers/gpu/drm/i915/display/intel_panel.h         |   3 +
- drivers/gpu/drm/i915/display/intel_plane_initial.c |  53 ++
- drivers/gpu/drm/i915/display/skl_universal_plane.c |  32 +-
- drivers/gpu/drm/xe/display/xe_display.c            | 309 +++++++-
- drivers/gpu/drm/xe/display/xe_display.h            |   2 +
- drivers/gpu/drm/xe/display/xe_plane_initial.c      |  28 +-
- drivers/gpu/drm/xe/xe_device.c                     |   2 +-
- drivers/gpu/drm/xe/xe_ggtt.h                       |   3 +
- drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c             |   2 +
- 32 files changed, 2302 insertions(+), 200 deletions(-)
----
-base-commit: 812e4b8966d421afd4df8f794bf15f1a1a3ec7b6
-change-id: 20260115-upstream-prep-b29156970a75
+diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
+index 2a6a75fc8e0e202c7d63478c3d9541248e474d6a..0eb6d08e95f412a7d0999ee846f2769ce13ff2ab 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.h
++++ b/drivers/gpu/drm/i915/display/intel_display.h
+@@ -531,8 +531,6 @@ int intel_initial_commit(struct intel_display *display);
+ void intel_panel_sanitize_ssc(struct intel_display *display);
+ void intel_update_czclk(struct intel_display *display);
+ void intel_setup_encoders(struct intel_display *display);
+-void intel_panel_sanitize_ssc(struct drm_i915_private *i915);
+-void intel_update_czclk(struct drm_i915_private *i915);
+ void intel_atomic_helper_free_state_worker(struct work_struct *work);
+ enum drm_mode_status intel_mode_valid(struct drm_device *dev,
+ 				      const struct drm_display_mode *mode);
+diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
+index cf1c14412abea724a549c5670b6344522fd36037..80927d2674d32c0d96b141a97e1c60217b4d01b2 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_driver.c
++++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
+@@ -8,6 +8,7 @@
+  */
+ 
+ #include <linux/vga_switcheroo.h>
++#include <linux/slab.h>
+ #include <acpi/video.h>
+ #include <drm/display/drm_dp_mst_helper.h>
+ #include <drm/drm_atomic_helper.h>
+@@ -17,48 +18,62 @@
+ #include <drm/drm_probe_helper.h>
+ #include <drm/drm_vblank.h>
+ 
++#include <drm/drm_atomic_uapi.h>
++
++#include "intel_display_regs.h"
++#include <drm/drm_encoder.h>
+ #include "i915_drv.h"
+ #include "i915_utils.h"
++#include "i915_reg.h"
+ #include "i9xx_wm.h"
+ #include "intel_acpi.h"
+ #include "intel_atomic.h"
+ #include "intel_audio.h"
++#include "intel_backlight.h"
+ #include "intel_bios.h"
+-#include "intel_bw.h"
+ #include "intel_cdclk.h"
+ #include "intel_color.h"
+ #include "intel_crtc.h"
+ #include "intel_display_core.h"
++#include "intel_ddi.h"
++#include "intel_de.h"
++#include "intel_display.h"
+ #include "intel_display_debugfs.h"
+ #include "intel_display_driver.h"
+ #include "intel_display_irq.h"
+ #include "intel_display_power.h"
+ #include "intel_display_types.h"
+ #include "intel_display_wa.h"
+-#include "intel_dkl_phy.h"
+-#include "intel_dmc.h"
++#include "intel_dpll.h"
++#include "intel_dpt.h"
++#include "intel_dpt_common.h"
+ #include "intel_dp.h"
+ #include "intel_dp_tunnel.h"
+-#include "intel_dpll.h"
+-#include "intel_dpll_mgr.h"
++#include "intel_dkl_phy.h"
++#include "intel_dmc.h"
++#include "intel_bw.h"
++#include "intel_quirks.h"
++#include "intel_modeset_lock.h"
++#include "intel_hti.h"
++#include "intel_modeset_setup.h"
+ #include "intel_fb.h"
+-#include "intel_fbc.h"
+ #include "intel_fbdev.h"
+ #include "intel_fdi.h"
+ #include "intel_flipq.h"
+ #include "intel_gmbus.h"
+ #include "intel_hdcp.h"
+ #include "intel_hotplug.h"
+-#include "intel_hti.h"
+-#include "intel_modeset_lock.h"
+-#include "intel_modeset_setup.h"
+ #include "intel_opregion.h"
+ #include "intel_overlay.h"
+-#include "intel_plane_initial.h"
++#include "intel_panel.h"
++#include "intel_pch_display.h"
++#include "intel_pcode.h"
+ #include "intel_pmdemand.h"
+ #include "intel_pps.h"
+ #include "intel_psr.h"
+ #include "intel_quirks.h"
++#include "intel_snps_phy.h"
++#include "intel_tc.h"
+ #include "intel_vga.h"
+ #include "intel_wm.h"
+ #include "skl_watermark.h"
+@@ -454,6 +469,8 @@ bool intel_display_driver_check_access(struct intel_display *display)
+ /* part #2: call after irq install, but before gem init */
+ int intel_display_driver_probe_nogem(struct intel_display *display)
+ {
++	bool found_initial_config = false;
++	struct intel_crtc *crtc;
+ 	enum pipe pipe;
+ 	int ret;
+ 
+@@ -468,22 +485,264 @@ int intel_display_driver_probe_nogem(struct intel_display *display)
+ 
+ 	intel_gmbus_setup(display);
+ 
++	intel_dpll_init(display);
++	intel_setup_encoders(display);
++
+ 	drm_dbg_kms(display->drm, "%d display pipe%s available.\n",
+ 		    INTEL_NUM_PIPES(display),
+ 		    INTEL_NUM_PIPES(display) > 1 ? "s" : "");
++		for_each_pipe(display, pipe) {
++			ret = intel_crtc_init(display, pipe);
++			if (ret)
++				goto err_mode_config;
++		}
+ 
+-	for_each_pipe(display, pipe) {
+-		ret = intel_crtc_init(display, pipe);
+-		if (ret)
+-			goto err_mode_config;
++		if (display->funcs.display && display->funcs.display->post_crtc_init_hook)
++			display->funcs.display->post_crtc_init_hook(display);
++	display->funcs.display->initial_plane_config(display);
++
++
++	for_each_intel_crtc(display->drm, crtc) {
++		struct intel_crtc_state *crtc_state = to_intel_crtc_state(crtc->base.state);
++
++		if (!to_intel_plane_state(crtc->base.primary->state)->uapi.fb) {
++			crtc_state->uapi.active = false;
++			crtc_state->hw.active = false;
++			crtc->active = false;
++			continue;
++		}
++
++		if (intel_crtc_get_pipe_config(crtc_state)) {
++			if (crtc_state->hw.pipe_mode.hdisplay == 1128) {
++				crtc_state->hw.pipe_mode.hdisplay *= 2;
++				crtc_state->hw.pipe_mode.crtc_hdisplay *= 2;
++				crtc_state->hw.pipe_mode.htotal *= 2;
++				crtc_state->hw.pipe_mode.crtc_htotal *= 2;
++			}
++
++			struct intel_encoder *encoder = NULL;
++			enum port port;
++			u32 tmp;
++
++			/* Find the active encoder to get the clock */
++			tmp = intel_de_read(display, TRANS_DDI_FUNC_CTL(display, crtc_state->cpu_transcoder));
++			port = REG_FIELD_GET(TRANS_DDI_PORT_MASK, tmp);
++			for_each_intel_encoder(display->drm, encoder) {
++				if (encoder->port == port) {
++					break;
++				}
++			}
++
++
++			if (encoder && encoder->port == port) {
++				/*
++				 * The clock is not known at this point. It will be filled in
++				 * when the encoder's get_config is called.
++				 */
++				encoder->get_config(encoder, crtc_state);
++
++				if (crtc_state->hw.adjusted_mode.crtc_clock == 112492) {
++					crtc_state->hw.adjusted_mode.crtc_clock *= 2;
++				}
++
++				/*
++				 * HACK: MSO Fixup for readout (Fastboot path).
++				 * If we read out the split MSO mode (1128), scale it up to the
++				 * logical mode (2256) so it matches the VBT/User mode.
++				 */
++				if (crtc_state->hw.pipe_mode.hdisplay == 1128) {
++
++					/* Scale ALL horizontal timings to prevent invalid mode (Sync < Active) */
++					crtc_state->hw.pipe_mode.hdisplay *= 2;
++					crtc_state->hw.pipe_mode.hsync_start *= 2;
++					crtc_state->hw.pipe_mode.hsync_end *= 2;
++					crtc_state->hw.pipe_mode.htotal *= 2;
++
++					crtc_state->hw.pipe_mode.crtc_hdisplay *= 2;
++					crtc_state->hw.pipe_mode.crtc_hsync_start *= 2;
++					crtc_state->hw.pipe_mode.crtc_hsync_end *= 2;
++					crtc_state->hw.pipe_mode.crtc_htotal *= 2;
++					crtc_state->hw.pipe_mode.crtc_hblank_start *= 2;
++					crtc_state->hw.pipe_mode.crtc_hblank_end *= 2;
++
++					/* Scale clock */
++					crtc_state->hw.pipe_mode.crtc_clock *= 2;
++					crtc_state->hw.pipe_mode.clock *= 2;
++
++					/* Fix name */
++					snprintf(crtc_state->hw.pipe_mode.name, DRM_DISPLAY_MODE_LEN, "%dx%d",
++							crtc_state->hw.pipe_mode.hdisplay, crtc_state->hw.pipe_mode.vdisplay);
++				} else if (crtc_state->hw.pipe_mode.hdisplay == 2256 &&
++						crtc_state->hw.pipe_mode.crtc_hsync_start == 1152) {
++
++					/* Geometry is already scaled, but Sync/Blank are raw. Fix them. */
++					crtc_state->hw.pipe_mode.hsync_start *= 2;
++					crtc_state->hw.pipe_mode.hsync_end *= 2;
++					crtc_state->hw.pipe_mode.crtc_hsync_start *= 2;
++					crtc_state->hw.pipe_mode.crtc_hsync_end *= 2;
++					crtc_state->hw.pipe_mode.crtc_hblank_start *= 2;
++					crtc_state->hw.pipe_mode.crtc_hblank_end *= 2;
++				}
++				/* Link the encoder to the CRTC */
++				encoder->base.crtc = &crtc->base;
++
++				/*
++				 * Copy crtc_clock to clock for drm_mode_vrefresh()
++				 */
++				crtc_state->hw.adjusted_mode.clock = crtc_state->hw.adjusted_mode.crtc_clock;
++
++				/*
++				 * Copy the timings from the pipe_mode to the adjusted_mode
++				 * to ensure the full mode is available for state stealing.
++				 */
++
++				crtc_state->hw.adjusted_mode.hdisplay = crtc_state->hw.pipe_mode.hdisplay;
++				crtc_state->hw.adjusted_mode.vdisplay = crtc_state->hw.pipe_mode.vdisplay;
++				/* Copy to both sets of timing fields for consistency */
++				crtc_state->hw.adjusted_mode.htotal = crtc_state->hw.pipe_mode.crtc_htotal;
++				crtc_state->hw.adjusted_mode.vtotal = crtc_state->hw.pipe_mode.crtc_vtotal;
++				crtc_state->hw.adjusted_mode.crtc_hdisplay = crtc_state->hw.pipe_mode.crtc_hdisplay;
++				crtc_state->hw.adjusted_mode.crtc_htotal = crtc_state->hw.pipe_mode.crtc_htotal;
++				crtc_state->hw.adjusted_mode.crtc_vtotal = crtc_state->hw.pipe_mode.crtc_vtotal;
++
++				/*FIX: Also copy HSync/Blank to ensure valid adjusted_mode */
++				crtc_state->hw.adjusted_mode.hsync_start = crtc_state->hw.pipe_mode.crtc_hsync_start;
++				crtc_state->hw.adjusted_mode.hsync_end = crtc_state->hw.pipe_mode.crtc_hsync_end;
++				crtc_state->hw.adjusted_mode.crtc_hsync_start = crtc_state->hw.pipe_mode.crtc_hsync_start;
++				crtc_state->hw.adjusted_mode.crtc_hsync_end = crtc_state->hw.pipe_mode.crtc_hsync_end;
++
++				crtc_state->hw.adjusted_mode.crtc_hblank_start = crtc_state->hw.pipe_mode.crtc_hblank_start;
++				crtc_state->hw.adjusted_mode.crtc_hblank_end = crtc_state->hw.pipe_mode.crtc_hblank_end;
++				crtc_state->uapi.encoder_mask = drm_encoder_mask(&encoder->base);
++
++				/* Sync the UAPI state with the read-out HW state */
++				drm_mode_copy(&crtc_state->uapi.mode, &crtc_state->hw.adjusted_mode);
++				drm_mode_copy(&crtc_state->uapi.adjusted_mode, &crtc_state->hw.adjusted_mode);
++				crtc->base.enabled = true;
++				crtc->active = true;
++				drm_mode_copy(&crtc->base.mode, &crtc_state->hw.mode);
++				drm_mode_copy(&crtc->base.hwmode, &crtc_state->hw.adjusted_mode);
++				crtc_state->uapi.enable = crtc->base.enabled;
++				crtc_state->uapi.active = crtc->active;
++
++				if (drm_atomic_set_mode_for_crtc(&crtc_state->uapi, &crtc_state->hw.adjusted_mode) < 0) {
++				}
++
++				struct drm_connector *connector = NULL;
++				struct drm_connector_list_iter conn_iter;
++
++				drm_connector_list_iter_begin(display->drm, &conn_iter);
++				drm_for_each_connector_iter(connector, &conn_iter) {
++					if (to_intel_connector(connector)->encoder == encoder) {
++
++						struct drm_display_mode *mode;
++
++						/* Clear out any modes added by VBT parsing */
++						struct drm_display_mode *next;
++
++						mutex_lock(&display->drm->mode_config.mutex);
++						list_for_each_entry_safe(mode, next, &connector->probed_modes, head)
++							drm_mode_destroy(display->drm, mode);
++
++						connector->status = connector_status_connected;
++
++						mode = kzalloc(sizeof(*mode), GFP_KERNEL);
++						if (mode) {
++							drm_mode_copy(mode, &crtc_state->hw.adjusted_mode);
++							drm_mode_probed_add(connector, mode);
++							connector->state->crtc = &crtc->base;
++						}
++						mutex_unlock(&display->drm->mode_config.mutex);
++						break;
++					}
++				}
++				drm_connector_list_iter_end(&conn_iter);
++
++				intel_crtc_steal_state(crtc_state);
++
++				found_initial_config = true;
++			}
++		}
++	}
++
++	if (found_initial_config) {
++		struct intel_crtc *active_crtc = NULL;
++		struct intel_encoder *active_encoder = NULL;
++		struct intel_connector *active_connector = NULL;
++		struct intel_connector *connector, *tmp;
++		struct drm_connector_list_iter conn_iter;
++		enum pipe pipe;
++
++		/* Find the single active CRTC pipe */
++		for_each_intel_crtc(display->drm, crtc) {
++			if (to_intel_crtc_state(crtc->base.state)->hw.active) {
++				active_crtc = crtc;
++				break;
++			}
++		}
++
++		/*
++		 * Find the active encoder by checking the HW state of all encoders
++		 * to see which one is driving the active pipe.
++		 */
++		if (active_crtc) {
++			struct intel_encoder *encoder;
++
++			for_each_intel_encoder(display->drm, encoder) {
++				if (encoder->get_hw_state(encoder, &pipe) && pipe == active_crtc->pipe) {
++					active_encoder = encoder;
++					break;
++				}
++			}
++		}
++
++		/* Find the connector attached to the active encoder */
++		if (active_encoder) {
++			drm_connector_list_iter_begin(display->drm, &conn_iter);
++			for_each_intel_connector_iter(connector, &conn_iter) {
++				if (connector->encoder == active_encoder) {
++					active_connector = connector;
++					break;
++				}
++			}
++			drm_connector_list_iter_end(&conn_iter);
++		}
++
++		/*
++		 * Clean up any connectors that were initialized for probing but
++		 * are not actually part of the active modeset.
++		 */
++		list_for_each_entry_safe(connector, tmp, &display->drm->mode_config.connector_list, base.head) {
++			if (connector != active_connector) {
++				drm_connector_cleanup(&connector->base);
++				kfree(connector);
++			}
++		}
++
++		if (active_connector && active_crtc) {
++
++			if (active_encoder->type == INTEL_OUTPUT_EDP) {
++				struct intel_dp *intel_dp = enc_to_intel_dp(active_encoder);
++
++				intel_pps_vdd_on_unlocked(intel_dp);
++				intel_backlight_setup(active_connector, active_crtc->pipe);
++				intel_pps_vdd_off_unlocked(intel_dp, false);
++			} else {
++				intel_backlight_setup(active_connector, active_crtc->pipe);
++			}
++		}
++		to_intel_cdclk_state(display->cdclk.obj.state)->logical = display->cdclk.hw;
++		to_intel_cdclk_state(display->cdclk.obj.state)->actual = display->cdclk.hw;
++	} else {
++		/* Fallback to full setup if no initial config was found */
++		intel_update_czclk(display);
++		intel_display_driver_init_hw(display);
+ 	}
+ 
+ 	intel_plane_possible_crtcs_init(display);
+-	intel_dpll_init(display);
++
+ 	intel_fdi_pll_freq_update(display);
+ 
+-	intel_update_czclk(display);
+-	intel_display_driver_init_hw(display);
+ 	intel_dpll_update_ref_clks(display);
+ 
+ 	if (display->cdclk.max_cdclk_freq == 0)
+@@ -491,7 +750,8 @@ int intel_display_driver_probe_nogem(struct intel_display *display)
+ 
+ 	intel_hti_init(display);
+ 
+-	intel_setup_outputs(display);
++	/* Just disable it once at startup */
++	intel_vga_disable(display);
+ 
+ 	ret = intel_dp_tunnel_mgr_init(display);
+ 	if (ret)
+@@ -500,12 +760,15 @@ int intel_display_driver_probe_nogem(struct intel_display *display)
+ 	intel_display_driver_disable_user_access(display);
+ 
+ 	drm_modeset_lock_all(display->drm);
+-	intel_modeset_setup_hw_state(display, display->drm->mode_config.acquire_ctx);
++
++	if (!found_initial_config) {
++		intel_modeset_setup_hw_state(display, display->drm->mode_config.acquire_ctx);
++	} else {
++	}
++
+ 	intel_acpi_assign_connector_fwnodes(display);
+ 	drm_modeset_unlock_all(display->drm);
+ 
+-	intel_initial_plane_config(display);
+-
+ 	/*
+ 	 * Make sure hardware watermarks really match the state we read out.
+ 	 * Note that we need to do this after reconstructing the BIOS fb's
+@@ -527,7 +790,7 @@ int intel_display_driver_probe_nogem(struct intel_display *display)
+ /* part #3: call after gem init */
+ int intel_display_driver_probe(struct intel_display *display)
+ {
+-	int ret;
++	int ret = 0;
+ 
+ 	if (!HAS_DISPLAY(display))
+ 		return 0;
+@@ -570,8 +833,8 @@ void intel_display_driver_register(struct intel_display *display)
+ 		return;
+ 
+ 	/* Must be done after probing outputs */
++	/* intel_acpi_video_register(display); */
+ 	intel_opregion_register(display);
+-	intel_acpi_video_register(display);
+ 
+ 	intel_audio_init(display);
+ 
 
-Best regards,
 -- 
-Juasheem Sultan <jdsultan@google.com>
+2.52.0.457.g6b5491de43-goog
 
