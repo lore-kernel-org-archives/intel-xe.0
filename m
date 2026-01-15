@@ -4,52 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7CF73D3CCB8
-	for <intel-xe@archiver.kernel.org>; Thu, 15 Jan 2026 07:51:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C3D90D3CCB8
+	for <intel-xe@archiver.kernel.org>; Thu, 15 Jan 2026 07:51:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3D68D10E6D3;
-	Thu, 15 Jan 2026 07:51:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8671910E6D6;
+	Thu, 15 Jan 2026 07:51:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VDbIx0qz";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HQ99pdLy";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C1F1810E6D2;
- Thu, 15 Jan 2026 07:51:06 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8AC9310E6D6;
+ Thu, 15 Jan 2026 07:51:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1768463466; x=1799999466;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=GIsfVSxRjprOlLS5Zpb084RF9gxtf/afYAVrEeRXa2g=;
- b=VDbIx0qzUrx9lyDvzl5r8iYF8Leqc5r7rpWIZIfBG9WCoR2SJE7eyyDg
- DcXncUqlsABZL35Ep18ZnXUpscnAAzMV6R+J1KY9Blyh3zMQJrF9r937V
- WV95QnnCoZTqul5rOksVqoa0sPXERIPfzL9Iy0VTESNJtD/JT3Bv1ApS2
- zir6DH614cDdEPbCOJ6+2HxZKJpAPr4lncdAphOG4dSxa3A84W6CiRTbc
- IwtHrl2rRDatB58uCqZfLBrsDzy7Zq7L9w9xLsUgO80vGjN5Ewnu0jfyX
- 58R1R+bNG6bl2qoRswk/7EF1X10cCNfdoeSHGWNncrLFSKLPBVv0izrc+ g==;
-X-CSE-ConnectionGUID: xiT0sdeUQTuhbR4hEqk1/A==
-X-CSE-MsgGUID: 2yPnwOy7QoiKIYOCa+221Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11671"; a="92436200"
-X-IronPort-AV: E=Sophos;i="6.21,226,1763452800"; d="scan'208";a="92436200"
+ t=1768463469; x=1799999469;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=TIB67xVpzDt6tnZzr4FKkM8br62PRSuOyURQd41XR8E=;
+ b=HQ99pdLyv9Y4e9WpkPBxHi9UuWh4uZWy9xwEmamNM4Nuk+0TrsL8fjx0
+ k476UlHVoYQhw0PBcnYcAINBnldqSnMkB3/quYXO2GRxw/UEihKJRDFv1
+ paVPUqfVSmBOUcEsIJq7oZ0zrxe/xydiMuw0G96xkoVThuUOtPKGu/vjW
+ wmc5T4DLqrIZ+jbQMJXPU3pkmG5WhuQi5nQbsFGaEbeIy0PGNXRL7g32X
+ bmaWnJt4Pj/cPGwtTDZlQi2U8xem1ozTpLkGeud5J9lAecYoeCQnCccF5
+ 0toCFjrz/KZWLixAIwwQWqIXjmN6olXjdN0ja1bPkofY4L/DUNfVo8rKX w==;
+X-CSE-ConnectionGUID: 8Xurk48zR4m5mGaFIpoGbw==
+X-CSE-MsgGUID: lj4yLy0cQEylR8k3GxGJ1A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11671"; a="92436203"
+X-IronPort-AV: E=Sophos;i="6.21,226,1763452800"; d="scan'208";a="92436203"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jan 2026 23:51:06 -0800
-X-CSE-ConnectionGUID: GJEfLFGmSEeV5mvL/2vPUw==
-X-CSE-MsgGUID: yoVGYBuyQXCeVdyq2OY4Og==
+ 14 Jan 2026 23:51:09 -0800
+X-CSE-ConnectionGUID: JWNzp36NQ9eTsm3XFM1MoA==
+X-CSE-MsgGUID: WLKb5XUxTl6FldkxUdxcbw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,226,1763452800"; d="scan'208";a="204101689"
+X-IronPort-AV: E=Sophos;i="6.21,226,1763452800"; d="scan'208";a="204101698"
 Received: from display-adls.igk.intel.com ([10.211.131.198])
- by orviesa010.jf.intel.com with ESMTP; 14 Jan 2026 23:51:05 -0800
+ by orviesa010.jf.intel.com with ESMTP; 14 Jan 2026 23:51:08 -0800
 From: Mika Kahola <mika.kahola@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Mika Kahola <mika.kahola@intel.com>,
- Suraj Kandpal <suraj.kandpal@intel.com>, Imre Deak <imre.deak@intel.com>
-Subject: [PATCH v3 00/15] drm/i915/pll: Verify pll dividers and remove
- redundant .clock member
-Date: Thu, 15 Jan 2026 07:50:46 +0000
-Message-ID: <20260115075101.2214842-1-mika.kahola@intel.com>
+ Suraj Kandpal <suraj.kandpal@intel.com>
+Subject: [PATCH v3 02/15] drm/i915/cx0: Move C20 port clock calculation
+Date: Thu, 15 Jan 2026 07:50:48 +0000
+Message-ID: <20260115075101.2214842-3-mika.kahola@intel.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260115075101.2214842-1-mika.kahola@intel.com>
+References: <20260115075101.2214842-1-mika.kahola@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -66,46 +67,136 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This is v2 of [1], with the updates on commit messages and
-fuzzy clock check.
+Prepare removal of .clock member from the pll state
+structure by moving intel_c20pll_calc_port_clock()
+function.
 
-[1] https://lore.kernel.org/intel-xe/20251217151955.1690202-1-mika.kahola@intel.com/
+No functional change.
 
-Cc: Suraj Kandpal <suraj.kandpal@intel.com>
-Cc: Imre Deak <imre.deak@intel.com>
+Signed-off-by: Mika Kahola <mika.kahola@intel.com>
+Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c | 100 +++++++++----------
+ 1 file changed, 50 insertions(+), 50 deletions(-)
 
-Mika Kahola (15):
-  drm/i915/cx0: Move C10 port clock calculation
-  drm/i915/cx0: Move C20 port clock calculation
-  drm/i915/cx0: Drop Cx0 crtc_state from HDMI TMDS pll divider
-    calculation
-  drm/i915/lt_phy: Drop LT PHY crtc_state for port calculation
-  drm/i915/cx0: Drop encoder from port clock calculation
-  drm/i915/cx0: Create macro around PLL tables
-  drm/i915/lt_phy: Create macro for LT PHY PLL state
-  drm/i915/display: Add helper function for fuzzy clock check
-  drm/i915/cx0: Fix HDMI FRL clock rates
-  drm/i915/cx0: Add a fuzzy check for DP/HDMI clock rates during
-    programming
-  drm/i915/cx0: Verify C10/C20 pll dividers
-  drm/i915/lt_phy: Add verification for lt phy pll dividers
-  drm/i915/cx0: Drop C20 25.175 MHz rate
-  drm/i915/lt_phy: Drop 27.2 MHz rate
-  drm/i915/display: Remove .clock member from eDP/DP/HDMI pll tables
-
- drivers/gpu/drm/i915/display/intel_cx0_phy.c  | 727 ++++++++++--------
- drivers/gpu/drm/i915/display/intel_cx0_phy.h  |   1 +
- drivers/gpu/drm/i915/display/intel_ddi.c      |   4 +-
- drivers/gpu/drm/i915/display/intel_dpll.c     |   8 +-
- drivers/gpu/drm/i915/display/intel_dpll.h     |   1 +
- drivers/gpu/drm/i915/display/intel_dpll_mgr.c |  11 +-
- drivers/gpu/drm/i915/display/intel_dpll_mgr.h |   3 -
- drivers/gpu/drm/i915/display/intel_hdmi.c     |  19 +-
- drivers/gpu/drm/i915/display/intel_lt_phy.c   | 239 +++---
- drivers/gpu/drm/i915/display/intel_lt_phy.h   |   5 +-
- .../drm/i915/display/intel_snps_hdmi_pll.c    |   2 -
- 11 files changed, 553 insertions(+), 467 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+index 5cd756321373..ac5e304ba306 100644
+--- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
++++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+@@ -2130,6 +2130,56 @@ static int intel_c10pll_calc_port_clock(struct intel_encoder *encoder,
+ 	return tmpclk;
+ }
+ 
++static bool intel_c20phy_use_mpllb(const struct intel_c20pll_state *state)
++{
++	return state->tx[0] & C20_PHY_USE_MPLLB;
++}
++
++static int intel_c20pll_calc_port_clock(struct intel_encoder *encoder,
++					const struct intel_c20pll_state *pll_state)
++{
++	unsigned int frac, frac_en, frac_quot, frac_rem, frac_den;
++	unsigned int multiplier, refclk = 38400;
++	unsigned int tx_clk_div;
++	unsigned int ref_clk_mpllb_div;
++	unsigned int fb_clk_div4_en;
++	unsigned int ref, vco;
++	unsigned int tx_rate_mult;
++	unsigned int tx_rate = REG_FIELD_GET(C20_PHY_TX_RATE, pll_state->tx[0]);
++
++	if (intel_c20phy_use_mpllb(pll_state)) {
++		tx_rate_mult = 1;
++		frac_en = REG_FIELD_GET(C20_MPLLB_FRACEN, pll_state->mpllb[6]);
++		frac_quot = pll_state->mpllb[8];
++		frac_rem =  pll_state->mpllb[9];
++		frac_den =  pll_state->mpllb[7];
++		multiplier = REG_FIELD_GET(C20_MULTIPLIER_MASK, pll_state->mpllb[0]);
++		tx_clk_div = REG_FIELD_GET(C20_MPLLB_TX_CLK_DIV_MASK, pll_state->mpllb[0]);
++		ref_clk_mpllb_div = REG_FIELD_GET(C20_REF_CLK_MPLLB_DIV_MASK, pll_state->mpllb[6]);
++		fb_clk_div4_en = 0;
++	} else {
++		tx_rate_mult = 2;
++		frac_en = REG_FIELD_GET(C20_MPLLA_FRACEN, pll_state->mplla[6]);
++		frac_quot = pll_state->mplla[8];
++		frac_rem =  pll_state->mplla[9];
++		frac_den =  pll_state->mplla[7];
++		multiplier = REG_FIELD_GET(C20_MULTIPLIER_MASK, pll_state->mplla[0]);
++		tx_clk_div = REG_FIELD_GET(C20_MPLLA_TX_CLK_DIV_MASK, pll_state->mplla[1]);
++		ref_clk_mpllb_div = REG_FIELD_GET(C20_REF_CLK_MPLLB_DIV_MASK, pll_state->mplla[6]);
++		fb_clk_div4_en = REG_FIELD_GET(C20_FB_CLK_DIV4_EN, pll_state->mplla[0]);
++	}
++
++	if (frac_en)
++		frac = frac_quot + DIV_ROUND_CLOSEST(frac_rem, frac_den);
++	else
++		frac = 0;
++
++	ref = DIV_ROUND_CLOSEST(refclk * (1 << (1 + fb_clk_div4_en)), 1 << ref_clk_mpllb_div);
++	vco = DIV_ROUND_CLOSEST_ULL(mul_u32_u32(ref, (multiplier << (17 - 2)) + frac) >> 17, 10);
++
++	return vco << tx_rate_mult >> tx_clk_div >> tx_rate;
++}
++
+ /*
+  * TODO: Convert the following to align with intel_c20pll_find_table() and
+  * intel_c20pll_calc_state_from_table().
+@@ -2705,56 +2755,6 @@ int intel_cx0pll_calc_state(const struct intel_crtc_state *crtc_state,
+ 	return intel_c20pll_calc_state(crtc_state, encoder, hw_state);
+ }
+ 
+-static bool intel_c20phy_use_mpllb(const struct intel_c20pll_state *state)
+-{
+-	return state->tx[0] & C20_PHY_USE_MPLLB;
+-}
+-
+-static int intel_c20pll_calc_port_clock(struct intel_encoder *encoder,
+-					const struct intel_c20pll_state *pll_state)
+-{
+-	unsigned int frac, frac_en, frac_quot, frac_rem, frac_den;
+-	unsigned int multiplier, refclk = 38400;
+-	unsigned int tx_clk_div;
+-	unsigned int ref_clk_mpllb_div;
+-	unsigned int fb_clk_div4_en;
+-	unsigned int ref, vco;
+-	unsigned int tx_rate_mult;
+-	unsigned int tx_rate = REG_FIELD_GET(C20_PHY_TX_RATE, pll_state->tx[0]);
+-
+-	if (intel_c20phy_use_mpllb(pll_state)) {
+-		tx_rate_mult = 1;
+-		frac_en = REG_FIELD_GET(C20_MPLLB_FRACEN, pll_state->mpllb[6]);
+-		frac_quot = pll_state->mpllb[8];
+-		frac_rem =  pll_state->mpllb[9];
+-		frac_den =  pll_state->mpllb[7];
+-		multiplier = REG_FIELD_GET(C20_MULTIPLIER_MASK, pll_state->mpllb[0]);
+-		tx_clk_div = REG_FIELD_GET(C20_MPLLB_TX_CLK_DIV_MASK, pll_state->mpllb[0]);
+-		ref_clk_mpllb_div = REG_FIELD_GET(C20_REF_CLK_MPLLB_DIV_MASK, pll_state->mpllb[6]);
+-		fb_clk_div4_en = 0;
+-	} else {
+-		tx_rate_mult = 2;
+-		frac_en = REG_FIELD_GET(C20_MPLLA_FRACEN, pll_state->mplla[6]);
+-		frac_quot = pll_state->mplla[8];
+-		frac_rem =  pll_state->mplla[9];
+-		frac_den =  pll_state->mplla[7];
+-		multiplier = REG_FIELD_GET(C20_MULTIPLIER_MASK, pll_state->mplla[0]);
+-		tx_clk_div = REG_FIELD_GET(C20_MPLLA_TX_CLK_DIV_MASK, pll_state->mplla[1]);
+-		ref_clk_mpllb_div = REG_FIELD_GET(C20_REF_CLK_MPLLB_DIV_MASK, pll_state->mplla[6]);
+-		fb_clk_div4_en = REG_FIELD_GET(C20_FB_CLK_DIV4_EN, pll_state->mplla[0]);
+-	}
+-
+-	if (frac_en)
+-		frac = frac_quot + DIV_ROUND_CLOSEST(frac_rem, frac_den);
+-	else
+-		frac = 0;
+-
+-	ref = DIV_ROUND_CLOSEST(refclk * (1 << (1 + fb_clk_div4_en)), 1 << ref_clk_mpllb_div);
+-	vco = DIV_ROUND_CLOSEST_ULL(mul_u32_u32(ref, (multiplier << (17 - 2)) + frac) >> 17, 10);
+-
+-	return vco << tx_rate_mult >> tx_clk_div >> tx_rate;
+-}
+-
+ static void intel_c20pll_readout_hw_state(struct intel_encoder *encoder,
+ 					  struct intel_cx0pll_state *cx0pll_state)
+ {
 -- 
 2.43.0
 
