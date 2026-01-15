@@ -4,54 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F33D5D41173
-	for <intel-xe@archiver.kernel.org>; Thu, 15 Jan 2026 11:46:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D4A65D41178
+	for <intel-xe@archiver.kernel.org>; Thu, 15 Jan 2026 12:15:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B992410E73F;
-	Thu, 15 Jan 2026 11:46:20 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="R3v9j/iW";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 93DD610E745;
- Thu, 15 Jan 2026 11:46:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1768477578; x=1800013578;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=CzkOKlf70EzrYjVBTtadueC8wxcM73S1dr5HpZcmlC8=;
- b=R3v9j/iWHlumjkuah1hOuocc3IP5E0c242gbXvku2o72IU3dPIQGS/Mx
- 6sSX3nDDpQT4AefbgH84hGQqpT63fMaAynhn/0b+QA3CViMLjbtEpYg42
- AKh+pg/bXGUD3+90gsjEuqe6JHfmZO+kyYTkU30PV0TVvrC4YYjdl3qpV
- 8b68h458l/ku+FbZuuuU/7AQT8DRFhy2d+FdbDwbLBTuk4yngS9cJuA/P
- 7IbCHiINDXVnpPVXqvlHLcsQYFCvoNbFl1ouCcTtk0SIzMHeJQ1HCGlH3
- o7qdURA3Rdc06BHWHvG5l/yrgrTVSI56Oyx7PqeuFSGt1hLeNug+9ljMA Q==;
-X-CSE-ConnectionGUID: ORHPBNXHRk2xT+2exZs3zw==
-X-CSE-MsgGUID: tfj15jm5Sk+GMe7ZWAjpOw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11671"; a="68988299"
-X-IronPort-AV: E=Sophos;i="6.21,228,1763452800"; d="scan'208";a="68988299"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jan 2026 03:46:18 -0800
-X-CSE-ConnectionGUID: yN5i4VkxQQyvQHpih8nzWQ==
-X-CSE-MsgGUID: +AGSS0OSRVaxwW/85loALQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,228,1763452800"; d="scan'208";a="209797867"
-Received: from nemesa.iind.intel.com ([10.190.239.22])
- by fmviesa004.fm.intel.com with ESMTP; 15 Jan 2026 03:46:17 -0800
-From: Nemesa Garg <nemesa.garg@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: Nemesa Garg <nemesa.garg@intel.com>
-Subject: [PATCH v3] drm/i915/casf: Disable CASF with joiner
-Date: Thu, 15 Jan 2026 17:09:48 +0530
-Message-Id: <20260115113948.641822-1-nemesa.garg@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20260113054925.633053-1-nemesa.garg@intel.com>
-References: <20260113054925.633053-1-nemesa.garg@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7621210E745;
+	Thu, 15 Jan 2026 12:15:07 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0031510E745;
+ Thu, 15 Jan 2026 12:15:05 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5415472234095664314=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/=7Bi915=2C_xe=7D/pcode?=
+ =?utf-8?q?=3A_move_display_pcode_calls_to_parent_interface_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 15 Jan 2026 12:15:05 -0000
+Message-ID: <176847930599.156800.9813393115629369937@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260115113337.4079184-1-jani.nikula@intel.com>
+In-Reply-To: <20260115113337.4079184-1-jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,37 +36,145 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Disable CASF with joiner as it is not yet
-supported in hardware.
+--===============5415472234095664314==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-v2: Replace dmesg_WARN with drm_dbg_kms. [Jani]
-v3: Modify commit message. [Suraj]
+== Series Details ==
 
-Signed-off-by: Nemesa Garg <nemesa.garg@intel.com>
----
- drivers/gpu/drm/i915/display/intel_casf.c | 6 ++++++
- 1 file changed, 6 insertions(+)
+Series: drm/{i915, xe}/pcode: move display pcode calls to parent interface (rev2)
+URL   : https://patchwork.freedesktop.org/series/159877/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/display/intel_casf.c b/drivers/gpu/drm/i915/display/intel_casf.c
-index 95339b496f24..63c2c94a243b 100644
---- a/drivers/gpu/drm/i915/display/intel_casf.c
-+++ b/drivers/gpu/drm/i915/display/intel_casf.c
-@@ -116,6 +116,12 @@ int intel_casf_compute_config(struct intel_crtc_state *crtc_state)
- 		return 0;
- 	}
- 
-+	/* CASF with joiner not yet supported in hardware */
-+	if (crtc_state->joiner_pipes) {
-+		drm_dbg_kms(display->drm, "CASF not supported with joiner\n");
-+		return -EINVAL;
-+	}
-+
- 	crtc_state->hw.casf_params.casf_enable = true;
- 
- 	/*
--- 
-2.25.1
+== Summary ==
 
+CI Bug Log - changes from xe-4384-733664f1edf3c01cc68e6dd0bbdb135158a98a1d_BAT -> xe-pw-159877v2_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (12 -> 12)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-159877v2_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_waitfence@abstime:
+    - bat-bmg-2:          [PASS][1] -> [TIMEOUT][2] ([Intel XE#6506])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4384-733664f1edf3c01cc68e6dd0bbdb135158a98a1d/bat-bmg-2/igt@xe_waitfence@abstime.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159877v2/bat-bmg-2/igt@xe_waitfence@abstime.html
+    - bat-dg2-oem2:       [PASS][3] -> [TIMEOUT][4] ([Intel XE#6506])
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4384-733664f1edf3c01cc68e6dd0bbdb135158a98a1d/bat-dg2-oem2/igt@xe_waitfence@abstime.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159877v2/bat-dg2-oem2/igt@xe_waitfence@abstime.html
+
+  
+#### Possible fixes ####
+
+  * igt@xe_waitfence@reltime:
+    - bat-dg2-oem2:       [FAIL][5] ([Intel XE#6520]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4384-733664f1edf3c01cc68e6dd0bbdb135158a98a1d/bat-dg2-oem2/igt@xe_waitfence@reltime.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159877v2/bat-dg2-oem2/igt@xe_waitfence@reltime.html
+
+  
+  [Intel XE#6506]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506
+  [Intel XE#6520]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520
+
+
+Build changes
+-------------
+
+  * Linux: xe-4384-733664f1edf3c01cc68e6dd0bbdb135158a98a1d -> xe-pw-159877v2
+
+  IGT_8701: 8701
+  xe-4384-733664f1edf3c01cc68e6dd0bbdb135158a98a1d: 733664f1edf3c01cc68e6dd0bbdb135158a98a1d
+  xe-pw-159877v2: 159877v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159877v2/index.html
+
+--===============5415472234095664314==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/{i915, xe}/pcode: move display pcode calls to parent interface (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/159877/">https://patchwork.freedesktop.org/series/159877/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159877v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159877v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4384-733664f1edf3c01cc68e6dd0bbdb135158a98a1d_BAT -&gt; xe-pw-159877v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (12 -&gt; 12)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-159877v2_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@xe_waitfence@abstime:<ul>
+<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4384-733664f1edf3c01cc68e6dd0bbdb135158a98a1d/bat-bmg-2/igt@xe_waitfence@abstime.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159877v2/bat-bmg-2/igt@xe_waitfence@abstime.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506">Intel XE#6506</a>)</li>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4384-733664f1edf3c01cc68e6dd0bbdb135158a98a1d/bat-dg2-oem2/igt@xe_waitfence@abstime.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159877v2/bat-dg2-oem2/igt@xe_waitfence@abstime.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506">Intel XE#6506</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_waitfence@reltime:<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4384-733664f1edf3c01cc68e6dd0bbdb135158a98a1d/bat-dg2-oem2/igt@xe_waitfence@reltime.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520">Intel XE#6520</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159877v2/bat-dg2-oem2/igt@xe_waitfence@reltime.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4384-733664f1edf3c01cc68e6dd0bbdb135158a98a1d -&gt; xe-pw-159877v2</li>
+</ul>
+<p>IGT_8701: 8701<br />
+  xe-4384-733664f1edf3c01cc68e6dd0bbdb135158a98a1d: 733664f1edf3c01cc68e6dd0bbdb135158a98a1d<br />
+  xe-pw-159877v2: 159877v2</p>
+
+</body>
+</html>
+
+--===============5415472234095664314==--
