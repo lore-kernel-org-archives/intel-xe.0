@@ -4,67 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9B81EC982C4
-	for <intel-xe@archiver.kernel.org>; Fri, 16 Jan 2026 14:03:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5CA34C982C5
+	for <intel-xe@archiver.kernel.org>; Fri, 16 Jan 2026 14:03:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3946510E8B6;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 51EE310E8B9;
 	Fri, 16 Jan 2026 14:03:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="EpI5aVLD";
+	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="RF2cfMK+";
 	dkim-atps=neutral
-Received: from mail-dl1-f74.google.com (mail-dl1-f74.google.com [74.125.82.74])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0434810E7B3
- for <intel-xe@lists.freedesktop.org>; Thu, 15 Jan 2026 16:56:00 +0000 (UTC)
-Received: by mail-dl1-f74.google.com with SMTP id
- a92af1059eb24-123308e5e6aso2017676c88.1
- for <intel-xe@lists.freedesktop.org>; Thu, 15 Jan 2026 08:55:59 -0800 (PST)
+Received: from mail-dl1-f73.google.com (mail-dl1-f73.google.com [74.125.82.73])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A742110E7B3
+ for <intel-xe@lists.freedesktop.org>; Thu, 15 Jan 2026 16:55:43 +0000 (UTC)
+Received: by mail-dl1-f73.google.com with SMTP id
+ a92af1059eb24-123349958b2so4432629c88.0
+ for <intel-xe@lists.freedesktop.org>; Thu, 15 Jan 2026 08:55:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=google.com; s=20230601; t=1768496159; x=1769100959;
+ d=google.com; s=20230601; t=1768496143; x=1769100943;
  darn=lists.freedesktop.org; 
  h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
  :date:from:to:cc:subject:date:message-id:reply-to;
- bh=s5JRvJY5PsCoSxl8fROgDvzGIXt448NqyR5cNjsxzsc=;
- b=EpI5aVLDiXlLNmn4Qm2kc9dDgrbGM4JorphCX2GfbjqPvTW/adpQE5x6Hm7XGdaagu
- +xfm701ClUPg8ZAfj9atUpC9f3rMYUPLB0qqp/SUlRZ6r7zmRDyrmm7K8yn2QNAh5A6K
- 8pDkhqYVPWZ1aenPPWZzleB3swEsy4JLuW5Z/4JQY2EzSpo0JK9HDsNeKYDqCh5Yuy+n
- tGtUISziSUMCNB6AE2L/wpMCRL6B89aMHOse2rVdP6JV7kPJyn73/7qed/QpqQbZSIH5
- 9lHa8UzqccfU+6eUqzlxn12zQhbi+ic4K1NYa0AvxMEqm0LIDwhN+n6iyu1BdscSam98
- ITvw==
+ bh=Nn6cPsAYtQFTKYtJyUKSSUcHQ6X5lDM8Qh43AxxJzlA=;
+ b=RF2cfMK+EC5E5pxPF8q3NDY/MVumoFB01R21lc1qdPTvnhh01KGl1kx/+mE618Ywen
+ VTb+gar2IHdxz8m9PKSncK9gT1cds1BFxMgFXZM0shmaNdpkTeerrXj7tFHulk2zPKku
+ AkEs57HOCVtQ5CpRRQ14ahQqWAupsDvb58CSppH8EJ9ke55Q+s3DMh5KZeYwbBqNUKLt
+ a1UmZ8LWpB3vctdlc2WLCdSZ8Cr+1/8Hq1BKQmAjirR3kuZdVa2oNTGpEsxQiSmDkp6D
+ oeqnvN/iuXj2wVpX2OfcmuuqZQCQGwPZ4MJgq8iV/4Hr5OO+eHVsuAB91qCYAj81QXhN
+ ncqA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1768496159; x=1769100959;
+ d=1e100.net; s=20230601; t=1768496143; x=1769100943;
  h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
  :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=s5JRvJY5PsCoSxl8fROgDvzGIXt448NqyR5cNjsxzsc=;
- b=rwR3nrxn8raJI6e/20vQyEVpVaFrdo5XSzrXWwM89L9zFKO9rUJLtnj25vf96kvOX/
- mgOJG7386E4O1xew+eWVo2PMUAj6f7MqVV+yey3zRBsnAspJLap7zUvdsMWlia/442bG
- MBjX0R9CugA87u+zcvy8MLMjWZrHGXdAdkcGnka8+oLpDqLwU3acBoUD+53Hutf5eidR
- ofZouqVEUxtfpfgATou2l5uGL7jM/RzmepavUGHlgVvB016SUmsUWS87wSnefoQ4koQB
- h54PjB9IzVusBzU54AY/OGrMZvJX+nVWCnIfAmwfOqP9u9JPE3dpsp74DRIrCFUYVo8K
- 4MIg==
-X-Gm-Message-State: AOJu0YzF92IY+j2FMe1zBRV1rk4e8w2DCUIAUlf+d7aPqjOhyXzpCr/+
- 0ExUAxYl8rVYB6LtPaxjHtQgZBdesN9rVotZ/0cjYiqNfBzERCPjq81/dYQ1ZrYvqMhOeaYDdrw
- XST7i3fMN3U6+vSh5/cr5ORyBhTK5hgZOjo/SVtJYPUMZpEPdB2o0k7OgYwPJSF/yvEt/qUwt9p
- UEXqvjqZFFv7sb6DbBmYCQj4uQrn3x4etInd73hMge2ei0KxQI9EVrSqvfAA==
-X-Received: from dlbeg15.prod.google.com ([2002:a05:7022:f8f:b0:11d:cde5:d78e])
+ bh=Nn6cPsAYtQFTKYtJyUKSSUcHQ6X5lDM8Qh43AxxJzlA=;
+ b=bwxsd9JZOvBEjaXOHi0uXeFrvCanHPm04CwvZrRj7jTIrh1noPaE97S7Ty8SsswddT
+ iiFaELbWJdluQA1La89avWyHvUKclBtGi/gkE17yY/XgtLzj35eX9gSmbKXzIlZoU6TM
+ 8bmlrto9v4gDWlC1R5zxQum+wWsNSUp7BObcgu3jcj0YWh2vPYdogOfmYb8LvpV6LsbX
+ MG5fpE6k4w0cMiQ/+J45t86hd81kpdz+pvzb9/t16nC7xXnsSBg7PDYIwPzkG6BRYcu1
+ NXCGlz1v+7cUsb48WFdmWVhjxhTsFKH7lbdyJavxvhbWRiZTLRwzS9sOZ7Qo1/43VLOq
+ hHUw==
+X-Gm-Message-State: AOJu0YzPf1CGhfDLLEXsOogAvK4uJUZFr+XQr6crsEyXg5fMKxFaqGV/
+ WO24OzprqLAMM5FRiw4OBWxj5MGVcoKnCDBgyOflBOPjcYOYAPejXLYfWzda+jgMBRINZShP/6a
+ 1DxunKNeY+pIqom9hkZRYtCkCP8phSt9V3kiuorukkgVPEKPK360Bv/5pX03D6GySikVegjqMPO
+ tRAYShGVbljIFfA/GDYf9rewK67vRC1u9w9VvLKtcut+j8tLIdn9VynCIRkw==
+X-Received: from dlbcq14.prod.google.com
+ ([2002:a05:7022:248e:b0:11d:d033:7c3a])
  (user=jdsultan job=prod-delivery.src-stubby-dispatcher) by
- 2002:a05:7022:2489:b0:119:e56b:98bf with SMTP id
- a92af1059eb24-1244a7463eemr310413c88.38.1768496159105; 
- Thu, 15 Jan 2026 08:55:59 -0800 (PST)
-Date: Thu, 15 Jan 2026 08:54:56 -0800
+ 2002:a05:7022:b8d:b0:11a:3734:3db3 with SMTP id
+ a92af1059eb24-1244a769e03mr292497c88.32.1768496142691; 
+ Thu, 15 Jan 2026 08:55:42 -0800 (PST)
+Date: Thu, 15 Jan 2026 08:54:48 -0800
 In-Reply-To: <20260115-upstream-prep-v1-0-001d5b38fc11@google.com>
 Mime-Version: 1.0
 References: <20260115-upstream-prep-v1-0-001d5b38fc11@google.com>
 X-Developer-Key: i=jdsultan@google.com; a=ed25519;
  pk=RhTSABMOTIhvVE7NYiZwn1iDGYYNbaN092nvaEF2dxo=
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1768496136; l=27134;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1768496136; l=24292;
  i=jdsultan@google.com; s=20260115; h=from:subject:message-id;
- bh=dezIbvoiCye7uQM/hRB3sjNZFoTcQN+2CmZOYv4cVVo=;
- b=99mQiIDCggI9eS5aUIdeOSonL18NDX3cUuzxFRY6MYSKVpnCRipe4IY8mN0GTnPZzw6vnOeSr
- /UeQcql9++iAVP6U2xZJS1Zyp7ISJMtg0kwGhi25GNPSMLHN/TNnRXG
+ bh=/Qw7J7TJrdHaE+WNysw0Fqa4HCl/Jad3uV5ReVuGWBw=;
+ b=MNiSRvULNN7h1l1ooBFnjOauVQR+8mCfOOf0xxTWythFRXjOEwtO2t2x/t64ayN2vDdoSpff3
+ ejMQZe9QS/8C4yJ5S6tIxrVVW/KND2qQ9qJwjbVjysBJ1O7DTGv4eHb
 X-Mailer: b4 0.14.2
-Message-ID: <20260115-upstream-prep-v1-10-001d5b38fc11@google.com>
-Subject: [PATCH RFC 10/10] drm/i915/display: Refactor initial plane readout
- and harden boot handover
+Message-ID: <20260115-upstream-prep-v1-2-001d5b38fc11@google.com>
+Subject: [PATCH RFC 02/10] drm/xe/display: Implement seamless boot state
+ reconstruction for PTL
 From: Juasheem Sultan <jdsultan@google.com>
 To: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
 Cc: Jani Nikula <jani.nikula@linux.intel.com>,
@@ -87,686 +88,673 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Refactor the initial plane configuration and atomic commit path to
-ensure a seamless transition from the bootloader to the driver,
-specifically targeting Panther Lake (PTL) platforms.
+To achieve a flicker-free transition from bootloader to kernel (fastboot)
+on Panther Lake (PTL), the driver must accurately reconstruct the
+hardware state established by the BIOS before the first atomic commit.
 
-Key changes include:
+Currently, the Xe driver initialization sequence may reset hardware or
+fail to populate essential state (like MSO configurations or DP link
+rates), leading to a blank screen or visual artifacts during boot.
 
-1.  **Robust Initial Plane Readout**: Rewrote
-    `skl_get_initial_plane_config` to correctly identify tiling
-    modifiers (including CCS/MC variants) instead of relying on
-    fallbacks. This ensures the framebuffer is created with the
-    correct format layout and rotation.
+This patch introduces a comprehensive state reconstruction path:
 
-2.  **Hardened Atomic Handover**: Added checks for
-    `old_crtc_state->inherited` in `intel_pre_plane_update`,
-    `intel_pre_update_crtc`, and `intel_old_crtc_state_disables`.
-    This prevents the driver from prematurely disabling the pipe,
-    updating watermarks, or touching FBC during the initial takeover,
-    preserving the boot image.
+1.  **Passive Encoder Setup**: Adds `intel_setup_encoders` to discover
+    ports and create encoder objects based on VBT data without triggering
+    disruptive probing sequences.
 
-3.  **Removal of Hardcoded Hacks**: Removed temporary workarounds,
-    including hardcoded MSO stride (0x8d), link rate overrides
-    (216000), and forced sync flags. The driver now relies on correct
-    hardware readout and state persistence.
+2.  **BIOS State Readout**:
+    *   Implements `xe_initial_pll_enable` to identify active pipes
+        and ensure PLLs, PPS, and VDD are correctly tracked in software.
+    *   Reconstructs `intel_dp` state (link rates, lane counts) using
+        hardware readout, falling back to VBT values if DPCD reads fail
+        (common during early init).
 
-4.  **Splash Screen Preservation**: Disabled the framebuffer clear loop
-    in `xe_plane_initial.c` to prevent overwriting the BIOS splash
-    screen during initialization.
+3.  **MSO & VBT Fixes**:
+    *   Parses EDID early to fix up MSO (Multi-Segment Operation)
+        timings and flags.
+    *   Adds overrides for incorrect VBT link rate reports on PTL.
+    *   Forces MSO configuration if detection fails but is required by
+        the platform.
+
+4.  **Power Management**:
+    *   Grabs a persistent `POWER_DOMAIN_INIT` reference in
+        `xe_display_register` to prevent the hardware from power-gating
+        active pipes when the initial wakerefs are dropped.
 
 Signed-off-by: Juasheem Sultan <jdsultan@google.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c       | 195 +++++++++------------
- .../gpu/drm/i915/display/intel_display_driver.c    |  35 +---
- drivers/gpu/drm/i915/display/intel_dp.c            |  15 --
- drivers/gpu/drm/i915/display/skl_universal_plane.c | 147 +++++++++-------
- drivers/gpu/drm/xe/display/xe_plane_initial.c      |   4 +-
- 5 files changed, 167 insertions(+), 229 deletions(-)
+ drivers/gpu/drm/i915/display/intel_bios.c         |  40 ++-
+ drivers/gpu/drm/i915/display/intel_cdclk.c        |  36 ---
+ drivers/gpu/drm/i915/display/intel_cdclk.h        |  41 ++-
+ drivers/gpu/drm/i915/display/intel_display.h      |   4 +
+ drivers/gpu/drm/i915/display/intel_display_core.h |   2 +
+ drivers/gpu/drm/xe/display/xe_display.c           | 309 +++++++++++++++++++++-
+ drivers/gpu/drm/xe/display/xe_display.h           |   2 +
+ drivers/gpu/drm/xe/xe_device.c                    |   2 +-
+ 8 files changed, 383 insertions(+), 53 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index e0020f6e21bc95f57348d5733bac8542a00f672d..5ba82abb7e33b2f62d595bd425a1f7a9c9c23270 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -1301,7 +1301,7 @@ static void intel_pre_plane_update(struct intel_atomic_state *state,
- 		 * us to.
- 		 */
- 		if (!intel_initial_watermarks(state, crtc))
--			if (new_crtc_state->update_wm_pre)
-+			if (new_crtc_state->update_wm_pre && !old_crtc_state->inherited)
- 				intel_update_watermarks(display);
- 	}
+diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
+index 3596dce84c2863b85dd7c3e3baf0364e560b2777..fc6291e6b3ea6715283fc1cff80a175fdda34045 100644
+--- a/drivers/gpu/drm/i915/display/intel_bios.c
++++ b/drivers/gpu/drm/i915/display/intel_bios.c
+@@ -43,6 +43,8 @@
+ #include "intel_display_types.h"
+ #include "intel_gmbus.h"
  
-@@ -2967,7 +2967,7 @@ static void intel_get_pipe_src_size(struct intel_crtc *crtc,
- 		      REG_FIELD_GET(PIPESRC_WIDTH_MASK, tmp) + 1,
- 		      REG_FIELD_GET(PIPESRC_HEIGHT_MASK, tmp) + 1);
++#include "intel_ddi.h"
++
+ #define _INTEL_BIOS_PRIVATE
+ #include "intel_vbt_defs.h"
  
--	/* [FB-FIX] Force pipe source size from boot state if HW readout is invalid (seamless handoff) */
-+	/* Force pipe source size from boot state if HW readout is invalid (seamless handoff) */
- 	if (boot_state_captured && crtc->pipe == boot_pipe &&
- 	    (drm_rect_width(&pipe_config->pipe_src) <= 1 || drm_rect_height(&pipe_config->pipe_src) <= 1)) {
- 		drm_rect_init(&pipe_config->pipe_src, 0, 0, boot_hdisplay, boot_vdisplay);
-@@ -7149,7 +7149,8 @@ static void intel_pre_update_crtc(struct intel_atomic_state *state,
- 		    intel_crtc_needs_color_update(new_crtc_state))
- 			intel_color_load_luts(new_crtc_state);
+@@ -1540,10 +1542,22 @@ parse_edp(struct intel_display *display,
+ 	panel->vbt.edp.drrs_msa_timing_delay =
+ 		panel_bits(edp->sdrrs_msa_timing_delay, panel_type, 2);
  
--		intel_pre_plane_update(state, crtc);
-+		if (!old_crtc_state->inherited)
-+			intel_pre_plane_update(state, crtc);
+-	if (display->vbt.version >= 244)
+-		panel->vbt.edp.max_link_rate =
+-			edp->edp_max_port_link_rate[panel_type] * 20;
++	if (display->vbt.version >= 244) {
++	u8 edp_max_port_link_rate =
++	    edp->edp_max_port_link_rate[panel_type];
  
- 		if (intel_crtc_needs_fastset(new_crtc_state))
- 			intel_encoders_update_pipe(state, crtc);
-@@ -7163,7 +7164,8 @@ static void intel_pre_update_crtc(struct intel_atomic_state *state,
- 			intel_vrr_set_transcoder_timings(new_crtc_state);
- 	}
- 
--	intel_fbc_update(state, crtc);
-+	if (!old_crtc_state->inherited)
-+		intel_fbc_update(state, crtc);
- 
- 	drm_WARN_ON(display->drm, !intel_display_power_is_enabled(display, POWER_DOMAIN_DC_OFF));
- 
-@@ -7275,24 +7277,17 @@ static void intel_update_crtc(struct intel_atomic_state *state,
++	if (display->vbt.version >= 263) {
++			panel->vbt.edp.max_link_rate =
++		(edp_max_port_link_rate & 0x7) * 20;
++	} else {
++	    /*
++	     * HACK: The VBT is reporting a lower max link rate than supported.
++	     * Override to HBR3 (8.1 Gbps) as per direct VBT hexdump analysis.
++	     */
++	    panel->vbt.edp.max_link_rate = 810000; /* Force HBR3 (8.1 Gbps) */
++	}
++
++	}
+ 	if (display->vbt.version >= 251)
+ 		panel->vbt.edp.dsc_disable =
+ 			panel_bool(edp->edp_dsc_disable, panel_type);
+@@ -3778,3 +3792,23 @@ void intel_bios_debugfs_register(struct intel_display *display)
+ 	debugfs_create_file("i915_vbt", 0444, display->drm->debugfs_root,
+ 			    display, &intel_bios_vbt_fops);
  }
- 
- static void intel_old_crtc_state_disables(struct intel_atomic_state *state,
--					  struct intel_crtc *crtc)
--{
--	struct intel_display *display = to_intel_display(state);
--	const struct intel_crtc_state *old_crtc_state =
--		intel_atomic_get_old_crtc_state(state, crtc);
--	const struct intel_crtc_state *new_crtc_state =
--		intel_atomic_get_new_crtc_state(state, crtc);
--	struct intel_crtc *pipe_crtc;
--
--	if (old_crtc_state->inherited && new_crtc_state->uapi.active) {
--		return;
--	}
--
--	/*
--	 * We need to disable pipe CRC before disabling the pipe,
--	 * or we race against vblank off.
--	 */
--	for_each_intel_crtc_in_pipe_mask(display->drm, pipe_crtc,
-+					                        struct intel_crtc *crtc)
-+					  {
-+					  	struct intel_display *display = to_intel_display(state);
-+					  	const struct intel_crtc_state *old_crtc_state =
-+					  		intel_atomic_get_old_crtc_state(state, crtc);
-+					  	struct intel_crtc *pipe_crtc;
-+					  
-+					  	/*
-+					  	 * We need to disable pipe CRC before disabling the pipe,
-+					  	 * or we race against vblank off.
-+					  	 */	for_each_intel_crtc_in_pipe_mask(display->drm, pipe_crtc,
- 					 intel_crtc_joined_pipe_mask(old_crtc_state))
- 		intel_crtc_disable_pipe_crc(pipe_crtc);
- 
-@@ -8649,8 +8644,8 @@ void intel_crtc_steal_state(struct intel_crtc_state *crtc_state)
- 
- 	/* FIX: Also populate pipe_src so pfit doesn't complain */
- 	drm_rect_init(&live_crtc_state->pipe_src, 0, 0,
--		      crtc_state->hw.adjusted_mode.crtc_hdisplay,
--		      crtc_state->hw.adjusted_mode.crtc_vdisplay);
-+			crtc_state->hw.adjusted_mode.crtc_hdisplay,
-+			crtc_state->hw.adjusted_mode.crtc_vdisplay);
- 
- 	/* Capture boot state for persistence */
- 	if (!boot_state_captured && (crtc_state->hw.active || crtc_state->hw.adjusted_mode.crtc_clock > 0)) {
-@@ -8673,7 +8668,7 @@ void intel_crtc_steal_state(struct intel_crtc_state *crtc_state)
- 		boot_csc_mode = crtc_state->csc_mode;
- 		boot_linetime = crtc_state->linetime;
- 
--		/* [FB-FIX] Capture Watermark and DDB state */
-+		/* Capture Watermark and DDB state */
- 		if (DISPLAY_VER(display) >= 9) {
- 			memcpy(&boot_wm, &crtc_state->wm.skl.optimal, sizeof(boot_wm));
- 			memcpy(&boot_ddb, &crtc_state->wm.skl.plane_ddb, sizeof(boot_ddb));
-@@ -8700,53 +8695,45 @@ void intel_crtc_steal_state(struct intel_crtc_state *crtc_state)
- 		boot_state_captured = true;
- 	}
- 
--		if (live_crtc_state->hw.active) {
--			/*
--			 * This is filling in the uapi.mode and creating the blob for it.
--			 * The blob is required for the initial commit to succeed.
--			 */
--			memset(&live_crtc_state->uapi.mode, 0, sizeof(live_crtc_state->uapi.mode));
--
--			struct drm_mode_modeinfo umode;
--			struct drm_property_blob *blob;
--
--			/* Manually create the mode blob to avoid triggering a modeset */
--			memset(&umode, 0, sizeof(umode));
--			umode.clock = crtc_state->hw.adjusted_mode.clock;
--			umode.hdisplay = crtc_state->hw.adjusted_mode.hdisplay;
--			umode.hsync_start = crtc_state->hw.adjusted_mode.hsync_start;
--			umode.hsync_end = crtc_state->hw.adjusted_mode.hsync_end;
--			umode.htotal = crtc_state->hw.adjusted_mode.htotal;
--			umode.hskew = crtc_state->hw.adjusted_mode.hskew;
--			umode.vdisplay = crtc_state->hw.adjusted_mode.vdisplay;
--			umode.vsync_start = crtc_state->hw.adjusted_mode.vsync_start;
--			umode.vsync_end = crtc_state->hw.adjusted_mode.vsync_end;
--			umode.vtotal = crtc_state->hw.adjusted_mode.vtotal;
--
--			/* [FB-FIX] Ensure vtotal is populated to prevent scanline divide-by-zero */
--			if (umode.vtotal == 0) {
--				umode.vtotal = crtc_state->hw.adjusted_mode.crtc_vtotal;
--			}
--			if (umode.vtotal == 0) {
--				umode.vtotal = 1504; /* Fallback for MSO panel */
--			}
--
--			umode.vscan = crtc_state->hw.adjusted_mode.vscan;
--			umode.vrefresh = drm_mode_vrefresh(&crtc_state->hw.adjusted_mode);
--			umode.flags = crtc_state->hw.adjusted_mode.flags;
--			umode.type = crtc_state->hw.adjusted_mode.type;
--			strncpy(umode.name, crtc_state->hw.adjusted_mode.name, DRM_DISPLAY_MODE_LEN);
--
--			blob = drm_property_create_blob(display->drm, sizeof(umode), &umode);
--			if (IS_ERR(blob)) {
--			} else {
--				/* This is the key: replace the blob without marking mode_changed */
--				drm_property_replace_blob(&live_crtc_state->uapi.mode_blob, blob);
--				drm_property_blob_put(blob);
--				drm_mode_copy(&live_crtc_state->uapi.mode, &crtc_state->hw.adjusted_mode);
--				live_crtc_state->uapi.enable = true;
--			}
--		}		/* Mark the primary plane as visible in the live state */
-+	if (live_crtc_state->hw.active) {
-+		/*
-+		 * This is filling in the uapi.mode and creating the blob for it.
-+		 * The blob is required for the initial commit to succeed.
-+		 */
-+		memset(&live_crtc_state->uapi.mode, 0, sizeof(live_crtc_state->uapi.mode));
 +
-+		struct drm_mode_modeinfo umode;
-+		struct drm_property_blob *blob;
-+
-+		/* Manually create the mode blob to avoid triggering a modeset */
-+		memset(&umode, 0, sizeof(umode));
-+		umode.clock = crtc_state->hw.adjusted_mode.clock;
-+		umode.hdisplay = crtc_state->hw.adjusted_mode.hdisplay;
-+		umode.hsync_start = crtc_state->hw.adjusted_mode.hsync_start;
-+		umode.hsync_end = crtc_state->hw.adjusted_mode.hsync_end;
-+		umode.htotal = crtc_state->hw.adjusted_mode.htotal;
-+		umode.hskew = crtc_state->hw.adjusted_mode.hskew;
-+		umode.vdisplay = crtc_state->hw.adjusted_mode.vdisplay;
-+		umode.vsync_start = crtc_state->hw.adjusted_mode.vsync_start;
-+		umode.vsync_end = crtc_state->hw.adjusted_mode.vsync_end;
-+		umode.vtotal = crtc_state->hw.adjusted_mode.vtotal;
-+
-+		umode.vscan = crtc_state->hw.adjusted_mode.vscan;
-+		umode.vrefresh = drm_mode_vrefresh(&crtc_state->hw.adjusted_mode);
-+		umode.flags = crtc_state->hw.adjusted_mode.flags;
-+		umode.type = crtc_state->hw.adjusted_mode.type;
-+		strncpy(umode.name, crtc_state->hw.adjusted_mode.name, DRM_DISPLAY_MODE_LEN);
-+
-+		blob = drm_property_create_blob(display->drm, sizeof(umode), &umode);
-+		if (IS_ERR(blob)) {
-+		} else {
-+			/* This is the key: replace the blob without marking mode_changed */
-+			drm_property_replace_blob(&live_crtc_state->uapi.mode_blob, blob);
-+			drm_property_blob_put(blob);
-+			drm_mode_copy(&live_crtc_state->uapi.mode, &crtc_state->hw.adjusted_mode);
-+			live_crtc_state->uapi.enable = true;
-+		}
-+		/* Mark the primary plane as visible in the live state */
- 		live_plane_state->uapi.visible = true;
- 		live_crtc_state->uapi.plane_mask |= drm_plane_mask(&primary->base);
- 
-@@ -8789,10 +8776,12 @@ void intel_crtc_steal_state(struct intel_crtc_state *crtc_state)
- 				drm_encoder_mask(&encoder->base);
- 
- 			connector->base.status = connector_status_connected;
--			} else {
--			    drm_warn(display->drm, "[XE-STEAL] No active connector found for pipe %c!\n",
--				 pipe_name(crtc->pipe));
--			}}
-+		} else {
-+			drm_warn(display->drm, "[XE-STEAL] No active connector found for pipe %c!\n",
-+					pipe_name(crtc->pipe));
-+		}
++/**
++* intel setup_encoders - minimally initialize encoders to identify ports
++* @dev_priv: i915 device instance
++*
++* This functions is a stripped-down version of intel_setup_outputs(). Its sole purpose is to iterate over the VBT chidl devices to discover which physical prots exist and initialize the corresponding intel_encoder software objects.
++*
++* This is critical for the flicker-free boot path, where we need to identify
++* the active encoder by its port number before a full modeset has occurred.
++* This function populates the required encoder->port fields without creating
++* connectors or triggering a full output probe, which would cause flicker.
++*/
++void intel_setup_encoders(struct intel_display *display)
++{
++	if (HAS_DDI(display)) {
++		intel_bios_for_each_encoder(display, intel_ddi_init_encoder_early);
++	} else {
++		drm_dbg_kms(display->drm, "Non-DDI platform in minimal encoder setup, may need more\n");
 +	}
 +}
- #ifdef CONFIG_DRM_I915
- EXPORT_SYMBOL_GPL(intel_crtc_steal_state);
- #endif
-@@ -8840,37 +8829,21 @@ int intel_initial_commit(struct intel_display *display)
- 			crtc_state->hw.enable = true; /* Force hw.enable to match uapi.enable */
- 			crtc_state->inherited = true;
+diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
+index 9725eebe5706a8a737d3b8d3f1de65f0e7455343..61ec5d8b14e24e9edb5fb1e2b84d0c8d1519133e 100644
+--- a/drivers/gpu/drm/i915/display/intel_cdclk.c
++++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
+@@ -116,42 +116,6 @@
+  * dividers can be programmed correctly.
+  */
  
--				    crtc_state->pixel_rate =
+-struct intel_cdclk_state {
+-	struct intel_global_state base;
 -
--					to_intel_crtc_state(crtc->base.state)->uapi.adjusted_mode.crtc_clock;
+-	/*
+-	 * Logical configuration of cdclk (used for all scaling,
+-	 * watermark, etc. calculations and checks). This is
+-	 * computed as if all enabled crtcs were active.
+-	 */
+-	struct intel_cdclk_config logical;
 -
+-	/*
+-	 * Actual configuration of cdclk, can be different from the
+-	 * logical configuration only when all crtc's are DPMS off.
+-	 */
+-	struct intel_cdclk_config actual;
 -
+-	/* minimum acceptable cdclk to satisfy bandwidth requirements */
+-	int bw_min_cdclk;
+-	/* minimum acceptable cdclk for each pipe */
+-	int min_cdclk[I915_MAX_PIPES];
+-	/* minimum acceptable voltage level for each pipe */
+-	u8 min_voltage_level[I915_MAX_PIPES];
 -
--				    /* Find and link the connector for this CRTC */
+-	/* pipe to which cd2x update is synchronized */
+-	enum pipe pipe;
 -
--				    for_each_intel_encoder(display->drm, encoder) {
+-	/* forced minimum cdclk for glk+ audio w/a */
+-	int force_min_cdclk;
 -
--					if (crtc_state->uapi.encoder_mask & drm_encoder_mask(&encoder->base)) {
+-	/* bitmask of active pipes */
+-	u8 active_pipes;
 -
--							break;
+-	/* update cdclk with pipes disabled */
+-	bool disable_pipes;
+-};
 -
--					}
-+			crtc_state->pixel_rate =
-+				to_intel_crtc_state(crtc->base.state)->uapi.adjusted_mode.crtc_clock;
+ struct intel_cdclk_funcs {
+ 	void (*get_cdclk)(struct intel_display *display,
+ 			  struct intel_cdclk_config *cdclk_config);
+diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.h b/drivers/gpu/drm/i915/display/intel_cdclk.h
+index cacee598af0e2a8d0c379b011f65dcc610a7b9d7..07f8b184b5fef1b79959fd4257b1aeb94c81c524 100644
+--- a/drivers/gpu/drm/i915/display/intel_cdclk.h
++++ b/drivers/gpu/drm/i915/display/intel_cdclk.h
+@@ -8,9 +8,10 @@
  
--					}
--
--
--
--					if (encoder) {
--
--					drm_connector_list_iter_begin(display->drm, &conn_iter);
--
--					drm_for_each_connector_iter(iter_conn, &conn_iter) {
--
--							if (to_intel_connector(iter_conn)->encoder == encoder) {
-+			/* Find and link the connector for this CRTC */
-+			for_each_intel_encoder(display->drm, encoder) {
-+				if (crtc_state->uapi.encoder_mask & drm_encoder_mask(&encoder->base)) {
-+					break;
-+				}
-+			}
+ #include <linux/types.h>
  
-+			if (encoder) {
-+				drm_connector_list_iter_begin(display->drm, &conn_iter);
-+				drm_for_each_connector_iter(iter_conn, &conn_iter) {
-+					if (to_intel_connector(iter_conn)->encoder == encoder) {
- 						connector = to_intel_connector(iter_conn);
--
--
- 						break;
- 					}
- 				}
-@@ -8881,7 +8854,7 @@ int intel_initial_commit(struct intel_display *display)
- 				struct drm_connector_state *conn_state;
- 
- 				conn_state = drm_atomic_get_connector_state(state,
--									&connector->base);
-+						&connector->base);
- 				if (IS_ERR(conn_state)) {
- 					ret = PTR_ERR(conn_state);
- 					goto out;
-@@ -8900,7 +8873,7 @@ int intel_initial_commit(struct intel_display *display)
- 					crtc_state->uapi.encoder_mask |= drm_encoder_mask(&connector->encoder->base);
- 			} else {
- 				drm_warn(dev, "[FB-COMMIT] No connector found for CRTC %s\n",
--					 crtc->base.name);
-+						crtc->base.name);
- 			}
- 
- 			ret = drm_atomic_add_affected_planes(state, &crtc->base);
-@@ -8916,11 +8889,11 @@ int intel_initial_commit(struct intel_display *display)
- 			crtc_state->uapi.color_mgmt_changed = true;
- 
- 			for_each_intel_encoder_mask(display->drm, encoder,
--						    crtc_state->uapi.encoder_mask) {
-+					crtc_state->uapi.encoder_mask) {
- 				if (encoder->initial_fastset_check &&
--				    !encoder->initial_fastset_check(encoder, crtc_state)) {
-+						!encoder->initial_fastset_check(encoder, crtc_state)) {
- 					ret = drm_atomic_add_affected_connectors(state,
--										 &crtc->base);
-+							&crtc->base);
- 					if (ret)
- 						goto out;
- 				}
-@@ -8938,11 +8911,9 @@ int intel_initial_commit(struct intel_display *display)
- 		goto retry;
- 	}
- 
-+	initial_boot_handoff = false;
- 	if (ret) {
- 		drm_atomic_state_put(state);
--		initial_boot_handoff = false;
--	} else {
--		initial_boot_handoff = false;
- 	}
- out_no_state:
- 	drm_modeset_drop_locks(&ctx);
-diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
-index 73de39f655d9bb4435c21ac67d19d1bb7ace759d..5f3ae482d24a57a9268c2739c745912e8edab2db 100644
---- a/drivers/gpu/drm/i915/display/intel_display_driver.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
-@@ -542,40 +542,7 @@ int intel_display_driver_probe_nogem(struct intel_display *display)
- 				 */
- 				encoder->get_config(encoder, crtc_state);
- 
--				/*
--				 * HACK: MSO Fixup for readout (Fastboot path).
--				 * If we read out the split MSO mode (1128), scale it up to the
--				 * logical mode (2256) so it matches the VBT/User mode.
--				 */
--				if (crtc_state->hw.pipe_mode.hdisplay == 1128) {
--
--					/* Scale ALL horizontal timings to prevent invalid mode (Sync < Active) */
--					crtc_state->hw.pipe_mode.hdisplay *= 2;
--					crtc_state->hw.pipe_mode.hsync_start *= 2;
--					crtc_state->hw.pipe_mode.hsync_end *= 2;
--					crtc_state->hw.pipe_mode.htotal *= 2;
--
--					crtc_state->hw.pipe_mode.crtc_hdisplay *= 2;
--					crtc_state->hw.pipe_mode.crtc_hsync_start *= 2;
--					crtc_state->hw.pipe_mode.crtc_hsync_end *= 2;
--					crtc_state->hw.pipe_mode.crtc_htotal *= 2;
--					crtc_state->hw.pipe_mode.crtc_hblank_start *= 2;
--					crtc_state->hw.pipe_mode.crtc_hblank_end *= 2;
--
--					/* Fix name */
--					snprintf(crtc_state->hw.pipe_mode.name, DRM_DISPLAY_MODE_LEN, "%dx%d",
--							crtc_state->hw.pipe_mode.hdisplay, crtc_state->hw.pipe_mode.vdisplay);
--				} else if (crtc_state->hw.pipe_mode.hdisplay == 2256 &&
--						crtc_state->hw.pipe_mode.crtc_hsync_start == 1152) {
--
--					/* Geometry is already scaled, but Sync/Blank are raw. Fix them. */
--					crtc_state->hw.pipe_mode.hsync_start *= 2;
--					crtc_state->hw.pipe_mode.hsync_end *= 2;
--					crtc_state->hw.pipe_mode.crtc_hsync_start *= 2;
--					crtc_state->hw.pipe_mode.crtc_hsync_end *= 2;
--					crtc_state->hw.pipe_mode.crtc_hblank_start *= 2;
--					crtc_state->hw.pipe_mode.crtc_hblank_end *= 2;
--				}
+-enum pipe;
++#include "intel_display_limits.h"
++#include "intel_global_state.h"
 +
- 				/* Link the encoder to the CRTC */
- 				encoder->base.crtc = &crtc->base;
+ struct intel_atomic_state;
+-struct intel_cdclk_state;
+ struct intel_crtc;
+ struct intel_crtc_state;
+ struct intel_display;
+@@ -22,6 +23,42 @@ struct intel_cdclk_config {
+ 	bool joined_mbus;
+ };
  
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index f73a7f9d2198b418cea06cc3c1636f09bb681dee..4d7a6f98efa2489ecbea24d8eda22f7fb4ff0ffb 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -3276,12 +3276,6 @@ intel_dp_compute_config(struct intel_encoder *encoder,
- 	if (ret)
- 		return ret;
- 
--	/* [FB-FIX] Force 216000 link rate for MSO. Found 216000 in HW. Override compute result. */
--	if (pipe_config->hw.pipe_mode.hdisplay == 2256) {
--		pipe_config->lane_count = 4;
--		pipe_config->port_clock = 216000;
--	}
--
- 	if ((intel_dp_is_edp(intel_dp) && fixed_mode) ||
- 	    pipe_config->output_format == INTEL_OUTPUT_FORMAT_YCBCR420) {
- 		ret = intel_pfit_compute_config(pipe_config, conn_state);
-@@ -3314,15 +3308,6 @@ intel_dp_compute_config(struct intel_encoder *encoder,
- 		pipe_config->splitter.link_count = n;
- 		pipe_config->splitter.pixel_overlap = overlap;
- 
--		/*
--		 * [FB-FIX] Force Positive Sync for MSO panels.
--		 * If we fell through here (skipped restore_boot), we must ensure flags are correct.
--		 */
--		if ((adjusted_mode->flags & (DRM_MODE_FLAG_PHSYNC | DRM_MODE_FLAG_NHSYNC |
--					     DRM_MODE_FLAG_PVSYNC | DRM_MODE_FLAG_NVSYNC)) == 0) {
--			adjusted_mode->flags |= DRM_MODE_FLAG_PHSYNC | DRM_MODE_FLAG_PVSYNC;
--		}
--
- 		adjusted_mode->crtc_hdisplay = adjusted_mode->crtc_hdisplay / n + overlap;
- 		adjusted_mode->crtc_hblank_start = adjusted_mode->crtc_hblank_start / n + overlap;
- 		adjusted_mode->crtc_hblank_end = adjusted_mode->crtc_hblank_end / n + overlap;
-diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-index 3db998edf8fe15e4bc07318c15c009688bf1fbbc..dfe670d81aba64207d5ea348c346125e9ab49398 100644
---- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-+++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-@@ -1540,11 +1540,6 @@ icl_plane_update_noarm(struct intel_dsb *dsb,
- 	int src_h = drm_rect_height(&plane_state->uapi.src) >> 16;
- 	u32 plane_color_ctl;
- 
--	/* [] Hack: Force stride 0x8d for MSO 2256px to fix display artifacts */
--	if (fb->width == 2256 && crtc_state->inherited) {
--		stride = 0x8d;
--	}
--
- 	plane_color_ctl = plane_state->color_ctl |
- 		glk_plane_color_ctl_crtc(crtc_state);
- 
-@@ -1651,18 +1646,18 @@ icl_plane_update_arm(struct intel_dsb *dsb,
- 	icl_plane_update_sel_fetch_arm(dsb, plane, crtc_state, plane_state);
- 
- 	/*
--	 * The control register self-arms if the plane was previously
-+	 * Enable the plane.
-+	 *
-+	 * The hardware will ignore the plane enable bit if the plane
-+	 * is not armed (FRAME_START_DELAY not elapsed yet).
-+	 *
-+	 * However, on Gen11+ the plane enable bit is double buffered.
-+	 * If we write the control register with the enable bit set
-+	 * before the surface register, the plane will be enabled
-+	 * immediately (on the next vblank) even if the plane was
- 	 * disabled. Try to make the plane enable atomic by writing
- 	 * the control register just before the surface register.
- 	 */
--	u32 hw_ctl = intel_de_read(display, PLANE_CTL(pipe, plane_id));
--
--	if (crtc_state->inherited) {
--		if (hw_ctl & 0x8) {
--			plane_ctl |= 0x8;
--		}
--	}
--
- 	intel_de_write_dsb(display, dsb, PLANE_CTL(pipe, plane_id),
- 			   plane_ctl);
- 	intel_de_write_dsb(display, dsb, PLANE_SURF(pipe, plane_id),
-@@ -3027,13 +3022,14 @@ skl_get_initial_plane_config(struct intel_crtc *crtc,
- 	enum plane_id plane_id = plane->id;
- 	enum pipe pipe;
- 	u32 val, offset, stride_mult, tiling, alpha;
--	u32 plane_ctl, plane_size, plane_stride;
- 	int fourcc, pixel_format;
- 	unsigned int aligned_height;
- 	struct drm_framebuffer *fb;
- 	struct intel_framebuffer *intel_fb;
-+	static_assert(PLANE_CTL_TILED_YF == PLANE_CTL_TILED_4);
- 
--	pipe = plane->pipe;
-+	if (!plane->get_hw_state(plane, &pipe))
-+		return;
- 
- 	drm_WARN_ON(display->drm, pipe != crtc->pipe);
- 
-@@ -3044,44 +3040,34 @@ skl_get_initial_plane_config(struct intel_crtc *crtc,
- 		return;
- 	}
- 
--	plane_ctl = intel_de_read(display, PLANE_CTL(plane->i9xx_plane, pipe));
--
--	if (!(plane_ctl & PLANE_CTL_ENABLE)) {
--		to_intel_crtc_state(crtc->base.state)->uapi.active = false;
-+	intel_fb = intel_framebuffer_alloc();
-+	if (!intel_fb) {
-+		drm_dbg_kms(display->drm, "failed to alloc fb\n");
- 		return;
- 	}
- 
--	plane_size = intel_de_read(display, PLANE_SIZE(plane->i9xx_plane, pipe));
--	plane_stride = intel_de_read(display, PLANE_STRIDE(plane->i9xx_plane, pipe));
-+	fb = &intel_fb->base;
++struct intel_cdclk_state {
++	struct intel_global_state base;
 +
-+	fb->dev = display->drm;
- 
--	val = plane_ctl;
-+	val = intel_de_read(display, PLANE_CTL(pipe, plane_id));
- 
- 	if (DISPLAY_VER(display) >= 11)
- 		pixel_format = val & PLANE_CTL_FORMAT_MASK_ICL;
- 	else
--		pixel_format = REG_FIELD_GET(PLANE_CTL_FORMAT_MASK_SKL, val);
-+		pixel_format = val & PLANE_CTL_FORMAT_MASK_SKL;
- 
- 	if (DISPLAY_VER(display) >= 10) {
--		u32 plane_color_ctl =
--			intel_de_read(display, PLANE_COLOR_CTL(pipe, plane_id));
--		alpha = REG_FIELD_GET(PLANE_COLOR_ALPHA_MASK, plane_color_ctl);
-+		u32 color_ctl;
++	/*
++	 * Logical configuration of cdclk (used for all scaling,
++	 * watermark, etc. calculations and checks). This is
++	 * computed as if all enabled crtcs were active.
++	 */
++	struct intel_cdclk_config logical;
 +
-+		color_ctl = intel_de_read(display, PLANE_COLOR_CTL(pipe, plane_id));
-+		alpha = REG_FIELD_GET(PLANE_COLOR_ALPHA_MASK, color_ctl);
- 	} else {
- 		alpha = REG_FIELD_GET(PLANE_CTL_ALPHA_MASK, val);
- 	}
- 
- 	fourcc = skl_format_to_fourcc(pixel_format,
--					      val & PLANE_CTL_ORDER_RGBX,
--					      alpha !=PLANE_CTL_ALPHA_DISABLE);
--
--	intel_fb = kzalloc(sizeof(*intel_fb), GFP_KERNEL);
--	if (!intel_fb) {
--		drm_dbg_kms(display->drm, "failed to alloc fb\n");
--		return;
--	}
--	fb = &intel_fb->base;
--
--	fb->dev = display->drm;
--
-+				      val & PLANE_CTL_ORDER_RGBX, alpha);
- 	fb->format = drm_format_info(fourcc);
- 
- 	tiling = val & PLANE_CTL_TILED_MASK;
-@@ -3095,14 +3081,39 @@ skl_get_initial_plane_config(struct intel_crtc *crtc,
- 		break;
- 	case PLANE_CTL_TILED_Y:
- 		plane_config->tiling = I915_TILING_Y;
--		fb->modifier = I915_FORMAT_MOD_Y_TILED;
-+		if (val & PLANE_CTL_RENDER_DECOMPRESSION_ENABLE)
-+			if (DISPLAY_VER(display) >= 14)
-+				fb->modifier = I915_FORMAT_MOD_4_TILED_MTL_RC_CCS;
-+			else if (DISPLAY_VER(display) >= 12)
-+				fb->modifier = I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS;
-+			else
-+				fb->modifier = I915_FORMAT_MOD_Y_TILED_CCS;
-+		else if (val & PLANE_CTL_MEDIA_DECOMPRESSION_ENABLE)
-+			if (DISPLAY_VER(display) >= 14)
-+				fb->modifier = I915_FORMAT_MOD_4_TILED_MTL_MC_CCS;
-+			else
-+				fb->modifier = I915_FORMAT_MOD_Y_TILED_GEN12_MC_CCS;
-+		else
-+			fb->modifier = I915_FORMAT_MOD_Y_TILED;
- 		break;
--	case PLANE_CTL_TILED_YF:
-+	case PLANE_CTL_TILED_YF: /* aka PLANE_CTL_TILED_4 on XE_LPD+ */
- 		if (HAS_4TILE(display)) {
--			fb->modifier = I915_FORMAT_MOD_4_TILED;
-+			u32 rc_mask = PLANE_CTL_RENDER_DECOMPRESSION_ENABLE |
-+				      PLANE_CTL_CLEAR_COLOR_DISABLE;
++	/*
++	 * Actual configuration of cdclk, can be different from the
++	 * logical configuration only when all crtc's are DPMS off.
++	 */
++	struct intel_cdclk_config actual;
 +
-+			if ((val & rc_mask) == rc_mask)
-+				fb->modifier = I915_FORMAT_MOD_4_TILED_DG2_RC_CCS;
-+			else if (val & PLANE_CTL_MEDIA_DECOMPRESSION_ENABLE)
-+				fb->modifier = I915_FORMAT_MOD_4_TILED_DG2_MC_CCS;
-+			else if (val & PLANE_CTL_RENDER_DECOMPRESSION_ENABLE)
-+				fb->modifier = I915_FORMAT_MOD_4_TILED_DG2_RC_CCS_CC;
-+			else
-+				fb->modifier = I915_FORMAT_MOD_4_TILED;
- 		} else {
--			plane_config->tiling = I915_TILING_Y;
--			fb->modifier = I915_FORMAT_MOD_Yf_TILED;
-+			if (val & PLANE_CTL_RENDER_DECOMPRESSION_ENABLE)
-+				fb->modifier = I915_FORMAT_MOD_Yf_TILED_CCS;
-+			else
-+				fb->modifier = I915_FORMAT_MOD_Yf_TILED;
- 		}
- 		break;
- 	default:
-@@ -3134,48 +3145,52 @@ skl_get_initial_plane_config(struct intel_crtc *crtc,
- 		plane_config->rotation = DRM_MODE_ROTATE_90;
- 		break;
- 	}
--	
--	struct drm_mode_fb_cmd2 mode_cmd = { 0 };
--
--	fb->width = (REG_FIELD_GET(PLANE_WIDTH_MASK, plane_size) + 1);
--	fb->height = (REG_FIELD_GET(PLANE_HEIGHT_MASK, plane_size) + 1);
--	
--	mode_cmd.width = fb->width;
--	mode_cmd.height = fb->height;
--	mode_cmd.pixel_format = fourcc;
- 
--	drm_helper_mode_fill_fb_struct(display->drm, fb,
--				       drm_format_info(fourcc),
--				       &mode_cmd);
--
--	if (fb->modifier == DRM_FORMAT_MOD_LINEAR)
--		stride_mult = 64;
--	else
--		stride_mult = intel_tile_width_bytes(fb, 0);
--	
--	fb->pitches[0] = REG_FIELD_GET(PLANE_STRIDE__MASK, plane_stride) * stride_mult;
-+	if (DISPLAY_VER(display) >= 11 && val & PLANE_CTL_FLIP_HORIZONTAL)
-+		plane_config->rotation |= DRM_MODE_REFLECT_X;
- 
--	aligned_height = intel_fb_align_height(fb, 0, fb->height);
-+	/* 90/270 degree rotation would require extra work */
-+	if (drm_rotation_90_or_270(plane_config->rotation))
-+		goto error;
- 
- 	/*
- 	 * HACK: The PLANE_SURF register is unreliable at this stage. Based on
- 	 * i915 and coreboot behavior, the correct GTT offset is 0.
- 	 */
-+	u32 surf = intel_de_read(display, PLANE_SURF(pipe, plane_id));
-+	drm_info(display->drm, "[FB-FIX] PLANE_SURF read: 0x%08x, Forcing base to 0\n", surf);
- 	plane_config->base = 0;
- 
- 	offset = intel_de_read(display, PLANE_OFFSET(pipe, plane_id));
- 	drm_WARN_ON(display->drm, offset != 0);
- 
-+	val = intel_de_read(display, PLANE_SIZE(pipe, plane_id));
-+	fb->height = REG_FIELD_GET(PLANE_HEIGHT_MASK, val) + 1;
-+	fb->width = REG_FIELD_GET(PLANE_WIDTH_MASK, val) + 1;
++	/* minimum acceptable cdclk to satisfy bandwidth requirements */
++	int bw_min_cdclk;
++	/* minimum acceptable cdclk for each pipe */
++	int min_cdclk[I915_MAX_PIPES];
++	/* minimum acceptable voltage level for each pipe */
++	u8 min_voltage_level[I915_MAX_PIPES];
 +
-+	val = intel_de_read(display, PLANE_STRIDE(pipe, plane_id));
-+	stride_mult = skl_plane_stride_mult(fb, 0, DRM_MODE_ROTATE_0);
++	/* pipe to which cd2x update is synchronized */
++	enum pipe pipe;
 +
-+	fb->pitches[0] = REG_FIELD_GET(PLANE_STRIDE__MASK, val) * stride_mult;
++	/* forced minimum cdclk for glk+ audio w/a */
++	int force_min_cdclk;
 +
-+	aligned_height = intel_fb_align_height(fb, 0, fb->height);
++	/* bitmask of active pipes */
++	u8 active_pipes;
 +
- 	plane_config->size = fb->pitches[0] * aligned_height;
--	plane_config->fb = intel_fb;
++	/* update cdclk with pipes disabled */
++	bool disable_pipes;
++};
++
+ void intel_cdclk_init_hw(struct intel_display *display);
+ void intel_cdclk_uninit_hw(struct intel_display *display);
+ void intel_init_cdclk_hooks(struct intel_display *display);
+diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
+index 37e2ab301a80ef123bbdb4af9d4258b8fb6880ce..20e7ee02d57c28e1b4a67faecc3e82acc7d8cd02 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.h
++++ b/drivers/gpu/drm/i915/display/intel_display.h
+@@ -529,6 +529,10 @@ void intel_setup_outputs(struct intel_display *display);
+ int intel_initial_commit(struct intel_display *display);
+ void intel_panel_sanitize_ssc(struct intel_display *display);
+ void intel_update_czclk(struct intel_display *display);
++void intel_setup_encoders(struct intel_display *display);
++void intel_panel_sanitize_ssc(struct drm_i915_private *i915);
++void intel_update_czclk(struct drm_i915_private *i915);
++void intel_atomic_helper_free_state_worker(struct work_struct *work);
+ enum drm_mode_status intel_mode_valid(struct drm_device *dev,
+ 				      const struct drm_display_mode *mode);
+ int intel_atomic_commit(struct drm_device *dev, struct drm_atomic_state *_state,
+diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
+index 8c226406c5cd0a47bd5cd9ddf668e0825103c06f..becdee5109e20d0eb6d1bf80a6a021e25ad7fc1b 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_core.h
++++ b/drivers/gpu/drm/i915/display/intel_display_core.h
+@@ -74,6 +74,8 @@ struct intel_display_funcs {
+ 	void (*crtc_disable)(struct intel_atomic_state *state,
+ 			     struct intel_crtc *crtc);
+ 	void (*commit_modeset_enables)(struct intel_atomic_state *state);
++	void (*post_crtc_init_hook)(struct intel_display *display);
++	void (*initial_plane_config)(struct intel_display *display);
+ };
  
-+	drm_dbg_kms(display->drm,
-+		    "[CRTC:%d:%s][PLANE:%d:%s] with fb: size=%dx%d@%d, offset=%x, pitch %d, size 0x%x\n",
-+		    crtc->base.base.id, crtc->base.name,
-+		    plane->base.base.id, plane->base.name,
-+		    fb->width, fb->height, fb->format->cpp[0] * 8,
-+		    plane_config->base, fb->pitches[0], plane_config->size);
-+
-+	plane_config->fb = intel_fb;
- 	return;
+ /* functions used for watermark calcs for display. */
+diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
+index 19e691fccf8ce8866cb2ea4e2139a8e5cb3e8bc9..8950880618c2314d62477437d069359cd835bd47 100644
+--- a/drivers/gpu/drm/xe/display/xe_display.c
++++ b/drivers/gpu/drm/xe/display/xe_display.c
+@@ -13,17 +13,25 @@
+ #include <drm/drm_drv.h>
+ #include <drm/drm_managed.h>
+ #include <drm/drm_probe_helper.h>
++#include <drm/drm_atomic.h>
++#include <drm/drm_modeset_lock.h>
++#include <drm/drm_edid.h>
+ #include <uapi/drm/xe_drm.h>
  
- error:
- 	kfree(intel_fb);
- 	plane_config->fb = NULL;
+ #include "soc/intel_dram.h"
+ #include "intel_acpi.h"
+ #include "intel_audio.h"
+ #include "intel_bw.h"
++#include "intel_cdclk.h"
+ #include "intel_display.h"
+ #include "intel_display_device.h"
+ #include "intel_display_driver.h"
+ #include "intel_display_irq.h"
+ #include "intel_display_types.h"
++#include "intel_display_limits.h"
++#include "intel_crtc.h"
++#include "intel_de.h"
++#include "skl_universal_plane_regs.h"
+ #include "intel_dmc.h"
+ #include "intel_dmc_wl.h"
+ #include "intel_dp.h"
+@@ -32,7 +40,14 @@
+ #include "intel_hdcp.h"
+ #include "intel_hotplug.h"
+ #include "intel_opregion.h"
++#include "intel_pch.h"
+ #include "skl_watermark.h"
++#include "intel_plane_initial.h"
++#include "intel_pps.h"
++#include "intel_backlight.h"
++#include "intel_panel.h"
++#include "intel_cx0_phy.h"
++#include "intel_cx0_phy_regs.h"
+ #include "xe_module.h"
+ 
+ /* Xe device functions */
+@@ -81,7 +96,7 @@ static void unset_display_features(struct xe_device *xe)
+ 	xe->drm.driver_features &= ~(DRIVER_MODESET | DRIVER_ATOMIC);
  }
--
- bool skl_fixup_initial_plane_config(struct intel_crtc *crtc,
- 				    const struct intel_initial_plane_config *plane_config)
- {
-diff --git a/drivers/gpu/drm/xe/display/xe_plane_initial.c b/drivers/gpu/drm/xe/display/xe_plane_initial.c
-index 6a987224e90dc5620194a277ec5f52820da5efce..c7b1371d823bbfa71785df61e7aa601bf76d725e 100644
---- a/drivers/gpu/drm/xe/display/xe_plane_initial.c
-+++ b/drivers/gpu/drm/xe/display/xe_plane_initial.c
-@@ -192,7 +192,7 @@ intel_alloc_initial_plane_obj(struct intel_crtc *crtc,
- 	}
- 	/* Reference handed over to fb */
- 	xe_bo_put(bo);
--	if (bo->vmap.vaddr && plane_config->fb) {
-+	/*if (bo->vmap.vaddr && plane_config->fb) {
- 		int x, y;
- 		void *vaddr = bo->vmap.vaddr;
- 		u32 height = plane_config->fb->base.height;
-@@ -209,7 +209,7 @@ intel_alloc_initial_plane_obj(struct intel_crtc *crtc,
- 				row[x] = color;
- 			}
- 		}
--	}
-+	}*/
  
- 	return true;
+-static void xe_display_fini_early(void *arg)
++static void xe_display_fini_early(struct drm_device *dev, void *arg)
+ {
+ 	struct xe_device *xe = arg;
+ 	struct intel_display *display = xe->display;
+@@ -99,7 +114,6 @@ static void xe_display_fini_early(void *arg)
+ int xe_display_init_early(struct xe_device *xe)
+ {
+ 	struct intel_display *display = xe->display;
+-	int err;
+ 
+ 	if (!xe->info.probe_display)
+ 		return 0;
+@@ -107,32 +121,293 @@ int xe_display_init_early(struct xe_device *xe)
+ 	/* Fake uncore lock */
+ 	spin_lock_init(&xe->uncore.lock);
+ 
+-	intel_display_driver_early_probe(display);
++	/* This must be called before any calls to HAS_PCH_* */
++	intel_pch_detect(display);
++
++	return drmm_add_action_or_reset(&xe->drm, xe_display_fini_early, xe);
++}
++
++
++
++void skl_get_initial_plane_config(struct intel_crtc *crtc, struct intel_initial_plane_config *plane_config);
++
++static void xe_initial_pll_enable(struct xe_device *xe)
++{
++	struct intel_display *display = xe->display;
++	enum pipe pipe;
++	enum pipe active_pipe = INVALID_PIPE;
++	u32 pipe_val;
++	u32 pll_val;
++	enum plane_id plane_id = PLANE_PRIMARY;
++	struct intel_crtc *crtc = NULL;
++	struct intel_crtc *iter;
++	struct intel_encoder *active_encoder = NULL;
++	struct intel_crtc_state *temp_state = NULL;
++	struct intel_connector *connector = NULL;
++	struct drm_connector *_connector;
++
++	/* 1. Find the active pipe from hardware registers */
++	for_each_pipe(display, pipe) {
++		pipe_val = intel_de_read(display, PLANE_CTL(pipe, plane_id));
++		if (pipe_val & PLANE_CTL_ENABLE) {
++			active_pipe = pipe;
++			break;
++		}
++	}
++
++	if (active_pipe == INVALID_PIPE) {
++		return;
++	}
++
++	/* 2. Find the corresponding software CRTC, encoder, and connector objects */
++	for_each_intel_crtc(&xe->drm, iter) {
++		if (iter->pipe == active_pipe) {
++			crtc = iter;
++			break;
++		}
++	}
++
++	if (!crtc) {
++		return;
++	}
++
++	for_each_intel_encoder(&xe->drm, active_encoder) {
++		if (active_encoder->pipe_mask & BIT(active_pipe))
++			break;
++	}
++
++	if (!active_encoder) {
++		return;
++	}
++
++	list_for_each_entry(_connector, &xe->drm.mode_config.connector_list, head) {
++		if (to_intel_connector(_connector)->encoder == active_encoder) {
++			connector = to_intel_connector(_connector);
++			break;
++		}
++	}
++
++	if (!connector) {
++		return;
++	}
++
++	struct intel_dp *intel_dp = enc_to_intel_dp(active_encoder);
++
++	/* 3. Create a temporary, local state object */
++	temp_state = kzalloc(sizeof(*temp_state), GFP_KERNEL);
++	if (!temp_state)
++		return;
++
++	temp_state->uapi.crtc = &crtc->base;
++	temp_state->hw.active = true;
++	temp_state->hw.enable = true;
++
++	/* 4. Populate the temporary state directly from hardware */
++	if (!intel_crtc_get_pipe_config(temp_state)) {
++		goto out_free;
++	}
++	active_encoder->get_config(active_encoder, temp_state);
++
++	/* 5. Provide VBT hints to guide the config calculation */
++	u8 vbt_lane_count = intel_bios_dp_max_lane_count(active_encoder->devdata);
++	int vbt_max_rate = connector->panel.vbt.edp.max_link_rate;
++	static const int dp_rates[] = {162000, 270000, 540000, 810000};
++	const int *source_rates;
++	int i, size, max_rate;
++
++	/* REORDERED: 7. Enable the PLL */
++	pll_val = intel_de_read(display, XELPDP_PORT_CLOCK_CTL(display, active_encoder->port));
++	if (pll_val & (XELPDP_LANE_PCLK_PLL_ACK(0) | XELPDP_LANE_PCLK_PLL_ACK(1))) {
++	} else {
++		intel_mtl_pll_enable(active_encoder, temp_state);
++	}
++
++	/* 8. With the PLL on, we can now safely read the DPCD */
++
++	/* Initialize PPS so we can safely check panel power state */
++	if (!intel_pps_init(intel_dp))
++		drm_warn(&xe->drm, "DEBUG: intel_pps_init failed\n");
++
++	/* Ensure VDD is on for software tracking to match hardware */
++	intel_pps_vdd_on_unlocked(intel_dp);
++
++	i = drm_dp_read_dpcd_caps(&intel_dp->aux, intel_dp->dpcd);
++	if (i < 0) {
++		drm_warn(&xe->drm, "DEBUG: drm_dp_read_dpcd_caps failed: %d\n", i);
++	}
++
++	/* Fallback: If DPCD read 0 (or failed), use VBT values to avoid RBR fallback mismatch */
++	if (intel_dp->dpcd[DP_MAX_LINK_RATE] == 0) {
++		intel_dp->dpcd[DP_MAX_LINK_RATE] = drm_dp_link_rate_to_bw_code(vbt_max_rate);
++		if (intel_dp->dpcd[DP_MAX_LANE_COUNT] == 0)
++			intel_dp->dpcd[DP_MAX_LANE_COUNT] = vbt_lane_count;
++	}
++
++	/* Read EDID to get the correct panel mode */
++	const struct drm_edid *drm_edid = drm_edid_read_ddc(&connector->base, &intel_dp->aux.ddc);
++
++	if (!drm_edid) {
++		drm_warn(&xe->drm, "DEBUG: EDID read failed\n");
++	} else {
++		/* We need to lock mode_config to update panel modes safely */
++		mutex_lock(&xe->drm.mode_config.mutex);
++
++		/* Re-init panel early with EDID to ensure backlight presence is detected correctly */
++		intel_bios_init_panel_late(display, &connector->panel, active_encoder->devdata, drm_edid);
++
++		/* Update the connector with the EDID we just read */
++		if (drm_edid_connector_update(&connector->base, drm_edid) ||
++			!drm_edid_connector_add_modes(&connector->base)) {
++			drm_warn(&xe->drm, "DEBUG: EDID update failed\n");
++		}
+ 
++		/* Re-run the fixed mode logic now that we have EDID */
++		intel_panel_add_edid_fixed_modes(connector, true);
++
++		/* Also init MSO since we have EDID now */
++		if (intel_dp->mso_link_count == 0)
++			intel_edp_mso_init(intel_dp);
++
++		/* HACK: Force MSO for Panther Lake if detection failed */
++		if (intel_dp->mso_link_count == 0) {
++			intel_dp->mso_link_count = 2;
++			intel_dp->mso_pixel_overlap = 0;
++		}
++
++		/* multiply the mode clock and horizontal timings for MSO */
++		struct drm_display_mode *fixed_mode;
++
++		list_for_each_entry(fixed_mode, &connector->panel.fixed_modes, head) {
++			intel_edp_mso_mode_fixup(connector, fixed_mode);
++		}
++
++		mutex_unlock(&xe->drm.mode_config.mutex);
++		drm_edid_free(drm_edid);
++	}
++
++	/* Now that PPS is ready and DPCD is populated, initialize backlight funcs safely */
++	intel_backlight_init_funcs(&connector->panel);
++
++	/* Replicate intel_dp_set_sink_rates logic */
++	max_rate = drm_dp_bw_code_to_link_rate(intel_dp->dpcd[DP_MAX_LINK_RATE]);
++	for (i = 0; i < ARRAY_SIZE(dp_rates); i++) {
++		if (dp_rates[i] > max_rate)
++			break;
++		intel_dp->sink_rates[i] = dp_rates[i];
++	}
++	intel_dp->num_sink_rates = i;
++
++	/* Replicate intel_dp_set_max_sink_lane_count logic */
++	intel_dp->max_sink_lane_count = drm_dp_max_lane_count(intel_dp->dpcd);
++
++	/* Replicate intel_dp_set_source_rates logic */
++	static const int bmg_rates[] = {21600, 162000, 216000, 243000, 270000, 324000, 432000, 540000, 675000, 810000, 1000000, 1350000};
++	static const int mtl_rates[] = {21600, 162000, 216000, 243000, 270000, 324000, 432000, 540000, 675000, 810000, 1000000, 2000000};
++	static const int icl_rates[] = {21600, 162000, 216000, 270000, 324000, 432000, 540000, 648000, 810000, 1000000, 1350000};
++	static const int default_rates[] = {21600, 162000, 270000, 540000};
++
++	if (DISPLAY_VER(display) >= 14) {
++		if (display->platform.battlemage) {
++			source_rates = bmg_rates;
++			size = ARRAY_SIZE(bmg_rates);
++		} else {
++			source_rates = mtl_rates;
++			size = ARRAY_SIZE(mtl_rates);
++		}
++	} else if (DISPLAY_VER(display) >= 11) {
++		source_rates = icl_rates;
++		size = ARRAY_SIZE(icl_rates);
++	} else {
++		source_rates = default_rates;
++		size = ARRAY_SIZE(default_rates);
++	}
++
++	intel_dp->source_rates = source_rates;
++	intel_dp->num_source_rates = size;
++
++	/* Replicate intel_dp_set_common_rates logic using a simplified intersect_rates */
++	int common_idx = 0;
++	int src_idx = 0, sink_idx = 0;
++
++	while (src_idx < intel_dp->num_source_rates && sink_idx < intel_dp->num_sink_rates) {
++		if (intel_dp->source_rates[src_idx] == intel_dp->sink_rates[sink_idx]) {
++			intel_dp->common_rates[common_idx++] = intel_dp->source_rates[src_idx];
++			src_idx++;
++			sink_idx++;
++		} else if (intel_dp->source_rates[src_idx] < intel_dp->sink_rates[sink_idx]) {
++			src_idx++;
++		} else {
++			sink_idx++;
++		}
++	}
++	intel_dp->num_common_rates = common_idx;
++
++	if (intel_dp->num_common_rates == 0) {
++		intel_dp->common_rates[0] = 162000;
++		intel_dp->num_common_rates = 1;
++	}
++
++out_free:
++	/* 9. Discard the temporary state */
++	kfree(temp_state);
++}
++
++static struct intel_display_funcs xe_display_funcs;
++
++static void xe_display_post_crtc_init(struct intel_display *display)
++{
++	xe_initial_pll_enable(to_xe_device(display->drm));
++}
++
++int xe_display_init_noirq(struct xe_device *xe)
++{
++	struct intel_display *display = xe->display;
++	int err = 0;
++
++	intel_display_driver_early_probe(display);
+ 	/* Early display init.. */
+ 	intel_opregion_setup(display);
+-
+ 	/*
+ 	 * Fill the dram structure to get the system dram info. This will be
+ 	 * used for memory latency calculation.
+ 	 */
+-	err = intel_dram_detect(xe);
++	intel_dram_detect(xe);
++
+ 	if (err)
+ 		goto err_opregion;
+ 
+ 	intel_bw_init_hw(display);
+-
+-	intel_display_device_info_runtime_init(display);
+-
+ 	err = intel_display_driver_probe_noirq(display);
++	if (err) {
++		intel_opregion_cleanup(display);
++		return err;
++	}
++	err = intel_cdclk_init(display);
+ 	if (err)
+-		goto err_opregion;
++		return err;
++	intel_cdclk_init_hw(display);
++	to_intel_cdclk_state(display->cdclk.obj.state)->actual = display->cdclk.hw;
++	to_intel_cdclk_state(display->cdclk.obj.state)->logical = display->cdclk.hw;
++	intel_display_device_info_runtime_init(display);
++	if (xe->info.probe_display) {
++		if (display->funcs.display) {
++			xe_display_funcs = *display->funcs.display;
++			xe_display_funcs.initial_plane_config = intel_initial_plane_config; //xe_initial_plane_config_override;
++			xe_display_funcs.get_initial_plane_config = skl_get_initial_plane_config;
++			xe_display_funcs.post_crtc_init_hook = xe_display_post_crtc_init;
++			display->funcs.display = &xe_display_funcs;
++		}
++	}
+ 
+ 	err = intel_display_driver_probe_nogem(display);
+ 	if (err)
+ 		goto err_noirq;
+ 
+-	return devm_add_action_or_reset(xe->drm.dev, xe_display_fini_early, xe);
++	err = intel_display_driver_probe(display);
++	if (err)
++		goto err_noirq;
++
++	return drmm_add_action_or_reset(&xe->drm, xe_display_fini_early, xe);
+ err_noirq:
+ 	intel_display_driver_remove_noirq(display);
+ 	intel_power_domains_cleanup(display);
+@@ -160,7 +435,7 @@ int xe_display_init(struct xe_device *xe)
+ 	if (!xe->info.probe_display)
+ 		return 0;
+ 
+-	err = intel_display_driver_probe(display);
++	err = intel_display_driver_probe_nogem(display);
+ 	if (err)
+ 		return err;
+ 
+@@ -174,6 +449,18 @@ void xe_display_register(struct xe_device *xe)
+ 	if (!xe->info.probe_display)
+ 		return;
+ 
++	/*
++	 * FIXME: On PTL, the initial commit fails to grab the necessary runtime
++	 * power references for the active pipes/transcoders. When
++	 * intel_power_domains_enable() drops the POWER_DOMAIN_INIT wakeref,
++	 * the display hardware powers down.
++	 *
++	 * Workaround: Manually grab a persistent reference to POWER_DOMAIN_INIT
++	 * here. This effectively keeps the boot configuration powered until
++	 * driver unload or a future fix addresses the root cause in fastset.
++	 */
++	intel_display_power_get(display, POWER_DOMAIN_INIT);
++
+ 	intel_display_driver_register(display);
+ 	intel_power_domains_enable(display);
+ }
+diff --git a/drivers/gpu/drm/xe/display/xe_display.h b/drivers/gpu/drm/xe/display/xe_display.h
+index e533aa4750bc11bfaf9a2b81e2dd8c1ac6ee58bc..d891a8abd7fc2293961c4e42be3ccf1dd1a8bb33 100644
+--- a/drivers/gpu/drm/xe/display/xe_display.h
++++ b/drivers/gpu/drm/xe/display/xe_display.h
+@@ -18,6 +18,7 @@ void xe_display_driver_set_hooks(struct drm_driver *driver);
+ int xe_display_probe(struct xe_device *xe);
+ 
+ int xe_display_init_early(struct xe_device *xe);
++int xe_display_init_noirq(struct xe_device *xe);
+ int xe_display_init(struct xe_device *xe);
+ 
+ void xe_display_register(struct xe_device *xe);
+@@ -47,6 +48,7 @@ static inline void xe_display_driver_remove(struct xe_device *xe) {}
+ static inline int xe_display_probe(struct xe_device *xe) { return 0; }
+ 
+ static inline int xe_display_init_early(struct xe_device *xe) { return 0; }
++static inline int xe_display_init_noirq(struct xe_device *xe) { return 0; }
+ static inline int xe_display_init(struct xe_device *xe) { return 0; }
+ 
+ static inline void xe_display_register(struct xe_device *xe) {}
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index 456899238377edb92702108f7c43dcfecd635a98..bc3bc1fc91b5782aeab778b7e94ac63c8ed7b514 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -913,7 +913,7 @@ int xe_device_probe(struct xe_device *xe)
+ 	if (err)
+ 		return err;
+ 
+-	err = xe_display_init(xe);
++	err = xe_display_init_noirq(xe);
+ 	if (err)
+ 		return err;
  
 
 -- 
