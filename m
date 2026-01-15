@@ -4,61 +4,156 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CFF86D41157
-	for <intel-xe@archiver.kernel.org>; Thu, 15 Jan 2026 10:01:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6E37BD41170
+	for <intel-xe@archiver.kernel.org>; Thu, 15 Jan 2026 11:02:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7152610E734;
-	Thu, 15 Jan 2026 10:01:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 19D3210E0E0;
+	Thu, 15 Jan 2026 11:02:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PWlpEUc0";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="nxqUG7n/";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="K7VwqNzq";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="2SUUTLsr";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="mGIcw6rx";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3F5F710E730;
- Thu, 15 Jan 2026 10:01:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1768471308; x=1800007308;
- h=from:to:cc:subject:date:message-id:mime-version;
- bh=Sc8pLP4CA6AZPyWVB1USBHAm6eA+v+pB5HrbR192ciY=;
- b=PWlpEUc0sfNOQ/1SebGCaTA4yQP/JfpKcI6ABCXAGAL+aJs6N86ySwHk
- Uop0vpi3T++M/kUS4j5po9H/ypzj2R5y/eXmg8wAIzWtWX7KrNTtLsiz3
- Xt3mLxZXz3LrHR9KKwtjp1p7hAKFsU7/mpb/aXnFw2dwgUwa+H3OHmmqm
- BrSdYm4mrNMooDVsAJenSyRb82V3hcFuG3nT5FI+5ZhoCslf1Wvmb/61E
- i+JAC5v/uVo1eqVTPdxaxBNuUovET5QR1ZoemHLA8eSyJgP6cebBYj7Vl
- 7qdfFwrR8/V6drt2J3DOMOocItYu/3LWQz4Ce41lGJYXggpQnTy2sJhyG w==;
-X-CSE-ConnectionGUID: IKUb4KcOT4WFEdOGWr0IVg==
-X-CSE-MsgGUID: M4yXJ2rlTkuGI0aY8oH0fw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11671"; a="80077369"
-X-IronPort-AV: E=Sophos;i="6.21,226,1763452800"; d="scan'208";a="80077369"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jan 2026 02:01:47 -0800
-X-CSE-ConnectionGUID: LV4iw8kjS9yLZo1Aesmc0Q==
-X-CSE-MsgGUID: b8e73BQfRi2gmN1CUyuFTg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,226,1763452800"; d="scan'208";a="205198405"
-Received: from ettammin-desk.ger.corp.intel.com (HELO localhost)
- ([10.245.246.150])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jan 2026 02:01:42 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann
- <tzimmermann@suse.de>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Matthew Brost <matthew.brost@intel.com>, Thomas =?utf-8?Q?Hellstr=C3=B6m?=
- <thomas.hellstrom@linux.intel.com>, Oded Gabbay <ogabbay@kernel.org>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-intel-fixes
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-Date: Thu, 15 Jan 2026 12:01:39 +0200
-Message-ID: <65bb05f7c8cbd3faf2350f979d4d47a395e5d372@intel.com>
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9B98C10E736
+ for <intel-xe@lists.freedesktop.org>; Thu, 15 Jan 2026 11:02:36 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id DF8933368D;
+ Thu, 15 Jan 2026 11:02:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1768474955; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=b1iB/X+y4KnDjsmYQDJWINso6ydXpMkq0JbeHKY3Meo=;
+ b=nxqUG7n/Ba/Vk3Vqbkd8x5uE/t4wEWS544KTjenz2rOM0peNllN0a38ZWieXEOZ1ZFou0L
+ lN6udrw2wxFodxzeU9E9PsRCWhP4U8rDt1q4rvJYNkUEUXjHx2C7auuV9IxYSy2PvcZIm9
+ NjPSz1C/ie8PgZ8Ez7FIU3l3L6zAtTI=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1768474955;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=b1iB/X+y4KnDjsmYQDJWINso6ydXpMkq0JbeHKY3Meo=;
+ b=K7VwqNzq0jmKB/Hg2XSEsg4X9oh1lKMI5p9DaxDa720VTsrHC7IGQQZLAIfYFsjYSIv4YC
+ T1EcWnuTzsT7ZPAQ==
+Authentication-Results: smtp-out1.suse.de;
+	none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1768474954; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=b1iB/X+y4KnDjsmYQDJWINso6ydXpMkq0JbeHKY3Meo=;
+ b=2SUUTLsrsfMv42Ft91rhkIDo2rk92wh538czRVUyYyhaujd4nQVEYC8liZ8OzrzjT70MFV
+ yVqAUmNhn40Aym9gonJ+CxaNA6RsLfJBjWJ/ek9BvP2iwk5qhk8+3NYMy8YnVdRezxE6VX
+ XQDyRuG98TpqmGHwggqedCHdzatVedQ=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1768474954;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=b1iB/X+y4KnDjsmYQDJWINso6ydXpMkq0JbeHKY3Meo=;
+ b=mGIcw6rx1saRlGWP8hEX15UAN8hPBMuYD4JhTqBQKI5gC/C8zxyomKzetVtgeitnCQ0pI0
+ /0WXUfg85ko2azDA==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id DAFBB3EA63;
+ Thu, 15 Jan 2026 11:02:33 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap1.dmz-prg2.suse.org with ESMTPSA id aqgBNEnJaGnnJQAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Thu, 15 Jan 2026 11:02:33 +0000
+Message-ID: <97993761-5884-4ada-b345-9fb64819e02a@suse.de>
+Date: Thu, 15 Jan 2026 12:02:33 +0100
 MIME-Version: 1.0
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 00/12] Recover sysfb after DRM probe failure
+To: Zack Rusin <zack.rusin@broadcom.com>
+Cc: dri-devel@lists.freedesktop.org, Alex Deucher
+ <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org,
+ Ard Biesheuvel <ardb@kernel.org>, Ce Sun <cesun102@amd.com>,
+ Chia-I Wu <olvaffe@gmail.com>, =?UTF-8?Q?Christian_K=C3=B6nig?=
+ <christian.koenig@amd.com>, Danilo Krummrich <dakr@kernel.org>,
+ Dave Airlie <airlied@redhat.com>, Deepak Rawat <drawat.floss@gmail.com>,
+ Dmitry Osipenko <dmitry.osipenko@collabora.com>,
+ Gerd Hoffmann <kraxel@redhat.com>,
+ Gurchetan Singh <gurchetansingh@chromium.org>,
+ Hans de Goede <hansg@kernel.org>, Hawking Zhang <Hawking.Zhang@amd.com>,
+ Helge Deller <deller@gmx.de>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, Jani Nikula <jani.nikula@linux.intel.com>,
+ Javier Martinez Canillas <javierm@redhat.com>,
+ Jocelyn Falempe <jfalempe@redhat.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Lijo Lazar <lijo.lazar@amd.com>, linux-efi@vger.kernel.org,
+ linux-fbdev@vger.kernel.org, linux-hyperv@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Lucas De Marchi <lucas.demarchi@intel.com>,
+ Lyude Paul <lyude@redhat.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ "Mario Limonciello (AMD)" <superm1@kernel.org>,
+ Mario Limonciello <mario.limonciello@amd.com>,
+ Maxime Ripard <mripard@kernel.org>, nouveau@lists.freedesktop.org,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Simona Vetter <simona@ffwll.ch>,
+ spice-devel@lists.freedesktop.org,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ =?UTF-8?Q?Timur_Krist=C3=B3f?= <timur.kristof@gmail.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, virtualization@lists.linux.dev,
+ Vitaly Prosyak <vitaly.prosyak@amd.com>
+References: <20251229215906.3688205-1-zack.rusin@broadcom.com>
+ <c816f7ed-66e0-4773-b3d1-4769234bd30b@suse.de>
+ <CABQX2QNQU4XZ1rJFqnJeMkz8WP=t9atj0BqXHbDQab7ZnAyJxg@mail.gmail.com>
+Content-Language: en-US
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Autocrypt: addr=tzimmermann@suse.de; keydata=
+ xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
+ XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
+ BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
+ hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
+ 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
+ AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
+ AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
+ AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
+ lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
+ U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
+ vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
+ 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
+ j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
+ T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
+ 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
+ GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
+ hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
+ EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
+ C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
+ yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
+ SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
+ Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
+ 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
+In-Reply-To: <CABQX2QNQU4XZ1rJFqnJeMkz8WP=t9atj0BqXHbDQab7ZnAyJxg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [-2.80 / 50.00]; BAYES_HAM(-3.00)[100.00%];
+ SUSPICIOUS_RECIPS(1.50)[]; NEURAL_HAM_LONG(-1.00)[-1.000];
+ NEURAL_HAM_SHORT(-0.20)[-0.998]; MIME_GOOD(-0.10)[text/plain];
+ RCVD_VIA_SMTP_AUTH(0.00)[]; ARC_NA(0.00)[];
+ FREEMAIL_ENVRCPT(0.00)[gmail.com,gmx.de];
+ MIME_TRACE(0.00)[0:+]; FUZZY_RATELIMITED(0.00)[rspamd.com];
+ TO_DN_SOME(0.00)[]; RCPT_COUNT_TWELVE(0.00)[43];
+ TAGGED_RCPT(0.00)[]; MID_RHS_MATCH_FROM(0.00)[];
+ R_RATELIMIT(0.00)[to_ip_from(RLxtqcp3yg5i7i9mi6syp13ijk)];
+ FROM_HAS_DN(0.00)[];
+ FREEMAIL_CC(0.00)[lists.freedesktop.org,amd.com,kernel.org,gmail.com,redhat.com,collabora.com,chromium.org,gmx.de,linux.intel.com,vger.kernel.org,intel.com,ffwll.ch,ursulin.net,lists.linux.dev];
+ RCVD_TLS_ALL(0.00)[]; FROM_EQ_ENVFROM(0.00)[];
+ RCVD_COUNT_TWO(0.00)[2]; TO_MATCH_ENVRCPT_ALL(0.00)[];
+ DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:mid, suse.de:email,
+ imap1.dmz-prg2.suse.org:helo, suse.com:url]
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,40 +168,137 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Hi,
 
-Hi Dave & Sima -
+apologies for the delay. I wanted to reply and then forgot about it.
 
-Keeps being fairly quiet, here's just one linkage change to internal.
+Am 10.01.26 um 05:52 schrieb Zack Rusin:
+> On Fri, Jan 9, 2026 at 5:34 AM Thomas Zimmermann <tzimmermann@suse.de> wrote:
+>> Hi
+>>
+>> Am 29.12.25 um 22:58 schrieb Zack Rusin:
+>>> Almost a rite of passage for every DRM developer and most Linux users
+>>> is upgrading your DRM driver/updating boot flags/changing some config
+>>> and having DRM driver fail at probe resulting in a blank screen.
+>>>
+>>> Currently there's no way to recover from DRM driver probe failure. PCI
+>>> DRM driver explicitly throw out the existing sysfb to get exclusive
+>>> access to PCI resources so if the probe fails the system is left without
+>>> a functioning display driver.
+>>>
+>>> Add code to sysfb to recever system framebuffer when DRM driver's probe
+>>> fails. This means that a DRM driver that fails to load reloads the system
+>>> framebuffer driver.
+>>>
+>>> This works best with simpledrm. Without it Xorg won't recover because
+>>> it still tries to load the vendor specific driver which ends up usually
+>>> not working at all. With simpledrm the system recovers really nicely
+>>> ending up with a working console and not a blank screen.
+>>>
+>>> There's a caveat in that some hardware might require some special magic
+>>> register write to recover EFI display. I'd appreciate it a lot if
+>>> maintainers could introduce a temporary failure in their drivers
+>>> probe to validate that the sysfb recovers and they get a working console.
+>>> The easiest way to double check it is by adding:
+>>>    /* XXX: Temporary failure to test sysfb restore - REMOVE BEFORE COMMIT */
+>>>    dev_info(&pdev->dev, "Testing sysfb restore: forcing probe failure\n");
+>>>    ret = -EINVAL;
+>>>    goto out_error;
+>>> or such right after the devm_aperture_remove_conflicting_pci_devices .
+>> Recovering the display like that is guess work and will at best work
+>> with simple discrete devices where the framebuffer is always located in
+>> a confined graphics aperture.
+>>
+>> But the problem you're trying to solve is a real one.
+>>
+>> What we'd want to do instead is to take the initial hardware state into
+>> account when we do the initial mode-setting operation.
+>>
+>> The first step is to move each driver's remove_conflicting_devices call
+>> to the latest possible location in the probe function. We usually do it
+>> first, because that's easy. But on most hardware, it could happen much
+>> later.
+> Well, some drivers (vbox, vmwgfx, bochs and currus-qemu) do it because
+> they request pci regions which is going to fail otherwise. Because
+> grabbining the pci resources is in general the very first thing that
+> those drivers need to do to setup anything, we
+> remove_conflicting_devices first or at least very early.
 
-drm-intel-fixes-2026-01-15:
-drm/i915 fixes for v6.19-rc6:
-- make 'guc_hw_reg_state' static
+To my knowledge, requesting resources is more about correctness than a 
+hard requirement to use an I/O or memory range. Has this changed?
 
-BR,
-Jani.
 
-The following changes since commit 0f61b1860cc3f52aef9036d7235ed1f017632193:
+>
+> I also don't think it's possible or even desirable by some drivers to
+> reuse the initial state, good example here is vmwgfx where by default
+> some people will setup their vm's with e.g. 8mb ram, when the vmwgfx
+> loads we allow scanning out from system memory, so you can set your vm
+> up with 8mb of vram but still use 4k resolutions when the driver
+> loads, this way the suspend size of the vm is very predictable (tiny
+> vram plus whatever ram was setup) while still allowing a lot of
+> flexibility.
 
-  Linux 6.19-rc5 (2026-01-11 17:03:14 -1000)
+If there's no initial state to switch from, the first modeset can fail 
+while leaving the display unusable. There's no way around that. Going 
+back to the old state is not an option unless the driver has been 
+written to support this.
 
-are available in the Git repository at:
+The case of vmwgfx is special, but does not effect the overall problem. 
+For vmwgfx, it would be best to import that initial state and support a 
+transparent modeset from vram to system memory (and back) at least 
+during this initial state.
 
-  https://gitlab.freedesktop.org/drm/i915/kernel.git tags/drm-intel-fixes-2026-01-15
 
-for you to fetch changes up to 81d0223832f99c0833e46be114a8310888015f8b:
+>
+> In general I think however this is planned it's two or three separate series:
+> 1) infrastructure to reload the sysfb driver (what this series is)
+> 2) making sure that drivers that do want to recover cleanly actually
+> clean out all the state on exit properly,
+> 3) abstracting at least some of that cleanup in some driver independent way
 
-  drm/i915/guc: make 'guc_hw_reg_state' static as it isn't exported (2026-01-12 13:10:36 +0200)
-
-----------------------------------------------------------------
-drm/i915 fixes for v6.19-rc6:
-- make 'guc_hw_reg_state' static
-
-----------------------------------------------------------------
-Ben Dooks (1):
-      drm/i915/guc: make 'guc_hw_reg_state' static as it isn't exported
-
- drivers/gpu/drm/i915/i915_gpu_error.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+That's really not going to work. For example, in the current series, you 
+invoke devm_aperture_remove_conflicting_pci_devices_done() after 
+drm_mode_reset(), drm_dev_register() and drm_client_setup(). Each of 
+these calls can modify hardware state. In the case of _register() and 
+_setup(), the DRM clients can perform a modeset, which destroys the 
+initial hardware state. Patch 1 of this series removes the sysfb 
+device/driver entirely. That should be a no-go as it significantly 
+complicates recovery. For example, if the native drivers failed from an 
+allocation failure, the sysfb device/driver is not likely to come back 
+either. As the very first thing, the series should state which failures 
+is is going to resolve, - failed hardware init, - invalid initial 
+modesetting, - runtime errors (such ENOMEM, failed firmware loading), - 
+others? And then specify how a recovery to sysfb could look in each 
+supported scenario. In terms of implementation, make any transition 
+between drivers gradually. The native driver needs to acquire the 
+hardware resource (framebuffer and I/O apertures) without unloading the 
+sysfb driver. Luckily there's struct drm_device.unplug, which does that. 
+[1] Flipping this field disables hardware access for DRM drivers. All 
+sysfb drivers support this. To get the sysfb drivers ready, I suggest 
+dedicated helpers for each drivers aperture. The aperture helpers can 
+use these callback to flip the DRM driver off and on again. For example, 
+efidrm could do this as a minimum: int efidrm_aperture_suspend() { 
+dev->unplug = true; remove_resource(/*framebuffer aperture*/) return 0 } 
+int efidrm_aperture_resume() { insert_resource(/*framebuffer aperture*/) 
+dev->unplug = false; return 0 } struct aperture_funcs 
+efidrm_aperture_funcs { .suspend = efidrm_aperture_suspend, .resume = 
+efidrm_aperture_resume, } Pass this struct when efidrm acquires the 
+framebuffer aperture, so that the aperture helpers can control the 
+behavior of efidrm. With this, a multi-step takeover from sysfb to 
+native driver can be tried. It's still a massive effort that requires an 
+audit of each driver's probing logic. There's no copy-paste pattern 
+AFAICT. I suggest to pick one simple driver first and make a prototype. 
+Let me also say that I DO like the general idea you're proposing. But if 
+it was easy, we would likely have done it already. Best regards Thomas
+>
+> z
 
 -- 
-Jani Nikula, Intel
+--
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Frankenstr. 146, 90461 Nürnberg, Germany, www.suse.com
+GF: Jochen Jaser, Andrew McDonald, Werner Knoblich, (HRB 36809, AG Nürnberg)
+
+
