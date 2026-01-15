@@ -4,191 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D04CFD4116C
-	for <intel-xe@archiver.kernel.org>; Thu, 15 Jan 2026 11:30:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8728ED41171
+	for <intel-xe@archiver.kernel.org>; Thu, 15 Jan 2026 11:33:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 64CBB10E11C;
-	Thu, 15 Jan 2026 11:30:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3F74510E11C;
+	Thu, 15 Jan 2026 11:33:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kvmRjLk1";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SkpNo7oH";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DE9A510E11C
- for <intel-xe@lists.freedesktop.org>; Thu, 15 Jan 2026 11:30:31 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C8B8C10E11C;
+ Thu, 15 Jan 2026 11:33:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1768476632; x=1800012632;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=gc3v9NjBiNseUuvMOVmuX63/v/RZa8EDfNccpUGKZLs=;
- b=kvmRjLk1oo7ti1HaaYxxfFics88rjW9TACHVZGhlCBlC5O8iu7kIMKt/
- MrUL9TcV/ciC+nLZlRU/vzyhklA0I8cUyAScQgckUQ7mVXSTqxIWtqLuK
- QxTTXd55a+lm44XKhaMm6ItJrz7tq4Wkkr11Zg55GoTla9zY2QJx/okYj
- M9J4y+ziF/PsEADwJfxyUwD3AfGLgvmb5IHei6RvrJYseNtYP4j7P0ZTD
- I3rgZyqGV1GL+R0eI8PAz6xuwsfnTby0WRPioK3eWuYxAwR5c2HfUCM3L
- mr7/oRYdcxmLfBWXWe3U3O8j4LiWVjxlkB1HDNEB3ChOHM+rxCX616o5w w==;
-X-CSE-ConnectionGUID: uYhGPB5ISLGYWVpWe/zvYw==
-X-CSE-MsgGUID: NWr/bnPWS8Wld1hWoWJPyA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11671"; a="80891637"
-X-IronPort-AV: E=Sophos;i="6.21,228,1763452800"; d="scan'208";a="80891637"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jan 2026 03:30:32 -0800
-X-CSE-ConnectionGUID: uk7c+KuNQl+I8nbMrD/o5A==
-X-CSE-MsgGUID: cm4Ii7nORhG4M3oGN4LyvQ==
+ t=1768476825; x=1800012825;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=4cZfPzfkZ2Edq1dK2b5d3FuZ4qg+oXrSF3GMCicRg9U=;
+ b=SkpNo7oH03P2Zbsc2grBmfCBNZeoy0yN8rj65q67HeCpGID8BXxExKPP
+ hkfOj68iswT9oa4a30wHnXiC0Xy8K9uyzU+Kv2am0COt6+RfNtXPZeQrG
+ k8IEDKd8R22D1PIEP5kKj1z76mW/YT4U6VygPNBWunCnH662dWJrzw9Ml
+ H43wUGVbbti1dDnMavpmHy9XyaZw/UM2KEy5KX4EOQqyZ5GemeWUehevl
+ YXzcs73YbC699pSbZmwpGby/qzJdT8pGDyPmNcbJbO+xTgJF/NhdEEweR
+ TD7/J7NXkyB72EIb3ecu2udVYUZFoO8+cBECQXNVqNtkPexa2k0QnpDyF w==;
+X-CSE-ConnectionGUID: zw0kLzqLQFOFPiHf3ngiSg==
+X-CSE-MsgGUID: zqE+Nr1PTxuNrzIVA2UUTw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11671"; a="57335425"
+X-IronPort-AV: E=Sophos;i="6.21,228,1763452800"; d="scan'208";a="57335425"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jan 2026 03:33:44 -0800
+X-CSE-ConnectionGUID: 9prdiqTxS5uU8W7X6Vo7PA==
+X-CSE-MsgGUID: 0wdHuqwxT1OvFZuGm9bAFw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,228,1763452800"; d="scan'208";a="204139507"
-Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
- by orviesa010.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jan 2026 03:30:32 -0800
-Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
- fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Thu, 15 Jan 2026 03:30:30 -0800
-Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
- FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29 via Frontend Transport; Thu, 15 Jan 2026 03:30:30 -0800
-Received: from SN4PR2101CU001.outbound.protection.outlook.com (40.93.195.35)
- by edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Thu, 15 Jan 2026 03:30:30 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=bR2GICSdD57/XmeFvQX99Flp1B9rsaae3CQtURN/cXNpnqFaiclu2N8NsxFEteDlM1R+TaYdbS1VhwjdGHJRDF4QW5PhyiKD9tjNNXx55fRlJWn/lAXiLpsAYXn7/poEBcyn08uZbAqCvsSv0C21N/LI9mxUGi2gwK6YDbo1L01XuFRHPmJiEJpmxFgUhPOMKnOzhfwbfV+MXV5X/JzFYT/uCfqjJA9xhcGQH2HOEK+H77uZVC+7VtjJW5g9RNq22S403Mo4RcFG0lWB4KmUXqinoTz6146rt2vcALbfTv0Ya0c21PCqMV0+wBc8uQRTtd2MR9WCUWhXIagpr6x+VQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=gc3v9NjBiNseUuvMOVmuX63/v/RZa8EDfNccpUGKZLs=;
- b=xPUXhE4EkAjWgQzTk+wTG1ht/vdDpum/7F7HXBocrHLCvuWltRRL6kVw8RnmjVvemsiOPIW1QCdh7toC+p+BCBpUA/kmxFGH/Zh3tfrAkM/bradgbUqsQXmwNj9zYWQ0VJow8WVBFB1PJOmAYDQB99xEdr95ER5gmSoSqVB50bhP3C5ug2f7yFmtZgnKltcOYYNBujjmUKCj7gF2JA/xu1aD65r93yH6pwD7VDQPFbDwFNc3xqnCBT3Reu8C7M29P4VdTzJ4HuUeO/MXp9qjKdCULrnWVcmnEXxls6sbBp+Lsf+mSk0Bd3piVC4UUl9JOGhA6B6+4nq25VXYLjdGOA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from CY5PR11MB6366.namprd11.prod.outlook.com (2603:10b6:930:3a::8)
- by PH8PR11MB6658.namprd11.prod.outlook.com (2603:10b6:510:1c1::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9499.7; Thu, 15 Jan
- 2026 11:30:27 +0000
-Received: from CY5PR11MB6366.namprd11.prod.outlook.com
- ([fe80::22af:c9c9:3681:5201]) by CY5PR11MB6366.namprd11.prod.outlook.com
- ([fe80::22af:c9c9:3681:5201%5]) with mapi id 15.20.9499.005; Thu, 15 Jan 2026
- 11:30:27 +0000
-From: "Usyskin, Alexander" <alexander.usyskin@intel.com>
-To: "Lin, Shuicheng" <shuicheng.lin@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-CC: "Vivi, Rodrigo" <rodrigo.vivi@intel.com>, "Tauro, Riana"
- <riana.tauro@intel.com>
-Subject: RE: [PATCH] drm/xe: Manage nvm aux cleanup with devres
-Thread-Topic: [PATCH] drm/xe: Manage nvm aux cleanup with devres
-Thread-Index: AQHcgbPHJKahaN80dkuJQth+yS6/1rVTIIzg
-Date: Thu, 15 Jan 2026 11:30:27 +0000
-Message-ID: <CY5PR11MB63664C511ABB31D479FF95F4ED8CA@CY5PR11MB6366.namprd11.prod.outlook.com>
-References: <20260109220026.2468067-2-shuicheng.lin@intel.com>
-In-Reply-To: <20260109220026.2468067-2-shuicheng.lin@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: CY5PR11MB6366:EE_|PH8PR11MB6658:EE_
-x-ms-office365-filtering-correlation-id: d5564aff-ef8e-41e0-407e-08de54297b99
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0; ARA:13230040|376014|366016|1800799024|38070700021;
-x-microsoft-antispam-message-info: =?utf-8?B?SVhodDVLVXFpN1lwOEpON3luY2FidTlFY09FNWpsTWNPbVF0bVR6eVplZXhR?=
- =?utf-8?B?QkpzWkNKVjBVb2pFcTBkd1JkNkx3cWZOVkgrcE90blpZTmp3S2xCTjRrMVds?=
- =?utf-8?B?T2Q4NzhQYmk0SVZsT0Y3RzZPdS9FVmc2dE12ZVRjSU9mR05mVDlJMFhsL0NN?=
- =?utf-8?B?UUVUdERGREpFYmV0OGtXdG91Rmc4NWlZWG9ubndvdng3MXlvMHVrQUhrRmxW?=
- =?utf-8?B?cm8rK20xMVBtU05EajdIK3hVWHF6dXFTMXZ3YWw3UFh5cFFwV2RYUzVaYnh3?=
- =?utf-8?B?QXlrSXFRTnFKYnFLUFljZy9icVRHbC9TMUhTdkRRN3JZWFY0QlEwSUlDLzEx?=
- =?utf-8?B?andkR3NianJvc0hYNHUvUGlXcHBHMWlwTFgzYnZUSmd4REhoY1kvVUpJY3hn?=
- =?utf-8?B?T1RZc2lQKzU1WjRJWFFiMWw1eFIrV094cUJBc0Z1eFprZ0FEWWQxM2ZMZWFG?=
- =?utf-8?B?VFFoTkdrWlUxS1pCeTZ1RTNsQldGZXJGa0RCdDBkUmo2djA0MG9UVFBFTEQ1?=
- =?utf-8?B?c2RXS1ZsaWI5NWU1cjF5S0hQSWVCeWhrek9FZVU0L0hRcm9Za3FWWEd3UmJT?=
- =?utf-8?B?dzU4WjhlU084Y2ZIMVVLVmkzSEUxcFlTYTIydWdjRGhxYzJBM0k4dU5SUVNG?=
- =?utf-8?B?R2hacEJNbjBobFpFK0pLSjJCU1NGbjBOUmZiVVY2ODVENHZLaHRSazhnUjdh?=
- =?utf-8?B?YTI0YmRPcEFwYzUyQ1ZramR1aHVXMVlHZUZ3NS84K3hLWWI0R0xuUFFNTjZq?=
- =?utf-8?B?c2VHWTI1eFh5bzRnRUxFeURoSkVtOEhnbzNWVnU0dmNnVDMzOU5tTGJTZGtS?=
- =?utf-8?B?RlFRdjhzdUMxdWUwL2V2Qnh2SnkvbXZ6UDRHc1R0aERJd2RUMmFkRXZGV1J6?=
- =?utf-8?B?aEQrNTloSWJzVlNIZDB3cVp1cDNBaGlUejMzQVpVVUFoNFNYdFNtUmxidHdL?=
- =?utf-8?B?MGl2L1FNUUdybnd2OU9wdm5zOHZpZ1Q3N0N1WStIbnlpd2paeWpWdm14WlNv?=
- =?utf-8?B?dkQ1OW9EV2YrNmlXWEFaUVZFZnFPT0p0bU42dDNEUGJWbFZLSmt1UEVrdHFI?=
- =?utf-8?B?NU1yRWdILy92N2dkWUdtejFvSmQ4QUEyRFNxZXl2bGV5czliVVc0WU5mSE5X?=
- =?utf-8?B?Y2h3K2xySm1QZ3A5ZmtVY0dSWUJnYWVaMGd2VkpNUVdwSnNQbmUra3lmLzFn?=
- =?utf-8?B?S0I5SDdGRExocGFxUnRMcE5lWG1yMEx5MFlQY2UzdWZjKytlWG8weUdBbTZE?=
- =?utf-8?B?ZW90RW1MNXAzU0wwRm0xNSs5b3NjbnZIT0YxT0Z4NzdNUG9iYzJMMUFYbVIr?=
- =?utf-8?B?My8xZW14N0twVHYzNnhpY2FxYVRienZoTnpYdkpxV0o5c1BTS1o5bldoQyt6?=
- =?utf-8?B?R1pubVF4am51VGF1YktsbVJ6SWdFNlpQS2l5MDlrU0dwSzlHYzFXUWhQTWhv?=
- =?utf-8?B?STR6YWVhdzJqcUt5eFZCQ2N0bVZ0MzJNRmc2bzBuMEU5eDdhNUg1VFNwdExl?=
- =?utf-8?B?dXpTNGlkTDdIL1VKMUdKNVJDU2pWOVRSZ0tnem95N2p3MWZkaEdDY01VUEpE?=
- =?utf-8?B?QmNxcmc1UlNrQU9odTZGbWNuaHZaL1JYdndmWG42RU5IMEZJT21ZWmdENmxM?=
- =?utf-8?B?QmRSLzdTNko3WUltZTUyMW1CV09UQURxcUNBS3VESE94dncvUUtDQ3pmQlJD?=
- =?utf-8?B?eW15SDVNYUJseDJ0UU5SaW1FdDZrNUgzNXFaYVhpVkJKbmwySmVycmxmYUlJ?=
- =?utf-8?B?OHZwN0srZmozb2NkVDNFc2c1WkNDb3ZrNmNZdzRlenQyT0NITnZrTXZtemNO?=
- =?utf-8?B?Y2x0OWNBVUphdThEQ3JFUzN5OGFqcUFqaHUwZnZCZUpubm5DL2wzWWVseXcv?=
- =?utf-8?B?Wk1mNXJ1di9CR1dvWGo1aWhKcUk1WXo5eWxwZXBwajdiMU9GVTFkN3hjcm83?=
- =?utf-8?B?NHpNUS92OFBhQVFGS01lQzZ1bDd5TDl2L1ZpN0xHa0xxUkdCT1hNUWcvUzlS?=
- =?utf-8?B?TGRXa1AyS21QQ3JzcTh3dUNvYmpDVmtheCtxcGkzRFA2aERDOUZjVmlyVDky?=
- =?utf-8?B?ODJsQ1BvZGZwZFN3T0pMWkRDTHpabEgwbWtNT2dRRjI0cVpYZU1vdjl1cmVZ?=
- =?utf-8?B?bEdralFLUFNDWncyNXlUaDloZVR6TlB0d0drTklTYWhocHVlNHdKb2xweXhU?=
- =?utf-8?Q?EBBm38DN4T0ZtqHmOR9QlmU=3D?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY5PR11MB6366.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024)(38070700021); DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?RnZ1ZGhvTmkzS2FHMWtqazdLOEExRmdlT0JOUC9QM056ZXpEUG1UZjRiS0Zp?=
- =?utf-8?B?ZXVKM3pTMFE1djduNkdpVXFpTDJtaUdxRUlwQlV3Mk5BZ2JiUWRuaDUxYjZD?=
- =?utf-8?B?RmxxdUE2YWRsWXZiUTYvYnhPeXBlNGVOMUZKZWgvVTNBYUZHNTdoOUVtckZr?=
- =?utf-8?B?alRnRU1FaVhGUDdVUGEzaW1UaTRMNHEwSUwwNjBhemdwVDA0eTJ6bnYvV004?=
- =?utf-8?B?SXJrdDEvNE5yV1RjR0Q2WmcvUFU1OERzK1AvcXhZMWZSVlNDZW1UcHBVVUIz?=
- =?utf-8?B?WEhDbXRLNFhVVk5IMXd1VG9laTJZYVFXSFpKclVPdkYzdW1IQ2llN09Nd3FP?=
- =?utf-8?B?djZoR2J2QmNGeDZsNUI2UVBzb2tiWUtTSkZUSi93ZmM0bFkxUHQ2bC8rOXlQ?=
- =?utf-8?B?VUVEdEhPVGl6QkRyamNkOG1qT00xQTlrMFZ5L1Q1WHE0N3Q1dVlyNVR6cmVQ?=
- =?utf-8?B?Ynl1V2ExeENLU3k2NWhTdzhCcmVxVHZMQk1SS0V0WWdUWVVHc1dKQjk2UjFF?=
- =?utf-8?B?QTJOS2xwVklqcktGWEJxZm9DQ0plQXBHN01TODd3MmF1WGNqSDJ5MkxaTHVC?=
- =?utf-8?B?ZlhvS2YyajdIMXBUS0M4MUkxL1NvaGVXdmNwcmVCZ1AyRXNzQnF0MUxPaUsr?=
- =?utf-8?B?emFDRjYzOVdUVnJLY044RlNkTkZJT0lkcHNBR0wxaXlnbTJqdG9QQnR4UXo1?=
- =?utf-8?B?dXQweXFsYlJNeWVsMllQRXFjOU5YOHpQRGRMVHNOeW1nN3FYUFB3aVhYc2tM?=
- =?utf-8?B?akhRTHN0TEw2aDQvOWowSldSNi9Qb21Dd2gyNXhFVHlvVnZxS3JpV012d0g4?=
- =?utf-8?B?QTRFL2RoMURmUEp0MDdqamlZaVJia3NGYmU5cDlhVHFSWCszOEg3cUFoSlhS?=
- =?utf-8?B?SGdUU0RMV3RwRGs4d2VkdHM3TnhjZTd1dXRFSjR5dVVSR1JmQ1RPejEvTE9E?=
- =?utf-8?B?MnlDZTJONHdQaHFrZjZBVFJURVpXM3VtNFZHLzRwN0tvSXBWNm9tQ3hWVU5Q?=
- =?utf-8?B?NG5uMi9MZStxME1oSGphWWorYUZ5ekFwWkxTSkJaZEQrUVNvTE1penJnQSti?=
- =?utf-8?B?OWNFcGFDSFkvSUd6N0poTzdiYWdDamNYQmtvTjJzdTc2a2pGMlRxZEo0NnFw?=
- =?utf-8?B?b05iSmxrSzdJaGRrWFJIdWJ5YVlCRk4xVWJiSmdPckV0VnZJaUxSR2JzY2lh?=
- =?utf-8?B?M0RxZk1hVUk5L1RWY1JUaEsrVFk2MjJKV1lpMGR6QTJUZ3hRTU1kNEdUWXl2?=
- =?utf-8?B?SlR5cFplWkpUc3MrZVI0Y0JlU25yek1DR3RlOGhkYVgrVnFiR1NMNGk1M3dR?=
- =?utf-8?B?SDZTM3RldE5MeWVhSzZGSzRjempPWjRreEVXU1d2YnhiQ0h2aVZ5TUNCTnZC?=
- =?utf-8?B?REUrZ2lGM3RsR2grTy9Fd0Y5NHNGZm9kUE5SazVsbVVVaVdVMFNnemJJTkJq?=
- =?utf-8?B?elBzc0Q1NWl0bG94NGxUUzhDR1ZpWWQ2MXlXUjNXck10TUx1bzFzRzRJTTVN?=
- =?utf-8?B?dVU1QlNqZkRjTkpZYWx5aEtjSHh0MmxFeEpyTjhxT0ZOdHUxTW9EajFvYTAw?=
- =?utf-8?B?L1pKZXNwWlhmMXhveEtMaTJ1c1Z5c1E4M3A4eWxuejJnZ3lON2MxdlJzb1Bo?=
- =?utf-8?B?K0RQemFrSXNYREpHeTVPUEU4Z2dpNERSK1N1ZDl4UVJneWp1UzVXajFaZURZ?=
- =?utf-8?B?dGFyKzVvclRCRDdOWFM2bnpEZHZsQXplMitjK0R5cEdKUDVyZ0ZZVm4vTmNE?=
- =?utf-8?B?UkYwaFVvOUhJQzNhQktrOHdNVndOaFFTZkFIekt6N3pjTGIySWdxcE95NTRD?=
- =?utf-8?B?UEpLSjNteW5NM1pRWHRNUGlVdk1LYjM3UVB3S2huR1VWdGJoUTIyVmlES0FJ?=
- =?utf-8?B?M3drS3loTmZ6Y0RFb096NE1Ndm5GZjEzc1JBNk16VnNnYWZDZ3czSUtRUTBL?=
- =?utf-8?B?Z1FxSGEwSlgxcjNkREhEb21OK2l0Q3BqVFh2ZHlHeVZKUFdBa3JJTUdjWHRx?=
- =?utf-8?B?RTJpNThQNzRlUnlBWDlyZlp4Vm9LWGYzOVZHVm93MS9Wb2E1ekF0YlU0S0NH?=
- =?utf-8?B?THM5cGRhTmU5QzFyMlYwNldhL28vSmpXcW5YUlhWMFIyQ0JoT3d3NXBISFFx?=
- =?utf-8?B?d2hCWGpZQ2p6YWpCQnpQNTFJSkhlNFNGckswMzcydFdGNXJONVJVR3hnUjVT?=
- =?utf-8?B?MUVwNytUWm1FTWFobkN2Ni9JODIyRFdGU2pGNE9CdjRVdmRmWm1RVzdRQk9C?=
- =?utf-8?B?MXRaa2RrNTNXWGg0aXorNmplV1YzSXNHV0pTMEZqOGE5UC9vV0NHdUhxT3ZL?=
- =?utf-8?B?MmRjV2o4Z0VtZ1NmQVZjWGRPZTFNZVRDM2FjTHlGSHVKNUNrN1ZYQT09?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-IronPort-AV: E=Sophos;i="6.21,228,1763452800"; d="scan'208";a="204966804"
+Received: from ettammin-desk.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.150])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jan 2026 03:33:42 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@intel.com
+Subject: [PATCH v2] drm/{i915,
+ xe}/pcode: move display pcode calls to parent interface
+Date: Thu, 15 Jan 2026 13:33:37 +0200
+Message-ID: <20260115113337.4079184-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.47.3
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6366.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d5564aff-ef8e-41e0-407e-08de54297b99
-X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Jan 2026 11:30:27.6562 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: ZFYwASy90LsT8+8cLk3RGk0i5iI4/CDA7AJV7Umg/W7qgfX4qh+ju/qf3S6a7JK/Yay3c6MHaVuGy+fRAveEo79QqapWkF+qFpq0YB3ZlXg=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR11MB6658
-X-OriginatorOrg: intel.com
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -203,25 +70,750 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-PiBTdWJqZWN0OiBbUEFUQ0hdIGRybS94ZTogTWFuYWdlIG52bSBhdXggY2xlYW51cCB3aXRoIGRl
-dnJlcw0KPiANCj4gTW92ZSBudm0gdGVhcmRvd24gdG8gYSBkZXZtLW1hbmFnZWQgYWN0aW9uIHJl
-Z2lzdGVyZWQgZnJvbQ0KPiB4ZV9udm1faW5pdCgpLg0KPiBUaGlzIGVuc3VyZXMgdGhlIGF1eGls
-aWFyeSBOVk0gZGV2aWNlIGlzIGRlbGV0ZWQgb24gcHJvYmUgZmFpbHVyZSBhbmQNCj4gZGV2aWNl
-IGRldGFjaCB3aXRob3V0IHJlcXVpcmluZyBleHBsaWNpdCBjYWxscyBmcm9tIHJlbW92ZSBwYXRo
-cy4NCj4gDQo+IEFzIHBhcnQgb2YgdGhpcywgZHJvcCB4ZV9udm1fZmluaSgpIGZyb20geGVfZGV2
-aWNlX3JlbW92ZSgpIGFuZCBmcm9tIHRoZQ0KPiBzdXJ2aXZhYmlsaXR5IHN5c2ZzIHRlYXJkb3du
-LCBhbmQgcmVtb3ZlIHRoZSBwdWJsaWMgeGVfbnZtX2ZpbmkoKSBBUEkgZnJvbQ0KPiB0aGUgaGVh
-ZGVyLg0KPiANCi4uLg0KDQpSZXZpZXdlZC1ieTogQWxleGFuZGVyIFVzeXNraW4gPGFsZXhhbmRl
-ci51c3lza2luQGludGVsLmNvbT4NCg0KQnV0IHlvdSBuZWVkIGFsc28gcmV2aWV3IGZyb20gc29t
-ZW9uZSB3aXRoIGJldHRlciB1bmRlcnN0YW5kaW5nIG9mIFhlIGludGVybmFscy4NCg0KPiANCj4g
-Rml4ZXM6IGMyOGJmYjEwN2RhYyAoImRybS94ZS9udm06IGFkZCBvbi1kaWUgbm9uLXZvbGF0aWxl
-IG1lbW9yeSBkZXZpY2UiKQ0KPiBDYzogQWxleGFuZGVyIFVzeXNraW4gPGFsZXhhbmRlci51c3lz
-a2luQGludGVsLmNvbT4NCj4gQ2M6IFJvZHJpZ28gVml2aSA8cm9kcmlnby52aXZpQGludGVsLmNv
-bT4NCj4gQ2M6IFJpYW5hIFRhdXJvIDxyaWFuYS50YXVyb0BpbnRlbC5jb20+DQo+IFNpZ25lZC1v
-ZmYtYnk6IFNodWljaGVuZyBMaW4gPHNodWljaGVuZy5saW5AaW50ZWwuY29tPg0KPiAtLS0NCj4g
-IGRyaXZlcnMvZ3B1L2RybS94ZS94ZV9kZXZpY2UuYyAgICAgICAgICAgICB8ICAyIC0NCj4gIGRy
-aXZlcnMvZ3B1L2RybS94ZS94ZV9udm0uYyAgICAgICAgICAgICAgICB8IDQzICsrKysrKysrKysr
-LS0tLS0tLS0tLS0NCj4gIGRyaXZlcnMvZ3B1L2RybS94ZS94ZV9udm0uaCAgICAgICAgICAgICAg
-ICB8ICAyIC0NCj4gIGRyaXZlcnMvZ3B1L2RybS94ZS94ZV9zdXJ2aXZhYmlsaXR5X21vZGUuYyB8
-ICA0IC0tDQo+ICA0IGZpbGVzIGNoYW5nZWQsIDIyIGluc2VydGlvbnMoKyksIDI5IGRlbGV0aW9u
-cygtKQ0KPi4uLg0K
+Call the parent driver pcode functions through the parent interface
+function pointers instead of expecting both to have functions of the
+same name.
+
+In i915, add the interface to existing intel_pcode.[ch], while in xe
+move them to new display/xe_display_pcode.[ch] and build it only for
+CONFIG_DRM_XE_DISPLAY=y.
+
+Do not add separate write and write_timeout calls in the
+interface. Instead, handle the default 1 ms timeout in the
+intel_parent.c glue layer.
+
+This drops the last intel_pcode.h includes from display, and allows us
+to remove the corresponding xe compat header.
+
+v2: initialize .pcode in i915
+
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/i915/display/hsw_ips.c        |  8 +--
+ drivers/gpu/drm/i915/display/intel_bw.c       | 22 ++++----
+ drivers/gpu/drm/i915/display/intel_cdclk.c    | 54 +++++++++----------
+ .../drm/i915/display/intel_display_power.c    |  3 +-
+ .../i915/display/intel_display_power_well.c   |  5 +-
+ drivers/gpu/drm/i915/display/intel_dram.c     |  6 +--
+ drivers/gpu/drm/i915/display/intel_hdcp.c     |  3 +-
+ drivers/gpu/drm/i915/display/intel_parent.c   | 22 ++++++++
+ drivers/gpu/drm/i915/display/intel_parent.h   |  7 +++
+ drivers/gpu/drm/i915/display/skl_watermark.c  | 21 ++++----
+ drivers/gpu/drm/i915/i915_driver.c            |  1 +
+ drivers/gpu/drm/i915/intel_pcode.c            | 16 ++++--
+ drivers/gpu/drm/i915/intel_pcode.h            |  9 +---
+ drivers/gpu/drm/xe/Makefile                   |  1 +
+ .../drm/xe/compat-i915-headers/intel_pcode.h  | 11 ----
+ drivers/gpu/drm/xe/display/xe_display.c       |  2 +
+ drivers/gpu/drm/xe/display/xe_display_pcode.c | 38 +++++++++++++
+ drivers/gpu/drm/xe/display/xe_display_pcode.h |  9 ++++
+ drivers/gpu/drm/xe/xe_pcode.c                 | 30 -----------
+ drivers/gpu/drm/xe/xe_pcode.h                 |  8 ---
+ include/drm/intel/display_parent_interface.h  | 10 ++++
+ 21 files changed, 161 insertions(+), 125 deletions(-)
+ delete mode 100644 drivers/gpu/drm/xe/compat-i915-headers/intel_pcode.h
+ create mode 100644 drivers/gpu/drm/xe/display/xe_display_pcode.c
+ create mode 100644 drivers/gpu/drm/xe/display/xe_display_pcode.h
+
+diff --git a/drivers/gpu/drm/i915/display/hsw_ips.c b/drivers/gpu/drm/i915/display/hsw_ips.c
+index 008d339d5c21..0caaea2e64e1 100644
+--- a/drivers/gpu/drm/i915/display/hsw_ips.c
++++ b/drivers/gpu/drm/i915/display/hsw_ips.c
+@@ -14,7 +14,7 @@
+ #include "intel_display_regs.h"
+ #include "intel_display_rpm.h"
+ #include "intel_display_types.h"
+-#include "intel_pcode.h"
++#include "intel_parent.h"
+ 
+ static void hsw_ips_enable(const struct intel_crtc_state *crtc_state)
+ {
+@@ -39,8 +39,8 @@ static void hsw_ips_enable(const struct intel_crtc_state *crtc_state)
+ 
+ 	if (display->platform.broadwell) {
+ 		drm_WARN_ON(display->drm,
+-			    intel_pcode_write(display->drm, DISPLAY_IPS_CONTROL,
+-					      val | IPS_PCODE_CONTROL));
++			    intel_parent_pcode_write(display, DISPLAY_IPS_CONTROL,
++						     val | IPS_PCODE_CONTROL));
+ 		/*
+ 		 * Quoting Art Runyan: "its not safe to expect any particular
+ 		 * value in IPS_CTL bit 31 after enabling IPS through the
+@@ -72,7 +72,7 @@ bool hsw_ips_disable(const struct intel_crtc_state *crtc_state)
+ 
+ 	if (display->platform.broadwell) {
+ 		drm_WARN_ON(display->drm,
+-			    intel_pcode_write(display->drm, DISPLAY_IPS_CONTROL, 0));
++			    intel_parent_pcode_write(display, DISPLAY_IPS_CONTROL, 0));
+ 		/*
+ 		 * Wait for PCODE to finish disabling IPS. The BSpec specified
+ 		 * 42ms timeout value leads to occasional timeouts so use 100ms
+diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
+index 4ee3f5172f4e..8d84445c69f1 100644
+--- a/drivers/gpu/drm/i915/display/intel_bw.c
++++ b/drivers/gpu/drm/i915/display/intel_bw.c
+@@ -15,7 +15,7 @@
+ #include "intel_display_utils.h"
+ #include "intel_dram.h"
+ #include "intel_mchbar_regs.h"
+-#include "intel_pcode.h"
++#include "intel_parent.h"
+ #include "intel_uncore.h"
+ #include "skl_watermark.h"
+ 
+@@ -114,9 +114,9 @@ static int icl_pcode_read_qgv_point_info(struct intel_display *display,
+ 	u16 dclk;
+ 	int ret;
+ 
+-	ret = intel_pcode_read(display->drm, ICL_PCODE_MEM_SUBSYSYSTEM_INFO |
+-			       ICL_PCODE_MEM_SS_READ_QGV_POINT_INFO(point),
+-			       &val, &val2);
++	ret = intel_parent_pcode_read(display, ICL_PCODE_MEM_SUBSYSYSTEM_INFO |
++				      ICL_PCODE_MEM_SS_READ_QGV_POINT_INFO(point),
++				      &val, &val2);
+ 	if (ret)
+ 		return ret;
+ 
+@@ -141,8 +141,8 @@ static int adls_pcode_read_psf_gv_point_info(struct intel_display *display,
+ 	int ret;
+ 	int i;
+ 
+-	ret = intel_pcode_read(display->drm, ICL_PCODE_MEM_SUBSYSYSTEM_INFO |
+-			       ADL_PCODE_MEM_SS_READ_PSF_GV_INFO, &val, NULL);
++	ret = intel_parent_pcode_read(display, ICL_PCODE_MEM_SUBSYSYSTEM_INFO |
++				      ADL_PCODE_MEM_SS_READ_PSF_GV_INFO, &val, NULL);
+ 	if (ret)
+ 		return ret;
+ 
+@@ -189,11 +189,11 @@ static int icl_pcode_restrict_qgv_points(struct intel_display *display,
+ 		return 0;
+ 
+ 	/* bspec says to keep retrying for at least 1 ms */
+-	ret = intel_pcode_request(display->drm, ICL_PCODE_SAGV_DE_MEM_SS_CONFIG,
+-				  points_mask,
+-				  ICL_PCODE_REP_QGV_MASK | ADLS_PCODE_REP_PSF_MASK,
+-				  ICL_PCODE_REP_QGV_SAFE | ADLS_PCODE_REP_PSF_SAFE,
+-				  1);
++	ret = intel_parent_pcode_request(display, ICL_PCODE_SAGV_DE_MEM_SS_CONFIG,
++					 points_mask,
++					 ICL_PCODE_REP_QGV_MASK | ADLS_PCODE_REP_PSF_MASK,
++					 ICL_PCODE_REP_QGV_SAFE | ADLS_PCODE_REP_PSF_SAFE,
++					 1);
+ 
+ 	if (ret < 0) {
+ 		drm_err(display->drm,
+diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
+index 9bfbfbf34dc0..9217050a76e0 100644
+--- a/drivers/gpu/drm/i915/display/intel_cdclk.c
++++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
+@@ -42,8 +42,8 @@
+ #include "intel_display_wa.h"
+ #include "intel_dram.h"
+ #include "intel_mchbar_regs.h"
++#include "intel_parent.h"
+ #include "intel_pci_config.h"
+-#include "intel_pcode.h"
+ #include "intel_plane.h"
+ #include "intel_psr.h"
+ #include "intel_step.h"
+@@ -888,7 +888,7 @@ static void bdw_set_cdclk(struct intel_display *display,
+ 		     "trying to change cdclk frequency with cdclk not enabled\n"))
+ 		return;
+ 
+-	ret = intel_pcode_write(display->drm, BDW_PCODE_DISPLAY_FREQ_CHANGE_REQ, 0x0);
++	ret = intel_parent_pcode_write(display, BDW_PCODE_DISPLAY_FREQ_CHANGE_REQ, 0x0);
+ 	if (ret) {
+ 		drm_err(display->drm,
+ 			"failed to inform pcode about cdclk change\n");
+@@ -918,8 +918,8 @@ static void bdw_set_cdclk(struct intel_display *display,
+ 	if (ret)
+ 		drm_err(display->drm, "Switching back to LCPLL failed\n");
+ 
+-	intel_pcode_write(display->drm, HSW_PCODE_DE_WRITE_FREQ_REQ,
+-			  cdclk_config->voltage_level);
++	intel_parent_pcode_write(display, HSW_PCODE_DE_WRITE_FREQ_REQ,
++				 cdclk_config->voltage_level);
+ 
+ 	intel_de_write(display, CDCLK_FREQ,
+ 		       DIV_ROUND_CLOSEST(cdclk, 1000) - 1);
+@@ -1175,10 +1175,10 @@ static void skl_set_cdclk(struct intel_display *display,
+ 	drm_WARN_ON_ONCE(display->drm,
+ 			 display->platform.skylake && vco == 8640000);
+ 
+-	ret = intel_pcode_request(display->drm, SKL_PCODE_CDCLK_CONTROL,
+-				  SKL_CDCLK_PREPARE_FOR_CHANGE,
+-				  SKL_CDCLK_READY_FOR_CHANGE,
+-				  SKL_CDCLK_READY_FOR_CHANGE, 3);
++	ret = intel_parent_pcode_request(display, SKL_PCODE_CDCLK_CONTROL,
++					 SKL_CDCLK_PREPARE_FOR_CHANGE,
++					 SKL_CDCLK_READY_FOR_CHANGE,
++					 SKL_CDCLK_READY_FOR_CHANGE, 3);
+ 	if (ret) {
+ 		drm_err(display->drm,
+ 			"Failed to inform PCU about cdclk change (%d)\n", ret);
+@@ -1221,8 +1221,8 @@ static void skl_set_cdclk(struct intel_display *display,
+ 	intel_de_posting_read(display, CDCLK_CTL);
+ 
+ 	/* inform PCU of the change */
+-	intel_pcode_write(display->drm, SKL_PCODE_CDCLK_CONTROL,
+-			  cdclk_config->voltage_level);
++	intel_parent_pcode_write(display, SKL_PCODE_CDCLK_CONTROL,
++				 cdclk_config->voltage_level);
+ 
+ 	intel_update_cdclk(display);
+ }
+@@ -2247,18 +2247,18 @@ static void bxt_set_cdclk(struct intel_display *display,
+ 	if (DISPLAY_VER(display) >= 14 || display->platform.dg2)
+ 		; /* NOOP */
+ 	else if (DISPLAY_VER(display) >= 11)
+-		ret = intel_pcode_request(display->drm, SKL_PCODE_CDCLK_CONTROL,
+-					  SKL_CDCLK_PREPARE_FOR_CHANGE,
+-					  SKL_CDCLK_READY_FOR_CHANGE,
+-					  SKL_CDCLK_READY_FOR_CHANGE, 3);
++		ret = intel_parent_pcode_request(display, SKL_PCODE_CDCLK_CONTROL,
++						 SKL_CDCLK_PREPARE_FOR_CHANGE,
++						 SKL_CDCLK_READY_FOR_CHANGE,
++						 SKL_CDCLK_READY_FOR_CHANGE, 3);
+ 	else
+ 		/*
+ 		 * BSpec requires us to wait up to 150usec, but that leads to
+ 		 * timeouts; the 2ms used here is based on experiment.
+ 		 */
+-		ret = intel_pcode_write_timeout(display->drm,
+-						HSW_PCODE_DE_WRITE_FREQ_REQ,
+-						0x80000000, 2);
++		ret = intel_parent_pcode_write_timeout(display,
++						       HSW_PCODE_DE_WRITE_FREQ_REQ,
++						       0x80000000, 2);
+ 
+ 	if (ret) {
+ 		drm_err(display->drm,
+@@ -2287,8 +2287,8 @@ static void bxt_set_cdclk(struct intel_display *display,
+ 		 * Display versions 14 and beyond
+ 		 */;
+ 	else if (DISPLAY_VER(display) >= 11 && !display->platform.dg2)
+-		ret = intel_pcode_write(display->drm, SKL_PCODE_CDCLK_CONTROL,
+-					cdclk_config->voltage_level);
++		ret = intel_parent_pcode_write(display, SKL_PCODE_CDCLK_CONTROL,
++					       cdclk_config->voltage_level);
+ 	if (DISPLAY_VER(display) < 11) {
+ 		/*
+ 		 * The timeout isn't specified, the 2ms used here is based on
+@@ -2296,9 +2296,9 @@ static void bxt_set_cdclk(struct intel_display *display,
+ 		 * FIXME: Waiting for the request completion could be delayed
+ 		 * until the next PCODE request based on BSpec.
+ 		 */
+-		ret = intel_pcode_write_timeout(display->drm,
+-						HSW_PCODE_DE_WRITE_FREQ_REQ,
+-						cdclk_config->voltage_level, 2);
++		ret = intel_parent_pcode_write_timeout(display,
++						       HSW_PCODE_DE_WRITE_FREQ_REQ,
++						       cdclk_config->voltage_level, 2);
+ 	}
+ 	if (ret) {
+ 		drm_err(display->drm,
+@@ -2598,11 +2598,11 @@ static void intel_pcode_notify(struct intel_display *display,
+ 	if (pipe_count_update_valid)
+ 		update_mask |= DISPLAY_TO_PCODE_PIPE_COUNT_VALID;
+ 
+-	ret = intel_pcode_request(display->drm, SKL_PCODE_CDCLK_CONTROL,
+-				  SKL_CDCLK_PREPARE_FOR_CHANGE |
+-				  update_mask,
+-				  SKL_CDCLK_READY_FOR_CHANGE,
+-				  SKL_CDCLK_READY_FOR_CHANGE, 3);
++	ret = intel_parent_pcode_request(display, SKL_PCODE_CDCLK_CONTROL,
++					 SKL_CDCLK_PREPARE_FOR_CHANGE |
++					 update_mask,
++					 SKL_CDCLK_READY_FOR_CHANGE,
++					 SKL_CDCLK_READY_FOR_CHANGE, 3);
+ 	if (ret)
+ 		drm_err(display->drm,
+ 			"Failed to inform PCU about display config (err %d)\n",
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+index d27397f43863..06adf6afbec0 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power.c
++++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+@@ -26,7 +26,6 @@
+ #include "intel_mchbar_regs.h"
+ #include "intel_parent.h"
+ #include "intel_pch_refclk.h"
+-#include "intel_pcode.h"
+ #include "intel_pmdemand.h"
+ #include "intel_pps_regs.h"
+ #include "intel_snps_phy.h"
+@@ -1260,7 +1259,7 @@ static u32 hsw_read_dcomp(struct intel_display *display)
+ static void hsw_write_dcomp(struct intel_display *display, u32 val)
+ {
+ 	if (display->platform.haswell) {
+-		if (intel_pcode_write(display->drm, GEN6_PCODE_WRITE_D_COMP, val))
++		if (intel_parent_pcode_write(display, GEN6_PCODE_WRITE_D_COMP, val))
+ 			drm_dbg_kms(display->drm, "Failed to write to D_COMP\n");
+ 	} else {
+ 		intel_de_write(display, D_COMP_BDW, val);
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+index db185a859133..b01dda67986a 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
++++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+@@ -27,7 +27,6 @@
+ #include "intel_dpll.h"
+ #include "intel_hotplug.h"
+ #include "intel_parent.h"
+-#include "intel_pcode.h"
+ #include "intel_pps.h"
+ #include "intel_psr.h"
+ #include "intel_tc.h"
+@@ -522,7 +521,7 @@ static void icl_tc_cold_exit(struct intel_display *display)
+ 	int ret, tries = 0;
+ 
+ 	while (1) {
+-		ret = intel_pcode_write(display->drm, ICL_PCODE_EXIT_TCCOLD, 0);
++		ret = intel_parent_pcode_write(display, ICL_PCODE_EXIT_TCCOLD, 0);
+ 		if (ret != -EAGAIN || ++tries == 3)
+ 			break;
+ 		msleep(1);
+@@ -1795,7 +1794,7 @@ tgl_tc_cold_request(struct intel_display *display, bool block)
+ 		 * Spec states that we should timeout the request after 200us
+ 		 * but the function below will timeout after 500us
+ 		 */
+-		ret = intel_pcode_read(display->drm, TGL_PCODE_TCCOLD, &low_val, &high_val);
++		ret = intel_parent_pcode_read(display, TGL_PCODE_TCCOLD, &low_val, &high_val);
+ 		if (ret == 0) {
+ 			if (block &&
+ 			    (low_val & TGL_PCODE_EXIT_TCCOLD_DATA_L_EXIT_FAILED))
+diff --git a/drivers/gpu/drm/i915/display/intel_dram.c b/drivers/gpu/drm/i915/display/intel_dram.c
+index 170de304fe96..3b9879714ea9 100644
+--- a/drivers/gpu/drm/i915/display/intel_dram.c
++++ b/drivers/gpu/drm/i915/display/intel_dram.c
+@@ -13,7 +13,7 @@
+ #include "intel_display_utils.h"
+ #include "intel_dram.h"
+ #include "intel_mchbar_regs.h"
+-#include "intel_pcode.h"
++#include "intel_parent.h"
+ #include "intel_uncore.h"
+ #include "vlv_iosf_sb.h"
+ 
+@@ -692,8 +692,8 @@ static int icl_pcode_read_mem_global_info(struct intel_display *display,
+ 	u32 val = 0;
+ 	int ret;
+ 
+-	ret = intel_pcode_read(display->drm, ICL_PCODE_MEM_SUBSYSYSTEM_INFO |
+-			       ICL_PCODE_MEM_SS_READ_GLOBAL_INFO, &val, NULL);
++	ret = intel_parent_pcode_read(display, ICL_PCODE_MEM_SUBSYSYSTEM_INFO |
++				      ICL_PCODE_MEM_SS_READ_GLOBAL_INFO, &val, NULL);
+ 	if (ret)
+ 		return ret;
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
+index 7114fc405c29..8d3137067bf6 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdcp.c
++++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
+@@ -33,7 +33,6 @@
+ #include "intel_hdcp_regs.h"
+ #include "intel_hdcp_shim.h"
+ #include "intel_parent.h"
+-#include "intel_pcode.h"
+ #include "intel_step.h"
+ 
+ #define USE_HDCP_GSC(__display)		(DISPLAY_VER(__display) >= 14)
+@@ -398,7 +397,7 @@ static int intel_hdcp_load_keys(struct intel_display *display)
+ 	 * Mailbox interface.
+ 	 */
+ 	if (DISPLAY_VER(display) == 9 && !display->platform.broxton) {
+-		ret = intel_pcode_write(display->drm, SKL_PCODE_LOAD_HDCP_KEYS, 1);
++		ret = intel_parent_pcode_write(display, SKL_PCODE_LOAD_HDCP_KEYS, 1);
+ 		if (ret) {
+ 			drm_err(display->drm,
+ 				"Failed to initiate HDCP key load (%d)\n",
+diff --git a/drivers/gpu/drm/i915/display/intel_parent.c b/drivers/gpu/drm/i915/display/intel_parent.c
+index 72ae553f79a4..7f73695a0444 100644
+--- a/drivers/gpu/drm/i915/display/intel_parent.c
++++ b/drivers/gpu/drm/i915/display/intel_parent.c
+@@ -92,6 +92,28 @@ void intel_parent_pc8_unblock(struct intel_display *display)
+ 	display->parent->pc8->unblock(display->drm);
+ }
+ 
++/* pcode */
++int intel_parent_pcode_read(struct intel_display *display, u32 mbox, u32 *val, u32 *val1)
++{
++	return display->parent->pcode->read(display->drm, mbox, val, val1);
++}
++
++int intel_parent_pcode_write_timeout(struct intel_display *display, u32 mbox, u32 val, int timeout_ms)
++{
++	return display->parent->pcode->write(display->drm, mbox, val, timeout_ms);
++}
++
++int intel_parent_pcode_write(struct intel_display *display, u32 mbox, u32 val)
++{
++	return intel_parent_pcode_write_timeout(display, mbox, val, 1);
++}
++
++int intel_parent_pcode_request(struct intel_display *display, u32 mbox, u32 request,
++			       u32 reply_mask, u32 reply, int timeout_base_ms)
++{
++	return display->parent->pcode->request(display->drm, mbox, request, reply_mask, reply, timeout_base_ms);
++}
++
+ /* rps */
+ bool intel_parent_rps_available(struct intel_display *display)
+ {
+diff --git a/drivers/gpu/drm/i915/display/intel_parent.h b/drivers/gpu/drm/i915/display/intel_parent.h
+index 47cdc14f9aa2..04782bb26b61 100644
+--- a/drivers/gpu/drm/i915/display/intel_parent.h
++++ b/drivers/gpu/drm/i915/display/intel_parent.h
+@@ -36,6 +36,13 @@ void intel_parent_panic_finish(struct intel_display *display, struct intel_panic
+ void intel_parent_pc8_block(struct intel_display *display);
+ void intel_parent_pc8_unblock(struct intel_display *display);
+ 
++/* pcode */
++int intel_parent_pcode_read(struct intel_display *display, u32 mbox, u32 *val, u32 *val1);
++int intel_parent_pcode_write_timeout(struct intel_display *display, u32 mbox, u32 val, int timeout_ms);
++int intel_parent_pcode_write(struct intel_display *display, u32 mbox, u32 val);
++int intel_parent_pcode_request(struct intel_display *display, u32 mbox, u32 request,
++			       u32 reply_mask, u32 reply, int timeout_base_ms);
++
+ /* rps */
+ bool intel_parent_rps_available(struct intel_display *display);
+ void intel_parent_rps_boost_if_not_started(struct intel_display *display, struct dma_fence *fence);
+diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
+index a6aab79812e5..b41da10f0f85 100644
+--- a/drivers/gpu/drm/i915/display/skl_watermark.c
++++ b/drivers/gpu/drm/i915/display/skl_watermark.c
+@@ -26,7 +26,7 @@
+ #include "intel_fb.h"
+ #include "intel_fixed.h"
+ #include "intel_flipq.h"
+-#include "intel_pcode.h"
++#include "intel_parent.h"
+ #include "intel_plane.h"
+ #include "intel_vblank.h"
+ #include "intel_wm.h"
+@@ -115,9 +115,8 @@ intel_sagv_block_time(struct intel_display *display)
+ 		u32 val = 0;
+ 		int ret;
+ 
+-		ret = intel_pcode_read(display->drm,
+-				       GEN12_PCODE_READ_SAGV_BLOCK_TIME_US,
+-				       &val, NULL);
++		ret = intel_parent_pcode_read(display, GEN12_PCODE_READ_SAGV_BLOCK_TIME_US,
++					      &val, NULL);
+ 		if (ret) {
+ 			drm_dbg_kms(display->drm, "Couldn't read SAGV block time!\n");
+ 			return 0;
+@@ -184,8 +183,8 @@ static void skl_sagv_enable(struct intel_display *display)
+ 		return;
+ 
+ 	drm_dbg_kms(display->drm, "Enabling SAGV\n");
+-	ret = intel_pcode_write(display->drm, GEN9_PCODE_SAGV_CONTROL,
+-				GEN9_SAGV_ENABLE);
++	ret = intel_parent_pcode_write(display, GEN9_PCODE_SAGV_CONTROL,
++				       GEN9_SAGV_ENABLE);
+ 
+ 	/* We don't need to wait for SAGV when enabling */
+ 
+@@ -217,9 +216,9 @@ static void skl_sagv_disable(struct intel_display *display)
+ 
+ 	drm_dbg_kms(display->drm, "Disabling SAGV\n");
+ 	/* bspec says to keep retrying for at least 1 ms */
+-	ret = intel_pcode_request(display->drm, GEN9_PCODE_SAGV_CONTROL,
+-				  GEN9_SAGV_DISABLE,
+-				  GEN9_SAGV_IS_DISABLED, GEN9_SAGV_IS_DISABLED, 1);
++	ret = intel_parent_pcode_request(display, GEN9_PCODE_SAGV_CONTROL,
++					 GEN9_SAGV_DISABLE,
++					 GEN9_SAGV_IS_DISABLED, GEN9_SAGV_IS_DISABLED, 1);
+ 	/*
+ 	 * Some skl systems, pre-release machines in particular,
+ 	 * don't actually have SAGV.
+@@ -3283,7 +3282,7 @@ static void skl_read_wm_latency(struct intel_display *display)
+ 
+ 	/* read the first set of memory latencies[0:3] */
+ 	val = 0; /* data0 to be programmed to 0 for first set */
+-	ret = intel_pcode_read(display->drm, GEN9_PCODE_READ_MEM_LATENCY, &val, NULL);
++	ret = intel_parent_pcode_read(display, GEN9_PCODE_READ_MEM_LATENCY, &val, NULL);
+ 	if (ret) {
+ 		drm_err(display->drm, "SKL Mailbox read error = %d\n", ret);
+ 		return;
+@@ -3296,7 +3295,7 @@ static void skl_read_wm_latency(struct intel_display *display)
+ 
+ 	/* read the second set of memory latencies[4:7] */
+ 	val = 1; /* data0 to be programmed to 1 for second set */
+-	ret = intel_pcode_read(display->drm, GEN9_PCODE_READ_MEM_LATENCY, &val, NULL);
++	ret = intel_parent_pcode_read(display, GEN9_PCODE_READ_MEM_LATENCY, &val, NULL);
+ 	if (ret) {
+ 		drm_err(display->drm, "SKL Mailbox read error = %d\n", ret);
+ 		return;
+diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+index f0105c5b49a7..b01d8fdea548 100644
+--- a/drivers/gpu/drm/i915/i915_driver.c
++++ b/drivers/gpu/drm/i915/i915_driver.c
+@@ -769,6 +769,7 @@ static const struct intel_display_parent_interface parent = {
+ 	.irq = &i915_display_irq_interface,
+ 	.panic = &i915_display_panic_interface,
+ 	.pc8 = &i915_display_pc8_interface,
++	.pcode = &i915_display_pcode_interface,
+ 	.rpm = &i915_display_rpm_interface,
+ 	.rps = &i915_display_rps_interface,
+ 	.stolen = &i915_display_stolen_interface,
+diff --git a/drivers/gpu/drm/i915/intel_pcode.c b/drivers/gpu/drm/i915/intel_pcode.c
+index 756652b8ec97..76c5916b28f4 100644
+--- a/drivers/gpu/drm/i915/intel_pcode.c
++++ b/drivers/gpu/drm/i915/intel_pcode.c
+@@ -4,6 +4,7 @@
+  */
+ 
+ #include <drm/drm_print.h>
++#include <drm/intel/display_parent_interface.h>
+ 
+ #include "i915_drv.h"
+ #include "i915_reg.h"
+@@ -276,26 +277,31 @@ int snb_pcode_write_p(struct intel_uncore *uncore, u32 mbcmd, u32 p1, u32 p2, u3
+ 	return err;
+ }
+ 
+-/* Helpers with drm device */
+-int intel_pcode_read(struct drm_device *drm, u32 mbox, u32 *val, u32 *val1)
++static int intel_pcode_read(struct drm_device *drm, u32 mbox, u32 *val, u32 *val1)
+ {
+ 	struct drm_i915_private *i915 = to_i915(drm);
+ 
+ 	return snb_pcode_read(&i915->uncore, mbox, val, val1);
+ }
+ 
+-int intel_pcode_write_timeout(struct drm_device *drm, u32 mbox, u32 val, int timeout_ms)
++static int intel_pcode_write_timeout(struct drm_device *drm, u32 mbox, u32 val, int timeout_ms)
+ {
+ 	struct drm_i915_private *i915 = to_i915(drm);
+ 
+ 	return snb_pcode_write_timeout(&i915->uncore, mbox, val, timeout_ms);
+ }
+ 
+-int intel_pcode_request(struct drm_device *drm, u32 mbox, u32 request,
+-			u32 reply_mask, u32 reply, int timeout_base_ms)
++static int intel_pcode_request(struct drm_device *drm, u32 mbox, u32 request,
++			       u32 reply_mask, u32 reply, int timeout_base_ms)
+ {
+ 	struct drm_i915_private *i915 = to_i915(drm);
+ 
+ 	return skl_pcode_request(&i915->uncore, mbox, request, reply_mask, reply,
+ 				 timeout_base_ms);
+ }
++
++const struct intel_display_pcode_interface i915_display_pcode_interface = {
++	.read = intel_pcode_read,
++	.write = intel_pcode_write_timeout,
++	.request = intel_pcode_request,
++};
+diff --git a/drivers/gpu/drm/i915/intel_pcode.h b/drivers/gpu/drm/i915/intel_pcode.h
+index c91a821a88d4..19795ea8172e 100644
+--- a/drivers/gpu/drm/i915/intel_pcode.h
++++ b/drivers/gpu/drm/i915/intel_pcode.h
+@@ -27,13 +27,6 @@ int intel_pcode_init(struct intel_uncore *uncore);
+ int snb_pcode_read_p(struct intel_uncore *uncore, u32 mbcmd, u32 p1, u32 p2, u32 *val);
+ int snb_pcode_write_p(struct intel_uncore *uncore, u32 mbcmd, u32 p1, u32 p2, u32 val);
+ 
+-/* Helpers with drm device */
+-int intel_pcode_read(struct drm_device *drm, u32 mbox, u32 *val, u32 *val1);
+-int intel_pcode_write_timeout(struct drm_device *drm, u32 mbox, u32 val, int timeout_ms);
+-#define intel_pcode_write(drm, mbox, val) \
+-	intel_pcode_write_timeout((drm), (mbox), (val), 1)
+-
+-int intel_pcode_request(struct drm_device *drm, u32 mbox, u32 request,
+-			u32 reply_mask, u32 reply, int timeout_base_ms);
++extern const struct intel_display_pcode_interface i915_display_pcode_interface;
+ 
+ #endif /* _INTEL_PCODE_H */
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index b39cbb756232..51a9a531fb7e 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -213,6 +213,7 @@ xe-$(CONFIG_DRM_XE_DISPLAY) += \
+ 	display/intel_fb_bo.o \
+ 	display/intel_fbdev_fb.o \
+ 	display/xe_display.o \
++	display/xe_display_pcode.o \
+ 	display/xe_display_rpm.o \
+ 	display/xe_display_wa.o \
+ 	display/xe_dsb_buffer.o \
+diff --git a/drivers/gpu/drm/xe/compat-i915-headers/intel_pcode.h b/drivers/gpu/drm/xe/compat-i915-headers/intel_pcode.h
+deleted file mode 100644
+index 4fcd3bf6b76f..000000000000
+--- a/drivers/gpu/drm/xe/compat-i915-headers/intel_pcode.h
++++ /dev/null
+@@ -1,11 +0,0 @@
+-/* SPDX-License-Identifier: MIT */
+-/*
+- * Copyright © 2023 Intel Corporation
+- */
+-
+-#ifndef __INTEL_PCODE_H__
+-#define __INTEL_PCODE_H__
+-
+-#include "xe_pcode.h"
+-
+-#endif /* __INTEL_PCODE_H__ */
+diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
+index f8a831b5dc7d..182facce30ab 100644
+--- a/drivers/gpu/drm/xe/display/xe_display.c
++++ b/drivers/gpu/drm/xe/display/xe_display.c
+@@ -35,6 +35,7 @@
+ #include "intel_hotplug.h"
+ #include "intel_opregion.h"
+ #include "skl_watermark.h"
++#include "xe_display_pcode.h"
+ #include "xe_display_rpm.h"
+ #include "xe_hdcp_gsc.h"
+ #include "xe_initial_plane.h"
+@@ -542,6 +543,7 @@ static const struct intel_display_parent_interface parent = {
+ 	.initial_plane = &xe_display_initial_plane_interface,
+ 	.irq = &xe_display_irq_interface,
+ 	.panic = &xe_display_panic_interface,
++	.pcode = &xe_display_pcode_interface,
+ 	.rpm = &xe_display_rpm_interface,
+ 	.stolen = &xe_display_stolen_interface,
+ };
+diff --git a/drivers/gpu/drm/xe/display/xe_display_pcode.c b/drivers/gpu/drm/xe/display/xe_display_pcode.c
+new file mode 100644
+index 000000000000..f6820ef7e666
+--- /dev/null
++++ b/drivers/gpu/drm/xe/display/xe_display_pcode.c
+@@ -0,0 +1,38 @@
++// SPDX-License-Identifier: MIT
++/* Copyright © 2026 Intel Corporation */
++
++#include <drm/intel/display_parent_interface.h>
++
++#include "xe_device.h"
++#include "xe_pcode.h"
++
++static int xe_display_pcode_read(struct drm_device *drm, u32 mbox, u32 *val, u32 *val1)
++{
++	struct xe_device *xe = to_xe_device(drm);
++	struct xe_tile *tile = xe_device_get_root_tile(xe);
++
++	return xe_pcode_read(tile, mbox, val, val1);
++}
++
++static int xe_display_pcode_write_timeout(struct drm_device *drm, u32 mbox, u32 val, int timeout_ms)
++{
++	struct xe_device *xe = to_xe_device(drm);
++	struct xe_tile *tile = xe_device_get_root_tile(xe);
++
++	return xe_pcode_write_timeout(tile, mbox, val, timeout_ms);
++}
++
++static int xe_display_pcode_request(struct drm_device *drm, u32 mbox, u32 request,
++				    u32 reply_mask, u32 reply, int timeout_base_ms)
++{
++	struct xe_device *xe = to_xe_device(drm);
++	struct xe_tile *tile = xe_device_get_root_tile(xe);
++
++	return xe_pcode_request(tile, mbox, request, reply_mask, reply, timeout_base_ms);
++}
++
++const struct intel_display_pcode_interface xe_display_pcode_interface = {
++	.read = xe_display_pcode_read,
++	.write = xe_display_pcode_write_timeout,
++	.request = xe_display_pcode_request,
++};
+diff --git a/drivers/gpu/drm/xe/display/xe_display_pcode.h b/drivers/gpu/drm/xe/display/xe_display_pcode.h
+new file mode 100644
+index 000000000000..58bd2fb7fb79
+--- /dev/null
++++ b/drivers/gpu/drm/xe/display/xe_display_pcode.h
+@@ -0,0 +1,9 @@
++/* SPDX-License-Identifier: MIT */
++/* Copyright © 2026 Intel Corporation */
++
++#ifndef __XE_DISPLAY_PCODE_H__
++#define __XE_DISPLAY_PCODE_H__
++
++extern const struct intel_display_pcode_interface xe_display_pcode_interface;
++
++#endif
+diff --git a/drivers/gpu/drm/xe/xe_pcode.c b/drivers/gpu/drm/xe/xe_pcode.c
+index 0d33c14ea0cf..dc66d0c7ee06 100644
+--- a/drivers/gpu/drm/xe/xe_pcode.c
++++ b/drivers/gpu/drm/xe/xe_pcode.c
+@@ -348,33 +348,3 @@ int xe_pcode_probe_early(struct xe_device *xe)
+ 	return xe_pcode_ready(xe, false);
+ }
+ ALLOW_ERROR_INJECTION(xe_pcode_probe_early, ERRNO); /* See xe_pci_probe */
+-
+-/* Helpers with drm device. These should only be called by the display side */
+-#if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
+-
+-int intel_pcode_read(struct drm_device *drm, u32 mbox, u32 *val, u32 *val1)
+-{
+-	struct xe_device *xe = to_xe_device(drm);
+-	struct xe_tile *tile = xe_device_get_root_tile(xe);
+-
+-	return xe_pcode_read(tile, mbox, val, val1);
+-}
+-
+-int intel_pcode_write_timeout(struct drm_device *drm, u32 mbox, u32 val, int timeout_ms)
+-{
+-	struct xe_device *xe = to_xe_device(drm);
+-	struct xe_tile *tile = xe_device_get_root_tile(xe);
+-
+-	return xe_pcode_write_timeout(tile, mbox, val, timeout_ms);
+-}
+-
+-int intel_pcode_request(struct drm_device *drm, u32 mbox, u32 request,
+-			u32 reply_mask, u32 reply, int timeout_base_ms)
+-{
+-	struct xe_device *xe = to_xe_device(drm);
+-	struct xe_tile *tile = xe_device_get_root_tile(xe);
+-
+-	return xe_pcode_request(tile, mbox, request, reply_mask, reply, timeout_base_ms);
+-}
+-
+-#endif
+diff --git a/drivers/gpu/drm/xe/xe_pcode.h b/drivers/gpu/drm/xe/xe_pcode.h
+index a5584c1c75f9..490e4f269607 100644
+--- a/drivers/gpu/drm/xe/xe_pcode.h
++++ b/drivers/gpu/drm/xe/xe_pcode.h
+@@ -34,12 +34,4 @@ int xe_pcode_request(struct xe_tile *tile, u32 mbox, u32 request,
+ 	| FIELD_PREP(PCODE_MB_PARAM1, param1)\
+ 	| FIELD_PREP(PCODE_MB_PARAM2, param2))
+ 
+-/* Helpers with drm device */
+-int intel_pcode_read(struct drm_device *drm, u32 mbox, u32 *val, u32 *val1);
+-int intel_pcode_write_timeout(struct drm_device *drm, u32 mbox, u32 val, int timeout_ms);
+-#define intel_pcode_write(drm, mbox, val) \
+-	intel_pcode_write_timeout((drm), (mbox), (val), 1)
+-int intel_pcode_request(struct drm_device *drm, u32 mbox, u32 request,
+-			u32 reply_mask, u32 reply, int timeout_base_ms);
+-
+ #endif
+diff --git a/include/drm/intel/display_parent_interface.h b/include/drm/intel/display_parent_interface.h
+index ce946859a3a9..78f4e6744f18 100644
+--- a/include/drm/intel/display_parent_interface.h
++++ b/include/drm/intel/display_parent_interface.h
+@@ -55,6 +55,13 @@ struct intel_display_pc8_interface {
+ 	void (*unblock)(struct drm_device *drm);
+ };
+ 
++struct intel_display_pcode_interface {
++	int (*read)(struct drm_device *drm, u32 mbox, u32 *val, u32 *val1);
++	int (*write)(struct drm_device *drm, u32 mbox, u32 val, int timeout_ms);
++	int (*request)(struct drm_device *drm, u32 mbox, u32 request,
++		       u32 reply_mask, u32 reply, int timeout_base_ms);
++};
++
+ struct intel_display_rpm_interface {
+ 	struct ref_tracker *(*get)(const struct drm_device *drm);
+ 	struct ref_tracker *(*get_raw)(const struct drm_device *drm);
+@@ -121,6 +128,9 @@ struct intel_display_parent_interface {
+ 	/** @pc8: PC8 interface. Optional. */
+ 	const struct intel_display_pc8_interface *pc8;
+ 
++	/** @pcode: Pcode interface */
++	const struct intel_display_pcode_interface *pcode;
++
+ 	/** @rpm: Runtime PM functions */
+ 	const struct intel_display_rpm_interface *rpm;
+ 
+-- 
+2.47.3
+
