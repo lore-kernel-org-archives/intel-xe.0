@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 29CB2C98308
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D23D2C9830A
 	for <intel-xe@archiver.kernel.org>; Fri, 16 Jan 2026 22:17:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 911D710E27C;
+	by gabe.freedesktop.org (Postfix) with ESMTP id BC3CE10E267;
 	Fri, 16 Jan 2026 22:17:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lkQILlEy";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dCAWQpCi";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 773F710E264
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5D67010E1FD
  for <intel-xe@lists.freedesktop.org>; Fri, 16 Jan 2026 22:17:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1768601867; x=1800137867;
+ t=1768601866; x=1800137866;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=RgKxacAsdXC+YJnAhq0UwweWRp4lmVBQMTuYjxFPo2I=;
- b=lkQILlEyBX61bEUAn3DV5AED6d5DjDClZAfdQoKuH+YIMSVCMdhHoDDP
- Q1Q7yZ9lSbHblkukXozTyERKz3t+2n6IrYJOsWwde+udgLWRUxx0gWO+3
- JbbCsn/x8zwTc1FETeMFID4x+KKrSmLbSRW5yt5RsQTpwIi+/Oeqq8L5N
- Rnnv4yioB4syLq/1Mp3+tSS9o61wWeLpoFJ9RaAO3XXbWKPF0OaXyme2O
- TR6QggyFMFPIIQU+uO2AwPu9lJvO5br0DfMO0m9NSLYZnu68+DnGLLs8m
- 33HS+O5sKeP+jgxAMddye+IfL4hvyBymZDXB9gyjS7AvDIbrQCgasHpi3 w==;
-X-CSE-ConnectionGUID: JAysy8GtRZCCu85uyBkwpg==
-X-CSE-MsgGUID: zy5LNQs+TyGtFr5Zjhu2Kg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11673"; a="69123350"
-X-IronPort-AV: E=Sophos;i="6.21,232,1763452800"; d="scan'208";a="69123350"
+ bh=P335Mv6qGUDFh6ldf1d+VMKBpyMryakCQ+mDrBovWnE=;
+ b=dCAWQpCiUT1XnzdJ6Wm9wcJiPqLy77a/93aOASlBMpGIF6FJnlAW9wqP
+ ZI5lk6rxG8MmIRj+YtRLuy06ZA71KJrZMIXKi3LHdt86ZAc5PP/Vf5eCg
+ qld7oap5QI6nrOk8YP3WZSAdsM63AHKqpuKTWqUeljOuh6DDNzamigI3X
+ TpEKbVz2r0d3YK1QUKtaXAJUSFIRZmfw+y+dHGGAaRZvDHC17ikqf4b4m
+ /bfH9ql+C+N1QHtawTVMcQO+xDqsvXB18xyNDoBHeJFoaXSsJujaWFpOm
+ AoSEFP1Al3kciT1Sa4BccSvKynHUCp2iOig2qWkWeumLgsUzPJIOlN43e Q==;
+X-CSE-ConnectionGUID: d9v8FnSsSRyfnCqq9X+b8A==
+X-CSE-MsgGUID: 0RsjPVWYRf+cFUvCNYzQYw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11673"; a="69123348"
+X-IronPort-AV: E=Sophos;i="6.21,232,1763452800"; d="scan'208";a="69123348"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  16 Jan 2026 14:17:46 -0800
-X-CSE-ConnectionGUID: GlNy4pweTI6FEZd3deZcqA==
-X-CSE-MsgGUID: qysKJ0HwSu2u4idhgzbn3Q==
+X-CSE-ConnectionGUID: qztdEWBiQUWILQGwxuRtLg==
+X-CSE-MsgGUID: Wtp/f+x9T5a7kEqWuUc6xg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,232,1763452800"; d="scan'208";a="204962714"
+X-IronPort-AV: E=Sophos;i="6.21,232,1763452800"; d="scan'208";a="204962696"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jan 2026 14:17:37 -0800
+ 16 Jan 2026 14:17:36 -0800
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Stuart Summers <stuart.summers@intel.com>
-Subject: [PATCH v5 08/11] drm/xe: Add send_tlb_inval_ppgtt helper
-Date: Fri, 16 Jan 2026 14:17:28 -0800
-Message-Id: <20260116221731.868657-9-matthew.brost@intel.com>
+Subject: [PATCH v5 02/11] drm/xe: Make usm.asid_to_vm allocation use GFP_NOWAIT
+Date: Fri, 16 Jan 2026 14:17:22 -0800
+Message-Id: <20260116221731.868657-3-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260116221731.868657-1-matthew.brost@intel.com>
 References: <20260116221731.868657-1-matthew.brost@intel.com>
@@ -66,85 +66,30 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Extract the common code that issues a TLB invalidation H2G for PPGTTs
-into a helper function. This helper can be reused for both ASID-based
-and context-based TLB invalidations.
+Ensure the asid_to_vm lookup is reclaim-safe so it can be performed
+during TLB invalidations, which is necessary for context-based TLB
+invalidation support.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 Reviewed-by: Stuart Summers <stuart.summers@intel.com>
 Tested-by: Stuart Summers <stuart.summers@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc_tlb_inval.c | 30 +++++++++++++++++++--------
- 1 file changed, 21 insertions(+), 9 deletions(-)
+ drivers/gpu/drm/xe/xe_vm.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_tlb_inval.c b/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
-index a6a1c371a28e..070d2e2cb7c9 100644
---- a/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
-+++ b/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
-@@ -150,20 +150,16 @@ static u64 normalize_invalidation_range(struct xe_gt *gt, u64 *start, u64 *end)
-  */
- #define MAX_RANGE_TLB_INVALIDATION_LENGTH (rounddown_pow_of_two(ULONG_MAX))
- 
--static int send_tlb_inval_asid_ppgtt(struct xe_tlb_inval *tlb_inval, u32 seqno,
--				     u64 start, u64 end, u32 asid,
--				     struct drm_suballoc *prl_sa)
-+static int send_tlb_inval_ppgtt(struct xe_guc *guc, u32 seqno, u64 start,
-+				u64 end, u32 id, u32 type,
-+				struct drm_suballoc *prl_sa)
- {
- #define MAX_TLB_INVALIDATION_LEN	7
--	struct xe_guc *guc = tlb_inval->private;
- 	struct xe_gt *gt = guc_to_gt(guc);
- 	u32 action[MAX_TLB_INVALIDATION_LEN];
- 	u64 length = end - start;
- 	int len = 0, err;
- 
--	if (guc_to_xe(guc)->info.force_execlist)
--		return -ECANCELED;
--
- 	action[len++] = XE_GUC_ACTION_TLB_INVALIDATION;
- 	action[len++] = !prl_sa ? seqno : TLB_INVALIDATION_SEQNO_INVALID;
- 	if (!gt_to_xe(gt)->info.has_range_tlb_inval ||
-@@ -174,14 +170,15 @@ static int send_tlb_inval_asid_ppgtt(struct xe_tlb_inval *tlb_inval, u32 seqno,
- 								 &end);
- 
- 		/* Flush on NULL case, Media is not required to modify flush due to no PPC so NOP */
--		action[len++] = MAKE_INVAL_OP_FLUSH(XE_GUC_TLB_INVAL_PAGE_SELECTIVE, !prl_sa);
--		action[len++] = asid;
-+		action[len++] = MAKE_INVAL_OP_FLUSH(type, !prl_sa);
-+		action[len++] = id;
- 		action[len++] = lower_32_bits(start);
- 		action[len++] = upper_32_bits(start);
- 		action[len++] = ilog2(normalize_len) - ilog2(SZ_4K);
- 	}
- 
- 	xe_gt_assert(gt, len <= MAX_TLB_INVALIDATION_LEN);
-+#undef MAX_TLB_INVALIDATION_LEN
- 
- 	err = send_tlb_inval(guc, action, len);
- 	if (!err && prl_sa)
-@@ -189,6 +186,21 @@ static int send_tlb_inval_asid_ppgtt(struct xe_tlb_inval *tlb_inval, u32 seqno,
- 	return err;
- }
- 
-+static int send_tlb_inval_asid_ppgtt(struct xe_tlb_inval *tlb_inval, u32 seqno,
-+				     u64 start, u64 end, u32 asid,
-+				     struct drm_suballoc *prl_sa)
-+{
-+	struct xe_guc *guc = tlb_inval->private;
-+
-+	lockdep_assert_held(&tlb_inval->seqno_lock);
-+
-+	if (guc_to_xe(guc)->info.force_execlist)
-+		return -ECANCELED;
-+
-+	return send_tlb_inval_ppgtt(guc, seqno, start, end, asid,
-+				    XE_GUC_TLB_INVAL_PAGE_SELECTIVE, prl_sa);
-+}
-+
- static bool tlb_inval_initialized(struct xe_tlb_inval *tlb_inval)
- {
- 	struct xe_guc *guc = tlb_inval->private;
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 4a316bd49135..79155930ac0f 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -1653,7 +1653,7 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags, struct xe_file *xef)
+ 		down_write(&xe->usm.lock);
+ 		err = xa_alloc_cyclic(&xe->usm.asid_to_vm, &asid, vm,
+ 				      XA_LIMIT(1, XE_MAX_ASID - 1),
+-				      &xe->usm.next_asid, GFP_KERNEL);
++				      &xe->usm.next_asid, GFP_NOWAIT);
+ 		up_write(&xe->usm.lock);
+ 		if (err < 0)
+ 			goto err_close;
 -- 
 2.34.1
 
