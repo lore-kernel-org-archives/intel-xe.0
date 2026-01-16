@@ -4,138 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 13701D46638
-	for <intel-xe@archiver.kernel.org>; Thu, 15 Jan 2026 23:39:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 670ECD47CA4
+	for <intel-xe@archiver.kernel.org>; Fri, 16 Jan 2026 00:25:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE01610E0CA;
-	Thu, 15 Jan 2026 23:39:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 27BB410E0B4;
+	Fri, 16 Jan 2026 00:25:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.b="bPn2MLfO";
-	dkim=pass (2048-bit key; unprotected) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="V55ffyyu";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="At4JO5Er";
 	dkim-atps=neutral
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com
- [205.220.168.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 66CAF10E191
- for <intel-xe@lists.freedesktop.org>; Thu, 15 Jan 2026 23:39:07 +0000 (UTC)
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
- by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id
- 60FMbRdf3714365
- for <intel-xe@lists.freedesktop.org>; Thu, 15 Jan 2026 23:39:07 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
- cc:content-transfer-encoding:content-type:date:from:in-reply-to
- :message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
- lVjbzz/3UHEVM8eIBqM6zUUfmDnOkJGwAR300ilUdt4=; b=bPn2MLfO8ccKF5M8
- qvd2qjQQrp50ki2vtg/RzgT6tI/H5n79pMFFv5JgXXSr2msxraHJksMAOR7Cj694
- AvzN+HYRvu/4fgS0z67SUH1TWyHBzmxqp90u2ANowc4hBuvn9wzTWBnZlUNq2RRv
- RR4JnbPUV9ET4uK3tjcOCU2FWDq5W7/cFhwJP+KiXE7I+U34BMafWV5s3pbHD+fc
- 2DAWk4nXjdjISloXd3Jj6r3oP0etj45TsZRKObtLMrh4brf6ycbo2wngG6/2pcNE
- lcpG4lgv79zwEXqj8c0JIVI3Rv8BCGQnLQrGmtQkBrtZBmVldVN8ML5ezT/KkD0+
- vxpR0w==
-Received: from mail-dy1-f198.google.com (mail-dy1-f198.google.com
- [74.125.82.198])
- by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bq96p83ys-1
- (version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
- for <intel-xe@lists.freedesktop.org>; Thu, 15 Jan 2026 23:39:06 +0000 (GMT)
-Received: by mail-dy1-f198.google.com with SMTP id
- 5a478bee46e88-2adc3990fecso1037616eec.1
- for <intel-xe@lists.freedesktop.org>; Thu, 15 Jan 2026 15:39:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=oss.qualcomm.com; s=google; t=1768520346; x=1769125146;
- darn=lists.freedesktop.org; 
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=lVjbzz/3UHEVM8eIBqM6zUUfmDnOkJGwAR300ilUdt4=;
- b=V55ffyyu/sGeQIte/wmpwP2UeoD7CRDHSrAJkacmQuMGXhwaVSx2uFRqy1gfpSiFOo
- vXtNirDwrkJN+tER9VQrdHsTcscVxfzYlsEel6zZP3ULK6Vna4dMVpcXBkjBP/12k5MZ
- fVbpWx9pFGeqh5fC8Yp04y1IQoa4jQPI6wQzPqV0Ghfgg2swb0uRrEdA9N/GPy4Kosjh
- KLdvozFNvOXzefF15Ej4/6ZUwl2s9Xj4ksk8UHU6N47FcIIWlMRlr8uG1ZsYMgaPp8bY
- 7AJT7rPS29e2kxqM7QqqTjw89SuZ4hcL1wsWQ0lWBIGife/aetBkRN40KqwbjXymzikl
- 5acA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1768520346; x=1769125146;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=lVjbzz/3UHEVM8eIBqM6zUUfmDnOkJGwAR300ilUdt4=;
- b=Z8fjE7xUczBq4NsNEIOBNwZcx2xiVmpdx0gu2Mn6PuZiS5A9sCnZmcf0YBzzb/pRw4
- kLMhc0BP8zaG86gdxuA59xSRvrFUeKpXETAJCRQFpQdWARI/hEP9WcRtxsUJCoGm+vyC
- Z75WyfusRX1/ixbOcme872PPZmOiw2fHBQTEgze99xKzlfmfVzyZ/R809K8O3oPsWMZI
- lorpQ/2BDMT0OnnwPM8FnD8faZHlRp7B5auJCZ0a7UxNKIU22vIei32n1UnqG+jxG2pE
- 8ey2fT66IzB+jfVXgiMjXBP5ExOhEXC+fxNs6M9xDs6ae7rA5NBOeXIJyH41GY14n2cG
- aXNg==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVTyOw8YlOtxg9OaSoFVY8mUiP06X8vF8yXYtXUT8lbGfbXo/4eohtbsr+Y5PTrbJPFIWPdaFwl7w==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxKVqbVnrku6sWNU1wp3P/3dgigasJKbzDxJhW5idU7fiVQREzU
- h+Xzbrkj7aY/qvZ1lQEbgr5ysd0XIoStcKyAI23JZeTUyoIEPAb2yO9uqbF6Srkrxxk/94mIMbs
- 3qXMPaB7YvuEriO3p3bAHul4uIQ/YieuY8FZlKsb8hELOTgsHHDC+nB0VXpo5kK1GwJMITg==
-X-Gm-Gg: AY/fxX6F5rdD9iOoHIqlU0IBQpNnuTN+hD2Od5VFQNuo2yfG7TET8ovit2/biJeAzAb
- 6j4bF3SkdCzxSclRY52LSQqstXNH/B9NuMQoo46dxGShZh8/yPJOUO5z3FXsuxRd0VKNSYSWh+1
- ydFwhM4JiXv6CU0P2EPZ3yF7/vCXIRFhr2QxVnIVG392zUuoHc7398qB7ek8r1FQFQzaabtFrJM
- vgPIs8gA4wlNlptMGGnMwCvdkw4fKpIFafdlWhvUx4/S6uXliZcIK/c+o4ivHbScFQFuhTAspwG
- Lwr2/bgYZrbl52qRbj1/BKxPw2mDUwaqInYWb8nGB/2isC3mkQ1djY5Oc0fnTqVy8uM4+K+x68z
- MuYVR08n72HYHxUT6ywmUROYQehkrXzj0xPG7xQ+Dc62g+uDUj9Arx4+JO9ge60f16+0/GUYE
-X-Received: by 2002:a05:7300:5353:b0:2ab:f490:79f9 with SMTP id
- 5a478bee46e88-2b6b35a1060mr1489621eec.21.1768520345989; 
- Thu, 15 Jan 2026 15:39:05 -0800 (PST)
-X-Received: by 2002:a05:7300:5353:b0:2ab:f490:79f9 with SMTP id
- 5a478bee46e88-2b6b35a1060mr1489590eec.21.1768520345345; 
- Thu, 15 Jan 2026 15:39:05 -0800 (PST)
-Received: from [10.226.49.150] (i-global254.qualcomm.com. [199.106.103.254])
- by smtp.gmail.com with ESMTPSA id
- 5a478bee46e88-2b6b3682540sm699712eec.34.2026.01.15.15.39.03
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 15 Jan 2026 15:39:05 -0800 (PST)
-Message-ID: <919c0b7e-83d7-45e8-ae96-d9fb7a10995c@oss.qualcomm.com>
-Date: Thu, 15 Jan 2026 16:39:02 -0700
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E3B7910E0B4
+ for <intel-xe@lists.freedesktop.org>; Fri, 16 Jan 2026 00:25:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1768523137; x=1800059137;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=ZhN5DVhRJvRilDFkd6Rzh8ht4exCkzOSWENel/0g3FY=;
+ b=At4JO5Er+/J29ggm5BaeRCNjky5sKZe/1TcjzSfHUD2mHns/l68G9Tdk
+ UldEv5FGVoFYPHiha7LjpN64jFevjPQog0u9g64SwbE6Os2uVahzvirb1
+ mvMRFYeJiG6KVN76QT78X4qCgqW5LPMHOYOzIaTVlih1V0nvCidpm8E2v
+ NfMlkT+OHW5HQ0lBic86kMmXPCnqeaff3YbVljNK92RJ3DB4UyHH73ONS
+ DAOZt9k5q7TfI4Jh2BhO0LLGRmM2xmx87X58gTKbHoKN1OJcoBmRyY76e
+ IgAW1wVn7IysLfQ/M+dDXYC9jcVwvDRbcVJisnw52whWeHZ+oInq0DkK6 w==;
+X-CSE-ConnectionGUID: RxhlW1sDTDy3JQ29dLafow==
+X-CSE-MsgGUID: hnFlQLCUT6uXwD5IP5I+WA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11672"; a="69737422"
+X-IronPort-AV: E=Sophos;i="6.21,229,1763452800"; d="scan'208";a="69737422"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jan 2026 16:25:36 -0800
+X-CSE-ConnectionGUID: trV7HmKQTnOz2q/cN+7n+A==
+X-CSE-MsgGUID: Fc9DckJXRxCVHFKNwfl7QQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,229,1763452800"; d="scan'208";a="209959679"
+Received: from osgcshtiger.sh.intel.com ([10.239.70.161])
+ by fmviesa004.fm.intel.com with ESMTP; 15 Jan 2026 16:25:35 -0800
+From: Pallavi Mishra <pallavi.mishra@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: daniele.ceraolospurio@intel.com, niranjana.vishwanathapura@intel.com,
+ stuart.summers@intel.com, Pallavi Mishra <pallavi.mishra@intel.com>
+Subject: [PATCH v2] drm/xe/tests: Fix g2g_test_array indexing
+Date: Fri, 16 Jan 2026 00:25:29 +0000
+Message-Id: <20260116002529.951176-1-pallavi.mishra@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/4] drm/ras: Introduce the DRM RAS infrastructure over
- generic netlink
-To: Riana Tauro <riana.tauro@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Jakub Kicinski <kuba@kernel.org>, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, aravind.iddamsetty@linux.intel.com,
- anshuman.gupta@intel.com, joonas.lahtinen@linux.intel.com,
- lukas@wunner.de, simona.vetter@ffwll.ch, airlied@gmail.com,
- pratik.bari@intel.com, joshua.santosh.ranjan@intel.com,
- ashwin.kumar.kulkarni@intel.com, shubham.kumar@intel.com,
- Lijo Lazar <lijo.lazar@amd.com>, Hawking Zhang <Hawking.Zhang@amd.com>,
- "David S. Miller" <davem@davemloft.net>,
- Paolo Abeni <pabeni@redhat.com>, Eric Dumazet <edumazet@google.com>,
- netdev@vger.kernel.org, Jeff Hugo <jeff.hugo@oss.qualcomm.com>
-References: <20251205083934.3602030-6-riana.tauro@intel.com>
- <20251205083934.3602030-7-riana.tauro@intel.com> <aTiWNkGmwFsxY-iO@intel.com>
- <b986eb03-0887-4eb2-a7a7-50ef63e51096@oss.qualcomm.com>
- <aWFruAO06O93ADjU@intel.com> <19fd4d44-b7d6-4bc2-9255-3d5159ec1435@intel.com>
-Content-Language: en-US
-From: Zack McKevitt <zachary.mckevitt@oss.qualcomm.com>
-In-Reply-To: <19fd4d44-b7d6-4bc2-9255-3d5159ec1435@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTE1MDE4NyBTYWx0ZWRfXymNgJ3qTRMzb
- 3URaC++7ktrFdLgn/O+a6bttC71QZ8gdqnmGJipMeg+Ne/J2BLAOTU+q1XmBrxkufDrNMNE2Dt2
- vyxbZH5ujMfbU3xQwJ5r1/s77rUP00Hd+q6Rp7C6ndJhIE7zBuXBz4vdbMmAYwuvc8zq2futwWL
- aRzBNBogkjcXjY2ceT7NEYbhvWJAUPK0An5elCyraU1lDXOwpNBaFPS9rP/LzI45CxyJeo2A/Zi
- uDZZwZMbHdooWV1x8xjY3bTrJNS7e3vtiWl56n5bpvbw7OgrdIV0TdewA61zlPXS4HqWn2f40Bs
- PbLOvz+7UgWnbOX8Ncr7myB9IwUskSgpo8a9u4gS2O6g2eWeQ0yQDerTmqt+wejWIwthSiAKxN8
- 4BaDCJQenLXiH0rpjiR5ZAd/X+IIY8kYEtVEAa00TkCqOEnY2/16cbzByS0yAt0BMwGg6bKfwRp
- mLAwm4xf4dgmG15Rz6Q==
-X-Authority-Analysis: v=2.4 cv=M7ZA6iws c=1 sm=1 tr=0 ts=69697a9a cx=c_pps
- a=wEP8DlPgTf/vqF+yE6f9lg==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
- a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=WFVl3Mxyj1LltjsbROYA:9 a=3ZKOabzyN94A:10
- a=QEXdDO2ut3YA:10 a=bBxd6f-gb0O0v-kibOvt:22
-X-Proofpoint-GUID: vowqtBSyr_s35IWLjeWwf0BYdEaQTwQm
-X-Proofpoint-ORIG-GUID: vowqtBSyr_s35IWLjeWwf0BYdEaQTwQm
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2026-01-15_07,2026-01-15_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 malwarescore=0 suspectscore=0 adultscore=0 spamscore=0
- phishscore=0 clxscore=1015 lowpriorityscore=0 priorityscore=1501 bulkscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2601150187
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -150,227 +65,127 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+The G2G KUnit test allocates a compact N×N
+matrix sized by gt_count and verifies entries
+using dense indices: idx = (j * gt_count) + i
 
+The producer path currently computes idx using
+gt->info.id. However, gt->info.id values
+are not guaranteed to be contiguous.
+For example, with gt_count=2 and IDs {0,3},
+this formula produces indices beyond the
+allocated range, causing mismatches and
+potential out-of-bounds access.
 
-On 1/13/2026 1:20 AM, Riana Tauro wrote:
->>>>> diff --git a/Documentation/netlink/specs/drm_ras.yaml b/ 
->>>>> Documentation/netlink/specs/drm_ras.yaml
->>>>> new file mode 100644
->>>>> index 000000000000..be0e379c5bc9
->>>>> --- /dev/null
->>>>> +++ b/Documentation/netlink/specs/drm_ras.yaml
->>>>> @@ -0,0 +1,130 @@
->>>>> +# SPDX-License-Identifier: ((GPL-2.0 WITH Linux-syscall-note) OR 
->>>>> BSD-3-Clause)
->>>>> +---
->>>>> +name: drm-ras
->>>>> +protocol: genetlink
->>>>> +uapi-header: drm/drm_ras.h
->>>>> +
->>>>> +doc: >-
->>>>> +  DRM RAS (Reliability, Availability, Serviceability) over Generic 
->>>>> Netlink.
->>>>> +  Provides a standardized mechanism for DRM drivers to register 
->>>>> "nodes"
->>>>> +  representing hardware/software components capable of reporting 
->>>>> error counters.
->>>>> +  Userspace tools can query the list of nodes or individual error 
->>>>> counters
->>>>> +  via the Generic Netlink interface.
->>>>> +
->>>>> +definitions:
->>>>> +  -
->>>>> +    type: enum
->>>>> +    name: node-type
->>>>> +    value-start: 1
->>>>> +    entries: [error-counter]
->>>>> +    doc: >-
->>>>> +         Type of the node. Currently, only error-counter nodes are
->>>>> +         supported, which expose reliability counters for a 
->>>>> hardware/software
->>>>> +         component.
->>>>> +
->>>>> +attribute-sets:
->>>>> +  -
->>>>> +    name: node-attrs
->>>>> +    attributes:
->>>>> +      -
->>>>> +        name: node-id
->>>>> +        type: u32
->>>>> +        doc: >-
->>>>> +             Unique identifier for the node.
->>>>> +             Assigned dynamically by the DRM RAS core upon 
->>>>> registration.
->>>>> +      -
->>>>> +        name: device-name
->>>>> +        type: string
->>>>> +        doc: >-
->>>>> +             Device name chosen by the driver at registration.
->>>>> +             Can be a PCI BDF, UUID, or module name if unique.
->>>>> +      -
->>>>> +        name: node-name
->>>>> +        type: string
->>>>> +        doc: >-
->>>>> +             Node name chosen by the driver at registration.
->>>>> +             Can be an IP block name, or any name that identifies the
->>>>> +             RAS node inside the device.
->>>>> +      -
->>>>> +        name: node-type
->>>>> +        type: u32
->>>>> +        doc: Type of this node, identifying its function.
->>>>> +        enum: node-type
->>>>> +  -
->>>>> +    name: error-counter-attrs
->>>>> +    attributes:
->>>>> +      -
->>>>> +        name: node-id
->>>>> +        type: u32
->>>>> +        doc:  Node ID targeted by this error counter operation.
->>>>> +      -
->>>>> +        name: error-id
->>>>> +        type: u32
->>>>> +        doc: Unique identifier for a specific error counter within 
->>>>> an node.
->>>>> +      -
->>>>> +        name: error-name
->>>>> +        type: string
->>>>> +        doc: Name of the error.
->>>>> +      -
->>>>> +        name: error-value
->>>>> +        type: u32
->>>>> +        doc: Current value of the requested error counter.
->>>>> +
->>>>> +operations:
->>>>> +  list:
->>>>> +    -
->>>>> +      name: list-nodes
->>>>> +      doc: >-
->>>>> +           Retrieve the full list of currently registered DRM RAS 
->>>>> nodes.
->>>>> +           Each node includes its dynamically assigned ID, name, 
->>>>> and type.
->>>>> +           **Important:** User space must call this operation 
->>>>> first to obtain
->>>>> +           the node IDs. These IDs are required for all subsequent
->>>>> +           operations on nodes, such as querying error counters.
->>>
->>> I am curious about security implications of this design.
->>
->> hmm... very good point you are raising here.
->>
->> This current design relies entirely in the CAP_NET_ADMIN.
->> No driver would have the flexibility to choose anything differently.
->> Please notice that the flag admin-perm is hardcoded in this yaml file.
->>
->>> If the complete
->>> list of RAS nodes is visible for any process on the system (and one 
->>> wants to
->>> avoid requiring CAP_NET_ADMIN), there should be some way to enforce
->>> permission checks when performing these operations if desired.
->>
->> Right now, there's no way that the driver would choose not avoid 
->> requiring
->> CAP_NET_ADMIN...
->>
->> Only way would be the admin to give the cap_net_admin to the tool with:
->>
->> $ sudo setcap cap_net_admin+ep /bin/drm_ras_tool
->>
->> but not ideal and not granular anyway...
->>
->>>
->>> For example, this might be implemented in the driver's definition of
->>> callback functions like query_error_counter; some drivers may want to 
->>> ensure
->>> that the process can in fact open the file descriptor corresponding 
->>> to the
->>> queried device before serving a netlink request. Is it enough for a 
->>> driver
->>> to simply return -EPERM in this case? Any driver that doesnt wish to 
->>> protect
->>> its RAS nodes need not implement checks in their callbacks.
->>
->> Fair enough. If we want to give the option to the drivers, then we need:
->>
->> 1. to first remove all the admin-perm flags below and leave the driver to
->> pick up their policy on when to return something or -EPERM.
->> 2. Document this security responsibility and list a few possibilities.
->> 3. In our Xe case here I believe the easiest option is to use 
->> something like:
->>
->> struct scm_creds *creds = NETLINK_CREDS(cb->skb);
->> if (!gid_eq(creds->gid, GLOBAL_ROOT_GID))
->>      return -EPERM
-> 
-> The driver currently does not have access to the callback or the 
-> skbuffer. Sending these details as param to driver won't be right as
-> drm_ras needs to handle all the netlink buffers.
-> 
-> How about using pre_doit & start calls? If driver has a pre callback , 
-> it's the responsibility of the driver to check permissions/any-pre 
-> conditions, else the CAP_NET_ADMIN permission will be checked.
-> 
-> @Zack / @Rodrigo thoughts?
-> @Zack Will this work for your usecase?
-> 
-> yaml
-> +    dump:
-> +        pre: drm-ras-nl-pre-list-nodes
-> 
-> 
-> drm_ras.c :
-> 
-> +       if (node->pre_list_nodes)
-> +                return node->pre_list_nodes(node);
-> +
-> +        return check_permissions(cb->skb);  //Checks creds
-> 
-> Thanks
-> Riana
-> 
+Update the producer to map each GT to a dense
+index in [0..gt_count-1] and compute:
+    idx = (tx_dense * gt_count) + rx_dense
 
-I agree that a pre_doit is probably the best solution for this.
+Additionally, introduce an event-based delay
+in g2g_test_in_order() to ensure ordering
+between sends.
 
-Not entirely sure what a driver specific implementation would look like 
-yet, but I think that as long as the driver callback has a way to access 
-the 'current' task_struct pointer corresponding to the user process then 
-this approach seems like the best option from the netlink side.
+v2: Add single helper function (Daniele)
 
-Since this is mostly a concern for our specific use case, perhaps we can 
-incorporate this functionality in our change down the road when we 
-expand the interface for telemetry?
+Signed-off-by: Pallavi Mishra <pallavi.mishra@intel.com>
+---
+ drivers/gpu/drm/xe/tests/xe_guc_g2g_test.c | 56 +++++++++++++++++++++-
+ 1 file changed, 54 insertions(+), 2 deletions(-)
 
-Let me know what you think.
-
-Zack
-
->>
->> or something like that?!
->>
->> perhaps drivers could implement some form of cookie or pre- 
->> authorization with
->> ioctls or sysfs, and then store in the priv?
->>
->> Thoughts?
->> Other options?
->>
->>>
->>> I dont see any such permissions checks in your driver implementation 
->>> which
->>> is understandable given that it may not be necessary for your use cases.
->>> However, this would be a concern for our driver if we were to adopt this
->>> interface.
->>
->> yeap, this case was entirely with admin-perm, so not needed at all...
->> But I see your point and this is really not giving any flexibility to
->> other drivers.
->>
-
->>>>>
->>>
->>> Thanks,
->>>
->>> Zack
->>>
-> 
+diff --git a/drivers/gpu/drm/xe/tests/xe_guc_g2g_test.c b/drivers/gpu/drm/xe/tests/xe_guc_g2g_test.c
+index 3b213fcae916..ec18086b98d8 100644
+--- a/drivers/gpu/drm/xe/tests/xe_guc_g2g_test.c
++++ b/drivers/gpu/drm/xe/tests/xe_guc_g2g_test.c
+@@ -48,6 +48,38 @@ struct g2g_test_payload  {
+ 	u32 seqno;
+ };
+ 
++static int slot_index_from_gts(struct xe_gt *tx_gt, struct xe_gt *rx_gt)
++{
++	struct xe_device *xe = gt_to_xe(tx_gt);
++	int idx = 0, found = 0, id, tx_idx, rx_idx;
++	struct xe_gt *gt;
++	struct kunit *test = kunit_get_current_test();
++
++	for (id = 0; id < xe->info.tile_count * xe->info.max_gt_per_tile; id++) {
++		gt = xe_device_get_gt(xe, id);
++		if (!gt)
++			continue;
++		if (gt == tx_gt) {
++			tx_idx = idx;
++			found++;
++		}
++		if (gt == rx_gt) {
++			rx_idx = idx;
++			found++;
++		}
++
++		if (found == 2)
++			break;
++
++		idx++;
++	}
++
++	if (found != 2)
++		KUNIT_FAIL(test, "GT index not found");
++
++	return (tx_idx * xe->info.gt_count) + rx_idx;
++}
++
+ static void g2g_test_send(struct kunit *test, struct xe_guc *guc,
+ 			  u32 far_tile, u32 far_dev,
+ 			  struct g2g_test_payload *payload)
+@@ -163,7 +195,7 @@ int xe_guc_g2g_test_notification(struct xe_guc *guc, u32 *msg, u32 len)
+ 		goto done;
+ 	}
+ 
+-	idx = (tx_gt->info.id * xe->info.gt_count) + rx_gt->info.id;
++	idx = slot_index_from_gts(tx_gt, rx_gt);
+ 
+ 	if (xe->g2g_test_array[idx] != payload->seqno - 1) {
+ 		xe_gt_err(rx_gt, "G2G: Seqno mismatch %d vs %d for %d:%d -> %d:%d!\n",
+@@ -180,13 +212,17 @@ int xe_guc_g2g_test_notification(struct xe_guc *guc, u32 *msg, u32 len)
+ 	return ret;
+ }
+ 
++#define G2G_WAIT_TIMEOUT_MS 100
++#define G2G_WAIT_POLL_MS 1
++
+ /*
+  * Send the given seqno from all GuCs to all other GuCs in tile/GT order
+  */
+ static void g2g_test_in_order(struct kunit *test, struct xe_device *xe, u32 seqno)
+ {
+ 	struct xe_gt *near_gt, *far_gt;
+-	int i, j;
++	int i, j, waited;
++	u32 idx;
+ 
+ 	for_each_gt(near_gt, xe, i) {
+ 		u32 near_tile = gt_to_tile(near_gt)->id;
+@@ -205,6 +241,22 @@ static void g2g_test_in_order(struct kunit *test, struct xe_device *xe, u32 seqn
+ 			payload.rx_dev = far_dev;
+ 			payload.rx_tile = far_tile;
+ 			payload.seqno = seqno;
++
++			/* Calculate idx for event-based wait */
++			idx = slot_index_from_gts(near_gt, far_gt);
++			waited = 0;
++
++			/* Wait for previous seqno to be acknowledged before sending */
++			while (xe->g2g_test_array[idx] != (seqno - 1)) {
++				msleep(G2G_WAIT_POLL_MS);
++				waited += G2G_WAIT_POLL_MS;
++				if (waited >= G2G_WAIT_TIMEOUT_MS) {
++					kunit_info(test, "Timeout waiting! tx gt: %d, rx gt: %d\n",
++						   near_gt->info.id, far_gt->info.id);
++					break;
++				}
++			}
++
+ 			g2g_test_send(test, &near_gt->uc.guc, far_tile, far_dev, &payload);
+ 		}
+ 	}
+-- 
+2.34.1
 
