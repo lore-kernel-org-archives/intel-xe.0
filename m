@@ -4,54 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7D5FBC98302
-	for <intel-xe@archiver.kernel.org>; Fri, 16 Jan 2026 22:03:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 44556C982C3
+	for <intel-xe@archiver.kernel.org>; Fri, 16 Jan 2026 22:12:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3ABB610E0FB;
-	Fri, 16 Jan 2026 22:03:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A8CAF10E0F4;
+	Fri, 16 Jan 2026 22:12:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Oj+MWjz9";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="oI0lIBU0";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D6F5810E00E
- for <intel-xe@lists.freedesktop.org>; Fri, 16 Jan 2026 22:03:39 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 59F9910E00E
+ for <intel-xe@lists.freedesktop.org>; Fri, 16 Jan 2026 22:12:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1768601020; x=1800137020;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=6aPgXC/KxzuuRSuz7Un9HZ1ooEB+c0Mz9y7XTRzJAmo=;
- b=Oj+MWjz9zSVg8bV73IHLzBOOYAWRAc3rLz8Gl1+VCnRYf+VCfZzdVsHx
- vKXadwdnCV9QgzsQPpZ0KKg4OQzuwBaPhyo7Aswf6vprXAvr+0ckLFYWR
- ZDxLwa1ugibHC6WuxVx8FepFnjjB9nNmB3bRCa/rO7ZcZnGlbjSqmvRJT
- rQXFqRsumFBnxtZO4CLOIlbx4DWCSZFoI3oKn6mTyIY+fudNeIRD/QCin
- 7WtEtUPdv5GI5vgrWJ8oLyTDX3+ic45kQAvDuL1BZRcnN1rRVy8jC5ql5
- 4hsTaNtbLjxQW5N/i9pvSKti8CmC3qFYngRDS8jy0qN6xiFzPeoNYdcUg w==;
-X-CSE-ConnectionGUID: dbt2GwCORIOTJMQyArBGFA==
-X-CSE-MsgGUID: 0MuTrjFUQUm8kbX/hi/eng==
-X-IronPort-AV: E=McAfee;i="6800,10657,11673"; a="81035380"
-X-IronPort-AV: E=Sophos;i="6.21,232,1763452800"; d="scan'208";a="81035380"
+ t=1768601562; x=1800137562;
+ h=from:date:subject:mime-version:content-transfer-encoding:
+ message-id:references:in-reply-to:to:cc;
+ bh=YCTkRNe3VTy0kWpMeUjNjZc8LLiWmQ+hw/Vt/EOE518=;
+ b=oI0lIBU0eqfO/fhIAT6QZuVJYjQGXF7uWh21TU0A0bg41El9orVHL2NP
+ vIaX8OtnQw7LlNDfsFecDdS+zaTTUcNNeVkXwuIulU/crOg9klu+ZB4Q+
+ +9GS8VrVSU+5Tyva+y48EyveeECLXo04b0SHLk5jMc0HqtuDyQbLqbYlJ
+ MKIGwuYfFza50LDhv1ymVBXRzBoPtrYb6+LAdI9Y9o1RS7JAkrayigpz0
+ +LmWXIE3841zHheAwLsJzaxpR+2MKseT1V+R93kU5NXkitWTX5eI5yfW0
+ /wc2kQN9Ggp+c1ugstI4WPWRSqSyPjs1s383yso6UIW8O2Vby4ZHpxSor g==;
+X-CSE-ConnectionGUID: D+RAlxffR8SUOCP+sxh5Hw==
+X-CSE-MsgGUID: vKkFMPyQToqQ68XAb/5eog==
+X-IronPort-AV: E=McAfee;i="6800,10657,11673"; a="69123018"
+X-IronPort-AV: E=Sophos;i="6.21,232,1763452800"; d="scan'208";a="69123018"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jan 2026 14:03:40 -0800
-X-CSE-ConnectionGUID: btIPz6r+SAqMQ2fp4EHlbw==
-X-CSE-MsgGUID: LAaLVwaqTwu+YeIGMYxaXg==
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jan 2026 14:12:42 -0800
+X-CSE-ConnectionGUID: 0UcsJqjZSFOJA2q87lzTYA==
+X-CSE-MsgGUID: 7wsSK2pvRviWzSDIytbeuA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,232,1763452800"; d="scan'208";a="204959424"
-Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
+X-IronPort-AV: E=Sophos;i="6.21,232,1763452800"; d="scan'208";a="204961769"
+Received: from khuang2-desk.gar.corp.intel.com (HELO [192.168.1.16])
+ ([10.124.221.59])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jan 2026 14:03:39 -0800
-From: Matthew Brost <matthew.brost@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-Subject: [PATCH v3 2/2] drm/xe/multi_queue: Enable multi_queue on xe3p_xpc
-Date: Fri, 16 Jan 2026 14:03:33 -0800
-Message-Id: <20260116220333.861850-3-matthew.brost@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260116220333.861850-1-matthew.brost@intel.com>
-References: <20260116220333.861850-1-matthew.brost@intel.com>
+ 16 Jan 2026 14:12:41 -0800
+From: Gustavo Sousa <gustavo.sousa@intel.com>
+Date: Fri, 16 Jan 2026 19:12:09 -0300
+Subject: [PATCH 01/12] drm/xe: Define CACHE_MODE_1 as MCR register
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260116-rtp-mcr-check-v1-1-d420b9c1a327@intel.com>
+References: <20260116-rtp-mcr-check-v1-0-d420b9c1a327@intel.com>
+In-Reply-To: <20260116-rtp-mcr-check-v1-0-d420b9c1a327@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Gustavo Sousa <gustavo.sousa@intel.com>
+X-Mailer: b4 0.15-dev
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,32 +68,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+CACHE_MODE_1 is a MCR register for all platforms that currently use it
+in the Xe driver.  Use XE_REG_MCR() when defining it.
 
-xe3p_xpc supports multi_queue, enable it.
-
-v2: Rename multi_queue_enable_mask to multi_queue_engine_class_mask
-    (Matt Brost)
-
-Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+Fixes: 8cd7e9759766 ("drm/xe: Add missing DG2 lrc workarounds")
+Fixes: ff063430caa8 ("drm/xe/mtl: Add some initial MTL workarounds")
+Bspec: 66534, 67788
+Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
 ---
- drivers/gpu/drm/xe/xe_pci.c | 2 ++
- 1 file changed, 2 insertions(+)
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index 2c3656126751..405fcf68d5a7 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -112,6 +112,8 @@ static const struct xe_graphics_desc graphics_xe3p_xpc = {
- 	.hw_engine_mask =
- 		GENMASK(XE_HW_ENGINE_BCS8, XE_HW_ENGINE_BCS1) |
- 		GENMASK(XE_HW_ENGINE_CCS3, XE_HW_ENGINE_CCS0),
-+	.multi_queue_engine_class_mask = BIT(XE_ENGINE_CLASS_COPY) |
-+					 BIT(XE_ENGINE_CLASS_COMPUTE),
- };
+diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+index 24fc64fc832e..bc984dde2773 100644
+--- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+@@ -141,7 +141,7 @@
  
- static const struct xe_media_desc media_xem = {
+ #define XEHPG_INSTDONE_GEOM_SVGUNIT		XE_REG_MCR(0x666c)
+ 
+-#define CACHE_MODE_1				XE_REG(0x7004, XE_REG_OPTION_MASKED)
++#define CACHE_MODE_1				XE_REG_MCR(0x7004, XE_REG_OPTION_MASKED)
+ #define   MSAA_OPTIMIZATION_REDUC_DISABLE	REG_BIT(11)
+ 
+ #define COMMON_SLICE_CHICKEN1			XE_REG(0x7010, XE_REG_OPTION_MASKED)
+
 -- 
-2.34.1
+2.52.0
 
