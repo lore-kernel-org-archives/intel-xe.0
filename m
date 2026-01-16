@@ -4,169 +4,171 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 50986D4A607
-	for <intel-xe@archiver.kernel.org>; Fri, 16 Jan 2026 07:18:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 392EDD4A60D
+	for <intel-xe@archiver.kernel.org>; Fri, 16 Jan 2026 07:40:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 11E4710E805;
-	Fri, 16 Jan 2026 07:18:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B568810E818;
+	Fri, 16 Jan 2026 07:40:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="l7I8udTK";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="jw7e/ex2";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="MJtkUgZv";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="SmrxYqfV";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="hmXNtqMR";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9EF6110E805
- for <intel-xe@lists.freedesktop.org>; Fri, 16 Jan 2026 07:18:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1768547923; x=1800083923;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=YmjQ0oO4G4BmZ1E/EyxLeRHFp/Zo2I8vceH1lKnHnfA=;
- b=l7I8udTKSd9IlQl2ttd6EC1v9cj4CUXDxcpoAIabqkmKSEK45zkDyDZJ
- F8F4+uxUm1CSPTNHfmA1by2wHVzNIXOH5Qm657R0b9M5O9P+N4DI47vuz
- s91q0EVFU5+XdQaCUvXUNihwyaSeJikkH0f3eSvGHxZesyNytLaM+7WRT
- dkatQjGo8wd6YuN8eLJk+1RsJ6qcoQVikTsTNmlCRtQoeDdrarcSwLKgR
- wYIL5oCBVDXapIldDkpBrDi1NWl4iT5zHbzJqSSKv3GQFnrIFaHkRL2Lu
- 2MynyCY1Dzsi22Q8m7NVLyRGqe5+GtiN8yhSkDXix9nUhw9XFfVSJgVmB Q==;
-X-CSE-ConnectionGUID: cTdYsV52Sy+/6wx/orcHzQ==
-X-CSE-MsgGUID: vdjTg46dTVaSoTlXAyNEcw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11672"; a="80581579"
-X-IronPort-AV: E=Sophos;i="6.21,230,1763452800"; d="scan'208";a="80581579"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jan 2026 23:18:43 -0800
-X-CSE-ConnectionGUID: Zm4fGcZDTAGZW5V63KBNLQ==
-X-CSE-MsgGUID: E8PviwPNSwuXIS9R8gkyXw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,230,1763452800"; d="scan'208";a="209654949"
-Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
- by fmviesa005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jan 2026 23:18:43 -0800
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Thu, 15 Jan 2026 23:18:42 -0800
-Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29 via Frontend Transport; Thu, 15 Jan 2026 23:18:42 -0800
-Received: from PH8PR06CU001.outbound.protection.outlook.com (40.107.209.10) by
- edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Thu, 15 Jan 2026 23:18:40 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=y8AmzD+jwCaJnGS6xrvaj+M7qZsyMNdL297la69+lhC7MHEjQWSADrHRUPoEBcd0x2lKgeTzPabm+ILShqXjVHqeIxOHNbeZEWprl7gX7L+VrNQGst8KtC9LzyQRQ3URz+lR3T0dkYh+KtdaBdWzxI/oCsqQHOngrj/8q1BoInByotYL4JezItAKJKaGiWXir2XpkLIw0kfHbqxINeABZQegMlHxoRrX/Pi2XoYz9++YfDw31b6TtGenEsqZaFp/H94+MObVzEu+r3tuKgmNBhcU73Mt47/NtgwrREen3ljMREXoJRK6xZ1fybKVmPp24x/SEP6jV2v00fiDwkPd/Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=pNHF9uxPEdHzwIKHZM1/l0FhM3gEW8+Fc9PLEkI1Nqk=;
- b=NBfrOyFFdBvnD9RZn4qrOflPOihw+llrbHHaKUY0Tl8MFznEeL+8/An1ARZOmZz9aNX7H45SXXoxZ+dzMlotwxkTn9Ab+8LCvAPKlnnl/gLf8ecBTVmN2RQewTOT+qj9fEUwK3kUea2Hyo5qJJoUR3tWPO8Z/QHQVJ/vjplwo/meyEs2kNBz5bJVRbWah/ATkZmQJyX6zlOdOuQHn/TXwvqUJoJNpIhdw/m+9a5mmaLroExp6TWFSBr40MouW7BzrtsI/CLWyn/7xs792Bq1mpn2940EwknEbbhZ7409xqDmhssqZpWob31+Ta0FYS4RJ+pWMhyvPH2wNNRsfaSUow==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from BL3PR11MB6410.namprd11.prod.outlook.com (2603:10b6:208:3b9::15)
- by DM3PR11MB8735.namprd11.prod.outlook.com (2603:10b6:0:4b::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9520.5; Fri, 16 Jan
- 2026 07:18:38 +0000
-Received: from BL3PR11MB6410.namprd11.prod.outlook.com
- ([fe80::b01a:aa33:165:efc]) by BL3PR11MB6410.namprd11.prod.outlook.com
- ([fe80::b01a:aa33:165:efc%6]) with mapi id 15.20.9520.005; Fri, 16 Jan 2026
- 07:18:38 +0000
-Date: Thu, 15 Jan 2026 23:18:35 -0800
-From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-To: Matthew Brost <matthew.brost@intel.com>
-CC: <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH v2 1/2] drm/xe: Ban entire multi-queue group on any job
- timeout
-Message-ID: <aWnmS2ZmTqNq5Hhd@nvishwa1-desk>
-References: <20260113042913.3517169-1-matthew.brost@intel.com>
- <20260113042913.3517169-2-matthew.brost@intel.com>
-Content-Type: text/plain; charset="us-ascii"; format=flowed
-Content-Disposition: inline
-In-Reply-To: <20260113042913.3517169-2-matthew.brost@intel.com>
-X-ClientProxiedBy: BYAPR08CA0052.namprd08.prod.outlook.com
- (2603:10b6:a03:117::29) To BL3PR11MB6410.namprd11.prod.outlook.com
- (2603:10b6:208:3b9::15)
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8426E10E818
+ for <intel-xe@lists.freedesktop.org>; Fri, 16 Jan 2026 07:40:01 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
+ [IPv6:2a07:de40:b281:104:10:150:64:97])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id D48555BCC6;
+ Fri, 16 Jan 2026 07:39:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1768549200; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=doC+gr/uKXnBI9fa1D1ITWlyxb9ov7FKbR1ka90ESNE=;
+ b=jw7e/ex2X389f3AFhyAZnl2hvMJU508Bex8N7VeZX0CgSEvy+WJOgiZe1hpnYHuw9dU6pz
+ XGUL1L7UAjAeqVnO0c1kXceKw9QD9mcvCTeIBHEbxaDf1cijwITwT29u6J00f4qfi0iNG8
+ MEvZip3NY/altH/tBwCeubV3L4Vt9AY=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1768549200;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=doC+gr/uKXnBI9fa1D1ITWlyxb9ov7FKbR1ka90ESNE=;
+ b=MJtkUgZv2krE16xoEQrTym0crZeD7+/Qb7fHCWOYzx0iZn0sRwUZ75tk8XMfCSOSpOLBbp
+ JuKYj155nHWlpSBw==
+Authentication-Results: smtp-out2.suse.de;
+ dkim=pass header.d=suse.de header.s=susede2_rsa header.b=SmrxYqfV;
+ dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=hmXNtqMR
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1768549199; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=doC+gr/uKXnBI9fa1D1ITWlyxb9ov7FKbR1ka90ESNE=;
+ b=SmrxYqfVEJuy9QvBr5Of2Dj5QRAjsQ44DVAbry90cElHS2cFSe5XZyOnp5kf8dy879wYSE
+ u2uZB0mNlbDM+MZEbu7MebiLGkoyWMmfvRWfNjLnCa6sAz7svLv9e6GKUteIRUhgcyCNR3
+ RP3IqqTFHGnpVGmoDEy+tb8XVlzaS/o=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1768549199;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=doC+gr/uKXnBI9fa1D1ITWlyxb9ov7FKbR1ka90ESNE=;
+ b=hmXNtqMR8Zq9Cj2K4bcjV8kVCy3TmC831+rvpW2syEmQSZx0DR9IkouSjTbqYLOrzKGxFG
+ jmAmCsW2MZK4eEDQ==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id B4FA23EA63;
+ Fri, 16 Jan 2026 07:39:58 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap1.dmz-prg2.suse.org with ESMTPSA id slDoKk7raWmoUwAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Fri, 16 Jan 2026 07:39:58 +0000
+Message-ID: <72e8c696-8cd7-4bf3-a1e8-d367f3addfe0@suse.de>
+Date: Fri, 16 Jan 2026 08:39:58 +0100
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL3PR11MB6410:EE_|DM3PR11MB8735:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3453bdf8-a002-49ee-9d3c-08de54cf7822
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?gN0WmuqHGGwpv07r1O9hwY52EERk5tmp5Hk1X7VU7Cu4rXZcWBJZy2WgmrXc?=
- =?us-ascii?Q?RjyKr5myjMEZvT4uWFexiB5/kou5iw47RkuGr5HlstUDB7qDsG5ncj4cRT/z?=
- =?us-ascii?Q?Mp8ZXTh7FJij7Q6yiOJYkoCo0NCqijAAwUyC8CmE9ejkGJQW+Np3WXVXJAeF?=
- =?us-ascii?Q?rJ3uWY4P/mZtG3VuPopevBRr4v+HqheNMxXrGvM1zdfK0NbYYBuewxTHkMMR?=
- =?us-ascii?Q?xjN1pX0tt4MIOqqmRQxAvlr3kaBv257AcwlIqZmXnTqxrXV9Pj9dH8iiojME?=
- =?us-ascii?Q?pfXl8mlSuWaUDp6Fh/GyIROZMxtMCiAZZd4HVxEelMrj+BDgVRxIufZuh4Sp?=
- =?us-ascii?Q?NtyKVgNFMV6V6sdcBZ/O7eSNT7QIe2Wij0+IP7QsZouLFQCscEKhsog1ayeT?=
- =?us-ascii?Q?gM2oFyY1sapbwXhz6D1Y+VTFTc3GB9CE4Kd4FCuWFmwia4M/TcgNeRA+e8m+?=
- =?us-ascii?Q?SrUMeHPP78v8hoBTddGB7H+UmBDDJO2HaF+b8JVv4kEBegfoKqgjPazlZqT8?=
- =?us-ascii?Q?u+v/6/3KrCKjDMpKzSHPJ/l+edGgVYL1tlyJ0M02y5tFo7S0VKbm4lbYc/Mf?=
- =?us-ascii?Q?NiZPDutgLVjsc+JL1Nad7Dw5EAWdzm6WwGT8SbkY+cU93GjRt9MKEcinf1Xu?=
- =?us-ascii?Q?FpQNBLSZtBbW1fToeyu36P9WrouxiCRjvjznev89+9329oDWO3+n4EgHmkKt?=
- =?us-ascii?Q?EXwWZQF+UZnIfnfoZEG+HKG/3/tzXo1IdufdQrG8FtZ0LOAAmHYxmvJMZ4gp?=
- =?us-ascii?Q?/hCDWY/knFJi8cyzQnXMrOTekA5pTHI15/qIVUiSImg4s30/ylPpZuq9sSfn?=
- =?us-ascii?Q?sHbL5/mi+ZLxljJtYBVX1nvvM8Sl6d4XGFXjaR1L6fvZvWUB4X5DbgTdJY4c?=
- =?us-ascii?Q?FqodT64viP914i7KLjX/jMox32tnhwljOFCwJklUI3chSjWWVL/i3zohiZS/?=
- =?us-ascii?Q?ZzhTCwCy0SYjQoKxqFBLv9TyooisvsmbSgQGXf30aZSWcC32UPuuS5ZfdaW5?=
- =?us-ascii?Q?nfxnWuHD/2vlqcDOP70fqxfLqZHILyYOydYCUgX2ugeHVajSgg4RD/I7mEEn?=
- =?us-ascii?Q?V2XDPuV4nZwlhFZvJRfAZuF1Pho7n/UmP3OI20LnLyOGOFCdtfjio6KT1f8O?=
- =?us-ascii?Q?rWSr7gqek0Hpu977d6p2G5UeGoQHapmOvlB3evhC4Bi1QEhjrceWzfD7Sd4Q?=
- =?us-ascii?Q?W81gEp0Ucn5o+osevsIn7//pmGi1rx0fvak2wKblO1+rsjk7tcchhth1yKeW?=
- =?us-ascii?Q?bCk1R3mcPuR2KMSWvwb2yoqPVI44+K5l6677Ow4pAZErlDx1ocH7uE8TNWun?=
- =?us-ascii?Q?N7cLvihSl2GPVvEg+iR8X4pGecmJrWAF2oYFHjo+d6Xapy68iEmBfxPcn22U?=
- =?us-ascii?Q?fJ3bncjSuqoEonhTl7Sovv0g/6j0nr5Onz6dfVXxpsAgBKmhdE54sGsWWLFr?=
- =?us-ascii?Q?yrjq/DjmArHi5yiqw07gfavNu1ctYdU2RhYRLcoMkYNSrTEmT4FcZZ8FSuyv?=
- =?us-ascii?Q?iAeWxBAGKpKu7UXDDZdkdSEUhdMfTzuStPdjcEmhlK3RPQ2DvRxiaBY35Ixk?=
- =?us-ascii?Q?l7bRNZBYMz4RANPlBZY=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BL3PR11MB6410.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?tMUbMDwokZN/Yz5t4TyGQgacVzdUVnqpkuKH9LaN5hIJR4FQ3WWnYiXXL8dR?=
- =?us-ascii?Q?skUpH8Roe0qNU0SiN/BUtNB/HmAxkIVhZKDcrswKNCUXdOOR4ShOZTmEOE6Y?=
- =?us-ascii?Q?tfBWkRv8T/DOI3URiJQZM0Zq8nO6gZJo08Ttik3s/7EVq+JQU5C1778Md+cl?=
- =?us-ascii?Q?+bjwc2R7DI1SDrEA/zJFMtTPN8MrEG+Wi1uNF/bTnTOM89RLFT4k9UVG64Gy?=
- =?us-ascii?Q?bQwY2kYPLGdPZ/gkmRfOdA5hykW0HuIusZKaelg63c88Y6steRJrfKHDZQxp?=
- =?us-ascii?Q?UVNBXGe5ccvIDgYAAFgjhuzt+mrAO3WJpSQlMrWmpAZ8t2V24ezP4hY20r1N?=
- =?us-ascii?Q?NdZd6sz8w4ZRGonDJiadvmCnrPzibXw1TiVkp/Ky81frqq89Yy9G4IV9bVlJ?=
- =?us-ascii?Q?NcgsJC0suwsYaVJzlZfiffwITpVCTWQLlp2vdgnryTVzh+Gafkc+Qql7/jGf?=
- =?us-ascii?Q?99Dv8h9HMD8fHyobon/KIcKYlF4lgNS8dYNI+d4Xonu6pAdkVp7+VPBdHClG?=
- =?us-ascii?Q?xjPdX4/O9eD4FPKiYGKuzFAk+sRR6zXtV+GQOBBe52l1E7M1OJAfBP43t24E?=
- =?us-ascii?Q?0GMO5NcQ6Yp/Phb7Qlm3QpK/XbbyWlG70ElgoLoPFWhlBaZ1+G/WstksFgGy?=
- =?us-ascii?Q?zJxIWKO1a4rHLcEq3f3OwF+VAMIzbCVa401x1tR4KriR6ZWRy4/mT7kFD6iF?=
- =?us-ascii?Q?SDiF8sz+Cj420jUcztvZJ15yLFH09WgCUAafBlxW2cxhrPLOuABa88J+CVmJ?=
- =?us-ascii?Q?9ZcG+bQi5pFw2OwjXVOhyRH0Ptxf8rg9/FC7w2wZ5vYONQmfVEhBWcxGfhBT?=
- =?us-ascii?Q?ObMFztAUNpoA8oyMANkaSvnGYpJZCZ7vETQl2WSOlSL15qpw5Ub0cS+LMQuq?=
- =?us-ascii?Q?N+ritumUIoh5JEFG+Myr5Nw9t0BkeJGRhBICGbKyZdTfR60PKxSydnd2RMFF?=
- =?us-ascii?Q?RIxpGShJE9jAbQxUY1Fhj5dNLy0qqidumexisxA/xNrsqAZUPyQXDt2KJfLZ?=
- =?us-ascii?Q?9BEamahNGeWehRJ+d7Xp5FHlRMndx8YVNDYhqGZrQAWX5EjEqdHdXms0rftt?=
- =?us-ascii?Q?BQcUdWopqKMt5XF7Yh4tr8cil/lEd66Yqquor7nm2GF7uzmh+4iUj4OXZZ0i?=
- =?us-ascii?Q?1dvnZyxCFpkI4gqRseKu8hyNi+gAIu5p3qkMbssHBtc1gjSsDiddHzDRXWwJ?=
- =?us-ascii?Q?1yHc+GKewjTOpoSs4q+huv7YsLXa0sdOC82yquW4aDB535IR41EYXz7J8n6V?=
- =?us-ascii?Q?9icTdW7VswekWq4lXjfnhLMW3RjPfO4JqBXSvveFl/fOEyTUCUPkqIwFpvjn?=
- =?us-ascii?Q?srLkP0AFn+iIm+kb9zyfSJ1WMga9uf67yHoiIl2aR+S9AcZr/ZdOJWGVFrVQ?=
- =?us-ascii?Q?ScqN2oeTyKGvbVF2j2JXGdwq3KJ2LY3qQXdbDzes1NTiplQ11yIxf61YA6jE?=
- =?us-ascii?Q?nhZYU6y9NAN0Jq98S1BOA6AI+zgo0ft1UU3G6oIEk25f4Eiv5ctt15DrtRxB?=
- =?us-ascii?Q?ZvFPtRa2kV4Q8NiMMpWKWZ+l7ysNpRUYp/CyJV+s1gyLbWkFGFpDTHoB8FVN?=
- =?us-ascii?Q?iRtR0srFh2pELxplRjzMX+Js+GDhYqnRBid5wB8zihbF13m6nr9f7ThvnYLN?=
- =?us-ascii?Q?fK29VVB7gY9IeXstxsA8HWvVwP3PvKrBpGzHrviQ2P1jmcI1PTEGoYkv8vgC?=
- =?us-ascii?Q?lmRzpQq5MW6kGP/waVdIA0CwVtAJ/vTsEvbVcbk/wIxue9bJMmo58VRp46zV?=
- =?us-ascii?Q?q9Db47Kgsg8vg4Xky+00KCtZ2HsTHhmukOpRBYOlkaG5d6m5dTLO?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3453bdf8-a002-49ee-9d3c-08de54cf7822
-X-MS-Exchange-CrossTenant-AuthSource: BL3PR11MB6410.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jan 2026 07:18:38.5269 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: vhzZGZUNkzhbjtRmc8jOxm0WW9hoVzXFMESCFnyXWQ2ADCST9Ewoncr3umobr5SeK82zuv/s+WJrdvQ1dTa9cX7ZyO/jtJEvxOtN2UpfkF9G2sc1T28j34dZTYXPTNIu
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM3PR11MB8735
-X-OriginatorOrg: intel.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 00/12] Recover sysfb after DRM probe failure
+To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: Zack Rusin <zack.rusin@broadcom.com>, dri-devel@lists.freedesktop.org,
+ Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org,
+ Ard Biesheuvel <ardb@kernel.org>, Ce Sun <cesun102@amd.com>,
+ Chia-I Wu <olvaffe@gmail.com>, Danilo Krummrich <dakr@kernel.org>,
+ Dave Airlie <airlied@redhat.com>, Deepak Rawat <drawat.floss@gmail.com>,
+ Dmitry Osipenko <dmitry.osipenko@collabora.com>,
+ Gerd Hoffmann <kraxel@redhat.com>,
+ Gurchetan Singh <gurchetansingh@chromium.org>,
+ Hans de Goede <hansg@kernel.org>, Hawking Zhang <Hawking.Zhang@amd.com>,
+ Helge Deller <deller@gmx.de>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, Jani Nikula <jani.nikula@linux.intel.com>,
+ Javier Martinez Canillas <javierm@redhat.com>,
+ Jocelyn Falempe <jfalempe@redhat.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Lijo Lazar <lijo.lazar@amd.com>, linux-efi@vger.kernel.org,
+ linux-fbdev@vger.kernel.org, linux-hyperv@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Lucas De Marchi <lucas.demarchi@intel.com>,
+ Lyude Paul <lyude@redhat.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ "Mario Limonciello (AMD)" <superm1@kernel.org>,
+ Mario Limonciello <mario.limonciello@amd.com>,
+ Maxime Ripard <mripard@kernel.org>, nouveau@lists.freedesktop.org,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Simona Vetter <simona@ffwll.ch>,
+ spice-devel@lists.freedesktop.org,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ =?UTF-8?Q?Timur_Krist=C3=B3f?= <timur.kristof@gmail.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, virtualization@lists.linux.dev,
+ Vitaly Prosyak <vitaly.prosyak@amd.com>
+References: <20251229215906.3688205-1-zack.rusin@broadcom.com>
+ <c816f7ed-66e0-4773-b3d1-4769234bd30b@suse.de>
+ <CABQX2QNQU4XZ1rJFqnJeMkz8WP=t9atj0BqXHbDQab7ZnAyJxg@mail.gmail.com>
+ <97993761-5884-4ada-b345-9fb64819e02a@suse.de>
+ <9058636d-cc18-4c8f-92cf-782fd8f771af@amd.com> <aWkDYO1o9T1BhvXj@intel.com>
+Content-Language: en-US
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Autocrypt: addr=tzimmermann@suse.de; keydata=
+ xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
+ XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
+ BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
+ hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
+ 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
+ AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
+ AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
+ AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
+ lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
+ U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
+ vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
+ 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
+ j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
+ T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
+ 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
+ GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
+ hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
+ EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
+ C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
+ yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
+ SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
+ Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
+ 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
+In-Reply-To: <aWkDYO1o9T1BhvXj@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [-3.01 / 50.00]; BAYES_HAM(-3.00)[100.00%];
+ SUSPICIOUS_RECIPS(1.50)[]; NEURAL_HAM_LONG(-1.00)[-1.000];
+ R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
+ MX_GOOD(-0.01)[]; TO_MATCH_ENVRCPT_ALL(0.00)[];
+ FREEMAIL_ENVRCPT(0.00)[gmail.com,gmx.de];
+ FUZZY_RATELIMITED(0.00)[rspamd.com];
+ RBL_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:104:10:150:64:97:from]; 
+ RCPT_COUNT_TWELVE(0.00)[44];
+ DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ MIME_TRACE(0.00)[0:+]; ARC_NA(0.00)[];
+ FREEMAIL_CC(0.00)[broadcom.com,lists.freedesktop.org,amd.com,kernel.org,gmail.com,redhat.com,collabora.com,chromium.org,gmx.de,linux.intel.com,vger.kernel.org,intel.com,ffwll.ch,ursulin.net,lists.linux.dev];
+ RCVD_TLS_ALL(0.00)[]; DKIM_TRACE(0.00)[suse.de:+];
+ RCVD_COUNT_TWO(0.00)[2];
+ DNSWL_BLOCKED(0.00)[2a07:de40:b281:104:10:150:64:97:from,2a07:de40:b281:106:10:150:64:167:received];
+ FROM_EQ_ENVFROM(0.00)[]; FROM_HAS_DN(0.00)[];
+ TO_DN_SOME(0.00)[]; MID_RHS_MATCH_FROM(0.00)[];
+ TAGGED_RCPT(0.00)[];
+ RECEIVED_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:106:10:150:64:167:received];
+ R_RATELIMIT(0.00)[to_ip_from(RL516un6i87yts6oyas1exgued)];
+ RCVD_VIA_SMTP_AUTH(0.00)[];
+ DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:rdns,
+ imap1.dmz-prg2.suse.org:helo, suse.de:dkim, suse.de:mid, suse.de:email,
+ suse.com:url]
+X-Rspamd-Action: no action
+X-Rspamd-Queue-Id: D48555BCC6
+X-Rspamd-Server: rspamd1.dmz-prg2.suse.org
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -181,249 +183,102 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Jan 12, 2026 at 08:29:12PM -0800, Matthew Brost wrote:
->In multi-queue mode, we only have control over the entire group, so we
->cannot ban individual queues or signal fences until the whole group is
->removed from hardware. Implement banning of the entire group if any job
->within it times out.
->
->v2:
-> - Fix CT lock inversion (Niranjana)
+Hi
 
-Turned out it was not the CT lock, but work_completion lock.
+Am 15.01.26 um 16:10 schrieb Ville Syrjälä:
+> On Thu, Jan 15, 2026 at 03:39:00PM +0100, Christian König wrote:
+>> Sorry to being late, but I only now realized what you are doing here.
+>>
+>> On 1/15/26 12:02, Thomas Zimmermann wrote:
+>>> Hi,
+>>>
+>>> apologies for the delay. I wanted to reply and then forgot about it.
+>>>
+>>> Am 10.01.26 um 05:52 schrieb Zack Rusin:
+>>>> On Fri, Jan 9, 2026 at 5:34 AM Thomas Zimmermann <tzimmermann@suse.de> wrote:
+>>>>> Hi
+>>>>>
+>>>>> Am 29.12.25 um 22:58 schrieb Zack Rusin:
+>>>>>> Almost a rite of passage for every DRM developer and most Linux users
+>>>>>> is upgrading your DRM driver/updating boot flags/changing some config
+>>>>>> and having DRM driver fail at probe resulting in a blank screen.
+>>>>>>
+>>>>>> Currently there's no way to recover from DRM driver probe failure. PCI
+>>>>>> DRM driver explicitly throw out the existing sysfb to get exclusive
+>>>>>> access to PCI resources so if the probe fails the system is left without
+>>>>>> a functioning display driver.
+>>>>>>
+>>>>>> Add code to sysfb to recever system framebuffer when DRM driver's probe
+>>>>>> fails. This means that a DRM driver that fails to load reloads the system
+>>>>>> framebuffer driver.
+>>>>>>
+>>>>>> This works best with simpledrm. Without it Xorg won't recover because
+>>>>>> it still tries to load the vendor specific driver which ends up usually
+>>>>>> not working at all. With simpledrm the system recovers really nicely
+>>>>>> ending up with a working console and not a blank screen.
+>>>>>>
+>>>>>> There's a caveat in that some hardware might require some special magic
+>>>>>> register write to recover EFI display. I'd appreciate it a lot if
+>>>>>> maintainers could introduce a temporary failure in their drivers
+>>>>>> probe to validate that the sysfb recovers and they get a working console.
+>>>>>> The easiest way to double check it is by adding:
+>>>>>>     /* XXX: Temporary failure to test sysfb restore - REMOVE BEFORE COMMIT */
+>>>>>>     dev_info(&pdev->dev, "Testing sysfb restore: forcing probe failure\n");
+>>>>>>     ret = -EINVAL;
+>>>>>>     goto out_error;
+>>>>>> or such right after the devm_aperture_remove_conflicting_pci_devices .
+>>>>> Recovering the display like that is guess work and will at best work
+>>>>> with simple discrete devices where the framebuffer is always located in
+>>>>> a confined graphics aperture.
+>>>>>
+>>>>> But the problem you're trying to solve is a real one.
+>>>>>
+>>>>> What we'd want to do instead is to take the initial hardware state into
+>>>>> account when we do the initial mode-setting operation.
+>>>>>
+>>>>> The first step is to move each driver's remove_conflicting_devices call
+>>>>> to the latest possible location in the probe function. We usually do it
+>>>>> first, because that's easy. But on most hardware, it could happen much
+>>>>> later.
+>>>> Well, some drivers (vbox, vmwgfx, bochs and currus-qemu) do it because
+>>>> they request pci regions which is going to fail otherwise. Because
+>>>> grabbining the pci resources is in general the very first thing that
+>>>> those drivers need to do to setup anything, we
+>>>> remove_conflicting_devices first or at least very early.
+>>> To my knowledge, requesting resources is more about correctness than a hard requirement to use an I/O or memory range. Has this changed?
+>> Nope that is not correct.
+>>
+>> At least for AMD GPUs remove_conflicting_devices() really early is necessary because otherwise some operations just result in a spontaneous system reboot.	
+>>
+>> For example resizing the PCIe BAR giving access to VRAM or disabling VGA emulation (which AFAIK is used for EFI as well) is only possible when the VGA or EFI framebuffer driver is kicked out first.
+>>
+>> And disabling VGA emulation is among the absolutely first steps you do to take over the scanout config.
+> It's similar for Intel. For us VGA emulation won't be used for
+> EFI boot, but we still can't have the previous driver poking
+> around in memory while the real driver is initializing. The
+> entire memory layout may get completely shuffled so there's
+> no telling where such memory accesses would land.
 
-> - Initialize new queues in group to stopped
->
->Cc: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
->Signed-off-by: Matthew Brost <matthew.brost@intel.com>
->---
-> drivers/gpu/drm/xe/xe_exec_queue_types.h |   2 +
-> drivers/gpu/drm/xe/xe_guc_submit.c       | 103 +++++++++++++++++------
-> 2 files changed, 81 insertions(+), 24 deletions(-)
->
->diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
->index 5fc516b0bb77..562ea75891ba 100644
->--- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
->+++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
->@@ -66,6 +66,8 @@ struct xe_exec_queue_group {
-> 	bool sync_pending;
-> 	/** @banned: Group banned */
-> 	bool banned;
->+	/** @stopped: Group is stopped, protected by list_lock */
->+	bool stopped;
-> };
->
-> /**
->diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
->index be8fa76baf1d..a11f3e572d25 100644
->--- a/drivers/gpu/drm/xe/xe_guc_submit.c
->+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
->@@ -558,6 +558,57 @@ static void xe_guc_exec_queue_trigger_cleanup(struct xe_exec_queue *q)
-> 	xe_sched_tdr_queue_imm(&q->guc->sched);
-> }
->
->+static void xe_guc_exec_queue_group_stop(struct xe_exec_queue *q)
->+{
->+	struct xe_exec_queue *primary = xe_exec_queue_multi_queue_primary(q);
->+	struct xe_exec_queue_group *group = q->multi_queue.group;
->+	struct xe_exec_queue *eq, *next;
->+	LIST_HEAD(tmp);
->+
->+	xe_gt_assert(guc_to_gt(exec_queue_to_guc(q)),
->+		     xe_exec_queue_is_multi_queue(q));
->+
->+	mutex_lock(&group->list_lock);
->+	group->stopped = true;
->+	list_for_each_entry_safe(eq, next, &group->list, multi_queue.link)
->+		if (xe_exec_queue_get_unless_zero(eq))
->+			list_move_tail(&eq->multi_queue.link, &tmp);
->+	mutex_unlock(&group->list_lock);
->+
->+	/* We cannot stop under list lock without getting inversions */
->+	xe_sched_submission_stop(&primary->guc->sched);
->+	list_for_each_entry(eq, &tmp, multi_queue.link)
->+		xe_sched_submission_stop(&eq->guc->sched);
->+
->+	mutex_lock(&group->list_lock);
->+	list_for_each_entry_safe(eq, next, &tmp, multi_queue.link) {
->+		/* Corner where we got banned while stopping */
->+		if (READ_ONCE(group->banned))
->+			xe_guc_exec_queue_trigger_cleanup(eq);
->+		list_move_tail(&eq->multi_queue.link, &group->list);
->+		xe_exec_queue_put(eq);
->+	}
->+	mutex_unlock(&group->list_lock);
->+}
+Isn't there code in display/intel_fbdev.c that reads back the old state 
+from hardware before initializing fbdev? [1] How does that work then? 
+Wouldn't the HW state be invalid already?
 
-May be add some documentatin for this function why we are doing this
-list copying (ie., about locking requirement)?
+Best regards
+Thomas
 
->+
->+static void xe_guc_exec_queue_group_start(struct xe_exec_queue *q)
->+{
->+	struct xe_exec_queue *primary = xe_exec_queue_multi_queue_primary(q);
->+	struct xe_exec_queue_group *group = q->multi_queue.group;
->+	struct xe_exec_queue *eq;
->+
->+	xe_gt_assert(guc_to_gt(exec_queue_to_guc(q)),
->+		     xe_exec_queue_is_multi_queue(q));
->+
->+	xe_sched_submission_start(&primary->guc->sched);
->+
->+	mutex_lock(&group->list_lock);
->+	group->stopped = false;
->+	list_for_each_entry(eq, &group->list, multi_queue.link)
->+		xe_sched_submission_start(&eq->guc->sched);
->+	mutex_unlock(&group->list_lock);
->+}
->+
-> static void xe_guc_exec_queue_group_trigger_cleanup(struct xe_exec_queue *q)
-> {
-> 	struct xe_exec_queue *primary = xe_exec_queue_multi_queue_primary(q);
->@@ -1411,7 +1462,7 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
-> {
-> 	struct xe_sched_job *job = to_xe_sched_job(drm_job);
-> 	struct drm_sched_job *tmp_job;
->-	struct xe_exec_queue *q = job->q;
->+	struct xe_exec_queue *q = job->q, *primary;
-> 	struct xe_gpu_scheduler *sched = &q->guc->sched;
-> 	struct xe_guc *guc = exec_queue_to_guc(q);
-> 	const char *process_name = "no process";
->@@ -1422,6 +1473,11 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
->
-> 	xe_gt_assert(guc_to_gt(guc), !exec_queue_destroyed(q));
->
->+	if (xe_exec_queue_is_multi_queue_secondary(q))
->+		primary = xe_exec_queue_multi_queue_primary(q);
->+	else
->+		primary = q;
->+
-
-The xe_exec_queue_multi_queue_primary(q) already returns 'q' if it
-is not a multi-queue. So, we can remove the if/else here.
-
-> 	/*
-> 	 * TDR has fired before free job worker. Common if exec queue
-> 	 * immediately closed after last fence signaled. Add back to pending
->@@ -1433,7 +1489,10 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
-> 		return DRM_GPU_SCHED_STAT_NO_HANG;
->
-> 	/* Kill the run_job entry point */
->-	xe_sched_submission_stop(sched);
->+	if (xe_exec_queue_is_multi_queue(q))
->+		xe_guc_exec_queue_group_stop(q);
->+	else
->+		xe_sched_submission_stop(sched);
->
-> 	/* Must check all state after stopping scheduler */
-> 	skip_timeout_check = exec_queue_reset(q) ||
->@@ -1448,14 +1507,6 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
-> 	if (xe_exec_queue_is_lr(q))
-> 		xe_gt_assert(guc_to_gt(guc), skip_timeout_check);
->
->-	/*
->-	 * FIXME: In multi-queue scenario, the TDR must ensure that the whole
->-	 * multi-queue group is off the HW before signaling the fences to avoid
->-	 * possible memory corruptions. This means disabling scheduling on the
->-	 * primary queue before or during the secondary queue's TDR. Need to
->-	 * implement this in least obtrusive way.
->-	 */
->-
-> 	/*
-> 	 * If devcoredump not captured and GuC capture for the job is not ready
-> 	 * do manual capture first and decide later if we need to use it
->@@ -1482,10 +1533,11 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
-> 	set_exec_queue_banned(q);
->
-> 	/* Kick job / queue off hardware */
->-	if (!wedged && (exec_queue_enabled(q) || exec_queue_pending_disable(q))) {
->+	if (!wedged && (exec_queue_enabled(primary) ||
->+			exec_queue_pending_disable(primary))) {
-> 		int ret;
->
->-		if (exec_queue_reset(q))
->+		if (exec_queue_reset(primary))
-> 			err = -EIO;
->
-> 		if (xe_uc_fw_is_running(&guc->fw)) {
->@@ -1494,8 +1546,8 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
-> 			 * modifying state
-> 			 */
-> 			ret = wait_event_timeout(guc->ct.wq,
->-						 (!exec_queue_pending_enable(q) &&
->-						  !exec_queue_pending_disable(q)) ||
->+						 (!exec_queue_pending_enable(primary) &&
->+						  !exec_queue_pending_disable(primary)) ||
-> 						 xe_guc_read_stopped(guc) ||
-> 						 vf_recovery(guc), HZ * 5);
-> 			if (vf_recovery(guc))
->@@ -1503,7 +1555,7 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
-> 			if (!ret || xe_guc_read_stopped(guc))
-> 				goto trigger_reset;
->
->-			disable_scheduling(q, skip_timeout_check);
->+			disable_scheduling(primary, skip_timeout_check);
-> 		}
->
-> 		/*
->@@ -1517,7 +1569,7 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
-> 		smp_rmb();
-> 		ret = wait_event_timeout(guc->ct.wq,
-> 					 !xe_uc_fw_is_running(&guc->fw) ||
->-					 !exec_queue_pending_disable(q) ||
->+					 !exec_queue_pending_disable(primary) ||
-> 					 xe_guc_read_stopped(guc) ||
-> 					 vf_recovery(guc), HZ * 5);
-> 		if (vf_recovery(guc))
->@@ -1527,11 +1579,11 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
-> 			if (!ret)
-> 				xe_gt_warn(guc_to_gt(guc),
-> 					   "Schedule disable failed to respond, guc_id=%d",
->-					   q->guc->id);
->-			xe_devcoredump(q, job,
->+					   primary->guc->id);
->+			xe_devcoredump(primary, job,
-> 				       "Schedule disable failed to respond, guc_id=%d, ret=%d, guc_read=%d",
->-				       q->guc->id, ret, xe_guc_read_stopped(guc));
->-			xe_gt_reset_async(q->gt);
->+				       primary->guc->id, ret, xe_guc_read_stopped(guc));
->+			xe_gt_reset_async(primary->gt);
-> 			xe_sched_tdr_queue_imm(sched);
-> 			goto rearm;
-> 		}
->@@ -1577,12 +1629,13 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
-> 	drm_sched_for_each_pending_job(tmp_job, &sched->base, NULL)
-> 		xe_sched_job_set_error(to_xe_sched_job(tmp_job), -ECANCELED);
->
->-	xe_sched_submission_start(sched);
->-
->-	if (xe_exec_queue_is_multi_queue(q))
->+	if (xe_exec_queue_is_multi_queue(q)) {
->+		xe_guc_exec_queue_group_start(q);
-> 		xe_guc_exec_queue_group_trigger_cleanup(q);
->-	else
->+	} else {
->+		xe_sched_submission_start(sched);
-> 		xe_guc_exec_queue_trigger_cleanup(q);
->+	}
-
-There is another place below where we call xe_sched_submission_start()
-in the TDR. It also needs to be changed.
-
-Niranjana
+[1] 
+https://elixir.bootlin.com/linux/v6.18.5/source/drivers/gpu/drm/i915/display/intel_fbdev.c#L356
 
 >
-> 	/*
-> 	 * We want the job added back to the pending list so it gets freed; this
->@@ -1962,6 +2015,8 @@ static int guc_exec_queue_init(struct xe_exec_queue *q)
+> And I suppose reBAR is a concern for us as well.
 >
-> 		INIT_LIST_HEAD(&q->multi_queue.link);
-> 		mutex_lock(&group->list_lock);
->+		if (group->stopped)
->+			WRITE_ONCE(q->guc->sched.base.pause_submit, true);
-> 		list_add_tail(&q->multi_queue.link, &group->list);
-> 		mutex_unlock(&group->list_lock);
-> 	}
->-- 
->2.34.1
->
+
+-- 
+--
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Frankenstr. 146, 90461 Nürnberg, Germany, www.suse.com
+GF: Jochen Jaser, Andrew McDonald, Werner Knoblich, (HRB 36809, AG Nürnberg)
+
+
