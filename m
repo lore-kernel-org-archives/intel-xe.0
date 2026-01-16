@@ -4,51 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E15E8C98306
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DDE1AC98302
 	for <intel-xe@archiver.kernel.org>; Fri, 16 Jan 2026 22:12:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8CD4710E110;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9D08310E1FD;
 	Fri, 16 Jan 2026 22:12:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HM8qley7";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JI6kz9YV";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6937110E0FB
- for <intel-xe@lists.freedesktop.org>; Fri, 16 Jan 2026 22:12:45 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 64BDC10E0FB
+ for <intel-xe@lists.freedesktop.org>; Fri, 16 Jan 2026 22:12:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1768601565; x=1800137565;
+ t=1768601564; x=1800137564;
  h=from:date:subject:mime-version:content-transfer-encoding:
  message-id:references:in-reply-to:to:cc;
- bh=Zmh7Af1eK7ZMGT8fXqI8as71yiV9yR/PLWhD+Xca93k=;
- b=HM8qley7b1nO3103GVrDyCjxzAzXFdNirHYOSCrVD7EF//6KbN4pbXqp
- YXOoCN/Og6wDo2/BE8XBBC3i5WnhOF1rqDhx4TnaT1W43Tf2iLu3kF7rd
- PfUq3c3V+I1McST8tfSC+pDh3uBuBYAOQkb3gA/sCiRL8TYmp+WS4r86M
- 7vEvI1JNK9yoXJzyHN85JmOxQcRjPthOJDysHYGZ6/rP/BBBxsbOb8e73
- xFCqDPY41xxX4tphK/sY4UQa0HPtNzcvNNAfh37fazj0qFt8tJcrcFUhK
- KJ0iaKniXrAF568FJgLB3IK1lOYQpXNwRQtGv8yNXlxDVvzOvG7pt7QhP Q==;
-X-CSE-ConnectionGUID: BE26e3ihRqyyUFTiiNyg8g==
-X-CSE-MsgGUID: LkPMNsJJQzmKfOLaxtc87A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11673"; a="69123023"
-X-IronPort-AV: E=Sophos;i="6.21,232,1763452800"; d="scan'208";a="69123023"
+ bh=xtdT+FZfCD/IPkLFmMzcj/G7wN+Qxyxc4zOEMn61tlk=;
+ b=JI6kz9YVvLaW/yzFd39mz//PxDJQzeFxsF7d0FEpO3qHY5FLZbbIKgTV
+ 37y/ctdobX4me9ronZrZRMzNPGdHsZgUPkAfWGpiEG+aFI2rEqDTpfKHH
+ pc7i90lw2cHM4RyCP8uIm79TW9iu/WQpXabW6hPXJmRhXki2wYGWDhGIw
+ Y56BlRGZ1Im+zcV2He6xPQOZP90EU73lqv8ANzJOFep9TqZvhSIi6vKGG
+ aI+ojqBsa2kgcDf1APSnFvkFJEzmkh2U4fJMQNbduRtZkxz8VFMG8QLw0
+ 0/ZzGXhw61jX95qKyf4LqeyeH+l2lfxlRbr8VYhuUKFC6opFQxXWUXBQd A==;
+X-CSE-ConnectionGUID: /d/x75TpQp6RAKDSBTsb8w==
+X-CSE-MsgGUID: JSKyCGR7Rbq495hVWENr3A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11673"; a="69123021"
+X-IronPort-AV: E=Sophos;i="6.21,232,1763452800"; d="scan'208";a="69123021"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jan 2026 14:12:45 -0800
-X-CSE-ConnectionGUID: oaj72oRVTii8Of1weXMbHw==
-X-CSE-MsgGUID: pk+lRMzRSbyGM9XqjWAegQ==
+ 16 Jan 2026 14:12:44 -0800
+X-CSE-ConnectionGUID: gF4vuK65S32hqqhva0maQQ==
+X-CSE-MsgGUID: i+cHbT1nSpmQeztjhT2AXg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,232,1763452800"; d="scan'208";a="204961785"
+X-IronPort-AV: E=Sophos;i="6.21,232,1763452800"; d="scan'208";a="204961779"
 Received: from khuang2-desk.gar.corp.intel.com (HELO [192.168.1.16])
  ([10.124.221.59])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jan 2026 14:12:45 -0800
+ 16 Jan 2026 14:12:43 -0800
 From: Gustavo Sousa <gustavo.sousa@intel.com>
-Date: Fri, 16 Jan 2026 19:12:12 -0300
-Subject: [PATCH 04/12] drm/xe/kunit: Add xe_kunit_is_live_test()
+Date: Fri, 16 Jan 2026 19:12:11 -0300
+Subject: [PATCH 03/12] drm/xe: Define and use MCR version of
+ COMMON_SLICE_CHICKEN4
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260116-rtp-mcr-check-v1-4-d420b9c1a327@intel.com>
+Message-Id: <20260116-rtp-mcr-check-v1-3-d420b9c1a327@intel.com>
 References: <20260116-rtp-mcr-check-v1-0-d420b9c1a327@intel.com>
 In-Reply-To: <20260116-rtp-mcr-check-v1-0-d420b9c1a327@intel.com>
 To: intel-xe@lists.freedesktop.org
@@ -68,92 +69,55 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-In upcoming changes we will need to differentiate between regular and
-live KUnit tests.  Add the function xe_kunit_is_live_test() for that
-purpose.
+The register COMMON_SLICE_CHICKEN4 is a MCR register on both Xe2 and
+Xe3. Let's make sure to define a MCR version of it and use it for the
+relevant IP versions.
 
-Note that this is implemented in a rather hackish way, by leveraging
-KUnit's static stubbing functionality.  A better approach would be to
-store a boolean somewhere in test->priv that would tell if a test is a
-live one, however that's not quite feasible today given the inconsistent
-usage of test->priv (there is not a single uniform type of data assigned
-to it across existing test).
+Use XEHP_ as prefix for the register name, since it is MCR as of Xe_HP.
 
+Fixes: 8d6f16f1f082 ("drm/xe: Extend Wa_22021007897 to Xe3 platforms")
+Fixes: e5c13e2c505b ("drm/xe/xe2hpg: Add Wa_22021007897")
+Bspec: 66534, 71185, 74417
 Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
 ---
- drivers/gpu/drm/xe/tests/xe_kunit_helpers.c | 25 +++++++++++++++++++++++++
- drivers/gpu/drm/xe/tests/xe_kunit_helpers.h |  4 ++++
- 2 files changed, 29 insertions(+)
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h | 1 +
+ drivers/gpu/drm/xe/xe_wa.c           | 4 ++--
+ 2 files changed, 3 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/tests/xe_kunit_helpers.c b/drivers/gpu/drm/xe/tests/xe_kunit_helpers.c
-index bc5156966ce9..369b26b3a32c 100644
---- a/drivers/gpu/drm/xe/tests/xe_kunit_helpers.c
-+++ b/drivers/gpu/drm/xe/tests/xe_kunit_helpers.c
-@@ -16,6 +16,18 @@
- #include "xe_device_types.h"
- #include "xe_pm.h"
+diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+index d4a1bb1edc9c..f129210e8e48 100644
+--- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+@@ -168,6 +168,7 @@
+ #define XEHPG_SC_INSTDONE_EXTRA2		XE_REG_MCR(0x7108)
  
-+/**
-+ * xe_kunit_is_live_test - Return true if @test is a live test.
-+ * @test: the &kunit test
-+ *
-+ * Return: True for a live test and false otherwise.
-+ */
-+bool xe_kunit_is_live_test(struct kunit *test)
-+{
-+	KUNIT_STATIC_STUB_REDIRECT(xe_kunit_is_live_test, test);
-+	return false;
-+}
-+
- /**
-  * xe_kunit_helper_alloc_xe_device - Allocate a &xe_device for a KUnit test.
-  * @test: the &kunit where this &xe_device will be used
-@@ -93,6 +105,11 @@ EXPORT_SYMBOL_IF_KUNIT(xe_kunit_helper_xe_device_test_init);
+ #define COMMON_SLICE_CHICKEN4			XE_REG(0x7300, XE_REG_OPTION_MASKED)
++#define XEHP_COMMON_SLICE_CHICKEN4		XE_REG_MCR(0x7300, XE_REG_OPTION_MASKED)
+ #define   SBE_PUSH_CONSTANT_BEHIND_FIX_ENABLE	REG_BIT(12)
+ #define   DISABLE_TDC_LOAD_BALANCING_CALC	REG_BIT(6)
  
- KUNIT_DEFINE_ACTION_WRAPPER(put_xe_pm_runtime, xe_pm_runtime_put, struct xe_device *);
- 
-+static bool xe_kunit_is_live_test_indeed(struct kunit *test)
-+{
-+	return true;
-+}
-+
- /**
-  * xe_kunit_helper_xe_device_live_test_init - Prepare a &xe_device for
-  *                                            use in a live KUnit test.
-@@ -116,6 +133,14 @@ int xe_kunit_helper_xe_device_live_test_init(struct kunit *test)
- {
- 	struct xe_device *xe = xe_device_const_cast(test->param_value);
- 
-+	/*
-+	 * FIXME: This is a hack and a better solution is to have the "priv"
-+	 * member of tests have a boolean to tell if a test is a live one.
-+	 * Unfortunately that can't be done today because "priv" does not point
-+	 * to a single unified type across existing tests.
-+	 */
-+	kunit_activate_static_stub(test, xe_kunit_is_live_test, xe_kunit_is_live_test_indeed);
-+
- 	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, xe);
- 	kunit_info(test, "running on %s device\n", xe->info.platform_name);
- 
-diff --git a/drivers/gpu/drm/xe/tests/xe_kunit_helpers.h b/drivers/gpu/drm/xe/tests/xe_kunit_helpers.h
-index 83665f7b1254..4b846cfb1f40 100644
---- a/drivers/gpu/drm/xe/tests/xe_kunit_helpers.h
-+++ b/drivers/gpu/drm/xe/tests/xe_kunit_helpers.h
-@@ -6,10 +6,14 @@
- #ifndef _XE_KUNIT_HELPERS_H_
- #define _XE_KUNIT_HELPERS_H_
- 
-+#include <linux/types.h>
-+
- struct device;
- struct kunit;
- struct xe_device;
- 
-+bool xe_kunit_is_live_test(struct kunit *test);
-+
- struct xe_device *xe_kunit_helper_alloc_xe_device(struct kunit *test,
- 						  struct device *dev);
- int xe_kunit_helper_xe_device_test_init(struct kunit *test);
+diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
+index a91db59a3d0a..58c37250479f 100644
+--- a/drivers/gpu/drm/xe/xe_wa.c
++++ b/drivers/gpu/drm/xe/xe_wa.c
+@@ -848,7 +848,7 @@ static const struct xe_rtp_entry_sr lrc_was[] = {
+ 	},
+ 	{ XE_RTP_NAME("22021007897"),
+ 	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(2001, 2002), ENGINE_CLASS(RENDER)),
+-	  XE_RTP_ACTIONS(SET(COMMON_SLICE_CHICKEN4, SBE_PUSH_CONSTANT_BEHIND_FIX_ENABLE))
++	  XE_RTP_ACTIONS(SET(XEHP_COMMON_SLICE_CHICKEN4, SBE_PUSH_CONSTANT_BEHIND_FIX_ENABLE))
+ 	},
+ 	{ XE_RTP_NAME("18033852989"),
+ 	  XE_RTP_RULES(GRAPHICS_VERSION(2001), ENGINE_CLASS(RENDER)),
+@@ -868,7 +868,7 @@ static const struct xe_rtp_entry_sr lrc_was[] = {
+ 	},
+ 	{ XE_RTP_NAME("22021007897"),
+ 	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(3000, 3005), ENGINE_CLASS(RENDER)),
+-	  XE_RTP_ACTIONS(SET(COMMON_SLICE_CHICKEN4, SBE_PUSH_CONSTANT_BEHIND_FIX_ENABLE))
++	  XE_RTP_ACTIONS(SET(XEHP_COMMON_SLICE_CHICKEN4, SBE_PUSH_CONSTANT_BEHIND_FIX_ENABLE))
+ 	},
+ 	{ XE_RTP_NAME("14024681466"),
+ 	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(3000, 3005), ENGINE_CLASS(RENDER)),
 
 -- 
 2.52.0
