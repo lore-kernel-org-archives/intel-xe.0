@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1F5D5C982C3
-	for <intel-xe@archiver.kernel.org>; Fri, 16 Jan 2026 22:12:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DBA13C98302
+	for <intel-xe@archiver.kernel.org>; Fri, 16 Jan 2026 22:12:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D73E510E264;
-	Fri, 16 Jan 2026 22:12:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A320F10E26A;
+	Fri, 16 Jan 2026 22:12:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LlzTYwlt";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="O10jIL/8";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 786B810E0FB
- for <intel-xe@lists.freedesktop.org>; Fri, 16 Jan 2026 22:12:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7B1BD10E26A
+ for <intel-xe@lists.freedesktop.org>; Fri, 16 Jan 2026 22:12:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1768601566; x=1800137566;
+ t=1768601568; x=1800137568;
  h=from:date:subject:mime-version:content-transfer-encoding:
  message-id:references:in-reply-to:to:cc;
- bh=HUT0LkCSfrR3KLxVkSQwY+fXzSWAqDLjcMAN6qoYXuc=;
- b=LlzTYwlt5rzSpxupuB02JmVMxczz+JSgygfIfv4eEYzxvluq+cMG4qqR
- UkFR0Tfb9UdIsdOahU5xzknzm+WYV2Np/7pg32Jo+mvHzatBhVhXT8j0u
- fkB2vtiTCI7c93ky8u75ccyCN4W5Z6EqByTUcGw8AjBCLr9Ze+tI6sxbA
- sCMFJZFebDwYa9RHZNrKrbvbNwUe25zUV04BD29gQ2nqfrqlK/1iTK/np
- BgQ1bqAhW52Rfpml9S3mF+v/qbTBrqb6eLC8rAR4eiH6mfTLf05glUZw3
- gaBtOhfmis/RXxUK0fkHRabcy1Oo0O/aZOI63qxF+BxNjg4u7uRFO/Tzs A==;
-X-CSE-ConnectionGUID: YylTrYymTaGJRsRo6DzQiw==
-X-CSE-MsgGUID: mPmUwHf7RvexgMZTPURz4Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11673"; a="69123024"
-X-IronPort-AV: E=Sophos;i="6.21,232,1763452800"; d="scan'208";a="69123024"
+ bh=yYa9cFMx0Q+gs8UZe9RHF3lBTSFu48Oi9kTImFg1woA=;
+ b=O10jIL/8mlsSEjH31eH+yaIVzWXaHVbdv3oVTtITK6M6dqybKnG5xgmr
+ w4EpLfUmtu6LSMEwuPTmMJjwDTIXA4o0anB4JkSgMlDOJrSPhi0Jqq/s9
+ 2jY/vEh/KTCR3wcngLsYvE1kVhH+IGgLebfNBpbxNx5jNR3tjRgSb+GIL
+ tkOE3mVAEpUferkeWqcsS8vTTUMivNFMzdl7RDGIzlQoelod5LZEu+hrV
+ ay5XlsHfpT+co+7NFe7Is13fcfVBMamJ+4OMXc8Rf/O35JcO7NSGMQiFx
+ cHA7VPnUZk6hcf9enpyp81RpH4nxg8+r9ETv2hkG086lADCweV2qyYD+x A==;
+X-CSE-ConnectionGUID: QJfLdekORCWD5/KXICRgPw==
+X-CSE-MsgGUID: I41HMU/UTvWoZVzCYrG/IQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11673"; a="69123026"
+X-IronPort-AV: E=Sophos;i="6.21,232,1763452800"; d="scan'208";a="69123026"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jan 2026 14:12:46 -0800
-X-CSE-ConnectionGUID: MJWCwE7BRMqBW2YoPNud7w==
-X-CSE-MsgGUID: 2quNkZ3nTq6baRFzNUeQnA==
+ 16 Jan 2026 14:12:48 -0800
+X-CSE-ConnectionGUID: CFVjxBncSsqnzmWbGEdmPA==
+X-CSE-MsgGUID: 7L1gjC+eRV29JUK/e51YRg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,232,1763452800"; d="scan'208";a="204961788"
+X-IronPort-AV: E=Sophos;i="6.21,232,1763452800"; d="scan'208";a="204961800"
 Received: from khuang2-desk.gar.corp.intel.com (HELO [192.168.1.16])
  ([10.124.221.59])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jan 2026 14:12:46 -0800
+ 16 Jan 2026 14:12:48 -0800
 From: Gustavo Sousa <gustavo.sousa@intel.com>
-Date: Fri, 16 Jan 2026 19:12:13 -0300
-Subject: [PATCH 05/12] drm/xe/kunit: Abort test if MMIO operation is attempted
+Date: Fri, 16 Jan 2026 19:12:15 -0300
+Subject: [PATCH 07/12] drm/xe: Extract xe_hw_engine_setup_reg_lrc()
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20260116-rtp-mcr-check-v1-5-d420b9c1a327@intel.com>
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260116-rtp-mcr-check-v1-7-d420b9c1a327@intel.com>
 References: <20260116-rtp-mcr-check-v1-0-d420b9c1a327@intel.com>
 In-Reply-To: <20260116-rtp-mcr-check-v1-0-d420b9c1a327@intel.com>
 To: intel-xe@lists.freedesktop.org
@@ -68,159 +68,82 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Regular Xe KUnit tests (i.e. not the live ones) are usually run in
-User-Mode Linux and do not have access to the real hardware and, as
-such, should not attempt to do MMIO operations. If some test ends up
-exercising a path that contains MMIO operations, the test should be
-rewritten in a way that the MMIO is skipped or simulated (e.g. via a
-static stub).
+The steps for processing RTP rules that build up an engine's reg_lrc
+arguably belongs to xe_hw_engine.c and should be encapsulated into a
+function.  Furthermore, we will want to use that function and avoid
+calling xe_gt_record_default_lrcs() in upcoming changes to xe_wa_test.c.
 
-Let's make sure to abort the test if MMIO is attempted on non-live
-tests.  Before aborting, use drm_WARN() to cause a stack trace to be
-logged as a debug aid to the developer.
+Move that logic to a new function called xe_hw_engine_setup_reg_lrc().
 
 Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
 ---
- drivers/gpu/drm/xe/tests/Makefile        |  1 +
- drivers/gpu/drm/xe/tests/xe_kunit_mmio.c | 35 ++++++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/tests/xe_kunit_mmio.h | 27 ++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_mmio.c             |  9 ++++++++
- 4 files changed, 72 insertions(+)
+ drivers/gpu/drm/xe/xe_gt.c        |  5 +----
+ drivers/gpu/drm/xe/xe_hw_engine.c | 15 +++++++++++++--
+ drivers/gpu/drm/xe/xe_hw_engine.h |  2 +-
+ 3 files changed, 15 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/tests/Makefile b/drivers/gpu/drm/xe/tests/Makefile
-index 0e3408f4952c..8f3a594449c8 100644
---- a/drivers/gpu/drm/xe/tests/Makefile
-+++ b/drivers/gpu/drm/xe/tests/Makefile
-@@ -8,6 +8,7 @@ xe_live_test-y = xe_live_test_mod.o
- obj-$(CONFIG_DRM_XE_KUNIT_TEST) += xe_test.o
- xe_test-y = xe_test_mod.o \
- 	xe_args_test.o \
-+	xe_kunit_mmio.o \
- 	xe_pci_test.o \
- 	xe_rtp_test.o \
- 	xe_wa_test.o
-diff --git a/drivers/gpu/drm/xe/tests/xe_kunit_mmio.c b/drivers/gpu/drm/xe/tests/xe_kunit_mmio.c
-new file mode 100644
-index 000000000000..debf8bd3f9dd
---- /dev/null
-+++ b/drivers/gpu/drm/xe/tests/xe_kunit_mmio.c
-@@ -0,0 +1,35 @@
-+// SPDX-License-Identifier: GPL-2.0 AND MIT
-+/*
-+ * Copyright © 2026 Intel Corporation
-+ */
-+
-+#include <kunit/test.h>
-+#include <kunit/test-bug.h>
-+
-+#include <drm/drm_print.h>
-+
-+#include "tests/xe_kunit_helpers.h"
-+#include "tests/xe_kunit_mmio.h"
-+#include "xe_device_types.h"
-+
-+/**
-+ * xe_kunit_mmio_abort_if_not_live_test - Abort test execution if not in a live test.
-+ * @mmio: MMIO target
-+ * @reg: Register on which an MMIO operation is about to be performed
-+ *
-+ * This function must be called from xe_mmio functions that perform MMIO
-+ * operations on the hardware.  If the current process is a kunit test and it is
-+ * not a live test, it will cause a warn and abort the test; otherwise it does
-+ * nothing.
-+ */
-+void xe_kunit_mmio_abort_if_not_live_test(struct xe_mmio *mmio, struct xe_reg reg)
-+{
-+	struct xe_device *xe = tile_to_xe(mmio->tile);
-+	struct kunit *test = kunit_get_current_test();
-+
-+	if (!test || xe_kunit_is_live_test(test))
-+		return;
-+
-+	drm_WARN(&xe->drm, true, "MMIO function called on reg 0x%x\n", reg.addr);
-+	KUNIT_FAIL_AND_ABORT(test, "MMIO function called on reg 0x%x\n", reg.addr);
-+}
-diff --git a/drivers/gpu/drm/xe/tests/xe_kunit_mmio.h b/drivers/gpu/drm/xe/tests/xe_kunit_mmio.h
-new file mode 100644
-index 000000000000..d46ac2b82969
---- /dev/null
-+++ b/drivers/gpu/drm/xe/tests/xe_kunit_mmio.h
-@@ -0,0 +1,27 @@
-+/* SPDX-License-Identifier: GPL-2.0 AND MIT */
-+/*
-+ * Copyright © 2026 Intel Corporation
-+ */
-+
-+#ifndef _XE_KUNIT_MMIO_H_
-+#define _XE_KUNIT_MMIO_H_
-+
-+#include <linux/types.h>
-+
-+#include "regs/xe_reg_defs.h"
-+
-+struct xe_mmio;
-+
-+#if IS_ENABLED(CONFIG_DRM_XE_KUNIT_TEST)
-+
-+void xe_kunit_mmio_abort_if_not_live_test(struct xe_mmio *mmio, struct xe_reg reg);
-+
-+#else
-+
-+static void xe_kunit_mmio_abort_if_not_live_test(struct xe_mmio *mmio, struct xe_reg reg)
-+{
-+}
-+
-+#endif
-+
-+#endif
-diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
-index bcb6674b7dac..0f9a1d5453df 100644
---- a/drivers/gpu/drm/xe/xe_mmio.c
-+++ b/drivers/gpu/drm/xe/xe_mmio.c
-@@ -14,6 +14,7 @@
- #include <drm/drm_print.h>
+diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+index 9d090d0f2438..68cd26286956 100644
+--- a/drivers/gpu/drm/xe/xe_gt.c
++++ b/drivers/gpu/drm/xe/xe_gt.c
+@@ -348,10 +348,7 @@ int xe_gt_record_default_lrcs(struct xe_gt *gt)
+ 		if (gt->default_lrc[hwe->class])
+ 			continue;
  
- #include "regs/xe_bars.h"
-+#include "tests/xe_kunit_mmio.h"
- #include "xe_device.h"
- #include "xe_gt_sriov_vf.h"
- #include "xe_sriov.h"
-@@ -146,6 +147,8 @@ u8 xe_mmio_read8(struct xe_mmio *mmio, struct xe_reg reg)
- 	u32 addr = xe_mmio_adjusted_addr(mmio, reg.addr);
- 	u8 val;
+-		xe_reg_sr_init(&hwe->reg_lrc, hwe->name, xe);
+-		xe_wa_process_lrc(hwe);
+-		xe_hw_engine_setup_default_lrc_state(hwe);
+-		xe_tuning_process_lrc(hwe);
++		xe_hw_engine_setup_reg_lrc(hwe);
  
-+	xe_kunit_mmio_abort_if_not_live_test(mmio, reg);
-+
- 	mmio_flush_pending_writes(mmio);
+ 		default_lrc = drmm_kzalloc(&xe->drm,
+ 					   xe_gt_lrc_size(gt, hwe->class),
+diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
+index 4d3ee5226e3a..8d239291bc7b 100644
+--- a/drivers/gpu/drm/xe/xe_hw_engine.c
++++ b/drivers/gpu/drm/xe/xe_hw_engine.c
+@@ -374,8 +374,8 @@ static bool xe_rtp_cfeg_wmtp_disabled(const struct xe_device *xe,
+ 	return xe_mmio_read32(&hwe->gt->mmio, XEHP_FUSE4) & CFEG_WMTP_DISABLE;
+ }
  
- 	val = readb(mmio->regs + addr);
-@@ -159,6 +162,8 @@ u16 xe_mmio_read16(struct xe_mmio *mmio, struct xe_reg reg)
- 	u32 addr = xe_mmio_adjusted_addr(mmio, reg.addr);
- 	u16 val;
- 
-+	xe_kunit_mmio_abort_if_not_live_test(mmio, reg);
-+
- 	mmio_flush_pending_writes(mmio);
- 
- 	val = readw(mmio->regs + addr);
-@@ -171,6 +176,8 @@ void xe_mmio_write32(struct xe_mmio *mmio, struct xe_reg reg, u32 val)
+-void
+-xe_hw_engine_setup_default_lrc_state(struct xe_hw_engine *hwe)
++static void
++hw_engine_setup_default_lrc_state(struct xe_hw_engine *hwe)
  {
- 	u32 addr = xe_mmio_adjusted_addr(mmio, reg.addr);
+ 	struct xe_gt *gt = hwe->gt;
+ 	const u8 mocs_write_idx = gt->mocs.uc_index;
+@@ -411,6 +411,17 @@ xe_hw_engine_setup_default_lrc_state(struct xe_hw_engine *hwe)
+ 	xe_rtp_process_to_sr(&ctx, lrc_setup, ARRAY_SIZE(lrc_setup), &hwe->reg_lrc);
+ }
  
-+	xe_kunit_mmio_abort_if_not_live_test(mmio, reg);
++void xe_hw_engine_setup_reg_lrc(struct xe_hw_engine *hwe)
++{
++	struct xe_gt *gt = hwe->gt;
++	struct xe_device *xe = gt_to_xe(gt);
 +
- 	trace_xe_reg_rw(mmio, true, addr, val, sizeof(val));
- 
- 	if (!reg.vf && IS_SRIOV_VF(mmio->tile->xe))
-@@ -185,6 +192,8 @@ u32 xe_mmio_read32(struct xe_mmio *mmio, struct xe_reg reg)
- 	u32 addr = xe_mmio_adjusted_addr(mmio, reg.addr);
- 	u32 val;
- 
-+	xe_kunit_mmio_abort_if_not_live_test(mmio, reg);
++	xe_reg_sr_init(&hwe->reg_lrc, hwe->name, xe);
++	xe_wa_process_lrc(hwe);
++	hw_engine_setup_default_lrc_state(hwe);
++	xe_tuning_process_lrc(hwe);
++}
 +
- 	mmio_flush_pending_writes(mmio);
+ static void
+ hw_engine_setup_default_state(struct xe_hw_engine *hwe)
+ {
+diff --git a/drivers/gpu/drm/xe/xe_hw_engine.h b/drivers/gpu/drm/xe/xe_hw_engine.h
+index 6b5f9fa2a594..7e897620db65 100644
+--- a/drivers/gpu/drm/xe/xe_hw_engine.h
++++ b/drivers/gpu/drm/xe/xe_hw_engine.h
+@@ -59,7 +59,7 @@ struct xe_hw_engine_snapshot *
+ xe_hw_engine_snapshot_capture(struct xe_hw_engine *hwe, struct xe_exec_queue *q);
+ void xe_hw_engine_snapshot_free(struct xe_hw_engine_snapshot *snapshot);
+ void xe_hw_engine_print(struct xe_hw_engine *hwe, struct drm_printer *p);
+-void xe_hw_engine_setup_default_lrc_state(struct xe_hw_engine *hwe);
++void xe_hw_engine_setup_reg_lrc(struct xe_hw_engine *hwe);
  
- 	if (!reg.vf && IS_SRIOV_VF(mmio->tile->xe))
+ bool xe_hw_engine_is_reserved(struct xe_hw_engine *hwe);
+ 
 
 -- 
 2.52.0
