@@ -4,47 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2F95BD3CCAB
-	for <intel-xe@archiver.kernel.org>; Fri, 16 Jan 2026 09:50:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 52989D47CC3
+	for <intel-xe@archiver.kernel.org>; Fri, 16 Jan 2026 10:08:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E94A110E840;
-	Fri, 16 Jan 2026 09:50:54 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="hMjlIOih";
-	dkim-atps=neutral
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9970310E840
- for <intel-xe@lists.freedesktop.org>; Fri, 16 Jan 2026 09:50:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:
- Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:Content-Description:
- Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
- In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=OZJDXMXOLAM4VqZIrkEKxzvUE4UsA75pYg53aJGeFwA=; b=hMjlIOih5HtmSjeX82SwqBcpdT
- 9fJ6TPaRCrABIVIZZbUmcNoelUobjs6KUvEHZN8pg05klVrF12hsVfRqML6qsh5SAtqRvhrbTEONX
- wWGj4YJH8lxR0qylN4Pf8VLF0CA3U19ZvIai7V2kyj2/AOwNvjS1A8Zek01DrktgQ4ey4Iow6mxfG
- oQH4XG4+lIX778RQ6/2TxCn6RgZ/6ef5f0n+MBYSSQrDUP+j26X8ly3sjVN/sKyCQbZGr1+01mO+C
- irxPFL/OqJkG+67/ZgFbO3qtBQx0GUTgHg12qKtHtHZLJ61xALl50b6mHXE0Aiz6Yaqk5gtOj7PCH
- cXDzn1Sg==;
-Received: from [90.240.106.137] (helo=localhost)
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1vggTf-0066AN-It; Fri, 16 Jan 2026 10:50:47 +0100
-From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-To: intel-xe@lists.freedesktop.org
-Cc: kernel-dev@igalia.com, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
- Matt Roper <matthew.d.roper@intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, stable@vger.kernel.org
-Subject: [PATCH] drm/xe/xelp: Fix Wa_18022495364
-Date: Fri, 16 Jan 2026 09:50:40 +0000
-Message-ID: <20260116095040.49335-1-tvrtko.ursulin@igalia.com>
-X-Mailer: git-send-email 2.52.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1058810E851;
+	Fri, 16 Jan 2026 10:08:13 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BE4EA10E851;
+ Fri, 16 Jan 2026 10:08:11 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Introduce_Xe_Correctable_?=
+ =?utf-8?q?Error_Handling?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Raag Jadav" <raag.jadav@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 16 Jan 2026 10:08:11 -0000
+Message-ID: <176855809177.161012.3560785286079858231@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260116093432.914040-1-raag.jadav@intel.com>
+In-Reply-To: <20260116093432.914040-1-raag.jadav@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,35 +36,78 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-It looks I mistyped CS_DEBUG_MODE2 as CS_DEBUG_MODE1 when adding the
-workaround. Fix it.
+== Series Details ==
 
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Fixes: ca33cd271ef9 ("drm/xe/xelp: Add Wa_18022495364")
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Cc: "Thomas Hellström" <thomas.hellstrom@linux.intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: <stable@vger.kernel.org> # v6.18+
----
- drivers/gpu/drm/xe/xe_lrc.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Series: Introduce Xe Correctable Error Handling
+URL   : https://patchwork.freedesktop.org/series/160184/
+State : warning
 
-diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-index 70eae7d03a27..44f112df4eb2 100644
---- a/drivers/gpu/drm/xe/xe_lrc.c
-+++ b/drivers/gpu/drm/xe/xe_lrc.c
-@@ -1200,7 +1200,7 @@ static ssize_t setup_invalidate_state_cache_wa(struct xe_lrc *lrc,
- 		return -ENOSPC;
- 
- 	*cmd++ = MI_LOAD_REGISTER_IMM | MI_LRI_NUM_REGS(1);
--	*cmd++ = CS_DEBUG_MODE1(0).addr;
-+	*cmd++ = CS_DEBUG_MODE2(0).addr;
- 	*cmd++ = _MASKED_BIT_ENABLE(INSTRUCTION_STATE_CACHE_INVALIDATE);
- 
- 	return cmd - batch;
--- 
-2.52.0
+== Summary ==
+
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+ee83616c430ce70bd254bd2774d143a5733c8666
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 72fb0963b3aff4366f6f0ac5e3d7ca1791511023
+Author: Raag Jadav <raag.jadav@intel.com>
+Date:   Fri Jan 16 15:03:33 2026 +0530
+
+    drm/xe/ras: Introduce correctable error handling
+    
+    Add initial support for correctable error handling which is serviced
+    using system controller event. Currently we only log the errors in
+    dmesg but this serves as a foundation for RAS infrastructure and will
+    be further extended to facilitate other RAS features.
+    
+    Signed-off-by: Raag Jadav <raag.jadav@intel.com>
++ /mt/dim checkpatch 2c3e2b14be8eda5fb69764bb077663809afa183c drm-intel
+e57b7efcecce drm/xe/sysctrl: Add System Controller
+-:24: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#24: 
+new file mode 100644
+
+-:800: ERROR:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Anoop Vijay <anoop.c.vijay@intel.com>'
+
+total: 1 errors, 1 warnings, 0 checks, 720 lines checked
+c722682db1af drm/xe/sysctrl: Add system controller interrupt handler
+26fa4a379607 drm/xe/sysctrl: Add system controller event support
+-:61: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#61: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 174 lines checked
+72fb0963b3af drm/xe/ras: Introduce correctable error handling
+-:26: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#26: 
+new file mode 100644
+
+-:63: WARNING:STATIC_CONST_CHAR_ARRAY: static const char * array should probably be static const char * const
+#63: FILE: drivers/gpu/drm/xe/xe_ras.c:33:
++static const char *xe_ras_severities[] = {
+
+-:69: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#69: FILE: drivers/gpu/drm/xe/xe_ras.c:39:
++};
++static_assert(ARRAY_SIZE(xe_ras_severities) == XE_RAS_SEV_MAX);
+
+-:71: WARNING:STATIC_CONST_CHAR_ARRAY: static const char * array should probably be static const char * const
+#71: FILE: drivers/gpu/drm/xe/xe_ras.c:41:
++static const char *xe_ras_components[] = {
+
+-:80: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#80: FILE: drivers/gpu/drm/xe/xe_ras.c:50:
++};
++static_assert(ARRAY_SIZE(xe_ras_components) == XE_RAS_COMP_MAX);
+
+total: 0 errors, 3 warnings, 2 checks, 201 lines checked
+
 
