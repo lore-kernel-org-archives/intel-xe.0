@@ -4,55 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D127EC98302
-	for <intel-xe@archiver.kernel.org>; Fri, 16 Jan 2026 22:12:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E15E8C98306
+	for <intel-xe@archiver.kernel.org>; Fri, 16 Jan 2026 22:12:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9851F10E00E;
-	Fri, 16 Jan 2026 22:12:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8CD4710E110;
+	Fri, 16 Jan 2026 22:12:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="h7dTbCXK";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HM8qley7";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 99AF410E00E
- for <intel-xe@lists.freedesktop.org>; Fri, 16 Jan 2026 22:12:41 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6937110E0FB
+ for <intel-xe@lists.freedesktop.org>; Fri, 16 Jan 2026 22:12:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1768601562; x=1800137562;
- h=from:subject:date:message-id:mime-version:
- content-transfer-encoding:to:cc;
- bh=i3K/HrPceMIvbMrkG2EqCYp1qTQH1AmRLZfN/596Nck=;
- b=h7dTbCXKCtDBwJIZsFpZFDgfCcekydwGmN96jOFI92qWZYyKIVAmcaZo
- qMEL4f5lNs5VPOWndYhhYWVu/Ttawwf5HDPmXE6foAS4s66/TFf9EHkde
- 27pcMaSMdVwWLtFqkodTVx7vrqLUljcKoI7teUUtFbMgQOvCsmvtJfwqk
- aMZPYa+74+u4qMsLU5/xYeX8tmw8NsjeaNpDCud/VKjhVVxiIp3GskrYr
- mFsbOAF3dfJCeaNJCq/6QVgQGbypA0BmQ2Gwh6xyr/CzlqGjRG5oR8XX+
- Y67TCvBITORvrtXybPpYU2/zd/Yw1t76obyFTdbmTtC25TY91gAZsygaw g==;
-X-CSE-ConnectionGUID: X5xgA5yHT++AEnoN40HPcw==
-X-CSE-MsgGUID: yRTpoyCZQVacetGVMj6s7Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11673"; a="69123016"
-X-IronPort-AV: E=Sophos;i="6.21,232,1763452800"; d="scan'208";a="69123016"
+ t=1768601565; x=1800137565;
+ h=from:date:subject:mime-version:content-transfer-encoding:
+ message-id:references:in-reply-to:to:cc;
+ bh=Zmh7Af1eK7ZMGT8fXqI8as71yiV9yR/PLWhD+Xca93k=;
+ b=HM8qley7b1nO3103GVrDyCjxzAzXFdNirHYOSCrVD7EF//6KbN4pbXqp
+ YXOoCN/Og6wDo2/BE8XBBC3i5WnhOF1rqDhx4TnaT1W43Tf2iLu3kF7rd
+ PfUq3c3V+I1McST8tfSC+pDh3uBuBYAOQkb3gA/sCiRL8TYmp+WS4r86M
+ 7vEvI1JNK9yoXJzyHN85JmOxQcRjPthOJDysHYGZ6/rP/BBBxsbOb8e73
+ xFCqDPY41xxX4tphK/sY4UQa0HPtNzcvNNAfh37fazj0qFt8tJcrcFUhK
+ KJ0iaKniXrAF568FJgLB3IK1lOYQpXNwRQtGv8yNXlxDVvzOvG7pt7QhP Q==;
+X-CSE-ConnectionGUID: BE26e3ihRqyyUFTiiNyg8g==
+X-CSE-MsgGUID: LkPMNsJJQzmKfOLaxtc87A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11673"; a="69123023"
+X-IronPort-AV: E=Sophos;i="6.21,232,1763452800"; d="scan'208";a="69123023"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jan 2026 14:12:41 -0800
-X-CSE-ConnectionGUID: avhq9iJOTdqLf/lZFP2z4g==
-X-CSE-MsgGUID: 57TbLtgJS6GoCAawR1fJkg==
+ 16 Jan 2026 14:12:45 -0800
+X-CSE-ConnectionGUID: oaj72oRVTii8Of1weXMbHw==
+X-CSE-MsgGUID: pk+lRMzRSbyGM9XqjWAegQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,232,1763452800"; d="scan'208";a="204961765"
+X-IronPort-AV: E=Sophos;i="6.21,232,1763452800"; d="scan'208";a="204961785"
 Received: from khuang2-desk.gar.corp.intel.com (HELO [192.168.1.16])
  ([10.124.221.59])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jan 2026 14:12:40 -0800
+ 16 Jan 2026 14:12:45 -0800
 From: Gustavo Sousa <gustavo.sousa@intel.com>
-Subject: [PATCH 00/12] Fix MCR inconsistencies in RTP tables
-Date: Fri, 16 Jan 2026 19:12:08 -0300
-Message-Id: <20260116-rtp-mcr-check-v1-0-d420b9c1a327@intel.com>
+Date: Fri, 16 Jan 2026 19:12:12 -0300
+Subject: [PATCH 04/12] drm/xe/kunit: Add xe_kunit_is_live_test()
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIALm3amkC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
- vPSU3UzU4B8JSMDIzMDQ0Mj3aKSAt3c5CLd5IzU5GzdNEtzs+Qkw8SUNEsTJaCegqLUtMwKsHn
- RsbW1AIuNwy9fAAAA
-X-Change-ID: 20260112-rtp-mcr-check-f976cb1adf94
+Message-Id: <20260116-rtp-mcr-check-v1-4-d420b9c1a327@intel.com>
+References: <20260116-rtp-mcr-check-v1-0-d420b9c1a327@intel.com>
+In-Reply-To: <20260116-rtp-mcr-check-v1-0-d420b9c1a327@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Gustavo Sousa <gustavo.sousa@intel.com>
 X-Mailer: b4 0.15-dev
@@ -70,111 +68,93 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The Xe driver uses struct xe_reg as base type to represent a register
-definition, and defines struct xe_reg_mcr as a sort of subtype to
-represent multicast replicated (MCR) registers.  It uses this subtyping
-to "force" the use of the correct MCR-based API for MMIO operations on
-MCR registers.
+In upcoming changes we will need to differentiate between regular and
+live KUnit tests.  Add the function xe_kunit_is_live_test() for that
+purpose.
 
-In regular driver code, usage of those MCR registers usually need some
-reasoning about whether the access will need to be steered or a
-multicast; and the correct MCR API will be selected.
-
-For RTP tables, on the other hand, that's not the case.  The developer
-when defining an action the developer can either select a regular or a
-MCR register and the register save/restore logic will make the selection
-between regular vs MCR MMIO access depending on the register instance
-defined in the RTP action.
-
-That allows some mistakes to go unnoticed: a non-MCR register instance
-could be used for an RTP action against a platform where such a register
-is actually MCR; and vice-versa.
-
-This series fixes those mistakes and then goes on to update our KUnit
-testing to prevent them from happening again.  It is organized as
-follows:
-
-* drm/xe: Define CACHE_MODE_1 as MCR register
-* drm/xe: Define and use MCR version of COMMON_SLICE_CHICKEN1
-* drm/xe: Define and use MCR version of COMMON_SLICE_CHICKEN4
-
-    These patches fix the existing mistakes found in our RTP tables,
-    which were found by running the Xe Kunit test xe_wa with the patches
-    that follow.
-
-drm/xe/kunit: Add xe_kunit_is_live_test()
-drm/xe/kunit: Abort test if MMIO operation is attempted
-drm/xe/kunit: Allow intercepting MMIO operations
-
-    These patches add a framework that allows Xe Kunit tests to intercept
-    MMIO operations or aborts the tests otherwise.  This was
-    implemented to allow including hw_engines in we_wa_test.c, since
-    FUNC(xe_rtp_cfeg_wmtp_disabled), used by one of the RTP entries,
-    uses a MMIO read.
-
-    Further workaround/tuning conditions that do MMIO reads could be
-    added in the future, so this allows xe_wa_test.c to intercept them
-    without intrusive changes to the code when that happens.
-
-    Note that the implementation is generic enough to allow usage in
-    other tests when necessary.
-
-drm/xe: Extract xe_hw_engine_setup_reg_lrc()
-drm/xe: Extract xe_hw_engines_setup_runtime_mask()
-drm/xe/kunit: Use KUNIT_EXPECT_EQ() in xe_wa_gt()
-drm/xe/kunit: Include hw_engines in xe_wa test
-
-    These patches include hw_engines in xe_wa_test.c for greater
-    coverage.  The first three patches of this seires, which fix
-    existing inconsistent MCR usage, are for entries in RTP tables for
-    hw_engines.
-
-drm/xe/mcr: Extract reg_in_steering_type_ranges()
-drm/xe/reg_sr: Do sanity check for MCR vs non-MCR
-
-    These final patches add a sanity check in register save/restore
-    logic to prevent the mistakes from happening again.
+Note that this is implemented in a rather hackish way, by leveraging
+KUnit's static stubbing functionality.  A better approach would be to
+store a boolean somewhere in test->priv that would tell if a test is a
+live one, however that's not quite feasible today given the inconsistent
+usage of test->priv (there is not a single uniform type of data assigned
+to it across existing test).
 
 Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
 ---
-Gustavo Sousa (12):
-      drm/xe: Define CACHE_MODE_1 as MCR register
-      drm/xe: Define and use MCR version of COMMON_SLICE_CHICKEN1
-      drm/xe: Define and use MCR version of COMMON_SLICE_CHICKEN4
-      drm/xe/kunit: Add xe_kunit_is_live_test()
-      drm/xe/kunit: Abort test if MMIO operation is attempted
-      drm/xe/kunit: Allow intercepting MMIO operations
-      drm/xe: Extract xe_hw_engine_setup_reg_lrc()
-      drm/xe: Extract xe_hw_engines_setup_runtime_mask()
-      drm/xe/kunit: Use KUNIT_EXPECT_EQ() in xe_wa_gt()
-      drm/xe/kunit: Include hw_engines in xe_wa test
-      drm/xe/mcr: Extract reg_in_steering_type_ranges()
-      drm/xe/reg_sr: Do sanity check for MCR vs non-MCR
+ drivers/gpu/drm/xe/tests/xe_kunit_helpers.c | 25 +++++++++++++++++++++++++
+ drivers/gpu/drm/xe/tests/xe_kunit_helpers.h |  4 ++++
+ 2 files changed, 29 insertions(+)
 
- drivers/gpu/drm/xe/regs/xe_gt_regs.h         |   4 +-
- drivers/gpu/drm/xe/tests/Makefile            |   2 +
- drivers/gpu/drm/xe/tests/xe_kunit_helpers.c  |  25 ++++++
- drivers/gpu/drm/xe/tests/xe_kunit_helpers.h  |   4 +
- drivers/gpu/drm/xe/tests/xe_kunit_mmio.c     |  86 ++++++++++++++++++++
- drivers/gpu/drm/xe/tests/xe_kunit_mmio.h     |  46 +++++++++++
- drivers/gpu/drm/xe/tests/xe_mmio_intercept.c | 116 +++++++++++++++++++++++++++
- drivers/gpu/drm/xe/tests/xe_mmio_intercept.h |  26 ++++++
- drivers/gpu/drm/xe/tests/xe_rtp_test.c       |  71 ++++++++++++++--
- drivers/gpu/drm/xe/tests/xe_wa_test.c        |  63 ++++++++++++++-
- drivers/gpu/drm/xe/xe_gt.c                   |   7 +-
- drivers/gpu/drm/xe/xe_gt_mcr.c               |  64 ++++++++++-----
- drivers/gpu/drm/xe/xe_gt_mcr.h               |   1 +
- drivers/gpu/drm/xe/xe_hw_engine.c            |  24 ++++--
- drivers/gpu/drm/xe/xe_hw_engine.h            |   3 +-
- drivers/gpu/drm/xe/xe_mmio.c                 |  13 +++
- drivers/gpu/drm/xe/xe_reg_sr.c               |  36 +++++++++
- drivers/gpu/drm/xe/xe_wa.c                   |   8 +-
- 18 files changed, 555 insertions(+), 44 deletions(-)
----
-base-commit: 0f3aa82816dce3da347333a317ea112d16e5d237
-change-id: 20260112-rtp-mcr-check-f976cb1adf94
+diff --git a/drivers/gpu/drm/xe/tests/xe_kunit_helpers.c b/drivers/gpu/drm/xe/tests/xe_kunit_helpers.c
+index bc5156966ce9..369b26b3a32c 100644
+--- a/drivers/gpu/drm/xe/tests/xe_kunit_helpers.c
++++ b/drivers/gpu/drm/xe/tests/xe_kunit_helpers.c
+@@ -16,6 +16,18 @@
+ #include "xe_device_types.h"
+ #include "xe_pm.h"
+ 
++/**
++ * xe_kunit_is_live_test - Return true if @test is a live test.
++ * @test: the &kunit test
++ *
++ * Return: True for a live test and false otherwise.
++ */
++bool xe_kunit_is_live_test(struct kunit *test)
++{
++	KUNIT_STATIC_STUB_REDIRECT(xe_kunit_is_live_test, test);
++	return false;
++}
++
+ /**
+  * xe_kunit_helper_alloc_xe_device - Allocate a &xe_device for a KUnit test.
+  * @test: the &kunit where this &xe_device will be used
+@@ -93,6 +105,11 @@ EXPORT_SYMBOL_IF_KUNIT(xe_kunit_helper_xe_device_test_init);
+ 
+ KUNIT_DEFINE_ACTION_WRAPPER(put_xe_pm_runtime, xe_pm_runtime_put, struct xe_device *);
+ 
++static bool xe_kunit_is_live_test_indeed(struct kunit *test)
++{
++	return true;
++}
++
+ /**
+  * xe_kunit_helper_xe_device_live_test_init - Prepare a &xe_device for
+  *                                            use in a live KUnit test.
+@@ -116,6 +133,14 @@ int xe_kunit_helper_xe_device_live_test_init(struct kunit *test)
+ {
+ 	struct xe_device *xe = xe_device_const_cast(test->param_value);
+ 
++	/*
++	 * FIXME: This is a hack and a better solution is to have the "priv"
++	 * member of tests have a boolean to tell if a test is a live one.
++	 * Unfortunately that can't be done today because "priv" does not point
++	 * to a single unified type across existing tests.
++	 */
++	kunit_activate_static_stub(test, xe_kunit_is_live_test, xe_kunit_is_live_test_indeed);
++
+ 	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, xe);
+ 	kunit_info(test, "running on %s device\n", xe->info.platform_name);
+ 
+diff --git a/drivers/gpu/drm/xe/tests/xe_kunit_helpers.h b/drivers/gpu/drm/xe/tests/xe_kunit_helpers.h
+index 83665f7b1254..4b846cfb1f40 100644
+--- a/drivers/gpu/drm/xe/tests/xe_kunit_helpers.h
++++ b/drivers/gpu/drm/xe/tests/xe_kunit_helpers.h
+@@ -6,10 +6,14 @@
+ #ifndef _XE_KUNIT_HELPERS_H_
+ #define _XE_KUNIT_HELPERS_H_
+ 
++#include <linux/types.h>
++
+ struct device;
+ struct kunit;
+ struct xe_device;
+ 
++bool xe_kunit_is_live_test(struct kunit *test);
++
+ struct xe_device *xe_kunit_helper_alloc_xe_device(struct kunit *test,
+ 						  struct device *dev);
+ int xe_kunit_helper_xe_device_test_init(struct kunit *test);
 
-Best regards,
---  
-Gustavo Sousa <gustavo.sousa@intel.com>
+-- 
+2.52.0
 
