@@ -4,50 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6CBDAC98309
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 29CB2C98308
 	for <intel-xe@archiver.kernel.org>; Fri, 16 Jan 2026 22:17:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 93F4B10E264;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 911D710E27C;
 	Fri, 16 Jan 2026 22:17:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="C17xB06T";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lkQILlEy";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1F2CE10E1FD
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 773F710E264
  for <intel-xe@lists.freedesktop.org>; Fri, 16 Jan 2026 22:17:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1768601866; x=1800137866;
+ t=1768601867; x=1800137867;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=ZQf5eSbldfYDkkhHsgUC+nNGBMlYcYGjHI5BnZ4RNdk=;
- b=C17xB06T0qbOhfeprLSe0izxg7HJ4I1Nq98bomwZIcv0tDZV8UEXbpPM
- ME7hAMoUaA8J/qvQWHVc476SFOMA07VQ6n8dQQoNp/82kOmApgcvnQF5H
- g2PPjf9FESHEV0V/hHPqx2BlnYrygfu3Ipgd4XW3yya9afVU1m5UzcvPs
- vReW0KYHW1Qt5PexMorO1GbqaYii1TtLvFoExw3rCBP3+u1HoL/LW3RJM
- gUDKyeljMpP79DaSUR+it0V6yHcDFc7ADfFImecqFjcFpq4yvLADQNiQd
- 5ZvxQB2N/iMVUEpQZDlFoRflyEebK8nSsWh+5U4omfFVL8DbkjU3S91u+ w==;
-X-CSE-ConnectionGUID: oG2eVjq8RV6d7sA8uldJTQ==
-X-CSE-MsgGUID: e/BZQ8K9RUiuuKO0sWBXXA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11673"; a="69123347"
-X-IronPort-AV: E=Sophos;i="6.21,232,1763452800"; d="scan'208";a="69123347"
+ bh=RgKxacAsdXC+YJnAhq0UwweWRp4lmVBQMTuYjxFPo2I=;
+ b=lkQILlEyBX61bEUAn3DV5AED6d5DjDClZAfdQoKuH+YIMSVCMdhHoDDP
+ Q1Q7yZ9lSbHblkukXozTyERKz3t+2n6IrYJOsWwde+udgLWRUxx0gWO+3
+ JbbCsn/x8zwTc1FETeMFID4x+KKrSmLbSRW5yt5RsQTpwIi+/Oeqq8L5N
+ Rnnv4yioB4syLq/1Mp3+tSS9o61wWeLpoFJ9RaAO3XXbWKPF0OaXyme2O
+ TR6QggyFMFPIIQU+uO2AwPu9lJvO5br0DfMO0m9NSLYZnu68+DnGLLs8m
+ 33HS+O5sKeP+jgxAMddye+IfL4hvyBymZDXB9gyjS7AvDIbrQCgasHpi3 w==;
+X-CSE-ConnectionGUID: JAysy8GtRZCCu85uyBkwpg==
+X-CSE-MsgGUID: zy5LNQs+TyGtFr5Zjhu2Kg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11673"; a="69123350"
+X-IronPort-AV: E=Sophos;i="6.21,232,1763452800"; d="scan'208";a="69123350"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  16 Jan 2026 14:17:46 -0800
-X-CSE-ConnectionGUID: 0IdmDK2JSkaTUooL20zZdg==
-X-CSE-MsgGUID: 3o3NRJ2RQFGwyxmO56g+sA==
+X-CSE-ConnectionGUID: GlNy4pweTI6FEZd3deZcqA==
+X-CSE-MsgGUID: qysKJ0HwSu2u4idhgzbn3Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,232,1763452800"; d="scan'208";a="204962702"
+X-IronPort-AV: E=Sophos;i="6.21,232,1763452800"; d="scan'208";a="204962714"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  16 Jan 2026 14:17:37 -0800
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Matt Atwood <matthew.s.atwood@intel.com>,
- Stuart Summers <stuart.summers@intel.com>
-Subject: [PATCH v5 04/11] drm/xe: Add xe_device_asid_to_vm helper
-Date: Fri, 16 Jan 2026 14:17:24 -0800
-Message-Id: <20260116221731.868657-5-matthew.brost@intel.com>
+Cc: Stuart Summers <stuart.summers@intel.com>
+Subject: [PATCH v5 08/11] drm/xe: Add send_tlb_inval_ppgtt helper
+Date: Fri, 16 Jan 2026 14:17:28 -0800
+Message-Id: <20260116221731.868657-9-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260116221731.868657-1-matthew.brost@intel.com>
 References: <20260116221731.868657-1-matthew.brost@intel.com>
@@ -67,76 +66,85 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Introduce the xe_device_asid_to_vm helper, which can be used throughout
-the driver to resolve the VM from a given ASID.
-
-v4:
- - Move forward declare after includes (Stuart)
+Extract the common code that issues a TLB invalidation H2G for PPGTTs
+into a helper function. This helper can be reused for both ASID-based
+and context-based TLB invalidations.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Matt Atwood <matthew.s.atwood@intel.com>
 Reviewed-by: Stuart Summers <stuart.summers@intel.com>
 Tested-by: Stuart Summers <stuart.summers@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device.c | 25 +++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_device.h |  4 ++++
- 2 files changed, 29 insertions(+)
+ drivers/gpu/drm/xe/xe_guc_tlb_inval.c | 30 +++++++++++++++++++--------
+ 1 file changed, 21 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 495310a624b5..aad4aa53a51f 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -1375,3 +1375,28 @@ const char *xe_wedged_mode_to_string(enum xe_wedged_mode mode)
- 		return "<invalid>";
- 	}
- }
-+
-+/**
-+ * xe_device_asid_to_vm() - Find VM from ASID
-+ * @xe: the &xe_device
-+ * @asid: Address space ID
-+ *
-+ * Find a VM from ASID and take a reference to VM which caller must drop.
-+ * Reclaim safe.
-+ *
-+ * Return: VM on success, ERR_PTR on failure
-+ */
-+struct xe_vm *xe_device_asid_to_vm(struct xe_device *xe, u32 asid)
-+{
-+	struct xe_vm *vm;
-+
-+	down_read(&xe->usm.lock);
-+	vm = xa_load(&xe->usm.asid_to_vm, asid);
-+	if (vm)
-+		xe_vm_get(vm);
-+	else
-+		vm = ERR_PTR(-EINVAL);
-+	up_read(&xe->usm.lock);
-+
-+	return vm;
-+}
-diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
-index 3740143790db..d25421e5181c 100644
---- a/drivers/gpu/drm/xe/xe_device.h
-+++ b/drivers/gpu/drm/xe/xe_device.h
-@@ -12,6 +12,8 @@
- #include "xe_gt_types.h"
- #include "xe_sriov.h"
+diff --git a/drivers/gpu/drm/xe/xe_guc_tlb_inval.c b/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
+index a6a1c371a28e..070d2e2cb7c9 100644
+--- a/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
++++ b/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
+@@ -150,20 +150,16 @@ static u64 normalize_invalidation_range(struct xe_gt *gt, u64 *start, u64 *end)
+  */
+ #define MAX_RANGE_TLB_INVALIDATION_LENGTH (rounddown_pow_of_two(ULONG_MAX))
  
-+struct xe_vm;
-+
- static inline struct xe_device *to_xe_device(const struct drm_device *dev)
+-static int send_tlb_inval_asid_ppgtt(struct xe_tlb_inval *tlb_inval, u32 seqno,
+-				     u64 start, u64 end, u32 asid,
+-				     struct drm_suballoc *prl_sa)
++static int send_tlb_inval_ppgtt(struct xe_guc *guc, u32 seqno, u64 start,
++				u64 end, u32 id, u32 type,
++				struct drm_suballoc *prl_sa)
  {
- 	return container_of(dev, struct xe_device, drm);
-@@ -204,6 +206,8 @@ int xe_is_injection_active(void);
+ #define MAX_TLB_INVALIDATION_LEN	7
+-	struct xe_guc *guc = tlb_inval->private;
+ 	struct xe_gt *gt = guc_to_gt(guc);
+ 	u32 action[MAX_TLB_INVALIDATION_LEN];
+ 	u64 length = end - start;
+ 	int len = 0, err;
  
- bool xe_is_xe_file(const struct file *file);
+-	if (guc_to_xe(guc)->info.force_execlist)
+-		return -ECANCELED;
+-
+ 	action[len++] = XE_GUC_ACTION_TLB_INVALIDATION;
+ 	action[len++] = !prl_sa ? seqno : TLB_INVALIDATION_SEQNO_INVALID;
+ 	if (!gt_to_xe(gt)->info.has_range_tlb_inval ||
+@@ -174,14 +170,15 @@ static int send_tlb_inval_asid_ppgtt(struct xe_tlb_inval *tlb_inval, u32 seqno,
+ 								 &end);
  
-+struct xe_vm *xe_device_asid_to_vm(struct xe_device *xe, u32 asid);
+ 		/* Flush on NULL case, Media is not required to modify flush due to no PPC so NOP */
+-		action[len++] = MAKE_INVAL_OP_FLUSH(XE_GUC_TLB_INVAL_PAGE_SELECTIVE, !prl_sa);
+-		action[len++] = asid;
++		action[len++] = MAKE_INVAL_OP_FLUSH(type, !prl_sa);
++		action[len++] = id;
+ 		action[len++] = lower_32_bits(start);
+ 		action[len++] = upper_32_bits(start);
+ 		action[len++] = ilog2(normalize_len) - ilog2(SZ_4K);
+ 	}
+ 
+ 	xe_gt_assert(gt, len <= MAX_TLB_INVALIDATION_LEN);
++#undef MAX_TLB_INVALIDATION_LEN
+ 
+ 	err = send_tlb_inval(guc, action, len);
+ 	if (!err && prl_sa)
+@@ -189,6 +186,21 @@ static int send_tlb_inval_asid_ppgtt(struct xe_tlb_inval *tlb_inval, u32 seqno,
+ 	return err;
+ }
+ 
++static int send_tlb_inval_asid_ppgtt(struct xe_tlb_inval *tlb_inval, u32 seqno,
++				     u64 start, u64 end, u32 asid,
++				     struct drm_suballoc *prl_sa)
++{
++	struct xe_guc *guc = tlb_inval->private;
 +
- /*
-  * Occasionally it is seen that the G2H worker starts running after a delay of more than
-  * a second even after being queued and activated by the Linux workqueue subsystem. This
++	lockdep_assert_held(&tlb_inval->seqno_lock);
++
++	if (guc_to_xe(guc)->info.force_execlist)
++		return -ECANCELED;
++
++	return send_tlb_inval_ppgtt(guc, seqno, start, end, asid,
++				    XE_GUC_TLB_INVAL_PAGE_SELECTIVE, prl_sa);
++}
++
+ static bool tlb_inval_initialized(struct xe_tlb_inval *tlb_inval)
+ {
+ 	struct xe_guc *guc = tlb_inval->private;
 -- 
 2.34.1
 
