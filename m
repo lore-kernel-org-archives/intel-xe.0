@@ -4,64 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3DF23D48981
-	for <intel-xe@archiver.kernel.org>; Fri, 16 Jan 2026 11:46:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5217AD48985
+	for <intel-xe@archiver.kernel.org>; Fri, 16 Jan 2026 11:50:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E2A2E10E86F;
-	Fri, 16 Jan 2026 11:46:40 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OkyViYxb";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7B49610E86F;
- Fri, 16 Jan 2026 11:46:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1768564001; x=1800100001;
- h=message-id:date:mime-version:from:to:cc:subject:
- content-transfer-encoding;
- bh=GBKaodGhra2VQepQQ7Xg+rEauVjQTk0O5E68nqVwRlE=;
- b=OkyViYxbhMk1h7mVaP9J/eSC5ba6tv52gXJJ/r9N3Gm6g9HTmSx5Nf2b
- QNVfyI4yHaCE+oCCWWHpADObhNX2F7ECT8k23pku/xl38WWgGY8ffB8CD
- 6qHTWHkEg1/6KTLWLklrvN6zXffAwNYxLzeZs+MwXIrQ/naTB16a4MpBq
- A/+LSVfHhkhFX5/w6IKVVcgNmwznpA507Z0YdwtyL8hk0MJhQ6uFvuYQR
- rmQZlrtjbUZbyvxUD5DEDoflEMYxpbp+/Nm/KjFzFhWWsBEZdy82WAxXy
- aD/WOAKutZtfHafRnblOkO2zLGm5coTxRxfIsOGW/w+Lgt0S/Y1ZeSfwT Q==;
-X-CSE-ConnectionGUID: 7e6I+glqTC6go6bX+B15wQ==
-X-CSE-MsgGUID: f/Dpu633Sdil7CztbYhyBA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11672"; a="69969256"
-X-IronPort-AV: E=Sophos;i="6.21,230,1763452800"; d="scan'208";a="69969256"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jan 2026 03:46:40 -0800
-X-CSE-ConnectionGUID: xp0JfnKuS/m//zmB1C5ZfQ==
-X-CSE-MsgGUID: TW3srg4BQj2ACbjZQLvFVw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,230,1763452800"; d="scan'208";a="205642159"
-Received: from egrumbac-mobl6.ger.corp.intel.com (HELO [10.245.245.179])
- ([10.245.245.179])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jan 2026 03:46:37 -0800
-Message-ID: <ce0acfe2-9c1a-42b7-8782-f1e7f34b8544@linux.intel.com>
-Date: Fri, 16 Jan 2026 12:46:34 +0100
+	by gabe.freedesktop.org (Postfix) with ESMTP id 13BFE10E86F;
+	Fri, 16 Jan 2026 11:50:29 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9B56B10E86D;
+ Fri, 16 Jan 2026 11:50:27 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0779757333753259450=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-To: Simona Vetter <simona.vetter@ffwll.ch>, Dave Airlie <airlied@gmail.com>
-Cc: dim-tools@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Oded Gabbay <ogabbay@kernel.org>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Matthew Brost <matthew.brost@intel.com>, Maxime Ripard <mripard@kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
- <tursulin@ursulin.net>, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>
-Subject: [PULL] drm-misc-fixes
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/xelp=3A_Fix_Wa=5F180?=
+ =?utf-8?q?22495364?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Tvrtko Ursulin" <tvrtko.ursulin@igalia.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 16 Jan 2026 11:50:27 -0000
+Message-ID: <176856422763.161648.9348708092117052816@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260116095040.49335-1-tvrtko.ursulin@igalia.com>
+In-Reply-To: <20260116095040.49335-1-tvrtko.ursulin@igalia.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,143 +36,272 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Dave, Simona,
+--===============0779757333753259450==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Nature made it a bit hard to send a pull request, but ready now!
-Nothing that stood out to me, all just minor fixes.
+== Series Details ==
 
-Kind regards,
-~Maarten Lankhorst
+Series: drm/xe/xelp: Fix Wa_18022495364
+URL   : https://patchwork.freedesktop.org/series/160185/
+State : success
 
-drm-misc-fixes-2026-01-16:
-drm-misc-fixes for v6.19-rc6:
+== Summary ==
 
-vmwgfx:
-- Fix hw regression from refactoring cursor handling on v10 'hardware'
-- Fix warnings in destructor by merging the 2 release functions
-- kernel doc fix
-- error handling in vmw_compat_shader_add()
+CI Bug Log - changes from xe-4394-2c3e2b14be8eda5fb69764bb077663809afa183c_BAT -> xe-pw-160185v1_BAT
+====================================================
 
-rockchip:
-- fix vop2 polling
-- fix regression waiting for cfgdone without config change
-- fix warning when enabling encoder
+Summary
+-------
 
-core:
-- take gem lock when preallocating in gpuvm.
-- add single byte read fallback to dp for broken usb-c adapters
-- remove duplicate drm_sysfb declarations
+  **SUCCESS**
 
-gud:
-- Fix oops on usb disconnect
+  No regressions found.
 
-Simple panel:
-- Re-add fallback when connector is not set to fix regressions
-- Set correct type in DataImage SCF0700C48GGU18
+  
 
-nouveau:
-- locking fixes for cursor handling.
-The following changes since commit d5bdf88d1f9d1e4808177f03d89de3d0ba6c6e84:
+Participating hosts (10 -> 12)
+------------------------------
 
-  drm/fb-helper: Fix vblank timeout during suspend/reset (2026-01-06 09:05:06 +0100)
+  Additional (2): bat-dg2-oem2 bat-bmg-3 
 
-are available in the Git repository at:
+Known issues
+------------
 
-  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-fixes-2026-01-16
+  Here are the changes found in xe-pw-160185v1_BAT that come from known issues:
 
-for you to fetch changes up to b91a565ed14fcf900b4d95e86882b4b763860986:
+### IGT changes ###
 
-  drm/sysfb: Remove duplicate declarations (2026-01-14 11:03:56 +0100)
+#### Issues hit ####
 
-----------------------------------------------------------------
-drm-misc-fixes for v6.19-rc6:
+  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
+    - bat-dg2-oem2:       NOTRUN -> [SKIP][1] ([Intel XE#623])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160185v1/bat-dg2-oem2/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
 
-vmwgfx:
-- Fix hw regression from refactoring cursor handling on v10 'hardware'
-- Fix warnings in destructor by merging the 2 release functions
-- kernel doc fix
-- error handling in vmw_compat_shader_add()
+  * igt@kms_dsc@dsc-basic:
+    - bat-dg2-oem2:       NOTRUN -> [SKIP][2] ([Intel XE#455])
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160185v1/bat-dg2-oem2/igt@kms_dsc@dsc-basic.html
 
-rockchip:
-- fix vop2 polling
-- fix regression waiting for cfgdone without config change
-- fix warning when enabling encoder
+  * igt@kms_psr@psr-cursor-plane-move:
+    - bat-dg2-oem2:       NOTRUN -> [SKIP][3] ([Intel XE#1406] / [Intel XE#2850] / [Intel XE#929]) +2 other tests skip
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160185v1/bat-dg2-oem2/igt@kms_psr@psr-cursor-plane-move.html
 
-core:
-- take gem lock when preallocating in gpuvm.
-- add single byte read fallback to dp for broken usb-c adapters
-- remove duplicate drm_sysfb declarations
+  * igt@sriov_basic@enable-vfs-autoprobe-on:
+    - bat-dg2-oem2:       NOTRUN -> [SKIP][4] ([Intel XE#1091] / [Intel XE#2849]) +1 other test skip
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160185v1/bat-dg2-oem2/igt@sriov_basic@enable-vfs-autoprobe-on.html
 
-gud:
-- Fix oops on usb disconnect
+  * igt@xe_exec_fault_mode@twice-invalid-fault:
+    - bat-dg2-oem2:       NOTRUN -> [SKIP][5] ([Intel XE#288]) +32 other tests skip
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160185v1/bat-dg2-oem2/igt@xe_exec_fault_mode@twice-invalid-fault.html
 
-Simple panel:
-- Re-add fallback when connector is not set to fix regressions
-- Set correct type in DataImage SCF0700C48GGU18
+  * igt@xe_huc_copy@huc_copy:
+    - bat-dg2-oem2:       NOTRUN -> [SKIP][6] ([Intel XE#255])
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160185v1/bat-dg2-oem2/igt@xe_huc_copy@huc_copy.html
 
-nouveau:
-- locking fixes for cursor handling.
+  * igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:
+    - bat-dg2-oem2:       NOTRUN -> [SKIP][7] ([Intel XE#2229])
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160185v1/bat-dg2-oem2/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html
 
-----------------------------------------------------------------
-Alice Ryhl (1):
-      drm/gpuvm: take GEM lock inside drm_gpuvm_bo_obtain_prealloc()
+  * igt@xe_pat@pat-index-xe2:
+    - bat-dg2-oem2:       NOTRUN -> [SKIP][8] ([Intel XE#977])
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160185v1/bat-dg2-oem2/igt@xe_pat@pat-index-xe2.html
 
-Andy Yan (2):
-      drm/rockchip: vop2: Add delay between poll registers
-      drm/rockchip: vop2: Only wait for changed layer cfg done when there is pending cfgdone bits
+  * igt@xe_pat@pat-index-xehpc:
+    - bat-dg2-oem2:       NOTRUN -> [SKIP][9] ([Intel XE#2838] / [Intel XE#979])
+   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160185v1/bat-dg2-oem2/igt@xe_pat@pat-index-xehpc.html
 
-Bartlomiej Kubik (1):
-      drm/vmwgfx: Fix kernel-doc warnings for vmwgfx_fence
+  * igt@xe_pat@pat-index-xelpg:
+    - bat-dg2-oem2:       NOTRUN -> [SKIP][10] ([Intel XE#979])
+   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160185v1/bat-dg2-oem2/igt@xe_pat@pat-index-xelpg.html
 
-Chia-Lin Kao (AceLan) (1):
-      drm/dp: Add byte-by-byte fallback for broken USB-C adapters
+  * igt@xe_peer2peer@read@read-gpua-vram01-gpub-system-p2p:
+    - bat-bmg-3:          NOTRUN -> [SKIP][11] ([Intel XE#6566]) +3 other tests skip
+   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160185v1/bat-bmg-3/igt@xe_peer2peer@read@read-gpua-vram01-gpub-system-p2p.html
 
-Cristian Ciocaltea (1):
-      drm/rockchip: dw_hdmi_qp: Switch to gpiod_set_value_cansleep()
+  * igt@xe_sriov_flr@flr-vf1-clear:
+    - bat-dg2-oem2:       NOTRUN -> [SKIP][12] ([Intel XE#3342])
+   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160185v1/bat-dg2-oem2/igt@xe_sriov_flr@flr-vf1-clear.html
 
-Haoxiang Li (1):
-      drm/vmwgfx: Fix an error return check in vmw_compat_shader_add()
+  * igt@xe_waitfence@abstime:
+    - bat-dg2-oem2:       NOTRUN -> [TIMEOUT][13] ([Intel XE#6506])
+   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160185v1/bat-dg2-oem2/igt@xe_waitfence@abstime.html
 
-Ian Forbes (2):
-      drm/vmwgfx: Fix KMS with 3D on HW version 10
-      drm/vmwgfx: Merge vmw_bo_release and vmw_bo_free functions
+  * igt@xe_waitfence@engine:
+    - bat-dg2-oem2:       NOTRUN -> [FAIL][14] ([Intel XE#6519])
+   [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160185v1/bat-dg2-oem2/igt@xe_waitfence@engine.html
 
-Ludovic Desroches (1):
-      drm/panel: simple: restore connector_type fallback
+  
+  [Intel XE#1091]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1091
+  [Intel XE#1406]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1406
+  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
+  [Intel XE#255]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/255
+  [Intel XE#2838]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2838
+  [Intel XE#2849]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2849
+  [Intel XE#2850]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2850
+  [Intel XE#288]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/288
+  [Intel XE#3342]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3342
+  [Intel XE#455]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/455
+  [Intel XE#623]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/623
+  [Intel XE#6506]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506
+  [Intel XE#6519]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519
+  [Intel XE#6566]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6566
+  [Intel XE#929]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/929
+  [Intel XE#977]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/977
+  [Intel XE#979]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/979
 
-Lyude Paul (2):
-      drm/nouveau/disp/nv50-: Set lock_core in curs507a_prepare
-      drm/nouveau/kms/nv50-: Assert we hold nv50_disp->lock in nv50_head_flush_*
 
-Marek Vasut (1):
-      drm/panel-simple: fix connector type for DataImage SCF0700C48GGU18 panel
+Build changes
+-------------
 
-Sebastian Reichel (1):
-      drm/bridge: dw-hdmi-qp: Fix spurious IRQ on resume
+  * Linux: xe-4394-2c3e2b14be8eda5fb69764bb077663809afa183c -> xe-pw-160185v1
 
-Shenghao Yang (1):
-      drm/gud: fix NULL fb and crtc dereferences on USB disconnect
+  IGT_8704: 8704
+  xe-4394-2c3e2b14be8eda5fb69764bb077663809afa183c: 2c3e2b14be8eda5fb69764bb077663809afa183c
+  xe-pw-160185v1: 160185v1
 
-Thomas Zimmermann (1):
-      drm/sysfb: Remove duplicate declarations
+== Logs ==
 
- drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c   |   9 ++
- drivers/gpu/drm/drm_gpuvm.c                    |  75 +++++++++++------
- drivers/gpu/drm/gud/gud_pipe.c                 |  20 ++---
- drivers/gpu/drm/nouveau/dispnv50/curs507a.c    |   1 +
- drivers/gpu/drm/nouveau/dispnv50/head.c        |   5 ++
- drivers/gpu/drm/panel/panel-simple.c           | 110 ++++++++++++-------------
- drivers/gpu/drm/panthor/panthor_mmu.c          |  10 ---
- drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c |  14 +++-
- drivers/gpu/drm/rockchip/rockchip_vop2_reg.c   |  17 +++-
- drivers/gpu/drm/sysfb/drm_sysfb_helper.h       |   9 --
- drivers/gpu/drm/vmwgfx/vmwgfx_bo.c             |  22 ++---
- drivers/gpu/drm/vmwgfx/vmwgfx_fence.c          |  10 +--
- drivers/gpu/drm/vmwgfx/vmwgfx_kms.c            |  14 ++--
- drivers/gpu/drm/vmwgfx/vmwgfx_shader.c         |   4 +-
- include/drm/bridge/dw_hdmi_qp.h                |   1 +
- include/drm/display/drm_dp_helper.h            |  57 ++++++++-----
- 16 files changed, 216 insertions(+), 162 deletions(-)
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160185v1/index.html
+
+--===============0779757333753259450==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/xelp: Fix Wa_18022495364</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/160185/">https://patchwork.freedesktop.org/series/160185/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160185v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160185v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4394-2c3e2b14be8eda5fb69764bb077663809afa183c_BAT -&gt; xe-pw-160185v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (10 -&gt; 12)</h2>
+<p>Additional (2): bat-dg2-oem2 bat-bmg-3 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-160185v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:</p>
+<ul>
+<li>bat-dg2-oem2:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160185v1/bat-dg2-oem2/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/623">Intel XE#623</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_dsc@dsc-basic:</p>
+<ul>
+<li>bat-dg2-oem2:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160185v1/bat-dg2-oem2/igt@kms_dsc@dsc-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@psr-cursor-plane-move:</p>
+<ul>
+<li>bat-dg2-oem2:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160185v1/bat-dg2-oem2/igt@kms_psr@psr-cursor-plane-move.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1406">Intel XE#1406</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2850">Intel XE#2850</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/929">Intel XE#929</a>) +2 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@sriov_basic@enable-vfs-autoprobe-on:</p>
+<ul>
+<li>bat-dg2-oem2:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160185v1/bat-dg2-oem2/igt@sriov_basic@enable-vfs-autoprobe-on.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1091">Intel XE#1091</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2849">Intel XE#2849</a>) +1 other test skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_fault_mode@twice-invalid-fault:</p>
+<ul>
+<li>bat-dg2-oem2:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160185v1/bat-dg2-oem2/igt@xe_exec_fault_mode@twice-invalid-fault.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/288">Intel XE#288</a>) +32 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_huc_copy@huc_copy:</p>
+<ul>
+<li>bat-dg2-oem2:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160185v1/bat-dg2-oem2/igt@xe_huc_copy@huc_copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/255">Intel XE#255</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:</p>
+<ul>
+<li>bat-dg2-oem2:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160185v1/bat-dg2-oem2/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xe2:</p>
+<ul>
+<li>bat-dg2-oem2:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160185v1/bat-dg2-oem2/igt@xe_pat@pat-index-xe2.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/977">Intel XE#977</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xehpc:</p>
+<ul>
+<li>bat-dg2-oem2:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160185v1/bat-dg2-oem2/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2838">Intel XE#2838</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/979">Intel XE#979</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xelpg:</p>
+<ul>
+<li>bat-dg2-oem2:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160185v1/bat-dg2-oem2/igt@xe_pat@pat-index-xelpg.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/979">Intel XE#979</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_peer2peer@read@read-gpua-vram01-gpub-system-p2p:</p>
+<ul>
+<li>bat-bmg-3:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160185v1/bat-bmg-3/igt@xe_peer2peer@read@read-gpua-vram01-gpub-system-p2p.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6566">Intel XE#6566</a>) +3 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_sriov_flr@flr-vf1-clear:</p>
+<ul>
+<li>bat-dg2-oem2:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160185v1/bat-dg2-oem2/igt@xe_sriov_flr@flr-vf1-clear.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3342">Intel XE#3342</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_waitfence@abstime:</p>
+<ul>
+<li>bat-dg2-oem2:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160185v1/bat-dg2-oem2/igt@xe_waitfence@abstime.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506">Intel XE#6506</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_waitfence@engine:</p>
+<ul>
+<li>bat-dg2-oem2:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160185v1/bat-dg2-oem2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519">Intel XE#6519</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4394-2c3e2b14be8eda5fb69764bb077663809afa183c -&gt; xe-pw-160185v1</li>
+</ul>
+<p>IGT_8704: 8704<br />
+  xe-4394-2c3e2b14be8eda5fb69764bb077663809afa183c: 2c3e2b14be8eda5fb69764bb077663809afa183c<br />
+  xe-pw-160185v1: 160185v1</p>
+
+</body>
+</html>
+
+--===============0779757333753259450==--
