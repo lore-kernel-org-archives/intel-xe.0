@@ -4,27 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EC15CC98315
-	for <intel-xe@archiver.kernel.org>; Mon, 19 Jan 2026 04:11:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5888BC98315
+	for <intel-xe@archiver.kernel.org>; Mon, 19 Jan 2026 04:30:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9958910E346;
-	Mon, 19 Jan 2026 04:11:06 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D433A10E340;
- Mon, 19 Jan 2026 04:11:05 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0030660212270102701=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1955A10E357;
+	Mon, 19 Jan 2026 04:30:32 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gfOUbRMO";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5FFCF10E356;
+ Mon, 19 Jan 2026 04:30:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1768797031; x=1800333031;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=59TQShMTvXgj83r8FSlIBSfRCIBT5Yfg5HSGo9SqkoI=;
+ b=gfOUbRMOrxF7wflQb9zGge6XSL2bQrZVHooPgfYTn0ks5Jnz4A/fdpoh
+ hDW8/7zzR56o8UcucSUoKUScKrTMyeGTDosJS2GXrJeD2QHaY2JtoHIFB
+ ijWaPCUTY9kYTsDjoZcOX6ERy5irm6HNkbW6t5FKE6lHfHCKFlhomKumN
+ 9q5u9+yuDTEp8WzENSt7R63V1kXgtowDwuBH5Okl9I+Etj0/5/fzzGH5E
+ RyNops9hB53j9elU2SKZ/ZZ45q0PHrzHdjusnl3411rR1v7Fb6OcwbaE1
+ slTvWvg2PlelB8K/tF9S4DXWgSKkq7BsFY66vADfnzDRlcXAX/558pA5x g==;
+X-CSE-ConnectionGUID: lYfT7hApQ+K9fjTJed3iOA==
+X-CSE-MsgGUID: TsxGb7AKRpqorcugRNFmgg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11675"; a="69205928"
+X-IronPort-AV: E=Sophos;i="6.21,237,1763452800"; d="scan'208";a="69205928"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jan 2026 20:30:30 -0800
+X-CSE-ConnectionGUID: QnU4E6JVQjWzIXT9sMFKqQ==
+X-CSE-MsgGUID: 8bvLkvXUT9Cebdg438U95Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,237,1763452800"; d="scan'208";a="204916605"
+Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
+ by orviesa006.jf.intel.com with ESMTP; 18 Jan 2026 20:30:29 -0800
+From: Suraj Kandpal <suraj.kandpal@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Cc: ankit.k.nautiyal@intel.com,
+	Suraj Kandpal <suraj.kandpal@intel.com>
+Subject: [PATCH] drm/i915/display: Wait for pipe start to avoid vblank and
+ scanline jumps
+Date: Mon, 19 Jan 2026 10:00:25 +0530
+Message-Id: <20260119043025.589754-1-suraj.kandpal@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_Introduce_DRM=5FRAS_using_g?=
- =?utf-8?q?eneric_netlink_for_RAS_=28rev4=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Rodrigo Vivi" <rodrigo.vivi@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 19 Jan 2026 04:11:05 -0000
-Message-ID: <176879586585.165702.1525401155479351626@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260119040023.2821518-6-riana.tauro@intel.com>
-In-Reply-To: <20260119040023.2821518-6-riana.tauro@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,174 +63,51 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0030660212270102701==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Check for if scanline values are updated or not in PIPE_SCANLINE
+register before we move on from trnascoder enablement.
+This needs to be done because we need to make sure we are not getting
+stale values from PIPE_SCANLINE register since we use the scanline
+value to make a decision if an atomic commit can go through. Without
+this change we see Atomic update failure warning with the following
+signature:
+[drm] *ERROR* Atomic update failure on pipe B (start=457 end=458) time
+50 us, min 2128, max 2161, scanline start 411, end 2165
+where the atomic commit takes less than 100us but we still see a
+vblank count jump and a big leap in scanline.
 
-== Series Details ==
+Bspec: 69961
+Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display.c | 9 +++++----
+ 1 file changed, 5 insertions(+), 4 deletions(-)
 
-Series: Introduce DRM_RAS using generic netlink for RAS (rev4)
-URL   : https://patchwork.freedesktop.org/series/155188/
-State : failure
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 7491e00e3858..c6f830033509 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -490,14 +490,15 @@ void intel_enable_transcoder(const struct intel_crtc_state *new_crtc_state)
+ 	intel_de_posting_read(display, TRANSCONF(display, cpu_transcoder));
+ 
+ 	/*
+-	 * Until the pipe starts PIPEDSL reads will return a stale value,
+-	 * which causes an apparent vblank timestamp jump when PIPEDSL
++	 * Until the pipe starts PIPEDSL/PIPE_SCANLINE reads will return a
++	 * stale value, this is because it may take 1 vblank for TRANSCONF
++	 * register to enable the pipe, which causes an apparent vblank
++	 * timestamp and scaline jump  jump when PIPEDSL/PIPE_SCANLINE
+ 	 * resets to its proper value. That also messes up the frame count
+ 	 * when it's derived from the timestamps. So let's wait for the
+ 	 * pipe to start properly before we call drm_crtc_vblank_on()
+ 	 */
+-	if (intel_crtc_max_vblank_count(new_crtc_state) == 0)
+-		intel_wait_for_pipe_scanline_moving(crtc);
++	intel_wait_for_pipe_scanline_moving(crtc);
+ }
+ 
+ void intel_disable_transcoder(const struct intel_crtc_state *old_crtc_state)
+-- 
+2.34.1
 
-== Summary ==
-
-CI Bug Log - changes from xe-4406-af18785a6a8621b1a5805ba8a1b35d290cb4bcac_BAT -> xe-pw-155188v4_BAT
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with xe-pw-155188v4_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-155188v4_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-Participating hosts (12 -> 12)
-------------------------------
-
-  No changes in participating hosts
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-155188v4_BAT:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@xe_module_load@load:
-    - bat-dg2-oem2:       [PASS][1] -> [DMESG-WARN][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4406-af18785a6a8621b1a5805ba8a1b35d290cb4bcac/bat-dg2-oem2/igt@xe_module_load@load.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155188v4/bat-dg2-oem2/igt@xe_module_load@load.html
-    - bat-atsm-2:         [PASS][3] -> [DMESG-WARN][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4406-af18785a6a8621b1a5805ba8a1b35d290cb4bcac/bat-atsm-2/igt@xe_module_load@load.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155188v4/bat-atsm-2/igt@xe_module_load@load.html
-    - bat-bmg-2:          [PASS][5] -> [DMESG-WARN][6]
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4406-af18785a6a8621b1a5805ba8a1b35d290cb4bcac/bat-bmg-2/igt@xe_module_load@load.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155188v4/bat-bmg-2/igt@xe_module_load@load.html
-    - bat-bmg-3:          [PASS][7] -> [DMESG-WARN][8]
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4406-af18785a6a8621b1a5805ba8a1b35d290cb4bcac/bat-bmg-3/igt@xe_module_load@load.html
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155188v4/bat-bmg-3/igt@xe_module_load@load.html
-    - bat-bmg-1:          [PASS][9] -> [DMESG-WARN][10]
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4406-af18785a6a8621b1a5805ba8a1b35d290cb4bcac/bat-bmg-1/igt@xe_module_load@load.html
-   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155188v4/bat-bmg-1/igt@xe_module_load@load.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in xe-pw-155188v4_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@xe_waitfence@engine:
-    - bat-bmg-2:          [FAIL][11] -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4406-af18785a6a8621b1a5805ba8a1b35d290cb4bcac/bat-bmg-2/igt@xe_waitfence@engine.html
-   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155188v4/bat-bmg-2/igt@xe_waitfence@engine.html
-
-  
-
-
-Build changes
--------------
-
-  * Linux: xe-4406-af18785a6a8621b1a5805ba8a1b35d290cb4bcac -> xe-pw-155188v4
-
-  IGT_8704: 8704
-  xe-4406-af18785a6a8621b1a5805ba8a1b35d290cb4bcac: af18785a6a8621b1a5805ba8a1b35d290cb4bcac
-  xe-pw-155188v4: 155188v4
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155188v4/index.html
-
---===============0030660212270102701==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Introduce DRM_RAS using generic netlink for RAS (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/155188/">https://patchwork.freedesktop.org/series/155188/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155188v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155188v4/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4406-af18785a6a8621b1a5805ba8a1b35d290cb4bcac_BAT -&gt; xe-pw-155188v4_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-155188v4_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-155188v4_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (12 -&gt; 12)</h2>
-<p>No changes in participating hosts</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-155188v4_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@xe_module_load@load:<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4406-af18785a6a8621b1a5805ba8a1b35d290cb4bcac/bat-dg2-oem2/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155188v4/bat-dg2-oem2/igt@xe_module_load@load.html">DMESG-WARN</a></li>
-<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4406-af18785a6a8621b1a5805ba8a1b35d290cb4bcac/bat-atsm-2/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155188v4/bat-atsm-2/igt@xe_module_load@load.html">DMESG-WARN</a></li>
-<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4406-af18785a6a8621b1a5805ba8a1b35d290cb4bcac/bat-bmg-2/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155188v4/bat-bmg-2/igt@xe_module_load@load.html">DMESG-WARN</a></li>
-<li>bat-bmg-3:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4406-af18785a6a8621b1a5805ba8a1b35d290cb4bcac/bat-bmg-3/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155188v4/bat-bmg-3/igt@xe_module_load@load.html">DMESG-WARN</a></li>
-<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4406-af18785a6a8621b1a5805ba8a1b35d290cb4bcac/bat-bmg-1/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155188v4/bat-bmg-1/igt@xe_module_load@load.html">DMESG-WARN</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-155188v4_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_waitfence@engine:<ul>
-<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4406-af18785a6a8621b1a5805ba8a1b35d290cb4bcac/bat-bmg-2/igt@xe_waitfence@engine.html">FAIL</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155188v4/bat-bmg-2/igt@xe_waitfence@engine.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4406-af18785a6a8621b1a5805ba8a1b35d290cb4bcac -&gt; xe-pw-155188v4</li>
-</ul>
-<p>IGT_8704: 8704<br />
-  xe-4406-af18785a6a8621b1a5805ba8a1b35d290cb4bcac: af18785a6a8621b1a5805ba8a1b35d290cb4bcac<br />
-  xe-pw-155188v4: 155188v4</p>
-
-</body>
-</html>
-
---===============0030660212270102701==--
