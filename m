@@ -4,59 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 14706CCF2D9
-	for <intel-xe@archiver.kernel.org>; Mon, 19 Jan 2026 10:14:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 89A3BCCF2D2
+	for <intel-xe@archiver.kernel.org>; Mon, 19 Jan 2026 10:20:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C98F510E2A4;
-	Mon, 19 Jan 2026 10:14:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DA03C10E3E7;
+	Mon, 19 Jan 2026 10:20:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cQlsTk2G";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="DxrQQXAa";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 72EC210E2A4;
- Mon, 19 Jan 2026 10:14:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1768817692; x=1800353692;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=kymq5Ey/PhDfysnp4Tm0jpPDknI1eVUm/TdcFK/xIJ8=;
- b=cQlsTk2GB99vrxKHXD2IBLFq15/iIY+7vDEVRE6cHgYTzp4p2IN3XG8D
- dctWtkgnrneqmZadCQeME+nw5IjwT5sgN7v5Q/DUvAslzBwVoF7zkveNf
- SeaiV2Ve7VHlFCCj/AzMH5aKD7PazyqOOPJ1wFSzVNRC8VU0Drv6xHnYl
- LYKVINcOaBj9p6HxlKA6nmuTAKKkP3Roy5gJvkelhK4ZNSw3XRto9gKk7
- KpoOKJRXuwVk7Zd/8Ew0Vt1MI3/R2a4TWvSZkgHHNIMhc2wrvAdBdQnA1
- imWm/hLWgrGK+N80wNbkhr1WeB0DCSq+Ahofuz7v9GynnxucpbYBRNp9D g==;
-X-CSE-ConnectionGUID: f74crxe6Qv6nO8ROQeO1OQ==
-X-CSE-MsgGUID: gBUT0erYRNOtfiJVCIEIbQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11675"; a="69759710"
-X-IronPort-AV: E=Sophos;i="6.21,238,1763452800"; d="scan'208";a="69759710"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jan 2026 02:14:48 -0800
-X-CSE-ConnectionGUID: JJfnHdm0SiGCZ4PzesNxeA==
-X-CSE-MsgGUID: 591PEeqxTWSVHpI4bsDpvg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,238,1763452800"; d="scan'208";a="236512064"
-Received: from aotchere-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.12])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jan 2026 02:14:47 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: =?utf-8?Q?Micha=C5=82?= Grzelak <michal.grzelak@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [v2] drm/{i915, xe}/pcode: move display pcode calls to parent
- interface
-In-Reply-To: <f7329c3b-77f2-1944-16de-f3a75aa1a2aa@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260115113337.4079184-1-jani.nikula@intel.com>
- <f7329c3b-77f2-1944-16de-f3a75aa1a2aa@intel.com>
-Date: Mon, 19 Jan 2026 12:14:43 +0200
-Message-ID: <037265c310c9f3901e2e47d00e2e225c76370f94@intel.com>
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 92BB910E3E1;
+ Mon, 19 Jan 2026 10:20:05 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sea.source.kernel.org (Postfix) with ESMTP id 5A7E143CF2;
+ Mon, 19 Jan 2026 10:20:05 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 992BBC116C6;
+ Mon, 19 Jan 2026 10:20:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1768818005;
+ bh=2RDjQUZMhmdWBYNRZtH/kkwU0r9gHkrCC4kz2CcBePY=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=DxrQQXAaI0qp3UxT5FitNpNW3Y9svXeBpnJR8Mwvk24SmBQfuUIB86Rn8wh4a/ecQ
+ pixwE/Z1cQ7jAwH5Xn4fAmSy+WAHOtmuhwbgMe1tcgyZoc2JxN67BOiUkLlG7dAZ4l
+ khAt25iuWNQOrsVRWjFsFCLlai/63P8eDcFYXOtI6ejGK+Cu+Dry69rHRjOgbENrNO
+ lPdh+8a9nXnyzv60+Z+ElrFp0rGvrInDnteHpR0Bd8RjB1i7CfWg3ENBjJ/z6EqW2a
+ e2HuPDKEOpE3UjazOeYLrGHAjL5NuqIVqBfBtCuolSeMuXg4lb7kuRYhoBwXGm6Ty2
+ nMhOuNmDbrRGw==
+Date: Mon, 19 Jan 2026 12:20:00 +0200
+From: Leon Romanovsky <leon@kernel.org>
+To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+Cc: Sumit Semwal <sumit.semwal@linaro.org>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Gerd Hoffmann <kraxel@redhat.com>,
+ Dmitry Osipenko <dmitry.osipenko@collabora.com>,
+ Gurchetan Singh <gurchetansingh@chromium.org>,
+ Chia-I Wu <olvaffe@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Jason Gunthorpe <jgg@ziepe.ca>, Kevin Tian <kevin.tian@intel.com>,
+ Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+ Robin Murphy <robin.murphy@arm.com>,
+ Alex Williamson <alex@shazbot.org>, linux-media@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org,
+ linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ virtualization@lists.linux.dev, intel-xe@lists.freedesktop.org,
+ linux-rdma@vger.kernel.org, iommu@lists.linux.dev, kvm@vger.kernel.org
+Subject: Re: [PATCH v2 0/4] dma-buf: document revoke mechanism to invalidate
+ shared buffers
+Message-ID: <20260119102000.GH13201@unreal>
+References: <20260118-dmabuf-revoke-v2-0-a03bb27c0875@nvidia.com>
+ <f115c91bbc9c6087d8b32917b9e24e3363a91f33.camel@linux.intel.com>
+ <20260119075229.GE13201@unreal>
+ <9112a605d2ee382e83b84b50c052dd9e4a79a364.camel@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <9112a605d2ee382e83b84b50c052dd9e4a79a364.camel@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,28 +80,181 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, 16 Jan 2026, Micha=C5=82 Grzelak <michal.grzelak@intel.com> wrote:
-> While moving the code, should we rename val & val1 into val1 & val2 (or
-> val2 & val1)? I think even renaming val -> val0 would suffice.
+On Mon, Jan 19, 2026 at 10:27:00AM +0100, Thomas Hellström wrote:
+> On Mon, 2026-01-19 at 09:52 +0200, Leon Romanovsky wrote:
+> > On Sun, Jan 18, 2026 at 03:16:25PM +0100, Thomas Hellström wrote:
+> > > Hi, Leon,
+> > > 
+> > > On Sun, 2026-01-18 at 14:08 +0200, Leon Romanovsky wrote:
+> > > > Changelog:
+> > > > v2:
+> > > >  * Changed series to document the revoke semantics instead of
+> > > >    implementing it.
+> > > > v1:
+> > > > https://patch.msgid.link/20260111-dmabuf-revoke-v1-0-fb4bcc8c259b@nvidia.com
+> > > > 
+> > > > -----------------------------------------------------------------
+> > > > ----
+> > > > ----
+> > > > This series documents a dma-buf “revoke” mechanism: to allow a
+> > > > dma-
+> > > > buf
+> > > > exporter to explicitly invalidate (“kill”) a shared buffer after
+> > > > it
+> > > > has
+> > > > been distributed to importers, so that further CPU and device
+> > > > access
+> > > > is
+> > > > prevented and importers reliably observe failure.
+> > > > 
+> > > > The change in this series is to properly document and use
+> > > > existing
+> > > > core
+> > > > “revoked” state on the dma-buf object and a corresponding
+> > > > exporter-
+> > > > triggered
+> > > > revoke operation. Once a dma-buf is revoked, new access paths are
+> > > > blocked so
+> > > > that attempts to DMA-map, vmap, or mmap the buffer fail in a
+> > > > consistent way.
+> > > 
+> > > This sounds like it does not match how many GPU-drivers use the
+> > > move_notify() callback.
+> > 
+> > No change for them.
+> > 
+> > > 
+> > > move_notify() would typically invalidate any device maps and any
+> > > asynchronous part of that invalidation would be complete when the
+> > > dma-
+> > > buf's reservation object becomes idle WRT DMA_RESV_USAGE_BOOKKEEP
+> > > fences.
+> > 
+> > This part has not changed and remains the same for the revocation
+> > flow as well.
+> > 
+> > > 
+> > > However, the importer could, after obtaining the resv lock, obtain
+> > > a
+> > > new map using dma_buf_map_attachment(), and I'd assume the CPU maps
+> > > work in the same way, I.E. move_notify() does not *permanently*
+> > > revoke
+> > > importer access.
+> > 
+> > This part diverges by design and is documented to match revoke
+> > semantics.  
+> > It defines what must occur after the exporter requests that the
+> > buffer be  
+> > "killed". An importer that follows revoke semantics will not attempt
+> > to call  
+> > dma_buf_map_attachment(), and the exporter will block any remapping
+> > attempts  
+> > regardless. See the priv->revoked flag in the VFIO exporter.
+> > 
+> > In addition, in this email thread, Christian explains that revoke
+> > semantics already exists, with the combination of dma_buf_pin and
+> > dma_buf_move_notify, just not documented:
+> > https://lore.kernel.org/all/f7f1856a-44fa-44af-b496-eb1267a05d11@amd.com/
+> 
+> 
+> Hmm,
+> 
+> Considering 
+> 
+> https://elixir.bootlin.com/linux/v6.19-rc5/source/drivers/infiniband/core/umem_dmabuf.c#L192
+> 
+> this sounds like it's not just undocumented but also in some cases
+> unimplemented.
 
-The variable naming matches the register macro naming. Historically,
-there was only GEN6_PCODE_DATA, and GEN6_PCODE_DATA1 was added
-afterwards. Hence val and val1.
+Yes, it was discussed later in the thread https://lore.kernel.org/all/20260112153503.GF745888@ziepe.ca/.
+RDMA will need some adjustments later, but first we need to document the
+existing semantics.
 
-Nowadays the spec has DATA0 and DATA1, so renaming both the register
-macro and the variable to DATA0 and val0, respectively, would be fine.
+> The xe driver for one doesn't expect move_notify() to be
+> called on pinned buffers, so if that is indeed going to be part of the
+> dma-buf protocol,  wouldn't support for that need to be advertised by
+> the importer?
 
-Just not in this patch. Generally, only do one thing at a time.
+This is what Jason proposed with "enum dma_buf_move_notify_level", but
+for some reason we got no responses.
 
-> Or (if the comment is valid) should I send it as a separate patch?
+Thanks
 
-The latter.
-
-> Reviewed-by: Micha=C5=82 Grzelak <michal.grzelak@intel.com>
-
-Thanks,
-Jani.
-
-
---=20
-Jani Nikula, Intel
+> 
+> Thanks,
+> Thomas
+> 
+> > 
+> > Thanks
+> > 
+> > > 
+> > > /Thomas
+> > > 
+> > > 
+> > > > 
+> > > > Thanks
+> > > > 
+> > > > Cc: linux-media@vger.kernel.org
+> > > > Cc: dri-devel@lists.freedesktop.org
+> > > > Cc: linaro-mm-sig@lists.linaro.org
+> > > > Cc: linux-kernel@vger.kernel.org
+> > > > Cc: amd-gfx@lists.freedesktop.org
+> > > > Cc: virtualization@lists.linux.dev
+> > > > Cc: intel-xe@lists.freedesktop.org
+> > > > Cc: linux-rdma@vger.kernel.org
+> > > > Cc: iommu@lists.linux.dev
+> > > > Cc: kvm@vger.kernel.org
+> > > > To: Sumit Semwal <sumit.semwal@linaro.org>
+> > > > To: Christian König <christian.koenig@amd.com>
+> > > > To: Alex Deucher <alexander.deucher@amd.com>
+> > > > To: David Airlie <airlied@gmail.com>
+> > > > To: Simona Vetter <simona@ffwll.ch>
+> > > > To: Gerd Hoffmann <kraxel@redhat.com>
+> > > > To: Dmitry Osipenko <dmitry.osipenko@collabora.com>
+> > > > To: Gurchetan Singh <gurchetansingh@chromium.org>
+> > > > To: Chia-I Wu <olvaffe@gmail.com>
+> > > > To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> > > > To: Maxime Ripard <mripard@kernel.org>
+> > > > To: Thomas Zimmermann <tzimmermann@suse.de>
+> > > > To: Lucas De Marchi <lucas.demarchi@intel.com>
+> > > > To: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> > > > To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> > > > To: Jason Gunthorpe <jgg@ziepe.ca>
+> > > > To: Leon Romanovsky <leon@kernel.org>
+> > > > To: Kevin Tian <kevin.tian@intel.com>
+> > > > To: Joerg Roedel <joro@8bytes.org>
+> > > > To: Will Deacon <will@kernel.org>
+> > > > To: Robin Murphy <robin.murphy@arm.com>
+> > > > To: Alex Williamson <alex@shazbot.org>
+> > > > 
+> > > > ---
+> > > > Leon Romanovsky (4):
+> > > >       dma-buf: Rename .move_notify() callback to a clearer
+> > > > identifier
+> > > >       dma-buf: Document revoke semantics
+> > > >       iommufd: Require DMABUF revoke semantics
+> > > >       vfio: Add pinned interface to perform revoke semantics
+> > > > 
+> > > >  drivers/dma-buf/dma-buf.c                   |  6 +++---
+> > > >  drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c |  4 ++--
+> > > >  drivers/gpu/drm/virtio/virtgpu_prime.c      |  2 +-
+> > > >  drivers/gpu/drm/xe/tests/xe_dma_buf.c       |  6 +++---
+> > > >  drivers/gpu/drm/xe/xe_dma_buf.c             |  2 +-
+> > > >  drivers/infiniband/core/umem_dmabuf.c       |  4 ++--
+> > > >  drivers/infiniband/hw/mlx5/mr.c             |  2 +-
+> > > >  drivers/iommu/iommufd/pages.c               | 11 +++++++++--
+> > > >  drivers/vfio/pci/vfio_pci_dmabuf.c          | 16
+> > > > ++++++++++++++++
+> > > >  include/linux/dma-buf.h                     | 25
+> > > > ++++++++++++++++++++++---
+> > > >  10 files changed, 60 insertions(+), 18 deletions(-)
+> > > > ---
+> > > > base-commit: 9ace4753a5202b02191d54e9fdf7f9e3d02b85eb
+> > > > change-id: 20251221-dmabuf-revoke-b90ef16e4236
+> > > > 
+> > > > Best regards,
+> > > > --  
+> > > > Leon Romanovsky <leonro@nvidia.com>
+> > > > 
+> > > 
+> 
