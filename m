@@ -4,68 +4,69 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1F1D4CCF2EF
-	for <intel-xe@archiver.kernel.org>; Mon, 19 Jan 2026 12:37:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 16B97CCF2EF
+	for <intel-xe@archiver.kernel.org>; Mon, 19 Jan 2026 12:39:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D3B7610E432;
-	Mon, 19 Jan 2026 12:37:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CBDF110E438;
+	Mon, 19 Jan 2026 12:39:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NMYhCwCq";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="L9YcDKgs";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E52F310E432
- for <intel-xe@lists.freedesktop.org>; Mon, 19 Jan 2026 12:37:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1768826262; x=1800362262;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=tDFzLqyyYdzzKAXqB1JC8rT6PcL9iO/N2PSqjN7pwHk=;
- b=NMYhCwCqfqCj03tZL7Aczpt0zUSDxbLaloHbTBUDn2dE7zlRWZFfjTjZ
- TQRNYegxxRe/SEhDuQFWTTATPUaW26jOUHHhAxE8wYnhE+SKwnW4vR5U7
- ThVD68KnV96T5G+fLOW3yPJPSVEinINr9ZSuP3fCyC328Q9zDAdrqxUgy
- S7R3yWfCloENdvoMN9v7nwuk9EkA5j0iohUfveHmJz2ozyV+1Qk7vVRv6
- hIooonYNfX737Wlj39XxISiGD20x0Am+dXw6shEEbLph3VqxrKoNUrFpb
- s0tV2Mcor+wO07M7g0prB9f4ilBJDPnBNXlBdRfVqeULO1yN2tIqF73/6 A==;
-X-CSE-ConnectionGUID: SAb1qKruROaSvJJGminAVg==
-X-CSE-MsgGUID: iWabS0dNRFe+GjIRS9ogkw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11675"; a="70124163"
-X-IronPort-AV: E=Sophos;i="6.21,238,1763452800"; d="scan'208";a="70124163"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jan 2026 04:37:41 -0800
-X-CSE-ConnectionGUID: bajIkM4MT+i04BC9a4nUhA==
-X-CSE-MsgGUID: g/77RmGQQA6iraGyHzvtCA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,238,1763452800"; d="scan'208";a="210001221"
-Received: from egrumbac-mobl6.ger.corp.intel.com (HELO [10.245.244.99])
- ([10.245.244.99])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jan 2026 04:37:39 -0800
-Message-ID: <598d3899-5942-485b-8e76-61bcbdfa5cbe@intel.com>
-Date: Mon, 19 Jan 2026 12:37:36 +0000
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E325D10E436;
+ Mon, 19 Jan 2026 12:39:21 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by tor.source.kernel.org (Postfix) with ESMTP id DA9D560155;
+ Mon, 19 Jan 2026 12:39:20 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 92B42C116C6;
+ Mon, 19 Jan 2026 12:39:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1768826360;
+ bh=Xp09gWC1E9OCNc+qqpGNdGNtAiJK448gBZX2ws7J5IM=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=L9YcDKgs50KwJZGaXvzaVA0Yp3w/krSD3QMG7JsW5vxsmyEn0KUELJ1jYPQAp5Z/v
+ VBkiVWlhhvj3yrBeFE7OhgwN3fQgMqwg2qM1wvugj+u7yU3hEHleIqcitM0AbAt5Hg
+ cHFkr3rvhS1/zB8uke+f/4cSX2lIRpkTECfd3aI1gUWCCq4znqSoT/Z5/etfG8ugEc
+ FVa+8T0LNTI/SUEp9uIilTCH56WTr/putQpQsFiaX2+G2yEq70O9WPgkiEiVHDqLl2
+ 7VKdZRo2xsyc43V7hwP2oLaeEnGeODjuXz4lvCbwuLkEsglYtbUJGLHhwIzvy1iXhw
+ jKmui593JczFg==
+Date: Mon, 19 Jan 2026 14:39:15 +0200
+From: Leon Romanovsky <leon@kernel.org>
+To: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
+Cc: Sumit Semwal <sumit.semwal@linaro.org>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Gerd Hoffmann <kraxel@redhat.com>,
+ Dmitry Osipenko <dmitry.osipenko@collabora.com>,
+ Gurchetan Singh <gurchetansingh@chromium.org>,
+ Chia-I Wu <olvaffe@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Jason Gunthorpe <jgg@ziepe.ca>, Kevin Tian <kevin.tian@intel.com>,
+ Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+ Robin Murphy <robin.murphy@arm.com>,
+ Alex Williamson <alex@shazbot.org>, linux-media@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org,
+ linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ virtualization@lists.linux.dev, intel-xe@lists.freedesktop.org,
+ linux-rdma@vger.kernel.org, iommu@lists.linux.dev, kvm@vger.kernel.org
+Subject: Re: [PATCH v2 1/4] dma-buf: Rename .move_notify() callback to a
+ clearer identifier
+Message-ID: <20260119123915.GM13201@unreal>
+References: <20260118-dmabuf-revoke-v2-0-a03bb27c0875@nvidia.com>
+ <20260118-dmabuf-revoke-v2-1-a03bb27c0875@nvidia.com>
+ <345b8dcb-5015-4801-b263-0dca4d1b3fca@amd.com>
+ <20260119113809.GK13201@unreal>
+ <871628d8-14b6-4d38-b05e-a33822f8d71b@amd.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/2] drm/xe/uapi: disallow bind queue sharing
-To: "Zhang, Carl" <carl.zhang@intel.com>,
- "Brost, Matthew" <matthew.brost@intel.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- "Souza, Jose" <jose.souza@intel.com>,
- "Mrozek, Michal" <michal.mrozek@intel.com>,
- "stable@vger.kernel.org" <stable@vger.kernel.org>
-References: <20251120132727.575986-4-matthew.auld@intel.com>
- <20251120132727.575986-5-matthew.auld@intel.com>
- <fh6dgogrt3ibrod7qkguejy4bj3cmvlbnxksmedhvfx3ejglk2@nu3h6doh7sdx>
- <cc27ae58-b579-4332-9653-c62b38f32add@intel.com>
- <aURm1LgtNPYNxRCP@lstrano-desk.jf.intel.com>
- <PH0PR11MB55798387B824D4101E19545E87A9A@PH0PR11MB5579.namprd11.prod.outlook.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <PH0PR11MB55798387B824D4101E19545E87A9A@PH0PR11MB5579.namprd11.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <871628d8-14b6-4d38-b05e-a33822f8d71b@amd.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,84 +81,174 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 19/12/2025 06:36, Zhang, Carl wrote:
+On Mon, Jan 19, 2026 at 01:00:18PM +0100, Christian König wrote:
+> On 1/19/26 12:38, Leon Romanovsky wrote:
+> > On Mon, Jan 19, 2026 at 11:22:27AM +0100, Christian König wrote:
+> >> On 1/18/26 13:08, Leon Romanovsky wrote:
+> >>> From: Leon Romanovsky <leonro@nvidia.com>
+> >>>
+> >>> Rename the .move_notify() callback to .invalidate_mappings() to make its
+> >>> purpose explicit and highlight that it is responsible for invalidating
+> >>> existing mappings.
+> >>>
+> >>> Suggested-by: Christian König <christian.koenig@amd.com>
+> >>> Signed-off-by: Leon Romanovsky <leonro@nvidia.com>
+> >>
+> >> Reviewed-by: Christian König <christian.koenig@amd.com>
+> > 
+> > Thanks,
+> > 
+> > BTW, I didn't update the various xxx_move_notify() functions to use
+> > xxx_invalidate_mappings() names. Should those be converted as well?
 > 
+> No, those importer specific functions can keep their name.
 > 
->> -----Original Message-----
->> From: Brost, Matthew <matthew.brost@intel.com>
->> Sent: Friday, December 19, 2025 4:41 AM
->> To: Auld, Matthew <matthew.auld@intel.com>
->> Cc: Lucas De Marchi <lucas.demarchi@intel.com>; intel-
->> xe@lists.freedesktop.org; Thomas HellstrÃ¶m
->> <thomas.hellstrom@linux.intel.com>; Souza, Jose <jose.souza@intel.com>;
->> Mrozek, Michal <michal.mrozek@intel.com>; Zhang, Carl
->> <carl.zhang@intel.com>; stable@vger.kernel.org
->> Subject: Re: [PATCH v3 1/2] drm/xe/uapi: disallow bind queue sharing
->>
->> On Mon, Nov 24, 2025 at 01:41:55PM +0000, Matthew Auld wrote:
->>> On 20/11/2025 15:34, Lucas De Marchi wrote:
->>>> On Thu, Nov 20, 2025 at 01:27:29PM +0000, Matthew Auld wrote:
->>>>> Currently this is very broken if someone attempts to create a bind
->>>>> queue and share it across multiple VMs. For example currently we
->>>>> assume it is safe to acquire the user VM lock to protect some of
->>>>> the bind queue state, but if allow sharing the bind queue with
->>>>> multiple VMs then this quickly breaks down.
->>>>>
->>>>> To fix this reject using a bind queue with any VM that is not the
->>>>> same VM that was originally passed when creating the bind queue.
->>>>> This a uAPI change, however this was more of an oversight on
->>>>> kernel side that we didn't reject this, and expectation is that
->>>>> userspace shouldn't be using bind queues in this way, so in theory this
->> change should go unnoticed.
->>>>>
->>>>> Based on a patch from Matt Brost.
->>>>>
->>>>> v2 (Matt B):
->>>>>  Â - Hold the vm lock over queue create, to ensure it can't be
->>>>> closed as
->>>>>  Â Â  we attach the user_vm to the queue.
->>>>>  Â - Make sure we actually check for NULL user_vm in destruction path.
->>>>> v3:
->>>>>  Â - Fix error path handling.
->>>>>
->>>>> Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel
->>>>> GPUs")
->>>>> Reported-by: Thomas HellstrÃ¶m <thomas.hellstrom@linux.intel.com>
->>>>> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
->>>>> Cc: JosÃ© Roberto de Souza <jose.souza@intel.com>
->>>>> Cc: Matthew Brost <matthew.brost@intel.com>
->>>>> Cc: Michal Mrozek <michal.mrozek@intel.com>
->>>>> Cc: Carl Zhang <carl.zhang@intel.com>
->>>>> Cc: <stable@vger.kernel.org> # v6.8+
->>>>
->>>> we never had any platform officially supported back in 6.8. Let's
->>>> make it 6.12 to avoid useless backporting work.
->>>>
->>>>> Acked-by: JosÃ© Roberto de Souza <jose.souza@intel.com>
->>>>
->>>> Michal / Carl, can you also ack compute/media are ok with this change?
->>>
-> I am ok , current media driver only use default 0,  did not create bind exec queue .
-
-Thanks for confirming.
-
-Michal, ping on this from compute POV?
-
+> More important is the config option. Haven't thought about that one.
 > 
->>> Ping on this? I did a cursory grep for DRM_XE_ENGINE_CLASS_VM_BIND and
->>> found no users in compute-runtime or media-driver in upstream. This
->>> change should only be noticeable if you directly use
->>> DRM_XE_ENGINE_CLASS_VM_BIND to create a dedicated bind queue, which
->> you then pass into vm_bind.
->>>
->>
->> Yes, ping? It would be good to get this series in.
->>
->> Matt
->>
->>>>
->>>> Lucas De Marchi
->>>
-> Thanks
-> Carl
+> Probably best if we either rename or completely remove that one, it was to keep the MOVE_NOTIFY functionality separate for initial testing but we have clearly supassed this long time ago.
 
+I removed it and will send in v3.
+
+commit 05ad416fc0b8c9b07714f9b23dbb038c991b819d
+Author: Leon Romanovsky <leonro@nvidia.com>
+Date:   Mon Jan 19 07:24:26 2026 -0500
+
+    dma-buf: Always build with DMABUF_MOVE_NOTIFY
+    
+    DMABUF_MOVE_NOTIFY was introduced in 2018 and has been marked as
+    experimental and disabled by default ever since. Six years later,
+    all new importers implement this callback.
+    
+    It is therefore reasonable to drop CONFIG_DMABUF_MOVE_NOTIFY and
+    always build DMABUF with support for it enabled.
+
+    Suggested-by: Christian König <christian.koenig@amd.com>
+    Signed-off-by: Leon Romanovsky <leonro@nvidia.com>
+
+diff --git a/drivers/dma-buf/Kconfig b/drivers/dma-buf/Kconfig
+index b46eb8a552d7..84d5e9b24e20 100644
+--- a/drivers/dma-buf/Kconfig
++++ b/drivers/dma-buf/Kconfig
+@@ -40,18 +40,6 @@ config UDMABUF
+          A driver to let userspace turn memfd regions into dma-bufs.
+          Qemu can use this to create host dmabufs for guest framebuffers.
+ 
+-config DMABUF_MOVE_NOTIFY
+-       bool "Move notify between drivers (EXPERIMENTAL)"
+-       default n
+-       depends on DMA_SHARED_BUFFER
+-       help
+-         Don't pin buffers if the dynamic DMA-buf interface is available on
+-         both the exporter as well as the importer. This fixes a security
+-         problem where userspace is able to pin unrestricted amounts of memory
+-         through DMA-buf.
+-         This is marked experimental because we don't yet have a consistent
+-         execution context and memory management between drivers.
+-
+ config DMABUF_DEBUG
+        bool "DMA-BUF debug checks"
+        depends on DMA_SHARED_BUFFER
+diff --git a/drivers/dma-buf/dma-buf.c b/drivers/dma-buf/dma-buf.c
+index 59cc647bf40e..cd3b60ce4863 100644
+--- a/drivers/dma-buf/dma-buf.c
++++ b/drivers/dma-buf/dma-buf.c
+@@ -837,18 +837,10 @@ static void mangle_sg_table(struct sg_table *sg_table)
+ 
+ }
+ 
+-static inline bool
+-dma_buf_attachment_is_dynamic(struct dma_buf_attachment *attach)
+-{
+-       return !!attach->importer_ops;
+-}
+-
+ static bool
+ dma_buf_pin_on_map(struct dma_buf_attachment *attach)
+ {
+-       return attach->dmabuf->ops->pin &&
+-               (!dma_buf_attachment_is_dynamic(attach) ||
+-                !IS_ENABLED(CONFIG_DMABUF_MOVE_NOTIFY));
++       return attach->dmabuf->ops->pin && !attach->importer_ops;
+ }
+ 
+ /**
+@@ -1124,7 +1116,7 @@ struct sg_table *dma_buf_map_attachment(struct dma_buf_attachment *attach,
+        /*
+         * Importers with static attachments don't wait for fences.
+         */
+-       if (!dma_buf_attachment_is_dynamic(attach)) {
++       if (!attach->importer_ops) {
+                ret = dma_resv_wait_timeout(attach->dmabuf->resv,
+                                            DMA_RESV_USAGE_KERNEL, true,
+                                            MAX_SCHEDULE_TIMEOUT);
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c
+index 863454148b28..349215549e8f 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c
+@@ -145,13 +145,9 @@ static int amdgpu_dma_buf_pin(struct dma_buf_attachment *attach)
+         * notifiers are disabled, only allow pinning in VRAM when move
+         * notiers are enabled.
+         */
+-       if (!IS_ENABLED(CONFIG_DMABUF_MOVE_NOTIFY)) {
+-               domains &= ~AMDGPU_GEM_DOMAIN_VRAM;
+-       } else {
+-               list_for_each_entry(attach, &dmabuf->attachments, node)
+-                       if (!attach->peer2peer)
+-                               domains &= ~AMDGPU_GEM_DOMAIN_VRAM;
+-       }
++       list_for_each_entry(attach, &dmabuf->attachments, node)
++               if (!attach->peer2peer)
++                       domains &= ~AMDGPU_GEM_DOMAIN_VRAM;
+ 
+        if (domains & AMDGPU_GEM_DOMAIN_VRAM)
+                bo->flags |= AMDGPU_GEM_CREATE_CPU_ACCESS_REQUIRED;
+diff --git a/drivers/gpu/drm/amd/amdkfd/Kconfig b/drivers/gpu/drm/amd/amdkfd/Kconfig
+index 16e12c9913f9..a5d7467c2f34 100644
+--- a/drivers/gpu/drm/amd/amdkfd/Kconfig
++++ b/drivers/gpu/drm/amd/amdkfd/Kconfig
+@@ -27,7 +27,7 @@ config HSA_AMD_SVM
+ 
+ config HSA_AMD_P2P
+        bool "HSA kernel driver support for peer-to-peer for AMD GPU devices"
+-       depends on HSA_AMD && PCI_P2PDMA && DMABUF_MOVE_NOTIFY
++       depends on HSA_AMD && PCI_P2PDMA
+        help
+          Enable peer-to-peer (P2P) communication between AMD GPUs over
+          the PCIe bus. This can improve performance of multi-GPU compute
+diff --git a/drivers/gpu/drm/xe/tests/xe_dma_buf.c b/drivers/gpu/drm/xe/tests/xe_dma_buf.c
+index 1f2cca5c2f81..c107687ef3c0 100644
+--- a/drivers/gpu/drm/xe/tests/xe_dma_buf.c
++++ b/drivers/gpu/drm/xe/tests/xe_dma_buf.c
+@@ -22,8 +22,7 @@ static bool p2p_enabled(struct dma_buf_test_params *params)
+ 
+ static bool is_dynamic(struct dma_buf_test_params *params)
+ {
+-       return IS_ENABLED(CONFIG_DMABUF_MOVE_NOTIFY) && params->attach_ops &&
+-               params->attach_ops->invalidate_mappings;
++       return params->attach_ops && params->attach_ops->invalidate_mappings;
+ }
+ 
+ static void check_residency(struct kunit *test, struct xe_bo *exported,
+diff --git a/drivers/gpu/drm/xe/xe_dma_buf.c b/drivers/gpu/drm/xe/xe_dma_buf.c
+index 1b9cd043e517..ea370cd373e9 100644
+--- a/drivers/gpu/drm/xe/xe_dma_buf.c
++++ b/drivers/gpu/drm/xe/xe_dma_buf.c
+@@ -56,14 +56,10 @@ static int xe_dma_buf_pin(struct dma_buf_attachment *attach)
+        bool allow_vram = true;
+        int ret;
+ 
+-       if (!IS_ENABLED(CONFIG_DMABUF_MOVE_NOTIFY)) {
+-               allow_vram = false;
+-       } else {
+-               list_for_each_entry(attach, &dmabuf->attachments, node) {
+-                       if (!attach->peer2peer) {
+-                               allow_vram = false;
+-                               break;
+-                       }
++       list_for_each_entry(attach, &dmabuf->attachments, node) {
++               if (!attach->peer2peer) {
++                       allow_vram = false;
++                       break;
+                }
+        }
+ 
