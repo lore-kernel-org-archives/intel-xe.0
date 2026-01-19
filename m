@@ -4,188 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DAABAC98315
-	for <intel-xe@archiver.kernel.org>; Mon, 19 Jan 2026 06:00:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2AF43C98315
+	for <intel-xe@archiver.kernel.org>; Mon, 19 Jan 2026 06:07:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 81A9110E261;
-	Mon, 19 Jan 2026 06:00:08 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="KfM47ANo";
-	dkim-atps=neutral
-Received: from BL2PR02CU003.outbound.protection.outlook.com
- (mail-eastusazon11011028.outbound.protection.outlook.com [52.101.52.28])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 53A1210E261;
- Mon, 19 Jan 2026 06:00:06 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=PH6m8Lccs2JHj3taQfk8nqtllyo9BExuDI9Dbi8fMU+L3RjocgyQH9fcMiMrCmtOfmG2A2o26Jt/0ObnfO1sY84kC46SojtbxzLGPj+VO7SimkcOWxHGsm3JrJ4M2kSCuGj4VMzhVvOHZlS8FwidjfKb0rUGQQTs8aXcFDdGmOMlcn/6PD2lC/kutEwNXJU+lldQyEFRosysQxMD9WvH+pkB6HlhuOue/9MC/DBsllmKkr086jXSBn0S6C9X/gXImgcniQxWDPiAki7e2BZtKUWkGsXl6gP6sCTUe/inmN/7Y+Lk0foRKQMs1i1pwn9kzlBiI3aKUC+qSzG6AS1Dzg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=SL0qdjIUBAF5xVraJZO3JMf1t8JjsoGuDnfY6ynkw9E=;
- b=idiOGOGfYaiSDac82RydfVZfm78LoS5w8ab1s4OjFapPrtpzlV2v2/RgTTtCxjy4bE3S77PTM+BFFkU8tvmwRIKwUy8DaNWBRdhhYjvGLD5XuXgI6h7zDnuILiVoiTVNFeACpilMmNLihjPK761yDUdstIBnixeuQqPAj0FmVzcKjcsfYTihu9lWeBB6U19oXPDfQyN4slzJiJ7ZJhpNKI6dwGt1NrfOKgDila5GfrzJrZypuGoRNxQMaV9+cUddouy6ZIEgCp4W5CFi12Y0YdRu7KDa+jAwWY8s8esrUEQc4A1oE/+x3JFCxoyRY11NWl/KyB54s2WVFgHI/IGn+Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=SL0qdjIUBAF5xVraJZO3JMf1t8JjsoGuDnfY6ynkw9E=;
- b=KfM47ANoLCP6YR3e4Es54Emkabu9n3a/re78WCZHzBQTgBFBCezBrHIfSWVDKShOhFevVLXwARbKOtCgIxm/axLq5nFkNT7/mTUtkbBxzUyieRFI3LvNB+9TkvwZ1LBa3JgFNSj/5dUqS4V7BN7FUdmqfsPddTdk8Bx3uZrJNQSUjODO+yS+nu7CCGWOrbi8Ne7ORFe1x4ptqhvjC8bzpLFxb7zSNZOZ/SjWSja0F0bivqpXnZ/eKstWUg0PoVLhXm/Bw/cPXa5Gi2OE0cp4y2xoGES4xCehA0Z/+uaDJnQWFESK8uOuEhsrGykNJf1/CnXnqJqIeZ7qO/cyGRZkNA==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from DS0PR12MB7726.namprd12.prod.outlook.com (2603:10b6:8:130::6) by
- CY8PR12MB7316.namprd12.prod.outlook.com (2603:10b6:930:50::11) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9520.10; Mon, 19 Jan 2026 06:00:02 +0000
-Received: from DS0PR12MB7726.namprd12.prod.outlook.com
- ([fe80::953f:2f80:90c5:67fe]) by DS0PR12MB7726.namprd12.prod.outlook.com
- ([fe80::953f:2f80:90c5:67fe%4]) with mapi id 15.20.9520.011; Mon, 19 Jan 2026
- 06:00:02 +0000
-Date: Mon, 19 Jan 2026 16:59:56 +1100
-From: Alistair Popple <apopple@nvidia.com>
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: Balbir Singh <balbirs@nvidia.com>, Jason Gunthorpe <jgg@nvidia.com>, 
- Vlastimil Babka <vbabka@suse.cz>, Francois Dugast <francois.dugast@intel.com>, 
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Zi Yan <ziy@nvidia.com>, 
- adhavan Srinivasan <maddy@linux.ibm.com>, Nicholas Piggin <npiggin@gmail.com>, 
- Michael Ellerman <mpe@ellerman.id.au>,
- "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>, 
- Felix Kuehling <Felix.Kuehling@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>, 
- Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@kernel.org>, 
- David Hildenbrand <david@kernel.org>, Oscar Salvador <osalvador@suse.de>, 
- Andrew Morton <akpm@linux-foundation.org>, Leon Romanovsky <leon@kernel.org>, 
- Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
- "Liam R . Howlett" <Liam.Howlett@oracle.com>, 
- Mike Rapoport <rppt@kernel.org>, Suren Baghdasaryan <surenb@google.com>, 
- Michal Hocko <mhocko@suse.com>, linuxppc-dev@lists.ozlabs.org,
- kvm@vger.kernel.org, 
- linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, 
- linux-mm@kvack.org, linux-cxl@vger.kernel.org
-Subject: Re: [PATCH v6 1/5] mm/zone_device: Reinitialize large zone device
- private folios
-Message-ID: <4k72r4n5poss2glrof5fsapczkpcrnpokposeikw5wjvtodbto@wpqsxoxzpvy6>
-References: <20260116111325.1736137-1-francois.dugast@intel.com>
- <20260116111325.1736137-2-francois.dugast@intel.com>
- <20260116174947.GA1134434@nvidia.com>
- <8006ea5f-8845-436a-a2d7-125399428762@suse.cz>
- <aWqgHTZ5hjlRvlKU@lstrano-desk.jf.intel.com>
- <20260117005114.GC1134360@nvidia.com>
- <aWsIT8A2dLciFvhj@lstrano-desk.jf.intel.com>
- <eb94d115-18a6-455b-b020-f18f372e283a@nvidia.com>
- <aWsdv6dX2RgqajFQ@lstrano-desk.jf.intel.com>
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <aWsdv6dX2RgqajFQ@lstrano-desk.jf.intel.com>
-X-ClientProxiedBy: SY6PR01CA0127.ausprd01.prod.outlook.com
- (2603:10c6:10:1b9::16) To CY8PR12MB7705.namprd12.prod.outlook.com
- (2603:10b6:930:84::9)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E00D210E37A;
+	Mon, 19 Jan 2026 06:07:19 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3109410E370;
+ Mon, 19 Jan 2026 06:07:18 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7856647137276510798=="
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR12MB7726:EE_|CY8PR12MB7316:EE_
-X-MS-Office365-Filtering-Correlation-Id: 794d44dd-53f0-438b-d063-08de571ffbd8
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|7416014|366016|1800799024|7053199007; 
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?SnlzS3UyeWNQa2NCUTYxUlVSbklvbjdTbDM0RWU4OGJxNjN5amswcEhsUW5t?=
- =?utf-8?B?dmM5RTUwNGRhWElMT0tMeTlrdEhvNy9vNndCMXJDbTQzNXdiUW9QUDI1bndm?=
- =?utf-8?B?elJMWU43ZTREYm55emlJaGlIS0pjYWxBVEFCdkc2Ti9xdzZsMk9ORzZRejdW?=
- =?utf-8?B?bmdLVVZCam9hRnNMK0tRY0QzZnYwL2N6SUtMYXpVZW9jQ3p6UHhIYkc2QmJS?=
- =?utf-8?B?cERobDhUVzRodE96NURRdEl3MzdDNVdXVkZCUmFLMHQ0Z2FIMzFVWXhBVGIv?=
- =?utf-8?B?dHlVc3NNNXJxUjVhc0FnTllJaXZLY2JzQWpNUFpMUDh0M202RW9Ja3FNOFNS?=
- =?utf-8?B?QURGbnFIZlU2QWc4dXUzL1BTK3JxelBzSG42ZDNGWVlGaU1DeHZiQTlQVGE3?=
- =?utf-8?B?M1lWbnNERTQremRRMENwMS9qcm1qNWdIK0pEb1ZkZndudjV5VTdVWWp3dUFX?=
- =?utf-8?B?ZWRteHVTNStaejVrWUJjWXplM1JibXh4VStEOFlQVnFPYXdkKytKVkw1RUpJ?=
- =?utf-8?B?UTlEVWhBNXpLa3p2TVEzQzcyZzFURnFPTjNYbUpDQ2s1ZzZLbFRqY2REZlpt?=
- =?utf-8?B?Uk5JMWJCUi93TXRzZUdWRGxZOFlGOTk2MWpQa215aWgyRk12VTZ2clN3Q2da?=
- =?utf-8?B?a0xiME9xUzAzMk41L1N1VURqUUFaK3k4WGhxYWh1SWROR1RmbXp0RXhkK3JW?=
- =?utf-8?B?R09DeTV3bHJQOHNoekRZaC9jRGlSUXlXK1h0TXVDSE42cmkxaG1FeHh2V1g5?=
- =?utf-8?B?QTRBWHg4TC9XNjhzVUtzRW96UHpqTFgyMTN2c2puU1Babks5UTU0cCtjanVN?=
- =?utf-8?B?OXFXeXJaKzlTampPUnQyc1dHTGIvNUg0SDBkZ2pQMVNxQ2ZXZ25iRTI1OFlQ?=
- =?utf-8?B?QXlYNHZGVkRUY2YxdEprbGlaVTNrT3AzZ2pDZytlYWxuTlhkeUNpR1EweXRE?=
- =?utf-8?B?QzhpemdvZXdjVU01anlCVExESTJpNC93bUJMTEt4anBDZXZjb2hST0ZTdFFP?=
- =?utf-8?B?NTNFQ3g1QkNiZXZ6aFpuWnoraW15UmYrNml0K2NCb0RnNjFHa052UjErTDhY?=
- =?utf-8?B?QXRKSGpjWnoxVTVsZ3B5T2M3M3p4eEo0VkhIUWNJWjRTVkJ0b1hyKzYwbGtW?=
- =?utf-8?B?SDB6dDVkUDlRRWlQbTF1Y0tReHVpSFNzMGRGRnQ3bFhUZU5tZjF4cWNNR2VG?=
- =?utf-8?B?UjhDTDRDbzFJTDFSSUY2dTFhWnVPZmc5SXRLaXBieWxXNmQ3SVlpbFl6c3l3?=
- =?utf-8?B?eDVZaWRMSnNPSjlIbmt1dlhua3BtNFg1TnlEWG5JRHVJWC90b0RQalpEdU9r?=
- =?utf-8?B?dVQ0MGJxVFpqWlo4azhFemdKQUZkQ3dKdGh6TnB5K1hodzBrM0d4dU1KYk5H?=
- =?utf-8?B?KzRuTjREVnFxM1RiSG5ZOFM1a25hUERBVnFYeTQzMXZ4akxLNnREZVhxNGdu?=
- =?utf-8?B?RlBBZTY4UHJMMGUrMDNjcml1enlrbDgxNTdyT3lsdnA0clltSHRCNWdYMll3?=
- =?utf-8?B?eE9vN2s1RmtsTFV4MXBWVVBIdmVwR1pya243Z3dRc2ZKWkZsVVFyRmMyb0FZ?=
- =?utf-8?B?ayt4Sm1jalpKdCtlSGRBM29wcThNMjlqZmVnd2lya3lYbmRWamxtQlFjYStI?=
- =?utf-8?B?ME0vN1NaaDJyWXc1UXQvTzNzdGRzdEtzMnJMbEY4VGZJaXVhY2YvK1lLZ3FI?=
- =?utf-8?B?bEpVYUU4NnFDcGVkd1F6eSswY2NrdkZlcEhCa0xqdWh1dHpON1U4b2szRkJx?=
- =?utf-8?B?Z2VJVFl0Vld0SkZyVXJjL3B0ZUVwTnFmeUFFck5oQ2RrUU5ydzcrV2c0aWpS?=
- =?utf-8?B?RExEVkNvVDdNZHpjVFI5K0RXVTFSeGpDaXF1ajBXR1ZZa0xZb2JYVFdqMDdL?=
- =?utf-8?B?R3Y1TlR0UEZxeno5Z2FNbHp1UWZLMmZha3VpejZVTXdXU0dtZFlZTDZtbUtz?=
- =?utf-8?B?bDhucFJKOVVvL3F1RHBpaEpqN2k2K3JVWlhLSE82OUVqNWRSTlNHSC9nYVZs?=
- =?utf-8?B?NnZFdWRwbnF5bFdDNkEzdlhjRTBPSUVNZDc0QzdVZURORmFKMWtKV0taU0V6?=
- =?utf-8?B?QzhPOTQ2eVc0TjkxMkFmbThtM0llOFhwTjMxOENEb2FJTFhHb0dFT1ZMZTdw?=
- =?utf-8?Q?3TJQ=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR12MB7726.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(7416014)(366016)(1800799024)(7053199007); DIR:OUT;
- SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?cnhvL2l2U0pGdHYzTU5wU0EydU1HYW5tNXpHaFp0L3JlRkdEdThZZXJoZ2xx?=
- =?utf-8?B?bGFzSm90VFcwRVp2T0E4azNHTEN1ZzZNajBMenovTTEzY25oYnpOSXVjNTN2?=
- =?utf-8?B?YWw0OHg1V0xxNG96N0dFMEp1dFpXQmpqdDMwSkdQUkVKY2xVZldMRzhmUjRF?=
- =?utf-8?B?OVErMlFKbUI5QW4vRG1wUWM1ODVUdFl5OHF2V1pnbkE3U1BiTEJvRFhWN2Mw?=
- =?utf-8?B?NzFxcWNld0kvL3ZzczQyTEhwNWZqeEtBVG1HYUkwSmEwdkF5b2FhMDlyVnVx?=
- =?utf-8?B?TFZLcWVWMks1MTZJMXNMaDVzRUpqSDZNT2Y0d09FYVlYVTlXVUxmcHJ0VkNu?=
- =?utf-8?B?b09xV0p4ZEl5VTR1aUhuOTF3Y0lNQlVGRFlmZjBjZW8yTk9lLzNnSlFycE1K?=
- =?utf-8?B?VnJuN0h4T0FBQWhHR1phT0dtTWl3V1dHTTVZenRETHY3cWhGN0MyK3dOanQ3?=
- =?utf-8?B?OEl0TGdNTCt3QkpXbDJNQ3BVOHlFbjY3OWlaUHhNSWdQa2hQQ3dIOXRzNFIy?=
- =?utf-8?B?NVVaYXF5NExBNGp4VkxlRnpnZy92ZHc3Q2dCRVRndXg5Z29vVmQrK2NORGE3?=
- =?utf-8?B?ZjV3bDJHMWt6NXhyWUd6YmJxa3hsdDlic2kyRWJhMC82Y2FBLzBCdy8rY3Iv?=
- =?utf-8?B?Mk5LSkgwbXlBQk5Qa1A5SFRUMTRxMXJ3YTAzcUhEd3lMUGhEZ1pwcW1yaW8x?=
- =?utf-8?B?SFlhOGl6eG53TkRhbkhuUnhkclp6OE1DRklQSUp5UWpDYTJ6dU9QN2t4L2NQ?=
- =?utf-8?B?dTlPSC9mZU5DUGc5YnRWb1ZRT0Q0S291NlA3RkNpczV4eHpqN3FMeTY2TnB0?=
- =?utf-8?B?a0J2bTdxMlhnTUcyUGR4aWx1RHo1WlNkclFYWE9TNHBqZWFQdVVjM0Vlb2VC?=
- =?utf-8?B?Z2Qyd0VHT1BpQTB1dVdZZFJIQnpGRkRXRC9jTkQ2L1FlZXFTUTZ6SmdmdFNK?=
- =?utf-8?B?SUVOQjFzd0pIUDdQcHdUTFRWYmdQUGx0NWMwN0I5MHgxU2trK000OEdKeWU2?=
- =?utf-8?B?YTlFeWMycnVLWFBnSTFiWGFScURrQkprUTdqLzhOS2dwMmtOQjUyQWJ0SkVw?=
- =?utf-8?B?WDFQcFg2SFd4dWxvM3ZqSTA2clZmVytEZDFUK0lIeWdYdEZXcTIxdHh2d2Vn?=
- =?utf-8?B?d2ZBS1dtNTdPakhXd3JDZXFJMTZPaENLVXVuZHk3UzRhRUpTQ01peXp1SmJ5?=
- =?utf-8?B?WVNhZ0FNUzF5S1NqTk93WnB3UTZYVnhqRkZaNHFWU2FQalN2bmFGeEYxdGEy?=
- =?utf-8?B?RFFLTFlUKy9FakZNZkZXTzNmYkJReFM4MGovZjU0ZkFZNTY0QnJYWGZ6ZFhH?=
- =?utf-8?B?dHc4YUJReFJSRENqWnNsY0IwbG5KSWZzWDdjWW1uOEwzYW9DcXo0SFIyYk5G?=
- =?utf-8?B?bGdReEgwWmUwbmZxTVBoaHlaRzFNeldEOUFFSzUyamI1KzRDdktuQU1rNTdQ?=
- =?utf-8?B?S1pnTnZCbjRYVTdwc2dRcTJZNFJySXRTb1JTU0kzeDVXRURxeC9GQ3JtZkU3?=
- =?utf-8?B?WmpWTzNUNlhVVU9sOEZxTmtOUzVCQU5ZTTlMWm00VDBNTkFHalhNUWk4VmdS?=
- =?utf-8?B?N091anZNckplL2ZDOXB1bVNUS3o0T2ZRdThNblhEeE5tZ2k5Y1hQaGZITGZq?=
- =?utf-8?B?Qzc2ZUJXV09pTjZMcVVmeVROQ1p4d0JPNys4SHo1L01DUHFKTWJXVUlEaEha?=
- =?utf-8?B?QjdHbElrMnVhZUI2d1N1RzVmYVBZb0NTV3p6UmpNUjQwdW9qd2xLdmp3WVVI?=
- =?utf-8?B?NENxQjBtUmo2OXk4MDZsU0ZhckRxYUI0aFdsdDF6bE90SXhOWDZxdGVCNTlx?=
- =?utf-8?B?ZzVBd1NqbUpWdllCTWF2RktNRmtJWURlUmw1clkxRTNMT3lSZzlPQ3ZQWTNN?=
- =?utf-8?B?UXl2MlZVbVAyb0tDUEpwOEpxUnVkVTM1eUVQRjh4aUR2RE9iZk5BaTErMVJU?=
- =?utf-8?B?NGc1YTBwK1VRQkRSNndKV24xTURhcEllZHkzR3ExL1NZc2lGN093a0YxVDVo?=
- =?utf-8?B?MlY1a3FHcWZzdVhTSzl4OGdhakpndFNWNXRXMElYK2lrbU1UNmxuQ1kwTTg3?=
- =?utf-8?B?M2ljWVA1akdSdDczby9EZ3dTOWhyaTlBbHZqL1lRSm0xVVRzMGVHelNONGVI?=
- =?utf-8?B?VzlyUFJqRVdDU0YwL1JhVXB3RFd6QWo3UTJnemJlS2ZhektJWVN4WWZNa2t5?=
- =?utf-8?B?Y2lqT1ZlUWdIQlcxZyttd0R5QXkxMzJSVTBlcnFQR01DVkpoL2ZRcHViUjRF?=
- =?utf-8?B?enNXZkxKLzVWbk95bnY1V1I3WlE0bHptUWdUcTdHQmxNQWVBQU5wZDlBeGw0?=
- =?utf-8?B?MmJWR0dwK0FoajdJTEI0MzY2OTRyeUdhekF3NzIvRUk5ekhxU253dz09?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 794d44dd-53f0-438b-d063-08de571ffbd8
-X-MS-Exchange-CrossTenant-AuthSource: CY8PR12MB7705.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Jan 2026 06:00:02.1806 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: S4GGAiHMKQuJGRciRm2bxHrdXXsV7V25rS11qnnRbApXSE+5k2YrQiWPWuQT/hRAGyIVJJ+glxkQwKMXFeP+Sg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR12MB7316
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EFull=3A_failure_for_drm/i915/display=3A_Wait_f?=
+ =?utf-8?q?or_pipe_start_to_avoid_vblank_and_scanline_jumps?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Suraj Kandpal" <suraj.kandpal@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 19 Jan 2026 06:07:18 -0000
+Message-ID: <176880283819.165965.4915982897468776346@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260119043025.589754-1-suraj.kandpal@intel.com>
+In-Reply-To: <20260119043025.589754-1-suraj.kandpal@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -197,175 +36,464 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 2026-01-17 at 16:27 +1100, Matthew Brost <matthew.brost@intel.com> wrote...
-> On Sat, Jan 17, 2026 at 03:42:16PM +1100, Balbir Singh wrote:
-> > On 1/17/26 14:55, Matthew Brost wrote:
-> > > On Fri, Jan 16, 2026 at 08:51:14PM -0400, Jason Gunthorpe wrote:
-> > >> On Fri, Jan 16, 2026 at 12:31:25PM -0800, Matthew Brost wrote:
-> > >>>> I suppose we could be getting say an order-9 folio that was previously used
-> > >>>> as two order-8 folios? And each of them had their _nr_pages in their head
-> > >>>
-> > >>> Yes, this is a good example. At this point we have idea what previous
-> > >>> allocation(s) order(s) were - we could have multiple places in the loop
-> > >>> where _nr_pages is populated, thus we have to clear this everywhere. 
-> > >>
-> > >> Why? The fact you have to use such a crazy expression to even access
-> > >> _nr_pages strongly says nothing will read it as _nr_pages.
-> > >>
-> > >> Explain each thing:
-> > >>
-> > >> 		new_page->flags.f &= ~0xffUL;	/* Clear possible order, page head */
-> > >>
-> > >> OK, the tail page flags need to be set right, and prep_compound_page()
-> > >> called later depends on them being zero.
-> > >>
-> > >> 		((struct folio *)(new_page - 1))->_nr_pages = 0;
-> > >>
-> > >> Can't see a reason, nothing reads _nr_pages from a random tail
-> > >> page. _nr_pages is the last 8 bytes of struct page so it overlaps
-> > >> memcg_data, which is also not supposed to be read from a tail page?
+--===============7856647137276510798==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-This is (or was) either a order-0 page, a head page or a tail page, who
-knows. So it doesn't really matter whether or not _nr_pages or memcg_data are
-supposed to be read from a tail page or not. What really matters is does any of
-vm_insert_page(), migrate_vma_*() or prep_compound_page() expect this to be a
-particular value when called on this page?
+== Series Details ==
 
-AFAIK memcg_data is at least expected to be NULL for migrate_vma_*() when called
-on an order-0 page, which means it has to be cleared.
+Series: drm/i915/display: Wait for pipe start to avoid vblank and scanline jumps
+URL   : https://patchwork.freedesktop.org/series/160261/
+State : failure
 
-Although I think it would be far less confusing if it was just written like that
-rather than the folio math but it achieves the same thing and is technically
-correct.
+== Summary ==
 
-> > >> 		new_folio->mapping = NULL;
-> > >>
-> > >> Pointless, prep_compound_page() -> prep_compound_tail() -> p->mapping = TAIL_MAPPING;
+CI Bug Log - changes from xe-4406-af18785a6a8621b1a5805ba8a1b35d290cb4bcac_FULL -> xe-pw-160261v1_FULL
+====================================================
 
-Not pointless - vm_insert_page() for example expects folio_test_anon() which
-which won't be the case if p->mapping was previously set to TAIL_MAPPING so it
-needs to be cleared. migrate_vma_setup() has a similar issue.
+Summary
+-------
 
-> > >>
-> > >> 		new_folio->pgmap = pgmap;	/* Also clear compound head */
-> > >>
-> > >> Pointless, compound_head is set in prep_compound_tail(): set_compound_head(p, head);
+  **FAILURE**
 
-No it isn't - we're not clearing tail pages here, we're initialising ZONE_DEVICE
-struct pages ready for use by the core-mm which means the pgmap needs to be
-correct.
+  Serious unknown changes coming with xe-pw-160261v1_FULL absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-160261v1_FULL, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
 
-> > >> 		new_folio->share = 0;   /* fsdax only, unused for device private */
-> > >>
-> > >> Not sure, certainly share isn't read from a tail page..
+  
 
-Yeah, not useful for now because FS DAX isn't using this function. Arguably it
-should though.
+Participating hosts (2 -> 2)
+------------------------------
 
-> > >>>>> Why can't this use the normal helpers, like memmap_init_compound()?
+  No changes in participating hosts
 
-Because that's not what this function is trying to do - eg. we might not be
-trying to create a compound page. Although something like
-memmap_init_zone_device() looks like it would be a good starting point, with the
-page order being a parameter instead of read from the pgmap.
+Possible new issues
+-------------------
 
-> > >>>>>
-> > >>>>>  struct folio *new_folio = page
-> > >>>>>
-> > >>>>>  /* First 4 tail pages are part of struct folio */
-> > >>>>>  for (i = 4; i < (1UL << order); i++) {
-> > >>>>>      prep_compound_tail(..)
-> > >>>>>  }
-> > >>>>>
-> > >>>>>  prep_comound_head(page, order)
-> > >>>>>  new_folio->_nr_pages = 0
-> > >>>>>
-> > >>>>> ??
-> > >>>
-> > >>> I've beat this to death with Alistair, normal helpers do not work here.
-> > >> What do you mean? It already calls prep_compound_page()! The issue
-> > >> seems to be that prep_compound_page() makes assumptions about what
-> > >> values are in flags already?
-> > >>
-> > >> So how about move that page flags mask logic into
-> > >> prep_compound_tail()? I think that would help Vlastimil's
-> > >> concern. That function is already touching most of the cache line so
-> > >> an extra word shouldn't make a performance difference.
-> > >>
-> > >>> An order zero allocation could have _nr_pages set in its page,
-> > >>> new_folio->_nr_pages is page + 1 memory.
-> > >>
-> > >> An order zero allocation does not have _nr_pages because it is in page
-> > >> +1 memory that doesn't exist.
-> > >>
-> > >> An order zero allocation might have memcg_data in the same slot, does
-> > >> it need zeroing? If so why not add that to prep_compound_head() ?
-> > >>
-> > >> Also, prep_compound_head() handles order 0 too:
-> > >>
-> > >> 	if (IS_ENABLED(CONFIG_64BIT) || order > 1) {
-> > >> 		atomic_set(&folio->_pincount, 0);
-> > >> 		atomic_set(&folio->_entire_mapcount, -1);
-> > >> 	}
-> > >> 	if (order > 1)
-> > >> 		INIT_LIST_HEAD(&folio->_deferred_list);
-> > >>
-> > >> So some of the problem here looks to be not calling it:
-> > >>
-> > >> 	if (order)
-> > >> 		prep_compound_page(page, order);
-> > >>
-> > >> So, remove that if ? Also shouldn't it be moved above the
-> > >> set_page_count/lock_page ?
-> > >>
-> > > 
-> > > I'm not addressing each comment, some might be valid, others are not.
+  Here are the unknown changes that may have been introduced in xe-pw-160261v1_FULL:
 
-Hopefully some of my explainations above help.
+### IGT changes ###
 
-> > > 
-> > > Ok, can I rework this in a follow-up - I will commit to that? Anything
-> > > we touch here is extremely sensitive to failures - Intel is the primary
-> > > test vector for any modification to device pages for what I can tell.
-> > > 
-> > > The fact is that large device pages do not really work without this
-> > > patch, or prior revs. I’ve spent a lot of time getting large device
-> > > pages stable — both here and in the initial series, commiting to help in
-> > > follow on series touch SVM related things.
-> > > 
-> > 
-> > Matthew, I feel your frustration and appreciate your help.
-> > For the current state of 6.19, your changes work for me, I added a
-> > Reviewed-by to the patch. It affects a small number of drivers and makes
-> > them work for zone device folios. I am happy to maintain the changes
-> > sent out as a part of zone_device_page_init()
+#### Possible regressions ####
 
-No problem with the above, and FWIW it seems correct. Although I suspect just
-setting page->memcg_data = 0 would have been far less controversial ;)
+  * igt@kms_joiner@basic-force-big-joiner:
+    - shard-lnl:          [PASS][1] -> [SKIP][2] +1 other test skip
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4406-af18785a6a8621b1a5805ba8a1b35d290cb4bcac/shard-lnl-4/igt@kms_joiner@basic-force-big-joiner.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160261v1/shard-lnl-2/igt@kms_joiner@basic-force-big-joiner.html
 
-> +1
-> 
-> > We can rework the details in a follow up series, there are many ideas
-> > and ways of doing this (Jason, Alistair, Zi have good ideas as well).
-> > 
-> 
-> I agree we can rework this in a follow-up — the core MM is hard, and for
-> valid reasons, but we can all work together on cleaning it up.
-> 
-> Matt
-> 
-> > > I’m going to miss my merge window with this (RB’d) patch blocked for
-> > > large device pages. Expect my commitment to helping other vendors to
-> > > drop if this happens. I’ll maybe just say: that doesn’t work in my CI,
-> > > try again.
-> > > 
-> > > Or perhaps we just revert large device pages in 6.19 if we can't get a
-> > > consensus here as we shouldn't ship a non-functional kernel.
-> > > 
-> > > Matt
-> > > 
-> > >> Jason
-> > 
+  
+#### Warnings ####
+
+  * igt@xe_module_load@load:
+    - shard-bmg:          ([PASS][3], [PASS][4], [PASS][5], [PASS][6], [PASS][7], [PASS][8], [PASS][9], [PASS][10], [PASS][11], [PASS][12], [PASS][13], [PASS][14], [PASS][15], [PASS][16], [PASS][17], [PASS][18], [PASS][19], [PASS][20], [PASS][21], [PASS][22], [PASS][23], [PASS][24], [PASS][25], [PASS][26], [SKIP][27], [PASS][28]) ([Intel XE#2457]) -> ([DMESG-WARN][29], [DMESG-WARN][30], [DMESG-WARN][31], [DMESG-WARN][32], [DMESG-WARN][33], [DMESG-WARN][34], [DMESG-WARN][35], [DMESG-WARN][36], [DMESG-WARN][37], [DMESG-WARN][38], [DMESG-WARN][39], [DMESG-WARN][40], [DMESG-WARN][41], [DMESG-WARN][42], [DMESG-WARN][43], [DMESG-WARN][44], [DMESG-WARN][45], [DMESG-WARN][46], [DMESG-WARN][47], [DMESG-WARN][48], [DMESG-WARN][49], [DMESG-WARN][50], [DMESG-WARN][51], [DMESG-WARN][52], [DMESG-WARN][53])
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4406-af18785a6a8621b1a5805ba8a1b35d290cb4bcac/shard-bmg-10/igt@xe_module_load@load.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4406-af18785a6a8621b1a5805ba8a1b35d290cb4bcac/shard-bmg-2/igt@xe_module_load@load.html
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4406-af18785a6a8621b1a5805ba8a1b35d290cb4bcac/shard-bmg-2/igt@xe_module_load@load.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4406-af18785a6a8621b1a5805ba8a1b35d290cb4bcac/shard-bmg-2/igt@xe_module_load@load.html
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4406-af18785a6a8621b1a5805ba8a1b35d290cb4bcac/shard-bmg-10/igt@xe_module_load@load.html
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4406-af18785a6a8621b1a5805ba8a1b35d290cb4bcac/shard-bmg-8/igt@xe_module_load@load.html
+   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4406-af18785a6a8621b1a5805ba8a1b35d290cb4bcac/shard-bmg-8/igt@xe_module_load@load.html
+   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4406-af18785a6a8621b1a5805ba8a1b35d290cb4bcac/shard-bmg-7/igt@xe_module_load@load.html
+   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4406-af18785a6a8621b1a5805ba8a1b35d290cb4bcac/shard-bmg-7/igt@xe_module_load@load.html
+   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4406-af18785a6a8621b1a5805ba8a1b35d290cb4bcac/shard-bmg-7/igt@xe_module_load@load.html
+   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4406-af18785a6a8621b1a5805ba8a1b35d290cb4bcac/shard-bmg-1/igt@xe_module_load@load.html
+   [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4406-af18785a6a8621b1a5805ba8a1b35d290cb4bcac/shard-bmg-8/igt@xe_module_load@load.html
+   [15]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4406-af18785a6a8621b1a5805ba8a1b35d290cb4bcac/shard-bmg-1/igt@xe_module_load@load.html
+   [16]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4406-af18785a6a8621b1a5805ba8a1b35d290cb4bcac/shard-bmg-10/igt@xe_module_load@load.html
+   [17]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4406-af18785a6a8621b1a5805ba8a1b35d290cb4bcac/shard-bmg-10/igt@xe_module_load@load.html
+   [18]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4406-af18785a6a8621b1a5805ba8a1b35d290cb4bcac/shard-bmg-3/igt@xe_module_load@load.html
+   [19]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4406-af18785a6a8621b1a5805ba8a1b35d290cb4bcac/shard-bmg-3/igt@xe_module_load@load.html
+   [20]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4406-af18785a6a8621b1a5805ba8a1b35d290cb4bcac/shard-bmg-2/igt@xe_module_load@load.html
+   [21]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4406-af18785a6a8621b1a5805ba8a1b35d290cb4bcac/shard-bmg-3/igt@xe_module_load@load.html
+   [22]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4406-af18785a6a8621b1a5805ba8a1b35d290cb4bcac/shard-bmg-9/igt@xe_module_load@load.html
+   [23]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4406-af18785a6a8621b1a5805ba8a1b35d290cb4bcac/shard-bmg-9/igt@xe_module_load@load.html
+   [24]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4406-af18785a6a8621b1a5805ba8a1b35d290cb4bcac/shard-bmg-9/igt@xe_module_load@load.html
+   [25]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4406-af18785a6a8621b1a5805ba8a1b35d290cb4bcac/shard-bmg-9/igt@xe_module_load@load.html
+   [26]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4406-af18785a6a8621b1a5805ba8a1b35d290cb4bcac/shard-bmg-2/igt@xe_module_load@load.html
+   [27]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4406-af18785a6a8621b1a5805ba8a1b35d290cb4bcac/shard-bmg-10/igt@xe_module_load@load.html
+   [28]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4406-af18785a6a8621b1a5805ba8a1b35d290cb4bcac/shard-bmg-1/igt@xe_module_load@load.html
+   [29]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160261v1/shard-bmg-1/igt@xe_module_load@load.html
+   [30]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160261v1/shard-bmg-1/igt@xe_module_load@load.html
+   [31]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160261v1/shard-bmg-1/igt@xe_module_load@load.html
+   [32]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160261v1/shard-bmg-1/igt@xe_module_load@load.html
+   [33]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160261v1/shard-bmg-1/igt@xe_module_load@load.html
+   [34]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160261v1/shard-bmg-7/igt@xe_module_load@load.html
+   [35]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160261v1/shard-bmg-7/igt@xe_module_load@load.html
+   [36]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160261v1/shard-bmg-7/igt@xe_module_load@load.html
+   [37]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160261v1/shard-bmg-7/igt@xe_module_load@load.html
+   [38]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160261v1/shard-bmg-9/igt@xe_module_load@load.html
+   [39]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160261v1/shard-bmg-9/igt@xe_module_load@load.html
+   [40]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160261v1/shard-bmg-9/igt@xe_module_load@load.html
+   [41]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160261v1/shard-bmg-9/igt@xe_module_load@load.html
+   [42]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160261v1/shard-bmg-2/igt@xe_module_load@load.html
+   [43]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160261v1/shard-bmg-2/igt@xe_module_load@load.html
+   [44]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160261v1/shard-bmg-2/igt@xe_module_load@load.html
+   [45]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160261v1/shard-bmg-2/igt@xe_module_load@load.html
+   [46]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160261v1/shard-bmg-3/igt@xe_module_load@load.html
+   [47]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160261v1/shard-bmg-10/igt@xe_module_load@load.html
+   [48]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160261v1/shard-bmg-10/igt@xe_module_load@load.html
+   [49]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160261v1/shard-bmg-10/igt@xe_module_load@load.html
+   [50]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160261v1/shard-bmg-3/igt@xe_module_load@load.html
+   [51]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160261v1/shard-bmg-3/igt@xe_module_load@load.html
+   [52]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160261v1/shard-bmg-3/igt@xe_module_load@load.html
+   [53]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160261v1/shard-bmg-8/igt@xe_module_load@load.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in xe-pw-160261v1_FULL that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_async_flips@async-flip-with-page-flip-events-linear:
+    - shard-lnl:          [PASS][54] -> [FAIL][55] ([Intel XE#5993]) +3 other tests fail
+   [54]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4406-af18785a6a8621b1a5805ba8a1b35d290cb4bcac/shard-lnl-1/igt@kms_async_flips@async-flip-with-page-flip-events-linear.html
+   [55]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160261v1/shard-lnl-2/igt@kms_async_flips@async-flip-with-page-flip-events-linear.html
+
+  * igt@kms_flip@flip-vs-expired-vblank-interruptible:
+    - shard-lnl:          [PASS][56] -> [FAIL][57] ([Intel XE#301]) +1 other test fail
+   [56]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4406-af18785a6a8621b1a5805ba8a1b35d290cb4bcac/shard-lnl-2/igt@kms_flip@flip-vs-expired-vblank-interruptible.html
+   [57]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160261v1/shard-lnl-8/igt@kms_flip@flip-vs-expired-vblank-interruptible.html
+
+  * igt@kms_vrr@cmrr@pipe-a-edp-1:
+    - shard-lnl:          [PASS][58] -> [FAIL][59] ([Intel XE#4459]) +1 other test fail
+   [58]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4406-af18785a6a8621b1a5805ba8a1b35d290cb4bcac/shard-lnl-1/igt@kms_vrr@cmrr@pipe-a-edp-1.html
+   [59]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160261v1/shard-lnl-1/igt@kms_vrr@cmrr@pipe-a-edp-1.html
+
+  * igt@xe_exec_fault_mode@many-userptr-invalidate-race:
+    - shard-lnl:          [PASS][60] -> [DMESG-WARN][61] ([Intel XE#7063]) +6 other tests dmesg-warn
+   [60]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4406-af18785a6a8621b1a5805ba8a1b35d290cb4bcac/shard-lnl-5/igt@xe_exec_fault_mode@many-userptr-invalidate-race.html
+   [61]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160261v1/shard-lnl-7/igt@xe_exec_fault_mode@many-userptr-invalidate-race.html
+
+  * igt@xe_exec_reset@gt-reset-stress:
+    - shard-lnl:          [PASS][62] -> [DMESG-WARN][63] ([Intel XE#7023])
+   [62]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4406-af18785a6a8621b1a5805ba8a1b35d290cb4bcac/shard-lnl-2/igt@xe_exec_reset@gt-reset-stress.html
+   [63]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160261v1/shard-lnl-8/igt@xe_exec_reset@gt-reset-stress.html
+
+  * igt@xe_exec_system_allocator@twice-large-mmap-free-nomemset:
+    - shard-lnl:          [PASS][64] -> [DMESG-WARN][65] ([Intel XE#4537] / [Intel XE#7063])
+   [64]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4406-af18785a6a8621b1a5805ba8a1b35d290cb4bcac/shard-lnl-5/igt@xe_exec_system_allocator@twice-large-mmap-free-nomemset.html
+   [65]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160261v1/shard-lnl-7/igt@xe_exec_system_allocator@twice-large-mmap-free-nomemset.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_flip@flip-vs-expired-vblank@c-edp1:
+    - shard-lnl:          [FAIL][66] ([Intel XE#301] / [Intel XE#3149]) -> [PASS][67] +1 other test pass
+   [66]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4406-af18785a6a8621b1a5805ba8a1b35d290cb4bcac/shard-lnl-5/igt@kms_flip@flip-vs-expired-vblank@c-edp1.html
+   [67]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160261v1/shard-lnl-7/igt@kms_flip@flip-vs-expired-vblank@c-edp1.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [Intel XE#2457]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2457
+  [Intel XE#301]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/301
+  [Intel XE#3149]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3149
+  [Intel XE#4459]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4459
+  [Intel XE#4537]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4537
+  [Intel XE#5993]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5993
+  [Intel XE#7023]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7023
+  [Intel XE#7063]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7063
+
+
+Build changes
+-------------
+
+  * Linux: xe-4406-af18785a6a8621b1a5805ba8a1b35d290cb4bcac -> xe-pw-160261v1
+
+  IGT_8704: 8704
+  xe-4406-af18785a6a8621b1a5805ba8a1b35d290cb4bcac: af18785a6a8621b1a5805ba8a1b35d290cb4bcac
+  xe-pw-160261v1: 160261v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160261v1/index.html
+
+--===============7856647137276510798==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+
+
+<!DOCTYPE html>
+<html xmlns=3D"http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id=3D"css-table-select" type=3D"text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/display: Wait for pipe start to avo=
+id vblank and scanline jumps</td></tr>
+<tr><td><b>URL:</b></td><td><a href=3D"https://patchwork.freedesktop.org/se=
+ries/160261/">https://patchwork.freedesktop.org/series/160261/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href=3D"https://intel-gfx-ci.01.org/=
+tree/intel-xe/xe-pw-160261v1/index.html">https://intel-gfx-ci.01.org/tree/i=
+ntel-xe/xe-pw-160261v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4406-af18785a6a8621b1a5805ba8a1b35d290=
+cb4bcac_FULL -&gt; xe-pw-160261v1_FULL</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-160261v1_FULL absolutely need =
+to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br=
+ />
+  introduced in xe-pw-160261v1_FULL, please notify your bug team (I915-ci-i=
+nfra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in C=
+I.</p>
+<h2>Participating hosts (2 -&gt; 2)</h2>
+<p>No changes in participating hosts</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-1602=
+61v1_FULL:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@kms_joiner@basic-force-big-joiner:<ul>
+<li>shard-lnl:          <a href=3D"https://intel-gfx-ci.01.org/tree/intel-x=
+e/xe-4406-af18785a6a8621b1a5805ba8a1b35d290cb4bcac/shard-lnl-4/igt@kms_join=
+er@basic-force-big-joiner.html">PASS</a> -&gt; <a href=3D"https://intel-gfx=
+-ci.01.org/tree/intel-xe/xe-pw-160261v1/shard-lnl-2/igt@kms_joiner@basic-fo=
+rce-big-joiner.html">SKIP</a> +1 other test skip</li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>igt@xe_module_load@load:<ul>
+<li>shard-bmg:          (<a href=3D"https://intel-gfx-ci.01.org/tree/intel-=
+xe/xe-4406-af18785a6a8621b1a5805ba8a1b35d290cb4bcac/shard-bmg-10/igt@xe_mod=
+ule_load@load.html">PASS</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/i=
+ntel-xe/xe-4406-af18785a6a8621b1a5805ba8a1b35d290cb4bcac/shard-bmg-2/igt@xe=
+_module_load@load.html">PASS</a>, <a href=3D"https://intel-gfx-ci.01.org/tr=
+ee/intel-xe/xe-4406-af18785a6a8621b1a5805ba8a1b35d290cb4bcac/shard-bmg-2/ig=
+t@xe_module_load@load.html">PASS</a>, <a href=3D"https://intel-gfx-ci.01.or=
+g/tree/intel-xe/xe-4406-af18785a6a8621b1a5805ba8a1b35d290cb4bcac/shard-bmg-=
+2/igt@xe_module_load@load.html">PASS</a>, <a href=3D"https://intel-gfx-ci.0=
+1.org/tree/intel-xe/xe-4406-af18785a6a8621b1a5805ba8a1b35d290cb4bcac/shard-=
+bmg-10/igt@xe_module_load@load.html">PASS</a>, <a href=3D"https://intel-gfx=
+-ci.01.org/tree/intel-xe/xe-4406-af18785a6a8621b1a5805ba8a1b35d290cb4bcac/s=
+hard-bmg-8/igt@xe_module_load@load.html">PASS</a>, <a href=3D"https://intel=
+-gfx-ci.01.org/tree/intel-xe/xe-4406-af18785a6a8621b1a5805ba8a1b35d290cb4bc=
+ac/shard-bmg-8/igt@xe_module_load@load.html">PASS</a>, <a href=3D"https://i=
+ntel-gfx-ci.01.org/tree/intel-xe/xe-4406-af18785a6a8621b1a5805ba8a1b35d290c=
+b4bcac/shard-bmg-7/igt@xe_module_load@load.html">PASS</a>, <a href=3D"https=
+://intel-gfx-ci.01.org/tree/intel-xe/xe-4406-af18785a6a8621b1a5805ba8a1b35d=
+290cb4bcac/shard-bmg-7/igt@xe_module_load@load.html">PASS</a>, <a href=3D"h=
+ttps://intel-gfx-ci.01.org/tree/intel-xe/xe-4406-af18785a6a8621b1a5805ba8a1=
+b35d290cb4bcac/shard-bmg-7/igt@xe_module_load@load.html">PASS</a>, <a href=
+=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-4406-af18785a6a8621b1a5805=
+ba8a1b35d290cb4bcac/shard-bmg-1/igt@xe_module_load@load.html">PASS</a>, <a =
+href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-4406-af18785a6a8621b1a=
+5805ba8a1b35d290cb4bcac/shard-bmg-8/igt@xe_module_load@load.html">PASS</a>,=
+ <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-4406-af18785a6a862=
+1b1a5805ba8a1b35d290cb4bcac/shard-bmg-1/igt@xe_module_load@load.html">PASS<=
+/a>, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-4406-af18785a6=
+a8621b1a5805ba8a1b35d290cb4bcac/shard-bmg-10/igt@xe_module_load@load.html">=
+PASS</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-4406-af18=
+785a6a8621b1a5805ba8a1b35d290cb4bcac/shard-bmg-10/igt@xe_module_load@load.h=
+tml">PASS</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-4406=
+-af18785a6a8621b1a5805ba8a1b35d290cb4bcac/shard-bmg-3/igt@xe_module_load@lo=
+ad.html">PASS</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-=
+4406-af18785a6a8621b1a5805ba8a1b35d290cb4bcac/shard-bmg-3/igt@xe_module_loa=
+d@load.html">PASS</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe=
+/xe-4406-af18785a6a8621b1a5805ba8a1b35d290cb4bcac/shard-bmg-2/igt@xe_module=
+_load@load.html">PASS</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/inte=
+l-xe/xe-4406-af18785a6a8621b1a5805ba8a1b35d290cb4bcac/shard-bmg-3/igt@xe_mo=
+dule_load@load.html">PASS</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/=
+intel-xe/xe-4406-af18785a6a8621b1a5805ba8a1b35d290cb4bcac/shard-bmg-9/igt@x=
+e_module_load@load.html">PASS</a>, <a href=3D"https://intel-gfx-ci.01.org/t=
+ree/intel-xe/xe-4406-af18785a6a8621b1a5805ba8a1b35d290cb4bcac/shard-bmg-9/i=
+gt@xe_module_load@load.html">PASS</a>, <a href=3D"https://intel-gfx-ci.01.o=
+rg/tree/intel-xe/xe-4406-af18785a6a8621b1a5805ba8a1b35d290cb4bcac/shard-bmg=
+-9/igt@xe_module_load@load.html">PASS</a>, <a href=3D"https://intel-gfx-ci.=
+01.org/tree/intel-xe/xe-4406-af18785a6a8621b1a5805ba8a1b35d290cb4bcac/shard=
+-bmg-9/igt@xe_module_load@load.html">PASS</a>, <a href=3D"https://intel-gfx=
+-ci.01.org/tree/intel-xe/xe-4406-af18785a6a8621b1a5805ba8a1b35d290cb4bcac/s=
+hard-bmg-2/igt@xe_module_load@load.html">PASS</a>, <a href=3D"https://intel=
+-gfx-ci.01.org/tree/intel-xe/xe-4406-af18785a6a8621b1a5805ba8a1b35d290cb4bc=
+ac/shard-bmg-10/igt@xe_module_load@load.html">SKIP</a>, <a href=3D"https://=
+intel-gfx-ci.01.org/tree/intel-xe/xe-4406-af18785a6a8621b1a5805ba8a1b35d290=
+cb4bcac/shard-bmg-1/igt@xe_module_load@load.html">PASS</a>) (<a href=3D"htt=
+ps://gitlab.freedesktop.org/drm/xe/kernel/issues/2457">Intel XE#2457</a>) -=
+&gt; (<a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160261v1/s=
+hard-bmg-1/igt@xe_module_load@load.html">DMESG-WARN</a>, <a href=3D"https:/=
+/intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160261v1/shard-bmg-1/igt@xe_module=
+_load@load.html">DMESG-WARN</a>, <a href=3D"https://intel-gfx-ci.01.org/tre=
+e/intel-xe/xe-pw-160261v1/shard-bmg-1/igt@xe_module_load@load.html">DMESG-W=
+ARN</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160261v=
+1/shard-bmg-1/igt@xe_module_load@load.html">DMESG-WARN</a>, <a href=3D"http=
+s://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160261v1/shard-bmg-1/igt@xe_mod=
+ule_load@load.html">DMESG-WARN</a>, <a href=3D"https://intel-gfx-ci.01.org/=
+tree/intel-xe/xe-pw-160261v1/shard-bmg-7/igt@xe_module_load@load.html">DMES=
+G-WARN</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-1602=
+61v1/shard-bmg-7/igt@xe_module_load@load.html">DMESG-WARN</a>, <a href=3D"h=
+ttps://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160261v1/shard-bmg-7/igt@xe_=
+module_load@load.html">DMESG-WARN</a>, <a href=3D"https://intel-gfx-ci.01.o=
+rg/tree/intel-xe/xe-pw-160261v1/shard-bmg-7/igt@xe_module_load@load.html">D=
+MESG-WARN</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-1=
+60261v1/shard-bmg-9/igt@xe_module_load@load.html">DMESG-WARN</a>, <a href=
+=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160261v1/shard-bmg-9/ig=
+t@xe_module_load@load.html">DMESG-WARN</a>, <a href=3D"https://intel-gfx-ci=
+.01.org/tree/intel-xe/xe-pw-160261v1/shard-bmg-9/igt@xe_module_load@load.ht=
+ml">DMESG-WARN</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe=
+-pw-160261v1/shard-bmg-9/igt@xe_module_load@load.html">DMESG-WARN</a>, <a h=
+ref=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160261v1/shard-bmg-2=
+/igt@xe_module_load@load.html">DMESG-WARN</a>, <a href=3D"https://intel-gfx=
+-ci.01.org/tree/intel-xe/xe-pw-160261v1/shard-bmg-2/igt@xe_module_load@load=
+.html">DMESG-WARN</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe=
+/xe-pw-160261v1/shard-bmg-2/igt@xe_module_load@load.html">DMESG-WARN</a>, <=
+a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160261v1/shard-bm=
+g-2/igt@xe_module_load@load.html">DMESG-WARN</a>, <a href=3D"https://intel-=
+gfx-ci.01.org/tree/intel-xe/xe-pw-160261v1/shard-bmg-3/igt@xe_module_load@l=
+oad.html">DMESG-WARN</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/intel=
+-xe/xe-pw-160261v1/shard-bmg-10/igt@xe_module_load@load.html">DMESG-WARN</a=
+>, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160261v1/shar=
+d-bmg-10/igt@xe_module_load@load.html">DMESG-WARN</a>, <a href=3D"https://i=
+ntel-gfx-ci.01.org/tree/intel-xe/xe-pw-160261v1/shard-bmg-10/igt@xe_module_=
+load@load.html">DMESG-WARN</a>, <a href=3D"https://intel-gfx-ci.01.org/tree=
+/intel-xe/xe-pw-160261v1/shard-bmg-3/igt@xe_module_load@load.html">DMESG-WA=
+RN</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160261v1=
+/shard-bmg-3/igt@xe_module_load@load.html">DMESG-WARN</a>, <a href=3D"https=
+://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160261v1/shard-bmg-3/igt@xe_modu=
+le_load@load.html">DMESG-WARN</a>, <a href=3D"https://intel-gfx-ci.01.org/t=
+ree/intel-xe/xe-pw-160261v1/shard-bmg-8/igt@xe_module_load@load.html">DMESG=
+-WARN</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-160261v1_FULL that come from known i=
+ssues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@kms_async_flips@async-flip-with-page-flip-events-linear:</p>
+<ul>
+<li>shard-lnl:          <a href=3D"https://intel-gfx-ci.01.org/tree/intel-x=
+e/xe-4406-af18785a6a8621b1a5805ba8a1b35d290cb4bcac/shard-lnl-1/igt@kms_asyn=
+c_flips@async-flip-with-page-flip-events-linear.html">PASS</a> -&gt; <a hre=
+f=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160261v1/shard-lnl-2/i=
+gt@kms_async_flips@async-flip-with-page-flip-events-linear.html">FAIL</a> (=
+<a href=3D"https://gitlab.freedesktop.org/drm/xe/kernel/issues/5993">Intel =
+XE#5993</a>) +3 other tests fail</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@flip-vs-expired-vblank-interruptible:</p>
+<ul>
+<li>shard-lnl:          <a href=3D"https://intel-gfx-ci.01.org/tree/intel-x=
+e/xe-4406-af18785a6a8621b1a5805ba8a1b35d290cb4bcac/shard-lnl-2/igt@kms_flip=
+@flip-vs-expired-vblank-interruptible.html">PASS</a> -&gt; <a href=3D"https=
+://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160261v1/shard-lnl-8/igt@kms_fli=
+p@flip-vs-expired-vblank-interruptible.html">FAIL</a> (<a href=3D"https://g=
+itlab.freedesktop.org/drm/xe/kernel/issues/301">Intel XE#301</a>) +1 other =
+test fail</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_vrr@cmrr@pipe-a-edp-1:</p>
+<ul>
+<li>shard-lnl:          <a href=3D"https://intel-gfx-ci.01.org/tree/intel-x=
+e/xe-4406-af18785a6a8621b1a5805ba8a1b35d290cb4bcac/shard-lnl-1/igt@kms_vrr@=
+cmrr@pipe-a-edp-1.html">PASS</a> -&gt; <a href=3D"https://intel-gfx-ci.01.o=
+rg/tree/intel-xe/xe-pw-160261v1/shard-lnl-1/igt@kms_vrr@cmrr@pipe-a-edp-1.h=
+tml">FAIL</a> (<a href=3D"https://gitlab.freedesktop.org/drm/xe/kernel/issu=
+es/4459">Intel XE#4459</a>) +1 other test fail</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_fault_mode@many-userptr-invalidate-race:</p>
+<ul>
+<li>shard-lnl:          <a href=3D"https://intel-gfx-ci.01.org/tree/intel-x=
+e/xe-4406-af18785a6a8621b1a5805ba8a1b35d290cb4bcac/shard-lnl-5/igt@xe_exec_=
+fault_mode@many-userptr-invalidate-race.html">PASS</a> -&gt; <a href=3D"htt=
+ps://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160261v1/shard-lnl-7/igt@xe_ex=
+ec_fault_mode@many-userptr-invalidate-race.html">DMESG-WARN</a> (<a href=3D=
+"https://gitlab.freedesktop.org/drm/xe/kernel/issues/7063">Intel XE#7063</a=
+>) +6 other tests dmesg-warn</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_reset@gt-reset-stress:</p>
+<ul>
+<li>shard-lnl:          <a href=3D"https://intel-gfx-ci.01.org/tree/intel-x=
+e/xe-4406-af18785a6a8621b1a5805ba8a1b35d290cb4bcac/shard-lnl-2/igt@xe_exec_=
+reset@gt-reset-stress.html">PASS</a> -&gt; <a href=3D"https://intel-gfx-ci.=
+01.org/tree/intel-xe/xe-pw-160261v1/shard-lnl-8/igt@xe_exec_reset@gt-reset-=
+stress.html">DMESG-WARN</a> (<a href=3D"https://gitlab.freedesktop.org/drm/=
+xe/kernel/issues/7023">Intel XE#7023</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_system_allocator@twice-large-mmap-free-nomemset:</p>
+<ul>
+<li>shard-lnl:          <a href=3D"https://intel-gfx-ci.01.org/tree/intel-x=
+e/xe-4406-af18785a6a8621b1a5805ba8a1b35d290cb4bcac/shard-lnl-5/igt@xe_exec_=
+system_allocator@twice-large-mmap-free-nomemset.html">PASS</a> -&gt; <a hre=
+f=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160261v1/shard-lnl-7/i=
+gt@xe_exec_system_allocator@twice-large-mmap-free-nomemset.html">DMESG-WARN=
+</a> (<a href=3D"https://gitlab.freedesktop.org/drm/xe/kernel/issues/4537">=
+Intel XE#4537</a> / <a href=3D"https://gitlab.freedesktop.org/drm/xe/kernel=
+/issues/7063">Intel XE#7063</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@kms_flip@flip-vs-expired-vblank@c-edp1:<ul>
+<li>shard-lnl:          <a href=3D"https://intel-gfx-ci.01.org/tree/intel-x=
+e/xe-4406-af18785a6a8621b1a5805ba8a1b35d290cb4bcac/shard-lnl-5/igt@kms_flip=
+@flip-vs-expired-vblank@c-edp1.html">FAIL</a> (<a href=3D"https://gitlab.fr=
+eedesktop.org/drm/xe/kernel/issues/301">Intel XE#301</a> / <a href=3D"https=
+://gitlab.freedesktop.org/drm/xe/kernel/issues/3149">Intel XE#3149</a>) -&g=
+t; <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160261v1/shar=
+d-lnl-7/igt@kms_flip@flip-vs-expired-vblank@c-edp1.html">PASS</a> +1 other =
+test pass</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when comput=
+ing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4406-af18785a6a8621b1a5805ba8a1b35d290cb4bcac -&gt; xe-pw-160=
+261v1</li>
+</ul>
+<p>IGT_8704: 8704<br />
+  xe-4406-af18785a6a8621b1a5805ba8a1b35d290cb4bcac: af18785a6a8621b1a5805ba=
+8a1b35d290cb4bcac<br />
+  xe-pw-160261v1: 160261v1</p>
+
+</body>
+</html>
+
+--===============7856647137276510798==--
