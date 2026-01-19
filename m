@@ -4,67 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AB1EBD29C24
-	for <intel-xe@archiver.kernel.org>; Mon, 19 Jan 2026 13:02:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D392FD29C2A
+	for <intel-xe@archiver.kernel.org>; Mon, 19 Jan 2026 13:17:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 62A9D10E454;
-	Mon, 19 Jan 2026 13:02:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 95D7D10E053;
+	Mon, 19 Jan 2026 13:17:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="scELuI2G";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Q+rWQIkV";
 	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DFAC610E451;
- Mon, 19 Jan 2026 13:02:49 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id 0C5FC60127;
- Mon, 19 Jan 2026 13:02:49 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E4F21C116C6;
- Mon, 19 Jan 2026 13:02:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1768827768;
- bh=cCxg8035viPJsz2XBq1ifbK2lrZlRG1OCR5jkwA4Q7M=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=scELuI2GW3wYYW2ZENuAuFSaCJYKTwxSRnj2LRAqiwezAEBgiUivhNWu7wR7lsvrp
- JMiPt96eHalhzJp6zdj/VOztYexbL9CNdValyZad3QIoRwUqy2SNCBXDS5ZUmr2r5B
- 3Q2LYZFjRo+TpYc7rFstqRHfbtMAFjLvRsXdqreX7yo2gyOr+diw1+LoloRIJTcEFf
- H3YM1NaUjV02Jdtuy+J3LR9/YjENpaZ6LVp9bzMZphF9Lehv4mUuhwTkRGGGpb2kcJ
- Ej14CRJRVv6csc6KuHzgzAe+xhdGGLSRvHHCsaiwAmERVJ+yIM5atMLB3FZRNKxX/w
- fRLM6YcjAxsPA==
-Date: Mon, 19 Jan 2026 15:02:44 +0200
-From: Leon Romanovsky <leon@kernel.org>
-To: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
-Cc: Sumit Semwal <sumit.semwal@linaro.org>,
- Alex Deucher <alexander.deucher@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Gerd Hoffmann <kraxel@redhat.com>,
- Dmitry Osipenko <dmitry.osipenko@collabora.com>,
- Gurchetan Singh <gurchetansingh@chromium.org>,
- Chia-I Wu <olvaffe@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Jason Gunthorpe <jgg@ziepe.ca>, Kevin Tian <kevin.tian@intel.com>,
- Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
- Robin Murphy <robin.murphy@arm.com>,
- Alex Williamson <alex@shazbot.org>, linux-media@vger.kernel.org,
- dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org,
- linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- virtualization@lists.linux.dev, intel-xe@lists.freedesktop.org,
- linux-rdma@vger.kernel.org, iommu@lists.linux.dev, kvm@vger.kernel.org
-Subject: Re: [PATCH v2 4/4] vfio: Add pinned interface to perform revoke
- semantics
-Message-ID: <20260119130244.GN13201@unreal>
-References: <20260118-dmabuf-revoke-v2-0-a03bb27c0875@nvidia.com>
- <20260118-dmabuf-revoke-v2-4-a03bb27c0875@nvidia.com>
- <bd37adf0-afd0-49c4-b608-7f9aa5994f7b@amd.com>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D0BBE10E053
+ for <intel-xe@lists.freedesktop.org>; Mon, 19 Jan 2026 13:17:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1768828651; x=1800364651;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=Sdo2hizsHDsPqrtv5CfR1fy4YXf24w/zK+CKAEHJN7g=;
+ b=Q+rWQIkVmt0ehPa1/EblMnu7MwXnyCkLhH0Xq3oXDZ/kKbQLVTjkX7EH
+ o9yTfHYLyGb9pcikv/gFRnJCK/FYGOFyGcHY5DahX8ToyO0p141mrAr89
+ KQjCNp0xCi5mUo0Kn303GEU8yqGTzZ+uSh4DFMONEm6RJhn/va5KNdrAa
+ BtQC4jvq1wRpnpijUiIrl8T9MfxO+GNgF0rGyZf5lfrHTdLhKImckR8dq
+ XaErGmVW5cjDkLaR272taJWg7JId3FVFp0vKf7Vd1vBCpcs/Nc+KAT7IG
+ mZ6U7lH/SrDt+sObKG7h4mhs6ur5+MZDUeSEwAsLa9+Su7pnBVPC1MKMF g==;
+X-CSE-ConnectionGUID: vCPu9desSQaD6sX8mqknow==
+X-CSE-MsgGUID: EcyCzdQISx677OtiZZk6zg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11676"; a="70087608"
+X-IronPort-AV: E=Sophos;i="6.21,238,1763452800"; d="scan'208";a="70087608"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jan 2026 05:17:31 -0800
+X-CSE-ConnectionGUID: 4AR3T/xkRd2l3Ur00QGU2w==
+X-CSE-MsgGUID: Is3V9zLSTFCulhfd6QWPuQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,238,1763452800"; d="scan'208";a="236544488"
+Received: from egrumbac-mobl6.ger.corp.intel.com (HELO [10.245.244.99])
+ ([10.245.244.99])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jan 2026 05:17:30 -0800
+Message-ID: <ccc20c84-9c83-4068-82be-dc693b397cc5@intel.com>
+Date: Mon, 19 Jan 2026 13:17:27 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <bd37adf0-afd0-49c4-b608-7f9aa5994f7b@amd.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/xe: derive mem copy capability from graphics version
+To: Nitin Gote <nitin.r.gote@intel.com>, intel-xe@lists.freedesktop.org
+Cc: matthew.d.roper@intel.com
+References: <20260119121819.1676700-2-nitin.r.gote@intel.com>
+Content-Language: en-GB
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <20260119121819.1676700-2-nitin.r.gote@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,101 +69,94 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Jan 19, 2026 at 01:12:45PM +0100, Christian König wrote:
-> On 1/18/26 13:08, Leon Romanovsky wrote:
-> > From: Leon Romanovsky <leonro@nvidia.com>
-> > 
-> > DMABUF ->pin() interface is called when the DMABUF importer perform
-> > its DMA mapping, so let's use this opportunity to check if DMABUF
-> > exporter revoked its buffer or not.
-> > 
-> > Signed-off-by: Leon Romanovsky <leonro@nvidia.com>
-> > ---
-> >  drivers/vfio/pci/vfio_pci_dmabuf.c | 16 ++++++++++++++++
-> >  1 file changed, 16 insertions(+)
-> > 
-> > diff --git a/drivers/vfio/pci/vfio_pci_dmabuf.c b/drivers/vfio/pci/vfio_pci_dmabuf.c
-> > index d4d0f7d08c53..af9c315ddf71 100644
-> > --- a/drivers/vfio/pci/vfio_pci_dmabuf.c
-> > +++ b/drivers/vfio/pci/vfio_pci_dmabuf.c
-> > @@ -20,6 +20,20 @@ struct vfio_pci_dma_buf {
-> >  	u8 revoked : 1;
-> >  };
-> >  
-> > +static int vfio_pci_dma_buf_pin(struct dma_buf_attachment *attachment)
-> > +{
-> > +	struct vfio_pci_dma_buf *priv = attachment->dmabuf->priv;
-> > +
-> > +	dma_resv_assert_held(priv->dmabuf->resv);
-> > +
-> > +	return dma_buf_attachment_is_revoke(attachment) ? 0 : -EOPNOTSUPP;
-> 
-> It's probably better to do that check in vfio_pci_dma_buf_attach.
+On 19/01/2026 12:18, Nitin Gote wrote:
+> Drop .has_mem_copy_instr from the platform descriptors and compute
+> it in xe_info_init() once handle_gmdid() populates graphics_verx100.
+> Early init was running with graphics_verx100==0, so the old placement
+> silently disabled MEM_COPY on every GMDID platform. Centralizing the
+> GRAPHICS_VER(xe) >= 20 || platform == XE_PVC check keeps Xe2+/PVC enabled
+> and removes redundant per-platform plumbing for future Xe platforms.
 
-I assume you are proposing to add this check in both
-vfio_pci_dma_buf_attach() and vfio_pci_dma_buf_pin(). Otherwise,
-importers that lack .invalidate_mapping() will invoke dma_buf_pin()
-and will not fail.
+PVC had a slightly different instruction layout for this IIRC, which is 
+why I kept it to xe2+. I doubt it is worth the effort, but if you want 
+to add support for PVC I think best keep as a separate patch (need to 
+also change the instruction emit part).
 
 > 
-> And BTW the function vfio_pci_dma_buf_move() seems to be broken:
+> Bspec: 57561
 > 
-> void vfio_pci_dma_buf_move(struct vfio_pci_core_device *vdev, bool revoked)
-> {
->         struct vfio_pci_dma_buf *priv;
->         struct vfio_pci_dma_buf *tmp;
+> Fixes: 1e12dbae9d72 ("drm/xe/migrate: support MEM_COPY instruction")
+> Cc: Matt Roper <matthew.d.roper@intel.com>
+> Suggested-by: Matthew Auld <matthew.auld@intel.com>
+> Signed-off-by: Nitin Gote <nitin.r.gote@intel.com>
+> ---
+>   drivers/gpu/drm/xe/xe_pci.c       | 7 ++-----
+>   drivers/gpu/drm/xe/xe_pci_types.h | 1 -
+>   2 files changed, 2 insertions(+), 6 deletions(-)
 > 
->         lockdep_assert_held_write(&vdev->memory_lock);
-> 
->         list_for_each_entry_safe(priv, tmp, &vdev->dmabufs, dmabufs_elm) {
->                 if (!get_file_active(&priv->dmabuf->file))
->                         continue;
-> 
->                 if (priv->revoked != revoked) {
->                         dma_resv_lock(priv->dmabuf->resv, NULL);
->                         priv->revoked = revoked;
->                         dma_buf_move_notify(priv->dmabuf);
-> 
-> A dma_buf_move_notify() just triggers asynchronous invalidation of the mapping!
-> 
-> You need to use dma_resv_wait() to wait for that to finish.
+> diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+> index 34df063024fe..b41e3afc0431 100644
+> --- a/drivers/gpu/drm/xe/xe_pci.c
+> +++ b/drivers/gpu/drm/xe/xe_pci.c
+> @@ -350,7 +350,6 @@ static const struct xe_device_desc lnl_desc = {
+>   	.has_display = true,
+>   	.has_flat_ccs = 1,
+>   	.has_pxp = true,
+> -	.has_mem_copy_instr = true,
+>   	.max_gt_per_tile = 2,
+>   	.needs_scratch = true,
+>   	.va_bits = 48,
+> @@ -375,7 +374,6 @@ static const struct xe_device_desc bmg_desc = {
+>   	.has_pre_prod_wa = 1,
+>   	.has_soc_remapper_telem = true,
+>   	.has_sriov = true,
+> -	.has_mem_copy_instr = true,
+>   	.max_gt_per_tile = 2,
+>   	.needs_scratch = true,
+>   	.subplatforms = (const struct xe_subplatform_desc[]) {
+> @@ -392,7 +390,6 @@ static const struct xe_device_desc ptl_desc = {
+>   	.has_display = true,
+>   	.has_flat_ccs = 1,
+>   	.has_sriov = true,
+> -	.has_mem_copy_instr = true,
+>   	.has_pre_prod_wa = 1,
+>   	.has_pxp = true,
+>   	.max_gt_per_tile = 2,
+> @@ -407,7 +404,6 @@ static const struct xe_device_desc nvls_desc = {
+>   	.dma_mask_size = 46,
+>   	.has_display = true,
+>   	.has_flat_ccs = 1,
+> -	.has_mem_copy_instr = true,
+>   	.has_pre_prod_wa = 1,
+>   	.max_gt_per_tile = 2,
+>   	.require_force_probe = true,
+> @@ -706,7 +702,6 @@ static int xe_info_init_early(struct xe_device *xe,
+>   	xe->info.has_soc_remapper_telem = desc->has_soc_remapper_telem;
+>   	xe->info.has_sriov = xe_configfs_primary_gt_allowed(to_pci_dev(xe->drm.dev)) &&
+>   		desc->has_sriov;
+> -	xe->info.has_mem_copy_instr = desc->has_mem_copy_instr;
+>   	xe->info.skip_guc_pc = desc->skip_guc_pc;
+>   	xe->info.skip_mtcfg = desc->skip_mtcfg;
+>   	xe->info.skip_pcode = desc->skip_pcode;
+> @@ -897,6 +892,8 @@ static int xe_info_init(struct xe_device *xe,
+>   	xe->info.has_ctx_tlb_inval = graphics_desc->has_ctx_tlb_inval;
+>   	xe->info.has_usm = graphics_desc->has_usm;
+>   	xe->info.has_64bit_timestamp = graphics_desc->has_64bit_timestamp;
+> +	xe->info.has_mem_copy_instr = GRAPHICS_VER(xe) >= 20 ||
+> +				      xe->info.platform == XE_PVC;
+>   
+>   	xe_info_probe_tile_count(xe);
+>   
+> diff --git a/drivers/gpu/drm/xe/xe_pci_types.h b/drivers/gpu/drm/xe/xe_pci_types.h
+> index 7ccb0ab7a53b..8b2ff3f25607 100644
+> --- a/drivers/gpu/drm/xe/xe_pci_types.h
+> +++ b/drivers/gpu/drm/xe/xe_pci_types.h
+> @@ -49,7 +49,6 @@ struct xe_device_desc {
+>   	u8 has_llc:1;
+>   	u8 has_mbx_power_limits:1;
+>   	u8 has_mbx_thermal_info:1;
+> -	u8 has_mem_copy_instr:1;
+>   	u8 has_mert:1;
+>   	u8 has_pre_prod_wa:1;
+>   	u8 has_page_reclaim_hw_assist:1;
 
-We (VFIO and IOMMUFD) followed the same pattern used in  
-amdgpu_bo_move_notify(), which also does not wait.
-
-I'll add wait here.
-
-Thanks
-
-> 
->                         dma_resv_unlock(priv->dmabuf->resv);
->                 }
->                 fput(priv->dmabuf->file);
->         }
-> }
-> 
-> Regards,
-> Christian.
-> 
-> 
-> > +}
-> > +
-> > +static void vfio_pci_dma_buf_unpin(struct dma_buf_attachment *attachment)
-> > +{
-> > +	/* Do nothing */
-> > +}
-> > +
-> >  static int vfio_pci_dma_buf_attach(struct dma_buf *dmabuf,
-> >  				   struct dma_buf_attachment *attachment)
-> >  {
-> > @@ -76,6 +90,8 @@ static void vfio_pci_dma_buf_release(struct dma_buf *dmabuf)
-> >  }
-> >  
-> >  static const struct dma_buf_ops vfio_pci_dmabuf_ops = {
-> > +	.pin = vfio_pci_dma_buf_pin,
-> > +	.unpin = vfio_pci_dma_buf_unpin,
-> >  	.attach = vfio_pci_dma_buf_attach,
-> >  	.map_dma_buf = vfio_pci_dma_buf_map,
-> >  	.unmap_dma_buf = vfio_pci_dma_buf_unmap,
-> > 
-> 
