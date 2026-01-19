@@ -4,39 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A9834CCF2F9
-	for <intel-xe@archiver.kernel.org>; Mon, 19 Jan 2026 12:51:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AB1EBD29C24
+	for <intel-xe@archiver.kernel.org>; Mon, 19 Jan 2026 13:02:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6C9BA10E457;
-	Mon, 19 Jan 2026 12:51:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 62A9D10E454;
+	Mon, 19 Jan 2026 13:02:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="jVnIn1MU";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="scELuI2G";
 	dkim-atps=neutral
-Received: from lankhorst.se (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7206D10E463
- for <intel-xe@lists.freedesktop.org>; Mon, 19 Jan 2026 12:51:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1768827069;
- bh=pspWEEIyMLICo05jugCTDDepfPZLNKU//R+LNEwkVgw=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=jVnIn1MU3b7lUIO+gQHpEwohzTxk5jAnBolMWnJCML6YDpGAIQPFytKZmzknkK/oi
- 0UarT1dnyh86mcrionlkNyx9hzManVDziYJROJVCfqGUnGG6JBmJfDfsZsrTRodDr7
- T9ZJFkHNLAflHPBicDQKopnsDr8LlHw4DpaWrdWTSEmmwzjB59pMcKRF5gW8DZhIrM
- MQRCS8yxd7rSgcjSYYLkeNzk4oeXwkREEYu6Ewem1GaFmobyUzxfcsPp1FxdiMHFkz
- F8khtkJLbx7oUCE95qFb0j0lO1k7ofpBoxiY+EBb5SQ9GEBEHak5YWssMWMqjnqh+t
- ionTu/x1mJLSw==
-From: Maarten Lankhorst <dev@lankhorst.se>
-To: intel-xe@lists.freedesktop.org
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- Maarten Lankhorst <dev@lankhorst.se>
-Subject: [PATCH v5 5/5] drm/xe: Remove xe_ggtt_node_allocated
-Date: Mon, 19 Jan 2026 13:51:01 +0100
-Message-ID: <20260119125101.277182-6-dev@lankhorst.se>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20260119125101.277182-1-dev@lankhorst.se>
-References: <20260119125101.277182-1-dev@lankhorst.se>
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DFAC610E451;
+ Mon, 19 Jan 2026 13:02:49 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by tor.source.kernel.org (Postfix) with ESMTP id 0C5FC60127;
+ Mon, 19 Jan 2026 13:02:49 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E4F21C116C6;
+ Mon, 19 Jan 2026 13:02:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1768827768;
+ bh=cCxg8035viPJsz2XBq1ifbK2lrZlRG1OCR5jkwA4Q7M=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=scELuI2GW3wYYW2ZENuAuFSaCJYKTwxSRnj2LRAqiwezAEBgiUivhNWu7wR7lsvrp
+ JMiPt96eHalhzJp6zdj/VOztYexbL9CNdValyZad3QIoRwUqy2SNCBXDS5ZUmr2r5B
+ 3Q2LYZFjRo+TpYc7rFstqRHfbtMAFjLvRsXdqreX7yo2gyOr+diw1+LoloRIJTcEFf
+ H3YM1NaUjV02Jdtuy+J3LR9/YjENpaZ6LVp9bzMZphF9Lehv4mUuhwTkRGGGpb2kcJ
+ Ej14CRJRVv6csc6KuHzgzAe+xhdGGLSRvHHCsaiwAmERVJ+yIM5atMLB3FZRNKxX/w
+ fRLM6YcjAxsPA==
+Date: Mon, 19 Jan 2026 15:02:44 +0200
+From: Leon Romanovsky <leon@kernel.org>
+To: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
+Cc: Sumit Semwal <sumit.semwal@linaro.org>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Gerd Hoffmann <kraxel@redhat.com>,
+ Dmitry Osipenko <dmitry.osipenko@collabora.com>,
+ Gurchetan Singh <gurchetansingh@chromium.org>,
+ Chia-I Wu <olvaffe@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Jason Gunthorpe <jgg@ziepe.ca>, Kevin Tian <kevin.tian@intel.com>,
+ Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+ Robin Murphy <robin.murphy@arm.com>,
+ Alex Williamson <alex@shazbot.org>, linux-media@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org,
+ linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ virtualization@lists.linux.dev, intel-xe@lists.freedesktop.org,
+ linux-rdma@vger.kernel.org, iommu@lists.linux.dev, kvm@vger.kernel.org
+Subject: Re: [PATCH v2 4/4] vfio: Add pinned interface to perform revoke
+ semantics
+Message-ID: <20260119130244.GN13201@unreal>
+References: <20260118-dmabuf-revoke-v2-0-a03bb27c0875@nvidia.com>
+ <20260118-dmabuf-revoke-v2-4-a03bb27c0875@nvidia.com>
+ <bd37adf0-afd0-49c4-b608-7f9aa5994f7b@amd.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <bd37adf0-afd0-49c4-b608-7f9aa5994f7b@amd.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,136 +79,101 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-With the intermediate state gone, no longer useful. Just check against
-NULL where needed.
+On Mon, Jan 19, 2026 at 01:12:45PM +0100, Christian König wrote:
+> On 1/18/26 13:08, Leon Romanovsky wrote:
+> > From: Leon Romanovsky <leonro@nvidia.com>
+> > 
+> > DMABUF ->pin() interface is called when the DMABUF importer perform
+> > its DMA mapping, so let's use this opportunity to check if DMABUF
+> > exporter revoked its buffer or not.
+> > 
+> > Signed-off-by: Leon Romanovsky <leonro@nvidia.com>
+> > ---
+> >  drivers/vfio/pci/vfio_pci_dmabuf.c | 16 ++++++++++++++++
+> >  1 file changed, 16 insertions(+)
+> > 
+> > diff --git a/drivers/vfio/pci/vfio_pci_dmabuf.c b/drivers/vfio/pci/vfio_pci_dmabuf.c
+> > index d4d0f7d08c53..af9c315ddf71 100644
+> > --- a/drivers/vfio/pci/vfio_pci_dmabuf.c
+> > +++ b/drivers/vfio/pci/vfio_pci_dmabuf.c
+> > @@ -20,6 +20,20 @@ struct vfio_pci_dma_buf {
+> >  	u8 revoked : 1;
+> >  };
+> >  
+> > +static int vfio_pci_dma_buf_pin(struct dma_buf_attachment *attachment)
+> > +{
+> > +	struct vfio_pci_dma_buf *priv = attachment->dmabuf->priv;
+> > +
+> > +	dma_resv_assert_held(priv->dmabuf->resv);
+> > +
+> > +	return dma_buf_attachment_is_revoke(attachment) ? 0 : -EOPNOTSUPP;
+> 
+> It's probably better to do that check in vfio_pci_dma_buf_attach.
 
-Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
----
- drivers/gpu/drm/xe/display/xe_fb_pin.c     |  3 +--
- drivers/gpu/drm/xe/xe_ggtt.c               | 17 -----------------
- drivers/gpu/drm/xe/xe_ggtt.h               |  1 -
- drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c | 12 ++++++------
- 4 files changed, 7 insertions(+), 26 deletions(-)
+I assume you are proposing to add this check in both
+vfio_pci_dma_buf_attach() and vfio_pci_dma_buf_pin(). Otherwise,
+importers that lack .invalidate_mapping() will invoke dma_buf_pin()
+and will not fail.
 
-diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-index d2c4e94180fa3..10915fb3151f4 100644
---- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
-+++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-@@ -352,8 +352,7 @@ static void __xe_unpin_fb_vma(struct i915_vma *vma)
- 
- 	if (vma->dpt)
- 		xe_bo_unpin_map_no_vm(vma->dpt);
--	else if (!xe_ggtt_node_allocated(vma->bo->ggtt_node[tile_id]) ||
--		 vma->bo->ggtt_node[tile_id] != vma->node)
-+	else if (vma->bo->ggtt_node[tile_id] != vma->node)
- 		xe_ggtt_node_remove(vma->node, false);
- 
- 	ttm_bo_reserve(&vma->bo->ttm, false, false, NULL);
-diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
-index 04e207623e42d..8a1731a811635 100644
---- a/drivers/gpu/drm/xe/xe_ggtt.c
-+++ b/drivers/gpu/drm/xe/xe_ggtt.c
-@@ -660,20 +660,6 @@ struct xe_ggtt_node *xe_ggtt_node_insert(struct xe_ggtt *ggtt, u32 size, u32 ali
- 	return node;
- }
- 
--/**
-- * xe_ggtt_node_allocated - Check if node is allocated in GGTT
-- * @node: the &xe_ggtt_node to be inspected
-- *
-- * Return: True if allocated, False otherwise.
-- */
--bool xe_ggtt_node_allocated(const struct xe_ggtt_node *node)
--{
--	if (!node || !node->ggtt)
--		return false;
--
--	return drm_mm_node_allocated(&node->base);
--}
--
- /**
-  * xe_ggtt_node_pt_size() - Get the size of page table entries needed to map a GGTT node.
-  * @node: the &xe_ggtt_node
-@@ -954,9 +940,6 @@ static void xe_ggtt_assign_locked(const struct xe_ggtt_node *node, u16 vfid)
- 
- 	lockdep_assert_held(&ggtt->lock);
- 
--	if (!xe_ggtt_node_allocated(node))
--		return;
--
- 	while (start < end) {
- 		ggtt->pt_ops->ggtt_set_pte(ggtt, start, pte);
- 		start += XE_PAGE_SIZE;
-diff --git a/drivers/gpu/drm/xe/xe_ggtt.h b/drivers/gpu/drm/xe/xe_ggtt.h
-index 6d8679bcc38fb..ffa3369927157 100644
---- a/drivers/gpu/drm/xe/xe_ggtt.h
-+++ b/drivers/gpu/drm/xe/xe_ggtt.h
-@@ -30,7 +30,6 @@ xe_ggtt_node_insert_transform(struct xe_ggtt *ggtt,
- 			      u64 size, u32 align,
- 			      xe_ggtt_transform_cb transform, void *arg);
- void xe_ggtt_node_remove(struct xe_ggtt_node *node, bool invalidate);
--bool xe_ggtt_node_allocated(const struct xe_ggtt_node *node);
- size_t xe_ggtt_node_pt_size(const struct xe_ggtt_node *node);
- void xe_ggtt_map_bo_unlocked(struct xe_ggtt *ggtt, struct xe_bo *bo);
- int xe_ggtt_insert_bo(struct xe_ggtt *ggtt, struct xe_bo *bo, struct drm_exec *exec);
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-index 2cb41e8322676..55913b91587ff 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-@@ -279,7 +279,7 @@ static u32 encode_config_ggtt(u32 *cfg, const struct xe_gt_sriov_config *config,
- {
- 	struct xe_ggtt_node *node = config->ggtt_region;
- 
--	if (!xe_ggtt_node_allocated(node))
-+	if (!node)
- 		return 0;
- 
- 	return encode_ggtt(cfg, xe_ggtt_node_addr(node), xe_ggtt_node_size(node), details);
-@@ -503,7 +503,7 @@ static int pf_provision_vf_ggtt(struct xe_gt *gt, unsigned int vfid, u64 size)
- 
- 	size = round_up(size, alignment);
- 
--	if (xe_ggtt_node_allocated(config->ggtt_region)) {
-+	if (config->ggtt_region) {
- 		err = pf_distribute_config_ggtt(tile, vfid, 0, 0);
- 		if (unlikely(err))
- 			return err;
-@@ -514,7 +514,7 @@ static int pf_provision_vf_ggtt(struct xe_gt *gt, unsigned int vfid, u64 size)
- 		if (unlikely(err))
- 			return err;
- 	}
--	xe_gt_assert(gt, !xe_ggtt_node_allocated(config->ggtt_region));
-+	xe_gt_assert(gt, !config->ggtt_region);
- 
- 	if (!size)
- 		return 0;
-@@ -544,7 +544,7 @@ static u64 pf_get_vf_config_ggtt(struct xe_gt *gt, unsigned int vfid)
- 	struct xe_ggtt_node *node = config->ggtt_region;
- 
- 	xe_gt_assert(gt, xe_gt_is_main_type(gt));
--	return xe_ggtt_node_allocated(node) ? xe_ggtt_node_size(node) : 0;
-+	return node ? xe_ggtt_node_size(node) : 0;
- }
- 
- /**
-@@ -2558,7 +2558,7 @@ int xe_gt_sriov_pf_config_release(struct xe_gt *gt, unsigned int vfid, bool forc
- 
- static void pf_sanitize_ggtt(struct xe_ggtt_node *ggtt_region, unsigned int vfid)
- {
--	if (xe_ggtt_node_allocated(ggtt_region))
-+	if (ggtt_region)
- 		xe_ggtt_assign(ggtt_region, vfid);
- }
- 
-@@ -3017,7 +3017,7 @@ int xe_gt_sriov_pf_config_print_ggtt(struct xe_gt *gt, struct drm_printer *p)
- 
- 	for (n = 1; n <= total_vfs; n++) {
- 		config = &gt->sriov.pf.vfs[n].config;
--		if (!xe_ggtt_node_allocated(config->ggtt_region))
-+		if (!config->ggtt_region)
- 			continue;
- 
- 		string_get_size(xe_ggtt_node_size(config->ggtt_region), 1, STRING_UNITS_2,
--- 
-2.51.0
+> 
+> And BTW the function vfio_pci_dma_buf_move() seems to be broken:
+> 
+> void vfio_pci_dma_buf_move(struct vfio_pci_core_device *vdev, bool revoked)
+> {
+>         struct vfio_pci_dma_buf *priv;
+>         struct vfio_pci_dma_buf *tmp;
+> 
+>         lockdep_assert_held_write(&vdev->memory_lock);
+> 
+>         list_for_each_entry_safe(priv, tmp, &vdev->dmabufs, dmabufs_elm) {
+>                 if (!get_file_active(&priv->dmabuf->file))
+>                         continue;
+> 
+>                 if (priv->revoked != revoked) {
+>                         dma_resv_lock(priv->dmabuf->resv, NULL);
+>                         priv->revoked = revoked;
+>                         dma_buf_move_notify(priv->dmabuf);
+> 
+> A dma_buf_move_notify() just triggers asynchronous invalidation of the mapping!
+> 
+> You need to use dma_resv_wait() to wait for that to finish.
 
+We (VFIO and IOMMUFD) followed the same pattern used in  
+amdgpu_bo_move_notify(), which also does not wait.
+
+I'll add wait here.
+
+Thanks
+
+> 
+>                         dma_resv_unlock(priv->dmabuf->resv);
+>                 }
+>                 fput(priv->dmabuf->file);
+>         }
+> }
+> 
+> Regards,
+> Christian.
+> 
+> 
+> > +}
+> > +
+> > +static void vfio_pci_dma_buf_unpin(struct dma_buf_attachment *attachment)
+> > +{
+> > +	/* Do nothing */
+> > +}
+> > +
+> >  static int vfio_pci_dma_buf_attach(struct dma_buf *dmabuf,
+> >  				   struct dma_buf_attachment *attachment)
+> >  {
+> > @@ -76,6 +90,8 @@ static void vfio_pci_dma_buf_release(struct dma_buf *dmabuf)
+> >  }
+> >  
+> >  static const struct dma_buf_ops vfio_pci_dmabuf_ops = {
+> > +	.pin = vfio_pci_dma_buf_pin,
+> > +	.unpin = vfio_pci_dma_buf_unpin,
+> >  	.attach = vfio_pci_dma_buf_attach,
+> >  	.map_dma_buf = vfio_pci_dma_buf_map,
+> >  	.unmap_dma_buf = vfio_pci_dma_buf_unmap,
+> > 
+> 
