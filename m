@@ -4,56 +4,69 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 23699D29C33
-	for <intel-xe@archiver.kernel.org>; Mon, 19 Jan 2026 15:03:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CBFD0D29C36
+	for <intel-xe@archiver.kernel.org>; Mon, 19 Jan 2026 15:09:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D3DE110E48D;
-	Mon, 19 Jan 2026 15:03:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9386A10E215;
+	Mon, 19 Jan 2026 15:09:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="h2jkikh9";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MSV8jNPF";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4526410E48D
- for <intel-xe@lists.freedesktop.org>; Mon, 19 Jan 2026 15:03:46 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8425010E215
+ for <intel-xe@lists.freedesktop.org>; Mon, 19 Jan 2026 15:09:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1768835027; x=1800371027;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=VPuUJXznClKopUQuVa78/ijjNY46cQs7U4JdxrvVf6Y=;
- b=h2jkikh9BllkCxWLlSbLAcR2R+M7aDoT02oNyV+vFfrouQabtqs236bZ
- aALyLOvCT1QZo4EYZrWt4zG4ai5VXXlSPlnj2emIxJ9rfuG4YXajJNNMv
- yFomT840FeaLg8t35pVLQJ5MJamhnYmUjr2vUlKW6/gJLenbdahfsQmoL
- KiaZub209Qis8bv2Pb1hYdF//qIOl4bLJEfC1D5Bfccl1lxvg14ojYq8L
- HpdzAJ9ErHlBquUNLRBRW7OY23twBJgh16vTY9MuMNgKobYotXRQwmFgU
- SCByeo/aO/bgf+CIBLA6z1TjDB7tcG34QQsxM+C5U908cwKSd5o7b5/EX g==;
-X-CSE-ConnectionGUID: qQPOvU8lTj6m9SCpPSh2ZA==
-X-CSE-MsgGUID: XO6wM+FmQ4Kuw9rzUkn7Sg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11676"; a="81488290"
-X-IronPort-AV: E=Sophos;i="6.21,238,1763452800"; d="scan'208";a="81488290"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jan 2026 07:03:46 -0800
-X-CSE-ConnectionGUID: rHM/xe71Rzi9BwCMS2T5+w==
-X-CSE-MsgGUID: UN5l+ByERoeWwMJmi0EBUQ==
+ t=1768835384; x=1800371384;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=Q2N42fg4ImBjgiXXBeBlf0z5loLMhudAfvLVUNFNSFA=;
+ b=MSV8jNPFa06+jbsyzwxBzaU/qoiwhOdXTb4aDUzeHxcAfMgENA+RAxUe
+ daJSnV5rD3OzvuHUXSY7GpHdzl//t1dF5LUJc2EuCzzviRaGZMCJlS+1s
+ RiV1K6iA74AYGN9hV62ePhW6cYdxtaDXohg0DjcHPI+xDaprj2TIl5jFg
+ GhOqrdKgidiDVeZJDCFKsc8ru77Mua+XdlP3Hd6G+bbM2LQBybuHkk+gl
+ RxdRhdYf6lXcpQj3AjufbRC3nuMWDXFU/hec3bLqp1FZfyDt3UIDMDZTn
+ P92aBR5LIVSdr7b2XE5ZfmI5xsKCkMUtTLNvTJ8BLxE+6A0y52qOGL5oS A==;
+X-CSE-ConnectionGUID: cXvlov/oQNu+t5PgpZ2d2Q==
+X-CSE-MsgGUID: T1KucwmLT5u+wqxgEttexg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11676"; a="73676047"
+X-IronPort-AV: E=Sophos;i="6.21,238,1763452800"; d="scan'208";a="73676047"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jan 2026 07:09:44 -0800
+X-CSE-ConnectionGUID: 4jnATGR3QkWYFcs4qy22Fg==
+X-CSE-MsgGUID: 4UyngVnkSh+FG3AmTxDqWA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,238,1763452800"; d="scan'208";a="237162230"
-Received: from jtuanzol-mobl2.amr.corp.intel.com (HELO
- soc-PF53RESW.clients.intel.com) ([10.246.46.46])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jan 2026 07:03:45 -0800
-From: Farah Kassabri <farah.kassabri@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: farah.kassabri@intel.com,
-	ilia.levi@intel.com
-Subject: [PATCH v2 2/2] drm/xe: add kernel VM BO unbind helper
-Date: Mon, 19 Jan 2026 17:03:30 +0200
-Message-Id: <20260119150330.6537-2-farah.kassabri@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260119150330.6537-1-farah.kassabri@intel.com>
-References: <20260119150330.6537-1-farah.kassabri@intel.com>
+X-IronPort-AV: E=Sophos;i="6.21,238,1763452800"; d="scan'208";a="236562101"
+Received: from egrumbac-mobl6.ger.corp.intel.com (HELO [10.245.244.99])
+ ([10.245.244.99])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jan 2026 07:09:30 -0800
+Message-ID: <8932c16e-ab31-493f-bc1a-c540f0ae5d6f@intel.com>
+Date: Mon, 19 Jan 2026 15:09:26 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/2] drm/xe/uapi: disallow bind queue sharing
+To: "Mrozek, Michal" <michal.mrozek@intel.com>,
+ "Zhang, Carl" <carl.zhang@intel.com>,
+ "Brost, Matthew" <matthew.brost@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ "Souza, Jose" <jose.souza@intel.com>,
+ "stable@vger.kernel.org" <stable@vger.kernel.org>
+References: <20251120132727.575986-4-matthew.auld@intel.com>
+ <20251120132727.575986-5-matthew.auld@intel.com>
+ <fh6dgogrt3ibrod7qkguejy4bj3cmvlbnxksmedhvfx3ejglk2@nu3h6doh7sdx>
+ <cc27ae58-b579-4332-9653-c62b38f32add@intel.com>
+ <aURm1LgtNPYNxRCP@lstrano-desk.jf.intel.com>
+ <PH0PR11MB55798387B824D4101E19545E87A9A@PH0PR11MB5579.namprd11.prod.outlook.com>
+ <598d3899-5942-485b-8e76-61bcbdfa5cbe@intel.com>
+ <DS7PR11MB6271DDAE76295D9280AB5CD7E788A@DS7PR11MB6271.namprd11.prod.outlook.com>
+Content-Language: en-GB
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <DS7PR11MB6271DDAE76295D9280AB5CD7E788A@DS7PR11MB6271.namprd11.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -69,140 +82,13 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add xe_kernel_vm_unbind_bo() as the counterpart to
-xe_kernel_vm_bind_bo() to provide symmetry in the kernel VM BO
-lifecycle.
+On 19/01/2026 14:14, Mrozek, Michal wrote:
+>>> Michal, ping on this from compute POV?
+> 
+> Compute is not using bind queues.
+> PR is ok from compute perspective, even if we started to use those queues we would create a single queue per VM.
+> 
+> Acked-by: Michal Mrozek <michal.mrozek@intel.com>
 
-The new helper allows explicit unbinding of buffer objects from
-the kernel VM, enabling proper cleanup and preventing stale
-kernel VM mappings when BOs are no longer needed.
-
-Signed-off-by: Farah Kassabri <farah.kassabri@intel.com>
-Reviewed-by: Ilia Levi <ilia.levi@intel.com>
-
-Changes in v2:
-pass cache_lvl argument to the map operation instead of 0.
----
- drivers/gpu/drm/xe/xe_vm.c | 59 ++++++++++++++++++++++++++++++++------
- drivers/gpu/drm/xe/xe_vm.h |  3 ++
- 2 files changed, 54 insertions(+), 8 deletions(-)
-
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index a27145a4137e..425f406712b8 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -3830,21 +3830,22 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
- }
- 
- /**
-- * xe_vm_kernel_bind_bo - bind a BO to a kernel owned VM
-+ *  __xe_kernel_vm_bind_bo - internal helper to bind/unbind a BO to/from kernel owned VM
-  * @vm: VM to bind the BO to
-  * @bo: BO to bind
-  * @q: exec queue to use for the bind (optional)
-  * @addr: address at which to bind the BO
-  * @cache_lvl: PAT cache level to use
-+ * @do_bind: true for bind, false for unbind
-  *
-- * Execute a VM bind map operation on a BO to bind it into a kernel-owned VM.
-+ * Common code for binding and un-binding a BO.
-  *
-  * Returns a dma_fence to track the binding completion if the job to do so was
-  * successfully submitted, an error pointer otherwise.
-  */
--struct dma_fence *xe_vm_kernel_bind_bo(struct xe_vm *vm, struct xe_bo *bo,
--				       struct xe_exec_queue *q, u64 addr,
--				       enum xe_cache_level cache_lvl)
-+static struct dma_fence *__xe_kernel_vm_bind_bo(struct xe_vm *vm, struct xe_bo *bo,
-+						struct xe_exec_queue *q, u64 addr,
-+						enum xe_cache_level cache_lvl, bool do_bind)
- {
- 	struct xe_vma_ops vops;
- 	struct drm_gpuva_ops *ops = NULL;
-@@ -3860,9 +3861,13 @@ struct dma_fence *xe_vm_kernel_bind_bo(struct xe_vm *vm, struct xe_bo *bo,
- 
- 	xe_vma_ops_init(&vops, vm, q, NULL, 0);
- 
--	ops = vm_bind_ioctl_ops_create(vm, &vops, bo, 0, addr, xe_bo_size(bo),
--				       DRM_XE_VM_BIND_OP_MAP, 0, 0,
--				       vm->xe->pat.idx[cache_lvl]);
-+	if (do_bind)
-+		ops = vm_bind_ioctl_ops_create(vm, &vops, bo, 0, addr, xe_bo_size(bo),
-+					       DRM_XE_VM_BIND_OP_MAP, 0, 0,
-+					       vm->xe->pat.idx[cache_lvl]);
-+	else
-+		ops = vm_bind_ioctl_ops_create(vm, &vops, bo, 0, addr, xe_bo_size(bo),
-+					       DRM_XE_VM_BIND_OP_UNMAP, 0, 0, 0);
- 	if (IS_ERR(ops)) {
- 		err = PTR_ERR(ops);
- 		goto release_vm_lock;
-@@ -3903,6 +3908,44 @@ struct dma_fence *xe_vm_kernel_bind_bo(struct xe_vm *vm, struct xe_bo *bo,
- 	return fence;
- }
- 
-+/**
-+ * xe_vm_kernel_bind_bo - bind a BO to a kernel owned VM
-+ * @vm: VM to bind the BO to
-+ * @bo: BO to bind
-+ * @q: exec queue to use for the bind (optional)
-+ * @addr: address at which to bind the BO
-+ * @cache_lvl: PAT cache level to use
-+ *
-+ * Execute a VM bind map operation on a BO to bind it into a kernel-owned VM.
-+ *
-+ * Returns a dma_fence to track the binding completion if the job to do so was
-+ * successfully submitted, an error pointer otherwise.
-+ */
-+struct dma_fence *xe_vm_kernel_bind_bo(struct xe_vm *vm, struct xe_bo *bo,
-+				       struct xe_exec_queue *q, u64 addr,
-+				       enum xe_cache_level cache_lvl)
-+{
-+	return __xe_kernel_vm_bind_bo(vm, bo, q, addr, cache_lvl, true);
-+}
-+
-+/**
-+ * xe_vm_kernel_unbind_bo - unbind a BO from a kernel owned VM
-+ * @vm: VM to unbind the BO from
-+ * @bo: BO to unbind
-+ * @q: exec queue to use for the unbind (optional)
-+ * @addr: address at which the BO was bound
-+ *
-+ * Execute a VM bind unmap operation on a BO to remove it from a kernel-owned VM.
-+ *
-+ * Returns a dma_fence to track the unbinding completion if the job to do so was
-+ * successfully submitted, an error pointer otherwise.
-+ */
-+struct dma_fence *xe_vm_kernel_unbind_bo(struct xe_vm *vm, struct xe_bo *bo,
-+					 struct xe_exec_queue *q, u64 addr)
-+{
-+	return __xe_kernel_vm_bind_bo(vm, bo, q, addr, 0, false);
-+}
-+
- /**
-  * xe_vm_lock() - Lock the vm's dma_resv object
-  * @vm: The struct xe_vm whose lock is to be locked
-diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
-index ff32f43aa1d8..b87e80227c79 100644
---- a/drivers/gpu/drm/xe/xe_vm.h
-+++ b/drivers/gpu/drm/xe/xe_vm.h
-@@ -272,6 +272,9 @@ struct dma_fence *xe_vm_kernel_bind_bo(struct xe_vm *vm, struct xe_bo *bo,
- 				       struct xe_exec_queue *q, u64 addr,
- 				       enum xe_cache_level cache_lvl);
- 
-+struct dma_fence *xe_vm_kernel_unbind_bo(struct xe_vm *vm, struct xe_bo *bo,
-+					 struct xe_exec_queue *q, u64 addr);
-+
- void xe_vm_resume_rebind_worker(struct xe_vm *vm);
- 
- /**
--- 
-2.43.0
-
----------------------------------------------------------------------
-Intel Israel (74) Limited
-
-This e-mail and any attachments may contain confidential material for
-the sole use of the intended recipient(s). Any review or distribution
-by others is strictly prohibited. If you are not the intended
-recipient, please contact the sender and delete all copies.
+Thanks.
 
