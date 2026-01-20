@@ -4,66 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 78DF3D2ECE9
-	for <intel-xe@archiver.kernel.org>; Tue, 20 Jan 2026 14:07:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 720BBD2ECF7
+	for <intel-xe@archiver.kernel.org>; Tue, 20 Jan 2026 14:35:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3AF1910E5F3;
-	Tue, 20 Jan 2026 14:07:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 14CF910E60D;
+	Tue, 20 Jan 2026 14:35:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="ijj/wO77";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ezMJ7akP";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8A87E10E607;
- Tue, 20 Jan 2026 14:07:44 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id 6D83A440AC;
- Tue, 20 Jan 2026 14:07:44 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A92D6C16AAE;
- Tue, 20 Jan 2026 14:07:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1768918064;
- bh=+j0ekknPQd/d3gRAxiqnNNnfw0hqFAwwAjsZYhI192Y=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=ijj/wO771lycS6FKxtpygkeK/BYUHKt2nUSEqMQc/fe3SpJqqJcZ/BWCkpIQHgiev
- S+Mf1rPln8yu+F+l0oxZG17ZYhJVhUmOOaXGRiQiIBKGtLNc0IgMJWG2CRJYDmkieP
- 5a/VPKZauZJfX0w5M94s+0B+uQ1I4TbxB1ftUo/dLav7fV9nfxwwD7OdKnSh9ZF6iI
- /6dB5AHN3tBpnq0H+i2vDN0zwB0+7FapFUTpuAq/16it37Dv+DIWjBTSnV+vXDMZEJ
- wa4KiwHpfHeh/NIPj1cnYuRyh73tj+UYbl1afb2guZsXGQRwLqiccEkTVLl9YVBg3w
- 6Da43ktVUa1LQ==
-From: Leon Romanovsky <leon@kernel.org>
-To: Sumit Semwal <sumit.semwal@linaro.org>,
- =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Gerd Hoffmann <kraxel@redhat.com>,
- Dmitry Osipenko <dmitry.osipenko@collabora.com>,
- Gurchetan Singh <gurchetansingh@chromium.org>,
- Chia-I Wu <olvaffe@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Jason Gunthorpe <jgg@ziepe.ca>,
- Leon Romanovsky <leon@kernel.org>, Kevin Tian <kevin.tian@intel.com>,
- Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
- Robin Murphy <robin.murphy@arm.com>,
- Felix Kuehling <Felix.Kuehling@amd.com>,
- Alex Williamson <alex@shazbot.org>, Ankit Agrawal <ankita@nvidia.com>,
- Vivek Kasireddy <vivek.kasireddy@intel.com>
-Cc: linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linaro-mm-sig@lists.linaro.org, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, virtualization@lists.linux.dev,
- intel-xe@lists.freedesktop.org, linux-rdma@vger.kernel.org,
- iommu@lists.linux.dev, kvm@vger.kernel.org
-Subject: [PATCH v3 7/7] vfio: Validate dma-buf revocation semantics
-Date: Tue, 20 Jan 2026 16:07:07 +0200
-Message-ID: <20260120-dmabuf-revoke-v3-7-b7e0b07b8214@nvidia.com>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 89FD310E60B;
+ Tue, 20 Jan 2026 14:35:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1768919723; x=1800455723;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=eaKT4Xz/ZevKpD4XLakUK1esrrubU4DecnMyskKFHEY=;
+ b=ezMJ7akPhVjBKjPph8LAYFw4go6KyrfSNmJ6EhSOk/xN65ztM8AxtHB1
+ CU+GA2PvjJ7niWNoujMNfm+FcrQBPgaxvZ6kQ9VMkJ8ZlTuheQNLk/hmk
+ PnRIivf07g1ISkKtEjtmwo4HH9alkkHDG6Fc1kQMsC2hma8dGwSUyPVZr
+ Al7NpdNBFgkW99UGNf9YiOsTmD/C4A84vRPIjQl3yUmFoyfVUD7KBy6W2
+ CK+BDbbKA3eGPthoT8Vb0ULlX5jY/vMqQLL2tC4vI/Wh5Td6DMFjmPkdv
+ BcBnLWTlq/ovHelLKZVad9hes5Z9oFajHYG46XTM6LVlbbWkeg+I3lWSg g==;
+X-CSE-ConnectionGUID: oOgCZRyFTRqKiczZX1hLmA==
+X-CSE-MsgGUID: AkJsTEaqQ1CLq0kMeXo8zw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11677"; a="69327958"
+X-IronPort-AV: E=Sophos;i="6.21,240,1763452800"; d="scan'208";a="69327958"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jan 2026 06:35:23 -0800
+X-CSE-ConnectionGUID: UY7PaLvfRuePjwhEAihaoA==
+X-CSE-MsgGUID: +J4pGCQARSK3UTSF7m6SPg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,240,1763452800"; d="scan'208";a="206171953"
+Received: from egrumbac-mobl6.ger.corp.intel.com (HELO fedora)
+ ([10.245.244.250])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jan 2026 06:35:21 -0800
+From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Matthew Auld <matthew.auld@intel.com>,
+ Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, dri-devel@lists.freedesktop.org
+Subject: [PATCH v2 0/2] drm, drm/xe: Fix xe SVM configs
+Date: Tue, 20 Jan 2026 15:34:57 +0100
+Message-ID: <20260120143459.9485-1-thomas.hellstrom@linux.intel.com>
 X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20260120-dmabuf-revoke-v3-0-b7e0b07b8214@nvidia.com>
-References: <20260120-dmabuf-revoke-v3-0-b7e0b07b8214@nvidia.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-X-Mailer: b4 0.15-dev-a6db3
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -79,30 +70,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Leon Romanovsky <leonro@nvidia.com>
+The first patch fixes the problem of xe userptr not being enabled if
+CONFIG_DEVICE_PRIVATE or CONFIG_ZONE_DEVICE is missing.
 
-Use the new dma_buf_attach_revocable() helper to restrict attachments to
-importers that support mapping invalidation.
+Second patch explicitly selects CONFIG_DEVICE_PRIVATE and
+CONFIG_ZONE_DEVICE if DRM_XE_GPUSVM is enabled, which is probably what
+most distros want. This patch is not Fixes: tags since some configurations
+may actively want to exclude CONFIG_DEVICE_PRIVATE / CONFIG_ZONE_DEVICE
+and it's undesirable if a stable update breaks those.
 
-Signed-off-by: Leon Romanovsky <leonro@nvidia.com>
----
- drivers/vfio/pci/vfio_pci_dmabuf.c | 3 +++
- 1 file changed, 3 insertions(+)
+v2:
+- Also take CONFIG_ZONE_DEVICE into account. (Xe CI)
 
-diff --git a/drivers/vfio/pci/vfio_pci_dmabuf.c b/drivers/vfio/pci/vfio_pci_dmabuf.c
-index 33bc6a1909dd..0c7782a51912 100644
---- a/drivers/vfio/pci/vfio_pci_dmabuf.c
-+++ b/drivers/vfio/pci/vfio_pci_dmabuf.c
-@@ -31,6 +31,9 @@ static int vfio_pci_dma_buf_attach(struct dma_buf *dmabuf,
- 	if (priv->revoked)
- 		return -ENODEV;
- 
-+	if (!dma_buf_attach_revocable(attachment))
-+		return -EOPNOTSUPP;
-+
- 	return 0;
- }
- 
+Cc: Matthew Auld <matthew.auld@intel.com>
+Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: "Thomas Hellström" <thomas.hellstrom@linux.intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: dri-devel@lists.freedesktop.org
+
+Thomas Hellström (2):
+  drm, drm/xe: Fix xe userptr in the absence of CONFIG_DEVICE_PRIVATE
+  drm/xe: Select CONFIG_DEVICE_PRIVATE when DRM_XE_GPUSVM is selected
+
+ drivers/gpu/drm/Kconfig    |  2 +-
+ drivers/gpu/drm/Makefile   |  4 +++-
+ drivers/gpu/drm/xe/Kconfig |  5 +++--
+ include/drm/drm_pagemap.h  | 18 ++++++++++++++----
+ 4 files changed, 21 insertions(+), 8 deletions(-)
 
 -- 
 2.52.0
