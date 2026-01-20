@@ -4,56 +4,173 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6015CD26283
-	for <intel-xe@archiver.kernel.org>; Tue, 20 Jan 2026 18:35:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2A918D26284
+	for <intel-xe@archiver.kernel.org>; Tue, 20 Jan 2026 18:40:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1B07410E64A;
-	Tue, 20 Jan 2026 18:35:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D7BCD10E647;
+	Tue, 20 Jan 2026 18:40:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="K1dOs/9B";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="W6qzy4rY";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5181A10E64D
- for <intel-xe@lists.freedesktop.org>; Tue, 20 Jan 2026 18:35:52 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6A86410E647
+ for <intel-xe@lists.freedesktop.org>; Tue, 20 Jan 2026 18:40:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1768934152; x=1800470152;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=rsnM3TOXmDHZZkHjBaI63dmQEnct7erGHiEbQ7ODjBQ=;
- b=K1dOs/9BgUp9C68ttukm0GoU3tW+Pavlh84Bmf4H8beJbHFl2TNI1Qku
- qmePRorbv/owxzG+G4FzOQbzN8fMl6rfUEmuxavzBCXCzT9bzss69xV51
- ZQZaz2clECuhatGdfsO3T8FiCGVRabX/Ttt1AN21XSZa47vv0TVEdGdGA
- kKBXnUVjmLhus1s2jbhVgZL7wFxFfKKDVpaVlfucCbYOT+xhTRB3tDlZM
- B8ibcEW78SZaSvBE7mGWgh5DzOiWquiqCFoGY2Trrjht2Wv+5sGhdW/nw
- j3lY0FrS5yYc1OHAzpiKmJibOlPwiqb60SXD6esrlDJRHyYc99fmnOFXH A==;
-X-CSE-ConnectionGUID: 7pgiEyXmRm+NES7yEVkFTw==
-X-CSE-MsgGUID: TeJRO7AUQS6f5Xg3PJSZYA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11677"; a="69883269"
-X-IronPort-AV: E=Sophos;i="6.21,241,1763452800"; d="scan'208";a="69883269"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jan 2026 10:35:41 -0800
-X-CSE-ConnectionGUID: CEN2NPasQ2GkKZTtKdl46A==
-X-CSE-MsgGUID: AcMO4dqZTD2A3i4Fqv6J5g==
+ t=1768934425; x=1800470425;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=dE7W5bOou2xpNhRwCT/MqppN0e+UXgbTMsQJ54NrzIc=;
+ b=W6qzy4rYSwRVV/0mozB8O+EkgtoE0kRj4t3dBsgNlnSCDycZGhxsnzxG
+ ZEhg6RmLWAU/FW1Ct3a4z4jIIH9AcxiM23qusOdHora/Xy5ONCVUqFmEk
+ j0NfQdEP586MASPQw1N7qoc7vI5mEEaNa+5uGbUe1Uf7R0u0o7jQxIRtA
+ JdknOV/WlhFYlZ7AJEpckqCq5IPvcmaPJuQqhMQTqAa86n86nK8Pcx1l/
+ zxRgkrEXwuQaxLG8grEl0r63pu7GsCz+t3Fcz2MumtqaGIBfUHMJf3SkR
+ V8KpYb6gYZcShCvvvDOEejasDWOdOuF4ZVDFEtJluydkKHbgz3290GVv2 Q==;
+X-CSE-ConnectionGUID: yhZSEMBzQt24WnAJSkxahg==
+X-CSE-MsgGUID: NARRksQUSxWr5deIeeirmg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11677"; a="70244973"
+X-IronPort-AV: E=Sophos;i="6.21,241,1763452800"; d="scan'208";a="70244973"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jan 2026 10:40:25 -0800
+X-CSE-ConnectionGUID: EHbOHBG9TPyaBudbBZRWVw==
+X-CSE-MsgGUID: BgrO1MomT7eGCMGg1AGAWw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,241,1763452800"; d="scan'208";a="206445781"
-Received: from osgc-linux-buildserver.sh.intel.com ([10.112.232.103])
- by fmviesa008.fm.intel.com with ESMTP; 20 Jan 2026 10:35:39 -0800
-From: Shuicheng Lin <shuicheng.lin@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Shuicheng Lin <shuicheng.lin@intel.com>,
- Alexander Usyskin <alexander.usyskin@intel.com>,
- Brian Nguyen <brian3.nguyen@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Riana Tauro <riana.tauro@intel.com>
-Subject: [PATCH v4 1/3] drm/xe/nvm: Manage nvm aux cleanup with devres
-Date: Tue, 20 Jan 2026 18:32:41 +0000
-Message-ID: <20260120183239.2966782-6-shuicheng.lin@intel.com>
-X-Mailer: git-send-email 2.50.1
-In-Reply-To: <20260120183239.2966782-5-shuicheng.lin@intel.com>
-References: <20260120183239.2966782-5-shuicheng.lin@intel.com>
-MIME-Version: 1.0
+X-IronPort-AV: E=Sophos;i="6.21,241,1763452800"; d="scan'208";a="210654902"
+Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
+ by fmviesa005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jan 2026 10:40:25 -0800
+Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.35; Tue, 20 Jan 2026 10:40:24 -0800
+Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
+ FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.35 via Frontend Transport; Tue, 20 Jan 2026 10:40:24 -0800
+Received: from SN4PR0501CU005.outbound.protection.outlook.com (40.93.194.51)
+ by edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.35; Tue, 20 Jan 2026 10:40:24 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=HKa5IwyyrtS/OIGq+PCd9V8NCFfTpZTa6Z+xp31HjzvuP6QAeplyasp1laQUmb7DRecLjqaJFXeMHlYIcSSoy1TgRI6iO41s2kOk335KG5WR9CpbDXkYUI4rp7TYYrq/eiDacpqPRvXmOcre/waJvP25NDZeToYKNOTSd1P8TjYk+bMmq/bYKwMeDf6qmiWFRrGePwGhCkf/ng47rXAwa5vfPVSBfNcdDA6swz9XoBv4ZvNHwSXtAs0lH6f5dWUUA4ljerVfoJR5lHOTQJmt/9WOaaaUsAa+77uqE2LUba37orX5VhGx2H/bXfHetloHlwVyYti6FpT8MXFN6/J6uQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=jmtCJJoHoog2GUFmt0+I0zPCjNTwONJfyVkSxgizf/Q=;
+ b=jArlLMQVIJ1gb+tTeplfeZoVY3xCLjE5r4gJFR63/ZvJ0J4BWe+ulSJnLa5SOTMRIPtjCSvHjLjJXXYs+ZVxGwCY+EZPV9vsqHN7N0oxFv1z6YGuDiF3N/q6LUyTf4RAC+U+/elM+ve+4QDF821fDCrcdomsWMANT7Aq9GdLtO5O8bUJta4IsFndtT8bZ/Duww/fiJQK43yhEiuP/U3sziz+qjuokOieBzPeT7DMmbFwYLtU8+xrJl6rlt6+CJz0748cj9L9+wrCBu7HpL0WmTewRVUF5tmBwMADRNEad+6VpC/r7vNZn1Lpfm6u/jwTSgaUp8lVYKuXA1Y9KEm4PA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DS0PR11MB8182.namprd11.prod.outlook.com (2603:10b6:8:163::17)
+ by LV8PR11MB8485.namprd11.prod.outlook.com (2603:10b6:408:1e6::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9542.9; Tue, 20 Jan
+ 2026 18:40:21 +0000
+Received: from DS0PR11MB8182.namprd11.prod.outlook.com
+ ([fe80::7b65:81e6:c6c4:449e]) by DS0PR11MB8182.namprd11.prod.outlook.com
+ ([fe80::7b65:81e6:c6c4:449e%4]) with mapi id 15.20.9520.011; Tue, 20 Jan 2026
+ 18:40:20 +0000
+Date: Tue, 20 Jan 2026 10:40:18 -0800
+From: Matt Roper <matthew.d.roper@intel.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+CC: <intel-xe@lists.freedesktop.org>, <kernel-dev@igalia.com>, Thomas
+ =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>, Rodrigo Vivi
+ <rodrigo.vivi@intel.com>, <stable@vger.kernel.org>
+Subject: Re: [PATCH] drm/xe/xelp: Fix Wa_18022495364
+Message-ID: <20260120184018.GL458797@mdroper-desk1.amr.corp.intel.com>
+References: <20260116095040.49335-1-tvrtko.ursulin@igalia.com>
+ <20260116164624.GE458813@mdroper-desk1.amr.corp.intel.com>
+ <69008123-6899-49e4-9a30-b1cbff279ee4@igalia.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <69008123-6899-49e4-9a30-b1cbff279ee4@igalia.com>
+X-ClientProxiedBy: BY5PR04CA0016.namprd04.prod.outlook.com
+ (2603:10b6:a03:1d0::26) To DS0PR11MB8182.namprd11.prod.outlook.com
+ (2603:10b6:8:163::17)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS0PR11MB8182:EE_|LV8PR11MB8485:EE_
+X-MS-Office365-Filtering-Correlation-Id: e518d3a8-f39b-4582-598b-08de58535d72
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
+X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?pf02Aj60HHSUb3YRzMoV7TVdLGl6mUYu+T6hEAx5fAyjrPbkYx+19Pr3SW?=
+ =?iso-8859-1?Q?6ef8GeBHaa/p08rWhxwbCKZkzX55MW8YmJDuaAkgj/xPtQXpx4NDg+2QAS?=
+ =?iso-8859-1?Q?6mcM29oIRruZFt2B4lp2ikSb6E7teDan2sEKBg8fxzhF+b+HEDrVqS01XA?=
+ =?iso-8859-1?Q?LwNUBpZ+IOioPcY/jbJLFRO78xvZV1vS3KGVq8Sx8VwntwRqojbA+feAvo?=
+ =?iso-8859-1?Q?spLYJ3f0jnXT9oPu8ikl8IHs8KwSXH0v47a09i1RD2V5yzm/UyaOytmKZk?=
+ =?iso-8859-1?Q?xmyPG+f0pnoJaEb7ishF4TcD6vnaG+ioWO7M7QXjFeH7Wr2o91NK8D6MBS?=
+ =?iso-8859-1?Q?EZ+nQAtvqBRd/YWy9kmbUhqhSSEJtBweazECdYBEiENPdL6VkG0aYtxFU9?=
+ =?iso-8859-1?Q?mKFAVQjXklu1kubFTpqptB0WKRxdLBizoCFGqNjVAuUpO3rx8ifDWAaKVd?=
+ =?iso-8859-1?Q?P6pH5W0y2RpHJovFFvThIkZWMqczPoePBwQc00E1YmdZar00kku3D6MPuc?=
+ =?iso-8859-1?Q?RLeJD+pQA7xRPgJXElJd+L89vlnGl3hBKNbBJsujsM5goweI3wiXV6yi2V?=
+ =?iso-8859-1?Q?HPA+mT4LrW3uLRaEseVVogNd7Kell8bK055DxoXJvnm15UOXZAt3OtyY2H?=
+ =?iso-8859-1?Q?XJpjmFp3aqwt99/nzeQRutRE0kZ4Sv5snbxrEiDclJ2G8H1qF8aDmfhUmK?=
+ =?iso-8859-1?Q?kFXFD4PRsBdLuVIGLc7lOACA9Ud40MJNqgJgdbt61/GXclEm75eaS4IZ/j?=
+ =?iso-8859-1?Q?LWKor6+48ffr+MKus+Ppb6JMdlYy/EJ4DQunWHkGJ2Y5ZD61CB7i52Oh/R?=
+ =?iso-8859-1?Q?rJIqg82+SXKUQT0L/NglvEyUCrcrhwVqSRykH85H1N2xK6HyAVAjP5RBWx?=
+ =?iso-8859-1?Q?aBEb8BUuwsMDmQUWe1Q/86ph65NGnNJwpoBOWpAJj78jOuymG+r/IJDKTw?=
+ =?iso-8859-1?Q?B4EQ+RxpMq7XsoGIFqhHkUwYEugJZIpKV85S0Nbz0ajcuCZmC8haXIpDyU?=
+ =?iso-8859-1?Q?yYCn2xZDwPDX6BKpi7jM1NVBe9mEj/Pusx5Ll8vYlqXdkkUr2wMEqb0dxI?=
+ =?iso-8859-1?Q?+ZlsurAYxNX1hv+cBMdRNw59FNtDglFD3TbwJuA52VlNKTkQrPoWT4mNE5?=
+ =?iso-8859-1?Q?xLRTvtq+rWHYaUZ2gxLhZh1AajzTTDyGlamWIcycM2jf0SL3aU0qbuZTU3?=
+ =?iso-8859-1?Q?oF+5NJDIXBOmKOw1xr37qEhqP/Qg5JIYwMDGIxnUVE3hF7MOrbTnDaqz2g?=
+ =?iso-8859-1?Q?uOyet2nsxdOnUZo3//8qFLJhoNA3MS1hbRk/Xj8B1LpR1udBetrgwkN4XR?=
+ =?iso-8859-1?Q?VnJVe/hswUd6+zFh69pQi5HvjTVigZ5RCzAtTCa8HH/jykDCqFFfQ1She6?=
+ =?iso-8859-1?Q?yzjbm27TW6A8/ot39u15cKmRCOfCPhGp+4PX5J4B1I07349AeOack5x3kZ?=
+ =?iso-8859-1?Q?0OhRXGdrlIuYH7CADfPhMQsfJRWuEr5fTKQD97Z+gf45KDb8Bb+DjkyQQ2?=
+ =?iso-8859-1?Q?4Q9uNlb436TEJW08EzYJStuDIKaDKfaZSb1epnBM15PJFs73XVaftkf1QC?=
+ =?iso-8859-1?Q?GeeZN8kDF4hqNxv9YC1hQxI/x+Rw?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS0PR11MB8182.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?mdScOqLNh37JXuNMoklZbdtjr6iA5Cx5xUkwpiOTIHWmN7tUsyO2AGFGip?=
+ =?iso-8859-1?Q?6tFt876o0AUfLSaKlFsf37fB81J9d/PjDLd26kcresqOv4BHQ5TsdGkBsX?=
+ =?iso-8859-1?Q?ELlwIgczQgZDPjJdj92LFgrCT3sadm4AsRraKKsn4X6BewQJFjJugyYb4Y?=
+ =?iso-8859-1?Q?JJvIZE08A2X+dh+0HZzg6bXjKpt+8FdhbkMrpeafBpcC5SfqBkOs0YIx8J?=
+ =?iso-8859-1?Q?I8hOMhBuwGwIDqLjjhFCLhvRiJCj9ckHguEHq9jXND5T99xCcAG68kQWow?=
+ =?iso-8859-1?Q?ZUK+qFXW2LbvcggkmwHehhPGkf3O1XTM/71+RxjSfYs3bi4xf4UauU/TKi?=
+ =?iso-8859-1?Q?RmkkLP/IFGqFxXWykb1OlEciyAYg/1dBp1T3jjiiEa16KR8lHzEN06VXgE?=
+ =?iso-8859-1?Q?QQK1vvbfb/1VJfmP5xXqK+V7zI1KYmGKS26RntPGFBM1DDvaRFp3fBPG9p?=
+ =?iso-8859-1?Q?f4kpvCFmOnBPMDTW8XpdNp/t2OtPtcEth+YAPc8yonKSYBLdQlUzB5kSa7?=
+ =?iso-8859-1?Q?izyG/vlufQ/PK/gzxF0HALwFd2IPwCHWQGM3ZSyf6BKbmxShCitnHbm3Oy?=
+ =?iso-8859-1?Q?JmqAkUHi8J7AkoIBYB68CAANyHntiDyvpqvUKMMEfT7Gjco8N96PRebAOd?=
+ =?iso-8859-1?Q?+2tEOz0dd9bvIie7nvdRT+r4ICO8LPwhdSowmhfojtLeNFXwsDdVO/knqy?=
+ =?iso-8859-1?Q?zdnQCgv2e1Y/Vsa5sqrWLu3CoyQ7L4Y+CQtjzsNDGrkUu3ZHAwkQFnlUoT?=
+ =?iso-8859-1?Q?k4Ia9Bnrv2McV1uZaIAUl9T8JsmdEuw0LzaX9jsQmTiL6og00U6HYQayhx?=
+ =?iso-8859-1?Q?vfi4ZT8FLd6MTGiWUUvPabRtVGTDY0yPv+Zdq1r1GrsFCjCtx4guOERna2?=
+ =?iso-8859-1?Q?P1O8mbZpo7cJ8z7LDRrae47stOq7as91q0IEu7TH1NolerQirlvoF7smqJ?=
+ =?iso-8859-1?Q?uDLhgWbW7EE/daRhrAvNIWpe/rQmywSCRzYbmLUgNkUT54MsWz7SoWUZCI?=
+ =?iso-8859-1?Q?McgyUPns/8BeVjm100pVtJvCIJEx+ptB985eo37WIV7NmG9LERYdQfCeVs?=
+ =?iso-8859-1?Q?lbmLYi7m59SwxoJN2AknkEnkeKIaFp7YB5JqrrCzWprmtdNK4tdpwO8gA1?=
+ =?iso-8859-1?Q?58OBbjvzLOeLJ8A9r3+P3Y8Ero1efikoTLv+uY2hSP/C6VOSSAqOeOICAN?=
+ =?iso-8859-1?Q?i24LZ19+LYV4cnh+wcBlDylu9N//Xw8TNPVd3hYeJkkPsQtN0nI5DuFqnV?=
+ =?iso-8859-1?Q?zNMn++vvwQzIazecrXbm+0eUeBijQ34PEXK6MnfW5hPUQYf8oVRYnXWimF?=
+ =?iso-8859-1?Q?0zBDbRVMNp61Rbz6meMtWiY9icg0bfbsweyOghsgoVSffDeMOOY86khWsk?=
+ =?iso-8859-1?Q?ciuyl2fg1zmyJHQak6QJXJsnxELOmlH1+BZnjLz5OrBL79ctkQOEi75IUG?=
+ =?iso-8859-1?Q?FXj+OoiDBKhpKC1cXzcUxLkaVLiiNH8QjKq6oHdMWAUog4sutRq4mMgpTL?=
+ =?iso-8859-1?Q?OsZrLI4pXm8ozEoja5CUtXBVZxq5y5/PsWfYy1vcg5PYEvpaK59x13uiCP?=
+ =?iso-8859-1?Q?ZroWIFkn46o1JKbua9ebWGcKJDxBcc3atNM7x1DknqyS3BLUVj/7phTIrg?=
+ =?iso-8859-1?Q?mFvdnZmj61Q/Y8pnzPXbj/0rQsMk+bGK2vNaqXYQg/+lUZC8l3P/kUExa1?=
+ =?iso-8859-1?Q?JEz+xUuiWMgoAP1X51iDSwartauOdDwW89rkmUw7xguedua70k9DtlR+cA?=
+ =?iso-8859-1?Q?OkJUP8j3oJhG8kt5qeDxfGMU6nc17CEIHnYBQk2GY+pCpCYwXWvUgzaD1F?=
+ =?iso-8859-1?Q?jc7xBPh5NDdSfibMCij0O/Lsgnrk8ck=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: e518d3a8-f39b-4582-598b-08de58535d72
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB8182.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Jan 2026 18:40:20.8133 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: PDVuK7zskQOPuwlSm9+h+4CeHNFjz3C5KytT0pW34ZJV1i+b9K6fPxahx8HfcPQwpTEYdXUR88juOlcKu9HHGGcT/aeYyWY0j/MuEPxa8OA=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV8PR11MB8485
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,181 +185,92 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Move nvm teardown to a devm-managed action registered from xe_nvm_init().
-This ensures the auxiliary NVM device is deleted on probe failure and
-device detach without requiring explicit calls from remove paths.
+On Mon, Jan 19, 2026 at 01:34:02PM +0000, Tvrtko Ursulin wrote:
+> 
+> On 16/01/2026 16:46, Matt Roper wrote:
+> > On Fri, Jan 16, 2026 at 09:50:40AM +0000, Tvrtko Ursulin wrote:
+> > > It looks I mistyped CS_DEBUG_MODE2 as CS_DEBUG_MODE1 when adding the
+> > > workaround. Fix it.
+> > 
+> > This matches the explanation of "option 1" for the workaround, but I'm
+> > wondering if we want/need this workaround at all.  Option 1 is to write
+> > the CS_DEBUG_MODE2 register (as you're doing here), but Option 2 is to
+> > do a constant cache invalidation (PIPE_CONTROL[DW1][Bit3]) during
+> > top-of-pipe invalidation and it looks like we already do that in general
+> > in emit_pipe_invalidate(), so it seems like we're implementing both
+> > options at the same time.  It looks like there's similar redundancy in
+> > i915 as well...
+> > 
+> > Are you seeing the programming of the correct register here actually
+> > change/fix anything?  If so, does just deleting the programming of the
+> > wrong register without programming the right one also fix the issue?
+> 
+> So far the off-line reports from people doing the testing appear to suggest
+> this fix indeed, well, fixes it.
+> 
+> If that is confirmed we will need to add:
+> 
+> Closes: https://gitlab.freedesktop.org/mesa/mesa/-/issues/13630
 
-As part of this, drop xe_nvm_fini() from xe_device_remove() and from the
-survivability sysfs teardown, and remove the public xe_nvm_fini() API from
-the header.
+I don't think we should mark an Xe change as fixing a general mesa
+ticket since Xe is the wrong driver to be using on gen12 platforms. We'd
+need an i915 fix instead for that (and i915 is already using the correct
+CS_DEBUG_MODE2 register so I guess there must be some other factor
+involved as well).
 
-This is to fix below warn message when there is probe failure after
-xe_nvm_init(), then xe_device_probe() is called again:
-"
-[  207.318152] sysfs: cannot create duplicate filename '/devices/pci0000:00/0000:00:01.0/0000:01:00.0/0000:02:01.0/0000:03:00.0/xe.nvm.768'
-[  207.318157] CPU: 5 UID: 0 PID: 10261 Comm: modprobe Tainted: G    B   W           6.19.0-rc2-lgci-xe-kernel+ #223 PREEMPT(voluntary)
-[  207.318160] Tainted: [B]=BAD_PAGE, [W]=WARN
-[  207.318161] Hardware name: ASUS System Product Name/PRIME Z790-P WIFI, BIOS 0812 02/24/2023
-[  207.318163] Call Trace:
-[  207.318163]  <TASK>
-[  207.318165]  dump_stack_lvl+0xa0/0xc0
-[  207.318170]  dump_stack+0x10/0x20
-[  207.318171]  sysfs_warn_dup+0xd5/0x110
-[  207.318175]  sysfs_create_dir_ns+0x1f6/0x280
-[  207.318177]  ? __pfx_sysfs_create_dir_ns+0x10/0x10
-[  207.318179]  ? lock_acquire+0x1a4/0x2e0
-[  207.318182]  ? __kasan_check_read+0x11/0x20
-[  207.318185]  ? do_raw_spin_unlock+0x5c/0x240
-[  207.318187]  kobject_add_internal+0x28d/0x8e0
-[  207.318189]  kobject_add+0x11f/0x1f0
-[  207.318191]  ? __pfx_kobject_add+0x10/0x10
-[  207.318193]  ? lockdep_init_map_type+0x4b/0x230
-[  207.318195]  ? get_device_parent.isra.0+0x43/0x4c0
-[  207.318197]  ? kobject_get+0x55/0xf0
-[  207.318199]  device_add+0x2d7/0x1500
-[  207.318201]  ? __pfx_device_add+0x10/0x10
-[  207.318203]  ? lockdep_init_map_type+0x4b/0x230
-[  207.318205]  __auxiliary_device_add+0x99/0x140
-[  207.318208]  xe_nvm_init+0x7a2/0xef0 [xe]
-[  207.318333]  ? xe_devcoredump_init+0x80/0x110 [xe]
-[  207.318452]  ? __devm_add_action+0x82/0xc0
-[  207.318454]  ? fs_reclaim_release+0xc0/0x110
-[  207.318457]  xe_device_probe+0x17dd/0x2c40 [xe]
-[  207.318574]  ? __pfx___drm_dev_dbg+0x10/0x10
-[  207.318576]  ? add_dr+0x180/0x220
-[  207.318579]  ? __pfx___drmm_mutex_release+0x10/0x10
-[  207.318582]  ? __pfx_xe_device_probe+0x10/0x10 [xe]
-[  207.318697]  ? xe_pm_init_early+0x33a/0x410 [xe]
-[  207.318850]  xe_pci_probe+0x936/0x1250 [xe]
-[  207.318999]  ? lock_acquire+0x1a4/0x2e0
-[  207.319003]  ? __pfx_xe_pci_probe+0x10/0x10 [xe]
-[  207.319151]  local_pci_probe+0xe6/0x1a0
-[  207.319154]  pci_device_probe+0x523/0x840
-[  207.319157]  ? __pfx_pci_device_probe+0x10/0x10
-[  207.319159]  ? sysfs_do_create_link_sd.isra.0+0x8c/0x110
-[  207.319162]  ? sysfs_create_link+0x48/0xc0
-...
-"
+> 
+> As to your wider conundrum - could it be that preemption is at play? When
+> done from the indirect context the workaround will trigger after preemption,
+> unlike when done from emit_pipe_invalidate(). So perhaps "Option 1" and
+> "Option 2" you mention miss that angle?
 
-Fixes: c28bfb107dac ("drm/xe/nvm: add on-die non-volatile memory device")
-Reviewed-by: Alexander Usyskin <alexander.usyskin@intel.com>
-Reviewed-by: Brian Nguyen <brian3.nguyen@intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Riana Tauro <riana.tauro@intel.com>
-Signed-off-by: Shuicheng Lin <shuicheng.lin@intel.com>
----
- drivers/gpu/drm/xe/xe_device.c             |  2 -
- drivers/gpu/drm/xe/xe_nvm.c                | 43 +++++++++++-----------
- drivers/gpu/drm/xe/xe_nvm.h                |  2 -
- drivers/gpu/drm/xe/xe_survivability_mode.c |  4 --
- 4 files changed, 22 insertions(+), 29 deletions(-)
+Possibly.  I just read through the old internal history on this
+workaround and it sounds like the expectation is that the underlying
+issue this was originally added for would only happen when both RCS+POCS
+(i.e., the POSH command streamer) are in use, which isn't something
+that's relevant to Linux.  So most likely the problems you're stumbling
+over some different issue than what Wa_18022495364 was initially
+intended for, but it turns out that the register programming for Option
+1 also solves this new issue, whereas Option 2 does not.
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index aad4aa53a51f..a954cc8400b3 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -1025,8 +1025,6 @@ void xe_device_remove(struct xe_device *xe)
- {
- 	xe_display_unregister(xe);
- 
--	xe_nvm_fini(xe);
--
- 	drm_dev_unplug(&xe->drm);
- 
- 	xe_bo_pci_dev_remove_all(xe);
-diff --git a/drivers/gpu/drm/xe/xe_nvm.c b/drivers/gpu/drm/xe/xe_nvm.c
-index 437375046517..77856f460770 100644
---- a/drivers/gpu/drm/xe/xe_nvm.c
-+++ b/drivers/gpu/drm/xe/xe_nvm.c
-@@ -94,6 +94,27 @@ static bool xe_nvm_writable_override(struct xe_device *xe)
- 	return writable_override;
- }
- 
-+static void xe_nvm_fini(void *arg)
-+{
-+	struct xe_device *xe = arg;
-+	struct intel_dg_nvm_dev *nvm = xe->nvm;
-+
-+	if (!xe->info.has_gsc_nvm)
-+		return;
-+
-+	/* No access to internal NVM from VFs */
-+	if (IS_SRIOV_VF(xe))
-+		return;
-+
-+	/* Nvm pointer should not be NULL here */
-+	if (WARN_ON(!nvm))
-+		return;
-+
-+	auxiliary_device_delete(&nvm->aux_dev);
-+	auxiliary_device_uninit(&nvm->aux_dev);
-+	xe->nvm = NULL;
-+}
-+
- int xe_nvm_init(struct xe_device *xe)
- {
- 	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
-@@ -152,30 +173,10 @@ int xe_nvm_init(struct xe_device *xe)
- 		auxiliary_device_uninit(aux_dev);
- 		goto err;
- 	}
--	return 0;
-+	return devm_add_action_or_reset(xe->drm.dev, xe_nvm_fini, xe);
- 
- err:
- 	kfree(nvm);
- 	xe->nvm = NULL;
- 	return ret;
- }
--
--void xe_nvm_fini(struct xe_device *xe)
--{
--	struct intel_dg_nvm_dev *nvm = xe->nvm;
--
--	if (!xe->info.has_gsc_nvm)
--		return;
--
--	/* No access to internal NVM from VFs */
--	if (IS_SRIOV_VF(xe))
--		return;
--
--	/* Nvm pointer should not be NULL here */
--	if (WARN_ON(!nvm))
--		return;
--
--	auxiliary_device_delete(&nvm->aux_dev);
--	auxiliary_device_uninit(&nvm->aux_dev);
--	xe->nvm = NULL;
--}
-diff --git a/drivers/gpu/drm/xe/xe_nvm.h b/drivers/gpu/drm/xe/xe_nvm.h
-index 7f3d5f57bed0..fd3467ad35a4 100644
---- a/drivers/gpu/drm/xe/xe_nvm.h
-+++ b/drivers/gpu/drm/xe/xe_nvm.h
-@@ -10,6 +10,4 @@ struct xe_device;
- 
- int xe_nvm_init(struct xe_device *xe);
- 
--void xe_nvm_fini(struct xe_device *xe);
--
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_survivability_mode.c b/drivers/gpu/drm/xe/xe_survivability_mode.c
-index 6578ffc77bd5..db64cac39c94 100644
---- a/drivers/gpu/drm/xe/xe_survivability_mode.c
-+++ b/drivers/gpu/drm/xe/xe_survivability_mode.c
-@@ -233,13 +233,9 @@ static SURVIVABILITY_ATTR_RO(fdo_mode, FDO_INFO);
- static void xe_survivability_mode_fini(void *arg)
- {
- 	struct xe_device *xe = arg;
--	struct xe_survivability *survivability = &xe->survivability;
- 	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
- 	struct device *dev = &pdev->dev;
- 
--	if (survivability->fdo_mode)
--		xe_nvm_fini(xe);
--
- 	device_remove_file(dev, &dev_attr_survivability_mode);
- }
- 
+Anyway, your change to fix the register name is correct, so
+
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+
+> 
+> Regards,
+> 
+> Tvrtko
+> 
+> > > Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+> > > Fixes: ca33cd271ef9 ("drm/xe/xelp: Add Wa_18022495364")
+> > > Cc: Matt Roper <matthew.d.roper@intel.com>
+> > > Cc: "Thomas Hellström" <thomas.hellstrom@linux.intel.com>
+> > > Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> > > Cc: <stable@vger.kernel.org> # v6.18+
+> > > ---
+> > >   drivers/gpu/drm/xe/xe_lrc.c | 2 +-
+> > >   1 file changed, 1 insertion(+), 1 deletion(-)
+> > > 
+> > > diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
+> > > index 70eae7d03a27..44f112df4eb2 100644
+> > > --- a/drivers/gpu/drm/xe/xe_lrc.c
+> > > +++ b/drivers/gpu/drm/xe/xe_lrc.c
+> > > @@ -1200,7 +1200,7 @@ static ssize_t setup_invalidate_state_cache_wa(struct xe_lrc *lrc,
+> > >   		return -ENOSPC;
+> > >   	*cmd++ = MI_LOAD_REGISTER_IMM | MI_LRI_NUM_REGS(1);
+> > > -	*cmd++ = CS_DEBUG_MODE1(0).addr;
+> > > +	*cmd++ = CS_DEBUG_MODE2(0).addr;
+> > >   	*cmd++ = _MASKED_BIT_ENABLE(INSTRUCTION_STATE_CACHE_INVALIDATE);
+> > >   	return cmd - batch;
+> > > -- 
+> > > 2.52.0
+> > > 
+> > 
+> 
+
 -- 
-2.50.1
-
+Matt Roper
+Graphics Software Engineer
+Linux GPU Platform Enablement
+Intel Corporation
