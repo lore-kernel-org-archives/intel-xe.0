@@ -4,191 +4,75 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E291FD262A2
-	for <intel-xe@archiver.kernel.org>; Tue, 20 Jan 2026 21:11:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 43EE8D262A2
+	for <intel-xe@archiver.kernel.org>; Tue, 20 Jan 2026 21:17:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A5CB110E664;
-	Tue, 20 Jan 2026 21:11:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2F85F10E109;
+	Tue, 20 Jan 2026 21:17:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GIkpcs29";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ny+PkBLb";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1CFEA10E66A
- for <intel-xe@lists.freedesktop.org>; Tue, 20 Jan 2026 21:11:25 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B7D6110E030;
+ Tue, 20 Jan 2026 21:17:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1768943486; x=1800479486;
+ t=1768943839; x=1800479839;
  h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=d/nEyzgwUuCWiAVxDEsOYex85JRGbmtg1Sm17KZaMPE=;
- b=GIkpcs29OVWpJAbUfFnki5wy7uFoP3E0ZY/6Y2VBrHV4F1uwZTexG5YS
- TYs4k69R44vIqWm+vk3XZjO7FqkjqzIhgEwUrnAwYNIrNgxIacvzazK7W
- x4hGKJ+klWsQ4NkwSf6YKhnNQloxgqcRhDzSTtnfeTcbDfR8rXp3C1s58
- MYlAy/3nqJMiKQX1aLzadrhecXMfRuDuAENtTu682ZnCod3T6pxenpWKo
- 1nk4bM01zPh892sN/eQgZSO6pmmEc0+lCO/qvVvJl5KVsxlZNL7BVCxJs
- Gl4zEhelu/qR8uYJB182tY7VY2PeDveismy8wbMo0hgxEhyByQq+hunF8 Q==;
-X-CSE-ConnectionGUID: 4bmpdTQnSheqE4ut380FsQ==
-X-CSE-MsgGUID: aADV7uI9TBGXmP4kpqM48Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11677"; a="69896736"
-X-IronPort-AV: E=Sophos;i="6.21,241,1763452800"; d="scan'208";a="69896736"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jan 2026 13:11:25 -0800
-X-CSE-ConnectionGUID: 2MEf+rxERVWHnmGdx1a1zA==
-X-CSE-MsgGUID: QPc7e+bhR5qLNIo1yrPSkg==
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=Fj5IrTCfWpLuDR/zNUCOc3krpg/zdgIA4C3q0qM4dMc=;
+ b=Ny+PkBLbgxBpYqmfnVHq4j3Aw+OXOzqj8wwHncc5hoO7blpYgkkJnLiC
+ P9KmAVumFH0yMd7Aw15AKhEFKclRQaFkumeTsp29t5DFQLyuuuan3jBOc
+ OGnbBxmcpFbEhWbWfpiYNehUWjxHbZXXnJBXuh1YY1KpUpNSuQmHuqT8u
+ fTkzsk9TGzOGjyWlW3c7jsgGnzfI/tWGVa2g65Gdg8LQGeHVnRnnubHkM
+ yIgVjyZm4cJmahSXxW7tFxxbj0tdrM4WR/fFpijUxp6HdNLg2aCdO6hdE
+ UaEAXHj2Gt71N5pirvo7f1zHeisIw4gxKvKdkJrwoSI8KvVXaoq73mjT6 A==;
+X-CSE-ConnectionGUID: 43vNQtzmR0+8ONKdivYTEw==
+X-CSE-MsgGUID: N39tGP23TN2KyiEgptmMHA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11677"; a="95640192"
+X-IronPort-AV: E=Sophos;i="6.21,241,1763452800"; d="scan'208";a="95640192"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jan 2026 13:17:18 -0800
+X-CSE-ConnectionGUID: tP040WK2QYuIhOCZAg670g==
+X-CSE-MsgGUID: aCdpwMz5Rp++XlW7FOCltw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,241,1763452800"; d="scan'208";a="243802225"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by orviesa001.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jan 2026 13:11:25 -0800
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35; Tue, 20 Jan 2026 13:11:24 -0800
-Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35 via Frontend Transport; Tue, 20 Jan 2026 13:11:24 -0800
-Received: from BN1PR04CU002.outbound.protection.outlook.com (52.101.56.0) by
- edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35; Tue, 20 Jan 2026 13:11:24 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=tpKpzy8YpwS2S5yRk3oxjtlcO0B7dTA7+THrn0rXA4patJq9rvzQ8X/mltnVQ3DFQ0qBxjo3uu4frfpWvUaywerKfTqMbz+Ioxeva6LagTzBUee3/vZKKKvGxjY7AeIkOtl70h9XBxOuEHk7rHATxB5m4lWWeyu2i3A25VqVrOu9OS1VOfIQ3hPht0X2hxK4M07acfZVB+EI3n7xtzlUfT98qegjmimomUYY2Fi8sLvTmeG6sT1WVVMamplWSEn+1plAONwhSTZ5pjQeO2szYmax+h+WetuIPWk2zG/DeheFDPhpvf3uHzyK0kVA0TQ0ZMNAgnE35j5bT9uZT68V/w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=8/A5tMUND3tvdto2a7oiNhMUrinErkPYcg+/y7H3HUw=;
- b=ywme0J2MGQQ7TH1pHI48enwM49vz/5Oy4nXW6MIYP5V8koAqmCLgtrL+ahZsdCbrUrkJSnVaU8oUg/x+/KA0RNY7/RDGOED8ICkAR50ulOe4bucxTO5IXcQlmVXMUX3/CHoeVwaIWXQmogqVE+I2shHsNAjdOZ3E3khyO5X2uxPIskHqFprlcLwHNukfE94rr8fNEuWIvRvsQbSR086UlqDkEP5G6SRmTB5NpcW2SwUVsYVoCdfhhSGo9oXnDR505FlezAOeBKz8TuZZbPi1/zI3okchb4N7aDDuARrB+vkf73addM8K9COZuXn77xHXy6p++ul//qpHmHYcM/4URg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by CY8PR11MB7171.namprd11.prod.outlook.com (2603:10b6:930:92::16)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9520.12; Tue, 20 Jan
- 2026 21:11:21 +0000
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::9e94:e21f:e11a:332]) by PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::9e94:e21f:e11a:332%7]) with mapi id 15.20.9456.015; Tue, 20 Jan 2026
- 21:11:21 +0000
-Date: Tue, 20 Jan 2026 13:11:18 -0800
-From: Matthew Brost <matthew.brost@intel.com>
-To: Zbigniew =?utf-8?Q?Kempczy=C5=84ski?= <zbigniew.kempczynski@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, Daniele Ceraolo Spurio
- <daniele.ceraolospurio@intel.com>, Carlos Santa <carlos.santa@intel.com>
-Subject: Re: [PATCH] drm/xe: Do not preempt fence signaling CS instructions
-Message-ID: <aW/vdvCw/3DZwfpt@lstrano-desk.jf.intel.com>
-References: <20260115004546.58060-1-matthew.brost@intel.com>
- <q4f6zwko4q6337m3ap244j6q3lfqqrkmlxq2l5ojgcbensliaf@yj7ndeqnrvuz>
- <aWqn/eXaw2t9j4fY@lstrano-desk.jf.intel.com>
- <5nddlxy5z2naxxoz7jnyhpwpv3pofv57fuhflcjjwhxell5ozg@xmrhis4b7hhf>
-Content-Type: text/plain; charset="utf-8"
+X-IronPort-AV: E=Sophos;i="6.21,241,1763452800"; d="scan'208";a="206575787"
+Received: from smoticic-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.13])
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jan 2026 13:17:13 -0800
+Date: Tue, 20 Jan 2026 23:17:10 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>
+Cc: Alex =?iso-8859-1?Q?Benn=E9e?= <alex.bennee@linaro.org>,
+ Simon Richter <Simon.Richter@hogyros.de>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ amd-gfx@lists.freedesktop.org, Bjorn Helgaas <bhelgaas@google.com>,
+ David Airlie <airlied@gmail.com>, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ linux-pci@vger.kernel.org, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Simona Vetter <simona@ffwll.ch>, Tvrtko Ursulin <tursulin@ursulin.net>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ =?utf-8?Q?Micha=C5=82?= Winiarski <michal.winiarski@intel.com>,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 06/11] PCI: Fix restoring BARs on BAR resize rollback
+ path
+Message-ID: <aW_w1oFQCzUxGYtu@intel.com>
+References: <20251113162628.5946-1-ilpo.jarvinen@linux.intel.com>
+ <20251113162628.5946-7-ilpo.jarvinen@linux.intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <5nddlxy5z2naxxoz7jnyhpwpv3pofv57fuhflcjjwhxell5ozg@xmrhis4b7hhf>
-X-ClientProxiedBy: MW4PR04CA0074.namprd04.prod.outlook.com
- (2603:10b6:303:6b::19) To PH7PR11MB6522.namprd11.prod.outlook.com
- (2603:10b6:510:212::12)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|CY8PR11MB7171:EE_
-X-MS-Office365-Filtering-Correlation-Id: c1371d98-7bfc-474b-1057-08de586875c8
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?dk04bFg5ektWMzlsN2FzYzZ5WEdQZjBHZXZZMi9CQnJGUWRkemZuZmtYTXov?=
- =?utf-8?B?Y3Y5aUtyTDdOc1NRc2JJSVNxMGxGdmJSaVo5NnErRHhFa2N0a1hJNnU4NFZO?=
- =?utf-8?B?RFV1MytXZTBBbmFHWUptUUFPbS9sakpCWE9JVGdSNWVkSE5xZUlrT2dWZ3gy?=
- =?utf-8?B?eHZOVGJsTFZERTZCVHg4YUVMSUFveDJ3UkFpTW5zS250UU5SdGNvNmozc1ZY?=
- =?utf-8?B?WXBGR1VuYUgyeitheWRFM2FwWlBXeGdZVm5FbHNIQmZJbktDRUJPQ1BhbFFi?=
- =?utf-8?B?L0cvTks3ZTYwbW9FeGVuQWJwNjdralBJQm5jMTFtS0VLRnlMQkc5Y1hYNExn?=
- =?utf-8?B?Qk9JVnM0Ullsc3BVNkpzM3lkakJ5TDlXMTVBd3dsQ0J6Wk1Qb29UM1FmYmcv?=
- =?utf-8?B?S3VTRlJyYWZEV3ZkN0ljYWovbCt2N2w3M3ptam9mNnVJcnVMU1ZGVlozZUIr?=
- =?utf-8?B?QURpWmNDOWlLK1NSUmpJc0w5d1p2YXRNWFJUcWY2OGIzbWozcktWTnY2OFRO?=
- =?utf-8?B?aGc5VC9GYzFuNzZ5bnJNWFh0bkNPcE1RQ1hvR1JLSXptQkNxc0dMbUFvY2FW?=
- =?utf-8?B?dDlxMWpzSjdDVzBPZFBnY3JXT1lNbzB4VmQ4dG1JSFMzUE9SaSs0cDV1V0cz?=
- =?utf-8?B?cFg5dkJyV2MzSFlvdWZvS3NiYmNTcG9BM1JPWXpNWXAweWlSU3ZsNVVZRmR0?=
- =?utf-8?B?N1NuODQzanIzbnZERWZqMzR1ZXlpQTFFc1RBYlBxeG1zbHp1bmlwWlB6L3dG?=
- =?utf-8?B?M2dUZVhUbHBzNURrQklqM2pjSHJLdkxxUHNXM0IxemRmWjR0MEZlN1dhaVJN?=
- =?utf-8?B?dm56bVFZQlJmaWlHVWdpLzRKSjQ5YzdQM2JxOWZVUE5leEdVdXBsUHJkcW1U?=
- =?utf-8?B?c20zQ2l1S2hLVEZ5dHhoL1pFOHIzbE9NV2xma1MxSVJOOGhhQnRySDJiL0lk?=
- =?utf-8?B?N0ozYUwwZWNBamg0MEhWYStESE9zcWVnbW44YUlFSHNNWGFDYnVqeEx5L2NJ?=
- =?utf-8?B?bmVUd1U4MjVVTk9PaHF5U3g1cXU0NkxkNWRhNm5ZNjNaWGxxS3hXcUVsREpQ?=
- =?utf-8?B?eml0NTQwY0g1V09yUW9DU0lRMmJ3VzFqazNwbDFIdFVsZ2FyUUc2dm5IbUx6?=
- =?utf-8?B?YkUrSmJ2U3A5Vy9iOHpYMnorVlhMYjhFZ1pnS3JrRHgzZXk5WmNsRkpKK2hQ?=
- =?utf-8?B?b0RTT29La05IdDZnUjFuMXNOUXJ0cHhpcmQ2dFRnaitNMVB0MGxrdUxGa0I4?=
- =?utf-8?B?L3gzakZ3WUVka0huSmFZbTVqbUIzaFZmUVNXclcra01Geko0N1Q4K1RveG5G?=
- =?utf-8?B?cHVxSFhiZmo3a2NJUEh0WWJyWGcyQzBmWXptUDRSbXFtNnBIdlpFMjBJUUFZ?=
- =?utf-8?B?MXpHdzYvNjAyTTNBWlhFaXAyM2R5Z0Z2QVRjVitudHlsTXVOK0Y1RTArZG5o?=
- =?utf-8?B?T1MzTmZaRVIyNjNNN0xMNjBvSVI0ekRFQ25Sc1ozblEyQ2NYSHZvRGRrNTNN?=
- =?utf-8?B?ZW1Yd3ptZWRkSFhJWWNZMGpLS2diaXhJellzRVJhbE8wYlByYmsvdVU0Z2wy?=
- =?utf-8?B?QU5ScHhrdjIyenh5N0tMZkxoSmNFSjRZdW44cXVDeXNQR3BMYmMxNFhIMTZX?=
- =?utf-8?B?RWxIUG1aSm1QWFJyNnMzUUlKTWVKWldXZ25kbXBYMGc4dmpGTFMyeUxZVjJt?=
- =?utf-8?B?dHdiTHpZL29CbktNdVQyTGlGcXNLaEw4NnAreENndnlUQmRMN0hjTlFhVVJr?=
- =?utf-8?B?aEVySlArSUV1N3NmT0xwZWI5Zk5veHMvLzNxaGx0VEdRV3lxdXg3NStPcHFN?=
- =?utf-8?B?eW5GQ0czZkkzblpvVysveGl4Z04wcnhoTWdvOEh0ZEViazVvUDlYVEp6c3FN?=
- =?utf-8?B?djRBOHNvdjJRUWJKUDFLekM0M2JWUlRrU2tMcDZoWUNUM3NrR1lZM3IxUzdR?=
- =?utf-8?B?dWo1R0lOMWpCVFZON2ExU3A4aiswTG5MNXhpWkFnZWh0dFREU3hWWlJlanov?=
- =?utf-8?B?VEhaUkdUNHdHVWNsSUdyMWREN0NKN0o4MTI5VXZuSWVuM0VlNndsZHFyRjZD?=
- =?utf-8?B?ZWEyV2IySXVML21NelNEOWZwZlBHQjFJV0JFbGZzNHRnaGRnN0RndnlEaGta?=
- =?utf-8?Q?DSWY=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RG9vdHNJdkFDRjFoS2lGeFd0TmE4NWo3Rm04RUQ1MVkyUlVTM1RZYXFIcGhx?=
- =?utf-8?B?SXJGZDZpRXBLMXFScmRTTU92TjM0ZUlHVHRjSDBqcWUvelBSbCtzK2p3UUVq?=
- =?utf-8?B?MU5TakkrUTZpS2E5SWpDdFNPcmhBMEpiL0Z1N0xsSCtxUEVvRUVXNVJQWDBv?=
- =?utf-8?B?elU0VjdIeWgvd1ZWNWVENFpraVVnZTRmY0NPdWdxd1NRTUNhSkhxNExBYXA0?=
- =?utf-8?B?RnJwSjdYSDlzajdnTS9Ld0VRT2hCSCtER3pVWVJJNDlNTm8waCtuV05BTjFV?=
- =?utf-8?B?QWZSVmNWV2Q0ZCtueU9HUnBOR0t2UTVxdTFWTEIyTjB5a3psM1NVc0E2R1JM?=
- =?utf-8?B?Q3FkUXJ6L2VOZmFMOWRaWU90WUtCZGdkbzFRdklKaml6ZU80MGFvTGY0c05D?=
- =?utf-8?B?eWxmYitzV1RBYVBCZmJCOEsxQVpUa2ZJZmhjTjlsZDB4clVtcHNxOEVmZksx?=
- =?utf-8?B?c1IwaTBVei9SYUJQOURQKzZjRERYQW5WS0MwQzhVek5BVVJmZmdCN00zZHZQ?=
- =?utf-8?B?T2FoRDJnVktiZ3VZVEtBM0owL1NMY2M3WW0xQjhFTCtuN2R1bmEzODVFaWpi?=
- =?utf-8?B?NFBodk05Ty9lSU5HMS9pK2xKRjN6dVp0V0tONWREa25GbC9IeFVGUlFGQms0?=
- =?utf-8?B?VlNmVWM5TE8wQ3VKSklBbGV2Qkd4czR6UFdWVUVPb1JrdXRBamNESS8yTlNq?=
- =?utf-8?B?RGQvbmcrZlA2NythQjA4ZjVpRFRDdHFLS0pjZXVXUkhtaDNzQzNaUUlsTFA5?=
- =?utf-8?B?c0s5cEdWRHlteTFxQ0dOanMrQjROR1UyNUN5OHRnQWJINjQ0ZE9nOFdFSjZR?=
- =?utf-8?B?d3dkKzVzaUY0eW81Q3UyK09uQVNPRSszNVZxTnJTMnZSbVAyUnc0QmZVdWtV?=
- =?utf-8?B?aVJVNU8rdU5sMVppVUVKVzQ3Z0N5T0JJcktuaHZsYmRkN0tFVEdxS0pOK0NN?=
- =?utf-8?B?NjZqTHF1WU1SOGtDVnJyL1pud1kzZHpKQUhGamlhR0l0VmU5VWxRem1ScWQ4?=
- =?utf-8?B?MTFQTmxkdzhqSDhWS1hxTzcybDJ3ZVE1anZ6TGs0K3M1dlFTNmluemY3S1dD?=
- =?utf-8?B?VG85VlZ6RXcvM25oTXNRdTNXNVhvWlZHZFp4MzBoaWEzV3h3SzhmZUN3YmI5?=
- =?utf-8?B?bEgvYUFWRmpJMjRsYXNxVDhyNys2T0ZkdjBpZW1NN2hKTXJuQiswL1VaL1JD?=
- =?utf-8?B?ZkFtL1p6dzJydm9aMXBBdUVLeGUvMjdESEMvZXIyU1Q4M2l5ZHYyWDNsVVZK?=
- =?utf-8?B?K1VidGxBeDZjdkpyOXVkQ0Y0VHlHVm5jQXlVTk53M1Z4TzBqRHdhSnFEQUx4?=
- =?utf-8?B?Q2wyeHE5cVAxSVYrTDR5eEc3bmNnUnlyRHdPbkErRGRpdHFBTlNSL2RpTisr?=
- =?utf-8?B?dDRESGw1eFcxY3hMREQ3RlB5V3Q4VC9ZSXlNRnlaeWdCTEJLUVFIMWZPMmI1?=
- =?utf-8?B?TW14S3NwNGdmR2dLNlpwTytSMmRtcUhwazBCUk10c3g3dnV0WlpieUppOWh5?=
- =?utf-8?B?WTNmU1hKenZRUktTZWIxRHZnMjVNbm9sQytJd2drM09walNpanZJaHRpYU1T?=
- =?utf-8?B?SytaalNFQUkwcWhzMThJU1pMSllQbkpCNGJ6MHFxbGtua1o1VmliaFJGUnox?=
- =?utf-8?B?clh4V2doOTl3SnZhcFhadVo1Z2VQRjJjTDk3bGxub296MWhlZmZ2Tml2bkdi?=
- =?utf-8?B?WGpUVytiUlJRWjNxVE03U09MdmZBek1GU0pnVFZ2VHN1MTBIejlzOEhzeStj?=
- =?utf-8?B?ZE9XeXVnTXpVamxIRGZwbjliUmJPTEVpTG1nMVNFMHJ6V2t3REoveFhjbVFI?=
- =?utf-8?B?UGlMWHd4RUtDWkQxKytPTFJib3JJaTF1VHBORXkwSm5IVEEzTTNNdXVpWCtW?=
- =?utf-8?B?WVFYUGVMaFA5M3pVbzAwQi8rUUk2U3lMdS9uUnV4ZEg3Y2ZvTjVERDlSSUx2?=
- =?utf-8?B?ZU1rVG03MGV1VEtJelVtNDQxak1ReERhVm5yZG1yRjF0d1lpMjNnQUl6U0Fa?=
- =?utf-8?B?c29iYmg4SGZ4bXQ5dGV4NlNVY0d3TDVJQkdhQ3ZnL3VESlhjcFdFdktaS1dR?=
- =?utf-8?B?L0c5cjg5SU5ZQ3ladXV2RjE2VmVxVWNEek52MkNOa1BoUzF3QWNlcHNhSUxY?=
- =?utf-8?B?M05FMjBTOVlPejdJb3J5ZzFydkkza3l3QW1MWFBYOENHbGhpSDgvT3Z4WlN0?=
- =?utf-8?B?ZFB4em1HSE04ejIzK1N3SFdIMTlYellGSFFVa2U3d1RFaFpvK1hNS1k2U202?=
- =?utf-8?B?WWtWSi9LdUlnYXJWc2NDZWtSbFFmWUxteE5ZaERPaUxEYVVxdHJuOFlmRVkr?=
- =?utf-8?B?SVZ5dTVQTEFCRHpKNE8wZWhqbGRaRzczNmIrSTJ2eHZQMUFvZy9EMUl3RTQr?=
- =?utf-8?Q?/gbYLJU6vNsxMkwo=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: c1371d98-7bfc-474b-1057-08de586875c8
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Jan 2026 21:11:21.0270 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: MXzOgwfIYqojDmaiQBLEg7dCjXIJjIK0jsOLfgxaxtSCqXyGjGq6Pn+OZ3BRfLtVk+SQkDIgTLKKs4phIKssOA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB7171
-X-OriginatorOrg: intel.com
+In-Reply-To: <20251113162628.5946-7-ilpo.jarvinen@linux.intel.com>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -203,127 +87,275 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Jan 19, 2026 at 01:01:34PM +0100, Zbigniew KempczyÅ„ski wrote:
-> On Fri, Jan 16, 2026 at 01:05:01PM -0800, Matthew Brost wrote:
-> > On Fri, Jan 16, 2026 at 10:45:39AM +0100, Zbigniew KempczyÅ„ski wrote:
-> > > On Wed, Jan 14, 2026 at 04:45:46PM -0800, Matthew Brost wrote:
-> > > > If a batch buffer is complete, it makes little sense to preempt the
-> > > > fence signaling instructions in the ring, as the largest portion of the
-> > > > work (the batch buffer) is already done and fence signaling consists of
-> > > > only a few instructions. If these instructions are preempted, the GuC
-> > > > would need to perform a context switch just to signal the fence, which
-> > > > is costly and delays fence signaling. Avoid this scenario by disabling
-> > > > preemption immediately after the BB start instruction and re-enabling it
-> > > > after executing the fence signaling instructions.
-> > > > 
-> > > > Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
-> > > > Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-> > > > Cc: Carlos Santa <carlos.santa@intel.com>
-> > > > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> > > > ---
-> > > >  drivers/gpu/drm/xe/xe_ring_ops.c | 9 +++++++++
-> > > >  1 file changed, 9 insertions(+)
-> > > > 
-> > > > diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
-> > > > index a1fd99f2d539..cd645ee400b9 100644
-> > > > --- a/drivers/gpu/drm/xe/xe_ring_ops.c
-> > > > +++ b/drivers/gpu/drm/xe/xe_ring_ops.c
-> > > > @@ -282,6 +282,9 @@ static void __emit_job_gen12_simple(struct xe_sched_job *job, struct xe_lrc *lrc
-> > > >  
-> > > >  	i = emit_bb_start(batch_addr, ppgtt_flag, dw, i);
-> > > >  
-> > > > +	/* Don't preempt fence signaling */
-> > > > +	dw[i++] = MI_ARB_ON_OFF | MI_ARB_DISABLE;
-> > > > +
-> > > >  	if (job->user_fence.used) {
-> > > >  		i = emit_flush_dw(dw, i);
-> > > >  		i = emit_store_imm_ppgtt_posted(job->user_fence.addr,
-> > > > @@ -347,6 +350,9 @@ static void __emit_job_gen12_video(struct xe_sched_job *job, struct xe_lrc *lrc,
-> > > >  
-> > > >  	i = emit_bb_start(batch_addr, ppgtt_flag, dw, i);
-> > > >  
-> > > > +	/* Don't preempt fence signaling */
-> > > > +	dw[i++] = MI_ARB_ON_OFF | MI_ARB_DISABLE;
-> > > > +
-> > > >  	if (job->user_fence.used) {
-> > > >  		i = emit_flush_dw(dw, i);
-> > > >  		i = emit_store_imm_ppgtt_posted(job->user_fence.addr,
-> > > > @@ -399,6 +405,9 @@ static void __emit_job_gen12_render_compute(struct xe_sched_job *job,
-> > > >  
-> > > >  	i = emit_bb_start(batch_addr, ppgtt_flag, dw, i);
-> > > >  
-> > > > +	/* Don't preempt fence signaling */
-> > > > +	dw[i++] = MI_ARB_ON_OFF | MI_ARB_DISABLE;
-> > > > +
-> > > 
-> > > IGT tests which calls compute-walker, then bbe are asynchronous (don't
-> > > wait for completion, pipe-control is necessary to wait on
-> > > compute-walker).
-> > > 
-> > 
-> > This asynchronous behavior may explain things. Is this a common use
-> > case?
+On Thu, Nov 13, 2025 at 06:26:23PM +0200, Ilpo Järvinen wrote:
+> BAR resize operation is implemented in the pci_resize_resource() and
+> pbus_reassign_bridge_resources() functions. pci_resize_resource() can
+> be called either from __resource_resize_store() from sysfs or directly
+> by the driver for the Endpoint Device.
 > 
-> Compute runtime if I'm not wrong uses pipe-control explicitely. IGT are
-> not doing this relying on kmd.
+> The pci_resize_resource() requires that caller has released the device
+> resources that share the bridge window with the BAR to be resized as
+> otherwise the bridge window is pinned in place and cannot be changed.
 > 
-
-It would be good confirm this.
-
-> > 
-> > Also do you know if render engines have similar asynchronous behaviors
-> > or is this specific to compute engines?
+> pbus_reassign_bridge_resources() implement rollback of the resources if
+> the resize operation fails, but rollback is performed only for the
+> bridge windows. Because releasing the device resources are done by the
+> caller of the BAR resize interface, these functions performing the BAR
+> resize do not have access to the device resources as they were before
+> the resize.
 > 
-> I don't know, I think Mesa folks may know the answer.
->
-
-Let me ask around about this.
- 
-> > 
-> > Lastly, the i915 disables preemption on both render / compute engines
-> > immediately after the BB before emitting the pipe control. Is this async
-> > behavior a new few feature in Xe2 parts which only the Xe driver
-> > supports? This might explain why the i915 works and Xe does not.
+> pbus_reassign_bridge_resources() could try to
+> __pci_bridge_assign_resources() after rolling back the bridge windows
+> as they were, however, it will not guarantee the resource are assigned
+> due to differences how FW and the kernel may want to assign the
+> resources (alignment of the start address and tail).
 > 
-> Test exercises WMTP and this is supported starting at Xe2+. Probably
-> what test is doing has a meaning in this case. First compute-walker
-> submits kernel which loops until it will observe some memory write.
-> Second job executes compute-walker with kernel which does some quick job.
-> But first occupies all EU's so second job can be preempted only when
-> preemption occurs and SIP will be executed. So if we disable preemption
-> immediately we submit compute-walker I think we have no change to enter
-> SIP and switch. Even if I add pipe-control to batch level according
-> to Daniele comment job it is still preemptable and we move pipe-control
-> location from kmd -> batch level..
-
-Does the test work with a pipe control in the batch? That would be a
-good data point - if let me know how I can change the test I can test
-out too.
-
-It is fine the batch preempts, we actually want that. Mid-batch
-preemption is not what we are trying to prevent - we are trying to
-prevent preemption of the fence signaling after the batch is done. As
-long as we don't regress any user applications we can safely make this
-change - it is fine to break IGTs which are not doing the right thing
-wrt to batch programming.
-
-Matt
-
+> In order to perform rollback robustly, the BAR resize interface has to
+> be altered to also release the device resources that share the bridge
+> window with the BAR to be resized.
 > 
-> --
-> Zbigniew
+> Also, remove restoring from the entries failed list as saved list
+> should now contain both the bridge windows and device resources so
+> the extra restore is duplicated work.
 > 
-> > 
-> > Matt
-> > 
-> > > May you try to put arb disable after emit_render_cache_flush?
-> > > 
-> > > --
-> > > Zbigniew
-> > > 
-> > > >  	i = emit_render_cache_flush(job, dw, i);
-> > > >  
-> > > >  	if (job->user_fence.used)
-> > > > -- 
-> > > > 2.34.1
-> > > > 
+> Some drivers (currently only amdgpu) want to prevent releasing some
+> resources. Add exclude_bars param to pci_resize_resource() and make
+> amdgpu to pass its register BAR (BAR 5) which should never be released
+> during resize operation. Normally 64-bit prefetchable resources do not
+> share bridge window with it as the register BAR (32-bit only) but there
+> are various fallbacks in the resource assignment logic which may make
+> the resources to share the bridge window in rare cases.
+> 
+> This change (together with the driver side changes) is to counter the
+> resource releases that had to be done to prevent resource tree
+> corruption in the ("PCI: Release assigned resource before restoring
+> them") change. As such, it likely restores functionality in cases where
+> device resources were released to avoid resource tree conflicts which
+> appeared to be "working" when such conflicts were not correctly
+> detected by the kernel.
+
+This thing completely broke my DG2 + non-reBAR system.  The bisect
+points to commit 4efaa80b3d75 ("drm/i915: Remove driver side BAR
+release before resize") but the real problems seem to be in this
+patch. A had a quick look at the code and spotted a few issues...
+
+<snip>
+> @@ -2468,34 +2466,78 @@ int pbus_reassign_bridge_resources(struct pci_bus *bus, struct resource *res)
+>  		free_list(&added);
+>  
+>  	if (!list_empty(&failed)) {
+> -		if (pci_required_resource_failed(&failed, type)) {
+> +		if (pci_required_resource_failed(&failed, type))
+>  			ret = -ENOSPC;
+> -			goto cleanup;
+> -		}
+> -		/* Only resources with unrelated types failed (again) */
+>  		free_list(&failed);
+> +		if (ret)
+> +			return ret;
+> +
+> +		/* Only resources with unrelated types failed (again) */
+>  	}
+>  
+> -	list_for_each_entry(dev_res, &saved, list) {
+> +	list_for_each_entry(dev_res, saved, list) {
+>  		struct pci_dev *dev = dev_res->dev;
+>  
+>  		/* Skip the bridge we just assigned resources for */
+>  		if (bridge == dev)
+>  			continue;
+>  
+> +		if (!dev->subordinate)
+> +			continue;
+> +
+>  		pci_setup_bridge(dev->subordinate);
+>  	}
+>  
+> -	free_list(&saved);
+> -	up_read(&pci_bus_sem);
+>  	return 0;
+> +}
+>  
+> -cleanup:
+> -	/* Restore size and flags */
+> -	list_for_each_entry(dev_res, &failed, list)
+> -		restore_dev_resource(dev_res);
+> -	free_list(&failed);
+> +int pci_do_resource_release_and_resize(struct pci_dev *pdev, int resno, int size,
+> +				       int exclude_bars)
+> +{
+> +	struct resource *res = pci_resource_n(pdev, resno);
+> +	struct pci_dev_resource *dev_res;
+> +	struct pci_bus *bus = pdev->bus;
+> +	struct resource *b_win, *r;
+> +	LIST_HEAD(saved);
+> +	unsigned int i;
+> +	int ret = 0;
+> +
+> +	b_win = pbus_select_window(bus, res);
+> +	if (!b_win)
+> +		return -EINVAL;
+> +
+> +	pci_dev_for_each_resource(pdev, r, i) {
+> +		if (i >= PCI_BRIDGE_RESOURCES)
+> +			break;
+> +
+> +		if (exclude_bars & BIT(i))
+> +			continue;
+>  
+> +		if (b_win != pbus_select_window(bus, r))
+> +			continue;
+> +
+> +		ret = add_to_list(&saved, pdev, r, 0, 0);
+> +		if (ret)
+> +			goto restore;
+> +		pci_release_resource(pdev, i);
+> +	}
+> +
+> +	pci_resize_resource_set_size(pdev, resno, size);
+> +
+> +	if (!bus->self)
+> +		goto out;
+> +
+> +	down_read(&pci_bus_sem);
+> +	ret = pbus_reassign_bridge_resources(bus, res, &saved);
+> +	if (ret)
+> +		goto restore;
+> +
+> +out:
+> +	up_read(&pci_bus_sem);
+> +	free_list(&saved);
+> +	return ret;
+> +
+> +restore:
+>  	/* Revert to the old configuration */
+>  	list_for_each_entry(dev_res, &saved, list) {
+>  		struct resource *res = dev_res->res;
+> @@ -2510,13 +2552,21 @@ int pbus_reassign_bridge_resources(struct pci_bus *bus, struct resource *res)
+>  
+>  		restore_dev_resource(dev_res);
+>  
+> -		pci_claim_resource(dev, i);
+> -		pci_setup_bridge(dev->subordinate);
+> -	}
+> -	up_read(&pci_bus_sem);
+> -	free_list(&saved);
+> +		ret = pci_claim_resource(dev, i);
+> +		if (ret)
+> +			continue;
+
+This clobbers 'ret' was supposedly meant to be returned to the
+caller in the end. Thus (at least in my case) the caller always
+sees a return value of 0, and then it forgets to restores the
+reBAR setting back to the original value.
+
+>  
+> -	return ret;
+> +		if (i < PCI_BRIDGE_RESOURCES) {
+> +			const char *res_name = pci_resource_name(dev, i);
+> +
+> +			pci_update_resource(dev, i);
+> +			pci_info(dev, "%s %pR: old value restored\n",
+> +				 res_name, res);
+> +		}
+> +		if (dev->subordinate)
+> +			pci_setup_bridge(dev->subordinate);
+> +	}
+> +	goto out;
+>  }
+>  
+>  void pci_assign_unassigned_bus_resources(struct pci_bus *bus)
+> diff --git a/drivers/pci/setup-res.c b/drivers/pci/setup-res.c
+> index 3d0b0b3f60c4..e4486d7030c0 100644
+> --- a/drivers/pci/setup-res.c
+> +++ b/drivers/pci/setup-res.c
+> @@ -444,8 +444,7 @@ static bool pci_resize_is_memory_decoding_enabled(struct pci_dev *dev,
+>  	return cmd & PCI_COMMAND_MEMORY;
+>  }
+>  
+> -static void pci_resize_resource_set_size(struct pci_dev *dev, int resno,
+> -					 int size)
+> +void pci_resize_resource_set_size(struct pci_dev *dev, int resno, int size)
+>  {
+>  	resource_size_t res_size = pci_rebar_size_to_bytes(size);
+>  	struct resource *res = pci_resource_n(dev, resno);
+> @@ -456,9 +455,9 @@ static void pci_resize_resource_set_size(struct pci_dev *dev, int resno,
+>  	resource_set_size(res, res_size);
+>  }
+>  
+> -int pci_resize_resource(struct pci_dev *dev, int resno, int size)
+> +int pci_resize_resource(struct pci_dev *dev, int resno, int size,
+> +			int exclude_bars)
+>  {
+> -	struct resource *res = pci_resource_n(dev, resno);
+>  	struct pci_host_bridge *host;
+>  	int old, ret;
+>  	u32 sizes;
+> @@ -468,10 +467,6 @@ int pci_resize_resource(struct pci_dev *dev, int resno, int size)
+>  	if (host->preserve_config)
+>  		return -ENOTSUPP;
+>  
+> -	/* Make sure the resource isn't assigned before resizing it. */
+> -	if (!(res->flags & IORESOURCE_UNSET))
+> -		return -EBUSY;
+> -
+>  	if (pci_resize_is_memory_decoding_enabled(dev, resno))
+>  		return -EBUSY;
+>  
+> @@ -490,19 +485,13 @@ int pci_resize_resource(struct pci_dev *dev, int resno, int size)
+>  	if (ret)
+>  		return ret;
+>  
+> -	pci_resize_resource_set_size(dev, resno, size);
+> -
+> -	/* Check if the new config works by trying to assign everything. */
+> -	if (dev->bus->self) {
+> -		ret = pbus_reassign_bridge_resources(dev->bus, res);
+> -		if (ret)
+> -			goto error_resize;
+> -	}
+> +	ret = pci_do_resource_release_and_resize(dev, resno, size, exclude_bars);
+> +	if (ret)
+> +		goto error_resize;
+>  	return 0;
+>  
+>  error_resize:
+>  	pci_rebar_set_size(dev, resno, old);
+> -	pci_resize_resource_set_size(dev, resno, old);
+
+This new order is very broken because the new reBAR setting
+may have turned some of the originally set bits in the BAR
+to read-only. Thus we may not be able to restore the BAR back
+to the original value.
+
+In my case the original settings are 256MiB / 0x4030000000,
+followed by a failed resize to 8GiB, and finally we see a
+failed restore 'BAR 2: error updating (0x3000000c != 0x0000000c)'
+due to the read-only bits.
+
+i915 limps along after the failure but nothing really works,
+and xe just completely explodes.
+
+>  	return ret;
+>  }
+>  EXPORT_SYMBOL(pci_resize_resource);
+> diff --git a/include/linux/pci.h b/include/linux/pci.h
+> index d1fdf81fbe1e..cc58abbd2b20 100644
+> --- a/include/linux/pci.h
+> +++ b/include/linux/pci.h
+> @@ -1428,7 +1428,8 @@ static inline int pci_rebar_bytes_to_size(u64 bytes)
+>  }
+>  
+>  u32 pci_rebar_get_possible_sizes(struct pci_dev *pdev, int bar);
+> -int __must_check pci_resize_resource(struct pci_dev *dev, int i, int size);
+> +int __must_check pci_resize_resource(struct pci_dev *dev, int i, int size,
+> +				     int exlucde_bars);
+>  int pci_select_bars(struct pci_dev *dev, unsigned long flags);
+>  bool pci_device_is_present(struct pci_dev *pdev);
+>  void pci_ignore_hotplug(struct pci_dev *dev);
+> -- 
+> 2.39.5
+
+-- 
+Ville Syrjälä
+Intel
