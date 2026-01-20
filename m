@@ -4,172 +4,170 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4ECA1CA5FB7
-	for <intel-xe@archiver.kernel.org>; Tue, 20 Jan 2026 17:23:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 75E07CA5FB9
+	for <intel-xe@archiver.kernel.org>; Tue, 20 Jan 2026 17:27:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1124C10E639;
-	Tue, 20 Jan 2026 17:23:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 38F2910E1A5;
+	Tue, 20 Jan 2026 17:27:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UIdVdDuP";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bb6aVy0P";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5220810E639
- for <intel-xe@lists.freedesktop.org>; Tue, 20 Jan 2026 17:23:41 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2C57B10E63D
+ for <intel-xe@lists.freedesktop.org>; Tue, 20 Jan 2026 17:27:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1768929821; x=1800465821;
+ t=1768930048; x=1800466048;
  h=date:from:to:cc:subject:message-id:references:
  content-transfer-encoding:in-reply-to:mime-version;
- bh=Ho1E32Igb25LGIgQJtqYY3q01tXpjCbLF4WN2yLH0/I=;
- b=UIdVdDuPe1z8rDn+tQ/6Xv+M7PJRL5PXoCjpjU8BgkC+oi4gR0ep/Fle
- 8rRg4bQXPaqqaO3kntV3Mhr4LQF+XcCvWRetMHnnun0KnINXpdNqWIoFS
- fhwqkeNB4oSDiB1C6tpBSYHfcW+DEoVx3eT+jaJkxoXA08DLXl5o5p7l0
- lGf66a18owpanbVxBQ+6VCt3c4EymebdcIpBp57bzDBp8RT8qjEEfFd+H
- WQ9jO6nsCMltTAEh7VWkhtUXLyeU2c/A86XZJz7WiIQ5THe4F6qlX3tzt
- 1/vhzBDzE+JttpFCxbp8f5CapPNfk0x4bfO3GWsExIdigO988zEUYdo0q w==;
-X-CSE-ConnectionGUID: YJBpppLoQL+OalX4Dqv9EA==
-X-CSE-MsgGUID: n5pTUvBsRuqUe49QXLTXlw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11677"; a="69162759"
-X-IronPort-AV: E=Sophos;i="6.21,241,1763452800"; d="scan'208";a="69162759"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jan 2026 09:23:41 -0800
-X-CSE-ConnectionGUID: HMqYxf+MRTiS1fvc76M52g==
-X-CSE-MsgGUID: eXSfVt1/R/6HN35P0ZdAsg==
+ bh=fBTogrgb00/KY186MaXlDFC0wN438D7t81unqI8+N4U=;
+ b=bb6aVy0P/X7bxjiTAxgum4E1SRCVOEV1x5kY6seIKR2q0OpoeSLMCupX
+ X1wqjxcvJx5zY30xhW5K/3pPmY367kkoh7anLTs3SK8Gu1GkPtAe3nu67
+ MWVl1TafMsdGRw9zBnNAtWoi+QAceByrreMPh2gyJMWRCZM8htnznXqsg
+ sifxNz1RjsGwVp0AusbJBD385N3zCtkvGBk9u7YSLDsxQvgp6T7fW/zkE
+ D0FhoaONo1xpRI/t0o1tsBC1lrz4qwPDQYzJuHHxvKolDGGgKCOMvnsxx
+ loA9QLo76XxeDSHr1XhaZh8uwpKBER5T7ypSn0RBgPSY14WXFmRhjqW1H A==;
+X-CSE-ConnectionGUID: Zg0wMQ4dSVekJf6ImjB87g==
+X-CSE-MsgGUID: 3OQAmyhITN63OshrGfvzPw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11677"; a="87725865"
+X-IronPort-AV: E=Sophos;i="6.21,241,1763452800"; d="scan'208";a="87725865"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jan 2026 09:27:28 -0800
+X-CSE-ConnectionGUID: jfT7Ye27S16RP6jSFQ3lQg==
+X-CSE-MsgGUID: X4YV+rGOT3yu7/9J+QTnpA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,241,1763452800"; d="scan'208";a="211044259"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by fmviesa004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jan 2026 09:23:40 -0800
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jan 2026 09:27:27 -0800
 Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35; Tue, 20 Jan 2026 09:23:39 -0800
+ 15.2.2562.35; Tue, 20 Jan 2026 09:27:26 -0800
 Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
  ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35 via Frontend Transport; Tue, 20 Jan 2026 09:23:39 -0800
-Received: from BYAPR05CU005.outbound.protection.outlook.com (52.101.85.47) by
+ 15.2.2562.35 via Frontend Transport; Tue, 20 Jan 2026 09:27:26 -0800
+Received: from DM5PR21CU001.outbound.protection.outlook.com (52.101.62.26) by
  edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35; Tue, 20 Jan 2026 09:23:39 -0800
+ 15.2.2562.35; Tue, 20 Jan 2026 09:27:26 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=tKpm43+Lo6k6x64ont+5a7gpIc8qCCr74AKLuHM5pH0LBApQ1pLWZf5Wy6E+HjmaWSLPxSUqebIMjdl2Gfgznfka5Caqx7ZGwcXiZoHK63TEvkIRz//P89O+gy+Z42SCTfP+PgyeBn7P+DJExkPqB7ZXTbSngZsZ5MuL1xpdUEoadWfPRx4AHrEfi3r1m/U6urpxnfxrdo7onrcZ4zQuGe5Ca3ZeE+9MT2foddS7bA6PmdqhZHLmld1opepa76xh5I25IQagoEm+9noxqHfEKpjtQoAjx4+ffpTl8hnpQC+tHL0XzOrUXoXBE1T5tuDbMJEt9b9aVR23d5ECG9nomg==
+ b=tTcnnXg4JjFYvk2/UCM8g9/qdp4yD2SnPR/fYvRxZYPTiDCuspf0eHMteOHB3M5+z5e/H5bj6bAIpiKSE1kjWyS1zwN9422SHJj6GwxjaeU9Gdn5FJdfE+qomGMxSo3PYp6K1PvLjoKyDn3kzwoFRYoxl47MWlCwGAOBK1uXzufhl/2WtYpCz3REstMNIB2d1gIDc7QRFfv2OV4cKyJxc8d6xTa48UK+ItoDWOXOrlFe6IxvCv4fNhkwA8cZfWZp0LajZ9jNyfBAeLFHcsUqc/RjHfj+SsXwMvJpJu1805l0KahCdZ3IDy8R4Cet9TLgX591fo25EB7DrwkpMfkPMQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=L14zrvQaA+RWtpkXxfhYUXSFELD3RtzpF+Wj6hfeErU=;
- b=dRYFRs7voPNxuAhIOb2Ujh32ImjfDKEW4+jLaEywq04PnD/b5UJvQWLr6b5Yhnlse5yfoOeoOjzKuWnSPYNqhMCR/5+TXGYKch4Qn1aYyJkvCqRts1pgkNu3Ls3EoZOm2z01WORuqL9XCaYu0Lm6Sn30rh1PEg7O0QDvexx1g8dmFUUDmHsM6YGkSFP/TBCKv8er9YSPhC73svfhHxT+7DAqKmAk3Pz9+5JliZY/CqBkW6VuIV7NcnhGdVWimjUoM4IeOuhrovD0Ev2Q50UuvpeV+lS1PWWCAM9iYR57EdzSQPGG66vmmGoNXejZH4ztnRto9rrIFI+98NYJzasE5A==
+ bh=h6QsodRp2tfhB0tCC8hEPqXEwBmhpQzMgmFIw5OTTSQ=;
+ b=aWwkJzdDqr0+CyRhjMgDfeV626BPTFNTEO6iCRz18eMp/jLzj2anOvMtgnWghjqOJ6XdtQkUqrXjzI6T76tLGmJD80WcAld1i8Ub1LDvrhWWo9GnmoWtnPNo7VX7IargJq/V/Kf6jqRPK36aPYhmmn3acph0SMNq8PndGlMtQ6Yl2iIieRu+2DYKVI/Q64LQwnOey8nIHXj+iMXjB879jytvRcfQHsQzWKksX20phD79T3EoFIMSxcjK0PatguDJXGihScP4755OO8+l123FJJpdtqtQpyX+6kQDUoidMCilCusxohdbofbMdq6xS48v0bavCJnZu0GkH+hNaXUOrg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by CY8PR11MB7825.namprd11.prod.outlook.com (2603:10b6:930:71::19)
+ by SA2PR11MB5018.namprd11.prod.outlook.com (2603:10b6:806:11a::20)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9520.12; Tue, 20 Jan
- 2026 17:23:37 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9520.4; Tue, 20 Jan
+ 2026 17:27:24 +0000
 Received: from PH7PR11MB6522.namprd11.prod.outlook.com
  ([fe80::9e94:e21f:e11a:332]) by PH7PR11MB6522.namprd11.prod.outlook.com
  ([fe80::9e94:e21f:e11a:332%7]) with mapi id 15.20.9456.015; Tue, 20 Jan 2026
- 17:23:37 +0000
-Date: Tue, 20 Jan 2026 09:23:34 -0800
+ 17:27:24 +0000
+Date: Tue, 20 Jan 2026 09:27:21 -0800
 From: Matthew Brost <matthew.brost@intel.com>
 To: Arvind Yadav <arvind.yadav@intel.com>
 CC: <intel-xe@lists.freedesktop.org>, <himal.prasad.ghimiray@intel.com>,
  <thomas.hellstrom@linux.intel.com>, <pallavi.mishra@intel.com>
-Subject: Re: [PATCH v4 4/8] drm/xe/bo: Handle CPU faults on purged buffer
- objects
-Message-ID: <aW+6FnjVuHlE6XSc@lstrano-desk.jf.intel.com>
+Subject: Re: [PATCH v4 5/8] drm/xe/vm: Prevent binding of purged buffer objects
+Message-ID: <aW+6+dvH8trVV8eD@lstrano-desk.jf.intel.com>
 References: <20260120060900.3137984-1-arvind.yadav@intel.com>
- <20260120060900.3137984-5-arvind.yadav@intel.com>
+ <20260120060900.3137984-6-arvind.yadav@intel.com>
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260120060900.3137984-5-arvind.yadav@intel.com>
-X-ClientProxiedBy: MW4P221CA0003.NAMP221.PROD.OUTLOOK.COM
- (2603:10b6:303:8b::8) To PH7PR11MB6522.namprd11.prod.outlook.com
+In-Reply-To: <20260120060900.3137984-6-arvind.yadav@intel.com>
+X-ClientProxiedBy: MW4PR04CA0076.namprd04.prod.outlook.com
+ (2603:10b6:303:6b::21) To PH7PR11MB6522.namprd11.prod.outlook.com
  (2603:10b6:510:212::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|CY8PR11MB7825:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5c6f6fdb-8845-40d2-5398-08de5848a55d
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|SA2PR11MB5018:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9e87ac0e-89a4-41fd-d0f0-08de58492cc8
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
-X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?ZLTkgF/gzuOIxOk190PBRTBxsxTyMFAtWQ68ayfREAQotA98UCYs2SYHE1?=
- =?iso-8859-1?Q?Vv5HVODMpX1Omz/1GKsT5Yir6jG0OwQvtCXJ/Qv7MVMrDKk77z2bbZK+6F?=
- =?iso-8859-1?Q?ez06nvkEE6x21Nrmalupiijq2z512XbKa18kAxaBg/5bEf55q0oauGBIDP?=
- =?iso-8859-1?Q?f4tNmRLZw/Xtonm4U0LuqQGskE6wMhn/MYB8DBMmLONaHKf5jJZLllz3MM?=
- =?iso-8859-1?Q?lZbZKRtFO1tdW7wMgRbhbFZCDmDM2BuyXY1L1TErbrnOnqD5CW/h7EXQ1T?=
- =?iso-8859-1?Q?Jl9iF0IFqJLkqtm0F/kYsd+i76pdHeZyTEIbihSeYftz9C6m3vnPydOLJp?=
- =?iso-8859-1?Q?sYTX0Zcoa9QR1myJqMX8mJZ2Y/wOMtSxBdgoFqO4wTfxsM0rzgfHODAHjE?=
- =?iso-8859-1?Q?kJjJLOg6+I27hkqQpJBwASJD71QLb7sESltnm14Hx5jvutGZCD/118qk+H?=
- =?iso-8859-1?Q?7NSl27bYIEpzoy1IR6y8SaR09ZHH141+VoVRi9EhmNK6ScCKmJGPdSEOfk?=
- =?iso-8859-1?Q?QcKHzEJm18FV8jhqbE1SIuT+y9dZCRO28S9OSjYCiXNORg3OCneRlGBmuA?=
- =?iso-8859-1?Q?D67oALDteqevE9DM5qvlDH4xr8yCgGezj0emvZXr7nA+bp2vtZotRL2URJ?=
- =?iso-8859-1?Q?gqx9QtP1iV1Pcoie3opbq3uva+Mac2nrrLT8n1RdEjAn1CaVPFcRhwOhLJ?=
- =?iso-8859-1?Q?LfdpV2FLGGv5W8h6HeQe2YNY6FkNesMXOe7LnO+zm7+YKiQ1bkw5R90XKp?=
- =?iso-8859-1?Q?vijYB/uhoNQMG5SqxMTR2jsohA678sUhGE40ikC66w1Brs2X7GV5E5aq7l?=
- =?iso-8859-1?Q?np2zM1GqoLNwuVfekdNe1A3tiXiisSQ58aU9qfVq3laOx+JqtP+5EPLOF2?=
- =?iso-8859-1?Q?ov39vlRESUCu40PO0avoA7a6xmkPz0kqu+dsVyNKUQB9Rne7TFQKE5ZZ3v?=
- =?iso-8859-1?Q?zxmzkrvxPas3oMFC5BwWdGKGWBG8ItmlS+qkDwiq88ZVogfs6XaX4QPP2u?=
- =?iso-8859-1?Q?iDTjZGCYoVqXRAo+QzoBv/dDpuNkRylLXRuxk48KNulvb9E7wSC9nkrWd0?=
- =?iso-8859-1?Q?mIlcTfO8C1M/XD8Yhi8k4v1dHThewdzHZm6HJcDKMtFfOhXK1XgC0zYOmp?=
- =?iso-8859-1?Q?4/sz4XwMYbuN5vfByV54NGybw2N1AQfHUTy/YpiV+hmK5h9h5ewlJk+Ckh?=
- =?iso-8859-1?Q?wY9GogF9tKemQYYNdpLa1HwEK2PWPmZywk4xbhbnAy88l9f1EZSshx5H97?=
- =?iso-8859-1?Q?axSJtpDVhUj8mjTlFH4Zd6acevZZWSe+FC0iBVPh45Juif7+cOdFMMHgF6?=
- =?iso-8859-1?Q?Z0xlwEO/kPtjXZq3t3Ey8i8jVrACryiBbw1SC5CG2C7LW1rS0yRYW0HlfF?=
- =?iso-8859-1?Q?yeKRWNOgyBn5X6YNTLhGnBibmCof42XLCGy42SiNsZSEuSm6IBXerEeDOj?=
- =?iso-8859-1?Q?9Of0fp0sXqujZz1ZjMOYCZSSOqVCQRc/J2Fu/cz9IhNres3KB4kWGF6zFq?=
- =?iso-8859-1?Q?Ny/i7PgH4+ZvdJldRoIe5ETym6CXgrU7ZimAIXyFVsf8hsasV9R7hZ7W4E?=
- =?iso-8859-1?Q?IEGm8A1wEcV00Q8ySlnHC4swB2/+r+3/BVGTZHmatxJvrozHdK6xM8QlMQ?=
- =?iso-8859-1?Q?jH0Lhm9sSiIhI=3D?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
+X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?bG5VwjmQ6WOt+HrqRfDiATcKx3fgNjCHJnW/An0I5WJrK1XQReZkMMqwYJ?=
+ =?iso-8859-1?Q?upKf1rhymB4RP/ElPZhf8Cvp4gT/ClYEHpfo4MfQ5wBU1GHy17QE9atePo?=
+ =?iso-8859-1?Q?xk8CbbW/6Pd7EecsPYdFpix/HQS3jTCmNmV8N0ISqsRFMssxnAVpwloG8A?=
+ =?iso-8859-1?Q?XPhFWSoiy6UAUP/j94GrfZGiXQYtZoaKYPppzcJo3sZHhCT9JlSZceFZfs?=
+ =?iso-8859-1?Q?dZN71Z0ucAq+oFc6K4F4t5ptuSklln+IPJzbY85OrLBNW67ZSkdCndO/O+?=
+ =?iso-8859-1?Q?H0WL6Z6VDXzAe5+9c0kaTRZrFKHPgzFWxOaCC6bhEZm1WlkOdKFEL++Xy9?=
+ =?iso-8859-1?Q?34ddA4hEliXmWny1mhSlqVV2gcZCevxncyqrQiU0j27lH3zvRV18Ni0lj2?=
+ =?iso-8859-1?Q?WZom+nzIauRSaGbiYpeWGtGXvxJBAG0Cy3f6TTjygkrUU0AWvMGInFl9rr?=
+ =?iso-8859-1?Q?U/ENubsAABmgukx+dSe+rP2GUNTV8XbHqevmUztXwQcUk7HKGslG1RkIzr?=
+ =?iso-8859-1?Q?eqRif0gEYXBs7lUYTQY+V3d4JYsk5FZsPUwQJcGzNk4kqSPM+jjI8AmGS6?=
+ =?iso-8859-1?Q?DmSOcq0H9PCb9UNqcxgJHLRRMDUTt294bdiXk5Ufdf7JtKPiYm3z97Ayxx?=
+ =?iso-8859-1?Q?8qOC4Wat5x6U173qXvjeeksctXw/rT0v6wiIeNWN2AvMbLlZ1Ny96Myc/P?=
+ =?iso-8859-1?Q?gFJTFkQy+k9zqttAc49JcKbNek7hYQb67+uhMtzvpwgO2yP6shNuvVXIfc?=
+ =?iso-8859-1?Q?jP7CbK8y9ckd2CG4S0tX7diy+sgH06I7gd1H/o7i6j4GlwjuOvGH1X2oPX?=
+ =?iso-8859-1?Q?ezHOrPeEjzE4MNhIeApHeMl/D8eo9Y+JYjAuJcxtpSQ54aYv6po36sdd9l?=
+ =?iso-8859-1?Q?eDvzH7gWV7y2E7jsQvJN95MW7u1Hg0IceAYQD6WmRIucpDl7hZf6jCMHMm?=
+ =?iso-8859-1?Q?WvPuPIOBe7V2b7RMEg/ZKUavhA6TcNvs9gWN20rQ7LFeivS9VwLpZMzFc5?=
+ =?iso-8859-1?Q?eUvG8YHqUM/rbvzY6dADgOi9RUFT6Bfb0AuGowxB5hhonyNfHCd9JbHLF5?=
+ =?iso-8859-1?Q?sDISofpeh1/ZVRUlgPj4aVUZWkgbk6Cf6wB9K2gvWy5yZorSATNdgU+UcC?=
+ =?iso-8859-1?Q?45nCCVYJkfw9pb4qqsNufjZ0icFot7MN91coMQ+JL22zAt/3z9RkVGeEJV?=
+ =?iso-8859-1?Q?PyrKDFrXIkUzk6XetPz7xqYjl2afalSGkOeGxYhLUzEy0s/Qf2Ud2s/Mzs?=
+ =?iso-8859-1?Q?kQz0U6ysd0tc8wXwAssHmTqYpcsnOmFUHbpW+rkANQM0k/P9jGXH5oQtqr?=
+ =?iso-8859-1?Q?k68j6fSISfY4/yqQ6aIOjFJWWYvsmf633COElxlwtUGvY9GxU8nlJOHUlw?=
+ =?iso-8859-1?Q?IW+6N5I6CCW1+KUKyU40ZtYpgDuUhuHHOVYZVd30d006pdB4/LH3k/OaJ8?=
+ =?iso-8859-1?Q?xiS5qx6zkobRMYQv1nmmbFAAGXqnnh3eEcacAby6evs/LyGZTepm/pJHG3?=
+ =?iso-8859-1?Q?0mj1gyYGq7t8HxSSd6YO51K6N51i6ApL1Zo4eC4tsqLjWvs6SNLIRRVVsM?=
+ =?iso-8859-1?Q?VE8fKjzIgM6BFD+nIGUxD/1R70MpywsT87LC7M/TArWmnpsYZg17pFmw9Q?=
+ =?iso-8859-1?Q?gwK6tVJ+cR8SE=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014); DIR:OUT; SFP:1101; 
+ SFS:(13230040)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?Nu6Sn/MPw7dL02ry1Nd/ju5YXSjZNBIDOCCr2OBexY3IQj08uKRCQyRQd6?=
- =?iso-8859-1?Q?xPTLSMOr9WINsTA2jg/8Mas/te2I2vqBk3gtFMfgFjoyePVCoxFaAMB4KE?=
- =?iso-8859-1?Q?9SEgToE3JrCFd4nPFdY9ltNEup/sw3ow8BGx6m+1LxocUyovtgQ4XFeboT?=
- =?iso-8859-1?Q?QuUp5vTdITGsDvxO71uPhJtvOIO1e6ebPHfuBznhlUpyKbfA/EO0RVIS6M?=
- =?iso-8859-1?Q?LjIoreRd3kpGb4rjU814SEhdsVlegEvsUv2hfFTOmIZu7lBPV0ADb/sjy8?=
- =?iso-8859-1?Q?zpLFFuDhun06UfeJuaRbbJuK9XpibQryxzBN+DZS5rGf7pC2LKukGyNYwi?=
- =?iso-8859-1?Q?o3MqrruRYx5NVN4i3Wcdi5rCXPv4BVouO7wNUzKv21H++M7+Z+b0EphMHB?=
- =?iso-8859-1?Q?YFHRBbO0BQ3wb8VXZNf7VBFwRQOgJAjrSPzsdMi3eXOPK1BqG5Xwa5shDK?=
- =?iso-8859-1?Q?+C08Gb1mhFMjpKshx9BSBWmf2veKfbrGst7aXoEjQ/ADMl0ogH0I4fUpK7?=
- =?iso-8859-1?Q?O1RePmdopj0pQEw4cNudIs6RdD2LeYXD9shSAqTfMh21l+fw7enTiX/c+0?=
- =?iso-8859-1?Q?T2nhoXo7E7tSydXRtVcTvuFZInWS/87gEVElt02sb2UpYUNj6+QnhnK8vR?=
- =?iso-8859-1?Q?tdui3goORUbja4psCYjGGMEBkULR65+878xAXOimleKlgyob4rCmco0X5T?=
- =?iso-8859-1?Q?XptTsasTwNI0wL5OyZlOvBEBbQ4CFAbvJLNBLRBDbaFNCQYESzBZzJ23s8?=
- =?iso-8859-1?Q?vIxHWoMl93SqFHPvXxVvY/ekrpT/TiVy68j4ItU/gxLD0gOOTvbkSsRyDM?=
- =?iso-8859-1?Q?6uVWVkSvT7dV7D1rrChhAAgybkdQHTkv3h2yYYKxCfSTm05LSL3pMJukNd?=
- =?iso-8859-1?Q?VOQOVHO2x30FJEbbF6oqaGTKwotV4P6hXPgk2eVZuSpxsC+TP5DjeYoaIF?=
- =?iso-8859-1?Q?DHdPzJkZAHmdAvKWwi2j84UTxSyUwxxIGQxILLde/56ZZUBrxyMjUHHJfb?=
- =?iso-8859-1?Q?Y6ZoTu9KhXFrkGJiwozcNLibzsRcYagMHNDD9u0QfxQZlYpnHUvTgU5dxW?=
- =?iso-8859-1?Q?4q9AY/rWxnW7nFsAkYrD3JXI8UEeQR7T8zBVq20oo8FJv/oSzaKvIVTasn?=
- =?iso-8859-1?Q?YK41OHtiiOZoA55afsuRnsVyCniTZMRdtdOORORdZ2WBUq40Lb3d0HxLI2?=
- =?iso-8859-1?Q?LYqeIoCd76rTrVboez/rUM9bK8Jq90HmG8ed3PUuWMx544J8zJRgbP8HpZ?=
- =?iso-8859-1?Q?DOJqmqhXeRZdNIgZoo1bLWXR4Xu5pExRf3VauZ4tWIgkvWrtY6ErDidI6M?=
- =?iso-8859-1?Q?FBIiFdb+Dv/uwTfiYOQialFtPPxy190LqhYLvoi0pgnWVUEUycAigbG50K?=
- =?iso-8859-1?Q?j4lrot7CO34TL90oeGMEX4qnKlA1FlvL+DsoTpqyQRB7nvCHgSbANtKSeD?=
- =?iso-8859-1?Q?vd/TmBYJGLDxdDW43bAxOZxhWN7cXERPEq95LmhEuxm4LtlgW4HH+IvsMY?=
- =?iso-8859-1?Q?4H9pAZRcSH82VVuHs2RP9stqeTjl9Yo1LRYhNkRti/U1NP+XPQlM7p86/b?=
- =?iso-8859-1?Q?B3J5bbaH9Wxzgt07bnlBu5B+bk9pXfcNmywSkTFqrG7c4BVU58zckpzvQr?=
- =?iso-8859-1?Q?9/qfcu5/c25PK9aLYQ/AvbDm5Ku2xG3n0psq5GHBTmMlyXOt8Pv4mWzcwZ?=
- =?iso-8859-1?Q?xEdXfQlwJAxtcj9BpmPLX5FklMO7D4VVx1WsOuq/w+OvqeAS5TPyBoQv4I?=
- =?iso-8859-1?Q?huqhsu32Ighg2aULcGvZRcd8aPAUGsbkaTGwWuhVJHfKsWv3FH6xrGHboq?=
- =?iso-8859-1?Q?vRFWd4vDIgEn9ZbORD7FdaNVeH/LZc4=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5c6f6fdb-8845-40d2-5398-08de5848a55d
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?pqRPnNhspb+3xL7mBuC691fqfXNK5P1XHj2WCcUmo8djXHyOo3ilqdjqqN?=
+ =?iso-8859-1?Q?mFmlGjVUppnDFoV3IuW1gFd2JfgDGfTuQGXxzkh53GvCoyYzuQccsHMeJB?=
+ =?iso-8859-1?Q?65Az3sYQzbpj+fIgvhxxdUob5V3O7harcoIK9NBVdkX2io/sWIqJsLNYW4?=
+ =?iso-8859-1?Q?ryoDeA3SR0Z6lGiQbsC8NXsw40OHW58hui04xHtvkHcWJLBRRQqsc21zaZ?=
+ =?iso-8859-1?Q?Obf1FZyN/1dKNb6/jc4oGE8K5kF/kdORySxQpnC3UeEWsi93AIM9VZKwvp?=
+ =?iso-8859-1?Q?5tTDqc0cCGmuUoRwGPSAKx1gK5n9GswOFL6TgErcvgWND32+Gs5IAF7ncz?=
+ =?iso-8859-1?Q?NuUHnAuCHQpA+ki+AUgI/guXo82voNpgl5PAtqY9gMYwCNsZF1n02trTds?=
+ =?iso-8859-1?Q?iwIFJV2YgcaxNXp2gP7aDKy+b50zFM40XI02Tws36LdS4GrGkXk4gNTra5?=
+ =?iso-8859-1?Q?FqTogNJVhyiUGr3pHCuVi61KQpxACPJrTM1UgkruIzfdIIaeYd8t9h+Qzq?=
+ =?iso-8859-1?Q?BHDfQpRBRoTSTyiWu5Ra68G+LkYKz4ZjgRFq5hCRnL/n/f8pfGNNpBv+Fr?=
+ =?iso-8859-1?Q?mHmvNJpicknbzLij2AhlsSyio7hZgFRz66+jbM6cVlKSzjEDiDwRUWMdbL?=
+ =?iso-8859-1?Q?mPB+RAsAbBJeD0A68L6ssbCNexqsCYuiZ7/YhoX4EcnkYPtYDGdrI+e0Ud?=
+ =?iso-8859-1?Q?jeg0UKBYXJbaglDfI7P5yA7w9Lws+Z/ReYyEsKCwXL4gM3L4K60mOKoprJ?=
+ =?iso-8859-1?Q?icCrR1r7kIn8v6C204+DWLYTq3fZ+rQYZQWQWs9Fee9AMUlK1kNFPmmOkz?=
+ =?iso-8859-1?Q?CbbBxboO1EEgHJPvvBdt8FwcYBoGpXtz7ATybmYbodmOuY60TBNWKjO4yu?=
+ =?iso-8859-1?Q?06AWOgzOnvN6XTbiFzVN5aRiia7RSp3nccIkP+j9icHehju8VEtM0U3gJb?=
+ =?iso-8859-1?Q?kyF0CgoC89XwFdCPo6oCy2l1YzC92iW5Ff2tdaDBTg8njkNcCmFSH2uctN?=
+ =?iso-8859-1?Q?Fa+QS7MMqy7ss3iRUdUjac4D9f6vaPy1HUp3ZAi1+PZR61J58ddavONaTn?=
+ =?iso-8859-1?Q?1EvMPSupyIW/81oco17tBipmDcf9IJS1DUFYY0Hx1zcvYgNA978bsL8nDJ?=
+ =?iso-8859-1?Q?WFk3j+eZ7TXVtYMRloH10uPzISz9i3seRyjI0YEg49d5j7LFx4muITtE4u?=
+ =?iso-8859-1?Q?v4HToR1l1fK1LbLGLVbmExRVuDWgHX7TVSKeoHV6HG4znXv5DvXvnzvjeQ?=
+ =?iso-8859-1?Q?wfkFa8ZsOITsaolliAGxNr7q8avsu5QCs5y/LOmb85CaNypFavc4CQbCZp?=
+ =?iso-8859-1?Q?IOv1tsum9du4jSusIeQ/clF0IRLpSB//w0uihXGDey4ZQ43O2et18Xy3ut?=
+ =?iso-8859-1?Q?jwlr1fmRv5EUmcqb8Q4hqw7Dr5MA7XTiNtgLwBluTlQjU1gjiqKjfJnqN0?=
+ =?iso-8859-1?Q?eAta4V4BQmRjU0oE72eRP3fiSa4/gLKWU+G7HMkh7v8K810buQE7CJ3QMl?=
+ =?iso-8859-1?Q?dH+16tZYJb07DDTfGmEiFz6ZVBe8fhPjrqmRvuf/ZkD3CX4lyyz0BnEQHY?=
+ =?iso-8859-1?Q?P6dycbulRZLyx3pmj67+RGIG6zSg7F9VNoywOL94+bduLr0n912TreJ8Mk?=
+ =?iso-8859-1?Q?9ZX9CoqvXgsyKwHnsQDwYnaALrciI9EZbpLk4t4UbZFKr6CtjwyHzn6KPN?=
+ =?iso-8859-1?Q?fK0/4KDs/Uz2Uyl6OuXp2KDhANaEn8VXHoP7S4nstTJEZKlfVT7WznFqeA?=
+ =?iso-8859-1?Q?KcqiDHLJk0jol+SqkntGLQ90W4QYLNod5P2zbdGoB7+J/FbJJdA0EYXsUD?=
+ =?iso-8859-1?Q?qjbva6YOzZQt5AqqrdUXWTxHe3BvjE0=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9e87ac0e-89a4-41fd-d0f0-08de58492cc8
 X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Jan 2026 17:23:36.9693 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Jan 2026 17:27:24.7790 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: rvVJZhdG9tDziQ9E8tXeLiK6eP7TPqS+maLX5vAynkbTDcaO/WA7Q9GQcWGE9DzRAHF4NBWqKZda6fElYsGOXQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB7825
+X-MS-Exchange-CrossTenant-UserPrincipalName: CRWgf10H1YrnblDVKcyNHatUNHSZkej8UqR0FqXz/Pt99BcmhRJyGNGD5pW6g04HgRavmQ7NMH3/cWGbaOTtsg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR11MB5018
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -185,74 +183,125 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Jan 20, 2026 at 11:38:50AM +0530, Arvind Yadav wrote:
-> Return error when CPU attempts to access a purged buffer object.
-> Purged BOs have their backing store reclaimed by the kernel, making
-> CPU access invalid. The fault handler returns SIGBUS to userspace,
-> matching i915 semantics.
+On Tue, Jan 20, 2026 at 11:38:51AM +0530, Arvind Yadav wrote:
+> Add check_purged parameter to vma_lock_and_validate() to block
+> new mapping operations on purged BOs while allowing cleanup
+> operations to proceed.
 > 
-> The purged check is added to both CPU fault paths:
-> - Fastpath (xe_bo_cpu_fault_fastpath): Returns error immediately
->   under dma-resv lock, preventing attempts to migrate/validate freed pages
-> - Slowpath (xe_bo_cpu_fault): Returns -EFAULT under drm_exec lock,
->   converted to VM_FAULT_SIGBUS
+> Purged BOs have their backing pages freed by the kernel. New
+> mapping operations (MAP, PREFETCH, REMAP) must be rejected with
+> -EINVAL to prevent GPU access to invalid memory. Cleanup
+> operations (UNMAP) must be allowed so applications can release
+> resources after detecting purge via the retained field.
 > 
-> Without the fastpath check, accessing existing mmap mappings of purged BOs
-> would trigger xe_bo_fault_migrate() on freed backing store, causing kernel
-> hangs or crashes.
+> REMAP operations require mixed handling - reject new prev/next
+> VMAs if the BO is purged, but allow the unmap portion to proceed
+> for cleanup.
+> 
+> The check_purged parameter distinguishes between these cases:
+> true for new mappings (must reject), false for cleanup (allow).
 > 
 > v2:
->   - Added xe_bo_is_purged(bo) instead of atomic_read.
->   - Avoids leaks and keeps drm_dev_exit() while returning.
+>   - Clarify that purged BOs are permanently invalid (i915 semantics)
+>   - Remove incorrect claim about madvise(WILLNEED) restoring purged BOs
 > 
 > v3:
->   - Move xe_bo_is_purged check under a dma-resv lock (Matthew Brost)
-> 
-> v4:
->   - Add purged check to fastpath (xe_bo_cpu_fault_fastpath) to prevent
->     hang when accessing existing mmap of purged BO
+>   - Move xe_bo_is_purged check under vma_lock_and_validate (Matthew Brost)
+>   - Add check_purged parameter to distinguish new mappings from cleanup
+>   - Allow UNMAP operations to prevent resource leaks
+>   - Handle REMAP operation's dual nature (cleanup + new mappings)
 > 
 > Cc: Matthew Brost <matthew.brost@intel.com>
-
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
-
 > Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 > Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 > Signed-off-by: Arvind Yadav <arvind.yadav@intel.com>
 > ---
->  drivers/gpu/drm/xe/xe_bo.c | 12 ++++++++++++
->  1 file changed, 12 insertions(+)
+>  drivers/gpu/drm/xe/xe_vm.c | 20 +++++++++++++-------
+>  1 file changed, 13 insertions(+), 7 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-> index d0a6d340b255..cc547915161d 100644
-> --- a/drivers/gpu/drm/xe/xe_bo.c
-> +++ b/drivers/gpu/drm/xe/xe_bo.c
-> @@ -1934,6 +1934,12 @@ static vm_fault_t xe_bo_cpu_fault_fastpath(struct vm_fault *vmf, struct xe_devic
->  	if (!dma_resv_trylock(tbo->base.resv))
->  		goto out_validation;
->  
-> +	/* Purged BOs have no backing store - fault to userspace */
-> +	if (xe_bo_is_purged(bo)) {
-> +		ret = VM_FAULT_SIGBUS;
-> +		goto out_unlock;
-> +	}
+> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+> index c3a5fe76ff96..f250daae3012 100644
+> --- a/drivers/gpu/drm/xe/xe_vm.c
+> +++ b/drivers/gpu/drm/xe/xe_vm.c
+> @@ -2883,7 +2883,7 @@ static void vm_bind_ioctl_ops_unwind(struct xe_vm *vm,
+>  }
+> 
+>  static int vma_lock_and_validate(struct drm_exec *exec, struct xe_vma *vma,
+> -				 bool res_evict, bool validate)
+> +				 bool res_evict, bool validate, bool check_purged)
+
+It probably time to add something like this to avoid transposing arguments.
+
+struct lock_and_validate_flags {
+	bool res_evict;
+	bool validate;
+	bool check_purged;
+};
+
+Logic in the patch looks correct though.
+
+Matt
+
+>  {
+>  	struct xe_bo *bo = xe_vma_bo(vma);
+>  	struct xe_vm *vm = xe_vma_vm(vma);
+> @@ -2892,6 +2892,11 @@ static int vma_lock_and_validate(struct drm_exec *exec, struct xe_vma *vma,
+>  	if (bo) {
+>  		if (!bo->vm)
+>  			err = drm_exec_lock_obj(exec, &bo->ttm.base);
 > +
->  	if (xe_ttm_bo_is_imported(tbo)) {
->  		ret = VM_FAULT_SIGBUS;
->  		drm_dbg(&xe->drm, "CPU trying to access an imported buffer object.\n");
-> @@ -2024,6 +2030,12 @@ static vm_fault_t xe_bo_cpu_fault(struct vm_fault *vmf)
->  		if (err)
->  			break;
->  
-> +		/* Purged BOs have no backing store - fault to userspace */
-> +		if (xe_bo_is_purged(bo)) {
-> +			err = -EFAULT;
-> +			break;
-> +		}
+> +		/* Reject new mappings to purged BOs; allow cleanup operations */
+> +		if (!err && check_purged && xe_bo_is_purged(bo))
+> +			err = -EINVAL;
 > +
->  		if (xe_ttm_bo_is_imported(tbo)) {
->  			err = -EFAULT;
->  			drm_dbg(&xe->drm, "CPU trying to access an imported buffer object.\n");
+>  		if (!err && validate)
+>  			err = xe_bo_validate(bo, vm,
+>  					     !xe_vm_in_preempt_fence_mode(vm) &&
+> @@ -2990,7 +2995,8 @@ static int op_lock_and_prep(struct drm_exec *exec, struct xe_vm *vm,
+>  			err = vma_lock_and_validate(exec, op->map.vma,
+>  						    res_evict,
+>  						    !xe_vm_in_fault_mode(vm) ||
+> -						    op->map.immediate);
+> +						    op->map.immediate,
+> +						    true);
+>  		break;
+>  	case DRM_GPUVA_OP_REMAP:
+>  		err = check_ufence(gpuva_to_vma(op->base.remap.unmap->va));
+> @@ -2999,13 +3005,13 @@ static int op_lock_and_prep(struct drm_exec *exec, struct xe_vm *vm,
+>  
+>  		err = vma_lock_and_validate(exec,
+>  					    gpuva_to_vma(op->base.remap.unmap->va),
+> -					    res_evict, false);
+> +					    res_evict, false, false);
+>  		if (!err && op->remap.prev)
+>  			err = vma_lock_and_validate(exec, op->remap.prev,
+> -						    res_evict, true);
+> +						    res_evict, true, true);
+>  		if (!err && op->remap.next)
+>  			err = vma_lock_and_validate(exec, op->remap.next,
+> -						    res_evict, true);
+> +						    res_evict, true, true);
+>  		break;
+>  	case DRM_GPUVA_OP_UNMAP:
+>  		err = check_ufence(gpuva_to_vma(op->base.unmap.va));
+> @@ -3014,7 +3020,7 @@ static int op_lock_and_prep(struct drm_exec *exec, struct xe_vm *vm,
+>  
+>  		err = vma_lock_and_validate(exec,
+>  					    gpuva_to_vma(op->base.unmap.va),
+> -					    res_evict, false);
+> +					    res_evict, false, false);
+>  		break;
+>  	case DRM_GPUVA_OP_PREFETCH:
+>  	{
+> @@ -3029,7 +3035,7 @@ static int op_lock_and_prep(struct drm_exec *exec, struct xe_vm *vm,
+>  
+>  		err = vma_lock_and_validate(exec,
+>  					    gpuva_to_vma(op->base.prefetch.va),
+> -					    res_evict, false);
+> +					    res_evict, false, true);
+>  		if (!err && !xe_vma_has_no_bo(vma))
+>  			err = xe_bo_migrate(xe_vma_bo(vma),
+>  					    region_to_mem_type[region],
 > -- 
 > 2.43.0
 > 
