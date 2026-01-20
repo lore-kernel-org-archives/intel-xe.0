@@ -4,168 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A94E4D262A0
-	for <intel-xe@archiver.kernel.org>; Tue, 20 Jan 2026 20:57:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 16BE6D262A0
+	for <intel-xe@archiver.kernel.org>; Tue, 20 Jan 2026 20:59:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 68D8B10E654;
-	Tue, 20 Jan 2026 20:57:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B560A10E63D;
+	Tue, 20 Jan 2026 20:59:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aIk0mIer";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JlGnhstl";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 84EB910E0FE
- for <intel-xe@lists.freedesktop.org>; Tue, 20 Jan 2026 20:57:23 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 66C9810E63D;
+ Tue, 20 Jan 2026 20:59:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1768942643; x=1800478643;
+ t=1768942797; x=1800478797;
  h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=HFm8SeUKC5VZkpm1yDK8s1XAS1oN8gZ4YR77T8+yMgc=;
- b=aIk0mIerEH2LhE/YnO+DIIMloIUMgviE2AoZ7pfdS+hIKhSMXKNZG7MM
- 2+2z1FLNiz2ZCwjDZpzoPBUpTPDvDk3b3HZZtimu+asMfMFpTlQ+vymqu
- n3CIaEoueERRpcjywImz8IXh7ywahHi1yb3gr5EPDIpUck77I30TvoNIR
- UokRqoe3WE23OdJLZe1I8VYs+Rud0M+l8INx82Recj09I+QCw7LGuPUP+
- Q1hQzspbHAUcfjrCkuUAjqJnfd/QfxZe7FTFIiNuGOba+z88pV4a+g48q
- drCR6CBzz0YUz4F82AtCDe51cVg/TTQocj+ppXQFIZki0wyBJ29t3OGy0 w==;
-X-CSE-ConnectionGUID: j/hiEyrfS7yGuf2eR7UZlQ==
-X-CSE-MsgGUID: 5grnCntLQDKqL0iGPqIiig==
-X-IronPort-AV: E=McAfee;i="6800,10657,11677"; a="69182698"
-X-IronPort-AV: E=Sophos;i="6.21,241,1763452800"; d="scan'208";a="69182698"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jan 2026 12:57:23 -0800
-X-CSE-ConnectionGUID: URq99O8sQCS/3xqnLF6ncA==
-X-CSE-MsgGUID: Sf/z5nCWSimBsWEvRxUJOA==
+ mime-version:in-reply-to;
+ bh=jNCyAX6cfBXVdeTHVx19aKTD0xqKyCL8Y0erw3bjd+Q=;
+ b=JlGnhstl1W6kkCfUQQYMqM0pFtXXSpFiytABY3bDd1l0Eb9FKClJuo2b
+ LBaeJtnRk2oI2tq7NwX5CLAdIHNFzAUHgb/AmR7mgdvQdleF8nHhCY6WN
+ 4g08GrhsAU222l4J32s99eonrh7h3uhnfKM4tvirCNT/qIyJjmYMwFdi+
+ KY9Ds+9wh1vw9139aJ75Jj/pMu/frq66uzrlCkMEvMh0OxcDFHwTL2XAV
+ oV//SfsTdSXKnTXX2uL1BRiN0an6aURoHuM84OvwfWwo1ewJZtG9zoqr+
+ 9fHAkJcfrQ7kvUUoQj8nh7Z8etLIggLjcMvGokv3B8y14em6y44ty28jo w==;
+X-CSE-ConnectionGUID: FmNmwbHsTxuIqVhH2T01yQ==
+X-CSE-MsgGUID: 1LzrUE2UReKw7qwE39wxQg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11677"; a="70068867"
+X-IronPort-AV: E=Sophos;i="6.21,241,1763452800"; d="scan'208";a="70068867"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jan 2026 12:59:56 -0800
+X-CSE-ConnectionGUID: pM5A9BmlTVidxfP4vilX1Q==
+X-CSE-MsgGUID: 9P3HCU9NRKOfxZgpMA9SbA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,241,1763452800"; d="scan'208";a="206031862"
-Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
- by orviesa009.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jan 2026 12:57:23 -0800
-Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
- fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35; Tue, 20 Jan 2026 12:57:22 -0800
-Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
- FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35 via Frontend Transport; Tue, 20 Jan 2026 12:57:22 -0800
-Received: from CH5PR02CU005.outbound.protection.outlook.com (40.107.200.55) by
- edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35; Tue, 20 Jan 2026 12:57:22 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=iAn9xPepOCzbOV9LAsEkC+QBiM97yU2Bu31r3a3FOcV3gCzNvJZtf4es2bV00jn8nPD+J+mIWTc8Dpper1IVXZAUg7bZ8aXXGzxbq/IUq5auajWjo5M1OL87EGWAbm/g3syPpkTOXNHMoA1Ze/IsSMDruloROIDv0J3KoDW6duqyz1arEZurgph1oS1BXHN0k1brptoSZrsohy7hQA7TXMcochATZg0QgqBK4KXkusvSMwFKBDwxVFAQGlMXncGYkj9kH526ec3uczjzdd23tIpsYhCNykcTYHnAndUn/bzqImq9buqv3o53lKWus9hY1ipo0WCd2Q25vE+LL/AMpw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=DMdZIOMj/bfv4KnAebGTzXiv/HqwQ5bZJvrXnF4voW4=;
- b=nmeLorD3qodBP5cYqvZ3Yqf3I+R7JvR4Ar/Qjz+3IXt+eeYf6cifB5FbxJtlHaqEeoIn81z1u0YvDzwneH5IOz+JiT/cwFlC8iaYpaE+fr7IAEK9SWye5QnKDZhZtbB7WyjgvW9sIcXBYloZS94SeKyvCkDZaAL8EiGmILKOZ+ktuGlxaaCJQ5oY002zVkdYpZpO/M3pt0JF9+J58576g0qsjILEGdx3W4EOpRvSQybpvaJIHW3wxI3tE2bO49gRLzUaYzw3DGrbcaB7VWqdIxdU56v5rLyvnqte4Ca/lSFsmdmLZJq22+ZBCD4AjXQbLYaQtHnwS423iF+Z9GfPXQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by IA4PR11MB9299.namprd11.prod.outlook.com (2603:10b6:208:565::15)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9520.12; Tue, 20 Jan
- 2026 20:57:19 +0000
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::9e94:e21f:e11a:332]) by PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::9e94:e21f:e11a:332%7]) with mapi id 15.20.9456.015; Tue, 20 Jan 2026
- 20:57:19 +0000
-Date: Tue, 20 Jan 2026 12:57:17 -0800
-From: Matthew Brost <matthew.brost@intel.com>
-To: Michal Wajdeczko <michal.wajdeczko@intel.com>
-CC: <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH 1/3] drm/xe/guc: Drop redundant register read
-Message-ID: <aW/sLcOou1z5YKzh@lstrano-desk.jf.intel.com>
-References: <20260120185047.593-1-michal.wajdeczko@intel.com>
- <20260120185047.593-2-michal.wajdeczko@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20260120185047.593-2-michal.wajdeczko@intel.com>
-X-ClientProxiedBy: MW4PR03CA0141.namprd03.prod.outlook.com
- (2603:10b6:303:8c::26) To PH7PR11MB6522.namprd11.prod.outlook.com
- (2603:10b6:510:212::12)
+X-IronPort-AV: E=Sophos;i="6.21,241,1763452800"; d="scan'208";a="206277061"
+Received: from lkp-server01.sh.intel.com (HELO 765f4a05e27f) ([10.239.97.150])
+ by orviesa008.jf.intel.com with ESMTP; 20 Jan 2026 12:59:54 -0800
+Received: from kbuild by 765f4a05e27f with local (Exim 4.98.2)
+ (envelope-from <lkp@intel.com>) id 1viIpK-00000000PWT-2u3F;
+ Tue, 20 Jan 2026 20:59:50 +0000
+Date: Wed, 21 Jan 2026 04:59:24 +0800
+From: kernel test robot <lkp@intel.com>
+To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ intel-xe@lists.freedesktop.org
+Cc: oe-kbuild-all@lists.linux.dev,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Matthew Auld <matthew.auld@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH v2 2/2] drm/xe: Select CONFIG_DEVICE_PRIVATE when
+ DRM_XE_GPUSVM is selected
+Message-ID: <202601210419.6HhGDdqP-lkp@intel.com>
+References: <20260120143459.9485-3-thomas.hellstrom@linux.intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|IA4PR11MB9299:EE_
-X-MS-Office365-Filtering-Correlation-Id: a8b315ac-495e-4b55-f706-08de5866804c
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?1t4gd6cdUgE7uwD6J4h5pzdX8rLAGaq51At2LCKC8cJpfZla4gIVDqNqXiv7?=
- =?us-ascii?Q?wtyjp9r2TeuLSrQNp8DO3GvzE6jZzaQFmsRUjeCNqx1SbOSVogWSkBDO3WLt?=
- =?us-ascii?Q?m7jxd/lOQAa1HYxxlYW8IW+oqKnjC+PN1HUu50/o7Toemf5/fyZ5zh2ntdQp?=
- =?us-ascii?Q?AV6TS28tefM5qW3fgpUtlasOMjYENcMBdn4TQU8K2jvsFIrm1n0SfNfzPy3J?=
- =?us-ascii?Q?IJ5Oarf3beSpG327GMNpXMdF2agKWUOKbXVMbAnjQzfWeKbClipSVSiZKX3K?=
- =?us-ascii?Q?Mlxx+9U4FSk0sOCerWfEK39M/EpfKeojgSfov/rpM6thqj+2L16q/AGsPSln?=
- =?us-ascii?Q?S0g3ryenNxYlWNO4AdnAUbQf7wgEoRvWEMA9C+aQ6nXpOZiwA7KLsmHAkCMp?=
- =?us-ascii?Q?Xwmg9hEqRTl54Tk2NHTEKsAq304EptnN/R0Ux6QZHGlLgj0xc07MStErKkyt?=
- =?us-ascii?Q?Za8s0JN0GAN1wcNWukEuHxyJz2imEOvqsQomg+1yvdPTA8Yd/tWLAplWWJ0y?=
- =?us-ascii?Q?f273I/6OLdm0rNcJvladP23TZdy6tPz8Hvc4fU9HNl3sIbNzpo2/zha5KPye?=
- =?us-ascii?Q?YgPf9XC6UIqKFwoVgu4WsRUoJMljoWDLmEfvHX8pqYNTXpvTQ1YmL/FsleQY?=
- =?us-ascii?Q?DDV14ITkhllPgczLNQTWUtPkvOY0nZhXbKTjyE0wT3TsKag9mD+30M94wSAr?=
- =?us-ascii?Q?mEigmq3RwsqwJLWqll1M0dI8CgQoC3yG7HlGKSlpBxhl+KnMT1VzmgTmZhmc?=
- =?us-ascii?Q?Hcx4YbetSYoxtNJHm/aGWz9I8bEQhPDf5AvK7pxO/Wjmbfs7fpir1E32L3Ks?=
- =?us-ascii?Q?B7XzUDLg6BUwlNOu4IXkcKf2MX/BNvBBTnj0MJLt3axgQJAEdJs1sMXnrXp8?=
- =?us-ascii?Q?vT2hErOzOqdn2WLAgAYBgMEqJAoFqhUshnWqZGEtAZ102kMYwFGOSOOvtPwR?=
- =?us-ascii?Q?Z37ba7jc2dt/dyEAFQF8Tbw1cP/Xn/WSVyR5axjKzVovw0d+dSlTwmoTCD5C?=
- =?us-ascii?Q?YI5BD3b8DdLNJCZsXow2YsM42oQE/0wVCb3UrEFgU3H3BKSEp6IMq1Gja6Pj?=
- =?us-ascii?Q?gNIQTstvO7EOCM289OHLpIf0V0Dd8sw08sqMPrp/ASavpE6fOwTJHfGfwzNq?=
- =?us-ascii?Q?Ulm0mGc/oqI5zdWsCm9FpETnBavCl7uKS/pdF3oTJ/IXgskTzsPeWB2SFSUw?=
- =?us-ascii?Q?FPmqAibUc6NNs7e+OMZofbf/PMTUCDYVBcX7d2zJ/DNW3aPwKA5WZISEnZQY?=
- =?us-ascii?Q?U71KLcMq4ptx/qLNKPopF5usnEfPhQWqI2RJcEcjL55k21PvuN7Np0WtNOhz?=
- =?us-ascii?Q?XVk/h9j38P5haf04PFdF7b4mPVSSXY9BAiiFFsJUY9BZ88ioVp1/wWVMpTZa?=
- =?us-ascii?Q?oCuopik/dDirQtLr/qQ9GybQqD0lxLJgpFmKXRigZqHHw5jLVEBSYNwU5Odd?=
- =?us-ascii?Q?2NDLoje9H87PYzT95v+KI/4i5Kp4+GRwqCXpLpJKzIz9Gmj0iJSnUd2b78lR?=
- =?us-ascii?Q?FldzgLXCzVRsJLYQe24vLGmExin57go5NPdVqyAr0SP8eys4aQMKPVHoGxpY?=
- =?us-ascii?Q?RvW1oMrit5eAw7+locI=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?yd1h2lZEZNbMnQSb757Uub5AfESRp3tfCZnyjZAgyeeH+rxP2xlxE/xXfi0O?=
- =?us-ascii?Q?5PoUFmruwjGNWmZW6V/LdcsBxEmFcAnVRq9df96jIPFBKIecGUR7HJNnmdqN?=
- =?us-ascii?Q?hIbrpukylgblNImlIEKIxEAxl3gvzJD1glmqLLndbB4N8LtN8FOCo27NUfjN?=
- =?us-ascii?Q?xegdHrk2EQTwpIRiG/IQgW4M+SnSnUCXqDpGmYsO/UC1VhkdcoifagJKXvHo?=
- =?us-ascii?Q?8F9hSjteho2lnXy6gx2LG5QwfUC3wuPOvPJ0EFYJ3BM3gEtl4A7ReM6MQw+u?=
- =?us-ascii?Q?GT+3jQavetnUpJ/usr2nAIIwsMy+uKebOwIFQ9y/PgCvO3npEuoZFU93eGG+?=
- =?us-ascii?Q?emUHe+Yo+T7gdlt3ex3XSWVNIRkoPtbGonsvQBNONEghBaatYMoMXLFX8AV1?=
- =?us-ascii?Q?m3KYIQ2cxXgnn4rMwXutDuqxYBI9Qwng3oM47LW5jcsx4tsqwVnxpqweei6S?=
- =?us-ascii?Q?N+XUg+a0dG9xS2Cy0hrP4rj7ZPwq/5rknOBPyaERrPJKHzK3uCoGy3kpNgys?=
- =?us-ascii?Q?kVeqhQ8RBKeBFFUQptlQomjmaUDb2dv2+R4gklMRqliOGqPHNJcyu9mdNhMc?=
- =?us-ascii?Q?rXum7hcq23zuwn8AnvTY1Y0QIvN9QXK2nDSwoPlwMf6ANfR6zbIVSTk3gOKx?=
- =?us-ascii?Q?1BJMcjrz2ImKFC72E8pD6xCDcmcOCxNwnOH2eiA1aW1jGK0Wglas+gZLhW/N?=
- =?us-ascii?Q?ZbtSPUN2+4MNtCuNdtdS3Rx2771Oo3MG8YvPWveSeknBDF2OGDmPuSw5ovMt?=
- =?us-ascii?Q?US7n/H45cQrV8NaNOXU+NIZVwdoP9FTMh5z8caHC7nLYEH9uvk01F+e8i7gK?=
- =?us-ascii?Q?nHtARfGpEjTvel41mAcLYYFnhVGEqOeY831oguPzVGP4WMVZvbGMCrEqkZYk?=
- =?us-ascii?Q?wrVLsJI/mmCo9/7t9Ho5Thu4f2C1N7AjcrEv+qLcB8NCLV5e+iKS6N7JV5hP?=
- =?us-ascii?Q?hyy9caht7Mbw3B2NGt2OgAC5MfFYv4Pp3put2aM968/vJ9xDL0tcetmT0YNc?=
- =?us-ascii?Q?Nx2wxQjKrHBlFB7JG7owQWgaom/KX/nIj4NKwxciDQG+wCoRlNdfjaO3uWzf?=
- =?us-ascii?Q?DDvrLBg2xtDSQkeqff3BNYQ14NR9iUKd6r/nBxLQlr/NUjARoA6Ylvyc8p1C?=
- =?us-ascii?Q?LYqSwHkmi+/mY8itHzjsu2AjswZcikLcx3KWFqXAGm6SsPrkiYYYkO314Uug?=
- =?us-ascii?Q?nF51KeuWQKMh1C6otGx8xS4vUnyorGdLcq1ai8L8L3lCfXrSHK2S4T20O7yp?=
- =?us-ascii?Q?tfhU/NMwr4fPk0IGx9DKgdcPLR/hS2khVLKzvwHpGrYOPLdnxCF97k/khE5Y?=
- =?us-ascii?Q?SrUEiVT894XItfh2eUQwT2MUd7anFnLBSaI/lgkoVRaiqUnJ0rB8YPWYWPOA?=
- =?us-ascii?Q?el/AgUyMOmcBfNW+kI657nzsV+JZpAYa/MIBBsW6DrL3d8E8grF6qv615jdX?=
- =?us-ascii?Q?0QGeP00vCZCQO7bYGXl2YrHGMJ3znhndNwNgxc6Vf4uMvcGKz2vRL82ilBaW?=
- =?us-ascii?Q?EKvb/GB5dwL//VJ14nXmczu12nRs9v7oqGqlZj09dnyPdE3dP9lBUU4WruHe?=
- =?us-ascii?Q?0hKS1XAcuiGjnxfEpbdFzZ2fJtSDuhxMFr0k/HeYyTTHSdTrzeGW5dWp2sqC?=
- =?us-ascii?Q?O8MOtwx8vgtlhZk3goQqZPsnJzh47WXNaRRyVl3AZPYxMZGYzM4hvdPX/XGH?=
- =?us-ascii?Q?v01efI9BwwGtnOeyKG8wy1Z6QufDnZ7wjZshatP0O8cZaKOTOh3LtqCgfHq4?=
- =?us-ascii?Q?+T7dld1hy0m+LthUGLoR8RsrXEWvnbk=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: a8b315ac-495e-4b55-f706-08de5866804c
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Jan 2026 20:57:19.6846 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 0sSlktTau8phTfRkmJV1girCnACLswMrIBLZve+M4bOpCS26pZSb+D3j4puYy64ghP2ArJpR3TxhmwWKVPKY4Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA4PR11MB9299
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260120143459.9485-3-thomas.hellstrom@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -180,60 +74,144 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Jan 20, 2026 at 07:50:45PM +0100, Michal Wajdeczko wrote:
-> The xe_mmio_wait32() already returns the last value of the register
-> for which we were waiting, there is no need read it again.
-> 
-> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Hi Thomas,
 
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+kernel test robot noticed the following build warnings:
 
-> ---
->  drivers/gpu/drm/xe/xe_guc.c | 9 ++++-----
->  1 file changed, 4 insertions(+), 5 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
-> index 44360437beeb..2a3b057fc828 100644
-> --- a/drivers/gpu/drm/xe/xe_guc.c
-> +++ b/drivers/gpu/drm/xe/xe_guc.c
-> @@ -1394,11 +1394,11 @@ int xe_guc_mmio_send_recv(struct xe_guc *guc, const u32 *request,
->  	struct xe_device *xe = guc_to_xe(guc);
->  	struct xe_gt *gt = guc_to_gt(guc);
->  	struct xe_mmio *mmio = &gt->mmio;
-> -	u32 header, reply;
->  	struct xe_reg reply_reg = xe_gt_is_media_type(gt) ?
->  		MED_VF_SW_FLAG(0) : VF_SW_FLAG(0);
->  	const u32 LAST_INDEX = VF_SW_FLAG_COUNT - 1;
->  	bool lost = false;
-> +	u32 header;
->  	int ret;
->  	int i;
->  
-> @@ -1430,21 +1430,20 @@ int xe_guc_mmio_send_recv(struct xe_guc *guc, const u32 *request,
->  
->  	ret = xe_mmio_wait32(mmio, reply_reg, GUC_HXG_MSG_0_ORIGIN,
->  			     FIELD_PREP(GUC_HXG_MSG_0_ORIGIN, GUC_HXG_ORIGIN_GUC),
-> -			     50000, &reply, false);
-> +			     50000, &header, false);
->  	if (ret) {
->  		/* scratch registers might be cleared during FLR, try once more */
-> -		if (!reply && !lost) {
-> +		if (!header && !lost) {
->  			xe_gt_dbg(gt, "GuC mmio request %#x: lost, trying again\n", request[0]);
->  			lost = true;
->  			goto retry;
->  		}
->  timeout:
->  		xe_gt_err(gt, "GuC mmio request %#x: no reply %#x\n",
-> -			  request[0], reply);
-> +			  request[0], header);
->  		return ret;
->  	}
->  
-> -	header = xe_mmio_read32(mmio, reply_reg);
->  	if (FIELD_GET(GUC_HXG_MSG_0_TYPE, header) ==
->  	    GUC_HXG_TYPE_NO_RESPONSE_BUSY) {
->  		/*
-> -- 
-> 2.47.1
-> 
+[auto build test WARNING on drm-xe/drm-xe-next]
+[also build test WARNING on drm/drm-next drm-i915/for-linux-next drm-tip/drm-tip next-20260120]
+[cannot apply to drm-misc/drm-misc-next daeinki-drm-exynos/exynos-drm-next drm-i915/for-linux-next-fixes linus/master v6.19-rc6]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Thomas-Hellstr-m/drm-drm-xe-Fix-xe-userptr-in-the-absence-of-CONFIG_DEVICE_PRIVATE/20260120-223858
+base:   https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
+patch link:    https://lore.kernel.org/r/20260120143459.9485-3-thomas.hellstrom%40linux.intel.com
+patch subject: [PATCH v2 2/2] drm/xe: Select CONFIG_DEVICE_PRIVATE when DRM_XE_GPUSVM is selected
+config: mips-allyesconfig (https://download.01.org/0day-ci/archive/20260121/202601210419.6HhGDdqP-lkp@intel.com/config)
+compiler: mips-linux-gcc (GCC) 15.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260121/202601210419.6HhGDdqP-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202601210419.6HhGDdqP-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+   mm/memremap.c: In function 'memremap_compat_align':
+   mm/memremap.c:36:16: error: 'SUBSECTION_SIZE' undeclared (first use in this function); did you mean 'SECTOR_SIZE'?
+      36 |         return SUBSECTION_SIZE;
+         |                ^~~~~~~~~~~~~~~
+         |                SECTOR_SIZE
+   mm/memremap.c:36:16: note: each undeclared identifier is reported only once for each function it appears in
+   mm/memremap.c: In function 'pageunmap_range':
+   mm/memremap.c:96:9: error: implicit declaration of function 'remove_pfn_range_from_zone'; did you mean 'remap_pfn_range_complete'? [-Wimplicit-function-declaration]
+      96 |         remove_pfn_range_from_zone(page_zone(first_page), PHYS_PFN(range->start),
+         |         ^~~~~~~~~~~~~~~~~~~~~~~~~~
+         |         remap_pfn_range_complete
+   mm/memremap.c:99:17: error: implicit declaration of function '__remove_pages'; did you mean 'move_pages'? [-Wimplicit-function-declaration]
+      99 |                 __remove_pages(PHYS_PFN(range->start),
+         |                 ^~~~~~~~~~~~~~
+         |                 move_pages
+   mm/memremap.c:102:17: error: implicit declaration of function 'arch_remove_memory'; did you mean 'remove_memory'? [-Wimplicit-function-declaration]
+     102 |                 arch_remove_memory(range->start, range_len(range),
+         |                 ^~~~~~~~~~~~~~~~~~
+         |                 remove_memory
+   mm/memremap.c: At top level:
+   mm/memremap.c:144:60: warning: 'struct mhp_params' declared inside parameter list will not be visible outside of this definition or declaration
+     144 | static int pagemap_range(struct dev_pagemap *pgmap, struct mhp_params *params,
+         |                                                            ^~~~~~~~~~
+   mm/memremap.c: In function 'pagemap_range':
+   mm/memremap.c:189:37: error: invalid use of undefined type 'struct mhp_params'
+     189 |                              &params->pgprot);
+         |                                     ^~
+   mm/memremap.c:193:14: error: implicit declaration of function 'mhp_range_allowed' [-Wimplicit-function-declaration]
+     193 |         if (!mhp_range_allowed(range->start, range_len(range), !is_private)) {
+         |              ^~~~~~~~~~~~~~~~~
+   mm/memremap.c:212:25: error: implicit declaration of function 'add_pages'; did you mean 'dir_pages'? [-Wimplicit-function-declaration]
+     212 |                 error = add_pages(nid, PHYS_PFN(range->start),
+         |                         ^~~~~~~~~
+         |                         dir_pages
+   mm/memremap.c:221:25: error: implicit declaration of function 'arch_add_memory' [-Wimplicit-function-declaration]
+     221 |                 error = arch_add_memory(nid, range->start, range_len(range),
+         |                         ^~~~~~~~~~~~~~~
+   mm/memremap.c:229:17: error: implicit declaration of function 'move_pfn_range_to_zone' [-Wimplicit-function-declaration]
+     229 |                 move_pfn_range_to_zone(zone, PHYS_PFN(range->start),
+         |                 ^~~~~~~~~~~~~~~~~~~~~~
+   mm/memremap.c:230:67: error: invalid use of undefined type 'struct mhp_params'
+     230 |                                 PHYS_PFN(range_len(range)), params->altmap,
+         |                                                                   ^~
+   mm/memremap.c: In function 'memremap_pages':
+   mm/memremap.c:268:16: error: variable 'params' has initializer but incomplete type
+     268 |         struct mhp_params params = {
+         |                ^~~~~~~~~~
+   mm/memremap.c:269:18: error: 'struct mhp_params' has no member named 'altmap'
+     269 |                 .altmap = pgmap_altmap(pgmap),
+         |                  ^~~~~~
+   mm/memremap.c:269:27: warning: excess elements in struct initializer
+     269 |                 .altmap = pgmap_altmap(pgmap),
+         |                           ^~~~~~~~~~~~
+   mm/memremap.c:269:27: note: (near initialization for 'params')
+   mm/memremap.c:270:18: error: 'struct mhp_params' has no member named 'pgmap'
+     270 |                 .pgmap = pgmap,
+         |                  ^~~~~
+   mm/memremap.c:270:26: warning: excess elements in struct initializer
+     270 |                 .pgmap = pgmap,
+         |                          ^~~~~
+   mm/memremap.c:270:26: note: (near initialization for 'params')
+   mm/memremap.c:271:18: error: 'struct mhp_params' has no member named 'pgprot'
+     271 |                 .pgprot = PAGE_KERNEL,
+         |                  ^~~~~~
+   In file included from include/linux/shm.h:6,
+                    from include/linux/sched.h:23,
+                    from include/linux/ratelimit.h:6,
+                    from include/linux/dev_printk.h:16,
+                    from include/linux/device.h:15,
+                    from mm/memremap.c:3:
+>> arch/mips/include/asm/page.h:137:25: warning: excess elements in struct initializer
+     137 | #define __pgprot(x)     ((pgprot_t) { (x) } )
+         |                         ^
+   arch/mips/include/asm/pgtable.h:30:25: note: in expansion of macro '__pgprot'
+      30 | #define PAGE_KERNEL     __pgprot(_PAGE_PRESENT | __READABLE | __WRITEABLE | \
+         |                         ^~~~~~~~
+   mm/memremap.c:271:27: note: in expansion of macro 'PAGE_KERNEL'
+     271 |                 .pgprot = PAGE_KERNEL,
+         |                           ^~~~~~~~~~~
+   arch/mips/include/asm/page.h:137:25: note: (near initialization for 'params')
+     137 | #define __pgprot(x)     ((pgprot_t) { (x) } )
+         |                         ^
+   arch/mips/include/asm/pgtable.h:30:25: note: in expansion of macro '__pgprot'
+      30 | #define PAGE_KERNEL     __pgprot(_PAGE_PRESENT | __READABLE | __WRITEABLE | \
+         |                         ^~~~~~~~
+   mm/memremap.c:271:27: note: in expansion of macro 'PAGE_KERNEL'
+     271 |                 .pgprot = PAGE_KERNEL,
+         |                           ^~~~~~~~~~~
+   mm/memremap.c:268:27: error: storage size of 'params' isn't known
+     268 |         struct mhp_params params = {
+         |                           ^~~~~~
+   mm/memremap.c:268:27: warning: unused variable 'params' [-Wunused-variable]
+
+Kconfig warnings: (for reference only)
+   WARNING: unmet direct dependencies detected for ZONE_DEVICE
+   Depends on [n]: MEMORY_HOTPLUG [=n] && MEMORY_HOTREMOVE [=n] && SPARSEMEM_VMEMMAP [=n]
+   Selected by [y]:
+   - DRM_XE_GPUSVM [=y] && HAS_IOMEM [=y] && DRM [=y] && DRM_XE [=y] && !UML
+
+
+vim +137 arch/mips/include/asm/page.h
+
+c6e8b587718c486 include/asm-mips/page.h      Ralf Baechle   2005-02-10  131  
+c6e8b587718c486 include/asm-mips/page.h      Ralf Baechle   2005-02-10  132  /*
+c6e8b587718c486 include/asm-mips/page.h      Ralf Baechle   2005-02-10  133   * Manipulate page protection bits
+c6e8b587718c486 include/asm-mips/page.h      Ralf Baechle   2005-02-10  134   */
+c6e8b587718c486 include/asm-mips/page.h      Ralf Baechle   2005-02-10  135  typedef struct { unsigned long pgprot; } pgprot_t;
+c6e8b587718c486 include/asm-mips/page.h      Ralf Baechle   2005-02-10  136  #define pgprot_val(x)	((x).pgprot)
+^1da177e4c3f415 include/asm-mips/page.h      Linus Torvalds 2005-04-16 @137  #define __pgprot(x)	((pgprot_t) { (x) } )
+b3a428b4b18d495 arch/mips/include/asm/page.h Hassan Naveed  2018-10-29  138  #define pte_pgprot(x)	__pgprot(pte_val(x) & ~_PFN_MASK)
+^1da177e4c3f415 include/asm-mips/page.h      Linus Torvalds 2005-04-16  139  
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
