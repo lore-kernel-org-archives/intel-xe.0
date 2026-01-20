@@ -4,45 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 31F98D262A1
-	for <intel-xe@archiver.kernel.org>; Tue, 20 Jan 2026 20:43:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3D513D262A3
+	for <intel-xe@archiver.kernel.org>; Tue, 20 Jan 2026 20:43:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D987810E23A;
-	Tue, 20 Jan 2026 20:43:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0576810E65C;
+	Tue, 20 Jan 2026 20:43:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="G4mk6Npi";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="pcjqvZ0m";
 	dkim-atps=neutral
 Received: from CY7PR03CU001.outbound.protection.outlook.com
- (mail-westcentralusazon11010043.outbound.protection.outlook.com
- [40.93.198.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 598BC10E221;
- Tue, 20 Jan 2026 20:43:42 +0000 (UTC)
+ (mail-westcentralusazon11010026.outbound.protection.outlook.com
+ [40.93.198.26])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5DF1210E658;
+ Tue, 20 Jan 2026 20:43:45 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=O9ydnogvx6KZgl0bkPY3h28+J8nTa6JWzZjx+rrm4WHfnqHrTgNyPkd757MPdMxaH3RDo3H/p/EdijnOH8KNE9t1vt2bgpKDnWrlv+5F8rHouZqWHZ+Yft6d3E60fbbZeY4b2htESrZziJDYoS2OxiORTTMezgNhImYcxGL8+tDN4i25dzqSBioHeo/TyI2q2fWQ598QYdMz2aAwbDZu8PPSkaRh4+kktkeaWTv9iGgexCAmrkQ6TwpBwdZuXOJzJT+2Z5b5SNNdhP+UUZlLUIjyeE4NpX1G4fwCh197/sAdtxVzcBJJuwRyS8R/Bj8TNLkeuk9Bq9zPrHNDNciXgg==
+ b=LUc8qOkZEO2aHTb8Xje6xS1n0qrZXlzLybjONTgpYCQXhw8zBZuJCBome9IZaTWOmq7NO4qosojrlgT61bFYKm1H79aLZHNnYxa2BVHdI5V0T0PqiqGa/lqTYUZTXCigNiexIplZZ6qfqFVUAu6qr5v6YmTfmCAeUI5C4DUNPh6w90Yi87qwCt2O1SoD62pVmfgdPN6Hp+OXAO8HHIdjJmEwPQ/3NUx0MjkngpohxAgwp7pBcdyEsT/uirTzDgZjk3kK+u7YygfH8kDTN1Ffq0HIn7azIsOhtfgDOb2yGqXBtHIcYaqQDzCcDhFOKMWy9Z0ukB3Utw6c+novNdo58A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=hUBZ6L+/xZVS1Ji2XUB+n8k6WjuNk14WaceTCfHlB9A=;
- b=GRJYP6QOxP7eEdk8JVYmrJ1IR2RZegfsMCfHNkSurJ782Jhh7lKfokUo+4gw55sx1DVx3dV5A7Y1aVtYTV/DXCt63vaEaIKe2AOTIm744jAo7dSueJge+zTZT8nKBk1dV17SZFghhajQ+Xtqo3eHX7JfG5ZhRPbz5IeEj5NRcQH2z942WeTNn4SW9wnEufUwhKHQLoQzDJGPnjb6Lux3cvCaDp8CAkjlOrp7UB1SvGkC/aFaUF1nQWeYkGxOgy7AOl1bmRwnXzBTe31h7SAuAfvQ+fcqvc+Bi8VF+UX1wPW2dLAYE4cZeGqdPixZW9CMIsenDqUsoaANd6GuY/+cPg==
+ bh=nhJEbm334Y4mYLDLMaEKkpHpnXKWUl+ulNe7MV5HAkk=;
+ b=nwoUDggYsnRLYBtiJRPrWrywxq28AaQC5RwOXyY4B6yNMS5SbAB+7SoUB/ZLDRsSV5ldB4imF1fSrkjrem6Hx/P6Scv06O4RcANGS/omDL23oFObxK0n+B6TZlTMWCQ2JefeIvfGdOAD5FX3/rcVnFMbLAuwSTukhkPDorHBySZegl5FnVBGowGg8l2/UYGV+iCT/+GY07ASyqUKDqRAoeD9ku9nXpoKAGMjiFtP8eDa9UrkFPj1vOKBaDlPDJejNndJZRAnVwXIlsVZVtJ9H2JVthR0iOaJbXYtHe3kXpOcls8JVfATBjx+1IZ2/8Vilr0SX/yjIr9GfjVoirOywg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
  dkim=pass header.d=nvidia.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
  s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=hUBZ6L+/xZVS1Ji2XUB+n8k6WjuNk14WaceTCfHlB9A=;
- b=G4mk6NpiofxK5lDZ+BgWU801jRfwrpj1K6av5d576iGycIyLD5gcAVqUR4g9ODjNm0Tny3hOCt1bjnMtVb3pZIBA/ZdLnm5q7hfONo+HDukWWiuhXjfkOH15WXO84lH/cxMVcz52Nr52RmwYb0hSaNw6G82yN9QIcV1KhaYjpRbOxP0rhoCDZ6TqosQO5kRcL/aHCTGSWaCSGh9E2tfZiif3fhzgNdnY8EE6P1Viop+97pIrOOzRgBS+L/do19SKnHjbTHT1jx8ILCTr1elMgWSrbRLBDq1n4dnNP0BJYLEAGgY4eyVRlkYEXMwAHADXWqGvT9IpD/ZG86Lfa/M2YA==
+ bh=nhJEbm334Y4mYLDLMaEKkpHpnXKWUl+ulNe7MV5HAkk=;
+ b=pcjqvZ0mc/YWE+xlCFnH2tMvChftx4xH+oLYEo2hCBi0lVRePix6RE2TqbERl1fZ3WjL35qALytgenHKuB4Ru6eLM+vorL6uv61HGoZUjVkxKsFssFXUMSuUpGy6MqTd8U038gWBc7gKvXrG6EA5nQN8VmrbomGBS00BVDHU/4AonRhb2hf5qmpatNnWAVH1ZbrpPWRi3EpZnmr2etn/DwoEv7Ia3L7bhL28oONMzN/sonspssCyCLOqTXjGxCiVqv82q2S7/hVaonk+djnWnqmNSCgwRZcueAhialHhYO+Orprc0n5cGJxZ5HMmT08/+85/lpvqMNJ/ec4mIL4NXg==
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=nvidia.com;
 Received: from DS0PR12MB6486.namprd12.prod.outlook.com (2603:10b6:8:c5::21) by
  PH7PR12MB6809.namprd12.prod.outlook.com (2603:10b6:510:1af::9) with
  Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9520.12; Tue, 20 Jan 2026 20:43:34 +0000
+ 15.20.9520.12; Tue, 20 Jan 2026 20:43:36 +0000
 Received: from DS0PR12MB6486.namprd12.prod.outlook.com
  ([fe80::88a9:f314:c95f:8b33]) by DS0PR12MB6486.namprd12.prod.outlook.com
  ([fe80::88a9:f314:c95f:8b33%4]) with mapi id 15.20.9542.008; Tue, 20 Jan 2026
- 20:43:34 +0000
+ 20:43:36 +0000
 From: Joel Fernandes <joelagnelf@nvidia.com>
 To: linux-kernel@vger.kernel.org
 Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
@@ -78,95 +78,94 @@ Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
  intel-xe@lists.freedesktop.org, linux-fbdev@vger.kernel.org,
  Joel Fernandes <joelagnelf@nvidia.com>
-Subject: [PATCH RFC v6 01/26] rust: clist: Add support to interface with C
- linked lists
-Date: Tue, 20 Jan 2026 15:42:38 -0500
-Message-Id: <20260120204303.3229303-2-joelagnelf@nvidia.com>
+Subject: [PATCH RFC v6 03/26] rust: gpu: Add GPU buddy allocator bindings
+Date: Tue, 20 Jan 2026 15:42:40 -0500
+Message-Id: <20260120204303.3229303-4-joelagnelf@nvidia.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260120204303.3229303-1-joelagnelf@nvidia.com>
 References: <20260120204303.3229303-1-joelagnelf@nvidia.com>
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-ClientProxiedBy: BL1PR13CA0279.namprd13.prod.outlook.com
- (2603:10b6:208:2bc::14) To DS0PR12MB6486.namprd12.prod.outlook.com
+X-ClientProxiedBy: MN2PR05CA0058.namprd05.prod.outlook.com
+ (2603:10b6:208:236::27) To DS0PR12MB6486.namprd12.prod.outlook.com
  (2603:10b6:8:c5::21)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: DS0PR12MB6486:EE_|PH7PR12MB6809:EE_
-X-MS-Office365-Filtering-Correlation-Id: 59bf7c39-03ab-4bb7-b455-08de5864939b
+X-MS-Office365-Filtering-Correlation-Id: 99bf8f45-c2b3-4d97-57b9-08de58649570
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|7416014|1800799024;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?zedivzF8LOtonffT6d+08jkNUh9aCZ8lBfNIuVMWMdgZAwShuUJz3mQgluCD?=
- =?us-ascii?Q?4w+jp1bXUNyNzDhkr/uyGAcKy/1cpb1LL9fDGaqNVP7vsf3WkTiO/SaxWpEH?=
- =?us-ascii?Q?JXnj1O7BEJsM48gweg0qz7pcNMEsxmAm/upJuZcm4lvqeYgMpEivFIUH+OB6?=
- =?us-ascii?Q?6Bk8DhYly9mWzprp5PzU+oBmaRk2XE0QXqDTgJLFljjPbwhu4XZPtkfPFnye?=
- =?us-ascii?Q?iaAUu76wMAyhHHdHiP3OovQ+LibKKp48cCWCw04szBAUiIl4vyAOXPLoRIfd?=
- =?us-ascii?Q?HKAsJ55CmRb5gMfFEP5hsg4p9CyeTp69dSIhNm/tzIRBU2JDGBsad5LTZcVL?=
- =?us-ascii?Q?HBSSGPZWf78rgut3L8sHwvDYvY+oVlpy1jA/VjPSyVu36fyCWqyStkIW8/1X?=
- =?us-ascii?Q?ODqB0KHYtedOoR9gyIDdUgC51Ly0mg52xDaxKZcbhpPscrnRfGXEFCclMUHe?=
- =?us-ascii?Q?jWtqogArpk2fnTLfLq2OVsQgdnL6WVq9SF1+UzqEFfKtYzoBh4rgror3198U?=
- =?us-ascii?Q?nO/crLetqYnPbi0WixDRlGUvQWNW4RrstbvyeNrt9t4+Xt1dCkSa6Xlwf4da?=
- =?us-ascii?Q?KFafbH5P7bF0BfnHEpt0IteYxaUOJ083Um9u3rbffBACtmWWvryxLOwipymU?=
- =?us-ascii?Q?v+OLNzLqd9I5tZXWf1oT1qFtWP4JGy4YoE+pVUehrtwad2TE0Tpu3hA7aaOU?=
- =?us-ascii?Q?it5YvdPZYQfnFI9vEk2ehWlsgayhTGFILN0FnlYd7vCUpwKKUTnItM+Dhm0W?=
- =?us-ascii?Q?NkZB1PsooYTfMWhgU97or0IrobgkpJvcD/yGE5ybiM2Bm5lon6NM6nZczQ3q?=
- =?us-ascii?Q?iSNuRX/iY91dnor/cKDc5B+STKb4IfyqwacvYJb6ky1EfENXUvR7LCD/1sLc?=
- =?us-ascii?Q?upD6vqdmsSvhtD050A0j2z+Q3uOxsux5jrUwHnn8wNVS/h3eo5B9jXDjSnwL?=
- =?us-ascii?Q?n3cvCT/FVaF0HanKlASLtrFsTyPI55g3zTgm1vDL/0fKr0+jX0bOoaJH2IZ4?=
- =?us-ascii?Q?S/df5BzkZpud3Ga0HKF0SdGJpQQIFKA+khb7MYn96L7l9yVISwG3qjxhAdyg?=
- =?us-ascii?Q?C6NuVY6s1sB/NdTKdkfAjqIB6mfuWxK1iAqwyrAMEXPAOxXCaKi4cBajxskN?=
- =?us-ascii?Q?NUfA8oY4WU4bc/U5Vsxbm46CyCXopADdFiupApOx9uhoPkKcBs5fq9oTLiWi?=
- =?us-ascii?Q?zht7suMNnDwrmqFxqNSKfQy+Yy1yYOyzKbyPukBzcDoTAAo7oIOT+V30RF4p?=
- =?us-ascii?Q?gWHdI7zgtt06Ro/VykUqiUZlsXX3NLNeowJVEbmTxeCPWte6Yj990whrlKwz?=
- =?us-ascii?Q?eVFNvdx17XuJQEPSv3FlATntYzWLJRA9ZdlSjS0IqQVlDooVpeKloQfqSfT6?=
- =?us-ascii?Q?hW0xl9B3iZMxuTdRGKxzC5maeJLdvfaVrzN+JDVozs3wBk3cUyS0C3V/aRbf?=
- =?us-ascii?Q?Yv2aRnoWKM235P1Vum+eYBkWZhhe8HBD5fNKUqlAgjEsFbWhOJR2HUK45Z4a?=
- =?us-ascii?Q?M7643SSfxGpHEHdJdFfNtPPdQCONtwTkaLtfZzI/My6/9HrmNur3UEx1bHHA?=
- =?us-ascii?Q?aix+0hXtDBRySRqR7tM=3D?=
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?muEdQROPK5EArplyVoWiZHTb8TtDET0mRzVd4VqaK/4gdDEm7DqYlLH+iz0f?=
+ =?us-ascii?Q?+4Zatp1AfIYXwpBRjSYRUPyxH+Kwdx9VA1yziXYePyj2vRYSQV7VyE/dhbXk?=
+ =?us-ascii?Q?kdPyE6JSsnKDaGCP4aIdm5KYY6wA1FF/mJahJcoBQg1+BzC4+1Lfi7JbS4YY?=
+ =?us-ascii?Q?VilCV74wECXrK7jfDoKA+YLVE0BaEpfR8nxelzrY3ojFgOm/Swjj+KacRh2+?=
+ =?us-ascii?Q?fK+ZH4FeimOYRSOgOzFLH/meDd20nLK5OHVp5B8uWS5Pqd3oLipc4rh2cX7l?=
+ =?us-ascii?Q?xwh/KWjKrV03cN3RmWpp0+mklDV68OT5grX1uQm6y1KLOhcOFzM1KSLjk+ZC?=
+ =?us-ascii?Q?/9A5lcuiAir+fx8bJ0Pf3jYcTWpiVqRbKx5Lv8MiflbDNjTJpYaAR6H3u9Gf?=
+ =?us-ascii?Q?ppuxgjFTLuWyZJiDGHPgTkbL3/gdC6H6U0oSvse4RGcG1fkJZdTjburw3yKS?=
+ =?us-ascii?Q?ScdHTck8XGWaJOXkp7V8G3BCUTdUNJKc6Ql/NOOte9y2B6wYUqUWtNUOyBHA?=
+ =?us-ascii?Q?SwaWUouZukiNwuEmxuRfoF3CT5Xt/E9S260ohpo6lZcReoKjrOD+u+2slZTU?=
+ =?us-ascii?Q?hu3jU+eE8xHlVxnlyFvS4Ok6Mhf/GU0X4vvFRKfpNQF6EssAJlCX1hu/vKHe?=
+ =?us-ascii?Q?DlsVjZEDAFXxLaz39hISDw31QpGf1AQxlVH650x6hNkOpmcy87XyDMb8I2PH?=
+ =?us-ascii?Q?qSk8auHK+hYYKWhdhmrsWAYfOxQ1NR3Dzh6jFGaAhNScFk9uwr2GWx3chyhC?=
+ =?us-ascii?Q?vu0B2DjYKWKKCKSTme9fx38CP41slxOkdr2sKMvfai6hRyTvucMzGtjK+m3O?=
+ =?us-ascii?Q?yHDcnfRbWy3IX3/fGjnM799eAxHoJxfo9etgAiYqMxt21d6JCSP3s8GCdmzV?=
+ =?us-ascii?Q?u0LpMwG53FkgMyKpJ0dimJI2RUxtQVirOdvZy/KUokmN8H3Yxreo1xO6xrL7?=
+ =?us-ascii?Q?t20ZiJHM6B0hf5z8YEVGCQjhGt7bb+NYWnPvDP8NDKiguYRaYA3yqbLA0F39?=
+ =?us-ascii?Q?luKWTp12NqZttqYFtfzgR42BkWf+jX2Q7SME31kbFhC6JaWFniuzVtFahPze?=
+ =?us-ascii?Q?d4V1tTCeIAwflJvPoct2+7eVYMJtLcl3/eBXGaCwKTC2x/Cvprwtg/pClkL5?=
+ =?us-ascii?Q?cJrCDG91cgx+huJD17h6TcqceatkgNAKzq9eJUwyUJibSaBRPM5gVS/b24i4?=
+ =?us-ascii?Q?lIhRNYw9g2riWloeT6orBWhDvFtbJUSFU9U0uUQ6sxSScr3IX+UdbNRk+F2m?=
+ =?us-ascii?Q?o3MoFBxTBUg2ijjPPc9q+FyGFikvk76W8TAdlAVFUnvo2F8D1NrZPu9uieUX?=
+ =?us-ascii?Q?2zptcWFaOpOs4nTjYWGIAdDZviv6v9T3iHDweNAQiZdz1gbDvoquJLcijxju?=
+ =?us-ascii?Q?47cwvxXki/N8XiIG26GNl1FzV12PWk/rIcR0lBaLZP/75A1Ipy+rFpoxFx00?=
+ =?us-ascii?Q?XSnT1tN8AY2lDs3Bnrq8xRpU68HNsd8zrL4fh6C4YNwaUphvylqi/BD/lTyj?=
+ =?us-ascii?Q?t13PYngW8suzEu4csAYsEOivSjP3IDCnLuqDZVr101kfXB7dmPueJoJ524H3?=
+ =?us-ascii?Q?ZjEIW8QzIF8endsdUMg=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DS0PR12MB6486.namprd12.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230040)(366016)(376014)(7416014)(1800799024); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?9EvbWrNr8ZKcT4TEP4c6u8dxWeGiKq3TMp7fCuxOLDhaQxeyLe1vY4XHb78+?=
- =?us-ascii?Q?ZuJtTN7qLcgGbbnXLxZ1Qu0Nq/bRJSG+rn53c8DYC6fwbaqRfbvTDXDUMroD?=
- =?us-ascii?Q?cVaW86H2LH/U0EfKEp0kzwq+IyNwK475vBUCM8RuO1mHtC++M9nhbhTugrgj?=
- =?us-ascii?Q?G/2lTNWQYeo8lv/W9A2vTW2yHAp6FbHOp1Kn81/UTjOmFmLaDbuW6kln+hRa?=
- =?us-ascii?Q?eThECKNd15cMbvAlClmrNboVpQAjYlUwj3N/RpdLwuDEtF9znRY3roz57VKq?=
- =?us-ascii?Q?ZxDdI64DhoRnkKi57yNzIJpguHQQ1R9Ca6ulD/8Oy9pWBGoPnoPsIL4Dl0sa?=
- =?us-ascii?Q?klVilPWzK7PfBZLlTf7vEeyp/LEwS4T3XaxFVmlDJC8A7NO1sZXdZ2yTV5w1?=
- =?us-ascii?Q?9fWy2MfyQfKr1jqsOFBLsjI9RR14M6dqVyxGmXlOtEMfeWuKLnSJbbRZVKKv?=
- =?us-ascii?Q?p51UKC9sw+tzqP9OjmE37YsxJIsJxVBKMDkdDg/x8QkOEwgL8ZQTIdM8ehCZ?=
- =?us-ascii?Q?4Fq6cvrbp+hR68nKR2uW1WpolJK1SWNQmcSWGnjZ9QY2eWWLhaNAg1XbnBBt?=
- =?us-ascii?Q?bMhZcFG0TvSgtwnuVwSPAueBysaMKQ6aPKGsOY1DQQc9t+F9l22QM6ko35mk?=
- =?us-ascii?Q?c69XkAnw6g2iwGLkX1aF4VtTOd+kXMR0B7zMAAnCiu8LnvHh/ETGr3CJSUVD?=
- =?us-ascii?Q?Ua99jHY5ton7KVXgdQmnuTh1iORG1bRtT6aCcjeCvj3IlWo82UvRjZAuQ+am?=
- =?us-ascii?Q?5wmXwH7oP33ZETnMbroysUkEyT6NTtEbJx6n0NILzhunLUgrcUMyQZxhpKOq?=
- =?us-ascii?Q?md+U0zRi9Jq+M5ZKWy6b9y8OLWNE5l613893xXKwUy4O7G9WrjQ32qkLh+UE?=
- =?us-ascii?Q?i6W/9K9t+A3mHyn1+9qiE9ICsZkBsDKQgHCNkfwC/gtCuXWcG9IJ6FW9YHIu?=
- =?us-ascii?Q?O6AcdmwnzyOccB8sCY4hNSqS35/IKMUEzx9agIvkAO+3y6ABPtNEV0CGpt52?=
- =?us-ascii?Q?1YBg6VJ7PFki2gHbHDPhmbe55zpYD9+dOdHLflJKYjOGt/E5YBIFOnSAkAss?=
- =?us-ascii?Q?ZB+vCituvcRP1KZq47eXZ4H1Zcxkh68TnvJ1AQ3YIZLcUDRGFUUHB9Kb8KhK?=
- =?us-ascii?Q?RdxNO0hwTxSTQ69PdXp5NhdtL4iL2tElwI6AVUmluP9phWX3qUKFTNJAI0wQ?=
- =?us-ascii?Q?xltqsOQS2tKo6y57/j3htXoTSjpGbZnvzC/kdDJ87LfiwlGQBV84oOCN+nlb?=
- =?us-ascii?Q?+jrJOJS14yTCW3rqaiocEfWxYlqlvnCUYXcUvjwWBUHS7RansHI25fNnIL1S?=
- =?us-ascii?Q?AN+XStKrYURX3mMUvlpMpdqcEzuC5dX0ROwSzOOzjnS+X0qC8EPMTEomts+X?=
- =?us-ascii?Q?Y/gOzj0blWdwb6dcN49DHRYcZnZOCz7ODZu93OYb60BfsIiguyFYRkD+VZf9?=
- =?us-ascii?Q?Ur6Ktq0EjGroeZEXw32FVx5QOmhbU7LpskVpryRn8UoexthiLssDjUE+ATdO?=
- =?us-ascii?Q?vWzINVrbN512OZRq9X92V3Ej1/HYYU8huypveNiYlkPwp1evLSiMXifj3pwc?=
- =?us-ascii?Q?gdKc6k1kFUXTde5rApryS00Cri1wRZ0Re6LlxETRYTRH3I16ddBnxTZK8Ap1?=
- =?us-ascii?Q?ioBwsnYO76ueb8J3+OsJHMln7E5l2D3qqEZf0RoSP/NCZTC8Y9BfHwMYdFWg?=
- =?us-ascii?Q?6dCiis96pXXC0PQJC+btomS0f4jWhBXoxtXNr18YuEj9GxO3MoQvpxJzwcsC?=
- =?us-ascii?Q?ygYEird9ZQ=3D=3D?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?Y6rO84NO4Y+ycmIWLKe8nBV8mUkKUjucgWPZ/0DHbDKMLn6EgFLMkFT9eq6V?=
+ =?us-ascii?Q?1OHwLYW19YQN/w/Fz/7hM7HD4ygZjRja9UmtO0gTOqoBTjZn9AVhzmizcJKE?=
+ =?us-ascii?Q?2w5kh6ywHNfIzaMp/yuSYVbF43lT9JvWZ12m0KY8+20/18d7sIcGBM3nGocY?=
+ =?us-ascii?Q?M2u+LXI51UQwRVbqGJuQCMIDD+mBYrg0AFWg0kVrJwHNCwINmic1hmI9d/RI?=
+ =?us-ascii?Q?z+MC/U3AdojlySv/Izr89hAdKC+MlJwuR9Rt0ekhiDlssQOCb+ErvHRAJ0YE?=
+ =?us-ascii?Q?ZZ1NpyE1lycUcmecQr2JoO4x5d0MQVSNdOLJqPvw/fxb8JQjz9fR1IfuLCHc?=
+ =?us-ascii?Q?pA4IPjBdA3J325/MDApWulH/Eyn3L6KKPYwTCV07SQ2UdwixAI/wrBYcQJXn?=
+ =?us-ascii?Q?1SdMGvxtUKnbdH4o2L5OcYR6MjAYatmtihkkZ1h2oYQStRq963PkhtAvLJ0n?=
+ =?us-ascii?Q?LXr4WtNa7UtfHOZibOO2ox1mQRwgOtWfwxSUFcGp05qDBRZidj3mUPeMWkLr?=
+ =?us-ascii?Q?ssi2kGuCDPlrhOkvgnASbXHn69xvSwrDdrfmXbi8S3H7bDpbjQv1wUvdvvxX?=
+ =?us-ascii?Q?l55d69d44F3VqwBodcI9DCfFd19AiOjwTJ9qU6k6edT6LpBwK2zp4KtiONAV?=
+ =?us-ascii?Q?sGf1HJD5fUXwzbMruJT+sy2+5Je0AxEOfmQzHjN6jCj8Czuk8PhebI2Tl8TY?=
+ =?us-ascii?Q?J4IlnNhB0o2/EheaI3GHtrkpEdZk1K520pdKQAZMH0STfcupr/MxYJp6XT1X?=
+ =?us-ascii?Q?922W256pCQJbRHq7e/VuaQInI506O4SfStFIoZsAepW09GCmWJL47dbFxM3h?=
+ =?us-ascii?Q?LvyKj+JLdk0QYS4YiGQcW8Kv2zSyEqCVvmpyLqkNwcoK0jptkJIl3pi01l/d?=
+ =?us-ascii?Q?Y2VqWv5qyObVZFQS2G6G6h4mhXoX74JfyHlPRCmziMctb0qJyQ9p1HBInk0v?=
+ =?us-ascii?Q?4EkoRSqWIeRWz2w8N3vN2ekqsiM+fzShTjZT7j9vsQhHoGvVa/JoA7G8inni?=
+ =?us-ascii?Q?unuE1mhkFJ/+uftLZTBv7vNhjuZqf9w+Qir16GaI2t+nbEtl3xoY4tpRcxzo?=
+ =?us-ascii?Q?3TAOzzYcjXqDMQuAhUlA1YTyzqLXP14c3LotyLzyAslYTYiLPDi2WTo1j4Ia?=
+ =?us-ascii?Q?TgUEFJ10hktceUD32e8TnwFDfuy62S/FhsvS7JSNRE/fvmXIdAQYljCZuKa9?=
+ =?us-ascii?Q?wHI1TwiDDH3Q9bHaJsw5gn9xvkZ+UZJxZWpeAN6ypvK/DXDgFsakVPK7oZa5?=
+ =?us-ascii?Q?+7/UFsNe/RB6fk71++tC/T3c7OXjQ0oupS8Kd6XFd/vnAeAGoOHHeVkCucWZ?=
+ =?us-ascii?Q?5AP/APmo9xT06loeHE108AqQuo+QkGD1mzckOewzE3M2Y2ek1MK/qQ8dKleS?=
+ =?us-ascii?Q?5iQ+04d8PoT35jTiswgf8tvhQb0MKvq6fnQHx1usGdegHNMhJKmVBzktTJsU?=
+ =?us-ascii?Q?TH3b74gpeTBH2rY2wX94WcwEJp6dTSp2qioHL2Zpa7KDHSmXbAcok8Z/kvUg?=
+ =?us-ascii?Q?f9//FT9jA+pScIuOu1bDUgBcuj5oAx0XzWmzy6DrebVcUVDZFy5x4+51Bdgw?=
+ =?us-ascii?Q?wnItfbmkLdqQmwoG5r/5ey5yh86NAg/mbH/r4pusVmobu/AdbDQ2C+fwz8Sq?=
+ =?us-ascii?Q?pj6mgXcM3k/MN+TUzjyLZiX2lWwWHjpda95x/s7He2m6+dtxWmwmS2m+eNiC?=
+ =?us-ascii?Q?bv89cqOUOoGcmCGPn/F36qr0aoiwfUUT0i8NKzRhDMn8V85QiEUlz+VFHdBV?=
+ =?us-ascii?Q?FPqhiMsbzg=3D=3D?=
 X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 59bf7c39-03ab-4bb7-b455-08de5864939b
+X-MS-Exchange-CrossTenant-Network-Message-Id: 99bf8f45-c2b3-4d97-57b9-08de58649570
 X-MS-Exchange-CrossTenant-AuthSource: DS0PR12MB6486.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Jan 2026 20:43:33.1205 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Jan 2026 20:43:36.5025 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: kQytbN0oYIyUuAMqku4BMl7g0cGoCWn8ODRUFNROZeMisghTo5bI2Kv6ACSCX0XCTqH1k5UwhAMYLApQPEZwBA==
+X-MS-Exchange-CrossTenant-UserPrincipalName: EmGYFkBv7ILBTjFjVnMGEtYlN4KgkwC52DcvC3QhQgF2uhYIjcELjlZFH+snBpi0GBh6sMeCZut77s3xo+HHXw==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB6809
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -182,446 +181,662 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add a new module `clist` for working with C's doubly circular linked
-lists. Provide low-level iteration over list nodes.
-
-Typed iteration over actual items is provided with a `clist_create`
-macro to assist in creation of the `Clist` type.
+Add safe Rust abstractions over the Linux kernel's GPU buddy
+allocator for physical memory management. The GPU buddy allocator
+implements a binary buddy system useful for GPU physical memory
+allocation. nova-core will use it for physical memory allocation.
 
 Signed-off-by: Joel Fernandes <joelagnelf@nvidia.com>
 ---
- MAINTAINERS            |   7 +
- rust/helpers/helpers.c |   1 +
- rust/helpers/list.c    |  12 ++
- rust/kernel/clist.rs   | 357 +++++++++++++++++++++++++++++++++++++++++
- rust/kernel/lib.rs     |   1 +
- 5 files changed, 378 insertions(+)
- create mode 100644 rust/helpers/list.c
- create mode 100644 rust/kernel/clist.rs
+ rust/bindings/bindings_helper.h |  11 +
+ rust/helpers/gpu.c              |  23 ++
+ rust/helpers/helpers.c          |   1 +
+ rust/kernel/gpu/buddy.rs        | 538 ++++++++++++++++++++++++++++++++
+ rust/kernel/gpu/mod.rs          |   5 +
+ rust/kernel/lib.rs              |   2 +
+ 6 files changed, 580 insertions(+)
+ create mode 100644 rust/helpers/gpu.c
+ create mode 100644 rust/kernel/gpu/buddy.rs
+ create mode 100644 rust/kernel/gpu/mod.rs
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 0d044a58cbfe..b76988c38045 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -22936,6 +22936,13 @@ F:	rust/kernel/init.rs
- F:	rust/pin-init/
- K:	\bpin-init\b|pin_init\b|PinInit
+diff --git a/rust/bindings/bindings_helper.h b/rust/bindings/bindings_helper.h
+index a067038b4b42..940b854a1f93 100644
+--- a/rust/bindings/bindings_helper.h
++++ b/rust/bindings/bindings_helper.h
+@@ -29,6 +29,7 @@
+ #include <linux/hrtimer_types.h>
  
-+RUST TO C LIST INTERFACES
-+M:	Joel Fernandes <joelagnelf@nvidia.com>
-+M:	Alexandre Courbot <acourbot@nvidia.com>
-+L:	rust-for-linux@vger.kernel.org
-+S:	Maintained
-+F:	rust/kernel/clist.rs
+ #include <linux/acpi.h>
++#include <linux/gpu_buddy.h>
+ #include <drm/drm_device.h>
+ #include <drm/drm_drv.h>
+ #include <drm/drm_file.h>
+@@ -144,6 +145,16 @@ const vm_flags_t RUST_CONST_HELPER_VM_MIXEDMAP = VM_MIXEDMAP;
+ const vm_flags_t RUST_CONST_HELPER_VM_HUGEPAGE = VM_HUGEPAGE;
+ const vm_flags_t RUST_CONST_HELPER_VM_NOHUGEPAGE = VM_NOHUGEPAGE;
+ 
++#if IS_ENABLED(CONFIG_GPU_BUDDY)
++const unsigned long RUST_CONST_HELPER_GPU_BUDDY_RANGE_ALLOCATION = GPU_BUDDY_RANGE_ALLOCATION;
++const unsigned long RUST_CONST_HELPER_GPU_BUDDY_TOPDOWN_ALLOCATION = GPU_BUDDY_TOPDOWN_ALLOCATION;
++const unsigned long RUST_CONST_HELPER_GPU_BUDDY_CONTIGUOUS_ALLOCATION =
++								GPU_BUDDY_CONTIGUOUS_ALLOCATION;
++const unsigned long RUST_CONST_HELPER_GPU_BUDDY_CLEAR_ALLOCATION = GPU_BUDDY_CLEAR_ALLOCATION;
++const unsigned long RUST_CONST_HELPER_GPU_BUDDY_CLEARED = GPU_BUDDY_CLEARED;
++const unsigned long RUST_CONST_HELPER_GPU_BUDDY_TRIM_DISABLE = GPU_BUDDY_TRIM_DISABLE;
++#endif
 +
- RXRPC SOCKETS (AF_RXRPC)
- M:	David Howells <dhowells@redhat.com>
- M:	Marc Dionne <marc.dionne@auristor.com>
+ #if IS_ENABLED(CONFIG_ANDROID_BINDER_IPC_RUST)
+ #include "../../drivers/android/binder/rust_binder.h"
+ #include "../../drivers/android/binder/rust_binder_events.h"
+diff --git a/rust/helpers/gpu.c b/rust/helpers/gpu.c
+new file mode 100644
+index 000000000000..38b1a4e6bef8
+--- /dev/null
++++ b/rust/helpers/gpu.c
+@@ -0,0 +1,23 @@
++// SPDX-License-Identifier: GPL-2.0
++
++#include <linux/gpu_buddy.h>
++
++#ifdef CONFIG_GPU_BUDDY
++
++__rust_helper u64 rust_helper_gpu_buddy_block_offset(const struct gpu_buddy_block *block)
++{
++	return gpu_buddy_block_offset(block);
++}
++
++__rust_helper unsigned int rust_helper_gpu_buddy_block_order(struct gpu_buddy_block *block)
++{
++	return gpu_buddy_block_order(block);
++}
++
++__rust_helper u64 rust_helper_gpu_buddy_block_size(struct gpu_buddy *mm,
++						   struct gpu_buddy_block *block)
++{
++	return gpu_buddy_block_size(mm, block);
++}
++
++#endif /* CONFIG_GPU_BUDDY */
 diff --git a/rust/helpers/helpers.c b/rust/helpers/helpers.c
-index 79c72762ad9c..634fa2386bbb 100644
+index 634fa2386bbb..6db7c4c25afa 100644
 --- a/rust/helpers/helpers.c
 +++ b/rust/helpers/helpers.c
-@@ -32,6 +32,7 @@
+@@ -29,6 +29,7 @@
+ #include "err.c"
+ #include "irq.c"
+ #include "fs.c"
++#include "gpu.c"
  #include "io.c"
  #include "jump_label.c"
  #include "kunit.c"
-+#include "list.c"
- #include "maple_tree.c"
- #include "mm.c"
- #include "mutex.c"
-diff --git a/rust/helpers/list.c b/rust/helpers/list.c
+diff --git a/rust/kernel/gpu/buddy.rs b/rust/kernel/gpu/buddy.rs
 new file mode 100644
-index 000000000000..6044979c7a2e
+index 000000000000..7fb8e505ff9f
 --- /dev/null
-+++ b/rust/helpers/list.c
-@@ -0,0 +1,12 @@
++++ b/rust/kernel/gpu/buddy.rs
+@@ -0,0 +1,538 @@
 +// SPDX-License-Identifier: GPL-2.0
 +
-+/*
-+ * Helpers for C Circular doubly linked list implementation.
-+ */
-+
-+#include <linux/list.h>
-+
-+void rust_helper_list_add_tail(struct list_head *new, struct list_head *head)
-+{
-+	list_add_tail(new, head);
-+}
-diff --git a/rust/kernel/clist.rs b/rust/kernel/clist.rs
-new file mode 100644
-index 000000000000..91754ae721b9
---- /dev/null
-+++ b/rust/kernel/clist.rs
-@@ -0,0 +1,357 @@
-+// SPDX-License-Identifier: GPL-2.0
-+
-+//! A C doubly circular intrusive linked list interface for rust code.
++//! GPU buddy allocator bindings.
++//!
++//! C header: [`include/linux/gpu_buddy.h`](srctree/include/linux/gpu_buddy.h)
++//!
++//! This module provides Rust abstractions over the Linux kernel's GPU buddy
++//! allocator, which implements a binary buddy memory allocator.
++//!
++//! The buddy allocator manages a contiguous address space and allocates blocks
++//! in power-of-two sizes, useful for GPU physical memory management.
 +//!
 +//! # Examples
 +//!
 +//! ```
 +//! use kernel::{
-+//!     bindings,
-+//!     clist::init_list_head,
-+//!     clist_create,
-+//!     types::Opaque, //
++//!     gpu::buddy::{BuddyFlags, GpuBuddy, GpuBuddyAllocParams, GpuBuddyParams},
++//!     prelude::*,
++//!     sizes::*, //
 +//! };
-+//! # // Create test list with values (0, 10, 20) - normally done by C code but it is
-+//! # // emulated here for doctests using the C bindings.
-+//! # use core::mem::MaybeUninit;
-+//! #
-+//! # /// C struct with embedded `list_head` (typically will be allocated by C code).
-+//! # #[repr(C)]
-+//! # pub(crate) struct SampleItemC {
-+//! #     pub value: i32,
-+//! #     pub link: bindings::list_head,
-+//! # }
-+//! #
-+//! # let mut head = MaybeUninit::<bindings::list_head>::uninit();
-+//! #
-+//! # let head = head.as_mut_ptr();
-+//! # // SAFETY: head and all the items are test objects allocated in this scope.
-+//! # unsafe { init_list_head(head) };
-+//! #
-+//! # let mut items = [
-+//! #     MaybeUninit::<SampleItemC>::uninit(),
-+//! #     MaybeUninit::<SampleItemC>::uninit(),
-+//! #     MaybeUninit::<SampleItemC>::uninit(),
-+//! # ];
-+//! #
-+//! # for (i, item) in items.iter_mut().enumerate() {
-+//! #     let ptr = item.as_mut_ptr();
-+//! #     // SAFETY: pointers are to allocated test objects with a list_head field.
-+//! #     unsafe {
-+//! #         (*ptr).value = i as i32 * 10;
-+//! #         // addr_of_mut!() computes address of link directly as link is uninitialized.
-+//! #         init_list_head(core::ptr::addr_of_mut!((*ptr).link));
-+//! #         bindings::list_add_tail(&mut (*ptr).link, head);
-+//! #     }
-+//! # }
 +//!
-+//! // Rust wrapper for the C struct.
-+//! // The list item struct in this example is defined in C code as:
-+//! //   struct SampleItemC {
-+//! //       int value;
-+//! //       struct list_head link;
-+//! //   };
-+//! //
-+//! #[repr(transparent)]
-+//! pub(crate) struct Item(Opaque<SampleItemC>);
++//! // Create a 1GB buddy allocator with 4KB minimum chunk size.
++//! let mut buddy = GpuBuddy::new(GpuBuddyParams {
++//!     base_offset_bytes: 0,
++//!     physical_memory_size_bytes: SZ_1G as u64,
++//!     chunk_size_bytes: SZ_4K as u64,
++//! })?;
 +//!
-+//! impl Item {
-+//!     pub(crate) fn value(&self) -> i32 {
-+//!         // SAFETY: [`Item`] has same layout as [`SampleItemC`].
-+//!         unsafe { (*self.0.get()).value }
-+//!     }
++//! // Verify initial state.
++//! assert_eq!(buddy.size(), SZ_1G as u64);
++//! assert_eq!(buddy.chunk_size(), SZ_4K as u64);
++//! let initial_free = buddy.free_memory_bytes();
++//!
++//! // Base allocation params - reused across tests with field overrides.
++//! let params = GpuBuddyAllocParams {
++//!     start_range_address: 0,
++//!     end_range_address: 0,   // Entire range.
++//!     size_bytes: SZ_16M as u64,
++//!     min_block_size_bytes: SZ_16M as u64,
++//!     buddy_flags: BuddyFlags::try_new(BuddyFlags::RANGE_ALLOCATION)?,
++//! };
++//!
++//! // Test top-down allocation (allocates from highest addresses).
++//! let topdown = buddy.alloc_blocks(GpuBuddyAllocParams {
++//!     buddy_flags: BuddyFlags::try_new(BuddyFlags::TOPDOWN_ALLOCATION)?,
++//!     ..params
++//! })?;
++//! assert_eq!(buddy.free_memory_bytes(), initial_free - SZ_16M as u64);
++//!
++//! for block in topdown.iter() {
++//!     assert_eq!(block.offset(), (SZ_1G - SZ_16M) as u64);
++//!     assert_eq!(block.order(), 12); // 2^12 pages
++//!     assert_eq!(block.size(), SZ_16M as u64);
 +//! }
++//! drop(topdown);
++//! assert_eq!(buddy.free_memory_bytes(), initial_free);
 +//!
-+//! // Create typed [`CList`] from sentinel head.
-+//! // SAFETY: head is valid, items are [`SampleItemC`] with embedded `link` field.
-+//! let list = unsafe { clist_create!(head, Item, SampleItemC, link) };
++//! // Allocate 16MB - should result in a single 16MB block at offset 0.
++//! let allocated = buddy.alloc_blocks(params)?;
++//! assert_eq!(buddy.free_memory_bytes(), initial_free - SZ_16M as u64);
 +//!
-+//! // Iterate directly over typed items.
-+//! let mut found_0 = false;
-+//! let mut found_10 = false;
-+//! let mut found_20 = false;
-+//!
-+//! for item in list.iter() {
-+//!     let val = item.value();
-+//!     if val == 0 { found_0 = true; }
-+//!     if val == 10 { found_10 = true; }
-+//!     if val == 20 { found_20 = true; }
++//! for block in allocated.iter() {
++//!     assert_eq!(block.offset(), 0);
++//!     assert_eq!(block.order(), 12); // 2^12 pages
++//!     assert_eq!(block.size(), SZ_16M as u64);
 +//! }
++//! drop(allocated);
++//! assert_eq!(buddy.free_memory_bytes(), initial_free);
 +//!
-+//! assert!(found_0 && found_10 && found_20);
++//! // Test non-contiguous allocation with fragmented memory.
++//! // Create fragmentation by allocating 4MB blocks at [0,4M) and [8M,12M).
++//! let params_4m = GpuBuddyAllocParams {
++//!     end_range_address: SZ_4M as u64,
++//!     size_bytes: SZ_4M as u64,
++//!     min_block_size_bytes: SZ_4M as u64,
++//!     ..params
++//! };
++//! let frag1 = buddy.alloc_blocks(params_4m)?;
++//! assert_eq!(buddy.free_memory_bytes(), initial_free - SZ_4M as u64);
++//!
++//! let frag2 = buddy.alloc_blocks(GpuBuddyAllocParams {
++//!     start_range_address: SZ_8M as u64,
++//!     end_range_address: (SZ_8M + SZ_4M) as u64,
++//!     ..params_4m
++//! })?;
++//! assert_eq!(buddy.free_memory_bytes(), initial_free - SZ_8M as u64);
++//!
++//! // Allocate 8MB without CONTIGUOUS - should return 2 blocks from the holes.
++//! let fragmented = buddy.alloc_blocks(GpuBuddyAllocParams {
++//!     end_range_address: SZ_16M as u64,
++//!     size_bytes: SZ_8M as u64,
++//!     min_block_size_bytes: SZ_4M as u64,
++//!     ..params
++//! })?;
++//! assert_eq!(buddy.free_memory_bytes(), initial_free - (SZ_16M) as u64);
++//!
++//! let (mut count, mut total) = (0u32, 0u64);
++//! for block in fragmented.iter() {
++//!     // The 8MB allocation should return 2 blocks, each 4MB.
++//!     assert_eq!(block.size(), SZ_4M as u64);
++//!     total += block.size();
++//!     count += 1;
++//! }
++//! assert_eq!(total, SZ_8M as u64);
++//! assert_eq!(count, 2);
++//! drop(fragmented);
++//! drop(frag2);
++//! drop(frag1);
++//! assert_eq!(buddy.free_memory_bytes(), initial_free);
++//!
++//! // Test CONTIGUOUS failure when only fragmented space available.
++//! // Create a small buddy allocator with only 16MB of memory.
++//! let mut small = GpuBuddy::new(GpuBuddyParams {
++//!     base_offset_bytes: 0,
++//!     physical_memory_size_bytes: SZ_16M as u64,
++//!     chunk_size_bytes: SZ_4K as u64,
++//! })?;
++//!
++//! // Allocate 4MB blocks at [0,4M) and [8M,12M) to create fragmented memory.
++//! let hole1 = small.alloc_blocks(params_4m)?;
++//! let hole2 = small.alloc_blocks(GpuBuddyAllocParams {
++//!     start_range_address: SZ_8M as u64,
++//!     end_range_address: (SZ_8M + SZ_4M) as u64,
++//!     ..params_4m
++//! })?;
++//!
++//! // 8MB contiguous should fail - only two non-contiguous 4MB holes exist.
++//! let result = small.alloc_blocks(GpuBuddyAllocParams {
++//!     size_bytes: SZ_8M as u64,
++//!     min_block_size_bytes: SZ_4M as u64,
++//!     buddy_flags: BuddyFlags::try_new(BuddyFlags::CONTIGUOUS_ALLOCATION)?,
++//!     ..params
++//! });
++//! assert!(result.is_err());
++//! drop(hole2);
++//! drop(hole1);
++//!
++//! # Ok::<(), Error>(())
 +//! ```
-+
-+use core::{
-+    iter::FusedIterator,
-+    marker::PhantomData, //
-+};
 +
 +use crate::{
 +    bindings,
-+    types::Opaque, //
++    clist::CListHead,
++    clist_create,
++    error::to_result,
++    new_mutex,
++    prelude::*,
++    sync::{
++        lock::mutex::MutexGuard,
++        Arc,
++        Mutex, //
++    },
++    types::Opaque,
 +};
 +
-+use pin_init::PinInit;
++/// Flags for GPU buddy allocator operations.
++///
++/// These flags control the allocation behavior of the buddy allocator.
++#[derive(Clone, Copy, Default, PartialEq, Eq)]
++pub struct BuddyFlags(usize);
 +
-+/// Initialize a `list_head` object to point to itself.
-+///
-+/// # Safety
-+///
-+/// `list` must be a valid pointer to a `list_head` object.
-+#[inline]
-+pub unsafe fn init_list_head(list: *mut bindings::list_head) {
-+    // SAFETY: Caller guarantees `list` is a valid pointer to a `list_head`.
-+    unsafe {
-+        (*list).next = list;
-+        (*list).prev = list;
++impl BuddyFlags {
++    /// Range-based allocation from start to end addresses.
++    pub const RANGE_ALLOCATION: usize = bindings::GPU_BUDDY_RANGE_ALLOCATION;
++
++    /// Allocate from top of address space downward.
++    pub const TOPDOWN_ALLOCATION: usize = bindings::GPU_BUDDY_TOPDOWN_ALLOCATION;
++
++    /// Allocate physically contiguous blocks.
++    pub const CONTIGUOUS_ALLOCATION: usize = bindings::GPU_BUDDY_CONTIGUOUS_ALLOCATION;
++
++    /// Request allocation from the cleared (zeroed) memory. The zero'ing is not
++    /// done by the allocator, but by the caller before freeing old blocks.
++    pub const CLEAR_ALLOCATION: usize = bindings::GPU_BUDDY_CLEAR_ALLOCATION;
++
++    /// Disable trimming of partially used blocks.
++    pub const TRIM_DISABLE: usize = bindings::GPU_BUDDY_TRIM_DISABLE;
++
++    /// Mark blocks as cleared (zeroed) when freeing. When set during free,
++    /// indicates that the caller has already zeroed the memory.
++    pub const CLEARED: usize = bindings::GPU_BUDDY_CLEARED;
++
++    /// Create [`BuddyFlags`] from a raw value with validation.
++    ///
++    /// Use `|` operator to combine flags if needed, before calling this method.
++    pub fn try_new(flags: usize) -> Result<Self> {
++        // Flags must not exceed u32::MAX to satisfy the GPU buddy allocator C API.
++        if flags > u32::MAX as usize {
++            return Err(EINVAL);
++        }
++
++        // `TOPDOWN_ALLOCATION` only works without `RANGE_ALLOCATION`. When both are
++        // set, `TOPDOWN_ALLOCATION` is silently ignored by the allocator. Reject this.
++        if (flags & Self::RANGE_ALLOCATION) != 0 && (flags & Self::TOPDOWN_ALLOCATION) != 0 {
++            return Err(EINVAL);
++        }
++
++        Ok(Self(flags))
++    }
++
++    /// Get raw value of the flags.
++    pub(crate) fn as_raw(self) -> usize {
++        self.0
 +    }
 +}
 +
-+/// Wraps a `list_head` object for use in intrusive linked lists.
++/// Parameters for creating a GPU buddy allocator.
++#[derive(Clone, Copy)]
++pub struct GpuBuddyParams {
++    /// Base offset in bytes where the managed memory region starts.
++    /// Allocations will be offset by this value.
++    pub base_offset_bytes: u64,
++    /// Total physical memory size managed by the allocator in bytes.
++    pub physical_memory_size_bytes: u64,
++    /// Minimum allocation unit / chunk size in bytes, must be >= 4KB.
++    pub chunk_size_bytes: u64,
++}
++
++/// Parameters for allocating blocks from a GPU buddy allocator.
++#[derive(Clone, Copy)]
++pub struct GpuBuddyAllocParams {
++    /// Start of allocation range in bytes. Use 0 for beginning.
++    pub start_range_address: u64,
++    /// End of allocation range in bytes. Use 0 for entire range.
++    pub end_range_address: u64,
++    /// Total size to allocate in bytes.
++    pub size_bytes: u64,
++    /// Minimum block size for fragmented allocations in bytes.
++    pub min_block_size_bytes: u64,
++    /// Buddy allocator behavior flags.
++    pub buddy_flags: BuddyFlags,
++}
++
++/// Inner structure holding the actual buddy allocator.
++///
++/// # Synchronization
++///
++/// The C `gpu_buddy` API requires synchronization (see `include/linux/gpu_buddy.h`).
++/// The internal [`GpuBuddyGuard`] ensures that the lock is held for all
++/// allocator and free operations, preventing races between concurrent allocations
++/// and the freeing that occurs when [`AllocatedBlocks`] is dropped.
 +///
 +/// # Invariants
 +///
-+/// - [`CListHead`] represents an allocated and valid `list_head` structure.
-+/// - Once a [`CListHead`] is created in Rust, it will not be modified by non-Rust code.
-+/// - All `list_head` for individual items are not modified for the lifetime of [`CListHead`].
-+#[repr(transparent)]
-+pub struct CListHead(Opaque<bindings::list_head>);
++/// The inner [`Opaque`] contains a valid, initialized buddy allocator.
++#[pin_data(PinnedDrop)]
++struct GpuBuddyInner {
++    #[pin]
++    inner: Opaque<bindings::gpu_buddy>,
++    #[pin]
++    lock: Mutex<()>,
++    /// Base offset for all allocations (does not change after init).
++    base_offset: u64,
++    /// Cached chunk size (does not change after init).
++    chunk_size: u64,
++    /// Cached total size (does not change after init).
++    size: u64,
++}
 +
-+impl CListHead {
-+    /// Create a `&CListHead` reference from a raw `list_head` pointer.
-+    ///
-+    /// # Safety
-+    ///
-+    /// - `ptr` must be a valid pointer to an allocated and initialized `list_head` structure.
-+    /// - `ptr` must remain valid and unmodified for the lifetime `'a`.
-+    #[inline]
-+    pub unsafe fn from_raw<'a>(ptr: *mut bindings::list_head) -> &'a Self {
-+        // SAFETY:
-+        // - [`CListHead`] has same layout as `list_head`.
-+        // - `ptr` is valid and unmodified for 'a.
-+        unsafe { &*ptr.cast() }
++impl GpuBuddyInner {
++    /// Create a pin-initializer for the buddy allocator.
++    fn new(params: &GpuBuddyParams) -> impl PinInit<Self, Error> {
++        let base_offset = params.base_offset_bytes;
++        let size = params.physical_memory_size_bytes;
++        let chunk_size = params.chunk_size_bytes;
++
++        try_pin_init!(Self {
++            inner <- Opaque::try_ffi_init(|ptr| {
++                // SAFETY: ptr points to valid uninitialized memory from the pin-init
++                // infrastructure. gpu_buddy_init will initialize the structure.
++                to_result(unsafe { bindings::gpu_buddy_init(ptr, size, chunk_size) })
++            }),
++            lock <- new_mutex!(()),
++            base_offset: base_offset,
++            chunk_size: chunk_size,
++            size: size,
++        })
 +    }
 +
-+    /// Get the raw `list_head` pointer.
-+    #[inline]
-+    pub fn as_raw(&self) -> *mut bindings::list_head {
++    /// Lock the mutex and return a guard for accessing the allocator.
++    fn lock(&self) -> GpuBuddyGuard<'_> {
++        GpuBuddyGuard {
++            inner: self,
++            _guard: self.lock.lock(),
++        }
++    }
++}
++
++#[pinned_drop]
++impl PinnedDrop for GpuBuddyInner {
++    fn drop(self: Pin<&mut Self>) {
++        let guard = self.lock();
++
++        // SAFETY: guard provides exclusive access to the allocator.
++        unsafe {
++            bindings::gpu_buddy_fini(guard.as_raw());
++        }
++    }
++}
++
++// SAFETY: [`GpuBuddyInner`] can be sent between threads.
++unsafe impl Send for GpuBuddyInner {}
++
++// SAFETY: [`GpuBuddyInner`] is `Sync` because the internal [`GpuBuddyGuard`]
++// serializes all access to the C allocator, preventing data races.
++unsafe impl Sync for GpuBuddyInner {}
++
++/// Guard that proves the lock is held, enabling access to the allocator.
++///
++/// # Invariants
++///
++/// The inner `_guard` holds the lock for the duration of this guard's lifetime.
++pub(crate) struct GpuBuddyGuard<'a> {
++    inner: &'a GpuBuddyInner,
++    _guard: MutexGuard<'a, ()>,
++}
++
++impl GpuBuddyGuard<'_> {
++    /// Get a raw pointer to the underlying C `gpu_buddy` structure.
++    fn as_raw(&self) -> *mut bindings::gpu_buddy {
++        self.inner.inner.get()
++    }
++}
++
++/// GPU buddy allocator instance.
++///
++/// This structure wraps the C `gpu_buddy` allocator using reference counting.
++/// The allocator is automatically cleaned up when all references are dropped.
++///
++/// # Invariants
++///
++/// The inner [`Arc`] points to a valid, initialized GPU buddy allocator.
++pub struct GpuBuddy(Arc<GpuBuddyInner>);
++
++impl GpuBuddy {
++    /// Create a new buddy allocator.
++    ///
++    /// Creates a buddy allocator that manages a contiguous address space of the given
++    /// size, with the specified minimum allocation unit (chunk_size must be at least 4KB).
++    pub fn new(params: GpuBuddyParams) -> Result<Self> {
++        Ok(Self(Arc::pin_init(
++            GpuBuddyInner::new(&params),
++            GFP_KERNEL,
++        )?))
++    }
++
++    /// Get the base offset for allocations.
++    pub fn base_offset(&self) -> u64 {
++        self.0.base_offset
++    }
++
++    /// Get the chunk size (minimum allocation unit).
++    pub fn chunk_size(&self) -> u64 {
++        self.0.chunk_size
++    }
++
++    /// Get the total managed size.
++    pub fn size(&self) -> u64 {
++        self.0.size
++    }
++
++    /// Get the available (free) memory in bytes.
++    pub fn free_memory_bytes(&self) -> u64 {
++        let guard = self.0.lock();
++        // SAFETY: guard provides exclusive access to the allocator.
++        unsafe { (*guard.as_raw()).avail }
++    }
++
++    /// Allocate blocks from the buddy allocator.
++    ///
++    /// Returns an [`Arc<AllocatedBlocks>`] structure that owns the allocated blocks
++    /// and automatically frees them when all references are dropped.
++    ///
++    /// Takes `&self` instead of `&mut self` because the internal [`Mutex`] provides
++    /// synchronization - no external `&mut` exclusivity needed.
++    pub fn alloc_blocks(&self, params: GpuBuddyAllocParams) -> Result<Arc<AllocatedBlocks>> {
++        let buddy_arc = Arc::clone(&self.0);
++
++        // Create pin-initializer that initializes list and allocates blocks.
++        let init = try_pin_init!(AllocatedBlocks {
++            list <- CListHead::try_init(|list| {
++                // Lock while allocating to serialize with concurrent frees.
++                let guard = buddy_arc.lock();
++
++                // SAFETY: guard provides exclusive access, list is initialized.
++                to_result(unsafe {
++                    bindings::gpu_buddy_alloc_blocks(
++                        guard.as_raw(),
++                        params.start_range_address,
++                        params.end_range_address,
++                        params.size_bytes,
++                        params.min_block_size_bytes,
++                        list.as_raw(),
++                        params.buddy_flags.as_raw(),
++                    )
++                })
++            }),
++            buddy: Arc::clone(&buddy_arc),
++            flags: params.buddy_flags,
++        });
++
++        Arc::pin_init(init, GFP_KERNEL)
++    }
++}
++
++/// Allocated blocks from the buddy allocator with automatic cleanup.
++///
++/// This structure owns a list of allocated blocks and ensures they are
++/// automatically freed when dropped. Use `iter()` to iterate over all
++/// allocated [`Block`] structures.
++///
++/// # Invariants
++///
++/// - `list` is an initialized, valid list head containing allocated blocks.
++/// - `buddy` references a valid [`GpuBuddyInner`].
++#[pin_data(PinnedDrop)]
++pub struct AllocatedBlocks {
++    #[pin]
++    list: CListHead,
++    buddy: Arc<GpuBuddyInner>,
++    flags: BuddyFlags,
++}
++
++impl AllocatedBlocks {
++    /// Check if the block list is empty.
++    pub fn is_empty(&self) -> bool {
++        // An empty list head points to itself.
++        !self.list.is_linked()
++    }
++
++    /// Iterate over allocated blocks.
++    ///
++    /// Returns an iterator yielding [`AllocatedBlock`] references. The blocks
++    /// are only valid for the duration of the borrow of `self`.
++    pub fn iter(&self) -> impl Iterator<Item = AllocatedBlock<'_>> + '_ {
++        // SAFETY: list contains gpu_buddy_block items linked via __bindgen_anon_1.link.
++        let clist = unsafe {
++            clist_create!(
++                self.list.as_raw(),
++                Block,
++                bindings::gpu_buddy_block,
++                __bindgen_anon_1.link
++            )
++        };
++
++        clist
++            .iter()
++            .map(|block| AllocatedBlock { block, alloc: self })
++    }
++}
++
++#[pinned_drop]
++impl PinnedDrop for AllocatedBlocks {
++    fn drop(self: Pin<&mut Self>) {
++        let guard = self.buddy.lock();
++
++        // SAFETY:
++        // - list is valid per the type's invariants.
++        // - guard provides exclusive access to the allocator.
++        // CAST: BuddyFlags were validated to fit in u32 at construction.
++        unsafe {
++            bindings::gpu_buddy_free_list(
++                guard.as_raw(),
++                self.list.as_raw(),
++                self.flags.as_raw() as u32,
++            );
++        }
++    }
++}
++
++/// A GPU buddy block.
++///
++/// Transparent wrapper over C `gpu_buddy_block` structure. This type is returned
++/// as references from [`CListIter`] during iteration over [`AllocatedBlocks`].
++///
++/// # Invariants
++///
++/// The inner [`Opaque`] contains a valid, allocated `gpu_buddy_block`.
++#[repr(transparent)]
++pub struct Block(Opaque<bindings::gpu_buddy_block>);
++
++impl Block {
++    /// Get a raw pointer to the underlying C block.
++    fn as_raw(&self) -> *mut bindings::gpu_buddy_block {
 +        self.0.get()
 +    }
 +
-+    /// Get the next [`CListHead`] in the list.
-+    #[inline]
-+    pub fn next(&self) -> &Self {
-+        let raw = self.as_raw();
-+        // SAFETY:
-+        // - `self.as_raw()` is valid per type invariants.
-+        // - The `next` pointer is guaranteed to be non-NULL.
-+        unsafe { Self::from_raw((*raw).next) }
++    /// Get the block's offset in the address space.
++    pub(crate) fn offset(&self) -> u64 {
++        // SAFETY: self.as_raw() is valid per the type's invariants.
++        unsafe { bindings::gpu_buddy_block_offset(self.as_raw()) }
 +    }
 +
-+    /// Get the previous [`CListHead`] in the list.
-+    #[inline]
-+    pub fn prev(&self) -> &Self {
-+        let raw = self.as_raw();
-+        // SAFETY:
-+        // - self.as_raw() is valid per type invariants.
-+        // - The `prev` pointer is guaranteed to be non-NULL.
-+        unsafe { Self::from_raw((*raw).prev) }
-+    }
-+
-+    /// Check if this node is linked in a list (not isolated).
-+    #[inline]
-+    pub fn is_linked(&self) -> bool {
-+        let raw = self.as_raw();
-+        // SAFETY: self.as_raw() is valid per type invariants.
-+        unsafe { (*raw).next != raw && (*raw).prev != raw }
-+    }
-+
-+    /// Fallible pin-initializer that initializes and then calls user closure.
-+    ///
-+    /// Initializes the list head first, then passes `&CListHead` to the closure.
-+    /// This hides the raw FFI pointer from the user.
-+    pub fn try_init<E>(
-+        init_func: impl FnOnce(&CListHead) -> Result<(), E>,
-+    ) -> impl PinInit<Self, E> {
-+        // SAFETY: init_list_head initializes the list_head to point to itself.
-+        // After initialization, we create a reference to pass to the closure.
-+        unsafe {
-+            pin_init::pin_init_from_closure(move |slot: *mut Self| {
-+                init_list_head(slot.cast());
-+                // SAFETY: slot is now initialized, safe to create reference.
-+                init_func(&*slot)
-+            })
-+        }
++    /// Get the block order.
++    pub(crate) fn order(&self) -> u32 {
++        // SAFETY: self.as_raw() is valid per the type's invariants.
++        unsafe { bindings::gpu_buddy_block_order(self.as_raw()) }
 +    }
 +}
 +
-+// SAFETY: [`CListHead`] can be sent to any thread.
-+unsafe impl Send for CListHead {}
++// SAFETY: `Block` is a transparent wrapper over `gpu_buddy_block` which is not
++// modified after allocation. It can be safely sent between threads.
++unsafe impl Send for Block {}
 +
-+// SAFETY: [`CListHead`] can be shared among threads as it is not modified
-+// by non-Rust code per type invariants.
-+unsafe impl Sync for CListHead {}
++// SAFETY: `Block` is a transparent wrapper over `gpu_buddy_block` which is not
++// modified after allocation. It can be safely shared among threads.
++unsafe impl Sync for Block {}
 +
-+impl PartialEq for CListHead {
-+    fn eq(&self, other: &Self) -> bool {
-+        self.as_raw() == other.as_raw()
-+    }
-+}
-+
-+impl Eq for CListHead {}
-+
-+/// Low-level iterator over `list_head` nodes.
-+///
-+/// An iterator used to iterate over a C intrusive linked list (`list_head`). Caller has to
-+/// perform conversion of returned [`CListHead`] to an item (using `container_of` macro or similar).
++/// An allocated block with access to the allocation list.
 +///
 +/// # Invariants
 +///
-+/// [`CListHeadIter`] is iterating over an allocated, initialized and valid list.
-+struct CListHeadIter<'a> {
-+    current_head: &'a CListHead,
-+    list_head: &'a CListHead,
++/// - `block` is a valid reference to an allocated [`Block`].
++/// - `alloc` is a valid reference to the [`AllocatedBlocks`] that owns this block.
++pub struct AllocatedBlock<'a> {
++    block: &'a Block,
++    alloc: &'a AllocatedBlocks,
 +}
 +
-+impl<'a> Iterator for CListHeadIter<'a> {
-+    type Item = &'a CListHead;
-+
-+    #[inline]
-+    fn next(&mut self) -> Option<Self::Item> {
-+        // Advance to next node.
-+        let next = self.current_head.next();
-+
-+        // Check if we've circled back to the sentinel head.
-+        if next == self.list_head {
-+            None
-+        } else {
-+            self.current_head = next;
-+            Some(self.current_head)
-+        }
-+    }
-+}
-+
-+impl<'a> FusedIterator for CListHeadIter<'a> {}
-+
-+/// A typed C linked list with a sentinel head.
-+///
-+/// A sentinel head represents the entire linked list and can be used for
-+/// iteration over items of type `T`, it is not associated with a specific item.
-+///
-+/// The const generic `OFFSET` specifies the byte offset of the `list_head` field within
-+/// the struct that `T` wraps.
-+///
-+/// # Invariants
-+///
-+/// - `head` is an allocated and valid C `list_head` structure that is the list's sentinel.
-+/// - `OFFSET` is the byte offset of the `list_head` field within the struct that `T` wraps.
-+/// - All the list's `list_head` nodes are allocated and have valid next/prev pointers.
-+/// - The underlying `list_head` (and entire list) is not modified for the lifetime `'a`.
-+pub struct CList<'a, T, const OFFSET: usize> {
-+    head: &'a CListHead,
-+    _phantom: PhantomData<&'a T>,
-+}
-+
-+impl<'a, T, const OFFSET: usize> CList<'a, T, OFFSET> {
-+    /// Create a typed [`CList`] from a raw sentinel `list_head` pointer.
++impl AllocatedBlock<'_> {
++    /// Get the block's offset in the address space.
 +    ///
-+    /// # Safety
-+    ///
-+    /// - `ptr` must be a valid pointer to an allocated and initialized `list_head` structure
-+    ///   representing a list sentinel.
-+    /// - `ptr` must remain valid and unmodified for the lifetime `'a`.
-+    /// - The list must contain items where the `list_head` field is at byte offset `OFFSET`.
-+    /// - `T` must be `#[repr(transparent)]` over the C struct.
-+    #[inline]
-+    pub unsafe fn from_raw(ptr: *mut bindings::list_head) -> Self {
-+        Self {
-+            // SAFETY: Caller guarantees `ptr` is a valid, sentinel `list_head` object.
-+            head: unsafe { CListHead::from_raw(ptr) },
-+            _phantom: PhantomData,
-+        }
++    /// Returns the absolute offset including the allocator's base offset.
++    /// This is the actual address to use for accessing the allocated memory.
++    pub fn offset(&self) -> u64 {
++        self.alloc.buddy.base_offset + self.block.offset()
 +    }
 +
-+    /// Get the raw sentinel `list_head` pointer.
-+    #[inline]
-+    pub fn as_raw(&self) -> *mut bindings::list_head {
-+        self.head.as_raw()
++    /// Get the block order (size = chunk_size << order).
++    pub fn order(&self) -> u32 {
++        self.block.order()
 +    }
 +
-+    /// Check if the list is empty.
-+    #[inline]
-+    pub fn is_empty(&self) -> bool {
-+        let raw = self.as_raw();
-+        // SAFETY: self.as_raw() is valid per type invariants.
-+        unsafe { (*raw).next == raw }
-+    }
-+
-+    /// Create an iterator over typed items.
-+    #[inline]
-+    pub fn iter(&self) -> CListIter<'a, T, OFFSET> {
-+        CListIter {
-+            head_iter: CListHeadIter {
-+                current_head: self.head,
-+                list_head: self.head,
-+            },
-+            _phantom: PhantomData,
-+        }
++    /// Get the block's size in bytes.
++    pub fn size(&self) -> u64 {
++        self.alloc.buddy.chunk_size << self.block.order()
 +    }
 +}
+diff --git a/rust/kernel/gpu/mod.rs b/rust/kernel/gpu/mod.rs
+new file mode 100644
+index 000000000000..8f25e6367edc
+--- /dev/null
++++ b/rust/kernel/gpu/mod.rs
+@@ -0,0 +1,5 @@
++// SPDX-License-Identifier: GPL-2.0
 +
-+/// High-level iterator over typed list items.
-+pub struct CListIter<'a, T, const OFFSET: usize> {
-+    head_iter: CListHeadIter<'a>,
-+    _phantom: PhantomData<&'a T>,
-+}
++//! GPU subsystem abstractions.
 +
-+impl<'a, T, const OFFSET: usize> Iterator for CListIter<'a, T, OFFSET> {
-+    type Item = &'a T;
-+
-+    fn next(&mut self) -> Option<Self::Item> {
-+        let head = self.head_iter.next()?;
-+
-+        // Convert to item using OFFSET.
-+        // SAFETY: `item_ptr` calculation from `OFFSET` (calculated using offset_of!)
-+        // is valid per invariants.
-+        Some(unsafe { &*head.as_raw().byte_sub(OFFSET).cast::<T>() })
-+    }
-+}
-+
-+impl<'a, T, const OFFSET: usize> FusedIterator for CListIter<'a, T, OFFSET> {}
-+
-+/// Create a C doubly-circular linked list interface [`CList`] from a raw `list_head` pointer.
-+///
-+/// This macro creates a [`CList<T, OFFSET>`] that can iterate over items of type `$rust_type`
-+/// linked via the `$field` field in the underlying C struct `$c_type`.
-+///
-+/// # Arguments
-+///
-+/// - `$head`: Raw pointer to the sentinel `list_head` object (`*mut bindings::list_head`).
-+/// - `$rust_type`: Each item's rust wrapper type.
-+/// - `$c_type`: Each item's C struct type that contains the embedded `list_head`.
-+/// - `$field`: The name of the `list_head` field within the C struct.
-+///
-+/// # Safety
-+///
-+/// The caller must ensure:
-+/// - `$head` is a valid, initialized sentinel `list_head` pointing to a list that remains
-+///   unmodified for the lifetime of the rust [`CList`].
-+/// - The list contains items of type `$c_type` linked via an embedded `$field`.
-+/// - `$rust_type` is `#[repr(transparent)]` over `$c_type` or has compatible layout.
-+/// - The macro is called from an unsafe block.
-+///
-+/// # Examples
-+///
-+/// Refer to the examples in the [`crate::clist`] module documentation.
-+#[macro_export]
-+macro_rules! clist_create {
-+    ($head:expr, $rust_type:ty, $c_type:ty, $($field:tt).+) => {{
-+        // Compile-time check that field path is a list_head.
-+        let _: fn(*const $c_type) -> *const $crate::bindings::list_head =
-+            |p| ::core::ptr::addr_of!((*p).$($field).+);
-+
-+        // Calculate offset and create `CList`.
-+        const OFFSET: usize = ::core::mem::offset_of!($c_type, $($field).+);
-+        $crate::clist::CList::<$rust_type, OFFSET>::from_raw($head)
-+    }};
-+}
++pub mod buddy;
 diff --git a/rust/kernel/lib.rs b/rust/kernel/lib.rs
-index f812cf120042..cd7e6a1055b0 100644
+index cd7e6a1055b0..d754d777f8ff 100644
 --- a/rust/kernel/lib.rs
 +++ b/rust/kernel/lib.rs
-@@ -75,6 +75,7 @@
- pub mod bug;
- #[doc(hidden)]
- pub mod build_assert;
-+pub mod clist;
- pub mod clk;
- #[cfg(CONFIG_CONFIGFS_FS)]
- pub mod configfs;
+@@ -98,6 +98,8 @@
+ pub mod firmware;
+ pub mod fmt;
+ pub mod fs;
++#[cfg(CONFIG_GPU_BUDDY)]
++pub mod gpu;
+ #[cfg(CONFIG_I2C = "y")]
+ pub mod i2c;
+ pub mod id_pool;
 -- 
 2.34.1
 
