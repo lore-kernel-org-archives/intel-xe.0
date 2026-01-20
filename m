@@ -4,167 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AD25AD262AD
-	for <intel-xe@archiver.kernel.org>; Tue, 20 Jan 2026 23:06:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 02F3BD262AB
+	for <intel-xe@archiver.kernel.org>; Tue, 20 Jan 2026 23:18:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5E01510E66A;
-	Tue, 20 Jan 2026 23:06:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B963610E66E;
+	Tue, 20 Jan 2026 23:18:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="rtnrA1cq";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZLPlWT2c";
 	dkim-atps=neutral
-Received: from CO1PR03CU002.outbound.protection.outlook.com
- (mail-westus2azon11010001.outbound.protection.outlook.com [52.101.46.1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8564710E66A;
- Tue, 20 Jan 2026 23:06:23 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=hKb3ce3PKovTsd6wHyFuVttlqvozqrgSIUKleXjZD/RUgRCjnyHe5i7vBBEmX8fOgwyvou8li8b0pdNtZB3tHVj8YuUFeWxsOELiQ+nE40NN+3ErRmS28oF0xR2yrpWaUu5KTfN2S4qJ4m+1Qbd1tBNo3GrnjjgJRPvGI/VkNsVSHHT4tqxx/Cyr2d9LPyEmxUTxkVAralcw7l9HmAzWobODhSKwVxCvBbJ8EJ0KWxcVaeaPWaoLJA4Dh/sIVQtUQ4nX1UdL9UyRfS01THDzkAriygC5A5H8LIhflI3hb6cAH8aR7cS58FoEtFbAHCdw+cXvBNuMZ7rXNOWrp7Q5Lg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=nnl5Ay8DyENmAYPGsHVNnjpqZdwkvLk/ZYsiMLftvcg=;
- b=mw6U+C/+yQlNph5dAShVQo5LeztNRuUhjqE6gaiSoi1GUYra/h0yJBkhbF5qTL31r1OKdpfFd3TZwCakubgQsmQPyavdGacSYkaSQ8G7WtWe4suWgQXh2jBbHxzotA89IzaYaItJigirbVxghqHHQVe/O0iR/fiX1N1q1Ns6iMb75UPD0jU81+2HLuVcytCMUA7xZ1bcy6r6Olf+9iFG+zgY9D+UBoC7kowcWu0gAkaqmac6Fdw5zwdQIWMofwFMjrLI7sQ8gDRXnfMNwhfUdCOXlR4szS/JCNMyEwHuGQfrXf39Z6L3vLkZXLpfrK7Ck2KwhUJxN8KccaYP0+1bJA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=nnl5Ay8DyENmAYPGsHVNnjpqZdwkvLk/ZYsiMLftvcg=;
- b=rtnrA1cqZcXLCvI/LvI1otULrFjaDKHFbHDvU4CxoTL9oEcsdZ9//2kw72+G+Q9qjCRGOGTZYNPIcfE+hei82QBAA7e8HFJrfAm07iwW3g+dgt6MjFz4IvypYOLjOaII6OO2Bq/QhjtH69CDst//fwBg3mKa3U9FIjwpnlQCwWmdDQljtE2AyG4hKyCgqMLvB0AUPCE0DsZoDUXQ2AZ0qXGNhkyn0mpl/hKpcmnj51zCEA2vWF/CD14s+QVu44EsirDJkOIJnvMztC6nGq143Kf7EAKTeRk3IfPQHapGumlPYE2fcDAVd2nEguNLrH684w2lzeUALq0GBNjohDEVdg==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from DS7PR12MB9473.namprd12.prod.outlook.com (2603:10b6:8:252::5) by
- CYYPR12MB8703.namprd12.prod.outlook.com (2603:10b6:930:c4::9) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9542.9; Tue, 20 Jan 2026 23:06:19 +0000
-Received: from DS7PR12MB9473.namprd12.prod.outlook.com
- ([fe80::f01d:73d2:2dda:c7b2]) by DS7PR12MB9473.namprd12.prod.outlook.com
- ([fe80::f01d:73d2:2dda:c7b2%4]) with mapi id 15.20.9542.008; Tue, 20 Jan 2026
- 23:06:19 +0000
-From: Zi Yan <ziy@nvidia.com>
-To: Jordan Niethe <jniethe@nvidia.com>
-Cc: linux-mm@kvack.org, balbirs@nvidia.com, matthew.brost@intel.com,
- akpm@linux-foundation.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, david@redhat.com, apopple@nvidia.com,
- lorenzo.stoakes@oracle.com, lyude@redhat.com, dakr@kernel.org,
- airlied@gmail.com, simona@ffwll.ch, rcampbell@nvidia.com,
- mpenttil@redhat.com, jgg@nvidia.com, willy@infradead.org,
- linuxppc-dev@lists.ozlabs.org, intel-xe@lists.freedesktop.org, jgg@ziepe.ca,
- Felix.Kuehling@amd.com
-Subject: Re: [PATCH v2 11/11] mm: Remove device private pages from the
- physical address space
-Date: Tue, 20 Jan 2026 18:06:11 -0500
-X-Mailer: MailMate (2.0r6290)
-Message-ID: <16770FCE-A248-4184-ABFC-94C02C0B30F3@nvidia.com>
-In-Reply-To: <fd4b6553-3e9e-4829-a12f-51d29a5d7571@nvidia.com>
-References: <20260107091823.68974-1-jniethe@nvidia.com>
- <20260107091823.68974-12-jniethe@nvidia.com>
- <36F96303-8FBB-4350-9472-52CC50BAB956@nvidia.com>
- <c9afedc6-f763-410f-b78b-522b98122f06@nvidia.com>
- <6C5F185E-BB12-4B01-8283-F2C956E84AA3@nvidia.com>
- <fd4b6553-3e9e-4829-a12f-51d29a5d7571@nvidia.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-ClientProxiedBy: BY3PR05CA0055.namprd05.prod.outlook.com
- (2603:10b6:a03:39b::30) To DS7PR12MB9473.namprd12.prod.outlook.com
- (2603:10b6:8:252::5)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9D96F10E668;
+ Tue, 20 Jan 2026 23:18:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1768951085; x=1800487085;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=jBYpgES2hFwb12RcJ80rWhuG3xT52zVyPrUU1RQcbB4=;
+ b=ZLPlWT2cRUWtq5Wo/p/0HcTwqJoVC+2QJj8cZH4AkULIdCY1kBjcl8Mv
+ co9rYSABmCoPgxGvtf3o4sAPfBkOhf+MSh7iblqp0ETQG9fESBu7OqXYu
+ ZHJwDUW/vLewnW1oZuKPHtRkQLwotbTvA5yPHoeZGI7ldMSPE6ITavHsu
+ 0O5uKeo/Q8KQUQNO6SssA4PsCaVLz7cnfEqB/UYx/GsTpwoMwO+/4JsXD
+ rv1USKa2QvLFoxCpTNTmj9oSeJdfYDxV28hTxMi1cOdYs1ks4XhrZg7Ea
+ /abrawdL6xC+CpoWJIPhJoJCP7izVWG49EvBXoVkmf4k2JcQ+K1daPzqy A==;
+X-CSE-ConnectionGUID: 33SlxwEaT4GegFf3VhZr6w==
+X-CSE-MsgGUID: YC0lFg8/Q9m8oy574+XGmg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11677"; a="70146112"
+X-IronPort-AV: E=Sophos;i="6.21,241,1763452800"; d="scan'208";a="70146112"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jan 2026 15:18:04 -0800
+X-CSE-ConnectionGUID: g5Yp8pHhTJahC2noAXV4pg==
+X-CSE-MsgGUID: fFmOu8EhSNq73/F6vNwaWA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,241,1763452800"; d="scan'208";a="236926539"
+Received: from lkp-server01.sh.intel.com (HELO 765f4a05e27f) ([10.239.97.150])
+ by orviesa002.jf.intel.com with ESMTP; 20 Jan 2026 15:18:02 -0800
+Received: from kbuild by 765f4a05e27f with local (Exim 4.98.2)
+ (envelope-from <lkp@intel.com>) id 1viKz1-00000000PfJ-1Lkk;
+ Tue, 20 Jan 2026 23:17:59 +0000
+Date: Wed, 21 Jan 2026 07:16:59 +0800
+From: kernel test robot <lkp@intel.com>
+To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ intel-xe@lists.freedesktop.org
+Cc: oe-kbuild-all@lists.linux.dev,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Matthew Auld <matthew.auld@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH v2 2/2] drm/xe: Select CONFIG_DEVICE_PRIVATE when
+ DRM_XE_GPUSVM is selected
+Message-ID: <202601210629.wmt9lHUu-lkp@intel.com>
+References: <20260120143459.9485-3-thomas.hellstrom@linux.intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS7PR12MB9473:EE_|CYYPR12MB8703:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1fc9b058-3c18-4851-61fa-08de58788545
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|7416014|376014|1800799024;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?dHVPQmJvMnIxZ1FlSHJkT1c0UHpPczlUQVhXZWpwNW9oRGdlN3RCQjNPT21J?=
- =?utf-8?B?ZDg0c0tRRHFSdkhYVU5KbGJHWWc2WFdiR25ub25tSVdWN3RYY21kTWlqU1dn?=
- =?utf-8?B?aDZuZEhuN3hVc1pMV1lMKzlIa3VnczlKS0xTcldBK1pHbVdrNlFjM25uMFh1?=
- =?utf-8?B?bCtmcHVIRkRBaVhsTEh6KzhQVmNVUTdNZXRtM1RoQzZSSEJDeTAxZWhTejBV?=
- =?utf-8?B?aHRiZFMyMWJjNWdMOXdtQzJPWjV5bUZtMGJ6bzc0TWxhNVFLTUZLeEVFL3lM?=
- =?utf-8?B?R2c0L0JGcEVPcnZEZ2UrMHl2ZVpwRGkwVDNpbGUyenJ2OWVvRWp3MmJKaU9i?=
- =?utf-8?B?SnpXaGlxdlA3MWRlbStkSXpqekFKb1hFNlM0dWptN2loV0VTTkE5OXpFdFNa?=
- =?utf-8?B?UHZVdkVKVVdXemc2SDdFN29saVNkSW4zalYxQ3dZZlNtZ2FLNGFja2htdVlC?=
- =?utf-8?B?WjdyYnNZdFNXbmh6NTJZK3RkK0NTSmpxczdNRDJYZE9rUVNLVTNlZ1NYMndw?=
- =?utf-8?B?NVR6bG5pNzJ3MWY4YzlZQTZQSjYxbnd6OWl5ZVkyWVVzNHczRkVyVEltZUZs?=
- =?utf-8?B?ZVJNQzBYVHFNWlVxMmtTY0s2bjNuN2p0ak1MdE1xL3M1NUJpcWFQTkRBVzJh?=
- =?utf-8?B?ZW4vbWxkbUE1RjZnSEl0bjFmQjQ1RmJ5dHR4UkJ2SUkvaDRjNVNBYm9wcVNS?=
- =?utf-8?B?QzZaYm56NWRLTHJUdDJ6Z0VLQUc1M29VdEFFRlhLS0VCUjdMeG1VbUVhaXJ4?=
- =?utf-8?B?YzBEckFoaXMzelhvWFZJNUV4c2FXOXRNRC8rY3NrK1VxN3ROSGQ3Nk5sbTFr?=
- =?utf-8?B?aEZHa1BMaCtySGV1RmU3UzRHRkRXa3JoTkhVT1hJVXZldkxDREhSQ2U4eFBV?=
- =?utf-8?B?bWJDNWU3YXJjRTkrVUlCb1NIejRONUtMaUNsMnlxWldnVzVyclJEeUlJalNO?=
- =?utf-8?B?c3RZTE5mUWx0aGUranRsZUp6dmE3R1Y1YTRnNGZMZEtmUmIzOUpPeURTM1hK?=
- =?utf-8?B?dDBFR1BLcE1VaFVpUnRheGh1djZuUjdRODhlbndvckhqcjJkN1ZwTmY2eTV1?=
- =?utf-8?B?YXUrQmd5cGJocWJZckhUM3BrWDdFWE9BYVQ5d2l1RnIwQk91bmhPSmhzVWRx?=
- =?utf-8?B?TlFRWFlqeXVGZUNPVnB1anc2UWdjaDZtLzRjODhnMSszemRQRXFVMlc0aFd6?=
- =?utf-8?B?a2NHRnNJQjJWdWpNcXJzeHQrOCtQbURvZnFRSXVsQTFVeDdycjczekEzUEZO?=
- =?utf-8?B?VTBQZ0tsVHFyVEYzRGh5amdkU3RBZXBKZ3kxVms2V2xhVWt0aTVTOVcrd3ow?=
- =?utf-8?B?Um5kMGU5cC9uRmsrZTl2djhhUHpuVnJQdk0xcWY2azh6WmlnUjhnVmRuTExt?=
- =?utf-8?B?MjlmMER3SWxOUWViRlJXdVQrRjcxeFhjVnR2U2hlTlJzaDArUHYxbzRvaDV0?=
- =?utf-8?B?ZGhtMzd6bC9tWWNmclFaSE5MTUs3bUpXN3V0Wll4dFNHeHZxS0ZaWjU1UGh5?=
- =?utf-8?B?SHg3TzNDYmF6Q1VSK1lUTENaRFpFQXIrcTFQclhHaHc0RllzNk9HY1JTV1pR?=
- =?utf-8?B?UDU5bUhSWkhxUjUyWW41ZXBvZjNXSXJ3bzNoMWhQeVVVVW9Ud1BUQldqMkdx?=
- =?utf-8?B?OTh3Ym5HUGp1TWxQTWR6dUZ5U1F3cllEL0pZakJTYmp2UFl0LzhLUlQ0SXpY?=
- =?utf-8?B?WEY1dkFBUlUxSnZUbDRWR3JNUFNWZ3RaeHQyVEt0Sk5RckpOY2Z3dmFudzBn?=
- =?utf-8?B?RkVHQVBrODVzYzlGM3plL0lzTHFSQldybHNKZzk0ckVKQy9GSTJEcm85TmZw?=
- =?utf-8?B?TldSUHVPMC9jOEVncy9NWmtwSlZ3SWUrUnpyNGlKV2lwZGZFZWNSdllQZ1NL?=
- =?utf-8?B?YzNlemhObEVXWlRJZkJ1RDkzenNHOFVibGR5OWxnbnlieE9QNm5odW5lcGxS?=
- =?utf-8?B?UnphczZpdC95K09wS1hzUTk2WGVuVjE0TEVOM0RXZzFYbUVLK2x4Y1E3LzEr?=
- =?utf-8?B?N1YrUWoyeVNUL1hpekExc1VHQVJOak1PYUlGQ3dtMUkxOVhobkdjcUVuVHpC?=
- =?utf-8?B?VDM4VzN2REthWGoyU1BvaUFWUUQzTFNoRUpobHlkYzd4cXo4cHZJTTc3aWdr?=
- =?utf-8?Q?pve4=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS7PR12MB9473.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(7416014)(376014)(1800799024); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?djZqL05sZk9HRnVNamxCMnI4VFA5UW1qM0pBK2djUkdQdVJqSjdlK2pneTI5?=
- =?utf-8?B?bEVqbDFaQWNzTTg2YUt3MlcwQ2J3Rmp1UnJuUFZQZi8rRWNHem9QNjE4SG9P?=
- =?utf-8?B?cmhKM2NMeVZYR1ZmRVpXYnlXVVZWaHB4VWdXTGN0MHpvT0ZaNDR4a1VzbEZX?=
- =?utf-8?B?eHhQRHQ1SjhQMFdzTWtrWmNzanVKa2hMS3A2U3cwNktxK0dPcnU3dnlqTlNC?=
- =?utf-8?B?bmpFQjM1eDJUWGRVMUpzMFgrNERlME5SYjM4eWkxSXM2MGcwTmNVWWk5eU4y?=
- =?utf-8?B?eG12Ylk5alZLR3RISytnSXVpNGxZazkrWXVQTFdkQ2g4K3ZMOG5XcXRwQlV3?=
- =?utf-8?B?L2NRWEdMZjNyUTBza3ZpdHRkUGlSbC9lZFZ3TG5NNU5hcWlKT1hIZGtVc1RH?=
- =?utf-8?B?cTNEcTBwR05GYXZiL05JYWs2cXhKOGdxYWV6bEVjblNGR3pOZFpVN3c3czdn?=
- =?utf-8?B?KzN4RjlvNWxudk5teStNREZpaVNsdzRtbzZ4eEpidjArRnR1aDkycFVwWktJ?=
- =?utf-8?B?ZHlYajg4S1h3MllNdnQ3dUF3VXZSYlFIZ0dwL0JUekZheFpteGc2aUpQWG1F?=
- =?utf-8?B?THZVdHVDeGpXL0h5MmkzVmVpVDdCeTVZOUtITisrU2FUbitkWUYxam9vM3FB?=
- =?utf-8?B?L2FHckZNeFVwenpOdGdYQXBJTUxnc092WG9ZQklFQTJlN29OaVVCQTNlMFQw?=
- =?utf-8?B?TjJwemJkbGxNT3ovUzdUNGZITVNsdmRla2ZtUmhTZER1aFBSeWFZUkRnL3V1?=
- =?utf-8?B?bVBKZnJjMEVHUWs4QXhkTUl3TzZ2UXlRYkVPSGFyVTJnLzh6ZGpSQjNvbVdO?=
- =?utf-8?B?RWcwV0M4cXlVdUFmMThhalZmWEoySzlJM0FKcVF0Q0ZuK2YzMXRZVXlHYTBW?=
- =?utf-8?B?c055WTB2T1U4clhTUXBrTjNiaTJpYmtmS0xhbVhZK0VMWXpDa3pSQ0tqTGtP?=
- =?utf-8?B?ek1UL0o1MFB3MUJ5c2NCYXhKT0dDbkxVTDdlS25kQ0VmUUdmMHkrVlJiRGw5?=
- =?utf-8?B?aUFTUHE5Rmd0bkNUR0RJWGR6LzU5dmdIS0ZQYktoNWdrNURRUUl6SzZ0YW50?=
- =?utf-8?B?eEdjM0pSUEdRTWp6Um9nTnloRzVzaG91VXgyeHJQTERyU25peXZhQkNJd2Zn?=
- =?utf-8?B?WEk1dUpURnErazVRYUMreVdCY2dzU0Y0MWZORDMxMHFjMjZhcm5IbWI1dWVk?=
- =?utf-8?B?dUVjQmpocGtyRnc3bWhKOGNjT0JJc3o4M29saDBjWFBFSTdXdFpTMGRvK21P?=
- =?utf-8?B?VnQ4SnE5SE5MNTdoNC9MbHlaU24vdkFsbURZM3ozMGNta2RtckhJMjFyamdn?=
- =?utf-8?B?U1dSTGsxbldLeFJOMlR2VE84SEJrNlVzcDRVcHVxWFZmQmNVVkdGZTdPbHBE?=
- =?utf-8?B?TEJFdTlTdkNPWm1mSDkzRlROY2ZURnhKSWZoTitDT0JvcEdyRWU2a1ZDS2dw?=
- =?utf-8?B?Ykd3ODBEa2pmcUVFNGJmeStwdEozcWlWaExGaVU5SnFtNlVxN3U0bFhWc2pU?=
- =?utf-8?B?WW56dG1GT3NWTDJGbnE2b0J4L3VpY01qS3N0WVlBY1VxV1laNy9nZUdWT0Rx?=
- =?utf-8?B?b1ZSYjZmZTZ0VjVQQlowTkMzUFdHa2ovaHMyeCtNaXU4a05vRzY3cG5mUXh5?=
- =?utf-8?B?UmdHZlRaaEExWHUybEZGYndJTUQ0dGtXenFjeDBVczZIa21zajhQbVhrcXUx?=
- =?utf-8?B?SzlBdUFzekFmMWZBTDZKendEVDUzOU03cEp4RGZocTMrR1RQaGZhYXFzbk5R?=
- =?utf-8?B?alg5dG9jVXduRURIUlhSbUphZDlrcG01aHQ1K2JpbXRaeEZ1d0ZuOTlMT3Rn?=
- =?utf-8?B?V3Z3em04b29UZ2dpN3RrRWVHY21kVllJdkl6MXh1azhmaTNOOXoza3hGeHFH?=
- =?utf-8?B?bjVRWVQ3eW9GUUFQb0M5OUFZdlBtVHNxdCtJTVA3aVdmZWdTRHpEL0FnQlVZ?=
- =?utf-8?B?R296SnB0cUZvNHh1ZHVNYVRELzNvbVYxclJUdnRWQUp3QkpuY2E5ZzVFZzZw?=
- =?utf-8?B?VTk4bmZPWnhKc1BvV2gzMElYdERDcmluMnl2eENNZy9yeXRERXhPMVdWUWxD?=
- =?utf-8?B?aDc2RGpnam9MZmpaTWhhM0FNOE5MU25OSTVNOTh4cXJNZE8va0MxWXhpNXFI?=
- =?utf-8?B?dnBOY0J1eUxqRzZKQWxqUGhhU3gybGhjWCtQUFlZYytBMjlzVmcvZHRBMGEy?=
- =?utf-8?B?eVhGSmtNTXhUaFRpaWpjMFdjVUM1M1h3c1JyMjBhTi8vNUhkc1hiRlNRR2JX?=
- =?utf-8?B?Z3gwMnNoQVQ0b3dnSmQ5VVRrZ3hsdjRZOHVQei9MQVpEVEd2ZEtmOUNWbjRt?=
- =?utf-8?Q?sSjZ8XO4+E//lOEf7X?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1fc9b058-3c18-4851-61fa-08de58788545
-X-MS-Exchange-CrossTenant-AuthSource: DS7PR12MB9473.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Jan 2026 23:06:19.0624 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: pz6g7bGuj+xu9UdL3KZtvDS3UYo0Yzcs/iQWcDbRWRFnuUXJLLQDujK0koq4O9A2
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CYYPR12MB8703
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260120143459.9485-3-thomas.hellstrom@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -179,324 +74,163 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 20 Jan 2026, at 18:02, Jordan Niethe wrote:
+Hi Thomas,
 
-> Hi,
->
-> On 21/1/26 09:53, Zi Yan wrote:
->> On 20 Jan 2026, at 17:33, Jordan Niethe wrote:
->>
->>> On 14/1/26 07:04, Zi Yan wrote:
->>>> On 7 Jan 2026, at 4:18, Jordan Niethe wrote:
->>>>
->>>>> Currently when creating these device private struct pages, the first
->>>>> step is to use request_free_mem_region() to get a range of physical
->>>>> address space large enough to represent the devices memory. This
->>>>> allocated physical address range is then remapped as device private
->>>>> memory using memremap_pages().
->>>>>
->>>>> Needing allocation of physical address space has some problems:
->>>>>
->>>>>     1) There may be insufficient physical address space to represent =
-the
->>>>>        device memory. KASLR reducing the physical address space and V=
-M
->>>>>        configurations with limited physical address space increase th=
-e
->>>>>        likelihood of hitting this especially as device memory increas=
-es. This
->>>>>        has been observed to prevent device private from being initial=
-ized.
->>>>>
->>>>>     2) Attempting to add the device private pages to the linear map a=
-t
->>>>>        addresses beyond the actual physical memory causes issues on
->>>>>        architectures like aarch64 meaning the feature does not work t=
-here.
->>>>>
->>>>> Instead of using the physical address space, introduce a device priva=
-te
->>>>> address space and allocate devices regions from there to represent th=
-e
->>>>> device private pages.
->>>>>
->>>>> Introduce a new interface memremap_device_private_pagemap() that
->>>>> allocates a requested amount of device private address space and crea=
-tes
->>>>> the necessary device private pages.
->>>>>
->>>>> To support this new interface, struct dev_pagemap needs some changes:
->>>>>
->>>>>     - Add a new dev_pagemap::nr_pages field as an input parameter.
->>>>>     - Add a new dev_pagemap::pages array to store the device
->>>>>       private pages.
->>>>>
->>>>> When using memremap_device_private_pagemap(), rather then passing in
->>>>> dev_pagemap::ranges[dev_pagemap::nr_ranges] of physical address space=
- to
->>>>> be remapped, dev_pagemap::nr_ranges will always be 1, and the device
->>>>> private range that is reserved is returned in dev_pagemap::range.
->>>>>
->>>>> Forbid calling memremap_pages() with dev_pagemap::ranges::type =3D
->>>>> MEMORY_DEVICE_PRIVATE.
->>>>>
->>>>> Represent this device private address space using a new
->>>>> device_private_pgmap_tree maple tree. This tree maps a given device
->>>>> private address to a struct dev_pagemap, where a specific device priv=
-ate
->>>>> page may then be looked up in that dev_pagemap::pages array.
->>>>>
->>>>> Device private address space can be reclaimed and the assoicated devi=
-ce
->>>>> private pages freed using the corresponding new
->>>>> memunmap_device_private_pagemap() interface.
->>>>>
->>>>> Because the device private pages now live outside the physical addres=
-s
->>>>> space, they no longer have a normal PFN. This means that page_to_pfn(=
-),
->>>>> et al. are no longer meaningful.
->>>>>
->>>>> Introduce helpers:
->>>>>
->>>>>     - device_private_page_to_offset()
->>>>>     - device_private_folio_to_offset()
->>>>>
->>>>> to take a given device private page / folio and return its offset wit=
-hin
->>>>> the device private address space.
->>>>>
->>>>> Update the places where we previously converted a device private page=
- to
->>>>> a PFN to use these new helpers. When we encounter a device private
->>>>> offset, instead of looking up its page within the pagemap use
->>>>> device_private_offset_to_page() instead.
->>>>>
->>>>> Update the existing users:
->>>>>
->>>>>    - lib/test_hmm.c
->>>>>    - ppc ultravisor
->>>>>    - drm/amd/amdkfd
->>>>>    - gpu/drm/xe
->>>>>    - gpu/drm/nouveau
->>>>>
->>>>> to use the new memremap_device_private_pagemap() interface.
->>>>>
->>>>> Signed-off-by: Jordan Niethe <jniethe@nvidia.com>
->>>>> Signed-off-by: Alistair Popple <apopple@nvidia.com>
->>>>>
->>>>> ---
->>>>>
->>>>> NOTE: The updates to the existing drivers have only been compile test=
-ed.
->>>>> I'll need some help in testing these drivers.
->>>>>
->>>>> v1:
->>>>> - Include NUMA node paramater for memremap_device_private_pagemap()
->>>>> - Add devm_memremap_device_private_pagemap() and friends
->>>>> - Update existing users of memremap_pages():
->>>>>       - ppc ultravisor
->>>>>       - drm/amd/amdkfd
->>>>>       - gpu/drm/xe
->>>>>       - gpu/drm/nouveau
->>>>> - Update for HMM huge page support
->>>>> - Guard device_private_offset_to_page and friends with CONFIG_ZONE_DE=
-VICE
->>>>>
->>>>> v2:
->>>>> - Make sure last member of struct dev_pagemap remains DECLARE_FLEX_AR=
-RAY(struct range, ranges);
->>>>> ---
->>>>>    Documentation/mm/hmm.rst                 |  11 +-
->>>>>    arch/powerpc/kvm/book3s_hv_uvmem.c       |  41 ++---
->>>>>    drivers/gpu/drm/amd/amdkfd/kfd_migrate.c |  23 +--
->>>>>    drivers/gpu/drm/nouveau/nouveau_dmem.c   |  35 ++--
->>>>>    drivers/gpu/drm/xe/xe_svm.c              |  28 +---
->>>>>    include/linux/hmm.h                      |   3 +
->>>>>    include/linux/leafops.h                  |  16 +-
->>>>>    include/linux/memremap.h                 |  64 +++++++-
->>>>>    include/linux/migrate.h                  |   6 +-
->>>>>    include/linux/mm.h                       |   2 +
->>>>>    include/linux/rmap.h                     |   5 +-
->>>>>    include/linux/swapops.h                  |  10 +-
->>>>>    lib/test_hmm.c                           |  69 ++++----
->>>>>    mm/debug.c                               |   9 +-
->>>>>    mm/memremap.c                            | 193 ++++++++++++++++++-=
-----
->>>>>    mm/mm_init.c                             |   8 +-
->>>>>    mm/page_vma_mapped.c                     |  19 ++-
->>>>>    mm/rmap.c                                |  43 +++--
->>>>>    mm/util.c                                |   5 +-
->>>>>    19 files changed, 391 insertions(+), 199 deletions(-)
->>>>>
->>>> <snip>
->>>>
->>>>> diff --git a/include/linux/mm.h b/include/linux/mm.h
->>>>> index e65329e1969f..b36599ab41ba 100644
->>>>> --- a/include/linux/mm.h
->>>>> +++ b/include/linux/mm.h
->>>>> @@ -2038,6 +2038,8 @@ static inline unsigned long memdesc_section(mem=
-desc_flags_t mdf)
->>>>>     */
->>>>>    static inline unsigned long folio_pfn(const struct folio *folio)
->>>>>    {
->>>>> +	VM_BUG_ON(folio_is_device_private(folio));
->>>>
->>>> Please use VM_WARN_ON instead.
->>>
->>> ack.
->>>
->>>>
->>>>> +
->>>>>    	return page_to_pfn(&folio->page);
->>>>>    }
->>>>>
->>>>> diff --git a/include/linux/rmap.h b/include/linux/rmap.h
->>>>> index 57c63b6a8f65..c1561a92864f 100644
->>>>> --- a/include/linux/rmap.h
->>>>> +++ b/include/linux/rmap.h
->>>>> @@ -951,7 +951,7 @@ static inline unsigned long page_vma_walk_pfn(uns=
-igned long pfn)
->>>>>    static inline unsigned long folio_page_vma_walk_pfn(const struct f=
-olio *folio)
->>>>>    {
->>>>>    	if (folio_is_device_private(folio))
->>>>> -		return page_vma_walk_pfn(folio_pfn(folio)) |
->>>>> +		return page_vma_walk_pfn(device_private_folio_to_offset(folio)) |
->>>>>    		       PVMW_PFN_DEVICE_PRIVATE;
->>>>>
->>>>>    	return page_vma_walk_pfn(folio_pfn(folio));
->>>>> @@ -959,6 +959,9 @@ static inline unsigned long folio_page_vma_walk_p=
-fn(const struct folio *folio)
->>>>>
->>>>>    static inline struct page *page_vma_walk_pfn_to_page(unsigned long=
- pvmw_pfn)
->>>>>    {
->>>>> +	if (pvmw_pfn & PVMW_PFN_DEVICE_PRIVATE)
->>>>> +		return device_private_offset_to_page(pvmw_pfn >> PVMW_PFN_SHIFT);
->>>>> +
->>>>>    	return pfn_to_page(pvmw_pfn >> PVMW_PFN_SHIFT);
->>>>>    }
->>>>
->>>> <snip>
->>>>
->>>>> diff --git a/mm/page_vma_mapped.c b/mm/page_vma_mapped.c
->>>>> index 96c525785d78..141fe5abd33f 100644
->>>>> --- a/mm/page_vma_mapped.c
->>>>> +++ b/mm/page_vma_mapped.c
->>>>> @@ -107,6 +107,7 @@ static bool map_pte(struct page_vma_mapped_walk *=
-pvmw, pmd_t *pmdvalp,
->>>>>    static bool check_pte(struct page_vma_mapped_walk *pvmw, unsigned =
-long pte_nr)
->>>>>    {
->>>>>    	unsigned long pfn;
->>>>> +	bool device_private =3D false;
->>>>>    	pte_t ptent =3D ptep_get(pvmw->pte);
->>>>>
->>>>>    	if (pvmw->flags & PVMW_MIGRATION) {
->>>>> @@ -115,6 +116,9 @@ static bool check_pte(struct page_vma_mapped_walk=
- *pvmw, unsigned long pte_nr)
->>>>>    		if (!softleaf_is_migration(entry))
->>>>>    			return false;
->>>>>
->>>>> +		if (softleaf_is_migration_device_private(entry))
->>>>> +			device_private =3D true;
->>>>> +
->>>>>    		pfn =3D softleaf_to_pfn(entry);
->>>>>    	} else if (pte_present(ptent)) {
->>>>>    		pfn =3D pte_pfn(ptent);
->>>>> @@ -127,8 +131,14 @@ static bool check_pte(struct page_vma_mapped_wal=
-k *pvmw, unsigned long pte_nr)
->>>>>    			return false;
->>>>>
->>>>>    		pfn =3D softleaf_to_pfn(entry);
->>>>> +
->>>>> +		if (softleaf_is_device_private(entry))
->>>>> +			device_private =3D true;
->>>>>    	}
->>>>>
->>>>> +	if ((device_private) ^ !!(pvmw->pfn & PVMW_PFN_DEVICE_PRIVATE))
->>>>> +		return false;
->>>>> +
->>>>>    	if ((pfn + pte_nr - 1) < (pvmw->pfn >> PVMW_PFN_SHIFT))
->>>>>    		return false;
->>>>>    	if (pfn > ((pvmw->pfn >> PVMW_PFN_SHIFT) + pvmw->nr_pages - 1))
->>>>> @@ -137,8 +147,11 @@ static bool check_pte(struct page_vma_mapped_wal=
-k *pvmw, unsigned long pte_nr)
->>>>>    }
->>>>>
->>>>>    /* Returns true if the two ranges overlap.  Careful to not overflo=
-w. */
->>>>> -static bool check_pmd(unsigned long pfn, struct page_vma_mapped_walk=
- *pvmw)
->>>>> +static bool check_pmd(unsigned long pfn, bool device_private, struct=
- page_vma_mapped_walk *pvmw)
->>>>>    {
->>>>> +	if ((device_private) ^ !!(pvmw->pfn & PVMW_PFN_DEVICE_PRIVATE))
->>>>> +		return false;
->>>>> +
->>>>>    	if ((pfn + HPAGE_PMD_NR - 1) < (pvmw->pfn >> PVMW_PFN_SHIFT))
->>>>>    		return false;
->>>>>    	if (pfn > (pvmw->pfn >> PVMW_PFN_SHIFT) + pvmw->nr_pages - 1)
->>>>> @@ -255,6 +268,8 @@ bool page_vma_mapped_walk(struct page_vma_mapped_=
-walk *pvmw)
->>>>>
->>>>>    				if (!softleaf_is_migration(entry) ||
->>>>>    				    !check_pmd(softleaf_to_pfn(entry),
->>>>> +					       softleaf_is_device_private(entry) ||
->>>>> +					       softleaf_is_migration_device_private(entry),
->>>>>    					       pvmw))
->>>>>    					return not_found(pvmw);
->>>>>    				return true;
->>>>> @@ -262,7 +277,7 @@ bool page_vma_mapped_walk(struct page_vma_mapped_=
-walk *pvmw)
->>>>>    			if (likely(pmd_trans_huge(pmde))) {
->>>>>    				if (pvmw->flags & PVMW_MIGRATION)
->>>>>    					return not_found(pvmw);
->>>>> -				if (!check_pmd(pmd_pfn(pmde), pvmw))
->>>>> +				if (!check_pmd(pmd_pfn(pmde), false, pvmw))
->>>>>    					return not_found(pvmw);
->>>>>    				return true;
->>>>>    			}
->>>>
->>>> It seems to me that you can add a new flag like =E2=80=9Cbool is_devic=
-e_private=E2=80=9D to
->>>> indicate whether pfn is a device private index instead of pfn without
->>>> manipulating pvmw->pfn itself.
->>>
->>> We could do it like that, however my concern with using a new param was=
- that
->>> storing this info seperately might make it easier to misuse a device pr=
-ivate
->>> index as a regular pfn.
->>>
->>> It seemed like it could be easy to overlook both when creating the pvmw=
- and
->>> then when accessing the pfn.
->>
->> That is why I asked for a helper function like page_vma_walk_pfn(pvmw) t=
-o
->> return the converted pfn instead of pvmw->pfn directly. You can add a co=
-mment
->> to ask people to use helper function and even mark pvmw->pfn /* do not u=
-se
->> directly */.
->
-> Yeah I agree that is a good idea.
->
->>
->> In addition, your patch manipulates pfn by left shifting it by 1. Are yo=
-u sure
->> there is no weird arch having pfns with bit 63 being 1? Your change coul=
-d
->> break it, right?
->
-> Currently for migrate pfns we left shift by pfns by MIGRATE_PFN_SHIFT (6)=
-, so I
-> thought doing something similiar here should be safe.
+kernel test robot noticed the following build errors:
 
-Yeah, but that limits to archs supporting HMM. page_vma_mapped_walk is used
-by almost every arch, so it has a broader impact.
+[auto build test ERROR on drm-xe/drm-xe-next]
+[also build test ERROR on drm/drm-next drm-i915/for-linux-next drm-tip/drm-tip next-20260120]
+[cannot apply to drm-misc/drm-misc-next daeinki-drm-exynos/exynos-drm-next drm-i915/for-linux-next-fixes linus/master v6.19-rc6]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Best Regards,
-Yan, Zi
+url:    https://github.com/intel-lab-lkp/linux/commits/Thomas-Hellstr-m/drm-drm-xe-Fix-xe-userptr-in-the-absence-of-CONFIG_DEVICE_PRIVATE/20260120-223858
+base:   https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
+patch link:    https://lore.kernel.org/r/20260120143459.9485-3-thomas.hellstrom%40linux.intel.com
+patch subject: [PATCH v2 2/2] drm/xe: Select CONFIG_DEVICE_PRIVATE when DRM_XE_GPUSVM is selected
+config: parisc-allmodconfig (https://download.01.org/0day-ci/archive/20260121/202601210629.wmt9lHUu-lkp@intel.com/config)
+compiler: hppa-linux-gcc (GCC) 15.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260121/202601210629.wmt9lHUu-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202601210629.wmt9lHUu-lkp@intel.com/
+
+All error/warnings (new ones prefixed by >>):
+
+   fs/dax.c: In function 'copy_cow_page_dax':
+>> fs/dax.c:1018:9: error: implicit declaration of function 'copy_user_page'; did you mean 'copy_to_user_page'? [-Wimplicit-function-declaration]
+    1018 |         copy_user_page(vto, kaddr, vmf->address, vmf->cow_page);
+         |         ^~~~~~~~~~~~~~
+         |         copy_to_user_page
+--
+   mm/memremap.c: In function 'memremap_compat_align':
+>> mm/memremap.c:36:16: error: 'SUBSECTION_SIZE' undeclared (first use in this function); did you mean 'SECTOR_SIZE'?
+      36 |         return SUBSECTION_SIZE;
+         |                ^~~~~~~~~~~~~~~
+         |                SECTOR_SIZE
+   mm/memremap.c:36:16: note: each undeclared identifier is reported only once for each function it appears in
+   mm/memremap.c: In function 'pageunmap_range':
+>> mm/memremap.c:96:9: error: implicit declaration of function 'remove_pfn_range_from_zone'; did you mean 'remap_pfn_range_complete'? [-Wimplicit-function-declaration]
+      96 |         remove_pfn_range_from_zone(page_zone(first_page), PHYS_PFN(range->start),
+         |         ^~~~~~~~~~~~~~~~~~~~~~~~~~
+         |         remap_pfn_range_complete
+>> mm/memremap.c:99:17: error: implicit declaration of function '__remove_pages'; did you mean 'move_pages'? [-Wimplicit-function-declaration]
+      99 |                 __remove_pages(PHYS_PFN(range->start),
+         |                 ^~~~~~~~~~~~~~
+         |                 move_pages
+>> mm/memremap.c:102:17: error: implicit declaration of function 'arch_remove_memory'; did you mean 'remove_memory'? [-Wimplicit-function-declaration]
+     102 |                 arch_remove_memory(range->start, range_len(range),
+         |                 ^~~~~~~~~~~~~~~~~~
+         |                 remove_memory
+   mm/memremap.c: At top level:
+>> mm/memremap.c:144:60: warning: 'struct mhp_params' declared inside parameter list will not be visible outside of this definition or declaration
+     144 | static int pagemap_range(struct dev_pagemap *pgmap, struct mhp_params *params,
+         |                                                            ^~~~~~~~~~
+   mm/memremap.c: In function 'pagemap_range':
+>> mm/memremap.c:189:37: error: invalid use of undefined type 'struct mhp_params'
+     189 |                              &params->pgprot);
+         |                                     ^~
+>> mm/memremap.c:193:14: error: implicit declaration of function 'mhp_range_allowed' [-Wimplicit-function-declaration]
+     193 |         if (!mhp_range_allowed(range->start, range_len(range), !is_private)) {
+         |              ^~~~~~~~~~~~~~~~~
+>> mm/memremap.c:212:25: error: implicit declaration of function 'add_pages'; did you mean 'dir_pages'? [-Wimplicit-function-declaration]
+     212 |                 error = add_pages(nid, PHYS_PFN(range->start),
+         |                         ^~~~~~~~~
+         |                         dir_pages
+>> mm/memremap.c:221:25: error: implicit declaration of function 'arch_add_memory' [-Wimplicit-function-declaration]
+     221 |                 error = arch_add_memory(nid, range->start, range_len(range),
+         |                         ^~~~~~~~~~~~~~~
+>> mm/memremap.c:229:17: error: implicit declaration of function 'move_pfn_range_to_zone' [-Wimplicit-function-declaration]
+     229 |                 move_pfn_range_to_zone(zone, PHYS_PFN(range->start),
+         |                 ^~~~~~~~~~~~~~~~~~~~~~
+   mm/memremap.c:230:67: error: invalid use of undefined type 'struct mhp_params'
+     230 |                                 PHYS_PFN(range_len(range)), params->altmap,
+         |                                                                   ^~
+   mm/memremap.c: In function 'memremap_pages':
+>> mm/memremap.c:268:16: error: variable 'params' has initializer but incomplete type
+     268 |         struct mhp_params params = {
+         |                ^~~~~~~~~~
+>> mm/memremap.c:269:18: error: 'struct mhp_params' has no member named 'altmap'
+     269 |                 .altmap = pgmap_altmap(pgmap),
+         |                  ^~~~~~
+>> mm/memremap.c:269:27: warning: excess elements in struct initializer
+     269 |                 .altmap = pgmap_altmap(pgmap),
+         |                           ^~~~~~~~~~~~
+   mm/memremap.c:269:27: note: (near initialization for 'params')
+>> mm/memremap.c:270:18: error: 'struct mhp_params' has no member named 'pgmap'
+     270 |                 .pgmap = pgmap,
+         |                  ^~~~~
+   mm/memremap.c:270:26: warning: excess elements in struct initializer
+     270 |                 .pgmap = pgmap,
+         |                          ^~~~~
+   mm/memremap.c:270:26: note: (near initialization for 'params')
+>> mm/memremap.c:271:18: error: 'struct mhp_params' has no member named 'pgprot'
+     271 |                 .pgprot = PAGE_KERNEL,
+         |                  ^~~~~~
+   In file included from include/linux/shm.h:6,
+                    from include/linux/sched.h:23,
+                    from include/linux/ratelimit.h:6,
+                    from include/linux/dev_printk.h:16,
+                    from include/linux/device.h:15,
+                    from mm/memremap.c:3:
+>> arch/parisc/include/asm/page.h:54:25: warning: excess elements in struct initializer
+      54 | #define __pgprot(x)     ((pgprot_t) { (x) } )
+         |                         ^
+   arch/parisc/include/asm/pgtable.h:241:25: note: in expansion of macro '__pgprot'
+     241 | #define PAGE_KERNEL     __pgprot(_PAGE_KERNEL)
+         |                         ^~~~~~~~
+   mm/memremap.c:271:27: note: in expansion of macro 'PAGE_KERNEL'
+     271 |                 .pgprot = PAGE_KERNEL,
+         |                           ^~~~~~~~~~~
+   arch/parisc/include/asm/page.h:54:25: note: (near initialization for 'params')
+      54 | #define __pgprot(x)     ((pgprot_t) { (x) } )
+         |                         ^
+   arch/parisc/include/asm/pgtable.h:241:25: note: in expansion of macro '__pgprot'
+     241 | #define PAGE_KERNEL     __pgprot(_PAGE_KERNEL)
+         |                         ^~~~~~~~
+   mm/memremap.c:271:27: note: in expansion of macro 'PAGE_KERNEL'
+     271 |                 .pgprot = PAGE_KERNEL,
+         |                           ^~~~~~~~~~~
+>> mm/memremap.c:268:27: error: storage size of 'params' isn't known
+     268 |         struct mhp_params params = {
+         |                           ^~~~~~
+>> mm/memremap.c:268:27: warning: unused variable 'params' [-Wunused-variable]
+
+Kconfig warnings: (for reference only)
+   WARNING: unmet direct dependencies detected for ZONE_DEVICE
+   Depends on [n]: MEMORY_HOTPLUG [=n] && MEMORY_HOTREMOVE [=n] && SPARSEMEM_VMEMMAP [=n]
+   Selected by [m]:
+   - DRM_XE_GPUSVM [=y] && HAS_IOMEM [=y] && DRM [=m] && DRM_XE [=m] && !UML
+
+
+vim +1018 fs/dax.c
+
+429f8de70d9872 Christoph Hellwig 2021-11-29  1002  
+429f8de70d9872 Christoph Hellwig 2021-11-29  1003  static int copy_cow_page_dax(struct vm_fault *vmf, const struct iomap_iter *iter)
+429f8de70d9872 Christoph Hellwig 2021-11-29  1004  {
+60696eb26a37ab Christoph Hellwig 2021-11-29  1005  	pgoff_t pgoff = dax_iomap_pgoff(&iter->iomap, iter->pos);
+cccbce67158290 Dan Williams      2017-01-27  1006  	void *vto, *kaddr;
+cccbce67158290 Dan Williams      2017-01-27  1007  	long rc;
+cccbce67158290 Dan Williams      2017-01-27  1008  	int id;
+cccbce67158290 Dan Williams      2017-01-27  1009  
+cccbce67158290 Dan Williams      2017-01-27  1010  	id = dax_read_lock();
+e511c4a3d2a1f6 Jane Chu          2022-05-13  1011  	rc = dax_direct_access(iter->iomap.dax_dev, pgoff, 1, DAX_ACCESS,
+e511c4a3d2a1f6 Jane Chu          2022-05-13  1012  				&kaddr, NULL);
+cccbce67158290 Dan Williams      2017-01-27  1013  	if (rc < 0) {
+cccbce67158290 Dan Williams      2017-01-27  1014  		dax_read_unlock(id);
+cccbce67158290 Dan Williams      2017-01-27  1015  		return rc;
+cccbce67158290 Dan Williams      2017-01-27  1016  	}
+429f8de70d9872 Christoph Hellwig 2021-11-29  1017  	vto = kmap_atomic(vmf->cow_page);
+429f8de70d9872 Christoph Hellwig 2021-11-29 @1018  	copy_user_page(vto, kaddr, vmf->address, vmf->cow_page);
+f7ca90b160307d Matthew Wilcox    2015-02-16  1019  	kunmap_atomic(vto);
+cccbce67158290 Dan Williams      2017-01-27  1020  	dax_read_unlock(id);
+f7ca90b160307d Matthew Wilcox    2015-02-16  1021  	return 0;
+f7ca90b160307d Matthew Wilcox    2015-02-16  1022  }
+f7ca90b160307d Matthew Wilcox    2015-02-16  1023  
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
