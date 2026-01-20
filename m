@@ -4,63 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A2DFDD262AD
-	for <intel-xe@archiver.kernel.org>; Tue, 20 Jan 2026 23:47:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5AC64D262AB
+	for <intel-xe@archiver.kernel.org>; Wed, 21 Jan 2026 00:02:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 667DE10E674;
-	Tue, 20 Jan 2026 23:47:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1FD3F10E677;
+	Wed, 21 Jan 2026 00:02:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EcDALedF";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Iy/USbJj";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 45DB410E674;
- Tue, 20 Jan 2026 23:47:44 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B7B9110E674
+ for <intel-xe@lists.freedesktop.org>; Wed, 21 Jan 2026 00:02:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1768952864; x=1800488864;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=zrhX0W/qJ0JAmaKwv5c/jWnQl48afpPBI7sL9OmEBsw=;
- b=EcDALedF/Zzq+nSZUfmBfyz2wrB38SIY37W8hTQgoSHX8BxSvy+3POe+
- CVmgVoDWumD9p8Yp7GowA7NSWtFiNDWx5GOKFwDcJCxmBgS2UF61TP84D
- y2gV3WiyhzByb+VLE/hC86+ZKjoUINYvozL6Le/JwevMhEdx5/6hyFGgW
- ctQ2fViUPUrfGyHvqaFRpg7iOiHj6V++tjo+OZPqdiJzs/qH7KxedeyaR
- OS0f0o1MrJbtCKnE0hvcvm+8UF8HLEjMbInRJdn+RLYkgOrKyhbyEEZ7m
- YUvdDTQQ17+9GprqCTZ3FPjTF1Ra4qkLfFx2nOmFR5tmbSEoDBBSAO7fY Q==;
-X-CSE-ConnectionGUID: 6YkL6p1NQ/6oddUw1nizgg==
-X-CSE-MsgGUID: pAQmnz+bSUaMCG6IewlcfQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11677"; a="87752851"
-X-IronPort-AV: E=Sophos;i="6.21,241,1763452800"; d="scan'208";a="87752851"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jan 2026 15:47:44 -0800
-X-CSE-ConnectionGUID: OVwLqeimSCmv6/HQCoV68A==
-X-CSE-MsgGUID: uNZlVuXQQJml0ngiFFgz8Q==
+ t=1768953754; x=1800489754;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=ECnnzCN/wP58DUlCRNK7iMRJSv/n7WU2AYoz6wo83T8=;
+ b=Iy/USbJjc/9Or8EsNnnOMpfEoTUiJawrWOEN39OShpRrUzgMtcThtLU9
+ DQHSnSbvMRZwZ/xogkdB7fCHlXz/4b96xOwMesN8lrA8Eqrj3fFuQBw4P
+ vTDkvMGbwhyZHhtBylhdik83JIxRx5/pCQMmCRzweFvGqdKKr33DeLV01
+ SQGD/OGD/I+KdwN5ZIUA0UgWLPPyseNyQhCDfi9VrAbkhmfNaMmSZHQZf
+ jzVO+mRlj46PqVbrOBLsJLGttnuUb4c1KudX0VNK82RRO0ERVHT7hxAAF
+ NkI1p9CAMOaCPZrfzypa9E0s0J1pLNtdBXUoqs55oEVbNGWP9aVWZohSN Q==;
+X-CSE-ConnectionGUID: WpRxO3FtTXyU2w0O2LArrQ==
+X-CSE-MsgGUID: 4BmTm83jTVO1hyqyitlC1w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11677"; a="81553055"
+X-IronPort-AV: E=Sophos;i="6.21,241,1763452800"; d="scan'208";a="81553055"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jan 2026 16:02:33 -0800
+X-CSE-ConnectionGUID: MnrNvj9dTzqhQ/S06sgJ6A==
+X-CSE-MsgGUID: p54ZCszcSSq2d9Oj2jtVTg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,241,1763452800"; d="scan'208";a="236932349"
-Received: from debox1-desk4.jf.intel.com (HELO localhost) ([10.88.27.138])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jan 2026 15:47:43 -0800
-Date: Tue, 20 Jan 2026 15:47:43 -0800
-From: David Box <david.e.box@linux.intel.com>
-To: Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>
-Cc: thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com, 
- irenic.rajneesh@gmail.com, srinivas.pandruvada@linux.intel.com, 
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- xi.pardee@linux.intel.comn, 
- Hans de Goede <hansg@kernel.org>, LKML <linux-kernel@vger.kernel.org>, 
- platform-driver-x86@vger.kernel.org
-Subject: Re: [PATCH 2/4] platform/x86/intel/vsec: Switch exported helpers
- from pci_dev to device
-Message-ID: <wrljiogi3nturdsnevfdsxs3nuzrox7bimlvaqtyedxrfswsit@yawpecrjk7f2>
-References: <20260107002153.63830-1-david.e.box@linux.intel.com>
- <20260107002153.63830-3-david.e.box@linux.intel.com>
- <6641348b-a9d0-360d-0080-46f95fd3d1a7@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="6.21,241,1763452800"; d="scan'208";a="205905355"
+Received: from vbelgaum-ubuntu.fm.intel.com ([10.1.39.23])
+ by fmviesa007.fm.intel.com with ESMTP; 20 Jan 2026 16:02:33 -0800
+From: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Vinay Belgaumkar <vinay.belgaumkar@intel.com>,
+ Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+Subject: [PATCH] drm/xe/ptl: Disable DCC on PTL
+Date: Tue, 20 Jan 2026 15:59:26 -0800
+Message-Id: <20260120235926.4040336-1-vinay.belgaumkar@intel.com>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <6641348b-a9d0-360d-0080-46f95fd3d1a7@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,72 +65,69 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Jan 15, 2026 at 03:08:09PM +0200, Ilpo Järvinen wrote:
-> On Tue, 6 Jan 2026, David E. Box wrote:
-> 
-> > Preparatory refactor for ACPI-enumerated PMT endpoints. Several exported
-> > PMT/VSEC interfaces and structs carried struct pci_dev * even though
-> > callers only need a generic struct device. Move those to struct device * so
-> > the same APIs work for PCI and ACPI parents.
-> > 
-> > Signed-off-by: David E. Box <david.e.box@linux.intel.com>
-> > ---
-> >  drivers/gpu/drm/xe/xe_debugfs.c               |  2 +-
-> >  drivers/gpu/drm/xe/xe_hwmon.c                 |  2 +-
-> >  drivers/gpu/drm/xe/xe_vsec.c                  |  7 +-
-> >  drivers/gpu/drm/xe/xe_vsec.h                  |  2 +-
-> >  drivers/platform/x86/intel/pmc/core.c         |  4 +-
-> >  .../platform/x86/intel/pmc/ssram_telemetry.c  |  2 +-
-> >  drivers/platform/x86/intel/pmt/class.c        |  8 +-
-> >  drivers/platform/x86/intel/pmt/class.h        |  4 +-
-> >  drivers/platform/x86/intel/pmt/discovery.c    |  4 +-
-> >  drivers/platform/x86/intel/pmt/telemetry.c    | 13 ++--
-> >  drivers/platform/x86/intel/pmt/telemetry.h    | 11 ++-
-> >  drivers/platform/x86/intel/sdsi.c             |  5 +-
-> >  drivers/platform/x86/intel/vsec.c             | 74 +++++++++++--------
-> >  drivers/platform/x86/intel/vsec_tpmi.c        |  6 +-
-> >  include/linux/intel_vsec.h                    | 18 ++---
-> >  15 files changed, 86 insertions(+), 76 deletions(-)
-> > 
-> 
+On PTL, the recommendation is to disable DCC(Duty Cycle Control) as
+it may cause some regressions due to added latencies.
 
-...
+Fixes: 5cdb71d3b0db ("drm/xe/ptl: Add GuC FW definition for PTL")
+Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Signed-off-by: Vinay Belgaumkar<vinay.belgaumkar@intel.com>
+---
+ drivers/gpu/drm/xe/xe_guc_pc.c | 34 ++++++++++++++++++++++++++++++++++
+ 1 file changed, 34 insertions(+)
 
-> > @@ -630,7 +634,7 @@ static void intel_vsec_skip_missing_dependencies(struct pci_dev *pdev)
-> >  
-> >  static int intel_vsec_pci_probe(struct pci_dev *pdev, const struct pci_device_id *id)
-> >  {
-> > -	struct intel_vsec_platform_info *info;
-> > +	struct intel_vsec_platform_info info, *info_temp;
-> >  	struct vsec_priv *priv;
-> >  	int num_caps, ret;
-> >  	int run_once = 0;
-> > @@ -641,22 +645,25 @@ static int intel_vsec_pci_probe(struct pci_dev *pdev, const struct pci_device_id
-> >  		return ret;
-> >  
-> >  	pci_save_state(pdev);
-> > -	info = (struct intel_vsec_platform_info *)id->driver_data;
-> > -	if (!info)
-> > +	info_temp = (struct intel_vsec_platform_info *)id->driver_data;
-> > +	if (!info_temp)
-> >  		return -EINVAL;
-> >  
-> > +	/* XXX: Needs better fix */
-> > +	info = *info_temp;
-> > +
-> >  	priv = devm_kzalloc(&pdev->dev, sizeof(*priv), GFP_KERNEL);
-> >  	if (!priv)
-> >  		return -ENOMEM;
-> >  
-> > -	priv->info = info;
-> > +	priv->info = &info;
-> >  	pci_set_drvdata(pdev, priv);
-> 
-> What's going on here??? 'info' is a stack variable and you're taking 
-> a pointer of it into priv/drvdata??
+diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_pc.c
+index 54702a0fd05b..5e5495a39a3c 100644
+--- a/drivers/gpu/drm/xe/xe_guc_pc.c
++++ b/drivers/gpu/drm/xe/xe_guc_pc.c
+@@ -1198,6 +1198,36 @@ int xe_guc_pc_set_power_profile(struct xe_guc_pc *pc, const char *buf)
+ 	return ret;
+ }
+ 
++static int pc_action_set_dcc(struct xe_guc_pc *pc, bool enable)
++{
++	int ret;
++
++	ret = pc_action_set_param(pc,
++				  SLPC_PARAM_TASK_ENABLE_DCC,
++				  enable);
++	if (!ret)
++		return pc_action_set_param(pc,
++					   SLPC_PARAM_TASK_DISABLE_DCC,
++					   !enable);
++	else
++		return ret;
++}
++
++static int pc_modify_defaults(struct xe_guc_pc *pc)
++{
++	struct xe_device *xe = pc_to_xe(pc);
++	struct xe_gt *gt = pc_to_gt(pc);
++	int ret = 0;
++
++	if (xe->info.platform == XE_PANTHERLAKE) {
++		ret = pc_action_set_dcc(pc, false);
++		if (unlikely(ret))
++			xe_gt_err(gt, "Failed to modify DCC default: %pe\n", ERR_PTR(ret));
++	}
++
++	return ret;
++}
++
+ /**
+  * xe_guc_pc_start - Start GuC's Power Conservation component
+  * @pc: Xe_GuC_PC instance
+@@ -1249,6 +1279,10 @@ int xe_guc_pc_start(struct xe_guc_pc *pc)
+ 			   ktime_ms_delta(ktime_get(), earlier));
+ 	}
+ 
++	ret = pc_modify_defaults(pc);
++	if (ret)
++		return ret;
++
+ 	ret = pc_init_freqs(pc);
+ 	if (ret)
+ 		return ret;
+-- 
+2.38.1
 
-Oy vey. This chunk shouldn't even be here. It was part of an incomplete
-refactor of code from heap to stack that I ended up dropping anyway.
-Sorry for the noise. Ack on everything else. Thanks Ilpo.
-
-David
