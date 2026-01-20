@@ -4,66 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 73D98D2ECF7
-	for <intel-xe@archiver.kernel.org>; Tue, 20 Jan 2026 09:46:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9E38ED2ECF7
+	for <intel-xe@archiver.kernel.org>; Tue, 20 Jan 2026 10:40:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 371FF10E599;
-	Tue, 20 Jan 2026 09:46:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4BA9710E5B9;
+	Tue, 20 Jan 2026 10:40:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="dLp9ReyQ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="j6fwBIIV";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7C93E10E3B1;
- Tue, 20 Jan 2026 09:46:05 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id 1D0BC41908;
- Tue, 20 Jan 2026 09:46:05 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0B94BC16AAE;
- Tue, 20 Jan 2026 09:46:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1768902365;
- bh=xwqfvmhHmuW9plUqJwJFOo0A9JPdncx7ymGaNl95+yo=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=dLp9ReyQRpZBQ1HsP4UfwVvklS8InFrF5hZROHOsUQf2ANERezVMKk+6yLg6Ao4g3
- bLcG3imT0sMt+H8fCaljcj6H6q3C49oKM5UFuq9mCGfKKoc58e7IfUyEjHp9yyDWly
- YIKTxAK65ASJJqdGUsUzRrjLdUxxrZkSb5a45Yin99EzC3KcC/KU54U44uAJoCTHCk
- /GXbSQK/AWWMtHtI6tfkHgvO0RI0YfUByVjh5FRuPknr3l7QRpVrbBG7WUGy8+TysZ
- sOw9jD1XrRQTSSUqXvrM/yMlG1kzWM8fP+8vKPFCkbcyIu4rYCttJvTje8CuUxTa6t
- RL0gf/JISbozw==
-Date: Tue, 20 Jan 2026 11:45:59 +0200
-From: Leon Romanovsky <leon@kernel.org>
-To: Jason Gunthorpe <jgg@ziepe.ca>
-Cc: Sumit Semwal <sumit.semwal@linaro.org>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Gerd Hoffmann <kraxel@redhat.com>,
- Dmitry Osipenko <dmitry.osipenko@collabora.com>,
- Gurchetan Singh <gurchetansingh@chromium.org>,
- Chia-I Wu <olvaffe@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Kevin Tian <kevin.tian@intel.com>, Joerg Roedel <joro@8bytes.org>,
- Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
- Alex Williamson <alex@shazbot.org>, linux-media@vger.kernel.org,
- dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org,
- linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- virtualization@lists.linux.dev, intel-xe@lists.freedesktop.org,
- linux-rdma@vger.kernel.org, iommu@lists.linux.dev, kvm@vger.kernel.org
-Subject: Re: [PATCH v2 2/4] dma-buf: Document revoke semantics
-Message-ID: <20260120094559.GR13201@unreal>
-References: <20260118-dmabuf-revoke-v2-0-a03bb27c0875@nvidia.com>
- <20260118-dmabuf-revoke-v2-2-a03bb27c0875@nvidia.com>
- <20260119164421.GF961572@ziepe.ca>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 71D8310E5B4;
+ Tue, 20 Jan 2026 10:40:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1768905611; x=1800441611;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=19HpFk7+oEye/qKpJBdwosPV0832nvoY+MY8VcJ+HTI=;
+ b=j6fwBIIVQ92yOAsHkJrqY5rDXvUE4TzBz5tz/E0cnYrIGhPHGMSlZyXg
+ cZHf11CzYODOFN37539kqOUtVzZVXA2YufNq2SPpuTn3BNZbR1qb/o8pt
+ 4YCQ1zXnPZGvqeav4TAAl4X0MCMBfAer8NR4uDp2WLKvqwC5MbTH9RcEj
+ GhBOGYh1LDTgf3RgKAC7dwR40Gca/Uqfebi7KD9ZSpau53za4qrWIWYH+
+ F2j9TKQLR9BqLfNwkdiIlR5e1FezLSMy6QHOgPawdLc2w/TnC9NeIE04x
+ egdYT+9gc3HFSaMMWHFb4Z72aAwHE6BqTz1rrAcI7MLnjPhjSNAQuY6Vg g==;
+X-CSE-ConnectionGUID: S57sy8DHRCKAMGqyLtqmVQ==
+X-CSE-MsgGUID: Ps7ObqiJTMq7y3qiTjIEQA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11676"; a="70164364"
+X-IronPort-AV: E=Sophos;i="6.21,240,1763452800"; d="scan'208";a="70164364"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jan 2026 02:40:11 -0800
+X-CSE-ConnectionGUID: WGBjyGQpRHODR5WRhf9njw==
+X-CSE-MsgGUID: pUBOr/hGRb67HCtykSjq3A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,240,1763452800"; d="scan'208";a="205889431"
+Received: from amilburn-desk.amilburn-desk (HELO [10.245.244.235])
+ ([10.245.244.235])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jan 2026 02:40:09 -0800
+Message-ID: <dd72f248-5bdf-437e-8e30-e70658622e54@intel.com>
+Date: Tue, 20 Jan 2026 10:40:06 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RESEND 1/1] drm/buddy: release free_trees array on buddy mm
+ teardown
+To: Arunpravin Paneer Selvam <arunpravin.paneerselvam@amd.com>,
+ =?UTF-8?Q?Micha=C5=82_Grzelak?= <michal.grzelak@intel.com>,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: matthew.brost@intel.com, thomas.hellstrom@linux.intel.com,
+ rodrigo.vivi@intel.com, Lucas De Marchi <lucas.demarchi@intel.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+References: <20251219193237.1454565-1-michal.grzelak@intel.com>
+ <8c553c8d-2b09-4c2b-a744-dd789e5a1f64@intel.com>
+ <3ffbe456-17c1-46b4-83e1-e26792aa5248@amd.com>
+Content-Language: en-GB
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <3ffbe456-17c1-46b4-83e1-e26792aa5248@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260119164421.GF961572@ziepe.ca>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,117 +76,67 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Jan 19, 2026 at 12:44:21PM -0400, Jason Gunthorpe wrote:
-> On Sun, Jan 18, 2026 at 02:08:46PM +0200, Leon Romanovsky wrote:
-> > From: Leon Romanovsky <leonro@nvidia.com>
-> > 
-> > Document a DMA-buf revoke mechanism that allows an exporter to explicitly
-> > invalidate ("kill") a shared buffer after it has been handed out to
-> > importers. Once revoked, all further CPU and device access is blocked, and
-> > importers consistently observe failure.
-> > 
-> > This requires both importers and exporters to honor the revoke contract.
-> > 
-> > For importers, this means implementing .invalidate_mappings() and calling
-> > dma_buf_pin() after the DMA‑buf is attached to verify the exporter’s support
-> > for revocation.
-> > 
-> > For exporters, this means implementing the .pin() callback, which checks
-> > the DMA‑buf attachment for a valid revoke implementation.
-> > 
-> > Signed-off-by: Leon Romanovsky <leonro@nvidia.com>
-> > ---
-> >  include/linux/dma-buf.h | 19 +++++++++++++++++++
-> >  1 file changed, 19 insertions(+)
-> > 
-> > diff --git a/include/linux/dma-buf.h b/include/linux/dma-buf.h
-> > index 1b397635c793..e0bc0b7119f5 100644
-> > --- a/include/linux/dma-buf.h
-> > +++ b/include/linux/dma-buf.h
-> > @@ -579,6 +579,25 @@ static inline bool dma_buf_is_dynamic(struct dma_buf *dmabuf)
-> >  	return !!dmabuf->ops->pin;
-> >  }
-> >  
-> > +/**
-> > + * dma_buf_attachment_is_revoke - check if a DMA-buf importer implements
-> > + * revoke semantics.
-> > + * @attach: the DMA-buf attachment to check
-> > + *
-> > + * Returns true if DMA-buf importer honors revoke semantics, which is
-> > + * negotiated with the exporter, by making sure that importer implements
-> > + * .invalidate_mappings() callback and calls to dma_buf_pin() after
-> > + * DMA-buf attach.
-> > + */
+On 20/01/2026 05:27, Arunpravin Paneer Selvam wrote:
 > 
-> I think this clarification should also have comment to
-> dma_buf_move_notify(). Maybe like this:
+> On 19/01/26 21:55, Matthew Auld wrote:
+>> On 19/12/2025 19:32, Michał Grzelak wrote:
+>>> During initialization of DRM buddy memory manager at drm_buddy_init,
+>>> mm->free_trees array is allocated for both clear and dirty RB trees.
+>>> During cleanup happening at drm_buddy_fini it is never freed, leading to
+>>> following memory leaks observed on xe module load & unload cycles:
+>>>
+>>>      kmemleak_alloc+0x4a/0x90
+>>>      __kmalloc_cache_noprof+0x488/0x800
+>>>      drm_buddy_init+0xc2/0x330 [drm_buddy]
+>>>      __xe_ttm_vram_mgr_init+0xc3/0x190 [xe]
+>>>      xe_ttm_stolen_mgr_init+0xf5/0x9d0 [xe]
+>>>      xe_device_probe+0x326/0x9e0 [xe]
+>>>      xe_pci_probe+0x39a/0x610 [xe]
+>>>      local_pci_probe+0x47/0xb0
+>>>      pci_device_probe+0xf3/0x260
+>>>      really_probe+0xf1/0x3c0
+>>>      __driver_probe_device+0x8c/0x180
+>>>      driver_probe_device+0x24/0xd0
+>>>      __driver_attach+0x10f/0x220
+>>>      bus_for_each_dev+0x7f/0xe0
+>>>      driver_attach+0x1e/0x30
+>>>      bus_add_driver+0x151/0x290
+>>>
+>>> Deallocate array for free trees when cleaning up buddy memory manager
+>>> in the same way as if going through out_free_tree label.
+>>>
+>>> Fixes: d4cd665c98c1 ("drm/buddy: Separate clear and dirty free block 
+>>> trees")
+>>> Signed-off-by: Michał Grzelak <michal.grzelak@intel.com>
+>>> Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+>>> Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+>>
+>> Arun/Christian, can you merge this one?
 > 
-> @@ -1324,7 +1324,18 @@ EXPORT_SYMBOL_NS_GPL(dma_buf_sgt_unmap_attachment_unlocked, "DMA_BUF");
->   * @dmabuf:    [in]    buffer which is moving
->   *
->   * Informs all attachments that they need to destroy and recreate all their
-> - * mappings.
-> + * mappings. If the attachment is dynamic then the dynamic importer is expected
-> + * to invalidate any caches it has of the mapping result and perform a new
-> + * mapping request before allowing HW to do any further DMA.
-> + *
-> + * If the attachment is pinned then this informs the pinned importer that
-> + * the underlying mapping is no longer available. Pinned importers may take
-> + * this is as a permanent revocation so exporters should not trigger it
-> + * lightly.
-> + *
-> + * For legacy pinned importers that cannot support invalidation this is a NOP.
-> + * Drivers can call dma_buf_attachment_is_revoke() to determine if the
-> + * importer supports this.
->   */
-> 
-> Also it would be nice to document what Christian pointed out regarding
-> fences after move_notify.
+> Sure, I have merged this patch.
 
-I added this comment too:
-diff --git a/drivers/dma-buf/dma-buf.c b/drivers/dma-buf/dma-buf.c
-index 6dd70f7b992d..478127dc63e9 100644
---- a/drivers/dma-buf/dma-buf.c
-+++ b/drivers/dma-buf/dma-buf.c
-@@ -1253,6 +1253,10 @@ EXPORT_SYMBOL_NS_GPL(dma_buf_unmap_attachment_unlocked, "DMA_BUF");
-  * For legacy pinned importers that cannot support invalidation this is a NOP.
-  * Drivers can call dma_buf_attach_revocable() to determine if the importer
-  * supports this.
-+ *
-+ * NOTE: The invalidation triggers asynchronous HW operation and the callers
-+ * need to wait for this operation to complete by calling
-+ * to dma_resv_wait_timeout().
-  */
- void dma_buf_move_notify(struct dma_buf *dmabuf)
- {
+Thanks.
 
 > 
-> > +static inline bool
-> > +dma_buf_attachment_is_revoke(struct dma_buf_attachment *attach)
-> > +{
-> > +	return IS_ENABLED(CONFIG_DMABUF_MOVE_NOTIFY) &&
-> > +	       dma_buf_is_dynamic(attach->dmabuf) &&
-> > +	       (attach->importer_ops &&
-> > +		attach->importer_ops->invalidate_mappings);
-> > +}
+> Regards,
 > 
-> And I don't think we should use a NULL invalidate_mappings function
-> pointer to signal this.
+> Arun.
 > 
-> It sounds like the direction is to require importers to support
-> move_notify, so we should not make it easy to just drop a NULL in the
-> ops struct to get out of the desired configuration.
-> 
-> I suggest defining a function
-> "dma_buf_unsupported_invalidate_mappings" and use
-> EXPORT_SYMBOL_FOR_MODULES so only RDMA can use it. Then check for that
-> along with NULL importer_ops to cover the two cases where it is not
-> allowed.
-> 
-> The only reason RDMA has to use dma_buf_dynamic_attach() is to set the
-> allow_p2p=true ..
+>>
+>>> ---
+>>>   drivers/gpu/drm/drm_buddy.c | 1 +
+>>>   1 file changed, 1 insertion(+)
+>>>
+>>> diff --git a/drivers/gpu/drm/drm_buddy.c b/drivers/gpu/drm/drm_buddy.c
+>>> index 2f279b46bd2c..8308116058cc 100644
+>>> --- a/drivers/gpu/drm/drm_buddy.c
+>>> +++ b/drivers/gpu/drm/drm_buddy.c
+>>> @@ -420,6 +420,7 @@ void drm_buddy_fini(struct drm_buddy *mm)
+>>>         for_each_free_tree(i)
+>>>           kfree(mm->free_trees[i]);
+>>> +    kfree(mm->free_trees);
+>>>       kfree(mm->roots);
+>>>   }
+>>>   EXPORT_SYMBOL(drm_buddy_fini);
+>>
 
-Will do.
-
-> 
-> Jason
