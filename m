@@ -4,56 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EEAB3D26280
-	for <intel-xe@archiver.kernel.org>; Tue, 20 Jan 2026 18:31:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1E33FD26283
+	for <intel-xe@archiver.kernel.org>; Tue, 20 Jan 2026 18:35:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 979F910E647;
-	Tue, 20 Jan 2026 18:31:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D3B4A10E1CF;
+	Tue, 20 Jan 2026 18:35:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EnhBGT7Q";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BVLqLAJM";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0EF6310E647
- for <intel-xe@lists.freedesktop.org>; Tue, 20 Jan 2026 18:31:56 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 90AE010E1CF
+ for <intel-xe@lists.freedesktop.org>; Tue, 20 Jan 2026 18:35:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1768933916; x=1800469916;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=zjA7wGLjOZBMC+gb5ydnY0+mvkTbx2XnXlTMA+0ReEE=;
- b=EnhBGT7QQJ0Y1QyUdf6CtczRDLPaYBhecf613lOVjpYDmmOL4Mmiw8b1
- 8l4dFUoQwuCPE44gSDs5RCDkx4+m991ml+zaiHloLAWJ4vV1PdFzaNjdT
- z69K6JVtVLduSlwpsV5MJRp0NA2Sf6nOrnRPdh7Ks1VTGtli+JX1Kxy7T
- E2H+RucBEvfYTr3w0EgVJQfckWAi6BBr29gPOsZWqOVo1tPDyE5by9xi1
- yHKw82uwnWHX25j/y9DqoZbJzqPGtsJtuv9hZ/rpqgNi2FK0DOnSkZGtc
- uqj17p/HVGd8AByjsOHIxIxq9jx5KF21cHF3O36v67H8qXESKTdkwOAIl w==;
-X-CSE-ConnectionGUID: owAHYvRjSrS4p7+4FXO4Hg==
-X-CSE-MsgGUID: wCfPOq5rQMik+gKVy+kYyA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11677"; a="95628431"
-X-IronPort-AV: E=Sophos;i="6.21,241,1763452800"; d="scan'208";a="95628431"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jan 2026 10:31:56 -0800
-X-CSE-ConnectionGUID: sSIcC6ozRCKOpDcOCVETtg==
-X-CSE-MsgGUID: 8HkF/GEZQf6VrnrTXHAAew==
+ t=1768934139; x=1800470139;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Y0QlVQ54tU44yFRRpdjP/1yM/aObHgudrlF5YJTk7iU=;
+ b=BVLqLAJMQPmvR8UYtmn05VOB5pBUr4n4Mrf/r1uc327Sj4suBAJljS01
+ wqOKL9tBrwZwfvafK9o0rImjcvCjVfmp26/L19aebjNSsf3i8S5YDx6z0
+ xEhUjOVcx7VupbrO1h8qM81a38mSTtPT4JAD7MpUMSxD9tggu40/pi1qa
+ 2Gwxi9D8S5ee1QYxY5br1Kngy4/cAoaGMSOMNtEBTK1OkY5czAYuLu8PS
+ iTVpqlS2tIdsnUHGxlEHthuGUJkcsLSlxwofEdxUZT+cIo/H0yakBVWZN
+ r4WF2VcfOrUBOdLTfOLABnGB6aDbehoISXD9H1GUr2c56LXXNbmHAoKG+ w==;
+X-CSE-ConnectionGUID: 6Av2CtH4Riq8YwKfLckq+Q==
+X-CSE-MsgGUID: oueWygloR+aSeRALZuGgVQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11677"; a="69883263"
+X-IronPort-AV: E=Sophos;i="6.21,241,1763452800"; d="scan'208";a="69883263"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jan 2026 10:35:38 -0800
+X-CSE-ConnectionGUID: goAXP/bOQ1m4OpHhVSJhyw==
+X-CSE-MsgGUID: XLd0J9DsRbOVkWDMNAInsg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,241,1763452800"; d="scan'208";a="206612841"
+X-IronPort-AV: E=Sophos;i="6.21,241,1763452800"; d="scan'208";a="206445773"
 Received: from osgc-linux-buildserver.sh.intel.com ([10.112.232.103])
- by fmviesa009.fm.intel.com with ESMTP; 20 Jan 2026 10:31:52 -0800
+ by fmviesa008.fm.intel.com with ESMTP; 20 Jan 2026 10:35:37 -0800
 From: Shuicheng Lin <shuicheng.lin@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Shuicheng Lin <shuicheng.lin@intel.com>,
- Alexander Usyskin <alexander.usyskin@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Brian Nguyen <brian3.nguyen@intel.com>
-Subject: [PATCH v4 3/3] drm/xe/nvm: Defer xe->nvm assignment until init
- succeeds
-Date: Tue, 20 Jan 2026 18:28:19 +0000
-Message-ID: <20260120182815.2966078-8-shuicheng.lin@intel.com>
+Cc: Shuicheng Lin <shuicheng.lin@intel.com>
+Subject: [PATCH v4 0/3] Fix nvm aux resource cleanup
+Date: Tue, 20 Jan 2026 18:32:40 +0000
+Message-ID: <20260120183239.2966782-5-shuicheng.lin@intel.com>
 X-Mailer: git-send-email 2.50.1
-In-Reply-To: <20260120182815.2966078-5-shuicheng.lin@intel.com>
-References: <20260109220026.2468067-2-shuicheng.lin@intel.com>
- <20260120182815.2966078-5-shuicheng.lin@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -70,59 +63,23 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Allocate and initialize the NVM structure using a local pointer and
-assign it to xe->nvm only after all initialization steps succeed.
+v2: create patch2 to "Fix double-free on aux add failure".
+         
+v3: drop goto in patch2 and create patch3 to drop the clear of xe->nvm.
 
-This avoids exposing a partially initialized xe->nvm and removes the
-need to explicitly clear xe->nvm on error paths, simplifying error
-handling and making the lifetime rules clearer.
+v4: re-send series to fix patch apply failure.
 
-Cc: Alexander Usyskin <alexander.usyskin@intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Brian Nguyen <brian3.nguyen@intel.com>
-Signed-off-by: Shuicheng Lin <shuicheng.lin@intel.com>
----
- drivers/gpu/drm/xe/xe_nvm.c | 10 ++++------
- 1 file changed, 4 insertions(+), 6 deletions(-)
+Shuicheng Lin (3):
+  drm/xe/nvm: Manage nvm aux cleanup with devres
+  drm/xe/nvm: Fix double-free on aux add failure
+  drm/xe/nvm: Defer xe->nvm assignment until init succeeds
 
-diff --git a/drivers/gpu/drm/xe/xe_nvm.c b/drivers/gpu/drm/xe/xe_nvm.c
-index 6f9dd519371c..bc88804de514 100644
---- a/drivers/gpu/drm/xe/xe_nvm.c
-+++ b/drivers/gpu/drm/xe/xe_nvm.c
-@@ -133,12 +133,10 @@ int xe_nvm_init(struct xe_device *xe)
- 	if (WARN_ON(xe->nvm))
- 		return -EFAULT;
- 
--	xe->nvm = kzalloc(sizeof(*nvm), GFP_KERNEL);
--	if (!xe->nvm)
-+	nvm = kzalloc(sizeof(*nvm), GFP_KERNEL);
-+	if (!nvm)
- 		return -ENOMEM;
- 
--	nvm = xe->nvm;
--
- 	nvm->writable_override = xe_nvm_writable_override(xe);
- 	nvm->non_posted_erase = xe_nvm_non_posted_erase(xe);
- 	nvm->bar.parent = &pdev->resource[0];
-@@ -165,7 +163,6 @@ int xe_nvm_init(struct xe_device *xe)
- 	if (ret) {
- 		drm_err(&xe->drm, "xe-nvm aux init failed %d\n", ret);
- 		kfree(nvm);
--		xe->nvm = NULL;
- 		return ret;
- 	}
- 
-@@ -173,8 +170,9 @@ int xe_nvm_init(struct xe_device *xe)
- 	if (ret) {
- 		drm_err(&xe->drm, "xe-nvm aux add failed %d\n", ret);
- 		auxiliary_device_uninit(aux_dev);
--		xe->nvm = NULL;
- 		return ret;
- 	}
-+
-+	xe->nvm = nvm;
- 	return devm_add_action_or_reset(xe->drm.dev, xe_nvm_fini, xe);
- }
+ drivers/gpu/drm/xe/xe_device.c             |  2 -
+ drivers/gpu/drm/xe/xe_nvm.c                | 59 ++++++++++------------
+ drivers/gpu/drm/xe/xe_nvm.h                |  2 -
+ drivers/gpu/drm/xe/xe_survivability_mode.c |  4 --
+ 4 files changed, 28 insertions(+), 39 deletions(-)
+
 -- 
 2.50.1
 
