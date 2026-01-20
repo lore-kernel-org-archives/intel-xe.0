@@ -4,51 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id ACC53D2628B
-	for <intel-xe@archiver.kernel.org>; Tue, 20 Jan 2026 18:31:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B0346D26284
+	for <intel-xe@archiver.kernel.org>; Tue, 20 Jan 2026 18:31:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6B07710E208;
-	Tue, 20 Jan 2026 18:31:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 72CDB10E1CF;
+	Tue, 20 Jan 2026 18:31:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cHd3eRVH";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cHspULDG";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1EF0D10E208
- for <intel-xe@lists.freedesktop.org>; Tue, 20 Jan 2026 18:31:49 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 60C4110E647
+ for <intel-xe@lists.freedesktop.org>; Tue, 20 Jan 2026 18:31:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1768933909; x=1800469909;
+ t=1768933911; x=1800469911;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=rsnM3TOXmDHZZkHjBaI63dmQEnct7erGHiEbQ7ODjBQ=;
- b=cHd3eRVHQI0c6mvdsiGBObMKKaUhUe4hCRK41Xv1CTlEP4XzwPD3Ls/C
- 1dAcRkafn5euunmgTK99JZepnkMkns0pnr7s4DlLs9lLDV7U3EZ9r73ik
- WOegsebc/RSPJcYweeojmMkUFODFU26AnaniJ+1zMDr0jfDaiIUOkUxEI
- ePEs+nSbLfKXZXBKwVTCkceavYdjpIjXFgmuEvhTMWHQt52DuFMB3zsaU
- z7K14qHcxZU6/XCCdvKp3t8o3LPb8zXZrJUBJUPf2GWe6behLfIlbQa00
- QZKft+HcIRqseOnfvFE/zDJeecLm3umC/Ue99vk6jIDxDP6wtRsaxRMqY A==;
-X-CSE-ConnectionGUID: EJ6Drc2VRvWFxaoWApOxpw==
-X-CSE-MsgGUID: /l2S8IJ1ROeN9XzJgi1JyA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11677"; a="95628419"
-X-IronPort-AV: E=Sophos;i="6.21,241,1763452800"; d="scan'208";a="95628419"
+ bh=KQGHNXS5RcjXCgsD9lcpc5EXR/l85j6RBGx5uONnUxY=;
+ b=cHspULDGRwZwY5FimarmYXMTWW+VYFBb5vVAIs/R/Rls80mrdDv3Zefe
+ F5PnO4U+zjl1RKcYAX2qoCtL0/YoFmtZ56TTizqYrSRMH1cJfj406tDuf
+ RN+/eI6txteolNYRDR1vVtRq8X9+kQAlMjMhy3SgDEcPipiPCkLbM/sNj
+ reL9hmImt5zEsLyVtyKyAJNtkn0sH+6jCN9bfkwj9HAxBglDJIodoZPPj
+ YrlQP0UjgrayOwOANyEFOhX0jiRTEom6+pncL/XKgYNupL93qz4DUKDpw
+ nHFw28TaWE5sTDZUY2RDR2rseEp8HL3LbDBS4isOr8Pn2Uyyh748YMCco g==;
+X-CSE-ConnectionGUID: mpqc8LmWTtSrCKV8iSh/HQ==
+X-CSE-MsgGUID: IiTHYTeRTra5+D1xmiDx0A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11677"; a="95628428"
+X-IronPort-AV: E=Sophos;i="6.21,241,1763452800"; d="scan'208";a="95628428"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jan 2026 10:31:49 -0800
-X-CSE-ConnectionGUID: dNY85GZRTlq/p4TjV0h+ig==
-X-CSE-MsgGUID: BFJcG8ikSUSm80Qb69Y01g==
+ 20 Jan 2026 10:31:51 -0800
+X-CSE-ConnectionGUID: msmuUnhESdi5Uz2hg0NFvw==
+X-CSE-MsgGUID: eDALCVRsSVmhGu+lk3l4rA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,241,1763452800"; d="scan'208";a="206612805"
+X-IronPort-AV: E=Sophos;i="6.21,241,1763452800"; d="scan'208";a="206612835"
 Received: from osgc-linux-buildserver.sh.intel.com ([10.112.232.103])
- by fmviesa009.fm.intel.com with ESMTP; 20 Jan 2026 10:31:46 -0800
+ by fmviesa009.fm.intel.com with ESMTP; 20 Jan 2026 10:31:50 -0800
 From: Shuicheng Lin <shuicheng.lin@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Shuicheng Lin <shuicheng.lin@intel.com>,
- Alexander Usyskin <alexander.usyskin@intel.com>,
+ Nitin Gote <nitin.r.gote@intel.com>,
  Brian Nguyen <brian3.nguyen@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Riana Tauro <riana.tauro@intel.com>
-Subject: [PATCH v4 1/3] drm/xe/nvm: Manage nvm aux cleanup with devres
-Date: Tue, 20 Jan 2026 18:28:17 +0000
-Message-ID: <20260120182815.2966078-6-shuicheng.lin@intel.com>
+ Alexander Usyskin <alexander.usyskin@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+Subject: [PATCH v4 2/3] drm/xe/nvm: Fix double-free on aux add failure
+Date: Tue, 20 Jan 2026 18:28:18 +0000
+Message-ID: <20260120182815.2966078-7-shuicheng.lin@intel.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20260120182815.2966078-5-shuicheng.lin@intel.com>
 References: <20260109220026.2468067-2-shuicheng.lin@intel.com>
@@ -69,181 +70,74 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Move nvm teardown to a devm-managed action registered from xe_nvm_init().
-This ensures the auxiliary NVM device is deleted on probe failure and
-device detach without requiring explicit calls from remove paths.
+After a successful auxiliary_device_init(), aux_dev->dev.release
+(xe_nvm_release_dev()) is responsible for the kfree(nvm). When
+there is failure with auxiliary_device_add(), driver will call
+auxiliary_device_uninit(), which call put_device(). So that the
+.release callback will be triggered to free the memory associated
+with the auxiliary_device.
 
-As part of this, drop xe_nvm_fini() from xe_device_remove() and from the
-survivability sysfs teardown, and remove the public xe_nvm_fini() API from
-the header.
+Move the kfree(nvm) into the auxiliary_device_init() failure path
+and remove the err goto path to fix below error.
 
-This is to fix below warn message when there is probe failure after
-xe_nvm_init(), then xe_device_probe() is called again:
 "
-[  207.318152] sysfs: cannot create duplicate filename '/devices/pci0000:00/0000:00:01.0/0000:01:00.0/0000:02:01.0/0000:03:00.0/xe.nvm.768'
-[  207.318157] CPU: 5 UID: 0 PID: 10261 Comm: modprobe Tainted: G    B   W           6.19.0-rc2-lgci-xe-kernel+ #223 PREEMPT(voluntary)
-[  207.318160] Tainted: [B]=BAD_PAGE, [W]=WARN
-[  207.318161] Hardware name: ASUS System Product Name/PRIME Z790-P WIFI, BIOS 0812 02/24/2023
-[  207.318163] Call Trace:
-[  207.318163]  <TASK>
-[  207.318165]  dump_stack_lvl+0xa0/0xc0
-[  207.318170]  dump_stack+0x10/0x20
-[  207.318171]  sysfs_warn_dup+0xd5/0x110
-[  207.318175]  sysfs_create_dir_ns+0x1f6/0x280
-[  207.318177]  ? __pfx_sysfs_create_dir_ns+0x10/0x10
-[  207.318179]  ? lock_acquire+0x1a4/0x2e0
-[  207.318182]  ? __kasan_check_read+0x11/0x20
-[  207.318185]  ? do_raw_spin_unlock+0x5c/0x240
-[  207.318187]  kobject_add_internal+0x28d/0x8e0
-[  207.318189]  kobject_add+0x11f/0x1f0
-[  207.318191]  ? __pfx_kobject_add+0x10/0x10
-[  207.318193]  ? lockdep_init_map_type+0x4b/0x230
-[  207.318195]  ? get_device_parent.isra.0+0x43/0x4c0
-[  207.318197]  ? kobject_get+0x55/0xf0
-[  207.318199]  device_add+0x2d7/0x1500
-[  207.318201]  ? __pfx_device_add+0x10/0x10
-[  207.318203]  ? lockdep_init_map_type+0x4b/0x230
-[  207.318205]  __auxiliary_device_add+0x99/0x140
-[  207.318208]  xe_nvm_init+0x7a2/0xef0 [xe]
-[  207.318333]  ? xe_devcoredump_init+0x80/0x110 [xe]
-[  207.318452]  ? __devm_add_action+0x82/0xc0
-[  207.318454]  ? fs_reclaim_release+0xc0/0x110
-[  207.318457]  xe_device_probe+0x17dd/0x2c40 [xe]
-[  207.318574]  ? __pfx___drm_dev_dbg+0x10/0x10
-[  207.318576]  ? add_dr+0x180/0x220
-[  207.318579]  ? __pfx___drmm_mutex_release+0x10/0x10
-[  207.318582]  ? __pfx_xe_device_probe+0x10/0x10 [xe]
-[  207.318697]  ? xe_pm_init_early+0x33a/0x410 [xe]
-[  207.318850]  xe_pci_probe+0x936/0x1250 [xe]
-[  207.318999]  ? lock_acquire+0x1a4/0x2e0
-[  207.319003]  ? __pfx_xe_pci_probe+0x10/0x10 [xe]
-[  207.319151]  local_pci_probe+0xe6/0x1a0
-[  207.319154]  pci_device_probe+0x523/0x840
-[  207.319157]  ? __pfx_pci_device_probe+0x10/0x10
-[  207.319159]  ? sysfs_do_create_link_sd.isra.0+0x8c/0x110
-[  207.319162]  ? sysfs_create_link+0x48/0xc0
+[   13.232905] ==================================================================
+[   13.232911] BUG: KASAN: double-free in xe_nvm_init+0x751/0xf10 [xe]
+[   13.233112] Free of addr ffff888120635000 by task systemd-udevd/273
+
+[   13.233120] CPU: 8 UID: 0 PID: 273 Comm: systemd-udevd Not tainted 6.19.0-rc2-lgci-xe-kernel+ #225 PREEMPT(voluntary)
+...
+[   13.233125] Call Trace:
+[   13.233126]  <TASK>
+[   13.233127]  dump_stack_lvl+0x7f/0xc0
+[   13.233132]  print_report+0xce/0x610
+[   13.233136]  ? kasan_complete_mode_report_info+0x5d/0x1e0
+[   13.233139]  ? xe_nvm_init+0x751/0xf10 [xe]
 ...
 "
 
-Fixes: c28bfb107dac ("drm/xe/nvm: add on-die non-volatile memory device")
-Reviewed-by: Alexander Usyskin <alexander.usyskin@intel.com>
+v2: drop err goto path. (Alexander)
+
+Fixes: d4c3ed963e41 ("drm/xe: defer free of NVM auxiliary container to device release callback")
+Reviewed-by: Nitin Gote <nitin.r.gote@intel.com>
 Reviewed-by: Brian Nguyen <brian3.nguyen@intel.com>
+Cc: Alexander Usyskin <alexander.usyskin@intel.com>
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Riana Tauro <riana.tauro@intel.com>
+Suggested-by: Brian Nguyen <brian3.nguyen@intel.com>
 Signed-off-by: Shuicheng Lin <shuicheng.lin@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device.c             |  2 -
- drivers/gpu/drm/xe/xe_nvm.c                | 43 +++++++++++-----------
- drivers/gpu/drm/xe/xe_nvm.h                |  2 -
- drivers/gpu/drm/xe/xe_survivability_mode.c |  4 --
- 4 files changed, 22 insertions(+), 29 deletions(-)
+ drivers/gpu/drm/xe/xe_nvm.c | 12 +++++-------
+ 1 file changed, 5 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index aad4aa53a51f..a954cc8400b3 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -1025,8 +1025,6 @@ void xe_device_remove(struct xe_device *xe)
- {
- 	xe_display_unregister(xe);
- 
--	xe_nvm_fini(xe);
--
- 	drm_dev_unplug(&xe->drm);
- 
- 	xe_bo_pci_dev_remove_all(xe);
 diff --git a/drivers/gpu/drm/xe/xe_nvm.c b/drivers/gpu/drm/xe/xe_nvm.c
-index 437375046517..77856f460770 100644
+index 77856f460770..6f9dd519371c 100644
 --- a/drivers/gpu/drm/xe/xe_nvm.c
 +++ b/drivers/gpu/drm/xe/xe_nvm.c
-@@ -94,6 +94,27 @@ static bool xe_nvm_writable_override(struct xe_device *xe)
- 	return writable_override;
- }
- 
-+static void xe_nvm_fini(void *arg)
-+{
-+	struct xe_device *xe = arg;
-+	struct intel_dg_nvm_dev *nvm = xe->nvm;
-+
-+	if (!xe->info.has_gsc_nvm)
-+		return;
-+
-+	/* No access to internal NVM from VFs */
-+	if (IS_SRIOV_VF(xe))
-+		return;
-+
-+	/* Nvm pointer should not be NULL here */
-+	if (WARN_ON(!nvm))
-+		return;
-+
-+	auxiliary_device_delete(&nvm->aux_dev);
-+	auxiliary_device_uninit(&nvm->aux_dev);
-+	xe->nvm = NULL;
-+}
-+
- int xe_nvm_init(struct xe_device *xe)
- {
- 	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
-@@ -152,30 +173,10 @@ int xe_nvm_init(struct xe_device *xe)
- 		auxiliary_device_uninit(aux_dev);
- 		goto err;
+@@ -164,19 +164,17 @@ int xe_nvm_init(struct xe_device *xe)
+ 	ret = auxiliary_device_init(aux_dev);
+ 	if (ret) {
+ 		drm_err(&xe->drm, "xe-nvm aux init failed %d\n", ret);
+-		goto err;
++		kfree(nvm);
++		xe->nvm = NULL;
++		return ret;
  	}
--	return 0;
-+	return devm_add_action_or_reset(xe->drm.dev, xe_nvm_fini, xe);
  
- err:
- 	kfree(nvm);
- 	xe->nvm = NULL;
- 	return ret;
- }
+ 	ret = auxiliary_device_add(aux_dev);
+ 	if (ret) {
+ 		drm_err(&xe->drm, "xe-nvm aux add failed %d\n", ret);
+ 		auxiliary_device_uninit(aux_dev);
+-		goto err;
++		xe->nvm = NULL;
++		return ret;
+ 	}
+ 	return devm_add_action_or_reset(xe->drm.dev, xe_nvm_fini, xe);
 -
--void xe_nvm_fini(struct xe_device *xe)
--{
--	struct intel_dg_nvm_dev *nvm = xe->nvm;
--
--	if (!xe->info.has_gsc_nvm)
--		return;
--
--	/* No access to internal NVM from VFs */
--	if (IS_SRIOV_VF(xe))
--		return;
--
--	/* Nvm pointer should not be NULL here */
--	if (WARN_ON(!nvm))
--		return;
--
--	auxiliary_device_delete(&nvm->aux_dev);
--	auxiliary_device_uninit(&nvm->aux_dev);
+-err:
+-	kfree(nvm);
 -	xe->nvm = NULL;
--}
-diff --git a/drivers/gpu/drm/xe/xe_nvm.h b/drivers/gpu/drm/xe/xe_nvm.h
-index 7f3d5f57bed0..fd3467ad35a4 100644
---- a/drivers/gpu/drm/xe/xe_nvm.h
-+++ b/drivers/gpu/drm/xe/xe_nvm.h
-@@ -10,6 +10,4 @@ struct xe_device;
- 
- int xe_nvm_init(struct xe_device *xe);
- 
--void xe_nvm_fini(struct xe_device *xe);
--
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_survivability_mode.c b/drivers/gpu/drm/xe/xe_survivability_mode.c
-index 6578ffc77bd5..db64cac39c94 100644
---- a/drivers/gpu/drm/xe/xe_survivability_mode.c
-+++ b/drivers/gpu/drm/xe/xe_survivability_mode.c
-@@ -233,13 +233,9 @@ static SURVIVABILITY_ATTR_RO(fdo_mode, FDO_INFO);
- static void xe_survivability_mode_fini(void *arg)
- {
- 	struct xe_device *xe = arg;
--	struct xe_survivability *survivability = &xe->survivability;
- 	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
- 	struct device *dev = &pdev->dev;
- 
--	if (survivability->fdo_mode)
--		xe_nvm_fini(xe);
--
- 	device_remove_file(dev, &dev_attr_survivability_mode);
+-	return ret;
  }
- 
 -- 
 2.50.1
 
