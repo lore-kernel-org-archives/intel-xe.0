@@ -4,56 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CEB4BD2ED0F
-	for <intel-xe@archiver.kernel.org>; Tue, 20 Jan 2026 11:19:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 76052D2ECF7
+	for <intel-xe@archiver.kernel.org>; Tue, 20 Jan 2026 11:33:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8FE8A10E5BF;
-	Tue, 20 Jan 2026 11:19:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3624710E5C1;
+	Tue, 20 Jan 2026 11:33:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eOx9+0WD";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mBe+gkR2";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 71BE410E5BF
- for <intel-xe@lists.freedesktop.org>; Tue, 20 Jan 2026 11:19:57 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 59B2510E5C1;
+ Tue, 20 Jan 2026 11:33:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1768907998; x=1800443998;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=dFSKk9t7s8XGmg+9tzdCtZBhRN/ScjHE2y+Gwsx2EqA=;
- b=eOx9+0WDiIeoAg2EfT6hRbctPAGPC8tP7EYFV8UDGn4kpLIujTq/vSH7
- QxuhG7tLhmwyep/h0/N0n4uBbpNdAEbxzpgQ2lHqIaVCRS42NNgv8zJbP
- km6BV3v2opPKrvD5ADLq2BSSsK0qpEgne5megFHibMNen26KbJmE4jeCE
- j0J5sByszDwSc/Ot9y+XL8/Syl/q2lMQUIJ9q8UCKEZdHxTUYEcDlHnHo
- OLkVGU0lU1xqpNTCNNDb1JpLDQnoFlzbOJuAXJvJ1cr1OfOpslfF0Mitl
- qGufJ78NXVB7+uxOGnDIe7hUCqlkMST3iJTRtK0zBIFboYyABKZZV8iBy A==;
-X-CSE-ConnectionGUID: GY4pk4jsSeS2k48NfW3unw==
-X-CSE-MsgGUID: XFVbLlo/Q32CqN6cJS4iUA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11676"; a="70165409"
-X-IronPort-AV: E=Sophos;i="6.21,240,1763452800"; d="scan'208";a="70165409"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jan 2026 03:19:58 -0800
-X-CSE-ConnectionGUID: nk6LzST4T068SDDcCdaQ8Q==
-X-CSE-MsgGUID: iEFUcp9lRo20ZRI5cc9+OQ==
+ t=1768908830; x=1800444830;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=OhxnxuOoxyZGOi8RAXbRXFB8qkC32U1/C9CPE7t9UrU=;
+ b=mBe+gkR2gJFlMuW3GOC+JyX0kwQfXetWcEsbLlYcrE7ib5lvKLkDKSgV
+ FMsgq5BURx26NRKJe6hMAIUb0+IY1ALqz9+UdzMd6Vb12bo1Q9nDh3tct
+ +SyqU8bBSITMc8QQjkrpHD9KMR6TC+tGagAZgvU+Bqp/29amrR6wCeY+R
+ hYJPS5Ws/uPUrVXJMpXHTiSArYeOSj2mEtv1CDb0SUPKPa8uQilBZTRaE
+ lNDb2IXsXN2C3oNDPcVLDgidnf08TNoiyhAfl9vAE0Y/YBoeZimnR3h4q
+ XziuFmc7vsGFEPjCF3p23HuzBmsqNPvMYW4aD0St1jRIJmZT1+JZ7s9JF Q==;
+X-CSE-ConnectionGUID: xRo/TJpMS8+r/SHCAXJrLQ==
+X-CSE-MsgGUID: YEK1IqSfTCSd+4NvJzZ93w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11676"; a="73969539"
+X-IronPort-AV: E=Sophos;i="6.21,240,1763452800"; d="scan'208";a="73969539"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jan 2026 03:33:49 -0800
+X-CSE-ConnectionGUID: gldhrQrSRBe3YG6GObKfwQ==
+X-CSE-MsgGUID: gkCezs7tQJ260cnKH8drBA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,240,1763452800"; d="scan'208";a="210946107"
-Received: from ksatya-dev.iind.intel.com (HELO ksatya-dev.intel.com)
- ([10.190.229.161])
- by fmviesa004.fm.intel.com with ESMTP; 20 Jan 2026 03:19:55 -0800
-From: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+X-IronPort-AV: E=Sophos;i="6.21,240,1763452800"; d="scan'208";a="206449902"
+Received: from egrumbac-mobl6.ger.corp.intel.com (HELO fedora)
+ ([10.245.244.250])
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jan 2026 03:33:46 -0800
+From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>,
- Michal Wajdeczko <michal.wajdeczko@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- =?UTF-8?q?Piotr=20Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>
-Subject: [RFC 1/1] =?UTF-8?q?drm/xe/vf:=20Skip=20creating=20DRM=20device?=
- =?UTF-8?q?=20entries=20in=20PF=20admin=E2=80=91only=20mode?=
-Date: Tue, 20 Jan 2026 11:20:10 +0000
-Message-ID: <20260120112010.70397-2-satyanarayana.k.v.p@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260120112010.70397-1-satyanarayana.k.v.p@intel.com>
-References: <20260120112010.70397-1-satyanarayana.k.v.p@intel.com>
+Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Matthew Auld <matthew.auld@intel.com>,
+ Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
+ Dafna Hirschfeld <dafna.hirschfeld@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, dri-devel@lists.freedesktop.org
+Subject: [PATCH 0/2] drm, drm/xe: Fix xe SVM configs
+Date: Tue, 20 Jan 2026 12:33:20 +0100
+Message-ID: <20260120113322.97654-1-thomas.hellstrom@linux.intel.com>
+X-Mailer: git-send-email 2.52.0
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -71,141 +71,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-When the PF is configured for admin‑only mode, it is restricted to
-management functions and should not expose a device node that would allow
-users to run workloads.
+The first patch fixes the problem of xe userptr not being enabled if
+CONFIG_DEVICE_PRIVATE is missing.
 
-In this mode, no DRM device entry is created; however, sysfs and debugfs
-interfaces for the PF remain available at:
+Second patch explicitly selects CONFIG_DEVICE_PRIVATE if DRM_XE_GPUSVM
+is enabled, which is probably what most distros want. This patch is
+not Fixes: tags since some configurations may actively exclude
+CONFIG_DEVICE_PRIVATE and it's undesirable if a stable update breaks
+those.
 
-sysfs: /sys/devices/pci0000:00/<B:D:F>
-debugfs: /sys/kernel/debug/dri/<B:D:F>
-
-Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: Matthew Auld <matthew.auld@intel.com>
+Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Cc: Dafna Hirschfeld <dafna.hirschfeld@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: "Thomas Hellström" <thomas.hellstrom@linux.intel.com>
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Piotr Piórkowski <piotr.piorkowski@intel.com>
----
- drivers/gpu/drm/xe/xe_debugfs.c          | 16 ++++++++++++++++
- drivers/gpu/drm/xe/xe_device.c           | 11 +++++++----
- drivers/gpu/drm/xe/xe_device.h           |  6 ++++++
- drivers/gpu/drm/xe/xe_oa.c               |  2 +-
- drivers/gpu/drm/xe/xe_sriov_pf_helpers.h |  2 +-
- 5 files changed, 31 insertions(+), 6 deletions(-)
+Cc: dri-devel@lists.freedesktop.org
 
-diff --git a/drivers/gpu/drm/xe/xe_debugfs.c b/drivers/gpu/drm/xe/xe_debugfs.c
-index 0907868b32d6..134d2e661c7c 100644
---- a/drivers/gpu/drm/xe/xe_debugfs.c
-+++ b/drivers/gpu/drm/xe/xe_debugfs.c
-@@ -458,6 +458,20 @@ static ssize_t disable_late_binding_set(struct file *f, const char __user *ubuf,
- 	return size;
- }
- 
-+static void update_minor_dev(struct xe_device *xe, struct drm_minor **minor,
-+			     __maybe_unused struct dentry **root)
-+{
-+	struct drm_device *drm = &xe->drm;
-+
-+	if (!xe_sriov_pf_admin_only(xe))
-+		return;
-+
-+	(*minor)->dev = drm;
-+	(*minor)->kdev = drm->dev;
-+	(*minor)->debugfs_root = drm->debugfs_root;
-+	*root = (*minor)->debugfs_root;
-+}
-+
- static const struct file_operations disable_late_binding_fops = {
- 	.owner = THIS_MODULE,
- 	.read = disable_late_binding_show,
-@@ -475,6 +489,8 @@ void xe_debugfs_register(struct xe_device *xe)
- 	u8 tile_id;
- 	u8 id;
- 
-+	update_minor_dev(xe, &minor, &root);
-+
- 	drm_debugfs_create_files(debugfs_list,
- 				 ARRAY_SIZE(debugfs_list),
- 				 root, minor);
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 00afc84a8683..fdd8668bd565 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -993,9 +993,11 @@ int xe_device_probe(struct xe_device *xe)
- 	if (err)
- 		return err;
- 
--	err = drm_dev_register(&xe->drm, 0);
--	if (err)
--		return err;
-+	if (!xe_sriov_pf_admin_only(xe)) {
-+		err = drm_dev_register(&xe->drm, 0);
-+		if (err)
-+			return err;
-+	}
- 
- 	xe_display_register(xe);
- 
-@@ -1046,7 +1048,8 @@ void xe_device_remove(struct xe_device *xe)
- 
- 	xe_nvm_fini(xe);
- 
--	drm_dev_unplug(&xe->drm);
-+	if (!xe_sriov_pf_admin_only(xe))
-+		drm_dev_unplug(&xe->drm);
- 
- 	xe_bo_pci_dev_remove_all(xe);
- }
-diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
-index 6604b89330d5..bb1e7bc8bf4f 100644
---- a/drivers/gpu/drm/xe/xe_device.h
-+++ b/drivers/gpu/drm/xe/xe_device.h
-@@ -11,6 +11,7 @@
- #include "xe_device_types.h"
- #include "xe_gt_types.h"
- #include "xe_sriov.h"
-+#include "xe_sriov_pf_helpers.h"
- 
- static inline struct xe_device *to_xe_device(const struct drm_device *dev)
- {
-@@ -177,6 +178,11 @@ static inline bool xe_device_has_mert(struct xe_device *xe)
- 	return xe->info.has_mert;
- }
- 
-+static inline struct device *xe_to_drm_kdev(struct xe_device *xe)
-+{
-+	return xe_sriov_pf_admin_only(xe) ? xe->drm.dev : xe->drm.primary->kdev;
-+}
-+
- u32 xe_device_ccs_bytes(struct xe_device *xe, u64 size);
- 
- void xe_device_snapshot_print(struct xe_device *xe, struct drm_printer *p);
-diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
-index abf87fe0b345..90fa30de85ce 100644
---- a/drivers/gpu/drm/xe/xe_oa.c
-+++ b/drivers/gpu/drm/xe/xe_oa.c
-@@ -2512,7 +2512,7 @@ int xe_oa_register(struct xe_device *xe)
- 		return 0;
- 
- 	oa->metrics_kobj = kobject_create_and_add("metrics",
--						  &xe->drm.primary->kdev->kobj);
-+						  &(xe_to_drm_kdev(xe)->kobj));
- 	if (!oa->metrics_kobj)
- 		return -ENOMEM;
- 
-diff --git a/drivers/gpu/drm/xe/xe_sriov_pf_helpers.h b/drivers/gpu/drm/xe/xe_sriov_pf_helpers.h
-index 9054fdc34597..9a99fafbe77d 100644
---- a/drivers/gpu/drm/xe/xe_sriov_pf_helpers.h
-+++ b/drivers/gpu/drm/xe/xe_sriov_pf_helpers.h
-@@ -56,7 +56,7 @@ static inline unsigned int xe_sriov_pf_num_vfs(const struct xe_device *xe)
-  */
- static inline bool xe_sriov_pf_admin_only(const struct xe_device *xe)
- {
--	return !xe->info.probe_display;
-+	return !xe->info.probe_display && xe->sriov.pf.driver_max_vfs > 0;
- }
- 
- static inline struct mutex *xe_sriov_pf_master_mutex(struct xe_device *xe)
+Thomas Hellström (2):
+  drm, drm/xe: Fix xe userptr in the absence of CONFIG_DEVICE_PRIVATE
+  drm/xe: Select CONFIG_DEVICE_PRIVATE when DRM_XE_GPUSVM is selected
+
+ drivers/gpu/drm/Kconfig    | 2 +-
+ drivers/gpu/drm/xe/Kconfig | 4 ++--
+ 2 files changed, 3 insertions(+), 3 deletions(-)
+
 -- 
-2.43.0
+2.52.0
 
