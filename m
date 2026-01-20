@@ -4,55 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E899CD26284
-	for <intel-xe@archiver.kernel.org>; Tue, 20 Jan 2026 18:51:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9A09ED26293
+	for <intel-xe@archiver.kernel.org>; Tue, 20 Jan 2026 19:23:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 91A6910E647;
-	Tue, 20 Jan 2026 18:51:05 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XKRNBYFu";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E5FAA10E220
- for <intel-xe@lists.freedesktop.org>; Tue, 20 Jan 2026 18:51:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1768935063; x=1800471063;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=24C1GwrwN5+pxgIXaIdvbRQ6Wrnt9kvnHTnoUpt58GM=;
- b=XKRNBYFuRY4BwmQD0iSY9YvQfc9HcAUCBDZuHqA/FF3xCQQ/53heeE+n
- tIepBqcefQ/avHiQItFFoZGh1nQyFUgYJu7IEb0tDfrd8RkG1FXHkNE04
- ElUD3SeHHPznwikFMRJLVHGGwp+LkvCj2Zdn0c7Kk2okdzXnn4nYMRncl
- k3htzOtKA0RWz1bG5M3EPGFed8BYEwBqSuovcg/ssp1u8UKVZ257LXpEE
- ljRhe9Z/50lXPFn55PDiBOqCRws8dehdLIkL+raWLBMkBuJAuwCbJANMM
- NfqV1Xc7GpyB9GdF6zn/hJDz7UgBGb3tPZFhxeBuSZfk/J5aPPkgjSZ0Y g==;
-X-CSE-ConnectionGUID: Xal8UyFeQCyyWOc9cj0JNQ==
-X-CSE-MsgGUID: /1byq980SpCw2EUIIVqn/g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11677"; a="70245728"
-X-IronPort-AV: E=Sophos;i="6.21,241,1763452800"; d="scan'208";a="70245728"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jan 2026 10:51:03 -0800
-X-CSE-ConnectionGUID: XmbGCdHySNiUsry4v+A6Hg==
-X-CSE-MsgGUID: GO93+k9lTT+sAOtRLBozhQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,241,1763452800"; d="scan'208";a="243776634"
-Received: from amedve1x-mobl.ger.corp.intel.com (HELO
- mwajdecz-hp.clients.intel.com) ([10.246.20.156])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jan 2026 10:51:01 -0800
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH 3/3] drm/xe/guc: Allow second H2G retry on FLR
-Date: Tue, 20 Jan 2026 19:50:47 +0100
-Message-ID: <20260120185047.593-4-michal.wajdeczko@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260120185047.593-1-michal.wajdeczko@intel.com>
-References: <20260120185047.593-1-michal.wajdeczko@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5A81210E153;
+	Tue, 20 Jan 2026 19:23:29 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BA0BD10E153;
+ Tue, 20 Jan 2026 19:23:28 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8502031914790684702=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Fix_nvm_aux_resource_cleanu?=
+ =?utf-8?q?p?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Lin, Shuicheng" <shuicheng.lin@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 20 Jan 2026 19:23:28 -0000
+Message-ID: <176893700875.172340.16470661590509247504@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260120183239.2966782-5-shuicheng.lin@intel.com>
+In-Reply-To: <20260120183239.2966782-5-shuicheng.lin@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,69 +36,129 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-During VF FLR the scratch registers could be cleared both by the
-GuC and by the PF driver. Allow to retry more times once we find
-out that the HXG header was cleared and wait at least 256ms before
-resending the same message again to the GuC.
+--===============8502031914790684702==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
----
- drivers/gpu/drm/xe/xe_guc.c | 17 +++++++++++++----
- 1 file changed, 13 insertions(+), 4 deletions(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
-index 3ba0ea015611..f99716f4084c 100644
---- a/drivers/gpu/drm/xe/xe_guc.c
-+++ b/drivers/gpu/drm/xe/xe_guc.c
-@@ -1388,6 +1388,9 @@ int xe_guc_auth_huc(struct xe_guc *guc, u32 rsa_addr)
- 	return xe_guc_ct_send_block(&guc->ct, action, ARRAY_SIZE(action));
- }
- 
-+#define MAX_RETRIES_ON_FLR	2
-+#define MIN_SLEEP_MS_ON_FLR	256
-+
- int xe_guc_mmio_send_recv(struct xe_guc *guc, const u32 *request,
- 			  u32 len, u32 *response_buf)
- {
-@@ -1398,7 +1401,7 @@ int xe_guc_mmio_send_recv(struct xe_guc *guc, const u32 *request,
- 		MED_VF_SW_FLAG(0) : VF_SW_FLAG(0);
- 	const u32 LAST_INDEX = VF_SW_FLAG_COUNT - 1;
- 	unsigned int sleep_period_ms = 1;
--	bool lost = false;
-+	unsigned int lost = 0;
- 	u32 header;
- 	int ret;
- 	int i;
-@@ -1434,10 +1437,15 @@ int xe_guc_mmio_send_recv(struct xe_guc *guc, const u32 *request,
- 			     50000, &header, false);
- 	if (ret) {
- 		/* scratch registers might be cleared during FLR, try once more */
--		if (!header && !lost) {
-+		if (!header) {
-+			if (++lost > MAX_RETRIES_ON_FLR) {
-+				xe_gt_err(gt, "GuC mmio request %#x: lost, too many retries %u\n",
-+					  request[0], lost);
-+				return -ENOLINK;
-+			}
- 			xe_gt_dbg(gt, "GuC mmio request %#x: lost, trying again\n", request[0]);
--			lost = true;
--			goto retry;
-+			sleep_period_ms = max(sleep_period_ms, MIN_SLEEP_MS_ON_FLR);
-+			goto sleep_and_retry;
- 		}
- timeout:
- 		xe_gt_err(gt, "GuC mmio request %#x: no reply %#x\n",
-@@ -1481,6 +1489,7 @@ int xe_guc_mmio_send_recv(struct xe_guc *guc, const u32 *request,
- 		xe_gt_dbg(gt, "GuC mmio request %#x: retrying after %u ms, reason %#x\n",
- 			  request[0], sleep_period_ms, reason);
- 
-+sleep_and_retry:
- 		msleep(sleep_period_ms);
- 		if (sleep_period_ms < 1024)
- 			sleep_period_ms <<= 1;
--- 
-2.47.1
+Series: Fix nvm aux resource cleanup
+URL   : https://patchwork.freedesktop.org/series/160376/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from xe-4419-fa2241b92adb500a9c016188d338aa3f6f8a95a1_BAT -> xe-pw-160376v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (12 -> 12)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-160376v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_waitfence@abstime:
+    - bat-dg2-oem2:       [PASS][1] -> [TIMEOUT][2] ([Intel XE#6506])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4419-fa2241b92adb500a9c016188d338aa3f6f8a95a1/bat-dg2-oem2/igt@xe_waitfence@abstime.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160376v1/bat-dg2-oem2/igt@xe_waitfence@abstime.html
+
+  
+  [Intel XE#6506]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8708 -> IGT_8709
+  * Linux: xe-4419-fa2241b92adb500a9c016188d338aa3f6f8a95a1 -> xe-pw-160376v1
+
+  IGT_8708: 8708
+  IGT_8709: 16ce286cac6acc9669a1c758572ae9fceb483c46 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-4419-fa2241b92adb500a9c016188d338aa3f6f8a95a1: fa2241b92adb500a9c016188d338aa3f6f8a95a1
+  xe-pw-160376v1: 160376v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160376v1/index.html
+
+--===============8502031914790684702==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Fix nvm aux resource cleanup</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/160376/">https://patchwork.freedesktop.org/series/160376/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160376v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160376v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4419-fa2241b92adb500a9c016188d338aa3f6f8a95a1_BAT -&gt; xe-pw-160376v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (12 -&gt; 12)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-160376v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@xe_waitfence@abstime:<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4419-fa2241b92adb500a9c016188d338aa3f6f8a95a1/bat-dg2-oem2/igt@xe_waitfence@abstime.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160376v1/bat-dg2-oem2/igt@xe_waitfence@abstime.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506">Intel XE#6506</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8708 -&gt; IGT_8709</li>
+<li>Linux: xe-4419-fa2241b92adb500a9c016188d338aa3f6f8a95a1 -&gt; xe-pw-160376v1</li>
+</ul>
+<p>IGT_8708: 8708<br />
+  IGT_8709: 16ce286cac6acc9669a1c758572ae9fceb483c46 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-4419-fa2241b92adb500a9c016188d338aa3f6f8a95a1: fa2241b92adb500a9c016188d338aa3f6f8a95a1<br />
+  xe-pw-160376v1: 160376v1</p>
+
+</body>
+</html>
+
+--===============8502031914790684702==--
