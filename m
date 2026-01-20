@@ -4,59 +4,192 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 43410D2ECF7
-	for <intel-xe@archiver.kernel.org>; Tue, 20 Jan 2026 13:58:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BA681D2ECE9
+	for <intel-xe@archiver.kernel.org>; Tue, 20 Jan 2026 14:03:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 09FF710E0E3;
-	Tue, 20 Jan 2026 13:58:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7D67C10E5E9;
+	Tue, 20 Jan 2026 14:03:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ky/C8GBS";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gdrT4bFX";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3283B10E0E3;
- Tue, 20 Jan 2026 13:58:02 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CDEFF10E5E9
+ for <intel-xe@lists.freedesktop.org>; Tue, 20 Jan 2026 14:03:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1768917483; x=1800453483;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=LAeJ33N34V3xiu6JkTytHTFPgJIClqzTw/4ydKpsr6s=;
- b=Ky/C8GBSbqssX7uT4MZTzQNHHtY+2Y87ifugTenSBg23iZKIxEKdcNQ0
- OOSLie1tWi8PViPKvqvVG247YISBCWi4Aodzf2pGfbnVPyf4BNE8CP1UX
- 72c+0Xq1MSvbJ8p0tddrruFYPWo+JO0wodBdInd507MMjO+Fs2YOi2nQp
- 1rpIE2r6AN1rmEBR6idxpZcjrvL+4oIJjtW3Vbh9u4MkQ99DB7J2p00BW
- jqUYMDBM5aBA0RS/cY93sbBkcK0RrB4wLkEDww/IzooTgup13KRBXxFRe
- Qxl4vla8/98GJOS79FZVRc9r7eXclf6ghAhu3A3Ah0V7rdA6nuzr1ZzIk g==;
-X-CSE-ConnectionGUID: 8dpNLzNuRpuaBNw0/AoM7Q==
-X-CSE-MsgGUID: R99kkLQWQ9eCxGm+kUzvSg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11676"; a="69137739"
-X-IronPort-AV: E=Sophos;i="6.21,240,1763452800"; d="scan'208";a="69137739"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jan 2026 05:58:02 -0800
-X-CSE-ConnectionGUID: pu2G1CHxS2ylkP+gmyUJMg==
-X-CSE-MsgGUID: 9BX8pWuVTpu1X95FFbKA0w==
+ t=1768917814; x=1800453814;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=nYFJ2HaTydIsNJ/Iv6zJNu8Dxl+zFUSzforIrH67tEY=;
+ b=gdrT4bFX6GJXNlKJZO8o7WD1XyhMP5pg0WPd4s6VwQiNQ+OIUuSFrDll
+ OwhlQWYhppR3o9hQrPCe0a/oYRzJ1NmxCGFTgGh7KoH1wy8zcgdtaw6jE
+ wlpB7VPYdkBLuW4kPSYJ6qBnB+AkCYgeribQqDbTFRR0yHAgU8JzvkuxT
+ bbvvkEcClqrksnRh1Whn9fdANVrHdaONZhJYWoGKcC6zbEPUzt69LEEnz
+ BQJ8ZFLI6tqLtC/i7uE58psQoSl+ePA8qrgPnE7dwwRZg3/68uAHFrKbv
+ 8HP2EPTK2+b9eyuciiNZEQdc+R7UFY5xw5iPPk/uYn88uhTPuxTtxp9Th Q==;
+X-CSE-ConnectionGUID: tm240ztRRNeQQgy4sDwF6w==
+X-CSE-MsgGUID: dhmrpKbbSSaXLDcV0/rLrg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11676"; a="70030209"
+X-IronPort-AV: E=Sophos;i="6.21,240,1763452800"; d="scan'208";a="70030209"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jan 2026 06:03:34 -0800
+X-CSE-ConnectionGUID: LjNK6VgVTduwy3xz+3WqCA==
+X-CSE-MsgGUID: 5rOFXgW1TWSRBLtM1Tzo+A==
 X-ExtLoop1: 1
-Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.246.69])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jan 2026 05:58:00 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Suraj Kandpal <suraj.kandpal@intel.com>, intel-xe@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org
-Cc: ankit.k.nautiyal@intel.com, Mika Kahola <mika.kahola@intel.com>, Suraj
- Kandpal <suraj.kandpal@intel.com>, imre.deak@intel.com
-Subject: Re: [PATCH v3 1/3] drm/i915/pps: Enable panel power earlier
-In-Reply-To: <36f6ab153c13cf5bf0e4db6969a95db9c3eb6ddb@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260116085455.571766-1-suraj.kandpal@intel.com>
- <20260116085455.571766-2-suraj.kandpal@intel.com>
- <36f6ab153c13cf5bf0e4db6969a95db9c3eb6ddb@intel.com>
-Date: Tue, 20 Jan 2026 15:57:56 +0200
-Message-ID: <7c7b6afb4fdb0c4259a20a6fd847f66f5c9dbb17@intel.com>
+X-IronPort-AV: E=Sophos;i="6.21,240,1763452800"; d="scan'208";a="210277761"
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jan 2026 06:03:33 -0800
+Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.35; Tue, 20 Jan 2026 06:03:33 -0800
+Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.35 via Frontend Transport; Tue, 20 Jan 2026 06:03:33 -0800
+Received: from BYAPR05CU005.outbound.protection.outlook.com (52.101.85.10) by
+ edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.35; Tue, 20 Jan 2026 06:03:32 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=TrIKeB+pFYHjWUgZ7aO+W+mKbOyV3BlcGMlAorWcyTiPpBYsOGtJUfjE+Iu+0LqFoahGVkFHxezS4NriffEFlm/kgMjIu0ba5kGSekvhcHj1Y3dHTFPEqqouaZh0yrjNrsW+siDeW6rtvmPWTdk4CeCth02HiKPZwW8soqykwQ+MNE/ef6OtvA2E0AWdK1wld2/eyVpUQqLoYIhqVlFhDfeBiksfJ5QRI79mvPYobdiTC8M0c66aVklW0nOwqnIe/4f2r4vjU/V14yWR/6a6V0Gbs1o5YE3e6su0v/y/2lyw+c/EcqmwjcXVGAWm3fdVMu8SHq8AvX7zSSivBu+m4Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=g5rEJ2xEpOvqHlG5arIgLRLYbtYJXYx1rRrzkEWAzeA=;
+ b=uej/6L8aSA/9cEAHjT2FY8try6k4cqjSevuwlz7COVODYO5s8KUXd/zsx5mEcxsf2PD5k4Eq87O/nn02nYI8xScU7H6fR6yjEGk907rLV8D7u9w6WAp19iHFC/MZ4CulGa89xeiPlUw3FzkZPtlvS7eFXsJFpUtLmY/HRzyQ4/t2qJFw1W89LB/+pltrq5xLy7Ftd5vV54y0Tchilih32C4j7u2TplldWA/NWK7ZGp4Jx00mVOalHkpFar9c85UgBB57lVvCgTyrVZHhmykSXIKR7mkNIAU1OsUwg38jjD8Hm0qk1TgUOUajNR3H+4HlWZ7dt3LVvxRiYglVn4utjg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from BN9PR11MB5530.namprd11.prod.outlook.com (2603:10b6:408:103::8)
+ by SJ5PPF0D43D62C4.namprd11.prod.outlook.com
+ (2603:10b6:a0f:fc02::80b) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9520.12; Tue, 20 Jan
+ 2026 14:03:30 +0000
+Received: from BN9PR11MB5530.namprd11.prod.outlook.com
+ ([fe80::1451:ad37:6612:37fb]) by BN9PR11MB5530.namprd11.prod.outlook.com
+ ([fe80::1451:ad37:6612:37fb%4]) with mapi id 15.20.9542.008; Tue, 20 Jan 2026
+ 14:03:29 +0000
+Message-ID: <f391a681-3153-4296-851b-a4db3cbc8de1@intel.com>
+Date: Tue, 20 Jan 2026 19:33:17 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 01/12] PCI/ACPI: Add D3cold Aux Power Limit_DSM method
+To: Bjorn Helgaas <helgaas@kernel.org>
+CC: <intel-xe@lists.freedesktop.org>, <linux-acpi@vger.kernel.org>,
+ <linux-pci@vger.kernel.org>, <anshuman.gupta@intel.com>, <rafael@kernel.org>, 
+ <lenb@kernel.org>, <bhelgaas@google.com>, <ilpo.jarvinen@linux.intel.com>,
+ <rodrigo.vivi@intel.com>, <varun.gupta@intel.com>,
+ <ville.syrjala@linux.intel.com>, <uma.shankar@intel.com>,
+ <karthik.poosa@intel.com>, <matthew.auld@intel.com>, <sk.anirban@intel.com>,
+ <raag.jadav@intel.com>
+References: <20260114202419.GA831656@bhelgaas>
+Content-Language: en-US
+From: "Nilawar, Badal" <badal.nilawar@intel.com>
+In-Reply-To: <20260114202419.GA831656@bhelgaas>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: MA5PR01CA0221.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:1f3::11) To BN9PR11MB5530.namprd11.prod.outlook.com
+ (2603:10b6:408:103::8)
 MIME-Version: 1.0
-Content-Type: text/plain
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN9PR11MB5530:EE_|SJ5PPF0D43D62C4:EE_
+X-MS-Office365-Filtering-Correlation-Id: adfcdf66-5b54-4c6e-16cf-08de582cb07f
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?SjV3RWdaK3p4Q2hINk5ibXUzd0Z4U1BzalFnc3pxVFc2alVaUmRpYi85cThX?=
+ =?utf-8?B?L1d4ZTd2UEZrZHlyUmt4Umt0TEFYSE8zTUFCUHNOTTZURk9UMFl3NzNsY1JR?=
+ =?utf-8?B?ZUpRejNWL3RsUExqQnZHZGV4aG1rcWNoVFNUNzZTejBHbCtmTzREQkpvZjly?=
+ =?utf-8?B?QXpuUE1jYkRNRDVHb294L0lINDJzd2NPY3NWdzJhcUVhM0lCa2N3ZjhCNmc3?=
+ =?utf-8?B?SXZRa2dsaXdUVTV4K1l1RGM3R1A0WEVFa2FHNjJUWXhXMU85UlJwaXJaelVl?=
+ =?utf-8?B?OTBwdENZYytqclE3N0VEUlJNK0NPWHA0TDZkOVZMYjlxVmtRSmxQMXpsbzZQ?=
+ =?utf-8?B?ai9QazVTdUh1dU9HYmlRUjdMTks0bGVrRGhzRXFIY0dNZ2pUMjVJNmVlZWIx?=
+ =?utf-8?B?ci9JTHo3b0V2U1lERThiMFZOcSt6ZytJWVAxNzBGSWVpMlJuZkVPeUp5VWE1?=
+ =?utf-8?B?aXZYdENsRmliNjh4M0ZKRjZOQlZMbkpCWGg4dVJaV1BFWXR1Y0ZJZE5IU3Zh?=
+ =?utf-8?B?T3paNVBja3NDbDMrM1dNVlFPNnlnZFRpWnFQT0lVT2szRllSMUhIVEtwSTE5?=
+ =?utf-8?B?RFl1czNXMHhZd2lPdkNGNlNLb3RleVIvUlRVNTJuT1lrUVU4YVZJSTJMdHd1?=
+ =?utf-8?B?SXBhWjlGWXlrWTNMV3JFOTJmL2pKTVFaVE1DajljbWY1M3F3aUtobkhiWm9Z?=
+ =?utf-8?B?TzYwOE5GdnRDQWVnWjdlZ0ViT2xXZEcraUdSajRmdUpQVzZScE9HZUJtQi9Y?=
+ =?utf-8?B?S0xWTVBwYndubG1zM29yRFo0YWoyY043MmJPY2NQckRuODRHSlpJM1FaVDl3?=
+ =?utf-8?B?d08yQTZON0Z5TGhScU9NT0VYbDFNTXZRZXcyWW5oZ3krWDloK2ZvdVo1VHVS?=
+ =?utf-8?B?ZjhqKzhrQWQwajZRQllnd0dBU0R4K28rRUl1Z2JJTG84d2M3dVhFNXVNVThQ?=
+ =?utf-8?B?RGxSK0pCblZ0VFZRRUMvREZkeW5mSEM1dFk3MU5HcE1sZ2YyZG1DYUc4VkFS?=
+ =?utf-8?B?WWY0Z0RJMEZpcENIUGYyMGl4S2hObHRZT3lxSTJ0eE9BRHNPdGY1V3FES3Ft?=
+ =?utf-8?B?QkpCek4yWWF1aWh4YzZnOTJiSUFlQ2FDN0JNNWRodTN5a2dPSE41UktVaWFE?=
+ =?utf-8?B?WXR4WExqNDAwWmdnVm8wdktCSXYrQ1YwU29qeDJwTFZ0VC8yRFVRN29DQklk?=
+ =?utf-8?B?a2hSK3RaZi9Jank5bFdSb3VNclAzYWRaRzJUWmJmTi9ZZ29LejR4NGt3OWYv?=
+ =?utf-8?B?NHpwL1loNmhmK2w2eXJneHg0cTJTNUxadk5GQkF6R210T3EzOC80UkhESUg1?=
+ =?utf-8?B?Sm1tY3RGb0EwdXBvK0VPeTIzYmpmRHFhdkc2YlE3QXB5ZFBJVkZ2UUkyaVkv?=
+ =?utf-8?B?UDFQeHBucEFuTy9PUGhPTzBhQU1ocytoNkdGY1ZsMmRsa3dIQ01uUDR3Sm83?=
+ =?utf-8?B?clB3emhZRTNObUx3OGh5NGttTlczNnJhOXc5UnVzTU43cXJzMmcyUDlxWUVz?=
+ =?utf-8?B?dCtybHhWS0IrQUdMcXpOUFVISStCVytweHV1VHlVdW50azJTdkJaVTF5dS9W?=
+ =?utf-8?B?UW1FVmNGN2JLWGRwSVJrU1F4cHZFKzVnVWJUQjVjcXJ5U05KdXVsc3pGVUZh?=
+ =?utf-8?B?TERNb2lFNXRjOUFTS21NSFI5Qnh3SHlVYkVjVDZKbnBmakU4aDZrcTRySjZa?=
+ =?utf-8?B?Z2lMcTBSTitvdDkzVlp4ZDZQYXdTQXBNeEtMSndydCtWaktLenFnaW1EbHNK?=
+ =?utf-8?B?SjVYUDE5ZXh4L1dVV1ZmeDVqZVFJaXpUSThLUnJqaS8rcExGTjVhTVhteDc2?=
+ =?utf-8?B?OEZ5WnJFdTVhNFAzQzlTVXhpUzZrOXFPSlpVTVdwMThObjdmeWpvSzVlUWcz?=
+ =?utf-8?B?aGFvakhSMDRIcWdPaWwwaEI0WUg4cEFGSnNOcUNBUCtWN3V0RERpS1BndThG?=
+ =?utf-8?B?T0Rjdm90Y29jRWY3blp1MW0vRGxNTlFJNDNmaXNFOWF4Q1UraTdmN2xlMmxU?=
+ =?utf-8?B?ZHFNazlwTEVZdk5FSlhtQUV0MkNLdk5EclVQNVY4dmt4b29MYlhueE9GUnVZ?=
+ =?utf-8?Q?AXcqa5?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BN9PR11MB5530.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?M3ZZSVZlRlVMZGlVREIzUS84ZGo5Mno1emQ4bHBpUEkzbVBHYkp1YXRoUk5l?=
+ =?utf-8?B?RFFIRDRzWGdURFFEWkJhWXloeG1TaGxiTnhnaUExeTVVY0dEMDNWcnNGckhK?=
+ =?utf-8?B?T01tWC9VWDYzYUxlY3JoY0pRK2g1NFFMYWQrOVAzc3pmbTJBSWp6eVV0QXcv?=
+ =?utf-8?B?RW1IdFI1enN5S3dFYmZJK2hiQkdnTWpRVGh2YW93QnVKMkhxbFgzSm1oL0xi?=
+ =?utf-8?B?VFdocUpTVWdkdUVQYXR3a3FEdTdYYlJISUZoT3V4b2FFdHplRTY4NWZ1ckFx?=
+ =?utf-8?B?Q1c5U1BrN1lic3dGYk8ySWdtVWczbWIvT2syWmpwSWVMTE9Hak0xM1p2dHpw?=
+ =?utf-8?B?Wmg2NEJkOWNYaXFGd29FNHFjVnBFcjN3ZE81TGNsS3d2dGlvaEdHdmtsWEVG?=
+ =?utf-8?B?YTg4MStXNExwZUo3Skl4RmNBSk5CZUsvMkRESU4xRE9WOXl5RU5CWVlOa2p5?=
+ =?utf-8?B?akVLTHBhaWNLOHk3WVhUQzMyK1NqYk1ZZE1IaHV1dm9Ydk1FUW1kRXdBRnpt?=
+ =?utf-8?B?QStTQkkyREdTb2doMERlbHBPVnZqNjJPSzRHSnVMRW41ZDRpUXg3c2h0c1BY?=
+ =?utf-8?B?RjhrZkt0NWthSy9jNEpTRis1THY5SHliWGpJbUZzaVRmbnRlQmdzN1pydndR?=
+ =?utf-8?B?ZW9PMGNhQkhIN2Q0bStxTDhHSEYzNG5Oa1pPOERaSyt3aC9hckFjbWlVRzhq?=
+ =?utf-8?B?VnZBOGN2WDV6VFN6NmRvU3VqZlZhMURjMFVnOWVmYmtobUNVMWxiNm9zLzYr?=
+ =?utf-8?B?V1VMUlZ5bVl4TmFPVXFZcUM1QzVONnB4Z1ZNTGFYSjFUdWpPWmdhcXo3Sldk?=
+ =?utf-8?B?ekJNYmI4UEZiVFR4NjdTaEU1QVVHZmNQWGtXV0tSVm1LMG1zT0lUV3pXbktT?=
+ =?utf-8?B?N1hPVDZqcWltVHBnMWFwZTgxbTRJUVB6SWx0cUlWcnJob1VYdk9CZmZPeWZm?=
+ =?utf-8?B?LzJoWG4yc0orM2RjaFFESTEyZHdvTzIzWTVoSW9ldWgvalFQYkZ2MVpmYnJW?=
+ =?utf-8?B?Z21GTktNYXdPcjhlTUhOdUxZNURNQ2djUUF5NEhUSW1VbHI4N3VVR3MyenR3?=
+ =?utf-8?B?SDdRbmpxNHZxS0o5Z2dGRTlDMTFVU2hjV0lyaklWSlhqS2I0bVJRL0Q0Z0Fj?=
+ =?utf-8?B?R2tHTlBUbGRTT3JTcE9jeDAwTE1xZWJoMTRLYjBMY1pKNUVwU012c3RabmZX?=
+ =?utf-8?B?bDkrdmdwbVlld09tWUVmeEJFcXZ4WmhMQ1h2R2c5TUswdlg3S3k1Rk1jZEZZ?=
+ =?utf-8?B?SE5JMUNIVUxXcHdkOFk2UXpleDEwdlFxbFBxWkxLVXNOSXBzV1ZlWjJkZXZs?=
+ =?utf-8?B?UUFDcGszbmpROURTS1c4dStmRVlMU1ZiZSs3UmFPZ2JjM2xTayt6aU5yQ1hv?=
+ =?utf-8?B?Z3EwaGNWUUVjUTgzQ0RpNTVVdDIycVFJYkVXQjZBZTZKdjVCZVgrVy9Jd0hX?=
+ =?utf-8?B?MGJvRjZ0dWsrM3d1YkE4LzFrbHd1ZXJMNFBPUFpKUjZnM3VSZms4WHNSY280?=
+ =?utf-8?B?Wk4wVGhSRnNNTW9VNjJEMUk4US94bmYvSk5MQk8wTXhnR2d6cG15QTQzeVNu?=
+ =?utf-8?B?VVhjeHZGam5lWFpsNmdMU2pjNzNEdk11RG52bWVzb29CS3lSRWdob1VSdFhF?=
+ =?utf-8?B?ZzdOZHhDYW9YdWh6YXhvaWRiRC9CcEErS0piWGxrZ3FSdnludnA1VVFwcTVv?=
+ =?utf-8?B?ZW5BSWRNa3NGc2NuWlJHVFZtcnBsTThiT3lDcGlXRGlnRnYwOGZLdElxOUZS?=
+ =?utf-8?B?NTlud2h0QlBxazB0SFM3emprSmxmVys5cU9JRDMrVnMxZ2N4OHMzUHZZK2lC?=
+ =?utf-8?B?RXkwSUNVSEtGWVNVTjllOHZxL1hPRUswdXhPcUFRYVZZWThpdGNHWkRJemxz?=
+ =?utf-8?B?QzRHN2I0ajNhZWZHT1ZvZFdBQjlzcHlwbGhFWWJkWktQMmtGZlRtTmNDRS9J?=
+ =?utf-8?B?S2o1bTV1c0cvQzk5SWhUM0cvdmRodUVpL0xsaTFLT0NzRjFuZUYzc3pqeHlI?=
+ =?utf-8?B?NHR6T2p3MnhnUXhYelREZDR5bnM0NGczNGw0b2owNjNSMXdOc1ZodC9UcGlD?=
+ =?utf-8?B?L1U3T3hWVTBxbHNvbGxnT0ZOTExZQSsvWTdidUw4aUJ3dUlHY252dHFUUXMv?=
+ =?utf-8?B?djg1SWI0VlRDaFVTWGNYMDU5T1BaQXZwOHJIYnNyK0ZJMDVZeHp6bHd4bThs?=
+ =?utf-8?B?Q0YxMFlyV0VpRDBsWm9uSEgwaytrdnFYZWRZLy9Tc0RsSDcwSU1iOE96UFJi?=
+ =?utf-8?B?ODgxYzJTN2p0VzNEaDRMUGxUOFcwUWdkYTQ5cWNEQUJJalRHREk2UTZ4SU9K?=
+ =?utf-8?B?ZGdwWnRTUE91cUV1VDc1RlVmNStJckZwc1pFOE0vSHNEdisrRW5oQT09?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: adfcdf66-5b54-4c6e-16cf-08de582cb07f
+X-MS-Exchange-CrossTenant-AuthSource: BN9PR11MB5530.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Jan 2026 14:03:29.7455 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: IX1L3DLkZAx3ylsFW8e1woBETiga2Z+NRm9sV82Vjg8RydlDBwDmzcbietRzaMCRHxw7i25pUgW8u+LU+3NnPQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ5PPF0D43D62C4
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,94 +204,259 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 20 Jan 2026, Jani Nikula <jani.nikula@linux.intel.com> wrote:
-> On Fri, 16 Jan 2026, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
->> From: Mika Kahola <mika.kahola@intel.com>
+
+On 15-01-2026 01:54, Bjorn Helgaas wrote:
+> On Tue, Jan 13, 2026 at 10:12:02PM +0530, Badal Nilawar wrote:
+>> From: Anshuman Gupta <anshuman.gupta@intel.com>
 >>
->> Move intel_pps_on() to intel_dpll_mgr PLL enabling
->> .enable function hook to enable panel power earlier.
->> We need to do this to make sure we are following the
->> modeset sequences of Bspec. This had changed when we
->> moved the PLL PHY enablement for CX0 from .enable_clock
->> to dpll.enable hook
->
-> So I really hate this.
->
-> Yeah, maybe it follows the spec now, but what connection does the DPLL
-> manager have with the panel power sequencing?
->
-> Absolutely nothing.
->
-> The DPLL manager has no business calling PPS functions.
->
-> Currently only the g4x and DDI encoder code does PPS power calls, and
-> they're the only ones who should manage PPS.
->
+>> Implement _DSM method 0Ah, as per PCI Firmware r3.3, sec 4.6.10,
+>> to request auxiliary power required by the device when in D3cold state.
 >>
->> Signed-off-by: Mika Kahola <mika.kahola@intel.com>
->> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+>> Implementation allows only a single device below the Downstream Port to
+>> request for Aux Power Limit under a given Root Port/Downstream Port
+>> because it does not track and aggregate requests from all child devices
+>> below the Downstream Port as required by PCI Firmware r3.3, sec 4.6.10.
+>>
+>> Co-developed-by: Badal Nilawar <badal.nilawar@intel.com>
+>> Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
+>> Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
 >> ---
+>> V2(Bjorn/Rafael):
+>>    - Call acpi_dsm_check() to find method 0Ah supported
+>>    - Return retry interval to caller
+>> V3(Kuppuswamy)
+>>    - Add NULL check for retry interval
+>> V4
+>>    - Define enums for aux power request status (Rafael)
+>>    - Add Co-developed-by and clean up Signed-off-by (Kappuswamy)
+>>   (Bjorn)
+>>    - Instead of root pci device pass the pci device of driver, traverse
+>>      up the tree and discover _DSM
+>>    - Allow only function 0 of device to request aux power
+>>    - Allow retry_interval to be NULL
+>>    - Refine commit message and function description
+>> V5(Rafael)
+>>    - Remove function 0 check and allow first caller of the given
+>>      downstream port (with _DSM) to requst aux power including
+>>      different function
+>>    - Squash Patch v5.02 to this patch
+>>    - In the logic, to allow single device to req power, use linked list
+>>      instead of adding extra variables to acpi device structure
+>>    - return positive code for no main power removal to distinguish from
+>>      aux power request granted
+>> ---
+>>   drivers/pci/pci-acpi.c   | 136 +++++++++++++++++++++++++++++++++++++++
+>>   include/linux/pci-acpi.h |   9 +++
+>>   2 files changed, 145 insertions(+)
 >>
->> v2 -> v3: 
->> - Rather than splitting the PHY enablement sequence, enable PPS
->> earlier (Imre)
->
-> Please point me at the review comment. I couldn't find anything that
-> would suggest moving the PPS calls to the DPLL manager.
->
-> Please let's not do this.
-
-Cc: Imre
-
->
-> BR,
-> Jani.
->
->
+>> diff --git a/drivers/pci/pci-acpi.c b/drivers/pci/pci-acpi.c
+>> index 9369377725fa..645d3005ba50 100644
+>> --- a/drivers/pci/pci-acpi.c
+>> +++ b/drivers/pci/pci-acpi.c
+>> @@ -1418,6 +1418,142 @@ static void pci_acpi_optimize_delay(struct pci_dev *pdev,
+>>   	ACPI_FREE(obj);
+>>   }
 >>   
->>  drivers/gpu/drm/i915/display/intel_ddi.c      | 6 ++++--
->>  drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 5 +++++
->>  2 files changed, 9 insertions(+), 2 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
->> index cb91d07cdaa6..1784fa687c03 100644
->> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
->> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
->> @@ -2653,8 +2653,10 @@ static void mtl_ddi_pre_enable_dp(struct intel_atomic_state *state,
->>  	/* 3. Select Thunderbolt */
->>  	mtl_port_buf_ctl_io_selection(encoder);
->>  
->> -	/* 4. Enable Panel Power if PPS is required */
->> -	intel_pps_on(intel_dp);
->> +	/*
->> +	 * 4. Enable Panel Power if PPS is required
->> +	 *    moved to intel_dpll_mgr .enable hook
->> +	 */
->>  
->>  	/* 5. Enable the port PLL */
->>  	intel_ddi_enable_clock(encoder, crtc_state);
->> diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
->> index 9aa84a430f09..b5655c734c53 100644
->> --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
->> +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
->> @@ -40,6 +40,7 @@
->>  #include "intel_hti.h"
->>  #include "intel_mg_phy_regs.h"
->>  #include "intel_pch_refclk.h"
->> +#include "intel_pps.h"
->>  #include "intel_step.h"
->>  #include "intel_tc.h"
->>  
->> @@ -4401,6 +4402,10 @@ static void mtl_pll_enable(struct intel_display *display,
->>  	if (drm_WARN_ON(display->drm, !encoder))
->>  		return;
->>  
->> +	/* Enable Panel Power if PPS is required */
->> +	if (intel_encoder_is_dp(encoder))
->> +		intel_pps_on(enc_to_intel_dp(encoder));
+>> +static LIST_HEAD(acpi_aux_pwr_list);
+>> +static DEFINE_MUTEX(acpi_aux_pwr_lock);
 >> +
->>  	intel_mtl_pll_enable(encoder, pll, dpll_hw_state);
->>  }
+>> +struct aux_pwr {
+>> +	u32 aux_pwr_limit;		/* aux power limit granted by platform firmware */
+>> +	struct device *dev;		/* device to which aux power is granted  */
+> Shorten these to fit in 80 columns like the rest of the file.
+Sure.
+>
+>> +	struct acpi_device *adev;	/* root port/downstream port */
+>> +	struct list_head list;
+>> +};
+>> +
+>> +enum aux_pwr_req_status {
+>> +	AUX_PWR_REQ_DENIED               = 0x0,
+>> +	AUX_PWR_REQ_GRANTED              = 0x1,
+>> +	AUX_PWR_REQ_NO_MAIN_PWR_REMOVAL  = 0x2,
+>> +	AUX_PWR_REQ_RETRY_INTERVAL_MIN   = 0x11,
+>> +	AUX_PWR_REQ_RETRY_INTERVAL_MAX   = 0x1F
+> Use lower-case hex ("0x1f") like the rest of the file.  Also below.
+Ok.
+>
+>> +};
+>> +
+>> +/**
+>> + * pci_acpi_request_d3cold_aux_power - Request aux power while device is in D3cold
+> Shorten or wrap to fit in 80 columns.
+Ok
+>
+>> + * @dev: PCI device instance
+>> + * @requested_mw: Requested auxiliary power in milliwatts
+>> + * @retry_interval: Retry interval returned by platform to retry auxiliary
+>> + *                  power request
+>> + *
+>> + * Request auxilary power to platform firmware, via Root Port/Switch Downstream
+>> + * Port ACPI _DSM Function 0Ah, needed for the PCI device when it is in D3cold.
+>> + * Evaluate the _DSM and handle the response accordingly.
+> Drop this last sentence; I don't think it tells us anything new.
+Ok
+>
+>> + * For Multi-Function Devices, driver for Function 0 is required to report an
+>> + * aggregate power requirement covering all functions contained within the
+>> + * device.
+>> + *
+>> + * Return: 0 Aux power request granted
+>> + *	   1 No main power removal
+>> + *         errno on failure.
+>> + */
+>> +int pci_acpi_request_d3cold_aux_power(struct pci_dev *dev, u32 requested_mw,
+>> +				      u32 *retry_interval)
+>> +{
+>> +	union acpi_object in_obj = {
+>> +		.integer.type = ACPI_TYPE_INTEGER,
+>> +		.integer.value = requested_mw,
+>> +	};
+>> +
+>> +	union acpi_object *out_obj;
+>> +	int result;
+>> +	struct pci_dev *bdev;
+>> +	struct acpi_device *adev;
+>> +	acpi_handle handle;
+>> +	struct aux_pwr *apwr, *next;
+>> +
+>> +	if (!dev)
+>> +		return -EINVAL;
+> We talked about only allowing this for function 0:
+> https://lore.kernel.org/all/20250904183046.GA1267851@bhelgaas/
 
--- 
-Jani Nikula, Intel
+In rev5 there was suggestion from Rafael to remove function 0 check as 
+synchronization among drivers will be
+tricky. 
+https://patchwork.freedesktop.org/patch/681119/?series=145342&rev=5#comment_1255325
+
+>
+>> +	for (bdev = dev; bdev; bdev = pci_upstream_bridge(bdev)) {
+> I think bdev should start with pci_upstream_bridge(dev) as in the
+> other patch because this _DSM is only allowed in Downstream Ports.
+Ok
+>
+>> +		handle = ACPI_HANDLE(&bdev->dev);
+>> +		if (handle &&
+>> +		    acpi_check_dsm(handle, &pci_acpi_dsm_guid, 4,
+>> +				   1 << DSM_PCI_D3COLD_AUX_POWER_LIMIT))
+>> +			break;
+>> +	}
+>> +
+>> +	if (!bdev)
+>> +		return -ENODEV;
+>> +
+>> +	adev = ACPI_COMPANION(&bdev->dev);
+>> +	if (!adev)
+>> +		return -EINVAL;
+>> +
+>> +	guard(mutex)(&acpi_aux_pwr_lock);
+>> +	/* Check if aux power already granted to different device */
+>> +	list_for_each_entry_safe(apwr, next, &acpi_aux_pwr_list, list) {
+>> +		if (apwr->adev == adev && apwr->dev != &dev->dev) {
+>> +			pci_info(to_pci_dev(apwr->dev),
+>> +				 "D3cold Aux Power request already granted: %u mW\n",
+>> +				 apwr->aux_pwr_limit);
+>> +			return -EALREADY;
+>> +		}
+>> +		if (apwr->adev == adev && apwr->dev == &dev->dev) {
+>> +			list_del(&apwr->list);
+>> +			kfree(apwr);
+>> +			break;
+>> +		}
+>> +	}
+>> +
+>> +	out_obj = acpi_evaluate_dsm_typed(ACPI_HANDLE(&bdev->dev),
+>> +					  &pci_acpi_dsm_guid, 4,
+>> +					  DSM_PCI_D3COLD_AUX_POWER_LIMIT,
+>> +					  &in_obj, ACPI_TYPE_INTEGER);
+>> +	if (!out_obj)
+>> +		return -EINVAL;
+>> +
+>> +	result = out_obj->integer.value;
+>> +	ACPI_FREE(out_obj);
+>> +
+>> +	if (retry_interval)
+>> +		*retry_interval = 0;
+>> +
+>> +	switch (result) {
+>> +	case AUX_PWR_REQ_DENIED:
+>> +		pci_dbg(bdev, "D3cold Aux Power %u mW request denied\n",
+>> +			requested_mw);
+>> +		return -EINVAL;
+>> +	case AUX_PWR_REQ_GRANTED:
+>> +		pci_info(bdev, "D3cold Aux Power request granted: %u mW\n",
+>> +			 requested_mw);
+>> +		apwr = kzalloc(sizeof(*apwr), GFP_KERNEL);
+>> +		if (apwr) {
+>> +			apwr->aux_pwr_limit = requested_mw;
+>> +			apwr->dev = &dev->dev;
+>> +			apwr->adev = adev;
+>> +			INIT_LIST_HEAD(&apwr->list);
+>> +			list_add(&acpi_aux_pwr_list,
+>> +				 &apwr->list);
+>> +		}
+> I think we leak this allocation if the device is removed.  I think the
+> list idea is more complicated than aggregating would be.
+>
+> I think we could:
+>
+>    - add "aux_power_mw" in struct pci_dev
+>
+>    - walk the tree below bdev, accumulating aux_power_mw
+>      (total_aux_power_mw += dev->aux_power_mw)
+>
+>    - pass "total_aux_power_mw + requested_mw" to the _DSM
+>
+>    - if successful, set dev->aux_power_mw = requested_mw
+
+Introduced list based handling as in rev5 there was suggestion to avoid 
+adding variables in acpi/acpi_power structures.
+To handle allocation leak in function acpi_device_release() I will add 
+code to scan list and delete the entry.
+
+>> +		return 0;
+>> +	case AUX_PWR_REQ_NO_MAIN_PWR_REMOVAL:
+>> +		pci_info(bdev, "D3cold Aux Power: Main power won't be removed\n");
+>> +		return 2;
+> Kernel-doc says we return 1 for this case.
+Will fix it.
+>
+>> +	case AUX_PWR_REQ_RETRY_INTERVAL_MIN ... AUX_PWR_REQ_RETRY_INTERVAL_MAX:
+>> +		pci_info(bdev, "D3cold Aux Power request needs retry, interval: %u seconds\n",
+>> +			 result & 0xF);
+> Lower-case hex.
+Ok
+>
+>> +		if (retry_interval) {
+>> +			*retry_interval = result & 0xF;
+>> +			return -EAGAIN;
+>> +		}
+>> +		return -EINVAL;
+> I think we should do:
+>
+>    case AUX_PWR_REQ_RETRY_INTERVAL_MIN ...  AUX_PWR_REQ_RETRY_INTERVAL_MAX:
+>      result &= 0xf;
+>      pci_info(bdev, "... needs retry", result);
+>      if (retry_interval)
+>        *retry_interval = result;
+>      return -EAGAIN;
+>
+> I don't think it's useful to return different errors based on whether
+> the caller supplied a "retry_interval" pointer.
+
+This is to indicate caller to retry after retry_interval returned by 
+ACPI method.
+It's up to caller whether to retry or just proceed.
+
+Thanks,
+Badal
+
+>
+>> +	default:
+>> +		pci_err(bdev, "D3cold Aux Power: Reserved or unsupported response: 0x%x\n",
+>> +			result);
+>> +		return -EINVAL;
+>> +	}
+>> +}
+>> +EXPORT_SYMBOL_GPL(pci_acpi_request_d3cold_aux_power);
