@@ -4,68 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 46BA1D2ECF7
-	for <intel-xe@archiver.kernel.org>; Tue, 20 Jan 2026 13:34:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D6788D2ED1C
+	for <intel-xe@archiver.kernel.org>; Tue, 20 Jan 2026 13:38:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0238010E00C;
-	Tue, 20 Jan 2026 13:34:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 91FF810E5E9;
+	Tue, 20 Jan 2026 13:38:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="JpEG1sP9";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ARs/yiE9";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EF59D10E00C;
- Tue, 20 Jan 2026 13:34:03 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id B6397439A6;
- Tue, 20 Jan 2026 13:34:03 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CC30AC16AAE;
- Tue, 20 Jan 2026 13:34:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1768916043;
- bh=oLJ2iu9KlHT5QrDdejkQxW6aJLgiN+DqMd8h51OdTRU=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=JpEG1sP9sdoE2iRilDGuE2cq1/H2M6cDuai69Nw+oSU99dcdoZdWBvI1Ukv0pmCi9
- TsEw1r+DamQwCel7MoQtDe43k96uNEN2EIGYyUqy+LKVNlFKvNVQdDnF9gRgkw6+oE
- Iyr3Ih5rCshWR5ndygaol8Ath9Rlm/yA6Sguxq2x2tSUxefkc1flchRkXEHVN8GCfi
- tJskCUcB7JdPmjSewrBWCzbAo1v7780XPg1+FKbkQX6nJPso+uCdLPziwkOu29i/jw
- mD8HoF6GofHxxX6dhDDXQOlk4BrG8fNLd2RXpMxN3Qn9LCRK7nBxumFh6AjnzbEM7k
- ZfnVnW6TNMaYg==
-Date: Tue, 20 Jan 2026 15:33:57 +0200
-From: Leon Romanovsky <leon@kernel.org>
-To: Jason Gunthorpe <jgg@ziepe.ca>
-Cc: Sumit Semwal <sumit.semwal@linaro.org>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Gerd Hoffmann <kraxel@redhat.com>,
- Dmitry Osipenko <dmitry.osipenko@collabora.com>,
- Gurchetan Singh <gurchetansingh@chromium.org>,
- Chia-I Wu <olvaffe@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Kevin Tian <kevin.tian@intel.com>, Joerg Roedel <joro@8bytes.org>,
- Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
- Alex Williamson <alex@shazbot.org>, linux-media@vger.kernel.org,
- dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org,
- linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- virtualization@lists.linux.dev, intel-xe@lists.freedesktop.org,
- linux-rdma@vger.kernel.org, iommu@lists.linux.dev, kvm@vger.kernel.org
-Subject: Re: [PATCH v2 3/4] iommufd: Require DMABUF revoke semantics
-Message-ID: <20260120133357.GT13201@unreal>
-References: <20260118-dmabuf-revoke-v2-0-a03bb27c0875@nvidia.com>
- <20260118-dmabuf-revoke-v2-3-a03bb27c0875@nvidia.com>
- <20260119165951.GI961572@ziepe.ca> <20260119182300.GO13201@unreal>
- <20260119195444.GL961572@ziepe.ca> <20260120131046.GS13201@unreal>
- <20260120131530.GN961572@ziepe.ca>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 43CED10E5E9
+ for <intel-xe@lists.freedesktop.org>; Tue, 20 Jan 2026 13:38:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1768916306; x=1800452306;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=iIKWYdHEWFO4L+LAPKl+a+j+ZL724CHnYLDi3Ckacfw=;
+ b=ARs/yiE9OXHugamlKoThkmBUtY1rEDnmZxGmPTr080qMAHpM+r55eiup
+ uEjqq5Rjae+biEebK+b0/9HMfSpNdvfgznvZLDy9+p0tcgZ0OerBAwGHb
+ nz0aA/9vhVR2Y3wV5vQZeoIhwCpJvCU2D1RonfKWbRwaIQFFUbuHCxZyA
+ 6sEueOKUktsZS/v/IfJ+rQfNSMUvbd0eBgCIcbiYc3khffej1Oj2z7jI6
+ eEq0MfKS9VfR1da4PqQ7I+OVSd9cSNfu4aXb9+M5mbUKJ/0SBqtd0FfTs
+ +Ve+GaXrhK7NZ0TgKh0b9NM+QD3QI3J857k+NSVyYN+AqBoiUH9N9g8lW g==;
+X-CSE-ConnectionGUID: RXXKk3dBQX2YhsWJGW+cEg==
+X-CSE-MsgGUID: Fz0l5AttSFCAuoy0jihkYg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11676"; a="81495309"
+X-IronPort-AV: E=Sophos;i="6.21,240,1763452800"; d="scan'208";a="81495309"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jan 2026 05:38:25 -0800
+X-CSE-ConnectionGUID: VBIV5dMeTU2i/3INNhcljg==
+X-CSE-MsgGUID: hPty/qrQTb6PJsbFpVgAPQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,240,1763452800"; d="scan'208";a="210273063"
+Received: from black.igk.intel.com ([10.91.253.5])
+ by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jan 2026 05:38:23 -0800
+Date: Tue, 20 Jan 2026 14:38:20 +0100
+From: Raag Jadav <raag.jadav@intel.com>
+To: Karthik Poosa <karthik.poosa@intel.com>
+Cc: intel-xe@lists.freedesktop.org, anshuman.gupta@intel.com,
+ badal.nilawar@intel.com, rodrigo.vivi@intel.com
+Subject: Re: [PATCH] drm/xe/hwmon: Prevent unintended VRAM channel creation
+Message-ID: <aW-FTFpA7cvJOoMa@black.igk.intel.com>
+References: <20260119143138.1362379-1-karthik.poosa@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260120131530.GN961572@ziepe.ca>
+In-Reply-To: <20260119143138.1362379-1-karthik.poosa@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,64 +67,37 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Jan 20, 2026 at 09:15:30AM -0400, Jason Gunthorpe wrote:
-> On Tue, Jan 20, 2026 at 03:10:46PM +0200, Leon Romanovsky wrote:
-> > On Mon, Jan 19, 2026 at 03:54:44PM -0400, Jason Gunthorpe wrote:
-> > > On Mon, Jan 19, 2026 at 08:23:00PM +0200, Leon Romanovsky wrote:
-> > > > On Mon, Jan 19, 2026 at 12:59:51PM -0400, Jason Gunthorpe wrote:
-> > > > > On Sun, Jan 18, 2026 at 02:08:47PM +0200, Leon Romanovsky wrote:
-> > > > > > From: Leon Romanovsky <leonro@nvidia.com>
-> > > > > > 
-> > > > > > IOMMUFD does not support page fault handling, and after a call to
-> > > > > > .invalidate_mappings() all mappings become invalid. Ensure that
-> > > > > > the IOMMUFD DMABUF importer is bound to a revoke‑aware DMABUF exporter
-> > > > > > (for example, VFIO).
-> > > > > > 
-> > > > > > Signed-off-by: Leon Romanovsky <leonro@nvidia.com>
-> > > > > > ---
-> > > > > >  drivers/iommu/iommufd/pages.c | 9 ++++++++-
-> > > > > >  1 file changed, 8 insertions(+), 1 deletion(-)
-> > > > > > 
-> > > > > > diff --git a/drivers/iommu/iommufd/pages.c b/drivers/iommu/iommufd/pages.c
-> > > > > > index 76f900fa1687..a5eb2bc4ef48 100644
-> > > > > > --- a/drivers/iommu/iommufd/pages.c
-> > > > > > +++ b/drivers/iommu/iommufd/pages.c
-> > > > > > @@ -1501,16 +1501,22 @@ static int iopt_map_dmabuf(struct iommufd_ctx *ictx, struct iopt_pages *pages,
-> > > > > >  		mutex_unlock(&pages->mutex);
-> > > > > >  	}
-> > > > > >  
-> > > > > > -	rc = sym_vfio_pci_dma_buf_iommufd_map(attach, &pages->dmabuf.phys);
-> > > > > > +	rc = dma_buf_pin(attach);
-> > > > > >  	if (rc)
-> > > > > >  		goto err_detach;
-> > > > > >  
-> > > > > > +	rc = sym_vfio_pci_dma_buf_iommufd_map(attach, &pages->dmabuf.phys);
-> > > > > > +	if (rc)
-> > > > > > +		goto err_unpin;
-> > > > > > +
-> > > > > >  	dma_resv_unlock(dmabuf->resv);
-> > > > > >  
-> > > > > >  	/* On success iopt_release_pages() will detach and put the dmabuf. */
-> > > > > >  	pages->dmabuf.attach = attach;
-> > > > > >  	return 0;
-> > > > > 
-> > > > > Don't we need an explicit unpin after unmapping?
-> > > > 
-> > > > Yes, but this patch is going to be dropped in v3 because of this
-> > > > suggestion.
-> > > > https://lore.kernel.org/all/a397ff1e-615f-4873-98a9-940f9c16f85c@amd.com
-> > > 
-> > > That's not right, that suggestion is about changing VFIO. iommufd must
-> > > still act as a pinning importer!
-> > 
-> > There is no change in iommufd, as it invokes dma_buf_dynamic_attach()
-> > with a valid &iopt_dmabuf_attach_revoke_ops. The check determining whether
-> > iommufd can perform a revoke is handled there.
+On Mon, Jan 19, 2026 at 08:01:38PM +0530, Karthik Poosa wrote:
+> Remove the unnecessary VRAM channel entry introduced in
+> xe_hwmon_channel. Without this, adding any new hwmon channel
+> causes an extra VRAM channel to appear. This remained unnoticed
+> earlier because VRAM was the final xe hwmon channel.
 > 
-> iommufd is a pining importer. I did not add a call to pin because it
-> only worked with VFIO that would not support it. Now that this series
-> fixes it the pin must be added. Don't drop this patch.
+> Signed-off-by: Karthik Poosa <karthik.poosa@intel.com>
+> Fixes: 49a498338417 ("drm/xe/hwmon: Expose individual VRAM channel temperature")
+> ---
+>  drivers/gpu/drm/xe/xe_hwmon.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
+> index baf277955b33..f614f1308dec 100644
+> --- a/drivers/gpu/drm/xe/xe_hwmon.c
+> +++ b/drivers/gpu/drm/xe/xe_hwmon.c
+> @@ -48,7 +48,7 @@ enum xe_hwmon_channel {
+>  	CHANNEL_MCTRL,
+>  	CHANNEL_PCIE,
+>  	CHANNEL_VRAM_N,
+> -	CHANNEL_VRAM_N_MAX = CHANNEL_VRAM_N + MAX_VRAM_CHANNELS,
+> +	CHANNEL_VRAM_N_MAX = CHANNEL_VRAM_N + MAX_VRAM_CHANNELS - 1,
 
-No problem, let's keep it.
+Can you also check in_range() logic and investigate how channel id greater
+than CHANNEL_VRAM_N_MAX (for example 23) is delt with?
 
-Thanks
+Raag
+
+>  	CHANNEL_MAX,
+>  };
+>  
+> -- 
+> 2.25.1
+> 
