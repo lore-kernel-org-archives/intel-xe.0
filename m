@@ -4,55 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CC7B0D2ECF7
-	for <intel-xe@archiver.kernel.org>; Tue, 20 Jan 2026 11:06:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C8222D2ED0F
+	for <intel-xe@archiver.kernel.org>; Tue, 20 Jan 2026 11:06:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8658010E5BF;
-	Tue, 20 Jan 2026 11:06:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8B2A410E5C1;
+	Tue, 20 Jan 2026 11:06:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KwLNON5I";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mSHKIiI4";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0830810E5BF
- for <intel-xe@lists.freedesktop.org>; Tue, 20 Jan 2026 11:06:30 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 20FDE10E5BF
+ for <intel-xe@lists.freedesktop.org>; Tue, 20 Jan 2026 11:06:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1768907191; x=1800443191;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=PdEFh4w2HGHIcyUxq9kVsE0ObuDDlz5FSJcCU9RrpMg=;
- b=KwLNON5I/zFUcwD7Amh60dQYLsZRDcnndk/YtEiDilyfoRaEbQkDF8Mf
- YADfTobZKYVlWDqISWYX7V50CwUgXEVmOI/DwgZAtXO1howjRUFyfXQzu
- pIQrOZjEC+OQFnyc0EH9nkMnGrU8hdVP44BibvrhJC8S5ygPb9Y73sTsL
- 92mFypUPyDIiVefmNfFzbnqLSltFcvu68HSSTK6Yk59DyIOlGWnOOzk4Q
- t9+cC+yEyeBBWjO2OciBn7lHCasPpkPLRmJoDUAhg1itmTfWQTUaifhh2
- MM+2/WYSZxzEBCZXo3xJRKUBnNeST2Gj1SQX9MtX6atxNUPdtJ795sT43 Q==;
-X-CSE-ConnectionGUID: f4y1KNwqSKy0+oLi41kU+g==
-X-CSE-MsgGUID: ReO8fgRsSnqfI6m3uqPu+g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11676"; a="80833557"
-X-IronPort-AV: E=Sophos;i="6.21,240,1763452800"; d="scan'208";a="80833557"
+ t=1768907192; x=1800443192;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=d2X2dMyFyCaE/2/Nx6aXk0SmTi7ReK/uNWdg25Q9XFU=;
+ b=mSHKIiI44yemtEPuV2uHGaFBLNLwecskqPRg8hvQedF+hZi2350HWOKs
+ MMKCT+Fp+e7ayaTrSY1324bt1dqHdtVna7Jcs5cjWDcs50/Oscg+I9Wpg
+ KXqo850OAYrn7giFcHxaBTOjcyNiF5d10ZNvK+mvMHVROn1TdEljtd3cs
+ C0P1f/lxnYuqmJszYbK9jexHIh77maW3vZ8VWE5LxE3moZ7HOf6zmMl2n
+ 79G1lvR3W8tHvaXmvYAi8kM1GH8nQNSsjH6hS9Hj8KAL+JD1utdLIZscP
+ lLZi30X5rKdAsM9/2Bl8lms2eg5XvDj9QfJvplG2jlHmfDCLLwwqNZhTs A==;
+X-CSE-ConnectionGUID: dQVhZww3RBSU2/ibrWLcpw==
+X-CSE-MsgGUID: rUywVzPESPq7e2TnmvWn9g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11676"; a="80833558"
+X-IronPort-AV: E=Sophos;i="6.21,240,1763452800"; d="scan'208";a="80833558"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jan 2026 03:06:31 -0800
-X-CSE-ConnectionGUID: EtPvXMKhTzaFXxGDGogOjQ==
-X-CSE-MsgGUID: COIUq4RtTDWv4j0mH4g/9w==
+ 20 Jan 2026 03:06:32 -0800
+X-CSE-ConnectionGUID: KVH3/IusTLS4274dCfI/DA==
+X-CSE-MsgGUID: 1MlqjaNKQaeDvrVHM3RFkw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,240,1763452800"; d="scan'208";a="229029116"
+X-IronPort-AV: E=Sophos;i="6.21,240,1763452800"; d="scan'208";a="229029119"
 Received: from amilburn-desk.amilburn-desk (HELO mwauld-desk.intel.com)
  ([10.245.244.235])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jan 2026 03:06:29 -0800
+ 20 Jan 2026 03:06:31 -0800
 From: Matthew Auld <matthew.auld@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>,
  Matthew Brost <matthew.brost@intel.com>,
- Michal Mrozek <michal.mrozek@intel.com>, Carl Zhang <carl.zhang@intel.com>,
- stable@vger.kernel.org, Arvind Yadav <arvind.yadav@intel.com>
-Subject: [CI 1/2] drm/xe/uapi: disallow bind queue sharing
-Date: Tue, 20 Jan 2026 11:06:10 +0000
-Message-ID: <20260120110609.77958-3-matthew.auld@intel.com>
+ Arvind Yadav <arvind.yadav@intel.com>
+Subject: [CI 2/2] drm/xe/migrate: fix job lock assert
+Date: Tue, 20 Jan 2026 11:06:11 +0000
+Message-ID: <20260120110609.77958-4-matthew.auld@intel.com>
 X-Mailer: git-send-email 2.52.0
+In-Reply-To: <20260120110609.77958-3-matthew.auld@intel.com>
+References: <20260120110609.77958-3-matthew.auld@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -70,201 +70,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Currently this is very broken if someone attempts to create a bind
-queue and share it across multiple VMs. For example currently we assume
-it is safe to acquire the user VM lock to protect some of the bind queue
-state, but if allow sharing the bind queue with multiple VMs then this
-quickly breaks down.
+We are meant to be checking the user vm for the bind queue, but actually
+we are checking the migrate vm. For various reasons this is not
+currently firing but this will likely change in the future.
 
-To fix this reject using a bind queue with any VM that is not the same
-VM that was originally passed when creating the bind queue. This a uAPI
-change, however this was more of an oversight on kernel side that we
-didn't reject this, and expectation is that userspace shouldn't be using
-bind queues in this way, so in theory this change should go unnoticed.
+Now that we have the user_vm attached to the bind queue, we can fix this
+by directly checking that here.
 
-Based on a patch from Matt Brost.
-
-v2 (Matt B):
-  - Hold the vm lock over queue create, to ensure it can't be closed as
-    we attach the user_vm to the queue.
-  - Make sure we actually check for NULL user_vm in destruction path.
-v3:
-  - Fix error path handling.
-
-Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
-Reported-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Fixes: dba89840a920 ("drm/xe: Add GT TLB invalidation jobs")
 Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-Cc: José Roberto de Souza <jose.souza@intel.com>
+Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Michal Mrozek <michal.mrozek@intel.com>
-Cc: Carl Zhang <carl.zhang@intel.com>
-Cc: <stable@vger.kernel.org> # v6.8+
-Acked-by: José Roberto de Souza <jose.souza@intel.com>
 Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 Reviewed-by: Arvind Yadav <arvind.yadav@intel.com>
-Acked-by: Michal Mrozek <michal.mrozek@intel.com>
 ---
- drivers/gpu/drm/xe/xe_exec_queue.c       | 32 +++++++++++++++++++++++-
- drivers/gpu/drm/xe/xe_exec_queue.h       |  1 +
- drivers/gpu/drm/xe/xe_exec_queue_types.h |  6 +++++
- drivers/gpu/drm/xe/xe_sriov_vf_ccs.c     |  2 +-
- drivers/gpu/drm/xe/xe_vm.c               |  7 +++++-
- 5 files changed, 45 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/xe/xe_migrate.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-index a58968a0a781..7e7e663189e4 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue.c
-+++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-@@ -412,6 +412,7 @@ struct xe_exec_queue *xe_exec_queue_create_class(struct xe_device *xe, struct xe
-  * @xe: Xe device.
-  * @tile: tile which bind exec queue belongs to.
-  * @flags: exec queue creation flags
-+ * @user_vm: The user VM which this exec queue belongs to
-  * @extensions: exec queue creation extensions
-  *
-  * Normalize bind exec queue creation. Bind exec queue is tied to migration VM
-@@ -425,6 +426,7 @@ struct xe_exec_queue *xe_exec_queue_create_class(struct xe_device *xe, struct xe
-  */
- struct xe_exec_queue *xe_exec_queue_create_bind(struct xe_device *xe,
- 						struct xe_tile *tile,
-+						struct xe_vm *user_vm,
- 						u32 flags, u64 extensions)
- {
- 	struct xe_gt *gt = tile->primary_gt;
-@@ -461,6 +463,9 @@ struct xe_exec_queue *xe_exec_queue_create_bind(struct xe_device *xe,
- 			xe_exec_queue_put(q);
- 			return ERR_PTR(err);
- 		}
-+
-+		if (user_vm)
-+			q->user_vm = xe_vm_get(user_vm);
- 	}
- 
- 	return q;
-@@ -491,6 +496,11 @@ void xe_exec_queue_destroy(struct kref *ref)
- 			xe_exec_queue_put(eq);
- 	}
- 
-+	if (q->user_vm) {
-+		xe_vm_put(q->user_vm);
-+		q->user_vm = NULL;
-+	}
-+
- 	q->ops->destroy(q);
+diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+index 00eef41a9e36..6e202428aac2 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.c
++++ b/drivers/gpu/drm/xe/xe_migrate.c
+@@ -2499,7 +2499,7 @@ void xe_migrate_job_lock(struct xe_migrate *m, struct xe_exec_queue *q)
+ 	if (is_migrate)
+ 		mutex_lock(&m->job_mutex);
+ 	else
+-		xe_vm_assert_held(q->vm);	/* User queues VM's should be locked */
++		xe_vm_assert_held(q->user_vm);	/* User queues VM's should be locked */
  }
  
-@@ -1121,6 +1131,22 @@ int xe_exec_queue_create_ioctl(struct drm_device *dev, void *data,
- 		    XE_IOCTL_DBG(xe, eci[0].engine_instance != 0))
- 			return -EINVAL;
+ /**
+@@ -2517,7 +2517,7 @@ void xe_migrate_job_unlock(struct xe_migrate *m, struct xe_exec_queue *q)
+ 	if (is_migrate)
+ 		mutex_unlock(&m->job_mutex);
+ 	else
+-		xe_vm_assert_held(q->vm);	/* User queues VM's should be locked */
++		xe_vm_assert_held(q->user_vm);	/* User queues VM's should be locked */
+ }
  
-+		vm = xe_vm_lookup(xef, args->vm_id);
-+		if (XE_IOCTL_DBG(xe, !vm))
-+			return -ENOENT;
-+
-+		err = down_read_interruptible(&vm->lock);
-+		if (err) {
-+			xe_vm_put(vm);
-+			return err;
-+		}
-+
-+		if (XE_IOCTL_DBG(xe, xe_vm_is_closed_or_banned(vm))) {
-+			up_read(&vm->lock);
-+			xe_vm_put(vm);
-+			return -ENOENT;
-+		}
-+
- 		for_each_tile(tile, xe, id) {
- 			struct xe_exec_queue *new;
- 
-@@ -1128,9 +1154,11 @@ int xe_exec_queue_create_ioctl(struct drm_device *dev, void *data,
- 			if (id)
- 				flags |= EXEC_QUEUE_FLAG_BIND_ENGINE_CHILD;
- 
--			new = xe_exec_queue_create_bind(xe, tile, flags,
-+			new = xe_exec_queue_create_bind(xe, tile, vm, flags,
- 							args->extensions);
- 			if (IS_ERR(new)) {
-+				up_read(&vm->lock);
-+				xe_vm_put(vm);
- 				err = PTR_ERR(new);
- 				if (q)
- 					goto put_exec_queue;
-@@ -1142,6 +1170,8 @@ int xe_exec_queue_create_ioctl(struct drm_device *dev, void *data,
- 				list_add_tail(&new->multi_gt_list,
- 					      &q->multi_gt_link);
- 		}
-+		up_read(&vm->lock);
-+		xe_vm_put(vm);
- 	} else {
- 		logical_mask = calc_validate_logical_mask(xe, eci,
- 							  args->width,
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue.h b/drivers/gpu/drm/xe/xe_exec_queue.h
-index b1e51789128f..c9e3a7c2d249 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue.h
-+++ b/drivers/gpu/drm/xe/xe_exec_queue.h
-@@ -28,6 +28,7 @@ struct xe_exec_queue *xe_exec_queue_create_class(struct xe_device *xe, struct xe
- 						 u32 flags, u64 extensions);
- struct xe_exec_queue *xe_exec_queue_create_bind(struct xe_device *xe,
- 						struct xe_tile *tile,
-+						struct xe_vm *user_vm,
- 						u32 flags, u64 extensions);
- 
- void xe_exec_queue_fini(struct xe_exec_queue *q);
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-index 601e742c79ff..e987d431ce27 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
-+++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-@@ -92,6 +92,12 @@ struct xe_exec_queue {
- 	struct kref refcount;
- 	/** @vm: VM (address space) for this exec queue */
- 	struct xe_vm *vm;
-+	/**
-+	 * @user_vm: User VM (address space) for this exec queue (bind queues
-+	 * only)
-+	 */
-+	struct xe_vm *user_vm;
-+
- 	/** @class: class of this exec queue */
- 	enum xe_engine_class class;
- 	/**
-diff --git a/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c b/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c
-index 052a5071e69f..db023fb66a27 100644
---- a/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c
-+++ b/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c
-@@ -350,7 +350,7 @@ int xe_sriov_vf_ccs_init(struct xe_device *xe)
- 		flags = EXEC_QUEUE_FLAG_KERNEL |
- 			EXEC_QUEUE_FLAG_PERMANENT |
- 			EXEC_QUEUE_FLAG_MIGRATE;
--		q = xe_exec_queue_create_bind(xe, tile, flags, 0);
-+		q = xe_exec_queue_create_bind(xe, tile, NULL, flags, 0);
- 		if (IS_ERR(q)) {
- 			err = PTR_ERR(q);
- 			goto err_ret;
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 67c9348b36dd..2b2afbb5da93 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -1651,7 +1651,7 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags, struct xe_file *xef)
- 			if (!vm->pt_root[id])
- 				continue;
- 
--			q = xe_exec_queue_create_bind(xe, tile, create_flags, 0);
-+			q = xe_exec_queue_create_bind(xe, tile, vm, create_flags, 0);
- 			if (IS_ERR(q)) {
- 				err = PTR_ERR(q);
- 				goto err_close;
-@@ -3647,6 +3647,11 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
- 		}
- 	}
- 
-+	if (XE_IOCTL_DBG(xe, q && vm != q->user_vm)) {
-+		err = -EINVAL;
-+		goto put_exec_queue;
-+	}
-+
- 	/* Ensure all UNMAPs visible */
- 	xe_svm_flush(vm);
- 
+ #if IS_ENABLED(CONFIG_PROVE_LOCKING)
 -- 
 2.52.0
 
