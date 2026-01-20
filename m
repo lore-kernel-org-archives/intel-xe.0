@@ -4,67 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 836DCD2ECE9
-	for <intel-xe@archiver.kernel.org>; Tue, 20 Jan 2026 13:10:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 650ECD2ECF7
+	for <intel-xe@archiver.kernel.org>; Tue, 20 Jan 2026 13:12:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 280A410E5E9;
-	Tue, 20 Jan 2026 13:10:54 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="H66meatB";
-	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DD0C010E5E8;
- Tue, 20 Jan 2026 13:10:52 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id B307B60018;
- Tue, 20 Jan 2026 13:10:51 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 75BAFC16AAE;
- Tue, 20 Jan 2026 13:10:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1768914651;
- bh=FxDNhPLLAfmPmJMIRFTFPDZNe22KPzHCzmgh6qnQqZo=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=H66meatBSh1LI3Kc+LtMKEFS7m/ZmLrZH8aGGFmAavlTQIAP9kvlFc180LzVGJOgr
- VoRWA4PU3SRHk8ISpZJdCvufUfOsvhppfpHpEfM58TVVzk9DO1cdoyeGURjHg7KtNd
- KABkX1mR2+dvVQiNrmFGlqzzMsXnRBAxpFHqa85G/7inSS7ETTqyimUMX3lonMWl6T
- bm5tEJJ4PHjUrvp4SfDAhg4FbxylObYHHNiJu7ye5doDxIjXpEUakjTHcek5KgasRt
- eArvXoDxK+mhIA6mo36uedrLvFigSp5RiqJqQg/qPinytKXgMEvV0BndlvT75uBnWe
- oNtAMHkWz4fAA==
-Date: Tue, 20 Jan 2026 15:10:46 +0200
-From: Leon Romanovsky <leon@kernel.org>
-To: Jason Gunthorpe <jgg@ziepe.ca>
-Cc: Sumit Semwal <sumit.semwal@linaro.org>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Gerd Hoffmann <kraxel@redhat.com>,
- Dmitry Osipenko <dmitry.osipenko@collabora.com>,
- Gurchetan Singh <gurchetansingh@chromium.org>,
- Chia-I Wu <olvaffe@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Kevin Tian <kevin.tian@intel.com>, Joerg Roedel <joro@8bytes.org>,
- Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
- Alex Williamson <alex@shazbot.org>, linux-media@vger.kernel.org,
- dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org,
- linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- virtualization@lists.linux.dev, intel-xe@lists.freedesktop.org,
- linux-rdma@vger.kernel.org, iommu@lists.linux.dev, kvm@vger.kernel.org
-Subject: Re: [PATCH v2 3/4] iommufd: Require DMABUF revoke semantics
-Message-ID: <20260120131046.GS13201@unreal>
-References: <20260118-dmabuf-revoke-v2-0-a03bb27c0875@nvidia.com>
- <20260118-dmabuf-revoke-v2-3-a03bb27c0875@nvidia.com>
- <20260119165951.GI961572@ziepe.ca> <20260119182300.GO13201@unreal>
- <20260119195444.GL961572@ziepe.ca>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2922010E5EF;
+	Tue, 20 Jan 2026 13:12:22 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C04AE10E5E7;
+ Tue, 20 Jan 2026 13:12:20 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4633328212426806368=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260119195444.GL961572@ziepe.ca>
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm=2C_drm/xe=3A_Fix_xe_SVM?=
+ =?utf-8?q?_configs?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 20 Jan 2026 13:12:20 -0000
+Message-ID: <176891474078.170697.10477042547566543909@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260120113322.97654-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20260120113322.97654-1-thomas.hellstrom@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,63 +36,125 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Jan 19, 2026 at 03:54:44PM -0400, Jason Gunthorpe wrote:
-> On Mon, Jan 19, 2026 at 08:23:00PM +0200, Leon Romanovsky wrote:
-> > On Mon, Jan 19, 2026 at 12:59:51PM -0400, Jason Gunthorpe wrote:
-> > > On Sun, Jan 18, 2026 at 02:08:47PM +0200, Leon Romanovsky wrote:
-> > > > From: Leon Romanovsky <leonro@nvidia.com>
-> > > > 
-> > > > IOMMUFD does not support page fault handling, and after a call to
-> > > > .invalidate_mappings() all mappings become invalid. Ensure that
-> > > > the IOMMUFD DMABUF importer is bound to a revoke‑aware DMABUF exporter
-> > > > (for example, VFIO).
-> > > > 
-> > > > Signed-off-by: Leon Romanovsky <leonro@nvidia.com>
-> > > > ---
-> > > >  drivers/iommu/iommufd/pages.c | 9 ++++++++-
-> > > >  1 file changed, 8 insertions(+), 1 deletion(-)
-> > > > 
-> > > > diff --git a/drivers/iommu/iommufd/pages.c b/drivers/iommu/iommufd/pages.c
-> > > > index 76f900fa1687..a5eb2bc4ef48 100644
-> > > > --- a/drivers/iommu/iommufd/pages.c
-> > > > +++ b/drivers/iommu/iommufd/pages.c
-> > > > @@ -1501,16 +1501,22 @@ static int iopt_map_dmabuf(struct iommufd_ctx *ictx, struct iopt_pages *pages,
-> > > >  		mutex_unlock(&pages->mutex);
-> > > >  	}
-> > > >  
-> > > > -	rc = sym_vfio_pci_dma_buf_iommufd_map(attach, &pages->dmabuf.phys);
-> > > > +	rc = dma_buf_pin(attach);
-> > > >  	if (rc)
-> > > >  		goto err_detach;
-> > > >  
-> > > > +	rc = sym_vfio_pci_dma_buf_iommufd_map(attach, &pages->dmabuf.phys);
-> > > > +	if (rc)
-> > > > +		goto err_unpin;
-> > > > +
-> > > >  	dma_resv_unlock(dmabuf->resv);
-> > > >  
-> > > >  	/* On success iopt_release_pages() will detach and put the dmabuf. */
-> > > >  	pages->dmabuf.attach = attach;
-> > > >  	return 0;
-> > > 
-> > > Don't we need an explicit unpin after unmapping?
-> > 
-> > Yes, but this patch is going to be dropped in v3 because of this
-> > suggestion.
-> > https://lore.kernel.org/all/a397ff1e-615f-4873-98a9-940f9c16f85c@amd.com
-> 
-> That's not right, that suggestion is about changing VFIO. iommufd must
-> still act as a pinning importer!
+--===============4633328212426806368==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-There is no change in iommufd, as it invokes dma_buf_dynamic_attach()
-with a valid &iopt_dmabuf_attach_revoke_ops. The check determining whether
-iommufd can perform a revoke is handled there.
+== Series Details ==
 
-Thanks
+Series: drm, drm/xe: Fix xe SVM configs
+URL   : https://patchwork.freedesktop.org/series/160350/
+State : success
 
-> 
-> Jason
-> 
+== Summary ==
+
+CI Bug Log - changes from xe-4415-a26bd7f7a98308a43caa23113b034d0ae002d5d6_BAT -> xe-pw-160350v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (12 -> 12)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-160350v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_waitfence@abstime:
+    - bat-dg2-oem2:       [PASS][1] -> [TIMEOUT][2] ([Intel XE#6506])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4415-a26bd7f7a98308a43caa23113b034d0ae002d5d6/bat-dg2-oem2/igt@xe_waitfence@abstime.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160350v1/bat-dg2-oem2/igt@xe_waitfence@abstime.html
+
+  
+  [Intel XE#6506]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506
+
+
+Build changes
+-------------
+
+  * Linux: xe-4415-a26bd7f7a98308a43caa23113b034d0ae002d5d6 -> xe-pw-160350v1
+
+  IGT_8708: 8708
+  xe-4415-a26bd7f7a98308a43caa23113b034d0ae002d5d6: a26bd7f7a98308a43caa23113b034d0ae002d5d6
+  xe-pw-160350v1: 160350v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160350v1/index.html
+
+--===============4633328212426806368==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm, drm/xe: Fix xe SVM configs</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/160350/">https://patchwork.freedesktop.org/series/160350/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160350v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160350v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4415-a26bd7f7a98308a43caa23113b034d0ae002d5d6_BAT -&gt; xe-pw-160350v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (12 -&gt; 12)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-160350v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@xe_waitfence@abstime:<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4415-a26bd7f7a98308a43caa23113b034d0ae002d5d6/bat-dg2-oem2/igt@xe_waitfence@abstime.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160350v1/bat-dg2-oem2/igt@xe_waitfence@abstime.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506">Intel XE#6506</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4415-a26bd7f7a98308a43caa23113b034d0ae002d5d6 -&gt; xe-pw-160350v1</li>
+</ul>
+<p>IGT_8708: 8708<br />
+  xe-4415-a26bd7f7a98308a43caa23113b034d0ae002d5d6: a26bd7f7a98308a43caa23113b034d0ae002d5d6<br />
+  xe-pw-160350v1: 160350v1</p>
+
+</body>
+</html>
+
+--===============4633328212426806368==--
