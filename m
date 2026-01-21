@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 396B2D4695A
-	for <intel-xe@archiver.kernel.org>; Wed, 21 Jan 2026 23:08:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D7863D4697D
+	for <intel-xe@archiver.kernel.org>; Wed, 21 Jan 2026 23:09:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EFB3110E8C0;
-	Wed, 21 Jan 2026 23:08:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9BFC710E8C2;
+	Wed, 21 Jan 2026 23:09:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FM6My9I7";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VwRkNe33";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C215910E8B8;
- Wed, 21 Jan 2026 23:08:51 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8459210E8BC;
+ Wed, 21 Jan 2026 23:08:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1769036932; x=1800572932;
+ t=1769036936; x=1800572936;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=ZTG4kgT/f47Rc/atUO9Kj1YdgdOGRVnHK2j5eV9NdUI=;
- b=FM6My9I7giEAqm38R/g5CGxRceTyrxr/r8Cl5uXvFd2UJWTvV0q84X6y
- Ts1GdC/lByDd16yRvRrBBfZPlt0vakFirN+TtmR+AKzRTeQyVXGowNjlN
- TvzsLpF+usKFkBfKe9MeL9HF6VUAr8yCpxLHBSwwEkiFEskyi3LdcFMiy
- lJWJy3+2qC4WWewbOvuLsUocipiolyywCBpDNv8Yzs3A9LLLMScPiXf0L
- B+MZ/foMOFhTTKbPycIXhqY0Orn0gZ28BQjMUnRwE6ghQzFJeP/bp7yFB
- hNybsaKPfAKsfD6ROpwiaTt9V/ppXB0MIxoWS5kLDhVVbFLzBxBxQ5W0E A==;
-X-CSE-ConnectionGUID: Zs+JSbm/QD+sSTWnce076g==
-X-CSE-MsgGUID: K+YLq1amSQKrfwiiFsA+Fg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11678"; a="70244995"
-X-IronPort-AV: E=Sophos;i="6.21,244,1763452800"; d="scan'208";a="70244995"
+ bh=8CkuwAw7zLg4Wh5ijPdmW8q/EzSUP3n3ifCBbi4HiUk=;
+ b=VwRkNe33vUNUEpVXOH2289dd5ViYPNsxwyi36htEYg2GzsWp2hAnhGFZ
+ TbIXXeB4WYhjJvP9G2MVuzp7bpstxLA1WQM6u/zdamsdK0A4qyVjs0FeW
+ h5Bqn7p9HHBaCbO2o05tP7lOv7GEo3HfJSYW8/SSsyqU04UPqIsLIegjP
+ puFvVj3vPbni1jLDMeFwVngmMD/gBxdYCr0A7+NNElPEUoQ0aLVIjkpUp
+ SgzfBejRaaaZ1M5kyHGsP3kgw6aFjqPPxVLPVSgHaxiZASwhBVjDsNekN
+ DUPkgxPgEpED2BbcKrBAoGXlZZHd0sFLqlGuRpka53IcO5j4d9KR2quQg A==;
+X-CSE-ConnectionGUID: GN9a1qyhTYOi//zE7jMLiQ==
+X-CSE-MsgGUID: RUVUEin2TVSLH9OuD6//8w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11678"; a="70244998"
+X-IronPort-AV: E=Sophos;i="6.21,244,1763452800"; d="scan'208";a="70244998"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jan 2026 15:08:51 -0800
-X-CSE-ConnectionGUID: YeEinkaASxGLMpa5dR3PXQ==
-X-CSE-MsgGUID: fbpv+fRNQruhMfTK+l7JNg==
+ 21 Jan 2026 15:08:55 -0800
+X-CSE-ConnectionGUID: w0MGUb5YSl2togm7qhcCsg==
+X-CSE-MsgGUID: zSdf8QBPT8yIu8tIWWdeeQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,244,1763452800"; d="scan'208";a="206889615"
+X-IronPort-AV: E=Sophos;i="6.21,244,1763452800"; d="scan'208";a="206889635"
 Received: from cfl-desktop.iind.intel.com ([10.190.239.20])
- by fmviesa010.fm.intel.com with ESMTP; 21 Jan 2026 15:08:50 -0800
+ by fmviesa010.fm.intel.com with ESMTP; 21 Jan 2026 15:08:53 -0800
 From: Uma Shankar <uma.shankar@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com, ville.syrjala@linux.intel.com,
  Uma Shankar <uma.shankar@intel.com>
-Subject: [v2 12/19] drm/{i915, xe}: Remove i915_reg.h from g4x_hdmi.c
-Date: Thu, 22 Jan 2026 04:54:07 +0530
-Message-ID: <20260121232414.707192-13-uma.shankar@intel.com>
+Subject: [v2 14/19] drm/{i915, xe}: Remove i915_reg.h from intel_psr.c
+Date: Thu, 22 Jan 2026 04:54:09 +0530
+Message-ID: <20260121232414.707192-15-uma.shankar@intel.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20260121232414.707192-1-uma.shankar@intel.com>
 References: <20260121232414.707192-1-uma.shankar@intel.com>
@@ -67,72 +67,104 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Move TRANS_CHICKEN1 reg to display header to make g4x_hdmi.c
-free from i915_reg.h dependency.
+Move some chicken registers to display header to make
+intel_psr.c free from including i915_reg.h.
 
-v2: Remove from common header in include and use display_regs.h (Jani)
+v2: Use display header instead of gmd common include (Jani)
 
 Signed-off-by: Uma Shankar <uma.shankar@intel.com>
 ---
- drivers/gpu/drm/i915/display/g4x_hdmi.c           |  1 -
- drivers/gpu/drm/i915/display/intel_display_regs.h | 12 ++++++++++++
- drivers/gpu/drm/i915/i915_reg.h                   | 12 ------------
- 3 files changed, 12 insertions(+), 13 deletions(-)
+ .../gpu/drm/i915/display/intel_display_regs.h | 26 +++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_psr.c      |  1 -
+ drivers/gpu/drm/i915/i915_reg.h               | 26 -------------------
+ 3 files changed, 26 insertions(+), 27 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/g4x_hdmi.c b/drivers/gpu/drm/i915/display/g4x_hdmi.c
-index 8b22447e8e23..5fe5067c4237 100644
---- a/drivers/gpu/drm/i915/display/g4x_hdmi.c
-+++ b/drivers/gpu/drm/i915/display/g4x_hdmi.c
-@@ -8,7 +8,6 @@
- #include <drm/drm_print.h>
- 
- #include "g4x_hdmi.h"
--#include "i915_reg.h"
- #include "intel_atomic.h"
- #include "intel_audio.h"
- #include "intel_connector.h"
 diff --git a/drivers/gpu/drm/i915/display/intel_display_regs.h b/drivers/gpu/drm/i915/display/intel_display_regs.h
-index 477896faa79e..2c7cd9002da3 100644
+index f468e0d20b92..aafe71a3b410 100644
 --- a/drivers/gpu/drm/i915/display/intel_display_regs.h
 +++ b/drivers/gpu/drm/i915/display/intel_display_regs.h
-@@ -2122,6 +2122,18 @@
- #define  TRANS_BPC_6			REG_FIELD_PREP(TRANS_BPC_MASK, 2)
- #define  TRANS_BPC_12			REG_FIELD_PREP(TRANS_BPC_MASK, 3)
+@@ -363,6 +363,32 @@
+ #define OGAMC1			_MMIO(0x30020)
+ #define OGAMC0			_MMIO(0x30024)
  
-+/* Icelake PPS_DATA and _ECC DIP Registers.
-+ * These are available for transcoders B,C and eDP.
-+ * Adding the _A so as to reuse the _MMIO_TRANS2
-+ * definition, with which it offsets to the right location.
-+ */
++#define GEN8_CHICKEN_DCPR_1			_MMIO(0x46430)
++#define   _LATENCY_REPORTING_REMOVED_PIPE_D	REG_BIT(31)
++#define   SKL_SELECT_ALTERNATE_DC_EXIT		REG_BIT(30)
++#define   _LATENCY_REPORTING_REMOVED_PIPE_C	REG_BIT(25)
++#define   _LATENCY_REPORTING_REMOVED_PIPE_B	REG_BIT(24)
++#define   _LATENCY_REPORTING_REMOVED_PIPE_A	REG_BIT(23)
++#define   LATENCY_REPORTING_REMOVED(pipe)	_PICK((pipe), \
++						      _LATENCY_REPORTING_REMOVED_PIPE_A, \
++						      _LATENCY_REPORTING_REMOVED_PIPE_B, \
++						      _LATENCY_REPORTING_REMOVED_PIPE_C, \
++						      _LATENCY_REPORTING_REMOVED_PIPE_D)
++#define   ICL_DELAY_PMRSP			REG_BIT(22)
++#define   DISABLE_FLR_SRC			REG_BIT(15)
++#define   MASK_WAKEMEM				REG_BIT(13)
++#define   DDI_CLOCK_REG_ACCESS			REG_BIT(7)
 +
-+#define _TRANSA_CHICKEN1	 0xf0060
-+#define _TRANSB_CHICKEN1	 0xf1060
-+#define TRANS_CHICKEN1(pipe)	_MMIO_PIPE(pipe, _TRANSA_CHICKEN1, _TRANSB_CHICKEN1)
-+#define   TRANS_CHICKEN1_HDMIUNIT_GC_DISABLE	REG_BIT(10)
-+#define   TRANS_CHICKEN1_DP0UNIT_GC_DISABLE	REG_BIT(4)
++#define CHICKEN_PAR1_1		_MMIO(0x42080)
++#define   IGNORE_KVMR_PIPE_A		REG_BIT(23)
++#define   KBL_ARB_FILL_SPARE_22		REG_BIT(22)
++#define   DIS_RAM_BYPASS_PSR2_MAN_TRACK	REG_BIT(16)
++#define   SKL_DE_COMPRESSED_HASH_MODE	REG_BIT(15)
++#define   HSW_MASK_VBL_TO_PIPE_IN_SRD	REG_BIT(15) /* hsw/bdw */
++#define   FORCE_ARB_IDLE_PLANES		REG_BIT(14)
++#define   SKL_EDP_PSR_FIX_RDWRAP	REG_BIT(3)
++#define   IGNORE_PSR2_HW_TRACKING	REG_BIT(1)
 +
- #define _TRANSA_CHICKEN2	0xf0064
- #define _TRANSB_CHICKEN2	0xf1064
- #define TRANS_CHICKEN2(pipe)	_MMIO_PIPE(pipe, _TRANSA_CHICKEN2, _TRANSB_CHICKEN2)
+ #define GEN9_CLKGATE_DIS_4		_MMIO(0x4653C)
+ #define   BXT_GMBUS_GATING_DIS		(1 << 14)
+ #define   DG2_DPFC_GATING_DIS		REG_BIT(31)
+diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+index 62208ffc5101..bde7dbfe15a8 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr.c
++++ b/drivers/gpu/drm/i915/display/intel_psr.c
+@@ -29,7 +29,6 @@
+ #include <drm/drm_print.h>
+ #include <drm/drm_vblank.h>
+ 
+-#include "i915_reg.h"
+ #include "intel_alpm.h"
+ #include "intel_atomic.h"
+ #include "intel_crtc.h"
 diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index bd3871f458d6..5d640f7cfc23 100644
+index d43c04e491e1..62d58d7cfa7a 100644
 --- a/drivers/gpu/drm/i915/i915_reg.h
 +++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -836,18 +836,6 @@
- #define   MASK_WAKEMEM				REG_BIT(13)
- #define   DDI_CLOCK_REG_ACCESS			REG_BIT(7)
+@@ -806,36 +806,10 @@
+ #define   CHICKEN3_DGMG_REQ_OUT_FIX_DISABLE	REG_BIT(5)
+ #define   CHICKEN3_DGMG_DONE_FIX_DISABLE	REG_BIT(2)
  
--/* Icelake PPS_DATA and _ECC DIP Registers.
-- * These are available for transcoders B,C and eDP.
-- * Adding the _A so as to reuse the _MMIO_TRANS2
-- * definition, with which it offsets to the right location.
-- */
+-#define CHICKEN_PAR1_1		_MMIO(0x42080)
+-#define   IGNORE_KVMR_PIPE_A		REG_BIT(23)
+-#define   KBL_ARB_FILL_SPARE_22		REG_BIT(22)
+-#define   DIS_RAM_BYPASS_PSR2_MAN_TRACK	REG_BIT(16)
+-#define   SKL_DE_COMPRESSED_HASH_MODE	REG_BIT(15)
+-#define   HSW_MASK_VBL_TO_PIPE_IN_SRD	REG_BIT(15) /* hsw/bdw */
+-#define   FORCE_ARB_IDLE_PLANES		REG_BIT(14)
+-#define   SKL_EDP_PSR_FIX_RDWRAP	REG_BIT(3)
+-#define   IGNORE_PSR2_HW_TRACKING	REG_BIT(1)
 -
--#define _TRANSA_CHICKEN1	 0xf0060
--#define _TRANSB_CHICKEN1	 0xf1060
--#define TRANS_CHICKEN1(pipe)	_MMIO_PIPE(pipe, _TRANSA_CHICKEN1, _TRANSB_CHICKEN1)
--#define   TRANS_CHICKEN1_HDMIUNIT_GC_DISABLE	REG_BIT(10)
--#define   TRANS_CHICKEN1_DP0UNIT_GC_DISABLE	REG_BIT(4)
+ #define CHICKEN_PAR2_1		_MMIO(0x42090)
+ #define   KVM_CONFIG_CHANGE_NOTIFICATION_SELECT	REG_BIT(14)
+ 
+ 
+-#define GEN8_CHICKEN_DCPR_1			_MMIO(0x46430)
+-#define   _LATENCY_REPORTING_REMOVED_PIPE_D	REG_BIT(31)
+-#define   SKL_SELECT_ALTERNATE_DC_EXIT		REG_BIT(30)
+-#define   _LATENCY_REPORTING_REMOVED_PIPE_C	REG_BIT(25)
+-#define   _LATENCY_REPORTING_REMOVED_PIPE_B	REG_BIT(24)
+-#define   _LATENCY_REPORTING_REMOVED_PIPE_A	REG_BIT(23)
+-#define   LATENCY_REPORTING_REMOVED(pipe)	_PICK((pipe), \
+-						      _LATENCY_REPORTING_REMOVED_PIPE_A, \
+-						      _LATENCY_REPORTING_REMOVED_PIPE_B, \
+-						      _LATENCY_REPORTING_REMOVED_PIPE_C, \
+-						      _LATENCY_REPORTING_REMOVED_PIPE_D)
+-#define   ICL_DELAY_PMRSP			REG_BIT(22)
+-#define   DISABLE_FLR_SRC			REG_BIT(15)
+-#define   MASK_WAKEMEM				REG_BIT(13)
+-#define   DDI_CLOCK_REG_ACCESS			REG_BIT(7)
 -
  #define  VLV_PMWGICZ				_MMIO(0x1300a4)
  
