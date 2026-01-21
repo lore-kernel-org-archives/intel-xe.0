@@ -4,101 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8B886D3EE67
-	for <intel-xe@archiver.kernel.org>; Thu, 22 Jan 2026 13:38:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 714DBD3EE67
+	for <intel-xe@archiver.kernel.org>; Thu, 22 Jan 2026 13:38:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3A46410E9A7;
-	Thu, 22 Jan 2026 13:38:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BBBB310E9AB;
+	Thu, 22 Jan 2026 13:38:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="0Xse8ydv";
+	dkim=pass (1024-bit key; unprotected) header.d=tuxedocomputers.com header.i=@tuxedocomputers.com header.b="Cy3im71u";
 	dkim-atps=neutral
-Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com
- [209.85.214.170])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D171010E819
- for <intel-xe@lists.freedesktop.org>; Wed, 21 Jan 2026 14:47:39 +0000 (UTC)
-Received: by mail-pl1-f170.google.com with SMTP id
- d9443c01a7336-2a35ae38bdfso75385ad.1
- for <intel-xe@lists.freedesktop.org>; Wed, 21 Jan 2026 06:47:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=google.com; s=20230601; t=1769006859; x=1769611659;
- darn=lists.freedesktop.org; 
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=BMkS4BFW7iikoL2BjP1nG2XKvn880JyWpxnGNG3+/cM=;
- b=0Xse8ydvwg4L9X/kqPkrLnAo/DGlQco7YyGpx2vOqDkShYc4xzMqseD4ONFSUp/MRc
- TzsDeD4+gK7tCyJmbyP4FifRZPeNCwy6IQN8bozSICS3GhEHBtDgJ0zQUNTkO+S3e6A6
- XckDGbjsS8b7VzP7ADEIUBARvV7woD8Uyl/bZ70BkmjhyJW8T+otMCwdXwK9S6+JnBI4
- u1NSWPEXAIXyrp6FfuuDulQ/VlLflTZw74G7VdLj20xWzpUIBpk6JvaSObpAma9Go6sh
- uABoVwv/hCcA6Jc91ub6ROcVaJdW5tfR6LJ/GeG4JLtt9If8uMg5MlL0Ddwz32QBITAq
- EKXw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1769006859; x=1769611659;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=BMkS4BFW7iikoL2BjP1nG2XKvn880JyWpxnGNG3+/cM=;
- b=fcVHrqM1sfEOKi0BcUnrOAmLJFKbVEqufTVkfeWNix+2M0jREUr4WRms8cfEQn6qqJ
- /cRXowmlxWHRcjPAkviq2LKVSeUZPUwIdgKd25/c49IeOeAa0vBhCfry4fM1uxqJKrrS
- hbMlKp2zi+ALt/FtTws9RiseSmT+q+cqvtpKJBUATM4QbAaGXaJbWacIglSMJTuDrCon
- DmLalqUsyhulWwcHCTnbdnUqTclecVwRebOQLOmbeRrAZP6j9ZQbXoOwFTYO4lJGwGQj
- LlagOhkK2iuwBHhX/vcoyjRnGk8PFcLwIb4ANTkerJ14Xf1X9qksAVlG310g4kbhkQPF
- KOoA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXEDC0jflQwTCfwOR73Bb4auNM9t7qEt0aA1DW+NUT7tuZW8umc85bDQs74IlHhdSdWe+6BvKmovg==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwxVCYEgX8ACVTELhLmQT/2vJZBAFfDW1FZ79vyg6XolQaSQNjk
- ztIVHMOih5nyJAs1zMWtD6brcilYeh2gy9EDW6uZpZGSlAoqRIHnGJNsyGfl6gP2LA==
-X-Gm-Gg: AZuq6aL030L0t6F5xuO/VgQUnZ0YmF2uqxSmvezfq7AVRt1PeLCQl8Ia6DQD01p2spH
- u8I2pZsaUC1Z1BFZuwxsVci6Ach8wIlXpeA+kTO7GVxcNycIxNvvtskBrFPftSWQhwcPY1aaFKA
- vXIDbko3sZUOWC8iSdvFf9nORMVIwYsq6sZ/IEKe4rG7U36kldumH4YAfLp/WamqvodhYKARiwh
- 2EGHu27Zn+s74tygH+OE1jZzXJdK+4Xcix2Bg/5votoOKd2BNAVJqU8PBTHvjkAZuk0RfDRdG8n
- VpMFRy+MDfaUjzvy50lEh5pdat1J3baIC0ljPcmz08P5rJ6+pVylJn0PA8MaWdKFMpFrWDTvigO
- DbVU/BzM0vRsswDzQ4Y+G825ZkRhcFAJGZJPHSx2lhwdm8F55QUNd8cQMjBcjgQyIvBe79JojF3
- aZgfCC/nPP7lCMttakJ31X1OprEFqLbY2Vs4qo53sMoD7dAnKK
-X-Received: by 2002:a17:902:dac8:b0:2a7:87c2:fcde with SMTP id
- d9443c01a7336-2a7a245b58cmr2655545ad.15.1769006858836; 
- Wed, 21 Jan 2026 06:47:38 -0800 (PST)
-Received: from google.com (222.245.187.35.bc.googleusercontent.com.
- [35.187.245.222]) by smtp.gmail.com with ESMTPSA id
- d2e1a72fcca58-81fa108b21fsm15434806b3a.13.2026.01.21.06.47.32
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 21 Jan 2026 06:47:38 -0800 (PST)
-Date: Wed, 21 Jan 2026 14:47:29 +0000
-From: Pranjal Shrivastava <praan@google.com>
-To: Leon Romanovsky <leon@kernel.org>
-Cc: Jason Gunthorpe <jgg@ziepe.ca>, Sumit Semwal <sumit.semwal@linaro.org>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Gerd Hoffmann <kraxel@redhat.com>,
- Dmitry Osipenko <dmitry.osipenko@collabora.com>,
- Gurchetan Singh <gurchetansingh@chromium.org>,
- Chia-I Wu <olvaffe@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+X-Greylist: delayed 492 seconds by postgrey-1.36 at gabe;
+ Wed, 21 Jan 2026 22:48:02 UTC
+Received: from mail.tuxedocomputers.com (mail.tuxedocomputers.com
+ [157.90.84.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8E0E110E08E;
+ Wed, 21 Jan 2026 22:48:02 +0000 (UTC)
+Received: from wse-pc.. (unknown [61.8.154.114])
+ (Authenticated sender: wse@tuxedocomputers.com)
+ by mail.tuxedocomputers.com (Postfix) with ESMTPA id 62D1A2FC0052;
+ Wed, 21 Jan 2026 23:39:46 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tuxedocomputers.com;
+ s=default; t=1769035187;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=hLbZrDz0Hrmb7n202kZRgmxmu9bjINs7CGMfMenSWS0=;
+ b=Cy3im71uXo+asTdc4ajysXLnqB0HgCfHn8UamJhCPnqv9I+x5mkwpT+icagVLeRba4qach
+ LHOaduGfZDZJoOl7zyhSMxXSHAD3Gy+BWvVySRzuGGzcHFWl/B1G88xX0DGMej692M/T7Y
+ NPwg2AHFLyGVJt2smsYC1Cr3lPHbC/I=
+Authentication-Results: mail.tuxedocomputers.com;
+ auth=pass smtp.auth=wse@tuxedocomputers.com
+ smtp.mailfrom=wse@tuxedocomputers.com
+From: Werner Sembach <wse@tuxedocomputers.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Kevin Tian <kevin.tian@intel.com>, Joerg Roedel <joro@8bytes.org>,
- Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
- Felix Kuehling <Felix.Kuehling@amd.com>,
- Alex Williamson <alex@shazbot.org>, Ankit Agrawal <ankita@nvidia.com>,
- Vivek Kasireddy <vivek.kasireddy@intel.com>,
- linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linaro-mm-sig@lists.linaro.org, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, virtualization@lists.linux.dev,
- intel-xe@lists.freedesktop.org, linux-rdma@vger.kernel.org,
- iommu@lists.linux.dev, kvm@vger.kernel.org
-Subject: Re: [PATCH v4 8/8] vfio: Validate dma-buf revocation semantics
-Message-ID: <aXDnAVzTuCSZHxgF@google.com>
-References: <20260121-dmabuf-revoke-v4-0-d311cbc8633d@nvidia.com>
- <20260121-dmabuf-revoke-v4-8-d311cbc8633d@nvidia.com>
- <20260121134712.GZ961572@ziepe.ca> <aXDhJ89Yru577jeY@google.com>
- <20260121142528.GC13201@unreal>
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>
+Cc: Werner Sembach <wse@tuxedocomputers.com>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+Subject: [PATCH v2] drm/i915/display: Add quirk to force backlight type on
+ some TUXEDO devices
+Date: Wed, 21 Jan 2026 23:38:55 +0100
+Message-ID: <20260121223944.1104951-1-wse@tuxedocomputers.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260121142528.GC13201@unreal>
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Thu, 22 Jan 2026 13:38:39 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -114,74 +65,114 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Jan 21, 2026 at 04:25:28PM +0200, Leon Romanovsky wrote:
-> On Wed, Jan 21, 2026 at 02:22:31PM +0000, Pranjal Shrivastava wrote:
-> > On Wed, Jan 21, 2026 at 09:47:12AM -0400, Jason Gunthorpe wrote:
-> > > On Wed, Jan 21, 2026 at 02:59:16PM +0200, Leon Romanovsky wrote:
-> > > > From: Leon Romanovsky <leonro@nvidia.com>
-> > > > 
-> > > > Use the new dma_buf_attach_revocable() helper to restrict attachments to
-> > > > importers that support mapping invalidation.
-> > > > 
-> > > > Signed-off-by: Leon Romanovsky <leonro@nvidia.com>
-> > > > ---
-> > > >  drivers/vfio/pci/vfio_pci_dmabuf.c | 3 +++
-> > > >  1 file changed, 3 insertions(+)
-> > > > 
-> > > > diff --git a/drivers/vfio/pci/vfio_pci_dmabuf.c b/drivers/vfio/pci/vfio_pci_dmabuf.c
-> > > > index 5fceefc40e27..85056a5a3faf 100644
-> > > > --- a/drivers/vfio/pci/vfio_pci_dmabuf.c
-> > > > +++ b/drivers/vfio/pci/vfio_pci_dmabuf.c
-> > > > @@ -31,6 +31,9 @@ static int vfio_pci_dma_buf_attach(struct dma_buf *dmabuf,
-> > > >  	if (priv->revoked)
-> > > >  		return -ENODEV;
-> > > >  
-> > > > +	if (!dma_buf_attach_revocable(attachment))
-> > > > +		return -EOPNOTSUPP;
-> > > > +
-> > > >  	return 0;
-> > > >  }
-> > > 
-> > > We need to push an urgent -rc fix to implement a pin function here
-> > > that always fails. That was missed and it means things like rdma can
-> > > import vfio when the intention was to block that. It would be bad for
-> > > that uAPI mistake to reach a released kernel.
-> > > 
-> > > It's tricky that NULL pin ops means "I support pin" :|
-> > > 
-> > 
-> > I've been wondering about this for a while now, I've been sitting on the
-> > following:
-> > 
-> > diff --git a/drivers/dma-buf/dma-buf.c b/drivers/dma-buf/dma-buf.c
-> > index a4d8f2ff94e4..962bce959366 100644
-> > --- a/drivers/dma-buf/dma-buf.c
-> > +++ b/drivers/dma-buf/dma-buf.c
-> > @@ -1133,6 +1133,8 @@ int dma_buf_pin(struct dma_buf_attachment *attach)
-> > 
-> >         if (dmabuf->ops->pin)
-> >                 ret = dmabuf->ops->pin(attach);
-> > +       else
-> > +               ret = -EOPNOTSUPP;
-> > 
-> >         return ret;
-> >  }
-> > 
-> > But didn't get a chance to dive in the history yet. I thought there's a
-> > good reason we didn't have it? Would it break exisitng dmabuf users?
-> 
-> Probably every importer which called to dma_buf_pin() while connecting
-> to existing exporters as many in tree implementation don't have ->pin()
-> implemented.
+The display backlight on TUXEDO DX1708 and InsanityBook 15 v1 with panels
+AUO 12701 and AUO 12701 must be forced to INTEL_DP_AUX_BACKLIGHT_ON to be
+able to control the brightness.
 
-Fair point. I agree with Jason that we cannot leave this open for VFIO
-and we can have a pin op that always fails.
+This could already be archived via a module parameter, but this patch adds
+a quirk to apply this by default on the mentioned devices.
 
-But at the same time, I'd like to discuss if we should think about
-changing the dmabuf core, NULL op == success feels like relying on a bug
-I agree that it means the exporter has no mm, but I believe there should
-be some way for the importer to know that.. the importer can still
-decide to use the exported dmabuf while being aware.
+This patch does not actually test for the exact panels as the id that is
+used in the intel_dpcd_quirks list is sadly zeroed on the devices, but
+afaik all these devices use try_intel_interface first anyway so all the
+quirk does is to add the fallback to try_vesa_interface, so the behaviour
+on the devices not needing the quirk and fallback should functionally stay
+the same.
 
-Thanks,
-Praan
+Cc: stable@vger.kernel.org
+Signed-off-by: Werner Sembach <wse@tuxedocomputers.com>
+---
+ .../drm/i915/display/intel_dp_aux_backlight.c |  9 ++++++-
+ drivers/gpu/drm/i915/display/intel_quirks.c   | 25 ++++++++++++++++++-
+ drivers/gpu/drm/i915/display/intel_quirks.h   |  1 +
+ 3 files changed, 33 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+index 0a3a3f6a5f9d8..bbdfa142d084d 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+@@ -41,6 +41,7 @@
+ #include "intel_display_types.h"
+ #include "intel_dp.h"
+ #include "intel_dp_aux_backlight.h"
++#include "intel_quirks.h"
+ 
+ /*
+  * DP AUX registers for Intel's proprietary HDR backlight interface. We define
+@@ -661,11 +662,17 @@ int intel_dp_aux_init_backlight_funcs(struct intel_connector *connector)
+ 	struct drm_device *dev = connector->base.dev;
+ 	struct intel_panel *panel = &connector->panel;
+ 	bool try_intel_interface = false, try_vesa_interface = false;
++	int enable_dpcd_backlight;
+ 
+ 	/* Check the VBT and user's module parameters to figure out which
+ 	 * interfaces to probe
+ 	 */
+-	switch (display->params.enable_dpcd_backlight) {
++	enable_dpcd_backlight = display->params.enable_dpcd_backlight;
++	if (enable_dpcd_backlight == INTEL_DP_AUX_BACKLIGHT_AUTO &&
++	    intel_has_dpcd_quirk(intel_dp, QUIRK_ENABLE_DPCD_BACKLIGHT))
++		enable_dpcd_backlight = INTEL_DP_AUX_BACKLIGHT_ON;
++
++	switch (enable_dpcd_backlight) {
+ 	case INTEL_DP_AUX_BACKLIGHT_OFF:
+ 		return -ENODEV;
+ 	case INTEL_DP_AUX_BACKLIGHT_AUTO:
+diff --git a/drivers/gpu/drm/i915/display/intel_quirks.c b/drivers/gpu/drm/i915/display/intel_quirks.c
+index d2e16b79d6be1..df20930f73f75 100644
+--- a/drivers/gpu/drm/i915/display/intel_quirks.c
++++ b/drivers/gpu/drm/i915/display/intel_quirks.c
+@@ -86,6 +86,14 @@ static void quirk_edp_limit_rate_hbr2(struct intel_display *display)
+ 	drm_info(display->drm, "Applying eDP Limit rate to HBR2 quirk\n");
+ }
+ 
++static void quirk_enable_dpcd_backlight(struct intel_dp *intel_dp)
++{
++	struct intel_display *display = to_intel_display(intel_dp);
++
++	intel_set_dpcd_quirk(intel_dp, QUIRK_ENABLE_DPCD_BACKLIGHT);
++	drm_info(display->drm, "Applying Enable DPCD Backlight quirk\n");
++}
++
+ struct intel_quirk {
+ 	int device;
+ 	int subsystem_vendor;
+@@ -251,7 +259,22 @@ static const struct intel_dpcd_quirk intel_dpcd_quirks[] = {
+ 		.sink_oui = SINK_OUI(0x38, 0xec, 0x11),
+ 		.hook = quirk_fw_sync_len,
+ 	},
+-
++	/* TUXEDO InsanityBook 15 v1 */
++	{
++		.device = 0x591b,
++		.subsystem_vendor = 0x1558,
++		.subsystem_device = 0x9501,
++		.sink_oui = SINK_OUI(0x38, 0xec, 0x11),
++		.hook = quirk_enable_dpcd_backlight,
++	},
++	/* TUXEDO DX1708 */
++	{
++		.device = 0x3e9b,
++		.subsystem_vendor = 0x1558,
++		.subsystem_device = 0x8500,
++		.sink_oui = SINK_OUI(0x38, 0xec, 0x11),
++		.hook = quirk_enable_dpcd_backlight,
++	},
+ };
+ 
+ void intel_init_quirks(struct intel_display *display)
+diff --git a/drivers/gpu/drm/i915/display/intel_quirks.h b/drivers/gpu/drm/i915/display/intel_quirks.h
+index 06da0e286c67c..686f306ab4472 100644
+--- a/drivers/gpu/drm/i915/display/intel_quirks.h
++++ b/drivers/gpu/drm/i915/display/intel_quirks.h
+@@ -21,6 +21,7 @@ enum intel_quirk_id {
+ 	QUIRK_NO_PPS_BACKLIGHT_POWER_HOOK,
+ 	QUIRK_FW_SYNC_LEN,
+ 	QUIRK_EDP_LIMIT_RATE_HBR2,
++	QUIRK_ENABLE_DPCD_BACKLIGHT,
+ };
+ 
+ void intel_init_quirks(struct intel_display *display);
+-- 
+2.43.0
+
