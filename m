@@ -4,65 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B5890C44506
-	for <intel-xe@archiver.kernel.org>; Wed, 21 Jan 2026 17:54:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DECC7C44508
+	for <intel-xe@archiver.kernel.org>; Wed, 21 Jan 2026 17:59:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 71BF110E86B;
-	Wed, 21 Jan 2026 17:54:18 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QK5Le0jV";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8035C10E850;
- Wed, 21 Jan 2026 17:54:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1769018058; x=1800554058;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=2VAQF2bPUrBXKvr0EXcola0B6+K76+rauRQYofRmtoU=;
- b=QK5Le0jVb31qYyjV84Qh9pLWL1Est04+DS11kfjjbv2hvkkHGdIvy8Rz
- AUmschSsxRSdmW07VmboxxlwSG58eV8XESdr9WEIuJ5pPArGqSb0reTSv
- P35juiZqyjbYgijNSPbHZo5AdY2rMwWozItmYkn8MgMtPV9dQV9ZS68Ia
- Y7Z2gIvJKr5NTHZoa4KfRnLzRv8Xrzabm32bOsAtCt7YHZxpRNpmZS9YM
- sB9a+TeEuX6ixiE+p87NrqJCFkzvXnpkfD5NE7nYp6t3NK0QsZ9X7kBll
- n1bSQXp7xme0NzH8dJ95vQbrcaBfVSodbm+YdPfdnm4MknrGZUxLVRGlP Q==;
-X-CSE-ConnectionGUID: Bv8mUff1SVyQLiCuTm/5ag==
-X-CSE-MsgGUID: 9mv1VIJdRg6iIc7z16WWDA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11678"; a="69976798"
-X-IronPort-AV: E=Sophos;i="6.21,242,1763452800"; d="scan'208";a="69976798"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jan 2026 09:54:17 -0800
-X-CSE-ConnectionGUID: Px1Na621QAuuCCAk4tPV9A==
-X-CSE-MsgGUID: wYHcX9HIR7iv0rz5nYiAGw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,242,1763452800"; d="scan'208";a="206328195"
-Received: from smoticic-mobl1.ger.corp.intel.com (HELO [10.245.245.122])
- ([10.245.245.122])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jan 2026 09:54:15 -0800
-Message-ID: <19212684-a7f2-48f7-a498-9004aeefff04@intel.com>
-Date: Wed, 21 Jan 2026 17:54:12 +0000
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8E62710E854;
+	Wed, 21 Jan 2026 17:59:14 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1426810E870;
+ Wed, 21 Jan 2026 17:59:13 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3285307954533189988=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/2] drm, drm/xe: Fix xe userptr in the absence of
- CONFIG_DEVICE_PRIVATE
-To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- intel-xe@lists.freedesktop.org
-Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, dri-devel@lists.freedesktop.org,
- stable@vger.kernel.org
-References: <20260121091048.41371-1-thomas.hellstrom@linux.intel.com>
- <20260121091048.41371-2-thomas.hellstrom@linux.intel.com>
- <ad0efbfc-b7b3-4dc8-9499-8a7accd6c5e4@intel.com>
- <81331db882e57f7e7e8322ba7aba87081759465f.camel@linux.intel.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <81331db882e57f7e7e8322ba7aba87081759465f.camel@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_All_pat?=
+ =?utf-8?q?ches_to_make_PREEMPT=5FRT_work_on_i915_+_xe=2E_=28rev10=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Maarten Lankhorst" <dev@lankhorst.se>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 21 Jan 2026 17:59:13 -0000
+Message-ID: <176901835307.179549.6012519499613291240@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260121135318.651622-1-dev@lankhorst.se>
+In-Reply-To: <20260121135318.651622-1-dev@lankhorst.se>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,189 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 21/01/2026 17:25, Thomas Hellström wrote:
-> On Wed, 2026-01-21 at 17:19 +0000, Matthew Auld wrote:
->> On 21/01/2026 09:10, Thomas Hellström wrote:
->>> CONFIG_DEVICE_PRIVATE is not selected by default by some distros,
->>> for example Fedora, and that leads to a regression in the xe driver
->>> since userptr support gets compiled out.
->>>
->>> It turns out that DRM_GPUSVM, which is needed for xe userptr
->>> support
->>> compiles also without CONFIG_DEVICE_PRIVATE, but doesn't compile
->>> without CONFIG_ZONE_DEVICE.
->>> Exclude the drm_pagemap files from compilation with
->>> !CONFIG_ZONE_DEVICE,
->>> and remove the CONFIG_DEVICE_PRIVATE dependency from
->>> CONFIG_DRM_GPUSVM and
->>> the xe driver's selection of it, re-enabling xe userptr for those
->>> configs.
->>>
->>> v2:
->>> - Don't compile the drm_pagemap files unless CONFIG_ZONE_DEVICE is
->>> set.
->>> - Adjust the drm_pagemap.h header accordingly.
->>>
->>> Fixes: 9e9787414882 ("drm/xe/userptr: replace xe_hmm with gpusvm")
->>> Cc: Matthew Auld <matthew.auld@intel.com>
->>> Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
->>> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
->>> Cc: Matthew Brost <matthew.brost@intel.com>
->>> Cc: "Thomas Hellström" <thomas.hellstrom@linux.intel.com>
->>> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
->>> Cc: dri-devel@lists.freedesktop.org
->>> Cc: <stable@vger.kernel.org> # v6.18+
->>> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
->>
->> Let me double check that while it does at least build it is also
->> functional without DRM_XE_GPUSVM. I think it takes a different init
->> path
->> and maybe some other differences. Unless you already did?
-> 
-> I think I managed to test without DRM_XE_GPUSVM both with and without
-> ZONE_DEVICE, but since this is going to stable, a second check would be
-> great!
+--===============3285307954533189988==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Tried various userptr IGTs, and looked good.
+== Series Details ==
 
-> 
-> Thanks,
-> Thomas
-> 
-> 
->>
->> Reviewed-by: Matthew Auld <matthew.auld@intel.com>
->>
->>> ---
->>>    drivers/gpu/drm/Kconfig    |  2 +-
->>>    drivers/gpu/drm/Makefile   |  4 +++-
->>>    drivers/gpu/drm/xe/Kconfig |  2 +-
->>>    include/drm/drm_pagemap.h  | 18 ++++++++++++++----
->>>    4 files changed, 19 insertions(+), 7 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
->>> index a33b90251530..d3d52310c9cc 100644
->>> --- a/drivers/gpu/drm/Kconfig
->>> +++ b/drivers/gpu/drm/Kconfig
->>> @@ -210,7 +210,7 @@ config DRM_GPUVM
->>>    
->>>    config DRM_GPUSVM
->>>    	tristate
->>> -	depends on DRM && DEVICE_PRIVATE
->>> +	depends on DRM
->>>    	select HMM_MIRROR
->>>    	select MMU_NOTIFIER
->>>    	help
->>> diff --git a/drivers/gpu/drm/Makefile b/drivers/gpu/drm/Makefile
->>> index 0deee72ef935..0c21029c446f 100644
->>> --- a/drivers/gpu/drm/Makefile
->>> +++ b/drivers/gpu/drm/Makefile
->>> @@ -108,9 +108,11 @@ obj-$(CONFIG_DRM_EXEC) += drm_exec.o
->>>    obj-$(CONFIG_DRM_GPUVM) += drm_gpuvm.o
->>>    
->>>    drm_gpusvm_helper-y := \
->>> -	drm_gpusvm.o\
->>> +	drm_gpusvm.o
->>> +drm_gpusvm_helper-$(CONFIG_ZONE_DEVICE) += \
->>>    	drm_pagemap.o\
->>>    	drm_pagemap_util.o
->>> +
->>>    obj-$(CONFIG_DRM_GPUSVM) += drm_gpusvm_helper.o
->>>    
->>>    obj-$(CONFIG_DRM_BUDDY) += drm_buddy.o
->>> diff --git a/drivers/gpu/drm/xe/Kconfig
->>> b/drivers/gpu/drm/xe/Kconfig
->>> index 4b288eb3f5b0..c34be1be155b 100644
->>> --- a/drivers/gpu/drm/xe/Kconfig
->>> +++ b/drivers/gpu/drm/xe/Kconfig
->>> @@ -39,7 +39,7 @@ config DRM_XE
->>>    	select DRM_TTM
->>>    	select DRM_TTM_HELPER
->>>    	select DRM_EXEC
->>> -	select DRM_GPUSVM if !UML && DEVICE_PRIVATE
->>> +	select DRM_GPUSVM if !UML
->>>    	select DRM_GPUVM
->>>    	select DRM_SCHED
->>>    	select MMU_NOTIFIER
->>> diff --git a/include/drm/drm_pagemap.h b/include/drm/drm_pagemap.h
->>> index 46e9c58f09e0..2baf0861f78f 100644
->>> --- a/include/drm/drm_pagemap.h
->>> +++ b/include/drm/drm_pagemap.h
->>> @@ -243,6 +243,8 @@ struct drm_pagemap_devmem_ops {
->>>    			   struct dma_fence *pre_migrate_fence);
->>>    };
->>>    
->>> +#if IS_ENABLED(CONFIG_ZONE_DEVICE)
->>> +
->>>    int drm_pagemap_init(struct drm_pagemap *dpagemap,
->>>    		     struct dev_pagemap *pagemap,
->>>    		     struct drm_device *drm,
->>> @@ -252,17 +254,22 @@ struct drm_pagemap *drm_pagemap_create(struct
->>> drm_device *drm,
->>>    				       struct dev_pagemap
->>> *pagemap,
->>>    				       const struct
->>> drm_pagemap_ops *ops);
->>>    
->>> -#if IS_ENABLED(CONFIG_DRM_GPUSVM)
->>> +struct drm_pagemap *drm_pagemap_page_to_dpagemap(struct page
->>> *page);
->>>    
->>>    void drm_pagemap_put(struct drm_pagemap *dpagemap);
->>>    
->>>    #else
->>>    
->>> +static inline struct drm_pagemap
->>> *drm_pagemap_page_to_dpagemap(struct page *page)
->>> +{
->>> +	return NULL;
->>> +}
->>> +
->>>    static inline void drm_pagemap_put(struct drm_pagemap *dpagemap)
->>>    {
->>>    }
->>>    
->>> -#endif /* IS_ENABLED(CONFIG_DRM_GPUSVM) */
->>> +#endif /* IS_ENABLED(CONFIG_ZONE_DEVICE) */
->>>    
->>>    /**
->>>     * drm_pagemap_get() - Obtain a reference on a struct drm_pagemap
->>> @@ -334,6 +341,8 @@ struct drm_pagemap_migrate_details {
->>>    	u32 source_peer_migrates : 1;
->>>    };
->>>    
->>> +#if IS_ENABLED(CONFIG_ZONE_DEVICE)
->>> +
->>>    int drm_pagemap_migrate_to_devmem(struct drm_pagemap_devmem
->>> *devmem_allocation,
->>>    				  struct mm_struct *mm,
->>>    				  unsigned long start, unsigned
->>> long end,
->>> @@ -343,8 +352,6 @@ int drm_pagemap_evict_to_ram(struct
->>> drm_pagemap_devmem *devmem_allocation);
->>>    
->>>    const struct dev_pagemap_ops *drm_pagemap_pagemap_ops_get(void);
->>>    
->>> -struct drm_pagemap *drm_pagemap_page_to_dpagemap(struct page
->>> *page);
->>> -
->>>    void drm_pagemap_devmem_init(struct drm_pagemap_devmem
->>> *devmem_allocation,
->>>    			     struct device *dev, struct mm_struct
->>> *mm,
->>>    			     const struct drm_pagemap_devmem_ops
->>> *ops,
->>> @@ -359,4 +366,7 @@ int drm_pagemap_populate_mm(struct drm_pagemap
->>> *dpagemap,
->>>    void drm_pagemap_destroy(struct drm_pagemap *dpagemap, bool
->>> is_atomic_or_reclaim);
->>>    
->>>    int drm_pagemap_reinit(struct drm_pagemap *dpagemap);
->>> +
->>> +#endif /* IS_ENABLED(CONFIG_ZONE_DEVICE) */
->>> +
->>>    #endif
+Series: drm/i915/display: All patches to make PREEMPT_RT work on i915 + xe. (rev10)
+URL   : https://patchwork.freedesktop.org/series/159034/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from xe-4429-eba230075d9652bf53d531ae8e53347a6ccc7863_BAT -> xe-pw-159034v10_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (12 -> 12)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-4429-eba230075d9652bf53d531ae8e53347a6ccc7863 -> xe-pw-159034v10
+
+  IGT_8709: 16ce286cac6acc9669a1c758572ae9fceb483c46 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-4429-eba230075d9652bf53d531ae8e53347a6ccc7863: eba230075d9652bf53d531ae8e53347a6ccc7863
+  xe-pw-159034v10: 159034v10
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159034v10/index.html
+
+--===============3285307954533189988==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/display: All patches to make PREEMPT_RT work on i915 + xe. (rev10)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/159034/">https://patchwork.freedesktop.org/series/159034/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159034v10/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159034v10/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4429-eba230075d9652bf53d531ae8e53347a6ccc7863_BAT -&gt; xe-pw-159034v10_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (12 -&gt; 12)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4429-eba230075d9652bf53d531ae8e53347a6ccc7863 -&gt; xe-pw-159034v10</li>
+</ul>
+<p>IGT_8709: 16ce286cac6acc9669a1c758572ae9fceb483c46 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-4429-eba230075d9652bf53d531ae8e53347a6ccc7863: eba230075d9652bf53d531ae8e53347a6ccc7863<br />
+  xe-pw-159034v10: 159034v10</p>
+
+</body>
+</html>
+
+--===============3285307954533189988==--
