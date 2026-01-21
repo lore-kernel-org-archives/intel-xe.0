@@ -4,190 +4,192 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 57109D262B2
-	for <intel-xe@archiver.kernel.org>; Wed, 21 Jan 2026 05:30:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 34083D262B0
+	for <intel-xe@archiver.kernel.org>; Wed, 21 Jan 2026 06:13:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0681C10E010;
-	Wed, 21 Jan 2026 05:30:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BA5FE10E6BF;
+	Wed, 21 Jan 2026 06:13:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lBX97KZk";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HWYCewIC";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BA3E310E010
- for <intel-xe@lists.freedesktop.org>; Wed, 21 Jan 2026 05:30:47 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D0B3B10E6BF;
+ Wed, 21 Jan 2026 06:13:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1768973447; x=1800509447;
+ t=1768975992; x=1800511992;
  h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=B7BfWxWiQMzorkEBLZn0eR6UKCcZ550fZKVKiMZbovU=;
- b=lBX97KZkJd03eF9VOr+B8DY0cdjl8+qvuP2sn3hF1YPz7sPRukekhA2c
- x1n4PTQtLyTWulGbCiW6lR4b6DG2bx7Sn6D1RJbL1EtEBGppzxiLPU06g
- dmFl72TWJkW/dA/tsqKLyD8GGMgYWV20UTApXNyaioCiDp4CLDfOARmaC
- EsBGXFVqS9xs1DqWjdRH0QgglXezeGgwMit5l7nMK/KCzNkUUGq97cOrA
- GsHdNabqbygWLzzDoxAvDJQXkuLXzzH5m+jhQGe9i7eAiZHmJBVUbcidr
- /9CeLOoDOoQAon0Mg2I+xBMTo0yFDSdF4xknJE8Hq/j83noj7FSrP2sKf Q==;
-X-CSE-ConnectionGUID: p40/P+jWQjayzZDVGHXVsg==
-X-CSE-MsgGUID: vryOkzjZQe2/6RVDrjiJAQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11677"; a="70100624"
-X-IronPort-AV: E=Sophos;i="6.21,242,1763452800"; d="scan'208";a="70100624"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jan 2026 21:30:47 -0800
-X-CSE-ConnectionGUID: KEmq4R89TDutDtEbPTQxkQ==
-X-CSE-MsgGUID: xPmOfEIVTZmhG+noKiUnZA==
+ in-reply-to:mime-version;
+ bh=ob2xov9+pqk3EIiu+vErWIE0pYvrcE7KklNoQwI3sio=;
+ b=HWYCewICwfaygLkN34yQRuQ/X66gl/0AAv9yVaafp9esx0CjG2HqokYB
+ 2sFVjyi5+HcvWXn3oIyV1SanDaR1ZbMM8l/Q6Z6Z/P/lIlKfLTRR75EcW
+ S9asAvco3RUfWNgpXX9qIwFfRQEjV98FHDk5ZozZMsXWWtAXmgMqnDfME
+ e91vFUGI18u8+OXlQru3qcHc7bBrnHYgB8WedICwW7nLQUxV0KpVPn4rC
+ VrAhvqrovj77M9j5GFiPBdbscjMAoqNk6RMKnuN+BBcLe5gamP+wqwrxS
+ Lz/6ine5izHibT+e+BAY6tcpvQ+TaxiW62UkYHivVjCFhcl6BJkw279Pz Q==;
+X-CSE-ConnectionGUID: OYFTpcaaSOijuqGHbHl0CQ==
+X-CSE-MsgGUID: q3yGjamrRsqOrWgdkKoPYQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11677"; a="69925216"
+X-IronPort-AV: E=Sophos;i="6.21,242,1763452800"; d="scan'208,217";a="69925216"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jan 2026 22:13:12 -0800
+X-CSE-ConnectionGUID: Cz0Pp2BeSLqNq2qzxLBxAA==
+X-CSE-MsgGUID: nf0WEqfTTTWrNsOWBAnf2Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,242,1763452800"; d="scan'208";a="237600166"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by fmviesa001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jan 2026 21:30:47 -0800
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.21,242,1763452800"; 
+ d="scan'208,217";a="210854470"
+Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
+ by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jan 2026 22:13:13 -0800
+Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35; Tue, 20 Jan 2026 21:30:46 -0800
-Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ 15.2.2562.35; Tue, 20 Jan 2026 22:13:11 -0800
+Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
+ FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35 via Frontend Transport; Tue, 20 Jan 2026 21:30:46 -0800
-Received: from SN4PR0501CU005.outbound.protection.outlook.com (40.93.194.11)
- by edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
+ 15.2.2562.35 via Frontend Transport; Tue, 20 Jan 2026 22:13:11 -0800
+Received: from SN4PR2101CU001.outbound.protection.outlook.com (40.93.195.40)
+ by edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35; Tue, 20 Jan 2026 21:30:45 -0800
+ 15.2.2562.35; Tue, 20 Jan 2026 22:13:11 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=eW9HV8TYnyY6K6aqDeJa8m8jRYBQIPkvj8Jj4tKfi5H+ykvsyMUj9QrQSYyVGHtXxGm/dIyagWDIw3EgtefFhz9FGYA/fo6gEqLn0oQg1uZE+vry5amqzLv6zxFw0gOVLjCfUejJtIUdkYOPCkbI7PKsj+w/7b1BAD0QRpLnmHhqyHkhcg42uo+NPGKxJhfsO8CjnWRPjZPhLaVdIadYjorpXI6GMOj7en/2hxqSrBei2T+62r3RMDIvqPAGizy2XIIP9iFE2IioX+4dKI1l3Rwtj6SjWCP37laahhZI26itTG9aY5B0Aumpjq6j7WdCGwSpZITY3g/wjjZuoEjU0w==
+ b=YzuiRGgnyc1YLwUU9Y0G1eOPvIP1g1+X4D/CQGrbHPbr9hrUJNuhM+YNPBOrmSWNbT9YIXZSTUbtxZvBLHfbbAh64OQzH/vwDUOSHAja8Ng08b3+Iy7ADTTx3Z8P3t7zYfXn9WZyY5qYzgFFp8TWiiz1pUxVF/PgzFeqzwAXid+KP2D08WMEMmIjF8UxDqtaxlXPeX4CweweVSUCrougFxJ8C5DP9K06Xa+MlJhyu8emtb83tecZxHUTzucr8na/eoe3p2zTT6mbepiKIBclDYUyTrajNIG3CtJyO2sxYau/X6kUJ2YmlAyu+C2EhsxaYNJUuKpoEHLKMZdlWkBqqQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=SNgp49cUha1KtSDfW4HJDFNXxAEuVZ2UeIa2bDYCVZ8=;
- b=zNDp9YuZZndne8pmlnYgi4KQem6+VHI2rTVtGfv9I0GJKB8zDlFPjpUMMaMKrjIOzePzaMKXD8emZIkv1H8hkBdyaOAMfltgMjcgl4zjj7Q/gJFC8phKYM1QcaF5UFgoxn54a9yG9eOOV0fh9iK/A8bR5ol+jYnvk6KqCs5TXmMP1Btiduz96ay+C75RmjhOc49DrPMCZYziHjBxRClyX+kQm5RtO0dYsTVQSG7JrG/Djb6LZOaq+NWv02UO8kwuvYU8X5tandEqgAbOWwn5mFL7jwEdgyGjnQw9htWSyqlaXT3Imu741qd+vyIIQqDq+DOlap5IpwKbwrR842M8BQ==
+ bh=vFr0Z0Ewe1iuJ4YFqVRZM9qd9TWY+xMHEOQRFnoxAbw=;
+ b=I332Ge1M/6kzGoXRQxc3pCOT7+8hjLst2Ea6Ky6eX9Vs1bBKFiXqoD83ge5e2298b2o/w1ddTknVSeDFOYk1Z+9i8PGDFVQko+cEwQd7CllSDxYspIoOqCCrIQ1VhAQvdC1WxEV/xwCTEALr7bJU4YV5IPHDndysTmJaX0vFN3eIoZBywLlkc9MKTe02x/ZX7Upz79EDK4dLYDh/zcZ0Ba+Pr24LiztRT50DdSVAEpqU74zZFzDOak11oA9iI4bFGmV7U9EofxXAX4BXgw2fIaZlbB4azGEbeYhnFv23D74wDZXdbwNLJ+bjy+usw2HonqrfwJDpbeqc6aDzLvvxIg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DM6PR11MB3052.namprd11.prod.outlook.com (2603:10b6:5:69::29) by
- DM4PR11MB8204.namprd11.prod.outlook.com (2603:10b6:8:17d::22) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9542.9; Wed, 21 Jan 2026 05:30:44 +0000
-Received: from DM6PR11MB3052.namprd11.prod.outlook.com
- ([fe80::c685:30c9:fec0:40d0]) by DM6PR11MB3052.namprd11.prod.outlook.com
- ([fe80::c685:30c9:fec0:40d0%7]) with mapi id 15.20.9542.008; Wed, 21 Jan 2026
- 05:30:44 +0000
-Message-ID: <2c8c60b8-36ef-4ab3-b4c0-a8d3fc1d441e@intel.com>
-Date: Wed, 21 Jan 2026 11:00:36 +0530
+Received: from DM4PR11MB7183.namprd11.prod.outlook.com (2603:10b6:8:111::10)
+ by DM4PR11MB7207.namprd11.prod.outlook.com (2603:10b6:8:111::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9542.9; Wed, 21 Jan
+ 2026 06:13:09 +0000
+Received: from DM4PR11MB7183.namprd11.prod.outlook.com
+ ([fe80::d9c7:d2fb:680d:1ee1]) by DM4PR11MB7183.namprd11.prod.outlook.com
+ ([fe80::d9c7:d2fb:680d:1ee1%6]) with mapi id 15.20.9542.008; Wed, 21 Jan 2026
+ 06:13:09 +0000
+Content-Type: multipart/alternative;
+ boundary="------------nucvAUVh4044aagI9afl93Yu"
+Message-ID: <f755d837-468d-45df-84dd-bffe99115160@intel.com>
+Date: Wed, 21 Jan 2026 11:43:01 +0530
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/8] drm/xe/bo: Add purgeable bo state tracking and
- field madv to xe_bo
-To: Matthew Brost <matthew.brost@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, <himal.prasad.ghimiray@intel.com>,
- <thomas.hellstrom@linux.intel.com>, <pallavi.mishra@intel.com>
-References: <20260120060900.3137984-1-arvind.yadav@intel.com>
- <20260120060900.3137984-3-arvind.yadav@intel.com>
- <aW+/LsX/Od66W8NX@lstrano-desk.jf.intel.com>
+Subject: Re: [PATCH v3 1/3] drm/i915/pps: Enable panel power earlier
+To: Jani Nikula <jani.nikula@linux.intel.com>, Suraj Kandpal
+ <suraj.kandpal@intel.com>, <intel-xe@lists.freedesktop.org>,
+ <intel-gfx@lists.freedesktop.org>
+CC: <ankit.k.nautiyal@intel.com>, Mika Kahola <mika.kahola@intel.com>
+References: <20260116085455.571766-1-suraj.kandpal@intel.com>
+ <20260116085455.571766-2-suraj.kandpal@intel.com>
+ <36f6ab153c13cf5bf0e4db6969a95db9c3eb6ddb@intel.com>
 Content-Language: en-US
-From: "Yadav, Arvind" <arvind.yadav@intel.com>
-In-Reply-To: <aW+/LsX/Od66W8NX@lstrano-desk.jf.intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MA1PR01CA0166.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a00:71::36) To DM6PR11MB3052.namprd11.prod.outlook.com
- (2603:10b6:5:69::29)
+From: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
+In-Reply-To: <36f6ab153c13cf5bf0e4db6969a95db9c3eb6ddb@intel.com>
+X-ClientProxiedBy: MA5PR01CA0040.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:1d6::6) To DM4PR11MB7183.namprd11.prod.outlook.com
+ (2603:10b6:8:111::10)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM6PR11MB3052:EE_|DM4PR11MB8204:EE_
-X-MS-Office365-Filtering-Correlation-Id: b72a75ee-fe7c-414c-f99d-08de58ae38c6
+X-MS-TrafficTypeDiagnostic: DM4PR11MB7183:EE_|DM4PR11MB7207:EE_
+X-MS-Office365-Filtering-Correlation-Id: f031c97e-91a2-401c-5c8c-08de58b42659
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?d3lNaVd6c08rK3JUODRrdHBEd09EYi9xZFk2KzBvb2tJWlpSWEYwNmN3ZmpI?=
- =?utf-8?B?WFFFT1VCcmdXOUZZSnBZRjArMHdmYi8zWE82MmFOY2k4VVNxcDZJV1hFZStr?=
- =?utf-8?B?MzIvaFg1SVZ4Y0d1RWNObllDSTBOeG5XNi9WSUh0N1NQTDZyejBodWhBb0Fp?=
- =?utf-8?B?eVRFVi9tWU11U0lEakhuQ0hoWWNkcUhrT0Q2QXpka2xZMVdseWFVV1lKaFN6?=
- =?utf-8?B?R2o5anNFOEkyOXQ5SHF4YzFFRGJsTnlwZy8wNzBTV1dEZzdheTlObktTWHBW?=
- =?utf-8?B?SndQSE1sSnlKdnNoenBZck0vcERQLzVFQkJVeGY1Y0RDNUNLZHRzWUk3TC9q?=
- =?utf-8?B?dCtMbkdnMjUyZGZmdGcxdkNuNSs5MDNZMzlRSnBFN2RIUDZQSjZKbTZ1ZDVL?=
- =?utf-8?B?YkdtREozdWxnUXYvaXdzTHU3cUU2cnZkeEYxZCt2VHd1MDh1RTFwMzJLcVJG?=
- =?utf-8?B?WVI4WXlYTlNpNFhSZ0pFMFhQVnU4WWhzeGNOc1dJVTZmQlJnVVlPcHordmdB?=
- =?utf-8?B?bVpBMnNsYXEvYldDTEZjcVdaWjlDSzdXY2g1N3N2MGNLMEIwZXlWZXBMREVM?=
- =?utf-8?B?c0FZeU55Y1ZyZTdVRzE1L05TaHNwWEQ0eWdEMmkxdDR3bFkzdG1QRXFrYjFJ?=
- =?utf-8?B?NDloL0h4QVNyUnZJRmluZXZSakZicXZ6Tk5OcW9tbnZZTHBNdnloZDF2YUtK?=
- =?utf-8?B?ekNtYndCZ1dEUU9Qa2E0Y0VIMmROTWZaNGNlR3oyTklxUjRqd0NkVlkvUlBX?=
- =?utf-8?B?MGxPR0RDNTUyVEdmQzJONUlKZmpRUWY1RkZIOG1UeHJzay9hWlFyMjBkZTdX?=
- =?utf-8?B?NVBVUU9SVnZDQVpRNjNyVEdMTEtac05SUGNheXM4Ymc3a0N1c1NjTktpU252?=
- =?utf-8?B?V1dSdHZWcGpMdU1iZiswWVUyYmN3cko0NW5GWFhEaUhKL0s4N3VPVFBLa0l5?=
- =?utf-8?B?RXNRS0xyOEpKNW81ZXZUZTUxNXlmOExKb3FuVmNWQnBhelFNYnE2ZTNhc2t4?=
- =?utf-8?B?NmkzZW84YU03S1MxNSs4TnNhdTRQbzlKQ0RSQWoyeGFvN1pMS1N6ZVJZSSth?=
- =?utf-8?B?L1crUzhmUENUcmpnLzhURGh6VytGTmpQanRyVG1rc3g3K1U1RmVuSjNLQkNv?=
- =?utf-8?B?OG1rYlpYTXNqbEl4ZjMvODFQbHRlR0lKTWpTdXBLaG93TnNmaXZuUzk5M3N6?=
- =?utf-8?B?RUMwTnUxS0VSTEFuVFhSN3VPZnh1OWNNdVB0WlJJbTZjK3VnYVcrNStDeE53?=
- =?utf-8?B?N3lySzJyaUdhRERUaWhCcGN3cEpCaVl2VHNwRUNuTElzYkxIcXQvNXJidGkx?=
- =?utf-8?B?MUFFdS9CNE8rRjlnVi9EYWdBMWNKdXhoTFFhVFczUzArSXpzRTQ0T1RWZDBx?=
- =?utf-8?B?Q21YTWlZWVFsSDJadlh6Y0k2em9ySUh4MnVHajlPL3NRRkZ4QnNKNFJEQ2Uy?=
- =?utf-8?B?SjhMWExKYUJyRjQrYTdMbmpCZUxvOHY3Y2VmR084RTRnUTZ3MkloazFiZUVz?=
- =?utf-8?B?bVZ6bDdXaXptNHNiSkNNYjNvL3lRWkZzT2FKSHlYRGZTU0ZrUjVUcUtGSGlS?=
- =?utf-8?B?ZXpoM3hTZjgwQ2dlYlJkQjk3cTJmaDd1YVo4SGwxb1F5Zy9JM1pVUnEya3BQ?=
- =?utf-8?B?R0tXOFpueERtUTFTeFM3RG03YktIbWRpOUZEakoxdEcxOUxzZkxqMzBLTTY5?=
- =?utf-8?B?UGdBaktxOGpCNHlJSEQ2eTR4dHNidE5zTi9kVlRoSnJwRlA4TWwzSmtWbUln?=
- =?utf-8?B?bHZVa1EvdEEvMGlvUWt3M0JHZGs1UmxwNFA5UGl4c0NlR0J4blc2OCtFeXBs?=
- =?utf-8?B?cGhyRFdBdXJIV09xejhFNVR6OTY0RzNPVGhneGNpaDhNOExqZElKM21pUDRm?=
- =?utf-8?B?WldrMlJYU1pCVFBoQlAwdnlTNDJDMkpNeVI5VGhvUDR6SmszM0M2QU1zQTM5?=
- =?utf-8?B?WHVoK20ydjl0dkxoQnRhQUdzK1VmUnNYN0FabVB2bnhVSzJmTUVURmo3aDVC?=
- =?utf-8?B?UEhzaXBYdW9TSTFmZW1qK2JyaHJoMXh4aEJyVTl2ZWFzNVN5L2hwMGErbVBa?=
- =?utf-8?B?Ny9DeVVTTTM1U2NVcStNNTE1K3pTKzgvK0tmbVE0TGRJbVpaUThsNmdTT2pQ?=
- =?utf-8?Q?jrZI=3D?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014|8096899003;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?NkkwWEpFNWxlemtMT2E3endWRUJyanY4Z1M4cHkzVnlBWURMWUsvVThZaFlh?=
+ =?utf-8?B?NzBLY0ZMMG9zRkpSdmxGalNYY3hWTHVYbjJ3ZzI5RUxET3owcXMyWFpVN2NY?=
+ =?utf-8?B?TEFvcG51ckxyM0VCOE5vek1YSDZ1ZkR1MSsvTGdYUlN4cnFaT29ZejM0WXRO?=
+ =?utf-8?B?RDB0N2s4VW1HNkRhRjVSbXhtOG9pOXVjclFQbEJzaW5OSjMrNURsOUIzWk1D?=
+ =?utf-8?B?NXhBamdtWlcvbWNNMjlJVGc1ek91VnYwWGhMTkdlOHdrTVc2ZTlDUHpVYjAw?=
+ =?utf-8?B?ZHRVZTQvalBhakU3bHNyZTBkMlRLc2JlbFdOV1QrU0dBWmh5U295ckE0cExM?=
+ =?utf-8?B?Uy9NK1JnUDZmeGVoQ3JSL2N0NnlZdHBjU2hJZHpuRlNkZlVSLzEvejlPN0tW?=
+ =?utf-8?B?S3dvT0wxZEpKV1Z2bm14b0dQMWJmSXE0QUJqK0dtS1hvQmVGQlgvTXFLM3g0?=
+ =?utf-8?B?aDFueGszU1BKUU5kQXVjYUVvZnp5emdNa0Z6Q1B6REZhYUhkU09LSTJWeTVV?=
+ =?utf-8?B?bXkrQXhXV2hzL0ZqZGdaTUxPR3RtaDQ5QVM5cDdSbHRPeGUwSS9iNTRqRzlT?=
+ =?utf-8?B?VlZIQXFFeDkrdG5ycmdrZHhuYjlTMWpBSWtYNktXbk10M1ExSmd3aFRTYTYv?=
+ =?utf-8?B?UGE5dUU4S1Vrdmg0TjV4dWVHOXlld3oyUU12cHR2WTQxb3VTcFRrNVd0T1p5?=
+ =?utf-8?B?Tkx1QXJIc1pnTEZqNzZjdTdOYWl1SVo0WFl3b1haeVB1S1dlQ1U4OUF0K1dm?=
+ =?utf-8?B?STU5MXcxL3FmTlRpdzhLTVpOWVRERnZSbEM4dE9hWG85c2ZkeEUrVHV6NmRr?=
+ =?utf-8?B?NW5CWVRWUUY2RTBmTjFPcFlWeEJ2bSsrWUFEWTVkV0FNY2FDaGlveTBVNVBp?=
+ =?utf-8?B?UGFIejNyMHU4NjcvNXNieDUvREk0QjV3b3NhVHY2cEhhUjk2VFpudmQwL001?=
+ =?utf-8?B?akQ1ZnFpUjZjMTRHTy9xdXQ1ZHhSTVpDNzZYdFBXNzBJaDJYZndCMW1paUJi?=
+ =?utf-8?B?UHFpekNuY2M4YzVPZ1JHNys5Q3BZeFE0NS96eUVGOUtEcU04cEZDMnU4R1RM?=
+ =?utf-8?B?M0RYNzNtQWhOWDJuWXRxMDZDWVgzVStyVkZUTVpsRG1KTVVaRkpQYUdRckhk?=
+ =?utf-8?B?RnNJTWNuUlJRTlRXNmNCVm9rTnRlVHE5NnJYWnhwRDRzR0hQQ1BsYnZGN3lQ?=
+ =?utf-8?B?eFE5ZTQxUmw4L3ViWERNektsWXIyNExzTy9ocnFUcVdVc0xzMGJjaUtTQ2pM?=
+ =?utf-8?B?YWY5NUtxcFJ2SGwyM3RzNWpVT2dlMjh5RWNpQUR2VFFISHJNbUREWTFQc1N4?=
+ =?utf-8?B?VzcrQUJYMVM1R0xrU0FLUjgrWHpjRUNkUkxYSDZGUGZGYjFiMjJtejZYV3Vp?=
+ =?utf-8?B?Tlg3VmZKdUJHcVgyRi9xN0dMWnFVWHRTY1grNWlKSWpCaXYwbzhtTVVSbHhQ?=
+ =?utf-8?B?QXNiQ1paVUh5L3BZbUo1SHBxODFsOFpETE5nNzVYM2J2RzhxeWJwQ3lVMUF4?=
+ =?utf-8?B?c09BUFVuRFFib2NrL1NGeDRWZlhVMGFOMzFtS3dINExuWHhPL2ptMnBIY1pO?=
+ =?utf-8?B?SEo1Nmk4cE9IcThQYXhpL0NwaTdnMG1aOENnb3piTk1ySjdTVVltOUpmRnNv?=
+ =?utf-8?B?bVZ0ckxYMm1hTnVVZXZRSzFrM3d1STh6VWh6SlVKMTZHZ1ZkcXVFSEdwVzdk?=
+ =?utf-8?B?UUl2VHdvZ1VGcDVxQmk2OUhpZnh2bSt3c1NwS0d6bUoyWjg5QUVNcnJvMHZp?=
+ =?utf-8?B?eW5xem1FdGtUNk5uOGNCQWh6UGhTaW9MVFRvbitWc0hXbVJlbGVaZnllMlQ4?=
+ =?utf-8?B?Y3hXRno5ZnhvYXFsblNrSkF5TWNOdW5oNHhadEUrbEpuMWdEeW5iTmhCcDVp?=
+ =?utf-8?B?N05QTTFmUStUanhNOVF2YWU2SWd2d1RybjhpZHhqR2Q3UmRiczRNVmxyeWlX?=
+ =?utf-8?B?YkQ3U1VzdkNGSlZ6cjB6Tk9lZmFHNktUQjRBcy9mVmJFLzBUY2JrVFBKNHY4?=
+ =?utf-8?B?blJ4cGNaMisxWnhpVDNVQ25kdXptWEZZUGpzMm81SGVDZEZjQmRoSURteG51?=
+ =?utf-8?B?S0UrUnIydnBLbUh4a0xXWnNQL2VzNjRoK2FxK3ZQMnRuTEdCelhvWmtpNERB?=
+ =?utf-8?Q?XAlg=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM6PR11MB3052.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB7183.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(376014)(8096899003); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TkVWTnNLN2ozZ1ZrSUlGSXJ2RExpUGYzWHVCSFpab0JWSkVTNFVRT1Vjcmta?=
- =?utf-8?B?akR6MkNBQ3V3UUNyWHV1WUdZYkFPWU8zQ2VhUEU2aTFsRVQvT1pwMTcweDE5?=
- =?utf-8?B?aHJvamlJNmk2RmhFWCtaMlNoaUNqb24wZW1hT2YvbEhTbUJJYTAyV0xDbTlh?=
- =?utf-8?B?bE9NT3VmeWlqVVd1aWZSa1g5Y0ZISEw5VHJBZHB6QjNsUmZuWnRWNUd3RUJv?=
- =?utf-8?B?d3B0OUtOYWlKUlRETFU4UisrRFNTYjE5dWg5bEFkTFBDTlhDbGl0enczeEhW?=
- =?utf-8?B?QXVkQkU4UTNxSzNLaFVIRHhveVFwWXAxTUJ5UDJNdEo2aEZlN3F5UkdmN0d4?=
- =?utf-8?B?ai81ZDk3T2trWFBldnJib0JuWEJVSkJjWHFkYlFJR3FBMjNCZDJuSFZVOGtP?=
- =?utf-8?B?dEVEMWlEdlhUWjRxVFhDd2JUZGdGR2x2VTNYZTU0K1VhSjFsSm9qVHJvRndJ?=
- =?utf-8?B?NnJCUGN2SG9yaE1kbkU4alF6NWh5MmRpNTZCVXFsdnppS0JmeDhheUtGTDdY?=
- =?utf-8?B?NWJwbm9sQm0vakZUNnYzRnZPeWF2emVXY3AxYmdubTNiOVd5dWsrZmxKMmpE?=
- =?utf-8?B?bUtiNW8wMmhBaXF5bkFGTjRWVTlQaUZDdG9TZ1BhYjhkMVdkakozOHJtK2tF?=
- =?utf-8?B?d3ZjM0RzdnlUckFPNGVYT1QrTXRZanE3Y1NuUlJtN2Rudkx2ZDdsWG83dHBl?=
- =?utf-8?B?cFRBVklKUlNKbVdJcWlOd2hxYkJBclkvaTJzVEhuN1pzSmZ2Z1ppdmlUMU1p?=
- =?utf-8?B?Y0FWVVJEa2dTSUlrV3lKMnZ6dWFPWW8vaG91NEF0Wk9GVmhGdzBBbXVpWHdE?=
- =?utf-8?B?MVd5WHFFaHcvREhCMTBHREQ2ckQyb3lmRUpva1dwWjR1Z09MMHQ3a1hkaTFk?=
- =?utf-8?B?bXJxTmpSRHQzVy91V0prUDUrTlVMRE8rWURTMGpjSlhJaXRjNU5nS3EwVUxp?=
- =?utf-8?B?RUJyMWFkbFlhaEhML3Z0cDhyY0dneXpYUUVOY3BtbTZvOWZiMGNOVDB1TGJa?=
- =?utf-8?B?cmhIS0l6NFhsLzY0NWthZjJxSnpXVi9DL3JSZWNlK2hDSVVGaHhjcEx2VGlI?=
- =?utf-8?B?bmxWZWJ2aHpWYkZYWUZlaXB3dmZRYjVjM05FRHhpSnNVNGlxUXQyUm41YzMr?=
- =?utf-8?B?N0pzK3BWeXc4N2thYXBQa25GZ2ZZUUlkV082WE9sck9uNnF6a1FkN2YweU5i?=
- =?utf-8?B?UDlwSjl6TzA1bnNqZzc0SCs2bWN0NzI3STBoUnd0UzMrZjBrRDM5aTZscUxC?=
- =?utf-8?B?RG5RaTJwNjA0bjdnMnF5Vkw3bHRyZDdqUW9OeGVPTEh4YVduUDZMb2hZUmlW?=
- =?utf-8?B?bVc3N2pyS1djSGExNUpiVE05YWxvdHFjbmlLUnhEZFRlZlhUSVphS05Eck8r?=
- =?utf-8?B?cEh2ZTJCVmhWRTVsM1lYUVBxZXdRK3RQNm41SlVPNUFuOGt6aXJ3YTdacXV6?=
- =?utf-8?B?OEFuUlRFM2VwVTVuUFRoZWp3bTA2emh6OVlML3dnSGRrMU8ydE1nQnQ5SWp4?=
- =?utf-8?B?RVVtRDExRU05TmZUY3pTVlgxa000K2RTUThtaVJsVm5semhvWE9DeElvc1dx?=
- =?utf-8?B?ajU3YlhOb0wyNm50MjNRNGlmK0ZkL2tSRno4NFdQRG1BbVZQVU1EZng4aStO?=
- =?utf-8?B?TFBlc2wyby9OL3VINm1mOUtXb3lzenA3Ulo1bTJlakZlb3IwSjYyeVFTVmJT?=
- =?utf-8?B?am1uekRSb0Z3SXJuQ2hIY0s1bXpvWmd1TmxlTURReE4rNzZ2d1MvWDFnU2I3?=
- =?utf-8?B?cVVnR0ZhRkxhalAvUSsrRGFKYVVyZHY0ekgra3lVV1h3bkJJSmpHa3dqWFVE?=
- =?utf-8?B?ZDZ3cjJUNmZKWGRTZER1ak9TL2x0Z0FuTnpqMmo0UmsrOFdkbmJtbDZYbWRF?=
- =?utf-8?B?SWNQT1c0SUhkTGROZEdvd2MrUDI3VW5lTG9RN25KRFdjYU42VHlvcjZrRVNq?=
- =?utf-8?B?RUk5bC91ZzRYRDlJSWdhcjhSVWhNWURLU2ZlUnJQYVY1UiswK1B0K0JBbUph?=
- =?utf-8?B?a0VJTVgvbldLOFhYM0NpTGNqS1c0eVJ0Y1BJUEJRSjhLdVFFTnNRdW5LejM4?=
- =?utf-8?B?bEFJZjVqWVBwZEgyTTNsLzlQYWZvUzRUaDlYQVFJMCt2a3MzRlBHdXFibS84?=
- =?utf-8?B?cFFFZzNtWW5QTHRiU3lXUEdmL3Zjc0xySzZMTW1RQmlyYWsrUEExMXNITHZk?=
- =?utf-8?B?Q05zVm1mRkQ1dVBlUzFGUTRqNkhQM0Jqa3ZtTE5BOFhhUld6RTRKVXZkeWx6?=
- =?utf-8?B?cG1EbGdWRy9UYTFMY0pNd2NnS0ZaeDBTQ0gzWUdqYWx1N1UzRlhKMmk5UVpM?=
- =?utf-8?B?Z3JuMjYvbHpsdzVTdTRwMTcxVWpUKzNKOXFac0dEYkExZkJxL0h1dz09?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: b72a75ee-fe7c-414c-f99d-08de58ae38c6
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB3052.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?K3FDeElRc082aEQveVRjMERUaURhUGw5blh3N0prbUF1YmRsd2o5ajJyN2M4?=
+ =?utf-8?B?S3F2eitDVmxCYnBUNjNocUlSWWFHWTlMRXpwY0cxSXhYdUU2Y0VCbVFrUkRX?=
+ =?utf-8?B?bUZmL1BicFJtY1FrRkJFcUo5ZFJzOEFvby9zSTVaK3hoV05JMEIwZk0zbmN1?=
+ =?utf-8?B?SjBRckVVeEx0Y1JuWmFSZWhQQ1p2eldITThoS250SjVqT2pMY3BuZGpjQzRp?=
+ =?utf-8?B?Q2c1RXlESjdxRHhBTkx3ME9qNURwWXFweFU4bG8yWGZmLzE2WUg3NS8zTDBn?=
+ =?utf-8?B?MFg4aWxNZ2p0OHRwQldET05Kc1A5cEV1L25XSE1ZVnkyZlFFZU1xVkpaNi9K?=
+ =?utf-8?B?RGhOY2t6K1ovQW1uY2tQZWs2dUhib09oN1UrdktGQzdvbE5LMklaamNiQ3Ex?=
+ =?utf-8?B?SjFDQ3hyZ2ExeGcreC9uZmQ0NXNvaVlqK2NBeXp6RzhqenhmZmRCU3FUNHdt?=
+ =?utf-8?B?eWhLbmpTSHB2Y1U4SG1DclZJYm1OTUJVNjZ1YjMyaG1Kbm9LYURHWnhPaEFN?=
+ =?utf-8?B?d2JrRUJqM2srblpwcWZIZVFSMWVJamdPemlMdDZpUXhFUkphd2M1akUvcllo?=
+ =?utf-8?B?S2VLOURnMHYwNHdCN3ZONzEwTXdFVlpRaHdJVFpURXFOZSs0STVIRXUzamZJ?=
+ =?utf-8?B?dmhmRys5L0ViaTJFT1FYN0FLVko2YUZVeWFxSWNVTE11dzVnSFQzeE42Zzk1?=
+ =?utf-8?B?SkJhcXBvUVo0bU9PVnNtQllHK012bStSZkpHVy9VZFJwSlA0OXFGRm1JNHpJ?=
+ =?utf-8?B?UWVhVWltaisrTHJTVXNxcVFtM2F6aGE2OFp0ZUdyeXZnZzlNRkZDaUJBRWpq?=
+ =?utf-8?B?QTRTc3UraDlDMllEK2k3bnd5STZTMVdwSGtuNENvRDhSMWk2emN2K2hKL04z?=
+ =?utf-8?B?K1J0TGtlZ05wdjBRT240TU9OVVBuR21rOElWUHp0SFpXNlUxWUMrdHJGcGFl?=
+ =?utf-8?B?SUY2R2E3cThEbzIxYWdYYTN3aDJTZ3BxWVZPZnM1RnpVenNVbWtCZ2g0Y01U?=
+ =?utf-8?B?QXpmZE4veWlDQzZ5Kzd0WnZ1RkpLYnJIdWo2YXVBS3ZGTFdxNjhpUVgveEhF?=
+ =?utf-8?B?dWQvTGxhME5ZYVVmZFF3dUZXbnM5TnpzbFF6ZlM4RktnL3JKQmFHUWRNTWN5?=
+ =?utf-8?B?QWdadzNiU0VmOUNEdVJ5dkVoNWwyUmtRUWVGdjdBNEFKbVlzdVlPT29TSzVD?=
+ =?utf-8?B?a2s0TjIyNGxkTDJESmNKL3VzVDJLNWN3RlpqNFdwSVVraGdTa2pYZjl5UUxY?=
+ =?utf-8?B?bkVWSWhXeFVuN3NUNThlY3RySWFRdEI1MCtyN2lzMnJsMFlQbThab3c3ZTQ3?=
+ =?utf-8?B?MHJHcmp2MTg4UWNhVklQR1RhcmJYMHVPbEZUNzNmNVgyUjZlMDFvTkdTOWdm?=
+ =?utf-8?B?aHNDOVQwY3FrQ1A0QTN3NmJyalh2RWlsUmYxQ3FBd0cxckRSamMxN2M5ZTRT?=
+ =?utf-8?B?VWhTbm1vZE8vMGREL0puOUcyQXV5MTZBbEgvNWxWT3FXUnhITUJmMExPOEtm?=
+ =?utf-8?B?alR0TEQrTy9HNktZRE54ekVyZ25qS2pGdy93a3NlaktvYmdTTEluTTh5N1ly?=
+ =?utf-8?B?RmZ3Ky8rclJvNlZtMi9Tdld4NTZUKzlnUW9nUGxxWEJhVWh3eFluNTJCb0Fu?=
+ =?utf-8?B?T2gzR0t4Vkw1ZDhWNllGRjU5b0FYR05xOHFZY25Jc2lyMEZnZ01oY0hWRkgy?=
+ =?utf-8?B?TVZadkU1UGMrQ2RleDVteFVuN1B0SGQ4SkhRd3lpYmZtOVJNVndGNVM1QWFY?=
+ =?utf-8?B?MDl6dkhwMStjY3UrMkxyL1VzNmtJUlJlWnJGeUJ5NDJMS2NrN3Vpb1RaUlRo?=
+ =?utf-8?B?VGF0ZkpPV2kyUXM5MmY0VjdYUmtaVW84M3lEYlZjUE1vWVNzdGZpSkJJVWhx?=
+ =?utf-8?B?UGF5Sk1NUUlBNldqNklnbnBnemFCb2tzZEpFeDhXWk9FVElRT2tDa1huQ2xB?=
+ =?utf-8?B?RUJjakFGZDdIVmdiT3BTMmNCRkRsTC9kd2k2czRRNWluRnYvRGgvdmJGczd2?=
+ =?utf-8?B?Z3F0US94aFhVcVRHeVdCNEllaEIvY1R4K2RDUUZSY3lkb1o4Mm9WK3RqT1V4?=
+ =?utf-8?B?U0V3T0U2UkJLMjZVd0lLSSt3K0RPSWVYeTN0MWhJbTM3TnZweTljTWpYelZm?=
+ =?utf-8?B?TUtkSkwyRFpOOEhwampMUTMwUVBBY2FhUXdlUTVUdE1peVRiWW9xc0J3VXlP?=
+ =?utf-8?B?KzNyeUltTGZVQ3ZnNThxWWJQckVYU1paOE1CUUFsQ2hDbUtCMXZ4YVRPdzEz?=
+ =?utf-8?B?N0hWOHFKSGsxT0RyU0U4OFkrWGRHMFdrQUJPajhVREdsck1EKzVzMWpycmdH?=
+ =?utf-8?B?R0t0dXJBUDYraE0wUER3TmJrclFnRVk4a2Vmei9pK3M0NkN5TmtUcU04MThU?=
+ =?utf-8?Q?BjOq7C2viQuNQvBgSO1jNg+YM4rZ8BS1c1zjG?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: f031c97e-91a2-401c-5c8c-08de58b42659
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB7183.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Jan 2026 05:30:43.9776 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Jan 2026 06:13:09.7389 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: +MaGnGGtd1rOmj9BVJLWHzjsZk9HXDhFadGzcjDV2drYi/ABCptTK3XcJpRYgx+CsRiORLjesd/rbNEAMWPz+g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB8204
+X-MS-Exchange-CrossTenant-UserPrincipalName: NKB/9uQOfiTovXSPr4JYq9GPTLBpLAb6BUlfTQxJDGDUQ4bUHsVpjrM6Mi+qK85PNSIFm4iJp7o79h4WZDucSbQwQ9K0hhuQPEDkFKzCjZDmIL/MiPLZv98g+tDA4AtF
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB7207
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -203,149 +205,223 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--------------nucvAUVh4044aagI9afl93Yu
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On 20-01-2026 23:15, Matthew Brost wrote:
-> On Tue, Jan 20, 2026 at 11:38:48AM +0530, Arvind Yadav wrote:
->> Add infrastructure for tracking purgeable state of buffer objects.
->> This includes:
+
+On 20-01-2026 19:27, Jani Nikula wrote:
+> On Fri, 16 Jan 2026, Suraj Kandpal<suraj.kandpal@intel.com> wrote:
+>> From: Mika Kahola<mika.kahola@intel.com>
 >>
->> Introduce enum xe_madv_purgeable_state with three states:
->>     - XE_MADV_PURGEABLE_WILLNEED (0): BO is needed and should not be
->>       purged. This is the default state for all BOs.
->>
->>     - XE_MADV_PURGEABLE_DONTNEED (1): BO is not currently needed and
->>       can be purged by the kernel under memory pressure to reclaim
->>       resources. Only non-shared BOs can be marked as DONTNEED.
->>
->>     - XE_MADV_PURGEABLE_PURGED (2): BO has been purged by the kernel.
->>       Accessing a purged BO results in error. Follows i915 semantics
->>       where once purged, the BO remains permanently invalid ("once
->>       purged, always purged").
->>
->> Add atomic_t madv field to struct xe_bo for state tracking
->>    of purgeable state across concurrent access paths
->>
->> v2:
->>    - Add xe_bo_is_purged() helper, improve state documentation
->>
->> v3:
->>    - Add the kernel doc(Matthew Brost)
->>    - Add the new helpers xe_bo_madv_is_dontneed(Matthew Brost)
->>
->> v4:
->>    - @madv_purgeable atomic_t → u32 change across all relevant patches. (Matt)
->>
->> Cc: Matthew Brost <matthew.brost@intel.com>
->> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
->> Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
->> Signed-off-by: Arvind Yadav <arvind.yadav@intel.com>
+>> Move intel_pps_on() to intel_dpll_mgr PLL enabling
+>> .enable function hook to enable panel power earlier.
+>> We need to do this to make sure we are following the
+>> modeset sequences of Bspec. This had changed when we
+>> moved the PLL PHY enablement for CX0 from .enable_clock
+>> to dpll.enable hook
+> So I really hate this.
+>
+> Yeah, maybe it follows the spec now, but what connection does the DPLL
+> manager have with the panel power sequencing?
+>
+> Absolutely nothing.
+>
+> The DPLL manager has no business calling PPS functions.
+>
+> Currently only the g4x and DDI encoder code does PPS power calls, and
+> they're the only ones who should manage PPS.
+>
+>> Signed-off-by: Mika Kahola<mika.kahola@intel.com>
+>> Signed-off-by: Suraj Kandpal<suraj.kandpal@intel.com>
 >> ---
->>   drivers/gpu/drm/xe/xe_bo.h       | 56 ++++++++++++++++++++++++++++++++
->>   drivers/gpu/drm/xe/xe_bo_types.h |  3 ++
->>   2 files changed, 59 insertions(+)
 >>
->> diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
->> index 8ab4474129c3..00e93b3065c9 100644
->> --- a/drivers/gpu/drm/xe/xe_bo.h
->> +++ b/drivers/gpu/drm/xe/xe_bo.h
->> @@ -86,6 +86,28 @@
+>> v2 -> v3:
+>> - Rather than splitting the PHY enablement sequence, enable PPS
+>> earlier (Imre)
+> Please point me at the review comment. I couldn't find anything that
+> would suggest moving the PPS calls to the DPLL manager.
+>
+> Please let's not do this.
+>
+> BR,
+> Jani.
+>
+>
+>>    
+>>   drivers/gpu/drm/i915/display/intel_ddi.c      | 6 ++++--
+>>   drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 5 +++++
+>>   2 files changed, 9 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+>> index cb91d07cdaa6..1784fa687c03 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+>> @@ -2653,8 +2653,10 @@ static void mtl_ddi_pre_enable_dp(struct intel_atomic_state *state,
+>>   	/* 3. Select Thunderbolt */
+>>   	mtl_port_buf_ctl_io_selection(encoder);
 >>   
->>   #define XE_PCI_BARRIER_MMAP_OFFSET	(0x50 << XE_PTE_SHIFT)
+>> -	/* 4. Enable Panel Power if PPS is required */
+>> -	intel_pps_on(intel_dp);
+>> +	/*
+>> +	 * 4. Enable Panel Power if PPS is required
+>> +	 *    moved to intel_dpll_mgr .enable hook
+>> +	 */
+
+Moving pps on alone wont help here,
+as new sequence will be 6 -> 4 -> 5.
+
+Regards,
+Dibin
+
 >>   
->> +/**
->> + * enum xe_madv_purgeable_state - Buffer object purgeable state enumeration
->> + *
->> + * This enum defines the possible purgeable states for a buffer object,
->> + * allowing userspace to provide memory usage hints to the kernel for
->> + * better memory management under pressure.
->> + *
->> + * @XE_MADV_PURGEABLE_WILLNEED: The buffer object is needed and should not be purged.
->> + * This is the default state.
->> + * @XE_MADV_PURGEABLE_DONTNEED: The buffer object is not currently needed and can be
->> + * purged by the kernel under memory pressure.
->> + * @XE_MADV_PURGEABLE_PURGED: The buffer object has been purged by the kernel.
->> + *
->> + * Accessing a purged buffer will result in an error. Per i915 semantics,
->> + * once purged, a BO remains permanently invalid and must be destroyed and recreated.
->> + */
->> +enum xe_madv_purgeable_state {
->> +	XE_MADV_PURGEABLE_WILLNEED,
->> +	XE_MADV_PURGEABLE_DONTNEED,
->> +	XE_MADV_PURGEABLE_PURGED,
->> +};
+>>   	/* 5. Enable the port PLL */
+>>   	intel_ddi_enable_clock(encoder, crtc_state);
+>> diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+>> index 9aa84a430f09..b5655c734c53 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+>> @@ -40,6 +40,7 @@
+>>   #include "intel_hti.h"
+>>   #include "intel_mg_phy_regs.h"
+>>   #include "intel_pch_refclk.h"
+>> +#include "intel_pps.h"
+>>   #include "intel_step.h"
+>>   #include "intel_tc.h"
+>>   
+>> @@ -4401,6 +4402,10 @@ static void mtl_pll_enable(struct intel_display *display,
+>>   	if (drm_WARN_ON(display->drm, !encoder))
+>>   		return;
+>>   
+>> +	/* Enable Panel Power if PPS is required */
+>> +	if (intel_encoder_is_dp(encoder))
+>> +		intel_pps_on(enc_to_intel_dp(encoder));
 >> +
->>   struct sg_table;
->>   
->>   struct xe_bo *xe_bo_alloc(void);
->> @@ -214,6 +236,40 @@ static inline bool xe_bo_is_protected(const struct xe_bo *bo)
->>   	return bo->pxp_key_instance;
+>>   	intel_mtl_pll_enable(encoder, pll, dpll_hw_state);
 >>   }
->>   
->> +/**
->> + * xe_bo_is_purged() - Check if buffer object has been purged
->> + * @bo: The buffer object to check
->> + *
->> + * Checks if the buffer object's backing store has been discarded by the
->> + * kernel due to memory pressure after being marked as purgeable (DONTNEED).
->> + * Once purged, the BO cannot be restored and any attempt to use it will fail.
->> + *
->> + * Context: Caller must hold the BO's dma-resv lock
->> + * Return: true if the BO has been purged, false otherwise
->> + */
->> +static inline bool xe_bo_is_purged(struct xe_bo *bo)
->> +{
->> +	xe_bo_assert_held(bo);
->> +	return bo->madv_purgeable == XE_MADV_PURGEABLE_PURGED;
->> +}
->> +
->> +/**
->> + * xe_bo_madv_is_dontneed() - Check if BO is marked as DONTNEED
->> + * @bo: The buffer object to check
->> + *
->> + * Checks if userspace has marked this BO as DONTNEED (i.e., its contents
->> + * are not currently needed and can be discarded under memory pressure).
->> + * This is used internally to decide whether a BO is eligible for purging.
->> + *
->> + * Context: Caller must hold the BO's dma-resv lock
->> + * Return: true if the BO is marked DONTNEED, false otherwise
->> + */
->> +static inline bool xe_bo_madv_is_dontneed(struct xe_bo *bo)
->> +{
->> +	xe_bo_assert_held(bo);
->> +	return bo->madv_purgeable == XE_MADV_PURGEABLE_DONTNEED;
->> +}
->> +
->>   static inline void xe_bo_unpin_map_no_vm(struct xe_bo *bo)
->>   {
->>   	if (likely(bo)) {
->> diff --git a/drivers/gpu/drm/xe/xe_bo_types.h b/drivers/gpu/drm/xe/xe_bo_types.h
->> index d4fe3c8dca5b..6acfed0c0bb4 100644
->> --- a/drivers/gpu/drm/xe/xe_bo_types.h
->> +++ b/drivers/gpu/drm/xe/xe_bo_types.h
->> @@ -108,6 +108,9 @@ struct xe_bo {
->>   	 * from default
->>   	 */
->>   	u64 min_align;
->> +
->> +	/** @madv_purgeable: user space advise on BO purgeability */
-> , protected by BO's dma-resv lock.
->
-> Everything else LGTM.
+--------------nucvAUVh4044aagI9afl93Yu
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  </head>
+  <body>
+    <p><br>
+    </p>
+    <div class="moz-cite-prefix">On 20-01-2026 19:27, Jani Nikula wrote:<br>
+    </div>
+    <blockquote type="cite" cite="mid:36f6ab153c13cf5bf0e4db6969a95db9c3eb6ddb@intel.com">
+      <pre wrap="" class="moz-quote-pre">On Fri, 16 Jan 2026, Suraj Kandpal <a class="moz-txt-link-rfc2396E" href="mailto:suraj.kandpal@intel.com">&lt;suraj.kandpal@intel.com&gt;</a> wrote:
+</pre>
+      <blockquote type="cite">
+        <pre wrap="" class="moz-quote-pre">From: Mika Kahola <a class="moz-txt-link-rfc2396E" href="mailto:mika.kahola@intel.com">&lt;mika.kahola@intel.com&gt;</a>
+
+Move intel_pps_on() to intel_dpll_mgr PLL enabling
+.enable function hook to enable panel power earlier.
+We need to do this to make sure we are following the
+modeset sequences of Bspec. This had changed when we
+moved the PLL PHY enablement for CX0 from .enable_clock
+to dpll.enable hook
+</pre>
+      </blockquote>
+      <pre wrap="" class="moz-quote-pre">
+So I really hate this.
+
+Yeah, maybe it follows the spec now, but what connection does the DPLL
+manager have with the panel power sequencing?
+
+Absolutely nothing.
+
+The DPLL manager has no business calling PPS functions.
+
+Currently only the g4x and DDI encoder code does PPS power calls, and
+they're the only ones who should manage PPS.
+
+</pre>
+      <blockquote type="cite">
+        <pre wrap="" class="moz-quote-pre">
+Signed-off-by: Mika Kahola <a class="moz-txt-link-rfc2396E" href="mailto:mika.kahola@intel.com">&lt;mika.kahola@intel.com&gt;</a>
+Signed-off-by: Suraj Kandpal <a class="moz-txt-link-rfc2396E" href="mailto:suraj.kandpal@intel.com">&lt;suraj.kandpal@intel.com&gt;</a>
+---
+
+v2 -&gt; v3: 
+- Rather than splitting the PHY enablement sequence, enable PPS
+earlier (Imre)
+</pre>
+      </blockquote>
+      <pre wrap="" class="moz-quote-pre">
+Please point me at the review comment. I couldn't find anything that
+would suggest moving the PPS calls to the DPLL manager.
+
+Please let's not do this.
+
+BR,
+Jani.
 
 
-Noted, I will do the changes as per suggestion.
+</pre>
+      <blockquote type="cite">
+        <pre wrap="" class="moz-quote-pre">  
+ drivers/gpu/drm/i915/display/intel_ddi.c      | 6 ++++--
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 5 +++++
+ 2 files changed, 9 insertions(+), 2 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+index cb91d07cdaa6..1784fa687c03 100644
+--- a/drivers/gpu/drm/i915/display/intel_ddi.c
++++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+@@ -2653,8 +2653,10 @@ static void mtl_ddi_pre_enable_dp(struct intel_atomic_state *state,
+ 	/* 3. Select Thunderbolt */
+ 	mtl_port_buf_ctl_io_selection(encoder);
+ 
+-	/* 4. Enable Panel Power if PPS is required */
+-	intel_pps_on(intel_dp);
++	/*
++	 * 4. Enable Panel Power if PPS is required
++	 *    moved to intel_dpll_mgr .enable hook
++	 */</pre>
+      </blockquote>
+    </blockquote>
+    <pre>Moving pps on alone wont help here, 
+as new sequence will be 6 -&gt; 4 -&gt; 5.
 
-Thanks,
-Arvind
+Regards,
+Dibin</pre>
+    <blockquote type="cite" cite="mid:36f6ab153c13cf5bf0e4db6969a95db9c3eb6ddb@intel.com">
+      <blockquote type="cite">
+        <pre wrap="" class="moz-quote-pre">
+ 
+ 	/* 5. Enable the port PLL */
+ 	intel_ddi_enable_clock(encoder, crtc_state);
+diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+index 9aa84a430f09..b5655c734c53 100644
+--- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
++++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+@@ -40,6 +40,7 @@
+ #include &quot;intel_hti.h&quot;
+ #include &quot;intel_mg_phy_regs.h&quot;
+ #include &quot;intel_pch_refclk.h&quot;
++#include &quot;intel_pps.h&quot;
+ #include &quot;intel_step.h&quot;
+ #include &quot;intel_tc.h&quot;
+ 
+@@ -4401,6 +4402,10 @@ static void mtl_pll_enable(struct intel_display *display,
+ 	if (drm_WARN_ON(display-&gt;drm, !encoder))
+ 		return;
+ 
++	/* Enable Panel Power if PPS is required */
++	if (intel_encoder_is_dp(encoder))
++		intel_pps_on(enc_to_intel_dp(encoder));
++
+ 	intel_mtl_pll_enable(encoder, pll, dpll_hw_state);
+ }
+</pre>
+      </blockquote>
+      <pre wrap="" class="moz-quote-pre">
+</pre>
+    </blockquote>
+  </body>
+</html>
 
->
-> Matt
->
->> +	u32 madv_purgeable;
->>   };
->>   
->>   #endif
->> -- 
->> 2.43.0
->>
+--------------nucvAUVh4044aagI9afl93Yu--
